@@ -282,7 +282,7 @@ instance DIA_Ramirez_Viertel(C_Info)
 
 func int DIA_Ramirez_Viertel_Condition()
 {
-	if(Knows_SecretSign == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Ramirez_Zeichen))
 	{
 		return TRUE;
 	};
@@ -311,7 +311,7 @@ instance DIA_Ramirez_Sextant(C_Info)
 
 func int DIA_Ramirez_Sextant_Condition()
 {
-	if((Knows_SecretSign == TRUE) && (MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 2))
+	if((MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 2) && Npc_KnowsInfo(other,DIA_Ramirez_Zeichen))
 	{
 		return TRUE;
 	};

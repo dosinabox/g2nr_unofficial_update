@@ -234,9 +234,12 @@ instance ItMw_BeliarWeapon_Raven(BeliarWeaponPrototype_2H)
 	cond_value[2] = 666666;
 	text[1] = "";
 	count[1] = 0;
-	text[2] = NAME_Damage;
-	count[2] = damageTotal;
+//	text[2] = NAME_Damage;
+//	count[2] = damageTotal;
+	text[2] = "";
+	count[2] = 0;
 	text[3] = "";
+	text[4] = "";
 	count[5] = value;
 };
 

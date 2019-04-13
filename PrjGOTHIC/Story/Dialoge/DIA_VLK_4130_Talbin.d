@@ -215,8 +215,9 @@ func void DIA_Talbin_AskTeacher_Info()
 	AI_Output(other,self,"DIA_Talbin_AskTeacher_15_02");	//Что ты хочешь за это?
 	AI_Output(self,other,"DIA_Talbin_AskTeacher_07_03");	//У тебя ничего нет поесть кроме мяса луркеров? Может быть, кусок сыра? Да, кусок сыра. Жизнь бы отдал за этот кусок...
 	AI_Output(other,self,"DIA_Talbin_AskTeacher_15_04");	//Я посмотрю, что можно сделать.
-	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher,"Талбин может обучить меня добывать трофеи животных.");
+	Log_CreateTopic(TOPIC_TalbinCheese,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_TalbinCheese,LOG_Running);
+	B_LogEntry(TOPIC_TalbinCheese,"Охотник в Долине Рудников по имени Талбин научит меня снимать трофеи с животных, если я принесу ему сыр.");
 };
 
 
@@ -231,11 +232,9 @@ instance DIA_Talbin_PayTeacher(C_Info)
 };
 
 
-var int DIA_Talbin_PayTeacher_noPerm;
-
 func int DIA_Talbin_PayTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (DIA_Talbin_PayTeacher_noPerm == FALSE) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (Talbin_TeachAnimalTrophy == FALSE) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE) && Npc_HasItems(other,ItFo_Cheese))
 	{
 		return TRUE;
 	};
@@ -243,19 +242,39 @@ func int DIA_Talbin_PayTeacher_Condition()
 
 func void DIA_Talbin_PayTeacher_Info()
 {
-	if(B_GiveInvItems(other,self,ItFo_Cheese,1))
+	AI_Output(other,self,"DIA_Talbin_PayTeacher_15_00");	//Вот твой сыр. Ты обучишь меня теперь?
+	B_GiveInvItems(other,self,ItFo_Cheese,1);
+	AI_Output(self,other,"DIA_Talbin_PayTeacher_07_01");	//У тебя действительно есть сыр? Ох, давненько я не ел ничего подобного. Спасибо. Ээ, а что насчет... Ах, да, конечно!
+	Talbin_TeachAnimalTrophy = TRUE;
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,"Талбин может обучить меня добывать трофеи животных.");
+};
+
+instance DIA_Talbin_PayTeacher_NoCheese(C_Info)
+{
+	npc = VLK_4130_Talbin;
+	nr = 11;
+	condition = DIA_Talbin_PayTeacher_NoCheese_Condition;
+	information = DIA_Talbin_PayTeacher_NoCheese_Info;
+	permanent = TRUE;
+	description = "У меня сейчас нет сыра!";
+};
+
+
+func int DIA_Talbin_PayTeacher_NoCheese_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (Talbin_TeachAnimalTrophy == FALSE) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE) && !Npc_HasItems(other,ItFo_Cheese))
 	{
-		AI_Output(other,self,"DIA_Talbin_PayTeacher_15_00");	//Вот твой сыр. Ты обучишь меня теперь?
-		AI_Output(self,other,"DIA_Talbin_PayTeacher_07_01");	//У тебя действительно есть сыр? Ох, давненько я не ел ничего подобного. Спасибо. Ээ, а что насчет... Ах, да, конечно!
-		Talbin_TeachAnimalTrophy = TRUE;
-		DIA_Talbin_PayTeacher_noPerm = TRUE;
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Talbin_PayTeacher_15_02");	//У меня сейчас нет сыра!
-		AI_Output(self,other,"DIA_Talbin_PayTeacher_07_03");	//Это было бы слишком хорошо, чтобы быть правдой. Ладно, скажешь, когда раздобудешь его!
+		return TRUE;
 	};
 };
+
+func void DIA_Talbin_PayTeacher_NoCheese_Info()
+{
+	AI_Output(other,self,"DIA_Talbin_PayTeacher_15_02");	//У меня сейчас нет сыра!
+	AI_Output(self,other,"DIA_Talbin_PayTeacher_07_03");	//Это было бы слишком хорошо, чтобы быть правдой. Ладно, скажешь, когда раздобудешь его!
+};
+
 
 
 instance DIA_Talbin_TEACHHUNTING(C_Info)

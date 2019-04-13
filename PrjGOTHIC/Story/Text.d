@@ -10,11 +10,11 @@ const string MOBNAME_BARBQ_SCAV = "";
 const string MOBNAME_BARBQ_SHEEP = "";
 const string MOBNAME_BENCH = "";
 const string MOBNAME_ANVIL = "Наковальня";
-const string MOBNAME_BUCKET = "Ведро для воды";
+const string MOBNAME_BUCKET = "Ведро с водой";
 const string MOBNAME_FORGE = "Кузнечный горн";
 const string MOBNAME_GRINDSTONE = "Точильный камень";
 const string MOBNAME_WHEEL = "Ворот";
-const string MOBNAME_LAB = "Стол алхимика";
+const string MOBNAME_LAB = "Алхимический стол";
 const string MOBNAME_BOOKSTAND = "Книжный стенд";
 const string MOBNAME_BOOKSBOARD = "Книжный стенд";
 const string MOBNAME_CHAIR = "";
@@ -29,7 +29,7 @@ const string MOBNAME_ORE = "Рудная жила";
 const string MOBNAME_WINEMAKER = "";
 const string MOBNAME_ORCDRUM = "";
 const string MOBNAME_STOVE = "Плита";
-const string MOBNAME_INNOS = "Статуя Инноса";
+const string MOBNAME_INNOS = "Алтарь Инноса";
 const string MOBNAME_RUNEMAKER = "Рунный стол";
 const string MOBNAME_SAW = "Бревно";
 const string MOBNAME_ARMCHAIR = "Кресло";
@@ -40,6 +40,8 @@ const string MOBNAME_VORRATSKAMMER = "Кладовка";
 const string MOBNAME_SCHATZKAMMER = "Сокровищница";
 const string MOBNAME_IGARAZ = "Сундук Игараца";
 const string MOBNAME_ALMANACH = "Альманах";
+const string MOBNAME_RECESS = "Углубление";
+const string MOBNAME_DRAGONDOOR = "Врата";
 const string MOBNAME_CITY = "Хоринис";
 const string MOBNAME_TAVERN = "Таверна";
 const string MOBNAME_GR_PEASANT = "Лендлорд";
@@ -114,7 +116,7 @@ const string MOBNAME_GRAVE_32 = "Мечник Дитмар Укара 112 - 212";
 const string MOBNAME_GRAVE_33 = "Почетный страж Утар Серанис 178 - 212";
 const string MOBNAME_ADDON_SOCKEL = "Пьедестал";
 const string MOBNAME_ADDON_FORTUNO = "Сундук Фортуно";
-const string MOBNAME_ADDON_IDOL = "Статуя Белиара";
+const string MOBNAME_ADDON_IDOL = "Алтарь Белиара";
 const string MOBNAME_ADDON_GOLD = "Золотая жила";
 const string MOBNAME_ADDON_STONEBOOK = "Пюпитр";
 const string MOBNAME_ADDON_ORNAMENT = "Устройство в форме кольца";
@@ -207,7 +209,7 @@ const string TXT_SPELLS[100] =
 	"Изгнание Зла",
 	"Большое исцеление",
 	"Уничтожение Зла",
-	"Телепорт",
+	"Секретный телепорт",
 	"В порт",
 	"В монастырь",
 	"К лендлорду",
@@ -247,24 +249,24 @@ const string TXT_SPELLS[100] =
 	"Волна смерти",
 	"Армия Тьмы",
 	"Уменьшение монстра",
-	"Овца",
-	"Падальщик",
-	"Гигантская крыса",
-	"Полевой хищник",
-	"Волк",
-	"Ящер",
-	"Снеппер",
-	"Варг",
-	"Огненный ящер",
-	"Луркер",
-	"Мракорис",
-	"Драконий снеппер",
+	"Превращение в овцу",
+	"Превращение в падальщика",
+	"Превращение в гигантскую крысу",
+	"Превращение в полевого хищника",
+	"Превращение в волка",
+	"Превращение в ящера",
+	"Превращение в снеппера",
+	"Превращение в варга",
+	"Превращение в огненного ящера",
+	"Превращение в луркера",
+	"Превращение в мракориса",
+	"Превращение в драконьего снеппера",
 	"Забвение",
 	"Святая стрела",
 	"Стрела смерти",
 	"Шар смерти",
 	"Стрела сотрясения",
-	"TXT_SPL_RESERVED_64",
+	"Телепорт зодчих",
 	"TXT_SPL_RESERVED_65",
 	"TXT_SPL_RESERVED_66",
 	"TXT_SPL_RESERVED_67",
@@ -308,7 +310,7 @@ const string NAME_SPL_PalMediumHeal = "Среднее исцеление";
 const string NAME_SPL_PalRepelEvil = "Изгнание Зла";
 const string NAME_SPL_PalFullHeal = "Большое исцеление";
 const string NAME_SPL_PalDestroyEvil = "Уничтожение Зла";
-const string NAME_SPL_PalTeleportSecret = "Телепорт";
+const string NAME_SPL_PalTeleportSecret = "Секретный телепорт";
 const string NAME_SPL_TeleportSeaport = "Телепорт в порт";
 const string NAME_SPL_TeleportMonastery = "Телепорт в монастырь";
 const string NAME_SPL_TeleportFarm = "Телепорт к лендлорду";
@@ -365,7 +367,7 @@ const string NAME_SPL_MasterOfDisaster = "Святая стрела";
 const string NAME_SPL_Deathbolt = "Стрела смерти";
 const string NAME_SPL_Deathball = "Шар смерти";
 const string NAME_SPL_ConcussionBolt = "Стрела сотрясения";
-const string NAME_SPL_Reserved_64 = "NAME_SPL_RESERVED_64";
+const string NAME_SPL_Teleport_Maya = "Телепорт зодчих";
 const string NAME_SPL_Reserved_65 = "NAME_SPL_RESERVED_65";
 const string NAME_SPL_Reserved_66 = "NAME_SPL_RESERVED_66";
 const string NAME_SPL_Reserved_67 = "NAME_SPL_RESERVED_67";
@@ -411,7 +413,7 @@ const string TXT_TALENTS[22] =
 	"Арбалет",
 	"Отмычки",
 	"",
-	"Магия",
+	"Круг магии",
 	"Подкрадывание",
 	"",
 	"",
@@ -423,7 +425,7 @@ const string TXT_TALENTS[22] =
 	"Снятие шкур",
 	"Языки зодчих",
 	"Способности огонька",
-	"",
+	"Снятие трофеев",
 	"",
 	""
 };
@@ -437,7 +439,7 @@ const string TXT_TALENTS_SKILLS[22] =
 	"Новичок|Стрелок|Мастер",
 	"Не обучен|Обучен|-",
 	"0|1|2",
-	"Не обучен|Круг 1|Круг 2|Круг 3|Круг 4|Круг 5|Круг 6",
+	"Не обучен|Первый|Второй|Третий|Четвертый|Пятый|Шестой",
 	"Не обучен|Обучен",
 	"-|-",
 	"-|-",
@@ -467,7 +469,7 @@ const string TXT_INV_CAT[9] =
 	"Разное"
 };
 const string NAME_Paladin = "Паладин";
-const string NAME_Miliz = "Городской стражник";
+const string NAME_Miliz = "Ополченец";
 const string NAME_Torwache = "Стражник у ворот";
 const string NAME_Tuerwache = "Стражник у двери";
 const string NAME_Stadtwache = "Городской стражник";
@@ -573,7 +575,7 @@ const string NAME_OneHanded = "Одноручное оружие";
 const string NAME_TwoHanded = "Двуручное оружие";
 const string NAME_HealingPerMana = "Лечение на ед. маны";
 const string NAME_HealingPerCast = "Лечение:";
-const string NAME_Addon_NostalgieBonus = "Бонус ностальгии: ";
+const string NAME_Addon_NostalgieBonus = "Бонус ностальгии!";
 const string NAME_Addon_NeedsAllMana = "Использует всю ману";
 const string NAME_Addon_SpellDontKill = "Заклинание не убивает людей";
 const string NAME_Addon_Damage_Min = "Урон (мин.):";
@@ -599,7 +601,7 @@ const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT1 = "Я хочу помолиться и пожертвова
 const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT2 = "Я хочу помолиться и пожертвовать 5 единиц здоровья.";
 const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT3 = "Я хочу помолиться и пожертвовать 10 единиц здоровья.";
 const string NAME_ADDON_PRAYIDOL_GIVEMANA = "Я хочу помолиться и пожертвовать 1 единицу маны.";
-const string NAME_ItMw_1H_Common_01 = "Обычный меч";
+const string NAME_ItMw_1H_Common_01 = "Простой кованый меч";
 const string NAME_ItMw_1H_Special_01 = "Длинный рудный меч";
 const string NAME_ItMw_2H_Special_01 = "Двуручный рудный меч";
 const string NAME_ItMw_1H_Special_02 = "Полуторный рудный меч";
@@ -613,6 +615,7 @@ const string NAME_Addon_Harad_02 = "Изысканный длинный меч";
 const string NAME_Addon_Harad_03 = "Рубиновый клинок";
 const string NAME_Addon_Harad_04 = "Эль-бастардо";
 const string NAME_ItMw_Streitaxt1 = "Легкий боевой топор";
+const string NAME_ItMw_Banditenaxt = "Бандитский топор";
 const string PRINT_Addon_gegeben = " отдано";
 const string PRINT_GoldGegeben = " золота отдано";
 const string PRINT_ItemGegeben = " предмет отдан";
@@ -627,6 +630,7 @@ const string PRINT_Addon_RuneGiven = "Белиар дарует вам еще одно заклинание";
 //const string PRINT_1LP = " очко обучения";
 const string PRINT_Kosten = " (";
 const string PRINT_LP = " очков обучения)";
+const string PRINT_2LP = " очка обучения)";
 const string PRINT_1LP = " очко обучения)";
 const string PRINT_NotEnoughLP = "Недостаточно очков обучения!";
 const string PRINT_NoLearnOverPersonalMAX = "Максимум этого учителя: ";
@@ -652,7 +656,7 @@ const string PRINT_LearnCrossbow_and_Bow = "Улучшено: Меткость стрельбы из арбал
 const string PRINT_LearnPicklock = "Изучено: Владение отмычками";
 const string PRINT_LearnSneak = "Изучено: Искусство красться";
 const string PRINT_LearnAcrobat = "Изучено: Акробатика";
-const string PRINT_Addon_AcrobatBonus = "Улучшение акробатики!";
+const string PRINT_Addon_AcrobatBonus = "Получен бонус акробатики!";
 const string PRINT_LearnPickpocket = "Изучено: Искусство карманного воровства";
 const string PRINT_Beliarshitpoints_MAX = "Макс. здоровье - ";
 const string PRINT_Beliarsmana_MAX = "Макс. мана - ";
@@ -660,10 +664,11 @@ const string PRINT_LearnSmith = "Изучено: Искусство изготовления оружия";
 const string PRINT_LearnRunes = "Изучено: Искусство создания рун";
 const string PRINT_LearnAlchemy = "Изучено: Искусство приготовления зелий";
 const string PRINT_LearnAlchemyInnosEye = "Изучено: Перезарядка Глаза Инноса";
-const string PRINT_LearnTakeAnimalTrophy = "Изучено: Трофеи животных";
+const string PRINT_LearnTakeAnimalTrophy = "Изучено: Снятие трофеев";
+const string PRINT_LearnTakeAnimalFur = "Изучено: Снятие шкур";
 const string PRINT_LearnForeignLanguage = "Изучено: Язык зодчих";
 const string PRINT_LearnWispDetector = "Ваш блуждающий огонек обучился новым способностям";
-const string PRINT_LearnPalTeleportSecret = "Изучено: Создание руны-телепорта";
+const string PRINT_LearnPalTeleportSecret = "Изучено: Создание руны телепорта";
 const string PRINT_NotEnoughLearnPoints = "Недостаточно очков обучения!";
 const string PRINT_LearnSTR1 = "Сила + 1";
 const string PRINT_LearnSTR5 = "Сила + 5";
@@ -725,7 +730,7 @@ const string DIALOG_ADDON_ATTENTAT_PRO = "Я убью этих предателей.";
 const string DIALOG_ADDON_ATTENTAT_CONTRA = "Я ищу этих ребят, чтобы выступить против Эстебана.";
 const string DIALOG_ADDON_MINE_DESCRIPTION = "Ты нужен в шахте. (дать красный камень)";
 const string DIALOG_ADDON_GOLD_DESCRIPTION = "Что мне следует знать о добыче золота?";
-const string PRINT_ADDON_KNOWSBF = "Изучено - яд из жала";
+const string PRINT_ADDON_KNOWSBF = "Изучено: Яд из жала";
 const string PRINT_ADDON_HACKCHANCE = "Улучшен навык рудокопа! (+";
 const string PRINT_Addon_StuntBonus = "Бонус за храбрость";
 const string PRINT_Addon_ExploitBonus = "Штраф за безрассудство";
@@ -749,8 +754,9 @@ const string PRINT_OrcEliteRingEquip = "Вы чувствуете слабость.";
 const string PRINT_SCIsObsessed = "Вы чувствуете удушье!";
 const string PRINT_ClearSCObsession = "Вы чувствуете себя освобожденным!";
 const string PRINT_NumberLeft = " осталось";
-const string PRINT_NovizenLeft = " послушников осталось";
-const string PRINT_Addon_CanyonRazorsLeft = "Бритвозубов осталось: ";
+const string PRINT_MinenAnteilLeft = "Осталось акций: ";
+const string PRINT_NovizenLeft = "Осталось послушников: ";
+const string PRINT_Addon_CanyonRazorsLeft = "Осталось бритвозубов: ";
 const string PRINT_DragKillCount = "Враг повержен. На этот раз я не буду гнить под камнями. Пришло время возвращаться на корабль.";
 const string PRINT_Smith_1H_Special_01 = " (1 кусок руды)";
 const string PRINT_Smith_2H_Special_01 = " (2 куска руды)";
@@ -778,7 +784,7 @@ const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек...";
 const string PRINT_GotPlants = "Найдены травы";
 const string PRINT_NoSweeping = "На подметание этих келий у меня уйдет целая вечность!";
 const string PRINT_Mandibles = "Этот секрет не дает никакого эффекта.";
-const string PRINT_Bloodfly = "На вкус горький и ядовитый.";
+const string PRINT_Bloodfly = "На вкус горькое и ядовитое.";
 const string PRINT_PILZ = "Грибной табак";
 const string PRINT_DOPPEL = "Двойное яблоко";
 const string PRINT_HONIG = "Медовый табак";

@@ -91,12 +91,16 @@ func void startup_newworld_part_dragon_undead_01()
 	Wld_InsertNpc(Skeleton_Archol6,"DI_ARCHOL_SKELETON_06");
 	Wld_InsertNpc(DMT_DementorAmbient,"DI_DRACONIANAREA_53");
 	Wld_InsertNpc(DMT_DementorAmbient,"DI_DRACONIANAREA_52");
-	Wld_InsertNpc(Lesser_Skeleton,"DI_DRACONIANAREA_55");
-	Wld_InsertNpc(Lesser_Skeleton,"DI_DRACONIANAREA_55");
+//	Wld_InsertNpc(Lesser_Skeleton,"DI_DRACONIANAREA_55");
+//	Wld_InsertNpc(Lesser_Skeleton,"DI_DRACONIANAREA_55");
+	Wld_InsertNpc(SkeletonScout,"DI_DRACONIANAREA_55");
+	Wld_InsertNpc(SkeletonScout,"DI_DRACONIANAREA_55");
 	Wld_InsertNpc(Skeleton,"DI_DRACONIANAREA_56");
-	Wld_InsertNpc(Lesser_Skeleton,"DI_DRACONIANAREA_56");
+//	Wld_InsertNpc(Lesser_Skeleton,"DI_DRACONIANAREA_56");
+	Wld_InsertNpc(SkeletonScout,"DI_DRACONIANAREA_56");
 	Wld_InsertNpc(Skeleton,"DI_DRACONIANAREA_51");
-	Wld_InsertNpc(Lesser_Skeleton,"DI_DRACONIANAREA_51");
+//	Wld_InsertNpc(Lesser_Skeleton,"DI_DRACONIANAREA_51");
+	Wld_InsertNpc(SkeletonScout,"DI_DRACONIANAREA_51");
 	Wld_InsertNpc(Skeleton,"DI_DRACONIANAREA_51");
 	Wld_InsertNpc(Shadowbeast_Skeleton,"WP_UNDEAD_SPAWN_POINT_01");
 	Wld_InsertNpc(Skeleton_Lord,"WP_UNDEAD_LEFT_DOWN_06");
@@ -243,10 +247,8 @@ func void startup_dragonisland()
 
 func void init_dragonisland()
 {
-	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
-	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
-	};
+	b_check_version();
+	b_check_armor();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();

@@ -10,6 +10,9 @@ instance StandardBrief(C_Item)
 	on_state[0] = UseStandardBrief;
 	scemeName = "MAP";
 	description = "Стандартное письмо";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -88,6 +91,9 @@ instance ItWr_Map_NewWorld(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -121,6 +127,9 @@ instance ItWr_Map_NewWorld_City(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -154,6 +163,9 @@ instance ItWr_Map_OldWorld(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -178,14 +190,15 @@ var int Lerne_Zweihand;
 
 instance ItWr_EinhandBuch(C_Item)
 {
-	name = "Искусство сражения";
+//	name = "Искусство сражения";
+	name = "Южное искусство обороны";
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 5000;
 	visual = "ItWr_Book_02_04.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Южное искусство обороны";
+	description = name;
 	text[2] = "Книга, посвященная искусству";
 	text[3] = "сражения одноручным оружием.";
 	text[5] = NAME_Value;
@@ -210,11 +223,11 @@ func void UseEinhandBuch()
 	Doc_SetPage(nDocID,1,"Book_Red_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Южное искусство обороны");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Южане меньше полагаются на грубую физическую силу, нежели северяне, и отдают предпочтение ловкости. В горячем климате своей родины они предпочитают носить легкие доспехи, позволяющие двигаться более свободно. Таким образом, южане разработали стиль боя, фундаментально отличающийся от того, к которому привыкли мы.");
+	Doc_PrintLines(nDocID,0,"Южане меньше полагаются на грубую физическую силу, нежели северяне, и отдают предпочтение ловкости. В горячем климате своей родины они предпочитают носить легкие доспехи, позволяющие свободно двигаться. Таким образом, южане разработали стиль боя, фундаментально отличающийся от привычного нам.");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,1,"");
@@ -227,14 +240,15 @@ func void UseEinhandBuch()
 
 instance ItWr_ZweihandBuch(C_Item)
 {
-	name = "Тактика боя";
+//	name = "Тактика боя";
+	name = "Двойные блоки";
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 5000;
 	visual = "ItWr_Book_02_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Двойные блоки";
+	description = name;
 	text[2] = "Книга, посвященная искусству";
 	text[3] = "сражения двуручным оружием.";
 	text[5] = NAME_Value;

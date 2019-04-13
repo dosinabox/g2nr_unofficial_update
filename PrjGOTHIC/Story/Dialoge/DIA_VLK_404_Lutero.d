@@ -40,7 +40,7 @@ instance DIA_Lutero_Hallo(C_Info)
 
 func int DIA_Lutero_Hallo_Condition()
 {
-	if(((other.guild != GIL_NONE) || (other.guild != GIL_NOV)) && Npc_IsInState(self,ZS_Talk))
+	if((other.guild != GIL_NONE) && (other.guild != GIL_NOV) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -62,7 +62,7 @@ instance DIA_Lutero_GetLost(C_Info)
 	nr = 5;
 	condition = DIA_Lutero_GetLost_Condition;
 	information = DIA_Lutero_GetLost_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	important = TRUE;
 };
 

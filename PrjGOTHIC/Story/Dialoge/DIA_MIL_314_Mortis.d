@@ -181,7 +181,8 @@ instance DIA_Mortis_Teach(C_Info)
 	condition = DIA_Mortis_Teach_Condition;
 	information = DIA_Mortis_Teach_Info;
 	permanent = TRUE;
-	description = "Я хочу стать сильнее.";
+//	description = "Я хочу стать сильнее.";
+	description = "Начнем обучение.";
 };
 
 
@@ -195,7 +196,8 @@ func int DIA_Mortis_Teach_Condition()
 
 func void DIA_Mortis_Teach_Info()
 {
-	AI_Output(other,self,"DIA_Mortis_Teach_15_00");	//Я хочу стать сильнее.
+//	AI_Output(other,self,"DIA_Mortis_Teach_15_00");	//Я хочу стать сильнее.
+	AI_Output(other,self,"DIA_Wulfgar_Teach_15_00");	//Начнем обучение.
 	Info_ClearChoices(DIA_Mortis_Teach);
 	Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
 	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Mortis_Teach_1);

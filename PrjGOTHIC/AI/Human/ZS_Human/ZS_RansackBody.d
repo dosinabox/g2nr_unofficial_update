@@ -22,6 +22,8 @@ func void ZS_RansackBody_End()
 		{
 			CreateInvItems(self,Holy_Hammer_MIS,1);
 			Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
+			B_Say(self,self,"$GetUpAndBeGone");
+			GarwigThiefOneTime = FALSE;
 		};
 		if(Npc_HasItems(other,ItMw_2h_Rod) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rod)))
 		{
@@ -39,9 +41,12 @@ func void ZS_RansackBody_End()
 			x = Npc_HasItems(other,ItMi_Gold);
 			CreateInvItems(self,ItMi_Gold,x);
 			Npc_RemoveInvItems(other,ItMi_Gold,x);
-			B_Say(self,other,"$ITOOKYOURGOLD");
+			if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig))
+			{
+				B_Say(self,other,"$ITOOKYOURGOLD");
+			};
 		}
-		else
+		else if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig))
 		{
 			B_Say(self,other,"$SHITNOGOLD");
 		};
@@ -51,9 +56,16 @@ func void ZS_RansackBody_End()
 	{
 		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) < 500))
 		{
-			AI_TakeItem(self,item);
-			B_Say(self,self,"$ITAKEYOURWEAPON");
-			AI_EquipBestMeleeWeapon(self);
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garwig))
+			{
+				AI_TakeItem(self,item);
+			}
+			else if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig))
+			{
+				AI_TakeItem(self,item);
+				B_Say(self,self,"$ITAKEYOURWEAPON");
+				AI_EquipBestMeleeWeapon(self);
+			};
 		};
 	};
 	if(Wld_DetectItem(self,ITEM_KAT_FF))

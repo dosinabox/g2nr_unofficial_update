@@ -88,10 +88,17 @@ func int DIA_Fernando_Hello_Condition()
 func void DIA_Fernando_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Fernando_Hello_15_00");	//Как идут дела?
-	AI_Output(self,other,"DIA_Fernando_Hello_14_01");	//Не сказать, чтобы очень хорошо. Когда Барьер все еще стоял, времена были получше.
-	AI_Output(self,other,"DIA_Fernando_Hello_14_02");	//Заключенные добывали руду в шахтах, а мои корабли доставляли ее на материк.
-	AI_Output(self,other,"DIA_Fernando_Hello_14_03");	//А на обратном пути они доставляли пищу и другие товары.
-	AI_Output(self,other,"DIA_Fernando_Hello_14_04");	//Но сейчас мы отрезаны от материка, и нам приходится рассчитывать только на фермеров в том, что касается припасов.
+	if(Fernando_ImKnast == TRUE)
+	{
+		B_Say(self,other,"$WhatDidYouDoInThere");
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Fernando_Hello_14_01");	//Не сказать, чтобы очень хорошо. Когда Барьер все еще стоял, времена были получше.
+		AI_Output(self,other,"DIA_Fernando_Hello_14_02");	//Заключенные добывали руду в шахтах, а мои корабли доставляли ее на материк.
+		AI_Output(self,other,"DIA_Fernando_Hello_14_03");	//А на обратном пути они доставляли пищу и другие товары.
+		AI_Output(self,other,"DIA_Fernando_Hello_14_04");	//Но сейчас мы отрезаны от материка, и нам приходится рассчитывать только на фермеров в том, что касается припасов.
+	};
 };
 
 
@@ -183,13 +190,14 @@ instance DIA_Addon_Fernando_BanditTrader(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Fernando_BanditTrader_Condition;
 	information = DIA_Addon_Fernando_BanditTrader_Info;
+	permanent = TRUE;
 	description = "Ты продаешь оружие бандитам.";
 };
 
 
 func int DIA_Addon_Fernando_BanditTrader_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && (Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))))
+	if((FernandoBlame_noPerm == FALSE) && (Vatras_ToMartin == TRUE) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && (Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))))
 	{
 		return TRUE;
 	};
@@ -199,43 +207,66 @@ func void DIA_Addon_Fernando_BanditTrader_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_15_00");	//Ты продаешь оружие бандитам.
 	AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_01");	//(недоуменно) Почему это ты так решил?
+	FernandoMajorEvidenceCount = 0;
 	if(Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
 	{
 		AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_15_02");	//На списке проданных товаров, который я нашел у бандитов, стоит твоя подпись.
+		FernandoMajorEvidenceCount += 3;
 	};
 	if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 	{
 		AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_15_03");	//У бандитов я нашел кольцо гильдии морских торговцев Араксоса. Ты - морской торговец.
+		FernandoMajorEvidenceCount += 1;
 		if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 		{
 			AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_15_04");	//А на мечах, которые были у бандитов, стоят твои инициалы.
+			FernandoMajorEvidenceCount += 1;
 		};
 	}
-	else
+	else if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 	{
 		AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_15_05");	//На мечах, которые были у бандитов, стоят твои инициалы.
+		FernandoMajorEvidenceCount += 1;
 	};
-	AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_15_06");	//Теперь тебе не отвертеться. Я тебя раскрыл.
-	B_LogEntry(TOPIC_Addon_Bandittrader,"Крупный торговец Фернандо признал, что поставлял оружие бандитам.");
-	B_GivePlayerXP(XP_Addon_Fernando_HatsZugegeben);
-	Fernando_HatsZugegeben = TRUE;
-	if(Fernando_ImKnast == TRUE)
+	if(FernandoMajorEvidenceCount < 2)
 	{
-		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_07");	//Так это сделал ТЫ! Ты меня выдал! Я заставлю тебя заплатить за это.
-		AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_15_08");	//Сначала тебе придется отсюда выйти, а я думаю, что вряд ли тебя отпустят в ближайшее время.
-		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_09");	//(зло) Ничего, мое время еще придет.
+		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
+		AI_Output(other,self,"DIA_Dar_Pilztabak_15_04");	//Ну...
+		if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
+		{
+			B_Say(self,other,"$SpareMe");
+		}
+		else
+		{
+			B_Say(self,other,"$NOTNOW");
+		};
 		B_NpcClearObsessionByDMT(self);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_10");	//(умоляюще) Я не хотел этого делать! Поверь мне!
-		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_11");	//(умоляюще) Сначала я продавал им только еду. Дела у меня шли неважно, и это было для меня единственным выходом.
-		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_12");	//(умоляюще) Но потом бандиты стали агрессивными и даже угрожали убить меня, если я не продам им оружие.
-		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_13");	//(умоляюще) Ты не можешь обвинять меня! Я всего лишь жертва обстоятельств.
-		Info_ClearChoices(DIA_Addon_Fernando_BanditTrader);
-		Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"Сколько ты мне заплатишь, если я тебя отпущу?",DIA_Addon_Fernando_BanditTrader_preis);
-		Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"С тобой разберется ополчение.",DIA_Addon_Fernando_BanditTrader_mil);
-		Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"Не пытайся взять меня на жалость. Ты просто отвратительный и жадный торгаш.",DIA_Addon_Fernando_BanditTrader_Uptown);
+		AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_15_06");	//Теперь тебе не отвертеться. Я тебя раскрыл.
+		B_LogEntry(TOPIC_Addon_Bandittrader,"Крупный торговец Фернандо признал, что поставлял оружие бандитам.");
+		B_GivePlayerXP(XP_Addon_Fernando_HatsZugegeben);
+		FernandoBlame_noPerm = TRUE;
+		Fernando_HatsZugegeben = TRUE;
+		if(Fernando_ImKnast == TRUE)
+		{
+			AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_07");	//Так это сделал ТЫ! Ты меня выдал! Я заставлю тебя заплатить за это.
+			AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_15_08");	//Сначала тебе придется отсюда выйти, а я думаю, что вряд ли тебя отпустят в ближайшее время.
+			AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_09");	//(зло) Ничего, мое время еще придет.
+			B_NpcClearObsessionByDMT(self);
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_10");	//(умоляюще) Я не хотел этого делать! Поверь мне!
+			AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_11");	//(умоляюще) Сначала я продавал им только еду. Дела у меня шли неважно, и это было для меня единственным выходом.
+			AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_12");	//(умоляюще) Но потом бандиты стали агрессивными и даже угрожали убить меня, если я не продам им оружие.
+			AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_13");	//(умоляюще) Ты не можешь обвинять меня! Я всего лишь жертва обстоятельств.
+			Info_ClearChoices(DIA_Addon_Fernando_BanditTrader);
+			Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"Сколько ты мне заплатишь, если я тебя отпущу?",DIA_Addon_Fernando_BanditTrader_preis);
+			Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"С тобой разберется ополчение.",DIA_Addon_Fernando_BanditTrader_mil);
+			Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"Не пытайся взять меня на жалость. Ты просто отвратительный и жадный торгаш.",DIA_Addon_Fernando_BanditTrader_Uptown);
+		};
 	};
 };
 
@@ -270,6 +301,7 @@ func void DIA_Addon_Fernando_BanditTrader_ja()
 {
 	AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_ja_15_00");	//Ну хорошо, я согласен.
 	B_GivePlayerXP(XP_Ambient);
+	FernandoMajorEvidenceCount = 0;
 	if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 	{
 		Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,Npc_HasItems(other,ItMw_Addon_BanditTrader));
@@ -277,18 +309,31 @@ func void DIA_Addon_Fernando_BanditTrader_ja()
 	if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 	{
 		Npc_RemoveInvItem(other,ItRi_Addon_BanditTrader);
+		FernandoMajorEvidenceCount += 1;
 	};
 	if(Npc_HasItems(other,ItWr_Addon_BanditTrader))
 	{
 		Npc_RemoveInvItem(other,ItWr_Addon_BanditTrader);
+		FernandoMajorEvidenceCount += 1;
 	};
 	AI_PrintScreen(PRINT_Addon_EvidenceGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_ja_14_01");	//Хорошо, вот золото.
 	CreateInvItems(self,ItMi_Gold,200);
 	B_GiveInvItems(self,other,ItMi_Gold,200);
 	AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_ja_14_02");	//И кольцо. Мы в расчете.
-	CreateInvItems(self,ItRi_Prot_Point_01,1);
-	B_GiveInvItems(self,other,ItRi_Prot_Point_01,1);
+	if(FernandoMajorEvidenceCount < 2)
+	{
+		CreateInvItems(self,ItRi_Prot_Point_01,1);
+		B_GiveInvItems(self,other,ItRi_Prot_Point_01,1);
+	}
+	else
+	{
+		CreateInvItems(self,ItRi_Prot_Total_00,1);
+		B_GiveInvItems(self,other,ItRi_Prot_Total_00,1);
+		MIS_Martin_FindTheBanditTrader = LOG_FAILED;
+		MIS_Vatras_FindTheBanditTrader = LOG_FAILED;
+		B_LogEntry(TOPIC_Addon_Bandittrader,"Я решил не отправлять Фернандо в тюрьму и отдал ему все улики.");
+	};
 	Info_ClearChoices(DIA_Addon_Fernando_BanditTrader);
 };
 

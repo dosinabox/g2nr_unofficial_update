@@ -69,7 +69,7 @@ instance DIA_Moe_Hallo(C_Info)
 
 func int DIA_Moe_Hallo_Condition()
 {
-	if((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF) && (hero.guild != GIL_MIL) && (hero.guild != GIL_NOV) && !Npc_RefuseTalk(self))
+	if(((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk)) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF) && (hero.guild != GIL_MIL) && (hero.guild != GIL_NOV) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -195,8 +195,16 @@ func void DIA_Moe_Hallo_Vergisses()
 func void DIA_Moe_Hallo_Alles()
 {
 	AI_Output(other,self,"DIA_Moe_Hallo_Alles_15_00");	//Хорошо, это все, что у меня есть.
-	B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
-	AI_Output(self,other,"DIA_Moe_Hallo_Alles_01_01");	//Отлично, этого достаточно. Я сегодня великодушен. (ухмыляется)
+	if(Npc_HasItems(hero,ItMi_Gold) > 0)
+	{
+		B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
+		AI_Output(self,other,"DIA_Moe_Hallo_Alles_01_01");	//Отлично, этого достаточно. Я сегодня великодушен. (ухмыляется)
+	}
+	else
+	{
+		B_Say(self,other,"$ShitNoGold");
+		B_Say(self,other,"$GetOutOfHere");
+	};
 	AI_StopProcessInfos(self);
 };
 

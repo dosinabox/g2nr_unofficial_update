@@ -10,6 +10,7 @@ instance VLK_436_Sonja(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
+	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe6",FaceBabe_L_Charlotte2,BodyTexBabe_L,ITAR_VlkBabe_H);
 	Mdl_SetModelFatness(self,0);

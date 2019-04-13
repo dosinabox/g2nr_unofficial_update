@@ -79,9 +79,16 @@ func void DIA_Opolos_Wurst_Info()
 	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
-	NovizeLeft = IntToString(13 - Wurst_Gegeben);
-	NovizeText = ConcatStrings(NovizeLeft,PRINT_NovizenLeft);
-	AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	if(Wurst_Gegeben >= 13)
+	{
+		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	}
+	else
+	{
+		NovizeLeft = IntToString(13 - Wurst_Gegeben);
+		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
+		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	};
 };
 
 
@@ -202,14 +209,17 @@ func int DIA_Opolos_rezept_Condition()
 
 func void DIA_Opolos_rezept_Info()
 {
+	AI_Output(other,self,"DIA_Neoras_Rezept_15_00");	//Насчет рецепта...
 	if(Npc_HasItems(other,ItWr_ManaRezept))
 	{
 		AI_Output(other,self,"DIA_Opolos_rezept_15_00");	//Я принес рецепт, как ты и хотел.
 		AI_Output(self,other,"DIA_Opolos_rezept_12_01");	//Хорошо, дай я прочту его.
+		AI_PrintScreen("Рецепт магической эссенции отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Opolos_rezept_12_02");	//Ага... хм... да... понятно... так, так...
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Opolos_rezept_12_03");	//Хорошо. Огромное спасибо. Если хочешь, ты можешь потренироваться со мной.
+		AI_PrintScreen("Рецепт магической эссенции получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Opolos_Rezept = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 		DIA_Opolos_rezept_permanent = TRUE;
@@ -329,7 +339,7 @@ instance DIA_Opolos_LIESEL(C_Info)
 	condition = DIA_Opolos_LIESEL_Condition;
 	information = DIA_Opolos_LIESEL_Info;
 	permanent = TRUE;
-	description = "Смотри, Я привел Бетси.";
+	description = "Смотри, я привел Бетси. Могу я оставить ее с тобой?";
 };
 
 
@@ -349,8 +359,10 @@ func void DIA_Opolos_LIESEL_Info()
 	{
 		other.aivar[AIV_PARTYMEMBER] = FALSE;
 		other.aivar[AIV_TAPOSITION] = NOTINPOS;
-		other.wp = "FP_ROAM_MONASTERY_04";
+//		other.wp = "FP_ROAM_MONASTERY_04";
+		other.wp = "NW_MONASTERY_SHEEP_02";
 		other.start_aistate = ZS_MM_AllScheduler;
+		B_StartOtherRoutine(other,"Monastery");
 		Liesel_Giveaway = TRUE;
 		AI_Output(self,hero,"DIA_Opolos_LIESEL_12_01");	//Да, конечно. Какая красивая овечка. Я позабочусь о ней.
 		AI_StopProcessInfos(self);

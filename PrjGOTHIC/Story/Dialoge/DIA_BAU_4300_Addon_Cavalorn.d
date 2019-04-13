@@ -838,11 +838,12 @@ func void B_Cavalorn_Triggered_Wohin()
 
 func void DIA_Addon_Cavalorn_Triggered_OBack()
 {
-	AI_UnequipArmor(self);
+//	AI_UnequipArmor(self);
 	CreateInvItems(self,ITAR_Bau_L,1);
-	Npc_RemoveInvItems(self,ITAR_RANGER_Addon,Npc_HasItems(self,ITAR_RANGER_Addon));
-	Npc_RemoveInvItems(self,ITAR_Fake_RANGER,Npc_HasItems(self,ITAR_Fake_RANGER));
-	AI_EquipBestArmor(self);
+//	Npc_RemoveInvItems(self,ITAR_RANGER_Addon,Npc_HasItems(self,ITAR_RANGER_Addon));
+//	Npc_RemoveInvItems(self,ITAR_Fake_RANGER,Npc_HasItems(self,ITAR_Fake_RANGER));
+//	AI_EquipBestArmor(self);
+	AI_EquipArmor(self,ITAR_Bau_L);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_OBack_15_00");	//Тогда я пойду и попрошу у них орнамент.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_OBack_08_01");	//Отлично.
 	B_Cavalorn_Triggered_Wohin();
@@ -850,11 +851,12 @@ func void DIA_Addon_Cavalorn_Triggered_OBack()
 
 func void DIA_Addon_Cavalorn_Triggered_Pal()
 {
-	AI_UnequipArmor(self);
+//	AI_UnequipArmor(self);
 	CreateInvItems(self,ITAR_Bau_L,1);
-	Npc_RemoveInvItems(self,ITAR_RANGER_Addon,Npc_HasItems(self,ITAR_RANGER_Addon));
-	Npc_RemoveInvItems(self,ITAR_Fake_RANGER,Npc_HasItems(self,ITAR_Fake_RANGER));
-	AI_EquipBestArmor(self);
+//	Npc_RemoveInvItems(self,ITAR_RANGER_Addon,Npc_HasItems(self,ITAR_RANGER_Addon));
+//	Npc_RemoveInvItems(self,ITAR_Fake_RANGER,Npc_HasItems(self,ITAR_Fake_RANGER));
+//	AI_EquipBestArmor(self);
+	AI_EquipArmor(self,ITAR_Bau_L);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_Pal_15_00");	//Кому-то из нас придется подняться в верхнюю часть города.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Pal_08_01");	//У меня нет на это времени. Это придется сделать тебе.
 	B_Cavalorn_Triggered_Wohin();

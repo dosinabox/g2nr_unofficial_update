@@ -57,7 +57,8 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 	};
 	if(Hlp_IsItem(otherweap,ItRw_Addon_FireBow))
 	{
-		Wld_PlayEffect("spellFX_FIREBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
+		//Wld_PlayEffect("spellFX_FIREBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
+		//что-то тут не так
 		if(slf.flags != NPC_FLAG_IMMORTAL)
 		{
 			Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);

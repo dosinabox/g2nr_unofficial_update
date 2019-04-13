@@ -152,11 +152,13 @@ func void adw_portaltempel_focus_func()
 	};
 	if((ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime == FALSE) && (Npc_GetDistToWP(hero,"ADW_PORTALTEMPEL_TELEPORTSTATION") < 3000))
 	{
-		if(!Npc_IsDead(Stoneguardian_NailedPortalADW1) && (Stoneguardian_NailedPortalADW1.aivar[AIV_EnemyOverride] == TRUE))
+//		if(!Npc_IsDead(Stoneguardian_NailedPortalADW1) && (Stoneguardian_NailedPortalADW1.aivar[AIV_EnemyOverride] == TRUE))
+		if(!Npc_IsDead(Stoneguardian_NailedPortalADW1) || !Npc_IsDead(Stoneguardian_NailedPortalADW2))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
 		b_awake_stoneguardian(Stoneguardian_NailedPortalADW1);
+		b_awake_stoneguardian(Stoneguardian_NailedPortalADW2);
 		ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime = TRUE;
 	};
 };

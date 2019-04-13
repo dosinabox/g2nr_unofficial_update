@@ -224,8 +224,8 @@ func void DIA_Dragomir_Learn_Here()
 	AI_Output(self,other,"DIA_Dragomir_Learn_Here_12_01");	//Хорошо, мы можем начать хоть сейчас.
 	Dragomir_TeachPlayer = TRUE;
 	Info_ClearChoices(DIA_Dragomir_Learn);
-	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher,"Драгомир может научить меня пользоваться арбалетом.");
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,"Драгомир может научить меня пользоваться арбалетом.");
 };
 
 

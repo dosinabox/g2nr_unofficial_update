@@ -347,7 +347,7 @@ instance DIA_Addon_Martin_FromVatras(C_Info)
 
 func int DIA_Addon_Martin_FromVatras_Condition()
 {
-	if(Vatras_ToMartin == TRUE)
+	if((Vatras_ToMartin == TRUE) && (MIs_Martin_FindTheBanditTrader != LOG_Failed))
 	{
 		return TRUE;
 	};
@@ -376,7 +376,7 @@ instance DIA_Addon_Martin_TellAll(C_Info)
 
 func int DIA_Addon_Martin_TellAll_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Martin_FromVatras))
+	if(Npc_KnowsInfo(other,DIA_Addon_Martin_FromVatras) && (MIs_Martin_FindTheBanditTrader != LOG_Failed))
 	{
 		return TRUE;
 	};
@@ -405,7 +405,7 @@ instance DIA_Addon_Martin_AboutBandits(C_Info)
 
 func int DIA_Addon_Martin_AboutBandits_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Martin_TellAll))
+	if(Npc_KnowsInfo(other,DIA_Addon_Martin_TellAll) && (MIs_Martin_FindTheBanditTrader != LOG_Failed))
 	{
 		return TRUE;
 	};
@@ -446,45 +446,44 @@ var int Martin_IrrlichtHint;
 
 func void DIA_Addon_Martin_Fernando_Info()
 {
-	var int FernandoHints;
 	AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_00");	//Насчет торговца оружием...
 	if(Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE)) || (Fernando_HatsZugegeben == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_01");	//Что тебе удалось узнать?
-		FernandoHints = 0;
 		if(Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE)))
 		{
 			if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_02");	//Такие шпаги я нашел у бандитов. На эфесе выгравирована буква 'Ф'.
 				Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,Npc_HasItems(other,ItMw_Addon_BanditTrader));
-				FernandoHints += 1;
+				FernandoHints_ItMw = TRUE;
 			};
 			if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_03");	//У бандитов я нашел это кольцо. Оно указывает на морского торговца.
 				Npc_RemoveInvItem(other,ItRi_Addon_BanditTrader);
-				FernandoHints += 1;
+				FernandoHints_ItRi = TRUE;
 			};
 			if(Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_04");	//Этот список оружия и прочих доставленных бандитам вещей подписан неким Фернандо.
 				Npc_RemoveInvItem(other,ItWr_Addon_BanditTrader);
 				B_UseFakeScroll();
-				FernandoHints += 3;
+				FernandoHints_ItWr = TRUE;
 			};
 			AI_PrintScreen(PRINT_Addon_EvidenceGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 			if(Fernando_HatsZugegeben == TRUE)
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_05");	//И кроме того, Фернандо, старый торговец из верхнего квартала, сознался в том, что ведет дела с бандитами.
-				FernandoHints += 1;
+				FernandoHints_Confession = TRUE;
 			};
 		}
 		else
 		{
 			AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_06");	//Фернандо сказал, что снабжает бандитов оружием.
+			FernandoHints_Confession = TRUE;
 		};
-		if(FernandoHints >= 3)
+		if(((FernandoHints_ItMw == TRUE) && (FernandoHints_ItRi) && (FernandoHints_Confession)) || (FernandoHints_ItWr == TRUE))
 		{
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_07");	//Думаю, этого достаточно. Итак, Фернандо... Что ж, он получит по заслугам.
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_08");	//А он всегда так спокойно себя вел, когда речь заходила об этом.
@@ -511,7 +510,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 			{
 				AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_16");	//Этого недостаточно. Твои улики могут указывать практически на любого торговца из верхнего квартала.
 				AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_17");	//Думаю, тебе придется продолжить выслеживать бандитов и проследить путь последней полученной ими партии оружия.
-				if(Martin_IrrlichtHint == FALSE)
+				if((Martin_IrrlichtHint == FALSE) && (SC_GotWisp == FALSE))
 				{
 					AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_18");	//Может быть, тебе стоит еще раз поговорить с Ватрасом...
 					Martin_IrrlichtHint = TRUE;

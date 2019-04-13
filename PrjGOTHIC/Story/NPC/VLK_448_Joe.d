@@ -14,6 +14,7 @@ instance VLK_448_Joe(Npc_Default)
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
+	EquipItem(self,ItMw_ShortSword5);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_ToughBald,BodyTex_P,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);

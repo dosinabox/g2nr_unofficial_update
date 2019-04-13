@@ -11,7 +11,11 @@ instance DIA_ToughGuy_NEWS(C_Info)
 
 func int DIA_ToughGuy_NEWS_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) && (self.aivar[AIV_LastFightComment] == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) && (self.aivar[AIV_LastFightComment] == FALSE) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Sentenza)))
+	{
+		return TRUE;
+	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Sentenza)) && Npc_KnowsInfo(other,DIA_Sentenza_Hello) && (self.aivar[AIV_LastFightComment] == FALSE))
 	{
 		return TRUE;
 	};

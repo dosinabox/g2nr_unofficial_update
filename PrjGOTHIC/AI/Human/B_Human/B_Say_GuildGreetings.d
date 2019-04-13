@@ -19,16 +19,18 @@ func void B_Say_GuildGreetings(var C_Npc slf,var C_Npc oth)
 	};
 	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bartok)) && (Bartok_OrkGesagt == TRUE))
 	{
-		B_Bartok_ShitAnOrc();
+//		B_Bartok_ShitAnOrc();
+		B_Say_Overlay(slf,oth,"DIA_Bartok_Angekommen_04_02");
 		return;
 	};
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Koch))
 	{
-		B_Koch_Hackebeil();
+//		B_Koch_Hackebeil();
+		B_Say_Overlay(slf,oth,"Hackebeil_01_00");
 		return;
 	};
 	zufall = Hlp_Random(100);
-	if((zufall <= 10) && Wld_IsRaining())
+	if((zufall <= 80) && Wld_IsRaining())
 	{
 		B_Say_Overlay(slf,oth,"$WEATHER");
 		return;

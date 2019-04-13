@@ -50,6 +50,14 @@ func void ZS_Stand_Drinking()
 			self.aivar[AIV_Food] = DRINK_Booze;
 		};
 	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rukhar)))
+	{
+		if(!Npc_HasItems(self,ItFo_Beer))
+		{
+			CreateInvItem(self,ItFo_Beer);
+		};
+		self.aivar[AIV_Food] = DRINK_Beer;
+	}
 	else
 	{
 		random = Hlp_Random(2) + DRINK_Beer;

@@ -3,7 +3,7 @@ func void B_SetFaceExpression(var C_Npc slf,var C_Npc oth)
 {
 	var int attitude;
 	attitude = Npc_GetAttitude(slf,oth);
-	if(Npc_IsInState(slf,ZS_Flee))
+	if(Npc_IsInState(slf,ZS_Flee) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(VLK_448_Joe)))
 	{
 		Mdl_StartFaceAni(slf,"S_FRIGHTENED",1,-1);
 	}

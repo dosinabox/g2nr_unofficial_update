@@ -49,8 +49,11 @@ func void DIA_Tandor_Hallo_Info()
 	AI_Output(self,other,"DIA_Tandor_Hallo_08_00");	//Ты пришел через Проход? Это хорошо. Мы уже потеряли там много хороших людей.
 	AI_Output(self,other,"DIA_Tandor_Hallo_08_01");	//Я хорошо знаю, каково там - я служил в разведотряде некоторое время.
 	AI_Output(self,other,"DIA_Tandor_Hallo_08_02");	//У тебя есть оружие? Если тебе нужно хорошее оружие, обратись ко мне.
-	Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-	B_LogEntry(TOPIC_Trader_OC,"Тандор торгует оружием в замке.");
+	if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Keroloth_WantTeach))
+	{
+		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+		B_LogEntry(TOPIC_Trader_OC,"Тандор торгует оружием в замке.");
+	};
 };
 
 
@@ -175,7 +178,9 @@ func void DIA_Tandor_Equipment_Bow()
 	AI_Output(other,self,"DIA_Tandor_Equipment_Bow_15_00");	//Лук.
 	AI_Output(self,other,"DIA_Tandor_Equipment_Bow_08_01");	//Этот охотничий лук как нельзя лучше подойдет тебе. Я также дам тебе колчан стрел.
 	B_GiveInvItems(self,other,ItRw_Bow_L_03,1);
-	B_GiveInvItems(self,other,ItRw_Arrow,50);
+//	B_GiveInvItems(self,other,ItRw_Arrow,50);
+	CreateInvItems(other,ItRw_Arrow,50);
+	AI_PrintScreen("50 предметов получено (Стрела)",-1,43,FONT_ScreenSmall,2);
 	Info_ClearChoices(DIA_Tandor_Equipment);
 };
 
@@ -184,7 +189,9 @@ func void DIA_Tandor_Equipment_Crossbow()
 	AI_Output(other,self,"DIA_Tandor_Equipment_Crossbow_15_00");	//Арбалет.
 	AI_Output(self,other,"DIA_Tandor_Equipment_Crossbow_08_01");	//Тогда возьми этот легкий арбалет. И болты к нему в придачу.
 	B_GiveInvItems(self,other,ItRw_Crossbow_L_02,1);
-	B_GiveInvItems(self,other,ItRw_Bolt,50);
+	CreateInvItems(other,ItRw_Bolt,50);
+	AI_PrintScreen("50 предметов получено (Болт)",-1,43,FONT_ScreenSmall,2);
+//	B_GiveInvItems(self,other,ItRw_Bolt,50);
 	Info_ClearChoices(DIA_Tandor_Equipment);
 };
 

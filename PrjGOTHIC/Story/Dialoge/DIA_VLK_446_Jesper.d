@@ -74,7 +74,7 @@ func int DIA_Jesper_Hallo_Condition()
 
 func void DIA_Jesper_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Jesper_Hallo_09_00");	//Эй, Что ты тут делаешь? Тебе тут не место!
+	AI_Output(self,other,"DIA_Jesper_Hallo_09_00");	//Эй, что ты тут делаешь? Тебе тут не место!
 	AI_Output(self,other,"DIA_Jesper_Hallo_09_01");	//Так что выкладывай, что ты делаешь здесь?
 	Info_ClearChoices(DIA_Jesper_Hallo);
 	Info_AddChoice(DIA_Jesper_Hallo,"Я пришел убить тебя.",DIA_Jesper_Hallo_Kill);

@@ -202,15 +202,15 @@ func void DIA_Hyglas_TALENT_FIREBOLT_Info()
 	}
 	else
 	{
-		B_Say(self,other,"$NOTNOW");
-		AI_StopProcessInfos(self);
+//		B_Say(self,other,"$NOTNOW");
+		AI_Output(self,other,"DIA_Hyglas_CONTEST_14_04");	//Хорошо, я научу тебя. Но сначала ты должен найти все необходимые ингредиенты.
 		if(Firebolt_Scroll_Once == FALSE)
 		{
 			B_LogEntry(TOPIC_Rune,"Пока у меня нет свитка огненной стрелы, Хиглас не сможет обучить меня созданию руны.");
 			if(!Npc_IsDead(Gorax))
 			{
 				CreateInvItem(Gorax,ItSc_Firebolt);
-				B_LogEntry(TOPIC_Rune,"Возможно, что я смогу купить еще один свиток у Горакса.");
+				B_LogEntry(TOPIC_Rune,"Возможно, я смогу купить такой свиток у Горакса.");
 			}
 			else
 			{
@@ -219,6 +219,7 @@ func void DIA_Hyglas_TALENT_FIREBOLT_Info()
 			};
 			Firebolt_Scroll_Once = TRUE;
 		};
+		AI_StopProcessInfos(self);
 	};
 	
 };

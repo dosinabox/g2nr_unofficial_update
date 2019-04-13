@@ -79,6 +79,12 @@ func void B_AssessPlayer()
 	B_AssignDementorTalk(self);
 	if((Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG) && Npc_CheckInfo(self,1))
 	{
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garwig))
+		{
+			self.aivar[AIV_NpcStartedTalk] = TRUE;
+			B_AssessTalk();
+			return;
+		}
 		if(C_NpcIsGateGuard(self))
 		{
 			self.aivar[AIV_NpcStartedTalk] = TRUE;

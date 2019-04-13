@@ -17,15 +17,23 @@ instance PAL_267_Sengrath(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,65);
-	daily_routine = Rtn_Start_267;
+	daily_routine = Rtn_PreStart_267;
 };
 
+
+func void Rtn_PreStart_267()
+{
+//	TA_Stand_Guarding(8,0,23,0,"OC_CENTER_GUARD_01");
+//	TA_Stand_Guarding(23,0,8,0,"OC_CENTER_GUARD_01");
+//	TA_Stand_Guarding(23,0,8,0,"OC_RAMP_16");
+	TA_Stand_Guarding(8,0,23,0,"OC_RAMP_17");
+	TA_Stand_Guarding(23,0,8,0,"OC_RAMP_17");
+};
 
 func void Rtn_Start_267()
 {
 	TA_Stand_Guarding(8,0,23,0,"OC_CENTER_GUARD_01");
-//	TA_Stand_Guarding(23,0,8,0,"OC_CENTER_GUARD_01");
-	TA_Stand_Guarding(23,0,8,0,"OC_RAMP_16");
+	TA_Stand_Guarding(23,0,8,0,"OC_CENTER_GUARD_02");
 };
 
 func void Rtn_OrcBarrier_267()

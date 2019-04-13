@@ -2690,7 +2690,8 @@ instance SVM_15(C_SVM)
 	SC_HeyTurnAround04 = "SVM_15_SC_HeyTurnAround04";	//Эй!
 	SC_HeyWaitASecond = "SVM_15_SC_HeyWaitASecond";	//Подожди минутку!
 	DoesntWork = "SVM_15_DoesntWork";	//Не получается.
-	PickBroke = "SVM_15_PickBroke";	//Хм, сломано.
+//	PickBroke = "SVM_15_PickBroke";	//Хм, сломано.
+	PickBroke = "SVM_15_PickBroke";	//Хм... Нет...
 	NeedKey = "SVM_15_NeedKey";	//Здесь мне нужен ключ...
 	NoMorePicks = "SVM_15_NoMorePicks";	//У меня больше нет отмычек...
 	NoPickLockTalent = "SVM_15_NoPickLockTalent";	//Я не умею открывать замки отмычкой.
@@ -2711,7 +2712,8 @@ instance SVM_15(C_SVM)
 	Awake = "SVM_15_Awake";	//(просыпается)
 	irdoraththereyouare = "SVM_15_IRDORATHTHEREYOUARE";	//Ммм. Так вот ты где скрываешься. Чертовски далеко. Ммм. Чтобы добраться туда, мне понадобится корабль.
 	healshrine = "SVM_15_HEALSHRINE";	//Иннос, даруй мне свою помощь и очисти этот алтарь.
-	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и все такое... Вот так. Надеюсь, это было в последний раз.
+//	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и все такое... Вот так. Надеюсь, это было в последний раз.
+	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и очисти этот алтарь. Вот так. Надеюсь, это был последний.
 	scopensirdorathbook = "SVM_15_SCOPENSIRDORATHBOOK";	//ХАРАК БЕНДАРО! Ох. Книга открылась. Там внутри лежит письмо и ключ.
 	scopenslastdoor = "SVM_15_SCOPENSLASTDOOR";	//КАДОШ ЭМЕМ КАДАР! Откройся!
 	trade_1 = "SVM_15_Addon_TRADE_1";	//Давай займемся делом.

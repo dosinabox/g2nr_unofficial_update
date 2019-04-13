@@ -214,6 +214,7 @@ func void B_SetKDFRunes()
 		CreateInvItems(hero,ItRu_IceWave,1);
 		CreateInvItems(hero,ItRu_SumDemon,1);
 		CreateInvItems(hero,ItRu_FullHeal,1);
+		CreateInvItems(hero,ItRu_Shrink,1);
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 6)
 	{
@@ -221,7 +222,7 @@ func void B_SetKDFRunes()
 		CreateInvItems(hero,ItRu_BreathOfDeath,1);
 		CreateInvItems(hero,ItRu_MassDeath,1);
 		CreateInvItems(hero,ItRu_ArmyOfDarkness,1);
-		CreateInvItems(hero,ItRu_Shrink,1);
+//		CreateInvItems(hero,ItRu_Shrink,1);
 	};
 };
 
@@ -578,10 +579,10 @@ func void CH_Lernpunkte_Info()
 {
 	Info_ClearChoices(CH_Lernpunkte);
 	Info_AddChoice(CH_Lernpunkte,Dialog_Back,CH_Lernpunkte_BACK);
-	Info_AddChoice(CH_Lernpunkte,"LP + 50",CH_Lernpunkte_50);
-	Info_AddChoice(CH_Lernpunkte,"LP + 25",CH_Lernpunkte_25);
-	Info_AddChoice(CH_Lernpunkte,"LP + 10",CH_Lernpunkte_10);
-	Info_AddChoice(CH_Lernpunkte,"LP + 5",CH_Lernpunkte_5);
+	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 50",CH_Lernpunkte_50);
+	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 25",CH_Lernpunkte_25);
+	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 10",CH_Lernpunkte_10);
+	Info_AddChoice(CH_Lernpunkte,"Очки обучения + 5",CH_Lernpunkte_5);
 };
 
 func void CH_Lernpunkte_BACK()
@@ -2018,6 +2019,10 @@ func void DIA_CH_Runen_5()
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Pyrokinesis,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Pyrokinesis)),CH_Training_Runen_Circle_5_SPL_Pyrokinesis);
 	};
+	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),CH_Training_Runen_Circle_5_SPL_Shrink);
+	};
 };
 
 func void CH_Training_Runen_Circle_5_SPL_IceWave()
@@ -2060,10 +2065,10 @@ func void DIA_CH_Runen_6()
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_ArmyOfDarkness,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ArmyOfDarkness)),CH_Training_Runen_Circle_6_SPL_ArmyOfDarkness);
 	};
-	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
+	/*if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),CH_Training_Runen_Circle_6_SPL_Shrink);
-	};
+	};*/
 };
 
 func void CH_Training_Runen_Circle_6_SPL_Firerain()
@@ -2086,7 +2091,7 @@ func void CH_Training_Runen_Circle_6_SPL_ArmyOfDarkness()
 	B_TeachPlayerTalentRunes(self,other,SPL_ArmyOfDarkness);
 };
 
-func void CH_Training_Runen_Circle_6_SPL_Shrink()
+func void CH_Training_Runen_Circle_5_SPL_Shrink()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
 };
@@ -2497,6 +2502,10 @@ func void DIA_CH_Dieb_Start_Info()
 	{
 		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),CH_Training_Thief_Sneak);
 	};
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_ACROBAT))
+	{
+		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("Акробатика",B_GetLearnCostTalent(other,NPC_TALENT_ACROBAT,1)),CH_Training_Thief_Acrobat);
+	};
 };
 
 func void DIA_CH_Dieb_Start_BACK()
@@ -2517,6 +2526,11 @@ func void CH_Training_Thief_Picklock()
 func void CH_Training_Thief_Sneak()
 {
 	B_TeachThiefTalent(self,other,NPC_TALENT_SNEAK);
+};
+
+func void CH_Training_Thief_Acrobat()
+{
+	B_TeachThiefTalent(self,other,NPC_TALENT_ACROBAT);
 };
 
 
@@ -2647,21 +2661,21 @@ func void DIA_CH_Misc_Health_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Health);
 	Info_AddChoice(DIA_CH_Misc_Health,Dialog_Back,DIA_CH_Misc_Health_BACK);
-	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),CH_Training_Alchemy_POTION_Health_01);
-	};
-	if(PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),CH_Training_Alchemy_POTION_Health_02);
+		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),CH_Training_Alchemy_POTION_Perm_Health);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),CH_Training_Alchemy_POTION_Health_03);
 	};
-	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),CH_Training_Alchemy_POTION_Perm_Health);
+		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),CH_Training_Alchemy_POTION_Health_02);
+	};
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),CH_Training_Alchemy_POTION_Health_01);
 	};
 };
 

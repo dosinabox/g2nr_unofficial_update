@@ -36,11 +36,11 @@ instance DIA_Mil_325_Miliz_FirstWarn(C_Info)
 
 func int DIA_Mil_325_Miliz_FirstWarn_Condition()
 {
-	if(Npc_GetDistToWP(other,Mil_325_Checkpoint) < 650)
+/*	if(Npc_GetDistToWP(other,Mil_325_Checkpoint) < 650)
 	{
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
-	};
+	};*/
 	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
@@ -49,10 +49,21 @@ func int DIA_Mil_325_Miliz_FirstWarn_Condition()
 
 func void DIA_Mil_325_Miliz_FirstWarn_Info()
 {
-	AI_Output(self,other,"DIA_Mil_325_Miliz_FirstWarn_12_00");	//СТОЙ!
-	AI_Output(self,other,"DIA_Mil_325_Miliz_FirstWarn_12_01");	//Сюда вход запрещен!
-	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Mil_325_Checkpoint);
-	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
+	if(Npc_GetDistToWP(other,Mil_325_Checkpoint) < 650)
+	{
+		other.aivar[AIV_LastDistToWP] = 0;
+		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
+		B_Say(self,other,"$WhatDidYouDoInThere");
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardStopsIntruder,0);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Mil_325_Miliz_FirstWarn_12_00");	//СТОЙ!
+		AI_Output(self,other,"DIA_Mil_325_Miliz_FirstWarn_12_01");	//Сюда вход запрещен!
+		other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Mil_325_Checkpoint);
+		self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
+	};
 };
 
 
@@ -77,10 +88,21 @@ func int DIA_Mil_325_Miliz_SecondWarn_Condition()
 
 func void DIA_Mil_325_Miliz_SecondWarn_Info()
 {
-	AI_Output(self,other,"DIA_Mil_325_Miliz_SecondWarn_12_00");	//Ты что, оглох? Еще один шаг, и я порублю тебя в капусту!
-	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Mil_325_Checkpoint);
-	self.aivar[AIV_Guardpassage_Status] = GP_SecondWarnGiven;
-	AI_StopProcessInfos(self);
+	if(Npc_GetDistToWP(other,Mil_325_Checkpoint) < 650)
+	{
+		other.aivar[AIV_LastDistToWP] = 0;
+		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
+		B_Say(self,other,"$WhatDidYouDoInThere");
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardStopsIntruder,0);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Mil_325_Miliz_SecondWarn_12_00");	//Ты что, оглох? Еще один шаг, и я порублю тебя в капусту!
+		other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Mil_325_Checkpoint);
+		self.aivar[AIV_Guardpassage_Status] = GP_SecondWarnGiven;
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -105,11 +127,22 @@ func int DIA_Mil_325_Miliz_Attack_Condition()
 
 func void DIA_Mil_325_Miliz_Attack_Info()
 {
-	other.aivar[AIV_LastDistToWP] = 0;
-	self.aivar[AIV_Guardpassage_Status] = GP_NONE;
-	AI_Output(self,other,"DIA_Mil_325_Miliz_Attack_12_00");	//Это была твоя ошибка!
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_GuardStopsIntruder,0);
+	if(Npc_GetDistToWP(other,Mil_325_Checkpoint) < 650)
+	{
+		other.aivar[AIV_LastDistToWP] = 0;
+		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
+		B_Say(self,other,"$WhatDidYouDoInThere");
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardStopsIntruder,0);
+	}
+	else
+	{
+		other.aivar[AIV_LastDistToWP] = 0;
+		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
+		AI_Output(self,other,"DIA_Mil_325_Miliz_Attack_12_00");	//Это была твоя ошибка!
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardStopsIntruder,0);
+	};
 };
 
 

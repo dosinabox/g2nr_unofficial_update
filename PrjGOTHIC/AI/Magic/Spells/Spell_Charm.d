@@ -17,6 +17,10 @@ func int Spell_Logic_Charm(var int manaInvested)
 	{
 		if((other.aivar[AIV_NpcSawPlayerCommit] != CRIME_NONE) && (MIS_Ignaz_Charm == LOG_Running))
 		{
+			if(Charm_Test == FALSE)
+			{
+				B_LogEntry(TOPIC_Ignaz,"Кажется, заклинание сработало!");
+			};
 			Charm_Test = TRUE;
 		};
 		B_DeletePetzCrime(other);

@@ -313,11 +313,14 @@ func void DIA_Vino_Obesessed_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Vino_Obesessed_05_01");	//(рычит) Черт, убей их. Иначе они убьют меня.
+		AI_EquipBestMeleeWeapon(self);
 		AI_StopProcessInfos(self);
+		Npc_ExchangeRoutine(self,"RunFromRitual");
 		DMT_Vino1.aivar[AIV_EnemyOverride] = FALSE;
 		DMT_Vino2.aivar[AIV_EnemyOverride] = FALSE;
 		DMT_Vino3.aivar[AIV_EnemyOverride] = FALSE;
 		DMT_Vino4.aivar[AIV_EnemyOverride] = FALSE;
+		DMT_Vino4.start_aistate = ZS_Stand_Dementor;
 	};
 };
 

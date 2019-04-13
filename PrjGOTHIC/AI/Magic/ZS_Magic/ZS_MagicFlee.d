@@ -29,9 +29,12 @@ func void ZS_MagicFlee()
 			return;
 		};
 	};
-	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(KDF_511_Daron)))
+	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Xardas)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(KDF_511_Daron)))
 	{
-		B_Say(self,other,"$ISAIDSTOPMAGIC");
+		if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Xardas))
+		{
+			B_Say(self,other,"$ISAIDSTOPMAGIC");
+		};
 		AI_ContinueRoutine(self);
 		return;
 	};

@@ -59,7 +59,8 @@ func void ZS_GolemDown()
 	self.senses = SENSE_SMELL;
 	self.senses_range = 2000;
 	Npc_SetPercTime(self,1);
-	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_GolemRise);
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_GolemRise_PlayerDetected);
+	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_GolemRise);
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
@@ -79,16 +80,23 @@ func void ZS_GolemDown_END()
 
 func void B_GolemRise()
 {
+	Snd_Play("GOL_AMBIENT_A2");
+	AI_PlayAni(self,"T_RISE");
+	self.noFocus = FALSE;
+	self.name[0] = "Каменный голем";
+	self.flags = 0;
+	AI_StartState(self,ZS_MM_Attack,0,"");
+	self.bodyStateInterruptableOverride = FALSE;
+	self.start_aistate = ZS_MM_AllScheduler;
+	self.aivar[AIV_MM_RestStart] = OnlyRoutine;
+};
+
+
+func void B_GolemRise_PlayerDetected()
+{
 	if((Npc_GetDistToNpc(self,hero) <= 700) && !Mob_HasItems("NW_GOLEMCHEST",ItSe_Golemchest_Mis))
 	{
-		AI_PlayAni(self,"T_RISE");
-		self.noFocus = FALSE;
-		self.name[0] = "Каменный голем";
-		self.flags = 0;
-		AI_StartState(self,ZS_MM_Attack,0,"");
-		self.bodyStateInterruptableOverride = FALSE;
-		self.start_aistate = ZS_MM_AllScheduler;
-		self.aivar[AIV_MM_RestStart] = OnlyRoutine;
+		B_GolemRise();
 	};
 };
 

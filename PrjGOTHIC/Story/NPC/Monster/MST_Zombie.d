@@ -76,6 +76,14 @@ instance Zombie04(Mst_Default_Zombie)
 	Npc_SetToFistMode(self);
 };
 
+instance STT_Zombie(Mst_Default_Zombie)
+{
+	protection[PROT_FIRE] = 0;
+	Mdl_SetVisual(self,"Zombie.mds");
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,ITAR_Bloodwyn_Addon);
+	Npc_SetToFistMode(self);
+};
+
 instance Zombie_Addon_Knecht(Mst_Default_Zombie)
 {
 	name[0] = "Приспешник Ворона";
@@ -97,6 +105,17 @@ instance Zombie_Addon_Bloodwyn(Mst_Default_Zombie)
 	Npc_SetToFistMode(self);
 };
 
+/*instance Zombie_Addon_Bloodwyn_Headless(Mst_Default_Zombie)
+{
+	name[0] = "Пробудившийся Бладвин";
+	level = 25;
+	attribute[ATR_HITPOINTS_MAX] = 1600;
+	attribute[ATR_HITPOINTS] = 1600;
+	protection[PROT_FIRE] = 0;
+	Mdl_SetVisual(self,"Zombie.mds");
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Hum_Headless",0,DEFAULT,ITAR_Thorus_Addon);
+	Npc_SetToFistMode(self);
+};*/
 
 func void ZS_Pal_ZOMBIE()
 {

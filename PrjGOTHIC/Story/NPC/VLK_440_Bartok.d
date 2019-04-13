@@ -9,12 +9,12 @@ instance VLK_440_Bartok(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItRw_Bow_M_03);
+//	EquipItem(self,ItRw_Bow_M_03);
 	EquipItem(self,ItMW_Addon_Hacker_1h_01);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItPo_Health_03,5);
-//	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_Vlk_L);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_Leather_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_Vlk_L);
+//	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

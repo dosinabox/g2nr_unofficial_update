@@ -30,6 +30,9 @@ func void B_NpcSetJailed(var C_Npc slf)
 		slf.attribute[ATR_MANA] = Spl_Cost_Scroll - 1;		//маг не может использовать даже свиток
 		slf.attribute[ATR_MANA_MAX] = Spl_Cost_Scroll - 1;
 	};
+	slf.aivar[AIV_IGNORE_Murder] = TRUE;	//игнорирование преступлений игрока
+	slf.aivar[AIV_IGNORE_Theft] = TRUE;
+	slf.aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 };
 
 func void B_NpcSetReleased(var C_Npc slf)

@@ -36,7 +36,7 @@ instance DIA_BDT_1020_Wegelagerer_FirstWarn(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_FirstWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (Npc_GetDistToWP(Lares,"NW_TROLLAREA_PATH_47") > 3000) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (Npc_GetDistToWP(Lares,"NW_TROLLAREA_PATH_47") < 1000) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		return TRUE;
 	};
@@ -168,7 +168,6 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_15_00");	//Вот, возьми мое оружие.
 	AI_DrawWeapon(other);
 //	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_06_01");	//Отойди от этого оружия. Ну подожди!
-//	AI_Output(self,other,"SVM_6_KillEnemy");	//Я выпущу тебе кишки, ублюдок!
 	B_Say(self,other,"$KillEnemy");
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_GuardStopsIntruder,1);
@@ -188,7 +187,7 @@ instance DIA_BDT_1020_Wegelagerer_SecondWarn(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (Npc_GetDistToWP(Lares,"NW_TROLLAREA_PATH_47") > 3000) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -238,7 +237,7 @@ instance DIA_BDT_1020_Wegelagerer_Attack(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (Npc_GetDistToWP(Lares,"NW_TROLLAREA_PATH_47") > 3000) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") < 1000) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -265,7 +264,8 @@ instance BDT_1020_Bandit_L_GetLost(C_Info)
 
 func int BDT_1020_Bandit_L_GetLost_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(Lares,"NW_TROLLAREA_PATH_47") <= 3000))
+//	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(Lares,"NW_TROLLAREA_PATH_47") <= 3000))
+	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_47") >= 1000))
 	{
 		return TRUE;
 	};

@@ -44,3 +44,9 @@ func void Rtn_Follow_602()
 	TA_Follow_Player(20,0,8,0,"NW_TROLLAREA_PATH_13");
 };
 
+func void Rtn_BackToMonastery_602()
+{
+	TA_Stand_Sweeping(8,0,23,0,"NW_MONASTERY_MAGE03_01");
+	TA_Sleep(23,0,8,0,"NW_MONASTERY_NOVICE03_06");
+};
+

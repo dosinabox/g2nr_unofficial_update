@@ -8,6 +8,10 @@ func string B_BuildLearnString(var string text,var int kosten)
 	{
 		concatText = ConcatStrings(concatText,PRINT_1LP);
 	}
+	else if((kosten > 1) && (kosten < 5))
+	{
+		concatText = ConcatStrings(concatText,PRINT_2LP);
+	}
 	else
 	{
 		concatText = ConcatStrings(concatText,PRINT_LP);

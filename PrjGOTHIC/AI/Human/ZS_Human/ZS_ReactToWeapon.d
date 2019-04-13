@@ -3,7 +3,7 @@ func void ZS_ReactToWeapon()
 {
 	Perception_Set_Minimal();
 	Npc_PercEnable(self,PERC_ASSESSFIGHTSOUND,B_AssessFightSound);
-	if(B_AssessEnemy() || ((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril)) && (TOPIC_END_MinenAnteile == TRUE)))
+	if(B_AssessEnemy())
 	{
 		return;
 	};

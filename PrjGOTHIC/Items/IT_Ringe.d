@@ -332,6 +332,55 @@ func void UnEquip_ItRi_Prot_Mage_02()
 };
 
 
+instance ItRi_Prot_Total_00(C_Item)
+{
+	name = NAME_Ring;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_RING;
+	value = 550;
+	visual = "ItRi_Fernando.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_Fernando;
+	on_unequip = UnEquip_Fernando;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Кольцо мореплавателя";
+	text[1] = NAME_Prot_Edge;
+	count[1] = 2;
+	text[2] = NAME_Prot_Point;
+	count[2] = 2;
+	text[3] = NAME_Prot_Fire;
+	count[3] = 1;
+	text[4] = NAME_Prot_Magic;
+	count[4] = 1;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+	inv_rotz = INVCAM_Z_RING_STANDARD;
+	inv_rotx = INVCAM_X_RING_STANDARD;
+};
+
+
+func void Equip_Fernando()
+{
+	self.protection[PROT_EDGE] += 2;
+	self.protection[PROT_BLUNT] += 2;
+	self.protection[PROT_POINT] += 2;
+	self.protection[PROT_FIRE] += 1;
+	self.protection[PROT_MAGIC] += 1;
+};
+
+func void UnEquip_Fernando()
+{
+	self.protection[PROT_EDGE] -= 2;
+	self.protection[PROT_BLUNT] -= 2;
+	self.protection[PROT_POINT] -= 2;
+	self.protection[PROT_FIRE] -= 1;
+	self.protection[PROT_MAGIC] -= 1;
+};
+
+
 instance ItRi_Prot_Total_01(C_Item)
 {
 	name = NAME_Ring;
@@ -527,20 +576,24 @@ instance ItRi_HP_01(C_Item)
 func void Equip_ItRi_Hp_01()
 {
 	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp;
-	self.attribute[ATR_HITPOINTS] += Ri_Hp;
+//	self.attribute[ATR_HITPOINTS] += Ri_Hp;
 };
 
 func void UnEquip_ItRi_Hp_01()
 {
 	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp;
-	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 2))
+	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
 	{
-		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
-	}
-	else
-	{
-		self.attribute[ATR_HITPOINTS] = 2;
+		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	};
+//	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 2))
+//	{
+//		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
+//	}
+//	else
+//	{
+//		self.attribute[ATR_HITPOINTS] = 2;
+//	};
 };
 
 
@@ -571,20 +624,24 @@ instance ItRi_Hp_02(C_Item)
 func void Equip_ItRi_Hp_02()
 {
 	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp02;
-	self.attribute[ATR_HITPOINTS] += Ri_Hp02;
+//	self.attribute[ATR_HITPOINTS] += Ri_Hp02;
 };
 
 func void UnEquip_ItRi_Hp_02()
 {
 	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp02;
-	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp02 + 2))
+	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
 	{
-		self.attribute[ATR_HITPOINTS] -= Ri_Hp02;
-	}
-	else
-	{
-		self.attribute[ATR_HITPOINTS] = 2;
+		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	};
+//	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp02 + 2))
+//	{
+//		self.attribute[ATR_HITPOINTS] -= Ri_Hp02;
+//	}
+//	else
+//	{
+//		self.attribute[ATR_HITPOINTS] = 2;
+//	};
 };
 
 
@@ -685,20 +742,24 @@ instance ItRi_Mana_01(C_Item)
 func void Equip_ItRi_Mana_01()
 {
 	self.attribute[ATR_MANA_MAX] += Ri_Mana;
-	self.attribute[ATR_MANA] += Ri_Mana;
+//	self.attribute[ATR_MANA] += Ri_Mana;
 };
 
 func void UnEquip_ItRi_Mana_01()
 {
 	self.attribute[ATR_MANA_MAX] -= Ri_Mana;
-	if(self.attribute[ATR_MANA] > Ri_Mana)
+	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
 	{
-		self.attribute[ATR_MANA] -= Ri_Mana;
-	}
-	else
-	{
-		self.attribute[ATR_MANA] = 0;
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 	};
+//	if(self.attribute[ATR_MANA] > Ri_Mana)
+//	{
+//		self.attribute[ATR_MANA] -= Ri_Mana;
+//	}
+//	else
+//	{
+//		self.attribute[ATR_MANA] = 0;
+//	};
 };
 
 
@@ -729,20 +790,24 @@ instance ItRi_Mana_02(C_Item)
 func void Equip_ItRi_Mana_02()
 {
 	self.attribute[ATR_MANA_MAX] += Ri_Mana02;
-	self.attribute[ATR_MANA] += Ri_Mana02;
+//	self.attribute[ATR_MANA] += Ri_Mana02;
 };
 
 func void UnEquip_ItRi_Mana_02()
 {
 	self.attribute[ATR_MANA_MAX] -= Ri_Mana02;
-	if(self.attribute[ATR_MANA] > Ri_Mana02)
+	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
 	{
-		self.attribute[ATR_MANA] -= Ri_Mana02;
-	}
-	else
-	{
-		self.attribute[ATR_MANA] = 0;
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 	};
+//	if(self.attribute[ATR_MANA] > Ri_Mana02)
+//	{
+//		self.attribute[ATR_MANA] -= Ri_Mana02;
+//	}
+//	else
+//	{
+//		self.attribute[ATR_MANA] = 0;
+//	};
 };
 
 
@@ -774,9 +839,9 @@ instance ItRi_Hp_Mana_01(C_Item)
 
 func void Equip_ItRi_Hp_Mana_01()
 {
-	self.attribute[ATR_HITPOINTS] += Ri_HpMana_Hp;
+//	self.attribute[ATR_HITPOINTS] += Ri_HpMana_Hp;
 	self.attribute[ATR_HITPOINTS_MAX] += Ri_HpMana_Hp;
-	self.attribute[ATR_MANA] += Ri_HpMana_Mana;
+//	self.attribute[ATR_MANA] += Ri_HpMana_Mana;
 	self.attribute[ATR_MANA_MAX] += Ri_HpMana_Mana;
 };
 
@@ -784,22 +849,30 @@ func void UnEquip_ItRi_Hp_Mana_01()
 {
 	self.attribute[ATR_MANA_MAX] -= Ri_HpMana_Mana;
 	self.attribute[ATR_HITPOINTS_MAX] -= Ri_HpMana_Hp;
-	if(self.attribute[ATR_HITPOINTS] > (Ri_HpMana_Hp + 2))
+	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
 	{
-		self.attribute[ATR_HITPOINTS] -= Ri_HpMana_Hp;
-	}
-	else
-	{
-		self.attribute[ATR_HITPOINTS] = 2;
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 	};
-	if(self.attribute[ATR_MANA] > Ri_HpMana_Mana)
+	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
 	{
-		self.attribute[ATR_MANA] -= Ri_HpMana_Mana;
-	}
-	else
-	{
-		self.attribute[ATR_MANA] = 0;
+		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	};
+//	if(self.attribute[ATR_HITPOINTS] > (Ri_HpMana_Hp + 2))
+//	{
+//		self.attribute[ATR_HITPOINTS] -= Ri_HpMana_Hp;
+//	}
+//	else
+//	{
+//		self.attribute[ATR_HITPOINTS] = 2;
+//	};
+//	if(self.attribute[ATR_MANA] > Ri_HpMana_Mana)
+//	{
+//		self.attribute[ATR_MANA] -= Ri_HpMana_Mana;
+//	}
+//	else
+//	{
+//		self.attribute[ATR_MANA] = 0;
+//	};
 };
 
 

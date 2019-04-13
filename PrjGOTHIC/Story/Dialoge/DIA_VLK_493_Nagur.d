@@ -197,13 +197,18 @@ func void DIA_Nagur_Auftrag_Info()
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_06");	//И не пытайся продать эти товары сам. Ты все понял?
-	/*смерть мальчика на побегушках
+//	смерть мальчика на побегушках
 	if(!Npc_IsDead(Bote))
 	{
 		AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
 		B_StartOtherRoutine(Bote,"Rest");
 		B_KillNpc(Bote);
-	};*/
+	};
+//	Ренгару уходит с места преступления
+	if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && (Rengaru_Ausgeliefert == FALSE))
+	{
+		B_StartOtherRoutine(Rengaru,"Hide");
+	};
 	Info_ClearChoices(DIA_Nagur_Auftrag);
 	Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились.",DIA_Nagur_Auftrag_Okay);
 	if(Baltram.aivar[AIV_TalkedToPlayer] == FALSE)
@@ -319,9 +324,9 @@ func void DIA_Nagur_Deal_Info()
 		AI_Output(self,other,"DIA_Nagur_Deal_08_02");	//Часть этой суммы пошла моим хозяевам...
 		AI_Output(self,other,"DIA_Nagur_Deal_08_03");	//И Кардиф получил свой обычный процент - плюс золото за то, что он нашел тебя.
 		AI_Output(self,other,"DIA_Nagur_Deal_08_04");	//Остается 240 золотых монет. Мы поделим их как договорились. Вот твоя доля.
+		B_GiveInvItems(self,other,ItMi_Gold,Nagur_Deal);
 		AI_Output(self,other,"DIA_Nagur_Deal_08_05");	//Ты хорошо поработал. Я сообщил об этом моим хозяевам.
 		AI_Output(self,other,"DIA_Nagur_Deal_08_06");	//Что из этого выйдет - не знаю.
-		B_GiveInvItems(self,other,ItMi_Gold,Nagur_Deal);
 		MIS_Nagur_Bote = LOG_SUCCESS;
 		MIS_Baltram_ScoutAkil = LOG_FAILED;
 		B_GivePlayerXP(XP_Nagur_Bote);

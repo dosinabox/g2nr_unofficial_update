@@ -176,8 +176,8 @@ func void DIA_Grom_PayTeacher_Info()
 	AI_Output(self,other,"DIA_Grom_PayTeacher_08_01");	//Фантастика. И что теперь?
 	Grom_TeachAnimalTrophy = TRUE;
 	B_GivePlayerXP(XP_Ambient);
-	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher,"Гром может обучить меня добывать трофеи животных.");
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,"Гром может обучить меня добывать трофеи животных.");
 };
 
 

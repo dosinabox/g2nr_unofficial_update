@@ -307,7 +307,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 		RiordianHouseNeuigkeit += 1;
 		Log_CreateTopic(TOPIC_Addon_CanyonOrcs,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_CanyonOrcs,LOG_Running);
-		B_LogEntry(TOPIC_Addon_CanyonOrcs,"Маг Воды Риордан будет доволен, если я очищу каньон от орков.");
+		B_LogEntry(TOPIC_Addon_CanyonOrcs,"Маг Воды Риордиан будет доволен, если я очищу каньон от орков.");
 	};
 	if((Npc_IsDead(Stoneguardian_Heiler) || Npc_HasItems(other,ItMi_Addon_Stone_04) || (Saturas_SCFound_ItMi_Addon_Stone_04 == TRUE)) && (FOUNDHOUSEINFO[2] == FALSE))
 	{

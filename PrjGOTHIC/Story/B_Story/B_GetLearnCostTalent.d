@@ -314,23 +314,28 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 		}
 		else if(skill == WISPSKILL_NONE)
 		{
-			kosten = 2;
+//			kosten = 2;
+			kosten = 1;
 		}
 		else if(skill == WISPSKILL_RUNE)
 		{
-			kosten = 3;
+//			kosten = 3;
+			kosten = 1;
 		}
 		else if(skill == WISPSKILL_MAGIC)
 		{
-			kosten = 4;
+//			kosten = 4;
+			kosten = 1;
 		}
 		else if(skill == WISPSKILL_FOOD)
 		{
-			kosten = 5;
+//			kosten = 5;
+			kosten = 1;
 		}
 		else if(skill == WISPSKILL_POTIONS)
 		{
-			kosten = 5;
+//			kosten = 5;
+			kosten = 1;
 		};
 	};
 	if(talent == NPC_TALENT_RUNES)
@@ -393,7 +398,8 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 		}
 		else if(skill == SPL_InstantFireball)
 		{
-			kosten = 10;
+//			kosten = 10;
+			kosten = 5;
 		}
 		else if(skill == SPL_SummonWolf)
 		{
@@ -509,7 +515,8 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 		}
 		else if(skill == SPL_Shrink)
 		{
-			kosten = 20;
+//			kosten = 20;
+			kosten = 10;
 		}
 		else
 		{

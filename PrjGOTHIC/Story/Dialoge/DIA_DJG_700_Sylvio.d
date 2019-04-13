@@ -138,7 +138,7 @@ func void DIA_Sylvio_WASISTPASSIERT_Info()
 	Info_AddChoice(DIA_Sylvio_WASISTPASSIERT,"Почему ты не расправишься с ними сам?",DIA_Sylvio_WASISTPASSIERT_selbst);
 	Log_CreateTopic(TOPIC_SylvioKillIceGolem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_SylvioKillIceGolem,LOG_Running);
-	B_LogEntry(TOPIC_SylvioKillIceGolem,"Сильвио испугался двух ледяных големов у входа в заснеженный район Долины рудников.");
+	B_LogEntry(TOPIC_SylvioKillIceGolem,"Сильвио испугался двух ледяных големов у входа в заснеженный район Долины Рудников.");
 	MIS_DJG_Sylvio_KillIceGolem = LOG_Running;
 //	IceGolem_Sylvio1.flags = 0;
 //	IceGolem_Sylvio2.flags = 0;
@@ -220,6 +220,11 @@ func void DIA_Sylvio_ICEGOLEMSKILLED_Info()
 	{
 		AI_Output(other,self,"DIA_Sylvio_ICEGOLEMSKILLED_15_02");	//Минуточку. А как мои деньги?
 		AI_Output(self,other,"DIA_Sylvio_ICEGOLEMSKILLED_09_03");	//Всему свое время.
+	};
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
 	};
 	AI_StopProcessInfos(self);
 	MIS_DJG_Sylvio_KillIceGolem = LOG_SUCCESS;

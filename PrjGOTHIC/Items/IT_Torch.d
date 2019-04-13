@@ -10,7 +10,7 @@ instance ItLsTorch(C_Item)
 	visual = "ItLs_Torch_01.3ds";
 	material = MAT_WOOD;
 	description = name;
-	text[0] = "ќбычный факел.";
+//	text[0] = "ќбычный факел.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -29,14 +29,15 @@ instance ItLsTorchburning(C_Item)
 
 instance ItLsTorchburned(C_Item)
 {
-	name = NAME_Fackel;
+	name = "—горевший факел";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_TORCH | ITEM_MULTI;
+//	flags = ITEM_TORCH | ITEM_MULTI;
+	flags = ITEM_MULTI;
 	value = 0;
 	visual = "ItLs_Torchburned_01.3ds";
 	material = MAT_WOOD;
 	description = name;
-	text[0] = "—горевший факел.";
+//	text[0] = "—горевший факел.";
 };
 
 instance ItLsTorchFirespit(C_Item)

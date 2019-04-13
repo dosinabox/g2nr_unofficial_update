@@ -100,6 +100,11 @@ func int B_GoldMob_Bestimmung()
 	{
 		GoldMob_20_Amount += 1;
 		return TRUE;
+	}
+	else if(Hlp_StrCmp(Npc_GetNearestWP(self),"ADW_MINE_SKLAVENTOD_02") && (GoldMob_21_AmounT_MAX > GoldMob_21_Amount))
+	{
+		GoldMob_21_Amount += 1;
+		return TRUE;
 	};
 	return FALSE;
 };
@@ -204,12 +209,14 @@ func void PC_Goldhacken_Addon_Hour_Info()
 			if((GoldCounter >= 20) && (MultiNugget >= 8))
 			{
 				CreateInvItems(hero,ItMi_GoldNugget_Addon,3);
+				Snd_Play("Geldbeutel");
 				PrintScreen("Добыто 3 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
 				Truemmer_Count = 0;
 			}
 			else if((GoldCounter >= 7) && (MultiNugget >= 5))
 			{
 				CreateInvItems(hero,ItMi_GoldNugget_Addon,2);
+				Snd_Play("Geldbeutel");
 				PrintScreen("Добыто 2 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
 				Truemmer_Count = 0;
 				GoldCounter += 1;
@@ -217,6 +224,7 @@ func void PC_Goldhacken_Addon_Hour_Info()
 			else
 			{
 				CreateInvItems(hero,ItMi_GoldNugget_Addon,1);
+				Snd_Play("Geldbeutel");
 				PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);
 				Truemmer_Count = 0;
 				GoldCounter += 1;
@@ -270,16 +278,19 @@ func void PC_Goldhacken_Addon_TSchlag_Info()
 		if(TruemmerChance >= 85)
 		{
 			CreateInvItems(hero,ItMi_GoldNugget_Addon,3);
+			Snd_Play("Geldbeutel");
 			PrintScreen("Добыто 3 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
 		}
 		else if(TruemmerChance >= 50)
 		{
 			CreateInvItems(hero,ItMi_GoldNugget_Addon,2);
+			Snd_Play("Geldbeutel");
 			PrintScreen("Добыто 2 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
 		}
 		else
 		{
 			CreateInvItems(hero,ItMi_GoldNugget_Addon,1);
+			Snd_Play("Geldbeutel");
 			PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);
 		};
 	};
@@ -311,31 +322,31 @@ func void PC_Goldhacken_Addon_Chance_Info()
 	var string concatText;
 	if(Hero_HackChance < 20)
 	{
-		concatText = ConcatStrings("полный новичок (",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("Полный новичок (",IntToString(Hero_HackChance));
 	}
 	else if(Hero_HackChance < 40)
 	{
-		concatText = ConcatStrings("вполне сносный работник (",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("Вполне сносный работник (",IntToString(Hero_HackChance));
 	}
 	else if(Hero_HackChance < 55)
 	{
-		concatText = ConcatStrings("опытный золотоискатель (",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("Опытный золотоискатель (",IntToString(Hero_HackChance));
 	}
 	else if(Hero_HackChance < 75)
 	{
-		concatText = ConcatStrings("настоящий рудокоп (",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("Настоящий рудокоп (",IntToString(Hero_HackChance));
 	}
 	else if(Hero_HackChance < 90)
 	{
-		concatText = ConcatStrings("чертовски хороший рудокоп (",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("Чертовски хороший рудокоп (",IntToString(Hero_HackChance));
 	}
 	else if(Hero_HackChance < 98)
 	{
-		concatText = ConcatStrings("великий рудокоп (",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("Великий рудокоп (",IntToString(Hero_HackChance));
 	}
 	else
 	{
-		concatText = ConcatStrings("гуру среди рудокопов (",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("Гуру среди рудокопов (",IntToString(Hero_HackChance));
 	};
 	concatText = ConcatStrings(concatText," процентов)");
 	PrintScreen(concatText,-1,34,FONT_ScreenSmall,2);

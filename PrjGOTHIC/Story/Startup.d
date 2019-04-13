@@ -1,7 +1,11 @@
 
+const int fix_version_start = 18;
+var int fix_version_save;
+
 func void startup_global()
 {
 	Game_InitGerman();
+	fix_version_save = fix_version_start;
 };
 
 func void init_global()
@@ -564,8 +568,8 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertNpc(Zombie01,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
 	Wld_InsertNpc(MayaZombie02,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
 	Wld_InsertNpc(Zombie03,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
-	Wld_InsertNpc(Lurker,"ADW_PIRATECAMP_SECRETCAVE_01");
-	Wld_InsertNpc(Lurker,"ADW_PIRATECAMP_SECRETCAVE_01");
+	Wld_InsertNpc(Lurker_SecretCave1,"ADW_PIRATECAMP_SECRETCAVE_01");
+	Wld_InsertNpc(Lurker_SecretCave2,"ADW_PIRATECAMP_SECRETCAVE_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
@@ -862,9 +866,12 @@ func void Startup_Oldcamp()
 	Wld_InsertNpc(OrcWarrior_Rest,"OC_ORK_BACK_CAMP_14");
 	Wld_InsertNpc(OrcWarrior_Rest,"FP_REST_ORK_OC_18");
 	Wld_InsertNpc(Sheep,"FP_SLEEP_SHEEP_ORK");
-	Wld_InsertNpc(OrcShaman_Hosh_Pak,"FP_CAMPFIRE_HOSHPAK_01");
-	Wld_InsertNpc(OrcShaman_Sit,"FP_CAMPFIRE_HOSHPAK_02");
-	Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_HOSHPAK_05");
+//	Wld_InsertNpc(OrcShaman_Hosh_Pak,"FP_CAMPFIRE_HOSHPAK_01");
+//	Wld_InsertNpc(OrcShaman_Sit,"FP_CAMPFIRE_HOSHPAK_02");
+	Wld_InsertNpc(OrcShaman_Hosh_Pak,"FP_ROAM_HOSHPAK_05");
+	Wld_InsertNpc(OrcShaman_Sit,"OW_HOSHPAK_04");
+//	Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_HOSHPAK_05");
+	Wld_InsertNpc(OrcWarrior_Rest,"OW_HOSHPAK_05");
 	Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_HOSHPAK_03");
 	Wld_InsertNpc(Warg,"OC_PATH_04");
 	Wld_InsertNpc(Warg,"OC_PATH_02");
@@ -1447,7 +1454,8 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_HARPYE3");
 	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_HARPYE4");
 	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_ETAGE7");
-	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_ETAGE_BALCON2");
+	//Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_ETAGE_BALCON2");
+	Wld_InsertNpc(Draconian,"LOCATION_19_03_SECOND_ETAGE_BALCON");
 	Wld_InsertNpc(Harpie,"OW_ROCKDRAGON_15");
 	Wld_InsertNpc(Harpie,"OW_ROCKDRAGON_14");
 	Wld_InsertNpc(Harpie,"OW_ROCKDRAGON_13");
@@ -1554,10 +1562,8 @@ func void init_surface()
 
 func void init_oldworld()
 {
-	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
-	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
-	};
+	b_check_version();
+	b_check_armor();
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
 	INIT_SUB_Surface();
@@ -1792,17 +1798,24 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(MIL_316_Wambo,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_321_Rangar,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_326_Miliz,"NW_CITY_ENTRANCE_01");
-//	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");	//мальчик на побегушках
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_05");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_07");
+	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");	//мальчик на побегушках
 	Wld_InsertItem(ItWr_OneHStonePlate2_Addon,"FP_ROAM_INSEL_07");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_09");
 	Wld_InsertItem(ItWr_BowStonePlate2_Addon,"FP_ROAM_INSEL_10");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_11");
+	/*Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
+	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
+	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
+	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
+	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
+	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
+	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");*/
+	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
+	Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_02");
+	Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_03");
+	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
+	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
+	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
+	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
 //	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_13");
-	Wld_InsertNpc(Waran,"FP_SHELLSPAWN_CITY_16");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_01");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"FP_SHELLSPAWN_CITY_02");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_02");
@@ -1857,7 +1870,8 @@ func void INIT_SUB_NewWorld_Part_City_01()
 	Wld_AssignRoomToGuild("fellan",GIL_VLK);
 	Wld_AssignRoomToGuild("fisch",GIL_VLK);
 	Wld_AssignRoomToGuild("lagerhaus",GIL_NONE);
-	Wld_AssignRoomToGuild("karten",GIL_PUBLIC);
+//	Wld_AssignRoomToGuild("karten",GIL_PUBLIC);
+	Wld_AssignRoomToGuild("karten",GIL_VLK);
 	Wld_AssignRoomToGuild("hafenkneipe",GIL_NONE);
 	Wld_AssignRoomToGuild("puff",GIL_NONE);
 	Wld_AssignRoomToGuild("bogner",GIL_PUBLIC);
@@ -1900,6 +1914,10 @@ func void INIT_SUB_NewWorld_Part_City_01()
 	Wld_AssignRoomToGuild("barracke",GIL_MIL);
 	Wld_AssignRoomToGuild("nwcityrich01",GIL_MIL);
 	Wld_AssignRoomToGuild("rathaus",GIL_PUBLIC);
+//	Wld_AssignRoomToGuild("rathaus_rathaus02",GIL_PUBLIC);
+//	Wld_AssignRoomToGuild("rathaus02_rathaus03",GIL_PUBLIC);
+	Wld_AssignRoomToGuild("rathaus02",GIL_PUBLIC);
+	Wld_AssignRoomToGuild("rathaus03",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("reich01",GIL_VLK);
 	Wld_AssignRoomToGuild("reich02",GIL_VLK);
 	Wld_AssignRoomToGuild("reich03",GIL_VLK);
@@ -2302,7 +2320,8 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(Bloodfly,"NW_FARM4_WOOD_MONSTER_07");
 	Wld_InsertNpc(Bloodfly,"NW_FARM4_WOOD_MONSTER_07");
 	Wld_InsertNpc(Shadowbeast,"NW_FARM4_WOOD_MONSTER_08");
-	Wld_InsertNpc(Gobbo_Skeleton,"NW_FARM4_WOOD_MONSTER_09");
+//	Wld_InsertNpc(Gobbo_Skeleton,"NW_FARM4_WOOD_MONSTER_09");
+	Wld_InsertNpc(Gobbo_Skeleton,"SAGITTA");
 	Wld_InsertNpc(Bloodfly,"NW_FARM4_WOOD_MONSTER_10");
 	Wld_InsertNpc(Bloodfly,"NW_FARM4_WOOD_MONSTER_10");
 	Wld_InsertNpc(Bloodfly,"NW_FARM4_WOOD_MONSTER_10");
@@ -2415,7 +2434,8 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(Skeleton,"NW_CRYPT_MONSTER04");
 	Wld_InsertNpc(Lesser_Skeleton,"NW_CRYPT_MONSTER04");
 	Wld_InsertItem(ItWr_StrStonePlate2_Addon,"FP_ROAM_NW_CRYPT_MONSTER04_02");
-	Wld_InsertNpc(Lesser_Skeleton,"NW_CRYPT_MONSTER06");
+//	Wld_InsertNpc(Lesser_Skeleton,"NW_CRYPT_MONSTER06");
+	Wld_InsertNpc(SkeletonScout,"NW_CRYPT_MONSTER06");
 	Wld_InsertNpc(Lesser_Skeleton,"NW_CRYPT_MONSTER06");
 	Wld_InsertNpc(Wisp,"NW_BIGFARM_FOREST_03_NAVIGATION");
 	Wld_InsertNpc(Keiler,"NW_BIGFARM_FOREST_03_NAVIGATION");
@@ -2512,8 +2532,10 @@ func void INIT_SUB_NewWorld_Part_GreatPeasant_01()
 	};*/
 	Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grphaupthaus01",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("grpschmiede01",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("grpscheune01",GIL_PUBLIC);
+//	Wld_AssignRoomToGuild("grpschmiede01",GIL_PUBLIC);
+//	Wld_AssignRoomToGuild("grpscheune01",GIL_PUBLIC);
+	Wld_AssignRoomToGuild("grpschmiede01",GIL_NONE);
+	Wld_AssignRoomToGuild("grpscheune01",GIL_NONE);
 	Wld_AssignRoomToGuild("grpkapelle01",GIL_NONE);
 	Wld_AssignRoomToGuild("cementary01",GIL_NONE);
 	if(Sekob_RoomFree == FALSE)
@@ -2577,7 +2599,7 @@ func void STARTUP_NewWorld_Part_Pass_To_OW_01()
 	Wld_InsertNpc(OrcWarrior_Roam,"NW_PASS_ORKS_03");
 	Wld_InsertNpc(OrcWarrior_Roam,"NW_PASS_ORKS_09");
 	Wld_InsertNpc(OrcWarrior_Roam,"NW_PASS_ORKS_10");
-	Wld_InsertNpc(OrcWarrior_Roam,"NW_PASS_ORKS_12");
+	Wld_InsertNpc(OrcWarrior_Roam,"NW_PASS_ORKS_11");
 };
 
 func void INIT_SUB_NewWorld_Part_Pass_To_OW_01()
@@ -2594,6 +2616,7 @@ func void INIT_NewWorld_Part_Pass_To_OW_01()
 
 func void STARTUP_NewWorld_Part_Forest_01()
 {
+	Wld_InsertItem(ItKe_Orlan_BackDoor,"FP_ITEM_NW_TAVERNE_01");
 	Wld_InsertItem(ItMi_ErolsKelch,"FP_SPAWN_KELCH");
 	Wld_InsertNpc(BDT_1009_Bandit_L,"NW_FOREST_CAVE1_IN_04");
 	Wld_InsertNpc(BDT_1010_Bandit_L,"NW_FOREST_CAVE1_IN_05");
@@ -3048,15 +3071,14 @@ func void STARTUP_NewWorld()
 
 func void INIT_NewWorld()
 {
-	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
-	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
-	};
+	b_check_version();
+	b_check_armor();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	b_enter_newworld();
+	b_cycle_function();
 	if((Diebesgilde_Verraten == TRUE) && (Andre_Diebesgilde_aufgeraeumt != TRUE))
 	{
 		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
@@ -3103,9 +3125,11 @@ func void STARTUP_AddonWorld()
 
 func void INIT_AddonWorld()
 {
-	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
+	b_check_version();
+	b_check_armor();
+	if((BloodwynIsHeadless == TRUE) && (Saturas_RiesenPlan == FALSE))
 	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
 	};
 	init_sub_addon_part_banditscamp_01();
 	init_sub_addon_part_piratescamp_01();
@@ -3119,5 +3143,6 @@ func void INIT_AddonWorld()
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	b_enter_addonworld();
+	b_cycle_function();
 };
 

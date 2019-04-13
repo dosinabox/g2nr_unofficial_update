@@ -73,11 +73,12 @@ func void DIA_Kervo_HILFE_Info()
 	Info_ClearChoices(DIA_Kervo_HILFE);
 	Info_AddChoice(DIA_Kervo_HILFE,"Ладно. Я ухожу.",DIA_Kervo_HILFE_tschau);
 	Info_AddChoice(DIA_Kervo_HILFE,"Но ты же не можешь оставаться здесь вечно.",DIA_Kervo_HILFE_ewig);
-	if(Kervo_GotStuff == TRUE)
+	Info_AddChoice(DIA_Kervo_HILFE,"Что ты мне дашь, если я убью этих тварей?",DIA_Kervo_HILFE_Problem);
+	/*if(Kervo_GotStuff == TRUE)
 	{
 		Info_AddChoice(DIA_Kervo_HILFE,"Что ты мне дашь, если я убью этих тварей?",DIA_Kervo_HILFE_Problem);
 	};
-	MIS_Kervo_KillLurker = LOG_Running;
+	MIS_Kervo_KillLurker = LOG_Running;*/
 };
 
 func void DIA_Kervo_HILFE_ewig()
@@ -87,22 +88,24 @@ func void DIA_Kervo_HILFE_ewig()
 };
 
 
-var int Kervo_PromiseNugget;
-
 func void DIA_Kervo_HILFE_Problem()
 {
 	AI_Output(other,self,"DIA_Kervo_HILFE_Problem_15_00");	//Что ты мне дашь, если я убью этих тварей?
 	AI_Output(self,other,"DIA_Kervo_HILFE_Problem_13_01");	//Ммм. Ну. Я был бы не прочь, чтобы эти луркеры, что бродят перед пещерой, исчезли.
+	MIS_Kervo_KillLurker = LOG_Running;
+	Log_CreateTopic(TOPIC_KervoLurkers,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_KervoLurkers,LOG_Running);
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Kervo_HILFE_Problem_13_02");	//Я нашел чистый рунный камень. Ты ведь маг. Я уверен, ты найдешь применение ему.
+		B_LogEntry(TOPIC_KervoLurkers,"Беглый каторжник Керво пообещал мне рунный камень, если я убью луркеров около его убежища.");
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Kervo_HILFE_Problem_13_03");	//Я нашел кусок руды.
+		B_LogEntry(TOPIC_KervoLurkers,"Беглый каторжник Керво пообещал мне кусок руды, если я убью луркеров около его убежища.");
 	};
 	AI_Output(self,other,"DIA_Kervo_HILFE_Problem_13_04");	//Я отдам тебе его.
-	Kervo_PromiseNugget = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -125,7 +128,8 @@ instance DIA_Kervo_LurkerPlatt(C_Info)
 
 func int DIA_Kervo_LurkerPlatt_Condition()
 {
-	if((MIS_Kervo_KillLurker == LOG_Running) && Npc_IsDead(Kervo_Lurker1) && Npc_IsDead(Kervo_Lurker2) && Npc_IsDead(Kervo_Lurker3) && Npc_IsDead(Kervo_Lurker4) && Npc_IsDead(Kervo_Lurker5) && Npc_IsDead(Kervo_Lurker6))
+//	if((MIS_Kervo_KillLurker == LOG_Running) && Npc_IsDead(Kervo_Lurker1) && Npc_IsDead(Kervo_Lurker2) && Npc_IsDead(Kervo_Lurker3) && Npc_IsDead(Kervo_Lurker4) && Npc_IsDead(Kervo_Lurker5) && Npc_IsDead(Kervo_Lurker6))
+	if(Npc_KnowsInfo(other,DIA_Kervo_HILFE) && Npc_IsDead(Kervo_Lurker1) && Npc_IsDead(Kervo_Lurker2) && Npc_IsDead(Kervo_Lurker3) && Npc_IsDead(Kervo_Lurker4) && Npc_IsDead(Kervo_Lurker5) && Npc_IsDead(Kervo_Lurker6))
 	{
 		return TRUE;
 	};
@@ -135,20 +139,26 @@ func void DIA_Kervo_LurkerPlatt_Info()
 {
 	AI_Output(other,self,"DIA_Kervo_LurkerPlatt_15_00");	//Луркеров больше нет.
 	AI_Output(self,other,"DIA_Kervo_LurkerPlatt_13_01");	//Отлично. Теперь я опять смогу спать спокойно.
-	if(Kervo_PromiseNugget == TRUE)
+	if(MIS_Kervo_KillLurker == LOG_Running)
 	{
+		MIS_Kervo_KillLurker = LOG_SUCCESS;
 		AI_Output(self,other,"DIA_Kervo_LurkerPlatt_13_02");	//Вот то, что я обещал тебе.
 		if(hero.guild == GIL_KDF)
 		{
+			CreateInvItems(self,ItMi_RuneBlank,1);
 			B_GiveInvItems(self,other,ItMi_RuneBlank,1);
 		}
 		else
 		{
+			CreateInvItems(self,ItMi_Nugget,1);
 			B_GiveInvItems(self,other,ItMi_Nugget,1);
 		};
+		B_GivePlayerXP(100);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_KervoKillLurker);
 	};
-	B_GivePlayerXP(XP_KervoKillLurker);
-	MIS_Kervo_KillLurker = LOG_SUCCESS;
 };
 
 
@@ -164,7 +174,8 @@ instance DIA_Kervo_VERGISSES(C_Info)
 
 func int DIA_Kervo_VERGISSES_Condition()
 {
-	if(MIS_Kervo_KillLurker == LOG_SUCCESS)
+//	if(MIS_Kervo_KillLurker == LOG_SUCCESS)
+	if(Npc_KnowsInfo(other,DIA_Kervo_LurkerPlatt))
 	{
 		return TRUE;
 	};

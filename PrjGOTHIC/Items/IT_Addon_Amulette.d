@@ -57,7 +57,7 @@ func void Equip_ItAm_Addon_Franco()
 	self.attribute[ATR_STRENGTH] += STR_Franco;
 	self.attribute[ATR_DEXTERITY] += DEX_Franco;
 	self.attribute[ATR_HITPOINTS_MAX] += HP_ItAm_Addon_Franco;
-	self.attribute[ATR_HITPOINTS] += HP_ItAm_Addon_Franco;
+//	self.attribute[ATR_HITPOINTS] += HP_ItAm_Addon_Franco;
 };
 
 func void UnEquip_ItAm_Addon_Franco()
@@ -65,14 +65,18 @@ func void UnEquip_ItAm_Addon_Franco()
 	self.attribute[ATR_STRENGTH] -= STR_Franco;
 	self.attribute[ATR_DEXTERITY] -= DEX_Franco;
 	self.attribute[ATR_HITPOINTS_MAX] -= HP_ItAm_Addon_Franco;
-	if(self.attribute[ATR_HITPOINTS] > (HP_ItAm_Addon_Franco + 2))
+	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
 	{
-		self.attribute[ATR_HITPOINTS] -= HP_ItAm_Addon_Franco;
-	}
-	else
-	{
-		self.attribute[ATR_HITPOINTS] = 2;
+		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	};
+//	if(self.attribute[ATR_HITPOINTS] > (HP_ItAm_Addon_Franco + 2))
+//	{
+//		self.attribute[ATR_HITPOINTS] -= HP_ItAm_Addon_Franco;
+//	}
+//	else
+//	{
+//		self.attribute[ATR_HITPOINTS] = 2;
+//	};
 };
 
 
@@ -109,7 +113,7 @@ func void Equip_ItAm_Addon_Health()
 	HP_Amulett_Equipped = TRUE;
 	NewValue = C_HP_ArtefaktValue();
 	self.attribute[ATR_HITPOINTS_MAX] += NewValue - OldValue;
-	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+//	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
 };
 
 func void UnEquip_ItAm_Addon_Health()
@@ -120,7 +124,14 @@ func void UnEquip_ItAm_Addon_Health()
 	HP_Amulett_Equipped = FALSE;
 	NewValue = C_HP_ArtefaktValue();
 	self.attribute[ATR_HITPOINTS_MAX] += NewValue - OldValue;
-	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
+	{
+		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
+	};
+//	if((self.attribute[ATR_HITPOINTS] + NewValue - OldValue) > 0)
+//	{
+//		self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+//	};
 	HP_Artefakt_Effekt = FALSE;
 };
 
@@ -160,7 +171,7 @@ func void Equip_ItRi_Addon_Health_01()
 	HP_Ring_1_Equipped = TRUE;
 	NewValue = C_HP_ArtefaktValue();
 	self.attribute[ATR_HITPOINTS_MAX] += NewValue - OldValue;
-	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+//	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
 };
 
 func void UnEquip_ItRi_Addon_Health_01()
@@ -171,7 +182,14 @@ func void UnEquip_ItRi_Addon_Health_01()
 	HP_Ring_1_Equipped = FALSE;
 	NewValue = C_HP_ArtefaktValue();
 	self.attribute[ATR_HITPOINTS_MAX] += NewValue - OldValue;
-	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
+	{
+		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
+	};
+//	if((self.attribute[ATR_HITPOINTS] + NewValue - OldValue) > 0)
+//	{
+//		self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+//	};
 	HP_Artefakt_Effekt = FALSE;
 };
 
@@ -211,7 +229,7 @@ func void Equip_ItRi_Addon_Health_02()
 	HP_Ring_2_Equipped = TRUE;
 	NewValue = C_HP_ArtefaktValue();
 	self.attribute[ATR_HITPOINTS_MAX] += NewValue - OldValue;
-	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+//	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
 };
 
 func void UnEquip_ItRi_Addon_Health_02()
@@ -222,7 +240,14 @@ func void UnEquip_ItRi_Addon_Health_02()
 	HP_Ring_2_Equipped = FALSE;
 	NewValue = C_HP_ArtefaktValue();
 	self.attribute[ATR_HITPOINTS_MAX] += NewValue - OldValue;
-	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
+	{
+		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
+	};
+//	if((self.attribute[ATR_HITPOINTS] + NewValue - OldValue) > 0)
+//	{
+//		self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+//	};
 	HP_Artefakt_Effekt = FALSE;
 };
 
@@ -260,7 +285,7 @@ func void Equip_ItAm_Addon_MANA()
 	MA_Amulett_Equipped = TRUE;
 	NewValue = C_MA_ArtefaktValue();
 	self.attribute[ATR_MANA_MAX] += NewValue - OldValue;
-	self.attribute[ATR_MANA] += NewValue - OldValue;
+//	self.attribute[ATR_MANA] += NewValue - OldValue;
 };
 
 func void UnEquip_ItAm_Addon_MANA()
@@ -271,8 +296,16 @@ func void UnEquip_ItAm_Addon_MANA()
 	MA_Amulett_Equipped = FALSE;
 	NewValue = C_MA_ArtefaktValue();
 	self.attribute[ATR_MANA_MAX] += NewValue - OldValue;
-	self.attribute[ATR_MANA] += NewValue - OldValue;
+	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
+	{
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
+	};
+//	self.attribute[ATR_MANA] += NewValue - OldValue;
 	MA_Artefakt_Effekt = FALSE;
+//	if(self.attribute[ATR_MANA] < 0)
+//	{
+//		self.attribute[ATR_MANA] = 0;
+//	};
 };
 
 
@@ -311,7 +344,7 @@ func void Equip_ItRi_Addon_MANA_01()
 	MA_Ring_1_Equipped = TRUE;
 	NewValue = C_MA_ArtefaktValue();
 	self.attribute[ATR_MANA_MAX] += NewValue - OldValue;
-	self.attribute[ATR_MANA] += NewValue - OldValue;
+//	self.attribute[ATR_MANA] += NewValue - OldValue;
 };
 
 func void UnEquip_ItRi_Addon_MANA_01()
@@ -322,8 +355,16 @@ func void UnEquip_ItRi_Addon_MANA_01()
 	MA_Ring_1_Equipped = FALSE;
 	NewValue = C_MA_ArtefaktValue();
 	self.attribute[ATR_MANA_MAX] += NewValue - OldValue;
-	self.attribute[ATR_MANA] += NewValue - OldValue;
+	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
+	{
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
+	};
+//	self.attribute[ATR_MANA] += NewValue - OldValue;
 	MA_Artefakt_Effekt = FALSE;
+//	if(self.attribute[ATR_MANA] < 0)
+//	{
+//		self.attribute[ATR_MANA] = 0;
+//	};
 };
 
 
@@ -362,7 +403,7 @@ func void Equip_ItRi_Addon_MANA_02()
 	MA_Ring_2_Equipped = TRUE;
 	NewValue = C_MA_ArtefaktValue();
 	self.attribute[ATR_MANA_MAX] += NewValue - OldValue;
-	self.attribute[ATR_MANA] += NewValue - OldValue;
+//	self.attribute[ATR_MANA] += NewValue - OldValue;
 };
 
 func void UnEquip_ItRi_Addon_MANA_02()
@@ -373,8 +414,16 @@ func void UnEquip_ItRi_Addon_MANA_02()
 	MA_Ring_2_Equipped = FALSE;
 	NewValue = C_MA_ArtefaktValue();
 	self.attribute[ATR_MANA_MAX] += NewValue - OldValue;
-	self.attribute[ATR_MANA] += NewValue - OldValue;
+	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
+	{
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
+	};
+//	self.attribute[ATR_MANA] += NewValue - OldValue;
 	MA_Artefakt_Effekt = FALSE;
+//	if(self.attribute[ATR_MANA] < 0)
+//	{
+//		self.attribute[ATR_MANA] = 0;
+//	};
 };
 
 

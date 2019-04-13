@@ -90,7 +90,8 @@ func void DIA_Pablo_WANTED_Info()
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_00");	//Эй, ты, подожди - мне кажется, я тебя знаю.
 	AI_Output(other,self,"DIA_Pablo_WANTED_15_01");	//Что тебе нужно?
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_02");	//Я где-то уже видел твое лицо... ах - точно!
-	B_UseFakeScroll();
+//	B_UseFakeScroll();
+	B_UseFakeHeroFace();
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_03");	//Вот - мы нашли этот листок у одного из бандитов, на которых наткнулись несколько дней назад - рисунок очень похож на тебя.
 	B_GiveInvItems(self,other,ItWr_Poster_MIS,1);
 	B_UseFakeScroll_Hero();

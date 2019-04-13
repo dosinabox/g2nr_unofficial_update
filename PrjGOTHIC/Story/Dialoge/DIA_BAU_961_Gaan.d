@@ -100,7 +100,8 @@ instance DIA_Gaan_WASMACHSTDU(C_Info)
 
 func int DIA_Gaan_WASMACHSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_SUCCESS))
+//	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (RangerMeetingRunning != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -264,7 +265,8 @@ instance DIA_Gaan_MONSTER(C_Info)
 
 func int DIA_Gaan_MONSTER_Condition()
 {
-	if((MIS_Gaan_Snapper == LOG_Running) && !Npc_IsDead(Gaans_Snapper))
+//	if((MIS_Gaan_Snapper == LOG_Running) && !Npc_IsDead(Gaans_Snapper))
+	if(MIS_Gaan_Snapper == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -290,7 +292,8 @@ instance DIA_Gaan_WASZAHLSTDU(C_Info)
 
 func int DIA_Gaan_WASZAHLSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && !Npc_IsDead(Gaans_Snapper))
+//	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && !Npc_IsDead(Gaans_Snapper))
+	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (MIS_Gaan_Snapper == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -317,7 +320,8 @@ instance DIA_Gaan_WOHERMONSTER(C_Info)
 
 func int DIA_Gaan_WOHERMONSTER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && !Npc_IsDead(Gaans_Snapper))
+//	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && !Npc_IsDead(Gaans_Snapper))
+	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (MIS_Gaan_Snapper == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -343,7 +347,7 @@ instance DIA_Gaan_MONSTERTOT(C_Info)
 
 func int DIA_Gaan_MONSTERTOT_Condition()
 {
-	if(Npc_IsDead(Gaans_Snapper) && (RangerMeetingRunning != LOG_Running))
+	if(Npc_IsDead(Gaans_Snapper) && (RangerMeetingRunning != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_FARM3_GAAN") < 2000))
 	{
 		return TRUE;
 	};
@@ -388,8 +392,8 @@ func void DIA_Gaan_AskTeacher_Info()
 	AI_Output(other,self,"DIA_Gaan_AskTeacher_15_00");	//Ты можешь научить меня охотиться?
 	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_01");	//Нет проблем. За 100 золотых монет я могу показать тебе, как выпотрошить животных, которых ты убьешь.
 	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_02");	//Шкуры и другие трофеи можно выгодно продать на рынке.
-	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher,"Гаан может обучить меня добывать трофеи животных.");
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,"Гаан может обучить меня добывать трофеи животных.");
 };
 
 
@@ -404,11 +408,11 @@ instance DIA_Gaan_PayTeacher(C_Info)
 };
 
 
-var int DIA_Gaan_PayTeacher_noPerm;
+//var int DIA_Gaan_PayTeacher_noPerm;
 
 func int DIA_Gaan_PayTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_AskTeacher) && (DIA_Gaan_PayTeacher_noPerm == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Gaan_AskTeacher) && (Gaan_TeachPlayer == FALSE))
 	{
 		return TRUE;
 	};
@@ -421,7 +425,7 @@ func void DIA_Gaan_PayTeacher_Info()
 	{
 		AI_Output(self,other,"DIA_Gaan_PayTeacher_03_01");	//Спасибо. Теперь говори, что ты хочешь.
 		Gaan_TeachPlayer = TRUE;
-		DIA_Gaan_PayTeacher_noPerm = TRUE;
+//		DIA_Gaan_PayTeacher_noPerm = TRUE;
 	}
 	else
 	{
@@ -547,7 +551,10 @@ func void DIA_Gaan_TEACHHUNTING_DrgSnapperHorn()
 {
 	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_DrgSnapperHorn))
 	{
-		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_00");	//Теперь, когда этот огромный снеппер мертв, я могу показать тебе, как вырезать его рог.
+		if(MIS_Gaan_Snapper == LOG_SUCCESS)
+		{
+			AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_00");	//Теперь, когда этот огромный снеппер мертв, я могу показать тебе, как вырезать его рог.
+		};
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_01");	//Нужно засунуть нож глубоко в лоб этого животного и осторожно выковыривать рог.
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_02");	//Если он не отделится от черепа, нужно поддеть его вторым ножом с другой стороны.
 		CreateInvItems(Gaans_Snapper,ItAt_DrgSnapperHorn,2);
@@ -583,12 +590,22 @@ func void B_WasMachtJagd()
 func void DIA_Gaan_JAGD_Info()
 {
 	B_WasMachtJagd();
-	if(!Npc_IsDead(Gaans_Snapper) && (Kapitel < 3))
+//	if(!Npc_IsDead(Gaans_Snapper) && (Kapitel < 3))
+	if((MIS_Gaan_Snapper != LOG_SUCCESS) && (Kapitel < 3))
 	{
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_01");	//Последнее животное, которое мне удалось убить, была большая крыса. Дела идут совсем плохо.
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_02");	//Вот уже несколько дней какой-то фыркающий зверь бродит здесь.
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_03");	//Он не только убивает все, что движется, он мешает моей работе.
-		if((MIS_Gaan_Snapper != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS))
+		if(Npc_IsDead(Gaans_Snapper))
+		{
+			AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+			AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_01");	//Теперь я опять могу охотиться спокойно.
+			MIS_Gaan_Snapper = LOG_SUCCESS;
+			B_GivePlayerXP(XP_Gaan_WaldSnapper);
+			AI_StopProcessInfos(self);
+			Npc_ExchangeRoutine(self,"Start");
+		}
+		else if((MIS_Gaan_Snapper != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS))
 		{
 			Log_CreateTopic(TOPIC_GaanSchnaubi,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_GaanSchnaubi,LOG_Running);

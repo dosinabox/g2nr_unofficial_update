@@ -43,10 +43,16 @@ instance ItPl_Weed(C_Item)
 	value = Value_Weed;
 	visual = "ItPl_Weed.3ds";
 	material = MAT_LEATHER;
+	on_state[0] = Use_Weed;
 	scemeName = "FOOD";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = Value_Weed;
+//	text[5] = NAME_Value;
+//	count[5] = Value_Weed;
+};
+
+func void Use_Weed()
+{
+	B_Say(self,self,"$COUGH");
 };
 
 instance ItPl_Beet(C_Item)

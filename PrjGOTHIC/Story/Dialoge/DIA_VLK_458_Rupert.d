@@ -80,6 +80,8 @@ func void DIA_Rupert_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Rupert_Hello_03_00");	//Привет, чужеземец!
 	AI_Output(self,other,"DIA_Rupert_Hello_03_01");	//Ты, должно быть, голоден и хочешь пить. Может, тебя заинтересуют мои товары?
+	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_CityTrader,"Руперт - торговец едой у восточных ворот.");
 };
 
 

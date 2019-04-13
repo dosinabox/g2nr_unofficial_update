@@ -83,7 +83,7 @@ func void DIA_Rosi_WASMACHSTDU_Info()
 	};
 	AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_06");	//Ты хочешь купить какой-нибудь еды или, возможно, что-то для охоты в лесу?
 	Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
-	B_LogEntry(Topic_OutTrader,"У Рози, на ферме Секоба, можно купить различные товары.");
+	B_LogEntry(Topic_OutTrader,"У Рози на ферме Секоба можно купить различные товары.");
 };
 
 
@@ -473,7 +473,7 @@ instance DIA_Rosi_ANGEKOMMEN(C_Info)
 
 func int DIA_Rosi_ANGEKOMMEN_Condition()
 {
-	if((Kapitel == 5) && (MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE) && (((Npc_GetDistToWP(self,"CITY2") < 6000) && (hero.guild == GIL_PAL)) || ((Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_02") < 6000) && (hero.guild == GIL_DJG)) || ((Npc_GetDistToWP(self,"KLOSTER") < 6000) && (hero.guild == GIL_KDF))))
+	if((Kapitel == 5) && (MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE) && (((Npc_GetDistToWP(self,"CITY2") < 6000) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))) || ((Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_02") < 6000) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))) || ((Npc_GetDistToWP(self,"KLOSTER") < 6000) && (hero.guild == GIL_KDF))))
 	{
 		return TRUE;
 	};

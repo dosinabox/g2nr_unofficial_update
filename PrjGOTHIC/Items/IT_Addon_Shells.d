@@ -7,6 +7,7 @@ func void B_OpenShell()
 {
 	var int shellomizer;
 	shellomizer = Hlp_Random(100);
+	Snd_Play("CS_IHL_WO_WA");
 	Shell_Opener += 1;
 	if(Shell_Opener == 1)
 	{

@@ -1,7 +1,8 @@
 
 instance BDT_10008_Addon_Bandit(Npc_Default)
 {
-	name[0] = NAME_Bandit;
+//	name[0] = NAME_Bandit;
+	name[0] = "Марус";
 	guild = GIL_BDT;
 	id = 10008;
 	voice = 1;

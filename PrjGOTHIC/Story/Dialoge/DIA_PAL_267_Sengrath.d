@@ -35,7 +35,11 @@ instance DIA_Sengrath_Hello(C_Info)
 
 func int DIA_Sengrath_Hello_Condition()
 {
-	return TRUE;
+//	return TRUE;
+	if((Npc_GetDistToWP(hero,"OC_RAMP_17") < 380) || (Npc_IsInState(self,ZS_Talk)))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Sengrath_Hello_Info()
@@ -45,6 +49,7 @@ func void DIA_Sengrath_Hello_Info()
 	AI_Output(other,self,"DIA_Sengrath_Hello_15_02");	//Нет, ваш посланник не смог пересечь Проход. Я пришел по приказу лорда Хагена.
 	AI_Output(self,other,"DIA_Sengrath_Hello_03_03");	//(рычит) Проклятые орки...
 	AI_Output(self,other,"DIA_Sengrath_Hello_03_04");	//Ну, командующий Гаронд наверняка захочет поговорить с тобой. Ты найдешь его в этом большом здании, охраняемом двумя рыцарями.
+	Npc_ExchangeRoutine(self,"START");
 };
 
 

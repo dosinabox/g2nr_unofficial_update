@@ -181,6 +181,7 @@ func void DIA_Daron_Spenden_Info()
 {
 	AI_Output(other,self,"DIA_Daron_Spenden_15_00");	//И какое пожертвование обычно считается достаточным?
 	AI_Output(self,other,"DIA_Daron_Spenden_10_01");	//Ну, это зависит от того, чем ты располагаешь. Давай посмотрим, что у тебя есть.
+	AI_GotoNpc(self,hero);
 	AI_Output(self,other,"DIA_Daron_Spenden_10_02");	//(смотрит в кошелек с деньгами) М-м-м хмм...
 	if(Npc_HasItems(other,ItMi_Gold) < 10)
 	{
@@ -561,13 +562,13 @@ func void DIA_Daron_Spende_50()
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_50_10_00");	//Благословляю тебя от имени Инноса. Он несет в этот мир свет и справедливость.
-		Daron_Spende += 50;
-		B_DaronSegen();
-		Daron_Segen = TRUE;
-		if(MIS_Thorben_GetBlessings == LOG_Running)
+		if((MIS_Thorben_GetBlessings == LOG_Running) && (Daron_Segen == FALSE))
 		{
 			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 		};
+		Daron_Spende += 50;
+		B_DaronSegen();
+		Daron_Segen = TRUE;
 	}
 	else
 	{
@@ -582,13 +583,13 @@ func void DIA_Daron_Spende_100()
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_100_10_00");	//Иннос, ты свет, озаряющий путь праведников.
 		AI_Output(self,other,"DIA_Daron_Spende_100_10_01");	//Я благословляю этого человека от твоего имени. Да будет твой свет сиять над ним вечно.
-		Daron_Spende += 100;
-		B_DaronSegen();
-		Daron_Segen = TRUE;
-		if(MIS_Thorben_GetBlessings == LOG_Running)
+		if((MIS_Thorben_GetBlessings == LOG_Running) && (Daron_Segen == FALSE))
 		{
 			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 		};
+		Daron_Spende += 100;
+		B_DaronSegen();
+		Daron_Segen = TRUE;
 	}
 	else
 	{
@@ -603,13 +604,13 @@ func void DIA_Daron_Spende_200()
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_200_10_00");	//Иннос, благослови этого человека. Да будет твой свет сиять над ним вечно.
 		AI_Output(self,other,"DIA_Daron_Spende_200_10_01");	//Придай ему силы жить праведной жизнью.
-		Daron_Spende += 200;
-		B_DaronSegen();
-		Daron_Segen = TRUE;
-		if(MIS_Thorben_GetBlessings == LOG_Running)
+		if((MIS_Thorben_GetBlessings == LOG_Running) && (Daron_Segen == FALSE))
 		{
 			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 		};
+		Daron_Spende += 200;
+		B_DaronSegen();
+		Daron_Segen = TRUE;
 	}
 	else
 	{

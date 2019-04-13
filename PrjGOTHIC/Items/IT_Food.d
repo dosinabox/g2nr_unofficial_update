@@ -17,6 +17,8 @@ const int Value_Stew = 8;
 const int HP_Stew = 20;
 const int Value_FishSoup = 20;
 const int HP_FishSoup = 10;
+const int Value_EddasFishSoup = 25;
+const int HP_EddasFishSoup = 15;
 const int Value_Sausage = 30;
 const int HP_Sausage = 12;
 const int Value_Honey = 30;
@@ -272,7 +274,7 @@ instance ItFo_XPStew(C_Item)
 func void Use_XPStew()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Stew);
-	Snd_Play("LevelUp");
+//	Snd_Play("LevelUp");
 	B_RaiseAttribute(self,ATR_STRENGTH,1);
 };
 
@@ -285,7 +287,7 @@ instance ItFo_CoragonsBeer(C_Item)
 	value = Value_Beer;
 //	visual = "ItFo_Beer.3DS";
 	visual = "ItFo_CoragonsBeer.3DS";
-	material = MAT_GLAS;
+	material = MAT_WOOD;
 	scemeName = "POTIONFAST";
 	on_state[0] = Use_CoragonsBeerBeer;
 	description = name;
@@ -302,13 +304,13 @@ instance ItFo_CoragonsBeer(C_Item)
 func void Use_CoragonsBeerBeer()
 {
 	var string concatText;
-	B_RaiseAttribute(self,ATR_MANA_MAX,Mana_Beer);
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer);
-	Npc_ChangeAttribute(self,ATR_HITPOINTS_MAX,HP_Beer);
+	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_Beer);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer);
-	concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(HP_Beer));
+	Npc_ChangeAttribute(self,ATR_MANA_MAX,Mana_Beer);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer);
+	concatText = ConcatStrings(PRINT_LearnMANA_MAX,IntToString(Mana_Beer));
 	PrintScreen(concatText,-1,53,FONT_Screen,2);
-	B_NpcSetDrunk(40);
+	B_NpcSetDrunk(10);
 };
 
 
@@ -333,6 +335,30 @@ instance ItFo_FishSoup(C_Item)
 func void Use_FishSoup()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_FishSoup);
+};
+
+
+instance ItFo_EddasFishSoup(C_Item)
+{
+	name = "Уха Эдды";
+	mainflag = ITEM_KAT_FOOD;
+	flags = ITEM_MULTI;
+	value = Value_EddasFishSoup;
+	visual = "ItFo_EddasFishSoup.3ds";
+	material = MAT_WOOD;
+	scemeName = "RICE";
+	on_state[0] = Use_EddasFishSoup;
+	description = name;
+	text[1] = NAME_Bonus_HP;
+	count[1] = HP_EddasFishSoup;
+	text[5] = NAME_Value;
+	count[5] = Value_EddasFishSoup;
+};
+
+
+func void Use_EddasFishSoup()
+{
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_EddasFishSoup);
 };
 
 
@@ -415,15 +441,15 @@ instance ItFo_Beer(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_Beer;
 	visual = "ItFo_Beer.3DS";
-	material = MAT_GLAS;
+	material = MAT_WOOD;
 	scemeName = "POTIONFAST";
 	on_state[0] = Use_Beer;
 	description = name;
 	text[0] = "Темное паладинское.";
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Beer;
+	count[1] = HP_Beer * 3;
 	text[2] = NAME_Bonus_Mana;
-	count[2] = Mana_Beer;
+	count[2] = Mana_Beer * 3;
 	text[5] = NAME_Value;
 	count[5] = Value_Beer;
 };
@@ -431,9 +457,24 @@ instance ItFo_Beer(C_Item)
 
 func void Use_Beer()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer);
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer);
-	B_NpcSetDrunk(30);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer * 3);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer * 3);
+	if(Npc_IsPlayer(self))
+	{
+		if((Wld_GetDay() == 0) && (BeerDayZeroOneTime == FALSE))
+		{
+			BeerDay = B_GetDayPlus();
+			BeerDayZeroOneTime = TRUE;
+		}
+		else if(B_GetDayPlus() <= BeerDay)
+		{
+			B_NpcSetDrunk(20);
+		}
+		else
+		{
+			BeerDay = B_GetDayPlus();
+		};
+	};
 };
 
 
@@ -449,9 +490,9 @@ instance ItFo_Booze(C_Item)
 	on_state[0] = Use_Booze;
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Booze;
+	count[1] = HP_Booze * 2;
 	text[2] = NAME_Bonus_Mana;
-	count[2] = Mana_Booze;
+	count[2] = Mana_Booze * 3;
 	text[5] = NAME_Value;
 	count[5] = Value_Booze;
 };
@@ -459,8 +500,8 @@ instance ItFo_Booze(C_Item)
 
 func void Use_Booze()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Booze);
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Booze);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Booze * 2);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Booze * 3);
 	B_NpcSetDrunk(50);
 };
 
@@ -477,9 +518,9 @@ instance ItFo_Wine(C_Item)
 	on_state[0] = Use_Wine;
 	description = name;
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Wine;
+	count[1] = HP_Wine * 3;
 	text[2] = NAME_Bonus_Mana;
-	count[2] = Mana_Wine;
+	count[2] = Mana_Wine * 3;
 	text[5] = NAME_Value;
 	count[5] = Value_Wine;
 };
@@ -487,8 +528,8 @@ instance ItFo_Wine(C_Item)
 
 func void Use_Wine()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wine);
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Wine);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wine * 3);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Wine * 3);
 	B_NpcSetDrunk(30);
 };
 

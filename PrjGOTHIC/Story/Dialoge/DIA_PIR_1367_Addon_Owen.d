@@ -85,7 +85,7 @@ func void DIA_Addon_Owen_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_Hello_13_03");	//Одет ты так же, как и мы, но я тебя не знаю.
 	}
-	else if(Hlp_IsItem(itm,ITAR_BDT_M) || Hlp_IsItem(itm,ITAR_BDT_H))
+	else if(Hlp_IsItem(itm,ITAR_BDT_M) || Hlp_IsItem(itm,ITAR_BDT_H) || Hlp_IsItem(itm,ITAR_Thorus_Addon))
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_Hello_13_04");	//Честно говоря, да.
 	}
@@ -191,7 +191,8 @@ instance DIA_Addon_Owen_MalcomStunt(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Owen_MalcomStunt_Condition;
 	information = DIA_Addon_Owen_MalcomStunt_Info;
-	description = "Как дела?";
+//	description = "Как дела?";
+	description = "Что случилось?";
 };
 
 
@@ -270,7 +271,8 @@ func void DIA_Addon_Owen_MalcomDead_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Owen_MalcomDead_15_00");	//Твой приятель Мальком мертв.
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_01");	//Я так и знал. Бедняга. Я должен был ему помочь.
-	if(SC_MadeStunt == TRUE)
+//	if(SC_MadeStunt == TRUE)
+	if(StuntBonus_Once == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_02");	//А ты храбрец.
 		AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_03");	//Я бы ни за что не смог спуститься в эту яму.

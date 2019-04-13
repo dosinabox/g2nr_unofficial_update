@@ -13,6 +13,11 @@ instance ItMw_1h_Vlk_Dagger(C_Item)
 	cond_value[2] = Condition_VLKDolch;
 	visual = "Itmw_005_1h_dagger_01.3DS";
 	description = name;
+	//тест отображения
+	//
+	//text[1] = "Длина:";
+	//count[1] = range;
+	//
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -70,7 +75,7 @@ instance ItMw_1h_Bau_Axe(C_Item)
 
 instance ItMw_1h_Vlk_Mace(C_Item)
 {
-	name = "Посох";
+	name = "Трость";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
@@ -139,7 +144,7 @@ instance ItMw_1h_Bau_Mace(C_Item)
 
 instance ItMw_1h_Vlk_Axe(C_Item)
 {
-	name = "Топор";
+	name = "Легкий топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
@@ -195,7 +200,7 @@ instance ItMw_ShortSword1(C_Item)
 	range = Range_ShortSword1;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_ShortSword1;
-	visual = "ItMw_010_1h_Sword_short_01.3DS";
+	visual = "ItMw_012_1h_Sword_short_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -208,7 +213,7 @@ instance ItMw_ShortSword1(C_Item)
 
 instance ItMw_Nagelknueppel(C_Item)
 {
-	name = "Палица с шипами";
+	name = "Палка с гвоздями";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
@@ -265,7 +270,7 @@ instance ItMw_ShortSword2(C_Item)
 	range = Range_ShortSword2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_ShortSword2;
-	visual = "ItMw_012_1h_Sword_short_02.3DS";
+	visual = "ItMw_010_1h_Sword_short_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1222,6 +1227,29 @@ instance ItMw_Streitaxt1(C_Item)
 	count[5] = value;
 };
 
+instance ItMw_Banditenaxt(C_Item)
+{
+	name = NAME_ItMw_Banditenaxt;
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_2HD_AXE;
+	material = MAT_WOOD;
+	value = 950;
+	damageTotal = 90;
+	damagetype = DAM_EDGE;
+	range = Range_Streitaxt1;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = Condition_Streitaxt1;
+	visual = "ItMw_Banditenaxt.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_TwoHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItMw_Schwert1(C_Item)
 {
 	name = "Изысканный меч";
@@ -1518,7 +1546,7 @@ instance ItMw_Streitkolben(C_Item)
 
 instance ItMw_Zweihaender2(C_Item)
 {
-	name = "Двуручный меч";
+	name = "Усиленный двуручный меч";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
@@ -1901,7 +1929,7 @@ instance ItMw_Schlachtaxt(C_Item)
 
 instance ItMw_Krummschwert(C_Item)
 {
-	name = "Ятаган";
+	name = "Тяжелый ятаган";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
@@ -2078,7 +2106,30 @@ instance ItMw_Drachenschneide(C_Item)
 	range = Range_Drachenschneide;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Drachenschneide;
-	visual = "itMw_080_2h_sword_heavy_04.3DS";
+	visual = "ItMw_080_2h_sword_heavy_04.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_TwoHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMw_Bloodschneide(C_Item)
+{
+	name = "Кровавый клинок";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_2HD_SWD;
+	material = MAT_METAL;
+	value = Value_Drachenschneide;
+	damageTotal = Damage_Drachenschneide;
+	damagetype = DAM_EDGE;
+	range = Range_Drachenschneide;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = Condition_Drachenschneide;
+	visual = "ItMw_080_2h_sword_heavy_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

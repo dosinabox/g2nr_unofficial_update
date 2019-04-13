@@ -23,7 +23,8 @@ instance VLK_406_Herold(Npc_Default)
 
 func void Rtn_Start_406()
 {
-	TA_Announce_Herold(8,0,20,0,"NW_CITY_HEROLD_UP");
-	TA_Announce_Herold(20,0,8,0,"NW_CITY_HEROLD_UP");
+	TA_Announce_Herold(5,0,23,55,"NW_CITY_HEROLD_UP");
+//	TA_Announce_Herold(20,0,8,0,"NW_CITY_HEROLD_UP");
+	TA_Sleep(23,55,5,0,"NW_CITY_HOTEL_BED_06");
 };
 

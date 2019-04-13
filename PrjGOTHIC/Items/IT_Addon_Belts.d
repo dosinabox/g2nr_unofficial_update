@@ -40,7 +40,7 @@ instance ItBE_Addon_Leather_01(C_Item)
 	value = Value_ItBE_Addon_Leather_01;
 	visual = "ItMI_Belt_06.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBE_Addon_Leather_01;
 	on_unequip = UnEquip_ItBE_Addon_Leather_01;
 	description = "Кожаный пояс";
@@ -104,7 +104,7 @@ instance ItBE_Addon_SLD_01(C_Item)
 	value = Value_ItBE_Addon_SLD_01;
 	visual = "ItMi_Belt_05.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBE_Addon_SLD_01;
 	on_unequip = UnEquip_ItBE_Addon_SLD_01;
 	description = "Пояс наемника";
@@ -163,7 +163,7 @@ instance ItBE_Addon_NOV_01(C_Item)
 //	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_13.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBE_Addon_NOV_01;
 	on_unequip = UnEquip_ItBE_Addon_NOV_01;
 	description = "Кушак готовности";
@@ -221,7 +221,7 @@ instance ItBE_Addon_MIL_01(C_Item)
 	value = Value_ItBE_Addon_MIL_01;
 	visual = "ItMi_Belt_03.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBE_Addon_MIL_01;
 	on_unequip = UnEquip_ItBE_Addon_MIL_01;
 	description = "Пояс ополчения";
@@ -279,7 +279,7 @@ instance ItBE_Addon_KDF_01(C_Item)
 	value = Value_ItBE_Addon_KDF_01;
 	visual = "ItMi_Belt_02.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBE_Addon_KDF_01;
 	on_unequip = UnEquip_ItBE_Addon_KDF_01;
 	description = "Кушак огня";
@@ -338,7 +338,7 @@ instance ItBE_Addon_MC(C_Item)
 //	visual = "ItMi_Belt_08.3ds";
 	visual = "ItMi_Belt_12.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	on_equip = Equip_ItBE_Addon_MC;
 	on_unequip = UnEquip_ItBE_Addon_MC;
 	description = "Пояс из краулера";
@@ -397,7 +397,7 @@ instance ItBe_Addon_STR_5(C_Item)
 //	visual = "ItMi_Belt_08.3ds";
 	visual = "ItMi_Belt_17.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_STR_5;
 	on_unequip = UnEquip_ItBe_Addon_STR_5;
 	description = "Пояс могущества";
@@ -430,7 +430,7 @@ instance ItBe_Addon_STR_10(C_Item)
 //	visual = "ItMi_Belt_05.3ds";
 	visual = "ItMi_Belt_07.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_STR_10;
 	on_unequip = UnEquip_ItBe_Addon_STR_10;
 	description = "Пояс силы";
@@ -463,7 +463,7 @@ instance ItBe_Addon_DEX_5(C_Item)
 //	visual = "ItMi_Belt_08.3ds";
 	visual = "ItMi_Belt_16.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_DEX_5;
 	on_unequip = UnEquip_ItBe_Addon_DEX_5;
 	description = "Пояс мастерства";
@@ -496,7 +496,7 @@ instance ItBe_Addon_DEX_10(C_Item)
 //	visual = "ItMi_Belt_05.3ds";
 	visual = "ItMi_Belt_08.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_DEX_10;
 	on_unequip = UnEquip_ItBe_Addon_DEX_10;
 	description = "Пояс ловкости";
@@ -564,7 +564,7 @@ instance ItBe_Addon_Prot_Point(C_Item)
 //	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_11.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_Prot_Point;
 	on_unequip = UnEquip_ItBe_Addon_Prot_Point;
 	description = "Пояс обороны";
@@ -597,7 +597,7 @@ instance ItBe_Addon_Prot_MAGIC(C_Item)
 //	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_09.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_Prot_MAGIC;
 	on_unequip = UnEquip_ItBe_Addon_Prot_MAGIC;
 	description = "Пояс магической защиты";
@@ -630,7 +630,7 @@ instance ItBe_Addon_Prot_FIRE(C_Item)
 //	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_14.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_Prot_FIRE;
 	on_unequip = UnEquip_ItBe_Addon_Prot_FIRE;
 	description = "Пояс огненного человека";
@@ -663,7 +663,7 @@ instance ItBe_Addon_Prot_EdgPoi(C_Item)
 //	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_15.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_Prot_EdgPoi;
 	on_unequip = UnEquip_ItBe_Addon_Prot_EdgPoi;
 	description = "Пояс защиты";
@@ -702,7 +702,7 @@ instance ItBe_Addon_Prot_TOTAL(C_Item)
 //	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_10.3ds";
 	visual_skin = 0;
-	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_Prot_TOTAL;
 	on_unequip = UnEquip_ItBe_Addon_Prot_TOTAL;
 	description = "Пояс защитника";

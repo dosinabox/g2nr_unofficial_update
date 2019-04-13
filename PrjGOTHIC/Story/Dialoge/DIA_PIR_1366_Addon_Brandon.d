@@ -178,7 +178,7 @@ instance DIA_Addon_Brandon_SchnellerHering(C_Info)
 
 func int DIA_Addon_Brandon_SchnellerHering_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Brandon_WannaLearn) && Npc_HasItems(other,ItFo_Addon_SchnellerHering))
+	if(Npc_KnowsInfo(other,DIA_Addon_Brandon_HoleGrog) && Npc_HasItems(other,ItFo_Addon_SchnellerHering))
 	{
 		return TRUE;
 	};

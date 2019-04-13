@@ -5,7 +5,10 @@ func void ZS_Flee()
 	B_ValidateOther();
 	if(self.aivar[AIV_LOADGAME] == FALSE)
 	{
-		B_Say_FleeReason();
+		if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(VLK_448_Joe))
+		{
+			B_Say_FleeReason();
+		};
 	};
 	AI_RemoveWeapon(self);
 	AI_SetWalkMode(self,NPC_RUN);

@@ -135,7 +135,10 @@ instance DIA_Pal_213_Schiffswache_GoOnBoard(C_Info)
 
 func int DIA_Pal_213_Schiffswache_GoOnBoard_Condition()
 {
-	return TRUE;
+	if(MIS_ShipIsFree == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Pal_213_Schiffswache_GoOnBoard_Info()
@@ -160,7 +163,7 @@ instance DIA_Pal_213_Schiffswache_IAmKDF(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmKDF_Condition()
 {
-	if((hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_GoOnBoard))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_GoOnBoard))
 	{
 		return TRUE;
 	};
@@ -188,7 +191,7 @@ instance DIA_Pal_213_Schiffswache_IAmKDF2(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmKDF2_Condition()
 {
-	if((hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF))
 	{
 		return TRUE;
 	};
@@ -214,7 +217,7 @@ instance DIA_Pal_213_Schiffswache_IAmKDF3(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmKDF3_Condition()
 {
-	if((hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF2))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF2))
 	{
 		return TRUE;
 	};
@@ -242,7 +245,7 @@ instance DIA_Pal_213_Schiffswache_IAmKDF4(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmKDF4_Condition()
 {
-	if((hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF3))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF3))
 	{
 		return TRUE;
 	};
@@ -268,7 +271,7 @@ instance DIA_Pal_213_Schiffswache_IAmKDF5(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmKDF5_Condition()
 {
-	if((hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF4))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF4))
 	{
 		return TRUE;
 	};
@@ -296,7 +299,7 @@ instance DIA_Pal_213_Schiffswache_IAmKDF6(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmKDF6_Condition()
 {
-	if((hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF5))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmKDF5))
 	{
 		return TRUE;
 	};
@@ -324,7 +327,7 @@ instance DIA_Pal_213_Schiffswache_IAmPAL(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmPAL_Condition()
 {
-	if((hero.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_GoOnBoard))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_GoOnBoard))
 	{
 		return TRUE;
 	};
@@ -350,7 +353,7 @@ instance DIA_Pal_213_Schiffswache_IAmPAL2(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmPAL2_Condition()
 {
-	if((hero.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmPAL))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmPAL))
 	{
 		return TRUE;
 	};
@@ -376,7 +379,7 @@ instance DIA_Pal_213_Schiffswache_IAmPAL3(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmPAL3_Condition()
 {
-	if((hero.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmPAL2))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmPAL2))
 	{
 		return TRUE;
 	};
@@ -404,7 +407,7 @@ instance DIA_Pal_213_Schiffswache_IAmDJG(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmDJG_Condition()
 {
-	if((hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_GoOnBoard))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_GoOnBoard))
 	{
 		return TRUE;
 	};
@@ -430,7 +433,7 @@ instance DIA_Pal_213_Schiffswache_IAmDJG2(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmDJG2_Condition()
 {
-	if((hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmDJG))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmDJG))
 	{
 		return TRUE;
 	};
@@ -456,7 +459,7 @@ instance DIA_Pal_213_Schiffswache_IAmDJG3(C_Info)
 
 func int DIA_Pal_213_Schiffswache_IAmDJG3_Condition()
 {
-	if((hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmDJG) && (Npc_HasItems(other,ITWr_ForgedShipLetter_MIS) >= 1))
+	if((MIS_ShipIsFree == FALSE) && (hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_Pal_213_Schiffswache_IAmDJG) && (Npc_HasItems(other,ITWr_ForgedShipLetter_MIS) >= 1))
 	{
 		return TRUE;
 	};

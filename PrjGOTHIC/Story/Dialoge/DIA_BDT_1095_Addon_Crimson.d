@@ -159,16 +159,24 @@ func int DIA_Addon_Crimson_Gold_Condition()
 func void DIA_Addon_Crimson_Gold_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Crimson_Gold_15_00");	//Займемся торговлей...
-	Info_ClearChoices(DIA_Addon_Crimson_Gold);
-	Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
-	if(Npc_HasItems(other,ItMi_GoldNugget_Addon))
+	if(self.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
-		Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать все золотые самородки)",DIA_Addon_Crimson_Gold_ALLE);
-		Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать 1 золотой самородок)",DIA_Addon_Crimson_Gold_1);
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Crimson_Gold_10_01");	//Но у тебя с собой нет ни одного самородка.
+		Info_ClearChoices(DIA_Addon_Crimson_Gold);
+		Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
+		if(Npc_HasItems(other,ItMi_GoldNugget_Addon))
+		{
+			Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать все золотые самородки)",DIA_Addon_Crimson_Gold_ALLE);
+			Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать 1 золотой самородок)",DIA_Addon_Crimson_Gold_1);
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Crimson_Gold_10_01");	//Но у тебя с собой нет ни одного самородка.
+		};
 	};
 };
 

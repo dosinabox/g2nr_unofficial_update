@@ -2,13 +2,15 @@
 instance VLK_401_Cornelius(Npc_Default)
 {
 	name[0] = "Корнелиус";
-	guild = GIL_NONE;
+//	guild = GIL_NONE;
+	guild = GIL_VLK;
 	id = 401;
 	voice = 13;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
+	EquipItem(self,ItMw_ShortSword5);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItWr_CorneliusTagebuch_Mis,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Weak_Ulf_Wohlers,BodyTex_P,ITAR_Governor);

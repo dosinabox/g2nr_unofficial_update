@@ -15,7 +15,7 @@ instance PC_SmithWeapon_End(C_Info)
 
 func int PC_SmithWeapon_End_Condition()
 {
-	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon)
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (Normalwaffen == FALSE) && (Erzwaffen == FALSE))
 	{
 		return TRUE;
 	};
@@ -25,8 +25,8 @@ func void PC_SmithWeapon_End_Info()
 {
 	CreateInvItems(self,ItMiSwordraw,1);
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
-	Normalwaffen = FALSE;
+//	Erzwaffen = FALSE;
+//	Normalwaffen = FALSE;
 };
 
 
@@ -150,7 +150,7 @@ func void PC_ItMw_1H_Common_Info()
 	CreateInvItems(hero,ItMw_1H_Common_01,1);
 	Print(PRINT_SmithSuccess);
 	b_endproductiondialog();
-	Normalwaffen = FALSE;
+//	Normalwaffen = FALSE;
 };
 
 
@@ -176,7 +176,7 @@ func void PC_WEAPON_1H_Harad_01_Info()
 	CreateInvItems(hero,ItMw_Schwert1,1);
 	Print(PRINT_SmithSuccess);
 	b_endproductiondialog();
-	Normalwaffen = FALSE;
+//	Normalwaffen = FALSE;
 };
 
 
@@ -202,7 +202,7 @@ func void PC_WEAPON_1H_Harad_02_Info()
 	CreateInvItems(hero,ItMw_Schwert4,1);
 	Print(PRINT_SmithSuccess);
 	b_endproductiondialog();
-	Normalwaffen = FALSE;
+//	Normalwaffen = FALSE;
 };
 
 
@@ -228,7 +228,7 @@ func void PC_WEAPON_1H_Harad_03_Info()
 	CreateInvItems(hero,ItMw_Rubinklinge,1);
 	Print(PRINT_SmithSuccess);
 	b_endproductiondialog();
-	Normalwaffen = FALSE;
+//	Normalwaffen = FALSE;
 };
 
 
@@ -254,7 +254,7 @@ func void PC_WEAPON_1H_Harad_04_Info()
 	CreateInvItems(hero,ItMw_ElBastardo,1);
 	Print(PRINT_SmithSuccess);
 	b_endproductiondialog();
-	Normalwaffen = FALSE;
+//	Normalwaffen = FALSE;
 };
 
 
@@ -289,7 +289,7 @@ func void PC_ItMw_1H_Special_01_Info()
 		CreateInvItems(self,ItMiSwordraw,1);
 	};
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
+//	Erzwaffen = FALSE;
 };
 
 
@@ -324,7 +324,7 @@ func void PC_ItMw_2H_Special_01_Info()
 		CreateInvItems(self,ItMiSwordraw,1);
 	};
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
+//	Erzwaffen = FALSE;
 };
 
 
@@ -359,7 +359,7 @@ func void PC_ItMw_1H_Special_02_Info()
 		CreateInvItems(self,ItMiSwordraw,1);
 	};
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
+//	Erzwaffen = FALSE;
 };
 
 
@@ -394,7 +394,7 @@ func void PC_ItMw_2H_Special_02_Info()
 		CreateInvItems(self,ItMiSwordraw,1);
 	};
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
+//	Erzwaffen = FALSE;
 };
 
 
@@ -429,7 +429,7 @@ func void PC_ItMw_1H_Special_03_Info()
 		CreateInvItems(self,ItMiSwordraw,1);
 	};
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
+//	Erzwaffen = FALSE;
 };
 
 
@@ -464,7 +464,7 @@ func void PC_ItMw_2H_Special_03_Info()
 		CreateInvItems(self,ItMiSwordraw,1);
 	};
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
+//	Erzwaffen = FALSE;
 };
 
 
@@ -500,7 +500,7 @@ func void PC_ItMw_1H_Special_04_Info()
 		CreateInvItems(self,ItMiSwordraw,1);
 	};
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
+//	Erzwaffen = FALSE;
 };
 
 
@@ -536,7 +536,7 @@ func void PC_ItMw_2H_Special_04_Info()
 		CreateInvItems(self,ItMiSwordraw,1);
 	};
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
+//	Erzwaffen = FALSE;
 };
 
 
@@ -564,7 +564,8 @@ func void PC_ItMw_Streitaxt1_Info()
 		Npc_RemoveInvItems(hero,ItMi_Nugget,1);
 		Npc_RemoveInvItems(hero,ItAt_Teeth,3);
 		Npc_RemoveInvItems(hero,ItMiSwordrawhot,1);
-		CreateInvItems(hero,ItMw_Streitaxt1,1);
+//		CreateInvItems(hero,ItMw_Streitaxt1,1);
+		CreateInvItems(hero,ItMw_Banditenaxt,1);
 		Print(PRINT_SmithSuccess);
 	}
 	else
@@ -573,17 +574,23 @@ func void PC_ItMw_Streitaxt1_Info()
 		CreateInvItems(self,ItMiSwordraw,1);
 	};
 	b_endproductiondialog();
-	Erzwaffen = FALSE;
+//	Erzwaffen = FALSE;
 };
 
 func void smithweapon_s1()
 {
 	var C_Npc her;
+	var C_Item EquipWeap;
 	her = Hlp_GetNpc(PC_Hero);
+	EquipWeap = Npc_GetEquippedMeleeWeapon(self);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_SmithWeapon;
+		if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
+		{
+			AI_UnequipWeapons(self);
+		};
 		AI_ProcessInfos(her);
 	};
 	PC_ItMw_1H_Common.description = NAME_ItMw_1H_Common_01;
@@ -599,6 +606,170 @@ func void smithweapon_s1()
 	PC_WEAPON_1H_Harad_02.description = NAME_Addon_Harad_02;
 	PC_WEAPON_1H_Harad_03.description = NAME_Addon_Harad_03;
 	PC_WEAPON_1H_Harad_04.description = NAME_Addon_Harad_04;
-	PC_ItMw_Streitaxt1.description = ConcatStrings(NAME_ItMw_Streitaxt1,PRINT_Smith_Streitaxt1);
+//	PC_ItMw_Streitaxt1.description = ConcatStrings(NAME_ItMw_Streitaxt1,PRINT_Smith_Streitaxt1);
+	PC_ItMw_Streitaxt1.description = ConcatStrings(NAME_ItMw_Banditenaxt,PRINT_Smith_Streitaxt1);
 };
 
+func void pan_s1()
+{
+	var C_Npc her;
+	her = Hlp_GetNpc(PC_Hero);
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	{
+		self.aivar[AIV_INVINCIBLE] = TRUE;
+		player_mobsi_production = MOBSI_PAN;
+		AI_ProcessInfos(her);
+	};
+};
+
+func void stove_s1()
+{
+	var C_Npc her;
+	her = Hlp_GetNpc(PC_Hero);
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	{
+		self.aivar[AIV_INVINCIBLE] = TRUE;
+		player_mobsi_production = MOBSI_PAN;
+		AI_ProcessInfos(her);
+	};
+};
+
+instance PC_PAN_1(C_Info)
+{
+	npc = PC_Hero;
+	nr = 1;
+	condition = pc_pan_1_condition;
+	information = pc_pan_1_info;
+	important = FALSE;
+	permanent = TRUE;
+	description = "Пожарить все куски сырого мяса";
+};
+
+
+func int pc_pan_1_condition()
+{
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_PAN)
+	{
+		return TRUE;
+	};
+};
+
+func void pc_pan_1_info()
+{
+//	Snd_Play("Pan_Frying_Long");
+	if(Npc_HasItems(self,ItFoMuttonRaw) <= 10)
+	{
+		AI_Wait(hero,1);
+	}
+	else if(Npc_HasItems(self,ItFoMuttonRaw) <= 30)
+	{
+		AI_Wait(hero,3);
+	}
+	else if(Npc_HasItems(self,ItFoMuttonRaw) <= 50)
+	{
+		AI_Wait(hero,5);
+	}
+	else if(Npc_HasItems(self,ItFoMuttonRaw) > 50)
+	{
+		AI_Wait(hero,7);
+	};
+	CreateInvItems(hero,ItFoMutton,Npc_HasItems(hero,ItFoMuttonRaw));
+	Npc_RemoveInvItems(hero,ItFoMuttonRaw,Npc_HasItems(hero,ItFoMuttonRaw));
+	AI_PrintScreen("Мясо пожарено",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	b_endproductiondialog();
+};
+
+instance PC_PAN_CANCEL(C_Info)
+{
+	npc = PC_Hero;
+	nr = 999;
+	condition = pc_pan_cancel_condition;
+	information = pc_pan_cancel_info;
+	important = FALSE;
+	permanent = TRUE;
+	description = Dialog_Ende;
+};
+
+
+func int pc_pan_cancel_condition()
+{
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_PAN)
+	{
+		return TRUE;
+	};
+};
+
+func void pc_pan_cancel_info()
+{
+	b_endproductiondialog();
+};
+
+func int makerune_cond()
+{
+	if(Npc_IsPlayer(self))
+	{
+		if(!Npc_HasItems(hero,ItMi_Pliers))
+		{
+			AI_UseMob(hero,"RMAKER",0);
+			AI_UseMob(hero,"RMAKER",-1);
+			AI_PrintScreen("нужны щипцы",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+			AI_PlayAni(self,"T_DONTKNOW");
+		};
+	};
+	return TRUE;
+};
+
+func int pan_cond()
+{
+	if(Npc_IsPlayer(self))
+	{
+		if(Npc_HasItems(hero,ItMi_Pan) && Npc_HasItems(hero,ItFoMuttonRaw))
+		{
+			return TRUE;
+		}
+		else
+		{
+			if(!Npc_HasItems(hero,ItMi_Pan))
+			{
+				AI_PrintScreen("нужна сковорода",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+				AI_PlayAni(self,"T_DONTKNOW");
+			}
+			else if(!Npc_HasItems(hero,ItFoMuttonRaw))
+			{
+				AI_PlayAni(self,"T_DONTKNOW");
+				if(!Npc_RefuseTalk(self))
+				{
+					Print("нужно мясо");
+					B_Say_Overlay(self,self,"$MISSINGITEM");
+					Npc_SetRefuseTalk(self,1);
+				};
+			};
+			return FALSE;
+		};
+	};
+	return TRUE;
+};
+
+func int smithweapon_cond()
+{
+	var C_Item EquipWeap;
+	if(Npc_IsPlayer(self))
+	{
+		if(Npc_HasItems(hero,ItMw_1H_Mace_L_04))
+		{
+			EquipWeap = Npc_GetEquippedMeleeWeapon(hero);
+			if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
+			{
+				AI_UnequipWeapons(hero);
+			};
+		}
+		else
+		{
+			AI_UseMob(hero,"BSANVIL",0);
+			AI_UseMob(hero,"BSANVIL",-1);
+			AI_PrintScreen("нужен молот",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+			AI_PlayAni(self,"T_DONTKNOW");
+		};
+	};
+	return TRUE;
+};

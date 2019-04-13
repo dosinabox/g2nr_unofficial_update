@@ -88,7 +88,7 @@ instance ItFo_Addon_Grog(C_Item)
 	description = name;
 	text[0] = "Настоящий грог моряков.";
 	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Grog;
+	count[1] = HP_Grog * 10;
 	text[5] = NAME_Value;
 	count[5] = Value_Grog;
 };
@@ -96,7 +96,7 @@ instance ItFo_Addon_Grog(C_Item)
 
 func void UseGrog()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Grog);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Grog * 10);
 	B_NpcSetDrunk(40);
 };
 
@@ -132,7 +132,11 @@ func void UseLouHammer()
 		TEXT_LousHammer_Setting = "Больше не дает никакого эффекта, кроме опьянения.";
 		Hammer_Once = TRUE;
 	};
-	B_NpcSetDrunk(60);
+//	B_NpcSetDrunk(60);
+	if(Npc_IsPlayer(self))
+	{
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_DRUNKEN.MDS",70000);
+	};
 };
 
 
@@ -188,7 +192,7 @@ instance ItFo_Addon_SchnellerHering(C_Item)
 	count[1] = Time_SchnellerHering / 60000;
 //	text[0] = TEXT_SchnellerHering_Setting;
 //	text[1] = TEXT_SchnellerHering_Setting2;
-//	count[1] = COUNT_SchnellerHering_Setting;
+//	count[1] = COUNT_SchnellerHering_Setting;\
 	text[5] = NAME_Value;
 	count[5] = Value_SchnellerHering;
 };
@@ -215,7 +219,7 @@ instance ItFo_Addon_Pfeffer_01(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 100;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_FoodPocket.3ds";
 	material = MAT_LEATHER;
 //	description = "Красный жгучий перец";
 	description = name;
@@ -224,7 +228,7 @@ instance ItFo_Addon_Pfeffer_01(C_Item)
 	text[3] = "ОСТОРОЖНО, ЖГУЧИЙ!";
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = 190;
+	inv_zbias = 190;
 };
 
 instance ItFo_Addon_FireStew(C_Item)

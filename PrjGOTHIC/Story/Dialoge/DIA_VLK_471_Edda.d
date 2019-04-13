@@ -28,16 +28,18 @@ instance DIA_Edda_Hallo(C_Info)
 	condition = DIA_Edda_Hallo_Condition;
 	information = DIA_Edda_Hallo_Info;
 	permanent = FALSE;
-	important = TRUE;
+//	important = TRUE;
+	description = "Что ты варишь?";
 };
 
 
 func int DIA_Edda_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	/*if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
-	};
+	};*/
+	return TRUE;
 };
 
 func void DIA_Edda_Hallo_Info()
@@ -45,13 +47,14 @@ func void DIA_Edda_Hallo_Info()
 	AI_Output(other,self,"DIA_Edda_Hallo_15_00");	//Что ты варишь?
 	AI_Output(self,other,"DIA_Edda_Hallo_17_01");	//Уху. Может, она не особенно вкусная, но, по крайней мере, это горячая еда.
 	AI_Output(self,other,"DIA_Edda_Hallo_17_02");	//Могу налить тебе тарелку, если хочешь.
+	AI_Output(self,other,"DIA_Edda_Kochen_17_01");	//Я готовлю для всех. Для тебя тоже, если захочешь. Все, что мне нужно - это чтобы ты принес мне рыбу.
 };
 
 
 instance DIA_Edda_Stadt(C_Info)
 {
 	npc = VLK_471_Edda;
-	nr = 5;
+	nr = 9;
 	condition = DIA_Edda_Stadt_Condition;
 	information = DIA_Edda_Stadt_Info;
 	permanent = FALSE;
@@ -77,7 +80,7 @@ func void DIA_Edda_Stadt_Info()
 };
 
 
-instance DIA_Edda_Kochen(C_Info)
+/*instance DIA_Edda_Kochen(C_Info)
 {
 	npc = VLK_471_Edda;
 	nr = 6;
@@ -90,14 +93,17 @@ instance DIA_Edda_Kochen(C_Info)
 
 func int DIA_Edda_Kochen_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Edda_Hallo))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Edda_Kochen_Info()
 {
 	AI_Output(other,self,"DIA_Edda_Kochen_15_00");	//Ты можешь сварить суп для меня?
 	AI_Output(self,other,"DIA_Edda_Kochen_17_01");	//Я готовлю для всех. Для тебя тоже, если захочешь. Все, что мне нужно - это чтобы ты принес мне рыбу.
-};
+};*/
 
 
 instance DIA_Edda_Suppe(C_Info)
@@ -113,7 +119,8 @@ instance DIA_Edda_Suppe(C_Info)
 
 func int DIA_Edda_Suppe_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Edda_Kochen))
+//	if(Npc_KnowsInfo(other,DIA_Edda_Kochen))
+	if(Npc_KnowsInfo(other,DIA_Edda_Hallo))
 	{
 		return TRUE;
 	};
@@ -128,11 +135,21 @@ func void DIA_Edda_Suppe_Info()
 	}
 	else if(Edda_Day != Wld_GetDay())
 	{
-		if(B_GiveInvItems(other,self,ItFo_Fish,1))
+//		if(B_GiveInvItems(other,self,ItFo_Fish,1))
+		if(Npc_HasItems(other,ItFo_Fish) || Npc_HasItems(other,ItFo_SmellyFish))
 		{
+			if(Npc_HasItems(other,ItFo_Fish))
+			{
+				B_GiveInvItems(other,self,ItFo_Fish,1);
+				Npc_RemoveInvItems(self,ItFo_Fish,Npc_HasItems(self,ItFo_Fish));
+			}
+			else
+			{
+				B_GiveInvItems(other,self,ItFo_SmellyFish,1);
+				Npc_RemoveInvItems(self,ItFo_SmellyFish,Npc_HasItems(self,ItFo_SmellyFish));
+			};
 			AI_Output(self,other,"DIA_Edda_Suppe_17_01");	//Нет ничего проще. Вот, держи тарелку.
-			Npc_RemoveInvItems(self,ItFo_Fish,Npc_HasItems(self,ItFo_Fish));
-			B_GiveInvItems(self,other,ItFo_FishSoup,1);
+			B_GiveInvItems(self,other,ItFo_EddasFishSoup,1);
 			Edda_Day = Wld_GetDay();
 		}
 		else
@@ -183,7 +200,7 @@ instance DIA_Edda_PICKPOCKET(C_Info)
 	condition = DIA_Edda_PICKPOCKET_Condition;
 	information = DIA_Edda_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(нет ничего проще, чем украсть ее статую)";
+	description = "(нет ничего проще, чем украсть ее статуэтку)";
 };
 
 

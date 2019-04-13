@@ -21,9 +21,11 @@ instance VLK_4201_Wirt(Npc_Default)
 
 func void Rtn_Start_4201()
 {
-	TA_Stand_Guarding(4,35,21,0,"NW_CITY_BEER_02");
-	TA_Pee(21,0,21,5,"NW_CITY_KASERN_PLACE_01");
-	TA_Stand_Drinking(21,5,4,30,"NW_CITY_BEER_02");
-	TA_Pee(4,30,4,35,"NW_CITY_KASERN_PLACE_01");
+	TA_Stand_Guarding(6,0,21,0,"NW_CITY_BEER_02");
+	TA_Pee(21,0,21,10,"NW_CITY_KASERN_PLACE_01");
+	TA_Stand_Drinking(21,10,3,30,"NW_CITY_BEER_02");
+	TA_Sit_Chair(3,30,4,30,"NW_CITY_BEER_02");
+	TA_Pee(4,30,4,40,"NW_CITY_KASERN_PLACE_01");
+	TA_Sit_Chair(4,40,6,0,"NW_CITY_BEER_02");
 };
 

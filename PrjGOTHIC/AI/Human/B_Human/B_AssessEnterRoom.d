@@ -108,6 +108,10 @@ func void B_AssessPortalCollision()
 	};
 	if((self.guild == formerportalguild) || (Wld_GetGuildAttitude(self.guild,formerportalguild) == ATT_FRIENDLY))
 	{
+		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(MIL_309_Stadtwache)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stadtwache_310)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(MIL_332_Stadtwache)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stadtwache_333)))
+		{
+			return;
+		};
 		if((Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY) || (Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND)))
 		{
 			return;

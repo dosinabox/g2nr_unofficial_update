@@ -23,6 +23,7 @@ instance ItRw_Bolt(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItRw_Mil_Crossbow(C_Item)

@@ -1,5 +1,5 @@
 
-const int SPL_Cost_Shrink = 300;
+const int SPL_Cost_Shrink = 200;
 
 instance Spell_Shrink(C_Spell_Proto)
 {

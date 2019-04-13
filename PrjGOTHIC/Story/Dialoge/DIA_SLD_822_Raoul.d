@@ -49,13 +49,16 @@ func void DIA_Raoul_NoSentenza_Info()
 	AI_Output(self,other,"DIA_Raoul_NoSentenza_01_01");	//Я не видел, чтобы Сентенза обыскивал тебя.
 	if(Hlp_IsValidNpc(Sentenza) && !C_NpcIsDown(Sentenza))
 	{
+		AI_TurnToNPC(self,Sentenza);
 		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_02");	//СЕНТЕНЗА! Иди сюда!
+		AI_TurnToNPC(self,other);
 		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_03");	//(фальшиво вежливо) Подожди секундочку, сейчас он подойдет!
 		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_04");	//И тогда тебя ждет неприятный сюрприз!
 		B_Attack(Sentenza,other,AR_NONE,0);
 	}
 	else
 	{
+		AI_PlayAni(self,"T_SEARCH");
 		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_05");	//Где же он? А, ладно, неважно, тебе повезло...
 	};
 	AI_StopProcessInfos(self);
@@ -333,7 +336,7 @@ func void DIA_Raoul_TROLL_Info()
 func void DIA_Raoul_TROLL_weg()
 {
 	AI_Output(other,self,"DIA_Raoul_TROLL_weg_15_00");	//Я должен идти.
-	AI_Output(self,other,"DIA_Raoul_TROLL_weg_01_01");	//Да, проваливай.
+	AI_Output(self,other,"DIA_Raoul_TROLL_weg_01_01");	//Да проваливай!
 	AI_StopProcessInfos(self);
 };
 
@@ -371,7 +374,7 @@ func void B_Raoul_Blame()
 	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_07");	//Тогда чего ты ждешь?
 	Log_CreateTopic(TOPIC_KillTrollBlack,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_KillTrollBlack,LOG_Running);
-	B_LogEntry(TOPIC_KillTrollBlack,"Рауль чтобы я принес ему шкуру черного тролля.");
+	B_LogEntry(TOPIC_KillTrollBlack,"Рауль хочет, чтобы я принес ему шкуру черного тролля.");
 	MIS_Raoul_KillTrollBlack = LOG_Running;
 	Info_ClearChoices(DIA_Raoul_TROLL);
 };

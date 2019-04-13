@@ -289,7 +289,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_Shrink)
 	{
-		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || (self.guild == GIL_DRAGON))
+		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || (self.guild == GIL_DRAGON) || (self.guild < GIL_SEPERATOR_HUM))
 		{
 			return COLL_DONOTHING;
 		};

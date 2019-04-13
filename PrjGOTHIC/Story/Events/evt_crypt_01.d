@@ -10,7 +10,8 @@ func void evt_crypt_01()
 		Wld_InsertNpc(Skeleton,"EVT_CRYPT_ROOM_01_SPAWN_03");
 		Wld_InsertNpc(Skeleton,"EVT_CRYPT_ROOM_01_SPAWN_04");
 		Wld_InsertNpc(Lesser_Skeleton,"EVT_CRYPT_ROOM_01_SPAWN_05");
-		Wld_InsertNpc(Lesser_Skeleton,"EVT_CRYPT_ROOM_01_SPAWN_06");
+//		Wld_InsertNpc(Lesser_Skeleton,"EVT_CRYPT_ROOM_01_SPAWN_06");
+		Wld_InsertNpc(SkeletonScout,"EVT_CRYPT_ROOM_01_SPAWN_06");
 		Wld_InsertNpc(SkeletonMage,"EVT_CRYPT_ROOM_01_SPAWN_07");
 		EVT_CRYPT_01_OneTime = TRUE;
 	};
@@ -28,7 +29,8 @@ func void evt_crypt_02()
 		Wld_InsertNpc(Skeleton,"EVT_CRYPT_ROOM_02_SPAWN_03");
 		Wld_InsertNpc(Skeleton,"EVT_CRYPT_ROOM_02_SPAWN_04");
 		Wld_InsertNpc(Lesser_Skeleton,"EVT_CRYPT_ROOM_02_SPAWN_05");
-		Wld_InsertNpc(Lesser_Skeleton,"EVT_CRYPT_ROOM_02_SPAWN_06");
+//		Wld_InsertNpc(Lesser_Skeleton,"EVT_CRYPT_ROOM_02_SPAWN_06");
+		Wld_InsertNpc(SkeletonScout,"EVT_CRYPT_ROOM_02_SPAWN_06");
 		Wld_InsertNpc(SkeletonMage,"EVT_CRYPT_ROOM_02_SPAWN_07");
 		EVT_CRYPT_02_OneTime = TRUE;
 	};
@@ -46,7 +48,8 @@ func void evt_crypt_03()
 		Wld_InsertNpc(Skeleton,"EVT_CRYPT_ROOM_03_SPAWN_03");
 		Wld_InsertNpc(Skeleton,"EVT_CRYPT_ROOM_03_SPAWN_04");
 		Wld_InsertNpc(Lesser_Skeleton,"EVT_CRYPT_ROOM_03_SPAWN_05");
-		Wld_InsertNpc(Lesser_Skeleton,"EVT_CRYPT_ROOM_03_SPAWN_06");
+//		Wld_InsertNpc(Lesser_Skeleton,"EVT_CRYPT_ROOM_03_SPAWN_06");
+		Wld_InsertNpc(SkeletonScout,"EVT_CRYPT_ROOM_03_SPAWN_06");
 		Wld_InsertNpc(SkeletonMage,"EVT_CRYPT_ROOM_03_SPAWN_07");
 		EVT_CRYPT_03_OneTime = TRUE;
 	};

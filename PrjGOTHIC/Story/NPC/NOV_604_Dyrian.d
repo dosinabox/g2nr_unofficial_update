@@ -11,7 +11,7 @@ instance NOV_604_Dyrian(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItSc_Sleep,1);
+//	CreateInvItems(self,ItSc_Sleep,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_Tough_Torrez,BodyTex_P,ITAR_NOV_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

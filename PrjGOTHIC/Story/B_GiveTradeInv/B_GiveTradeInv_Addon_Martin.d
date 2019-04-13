@@ -11,6 +11,7 @@ func void B_GiveTradeInv_Addon_Martin(var C_Npc slf)
 	{
 		CreateInvItems(slf,ItSc_PalHolyBolt,2);
 		CreateInvItems(slf,ItSc_PalMediumHeal,1);
+		CreateInvItems(slf,ItSc_PalLightHeal,3);
 		CreateInvItems(slf,ItSc_PalLight,10);
 		CreateInvItems(slf,ItMi_Moleratlubric_MIS,1);
 		CreateInvItems(slf,ItMw_ShortSword1,3);

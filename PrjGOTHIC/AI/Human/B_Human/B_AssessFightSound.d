@@ -5,6 +5,10 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
+	if(victim.guild == GIL_MEATBUG)
+	{
+		return;
+	};
 	if((Npc_GetDistToNpc(self,victim) > PERC_DIST_INTERMEDIAT) && (Npc_GetDistToNpc(self,other) > PERC_DIST_INTERMEDIAT))
 	{
 		if(((self.guild == GIL_OUT) || (self.guild == GIL_BDT)) && ((victim.guild == self.guild) || (other.guild == self.guild)))
@@ -220,6 +224,12 @@ func void B_AssessFightSound()
 	};
 	if(!Npc_CanSeeNpcFreeLOS(self,victim))
 	{
+		return;
+	};
+	if((self.guild != GIL_DMT) && ((victim.guild == GIL_DMT) || (other.guild == GIL_DMT)))
+	{
+		Npc_SetTarget(self,other);
+		AI_StartState(self,ZS_Flee,0,"");
 		return;
 	};
 	Npc_ClearAIQueue(self);

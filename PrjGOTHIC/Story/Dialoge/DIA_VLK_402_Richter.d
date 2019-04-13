@@ -189,6 +189,14 @@ func void DIA_Richter_KillMorgahard_Info()
 	Wld_InsertNpc(BDT_1033_Fluechtling,"REICH");
 	Wld_InsertNpc(BDT_1034_Fluechtling,"REICH");
 	Wld_InsertNpc(BDT_1035_Fluechtling,"REICH");
+	if(!Npc_IsDead(Garwig))
+	{
+		Garwig.guild = GIL_NONE;
+		Npc_SetTrueGuild(Garwig,GIL_NONE);
+		//CreateInvItem(Garwig,ITAR_Bau_L);
+		//AI_EquipArmor(Garwig,ITAR_Bau_L);
+		B_StartOtherRoutine(Garwig,"Exile");
+	};
 	B_InitNpcGlobals();
 	B_GivePlayerXP(XP_BringHolyHammer);
 	MIS_Richter_BringHolyHammer = LOG_SUCCESS;

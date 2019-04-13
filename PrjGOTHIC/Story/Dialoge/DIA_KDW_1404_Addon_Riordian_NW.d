@@ -225,6 +225,30 @@ func int DIA_Addon_Riordian_Teach_Condition()
 
 func void DIA_Addon_Riordian_Teach_Info()
 {
+	/*B_DIA_Addon_Riordian_Teach_15_00();
+	if(WISPSKILL_LEVEL < 3)
+	{
+		Info_ClearChoices(DIA_Addon_Riordian_Teach);
+		Info_AddChoice(DIA_Addon_Riordian_Teach,Dialog_Back,DIA_Addon_Riordian_Teach_BACK);
+		B_DIA_Addon_Riordian_Teach_10_01();
+		if(WISPSKILL_LEVEL == 1)
+		{
+			Info_AddChoice(DIA_Addon_Riordian_Teach,"",DIA_Addon_Riordian_Teach_WISPSKILL_FF);
+		}
+		else if(WISPSKILL_LEVEL == 2)
+		{
+			Info_AddChoice(DIA_Addon_Riordian_Teach,"",DIA_Addon_Riordian_Teach_WISPSKILL_FF);
+		}
+		else
+		{
+			
+		
+	}
+	else
+	{
+		B_DIA_Addon_Riordian_Teach_10_08();
+		DIA_Addon_Riordian_Teach_NoPerm = TRUE;
+	};*/
 	B_DIA_Addon_Riordian_Teach_15_00();
 	if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NF] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FF] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NONE] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_RUNE] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_MAGIC] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FOOD] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_POTIONS] == FALSE))
 	{
@@ -261,6 +285,7 @@ func void DIA_Addon_Riordian_Teach_Info()
 		B_DIA_Addon_Riordian_Teach_10_08();
 		DIA_Addon_Riordian_Teach_NoPerm = TRUE;
 	};
+	
 };
 
 func void DIA_Addon_Riordian_Teach_WISPSKILL_X()

@@ -378,8 +378,11 @@ func void DIA_Garond_Equipment_Info()
 	if(other.guild == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Garond_Equipment_10_02");	//Поговори об этом с Тандором. Он выдаст тебе все необходимое.
-		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-		B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+		if(!Npc_KnowsInfo(other,DIA_Keroloth_WantTeach) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo))
+		{
+			Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+			B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+		};
 	};
 };
 

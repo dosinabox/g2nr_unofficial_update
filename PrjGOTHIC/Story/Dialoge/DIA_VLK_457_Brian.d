@@ -272,6 +272,10 @@ func void DIA_Brian_WASKAUFEN_Info()
 		Brian_Trade_einmal = TRUE;
 	};
 	Npc_RemoveInvItems(self,ItMiSwordblade,Npc_HasItems(self,ItMiSwordblade));
+	if(!Npc_HasItems(self,ItMw_1H_Mace_L_04) && !Npc_HasItems(other,ItMw_1H_Mace_L_04) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE) && (Player_IsApprentice == APP_Harad))
+	{
+		CreateInvItems(self,ItMw_1H_Mace_L_04,1);
+	};
 	Trade_IsActive = TRUE;
 };
 
@@ -323,11 +327,11 @@ func int DIA_Brian_RepairNecklace_Condition()
 func void DIA_Brian_RepairNecklace_Info()
 {
 	AI_Output(other,self,"DIA_Brian_RepairNecklace_15_00");	//Ты можешь ремонтировать ювелирные изделия?
-	AI_Output(self,other,"DIA_Brian_RepairNecklace_04_01");	//Я всего лишь помощник, я радуюсь, когда мне позволяют сделать хотя бы кинжал.
 	if(!Npc_IsDead(Harad))
 	{
 		AI_Output(self,other,"DIA_Brian_RepairNecklace_04_02");	//Ювелирные изделия? Тебе лучше обратиться к мастеру.
 	};
+	AI_Output(self,other,"DIA_Brian_RepairNecklace_04_01");	//Я всего лишь помощник, я радуюсь, когда мне позволяют сделать хотя бы кинжал.
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 };
 

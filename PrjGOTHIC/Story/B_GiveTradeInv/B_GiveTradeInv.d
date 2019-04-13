@@ -46,10 +46,10 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gorax))
+	/*else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gorax))
 	{
 		return TRUE;
-	}
+	}*/
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(VLK_407_Hakon))
 	{
 		return TRUE;
@@ -736,7 +736,7 @@ func void B_EquipTrader(var C_Npc slf)
 	if(Trade_IsActive == TRUE)
 	{
 		AI_EquipBestMeleeWeapon(slf);
-		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garett)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bosper)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Jora)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Orlan)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Diego_DI)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tandor)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sengrath)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Khaled)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher)))
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Garett)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bosper)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Diego_DI)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tandor)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sengrath)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Khaled)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher)))
 		{
 			AI_EquipBestRangedWeapon(slf);
 		};

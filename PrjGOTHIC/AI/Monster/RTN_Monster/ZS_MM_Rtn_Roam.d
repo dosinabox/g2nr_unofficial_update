@@ -4,6 +4,15 @@ func void ZS_MM_Rtn_Roam()
 	Perception_Set_Monster_Rtn();
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();
+	/*if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Follow_Sheep))
+	{
+		AI_GotoWP(self,"NW_MONASTERY_SHEEP_02");
+	}
+	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Follow_Sheep_AKIL))
+	{
+		AI_GotoWP(self,"NW_FARM2_OUT_02");
+	}
+	else */
 	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		AI_GotoWP(self,self.wp);

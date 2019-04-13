@@ -334,7 +334,7 @@ func void B_Eremit_Tatsache()
 
 func void DIA_Addon_Eremit_Klamotten_BACK()
 {
-	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+	AI_Output(other,self,"DIA_Biff_HEILUNG_Spaeter_15_00");	//Я дам тебе что-нибудь позже.
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_24");	//Ну вот... Сначала ты меня обнадежил, а потом... (вздыхает)
 	Info_ClearChoices(DIA_Addon_Eremit_Klamotten);
 };

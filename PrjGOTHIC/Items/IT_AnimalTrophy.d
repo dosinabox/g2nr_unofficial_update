@@ -166,9 +166,9 @@ instance ItAt_CrawlerMandibles(C_Item)
 	scemeName = "FOOD";
 	on_state[0] = Use_Mandibles;
 	description = name;
-	text[0] = "Ёти мандибулы можно открыть,";
-	text[1] = "чтобы выпить железы, наход€щиес€ внутри.";
-	text[2] = "ќни регенерируют вашу магическую энергию.";
+	text[0] = "Ёти мандибулы можно открыть";
+	text[1] = "и выпить вещество внутри.";
+	text[2] = "ќно восстанавливает магическую энергию.";
 	text[3] = "Ёффект снижаетс€ со временем.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -237,9 +237,13 @@ func void Use_Sting()
 	else
 	{
 		Print(PRINT_Bloodfly);
-		if(self.attribute[ATR_HITPOINTS] > 1)
+		if(self.attribute[ATR_HITPOINTS] > 5)
 		{
-			self.attribute[ATR_HITPOINTS] -= 1;
+			self.attribute[ATR_HITPOINTS] -= 5;
+		}
+		else
+		{
+			self.attribute[ATR_HITPOINTS_MAX] -= 1;
 		};
 	};
 };
@@ -413,7 +417,8 @@ instance ItAt_TrollTooth(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+	inv_zbias = 300;
 };
 
 instance ItAt_StoneGolemHeart(C_Item)
@@ -469,6 +474,7 @@ instance ItAt_GoblinBone(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 230;
 };
 
 instance ItAt_SkeletonBone(C_Item)
@@ -505,7 +511,7 @@ instance ItAt_UndeadDragonSoulStone(C_Item)
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_UndeadDragonSoulStone;
 	visual = "ItAt_UndeadDragonSoulStone.3DS";
-	material = MAT_LEATHER;
+	material = MAT_GLAS;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -519,7 +525,7 @@ instance ItAt_IcedragonHeart(C_Item)
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_IcedragonHeart;
 	visual = "ItAt_IcedragonHeart.3DS";
-	material = MAT_LEATHER;
+	material = MAT_GLAS;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -532,7 +538,7 @@ instance ItAt_RockdragonHeart(C_Item)
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_RockdragonHeart;
 	visual = "ItAt_RockdragonHeart.3DS";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -571,7 +577,7 @@ instance ItAt_DragonBlood(C_Item)
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_DragonBlood;
 	visual = "ItAt_DragonBlood.3DS";
-	material = MAT_LEATHER;
+	material = MAT_GLAS;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

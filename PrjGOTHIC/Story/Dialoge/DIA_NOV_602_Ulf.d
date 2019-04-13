@@ -395,6 +395,8 @@ func void DIA_Ulf_Abrechnung_Rauch()
 	AI_Output(self,other,"DIA_Ulf_Abrechnung_Rauch_03_01");	//Тебе повезло. Как раз у меня кое-что есть.
 	AI_Output(self,other,"DIA_Ulf_Abrechnung_Rauch_03_02");	//Давай, закурим.
 	B_GiveInvItems(self,other,ItMi_Joint,1);
+	CreateInvItems(self,ItMi_Joint,1);
+	B_UseItem(self,ItMi_Joint);
 	B_UseItem(other,ItMi_Joint);
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,0);

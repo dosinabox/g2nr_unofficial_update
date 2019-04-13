@@ -455,7 +455,7 @@ instance DIA_Onar_MariaGold(C_Info)
 
 func int DIA_Onar_MariaGold_Condition()
 {
-	if(Maria_MehrGold == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Onar_HowMuch) && (Maria_MehrGold == TRUE))
 	{
 		return TRUE;
 	};

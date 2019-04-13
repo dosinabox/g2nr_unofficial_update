@@ -99,6 +99,12 @@ var int DIA_Addon_Cronos_ADW_Trade_OneTime;
 
 func void DIA_Addon_Cronos_ADW_Trade_Info()
 {
+	if(CronosTraded == FALSE)
+	{
+		Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
+		B_LogEntry(Topic_OutTrader,LogText_Addon_CronosTrade);
+		CronosTraded = TRUE;
+	};
 	B_GiveTradeInv(self);
 	B_Say(other,self,"$TRADE_1");
 	Trade_IsActive = TRUE;

@@ -261,17 +261,23 @@ func void DIA_Pyrokar_TEST_Info()
 	CreateInvItems(Igaraz,ItKe_MagicChest,1);
 	Igaraz.aivar[AIV_DropDeadAndKill] = TRUE;
 	Igaraz.aivar[AIV_NewsOverride] = TRUE;
+	Igaraz.aivar[AIV_IgnoresArmor] = TRUE;
+	Igaraz.aivar[AIV_IgnoresFakeGuild] = TRUE;
 	B_StartOtherRoutine(Nov607,"EXCHANGE");
 	B_StartOtherRoutine(Agon,"GOLEMDEAD");
 	AI_Teleport(Agon,"NW_MAGECAVE_RUNE");
 	CreateInvItems(Agon,ItKe_MagicChest,1);
 	Agon.aivar[AIV_DropDeadAndKill] = TRUE;
 	Agon.aivar[AIV_NewsOverride] = TRUE;
+	Agon.aivar[AIV_IgnoresArmor] = TRUE;
+	Agon.aivar[AIV_IgnoresFakeGuild] = TRUE;
 	B_StartOtherRoutine(Ulf,"SUCHE");
 	AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
 	CreateInvItems(Ulf,ItKe_MagicChest,1);
 	Ulf.aivar[AIV_DropDeadAndKill] = TRUE;
 	Ulf.aivar[AIV_NewsOverride] = TRUE;
+	Ulf.aivar[AIV_IgnoresArmor] = TRUE;
+	Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
 	MIS_SCHNITZELJAGD = LOG_Running;
 	AI_StopProcessInfos(self);
 };
@@ -452,6 +458,19 @@ func void DIA_Pyrokar_OATH_Info()
 //	SLD_Aufnahme = LOG_OBSOLETE;
 //	MIL_Aufnahme = LOG_OBSOLETE;
 	B_GivePlayerXP(XP_BecomeMage);
+	if(!Npc_IsDead(Ulf))
+	{
+		B_StartOtherRoutine(Ulf,"BackToMonastery");
+	};
+	if(!Npc_IsDead(Igaraz))
+	{
+		B_StartOtherRoutine(Igaraz,"Start");
+	};
+	if(!Npc_IsDead(Agon))
+	{
+		B_StartOtherRoutine(Nov607,"Start");
+		B_StartOtherRoutine(Agon,"Start");
+	};
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_09");	//Нам также очень интересно знать, как он оценивает ситуацию. Так что ты теперь можешь отправляться в Хоринис.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_10");	//Мы ожидаем, что ты принесешь его ответ немедленно.
@@ -487,11 +506,11 @@ func void DIA_Pyrokar_Lernen_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_05");	//Никто не знает больше о силах льда, чем Мардук. Парлан может обучить тебя другим различным заклинаниям - и он введет тебя в первые круги.
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_06");	//Но каждый из них будет учить тебя только формулам - руны ты должен будешь создавать сам.
 	Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-	B_LogEntry(Topic_KlosterTeacher,"Мастер Парлан посвятит меня в первые круги магии.");
+	B_LogEntry(Topic_KlosterTeacher,"Мастер Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
 	B_LogEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
 	B_LogEntry(Topic_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
 	B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
-	B_LogEntry(Topic_KlosterTeacher,"Брат Парлан обучает множеству различных формул.");
+//	B_LogEntry(Topic_KlosterTeacher,"Брат Парлан обучает множеству различных формул.");
 };
 
 
@@ -539,6 +558,10 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 {
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Nothing_15_00");	//Никаким.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Nothing_11_01");	//(изумленно) Да будет так. Новый маг отказывается от первого шага.
+	Dyrian.guild = GIL_NONE;
+	Npc_SetTrueGuild(Dyrian,GIL_NONE);
+//	CreateInvItem(Dyrian,ITAR_Bau_L);
+//	AI_EquipArmor(Dyrian,ITAR_Bau_L);
 	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	if(MIS_HelpDyrian == LOG_Running)
@@ -584,6 +607,10 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_02");	//С сего момента послушник Бабо будет отвечать за монастырский сад.
 	B_GivePlayerXP(XP_HelpBabo);
 	B_StartOtherRoutine(Babo,"FAVOUR");
+	Dyrian.guild = GIL_NONE;
+	Npc_SetTrueGuild(Dyrian,GIL_NONE);
+//	CreateInvItem(Dyrian,ITAR_Bau_L);
+//	AI_EquipArmor(Dyrian,ITAR_Bau_L);
 	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	MIS_HelpBabo = LOG_SUCCESS;
@@ -606,6 +633,10 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Opolos_11_02");	//С сего момента послушнику Ополосу будет позволено изучать писания Инноса.
 	B_GivePlayerXP(XP_HelpOpolos);
 	B_StartOtherRoutine(Opolos,"FAVOUR");
+	Dyrian.guild = GIL_NONE;
+	Npc_SetTrueGuild(Dyrian,GIL_NONE);
+//	CreateInvItem(Dyrian,ITAR_Bau_L);
+//	AI_EquipArmor(Dyrian,ITAR_Bau_L);
 	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	MIS_HelpOpolos = LOG_SUCCESS;
@@ -751,11 +782,11 @@ func void DIA_Pyrokar_SPELLS_Info()
 		Info_AddChoice(DIA_Pyrokar_SPELLS,B_BuildLearnString(NAME_SPL_MassDeath,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MassDeath)),DIA_Pyrokar_SPELLS_MassDeath);
 		abletolearn += 1;
 	};
-	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
+	/*if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
 	{
 		Info_AddChoice(DIA_Pyrokar_SPELLS,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Pyrokar_SPELLS_Shrink);
 		abletolearn += 1;
-	};
+	};*/
 	if(abletolearn < 1)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_SPELLS_11_01");	//Мне больше нечему учить тебя.
@@ -782,10 +813,10 @@ func void DIA_Pyrokar_SPELLS_MassDeath()
 	B_TeachPlayerTalentRunes(self,other,SPL_MassDeath);
 };
 
-func void DIA_Pyrokar_SPELLS_Shrink()
+/*func void DIA_Pyrokar_SPELLS_Shrink()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
-};
+};*/
 
 
 instance DIA_Pyrokar_Parlan(C_Info)
@@ -908,6 +939,7 @@ func void DIA_Pyrokar_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Pyrokar_PERM_11_03");	//Да встанет Иннос между тобой и болью на всех нечестивых путях, по которым тебе суждено пройти.
 	};
+	other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
 };
 
 
@@ -1008,6 +1040,10 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_01");	//Я вижу, ты получил позволение лично от лорда Хагена носить Глаз Инноса.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_02");	//Но боюсь, мне придется разочаровать тебя. Мы стали жертвами вероломного плана врага.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_03");	//Глаз Инноса был нагло украден из этих священных стен.
+	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	{
+		B_StartOtherRoutine(Gorax,"Wait");
+	};
 	if(hero.guild == GIL_KDF)
 	{
 		Info_AddChoice(DIA_Pyrokar_GIVEINNOSEYE,"Кто мог совершить столь дерзкий поступок, Мастер?",DIA_Pyrokar_GIVEINNOSEYE_wer);
@@ -1038,6 +1074,8 @@ func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 	Pedro.flags = 0;
 	Pedro_Traitor = TRUE;
 	B_LogEntry(TOPIC_INNOSEYE,"Невероятно. Хотя я ожидал чего-то подобного. Я опоздал, эти тупицы из монастыря позволили какому-то послушнику украсть Глаз, и теперь мне придется гнаться за предателем Педро и надеяться, что он еще не продал Глаз кому-нибудь.");
+	Log_CreateTopic(TOPIC_TraitorPedro,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_TraitorPedro,LOG_Running);
 	B_LogEntry(TOPIC_TraitorPedro,"Предатель Педро украл Глаз Инноса из монастыря. Как я понимаю, маги Огня теперь из кожи вон лезут, чтобы найти этого предателя.");
 };
 

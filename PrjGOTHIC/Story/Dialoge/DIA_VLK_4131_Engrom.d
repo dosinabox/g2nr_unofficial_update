@@ -220,7 +220,11 @@ func void DIA_Engrom_BESSEN_Info()
 	else
 	{
 		Npc_ExchangeRoutine(self,"FleePass");
-		Wld_InsertNpc(OrcWarrior_Scout,"START");
+		if(Engrom_Orc_Spawned == FALSE)
+		{
+			Wld_InsertNpc(OrcWarrior_Scout,"START");
+			Engrom_Orc_Spawned = TRUE;
+		};
 	};
 };
 

@@ -14,8 +14,8 @@ func void B_GiveTradeInv_Bosper(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Bow_L_01,1);
 		CreateInvItems(slf,ItRw_Bow_L_02,1);
 		CreateInvItems(slf,ItRw_Bow_L_03,1);
-		CreateInvItems(slf,ItRw_Bow_L_03,1);
-		CreateInvItems(slf,ItRw_Bow_L_04,1);
+		//CreateInvItems(slf,ItRw_Bow_L_03,1);
+		CreateInvItems(slf,ItRw_Sld_Bow,1);
 		CreateInvItems(slf,ItBE_Addon_Leather_01,1);
 		CreateInvItems(slf,ItRi_Dex_02,1);
 		Bosper_ItemsGiven_Chapter_1 = TRUE;

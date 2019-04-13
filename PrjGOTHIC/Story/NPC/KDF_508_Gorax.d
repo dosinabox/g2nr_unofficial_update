@@ -25,3 +25,9 @@ func void Rtn_Start_508()
 	TA_Sleep(23,0,8,0,"NW_MONASTERY_MAGE02_BED_01");
 };
 
+func void Rtn_Wait_508()
+{
+	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_PLACE_05");
+	TA_Stand_Guarding(23,0,8,0,"NW_MONASTERY_PLACE_05");
+};
+

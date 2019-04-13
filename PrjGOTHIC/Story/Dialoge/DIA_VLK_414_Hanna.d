@@ -37,7 +37,10 @@ instance DIA_Hanna_Hello(C_Info)
 
 func int DIA_Hanna_Hello_Condition()
 {
-	return TRUE;
+	if(Andre_Diebesgilde_aufgeraeumt == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Hanna_Hello_Info()
@@ -59,7 +62,10 @@ instance DIA_Hanna_Room(C_Info)
 
 func int DIA_Hanna_Room_Condition()
 {
-	return TRUE;
+	if(Andre_Diebesgilde_aufgeraeumt == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Hanna_Room_Info()
@@ -96,7 +102,7 @@ instance DIA_Hanna_WhyPay(C_Info)
 
 func int DIA_Hanna_WhyPay_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_Room))
+	if(Npc_KnowsInfo(other,DIA_Hanna_Room) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		return TRUE;
 	};
@@ -127,7 +133,7 @@ instance DIA_Hanna_WerHier(C_Info)
 
 func int DIA_Hanna_WerHier_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_Room))
+	if(Npc_KnowsInfo(other,DIA_Hanna_Room) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		return TRUE;
 	};
@@ -155,7 +161,10 @@ instance DIA_Hanna_City(C_Info)
 
 func int DIA_Hanna_City_Condition()
 {
-	return TRUE;
+	if(Andre_Diebesgilde_aufgeraeumt == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Hanna_City_Info()
@@ -230,7 +239,7 @@ instance DIA_Hanna_AnyNews(C_Info)
 
 func int DIA_Hanna_AnyNews_Condition()
 {
-	if(Kapitel >= 3)
+	if((Kapitel >= 3) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		return TRUE;
 	};
@@ -349,7 +358,7 @@ instance DIA_Hanna_ThisLetter(C_Info)
 
 func int DIA_Hanna_ThisLetter_Condition()
 {
-	if((MIS_HannaRetrieveLetter == LOG_Running) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS))
+	if((MIS_HannaRetrieveLetter == LOG_Running) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		return TRUE;
 	};
@@ -417,7 +426,7 @@ instance DIA_Hanna_AusKeller(C_Info)
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if(Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE))
+	if((Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE)) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		return TRUE;
 	};
@@ -425,13 +434,13 @@ func int DIA_Hanna_AusKeller_Condition()
 
 func void DIA_Hanna_AusKeller_Info()
 {
-	if((Cassia.aivar[AIV_KilledByPlayer] == TRUE) || (Jesper.aivar[AIV_KilledByPlayer] == TRUE) || (Ramirez.aivar[AIV_KilledByPlayer] == TRUE))
+	if(((Cassia.aivar[AIV_KilledByPlayer] == TRUE) || (Jesper.aivar[AIV_KilledByPlayer] == TRUE) || (Ramirez.aivar[AIV_KilledByPlayer] == TRUE)) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		AI_Output(self,other,"DIA_Hanna_Add_17_27");	//Откуда... ты пришел?
 		AI_Output(other,self,"DIA_Hanna_Add_15_28");	//Я нашел кое-что интересное в твоем подвале...
 		AI_Output(self,other,"DIA_Hanna_Add_17_29");	//Что ты делал в моем подвале?!
 		AI_Output(other,self,"DIA_Hanna_Add_15_30");	//Ты прекрасно знаешь это!
-		AI_Output(self,other,"DIA_Hanna_Add_17_31");	//(холодно) Я не знаю, чем ты говоришь...
+		AI_Output(self,other,"DIA_Hanna_Add_17_31");	//(холодно) Я не знаю, о чем ты говоришь...
 	}
 	else
 	{
@@ -459,7 +468,7 @@ instance DIA_Hanna_Schuldenbuch(C_Info)
 
 func int DIA_Hanna_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) && (SchuldBuchNamesKnown == TRUE))
+	if(Npc_HasItems(other,ItWr_Schuldenbuch) && (SchuldBuchNamesKnown == TRUE) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		return TRUE;
 	};
@@ -487,7 +496,7 @@ instance DIA_Hanna_GiveSchuldenbuch(C_Info)
 
 func int DIA_Hanna_GiveSchuldenbuch_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch))
+	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		return TRUE;
 	};
@@ -513,12 +522,12 @@ instance DIA_Hanna_Blubb(C_Info)
 	condition = DIA_Hanna_Blubb_Condition;
 	information = DIA_Hanna_Blubb_Info;
 	permanent = TRUE;
-	description = "(спросить о логове воров)";
+	description = "В логове все в порядке?";
 };
 
 func int DIA_Hanna_Blubb_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller))
+	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) && (Knows_SecretSign == TRUE) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		return TRUE;
 	};
@@ -526,34 +535,66 @@ func int DIA_Hanna_Blubb_Condition()
 
 func void DIA_Hanna_Blubb_Info()
 {
-	if(Andre_Diebesgilde_aufgeraeumt == FALSE)
+	AI_Output(other,self,"DIA_Hanna_Add_15_37");	//В логове все в порядке?
+	AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
+	AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
+	AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
+};
+
+instance DIA_Hanna_Blubb2(C_Info)
+{
+	npc = VLK_414_Hanna;
+	nr = 1;
+	condition = DIA_Hanna_Blubb2_Condition;
+	information = DIA_Hanna_Blubb2_Info;
+	permanent = TRUE;
+	description = "Ты знала о логове воров?";
+};
+
+func int DIA_Hanna_Blubb2_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) && (Knows_SecretSign == FALSE) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
-		if(Knows_SecretSign == TRUE)
-		{
-			AI_Output(other,self,"DIA_Hanna_Add_15_37");	//В логове все в порядке?
-			AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
-			AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
-			AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
-		}
-		else
-		{
-			AI_Output(other,self,"DIA_Hanna_Add_15_25");	//Ты знала о логове воров?
-			AI_Output(self,other,"DIA_Hanna_Add_17_26");	//(глупо улыбается) Я не понимаю, о чем ты говоришь...
-		};
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
-		AI_Output(self,other,"DIA_Hanna_Add_17_33");	//Мне они ничего не смогли предъявить, но Кассия и ее люди мертвы!
-		AI_Output(self,other,"DIA_Hanna_Add_17_34");	//Я уверена, что это ТЫ...
-		AI_Output(self,other,"DIA_Hanna_Add_17_35");	//Я купила это специально для тебя.
-		AI_Output(self,other,"DIA_Hanna_Add_17_36");	//Это обошлось мне в кругленькую сумму. Но для тебя ничего не жалко, свинья...
-		DIA_Hanna_Blubb.permanent = FALSE;
-		AI_StopProcessInfos(self);
-		CreateInvItem(self,ItSc_IceCube);
-		CreateInvItem(self,ItSc_Firestorm);
-		B_Attack(self,other,AR_NONE,1);
+		return TRUE;
 	};
+};
+
+func void DIA_Hanna_Blubb2_Info()
+{
+	AI_Output(other,self,"DIA_Hanna_Add_15_25");	//Ты знала о логове воров?
+	AI_Output(self,other,"DIA_Hanna_Add_17_26");	//(глупо улыбается) Я не понимаю, о чем ты говоришь...
+};
+
+instance DIA_Hanna_Blubb3(C_Info)
+{
+	npc = VLK_414_Hanna;
+	nr = 1;
+	condition = DIA_Hanna_Blubb3_Condition;
+	information = DIA_Hanna_Blubb3_Info;
+	important = TRUE;
+};
+
+func int DIA_Hanna_Blubb3_Condition()
+{
+	if(Andre_Diebesgilde_aufgeraeumt == TRUE)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Hanna_Blubb3_Info()
+{
+	CreateInvItem(self,ItSc_IceCube);
+	CreateInvItem(self,ItSc_Firestorm);
+	AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
+	AI_Output(self,other,"DIA_Hanna_Add_17_33");	//Мне они ничего не смогли предъявить, но Кассия и ее люди мертвы!
+	AI_Output(self,other,"DIA_Hanna_Add_17_34");	//Я уверена, что это ТЫ...
+	B_SelectSpell(self,other);
+	AI_Output(self,other,"DIA_Hanna_Add_17_35");	//Я купила это специально для тебя.
+	AI_Output(self,other,"DIA_Hanna_Add_17_36");	//Это обошлось мне в кругленькую сумму. Но для тебя ничего не жалко, свинья...
+	self.aivar[AIV_DropDeadAndKill] = TRUE;
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_NONE,1);
 };
 
 instance DIA_Hanna_PICKPOCKET_Book(C_Info)
@@ -605,5 +646,30 @@ func void DIA_Hanna_PICKPOCKET_Book_DoIt()
 func void DIA_Hanna_PICKPOCKET_Book_BACK()
 {
 	Info_ClearChoices(DIA_Hanna_PICKPOCKET_Book);
+};
+
+instance DIA_Hanna_Blubb4(C_Info)
+{
+	npc = VLK_414_Hanna;
+	nr = 1;
+	condition = DIA_Hanna_Blubb4_Condition;
+	information = DIA_Hanna_Blubb4_Info;
+	permanent = TRUE;
+	important = TRUE;
+};
+
+func int DIA_Hanna_Blubb4_Condition()
+{
+	if((Andre_Diebesgilde_aufgeraeumt == TRUE) && Npc_KnowsInfo(other,DIA_Hanna_Blubb3) && Npc_IsInState(self,ZS_Talk))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Hanna_Blubb4_Info()
+{
+	B_Say(self,other,"$KillEnemy");
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_NONE,1);
 };
 

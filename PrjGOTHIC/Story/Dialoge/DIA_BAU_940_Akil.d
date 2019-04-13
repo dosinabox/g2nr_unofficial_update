@@ -599,7 +599,8 @@ instance DIA_Akil_AkilsSchaf(C_Info)
 	nr = 2;
 	condition = DIA_Akil_AkilsSchaf_Condition;
 	information = DIA_Akil_AkilsSchaf_Info;
-	description = "(вернуть овцу Акилу)";
+	important = TRUE;
+//	description = "(вернуть овцу)";
 };
 
 
@@ -620,6 +621,7 @@ func void DIA_Akil_AkilsSchaf_Info()
 	Follow_Sheep_AKIL.aivar[AIV_TAPOSITION] = NOTINPOS;
 	Follow_Sheep_AKIL.wp = "NW_FARM2_OUT_02";
 	Follow_Sheep_AKIL.start_aistate = ZS_MM_AllScheduler;
+	B_StartOtherRoutine(Follow_Sheep_AKIL,"Farm");
 	B_GivePlayerXP(XP_AkilsSchaf);
 };
 

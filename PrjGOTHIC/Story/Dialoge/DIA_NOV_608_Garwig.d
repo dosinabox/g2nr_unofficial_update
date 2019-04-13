@@ -50,9 +50,16 @@ func void DIA_Garwig_Wurst_Info()
 	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
-	NovizeLeft = IntToString(13 - Wurst_Gegeben);
-	NovizeText = ConcatStrings(NovizeLeft,PRINT_NovizenLeft);
-	AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	if(Wurst_Gegeben >= 13)
+	{
+		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	}
+	else
+	{
+		NovizeLeft = IntToString(13 - Wurst_Gegeben);
+		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
+		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	};
 };
 
 
@@ -121,7 +128,7 @@ instance DIA_Garwig_Hammer(C_Info)
 
 func int DIA_Garwig_Hammer_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Garwig_Room))
+	if(Npc_KnowsInfo(other,DIA_Garwig_Room) && (Hammer_Taken == FALSE) && !Npc_HasItems(other,Holy_Hammer_MIS))
 	{
 		return TRUE;
 	};
@@ -268,7 +275,7 @@ instance DIA_Garwig_THIEF(C_Info)
 
 func int DIA_Garwig_THIEF_Condition()
 {
-	if(Npc_HasItems(other,Holy_Hammer_MIS) && (GarwigThiefOneTime == FALSE))
+	if((Npc_HasItems(other,Holy_Hammer_MIS) || (Hammer_Taken == TRUE)) && (GarwigThiefOneTime == FALSE))
 	{
 		return TRUE;
 	};
@@ -279,7 +286,14 @@ func void DIA_Garwig_THIEF_Info()
 	if(Hammer_Taken == TRUE)
 	{
 		AI_Output(self,other,"DIA_Garwig_THIEF_06_00");	//(разочаровано) Вор! Ты опозорил не только себя и меня, но и весь монастырь!
-		AI_Output(self,other,"DIA_Garwig_THIEF_06_01");	//Ты поплатишься за это святотатство. И, заклинаю Инносом - ВЕРНИ МНЕ ЭТОТ МОЛОТ!
+		if((MIS_GOLEM != LOG_SUCCESS) && Npc_HasItems(other,Holy_Hammer_MIS))
+		{
+			AI_Output(self,other,"DIA_Garwig_THIEF_06_01");	//Ты поплатишься за это святотатство. И, заклинаю Инносом - ВЕРНИ МНЕ ЭТОТ МОЛОТ!
+		}
+		else
+		{
+			B_Say(self,other,"$YouDareHitMe");
+		};
 	}
 	else
 	{
@@ -359,5 +373,30 @@ func void DIA_Garwig_PICKPOCKET_DoIt()
 func void DIA_Garwig_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Garwig_PICKPOCKET);
+};
+
+instance DIA_Garwig_EXIE(C_Info)
+{
+	npc = NOV_608_Garwig;
+	nr = 2;
+	condition = DIA_Garwig_EXIE_Condition;
+	information = DIA_Garwig_EXIE_Info;
+	permanent = TRUE;
+	important = TRUE;
+};
+
+
+func int DIA_Garwig_EXIE_Condition()
+{
+	if((MIS_Richter_BringHolyHammer == LOG_SUCCESS) && (Npc_IsInState(self,ZS_Talk)))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Garwig_EXIE_Info()
+{
+	B_Say(self,other,"$NeverEnterRoomAgain");
+	AI_StopProcessInfos(self);
 };
 

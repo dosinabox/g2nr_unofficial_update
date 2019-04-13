@@ -219,23 +219,32 @@ func void DIA_Balthasar_BENGARUEBERREDET_Info()
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"BengarsWeide");
 	B_GivePlayerXP(XP_Balthasar_BengarsWeide);
-	Wld_InsertNpc(Sheep,"NW_BIGMILL_FARM3_BALTHASAR");
-	Wld_InsertNpc(Sheep,"NW_BIGMILL_FARM3_BALTHASAR");
-	Wld_InsertNpc(Hammel,"NW_BIGMILL_FARM3_BALTHASAR");
+//	Wld_InsertNpc(Sheep,"NW_BIGMILL_FARM3_BALTHASAR");
+//	Wld_InsertNpc(Sheep,"NW_BIGMILL_FARM3_BALTHASAR");
+//	Wld_InsertNpc(Hammel,"NW_BIGMILL_FARM3_BALTHASAR");
 	BalthasarSheep1 = Hlp_GetNpc(Balthasar_Sheep1);
 	if(Hlp_IsValidNpc(BalthasarSheep1) && !Npc_IsDead(BalthasarSheep1))
 	{
-		AI_StartState(BalthasarSheep1,ZS_MM_Rtn_Follow_Sheep_Balthasar,1,"");
+		//AI_StartState(BalthasarSheep1,ZS_MM_Rtn_Follow_Sheep_Balthasar,1,"");
+		BalthasarSheep1.wp = "NW_BIGMILL_FARM3_BALTHASAR";
+		BalthasarSheep1.start_aistate = ZS_MM_AllScheduler;
+		B_StartOtherRoutine(BalthasarSheep1,"NewFarm");
 	};
 	BalthasarSheep2 = Hlp_GetNpc(Balthasar_Sheep2);
 	if(Hlp_IsValidNpc(BalthasarSheep2) && !Npc_IsDead(BalthasarSheep2))
 	{
-		AI_StartState(BalthasarSheep2,ZS_MM_Rtn_Follow_Sheep_Balthasar,1,"");
+		//AI_StartState(BalthasarSheep2,ZS_MM_Rtn_Follow_Sheep_Balthasar,1,"");
+		BalthasarSheep2.wp = "NW_BIGMILL_FARM3_BALTHASAR";
+		BalthasarSheep2.start_aistate = ZS_MM_AllScheduler;
+		B_StartOtherRoutine(BalthasarSheep2,"NewFarm");
 	};
 	BalthasarSheep3 = Hlp_GetNpc(Balthasar_Sheep3);
 	if(Hlp_IsValidNpc(BalthasarSheep3) && !Npc_IsDead(BalthasarSheep3))
 	{
-		AI_StartState(BalthasarSheep3,ZS_MM_Rtn_Follow_Sheep_Balthasar,1,"");
+		//AI_StartState(BalthasarSheep3,ZS_MM_Rtn_Follow_Sheep_Balthasar,1,"");
+		BalthasarSheep3.wp = "NW_BIGMILL_FARM3_BALTHASAR";
+		BalthasarSheep3.start_aistate = ZS_MM_AllScheduler;
+		B_StartOtherRoutine(BalthasarSheep3,"NewFarm");
 	};
 };
 
@@ -263,7 +272,8 @@ func void DIA_Balthasar_PERMKAP1_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_PERMKAP1_15_00");	//Все в порядке?
 	Npc_PerceiveAll(self);
-	if((Wld_DetectNpc(self,Balthasar_Sheep1,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 2000)) || (Wld_DetectNpc(self,Balthasar_Sheep2,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 2000)) || (Wld_DetectNpc(self,Balthasar_Sheep3,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 2000)) || (Wld_DetectNpc(self,Sheep,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 2000)) || (Wld_DetectNpc(self,Hammel,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 2000)))
+//	if((Wld_DetectNpc(self,Balthasar_Sheep1,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)) || (Wld_DetectNpc(self,Balthasar_Sheep2,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)) || (Wld_DetectNpc(self,Balthasar_Sheep3,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)) || (Wld_DetectNpc(self,Sheep,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)) || (Wld_DetectNpc(self,Hammel,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 4000)))
+	if(!Npc_IsDead(BalthasarSheep1) && !Npc_IsDead(BalthasarSheep2) && !Npc_IsDead(BalthasarSheep3))
 	{
 		AI_Output(self,hero,"DIA_Balthasar_PERMKAP1_05_01");	//Мне не на что жаловаться. Спасибо, что спросил.
 		AI_StopProcessInfos(self);

@@ -117,6 +117,9 @@ instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "О подтверждении полномочий.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -384,7 +387,7 @@ instance ItPo_HealHilda_MIS(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_HpEssenz;
-	visual = "ItMi_Flask.3ds";
+	visual = "ItPo_HealHilda.3ds";
 	material = MAT_GLAS;
 	on_state[0] = Use_HealHilda;
 	scemeName = "POTIONFAST";
@@ -394,7 +397,7 @@ instance ItPo_HealHilda_MIS(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Essenz;
 	text[5] = NAME_Value;
-	count[5] = Value_HpEssenz;
+	count[5] = value;
 };
 
 
@@ -406,19 +409,19 @@ func void Use_HealHilda()
 
 instance ItMw_MalethsGehstock_MIS(C_Item)
 {
-	name = "Посох";
+	name = "Походный посох";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_WOOD;
-	value = Value_VLKMace;
-	damageTotal = Damage_VLKMace;
+	value = 15;
+	damageTotal = 10;
 	damagetype = DAM_BLUNT;
 	range = Range_VLKMace;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKMace;
-	visual = "Itmw_008_1h_pole_01.3ds";
+	visual = "Itmw_008_1h_pole_02.3ds";
 	description = name;
-	text[0] = "На ручке выгравирована буква 'М.'";
+	text[0] = "На древке вырезана буква 'М.'";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -476,6 +479,9 @@ instance ItWr_BabosLetter_MIS(C_Item)
 	on_state[0] = Use_BabosLetter;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -499,7 +505,7 @@ func void Use_BabosLetter()
 
 instance ItWr_BabosPinUp_MIS(C_Item)
 {
-	name = "Картина";
+	name = "Рисунок";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -508,7 +514,11 @@ instance ItWr_BabosPinUp_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_BabosPinUp;
 	scemeName = "MAP";
-	description = "Изображение нагой женщины";
+	description = name;
+	text[0] = "Изображение нагой женщины.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -616,7 +626,7 @@ instance ItPo_HealObsession_MIS(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_HpEssenz;
-	visual = "ItMi_Flask.3ds";
+	visual = "ItPo_HealObsession.3ds";
 	material = MAT_GLAS;
 	on_state[0] = Use_HealObsession;
 	scemeName = "POTIONFAST";
@@ -626,7 +636,7 @@ instance ItPo_HealObsession_MIS(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Essenz;
 	text[5] = NAME_Value;
-	count[5] = Value_HpEssenz;
+	count[5] = value;
 };
 
 
@@ -682,6 +692,9 @@ instance ItWr_ShatteredGolem_MIS(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -703,7 +716,7 @@ func void Use_ShatteredGolem_Mis()
 
 instance ItWr_DiegosLetter_MIS(C_Item)
 {
-	name = "Письмо Диего";
+	name = "Письмо Диего Гербрандту";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -711,7 +724,10 @@ instance ItWr_DiegosLetter_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_DiegosLetter_Mis;
 	scemeName = "MAP";
-	description = "Письмо Диего Гербрандту";
+	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -765,8 +781,8 @@ instance ItMi_UltharsHolyWater_Mis(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = Value_HolyWater;
-	visual = "ItMi_HolyWater.3ds";
-	material = MAT_WOOD;
+	visual = "ItMi_UltharsHolyWater.3ds";
+	material = MAT_GLAS;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -782,12 +798,16 @@ instance ItWr_MinenAnteil_Mis(C_Item)
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = Value_HpElixier;
 	visual = "ItWr_Scroll_01.3DS";
+//	visual = "Fakescroll.3ds";
 	material = MAT_LEATHER;
 	on_state[0] = Use_MinenAnteil_Mis;
 	scemeName = "MAP";
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -807,9 +827,9 @@ func void Use_MinenAnteil_Mis()
 	Doc_PrintLines(nDocID,0,"Согласно закону о горнодобывающих работах, римлот составляет 16 шагов в горизонтальном измерении и 3 шага по вертикали.");
 	Doc_PrintLines(nDocID,0,"Королевский проспектор имеет право на свободный доступ к местам производства работ.");
 	Doc_PrintLines(nDocID,0,"Если арендатор не в состоянии платить ренту, все права на землю возвращаются к королевству.");
-	Doc_PrintLine(nDocID,0,"         Подпись");
-	Doc_PrintLine(nDocID,0,"      Королевский проспектор");
+	Doc_PrintLine(nDocID,0,"                                Подпись:");
 	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"      Королевский проспектор,");
 	Doc_PrintLine(nDocID,0,"                Саландрил");
 	Doc_Show(nDocID);
 	SC_KnowsProspektorSalandril = TRUE;
@@ -864,7 +884,7 @@ func void UnEquip_Prot_BlackEye()
 
 instance ItMi_KarrasBlessedStone_Mis(C_Item)
 {
-	name = "Камень из благословенной земли";
+	name = "Камень";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 0;
@@ -872,9 +892,10 @@ instance ItMi_KarrasBlessedStone_Mis(C_Item)
 	visual = "ItMi_KarrasBlessedStone.3ds";
 	visual_skin = 0;
 	material = MAT_STONE;
-	description = name;
+	description = "Камень из благословенной земли";
 //	text[5] = NAME_Value;
 //	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItWr_RichterKomproBrief_MIS(C_Item)
@@ -930,6 +951,9 @@ instance ItWr_MorgahardTip(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Это письмо было у сбежавшего заключенного.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -949,7 +973,7 @@ func void Use_MorgahardTip()
 	Doc_PrintLines(nDocID,0,"Все будет хорошо.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"                           М.");
+	Doc_PrintLine(nDocID,0,"                     М.");
 //	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
@@ -969,6 +993,9 @@ instance ItWr_Map_Shrine_MIS(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -1013,11 +1040,11 @@ func void Use_VinosKellergeister_Mis()
 	Doc_SetPage(nDocID,1,"BOOK_RED_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
+	Doc_PrintLines(nDocID,0,"Сила винограда");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Сила винограда");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"... Я уже многое перепробовал, но этот плод, что был привезен мне из-за границы на прошлой неделе, превзошел все ожидания ...");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");

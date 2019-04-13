@@ -168,21 +168,21 @@ func void Use_StonePlate()
 			if(StoneplateLevel == 1)
 			{
 				B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_StPlLevel1);
-				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel1);
+//				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel1);
 				concatText = ConcatStrings(concatText,IntToString(ManaMax_StPlLevel1));
 //				B_Say(self,self,"STONEPLATE_1");
 			}
 			else if(StoneplateLevel == 2)
 			{
 				B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_StPlLevel2);
-				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel2);
+//				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel2);
 				concatText = ConcatStrings(concatText,IntToString(ManaMax_StPlLevel2));
 //				B_Say(self,self,"STONEPLATE_2");
 			}
 			else if(StoneplateLevel == 3)
 			{
 				B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_StPlLevel3);
-				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel3);
+//				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel3);
 				concatText = ConcatStrings(concatText,IntToString(ManaMax_StPlLevel3));
 //				B_Say(self,self,"STONEPLATE_3");
 			};

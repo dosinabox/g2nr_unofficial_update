@@ -34,7 +34,10 @@ instance DIA_Lehmar_ENTSCHULDIGUNG(C_Info)
 
 func int DIA_Lehmar_ENTSCHULDIGUNG_Condition()
 {
-	return TRUE;
+	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Lehmar_ENTSCHULDIGUNG_Info()
@@ -61,7 +64,7 @@ var int DIA_Lehmar_GELDLEIHEN_noPerm;
 
 func int DIA_Lehmar_GELDLEIHEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lehmar_ENTSCHULDIGUNG) && (DIA_Lehmar_GELDLEIHEN_noPerm == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lehmar_ENTSCHULDIGUNG) && (DIA_Lehmar_GELDLEIHEN_noPerm == FALSE) && (self.aivar[AIV_DefeatedByPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -74,8 +77,8 @@ func void DIA_Lehmar_GELDLEIHEN_Info()
 	Info_ClearChoices(DIA_Lehmar_GELDLEIHEN);
 	Info_AddChoice(DIA_Lehmar_GELDLEIHEN,"я подумаю над этим.",DIA_Lehmar_GELDLEIHEN_back);
 	Info_AddChoice(DIA_Lehmar_GELDLEIHEN,"1000 золотых.",DIA_Lehmar_GELDLEIHEN_1000);
-	Info_AddChoice(DIA_Lehmar_GELDLEIHEN," 200 золотых.",DIA_Lehmar_GELDLEIHEN_200);
-	Info_AddChoice(DIA_Lehmar_GELDLEIHEN,"  50 золотых.",DIA_Lehmar_GELDLEIHEN_50);
+	Info_AddChoice(DIA_Lehmar_GELDLEIHEN,"200 золотых.",DIA_Lehmar_GELDLEIHEN_200);
+	Info_AddChoice(DIA_Lehmar_GELDLEIHEN,"50 золотых.",DIA_Lehmar_GELDLEIHEN_50);
 };
 
 func void DIA_Lehmar_GELDLEIHEN_back()
@@ -317,6 +320,7 @@ func void DIA_Lehmar_NOCHMALGELD_Info()
 	if(Npc_KnowsInfo(other,DIA_Lehmar_GELDEINTREIBEN) || Npc_KnowsInfo(other,DIA_Lehmar_BuchWeg))
 	{
 		AI_Output(self,other,"DIA_Lehmar_NOCHMALGELD_09_01");	//“ы думаешь, € идиот? ѕроваливай!
+		AI_StopProcessInfos(self);
 	}
 	else
 	{

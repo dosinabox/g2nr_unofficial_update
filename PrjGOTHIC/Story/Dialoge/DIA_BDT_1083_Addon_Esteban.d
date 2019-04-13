@@ -399,7 +399,7 @@ instance DIA_Addon_Esteban_fight(C_Info)
 
 func int DIA_Addon_Esteban_fight_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Stone) && (Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 500) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 500))
+	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Stone) && (Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1000) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1000))
 	{
 		return TRUE;
 	};

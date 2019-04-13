@@ -525,10 +525,11 @@ func int DIA_Jan_DJG_ARMOR_M_Condition()
 func void DIA_Jan_DJG_ARMOR_M_Info()
 {
 	AI_Output(other,self,"DIA_Jan_DJG_ARMOR_M_15_00");	//Я хочу купить эти доспехи.
-	if(Npc_HasItems(other,ItMi_Gold) >= 12000)
+	if(Npc_HasItems(other,ItMi_Gold) >= VALUE_ITAR_DJG_M)
 	{
 		AI_Output(self,other,"DIA_Jan_DJG_ARMOR_M_10_01");	//Ты увидишь, они стоят своих денег.
-		B_GiveInvItems(other,self,ItMi_Gold,12000);
+		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_M);
+		Npc_RemoveInvItems(self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		CreateInvItem(hero,ITAR_DJG_M);
 		AI_PrintScreen("Средние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_EquipArmor(hero,ITAR_DJG_M);

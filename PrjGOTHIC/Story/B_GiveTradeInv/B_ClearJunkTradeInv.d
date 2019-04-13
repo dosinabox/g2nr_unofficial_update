@@ -23,7 +23,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_Claw,Npc_HasItems(slf,ItAt_Claw));
 		Npc_RemoveInvItems(slf,ItAt_LurkerClaw,Npc_HasItems(slf,ItAt_LurkerClaw));
 		Npc_RemoveInvItems(slf,ItAt_Teeth,Npc_HasItems(slf,ItAt_Teeth));
-		Npc_RemoveInvItems(slf,ItAt_CrawlerMandibles,Npc_HasItems(slf,ItAt_CrawlerMandibles));
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(VLK_404_Lutero))
+		{
+			Npc_RemoveInvItems(slf,ItAt_CrawlerMandibles,Npc_HasItems(slf,ItAt_CrawlerMandibles));
+		};
 		Npc_RemoveInvItems(slf,ItAt_Wing,Npc_HasItems(slf,ItAt_Wing));
 		Npc_RemoveInvItems(slf,ItAt_Sting,Npc_HasItems(slf,ItAt_Sting));
 		Npc_RemoveInvItems(slf,ItAt_LurkerSkin,Npc_HasItems(slf,ItAt_LurkerSkin));
@@ -42,6 +45,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItFo_Bacon,Npc_HasItems(slf,ItFo_Bacon));
 		Npc_RemoveInvItems(slf,ItFo_Bread,Npc_HasItems(slf,ItFo_Bread));
 		Npc_RemoveInvItems(slf,ItFo_Fish,Npc_HasItems(slf,ItFo_Fish));
+		Npc_RemoveInvItems(slf,ItFo_SmellyFish,Npc_HasItems(slf,ItFo_SmellyFish));
 		Npc_RemoveInvItems(slf,ItFoMuttonRaw,Npc_HasItems(slf,ItFoMuttonRaw));
 		Npc_RemoveInvItems(slf,ItFoMutton,Npc_HasItems(slf,ItFoMutton));
 		Npc_RemoveInvItems(slf,ItFo_Stew,Npc_HasItems(slf,ItFo_Stew));
@@ -53,6 +57,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItFo_Booze,Npc_HasItems(slf,ItFo_Booze));
 		Npc_RemoveInvItems(slf,ItFo_Wine,Npc_HasItems(slf,ItFo_Wine));
 		Npc_RemoveInvItems(slf,ItFo_Milk,Npc_HasItems(slf,ItFo_Milk));
+		Npc_RemoveInvItems(slf,ItFo_Addon_Shellflesh,Npc_HasItems(slf,ItFo_Addon_Shellflesh));
 //		Npc_RemoveInvItems(slf,ItMi_Stomper,Npc_HasItems(slf,ItMi_Stomper));
 //		Npc_RemoveInvItems(slf,ItMi_Hammer,Npc_HasItems(slf,ItMi_Hammer));
 //		Npc_RemoveInvItems(slf,ItMi_Scoop,Npc_HasItems(slf,ItMi_Scoop));
@@ -86,6 +91,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItPl_Blueplant,Npc_HasItems(slf,ItPl_Blueplant));
 		Npc_RemoveInvItems(slf,ItPl_Forestberry,Npc_HasItems(slf,ItPl_Forestberry));
 		Npc_RemoveInvItems(slf,ItPl_Planeberry,Npc_HasItems(slf,ItPl_Planeberry));
+		Npc_RemoveInvItems(slf,ItLsTorchburned,Npc_HasItems(slf,ItLsTorchburned));
 	};
 };
 
@@ -98,11 +104,11 @@ func void B_ClearTools(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItMi_Scoop,Npc_HasItems(slf,ItMi_Scoop));
 		Npc_RemoveInvItems(slf,ItMi_Brush,Npc_HasItems(slf,ItMi_Brush));
 		Npc_RemoveInvItems(slf,ItMi_Rake,Npc_HasItems(slf,ItMi_Rake));
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(VLK_468_Canthar))
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Canthar))
 		{
 			Npc_RemoveInvItems(slf,ItMi_Saw,Npc_HasItems(slf,ItMi_Saw));
 		};
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(VLK_416_Matteo))
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Matteo))
 		{
 			Npc_RemoveInvItems(slf,ItMi_Broom,Npc_HasItems(slf,ItMi_Broom));
 			Npc_RemoveInvItems(slf,ItMi_Lute,Npc_HasItems(slf,ItMi_Lute));

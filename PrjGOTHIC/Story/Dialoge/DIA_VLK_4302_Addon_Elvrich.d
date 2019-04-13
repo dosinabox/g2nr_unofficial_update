@@ -145,6 +145,9 @@ func void DIA_Addon_Elvrich_MissingPeople_Info()
 };
 
 
+var int Elvrich_AskedLucia;
+var int Elvrich_AskedPirates;
+
 instance DIA_Addon_Elvrich_WhatExactly(C_Info)
 {
 	npc = VLK_4302_Addon_Elvrich;
@@ -171,8 +174,8 @@ func void DIA_Addon_Elvrich_WhatExactly_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_04_03");	//Я дошел до места, где ждала меня Люсия, и вдруг появились бандиты и схватили нас обоих.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_04_04");	//Конечно, я сопротивлялся, но их было слишком много. Ты, кстати, их не встречал?
 	Info_ClearChoices(DIA_Addon_Elvrich_WhatExactly);
-	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Что хотели от тебя бандиты?",DIA_Addon_Elvrich_WhatExactly_Want);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Расскажи мне о Люсии.",DIA_Addon_Elvrich_WhatExactly_lucia);
+	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Что хотели от тебя бандиты?",DIA_Addon_Elvrich_WhatExactly_Want);
 };
 
 func void DIA_Addon_Elvrich_WhatExactly_Want()
@@ -205,12 +208,14 @@ func void DIA_Addon_Elvrich_WhatExactly_Here()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_Here_04_01");	//Известно мне о них немного. Честно говоря, я тогда первый раз увидел пиратов.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_Here_04_02");	//Они стараются оставаться в тени. Практически каждый из них - находящийся в розыске преступник.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_Here_04_03");	//У пиратов есть суеверие - они боятся виселиц, так что в городе их не встретишь.
+	Elvrich_AskedPirates = TRUE;
 };
 
 func void DIA_Addon_Elvrich_WhatExactly_lucia()
 {
 	AI_Output(other,self,"DIA_Addon_Elvrich_WhatExactly_lucia_15_00");	//Расскажи мне о Люсии.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_lucia_04_01");	//Это девушка из портового района. Очень красивая. Она работала на этого мерзавца Бромора.
+	Elvrich_AskedLucia = TRUE;
 };
 
 func void DIA_Addon_Elvrich_WhatExactly_pirat()
@@ -222,7 +227,16 @@ func void DIA_Addon_Elvrich_WhatExactly_pirat()
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Чтобы найти место встречи с пиратами, нужно пойти в порт Хориниса и встать на набережной лицом к морю. Затем нужно спрыгнуть в море и поплыть вдоль берега направо.");
+	Info_ClearChoices(DIA_Addon_Elvrich_WhatExactly);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,Dialog_Back,DIA_Addon_Elvrich_WhatExactly_Back);
+	if(Elvrich_AskedLucia == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Расскажи мне о Люсии.",DIA_Addon_Elvrich_WhatExactly_lucia);
+	};
+	if(Elvrich_AskedPirates == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Пираты в Хоринисе?",DIA_Addon_Elvrich_WhatExactly_Here);
+	};
 };
 
 func void DIA_Addon_Elvrich_WhatExactly_Back()
@@ -255,7 +269,7 @@ func void DIA_Addon_Elvrich_Bromor_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_Bromor_04_01");	//Ну, если Люсия что-то и украла у Бромора, у нее отобрали это бандиты.
 	Log_CreateTopic(TOPIC_Addon_BromorsGold,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_BromorsGold,LOG_Running);
-	B_LogEntry(TOPIC_Addon_BromorsGold,"Золотая чаша Бромора, по всей видимости, находится у бандитов, живущих в лесном лагере к северу от фермы Секоба.");
+	B_LogEntry(TOPIC_Addon_BromorsGold,"Золотое блюдо Бромора, по всей видимости, находится у бандитов, живущих в лесном лагере к северу от фермы Секоба.");
 };
 
 
@@ -342,10 +356,12 @@ func void DIA_Addon_Elvrich_LuciaLetter_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Elvrich_LuciaLetter_15_00");	//Я нашел письмо от Люсии.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_01");	//(возбужденно) Что? Дай его сюда!
+	AI_PrintScreen("Прощальное письмо Люсии отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_02");	//(в отчаянии) Нет! Я не верю! Я просто не могу поверить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_03");	//(в отчаянии) Она не может меня вот так вот бросить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_04");	//Забери это письмо! Я не хочу его видеть. Я верю, что когда-нибудь она ко мне вернется.
+	AI_PrintScreen("Прощальное письмо Люсии получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Lucia,"Элврих не хочет верить, что Люсия ушла с бандитами добровольно. Несмотря на письмо, которое она ему написала, он все еще надеется на ее возвращение.");
@@ -381,6 +397,8 @@ func void DIA_Addon_Elvrich_WasNun_Info()
 	AI_Output(other,self,"DIA_Addon_Elvrich_WasNun_15_03");	//Думаю, что да...
 	AI_Output(self,other,"DIA_Addon_Elvrich_WasNun_04_04");	//Если найдешь Люсию, отведи ее в город, хорошо?
 	AI_Output(other,self,"DIA_Addon_Elvrich_WasNun_15_05");	//Я посмотрю, что смогу сделать.
+	CreateInvItem(self,ItMw_1h_Vlk_Axe);
+	AI_EquipBestMeleeWeapon(self);
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Элврих вернулся к мастеру Торбену.");

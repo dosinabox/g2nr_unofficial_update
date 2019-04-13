@@ -9,7 +9,7 @@ instance BAU_900_Onar(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_ShortSword5);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,ITAR_Vlk_H);
 	Mdl_SetModelFatness(self,2);

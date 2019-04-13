@@ -10,6 +10,7 @@ func void B_Upgrade_Hero_HackChance(var int Wert)
 	{
 		Hero_HackChance = 100;
 	};
-	Snd_Play("Geldbeutel");
+//	Snd_Play("Geldbeutel");
+	Snd_Play("LevelUp");
 };
 

@@ -34,3 +34,15 @@ func void Rtn_Meatbugs_4100()
 	TA_Guard_Passage(23,0,8,0,"OC_BRUTUS_MEATBUGS");
 };
 
+func void Rtn_RunFromStart_4100()
+{
+	TA_FleeToWP(8,0,23,0,"OC_WALL_05");
+	TA_FleeToWP(23,0,8,0,"OC_WALL_05");
+};
+
+func void Rtn_RunToStart_4100()
+{
+	TA_FleeToWP(8,0,23,0,"OC_FOLTER_SHARP");
+	TA_FleeToWP(23,0,8,0,"OC_FOLTER_SHARP");
+};
+

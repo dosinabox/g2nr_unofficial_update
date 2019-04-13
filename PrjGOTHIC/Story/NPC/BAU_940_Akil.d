@@ -11,7 +11,7 @@ instance BAU_940_Akil(Npc_Default)
 	attribute[ATR_HITPOINTS] = 300;
 	attribute[ATR_HITPOINTS_MAX] = 300;
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_ShortSword2);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Grim,BodyTex_N,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,1);

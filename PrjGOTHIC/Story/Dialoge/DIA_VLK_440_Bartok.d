@@ -369,9 +369,9 @@ func int DIA_Bartok_Zusammen_Condition()
 
 func void DIA_Bartok_Zusammen_Info()
 {
+	AI_Output(other,self,"DIA_Bartok_Zusammen_15_00");	//Почему бы нам не поохотиться вместе?
 	if(Bartok_Later == FALSE)
 	{
-		AI_Output(other,self,"DIA_Bartok_Zusammen_15_00");	//Почему бы нам не поохотиться вместе?
 		AI_Output(self,other,"DIA_Bartok_Zusammen_04_01");	//Хм. Вдвоем охотиться не так опасно, это точно...
 		AI_Output(self,other,"DIA_Bartok_Zusammen_04_02");	//А что ты знаешь об охоте, а?
 		AI_Output(self,other,"DIA_Bartok_Zusammen_04_03");	//Я имею в виду, ты знаешь, как снимать шкуры с животных?
@@ -448,6 +448,14 @@ func void DIA_Bartok_HuntNOW_Info()
 	AI_Output(other,self,"DIA_Bartok_HuntNOW_15_00");	//Пойдем охотиться!
 	AI_Output(self,other,"DIA_Bartok_HuntNOW_GO_04_01");	//Хорошо, пошли за мной. За южными воротами начинается лес. Там водится более чем достаточно всяких тварей.
 	AI_Output(self,other,"DIA_Bartok_HuntNOW_GO_04_02");	//(себе под нос) Даже больше, чем хотелось бы...
+	CreateInvItem(self,ITAR_Leather_L);
+	CreateInvItem(self,ItRw_Bow_M_03);
+	if(!Npc_HasItems(self,ItRw_Arrow) < 30)
+	{
+		CreateInvItems(self,ItRw_Arrow,40);
+	};
+	AI_EquipArmor(self,ITAR_Leather_L);
+	AI_EquipBestRangedWeapon(self);
 	Bartok_Los = TRUE;
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
@@ -491,6 +499,12 @@ func void DIA_Bartok_ImWald_NachHause()
 {
 	AI_Output(other,self,"DIA_Bartok_ImWald_NachHause_15_00");	//Пойдем назад!
 	AI_Output(self,other,"DIA_Bartok_ImWald_NachHause_04_01");	//Я тоже так думаю. А то мы так попадем прямо в объятия орка.
+	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
+	AI_EquipArmor(self,ITAR_Vlk_L);
+	AI_UnequipWeapons(self);
+	AI_EquipBestMeleeWeapon(self);
+	Npc_RemoveInvItem(self,ItRw_Bow_M_03);
+//	Npc_RemoveInvItem(self,ITAR_Leather_L);
 	Info_ClearChoices(DIA_Bartok_ImWald);
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
@@ -543,6 +557,12 @@ func void DIA_Bartok_Angekommen_Info()
 	};
 	AI_Output(self,other,"DIA_Bartok_Angekommen_04_03");	//Еще увидимся!
 	AI_Output(self,other,"DIA_Bartok_Angekommen_04_04");	//Ты можешь продать шкуры Босперу.
+	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
+	AI_EquipArmor(self,ITAR_Vlk_L);
+	AI_UnequipWeapons(self);
+	AI_EquipBestMeleeWeapon(self);
+	Npc_RemoveInvItem(self,ItRw_Bow_M_03);
+//	Npc_RemoveInvItem(self,ITAR_Leather_L);
 	Bartok_Ende = TRUE;
 	B_GivePlayerXP(XP_Bartok_Deal);
 	AI_StopProcessInfos(self);

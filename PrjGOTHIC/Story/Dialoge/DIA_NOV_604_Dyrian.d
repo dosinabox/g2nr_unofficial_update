@@ -75,9 +75,16 @@ func void DIA_Dyrian_Wurst_Info()
 	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
-	NovizeLeft = IntToString(13 - Wurst_Gegeben);
-	NovizeText = ConcatStrings(NovizeLeft,PRINT_NovizenLeft);
-	AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	if(Wurst_Gegeben >= 13)
+	{
+		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	}
+	else
+	{
+		NovizeLeft = IntToString(13 - Wurst_Gegeben);
+		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
+		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	};
 };
 
 
@@ -94,7 +101,7 @@ instance DIA_Dyrian_Job(C_Info)
 
 func int DIA_Dyrian_Job_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Dyrian_Hello) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Hello) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
 	{
 		return TRUE;
 	};
@@ -121,7 +128,7 @@ instance DIA_Dyrian_WhatDone(C_Info)
 
 func int DIA_Dyrian_WhatDone_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(other,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
 	{
 		return TRUE;
 	};
@@ -150,7 +157,7 @@ instance DIA_Dyrian_CanHelp(C_Info)
 
 func int DIA_Dyrian_CanHelp_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
+	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
 	{
 		return TRUE;
 	};
@@ -176,7 +183,7 @@ instance DIA_Dyrian_Scroll(C_Info)
 
 func int DIA_Dyrian_Scroll_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) || (MIS_RUNE == LOG_Running) || (MIS_GOLEM == LOG_Running))
+	if((Kapitel == 1) && (MIS_SCHNITZELJAGD == LOG_Running) || (MIS_RUNE == LOG_Running) || (MIS_GOLEM == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -223,6 +230,7 @@ func void DIA_Dyrian_Scroll_Yes()
 {
 	AI_Output(other,self,"DIA_Dyrian_Scroll_Yes_15_00");	//Хорошо, давай мне этот свиток.
 	AI_Output(self,other,"DIA_Dyrian_Scroll_Yes_13_01");	//Удачи тебе в этом испытании. Да поможет тебе Иннос.
+	CreateInvItems(self,ItSc_Sleep,1);
 	B_GiveInvItems(self,other,ItSc_Sleep,1);
 	MIS_HelpDyrian = LOG_Running;
 	Log_CreateTopic(Topic_DyrianDrin,LOG_MISSION);
@@ -245,7 +253,7 @@ instance DIA_Dyrian_Doch(C_Info)
 
 func int DIA_Dyrian_Doch_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Dyrian_Scroll) && (MIS_HelpDyrian != LOG_Running) && (other.guild == GIL_NOV))
+	if((Kapitel == 1) && Npc_KnowsInfo(hero,DIA_Dyrian_Scroll) && (MIS_HelpDyrian != LOG_Running) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -321,7 +329,8 @@ func void DIA_Dyrian_HowIsIt_Info()
 {
 	B_Dyrian_PlayerHowIsIt();
 	AI_Output(self,other,"DIA_Dyrian_HowIsIt_13_01");	//Хорошо. Мне очень нравится моя работа, Мастер.
-	AI_StopProcessInfos(self);
+	AI_Output(self,other,"DIA_Dyrian_HowIsIt_13_02");	//Я благодарен Инносу за то, что могу жить в монастыре.
+//	AI_StopProcessInfos(self);
 };
 
 
@@ -347,8 +356,10 @@ func int DIA_Dyrian_other_Condition()
 func void DIA_Dyrian_other_Info()
 {
 	B_Dyrian_PlayerHowIsIt();
-	AI_Output(self,other,"DIA_Dyrian_HowIsIt_13_02");	//Я благодарен Инносу за то, что могу жить в монастыре.
+	B_Say(self,other,"$NOTNOW");
 	AI_StopProcessInfos(self);
+//	AI_Output(self,other,"DIA_Dyrian_HowIsIt_13_02");	//Я благодарен Инносу за то, что могу жить в монастыре.
+//	AI_StopProcessInfos(self);
 };
 
 
@@ -358,7 +369,8 @@ instance DIA_Dyrian_Kneipe(C_Info)
 	nr = 3;
 	condition = DIA_Dyrian_Kneipe_Condition;
 	information = DIA_Dyrian_Kneipe_Info;
-	permanent = TRUE;
+//	permanent = TRUE;
+	permanent = FALSE;
 	description = "Как дела?";
 };
 

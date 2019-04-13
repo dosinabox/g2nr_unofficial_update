@@ -270,7 +270,7 @@ instance PC_Circle_05(C_Info)
 
 func int PC_Circle_05_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_IceWave] == TRUE) || (PLAYER_TALENT_RUNES[SPL_SummonDemon] == TRUE) || (PLAYER_TALENT_RUNES[SPL_FullHeal] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Pyrokinesis] == TRUE)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_IceWave] == TRUE) || (PLAYER_TALENT_RUNES[SPL_SummonDemon] == TRUE) || (PLAYER_TALENT_RUNES[SPL_FullHeal] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Pyrokinesis] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Shrink] == TRUE)))
 	{
 		return TRUE;
 	};
@@ -296,6 +296,10 @@ func void PC_Circle_05_Info()
 	{
 		Info_AddChoice(PC_Circle_05,NAME_SPL_Pyrokinesis,PC_ItRu_Pyrokinesis_Info);
 	};
+	if(PLAYER_TALENT_RUNES[SPL_Shrink] == TRUE)
+	{
+		Info_AddChoice(PC_Circle_05,NAME_SPL_Shrink,PC_ItRu_Shrink_Info);
+	};
 };
 
 func void PC_Circle_05_BACK()
@@ -316,7 +320,7 @@ instance PC_Circle_06(C_Info)
 
 func int PC_Circle_06_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_Firerain] == TRUE) || (PLAYER_TALENT_RUNES[SPL_BreathOfDeath] == TRUE) || (PLAYER_TALENT_RUNES[SPL_MassDeath] == TRUE) || (PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Shrink] == TRUE)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_Firerain] == TRUE) || (PLAYER_TALENT_RUNES[SPL_BreathOfDeath] == TRUE) || (PLAYER_TALENT_RUNES[SPL_MassDeath] == TRUE) || (PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] == TRUE)))
 	{
 		return TRUE;
 	};
@@ -342,10 +346,10 @@ func void PC_Circle_06_Info()
 	{
 		Info_AddChoice(PC_Circle_06,NAME_SPL_ArmyOfDarkness,PC_ItRu_ArmyOfDarkness_Info);
 	};
-	if(PLAYER_TALENT_RUNES[SPL_Shrink] == TRUE)
+/*	if(PLAYER_TALENT_RUNES[SPL_Shrink] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_06,NAME_SPL_Shrink,PC_ItRu_Shrink_Info);
-	};
+	};*/
 };
 
 func void PC_Circle_06_BACK()
@@ -378,7 +382,7 @@ func void PC_SPL_MasterOfDisaster_Info()
 	Info_AddChoice(PC_SPL_MasterOfDisaster,Dialog_Back,PC_SPL_MasterOfDisaster_BACK);
 	if(PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] == TRUE)
 	{
-		Info_AddChoice(PC_SPL_MasterOfDisaster,"Секрет библиотеки!",PC_SPL_MasterOfDisaster_Create);
+		Info_AddChoice(PC_SPL_MasterOfDisaster,NAME_SPL_MasterOfDisaster,PC_SPL_MasterOfDisaster_Create);
 	};
 };
 
@@ -410,7 +414,7 @@ instance PC_SPL_PalTeleportSecret(C_Info)
 	condition = PC_SPL_PalTeleportSecret_Condition;
 	information = PC_SPL_PalTeleportSecret_Info;
 	permanent = TRUE;
-	description = "Создать руну телепорта";
+	description = "Секрет библиотеки!";
 };
 
 
@@ -428,7 +432,7 @@ func void PC_SPL_PalTeleportSecret_Info()
 	Info_AddChoice(PC_SPL_PalTeleportSecret,Dialog_Back,PC_SPL_PalTeleportSecret_BACK);
 	if(PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] == TRUE)
 	{
-		Info_AddChoice(PC_SPL_PalTeleportSecret,"Секрет библиотеки!",PC_SPL_PalTeleportSecret_Create);
+		Info_AddChoice(PC_SPL_PalTeleportSecret,NAME_SPL_PalTeleportSecret,PC_SPL_PalTeleportSecret_Create);
 	};
 };
 

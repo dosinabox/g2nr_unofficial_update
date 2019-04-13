@@ -25,6 +25,9 @@ instance ItWr_Canthars_KomproBrief_MIS(C_Item)
 	on_state[0] = Use_Canthars_KomproBrief;
 	scemeName = "MAP";
 	description = "Письмо Кантара торговке Саре";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -147,7 +150,7 @@ func void Use_TheklasPacket()
 
 instance ItMi_MariasGoldPlate(C_Item)
 {
-	name = "Тяжелое золотое блюдо";
+	name = "Золотое блюдо";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_GoldPlate;
@@ -226,6 +229,9 @@ instance ItWr_Kraeuterliste(C_Item)
 	on_state[0] = Use_Kraeuterliste;
 	scemeName = "MAP";
 	description = "Список трав Константино";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -262,7 +268,7 @@ func void Use_Kraeuterliste()
 
 instance ItWr_ManaRezept(C_Item)
 {
-	name = "Рецепт";
+	name = "Рецепт магической эссенции";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 20;
@@ -270,9 +276,12 @@ instance ItWr_ManaRezept(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_ManaRezept;
 	scemeName = "MAP";
-	description = "Рецепт магической эссенции";
+	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -288,11 +297,12 @@ func void Use_ManaRezept()
 	Doc_PrintLine(nDocID,0,"Магические зелья");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Чтобы сварить магическое зелье, опытному алхимику необходимы:");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Огненная крапива");
 	Doc_PrintLine(nDocID,0,"Огненная трава");
 	Doc_PrintLine(nDocID,0,"Огненный корень");
-	Doc_PrintLines(nDocID,0,"Также ему понадобится");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"Также ему понадобится:");
 	Doc_PrintLine(nDocID,0,"Луговой горец");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Мастер Неорас");
@@ -312,10 +322,13 @@ instance ItWr_Passierschein(C_Item)
 	on_state[0] = UsePassierschein;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Эти бумаги позволят мне";
+	text[0] = "Эта бумага позволит мне";
 	text[1] = "пройти мимо стражников у ворот.";
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -413,7 +426,7 @@ instance ItFo_HalvorFish_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItFo_Fish_02.3DS";
+	visual = "ItFo_Fish.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_HalvorFish;
@@ -425,6 +438,7 @@ instance ItFo_HalvorFish_MIS(C_Item)
 
 func void Use_HalvorFish()
 {
+	Snd_Play("CS_IHL_WO_WA");
 	CreateInvItems(hero,ItWr_HalvorMessage,1);
 	Print(PRINT_FishLetter);
 };
@@ -442,6 +456,9 @@ instance ItWr_HalvorMessage(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Эта записка была спрятана в рыбе.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -537,6 +554,7 @@ instance ItWr_VatrasMessage(C_Item)
 func void UseVatrasMessage()
 {
 	var int nDocID;
+	Snd_Play("PICKLOCK_BROKEN");
 	CreateInvItems(self,ItWr_VatrasMessage_Open,1);
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
@@ -568,6 +586,9 @@ instance ItWr_VatrasMessage_Open(C_Item)
 	description = name;
 	text[0] = "Послание Ватраса магам Огня.";
 	text[1] = "Печать сломана.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -609,7 +630,7 @@ instance ItKe_ThiefGuildKey_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItKe_Key_01.3ds";
+	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Этот ключ изъеден";
@@ -728,8 +749,9 @@ instance ItPo_Perm_LittleMana(C_Item)
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
-	value = 150;
-	visual = "ItPo_Perm_Mana.3ds";
+	value = 900;
+//	visual = "ItPo_Perm_Mana.3ds";
+	visual = "ItMi_UltharsHolyWater.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_LittleMana;
 	scemeName = "POTIONFAST";
@@ -784,7 +806,7 @@ instance ItKe_MagicChest(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 0;
-	visual = "ItKe_Key_02.3ds";
+	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Старый железный ключ.";
@@ -805,6 +827,9 @@ instance ItWr_Passage_MIS(C_Item)
 	description = name;
 	text[0] = "Эта записка должна помочь мне";
 	text[1] = "встретиться с лордом Хагеном.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -843,6 +868,10 @@ instance ItWr_BanditLetter_MIS(C_Item)
 	on_state[0] = UseBanditLetter;
 	scemeName = "MAP";
 	description = name;
+	text[0] = "Я забрал его у одного из бандитов Браго.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -893,6 +922,9 @@ instance ItWr_Poster_MIS(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Мое изображение!";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -982,16 +1014,17 @@ func void UnEquip_ItRi_Prot_Point_01_MIS()
 
 instance ItMi_EddasStatue(C_Item)
 {
-	name = "Статуя Инноса";
+	name = "Статуэтка Инноса";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
-	value = 50;
+	value = Value_InnosStatue;
 	visual = "ItMi_InnosStatue.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "'Иннос, бог правосудия,";
-	text[1] = "благослови и сохрани меня,";
-	text[2] = "и защити меня от боли'.";
+	text[0] = "На задней стороне нацарапаны слова:";
+	text[1] = "'Иннос, бог правосудия,";
+	text[2] = "благослови и сохрани меня,";
+	text[3] = "и защити меня от боли'.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1002,10 +1035,10 @@ instance ItKe_EVT_CRYPT_01(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
-	visual = "ItKe_Key_01.3ds";
+	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Это ключ скелета в комнате 1.";
+	text[0] = "Это ключ скелета из первой комнаты.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1016,10 +1049,10 @@ instance ItKe_EVT_CRYPT_02(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
-	visual = "ItKe_Key_01.3ds";
+	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Это ключ скелета в комнате 2.";
+	text[0] = "Это ключ скелета из второй комнаты.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1030,10 +1063,10 @@ instance ItKe_EVT_CRYPT_03(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
-	visual = "ItKe_Key_01.3ds";
+	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Это ключ скелета в комнате 3.";
+	text[0] = "Это ключ скелета из третьей комнаты.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1170,7 +1203,7 @@ instance ItKe_Fingers(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
-	visual = "ItKe_Key_03.3ds";
+	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ржавый ключ от двери";
@@ -1241,7 +1274,7 @@ instance ItPl_Sagitta_Herb_MIS(C_Item)
 	value = Value_Strength_Herb_01;
 //	visual = "ItPl_Strength_Herb_01.3DS";
 	visual = "ItPl_Strength_Herb_02.3DS";
-	material = MAT_WOOD;
+	material = MAT_LEATHER;
 	scemeName = "FOOD";
 	description = name;
 	text[5] = NAME_Value;
@@ -1269,8 +1302,8 @@ instance ItRw_DragomirsArmbrust_MIS(C_Item)
 	mainflag = ITEM_KAT_FF;
 	flags = ITEM_CROSSBOW;
 	material = MAT_WOOD;
-	value = Value_LeichteArmbrust;
-	damageTotal = Damage_LeichteArmbrust;
+	value = 1000;
+	damageTotal = 65;
 	damagetype = DAM_POINT;
 	munition = ItRw_Bolt;
 	cond_atr[2] = ATR_STRENGTH;

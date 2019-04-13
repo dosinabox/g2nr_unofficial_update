@@ -41,6 +41,13 @@ instance Waran(Mst_Default_Waran)
 	Npc_SetToFistMode(self);
 };
 
+instance Waran_Rest(Mst_Default_Waran)
+{
+	B_SetVisuals_Waran();
+	start_aistate = ZS_MM_Rtn_Rest;
+	Npc_SetToFistMode(self);
+};
+
 instance BeachWaran1(Mst_Default_Waran)
 {
 	B_SetVisuals_Waran();

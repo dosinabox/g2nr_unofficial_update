@@ -21,6 +21,29 @@ func void DIA_PAL_297_EXIT_Info()
 };
 
 
+instance DIA_PAL_297_FIRST(C_Info)
+{
+	npc = PAL_297_Ritter;
+	nr = 1;
+	condition = DIA_PAL_297_FIRST_Condition;
+	information = DIA_PAL_297_FIRST_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_PAL_297_FIRST_Condition()
+{
+	return TRUE;
+};
+
+func void DIA_PAL_297_FIRST_Info()
+{
+	AI_Output(self,other,"DIA_PAL_297_TRESPAS_04_01");	//«десь очень опасно, так что тебе лучше повернуть назад - мы не хотим, чтобы с тобой что-нибудь произошло.
+	AI_StopProcessInfos(self);
+};
+
+
 instance DIA_PAL_297_TRESPAS(C_Info)
 {
 	npc = PAL_297_Ritter;
@@ -42,7 +65,14 @@ func void DIA_PAL_297_TRESPAS_Info()
 	AI_Output(other,self,"DIA_PAL_297_TRESPAS_15_00");	// ак дела?
 	if(Kapitel == 1)
 	{
-		AI_Output(self,other,"DIA_PAL_297_TRESPAS_04_01");	//«десь очень опасно, так что тебе лучше повернуть назад - мы не хотим, чтобы с тобой что-нибудь произошло.
+		if(Wld_IsRaining())
+		{
+			B_Say(self,other,"$WEATHER");
+		}
+		else
+		{
+			B_Say(self,other,"$WhyAreYouInHere");
+		};
 	}
 	else
 	{

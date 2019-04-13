@@ -156,10 +156,11 @@ func void DIA_Attila_Hallo_Warum()
 	{
 		AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_03");	//Нагур попал за решетку по твоей вине. Кое-кому кажется, что это непростительная ошибка.
 	};
-	if((Betrayal_Halvor == TRUE) || (Rengaru_InKnast == TRUE) || (Nagur_Ausgeliefert == TRUE))
+	if((Betrayal_Halvor == FALSE) && (Rengaru_InKnast == FALSE) && (Nagur_Ausgeliefert == FALSE))
 	{
-		AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_04");	//Мои хозяева недовольны этим. Чтобы не дать тебе совершить еще одну ошибку, они послали меня.
+		B_Say(self,other,"$DieEnemy");
 	};
+	AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_04");	//Мои хозяева недовольны этим. Чтобы не дать тебе совершить еще одну ошибку, они послали меня.
 	Info_ClearChoices(DIA_Attila_Hallo);
 	Info_AddChoice(DIA_Attila_Hallo,"Я могу дать тебе золото - много золота.",DIA_Attila_Hallo_Gold);
 	Info_AddChoice(DIA_Attila_Hallo,"Дай мне хотя бы вынуть свое оружие.",DIA_Attila_Hallo_Attacke);

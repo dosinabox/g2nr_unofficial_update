@@ -581,21 +581,26 @@ func void DIA_DiegoNW_KnowWhereEnemy_Info()
 
 func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 {
+	var C_Item DiegoArmor;
+	DiegoArmor = Npc_GetEquippedArmor(self);
 	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_Yes_15_00");	//Почему бы тебе не отправиться в путь со мной? Встретимся в гавани.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_01");	//Ммм. Ты прав, в Хоринисе все равно нечего делать. Я поплыву с тобой.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Diego_IsOnBoard = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Crewmember_Success);
 	Crewmember_Count += 1;
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23"))
+	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !Hlp_IsItem(DiegoArmor,ITAR_Diego))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_02");	//Подожди, я буду готов через минуту.
-		AI_SetWalkMode(self,NPC_WALK);
+		AI_SetWalkMode(self,NPC_RUN);
 		AI_GotoWP(self,"NW_CITY_UPTOWN_HUT_01_01");
-		CreateInvItems(self,ITAR_Diego,1);
+		if(!Npc_HasItems(self,ITAR_Diego))
+		{
+			CreateInvItems(self,ITAR_Diego,1);
+		};
 		AI_EquipArmor(self,ITAR_Diego);
 		AI_Wait(self,1);
-		AI_GotoWP(self,self.wp);
+		AI_GotoWP(self,"NW_CITY_UPTOWN_PATH_23");
 	};
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_03");	//Ну, я готов. Встретимся у корабля.
 	if(MIS_ReadyforChapter6 == TRUE)
@@ -639,14 +644,31 @@ func int DIA_DiegoNW_LeaveMyShip_Condition()
 
 func void DIA_DiegoNW_LeaveMyShip_Info()
 {
+	var C_Item DiegoArmor;
+	DiegoArmor = Npc_GetEquippedArmor(self);
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_00");	//Ты должен заботиться о городе.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_01");	//Да? Я тебе больше не нужен? Ох, ладно. Не забудь заглянуть ко мне, когда вернешься в город.
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_02");	//Ты думаешь, мы еще встретимся?
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Буллит вырубил тебя. Тогда мы встретились в первый раз.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_04");	//Им никогда не одолеть тебя. Мы ОБЯЗАТЕЛЬНО встретимся снова. Береги себя.
+	if(!Npc_HasItems(self,ITAR_Vlk_H))
+	{
+		CreateInvItems(self,ITAR_Vlk_H,1);
+	};
+	if(!Hlp_IsItem(DiegoArmor,ITAR_Vlk_H))
+	{
+		AI_EquipArmor(self,ITAR_Vlk_H);
+	};
 	Diego_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count -= 1;
-	Npc_ExchangeRoutine(self,"Start");
+	if(MIS_DiegosResidence == LOG_SUCCESS)
+	{
+		Npc_ExchangeRoutine(self,"Gerbrandt");
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
 };
 
 
@@ -671,19 +693,25 @@ func int DIA_DiegoNW_StillNeedYou_Condition()
 
 func void DIA_DiegoNW_StillNeedYou_Info()
 {
+	var C_Item DiegoArmor;
+	DiegoArmor = Npc_GetEquippedArmor(self);
 	AI_Output(other,self,"DIA_DiegoNW_StillNeedYou_15_00");	//Возвращайся. Я хочу, чтобы ты сопровождал меня.
 	AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_01");	//Куда подевалась твоя решительность, друг? Конечно, я присоединюсь к тебе - ты только определись с тем, что тебе нужно.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Diego_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count += 1;
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23"))
+	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !Hlp_IsItem(DiegoArmor,ITAR_Diego))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_02");	//Подожди, я буду готов через минуту.
+		AI_SetWalkMode(self,NPC_RUN);
 		AI_GotoWP(self,"NW_CITY_UPTOWN_HUT_01_01");
-		CreateInvItems(self,ITAR_Diego,1);
+		if(!Npc_HasItems(self,ITAR_Diego))
+		{
+			CreateInvItems(self,ITAR_Diego,1);
+		};
 		AI_EquipArmor(self,ITAR_Diego);
 		AI_Wait(self,1);
-		AI_GotoWP(self,self.wp);
+		AI_GotoWP(self,"NW_CITY_UPTOWN_PATH_23");
 	};
 	AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_03");	//Отлично, мы можем идти.
 	AI_StopProcessInfos(self);

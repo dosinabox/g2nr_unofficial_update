@@ -14,6 +14,11 @@ func void ZS_Attack()
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_AssessSurprise);
 	B_ValidateOther();
 	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && (Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000))
+	{
+		B_Flee();
+		return;
+	};
 	if(C_WantToFlee(self,other))
 	{
 		B_Flee();

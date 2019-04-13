@@ -10,6 +10,7 @@ instance VLK_4111_Grimes(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2H_Axe_L_01);
+	CreateInvItems(self,ItLsTorchburned,1);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_ImportantGrey,BodyTex_N,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,0);

@@ -68,7 +68,7 @@ instance DIA_Borka_PISSOFF(C_Info)
 
 func int DIA_Borka_PISSOFF_Condition()
 {
-	if((Knows_Borka_Dealer != TRUE) && (Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist))
+	if((Knows_Borka_Dealer != TRUE) && ((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk)))
 	{
 		return TRUE;
 	};

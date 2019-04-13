@@ -5,6 +5,10 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
+	if(slf.guild == GIL_FRIENDLY_ORC)
+	{
+		return FALSE;
+	};
 	if((slf.npcType == NPCTYPE_FRIEND) && Npc_IsPlayer(oth))
 	{
 		return FALSE;
@@ -18,6 +22,14 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 		return FALSE;
 	};
 	if(C_NpcIsGateGuard(slf))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril)) && Npc_KnowsInfo(hero,DIA_Salandril_GehinsKloster))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDTWache) && !Npc_KnowsInfo(hero,DIA_1061_Wache_Hallo))
 	{
 		return FALSE;
 	};

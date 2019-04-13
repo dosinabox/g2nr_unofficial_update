@@ -290,6 +290,29 @@ func void Use_Brush()
 };
 */
 
+/*instance ItMi_Pipe(C_Item)
+{
+	name = "“рубка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 20;
+//	visual = "ItMi_Joint_US.3ds";
+	visual = "ItMi_Pipe.3ds";
+	material = MAT_LEATHER;
+	scemeName = "JOINT";
+	on_state[0] = Use_Pipe;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+//	inv_zbias = 200;
+};
+
+
+func void Use_Pipe()
+{
+	CreateInvItem(self,ItMi_Pipe);
+};*/
 
 instance ItMi_Joint(C_Item)
 {
@@ -380,7 +403,7 @@ instance ItMi_Nugget(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = INVCAM_ENTF_MISC2_STANDARD;
+	inv_zbias = 200;
 };
 
 instance ItMi_Gold(C_Item)
@@ -677,7 +700,7 @@ instance ItMi_Pitch(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_Pitch;
 	visual = "ItMi_Pitch.3DS";
-	material = MAT_GLAS;
+	material = MAT_STONE;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -757,13 +780,13 @@ instance ItMi_ApfelTabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_ApfelTabak;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_FoodPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = " исет с €блочным табаком.";
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = 190;
+	inv_zbias = 190;
 };
 
 instance ItMi_PilzTabak(C_Item)
@@ -772,13 +795,13 @@ instance ItMi_PilzTabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_PilzTabak;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_FoodPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "“емный €блочно-грибной табак.";
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = 190;
+	inv_zbias = 190;
 };
 
 instance ItMi_DoppelTabak(C_Item)
@@ -787,13 +810,13 @@ instance ItMi_DoppelTabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_DoppelTabak;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_FoodPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "Ќа вкус похоже на €блоко...";
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = 190;
+	inv_zbias = 190;
 };
 
 instance ItMi_Honigtabak(C_Item)
@@ -802,13 +825,13 @@ instance ItMi_Honigtabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_HonigTabak;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_FoodPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "—ладкий €блочный табак.";
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = 190;
+	inv_zbias = 190;
 };
 
 instance ItMi_SumpfTabak(C_Item)
@@ -817,12 +840,12 @@ instance ItMi_SumpfTabak(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = VALUE_ItMi_SumpfTabak;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_FoodPocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "—месь из болотной травы.";
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = 190;
+	inv_zbias = 190;
 };
 

@@ -11,7 +11,7 @@ instance DIA_Addon_Lares_Patch(C_Info)
 
 func int DIA_Addon_Lares_Patch_Condition()
 {
-	if(Npc_HasItems(self,ItMi_Ornament_Addon_Vatras) && (Kapitel >= 3))
+	if(Npc_HasItems(self,ItMi_Ornament_Addon_Vatras) && (Kapitel >= 3) && (ENTERED_ADDONWORLD == FALSE))
 	{
 		return TRUE;
 	};
@@ -131,7 +131,7 @@ func int DIA_Lares_HALLO_Condition()
 func void DIA_Lares_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Lares_HALLO_09_00");	//Я, должно быть, сошел с ума! Что ты делаешь здесь?
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (Npc_GetDistToWP(self,"HAFEN") < 10000))
 	{
 		AI_Output(self,other,"DIA_Lares_HALLO_09_01");	//Ты что, ПРИПЛЫЛ сюда?
 		AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.
@@ -1253,7 +1253,7 @@ instance DIA_Lares_OtherGuild(C_Info)
 
 func int DIA_Lares_OtherGuild_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (other.guild != GIL_NONE) && (SC_IsRanger == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (other.guild != GIL_NONE) && (SC_IsRanger == FALSE) && Npc_KnowsInfo(other,DIA_Lares_HALLO))
 	{
 		return TRUE;
 	};

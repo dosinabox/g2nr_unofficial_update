@@ -299,7 +299,7 @@ func void DIA_Parlan_WELCOME_Info()
 	AI_Output(other,self,"DIA_Parlan_WELCOME_15_05");	//И что теперь?
 	AI_Output(self,other,"DIA_Parlan_WELCOME_05_06");	//Прежде всего, ты должен выполнять свои обязанности послушника. Ты будешь работать и служить Братству.
 	B_GrantAbsolution(LOC_ALL);
-	Snd_Play("LEVELUP");
+//	Snd_Play("LEVELUP");
 	Log_CreateTopic(Topic_Gemeinschaft,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Gemeinschaft,LOG_Running);
 	B_LogEntry(Topic_Gemeinschaft,"В обязанности послушника входит выполнять работы на благо общины.");

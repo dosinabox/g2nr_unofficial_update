@@ -125,3 +125,17 @@ instance LURKERTRANSFORM(Mst_Default_Lurker)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
+instance Lurker_SecretCave1(Mst_Default_Lurker)
+{
+	B_SetVisuals_Lurker();
+	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+
+instance Lurker_SecretCave2(Mst_Default_Lurker)
+{
+	B_SetVisuals_Lurker();
+	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+

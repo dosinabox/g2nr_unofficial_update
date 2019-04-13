@@ -204,7 +204,7 @@ func void DIA_Addon_Lucia_Paladine_Info()
 	if((Npc_GetTrueGuild(other) != GIL_SLD) && (Npc_GetTrueGuild(other) != GIL_DJG))
 	{
 		Info_ClearChoices(DIA_Addon_Lucia_Paladine);
-		Info_AddChoice(DIA_Addon_Lucia_Paladine,"Закончить разговор",DIA_Addon_Lucia_Paladine_BACK);
+		Info_AddChoice(DIA_Addon_Lucia_Paladine,"(промолчать)",DIA_Addon_Lucia_Paladine_BACK);
 		Info_AddChoice(DIA_Addon_Lucia_Paladine,"Но паладины сражаются во имя Инноса, который выбирает своих воинов.",DIA_Addon_Lucia_Paladine_WAHL);
 		Info_AddChoice(DIA_Addon_Lucia_Paladine,"Паладины - это воины Инноса. Они не убийцы.",DIA_Addon_Lucia_Paladine_MURDER);
 	};

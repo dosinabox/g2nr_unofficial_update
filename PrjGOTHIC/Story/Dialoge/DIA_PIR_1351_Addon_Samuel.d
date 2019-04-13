@@ -92,7 +92,7 @@ instance DIA_Addon_Samuel_Versteck(C_Info)
 
 func int DIA_Addon_Samuel_Versteck_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (Francis_ausgeschissen == FALSE) && (GregIsBack == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (Francis_ausgeschissen == FALSE) && (GregIsBack == FALSE) && !Npc_IsDead(Francis))
 	{
 		return TRUE;
 	};
@@ -329,10 +329,11 @@ func void DIA_Addon_Samuel_Stronger_Info()
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
 	};
-	if(Player_KnowsSchnellerHering == TRUE)
+	/*if(Player_KnowsSchnellerHering == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
-	};
+	};*/
+	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
 };
 
 func void B_Addon_Samuel_NoGold()
@@ -367,10 +368,11 @@ func void DIA_Addon_Samuel_Stronger_SchnellerHering()
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
 	};
-	if(Player_KnowsSchnellerHering == TRUE)
+	/*if(Player_KnowsSchnellerHering == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
-	};
+	};*/
+	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
 };
 
 func void DIA_Addon_Samuel_Stronger_LousHammer()
@@ -395,10 +397,11 @@ func void DIA_Addon_Samuel_Stronger_LousHammer()
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
 	};
-	if(Player_KnowsSchnellerHering == TRUE)
+	/*if(Player_KnowsSchnellerHering == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
-	};
+	};*/
+	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
 };
 
 func void DIA_Addon_Samuel_Stronger_LousDoubleHammer()
@@ -430,10 +433,11 @@ func void DIA_Addon_Samuel_Stronger_LousDoubleHammer()
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
 	};
-	if(Player_KnowsSchnellerHering == TRUE)
+	/*if(Player_KnowsSchnellerHering == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
-	};
+	};*/
+	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
 };
 
 

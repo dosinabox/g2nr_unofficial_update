@@ -108,7 +108,7 @@ func void DIA_Addon_Bromor_Lucia_Info()
 	AI_Output(self,other,"DIA_Addon_Bromor_Lucia_07_05");	//Но тебе-то какое до этого дело? Ты что, хочешь надо мной посмеяться?
 	Log_CreateTopic(TOPIC_Addon_BromorsGold,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_BromorsGold,LOG_Running);
-	B_LogEntry(TOPIC_Addon_BromorsGold,"Шлюха Люсия украла золотую чашу у своего босса, Бромора. Бромор хочет вернуть эту чашу назад.");
+	B_LogEntry(TOPIC_Addon_BromorsGold,"Шлюха Люсия украла золотое блюдо у своего босса, Бромора. Бромор хочет вернуть эту чашу назад.");
 	MIS_Bromor_LuciaStoleGold = LOG_Running;
 };
 

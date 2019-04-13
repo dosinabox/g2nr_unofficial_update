@@ -9,6 +9,10 @@ func void B_Say_AttackReason()
 		{
 			return;
 		};
+		/*if(other.guild != GIL_MEATBUG)
+		{
+			B_Say_Overlay(self,other,"$IGETYOUSTILL");
+		};*/
 		B_Say_Overlay(self,other,"$IGETYOUSTILL");
 		return;
 	};

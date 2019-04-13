@@ -134,3 +134,16 @@ instance ItKe_City_Tower_06(C_Item)
 	count[5] = value;
 };
 
+instance ItKe_Orlan_BackDoor(C_Item)
+{
+	name = NAME_Key;
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItKe_Key_03.3ds";
+	material = MAT_METAL;
+	description = "Ключ Орлана";
+	text[0] = "Открывает заднюю дверь";
+	text[1] = "таверны 'У мертвой гарпии'.";
+};
+

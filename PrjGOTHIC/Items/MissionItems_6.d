@@ -13,7 +13,7 @@ instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 	description = name;
 	text[0] = "ќчень странный кожаный кошелек.";
 	text[1] = "ѕохоже, что в этом мешочке";
-	text[2] = "наход€тс€ твердый объект";
+	text[2] = "наход€тс€ твердый предмет";
 	text[3] = "и документ.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
@@ -214,7 +214,7 @@ instance ItKe_ChestMasterDementor_MIS(C_Item)
 
 instance ItWr_Rezept_MegaDrink_MIS(C_Item)
 {
-	name = NAME_MegaDrink;
+	name = "–ецепт 'Ёмбарла фиргасто'";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -224,6 +224,9 @@ instance ItWr_Rezept_MegaDrink_MIS(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = PRINT_RequiresAlchemyTalent;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -251,7 +254,7 @@ func void Use_RezeptFuerMegaTrank()
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE))
 		{
 			PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
-			B_LogEntry(TOPIC_TalentAlchemy,"»нгредиенты дл€ 'Ёмбарла фиргасто': 10 драконьих €иц, 1 черный жемчуг и 1 сера.");
+			B_LogEntry(TOPIC_TalentAlchemy,"»нгредиенты дл€ 'ЁћЅј–Ћј ‘»–√ј—“ќ': 10 драконьих €иц, 1 черный жемчуг и 1 сера.");
 		};
 	};
 };
@@ -317,6 +320,9 @@ instance ItWr_ZugBruecke_MIS(C_Item)
 	on_state[0] = Use_ZugBruecke;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -358,6 +364,6 @@ instance ItMi_PowerEye(C_Item)
 	description = name;
 //	text[5] = NAME_Value;
 //	count[5] = value;
-	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
+//	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
 };
 

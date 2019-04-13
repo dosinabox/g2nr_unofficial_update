@@ -49,6 +49,8 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Wettsaufen,MIS_Rukhar_Wettkampf,0,6);
 	B_CloseTopic(TOPIC_GaanSchnaubi,MIS_Gaan_Snapper,0,6);
 	B_CloseTopic(TOPIC_GromAskTeacher,0,Grom_TeachAnimalTrophy,6);
+	B_CloseTopic(TOPIC_TalbinCheese,0,Talbin_TeachAnimalTrophy,6);
+	B_CloseTopic(TOPIC_KervoLurkers,MIS_Kervo_KillLurker,0,4);
 	B_CloseTopic(TOPIC_DragomirsArmbrust,MIS_DragomirsArmbrust,0,6);
 	B_CloseTopic(TOPIC_KillLighthouseBandits,MIS_Jack_KillLighthouseBandits,0,6);
 	B_CloseTopic(TOPIC_Torlof_Dmt,MIS_Torlof_Dmt,0,6);

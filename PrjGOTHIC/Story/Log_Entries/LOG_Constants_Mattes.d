@@ -102,4 +102,6 @@ const string Topic_BabosDocs = "Документы";
 const string TOPIC_Wolf_BringCrawlerPlates = "Доспехи из панцирей краулеров";
 const string TOPIC_HelpDiegoNW = "Золото Диего";
 const string TOPIC_DiegosResidence = "Бизнес Диего";
+const string TOPIC_TalbinCheese = "Деликатес";
+const string TOPIC_KervoLurkers = "Западня";
 const string Log_Text_Addon_EdgorTeach = "О кровавых мухах Эдгору известно все.";

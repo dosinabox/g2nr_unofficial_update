@@ -1,7 +1,7 @@
 
 instance PAL_204_Torwache(Npc_Default)
 {
-	name[0] = NAME_Torwache;
+	name[0] = NAME_Ritter;
 	guild = GIL_PAL;
 	id = 204;
 	voice = 9;

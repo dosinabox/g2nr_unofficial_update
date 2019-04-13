@@ -464,7 +464,7 @@ func void DIA_Lord_Hagen_Pass_Info()
 	{
 		B_StartOtherRoutine(Fernando,"WAIT");
 	};
-	Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
+//	Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
 };
 
 
@@ -725,6 +725,11 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	Npc_SetTrueGuild(other,GIL_PAL);
 	CreateInvItems(other,ITAR_PAL_M,1);
 	AI_EquipArmor(other,ITAR_PAL_M);
+	if(Npc_HasItems(other,ItRu_FakePalLight))
+	{
+		CreateInvItem(other,ItRu_PalLight);
+		Npc_RemoveInvItem(other,ItRu_FakePalLight);
+	};
 	if(other.HitChance[NPC_TALENT_2H] >= other.HitChance[NPC_TALENT_1H])
 	{
 		CreateInvItems(self,ItMw_2h_Pal_Sword,1);
@@ -917,10 +922,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	Wld_InsertNpc(BDT_1050_Landstreicher,"NW_TROLLAREA_NOVCHASE_01");
 	Wld_InsertNpc(BDT_1051_Wegelagerer,"NW_TROLLAREA_RITUALFOREST_09");
 	Wld_InsertNpc(BDT_1052_Wegelagerer,"NW_TROLLAREA_RITUALFOREST_09");
-	if(!Npc_IsDead(BDT_1020_Bandit_L))
-	{
-		B_KillNpc(BDT_1020_Bandit_L);
-	};
+	B_KillNpc(BDT_1020_Bandit_L);
 	Wld_InsertNpc(DMT_1200_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	Wld_InsertNpc(DMT_1202_Dementor,"NW_TROLLAREA_RITUAL_01");
 	Wld_InsertNpc(DMT_1204_Dementor,"NW_TROLLAREA_RITUAL_03");
@@ -1016,6 +1018,7 @@ func void DIA_Lord_Hagen_RescueBennet_WhySure()
 	AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_Witness_04_03");	//Ётот наемник будет повешен за измену.
 	B_LogEntry(TOPIC_RescueBennet," орнелиус, секретарь губернатора, €вл€етс€ свидетелем. ќн утверждает, что был свидетелем убийства.");
 	RecueBennet_KnowsCornelius = TRUE;
+	Cornelius.guild = GIL_NONE;
 };
 
 func void DIA_Lord_Hagen_RescueBennet_Innoscent()

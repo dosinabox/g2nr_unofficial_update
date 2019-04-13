@@ -463,7 +463,8 @@ instance DMT_DementorSpeakerVino4(Default_AmbientDementor)
 {
 	id = 1235;
 	aivar[AIV_EnemyOverride] = TRUE;
-	start_aistate = ZS_Stand_Dementor;
+	//start_aistate = ZS_Stand_Dementor;
+	start_aistate = ZS_Obesession;
 };
 
 instance DMT_DementorAmbientSekob1(Default_AmbientDementor)

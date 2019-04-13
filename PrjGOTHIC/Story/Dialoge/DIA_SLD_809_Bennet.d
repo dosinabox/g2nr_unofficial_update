@@ -104,6 +104,10 @@ func void DIA_Bennet_TRADE_Info()
 		B_LogEntry(Topic_SoldierTrader,"Беннет продает кузнечное снаряжение.");
 		BennetLOG = TRUE;
 	};
+	if(!Npc_HasItems(self,ItMw_1H_Mace_L_04) && !Npc_HasItems(other,ItMw_1H_Mace_L_04) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
+	{
+		CreateInvItems(self,ItMw_1H_Mace_L_04,1);
+	};
 	Trade_IsActive = TRUE;
 };
 
@@ -151,7 +155,10 @@ instance DIA_Bennet_BauOrSld(C_Info)
 
 func int DIA_Bennet_BauOrSld_Condition()
 {
-	return TRUE;
+	if((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Bennet_BauOrSld_Info()
@@ -380,13 +387,13 @@ instance DIA_Bennet_BringOre(C_Info)
 	condition = DIA_Bennet_BringOre_Condition;
 	information = DIA_Bennet_BringOre_Info;
 	permanent = FALSE;
-	description = "Вот, держи. (5 кусков руды)";
+	description = "Вот, держи. (отдать 5 кусков руды)";
 };
 
 
 func int DIA_Bennet_BringOre_Condition()
 {
-	if((MIS_Bennet_BringOre == LOG_Running) && (Npc_HasItems(other,ItMi_Nugget) >= 5))
+	if((MIS_Bennet_BringOre == LOG_Running) && (Npc_HasItems(other,ItMi_Nugget) >= 5) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -885,12 +892,12 @@ func int DIA_Bennet_DJG_ARMOR_M_Condition()
 func void DIA_Bennet_DJG_ARMOR_M_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_DJG_ARMOR_M_15_00");	//Я хочу купить доспехи.
-	if(Npc_HasItems(other,ItMi_Gold) >= 12000)
+	if(Npc_HasItems(other,ItMi_Gold) >= VALUE_ITAR_DJG_M)
 	{
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_M_06_01");	//Очень хорошо. Уверен, они тебя не разочаруют.
 		AI_Output(other,self,"DIA_Bennet_DJG_ARMOR_M_15_02");	//Да уж, за такую-то цену...
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_M_06_03");	//Ты поймешь, что они стоят этих денег.
-		B_GiveInvItems(other,self,ItMi_Gold,12000);
+		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		CreateInvItem(hero,ITAR_DJG_M);
 		AI_PrintScreen("Средние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_EquipArmor(hero,ITAR_DJG_M);
@@ -934,7 +941,7 @@ func void DIA_Bennet_BetterArmor_Info()
 };
 
 
-var int Bennet_DIA_Bennet_DJG_ARMOR_H_permanent;
+//var int Bennet_DIA_Bennet_DJG_ARMOR_H_permanent;
 
 instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 {
@@ -958,11 +965,11 @@ func int DIA_Bennet_DJG_ARMOR_H_Condition()
 func void DIA_Bennet_DJG_ARMOR_H_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_DJG_ARMOR_H_15_00");	//Дай мне доспехи.
-	if(Npc_HasItems(other,ItMi_Gold) >= 20000)
+	if(Npc_HasItems(other,ItMi_Gold) >= VALUE_ITAR_DJG_H)
 	{
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_01");	//Это лучшие доспехи из того, что я когда-либо делал.
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_02");	//Настоящее произведение искусства.
-		B_GiveInvItems(other,self,ItMi_Gold,20000);
+		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_H);
 		CreateInvItem(hero,ITAR_DJG_H);
 		AI_PrintScreen("Тяжелые доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_EquipArmor(hero,ITAR_DJG_H);

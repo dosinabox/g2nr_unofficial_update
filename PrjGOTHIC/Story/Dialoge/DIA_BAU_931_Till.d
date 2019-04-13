@@ -46,11 +46,11 @@ func void DIA_Till_HALLO_Info()
 	Info_ClearChoices(DIA_Till_HALLO);
 //	if(Kapitel < 5)
 //	{
-		Info_AddChoice(DIA_Till_HALLO,"Я не рабочий.",DIA_Till_HALLO_keinervoneuch);
-		if(!Npc_IsDead(Sekob))
-		{
-			Info_AddChoice(DIA_Till_HALLO,"Ты командуешь здесь?",DIA_Till_HALLO_selber);
-		};
+	Info_AddChoice(DIA_Till_HALLO,"Я не рабочий.",DIA_Till_HALLO_keinervoneuch);
+	if(!Npc_IsDead(Sekob))
+	{
+		Info_AddChoice(DIA_Till_HALLO,"Ты командуешь здесь?",DIA_Till_HALLO_selber);
+	};
 //	};
 	if((Kapitel < 3) || (TOPIC_END_SekobDMT == TRUE))
 	{
@@ -384,7 +384,8 @@ instance DIA_Till_PERMKAP1(C_Info)
 
 func int DIA_Till_PERMKAP1_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Till_HALLO) || (Kapitel >= 5))
+//	if(Npc_KnowsInfo(other,DIA_Till_HALLO) || (Kapitel >= 5))
+	if(Npc_KnowsInfo(other,DIA_Till_HALLO))
 	{
 		return TRUE;
 	};

@@ -121,14 +121,22 @@ const string Grimbald_IsTeacher = "Охотник Гримбальд, стоящий неподалеку от пеще
 func void DIA_Grimbald_Jagd_Info()
 {
 	AI_Output(other,self,"DIA_Grimbald_Jagd_15_00");	//Ты можешь научить меня охотиться?
-	if((Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3)) || (Grimbald_PissOff == FALSE))
+//	if((Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3)) || (Grimbald_PissOff == FALSE))
+	if(Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3) && (Grimbald_PissOff == FALSE))
 	{
-		AI_Output(self,other,"DIA_Grimbald_Jagd_07_01");	//Ммм. Хорошо. Ты не особенно-то помог мне, но не стоит быть слишком строгим.
+		if(Grimbald_Snapper1.aivar[AIV_KilledByPlayer] == TRUE || Grimbald_Snapper2.aivar[AIV_KilledByPlayer] == TRUE || Grimbald_Snapper3.aivar[AIV_KilledByPlayer] == TRUE)
+		{
+			B_Say(self,other,"$ABS_GOOD");
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Grimbald_Jagd_07_01");	//Ммм. Хорошо. Ты не особенно-то помог мне, но не стоит быть слишком строгим.
+		};
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 //		B_StartOtherRoutine(self,"JagdOver");
 		Npc_ExchangeRoutine(self,"JagdOver");
-		Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
-		B_LogEntry(TOPIC_Teacher,Grimbald_IsTeacher);
+		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTeacher,Grimbald_IsTeacher);
 		Grimbald_TeachAnimalTrophy = TRUE;
 	}
 	else
@@ -147,8 +155,8 @@ func void DIA_Grimbald_Jagd_ja()
 	if(B_GiveInvItems(other,self,ItMi_Gold,200))
 	{
 		AI_Output(self,other,"DIA_Grimbald_Jagd_ja_07_01");	//Отлично. Скажешь, когда захочешь научиться чему-нибудь.
-		Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
-		B_LogEntry(TOPIC_Teacher,Grimbald_IsTeacher);
+		Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_OutTeacher,Grimbald_IsTeacher);
 		Grimbald_TeachAnimalTrophy = TRUE;
 	}
 	else
@@ -320,6 +328,40 @@ func void DIA_Grimbald_Trolltot_Info()
 {
 	AI_Output(self,other,"DIA_Grimbald_Trolltot_07_00");	//Черный тролль мертв. Отличная работа. Я не верил, что его вообще можно убить. Никогда этого не забуду.
 	B_GivePlayerXP(XP_Ambient);
+};
+
+
+instance DIA_Grimbald_Success(C_Info)
+{
+	npc = BAU_982_Grimbald;
+	nr = 3;
+	condition = DIA_Grimbald_Success_Condition;
+	information = DIA_Grimbald_Success_Info;
+	important = TRUE;
+};
+
+
+func int DIA_Grimbald_Success_Condition()
+{
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Grimbald_Success_Info()
+{
+	if(Grimbald_Snapper1.aivar[AIV_KilledByPlayer] == TRUE || Grimbald_Snapper2.aivar[AIV_KilledByPlayer] == TRUE || Grimbald_Snapper3.aivar[AIV_KilledByPlayer] == TRUE)
+	{
+		B_Say(self,other,"$NotBad");
+	}
+	else
+	{
+		B_Say(self,other,"$GoodMonsterKill");
+	};
+	self.aivar[AIV_PARTYMEMBER] = FALSE;
+	Npc_ExchangeRoutine(self,"JagdOver");
+	AI_StopProcessInfos(self);
 };
 
 

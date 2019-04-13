@@ -216,6 +216,7 @@ func void DIA_Salandril_Minenanteil_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_Minenanteil_15_00");	//Ты продаешь поддельные акции!
 	AI_Output(self,other,"SVM_13_NOTNOW");	//Оставь меня в покое!
+	AI_StopProcessInfos(self);
 	B_GivePlayerXP(XP_Ambient);
 };
 

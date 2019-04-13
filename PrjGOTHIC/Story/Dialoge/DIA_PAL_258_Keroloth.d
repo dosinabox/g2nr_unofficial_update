@@ -78,8 +78,11 @@ func void DIA_Keroloth_WantTeach_Info()
 	Keroloth_TeachPlayer = TRUE;
 	Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
 	B_LogEntry(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
-	Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-	B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+	if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo))
+	{
+		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+		B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+	};
 };
 
 

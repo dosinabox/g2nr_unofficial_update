@@ -38,7 +38,7 @@ instance DIA_Mil_333_Stadtwache_FirstWarn(C_Info)
 
 func int DIA_Mil_333_Stadtwache_FirstWarn_Condition()
 {
-	if(Npc_GetDistToWP(other,Mil_333_Checkpoint) <= 1000)
+	if(Npc_GetDistToWP(other,Mil_333_Checkpoint) <= 800)
 	{
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;

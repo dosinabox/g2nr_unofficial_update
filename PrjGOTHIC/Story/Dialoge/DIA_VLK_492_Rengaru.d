@@ -69,7 +69,7 @@ instance DIA_Rengaru_Hauab(C_Info)
 
 func int DIA_Rengaru_Hauab_Condition()
 {
-	if((Jora_Dieb != LOG_Running) && (Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU) == FALSE))
+	if((Jora_Dieb != LOG_Running) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
 	{
 		return TRUE;
 	};
@@ -263,6 +263,7 @@ func void DIA_Rengaru_INKNAST_Knast()
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_Knast_07_02");	//(предупреждающе) Но берегись: мои друзья это дело так не оставят...
 	Rengaru_InKnast = TRUE;
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"Hide");
 };
 
 func void DIA_Rengaru_INKNAST_keinKnast()

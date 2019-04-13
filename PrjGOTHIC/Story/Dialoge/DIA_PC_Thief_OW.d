@@ -736,9 +736,9 @@ func void DIA_Addon_ThiefOW_Nostalgie_Info()
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_03");	//Кажется, это было сотни лет назад...
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_04");	//В этом месте было что-то ЕЩЕ. Черт! Я не могу вспомнить.
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_05");	//Ну ладно...
-	B_GivePlayerXP(500);
-	hero.exp += 500;
-	PrintScreen(ConcatStrings(NAME_Addon_NostalgieBonus,IntToString(500)),-1,60,FONT_Screen,2);
+	B_GivePlayerXP(1000);
+//	hero.exp += 500;
+	PrintScreen(NAME_Addon_NostalgieBonus,-1,57,FONT_Screen,2);
 	B_Diego_WirSindDa();
 };
 

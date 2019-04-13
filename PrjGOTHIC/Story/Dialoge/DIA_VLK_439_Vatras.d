@@ -379,11 +379,11 @@ func void DIA_Addon_Vatras_TellMe_Konkret()
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_05");	//Сейчас мы пытаемся всеми силами помешать этому.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_06");	//Если что-нибудь узнаешь об этом, дай мне знать.
 	MIS_Vatras_FindTheBanditTrader = LOG_Running;
-	Vatras_ToMartin = TRUE;
+//	Vatras_ToMartin = TRUE;
 	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
-	B_LogEntry(TOPIC_Addon_Bandittrader,"Интендант паладинов Мартин также занимается поставкой оружия. Я могу найти его в гавани, где паладины хранят свои запасы.");
+//	B_LogEntry(TOPIC_Addon_Bandittrader,"Интендант паладинов Мартин также занимается поставкой оружия. Я могу найти его в гавани, где паладины хранят свои запасы.");
 	B_LogEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
 };
 
@@ -1102,6 +1102,10 @@ func void DIA_Addon_Vatras_Waffen_ToMartin()
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_ToMartin_05_01");	//Спроси Мартина, интенданта паладинов. Он сможет рассказать тебе больше.
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_ToMartin_05_02");	//Он должен вывести торговца оружием на чистую воду.
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_ToMartin_05_03");	//Ты найдешь Мартина в портовом районе. Когда увидишь кучу ящиков и множество паладинов, то знай: Мартин неподалеку.
+	if(Vatras_ToMartin == FALSE)
+	{
+		B_LogEntry(TOPIC_Addon_Bandittrader,"Интендант паладинов Мартин также занимается проблемой с поставщиком оружия. Я могу найти его в гавани, где паладины хранят свои запасы.");
+	};
 	Vatras_ToMartin = TRUE;
 };
 
@@ -1821,9 +1825,9 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Info()
 	MIS_Vatras_Message = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Vatras_Message);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);
-	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"Царский щавель",DIA_Vatras_MESSAGE_SUCCESS_Plant);
-	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"Кольцо мастерства",DIA_Vatras_MESSAGE_SUCCESS_Ring);
-	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"Кусок руды",DIA_Vatras_MESSAGE_SUCCESS_Ore);
+	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"(выбрать царский щавель)",DIA_Vatras_MESSAGE_SUCCESS_Plant);
+	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"(выбрать кольцо мастерства)",DIA_Vatras_MESSAGE_SUCCESS_Ring);
+	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"(выбрать кусок руды)",DIA_Vatras_MESSAGE_SUCCESS_Ore);
 };
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Plant()
@@ -1834,6 +1838,7 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Plant()
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Ring()
 {
+//	AI_Output(other,self,"DIA_Addon_Skip_Grog_ring_15_00");	//Я возьму кольцо.
 	B_GiveInvItems(self,hero,ItRi_Dex_01,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);
 };

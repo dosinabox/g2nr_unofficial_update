@@ -823,7 +823,8 @@ instance DIA_Addon_AlligatorJack_ComeOn(C_Info)
 	condition = DIA_Addon_AlligatorJack_ComeOn_Condition;
 	information = DIA_Addon_AlligatorJack_ComeOn_Info;
 	permanent = TRUE;
-	description = "Пойдем со мной.";
+//	description = "Пойдем со мной.";
+	description = "Присоединяйся ко мне.";
 };
 
 

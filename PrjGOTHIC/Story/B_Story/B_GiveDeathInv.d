@@ -51,6 +51,10 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_TrollTooth,4);
 		};
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_ALLIGATOR)
+		{
+			CreateInvItems(slf,ItAt_Teeth,2);
+		};
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == TRUE)
 	{
@@ -155,6 +159,10 @@ func void B_GiveDeathInv(var C_Npc slf)
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
 		{
 			CreateInvItems(slf,ItAt_SharkSkin,1);
+		};
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_ALLIGATOR)
+		{
+			CreateInvItems(slf,ItAt_LurkerSkin,1);
 		};
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == TRUE)

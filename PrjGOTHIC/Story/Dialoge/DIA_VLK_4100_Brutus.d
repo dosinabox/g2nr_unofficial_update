@@ -181,7 +181,7 @@ instance DIA_Brutus_Den(C_Info)
 
 func int DIA_Brutus_Den_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (Kapitel < 3) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (Kapitel < 3) && (NpcObsessedByDMT_Brutus == FALSE) && (Npc_HasItems(VLK_Leiche3,ItMi_Gold) > 0))
 	{
 		return TRUE;
 	};
@@ -460,10 +460,18 @@ func void DIA_Brutus_PERM4_Info()
 		AI_Output(other,self,"DIA_Brutus_PERM4_15_02");	//Ах... смотри, вон один сзади тебя.
 		AI_Output(self,other,"DIA_Brutus_PERM4_06_03");	//(ревет) Чтооо?
 		B_NpcClearObsessionByDMT(self);
-		Npc_SetTarget(self,other);
+		/*Npc_SetTarget(self,other);
 		self.aivar[AIV_INVINCIBLE] = FALSE;
 		other.aivar[AIV_INVINCIBLE] = FALSE;
-		AI_StartState(self,ZS_Flee,0,"");
+		AI_StartState(self,ZS_Flee,0,"");*/
+		if(Npc_GetDistToWP(self,"OC_FOLTER_SHARP") < 2000)
+		{
+			Npc_ExchangeRoutine(self,"RunFromStart");
+		}
+		else
+		{
+			Npc_ExchangeRoutine(self,"RunToStart");
+		};
 	};
 };
 
@@ -501,10 +509,18 @@ func void DIA_Brutus_BESSEN_Info()
 		AI_Output(other,self,"DIA_Brutus_BESSEN_15_03");	//Кто-нибудь должен выбить демонов из твоей головы.
 		AI_Output(self,other,"DIA_Brutus_BESSEN_06_04");	//(вопит) НЕЕТ!
 		B_NpcClearObsessionByDMT(self);
-		Npc_SetTarget(self,other);
+		/*Npc_SetTarget(self,other);
 		self.aivar[AIV_INVINCIBLE] = FALSE;
 		other.aivar[AIV_INVINCIBLE] = FALSE;
-		AI_StartState(self,ZS_Flee,0,"");
+		AI_StartState(self,ZS_Flee,0,"");*/
+		if((Npc_GetDistToWP(self,"OC_BRUTUS_MEATBUGS") < 2000) || (Npc_GetDistToWP(self,"OC_FOLTER_SHARP") < 2000))
+		{
+			Npc_ExchangeRoutine(self,"RunFromStart");
+		}
+		else
+		{
+			Npc_ExchangeRoutine(self,"RunToStart");
+		};
 	};
 };
 

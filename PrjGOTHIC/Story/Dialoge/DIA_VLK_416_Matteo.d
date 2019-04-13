@@ -101,9 +101,16 @@ func int DIA_Matteo_SellWhat_Condition()
 func void DIA_MAtteo_SellWhat_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_SellWhat_15_00");	//Что ты продаешь?
-	AI_Output(self,other,"DIA_Matteo_SellWhat_09_01");	//Я могу предложить все, что может понадобиться в твоих странствиях. Оружие, факелы, провизию... даже доспехи.
-	AI_Output(self,other,"DIA_Matteo_SellWhat_09_02");	//У меня есть очень хороший экземпляр на складе.
-	AI_Output(self,other,"DIA_Matteo_SellWhat_09_03");	//Двойные усиленные доспехи из кожи снеппера - совсем новые. Тебе это интересно?
+	if(Kapitel < 4)
+	{
+		AI_Output(self,other,"DIA_Matteo_SellWhat_09_01");	//Я могу предложить все, что может понадобиться в твоих странствиях. Оружие, факелы, провизию... даже доспехи.
+		AI_Output(self,other,"DIA_Matteo_SellWhat_09_02");	//У меня есть очень хороший экземпляр на складе.
+		AI_Output(self,other,"DIA_Matteo_SellWhat_09_03");	//Двойные усиленные доспехи из кожи снеппера - совсем новые. Тебе это интересно?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Canthar_TRADE_09_01");	//Выбирай.
+	};
 	if(Knows_Matteo == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
@@ -155,6 +162,10 @@ func void DIA_Matteo_TRADE_Info()
 	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 	{
 		MatteoMinenAnteil = TRUE;
+	};
+	if(!Npc_HasItems(self,ItMi_Pan) && !Npc_HasItems(other,ItMi_Pan))
+	{
+		CreateInvItems(self,ItMi_Pan,1);
 	};
 	Trade_IsActive = TRUE;
 };

@@ -272,7 +272,10 @@ func void DIA_Oric_CanHelp_WhatYouMean()
 	AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_02");	//Он один из самых влиятельных шаманов орков.
 	AI_Output(other,self,"DIA_Oric_CanHelp_WhatYouMean_15_03");	//А какова в этом моя роль?
 	AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_04");	//Убей его.
-	AI_Output(other,self,"DIA_Oric_CanHelp_WhatYouMean_15_05");	//Ты шутишь!?
+	if(!Npc_IsDead(Hosh_Pak))
+	{
+		AI_Output(other,self,"DIA_Oric_CanHelp_WhatYouMean_15_05");	//Ты шутишь!?
+	};
 	if(hero.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_06");	//Ты единственный, кого мы можем выделить для этого дела. Все остальные рыцари нужны здесь.
@@ -372,7 +375,7 @@ instance DIA_Oric_NoMurder(C_Info)
 
 func int DIA_Oric_NoMurder_Condition()
 {
-	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE))
+	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE) && !Npc_IsDead(Hosh_Pak))
 	{
 		return TRUE;
 	};

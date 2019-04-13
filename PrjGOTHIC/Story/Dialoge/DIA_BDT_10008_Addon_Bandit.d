@@ -111,7 +111,7 @@ func void DIA_Addon_10008_Bandit_soup_Info()
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_soup_01_03");	//Ёто очень важно - тренировать свою силу. ¬округ столько опасностей.
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_soup_01_04");	//≈сли хочешь, € готов помочь тебе стать сильнее.
 	Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Teacher,"Ѕандит у котла может помочь мне стать сильнее.");
+	B_LogEntry(Topic_Addon_BDT_Teacher,"Ѕандит ћарус может помочь мне стать сильнее.");
 };
 
 

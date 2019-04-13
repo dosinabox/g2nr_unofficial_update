@@ -305,6 +305,10 @@ func void DIA_Jergan_Leader_Info()
 		AI_Output(other,self,"DIA_Jergan_Leader_15_01");	//Да.
 		AI_Output(self,other,"DIA_Jergan_Leader_13_02");	//Они стоят целое состояние. Есть люди, которые коллекционируют такие вещи.
 		AI_Output(self,other,"DIA_Jergan_Leader_13_03");	//Если ты найдешь правильного покупателя, то получишь за них целую кучу золота.
+		if(Lutero_Krallen == LOG_SUCCESS)
+		{
+			AI_Output(other,self,"DIA_Raoul_TROLLFELL_ja_15_00");	//Продано.
+		};
 	}
 	else
 	{

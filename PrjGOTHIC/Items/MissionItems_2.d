@@ -12,7 +12,7 @@ instance ItMi_StoneOfKnowlegde_MIS(C_Item)
 
 instance ItWr_PaladinLetter_MIS(C_Item)
 {
-	name = "Письмо";
+	name = "Письмо Гаронда лорду Хагену";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -20,7 +20,7 @@ instance ItWr_PaladinLetter_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UsePaladinLetter;
 	scemeName = "MAP";
-	description = "Письмо Гаронда лорду Хагену";
+	description = name;
 };
 
 
@@ -47,7 +47,7 @@ func void UsePaladinLetter()
 
 instance ItWr_LetterForGorn_MIS(C_Item)
 {
-	name = "Письмо";
+	name = "Сообщение Милтена Горну";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -55,7 +55,10 @@ instance ItWr_LetterForGorn_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseLetterForGorn;
 	scemeName = "MAP";
-	description = "Сообщение Милтена Горну";
+	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -166,7 +169,7 @@ func void UseGornsTreasure()
 
 instance ItWr_Silvestro_MIS(C_Item)
 {
-	name = "Записка";
+	name = "Записка Сильвестро";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -174,7 +177,10 @@ instance ItWr_Silvestro_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseItwr_Silvestro;
 	scemeName = "MAP";
-	description = "Записка Сильвестро";
+	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -306,7 +312,7 @@ instance ItKe_Rune_MIS(C_Item)
 
 instance ItWr_Bloody_MIS(C_Item)
 {
-	name = "Записка";
+	name = "Записка алхимика";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -314,7 +320,8 @@ instance ItWr_Bloody_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseBloodMIS;
 	scemeName = "MAP";
-	description = "Яд кровавых мух";
+	description = name;
+	text[0] = "Яд кровавых мух.";
 };
 
 
@@ -396,6 +403,9 @@ instance ItWr_Map_OldWorld_Oremines_MIS(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -464,6 +474,7 @@ instance ItWr_KDWLetter(C_Item)
 	on_state[0] = UseKDWLetter;
 	scemeName = "MAP";
 	description = name;
+	text[0] = "из замерзшего лагеря в Долине Рудников.";
 };
 
 
@@ -498,6 +509,7 @@ instance ItWr_GilbertLetter(C_Item)
 	on_state[0] = UseGilbertLetter;
 	scemeName = "MAP";
 	description = name;
+	text[0] = "из пещеры в Долине Рудников.";
 };
 
 
@@ -551,19 +563,23 @@ instance ItRi_Tengron(C_Item)
 func void Equip_ItRi_Tengron()
 {
 	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp;
-	self.attribute[ATR_HITPOINTS] += Ri_Hp;
+//	self.attribute[ATR_HITPOINTS] += Ri_Hp;
 };
 
 func void UnEquip_ItRi_Tengron()
 {
 	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp;
-	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 1))
+	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
 	{
-		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
-	}
-	else
-	{
-		self.attribute[ATR_HITPOINTS] = 2;
+		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	};
+//	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 1))
+//	{
+//		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
+//	}
+//	else
+//	{
+//		self.attribute[ATR_HITPOINTS] = 2;
+//	};
 };
 

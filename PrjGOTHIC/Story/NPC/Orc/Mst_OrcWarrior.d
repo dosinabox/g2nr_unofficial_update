@@ -37,6 +37,13 @@ func void B_SetVisuals_OrcWarrior()
 };
 
 
+func void B_SetVisuals_OrcScout()
+{
+	Mdl_SetVisual(self,"Orc.mds");
+	Mdl_SetVisualBody(self,"Orc_BodyScout",DEFAULT,DEFAULT,"Orc_HeadWarrior",DEFAULT,DEFAULT,-1);
+};
+
+
 instance OrcWarrior_Roam(Mst_Default_OrcWarrior)
 {
 	B_SetVisuals_OrcWarrior();
@@ -74,7 +81,7 @@ instance OrcWarrior_Harad(Mst_Default_OrcWarrior)
 	protection[PROT_POINT] = 75;
 //	protection[PROT_FIRE] = 20;	//75;
 	protection[PROT_FLY] = 75;
-	B_SetVisuals_OrcWarrior();
+	B_SetVisuals_OrcScout();
 	EquipItem(self,ItMw_2H_OrcAxe_01);
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
@@ -93,7 +100,7 @@ instance OrcWarrior_Scout(Mst_Default_OrcWarrior)
 	protection[PROT_POINT] = 75;
 //	protection[PROT_FIRE] = 20;	//75;
 	protection[PROT_FLY] = 75;
-	B_SetVisuals_OrcWarrior();
+	B_SetVisuals_OrcScout();
 	EquipItem(self,ItMw_2H_OrcAxe_01);
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;

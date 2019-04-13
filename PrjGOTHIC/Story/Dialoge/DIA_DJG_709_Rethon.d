@@ -249,6 +249,8 @@ func void DIA_Rethon_MEINEWAFFE_Info()
 	AI_Output(other,self,"DIA_Rethon_MEINEWAFFE_15_00");	//Ты можешь помочь мне улучшить мое оружие?
 	AI_Output(self,other,"DIA_Rethon_MEINEWAFFE_12_01");	//Улучшить? Лучше купи что-нибудь новое и выброси этот хлам, что ты носишь с собой.
 	AI_Output(self,other,"DIA_Rethon_MEINEWAFFE_12_02");	//Возможно, у меня найдется что-нибудь для тебя. Тебе это интересно?
+	Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+	B_LogEntry(TOPIC_Trader_OC,"Охотник на драконов Ретон продает оружие в замке.");
 };
 
 

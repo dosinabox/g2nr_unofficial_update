@@ -440,26 +440,40 @@ func int DIA_MiltenOW_Teach_Condition()
 func void DIA_MiltenOW_Teach_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//я хочу изучить новые заклинани€.
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
-		Info_ClearChoices(DIA_MiltenOW_Teach);
-		Info_AddChoice(DIA_MiltenOW_Teach,Dialog_Back,DIA_MiltenOW_Teach_BACK);
-		if(PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE)
-		{
-			Info_AddChoice(DIA_MiltenOW_Teach,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_MiltenOW_Teach_Windfist);
-		};
-		if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
-		{
-			Info_AddChoice(DIA_MiltenOW_Teach,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_MiltenOW_Teach_Feuerball);
-		};
-		if(PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE)
-		{
-			Info_AddChoice(DIA_MiltenOW_Teach,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_MiltenOW_Teach_Eispfeil);
-		};
+		AI_Output(self,other,"DIA_MiltenOW_Teach_03_01");	//“ы все еще не достиг второго  руга магии. я ничему не могу научить теб€.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_MiltenOW_Teach_03_01");	//“ы все еще не достиг второго  руга магии. я ничему не могу научить теб€.
+		Info_ClearChoices(DIA_MiltenOW_Teach);
+		Info_AddChoice(DIA_MiltenOW_Teach,Dialog_Back,DIA_MiltenOW_Teach_BACK);
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1)
+		{
+			if(PLAYER_TALENT_RUNES[SPL_Light] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenOW_Teach,B_BuildLearnString(NAME_SPL_Light,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_MiltenOW_Teach_Light);
+			};
+			if(PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenOW_Teach,B_BuildLearnString(NAME_SPL_LightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightHeal)),DIA_MiltenOW_Teach_Heal);
+			};
+		};
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2)
+		{
+			if(PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenOW_Teach,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_MiltenOW_Teach_Windfist);
+			};
+			if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenOW_Teach,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_MiltenOW_Teach_Feuerball);
+			};
+			if(PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenOW_Teach,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_MiltenOW_Teach_Eispfeil);
+			};
+		};
 	};
 };
 
@@ -481,6 +495,16 @@ func void DIA_MiltenOW_Teach_Feuerball()
 func void DIA_MiltenOW_Teach_Eispfeil()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Icebolt);
+};
+
+func void DIA_MiltenOW_Teach_Heal()
+{
+	B_TeachPlayerTalentRunes(self,other,SPL_LightHeal);
+};
+
+func void DIA_MiltenOW_Teach_Light()
+{
+	B_TeachPlayerTalentRunes(self,other,SPL_Light);
 };
 
 

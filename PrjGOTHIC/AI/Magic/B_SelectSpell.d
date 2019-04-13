@@ -376,7 +376,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 	};
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
 	{
-		Npc_ClearAIQueue(self);
+//		Npc_ClearAIQueue(self);
 		if(!Npc_HasItems(slf,ItRu_Deathball))
 		{
 			CreateInvItems(slf,ItRu_Deathball,1);

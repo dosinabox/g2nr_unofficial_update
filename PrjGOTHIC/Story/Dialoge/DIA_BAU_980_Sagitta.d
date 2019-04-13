@@ -518,7 +518,7 @@ var int DIA_Sagitta_HEALRANDOLPH_KnowsPrice;
 
 func int DIA_Sagitta_HEALRANDOLPH_Condition()
 {
-	if((MIS_HealRandolph == LOG_Running) && (Npc_HasItems(other,ItPo_HealRandolph_MIS) == 0) && Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if((MIS_HealRandolph == LOG_Running) && !Npc_HasItems(other,ItPo_HealRandolph_MIS) && Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
 	{
 		return TRUE;
 	};

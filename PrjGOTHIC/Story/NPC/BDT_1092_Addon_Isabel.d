@@ -7,7 +7,7 @@ instance BDT_1092_Addon_Isabel(Npc_Default)
 	voice = 17;
 	flags = 0;
 	npcType = NPCTYPE_BL_MAIN;
-	aivar[AIV_IgnoresArmor] = TRUE;
+//	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);

@@ -487,6 +487,7 @@ func void DIA_Angar_WASISTLOS_Info()
 	AI_Output(self,other,"DIA_Angar_WASISTLOS_04_01");	//Я не могу идти дальше с тобой.
 	AI_Output(self,other,"DIA_Angar_WASISTLOS_04_02");	//Что-то подсказывает мне, что мне не выбраться отсюда живым.
 	AI_Output(self,other,"DIA_Angar_WASISTLOS_04_03");	//Я не могу объяснить это, но...
+	AI_PlayAni(self,"T_SEARCH");
 	if(SC_KnowsMadPsi == TRUE)
 	{
 		AI_Output(self,other,"DIA_Angar_WASISTLOS_04_04");	//Я должен уходить из этой проклятой земли как можно быстрее, иначе меня ждет та же судьба, что и моих братьев.

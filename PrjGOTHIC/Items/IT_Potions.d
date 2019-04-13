@@ -42,7 +42,7 @@ instance ItPo_Mana_01(C_Item)
 	text[1] = NAME_Bonus_Mana;
 	count[1] = Mana_Essenz;
 	text[5] = NAME_Value;
-	count[5] = Value_ManaEssenz;
+	count[5] = value;
 };
 
 
@@ -68,7 +68,7 @@ instance ItPo_Mana_02(C_Item)
 	text[1] = NAME_Bonus_Mana;
 	count[1] = Mana_Extrakt;
 	text[5] = NAME_Value;
-	count[5] = Value_ManaExtrakt;
+	count[5] = value;
 };
 
 
@@ -94,7 +94,7 @@ instance ItPo_Mana_03(C_Item)
 	text[1] = NAME_Bonus_Mana;
 	count[1] = Mana_Elixier;
 	text[5] = NAME_Value;
-	count[5] = Value_ManaElixier;
+	count[5] = value;
 };
 
 
@@ -120,7 +120,7 @@ instance ItPo_Health_01(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Essenz;
 	text[5] = NAME_Value;
-	count[5] = Value_HpEssenz;
+	count[5] = value;
 };
 
 
@@ -146,7 +146,7 @@ instance ItPo_Health_02(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Extrakt;
 	text[5] = NAME_Value;
-	count[5] = Value_HpExtrakt;
+	count[5] = value;
 };
 
 
@@ -172,7 +172,7 @@ instance ItPo_Health_03(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Elixier;
 	text[5] = NAME_Value;
-	count[5] = Value_HpElixier;
+	count[5] = value;
 };
 
 
@@ -198,7 +198,7 @@ instance ItPo_Perm_STR(C_Item)
 	text[1] = NAME_Bonus_Str;
 	count[1] = STR_Elixier;
 	text[5] = NAME_Value;
-	count[5] = Value_StrElixier;
+	count[5] = value;
 };
 
 
@@ -224,7 +224,7 @@ instance ItPo_Perm_DEX(C_Item)
 	text[1] = NAME_Bonus_Dex;
 	count[1] = DEX_Elixier;
 	text[5] = NAME_Value;
-	count[5] = Value_DexElixier;
+	count[5] = value;
 };
 
 
@@ -250,7 +250,7 @@ instance ItPo_Perm_Health(C_Item)
 	text[1] = NAME_Bonus_HpMax;
 	count[1] = HPMax_Elixier;
 	text[5] = NAME_Value;
-	count[5] = Value_HpMaxElixier;
+	count[5] = value;
 };
 
 
@@ -277,7 +277,7 @@ instance ItPo_Perm_Mana(C_Item)
 	text[1] = NAME_Bonus_ManaMax;
 	count[1] = ManaMax_Elixier;
 	text[5] = NAME_Value;
-	count[5] = Value_ManaMaxElixier;
+	count[5] = value;
 };
 
 
@@ -348,7 +348,8 @@ func void UseItPo_MegaDrink()
 	{
 		B_RaiseAttribute(self,ATR_STRENGTH,STRorDEX_MegaDrink);
 	};
-	Npc_ChangeAttribute(self,ATR_MANA,-ATR_MANA);
+//	Npc_ChangeAttribute(self,ATR_MANA,-ATR_MANA);
+	self.attribute[ATR_MANA] = 0;
 	Snd_Play("DEM_Warn");
 	TEXT_MegaDrink_Setting2 = "Повышение доминирующего параметра.";
 	TEXT_MegaDrink_Setting = "Прибавка к силе или ловкости:";

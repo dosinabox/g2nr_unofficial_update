@@ -91,7 +91,7 @@ instance OrcElite_AntiPaladin1(Mst_Default_OrcElite)
 	name[0] = NAME_Antipaldin;
 	guild = GIL_ORC;
 	id = 111;
-	voice = 18;
+//	voice = 18;
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_EnemyOverride] = TRUE;

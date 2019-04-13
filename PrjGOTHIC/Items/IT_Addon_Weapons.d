@@ -89,7 +89,7 @@ func void Equip_Zauberstab()
 	if(Npc_IsPlayer(self))
 	{
 		Npc_ChangeAttribute(self,ATR_MANA_MAX,20);
-		Npc_ChangeAttribute(self,ATR_MANA,20);
+//		Npc_ChangeAttribute(self,ATR_MANA,20);
 		b_meleeweaponchange(0,0,20);
 	};
 };
@@ -100,14 +100,18 @@ func void UnEquip_Zauberstab()
 	{
 		b_meleeweaponundochange();
 		Npc_ChangeAttribute(self,ATR_MANA_MAX,-20);
-		if(self.attribute[ATR_MANA] >= 20)
+		if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
 		{
-			Npc_ChangeAttribute(self,ATR_MANA,-20);
-		}
-		else
-		{
-			self.attribute[ATR_MANA] = 0;
+			self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 		};
+//		if(self.attribute[ATR_MANA] >= 20)
+//		{
+//			Npc_ChangeAttribute(self,ATR_MANA,-20);
+//		}
+//		else
+//		{
+//			self.attribute[ATR_MANA] = 0;
+//		};
 	};
 };
 
@@ -364,8 +368,8 @@ instance ItMw_FrancisDagger_Mis(C_Item)
 	flags = ITEM_SWD | ITEM_MISSION;
 	material = MAT_METAL;
 //	value = 0;
-	value = Value_VLKDolch * 2;
-	damageTotal = Damage_VLKDolch;
+	value = Value_VLKDolch * 3;
+	damageTotal = Damage_VLKDolch * 2;
 	damagetype = DAM_EDGE;
 	range = Range_VLKDolch;
 	on_equip = Equip_1H_05;
@@ -435,7 +439,7 @@ instance ItMw_Addon_PIR2hAxe(C_Item)
 
 instance ItMw_Addon_PIR2hSword(C_Item)
 {
-	name = "Абордажная сабля";
+	name = "Ятаган";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
@@ -483,7 +487,7 @@ instance ItMw_Addon_PIR1hAxe(C_Item)
 
 instance ItMw_Addon_PIR1hSword(C_Item)
 {
-	name = "Абордажный меч";
+	name = "Абордажная сабля";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
@@ -506,7 +510,7 @@ instance ItMw_Addon_PIR1hSword(C_Item)
 
 instance ItMw_Addon_BanditTrader(C_Item)
 {
-	name = "Рапира бандита";
+	name = "Шпага бандита";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
@@ -519,7 +523,7 @@ instance ItMw_Addon_BanditTrader(C_Item)
 //	visual = "ItMw_018_1h_SwordCane_01.3ds";
 	visual = "ItMw_018_1h_SwordCane_02.3ds";
 	description = name;
-	text[0] = "На рукоятке нацарапана буква 'Ф.'";
+	text[0] = "На эфесе нацарапана буква 'Ф.'";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Dex_needed;
@@ -627,8 +631,10 @@ instance ItRw_Addon_FireBow(C_Item)
 	cond_value[2] = Condition_FireBow;
 	visual = "ItRw_Bow_H_06.mms";
 	description = name;
+	text[1] = NAME_Damage;
+	count[1] = damageTotal;
 	text[2] = NAME_Dam_Fire;
-	count[2] = damageTotal;
+	count[2] = 40;
 	text[3] = NAME_Dex_needed;
 	count[3] = cond_value[2];
 	text[5] = NAME_Value;
@@ -650,6 +656,7 @@ instance ItRw_Addon_MagicBolt(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItRw_Addon_MagicCrossbow(C_Item)

@@ -76,7 +76,7 @@ instance DIA_Gorax_HELP(C_Info)
 
 func int DIA_Gorax_HELP_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Pedro_Traitor == FALSE))
 	{
 		return TRUE;
 	};
@@ -450,6 +450,10 @@ func void DIA_Gorax_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Gorax_TRADE_15_00");	//Мне нужно кое-что...
 	B_GiveTradeInv(self);
+	if(!Npc_HasItems(self,ItMi_Pliers) && !Npc_HasItems(other,ItMi_Pliers))
+	{
+		CreateInvItems(self,ItMi_Pliers,1);
+	};
 	Trade_IsActive = TRUE;
 };
 
@@ -560,6 +564,7 @@ func void DIA_Gorax_KILLPEDRO_Info()
 	AI_Output(self,other,"DIA_Gorax_KILLPEDRO_14_03");	//В настоящий момент, похоже, все не доверяют друг другу. И к тому же, этот случай с Педро, это очень... (сглатывает)
 	AI_Output(self,other,"DIA_Gorax_KILLPEDRO_14_04");	//У меня есть поручение для тебя от первосвященников. Ты не являешься членом Братства Огня, и, следовательно, ты единственный, кто может помочь нам в решении этой проблемы.
 	AI_Output(self,other,"DIA_Gorax_KILLPEDRO_14_05");	//Но я должен предупредить тебя. Если я дам тебе это поручение, ты будешь обязан выполнить его. Когда ты узнаешь, в чем оно заключается, у тебя уже не будет выбора. Ты понимаешь это?
+	Npc_ExchangeRoutine(self,"Start");
 	Info_ClearChoices(DIA_Gorax_KILLPEDRO);
 	Info_AddChoice(DIA_Gorax_KILLPEDRO,"Забудь об этом. Это слишком рискованное предприятие для меня.",DIA_Gorax_KILLPEDRO_nein);
 	Info_AddChoice(DIA_Gorax_KILLPEDRO,"Скажи мне, чего ты хочешь.",DIA_Gorax_KILLPEDRO_ja);

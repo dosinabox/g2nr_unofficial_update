@@ -370,6 +370,10 @@ func void DIA_Addon_Nefarius_ADW_Runen_5()
 	{
 		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,B_BuildLearnString(NAME_SPL_Pyrokinesis,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Pyrokinesis)),DIA_Addon_Nefarius_ADW_Runen_Circle_5_SPL_Pyrokinesis);
 	};
+	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Addon_Nefarius_ADW_Runen_Circle_5_SPL_Shrink);
+	};
 };
 
 func void DIA_Addon_Nefarius_ADW_Runen_6()
@@ -392,10 +396,10 @@ func void DIA_Addon_Nefarius_ADW_Runen_6()
 	{
 		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,B_BuildLearnString(NAME_SPL_ArmyOfDarkness,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ArmyOfDarkness)),DIA_Addon_Nefarius_ADW_Runen_Circle_6_SPL_ArmyOfDarkness);
 	};
-	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
+	/*if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Addon_Nefarius_ADW_Runen_Circle_6_SPL_Shrink);
-	};
+	};*/
 };
 
 func void DIA_Addon_Nefarius_ADW_Runen_Circle_1_SPL_LIGHT()
@@ -563,7 +567,7 @@ func void DIA_Addon_Nefarius_ADW_Runen_Circle_6_SPL_ArmyOfDarkness()
 	B_TeachPlayerTalentRunes(self,other,SPL_ArmyOfDarkness);
 };
 
-func void DIA_Addon_Nefarius_ADW_Runen_Circle_6_SPL_Shrink()
+func void DIA_Addon_Nefarius_ADW_Runen_Circle_5_SPL_Shrink()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
 };

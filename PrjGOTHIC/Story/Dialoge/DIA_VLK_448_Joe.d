@@ -77,6 +77,11 @@ func int DIA_Joe_Hallo_Condition()
 
 func void DIA_Joe_Hallo_Info()
 {
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	AI_Output(self,other,"DIA_Joe_Hallo_10_00");	//Эй, спасибо, парень. Действительно, огромное спасибо. Я уж думал, мне никогда не выбраться отсюда...
 	TOPIC_END_Joe = TRUE;
 	B_GivePlayerXP(XP_Ambient * 4);
@@ -85,8 +90,11 @@ func void DIA_Joe_Hallo_Info()
 	AI_Output(self,other,"DIA_Joe_Hallo_10_03");	//Я попал в дурацкое положение - и был бы очень благодарен, если бы все это осталось между нами.
 	AI_Output(other,self,"DIA_Joe_Hallo_15_04");	//Понимаю. Да уж, тут действительно нечем гордиться.
 	AI_Output(self,other,"DIA_Joe_Hallo_10_05");	//Я сейчас был бы не прочь что-нибудь выпить.
+//	AI_GotoWP(self,"NW_CITY_MERCHANT_PATH_07");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
+	Npc_SetTarget(self,hero);
+	AI_StartState(self,ZS_Flee,0,"");
 };
 
 

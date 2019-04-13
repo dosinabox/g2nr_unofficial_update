@@ -380,10 +380,11 @@ func int DIA_Addon_Skip_NW_Landkarte_Condition()
 func void DIA_Addon_Skip_NW_Landkarte_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_NW_Landkarte_15_00");	//Вот. У меня есть карта Хориниса.
-	AI_Output(self,other,"DIA_Addon_Skip_NW_Landkarte_08_01");	//Хорошо. Дай я нарисую тебе его местоположение.
 	B_GiveInvItems(other,self,ItWr_Map_NewWorld,1);
-	B_Skip_SaysDextersName();
+	AI_Output(self,other,"DIA_Addon_Skip_NW_Landkarte_08_01");	//Хорошо. Дай я нарисую тебе его местоположение.
+	B_UseFakeMap();
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Landkarte_08_02");	//Держи карту.
+	B_Skip_SaysDextersName();
 	Npc_RemoveInvItems(self,ItWr_Map_NewWorld,1);
 	CreateInvItems(self,ItWr_Map_NewWorld_Dexter,1);
 	B_GiveInvItems(self,other,ItWr_Map_NewWorld_Dexter,1);

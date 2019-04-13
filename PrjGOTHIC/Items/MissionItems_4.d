@@ -29,20 +29,24 @@ instance ItAm_Mana_Angar_MIS(C_Item)
 func void Equip_ItAm_Mana_Angar()
 {
 	self.attribute[ATR_MANA_MAX] += Am_Mana;
-	self.attribute[ATR_MANA] += Am_Mana;
+//	self.attribute[ATR_MANA] += Am_Mana;
 };
 
 func void UnEquip_ItAm_Mana_Angar()
 {
 	self.attribute[ATR_MANA_MAX] -= Am_Mana;
-	if(self.attribute[ATR_MANA] > Am_Mana)
+	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
 	{
-		self.attribute[ATR_MANA] -= Am_Mana;
-	}
-	else
-	{
-		self.attribute[ATR_MANA] = 0;
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 	};
+//	if(self.attribute[ATR_MANA] > Am_Mana)
+//	{
+//		self.attribute[ATR_MANA] -= Am_Mana;
+//	}
+//	else
+//	{
+//		self.attribute[ATR_MANA] = 0;
+//	};
 };
 
 
@@ -118,8 +122,8 @@ instance ItRw_SengrathsArmbrust_MIS(C_Item)
 	mainflag = ITEM_KAT_FF;
 	flags = ITEM_CROSSBOW;
 	material = MAT_WOOD;
-	value = Value_MilArmbrust;
-	damageTotal = Damage_MilArmbrust;
+	value = 300;
+	damageTotal = 50;
 	damagetype = DAM_POINT;
 	munition = ItRw_Bolt;
 	cond_atr[2] = ATR_STRENGTH;
@@ -173,7 +177,8 @@ instance ItRi_OrcEliteRing(C_Item)
 	value = Value_OrcEliteRing;
 //	cond_atr[2] = ATR_STRENGTH;
 //	cond_value[2] = 20;
-	visual = "ItRi_Str_02.3ds";
+//	visual = "ItRi_Str_02.3ds";
+	visual = "ItRi_OrcEliteRing.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_OrcEliteRing;
@@ -269,6 +274,9 @@ instance ItWr_Map_Orcelite_MIS(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -309,6 +317,9 @@ instance ItWr_Map_Caves_MIS(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 

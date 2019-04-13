@@ -330,6 +330,40 @@ func void Spell_Cast_Teleport_3()
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 };
 
+func int Spell_Logic_Teleport_Maya(var int manaInvested)
+{
+	if(Npc_GetDistToWP(hero,"ADW_VALLEY_SHOWCASE1_04") > 3200)
+	{
+		AI_PrintScreen("Заклинание здесь не работает.",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		B_Say_Overlay(self,self,"$DOESNTWORK");
+		return SPL_SENDSTOP;
+	}
+	else if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
+	{
+		return SPL_SENDCAST;
+	}
+	else if(self.attribute[ATR_MANA] >= SPL_Cost_Teleport)
+	{
+		return SPL_SENDCAST;
+	};
+	return SPL_NEXTLEVEL;
+};
+
+func void Spell_Cast_Teleport_Maya()
+{
+	B_PrintTeleportTooFarAway(ADDONWORLD_ZEN);
+	if(Npc_GetActiveSpellIsScroll(self))
+	{
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
+	}
+	else
+	{
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
+	};
+	AI_Teleport(self,"ADW_VALLEY_PATH_054_G");
+	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
+};
+
 func void Spell_Cast_Teleport()
 {
 	if(Npc_GetActiveSpell(self) == SPL_PalTeleportSecret)
@@ -375,6 +409,10 @@ func void Spell_Cast_Teleport()
 	if(Npc_GetActiveSpell(self) == SPL_Teleport_3)
 	{
 		Spell_Cast_Teleport_3();
+	};
+	if(Npc_GetActiveSpell(self) == SPL_Teleport_Maya)
+	{
+		Spell_Cast_Teleport_Maya();
 	};
 };
 

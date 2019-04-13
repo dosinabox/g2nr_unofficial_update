@@ -8,9 +8,11 @@ instance VLK_400_Larius(Npc_Default)
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
-	fight_tactic = FAI_HUMAN_COWARD;
+//	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
+	EquipItem(self,ItMw_Schwert1);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Weak_Cipher_alt,BodyTex_N,ITAR_Governor);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Weak_Cipher_alt,BodyTex_N,ITAR_Larius);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

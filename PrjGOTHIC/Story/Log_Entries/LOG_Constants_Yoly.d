@@ -29,7 +29,7 @@ const string TOPIC_Addon_Joe = "Джо";
 
 var int TOPIC_END_Joe;
 
-const string TOPIC_Addon_BromorsGold = "Золотая чаша Бромора";
+const string TOPIC_Addon_BromorsGold = "Золотое блюдо Бромора";
 const string TOPIC_Addon_TeleportsADW = "Сила фокусирующих камней";
 const string TOPIC_Addon_Sklaven = "Рабы Ворона";
 const string TOPIC_Addon_Relicts = "Реликвии";
@@ -161,7 +161,7 @@ var int TOPIC_END_OrcElite;
 
 const string TOPIC_Dar_BringOrcEliteRing = "Позерство";
 const string TOPIC_FoundVinosKellerei = "Лунный свет";
-const string TOPIC_BrutusMeatbugs = "Грязные свиньи";
+const string TOPIC_BrutusMeatbugs = "Мерзкие твари";
 
 var int TOPIC_END_BrutusMeatbugs;
 

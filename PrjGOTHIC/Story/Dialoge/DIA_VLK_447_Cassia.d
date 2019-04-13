@@ -148,8 +148,11 @@ func void DIA_Cassia_News_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Cassia_News_16_04");	//Только посмотрите, кто нашел дорогу сюда. Аттила недооценил тебя. Но я не сделаю такой ошибки.
-		AI_Output(other,self,"DIA_Cassia_News_15_05");	//Что это за игры?
-		AI_Output(self,other,"DIA_Cassia_News_16_06");	//Мы хотели, чтобы ты умер за то, что сдал одного из наших друзей. Вот почему мы послали Аттилу.
+		if((Betrayal_Halvor == TRUE) || (Rengaru_InKnast == TRUE) || (Nagur_Ausgeliefert == TRUE))
+		{
+			AI_Output(other,self,"DIA_Cassia_News_15_05");	//Что это за игры?
+			AI_Output(self,other,"DIA_Cassia_News_16_06");	//Мы хотели, чтобы ты умер за то, что сдал одного из наших друзей. Вот почему мы послали Аттилу.
+		};
 		AI_Output(self,other,"DIA_Cassia_News_16_07");	//Твое присутствие здесь, однако, открывает новые возможности...
 		AI_Output(other,self,"DIA_Cassia_News_15_08");	//Что ты хочешь предложить мне?
 		AI_Output(self,other,"DIA_Cassia_News_16_09");	//Ты можешь присоединиться к нам.

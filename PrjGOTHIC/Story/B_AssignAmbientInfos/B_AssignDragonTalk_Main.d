@@ -38,9 +38,12 @@ func void DIA_DragonTalk_Main_1_verbannen()
 		AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_05");	//Ќам уже сообщили, что ты выбрал путь охотника на дракона.
 		AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_06");	//ѕоэтому мы послали наших отпрысков в твой мир, чтобы обеспечить продолжение нашего рода здесь.
 		AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_07");	//“ы уже проиграл, жалкий человечишка.
-		Log_CreateTopic(TOPIC_DRACHENEIER,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_Running);
-		B_LogEntry(TOPIC_DRACHENEIER,"ќдин из драконов пробормотал что-то об 'отпрыске' и продолжении его родового древа. Ѕоюсь, они могли распихать свой выводок по всем миру.");
+		if(TOPIC_END_DRACHENEIER == FALSE)
+		{
+			Log_CreateTopic(TOPIC_DRACHENEIER,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_DRACHENEIER,LOG_Running);
+			B_LogEntry(TOPIC_DRACHENEIER,"ќдин из драконов пробормотал что-то об 'отпрыске' и продолжении его родового древа. Ѕоюсь, они могли распихать свой выводок по всем миру.");
+		};
 	}
 	else
 	{

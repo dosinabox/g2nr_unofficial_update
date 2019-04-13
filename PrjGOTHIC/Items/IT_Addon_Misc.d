@@ -103,11 +103,13 @@ instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 
 instance ItMi_BromorsGeld_Addon(C_Item)
 {
-	name = "Золотая чаша";
+//	name = "Золотая чаша";
+	name = "Золотое блюдо";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_Nugget;
-	visual = "ItMi_GoldChalice.3DS";
+//	visual = "ItMi_GoldChalice.3DS";
+	visual = "ItMi_MariasGoldPlate.3DS";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Острым предметом на дне";
@@ -181,7 +183,7 @@ func void Use_Cello()
 
 instance ItMi_IECelloBow(C_Item)
 {
-	name = "Виолончельный лук";
+	name = "Виолончельный смычок";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 1;

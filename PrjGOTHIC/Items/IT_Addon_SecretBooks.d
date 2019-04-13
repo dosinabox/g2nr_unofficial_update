@@ -48,7 +48,8 @@ prototype ItWr_Addon_XPBook(C_Item)
 	flags = ITEM_MISSION;
 	visual = "ItWr_Book_02_01.3ds";
 	material = MAT_LEATHER;
-	scemeName = "MAPSEALED";
+//	scemeName = "MAPSEALED";
+	scemeName = "MAP";
 	description = name;
 	text[0] = PRINT_XPGained;
 	text[5] = NAME_Value;
@@ -106,7 +107,8 @@ prototype ItWr_Addon_LPBook(C_Item)
 	flags = ITEM_MISSION;
 	visual = "ItWr_Book_02_02.3ds";
 	material = MAT_LEATHER;
-	scemeName = "MAPSEALED";
+//	scemeName = "MAPSEALED";
+	scemeName = "MAP";
 	description = name;
 	text[0] = PRINT_LearnLP;
 	text[5] = NAME_Value;

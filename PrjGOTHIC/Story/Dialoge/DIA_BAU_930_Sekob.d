@@ -408,12 +408,32 @@ func void DIA_Sekob_DMTWEG_Info()
 		AI_Output(self,other,"DIA_Sekob_DMTWEG_01_03");	//Спасибо тебе, о великий маг. Что бы с нами сталось без защиты духовенства?!
 	};
 	TOPIC_END_SekobDMT = TRUE;
-	B_GivePlayerXP(XP_SekobDMTWEG);
-	Info_ClearChoices(DIA_Sekob_DMTWEG);
-	Info_AddChoice(DIA_Sekob_DMTWEG,Dialog_Ende,DIA_Sekob_DMTWEG_END);
+	B_GivePlayerXP(XP_SekobDMTWEG);	
+	AI_StopProcessInfos(self);
+	if(Kapitel < 5)
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"Obsessed");
+	};
+	if(Rosi_FleeFromSekob_Kap5 == FALSE)
+	{
+		B_StartOtherRoutine(Rosi,"Start");
+		B_StartOtherRoutine(Till,"Start");
+	};
+	B_StartOtherRoutine(Balthasar,"Start");
+	B_StartOtherRoutine(BAU_933_Rega,"Start");
+	B_StartOtherRoutine(BAU_934_Babera,"Start");
+	B_StartOtherRoutine(BAU_937_Bauer,"Start");
+	B_StartOtherRoutine(BAU_938_Bauer,"Start");
+	B_StartOtherRoutine(Bronko,"Start");
+//	Info_ClearChoices(DIA_Sekob_DMTWEG);
+//	Info_AddChoice(DIA_Sekob_DMTWEG,Dialog_Ende,DIA_Sekob_DMTWEG_END);
 };
 
-func void DIA_Sekob_DMTWEG_END()
+/*func void DIA_Sekob_DMTWEG_END()
 {
 	AI_StopProcessInfos(self);
 	if(Kapitel < 5)
@@ -435,7 +455,7 @@ func void DIA_Sekob_DMTWEG_END()
 	B_StartOtherRoutine(BAU_937_Bauer,"Start");
 	B_StartOtherRoutine(BAU_938_Bauer,"Start");
 	B_StartOtherRoutine(Bronko,"Start");
-};
+};*/
 
 
 instance DIA_Sekob_BELOHNUNG(C_Info)
@@ -527,11 +547,14 @@ func void DIA_Sekob_PERM_Info()
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_03");	//Моя жена исчезла. Сначала я не придал этому внимания, но она так и не вернулась.
 			AI_Output(self,other,"DIA_Sekob_PERM_01_04");	//Я подозреваю, что она убежала в лес, спасаясь от полевых хищников.
-			AI_Output(self,other,"DIA_Sekob_PERM_01_05");	//Окажи мне услугу: если ты найдешь ее, приведи ее назад домой.
-			MIS_bringRosiBackToSekob = LOG_Running;
-			Log_CreateTopic(TOPIC_bringRosiBackToSekob,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_bringRosiBackToSekob,LOG_Running);
-			B_LogEntry(TOPIC_bringRosiBackToSekob,"Жена Секоба Рози пропала. Секоб хочет, чтобы она вернулась.");
+			if(MIS_bringRosiBackToSekob != LOG_Running)
+			{
+				AI_Output(self,other,"DIA_Sekob_PERM_01_05");	//Окажи мне услугу: если ты найдешь ее, приведи ее назад домой.
+				MIS_bringRosiBackToSekob = LOG_Running;
+				Log_CreateTopic(TOPIC_bringRosiBackToSekob,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_bringRosiBackToSekob,LOG_Running);
+				B_LogEntry(TOPIC_bringRosiBackToSekob,"Жена Секоба Рози пропала. Секоб хочет, чтобы она вернулась.");
+			};
 		}
 		else
 		{
@@ -647,7 +670,8 @@ instance DIA_Sekob_ROSIBACKATSEKOB(C_Info)
 
 func int DIA_Sekob_ROSIBACKATSEKOB_Condition()
 {
-	if((Kapitel >= 5) && (hero.guild != GIL_KDF) && (Npc_GetDistToWP(Rosi,"NW_FARM4_SEKOB") < 3000) && (MIS_bringRosiBackToSekob == LOG_Running))
+//	if((Kapitel >= 5) && (hero.guild != GIL_KDF) && (Npc_GetDistToWP(Rosi,"NW_FARM4_SEKOB") < 3000) && (MIS_bringRosiBackToSekob == LOG_Running))
+	if((Kapitel >= 5) && (Npc_GetDistToWP(Rosi,"NW_FARM4_IN_04") < 3000) && (MIS_bringRosiBackToSekob == LOG_Running) && !Npc_IsDead(Rosi))
 	{
 		return TRUE;
 	};
@@ -679,7 +703,8 @@ instance DIA_Sekob_ROSINEVERBACK(C_Info)
 
 func int DIA_Sekob_ROSINEVERBACK_Condition()
 {
-	if((MIS_bringRosiBackToSekob == LOG_OBSOLETE) && (hero.guild != GIL_KDF))
+//	if((MIS_bringRosiBackToSekob == LOG_OBSOLETE) && (hero.guild != GIL_KDF))
+	if((MIS_RosisFlucht == LOG_SUCCESS) && (MIS_bringRosiBackToSekob == LOG_Running))
 	{
 		return TRUE;
 	};

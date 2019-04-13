@@ -81,7 +81,8 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,100);
-		CreateInvItems(slf,ItMw_Drachenschneide,1);
+//		CreateInvItems(slf,ItMw_Drachenschneide,1);
+		CreateInvItems(slf,ItMw_Bloodschneide,1);
 //		CreateInvItems(slf,ItRw_Addon_FireArrow,20);
 //		CreateInvItems(slf,ItRw_Addon_MagicArrow,20);
 //		CreateInvItems(slf,ItRw_Addon_MagicBolt,10);

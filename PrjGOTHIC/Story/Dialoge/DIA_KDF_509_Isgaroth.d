@@ -60,7 +60,10 @@ instance DIA_Isgaroth_Segen(C_Info)
 
 func int DIA_Isgaroth_Segen_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Isgaroth_Job))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Isgaroth_Segen_Info()
@@ -142,17 +145,17 @@ instance DIA_Isgaroth_Job(C_Info)
 
 func int DIA_Isgaroth_Job_Condition()
 {
-	if(hero.guild != GIL_KDF)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Isgaroth_Job_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Job_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Isgaroth_Job_01_01");	//Я маг Огня. Жрец нашего бога Инноса.
-	AI_Output(self,other,"DIA_Isgaroth_Job_01_02");	//Этот алтарь посвящен ЕМУ, высшему богу, создателю огня и верховному судье.
+	if((hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
+	{
+		AI_Output(self,other,"DIA_Isgaroth_Job_01_01");	//Я маг Огня. Жрец нашего бога Инноса.
+		AI_Output(self,other,"DIA_Isgaroth_Job_01_02");	//Этот алтарь посвящен ЕМУ, высшему богу, создателю огня и верховному судье.
+	};
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_03");	//Ко мне приходят люди, чтобы помолиться Инносу и получить благословение.
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_04");	//А за небольшое пожертвование ты можешь получить от меня много полезного.
 	Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);

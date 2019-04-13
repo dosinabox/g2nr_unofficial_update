@@ -7,6 +7,7 @@ instance VLK_432_Moe(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;

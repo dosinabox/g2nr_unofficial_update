@@ -408,6 +408,10 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_5()
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_Pyrokinesis,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Pyrokinesis)),DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_Pyrokinesis);
 	};
+	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
+	{
+		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_Shrink);
+	};
 };
 
 func void DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_Pyrokinesis()
@@ -450,10 +454,10 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_6()
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_ArmyOfDarkness,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ArmyOfDarkness)),DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_ArmyOfDarkness);
 	};
-	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
+	/*if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_Shrink);
-	};
+	};*/
 };
 
 func void DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_Firerain()
@@ -476,7 +480,7 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_ArmyOfDarkness()
 	B_TeachPlayerTalentRunes(self,other,SPL_ArmyOfDarkness);
 };
 
-func void DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_Shrink()
+func void DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_Shrink()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
 };

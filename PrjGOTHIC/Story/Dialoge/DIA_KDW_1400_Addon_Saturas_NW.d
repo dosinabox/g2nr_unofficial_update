@@ -59,11 +59,14 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_03");	//(вздыхает) Ты хоть знаешь, что ты ищешь?
 		AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_04");	//Ну, Нефариус дал мне эту карту...
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_05");	//Покажи ее мне!
-		B_UseFakeScroll();
+		AI_PrintScreen("Карта Нефариуса отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+//		B_UseFakeScroll();
+		B_UseFakeMap();
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_06");	//Хм. В большом лесу чрезвычайно опасно. Не следует направляться туда одному.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_07");	//Найди кого-нибудь в Хоринисе, кто мог бы пойти с тобой.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_08");	//Не то, чтобы я о тебе волнуюсь, но монстры могут съесть орнамент вместе с тобой.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_09");	//Вот твоя карта...
+		AI_PrintScreen("Карта Нефариуса получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
 		B_LogEntry(TOPIC_Addon_Ornament,"Сатурас посоветовал мне не отправляться в одиночку на поиски части орнамента, которая находится в лесу. Я должен найти в Хоринисе кого-нибудь, кто пойдет со мной.");

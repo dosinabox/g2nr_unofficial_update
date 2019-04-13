@@ -9,7 +9,7 @@ instance BAU_936_Rosi(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_1h_Vlk_Axe);
 //	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Hure,BodyTexBabe_N,ITAR_BauBabe_M);
 	Mdl_SetModelFatness(self,0);

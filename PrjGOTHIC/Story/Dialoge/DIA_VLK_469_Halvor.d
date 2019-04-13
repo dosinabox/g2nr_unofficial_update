@@ -204,7 +204,7 @@ instance DIA_Halvor_MESSAGE(C_Info)
 	information = DIA_Halvor_MESSAGE_Info;
 	permanent = FALSE;
 	description = "Я думаю, этот клочок бумаги имеет отношение к тебе...";
-	trade = FALSE;
+//	trade = FALSE;
 };
 
 
@@ -219,8 +219,8 @@ func int DIA_Halvor_MESSAGE_Condition()
 func void DIA_Halvor_MESSAGE_Info()
 {
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_15_00");	//Я думаю, этот клочок бумаги имеет отношение к тебе...
-	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_01");	//Что?.. Дай посмотрю.
-	B_UseFakeScroll();
+//	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_01");	//Что?.. Дай посмотрю.
+//	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_02");	//(в испарине) Э-э... Хорошо, давай поговорим спокойно об этом - э-э... послушай. Я перепродал товары, полученные от бандитов.
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_03");	//(торопливо) Но нет необходимости сообщать об этом ополчению, правда? Я уверен, мы можем прийти к взаимопониманию, разве нет?
 	Info_ClearChoices(DIA_Halvor_MESSAGE);

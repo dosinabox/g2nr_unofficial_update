@@ -267,9 +267,16 @@ func void DIA_Babo_Wurst_Info()
 	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
-	NovizeLeft = IntToString(13 - Wurst_Gegeben);
-	NovizeText = ConcatStrings(NovizeLeft,PRINT_NovizenLeft);
-	AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	if(Wurst_Gegeben >= 13)
+	{
+		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	}
+	else
+	{
+		NovizeLeft = IntToString(13 - Wurst_Gegeben);
+		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
+		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	};
 	Info_ClearChoices(DIA_Babo_Wurst);
 	if(Npc_HasItems(other,ItFo_Schafswurst))
 	{
@@ -405,7 +412,7 @@ func void DIA_Babo_Fegen_Info()
 	AI_Output(other,self,"DIA_Babo_Fegen_15_00");	//Я должен подметать кельи послушников.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_01");	//Ты взвалил на себя слишком много работы. Знаешь что - я помогу тебе. Тебе ни за что не справиться одному.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_02");	//Но мне очень нужен свиток с заклинанием 'Кулак Ветра'. Знаешь, мне повезло, и мне было позволено прочесть книгу о нем.
-	AI_Output(self,other,"DIA_Babo_Fegen_03_03");	//И теперь, естественно, я хочу испытать это заклинание. Так что если ты принесешь мне этот свиток, я помогу тебе.
+	AI_Output(self,other,"DIA_Babo_Fegen_03_03");	//И теперь, естественно, я хочу испытать это заклинание. Так что если ты мне принесешь этот свиток, я помогу тебе.
 	B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников, если я принесу ему свиток с заклинанием 'Кулак Ветра'.");
 };
 
@@ -417,7 +424,7 @@ instance DIA_Babo_Windfaust(C_Info)
 	condition = DIA_Babo_Windfaust_Condition;
 	information = DIA_Babo_Windfaust_Info;
 	permanent = TRUE;
-	description = "Насчет свитка... (отдать 'Кулак Ветра')";
+	description = "Насчет свитка...";
 };
 
 
@@ -819,7 +826,10 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke()
 	else
 	{
 		B_GiveInvItems(other,self,ItWr_BabosPinUp_MIS,1);
-		B_GiveInvItems(other,self,ItWr_BabosLetter_MIS,1);
+//		B_GiveInvItems(other,self,ItWr_BabosLetter_MIS,1);
+		Npc_RemoveInvItem(other,ItWr_BabosLetter_MIS);
+		CreateInvItem(self,ItWr_BabosLetter_MIS);
+		AI_PrintScreen("Письмо Бабо отдано",-1,43,FONT_ScreenSmall,2);
 	};
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_03_03");	//Я не хотел обидеть тебя, но я просто очень переживаю.
@@ -911,7 +921,10 @@ func void DIA_Babo_Kap3_HaveYourDocs_HereTheyAre()
 	else
 	{
 		B_GiveInvItems(other,self,ItWr_BabosPinUp_MIS,1);
-		B_GiveInvItems(other,self,ItWr_BabosLetter_MIS,1);
+//		B_GiveInvItems(other,self,ItWr_BabosLetter_MIS,1);
+		Npc_RemoveInvItem(other,ItWr_BabosLetter_MIS);
+		CreateInvItem(self,ItWr_BabosLetter_MIS);
+		AI_PrintScreen("Письмо Бабо отдано",-1,43,FONT_ScreenSmall,2);
 	};
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_03_01");	//Да, все на месте.

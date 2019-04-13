@@ -8,9 +8,9 @@ func void B_AssessTalk()
 	pcr = Hlp_GetNpc(PC_Rockefeller);
 	if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcl)) || (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcr)))
 	{
-		PrintScreen(ConcatStrings("Voice:",IntToString(self.voice)),-1,70,FONT_Screen,2);
-		PrintScreen("NO HERO!",-1,-1,FONT_Screen,2);
-		PrintScreen(IntToString(self.aivar[AIV_FollowDist]),-1,70,FONT_Screen,2);
+		PrintScreen(ConcatStrings("Голос: ",IntToString(self.voice)),-1,70,FONT_Screen,2);
+		PrintScreen("Нет героя!",-1,-1,FONT_Screen,2);
+		PrintScreen(IntToString(self.aivar[AIV_FollowDist]),-1,65,FONT_Screen,2);
 		if(C_NpcIsInQuarter(self) == Q_KASERNE)
 		{
 			PrintScreen("Q_BARRACKS",-1,30,FONT_Screen,2);

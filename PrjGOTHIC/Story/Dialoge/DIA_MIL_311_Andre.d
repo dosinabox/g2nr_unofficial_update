@@ -80,6 +80,9 @@ func void B_Andre_CantharFalle()
 	if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
 	{
 		B_NpcSetReleased(Canthar);
+		Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
+		Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
+		Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 	};
 	B_StartOtherRoutine(Canthar,"MARKTSTAND");
 	AI_Teleport(Canthar,"NW_CITY_SARAH");
@@ -676,13 +679,13 @@ func void DIA_Andre_GuildOfThieves_Info()
 	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
 	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
 	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
+	MIS_Andre_GuildOfThieves = LOG_Running;
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_04");	//Тогда я смогу гарантировать, что ты будешь принят в ополчение - неважно, гражданин ты или нет.
 		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_05");	//Но ты никому не должен говорить о нашем соглашении!
+		B_LogEntry(TOPIC_BecomeMIL,"Есть также другой способ вступить в ряды городской стражи - найти и уничтожить гильдию воров Хориниса.");
 	};
-	MIS_Andre_GuildOfThieves = LOG_Running;
-	B_LogEntry(TOPIC_BecomeMIL,"Есть также другой способ вступить в ряды городской стражи - найти и уничтожить гильдию воров Хориниса.");
 };
 
 
@@ -771,7 +774,7 @@ func void DIA_Andre_Auslieferung_Info()
 {
 	AI_Output(other,self,"DIA_Andre_Auslieferung_15_00");	//Я пришел получить награду за преступника.
 	Info_ClearChoices(DIA_Andre_Auslieferung);
-	Info_AddChoice(DIA_Andre_Auslieferung,"Я зайду позже...",DIA_Andre_Auslieferung_Back);
+	Info_AddChoice(DIA_Andre_Auslieferung,"Я вернусь позже...",DIA_Andre_Auslieferung_Back);
 	if((Rengaru_InKnast == TRUE) && (Rengaru_Ausgeliefert == FALSE))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Ренгару украл у торговца Джоры.",DIA_Andre_Auslieferung_Rengaru);
@@ -796,6 +799,7 @@ func void DIA_Andre_Auslieferung_Info()
 
 func void DIA_Andre_Auslieferung_Back()
 {
+	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
 
@@ -1643,7 +1647,7 @@ instance DIA_Andre_Cornelius_Liar(C_Info)
 
 func int DIA_Andre_Cornelius_Liar_Condition()
 {
-	if((Cornelius_ThreatenByMilSC == TRUE) && (CorneliusFlee != TRUE))
+	if((Cornelius_ThreatenByMilSC == TRUE) && (CorneliusFlee != TRUE) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

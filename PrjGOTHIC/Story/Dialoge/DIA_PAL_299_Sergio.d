@@ -180,7 +180,7 @@ func void DIA_Sergio_Babo_Info()
 	Babo_Training = TRUE;
 	Npc_ExchangeRoutine(self,"TRAIN");
 	B_StartOtherRoutine(Babo,"TRAIN");
-	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренировать Бабо по 2 часа каждое утро.");
+	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренировать Бабо по два часа каждое утро.");
 };
 
 

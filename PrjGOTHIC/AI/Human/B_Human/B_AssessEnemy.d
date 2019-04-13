@@ -5,6 +5,20 @@ func int B_AssessEnemy()
 	var C_Npc mgo;
 	var C_Npc lar;
 	pcl = Hlp_GetNpc(PC_Levelinspektor);
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && (Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000) && !Npc_IsPlayer(other))
+	{
+//		AI_StartState(self,ZS_FleeToWP,0,"NW_TAVERNE_RUKHAR");
+		B_Flee();
+		return FALSE;
+	};
+	if(((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE)) && (other.guild == GIL_ORC) && (CurrentLevel == NEWWORLD_ZEN))
+	{
+		if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Myxir_CITY)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(KDF_511_Daron)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Vatras)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Xardas)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Mario)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(PC_Thief_NW)))
+		{
+			B_Flee();
+			return FALSE;
+		};
+	};
 	if(Hlp_GetInstanceID(other) == Hlp_GetInstanceID(pcl))
 	{
 		return FALSE;

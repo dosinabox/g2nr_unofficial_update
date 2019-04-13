@@ -4,7 +4,8 @@ instance MIL_325_Miliz(Npc_Default)
 	name[0] = NAME_Miliz;
 	guild = GIL_MIL;
 	id = 325;
-	voice = 12;
+//	voice = 12;
+	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_NewsOverride] = TRUE;

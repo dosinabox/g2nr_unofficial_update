@@ -9,8 +9,11 @@ instance SLD_803_Cipher(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
-/*	B_CreateAmbientInv(self);
+	CreateInvItems(self,ItRw_Arrow,10);
+	EquipItem(self,ItMw_2H_OrcAxe_01);
+	EquipItem(self,ItRw_Bow_L_02);
+/*	EquipItem(self,ItMw_1h_Sld_Sword);
+	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItRw_Arrow,50);
 	CreateInvItems(self,ItRw_Bow_L_02,1);
 	CreateInvItems(self,ItRw_Sld_Bow,1);

@@ -7,7 +7,7 @@ instance Itemhoshi(Npc_Default)
 	voice = 3;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
-	B_SetAttributesToChapter(self,4);
+	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
@@ -63,6 +63,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_Steinbrecher,1);
 	CreateInvItems(self,ItMw_Spicker,1);
 	CreateInvItems(self,ItMw_Streitaxt1,1);
+	CreateInvItems(self,ItMw_Banditenaxt,1);
 	CreateInvItems(self,ItMw_Schwert1,1);
 	CreateInvItems(self,ItMw_Schwert2,1);
 	CreateInvItems(self,ItMw_Doppelaxt,1);
@@ -99,6 +100,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_Berserkeraxt,1);
 	CreateInvItems(self,ItMw_Warrioraxt,1);
 	CreateInvItems(self,ItMw_Drachenschneide,1);
+	CreateInvItems(self,ItMw_Bloodschneide,1);
 	CreateInvItems(self,ItMw_1H_Special_04,1);
 	CreateInvItems(self,ItMw_2H_Special_04,1);
 	CreateInvItems(self,ItMw_1H_Blessed_01,1);
@@ -132,6 +134,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_Addon_BanditTrader,1);
 	CreateInvItems(self,ItMw_Addon_Betty,1);
 	CreateInvItem(self,ITAR_Governor);
+	CreateInvItem(self,ITAR_Larius);
 	CreateInvItem(self,ITAR_Smith);
 	CreateInvItem(self,ITAR_Barkeeper);
 	CreateInvItem(self,ITAR_Judge);
@@ -303,6 +306,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItSc_Thunderstorm,10);
 	CreateInvItems(self,ItSc_Whirlwind,10);
 	CreateInvItems(self,ItSc_SummonMud,10);
+	CreateInvItems(self,ItSc_Teleport_Maya,10);
 	CreateInvItems(self,ItSe_ErzFisch,1);
 	CreateInvItems(self,ItSe_GoldFisch,1);
 	CreateInvItems(self,ItSe_Ringfisch,1);
@@ -367,11 +371,11 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Addon_SUMMONANCIENTGHOST,1);
 	CreateInvItems(self,ItWr_Map_AddonWorld,1);
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC1,1);
-	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC2,1);
-	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC3,1);
-	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC4,1);
-	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC5,1);
-	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC6,1);
+//	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC2,1);
+//	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC3,1);
+//	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC4,1);
+//	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC5,1);
+//	CreateInvItems(self,ITWR_Addon_Runemaking_KDW_CIRC6,1);
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDF_CIRC1,1);
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDF_CIRC2,1);
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDF_CIRC3,1);
@@ -388,6 +392,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItFo_Stew,10);
 	CreateInvItems(self,ItFo_XPStew,10);
 	CreateInvItems(self,ItFo_FishSoup,10);
+	CreateInvItems(self,ItFo_EddasFishSoup,10);
 	CreateInvItems(self,ItFo_Sausage,10);
 	CreateInvItems(self,ItFo_Honey,10);
 	CreateInvItems(self,ItFo_Water,10);
@@ -444,19 +449,20 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,itke_addon_skinner);
 	CreateInvItem(self,ITKE_Addon_Thorus);
 	CreateInvItems(self,ItLsTorch,50);
+	CreateInvItems(self,ItLsTorchburned,50);
 	CreateInvItems(self,ItMi_Pan,1);
 	CreateInvItems(self,ItMi_PanFull,1);
 	CreateInvItems(self,ItMi_Saw,1);
 	CreateInvItems(self,ItMi_Pliers,1);
 	CreateInvItems(self,ItMi_Brush,1);
-	CreateInvItems(self,ItMi_Flask,1);
+	CreateInvItems(self,ItMi_Flask,10);
 	CreateInvItems(self,ItMi_Stomper,1);
 	CreateInvItems(self,ItMi_Broom,1);
 	CreateInvItems(self,ItMi_Rake,1);
 	CreateInvItems(self,ItMi_Hammer,1);
 	CreateInvItems(self,ItMi_Scoop,1);
 	CreateInvItems(self,ItMi_Nugget,1);
-	CreateInvItems(self,ItMi_Joint,1);
+	CreateInvItems(self,ItMi_Joint,10);
 	CreateInvItems(self,ItMi_Lute,1);
 	CreateInvItems(self,ItMi_Gold,1000);
 	CreateInvItems(self,ItMi_OldCoin,1);
@@ -586,6 +592,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItRi_Prot_Mage_02);
 	CreateInvItem(self,ItRi_Prot_Point_01);
 	CreateInvItem(self,ItRi_Prot_Point_02);
+	CreateInvItem(self,ItRi_Prot_Total_00);
 	CreateInvItem(self,ItRi_Prot_Total_01);
 	CreateInvItem(self,ItRi_Prot_Total_02);
 	CreateInvItem(self,ItRi_Addon_Health_01);
@@ -613,6 +620,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItAt_Meatbugflesh,10);
 	CreateInvItems(self,ItAt_SheepFur,10);
 	CreateInvItems(self,ItAt_WolfFur,10);
+	CreateInvItems(self,ItAt_IceWolfFur,10);
 	CreateInvItems(self,ItAt_BugMandibles,10);
 	CreateInvItems(self,ItAt_Claw,10);
 	CreateInvItems(self,ItAt_LurkerClaw,10);
@@ -839,6 +847,14 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWR_Addon_TreasureMap,1);
 	CreateInvItems(self,ItMi_Addon_GregsTreasureBottle_MIS,1);
 	CreateInvItems(self,ItMi_ErolsKelch,1);
+	CreateInvItems(self,ItMi_IECello,1);
+	CreateInvItems(self,ItMi_IECelloBow,1);
+	CreateInvItems(self,ItMi_IEDrum,1);
+	CreateInvItems(self,ItMi_IEDrumScheit,1);
+	CreateInvItems(self,ItMi_IEDrumStick,1);
+	CreateInvItems(self,ItMi_IEDudelBlau,1);
+	CreateInvItems(self,ItMi_IEDudelGelb,1);
+	CreateInvItems(self,ItMi_IEHarfe,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,0);
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,70);
@@ -1255,6 +1271,9 @@ instance Runenbrief(C_Item)
 	on_state[0] = UseHosh1;
 	scemeName = "MAP";
 	description = "Получены все руны аддона";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -1291,6 +1310,9 @@ instance EnterBanditCamp(C_Item)
 	on_state[0] = UseHosh2;
 	scemeName = "MAP";
 	description = "Задать Player_HasTalkedToBanditCamp";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -1311,6 +1333,9 @@ instance PH(C_Item)
 	on_state[0] = UsePatrickHelper;
 	scemeName = "MAP";
 	description = "Небольшой тест магии";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -1421,9 +1446,50 @@ instance Hosh4(C_Item)
 
 func void UseHoshiTagebuch()
 {
-//	GregIsBack_S1();
-//	Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
-	Wolf_ProduceCrawlerArmor = TRUE;
+	GregIsBack_S1();
+};
+
+
+instance D36TestBook(C_Item)
+{
+	name = "Великая книга тестов";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItWr_Book_02_02.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAP";
+	description = name;
+	on_state[0] = UseD36TestBook;
+};
+
+
+func void UseD36TestBook()
+{
+	PrintScreen("тест",-1,-1,FONT_Screen,1);
+	/*Knows_SecretSign = TRUE;
+	B_StartOtherRoutine(Ulf,"BackToMonastery");
+	B_StartOtherRoutine(Igaraz,"Start");
+	B_StartOtherRoutine(Agon,"Start");
+	Bartok_OrkGesagt = TRUE;
+	MIS_Balthasar_BengarsWeide = LOG_SUCCESS;
+	Andre_Diebesgilde_aufgeraeumt = TRUE;
+	B_CheckLog();
+	Garwig.guild = GIL_NONE;
+	Npc_SetTrueGuild(Garwig,GIL_NONE);
+	B_StartOtherRoutine(Garwig,"Exile");
+	MIS_Richter_BringHolyHammer = LOG_SUCCESS;
+	MIS_HelpDyrian = LOG_Success;
+	Player_IsApprentice = APP_Harad;
+	Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
+	Wld_SendTrigger("VALLEY_SHOWCASE_MOVER_01");
+	Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Naked0",1,0,"Hum_Head_Bald",163,0,ITAR_Thorus_Addon);
+	BloodwynIsHeadless = TRUE;
+	Wld_InsertItem(ItMw_MalethsGehstock_MIS,"FP_ITEM_FARM1_01");
+	Npc_SetTalentSkill(hero,NPC_TALENT_C,1);
+	Npc_SetTalentSkill(hero,NPC_TALENT_REGENERATE,1);
+	Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,1);
+	Wolf_ProduceCrawlerArmor = TRUE;*/
 };
 
 

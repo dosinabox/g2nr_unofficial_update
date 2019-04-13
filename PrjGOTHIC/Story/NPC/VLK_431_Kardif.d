@@ -7,6 +7,7 @@ instance VLK_431_Kardif(Npc_Default)
 	voice = 14;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_IGNORE_Theft] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;

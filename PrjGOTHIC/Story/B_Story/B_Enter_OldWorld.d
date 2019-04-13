@@ -74,6 +74,11 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		Wld_InsertNpc(DMT_DementorAmbient,"OW_PATH_133");
 		Wld_InsertNpc(DMT_DementorAmbient,"OW_PATH_128");
 		Wld_InsertItem(ItRu_Fear,"FP_ITEM_XARDASALTERTURM_01");
+		if((NewMine_LeadSnapper_Spawned == FALSE) && Npc_IsDead(Bilgot) && (Lutero_Krallen == LOG_Running))
+		{
+			Wld_InsertNpc(NewMine_LeadSnapper,"OW_ORC_LOOKOUT_2_01");
+			NewMine_LeadSnapper_Spawned = TRUE;
+		};
 		if(hero.guild == GIL_KDF)
 		{
 			Wld_InsertItem(ItMi_RuneBlank,"FP_ITEM_XARDASALTERTURM_02");
@@ -114,8 +119,19 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			};
 			EngromIsGone = TRUE;
 		};
-		B_RemoveNpc(Geppert);
-		B_RemoveNpc(Kervo);
+		/*B_RemoveNpc(Geppert);
+		B_RemoveNpc(Kervo);*/
+		if(MIS_Kervo_KillLurker == LOG_SUCCESS)
+		{
+			B_RemoveNpc(Geppert);
+			B_RemoveNpc(Kervo);
+		}
+		else
+		{
+			B_KillNpc(Geppert);
+			B_KillNpc(Kervo);
+			Wld_InsertNpc(Lurker,"OW_DJG_VORPOSTEN_01");
+		};
 		B_RemoveNpc(VLK_4106_Dobar);
 		B_RemoveNpc(Parlaf);
 		if(!Npc_IsDead(Sengrath))

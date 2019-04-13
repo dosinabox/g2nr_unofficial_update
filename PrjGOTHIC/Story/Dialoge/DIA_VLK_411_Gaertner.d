@@ -145,7 +145,7 @@ func void DIA_Gaertner_Trade_Info()
 instance DIA_Gaertner_Krautabak(C_Info)
 {
 	npc = VLK_411_Gaertner;
-	nr = 5;
+	nr = 6;
 	condition = DIA_Gaertner_Krautabak_Condition;
 	information = DIA_Gaertner_Krautabak_Info;
 	permanent = FALSE;
@@ -155,7 +155,7 @@ instance DIA_Gaertner_Krautabak(C_Info)
 
 func int DIA_Gaertner_Krautabak_Condition()
 {
-	if(Npc_HasItems(other,ItMi_SumpfTabak) && Wld_IsTime(6,45,21,45) && Npc_KnowsInfo(other,DIA_Gaertner_Job))
+	if(Npc_HasItems(other,ItMi_SumpfTabak) && Wld_IsTime(6,45,21,45) && Npc_KnowsInfo(other,DIA_Gaertner_Plants))
 	{
 		return TRUE;
 	};
@@ -180,7 +180,7 @@ func void DIA_Gaertner_Krautabak_Info()
 instance DIA_Gaertner_Sign(C_Info)
 {
 	npc = VLK_411_Gaertner;
-	nr = 6;
+	nr = 7;
 	condition = DIA_Gaertner_Sign_Condition;
 	information = DIA_Gaertner_Sign_Info;
 	permanent = FALSE;
@@ -190,7 +190,7 @@ instance DIA_Gaertner_Sign(C_Info)
 
 func int DIA_Gaertner_Sign_Condition()
 {
-	if(Knows_SecretSign == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Gaertner_Job) && (Knows_SecretSign == TRUE))
 	{
 		return TRUE;
 	};
@@ -199,8 +199,36 @@ func int DIA_Gaertner_Sign_Condition()
 func void DIA_Gaertner_Sign_Info()
 {
 	AI_PlayAni(other,"T_YES");
+	CreateInvItems(self,ItKe_Lockpick,3);
 	AI_Output(self,other,"DIA_Gaertner_Sign_09_00");	//Теперь ты один из нас. И я могу подкинуть тебе кое-какую информацию.
 	AI_Output(self,other,"DIA_Gaertner_Sign_09_01");	//В некоторых домах здесь есть секретные панели, которые открываются скрытыми выключателями.
 	AI_Output(self,other,"DIA_Gaertner_Sign_09_02");	//Люди хранят там самые ценные свои вещи.
+};
+
+instance DIA_Gaertner_FreeLockpicks(C_Info)
+{
+	npc = VLK_411_Gaertner;
+	nr = 8;
+	condition = DIA_Gaertner_FreeLockpicks_Condition;
+	information = DIA_Gaertner_FreeLockpicks_Info;
+	permanent = FALSE;
+	description = "У меня больше нет отмычек...";
+};
+
+
+func int DIA_Gaertner_FreeLockpicks_Condition()
+{
+	if(!Npc_HasItems(other,ItKe_Lockpick) && !Npc_HasItems(self,ItKe_Lockpick) && Npc_KnowsInfo(other,DIA_Gaertner_Sign))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Gaertner_FreeLockpicks_Info()
+{
+	B_Say(other,self,"$NoMorePicks");
+	B_Say(self,other,"$ABS_GOOD");
+	CreateInvItems(self,ItKe_Lockpick,3);
+	B_GiveInvItems(self,other,ItKe_Lockpick,3);
 };
 

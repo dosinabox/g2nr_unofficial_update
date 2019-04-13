@@ -162,8 +162,8 @@ func void DIA_Niclas_CanTeachMe_Info()
 {
 	AI_Output(other,self,"DIA_Niclas_CanTeachMe_15_00");	//¬ таком случае, € уверен, что ты можешь научить мен€ чему-нибудь.
 	AI_Output(self,other,"DIA_Niclas_CanTeachMe_03_01");	//ѕочему бы и нет. я могу показать тебе, как правильно держать лук.
-	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher,"Ќиклас может обучить мен€ искусству стрельбы из лука.");
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,"Ќиклас может обучить мен€ искусству стрельбы из лука.");
 };
 
 

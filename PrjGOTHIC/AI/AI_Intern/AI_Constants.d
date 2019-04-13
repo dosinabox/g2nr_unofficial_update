@@ -334,6 +334,7 @@ const int MOBSI_PotionAlchemy = 4;
 const int MOBSI_PrayShrine = 5;
 const int MOBSI_GOLDHACKEN = 6;
 const int MOBSI_PRAYIDOL = 7;
+const int MOBSI_PAN = 8;
 var int player_mobsi_production;
 const int BodyTex_P = 0;
 const int BodyTex_N = 1;

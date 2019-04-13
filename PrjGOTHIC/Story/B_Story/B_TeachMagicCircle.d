@@ -45,13 +45,13 @@ func int B_TeachMagicCircle(var C_Npc slf,var C_Npc oth,var int circle)
 	if(circle == 5)
 	{
 		PrintScreen(PRINT_LearnCircle_5,-1,-1,FONT_Screen,2);
-		B_LogEntry(TOPIC_TalentMagicCircle,"«аклинани€ 5-го круга: больша€ огненна€ бур€, лед€на€ волна, вызов демона и лечение т€желых ранений.");
+		B_LogEntry(TOPIC_TalentMagicCircle,"«аклинани€ 5-го круга: больша€ огненна€ бур€, лед€на€ волна, вызов демона, лечение т€желых ранений и уменьшение монстра.");
 		return TRUE;
 	};
 	if(circle == 6)
 	{
 		PrintScreen(PRINT_LearnCircle_6,-1,-1,FONT_Screen,2);
-		B_LogEntry(TOPIC_TalentMagicCircle,"«аклинани€ 6-го круга: огненный дождь, дыхание смерти, волна смерти, арми€ “ьмы и уменьшение монстра.");
+		B_LogEntry(TOPIC_TalentMagicCircle,"«аклинани€ 6-го круга: огненный дождь, дыхание смерти, волна смерти и арми€ “ьмы.");
 		return TRUE;
 	};
 };

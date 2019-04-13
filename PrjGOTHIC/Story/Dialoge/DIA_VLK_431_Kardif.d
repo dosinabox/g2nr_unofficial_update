@@ -38,7 +38,10 @@ instance DIA_Kardif_PICKPOCKET(C_Info)
 
 func int DIA_Kardif_PICKPOCKET_Condition()
 {
-	return C_Beklauen(55,85);
+	if(Kardif_OneQuestion == FALSE)
+	{
+		return C_Beklauen(55,85);
+	};
 };
 
 func void DIA_Kardif_PICKPOCKET_Info()
@@ -673,7 +676,10 @@ func void DIA_Kardif_SENDATTILA_Info()
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01");	//Один парень очень хочет поговорить с тобой.
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе сообщение.
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_03");	//Он хочет встретиться с тобой. За рыбной лавкой Халвора.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_04");	//Эта информация бесплатна - но это исключение! Цена на все остальное осталась прежней.
+	if(Kardif_Deal > 0)
+	{
+		AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_04");	//Эта информация бесплатна - но это исключение! Цена на все остальное осталась прежней.
+	};
 	AI_Output(other,self,"DIA_Kardif_SENDATTILA_15_05");	//Как выглядел этот парень?
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_06");	//Я мог бы сказать тебе - но тебе придется заплатить за это, мой друг. (усмехается)
 	if(Kardif_Deal == 0)
@@ -742,7 +748,7 @@ instance DIA_Kardif_DEFEATEDATTILA(C_Info)
 
 func int DIA_Kardif_DEFEATEDATTILA_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Attila_Hallo))
+	if((Kardif_OneQuestion == FALSE) && Npc_KnowsInfo(other,DIA_Attila_Hallo) && (!Npc_HasItems(Attila,ItKe_ThiefGuildKey_MIS) || (Npc_GetDistToWP(Attila,"NW_CITY_KARDIF") > 2000) || Npc_IsDead(Attila)))
 	{
 		return TRUE;
 	};
@@ -754,8 +760,8 @@ func void DIA_Kardif_DEFEATEDATTILA_Info()
 	AI_Output(self,other,"DIA_Kardif_DEFEATEDATTILA_14_01");	//Эй, откуда мне было знать? Я просто передал информацию.
 	AI_Output(self,other,"DIA_Kardif_DEFEATEDATTILA_14_02");	//Если кто-то решил насолить тебе, я думаю, у него были веские причины.
 	B_GivePlayerXP(XP_Kardif_Blame4Attila);
-	B_KillNpc(Attila);
-	Npc_RemoveInvItem(Attila,ItMi_OldCoin);
+//	B_KillNpc(Attila);
+//	Npc_RemoveInvItem(Attila,ItMi_OldCoin);
 };
 
 
@@ -772,7 +778,7 @@ instance DIA_Kardif_Zeichen(C_Info)
 
 func int DIA_Kardif_Zeichen_Condition()
 {
-	if(Knows_SecretSign == TRUE)
+	if((Kardif_OneQuestion == FALSE) && (Knows_SecretSign == TRUE))
 	{
 		return TRUE;
 	};
@@ -800,7 +806,7 @@ instance DIA_Kardif_Crew(C_Info)
 
 func int DIA_Kardif_Crew_Condition()
 {
-	if(MIS_SCKnowsWayToIrdorath == TRUE)
+	if((Kardif_OneQuestion == FALSE) && (MIS_SCKnowsWayToIrdorath == TRUE))
 	{
 		return TRUE;
 	};

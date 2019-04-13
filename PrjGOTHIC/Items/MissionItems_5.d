@@ -10,6 +10,9 @@ instance ItWr_XardasLetterToOpenBook_MIS(C_Item)
 	on_state[0] = Use_XardasLetterToOpenBook;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -228,6 +231,9 @@ instance ItWr_UseLampIdiot_Mis(C_Item)
 	text[0] = "из книги 'Чертоги Ирдората'.";
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -276,6 +282,9 @@ instance ItWr_Seamap_Irdorath(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -328,7 +337,7 @@ func void UseITWr_ForgedShipLetter_MIS()
 	Doc_SetFont(nDocID,-1,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Предоставление полномочий");
+	Doc_PrintLines(nDocID,0,"Предоставление полномочий");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
@@ -506,8 +515,8 @@ instance ItPo_HealRandolph_MIS(C_Item)
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI | ITEM_MISSION;
-	value = Value_HpEssenz;
-	visual = "ItMi_Flask.3ds";
+	value = 300;
+	visual = "ItPo_HealRandolph.3ds";
 	material = MAT_GLAS;
 	on_state[0] = Use_HealRandolph;
 	scemeName = "POTIONFAST";
@@ -517,7 +526,7 @@ instance ItPo_HealRandolph_MIS(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Essenz;
 	text[5] = NAME_Value;
-	count[5] = Value_HpEssenz;
+	count[5] = value;
 };
 
 

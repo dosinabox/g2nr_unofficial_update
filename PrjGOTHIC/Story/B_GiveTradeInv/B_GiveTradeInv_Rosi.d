@@ -16,6 +16,7 @@ func void B_GiveTradeInv_Rosi(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Bolt,30);
 		CreateInvItems(slf,ItRw_Bow_L_01,1);
 		CreateInvItems(slf,ItRw_Bow_L_04,1);
+		CreateInvItems(slf,ItMw_1h_Bau_Axe,1);
 //		CreateInvItems(slf,ItRw_Bow_H_01,1);
 //		CreateInvItems(slf,ItRw_Crossbow_M_02,1);
 		Rosi_ItemsGiven_Chapter_1 = TRUE;

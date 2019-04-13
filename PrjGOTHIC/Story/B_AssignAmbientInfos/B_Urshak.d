@@ -35,7 +35,8 @@ instance DIA_Urshak_HALLO(C_Info)
 
 func int DIA_Urshak_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (URSHAK_SUCKED == FALSE))
+//	if(Npc_IsInState(self,ZS_Talk) && (URSHAK_SUCKED == FALSE))
+	if(URSHAK_SUCKED == FALSE)
 	{
 		return TRUE;
 	};
@@ -228,12 +229,14 @@ func void DIA_Urshak_HOSHPAKDEAD_Info()
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_04");	//Ур-Шак теперь должен носить ношу горя, должен дать Хош-Пак последний обряд. Ур-Шак надо идти.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_05");	//Друг лучше уходить проход. Слишком опасно здесь.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_06");	//Ур-Шак печалиться, если человек тоже умирать.
-	B_LogEntry(TOPIC_Urshak,"Хош-Пак мертв. Мой друг орк направляется в палатку Хош-Пака. Он скорбит по своему наставнику. Я должен отпустить его.");
+	B_LogEntry(TOPIC_Urshak,"Хош-Пак мертв. Мой друг-орк направляется к палатке Хош-Пака. Он скорбит по своему наставнику. Я должен отпустить его.");
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,20);
 	Npc_ExchangeRoutine(self,"Start");
-	Wld_InsertNpc(OrcWarrior_Rest,"FP_CAMPFIRE_HOSHPAK_01");
-	Wld_InsertNpc(OrcWarrior_Rest,"FP_CAMPFIRE_HOSHPAK_02");
+//	Wld_InsertNpc(OrcWarrior_Rest,"FP_CAMPFIRE_HOSHPAK_01");
+//	Wld_InsertNpc(OrcWarrior_Rest,"FP_CAMPFIRE_HOSHPAK_02");
+	Wld_InsertNpc(OrcWarrior_Scout,"OW_HOSHPAK_05");
+	Wld_InsertNpc(OrcWarrior_Scout,"FP_ROAM_HOSHPAK_05");
 };
 
 
@@ -242,14 +245,14 @@ instance DIA_Urshak_GEH(C_Info)
 	npc = NONE_110_Urshak;
 	condition = DIA_Urshak_GEH_Condition;
 	information = DIA_Urshak_GEH_Info;
-//	important = TRUE;
+	important = TRUE;
 	permanent = TRUE;
 };
 
 
 func int DIA_Urshak_GEH_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") >= 1000) && !Npc_RefuseTalk(self) && (URSHAK_SUCKED == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") > 1000) && (URSHAK_SUCKED == FALSE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -258,7 +261,6 @@ func int DIA_Urshak_GEH_Condition()
 func void DIA_Urshak_GEH_Info()
 {
 	AI_Output(self,other,"DIA_Urshak_GEH_18_00");	//Друг лучше уходить проход.
-	Npc_SetRefuseTalk(self,10);
 	AI_StopProcessInfos(self);
 };
 
@@ -291,7 +293,7 @@ func void DIA_Urshak_HOSHPAKRACHE_Info()
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_06");	//Следующий раз мы встречаться мы враги. Твоя лучше уходить сейчас.
 	AI_StopProcessInfos(self);
 	URSHAK_SUCKED = TRUE;
-	B_LogEntry(TOPIC_Urshak,"Ур-Шак был принят назад, в совет шаманов орков. Теперь он на стороне врага и немного напряжен. Лучше мне не вставать у него на пути, пока я не решу все дела с орками. К тому времени, он должен успокоиться.");
+	B_LogEntry(TOPIC_Urshak,"Ур-Шак был принят назад, в совет шаманов орков. Теперь он на стороне врага и немного напряжен. Лучше мне не вставать у него на пути, пока я не решу все дела с орками. К тому времени он должен успокоиться.");
 	B_GivePlayerXP(XP_UrshakBecomesShaman);
 };
 

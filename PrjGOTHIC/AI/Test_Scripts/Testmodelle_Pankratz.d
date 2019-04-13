@@ -10,6 +10,9 @@ instance J1(C_Item)
 	on_state[0] = UseJOLY_Storyhelpletter;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -170,6 +173,9 @@ instance J2(C_Item)
 	on_state[0] = UseJOLY2_Storyhelpletter;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -191,6 +197,9 @@ instance J3(C_Item)
 	on_state[0] = UseJ3;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -210,6 +219,9 @@ instance J4(C_Item)
 	on_state[0] = UseJ4;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -229,6 +241,9 @@ instance DJG_inserten(C_Item)
 	on_state[0] = UseDJG_inserten;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 

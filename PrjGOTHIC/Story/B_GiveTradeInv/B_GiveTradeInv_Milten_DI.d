@@ -23,6 +23,15 @@ func void B_GiveTradeInv_Milten_DI(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_01,40);
 		CreateInvItems(slf,ItPo_Mana_02,20);
 		CreateInvItems(slf,ItMi_RuneBlank,1);
+		if(hero.guild == GIL_KDF)
+		{
+			CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC1,1);
+			CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC2,1);
+			CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC3,1);
+			CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC4,1);
+			CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC5,1);
+			CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC6,1);
+		};
 		Milten_DI_ItemsGiven = TRUE;
 	};
 };

@@ -128,7 +128,7 @@ func int ZS_Inflate_Loop()
 		}
 		else
 		{
-			B_MagicHurtNpc(other,self,self.attribute - 1);
+			B_MagicHurtNpc(other,self,1);
 		};
 	};
 	return LOOP_CONTINUE;

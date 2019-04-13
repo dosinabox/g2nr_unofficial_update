@@ -118,6 +118,7 @@ func void PC_Booze_Lou_Info()
 		Npc_RemoveInvItems(self,ItAt_SharkTeeth,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
 		Npc_RemoveInvItems(self,ItFo_Water,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_LousHammer,1);
 	}
@@ -155,6 +156,7 @@ func void PC_Booze_Schlaf_Info()
 	{
 		Npc_RemoveInvItems(self,ItFo_Addon_LousHammer,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_SchlafHammer,1);
 	}
@@ -201,6 +203,7 @@ func void PC_Booze_SchnellerHering_Info()
 			Npc_RemoveInvItems(self,ItFo_SmellyFish,1);
 		};
 		Npc_RemoveInvItems(self,ItFo_Water,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_SchnellerHering,1);
 	}
@@ -342,6 +345,7 @@ func void PC_ItPo_Mana_01_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_01,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Mana_01,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -379,6 +383,7 @@ func void PC_ItPo_Mana_02_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_02,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Mana_02,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -416,6 +421,7 @@ func void PC_ItPo_Mana_03_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Mana_03,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -454,6 +460,7 @@ func void PC_ItPo_Mana_04_Info()
 		Npc_RemoveInvItems(hero,ItPo_Mana_01,3);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
 		CreateInvItems(hero,ItPo_Mana_Addon_04,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		Print(PRINT_AlchemySuccess);
 	}
 	else
@@ -542,6 +549,7 @@ func void PC_ItPo_Health_01_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_01,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItem(hero,ItPo_Health_01);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -579,6 +587,7 @@ func void PC_ItPo_Health_02_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_02,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Health_02,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -616,6 +625,7 @@ func void PC_ItPo_Health_03_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Health_03,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -653,6 +663,7 @@ func void PC_ItPo_Health_04_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPo_Health_01,3);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Health_Addon_04,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -744,6 +755,7 @@ func void PC_ItPo_Addon_Geist_Info()
 		Npc_RemoveInvItems(hero,ItPo_Mana_02,1);
 		Npc_RemoveInvItems(hero,ItPo_Health_01,1);
 		Npc_RemoveInvItems(hero,ItFo_Addon_Pfeffer_01,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		if(Knows_Bloodfly == TRUE)
 		{
 			CreateInvItems(hero,ItPo_Addon_Geist_02,1);
@@ -788,6 +800,7 @@ func void PC_ItPo_Perm_Health_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Perm_Health,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -825,6 +838,7 @@ func void PC_ItPo_Perm_Mana_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Perm_Mana,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -862,6 +876,7 @@ func void PC_ItPo_Dex_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Dex_Herb_01,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Perm_DEX,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -899,6 +914,7 @@ func void PC_ItPo_Strg_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Strength_Herb_01,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Perm_STR,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -936,6 +952,7 @@ func void PC_ItPo_Speed_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Speed_Herb_01,1);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Speed,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -974,6 +991,7 @@ func void PC_ItPo_MegaDrink_Info()
 		Npc_RemoveInvItems(hero,ItAt_DragonEgg_MIS,10);
 		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
 		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
+//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_MegaDrink,1);
 		Print(PRINT_AlchemySuccess);
 	}

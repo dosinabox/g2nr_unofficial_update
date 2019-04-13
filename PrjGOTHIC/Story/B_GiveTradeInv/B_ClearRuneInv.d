@@ -18,8 +18,8 @@ func void B_ClearRuneInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItRu_PalRepelEvil,Npc_HasItems(slf,ItRu_PalRepelEvil));
 		Npc_RemoveInvItems(slf,ItRu_PalDestroyEvil,Npc_HasItems(slf,ItRu_PalDestroyEvil));
 		Npc_RemoveInvItems(slf,ItRu_PalTeleportSecret,Npc_HasItems(slf,ItRu_PalTeleportSecret));
-		Npc_RemoveInvItems(slf,ItRu_Light,Npc_HasItems(slf,ItRu_PalLight));
-		Npc_RemoveInvItems(slf,ItRu_PalLight,Npc_HasItems(slf,ItRu_Light));
+		Npc_RemoveInvItems(slf,ItRu_Light,Npc_HasItems(slf,ItRu_Light));
+		Npc_RemoveInvItems(slf,ItRu_PalLight,Npc_HasItems(slf,ItRu_PalLight));
 		Npc_RemoveInvItems(slf,ItRu_FireBolt,Npc_HasItems(slf,ItRu_FireBolt));
 		Npc_RemoveInvItems(slf,ItRu_Zap,Npc_HasItems(slf,ItRu_Zap));
 		Npc_RemoveInvItems(slf,ItRu_LightHeal,Npc_HasItems(slf,ItRu_LightHeal));
@@ -53,6 +53,8 @@ func void B_ClearRuneInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItRu_Concussionbolt,Npc_HasItems(slf,ItRu_Concussionbolt));
 		Npc_RemoveInvItems(slf,Fakescroll,Npc_HasItems(slf,Fakescroll));
 		Npc_RemoveInvItems(slf,Fakescroll_Addon,Npc_HasItems(slf,Fakescroll_Addon));
+		Npc_RemoveInvItems(slf,Fakeheroface,Npc_HasItems(slf,Fakeheroface));
+		Npc_RemoveInvItems(slf,Fakemap,Npc_HasItems(slf,Fakemap));
 		Npc_RemoveInvItems(slf,ItRu_Thunderstorm,Npc_HasItems(slf,ItRu_Thunderstorm));
 		Npc_RemoveInvItems(slf,ItRu_Whirlwind,Npc_HasItems(slf,ItRu_Whirlwind));
 		Npc_RemoveInvItems(slf,ItRu_Geyser,Npc_HasItems(slf,ItRu_Geyser));

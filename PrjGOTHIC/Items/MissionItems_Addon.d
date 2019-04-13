@@ -1,7 +1,7 @@
 
 instance ItWr_SaturasFirstMessage_Addon_Sealed(C_Item)
 {
-	name = "Запечатанное послание";
+	name = "Запечатанное письмо";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -10,7 +10,8 @@ instance ItWr_SaturasFirstMessage_Addon_Sealed(C_Item)
 	on_state[0] = Use_SaturasFirstMessage_Sealed;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[0] = "Это письмо было тщательно запечатано.";
+	text[0] = "Письмо Сатураса Ватрасу.";
+//	text[1] = "Тщательно запечатано.";
 };
 
 
@@ -61,6 +62,7 @@ func void Use_SaturasFirstMessage()
 
 func void Use_SaturasFirstMessage_Sealed()
 {
+	Snd_Play("PICKLOCK_BROKEN");
 	CreateInvItems(self,ItWr_SaturasFirstMessage_Addon,1);
 	SaturasFirstMessageOpened = TRUE;
 	Use_SaturasFirstMessage();
@@ -69,7 +71,7 @@ func void Use_SaturasFirstMessage_Sealed()
 
 instance ItWr_SaturasFirstMessage_Addon(C_Item)
 {
-	name = "Распечатанное письмо";
+	name = "Письмо";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -79,6 +81,10 @@ instance ItWr_SaturasFirstMessage_Addon(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Письмо Сатураса Ватрасу.";
+	text[1] = "Печать сломана.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 instance ItMi_Ornament_Addon(C_Item)
@@ -88,10 +94,10 @@ instance ItMi_Ornament_Addon(C_Item)
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 0;
 	visual = "ItMi_PortalRing_05.3DS";
-	material = MAT_METAL;
+	material = MAT_STONE;
 	description = name;
 	text[0] = "Фрагмент большого, богато украшенного кольца.";
-	inv_zbias = INVCAM_ENTF_MISC5_STANDARD;
+	inv_zbias = 270;
 };
 
 instance ItMi_Ornament_Addon_Vatras(C_Item)
@@ -101,10 +107,10 @@ instance ItMi_Ornament_Addon_Vatras(C_Item)
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 0;
 	visual = "ItMi_PortalRing_05.3DS";
-	material = MAT_METAL;
+	material = MAT_STONE;
 	description = name;
 	text[0] = "Фрагмент большого, богато украшенного кольца.";
-	inv_zbias = INVCAM_ENTF_MISC5_STANDARD;
+	inv_zbias = 270;
 };
 
 instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
@@ -123,6 +129,9 @@ instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
 	text[1] = "Нефариус, можно найти недостающие орнаменты.";
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -160,6 +169,9 @@ instance ItWr_Map_NewWorld_Dexter(C_Item)
 	text[2] = "бандитов Декстера.";
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -254,7 +266,7 @@ instance ItMi_PortalRing_Addon(C_Item)
 	material = MAT_STONE;
 	description = name;
 	text[0] = "Это кольцо открывает портал.";
-	inv_zbias = INVCAM_ENTF_MISC3_STANDARD;
+	inv_zbias = 190;
 };
 
 instance ItWr_Martin_MilizEmpfehlung_Addon(C_Item)
@@ -271,6 +283,9 @@ instance ItWr_Martin_MilizEmpfehlung_Addon(C_Item)
 	description = name;
 	text[0] = "Это письмо поможет мне";
 	text[1] = "присоединиться к ополчению.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -308,8 +323,11 @@ instance ItWr_RavensKidnapperMission_Addon(C_Item)
 	on_state[0] = Use_RavensKidnapperMission_Addon;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Я забрал это письмо";
-	text[1] = "у предводителя бандитов Декстера.";
+	text[0] = "Я забрал это письмо у Декстера,";
+	text[1] = "предводителя бандитов.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -359,6 +377,9 @@ instance ItWr_Vatras_KDFEmpfehlung_Addon(C_Item)
 	text[0] = "Это письмо поможет мне";
 	text[1] = "попасть в монастырь магов Огня,";
 	text[2] = "не заплатив за вход.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -385,13 +406,15 @@ func void Use_VatrasKDFEmpfehlung_Addon()
 
 instance ItMi_LostInnosStatue_Daron(C_Item)
 {
-	name = "Драгоценная статуэтка Инноса";
+	name = "Статуэтка Инноса";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_InnosStatue;
 	visual = "ItMi_InnosStatue.3DS";
 	material = MAT_METAL;
 	description = name;
+	text[0] = "На нижней стороне выгравирован";
+	text[1] = "символ магов Огня.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -407,6 +430,9 @@ instance ItWr_LuciasLoveLetter_Addon(C_Item)
 	on_state[0] = Use_LuciasLoveLetter_Addon;
 	scemeName = "MAP";
 	description = name;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -542,7 +568,7 @@ func void Use_ItWr_Addon_BanditTrader()
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"15 коротких мечей");
-	Doc_PrintLines(nDocID,0,"20 рапир");
+	Doc_PrintLines(nDocID,0,"20 шпаг");
 	Doc_PrintLines(nDocID,0,"25 буханок хлеба");
 	Doc_PrintLines(nDocID,0,"15 бутылок вина");
 	Doc_PrintLines(nDocID,0,"");
@@ -561,7 +587,7 @@ func void Use_ItWr_Addon_BanditTrader()
 
 instance ItWr_Vatras2Saturas_FindRaven(C_Item)
 {
-	name = "Письмо";
+	name = "Запечатанное письмо";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -596,6 +622,7 @@ func void Use_Vatras2Saturas_FindRaven()
 
 func void Use_Vatras2Saturas_FindRaven_Sealed()
 {
+	Snd_Play("PICKLOCK_BROKEN");
 	CreateInvItems(self,ItWr_Vatras2Saturas_FindRaven_opened,1);
 	Vatras2Saturas_FindRaven_Open = TRUE;
 	Use_Vatras2Saturas_FindRaven();
@@ -604,7 +631,7 @@ func void Use_Vatras2Saturas_FindRaven_Sealed()
 
 instance ItWr_Vatras2Saturas_FindRaven_opened(C_Item)
 {
-	name = "Открытое письмо";
+	name = "Письмо";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -614,6 +641,10 @@ instance ItWr_Vatras2Saturas_FindRaven_opened(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Письмо Ватраса Сатурасу.";
+	text[1] = "Печать сломана.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 instance ItAm_Addon_WispDetector(C_Item)
@@ -654,6 +685,27 @@ func void Equip_WispDetector()
 	AI_Teleport(DetWsp,"TOT");
 	Wld_SpawnNpcRange(self,Wisp_Detector,1,500);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector,Wisp_Detector,0,0,0,FALSE);
+	/*if(WISPSKILL_LEVEL == 1)
+	{
+		DetWsp = Hlp_GetNpc(Wisp_Detector);
+		AI_Teleport(DetWsp,"TOT");
+		Wld_SpawnNpcRange(self,Wisp_Detector,1,500);
+		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector,Wisp_Detector,0,0,0,FALSE);
+	}
+	else if(WISPSKILL_LEVEL == 2)
+	{
+		DetWsp = Hlp_GetNpc(Wisp_Detector2);
+		AI_Teleport(DetWsp,"TOT");
+		Wld_SpawnNpcRange(self,Wisp_Detector2,1,500);
+		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector2,Wisp_Detector2,0,0,0,FALSE);
+	}
+	else
+	{
+		DetWsp = Hlp_GetNpc(Wisp_Detector3);
+		AI_Teleport(DetWsp,"TOT");
+		Wld_SpawnNpcRange(self,Wisp_Detector3,1,500);
+		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector3,Wisp_Detector3,0,0,0,FALSE);
+	};*/
 	Snd_Play("MFX_Transform_Cast");
 };
 
@@ -668,6 +720,42 @@ func void UnEquip_WispDetector()
 	AI_Teleport(DetWsp,"TOT");
 	B_RemoveNpc(DetWsp);
 	AI_Teleport(DetWsp,"TOT");
+	/*if(WISPSKILL_LEVEL == 1)
+	{
+		var C_Npc DetWsp;
+		DetWsp = Hlp_GetNpc(Wisp_Detector);
+		if(!Npc_IsDead(DetWsp))
+		{
+			Snd_Play("WSP_Dead_A1");
+		};
+		AI_Teleport(DetWsp,"TOT");
+		B_RemoveNpc(DetWsp);
+		AI_Teleport(DetWsp,"TOT");
+	}
+	else if(WISPSKILL_LEVEL == 2)
+	{
+		var C_Npc DetWsp2;
+		DetWsp2 = Hlp_GetNpc(Wisp_Detector2);
+		if(!Npc_IsDead(DetWsp2))
+		{
+			Snd_Play("WSP_Dead_A1");
+		};
+		AI_Teleport(DetWsp2,"TOT");
+		B_RemoveNpc(DetWsp2);
+		AI_Teleport(DetWsp2,"TOT");
+	}
+	else
+	{
+		var C_Npc DetWsp3;
+		DetWsp3 = Hlp_GetNpc(Wisp_Detector3);
+		if(!Npc_IsDead(DetWsp3))
+		{
+			Snd_Play("WSP_Dead_A1");
+		};
+		AI_Teleport(DetWsp3,"TOT");
+		B_RemoveNpc(DetWsp3);
+		AI_Teleport(DetWsp3,"TOT");
+	};*/
 };
 
 
@@ -1239,7 +1327,7 @@ instance ITKE_Addon_Heiler(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
-	visual = "ItKe_Key_02.3ds";
+	visual = "ItKe_Key_05.3ds";
 	material = MAT_METAL;
 	description = "Ключ каменного стража";
 	text[0] = "Ключ от сундука в странном";
@@ -1291,6 +1379,17 @@ instance ItMi_Addon_Bloodwyn_Kopf(C_Item)
 //	count[5] = value;
 };
 
+instance ItMi_FakeBloodwynHead(C_Item)
+{
+	name = "Голова Бладвина";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	visual = "ItMi_Head_Bloodwyn_01.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAPSEALED";
+	description = name;
+};
+
 instance ItWR_Addon_TreasureMap(C_Item)
 {
 	name = "Карта сокровищ";
@@ -1306,6 +1405,9 @@ instance ItWR_Addon_TreasureMap(C_Item)
 	text[0] = "На карте отмечено несколько мест.";
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -1344,6 +1446,7 @@ instance ItMi_Addon_GregsTreasureBottle_MIS(C_Item)
 
 func void Use_GregsBottle()
 {
+	Snd_Play("RELEASECORK");
 	B_PlayerFindItem(ItWR_Addon_TreasureMap,1);
 };
 

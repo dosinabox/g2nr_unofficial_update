@@ -220,7 +220,8 @@ instance DIA_Addon_Francis_Buch(C_Info)
 
 func int DIA_Addon_Francis_Buch_Condition()
 {
-	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis))
+//	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis))
+	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
 	{
 		return TRUE;
 	};

@@ -27,6 +27,17 @@ prototype Mst_Default_Skeleton(C_Npc)
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
+func void B_SetVisuals_SkeletonScout()
+{
+	Mdl_SetVisual(self,"HumanS.mds");
+	Mdl_ApplyOverlayMds(self,"humans_1hST1.mds");
+	Mdl_ApplyOverlayMds(self,"humans_2hST2.mds");
+	Mdl_ApplyOverlayMds(self,"humans_BowT1.mds");
+	Mdl_ApplyOverlayMds(self,"humans_CBowT1.mds");
+	Mdl_ApplyOverlayMds(self,"humans_skeleton.mds");
+	Mdl_SetVisualBody(self,"Ske_Body3",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
+};
+
 func void B_SetVisuals_Skeleton()
 {
 	Mdl_SetVisual(self,"HumanS.mds");
@@ -88,10 +99,10 @@ instance Lesser_Skeleton(Mst_Default_Skeleton)
 	level = 15;
 	attribute[ATR_STRENGTH] = 45;
 	attribute[ATR_DEXTERITY] = 75;
-	attribute[ATR_HITPOINTS_MAX] = 150;
+/*	attribute[ATR_HITPOINTS_MAX] = 150;
 	attribute[ATR_HITPOINTS] = 150;
 	attribute[ATR_MANA_MAX] = 0;
-	attribute[ATR_MANA] = 0;
+	attribute[ATR_MANA] = 0;*/
 	protection[PROT_BLUNT] = 80;
 	protection[PROT_EDGE] = 80;
 	protection[PROT_POINT] = 130;
@@ -99,6 +110,21 @@ instance Lesser_Skeleton(Mst_Default_Skeleton)
 	protection[PROT_FLY] = 80;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_SetVisuals_Lesser_Skeleton();
+	EquipItem(self,ItMw_1h_MISC_Sword);
+};
+
+instance SkeletonScout(Mst_Default_Skeleton)
+{
+	name[0] = "Скелет-разведчик";
+	level = 20;
+	attribute[ATR_STRENGTH] = 80;
+	attribute[ATR_DEXTERITY] = 90;
+	protection[PROT_BLUNT] = 100;
+	protection[PROT_EDGE] = 100;
+	protection[PROT_POINT] = 150;
+	protection[PROT_FLY] = 90;
+	fight_tactic = FAI_HUMAN_NORMAL;
+	B_SetVisuals_SkeletonScout();
 	EquipItem(self,ItMw_1h_MISC_Sword);
 };
 

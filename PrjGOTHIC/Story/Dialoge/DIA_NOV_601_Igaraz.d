@@ -85,9 +85,16 @@ func void DIA_Igaraz_Wurst_Info()
 	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
-	NovizeLeft = IntToString(13 - Wurst_Gegeben);
-	NovizeText = ConcatStrings(NovizeLeft,PRINT_NovizenLeft);
-	AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	if(Wurst_Gegeben >= 13)
+	{
+		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	}
+	else
+	{
+		NovizeLeft = IntToString(13 - Wurst_Gegeben);
+		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
+		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	};
 };
 
 

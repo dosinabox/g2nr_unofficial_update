@@ -153,7 +153,7 @@ func void DIA_Serpentes_TEST_Info()
 	MIS_GOLEM = LOG_Running;
 	Log_CreateTopic(TOPIC_Golem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Golem,LOG_Running);
-	B_LogEntry(TOPIC_Golem,"Серпентес дал мне испытание. Он хочет, чтобы я 'нашел ему того, кто когда-то был вызван', живую скалу, и победил его.");
+	B_LogEntry(TOPIC_Golem,"Серпентес дал мне испытание. Он хочет, чтобы я нашел 'того, кто когда-то был вызван', живую скалу, и победил его.");
 };
 
 
@@ -354,9 +354,20 @@ instance DIA_Serpentes_MinenAnteile(C_Info)
 
 func int DIA_Serpentes_MinenAnteile_Condition()
 {
-	if((Pedro_Traitor == TRUE) && ((hero.guild == GIL_KDF) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (Kapitel >= 3))
+//	if((Pedro_Traitor == TRUE) && ((hero.guild == GIL_KDF) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (Kapitel >= 3))
+	if((Pedro_Traitor == TRUE) && (Kapitel >= 3))
 	{
-		return TRUE;
+		if(hero.guild == GIL_KDF)
+		{
+			if(!Npc_IsDead(Salandril) || !Npc_IsDead(VLK_416_Matteo) || !Npc_IsDead(VLK_413_Bosper) || !Npc_IsDead(VLK_409_Zuris) || !Npc_IsDead(BAU_911_Elena) || !Npc_IsDead(BAU_970_Orlan) || !Npc_IsDead(VLK_407_Hakon) || !Npc_IsDead(BAU_936_Rosi) || !Npc_IsDead(VLK_468_Canthar))
+			{
+				return TRUE;
+			};
+		}
+		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -392,8 +403,15 @@ func void DIA_Serpentes_MinenAnteile_miliz()
 func void DIA_Serpentes_MinenAnteile_nein()
 {
 	AI_Output(other,self,"DIA_Serpentes_MinenAnteile_nein_15_00");	//У меня и так уже много заданий. Найди кого-нибудь еще.
-	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_nein_10_01");	//(сердито) Это возмутительно. Тебе никогда не достичь высших кругов магии, если ты не желаешь выполнять работу для Братства.
-	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_nein_10_02");	//Я объявляю тебе выговор. Надеюсь, больше этого не повторится - иначе ты плохо кончишь.
+	if(hero.guild == GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_Serpentes_MinenAnteile_nein_10_01");	//(сердито) Это возмутительно. Тебе никогда не достичь высших кругов магии, если ты не желаешь выполнять работу для Братства.
+		AI_Output(self,other,"DIA_Serpentes_MinenAnteile_nein_10_02");	//Я объявляю тебе выговор. Надеюсь, больше этого не повторится - иначе ты плохо кончишь.
+	}
+	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	{
+		B_Say(self,other,"$YesGoOutOfHere");
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -544,9 +562,16 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 		B_GivePlayerXP(XP_BringSerpentesMinenAnteils);
 	};
 	SalandrilMinenAnteil_MAINCounter -= SerpentesMinenAnteilCount;
-	MinenAnteilLeft = IntToString(SalandrilMinenAnteil_MAINCounter);
-	MinenAnteilText = ConcatStrings(MinenAnteilLeft,PRINT_NumberLeft);
-	AI_PrintScreen(MinenAnteilText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	if(SalandrilMinenAnteil_MAINCounter > 0)
+	{
+		MinenAnteilLeft = IntToString(SalandrilMinenAnteil_MAINCounter);
+		MinenAnteilText = ConcatStrings(PRINT_NumberLeft,MinenAnteilLeft);
+		AI_PrintScreen(MinenAnteilText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	}
+	else
+	{
+		AI_PrintScreen("Все акции собраны!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	};
 	if(SerpentesMinenAnteilCounter < SalandrilVerteilteMinenAnteil)
 	{
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_02");	//Очень хорошо. Ты должен изъять из обращения все акции. Это отрава для наших людей. Принеси их все мне.
@@ -555,6 +580,7 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 	else if(SerpentesMinenAnteilCounter == SalandrilVerteilteMinenAnteil)
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_04");	//Это все акции, как мне кажется.
+		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_07");	//Это действительно последняя акция, да?
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_05");	//Отлично. Ты заслужил награду.
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteileBringen_10_06");	//Возьми этот защитный амулет. Он поможет тебе пройти по пути, который еще только ожидает тебя.
 		CreateInvItems(self,ItAm_Prot_Mage_01,1);

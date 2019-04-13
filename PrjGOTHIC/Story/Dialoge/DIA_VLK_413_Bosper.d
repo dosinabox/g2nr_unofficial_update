@@ -821,15 +821,16 @@ func void DIA_Bosper_SellFur_Info()
 		if(Npc_HasItems(other,ItAt_WolfFur) || Npc_HasItems(other,ItAt_IceWolfFur))
 		{
 			AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры - это хорошо...
-			if(Npc_HasItems(other,ItAt_IceWolfFur))
-			{
-				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_IceWolfFur) * Value_IceWolfFur);
-				B_GiveInvItems(other,self,ItAt_IceWolfFur,Npc_HasItems(other,ItAt_IceWolfFur));
-			}
-			else
+			if(Npc_HasItems(other,ItAt_WolfFur))
 			{
 				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur);
 				B_GiveInvItems(other,self,ItAt_WolfFur,Npc_HasItems(other,ItAt_WolfFur));
+			};
+			if(Npc_HasItems(other,ItAt_IceWolfFur))
+			{
+				B_Say(self,other,"$NOTBAD");
+				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_IceWolfFur) * Value_IceWolfFur);
+				B_GiveInvItems(other,self,ItAt_IceWolfFur,Npc_HasItems(other,ItAt_IceWolfFur));
 			};
 		};
 		if(Npc_HasItems(other,ItAt_WargFur))

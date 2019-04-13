@@ -11,17 +11,20 @@ prototype Mst_Default_Wisp(C_Npc)
 	attribute[ATR_HITPOINTS] = 40;
 	attribute[ATR_MANA_MAX] = 100;
 	attribute[ATR_MANA] = 100;
-	protection[PROT_BLUNT] = 0;
-	protection[PROT_EDGE] = 0;
-	protection[PROT_POINT] = 0;
+	protection[PROT_BLUNT] = 30;
+	protection[PROT_EDGE] = 30;
+	protection[PROT_POINT] = 30;
 	protection[PROT_FIRE] = 16;
 	protection[PROT_FLY] = 0;
 	protection[PROT_MAGIC] = 0;
-	damagetype = DAM_EDGE;
+//	damagetype = DAM_EDGE;
+	damagetype = DAM_MAGIC;
+	damage[DAM_INDEX_MAGIC] = 30;
 	fight_tactic = FAI_BLOODFLY;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
-	aivar[AIV_MM_ThreatenBeforeAttack] = TRUE;
+//	aivar[AIV_MM_ThreatenBeforeAttack] = TRUE;
+	aivar[AIV_MM_ThreatenBeforeAttack] = FALSE;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_SHORT;
 	aivar[AIV_MM_FollowInWater] = TRUE;
 	aivar[AIV_MM_Packhunter] = FALSE;
@@ -47,6 +50,7 @@ instance Wisp_Detector(Mst_Default_Wisp)
 	level = 0;
 	npcType = npctype_main;
 	B_SetVisuals_Wisp();
+	damage[DAM_INDEX_MAGIC] = 50;
 	senses_range = 3000;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
@@ -54,4 +58,34 @@ instance Wisp_Detector(Mst_Default_Wisp)
 	aivar[AIV_NoFightParker] = TRUE;
 	start_aistate = ZS_MM_Rtn_Summoned;
 };
+
+/*instance Wisp_Detector2(Mst_Default_Wisp)
+{
+	level = 0;
+	npcType = npctype_main;
+	B_SetVisuals_Wisp();
+	Mdl_SetModelScale(self,1.1,1.1,1.1);
+	damage[DAM_INDEX_MAGIC] = 100;
+	senses_range = 3000;
+	aivar[AIV_PARTYMEMBER] = TRUE;
+	B_SetAttitude(self,ATT_FRIENDLY);
+	Npc_SetToFistMode(self);
+	aivar[AIV_NoFightParker] = TRUE;
+	start_aistate = ZS_MM_Rtn_Summoned;
+};
+
+instance Wisp_Detector3(Mst_Default_Wisp)
+{
+	level = 0;
+	npcType = npctype_main;
+	B_SetVisuals_Wisp();
+	Mdl_SetModelScale(self,1.2,1.2,1.2);
+	damage[DAM_INDEX_MAGIC] = 150;
+	senses_range = 3000;
+	aivar[AIV_PARTYMEMBER] = TRUE;
+	B_SetAttitude(self,ATT_FRIENDLY);
+	Npc_SetToFistMode(self);
+	aivar[AIV_NoFightParker] = TRUE;
+	start_aistate = ZS_MM_Rtn_Summoned;
+};*/
 

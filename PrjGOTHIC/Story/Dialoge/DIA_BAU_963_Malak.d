@@ -209,7 +209,7 @@ func void DIA_Malak_PALADINE_Info()
 {
 	AI_Output(other,self,"DIA_Malak_PALADINE_15_00");	//Расскажи мне об этих паладинах. Как давно они стоят здесь?
 	AI_Output(self,other,"DIA_Malak_PALADINE_08_01");	//Неделю или две, по-моему. Я точно не помню.
-	AI_Output(self,other,"DIA_Malak_PALADINE_08_02");	//Не так давно тут был даже целый отряд паладинов. Они прошли через Проход. И с тех пор я их больше не видел.
+	AI_Output(self,other,"DIA_Malak_PALADINE_08_02");	//Не так давно тут был даже целый отряд паладинов. Они прошли через Проход. С тех пор я их больше не видел.
 };
 
 

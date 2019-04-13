@@ -156,7 +156,7 @@ instance DIA_Maria_BringPlate(C_Info)
 
 func int DIA_Maria_BringPlate_Condition()
 {
-	if(Npc_HasItems(other,ItMi_MariasGoldPlate))
+	if(Npc_KnowsInfo(other,DIA_Maria_Hallo) && Npc_HasItems(other,ItMi_MariasGoldPlate))
 	{
 		return TRUE;
 	};
@@ -196,17 +196,48 @@ func int DIA_Maria_Belohnung_Condition()
 func void DIA_Maria_Belohnung_Info()
 {
 	AI_Output(other,self,"DIA_Maria_Belohnung_15_00");	//А как насчет моего вознаграждения?
-	if((other.guild == GIL_SLD) || Npc_KnowsInfo(other,DIA_Onar_HowMuch))
+	if(other.guild == GIL_SLD)
 	{
 		AI_Output(self,other,"DIA_Maria_Belohnung_17_01");	//Ты работаешь наемником на моего мужа, да?
 		AI_Output(other,self,"DIA_Maria_Belohnung_15_02");	//Точно.
 		AI_Output(self,other,"DIA_Maria_Belohnung_17_03");	//Сколько мой муж платит тебе?
-		B_Say_Gold(other,self,SOLD);
-		AI_Output(self,other,"DIA_Maria_Belohnung_17_04");	//Этого недостаточно. Иди к нему и скажи, чтобы он платил тебе больше.
-		AI_Output(other,self,"DIA_Maria_Belohnung_15_05");	//Ты думаешь, он послушает?
-		AI_Output(self,other,"DIA_Maria_Belohnung_17_06");	//Он знает, что будет, если не послушает. Поверь мне.
-		Maria_MehrGold = TRUE;
-		Maria_Belohnung = TRUE;
+		if(Npc_KnowsInfo(other,DIA_Onar_HowMuch))
+		{
+			if(SOLD == 50)
+			{
+				AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_50_15_00");	//50 золотых.
+			}
+			else if(SOLD == 40)
+			{
+				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_40");	//40 золотых.
+			}
+			else if(SOLD == 30)
+			{
+				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_30");	//30 золотых
+			}
+			else if(SOLD == 20)
+			{
+				AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_20_15_00");	//20.
+			}
+			else if(SOLD == 10)
+			{
+				AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_10_15_00");	//10 золотых.
+			}
+			else if(SOLD < 10)
+			{
+				AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_04");	//... но у меня нет даже и 10 монет.
+			};
+			AI_Output(self,other,"DIA_Maria_Belohnung_17_04");	//Этого недостаточно. Иди к нему и скажи, чтобы он платил тебе больше.
+			AI_Output(other,self,"DIA_Maria_Belohnung_15_05");	//Ты думаешь, он послушает?
+			AI_Output(self,other,"DIA_Maria_Belohnung_17_06");	//Он знает, что будет, если не послушает. Поверь мне.
+			Maria_MehrGold = TRUE;
+			Maria_Belohnung = TRUE;
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Hanna_Add_15_43");	//Ну...
+			AI_Output(self,other,"DIA_Maria_Belohnung_SOLD_17_02");	//Зайди ко мне, когда обсудишь размер жалования с моим мужем.
+		};
 	}
 	else if(other.guild == GIL_NONE)
 	{
@@ -217,9 +248,9 @@ func void DIA_Maria_Belohnung_Info()
 	}
 	else
 	{
+		AI_Output(self,other,"DIA_Maria_Belohnung_17_08");	//Вот, возьми это. Ты заслужил.
 		B_GiveInvItems(self,other,ItMi_Gold,50);
 		Maria_Belohnung = TRUE;
-		AI_Output(self,other,"DIA_Maria_Belohnung_17_08");	//Вот, возьми это. Ты заслужил.
 	};
 };
 

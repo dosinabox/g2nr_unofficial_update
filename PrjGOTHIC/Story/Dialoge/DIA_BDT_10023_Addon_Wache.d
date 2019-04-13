@@ -120,7 +120,11 @@ var int Wache_einmal;
 
 func void DIA_Addon_10023_Wache_go_Blood()
 {
+	CreateInvItem(other,ItMi_FakeBloodwynHead);
+	AI_UseItemToState(other,ItMi_FakeBloodwynHead,1);
+	B_LookAtNpc(other,self);
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_00");	//Вот. Этого достаточно?
+	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_01");	//(резко) Убери. Я даже видеть этого не хочу.
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_02");	//Лучше бы тебе отпустить рабов СЕЙЧАС ЖЕ.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_03");	//Погоди минутку. Бладвин - не единственный, кто здесь решает. Пока у меня не будет приказа от Торуса, я никого не отпущу.

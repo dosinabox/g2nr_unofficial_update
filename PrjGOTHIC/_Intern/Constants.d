@@ -389,7 +389,7 @@ const int SPL_MasterOfDisaster = 60;
 const int SPL_Deathbolt = 61;
 const int SPL_Deathball = 62;
 const int SPL_ConcussionBolt = 63;
-const int SPL_Reserved_64 = 64;
+const int SPL_Teleport_Maya = 64;
 const int SPL_Reserved_65 = 65;
 const int SPL_Reserved_66 = 66;
 const int SPL_Reserved_67 = 67;
@@ -494,7 +494,7 @@ const string spellFxInstanceNames[100] =
 	"Deathbolt",
 	"Deathball",
 	"Concussionbolt",
-	"Light",
+	"Teleport",
 	"Light",
 	"Light",
 	"Light",
@@ -598,7 +598,7 @@ const string spellFxAniLetters[100] =
 	"FBT",
 	"FBT",
 	"FBT",
-	"XXX",
+	"HEA",
 	"XXX",
 	"XXX",
 	"XXX",

@@ -1,6 +1,8 @@
 
 func void ZS_Dead()
 {
+	var C_Item readyweap;
+	readyweap = Npc_GetReadiedWeapon(other);
 	self.aivar[AIV_RANSACKED] = FALSE;
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StopLookAt(self);
@@ -38,6 +40,13 @@ func void ZS_Dead()
 		if(MIS_Brandon_BringHering == LOG_Running)
 		{
 			MIS_Brandon_BringHering = LOG_OBSOLETE;
+		};
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Kervo))
+	{
+		if(MIS_Kervo_KillLurker == LOG_Running)
+		{
+			MIS_Kervo_KillLurker = LOG_FAILED;
 		};
 	};
 	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
@@ -114,6 +123,30 @@ func void ZS_Dead()
 	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 	AI_UnequipWeapons(self);
 	self.aivar[AIV_TAPOSITION] = ISINPOS;
+	if(readyweap.munition == ItRw_Addon_FireArrow)
+	{
+		Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
+		Wld_PlayEffect("spellFX_Firestorm_SPREAD",self,self,0,0,0,FALSE);
+		if(Npc_GetDistToNpc(self,other) <= 600)
+		{
+			Wld_PlayEffect("VOB_MAGICBURN",other,other,0,0,0,FALSE);
+			if(other.protection[PROT_FIRE] < 40)
+			{
+				if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - 40) >= 0)
+				{
+					other.attribute[ATR_HITPOINTS] -= (40 - other.protection[PROT_FIRE]);
+				}
+				else
+				{
+					other.attribute[ATR_HITPOINTS] = 0;
+				};
+			};
+			if(other.attribute[ATR_HITPOINTS] <= 0)
+			{
+				AI_PlayAni(other,"T_DEAD");
+			};
+		};
+	};
 };
 
 func int ZS_Dead_Loop()

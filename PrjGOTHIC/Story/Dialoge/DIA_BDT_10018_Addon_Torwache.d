@@ -46,11 +46,11 @@ instance DIA_Addon_BDT_10018_Torwache_FirstWarn(C_Info)
 
 func int DIA_Addon_BDT_10018_Torwache_FirstWarn_Condition()
 {
-	if(Npc_GetDistToWP(other,BDT_10018_Checkpoint) <= 700)
+	/*if(Npc_GetDistToWP(other,BDT_10018_Checkpoint) <= 700)
 	{
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
-	};
+	};*/
 	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
@@ -59,7 +59,15 @@ func int DIA_Addon_BDT_10018_Torwache_FirstWarn_Condition()
 
 func void DIA_Addon_BDT_10018_Torwache_FirstWarn_Info()
 {
-	if(BDT_100018_Tells == FALSE)
+	if(Npc_GetDistToWP(other,BDT_10018_Checkpoint) <= 500)
+	{
+		other.aivar[AIV_LastDistToWP] = 0;
+		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
+		B_Say(self,other,"$Alarm");
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardStopsIntruder,0);
+	}
+	else if(BDT_100018_Tells == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_FirstWarn_04_00");	//Эй, притормози! Ты туда не попадешь, так что отвали!
 		AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_FirstWarn_15_01");	//Уйди с дороги - мне нужно поговорить с Вороном.
@@ -99,10 +107,21 @@ func int DIA_Addon_BDT_10018_Torwache_SecondWarn_Condition()
 
 func void DIA_Addon_BDT_10018_Torwache_SecondWarn_Info()
 {
-	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_SecondWarn_04_00");	//Следующий шаг станет для тебя последним!
-	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,BDT_10018_Checkpoint);
-	self.aivar[AIV_Guardpassage_Status] = GP_SecondWarnGiven;
-	AI_StopProcessInfos(self);
+	if(Npc_GetDistToWP(other,BDT_10018_Checkpoint) <= 500)
+	{
+		other.aivar[AIV_LastDistToWP] = 0;
+		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
+		B_Say(self,other,"$Alarm");
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardStopsIntruder,0);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_SecondWarn_04_00");	//Следующий шаг станет для тебя последним!
+		other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,BDT_10018_Checkpoint);
+		self.aivar[AIV_Guardpassage_Status] = GP_SecondWarnGiven;
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -127,11 +146,22 @@ func int DIA_Addon_BDT_10018_Torwache_Attack_Condition()
 
 func void DIA_Addon_BDT_10018_Torwache_Attack_Info()
 {
-	other.aivar[AIV_LastDistToWP] = 0;
-	self.aivar[AIV_Guardpassage_Status] = GP_NONE;
-	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Attack_04_00");	//За Ворона!
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_GuardStopsIntruder,0);
+	if(Npc_GetDistToWP(other,BDT_10018_Checkpoint) <= 500)
+	{
+		other.aivar[AIV_LastDistToWP] = 0;
+		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
+		B_Say(self,other,"$Alarm");
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardStopsIntruder,0);
+	}
+	else
+	{
+		other.aivar[AIV_LastDistToWP] = 0;
+		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
+		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_Attack_04_00");	//За Ворона!
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardStopsIntruder,0);
+	};
 };
 
 
@@ -265,9 +295,14 @@ func int DIA_Addon_10018_Torwache_kopf_Condition()
 
 func void DIA_Addon_10018_Torwache_kopf_Info()
 {
+	CreateInvItem(other,ItMi_FakeBloodwynHead);
+	AI_UseItemToState(other,ItMi_FakeBloodwynHead,1);
+	B_LookAtNpc(other,self);
 	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_kopf_15_00");	//Вот! Ты все еще хочешь остановить меня?!
+	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_01");	//Это что... это... Бладвин?.. (тошнит) Это...
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_02");	//Н-нет... Я хочу сказать... Да, проходи...
+	
 	MIS_BloodwynRaus = LOG_SUCCESS;
 	self.aivar[AIV_PASSGATE] = TRUE;
 	AI_StopProcessInfos(self);

@@ -2,17 +2,44 @@
 func void B_MakeRangerReadyForMeeting(var C_Npc Ranger)
 {
 	CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
-	AI_UnequipArmor(Ranger);
+//	AI_UnequipArmor(Ranger);
 	AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
 	Ranger.npcType = NPCTYPE_FRIEND;
 };
 
 func void B_MakeRangerReadyToLeaveMeeting(var C_Npc Ranger)
 {
-	AI_UnequipArmor(Ranger);
+	/*AI_UnequipArmor(Ranger);
 	Npc_RemoveInvItems(Ranger,ITAR_RANGER_Addon,Npc_HasItems(Ranger,ITAR_RANGER_Addon));
 	Npc_RemoveInvItems(Ranger,ITAR_Fake_RANGER,Npc_HasItems(Ranger,ITAR_Fake_RANGER));
-	AI_EquipBestArmor(Ranger);
+	AI_EquipBestArmor(Ranger);*/
+	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Martin))
+	{
+		AI_EquipArmor(Ranger,ITAR_MIL_M);
+	};
+	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Lares))
+	{
+		AI_EquipArmor(Ranger,ITAR_Vlk_L);
+	};
+	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cord))
+	{
+		AI_EquipArmor(Ranger,ITAR_SLD_H);
+	};
+	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Gaan))
+	{
+		AI_EquipArmor(Ranger,ITAR_Bau_L);
+	};
+	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Orlan))
+	{
+		AI_EquipArmor(Ranger,ITAR_Bau_M);
+	};
+	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cavalorn))
+	{
+		if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
+		{
+			AI_EquipArmor(Ranger,ITAR_Bau_L);
+		};
+	};
 };
 
 func void B_MakeRangerReadyForMeetingALL()
@@ -32,9 +59,10 @@ func void B_MakeRangerReadyToLeaveMeetingALL()
 	B_MakeRangerReadyToLeaveMeeting(Cord);
 	B_MakeRangerReadyToLeaveMeeting(Gaan);
 	B_MakeRangerReadyToLeaveMeeting(Orlan);
-	AI_UnequipArmor(Cavalorn);
+	B_MakeRangerReadyToLeaveMeeting(Cavalorn);
+	/*AI_UnequipArmor(Cavalorn);
 	Npc_RemoveInvItems(Cavalorn,ITAR_Fake_RANGER,Npc_HasItems(Cavalorn,ITAR_Fake_RANGER));
-	AI_EquipBestArmor(Cavalorn);
+	AI_EquipBestArmor(Cavalorn);*/
 };
 
 func void B_Addon_Orlan_RangersReadyForComing()
@@ -73,7 +101,9 @@ func void B_RangerMeetingParking()
 	Lares_HaltsMaul = TRUE;
 	B_StartOtherRoutine(Lares,"Parking");
 	B_StartOtherRoutine(Cord,"Parking");
-	if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)
+	B_StartOtherRoutine(Gaan,"Parking");
+	B_StartOtherRoutine(Martin,"Parking");
+	/*if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		B_StartOtherRoutine(Gaan,"Parking");
 	}
@@ -88,7 +118,7 @@ func void B_RangerMeetingParking()
 	else
 	{
 		B_StartOtherRoutine(Martin,"Parking");
-	};
+	};*/
 };
 
 func void B_SchlussMitRangerMeeting()

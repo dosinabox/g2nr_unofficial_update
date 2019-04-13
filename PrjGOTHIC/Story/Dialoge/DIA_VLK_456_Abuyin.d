@@ -195,6 +195,8 @@ func void B_TabakProbieren()
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Nichts_13_00");	//Позволь мне попробовать твой табак.
 	CreateInvItems(self,ItMi_Joint,1);
 	B_UseItem(self,ItMi_Joint);
+//	CreateInvItem(self,ItMi_Pipe);
+//	B_UseItem(self,ItMi_Pipe);
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Nichts_13_01");	//Нет, этот аромат мне не очень нравится. Но, может быть, ты найдешь кого-нибудь, кто оценит его... э-э... утонченность.
 };
 
@@ -273,6 +275,8 @@ func void DIA_Abuyin_Mischung_Super()
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_00");	//Давай я попробую твой табак.
 	CreateInvItems(self,ItMi_Joint,1);
 	B_UseItem(self,ItMi_Joint);
+//	CreateInvItem(self,ItMi_Pipe);
+//	B_UseItem(self,ItMi_Pipe);
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_01");	//Это невероятно! В жизни ничего подобного не пробовал!
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_02");	//Как ты приготовил его?
 	AI_Output(other,self,"DIA_Abuyin_Mischung_Super_15_03");	//Я смешал обычный табак с медом.
@@ -329,7 +333,7 @@ instance DIA_Abuyin_Herb(C_Info)
 
 func int DIA_Abuyin_Herb_Condition()
 {
-	if(Npc_HasItems(other,ItMi_HerbPaket))
+	if(Npc_KnowsInfo(other,DIA_Abuyin_du) && Npc_HasItems(other,ItMi_HerbPaket))
 	{
 		return TRUE;
 	};
@@ -400,7 +404,7 @@ func void DIA_Abuyin_Zukunft_Info()
 	AI_Output(other,self,"DIA_Abuyin_Zukunft_15_00");	//Расскажи мне о будущем.
 	if(B_GiveInvItems(other,self,ItMi_Gold,25))
 	{
-		AI_Output(self,other,"DIA_Abuyin_Zukunft_13_01");	//Хорошо, о, Сын Мужества. Я сейчас войду в состояние транса. Ты готов?
+		AI_Output(self,other,"DIA_Abuyin_Zukunft_13_01");	//Хорошо, о, Жаждущий Знаний. Я сейчас войду в состояние транса. Ты готов?
 		Info_ClearChoices(DIA_Abuyin_Zukunft);
 		Info_AddChoice(DIA_Abuyin_Zukunft,"Я готов!",DIA_Abuyin_Zukunft_Trance);
 	}

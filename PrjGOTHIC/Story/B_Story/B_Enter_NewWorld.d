@@ -117,6 +117,15 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			B_StartOtherRoutine(Ambusher_1013,"AWAY");
 		};
+		Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
+		if((MIS_HelpDyrian != LOG_Success) && !Npc_IsDead(Dyrian))
+		{
+			Dyrian.guild = GIL_NONE;
+			Npc_SetTrueGuild(Dyrian,GIL_NONE);
+			//CreateInvItem(Dyrian,ITAR_Bau_L);
+			//AI_EquipArmor(Dyrian,ITAR_Bau_L);
+			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+		};	
 		EnterNW_Kapitel2 = TRUE;
 	};
 };
@@ -320,12 +329,15 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			B_RemoveNpc(Sarah);
 			B_NpcSetReleased(Canthar);
+			Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
+			Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
+			Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 			B_StartOtherRoutine(Canthar,"MARKTSTAND");
 			AI_Teleport(Canthar,"NW_CITY_SARAH");
 			Canthar_Sperre = TRUE;
 			Canthar_WiederRaus = TRUE;
 		};
-		CreateInvItems(Lester,ItMw_1h_Bau_Axe,1);
+//		CreateInvItems(Lester,ItMw_1h_Bau_Axe,1);
 		if(!Npc_IsDead(Ehnim))
 		{
 			CreateInvItems(Ehnim,ItMi_Moleratlubric_MIS,1);
@@ -592,6 +604,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(DMT_DementorAmbientWalker10,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker8,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker7,"CITY1");
+			B_KillNpc(BDT_1020_Bandit_L);
 			if(!Npc_IsDead(Randolph))
 			{
 				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
@@ -618,7 +631,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 	};
 	if(Talbin_FollowsThroughPass == LOG_Running)
 	{
-		Wld_InsertNpc(VLK_4132_Talbin_NW,"LEVELCHANGE");
+		Wld_InsertNpc(VLK_4132_Talbin_NW,"NW_PASS_SECRET_17");
 		Talbin_FollowsThroughPass = LOG_SUCCESS;
 	};
 };

@@ -38,8 +38,15 @@ func int DIA_Addon_TAL_BDT_13_Hi_Condition()
 func void DIA_Addon_TAL_BDT_13_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_TAL_BDT_13_Hi_15_00");	//Как дела?
-	AI_Output(self,other,"DIA_Addon_TAL_BDT_13_Hi_13_01");	//Или тебя съест монстр... или тебя съест монстр...
-	AI_Output(self,other,"DIA_Addon_TAL_BDT_13_Hi_13_02");	//Это болото станет нам могилой...
+	if(Wld_IsRaining())
+	{
+		B_Say(self,other,"$WEATHER");
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_TAL_BDT_13_Hi_13_01");	//Или тебя съест монстр... или тебя съест монстр...
+		AI_Output(self,other,"DIA_Addon_TAL_BDT_13_Hi_13_02");	//Это болото станет нам могилой...
+	};
 };
 
 

@@ -7,11 +7,15 @@ instance VLK_492_Rengaru(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_IGNORE_Theft] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_Gold,50);
+	CreateInvItems(self,ItFo_Bread,1);
+	CreateInvItems(self,ItFo_Water,1);
+	CreateInvItems(self,ItFo_Cheese,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_ToughBart01,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
@@ -37,5 +41,11 @@ func void Rtn_Prison_492()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"NW_CITY_HABOUR_KASERN_RENGARU");
 	TA_Stand_ArmsCrossed(23,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
+};
+
+func void Rtn_Hide_492()
+{
+	TA_FleeToWp(8,0,23,0,"NW_CITY_HABOUR_POOR_AREA_PATH_01_03");
+	TA_FleeToWp(23,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_01_03");
 };
 

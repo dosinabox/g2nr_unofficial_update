@@ -66,14 +66,14 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 			{
 				PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] = TRUE;
 				PrintScreen(PRINT_LearnRunes,-1,-1,FONT_Screen,2);
-				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Святая стрела': 1 святая вода, свиток не нужен");
+				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Святая стрела': 1 святая вода, свиток не нужен.");
 			};
 		}
 		else if(hero.guild == GIL_PAL)
 		{
 			Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 			Doc_PrintLines(nDocID,1,"Чтобы достичь секретного места, необходимо создать руну телепортации. Для этого необходим чистый рунный камень и небольшая бутылочка святой воды. При помощи этой руны можно телепортироваться в комнату.");
-			Doc_PrintLine(nDocID,1,"");
+//			Doc_PrintLine(nDocID,1,"");
 			Doc_PrintLines(nDocID,1,"Теперь я вполне уверен, что слезы Инноса - именно то, что древние паладины использовали в давно забытом ритуале 'Освящение Меча'. Это означает, что при помощи этой бутылочки можно придать дополнительную силу освящаемому оружию.");
 			Doc_Show(nDocID);
 			PAL_KnowsAbout_FINAL_BLESSING = TRUE;
@@ -83,7 +83,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 				PrintScreen(PRINT_LearnPalTeleportSecret,-1,-1,FONT_Screen,2);
 				Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
 				B_LogEntry(TOPIC_TalentRunes,"Для создания руны необходимы специфические ингредиенты. При помощи этих ингредиентов и чистого рунного камня, можно создать руну на рунном столе.");
-				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Секретный телепорт': 1 святая вода");
+				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Секретный телепорт': 1 святая вода.");
 			};
 		}
 		else
@@ -105,8 +105,8 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 				Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
 				Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
 				B_LogEntry(TOPIC_TalentSmith,"Чтобы выковать оружие, прежде всего мне нужна сырая сталь. Я должен докрасна нагреть ее в огне кузнечного горна, а затем придать форму на наковальне. Особое оружие зачастую требует особых материалов, придающих оружию особые свойства.");
-				B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 4 куска руды и 5 частей драконьей крови, я смогу выковать рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
-				B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 5 кусков руды и 5 частей драконьей крови, я смогу выковать большой рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
+				B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 4 куска руды и 5 пробирок драконьей крови, то смогу выковать рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
+				B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 5 кусков руды и 5 пробирок драконьей крови, то смогу выковать большой рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
 			};
 		};
 		if(FinalDragonEquipment_Once == FALSE)

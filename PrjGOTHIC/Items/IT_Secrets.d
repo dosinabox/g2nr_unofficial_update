@@ -18,6 +18,7 @@ instance ItSe_ErzFisch(C_Item)
 
 func void Use_ErzFisch()
 {
+	Snd_Play("CS_IHL_WO_WA");
 	B_PlayerFindItem(ItMi_Nugget,1);
 };
 
@@ -41,6 +42,7 @@ instance ItSe_GoldFisch(C_Item)
 
 func void Use_GoldFisch()
 {
+	Snd_Play("CS_IHL_WO_WA");
 	B_PlayerFindItem(ItMi_Gold,50);
 };
 
@@ -59,11 +61,13 @@ instance ItSe_Ringfisch(C_Item)
 	text[0] = PRINT_HiddenInFish;
 	text[5] = NAME_Value;
 	count[5] = value;
+//	inv_zbias = 190;
 };
 
 
 func void Use_Ringfisch()
 {
+	Snd_Play("CS_IHL_WO_WA");
 	B_PlayerFindItem(ItRi_Prot_Fire_01,1);
 };
 
@@ -87,6 +91,7 @@ instance ItSe_LockpickFisch(C_Item)
 
 func void Use_LockpickFisch()
 {
+	Snd_Play("CS_IHL_WO_WA");
 	B_PlayerFindItem(ItKe_Lockpick,3);
 };
 

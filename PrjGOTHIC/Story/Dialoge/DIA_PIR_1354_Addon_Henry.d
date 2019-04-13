@@ -242,7 +242,7 @@ func void DIA_Addon_Henry_WantEnter_Info()
 	};
 	itm = Npc_GetEquippedArmor(other);
 //	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_H))
-	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_S) || Hlp_IsItem(itm,ITAR_SLD_H))
+	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_PAL_M) || Hlp_IsItem(itm,ITAR_DJG_L) || Hlp_IsItem(itm,ITAR_DJG_M) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_S) || Hlp_IsItem(itm,ITAR_SLD_H))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
