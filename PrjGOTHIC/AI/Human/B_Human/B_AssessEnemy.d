@@ -53,7 +53,11 @@ func int B_AssessEnemy()
 	pcl = Hlp_GetNpc(PC_Levelinspektor);
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && (Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000) && !Npc_IsPlayer(other))
 	{
-//		AI_StartState(self,ZS_FleeToWP,0,"NW_TAVERNE_RUKHAR");
+		B_Flee();
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius)) && (Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000) && !Npc_IsPlayer(other))
+	{
 		B_Flee();
 		return FALSE;
 	};

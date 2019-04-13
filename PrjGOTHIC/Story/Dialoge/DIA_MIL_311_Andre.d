@@ -917,6 +917,7 @@ func void DIA_Andre_Auslieferung_Sarah()
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_01");	//Сара? Торговка оружием с рыночной площади? У тебя есть доказательство?
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо с деталями поставки оружия ему.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_03");	//Она поплатится за это. Я прикажу арестовать ее.
+	AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 	if(SarahWeaponsRemoved == FALSE)
 	{
@@ -972,6 +973,7 @@ func void DIA_Andre_DGRunning_Info()
 		{
 			MIS_RamirezSextant = LOG_OBSOLETE;
 		};
+		B_CheckLog();
 		return;
 	};
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_03");	//Да?

@@ -1093,6 +1093,8 @@ func void DIA_Bennet_GiveInnosEye_Info()
 	Npc_RemoveInvItems(other,ItMi_InnosEye_Broken_Mis,1);
 	AI_PrintScreen(Print_InnoseyeGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Bennet_RepairDay = Wld_GetDay();
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"WORK");
 };
 
 
@@ -1118,7 +1120,7 @@ func int DIA_Bennet_GetInnosEye_Condition()
 func void DIA_Bennet_GetInnosEye_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_GetInnosEye_15_00");	//Амулет готов?
-	if(Bennet_RepairDay < Wld_GetDay())
+	if(((Bennet_RepairDay < Wld_GetDay()) && Wld_IsTime(5,0,23,59)) || (Bennet_RepairDay + 1 < Wld_GetDay()))
 	{
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_01");	//Да, держи.
 		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Repaired;
@@ -1129,6 +1131,8 @@ func void DIA_Bennet_GetInnosEye_Info()
 		B_LogEntry(TOPIC_INNOSEYE,"Амулет опять как новенький. Беннет проделал отличную работу.");
 		MIS_Bennet_InnosEyeRepairedSetting = LOG_SUCCESS;
 		B_GivePlayerXP(XP_InnosEyeIsRepaired);
+		AI_StopProcessInfos(self);
+		Npc_ExchangeRoutine(self,"START");
 	}
 	else
 	{

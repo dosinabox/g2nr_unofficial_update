@@ -999,7 +999,7 @@ func void DIA_Lord_Hagen_RescueBennet_Info()
 	Info_AddChoice(DIA_Lord_Hagen_RescueBennet,Dialog_Back,DIA_Lord_Hagen_RescueBennet_Back);
 	Info_AddChoice(DIA_Lord_Hagen_RescueBennet,"Почему ты так уверен, что убийца именно Беннет?",DIA_Lord_Hagen_RescueBennet_WhySure);
 	Info_AddChoice(DIA_Lord_Hagen_RescueBennet,"Я верю, что Беннет невиновен.",DIA_Lord_Hagen_RescueBennet_Innoscent);
-	if((MIS_RescueBennet == LOG_Running) && (MIS_RitualInnosEyeRepair == LOG_Running) && (Hagen_KnowsEyeKaputt == TRUE))
+	if((MIS_RitualInnosEyeRepair == LOG_Running) && (Hagen_KnowsEyeKaputt == TRUE))
 	{
 		Info_AddChoice(DIA_Lord_Hagen_RescueBennet,"Беннет мог бы помочь нам починить Глаз Инноса.",DIA_Lord_Hagen_RescueBennet_Hilfe);
 	};
@@ -1474,7 +1474,7 @@ func int DIA_Lord_Hagen_Perm5_Condition()
 func void DIA_Lord_Hagen_Perm5_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_33");	//Чего ты ждешь?
-	if(MIS_ShipIsFree == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Lord_Hagen_GateOpen))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_26");	//Мы все еще ждем груз со снаряжением и провизией. Как только он будет у нас, мы сразу же тронемся в путь!
 	}

@@ -270,10 +270,13 @@ func void DIA_Cassia_Lernen_Info()
 	AI_Output(self,other,"DIA_Cassia_Lernen_16_02");	//Рамирез - чрезвычайно одаренный медвежатник. Ни один замок не устоит перед его отмычками.
 	AI_Output(self,other,"DIA_Cassia_Lernen_16_03");	//А я могу научить тебя карманному воровству.
 	AI_Output(self,other,"DIA_Cassia_Lernen_16_04");	//Также я могу помочь тебе стать более ловким. Именно ловкость - ключ к воровским способностям.
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
-	B_LogEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
-	B_LogEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+	if(Join_Thiefs == TRUE)
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
+		B_LogEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
+		B_LogEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+	};
 };
 
 
@@ -300,7 +303,7 @@ func void DIA_Cassia_Regeln_Info()
 {
 	AI_Output(other,self,"DIA_Cassia_Regeln_15_00");	//Что у вас за правила?
 	AI_Output(self,other,"DIA_Cassia_Regeln_16_02");	//Первое правило: никому ни слова о нас. Никогда.
-	AI_Output(self,other,"DIA_Cassia_Regeln_16_03");	//Второе: Не попадайся.
+	AI_Output(self,other,"DIA_Cassia_Regeln_16_03");	//Второе: не попадайся.
 	AI_Output(self,other,"DIA_Cassia_Regeln_16_04");	//Третье: если ты обнажишь оружие здесь, чтобы напасть на кого-нибудь, мы убьем тебя.
 	AI_Output(self,other,"DIA_Cassia_Regeln_16_05");	//И четвертое - последнее правило: тот, кто хочет присоединиться к нам, должен доказать серьезность своих намерений.
 };
@@ -373,6 +376,21 @@ func void DIA_Cassia_beweisen_Info()
 };
 
 
+func void B_AgreedToJoinThiefs()
+{
+	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
+	B_LogEntry(Topic_Diebesgilde,"Я согласился работать с городской гильдией воров. Теперь мне предстоит испытание.");
+	if(Npc_KnowsInfo(other,DIA_Cassia_Lernen))
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
+		B_LogEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
+		B_LogEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+	};
+	Join_Thiefs = TRUE;
+	Cassia_Frist = FALSE;
+};
+
 instance DIA_Cassia_Beitreten(C_Info)
 {
 	npc = VLK_447_Cassia;
@@ -396,8 +414,7 @@ func void DIA_Cassia_Beitreten_Info()
 {
 	AI_Output(other,self,"DIA_Cassia_Beitreten_15_00");	//Хорошо, я в деле.
 	AI_Output(self,other,"DIA_Cassia_Beitreten_16_01");	//Отлично. Тебе будет дана возможность проявить себя. А если ты захочешь чему-нибудь научиться у нас - всегда пожалуйста.
-	Join_Thiefs = TRUE;
-	Cassia_Frist = FALSE;
+	B_AgreedToJoinThiefs();
 };
 
 
@@ -445,8 +462,7 @@ func void DIA_Cassia_Ablehnen_Okay()
 	AI_Output(other,self,"DIA_Cassia_Ablehnen_Okay_15_00");	//Хорошо, я в деле.
 	AI_Output(self,other,"DIA_Cassia_Ablehnen_Okay_16_01");	//(улыбается) Ты принял мудрое решение. Если ты сможешь доказать серьезность своих намерений, то сможешь влиться в наши ряды.
 	AI_Output(self,other,"DIA_Cassia_Ablehnen_Okay_16_02");	//Если же ты хочешь сначала получить воровские навыки - пожалуйста - они тебе понадобятся.
-	Join_Thiefs = TRUE;
-	Cassia_Frist = FALSE;
+	B_AgreedToJoinThiefs();
 	Info_ClearChoices(DIA_Cassia_Ablehnen);
 };
 
@@ -668,7 +684,6 @@ func void DIA_Cassia_Aufnahme_Info()
 	MIS_CassiaRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_CassiaRing);
 	Knows_SecretSign = TRUE;
-	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
 	B_LogEntry(Topic_Diebesgilde,"Я был принят в гильдию воров.");
 	B_LogEntry(Topic_Diebesgilde,"Я знаю знак воров. Если я покажу его нужным людям, они поймут, что я один из них.");
 };

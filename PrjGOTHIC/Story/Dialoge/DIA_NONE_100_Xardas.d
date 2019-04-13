@@ -876,7 +876,7 @@ instance DIA_Xardas_BEREIT(C_Info)
 
 func int DIA_Xardas_BEREIT_Condition()
 {
-	if((Xardas_GoesToRitualInnosEye == FALSE) && Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && ((hero.guild == GIL_DJG) || (hero.guild == GIL_PAL)))
+	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE) && ((hero.guild == GIL_DJG) || (hero.guild == GIL_PAL)))
 	{
 		return TRUE;
 	};

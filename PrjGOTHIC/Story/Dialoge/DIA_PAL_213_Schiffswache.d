@@ -310,7 +310,10 @@ func void DIA_Pal_213_Schiffswache_IAmKDF6_Info()
 	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF6_15_00");	//В последний раз: позволь мне взойти на корабль!
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF6_01_01");	//(нервно) Понятно. Ты можешь взойти на корабль.
 	MIS_ShipIsFree = TRUE;
-	B_StartOtherRoutine(Girion,"WaitForShip");
+	if(Kapitel >= 5)
+	{
+		B_StartOtherRoutine(Girion,"WaitForShip");
+	};
 };
 
 
@@ -390,7 +393,10 @@ func void DIA_Pal_213_Schiffswache_IAmPAL3_Info()
 	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmPAL3_15_00");	//И я приказываю тебе пропустить меня на этот корабль.
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmPAL3_01_01");	//Есть, сэр, вы можете взойти на корабль.
 	MIS_ShipIsFree = TRUE;
-	B_StartOtherRoutine(Girion,"WaitForShip");
+	if(Kapitel >= 5)
+	{
+		B_StartOtherRoutine(Girion,"WaitForShip");
+	};
 };
 
 
@@ -427,7 +433,7 @@ instance DIA_Pal_213_Schiffswache_IAmDJG2(C_Info)
 	condition = DIA_Pal_213_Schiffswache_IAmDJG2_Condition;
 	information = DIA_Pal_213_Schiffswache_IAmDJG2_Info;
 	permanent = FALSE;
-	description = "Я могу дать тебе денег.";
+	description = "Я могу дать тебе денег. За то, что ты будешь смотреть в другую сторону.";
 };
 
 
@@ -473,6 +479,9 @@ func void DIA_Pal_213_Schiffswache_IAmDJG3_Info()
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmDJG3_01_02");	//Все правильно, ты можешь пройти.
 	MIS_ShipIsFree = TRUE;
-	B_StartOtherRoutine(Girion,"WaitForShip");
+	if(Kapitel >= 5)
+	{
+		B_StartOtherRoutine(Girion,"WaitForShip");
+	};
 };
 

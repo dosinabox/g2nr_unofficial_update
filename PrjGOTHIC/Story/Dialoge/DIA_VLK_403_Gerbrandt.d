@@ -28,6 +28,7 @@ func void DIA_Gerbrandt_EXIT_Info()
 		};
 		Npc_ExchangeRoutine(self,"FLEE");
 		B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
+		B_StartOtherRoutine(VLK_419_Buerger,"NEWPLACE");
 		DIEGO_COMING = 2;
 	};
 	AI_StopProcessInfos(self);
@@ -213,36 +214,30 @@ func int DIA_Gerbrandt_Perm_Condition()
 func void DIA_Gerbrandt_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Gerbrandt_Perm_15_00");	//≈сть новости?
-	if(Kapitel <= 2)
+	if(MIS_DiegosResidence != LOG_SUCCESS)
 	{
-		if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
+		if(hero.guild == GIL_PAL)
+		{
+			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_03");	//ћне не на что жаловатьс€, о, благородный рыцарь.
+		}
+		else if(hero.guild == GIL_KDF)
+		{
+			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_06");	//Ёто никого не касаетс€, кроме мен€. я зан€т!
+		}
+		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		{
+			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_04");	//ћного € видал таких людей как ты - вы просто не знаете своего места.
+			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_05");	//ћне стоит поговорить с губернатором об усилении мер безопасности в верхнем квартале.
+		}
+		else
 		{
 			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_01");	//Ћюд€м вроде теб€ нечего делать здесь. «десь живут пор€дочные члены общества, а не какие-нибудь брод€ги и проходимцы.
 			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_02");	//≈сли тебе когда-нибудь удастс€ стать богатым и уважаемым, возможно, тебе будут более рады здесь.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_03");	//ћне не на что жаловатьс€, о, благородный рыцарь.
 		};
 	}
-	else if(Kapitel >= 3)
+	else
 	{
-		if(MIS_DiegosResidence != LOG_SUCCESS)
-		{
-			if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
-			{
-				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_04");	//ћного € видал таких людей как ты - вы просто не знаете своего места.
-				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_05");	//ћне стоит поговорить с губернатором об усилении мер безопасности в верхнем квартале.
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_06");	//Ёто никого не касаетс€, кроме мен€. я зан€т!
-			};
-		}
-		else
-		{
-			B_Gerbrandt_PissOff();
-		};
+		B_Gerbrandt_PissOff();
 	};
 };
 

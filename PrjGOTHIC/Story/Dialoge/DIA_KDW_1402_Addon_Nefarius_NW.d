@@ -24,10 +24,11 @@ func void DIA_Addon_Nefarius_EXIT_Info()
 instance DIA_Addon_Nefarius_Hallo(C_Info)
 {
 	npc = KDW_1402_Addon_Nefarius_NW;
-	nr = 5;
+	nr = 1;
 	condition = DIA_Addon_Nefarius_Hallo_Condition;
 	information = DIA_Addon_Nefarius_Hallo_Info;
-	description = "Как дела?";
+//	description = "Как дела?";
+	important = TRUE;
 };
 
 
@@ -38,7 +39,7 @@ func int DIA_Addon_Nefarius_Hallo_Condition()
 
 func void DIA_Addon_Nefarius_Hallo_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Nefarius_Hallo_15_00");	//Как дела?
+//	AI_Output(other,self,"DIA_Addon_Nefarius_Hallo_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_Nefarius_Hallo_05_01");	//А что ТЫ здесь делаешь? Вот это сюрприз!
 	AI_Output(self,other,"DIA_Addon_Nefarius_Hallo_05_02");	//Я думал, ты погиб.
 	AI_Output(other,self,"DIA_Addon_Nefarius_Hallo_15_03");	//Почти.

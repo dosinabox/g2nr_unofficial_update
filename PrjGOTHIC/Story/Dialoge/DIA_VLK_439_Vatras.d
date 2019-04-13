@@ -2199,6 +2199,7 @@ func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Info()
 {
+	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
 	if(MIS_Pyrokar_GoToVatrasInnoseye == LOG_Running)
 	{
 		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_00");	//Меня прислал Пирокар.
@@ -2209,7 +2210,6 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Info()
 	};
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 	B_GivePlayerXP(XP_Ambient);
-	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_05_03");	//Я знаю. Я уже узнал об этом от одного очень огорченного послушника.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_05_04");	//Ищущие использовали Круг Солнца магов Огня, чтобы уничтожить Глаз.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_05_05");	//Я бы назвал это вынужденным шагом врага.

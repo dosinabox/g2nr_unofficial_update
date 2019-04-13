@@ -16,6 +16,7 @@ func void B_MalcomExident()
 			{
 				B_StartOtherRoutine(Owen,"Start");
 			};
+			Malcom_Accident_Deadly = TRUE;
 		}
 		else
 		{

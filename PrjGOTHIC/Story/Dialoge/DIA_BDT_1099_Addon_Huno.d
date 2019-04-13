@@ -70,13 +70,16 @@ instance DIA_Addon_Huno_Abwimmeln(C_Info)
 
 func int DIA_Addon_Huno_Abwimmeln_Condition()
 {
-	if(Huno_MEGA_Angepisst == TRUE)
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
-	};
-	if((Huno_zuSnaf == TRUE) && !Npc_KnowsInfo(other,DIA_Addon_Fisk_Meeting) && Npc_IsInState(self,ZS_Talk))
-	{
-		return TRUE;
+		if(Huno_MEGA_Angepisst == TRUE)
+		{
+			return TRUE;
+		};
+		if((Huno_zuSnaf == TRUE) && !Npc_KnowsInfo(other,DIA_Addon_Fisk_Meeting))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -498,5 +501,35 @@ func void DIA_Addon_Huno_Trade_Info()
 	B_Say(other,self,"$TRADE_3");
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
+};
+
+instance DIA_Huno_RepairNecklace(C_Info)
+{
+	npc = BDT_1099_Addon_Huno;
+	nr = 600;
+	condition = DIA_Huno_RepairNecklace_Condition;
+	information = DIA_Huno_RepairNecklace_Info;
+	permanent = FALSE;
+	description = "Ты можешь чинить драгоценности?";
+};
+
+
+func int DIA_Huno_RepairNecklace_Condition()
+{
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	{
+		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Huno_RepairNecklace_Info()
+{
+	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	AI_Output(self,other,"DIA_Addon_Huno_Attentat_06_04");	//Я ничего об этом не знаю и знать не хочу!
+	MIS_SCKnowsInnosEyeIsBroken = TRUE;
+	AI_StopProcessInfos(self);
 };
 

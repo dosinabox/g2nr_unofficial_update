@@ -112,6 +112,14 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"¬ыключить рандомные гоблинские €годы у паладинов",StoryHelper_GoblinBerries);
 	};
+	If(InfiniteApples == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"¬ключить бесконечные €блоки",StoryHelper_Apples);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"¬ыключить бесконечные €блоки",StoryHelper_Apples);
+	};
 /*	if(HonestStatCalculation == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"¬ключить честный расчет стоимости обучени€",StoryHelper_HonestStatCalculation);
@@ -214,6 +222,21 @@ func void StoryHelper_GoblinBerries()
 	{
 		RandomGoblinBerries = TRUE;
 		PrintScreen("–андомное количество €год у паладинов",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Apples()
+{
+	if(InfiniteApples == TRUE)
+	{
+		InfiniteApples = FALSE;
+		PrintScreen("Ѕесконечные €блоки исправлены",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		InfiniteApples = TRUE;
+		PrintScreen("яблоки бесконечны",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

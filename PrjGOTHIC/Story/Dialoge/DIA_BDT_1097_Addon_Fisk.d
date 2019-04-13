@@ -315,7 +315,7 @@ instance DIA_Addon_Fisk_GivePicks(C_Info)
 
 func int DIA_Addon_Fisk_GivePicks_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Fisk_PaketOpen) && (MIS_Lennar_Lockpick == LOG_Running))
+	if((MIS_Lennar_Lockpick == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Fisk_PaketOpen))
 	{
 		return TRUE;
 	};

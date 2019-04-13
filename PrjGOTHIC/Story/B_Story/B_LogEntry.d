@@ -46,6 +46,14 @@ func void B_CheckDynamicText()
 		TEXT_DragonEggDrinkNeoras_Setting = NAME_Bonus_Str;
 		COUNT_DragonEggDrinkNeoras_Setting = 3;
 	};
+	if(MIS_Bennet_InnosEyeRepairedSetting == LOG_SUCCESS)
+	{
+		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Repaired;
+	}
+	else
+	{
+		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Broken;
+	};
 	/*if(Player_KnowsSchnellerHering == FALSE)
 	{
 		TEXT_SchnellerHering_Setting = "Âûדכÿהטע ןמהמחנטעוכüםמ!";

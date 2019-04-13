@@ -28,13 +28,28 @@ var int Lee_Teleport;
 
 func void B_Lee_Teleport()
 {
-	AI_Output(self,other,"DIA_Lee_Add_04_05");	//Ах. Хорошо, что ты пришел.
-	AI_Output(other,self,"DIA_Lee_Add_15_06");	//Что случилось?
-	AI_Output(self,other,"DIA_Lee_Add_04_07");	//Я нашел это в старой часовне.
-	B_GiveInvItems(self,other,ItRu_TeleportFarm,1);
-	AI_Output(self,other,"DIA_Lee_Add_04_08");	//Это магическая руна. Я думаю, она может в любое время перенести тебя сюда, на ферму.
-	AI_Output(self,other,"DIA_Lee_Add_04_09");	//Я подумал, что ты сможешь пользоваться ей.
-	Lee_Teleport = TRUE;
+	if((Kapitel >= 3) && (Lee_Teleport == FALSE))
+	{
+		AI_Output(self,other,"DIA_Lee_Add_04_05");	//Ах. Хорошо, что ты пришел.
+		AI_Output(other,self,"DIA_Lee_Add_15_06");	//Что случилось?
+		AI_Output(self,other,"DIA_Lee_Add_04_07");	//Я нашел это в старой часовне.
+		B_GiveInvItems(self,other,ItRu_TeleportFarm,1);
+		AI_Output(self,other,"DIA_Lee_Add_04_08");	//Это магическая руна. Я думаю, она может в любое время перенести тебя сюда, на ферму.
+		AI_Output(self,other,"DIA_Lee_Add_04_09");	//Я подумал, что ты сможешь пользоваться ей.
+		Lee_Teleport = TRUE;
+	};
+};
+
+
+var int Lee_Sends_To_Buster;
+
+func void B_Lee_Sends_To_Buster()
+{
+	if((Lee_Sends_To_Buster == FALSE) && !Npc_IsDead(Buster) && !Npc_KnowsInfo(other,DIA_Buster_SHADOWBEASTS) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	{
+		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_07");	//Ох, да. Чуть не забыл... Бастер хочет поболтать с тобой. Он не говорит мне, о чем. Может, стоит найти его?
+		Lee_Sends_To_Buster = TRUE;
+	};
 };
 
 
@@ -63,10 +78,6 @@ func int DIA_Lee_PMSchulden_Condition()
 func void DIA_Lee_PMSchulden_Info()
 {
 	var int diff;
-	if((Kapitel >= 3) && (Lee_Teleport == FALSE))
-	{
-		B_Lee_Teleport();
-	};
 	AI_Output(self,other,"DIA_Lee_PMSchulden_04_00");	//Ты здесь, чтобы принести деньги Онару?
 	if(B_GetTotalPetzCounter(self) > Lee_LastPetzCounter)
 	{
@@ -176,10 +187,6 @@ func int DIA_Lee_PETZMASTER_Condition()
 
 func void DIA_Lee_PETZMASTER_Info()
 {
-	if((Kapitel >= 3) && (Lee_Teleport == FALSE))
-	{
-		B_Lee_Teleport();
-	};
 	Lee_Schulden = 0;
 	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
@@ -767,9 +774,12 @@ func void DIA_Lee_RescueGorn_Info()
 {
 	AI_Output(other,self,"DIA_Lee_RescueGorn_15_00");	//Я собираюсь отправиться в Долину Рудников.
 	AI_Output(self,other,"DIA_Lee_RescueGorn_04_01");	//Я и не надеялся, что ты долго задержишься на этой ферме.
-	AI_Output(self,other,"DIA_Lee_RescueGorn_04_02");	//Если ты возвращаешься в колонию, поищи там Горна. Паладины держат его там за решеткой.
-	AI_Output(self,other,"DIA_Lee_RescueGorn_04_03");	//Горн хороший человек, и он бы очень пригодился мне здесь, так что если у тебя появится шанс освободить парня, не упускай его.
-	KnowsAboutGorn = TRUE;
+	if(MIS_RescueGorn != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Lee_RescueGorn_04_02");	//Если ты возвращаешься в колонию, поищи там Горна. Паладины держат его там за решеткой.
+		AI_Output(self,other,"DIA_Lee_RescueGorn_04_03");	//Горн хороший человек, и он бы очень пригодился мне здесь, так что если у тебя появится шанс освободить парня, не упускай его.
+		KnowsAboutGorn = TRUE;
+	};
 };
 
 
@@ -786,7 +796,8 @@ instance DIA_Lee_Success(C_Info)
 
 func int DIA_Lee_Success_Condition()
 {
-	if((MIS_RescueGorn == LOG_SUCCESS) && (Kapitel >= 3) && (other.guild == GIL_SLD))
+//	if((MIS_RescueGorn == LOG_SUCCESS) && (Kapitel >= 3) && (other.guild == GIL_SLD))
+	if((MIS_RescueGorn == LOG_SUCCESS) && (other.guild == GIL_SLD))
 	{
 		return TRUE;
 	};
@@ -797,6 +808,7 @@ func void DIA_Lee_Success_Info()
 	AI_Output(other,self,"DIA_Lee_Success_15_00");	//Я освободил Горна.
 	AI_Output(self,other,"DIA_Lee_Success_04_01");	//Да, он уже рассказал мне об этом. Отлично сработано.
 	AI_Output(self,other,"DIA_Lee_Success_04_02");	//Он стоит больше, чем Сильвио и все его парни вместе взятые.
+	B_Lee_Teleport();
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -1022,11 +1034,13 @@ func int DIA_Lee_KAP3_EXIT_Condition()
 
 func void DIA_Lee_KAP3_EXIT_Info()
 {
+	B_Lee_Teleport();
+	B_Lee_Sends_To_Buster();
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_Lee_Teleport(C_Info)
+/*instance DIA_Lee_Teleport(C_Info)
 {
 	npc = SLD_800_Lee;
 	nr = 1;
@@ -1039,7 +1053,7 @@ instance DIA_Lee_Teleport(C_Info)
 
 func int DIA_Lee_Teleport_Condition()
 {
-	if((Kapitel >= 3) && Npc_IsInState(self,ZS_Talk) && (Lee_Teleport == FALSE))
+	if((Kapitel >= 3) && (Lee_Teleport == FALSE) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
 	{
 		return TRUE;
 	};
@@ -1048,7 +1062,7 @@ func int DIA_Lee_Teleport_Condition()
 func void DIA_Lee_Teleport_Info()
 {
 	B_Lee_Teleport();
-};
+};*/
 
 
 instance DIA_Lee_ArmorH(C_Info)
@@ -1074,6 +1088,7 @@ func void DIA_Lee_ArmorH_Info()
 {
 	AI_Output(other,self,"DIA_Lee_ArmorH_15_00");	//У тебя есть доспехи получше для меня?
 	AI_Output(self,other,"DIA_Lee_ArmorH_04_01");	//Конечно.
+	B_Lee_Teleport();
 };
 
 
@@ -1162,6 +1177,7 @@ func void DIA_Lee_Richter_wieviel()
 {
 	AI_Output(other,self,"DIA_Lee_Richter_wieviel_15_00");	//Нет проблем. Сколько?
 	AI_Output(self,other,"DIA_Lee_Richter_wieviel_04_01");	//Твоя награда зависит от того, что ты сообщишь мне. Так что постарайся.
+	B_Lee_Sends_To_Buster();
 	Info_ClearChoices(DIA_Lee_Richter);
 };
 
@@ -1170,6 +1186,7 @@ func void DIA_Lee_Richter_nein()
 	AI_Output(other,self,"DIA_Lee_Richter_nein_15_00");	//Я не буду заниматься этим. Я не хочу прислуживать этой свинье.
 	AI_Output(self,other,"DIA_Lee_Richter_nein_04_01");	//Не нервничай так. Помни о том, что именно он засадил тебя за решетку и засунул за Барьер. Или ты забыл это?
 	AI_Output(self,other,"DIA_Lee_Richter_nein_04_02");	//Поступай, как знаешь, но я надеюсь, ты примешь правильное решение.
+	B_Lee_Sends_To_Buster();
 	Info_ClearChoices(DIA_Lee_Richter);
 };
 
@@ -1250,10 +1267,9 @@ func void DIA_Lee_TalkAboutBennet_Info()
 {
 	AI_Output(other,self,"DIA_Lee_TalkAboutBennet_15_00");	//Что насчет Беннета?
 	AI_Output(self,other,"DIA_Lee_TalkAboutBennet_04_01");	//Так ты уже знаешь. Эти ублюдки посадили его за решетку. Вот и все.
-	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
-	{
-		AI_Output(self,other,"DIA_Lee_TalkAboutBennet_04_02");	//Как будто мне не хватает проблем с моими людьми - теперь я должен заботиться еще и о паладинах.
-	};
+	AI_Output(self,other,"DIA_Lee_TalkAboutBennet_04_02");	//Как будто мне не хватает проблем с моими людьми - теперь я должен заботиться еще и о паладинах.
+	B_Lee_Teleport();
+	B_Lee_Sends_To_Buster();
 };
 
 
@@ -1288,10 +1304,6 @@ func void DIA_Lee_DoAboutBennet_Info()
 	{
 		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_05");	//Ларес все еще в городе и пытается выяснить, как можно вытащить Беннета.
 		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_06");	//А пока я попытаюсь успокоить моих парней. Остается надеяться, что Ларесу не понадобится слишком много времени на это.
-	};
-	if(!Npc_IsDead(Buster) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
-	{
-		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_07");	//Ох, да. Чуть не забыл... Бастер хочет поболтать с тобой. Он не говорит мне, о чем. Может, стоит найти его?
 	};
 };
 
@@ -1353,6 +1365,8 @@ func void DIA_Lee_AnyNews_Info()
 	{
 		AI_Output(self,other,"DIA_Lee_AnyNews_04_01");	//Ну, по крайней мере, тюрьма, похоже, не сильно сказалась на его здоровье.
 		AI_Output(self,other,"DIA_Lee_AnyNews_04_02");	//Отличная работа.
+		B_Lee_Teleport();
+		B_Lee_Sends_To_Buster();
 		if(DIA_Lee_AnyNews_OneTime == FALSE)
 		{
 			B_GivePlayerXP(XP_Ambient);
@@ -1392,6 +1406,8 @@ func void DIA_Lee_SYLVIO_Info()
 	AI_Output(self,other,"DIA_Lee_SYLVIO_04_03");	//Большинство не особенно воодушевилось идеей быть убитым ради Сильвио, но все же нашлось несколько идиотов, которые клюнули на его наживку.
 	AI_Output(self,other,"DIA_Lee_SYLVIO_04_04");	//Все закончилось тем, что они вооружились у Беннета, а затем свалили.
 	AI_Output(self,other,"DIA_Lee_SYLVIO_04_05");	//(облегченно) Ах. Откровенно говоря, я даже рад, что Сильвио наконец ушел с фермы.
+	B_Lee_Teleport();
+	B_Lee_Sends_To_Buster();
 };
 
 
@@ -1416,6 +1432,8 @@ func int DIA_Lee_KAP4_EXIT_Condition()
 
 func void DIA_Lee_KAP4_EXIT_Info()
 {
+	B_Lee_Teleport();
+	B_Lee_Sends_To_Buster();
 	AI_StopProcessInfos(self);
 };
 
@@ -1433,7 +1451,8 @@ instance DIA_Lee_CanTeach(C_Info)
 
 func int DIA_Lee_CanTeach_Condition()
 {
-	if((Kapitel >= 4) && (Lee_TeachPlayer == FALSE))
+//	if((Kapitel >= 4) && (Lee_TeachPlayer == FALSE))
+	if(Lee_TeachPlayer == FALSE)
 	{
 		return TRUE;
 	};
@@ -1577,7 +1596,6 @@ func int DIA_Lee_DRACHENEI_Condition()
 func void DIA_Lee_DRACHENEI_Info()
 {
 	AI_Output(other,self,"DIA_Lee_DRACHENEI_15_00");	//Люди-ящеры раскладывают драконьи яйца по всему острову.
-	B_GivePlayerXP(XP_Ambient);
 	AI_Output(self,other,"DIA_Lee_DRACHENEI_04_01");	//Я мог понять это раньше. Пришло время убираться отсюда.
 	if(hero.guild == GIL_DJG)
 	{
@@ -1587,6 +1605,7 @@ func void DIA_Lee_DRACHENEI_Info()
 		AI_Output(self,other,"DIA_Lee_DRACHENEI_04_05");	//Похоже, они очень крепкие. Поговори об этом с Беннетом.
 		B_LogEntry(TOPIC_DRACHENEIER,"Ли не знает, что делать с драконьим яйцом. Он отправил меня к кузнецу Беннету.");
 	};
+	B_GivePlayerXP(XP_Ambient);
 };
 
 
@@ -1603,7 +1622,7 @@ instance DIA_Lee_KAP4_Perm(C_Info)
 
 func int DIA_Lee_KAP4_Perm_Condition()
 {
-	if(Kapitel == 4)
+	if(Kapitel >= 4)
 	{
 		return TRUE;
 	};
@@ -1640,6 +1659,7 @@ func int DIA_Lee_KAP5_EXIT_Condition()
 
 func void DIA_Lee_KAP5_EXIT_Info()
 {
+	B_Lee_Teleport();
 	AI_StopProcessInfos(self);
 };
 
@@ -1690,7 +1710,7 @@ func void DIA_Lee_GetShip_Info()
 	Info_ClearChoices(DIA_Lee_GetShip);
 	Info_AddChoice(DIA_Lee_GetShip,Dialog_Back,DIA_Lee_GetShip_back);
 	Info_AddChoice(DIA_Lee_GetShip,"А кого мне взять в команду?",DIA_Lee_GetShip_crew);
-	if(!Npc_IsDead(Torlof))
+	if(!Npc_IsDead(Torlof) && (SCGotCaptain == FALSE))
 	{
 		Info_AddChoice(DIA_Lee_GetShip,"Ты знаешь кого-нибудь, кто мог бы управлять кораблем?",DIA_Lee_GetShip_torlof);
 	};

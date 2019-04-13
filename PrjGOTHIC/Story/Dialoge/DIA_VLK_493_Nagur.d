@@ -228,23 +228,18 @@ func void DIA_Nagur_Auftrag_Info()
 		{
 			AI_Output(self,other,"DIA_Nagur_Auftrag_08_02");	//У этого Бальтрама есть посыльный, доставлявший ему товары с фермы Акила.
 			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее, у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
+			AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
+			B_StartOtherRoutine(Bote,"Dead");
+			B_KillNpc(Bote);
 			Bote_Killed = TRUE;
+			if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && !Npc_KnowsInfo(other,DIA_Rengaru_SPARE) && (Rengaru_Ausgeliefert == FALSE))
+			{
+				B_StartOtherRoutine(Rengaru,"Hide");
+			};
 		};
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_06");	//И не пытайся продать эти товары сам. Ты все понял?
-	//	смерть мальчика на побегушках
-		if(!Npc_IsDead(Bote))
-		{
-			AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
-			B_StartOtherRoutine(Bote,"Rest");
-			B_KillNpc(Bote);
-		};
-	//	Ренгару уходит с места преступления
-		if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && !Npc_KnowsInfo(other,DIA_Rengaru_SPARE) && (Rengaru_Ausgeliefert == FALSE))
-		{
-			B_StartOtherRoutine(Rengaru,"Hide");
-		};
 		Info_ClearChoices(DIA_Nagur_Auftrag);
 		Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились.",DIA_Nagur_Auftrag_Okay);
 		Info_AddChoice(DIA_Nagur_Auftrag,"Где мне найти Бальтрама?",DIA_Nagur_Auftrag_Baltram);

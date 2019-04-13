@@ -105,8 +105,11 @@ func void DIA_Wolf_WannaBuy_Info()
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_01");	//Ох, лучше не спрашивай.
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_02");	//Беннет, один из новых парней, теперь заведует оружием и доспехами.
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_03");	//В колонии я отвечал за весь арсенал Ли, и вот пришел хороший кузнец и - пфу - я остался без работы.
-	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_04");	//Мне очень нужна новая работа, даже если это будет охрана местных ферм.
-	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_05");	//Меня это не волнует, лишь бы только не бить баклуши здесь.
+	if((MIS_BengarsHelpingSLD != LOG_SUCCESS) && (Wolf_IsOnBoard != LOG_SUCCESS))
+	{
+		AI_Output(self,other,"DIA_Wolf_WannaBuy_08_04");	//Мне очень нужна новая работа, даже если это будет охрана местных ферм.
+		AI_Output(self,other,"DIA_Wolf_WannaBuy_08_05");	//Меня это не волнует, лишь бы только не бить баклуши здесь.
+	};
 };
 
 
@@ -755,7 +758,7 @@ instance DIA_Wolf_SHIPOFF(C_Info)
 	condition = DIA_Wolf_SHIPOFF_Condition;
 	information = DIA_Wolf_SHIPOFF_Info;
 	permanent = TRUE;
-	description = "Послушай.";
+	description = "Послушай...";
 };
 
 
@@ -769,7 +772,7 @@ func int DIA_Wolf_SHIPOFF_Condition()
 
 func void DIA_Wolf_SHIPOFF_Info()
 {
-	AI_Output(other,self,"DIA_Wolf_SHIPOFF_15_00");	//Послушай.
+	AI_Output(other,self,"DIA_Wolf_SHIPOFF_15_00");	//Послушай...
 	AI_Output(self,other,"DIA_Wolf_SHIPOFF_08_01");	//Проваливай, ублюдок.
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);

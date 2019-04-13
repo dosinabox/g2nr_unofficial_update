@@ -69,7 +69,10 @@ instance DIA_Jesper_Hallo(C_Info)
 
 func int DIA_Jesper_Hallo_Condition()
 {
-	return TRUE;
+	if(!Npc_IsDead(Cassia) && !Npc_IsDead(Ramirez))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Jesper_Hallo_Info()

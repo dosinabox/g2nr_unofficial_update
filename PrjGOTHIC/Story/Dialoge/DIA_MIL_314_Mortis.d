@@ -34,7 +34,7 @@ instance DIA_Mortis_Hallo(C_Info)
 
 func int DIA_Mortis_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (!Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3)))
+	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3) && (other.guild == GIL_MIL))
 	{
 		return TRUE;
 	};
@@ -49,7 +49,7 @@ func void DIA_Mortis_Hallo_Info()
 instance DIA_Mortis_Waffe(C_Info)
 {
 	npc = MIL_314_Mortis;
-	nr = 2;
+	nr = 3;
 	condition = DIA_Mortis_Waffe_Condition;
 	information = DIA_Mortis_Waffe_Info;
 	permanent = FALSE;
@@ -59,7 +59,7 @@ instance DIA_Mortis_Waffe(C_Info)
 
 func int DIA_Mortis_Waffe_Condition()
 {
-	if((MIS_Andre_Peck == LOG_Running) && (!Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3)))
+	if((MIS_Andre_Peck == LOG_Running) && !Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -76,7 +76,7 @@ func void DIA_Mortis_Waffe_Info()
 instance DIA_Mortis_Paket(C_Info)
 {
 	npc = MIL_314_Mortis;
-	nr = 2;
+	nr = 4;
 	condition = DIA_Mortis_Paket_Condition;
 	information = DIA_Mortis_Paket_Info;
 	permanent = FALSE;
@@ -105,7 +105,7 @@ func void DIA_Mortis_Paket_Info()
 instance DIA_Mortis_Redlight(C_Info)
 {
 	npc = MIL_314_Mortis;
-	nr = 2;
+	nr = 5;
 	condition = DIA_Mortis_Redlight_Condition;
 	information = DIA_Mortis_Redlight_Info;
 	permanent = FALSE;
@@ -135,7 +135,7 @@ func void DIA_Mortis_Redlight_Info()
 instance DIA_Mortis_CanTeach(C_Info)
 {
 	npc = MIL_314_Mortis;
-	nr = 5;
+	nr = 6;
 	condition = DIA_Mortis_CanTeach_Condition;
 	information = DIA_Mortis_CanTeach_Info;
 	permanent = TRUE;
@@ -201,7 +201,7 @@ func void DIA_Mortis_Teach_Info()
 func void DIA_Mortis_Teach_BACK()
 {
 //	if(other.attribute[ATR_STRENGTH] >= T_LOW)
-	if(other.aivar[REAL_STRENGTH] >= T_LOW)
+	if(other.aivar[REAL_STRENGTH] >= 150)
 	{
 		AI_Output(self,other,"DIA_Mortis_Teach_13_00");	//Ты и так достаточно силен. Если же ты стремишься к большему, найди себе другого учителя.
 	};
@@ -210,7 +210,7 @@ func void DIA_Mortis_Teach_BACK()
 
 func void DIA_Mortis_Teach_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_LOW);
+	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,150);
 	Info_ClearChoices(DIA_Mortis_Teach);
 	Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
 	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Mortis_Teach_1);
@@ -219,7 +219,7 @@ func void DIA_Mortis_Teach_1()
 
 func void DIA_Mortis_Teach_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_LOW);
+	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,150);
 	Info_ClearChoices(DIA_Mortis_Teach);
 	Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
 	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Mortis_Teach_1);
@@ -259,5 +259,35 @@ func void DIA_Mortis_PICKPOCKET_DoIt()
 func void DIA_Mortis_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Mortis_PICKPOCKET);
+};
+
+instance DIA_Mortis_RepairNecklace(C_Info)
+{
+	npc = MIL_314_Mortis;
+	nr = 8;
+	condition = DIA_Mortis_RepairNecklace_Condition;
+	information = DIA_Mortis_RepairNecklace_Info;
+	permanent = FALSE;
+	description = "Ты можешь чинить драгоценности?";
+};
+
+
+func int DIA_Mortis_RepairNecklace_Condition()
+{
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	{
+		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Mortis_RepairNecklace_Info()
+{
+	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	AI_Output(self,other,"DIA_Parcival_PERMKAP4_13_01");	//Ах, оставь меня в покое!
+	MIS_SCKnowsInnosEyeIsBroken = TRUE;
+	AI_StopProcessInfos(self);
 };
 

@@ -1059,7 +1059,10 @@ func int DIA_Harad_RepairNecklace_Condition()
 {
 	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
-		return TRUE;
+		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1086,7 +1089,7 @@ instance DIA_Harad_Goldsmith(C_Info)
 
 func int DIA_Harad_Goldsmith_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Harad_RepairNecklace))
+	if(Npc_KnowsInfo(other,DIA_Harad_RepairNecklace) && !Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
 		return TRUE;
 	};

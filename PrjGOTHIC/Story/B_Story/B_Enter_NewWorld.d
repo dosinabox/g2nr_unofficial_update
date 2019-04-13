@@ -799,6 +799,10 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		{
 			IntroduceChapter(KapWechsel_5,KapWechsel_5_Text,"chapter5_DJG.tga","chapter_01.wav",6000);
 		};
+		if(MIS_ShipIsFree == TRUE)
+		{
+			B_StartOtherRoutine(Girion,"WaitForShip");
+		};
 		EnterNW_Kapitel5 = TRUE;
 	};
 //	if(MIS_OCGateOpen == TRUE)
