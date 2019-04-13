@@ -443,6 +443,7 @@ func void DIA_Pyrokar_OATH_Info()
 	hero.guild = GIL_KDF;
 	Npc_SetTrueGuild(hero,GIL_KDF);
 	CreateInvItem(hero,ITAR_KDF_L);
+	AI_PrintScreen("Легкая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	AI_EquipArmor(hero,ITAR_KDF_L);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
@@ -876,7 +877,7 @@ instance DIA_Pyrokar_PERM(C_Info)
 	condition = DIA_Pyrokar_PERM_Condition;
 	information = DIA_Pyrokar_PERM_Info;
 	permanent = TRUE;
-	description = "(Благословение)";
+	description = "(благословение)";
 };
 
 
@@ -1302,6 +1303,7 @@ func void DIA_Pyrokar_AUGEGEHEILT_Info()
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_04");	//С этого дня ты являешься членом Совета и будешь представлять наш Орден по всему свету. Теперь ты один из высших Магов Огня.
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_05");	//Носи эту священную робу с достоинством и неси в мир порядок, честь и славу, брат мой.
 		CreateInvItem(hero,ITAR_KDF_H);
+		AI_PrintScreen("Тяжелая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_EquipArmor(hero,ITAR_KDF_H);
 		heroGIL_KDF2 = TRUE;
 	};
@@ -1424,7 +1426,7 @@ instance DIA_Pyrokar_SCOBSESSED(C_Info)
 	condition = DIA_Pyrokar_SCOBSESSED_Condition;
 	information = DIA_Pyrokar_SCOBSESSED_Info;
 	permanent = TRUE;
-	description = "(Вылечить одержимость)";
+	description = "(вылечить одержимость)";
 };
 
 

@@ -303,7 +303,7 @@ instance DIA_Cornelius_PICKPOCKET(C_Info)
 	condition = DIA_Cornelius_PICKPOCKET_Condition;
 	information = DIA_Cornelius_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть его книгу будет довольно рискованно)";
+	description = "(украсть его книгу будет довольно рискованно)";
 };
 
 

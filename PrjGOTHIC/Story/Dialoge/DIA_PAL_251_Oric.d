@@ -621,7 +621,7 @@ instance DIA_Oric_PICKPOCKET(C_Info)
 	condition = DIA_Oric_PICKPOCKET_Condition;
 	information = DIA_Oric_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть этот свиток будет чертовски сложно)";
+	description = "(украсть этот свиток будет чертовски сложно)";
 };
 
 

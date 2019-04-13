@@ -28,7 +28,7 @@ instance DIA_Bartok_PICKPOCKET(C_Info)
 	condition = DIA_Bartok_PICKPOCKET_Condition;
 	information = DIA_Bartok_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть его колчан со стрелами будет просто)";
+	description = "(украсть его колчан со стрелами будет просто)";
 };
 
 

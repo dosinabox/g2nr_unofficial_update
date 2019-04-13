@@ -49,7 +49,7 @@ instance ItRw_Mil_Crossbow(C_Item)
 
 instance ItRw_Sld_Bow(C_Item)
 {
-	name = "Лук";
+	name = "Лук наемника";
 	mainflag = ITEM_KAT_FF;
 	flags = ITEM_BOW;
 	material = MAT_WOOD;
@@ -125,7 +125,8 @@ instance ItRw_Bow_L_03(C_Item)
 	munition = ItRw_Arrow;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_Jagdbogen;
-	visual = "ItRw_Bow_M_01.mms";
+//	visual = "ItRw_Bow_M_01.mms";
+	visual = "ItRw_Bow_L_03.mms";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -147,7 +148,8 @@ instance ItRw_Bow_L_04(C_Item)
 	munition = ItRw_Arrow;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_Ulmenbogen;
-	visual = "ItRw_Bow_M_02.mms";
+//	visual = "ItRw_Bow_M_02.mms";
+	visual = "ItRw_Bow_L_04.mms";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -379,7 +381,7 @@ instance ItRw_Crossbow_L_02(C_Item)
 
 instance ItRw_Crossbow_M_01(C_Item)
 {
-	name = "Арбалет";
+	name = "Штурмовой арбалет";
 	mainflag = ITEM_KAT_FF;
 	flags = ITEM_CROSSBOW;
 	material = MAT_WOOD;

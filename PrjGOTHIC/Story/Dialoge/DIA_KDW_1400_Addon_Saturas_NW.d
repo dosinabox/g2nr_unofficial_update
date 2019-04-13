@@ -411,7 +411,7 @@ instance DIA_Addon_Saturas_ScRanger(C_Info)
 	condition = DIA_Addon_Saturas_ScRanger_Condition;
 	information = DIA_Addon_Saturas_ScRanger_Info;
 	permanent = TRUE;
-	description = "Теперь я принадлежу к Кольцу Воды.";
+	description = "Теперь я принадлежу к 'Кольцу Воды'.";
 };
 
 

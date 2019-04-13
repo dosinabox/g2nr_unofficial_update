@@ -321,8 +321,8 @@ instance ITWr_Addon_Joint_01(C_Item)
 	on_state[0] = Use_Joint_Rezept_01;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "из сундука Фортуно.";
-	text[1] = PRINT_RequiresAlchemyTalent;
+	text[0] = "Рецепт из сундука Фортуно.";
+//	text[1] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -349,10 +349,11 @@ func void Use_Joint_Rezept_01()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Green_Extrem == FALSE))
 		{
-			Green_Extrem = TRUE;
-			B_LogEntry(TOPIC_TalentAlchemy, "Ингредиенты для 'Зеленого послушника': 2 болотных травы и 1 луговой горец.");
+			//Green_Extrem = TRUE;
+			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'Зеленого послушника': 2 болотных травы и 1 луговой горец.");
 		};
 	};
+	Green_Extrem = TRUE;
 };
 
 
@@ -613,7 +614,8 @@ instance ItWr_Map_AddonWorld(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_AW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_AddonWorld;

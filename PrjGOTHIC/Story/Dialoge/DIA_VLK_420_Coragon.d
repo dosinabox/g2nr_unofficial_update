@@ -267,7 +267,7 @@ instance DIA_Coragon_Schuldenbuch(C_Info)
 
 func int DIA_Coragon_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch))
+	if(Npc_HasItems(other,ItWr_Schuldenbuch) && (SchuldBuchNamesKnown == TRUE))
 	{
 		return TRUE;
 	};
@@ -303,7 +303,9 @@ func int DIA_Coragon_GiveBook_Condition()
 func void DIA_Coragon_GiveBook_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
-	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
+//	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
+	AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_19");	//Спасибо! Ты спас меня. Лемар может быть очень неприятным человеком.
 	B_GivePlayerXP(XP_Schuldenbuch);
 	B_Coragon_Bier();
@@ -436,5 +438,56 @@ func void DIA_Coragon_Ring_Info()
 	AI_Output(other,self,"DIA_Coragon_Add_15_42");	//Ты можешь передать его следующему, кто отдубасит его...
 	B_GivePlayerXP(300);
 	AI_StopProcessInfos(self);
+};
+
+instance DIA_Coragon_PICKPOCKET_Book(C_Info)
+{
+	npc = VLK_420_Coragon;
+	nr = 700;
+	condition = DIA_Coragon_PICKPOCKET_Book_Condition;
+	information = DIA_Coragon_PICKPOCKET_Book_Info;
+	permanent = TRUE;
+	description = "(украсть долговую книгу будет довольно просто)";
+};
+
+
+func int DIA_Coragon_PICKPOCKET_Book_Condition()
+{
+	if((SchuldBuch_Stolen_Coragon == FALSE) && Npc_KnowsInfo(other,DIA_Coragon_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 30))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Coragon_PICKPOCKET_Book_Info()
+{
+	Info_ClearChoices(DIA_Coragon_PICKPOCKET_Book);
+	Info_AddChoice(DIA_Coragon_PICKPOCKET_Book,Dialog_Back,DIA_Coragon_PICKPOCKET_Book_BACK);
+	Info_AddChoice(DIA_Coragon_PICKPOCKET_Book,DIALOG_PICKPOCKET,DIA_Coragon_PICKPOCKET_Book_DoIt);
+};
+
+func void DIA_Coragon_PICKPOCKET_Book_DoIt()
+{
+	if(other.attribute[ATR_DEXTERITY] >= 40)
+	{
+		CreateInvItem(other,ItWr_Schuldenbuch);
+		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveThiefXP();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
+		SchuldBuch_Stolen_Coragon = TRUE;
+	}
+	else
+	{
+		B_ResetThiefLevel();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_Theft,1);
+	};
+	Info_ClearChoices(DIA_Coragon_PICKPOCKET_Book);
+};
+
+func void DIA_Coragon_PICKPOCKET_Book_BACK()
+{
+	Info_ClearChoices(DIA_Coragon_PICKPOCKET_Book);
 };
 

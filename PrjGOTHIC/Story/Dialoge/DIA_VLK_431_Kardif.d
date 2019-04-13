@@ -296,7 +296,7 @@ var int DIA_Kardif_Lehmar_permanent;
 
 func int DIA_Kardif_Lehmar_Condition()
 {
-	if((DIA_Kardif_Lehmar_permanent == FALSE) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Buerger_permanent == TRUE))
+	if((DIA_Kardif_Lehmar_permanent == FALSE) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Buerger_permanent == TRUE) && (SchuldBuchNamesKnown == FALSE))
 	{
 		return TRUE;
 	};

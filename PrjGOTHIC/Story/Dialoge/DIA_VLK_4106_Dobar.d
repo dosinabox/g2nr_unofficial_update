@@ -230,7 +230,7 @@ instance DIA_Dobar_PICKPOCKET(C_Info)
 	condition = DIA_Dobar_PICKPOCKET_Condition;
 	information = DIA_Dobar_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть его кусок руды будет довольно трудно)";
+	description = "(украсть его кусок руды будет довольно трудно)";
 };
 
 

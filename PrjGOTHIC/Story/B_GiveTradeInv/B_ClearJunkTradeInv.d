@@ -1,6 +1,8 @@
 
 func void B_ClearJunkTradeInv(var C_Npc slf)
 {
+	var C_Item EquipWeap;
+	EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
 	if(Hlp_IsValidNpc(slf))
 	{
 		Npc_RemoveInvItems(slf,ItMw_2H_OrcAxe_01,Npc_HasItems(slf,ItMw_2H_OrcAxe_01));
@@ -9,7 +11,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItMw_2H_OrcAxe_04,Npc_HasItems(slf,ItMw_2H_OrcAxe_04));
 		Npc_RemoveInvItems(slf,ItMw_2H_OrcSword_01,Npc_HasItems(slf,ItMw_2H_OrcSword_01));
 		Npc_RemoveInvItems(slf,ItMw_2H_OrcSword_02,Npc_HasItems(slf,ItMw_2H_OrcSword_02));
-		Npc_RemoveInvItems(slf,ItMw_1h_Bau_Mace,Npc_HasItems(slf,ItMw_1h_Bau_Mace));
+		if(!Hlp_IsItem(EquipWeap,ItMw_1h_Bau_Mace))
+		{
+			Npc_RemoveInvItems(slf,ItMw_1h_Bau_Mace,Npc_HasItems(slf,ItMw_1h_Bau_Mace));
+		};
 		Npc_RemoveInvItems(slf,ItAt_Meatbugflesh,Npc_HasItems(slf,ItAt_Meatbugflesh));
 		Npc_RemoveInvItems(slf,ItAt_SheepFur,Npc_HasItems(slf,ItAt_SheepFur));
 		Npc_RemoveInvItems(slf,ItAt_WolfFur,Npc_HasItems(slf,ItAt_WolfFur));
@@ -50,6 +55,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItMi_Stomper,Npc_HasItems(slf,ItMi_Stomper));
 		Npc_RemoveInvItems(slf,ItMi_Hammer,Npc_HasItems(slf,ItMi_Hammer));
 		Npc_RemoveInvItems(slf,ItMi_Scoop,Npc_HasItems(slf,ItMi_Scoop));
+		Npc_RemoveInvItems(slf,ItMi_Saw,Npc_HasItems(slf,ItMi_Saw));
 		Npc_RemoveInvItems(slf,ItMi_Rake,Npc_HasItems(slf,ItMi_Rake));
 		Npc_RemoveInvItems(slf,ItMi_Broom,Npc_HasItems(slf,ItMi_Broom));
 		Npc_RemoveInvItems(slf,ItMi_Lute,Npc_HasItems(slf,ItMi_Lute));

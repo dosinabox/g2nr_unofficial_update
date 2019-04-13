@@ -266,7 +266,8 @@ instance ItWr_Seamap_Irdorath(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 50;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_DI.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Seamap_Irdorath;
@@ -447,7 +448,8 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = 1000;
-	visual = "ItAm_Prot_Fire_01.3ds";
+//	visual = "ItAm_Prot_Fire_01.3ds";
+	visual = "ItAm_AmulettOfDeath_Mis.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItAm_AmulettOfDeath_Mis;

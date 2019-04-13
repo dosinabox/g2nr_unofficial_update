@@ -20,11 +20,11 @@ const string TOPIC_Addon_RangerHelpKDF = "Простой путь в монастырь";
 
 var int TOPIC_End_RangerHelpKDF;
 
-const string TOPIC_Addon_RangerHelpSLD = "Простой путь поступить в наемники";
+const string TOPIC_Addon_RangerHelpSLD = "Простой путь в наемники";
 
 var int TOPIC_End_RangerHelpSLD;
 
-const string TOPIC_Addon_RangerHelpMIL = "Простой путь поступить в ополчение";
+const string TOPIC_Addon_RangerHelpMIL = "Простой путь в ополчение";
 const string TOPIC_Addon_Joe = "Джо";
 
 var int TOPIC_END_Joe;

@@ -64,7 +64,7 @@ func void B_GiveBeer(var int DailyQuantity)
 		if((Beer_Count < DailyQuantity) && (Wirt_GiveBeer_Day != Wld_GetDay()))
 		{
 			B_GiveInvItems(self,other,ItFo_Beer,1);
-			Beer_Count += 1;            
+			Beer_Count += 1;
 		};
 		if(Beer_Count >= DailyQuantity)
 		{
@@ -77,7 +77,7 @@ func void B_GiveBeer(var int DailyQuantity)
 		if((Beer_Count < DailyQuantity) && (Wirt_GiveBeer_Day != 999))
 		{
 			B_GiveInvItems(self,other,ItFo_Beer,1);
-			Beer_Count += 1;            
+			Beer_Count += 1;
 		};
 		if(Beer_Count >= DailyQuantity)
 		{

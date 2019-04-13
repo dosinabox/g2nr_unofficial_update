@@ -378,7 +378,7 @@ instance DIA_Till_PERMKAP1(C_Info)
 	condition = DIA_Till_PERMKAP1_Condition;
 	information = DIA_Till_PERMKAP1_Info;
 	permanent = TRUE;
-	description = "(Подразнить Тилла)";
+	description = "(подразнить Тилла)";
 };
 
 

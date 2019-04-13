@@ -80,7 +80,8 @@ instance ItWr_Map_NewWorld(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld;
@@ -112,7 +113,8 @@ instance ItWr_Map_NewWorld_City(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 50;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_City.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_City;
@@ -144,7 +146,8 @@ instance ItWr_Map_OldWorld(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 350;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_OW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_OldWorld;

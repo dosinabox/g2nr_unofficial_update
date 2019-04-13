@@ -15,7 +15,7 @@ func void Equip_1H_01()
 		{
 			hero_1h_max_bonus = -1;
 			B_AddFightSkill(self,NPC_TALENT_1H,Waffenbonus_01);
-			b_meleeweaponchange(Waffenbonus_01,0,0);	
+			b_meleeweaponchange(Waffenbonus_01,0,0);
 		};
 	};
 };

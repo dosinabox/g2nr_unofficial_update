@@ -319,6 +319,7 @@ var C_Npc Zuris;
 var C_Npc Jora;
 var C_Npc Tandor;
 var C_Npc Khaled;
+var C_Npc Meldor;
 
 func void B_InitNpcGlobals()
 {
@@ -646,5 +647,6 @@ func void B_InitNpcGlobals()
 	Jora = Hlp_GetNpc(VLK_408_Jora);
 	Tandor = Hlp_GetNpc(PAL_260_Tandor);
 	Khaled = Hlp_GetNpc(SLD_823_Khaled);
+	Meldor = Hlp_GetNpc(VLK_415_Meldor);
 };
 

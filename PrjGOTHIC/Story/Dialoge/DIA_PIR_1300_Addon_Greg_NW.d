@@ -51,7 +51,7 @@ func void DIA_Addon_Greg_NW_Hallo_Info()
 	PlayerTalkedToGregNW = TRUE;
 	SC_MeetsGregTime = 1;
 	Info_ClearChoices(DIA_Addon_Greg_NW_Hallo);
-	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Я должен идти.",DIA_Addon_Greg_NW_Hallo_weg);
+	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Мне надо идти.",DIA_Addon_Greg_NW_Hallo_weg);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Довольно болтать. Говори, чего ты хочешь.",DIA_Addon_Greg_NW_Hallo_schleim);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Не похоже, чтобы у тебя водились деньги.",DIA_Addon_Greg_NW_Hallo_vorsicht);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Ты от кого-то прячешься?",DIA_Addon_Greg_NW_Hallo_hide);

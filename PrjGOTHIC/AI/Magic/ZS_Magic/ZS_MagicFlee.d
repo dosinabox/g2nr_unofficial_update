@@ -16,14 +16,21 @@ func void B_StopMagicFlee()
 func void ZS_MagicFlee()
 {
 	var int randy;
-	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)))
+	if(self.guild > GIL_SEPERATOR_HUM)
+	{
+		If((self.guild != GIL_DRAGON) && (self.guild != GIL_TROLL) && !C_NpcIsGolem(self) && !C_NpcIsUndead(self))
+		{
+			AI_StartState(self,ZS_MM_Flee,0,"");
+		}
+		else
+		{
+			AI_ContinueRoutine(self);
+			return;
+		};
+	};
+	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(KDF_511_Daron)))
 	{
 		B_Say(self,other,"$ISAIDSTOPMAGIC");
-		AI_ContinueRoutine(self);
-		return;
-	}
-	else if(self.guild == GIL_DRAGON)
-	{
 		AI_ContinueRoutine(self);
 		return;
 	};

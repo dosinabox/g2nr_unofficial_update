@@ -29,7 +29,7 @@ instance DIA_Zuris_PICKPOCKET(C_Info)
 	condition = DIA_Zuris_PICKPOCKET_Condition;
 	information = DIA_Zuris_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть его зелье будет довольно просто)";
+	description = "(украсть его зелье будет довольно просто)";
 };
 
 

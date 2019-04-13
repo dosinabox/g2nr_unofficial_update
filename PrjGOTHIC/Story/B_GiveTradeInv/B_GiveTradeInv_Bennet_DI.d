@@ -13,7 +13,8 @@ func void B_GiveTradeInv_Bennet_DI(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Folteraxt,1);
 		CreateInvItems(slf,ItMw_Zweihaender4,1);
 		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
-		CreateInvItems(slf,ItMw_Berserkeraxt,1);
+//		CreateInvItems(slf,ItMw_Berserkeraxt,1);
+		CreateInvItems(slf,ItMw_Warrioraxt,1);
 		CreateInvItems(slf,ItMi_Nugget,4);
 		if(Npc_HasItems(hero,ItRw_Addon_FireBow))
 		{

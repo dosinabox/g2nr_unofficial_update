@@ -395,7 +395,7 @@ instance DIA_Biff_Stay_AwayFromOC(C_Info)
 	information = DIA_Biff_Stay_AwayFromOC_Info;
 	nr = 3;
 	permanent = TRUE;
-	description = "(Опять взять с собой Биффа)";
+	description = "(опять взять с собой Биффа)";
 };
 
 

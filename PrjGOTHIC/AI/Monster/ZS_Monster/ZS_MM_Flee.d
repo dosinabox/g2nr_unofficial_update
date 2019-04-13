@@ -1,7 +1,7 @@
 
 func void ZS_MM_Flee()
 {
-	if((self.guild == GIL_DRAGON) || (self.guild == GIL_TROLL) || (self.guild == GIL_STONEGOLEM) || (self.guild == GIL_ICEGOLEM) || (self.guild == GIL_FIREGOLEM))
+	if((self.guild == GIL_DRAGON) || (self.guild == GIL_TROLL) || C_NpcIsGolem(other) || C_NpcIsUndead(other))
 	{
 		AI_ContinueRoutine(self);
 		return;

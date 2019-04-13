@@ -80,7 +80,8 @@ instance ItMi_Pliers(C_Item)
 	name = "Ùèïöû";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = Value_RuneBlank;
+//	value = Value_RuneBlank;
+	value = Value_Hammer;
 	visual = "ItMi_Pliers.3DS";
 	material = MAT_METAL;
 	description = name;
@@ -296,7 +297,8 @@ instance ItMi_Joint(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Joint;
-	visual = "ItMi_Joint_US.3ds";
+//	visual = "ItMi_Joint_US.3ds";
+	visual = "ItMi_Joint.3ds";
 	material = MAT_LEATHER;
 	scemeName = "JOINT";
 	on_state[0] = Use_Joint;

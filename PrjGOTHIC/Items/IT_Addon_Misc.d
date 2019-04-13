@@ -37,7 +37,8 @@ instance ItMi_Addon_Joint_01(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Addon_Joint_01;
-	visual = "ItMi_Joint_US.3ds";
+//	visual = "ItMi_Joint_US.3ds";
+	visual = "ItMi_Joint.3ds";
 	material = MAT_LEATHER;
 	scemeName = "JOINT";
 	on_state[0] = Use_Addon_Joint_01;
@@ -57,7 +58,10 @@ func void Use_Addon_Joint_01()
 		if(FirstJoint == FALSE)
 		{
 			FirstJoint = TRUE;
-			B_GivePlayerXP(50);
+			if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY))
+			{
+				B_GivePlayerXP(50);
+			};
 		};
 		Wld_PlayEffect("SLOW_TIME",self,self,0,0,0,FALSE);
 	};

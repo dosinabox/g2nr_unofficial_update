@@ -60,6 +60,8 @@ instance ItPl_Beet(C_Item)
 	on_state[0] = Use_Beet;
 	scemeName = "FOOD";
 	description = name;
+	text[1] = NAME_Bonus_HP;
+	count[1] = HP_Beet;
 	text[5] = NAME_Value;
 	count[5] = Value_Beet;
 };

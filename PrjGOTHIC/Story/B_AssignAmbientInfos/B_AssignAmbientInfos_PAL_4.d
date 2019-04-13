@@ -122,7 +122,7 @@ func void DIA_PAL_4_STANDARD_Info()
 		{
 			if(MIS_OLDWORLD == LOG_SUCCESS)
 			{
-				AI_Output(self,other,"DIA_PAL_4_STANDARD_04_01");	//Теперь, когда мы знаем, что имеем дело с драконами, наш  главнокомандующий наверняка вскоре что-то предпримет.
+				AI_Output(self,other,"DIA_PAL_4_STANDARD_04_01");	//Теперь, когда мы знаем, что имеем дело с драконами, наш главнокомандующий наверняка вскоре что-то предпримет.
 			}
 			else
 			{

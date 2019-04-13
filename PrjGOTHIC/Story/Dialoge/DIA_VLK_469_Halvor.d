@@ -310,7 +310,7 @@ instance DIA_Halvor_Hehlerei(C_Info)
 	condition = DIA_Halvor_Hehlerei_Condition;
 	information = DIA_Halvor_Hehlerei_Info;
 	permanent = TRUE;
-	description = "(Продать все тарелки и кубки)";
+	description = "(продать все тарелки и кубки)";
 };
 
 

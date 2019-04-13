@@ -54,7 +54,7 @@ func void Use_SaturasFirstMessage()
 	{
 		Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-		Log_AddEntry(TOPIC_Addon_RingOfWater,"Кавалорн принадлежит к Кольцу Воды.");
+		Log_AddEntry(TOPIC_Addon_RingOfWater,"Кавалорн принадлежит к 'Кольцу Воды'.");
 	};
 	SC_KnowsRanger = TRUE;
 };
@@ -113,7 +113,8 @@ instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_Ornaments;
@@ -148,7 +149,8 @@ instance ItWr_Map_NewWorld_Dexter(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 210;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_Dexter;
@@ -183,7 +185,7 @@ prototype Rangerring_Prototype(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING | ITEM_MISSION;
 	value = Value_Ri_HpMana;
-	visual = "ItRi_Hp_Mana_01.3ds";
+	visual = "ItRi_Rangerring.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItRi_Ranger_Addon;
@@ -495,7 +497,8 @@ instance ItRi_Addon_BanditTrader(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = 5;
-	visual = "ItRi_Prot_Point_02.3ds";
+//	visual = "ItRi_Prot_Point_02.3ds";
+	visual = "ItRi_Addon_BanditTrader.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 //	description = "Гравированное кольцо";
@@ -619,7 +622,8 @@ instance ItAm_Addon_WispDetector(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_Am_DexStrg;
-	visual = "ItAm_Mana_01.3ds";
+//	visual = "ItAm_Mana_01.3ds";
+	visual = "ItAm_Addon_WispDetector.3ds";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER_BLUE";
 	visual_skin = 0;
@@ -688,7 +692,8 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING | ITEM_MISSION;
 	value = 500;
-	visual = "ItRi_Prot_Total_02.3DS";
+//	visual = "ItRi_Prot_Total_02.3DS";
+	visual = "ItRi_Addon_MorgansRing.3DS";
 	material = MAT_METAL;
 	on_equip = Equip_MorgansRing;
 	on_unequip = UnEquip_MorgansRing;
@@ -696,8 +701,8 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
 	text[0] = "Кольцо украшено множеством рун.";
-	text[1] = NAME_ADDON_BONUS_1H;
-	count[1] = 10;
+	text[2] = NAME_ADDON_BONUS_1H;
+	count[2] = 10;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
@@ -1273,7 +1278,8 @@ instance ItWR_Addon_TreasureMap(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_AW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_TreasureMap;

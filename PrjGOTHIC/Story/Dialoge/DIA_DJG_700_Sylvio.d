@@ -140,8 +140,8 @@ func void DIA_Sylvio_WASISTPASSIERT_Info()
 	Log_SetTopicStatus(TOPIC_SylvioKillIceGolem,LOG_Running);
 	B_LogEntry(TOPIC_SylvioKillIceGolem,"Сильвио испугался двух ледяных големов у входа в заснеженный район Долины рудников.");
 	MIS_DJG_Sylvio_KillIceGolem = LOG_Running;
-	IceGolem_Sylvio1.flags = 0;
-	IceGolem_Sylvio2.flags = 0;
+//	IceGolem_Sylvio1.flags = 0;
+//	IceGolem_Sylvio2.flags = 0;
 };
 
 func void DIA_Sylvio_WASISTPASSIERT_selbst()

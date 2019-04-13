@@ -15,7 +15,9 @@ instance ItAm_Mana_Angar_MIS(C_Item)
 	on_unequip = UnEquip_ItAm_Mana_Angar;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Магический амулет Ангара";
+	//description = "Магический амулет Ангара";
+	description = "Амулет магии";
+	text[0] = "Этот амулет принадлежит Ангару.";
 	text[2] = NAME_Bonus_Mana;
 	count[2] = 10;
 	text[5] = NAME_Value;
@@ -56,7 +58,7 @@ instance ItMW_1H_FerrosSword_Mis(C_Item)
 	range = Range_Special_1H_2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Special_1H_2;
-	//visual = "ItMw_060_1h_Sword_smith_03.3DS";
+//	visual = "ItMw_060_1h_Sword_smith_03.3DS";
 	visual = "ItMw_060_1h_Sword_smith_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -76,7 +78,8 @@ instance ItMi_KerolothsGeldbeutel_MIS(C_Item)
 	value = 300;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-	material = MAT_METAL;
+//	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_state[0] = UseKerolothsGeldbeutel;
 	description = "Кошелек Керолота";
 	text[0] = "Этот кошелек полон золотых монет.";
@@ -101,7 +104,8 @@ instance ItMi_KerolothsGeldbeutelLeer_MIS(C_Item)
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItMi_Pocket.3ds";
-	material = MAT_METAL;
+//	material = MAT_METAL;
+	material = MAT_LEATHER;
 	description = "Кошелек Керолота";
 	text[0] = "Сейчас этот кошелек пуст.";
 //	text[5] = NAME_Value;
@@ -121,7 +125,7 @@ instance ItRw_SengrathsArmbrust_MIS(C_Item)
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_MilArmbrust;
 //	visual = "ItRw_Mil_Crossbow.mms";
-	visual = "ITRW_CROSSBOW_MISSION.MMS";
+	visual = "ITRW_CROSSBOW_MISSION_02.MMS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -252,7 +256,8 @@ instance ItWr_Map_Orcelite_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 350;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_Orcelite_MIS;
@@ -291,7 +296,8 @@ instance ItWr_Map_Caves_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 200;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_Caves_MIS;

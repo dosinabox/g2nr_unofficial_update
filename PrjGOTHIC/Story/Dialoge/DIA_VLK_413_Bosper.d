@@ -801,8 +801,8 @@ func void DIA_Bosper_SellFur_Info()
 	{
 		if(Npc_HasItems(other,ItAt_Addon_KeilerFur))
 		{
-//			B_Say(self,other,"$ABS_GOOD");
-			AI_Output(self,other,"DIA_Bosper_SellFur_11_15B");	//Шкура кабана? Неплохо для начала...
+			B_Say(self,other,"$ABS_GOOD");
+//			AI_Output(self,other,"DIA_Bosper_SellFur_11_15B");	//Шкура кабана? Неплохо для начала...
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_Addon_KeilerFur) * Value_Keilerfur);
 			B_GiveInvItems(other,self,ItAt_Addon_KeilerFur,Npc_HasItems(other,ItAt_Addon_KeilerFur));
 		};

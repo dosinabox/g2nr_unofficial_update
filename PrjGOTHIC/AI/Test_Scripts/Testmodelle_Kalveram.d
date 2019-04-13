@@ -96,6 +96,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_1H_Special_03,1);
 	CreateInvItems(self,ItMw_2H_Special_03,1);
 	CreateInvItems(self,ItMw_Berserkeraxt,1);
+	CreateInvItems(self,ItMw_Warrioraxt,1);
 	CreateInvItems(self,ItMw_Drachenschneide,1);
 	CreateInvItems(self,ItMw_1H_Special_04,1);
 	CreateInvItems(self,ItMw_2H_Special_04,1);
@@ -108,6 +109,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_BeliarWeapon_1H_01,1);
 	CreateInvItems(self,ItMw_BeliarWeapon_2H_01,1);
 	CreateInvItems(self,ItMw_BeliarWeapon_Raven,1);
+	CreateInvItems(self,ItMw_BeliarWeapon_Fire,1);
 	CreateInvItems(self,ItMW_Addon_Knife01,1);
 	CreateInvItems(self,ItMW_Addon_Stab01,1);
 	CreateInvItems(self,ItMW_Addon_Stab02,1);
@@ -1138,7 +1140,8 @@ instance Gold(C_Item)
 	value = 0;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-	material = MAT_METAL;
+//	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_state[0] = UseGold;
 	description = name;
 //	text[5] = NAME_Value;
@@ -1173,7 +1176,8 @@ instance Armor(C_Item)
 	value = 0;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-	material = MAT_METAL;
+//	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_state[0] = UseArmor;
 	description = name;
 //	text[5] = NAME_Value;

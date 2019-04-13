@@ -799,6 +799,7 @@ func void DIA_Bennet_Present_Info()
 		AI_Output(self,other,"DIA_Bennet_Present_06_08");	//Они прочнее и легче, чем традиционные доспехи.
 		AI_Output(self,other,"DIA_Bennet_Present_06_09");	//Так как ты спас меня, я хочу, чтобы ты получил первый экземпляр. Это подарок!
 		CreateInvItem(hero,ITAR_DJG_L);
+		AI_PrintScreen("Легкие доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_EquipArmor(hero,ITAR_DJG_L);
 		AI_Output(self,other,"DIA_Bennet_Present_06_10");	//Я подумал, что, возможно, тебе тоже захочется позабавиться там. Тебе понадобится хорошее снаряжение, когда ты отправишься в эту долину.
 		AI_Output(self,other,"DIA_Bennet_Present_06_11");	//Также мне интересны драконьи чешуйки. Настоящие драконьи чешуйки. Я хорошо заплачу тебе за них.
@@ -868,7 +869,7 @@ instance DIA_Bennet_DJG_ARMOR_M(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_M_Condition;
 	information = DIA_Bennet_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов. Защита: 120/120/35/35. (12000 золота)";
+	description = "Средние доспехи охотника на драконов (120/120/35/35, 12000 золота)";
 };
 
 
@@ -890,6 +891,7 @@ func void DIA_Bennet_DJG_ARMOR_M_Info()
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_M_06_03");	//Ты поймешь, что они стоят этих денег.
 		B_GiveInvItems(other,self,ItMi_Gold,12000);
 		CreateInvItem(hero,ITAR_DJG_M);
+		AI_PrintScreen("Средние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_EquipArmor(hero,ITAR_DJG_M);
 		Bennet_DIA_Bennet_DJG_ARMOR_M_permanent = TRUE;
 	}
@@ -940,7 +942,7 @@ instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "Тяжелые доспехи охотника на драконов. Защита: 150/150/50/50. (20000 золота)";
+	description = "Тяжелые доспехи охотника на драконов (150/150/50/50, 20000 золота)";
 };
 
 
@@ -961,6 +963,7 @@ func void DIA_Bennet_DJG_ARMOR_H_Info()
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_02");	//Настоящее произведение искусства.
 		B_GiveInvItems(other,self,ItMi_Gold,20000);
 		CreateInvItem(hero,ITAR_DJG_H);
+		AI_PrintScreen("Тяжелые доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_EquipArmor(hero,ITAR_DJG_H);
 		Bennet_DIA_Bennet_DJG_ARMOR_H_permanent = TRUE;
 	}

@@ -599,7 +599,7 @@ instance DIA_Akil_AkilsSchaf(C_Info)
 	nr = 2;
 	condition = DIA_Akil_AkilsSchaf_Condition;
 	information = DIA_Akil_AkilsSchaf_Info;
-	description = "(Вернуть овцу Акилу)";
+	description = "(вернуть овцу Акилу)";
 };
 
 

@@ -163,7 +163,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if((spellType == SPL_ChargeZap) || (spellType == SPL_LightningFlash))
 	{
-		if((self.protection[PROT_MAGIC] == IMMUNE) && C_NpcIsDown(self))
+		if((self.protection[PROT_MAGIC] == IMMUNE) || C_NpcIsDown(self))
 		{
 			return COLL_DONOTHING;
 		};

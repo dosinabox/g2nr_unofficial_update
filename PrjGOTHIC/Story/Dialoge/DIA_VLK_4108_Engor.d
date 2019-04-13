@@ -169,6 +169,7 @@ func void DIA_Engor_RSkaufen_Info()
 		AI_Output(other,self,"DIA_Engor_RSkaufen_15_00");	//ƒай мне доспехи.
 		AI_Output(self,other,"DIA_Engor_RSkaufen_13_01");	//¬от, держи, они надежно защит€т теб€ - это чертовски хорошие доспехи.
 		CreateInvItem(hero,ITAR_MIL_M);
+		AI_PrintScreen("“€желые доспехи ополчени€ получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_EquipArmor(hero,ITAR_MIL_M);
 		DIA_Engor_RSkaufen_perm = TRUE;
 	}
@@ -402,7 +403,7 @@ instance DIA_Engor_PICKPOCKET(C_Info)
 	condition = DIA_Engor_PICKPOCKET_Condition;
 	information = DIA_Engor_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(”красть его карту будет довольно просто)";
+	description = "(украсть его карту будет довольно просто)";
 };
 
 

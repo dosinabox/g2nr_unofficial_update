@@ -510,7 +510,7 @@ instance DIA_Jan_DJG_ARMOR_M(C_Info)
 	condition = DIA_Jan_DJG_ARMOR_M_Condition;
 	information = DIA_Jan_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов. Защита: 120/120/35/35. (12000 золота)";
+	description = "Средние доспехи охотника на драконов (120/120/35/35, 12000 золота)";
 };
 
 
@@ -530,6 +530,7 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 		AI_Output(self,other,"DIA_Jan_DJG_ARMOR_M_10_01");	//Ты увидишь, они стоят своих денег.
 		B_GiveInvItems(other,self,ItMi_Gold,12000);
 		CreateInvItem(hero,ITAR_DJG_M);
+		AI_PrintScreen("Средние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_EquipArmor(hero,ITAR_DJG_M);
 		Jan_DIA_Jan_DJG_ARMOR_M_permanent = TRUE;
 	}
@@ -620,8 +621,11 @@ func void DIA_Jan_DragonBlood_Info()
 	Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
 	if(Npc_HasItems(other,ItAt_DragonBlood))
 	{
-		Info_AddChoice(DIA_Jan_DragonBlood,"(Все)",DIA_Jan_DragonBlood_all);
-		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну мензурку)",DIA_Jan_DragonBlood_1);
+		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
+		{
+			Info_AddChoice(DIA_Jan_DragonBlood,"(все)",DIA_Jan_DragonBlood_all);
+		};
+		Info_AddChoice(DIA_Jan_DragonBlood,"(одну пробирку)",DIA_Jan_DragonBlood_1);
 	};
 };
 
@@ -649,8 +653,11 @@ func void DIA_Jan_DragonBlood_1()
 	Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
 	if(Npc_HasItems(other,ItAt_DragonBlood))
 	{
-		Info_AddChoice(DIA_Jan_DragonBlood,"(Все)",DIA_Jan_DragonBlood_all);
-		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну пробирку)",DIA_Jan_DragonBlood_1);
+		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
+		{
+			Info_AddChoice(DIA_Jan_DragonBlood,"(все)",DIA_Jan_DragonBlood_all);
+		};
+		Info_AddChoice(DIA_Jan_DragonBlood,"(одну пробирку)",DIA_Jan_DragonBlood_1);
 	};
 	BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
 	BloodText = ConcatStrings(BloodLeft,PRINT_NumberLeft);
@@ -676,8 +683,11 @@ func void DIA_Jan_DragonBlood_all()
 	Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
 	if(Npc_HasItems(other,ItAt_DragonBlood))
 	{
-		Info_AddChoice(DIA_Jan_DragonBlood,"(Все)",DIA_Jan_DragonBlood_all);
-		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну пробирку)",DIA_Jan_DragonBlood_1);
+		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
+		{
+			Info_AddChoice(DIA_Jan_DragonBlood,"(все)",DIA_Jan_DragonBlood_all);
+		};
+		Info_AddChoice(DIA_Jan_DragonBlood,"(одну пробирку)",DIA_Jan_DragonBlood_1);
 	};
 	BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
 	BloodText = ConcatStrings(BloodLeft,PRINT_NumberLeft);

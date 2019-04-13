@@ -311,6 +311,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			{
 				CreateInvItems(Bromor,ITWR_DementorObsessionBook_MIS,1);
 			};
+			if(!Npc_IsDead(Fernando))
+			{
+				CreateInvItems(Fernando,ITWR_DementorObsessionBook_MIS,1);
+			};
 		};
 		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && !Npc_IsDead(Canthar))
 		{

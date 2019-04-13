@@ -376,7 +376,7 @@ instance DIA_Hanna_PICKPOCKET(C_Info)
 	condition = DIA_Hanna_PICKPOCKET_Condition;
 	information = DIA_Hanna_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_60_Female;
+	description = Pickpocket_40_Female;
 };
 
 
@@ -459,7 +459,7 @@ instance DIA_Hanna_Schuldenbuch(C_Info)
 
 func int DIA_Hanna_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch))
+	if(Npc_HasItems(other,ItWr_Schuldenbuch) && (SchuldBuchNamesKnown == TRUE))
 	{
 		return TRUE;
 	};
@@ -513,7 +513,7 @@ instance DIA_Hanna_Blubb(C_Info)
 	condition = DIA_Hanna_Blubb_Condition;
 	information = DIA_Hanna_Blubb_Info;
 	permanent = TRUE;
-	description = "(Спросить о логове воров)";
+	description = "(спросить о логове воров)";
 };
 
 func int DIA_Hanna_Blubb_Condition()
@@ -554,5 +554,56 @@ func void DIA_Hanna_Blubb_Info()
 		CreateInvItem(self,ItSc_Firestorm);
 		B_Attack(self,other,AR_NONE,1);
 	};
+};
+
+instance DIA_Hanna_PICKPOCKET_Book(C_Info)
+{
+	npc = VLK_414_Hanna;
+	nr = 700;
+	condition = DIA_Hanna_PICKPOCKET_Book_Condition;
+	information = DIA_Hanna_PICKPOCKET_Book_Info;
+	permanent = TRUE;
+	description = "(украсть долговую книгу будет довольно просто)";
+};
+
+
+func int DIA_Hanna_PICKPOCKET_Book_Condition()
+{
+	if(Npc_HasItems(self,ItWr_Schuldenbuch) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 35))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Hanna_PICKPOCKET_Book_Info()
+{
+	Info_ClearChoices(DIA_Hanna_PICKPOCKET_Book);
+	Info_AddChoice(DIA_Hanna_PICKPOCKET_Book,Dialog_Back,DIA_Hanna_PICKPOCKET_Book_BACK);
+	Info_AddChoice(DIA_Hanna_PICKPOCKET_Book,DIALOG_PICKPOCKET,DIA_Hanna_PICKPOCKET_Book_DoIt);
+};
+
+func void DIA_Hanna_PICKPOCKET_Book_DoIt()
+{
+	if(other.attribute[ATR_DEXTERITY] >= 45)
+	{
+		Npc_RemoveInvItem(self,ItWr_Schuldenbuch);
+		CreateInvItem(other,ItWr_Schuldenbuch);
+		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveThiefXP();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
+	}
+	else
+	{
+		B_ResetThiefLevel();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_Theft,1);
+	};
+	Info_ClearChoices(DIA_Hanna_PICKPOCKET_Book);
+};
+
+func void DIA_Hanna_PICKPOCKET_Book_BACK()
+{
+	Info_ClearChoices(DIA_Hanna_PICKPOCKET_Book);
 };
 

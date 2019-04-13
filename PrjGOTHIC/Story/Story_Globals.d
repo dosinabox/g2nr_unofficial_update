@@ -1074,4 +1074,8 @@ var int Miliz_Flucht;
 var int EngorTraderLog;
 var int TandorTraderLog;
 var int Trade_IsActive;
+var int SchuldBuchNamesKnown;
+var int SchuldBuch_Stolen_Coragon;
+var int SchuldBuch_Stolen_Thorben;
+var int LobartClothesDiscount;
 

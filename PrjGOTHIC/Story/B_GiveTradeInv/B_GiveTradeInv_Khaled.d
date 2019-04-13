@@ -74,7 +74,8 @@ func void B_GiveTradeInv_Khaled(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,70);
 		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
-		CreateInvItems(slf,ItMw_Berserkeraxt,1);
+//		CreateInvItems(slf,ItMw_Berserkeraxt,1);
+		CreateInvItems(slf,ItMw_Warrioraxt,1);
 		Khaled_ItemsGiven_Chapter_5 = TRUE;
 	};
 };

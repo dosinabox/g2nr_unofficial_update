@@ -201,7 +201,7 @@ instance DIA_Bronko_FLEISSIG(C_Info)
 	condition = DIA_Bronko_FLEISSIG_Condition;
 	information = DIA_Bronko_FLEISSIG_Info;
 	permanent = TRUE;
-	description = "(Подразнить Бронко)";
+	description = "(подразнить Бронко)";
 };
 
 

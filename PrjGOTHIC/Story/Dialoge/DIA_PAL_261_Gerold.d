@@ -456,25 +456,29 @@ func void DIA_Gerold_MoreFood()
 				AI_Output(self,other,"DIA_Gerold_MoreFood_12_04");	//Да. Еще, еще!
 			};
 		};
-		if(Npc_HasItems(other,ItFo_FishSoup) || Npc_HasItems(other,ItFo_Stew))
+		if(Npc_HasItems(other,ItFo_FishSoup))
 		{
-			Info_AddChoice(DIA_Gerold_FOOD,"(Дать суп)",DIA_Gerold_FOOD_Suppe);
+			Info_AddChoice(DIA_Gerold_FOOD,"(дать уху)",DIA_Gerold_FOOD_Suppe);
+		};
+		if(Npc_HasItems(other,ItFo_Stew))
+		{
+			Info_AddChoice(DIA_Gerold_FOOD,"(дать похлебку)",DIA_Gerold_FOOD_Stew);
 		};
 		if(Npc_HasItems(other,ItFoMutton))
 		{
-			Info_AddChoice(DIA_Gerold_FOOD,"(Дать мясо)",DIA_Gerold_FOOD_fleisch);
+			Info_AddChoice(DIA_Gerold_FOOD,"(дать мясо)",DIA_Gerold_FOOD_fleisch);
 		};
 		if(Npc_HasItems(other,ItFo_Bacon))
 		{
-			Info_AddChoice(DIA_Gerold_FOOD,"(Дать окорок)",DIA_Gerold_FOOD_schinken);
+			Info_AddChoice(DIA_Gerold_FOOD,"(дать окорок)",DIA_Gerold_FOOD_schinken);
 		};
 		if(Npc_HasItems(other,ItFo_Cheese))
 		{
-			Info_AddChoice(DIA_Gerold_FOOD,"(Дать сыр)",DIA_Gerold_FOOD_kaese);
+			Info_AddChoice(DIA_Gerold_FOOD,"(дать сыр)",DIA_Gerold_FOOD_kaese);
 		};
 		if(Npc_HasItems(other,ItFo_Sausage))
 		{
-			Info_AddChoice(DIA_Gerold_FOOD,"(Дать колбасу)",DIA_Gerold_FOOD_Wurst);
+			Info_AddChoice(DIA_Gerold_FOOD,"(дать колбасу)",DIA_Gerold_FOOD_Wurst);
 		};
 		Gerold_FoodCounter += 1;
 	};
@@ -552,17 +556,32 @@ func void DIA_Gerold_FOOD_fleisch()
 func void DIA_Gerold_FOOD_Suppe()
 {
 	AI_Output(other,self,"DIA_Gerold_FOOD_Suppe_15_00");	//Хороший суп еще никому не повредил, тебе так не кажется?
-	if(Npc_HasItems(other,ItFo_FishSoup))
+	B_GiveInvItems(other,self,ItFo_FishSoup,1);
+	/*if(Npc_HasItems(other,ItFo_FishSoup))
 	{
 		B_GiveInvItems(other,self,ItFo_FishSoup,1);
 	}
 	else
 	{
 		B_GiveInvItems(other,self,ItFo_Stew,1);
-	};
+	};*/
 	DIA_Gerold_MoreFood();
 };
 
+func void DIA_Gerold_FOOD_Stew()
+{
+	AI_Output(other,self,"DIA_Gerold_FOOD_Suppe_15_00");	//Хороший суп еще никому не повредил, тебе так не кажется?
+	B_GiveInvItems(other,self,ItFo_Stew,1);
+	/*if(Npc_HasItems(other,ItFo_FishSoup))
+	{
+		B_GiveInvItems(other,self,ItFo_FishSoup,1);
+	}
+	else
+	{
+		B_GiveInvItems(other,self,ItFo_Stew,1);
+	};*/
+	DIA_Gerold_MoreFood();
+};
 
 instance DIA_Gerold_PERM4(C_Info)
 {

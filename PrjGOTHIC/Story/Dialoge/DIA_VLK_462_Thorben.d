@@ -298,7 +298,7 @@ instance DIA_Thorben_Schuldenbuch(C_Info)
 
 func int DIA_Thorben_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch))
+	if(Npc_HasItems(other,ItWr_Schuldenbuch) && ((SchuldBuchNamesKnown == TRUE) || Npc_KnowsInfo(other,DIA_Thorben_Gritta)))
 	{
 		return TRUE;
 	};
@@ -310,12 +310,48 @@ func void DIA_Thorben_Schuldenbuch_Info()
 	AI_Output(self,other,"DIA_Thorben_Schuldenbuch_06_01");	//(подозрительно) Где ты взял его?
 	AI_Output(other,self,"DIA_Thorben_Schuldenbuch_15_02");	//Тебя должно интересовать не где я взял его, а то, что в нем записано твое имя.
 	AI_Output(self,other,"DIA_Thorben_Schuldenbuch_06_03");	//Дай его сюда!
-	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
+//	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
 	AI_Output(other,self,"DIA_Thorben_Schuldenbuch_15_04");	//А что ты готов дать за него?
 	AI_Output(self,other,"DIA_Thorben_Schuldenbuch_06_05");	//У меня нет денег. Но ты можешь рассчитывать на мою сердечную благодарность.
-	B_GivePlayerXP(XP_Schuldenbuch);
+//	B_GivePlayerXP(XP_Schuldenbuch);
 };
 
+
+instance DIA_Thorben_GiveBook(C_Info)
+{
+	npc = VLK_462_Thorben;
+	nr = 2;
+	condition = DIA_Thorben_GiveBook_Condition;
+	information = DIA_Thorben_GiveBook_Info;
+	permanent = FALSE;
+	description = "Вот твоя книга.";
+};
+
+
+func int DIA_Thorben_GiveBook_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Thorben_GiveBook_Info()
+{
+	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
+//	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
+	AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
+	if(Thorben_TeachPlayer == TRUE)
+	{
+		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_01");	//Если бы не ты, я бы платил Лемару до конца своих дней.
+	}
+	else
+	{
+		B_Say(self,other,"$ABS_GOOD");
+	};
+	B_GivePlayerXP(XP_Schuldenbuch);
+};
 
 instance DIA_Thorben_PleaseTeach(C_Info)
 {
@@ -339,7 +375,8 @@ func int DIA_Thorben_PleaseTeach_Condition()
 func void DIA_Thorben_PleaseTeach_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_PleaseTeach_15_00");	//Ты можешь научить меня вскрывать замки отмычками?
-	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch))
+//	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch))
+	if(Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_01");	//Если бы не ты, я бы платил Лемару до конца своих дней.
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_02");	//Я обучу тебя тому, что ты хочешь знать.
@@ -466,6 +503,7 @@ func int DIA_Thorben_TRADE_Condition()
 func void DIA_Thorben_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_TRADE_15_00");	//Ты можешь продать мне отмычки?
+	B_GiveTradeInv(self);
 	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
 		AI_Output(self,other,"DIA_Thorben_TRADE_06_01");	//Если еще остались...
@@ -669,7 +707,10 @@ func void DIA_Thorben_Gritta_Info()
 	AI_Output(other,self,"DIA_Thorben_Gritta_15_02");	//Она должна 100 золотых торговцу Маттео.
 	AI_Output(self,other,"DIA_Thorben_Gritta_06_03");	//Скажи мне, что это не так! С тех пор, как она живет со мной, от нее одни проблемы!
 	AI_Output(self,other,"DIA_Thorben_Gritta_06_04");	//Она задолжала почти всем торговцам города.
-	AI_Output(self,other,"DIA_Thorben_Gritta_06_05");	//Мне пришлось занять 200 золотых у ростовщика Лемара, чтобы расплатиться с ее долгами! И вот теперь опять!
+	if(!Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
+	{
+		AI_Output(self,other,"DIA_Thorben_Gritta_06_05");	//Мне пришлось занять 200 золотых у ростовщика Лемара, чтобы расплатиться с ее долгами! И вот теперь опять!
+	};
 	if(Npc_GetDistToWP(self,"NW_CITY_MERCHANT_SHOP01_FRONT_01") < 500)
 	{
 		AI_Output(self,other,"DIA_Thorben_Gritta_06_06");	//Гритта должна быть в доме.
@@ -705,7 +746,10 @@ func void DIA_Thorben_GrittaHatteGold_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_GrittaHatteGold_15_00");	//У твоей племянницы было 100 золотых монет.
 	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_06_01");	//ЧТО? Ах она змея - это было МОЕ золото! Она взяла его из моего сундука.
-	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_06_02");	//Отдай мне его! Я должен сначала заплатить Лемару. Маттео может подождать!
+	if(!Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
+	{
+		AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_06_02");	//Отдай мне его! Я должен сначала заплатить Лемару. Маттео может подождать!
+	};
 	Info_ClearChoices(DIA_Thorben_GrittaHatteGold);
 	if(MIS_Matteo_Gold == LOG_SUCCESS)
 	{
@@ -742,7 +786,10 @@ func void DIA_Thorben_GrittaHatteGold_MatteoHatEs()
 func void DIA_Thorben_GrittaHatteGold_MatteoSollHaben()
 {
 	AI_Output(other,self,"DIA_Thorben_GrittaHatteGold_MatteoSollHaben_15_00");	//Нет. Маттео получит свои деньги назад.
-	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_MatteoSollHaben_06_01");	//Ты просто убиваешь меня. Лемар не отличается великодушием, когда дело доходит до долгов.
+	if(!Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
+	{
+		AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_MatteoSollHaben_06_01");	//Ты просто убиваешь меня. Лемар не отличается великодушием, когда дело доходит до долгов.
+	};
 	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_MatteoSollHaben_06_02");	//Но, по крайней мере, ты расплатишься с долгами моей племянницы. Думаю, мне нужно поблагодарить тебя за это.
 	B_Thorben_DeletePetzCrimeGritta();
 	Info_ClearChoices(DIA_Thorben_GrittaHatteGold);
@@ -752,11 +799,69 @@ func void DIA_Thorben_GrittaHatteGold_HereItIs()
 {
 	AI_Output(other,self,"DIA_Thorben_GrittaHatteGold_HereItIs_15_00");	//Вот твое золото.
 	B_GiveInvItems(other,self,ItMi_Gold,100);
-	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_HereItIs_06_01");	//Спасибо! Теперь, у меня есть хотя бы часть денег, которые я должен Лемару.
+	if(!Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
+	{
+		AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_HereItIs_06_01");	//Спасибо! Теперь, у меня есть хотя бы часть денег, которые я должен Лемару.
+	}
+	else
+	{
+		B_Say(self,other,"$ABS_GOOD");
+	};
 	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_HereItIs_06_02");	//Не могу поверить, что у нее хватило наглости взять мое золото!
 	B_Thorben_DeletePetzCrimeGritta();
 	Thorben_GotGold = TRUE;
 	Info_ClearChoices(DIA_Thorben_GrittaHatteGold);
 };
 
+
+instance DIA_Thorben_PICKPOCKET_Book(C_Info)
+{
+	npc = VLK_462_Thorben;
+	nr = 700;
+	condition = DIA_Thorben_PICKPOCKET_Book_Condition;
+	information = DIA_Thorben_PICKPOCKET_Book_Info;
+	permanent = TRUE;
+	description = "(украсть долговую книгу будет довольно просто)";
+};
+
+
+func int DIA_Thorben_PICKPOCKET_Book_Condition()
+{
+	if((SchuldBuch_Stolen_Thorben == FALSE) && Npc_KnowsInfo(other,DIA_Thorben_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 20))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Thorben_PICKPOCKET_Book_Info()
+{
+	Info_ClearChoices(DIA_Thorben_PICKPOCKET_Book);
+	Info_AddChoice(DIA_Thorben_PICKPOCKET_Book,Dialog_Back,DIA_Thorben_PICKPOCKET_Book_BACK);
+	Info_AddChoice(DIA_Thorben_PICKPOCKET_Book,DIALOG_PICKPOCKET,DIA_Thorben_PICKPOCKET_Book_DoIt);
+};
+
+func void DIA_Thorben_PICKPOCKET_Book_DoIt()
+{
+	if(other.attribute[ATR_DEXTERITY] >= 30)
+	{
+		CreateInvItem(other,ItWr_Schuldenbuch);
+		AI_PrintScreen("Долговая книга получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_GiveThiefXP();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
+		SchuldBuch_Stolen_Thorben = TRUE;
+	}
+	else
+	{
+		B_ResetThiefLevel();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_Theft,1);
+	};
+	Info_ClearChoices(DIA_Thorben_PICKPOCKET_Book);
+};
+
+func void DIA_Thorben_PICKPOCKET_Book_BACK()
+{
+	Info_ClearChoices(DIA_Thorben_PICKPOCKET_Book);
+};
 

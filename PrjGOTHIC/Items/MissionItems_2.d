@@ -148,7 +148,8 @@ instance ItMi_GornsTreasure_MIS(C_Item)
 	value = 250;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-	material = MAT_METAL;
+//	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_state[0] = UseGornsTreasure;
 	description = "Кошелек Горна";
 	text[5] = NAME_Value;
@@ -223,7 +224,8 @@ instance ItSe_Olav(C_Item)
 	value = 25;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-	material = MAT_METAL;
+//	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_state[0] = UseOlav;
 	description = "Кошелек Олава";
 	text[0] = "Внутри позванивает несколько монет.";
@@ -383,7 +385,8 @@ instance ItWr_Map_OldWorld_Oremines_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 50;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_OW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_OldWorld_Oremines;
@@ -529,7 +532,9 @@ instance ItRi_Tengron(C_Item)
 	on_unequip = UnEquip_ItRi_Tengron;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = NAME_ADDON_TengronsRing;
+//	description = NAME_ADDON_TengronsRing;
+	description = "Кольцо жизни";
+	text[0] = "Это кольцо принадлежит Тенгрону.";
 	text[2] = NAME_Bonus_HP;
 	count[2] = Ri_Hp;
 	text[5] = NAME_Value;

@@ -69,7 +69,7 @@ instance ItMw_2h_Rod(C_Item)
 	range = Range_Sld2hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Rod;
-	//visual = "ItMw_035_2h_sld_sword_01.3DS";
+//	visual = "ItMw_035_2h_sld_sword_01.3DS";
 	visual = "ItMw_035_2h_sld_sword_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -93,7 +93,7 @@ instance ItMw_2h_Rod_Fake(C_Item)
 	range = Range_Sld2hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Rod;
-	//visual = "ItMw_035_2h_sld_sword_01.3DS";
+//	visual = "ItMw_035_2h_sld_sword_01.3DS";
 	visual = "ItMw_035_2h_sld_sword_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -172,7 +172,9 @@ instance ItRi_ValentinosRing(C_Item)
 	on_unequip = UnEquip_ValentinosRing;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо Валентино";
+//	description = "Кольцо Валентино";
+	description = "Кольцо железной кожи";
+	text[0] = "Это кольцо принадлежит Валентино.";
 	text[2] = NAME_Prot_Edge;
 	count[2] = Ri_ProtEdge;
 	text[5] = NAME_Value;
@@ -476,7 +478,7 @@ instance ItMw_AlriksSword_Mis(C_Item)
 	range = Range_Alrik;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Alrik;
-	visual = "ItMw_025_1h_Sld_Sword_01.3DS";
+	visual = "ItMw_025_1h_Sld_Sword_02.3DS";
 	on_equip = Equip_1H_10;
 	on_unequip = UnEquip_1H_10;
 	description = name;
@@ -511,7 +513,7 @@ func void UnEquip_AlriksSword()
 		B_AddFightSkill(self,NPC_TALENT_1H,-10);
 		b_meleeweaponundochange();
 	};
-};  
+};
 */
 
 instance ItWr_VatrasMessage(C_Item)
@@ -881,7 +883,8 @@ instance ItWr_Poster_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+//	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Poster_MIS.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UsePoster;
 	scemeName = "MAP";
@@ -928,7 +931,7 @@ instance ItRw_Bow_L_03_MIS(C_Item)
 	cond_value[2] = Condition_Jagdbogen;
 	visual = "ItRw_Bow_L_03.mms";
 	description = name;
-	text[0] = "Охотничий лук Боспера.";
+	text[0] = "Этот лук принадлежит Босперу.";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Dex_needed;
@@ -983,9 +986,9 @@ instance ItMi_EddasStatue(C_Item)
 	visual = "ItMi_InnosStatue.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Иннос, бог правосудия,";
+	text[0] = "'Иннос, бог правосудия,";
 	text[1] = "благослови и сохрани меня,";
-	text[2] = "и защити меня от боли.";
+	text[2] = "и защити меня от боли'.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1216,6 +1219,7 @@ func void UseSchuldBuch()
 	Doc_PrintLine(nDocID,1,"               Ханна");
 //	Doc_PrintLines(nDocID,1,"");
 	Doc_Show(nDocID);
+	SchuldBuchNamesKnown = TRUE;
 };
 
 

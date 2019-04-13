@@ -87,7 +87,7 @@ func void DIA_Buster_Hello_GoingToFarm()
 	AI_Output(self,other,"DIA_Buster_Hello_GoingToFarm_13_01");	//ƒа?.. ’м - ты не кажешьс€ мне таким уж опасным.
 	Info_ClearChoices(DIA_Buster_Hello);
 	Info_AddChoice(DIA_Buster_Hello,"’очешь проверить?",DIA_Buster_Hello_WannaTestIt);
-	Info_AddChoice(DIA_Buster_Hello,"я тоже убил парочку другую тварей.",DIA_Buster_Hello_SlewBeasts);
+	Info_AddChoice(DIA_Buster_Hello,"я тоже убил парочку-другую тварей.",DIA_Buster_Hello_SlewBeasts);
 	Info_AddChoice(DIA_Buster_Hello,"“ебе правильно кажетс€.",DIA_Buster_Hello_ImNoDanger);
 };
 
@@ -104,7 +104,7 @@ func void DIA_Buster_Hello_ImNoDanger()
 
 func void DIA_Buster_Hello_SlewBeasts()
 {
-	AI_Output(other,self,"DIA_Buster_Hello_SlewBeasts_15_00");	//я тоже убил парочку другую тварей.
+	AI_Output(other,self,"DIA_Buster_Hello_SlewBeasts_15_00");	//я тоже убил парочку-другую тварей.
 	AI_Output(self,other,"DIA_Buster_Hello_SlewBeasts_13_01");	//’а! (смеетс€) “ы, наверное, прихлопнул несколько долгоносиков на поле и выгнал парочку крыс из их нор.
 	AI_Output(self,other,"DIA_Buster_Hello_SlewBeasts_13_02");	//ј мы здесь имеем дело с орками! ƒа, и с этими коварными городскими стражниками. (иронический смех)
 	Info_ClearChoices(DIA_Buster_Hello);

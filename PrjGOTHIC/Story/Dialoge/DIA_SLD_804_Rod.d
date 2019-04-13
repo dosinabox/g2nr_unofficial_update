@@ -408,7 +408,7 @@ func void DIA_Rod_Wette_GiveBack()
 	B_RemoveFakeWeapon(other);
 	AI_Output(other,self,"DIA_Rod_Wette_GiveBack_15_00");	//Вот, держи.
 	Info_ClearChoices(DIA_Rod_Wette);
-	Info_AddChoice(DIA_Rod_Wette,"(Отдать ему оружие)",DIA_Rod_Wette_GiveBack2);
+	Info_AddChoice(DIA_Rod_Wette,"(отдать оружие)",DIA_Rod_Wette_GiveBack2);
 };
 
 func void DIA_Rod_Wette_GiveBack2()

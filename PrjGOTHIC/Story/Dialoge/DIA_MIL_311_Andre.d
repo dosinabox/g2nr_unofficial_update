@@ -1073,6 +1073,7 @@ func void DIA_Andre_JOIN_Yes()
 	hero.guild = GIL_MIL;
 	Npc_SetTrueGuild(hero,GIL_MIL);
 	CreateInvItem(hero,ITAR_MIL_L);
+	AI_PrintScreen("Легкие доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	AI_EquipArmor(hero,ITAR_MIL_L);
 	Snd_Play("LEVELUP");
 	Npc_ExchangeRoutine(Lothar,"START");

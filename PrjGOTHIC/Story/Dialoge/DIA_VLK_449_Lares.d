@@ -5,7 +5,7 @@ instance DIA_Addon_Lares_Patch(C_Info)
 	nr = 99;
 	condition = DIA_Addon_Lares_Patch_Condition;
 	information = DIA_Addon_Lares_Patch_Info;
-	description = "(Потребовать фрагмент орнамента назад)";
+	description = "(потребовать фрагмент орнамента назад)";
 };
 
 
@@ -467,6 +467,7 @@ func void DIA_Addon_Lares_GetRangerArmor_Info()
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_03");	//Нам будет известно как о твоих действиях на благо Кольца, так и обо всех проступках.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_04");	//А теперь прими от братства эти доспехи.
 	CreateInvItem(hero,ITAR_RANGER_Addon);
+	AI_PrintScreen("Доспехи 'Кольца Воды' получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	AI_EquipArmor(hero,ITAR_RANGER_Addon);
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_05");	//Носи их с гордостью! Но никогда не надевай их в городе или каком-либо другом населенном месте.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_06");	//Помни: наши имена должны оставаться в тайне. Никто не должен знать, что мы являемся членами общества.

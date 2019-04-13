@@ -29,6 +29,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItMW_Addon_Stab02,1);
 //		CreateInvItems(slf,ItMW_Addon_Stab04,1);
 		CreateInvItems(slf,ItRi_Mana_01,1);
+		CreateInvItems(slf,ItMi_Pliers,1);
 		Gorax_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (Gorax_ItemsGiven_Chapter_2 == FALSE))

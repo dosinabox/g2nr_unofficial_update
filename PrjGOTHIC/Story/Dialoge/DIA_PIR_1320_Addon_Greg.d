@@ -199,6 +199,7 @@ func void DIA_Addon_Greg_JoinPirates_Leave()
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_02");	//Поэтому сначала найди себе нормальную одежду охотника.
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_03");	//Вот, надень это. Надеюсь, тебе это снаряжение придется впору.
 	CreateInvItem(hero,ITAR_PIR_M_Addon);
+	AI_PrintScreen("Доспехи пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	AI_EquipArmor(hero,ITAR_PIR_M_Addon);
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_04");	//И не мешкай, скорее принимайся за дело!
 	Info_ClearChoices(DIA_Addon_Greg_JoinPirates);

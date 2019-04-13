@@ -26,16 +26,17 @@ func void UseLPBook(var int constanze)
 
 func void UseXPBook(var int constanze)
 {
-	var int Wert;
+/*	var int Wert;
 	var string concatText;
-	Wert = constanze;
+	Wert = constanze;	*/
 	if(Npc_IsPlayer(self))
 	{
 		B_Say_Overlay(self,self,"$VERSTEHE");
-		Snd_Play("Levelup");
+/*		Snd_Play("Levelup");
 		self.exp += constanze;
 		concatText = ConcatStrings(PRINT_XPGained,IntToString(constanze));
-		Print(concatText);
+		Print(concatText);	*/
+		B_GivePlayerXP(constanze);
 	};
 };
 

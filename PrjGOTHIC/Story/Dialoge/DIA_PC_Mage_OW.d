@@ -604,7 +604,7 @@ instance DIA_MiltenOW_PICKPOCKET(C_Info)
 	condition = DIA_MiltenOW_PICKPOCKET_Condition;
 	information = DIA_MiltenOW_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть его зелье будет довольно трудно)";
+	description = "(украсть его зелье будет довольно трудно)";
 };
 
 

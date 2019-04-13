@@ -6,7 +6,7 @@ func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 	var int nAttributeValue;
 	var int nDifference;
 	var string strDifference;
-	if((nAttribute == ATR_MANA_MAX) && (nValue == 666666))
+	if((nAttribute == ATR_MANA_MAX) && (nValue == 666666) && Npc_IsPlayer(self))
 	{
 		strMessage = PRINT_ADDON_BELIARSCOURSE_MISSING;
 		B_BlitzInArsch();

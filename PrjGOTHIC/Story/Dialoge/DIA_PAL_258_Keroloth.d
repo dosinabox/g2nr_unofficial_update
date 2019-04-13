@@ -90,7 +90,7 @@ instance DIA_Keroloth_Teacher(C_Info)
 	condition = DIA_Keroloth_Teacher_Condition;
 	information = DIA_Keroloth_Teacher_Info;
 	permanent = TRUE;
-	description = "(Изучить бой одноручным оружием)";
+	description = "(изучить бой одноручным оружием)";
 };
 
 
@@ -164,7 +164,7 @@ instance DIA_Keroloth_Teach(C_Info)
 	condition = DIA_Keroloth_Teach_Condition;
 	information = DIA_Keroloth_Teach_Info;
 	permanent = TRUE;
-	description = "(Изучить бой двуручным оружием)";
+	description = "(изучить бой двуручным оружием)";
 };
 
 

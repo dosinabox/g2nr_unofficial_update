@@ -427,6 +427,7 @@ instance ItAt_StoneGolemHeart(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItAt_FireGolemHeart(C_Item)
@@ -440,6 +441,7 @@ instance ItAt_FireGolemHeart(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItAt_IceGolemHeart(C_Item)
@@ -453,6 +455,7 @@ instance ItAt_IceGolemHeart(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItAt_GoblinBone(C_Item)
@@ -492,6 +495,7 @@ instance ItAt_DemonHeart(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItAt_UndeadDragonSoulStone(C_Item)

@@ -159,7 +159,7 @@ instance ItMW_Addon_Stab04(C_Item)
 	visual = "ItMW_MageStaff_Ball_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF4";
 	description = name;
-	text[0] = "Ультар наделил этот посох магической силой";
+	text[0] = "Ультар наделил этот посох магической силой.";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -372,7 +372,8 @@ instance ItMw_FrancisDagger_Mis(C_Item)
 	on_unequip = UnEquip_1H_05;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKDolch;
-	visual = "Itmw_005_1h_dagger_01.3DS";
+//	visual = "Itmw_005_1h_dagger_01.3DS";
+	visual = "Itmw_005_1h_dagger_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -396,7 +397,7 @@ instance ItMw_RangerStaff_Addon(C_Item)
 	range = Range_RangerStaff;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_RangerStaff;
-	//visual = "ItMw_020_2h_Nov_Staff_01.3DS";
+//	visual = "ItMw_020_2h_Nov_Staff_01.3DS";
 	visual = "ItMw_020_2h_Nov_Staff_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -420,7 +421,7 @@ instance ItMw_Addon_PIR2hAxe(C_Item)
 	range = Range_PIR2hAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR2hAxe;
-	//visual = "ItMw_070_2h_axe_heavy_03.3DS";
+//	visual = "ItMw_070_2h_axe_heavy_03.3DS";
 	visual = "ItMw_070_2h_axe_heavy_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -444,7 +445,7 @@ instance ItMw_Addon_PIR2hSword(C_Item)
 	range = Range_PIR2hAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR2hSword;
-	//visual = "ItMw_070_2h_sword_09.3DS";
+//	visual = "ItMw_070_2h_sword_09.3DS";
 	visual = "ItMw_070_2h_sword_10.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -468,7 +469,7 @@ instance ItMw_Addon_PIR1hAxe(C_Item)
 	range = Range_PIR1hAxe;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR1hAxe;
-	//visual = "ItMw_030_1h_axe_01.3DS";
+//	visual = "ItMw_030_1h_axe_01.3DS";
 	visual = "ItMw_030_1h_axe_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -515,7 +516,8 @@ instance ItMw_Addon_BanditTrader(C_Item)
 	range = Range_VLKSchwert;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_VLKSchwert;
-	visual = "ItMw_018_1h_SwordCane_01.3ds";
+//	visual = "ItMw_018_1h_SwordCane_01.3ds";
+	visual = "ItMw_018_1h_SwordCane_02.3ds";
 	description = name;
 	text[0] = "На рукоятке нацарапана буква 'Ф.'";
 	text[2] = NAME_Damage;
@@ -539,7 +541,7 @@ instance ItMw_Addon_Betty(C_Item)
 	range = Range_ElBastardo;
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_ElBastardo;
-	//visual = "ItMw_065_1h_sword_bastard_04.3DS";
+//	visual = "ItMw_065_1h_sword_bastard_04.3DS";
 	visual = "ItMw_065_1h_sword_bastard_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
@@ -599,7 +601,7 @@ instance ItRw_Addon_MagicBow(C_Item)
 	effect = "SPELLFX_BOW";
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_MagicBow;
-	visual = "ItRw_Bow_H_04.mms";
+	visual = "ItRw_Bow_H_05.mms";
 	description = name;
 	text[2] = NAME_Dam_Magic;
 	count[2] = damageTotal;
@@ -623,7 +625,7 @@ instance ItRw_Addon_FireBow(C_Item)
 	effect = "SPELLFX_FIREBOW";
 	cond_atr[2] = ATR_DEXTERITY;
 	cond_value[2] = Condition_FireBow;
-	visual = "ItRw_Bow_H_04.mms";
+	visual = "ItRw_Bow_H_06.mms";
 	description = name;
 	text[2] = NAME_Dam_Fire;
 	count[2] = damageTotal;
@@ -664,7 +666,7 @@ instance ItRw_Addon_MagicCrossbow(C_Item)
 	munition = ItRw_Addon_MagicBolt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_MagicCrossbow;
-	visual = "ItRw_Crossbow_H_01.mms";
+	visual = "ItRw_Crossbow_H_03.mms";
 	description = name;
 	text[2] = NAME_Dam_Magic;
 	count[2] = damageTotal;

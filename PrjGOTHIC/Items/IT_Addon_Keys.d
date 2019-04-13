@@ -97,8 +97,9 @@ instance ITKE_ADDON_BUDDLER_01(C_Item)
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-	description = "Ключ от сундука";
-	text[0] = "из лагеря бандитов.";
+	description = name;
+	text[0] = "Ключ от сундука";
+	text[1] = "из лагеря бандитов.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

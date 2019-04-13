@@ -141,7 +141,7 @@ instance DIA_Addon_Carlos_PERM(C_Info)
 	condition = DIA_Addon_Carlos_PERM_Condition;
 	information = DIA_Addon_Carlos_PERM_Info;
 	permanent = TRUE;
-	description = "(Спросить у Карлоса)";
+	description = "(спросить у Карлоса)";
 };
 
 

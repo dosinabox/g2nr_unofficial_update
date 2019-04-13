@@ -17,6 +17,7 @@ func int DIA_Lutero_EXIT_Condition()
 
 func void DIA_Lutero_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 	if((Lutero_Krallen == LOG_Running) && (MIS_Fajeth_Kill_Snapper == LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Bilgot_KNOWSLEADSNAPPER))
 	{
@@ -197,6 +198,7 @@ func void DIA_Lutero_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Lutero_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 

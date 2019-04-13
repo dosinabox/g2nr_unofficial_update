@@ -31,7 +31,8 @@ instance ItAm_Addon_Franco(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_Franco;
-	visual = "ItAm_Hp_01.3ds";
+//	visual = "ItAm_Hp_01.3ds";
+	visual = "ItAm_Addon_Franco.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItAm_Addon_Franco;
@@ -81,7 +82,8 @@ instance ItAm_Addon_Health(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_Health;
-	visual = "ItAm_Hp_01.3ds";
+//	visual = "ItAm_Hp_01.3ds";
+	visual = "ItAm_Addon_Health.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItAm_Addon_Health;
@@ -119,6 +121,7 @@ func void UnEquip_ItAm_Addon_Health()
 	NewValue = C_HP_ArtefaktValue();
 	self.attribute[ATR_HITPOINTS_MAX] += NewValue - OldValue;
 	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+	HP_Artefakt_Effekt = FALSE;
 };
 
 
@@ -128,7 +131,8 @@ instance ItRi_Addon_Health_01(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Health_01;
-	visual = "ItRi_Prot_Total_01.3ds";
+//	visual = "ItRi_Prot_Total_01.3ds";
+	visual = "ItRi_Addon_Health.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItRi_Addon_Health_01;
@@ -168,6 +172,7 @@ func void UnEquip_ItRi_Addon_Health_01()
 	NewValue = C_HP_ArtefaktValue();
 	self.attribute[ATR_HITPOINTS_MAX] += NewValue - OldValue;
 	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+	HP_Artefakt_Effekt = FALSE;
 };
 
 
@@ -177,7 +182,8 @@ instance ItRi_Addon_Health_02(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Health_01;
-	visual = "ItRi_Prot_Total_01.3ds";
+//	visual = "ItRi_Prot_Total_01.3ds";
+	visual = "ItRi_Addon_Health.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItRi_Addon_Health_02;
@@ -217,6 +223,7 @@ func void UnEquip_ItRi_Addon_Health_02()
 	NewValue = C_HP_ArtefaktValue();
 	self.attribute[ATR_HITPOINTS_MAX] += NewValue - OldValue;
 	self.attribute[ATR_HITPOINTS] += NewValue - OldValue;
+	HP_Artefakt_Effekt = FALSE;
 };
 
 
@@ -226,7 +233,8 @@ instance ItAm_Addon_MANA(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_Mana;
-	visual = "ItAm_Hp_01.3ds";
+//	visual = "ItAm_Hp_01.3ds";
+	visual = "ItAm_Addon_Mana.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItAm_Addon_MANA;
@@ -264,6 +272,7 @@ func void UnEquip_ItAm_Addon_MANA()
 	NewValue = C_MA_ArtefaktValue();
 	self.attribute[ATR_MANA_MAX] += NewValue - OldValue;
 	self.attribute[ATR_MANA] += NewValue - OldValue;
+	MA_Artefakt_Effekt = FALSE;
 };
 
 
@@ -273,7 +282,8 @@ instance ItRi_Addon_MANA_01(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Mana_01;
-	visual = "ItRi_Prot_Total_01.3ds";
+//	visual = "ItRi_Prot_Total_01.3ds";
+	visual = "ItRi_Addon_Mana.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItRi_Addon_MANA_01;
@@ -313,6 +323,7 @@ func void UnEquip_ItRi_Addon_MANA_01()
 	NewValue = C_MA_ArtefaktValue();
 	self.attribute[ATR_MANA_MAX] += NewValue - OldValue;
 	self.attribute[ATR_MANA] += NewValue - OldValue;
+	MA_Artefakt_Effekt = FALSE;
 };
 
 
@@ -322,7 +333,8 @@ instance ItRi_Addon_MANA_02(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Mana_01;
-	visual = "ItRi_Prot_Total_01.3ds";
+//	visual = "ItRi_Prot_Total_01.3ds";
+	visual = "ItRi_Addon_Mana.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItRi_Addon_MANA_02;
@@ -362,6 +374,7 @@ func void UnEquip_ItRi_Addon_MANA_02()
 	NewValue = C_MA_ArtefaktValue();
 	self.attribute[ATR_MANA_MAX] += NewValue - OldValue;
 	self.attribute[ATR_MANA] += NewValue - OldValue;
+	MA_Artefakt_Effekt = FALSE;
 };
 
 
@@ -371,7 +384,8 @@ instance ItAm_Addon_STR(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_STR;
-	visual = "ItAm_Hp_01.3ds";
+//	visual = "ItAm_Hp_01.3ds";
+	visual = "ItAm_Addon_Str.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItAm_Addon_STR;
@@ -409,6 +423,7 @@ func void UnEquip_ItAm_Addon_STR()
 	NewValue = C_STR_ArtefaktValue();
 	self.protection[PROT_EDGE] += NewValue - OldValue;
 	self.protection[PROT_BLUNT] += NewValue - OldValue;
+	STR_Artefakt_Effekt = FALSE;
 };
 
 
@@ -418,7 +433,8 @@ instance ItRi_Addon_STR_01(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_STR_01;
-	visual = "ItRi_Prot_Total_02.3ds";
+//	visual = "ItRi_Prot_Total_02.3ds";
+	visual = "ItRi_Addon_Str.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItRi_Addon_STR_01;
@@ -458,6 +474,7 @@ func void UnEquip_ItRi_Addon_STR_01()
 	NewValue = C_STR_ArtefaktValue();
 	self.protection[PROT_EDGE] += NewValue - OldValue;
 	self.protection[PROT_BLUNT] += NewValue - OldValue;
+	STR_Artefakt_Effekt = FALSE;
 };
 
 
@@ -467,7 +484,8 @@ instance ItRi_Addon_STR_02(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_STR_01;
-	visual = "ItRi_Prot_Total_02.3ds";
+//	visual = "ItRi_Prot_Total_02.3ds";
+	visual = "ItRi_Addon_Str.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_ItRi_Addon_STR_02;
@@ -507,5 +525,6 @@ func void UnEquip_ItRi_Addon_STR_02()
 	NewValue = C_STR_ArtefaktValue();
 	self.protection[PROT_EDGE] += NewValue - OldValue;
 	self.protection[PROT_BLUNT] += NewValue - OldValue;
+	STR_Artefakt_Effekt = FALSE;
 };
 

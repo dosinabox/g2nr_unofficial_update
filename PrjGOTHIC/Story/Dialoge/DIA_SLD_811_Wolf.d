@@ -394,6 +394,7 @@ func void DIA_Wolf_ArmorReady_Info()
 			Npc_RemoveInvItems(self,ItAt_CrawlerPlate,10);
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_02");	//Я закончил их. Вот, держи.
 			CreateInvItem(hero,ITAR_DJG_Crawler);
+			AI_PrintScreen("Доспехи из панцирей краулеров получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 			AI_EquipArmor(hero,ITAR_DJG_Crawler);
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_03");	//Получилось неплохо, мне кажется...
 			AI_Output(other,self,"DIA_Wolf_ArmorReady_15_04");	//Спасибо!

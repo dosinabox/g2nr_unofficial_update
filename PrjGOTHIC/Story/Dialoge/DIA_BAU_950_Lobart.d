@@ -230,7 +230,8 @@ func void DIA_Lobart_BuyClothes_Info()
 	{
 		Wert_LobartsRuestung -= 10;
 	};
-	if(MIS_Lobart_Rueben == LOG_SUCCESS)
+//	if(MIS_Lobart_Rueben == LOG_SUCCESS)
+	if(LobartClothesDiscount == TRUE)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_02");	//Ты работал для меня на поле.
 		Wert_LobartsRuestung -= 10;
@@ -262,7 +263,31 @@ func void DIA_Lobart_BuyClothes_Info()
 	};
 	Info_ClearChoices(DIA_Lobart_BuyClothes);
 	Info_AddChoice(DIA_Lobart_BuyClothes,"Это все еще слишком дорого для меня.",DIA_Lobart_BuyClothes_NotYet);
-	Info_AddChoice(DIA_Lobart_BuyClothes,"Давай тогда сюда эту рабочую одежду. (Защита: оружие 15, стрелы 15)",DIA_Lobart_BuyClothes_BUY);
+//	Info_AddChoice(DIA_Lobart_BuyClothes,"Давай тогда сюда эту рабочую одежду. (Защита: оружие 15, стрелы 15)",DIA_Lobart_BuyClothes_BUY);
+	if(Wert_LobartsRuestung == 80)
+	{
+		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/15/0. (80 золота)",DIA_Lobart_BuyClothes_BUY);
+	}
+	else if(Wert_LobartsRuestung == 70)
+	{
+		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/15/0. (70 золота)",DIA_Lobart_BuyClothes_BUY);
+	}
+	else if(Wert_LobartsRuestung == 60)
+	{
+		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/15/0. (60 золота)",DIA_Lobart_BuyClothes_BUY);
+	}
+	else if(Wert_LobartsRuestung == 50)
+	{
+		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/15/0. (50 золота)",DIA_Lobart_BuyClothes_BUY);
+	}
+	else if(Wert_LobartsRuestung == 40)
+	{
+		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/15/0. (40 золота)",DIA_Lobart_BuyClothes_BUY);
+	}
+	else
+	{
+		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/15/0. (30 золота)",DIA_Lobart_BuyClothes_BUY);
+	};
 };
 
 func void DIA_Lobart_BuyClothes_BUY()
@@ -458,13 +483,16 @@ func void DIA_Lobart_WorkNOW_Info()
 	if(hero.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_03");	//Я могу заплатить тебе золотом. Или дать приличную одежду.
-		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_04");	//Эта одежда стоит довольно дорого. Я не могу отдать тебе ее просто так, но я могу продать тебе ее дешевле, если ты поработаешь на меня.
-		Log_CreateTopic(TOPIC_Kleidung,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Kleidung,LOG_Running);
-		B_LogEntry(TOPIC_Kleidung,"Фермер Лобарт готов продать мне рабочую одежду. Он может снизить цену за одежду, если я поработаю на его ферме. Чем больше я сделаю, тем дешевле обойдется мне одежда.");
-		if(!Npc_HasEquippedArmor(other) || (Lobart_Kleidung_Verkauft == TRUE))
+		if(Lobart_Kleidung_Verkauft == FALSE)
 		{
-			AI_Output(self,other,"DIA_Lobart_WorkNOW_05_05");	//Судя по тому, как ты выглядишь, я бы сказал: бери одежду.
+			AI_Output(self,other,"DIA_Lobart_WorkNOW_05_04");	//Эта одежда стоит довольно дорого. Я не могу отдать тебе ее просто так, но я могу продать тебе ее дешевле, если ты поработаешь на меня.
+			if(!Npc_HasEquippedArmor(other))
+			{
+				AI_Output(self,other,"DIA_Lobart_WorkNOW_05_05");	//Судя по тому, как ты выглядишь, я бы сказал: бери одежду.
+			};
+			Log_CreateTopic(TOPIC_Kleidung,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Kleidung,LOG_Running);
+			B_LogEntry(TOPIC_Kleidung,"Фермер Лобарт готов продать мне рабочую одежду. Он может снизить цену за одежду, если я поработаю на его ферме. Чем больше я сделаю, тем дешевле обойдется мне одежда.");
 		}
 		else
 		{
@@ -486,7 +514,14 @@ func void DIA_Lobart_WorkNOW_Ok()
 	};
 	Log_CreateTopic(TOPIC_Rueben,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Rueben,LOG_Running);
-	B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле. За это он заплатит мне золотом или продаст мне одежду по значительно сниженной цене.");
+	if(Lobart_Kleidung_Verkauft == FALSE)
+	{
+		B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле. За это он заплатит мне золотом или продаст мне одежду по значительно сниженной цене.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле.");
+	};
 	MIS_Lobart_Rueben = LOG_Running;
 	Info_ClearChoices(DIA_Lobart_WorkNOW);
 };
@@ -505,7 +540,14 @@ func void DIA_Lobart_WorkNOW_WannaFoolMe()
 	};
 	Log_CreateTopic(TOPIC_Rueben,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Rueben,LOG_Running);
-	B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле. За это он продаст мне одежду по значительно сниженной цене.");
+	if(Lobart_Kleidung_Verkauft == FALSE)
+	{
+		B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле. За это он заплатит мне золотом или продаст мне одежду по значительно сниженной цене.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Rueben,"Фермер Лобарт хочет, чтобы я собрал репу на поле.");
+	};
 	MIS_Lobart_Rueben = LOG_Running;
 	Info_ClearChoices(DIA_Lobart_WorkNOW);
 };
@@ -551,16 +593,21 @@ func void DIA_Lobart_RuebenRunning_Info()
 		B_GivePlayerXP(XP_LobartHolRueben);
 		AI_Output(other,self,"DIA_Lobart_RuebenRunning_15_03");	//Что насчет моей платы?
 		AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_04");	//Я могу дать тебе 5 золотых монет.
-		if(hero.guild == GIL_NONE)
+		if((Lobart_Kleidung_Verkauft == TRUE) || (hero.guild != GIL_NONE))
+		{
+			B_GiveInvItems(self,other,ItMi_Gold,5);
+			if(hero.guild == GIL_NONE)
+			{
+				AI_Output(self,other,"DIA_Lobart_RuebenRunning_Gold_05_02");	//Только не пропей их все разом.
+			};
+		}
+		else if(hero.guild == GIL_NONE)
 		{
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_05");	//... или продать тебе одежду дешевле. Что выбираешь?
-		};
-		Info_ClearChoices(DIA_Lobart_RuebenRunning);
-		if(hero.guild == GIL_NONE)
-		{
+			Info_ClearChoices(DIA_Lobart_RuebenRunning);
 			Info_AddChoice(DIA_Lobart_RuebenRunning,"Лучше продай одежду дешевле!",DIA_Lobart_RuebenRunning_Billiger);
+			Info_AddChoice(DIA_Lobart_RuebenRunning,"Дай мне 5 золотых монет!",DIA_Lobart_RuebenRunning_Gold);
 		};
-		Info_AddChoice(DIA_Lobart_RuebenRunning,"Дай мне 5 золотых монет!",DIA_Lobart_RuebenRunning_Gold);
 	}
 	else
 	{
@@ -590,6 +637,7 @@ func void DIA_Lobart_RuebenRunning_Billiger()
 {
 	AI_Output(other,self,"DIA_Lobart_RuebenRunning_Billiger_15_00");	//Лучше продай одежду дешевле!
 	AI_Output(self,other,"DIA_Lobart_RuebenRunning_Billiger_05_01");	//Хорошо! Я отдам тебе ее на 10 золотых дешевле.
+	LobartClothesDiscount = TRUE;
 	Info_ClearChoices(DIA_Lobart_RuebenRunning);
 };
 

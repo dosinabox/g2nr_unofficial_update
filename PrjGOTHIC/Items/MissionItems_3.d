@@ -107,7 +107,7 @@ func void Equip_ItMi_InnosEye_Broken_Mis()
 
 instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 {
-	name = "Письмо о подтверждении полномочий";
+	name = "Письмо для Пирокара";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -115,8 +115,8 @@ instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_PermissionToWearInnosEye;
 	scemeName = "MAP";
-//	description = "Письмо о подтверждение полномочий для Пирокара";
 	description = name;
+	text[0] = "О подтверждении полномочий.";
 };
 
 
@@ -436,7 +436,8 @@ instance ItMi_MalethsBanditGold(C_Item)
 	value = 300;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-	material = MAT_METAL;
+//	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_state[0] = Use_MalethsBanditGold;
 	description = name;
 	text[0] = "Этот кошелек доверху набит золотом!";
@@ -502,7 +503,8 @@ instance ItWr_BabosPinUp_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+//	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_BabosPinUp_MIS.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_BabosPinUp;
 	scemeName = "MAP";
@@ -646,7 +648,8 @@ instance ItSe_Golemchest_Mis(C_Item)
 	value = 0;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-	material = MAT_METAL;
+//	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_state[0] = Use_GolemChest;
 	description = name;
 	text[0] = "Этот кошелек полон монет.";
@@ -671,7 +674,8 @@ instance ItWr_ShatteredGolem_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 150;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_NW_02.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_ShatteredGolem_Mis;
@@ -739,7 +743,8 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 	value = DiegosTreasure;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-	material = MAT_METAL;
+//	material = MAT_METAL;
+	material = MAT_LEATHER;
 	on_state[0] = Use_DiegosTreasure;
 	description = "Старый кошелек Диего";
 	text[5] = NAME_Value;
@@ -826,7 +831,8 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = Value_Am_HpMana;
-	visual = "ItAm_Hp_Mana_01.3ds";
+//	visual = "ItAm_Hp_Mana_01.3ds";
+	visual = "ItAm_Prot_BlackEye_Mis.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;
@@ -922,6 +928,7 @@ instance ItWr_MorgahardTip(C_Item)
 	on_state[0] = Use_MorgahardTip;
 	scemeName = "MAP";
 	description = name;
+	text[0] = "Это письмо было у сбежавшего заключенного.";
 };
 
 
@@ -953,7 +960,8 @@ instance ItWr_Map_Shrine_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 200;
-	visual = "ItWr_Map_01.3DS";
+//	visual = "ItWr_Map_01.3DS";
+	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_Shrine_MIS;

@@ -32,7 +32,7 @@ instance DIA_Gorax_PICKPOCKET(C_Info)
 	condition = DIA_Gorax_PICKPOCKET_Condition;
 	information = DIA_Gorax_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(”красть его ключ будет довольно трудно)";
+	description = "(украсть его ключ будет довольно трудно)";
 };
 
 

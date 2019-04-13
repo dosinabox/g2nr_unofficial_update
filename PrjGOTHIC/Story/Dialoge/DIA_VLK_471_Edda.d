@@ -183,7 +183,7 @@ instance DIA_Edda_PICKPOCKET(C_Info)
 	condition = DIA_Edda_PICKPOCKET_Condition;
 	information = DIA_Edda_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Нет ничего проще, чем украсть ее статую)";
+	description = "(нет ничего проще, чем украсть ее статую)";
 };
 
 
