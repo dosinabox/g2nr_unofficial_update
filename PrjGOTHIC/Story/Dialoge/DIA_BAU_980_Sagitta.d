@@ -56,13 +56,13 @@ func void DIA_Sagitta_HALLO_wer()
 	AI_Output(other,self,"DIA_Sagitta_HALLO_wer_15_00");	//Кто ты?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_01");	//Ты что, никогда не слышал обо мне?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_02");	//Меня называют ведьмой-целительницей. А еще шаманкой.
-	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_03");	//Но когда им плохо, все они неожиданно вспоминают старую добрую Сагитту и ее целебные травы.
+	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_03");	//Но когда им плохо, они неожиданно вспоминают старую добрую Сагитту и ее целебные травы.
 };
 
 func void DIA_Sagitta_HALLO_was()
 {
 	AI_Output(other,self,"DIA_Sagitta_HALLO_was_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_01");	//Я живу здесь, сколько себя помню, и занимаюсь травами.
+	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_01");	//Я живу здесь столько, сколько себя помню, и занимаюсь травами.
 	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_02");	//Лес - мой друг. Он дает мне то, что мне нужно.
 };
 

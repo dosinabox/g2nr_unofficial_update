@@ -70,7 +70,7 @@ func void DIA_Parlaf_ENGOR_Info()
 {
 	AI_Output(other,self,"DIA_Parlaf_ENGOR_15_00");	// то такой Ёнгор?
 	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_01");	//Ёнгор заведует провизией и выдает пайки. ј они станов€тс€ все меньше с каждой неделей.
-	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_02");	// онечно, с ним можно договоритьс€, но вот только за золото и весьма недешево.
+	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_02");	// онечно, с ним можно договоритьс€, но только за золото и весьма недешево.
 	AI_Output(other,self,"DIA_Parlaf_ENGOR_15_03");	//ј ты не можешь позволить себе это?
 	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_04");	//«а те гроши, что нам плат€т, € могу купить только пару реп!
 	Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);

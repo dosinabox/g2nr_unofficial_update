@@ -248,7 +248,7 @@ func void DIA_Moe_Harbor_Militia()
 
 func void DIA_Moe_Harbor_Rumors()
 {
-	AI_Output(other,self,"DIA_Moe_Harbor_Rumors_15_00");	// акие слухи брод€т в последнее врем€?
+	AI_Output(other,self,"DIA_Moe_Harbor_Rumors_15_00");	// акие слухи брод€т последнее врем€?
 	if(Kapitel == 1)
 	{
 		AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_01");	//ћы здесь не любим людей, которые задают слишком много вопросов. ќсобенно, если они чужаки.

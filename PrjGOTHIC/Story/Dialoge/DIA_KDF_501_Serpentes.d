@@ -401,9 +401,9 @@ func void DIA_Serpentes_MinenAnteile_was()
 	AI_Output(other,self,"DIA_Serpentes_MinenAnteile_was_15_00");	//Ну что там еще?
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_01");	//Кто-то в городе продает фальшивые акции шахт бывшей исправительной колонии.
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_02");	//Эти бумаги абсолютно бесполезны и не имеют особого значения. Но все же, они могут посеять волнения и недовольства среди людей, что мы не можем позволить себе в текущей ситуации.
-	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_03");	//Этот мошенник предположительно имеет связи со всеми наиболее влиятельными торговцами в городе и сельской местности, и ему уже удалось продать свои поддельные акции некоторым из них.
+	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_03");	//Этот мошенник предположительно имеет связи со всеми наиболее влиятельными торговцами в городе и сельской местности, и ему даже удалось продать свои поддельные акции некоторым из них.
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_04");	//Найди этого мошенника и приведи его сюда. В такие тяжелые времена мы не потерпим жуликов и грабителей.
-	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_05");	//Это дело должно стать показательным, чтобы другим было неповадно.
+	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_05");	//Это дело должно стать показательным, чтоб другим было неповадно.
 	Info_AddChoice(DIA_Serpentes_MinenAnteile,"Я попробую прояснить этот вопрос.",DIA_Serpentes_MinenAnteile_was_ja);
 };
 

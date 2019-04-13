@@ -67,7 +67,10 @@ instance DIA_DiegoOw_Beweise(C_Info)
 
 func int DIA_DiegoOw_Beweise_Condition()
 {
-	return TRUE;
+	if(Kapitel == 2)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_DiegoOw_Beweise_Info()

@@ -100,7 +100,8 @@ instance DIA_Addon_Henry_Hello(C_Info)
 
 func int DIA_Addon_Henry_Hello_Condition()
 {
-	if((Npc_GetDistToWP(other,PIR_1354_Checkpoint) <= 700) && (self.aivar[AIV_PASSGATE] == FALSE))
+//	if((Npc_GetDistToWP(other,PIR_1354_Checkpoint) <= 700) && (self.aivar[AIV_PASSGATE] == FALSE))
+	if(Npc_GetDistToWP(other,PIR_1354_Checkpoint) <= 700)
 	{
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;

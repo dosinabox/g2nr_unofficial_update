@@ -304,7 +304,7 @@ func void DIA_Mil_310_Stadtwache_ZumSchmied_Info()
 	{
 		AI_Output(self,other,"DIA_Mil_310_Stadtwache_ZumSchmied_07_01");	//(зло) Да? А почему ты это сразу не сказал?
 		AI_Output(other,self,"DIA_Mil_310_Stadtwache_ZumSchmied_15_02");	//Мне просто было интересно, как ты будешь реагировать.
-		AI_Output(self,other,"DIA_Mil_310_Stadtwache_ZumSchmied_07_03");	//Что?! Еще раз выкинешь такой номер, и я покажу тебе, как я реагирую на такие выходки, тупой деревенщина!
+		AI_Output(self,other,"DIA_Mil_310_Stadtwache_ZumSchmied_07_03");	//Что?! Еще раз выкинешь такой номер, и я покажу тебе, как я реагирую на такие выходки, тупая деревенщина!
 	}
 	else
 	{
@@ -471,7 +471,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_AttackSoon()
 func void DIA_Mil_310_Stadtwache_Paladine_NoDragons()
 {
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_15_00");	//Нет. Но я знаю, что ее ведут драконы!
-	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_07_01");	//Ну конечно! Моя бабушка консультирует генералов орков.
+	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_07_01");	//Ну конечно! А моя бабушка консультирует генералов орков.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_07_02");	//Я не думаю, что мы позволим тебе донести эти бредовые сплетни до ушей лорда Хагена!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_07_03");	//Проваливай!
 	Player_KnowsLordHagen = TRUE;

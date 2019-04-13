@@ -102,7 +102,7 @@ func int DIA_Addon_Paul_Huno_Condition()
 func void DIA_Addon_Paul_Huno_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Paul_Huno_15_00");	//“ы работаешь на ’уно?
-	AI_Output(self,other,"DIA_Addon_Paul_Huno_03_01");	//я хотел заработать немного золота и стал работать с ним. Ќо с тех пор Ёстебан не дал мне ничего.
+	AI_Output(self,other,"DIA_Addon_Paul_Huno_03_01");	//я хотел заработать немного золота, стал работать с ним. Ќо с тех пор Ёстебан не дал мне ничего.
 	AI_Output(self,other,"DIA_Addon_Paul_Huno_03_02");	//ќн сказал, что € ему больше не пригожусь.
 	AI_Output(self,other,"DIA_Addon_Paul_Huno_03_03");	//ј чем € могу еще зан€тьс€, кроме как продолжать работать с ’уно?
 };
@@ -243,7 +243,7 @@ func void DIA_Addon_Paul_MaulPaul_Info()
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_03");	//Ќе говори глупостей!
 	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_04");	//(нетерпеливо) ѕол...
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_05");	//(лихорадочно) я знаю только, что у ’уно с Ёстебаном ну, какие-то разногласи€.
-	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_06");	//(лихорадочно) ѕри мне он посто€нно ругаетс€ на Ёстебана. „то тот испортил ему дело, ну и все такое...
+	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_06");	//(лихорадочно) ѕри мне он... он посто€нно ругаетс€ на Ёстебана. „то тот испортил ему дело, ну и все такое...
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_07");	//я только слушал и никогда ничего не говорил.
 	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_08");	//ќтлично! ¬от видишь, это было не так сложно.
 	Npc_ExchangeRoutine(self,"START");

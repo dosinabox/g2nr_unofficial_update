@@ -14,7 +14,7 @@ prototype Mst_Default_Wolf(C_Npc)
 	protection[PROT_BLUNT] = 30;
 	protection[PROT_EDGE] = 30;
 	protection[PROT_POINT] = 0;
-	protection[PROT_FIRE] = 0;	//30;
+	protection[PROT_FIRE] = 17;	//30;
 	protection[PROT_FLY] = 30;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -56,7 +56,7 @@ instance Summoned_Wolf(Mst_Default_Wolf)
 	protection[PROT_BLUNT] = 75;
 	protection[PROT_EDGE] = 75;
 	protection[PROT_POINT] = 25;
-	protection[PROT_FIRE] = 25;	//75;
+	protection[PROT_FIRE] = 16;	//75;
 	protection[PROT_FLY] = 75;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
@@ -77,7 +77,7 @@ instance YWolf(Mst_Default_Wolf)
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_EDGE] = 10;
 	protection[PROT_POINT] = 0;
-	protection[PROT_FIRE] = 10;
+	protection[PROT_FIRE] = 15;	//10;
 	protection[PROT_FLY] = 10;
 //	fight_tactic = FAI_MONSTER_COWARD;
 	B_SetVisuals_Wolf();

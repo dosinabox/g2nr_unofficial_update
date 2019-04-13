@@ -14,7 +14,7 @@ prototype Mst_Skeleton_Lord(C_Npc)
 	protection[PROT_BLUNT] = 100;
 	protection[PROT_EDGE] = 100;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 100;
+	protection[PROT_FIRE] = 0;	//100;
 	protection[PROT_FLY] = 100;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -35,7 +35,7 @@ func void B_SetVisuals_Skeleton_Lord()
 	Mdl_ApplyOverlayMds(self,"humans_2hST2.mds");
 	Mdl_ApplyOverlayMds(self,"humans_BowT1.mds");
 	Mdl_ApplyOverlayMds(self,"humans_CBowT1.mds");
-	B_SetNpcVisual(self,MALE,"Ske_Head",0,0,ITAR_PAL_SKEL);
+	B_SetNpcVisual(self,MALE,"Ske_Head",0,0,ITAR_PAL_Skel);
 };
 
 

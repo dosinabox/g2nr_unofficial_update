@@ -262,7 +262,8 @@ instance ItWr_Diary_BlackNovice_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 100;
-	visual = "ItWr_Book_02_04.3ds";
+//	visual = "ItWr_Book_02_04.3ds";
+	visual = "ItWr_Book_03_04.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -348,7 +349,8 @@ instance ItMi_PowerEye(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
-	visual = "ItMi_DarkPearl.3ds";
+//	visual = "ItMi_DarkPearl.3ds";
+	visual = "ItMi_StoneOfKnowlegde_MIS.3ds";
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";

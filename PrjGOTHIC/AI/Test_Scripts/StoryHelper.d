@@ -165,8 +165,12 @@ func void StoryHelper_BACK2()
 
 func void StoryHelper_KAPITEL2ANFANG()
 {
+	Torwache_305.aivar[AIV_PASSGATE] = TRUE;
+	Mil_305_schonmalreingelassen = TRUE;
+	CreateInvItems(hero,ItKe_Pass_MIS,1);
 	MIS_OLDWORLD = LOG_Running;
 	B_Kapitelwechsel(2,NEWWORLD_ZEN);
+	Info_ClearChoices(StoryHelper_INFO2);
 	AI_StopProcessInfos(self);
 };
 

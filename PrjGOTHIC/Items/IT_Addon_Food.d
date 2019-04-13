@@ -29,10 +29,9 @@ instance ItFo_Addon_Shellflesh(C_Item)
 //	count[1] = HP_Shellflesh;
 //	text[2] = "Сочное мясо моллюска.";
 //	text[3] = "Можно есть сырым.";
-	text[0] = "Сочное мясо моллюска.";
-	text[1] = "Можно есть сырым.";
-	text[2] = NAME_Bonus_HP;
-	count[2] = HP_Shellflesh;
+	text[0] = "Сочное мясо моллюска. Можно есть сырым.";
+	text[1] = NAME_Bonus_HP;
+	count[1] = HP_Shellflesh;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -138,7 +137,7 @@ instance ItFo_Addon_SchlafHammer(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_SchlafHammer;
 //	visual = "ItMi_Rum_01.3ds";
-	visual = "ItMi_Rum_04.3ds";
+	visual = "ItMi_Rum_05.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseSchlafHammer;
 	scemeName = "POTIONFAST";
@@ -155,7 +154,7 @@ func void UseSchlafHammer()
 	{
 		self.attribute[ATR_HITPOINTS] /= 2;
 	};
-	B_NpcSetDrunk(80);
+	AI_StartState(self,ZS_MagicSleep,1,"");
 };
 
 

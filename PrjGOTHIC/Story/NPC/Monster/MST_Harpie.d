@@ -14,7 +14,7 @@ prototype Mst_Default_Harpie(C_Npc)
 	protection[PROT_BLUNT] = 90;
 	protection[PROT_EDGE] = 90;
 	protection[PROT_POINT] = 40;
-	protection[PROT_FIRE] = 45;	//90;
+	protection[PROT_FIRE] = 17;	//90;
 	protection[PROT_FLY] = 90;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

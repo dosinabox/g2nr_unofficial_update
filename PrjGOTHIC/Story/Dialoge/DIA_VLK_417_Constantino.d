@@ -582,7 +582,7 @@ func void DIA_Constantino_AlsLehrling_Info()
 	if(B_GetGreatestPetzCrime(self) > CRIME_NONE)
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_01");	//Или к лорду Андрэ и уладь этот вопрос с ним.
+		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_01");	//Иди к лорду Андрэ и уладь этот вопрос с ним.
 		Constantino_Lehrling_Day = Wld_GetDay();
 		AI_StopProcessInfos(self);
 	}

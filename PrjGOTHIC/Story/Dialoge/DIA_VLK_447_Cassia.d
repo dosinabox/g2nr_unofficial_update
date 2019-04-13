@@ -423,7 +423,7 @@ func void DIA_Cassia_Ablehnen_Info()
 	if(MIS_ThiefGuild_sucked == FALSE)
 	{
 		AI_Output(self,other,"DIA_Cassia_Ablehnen_16_01");	//Ты теряешь шанс, который дается один раз в жизни, но ты можешь идти.
-		AI_Output(self,other,"DIA_Cassia_Ablehnen_16_02");	//(серьезно) И даже не думай, чтобы предать нас. Ты горько пожалеешь об этом.
+		AI_Output(self,other,"DIA_Cassia_Ablehnen_16_02");	//(серьезно) И даже не думай предать нас. Ты горько пожалеешь об этом.
 		Info_ClearChoices(DIA_Cassia_Ablehnen);
 		Info_AddChoice(DIA_Cassia_Ablehnen,"Хорошо, я в деле.",DIA_Cassia_Ablehnen_Okay);
 		Info_AddChoice(DIA_Cassia_Ablehnen,"Мне нужно время на размышление.",DIA_Cassia_Ablehnen_Frist);

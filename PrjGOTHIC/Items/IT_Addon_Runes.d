@@ -242,9 +242,9 @@ instance ItRu_Skull(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_MinManakosten;
 	count[1] = SPL_Cost_Skull;
-	text[2] = NAME_Addon_NeedsAllMana;
-	text[4] = NAME_Damage;
-	count[4] = SPL_Damage_Skull;
+	text[2] = NAME_Damage;
+	count[2] = SPL_Damage_Skull;
+	text[4] = NAME_Addon_NeedsAllMana;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -289,5 +289,29 @@ instance ItRu_SummonGuardian(C_Item)
 	count[1] = SPL_Cost_SummonGuardian;
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+
+//Надувание людей (тест)
+instance ItRu_Inflate(C_Item)
+{
+	name = NAME_Rune;
+	mainflag = ITEM_KAT_RUNE;
+	flags = 0;
+	value = 0;
+	visual = "ItRu_Beliar11.3DS";
+	material = MAT_STONE;
+	spell = SPL_Inflate;
+	mag_circle = 3;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_WEAKGLIMMER_BLUE";
+	description = NAME_SPL_Inflate;
+	text[0] = NAME_Mag_Circle;
+	count[0] = mag_circle;
+	text[1] = NAME_Manakosten;
+	count[1] = SPL_Cost_Inflate;
+	text[2] = NAME_Dam_Magic;
+	count[2] = SPL_Inflate_Damage;
+	text[3] = NAME_Sec_Duration;
+	count[3] = SPL_TIME_Inflate;
 };
 

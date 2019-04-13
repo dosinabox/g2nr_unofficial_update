@@ -124,7 +124,7 @@ func void DIA_Till_SEKOB_Info()
 	AI_Output(other,self,"DIA_Till_SEKOB_15_02");	//Поможешь, если отведешь к своему отцу.
 	AI_Output(self,other,"DIA_Till_SEKOB_03_03");	//Ты считаешь себя крепким парнем и хорошим бойцом, да?
 	AI_Output(other,self,"DIA_Till_SEKOB_15_04");	//Лучшим.
-	AI_Output(self,other,"DIA_Till_SEKOB_03_05");	//Ну, возможно, тогда стоит позвать его.
+	AI_Output(self,other,"DIA_Till_SEKOB_03_05");	//Возможно, тогда стоит позвать его.
 	AI_Output(other,self,"DIA_Till_SEKOB_15_06");	//Не беспокойся, мальчик. Я найду его сам.
 	AI_Output(self,other,"DIA_Till_SEKOB_03_07");	//Как скажешь.
 	AI_StopProcessInfos(self);

@@ -9,7 +9,18 @@ func void B_GivePlayerXP(var int add_xp)
 		hero.exp_next = 500;
 	};
 	hero.exp += add_xp;
-	concatText = PRINT_XPGained;
+	if(add_xp >= 0)
+	{
+		concatText = PRINT_XPGained;
+	}
+	else
+	{
+		if(hero.exp < 0)
+		{
+			hero.exp = 0;
+		};
+		concatText = PRINT_XPLost;
+	};
 	concatText = ConcatStrings(concatText,IntToString(add_xp));
 	PrintScreen(concatText,-1,YPOS_XPGained,FONT_ScreenSmall,2);
 	if(hero.exp >= hero.exp_next)

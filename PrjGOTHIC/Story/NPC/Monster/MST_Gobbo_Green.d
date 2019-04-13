@@ -14,7 +14,7 @@ prototype Mst_Default_Gobbo_Green(C_Npc)
 	protection[PROT_BLUNT] = 20;
 	protection[PROT_EDGE] = 20;
 	protection[PROT_POINT] = 20;
-	protection[PROT_FIRE] = 0;	//20;
+	protection[PROT_FIRE] = 16;	//20;
 	protection[PROT_FLY] = 20;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

@@ -506,7 +506,7 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 	if(Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_OUT_06") < 1000)
 	{
 		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_01");	//Отлично. Это не самое плохое место.
-		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_02");	//Они дают мне идиотские поручения типа пасти овец, но все же люди здесь далеко не такие ограниченные и тупые, как в монастыре.
+		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_02");	//Они дают мне идиотские поручения вроде пасти овец, но все же люди здесь далеко не такие ограниченные и тупые, как в монастыре.
 		if(DIA_Jorgen_PERM5_NOTCAPTAIN_XPGiven == FALSE)
 		{
 			B_GivePlayerXP(XP_Ambient);

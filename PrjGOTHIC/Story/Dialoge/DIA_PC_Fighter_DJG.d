@@ -233,7 +233,7 @@ func int DIA_GornDJG_LOSGEHTS_Condition()
 func void DIA_GornDJG_LOSGEHTS_Info()
 {
 	AI_Output(other,self,"DIA_GornDJG_LOSGEHTS_15_00");	//Пошли в атаку!
-	AI_Output(self,other,"DIA_GornDJG_LOSGEHTS_12_01");	//Как в старые времена, да? Но я хочу, чтобы ты знал: Это мой бой. На этот раз, я пойду первым!
+	AI_Output(self,other,"DIA_GornDJG_LOSGEHTS_12_01");	//Как в старые времена, да? Но я хочу, чтоб ты знал: это мой бой. На этот раз я пойду первым!
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	Npc_ExchangeRoutine(self,"RunToRockRuinBridge");

@@ -453,7 +453,7 @@ func int DIA_Randolph_Heilung_Condition()
 func void DIA_Randolph_Heilung_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_Heilung_15_00");	//Спиртное ударило тебе в голову, ха?
-	AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только ни в этой жизни. Ты можешь мне поверить, парень.
+	AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только не в этой жизни. Ты можешь мне поверить, парень.
 	B_NpcClearObsessionByDMT(self);
 	if(Rukhar_Won_Wettkampf == TRUE)
 	{

@@ -47,7 +47,7 @@ func void DIA_Morgahard_HALLO_Info()
 	AI_Output(self,other,"DIA_Morgahard_HALLO_07_06");	//Нам не хотелось болтаться на виселице, поэтому мы сбежали.
 	AI_Output(self,other,"DIA_Morgahard_HALLO_07_07");	//Мы думали, что нас здесь не найдут. Но похоже, мы ошибались.
 	Info_ClearChoices(DIA_Morgahard_HALLO);
-	Info_AddChoice(DIA_Morgahard_HALLO,"Хватит хныкать. Доставай свое оружие. Мы положим этому делу конец.",DIA_Morgahard_HALLO_attack);
+	Info_AddChoice(DIA_Morgahard_HALLO,"Хватит хныкать. Доставай свое оружие. Мы положим этому конец.",DIA_Morgahard_HALLO_attack);
 	Info_AddChoice(DIA_Morgahard_HALLO,"Что мы можем сделать с судьей?",DIA_Morgahard_HALLO_richter);
 	Info_AddChoice(DIA_Morgahard_HALLO,"Судья приказал мне убить тебя.",DIA_Morgahard_HALLO_tot);
 	B_LogEntry(TOPIC_RichterLakai,"Я нашел Моргахарда, главаря бродяг.");
@@ -80,7 +80,7 @@ var int MorgahardSucked;
 
 func void DIA_Morgahard_HALLO_attack()
 {
-	AI_Output(other,self,"DIA_Morgahard_HALLO_attack_15_00");	//Хватит хныкать. Доставай свое оружие. Мы положим этому делу конец.
+	AI_Output(other,self,"DIA_Morgahard_HALLO_attack_15_00");	//Хватит хныкать. Доставай свое оружие. Мы положим этому конец.
 	AI_Output(self,other,"DIA_Morgahard_HALLO_attack_07_01");	//Отлично. Мне все равно нечего терять.
 	AI_StopProcessInfos(self);
 	MorgahardSucked = TRUE;

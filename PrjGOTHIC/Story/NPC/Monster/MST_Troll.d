@@ -14,7 +14,7 @@ prototype Mst_Default_Troll(C_Npc)
 	protection[PROT_BLUNT] = 125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = IMMUNE;
-	protection[PROT_FIRE] = 125;
+	protection[PROT_FIRE] = 250;	//125;
 	protection[PROT_FLY] = IMMUNE;
 	protection[PROT_MAGIC] = 250;
 	damagetype = DAM_FLY;

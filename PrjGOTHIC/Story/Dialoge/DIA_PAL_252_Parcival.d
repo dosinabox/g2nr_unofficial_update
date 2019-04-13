@@ -46,7 +46,7 @@ func int DIA_Parcival_Schurfer_Condition()
 func void DIA_Parcival_Schurfer_Info()
 {
 	AI_Output(other,self,"DIA_Parcival_Schurfer_15_00");	//Что ты можешь рассказать мне о старателях?
-	AI_Output(self,other,"DIA_Parcival_Schurfer_13_01");	//Я отправлял все три отряда.
+	AI_Output(self,other,"DIA_Parcival_Schurfer_13_01");	//Я отправил все три отряда.
 	AI_Output(self,other,"DIA_Parcival_Schurfer_13_02");	//Их возглавили Маркос, Фаджет и Сильвестро.
 	AI_Output(self,other,"DIA_Parcival_Schurfer_13_03");	//Группа Маркоса пошла по направлению к старой шахте - ее ведет старый рудокоп Гримс.
 	AI_Output(self,other,"DIA_Parcival_Schurfer_13_04");	//Другие две группы вышли вместе.

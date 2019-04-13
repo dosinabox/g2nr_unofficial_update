@@ -14,7 +14,7 @@ prototype Mst_Default_SwampDrone(C_Npc)
 	protection[PROT_BLUNT] = 50;
 	protection[PROT_EDGE] = 50;
 	protection[PROT_POINT] = 0;
-	protection[PROT_FIRE] = 0;	//50;
+	protection[PROT_FIRE] = 16;	//50;
 	protection[PROT_FLY] = 50;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

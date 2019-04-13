@@ -288,7 +288,7 @@ func int DIA_Sergio_Guide_Condition()
 func void DIA_Sergio_Guide_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_Guide_15_00");	//Как дела?
-	AI_Output(self,other,"DIA_Sergio_Guide_04_01");	//Я должен сопроводить тебя к Проходу. Но самая опасная часть путешествия только начинается там.
+	AI_Output(self,other,"DIA_Sergio_Guide_04_01");	//Я должен сопроводить тебя к Проходу. Но самая опасная часть путешествия начинается там.
 	AI_Output(self,other,"DIA_Sergio_Guide_04_02");	//Но не будем терять времени.
 	AI_StopProcessInfos(self);
 };

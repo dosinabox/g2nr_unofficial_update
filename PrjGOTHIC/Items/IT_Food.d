@@ -47,10 +47,9 @@ instance ItFo_Apple(C_Item)
 	scemeName = "FOOD";
 	on_state[0] = Use_Apple;
 	description = name;
-	text[0] = "—вежее €блоко,";
-	text[1] = "твердое и сочное.";
-	text[2] = NAME_Bonus_HP;
-	count[2] = HP_Apple;
+	text[0] = "—вежее €блоко, твердое и сочное.";
+	text[1] = NAME_Bonus_HP;
+	count[1] = HP_Apple;
 	text[5] = NAME_Value;
 	count[5] = Value_Apple;
 };

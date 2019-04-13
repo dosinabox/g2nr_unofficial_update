@@ -255,7 +255,7 @@ func int DIA_Ingmar_ORKELITE_Condition()
 func void DIA_Ingmar_ORKELITE_Info()
 {
 	AI_Output(other,self,"DIA_Ingmar_ORKELITE_15_00");	//Орки готовят массированное наступление.
-	AI_Output(self,other,"DIA_Ingmar_ORKELITE_06_01");	//Да ну? Что ж, это очень интересно. А откуда тебе это известно?
+	AI_Output(self,other,"DIA_Ingmar_ORKELITE_06_01");	//Да ну? Ну что ж, это очень интересно. А откуда тебе это известно?
 	if(TalkedTo_AntiPaladin == TRUE)
 	{
 		AI_Output(other,self,"DIA_Ingmar_ORKELITE_15_02");	//Я говорил с ними.

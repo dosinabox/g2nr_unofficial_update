@@ -212,7 +212,7 @@ func void DIA_Fester_TogetherNOW_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Fester_TogetherNOW_08_02");	//Прямо сейчас? А может, тебе сначала раздобыть снаряжение получше?
-		AI_Output(self,other,"DIA_Fester_TogetherNOW_08_03");	//Ты мог бы сходить сначала на ферму...
+		AI_Output(self,other,"DIA_Fester_TogetherNOW_08_03");	//Ты бы мог сходить сначала на ферму...
 		Info_ClearChoices(DIA_Fester_TogetherNOW);
 		Info_AddChoice(DIA_Fester_TogetherNOW,"Хорошо, давай подождем еще немного...",DIA_Fester_TogetherNOW_Later);
 		Info_AddChoice(DIA_Fester_TogetherNOW,"Лучшей возможности, чем сейчас, не будет.",DIA_Fester_TogetherNOW_NOW);

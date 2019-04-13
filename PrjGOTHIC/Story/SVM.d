@@ -990,7 +990,7 @@ instance SVM_5(C_SVM)
 	addon_wrongarmor_mil = "SVM_5_ADDON_WRONGARMOR_MIL";	//Мы, солдаты, сражаемся за короля, так что лучше бы тебе надеть его доспехи.
 	addon_wrongarmor_kdf = "SVM_5_ADDON_WRONGARMOR_KDF";	//Зачем тебе выдали доспехи, если ты их все равно не носишь? Подумай об этом.
 	addon_noarmor_bdt = "SVM_5_ADDON_ADDON_NOARMOR_BDT";	//Что ты за простофиля? У тебя даже нет доспехов. Иди прочь.
-	addon_diebandit = "SVM_5_ADDON_DIEBANDIT";	//Ага, бандит!
+	addon_diebandit = "SVM_5_ADDON_DIEBANDIT";	//Аах, бандит!
 	addon_dirtypirate = "SVM_5_ADDON_DIRTYPIRATE";	//Я порву тебя на части, пират!
 };
 
@@ -1189,7 +1189,7 @@ instance SVM_7(C_SVM)
 	IGetYouStill = "SVM_7_IGetYouStill";	//Опять ТЫ!
 	DieEnemy = "SVM_7_DieEnemy";	//Я разорву тебя на куски!
 	DieMonster = "SVM_7_DieMonster";	//Еще одна тварь!
-	DirtyThief = "SVM_7_DirtyThief";	//Ах ты подлый вор!
+	DirtyThief = "SVM_7_DirtyThief";	//Ах ты, подлый вор!
 	HandsOff = "SVM_7_HandsOff";	//Руки прочь!
 	SheepKiller = "SVM_7_SheepKiller";	//Эй! оставь наших овец в покое!
 	SheepKillerMonster = "SVM_7_SheepKillerMonster";	//Этот монстр ворует наших овец!
@@ -2009,7 +2009,7 @@ instance SVM_11(C_SVM)
 	abs_monastery = "SVM_11_ABS_MONASTERY";	//Я слышал, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_11_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
 	abs_good = "SVM_11_ABS_GOOD";	//Это хорошо.
-	sheepkiller_crime = "SVM_11_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
+	sheepkiller_crime = "SVM_11_SHEEPKILLER_CRIME";	//Убийство овцы - это уж слишком! Проваливай!
 	attack_crime = "SVM_11_ATTACK_CRIME";	//Я не разговариваю с бандитами!
 	theft_crime = "SVM_11_THEFT_CRIME";	//Прочь с глаз моих, грязный вор!
 	pal_city_crime = "SVM_11_PAL_CITY_CRIME";	//Ты позоришь наш орден! Лорд Хаген будет в ярости!
@@ -2384,7 +2384,7 @@ instance SVM_13(C_SVM)
 	abs_monastery = "SVM_13_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_13_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
 	abs_good = "SVM_13_ABS_GOOD";	//Это хорошо.
-	sheepkiller_crime = "SVM_13_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
+	sheepkiller_crime = "SVM_13_SHEEPKILLER_CRIME";	//Убийство овцы - это уж слишком! Проваливай!
 	attack_crime = "SVM_13_ATTACK_CRIME";	//Оставь меня в покое, грязное животное!
 	theft_crime = "SVM_13_THEFT_CRIME";	//Оставь меня в покое, презренный воришка!
 	pal_city_crime = "SVM_13_PAL_CITY_CRIME";	//Ты позоришь наш орден! Подожди, лорд Хаген узнает об этом!
@@ -2549,7 +2549,7 @@ instance SVM_14(C_SVM)
 	StopMagic = "SVM_14_StopMagic";	//Держись подальше от меня с этой магией!
 	ISaidStopMagic = "SVM_14_ISaidStopMagic";	//Убери эту магию! Ты что, оглох?!
 	WeaponDown = "SVM_14_WeaponDown";	//Убери оружие!
-	ISaidWeaponDown = "SVM_14_ISaidWeaponDown";	//Ты слышал меня? Я сказал: Убери оружие!
+	ISaidWeaponDown = "SVM_14_ISaidWeaponDown";	//Ты слышал меня? Я сказал: 'Убери оружие!'
 	WiseMove = "SVM_14_WiseMove";	//Видишь, это было не так уж сложно.
 	NextTimeYoureInForIt = "SVM_14_NextTimeYoureInForIt";	//(себе под нос) Мы еще поговорим об этом...
 	OhMyHead = "SVM_14_OhMyHead";	//(себе под нос) Ох, моя голова...
@@ -2923,7 +2923,7 @@ instance SVM_17(C_SVM)
 	DirtyThief = "SVM_17_DirtyThief";	//Грязный воришка! Ну, подожди!
 	HandsOff = "SVM_17_HandsOff";	//Убери свои грязные руки!
 	SheepKiller = "SVM_17_SheepKiller";	//Этот кусок дерьма убивает наших овец!
-	SheepKillerMonster = "SVM_17_SheepKillerMonster";	//Этот мерзкий монстр ворует наших овец!
+	SheepKillerMonster = "SVM_17_SheepKillerMonster";	//Этот мерзкий монстр убивает наших овец!
 	YouMurderer = "SVM_17_YouMurderer";	//Убийца!
 	DieStupidBeast = "SVM_17_DieStupidBeast";	//Зверям здесь не место!
 	YouDareHitMe = "SVM_17_YouDareHitMe";	//Ну, подожди, сукин сын!

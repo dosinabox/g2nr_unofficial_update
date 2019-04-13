@@ -260,7 +260,7 @@ func void DIA_Gorax_Wurst_Info()
 	{
 		AI_Output(self,other,"DIA_Gorax_Wurst_14_02");	//Да? Я думаю, ты недостаточно ответственно относишься к своей работе.
 		AI_Output(self,other,"DIA_Gorax_Wurst_14_03");	//Ты либо съел колбасу сам, либо дал кому-нибудь больше, чем ему причитается.
-		AI_Output(self,other,"DIA_Gorax_Wurst_14_04");	//Послушай, так как ты новичок - и только по этой причине - я на первый раз прощу тебя. Но чтобы больше такого не повторялось, послушник!
+		AI_Output(self,other,"DIA_Gorax_Wurst_14_04");	//Послушай, так как ты новичок - и только по этой причине - я на первый раз прощаю тебя. Но чтобы больше такого не повторялось, послушник!
 		MIS_GoraxEssen = LOG_FAILED;
 		B_CheckLog();
 	};
@@ -334,7 +334,7 @@ func void DIA_Gorax_Orlan_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Gorax_Orlan_14_02");	//Что ты сделал с этим золотом? Ты потратил его? Уходи и не возвращайся сюда без золота!
+		AI_Output(self,other,"DIA_Gorax_Orlan_14_02");	//И что ты сделал с этим золотом? Ты потратил его? Уходи и не возвращайся сюда без золота!
 	};
 };
 
@@ -342,7 +342,7 @@ func void DIA_Gorax_Orlan_100()
 {
 	AI_Output(other,self,"DIA_Gorax_Orlan_100_15_00");	//Он надул меня!
 	B_GiveInvItems(other,self,ItMi_Gold,100);
-	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_01");	//Ты продал ему вино дешевле? Ох, нет! И почему только я послал ТЕБЯ?!
+	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_01");	//Ты продал ему вино дешевле? Ох, нет! И почему я послал ТЕБЯ?!
 	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
 	MIS_GoraxWein = LOG_FAILED;
 	Goraxday = Wld_GetDay() + 1;
@@ -363,7 +363,7 @@ func void DIA_Gorax_Orlan_240()
 	else
 	{
 		B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
-		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_02");	//Но ты уже потратил часть этих денег, да? Ты ничтожество - пошел прочь!
+		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_02");	//Но ты уже потратил часть этих денег, да? Ты ничтожество - пшел прочь!
 		MIS_GoraxWein = LOG_FAILED;
 		Goraxday = Wld_GetDay() + 1;
 	};

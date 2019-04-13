@@ -214,7 +214,7 @@ func void DIA_Rengaru_GOTYOU_WhoAreYou()
 {
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_00");	//... и теперь ты расскажешь мне, кто ты такой.
 	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_01");	//Я просто бедный человек, пытающийся свести концы с концами.
-	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_02");	//Что мне еще делать? Я не могу найти работу в городе...
+	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_02");	//А что еще мне делать? Я не могу найти работу в городе...
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_03");	//... хорошо, я понимаю. Хватит хныкать.
 };
 
@@ -244,12 +244,12 @@ func void DIA_Rengaru_INKNAST_Info()
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_07_01");	//Что еще тебе нужно? У меня ничего не осталось! Отпусти меня, а?!
 	Info_AddChoice(DIA_Rengaru_INKNAST,"Почему я должен отпустить тебя?",DIA_Rengaru_INKNAST_keinKnast);
 	Info_AddChoice(DIA_Rengaru_INKNAST,"Я позабочусь, чтобы тебя посадили за решетку.",DIA_Rengaru_INKNAST_Knast);
-	Info_AddChoice(DIA_Rengaru_INKNAST,"Проваливай! И чтобы больше я тебя здесь не видел!",DIA_Rengaru_INKNAST_HauAb);
+	Info_AddChoice(DIA_Rengaru_INKNAST,"Проваливай! И чтоб больше я тебя здесь не видел!",DIA_Rengaru_INKNAST_HauAb);
 };
 
 func void DIA_Rengaru_INKNAST_HauAb()
 {
-	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтобы больше я тебя здесь не видел!
+	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтоб больше я тебя здесь не видел!
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_HauAb_07_01");	//Ты не пожалеешь об этом! Спасибо, парень!
 	Npc_ExchangeRoutine(self,"Start");
 	AI_StopProcessInfos(self);

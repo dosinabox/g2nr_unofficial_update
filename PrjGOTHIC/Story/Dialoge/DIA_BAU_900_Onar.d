@@ -140,7 +140,7 @@ func int DIA_Onar_WorkAsSld_Condition()
 func void DIA_Onar_WorkAsSld_Info()
 {
 	AI_Output(other,self,"DIA_Onar_WorkAsSld_15_00");	//Я хочу поработать здесь в качестве наемника!
-	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_01");	//Ты? Наемника? Не смеши меня! Если бы из тебя мог получиться хороший наемник, Ли наверняка рассказал бы мне о тебе.
+	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_01");	//Ты? Наемника? Не смеши меня! Если бы из тебя мог получиться хороший наемник, Ли наверняка бы рассказал мне о тебе.
 	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_02");	//А теперь убирайся отсюда, и поживее!
 	Onar_WegenSldWerden = TRUE;
 };

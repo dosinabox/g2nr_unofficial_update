@@ -353,6 +353,7 @@ func int DIA_Brian_KAP4_EXIT_Condition()
 
 func void DIA_Brian_KAP4_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -378,6 +379,7 @@ func int DIA_Brian_KAP5_EXIT_Condition()
 
 func void DIA_Brian_KAP5_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -388,7 +390,7 @@ instance DIA_Brian_NEWLIGHTHOUSEOFFICER(C_Info)
 	nr = 51;
 	condition = DIA_Brian_NEWLIGHTHOUSEOFFICER_Condition;
 	information = DIA_Brian_NEWLIGHTHOUSEOFFICER_Info;
-	description = "я слышал, что ты интересовалс€ ма€ком старого ƒжека.";
+	description = "я слышал, ты интересовалс€ ма€ком старого ƒжека.";
 };
 
 
@@ -402,7 +404,7 @@ func int DIA_Brian_NEWLIGHTHOUSEOFFICER_Condition()
 
 func void DIA_Brian_NEWLIGHTHOUSEOFFICER_Info()
 {
-	AI_Output(other,self,"DIA_Brian_NEWLIGHTHOUSEOFFICER_15_00");	//я слышал, что ты интересовалс€ ма€ком старого ƒжека.
+	AI_Output(other,self,"DIA_Brian_NEWLIGHTHOUSEOFFICER_15_00");	//я слышал, ты интересовалс€ ма€ком старого ƒжека.
 	AI_Output(other,self,"DIA_Brian_NEWLIGHTHOUSEOFFICER_15_01");	//ƒжек собираетс€ выйти в море. Ќо ему не на кого оставить ма€к.
 	AI_Output(self,other,"DIA_Brian_NEWLIGHTHOUSEOFFICER_04_02");	//Ќо ƒжек должен понимать, что в его отсутствие € превращу ма€к в кузницу.
 	AI_Output(other,self,"DIA_Brian_NEWLIGHTHOUSEOFFICER_15_03");	//Ёто проблема?

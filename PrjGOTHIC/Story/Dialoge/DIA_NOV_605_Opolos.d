@@ -357,7 +357,7 @@ func void DIA_Opolos_LIESEL_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Opolos_Add_15_00");	//’м... куда же это € еЄ подевал. я приду позже.
+		AI_Output(other,self,"DIA_Opolos_Add_15_00");	//’м... куда же это € ее подевал. я приду позже.
 	};
 };
 

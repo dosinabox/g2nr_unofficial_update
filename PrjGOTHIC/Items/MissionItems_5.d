@@ -65,7 +65,8 @@ instance ItWr_HallsofIrdorath_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_02_05.3ds";
+//	visual = "ItWr_Book_02_05.3ds";
+	visual = "ItWr_Book_03_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	description = name;
@@ -106,7 +107,8 @@ instance ItWr_HallsofIrdorath_Open_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_02_05.3ds";
+//	visual = "ItWr_Book_02_05.3ds";
+	visual = "ItWr_Book_03_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -373,7 +375,8 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 10;
-	visual = "ItMi_Flask.3ds";
+//	visual = "ItMi_Flask.3ds";
+	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_PotionOfDeath;
 	scemeName = "POTIONFAST";
@@ -424,7 +427,8 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 10;
-	visual = "ItMi_Flask.3ds";
+//	visual = "ItMi_Flask.3ds";
+	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_PotionOfDeath;
 	scemeName = "POTIONFAST";

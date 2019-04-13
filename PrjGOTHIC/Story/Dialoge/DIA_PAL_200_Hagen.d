@@ -1188,7 +1188,7 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_08");	//Ёто знак их силы. «начит, орки выбрались из-за своих частоколов и сражаютс€ в открытом поле.
 		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_09");	//я не видел, чтобы их было много. ¬ основном, это их предводители и всего несколько бойцов.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_10");	//ƒа? «начит, они замышл€ют что-то еще. Ёто не похоже на орков, чтобы их лидеры в одиночку покидали свои защитные частоколы.
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Ќо это может стать хорошей возможностью, впрочем, нанести им чувствительный удар.
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Ќо, впрочем, это может стать хорошей возможностью, впрочем, нанести им чувствительный удар.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_12");	//≈сли они потер€ют своих лидеров, их боевой дух резко снизитс€.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_13");	//” теб€ новое задание, рыцарь. »ди и убей всех лидеров орков, каких найдешь в прилежащих земл€х.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_14");	//ѕринеси мне их кольца. Ёто будет серьезный удар по оркам.
@@ -1369,7 +1369,7 @@ func void DIA_Lord_Hagen_NeedShip_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_NeedShip_15_00");	//ћне нужен корабль.
 	if(hero.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_01");	//ќн много кому нужен, солдат.
+		AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_01");	//ќн многим нужен, солдат.
 	}
 	else if(hero.guild == GIL_KDF)
 	{

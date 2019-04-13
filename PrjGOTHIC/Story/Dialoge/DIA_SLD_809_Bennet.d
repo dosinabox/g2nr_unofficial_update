@@ -755,7 +755,7 @@ func void DIA_Bennet_ThankYou_Info()
 		hero.guild = GIL_DJG;
 		Npc_SetTrueGuild(hero,GIL_DJG);
 	};
-	AI_Output(self,other,"DIA_Bennet_ThankYou_06_00");	//Ох, а я уж думал, что меня наверняка повесят!
+	AI_Output(self,other,"DIA_Bennet_ThankYou_06_00");	//Ох, я уж думал, что меня наверняка повесят!
 	AI_Output(other,self,"DIA_Bennet_ThankYou_15_01");	//Что ж, в конце концов, все окончилось хорошо.
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_02");	//Да уж. Ты бы видел выражение лица солдата, который выпускал меня!
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_03");	//(смеется) Он был так напуган, что чуть не наложил в штаны.
@@ -868,7 +868,7 @@ instance DIA_Bennet_DJG_ARMOR_M(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_M_Condition;
 	information = DIA_Bennet_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов. Защита: 120/120/75/35. (12000 золота)";
+	description = "Средние доспехи охотника на драконов. Защита: 120/120/35/35. (12000 золота)";
 };
 
 
@@ -940,7 +940,7 @@ instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "Тяжелые доспехи охотника на драконов. Защита: 150/150/100/50. (20000 золота)";
+	description = "Тяжелые доспехи охотника на драконов. Защита: 150/150/50/50. (20000 золота)";
 };
 
 

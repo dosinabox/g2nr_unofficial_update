@@ -149,7 +149,8 @@ instance ItWr_XardasBookForPyrokar_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_02_05.3ds";
+//	visual = "ItWr_Book_02_05.3ds";
+	visual = "ItWr_Book_03_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -232,7 +233,8 @@ instance ITWR_DementorObsessionBook_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_02_05.3ds";
+//	visual = "ItWr_Book_02_05.3ds";
+	visual = "ItWr_Book_03_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -416,8 +418,7 @@ instance ItMw_MalethsGehstock_MIS(C_Item)
 	cond_value[2] = Condition_VLKMace;
 	visual = "Itmw_008_1h_pole_01.3ds";
 	description = name;
-	text[0] = "На ручке выгравирована";
-	text[1] = "буква 'М'.";
+	text[0] = "На ручке выгравирована буква 'М.'";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;

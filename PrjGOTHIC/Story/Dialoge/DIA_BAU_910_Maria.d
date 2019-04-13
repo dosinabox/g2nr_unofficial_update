@@ -102,7 +102,7 @@ func void DIA_Maria_Soeldner_Info()
 	{
 		AI_Output(self,other,"DIA_Maria_Soeldner_17_02");	//ќх. Ќу, зато с тех пор, как пришли наемники, хот€ бы на ферме стало безопаснее.
 	};
-	AI_Output(self,other,"DIA_Maria_Soeldner_17_03");	// огда мы еще были сами по себе, сюда посто€нно приходили стражники из города и грабили нас.
+	AI_Output(self,other,"DIA_Maria_Soeldner_17_03");	// огда мы были еще сами по себе, сюда посто€нно приходили стражники из города и грабили нас.
 	AI_Output(self,other,"DIA_Maria_Soeldner_17_04");	//ќни забирали большую часть урожа€. » овец тоже. » ничего не давали нам взамен.
 	AI_Output(self,other,"DIA_Maria_Soeldner_17_05");	//Ќекоторые из них даже воровали, что плохо лежит.
 	if(hero.guild == GIL_MIL)
@@ -166,7 +166,7 @@ func void DIA_Maria_BringPlate_Info()
 {
 	B_GiveInvItems(other,self,ItMi_MariasGoldPlate,1);
 	AI_Output(other,self,"DIA_Maria_BringPlate_15_00");	//я принес золотую тарелку. Ёто не тво€?
-	AI_Output(self,other,"DIA_Maria_BringPlate_17_01");	//ƒа! Ёто она! ќгромное спасибо тебе!
+	AI_Output(self,other,"DIA_Maria_BringPlate_17_01");	//ƒа! Ёто она! ќгромное тебе спасибо!
 	MIS_Maria_BringPlate = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Maria_Teller);
 };

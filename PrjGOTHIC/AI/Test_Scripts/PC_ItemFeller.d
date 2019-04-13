@@ -578,7 +578,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItKe_EVT_CRYPT_01,1);
 	CreateInvItems(self,ItKe_EVT_CRYPT_02,1);
 	CreateInvItems(self,ItKe_EVT_CRYPT_03,1);
-	CreateInvItems(self,ITAR_PAL_SKEL,1);
+	CreateInvItems(self,ITAR_PAL_Skel,1);
 	CreateInvItems(self,ItKe_Valentino,1);
 	CreateInvItems(self,ItKe_Buerger,1);
 	CreateInvItems(self,ItKe_Richter,1);

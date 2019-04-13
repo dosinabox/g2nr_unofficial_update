@@ -95,7 +95,7 @@ func void DIA_Addon_Saturas_ADWStart_missingPeople()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, что это был рыбак из Хориниса. Взгляни там.
+	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
 	Saturas_AboutWilliam = TRUE;
 	B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
 };

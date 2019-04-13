@@ -209,7 +209,7 @@ func void DIA_Addon_Huno_Armor_Info()
 		};
 		BDT_Armor_H_Value = 2100;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: оружие 50, стрелы 50. (2100 золота)",DIA_Addon_Huno_Armor_BUY);
+		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/15/0. (2100 золота)",DIA_Addon_Huno_Armor_BUY);
 	}
 	else
 	{
@@ -217,7 +217,7 @@ func void DIA_Addon_Huno_Armor_Info()
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_04");	//Фиск, говоришь? Хм, ну, я ему и в самом деле должен. Ладно, будет тебе скидка.
 		BDT_Armor_H_Value = 1400;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: оружие 50, стрелы 50. (1400 золота)",DIA_Addon_Huno_Armor_BUY);
+		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/15/0. (1400 золота)",DIA_Addon_Huno_Armor_BUY);
 	};
 };
 

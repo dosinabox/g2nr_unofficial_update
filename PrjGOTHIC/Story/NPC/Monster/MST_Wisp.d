@@ -14,7 +14,7 @@ prototype Mst_Default_Wisp(C_Npc)
 	protection[PROT_BLUNT] = 0;
 	protection[PROT_EDGE] = 0;
 	protection[PROT_POINT] = 0;
-	protection[PROT_FIRE] = 0;
+	protection[PROT_FIRE] = 16;
 	protection[PROT_FLY] = 0;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

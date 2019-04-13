@@ -1030,9 +1030,9 @@ instance ItKe_EVT_CRYPT_03(C_Item)
 };
 
 
-const int VALUE_ITAR_PAL_SKEL = 500;
+const int Value_ITAR_PAL_Skel = 500;
 
-instance ITAR_PAL_SKEL(C_Item)
+instance ITAR_PAL_Skel(C_Item)
 {
 	name = "Старые доспехи паладина";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1042,7 +1042,7 @@ instance ITAR_PAL_SKEL(C_Item)
 	protection[PROT_POINT] = 100;
 	protection[PROT_FIRE] = 50;
 	protection[PROT_MAGIC] = 50;
-	value = value_itar_pal_skel;
+	value = Value_ITAR_PAL_Skel;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Pal_H.3ds";
 	visual_change = "Armor_Pal_Skeleton.asc";

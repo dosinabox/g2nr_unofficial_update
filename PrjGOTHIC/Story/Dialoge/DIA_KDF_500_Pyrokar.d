@@ -1334,7 +1334,7 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	B_GiveInvItems(self,other,ItMi_InnosEye_MIS,1);
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_02");	//Помни, что тебе нужно сначала поговорить с драконом, прежде чем ты сможешь атаковать его.
 	AI_Output(self,other,"DIA_Pyrokar_Add_11_01");	//Сила Глаза заставит драконов говорить с тобой, и говорить правду.
-	AI_Output(self,other,"DIA_Pyrokar_Add_11_02");	//Кроме того, он дает защиту от их атак.
+	AI_Output(self,other,"DIA_Pyrokar_Add_11_02");	//Кроме того, он даст защиту от их атак.
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_05");	//Однако, его сила не вечна. Тебе придется снова пополнять его магической энергией.
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_06");	//Для этого тебе понадобится эссенция из сердца дракона, которую нужно объединить с Глазом на алхимическом столе.
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_07");	//Только тогда ты сможешь приблизиться к очередному дракону.
@@ -1405,7 +1405,7 @@ func void DIA_Pyrokar_BUCHDERBESSENEN_Info()
 		B_LogEntry(TOPIC_DEMENTOREN,"Пирокар хочет, чтобы альманах Одержимых не принес вреда. Он дал мне список всех, кого Ищущие планируют сделать одержимыми. В этом списке Пирокара позднее могут появиться новые имена.");
 	};
 	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_12");	//Не приближайся к Ищущим, иначе они овладеют тобой.
-	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_13");	//Если ты все же поймешь, что не в состоянии сопротивляться их зову, возвращайся ко мне как можно скорее.
+	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_13");	//Если же ты все же поймешь, что не в состоянии сопротивляться их зову, возвращайся ко мне как можно скорее.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_14");	//Только здесь, в монастыре, твоя душа может быть спасена.
 	if(!Npc_IsDead(Karras) && (hero.guild == GIL_KDF))
 	{

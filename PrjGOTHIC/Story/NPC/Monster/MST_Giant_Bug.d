@@ -53,7 +53,7 @@ instance YGiant_Bug(Mst_Default_Giant_Bug)
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_EDGE] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 10;
+	protection[PROT_FIRE] = 16;	//10;
 	protection[PROT_FLY] = 10;
 	protection[PROT_MAGIC] = 0;
 	B_SetVisuals_Giant_Bug();
@@ -72,7 +72,7 @@ instance YGiant_Bug_VinoRitual1(Mst_Default_Giant_Bug)
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_EDGE] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 10;
+	protection[PROT_FIRE] = 16;	//10;
 	protection[PROT_FLY] = 10;
 	protection[PROT_MAGIC] = 0;
 	B_SetVisuals_Giant_Bug();
@@ -86,13 +86,13 @@ instance YGiant_Bug_VinoRitual2(Mst_Default_Giant_Bug)
 	level = 4;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
-	attribute[ATR_HITPOINTS_MAX] = 40;
-	attribute[ATR_HITPOINTS] = 40;
-	protection[PROT_BLUNT] = 0;
-	protection[PROT_EDGE] = 0;
-	protection[PROT_POINT] = 0;
-	protection[PROT_FIRE] = 0;
-	protection[PROT_FLY] = 0;
+	attribute[ATR_HITPOINTS_MAX] = 20;	//40;
+	attribute[ATR_HITPOINTS] = 20;	//40;
+	protection[PROT_BLUNT] = 10;	//0;
+	protection[PROT_EDGE] = 10;	//0;
+	protection[PROT_POINT] = 10;	//0;
+	protection[PROT_FIRE] = 16;	//0;
+	protection[PROT_FLY] = 10;	//0;
 	protection[PROT_MAGIC] = 0;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);

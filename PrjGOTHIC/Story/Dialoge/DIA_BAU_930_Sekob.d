@@ -47,7 +47,7 @@ func void DIA_Sekob_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Sekob_HALLO_01_00");	//„то ты делаешь на моей земле? «десь нечего украсть. ѕроваливай.
 	AI_Output(other,self,"DIA_Sekob_HALLO_15_01");	//Ќеужели в этой прокл€той стране нет ни кусочка земли, который никому не принадлежит?
-	AI_Output(self,other,"DIA_Sekob_HALLO_01_02");	//ј ты займись делом, тогда, возможно, когда-нибудь и ты сможешь назвать кусок земли своей собственностью. Ќо до той поры, будь добр, бей баклуши где-нибудь в другом месте.
+	AI_Output(self,other,"DIA_Sekob_HALLO_01_02");	//ј ты займись делом, тогда, возможно, когда-нибудь и ты сможешь называть кусок земли своей собственностью. Ќо до той поры, будь добр, бей баклуши где-нибудь в другом месте.
 };
 
 
@@ -527,7 +527,7 @@ func void DIA_Sekob_PERM_Info()
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_03");	//ћо€ жена исчезла. —начала € не придал этому внимани€, но она так и не вернулась.
 			AI_Output(self,other,"DIA_Sekob_PERM_01_04");	//я подозреваю, что она убежала в лес, спаса€сь от полевых хищников.
-			AI_Output(self,other,"DIA_Sekob_PERM_01_05");	//ќкажи мне услугу: если ты найдешь ее, приведи назад домой.
+			AI_Output(self,other,"DIA_Sekob_PERM_01_05");	//ќкажи мне услугу: если ты найдешь ее, приведи ее назад домой.
 			MIS_bringRosiBackToSekob = LOG_Running;
 			Log_CreateTopic(TOPIC_bringRosiBackToSekob,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_bringRosiBackToSekob,LOG_Running);

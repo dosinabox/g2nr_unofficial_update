@@ -125,7 +125,7 @@ func void DIA_Girion_Teach_Back()
 	{
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_00");	//Вообще-то говоря, твое обучение еще не завершено, но я больше ничему не могу научить тебя.
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_01");	//Если ты хочешь отточить свое мастерство еще больше, тебе лучше поискать настоящего мастера меча.
-		AI_Output(other,self,"DIA_DIA_Girion_Teach_15_02");	//Где мне найти такого человека?
+		AI_Output(other,self,"DIA_DIA_Girion_Teach_15_02");	//И где мне найти такого человека?
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_03");	//Лорд Хаген - мастер-мечник. Он наверняка сможет обучить тебя.
 		DIA_Girion_Teach_permanent = TRUE;
 	};

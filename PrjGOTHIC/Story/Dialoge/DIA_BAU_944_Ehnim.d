@@ -313,7 +313,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 			B_GiveInvItems(self,other,ItMi_Moleratlubric_MIS,1);
 			if(!Npc_IsDead(Vino))
 			{
-				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_02");	//(себе под нос) Ох. Вино убьет меня за это.
+				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_02");	//(себе под нос) Вино убьет меня за это.
 			};
 		}
 		else

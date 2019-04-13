@@ -226,7 +226,7 @@ func void DIA_Thekla_Problem_Info()
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(other,self,"DIA_Thekla_Problem_15_04");	//А почему ты ничего не делаешь с этим?
-		AI_Output(self,other,"DIA_Thekla_Problem_17_05");	//А что я могу сделать, мистер Остряк-Самоучка? Врезать им своей скалкой? Да, с фермерами это проходит, но ведь эти ублюдки недолго думая ответят мечом!
+		AI_Output(self,other,"DIA_Thekla_Problem_17_05");	//А что я могу сделать, мистер Остряк-Самоучка? Врезать им своей скалкой? Да, с фермерами это проходит, но ведь эти ублюдки, недолго думая, ответят мечом!
 	};
 };
 
@@ -361,7 +361,7 @@ func void DIA_Thekla_PERM_Info()
 		AI_Output(self,other,"DIA_Thekla_PERM_17_01");	//Она закончилась.
 		AI_Output(other,self,"DIA_Thekla_PERM_15_02");	//Не осталось даже маленькой миски?
 		AI_Output(self,other,"DIA_Thekla_PERM_17_03");	//Нет.
-		AI_Output(other,self,"DIA_Thekla_PERM_15_04");	//А могу облизать горшок, а?
+		AI_Output(other,self,"DIA_Thekla_PERM_15_04");	//А могу я облизать горшок, а?
 		AI_Output(self,other,"DIA_Thekla_PERM_17_05");	//Прекрати!
 		AI_Output(self,other,"DIA_Thekla_PERM_17_06");	//Если тебе так понравилась моя похлебка, тебе придется сделать кое-что, чтобы получить ее.
 		AI_Output(other,self,"DIA_Thekla_PERM_15_07");	//Что?
@@ -418,7 +418,7 @@ func void DIA_Thekla_PERM_Info()
 			}
 			else
 			{
-				AI_Output(self,other,"DIA_Thekla_PERM_17_20");	//Все! Похлебка вся закончилась.
+				AI_Output(self,other,"DIA_Thekla_PERM_17_20");	//Все! Похлебка закончилась.
 			};
 		};
 	}

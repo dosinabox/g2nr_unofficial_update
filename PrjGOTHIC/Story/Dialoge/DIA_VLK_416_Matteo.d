@@ -165,7 +165,7 @@ instance DIA_Matteo_LEATHER(C_Info)
 	condition = DIA_Matteo_LEATHER_Condition;
 	information = DIA_Matteo_LEATHER_Info;
 	permanent = TRUE;
-	description = " упить кожаные доспехи. «ащита: 25/20/5/0. (250 золота)";
+	description = " упить кожаные доспехи. «ащита: 25/20/15/0. (250 золота)";
 };
 
 
@@ -558,7 +558,7 @@ func void DIA_MAtteo_HowCanYouHelp_Info()
 	AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_01");	//Ёто просто. я использую свое вли€ние, чтобы убедить других здешних мастеров вз€ть теб€ в ученики.
 	if(other.guild == GIL_NONE)
 	{
-		AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_02");	//—тав учеником, ты автоматически станешь и гражданином города и сможешь попасть в верхний квартал. ѕомимо этого, ты сможешь что-нибудь заработать.
+		AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_02");	//—тав учеником, ты автоматически станешь гражданином города и сможешь попасть в верхний квартал. ѕомимо этого, ты сможешь что-нибудь заработать.
 	};
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
@@ -622,7 +622,7 @@ func void DIA_MAtteo_WieZustimmung_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WieZustimmung_15_00");	// ак мне получить одобрение других мастеров?
 	AI_Output(self,other,"DIA_Matteo_WieZustimmung_09_01");	//“ы просто должен убедить их. »ди и поговори с ними.
-	AI_Output(self,other,"DIA_Matteo_WieZustimmung_09_02");	//Ќо если хот€ бы двое из них будут против теб€, тебе не поступить в ученики! “ак что постарайс€ понравитьс€ им!
+	AI_Output(self,other,"DIA_Matteo_WieZustimmung_09_02");	//Ќо, а если хот€ бы двое из них будут против теб€, тебе не поступить в ученики! “ак что постарайс€ понравитьс€ им!
 	B_LogEntry(TOPIC_Lehrling,"я смогу получить одобрение мастеров, только если € про€влю себ€ с лучшей стороны перед ними.");
 };
 

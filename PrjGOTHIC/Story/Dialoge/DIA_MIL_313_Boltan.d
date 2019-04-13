@@ -74,7 +74,7 @@ func void DIA_Boltan_ToConvicts_Info()
 			AI_Output(self,other,"DIA_Boltan_Add_05_06");	//Мы арестовали эту свинью, что убила паладина Лотара.
 		};
 	}
-	else if((Canthar_Ausgeliefert == FALSE) && (Sarah_Ausgeliefert == FALSE) && (Rengaru_Ausgeliefert == FALSE) && (Nagur_Ausgeliefert == FALSE))
+	else if((Canthar_Ausgeliefert == FALSE) && (Sarah_Ausgeliefert == FALSE) && (Rengaru_Ausgeliefert == FALSE) && (Nagur_Ausgeliefert == FALSE) && (Fernando_ImKnast == FALSE))
 	{
 		AI_Output(self,other,"DIA_Boltan_Add_05_02");	//Все камеры сейчас пусты.
 	}

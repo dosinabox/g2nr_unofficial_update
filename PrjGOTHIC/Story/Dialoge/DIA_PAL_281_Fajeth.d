@@ -199,7 +199,7 @@ func void DIA_Fajeth_Leader_Info()
 	AI_Output(self,other,"DIA_Fajeth_Leader_12_01");	//’орошо. Ѕез вожака они будут не так опасны. я не думаю, что теперь они решатс€ напасть на нас.
 	if(Fajeth_Pay == TRUE)
 	{
-		AI_Output(self,other,"DIA_Fajeth_Leader_12_02");	//¬от твое золото - как договаривались.
+		AI_Output(self,other,"DIA_Fajeth_Leader_12_02");	//¬от мое золото - как договаривались.
 		B_GiveInvItems(self,other,ItMi_Gold,100);
 	};
 	Fajeth.flags = 0;

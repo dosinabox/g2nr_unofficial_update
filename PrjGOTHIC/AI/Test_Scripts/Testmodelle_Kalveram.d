@@ -522,8 +522,10 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItRw_Mil_Crossbow,1);
 	CreateInvItems(self,ItRw_Arrow,1000);
 	CreateInvItems(self,ItRw_Bolt,1000);
+	CreateInvItems(self,ItRw_Addon_FireBow,1);
 	CreateInvItems(self,ItRw_Addon_MagicBow,1);
 	CreateInvItems(self,ItRw_Addon_MagicCrossbow,1);
+	CreateInvItems(self,ItRw_Addon_FireArrow,100);
 	CreateInvItems(self,ItRw_Addon_MagicArrow,100);
 	CreateInvItems(self,ItRw_Addon_MagicBolt,100);
 	CreateInvItems(self,ItBE_Addon_Leather_01,1);
@@ -1135,8 +1137,8 @@ instance Gold(C_Item)
 	material = MAT_METAL;
 	on_state[0] = UseGold;
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -1145,7 +1147,7 @@ func void UseGold()
 	CreateInvItems(self,ItMi_Gold,1000);
 	PrintScreen("1000 золота получено.",-1,45,FONT_Screen,2);
 	Snd_Play("Geldbeutel");
-	PrintScreen("Наказание за читерство: -100 EXP",-1,55,FONT_Screen,2);
+/*	PrintScreen("Наказание за читерство: -100 EXP",-1,55,FONT_Screen,2);
 	if(hero.exp >= 100)
 	{
 		hero.exp -= 100;
@@ -1153,7 +1155,9 @@ func void UseGold()
 	else
 	{
 		hero.exp = 0;
-	};
+	}; */
+	PrintScreen("Наказание за читерство",-1,50,FONT_Screen,2);
+	B_GivePlayerXP(XP_EXPLOITBONUS);
 };
 
 
@@ -1168,8 +1172,8 @@ instance Armor(C_Item)
 	material = MAT_METAL;
 	on_state[0] = UseArmor;
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -1190,7 +1194,7 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_MIL_M);
 	CreateInvItem(self,ITAR_PAL_M);
 	CreateInvItem(self,ITAR_PAL_H);
-	CreateInvItem(self,ITAR_PAL_SKEL);
+	CreateInvItem(self,ITAR_PAL_Skel);
 	CreateInvItem(self,ITAR_Bau_L);
 	CreateInvItem(self,ITAR_Bau_M);
 	CreateInvItem(self,ITAR_BauBabe_L);
@@ -1396,8 +1400,8 @@ instance Hosh4(C_Item)
 	scemeName = "MAP";
 	description = "Дневник";
 	text[0] = "Дневник Хоша";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	on_state[0] = UseHoshiTagebuch;
 };
 

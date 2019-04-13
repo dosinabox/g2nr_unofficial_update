@@ -63,7 +63,7 @@ instance DIA_Mika_WOHIN(C_Info)
 
 func int DIA_Mika_WOHIN_Condition()
 {
-	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) || (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_02") >= 1000))
+	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) && (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_02") >= 1000))
 	{
 		return TRUE;
 	};

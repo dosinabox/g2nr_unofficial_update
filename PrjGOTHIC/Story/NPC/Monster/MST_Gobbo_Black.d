@@ -14,7 +14,7 @@ prototype Mst_Default_Gobbo_Black(C_Npc)
 	protection[PROT_BLUNT] = 40;
 	protection[PROT_EDGE] = 40;
 	protection[PROT_POINT] = 40;
-	protection[PROT_FIRE] = 0;	//40;
+	protection[PROT_FIRE] = 17;	//40;
 	protection[PROT_FLY] = 40;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

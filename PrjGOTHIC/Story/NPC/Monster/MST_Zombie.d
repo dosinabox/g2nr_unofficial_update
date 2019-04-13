@@ -14,7 +14,7 @@ prototype Mst_Default_Zombie(C_Npc)
 	protection[PROT_BLUNT] = 50;
 	protection[PROT_EDGE] = 50;
 	protection[PROT_POINT] = 50;
-	protection[PROT_FIRE] = 25;	//50;
+	protection[PROT_FIRE] = 16;	//50;
 	protection[PROT_FLY] = 50;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -79,6 +79,7 @@ instance Zombie04(Mst_Default_Zombie)
 instance Zombie_Addon_Knecht(Mst_Default_Zombie)
 {
 	name[0] = "Приспешник Ворона";
+	protection[PROT_FIRE] = 0;
 	Mdl_SetVisual(self,"Zombie.mds");
 	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_Thorus_Addon);
 	Npc_SetToFistMode(self);
@@ -90,6 +91,7 @@ instance Zombie_Addon_Bloodwyn(Mst_Default_Zombie)
 	level = 25;
 	attribute[ATR_HITPOINTS_MAX] = 1600;
 	attribute[ATR_HITPOINTS] = 1600;
+	protection[PROT_FIRE] = 0;
 	Mdl_SetVisual(self,"Zombie.mds");
 	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_Thorus_Addon);
 	Npc_SetToFistMode(self);
@@ -134,30 +136,31 @@ func void B_Pal_ZOMBIE_RISE()
 func void B_SetVisuals_Pal_Zombie01()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_PAL_SKEL);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_PAL_Skel);
 };
 
 func void B_SetVisuals_Pal_Zombie02()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,ITAR_PAL_SKEL);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,ITAR_PAL_Skel);
 };
 
 func void B_SetVisuals_Pal_Zombie03()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,DEFAULT,ITAR_PAL_SKEL);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,DEFAULT,ITAR_PAL_Skel);
 };
 
 func void B_SetVisuals_Pal_Zombie04()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,ITAR_PAL_SKEL);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,ITAR_PAL_Skel);
 };
 
 
 instance Pal_Zombie01(Mst_Default_Zombie)
 {
+	protection[PROT_FIRE] = 0;
 	B_SetVisuals_Pal_Zombie01();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_Pal_ZOMBIE;
@@ -166,6 +169,7 @@ instance Pal_Zombie01(Mst_Default_Zombie)
 
 instance Pal_Zombie02(Mst_Default_Zombie)
 {
+	protection[PROT_FIRE] = 0;
 	B_SetVisuals_Pal_Zombie02();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_Pal_ZOMBIE;
@@ -174,6 +178,7 @@ instance Pal_Zombie02(Mst_Default_Zombie)
 
 instance Pal_Zombie03(Mst_Default_Zombie)
 {
+	protection[PROT_FIRE] = 0;
 	B_SetVisuals_Pal_Zombie03();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_Pal_ZOMBIE;
@@ -182,6 +187,7 @@ instance Pal_Zombie03(Mst_Default_Zombie)
 
 instance Pal_Zombie04(Mst_Default_Zombie)
 {
+	protection[PROT_FIRE] = 0;
 	B_SetVisuals_Pal_Zombie04();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_Pal_ZOMBIE;
@@ -216,6 +222,7 @@ func void B_SetVisuals_Maya_Zombie04()
 
 instance MayaZombie01(Mst_Default_Zombie)
 {
+	protection[PROT_FIRE] = 0;
 	B_SetVisuals_Maya_Zombie01();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_Pal_ZOMBIE;
@@ -224,12 +231,14 @@ instance MayaZombie01(Mst_Default_Zombie)
 
 instance MayaZombie02(Mst_Default_Zombie)
 {
+	protection[PROT_FIRE] = 0;
 	B_SetVisuals_Maya_Zombie02();
 	Npc_SetToFistMode(self);
 };
 
 instance MayaZombie03(Mst_Default_Zombie)
 {
+	protection[PROT_FIRE] = 0;
 	B_SetVisuals_Maya_Zombie03();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_Pal_ZOMBIE;
@@ -238,17 +247,19 @@ instance MayaZombie03(Mst_Default_Zombie)
 
 instance MayaZombie04(Mst_Default_Zombie)
 {
+	protection[PROT_FIRE] = 0;
 	B_SetVisuals_Maya_Zombie04();
 	Npc_SetToFistMode(self);
 };
 
 instance MayaZombie04_Totenw(Mst_Default_Zombie)
 {
+	protection[PROT_FIRE] = 0;
 	B_SetVisuals_Maya_Zombie04();
 	Npc_SetToFistMode(self);
 };
 
-instance Summoned_ZOMBIE(Mst_Default_Zombie)
+instance Summoned_Zombie(Mst_Default_Zombie)
 {
 	name[0] = NAME_Addon_Summoned_Zombie;
 	guild = GIL_SummonedZombie;
@@ -256,6 +267,7 @@ instance Summoned_ZOMBIE(Mst_Default_Zombie)
 	level = 0;
 	attribute[ATR_STRENGTH] = 200;
 	attribute[ATR_DEXTERITY] = 200;
+	protection[PROT_FIRE] = 0;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
 	start_aistate = ZS_MM_Rtn_Summoned;

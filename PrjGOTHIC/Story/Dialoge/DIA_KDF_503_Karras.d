@@ -596,7 +596,7 @@ func void DIA_Karras_KAP3_Perm_Info()
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_03");	//ќни имеют очевидное демоническое происхождение. Ќу, по крайней мере, они наход€тс€ или находились под вли€нием демонов.
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_04");	//Ѕудь осторожен при встрече с ними.
 		AI_Output(other,self,"DIA_Karras_KAP3_Perm_15_05");	//Ќадо же!  ака€ свежа€ концепци€!
-		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_06");	//я приношу свои извинени€, но у мен€ недостаточно материала, чтобы сделать более детальные утверждени€.
+		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_06");	//я приношу свои извинени€, но у мен€ недостаточно материала, чтобы сделать более детальное утверждение.
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_07");	//Ќо ты мог бы принести мне что-нибудь, принадлежащее им, дл€ изучени€...
 		MIS_KarrasResearchDMT = LOG_Running;
 		B_LogEntry(TOPIC_DEMENTOREN,"„тобы продолжать свои исследовани€,  аррасу нужно что-нибудь, что было в пр€мом контакте с »щущими.");

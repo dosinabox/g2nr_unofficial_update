@@ -101,7 +101,7 @@ func void DIA_Tengron_News_Info()
 {
 	AI_Output(other,self,"DIA_Tengron_News_15_00");	//Насчет новостей...
 	AI_Output(self,other,"DIA_Tengron_News_07_01");	//Да, как там, в замке?
-	AI_Output(other,self,"DIA_Tengron_News_15_02");	//Его все еще осаждают орки, и он все также открыт для атак драконов.
+	AI_Output(other,self,"DIA_Tengron_News_15_02");	//Его все еще осаждают орки, и он все так же открыт для атак драконов.
 	AI_Output(self,other,"DIA_Tengron_News_07_03");	//Черт, я надеюсь, парни все же продержатся.
 	AI_Output(self,other,"DIA_Tengron_News_07_04");	//Послушай, у меня есть друг в замке. Его зовут Удар. Мы давно знаем друг друга, и через многое прошли рука об руку.
 	AI_Output(self,other,"DIA_Tengron_News_07_05");	//Я хочу, чтобы ты передал ему это кольцо. Пусть он сохранит его ради меня. Скажи ему, я заберу кольцо, когда вернусь.

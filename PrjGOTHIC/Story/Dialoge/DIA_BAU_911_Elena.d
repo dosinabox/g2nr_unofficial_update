@@ -136,7 +136,7 @@ func void DIA_Elena_Regeln_Info()
 	AI_Output(other,self,"DIA_Elena_Regeln_15_00");	//«десь есть какие-нибудь правила, которых мне нужно придерживатьс€?
 	AI_Output(self,other,"DIA_Elena_Regeln_16_01");	//Ќе трогай того, что тебе не принадлежит.
 	AI_Output(self,other,"DIA_Elena_Regeln_16_02");	//Ќе суй свой нос в чужие дела.
-	AI_Output(self,other,"DIA_Elena_Regeln_16_03");	//ј если тебе хочетс€ подратьс€, дерись с наемниками.
+	AI_Output(self,other,"DIA_Elena_Regeln_16_03");	//≈сли тебе хочетс€ подратьс€, дерись с наемниками.
 	AI_Output(self,other,"DIA_Elena_Regeln_16_04");	//≈сли ты начнешь драку с фермером, все здесь будут против теб€.
 };
 
@@ -243,7 +243,7 @@ func void DIA_Elena_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Elena_PERM_16_06");	//¬се только и говор€т, что о скором нападении орков. Ќо € не очень-то верю в это. я думаю, что здесь, на ферме, мы в безопасности.
+		AI_Output(self,other,"DIA_Elena_PERM_16_06");	//¬се только и говор€т о скором нападении орков. Ќо € не очень-то верю в это. я думаю, что здесь, на ферме, мы в безопасности.
 	};
 };
 

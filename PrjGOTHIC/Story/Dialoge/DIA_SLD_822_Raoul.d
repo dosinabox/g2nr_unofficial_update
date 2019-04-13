@@ -366,7 +366,7 @@ func void B_Raoul_Blame()
 	AI_Output(other,self,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_15_02");	//А что мне с этого будет?
 	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_03");	//Глупый вопрос. Почет, и твоя челюсть останется не сломанной.
 	AI_Output(other,self,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_15_04");	//Не так уж много.
-	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_05");	//Ммм. Скажем, я заплачу тебе целую кучу денег, если ты принесешь мне шкуру черного тролля. Как тебе?
+	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_05");	//Скажем, я заплачу тебе целую кучу денег, если ты принесешь мне шкуру черного тролля. Как тебе?
 	AI_Output(other,self,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_15_06");	//Уже лучше.
 	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_07");	//Тогда чего ты ждешь?
 	Log_CreateTopic(TOPIC_KillTrollBlack,LOG_MISSION);

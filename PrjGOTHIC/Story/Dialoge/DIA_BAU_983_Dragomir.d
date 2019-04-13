@@ -125,7 +125,7 @@ func void DIA_Dragomir_Dangerous_Info()
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_04");	//я забрел слишком далеко на север, в горы. “ам находитс€ большой каменный круг с жертвенным алтарем.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_05");	//ѕока € охотилс€ там на падальщиков, из леса выбежали эти чертовы скелеты и напали на мен€.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_06");	//ћне пришлось бежать со всех ног.
-	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_07");	//ј когда € бежал, арбалет выскользнул из моей руки. я думаю, он все еще лежит там, у этого странного круга на севере.
+	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_07");	//ј когда € бежал, арбалет выскользнул из моей руки. я думаю, что он все еще лежит там, у этого странного круга на севере.
 	Log_CreateTopic(TOPIC_DragomirsArmbrust,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DragomirsArmbrust,LOG_Running);
 	B_LogEntry(TOPIC_DragomirsArmbrust,"ƒрагомир потер€л свой арбалет в странном каменном круге, наход€щемс€ далеко в северных горах.");

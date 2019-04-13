@@ -501,6 +501,10 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItem(self,ItAt_StoneGolemHeart);
 	CreateInvItem(self,ItAt_FireGolemHeart);
 	CreateInvItem(self,ItAt_IceGolemHeart);
+	//Недоступные в игре предметы
+	CreateInvItem(self,ItRu_ConcussionBolt);
+	CreateInvItem(self,ItRu_DeathBolt);
+	CreateInvItem(self,ItRu_DeathBall);
+	CreateInvItem(self,ItRu_Inflate);
 };
-
 

@@ -97,7 +97,7 @@ func void DIA_Lee_PMSchulden_Info()
 		AI_Output(self,other,"DIA_Lee_PMSchulden_04_05");	//Теперь хорошие новости для тебя.
 		if(Lee_LastPetzCrime == CRIME_MURDER)
 		{
-			AI_Output(self,other,"DIA_Lee_PMSchulden_04_06");	//Неожиданно, не осталось никого, кто видел, как ты совершил убийство.
+			AI_Output(self,other,"DIA_Lee_PMSchulden_04_06");	//Неожиданно не осталось никого, кто видел, как ты совершил убийство.
 		};
 		if((Lee_LastPetzCrime == CRIME_THEFT) || ((Lee_LastPetzCrime > CRIME_THEFT) && (B_GetGreatestPetzCrime(self) < CRIME_THEFT)))
 		{
@@ -105,7 +105,7 @@ func void DIA_Lee_PMSchulden_Info()
 		};
 		if((Lee_LastPetzCrime == CRIME_ATTACK) || ((Lee_LastPetzCrime > CRIME_ATTACK) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK)))
 		{
-			AI_Output(self,other,"DIA_Lee_PMSchulden_04_08");	//Не осталось никого, кто ВИДЕЛ бы, как ты избил одного из фермеров.
+			AI_Output(self,other,"DIA_Lee_PMSchulden_04_08");	//Не осталось никого, кто видел бы, как ты избил одного из фермеров.
 		};
 		if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 		{
@@ -958,7 +958,7 @@ instance DIA_Lee_BuyArmorM(C_Info)
 	condition = DIA_Lee_BuyArmorM_Condition;
 	information = DIA_Lee_BuyArmorM_Info;
 	permanent = TRUE;
-	description = "Купить средние доспехи наемника. Защита: 50/50/0/5. (1000 золота)";
+	description = "Купить средние доспехи наемника. Защита: 50/50/20/5. (1000 золота)";
 };
 
 
@@ -1072,7 +1072,7 @@ instance DIA_Lee_BuyArmorH(C_Info)
 	condition = DIA_Lee_BuyArmorH_Condition;
 	information = DIA_Lee_BuyArmorH_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи наемника. Защита: 80/80/5/10. (2500 золота)";
+	description = "Купить тяжелые доспехи наемника. Защита: 80/80/20/10. (2500 золота)";
 };
 
 
@@ -1274,7 +1274,7 @@ func void DIA_Lee_DoAboutBennet_Info()
 	};
 	if(!Npc_IsDead(Buster) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
-		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_07");	//Ох, да. Чуть не забыл... Бастер хочет поболтать с тобой. Он не говорит мне, о чем. Может, тебе стоит найти его?
+		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_07");	//Ох, да. Чуть не забыл... Бастер хочет поболтать с тобой. Он не говорит мне, о чем. Может, стоит найти его?
 	};
 };
 
@@ -1595,7 +1595,7 @@ func int DIA_Lee_KAP4_Perm_Condition()
 func void DIA_Lee_KAP4_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Lee_KAP4_Perm_15_00");	//Как идут дела на ферме?
-	AI_Output(self,other,"DIA_Lee_KAP4_Perm_04_01");	//Ну, с тех пор как Сильвио свалил, здесь стало довольно спокойно.
+	AI_Output(self,other,"DIA_Lee_KAP4_Perm_04_01");	//Ну, с тех пор, как Сильвио свалил, здесь стало довольно спокойно.
 	AI_Output(other,self,"DIA_Lee_KAP4_Perm_15_02");	//По-моему, это тоже неплохо.
 	AI_Output(self,other,"DIA_Lee_KAP4_Perm_04_03");	//Но, к сожалению, у нас не стало меньше работы. Парни все чаще и чаще выражают недовольство, им теперь приходится работать еще и за людей Сильвио.
 	AI_Output(self,other,"DIA_Lee_KAP4_Perm_04_04");	//Но это мои проблемы. Я справлюсь.
@@ -1690,7 +1690,7 @@ func void DIA_Lee_GetShip_crew()
 {
 	AI_Output(other,self,"DIA_Lee_GetShip_crew_15_00");	//А кого мне взять в команду?
 	AI_Output(self,other,"DIA_Lee_GetShip_crew_04_01");	//Это ты должен решить сам. Но я бы взял только людей, которым доверяю. Ты много знаешь людей, которым можно доверять?
-	AI_Output(self,other,"DIA_Lee_GetShip_crew_04_02");	//Если тебе нужен кузнец в команде, попробуй уговорить Беннета. Лучше него ты вряд ли найдешь.
+	AI_Output(self,other,"DIA_Lee_GetShip_crew_04_02");	//Если тебе нужен кузнец в команде, попробуй уговорить Беннета. Лучше его ты вряд ли найдешь.
 	B_LogEntry(Topic_Crew,"Что касается моей команды, здесь Ли мало чем может помочь мне. Но все же он дал совет - набирать только людей, которым я могу доверять. Я, пожалуй, спрошу Беннета, может быть, ему это будет интересно.");
 };
 

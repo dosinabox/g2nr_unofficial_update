@@ -139,7 +139,7 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_andere()
 	};
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_01");	//ѕоследнее, что € помню - это обрушение Ѕарьера, сопровождавшеес€ душераздирающим воплем.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_02");	//Ќас охватил панический страх. ћы упали на землю, корчась от боли. Ётот голос... ќн становилс€ все громче.
-	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_03");	//ј затем вдруг все кончилось, все побежали как безумные и исчезли в ночи, воп€ истошными голосами.
+	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_03");	//» затем вдруг все кончилось, все побежали как безумные и исчезли в ночи, воп€ истошными голосами.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_04");	//» больше € их не видел.
 	if(SC_KnowsMadPsi == TRUE)
 	{
@@ -449,7 +449,7 @@ instance DIA_AngarDJG_UNDEADMAGECOMES(C_Info)
 
 func int DIA_AngarDJG_UNDEADMAGECOMES_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_PATH_3_13") < 500) && Npc_KnowsInfo(other,DIA_AngarDJG_WANTTOGOINTHERE) && (Npc_KnowsInfo(other,DIA_AngarDJG_UndeadMageDead) == FALSE) && (DJG_AngarGotAmulett == FALSE) && Npc_IsDead(SkeletonMage_Angar))
+	if((Npc_GetDistToWP(self,"OW_PATH_3_13") < 500) && Npc_KnowsInfo(other,DIA_AngarDJG_WANTTOGOINTHERE) && !Npc_KnowsInfo(other,DIA_AngarDJG_UndeadMageDead) && (DJG_AngarGotAmulett == FALSE) && Npc_IsDead(SkeletonMage_Angar))
 	{
 		return TRUE;
 	};

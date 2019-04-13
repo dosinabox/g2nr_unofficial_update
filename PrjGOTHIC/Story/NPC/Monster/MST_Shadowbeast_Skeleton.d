@@ -14,7 +14,7 @@ prototype Mst_Default_Shadowbeast_Skeleton(C_Npc)
 	protection[PROT_BLUNT] = 150;
 	protection[PROT_EDGE] = 150;
 	protection[PROT_POINT] = 200;
-	protection[PROT_FIRE] = 150;
+	protection[PROT_FIRE] = 20;	//150;
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 20;
 	damagetype = DAM_EDGE;

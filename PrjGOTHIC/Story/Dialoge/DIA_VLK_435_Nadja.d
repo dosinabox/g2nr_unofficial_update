@@ -215,7 +215,7 @@ func void DIA_Addon_Nadja_LuciaInfo_Elvrich()
 {
 	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_Elvrich_15_00");	//Куда они могли направиться?
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_Elvrich_16_01");	//Если их не сожрали волки, то полагаю, они живут у фермеров.
-	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_Elvrich_16_02");	//А куда им еще деться?
+	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_Elvrich_16_02");	//А куда еще им деться?
 	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Что еще ты знаешь?",DIA_Addon_Nadja_LuciaInfo_sonst);
 };
 

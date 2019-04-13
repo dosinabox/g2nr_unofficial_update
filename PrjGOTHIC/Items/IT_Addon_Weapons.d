@@ -594,7 +594,7 @@ instance ItRw_Addon_MagicArrow(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ARROW";
 //	value = Value_Pfeil;
-	value = Damage_MagicBow / 2;
+	value = Damage_MagicBow;
 //	visual = "ItRw_Arrow.3ds";
 	visual = "ItRw_MagicArrow.3ds";
 	material = MAT_WOOD;
@@ -611,7 +611,7 @@ instance ItRw_Addon_FireArrow(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_FIREARROW";
 //	value = Value_Pfeil;
-	value = Damage_FireBow / 2;
+	value = Damage_FireBow;
 //	visual = "ItRw_Arrow.3ds";
 	visual = "ItRw_FireArrow.3ds";
 	material = MAT_WOOD;
@@ -674,7 +674,7 @@ instance ItRw_Addon_MagicBolt(C_Item)
 	mainflag = ITEM_KAT_MUN;
 	flags = ITEM_CROSSBOW | ITEM_MULTI;
 //	value = Value_Bolzen;
-	value = Damage_MagicCrossbow / 2;
+	value = Damage_MagicCrossbow;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_BOLT";
 //	visual = "ItRw_Bolt.3ds";

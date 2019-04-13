@@ -464,7 +464,7 @@ func void DIA_Hyglas_BringBook_GetForIt()
 {
 	AI_Output(other,self,"DIA_Hyglas_BringBook_GetForIt_15_00");	//И что я за это получу?
 	AI_Output(self,other,"DIA_Hyglas_BringBook_GetForIt_14_01");	//Что ты имеешь в виду?
-	AI_Output(other,self,"DIA_Hyglas_BringBook_GetForIt_15_02");	//Я бы хотел знать, что ты дашь мне, если я принесу эту книгу.
+	AI_Output(other,self,"DIA_Hyglas_BringBook_GetForIt_15_02");	//Ну, я бы хотел знать, что ты дашь мне, если я принесу эту книгу.
 	AI_Output(self,other,"DIA_Hyglas_BringBook_GetForIt_14_03");	//Ничего. А что ты ожидал получить? Если у тебя есть время, чтобы выполнить для меня задание в городе, это твоя обязанность помочь мне.
 	Info_ClearChoices(DIA_Hyglas_BringBook);
 };
@@ -580,7 +580,7 @@ func void DIA_Hyglas_Kap4_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_06");	//Я говорил тебе, что я все равно продолжаю свои исследования, но на них, конечно же, потребуется больше времени, если у меня не будет необходимых материалов.
+		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_06");	//Я говорил тебе, что все равно продолжаю свои исследования, но на них, конечно же, потребуется больше времени, если у меня не будет необходимых материалов.
 	};
 };
 

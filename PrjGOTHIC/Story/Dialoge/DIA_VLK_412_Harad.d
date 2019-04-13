@@ -68,7 +68,7 @@ func void DIA_Harad_Arbeit_Info()
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_01");	//Хм - мне не помешал бы новый ученик.
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_02");	//Брайан скоро закончит свое обучение, а затем покинет город.
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_03");	//А ты на что-нибудь годишься?
-	AI_Output(other,self,"DIA_Harad_Arbeit_15_04");	//Если ты имеешь в виду, знаю ли я работу кузнеца...
+	AI_Output(other,self,"DIA_Harad_Arbeit_15_04");	//Ну, если ты имеешь в виду, знаю ли я работу кузнеца...
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_05");	//Нет. Я о другом.
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_06");	//Рано или поздно, придут орки и возьмут город в кольцо. И тогда в расчет будут приниматься только мужчины, способные защищать город.
 	if(other.guild == GIL_NONE)

@@ -336,7 +336,7 @@ func void DIA_Hokurn_Teach_Info()
 	{
 		if(hero.guild == GIL_PAL)
 		{
-			AI_Output(self,other,"DIA_Hokurn_Teach_01_02");	//ј потом мы посмотрим, что можно выжать из твоих ржавых паладинских костей, ха?
+			AI_Output(self,other,"DIA_Hokurn_Teach_01_02");	//ј потом посмотрим, что можно выжать из твоих ржавых паладинских костей, ха?
 		}
 		else if(hero.guild == GIL_KDF)
 		{

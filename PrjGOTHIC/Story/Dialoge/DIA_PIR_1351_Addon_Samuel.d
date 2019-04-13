@@ -103,7 +103,7 @@ func void DIA_Addon_Samuel_Versteck_Info()
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_02");	//Я должен попасть в хижину Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_05");	//Неужели? А зачем, интересно?
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_01");	//Мне нужны бандитские доспехи.
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_06");	//(смеется) Фрэнсис ни за что не пустит тебя в хижину, чтобы ты мог покопаться в вещах Грега.
+	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_06");	//(смеется) Фрэнсис ни за что не пустит тебя в хижину, чтоб ты мог покопаться в вещах Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_07");	//Если только...
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_03");	//Что?
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_08");	//... Если только у тебя не будет что-то, что действительно нужно Фрэнсису.

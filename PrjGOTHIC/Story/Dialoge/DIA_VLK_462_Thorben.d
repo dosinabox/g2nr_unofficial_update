@@ -358,7 +358,7 @@ func void DIA_Thorben_PleaseTeach_Info()
 	else if(MIS_Matteo_Gold == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_07");	//Ты заплатил долг Гритты Маттео. Похоже, ты хороший человек. Я обучу тебя тому, что ты хочешь знать.
-		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_08");	//Однако я не могу сделать это бесплатно. У меня целая куча долгов, и мне нужны деньги.
+		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_08");	//Однако я не могу сделать это бесплатно.
 		AI_Output(other,self,"DIA_Thorben_PleaseTeach_15_09");	//Сколько ты возьмешь?
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_10");	//200 золотых монет.
 		Info_ClearChoices(DIA_Thorben_PleaseTeach);
@@ -368,7 +368,7 @@ func void DIA_Thorben_PleaseTeach_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_11");	//Хмм... я не знаю, можно ли тебе доверять.
-		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_12");	//Боюсь, ты можешь оказаться одним из этих бездельников, которые приходят в город, только чтобы обчистить сундуки честных людей.
+		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_12");	//Боюсь, ты можешь оказаться одним из этих бездельников, которые приходят в город, только чтобы очистить сундуки честных людей.
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_13");	//Я ничему не буду учить тебя, пока не буду уверен, что ты честный человек.
 	};
 };

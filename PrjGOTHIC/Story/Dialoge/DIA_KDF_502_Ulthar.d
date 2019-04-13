@@ -344,7 +344,7 @@ func int DIA_Ulthar_SchreineGeheilt_Condition()
 func void DIA_Ulthar_SchreineGeheilt_Info()
 {
 	AI_Output(other,self,"DIA_Ulthar_SchreineGeheilt_15_00");	//Я очистил все алтари.
-	AI_Output(self,other,"DIA_Ulthar_SchreineGeheilt_05_01");	//Превосходно, сын мой. Я горжусь тобой. Да не оставит тебя внимание Инноса.
+	AI_Output(self,other,"DIA_Ulthar_SchreineGeheilt_05_01");	//Превосходно, сын мой. Я горжусь тобой. Да не оставит тебя вниманием Иннос.
 	AI_Output(self,other,"DIA_Ulthar_SchreineGeheilt_05_02");	//Возьми этот Амулет силы, он может пригодиться тебе в твоих сражениях с врагом.
 	CreateInvItems(self,ItAm_Dex_Strg_01,1);
 	B_GiveInvItems(self,other,ItAm_Dex_Strg_01,1);

@@ -14,7 +14,7 @@ prototype Mst_Default_Skeleton(C_Npc)
 	protection[PROT_BLUNT] = 125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = 175;
-	protection[PROT_FIRE] = 65;	//125;
+	protection[PROT_FIRE] = 16;	//125;
 	protection[PROT_FLY] = 125;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -95,7 +95,7 @@ instance Lesser_Skeleton(Mst_Default_Skeleton)
 	protection[PROT_BLUNT] = 80;
 	protection[PROT_EDGE] = 80;
 	protection[PROT_POINT] = 130;
-	protection[PROT_FIRE] = 25;	//80;
+//	protection[PROT_FIRE] = 16;	//80;
 	protection[PROT_FLY] = 80;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_SetVisuals_Lesser_Skeleton();

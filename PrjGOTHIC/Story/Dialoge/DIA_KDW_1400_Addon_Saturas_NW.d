@@ -61,7 +61,7 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_05");	//Покажи ее мне!
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_06");	//Хм. В большом лесу чрезвычайно опасно. Не следует направляться туда одному.
-		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_07");	//Найди кого-нибудь в Хоринисе, кто бы мог пойти с тобой.
+		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_07");	//Найди кого-нибудь в Хоринисе, кто мог бы пойти с тобой.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_08");	//Не то, чтобы я о тебе волнуюсь, но монстры могут съесть орнамент вместе с тобой.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_09");	//Вот твоя карта...
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);

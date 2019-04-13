@@ -42,7 +42,7 @@ func int DIA_Engor_HALLO_Condition()
 
 func void DIA_Engor_HALLO_Info()
 {
-	AI_Output(self,other,"DIA_Engor_HALLO_13_00");	//А, ты тот парень, которому удалось пройти через Проход?
+	AI_Output(self,other,"DIA_Engor_HALLO_13_00");	//Ах, ты тот парень, которому удалось пройти через Проход?
 	AI_Output(other,self,"DIA_Engor_HALLO_15_01");	//Да.
 	AI_Output(self,other,"DIA_Engor_HALLO_13_02");	//Отлично. Я Энгор - я обеспечиваю эту экспедицию.
 	AI_Output(self,other,"DIA_Engor_HALLO_13_03");	//Только не думай, что можешь получить от меня что-нибудь бесплатно!
@@ -148,7 +148,7 @@ instance DIA_Engor_RSkaufen(C_Info)
 	condition = DIA_Engor_RSkaufen_Condition;
 	information = DIA_Engor_RSkaufen_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи ополчения. Защита: 70/70/10/10. (2500 золота)";
+	description = "Купить тяжелые доспехи ополчения. Защита: 70/70/20/10. (2500 золота)";
 };
 
 

@@ -531,7 +531,7 @@ func void DIA_Talbin_FOUNDENGROM_Info()
 		AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_06");	//Ищущие? Кто это такие?
 		AI_Output(other,self,"DIA_Talbin_FOUNDENGROM_15_07");	//Приспешники преисподней. Это они командуют орками.
 	};
-	AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_08");	//О, Иннос. Мне нужно выбираться отсюда, даже если я при этом найду свою смерть. Сейчас или никогда!
+	AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_08");	//О, Иннос. Мне нужно выбираться отсюда, даже если при этом я найду свою смерть. Сейчас или никогда!
 	AI_StopProcessInfos(self);
 	Log_CreateTopic(TOPIC_Talbin_Runs,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_Running);

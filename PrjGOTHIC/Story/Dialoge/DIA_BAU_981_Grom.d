@@ -194,7 +194,7 @@ func void DIA_Grom_TEACHHUNTING_Fur()
 {
 	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Fur))
 	{
-		AI_Output(self,other,"DIA_Grom_TEACHHUNTING_Fur_08_00");	//Сделай разрез вдоль ноги животного, чтобы ты мог снять с него шкуру. Снимай ее с зада наперед, а не наоборот.
+		AI_Output(self,other,"DIA_Grom_TEACHHUNTING_Fur_08_00");	//Сделай разрез вдоль ноги животного, чтобы ты смог снять с него шкуру. Снимай ее с зада наперед, а не наоборот.
 	};
 	Info_ClearChoices(DIA_Grom_TEACHHUNTING);
 };

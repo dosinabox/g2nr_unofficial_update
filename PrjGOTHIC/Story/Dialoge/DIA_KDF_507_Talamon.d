@@ -281,7 +281,7 @@ func void DIA_Talamon_ScoutSecretLibrary_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Talamon_ScoutSecretLibrary_15_05");	//Там, внизу, толпы монстров.
-		AI_Output(self,other,"DIA_Talamon_ScoutSecretLibrary_04_06");	//Там должно что-то быть, продолжай искать. И уничтожай этих монстров без всякой жалости.
+		AI_Output(self,other,"DIA_Talamon_ScoutSecretLibrary_04_06");	//Там должно что-то быть, продолжай искать. И уничтожай этих монстров безо всякой жалости.
 	};
 };
 

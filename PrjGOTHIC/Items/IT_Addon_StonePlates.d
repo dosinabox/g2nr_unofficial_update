@@ -445,7 +445,8 @@ instance ItWr_HitPointStonePlate1_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка жизненной силы I";
 	on_state[0] = Use_HitPointStonePlate1;
-	visual = "ItMi_StonePlate_PowerUp_03.3DS";
+//	visual = "ItMi_StonePlate_PowerUp_03.3DS";
+	visual = "ItMi_StonePlate_PowerUp_06.3DS";
 };
 
 
@@ -466,7 +467,8 @@ instance ItWr_HitPointStonePlate2_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка жизненной силы II";
 	on_state[0] = Use_HitPointStonePlate2;
-	visual = "ItMi_StonePlate_PowerUp_03.3DS";
+//	visual = "ItMi_StonePlate_PowerUp_03.3DS";
+	visual = "ItMi_StonePlate_PowerUp_06.3DS";
 };
 
 
@@ -487,7 +489,8 @@ instance ItWr_HitPointStonePlate3_Addon(Prototype_StonePlate)
 {
 	description = "Каменная табличка жизненной силы III";
 	on_state[0] = Use_HitPointStonePlate3;
-	visual = "ItMi_StonePlate_PowerUp_03.3DS";
+//	visual = "ItMi_StonePlate_PowerUp_03.3DS";
+	visual = "ItMi_StonePlate_PowerUp_06.3DS";
 };
 
 

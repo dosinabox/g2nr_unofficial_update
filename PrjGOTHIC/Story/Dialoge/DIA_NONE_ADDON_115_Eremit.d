@@ -255,9 +255,9 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	{
 		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать добротное городское платье",DIA_Addon_Eremit_Klamotten_VlkBabe_H);
 	};
-	if(Npc_HasItems(other,ITAR_PAL_SKEL))
+	if(Npc_HasItems(other,ITAR_PAL_Skel))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать старые доспехи паладина",DIA_Addon_Eremit_Klamotten_PAL_SKEL);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать старые доспехи паладина",DIA_Addon_Eremit_Klamotten_PAL_Skel);
 	}; */
 	if(Npc_HasItems(other,ITAR_Bau_L))
 	{
@@ -482,9 +482,9 @@ func void DIA_Addon_Eremit_Klamotten_PAL_H()
 	B_Eremit_Tatsache();
 };
 
-func void DIA_Addon_Eremit_Klamotten_PAL_SKEL()
+func void DIA_Addon_Eremit_Klamotten_PAL_Skel()
 {
-	B_GiveInvItems(other,self,ITAR_PAL_SKEL,1);
+	B_GiveInvItems(other,self,ITAR_PAL_Skel,1);
 	B_Eremit_Tatsache();
 }; */
 

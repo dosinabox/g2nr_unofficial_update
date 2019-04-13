@@ -151,7 +151,7 @@ func void DIA_Peck_WEAPON_Info()
 	AI_Output(other,self,"DIA_Peck_WEAPON_15_00");	//Я пришел за оружием.
 	if(MIS_Andre_Peck == LOG_Running)
 	{
-		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сначала сходи к Андрэ и доложи ему.
+		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
 	}
 	else
 	{

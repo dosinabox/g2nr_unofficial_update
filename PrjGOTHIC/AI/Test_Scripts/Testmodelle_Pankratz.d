@@ -360,8 +360,12 @@ func void SH_Oldworld_BACK2()
 
 func void SH_Oldworld_KAPITEL2ANFANG()
 {
+	Torwache_305.aivar[AIV_PASSGATE] = TRUE;
+	Mil_305_schonmalreingelassen = TRUE;
+	CreateInvItems(hero,ItKe_Pass_MIS,1);
 	MIS_OLDWORLD = LOG_Running;
 	B_Kapitelwechsel(2,OldWorld_Zen);
+	Info_ClearChoices(SH_Oldworld_INFO2);
 	AI_StopProcessInfos(self);
 };
 
@@ -499,7 +503,7 @@ func void SH_Oldworld_KAPITEL5ANFANG()
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(OldWorld_Zen);
 	B_Kapitelwechsel(4,OldWorld_Zen);
-	CreateInvItems(hero,ItAt_IcedragonHeart,1);
+	CreateInvItems(hero,ItAt_IcedragonHeart,1);	//чтобы оно было у вас на »рдорате!
 	MIS_AllDragonsDead = TRUE;
 	EnterNW_Kapitel5 = TRUE;
 	B_Kapitelwechsel(5,OldWorld_Zen);

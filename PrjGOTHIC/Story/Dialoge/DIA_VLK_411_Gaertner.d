@@ -108,7 +108,7 @@ func void DIA_Gaertner_Plants_Info()
 {
 	AI_Output(other,self,"DIA_Gaertner_Plants_15_00");	//“ы выращиваешь какие-нибудь травы?
 	AI_Output(self,other,"DIA_Gaertner_Plants_09_01");	//ƒа, немного. я выращиваю огненную траву и огненную крапиву. “акже € пыталс€ сажать болотную траву, но она не приживаетс€ здесь.
-	AI_Output(self,other,"DIA_Gaertner_Plants_09_02");	//я только что собрал выращенное. “ак что, если ты хочешь что-то купить...
+	AI_Output(self,other,"DIA_Gaertner_Plants_09_02");	//я только что собрал выращенное. “ак что, если хочешь что-то купить...
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"—адовник губернатора может продать мне кое-какие растени€.");
 };

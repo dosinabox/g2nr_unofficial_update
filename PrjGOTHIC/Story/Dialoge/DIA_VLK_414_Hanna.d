@@ -257,7 +257,7 @@ func void DIA_Hanna_AnyNews_No()
 
 func void DIA_Hanna_AnyNews_Depends()
 {
-	AI_Output(other,self,"DIA_Hanna_AnyNews_Depends_15_00");	//Ну, как сказать...
+	AI_Output(other,self,"DIA_Hanna_AnyNews_Depends_15_00");	//Ну, как сказать, э...
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Depends_17_01");	//Это зависит от того, сколько на этом можно заработать, ты хочешь сказать?
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Depends_17_02");	//Я не люблю таких, как ты.
 	MIS_HannaRetrieveLetter = LOG_FAILED;

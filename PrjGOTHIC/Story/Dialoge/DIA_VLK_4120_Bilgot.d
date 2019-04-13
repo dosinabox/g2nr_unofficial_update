@@ -50,9 +50,9 @@ func void DIA_Bilgot_HALLO_Info()
 func void DIA_Bilgot_HALLO_Zufall()
 {
 	AI_Output(other,self,"DIA_Bilgot_HALLO_Zufall_15_00");	//Я просто случайно забрел сюда...
-	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_01");	//Парень, никто не заходит сюда СЛУЧАЙНО. Мы заперты здесь - окруженные снепперами!
+	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_01");	//Парень, никто не входит сюда СЛУЧАЙНО. Мы заперты здесь - окруженные снепперами!
 	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_02");	//И дня не проходит, чтобы они не загрызли кого-нибудь из наших.
-	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_03");	//Так ты не скажешь мне, откуда ты пришел? Хорошо - пусть тогда тебя съедят снепперы!
+	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_03");	//Так ты не скажешь мне, откуда ты пришел? Хорошо - пусть тебя тогда съедят снепперы!
 	AI_StopProcessInfos(self);
 };
 
@@ -117,7 +117,7 @@ func void DIA_Bilgot_Hilfe_Info()
 {
 	AI_Output(other,self,"DIA_Bilgot_Hilfe_15_00");	//Что ты знаешь о снепперах?
 	AI_Output(self,other,"DIA_Bilgot_Hilfe_05_01");	//Зачем тебе знать это? И не говори мне, что просто из любопытства!
-	AI_Output(other,self,"DIA_Bilgot_Hilfe_15_02");	//Я собираюсь поохотиться на этих снепперов,
+	AI_Output(other,self,"DIA_Bilgot_Hilfe_15_02");	//Я собираюсь поохотиться на этих снепперов.
 	AI_Output(self,other,"DIA_Bilgot_Hilfe_05_03");	//Это безумие. Я наблюдал за ними - что за кровожадные твари!
 	AI_Output(other,self,"DIA_Bilgot_Hilfe_15_04");	//Тогда расскажи мне, что ты о них знаешь.
 	AI_Output(self,other,"DIA_Bilgot_Hilfe_05_05");	//Хм... я мог бы помочь тебе, но только при одном условии!
