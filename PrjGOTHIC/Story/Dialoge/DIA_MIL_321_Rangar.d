@@ -147,7 +147,7 @@ func void DIA_Rangar_Bier_Info()
 	AI_Output(other,self,"DIA_Rangar_Bier_15_00");	//Хочешь еще пива?
 	if(B_GiveInvItems(other,self,ItFo_Beer,1))
 	{
-		if(Knows_Paladins == FALSE)
+		if(RangarToldAboutPaladins == FALSE)
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_01");	//Ах, нет ничего лучше, чем холодный эль.
 			CreateInvItems(self,ItFo_Beer,1);
@@ -156,10 +156,10 @@ func void DIA_Rangar_Bier_Info()
 			AI_Output(self,other,"DIA_Rangar_Bier_07_03");	//Ах, да, точно. Орки не представляют угрозы для города.
 			AI_Output(self,other,"DIA_Rangar_Bier_07_04");	//Они застряли в Долине Рудников. А Проход охраняется паладинами.
 			AI_Output(self,other,"DIA_Rangar_Bier_07_05");	//Даже мясной жук не просочится там.
-			Knows_Paladins = 1;
+			RangarToldAboutPaladins = TRUE;
 			Info_ClearChoices(DIA_Rangar_Bier);
 		}
-		else if((Knows_Paladins == 1) && (Knows_Ork == TRUE))
+		else if((RangarToldAboutPaladins == TRUE) && (Knows_Ork == TRUE))
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_06");	//Я бы не отказался еще от одной пинты.
 			CreateInvItems(self,ItFo_Beer,1);
@@ -168,7 +168,7 @@ func void DIA_Rangar_Bier_Info()
 			AI_Output(self,other,"DIA_Rangar_Bier_07_08");	//Да, точно, опасный орк около города. Этот орк - настоящий монстр. Он скоро нападет на город.
 			AI_Output(self,other,"DIA_Rangar_Bier_07_09");	//Послушай, мы порвем этого орка как тузик тряпку, если он подойдет близко к городу. Понял?
 			AI_Output(other,self,"DIA_Rangar_Bier_15_10");	//Понял.
-			Knows_Paladins = 2;
+			RangarToldAboutOrc = TRUE;
 			Info_ClearChoices(DIA_Rangar_Bier);
 		}
 		else

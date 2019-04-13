@@ -381,11 +381,15 @@ func int DIA_Thorben_PleaseTeach_Condition()
 func void DIA_Thorben_PleaseTeach_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_PleaseTeach_15_00");	//Ты можешь научить меня вскрывать замки отмычками?
-//	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch))
-	if(Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
+	if(Npc_KnowsInfo(other,DIA_Thorben_GiveBook) || Npc_KnowsInfo(other,DIA_Addon_Thorben_ElvrichIsBack))
 	{
-		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_01");	//Если бы не ты, я бы платил Лемару до конца своих дней.
+		if(Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
+		{
+			AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_01");	//Если бы не ты, я бы платил Лемару до конца своих дней.
+		};
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_02");	//Я обучу тебя тому, что ты хочешь знать.
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Торбен может обучить меня пользоваться отмычками.");
 		Thorben_TeachPlayer = TRUE;
 	}
 	else if(Thorben_GotGold == TRUE)
@@ -425,6 +429,8 @@ func void DIA_Thorben_PleaseTeach_Pay200()
 	if(B_GiveInvItems(other,self,ItMi_Gold,200))
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_Pay200_06_01");	//Эти деньги очень помогут мне. Мы приступим, как только ты будешь готов.
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Торбен может обучить меня пользоваться отмычками.");
 		Thorben_TeachPlayer = TRUE;
 	}
 	else
@@ -440,6 +446,8 @@ func void DIA_Thorben_PleaseTeach_Pay100()
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_Pay100_06_01");	//В таком случае, мы можем начать, когда ты будешь готов.
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Торбен может обучить меня пользоваться отмычками.");
 		Thorben_TeachPlayer = TRUE;
 	}
 	else

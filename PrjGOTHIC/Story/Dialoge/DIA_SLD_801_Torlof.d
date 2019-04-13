@@ -708,7 +708,7 @@ func int DIA_Torlof_TheOtherMission_Condition()
 
 func void DIA_Torlof_TheOtherMission_Info()
 {
-	if((Torlof_KnowsDragons == FALSE) && (ENTER_OLDWORLD_FIRSTTIME_TRIGGER_ONETIME == TRUE))
+	if((Torlof_KnowsDragons == FALSE) && (Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE))
 	{
 		B_Torlof_Dragons();
 	};
@@ -740,7 +740,7 @@ instance DIA_Torlof_Dragons(C_Info)
 
 func int DIA_Torlof_Dragons_Condition()
 {
-	if((ENTER_OLDWORLD_FIRSTTIME_TRIGGER_ONETIME == TRUE) && (Kapitel <= 3) && (other.guild == GIL_SLD) && (Torlof_KnowsDragons == FALSE))
+	if((Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE) && (Kapitel <= 3) && (other.guild == GIL_SLD) && (Torlof_KnowsDragons == FALSE))
 	{
 		return TRUE;
 	};

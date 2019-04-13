@@ -45,6 +45,10 @@ func int B_GetBestPlayerMap()
 		else if(Npc_HasItems(hero,ItWr_Map_OldWorld_Oremines_MIS))
 		{
 			return ItWr_Map_OldWorld_Oremines_MIS;
+		}
+		else if(Npc_HasItems(hero,ItWr_Map_OldWorld_Oremines_Small_MIS))
+		{
+			return ItWr_Map_OldWorld_Oremines_Small_MIS;
 		};
 	}
 	else if(CurrentLevel == DRAGONISLAND_ZEN)
@@ -106,6 +110,10 @@ func int B_GetAnyPlayerMap()
 	{
 		return ItWr_Map_OldWorld_Oremines_MIS;
 	}
+	else if(Npc_HasItems(hero,ItWr_Map_OldWorld_Oremines_Small_MIS))
+	{
+		return ItWr_Map_OldWorld_Oremines_Small_MIS;
+	}
 	else if(Npc_HasItems(hero,ItWr_Map_AddonWorld))
 	{
 		return ItWr_Map_AddonWorld;
@@ -137,7 +145,7 @@ func int player_hotkey_screen_map()
 	};
 	if(CurrentLevel != OldWorld_Zen)
 	{
-		if((OldInstance == ItWr_Map_OldWorld) || (OldInstance == ItWr_Map_OldWorld_Oremines_MIS))
+		if((OldInstance == ItWr_Map_OldWorld) || (OldInstance == ItWr_Map_OldWorld_Oremines_MIS) || (OldInstance == ItWr_Map_OldWorld_Oremines_Small_MIS))
 		{
 			NewInstance = 0;
 		};

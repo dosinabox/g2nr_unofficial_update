@@ -26,3 +26,9 @@ func void Rtn_Start_731()
 	TA_Sit_Bench(23,0,8,0,"OW_PATH_064");
 };
 
+func void Rtn_IceRegion_731()
+{
+	TA_Sit_Bench(8,0,23,0,"ICEDRAGON");
+	TA_Sit_Bench(23,0,8,0,"ICEDRAGON");
+};
+

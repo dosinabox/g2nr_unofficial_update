@@ -92,7 +92,6 @@ instance MENUITEM_OPT_BACK(C_MENU_ITEM_DEF)
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Назад";
 	posx = 1000;
-//	posy = MENU_BACK_Y + 300;
 	posy = MENU_START_Y + (MENU_SOUND_DY * 9) + 100;
 	dimx = 6192;
 	dimy = MENU_OPT_DY;

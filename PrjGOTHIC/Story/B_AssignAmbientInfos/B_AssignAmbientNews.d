@@ -58,7 +58,10 @@ func void DIA_Ambient_NEWS_Info()
 	};
 	if(C_NpcBelongsToMonastery(self) && (Parlan_Schulden <= 0))
 	{
-		B_Say(self,other,"$MONA_CRIME");
+		if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pyrokar))
+		{
+			B_Say(self,other,"$MONA_CRIME");
+		};
 	};
 	if(C_NpcBelongsToFarm(self) && (Lee_Schulden <= 0))
 	{

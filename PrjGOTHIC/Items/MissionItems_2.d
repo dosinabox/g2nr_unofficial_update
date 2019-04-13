@@ -408,6 +408,41 @@ func void Use_Map_OldWorld_Oremines()
 };
 
 
+instance ItWr_Map_OldWorld_Oremines_Small_MIS(C_Item)
+{
+	name = "Карта рудников Гаронда";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION | ITEM_MULTI;
+	value = 50;
+	visual = "ItWr_Map_OW_Small.3DS";
+	material = MAT_LEATHER;
+	scemeName = "MAP";
+	on_state[0] = Use_Map_OldWorld_Oremines_Small;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
+func void Use_Map_OldWorld_Oremines_Small()
+{
+	var int Document;
+	if(Npc_IsPlayer(self))
+	{
+		B_SetPlayerMap(ItWr_Map_OldWorld_Oremines_Small_MIS);
+	};
+	Document = Doc_CreateMap();
+	Doc_SetPages(Document,1);
+	Doc_SetPage(Document,0,"Map_OldWorld_Oremines_Small.tga",TRUE);
+	Doc_SetLevel(Document,"OldWorld\OldWorld.zen");
+	Doc_SetLevelCoords(Document,-78500,47500,54000,-53000);
+	Doc_Show(Document);
+};
+
+
 instance ItWr_Manowar(C_Item)
 {
 	name = "Текст песни";

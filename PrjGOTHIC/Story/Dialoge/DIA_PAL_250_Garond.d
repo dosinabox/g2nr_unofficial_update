@@ -438,8 +438,10 @@ func void DIA_Garond_Wo_Info()
 {
 	AI_Output(other,self,"DIA_Garond_Wo_15_00");	//Где мне найти эти шахты?
 	AI_Output(self,other,"DIA_Garond_Wo_10_01");	//Вот, возьми эту карту. На ней показаны две области, где находятся шахты.
-	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_MIS,1);
-	B_GiveInvItems(self,other,ItWr_Map_OldWorld_Oremines_MIS,1);
+//	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_MIS,1);
+//	B_GiveInvItems(self,other,ItWr_Map_OldWorld_Oremines_MIS,1);
+	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
+	B_GiveInvItems(self,other,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
 	AI_Output(self,other,"DIA_Garond_Wo_10_02");	//Если у тебя есть еще вопросы, обратись к Парсивалю. Он расскажет все, что тебе нужно знать о старателях.
 	B_LogEntry(TOPIC_ScoutMine,"Паладин Парсиваль может дать мне информацию о старателях.");
 };

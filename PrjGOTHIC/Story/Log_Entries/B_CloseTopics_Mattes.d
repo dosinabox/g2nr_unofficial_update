@@ -84,7 +84,8 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_PepeWolves,MIS_Pepe_KillWolves,0,6);
 	B_CloseTopic(TOPIC_KickBullco,MIS_Pepe_KickBullco,0,6);
 	B_CloseTopic(TOPIC_Frieden,MIS_Lee_Friedensangebot,0,6);
-	B_CloseTopic(Topic_MISOLDWORLD,MIS_OLDWORLD,0,3);
+//	B_CloseTopic(Topic_MISOLDWORLD,MIS_OLDWORLD,0,3);
+	B_CloseTopic(Topic_MISOLDWORLD,MIS_OLDWORLD,0,4);
 	B_CloseTopic(TOPIC_ScoutMine,MIS_ScoutMine,0,3);
 	B_CloseTopic(TOPIC_RescueGorn,MIS_RescueGorn,0,3);
 	B_CloseTopic(TOPIC_FajethKillSnapper,MIS_Fajeth_Kill_Snapper,0,3);

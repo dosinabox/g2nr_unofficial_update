@@ -244,7 +244,14 @@ func void DIA_Till_BRONKOZURARBEIT_Info()
 	AI_Output(self,other,"DIA_Till_BRONKOZURARBEIT_03_01");	//Что ты хочешь сказать этим? Хорошо, послушай, если ты сможешь заставить Бронко работать, я заплачу тебе, скажем, 10 золотых монет. Что скажешь?
 	Till_Angebot = 10;
 	Info_ClearChoices(DIA_Till_BRONKOZURARBEIT);
-	Info_AddChoice(DIA_Till_BRONKOZURARBEIT,"Нет проблем. Но мне нужно больше денег.",DIA_Till_BRONKOZURARBEIT_mehr);
+	if(Till_IchMachsNurEinmal == TRUE)
+	{
+		Info_AddChoice(DIA_Till_BRONKOZURARBEIT,"Я хочу больше.",DIA_Till_BRONKOZURARBEIT_mehr);
+	}
+	else
+	{
+		Info_AddChoice(DIA_Till_BRONKOZURARBEIT,"Нет проблем. Но мне нужно больше денег.",DIA_Till_BRONKOZURARBEIT_mehr);
+	};
 	Info_AddChoice(DIA_Till_BRONKOZURARBEIT,"Хорошо. Я посмотрю, что можно сделать.",DIA_Till_BRONKOZURARBEIT_ok);
 	Info_AddChoice(DIA_Till_BRONKOZURARBEIT,"Я подумаю над этим.",DIA_Till_BRONKOZURARBEIT_nochnicht);
 };

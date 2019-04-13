@@ -281,7 +281,6 @@ instance ItFo_XPStew(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
 	value = Value_BonusFood;
-//	visual = "ItFo_Stew.3ds";
 	visual = "ItFo_XPStew.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -310,7 +309,6 @@ instance ItFo_CoragonsBeer(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
 	value = Value_Beer;
-//	visual = "ItFo_Beer.3DS";
 	visual = "ItFo_CoragonsBeer.3DS";
 	material = MAT_WOOD;
 	scemeName = "POTIONFAST";

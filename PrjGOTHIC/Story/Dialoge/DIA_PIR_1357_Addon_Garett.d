@@ -461,7 +461,7 @@ func void DIA_Addon_Garett_ArmorM_Info()
 	AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
 	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
 	Info_AddChoice(DIA_Addon_Garett_ArmorM,Dialog_Back,DIA_Addon_Garett_ArmorM_Back);
-	Info_AddChoice(DIA_Addon_Garett_ArmorM,"Купить доспехи пирата. Защита: 55/55/15/0. (1300 золотых)",DIA_Addon_Garett_ArmorM_Buy);
+	Info_AddChoice(DIA_Addon_Garett_ArmorM,"Купить доспехи пирата. Защита: 55/55/0/0. (1300 золотых)",DIA_Addon_Garett_ArmorM_Buy);
 };
 
 func void DIA_Addon_Garett_ArmorM_Buy()

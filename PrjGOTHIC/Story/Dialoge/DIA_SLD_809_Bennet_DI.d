@@ -385,7 +385,7 @@ instance DIA_Bennet_DI_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DI_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DI_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "“€желые доспехи охотника на драконов (150/150/50/50, 20000 золотых)";
+	description = "“€желые доспехи охотника на драконов (150/150/100/50, 20000 золотых)";
 };
 
 

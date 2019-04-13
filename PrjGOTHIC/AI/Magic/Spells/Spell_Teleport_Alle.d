@@ -302,7 +302,7 @@ func void Spell_Cast_TeleportTaverne()
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 };
 
-func int Spell_Logic_Teleport_3(var int manaInvested)
+func int Spell_Logic_TeleportRitual(var int manaInvested)
 {
 	if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
 	{
@@ -315,7 +315,7 @@ func int Spell_Logic_Teleport_3(var int manaInvested)
 	return SPL_NEXTLEVEL;
 };
 
-func void Spell_Cast_Teleport_3()
+func void Spell_Cast_TeleportRitual()
 {
 	B_PrintTeleportTooFarAway(NEWWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
@@ -406,9 +406,9 @@ func void Spell_Cast_Teleport()
 	{
 		Spell_Cast_TeleportTaverne();
 	};
-	if(Npc_GetActiveSpell(self) == SPL_Teleport_3)
+	if(Npc_GetActiveSpell(self) == SPL_TeleportRitual)
 	{
-		Spell_Cast_Teleport_3();
+		Spell_Cast_TeleportRitual();
 	};
 	if(Npc_GetActiveSpell(self) == SPL_Teleport_Maya)
 	{

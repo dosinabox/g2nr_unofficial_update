@@ -71,9 +71,9 @@ func int Spell_ProcessMana(var int manaInvested)
 	{
 		return Spell_Logic_TeleportTaverne(manaInvested);
 	};
-	if(activeSpell == SPL_Teleport_3)
+	if(activeSpell == SPL_TeleportRitual)
 	{
-		return Spell_Logic_Teleport_3(manaInvested);
+		return Spell_Logic_TeleportRitual(manaInvested);
 	};
 	if(activeSpell == SPL_Teleport_Maya)
 	{

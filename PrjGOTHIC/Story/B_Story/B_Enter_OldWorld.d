@@ -154,14 +154,6 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		};
 		Wld_InsertNpc(DJG_730_ToterDrachenjaeger,"OC1");
 		B_KillNpc(DJG_730_ToterDrachenjaeger);
-		Wld_InsertNpc(DJG_731_ToterDrachenjaeger,"OC1");
-		B_KillNpc(DJG_731_ToterDrachenjaeger);
-		Wld_InsertNpc(DJG_732_ToterDrachenjaeger,"OC1");
-		B_KillNpc(DJG_732_ToterDrachenjaeger);
-		Wld_InsertNpc(DJG_733_ToterDrachenjaeger,"OC1");
-		B_KillNpc(DJG_733_ToterDrachenjaeger);
-		Wld_InsertNpc(DJG_734_ToterDrachenjaeger,"OC1");
-		B_KillNpc(DJG_734_ToterDrachenjaeger);
 		Wld_InsertNpc(DJG_735_ToterDrachenjaeger,"OC1");
 		B_KillNpc(DJG_735_ToterDrachenjaeger);
 		Wld_InsertNpc(DJG_736_ToterDrachenjaeger,"OC1");
@@ -439,6 +431,27 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Warg,"SPAWN_OW_SHADOWBEAST_NEAR_SHADOW4");
 		Wld_InsertNpc(Warg,"SPAWN_OW_SHADOWBEAST_NEAR_SHADOW4");
 		Wld_InsertItem(ItMi_KerolothsGeldbeutel_MIS,"FP_OC_KEROLOTHS_GELDBEUTEL");
+		Wld_InsertNpc(DJG_731_ToterDrachenjaeger,"OC1");
+		Wld_InsertNpc(DJG_732_ToterDrachenjaeger,"OC1");
+		Wld_InsertNpc(DJG_733_ToterDrachenjaeger,"OC1");
+		Wld_InsertNpc(DJG_734_ToterDrachenjaeger,"OC1");
+		if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2))
+		{
+			SylvioIceGolemsKilledBefore4Chapter = TRUE;
+			B_StartOtherRoutine(DJG_731_ToterDrachenjaeger,"IceRegion");
+			B_StartOtherRoutine(DJG_732_ToterDrachenjaeger,"IceRegion");
+			B_StartOtherRoutine(DJG_733_ToterDrachenjaeger,"IceRegion");
+			B_StartOtherRoutine(DJG_734_ToterDrachenjaeger,"IceRegion");
+			B_StartOtherRoutine(DJG_700_Sylvio,"IceWait1");
+			if(SLD_Bullco_is_alive == TRUE)
+			{
+				B_StartOtherRoutine(DJG_701_Bullco,"IceWait1");
+			};
+		};
+		B_KillNpc(DJG_731_ToterDrachenjaeger);
+		B_KillNpc(DJG_732_ToterDrachenjaeger);
+		B_KillNpc(DJG_733_ToterDrachenjaeger);
+		B_KillNpc(DJG_734_ToterDrachenjaeger);
 		B_RemoveNpc(OC_Sheep2);
 		B_StartOtherRoutine(Garond,"START");
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);

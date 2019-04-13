@@ -326,7 +326,7 @@ instance DIA_Garvell_Orks(C_Info)
 
 func int DIA_Garvell_Orks_Condition()
 {
-	if((MIS_Garvell_Infos == LOG_Running) && (Knows_Paladins >= 1))
+	if((MIS_Garvell_Infos == LOG_Running) && ((RangarToldAboutPaladins == TRUE) || Npc_KnowsInfo(other,DIA_Garond_NeedProof)))
 	{
 		return TRUE;
 	};
@@ -402,7 +402,7 @@ instance DIA_Garvell_City(C_Info)
 
 func int DIA_Garvell_City_Condition()
 {
-	if((MIS_Garvell_Infos == LOG_Running) && (Knows_Paladins >= 2))
+	if((MIS_Garvell_Infos == LOG_Running) && ((RangarToldAboutOrc == TRUE) || Npc_IsDead(CityOrc)))
 	{
 		return TRUE;
 	};

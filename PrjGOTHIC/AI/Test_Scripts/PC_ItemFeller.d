@@ -241,7 +241,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItRu_TeleportPassOW,1);
 	CreateInvItems(self,ItRu_TeleportOC,1);
 	CreateInvItems(self,ItRu_TeleportTaverne,1);
-	CreateInvItems(self,ItRu_Teleport_3,1);
+	CreateInvItems(self,ItRu_TeleportRitual,1);
 	CreateInvItems(self,ItRu_Light,1);
 	CreateInvItems(self,ItRu_FireBolt,1);
 	CreateInvItems(self,ItRu_Zap,1);
@@ -611,6 +611,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItWr_Bloody_MIS,1);
 	CreateInvItems(self,ItWr_Pfandbrief_MIS,1);
 	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_MIS,1);
+	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
 	CreateInvItems(self,ItWr_Manowar,1);
 	CreateInvItems(self,ItWr_KDWLetter,1);
 	CreateInvItems(self,ItWr_GilbertLetter,1);

@@ -7,8 +7,7 @@ instance ItSc_SummonMud(C_Item)
 	mainflag = ITEM_KAT_RUNE;
 	flags = ITEM_MULTI;
 	value = Value_Sc_SummonMud;
-	visual = "ItSc_SumDemon.3DS";
-//	visual = "ItSc_Mud.3DS";
+	visual = "ItSc_SumMud.3DS";
 	material = MAT_LEATHER;
 	spell = SPL_SummonMud;
 	cond_atr[2] = ATR_MANA_MAX;

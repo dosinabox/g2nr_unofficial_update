@@ -222,10 +222,10 @@ instance ItFo_Addon_FireStew(C_Item)
 	scemeName = "RICE";
 	on_state[0] = Use_FireStew;
 	description = name;
-	text[1] = NAME_Bonus_Str;
-	count[1] = STR_FireStew;
-	text[2] = NAME_Bonus_HpMax;
-	count[2] = HP_FireStew;
+	text[1] = NAME_Bonus_HpMax;
+	count[1] = HP_FireStew;
+	text[2] = NAME_Bonus_Str;
+	count[2] = STR_FireStew;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -234,10 +234,10 @@ instance ItFo_Addon_FireStew(C_Item)
 func void Use_FireStew()
 {
 	var string concatText;
-	B_RaiseAttribute(self,ATR_STRENGTH,STR_FireStew);
-	Npc_ChangeAttribute(self,ATR_HITPOINTS_MAX,HP_FireStew);
+	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_FireStew);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_FireStew);
-	concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(HP_FireStew));
+	self.attribute[ATR_STRENGTH] += STR_FireStew;
+	concatText = ConcatStrings(PRINT_LearnSTR,IntToString(STR_FireStew));
 	PrintScreen(concatText,-1,53,FONT_Screen,2);
 };
 
@@ -254,8 +254,10 @@ instance ItFo_Addon_Meatsoup(C_Item)
 	on_state[0] = Use_MeatSoup;
 	description = name;
 	text[0] = "Дымящаяся мясная похлебка.";
-	text[1] = NAME_Bonus_Str;
-	count[1] = STR_MeatSoup;
+	text[1] = NAME_Bonus_HP;
+	count[1] = HP_Stew;
+	text[2] = NAME_Bonus_Str;
+	count[2] = STR_MeatSoup;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -263,6 +265,7 @@ instance ItFo_Addon_Meatsoup(C_Item)
 
 func void Use_MeatSoup()
 {
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Stew);
 	B_RaiseAttribute(self,ATR_STRENGTH,STR_MeatSoup);
 };
 

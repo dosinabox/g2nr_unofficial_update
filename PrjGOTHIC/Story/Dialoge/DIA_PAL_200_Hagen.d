@@ -915,6 +915,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	B_GiveInvItems(self,other,ItRu_TeleportSeaport,1);
 	MIS_InnosEyeStolen = TRUE;
 	MIS_OLDWORLD = LOG_SUCCESS;
+	B_CheckLog();
 	Wld_InsertNpc(VLK_4250_Jorgen,"NW_MONASTERY_BRIDGE_01");
 	Wld_InsertNpc(BDT_1050_Landstreicher,"NW_TROLLAREA_NOVCHASE_01");
 	Wld_InsertNpc(BDT_1051_Wegelagerer,"NW_TROLLAREA_RITUALFOREST_09");
