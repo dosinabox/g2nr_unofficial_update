@@ -55,7 +55,7 @@ instance OrcElite_Rest(Mst_Default_OrcElite)
 
 instance OrkElite_AntiPaladinOrkOberst(Mst_Default_OrcElite)
 {
-	name[0] = "Полковник орков";
+	name[0] = NAME_OrkOberst;
 	attribute[ATR_STRENGTH] = 140;
 	attribute[ATR_DEXTERITY] = 120;
 	attribute[ATR_HITPOINTS_MAX] = 400;
@@ -123,7 +123,7 @@ instance OrcElite_AntiPaladin3(Mst_Default_OrcElite)
 
 instance OrkElite_AntiPaladinOrkOberst_DI(Mst_Default_OrcElite)
 {
-	name[0] = "Полковник орков";
+	name[0] = NAME_OrkOberst;
 	attribute[ATR_STRENGTH] = 150;
 	attribute[ATR_DEXTERITY] = 150;
 	attribute[ATR_HITPOINTS_MAX] = 450;

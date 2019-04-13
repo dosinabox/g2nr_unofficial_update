@@ -353,7 +353,8 @@ instance ItMw_FrancisDagger_Mis(C_Item)
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD | ITEM_MISSION;
 	material = MAT_METAL;
-	value = 0;
+//	value = 0;
+	value = Value_VLKDolch * 2;
 	damageTotal = Damage_VLKDolch;
 	damagetype = DAM_EDGE;
 	range = Range_VLKDolch;

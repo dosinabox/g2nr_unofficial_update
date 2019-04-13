@@ -1089,9 +1089,9 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Купеческий корабль 'Русалка'");
+	Doc_PrintLine(nDocID,0,"Торг. корабль 'Русалка'");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Общая добыча: 14560 золотых");
+	Doc_PrintLine(nDocID,0,"Общая добыча: 14560 зол.");
 	Doc_PrintLine(nDocID,0,"-----------------------");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Команда: 9840");
@@ -1103,9 +1103,9 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Купеческий корабль 'Мириам'");
+	Doc_PrintLine(nDocID,0,"Торг. корабль 'Мириам'");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Общая добыча: 4890 золотых");
+	Doc_PrintLine(nDocID,0,"Общая добыча: 4890 зол.");
 	Doc_PrintLine(nDocID,0,"-----------------------");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Команда: 2390");
@@ -1117,10 +1117,10 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"Купеческий корабль 'Нико'");
+	Doc_PrintLine(nDocID,1,"Торг. корабль 'Нико'");
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"Общая добыча: 9970 золотых");
+	Doc_PrintLine(nDocID,1,"Общая добыча: 9970 зол.");
 	Doc_PrintLine(nDocID,1,"----------------------");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Команда: 5610");
@@ -1131,9 +1131,9 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_PrintLine(nDocID,1,"Личная доля: 1860");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"Купеческий корабль 'Мария'");
+	Doc_PrintLine(nDocID,1,"Торг. корабль 'Мария'");
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"Общая добыча: 7851 золотых");
+	Doc_PrintLine(nDocID,1,"Общая добыча: 7851 зол.");
 	Doc_PrintLine(nDocID,1,"----------------------");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Команда: 4400");

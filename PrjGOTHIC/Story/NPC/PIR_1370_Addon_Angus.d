@@ -5,7 +5,7 @@ instance PIR_1370_Addon_Angus(Npc_Default)
 	guild = GIL_PIR;
 	id = 1370;
 	voice = 6;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;

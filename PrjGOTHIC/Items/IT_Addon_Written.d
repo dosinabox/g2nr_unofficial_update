@@ -11,6 +11,8 @@ instance ITWr_Addon_Hinweis_02(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "из таверны в бандитском лагере.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -48,7 +50,7 @@ instance ITWr_Addon_Health_04(C_Item)
 	on_state[0] = Use_Heilrezept_04;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Для приготовления этого сильного зелья";
+	text[2] = "Для создания этого сильного зелья";
 	text[3] = "необходимо знание рецепта лечебного эликсира.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -97,7 +99,7 @@ instance ITWr_Addon_Mana_04(C_Item)
 	on_state[0] = Use_Manarezept_04;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Для приготовления этого сильного зелья";
+	text[2] = "Для создания этого сильного зелья";
 	text[3] = "необходимо знание рецепта эликсира маны.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -147,6 +149,8 @@ instance ITWr_Addon_Hinweis_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "прикрепленное к хижине в болотах.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -185,6 +189,8 @@ instance ITWr_Addon_William_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Найдена на теле рыбака Вильяма.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -223,8 +229,8 @@ instance ITWr_Addon_MCELIXIER_01(C_Item)
 	on_state[0] = Use_MCELIXIER_01;
 	scemeName = "MAP";
 	description = name;
-	text[1] = "Это зелье помогает восстановить память.";
-	text[2] = "Для его приготовления нужны знания основ алхимии";
+	text[0] = "Это зелье помогает восстановить память.";
+	text[2] = "Для его создания нужны знания основ алхимии";
 	text[3] = "и экстрагирования секрета из жал кровавых мух.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -272,6 +278,8 @@ instance ITWr_Addon_Pirates_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Найдена в кармане Ангуса.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -288,7 +296,7 @@ func void Use_Pirates_01()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Получите последнюю посылку, предназначенную для нас.");
-	Doc_PrintLine(nDocID,0,"Затем принесите ее в вашу пещеру. Я встречу вас там.");
+	Doc_PrintLines(nDocID,0,"Затем принесите ее в вашу пещеру. Я встречу вас там.");
 	Doc_PrintLines(nDocID,0,"Я заплачу за эту посылку двойную цену.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"До встречи.");
@@ -558,12 +566,15 @@ instance ItWr_Addon_SUMMONANCIENTGHOST(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 250;
-	visual = "ItWr_Scroll_01.3DS";
+//	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseSummonAncientGhost;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "С помощью этого свитка можно вызвать Куарходрона.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 

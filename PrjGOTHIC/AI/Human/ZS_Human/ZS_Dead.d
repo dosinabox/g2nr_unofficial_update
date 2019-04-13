@@ -91,6 +91,14 @@ func void ZS_Dead()
 			Bloodwyn_Spawn = TRUE;
 		};
 	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(IceDragon))
+	{
+		if(!Npc_IsDead(IceGolem_Sylvio1) || !Npc_IsDead(IceGolem_Sylvio2))
+		{
+			IceGolem_Sylvio1.flags = 0;
+			IceGolem_Sylvio2.flags = 0;
+		};
+	};
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);
 	B_ClearRuneInv(self);

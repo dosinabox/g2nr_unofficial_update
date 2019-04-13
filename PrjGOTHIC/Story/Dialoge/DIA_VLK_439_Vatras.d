@@ -1219,7 +1219,7 @@ instance DIA_Addon_Vatras_Stoneplate(C_Info)
 
 func int DIA_Addon_Vatras_Stoneplate_Condition()
 {
-	if(C_ScHasMagicStonePlate() && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	if(C_ScHasMagicStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
 	{
 		return TRUE;
 	};

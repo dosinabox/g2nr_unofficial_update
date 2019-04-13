@@ -1,7 +1,7 @@
 
 func int C_WantToCallGuards(var C_Npc slf)
 {
-	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
+	if(slf.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
 		if((slf.guild == GIL_PAL) || (slf.guild == GIL_MIL) || (slf.guild == GIL_VLK) || (slf.guild == GIL_SLD) || (slf.guild == GIL_BAU))
 		{

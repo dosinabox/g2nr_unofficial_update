@@ -8,7 +8,7 @@ instance BDT_1020_Bandit_L(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_EnemyOverride] = TRUE;
-	aivar[AIV_DropDeadAndKill] = TRUE;
+//	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);

@@ -534,7 +534,7 @@ const string PRINT_Addon_BDTArmor = "Тот, кто носит эти доспехи, принадлежит к б
 const string PRINT_Addon_KUMU_01 = "Мы - три брата из одной касты.";
 const string PRINT_Addon_KUMU_02 = "Вместе мы сильнее.";
 const string PRINT_Addon_NadjaWait = "Подожди. Насчет травы...";
-const string NAME_Currency = "Золото:";
+const string NAME_Currency = "Золото: ";
 const string PRINT_Trade_Not_Enough_Gold = "У вас недостаточно золота для покупки этого предмета.";
 const string NAME_Value = "Цена:";
 const string NAME_Mag_Circle = "Круг:";
@@ -858,6 +858,7 @@ const string NAME_Hammel = "Баран";
 const string NAME_Crypt_Skeleton = "Страж склепа";
 const string NAME_YWolf = "Молодой волк";
 const string NAME_YGiant_Bug = "Молодой полевой хищник";
+const string NAME_OrkOberst = "Полковник орков";
 
 const string PRINT_Addon_EvidenceGiven = "Улики отданы";
 
@@ -877,7 +878,7 @@ const string NAME_MegaDrink = "Эмбарла фиргасто";
 const string PRINT_PickPocketFailed = " - карманная кража не удалась!";
 const string PRINT_PickPocketSuccess = " - карманная кража удалась!";
 
-const string PRINT_RequiresAlchemyTalent = "Для его приготовления нужно знание основ алхимии.";
+const string PRINT_RequiresAlchemyTalent = "Для его создания нужно знание основ алхимии.";
 
 const string PRINT_KnowsBloodfly = "Теперь я знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.";
 

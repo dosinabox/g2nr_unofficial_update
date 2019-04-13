@@ -262,10 +262,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(BAU_967_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_968_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_969_Bauer,"FleeFromPass");
-/*			if(hero.guild == GIL_KDF)
+			if(hero.guild == GIL_KDF)
 			{
 				CreateInvItems(Malak,ITWR_DementorObsessionBook_MIS,1);
-			}; */
+			};
 		};
 		if(!Npc_IsDead(Hilda) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
 		{
@@ -294,7 +294,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			{
 				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
 				Vino.aivar[AIV_NoFightParker] = TRUE;
-//				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
 				Vino_isAlive_Kap3 = TRUE;
 				if(!Npc_IsDead(Lobart))
 				{
@@ -307,10 +307,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				B_KillNpc(YGiant_Bug_VinoRitual1);
 				B_KillNpc(YGiant_Bug_VinoRitual2);
 			};
-/*			if(!Npc_IsDead(Bromor))
+			if(!Npc_IsDead(Bromor))
 			{
 				CreateInvItems(Bromor,ITWR_DementorObsessionBook_MIS,1);
-			}; */
+			};
 		};
 		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && !Npc_IsDead(Canthar))
 		{
@@ -588,11 +588,11 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(DMT_DementorAmbientWalker10,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker8,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker7,"CITY1");
-/*			if(!Npc_IsDead(Randolph))
+			if(!Npc_IsDead(Randolph))
 			{
 				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
 				B_StartOtherRoutine(Randolph,"Obsessed");
-			}; */
+			};
 		};
 		//возвращение на ферму Онара Альвареса и Энгардо
 		if(TOPIC_END_AkilsSLDStillthere == FALSE)
@@ -703,7 +703,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			Wld_InsertNpc(DMT_DementorAmbientWalker2,"CITY1");
 			if(!Npc_IsDead(Sekob))
 			{
-//				CreateInvItems(Sekob,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Sekob,ITWR_DementorObsessionBook_MIS,1);
 				B_StartOtherRoutine(Sekob,"Obsessed");
 			};
 		};

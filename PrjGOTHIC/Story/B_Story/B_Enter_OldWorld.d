@@ -104,11 +104,11 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			B_StartOtherRoutine(Engrom,"Obsessed");
 			AI_Teleport(Engrom,"OW_SAWHUT_MOLERAT_MOVEMENT");
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
-			if(hero.guild != GIL_KDF)
-/*			{
+			if(hero.guild == GIL_KDF)
+			{
 				CreateInvItems(Engrom,ITWR_DementorObsessionBook_MIS,1);
 			}
-			else */
+			else
 			{
 				B_KillNpc(Engrom);
 			};
@@ -450,11 +450,11 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 /*		if(!Npc_HasItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS))
 		{
 			CreateInvItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS,1);
-		};
+		}; */
 		if(!Npc_IsDead(Brutus))
 		{
 			CreateInvItems(VLK_4100_Brutus,ITWR_DementorObsessionBook_MIS,1);
-		}; */
+		};
 		if(TschuessBilgot == TRUE)
 		{
 			B_RemoveNpc(Bilgot);
