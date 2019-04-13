@@ -53,7 +53,7 @@ instance DIA_Wache_PERM(C_Info)
 	condition = DIA_Wache_PERM_Condition;
 	information = DIA_Wache_PERM_Info;
 	permanent = TRUE;
-	description = "Кто командует здесь?";
+	description = "Кто здесь главный?";
 };
 
 

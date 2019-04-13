@@ -21,7 +21,7 @@ func void DIA_STRF_1107_EXIT_Info()
 };
 
 
-instance dia_strf_1107_finger(C_Info)
+instance DIA_STRF_1107_FINGER(C_Info)
 {
 	npc = STRF_1107_Straefling;
 	condition = DIA_STRF_1107_FINGER_Condition;
@@ -78,7 +78,7 @@ instance DIA_STRF_1107_PERM(C_Info)
 	condition = DIA_STRF_1107_PERM_Condition;
 	information = DIA_STRF_1107_PERM_Info;
 	permanent = TRUE;
-	description = "Есть что-нибудь новенькое?";
+	description = "Есть какие-нибудь новости?";
 };
 
 

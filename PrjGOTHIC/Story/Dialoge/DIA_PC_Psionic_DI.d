@@ -47,7 +47,7 @@ var int DIA_Lester_DI_SCGotWarning2;
 func void DIA_Lester_DI_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Lester_DI_Hello_15_00");	//Ты хочешь что-то сказать мне?
-	if((Npc_IsDead(Mario_DI) == FALSE) && (OrkSturmDI == TRUE) && (DIA_Lester_DI_SCGotWarning1 == FALSE))
+	if((Npc_IsDead(Mario_DI) == FALSE) && (ORkSturmDI == TRUE) && (DIA_Lester_DI_SCGotWarning1 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_01");	//Марио слинял, когда на нас напали орки. Несмотря на весь хаос, что творился на корабле, я смог проследить за ним.
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_02");	//Он просто пошел через ряды орков, и те его даже пальцем не тронули.
@@ -63,7 +63,7 @@ func void DIA_Lester_DI_Hello_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Lester_DI_Hello_13_06");	//Пока нет. Может быть, позже.
+		AI_Output(self,other,"DIA_Lester_DI_Hello_13_06");	//Пока нет. Может быть позже.
 	};
 };
 
@@ -80,7 +80,7 @@ instance DIA_Lester_DI_MarioArsch(C_Info)
 
 func int DIA_Lester_DI_MarioArsch_Condition()
 {
-	if(((DIA_Lester_DI_SCGotWarning2 == TRUE) || (DIA_Lester_DI_SCGotWarning2 == TRUE)) && (MIS_Mario_Ambush == LOG_Success))
+	if(((DIA_Lester_DI_SCGotWarning2 == TRUE) || (DIA_Lester_DI_SCGotWarning2 == TRUE)) && (MIS_Mario_Ambush == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -89,7 +89,7 @@ func int DIA_Lester_DI_MarioArsch_Condition()
 func void DIA_Lester_DI_MarioArsch_Info()
 {
 	AI_Output(other,self,"DIA_Lester_DI_MarioArsch_15_00");	//Ты был прав. Марио предал нас.
-	AI_Output(self,other,"DIA_Lester_DI_MarioArsch_13_01");	//Да. Возможно, я не очень-то проницательный, но в этом случае мне было ясно с самого начала.
+	AI_Output(self,other,"DIA_Lester_DI_MarioArsch_13_01");	//Да. Возможно я не очень-то проницательный, но в этом случае мне было ясно с самого начала.
 	AI_Output(self,other,"DIA_Lester_DI_MarioArsch_13_02");	//Постарайся тщательнее выбирать себе компаньонов в будущем.
 	B_GivePlayerXP(XP_Ambient);
 };

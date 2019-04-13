@@ -19,7 +19,7 @@ func void DIA_Fenia_EXIT_Info()
 {
 	if(hero.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Fenia_EXIT_17_00");	//Приветствую, мистер паладин.
+		AI_Output(self,other,"DIA_Fenia_EXIT_17_00");	//Приветствую, мистер Паладин.
 	};
 	if(hero.guild == GIL_KDF)
 	{

@@ -217,7 +217,7 @@ func int DIA_Halvor_MESSAGE_Condition()
 func void DIA_Halvor_MESSAGE_Info()
 {
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_15_00");	//Я думаю, этот клочок бумаги имеет отношение к тебе...
-	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_01");	//
+	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_01");	//Что?.. Дай посмотрю.
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_02");	//(в испарине) Э-э... Хорошо, давай поговорим спокойно об этом - э-э... послушай. Я перепродал товары, полученные от бандитов.
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_06_03");	//(торопливо) Но нет необходимости сообщать об этом ополчению, правда? Я уверен, мы можем прийти к взаимопониманию, разве нет?
@@ -240,7 +240,7 @@ func void DIA_Halvor_MESSAGE_OFFER()
 func void DIA_Halvor_MESSAGE_PRISON()
 {
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_PRISON_15_00");	//Похоже, тебе светит тюрьма.
-	AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_01");	//Нет, подожди, ты не можешь поступить так! Ведь я... я... ты же понимаешь... я мелкая рыбешка.
+	AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_01");	//Нет, подожди, ты е можешь поступить так! Ведь я... я... ты же понимаешь... я мелкая рыбешка.
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_PRISON_15_02");	//Тебе стоило подумать об этом раньше. А теперь я собираюсь сообщить о тебе лорду Андрэ.
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_03");	//Ты пожалеешь об этом.
 	Betrayal_Halvor = TRUE;
@@ -294,8 +294,8 @@ func void DIA_Halvor_Zeichen_Info()
 {
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_00");	//Понимаю. Ты пришел не просто купить рыбу.
-	AI_Output(self,other,"DIA_Halvor_Zeichen_06_01");	//(тихо) Я готов сделать тебе предложение. Если у тебя есть серебряные тарелки или кубки, я возьму их по хорошей цене.
-	CreateInvItems(self,ItKe_Lockpick,20);
+	AI_Output(self,other,"DIA_Halvor_Zeichen_06_01");	//(тихо) Я готов сделать тебе предложение. Если у тебя есть серебряные тарелки или чаши, я возьму их по хорошей цене.
+	CreateInvItems(self,ItKE_lockpick,20);
 	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
 	B_LogEntry(Topic_Diebesgilde,"Халвор купит серебряные тарелки и кубки по очень хорошей цене.");
 };
@@ -344,7 +344,7 @@ func void DIA_Halvor_Hehlerei_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Halvor_Zeichen_06_02");	//Заходи, когда у тебя будут серебряные тарелки или кубки.
+			AI_Output(self,other,"DIA_Halvor_Zeichen_06_02");	//Заходи, когда у тебя будут серебряные тарелки или чаши.
 			Info_ClearChoices(DIA_Halvor_Hehlerei);
 		};
 	}

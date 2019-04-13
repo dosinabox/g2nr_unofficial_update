@@ -37,7 +37,7 @@ func void Spell_Cast_SummonZombie()
 	};
 	if(Npc_IsPlayer(self))
 	{
-		Wld_SpawnNpcRange(self,Summoned_Zombie,1,500);
+		Wld_SpawnNpcRange(self,Summoned_ZOMBIE,1,500);
 	}
 	else
 	{

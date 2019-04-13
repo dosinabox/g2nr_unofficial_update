@@ -13,9 +13,9 @@ const int Value_Rawmeat = 3;
 const int HP_RawMeat = 6;
 const int Value_Meat = 6;
 const int HP_Meat = 12;
-const int VALUE_STEW = 8;
+const int Value_Stew = 8;
 const int HP_Stew = 20;
-const int VALUE_FISHSOUP = 20;
+const int Value_FishSoup = 20;
 const int HP_FishSoup = 10;
 const int Value_Sausage = 30;
 const int HP_Sausage = 12;
@@ -230,7 +230,7 @@ instance ItFo_Stew(C_Item)
 	name = "Похлебка";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = VALUE_STEW;
+	value = Value_Stew;
 	visual = "ItFo_Stew.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -239,7 +239,7 @@ instance ItFo_Stew(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Stew;
 	text[5] = NAME_Value;
-	count[5] = VALUE_STEW;
+	count[5] = Value_Stew;
 };
 
 
@@ -254,7 +254,7 @@ instance ItFo_XPStew(C_Item)
 	name = "Похлебка Теклы";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = VALUE_STEW;
+	value = Value_Stew;
 	visual = "ItFo_Stew.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -265,7 +265,7 @@ instance ItFo_XPStew(C_Item)
 	text[2] = NAME_Bonus_Str;
 	count[2] = 1;
 	text[5] = NAME_Value;
-	count[5] = VALUE_STEW;
+	count[5] = Value_Stew;
 };
 
 
@@ -315,7 +315,7 @@ instance ItFo_FishSoup(C_Item)
 	name = "Уха";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = VALUE_FISHSOUP;
+	value = Value_FishSoup;
 	visual = "ItFo_FishSoup.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -324,7 +324,7 @@ instance ItFo_FishSoup(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_FishSoup;
 	text[5] = NAME_Value;
-	count[5] = VALUE_FISHSOUP;
+	count[5] = Value_FishSoup;
 };
 
 

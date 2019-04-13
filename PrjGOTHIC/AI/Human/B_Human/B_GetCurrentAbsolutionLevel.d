@@ -19,7 +19,7 @@ func int B_GetCurrentAbsolutionLevel(var C_Npc slf)
 	};
 	if(C_NpcBelongsToBL(slf))
 	{
-		return absolutionlevel_bl;
+		return ABSOLUTIONLEVEL_BL;
 	};
 	return 0;
 };

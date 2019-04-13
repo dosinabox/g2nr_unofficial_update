@@ -17,7 +17,7 @@ func int DIA_Addon_Morgan_EXIT_Condition()
 	return TRUE;
 };
 
-func int DIA_Addon_Morgan_EXIT_Info()
+func void DIA_Addon_Morgan_EXIT_Info()
 {
 	if(GregIsBack == FALSE)
 	{
@@ -100,7 +100,7 @@ func int DIA_Addon_Morgan_Anheuern_Condition()
 	};
 };
 
-func int DIA_Addon_Morgan_Anheuern_Info()
+func void DIA_Addon_Morgan_Anheuern_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Morgan_Anheuern_07_00");	//Замечательно! Теперь Грег заставит меня пилить доски!
 	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
@@ -181,7 +181,7 @@ func void DIA_Addon_Morgan_Meat_Info()
 		AI_Output(self,other,"DIA_Addon_Morgan_Meat_07_05");	//Это все? Остальное, наверное, сам съел? Ну ладно...
 	};
 	B_LogEntry(TOPIC_Addon_BringMeat,"Я принес мясо Моргану.");
-	MIS_AlligatorJack_BringMeat = LOG_Success;
+	MIS_AlligatorJack_BringMeat = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_AlligatorJAck_BringMeat);
 };
 
@@ -274,7 +274,7 @@ func void DIA_Addon_Morgan_JoinMorgan_Info()
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_04");	//Но если ты хочешь показать всем остальным, из чего ты сделан, то ступай на северный пляж.
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_05");	//Там полно луркеров... и черт знает, чего еще.
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//Разберись с ними, и ты заработаешь уважение (зевает) людей...
-	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_07");	//Добро пожаловать в мой отряд. Хе-хе. А я (зевает) еще посплю...
+	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_07");	//Добро пожаловать в мой отряд. Хе-хе. А я пока еще посплю...
 	Log_CreateTopic(TOPIC_Addon_MorganBeach,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MorganBeach,LOG_Running);
 	B_LogEntry(TOPIC_Addon_MorganBeach,"Я присоединился к боевой группе Моргана. Он хочет, чтобы я очистил северный пляж от монстров.");
@@ -314,7 +314,7 @@ func void DIA_Addon_Morgan_LurkerPlatt_Info()
 		CreateInvItems(self,ItMi_Gold,150);
 		B_GiveInvItems(self,other,ItMi_Gold,150);
 		B_LogEntry(TOPIC_Addon_MorganBeach,"Все чудовища на пляже убиты.");
-		MIS_Addon_MorganLurker = LOG_Success;
+		MIS_Addon_MorganLurker = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_Morgan_LurkerPlatt);
 	}
 	else
@@ -340,7 +340,7 @@ instance DIA_Addon_Morgan_Auftrag2(C_Info)
 
 func int DIA_Addon_Morgan_Auftrag2_Condition()
 {
-	if(MIS_Addon_MorganLurker == LOG_Success)
+	if(MIS_Addon_MorganLurker == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -380,7 +380,7 @@ instance DIA_Addon_Morgan_FOUNDTHEM(C_Info)
 
 func int DIA_Addon_Morgan_FOUNDTHEM_Condition()
 {
-	if((MIS_Addon_Morgan_SeekTraitor != LOG_Success) && Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
+	if((MIS_Addon_Morgan_SeekTraitor != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Skip_AngusHank))
 	{
 		return TRUE;
 	};
@@ -435,7 +435,7 @@ func void DIA_Addon_Morgan_FOUNDTHEM_GiveRing()
 	B_GiveInvItems(other,self,ItRi_Addon_MorgansRing_Mission,1);
 	AI_Output(self,other,"DIA_Addon_Morgan_FOUNDTHEM_GiveRing_07_01");	//(радостно) Да, это оно! Спасибо тебе!
 	AI_Output(self,other,"DIA_Addon_Morgan_FOUNDTHEM_GiveRing_07_02");	//Вот, возьми эту каменную табличку. Возможно, она на первый взгляд и бесполезна, но Гаретт тебе за нее хорошо заплатит.
-	MIS_Addon_Morgan_SeekTraitor = LOG_Success;
+	MIS_Addon_Morgan_SeekTraitor = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_MorgansRing);
 	Info_ClearChoices(DIA_Addon_Morgan_FOUNDTHEM);
 	B_GiveInvItems(self,other,ItWr_StonePlateCommon_Addon,1);
@@ -494,7 +494,7 @@ func int DIA_Addon_Morgan_TRAIN_Condition()
 func void DIA_Addon_Morgan_TRAIN_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_TRAIN_15_00");	//А меня ты можешь чему-нибудь научить?
-	AI_Output(self,other,"DIA_Addon_Morgan_TRAIN_07_01");	//Конечно. Я могу улучшить твое умение обращаться с одноручным оружием.
+	AI_Output(self,other,"DIA_Addon_Morgan_TRAIN_07_01");	//Конечно. Я могу улучшить твое умение обращаться одноручным оружием.
 	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
 	B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
 	Morgan_Addon_TeachPlayer = TRUE;

@@ -1,7 +1,7 @@
 
 instance DIA_Mika_EXIT(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 999;
 	condition = DIA_Mika_EXIT_Condition;
 	information = DIA_Mika_EXIT_Info;
@@ -26,7 +26,7 @@ func void DIA_Mika_EXIT_Info()
 
 instance DIA_Mika_Refuse(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 1;
 	condition = DIA_Mika_Refuse_Condition;
 	information = DIA_Mika_Refuse_Info;
@@ -52,7 +52,7 @@ func void DIA_Mika_Refuse_Info()
 
 instance DIA_Mika_WOHIN(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 4;
 	condition = DIA_Mika_WOHIN_Condition;
 	information = DIA_Mika_WOHIN_Info;
@@ -87,7 +87,7 @@ func void DIA_Mika_WOHIN_stadt()
 func void DIA_Mika_WOHIN_Bauern()
 {
 	AI_Output(other,self,"DIA_Mika_WOHIN_Bauern_15_00");	//С одной из ферм.
-	AI_Output(self,other,"DIA_Mika_WOHIN_Bauern_12_01");	//Ты фермер, да? Хмм. Тогда тебе не стоит бродить по этим опасным тропам совсем одному. Кто знает, что там может поджидать тебя.
+	AI_Output(self,other,"DIA_Mika_WOHIN_Bauern_12_01");	//Ты фермер, да? Хмм. Тогда тебе не стоит бродить по этим опасным тропам совсем одному. Кто знает, кто там может поджидать тебя.
 	Info_ClearChoices(DIA_Mika_WOHIN);
 };
 
@@ -101,7 +101,7 @@ func void DIA_Mika_WOHIN_weg()
 
 instance DIA_Mika_WASGEFAEHRLICH(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 5;
 	condition = DIA_Mika_WASGEFAEHRLICH_Condition;
 	information = DIA_Mika_WASGEFAEHRLICH_Info;
@@ -130,7 +130,7 @@ func void DIA_Mika_WASGEFAEHRLICH_Info()
 
 instance DIA_Mika_WASKOSTETHILFE(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 6;
 	condition = DIA_Mika_WASKOSTETHILFE_Condition;
 	information = DIA_Mika_WASKOSTETHILFE_Info;
@@ -149,7 +149,7 @@ func int DIA_Mika_WASKOSTETHILFE_Condition()
 func void DIA_Mika_WASKOSTETHILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_WASKOSTETHILFE_15_00");	//Ну, предположим, я обращусь к тебе за помощью. Сколько это будет мне стоить?
-	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_01");	//Я всего лишь скромный слуга короля и мне не к лицу обирать беззащитных граждан нашего королевства.
+	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_01");	//Я все го лишь скромный слуга короля и мне не к лицу обдирать беззащитных граждан нашего королевства.
 	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_02");	//Но, знаешь, если уж ты так ставишь вопрос, то я бы не отказался от небольшой финансовой помощи. Это укрепит наши будущие деловые отношения.
 	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_03");	//10 золотых будет достаточно для начала. Что скажешь?
 	Info_ClearChoices(DIA_Mika_WASKOSTETHILFE);
@@ -183,7 +183,7 @@ func void DIA_Mika_WASKOSTETHILFE_nochnicht()
 
 instance DIA_Mika_UEBERLEGT(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 7;
 	condition = DIA_Mika_UEBERLEGT_Condition;
 	information = DIA_Mika_UEBERLEGT_Info;
@@ -218,7 +218,7 @@ func void DIA_Mika_UEBERLEGT_Info()
 
 instance DIA_Mika_HILFE(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 8;
 	condition = DIA_Mika_HILFE_Condition;
 	information = DIA_Mika_HILFE_Info;
@@ -229,7 +229,7 @@ instance DIA_Mika_HILFE(C_Info)
 
 func int DIA_Mika_HILFE_Condition()
 {
-	if(Mika_Helps == TRUE)
+	if((Mika_Helps == TRUE) && (self.aivar[AIV_PARTYMEMBER] == FALSE))
 	{
 		return TRUE;
 	};
@@ -238,7 +238,7 @@ func int DIA_Mika_HILFE_Condition()
 func void DIA_Mika_HILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_HILFE_15_00");	//Мне нужна твоя помощь.
-	AI_Output(self,other,"DIA_Mika_HILFE_12_01");	//Ну, если это так необходимо... Что случилось?
+	AI_Output(self,other,"DIA_Mika_HILFE_12_01");	//Если это так необходимо ... Что случилось?
 	Info_ClearChoices(DIA_Mika_HILFE);
 	Info_AddChoice(DIA_Mika_HILFE,"Меня преследуют бандиты.",DIA_Mika_HILFE_schongut);
 	Info_AddChoice(DIA_Mika_HILFE,"На меня напали монстры.",DIA_Mika_HILFE_monster);
@@ -276,7 +276,7 @@ func void DIA_Mika_HILFE_schongut()
 
 instance DIA_Mika_Zack(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 8;
 	condition = DIA_Mika_Zack_Condition;
 	information = DIA_Mika_Zack_Info;
@@ -314,7 +314,7 @@ func void DIA_Mika_Zack_los()
 
 instance DIA_Mika_WIEDERNACHHAUSE(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 9;
 	condition = DIA_Mika_WIEDERNACHHAUSE_Condition;
 	information = DIA_Mika_WIEDERNACHHAUSE_Info;
@@ -342,7 +342,7 @@ func void DIA_Mika_WIEDERNACHHAUSE_Info()
 
 instance DIA_Mika_Kap3_EXIT(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 999;
 	condition = DIA_Mika_Kap3_EXIT_Condition;
 	information = DIA_Mika_Kap3_EXIT_Info;
@@ -367,7 +367,7 @@ func void DIA_Mika_Kap3_EXIT_Info()
 
 instance DIA_Mika_Kap3u4u5_PERM(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 39;
 	condition = DIA_Mika_Kap3u4u5_PERM_Condition;
 	information = DIA_Mika_Kap3u4u5_PERM_Info;
@@ -393,7 +393,7 @@ func void DIA_Mika_Kap3u4u5_PERM_Info()
 
 instance DIA_Mika_PICKPOCKET(C_Info)
 {
-	npc = MIL_337_Mika;
+	npc = Mil_337_Mika;
 	nr = 900;
 	condition = DIA_Mika_PICKPOCKET_Condition;
 	information = DIA_Mika_PICKPOCKET_Info;

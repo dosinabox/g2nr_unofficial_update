@@ -92,7 +92,7 @@ instance DIA_Biff_DI_ORKS(C_Info)
 
 func int DIA_Biff_DI_ORKS_Condition()
 {
-	if((Npc_GetDistToWP(self,"DI_SHIP_03") < 1000) && (OrkSturmDI == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if((Npc_GetDistToWP(self,"DI_SHIP_03") < 1000) && (ORkSturmDI == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
 	{
 		return TRUE;
 	};

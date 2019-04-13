@@ -41,7 +41,7 @@ func void DIA_Addon_10031_Wache_Scatty_Info()
 {
 	AI_Output(self,other,"DIA_Addon_BDT_10031_Wache_Scatty_06_00");	//Эй, хочешь пойти поработать? Тогда не забудь закупиться у Скатти.
 	AI_Output(other,self,"DIA_Addon_BDT_10031_Wache_Scatty_15_01");	//А что мне нужно?
-	AI_Output(self,other,"DIA_Addon_BDT_10031_Wache_Scatty_06_02");	//Ну, по крайней мере, кирка. И немного еды тоже не помешает.
+	AI_Output(self,other,"DIA_Addon_BDT_10031_Wache_Scatty_06_02");	//Ну, по крайней мере кирка. И немного еды тоже не помешает.
 	AI_Output(self,other,"DIA_Addon_BDT_10031_Wache_Scatty_06_03");	//Или, скажем, лечебные зелья. Внизу встречаются краулеры.
 	AI_StopProcessInfos(self);
 };

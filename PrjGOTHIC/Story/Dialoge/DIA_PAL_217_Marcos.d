@@ -47,7 +47,7 @@ func void DIA_Marcos_Hallo_Info()
 	{
 		AI_Output(other,self,"DIA_Marcos_Hallo_15_01");	//Избранный Инноса всегда говорит правду.
 		AI_Output(self,other,"DIA_Marcos_Hallo_04_02");	//Прошу простить меня, о, преподобный маг. Я не понял сразу, с кем я говорю.
-		AI_Output(other,self,"DIA_Marcos_Hallo_15_03");	//Да ничего, все нормально.
+		AI_Output(other,self,"DIA_Marcos_Hallo_15_03");	//Да, ничего, все нормально.
 		AI_Output(self,other,"DIA_Marcos_Hallo_04_04");	//Если мне будет позволено спросить - что привело тебя сюда?
 	}
 	else if(other.guild == GIL_MIL)
@@ -105,7 +105,7 @@ instance DIA_Marcos_Garond(C_Info)
 
 func int DIA_Marcos_Garond_Condition()
 {
-	if((Kapitel == 2) && (mis_oldworld == LOG_Running))
+	if((Kapitel == 2) && (MIS_OLDWORLD == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -161,7 +161,7 @@ func void DIA_Marcos_Perm_Info()
 	{
 		AI_Output(self,other,"DIA_Marcos_Perm_04_02");	//Я выдержу, и я надеюсь, что Гаронд скоро пришлет подкрепление.
 	}
-	else if(MIS_Marcos_Jungs == LOG_Success)
+	else if(MIS_Marcos_Jungs == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Marcos_Perm_04_03");	//Спасибо тебе за помощь. Иннос даст нам силы и поможет нам продержаться.
 		if(Marcos_einmalig == FALSE)

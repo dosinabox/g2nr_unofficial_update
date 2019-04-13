@@ -173,7 +173,7 @@ func void DIA_Addon_Sancho_Franco_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Sancho_Franco_15_00");	//Где я могу найти Франко?
 	AI_Output(self,other,"DIA_Addon_Sancho_Franco_06_01");	//Обычно он торчит во дворе перед лагерем.
-	AI_Output(self,other,"DIA_Addon_Sancho_Franco_06_02");	//Будь с ним в хороших отношениях - и ты получишь какую-нибудь работу получше той, что делаю я!
+	AI_Output(self,other,"DIA_Addon_Sancho_Franco_06_02");	//Будь с ним в хороших отношениях  - и ты получишь какую-нибудь работу получше той, что делаю я!
 	B_LogEntry(Topic_Addon_Franco,"Франко можно найти перед лагерем.");
 };
 
@@ -200,7 +200,7 @@ func int DIA_Addon_Sancho_Spitzel_Condition()
 func void DIA_Addon_Sancho_Spitzel_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Sancho_Spitzel_15_00");	//Ты должен все время здесь сидеть?
-	AI_Output(self,other,"DIA_Addon_Sancho_Spitzel_06_01");	//Я должен встречать этих новичков, чтобы убедиться, что к нам не пробрались шпионы.
+	AI_Output(self,other,"DIA_Addon_Sancho_Spitzel_06_01");	//Я должен встречать всех новичков, чтобы убедиться, что к нам не пробрались шпионы.
 	AI_Output(self,other,"DIA_Addon_Sancho_Spitzel_06_02");	//Но об этом можно забыть. Я хочу сказать, что мы здесь на краю света - в середине болота.
 	AI_Output(self,other,"DIA_Addon_Sancho_Spitzel_06_03");	//Никто не может найти нас, и никто нас не найдет. Потому что кому нужно посылать сюда шпионов?
 };
@@ -237,7 +237,7 @@ func void DIA_Addon_Sancho_Perm_Info()
 		AI_Output(self,other,"DIA_Addon_Sancho_Perm_06_01");	//Я слышал, ты убил Франко. Хорошая работа...
 		if(!Npc_IsDead(Carlos))
 		{
-			AI_Output(self,other,"DIA_Addon_Sancho_Perm_06_02");	//... но теперь нам на шею сел этот Карлос. С ним шутки плохи...
+			AI_Output(self,other,"DIA_Addon_Sancho_Perm_06_02");	//...но теперь нам на шею сел этот Карлос. С ним шутки плохи...
 		}
 		else
 		{

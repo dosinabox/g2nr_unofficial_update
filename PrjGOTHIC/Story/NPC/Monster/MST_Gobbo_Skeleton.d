@@ -42,7 +42,7 @@ instance Gobbo_Skeleton(Mst_Default_Gobbo_Skeleton)
 
 instance Summoned_Gobbo_Skeleton(Mst_Default_Gobbo_Skeleton)
 {
-	name[0] = "Вызванный скелет";
+	name[0] = "Вызванный скелет гоблина";
 	guild = gil_summoned_gobbo_skeleton;
 	aivar[AIV_MM_REAL_ID] = id_summoned_gobbo_skeleton;
 	level = 0;

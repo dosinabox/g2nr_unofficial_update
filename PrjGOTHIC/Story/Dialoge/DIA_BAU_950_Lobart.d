@@ -223,27 +223,27 @@ func void DIA_Lobart_BuyClothes_Info()
 {
 	Wert_LobartsRuestung = 80;
 	AI_Output(other,self,"DIA_Lobart_BuyClothes_15_00");	//Сколько стоит эта рабочая одежда?
-	AI_Output(self,other,"DIA_Lobart_BuyClothes_05_01");	//Так. Посмотрим...
+	AI_Output(self,other,"DIA_Lobart_BuyClothes_05_01");	//Так. Посморим...
 	if(Lobart_AgainstKing == TRUE)
 	{
 		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
 	};
-	if(MIS_Lobart_Rueben == LOG_Success)
+	if(MIS_Lobart_Rueben == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_02");	//Ты работал для меня на поле.
 		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
 	};
-	if(MIS_Hilda_PfanneKaufen == LOG_Success)
+	if(MIS_Hilda_PfanneKaufen == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_03");	//Ты помог моей жене.
 		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
 	};
-	if(MIS_Vino_Wein == LOG_Success)
+	if(MIS_Vino_Wein == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_04");	//Вино говорит, что ты очень помог ему. А это кое-что да значит - обычно он не очень-то ладит с поденными работниками.
 		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
 	};
-	if(MIS_Maleth_Bandits == LOG_Success)
+	if(MIS_Maleth_Bandits == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_05");	//Малет говорит, что ты прогнал бандитов. Эти ублюдки доставляли нам много проблем. Спасибо, что избавил нас от них!
 		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
@@ -315,11 +315,11 @@ func int DIA_Lobart_AufstandInfo_Condition()
 func void DIA_Lobart_AufstandInfo_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_AufstandInfo_15_00");	//Как идут здесь дела?
-	AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_01");	//Ты не знаешь, как здесь идут дела? Мальчик, ты вообще откуда свалился? Мы на пороге гражданской войны!
+	AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_01");	//Ты не знаешь как здесь дела? Мальчик, ты вообще откуда свалился? Мы на пороге гражданской войны!
 	if(hero.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_02");	//До последнего времени фермеры считали долю, отдаваемую городу, вполне справедливой.
-		AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_03");	//Но с тех пор, как в Хоринис пришли паладины, городская стража наведывается к нам все чаще и чаще - и немного понемногу они так скоро заберут все, что у нас есть.
+		AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_03");	//Но с тех пор, как в Хоринис пришли паладины, городская стража наведывается к нам все чаще и чаще - они так скоро заберут все, что у нас есть.
 		AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_04");	//Если так будет продолжаться и дальше, у нас ничего не останется для самих себя.
 	};
 	AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_05");	//Некоторые фермеры стали бунтовать! Онар был первым из них!
@@ -450,7 +450,7 @@ func void DIA_Lobart_WorkNOW_Info()
 	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_02");	//Я хочу сказать, ты можешь помочь на поле. Также здесь еще наверняка найдется кое-какая работенка для тебя.
 	if(hero.guild == GIL_NONE)
 	{
-		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_03");	//Я могу заплатить тебе золотом. Или дать приличную одежду.
+		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_03");	//Я могу заплатить тебе золотом. Или дать тебе приличную одежду.
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_04");	//Эта одежда стоит довольно дорого. Я не могу отдать тебе ее просто так, но я могу продать тебе ее дешевле, если ты поработаешь на меня.
 		Log_CreateTopic(TOPIC_Kleidung,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Kleidung,LOG_Running);
@@ -464,7 +464,7 @@ func void DIA_Lobart_WorkNOW_Info()
 			AI_Output(self,other,"DIA_Lobart_WorkNOW_05_06");	//Но у тебя уже есть одежда, так что ты, вероятно, захочешь золото.
 		};
 	};
-	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_07");	//Работа следующая - на небольшом поле за амбаром нужно собрать репу.
+	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_07");	//Работа следующая - небольшое поле репы за амбаром нужно собрать.
 	Info_ClearChoices(DIA_Lobart_WorkNOW);
 	Info_AddChoice(DIA_Lobart_WorkNOW,"Я должен дергать репу? Ты, должно быть, шутишь!",DIA_Lobart_WorkNOW_WannaFoolMe);
 	Info_AddChoice(DIA_Lobart_WorkNOW,"Хорошо...",DIA_Lobart_WorkNOW_Ok);
@@ -540,13 +540,13 @@ func void DIA_Lobart_RuebenRunning_Info()
 			Log_SetTopicStatus(TOPIC_Ruebenbringen,LOG_Running);
 			B_LogEntry(TOPIC_Ruebenbringen,"Я должен отнести собранную репу жене Лобарта, находящейся в доме.");
 		};
-		MIS_Lobart_Rueben = LOG_Success;
+		MIS_Lobart_Rueben = LOG_SUCCESS;
 		B_GivePlayerXP(XP_LobartHolRueben);
 		AI_Output(other,self,"DIA_Lobart_RuebenRunning_15_03");	//Что насчет моей платы?
-		AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_04");	//Я могу дать тебе 5 золотых монет.
+		AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_04");	//Я могу дат тебе 5 золотых монет.
 		if(hero.guild == GIL_NONE)
 		{
-			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_05");	//... или продать тебе одежду дешевле. Что выбираешь?
+			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_05");	//...или продать тебе одежду дешевле. Что ты выбираешь?
 		};
 		Info_ClearChoices(DIA_Lobart_RuebenRunning);
 		if(hero.guild == GIL_NONE)
@@ -600,7 +600,7 @@ instance DIA_Lobart_MoreWork(C_Info)
 
 func int DIA_Lobart_MoreWork_Condition()
 {
-	if(((MIS_Lobart_Rueben == LOG_Running) || (MIS_Lobart_Rueben == LOG_Success)) && (Kapitel < 3))
+	if(((MIS_Lobart_Rueben == LOG_Running) || (MIS_Lobart_Rueben == LOG_SUCCESS)) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -611,7 +611,7 @@ func void DIA_Lobart_MoreWork_Info()
 	AI_Output(other,self,"DIA_Lobart_MoreWork_15_00");	//У тебя есть еще какая-нибудь работа для меня?
 	if(MIS_Lobart_Rueben == LOG_Running)
 	{
-		AI_Output(self,other,"DIA_Lobart_MoreWork_05_01");	//Сначала собери репу с поля. А там посмотрим.
+		AI_Output(self,other,"DIA_Lobart_MoreWork_05_01");	//Сначала собери репу с поля. А там,посмотрим.
 	}
 	else
 	{
@@ -679,8 +679,8 @@ func void DIA_Lobart_BUGDEAD_Info()
 		B_StartOtherRoutine(LobartsBauer2,"Start");
 		CreateInvItems(self,ItMi_Gold,20);
 		B_GiveInvItems(self,other,ItMi_Gold,20);
-		MIS_LobartKillBugs = LOG_Success;
-		MIS_AndreHelpLobart = LOG_Success;
+		MIS_LobartKillBugs = LOG_SUCCESS;
+		MIS_AndreHelpLobart = LOG_SUCCESS;
 		Log_AddEntry(TOPIC_BecomeMIL,"Поля Лобарта очищены от полевых хищников. Я уничтожил их всех.");
 		DIA_Lobart_BUGDEAD_noPerm = TRUE;
 	}
@@ -757,7 +757,7 @@ func void DIA_Lobart_DMT_Info()
 		AI_Output(self,other,"DIA_Lobart_DMT_05_04");	//Вскоре после этого моя жена опять тяжело заболела. Она почти не встает с постели. С ней часто бывает такое.
 	};
 	AI_Output(self,other,"DIA_Lobart_DMT_05_05");	//Все пошло наперекосяк!
-	if((MIS_HealHilda != LOG_Success) && (Npc_IsDead(Hilda) == FALSE) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
+	if((MIS_HealHilda != LOG_SUCCESS) && (Npc_IsDead(Hilda) == FALSE) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
 	{
 		Info_AddChoice(DIA_Lobart_DMT,"Почему ты не отведешь жену к лекарю?",DIA_Lobart_DMT_FrauHeilen);
 	};
@@ -768,7 +768,7 @@ func void DIA_Lobart_DMT_Info()
 func void DIA_Lobart_DMT_FrauHeilen()
 {
 	AI_Output(other,self,"DIA_Lobart_DMT_FrauHeilen_15_00");	//Почему ты не отведешь жену к лекарю?
-	AI_Output(self,other,"DIA_Lobart_DMT_FrauHeilen_05_01");	//Мы должны сходить в город к Ватрасу, но я с места не сойду, пока на моей ферме царит такой хаос.
+	AI_Output(self,other,"DIA_Lobart_DMT_FrauHeilen_05_01");	//Мы должны бы сходить в город к Ватрасу, но я с места не сойду, пока на моей ферме царит такой хаос.
 	Log_CreateTopic(TOPIC_HealHilda,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_HealHilda,LOG_Running);
 	B_LogEntry(TOPIC_HealHilda,"Жена Лобарта Хильда больна, но у Ватраса есть лекарство, которое может вылечить ее.");
@@ -790,7 +790,7 @@ func void DIA_Lobart_DMT_spokeToThem()
 
 func void DIA_Lobart_DMT_hof()
 {
-	AI_Output(other,self,"DIA_Lobart_DMT_hof_15_00");	//Почему ты ничего не сделаешь с этими людьми в черном?
+	AI_Output(other,self,"DIA_Lobart_DMT_hof_15_00");	//Почему ты ничего е сделаешь с этими людьми в черном?
 	AI_Output(self,other,"DIA_Lobart_DMT_hof_05_01");	//Я бы очень хотел. Но я видел, как они заживо сожгли одного горожанина. Нет уж, спасибо.
 	AI_Output(self,other,"DIA_Lobart_DMT_hof_05_02");	//Не хочется что-то рисковать жизнью!
 };
@@ -915,7 +915,7 @@ func void DIA_Lobart_ORKPROBLEM_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_ORKPROBLEM_15_00");	//У тебя проблемы с орками.
 	AI_Output(self,other,"DIA_Lobart_ORKPROBLEM_05_01");	//(зло) Черт. Ну когда-нибудь все это кончится?!
-	AI_Output(self,other,"DIA_Lobart_ORKPROBLEM_05_02");	//Если так будет продолжаться, моя ферма не будет стоить и трех золотых монет.
+	AI_Output(self,other,"DIA_Lobart_ORKPROBLEM_05_02");	//Если так будет продолжаться, моя ферма не будет стоить и 3-х золотых монет.
 	Log_CreateTopic(TOPIC_LobartsOrKProblem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_LobartsOrKProblem,LOG_Running);
 	B_LogEntry(TOPIC_LobartsOrKProblem,"На ферме Лобарта поселились орки. Он хочет, чтобы я избавил его от них.");
@@ -984,18 +984,18 @@ func void DIA_Lobart_KAP5_EXIT_Info()
 };
 
 
-instance DIA_LOBART_KAP6_EXIT(C_Info)
+instance DIA_Lobart_KAP6_EXIT(C_Info)
 {
 	npc = BAU_950_Lobart;
 	nr = 999;
-	condition = dia_lobart_kap6_exit_condition;
-	information = dia_lobart_kap6_exit_info;
+	condition = DIA_Lobart_KAP6_EXIT_Condition;
+	information = DIA_Lobart_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_lobart_kap6_exit_condition()
+func int DIA_Lobart_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -1003,7 +1003,7 @@ func int dia_lobart_kap6_exit_condition()
 	};
 };
 
-func void dia_lobart_kap6_exit_info()
+func void DIA_Lobart_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

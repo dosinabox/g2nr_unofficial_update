@@ -216,7 +216,7 @@ func void DIA_Lothar_Dragons_Info()
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_01");	//Это не может быть правдой!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_02");	//Еще один сумасшедший!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_03");	//В городе и без этого полно проблем. Не хватает только еще идиота, пугающего людей баснями о драконах!
-		AI_Output(self,other,"DIA_Lothar_Dragons_01_04");	//Я немедля посадил в тюрьму последнего, кто рассказывал здесь сказки о драконах, и отправил его тюремным транспортом в Долину Рудников. Так что попридержи свой язык!
+		AI_Output(self,other,"DIA_Lothar_Dragons_01_04");	//Я немедля посадил в тюрьму последнего, кто рассказывал здесь сказки о драконах, и отправил его тюремным транспортом в Долину Рудников. Так что придержи свой язык!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_05");	//Мы не можем позволить, чтобы кто-либо здесь сеял панику среди людей!
 	}
 	else
@@ -260,7 +260,7 @@ func void DIA_Addon_Lothar_Ornament_normal()
 {
 	AI_Output(other,self,"DIA_Addon_Lothar_Ornament_normal_15_00");	//Ты думаешь, это нормально?
 	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_normal_01_01");	//Что, появление каменного монстра?
-	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_normal_01_02");	//Насколько я знаю, этим вопросом занимаются маги Воды.
+	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_normal_01_02");	//Насколько я знаю, этим вопросом занимаются маги воды.
 	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_normal_01_03");	//Мне же совершенно не до этого. У нас хватает дел в городе и Долине Рудников.
 	AI_Output(other,self,"DIA_Addon_Lothar_Ornament_normal_15_04");	//Понимаю.
 };
@@ -326,7 +326,7 @@ func void DIA_Lothar_Regeln_Info()
 	AI_Output(self,other,"DIA_Lothar_Regeln_01_01");	//Во-первых, достопочтенный паладин лорд Хаген расквартирован в верхнем квартале, вместе со своими войсками.
 	AI_Output(self,other,"DIA_Lothar_Regeln_01_02");	//Вот почему доступ в верхнюю часть города разрешен только уважаемым горожанам.
 	AI_Output(self,other,"DIA_Lothar_Add_01_04");	//Во-вторых, городская ратуша, находящаяся в верхнем квартале, в настоящее время является командным пунктом паладинов. Доступ туда имеют только сами паладины и члены ополчения.
-	AI_Output(self,other,"DIA_Lothar_Add_01_05");	//И в-третьих, тот, кто обвиняется в преступлении, должен предстать перед командиром ополчения.
+	AI_Output(self,other,"DIA_Lothar_Add_01_05");	//И в третьих, тот, кто обвиняется в преступлении, должен предстать перед командиром ополчения.
 	AI_Output(self,other,"DIA_Lothar_Regeln_01_05");	//Есть вопросы?
 	Lothar_Regeln = TRUE;
 };
@@ -418,7 +418,7 @@ func int DIA_Lothar_WoArbeit_Condition()
 func void DIA_Lothar_WoArbeit_Info()
 {
 	AI_Output(other,self,"DIA_Lothar_Add_15_14");	//Где я могу найти работу?
-	AI_Output(self,other,"DIA_Lothar_Add_01_15");	//Тебе придется стать учеником одного из мастеров в нижней части города.
+	AI_Output(self,other,"DIA_Lothar_Add_01_15");	//Тебе придется стать учеником одного из мастеров  в нижней части города.
 	AI_Output(self,other,"DIA_Lothar_Add_01_16");	//Как только мастер примет тебя на работу, ты станешь гражданином этого города.
 	AI_Output(self,other,"DIA_Lothar_Add_01_17");	//Однако другие мастера должны согласиться с этим, таковы обычаи Хориниса.
 	AI_Output(self,other,"DIA_Lothar_Add_01_18");	//Если ты думал найти работу в портовом квартале, забудь об этом!
@@ -475,7 +475,7 @@ func int DIA_Lothar_ToMiliz_Condition()
 
 func void DIA_Lothar_ToMiliz_Info()
 {
-	AI_Output(other,self,"DIA_Lothar_Add_15_26");	//А как я могу поступить на службу в ополчение?
+	AI_Output(other,self,"DIA_Lothar_Add_15_26");	//Как я могу поступить на службу в ополчение?
 	if(Player_IsApprentice == APP_NONE)
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_27");	//По прямому указанию лорда Хагена, на службу в ополчение принимаются только граждане города.
@@ -571,7 +571,7 @@ func void DIA_Lothar_Schlafen_Info()
 	AI_Output(other,self,"DIA_Lothar_Add_15_22");	//Где я могу провести ночь?
 	AI_Output(self,other,"DIA_Lothar_Add_01_23");	//Если ты ищешь место для ночлега, иди в отель, находящийся перед казармами.
 	AI_Output(self,other,"DIA_Lothar_Add_01_24");	//Паладины платят за ночлег всех путников, которые заходят в этот город.
-	AI_Output(self,other,"DIA_Lothar_Add_01_25");	//Странствующие торговцы с рыночной площади тоже ночуют там.
+	AI_Output(self,other,"DIA_Lothar_Add_01_25");	//Странствующие торговцы с рыночной площади также ночуют там.
 };
 
 
@@ -600,7 +600,7 @@ func void DIA_Lothar_PermB4OV_Info()
 	AI_StopProcessInfos(self);
 };
 
-func void b_lothar_blubb()
+func void B_Lothar_Blubb()
 {
 	AI_Output(other,self,"DIA_Lothar_Add_15_00");	//Но я ДОЛЖЕН увидеться с лордом Хагеном!
 	AI_Output(self,other,"DIA_Lothar_Add_01_45");	//Как я понимаю, он принял тебя в ряды ополчения.
@@ -611,9 +611,9 @@ func void b_lothar_blubb()
 	AI_Output(other,self,"DIA_Lothar_Add_15_63");	//Откуда тебе знать?..
 	AI_Output(self,other,"DIA_Lothar_Add_01_64");	//Это НЕ ТВОЕ дело!
 	AI_Output(self,other,"DIA_Lothar_Add_01_65");	//Это было последний раз, понятно?!
-	AI_Output(other,self,"DIA_Lothar_Add_15_66");	//
+	AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
 	AI_Output(other,self,"DIA_Lothar_Add_15_08");	//Теперь я ученик одного из мастеров!
-	AI_Output(self,other,"DIA_Lothar_Add_01_47");	//
+	AI_Output(self,other,"DIA_Lothar_Add_01_47");	//Опять ты.
 	AI_Output(self,other,"DIA_Lothar_Add_01_43");	//Как я слышал, ты разговаривал с лордом Андрэ?
 	AI_Output(self,other,"DIA_Lothar_Add_01_44");	//Я говорил тебе, что ты можешь присоединиться к ополчению, только если станешь гражданином города.
 	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
@@ -717,13 +717,13 @@ instance DIA_Lothar_OWRunning(C_Info)
 	condition = DIA_Lothar_OWRunning_Condition;
 	information = DIA_Lothar_OWRunning_Info;
 	permanent = FALSE;
-	description = "Я пришел увидеться с лордом Хагеном...";
+	description = "Я поговорил с лордом Хагеном...";
 };
 
 
 func int DIA_Lothar_OWRunning_Condition()
 {
-	if((mis_oldworld == LOG_Running) && (Npc_HasItems(hero,ItWr_PaladinLetter_MIS) == 0))
+	if((MIS_OLDWORLD == LOG_Running) && (Npc_HasItems(hero,ItWr_PaladinLetter_MIS) == 0))
 	{
 		return TRUE;
 	};
@@ -754,7 +754,7 @@ instance DIA_Lothar_OWRunningBrief(C_Info)
 
 func int DIA_Lothar_OWRunningBrief_Condition()
 {
-	if((mis_oldworld == LOG_Running) && (Npc_HasItems(hero,ItWr_PaladinLetter_MIS) > 0))
+	if((MIS_OLDWORLD == LOG_Running) && (Npc_HasItems(hero,ItWr_PaladinLetter_MIS) > 0))
 	{
 		return TRUE;
 	};

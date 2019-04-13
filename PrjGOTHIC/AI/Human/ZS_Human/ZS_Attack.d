@@ -162,7 +162,7 @@ func int ZS_Attack_Loop()
 			if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
 			{
 				self.aivar[AIV_ATTACKREASON] = AR_GuildEnemy;
-				if(Npc_IsPlayer(other))
+				if(C_NpcIsHero(other))
 				{
 					self.aivar[AIV_LastPlayerAR] = AR_GuildEnemy;
 					self.aivar[AIV_LastFightAgainstPlayer] = FIGHT_CANCEL;
@@ -192,7 +192,7 @@ func void ZS_Attack_End()
 	other = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 	if(self.aivar[AIV_PursuitEnd] == TRUE)
 	{
-		if(Hlp_IsValidNpc(other) && Npc_IsPlayer(other) && (self.npcType != NPCTYPE_FRIEND))
+		if(Hlp_IsValidNpc(other) && C_NpcIsHero(other) && (self.npcType != NPCTYPE_FRIEND))
 		{
 			Npc_SetTempAttitude(self,ATT_HOSTILE);
 		};

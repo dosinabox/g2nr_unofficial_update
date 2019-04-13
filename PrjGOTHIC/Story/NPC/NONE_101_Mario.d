@@ -1,5 +1,5 @@
 
-instance NONE_101_Mario(Npc_Default)
+instance None_101_Mario(Npc_Default)
 {
 	name[0] = "Марио";
 	guild = GIL_NONE;
@@ -11,7 +11,7 @@ instance NONE_101_Mario(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Kirgo,BodyTex_B,itar_mil_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Kirgo,BodyTex_B,ItAr_MIL_M);
 	Mdl_SetModelFatness(self,1.2);
 	Mdl_ApplyOverlayMds(self,"Humans_MILITIA.mds");
 	B_GiveNpcTalents(self);

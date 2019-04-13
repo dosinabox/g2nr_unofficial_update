@@ -1,7 +1,7 @@
 
 instance DIA_NONE_101_MARIO_DI_EXIT(C_Info)
 {
-	npc = NONE_101_Mario_DI;
+	npc = None_101_Mario_DI;
 	nr = 999;
 	condition = DIA_NONE_101_MARIO_DI_EXIT_Condition;
 	information = DIA_NONE_101_MARIO_DI_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_NONE_101_MARIO_DI_EXIT_Info()
 
 instance DIA_NONE_101_MARIO_DI_Job(C_Info)
 {
-	npc = NONE_101_Mario_DI;
+	npc = None_101_Mario_DI;
 	nr = 4;
 	condition = DIA_NONE_101_MARIO_DI_Job_Condition;
 	information = DIA_NONE_101_MARIO_DI_Job_Info;
@@ -34,7 +34,7 @@ instance DIA_NONE_101_MARIO_DI_Job(C_Info)
 
 func int DIA_NONE_101_MARIO_DI_Job_Condition()
 {
-	if((Npc_IsDead(UndeadDragon) == FALSE) && (OrkSturmDI == FALSE))
+	if((Npc_IsDead(UndeadDragon) == FALSE) && (ORkSturmDI == FALSE))
 	{
 		return TRUE;
 	};
@@ -51,7 +51,7 @@ func void DIA_NONE_101_MARIO_DI_Job_Info()
 
 instance DIA_NONE_101_MARIO_DI_ambush(C_Info)
 {
-	npc = NONE_101_Mario_DI;
+	npc = None_101_Mario_DI;
 	nr = 4;
 	condition = DIA_NONE_101_MARIO_DI_ambush_Condition;
 	information = DIA_NONE_101_MARIO_DI_ambush_Info;
@@ -61,7 +61,7 @@ instance DIA_NONE_101_MARIO_DI_ambush(C_Info)
 
 func int DIA_NONE_101_MARIO_DI_ambush_Condition()
 {
-	if(OrkSturmDI == TRUE)
+	if(ORkSturmDI == TRUE)
 	{
 		return TRUE;
 	};
@@ -76,7 +76,7 @@ func void DIA_NONE_101_MARIO_DI_ambush_Info()
 	Info_ClearChoices(DIA_NONE_101_MARIO_DI_ambush);
 	Info_AddChoice(DIA_NONE_101_MARIO_DI_ambush,Dialog_Ende,DIA_NONE_101_MARIO_DI_ambush_ambush);
 	B_GivePlayerXP(XP_Mario_Ambush);
-	MIS_Mario_Ambush = LOG_Success;
+	MIS_Mario_Ambush = LOG_SUCCESS;
 };
 
 func void DIA_NONE_101_MARIO_DI_ambush_ambush()
@@ -90,9 +90,9 @@ func void DIA_NONE_101_MARIO_DI_ambush_ambush()
 };
 
 
-instance dia_mario_di_pickpocket(C_Info)
+instance DIA_MARIO_DI_PICKPOCKET(C_Info)
 {
-	npc = NONE_101_Mario_DI;
+	npc = None_101_Mario_DI;
 	nr = 900;
 	condition = DIA_MARIO_DI_PICKPOCKET_Condition;
 	information = DIA_MARIO_DI_PICKPOCKET_Info;

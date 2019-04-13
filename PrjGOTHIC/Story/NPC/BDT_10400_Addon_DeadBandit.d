@@ -19,7 +19,7 @@ instance BDT_10400_Addon_DeadBandit(Npc_Default)
 	CreateInvItems(self,ItMi_Gold,50);
 	CreateInvItems(self,ItWr_DexStonePlate1_Addon,1);
 	CreateInvItems(self,ItWr_OneHStonePlate1_Addon,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Ian,BodyTex_L,itar_bdt_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Ian,BodyTex_L,ItAr_BDT_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

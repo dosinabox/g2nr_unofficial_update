@@ -81,7 +81,7 @@ func void DIA_Addon_Brandon_AnyNews_Info()
 			AI_Output(self,other,"DIA_Addon_Brandon_Alright_04_03");	//Что за вопросы?! Не думаю, что во всем чертовом каньоне остался еще хоть один бритвозуб.
 		};
 	}
-	else if((GregIsBack == TRUE) && !Npc_IsDead(Greg) && (MIS_Addon_Greg_ClearCanyon != LOG_Success))
+	else if((GregIsBack == TRUE) && !Npc_IsDead(Greg) && (MIS_Addon_Greg_ClearCanyon != LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Addon_Brandon_AnyNews_04_04");	//Грег вернулся. Теперь все должно измениться.
 	}
@@ -89,7 +89,7 @@ func void DIA_Addon_Brandon_AnyNews_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Brandon_AnyNews_04_06");	//(заговорщицки) Погоди секунду...
 		AI_PlayAni(self,"T_SEARCH");
-		AI_Output(self,other,"DIA_Addon_Brandon_AnyNews_04_07");	//(смеется) Насколько я вижу, нет! Все по-старому.
+		AI_Output(self,other,"DIA_Addon_Brandon_AnyNews_04_07");	//(смеется) Насколько я вижу, нет! Все по-старому
 	};
 };
 
@@ -191,7 +191,7 @@ func void DIA_Addon_Brandon_SchnellerHering_Info()
 	B_UseItem(self,ItFo_Addon_SchnellerHering);
 	AI_Output(self,other,"DIA_Addon_Brandon_GiveGrog_04_01");	//Ах-х! Словно жидкий огонь!
 	B_LogEntry(TOPIC_Addon_BrandonBooze,"Я отдал Брэндону его ужасное пойло. Теперь он готов учить меня.");
-	MIS_Brandon_BringHering = LOG_Success;
+	MIS_Brandon_BringHering = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -223,7 +223,7 @@ func void DIA_Addon_Brandon_TeachPlayer_Info()
 	AI_Output(other,self,"DIA_Addon_Francis_TeachPlayer_15_00");	//Я готов учиться!
 	Brandon_Merke_Str = other.attribute[ATR_STRENGTH];
 	Brandon_Merke_Dex = other.attribute[ATR_DEXTERITY];
-	if(MIS_Brandon_BringHering == LOG_Success)
+	if(MIS_Brandon_BringHering == LOG_SUCCESS)
 	{
 		Info_ClearChoices(DIA_Addon_Brandon_TeachPlayer);
 		Info_AddChoice(DIA_Addon_Brandon_TeachPlayer,Dialog_Back,DIA_Addon_Brandon_TeachPlayer_Back);

@@ -1,7 +1,7 @@
 
 instance DIA_Wambo_EXIT(C_Info)
 {
-	npc = MIL_316_Wambo;
+	npc = Mil_316_Wambo;
 	nr = 999;
 	condition = DIA_Wambo_EXIT_Condition;
 	information = DIA_Wambo_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Wambo_EXIT_Info()
 
 instance DIA_Wambo_PICKPOCKET(C_Info)
 {
-	npc = MIL_316_Wambo;
+	npc = Mil_316_Wambo;
 	nr = 900;
 	condition = DIA_Wambo_PICKPOCKET_Condition;
 	information = DIA_Wambo_PICKPOCKET_Info;
@@ -72,7 +72,7 @@ func void DIA_Wambo_PICKPOCKET_BACK()
 
 instance DIA_Wambo_Job(C_Info)
 {
-	npc = MIL_316_Wambo;
+	npc = Mil_316_Wambo;
 	nr = 5;
 	condition = DIA_Wambo_Job_Condition;
 	information = DIA_Wambo_Job_Info;
@@ -96,7 +96,7 @@ func void DIA_Wambo_Job_Info()
 
 instance DIA_Wambo_Situation(C_Info)
 {
-	npc = MIL_316_Wambo;
+	npc = Mil_316_Wambo;
 	nr = 10;
 	condition = DIA_Wambo_Situation_Condition;
 	information = DIA_Wambo_Situation_Info;
@@ -122,7 +122,7 @@ func void DIA_Wambo_Situation_Info()
 
 instance DIA_Wambo_Ramirez(C_Info)
 {
-	npc = MIL_316_Wambo;
+	npc = Mil_316_Wambo;
 	nr = 5;
 	condition = DIA_Wambo_Ramirez_Condition;
 	information = DIA_Wambo_Ramirez_Info;
@@ -152,7 +152,7 @@ func void DIA_Wambo_Ramirez_Info()
 
 instance DIA_Wambo_Deal(C_Info)
 {
-	npc = MIL_316_Wambo;
+	npc = Mil_316_Wambo;
 	nr = 5;
 	condition = DIA_Wambo_Deal_Condition;
 	information = DIA_Wambo_Deal_Info;
@@ -184,7 +184,7 @@ func void DIA_Wambo_Deal_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Wambo_Deal_15_03");	//... но с собой их не захватил.
+		AI_Output(other,self,"DIA_Wambo_Deal_15_03");	//...но с собой  их не захватил.
 		AI_Output(self,other,"DIA_Wambo_Deal_03_04");	//Я не выношу, когда кто-нибудь пытается одурачить меня. Так что давай сюда золото.
 		AI_StopProcessInfos(self);
 	};

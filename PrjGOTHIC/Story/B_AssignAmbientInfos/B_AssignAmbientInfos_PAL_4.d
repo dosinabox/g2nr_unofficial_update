@@ -120,13 +120,13 @@ func void DIA_PAL_4_STANDARD_Info()
 	{
 		if(Kapitel <= 4)
 		{
-			if(mis_oldworld == LOG_Success)
+			if(MIS_OLDWORLD == LOG_SUCCESS)
 			{
-				AI_Output(self,other,"DIA_PAL_4_STANDARD_04_01");	//“еперь, когда мы знаем, что имеем дело с драконами, наш главнокомандующий наверн€ка вскоре что-то предпримет.
+				AI_Output(self,other,"DIA_PAL_4_STANDARD_04_01");	//“еперь, когда мы знаем, что имеем дело с драконами, наш командующий наверн€ка вскоре что-то предпримет.
 			}
 			else
 			{
-				AI_Output(self,other,"DIA_PAL_4_STANDARD_04_02");	//” нас все еще нет никаких новостей от нашего отр€да в ƒолине –удников. Ёто тревожный знак.
+				AI_Output(self,other,"DIA_PAL_4_STANDARD_04_02");	//” на все еще нет никаких новостей от нашего отр€да в ƒолине –удников. Ёто тревожный знак.
 			};
 		};
 		if(Kapitel >= 5)

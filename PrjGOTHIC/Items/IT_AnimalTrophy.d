@@ -133,7 +133,7 @@ instance ItAt_BugMandibles(C_Item)
 
 instance ItAt_Claw(C_Item)
 {
-	name = "Челюсти";
+	name = "Когти";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Claw;
@@ -150,7 +150,7 @@ instance ItAt_Claw(C_Item)
 
 instance ItAt_LurkerClaw(C_Item)
 {
-	name = "Челюсть луркера";
+	name = "Когти луркера";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_LurkerClaw;
@@ -279,7 +279,7 @@ func void Use_Sting()
 };
 
 
-instance ItAt_LurkerSkin(C_Item)
+instance itat_LurkerSkin(C_Item)
 {
 	name = "Шкура рептилии";
 	mainflag = ITEM_KAT_NONE;

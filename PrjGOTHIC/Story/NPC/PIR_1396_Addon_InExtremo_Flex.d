@@ -16,6 +16,7 @@ instance PIR_1396_Addon_InExtremo_Flex(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 88;
 	attribute[ATR_HITPOINTS] = 88;
 	CreateInvItem(self,ItMi_IEDudelBlau);
+	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"Hum_IE_Flex_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_Flex",DEFAULT,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_STRONG;

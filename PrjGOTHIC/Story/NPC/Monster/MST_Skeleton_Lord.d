@@ -35,7 +35,7 @@ func void B_SetVisuals_Skeleton_Lord()
 	Mdl_ApplyOverlayMds(self,"humans_2hST2.mds");
 	Mdl_ApplyOverlayMds(self,"humans_BowT1.mds");
 	Mdl_ApplyOverlayMds(self,"humans_CBowT1.mds");
-	B_SetNpcVisual(self,MALE,"Ske_Head",0,0,ITAR_PAL_Skel);
+	B_SetNpcVisual(self,MALE,"Ske_Head",0,0,itar_pal_skel);
 };
 
 

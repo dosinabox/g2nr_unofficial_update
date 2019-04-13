@@ -4,7 +4,7 @@ instance DIA_Gorax_Kap1_EXIT(C_Info)
 	npc = KDF_508_Gorax;
 	nr = 999;
 	condition = DIA_Gorax_Kap1_EXIT_Condition;
-	information = DIA_Gorax_Kap1_EXIT_Info;
+	information = DIA_Gorax_KAp1_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
@@ -18,7 +18,7 @@ func int DIA_Gorax_Kap1_EXIT_Condition()
 	};
 };
 
-func void DIA_Gorax_Kap1_EXIT_Info()
+func void DIA_Gorax_KAp1_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -168,7 +168,7 @@ func void DIA_Addon_Gorax_DaronsStatue_Info()
 			Npc_RemoveInvItems(self,ItMi_LostInnosStatue_Daron,1);
 		};
 		AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_03");	//Я перед тобой в долгу, юный послушник.
-		MIS_Addon_Daron_GetStatue = LOG_Success;
+		MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_ReturnedLostInnosStatue_Daron);
 		DIA_Gorax_GOLD_perm = TRUE;
 	}
@@ -202,7 +202,7 @@ func void DIA_Gorax_SLEEP_Info()
 	AI_Output(other,self,"DIA_Gorax_SLEEP_15_00");	//Я ищу место, где можно было бы поспать.
 	AI_Output(self,other,"DIA_Gorax_SLEEP_14_01");	//Есть одна свободная кровать в следующей комнате. Первая дверь направо, рядом с входом. Ты можешь поспать там.
 	AI_Output(self,other,"DIA_Gorax_SLEEP_14_02");	//Ты можешь сложить свои вещи в один из пустых сундуков.
-	AI_Output(self,other,"DIA_Gorax_SLEEP_14_03");	//И помни - тебе нельзя входить в опочивальни магов. Также без соответствующего разрешения тебе нельзя входить в библиотеку.
+	AI_Output(self,other,"DIA_Gorax_SLEEP_14_03");	//И помни - тебе нельзя входить в опочивальни магов. Также, без соответствующего разрешения тебе нельзя входить в библиотеку.
 };
 
 
@@ -230,7 +230,7 @@ func void DIA_Gorax_Aufgabe_Info()
 	AI_Output(other,self,"DIA_Gorax_Aufgabe_15_00");	//У тебя есть какое-нибудь задание для меня?
 	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_01");	//Да, послушники хорошо поработали. А тот, кто хорошо работает, должен хорошо питаться.
 	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_02");	//Я дам тебе ключ от кладовой. Ты найдешь там баранью колбасу. Раздай ее послушникам - но раздели ее по справедливости!
-	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_03");	//А когда закончишь с этим, можешь опять обратиться ко мне.
+	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_03");	//А когда закончишь с этим, можешь обратиться ко мне опять.
 	CreateInvItems(self,ItKe_KlosterStore,1);
 	B_GiveInvItems(self,other,ItKe_KlosterStore,1);
 	MIS_GoraxEssen = LOG_Running;
@@ -265,7 +265,7 @@ func void DIA_Gorax_Wurst_Info()
 	if(Wurst_Gegeben >= 13)
 	{
 		AI_Output(self,other,"DIA_Gorax_Wurst_14_01");	//И разделил ее по справедливости. Вот, возьми эти свитки исцеления - и возвращайся к своей работе.
-		MIS_GoraxEssen = LOG_Success;
+		MIS_GoraxEssen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_GoraxEssen);
 		B_GiveInvItems(self,other,ItSc_LightHeal,2);
 	}
@@ -273,8 +273,8 @@ func void DIA_Gorax_Wurst_Info()
 	{
 		AI_Output(self,other,"DIA_Gorax_Wurst_14_02");	//Да? Я думаю, ты недостаточно ответственно относишься к своей работе.
 		AI_Output(self,other,"DIA_Gorax_Wurst_14_03");	//Ты либо съел колбасу сам, либо дал кому-нибудь больше, чем ему причитается.
-		AI_Output(self,other,"DIA_Gorax_Wurst_14_04");	//Послушай, так как ты новичок - и только по этой причине - я на первый раз прощаю тебя. Но чтобы больше такого не повторялось, послушник!
-		MIS_GoraxEssen = LOG_Failed;
+		AI_Output(self,other,"DIA_Gorax_Wurst_14_04");	//Послушай, так как ты новичок - и только по этой причине - я на первый раз прощу тебя. Но чтобы больше такого не повторялось, послушник!
+		MIS_GoraxEssen = LOG_FAILED;
 	};
 };
 
@@ -292,7 +292,7 @@ instance DIA_Gorax_Aufgabe2(C_Info)
 
 func int DIA_Gorax_Aufgabe2_Condition()
 {
-	if(((MIS_GoraxEssen == LOG_Success) || (MIS_GoraxEssen == LOG_Failed)) && (Npc_IsDead(Orlan) == FALSE))
+	if(((MIS_GoraxEssen == LOG_SUCCESS) || (MIS_GoraxEssen == LOG_FAILED)) && (Npc_IsDead(Orlan) == FALSE))
 	{
 		return TRUE;
 	};
@@ -302,7 +302,7 @@ func void DIA_Gorax_Aufgabe2_Info()
 {
 	AI_Output(other,self,"DIA_Gorax_Aufgabe2_15_00");	//У тебя есть еще какое-нибудь поручение для меня?
 	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_01");	//Да. Как ты знаешь, мы делаем здесь превосходное вино, и часть его продаем.
-	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_02");	//Орлан, хозяин трактира 'Мертвая гарпия' заказал солидную партию. Мы договорились на сумму в 240 золотых монет.
+	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_02");	//Орлан, хозяин трактира 'Мертвая Гарпия' заказал солидную партию. Мы договорились на сумму в 240 золотых монет.
 	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_03");	//Отнеси ему эти бутылки - но смотри, чтобы он не обсчитал тебя.
 	B_GiveInvItems(self,other,ItFo_Wine,12);
 	MIS_GoraxWein = LOG_Running;
@@ -353,10 +353,10 @@ func void DIA_Gorax_Orlan_Info()
 func void DIA_Gorax_Orlan_100()
 {
 	AI_Output(other,self,"DIA_Gorax_Orlan_100_15_00");	//Он надул меня!
-	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_01");	//Ты продал ему вино дешевле? Ох, нет! И почему я послал ТЕБЯ?!
+	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_01");	//Ты продал ему вино дешевле? Ох, нет! И почему только я послал ТЕБЯ?!
 	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
 	B_GiveInvItems(other,self,ItMi_Gold,100);
-	MIS_GoraxWein = LOG_Failed;
+	MIS_GoraxWein = LOG_FAILED;
 	Info_ClearChoices(DIA_Gorax_Orlan);
 	AI_StopProcessInfos(self);
 };
@@ -367,13 +367,13 @@ func void DIA_Gorax_Orlan_240()
 	if(B_GiveInvItems(other,self,ItMi_Gold,240))
 	{
 		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_01");	//Превосходно. Ты проявляешь некоторые способности. Вот, возьми в качестве вознаграждения свиток исцеления. А теперь иди и займись каким-нибудь делом.
-		MIS_GoraxWein = LOG_Success;
+		MIS_GoraxWein = LOG_SUCCESS;
 		B_GivePlayerXP(XP_GoraxWein);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_02");	//Но ты уже потратил часть этих денег, да? Ты ничтожество - пшел прочь!
-		MIS_GoraxWein = LOG_Failed;
+		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_02");	//Но ты уже потратил часть этих денег, да? Ты ничтожество - пошел прочь!
+		MIS_GoraxWein = LOG_FAILED;
 		B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
 	};
 	Info_ClearChoices(DIA_Gorax_Orlan);
@@ -387,7 +387,7 @@ instance DIA_Gorax_JOB(C_Info)
 	condition = DIA_Gorax_JOB_Condition;
 	information = DIA_Gorax_JOB_Info;
 	permanent = FALSE;
-	description = "Чем ты занимаешься здесь?";
+	description = "А что входит в твои обязанности здесь?";
 };
 
 

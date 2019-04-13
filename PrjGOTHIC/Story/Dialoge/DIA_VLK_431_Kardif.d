@@ -124,7 +124,7 @@ func void DIA_Kardif_Hallo_Info()
 func void DIA_Kardif_Hallo_Zehn()
 {
 	AI_Output(other,self,"DIA_Kardif_Hallo_Zehn_15_00");	//Хорошо, договорились.
-	AI_Output(self,other,"DIA_Kardif_Hallo_Zehn_14_01");	//Ты заключил выгодную сделку. (усмехается) Я всегда к твоим услугам.
+	AI_Output(self,other,"DIA_Kardif_Hallo_Zehn_14_01");	//Ты заключил выгодную сделку (усмехается). Я всегда к твоим услугам.
 	Kardif_Deal = 10;
 	Info_ClearChoices(DIA_Kardif_Hallo);
 };
@@ -132,7 +132,7 @@ func void DIA_Kardif_Hallo_Zehn()
 func void DIA_Kardif_Hallo_Angebot()
 {
 	AI_Output(other,self,"DIA_Kardif_Hallo_Angebot_15_00");	//Я не готов платить за информацию больше 5 монет.
-	AI_Output(self,other,"DIA_Kardif_Hallo_Angebot_14_01");	//Что, 5 золотых монет? Ты хочешь разорить меня? (делает задумчивый вид) Давай сойдемся на 7.
+	AI_Output(self,other,"DIA_Kardif_Hallo_Angebot_14_01");	//Что, 5 золотых монет? Ты хочешь разорить меня? (делает задумчивый вид) - Давай сойдемся на 7.
 	Info_ClearChoices(DIA_Kardif_Hallo);
 	Info_AddChoice(DIA_Kardif_Hallo,"Нет, так не пойдет. Давай лучше 6!",DIA_Kardif_Hallo_KeinDeal);
 	Info_AddChoice(DIA_Kardif_Hallo,"Договорились, 7 золотых монет - неплохая цена.",DIA_Kardif_Hallo_Sieben);
@@ -263,7 +263,7 @@ func void DIA_Kardif_Buerger_Info()
 {
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Kardif_Buerger_15_00");	//Кого считают влиятельными людьми в этом городе?
+		AI_Output(other,self,"DIA_Kardif_Buerger_15_00");	//Кто считается влиятельными людьми в этом городе?
 		AI_Output(self,other,"DIA_Kardif_Buerger_14_01");	//Здесь, в порту, ты никого из них не найдешь. Единственный влиятельный человек здесь - это Лемар.
 		AI_Output(self,other,"DIA_Kardif_Buerger_14_02");	//Этот ростовщик не очень популярен, но у него есть золото, и другие влиятельные горожане должны ему деньги.
 		AI_Output(self,other,"DIA_Kardif_Buerger_14_03");	//Торговцы и мастера тоже очень влиятельные люди - и даже слишком, если тебе интересно мое мнение.
@@ -377,12 +377,12 @@ func void DIA_Addon_Kardif_MissingPeople_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
 		AI_Output(other,self,"DIA_Addon_Kardif_MissingPeople_15_00");	//Что ты знаешь о пропавших горожанах?
-		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_01");	//Все, что я знаю - это то, что за последние дни исчезли несколько людей.
+		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_01");	//Все, что я знаю, - это то, что за последние дни исчезли несколько людей.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_02");	//Говорят, что больше всего пропавших здесь, в порту. Думаю, тебе стоит расспросить местных.
-		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_03");	//В нижней части города тоже исчезли люди.
+		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_03");	//В нижней части города тоже исчезали люди.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_04");	//Если хочешь знать больше, поговори с Корагоном.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_05");	//У него пивная в нижней части города, и думаю, что от его уха не укрываются такие новости.
-		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_06");	//Халвор, торговец рыбой из лавки на пристани, тоже может кое-что знать - к нему заходит много людей.
+		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_06");	//Халвор, торговец рыбой из лавки на пристани, тоже может что-то знать - к нему заходит много людей.
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,"Кардиф говорит, что мне стоит поговорить о пропавших людях с Корагоном, владельцем трактира в нижней части города, а также с Халвором, торгующим рыбой в гавани.");
@@ -421,13 +421,13 @@ func void DIA_Kardif_Lernen_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
 		AI_Output(other,self,"DIA_Kardif_Lernen_15_00");	//А у кого здесь можно поучиться чему-нибудь?
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_01");	//Здесь, в портовом районе, есть несколько знающих людей.
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_02");	//Карл, кузнец - крепкий парень. Ручаюсь, он сможет помочь тебе стать сильнее.
+		AI_Output(self,other,"DIA_Kardif_Lernen_14_01");	//Здесь, в портовом квартале есть несколько знающих людей.
+		AI_Output(self,other,"DIA_Kardif_Lernen_14_02");	//Карл, кузнец, - крепкий парень. Ручаюсь, он сможет помочь тебе стать сильнее.
 		AI_Output(self,other,"DIA_Kardif_Lernen_14_03");	//Альрик опытен в боевых искусствах. А Ларес - мошенник, каких свет не видывал. Он тоже заходит иногда в порт.
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_04");	//А если ты настолько выжил из ума, чтоб пойти к старому Игнацу - он знает толк в алхем... алхим... ну, как это... зельях.
+		AI_Output(self,other,"DIA_Kardif_Lernen_14_04");	//А если ты настолько выжил из ума, чтобы пойти к старому Игнацу - он знает толк в алхем... алхим... зельях.
 		AI_Output(other,self,"DIA_Kardif_Lernen_15_05");	//И где мне найти всех этих людей?
 		AI_Output(self,other,"DIA_Kardif_Lernen_14_06");	//(стонет) Боже, король успеет выиграть войну против орков, прежде чем я тебе объясню все это.
-		AI_Output(self,other,"DIA_Kardif_Lernen_14_07");	//Просто осмотрись в портовом районе, ты обязательно найдешь их. А если ты хочешь лучше ориентироваться здесь, зайди к Ибрагиму и купи у него карту.
+		AI_Output(self,other,"DIA_Kardif_Lernen_14_07");	//Просто осмотрись в портовом квартале, ты обязательно найдешь их. А если ты хочешь лучше ориентироваться здесь, зайди к Ибрагиму и купи у него карту.
 		AI_Output(self,other,"DIA_Kardif_Lernen_14_08");	//Его совсем легко найти. Он живет в соседнем доме направо от моего трактира. (бормочет) Я должен был взять в два раза больше за эту информацию.
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"Карл, кузнец в портовом квартале, может сделать меня сильнее.");
@@ -470,10 +470,10 @@ func void DIA_Kardif_Diebeswerk_Info()
 {
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Kardif_Diebeswerk_15_00");	//А нет ли здесь какой-нибудь 'особой' работы? Мне бы хотелось побыстрее заработать денег.
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk_14_01");	//Что-нибудь особого, говоришь? Хмм...
+		AI_Output(other,self,"DIA_Kardif_Diebeswerk_15_00");	//А нет ли здесь какой-нибудь 'особой' работы, мне бы хотелось побыстрее заработать денег?
+		AI_Output(self,other,"DIA_Kardif_Diebeswerk_14_01");	//Чего-нибудь особого, говоришь? Хмм...
 		AI_PlayAni(self,"T_SEARCH");
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk_14_02");	//... попробуй поговорить с Нагуром. Возможно, он сможет помочь тебе.
+		AI_Output(self,other,"DIA_Kardif_Diebeswerk_14_02");	//...попробуй поговорить с Нагуром. Возможно, он сможет помочь тебе.
 		DIA_Kardif_Diebeswerk_permanent = TRUE;
 	}
 	else
@@ -511,9 +511,9 @@ func void DIA_Kardif_Diebeswerk2_Info()
 		AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_00");	//Есть что-нибудь 'особенное' для меня?
 		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_01");	//Да, есть кое-что - но это заинтересует тебя, только если ты блещешь разносторонними талантами.
 		AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_02");	//Выкладывай, что там у тебя?
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.
+		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, Маг Огня.
 		AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_04");	//И?
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном, плотником.
+		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном плотником.
 		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_06");	//Говорят, что этот Дарон носит с собой несметные сокровища. Но ты ничего не слышал от меня, понятно?
 		DIA_Kardif_Diebeswerk2_permanent = TRUE;
 	}
@@ -576,7 +576,7 @@ func void DIA_Kardif_DOPE_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Kardif_DOPE_15_01");	//Где мне здесь купить травки?
-	if(Hlp_IsItem(heroArmor,itar_mil_l) == TRUE)
+	if(Hlp_IsItem(heroArmor,ITAR_Mil_L) == TRUE)
 	{
 		AI_Output(self,other,"DIA_Kardif_DOPE_14_00");	//Только не здесь - я не имею дела с подобными вещами.
 	}
@@ -616,7 +616,7 @@ func void DIA_Kardif_Paket_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
 		AI_Output(other,self,"DIA_Kardif_Paket_15_00");	//Ты что-нибудь слышал о тюке болотной травы?
-		AI_Output(self,other,"DIA_Kardif_Paket_14_01");	//Тот, кто владеет этим тюком - богатый человек. И, возможно, весьма расслабленный тоже!
+		AI_Output(self,other,"DIA_Kardif_Paket_14_01");	//Тот, кто владеет этим тюком - богатый человек. И, возможно, весьма расслабленный также!
 		AI_Output(other,self,"DIA_Kardif_Paket_15_02");	//Не пытайся провести меня. Ты что-то знаешь. Давай, выкладывай!
 		AI_Output(self,other,"DIA_Kardif_Paket_14_03");	//Хорошо, хорошо - этот парень недавно заходил в мой трактир. Он из наемников.
 		AI_Output(self,other,"DIA_Kardif_Paket_14_04");	//Он сказал, что продал тюк болотной травы в гавани, но, конечно же, он был обкуренный в хлам. Это все, что я знаю.
@@ -642,7 +642,7 @@ instance DIA_Kardif_SENDATTILA(C_Info)
 
 func int DIA_Kardif_SENDATTILA_Condition()
 {
-	if((MIS_ThiefGuild_sucked == TRUE) || ((Diebesgilde_Okay >= 3) && Npc_IsInState(self,ZS_Talk)))
+	if(((MIS_ThiefGuild_sucked == TRUE) || (Diebesgilde_Okay >= 3) || (MIS_Nagur_Bote == LOG_FAILED) || ((Diebesgilde_Okay == 2) && (NagurHack == TRUE))) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -650,9 +650,9 @@ func int DIA_Kardif_SENDATTILA_Condition()
 
 func void DIA_Kardif_SENDATTILA_Info()
 {
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_00");	//Эй, ты, иди сюда. У меня есть кое-что для тебя.
+	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_00");	//Эй, ты, иди сюда. У меня кое-что есть для тебя.
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01");	//Один парень очень хочет поговорить с тобой.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе сообщение.
+	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе записку.
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_03");	//Он хочет встретиться с тобой. За рыбной лавкой Халвора.
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_04");	//Эта информация бесплатна - но это исключение! Цена на все остальное осталась прежней.
 	AI_Output(other,self,"DIA_Kardif_SENDATTILA_15_05");	//Как выглядел этот парень?
@@ -663,6 +663,10 @@ func void DIA_Kardif_SENDATTILA_Info()
 		Kardif_Deal = 10;
 	};
 	Wld_InsertNpc(VLK_494_Attila,"NW_CITY_ENTRANCE_01");
+	if((NagurHack == TRUE) || (MIS_Nagur_Bote == LOG_FAILED))
+	{
+		MIS_ThiefGuild_sucked = TRUE;
+	};
 };
 
 
@@ -760,7 +764,7 @@ func void DIA_Kardif_Zeichen_Info()
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Kardif_Zeichen_14_00");	//Ах, ты имеешь дела с бандой. Хорошо. В таком случае, у меня кое-что есть для тебя.
 	AI_Output(self,other,"DIA_Kardif_Zeichen_14_01");	//(вкрадчиво) Если тебе понадобятся отмычки, намекни. Я припас несколько на всякий случай. Просто попроси меня налить тебе выпивки.
-	CreateInvItems(self,ItKe_Lockpick,20);
+	CreateInvItems(self,ItKE_lockpick,20);
 };
 
 
@@ -787,7 +791,7 @@ func void DIA_Kardif_Crew_Info()
 {
 	AI_Output(other,self,"DIA_Kardif_Crew_15_00");	//Мне все еще нужны матросы.
 	AI_Output(self,other,"DIA_Kardif_Crew_14_01");	//Настали плохие времена, дружище. Ты не найдешь матросов во всем Хоринисе. Большинство из них давно покинули город.
-	AI_Output(self,other,"DIA_Kardif_Crew_14_02");	//Но с хорошим капитаном будет нетрудно набрать несколько смышленых парней и довольно быстро сделать из них неплохую команду.
+	AI_Output(self,other,"DIA_Kardif_Crew_14_02");	//Но с хорошим капитаном будет нетрудно набрать несколько смышленных парней, и довольно быстро сделать из них неплохую команду.
 	AI_Output(other,self,"DIA_Kardif_Crew_15_03");	//Где я могу найти капитана?
 	AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
 	if(Npc_IsDead(Jack) == FALSE)
@@ -798,7 +802,7 @@ func void DIA_Kardif_Crew_Info()
 			Log_SetTopicStatus(Topic_Captain,LOG_Running);
 			B_LogEntry(Topic_Captain,"Кардиф отправил меня к старому Джеку. Возможно, он сможет помочь мне");
 		};
-		AI_Output(self,other,"DIA_Kardif_Crew_14_05");	//Иди, поговори со старым Джеком. Он ошивается в этом порту, сколько я себя помню. В том, что касается морского дела, это тот человек, что тебе нужен.
+		AI_Output(self,other,"DIA_Kardif_Crew_14_05");	//Иди, поговори со Старым Джеком. Он ошивается в этом порту, сколько я себя помню. В том, что касается морского дела, это тот человек, что тебе нужен.
 	};
 };
 

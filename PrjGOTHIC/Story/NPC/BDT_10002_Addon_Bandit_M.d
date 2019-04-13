@@ -12,7 +12,7 @@ instance BDT_10002_Addon_Bandit_M(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart02,BodyTex_N,itar_bdt_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart02,BodyTex_N,ItAr_BDT_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

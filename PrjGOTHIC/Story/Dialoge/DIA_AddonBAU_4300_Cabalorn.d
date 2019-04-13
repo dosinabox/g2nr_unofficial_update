@@ -62,11 +62,12 @@ func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
 	{
 		B_GiveInvItems(self,other,ItRw_Arrow,44);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GivePlayerXP(XP_Ambient);
+		B_GiveThiefXP();
 		Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
 	}
 	else
 	{
+		B_ResetThiefLevel();
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
@@ -148,12 +149,12 @@ func void DIA_Addon_Cavalorn_HALLO_weissNicht()
 func void DIA_Addon_Cavalorn_HALLO_Ja()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_Ja_15_00");	//Тебя зовут Кавалорн, верно?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Ja_08_01");	//Ага. Я вижу, ты все-таки не забыл меня после всего, через что мы прошли в этой клятой колонии.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Ja_08_01");	//Ага. Вижу, ты все-таки не забыл меня после всего, через что мы прошли в этой клятой колонии.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Ja_08_02");	//Куда ты направляешься?
 	Info_ClearChoices(DIA_Addon_Cavalorn_HALLO);
 	Info_AddChoice(DIA_Addon_Cavalorn_HALLO,"У меня нет определенной цели.",DIA_Addon_Cavalorn_HALLO_keinZiel);
 	Info_AddChoice(DIA_Addon_Cavalorn_HALLO,"Назад в Долину Рудников.",DIA_Addon_Cavalorn_HALLO_Bauern);
-	if(MIL_310_Stadtwache.aivar[AIV_PASSGATE] == FALSE)
+	if(Mil_310_Stadtwache.aivar[AIV_PASSGATE] == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Cavalorn_HALLO,"В город.",DIA_Addon_Cavalorn_HALLO_Stadt);
 	};
@@ -164,7 +165,7 @@ func void DIA_Addon_Cavalorn_HALLO_Stadt()
 	AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_Stadt_15_00");	//В город.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_01");	//(смеется) Ну-ну. В город. Хех.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_02");	//У тебя могут возникнуть сложности со стражей. Они уже не пускают каждого прохожего, весь район кишит бандитами.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_03");	//Несколько дней назад один из бывших заключенных Долины Рудников проходил здесь. Он сказал, что постоянно покидает Хоринис и возвращается.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_03");	//Несколько дней назад один из бывших заключенных Долины Рудников проходил здесь. Он сказал что постоянно покидает Хоринис и возвращается.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_04");	//Он пошел в долину под белой башней. Должно быть, где-то там есть проход, около водопада.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_05");	//Может быть, тебе стоит с ним поговорить.
 	Info_ClearChoices(DIA_Addon_Cavalorn_HALLO);
@@ -310,7 +311,7 @@ func void DIA_Addon_Cavalorn_ErzGeben_Info()
 		B_GiveInvItems(other,self,ItMi_Nugget,1);
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_ErzGeben_08_02");	//Ты настоящий друг. Спасибо огромное.
-	MIS_Addon_Cavalorn_TheHut = LOG_Success;
+	MIS_Addon_Cavalorn_TheHut = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_CavalornsBeutel);
 };
 
@@ -361,7 +362,7 @@ func int DIA_Addon_Cavalorn_Banditen_Condition()
 func void DIA_Addon_Cavalorn_Banditen_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_00");	//Что такое с бандитами?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_01");	//
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_01");	//Ты спал хоть раз за последние несколько недель?
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Э-э...
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_03");	//Я говорю обо всем этом сброде из исправительной колонии, которые чувствуют себя здесь как дома, грабят и убивают всех, кого могут.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_04");	//(вздыхает) Думаю, мне повезло, что они меня не убили. Я отвлекся буквально на секунду - и меня уже оглушили ударом сзади дубинкой по голове.
@@ -384,7 +385,7 @@ instance DIA_Addon_Cavalorn_ARTEFAKT(C_Info)
 
 func int DIA_Addon_Cavalorn_ARTEFAKT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && (MIS_Addon_Cavalorn_KillBrago != LOG_Success) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && (MIS_Addon_Cavalorn_KillBrago != LOG_SUCCESS) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -411,7 +412,7 @@ instance DIA_Addon_Cavalorn_HELFEN(C_Info)
 
 func int DIA_Addon_Cavalorn_HELFEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_ARTEFAKT) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_Success) && (C_BragoBanditsDead() == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_ARTEFAKT) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS) && (C_BragoBanditsDead() == FALSE))
 	{
 		return TRUE;
 	};
@@ -485,7 +486,7 @@ instance DIA_Addon_Cavalorn_LETSKILLBANDITS(C_Info)
 
 func int DIA_Addon_Cavalorn_LETSKILLBANDITS_Condition()
 {
-	if((MIS_Addon_Cavalorn_KillBrago == LOG_Running) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_Success) && (C_BragoBanditsDead() == FALSE))
+	if((MIS_Addon_Cavalorn_KillBrago == LOG_Running) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS) && (C_BragoBanditsDead() == FALSE))
 	{
 		return TRUE;
 	};
@@ -508,32 +509,32 @@ func void DIA_Addon_Cavalorn_LETSKILLBANDITS_Info()
 
 func void B_Addon_Cavalorn_VatrasBrief()
 {
-	if(MIS_Addon_Cavalorn_Letter2Vatras != LOG_Success)
+	if(MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_00");	//И я, наконец, смогу выполнить свое задание. Я и так потерял уже слишком много времени.
-		AI_Output(other,self,"DIA_Addon_Cavalorn_VatrasBrief_15_01");	//Что это за задание?
+		AI_Output(other,self,"DIA_Addon_Cavalorn_VatrasBrief_15_01");	//Что это за задание?..
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_02");	//(сам себе) Ах, да. Ведь сначала мне еще нужно будет попасть в город, и потом...
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_03");	//(вздыхает) Не знаю, как мне удастся сделать это вовремя.
 		AI_Output(other,self,"DIA_Addon_Cavalorn_VatrasBrief_15_04");	//(сухо) А что насчет меня?
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_05");	//(оценивающе) Хм-м. А почему бы и нет... Ты можешь доставить письмо в город.
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_06");	//Тогда у меня будет слегка больше времени, чтобы позаботиться о своей экипировке.
-	if(MIS_Addon_Cavalorn_Letter2Vatras != LOG_Success)
+	if(MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_07");	//Письмо должно быть у одного из бандитов в кармане.
-		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_08");	//Отнеси его к Ватрасу, магу Воды, в город. Ты найдешь его в храме Аданоса. Он проповедует там весь день.
+		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_08");	//Отнеси его к Ватрасу, магу воды, в город. Ты найдешь его в храме Аданоса. Он проповедует там весь день.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_09");	//Скажи ему, что мне не удалось.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_10");	//А если он спросит, где я, просто скажи ему, что я уже на пути к месту встречи, ладно?
 		B_LogEntry(TOPIC_Addon_KDW,"В городе Хоринисе живет маг воды Ватрас. Он читает проповеди в храме Аданоса.");
 	};
 	if((Npc_HasEquippedArmor(other) == FALSE) && (hero.guild == GIL_NONE) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
 	{
-		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_11");	//А, да, и еще одно. Сначала купи приличную одежду у какого-нибудь фермера.
+		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_11");	//А, да, и еще одно. Для начала купи приличную одежду у какого-нибудь фермера.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_12");	//Иначе тебя могут принять за бандита. Вот пара монет.
 		CreateInvItems(self,ItMi_Gold,50);
 		B_GiveInvItems(self,other,ItMi_Gold,50);
 	};
-	MIS_Addon_Cavalorn_KillBrago = LOG_Success;
+	MIS_Addon_Cavalorn_KillBrago = LOG_SUCCESS;
 	if(MIS_Addon_Cavalorn_Letter2Vatras == 0)
 	{
 		MIS_Addon_Cavalorn_Letter2Vatras = LOG_Running;
@@ -619,7 +620,7 @@ func void DIA_Addon_Cavalorn_JUNGS_Info()
 	AI_Output(other,self,"DIA_Addon_Cavalorn_JUNGS_15_00");	//Интересные на тебе доспехи. Ты больше не принадлежишь к Теням?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_01");	//Тени? Они не существуют с тех пор, как пал Барьер.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_02");	//Когда мы могли, наконец, уйти из Долины Рудников, незачем было оставаться с ними.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_03");	//Теперь я работаю на магов Воды. Я принадлежу к 'Кольцу Воды'.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_03");	//Теперь я работаю на магов воды. Я принадлежу к 'Кольцу Воды'.
 	SC_KnowsRanger = TRUE;
 	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
@@ -651,8 +652,8 @@ func void DIA_Addon_Cavalorn_Ring_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Ring_15_00");	//Расскажи мне о 'Кольце Воды'!
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_01");	//Мне на самом деле нельзя говорить про него.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_02");	//Все, что я могу сделать - это отослать тебя к Ватрасу. Он - представитель магов Воды в Хоринисе.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_03");	//Лучше тебе поговорить с ним. Скажи, что я тебя рекомендовал.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_02");	//Все, что я могу сделать, - это отослать тебя к Ватрасу. Он - представитель магов воды в Хоринисе.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_03");	//Лучше тебе поговорить с ним. Скажи, что я тебе рекомендовал.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_04");	//Может быть, он тебя примет в наши ряды. Нам срочно необходимы люди...
 	B_LogEntry(TOPIC_Addon_RingOfWater,"О Кольце Воды мне может рассказать маг воды Ватрас.");
 };
@@ -679,11 +680,11 @@ func int DIA_Addon_Cavalorn_Feinde_Condition()
 
 func void DIA_Addon_Cavalorn_Feinde_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Cavalorn_Feinde_15_00");	//Разве ты и твои ребята раньше не были врагами магов Воды?
+	AI_Output(other,self,"DIA_Addon_Cavalorn_Feinde_15_00");	//Разве ты и твои ребята раньше не были врагами магов воды?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_01");	//Эти безумные дни закончились. Теперь нет 'Нового Лагеря' или 'Старого Лагеря'.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_02");	//После того, как колония прекратила свое существование, каждый остался сам за себя.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_02");	//После того как колония прекратила свое существование, каждый остался сам за себя.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_03");	//За большинством из бывших заключенных все еще идет охота.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_04");	//Маги Воды сумели разобраться с моим приговором, и теперь я могу передвигаться свободно.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_04");	//Маги воды сумели разобраться с моим приговором, и теперь я могу передвигаться свободно.
 };
 
 
@@ -708,7 +709,7 @@ func int DIA_Addon_Cavalorn_KdWTask_Condition()
 
 func void DIA_Addon_Cavalorn_KdWTask_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Cavalorn_KdWTask_15_00");	//А что, собственно, делают маги Воды?
+	AI_Output(other,self,"DIA_Addon_Cavalorn_KdWTask_15_00");	//А что, собственно, делают маги воды?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_KdWTask_08_01");	//Они затеяли кое-что серьезное. Это касается неизвестной области на острове.
 	AI_Output(other,self,"DIA_Addon_Cavalorn_KdWTask_15_02");	//Неизвестной области? Где же она может быть?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_KdWTask_08_03");	//Я не могу тебе сказать. Поговори с Ватрасом в Хоринисе.
@@ -727,7 +728,7 @@ instance DIA_Addon_Cavalorn_BroughtLetter(C_Info)
 
 func int DIA_Addon_Cavalorn_BroughtLetter_Condition()
 {
-	if((MIS_Addon_Cavalorn_Letter2Vatras == LOG_Success) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_JUNGS))
+	if((MIS_Addon_Cavalorn_Letter2Vatras == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_JUNGS))
 	{
 		return TRUE;
 	};
@@ -762,7 +763,7 @@ func int DIA_Addon_Cavalorn_Ornament_Condition()
 func void DIA_Addon_Cavalorn_Ornament_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Ornament_15_00");	//Ты что-то ищешь?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Ornament_08_01");	//А что, так заметно? Да, у меня есть поручение от магов Воды, я ищу потерянный орнамент.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Ornament_08_01");	//А что, так заметно? Да, у меня есть поручение от магов воды, я ищу потерянный орнамент.
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Ornament_15_02");	//Как удобно. У меня то же поручение от Нефариуса.
 	if(SC_KnowsRanger == TRUE)
 	{
@@ -796,7 +797,7 @@ instance DIA_Addon_Cavalorn_Triggered(C_Info)
 
 func int DIA_Addon_Cavalorn_Triggered_Condition()
 {
-	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament) && (ornament_switched_farm == TRUE))
+	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament) && (ORNAMENT_SWITCHED_FARM == TRUE))
 	{
 		return TRUE;
 	};
@@ -847,7 +848,7 @@ func void DIA_Addon_Cavalorn_Triggered_Pal()
 	Npc_RemoveInvItems(self,ITAR_Fake_RANGER,Npc_HasItems(self,ITAR_Fake_RANGER));
 	AI_EquipBestArmor(self);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_Pal_15_00");	//Кому-то из нас придется подняться в верхнюю часть города.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Pal_08_01");	//У меня нет на это времени. Это придется сделать тебе.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Pal_08_01");	//У меня нет на это время. Это придется сделать тебе.
 	B_Cavalorn_Triggered_Wohin();
 };
 
@@ -875,7 +876,7 @@ func void DIA_Addon_Cavalorn_GotOrnaFromHagen_Info()
 	AI_Output(other,self,"DIA_Addon_Cavalorn_GotOrnaFromHagen_15_00");	//Я достал у лорда Хагена пропавший орнамент.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_GotOrnaFromHagen_08_01");	//Видишь! Я же говорил, что он у паладинов.
 	B_GivePlayerXP(XP_Ambient);
-	MIS_Addon_Cavalorn_GetOrnamentFromPAL = LOG_Success;
+	MIS_Addon_Cavalorn_GetOrnamentFromPAL = LOG_SUCCESS;
 };
 
 

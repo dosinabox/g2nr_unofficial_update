@@ -130,7 +130,7 @@ func int DIA_Coragon_WhatsUp_Condition()
 func void DIA_Coragon_WhatsUp_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Gelaber_15_00");	//Как идут дела?
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_01");	//А, не спрашивай. На висельной площади по приказу лорда Андрэ раздают бесплатное пиво.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_01");	//А, не спрашивай. На висельной площади по приказу лорда Андре раздают бесплатное пиво.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_02");	//Ко мне практически никто не заходит. Ну, кроме этих богачей из верхнего квартала.
 	AI_Output(other,self,"DIA_Coragon_Add_15_03");	//А что с ними не так?
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_04");	//(смеется) Некоторые из этих франтов ужасно действуют на нервы.
@@ -160,13 +160,13 @@ func int DIA_Addon_Coragon_MissingPeople_Condition()
 
 func void DIA_Addon_Coragon_MissingPeople_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Coragon_MissingPeople_15_00");	//Что ты знаешь о пропавших людях?
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_01");	//Я слышал, что многие из них пропали в районе порта. Неудивительно, если учитывать, что там творится.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_02");	//Пропал даже ученик плотника Торбена из нижней части города.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_03");	//Хакон, один из рыночных торговцев, рассказал мне очень странную историю.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_04");	//Он говорил, что каждый день этого он встречал одного парня, а потом тот словно исчез с лица земли. Хакон даже обратился в ополчение.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_05");	//Горожане начинают паниковать. Не понимаю, почему это происходит. Думаю, все это чепуха.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_06");	//Жизнь в Хоринисе непростая, но за воротами еще опаснее.
+	AI_Output(other,self,"DIA_Addon_Coragon_MissingPeople_15_00");	//Что ты знаешь о пропавших людях?.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_01");	//°Я слышал, что многие из них пропали в районе порта. Неудивительно, если учитывать, что там творится.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_02");	//°Пропал даже ученик плотника Торбена из нижней части города.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_03");	//°Хакон, один из рыночных торговцев, рассказал мне очень странную историю.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_04");	//°Он говорил, что каждый день этого он встречал одного парня, а потом тот словно исчез с лица земли. Хакон даже обратился в ополчение.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_05");	//°Горожане начинают паниковать. Не понимаю, почему это происходит. Думаю, все это чепуха.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_06");	//°Жизнь в Хоринисе непростая, но за воротами еще опаснее.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_07");	//Те, кто не остается в городе, рано или поздно попадет в руки к бандитам или в зубы к диким животным. Все просто.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
@@ -250,7 +250,7 @@ func void DIA_Coragon_BringSilber_Info()
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_13");	//Правда?
 	B_GivePlayerXP(XP_CoragonsSilber);
 	B_Coragon_Bier();
-	MIS_Coragon_Silber = LOG_Success;
+	MIS_Coragon_Silber = LOG_SUCCESS;
 };
 
 
@@ -304,7 +304,7 @@ func void DIA_Coragon_GiveBook_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
 	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_19");	//Спасибо! Ты спас меня. Лемар может быть очень неприятным человеком.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_19");	//Спасибо! Ты спас меня. Лемара может быть очень неприятным человеком.
 	B_GivePlayerXP(XP_Schuldenbuch);
 	B_Coragon_Bier();
 };
@@ -334,7 +334,7 @@ func void DIA_Coragon_ToOV_Info()
 	AI_Output(other,self,"DIA_Coragon_Add_15_23");	//Как мне попасть в верхний квартал?
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_24");	//Ты должен стать гражданином города. Найди себе работу!
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_25");	//Лучше всего наймись к одному из ремесленников из нижней части города. Тогда ты станешь гражданином.
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_26");	//А если этого будет недостаточно, отправляйся в казармы и поговори с лордом Андрэ.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_26");	//А если этого будет недостаточно, отправляйся в казармы и поговори с лордом Андре.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_27");	//Возможно, он примет тебя в ряды ополчения. Это откроет тебе путь в верхний квартал.
 };
 
@@ -392,7 +392,7 @@ func int DIA_Coragon_News_Condition()
 
 func void DIA_Coragon_News_Info()
 {
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_33");	//Прошлой ночью Валентино не смог расплатиться по счету.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_33");	//Прошлой ночью он не смог расплатиться по счету.
 	if(Valentino.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
 		AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_34");	//Он болтал что-то о том, что его обокрали и что он заплатит мне потом. Как же!

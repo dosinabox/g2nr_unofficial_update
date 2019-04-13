@@ -1,7 +1,7 @@
 
 instance DIA_Addon_Martin_EXIT(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 999;
 	condition = DIA_Addon_Martin_EXIT_Condition;
 	information = DIA_Addon_Martin_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Addon_Martin_EXIT_Info()
 
 instance DIA_Addon_Martin_PICKPOCKET(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 900;
 	condition = DIA_Addon_Martin_PICKPOCKET_Condition;
 	information = DIA_Addon_Martin_PICKPOCKET_Info;
@@ -58,7 +58,7 @@ func void DIA_Addon_Martin_PICKPOCKET_BACK()
 
 instance DIA_Addon_Martin_MeetingIsRunning(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 1;
 	condition = DIA_Addon_Martin_MeetingIsRunning_Condition;
 	information = DIA_Addon_Martin_MeetingIsRunning_Info;
@@ -95,7 +95,7 @@ func void DIA_Addon_Martin_MeetingIsRunning_Info()
 
 instance DIA_Addon_Martin_Hallo(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 5;
 	condition = DIA_Addon_Martin_Hallo_Condition;
 	information = DIA_Addon_Martin_Hallo_Info;
@@ -105,7 +105,7 @@ instance DIA_Addon_Martin_Hallo(C_Info)
 
 func int DIA_Addon_Martin_Hallo_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 1000) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_Success) && (SC_IsRanger == FALSE) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
+	if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 1000) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_SUCCESS) && (SC_IsRanger == FALSE) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -119,7 +119,7 @@ func void DIA_Addon_Martin_Hallo_Info()
 
 instance DIA_Addon_Martin_WasMachstDu(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 5;
 	condition = DIA_Addon_Martin_WasMachstDu_Condition;
 	information = DIA_Addon_Martin_WasMachstDu_Info;
@@ -149,7 +149,7 @@ func void DIA_Addon_Martin_WasMachstDu_Info()
 
 instance DIA_Addon_Martin_PreTrade(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 5;
 	condition = DIA_Addon_Martin_PreTrade_Condition;
 	information = DIA_Addon_Martin_PreTrade_Info;
@@ -177,7 +177,7 @@ func void DIA_Addon_Martin_PreTrade_Info()
 
 instance DIA_Addon_Martin_Farim(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 5;
 	condition = DIA_Addon_Martin_Farim_Condition;
 	information = DIA_Addon_Martin_Farim_Info;
@@ -211,7 +211,7 @@ func void DIA_Addon_Martin_Farim_Info()
 
 instance DIA_Addon_Martin_Trade(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 80;
 	condition = DIA_Addon_Martin_Trade_Condition;
 	information = DIA_Addon_Martin_Trade_Info;
@@ -248,7 +248,7 @@ func void DIA_Addon_Martin_Trade_Info()
 
 instance DIA_Addon_Martin_Rangerhelp(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 2;
 	condition = DIA_Addon_Martin_Rangerhelp_Condition;
 	information = DIA_Addon_Martin_Rangerhelp_Info;
@@ -271,7 +271,7 @@ func void DIA_Addon_Martin_Rangerhelp_Info()
 	AI_Output(other,self,"DIA_Addon_Martin_Rangerhelp_15_02");	//Я хочу присоединиться к ополчению.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_03");	//(смеется) Итак, ты хочешь вступить в наши ряды? Мы, знаешь ли, не берем просто так людей с улицы.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_04");	//Тебе, возможно, придется...
-	AI_Output(other,self,"DIA_Addon_Martin_Rangerhelp_15_05");	//Оставь свои нравоучения при себе. Просто скажи, что нужно сделать для того, чтобы вступить в ополчение.
+	AI_Output(other,self,"DIA_Addon_Martin_Rangerhelp_15_05");	//Оставь свои нравоучения при себе. Просто скажи, что нужно сделать для то, чтобы вступить в ополчение.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_06");	//(удивленно) Ну хорошо. Тогда слушай меня внимательно.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_07");	//Надо сказать, что работа интенданта - та еще каторга. Разобраться со всеми этими ящиками и мешками совсем не просто.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_08");	//А каждый раз, когда я после работы расслабляюсь в таверне Кардифа, кто-то копается в ящиках с запасами, и наутро я обнаруживаю, что что-то пропало.
@@ -286,7 +286,7 @@ func void DIA_Addon_Martin_Rangerhelp_Info()
 
 instance DIA_Addon_Martin_Auftrag(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 2;
 	condition = DIA_Addon_Martin_Auftrag_Condition;
 	information = DIA_Addon_Martin_Auftrag_Info;
@@ -334,7 +334,7 @@ func void DIA_Addon_Martin_Auftrag_weiter()
 
 instance DIA_Addon_Martin_FromVatras(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 5;
 	condition = DIA_Addon_Martin_FromVatras_Condition;
 	information = DIA_Addon_Martin_FromVatras_Info;
@@ -357,13 +357,13 @@ func void DIA_Addon_Martin_FromVatras_Info()
 	AI_Output(other,self,"DIA_Addon_Martin_FromVatras_15_02");	//Ватрас.
 	AI_Output(self,other,"DIA_Addon_Martin_FromVatras_07_03");	//Ясно. Ну и что ты знаешь об этом деле?
 	AI_Output(other,self,"DIA_Addon_Martin_FromVatras_15_04");	//Немного, но я постараюсь выяснить больше.
-	AI_Output(self,other,"DIA_Addon_Martin_FromVatras_07_05");	//Итак?
+	AI_Output(self,other,"DIA_Addon_Martin_FromVatras_07_05");	//Итак?..
 };
 
 
 instance DIA_Addon_Martin_TellAll(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 5;
 	condition = DIA_Addon_Martin_TellAll_Condition;
 	information = DIA_Addon_Martin_TellAll_Info;
@@ -381,7 +381,7 @@ func int DIA_Addon_Martin_TellAll_Condition()
 
 func void DIA_Addon_Martin_TellAll_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Martin_TellAll_15_00");	//Расскажи мне, что тебе известно о торговце оружием.
+	AI_Output(other,self,"DIA_Addon_Martin_TellAll_15_00");	//Расскажи мне, что тебе известно о торговце оружием?
 	AI_Output(self,other,"DIA_Addon_Martin_TellAll_07_01");	//Мы знаем, что за этим стоит один из влиятельных торговцев, живущих в верхнем квартале.
 	AI_Output(self,other,"DIA_Addon_Martin_TellAll_07_02");	//Часть проданного оружия даже была взята из запасов ополчения.
 	AI_Output(self,other,"DIA_Addon_Martin_TellAll_07_03");	//Но мы все еще не знаем, кто именно занимается продажами.
@@ -392,7 +392,7 @@ func void DIA_Addon_Martin_TellAll_Info()
 
 instance DIA_Addon_Martin_AboutBandits(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 5;
 	condition = DIA_Addon_Martin_AboutBandits_Condition;
 	information = DIA_Addon_Martin_AboutBandits_Info;
@@ -414,14 +414,14 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_01");	//Мы знаем, что они устраивают засады на дорогах, соединяющих город с фермами.
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_02");	//Еще нам известно, что несколько дней назад они получили крупную партию оружия.
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_03");	//Думаю, сейчас самое время для поиска улик, указывающих на личность сотрудничающего с ними торговца.
-	MIS_Martin_FindTheBanditTrader = LOG_Running;
+	MIs_Martin_FindTheBanditTrader = LOG_Running;
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Бандиты устраивают засады на дорогах между городом и фермами. Возможно, там я найду улики, указывающие на поставщика оружия.");
 };
 
 
 instance DIA_Addon_Martin_Fernando(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 5;
 	condition = DIA_Addon_Martin_Fernando_Condition;
 	information = DIA_Addon_Martin_Fernando_Info;
@@ -432,7 +432,7 @@ instance DIA_Addon_Martin_Fernando(C_Info)
 
 func int DIA_Addon_Martin_Fernando_Condition()
 {
-	if(MIS_Martin_FindTheBanditTrader == LOG_Running)
+	if(MIs_Martin_FindTheBanditTrader == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -443,49 +443,49 @@ var int Martin_IrrlichtHint;
 
 func void DIA_Addon_Martin_Fernando_Info()
 {
-	var int fernandohints;
+	var int FernandoHints;
 	AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_00");	//Насчет торговца оружием...
 	if(Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE)) || (Fernando_HatsZugegeben == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_01");	//Что тебе удалось узнать?
-		fernandohints = 0;
+		FernandoHints = 0;
 		if(Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE)))
 		{
 			if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_02");	//Такие шпаги я нашел у бандитов. На эфесе выгравирована буква 'Ф'.
-				fernandohints = fernandohints + 1;
+				FernandoHints = FernandoHints + 1;
 			};
 			if(Npc_HasItems(other,ItRi_Addon_BanditTrader))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_03");	//У бандитов я нашел это кольцо. Оно указывает на морского торговца.
-				fernandohints = fernandohints + 1;
+				FernandoHints = FernandoHints + 1;
 			};
 			if(Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_04");	//Этот список оружия и прочих доставленных бандитам вещей подписан неким Фернандо.
-				fernandohints = fernandohints + 3;
+				FernandoHints = FernandoHints + 3;
 			};
 			if(Fernando_HatsZugegeben == TRUE)
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_05");	//И кроме того, Фернандо, старый торговец из верхнего квартала, сознался в том, что ведет дела с бандитами.
-				fernandohints = fernandohints + 1;
+				FernandoHints = FernandoHints + 1;
 			};
 		}
 		else
 		{
 			AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_06");	//Фернандо сказал, что снабжает бандитов оружием.
 		};
-		if(fernandohints >= 3)
+		if(FernandoHints >= 3)
 		{
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_07");	//Думаю, этого достаточно. Итак, Фернандо... Что ж, он получит по заслугам.
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_08");	//А он всегда так спокойно себя вел, когда речь заходила об этом.
-			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_09");	//Ну, теперь-то ему предстоит долгое время гнить за решеткой.
-			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_10");	//Должен сказать, что ты сделал большое дело.
+			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_09");	//Ну теперь-то ему предстоит долгое время гнить за решеткой.
+			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_10");	//Должен сказать, ты сделал большое дело.
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_11");	//Ватрас будет доволен, когда узнает эту новость.
 			B_StartOtherRoutine(Fernando,"Prison");
 			Fernando_ImKnast = TRUE;
-			MIS_Martin_FindTheBanditTrader = LOG_Success;
+			MIs_Martin_FindTheBanditTrader = LOG_SUCCESS;
 			B_LogEntry(TOPIC_Addon_Bandittrader,"Мартин позаботится о том, чтобы Фернандо был наказан. Я должен сообщить об этом Ватрасу.");
 			B_GivePlayerXP(XP_Addon_FernandoMartin);
 		}
@@ -521,7 +521,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 
 instance DIA_Addon_Martin_Perm(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 90;
 	condition = DIA_Addon_Martin_Perm_Condition;
 	information = DIA_Addon_Martin_Perm_Info;
@@ -567,7 +567,7 @@ func void DIA_Addon_Martin_Perm_Info()
 
 instance DIA_Addon_Martin_GotRangar(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 2;
 	condition = DIA_Addon_Martin_GotRangar_Condition;
 	information = DIA_Addon_Martin_GotRangar_Info;
@@ -593,14 +593,14 @@ func void DIA_Addon_Martin_GotRangar_Info()
 	AI_Output(self,other,"DIA_Addon_Martin_GotRangar_07_05");	//Это же очевидно! Эти идиоты не могут отличить одного солдата ополчения от другого. Для них мы все на одно лицо.
 	AI_Output(self,other,"DIA_Addon_Martin_GotRangar_07_06");	//Хорошая работа, приятель.
 	AI_Output(self,other,"DIA_Addon_Martin_GotRangar_07_07");	//Если тебе что-нибудь понадобится, только скажи.
-	MIS_Addon_Martin_GetRangar = LOG_Success;
+	MIS_Addon_Martin_GetRangar = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Martin_GotRangar_Report);
 };
 
 
 instance DIA_Addon_Martin_GetMiliz(C_Info)
 {
-	npc = MIL_350_Addon_Martin;
+	npc = Mil_350_Addon_Martin;
 	nr = 2;
 	condition = DIA_Addon_Martin_GetMiliz_Condition;
 	information = DIA_Addon_Martin_GetMiliz_Info;
@@ -622,7 +622,7 @@ func void DIA_Addon_Martin_GetMiliz_Info()
 	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_01");	//А, да. Ты хочешь вступить в ополчение, верно?
 	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_02");	//Что ж, ты уже доказал мне, на что способен.
 	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_03");	//Скажем так, я бы скорее хотел бы видеть тебя на нашей стороне, чем на чьей-либо еще.
-	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_04");	//Поэтому я помогу тебе. Возьми мое рекомендательное письмо и покажи его Андрэ, нашему командиру.
+	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_04");	//Поэтому я помогу тебе. Возьми мое рекомендательное письмо и покажи его Андре, нашему командиру.
 	CreateInvItems(self,ItWr_Martin_MilizEmpfehlung_Addon,1);
 	B_GiveInvItems(self,other,ItWr_Martin_MilizEmpfehlung_Addon,1);
 	AI_Output(self,other,"DIA_Addon_Martin_GetMiliz_07_05");	//Ты найдешь его в казармах. Уверен, он сможет найти тебе применение.

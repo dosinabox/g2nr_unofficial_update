@@ -43,7 +43,7 @@ func int DIA_Albrecht_Hagen_Condition()
 func void DIA_Albrecht_Hagen_Info()
 {
 	AI_Output(other,self,"DIA_Albrecht_Hagen_15_00");	//Мне нужно поговорить с лордом Хагеном!
-	AI_Output(self,other,"DIA_Albrecht_Hagen_03_01");	//Он в главном зале, иди прямо, и не ошибешься.
+	AI_Output(self,other,"DIA_Albrecht_Hagen_03_01");	//Он в главном зале, иди прямо, не ошибешься.
 	AI_Output(self,other,"DIA_Albrecht_Hagen_03_02");	//Не знаю, что тебе нужно от него, но будь краток - он занятой человек!
 };
 
@@ -130,12 +130,12 @@ func int DIA_Albrecht_TEACHPalRunes_Condition()
 func void DIA_Albrecht_TEACHPalRunes_Info()
 {
 	AI_Output(other,self,"DIA_Albrecht_TEACHPalRunes_15_00");	//Я достоин получить руну?
-	if(player_talent_runes[SPL_PalLight] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalLight] == FALSE)
 	{
-		AI_Output(self,other,"DIA_Albrecht_TEACHPalRunes_03_01");	//В знак признания твоего ранга я награждаю тебя руной Света. Это символ истины и правосудия.
+		AI_Output(self,other,"DIA_Albrecht_TEACHPalRunes_03_01");	//В знак признания твоего ранга я награждаю тебя Руной Света. Это символ истины и правосудия.
 		AI_Output(self,other,"DIA_Albrecht_TEACHPalRunes_03_02");	//Освещай путь тем, кто следует пути Инноса.
 		AI_Output(self,other,"DIA_Albrecht_TEACHPalRunes_03_03");	//Остальные руны ты должен заслужить. Приходи, когда сочтешь, что достоин их.
-		player_talent_runes[SPL_PalLight] = TRUE;
+		PLAYER_TALENT_RUNES[SPL_PalLight] = TRUE;
 		CreateInvItems(self,ItRu_PalLight,1);
 		B_GiveInvItems(self,other,ItRu_PalLight,1);
 	}
@@ -163,13 +163,13 @@ func void B_Albrecht_YouAreNotWorthy()
 func void DIA_Albrecht_TEACHPalRunes_Heal()
 {
 	AI_Output(other,self,"DIA_Albrecht_TEACHPalRunes_Heal_15_00");	//Я выбираю путь исцеления.
-	if((player_talent_runes[SPL_PalLightHeal] == FALSE) && (MIS_ReadyforChapter4 == TRUE))
+	if((PLAYER_TALENT_RUNES[SPL_PalLightHeal] == FALSE) && (MIS_ReadyforChapter4 == TRUE))
 	{
 		Info_ClearChoices(DIA_Albrecht_TEACHPalRunes);
 		Info_AddChoice(DIA_Albrecht_TEACHPalRunes,Dialog_Back,DIA_Albrecht_TEACHPalRunes_BACK);
 		Info_AddChoice(DIA_Albrecht_TEACHPalRunes,B_BuildLearnString("Лечение легких ранений",CostForPAlSpells),DIA_Albrecht_TEACHPalRunes_PalLightHeal);
 	}
-	else if((player_talent_runes[SPL_PalMediumHeal] == FALSE) && (Kapitel >= 5))
+	else if((PLAYER_TALENT_RUNES[SPL_PalMediumHeal] == FALSE) && (Kapitel >= 5))
 	{
 		Info_ClearChoices(DIA_Albrecht_TEACHPalRunes);
 		Info_AddChoice(DIA_Albrecht_TEACHPalRunes,Dialog_Back,DIA_Albrecht_TEACHPalRunes_BACK);
@@ -184,13 +184,13 @@ func void DIA_Albrecht_TEACHPalRunes_Heal()
 func void DIA_Albrecht_TEACHPalRunes_Combat()
 {
 	AI_Output(other,self,"DIA_Albrecht_TEACHPalRunes_Combat_15_00");	//Я выбираю путь битвы.
-	if((player_talent_runes[SPL_PalHolyBolt] == FALSE) && (MIS_ReadyforChapter4 == TRUE))
+	if((PLAYER_TALENT_RUNES[SPL_PalHolyBolt] == FALSE) && (MIS_ReadyforChapter4 == TRUE))
 	{
 		Info_ClearChoices(DIA_Albrecht_TEACHPalRunes);
 		Info_AddChoice(DIA_Albrecht_TEACHPalRunes,Dialog_Back,DIA_Albrecht_TEACHPalRunes_BACK);
 		Info_AddChoice(DIA_Albrecht_TEACHPalRunes,B_BuildLearnString("Святая стрела",CostForPAlSpells),DIA_Albrecht_TEACHPalRunes_PalHolyBolt);
 	}
-	else if((player_talent_runes[SPL_PalRepelEvil] == FALSE) && (Kapitel >= 5))
+	else if((PLAYER_TALENT_RUNES[SPL_PalRepelEvil] == FALSE) && (Kapitel >= 5))
 	{
 		Info_ClearChoices(DIA_Albrecht_TEACHPalRunes);
 		Info_AddChoice(DIA_Albrecht_TEACHPalRunes,Dialog_Back,DIA_Albrecht_TEACHPalRunes_BACK);
@@ -210,7 +210,7 @@ func int DIA_Albrecht_TEACHPalRunes_PalLightHeal()
 		B_Say(self,other,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	player_talent_runes[SPL_PalLightHeal] = TRUE;
+	PLAYER_TALENT_RUNES[SPL_PalLightHeal] = TRUE;
 	CreateInvItems(self,ItRu_PalLightHeal,1);
 	B_GiveInvItems(self,other,ItRu_PalLightHeal,1);
 	other.lp = other.lp - CostForPAlSpells;
@@ -226,7 +226,7 @@ func int DIA_Albrecht_TEACHPalRunes_PalMediumHeal()
 		B_Say(self,other,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	player_talent_runes[SPL_PalMediumHeal] = TRUE;
+	PLAYER_TALENT_RUNES[SPL_PalMediumHeal] = TRUE;
 	CreateInvItems(self,ItRu_PalMediumHeal,1);
 	B_GiveInvItems(self,other,ItRu_PalMediumHeal,1);
 	other.lp = other.lp - CostForPAlSpells;
@@ -241,7 +241,7 @@ func int DIA_Albrecht_TEACHPalRunes_PalHolyBolt()
 		B_Say(self,other,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	player_talent_runes[SPL_PalHolyBolt] = TRUE;
+	PLAYER_TALENT_RUNES[SPL_PalHolyBolt] = TRUE;
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
 	B_GiveInvItems(self,other,ItRu_PalHolyBolt,1);
 	other.lp = other.lp - CostForPAlSpells;
@@ -256,7 +256,7 @@ func int DIA_Albrecht_TEACHPalRunes_PalRepelEvil()
 		B_Say(self,other,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	player_talent_runes[SPL_PalRepelEvil] = TRUE;
+	PLAYER_TALENT_RUNES[SPL_PalRepelEvil] = TRUE;
 	CreateInvItems(self,ItRu_PalRepelEvil,1);
 	B_GiveInvItems(self,other,ItRu_PalRepelEvil,1);
 	other.lp = other.lp - CostForPAlSpells;

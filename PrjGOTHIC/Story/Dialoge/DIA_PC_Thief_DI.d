@@ -47,7 +47,7 @@ func void DIA_PC_Thief_DI_Hallo_Info()
 	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_03");	//Я все время задавал себе вопрос - как оркам так быстро удавалось доставлять провизию и подкрепление.
 	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_04");	//Имея такой аванпост, это было для них легче легкого.
 	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_05");	//На пути вглубь острова, ты, вероятно, наткнешься на ловушку-другую.
-	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_06");	//Если тебе покажется, что ты не знаешь, что делать дальше, вернись ко мне. Возможно, мой опыт сможет тебе помочь.
+	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_06");	//Если тебе покажется, что ты не знаешь, что делать дальше, вернись ко мне. Возможно, мой опыт сможет помочь тебе.
 };
 
 
@@ -77,13 +77,13 @@ var int DIA_PC_Thief_DI_RAT_OneTime2;
 func void DIA_PC_Thief_DI_RAT_Info()
 {
 	AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_00");	//Мне нужен твой совет.
-	if(Npc_IsDead(OrkElite_AntiPaladinOrkOberst_DI) && (evt_orkoberst_switch_found == FALSE))
+	if(Npc_IsDead(OrkElite_AntiPaladinOrkOberst_DI) && (EVT_ORKOBERST_SWITCH_FOUND == FALSE))
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_01");	//У полковника орков здесь есть штаб-квартира. Я не могу продвинуться вглубь острова дальше этой точки.
-		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_02");	//Орки - хитрые создания. Зачастую их недооценивают. Я полагаю, у них там что-то вроде секретного прохода. Осмотри стены на предмет скрытых выключателей.
+		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_02");	//Орки хитрые создания. Зачастую их недооценивают. Я полагаю, у них там что-то вроде секретного прохода. Осмотри стены на предмет скрытых выключателей.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_03");	//Помни, впрочем - эти выключатели обычно нужно нажимать в определенном порядке, чтобы механизм сработал.
 	}
-	else if(Npc_IsDead(FireDragonIsland) && (evt_dibridge_opened == FALSE))
+	else if(Npc_IsDead(FireDragonIsland) && (EVT_DIBRIDGE_OPENED == FALSE))
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_04");	//Я сражался с драконом и теперь застрял перед пропастью с подъемным мостом. Этот мост поднят, и я не знаю, как опустить его.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_05");	//Ммм. А ты не пробовал дальнобойное оружие? Может быть, механизм можно активировать при помощи выстрела.
@@ -96,7 +96,7 @@ func void DIA_PC_Thief_DI_RAT_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_08");	//Приходи ко мне, если у тебя возникнет проблема, которую мой опыт может помочь разрешить.
-		if((OrkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime2 == FALSE))
+		if((ORkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime2 == FALSE))
 		{
 			AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_09");	//Еще одно. Я бы предпочел, чтобы ты не приводил всех этих тварей, что бродят здесь, к кораблю. Я надеюсь, этот рейд орков был последней атакой, которую нам пришлось отражать здесь!
 			B_GivePlayerXP(XP_Ambient);
@@ -253,7 +253,7 @@ func void DIA_PC_Thief_DI_Training_Talente_PICKLOCK()
 {
 	if(B_TeachThiefTalent(self,other,NPC_TALENT_PICKLOCK))
 	{
-		AI_Output(self,other,"DIA_PC_Thief_DI_Training_PICKLOCK_11_00");	//Лучше поздно, чем никогда. Странно, что ты не изучил эту способность раньше.
+		AI_Output(self,other,"DIA_PC_Thief_DI_Training_PICKLOCK_11_00");	//Лучше поздно, чем никогда. Странно что ты не изучил эту способность раньше.
 	};
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
@@ -313,7 +313,7 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_UndeadDragonDead_15_06");	//Что ты собираешься делать дальше?
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_07");	//Хороший вопрос. Я думаю, сначала нужно вернуться в Хоринис.
-		if((Diebesgilde_Verraten == TRUE) || (MIS_Andre_GuildOfThieves == LOG_Success))
+		if((Diebesgilde_Verraten == TRUE) || (MIS_Andre_GuildOfThieves == LOG_SUCCESS))
 		{
 			AI_Output(self,other,"DIA_DiegoDI_Add_11_00");	//Там больше нет гильдии воров. Это открывает новые интересные возможности.
 		};
@@ -322,7 +322,7 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 	};
 	AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_10");	//Иди к капитану. Пусть он поднимает якорь.
 	AI_StopProcessInfos(self);
-	if(Lares_IsOnBoard != LOG_Success)
+	if(Lares_IsOnBoard != LOG_SUCCESS)
 	{
 		Npc_ExchangeRoutine(self,"SittingShipDI");
 	}

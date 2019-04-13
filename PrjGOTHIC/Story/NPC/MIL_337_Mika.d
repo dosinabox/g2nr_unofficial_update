@@ -1,5 +1,5 @@
 
-instance MIL_337_Mika(Npc_Default)
+instance Mil_337_Mika(Npc_Default)
 {
 	name[0] = "Мика";
 	guild = GIL_OUT;
@@ -12,7 +12,7 @@ instance MIL_337_Mika(Npc_Default)
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	CreateInvItems(self,ItPo_Health_01,4);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_L_ToughBart_Quentin,BodyTex_L,itar_mil_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_L_ToughBart_Quentin,BodyTex_L,ITAR_Mil_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

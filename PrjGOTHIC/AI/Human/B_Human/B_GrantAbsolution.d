@@ -35,7 +35,7 @@ func void B_GrantAbsolution(var int location)
 	};
 	if(location == LOC_BL)
 	{
-		absolutionlevel_bl = absolutionlevel_bl + 1;
+		ABSOLUTIONLEVEL_BL = ABSOLUTIONLEVEL_BL + 1;
 		PETZCOUNTER_BL_Murder = 0;
 		PETZCOUNTER_BL_Theft = 0;
 		PETZCOUNTER_BL_Attack = 0;

@@ -17,7 +17,7 @@ func int DIA_Jora_EXIT_Condition()
 
 func void DIA_Jora_EXIT_Info()
 {
-	if(((Jora_Dieb == LOG_Failed) || (Jora_Dieb == LOG_Success)) && (Jora_Gold == LOG_Running))
+	if(((Jora_Dieb == LOG_FAILED) || (Jora_Dieb == LOG_SUCCESS)) && (Jora_Gold == LOG_Running))
 	{
 		AI_Output(self,other,"DIA_Jora_EXIT_08_00");	//Эй! Как насчет моих денег?
 	};
@@ -205,7 +205,7 @@ func void DIA_Jora_HolDeinGold_WillBelohnung()
 func void DIA_Jora_HolDeinGold_Wache()
 {
 	AI_Output(other,self,"DIA_Jora_HolDeinGold_Wache_15_00");	//Почему ты не позвал стражу?
-	AI_Output(self,other,"DIA_Jora_HolDeinGold_Wache_08_01");	//Стража реагирует, если только вор пойман с поличным.
+	AI_Output(self,other,"DIA_Jora_HolDeinGold_Wache_08_01");	//Стража реагирует, только если вор пойман с поличным.
 	AI_Output(self,other,"DIA_Jora_HolDeinGold_Wache_08_02");	//А когда я заметил, что мой кошелек пропал, его и след простыл!
 };
 
@@ -285,7 +285,7 @@ func void DIA_Jora_WegenDieb_Entkommen()
 {
 	AI_Output(other,self,"DIA_Jora_WegenDieb_Entkommen_15_00");	//Он сбежал от меня.
 	AI_Output(self,other,"DIA_Jora_WegenDieb_Entkommen_08_01");	//А мое золото? Он унес его с собой?
-	Jora_Dieb = LOG_Failed;
+	Jora_Dieb = LOG_FAILED;
 	B_CheckLog();
 	Info_ClearChoices(DIA_Jora_WegenDieb);
 };
@@ -294,7 +294,7 @@ func void DIA_Jora_WegenDieb_ImKnast()
 {
 	AI_Output(other,self,"DIA_Jora_WegenDieb_ImKnast_15_00");	//Да, я поймал его. Пусть немного посидит за решеткой, подумает...
 	AI_Output(self,other,"DIA_Jora_WegenDieb_ImKnast_08_01");	//А что насчет моего золота?
-	Jora_Dieb = LOG_Success;
+	Jora_Dieb = LOG_SUCCESS;
 	B_CheckLog();
 	Info_ClearChoices(DIA_Jora_WegenDieb);
 };
@@ -304,7 +304,7 @@ func void DIA_Jora_WegenDieb_Tot()
 	AI_Output(other,self,"DIA_Jora_WegenDieb_Tot_15_00");	//Ну, с ним произошел несчастный случай.
 	AI_Output(self,other,"DIA_Jora_WegenDieb_Tot_08_01");	//Ну, хотя бы он теперь не сможет никого обокрасть! Правосудие Инноса свершилось!
 	AI_Output(self,other,"DIA_Jora_WegenDieb_Tot_08_02");	//Где мое золото?
-	Jora_Dieb = LOG_Success;
+	Jora_Dieb = LOG_SUCCESS;
 	B_CheckLog();
 	Info_ClearChoices(DIA_Jora_WegenDieb);
 };
@@ -323,7 +323,7 @@ instance DIA_Jora_BringGold(C_Info)
 
 func int DIA_Jora_BringGold_Condition()
 {
-	if(((Jora_Dieb == LOG_Failed) || (Jora_Dieb == LOG_Success)) && (Jora_Gold == LOG_Running))
+	if(((Jora_Dieb == LOG_FAILED) || (Jora_Dieb == LOG_SUCCESS)) && (Jora_Gold == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -335,7 +335,7 @@ func void DIA_Jora_BringGold_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
 		AI_Output(self,other,"DIA_Jora_BringGold_08_01");	//Хвала Инносу! Есть еще правосудие в этом городе.
-		Jora_Gold = LOG_Success;
+		Jora_Gold = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Jora_Gold);
 	}
 	else
@@ -369,7 +369,7 @@ func int DIA_Jora_GHDgInfo_Condition()
 func void DIA_Jora_GHDgInfo_Info()
 {
 	AI_Output(other,self,"DIA_Jora_Add_15_05");	//Что ты знаешь о гильдии воров?
-	if(Jora_Gold != LOG_Success)
+	if(Jora_Gold != LOG_SUCCESS)
 	{
 		B_Jora_GoldForClue();
 	}
@@ -399,7 +399,7 @@ instance DIA_Jora_Belohnung(C_Info)
 
 func int DIA_Jora_Belohnung_Condition()
 {
-	if(Jora_Gold == LOG_Success)
+	if(Jora_Gold == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -413,7 +413,7 @@ func void DIA_Jora_Belohnung_Info()
 		AI_Output(self,other,"DIA_Jora_Add_08_12");	//Но я уже дал тебе ценный совет.
 		AI_Output(self,other,"DIA_Jora_Add_08_13");	//Этого должно хватить в качестве вознаграждения.
 	};
-	AI_Output(self,other,"DIA_Jora_Add_08_14");	//А если тебе нужно золото, то выслеживай воров и получай награду за их голову у лорда Андрэ.
+	AI_Output(self,other,"DIA_Jora_Add_08_14");	//А сели тебе нужно золото, то выслеживай воров и получай награду за их голову у лорда Андрэ.
 	if(Npc_GetDistToWP(self,"NW_CITY_MERCHANT_PATH_38") <= 500)
 	{
 		AI_Output(self,other,"DIA_Jora_Belohnung_08_03");	//А теперь извини, меня ждут клиенты...
@@ -450,7 +450,7 @@ func void DIA_Jora_AlriksSchwert_Info()
 	{
 		AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_03");	//Его меч все еще у меня.
 		AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_04");	//Сколько ты хочешь за него?
-		if(Jora_Gold == LOG_Success)
+		if(Jora_Gold == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_05");	//Ну - для тебя...
 			AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_06");	//А, ладно! Забирай его так. Ведь ты помог мне вернуть мое золото...

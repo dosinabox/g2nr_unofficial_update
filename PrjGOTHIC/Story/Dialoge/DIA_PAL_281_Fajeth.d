@@ -52,7 +52,7 @@ func int DIA_Fajeth_First_Condition()
 func void DIA_Fajeth_First_Info()
 {
 	AI_Output(self,other,"DIA_Fajeth_First_12_00");	//Кто ты такой и что ты делаешь здесь?
-	AI_Output(other,self,"DIA_Fajeth_First_15_01");	//Я пришел по приказу лорда Хагена...
+	AI_Output(other,self,"DIA_Fajeth_First_15_01");	//Я пришел по приказу лорда Хагена ...
 	AI_Output(self,other,"DIA_Fajeth_First_12_02");	//Тогда тебе нужно попытаться добраться до замка. Командующий Гаронд там. Он главнокомандующий этой экспедицией.
 	AI_StopProcessInfos(self);
 };
@@ -80,7 +80,7 @@ func int DIA_Fajeth_Hallo_Condition()
 func void DIA_Fajeth_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Fajeth_Hallo_12_00");	//Откуда ты пришел?
-	AI_Output(other,self,"DIA_Fajeth_Hallo_15_01");	//Я пришел по приказу Гаронда...
+	AI_Output(other,self,"DIA_Fajeth_Hallo_15_01");	//Я пришел по приказу Гаронда ...
 	AI_Output(self,other,"DIA_Fajeth_Hallo_12_02");	//Очень хорошо. Мне очень нужны новые люди.
 	AI_Output(other,self,"DIA_Fajeth_Hallo_15_03");	//Я здесь не для того, чтобы помогать тебе.
 	AI_Output(self,other,"DIA_Fajeth_Hallo_12_04");	//Нет? Тогда зачем ты пришел?
@@ -111,7 +111,7 @@ func void DIA_Fajeth_Hallo_Info()
 func void DIA_Fajeth_Hallo_Tun()
 {
 	AI_Output(other,self,"DIA_Fajeth_Hallo_Tun_15_00");	//Что я могу сделать для тебя?
-	AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_01");	//Вот уже несколько дней орда снепперов бродит вокруг нашего лагеря. Похоже, они просто выжидают подходящей возможности для нападения.
+	AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_01");	//Вот уже несколько дней, орда снепперов бродит вокруг нашего лагеря. Похоже, они просто выжидают подходящей возможности для нападения.
 	AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_02");	//Я не знаю, чего они ждут - но пока они здесь, в лагере не будет спокойствия.
 	if(Npc_IsDead(Fed) == FALSE)
 	{
@@ -149,7 +149,7 @@ func void DIA_Fajeth_Hallo_MILNein()
 {
 	AI_Output(other,self,"DIA_Fajeth_Hallo_MILNein_15_00");	//У меня уже есть приказ. От Гаронда.
 	AI_Output(self,other,"DIA_Fajeth_Hallo_MILNein_12_01");	//И ты выполнишь его. Но только после того, как я отпущу тебя.
-	AI_Output(self,other,"DIA_Fajeth_Hallo_MILNein_12_02");	//Единственное, что я хочу слышать от тебя - это 'Что я могу сделать?' Понятно?
+	AI_Output(self,other,"DIA_Fajeth_Hallo_MILNein_12_02");	//Единственное, что я хочу слышать от тебя -это 'Что я могу сделать?' Понятно?
 };
 
 func void DIA_Fajeth_Hallo_SLDJa()
@@ -166,7 +166,7 @@ func void DIA_Fajeth_Hallo_SLDJa()
 
 func void DIA_Fajeth_Hallo_SLDNein()
 {
-	AI_Output(other,self,"DIA_Fajeth_Hallo_SLDNein_15_00");	//Нет, у меня нет времени на то, чтобы решать твои проблемы.
+	AI_Output(other,self,"DIA_Fajeth_Hallo_SLDNein_15_00");	//Нет,  меня нет времени на то, чтобы решать твои проблемы.
 	AI_Output(self,other,"DIA_Fajeth_Hallo_SLDNein_12_01");	//Ты готов так легко отказаться от легких денег? Не ожидал такого от наемника.
 	AI_Output(self,other,"DIA_Fajeth_Hallo_SLDNein_12_02");	//Так как ты не хочешь помочь нам, задавай свои вопросы и проваливай.
 	MIS_Fajeth_Kill_Snapper = LOG_OBSOLETE;
@@ -196,14 +196,14 @@ func int DIA_Fajeth_Leader_Condition()
 func void DIA_Fajeth_Leader_Info()
 {
 	AI_Output(other,self,"DIA_Fajeth_Leader_15_00");	//Я убил вожака стаи.
-	AI_Output(self,other,"DIA_Fajeth_Leader_12_01");	//Хорошо. Без вожака они будут не так опасны. Я не думаю, что теперь они решатся напасть на нас.
+	AI_Output(self,other,"DIA_Fajeth_Leader_12_01");	//Хорошо. Без вожака, они будут не так опасны. Я не думаю, что теперь они решатся напасть на нас.
 	if(Fajeth_Pay == TRUE)
 	{
-		AI_Output(self,other,"DIA_Fajeth_Leader_12_02");	//Вот мое золото - как договаривались.
+		AI_Output(self,other,"DIA_Fajeth_Leader_12_02");	//Вот твое золото - как договаривались.
 		B_GiveInvItems(self,other,ItMi_Gold,100);
 	};
 	Fajeth.flags = 0;
-	MIS_Fajeth_Kill_Snapper = LOG_Success;
+	MIS_Fajeth_Kill_Snapper = LOG_SUCCESS;
 	B_GivePlayerXP(XP_FajethKillSnapper);
 };
 
@@ -230,14 +230,14 @@ func int DIA_Fajeth_SNAPPER_KILLED_Condition()
 func void DIA_Fajeth_SNAPPER_KILLED_Info()
 {
 	AI_Output(hero,self,"DIA_Fajeth_SNAPPER_KILLED_15_00");	//Со снепперами покончено.
-	AI_Output(self,hero,"DIA_Fajeth_SNAPPER_KILLED_12_01");	//Отличная работа. А с остальными зверями мы сами разберемся.
+	AI_Output(self,hero,"DIA_Fajeth_SNAPPER_KILLED_12_01");	//Отлична работа. А с остальными зверями мы сами разберемся.
 	if(Fajeth_Pay == TRUE)
 	{
 		AI_Output(self,hero,"DIA_Fajeth_SNAPPER_KILLED_12_02");	//Ты заработал свое золото - вот 100 монет, как и договаривались.
 		B_GiveInvItems(self,other,ItMi_Gold,100);
 	};
 	Fajeth.flags = 0;
-	MIS_Fajeth_Kill_Snapper = LOG_Success;
+	MIS_Fajeth_Kill_Snapper = LOG_SUCCESS;
 	B_GivePlayerXP(XP_FajethKillSnapper);
 };
 
@@ -282,7 +282,7 @@ instance DIA_Fajeth_BELOHNUNG(C_Info)
 
 func int DIA_Fajeth_BELOHNUNG_Condition()
 {
-	if((MIS_Fajeth_Kill_Snapper == LOG_Success) || (MIS_Fajeth_Kill_Snapper == LOG_OBSOLETE))
+	if((MIS_Fajeth_Kill_Snapper == LOG_SUCCESS) || (MIS_Fajeth_Kill_Snapper == LOG_OBSOLETE))
 	{
 		return TRUE;
 	};
@@ -325,7 +325,7 @@ func void DIA_Fajeth_Perm2_Info()
 {
 	AI_Output(other,self,"DIA_Fajeth_Perm2_15_00");	//Как идет добыча руды?
 	AI_Output(self,other,"DIA_Fajeth_Perm2_12_01");	//Плохо. Прогресса почти нет.
-	AI_Output(self,other,"DIA_Fajeth_Perm2_12_02");	//Когда мы прибыли сюда, сначала все шло хорошо - но теперь мои парни не добывают почти ничего, кроме обломков. Ничего стоящего.
+	AI_Output(self,other,"DIA_Fajeth_Perm2_12_02");	//Когда мы прибыли сюда, сначала все шло хорошо - но теперь мои парни не добывают почти ничего кроме обломков. Ничего стоящего.
 	AI_Output(self,other,"DIA_Fajeth_Perm2_12_03");	//Но мы не отступим - по крайней мере, пока я командую здесь.
 };
 

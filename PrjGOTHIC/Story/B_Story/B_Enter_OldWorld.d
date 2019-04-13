@@ -411,12 +411,12 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 	{
 		B_KillNpc(VLK_4130_Talbin);
 		Wld_InsertNpc(DragonSnapper,"START");
-		Talbin_FollowsThroughPass = LOG_Failed;
+		Talbin_FollowsThroughPass = LOG_FAILED;
 	}
-	else if(Talbin_FollowsThroughPass == LOG_Success)
+	else if(Talbin_FollowsThroughPass == LOG_SUCCESS)
 	{
 		B_RemoveNpc(VLK_4130_Talbin);
-		Talbin_FollowsThroughPass = LOG_Failed;
+		Talbin_FollowsThroughPass = LOG_FAILED;
 	};
 };
 
@@ -428,7 +428,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 	if(EnterOW_Kapitel5 == FALSE)
 	{
 		VLK_4143_HaupttorWache.flags = 0;
-		CreateInvItems(VLK_4143_HaupttorWache,ItKe_OC_MainGate_MIS,1);
+		CreateInvItems(VLK_4143_HaupttorWache,itke_oc_maingate_mis,1);
 		if(Npc_IsDead(Brutus) == FALSE)
 		{
 			CreateInvItems(VLK_4100_Brutus,ITWR_DementorObsessionBook_MIS,1);
@@ -439,7 +439,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		};
 		EnterOW_Kapitel5 = TRUE;
 	};
-	if(Biff_FollowsThroughPass == LOG_Success)
+	if(Biff_FollowsThroughPass == LOG_SUCCESS)
 	{
 		B_RemoveNpc(DJG_713_Biff);
 	};
@@ -498,7 +498,7 @@ func void b_enter_oldworld()
 	};
 	if((Npc_IsDead(Bilgot) == TRUE) && (MIS_RescueBilgot == LOG_Running))
 	{
-		MIS_RescueBilgot = LOG_Failed;
+		MIS_RescueBilgot = LOG_FAILED;
 	};
 };
 

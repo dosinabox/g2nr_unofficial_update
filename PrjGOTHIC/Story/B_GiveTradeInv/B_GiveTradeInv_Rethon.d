@@ -1,7 +1,7 @@
 
-var int rethon_itemsgiven_chapter_1;
-var int rethon_itemsgiven_chapter_2;
-var int rethon_itemsgiven_chapter_3;
+var int Rethon_ItemsGiven_Chapter_1;
+var int Rethon_ItemsGiven_Chapter_2;
+var int Rethon_ItemsGiven_Chapter_3;
 var int Rethon_ItemsGiven_Chapter_4;
 var int Rethon_ItemsGiven_Chapter_5;
 

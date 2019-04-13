@@ -75,7 +75,7 @@ func int DIA_Addon_Patrick_NW_Hi_Condition()
 func void DIA_Addon_Patrick_NW_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Patrick_NW_Hi_15_00");	//Итак, с вами все в порядке?
-	AI_Output(self,other,"DIA_Addon_Patrick_NW_Hi_07_01");	//Все хорошо. Маги Воды вывели нас из этой проклятой долины.
+	AI_Output(self,other,"DIA_Addon_Patrick_NW_Hi_07_01");	//Все хорошо. Маги воды вывели нас из этой проклятой долины.
 	AI_Output(other,self,"DIA_Addon_Patrick_NW_Hi_15_02");	//И что вы будете делать дальше?
 	AI_Output(self,other,"DIA_Addon_Patrick_NW_Hi_07_03");	//Я продолжу работать на Ли. А в один прекрасный день мы покинем этот остров...
 	AI_Output(other,self,"DIA_Addon_Patrick_NW_Hi_15_04");	//И что будет тогда?

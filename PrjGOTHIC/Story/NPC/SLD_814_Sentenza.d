@@ -12,7 +12,7 @@ instance SLD_814_Sentenza(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	CreateInvItems(self,ItFo_Apple,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Tough_Okyl,BodyTex_N,itar_sld_h);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Tough_Okyl,BodyTex_N,ItAr_Sld_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

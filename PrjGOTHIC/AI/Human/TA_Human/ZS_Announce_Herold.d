@@ -10,7 +10,7 @@ func void ZS_Announce_Herold()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Announce_Herold_Loop()
+func int ZS_Announce_Herold_loop()
 {
 	if((Npc_GetStateTime(self) >= 70) && (hero.aivar[AIV_INVINCIBLE] == FALSE))
 	{
@@ -27,7 +27,7 @@ func int ZS_Announce_Herold_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Announce_Herold_End()
+func void ZS_Announce_Herold_end()
 {
 };
 

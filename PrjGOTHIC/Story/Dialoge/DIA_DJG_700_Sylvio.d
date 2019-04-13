@@ -65,7 +65,7 @@ instance DIA_Sylvio_VERSAGER(C_Info)
 	nr = 6;
 	condition = DIA_Sylvio_VERSAGER_Condition;
 	information = DIA_Sylvio_VERSAGER_Info;
-	description = "А что если не исчезну?";
+	description = "А если я не исчезну?";
 };
 
 
@@ -79,7 +79,7 @@ func int DIA_Sylvio_VERSAGER_Condition()
 
 func void DIA_Sylvio_VERSAGER_Info()
 {
-	AI_Output(other,self,"DIA_Sylvio_VERSAGER_15_00");	//А что, если я не исчезну?
+	AI_Output(other,self,"DIA_Sylvio_VERSAGER_15_00");	//А если я не исчезну?
 	AI_Output(self,other,"DIA_Sylvio_VERSAGER_09_01");	//Не строй из себя крутого, выскочка, иначе тебя ждет такой же конец, как вот тех неудачников, лежащих в снегу.
 };
 
@@ -134,7 +134,7 @@ func void DIA_Sylvio_WASISTPASSIERT_Info()
 	AI_Output(self,other,"DIA_Sylvio_WASISTPASSIERT_09_02");	//Если ты такой крутой, может, ты попробуешь?
 	Info_AddChoice(DIA_Sylvio_WASISTPASSIERT,"Хорошо. Почему бы и нет?",DIA_Sylvio_WASISTPASSIERT_ok);
 	Info_AddChoice(DIA_Sylvio_WASISTPASSIERT,"Чем это тебе поможет, если я сделаю это?",DIA_Sylvio_WASISTPASSIERT_washastdudavon);
-	Info_AddChoice(DIA_Sylvio_WASISTPASSIERT,"А что мне с этого будет?",DIA_Sylvio_WASISTPASSIERT_warum);
+	Info_AddChoice(DIA_Sylvio_WASISTPASSIERT,"Что я за это получу?",DIA_Sylvio_WASISTPASSIERT_warum);
 	Info_AddChoice(DIA_Sylvio_WASISTPASSIERT,"Почему ты не расправишься с ними сам?",DIA_Sylvio_WASISTPASSIERT_selbst);
 	Log_CreateTopic(TOPIC_SylvioKillIceGolem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_SylvioKillIceGolem,LOG_Running);
@@ -198,7 +198,7 @@ instance DIA_Sylvio_ICEGOLEMSKILLED(C_Info)
 	nr = 9;
 	condition = DIA_Sylvio_ICEGOLEMSKILLED_Condition;
 	information = DIA_Sylvio_ICEGOLEMSKILLED_Info;
-	description = "Твой путь чист!";
+	description = "Твой путь чист! Ледяных гигантов больше нет.";
 };
 
 
@@ -220,7 +220,7 @@ func void DIA_Sylvio_ICEGOLEMSKILLED_Info()
 		AI_Output(self,other,"DIA_Sylvio_ICEGOLEMSKILLED_09_03");	//Всему свое время.
 	};
 	AI_StopProcessInfos(self);
-	MIS_DJG_Sylvio_KillIceGolem = LOG_Success;
+	MIS_DJG_Sylvio_KillIceGolem = LOG_SUCCESS;
 	B_GivePlayerXP(XP_SylvioDJGIceGolemDead);
 	Npc_ExchangeRoutine(self,"IceWait1");
 	B_StartOtherRoutine(DJG_Bullco,"IceWait1");
@@ -239,7 +239,7 @@ instance DIA_Sylvio_WASJETZT(C_Info)
 
 func int DIA_Sylvio_WASJETZT_Condition()
 {
-	if((MIS_DJG_Sylvio_KillIceGolem == LOG_Success) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((MIS_DJG_Sylvio_KillIceGolem == LOG_SUCCESS) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -267,7 +267,7 @@ func void DIA_Sylvio_WASJETZT_trennen()
 
 func void DIA_Sylvio_WASJETZT_ok()
 {
-	AI_Output(other,self,"DIA_Sylvio_WASJETZT_ok_15_00");	//
+	AI_Output(other,self,"DIA_Sylvio_WASJETZT_ok_15_00");	//Хорошо, пошли.
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_ok_09_01");	//Давай, быстрее!
 	AI_StopProcessInfos(self);
 };
@@ -281,7 +281,7 @@ func void DIA_Sylvio_WASJETZT_nein()
 
 func void DIA_Sylvio_WASJETZT_Geld()
 {
-	AI_Output(other,self,"DIA_Sylvio_WASJETZT_Geld_15_00");	//Сначала я хочу увидеть свои деньги.
+	AI_Output(other,self,"DIA_Sylvio_WASJETZT_Geld_15_00");	//Сначала, я хочу увидеть свои деньги.
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_Geld_09_01");	//Когда мы завалим дракона, у тебя будет столько денег, что не сможешь унести.
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Я хочу получить свои деньги сейчас.",DIA_Sylvio_WASJETZT_jetztGeld);
 };

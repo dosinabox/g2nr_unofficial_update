@@ -49,7 +49,7 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Bolt,50);
 		CreateInvItems(slf,ItMi_Sulfur,1);
 		CreateInvItems(slf,ItMi_Quartz,2);
-		CreateInvItems(slf,ItKe_Lockpick,6);
+		CreateInvItems(slf,ItKE_lockpick,6);
 		CreateInvItems(slf,ItRw_Crossbow_M_01,1);
 		Engor_ItemsGiven_Chapter_2 = TRUE;
 	};
@@ -67,7 +67,7 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Coal,2);
 		CreateInvItems(slf,ItRw_Arrow,70);
 		CreateInvItems(slf,ItRw_Bolt,70);
-		CreateInvItems(slf,ItKe_Lockpick,6);
+		CreateInvItems(slf,ItKE_lockpick,6);
 		CreateInvItems(slf,ItRw_Crossbow_M_02,1);
 		Engor_ItemsGiven_Chapter_3 = TRUE;
 	};
@@ -84,7 +84,7 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Coal,1);
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,110);
-		CreateInvItems(slf,ItKe_Lockpick,12);
+		CreateInvItems(slf,ItKE_lockpick,12);
 		CreateInvItems(slf,ItRw_Crossbow_H_02,1);
 		Engor_ItemsGiven_Chapter_4 = TRUE;
 	};

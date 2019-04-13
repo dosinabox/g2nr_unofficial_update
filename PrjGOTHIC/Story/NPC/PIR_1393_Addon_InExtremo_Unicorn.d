@@ -16,6 +16,7 @@ instance PIR_1393_Addon_InExtremo_Unicorn(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 88;
 	attribute[ATR_HITPOINTS] = 88;
 	CreateInvItem(self,ItMi_IELaute);
+	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"HUM_IE_UNICORN_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_UNICORN",DEFAULT,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_STRONG;

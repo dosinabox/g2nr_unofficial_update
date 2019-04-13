@@ -10,7 +10,7 @@ instance KDF_506_Neoras(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_NormalBart_Cronos,BodyTex_P,itar_kdf_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_NormalBart_Cronos,BodyTex_P,ItAr_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

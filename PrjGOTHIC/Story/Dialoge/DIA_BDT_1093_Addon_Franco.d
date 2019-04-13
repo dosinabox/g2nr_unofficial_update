@@ -57,7 +57,7 @@ func void DIA_Franco_PICKPOCKET_DoIt()
 	if(other.attribute[ATR_DEXTERITY] >= 60)
 	{
 		B_GiveInvItems(self,other,ItAm_Addon_Franco,1);
-		B_GivePlayerXP(XP_Ambient);
+		B_GiveThiefXP();
 		Info_ClearChoices(DIA_Franco_PICKPOCKET);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		self.attribute[ATR_HITPOINTS_MAX] = 196;
@@ -65,6 +65,7 @@ func void DIA_Franco_PICKPOCKET_DoIt()
 	}
 	else
 	{
+		B_ResetThiefLevel();
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
@@ -181,7 +182,7 @@ instance DIA_Addon_Franco_tot(C_Info)
 
 func int DIA_Addon_Franco_tot_Condition()
 {
-	if((MIS_HlpLogan != LOG_Success) && Npc_IsDead(Logan) && Npc_KnowsInfo(other,DIA_Addon_Franco_Hai))
+	if((MIS_HlpLogan != LOG_SUCCESS) && Npc_IsDead(Logan) && Npc_KnowsInfo(other,DIA_Addon_Franco_Hai))
 	{
 		return TRUE;
 	};
@@ -213,7 +214,7 @@ instance DIA_Addon_Franco_HaiSuccess(C_Info)
 
 func int DIA_Addon_Franco_HaiSuccess_Condition()
 {
-	if((MIS_HlpLogan == LOG_Success) && Npc_KnowsInfo(other,DIA_Addon_Franco_Hai))
+	if((MIS_HlpLogan == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Franco_Hai))
 	{
 		return TRUE;
 	};
@@ -226,7 +227,7 @@ func void DIA_Addon_Franco_HaiSuccess_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Franco_HaiSuccess_15_01");	//Но он не выжил.
 	};
-	AI_Output(self,other,"DIA_Addon_Franco_HaiSuccess_08_02");	//Итак, ты победил болотных акул. Следовательно, ты полезен... но по крайней мере, полезнее, чем большинство местных бездельников.
+	AI_Output(self,other,"DIA_Addon_Franco_HaiSuccess_08_02");	//Итак, ты победил болотных акул. Следовательно, ты полезен... по крайней мере, полезнее, чем большинство местных бездельников.
 	B_GivePlayerXP(XP_Addon_HlpLogan);
 	B_LogEntry(Topic_Addon_Franco,"Одной помощи Логану оказалось недостаточно для того, чтобы попасть в лагерь.");
 };
@@ -373,7 +374,7 @@ func void DIA_Addon_Franco_tafel_Info()
 	AI_Output(other,self,"DIA_Addon_Franco_tafel_15_00");	//Вот твоя каменная табличка.
 	B_GiveInvItems(other,self,ItMi_Addon_Stone_04,1);
 	AI_Output(self,other,"DIA_Addon_Franco_tafel_08_01");	//Очень хорошо. Ворон будет доволен.
-	MIS_HlpEdgor = LOG_Success;
+	MIS_HlpEdgor = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_HlpEdgor);
 	B_LogEntry(Topic_Addon_Franco,"Я принес Франко его каменную табличку.");
 };

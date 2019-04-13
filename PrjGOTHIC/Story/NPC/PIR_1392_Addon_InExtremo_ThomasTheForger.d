@@ -1,7 +1,7 @@
 
 instance PIR_1392_Addon_InExtremo_ThomasTheForger(Npc_Default)
 {
-	name[0] = "Томас кузнец";
+	name[0] = "Ланг";
 	npcType = npctype_main;
 	guild = GIL_NONE;
 	level = 4;
@@ -16,6 +16,7 @@ instance PIR_1392_Addon_InExtremo_ThomasTheForger(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 88;
 	attribute[ATR_HITPOINTS] = 88;
 	CreateInvItem(self,ItMi_IECello);
+	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"HUM_IE_THOMAS_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_THOMAS",DEFAULT,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_STRONG;

@@ -22,7 +22,7 @@ func void B_StopMagicFreeze()
 	};
 };
 
-func int ZS_MagicFreeze()
+func void ZS_MagicFreeze()
 {
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_RestartFreeze);
 	Npc_StopAni(self,"S_FIRE_VICTIM");
@@ -57,6 +57,10 @@ func int ZS_MagicFreeze_Loop()
 			};
 			B_MagicHurtNpc(other,self,SPL_FREEZE_DAMAGE);
 		};
+	};
+	if(self.attribute[ATR_HITPOINTS] == 0)
+	{
+		B_ClearRuneInv(self);
 	};
 	return LOOP_CONTINUE;
 };

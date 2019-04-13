@@ -9,7 +9,7 @@ func void ZS_Study_WP()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Study_WP_Loop()
+func int ZS_Study_WP_loop()
 {
 	var int randy;
 	var int Eventrandy;
@@ -76,7 +76,7 @@ func int ZS_Study_WP_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Study_WP_End()
+func void ZS_Study_WP_end()
 {
 	Npc_RemoveInvItems(self,Fakescroll_Addon,Npc_HasItems(other,Fakescroll_Addon));
 };

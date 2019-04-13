@@ -1,5 +1,5 @@
 
-instance BDT_1013_Bandit_L(Npc_Default)
+instance Bdt_1013_Bandit_L(Npc_Default)
 {
 	name[0] = NAME_Bandit;
 	guild = GIL_BDT;

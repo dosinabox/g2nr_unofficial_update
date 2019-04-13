@@ -40,7 +40,7 @@ func void DIA_Angar_NW_AllDragonsDead_Info()
 {
 	AI_Output(other,self,"DIA_Angar_NW_AllDragonsDead_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Angar_NW_AllDragonsDead_04_01");	//Хорошо. Но меня все равно мучают головные боли, хотя они уменьшились с тех пор, как я покинул Долину Рудников.
-	if(Angar_IsOnBoard != LOG_Success)
+	if(Angar_IsOnBoard != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Angar_NW_AllDragonsDead_04_02");	//Я останусь здесь. Ты будешь знать, где найти меня, если я тебе понадоблюсь.
 	};
@@ -69,7 +69,7 @@ func int DIA_Angar_NW_KnowWhereEnemy_Condition()
 func void DIA_Angar_NW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Angar_NW_KnowWhereEnemy_15_00");	//Я собираюсь покинуть Хоринис. Ты хочешь присоединиться ко мне?
-	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_04_01");	//Чем дальше я уйду от Долины Рудников, тем лучше. Когда мы отчаливаем?
+	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_04_01");	//Чем дальше я буду от Долины Рудников, тем лучше. Когда мы отчаливаем?
 	Log_CreateTopic(Topic_Crew,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Crew,LOG_Running);
 	B_LogEntry(Topic_Crew,"Ангар будет рад каждой миле, что разделяет его и Долину рудников. Он предложил присоединиться ко мне и путешествовать вместе.");
@@ -91,7 +91,7 @@ func void DIA_Angar_NW_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Angar_NW_KnowWhereEnemy_Yes_15_00");	//Иди в гавань. Встретимся там.
 	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_Yes_04_01");	//Уже иду.
 	self.flags = NPC_FLAG_IMMORTAL;
-	Angar_IsOnBoard = LOG_Success;
+	Angar_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count = Crewmember_Count + 1;
 	B_GivePlayerXP(XP_Crewmember_Success);
 	if(MIS_ReadyforChapter6 == TRUE)
@@ -127,7 +127,7 @@ instance DIA_Angar_NW_LeaveMyShip(C_Info)
 
 func int DIA_Angar_NW_LeaveMyShip_Condition()
 {
-	if((Angar_IsOnBoard == LOG_Success) && (MIS_ReadyforChapter6 == FALSE))
+	if((Angar_IsOnBoard == LOG_SUCCESS) && (MIS_ReadyforChapter6 == FALSE))
 	{
 		return TRUE;
 	};
@@ -156,7 +156,7 @@ instance DIA_Angar_NW_StillNeedYou(C_Info)
 
 func int DIA_Angar_NW_StillNeedYou_Condition()
 {
-	if(((Angar_IsOnBoard == LOG_OBSOLETE) || (Angar_IsOnBoard == LOG_Failed)) && (Crewmember_Count < Max_Crew))
+	if(((Angar_IsOnBoard == LOG_OBSOLETE) || (Angar_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
 		return TRUE;
 	};
@@ -165,9 +165,9 @@ func int DIA_Angar_NW_StillNeedYou_Condition()
 func void DIA_Angar_NW_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Angar_NW_StillNeedYou_15_00");	//Возвращайся на борт.
-	AI_Output(self,other,"DIA_Angar_NW_StillNeedYou_04_01");	//Ты даже хуже, чем я. Немного определенности тебе совсем бы не помешало. Увидимся позже.
+	AI_Output(self,other,"DIA_Angar_NW_StillNeedYou_04_01");	//Ты даже хуже чем я. Немного определенности тебе совсем бы не помешало. Увидимся позже.
 	self.flags = NPC_FLAG_IMMORTAL;
-	Angar_IsOnBoard = LOG_Success;
+	Angar_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count = Crewmember_Count + 1;
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)

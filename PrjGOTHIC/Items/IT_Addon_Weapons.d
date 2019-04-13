@@ -87,13 +87,15 @@ func void Equip_Zauberstab()
 	{
 		Npc_ChangeAttribute(self,ATR_MANA_MAX,20);
 		Npc_ChangeAttribute(self,ATR_MANA,20);
+		b_meleeweaponchange(0,0,20);
 	};
 };
 
 func void UnEquip_Zauberstab()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
 	{
+		b_meleeweaponundochange();
 		Npc_ChangeAttribute(self,ATR_MANA_MAX,-20);
 		if(self.attribute[ATR_MANA] >= 20)
 		{
@@ -373,7 +375,7 @@ instance ItMw_FrancisDagger_Mis(C_Item)
 
 instance ItMw_RangerStaff_Addon(C_Item)
 {
-	name = "Посох Кольца воды";
+	name = "Посох 'Кольца воды'";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
@@ -613,7 +615,7 @@ instance ItRw_Addon_FireBow(C_Item)
 
 instance ItRw_Addon_MagicBolt(C_Item)
 {
-	name = "Магическая арбалетная стрела";
+	name = "Магический болт";
 	mainflag = ITEM_KAT_MUN;
 	flags = ITEM_CROSSBOW | ITEM_MULTI;
 	value = Value_Bolzen;

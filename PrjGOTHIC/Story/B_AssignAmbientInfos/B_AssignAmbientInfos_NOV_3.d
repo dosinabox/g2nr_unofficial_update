@@ -55,7 +55,7 @@ func void DIA_NOV_3_Fegen_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_02");	//Я единственный, кто готов помочь тебе?
 			AI_Output(other,self,"DIA_NOV_3_Fegen_15_03");	//Нет, я уже нашел помощника.
-			AI_Output(self,other,"DIA_NOV_3_Fegen_03_04");	//Тогда - за дело!
+			AI_Output(self,other,"DIA_NOV_3_Fegen_03_04");	//Тогда, за дело!
 			NOV_Helfer = NOV_Helfer + 1;
 			Feger1_Permanent = TRUE;
 			B_GivePlayerXP(XP_Feger);
@@ -136,7 +136,7 @@ func void DIA_NOV_3_Wurst_Info()
 {
 	var string NovizeText;
 	var string NovizeLeft;
-	AI_Output(other,self,"DIA_NOV_3_Wurst_15_00");	//Хочешь колбасы?
+	AI_Output(other,self,"DIA_NOV_3_Wurst_15_00");	//Ты не хочешь колбасы?
 	AI_Output(self,other,"DIA_NOV_3_Wurst_03_01");	//Конечно, давай ее сюда. Кто же откажется от такой колбасы.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben = Wurst_Gegeben + 1;
@@ -255,17 +255,17 @@ func void DIA_NOV_3_STANDARD_Info()
 	};
 	if((Kapitel == 2) || (Kapitel == 3))
 	{
-		if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_Success))
+		if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_SUCCESS))
 		{
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_05");	//Нашего ордена коснулась грязная лапа Белиара! Зло, должно быть, очень сильно, если оно смогло найти союзников здесь.
-			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_06");	//Педро жил в этом монастыре многие годы. Я думаю, что то время, которое он проводил за стенами монастыря, ослабило его веру и сделало его уязвимым для искушений Белиара.
+			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_06");	//Педро жил в этом монастыре многие годы. Я думаю, что он слишком много времени проводил за стенами монастыря. Это ослабило его веру и сделало уязвимым для искушений Белиара.
 		}
-		else if(MIS_NovizenChase == LOG_Success)
+		else if(MIS_NovizenChase == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_07");	//Ты пришел как раз вовремя. Сам Иннос не мог бы выбрать лучший момент для твоего появления.
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_08");	//Ты войдешь в анналы нашего монастыря как спаситель Глаза.
 		}
-		else if(mis_oldworld == LOG_Success)
+		else if(MIS_OLDWORLD == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_03_09");	//Новости из Долины Рудников очень тревожные. Я думаю, что Иннос специально подвергает нас суровым испытаниям.
 		}
@@ -276,11 +276,11 @@ func void DIA_NOV_3_STANDARD_Info()
 	};
 	if(Kapitel == 4)
 	{
-		AI_Output(self,other,"DIA_NOV_3_STANDARD_03_11");	//Говорят, что мы должны уничтожить драконов с помощью нашего Владыки. Гнев Инноса испепелит создания Белиара.
+		AI_Output(self,other,"DIA_NOV_3_STANDARD_03_11");	//Говорят, что мы должны уничтожить драконов с помощью нашего Владыки. Гнев Инноса испепелит созданий Белиар.
 	};
 	if(Kapitel >= 5)
 	{
-		AI_Output(self,other,"DIA_NOV_3_STANDARD_03_12");	//Слава Инносу, сейчас вроде все успокоилось. Мы должны вернуться на путь нашего Бога - только с его помощью мы можем противостоять Злу.
+		AI_Output(self,other,"DIA_NOV_3_STANDARD_03_12");	//Слава Инносу, сейчас вроде все успокоилось. Мы должны вернуться на путь нашего Бога - только с его помощью мы можем противостоять злу.
 	};
 };
 

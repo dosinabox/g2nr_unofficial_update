@@ -28,7 +28,7 @@ var int Parlan_Hammer;
 
 func void B_Parlan_HAMMER()
 {
-	AI_Output(self,other,"DIA_Parlan_HAMMER_05_00");	//(строго) Подожди минутку, сын мой.
+	AI_Output(self,other,"DIA_Parlan_HAMMER_05_00");	//(строго) Подожди минутку, сын мой, сын мой.
 	AI_Output(self,other,"DIA_Parlan_HAMMER_05_01");	//Ходят слухи, что ценный артефакт 'исчез' из нашего святилища.
 	AI_Output(self,other,"DIA_Parlan_HAMMER_05_02");	//Я не хочу ничего даже слышать об этом - я жду, что он вернется на свое законное место.
 	Parlan_Hammer = TRUE;
@@ -212,7 +212,7 @@ func void DIA_Parlan_PETZMASTER_Info()
 			AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_10");	//И зачем ты убил нашу овцу?
 		};
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_11");	//Мы живем здесь в соответствии с законами. Они касаются и тебя.
-		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_12");	//За твое преступление ты должен сделать пожертвование монастырю.
+		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_12");	//За твое преступление, ты должен сделать пожертвование монастырю.
 		Parlan_Schulden = B_GetTotalPetzCounter(self) * 50;
 	};
 	if(B_GetGreatestPetzCrime(self) == CRIME_SHEEPKILLER)
@@ -491,41 +491,41 @@ func void DIA_Parlan_Stand_Info()
 {
 	Kloster_Punkte = 0;
 	AI_Output(other,self,"DIA_Parlan_Stand_15_00");	//Могу я войти в библиотеку?
-	if(MIS_NeorasPflanzen == LOG_Success)
+	if(MIS_NeorasPflanzen == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_01");	//Ты принес огненную крапиву брату Неорасу.
 		Kloster_Punkte = Kloster_Punkte + 2;
 	};
-	if(MIS_NeorasRezept == LOG_Success)
+	if(MIS_NeorasRezept == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_02");	//Ты нашел рецепт брата Неораса.
 		Kloster_Punkte = Kloster_Punkte + 2;
 	};
-	if(MIS_IsgarothWolf == LOG_Success)
+	if(MIS_IsgarothWolf == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_03");	//Ты убил черного волка, терроризировавшего часовню.
 		Kloster_Punkte = Kloster_Punkte + 1;
 	};
-	if(MIS_ParlanFegen == LOG_Success)
+	if(MIS_ParlanFegen == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_04");	//Ты смог найти четырех послушников и подмести кельи.
 		Kloster_Punkte = Kloster_Punkte + 3;
 	};
-	if(MIS_GoraxEssen == LOG_Success)
+	if(MIS_GoraxEssen == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_05");	//Ты честно раздал еду послушникам, как и просил тебя брат Горакс.
 		Kloster_Punkte = Kloster_Punkte + 1;
 	}
-	else if(MIS_GoraxEssen == LOG_Failed)
+	else if(MIS_GoraxEssen == LOG_FAILED)
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_06");	//Горакс неудовлетворен тобой, так как нечестно распределил еду.
 	};
-	if(MIS_GoraxWein == LOG_Success)
+	if(MIS_GoraxWein == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_07");	//Ты продал вино, как того и хотел Горакс.
 		Kloster_Punkte = Kloster_Punkte + 1;
 	}
-	else if(MIS_GoraxWein == LOG_Failed)
+	else if(MIS_GoraxWein == LOG_FAILED)
 	{
 		AI_Output(self,other,"DIA_Parlan_Stand_05_08");	//Чем меньше мы будем говорить о вине, тем лучше...
 	};
@@ -534,7 +534,7 @@ func void DIA_Parlan_Stand_Info()
 		AI_Output(self,other,"DIA_Parlan_Stand_05_09");	//Да, ты хорошо поработал. Теперь пришло время начать постигать учение Инноса. Поговори с мастером Хигласом в библиотеке.
 		AI_Output(self,other,"DIA_Parlan_Stand_05_10");	//Я выдаю тебе этот ключ.
 		Parlan_Erlaubnis = TRUE;
-		MIS_KlosterArbeit = LOG_Success;
+		MIS_KlosterArbeit = LOG_SUCCESS;
 		Wld_AssignRoomToGuild("Kloster02",GIL_PUBLIC);
 		B_GiveInvItems(self,other,ItKe_KlosterBibliothek,1);
 		if(MIS_NeorasPflanzen == LOG_Running)
@@ -585,7 +585,7 @@ instance DIA_Parlan_Aufgabe(C_Info)
 	condition = DIA_Parlan_Aufgabe_Condition;
 	information = DIA_Parlan_Aufgabe_Info;
 	permanent = FALSE;
-	description = "У тебя есть какое-нибудь задание для меня?";
+	description = "У тебя есть поручение для меня?";
 };
 
 
@@ -600,7 +600,7 @@ func int DIA_Parlan_Aufgabe_Condition()
 func void DIA_Parlan_Aufgabe_Info()
 {
 	AI_Output(other,self,"DIA_Parlan_Aufgabe_15_00");	//У тебя есть поручение для меня?
-	AI_Output(self,other,"DIA_Parlan_Aufgabe_05_01");	//Хмм... Да, ты действительно можешь сделать кое-что для общины.
+	AI_Output(self,other,"DIA_Parlan_Aufgabe_05_01");	//Хмм... Да, ты, действительно можешь сделать кое-что для общины.
 	AI_Output(self,other,"DIA_Parlan_Aufgabe_05_02");	//Кельям послушников не помешает хорошая уборка. Позаботься об этом.
 	AI_Output(other,self,"DIA_Parlan_Aufgabe_15_03");	//Но это займет целую вечность...
 	AI_Output(self,other,"DIA_Parlan_Aufgabe_05_04");	//Тогда тебе лучше не терять время попусту, разве нет?
@@ -639,7 +639,7 @@ func void DIA_Parlan_Fegen_Info()
 	{
 		AI_Output(self,other,"DIA_Parlan_Fegen_05_01");	//Тебе удалось найти четырех послушников себе в помощь. Я думаю, теперь они могут вернуться к своей работе.
 		AI_Output(self,other,"DIA_Parlan_Fegen_05_02");	//Отлично, послушник. Ты выполнил мое поручение.
-		MIS_ParlanFegen = LOG_Success;
+		MIS_ParlanFegen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_ParlanFegen);
 		DIA_Parlan_Fegen_permanent = TRUE;
 		B_StartOtherRoutine(Feger1,"START");
@@ -695,7 +695,7 @@ instance DIA_Parlan_KNOWSJUDGE(C_Info)
 
 func int DIA_Parlan_KNOWSJUDGE_Condition()
 {
-	if((other.guild == GIL_NOV) && (knows_fire_contest == TRUE) && (Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) == FALSE))
+	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == TRUE) && (Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) == FALSE))
 	{
 		return TRUE;
 	};
@@ -732,7 +732,7 @@ func int DIA_Parlan_TEACH_MANA_Condition()
 
 func void DIA_Parlan_TEACH_MANA_Info()
 {
-	AI_Output(other,self,"DIA_Parlan_TEACH_MANA_15_00");	//Я хочу повысить мои магические способности.
+	AI_Output(other,self,"DIA_Parlan_TEACH_MANA_15_00");	//Я хочу повысить мои магические способности
 	Info_ClearChoices(DIA_Parlan_TEACH_MANA);
 	Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
 	Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Parlan_TEACH_MANA_1);
@@ -823,7 +823,7 @@ func void DIA_Parlan_CIRCLE1_Info()
 	{
 		AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE1_05_01");	//Первый Круг магии позволит тебе использовать руны, созданные тобой.
 		AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE1_05_02");	//Теперь ты достоин узнать формулы заклинаний для создания собственных рун.
-		AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE1_05_03");	//Каждый из нас специализируется в своей области магии. Так что хорошо подумай, в какой области хочешь специализироваться ты.
+		AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE1_05_03");	//Каждый из нас специализируется на своей области магии. Так что хорошо подумай, в какой области хочешь специализироваться ты.
 	};
 };
 
@@ -931,42 +931,42 @@ func void DIA_Parlan_TEACH_Info()
 	AI_Output(other,self,"DIA_Parlan_TEACH_15_00");	//Обучи меня!
 	Info_ClearChoices(DIA_Parlan_TEACH);
 	Info_AddChoice(DIA_Parlan_TEACH,Dialog_Back,DIA_Parlan_TEACH_BACK);
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (player_talent_runes[SPL_LightHeal] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE))
 	{
 		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_LightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightHeal)),DIA_Parlan_TEACH_LIGHT_HEAL);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (player_talent_runes[SPL_Light] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_Light] == FALSE))
 	{
-		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_Light,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_Parlan_TEACH_LIGHT);
+		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_LIGHT,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_Parlan_TEACH_LIGHT);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (player_talent_runes[SPL_WindFist] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE))
 	{
 		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_Parlan_TEACH_WINDFIST);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (player_talent_runes[SPL_Sleep] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (PLAYER_TALENT_RUNES[SPL_Sleep] == FALSE))
 	{
 		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_Sleep,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Sleep)),DIA_Parlan_TEACH_Sleep);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (player_talent_runes[SPL_MediumHeal] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (PLAYER_TALENT_RUNES[SPL_MediumHeal] == FALSE))
 	{
 		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_MediumHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MediumHeal)),DIA_Parlan_TEACH_MediumHeal);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (player_talent_runes[SPL_Fear] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (PLAYER_TALENT_RUNES[SPL_Fear] == FALSE))
 	{
 		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_Fear,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Fear)),DIA_Parlan_TEACH_Fear);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4) && (player_talent_runes[SPL_DestroyUndead] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4) && (PLAYER_TALENT_RUNES[SPL_DestroyUndead] == FALSE))
 	{
 		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_DestroyUndead,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_DestroyUndead)),DIA_Parlan_TEACH_DestroyUndead);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5) && (player_talent_runes[SPL_FullHeal] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5) && (PLAYER_TALENT_RUNES[SPL_FullHeal] == FALSE))
 	{
 		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_FullHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_FullHeal)),DIA_Parlan_TEACH_FullHeal);
 		abletolearn = abletolearn + 1;
@@ -1181,7 +1181,7 @@ instance DIA_Parlan_DontDisturb(C_Info)
 
 func int DIA_Parlan_DontDisturb_Condition()
 {
-	if((Parlan_DontTalkToNovice == LOG_Success) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && ((other.guild != GIL_PAL) || (other.guild != GIL_NOV) || (other.guild != GIL_KDF)))
+	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && ((other.guild != GIL_PAL) || (other.guild != GIL_NOV) || (other.guild != GIL_KDF)))
 	{
 		return TRUE;
 	};
@@ -1233,26 +1233,26 @@ func void DIA_Parlan_Kap3U4U5_PERM_Back()
 
 func void DIA_Parlan_Kap3U4U5_PERM_Church()
 {
-	AI_Output(other,self,"DIA_Parlan_Kap3U4U5_PERM_Church_15_00");	//... церковь?
+	AI_Output(other,self,"DIA_Parlan_Kap3U4U5_PERM_Church_15_00");	//...церковь?
 	AI_Output(self,other,"DIA_Parlan_Add_05_00");	//О, господи! Неужели Иннос ослепил тебя?!
 	AI_Output(self,other,"DIA_Parlan_Add_05_01");	//(цинично) Где церковь? Ох, боже, и куда же она подевалась?!
 };
 
 func void DIA_Parlan_Kap3U4U5_PERM_Library()
 {
-	AI_Output(other,self,"DIA_Parlan_Kap3U4U5_PERM_Library_15_00");	//... библиотеку?
+	AI_Output(other,self,"DIA_Parlan_Kap3U4U5_PERM_Library_15_00");	//...библиотеку?
 	AI_Output(self,other,"DIA_Parlan_Add_05_02");	//Библиотека находится в конце колоннады слева, прямо напротив церкви.
 };
 
 func void DIA_Parlan_Kap3U4U5_PERM_Chapel()
 {
-	AI_Output(other,self,"DIA_Parlan_Kap3U4U5_PERM_Chapel_15_00");	//... часовню?
+	AI_Output(other,self,"DIA_Parlan_Kap3U4U5_PERM_Chapel_15_00");	//...часовню?
 	AI_Output(self,other,"DIA_Parlan_Add_05_03");	//Часовня находится в комнате посередине левой колоннады. Там паладины молятся Инносу.
 };
 
 func void DIA_Parlan_Kap3U4U5_PERM_Cellar()
 {
-	AI_Output(other,self,"DIA_Parlan_Kap3U4U5_PERM_Cellar_15_00");	//... подвал?
+	AI_Output(other,self,"DIA_Parlan_Kap3U4U5_PERM_Cellar_15_00");	//...подвал?
 	AI_Output(self,other,"DIA_Parlan_Add_05_04");	//Вход в подвал находится посередине колоннады справа.
 };
 

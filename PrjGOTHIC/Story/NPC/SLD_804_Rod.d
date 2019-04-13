@@ -1,5 +1,5 @@
 
-instance SLD_804_Rod(Npc_Default)
+instance Sld_804_Rod(Npc_Default)
 {
 	name[0] = "Род";
 	guild = GIL_SLD;
@@ -11,7 +11,7 @@ instance SLD_804_Rod(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Rod);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_ToughBart01,BodyTex_N,itar_sld_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_ToughBart01,BodyTex_N,itar_sld_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

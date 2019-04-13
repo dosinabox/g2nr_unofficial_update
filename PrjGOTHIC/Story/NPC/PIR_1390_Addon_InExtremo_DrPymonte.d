@@ -1,7 +1,7 @@
 
 instance PIR_1390_Addon_InExtremo_DrPymonte(Npc_Default)
 {
-	name[0] = "Др. Примонт";
+	name[0] = "Доктор Пимонте";
 	npcType = npctype_main;
 	guild = GIL_NONE;
 	level = 4;
@@ -15,6 +15,7 @@ instance PIR_1390_Addon_InExtremo_DrPymonte(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 88;
 	attribute[ATR_HITPOINTS] = 88;
 	CreateInvItem(self,ItMi_IEHarfe);
+	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"HUM_IE_PYMONTE_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_PYMONTE",DEFAULT,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_STRONG;

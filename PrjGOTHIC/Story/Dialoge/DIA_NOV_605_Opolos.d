@@ -73,7 +73,7 @@ func void DIA_Opolos_Wurst_Info()
 {
 	var string NovizeText;
 	var string NovizeLeft;
-	AI_Output(other,self,"DIA_Opolos_Wurst_15_00");	//Я принес баранью колбасу...
+	AI_Output(other,self,"DIA_Opolos_Wurst_15_00");	//Я принес баранью колбасу ...
 	AI_Output(self,other,"DIA_Opolos_Wurst_12_01");	//Ох, фантастика! Наконец-то! Вкуснейшая баранья колбаса!
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben = Wurst_Gegeben + 1;
@@ -109,7 +109,7 @@ func void DIA_Opolos_HowLong_Info()
 	AI_Output(other,self,"DIA_Opolos_HowLong_15_00");	//Ты давно в монастыре?
 	AI_Output(self,other,"DIA_Opolos_HowLong_12_01");	//Уже три года. Но до сих пор меня не пускают в библиотеку. А мне так хочется...
 	AI_Output(other,self,"DIA_Opolos_HowLong_15_02");	//А почему?
-	AI_Output(self,other,"DIA_Opolos_HowLong_12_03");	//Моя работа здесь - пасти овец, а не изучать писания.
+	AI_Output(self,other,"DIA_Opolos_HowLong_12_03");	//Моя работа здесь - пасти овец - а не изучать писания.
 	AI_Output(self,other,"DIA_Opolos_HowLong_12_04");	//И пока мастер Парлан не освободит меня от этой обязанности, мне не позволят начать обучение в библиотеке.
 	MIS_HelpOpolos = LOG_Running;
 	Log_CreateTopic(Topic_OpolosStudy,LOG_MISSION);
@@ -169,7 +169,7 @@ func void DIA_Opolos_beibringen_Info()
 {
 	AI_Output(other,self,"DIA_Opolos_beibringen_15_00");	//Ты можешь чему-нибудь научить меня?
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_01");	//Конечно, мне часто приходилось драться. Я могу научить тебя, как стать сильнее.
-	AI_Output(self,other,"DIA_Opolos_beibringen_12_02");	//Но я бы хотел узнать что-нибудь о зельях, особенно магических.
+	AI_Output(self,other,"DIA_Opolos_beibringen_12_02");	//Но я бы хотел узнать что-нибудь о зельях, особенно о магических.
 	AI_Output(other,self,"DIA_Opolos_beibringen_15_03");	//Чем я могу помочь тебе в этом?
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_04");	//Ну, если ты работаешь на Неораса, то у тебя наверняка будет возможность 'позаимствовать' ненадолго один из его рецептов.
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_05");	//Если ты принесешь его мне, чтобы я мог изучить его, то я потренирую тебя.
@@ -207,21 +207,21 @@ func void DIA_Opolos_rezept_Info()
 		AI_Output(other,self,"DIA_Opolos_rezept_15_00");	//Я принес рецепт, как ты и хотел.
 		AI_Output(self,other,"DIA_Opolos_rezept_12_01");	//Хорошо, дай я прочту его.
 		B_UseFakeScroll();
-		AI_Output(self,other,"DIA_Opolos_rezept_12_02");	//Ага... хм... да... понятно... так, так...
+		AI_Output(self,other,"DIA_Opolos_rezept_12_02");	//Ага... хм ... да ... понятно ... так, так ...
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Opolos_rezept_12_03");	//Хорошо. Огромное спасибо. Если хочешь, ты можешь потренироваться со мной.
 		DIA_Opolos_rezept_permanent = TRUE;
 		Opolos_TeachSTR = TRUE;
-		Opolos_Rezept = LOG_Success;
+		Opolos_Rezept = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
 		B_LogEntry(Topic_KlosterTeacher,"Ополос может помочь мне стать сильнее.");
 	}
-	else if(MIS_NeorasRezept == LOG_Success)
+	else if(MIS_NeorasRezept == LOG_SUCCESS)
 	{
 		AI_Output(other,self,"DIA_Opolos_rezept_15_04");	//Я уже вернул этот рецепт Неорасу.
 		AI_Output(self,other,"DIA_Opolos_rezept_12_05");	//Ох, черт - мне, наверное, никогда не удастся научиться чему-нибудь здесь. Ладно. Я все равно потренирую тебя.
-		Opolos_Rezept = LOG_Failed;
+		Opolos_Rezept = LOG_FAILED;
 		DIA_Opolos_rezept_permanent = TRUE;
 		Opolos_TeachSTR = TRUE;
 		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
@@ -316,7 +316,7 @@ func void DIA_Opolos_Agon_Info()
 	AI_Output(self,other,"DIA_Opolos_Agon_12_02");	//Бабо пришел в монастырь незадолго до тебя. И сначала он помогал Агону в саду.
 	AI_Output(self,other,"DIA_Opolos_Agon_12_03");	//Похоже, они что-то там не поделили, и с тех пор Бабо подметает двор.
 	AI_Output(other,self,"DIA_Opolos_Agon_15_04");	//Ты знаешь, что произошло?
-	AI_Output(self,other,"DIA_Opolos_Agon_12_05");	//Точно не знаю. Тебе лучше самому спросить их. Но слово Агона имеет больший вес, чем слово любого другого послушника, потому что он племянник губернатора.
+	AI_Output(self,other,"DIA_Opolos_Agon_12_05");	//Точно не знаю. Тебе лучше самому спросить их. Но слова Агона имеет больший вес, чем слово любого другого послушника, потому что он племянник губернатора.
 };
 
 
@@ -341,7 +341,7 @@ func int DIA_Opolos_LIESEL_Condition()
 
 func void DIA_Opolos_LIESEL_Info()
 {
-	AI_Output(other,self,"DIA_Opolos_LIESEL_15_00");	//Смотри, я привел Бетси. Могу я оставить ее с тобой?
+	AI_Output(other,self,"DIA_Opolos_LIESEL_15_00");	//Смотри, Я привел Бетси. Могу я оставить ее с тобой?
 	Npc_PerceiveAll(self);
 	if(Wld_DetectNpc(self,Follow_Sheep,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 800))
 	{
@@ -355,7 +355,7 @@ func void DIA_Opolos_LIESEL_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Opolos_Add_15_00");	//Хм... куда же это я ее подевал. Я приду позже.
+		AI_Output(other,self,"DIA_Opolos_Add_15_00");	//Хм... куда же это я его подевал. Я приду позже.
 	};
 };
 
@@ -381,7 +381,7 @@ func int DIA_Opolos_Biblothek_Condition()
 
 func void DIA_Opolos_Biblothek_Info()
 {
-	AI_Output(other,self,"DIA_Opolos_Biblothek_15_00");	//Насчет библиотеки...
+	AI_Output(other,self,"DIA_Opolos_Biblothek_15_00");	//Насчет библиотеки ...
 	if(Parlan_Erlaubnis == FALSE)
 	{
 		AI_Output(self,other,"DIA_Opolos_Biblothek_12_01");	//Это запертая комната слева, рядом с воротами.
@@ -409,7 +409,7 @@ instance DIA_Opolos_HelloAgain(C_Info)
 
 func int DIA_Opolos_HelloAgain_Condition()
 {
-	if((other.guild == GIL_KDF) && (MIS_HelpOpolos == LOG_Success) && Npc_IsInState(self,ZS_Talk))
+	if((other.guild == GIL_KDF) && (MIS_HelpOpolos == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -446,7 +446,7 @@ func int DIA_Opolos_HowIsIt_Condition()
 func void DIA_Opolos_HowIsIt_Info()
 {
 	AI_Output(other,self,"DIA_Opolos_HowIsIt_15_00");	//Как дела?
-	if(MIS_HelpOpolos == LOG_Success)
+	if(MIS_HelpOpolos == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Opolos_HowIsIt_12_01");	//Отлично. С тех пор, как мне разрешили посещать библиотеку, все просто превосходно.
 	}
@@ -589,7 +589,7 @@ func void DIA_Opolos_Kap3_PERM_PEDRO()
 {
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_PEDRO_15_00");	//Педро предал нас.
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_PEDRO_12_01");	//Я слышал об этом, но я думал, что и тебе об этом известно. Вот почему я ничего не сказал.
-	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_PEDRO_12_02");	//Неужели враг сильнее нас - ну, я хочу сказать, сможем ли мы победить его?
+	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_PEDRO_12_02");	//Неужели враг сильнее нас - ну я хочу сказать, сможем ли мы победить его?
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_PEDRO_15_03");	//Мы еще не мертвы.
 	if(Opolos_Pedro == FALSE)
 	{

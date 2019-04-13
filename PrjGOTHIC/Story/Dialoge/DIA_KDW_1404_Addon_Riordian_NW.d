@@ -27,7 +27,7 @@ instance DIA_Addon_Riordian_Hallo(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Riordian_Hallo_Condition;
 	information = DIA_Addon_Riordian_Hallo_Info;
-	description = "„то ты здесь делаешь?";
+	description = "„ем ты занимаешьс€?";
 };
 
 
@@ -95,7 +95,7 @@ func void DIA_Addon_Riordian_Atlantis_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_01");	//ƒа. ƒо последнего времени мы были уверены, что знаем об острове все.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_02");	//ћы считали, что весь северо-восток острова - один большой горный массив.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_03");	//Ќо мы ошибались.
-	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_04");	//«а этими горами лежит долина. “ам и располагаетс€ этот древний город.
+	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_04");	//«а этими горами лежит долина. “ам и располагалс€ этот древний город.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_05");	//(вздыхает) я бы очень хотел взгл€нуть на его старинные здани€, но они наверн€ка давно рассыпались в прах...
 	B_LogEntry(TOPIC_Addon_KDW,"ћаги воды считают, что за порталом находитс€ древний затер€нный город.");
 };
@@ -130,12 +130,12 @@ func void DIA_Addon_Riordian_SaturasWantYou_Info()
 	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Saturas");
-	MIS_Addon_Saturas_BringRiordian2Me = LOG_Success;
+	MIS_Addon_Saturas_BringRiordian2Me = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 
 
-var int riordian_permnews;
+var int Riordian_PermNews;
 
 instance DIA_Addon_Riordian_Perm(C_Info)
 {
@@ -150,7 +150,7 @@ instance DIA_Addon_Riordian_Perm(C_Info)
 
 func int DIA_Addon_Riordian_Perm_Condition()
 {
-	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_Success)
+	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -159,10 +159,10 @@ func int DIA_Addon_Riordian_Perm_Condition()
 func void DIA_Addon_Riordian_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_Perm_15_00");	//≈сть что-нибудь новое?
-	if(RIORDIAN_PERMNEWS == FALSE)
+	if(Riordian_PermNews == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_Perm_10_01");	//ƒа! я нашел подтверждение, что эта древн€€ цивилизаци€ действительно поклон€лась јданосу!
-		RIORDIAN_PERMNEWS = TRUE;
+		Riordian_PermNews = TRUE;
 	}
 	else
 	{
@@ -226,32 +226,32 @@ func int DIA_Addon_Riordian_Teach_Condition()
 func void DIA_Addon_Riordian_Teach_Info()
 {
 	B_DIA_Addon_Riordian_Teach_15_00();
-	if((player_talent_wispdetector[WISPSKILL_NF] == FALSE) || (player_talent_wispdetector[WISPSKILL_FF] == FALSE) || (player_talent_wispdetector[WISPSKILL_NONE] == FALSE) || (player_talent_wispdetector[WISPSKILL_RUNE] == FALSE) || (player_talent_wispdetector[WISPSKILL_MAGIC] == FALSE) || (player_talent_wispdetector[WISPSKILL_FOOD] == FALSE) || (player_talent_wispdetector[WISPSKILL_POTIONS] == FALSE))
+	if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NF] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FF] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NONE] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_RUNE] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_MAGIC] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FOOD] == FALSE) || (PLAYER_TALENT_WISPDETECTOR[WISPSKILL_POTIONS] == FALSE))
 	{
 		Info_ClearChoices(DIA_Addon_Riordian_Teach);
 		Info_AddChoice(DIA_Addon_Riordian_Teach,Dialog_Back,DIA_Addon_Riordian_Teach_BACK);
 		B_DIA_Addon_Riordian_Teach_10_01();
-		if(player_talent_wispdetector[WISPSKILL_FF] == FALSE)
+		if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FF] == FALSE)
 		{
 			Info_AddChoice(DIA_Addon_Riordian_Teach,B_BuildLearnString(NAME_ADDON_WISPSKILL_FF,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_FF)),DIA_Addon_Riordian_Teach_WISPSKILL_FF);
 		};
-		if(player_talent_wispdetector[WISPSKILL_NONE] == FALSE)
+		if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NONE] == FALSE)
 		{
 			Info_AddChoice(DIA_Addon_Riordian_Teach,B_BuildLearnString(NAME_ADDON_WISPSKILL_NONE,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_NONE)),DIA_Addon_Riordian_Teach_WISPSKILL_NONE);
 		};
-		if((player_talent_wispdetector[WISPSKILL_RUNE] == FALSE) && (wispskill_level >= 2))
+		if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_RUNE] == FALSE) && (WISPSKILL_LEVEL >= 2))
 		{
 			Info_AddChoice(DIA_Addon_Riordian_Teach,B_BuildLearnString(NAME_ADDON_WISPSKILL_RUNE,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_RUNE)),DIA_Addon_Riordian_Teach_WISPSKILL_RUNE);
 		};
-		if((player_talent_wispdetector[WISPSKILL_MAGIC] == FALSE) && (wispskill_level >= 2))
+		if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_MAGIC] == FALSE) && (WISPSKILL_LEVEL >= 2))
 		{
 			Info_AddChoice(DIA_Addon_Riordian_Teach,B_BuildLearnString(NAME_ADDON_WISPSKILL_MAGIC,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_MAGIC)),DIA_Addon_Riordian_Teach_WISPSKILL_MAGIC);
 		};
-		if((player_talent_wispdetector[WISPSKILL_FOOD] == FALSE) && (wispskill_level >= 3))
+		if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FOOD] == FALSE) && (WISPSKILL_LEVEL >= 3))
 		{
 			Info_AddChoice(DIA_Addon_Riordian_Teach,B_BuildLearnString(NAME_ADDON_WISPSKILL_FOOD,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_FOOD)),DIA_Addon_Riordian_Teach_WISPSKILL_FOOD);
 		};
-		if((player_talent_wispdetector[WISPSKILL_POTIONS] == FALSE) && (wispskill_level >= 3))
+		if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_POTIONS] == FALSE) && (WISPSKILL_LEVEL >= 3))
 		{
 			Info_AddChoice(DIA_Addon_Riordian_Teach,B_BuildLearnString(NAME_ADDON_WISPSKILL_POTIONS,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_POTIONS)),DIA_Addon_Riordian_Teach_WISPSKILL_POTIONS);
 		};
@@ -277,9 +277,9 @@ func void DIA_Addon_Riordian_Teach_WISPSKILL_FF()
 {
 	if(B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_FF))
 	{
-		if(wispskill_level < 2)
+		if(WISPSKILL_LEVEL < 2)
 		{
-			wispskill_level = 2;
+			WISPSKILL_LEVEL = 2;
 		};
 		DIA_Addon_Riordian_Teach_WISPSKILL_X();
 	};
@@ -290,9 +290,9 @@ func void DIA_Addon_Riordian_Teach_WISPSKILL_NONE()
 {
 	if(B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_NONE))
 	{
-		if(wispskill_level < 2)
+		if(WISPSKILL_LEVEL < 2)
 		{
-			wispskill_level = 2;
+			WISPSKILL_LEVEL = 2;
 		};
 		DIA_Addon_Riordian_Teach_WISPSKILL_X();
 	};
@@ -303,9 +303,9 @@ func void DIA_Addon_Riordian_Teach_WISPSKILL_RUNE()
 {
 	if(B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_RUNE))
 	{
-		if(wispskill_level < 3)
+		if(WISPSKILL_LEVEL < 3)
 		{
-			wispskill_level = 3;
+			WISPSKILL_LEVEL = 3;
 		};
 		DIA_Addon_Riordian_Teach_WISPSKILL_X();
 	};
@@ -316,9 +316,9 @@ func void DIA_Addon_Riordian_Teach_WISPSKILL_MAGIC()
 {
 	if(B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_MAGIC))
 	{
-		if(wispskill_level < 3)
+		if(WISPSKILL_LEVEL < 3)
 		{
-			wispskill_level = 3;
+			WISPSKILL_LEVEL = 3;
 		};
 		DIA_Addon_Riordian_Teach_WISPSKILL_X();
 	};

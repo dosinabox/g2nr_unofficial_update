@@ -104,3 +104,13 @@ instance Balthasar_Sheep3(Mst_Default_Sheep)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
+instance SHEEPTRANSFORM(Mst_Default_Sheep)
+{
+	Npc_PercEnable(self,PERC_ASSESSSURPRISE,b_stopmagictransform);
+	B_SetVisuals_Sheep();
+	Npc_SetToFistMode(self);
+	start_aistate = ZS_MM_AllScheduler;
+	aivar[AIV_MM_RoamStart] = OnlyRoutine;
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+

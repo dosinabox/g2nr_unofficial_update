@@ -100,7 +100,7 @@ func int DIA_Addon_Snaf_Cook_Condition()
 func void DIA_Addon_Snaf_Cook_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_Cook_15_00");	//А что у вас в меню, сэр?
-	AI_Output(self,other,"DIA_Addon_Snaf_Cook_01_01");	//Советовал бы попробовать наше новое блюдо, умник. Оно называется 'Пламенная нарезка' в соусе 'Плавленые зубы'.
+	AI_Output(self,other,"DIA_Addon_Snaf_Cook_01_01");	//Советовал бы попробовать наше новое блюдо, умник. Оно называется 'Пламенная нарезка в соусе 'Плавленые зубы'.
 	Info_ClearChoices(DIA_Addon_Snaf_Cook);
 	Info_AddChoice(DIA_Addon_Snaf_Cook,"Пламенная нарезка?",DIA_Addon_Snaf_Cook_FEUER);
 	Info_AddChoice(DIA_Addon_Snaf_Cook,"А что за соус такой - 'Плавленые зубы'?",DIA_Addon_Snaf_Cook_HAMMER);
@@ -173,7 +173,7 @@ func void DIA_Addon_Snaf_Booze_Info()
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_03");	//А еще, если тебе понадобится моя помощь... Теперь вся информация для тебя - бесплатно.
 	Snaf_Tip_Kosten = 0;
 	B_GiveInvItems(self,other,ItFo_Addon_FireStew,1);
-	MIS_SnafHammer = LOG_Success;
+	MIS_SnafHammer = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Loushammer);
 };
 
@@ -201,7 +201,7 @@ func void DIA_Addon_Snaf_Attentat_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_Attentat_15_00");	//Что ты знаешь о нападении?
 	AI_Output(self,other,"DIA_Addon_Snaf_Attentat_01_01");	//Ты говоришь про нападение на Эстебана?
-	AI_Output(self,other,"DIA_Addon_Snaf_Attentat_01_02");	//Ну, ты меня понимаешь, хозяин таверны слышит все, но не утверждает, что все, что он слышал - правда.
+	AI_Output(self,other,"DIA_Addon_Snaf_Attentat_01_02");	//Ну, ты меня понимаешь, хозяин таверны слышит все, но не утверждает, что все, что он слышал, - правда.
 	Info_ClearChoices(DIA_Addon_Snaf_Attentat);
 	Info_AddChoice(DIA_Addon_Snaf_Attentat,"Скажи хоть, к кому я могу с этим обратиться.",DIA_Addon_Snaf_Attentat_GoWhere);
 	Info_AddChoice(DIA_Addon_Snaf_Attentat,"А что ты бы сделал, будь ты на моем месте?",DIA_Addon_Snaf_Attentat_YouBeingMe);
@@ -363,7 +363,7 @@ func void DIA_Addon_Snaf_People_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_People_15_00");	//Что местные думают об Эстебане?
 	AI_Output(self,other,"DIA_Addon_Snaf_People_01_01");	//Тебе следует быть более точным в своих вопросах...
-	if((Kosten_Einmal == FALSE) && (MIS_SnafHammer != LOG_Success))
+	if((Kosten_Einmal == FALSE) && (MIS_SnafHammer != LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_People_01_02");	//Информация стоит денег, приятель...
 		AI_Output(other,self,"DIA_Addon_Snaf_People_15_03");	//Ну, и сколько же она стоит?
@@ -374,7 +374,7 @@ func void DIA_Addon_Snaf_People_Info()
 	Info_ClearChoices(DIA_Addon_Snaf_People);
 	Info_AddChoice(DIA_Addon_Snaf_People,Dialog_Back,DIA_Addon_Snaf_People_BACK);
 	Info_AddChoice(DIA_Addon_Snaf_People,"Поль",DIA_Addon_Snaf_People_Paul);
-	Info_AddChoice(DIA_Addon_Snaf_People,"Huno",DIA_Addon_Snaf_People_Huno);
+	Info_AddChoice(DIA_Addon_Snaf_People,"Хуно",DIA_Addon_Snaf_People_Huno);
 	Info_AddChoice(DIA_Addon_Snaf_People,"Фиск",DIA_Addon_Snaf_People_Fisk);
 	Info_AddChoice(DIA_Addon_Snaf_People,"Эмилио",DIA_Addon_Snaf_People_Emilio);
 	if(!Npc_IsDead(Senyan))
@@ -397,7 +397,7 @@ func void DIA_Addon_Snaf_People_BACK()
 
 func void DIA_Addon_Snaf_People_Paul()
 {
-	AI_Output(other,self,"DIA_Addon_Snaf_People_Paul_15_00");	//А что Пол?
+	AI_Output(other,self,"DIA_Addon_Snaf_People_Paul_15_00");	//А что Поль?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Paul_01_01");	//Не думаю, что он без ума от Эстебана. Из-за того, что он работает на Хуно, в шахту ему никогда не попасть.
@@ -420,7 +420,7 @@ func void DIA_Addon_Snaf_People_Fisk()
 	AI_Output(other,self,"DIA_Addon_Snaf_People_Fisk_15_00");	//А Фиск?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
 	{
-		AI_Output(self,other,"DIA_Addon_Snaf_People_Fisk_01_01");	//Фиск есть Фиск. Он платит долю Эстебану и перепродает добро, которое он, в основном, получает от пиратов.
+		AI_Output(self,other,"DIA_Addon_Snaf_People_Fisk_01_01");	//Фиск есть Фиск. От платит долю Эстебану и перепродает добро, которое он, в основном, получает от пиратов.
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Fisk_01_02");	//По мне, так он вряд ли питает добрые чувства к Эстебану.
 	}
 	else

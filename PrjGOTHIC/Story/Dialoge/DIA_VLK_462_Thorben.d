@@ -129,7 +129,7 @@ func void DIA_Thorben_Arbeit_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_Arbeit_15_00");	//Я ищу работу.
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_01");	//Ты что-нибудь знаешь о плотницком деле?
-	AI_Output(other,self,"DIA_Thorben_Arbeit_15_02");	//Единственное, что я могу получить из дерева - это огонь.
+	AI_Output(other,self,"DIA_Thorben_Arbeit_15_02");	//Единственное, что я могу получить из дерева, - это огонь.
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_03");	//А что насчет замков?
 	AI_Output(other,self,"DIA_Thorben_Arbeit_15_04");	//Нуууу...
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_05");	//Извини, но я не могу взять тебя, если ты ничего не понимаешь в моем ремесле.
@@ -161,7 +161,7 @@ func int DIA_Thorben_OtherMasters_Condition()
 
 func void DIA_Thorben_OtherMasters_Info()
 {
-	AI_Output(other,self,"DIA_Thorben_OtherMasters_15_00");	//А что, если я поступлю в ученики к одному из других здешних мастеров?
+	AI_Output(other,self,"DIA_Thorben_OtherMasters_15_00");	//А что если я поступлю в ученики к одному из других здешних мастеров?
 	AI_Output(self,other,"DIA_Thorben_OtherMasters_06_01");	//Хорошо, я дам свое одобрение.
 	AI_Output(self,other,"DIA_Thorben_OtherMasters_06_02");	//Но тебе нужно сначала получить благословение богов.
 	AI_Output(self,other,"DIA_Thorben_OtherMasters_06_03");	//Скажи, ты верующий человек?
@@ -175,12 +175,12 @@ func void DIA_Thorben_OtherMasters_Info()
 
 func void B_Thorben_GetBlessings()
 {
-	AI_Output(self,other,"B_Thorben_GetBlessings_06_00");	//Тогда иди к Ватрасу, жрецу Аданоса, пусть он тебе даст благословение.
+	AI_Output(self,other,"B_Thorben_GetBlessings_06_00");	//Тогда иди к Ватрасу, жрецу Аданоса, пусть он даст тебе благословение.
 	if((other.guild != GIL_KDF) && (other.guild != GIL_NOV) && (other.guild != GIL_PAL))
 	{
 		AI_Output(self,other,"B_Thorben_GetBlessings_06_01");	//Он также подскажет тебе, где найти жреца Инноса. Ты должен получить и его благословение.
 	};
-	AI_Output(self,other,"B_Thorben_GetBlessings_06_02");	//А когда ты получишь благословение богов, я проголосую за тебя.
+	AI_Output(self,other,"B_Thorben_GetBlessings_06_02");	//А когда ты получишь благословение богов, Я проголосую за тебя.
 	MIS_Thorben_GetBlessings = LOG_Running;
 	Log_CreateTopic(TOPIC_Thorben,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Thorben,LOG_Running);
@@ -236,7 +236,7 @@ func void DIA_Thorben_ZUSTIMMUNG_Info()
 		{
 			AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_04");	//Да, получил.
 			AI_Output(self,other,"DIA_Thorben_ZUSTIMMUNG_06_05");	//Тогда ты получишь и мое благословение. Не важно, какому пути ты решил следовать, гордись своим ремеслом, мой мальчик!
-			MIS_Thorben_GetBlessings = LOG_Success;
+			MIS_Thorben_GetBlessings = LOG_SUCCESS;
 			B_GivePlayerXP(XP_Zustimmung);
 			Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
@@ -351,23 +351,23 @@ func void DIA_Thorben_PleaseTeach_Info()
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_05");	//Если я не отдам долг Лемару в ближайшее время, он натравит на меня своих головорезов.
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_06");	//Дай мне еще 100 золотых, и я обучу тебя.
 		Info_ClearChoices(DIA_Thorben_PleaseTeach);
-		Info_AddChoice(DIA_Thorben_PleaseTeach,"Сколько ты возьмешь?",DIA_Thorben_PleaseTeach_Later);
+		Info_AddChoice(DIA_Thorben_PleaseTeach,"Может быть, позже...",DIA_Thorben_PleaseTeach_Later);
 		Info_AddChoice(DIA_Thorben_PleaseTeach,"Отлично. Вот 100 золотых.",DIA_Thorben_PleaseTeach_Pay100);
 	}
-	else if(MIS_Matteo_Gold == LOG_Success)
+	else if(MIS_Matteo_Gold == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_07");	//Ты заплатил долг Гритты Маттео. Похоже, ты хороший человек. Я обучу тебя тому, что ты хочешь знать.
-		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_08");	//Однако я не могу сделать это бесплатно.
+		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_08");	//Однако я не могу сделать это бесплатно. У целая куча долгов, и мне нужны деньги.
 		AI_Output(other,self,"DIA_Thorben_PleaseTeach_15_09");	//Сколько ты возьмешь?
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_10");	//200 золотых монет.
 		Info_ClearChoices(DIA_Thorben_PleaseTeach);
-		Info_AddChoice(DIA_Thorben_PleaseTeach,"Сколько ты возьмешь?",DIA_Thorben_PleaseTeach_Later);
+		Info_AddChoice(DIA_Thorben_PleaseTeach,"Может быть, позже...",DIA_Thorben_PleaseTeach_Later);
 		Info_AddChoice(DIA_Thorben_PleaseTeach,"Отлично. Вот 200 золотых.",DIA_Thorben_PleaseTeach_Pay200);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_11");	//Хмм... я не знаю, можно ли тебе доверять.
-		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_12");	//Боюсь, ты можешь оказаться одним из этих бездельников, которые приходят в город, только чтобы очистить сундуки честных людей.
+		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_12");	//Боюсь, ты можешь оказаться одним из этих бездельников, которые приходят в город, только чтобы обчистить сундуки честных людей.
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_13");	//Я ничему не буду учить тебя, пока не буду уверен, что ты честный человек.
 	};
 };
@@ -471,13 +471,17 @@ func void DIA_Thorben_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Thorben_TRADE_06_02");	//Хорошо. Но они ничем не помогут тебе, пока ты не научишься пользоваться ими.
 	};
-	if((Npc_HasItems(self,ItKe_Lockpick) == 0) && (Kapitel > Dietrichgeben))
+	if((Npc_HasItems(self,ItKE_lockpick) == 0) && (Kapitel > Dietrichgeben))
 	{
-		CreateInvItems(self,ItKe_Lockpick,5);
+		CreateInvItems(self,ItKE_lockpick,5);
 		Dietrichgeben = Dietrichgeben + 1;
 	};
-	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"Плотник Торбен продает отмычки.");
+	if(THORBEN_CITYTRADER == FALSE)
+	{
+		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTrader,"Плотник Торбен продает отмычки.");
+		THORBEN_CITYTRADER = TRUE;
+	};
 };
 
 
@@ -569,7 +573,7 @@ func void DIA_Addon_Thorben_ElvrichIsBack_Info()
 	AI_Output(self,other,"DIA_Addon_Thorben_ElvrichIsBack_06_02");	//Возьми это золото в качестве награды за возвращение ученика.
 	CreateInvItems(self,ItMi_Gold,200);
 	B_GiveInvItems(self,other,ItMi_Gold,200);
-	MIS_Thorben_BringElvrichBack = LOG_Success;
+	MIS_Thorben_BringElvrichBack = LOG_SUCCESS;
 	VLK_4302_Addon_Elvrich.flags = 0;
 };
 
@@ -597,7 +601,7 @@ func void DIA_Thorben_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_Paladine_15_00");	//Что ты знаешь о паладинах?
 	AI_Output(self,other,"DIA_Thorben_Paladine_06_01");	//Немногое. Они прибыли на корабле с материка две недели назад.
-	AI_Output(self,other,"DIA_Thorben_Paladine_06_02");	//С тех пор они заперлись в верхнем квартале города.
+	AI_Output(self,other,"DIA_Thorben_Paladine_06_02");	//С тех пор, они заперлись в верхнем квартале города.
 	AI_Output(self,other,"DIA_Thorben_Paladine_06_03");	//Никто толком не знает, зачем они прибыли.
 	AI_Output(self,other,"DIA_Thorben_Paladine_06_04");	//Многие опасаются нападения орков.
 	AI_Output(self,other,"DIA_Thorben_Paladine_06_05");	//А я думаю, что они здесь, чтобы подавить восстание фермеров.
@@ -630,7 +634,7 @@ func void DIA_Thorben_Bauernaufstand_Info()
 	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_02");	//Он, вероятно, устал отдавать весь свой урожай паладинам и ополчению.
 	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_03");	//Ну а в городе после этого стали расти цены на продовольствие.
 	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_04");	//Ферма Онара находится далеко на восток отсюда. Мы не знаем, были там сражения или нет.
-	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_05");	//Если ты хочешь узнать больше, поспрашивай торговцев на рыночной пощади. Они лучше знают обстановку на острове, чем я.
+	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_05");	//Если ты хочешь узнать больше, поспрашивай торговцев на рыночной пощади. Они лучше знают обстановку на острове чем я.
 };
 
 
@@ -696,9 +700,9 @@ func void DIA_Thorben_GrittaHatteGold_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_GrittaHatteGold_15_00");	//У твоей племянницы было 100 золотых монет.
 	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_06_01");	//ЧТО? Ах она змея - это было МОЕ золото! Она взяла его из моего сундука.
-	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_06_02");	//Отдай мне его! Я должен сначала заплатить Лемару. Маттео может подождать!
+	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_06_02");	//Отдай его мне! Я должен сначала заплатить Лемару. Маттео может подождать!
 	Info_ClearChoices(DIA_Thorben_GrittaHatteGold);
-	if(MIS_Matteo_Gold == LOG_Success)
+	if(MIS_Matteo_Gold == LOG_SUCCESS)
 	{
 		Info_AddChoice(DIA_Thorben_GrittaHatteGold,"Я уже отдал золото Маттео!",DIA_Thorben_GrittaHatteGold_MatteoHatEs);
 	}

@@ -8,7 +8,7 @@ func void Use_Bookstand_01_S1()
 	{
 		if(hero.guild == GIL_NOV)
 		{
-			knows_fire_contest = TRUE;
+			KNOWS_FIRE_CONTEST = TRUE;
 			Log_CreateTopic(TOPIC_FireContest,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_FireContest,LOG_Running);
 			B_LogEntry(TOPIC_FireContest,"Будучи послушником, я имею право требовать прохождения Испытания Огнем. Каждый из трех магов Высшего Совета должен дать мне задание. Если я пройду эти испытания, я буду принят в Круг Огня.");
@@ -60,7 +60,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 		if(hero.guild == GIL_KDF)
 		{
 			PlayerGetsAmulettOfDeath = TRUE;
-			player_talent_runes[SPL_MasterOfDisaster] = TRUE;
+			PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] = TRUE;
 			B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Святая стрела': 1 святая вода, свиток не нужен");
 			Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 			Doc_PrintLine(nDocID,1,"");
@@ -72,7 +72,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 		else if(hero.guild == GIL_PAL)
 		{
 			PAL_KnowsAbout_FINAL_BLESSING = TRUE;
-			player_talent_runes[SPL_PalTeleportSecret] = TRUE;
+			PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] = TRUE;
 			PrintScreen(PRINT_LearnPalTeleportSecret,-1,-1,FONT_Screen,2);
 			Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
 			B_LogEntry(TOPIC_TalentRunes,"Для создания руны необходимы специфические ингредиенты. При помощи этих ингредиентов и чистого рунного камня, можно создать руну на рунном столе.");
@@ -87,8 +87,8 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 		}
 		else
 		{
-			player_talent_smith[WEAPON_1H_Special_04] = TRUE;
-			player_talent_smith[WEAPON_2H_Special_04] = TRUE;
+			PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = TRUE;
+			PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = TRUE;
 			PrintScreen(PRINT_LearnSmith,-1,-1,FONT_Screen,2);
 			Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
 			Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);

@@ -145,7 +145,7 @@ func void DIA_Rengaru_GOTYOU_Info()
 
 func void DIA_Rengaru_GOTYOU_YouThief()
 {
-	AI_Output(other,self,"DIA_Rengaru_GOTYOU_YouThief_15_00");	//... тебе лучше вернуть золото Джоры. И немедленно.
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_YouThief_15_00");	//...тебе лучше вернуть золото Джоры. И немедленно.
 	if(Npc_HasItems(self,ItMi_Gold) >= 1)
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим.
@@ -164,7 +164,7 @@ func void DIA_Rengaru_GOTYOU_YouThief()
 
 func void DIA_Rengaru_GOTYOU_Anteil()
 {
-	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_15_00");	//... я заслуживаю долю от награбленного.
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_15_00");	//...Я заслуживаю долю от награбленного.
 	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && (Npc_HasItems(self,ItMi_Gold) < 1))
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_07_01");	//Ты уже забрал все, что у меня было, после того, как вырубил меня! Пусти!
@@ -172,7 +172,7 @@ func void DIA_Rengaru_GOTYOU_Anteil()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_15_02");	//Хорошо, похоже, у меня нет выбора. Давай разделим пополам.
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_15_02");	//Хорошо, похоже, у меня нет выбора. Давай, разделим пополам.
 		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 		Info_AddChoice(DIA_Rengaru_GOTYOU,"Нет, ты отдашь мне все!",DIA_Rengaru_GOTYOU_Anteil_alles);
 		Info_AddChoice(DIA_Rengaru_GOTYOU,"Хорошо, давай мне половину тогда.",DIA_Rengaru_GOTYOU_Anteil_GehtKlar);
@@ -212,10 +212,10 @@ func void DIA_Rengaru_GOTYOU_Anteil_GehtKlar()
 
 func void DIA_Rengaru_GOTYOU_WhoAreYou()
 {
-	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_00");	//... и теперь ты расскажешь мне, кто ты такой.
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_00");	//...и теперь ты расскажешь мне, кто ты такой.
 	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_01");	//Я просто бедный человек, пытающийся свести концы с концами.
-	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_02");	//А что еще мне делать? Я не могу найти работу в городе...
-	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_03");	//... хорошо, я понимаю. Хватит хныкать.
+	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_02");	//Что мне еще делать? Я не могу найти работу в городе...
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_03");	//...хорошо, я понимаю. Хватит хныкать.
 };
 
 
@@ -249,7 +249,7 @@ func void DIA_Rengaru_INKNAST_Info()
 
 func void DIA_Rengaru_INKNAST_HauAb()
 {
-	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтоб больше я тебя здесь не видел!
+	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтобы больше я тебя здесь не видел!
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_HauAb_07_01");	//Ты не пожалеешь об этом! Спасибо, парень!
 	Npc_ExchangeRoutine(self,"Start");
 	AI_StopProcessInfos(self);
@@ -259,7 +259,7 @@ func void DIA_Rengaru_INKNAST_HauAb()
 func void DIA_Rengaru_INKNAST_Knast()
 {
 	AI_Output(other,self,"DIA_Rengaru_INKNAST_Knast_15_00");	//Я позабочусь, чтобы тебя посадили за решетку.
-	AI_Output(self,other,"DIA_Rengaru_INKNAST_Knast_07_01");	//(устало) Я уже устал от всего этого. Если тебе кажется, что ты должен это сделать, поступай как знаешь.
+	AI_Output(self,other,"DIA_Rengaru_INKNAST_Knast_07_01");	//(устало) Я уже устал от этого всего. Если тебе кажется, что ты должен это сделать, поступай как знаешь.
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_Knast_07_02");	//(предупреждающе) Но берегись: мои друзья это дело так не оставят...
 	Rengaru_InKnast = TRUE;
 	AI_StopProcessInfos(self);

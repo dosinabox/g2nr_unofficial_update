@@ -82,7 +82,7 @@ func void DIA_Sonja_STANDARD_Info()
 	}
 	else if((other.guild == GIL_DJG) && (Sonja_Says == FALSE))
 	{
-		AI_Output(self,other,"DIA_Sonja_STANDARD_16_01");	//У таких парней, как ты, одна проблема - вас больше интересуют орки, чем мы.
+		AI_Output(self,other,"DIA_Sonja_STANDARD_16_01");	//У таких парней как ты одна проблема - вас больше интересуют орки, чем мы.
 		Sonja_Says = TRUE;
 	}
 	else

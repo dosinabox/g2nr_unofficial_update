@@ -127,7 +127,7 @@ func void DIA_VLK_16_STANDARD_Info()
 	};
 	if(Kapitel == 3)
 	{
-		if(MIS_RescueBennet == LOG_Success)
+		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_VLK_16_STANDARD_16_03");	//Ќаемник, который, как все думали, убил Ћотара, оказалс€ невиновным. Ќашли доказательства, что его оклеветали. я слышала об этом на рынке.
 		}

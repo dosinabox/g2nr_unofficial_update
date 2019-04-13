@@ -66,3 +66,11 @@ instance YGiant_Rat(Mst_Default_Giant_Rat)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
+instance GIANT_RATTRANSFORM(Mst_Default_Giant_Rat)
+{
+	Npc_PercEnable(self,PERC_ASSESSSURPRISE,b_stopmagictransform);
+	B_SetVisuals_Giant_Rat();
+	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+

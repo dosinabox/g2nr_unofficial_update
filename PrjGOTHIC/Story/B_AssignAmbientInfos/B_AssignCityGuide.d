@@ -34,7 +34,7 @@ func void B_AddCityGuideChoices()
 };
 
 
-instance dia_cityguide(C_Info)
+instance DIA_CITYGUIDE(C_Info)
 {
 	nr = 700;
 	condition = DIA_CITYGUIDE_Condition;

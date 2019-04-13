@@ -9,7 +9,8 @@ instance KDF_508_Gorax(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_COWARD;
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,itar_kdf_l);
+	EquipItem(self,ItMW_Addon_Stab04);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,ItAr_KDF_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

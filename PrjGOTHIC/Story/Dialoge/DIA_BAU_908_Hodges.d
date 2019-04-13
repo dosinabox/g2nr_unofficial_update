@@ -37,7 +37,7 @@ instance DIA_Hodges_HALLO(C_Info)
 
 func int DIA_Hodges_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_Success)))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -48,7 +48,7 @@ func void DIA_Hodges_HALLO_Info()
 	AI_Output(other,self,"DIA_Hodges_HALLO_15_00");	//ѕривет, € новичок здесь.
 	AI_Output(self,other,"DIA_Hodges_HALLO_03_01");	//Ќе пойми мен€ неправильно, но сейчас у мен€ нет настроени€ разговаривать - € абсолютно измотан.
 	AI_Output(other,self,"DIA_Hodges_HALLO_15_02");	//“ы ужасно зан€т, да?
-	AI_Output(self,other,"DIA_Hodges_HALLO_03_03");	//ƒаже не говори. Ѕеннет делает столько оружи€, что € едва успеваю полировать его.
+	AI_Output(self,other,"DIA_Hodges_HALLO_03_03");	//ƒаже не говори. Ѕеннет делает столько оружи€, что едва успеваю полировать его.
 };
 
 
@@ -65,7 +65,7 @@ instance DIA_Hodges_TellAboutFarm(C_Info)
 
 func int DIA_Hodges_TellAboutFarm_Condition()
 {
-	if((Kapitel != 3) || (MIS_RescueBennet == LOG_Success))
+	if((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -103,7 +103,7 @@ instance DIA_Hodges_AboutSld(C_Info)
 
 func int DIA_Hodges_AboutSld_Condition()
 {
-	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_Success)))
+	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -207,7 +207,7 @@ instance DIA_Hodges_DontWork(C_Info)
 
 func int DIA_Hodges_DontWork_Condition()
 {
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_Success))
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -237,7 +237,7 @@ instance DIA_Hodges_WhatHappened(C_Info)
 
 func int DIA_Hodges_WhatHappened_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -247,7 +247,7 @@ func void DIA_Hodges_WhatHappened_Info()
 {
 	AI_Output(other,self,"DIA_Hodges_WhatHappened_15_00");	//„то случилось?
 	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_01");	//Ќу, мы были в городе за покупками, когда неожиданно услышали крик.  то-то кричал: '¬от они, держите их!'
-	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_02");	//ќх, как € напугалс€! я бросилс€ бежать. я бежал так, как будто за мной гнались демоны.
+	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_02");	//ќх, как € испугалс€! я бросилс€ бежать. я бежал так, как будто за мной гнались демоны.
 	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_03");	//Ѕеннет бежал за мной. я не знаю, что произошло, но когда € выбралс€ из города, его со мной уже не было.
 	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_04");	//ƒолжно быть, он отстал где-то в городе.
 };
@@ -266,7 +266,7 @@ instance DIA_Hodges_BennetsCrime(C_Info)
 
 func int DIA_Hodges_BennetsCrime_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -297,7 +297,7 @@ instance DIA_Hodges_BennetAndSLD(C_Info)
 
 func int DIA_Hodges_BennetAndSLD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

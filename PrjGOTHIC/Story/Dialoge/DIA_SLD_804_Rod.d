@@ -1,7 +1,7 @@
 
 instance DIA_Rod_EXIT(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 999;
 	condition = DIA_Rod_EXIT_Condition;
 	information = DIA_Rod_EXIT_Info;
@@ -24,7 +24,7 @@ func void DIA_Rod_EXIT_Info()
 
 instance DIA_Rod_Hello(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 1;
 	condition = DIA_Rod_Hello_Condition;
 	information = DIA_Rod_Hello_Info;
@@ -56,7 +56,7 @@ var int Rod_SchwachGesagt;
 
 instance DIA_Rod_WannaLearn(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 2;
 	condition = DIA_Rod_WannaLearn_Condition;
 	information = DIA_Rod_WannaLearn_Info;
@@ -102,7 +102,7 @@ var int Rod_Merke_2h;
 
 instance DIA_Rod_Teach(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 3;
 	condition = DIA_Rod_Teach_Condition;
 	information = DIA_Rod_Teach_Info;
@@ -159,7 +159,7 @@ func void DIA_Rod_Teach_2H_5()
 
 instance DIA_Rod_WannaJoin(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 4;
 	condition = DIA_Rod_WannaJoin_Condition;
 	information = DIA_Rod_WannaJoin_Info;
@@ -200,7 +200,7 @@ func void DIA_Rod_WannaJoin_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rod_WannaJoin_06_07");	//У нас места не для слабаков!
+		AI_Output(self,other,"DIA_Rod_WannaJoin_06_07");	//У нас места для слабаков!
 		Rod_SchwachGesagt = TRUE;
 	};
 };
@@ -208,7 +208,7 @@ func void DIA_Rod_WannaJoin_Info()
 
 instance DIA_Rod_Duell(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 6;
 	condition = DIA_Rod_Duell_Condition;
 	information = DIA_Rod_Duell_Info;
@@ -250,7 +250,7 @@ func void DIA_Rod_Duell_Info()
 
 instance DIA_Rod_StarkGenug(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 5;
 	condition = DIA_Rod_StarkGenug_Condition;
 	information = DIA_Rod_StarkGenug_Info;
@@ -279,7 +279,7 @@ func void DIA_Rod_StarkGenug_Info()
 
 instance DIA_Rod_BINStarkGenug(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 5;
 	condition = DIA_Rod_BINStarkGenug_Condition;
 	information = DIA_Rod_BINStarkGenug_Info;
@@ -308,7 +308,7 @@ var int Rod_WetteAngenommen;
 
 instance DIA_Rod_Wette(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 5;
 	condition = DIA_Rod_Wette_Condition;
 	information = DIA_Rod_Wette_Info;
@@ -371,7 +371,7 @@ func void DIA_Rod_Wette_Yes()
 			AI_Output(other,self,"DIA_Rod_Wette_Yes_15_08");	//Я не могу поднять это оружие.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_09");	//(смеется) Что я и говорил!
 		};
-		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_10");	//А теперь отдай мне мое оружие назад.
+		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_10");	//А теперь, отдай мне мое оружие назад.
 		Info_ClearChoices(DIA_Rod_Wette);
 		Info_AddChoice(DIA_Rod_Wette,"Думаю, что нет...",DIA_Rod_Wette_KeepIt);
 		Info_AddChoice(DIA_Rod_Wette,"Вот держи.",DIA_Rod_Wette_GiveBack);
@@ -418,7 +418,7 @@ var int Rod_SchwertXPGiven;
 
 instance DIA_Rod_GiveItBack(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 7;
 	condition = DIA_Rod_GiveItBack_Condition;
 	information = DIA_Rod_GiveItBack_Info;
@@ -450,7 +450,7 @@ func void DIA_Rod_GiveItBack_Info()
 
 instance DIA_Rod_PERM(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 1;
 	condition = DIA_Rod_PERM_Condition;
 	information = DIA_Rod_PERM_Info;
@@ -502,7 +502,7 @@ func void DIA_Rod_PERM_Info()
 
 instance DIA_RodSLD_PICKPOCKET(C_Info)
 {
-	npc = SLD_804_Rod;
+	npc = Sld_804_Rod;
 	nr = 900;
 	condition = DIA_RodSLD_PICKPOCKET_Condition;
 	information = DIA_RodSLD_PICKPOCKET_Info;

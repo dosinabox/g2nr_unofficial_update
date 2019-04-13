@@ -1,7 +1,7 @@
 
 instance DIA_Boltan_EXIT(C_Info)
 {
-	npc = MIL_313_Boltan;
+	npc = Mil_313_Boltan;
 	nr = 999;
 	condition = DIA_Boltan_EXIT_Condition;
 	information = DIA_Boltan_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Boltan_EXIT_Info()
 
 instance DIA_Boltan_HALLO(C_Info)
 {
-	npc = MIL_313_Boltan;
+	npc = Mil_313_Boltan;
 	nr = 1;
 	condition = DIA_Boltan_HALLO_Condition;
 	information = DIA_Boltan_HALLO_Info;
@@ -45,7 +45,7 @@ func void DIA_Boltan_HALLO_Info()
 
 instance DIA_Boltan_ToConvicts(C_Info)
 {
-	npc = MIL_313_Boltan;
+	npc = Mil_313_Boltan;
 	nr = 2;
 	condition = DIA_Boltan_ToConvicts_Condition;
 	information = DIA_Boltan_ToConvicts_Info;
@@ -62,7 +62,7 @@ func int DIA_Boltan_ToConvicts_Condition()
 func void DIA_Boltan_ToConvicts_Info()
 {
 	AI_Output(other,self,"DIA_Boltan_Add_15_01");	//Я хочу увидеть заключенных.
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_Success))
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		if(other.guild == GIL_SLD)
 		{
@@ -94,7 +94,7 @@ func void DIA_Boltan_ToConvicts_Info()
 
 instance DIA_Boltan_HalloBennet(C_Info)
 {
-	npc = MIL_313_Boltan;
+	npc = Mil_313_Boltan;
 	nr = 1;
 	condition = DIA_Boltan_HalloBennet_Condition;
 	information = DIA_Boltan_HalloBennet_Info;
@@ -105,7 +105,7 @@ instance DIA_Boltan_HalloBennet(C_Info)
 
 func int DIA_Boltan_HalloBennet_Condition()
 {
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_Success) && (other.guild == GIL_SLD))
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
 	{
 		return TRUE;
 	};
@@ -121,7 +121,7 @@ func void DIA_Boltan_HalloBennet_Info()
 
 instance DIA_Boltan_HalloCanthar(C_Info)
 {
-	npc = MIL_313_Boltan;
+	npc = Mil_313_Boltan;
 	nr = 1;
 	condition = DIA_Boltan_HalloCanthar_Condition;
 	information = DIA_Boltan_HalloCanthar_Info;
@@ -132,7 +132,7 @@ instance DIA_Boltan_HalloCanthar(C_Info)
 
 func int DIA_Boltan_HalloCanthar_Condition()
 {
-	if(((Kapitel != 3) || ((Kapitel == 3) && ((MIS_RescueBennet == LOG_Success) || (other.guild != GIL_SLD)))) && (Canthar_WiederRaus == TRUE) && (Canthar_Ausgeliefert == TRUE))
+	if(((Kapitel != 3) || ((Kapitel == 3) && ((MIS_RescueBennet == LOG_SUCCESS) || (other.guild != GIL_SLD)))) && (Canthar_WiederRaus == TRUE) && (Canthar_Ausgeliefert == TRUE))
 	{
 		return TRUE;
 	};
@@ -140,9 +140,9 @@ func int DIA_Boltan_HalloCanthar_Condition()
 
 func void DIA_Boltan_HalloCanthar_Info()
 {
-	AI_Output(self,other,"DIA_Boltan_Add_05_11");	//Эй, ты тот парень, что написал жалобу на Кантара, торговца.
+	AI_Output(self,other,"DIA_Boltan_Add_05_11");	//Эй, ты тот парень, что написал жалобу на Кантара, тогровца.
 	AI_Output(self,other,"DIA_Boltan_Add_05_12");	//Много людей приходило, чтобы похлопотать за него. Уважаемых людей.
 	AI_Output(self,other,"DIA_Boltan_Add_05_13");	//Должно быть, произошло какое-то недоразумение. Такое бывает.
-	AI_Output(self,other,"DIA_Boltan_Add_05_14");	//В будущем тебе стоит тщательнее выбирать, кого ты хочешь упечь в тюрьму.
+	AI_Output(self,other,"DIA_Boltan_Add_05_14");	//В будущем тебе стоит быть тщательнее выбирать, кого ты хочешь упечь в тюрьму.
 };
 

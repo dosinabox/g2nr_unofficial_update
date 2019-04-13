@@ -44,36 +44,36 @@ func void DIA_Sagitta_HALLO_Info()
 	AI_Output(other,self,"DIA_Sagitta_HALLO_15_00");	//Ты здесь совсем одна?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_17_01");	//Говори, что тебе нужно от меня, и уходи. Я занята.
 	Info_ClearChoices(DIA_Sagitta_HALLO);
-	Info_AddChoice(DIA_Sagitta_HALLO,Dialog_Back,dia_sagitta_hallo_ende);
-	Info_AddChoice(DIA_Sagitta_HALLO,"Ты можешь вылечить меня?",dia_sagitta_hallo_heil);
-	Info_AddChoice(DIA_Sagitta_HALLO,"Что ты делаешь здесь?",dia_sagitta_hallo_was);
-	Info_AddChoice(DIA_Sagitta_HALLO,"Кто ты?",dia_sagitta_hallo_wer);
+	Info_AddChoice(DIA_Sagitta_HALLO,Dialog_Back,DIA_Sagitta_HALLO_ende);
+	Info_AddChoice(DIA_Sagitta_HALLO,"Ты можешь вылечить меня?",DIA_Sagitta_HALLO_Heil);
+	Info_AddChoice(DIA_Sagitta_HALLO,"Что ты делаешь здесь?",DIA_Sagitta_HALLO_was);
+	Info_AddChoice(DIA_Sagitta_HALLO,"Кто ты?",DIA_Sagitta_HALLO_wer);
 };
 
-func void dia_sagitta_hallo_wer()
+func void DIA_Sagitta_HALLO_wer()
 {
 	AI_Output(other,self,"DIA_Sagitta_HALLO_wer_15_00");	//Кто ты?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_01");	//Ты что, никогда не слышал обо мне?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_02");	//Меня называют ведьмой-целительницей. А еще шаманкой.
-	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_03");	//Но когда им плохо, они неожиданно вспоминают старую добрую Сагитту и ее целебные травы.
+	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_03");	//Но когда им плохо, все они неожиданно вспоминают старую добрую Сагитту и ее целебные травы.
 };
 
-func void dia_sagitta_hallo_was()
+func void DIA_Sagitta_HALLO_was()
 {
 	AI_Output(other,self,"DIA_Sagitta_HALLO_was_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_01");	//Я живу здесь столько, сколько себя помню, и занимаюсь травами.
+	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_01");	//Я живу здесь, сколько себя помню, и занимаюсь травами.
 	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_02");	//Лес - мой друг. Он дает мне то, что мне нужно.
 };
 
-func void dia_sagitta_hallo_heil()
+func void DIA_Sagitta_HALLO_Heil()
 {
 	AI_Output(other,self,"DIA_Sagitta_HALLO_Heil_15_00");	//Ты можешь вылечить меня?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_Heil_17_01");	//Ты за этим пришел, да? Дай мне знать, если с тобой будет что-то не в порядке.
 	Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTrader,"У Саггиты, живущей за фермой Секоба, можно купить различные товары.");
+	B_LogEntry(Topic_SoldierTrader,"У Сагитты, живущей за фермой Секоба, можно купить различные товары.");
 };
 
-func void dia_sagitta_hallo_ende()
+func void DIA_Sagitta_HALLO_ende()
 {
 	Info_ClearChoices(DIA_Sagitta_HALLO);
 };
@@ -145,7 +145,7 @@ func void DIA_Sagitta_TeachAlchemyRequest_wo_ja()
 	MIS_Sagitta_Herb = LOG_Running;
 	Log_CreateTopic(TOPIC_SagittaHerb,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_SagittaHerb,LOG_Running);
-	B_LogEntry(TOPIC_SagittaHerb,"Саггите нужно очень странное растение. Это солнечное алоэ, оно растет только на экскрементах черного тролля.");
+	B_LogEntry(TOPIC_SagittaHerb,"Сагитте нужно очень странное растение. Это солнечное алоэ, оно растет только на экскрементах черного тролля.");
 };
 
 func void DIA_Sagitta_TeachAlchemyRequest_nein()
@@ -180,7 +180,7 @@ func void DIA_Sagitta_Sagitta_Herb_Info()
 	AI_Output(self,other,"DIA_Sagitta_Sagitta_Herb_17_01");	//Спасибо. Теперь ты можешь спрашивать меня обо всем, что хочешь узнать о приготовлении зелий.
 	B_GiveInvItems(other,self,ItPl_Sagitta_Herb_MIS,1);
 	Sagitta_TeachAlchemy = TRUE;
-	MIS_Sagitta_Herb = LOG_Success;
+	MIS_Sagitta_Herb = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Sagitta_Sonnenaloe);
 };
 
@@ -211,42 +211,42 @@ func void DIA_Sagitta_Teach_Info()
 	var int talente;
 	talente = 0;
 	AI_Output(other,self,"DIA_Sagitta_Teach_15_00");	//Какие зелья можешь ты научить меня варить?
-	if((player_talent_alchemy[POTION_Health_01] == FALSE) || (player_talent_alchemy[POTION_Health_02] == FALSE) || (player_talent_alchemy[POTION_Health_03] == FALSE) || (player_talent_alchemy[POTION_Mana_01] == FALSE) || (player_talent_alchemy[POTION_Mana_02] == FALSE) || (player_talent_alchemy[POTION_Mana_03] == FALSE) || (player_talent_alchemy[POTION_Perm_Mana] == FALSE) || (player_talent_alchemy[POTION_Perm_Health] == FALSE) || (player_talent_alchemy[POTION_Perm_DEX] == FALSE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE))
 	{
 		Info_ClearChoices(DIA_Sagitta_Teach);
 		Info_AddChoice(DIA_Sagitta_Teach,Dialog_Back,DIA_Sagitta_Teach_BACK);
 	};
-	if(player_talent_alchemy[POTION_Health_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
 		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Лечебная эссенция",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Sagitta_Teach_Health_01);
 		talente = talente + 1;
 	};
-	if((player_talent_alchemy[POTION_Health_02] == FALSE) && (player_talent_alchemy[POTION_Health_01] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE))
 	{
 		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Лечебный экстракт",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Sagitta_Teach_Health_02);
 		talente = talente + 1;
 	};
-	if(player_talent_alchemy[POTION_Mana_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
 		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Эссенция маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Sagitta_Teach_Mana_01);
 		talente = talente + 1;
 	};
-	if((player_talent_alchemy[POTION_Mana_02] == FALSE) && (player_talent_alchemy[POTION_Mana_01] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
 	{
 		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Экстракт маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Sagitta_Teach_Mana_02);
 		talente = talente + 1;
 	};
-	if((player_talent_alchemy[POTION_Mana_03] == FALSE) && (player_talent_alchemy[POTION_Mana_02] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE))
 	{
 		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Эликсир маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),DIA_Sagitta_Teach_Mana_03);
 		talente = talente + 1;
 	};
-	if((player_talent_alchemy[POTION_Perm_Mana] == FALSE) && (player_talent_alchemy[POTION_Mana_03] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE))
 	{
 		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Эликсир духа",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Sagitta_Teach_Perm_Mana);
 		talente = talente + 1;
 	};
-	if(player_talent_alchemy[POTION_Perm_DEX] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE)
 	{
 		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Эликсир ловкости",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Sagitta_Teach_Perm_DEX);
 		talente = talente + 1;
@@ -351,7 +351,7 @@ func void DIA_Sagitta_HEAL_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Sagitta_HEAL_17_02");	//В настоящий момент тебе не нужно лечение.
+		AI_Output(self,other,"DIA_Sagitta_HEAL_17_02");	//В настоящий момент тебе ненужно лечение.
 	};
 };
 
@@ -429,7 +429,7 @@ func int DIA_Sagitta_OBSESSION_Condition()
 func void DIA_Sagitta_OBSESSION_Info()
 {
 	AI_Output(other,self,"DIA_Sagitta_OBSESSION_15_00");	//Я ощущаю какую-то сильную внутреннюю тревогу. Мне нужна помощь.
-	AI_Output(self,other,"DIA_Sagitta_OBSESSION_17_01");	//Я вижу, сна тебе недостаточно, чтобы восстановиться. Ты попал под воздействие черного взгляда Ищущих.
+	AI_Output(self,other,"DIA_Sagitta_OBSESSION_17_01");	//Я вижу, сна тебе не достаточно, чтобы восстановиться. Ты попал под воздействие черного взгляда Ищущих.
 	AI_Output(self,other,"DIA_Sagitta_OBSESSION_17_02");	//Иди к Пирокару, высшему магу монастыря. Моих скромных знаний здесь недостаточно.
 };
 
@@ -511,7 +511,7 @@ func int DIA_Sagitta_HEALRANDOLPH_Condition()
 
 func void DIA_Sagitta_HEALRANDOLPH_Info()
 {
-	AI_Output(other,self,"DIA_Sagitta_HEALRANDOLPH_15_00");	//У Рэндольфа похмельный синдром.
+	AI_Output(other,self,"DIA_Sagitta_HEALRANDOLPH_15_00");	//У Рендольфа похмельный синдром.
 	if(DIA_Sagitta_HEALRANDOLPH_KnowsPrice == FALSE)
 	{
 		AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_17_01");	//И когда этот парень образумится?!
@@ -523,7 +523,7 @@ func void DIA_Sagitta_HEALRANDOLPH_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_17_03");	//Я дам тебе лекарство для него. Оно поставит его на ноги за пару дней.
+		AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_17_03");	//Я дам тебе лекарство для него. Оно поставит его на  ноги за пару дней.
 	};
 	AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_17_04");	//Но это обойдется тебе в 300 золотых.
 	if(DIA_Sagitta_HEALRANDOLPH_KnowsPrice == FALSE)
@@ -545,7 +545,7 @@ func void DIA_Sagitta_HEALRANDOLPH_geld()
 		CreateInvItems(self,ItPo_HealRandolph_MIS,1);
 		B_GiveInvItems(self,other,ItPo_HealRandolph_MIS,1);
 		DIA_Sagitta_HEALRANDOLPH_GotOne = TRUE;
-		B_LogEntry(TOPIC_HealRandolph,"Саггита дала мне лекарство для Рендольфа.");
+		B_LogEntry(TOPIC_HealRandolph,"Сагитта дала мне лекарство для Рендольфа.");
 	}
 	else
 	{
@@ -587,18 +587,18 @@ func void DIA_Sagitta_KAP5_EXIT_Info()
 };
 
 
-instance DIA_SAGITTA_KAP6_EXIT(C_Info)
+instance DIA_Sagitta_KAP6_EXIT(C_Info)
 {
 	npc = BAU_980_Sagitta;
 	nr = 999;
-	condition = dia_sagitta_kap6_exit_condition;
-	information = dia_sagitta_kap6_exit_info;
+	condition = DIA_Sagitta_KAP6_EXIT_Condition;
+	information = DIA_Sagitta_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_sagitta_kap6_exit_condition()
+func int DIA_Sagitta_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -606,7 +606,7 @@ func int dia_sagitta_kap6_exit_condition()
 	};
 };
 
-func void dia_sagitta_kap6_exit_info()
+func void DIA_Sagitta_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

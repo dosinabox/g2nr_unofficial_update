@@ -236,7 +236,7 @@ func void UseDJG_inserten()
 {
 	B_Kapitelwechsel(4,OldWorld_Zen);
 	B_InitNpcGlobals();
-	player_talent_alchemy[CHARGE_Innoseye] = TRUE;
+	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
 	CreateInvItems(hero,ItMi_Gold,1000);
 	Wld_InsertNpc(DJG_701_Bullco,"OC1");
@@ -360,7 +360,7 @@ func void SH_Oldworld_BACK2()
 
 func void SH_Oldworld_KAPITEL2ANFANG()
 {
-	mis_oldworld = LOG_Running;
+	MIS_OLDWORLD = LOG_Running;
 	B_Kapitelwechsel(2,OldWorld_Zen);
 	AI_StopProcessInfos(self);
 };
@@ -396,10 +396,10 @@ func void SH_Oldworld_BACK3()
 
 func void SH_Oldworld_KAPITEL3ANFANG()
 {
-	mis_oldworld = LOG_Running;
+	MIS_OLDWORLD = LOG_Running;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
-	MIS_ScoutMine = LOG_Success;
+	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
 	B_NPC_IsAliveCheck(OldWorld_Zen);
 	B_Kapitelwechsel(3,OldWorld_Zen);
@@ -438,14 +438,14 @@ func void SH_Oldworld_BACK4()
 
 func void SH_Oldworld_KAPITEL4ANFANG()
 {
-	mis_oldworld = LOG_Running;
+	MIS_OLDWORLD = LOG_Running;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
-	MIS_ScoutMine = LOG_Success;
+	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
 	B_NPC_IsAliveCheck(OldWorld_Zen);
 	B_Kapitelwechsel(3,OldWorld_Zen);
-	player_talent_alchemy[CHARGE_Innoseye] = TRUE;
+	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	CreateInvItems(self,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
@@ -486,14 +486,14 @@ func void SH_Oldworld_BACK5()
 
 func void SH_Oldworld_KAPITEL5ANFANG()
 {
-	mis_oldworld = LOG_Running;
+	MIS_OLDWORLD = LOG_Running;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
-	MIS_ScoutMine = LOG_Success;
+	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
 	B_NPC_IsAliveCheck(OldWorld_Zen);
 	B_Kapitelwechsel(3,OldWorld_Zen);
-	player_talent_alchemy[CHARGE_Innoseye] = TRUE;
+	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
@@ -595,18 +595,18 @@ func int DIA_Dragon_Testmodell_Hello_Condition()
 
 func void DIA_Dragon_Testmodell_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//
+	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
+	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
+	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
+	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
+	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
+	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
+	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
+	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
+	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
+	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
+	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
+	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
 	AI_StopProcessInfos(self);
 	DragonTalk_Exit_Free = FALSE;
 	self.flags = 0;

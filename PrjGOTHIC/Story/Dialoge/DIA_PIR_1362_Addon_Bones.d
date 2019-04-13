@@ -169,7 +169,7 @@ func void DIA_Addon_Bones_Teacher_Info()
 	AI_Output(self,other,"DIA_Addon_Bones_Teacher_01_08");	//Морган же предпочитает более быстрые одноручные клинки.
 	AI_Output(other,self,"DIA_Addon_Bones_Teacher_15_09");	//А еще?
 	AI_Output(self,other,"DIA_Addon_Bones_Teacher_01_10");	//Знаешь, честно говоря, я больше ничем не интересовался.
-	AI_Output(self,other,"DIA_Addon_Bones_Teacher_01_11");	//Но думаю, Аллигатору Джеку и Сэмюэлю найдется, чем с тобой поделиться.
+	AI_Output(self,other,"DIA_Addon_Bones_Teacher_01_11");	//Но думаю, Аллигатору Джеку или Сэмюэлю найдется, чем с тобой поделиться.
 	Knows_HenrysEntertrupp = TRUE;
 	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
 	B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
@@ -234,7 +234,7 @@ func void DIA_Addon_Bones_WantArmor_Info()
 	AI_Output(self,other,"DIA_Addon_Bones_WantArmor_01_02");	//Он сказал мне, что без его приказа я не должен никому их отдавать.
 	if(GregIsBack == TRUE)
 	{
-		AI_Output(self,other,"DIA_Addon_Bones_WantArmor_01_03");	//Нет, я не могу дать их тебе. Тем более, когда Грег здесь.
+		AI_Output(self,other,"DIA_Addon_Bones_WantArmor_01_03");	//Нет, я не могу дать их тебе. Тем более, когда Грега здесь нет.
 	};
 	B_LogEntry(TOPIC_Addon_BDTRuestung,"Бонес не отдаст мне доспехи, пока я не получу разрешение Грега.");
 };
@@ -267,7 +267,7 @@ func void DIA_Addon_Bones_GiveArmor_Info()
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_03");	//Пусть уж лучше Грег взвалит на меня какую-нибудь скучную работу...
 	AI_Output(other,self,"DIA_Addon_Bones_GiveArmor_15_04");	//(раздраженно) Доспехи.
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_05");	//Да, конечно, вот они.
-	B_GiveInvItems(self,other,itar_bdt_m,1);
+	B_GiveInvItems(self,other,ItAr_BDT_M,1);
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_06");	//Будь осторожнее. С этими бандитами шутки плохи.
 	self.flags = 0;
 	PIR_1320_Addon_Greg.flags = 0;

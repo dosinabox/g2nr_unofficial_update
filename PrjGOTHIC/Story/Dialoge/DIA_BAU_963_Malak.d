@@ -103,8 +103,8 @@ func int DIA_Malak_PASS_Condition()
 func void DIA_Malak_PASS_Info()
 {
 	AI_Output(other,self,"DIA_Malak_PASS_15_00");	//Что ты знаешь о Проходе?
-	AI_Output(self,other,"DIA_Malak_PASS_08_01");	//Немного. Только то, что он ведет в старую Долину Рудников, которая была окружена Барьером еще несколько недель назад.
-	AI_Output(self,other,"DIA_Malak_PASS_08_02");	//И тогда единственное, чего нужно было опасаться нам, фермерам, это ежемесячного каравана, доставляющего различные грузы в Долину Рудников.
+	AI_Output(self,other,"DIA_Malak_PASS_08_01");	//Не много. Только то, что он ведет в старую Долину Рудников, которая была окружена Барьером еще несколько недель назад.
+	AI_Output(self,other,"DIA_Malak_PASS_08_02");	//Тогда единственное, чего нужно было опасаться нам, фермерам, это ежемесячного каравана, доставлявшего различные грузы в Долину Рудников.
 	AI_Output(self,other,"DIA_Malak_PASS_08_03");	//Эти головорезы сильно усложняли нам жизнь.
 };
 
@@ -209,7 +209,7 @@ func void DIA_Malak_PALADINE_Info()
 {
 	AI_Output(other,self,"DIA_Malak_PALADINE_15_00");	//Расскажи мне об этих паладинах. Как давно они стоят здесь?
 	AI_Output(self,other,"DIA_Malak_PALADINE_08_01");	//Неделю или две, по-моему. Я точно не помню.
-	AI_Output(self,other,"DIA_Malak_PALADINE_08_02");	//Не так давно тут был даже целый отряд паладинов. Они прошли через Проход. С тех пор я их больше не видел.
+	AI_Output(self,other,"DIA_Malak_PALADINE_08_02");	//Не так давно тут был даже целый отряд паладинов. Они пошли через Проход. И с тех пор я их больше не видел.
 };
 
 
@@ -386,7 +386,7 @@ instance DIA_Malak_PERMCASTLE(C_Info)
 
 func int DIA_Malak_PERMCASTLE_Condition()
 {
-	if((Npc_GetDistToWP(self,"CASTLEMINE") < 4000) && (MIS_GetMalakBack != LOG_Success) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
+	if((Npc_GetDistToWP(self,"CASTLEMINE") < 4000) && (MIS_GetMalakBack != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};
@@ -423,7 +423,7 @@ func void DIA_Malak_BACKTOBENGAR_Info()
 	AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_00");	//Ты нужен Бенгару. Он хочет, чтобы ты вернулся на его ферму.
 	AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_01");	//Я не сумасшедший. Пока ферма беззащитна, я ни на шаг отсюда не сойду!
 	B_LogEntry(TOPIC_BengarALLEIN,"Малак не вернется на ферму Бенгара, пока она не будет хорошо защищена.");
-	if(MIS_BengarsHelpingSLD == LOG_Success)
+	if(MIS_BengarsHelpingSLD == LOG_SUCCESS)
 	{
 		AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_02");	//Я нанял наемника. Он присмотрит за вашей фермой.
 		AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_03");	//Ну, это другое дело, конечно же. Но подожди минутку. А кто будет платить этому парню?
@@ -437,7 +437,7 @@ func void DIA_Malak_BACKTOBENGAR_los()
 {
 	AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_los_15_00");	//Нет.
 	AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_los_08_01");	//Хорошо. Тогда я возвращаюсь. Надеюсь, этот парень знает свое дело.
-	MIS_GetMalakBack = LOG_Success;
+	MIS_GetMalakBack = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Malak_BACKTOBENGAR);
 	B_NpcClearObsessionByDMT(self);
 	Npc_ExchangeRoutine(self,"Start");
@@ -464,7 +464,7 @@ instance DIA_Malak_BACK(C_Info)
 
 func int DIA_Malak_BACK_Condition()
 {
-	if((MIS_GetMalakBack == LOG_Success) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
+	if((MIS_GetMalakBack == LOG_SUCCESS) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};
@@ -528,18 +528,18 @@ func void DIA_Malak_KAP5_EXIT_Info()
 };
 
 
-instance DIA_MALAK_KAP6_EXIT(C_Info)
+instance DIA_Malak_KAP6_EXIT(C_Info)
 {
 	npc = BAU_963_Malak;
 	nr = 999;
-	condition = dia_malak_kap6_exit_condition;
-	information = dia_malak_kap6_exit_info;
+	condition = DIA_Malak_KAP6_EXIT_Condition;
+	information = DIA_Malak_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_malak_kap6_exit_condition()
+func int DIA_Malak_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -547,7 +547,7 @@ func int dia_malak_kap6_exit_condition()
 	};
 };
 
-func void dia_malak_kap6_exit_info()
+func void DIA_Malak_KAP6_EXIT_Info()
 {
 	B_NpcClearObsessionByDMT(self);
 };

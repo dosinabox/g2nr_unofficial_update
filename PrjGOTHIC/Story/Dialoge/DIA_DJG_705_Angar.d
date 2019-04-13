@@ -38,11 +38,11 @@ func int DIA_AngarDJG_HALLO_Condition()
 
 func void DIA_AngarDJG_HALLO_Info()
 {
-	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_00");	//Я знаю тебя. Ты Кор Ангар. Ты был храмовником в болотном лагере.
+	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_00");	//Я знаю тебя? Ты Кор Ангар. Ты был храмовником в болотном лагере.
 	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_01");	//(смиренно) Зови меня просто Ангаром. Я потерял свой титул. Братства Спящего больше нет.
 	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_02");	//Забавно, но мне кажется, что я тебя тоже знаю. Но я точно не помню откуда.
 	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_03");	//Что с тобой?
-	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_04");	//Ох. Я уже давно не мог нормально спать. Эти постоянные кошмары...
+	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_04");	//Ох. Я уже давно мог нормально спать. Эти постоянные кошмары...
 	B_LogEntry(TOPIC_Dragonhunter,"Я нашел Ангара в Долине рудников.");
 };
 
@@ -50,7 +50,7 @@ func void B_SCTellsAngarAboutMadPsi()
 {
 	if(Angar_KnowsMadPsi == FALSE)
 	{
-		AI_Output(other,self,"DIA_Angar_B_SCTellsAngarAboutMadPsi_15_00");	//Братство Спящего было порабощено Злом.
+		AI_Output(other,self,"DIA_Angar_B_SCTellsAngarAboutMadPsi_15_00");	//Братство Спящего было порабощено злом.
 		AI_Output(other,self,"DIA_Angar_B_SCTellsAngarAboutMadPsi_15_01");	//Твои бывшие друзья из болотного лагеря наводнили землю, одевшись в черные рясы, и атакуют все, что движется.
 		AI_Output(self,other,"DIA_Angar_B_SCTellsAngarAboutMadPsi_04_02");	//О чем ты говоришь?
 	};
@@ -60,7 +60,7 @@ func void B_SCTellsAngarAboutMadPsi2()
 {
 	if(Angar_KnowsMadPsi == FALSE)
 	{
-		AI_Output(other,self,"DIA_Angar_B_SCTellsAngarAboutMadPsi2_15_00");	//Теперь они служат врагу и стали бездушными воинами Зла.
+		AI_Output(other,self,"DIA_Angar_B_SCTellsAngarAboutMadPsi2_15_00");	//Теперь они служат врагу и стали бездушными воинами зла.
 		AI_Output(self,other,"DIA_Angar_B_SCTellsAngarAboutMadPsi2_04_01");	//Боги всевышние! И почему я был так слеп! Со мной никогда больше такого не повторится, клянусь.
 		B_GivePlayerXP(XP_Angar_KnowsMadPsi);
 		Angar_KnowsMadPsi = TRUE;
@@ -107,7 +107,7 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_Info()
 	};
 	if(DJG_Angar_SentToStones == FALSE)
 	{
-		Info_AddChoice(DIA_Angar_WIEKOMMSTDUHIERHER,"Что ты будешь делать дальше?",DIA_Angar_WIEKOMMSTDUHIERHER_nun);
+		Info_AddChoice(DIA_Angar_WIEKOMMSTDUHIERHER,"А что ты будешь делать дальше?",DIA_Angar_WIEKOMMSTDUHIERHER_nun);
 	};
 };
 
@@ -137,9 +137,9 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_andere()
 	{
 		AI_Output(other,self,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_15_00");	//А что произошло с другими из болотного лагеря?
 	};
-	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_01");	//Последнее, что я помню - это обрушение Барьера, сопровождавшееся душераздирающим воплем.
+	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_01");	//Последнее, что я помню, - это обрушение Барьера, сопровождавшееся душераздирающим воплем.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_02");	//Нас охватил панический страх. Мы упали на землю, корчась от боли. Этот голос... Он становился все громче.
-	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_03");	//И затем вдруг все кончилось, все побежали как безумные и исчезли в ночи, вопя истошными голосами.
+	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_03");	//А затем вдруг все кончилось, все побежали как безумные и исчезли в ночи, вопя истошными голосами.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_04");	//И больше я их не видел.
 	if(SC_KnowsMadPsi == TRUE)
 	{
@@ -219,7 +219,7 @@ func void DIA_Angar_FOUNDAMULETT_Info()
 {
 	B_AngarsAmulettAbgeben();
 	Info_AddChoice(DIA_Angar_FOUNDAMULETT,"А чем он такой особенный?",DIA_Angar_FOUNDAMULETT_besonders);
-	Info_AddChoice(DIA_Angar_FOUNDAMULETT,"Что ты планируешь делать дальше?",DIA_Angar_FOUNDAMULETT_nun);
+	Info_AddChoice(DIA_Angar_FOUNDAMULETT,"Что ты планируешь делать теперь?",DIA_Angar_FOUNDAMULETT_nun);
 };
 
 func void DIA_Angar_FOUNDAMULETT_besonders()
@@ -266,7 +266,7 @@ func void DIA_Angar_DJG_ANWERBEN_Info()
 	AI_Output(self,other,"DIA_Angar_DJG_ANWERBEN_04_01");	//Почему бы и нет. Помощь никогда не помещает.
 	if(DJG_Angar_SentToStones == FALSE)
 	{
-		Info_AddChoice(DIA_Angar_DJG_ANWERBEN,"Я должен идти.",DIA_Angar_DJG_ANWERBEN_gehen);
+		Info_AddChoice(DIA_Angar_DJG_ANWERBEN,"Мне нужно идти.",DIA_Angar_DJG_ANWERBEN_gehen);
 		Info_AddChoice(DIA_Angar_DJG_ANWERBEN,"Где ты собираешься искать?",DIA_Angar_DJG_ANWERBEN_wo);
 		Info_AddChoice(DIA_Angar_DJG_ANWERBEN,"Когда ты отправляешься в путь?",DIA_Angar_DJG_ANWERBEN_wann);
 	};

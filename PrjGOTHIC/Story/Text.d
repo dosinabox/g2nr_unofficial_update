@@ -86,7 +86,7 @@ const string MOBNAME_GRAVE_04 = "Неизвестный";
 const string MOBNAME_GRAVE_05 = "Декс Кантионис 325 - 431 'Я уже неделю ничего не ел'";
 const string MOBNAME_GRAVE_06 = "Утар Лайтбрингер 205 - 532";
 const string MOBNAME_GRAVE_07 = "Жасмин 510 - 546";
-const string MOBNAME_GRAVE_08 = "Онурб 634 - 579 - ' Этлемеркегму красный'";
+const string MOBNAME_GRAVE_08 = "Онурб 634 - 579 - 'Этлемеркегму красный'";
 const string MOBNAME_GRAVE_09 = "Неизвестный солдат";
 const string MOBNAME_GRAVE_10 = "Грозный карлик 2894-3787 - 'Все это чушь! Верь мне...'";
 const string MOBNAME_GRAVE_11 = "Теодор 220 - 310 - 'Спи спокойно'";
@@ -120,7 +120,7 @@ const string MOBNAME_ADDON_STONEBOOK = "Пюпитр";
 const string MOBNAME_ADDON_ORNAMENT = "Устройство в форме кольца";
 const string MOBNAME_ADDON_ORNAMENTSWITCH = "Переключатель";
 const string MOBNAME_ADDON_WACKELBAUM = "Шатающееся дерево";
-const string NAME_ADDON_TENGRONSRING = "Кольцо Тенгрона.";
+const string NAME_ADDON_TengronsRing = "Кольцо Тенгрона.";
 const string NAME_ADDON_CASSIASBELOHNUNGSRING = "Кольцо жизненной силы";
 const string MOBNAME_ADDON_TELEPORT_01 = "К порталу храма";
 const string MOBNAME_ADDON_TELEPORT_02 = "В лагерь бандитов";
@@ -134,7 +134,7 @@ const string TXT_GUILDS[66] =
 	"Паладин",
 	"Ополчение",
 	"Гражданин",
-	"Маг",
+	"Маг огня",
 	"Послушник",
 	"Охотник на драконов",
 	"Наемник",
@@ -142,7 +142,7 @@ const string TXT_GUILDS[66] =
 	"Бандит",
 	"Каторжник",
 	"Ищущий",
-	"Land Dweller",
+	"Бродяга",
 	"Пират",
 	"Маг воды",
 	"D",
@@ -151,18 +151,18 @@ const string TXT_GUILDS[66] =
 	"Овца",
 	"Гоблин",
 	"Скелет гоблина",
-	"М. скелет гоблина",
+	"Малый скелет гоблина",
 	"Падальщик",
 	"Гигантская крыса",
 	"Полевой хищник",
 	"Кровавая муха",
 	"Ящер",
 	"Волк",
-	"М. волк",
+	"Молодой волк",
 	"Краулер",
 	"Луркер",
 	"Скелет",
-	"М. скелет",
+	"Малый скелет",
 	"Скелет-маг",
 	"Зомби",
 	"Снеппер",
@@ -172,9 +172,9 @@ const string TXT_GUILDS[66] =
 	"Каменный голем",
 	"Огненный голем",
 	"Ледяной голем",
-	"М. голем",
+	"Малый голем",
 	"Демон",
-	"М. демон",
+	"Малый демон",
 	"Тролль",
 	"Болотная акула",
 	"Дракон",
@@ -244,7 +244,7 @@ const string TXT_SPELLS[100] =
 	"Полное исцеление",
 	"Огненный дождь",
 	"Дыхание смерти",
-	"Масс-уничтожение",
+	"Волна смерти",
 	"Армия тьмы",
 	"Сморщивание",
 	"Овца",
@@ -289,7 +289,7 @@ const string TXT_SPELLS[100] =
 	"Кража энергии",
 	"Крик смерти",
 	"Создание зомби",
-	"Вызов тины",
+	"Вызов Мада",
 	"TXT_SPL_RESERVED_90",
 	"TXT_SPL_RESERVED_91",
 	"TXT_SPL_RESERVED_92",
@@ -319,7 +319,7 @@ const string NAME_SPL_TeleportOC = "Телепорт в замок";
 const string NAME_SPL_TeleportOWDemonTower = "Телепорт в древнюю демоническую башню";
 const string NAME_SPL_TeleportTaverne = "Телепорт к таверне";
 const string NAME_SPL_Teleport_3 = "NAME_SPL_TELEPORT_3";
-const string NAME_SPL_Light = "Свет";
+const string NAME_SPL_LIGHT = "Свет";
 const string NAME_SPL_Firebolt = "Огненная стрела";
 const string NAME_SPL_Icebolt = "Ледяная стрела";
 const string NAME_SPL_LightHeal = "Лечение легких ранений";
@@ -365,7 +365,7 @@ const string NAME_SPL_MasterOfDisaster = "Святая стрела";
 const string NAME_SPL_Deathbolt = "NAME_SPL_DEATHBOLT";
 const string NAME_SPL_Deathball = "NAME_SPL_DEATHBALL";
 const string NAME_SPL_ConcussionBolt = "NAME_SPL_CONCUSSIONBOLT";
-const string NAME_SPL_RESERVED_64 = "NAME_SPL_RESERVED_64";
+const string NAME_SPL_Reserved_64 = "NAME_SPL_RESERVED_64";
 const string NAME_SPL_Reserved_65 = "NAME_SPL_RESERVED_65";
 const string NAME_SPL_Reserved_66 = "NAME_SPL_RESERVED_66";
 const string NAME_SPL_Reserved_67 = "NAME_SPL_RESERVED_67";
@@ -390,7 +390,7 @@ const string NAME_SPL_BeliarsRage = "Гнев Белиара";
 const string NAME_SPL_SuckEnergy = "Кража энергии";
 const string NAME_SPL_Skull = "Крик смерти";
 const string NAME_SPL_SummonZombie = "Создание зомби";
-const string NAME_SPL_SummonMud = "Вызов тины";
+const string NAME_SPL_SummonMud = "Вызов Мада";
 const string NAME_SPL_Reserved_90 = "NAME_SPL_RESERVED_90";
 const string NAME_SPL_Reserved_91 = "NAME_SPL_RESERVED_91";
 const string NAME_SPL_Reserved_92 = "NAME_SPL_RESERVED_92";
@@ -502,12 +502,12 @@ const string NAME_ADDON_SCAVENGERGL = "Луговой падальщик";
 const string NAME_Addon_Summoned_Guardian = "Вызванный каменный часовой";
 const string NAME_Addon_Summoned_Zombie = "Вызванный зомби";
 const string NAME_ADDON_BELIARSWEAPON = "Коготь Белиара";
-const string NAME_Addon_Undead_Mud = "Тина-нежить";
-const string NAME_Addon_Summoned_Mud = "Вызванная тина";
+const string NAME_Addon_Undead_Mud = "Мад-нежить";
+const string NAME_Addon_Summoned_Mud = "Вызванный Мад";
 const string Dialog_Ende = "КОНЕЦ";
 const string Dialog_Back = "НАЗАД";
-const string DIALOG_TRADE = "(Купить)";
-const string DIALOG_PICKPOCKET = "(Украсть)";
+const string DIALOG_TRADE = "(Торговать)";
+const string DIALOG_PICKPOCKET = "(Обокрасть)";
 const string NAME_Ring = "Кольцо";
 const string NAME_Amulett = "Амулет";
 const string NAME_Trank = "Зелье";
@@ -732,7 +732,7 @@ const string PRINT_GotFourItems = "Получено 4 предмета";
 const string PRINT_OrcEliteRingEquip = "Вы чувствуете слабость.";
 const string PRINT_SCIsObsessed = "Вы чувствуете удушье!";
 const string PRINT_ClearSCObsession = "Вы чувствуете себя освобожденным!";
-const string PRINT_NUMBERLEFT = " осталось";
+const string PRINT_NumberLeft = " осталось";
 const string PRINT_NovizenLeft = " послушников осталось";
 const string PRINT_Addon_CanyonRazorsLeft = "  бритвозубов осталось";
 const string PRINT_DragKillCount = "Враг повержен. На этот раз я не буду гнить под камнями. Пришло время возвращаться на корабль.";

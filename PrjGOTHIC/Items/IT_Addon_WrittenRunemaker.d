@@ -14,7 +14,7 @@ instance ITWR_Addon_Runemaking_KDW_CIRC1(C_Item)
 	on_state[0] = Use_Runemaking_KDW_CIRC1_S1;
 };
 
-instance ITWR_ADDON_RUNEMAKING_KDW_CIRC2(C_Item)
+instance ITWR_Addon_Runemaking_KDW_CIRC2(C_Item)
 {
 	name = "Книга рун Воды II";
 	mainflag = ITEM_KAT_DOCS;
@@ -29,7 +29,7 @@ instance ITWR_ADDON_RUNEMAKING_KDW_CIRC2(C_Item)
 	on_state[0] = Use_Runemaking_KDW_CIRC2_S1;
 };
 
-instance ITWR_ADDON_RUNEMAKING_KDW_CIRC3(C_Item)
+instance ITWR_Addon_Runemaking_KDW_CIRC3(C_Item)
 {
 	name = "Книга рун Воды III";
 	mainflag = ITEM_KAT_DOCS;
@@ -44,7 +44,7 @@ instance ITWR_ADDON_RUNEMAKING_KDW_CIRC3(C_Item)
 	on_state[0] = Use_Runemaking_KDW_CIRC3_S1;
 };
 
-instance ITWR_ADDON_RUNEMAKING_KDW_CIRC4(C_Item)
+instance ITWR_Addon_Runemaking_KDW_CIRC4(C_Item)
 {
 	name = "Книга рун Воды IV";
 	mainflag = ITEM_KAT_DOCS;
@@ -59,7 +59,7 @@ instance ITWR_ADDON_RUNEMAKING_KDW_CIRC4(C_Item)
 	on_state[0] = Use_Runemaking_KDW_CIRC4_S1;
 };
 
-instance ITWR_ADDON_RUNEMAKING_KDW_CIRC5(C_Item)
+instance ITWR_Addon_Runemaking_KDW_CIRC5(C_Item)
 {
 	name = "Книга рун Воды V";
 	mainflag = ITEM_KAT_DOCS;
@@ -74,7 +74,7 @@ instance ITWR_ADDON_RUNEMAKING_KDW_CIRC5(C_Item)
 	on_state[0] = Use_Runemaking_KDW_CIRC5_S1;
 };
 
-instance ITWR_ADDON_RUNEMAKING_KDW_CIRC6(C_Item)
+instance ITWR_Addon_Runemaking_KDW_CIRC6(C_Item)
 {
 	name = "Книга рун Воды VI";
 	mainflag = ITEM_KAT_DOCS;

@@ -75,11 +75,11 @@ func void DIA_Jan_Dragons_Info()
 	AI_Output(self,other,"DIA_Jan_Dragons_10_04");	//Паладины не подпускают меня к кузнице. Если я подойду к ней, меня бросят за решетку.
 	if(hero.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Jan_Dragons_10_05");	//Ты ведь один из них. Можешь замолвить за меня словечко?
+		AI_Output(self,other,"DIA_Jan_Dragons_10_05");	//Ты ведь один из них. Может, замолвишь за меня словечко?
 	};
 	Info_ClearChoices(DIA_JAN_Dragons);
 	Info_AddChoice(DIA_JAN_Dragons,"Мне нужно идти.",DIA_JAN_Dragons_ShitHappen);
-	Info_AddChoice(DIA_JAN_Dragons,"И что я получу за то, что помогу тебе?",DIA_JAN_Dragons_Reward);
+	Info_AddChoice(DIA_JAN_Dragons,"А что мне будет, если я помогу тебе?",DIA_JAN_Dragons_Reward);
 	Info_AddChoice(DIA_JAN_Dragons,"Я попробую помочь тебе.",DIA_JAN_Dragons_HelpYou);
 };
 
@@ -100,7 +100,7 @@ func void DIA_JAN_Dragons_HelpYou()
 func void DIA_JAN_Dragons_Reward()
 {
 	AI_Output(other,self,"DIA_JAN_Dragons_Reward_15_00");	//А что мне будет, если я помогу тебе?
-	AI_Output(self,other,"DIA_JAN_Dragons_Reward_10_01");	//У меня ничего нет. Единственное, я могу научить тебя чему-нибудь.
+	AI_Output(self,other,"DIA_JAN_Dragons_Reward_10_01");	//У меня ничего нет. Единственно, я могу научить тебя чему-нибудь.
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_JAN_Dragons_Reward_10_02");	//Я знаю способ, как сделать клинок, выкованный из магической руды, еще прочнее.
@@ -123,7 +123,7 @@ instance DIA_JAN_Home(C_Info)
 	condition = DIA_Jan_Home_Condition;
 	information = DIA_Jan_Home_Info;
 	permanent = FALSE;
-	description = "Откуда ты?";
+	description = "Откуда ты пришел?";
 };
 
 
@@ -150,7 +150,7 @@ instance DIA_JAN_OldCamp(C_Info)
 	condition = DIA_Jan_OldCamp_Condition;
 	information = DIA_Jan_OldCamp_Info;
 	permanent = TRUE;
-	description = "Что произошло в замке?";
+	description = "А что произошло в замке?";
 };
 
 
@@ -182,7 +182,7 @@ instance DIA_JAN_Parcival(C_Info)
 
 func int DIA_Jan_Parcival_Condition()
 {
-	if((MIS_JanBecomesSmith != LOG_Success) && Npc_KnowsInfo(other,DIA_Parcival_Jan) && (MIS_OCGateOpen == FALSE))
+	if((MIS_JanBecomesSmith != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Parcival_Jan) && (MIS_OCGateOpen == FALSE))
 	{
 		return 1;
 	};
@@ -218,7 +218,7 @@ instance DIA_JAN_JanIsSmith(C_Info)
 
 func int DIA_Jan_JanIsSmith_Condition()
 {
-	if((MIS_JanBecomesSmith == LOG_Success) && (MIS_OCGateOpen == FALSE))
+	if((MIS_JanBecomesSmith == LOG_SUCCESS) && (MIS_OCGateOpen == FALSE))
 	{
 		return 1;
 	};
@@ -248,7 +248,7 @@ instance DIA_JAN_SellWeapons(C_Info)
 
 func int DIA_Jan_SellWeapons_Condition()
 {
-	if((MIS_JanBecomesSmith == LOG_Success) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (Jan_TeachPlayer == FALSE) && (MIS_OCGateOpen == FALSE))
+	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (Jan_TeachPlayer == FALSE) && (MIS_OCGateOpen == FALSE))
 	{
 		return 1;
 	};
@@ -295,25 +295,25 @@ func void Jan_Training_Talente_Info()
 	AI_Output(self,other,"DIA_Jan_TeachPlayer_10_01");	//Что именно ты хочешь научиться ковать?
 	Info_ClearChoices(Jan_Training_Talente);
 	Info_AddChoice(Jan_Training_Talente,Dialog_Back,Jan_Training_Smith_Back);
-	if(player_talent_smith[WEAPON_Common] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 	{
 		Info_AddChoice(Jan_Training_Talente,B_BuildLearnString("Научиться кузнечному делу",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),Jan_Training_Smith_Common);
 	};
-	if(player_talent_smith[WEAPON_Common] == TRUE)
+	if(PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE)
 	{
-		if((player_talent_smith[WEAPON_1H_Special_01] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+		if((PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 		{
 			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_1H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01)),Jan_Training_Smith_1hSpecial1);
 		};
-		if((player_talent_smith[WEAPON_2H_Special_01] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+		if((PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 		{
 			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_2H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_01)),Jan_Training_Smith_2hSpecial1);
 		};
-		if((player_talent_smith[WEAPON_1H_Special_02] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+		if((PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 		{
 			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_1H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_02)),Jan_Training_Smith_1hSpecial2);
 		};
-		if((player_talent_smith[WEAPON_2H_Special_02] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+		if((PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 		{
 			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_2H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_02)),Jan_Training_Smith_2hSpecial2);
 		};
@@ -366,7 +366,7 @@ instance DIA_JAN_SellArmor(C_Info)
 
 func int DIA_Jan_SellArmor_Condition()
 {
-	if((MIS_JanBecomesSmith == LOG_Success) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (MIS_OCGateOpen == FALSE) && (DIA_JAN_SellArmor_permanent == FALSE))
+	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (MIS_OCGateOpen == FALSE) && (DIA_JAN_SellArmor_permanent == FALSE))
 	{
 		return 1;
 	};
@@ -426,7 +426,7 @@ instance DIA_JAN_Dragonscales(C_Info)
 
 func int DIA_Jan_Dragonscales_Condition()
 {
-	if((MIS_JanBecomesSmith == LOG_Success) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (MIS_OCGateOpen == FALSE) && (DIA_JAN_SellArmor_permanent == TRUE) && (Jan_Sells_Armor == FALSE) && (Npc_HasItems(other,ItAt_DragonScale) >= 1))
+	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (MIS_OCGateOpen == FALSE) && (DIA_JAN_SellArmor_permanent == TRUE) && (Jan_Sells_Armor == FALSE) && (Npc_HasItems(other,ItAt_DragonScale) >= 1))
 	{
 		return 1;
 	};
@@ -507,7 +507,7 @@ instance DIA_Jan_DJG_ARMOR_M(C_Info)
 	condition = DIA_Jan_DJG_ARMOR_M_Condition;
 	information = DIA_Jan_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов: Защита: оружие 80, стрелы 80. (12000 золота)";
+	description = "Средние доспехи охотника на драконов. Защита: оружие 120, стрелы 120, огонь 75, магия 35. (12000 золота)";
 };
 
 
@@ -649,7 +649,7 @@ func void DIA_Jan_DragonBlood_1()
 		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну пробирку)",DIA_Jan_DragonBlood_1);
 	};
 	BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
-	BloodText = ConcatStrings(BloodLeft,PRINT_NUMBERLEFT);
+	BloodText = ConcatStrings(BloodLeft,PRINT_NumberLeft);
 	AI_PrintScreen(BloodText,-1,-1,FONT_ScreenSmall,2);
 };
 
@@ -675,7 +675,7 @@ func void DIA_Jan_DragonBlood_all()
 		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну пробирку)",DIA_Jan_DragonBlood_1);
 	};
 	BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
-	BloodText = ConcatStrings(BloodLeft,PRINT_NUMBERLEFT);
+	BloodText = ConcatStrings(BloodLeft,PRINT_NumberLeft);
 	AI_PrintScreen(BloodText,-1,-1,FONT_ScreenSmall,2);
 };
 

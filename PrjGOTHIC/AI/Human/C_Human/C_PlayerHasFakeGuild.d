@@ -49,27 +49,27 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 		{
 			return FALSE;
 		}
-		else if((oth.guild == GIL_MIL) && ((Hlp_IsItem(itm,itar_mil_l) == TRUE) || (Hlp_IsItem(itm,itar_mil_m) == TRUE)))
+		else if((oth.guild == GIL_MIL) && ((Hlp_IsItem(itm,ITAR_Mil_L) == TRUE) || (Hlp_IsItem(itm,ItAr_MIL_M) == TRUE)))
 		{
 			return FALSE;
 		}
-		else if((oth.guild == GIL_PAL) && ((Hlp_IsItem(itm,itar_pal_m) == TRUE) || (Hlp_IsItem(itm,itar_pal_h) == TRUE)))
+		else if((oth.guild == GIL_PAL) && ((Hlp_IsItem(itm,ItAr_PAL_M) == TRUE) || (Hlp_IsItem(itm,ItAr_PAl_H) == TRUE)))
 		{
 			return FALSE;
 		}
-		else if((oth.guild == GIL_SLD) && ((Hlp_IsItem(itm,itar_sld_l) == TRUE) || (Hlp_IsItem(itm,itar_sld_m) == TRUE) || (Hlp_IsItem(itm,itar_sld_h) == TRUE)))
+		else if((oth.guild == GIL_SLD) && ((Hlp_IsItem(itm,ItAr_Sld_L) == TRUE) || (Hlp_IsItem(itm,itar_sld_M) == TRUE) || (Hlp_IsItem(itm,ItAr_Sld_H) == TRUE)))
 		{
 			return FALSE;
 		}
-		else if((oth.guild == GIL_DJG) && ((Hlp_IsItem(itm,itar_sld_l) == TRUE) || (Hlp_IsItem(itm,itar_sld_m) == TRUE) || (Hlp_IsItem(itm,itar_sld_h) == TRUE) || (Hlp_IsItem(itm,itar_djg_l) == TRUE) || (Hlp_IsItem(itm,itar_djg_m) == TRUE) || (Hlp_IsItem(itm,itar_djg_h) == TRUE) || (Hlp_IsItem(itm,ITAR_DJG_Crawler) == TRUE)))
+		else if((oth.guild == GIL_DJG) && ((Hlp_IsItem(itm,ItAr_Sld_L) == TRUE) || (Hlp_IsItem(itm,itar_sld_M) == TRUE) || (Hlp_IsItem(itm,ItAr_Sld_H) == TRUE) || (Hlp_IsItem(itm,itar_djg_l) == TRUE) || (Hlp_IsItem(itm,itar_djg_m) == TRUE) || (Hlp_IsItem(itm,itar_djg_h) == TRUE) || (Hlp_IsItem(itm,ITAR_DJG_Crawler) == TRUE)))
 		{
 			return FALSE;
 		}
-		else if((oth.guild == GIL_NOV) && (Hlp_IsItem(itm,itar_nov_l) == TRUE))
+		else if((oth.guild == GIL_NOV) && (Hlp_IsItem(itm,ItAr_NOV_L) == TRUE))
 		{
 			return FALSE;
 		}
-		else if((oth.guild == GIL_KDF) && ((Hlp_IsItem(itm,itar_kdf_l) == TRUE) || (Hlp_IsItem(itm,itar_kdf_h) == TRUE)))
+		else if((oth.guild == GIL_KDF) && ((Hlp_IsItem(itm,ItAr_KDF_L) == TRUE) || (Hlp_IsItem(itm,ItAr_KDF_H) == TRUE)))
 		{
 			return FALSE;
 		}

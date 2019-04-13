@@ -73,7 +73,7 @@ func void DIA_Orlan_Wein_NEIN()
 func void DIA_Orlan_Wein_Nie()
 {
 	AI_Output(other,self,"DIA_Orlan_Wein_Nie_15_00");	//Эй, давай сюда 240 монет.
-	AI_Output(self,other,"DIA_Orlan_Wein_Nie_05_01");	//(вздыхает) Ну хорошо, хорошо, вот твое золото.
+	AI_Output(self,other,"DIA_Orlan_Wein_Nie_05_01");	//Ты не хочешь вести со мной бизнес, да? (вздыхает) Ну хорошо, вот твое золото.
 	B_GiveInvItems(self,other,ItMi_Gold,240);
 	B_GiveInvItems(other,self,ItFo_Wine,12);
 	Info_ClearChoices(DIA_Orlan_Wein);
@@ -225,7 +225,7 @@ func int DIA_Addon_Orlan_Teleportstein_Condition()
 func void DIA_Addon_Orlan_Teleportstein_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Orlan_Teleportstein_15_00");	//Ты когда-нибудь использовал телепорты?
-	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_05_01");	//Ты рехнулся? Пока маги Воды не убедят меня, что это безопасно, я и близко подходить к ним не буду.
+	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_05_01");	//Ты рехнулся? Пока маги воды не убедят меня, что это безопасно, я и близко подходить к ним не буду.
 	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_05_02");	//Меня попросили спрятать один из телепортов. Больше я не хочу иметь с этими штуками ничего общего.
 	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Addon_Orlan_Teleportstein);
@@ -247,7 +247,7 @@ func void DIA_Addon_Orlan_Teleportstein_sehen()
 func void DIA_Addon_Orlan_Teleportstein_wo()
 {
 	AI_Output(other,self,"DIA_Addon_Orlan_Teleportstein_wo_15_00");	//Где находится телепорт?
-	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_wo_05_01");	//Недалеко от моей таверны, на юге, есть пещера. В ней маги Воды его и обнаружили.
+	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_wo_05_01");	//Недалеко от моей таверны, на юге, есть пещера. В ней маги воды его и обнаружили.
 };
 
 
@@ -360,7 +360,7 @@ func void DIA_Orlan_RUESTUNG_Info()
 	AI_Output(self,other,"DIA_Orlan_RUESTUNG_05_01");	//У меня есть очень хороший экземпляр, я уверен, это заинтересует тебя.
 	Info_ClearChoices(DIA_Orlan_RUESTUNG);
 	Info_AddChoice(DIA_Orlan_RUESTUNG,Dialog_Back,DIA_Orlan_RUESTUNG_BACK);
-	Info_AddChoice(DIA_Orlan_RUESTUNG,"Кожаные доспехи. Защита: оружие 25, стрелы 20, огонь 5 (250 золота)",DIA_Orlan_RUESTUNG_Buy);
+	Info_AddChoice(DIA_Orlan_RUESTUNG,"Кожаные доспехи. Защита: оружие 25, стрелы 20, огонь 5. (250 золота)",DIA_Orlan_RUESTUNG_Buy);
 };
 
 func void DIA_Orlan_RUESTUNG_Buy()
@@ -475,8 +475,8 @@ func void DIA_Orlan_HotelZimmer_Info()
 			AI_Output(self,other,"DIA_Orlan_HotelZimmer_05_02");	//Я бы никогда не посмел взять деньги за свои услуги с представителя Инноса на земле.
 		};
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_05_03");	//Вот ключ от верхних комнат. Выбирай, которая больше понравится.
-		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
-		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
+		CreateInvItems(self,itke_orlan_hotelzimmer,1);
+		B_GiveInvItems(self,other,itke_orlan_hotelzimmer,1);
 		Orlan_SCGotHotelZimmer = TRUE;
 		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
 	}
@@ -495,8 +495,8 @@ func void DIA_Orlan_HotelZimmer_ja()
 	{
 		AI_Output(other,self,"DIA_Orlan_HotelZimmer_ja_15_00");	//Хорошо. Вот золото.
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_01");	//А вот ключ. Комнаты находятся вверх по лестнице. Но не загадь ее и не забывай платить ренту вовремя, понятно?
-		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
-		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
+		CreateInvItems(self,itke_orlan_hotelzimmer,1);
+		B_GiveInvItems(self,other,itke_orlan_hotelzimmer,1);
 		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
 		Orlan_SCGotHotelZimmer = TRUE;
 	}
@@ -635,11 +635,11 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	AI_Output(other,self,"DIA_Orlan_WETTKAMPFLAEUFT_15_03");	//Кто победил?
 	if((Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) == FALSE) && (Mob_HasItems("CHEST_RUKHAR",ItFo_Water) == TRUE))
 	{
-		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_04");	//На этот раз Рэндольф. Рухару нынче не повезло.
+		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_04");	//На этот раз Рендольф. Рухару нынче не повезло.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_05");	//Как всегда Рухар напоил Рэндольфа в стельку. Этого следовало ожидать.
+		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_05");	//Как всегда Рухар напоил Рендольфа в стельку. Этого следовало ожидать.
 		Rukhar_Won_Wettkampf = TRUE;
 	};
 	if((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
@@ -661,7 +661,7 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 			B_StartOtherRoutine(Rukhar,"WettkampfRukharLost");
 		};
 	};
-	MIS_Rukhar_Wettkampf = LOG_Success;
+	MIS_Rukhar_Wettkampf = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 

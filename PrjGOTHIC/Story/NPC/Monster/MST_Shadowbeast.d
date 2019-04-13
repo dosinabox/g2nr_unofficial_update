@@ -52,3 +52,11 @@ instance BeachShadowbeast1(Mst_Default_Shadowbeast)
 	CreateInvItems(self,ItFoMuttonRaw,2);
 };
 
+instance SHADOWBEASTTRANSFORM(Mst_Default_Shadowbeast)
+{
+	Npc_PercEnable(self,PERC_ASSESSSURPRISE,b_stopmagictransform);
+	B_SetVisuals_Shadowbeast();
+	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,2);
+};
+

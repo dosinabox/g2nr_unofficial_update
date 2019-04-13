@@ -107,7 +107,7 @@ func void DIA_Jack_Job_Info()
 {
 	AI_Output(other,self,"DIA_Jack_Job_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Jack_Job_14_01");	//Когда я был еще юношей, я отправился странствовать по морям, и пережил много сильных штормов.
-	AI_Output(self,other,"DIA_Jack_Job_14_02");	//Но много лет назад я осел здесь, и с тех пор работал смотрителем маяка Хориниса.
+	AI_Output(self,other,"DIA_Jack_Job_14_02");	//Но много лет назад, я осел здесь, и с тех пор работал смотрителем маяка Хориниса.
 	AI_Output(self,other,"DIA_Jack_Job_14_03");	//В этом нет ничего сложного. Совсем. Но этот старый маяк стал мне родным домом.
 	AI_Output(self,other,"DIA_Jack_Job_14_04");	//Но я так давно уже не был в нем.
 	AI_Output(other,self,"DIA_Jack_Job_15_05");	//Почему?
@@ -205,7 +205,7 @@ func void DIA_Jack_Harbor_Leave()
 {
 	AI_Output(other,self,"DIA_Jack_Harbor_Leave_15_00");	//Так почему ты не уедешь отсюда?
 	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_01");	//Сегодня никто не возьмет на корабль старого морского волка вроде меня.
-	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_02");	//Большинство полагает, что cтарый Джек ни на что не годен, и что его старые кости разъедает подагра.
+	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_02");	//Большинство полагает, что Старый Джек ни на что не годен, и что его старые кости разъедает подагра.
 	AI_Output(other,self,"DIA_Jack_Harbor_Leave_15_03");	//И? Они правы?
 	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_04");	//Вздор. Как только я опять почувствую под своими ногами палубу, я дам фору любому из этих нахальных юнцов.
 };
@@ -236,7 +236,7 @@ func void DIA_Jack_BANDITENWEG_Info()
 	AI_Output(self,other,"DIA_Jack_BANDITENWEG_14_02");	//Пойдем со мной к маяку. Оттуда ты сможешь насладиться потрясающим видом на море.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Lighthouse");
-	MIS_Jack_KillLighthouseBandits = LOG_Success;
+	MIS_Jack_KillLighthouseBandits = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KillLighthouseBandits);
 };
 
@@ -254,7 +254,7 @@ instance DIA_Jack_LIGHTHOUSEFREE(C_Info)
 
 func int DIA_Jack_LIGHTHOUSEFREE_Condition()
 {
-	if((MIS_Jack_KillLighthouseBandits == LOG_Success) && (Npc_GetDistToWP(self,"LIGHTHOUSE") < 3000) && (MIS_SCKnowsWayToIrdorath == FALSE))
+	if((MIS_Jack_KillLighthouseBandits == LOG_SUCCESS) && (Npc_GetDistToWP(self,"LIGHTHOUSE") < 3000) && (MIS_SCKnowsWayToIrdorath == FALSE))
 	{
 		return TRUE;
 	};
@@ -355,7 +355,7 @@ instance DIA_Jack_BEMYCAPTAIN(C_Info)
 
 func int DIA_Jack_BEMYCAPTAIN_Condition()
 {
-	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE) && (MIS_Jack_KillLighthouseBandits == LOG_Success) && (MIS_Jack_NewLighthouseOfficer == 0))
+	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE) && (MIS_Jack_KillLighthouseBandits == LOG_SUCCESS) && (MIS_Jack_NewLighthouseOfficer == 0))
 	{
 		return TRUE;
 	};
@@ -387,7 +387,7 @@ func void DIA_Jack_BEMYCAPTAIN_seaman()
 
 func void DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer()
 {
-	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_15_00");	//А что, если я приведу к тебе кого-нибудь, кто позаботился бы о маяке в твое отсутствие?
+	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_15_00");	//А что если я приведу к тебе кого-нибудь, кто позаботился бы о маяке в твое отсутствие?
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_01");	//Неплохая идея, приятель. И у меня есть подходящая кандидатура.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_02");	//У Гарада, кузнеца, есть подмастерье по имени Брайан. Я много раз беседовал с ним.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_03");	//Я бы хотел доверить свой маяк ему. Я думаю, он лучше всего подходит для этого.
@@ -415,7 +415,7 @@ instance DIA_Jack_BEMYCAPTAIN2(C_Info)
 
 func int DIA_Jack_BEMYCAPTAIN2_Condition()
 {
-	if((MIS_Jack_NewLighthouseOfficer == LOG_Success) || ((MIS_Jack_NewLighthouseOfficer == LOG_Running) && Npc_IsDead(Brian)))
+	if((MIS_Jack_NewLighthouseOfficer == LOG_SUCCESS) || ((MIS_Jack_NewLighthouseOfficer == LOG_Running) && Npc_IsDead(Brian)))
 	{
 		return TRUE;
 	};
@@ -459,7 +459,7 @@ instance DIA_Jack_BEMYCAPTAIN3(C_Info)
 
 func int DIA_Jack_BEMYCAPTAIN3_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jack_BEMYCAPTAIN2) && (SCGotCaptain == FALSE) && (MIS_Jack_NewLighthouseOfficer == LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Jack_BEMYCAPTAIN2) && (SCGotCaptain == FALSE) && (MIS_Jack_NewLighthouseOfficer == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -517,7 +517,7 @@ func void DIA_Jack_LOSFAHREN_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_05");	//Полегче, приятель. Я еще даже не видел это корыто. Так не пойдет.
-		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_06");	//Сначала ты должен укомплектовать команду не менее чем из 5 человек, получить доступ на корабль и достать морскую карту. В противном случае, забудь об этом.
+		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_06");	//Сначала, ты должен укомплектовать команду, не менее чем из 5 человек, получить доступ на корабль и достать морскую карту. В противном случае, забудь об этом.
 		AI_StopProcessInfos(self);
 	};
 };
@@ -550,18 +550,18 @@ func void DIA_Jack_PERM5_NOTCAPTAIN_Info()
 };
 
 
-instance DIA_JACK_KAP6_EXIT(C_Info)
+instance DIA_Jack_KAP6_EXIT(C_Info)
 {
 	npc = VLK_444_Jack;
 	nr = 999;
-	condition = dia_jack_kap6_exit_condition;
-	information = dia_jack_kap6_exit_info;
+	condition = DIA_Jack_KAP6_EXIT_Condition;
+	information = DIA_Jack_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_jack_kap6_exit_condition()
+func int DIA_Jack_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -569,7 +569,7 @@ func int dia_jack_kap6_exit_condition()
 	};
 };
 
-func void dia_jack_kap6_exit_info()
+func void DIA_Jack_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

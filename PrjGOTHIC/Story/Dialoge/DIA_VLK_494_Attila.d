@@ -79,7 +79,7 @@ func void DIA_Attila_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Attila_Hallo_09_00");	//(спокойно) Ах, наконец. Я ждал тебя, чужеземец.
 	Info_ClearChoices(DIA_Attila_Hallo);
-	Info_AddChoice(DIA_Attila_Hallo,"Что тебе нужно от меня?",DIA_Attila_Hallo_Was);
+	Info_AddChoice(DIA_Attila_Hallo,"Что тебе нужно от меня? ",DIA_Attila_Hallo_Was);
 	Info_AddChoice(DIA_Attila_Hallo,"Кто ты?",DIA_Attila_Hallo_Wer);
 	B_GivePlayerXP(XP_Attila_MetHim);
 };
@@ -124,7 +124,7 @@ func void DIA_Attila_Hallo_Theater()
 
 func void DIA_Attila_Hallo_Ende()
 {
-	AI_Output(other,self,"DIA_Attila_Hallo_Ende_15_00");	//Я, пожалуй, пойду.
+	AI_Output(other,self,"DIA_Attila_Hallo_Ende_15_00");	//Я, пожалуй, пойду...
 	AI_Output(self,other,"DIA_Attila_Hallo_Ende_09_01");	//Боюсь... я не могу позволить тебе этого. Смирись. Пришло время умереть.
 	AI_DrawWeapon(self);
 	Info_ClearChoices(DIA_Attila_Hallo);
@@ -156,9 +156,12 @@ func void DIA_Attila_Hallo_Warum()
 	{
 		AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_03");	//Нагур попал за решетку по твоей вине. Кое-кому кажется, что это непростительная ошибка.
 	};
-	AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_04");	//Мои хозяева недовольны этим. Чтобы не дать тебе совершить еще одну ошибку, они послали меня.
+	if((Betrayal_Halvor == TRUE) || (Rengaru_InKnast == TRUE) || (Nagur_Ausgeliefert == TRUE))
+	{
+		AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_04");	//Мои хозяева недовольны этим. Чтобы не дать тебе совершить еще одну ошибку, они послали меня.
+	};
 	Info_ClearChoices(DIA_Attila_Hallo);
-	Info_AddChoice(DIA_Attila_Hallo,"Я могу дат тебе золото ...",DIA_Attila_Hallo_Gold);
+	Info_AddChoice(DIA_Attila_Hallo,"Я могу дать тебе золото ...",DIA_Attila_Hallo_Gold);
 	Info_AddChoice(DIA_Attila_Hallo,"Дай мне хотя бы вынуть свое оружие.",DIA_Attila_Hallo_Attacke);
 };
 

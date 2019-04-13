@@ -83,7 +83,7 @@ func int DIA_Gaan_HALLO_Condition()
 func void DIA_Gaan_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_HALLO_15_00");	//У тебя здесь просторно.
-	AI_Output(self,other,"DIA_Gaan_HALLO_03_01");	//Да, мне здесь нравится. Но если ты пойдешь вон по тому проходу, ты можешь переменить свое мнение.
+	AI_Output(self,other,"DIA_Gaan_HALLO_03_01");	//Да, мне здесь нравится. Но если ты пойдешь по вон тому проходу, ты можешь переменить свое мнение.
 	AI_Output(self,other,"DIA_Gaan_HALLO_03_02");	//Если этот клочок земли произвел впечатление на тебя, значит, ты еще не видел Долины Рудников.
 };
 
@@ -100,7 +100,7 @@ instance DIA_Gaan_WASMACHSTDU(C_Info)
 
 func int DIA_Gaan_WASMACHSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (RangerMeetingRunning != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -164,7 +164,7 @@ func void DIA_Addon_Gaan_AufgabeBeimRing_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Gaan_AufgabeBeimRing_15_00");	//В чем заключаются твои обязанности в этом обществе?
 	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_01");	//Я наблюдаю за проходом и сообщаю, кто приходит и кто уходит.
-	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_02");	//Впрочем, с тех пор, как паладины приказали закрыть ворота прохода, людей здесь немного.
+	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_02");	//Впрочем, с тех пор как паладины приказали закрыть ворота прохода, людей здесь немного.
 };
 
 
@@ -213,7 +213,7 @@ func void DIA_Gaan_WALD_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_WALD_15_00");	//Что мне нужно знать о Долине Рудников?
 	AI_Output(self,other,"DIA_Gaan_WALD_03_01");	//Понятия не имею. Я видел эту долину только мельком. По мне, там слишком опасно.
-	AI_Output(self,other,"DIA_Gaan_WALD_03_02");	//Лучше всего, если ты пойдешь туда по проходу, держись протоптанной дорожки.
+	AI_Output(self,other,"DIA_Gaan_WALD_03_02");	//Лучше всего, если ты пойдешь туда по проходу, держаться протоптанной дорожки.
 	AI_Output(self,other,"DIA_Gaan_WALD_03_03");	//Ты можешь пойти либо через большое ущелье, либо по дороге через каменный мост. Этот путь короче и безопаснее.
 	AI_Output(self,other,"DIA_Gaan_WALD_03_04");	//Теперь, когда орки роятся повсюду, нужно быть очень осторожным.
 	AI_Output(self,other,"DIA_Gaan_WALD_03_05");	//Мне совсем не хочется тащить тебя к ведьме-целительнице.
@@ -270,7 +270,7 @@ func int DIA_Gaan_MONSTER_Condition()
 func void DIA_Gaan_MONSTER_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_MONSTER_15_00");	//А как выглядит этот опасный зверь?
-	AI_Output(self,other,"DIA_Gaan_MONSTER_03_01");	//Я точно не знаю. Я только слышал фырканье и скрежет его когтей. Но видел, что он может сделать.
+	AI_Output(self,other,"DIA_Gaan_MONSTER_03_01");	//Я точно не знаю. Я только слышал фырканье и скрежет когтей. Но видел, что он может сделать.
 	AI_Output(self,other,"DIA_Gaan_MONSTER_03_02");	//Даже волки боятся его. Этот зверь как-то оторвал одному волку голову.
 };
 
@@ -323,7 +323,7 @@ func int DIA_Gaan_WOHERMONSTER_Condition()
 func void DIA_Gaan_WOHERMONSTER_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_WOHERMONSTER_15_00");	//Откуда пришел этот коварный зверь?
-	AI_Output(self,other,"DIA_Gaan_WOHERMONSTER_03_01");	//Откуда-то издалека. Может быть, из Долины Рудников. Но я не знаю этого точно.
+	AI_Output(self,other,"DIA_Gaan_WOHERMONSTER_03_01");	//Откуда-то издалека. Может быть, из Долины Рудников. Но я не знаю точно.
 	AI_Output(self,other,"DIA_Gaan_WOHERMONSTER_03_02");	//Я никогда не был в Долине Рудников.
 };
 
@@ -356,7 +356,7 @@ func void DIA_Gaan_MONSTERTOT_Info()
 		CreateInvItems(self,ItMi_Gold,30);
 		B_GiveInvItems(self,other,ItMi_Gold,30);
 	};
-	MIS_Gaan_Snapper = LOG_Success;
+	MIS_Gaan_Snapper = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Gaan_WaldSnapper);
 	AI_StopProcessInfos(self);
 };
@@ -380,7 +380,7 @@ func int DIA_Gaan_AskTeacher_Condition()
 func void DIA_Gaan_AskTeacher_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_AskTeacher_15_00");	//Ты можешь научить меня охотиться?
-	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_01");	//Нет проблем. За 100 золотых монет я могу показать тебе, как выпотрошить животных, которых ты убьешь.
+	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_01");	//Нет проблем. За 100 золотых монет я могу показать тебе, как выпотрошить животных, что ты убьешь.
 	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_02");	//Шкуры и другие трофеи можно выгодно продать на рынке.
 	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
 	B_LogEntry(TOPIC_Teacher,"Гаан может обучить меня добывать трофеи животных.");
@@ -398,11 +398,11 @@ instance DIA_Gaan_PayTeacher(C_Info)
 };
 
 
-var int dia_gaan_payteacher_noperm;
+var int DIA_Gaan_PayTeacher_noPerm;
 
 func int DIA_Gaan_PayTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_AskTeacher) && (DIA_GAAN_PAYTEACHER_NOPERM == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Gaan_AskTeacher) && (DIA_Gaan_PayTeacher_noPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -413,9 +413,9 @@ func void DIA_Gaan_PayTeacher_Info()
 	AI_Output(other,self,"DIA_Gaan_PayTeacher_15_00");	//Вот. 100 золотых монет за твой опыт по разделыванию животных.
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
-		AI_Output(self,other,"DIA_Gaan_PayTeacher_03_01");	//Спасибо. Теперь говори, что ты хочешь.
+		AI_Output(self,other,"DIA_Gaan_PayTeacher_03_01");	//Спасибо. Теперь, говори, что ты хочешь.
 		Gaan_TeachPlayer = TRUE;
-		DIA_GAAN_PAYTEACHER_NOPERM = TRUE;
+		DIA_Gaan_PayTeacher_noPerm = TRUE;
 	}
 	else
 	{
@@ -446,31 +446,31 @@ func int DIA_Gaan_TEACHHUNTING_Condition()
 func void DIA_Gaan_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
-	if((player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_BFSting] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_BFWing] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Teeth] == FALSE) || ((player_talent_takeanimaltrophy[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_Success)))
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_SUCCESS)))
 	{
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_03_01");	//Это зависит от того, что ты уже знаешь.
 		Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
-		if(player_talent_takeanimaltrophy[TROPHY_Teeth] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 		{
 			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Удаление зубов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Gaan_TEACHHUNTING_Teeth);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
 		{
 			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Удаление когтей",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),DIA_Gaan_TEACHHUNTING_Claws);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 		{
 			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Снятие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Gaan_TEACHHUNTING_Fur);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_BFSting] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 		{
 			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Жало кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFSting)),DIA_Gaan_TEACHHUNTING_BFSting);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_BFWing] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
 		{
 			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Крылья кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFWing)),DIA_Gaan_TEACHHUNTING_BFWing);
 		};
-		if((player_talent_takeanimaltrophy[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_Success))
+		if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_SUCCESS))
 		{
 			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Рог драконьего снеппера",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DrgSnapperHorn)),DIA_Gaan_TEACHHUNTING_DrgSnapperHorn);
 		};
@@ -547,7 +547,7 @@ func void DIA_Gaan_TEACHHUNTING_DrgSnapperHorn()
 	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_DrgSnapperHorn))
 	{
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_00");	//Теперь, когда этот огромный снеппер мертв, я могу показать тебе, как вырезать его рог.
-		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_01");	//Нужно засунуть нож глубоко в лоб этого животного и осторожно выковыривать рог.
+		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_01");	//Нужно засунуть нож глубоко в лоб этого животного и осторожно выковырнуть рог.
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_02");	//Если он не отделится от черепа, нужно поддеть его вторым ножом с другой стороны.
 		CreateInvItems(Gaans_Snapper,ItAt_DrgSnapperHorn,1);
 	};

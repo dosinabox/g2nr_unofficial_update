@@ -1,7 +1,7 @@
 
 instance SLD_811_Wolf_DI(Npc_Default)
 {
-	name[0] = "Вульф";
+	name[0] = "Вольф";
 	guild = GIL_SLD;
 	id = 8110;
 	voice = 8;
@@ -15,7 +15,7 @@ instance SLD_811_Wolf_DI(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Wolf,BodyTex_N,itar_sld_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Wolf,BodyTex_N,itar_sld_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

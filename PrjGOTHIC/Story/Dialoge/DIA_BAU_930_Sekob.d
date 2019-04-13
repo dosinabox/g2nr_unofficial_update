@@ -46,8 +46,8 @@ func int DIA_Sekob_HALLO_Condition()
 func void DIA_Sekob_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Sekob_HALLO_01_00");	//Что ты делаешь на моей земле? Здесь нечего украсть. Проваливай.
-	AI_Output(other,self,"DIA_Sekob_HALLO_15_01");	//Неужели в этой проклятой стране нет ни кусочка земли, который никому не принадлежит?
-	AI_Output(self,other,"DIA_Sekob_HALLO_01_02");	//А ты займись делом, тогда, возможно, когда-нибудь и ты сможешь называть кусок земли своей собственностью. Но до той поры, будь добр, бей баклуши где-нибудь в другом месте.
+	AI_Output(other,self,"DIA_Sekob_HALLO_15_01");	//Неужели в этой проклятой стране нет ни клочка земли, который никому не принадлежит?
+	AI_Output(self,other,"DIA_Sekob_HALLO_01_02");	//А ты займись делом, тогда, возможно, когда-нибудь и ты сможешь назвать кусок земли своей собственностью. Но до той поры, будь добр, бей баклуши где-нибудь в другом месте.
 };
 
 
@@ -154,7 +154,7 @@ func int DIA_Sekob_InformOnar_Condition()
 
 func void DIA_Sekob_InformOnar_Info()
 {
-	AI_Output(other,self,"DIA_Sekob_InformOnar_15_00");	//Что ж, тогда мне придется доложить об этом Онару.
+	AI_Output(other,self,"DIA_Sekob_InformOnar_15_00");	//Тогда мне придется доложить об этом Онару.
 	AI_Output(self,other,"DIA_Sekob_InformOnar_01_01");	//Меня это не волнует! Можешь сказать Онару, что у меня ничего нет. Это печальная правда.
 	MIS_Sekob_RedeMitOnar = LOG_Running;
 	AI_StopProcessInfos(self);
@@ -185,7 +185,7 @@ func void DIA_Sekob_Defeated_Info()
 	AI_Output(other,self,"DIA_Sekob_Defeated_15_00");	//Где ты хранишь деньги?!
 	AI_Output(self,other,"DIA_Sekob_Defeated_01_01");	//Не бей меня больше, пожалуйста. Я сделаю все, что ты скажешь.
 	AI_Output(other,self,"DIA_Sekob_Defeated_15_02");	//Заплати ренту.
-	AI_Output(self,other,"DIA_Sekob_Defeated_01_03");	//(хныча) Но, господин, но у меня ничего нет. Я простой бедняк, я сам пухну от голода.
+	AI_Output(self,other,"DIA_Sekob_Defeated_01_03");	//(хныча) Но, господин, у меня ничего нет. Я простой бедняк, я сам пухну от голода.
 	AI_Output(self,other,"DIA_Sekob_Defeated_01_04");	//Мой последний урожай полностью погиб от засухи. Я ХОЧУ заплатить ренту, но мне просто НЕЧЕМ. Мне очень жаль.
 	Info_ClearChoices(DIA_Sekob_Defeated);
 	Info_AddChoice(DIA_Sekob_Defeated,"Заплати ренту, или я убью тебя.",DIA_Sekob_Defeated_hart);
@@ -267,11 +267,11 @@ func void DIA_Sekob_Again_Ja()
 
 func void DIA_Sekob_Again_verarscht()
 {
-	MIS_Sekob_RedeMitOnar = LOG_Success;
+	MIS_Sekob_RedeMitOnar = LOG_SUCCESS;
 	AI_Output(other,self,"DIA_Sekob_Again_verarscht_15_00");	//Я поговорил...
 	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_01");	//И? Что он сказал?
 	AI_Output(other,self,"DIA_Sekob_Again_verarscht_15_02");	//Извини, но теперь мне придется оторвать тебе голову.
-	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_03");	//За что? Что такого я сделал?
+	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_03");	//За что? Что я такого сделал?
 	AI_Output(other,self,"DIA_Sekob_Again_verarscht_15_04");	//Ты пытался провести меня.
 	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_05");	//Я сказал правду - честно!
 	B_Sekob_Kassieren();
@@ -326,6 +326,7 @@ func int DIA_Sekob_KAP3_EXIT_Condition()
 
 func void DIA_Sekob_KAP3_EXIT_Info()
 {
+	self.flags = 0;
 	AI_StopProcessInfos(self);
 };
 
@@ -364,7 +365,7 @@ func void DIA_Sekob_DMT_Info()
 	{
 		AI_Output(self,other,"DIA_Sekob_DMT_01_04");	//Ты должен помочь мне, о, великий маг.
 	};
-	AI_Output(self,other,"DIA_Sekob_DMT_01_05");	//Эти люди говорят, что кого-то ищут. Но почему-то в моем доме?!
+	AI_Output(self,other,"DIA_Sekob_DMT_01_05");	//Эти люди говорят, что кого-то ищут. Но почему в моем доме?!
 	AI_Output(self,other,"DIA_Sekob_DMT_01_06");	//Пожалуйста, помоги мне. Заставь их убраться.
 	Log_CreateTopic(TOPIC_SekobDMT,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_SekobDMT,LOG_Running);
@@ -468,7 +469,7 @@ func void DIA_Sekob_BELOHNUNG_Info()
 		AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_06");	//Что?
 		AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_07");	//Прошу извинить меня. Несколько лет назад я поклялся никогда не говорить об этом и не собираюсь нарушать свою клятву.
 	};
-	AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_08");	//Все, что я могу сделать - это дать тебе немного золота и просить тебя пощадить меня.
+	AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_08");	//Все, что я могу сделать, - это дать тебе немного золота и просить тебя пощадить меня.
 	AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_09");	//Тогда давай его сюда. Я тороплюсь.
 	AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_10");	//Вот.
 	CreateInvItems(self,ItMi_Gold,250);
@@ -505,19 +506,19 @@ func void DIA_Sekob_PERM_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Sekob_PERM_15_00");	//Что-нибудь произошло интересного?
-		if(MIS_bringRosiBackToSekob == LOG_Failed)
+		if(MIS_bringRosiBackToSekob == LOG_FAILED)
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_01");	//Проваливай.
 		}
-		else if(MIS_bringRosiBackToSekob == LOG_Success)
+		else if(MIS_bringRosiBackToSekob == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_02");	//Нет. Ничего особенного.
 		}
-		else if((Kapitel >= 5) && (MIS_bringRosiBackToSekob != LOG_Success))
+		else if((Kapitel >= 5) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_03");	//Моя жена исчезла. Сначала я не придал этому внимания, но она так и не вернулась.
 			AI_Output(self,other,"DIA_Sekob_PERM_01_04");	//Я подозреваю, что она убежала в лес, спасаясь от полевых хищников.
-			AI_Output(self,other,"DIA_Sekob_PERM_01_05");	//Окажи мне услугу: если ты найдешь ее, приведи ее назад домой.
+			AI_Output(self,other,"DIA_Sekob_PERM_01_05");	//Окажи мне услугу: если ты найдешь ее, приведи назад домой.
 			MIS_bringRosiBackToSekob = LOG_Running;
 			Log_CreateTopic(TOPIC_bringRosiBackToSekob,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_bringRosiBackToSekob,LOG_Running);
@@ -552,6 +553,7 @@ func int DIA_Sekob_KAP4_EXIT_Condition()
 
 func void DIA_Sekob_KAP4_EXIT_Info()
 {
+	self.flags = 0;
 	AI_StopProcessInfos(self);
 };
 
@@ -577,6 +579,7 @@ func int DIA_Sekob_KAP5_EXIT_Condition()
 
 func void DIA_Sekob_KAP5_EXIT_Info()
 {
+	self.flags = 0;
 	B_NpcClearObsessionByDMT(self);
 };
 
@@ -645,7 +648,7 @@ func void DIA_Sekob_ROSIBACKATSEKOB_Info()
 {
 	AI_Output(other,self,"DIA_Sekob_ROSIBACKATSEKOB_15_00");	//Я привел твою жену назад.
 	AI_Output(self,other,"DIA_Sekob_ROSIBACKATSEKOB_01_01");	//Превосходно. Вот, возьми это за свои труды.
-	MIS_bringRosiBackToSekob = LOG_Success;
+	MIS_bringRosiBackToSekob = LOG_SUCCESS;
 	CreateInvItems(self,ItMi_Gold,650);
 	B_GiveInvItems(self,other,ItMi_Gold,650);
 	B_GivePlayerXP(XP_Ambient);
@@ -679,25 +682,26 @@ func void DIA_Sekob_ROSINEVERBACK_Info()
 	AI_Output(self,other,"DIA_Sekob_ROSINEVERBACK_01_01");	//Безопасное. От кого?
 	AI_Output(other,self,"DIA_Sekob_ROSINEVERBACK_15_02");	//От тебя.
 	AI_Output(self,other,"DIA_Sekob_ROSINEVERBACK_01_03");	//Ты пожалеешь об этом, грязная свинья.
+	self.flags = 0;
 	B_NpcClearObsessionByDMT(self);
 	B_Attack(self,other,AR_NONE,1);
 	B_GivePlayerXP(XP_Ambient);
-	MIS_bringRosiBackToSekob = LOG_Failed;
+	MIS_bringRosiBackToSekob = LOG_FAILED;
 };
 
 
-instance DIA_SEKOB_KAP6_EXIT(C_Info)
+instance DIA_Sekob_KAP6_EXIT(C_Info)
 {
 	npc = BAU_930_Sekob;
 	nr = 999;
-	condition = dia_sekob_kap6_exit_condition;
-	information = dia_sekob_kap6_exit_info;
+	condition = DIA_Sekob_KAP6_EXIT_Condition;
+	information = DIA_Sekob_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_sekob_kap6_exit_condition()
+func int DIA_Sekob_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -705,8 +709,9 @@ func int dia_sekob_kap6_exit_condition()
 	};
 };
 
-func void dia_sekob_kap6_exit_info()
+func void DIA_Sekob_KAP6_EXIT_Info()
 {
+	self.flags = 0;
 	B_NpcClearObsessionByDMT(self);
 };
 

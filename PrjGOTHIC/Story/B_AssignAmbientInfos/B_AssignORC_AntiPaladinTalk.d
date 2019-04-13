@@ -6,7 +6,7 @@ func void B_AssignORC_AntiPaladinTalk(var C_Npc Antipaladin)
 	if(AntiPaladinTalkcount == 0)
 	{
 		AI_Output(self,other,"DIA_ORC_AntiPaladin_18_01");	//КХРОКГНАР! Хозяин говорить ты паладин теперь! Хозяин прав. Хозяин всегда прав.
-		AI_Output(self,other,"DIA_ORC_AntiPaladin_18_02");	//Мы, предводители гордой армии орков, теперь сами прийти убивать великий паладин.
+		AI_Output(self,other,"DIA_ORC_AntiPaladin_18_02");	//Мы, предводители гордой армии орков, теперь сами прийти убить великий паладин.
 		AI_Output(self,other,"DIA_ORC_AntiPaladin_18_03");	//Хаген и его люди будут уничтожены. Даже ты не смочь помочь им.
 		B_GivePlayerXP(XP_Ambient);
 	}

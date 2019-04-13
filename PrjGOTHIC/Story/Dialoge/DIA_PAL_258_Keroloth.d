@@ -73,7 +73,7 @@ func void DIA_Keroloth_WantTeach_Info()
 {
 	AI_Output(other,self,"DIA_Keroloth_WantTeach_15_00");	//Ты можешь обучить и меня?
 	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_01");	//Конечно. Я тренирую всех.
-	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_02");	//Но, кроме таланта, тебе понадобится хорошее оружие, если ты хочешь выжить здесь.
+	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_02");	//Но кроме таланта тебе понадобится хорошее оружие, если ты хочешь выжить здесь.
 	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_03");	//Обратись к рыцарю Тандору. Он снарядит тебя.
 	Keroloth_TeachPlayer = TRUE;
 	Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
@@ -317,13 +317,13 @@ func void DIA_Keroloth_KAP4_HELLO_Info()
 	AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_15_00");	//У тебя такой расстроенный вид.
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_07_01");	//(возбужденно) Будь они прокляты. Мой тебе совет: глаз не спускай со своих вещей.
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_07_02");	//Чуть отвернешься, и все - вещички уже увели. Вот подонки!
-	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,Dialog_Back,dia_keroloth_kap4_hello_ende);
+	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,Dialog_Back,DIA_Keroloth_KAP4_HELLO_ende);
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"Паладин не должен так просто выходить из себя.",DIA_Keroloth_KAP4_HELLO_ruhig);
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"У тебя что-то украли?",DIA_Keroloth_KAP4_HELLO_bestohlen);
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"Что за подонки?",DIA_Keroloth_KAP4_HELLO_pack);
 };
 
-func void dia_keroloth_kap4_hello_ende()
+func void DIA_Keroloth_KAP4_HELLO_ende()
 {
 	Info_ClearChoices(DIA_Keroloth_KAP4_HELLO);
 };
@@ -551,7 +551,7 @@ func void DIA_Keroloth_KAP4_ENTSPANNDICH_Info()
 	AI_Output(other,self,"DIA_Keroloth_KAP4_ENTSPANNDICH_15_00");	//Расслабься.
 	if(hero.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Keroloth_KAP4_ENTSPANNDICH_07_01");	//Да, Мастер. Я попытаюсь.
+		AI_Output(self,other,"DIA_Keroloth_KAP4_ENTSPANNDICH_07_01");	//Да, мастер. Я попытаюсь.
 	}
 	else if(MIS_OCGateOpen == TRUE)
 	{
@@ -594,18 +594,18 @@ func void DIA_Keroloth_KAP5_EXIT_Info()
 };
 
 
-instance DIA_KEROLOTH_KAP6_EXIT(C_Info)
+instance DIA_Keroloth_KAP6_EXIT(C_Info)
 {
 	npc = PAL_258_Keroloth;
 	nr = 999;
-	condition = dia_keroloth_kap6_exit_condition;
-	information = dia_keroloth_kap6_exit_info;
+	condition = DIA_Keroloth_KAP6_EXIT_Condition;
+	information = DIA_Keroloth_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_keroloth_kap6_exit_condition()
+func int DIA_Keroloth_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -613,7 +613,7 @@ func int dia_keroloth_kap6_exit_condition()
 	};
 };
 
-func void dia_keroloth_kap6_exit_info()
+func void DIA_Keroloth_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

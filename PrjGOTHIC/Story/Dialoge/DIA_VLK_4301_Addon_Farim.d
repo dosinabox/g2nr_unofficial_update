@@ -74,7 +74,7 @@ func int DIA_Addon_Farim_Hallo_Condition()
 func void DIA_Addon_Farim_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_Hallo_15_00");	//Ты рыбак?
-	AI_Output(self,other,"DIA_Addon_Farim_Hallo_11_01");	//Интересно, как ты догадался?
+	AI_Output(self,other,"DIA_Addon_Farim_Hallo_11_01");	//Интересно, как же ты догадался?
 	AI_Output(self,other,"DIA_Addon_Farim_Hallo_11_02");	//Не мог бы ты оставить меня в покое?
 	if(hero.guild == GIL_MIL)
 	{
@@ -114,7 +114,7 @@ func void DIA_Addon_Farim_MilizProbs_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_02");	//На прошлой неделе они забрали весь мой улов. Сказали, что он пойдет на благое дело.
 	AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_03");	//Я, конечно, понимаю, что после того, как фермеры прекратили торговать с городом, все выкручиваются, как могут.
-	AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_04");	//Иногда им не хватает еды. Неудивительно, что они забирают мою рыбу.
+	AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_04");	//Иногда им не хватает еды. Не удивительно, что они забирают мою рыбу.
 	AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_05");	//Но если они продолжат так поступать, мне самому нечего будет есть.
 	Info_ClearChoices(DIA_Addon_Farim_MilizProbs);
 	Info_AddChoice(DIA_Addon_Farim_MilizProbs,"Отдай мне всю свою рыбу.",DIA_Addon_Farim_MilizProbs_klauen);
@@ -192,7 +192,7 @@ func void DIA_Addon_Farim_MartinHelps_Info()
 	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_08");	//Я нашел этот странный камень на одном из островов у побережья Хориниса.
 	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_09");	//Не думаю, что он очень ценный, но такой человек, как ты, наверняка найдет ему применение.
 	B_GiveInvItems(self,other,ItMi_Aquamarine,1);
-	MIS_Addon_Farim_PaladinFisch = LOG_Success;
+	MIS_Addon_Farim_PaladinFisch = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Farim_PaladinFisch);
 };
 
@@ -375,6 +375,6 @@ func void DIA_Addon_Farim_WilliamReport_Info()
 	AI_Output(other,self,"DIA_Addon_Farim_Add_15_02");	//Он мертв.
 	AI_Output(self,other,"DIA_Addon_Farim_Add_11_03");	//(вздыхает) Так я и думал.
 	AI_Output(self,other,"DIA_Addon_Farim_Add_11_04");	//Что ж, спасибо, что рассказал.
-	AI_Output(self,other,"DIA_Addon_Farim_Add_11_05");	//(вздыхает) Пойду-ка я в кабак и пропью его долю из нашего последнего улова. Он бы хотел, чтобы я так поступил...
+	AI_Output(self,other,"DIA_Addon_Farim_Add_11_05");	//Пойду-ка я в кабак и пропью его долю из нашего последнего улова. Он бы хотел, чтобы я так поступил...
 };
 

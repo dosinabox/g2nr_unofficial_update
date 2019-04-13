@@ -45,11 +45,11 @@ func int DIA_Kati_SLDNOCHDA_Condition()
 
 func void DIA_Kati_SLDNOCHDA_Info()
 {
-	var int hilfe;
-	if(hilfe == FALSE)
+	var int Hilfe;
+	if(Hilfe == FALSE)
 	{
 		AI_Output(self,other,"DIA_Kati_SLDNOCHDA_16_00");	//Эти головорезы угрожают моему мужу! Мы простые граждане Хориниса, преданные королю, а эти наемники хотят ограбить нас!
-		hilfe = TRUE;
+		Hilfe = TRUE;
 	};
 	AI_Output(self,other,"DIA_Kati_SLDNOCHDA_16_01");	//Ну не стой же здесь. Сделай что-нибудь! Помоги нам!
 	Akils_SLDStillthere = TRUE;
@@ -118,8 +118,8 @@ func int DIA_Kati_ESSEN_Condition()
 func void DIA_Kati_ESSEN_Info()
 {
 	AI_Output(other,self,"DIA_Kati_ESSEN_15_00");	//Акил говорит, что ты можешь накормить меня.
-	AI_Output(self,other,"DIA_Kati_ESSEN_16_01");	//С тех пор, как рухнул Барьер, для нас настали тяжелые времена. Жить здесь стало небезопасно.
-	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба и немного молока и бутылку воды. Извини, но это все, чем мы можем поделиться.
+	AI_Output(self,other,"DIA_Kati_ESSEN_16_01");	//С тех пор как рухнул Барьер, для нас настали тяжелые времена. Жить здесь стало небезопасно.
+	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба, немного молока и бутылку воды. Извини, но это все, чем мы можем поделиться.
 	B_GiveInvItems(self,other,ItFo_Bread,1);
 	B_GiveInvItems(self,other,ItFo_Water,1);
 	B_GiveInvItems(self,other,ItFoMutton,1);
@@ -231,7 +231,7 @@ func void DIA_Kati_HIERWEG_Info()
 {
 	AI_Output(other,self,"DIA_Kati_HIERWEG_15_00");	//А вы не думали о том, чтобы уехать отсюда?
 	AI_Output(self,other,"DIA_Kati_HIERWEG_16_01");	//Не так-то просто уехать из этой части страны. Вся эта земля окружена стеной высоких, непроходимых гор.
-	AI_Output(self,other,"DIA_Kati_HIERWEG_16_02");	//Выбраться отсюда можно только через Долину Рудников или через гавань города.
+	AI_Output(self,other,"DIA_Kati_HIERWEG_16_02");	//Выбраться отсюда можно только лежит через Долину Рудников  или через гавань города.
 	AI_Output(self,other,"DIA_Kati_HIERWEG_16_03");	//Так как мы не можем позволить себе купить место на корабле, а Долина Рудников - это место, откуда не возвращаются, мы вынуждены оставаться здесь.
 };
 
@@ -391,18 +391,18 @@ func void DIA_Kati_KAP5_EXIT_Info()
 };
 
 
-instance DIA_KATI_KAP6_EXIT(C_Info)
+instance DIA_Kati_KAP6_EXIT(C_Info)
 {
 	npc = BAU_941_Kati;
 	nr = 999;
-	condition = dia_kati_kap6_exit_condition;
-	information = dia_kati_kap6_exit_info;
+	condition = DIA_Kati_KAP6_EXIT_Condition;
+	information = DIA_Kati_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_kati_kap6_exit_condition()
+func int DIA_Kati_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -410,7 +410,7 @@ func int dia_kati_kap6_exit_condition()
 	};
 };
 
-func void dia_kati_kap6_exit_info()
+func void DIA_Kati_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

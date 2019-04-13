@@ -215,7 +215,7 @@ func int DIA_Addon_Esteban_Kerl_Condition()
 func void DIA_Addon_Esteban_Kerl_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Esteban_Kerl_15_00");	//И что мне нужно сделать?
-	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_01");	//Все в лагере знают об этом. Поэтому ты играешь в открытую.
+	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_01");	//Все в лагере знают об этом знают. Поэтому ты играешь в открытую.
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_02");	//Постарайся выяснить, кто на моей стороне, а кто - против, и не дай ребятам себя обдурить!
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_03");	//Поговори со Снафом. Этот жирный повар много знает.
 	B_LogEntry(Topic_Addon_Esteban,"Чтобы найти виновного, я должен поговорить с людьми в лагере и выяснить, на чьей они стороне. Снаф может мне помочь - ему многое известно.");
@@ -265,7 +265,7 @@ instance DIA_Addon_Esteban_Auftrag(C_Info)
 
 func int DIA_Addon_Esteban_Auftrag_Condition()
 {
-	if(((MIS_Judas == LOG_Running) || (MIS_Judas == LOG_Success)) && (Bodyguard_Killer == FALSE))
+	if(((MIS_Judas == LOG_Running) || (MIS_Judas == LOG_SUCCESS)) && (Bodyguard_Killer == FALSE))
 	{
 		return TRUE;
 	};
@@ -275,7 +275,7 @@ func void DIA_Addon_Esteban_Auftrag_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Esteban_Auftrag_15_00");	//По поводу задания...
 	AI_Output(self,other,"DIA_Addon_Esteban_Auftrag_07_01");	//Послушай, у меня есть и другие дела.
-	if(MIS_Judas == LOG_Success)
+	if(MIS_Judas == LOG_SUCCESS)
 	{
 		AI_Output(other,self,"DIA_Addon_Esteban_Auftrag_15_02");	//Я думал, тебе будет интересно, кто организовал нападение...
 		AI_Output(self,other,"DIA_Addon_Esteban_Auftrag_07_03");	//И кто же это? Скажи мне его имя - и мои ребята свернут ему шею...
@@ -400,10 +400,10 @@ func int DIA_Addon_Esteban_fight_Condition()
 func void DIA_Addon_Esteban_fight_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_00");	//Ты хочешь одурачить меня? И речи не было о том, чтобы я на тебя работал.
-	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_01");	//Не каждый получает такое предложение. Но если оно тебе не нравится, ты можешь свободно покинуть лагерь...
+	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_01");	//Не каждый получает такое предложение. Но если тебе оно не нравится, ты можешь свободно покинуть лагерь...
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_02");	//А может быть, ты сдержишь слово и дашь мне красный камень?
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_03");	//Эй! Еще одно слово - и моим охранникам придется применить силу.
-	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?
+	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?..
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_05");	//Что?.. А, понятно, ты хочешь обвести меня... Ну, погоди...
 	Bodyguard_Killer = FALSE;
 	B_KillNpc(Wache_01);

@@ -1,7 +1,7 @@
 
 instance DIA_Pepe_EXIT(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 999;
 	condition = DIA_Pepe_EXIT_Condition;
 	information = DIA_Pepe_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Pepe_EXIT_Info()
 
 instance DIA_Pepe_Hallo(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 1;
 	condition = DIA_Pepe_Hallo_Condition;
 	information = DIA_Pepe_Hallo_Info;
@@ -51,7 +51,7 @@ func void DIA_Pepe_Hallo_Info()
 
 instance DIA_Pepe_Danger(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 2;
 	condition = DIA_Pepe_Danger_Condition;
 	information = DIA_Pepe_Danger_Info;
@@ -78,7 +78,7 @@ func void DIA_Pepe_Danger_Info()
 
 instance DIA_Pepe_WhyNotSLD(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 3;
 	condition = DIA_Pepe_WhyNotSLD_Condition;
 	information = DIA_Pepe_WhyNotSLD_Info;
@@ -107,7 +107,7 @@ func void DIA_Pepe_WhyNotSLD_Info()
 
 instance DIA_Pepe_KillWolves(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 4;
 	condition = DIA_Pepe_KillWolves_Condition;
 	information = DIA_Pepe_KillWolves_Info;
@@ -126,10 +126,10 @@ func int DIA_Pepe_KillWolves_Condition()
 
 func void DIA_Pepe_KillWolves_Info()
 {
-	AI_Output(other,self,"DIA_Pepe_KillWolves_15_00");	//Что, если я убью этих волков?
+	AI_Output(other,self,"DIA_Pepe_KillWolves_15_00");	//Что если я убью этих волков?
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_01");	//(насмешливо) Ты, сам? Ха ха. Я не верю в это. Я скорее поверю, что мой баран-вожак расправится с ними.
 	AI_Output(other,self,"DIA_Pepe_KillWolves_15_02");	//Забудь об этом. Это было всего лишь предположение. Я пойду к парням, и посмотрим, что ОНИ скажут насчет этого...
-	AI_Output(self,other,"DIA_Pepe_KillWolves_03_03");	//(испуганно) Подожди минутку. Хорошо, хорошо! Эээ... ты величайший воин, и можешь уложить сотню волков одной левой. Нет проблем!
+	AI_Output(self,other,"DIA_Pepe_KillWolves_03_03");	//(испуганно) Подожди минутку. Хорошо, хорошо! Эээ... ты величайший воин, и ты можешь уложить сотню волков одной левой. Нет проблем!
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_04");	//Обычно они шныряют в лесу около пастбища. (как бы между прочим) Я думаю, их всего четверо...
 	AI_StopProcessInfos(self);
 	Wld_InsertNpc(PEPES_YWolf1,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_01");
@@ -145,7 +145,7 @@ func void DIA_Pepe_KillWolves_Info()
 
 instance DIA_Pepe_KilledWolves(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 5;
 	condition = DIA_Pepe_KilledWolves_Condition;
 	information = DIA_Pepe_KilledWolves_Info;
@@ -169,20 +169,20 @@ func void DIA_Pepe_KilledWolves_Info()
 	{
 		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_01");	//(пораженно) Ты сделал это! Слава Инносу!
 		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_02");	//Но я все равно не знаю, как сказать Онару, что его овцы пропали.
-		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_03");	//(себе под нос) Это все этот чертов Буллко виноват!
-		MIS_Pepe_KillWolves = LOG_Success;
+		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_03");	//(себе под нос) Это все этот чертов Булко виноват!
+		MIS_Pepe_KillWolves = LOG_SUCCESS;
 		B_GivePlayerXP(XP_PepeWolves);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_04");	//Ты меня считаешь за идиота? Эти звери еще не все мертвы.
+		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_04");	//ты меня считаешь за идиота? Эти звери еще не все мертвы.
 	};
 };
 
 
 instance DIA_Pepe_Bullco(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 5;
 	condition = DIA_Pepe_Bullco_Condition;
 	information = DIA_Pepe_Bullco_Info;
@@ -193,7 +193,7 @@ instance DIA_Pepe_Bullco(C_Info)
 
 func int DIA_Pepe_Bullco_Condition()
 {
-	if((MIS_Pepe_KillWolves == LOG_Success) && !Npc_IsDead(Bullco) && (Kapitel <= 3))
+	if((MIS_Pepe_KillWolves == LOG_SUCCESS) && !Npc_IsDead(Bullco) && (Kapitel <= 3))
 	{
 		return TRUE;
 	};
@@ -201,7 +201,7 @@ func int DIA_Pepe_Bullco_Condition()
 
 func void DIA_Pepe_Bullco_Info()
 {
-	AI_Output(other,self,"DIA_Pepe_Bullco_15_00");	//Что ты сказал насчет Буллко?
+	AI_Output(other,self,"DIA_Pepe_Bullco_15_00");	//Что ты сказал насчет Булко?
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_01");	//Это один из наемников. Это его работа охранять пастбище.
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_02");	//Но вместо этого он и его приятель Сильвио день напролет ошиваются в кухне у Теклы.
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_03");	//Это этот ублюдок будет виноват, если мне не заплатят за многие недели работы из-за потери овец.
@@ -215,7 +215,7 @@ func void DIA_Pepe_Bullco_Info()
 
 instance DIA_Pepe_BullcoDefeated(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 5;
 	condition = DIA_Pepe_BullcoDefeated_Condition;
 	information = DIA_Pepe_BullcoDefeated_Info;
@@ -237,16 +237,16 @@ func int DIA_Pepe_BullcoDefeated_Condition()
 
 func void DIA_Pepe_BullcoDefeated_Info()
 {
-	AI_Output(other,self,"DIA_Pepe_BullcoDefeated_15_00");	//Буллко получил по заслугам. Я преподал ему урок.
+	AI_Output(other,self,"DIA_Pepe_BullcoDefeated_15_00");	//Булко получил по заслугам. Я преподал ему урок.
 	AI_Output(self,other,"DIA_Pepe_BullcoDefeated_03_01");	//Эта свинья заслужила это.
-	MIS_Pepe_KickBullco = LOG_Success;
+	MIS_Pepe_KickBullco = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KickBullco);
 };
 
 
 instance DIA_Pepe_PERM(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 6;
 	condition = DIA_Pepe_PERM_Condition;
 	information = DIA_Pepe_PERM_Info;
@@ -272,7 +272,7 @@ func void DIA_Pepe_PERM_Info()
 	};
 	if(Kapitel == 2)
 	{
-		AI_Output(self,other,"DIA_Pepe_PERM_03_02");	//Хорошо. Но могут прийти другие волки. И, возможно, в большем количестве!
+		AI_Output(self,other,"DIA_Pepe_PERM_03_02");	//Хорошо. Но могут придти другие волки. И, возможно, в большем количестве!
 	};
 	if(Kapitel == 3)
 	{
@@ -287,7 +287,7 @@ func void DIA_Pepe_PERM_Info()
 
 instance DIA_Pepe_Liesel(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 7;
 	condition = DIA_Pepe_Liesel_Condition;
 	information = DIA_Pepe_Liesel_Info;
@@ -316,7 +316,7 @@ var int Pepe_SchafGekauft;
 
 instance DIA_Pepe_BuyLiesel(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 8;
 	condition = DIA_Pepe_BuyLiesel_Condition;
 	information = DIA_Pepe_BuyLiesel_Info;
@@ -341,7 +341,7 @@ func void DIA_Pepe_BuyLiesel_Info()
 		if(Pepe_SchafGekauft == 0)
 		{
 			AI_Output(self,other,"DIA_Pepe_BuyLiesel_03_01");	//Хорошо. Возьми Бетси - ты найдешь ее на пастбище.
-			AI_Output(self,other,"DIA_Pepe_BuyLiesel_03_02");	//Просто скажи ей, что она должна идти с тобой. Она очень умна для овцы. Не обижай ее!
+			AI_Output(self,other,"DIA_Pepe_BuyLiesel_03_02");	//Просто скажи ей, что она должна идти за тобой. Она очень умна для овцы. Не обижай ее!
 		}
 		else
 		{
@@ -368,7 +368,7 @@ func void DIA_Pepe_BuyLiesel_Info()
 
 instance DIA_Pepe_PICKPOCKET(C_Info)
 {
-	npc = BAU_912_Pepe;
+	npc = Bau_912_Pepe;
 	nr = 900;
 	condition = DIA_Pepe_PICKPOCKET_Condition;
 	information = DIA_Pepe_PICKPOCKET_Info;

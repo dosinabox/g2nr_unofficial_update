@@ -17,15 +17,15 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	}
 	else if(neues_Kapitel == 4)
 	{
-		player_talent_alchemy[CHARGE_Innoseye] = TRUE;
+		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	}
 	else if(neues_Kapitel == 5)
 	{
-		player_talent_alchemy[CHARGE_Innoseye] = TRUE;
+		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	}
 	else if(neues_Kapitel == 6)
 	{
-		player_talent_alchemy[CHARGE_Innoseye] = TRUE;
+		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	};
 	B_CheckLog();
 	if(aktuelles_Level_Zen == OldWorld_Zen)

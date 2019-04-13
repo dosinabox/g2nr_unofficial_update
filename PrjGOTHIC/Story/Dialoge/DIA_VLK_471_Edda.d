@@ -70,32 +70,32 @@ func void DIA_Edda_Stadt_Info()
 	AI_Output(self,other,"DIA_Edda_Stadt_17_01");	//Большинство горожан опасаются воров. Поэтому лучше не входить в чужие дома.
 	AI_Output(self,other,"DIA_Edda_Stadt_17_02");	//Но если ты ищешь, где остановиться на ночь, можешь поспать в моей хижине. Там есть еще одна кровать.
 	AI_Output(other,self,"DIA_Edda_Stadt_15_03");	//А ты не боишься воров?
-	AI_Output(self,other,"DIA_Edda_Stadt_17_04");	//Единственная ценная вещь, что у меня была, уже пропала.
+	AI_Output(self,other,"DIA_Edda_Stadt_17_04");	//Единственная ценная вещь, что была у меня, уже пропала.
 	AI_Output(self,other,"DIA_Edda_Stadt_17_05");	//Кто-то украл мою статую Инноса.
 	Edda_Schlafplatz = TRUE;
 	Wld_AssignRoomToGuild("hafen08",GIL_NONE);
 };
 
 
-instance DIA_EDDA_KOCHEN(C_Info)
+instance DIA_Edda_Kochen(C_Info)
 {
 	npc = VLK_471_Edda;
 	nr = 6;
-	condition = dia_edda_kochen_condition;
-	information = dia_edda_kochen_info;
+	condition = DIA_Edda_Kochen_Condition;
+	information = DIA_Edda_Kochen_Info;
 	permanent = FALSE;
 	description = "Ты можешь сварить для меня суп?";
 };
 
 
-func int dia_edda_kochen_condition()
+func int DIA_Edda_Kochen_Condition()
 {
 	return TRUE;
 };
 
-func void dia_edda_kochen_info()
+func void DIA_Edda_Kochen_Info()
 {
-	AI_Output(other,self,"DIA_Edda_Kochen_15_00");	//
+	AI_Output(other,self,"DIA_Edda_Kochen_15_00");	//Ты можешь сварить суп для меня?
 	AI_Output(self,other,"DIA_Edda_Kochen_17_01");	//Я готовлю для всех. Для тебя тоже, если захочешь. Все, что мне нужно - это чтобы ты принес мне рыбу.
 };
 
@@ -113,7 +113,7 @@ instance DIA_Edda_Suppe(C_Info)
 
 func int DIA_Edda_Suppe_Condition()
 {
-	if(Npc_KnowsInfo(other,dia_edda_kochen))
+	if(Npc_KnowsInfo(other,DIA_Edda_Kochen))
 	{
 		return TRUE;
 	};

@@ -106,7 +106,7 @@ instance DIA_Haupttorwache_PICKPOCKET(C_Info)
 
 func int DIA_Haupttorwache_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItKe_OC_MainGate_MIS) >= 1) && (Kapitel >= 5) && (other.attribute[ATR_DEXTERITY] >= (20 - Theftdiff)))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,itke_oc_maingate_mis) >= 1) && (Kapitel >= 5) && (other.attribute[ATR_DEXTERITY] >= (20 - Theftdiff)))
 	{
 		return TRUE;
 	};
@@ -123,13 +123,14 @@ func void DIA_Haupttorwache_PICKPOCKET_DoIt()
 {
 	if(other.attribute[ATR_DEXTERITY] >= 20)
 	{
-		B_GiveInvItems(self,other,ItKe_OC_MainGate_MIS,1);
+		B_GiveInvItems(self,other,itke_oc_maingate_mis,1);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GivePlayerXP(XP_Ambient);
+		B_GiveThiefXP();
 		Info_ClearChoices(DIA_Haupttorwache_PICKPOCKET);
 	}
 	else
 	{
+		B_ResetThiefLevel();
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

@@ -202,7 +202,7 @@ func void DIA_Bartok_Bosper_Info()
 	AI_Output(self,other,"DIA_Bartok_Bosper_04_05");	//(смеетс€) ” Ѕоспера недавно украли лук. ѕр€мо средь бела дн€.
 	AI_Output(self,other,"DIA_Bartok_Bosper_04_06");	// то-то вломилс€ в его лавку, схватил лук и был таков.
 	AI_Output(self,other,"DIA_Bartok_Bosper_04_07");	//¬оры наглеют пр€мо на глазах!
-	if(MIS_Bosper_Bogen != LOG_Success)
+	if(MIS_Bosper_Bogen != LOG_SUCCESS)
 	{
 		MIS_Bosper_Bogen = LOG_Running;
 	};
@@ -232,7 +232,7 @@ func void DIA_Bartok_WannaLearn_Info()
 {
 	AI_Output(other,self,"DIA_Bartok_WannaLearn_15_00");	//“ы можешь научить мен€ охотитьс€?
 	AI_Output(self,other,"DIA_Bartok_WannaLearn_04_01");	//я могу научить теб€ крастьс€ и правильно держать лук.
-	if(player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Bartok_WannaLearn_04_02");	//≈сли ты хочешь научитьс€ снимать шкуры с животных - иди к Ѕосперу. Ёто он научил мен€.
 	};
@@ -268,7 +268,7 @@ func void DIA_Bartok_TeachSneak_Info()
 	{
 		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_01");	//’орошо - сначала ты должен научитьс€ правильно распредел€ть свой вес.
 		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_02");	//ƒл€ этого согни ноги в колен€х и старайс€ всегда опускать ногу на п€тку.
-		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_03");	//¬с€ нагрузка должна приходитьс€ на опорную ногу, пока друга€ нога не будет твердо сто€ть на земле.
+		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_03");	//¬се нагрузка должна приходитьс€ на опорную ногу, пока друга€ нога не будет твердо сто€ть на земле.
 		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_04");	//  большинству зверей невозможно подкрастьс€, если только они не сп€т. ќни просто учуют теб€.
 		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_05");	//“ак что будь внимателен при охоте.
 	};
@@ -370,7 +370,7 @@ func void DIA_Bartok_Zusammen_Info()
 		AI_Output(self,other,"DIA_Bartok_Zusammen_04_02");	//ј что ты знаешь об охоте, а?
 		AI_Output(self,other,"DIA_Bartok_Zusammen_04_03");	//я имею в виду, ты знаешь, как снимать шкуры с животных?
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Fur] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == TRUE)
 	{
 		if(Bartok_Later == TRUE)
 		{
@@ -494,7 +494,7 @@ func void DIA_Bartok_ImWald_NachHause()
 func void DIA_Bartok_ImWald_Weiter()
 {
 	AI_Output(other,self,"DIA_Bartok_ImWald_Weiter_15_00");	//—тоит.
-	AI_Output(self,other,"DIA_Bartok_ImWald_Weiter_04_01");	//’орошо. (про себ€) Ѕудем наде€тьс€, что нам повезет...
+	AI_Output(self,other,"DIA_Bartok_ImWald_Weiter_04_01");	//’орошо. (по себ€) Ѕудем наде€тьс€, что нам повезет...
 	if(!Npc_IsDead(CityOrc))
 	{
 		Bartok_OrkStillThere = TRUE;
@@ -576,7 +576,7 @@ func void DIA_Bartok_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Bartok_PERM_04_03");	// онечно. ƒавай прикончим еще парочку зверей!
+		AI_Output(self,other,"DIA_Bartok_PERM_04_03");	// онечно. ƒава€ прикончим еще парочку зверей!
 	};
 };
 

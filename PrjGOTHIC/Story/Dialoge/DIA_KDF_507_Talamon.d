@@ -273,13 +273,13 @@ func void DIA_Talamon_ScoutSecretLibrary_Info()
 		AI_Output(other,self,"DIA_Talamon_ScoutSecretLibrary_15_02");	//Там был скелет воина, охраняющий дверь. Я убил его.
 		AI_Output(self,other,"DIA_Talamon_ScoutSecretLibrary_04_03");	//Отлично.
 		AI_Output(self,other,"DIA_Talamon_ScoutSecretLibrary_04_04");	//Мы разберемся с этим подвалом, когда победим Зло.
-		MIS_ScoutLibrary = LOG_Success;
+		MIS_ScoutLibrary = LOG_SUCCESS;
 		B_GivePlayerXP(XP_ScoutSecretLibrary);
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Talamon_ScoutSecretLibrary_15_05");	//Там, внизу, толпы монстров.
-		AI_Output(self,other,"DIA_Talamon_ScoutSecretLibrary_04_06");	//Там должно что-то быть, продолжай искать. И уничтожай этих монстров безо всякой жалости.
+		AI_Output(self,other,"DIA_Talamon_ScoutSecretLibrary_04_06");	//Там должно что-то быть, продолжай искать. И уничтожай этих монстров без всякой жалости.
 	};
 };
 

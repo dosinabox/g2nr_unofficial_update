@@ -43,7 +43,7 @@ func void DIA_Morgahard_HALLO_Info()
 	AI_Output(other,self,"DIA_Morgahard_HALLO_15_02");	//Тебя ищет судья. Ты сбежал из тюрьмы.
 	AI_Output(other,self,"DIA_Morgahard_HALLO_15_03");	//Что ты сделал такого? Украл его бумажник?
 	AI_Output(self,other,"DIA_Morgahard_HALLO_07_04");	//Не его. Губернатора. По его наводке.
-	AI_Output(self,other,"DIA_Morgahard_HALLO_07_05");	//А после того, как мы напали на губернатора, он не захотел делиться награбленным с нами и посадил нас за решетку.
+	AI_Output(self,other,"DIA_Morgahard_HALLO_07_05");	//А после того как мы напали на губернатора, он не захотел делиться награбленным с нами и посадил нас за решетку.
 	AI_Output(self,other,"DIA_Morgahard_HALLO_07_06");	//Нам не хотелось болтаться на виселице, поэтому мы сбежали.
 	AI_Output(self,other,"DIA_Morgahard_HALLO_07_07");	//Мы думали, что нас здесь не найдут. Но похоже, мы ошибались.
 	Info_ClearChoices(DIA_Morgahard_HALLO);
@@ -66,7 +66,7 @@ func void DIA_Morgahard_HALLO_richter()
 	AI_Output(other,self,"DIA_Morgahard_HALLO_richter_15_00");	//Что мы можем сделать с судьей?
 	AI_Output(self,other,"DIA_Morgahard_HALLO_richter_07_01");	//Ничего. Он засел в верхнем квартале города как паук в паутине. Неприкосновенный.
 	AI_Output(other,self,"DIA_Morgahard_HALLO_richter_15_02");	//Я бы так не сказал. Нам нужно доказательство его вины в деле губернатора.
-	AI_Output(self,other,"DIA_Morgahard_HALLO_richter_07_03");	//Доказательство, говоришь? У меня есть оно. Но кто послушает беглого преступника?
+	AI_Output(self,other,"DIA_Morgahard_HALLO_richter_07_03");	//Доказательство говоришь? У меня есть оно. Но кто послушает беглого преступника?
 	AI_Output(other,self,"DIA_Morgahard_HALLO_richter_15_04");	//Дай мне это доказательство, и я позабочусь, чтобы за вами больше никто не охотился.
 	AI_Output(self,other,"DIA_Morgahard_HALLO_richter_07_05");	//Ты уверен? Хорошо. Вот, возьми это письмо. Оно подписано судьей.
 	B_GiveInvItems(self,other,ItWr_RichterKomproBrief_MIS,1);
@@ -80,7 +80,7 @@ var int MorgahardSucked;
 
 func void DIA_Morgahard_HALLO_attack()
 {
-	AI_Output(other,self,"DIA_Morgahard_HALLO_attack_15_00");	//Хватит хныкать. Доставай свое оружие. Мы положим этому конец.
+	AI_Output(other,self,"DIA_Morgahard_HALLO_attack_15_00");	//Хватит хныкать. Доставай свое оружие. Мы положим этому делу конец.
 	AI_Output(self,other,"DIA_Morgahard_HALLO_attack_07_01");	//Отлично. Мне все равно нечего терять.
 	AI_StopProcessInfos(self);
 	MorgahardSucked = TRUE;

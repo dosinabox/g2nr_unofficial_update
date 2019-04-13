@@ -78,7 +78,7 @@ func void DIA_Borka_PISSOFF_Info()
 {
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_00");	//Эй ты! Куда ты идешь? Не важно, какие у тебя планы - они могут подождать.
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_01");	//Ты стоишь перед входом в жемчужину Хориниса - КРАСНЫЙ ФОНАРЬ. Это самый шикарный бордель во всей Миртане, будь я проклят!
-	AI_Output(self,other,"DIA_Borka_PISSOFF_11_02");	//Моряки из самых дальних уголков света приплывают сюда, чтобы провести несколько незабываемых ночей в 'Красном Фонаре'.
+	AI_Output(self,other,"DIA_Borka_PISSOFF_11_02");	//Моряки из самых дальних уголков света приплывают сюда, чтобы провести несколько незабываемых ночей в Красном Фонаре.
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_03");	//А теперь и у тебя появился такой шанс - нет, честь - провести ночь с Надей, самым страстным цветком богов!
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_04");	//Заходи же, и ты познаешь наслаждение, о котором другие не могут даже и мечтать!
 	AI_StopProcessInfos(self);
@@ -163,7 +163,7 @@ func void DIA_Borka_BUYHERB_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Borka_BUYHERB_15_00");	//Я слышал, ты продаешь травку.
-	if(Hlp_IsItem(heroArmor,itar_mil_l) == TRUE)
+	if(Hlp_IsItem(heroArmor,ITAR_Mil_L) == TRUE)
 	{
 		AI_Output(self,other,"DIA_Borka_BUYHERB_11_01");	//Извините, мистер стражник, сэр. Это, должно быть, какая-то ошибка. Я ничего не знаю ни о какой травке.
 	}
@@ -219,7 +219,7 @@ func int DIA_Borka_SECOND_CHANCE_Condition()
 {
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
-	if((Borka_Deal == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 50) && (Hlp_IsItem(heroArmor,itar_mil_l) == FALSE))
+	if((Borka_Deal == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 50) && (Hlp_IsItem(heroArmor,ITAR_Mil_L) == FALSE))
 	{
 		return TRUE;
 	};

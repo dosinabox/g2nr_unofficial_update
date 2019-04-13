@@ -32,7 +32,9 @@ func void B_MakeRangerReadyToLeaveMeetingALL()
 	B_MakeRangerReadyToLeaveMeeting(Cord);
 	B_MakeRangerReadyToLeaveMeeting(Gaan);
 	B_MakeRangerReadyToLeaveMeeting(Orlan);
-	B_MakeRangerReadyToLeaveMeeting(Cavalorn);
+	AI_UnequipArmor(Cavalorn);
+	Npc_RemoveInvItems(Cavalorn,ITAR_Fake_RANGER,Npc_HasItems(Cavalorn,ITAR_Fake_RANGER));
+	AI_EquipBestArmor(Cavalorn);
 };
 
 func void B_Addon_Orlan_RangersReadyForComing()

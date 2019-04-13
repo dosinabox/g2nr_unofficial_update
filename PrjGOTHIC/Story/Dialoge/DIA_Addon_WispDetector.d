@@ -49,31 +49,31 @@ func void DIA_Addon_WispDetector_DetectItems_Info()
 	AI_Output(other,self,"DIA_Addon_WispDetector_DetectItems_15_00");	//Ќачинай поиски!
 	Info_ClearChoices(DIA_Addon_WispDetector_DetectItems);
 	Info_AddChoice(DIA_Addon_WispDetector_DetectItems,"—ледуй за мной.",DIA_Addon_WispDetector_DetectItems_Follow);
-	if(player_talent_wispdetector[WISPSKILL_RUNE] == TRUE)
+	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_RUNE] == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_WispDetector_DetectItems,"»щи руны и свитки.",DIA_Addon_WispDetector_DetectItems_RUNE);
 	};
-	if(player_talent_wispdetector[WISPSKILL_NONE] == TRUE)
+	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NONE] == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_WispDetector_DetectItems,"»щи золото, ключи и прочую утварь.",DIA_Addon_WispDetector_DetectItems_NONE);
 	};
-	if(player_talent_wispdetector[WISPSKILL_FF] == TRUE)
+	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FF] == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_WispDetector_DetectItems,"»щи оружие дальнего бо€ и боеприпасы.",DIA_Addon_WispDetector_DetectItems_FF);
 	};
-	if(player_talent_wispdetector[WISPSKILL_NF] == TRUE)
+	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NF] == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_WispDetector_DetectItems,"»щи оружие ближнего бо€.",DIA_Addon_WispDetector_DetectItems_NF);
 	};
-	if(player_talent_wispdetector[WISPSKILL_FOOD] == TRUE)
+	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FOOD] == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_WispDetector_DetectItems,"»щи еду и растени€.",DIA_Addon_WispDetector_DetectItems_FOOD);
 	};
-	if(player_talent_wispdetector[WISPSKILL_MAGIC] == TRUE)
+	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_MAGIC] == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_WispDetector_DetectItems,"»щи кольца и амулеты.",DIA_Addon_WispDetector_DetectItems_MAGIC);
 	};
-	if(player_talent_wispdetector[WISPSKILL_POTIONS] == TRUE)
+	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_POTIONS] == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_WispDetector_DetectItems,"»щи любые зель€.",DIA_Addon_WispDetector_DetectItems_POTIONS);
 	};

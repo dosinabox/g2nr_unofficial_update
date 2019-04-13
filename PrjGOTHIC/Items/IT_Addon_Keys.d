@@ -1,5 +1,5 @@
 
-instance itke_portaltempelwalkthrough_addon(C_Item)
+instance ITKE_PORTALTEMPELWALKTHROUGH_ADDON(C_Item)
 {
 	name = "–жавый ключ";
 	mainflag = ITEM_KAT_NONE;
@@ -45,7 +45,7 @@ instance ITKE_Addon_Tavern_01(C_Item)
 	count[5] = value;
 };
 
-instance ITKE_ADDON_ESTEBAN_01(C_Item)
+instance ITKE_ADDON_ESTEBAN(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
@@ -60,7 +60,7 @@ instance ITKE_ADDON_ESTEBAN_01(C_Item)
 	count[5] = value;
 };
 
-instance itke_orlan_teleportstation(C_Item)
+instance ITKE_ORLAN_TELEPORTSTATION(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
@@ -75,7 +75,7 @@ instance itke_orlan_teleportstation(C_Item)
 	count[5] = value;
 };
 
-instance itke_canyonlibrary_hierarchy_books_addon(C_Item)
+instance ITKE_CANYONLIBRARY_HIERARCHY_BOOKS_ADDON(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
@@ -90,7 +90,7 @@ instance itke_canyonlibrary_hierarchy_books_addon(C_Item)
 	count[5] = value;
 };
 
-instance itke_addon_buddler_01(C_Item)
+instance ITKE_ADDON_BUDDLER_01(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
@@ -105,7 +105,7 @@ instance itke_addon_buddler_01(C_Item)
 	count[5] = value;
 };
 
-instance itke_addon_skinner(C_Item)
+instance ITKE_ADDON_SKINNER(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;

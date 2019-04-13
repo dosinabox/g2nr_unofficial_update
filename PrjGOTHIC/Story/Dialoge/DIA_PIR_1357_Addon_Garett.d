@@ -288,7 +288,7 @@ func void DIA_Addon_Garett_GiveKompass_Info()
 	if(Npc_HasItems(self,ItBe_Addon_Prot_EdgPoi) > 0)
 	{
 		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_03");	//На этот раз Грег его не получит.
-		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_04");	//Возьми в награду этот пояс. Это одна из самых ценных моих вещей.
+		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_04");	//Возьми в награду этот пояс. Это одна из самых ценных моих вещей
 		B_GiveInvItems(self,other,ItBe_Addon_Prot_EdgPoi,1);
 	}
 	else if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
@@ -298,7 +298,7 @@ func void DIA_Addon_Garett_GiveKompass_Info()
 		B_GiveInvItems(self,other,ItMi_Gold,Value_ItBE_Addon_Prot_EdgPoi);
 	};
 	B_LogEntry(TOPIC_Addon_Kompass,"Гаррет был очень рад, когда я вернул ему компас.");
-	MIS_ADDON_GARett_BringKompass = LOG_Success;
+	MIS_ADDON_GARett_BringKompass = LOG_SUCCESS;
 	B_GivePlayerXP(XP_ADDON_Garett_Bring_Kompass);
 };
 
@@ -359,11 +359,11 @@ func void DIA_Addon_Garett_PERM_Info()
 	AI_Output(other,self,"DIA_Addon_Garett_PERM_15_00");	//Есть новости?
 	if((GregIsBack == FALSE) || Npc_IsDead(Greg))
 	{
-		AI_Output(self,other,"DIA_Addon_Garett_PERM_09_02");	//С тех пор, как Грег уехал, ничего интересного не случалось.
+		AI_Output(self,other,"DIA_Addon_Garett_PERM_09_02");	//С тех пор как Грег уехал, ничего интересного не случалось.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Garett_PERM_09_01");	//После того, как Грег вернулся, все начало приходить в норму.
+		AI_Output(self,other,"DIA_Addon_Garett_PERM_09_01");	//После того как Грег вернулся, все начало приходить в норму.
 	};
 };
 
@@ -390,15 +390,15 @@ func int DIA_Addon_Garett_Trade_Condition()
 
 func void DIA_Addon_Garett_Trade_Info()
 {
-	var int garett_random;
+	var int Garett_Random;
 	var int McBolzenAmount;
 	var int McArrowAmount;
-	garett_random = Hlp_Random(3);
-	if(garett_random == 0)
+	Garett_Random = Hlp_Random(3);
+	if(Garett_Random == 0)
 	{
 		B_Say(other,self,"$TRADE_1");
 	}
-	else if(garett_random == 1)
+	else if(Garett_Random == 1)
 	{
 		B_Say(other,self,"$TRADE_2");
 	}

@@ -100,9 +100,9 @@ func void DIA_Maria_Soeldner_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Maria_Soeldner_17_02");	//Ох. Ну, зато с тех пор, как пришли наемники, хотя бы на ферме стало безопаснее.
+		AI_Output(self,other,"DIA_Maria_Soeldner_17_02");	//Ох. Ну, зато с тех пор как пришли наемники, хотя бы на ферме стало безопаснее.
 	};
-	AI_Output(self,other,"DIA_Maria_Soeldner_17_03");	//Когда мы были еще сами по себе, сюда постоянно приходили стражники из города и грабили нас.
+	AI_Output(self,other,"DIA_Maria_Soeldner_17_03");	//Когда мы еще были сами по себе, сюда постоянно приходили стражники из города и грабили нас.
 	AI_Output(self,other,"DIA_Maria_Soeldner_17_04");	//Они забирали большую часть урожая. И овец тоже. И ничего не давали нам взамен.
 	AI_Output(self,other,"DIA_Maria_Soeldner_17_05");	//Некоторые из них даже воровали, что плохо лежит.
 	if(hero.guild == GIL_MIL)
@@ -125,7 +125,7 @@ instance DIA_Maria_Mission(C_Info)
 
 func int DIA_Maria_Mission_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maria_Soeldner) && (MIS_Maria_BringPlate != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Maria_Soeldner) && (MIS_Maria_BringPlate != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -166,8 +166,8 @@ func void DIA_Maria_BringPlate_Info()
 {
 	B_GiveInvItems(other,self,ItMi_MariasGoldPlate,1);
 	AI_Output(other,self,"DIA_Maria_BringPlate_15_00");	//Я принес золотую тарелку. Это не твоя?
-	AI_Output(self,other,"DIA_Maria_BringPlate_17_01");	//Да! Это она! Огромное тебе спасибо!
-	MIS_Maria_BringPlate = LOG_Success;
+	AI_Output(self,other,"DIA_Maria_BringPlate_17_01");	//Да! Это она! Огромное спасибо тебе!
+	MIS_Maria_BringPlate = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Maria_Teller);
 };
 
@@ -187,7 +187,7 @@ instance DIA_Maria_Belohnung(C_Info)
 
 func int DIA_Maria_Belohnung_Condition()
 {
-	if((MIS_Maria_BringPlate == LOG_Success) && (Maria_Belohnung == FALSE))
+	if((MIS_Maria_BringPlate == LOG_SUCCESS) && (Maria_Belohnung == FALSE))
 	{
 		return TRUE;
 	};
@@ -201,7 +201,7 @@ func void DIA_Maria_Belohnung_Info()
 		AI_Output(self,other,"DIA_Maria_Belohnung_17_01");	//Ты работаешь наемником на моего мужа, да?
 		AI_Output(other,self,"DIA_Maria_Belohnung_15_02");	//Точно.
 		AI_Output(self,other,"DIA_Maria_Belohnung_17_03");	//Сколько мой муж платит тебе?
-		B_Say_Gold(other,self,sold);
+		B_Say_Gold(other,self,SOLD);
 		AI_Output(self,other,"DIA_Maria_Belohnung_17_04");	//Этого недостаточно. Иди к нему и скажи, чтобы он платил тебе больше.
 		AI_Output(other,self,"DIA_Maria_Belohnung_15_05");	//Ты думаешь, он послушает?
 		AI_Output(self,other,"DIA_Maria_Belohnung_17_06");	//Он знает, что будет, если не послушает. Поверь мне.
@@ -264,9 +264,9 @@ func void DIA_Maria_AboutOnar_Info()
 {
 	AI_Output(other,self,"DIA_Maria_AboutOnar_15_00");	//Расскажи мне об Онаре.
 	AI_Output(self,other,"DIA_Maria_AboutOnar_17_01");	//Он хороший человек. Немного сварливый и очень раздражительный, но у нас у всех есть свои недостатки.
-	AI_Output(self,other,"DIA_Maria_AboutOnar_17_02");	//Я спросила своего мужа: 'Почему ты позволяешь солдатам из города так обращаться с собой'?
+	AI_Output(self,other,"DIA_Maria_AboutOnar_17_02");	//Я спросила своего мужа:  'Почему ты позволяешь солдатам из города так с собой обращаться'?
 	AI_Output(self,other,"DIA_Maria_AboutOnar_17_03");	//'Сделай же что-нибудь', - сказала я.
-	AI_Output(self,other,"DIA_Maria_AboutOnar_17_04");	//И он нанял наемников. И теперь мне кажется, что мы ведем войну.
+	AI_Output(self,other,"DIA_Maria_AboutOnar_17_04");	//И он нанял наемников. А теперь мне кажется, что мы ведем войну.
 	AI_Output(self,other,"DIA_Maria_AboutOnar_17_05");	//Но, если подумать, мы ведь действительно воюем, разве нет?
 };
 

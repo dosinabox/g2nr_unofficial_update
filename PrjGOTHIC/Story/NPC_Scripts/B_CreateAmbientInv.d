@@ -559,7 +559,7 @@ func void B_CreateAmbientInv_BDT(var int InventorySet)
 	{
 		CreateInvItems(self,ItPl_Planeberry,1);
 		CreateInvItems(self,ItMw_1h_Vlk_Sword,1);
-		CreateInvItems(self,ItKe_Lockpick,2);
+		CreateInvItems(self,ItKE_lockpick,2);
 		CreateInvItems(self,ItPl_Health_Herb_02,1);
 	}
 	else if(InventorySet == 2)
@@ -578,7 +578,7 @@ func void B_CreateAmbientInv_BDT(var int InventorySet)
 	}
 	else if(InventorySet == 4)
 	{
-		CreateInvItems(self,ItKe_Lockpick,1);
+		CreateInvItems(self,ItKE_lockpick,1);
 		CreateInvItems(self,ItFo_Cheese,1);
 		CreateInvItems(self,ItMi_Joint,1);
 		CreateInvItems(self,ItMi_GoldNugget_Addon,1);
@@ -601,7 +601,7 @@ func void B_CreateAmbientInv_BDT(var int InventorySet)
 		CreateInvItems(self,ItFo_Fish,1);
 		CreateInvItems(self,ItFo_Addon_Grog,1);
 		CreateInvItems(self,ItFo_Bread,1);
-		CreateInvItems(self,ItKe_Lockpick,3);
+		CreateInvItems(self,ItKE_lockpick,3);
 	};
 };
 

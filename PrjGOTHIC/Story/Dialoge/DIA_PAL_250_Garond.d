@@ -56,7 +56,7 @@ func void DIA_Garond_PMSchulden_Info()
 		AI_Output(self,other,"DIA_Garond_PMSchulden_10_02");	//Проблем у тебя, похоже, только прибавилось.
 		if(Garond_Schulden < 1000)
 		{
-			AI_Output(self,other,"DIA_Garond_PMSchulden_10_03");	//Но я надеюсь, что ты способен заплатить сразу за все! Учитывая все твои прегрешения, это будет...
+			AI_Output(self,other,"DIA_Garond_PMSchulden_10_03");	//Но я надеюсь, что  ты способен заплатить сразу за все! Учитывая все твои прегрешения, это будет...
 		}
 		else
 		{
@@ -173,7 +173,7 @@ func void DIA_Garond_PETZMASTER_Info()
 		{
 			AI_Output(self,other,"DIA_Garond_PETZMASTER_10_04");	//Не говоря уже обо всем остальном, в чем тебя обвиняют.
 		};
-		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_05");	//Позволь мне объяснить тебе кое-что. Мы здесь все в одной ловушке.
+		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_05");	//Позволь мне объяснить тебе  кое-что. Мы здесь все в одной ловушке.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_06");	//И у меня на счету каждый человек. Включая тебя.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_07");	//Если тебе хочется убить кого-нибудь, просто выйди за ворота замка. И убивай там орков себе на здоровье.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_08");	//Я вынужден наложить на тебя штраф - и мне крайне неприятно применять такие меры.
@@ -224,7 +224,7 @@ func void DIA_Garond_PETZMASTER_PayNow()
 {
 	AI_Output(other,self,"DIA_Garond_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
 	B_GiveInvItems(other,self,ItMi_Gold,Garond_Schulden);
-	AI_Output(self,other,"DIA_Garond_PETZMASTER_PayNow_10_01");	//Хорошо, я скажу об этом нашим парням, чтобы немного успокоить их. Но чтобы больше такого не повторялось!
+	AI_Output(self,other,"DIA_Garond_PETZMASTER_PayNow_10_01");	//Хорошо, я скажу об этом нашим парням, чтобы немного успокоить их. Но чтобы больше такое не повторялось!
 	B_GrantAbsolution(LOC_OLDCAMP);
 	Garond_Schulden = 0;
 	Garond_LastPetzCounter = 0;
@@ -267,7 +267,7 @@ func void DIA_Garond_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Garond_Hello_10_00");	//Откуда ты взялся? Ты не из старателей, и ты не один из моих людей. Так кто же ты?
 	AI_Output(other,self,"DIA_Garond_Hello_15_01");	//Я пришел через Проход.
-	AI_Output(self,other,"DIA_Garond_Hello_10_02");	//Через Проход?.. Ты действительно прошел там?! О, Иннос всемогущий!
+	AI_Output(self,other,"DIA_Garond_Hello_10_02");	//Через Проход...? Ты действительно прошел там?! О, Иннос всемогущий!
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Garond_Hello_10_03");	//Зачем ты прошел этот путь, маг?
@@ -295,7 +295,7 @@ instance DIA_Garond_NeedProof(C_Info)
 
 func int DIA_Garond_NeedProof_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Garond_Hello) && (mis_oldworld == LOG_Running) && (Kapitel == 2))
+	if(Npc_KnowsInfo(other,DIA_Garond_Hello) && (MIS_OLDWORLD == LOG_Running) && (Kapitel == 2))
 	{
 		return TRUE;
 	};
@@ -498,7 +498,7 @@ instance DIA_Garond_Silvestro(C_Info)
 
 func int DIA_Garond_Silvestro_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Silvestro_Ore == TRUE))
+	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && ((Silvestro_Ore == TRUE) || (Npc_IsDead(PC_ThiefOW) == TRUE)))
 	{
 		return TRUE;
 	};
@@ -555,7 +555,7 @@ func void DIA_Garond_Marcos_Info()
 	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
 	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
 	Ore_Counter = Ore_Counter + 1;
-	MIS_Marcos_Jungs = LOG_Success;
+	MIS_Marcos_Jungs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Marcos_Ore);
 	if(Ore_Counter >= 3)
 	{
@@ -592,7 +592,7 @@ func void DIA_Garond_Success_Info()
 	B_GiveInvItems(self,other,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
 	B_LogEntry(Topic_MISOLDWORLD,"Командующий Гаронд дал мне письмо. Его должно быть достаточно для подтверждения моих слов. Я могу отнести его лорду Хагену.");
-	MIS_ScoutMine = LOG_Success;
+	MIS_ScoutMine = LOG_SUCCESS;
 	B_GivePlayerXP(XP_ScoutMine);
 	MIS_ReadyForChapter3 = TRUE;
 	B_NPC_IsAliveCheck(OldWorld_Zen);
@@ -612,7 +612,7 @@ instance DIA_Garond_SLD(C_Info)
 
 func int DIA_Garond_SLD_Condition()
 {
-	if((MIS_ScoutMine == LOG_Success) && (other.guild == GIL_SLD))
+	if((MIS_ScoutMine == LOG_SUCCESS) && (other.guild == GIL_SLD))
 	{
 		return TRUE;
 	};
@@ -633,7 +633,7 @@ instance DIA_Garond_Running(C_Info)
 	condition = DIA_Garond_Running_Condition;
 	information = DIA_Garond_Running_Info;
 	permanent = TRUE;
-	description = "Как ситуация?";
+	description = "Как обстановка?";
 };
 
 
@@ -702,7 +702,7 @@ instance DIA_Garond_Pay(C_Info)
 	condition = DIA_Garond_Pay_Condition;
 	information = DIA_Garond_Pay_Info;
 	permanent = TRUE;
-	description = "Я хочу купить свободу Горну. (Заплатить 1000 монет)";
+	description = "Я хочу купить Горну свободу. (1000 золотых)";
 };
 
 
@@ -752,7 +752,7 @@ func int DIA_Garond_Perm2_Condition()
 func void DIA_Garond_Perm2_Info()
 {
 	AI_Output(other,self,"DIA_Garond_Perm2_15_00");	//Что ты планируешь делать дальше?
-	AI_Output(self,other,"DIA_Garond_Perm2_10_01");	//Я уже все перепробовал. Ты - моя единственная надежда, и что лорд Хаген пришлет мне подкрепление.
+	AI_Output(self,other,"DIA_Garond_Perm2_10_01");	//Я уже все перепробовал. Ты - моя единственная надежда, что лорд Хаген пришлет мне подкрепление.
 	AI_Output(self,other,"DIA_Garond_Perm2_10_02");	//Но мы не падем духом и будем молиться Инносу, чтобы он не оставил нас без своей поддержки в этот мрачный час.
 };
 
@@ -971,7 +971,7 @@ func void DIA_Garond_DragonPlettBericht_Info()
 	}
 	else if(MIS_AllDragonsDead == FALSE)
 	{
-		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_09");	//В последнее время были еще нападения драконов?
+		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_09");	//Последнее время были еще нападения драконов?
 		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_10");	//По счастью, нет. В настоящий момент они держатся вдалеке.
 	};
 };
@@ -999,7 +999,7 @@ func int DIA_Garond_AllDragonDead_Condition()
 func void DIA_Garond_AllDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Garond_AllDragonDead_15_00");	//Все драконы мертвы.
-	AI_Output(self,other,"DIA_Garond_AllDragonDead_10_01");	//(недоверчиво) Все? То есть Зло изгнано отсюда навеки?
+	AI_Output(self,other,"DIA_Garond_AllDragonDead_10_01");	//(недоверчиво) Все? То есть зло изгнано отсюда навеки?
 	AI_Output(other,self,"DIA_Garond_AllDragonDead_15_02");	//Нет. Остался их предводитель.
 	AI_Output(self,other,"DIA_Garond_AllDragonDead_10_03");	//Разве не драконы были предводителями орков?
 	AI_Output(other,self,"DIA_Garond_AllDragonDead_15_04");	//Да, это так, но у них также есть свой хозяин. Мы должны уничтожить и его тоже.
@@ -1032,7 +1032,7 @@ func void DIA_Garond_JanBecomeSmith_Info()
 {
 	AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_00");	//Я хочу поговорить о кузнеце.
 	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_01");	//Каком кузнеце? Он исчез.
-	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_02");	//Он что, вернулся? Тогда можешь сказать ему...
+	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_02");	//Он что вернулся? Тогда можешь сказать ему...
 	AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_03");	//Нет, я говорю о Яне.
 	if(hero.guild == GIL_DJG)
 	{
@@ -1066,7 +1066,7 @@ func void DIA_Garond_JanBecomeSmith_Yes()
 	AI_Output(other,self,"DIA_Garond_JanBecomeSmith_Yes_15_00");	//Я ручаюсь за Яна.
 	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_Yes_10_01");	//Хорошо. Он может работать в кузнице. Но, конечно же, он должен обеспечивать моих людей мечами.
 	Info_ClearChoices(DIA_Garond_JanBecomeSmith);
-	MIS_JanBecomesSmith = LOG_Success;
+	MIS_JanBecomesSmith = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -1103,7 +1103,7 @@ instance DIA_Garond_PERM5(C_Info)
 	condition = DIA_Garond_PERM5_Condition;
 	information = DIA_Garond_PERM5_Info;
 	permanent = TRUE;
-	description = "Как ситуация?";
+	description = "Как обстановка?";
 };
 
 
@@ -1130,18 +1130,18 @@ func void DIA_Garond_PERM5_Info()
 };
 
 
-instance DIA_GAROND_KAP6_EXIT(C_Info)
+instance DIA_Garond_KAP6_EXIT(C_Info)
 {
 	npc = PAL_250_Garond;
 	nr = 999;
-	condition = dia_garond_kap6_exit_condition;
-	information = dia_garond_kap6_exit_info;
+	condition = DIA_Garond_KAP6_EXIT_Condition;
+	information = DIA_Garond_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_garond_kap6_exit_condition()
+func int DIA_Garond_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -1149,7 +1149,7 @@ func int dia_garond_kap6_exit_condition()
 	};
 };
 
-func void dia_garond_kap6_exit_info()
+func void DIA_Garond_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

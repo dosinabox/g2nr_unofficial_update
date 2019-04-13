@@ -445,8 +445,8 @@ instance ItMw_AlriksSword_Mis(C_Item)
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Alrik;
 	visual = "ItMw_025_1h_Sld_Sword_01.3DS";
-	on_equip = equip_alrikssword;
-	on_unequip = unequip_alrikssword;
+	on_equip = Equip_AlriksSword;
+	on_unequip = UnEquip_AlriksSword;
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -458,14 +458,26 @@ instance ItMw_AlriksSword_Mis(C_Item)
 };
 
 
-func void equip_alrikssword()
+func void Equip_AlriksSword()
 {
 	B_AddFightSkill(self,NPC_TALENT_1H,10);
+	if(Npc_IsPlayer(self))
+	{
+		b_meleeweaponchange(10,0,0);
+	};
 };
 
-func void unequip_alrikssword()
+func void UnEquip_AlriksSword()
 {
-	B_AddFightSkill(self,NPC_TALENT_1H,-10);
+	if(!Npc_IsPlayer(self))
+	{
+		B_AddFightSkill(self,NPC_TALENT_1H,-10);
+	};
+	if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
+	{
+		B_AddFightSkill(self,NPC_TALENT_1H,-10);
+		b_meleeweaponundochange();
+	};
 };
 
 
@@ -703,7 +715,7 @@ instance Holy_Hammer_MIS(C_Item)
 	flags = ITEM_MISSION | ITEM_2HD_AXE;
 	material = MAT_METAL;
 	value = Value_HolyHammer;
-	owner = NOV_608_Garwig;
+	owner = Nov_608_Garwig;
 	damageTotal = Damage_HolyHammer;
 	damagetype = DAM_BLUNT;
 	range = Range_HolyHammer;
@@ -971,9 +983,9 @@ instance ItKe_EVT_CRYPT_03(C_Item)
 };
 
 
-const int Value_ITAR_PAL_Skel = 500;
+const int VALUE_ITAR_PAL_SKEL = 500;
 
-instance ITAR_PAL_Skel(C_Item)
+instance ITAR_PAL_SKEL(C_Item)
 {
 	name = "Старые рыцарские доспехи";
 	mainflag = ITEM_KAT_ARMOR;
@@ -983,7 +995,7 @@ instance ITAR_PAL_Skel(C_Item)
 	protection[PROT_POINT] = 100;
 	protection[PROT_FIRE] = 50;
 	protection[PROT_MAGIC] = 50;
-	value = Value_ITAR_PAL_Skel;
+	value = value_itar_pal_skel;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Pal_H.3ds";
 	visual_change = "Armor_Pal_Skeleton.asc";
@@ -1043,15 +1055,15 @@ instance ItKe_Richter(C_Item)
 
 instance ItKe_Salandril(C_Item)
 {
-	name = "Ключ от сундука, принадлежащего";
+	name = "Ключ от сундука";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Саландрилу алхимику.";
-	text[3] = "";
+	text[2] = "Ключ от сундука, принадлежащего";
+	text[3] = "Саландрилу алхимику.";
 };
 
 instance ItKe_PaladinTruhe(C_Item)
@@ -1157,7 +1169,7 @@ instance ItPl_Sagitta_Herb_MIS(C_Item)
 	count[5] = Value_Strength_Herb_01;
 };
 
-instance ItKe_Orlan_HotelZimmer(C_Item)
+instance ITKE_ORLAN_HOTELZIMMER(C_Item)
 {
 	name = "Ключ от комнаты";
 	mainflag = ITEM_KAT_NONE;

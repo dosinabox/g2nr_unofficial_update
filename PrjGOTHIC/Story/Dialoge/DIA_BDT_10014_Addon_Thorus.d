@@ -79,7 +79,7 @@ func void DIA_Addon_Thorus_Raven_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Raven_15_00");	//Это очень важно, мне нужно попасть к Ворону...
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_01");	//Правда? Ты действительно думаешь, что сможешь пройти к нему?
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_02");	//Его охранники твердо выполняют приказ не пускать НИКОГО. Ты умрешь даже раньше, чем сможешь его увидеть.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_03");	//Так что лучше выкинь эту идею из своей головы.
+	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_03");	//Так что лучше  выкинь эту идею из своей головы.
 	Log_CreateTopic(TOPIC_Addon_RavenKDW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RavenKDW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_RavenKDW,"Ворон - предводитель бандитов. Чтобы добраться до него, мне придется убить тех, кто встанет у меня на пути.");
@@ -135,7 +135,7 @@ instance DIA_Addon_BDT_10014_Thorus_GoodOldPerm(C_Info)
 
 func int DIA_Addon_Thorus_GoodOldPerm_Condition()
 {
-	if((MIS_Send_Buddler != LOG_Success) && Npc_KnowsInfo(other,DIA_Addon_BDT_10014_Thorus_Zeit) && (RavenIsDead == FALSE))
+	if((MIS_Send_Buddler != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_BDT_10014_Thorus_Zeit) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -146,7 +146,7 @@ func void DIA_Addon_Thorus_GoodOldPerm_Info()
 	AI_Output(other,self,"DIA_Addon_Thorus_Add_15_00");	//Ну ладно тебе, впусти меня. Во имя старых добрых времен.
 	if(Thorus_GoodOldPerm == FALSE)
 	{
-		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_01");	//Давай я объясню тебе кое-что. Ты знаешь, почему я до сих пор жив?
+		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_01");	//Давай-ка я объясню тебе кое-что. Ты знаешь, почему я до сих пор жив?
 		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_02");	//Потому что я всегда был верен своим людям.
 		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_03");	//Я согласен не со всем, что делает Ворон. Но я всегда выполняю правила.
 		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_04");	//И ты тоже будешь это делать!
@@ -181,7 +181,7 @@ instance DIA_Addon_BDT_10014_Thorus_Stein(C_Info)
 
 func int DIA_Addon_Thorus_Stein_Condition()
 {
-	if((C_PlayerHasWrongToken() == TRUE) && (RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_Running) && (MIS_Send_Buddler != LOG_Success))
+	if((C_PlayerHasWrongToken() == TRUE) && (RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_Running) && (MIS_Send_Buddler != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -252,7 +252,7 @@ func void DIA_Addon_Thorus_Sent_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Sent_15_00");	//Я послал трех новых ребят.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Sent_12_01");	//Хорошо. Тогда у меня нет повода тебя не пускать.
-	MIS_Send_Buddler = LOG_Success;
+	MIS_Send_Buddler = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -307,11 +307,11 @@ func void DIA_Addon_Thorus_Gefangene_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_00");	//Как там заключенные?
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_01");	//Хм-м, они сделали свою работу. Насколько мне известно, они должны сейчас искать золото.
-	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_02");	//А что, если они убегут?
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_03");	//... Бладвин пошлет стражников за ними. Но я сильно сомневаюсь, что они настолько глупы, чтобы бежать.
+	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_02");	//А что, если они убегут?..
+	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_03");	//...Бладвин пошлет стражников за ними. Но я сильно сомневаюсь, что они настолько глупы, чтобы бежать.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_04");	//Если только...
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_05");	//Если только - что?
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_06");	//... кто-нибудь не подобьет их на это. Но я не знаю никого, кто был бы достаточно глуп для этого... по крайней мере, пока Бладвин здесь.
+	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_06");	//...кто-нибудь не подобьет их на это. Но я не знаю никого, кто был бы достаточно глуп для этого... по крайней мере пока Бладвин здесь.
 	B_Say(other,self,"$VERSTEHE");
 };
 

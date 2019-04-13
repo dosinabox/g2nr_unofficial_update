@@ -11,7 +11,7 @@ func void ZS_MM_Rtn_Roam()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_MM_Rtn_Roam_Loop()
+func int ZS_MM_Rtn_Roam_loop()
 {
 	var int wanderTime;
 	var int randomMove;
@@ -53,7 +53,7 @@ func int ZS_MM_Rtn_Roam_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_MM_Rtn_Roam_End()
+func void ZS_MM_Rtn_Roam_end()
 {
 };
 

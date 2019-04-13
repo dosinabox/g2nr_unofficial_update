@@ -207,17 +207,17 @@ func void DIA_NOV_8_STANDARD_Info()
 	};
 	if((Kapitel == 2) || (Kapitel == 3))
 	{
-		if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_Success))
+		if((Pedro_Traitor == TRUE) && (MIS_NovizenChase != LOG_SUCCESS))
 		{
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_08_04");	//Я все еще не могу поверить в это. Один из нас предал монастырь и украл Глаз Инноса.
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_08_05");	//От нашего труда зависит благополучие братства, но мы еще слишком слабы. Вот почему Белиару удалось перетянуть одного из нас на свою сторону.
 		}
-		else if(MIS_NovizenChase == LOG_Success)
+		else if(MIS_NovizenChase == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_08_06");	//Слава Инносу, мы смогли вырвать Глаз из лап врага.
 			AI_Output(self,other,"DIA_NOV_3_STANDARD_08_07");	//Твое мужество может послужить примером для многих отчаявшихся душ и помочь им выжить в эти темные времена.
 		}
-		else if(mis_oldworld == LOG_Success)
+		else if(MIS_OLDWORLD == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_NOV_8_STANDARD_08_08");	//Я слышал о драконах и об армии Зла. Да пребудет с нами Иннос!
 		}

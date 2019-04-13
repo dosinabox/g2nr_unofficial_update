@@ -265,7 +265,7 @@ func void DIA_Addon_10018_Torwache_kopf_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_kopf_15_00");	//Вот! Ты все еще хочешь остановить меня?!
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_01");	//Это что... это... Бладвин?.. (тошнит) Это...
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_02");	//Н-нет... Я хочу сказать... Да, проходи...
-	MIS_BloodwynRaus = LOG_Success;
+	MIS_BloodwynRaus = LOG_SUCCESS;
 	self.aivar[AIV_PASSGATE] = TRUE;
 	AI_StopProcessInfos(self);
 };

@@ -53,7 +53,7 @@ func void DIA_Addon_Ramon_FirstWarn_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_00");	//Эй, что там случилось?
 		AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_01");	//Я укокошил Франко.
-		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_02");	//Так что? Значит, это теперь ТВОЯ забота - заставлять этих лентяев выполнять свою работу.
+		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_02");	//Так что? Значит это теперь ТВОЯ забота - заставлять этих лентяев выполнять свою работу.
 		AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_03");	//Эй, я здесь не для того, чтобы нянчиться с охотниками. Мне надо попасть в лагерь.
 		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_04");	//Забудь об этом. Ты убил Франко - теперь ты старший, так делай свою работу.
 		AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_05");	//Если я старший, то я решаю, кто входит следующим.

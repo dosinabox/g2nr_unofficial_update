@@ -11,7 +11,7 @@ instance BDT_10010_Addon_Bandit(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Nagelknueppel);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_NormalBart_Rufus,BodyTex_L,itar_bdt_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_NormalBart_Rufus,BodyTex_L,ItAr_BDT_M);
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

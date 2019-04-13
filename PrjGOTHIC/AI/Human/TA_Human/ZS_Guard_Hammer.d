@@ -11,7 +11,7 @@ func void ZS_Guard_Hammer()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Guard_Hammer_Loop()
+func int ZS_Guard_Hammer_loop()
 {
 	var int random;
 	if(Npc_IsOnFP(self,"STAND"))
@@ -59,7 +59,7 @@ func int ZS_Guard_Hammer_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Guard_Hammer_End()
+func void ZS_Guard_Hammer_end()
 {
 	AI_PlayAni(self,"T_HGUARD_2_STAND");
 };

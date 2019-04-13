@@ -89,7 +89,7 @@ func void DIA_Pedro_DI_YOU_Serpentes()
 	AI_Output(other,self,"DIA_Pedro_DI_YOU_Serpentes_15_00");	//Серпентес дал мне приказ убить тебя. Это вопрос принципа. И я сделаю то, что мне приказано.
 	AI_Output(self,other,"DIA_Pedro_DI_YOU_Serpentes_09_01");	//(умоляюще) Пожалуйста, нет. Ты не можешь сделать это. Я могу очень пригодиться тебе. Ты увидишь это.
 	B_GivePlayerXP(XP_Pedro_SerpentesMission);
-	MIS_Gorax_KillPedro = LOG_Success;
+	MIS_Gorax_KillPedro = LOG_SUCCESS;
 };
 
 func void DIA_Pedro_DI_YOU_verschon()
@@ -224,7 +224,7 @@ func void DIA_Pedro_DI_PERM_Info()
 			AI_Output(self,other,"DIA_Pedro_DI_PERM_09_02");	//Пощади меня, пожалуйста. Я буду сидеть здесь очень тихо и не издам ни звука.
 			AI_Output(other,self,"DIA_Pedro_DI_PERM_15_03");	//М-м-м.
 			B_GivePlayerXP(XP_Ambient);
-			PedroDI_Flee = LOG_Success;
+			PedroDI_Flee = LOG_SUCCESS;
 		}
 		else if(Npc_IsDead(Dragon_Undead))
 		{

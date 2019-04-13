@@ -185,7 +185,7 @@ func void DIA_Bronko_KEINBAUER_SLD()
 	AI_StopProcessInfos(self);
 	DIA_Bronko_KEINBAUER_noPerm = TRUE;
 	Npc_ExchangeRoutine(self,"Start");
-	MIS_Sekob_Bronko_eingeschuechtert = LOG_Success;
+	MIS_Sekob_Bronko_eingeschuechtert = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -203,7 +203,7 @@ instance DIA_Bronko_FLEISSIG(C_Info)
 
 func int DIA_Bronko_FLEISSIG_Condition()
 {
-	if((MIS_Sekob_Bronko_eingeschuechtert == LOG_Success) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	if((MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 	{
 		return TRUE;
 	};
@@ -211,7 +211,7 @@ func int DIA_Bronko_FLEISSIG_Condition()
 
 func void DIA_Bronko_FLEISSIG_Info()
 {
-	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_Success)
+	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
 	{
 		AI_Output(other,self,"DIA_Bronko_FLEISSIG_15_00");	//Как дела? Работаешь как пчелка, да?
 	}
@@ -223,7 +223,7 @@ func void DIA_Bronko_FLEISSIG_Info()
 	{
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_02");	//Ты наемник, да? Я мог бы догадаться.
 	}
-	else if(MIS_Sekob_Bronko_eingeschuechtert == LOG_Success)
+	else if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_03");	//(в страхе) Ты ведь не приведешь сюда этих наемников, да?
 	};
@@ -232,7 +232,7 @@ func void DIA_Bronko_FLEISSIG_Info()
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_04");	//Не бей меня, пожалуйста.
 	};
 	AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_05");	//Я даже вернусь к работе, хорошо?
-	MIS_Sekob_Bronko_eingeschuechtert = LOG_Success;
+	MIS_Sekob_Bronko_eingeschuechtert = LOG_SUCCESS;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 };

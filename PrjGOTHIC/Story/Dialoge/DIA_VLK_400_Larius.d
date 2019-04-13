@@ -143,7 +143,7 @@ func void DIA_Larius_Richterueberfall_Info()
 	AI_Output(self,other,"DIA_Larius_Richterueberfall_01_01");	//Не пори чепухи, или ты хочешь, чтобы я заковал тебя в кандалы?
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
-		AI_Output(self,other,"DIA_Larius_Richterueberfall_01_02");	//Даже если ты воин Инноса...
+		AI_Output(self,other,"DIA_Larius_Richterueberfall_01_02");	//Даже сели ты воин Инноса...
 	};
 	if(hero.guild == GIL_KDF)
 	{

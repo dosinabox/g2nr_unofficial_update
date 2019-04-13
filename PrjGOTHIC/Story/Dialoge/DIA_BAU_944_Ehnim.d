@@ -186,8 +186,8 @@ func void DIA_Ehnim_STREIT5_Info()
 
 func void DIA_Ehnim_STREIT5_Attack()
 {
-	AI_Output(other,self,"DIA_Ehnim_STREIT5_Attack_15_00");	//Почему ты не скажешь ему это сам?
-	AI_Output(self,other,"DIA_Ehnim_STREIT5_Attack_12_01");	//Сейчас пойду и сделаю это.
+	AI_Output(other,self,"DIA_Ehnim_STREIT5_Attack_15_00");	//Почему ты не скажешь это ему сам?
+	AI_Output(self,other,"DIA_Ehnim_STREIT5_Attack_12_01");	//Сейчас пойду и сделаю это .
 	AI_StopProcessInfos(self);
 	DIA_Ehnim_STREIT5_noPerm = TRUE;
 	other.aivar[AIV_INVINCIBLE] = FALSE;
@@ -251,7 +251,7 @@ func void DIA_Ehnim_MoleRatFett_Info()
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_15_01");	//Ну да. Все еще ссоритесь?
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_12_02");	//Не твое дело. Забудь об этом. Скажи, ты не был недавно на ферме Лобарта?
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_15_03");	//Может быть. А что?
-	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_12_04");	//Ох, ничего такого. Я просто хотел поговорить с Вино о его винокурне.
+	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_12_04");	//Ох, ничего такого. Я просто хотел поговорить с Вино о  его винокурне.
 	Info_ClearChoices(DIA_Ehnim_MoleRatFett);
 	Info_AddChoice(DIA_Ehnim_MoleRatFett,"У меня сейчас нет времени на это.",DIA_Ehnim_MoleRatFett_nein);
 	Info_AddChoice(DIA_Ehnim_MoleRatFett,"Винокурня? Какая винокурня?",DIA_Ehnim_MoleRatFett_was);
@@ -272,7 +272,7 @@ func void DIA_Ehnim_MoleRatFett_was()
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_was_15_00");	//Винокурня? Какая винокурня?
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_01");	//Ох. Мне, наверное, не стоило говорить об этом. Вино всегда так трепетно относился к этому своему маленькому секрету.
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_02");	//Ну ладно, все равно уже я проболтался. В лесу, неподалеку от фермы, Вино устроил секретную винокурню.
-	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_03");	//Несколько дней назад он попросил меня дать ему что-нибудь, чтобы смазать механизм решетки, установленной там.
+	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_03");	//Несколько дней назад, он попросил меня дать ему что-нибудь, чтобы смазать механизм решетки, установленной там.
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_04");	//Последнее время шли дожди, и она заржавела. Лебедку заклинило, и он не может поднять решетку.
 	Log_CreateTopic(TOPIC_FoundVinosKellerei,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_FoundVinosKellerei,LOG_Running);
@@ -313,12 +313,12 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 			B_GiveInvItems(self,other,ItMi_Moleratlubric_MIS,1);
 			if(Npc_IsDead(Vino) == FALSE)
 			{
-				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_02");	//(себе под нос) Вино убьет меня за это.
+				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_02");	//(себе под нос) Ох. Вино убьет меня за это.
 			};
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_03");	//Черт, и куда же она подевалась? Что за досада. Извини. Похоже, у меня ее не осталось. Вот, возьми свои деньги назад.
+			AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_03");	//Черт, и куда же она подевалась? Что за досада. Извини. Похоже, у меня ее не осталось. Вот, возьми свои деньги назад .
 			B_GiveInvItems(self,other,ItMi_Gold,Ehnim_MoleRatFettOffer);
 			if(Npc_IsDead(Egill) == FALSE)
 			{
@@ -331,7 +331,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_05");	//Так вообще-то не поступают. Сначала ты договариваешься о сделке, а затем оказывается, что у тебя даже нет денег! Уходи, я не хочу тебя видеть!
+		AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_05");	//Так, вообще-то не поступают. Сначала ты договариваешься о сделке, а затем оказывается, что у тебя даже нет денег! Уходи, я не хочу тебя видеть!
 	};
 	AI_StopProcessInfos(self);
 };
@@ -339,7 +339,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel()
 {
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_15_00");	//Это слишком много.
-	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_12_01");	//Хорошо, хорошо. 70 золотых. Но это моя последняя цена.
+	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_12_01");	//Хорошо, хорошо. 70 золотых. Но это мое последняя цена.
 	Ehnim_MoleRatFettOffer = 70;
 	Info_ClearChoices(DIA_Ehnim_MoleRatFett);
 	Info_AddChoice(DIA_Ehnim_MoleRatFett,"Это все равно слишком много.",DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_immernoch);
@@ -356,7 +356,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_immernoch()
 func void DIA_Ehnim_MoleRatFett_nein()
 {
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_nein_15_00");	//У меня сейчас нет времени на это.
-	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_nein_12_01");	//Тогда не буду отвлекать тебя, парень.
+	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_nein_12_01");	//Тогда ее буду отвлекать тебя, парень.
 	AI_StopProcessInfos(self);
 };
 

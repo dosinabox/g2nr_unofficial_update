@@ -78,7 +78,7 @@ func int DIA_Addon_BL_BDT_1_Lager_Condition()
 func void DIA_Addon_BL_BDT_1_Lager_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BL_BDT_1_Lager_15_00");	//Что вы знаете про лагерь?
-	AI_Output(self,other,"DIA_Addon_BL_BDT_1_Lager_01_01");	//После того, как стало известно о золотой шахте, эти бродяги, должно быть, все перегрызлись.
+	AI_Output(self,other,"DIA_Addon_BL_BDT_1_Lager_01_01");	//После того как стало известно о золотой шахте, эти бродяги, должно быть, все перегрызлись.
 	AI_Output(self,other,"DIA_Addon_BL_BDT_1_Lager_01_02");	//Ворон убил худших из них, а остальных вышвырнул из шахты.
 	AI_Output(self,other,"DIA_Addon_BL_BDT_1_Lager_01_03");	//С тех пор никто не допускается в верхнюю часть. Он даже притащил заключенных, чтобы работать в шахте.
 	if(SC_KnowsRavensGoldmine == FALSE)

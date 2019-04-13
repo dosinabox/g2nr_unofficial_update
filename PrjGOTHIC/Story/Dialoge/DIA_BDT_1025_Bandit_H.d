@@ -81,7 +81,7 @@ func void DIA_NAME_BANDIT_SchafKlau_weiter()
 };
 
 
-instance dia_name_bandit_rueckdasschafraus(C_Info)
+instance DIA_NAME_BANDIT_RUECKDASSCHAFRAUS(C_Info)
 {
 	npc = BDT_1025_Bandit_H;
 	nr = 30;

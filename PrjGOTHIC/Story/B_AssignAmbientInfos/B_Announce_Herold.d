@@ -44,7 +44,7 @@ func void B_Announce_Herold()
 	}
 	else if(Kapitel == 3)
 	{
-		if(MIS_RescueBennet != LOG_Success)
+		if(MIS_RescueBennet != LOG_SUCCESS)
 		{
 			AI_Output(self,self,"DIA_Herold_Announce_04_13");	//Кузнец-наемник Беннет, вероломно убивший паладина Лотара, объявляется проклятым от имени Инноса.
 			AI_Output(self,self,"DIA_Herold_Announce_04_14");	//Он приговорен к смерти через повешение. Приговор будет приведен в исполнение в ближайшие дни.

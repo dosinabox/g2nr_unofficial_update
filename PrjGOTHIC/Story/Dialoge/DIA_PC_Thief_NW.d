@@ -28,7 +28,7 @@ instance DIA_DiegoNW_Perm(C_Info)
 	condition = DIA_DiegoNW_Perm_Condition;
 	information = DIA_DiegoNW_Perm_Info;
 	permanent = TRUE;
-	description = "Как торговля?";
+	description = "Как дела?";
 };
 
 
@@ -100,7 +100,7 @@ func void DIA_DiegoNW_NeedHelp_Plan()
 func void DIA_DiegoNW_NeedHelp_WhoAreYou()
 {
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_WhoAreYou_15_00");	//Кто ты?
-	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_01");	//Черт, это все, наверное, из-за одежды. В старой одежде стражники не пустили бы меня в город.
+	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_01");	//Черт, это все, наверное, из-за одежды. В старой одежде, стражники не пустили бы меня в город.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_02");	//Вот почему я купил это одеяние у торговца за городом. Теперь-то, надеюсь, ты вспомнил меня? Я Диего.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_03");	//В старой колонии я учил тебя всему, что необходимо для выживания.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_04");	//Ты же не мог вот так просто все забыть.
@@ -143,7 +143,7 @@ func void DIA_DiegoNW_NeedHelp_Problem_NoTime()
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_NoTime_15_02");	//Ты преувеличиваешь.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_NoTime_11_03");	//Да?! А ты задумайся на минутку, что могло бы быть, если бы я не объяснил тебе тогда, как нужно вести себя в колонии.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_NoTime_11_04");	//Рудные бароны сожрали бы тебя на завтрак, и ты бы подох жалкой смертью где-нибудь в шахте.
-	MIS_HelpDiegoNW = LOG_Failed;
+	MIS_HelpDiegoNW = LOG_FAILED;
 	Info_ClearChoices(DIA_DiegoNW_NeedHelp);
 };
 
@@ -174,14 +174,14 @@ func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan()
 {
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan_15_00");	//Что ты собираешься делать с этим золотом?
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan_11_01");	//Я хочу свести счеты с одним из торговцев в верхнем квартале. Я очень этого хочу.
-	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan_11_02");	//А затем я буду готов начать новую карьеру!
+	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan_11_02");	//А затем, я буду готов начать новую карьеру!
 };
 
 func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold()
 {
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold_15_00");	//Откуда у тебя это золото?
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold_11_01");	//Я что, единственный что ли, кто откладывал золото для себя в Долине Рудников?
-	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold_11_02");	//Украсть несколько кусков золота было легче легкого. Просто на случай, если нам когда-нибудь удастся выбраться оттуда.
+	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold_11_02");	//Украсть несколько кусков руды было легче легкого. Просто на случай, если нам когда-нибудь удастся выбраться оттуда.
 	AI_Output(self,other,"DIA_Addon_DiegoNW_WillHelpYou_HowGold_11_03");	//Все были так сосредоточены на руде, что на золото никто не обращал внимания...
 };
 
@@ -222,7 +222,7 @@ instance DIA_DiegoNW_HelpYou(C_Info)
 
 func int DIA_DiegoNW_HelpYou_Condition()
 {
-	if((Diego_IsOnBoard == FALSE) && (MIS_HelpDiegoNW == LOG_Failed) && (Diego_IsOnBoard != LOG_Success))
+	if((Diego_IsOnBoard == FALSE) && (MIS_HelpDiegoNW == LOG_FAILED) && (Diego_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -257,7 +257,7 @@ instance DIA_DiegoNW_HaveYourGold(C_Info)
 
 func int DIA_DiegoNW_HaveYourGold_Condition()
 {
-	if(((OpenedDiegosBag == TRUE) || (Npc_HasItems(other,ItSe_DiegosTreasure_Mis) >= 1)) && (MIS_HelpDiegoNW == LOG_Running) && (Diego_IsOnBoard != LOG_Success))
+	if(((OpenedDiegosBag == TRUE) || (Npc_HasItems(other,ItSe_DiegosTreasure_Mis) >= 1)) && (MIS_HelpDiegoNW == LOG_Running) && (Diego_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -281,7 +281,7 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 		b_diegonw_diegosrevenge();
 		DiegosRevenge = TRUE;
 	}
-	else if(Npc_HasItems(other,ItMi_Gold < DiegosTreasure))
+	else if(Npc_HasItems(other,ItMi_Gold) < DiegosTreasure)
 	{
 		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_02");	//Но здесь не все! Ты что, не доверяешь мне? Мне нужна вся сумма.
 		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_03");	//Если мой план сработает, золота останется достаточно и для тебя.
@@ -301,7 +301,7 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 		CreateInvItems(self,ItWr_DiegosLetter_MIS,1);
 		B_GiveInvItems(self,other,ItWr_DiegosLetter_MIS,1);
 		B_StartOtherRoutine(Gerbrandt,"WaitForDiego");
-		MIS_HelpDiegoNW = LOG_Success;
+		MIS_HelpDiegoNW = LOG_SUCCESS;
 		MIS_DiegosResidence = LOG_Running;
 		B_GivePlayerXP(XP_HelpDiegoNW);
 		Log_CreateTopic(TOPIC_DiegosResidence,LOG_MISSION);
@@ -325,7 +325,7 @@ instance DIA_DiegoNW_DeliveredLetter(C_Info)
 
 func int DIA_DiegoNW_DeliveredLetter_Condition()
 {
-	if((Diego_IsOnBoard == FALSE) && (MIS_DiegosResidence == LOG_Success))
+	if((Diego_IsOnBoard == FALSE) && (MIS_DiegosResidence == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -369,7 +369,7 @@ func void DIA_DiegoNW_DeliveredLetter_YourTrick()
 	AI_Output(other,self,"DIA_DiegoNW_TalkedToJudge_YourTrick_15_00");	//Как тебе удалось провернуть это?
 	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_01");	//Ты думаешь, Гербрандт заработал свое состояние на честном бизнесе?
 	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_02");	//Конечно, он никогда не марал руки, когда доходило до грязных дел. У него для этого был помощник.
-	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_03");	//А на моей совести тогда много чего было. Гербрандт, в конце концов, решил избавиться от меня. Вероятно, он опасался, что я знаю слишком много.
+	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_03");	//На моей совести тогда много чего было. Гербрандт, в конце концов, решил избавиться от меня. Вероятно, он опасался, что я знаю слишком много.
 	AI_Output(other,self,"DIA_DiegoNW_TalkedToJudge_YourTrick_15_04");	//Ты никогда не говорил мне об этом.
 	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_05");	//А ты никогда и не спрашивал.
 	Info_ClearChoices(DIA_DiegoNW_DeliveredLetter);
@@ -430,6 +430,7 @@ func void DIA_DiegoNW_CanYouTeach_Info()
 
 
 var int DiegoNW_Merke_DEX;
+var int diegonw_merke_str;
 
 instance DIA_DiegoNW_Teach(C_Info)
 {
@@ -453,12 +454,15 @@ func int DIA_DiegoNW_Teach_Condition()
 func void DIA_DiegoNW_Teach_Info()
 {
 	AI_Output(other,self,"DIA_DiegoNW_Teach_15_00");	//Обучи меня.
-	AI_Output(self,other,"DIA_DiegoNW_Teach_11_01");	//
+	AI_Output(self,other,"DIA_DiegoNW_Teach_11_01");	//Я могу научить тебя, как стать более ловким.
 	DiegoNW_Merke_DEX = other.attribute[ATR_DEXTERITY];
+	DIEGONW_MERKE_STR = other.attribute[ATR_STRENGTH];
 	Info_ClearChoices(DIA_DiegoNW_Teach);
 	Info_AddChoice(DIA_DiegoNW_Teach,Dialog_Back,DIA_DiegoNW_Teach_BACK);
 	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoNW_TeachDEX_1);
 	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoNW_TeachDEX_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),dia_diegonw_teachstr_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),dia_diegonw_teachstr_5);
 };
 
 func void DIA_DiegoNW_Teach_BACK()
@@ -466,6 +470,10 @@ func void DIA_DiegoNW_Teach_BACK()
 	if(DiegoNW_Merke_DEX < other.attribute[ATR_DEXTERITY])
 	{
 		AI_Output(self,other,"DIA_DiegoNW_Teach_BACK_11_00");	//Ты уже стал более ловким. Так держать!
+	};
+	if(DIEGONW_MERKE_STR < other.attribute[ATR_STRENGTH])
+	{
+		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
 	};
 	Info_ClearChoices(DIA_DiegoNW_Teach);
 };
@@ -477,6 +485,8 @@ func void DIA_DiegoNW_TeachDEX_1()
 	Info_AddChoice(DIA_DiegoNW_Teach,Dialog_Back,DIA_DiegoNW_Teach_BACK);
 	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoNW_TeachDEX_1);
 	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoNW_TeachDEX_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),dia_diegonw_teachstr_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),dia_diegonw_teachstr_5);
 };
 
 func void DIA_DiegoNW_TeachDEX_5()
@@ -486,6 +496,30 @@ func void DIA_DiegoNW_TeachDEX_5()
 	Info_AddChoice(DIA_DiegoNW_Teach,Dialog_Back,DIA_DiegoNW_Teach_BACK);
 	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoNW_TeachDEX_1);
 	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoNW_TeachDEX_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),dia_diegonw_teachstr_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),dia_diegonw_teachstr_5);
+};
+
+func void dia_diegonw_teachstr_1()
+{
+	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED);
+	Info_ClearChoices(DIA_DiegoNW_Teach);
+	Info_AddChoice(DIA_DiegoNW_Teach,Dialog_Back,DIA_DiegoNW_Teach_BACK);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoNW_TeachDEX_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoNW_TeachDEX_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),dia_diegonw_teachstr_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),dia_diegonw_teachstr_5);
+};
+
+func void dia_diegonw_teachstr_5()
+{
+	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED);
+	Info_ClearChoices(DIA_DiegoNW_Teach);
+	Info_AddChoice(DIA_DiegoNW_Teach,Dialog_Back,DIA_DiegoNW_Teach_BACK);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoNW_TeachDEX_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_DiegoNW_TeachDEX_5);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),dia_diegonw_teachstr_1);
+	Info_AddChoice(DIA_DiegoNW_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),dia_diegonw_teachstr_5);
 };
 
 
@@ -532,10 +566,10 @@ func void DIA_DiegoNW_KnowWhereEnemy_Info()
 
 func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 {
-	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_Yes_15_00");	//Почему бы тебе не отправиться в путь со мной? Встретимся в гавани.
+	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_Yes_15_00");	//Почему бы тебе не отправиться в путь со мной? Встретимся у гавани.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_01");	//Ммм. Ты прав, в Хоринисе все равно нечего делать. Я поплыву с тобой.
 	self.flags = NPC_FLAG_IMMORTAL;
-	Diego_IsOnBoard = LOG_Success;
+	Diego_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count = Crewmember_Count + 1;
 	B_GivePlayerXP(XP_Crewmember_Success);
 	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") == 1)
@@ -563,7 +597,7 @@ func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 func void DIA_DiegoNW_KnowWhereEnemy_No()
 {
 	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_No_15_00");	//Возможно, я дам тебе знать, когда придет время.
-	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_No_11_01");	//Попробуй. И, возможно, я даже присоединюсь к тебе. Кто знает?
+	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_No_11_01");	//Попробуй. И, возможно, Я даже присоединюсь к тебе. Кто знает?
 	Diego_IsOnBoard = LOG_OBSOLETE;
 	Info_ClearChoices(DIA_DiegoNW_KnowWhereEnemy);
 };
@@ -582,7 +616,7 @@ instance DIA_DiegoNW_LeaveMyShip(C_Info)
 
 func int DIA_DiegoNW_LeaveMyShip_Condition()
 {
-	if((Diego_IsOnBoard == LOG_Success) && (MIS_ReadyforChapter6 == FALSE))
+	if((Diego_IsOnBoard == LOG_SUCCESS) && (MIS_ReadyforChapter6 == FALSE))
 	{
 		return TRUE;
 	};
@@ -593,7 +627,7 @@ func void DIA_DiegoNW_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_00");	//Ты должен заботиться о городе.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_01");	//Да? Я тебе больше не нужен? Ох, ладно. Не забудь заглянуть ко мне, когда вернешься в город.
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_02");	//Ты думаешь, мы еще встретимся?
-	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Буллит вырубил тебя. Тогда мы встретились в первый раз.
+	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Булит вырубил тебя. Тогда мы встретились в первый раз.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_04");	//Им никогда не одолеть тебя. Мы ОБЯЗАТЕЛЬНО встретимся снова. Береги себя.
 	Diego_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count = Crewmember_Count - 1;
@@ -614,7 +648,7 @@ instance DIA_DiegoNW_StillNeedYou(C_Info)
 
 func int DIA_DiegoNW_StillNeedYou_Condition()
 {
-	if(((Diego_IsOnBoard == LOG_OBSOLETE) || (Diego_IsOnBoard == LOG_Failed)) && (Crewmember_Count < Max_Crew))
+	if(((Diego_IsOnBoard == LOG_OBSOLETE) || (Diego_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
 		return TRUE;
 	};
@@ -625,7 +659,7 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 	AI_Output(other,self,"DIA_DiegoNW_StillNeedYou_15_00");	//Возвращайся. Я хочу, чтобы ты сопровождал меня.
 	AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_01");	//Куда подевалась твоя решительность, друг? Конечно, я присоединюсь к тебе - ты только определись с тем, что тебе нужно.
 	self.flags = NPC_FLAG_IMMORTAL;
-	Diego_IsOnBoard = LOG_Success;
+	Diego_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count = Crewmember_Count + 1;
 	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") == 1)
 	{

@@ -31,7 +31,7 @@ func void ZS_Stand_Dementor()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Stand_Dementor_Loop()
+func int ZS_Stand_Dementor_loop()
 {
 	if(Npc_IsOnFP(self,"STAND"))
 	{
@@ -65,7 +65,7 @@ func int ZS_Stand_Dementor_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Stand_Dementor_End()
+func void ZS_Stand_Dementor_end()
 {
 	AI_PlayAni(self,"T_LGUARD_2_STAND");
 };

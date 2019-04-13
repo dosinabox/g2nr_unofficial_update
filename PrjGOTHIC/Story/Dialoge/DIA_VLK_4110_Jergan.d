@@ -188,7 +188,7 @@ func void DIA_Jergan_Mine_Info()
 {
 	AI_Output(other,self,"DIA_Jergan_Mine_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Jergan_Mine_13_01");	//Я разведчик. Моя работа - следить за врагом. Но все эти снепперы совсем не облегчают мне жизнь.
-	AI_Output(self,other,"DIA_Jergan_Mine_13_02");	//Хотя сейчас самое время насобирать трофеев - если, конечно, ты знаешь, что делаешь.
+	AI_Output(self,other,"DIA_Jergan_Mine_13_02");	//Хотя, сейчас самое время насобирать трофеев - если, конечно, ты знаешь, что делаешь.
 };
 
 
@@ -205,7 +205,7 @@ instance DIA_Jergan_Claw(C_Info)
 
 func int DIA_Jergan_Claw_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_KnowsInfo(other,DIA_Jergan_Mine) && (player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE))
+	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_KnowsInfo(other,DIA_Jergan_Mine) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE))
 	{
 		return TRUE;
 	};
@@ -213,7 +213,7 @@ func int DIA_Jergan_Claw_Condition()
 
 func void DIA_Jergan_Claw_Info()
 {
-	AI_Output(other,self,"DIA_Jergan_Claw_15_00");	//Ты можешь научить меня этому?
+	AI_Output(other,self,"DIA_Jergan_Claw_15_00");	//Ты можешь напучить меня этому?
 	AI_Output(self,other,"DIA_Jergan_Claw_13_01");	//Я могу показать тебе, как отделять когти этих тварей.
 };
 
@@ -231,7 +231,7 @@ instance DIA_Jergan_Teach(C_Info)
 
 func int DIA_Jergan_Teach_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_KnowsInfo(other,DIA_Jergan_Claw) && (player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE))
+	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_KnowsInfo(other,DIA_Jergan_Claw) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE))
 	{
 		return TRUE;
 	};
@@ -261,7 +261,7 @@ instance DIA_Jergan_Diego(C_Info)
 
 func int DIA_Jergan_Diego_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && (Npc_KnowsInfo(other,DIA_DiegoOW_Hallo) == FALSE) && Npc_KnowsInfo(other,DIA_Parcival_Diego))
+	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && (Npc_KnowsInfo(other,DIA_DiegoOw_Hallo) == FALSE) && Npc_KnowsInfo(other,DIA_Parcival_Diego))
 	{
 		return TRUE;
 	};
@@ -302,7 +302,7 @@ func void DIA_Jergan_Leader_Info()
 	if(Npc_HasItems(other,ItAt_ClawLeader) >= 1)
 	{
 		AI_Output(other,self,"DIA_Jergan_Leader_15_01");	//Да.
-		AI_Output(self,other,"DIA_Jergan_Leader_13_02");	//Они стоят целое состояние. Есть люди, которые коллекционируют такие вещи.
+		AI_Output(self,other,"DIA_Jergan_Leader_13_02");	//Они, стоят целое состояние. Есть люди, которые коллекционируют такие вещи.
 		AI_Output(self,other,"DIA_Jergan_Leader_13_03");	//Если ты найдешь правильного покупателя, то получишь за них целую кучу золота.
 	}
 	else

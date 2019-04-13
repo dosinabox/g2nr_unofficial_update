@@ -160,73 +160,73 @@ func void startup_dragonisland()
 	{
 		Wld_InsertNpc(VLK_444_Jack_DI,"SHIP_DECK_01");
 	};
-	if(Lee_IsOnBoard == LOG_Success)
+	if(Lee_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(SLD_800_Lee_DI,"SHIP_DECK_01");
 	};
-	if(MiltenNW_IsOnBoard == LOG_Success)
+	if(MiltenNW_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(PC_Mage_DI,"SHIP_DECK_01");
-		if(Lester_IsOnBoard != LOG_Success)
+		if(Lester_IsOnBoard != LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(PC_Mage_DI,"SittingShipDI");
 		};
 	};
-	if(Lester_IsOnBoard == LOG_Success)
+	if(Lester_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(PC_Psionic_DI,"SHIP_DECK_01");
-		if(MiltenNW_IsOnBoard != LOG_Success)
+		if(MiltenNW_IsOnBoard != LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(PC_Psionic_DI,"SittingShipDI");
 		};
 	};
-	if(Mario_IsOnBoard == LOG_Success)
+	if(Mario_IsOnBoard == LOG_SUCCESS)
 	{
-		Wld_InsertNpc(NONE_101_Mario_DI,"SHIP_DECK_01");
+		Wld_InsertNpc(None_101_Mario_DI,"SHIP_DECK_01");
 	};
-	if(Wolf_IsOnBoard == LOG_Success)
+	if(Wolf_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(SLD_811_Wolf_DI,"SHIP_DECK_01");
 	};
-	if(Vatras_IsOnBoard == LOG_Success)
+	if(Vatras_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(VLK_439_Vatras_DI,"SHIP_DECK_01");
 	};
-	if(Bennet_IsOnBoard == LOG_Success)
+	if(Bennet_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(SLD_809_Bennet_DI,"SHIP_DECK_01");
 	};
-	if(Diego_IsOnBoard == LOG_Success)
+	if(Diego_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(PC_Thief_DI,"SHIP_DECK_01");
-		if(Lares_IsOnBoard != LOG_Success)
+		if(Lares_IsOnBoard != LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(PC_Thief_DI,"SittingShipDI");
 		};
 	};
-	if(Gorn_IsOnBoard == LOG_Success)
+	if(Gorn_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(PC_Fighter_DI,"SHIP_DECK_01");
 	};
-	if(Lares_IsOnBoard == LOG_Success)
+	if(Lares_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(VLK_449_Lares_DI,"SHIP_DECK_01");
-		if(Diego_IsOnBoard != LOG_Success)
+		if(Diego_IsOnBoard != LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(VLK_449_Lares_DI,"SittingShipDI");
 		};
 	};
-	if(Biff_IsOnBoard == LOG_Success)
+	if(Biff_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(DJG_713_Biff_DI,"SHIP_DECK_01");
 	};
-	if(Angar_IsOnBoard == LOG_Success)
+	if(Angar_IsOnBoard == LOG_SUCCESS)
 	{
 		Wld_InsertNpc(DJG_705_Angar_DI,"SHIP_DECK_01");
 	};
-	if(Girion_IsOnBoard == LOG_Success)
+	if(Girion_IsOnBoard == LOG_SUCCESS)
 	{
-		Wld_InsertNpc(PAL_207_Girion_DI,"SHIP_DECK_01");
+		Wld_InsertNpc(Pal_207_Girion_DI,"SHIP_DECK_01");
 	};
 	Wld_InsertNpc(NOV_600_Pedro_DI,"SHIP_DECK_01");
 	Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_03");

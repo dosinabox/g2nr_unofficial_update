@@ -96,7 +96,7 @@ func void DIA_Brutus_PRISONER_Info()
 	AI_Output(self,other,"DIA_Brutus_PRISONER_06_03");	//Но моя настоящая работа - заставлять их говорить. И поверь мне, я знаю способы разговорить кого угодно.
 	AI_Output(other,self,"DIA_Brutus_PRISONER_15_04");	//Звучит ужасно мило...
 	AI_Output(self,other,"DIA_Brutus_PRISONER_06_05");	//Но этим блохастым болванам, что сейчас сидят за решеткой, все равно особенно нечего сказать.
-	if(MIS_RescueGorn != LOG_Success)
+	if(MIS_RescueGorn != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Brutus_PRISONER_06_06");	//А к этому Горну меня не подпускают.
 		KnowsAboutGorn = TRUE;
@@ -221,7 +221,7 @@ func void DIA_Brutus_Gold_Info()
 	AI_Output(other,self,"DIA_Brutus_Gold_15_00");	//У меня есть кое-что для тебя.
 	if(B_GiveInvItems(other,self,ItMi_Gold,200))
 	{
-		AI_Output(self,other,"DIA_Brutus_Gold_06_01");	//Превосходно. Теперь я могу потренировать тебя, если хочешь.
+		AI_Output(self,other,"DIA_Brutus_Gold_06_01");	//Превосходно. Теперь я могу потренировать тебе, если хочешь.
 		Brutus_TeachSTR = TRUE;
 		Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
 		B_LogEntry(TOPIC_Teacher_OC,"Брутус может помочь мне стать сильнее.");

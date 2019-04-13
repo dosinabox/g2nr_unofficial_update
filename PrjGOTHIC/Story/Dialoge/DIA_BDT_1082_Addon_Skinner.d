@@ -47,12 +47,12 @@ func void DIA_Addon_Skinner_PICKPOCKET_Info()
 func void DIA_Addon_Skinner_PICKPOCKET_DoIt()
 {
 	B_Beklauen();
-	Info_ClearChoices(DIA_Addon_Wache_02_PICKPOCKET);
+	Info_ClearChoices(DIA_Addon_Skinner_PICKPOCKET);
 };
 
 func void DIA_Addon_Skinner_PICKPOCKET_BACK()
 {
-	Info_ClearChoices(DIA_Addon_Wache_02_PICKPOCKET);
+	Info_ClearChoices(DIA_Addon_Skinner_PICKPOCKET);
 	B_Say(self,self,"$AWAKE");
 };
 
@@ -78,10 +78,10 @@ func int DIA_Addon_Skinner_Hi_Condition()
 
 func void DIA_Addon_Skinner_Hi_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Skinner_Hi_08_00");	//Зачем ты меня разбудил, а? Я уверен, что ты толком и не знаешь...
+	AI_Output(self,other,"DIA_Addon_Skinner_Hi_08_00");	//Ты зачем меня разбудил, а? Я уверен, что ты толком и не знаешь...
 	AI_Output(self,other,"DIA_Addon_Skinner_Hi_08_01");	//Нет - не надо ничего говорить. Оправдываться слишком поздно.
 	AI_Output(self,other,"DIA_Addon_Skinner_Hi_08_02");	//У тебя теперь есть выбор. Ты можешь сразиться со мной и моей Бетти. А можешь попробовать убежать.
-	AI_Output(self,other,"DIA_Addon_Skinner_Hi_08_03");	//И на твоем месте я бы начал разбег...
+	AI_Output(self,other,"DIA_Addon_Skinner_Hi_08_03");	//И на твоем месте я бы начинал разбег...
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -119,7 +119,7 @@ func void DIA_Addon_Skinner_ATTENTAT_ADDON_CONTRA()
 {
 	AI_Output(other,self,"DIA_Addon_Skinner_ATTENTAT_ADDON_CONTRA_15_00");	//Я хочу убрать Эстебана.
 	AI_Output(self,other,"DIA_Addon_Skinner_ATTENTAT_ADDON_CONTRA_08_01");	//Отлично.
-	JUDAS_COUNTER = JUDAS_COUNTER + 1;
+	Judas_Counter = Judas_Counter + 1;
 	Info_ClearChoices(DIA_Addon_Skinner_Attentat);
 };
 

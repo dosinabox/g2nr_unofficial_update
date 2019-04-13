@@ -56,7 +56,7 @@ instance DIA_PAL_263_PERM_OTH(C_Info)
 	condition = DIA_PAL_263_PERM_OTH_Condition;
 	information = DIA_PAL_263_PERM_OTH_Info;
 	permanent = TRUE;
-	description = "Как ситуация?";
+	description = "Как обстановка?";
 };
 
 

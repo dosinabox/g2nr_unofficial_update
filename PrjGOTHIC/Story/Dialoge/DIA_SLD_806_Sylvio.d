@@ -70,7 +70,7 @@ func void DIA_Sylvio_Thekla_Info()
 	AI_Output(other,self,"DIA_Sylvio_Thekla_15_00");	//Текла говорит, что у нее проблемы с тобой.
 	AI_Output(self,other,"DIA_Sylvio_Thekla_09_01");	//Да? И что за проблемы у этой милой леди? И почему она не пришла сама?
 	AI_Output(other,self,"DIA_Sylvio_Thekla_15_02");	//Ты прекрасно знаешь, черт побери...
-	AI_Output(self,other,"DIA_Sylvio_Thekla_09_03");	//(цинично-дружелюбно) Почему бы тебе не обсудить этот вопрос с моим другом Буллко?
+	AI_Output(self,other,"DIA_Sylvio_Thekla_09_03");	//(цинично-дружелюбно) Почему бы тебе не обсудить этот вопрос с моим другом Булко?
 	Sylvio_angequatscht = Sylvio_angequatscht + 1;
 	AI_StopProcessInfos(self);
 };

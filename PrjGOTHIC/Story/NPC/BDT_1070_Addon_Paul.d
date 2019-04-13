@@ -12,7 +12,7 @@ instance BDT_1070_Addon_Paul(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_Nugget,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Drax,BodyTex_N,itar_bdt_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Drax,BodyTex_N,ItAr_BDT_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

@@ -1,7 +1,7 @@
 
 instance DIA_Mil_325_Miliz_EXIT(C_Info)
 {
-	npc = MIL_325_Miliz;
+	npc = Mil_325_Miliz;
 	nr = 999;
 	condition = DIA_Mil_325_Miliz_EXIT_Condition;
 	information = DIA_Mil_325_Miliz_EXIT_Info;
@@ -25,7 +25,7 @@ const string Mil_325_Checkpoint = "NW_CITY_MERCHANT_PATH_03";
 
 instance DIA_Mil_325_Miliz_FirstWarn(C_Info)
 {
-	npc = MIL_325_Miliz;
+	npc = Mil_325_Miliz;
 	nr = 1;
 	condition = DIA_Mil_325_Miliz_FirstWarn_Condition;
 	information = DIA_Mil_325_Miliz_FirstWarn_Info;
@@ -58,7 +58,7 @@ func void DIA_Mil_325_Miliz_FirstWarn_Info()
 
 instance DIA_Mil_325_Miliz_SecondWarn(C_Info)
 {
-	npc = MIL_325_Miliz;
+	npc = Mil_325_Miliz;
 	nr = 2;
 	condition = DIA_Mil_325_Miliz_SecondWarn_Condition;
 	information = DIA_Mil_325_Miliz_SecondWarn_Info;
@@ -86,7 +86,7 @@ func void DIA_Mil_325_Miliz_SecondWarn_Info()
 
 instance DIA_Mil_325_Miliz_Attack(C_Info)
 {
-	npc = MIL_325_Miliz;
+	npc = Mil_325_Miliz;
 	nr = 3;
 	condition = DIA_Mil_325_Miliz_Attack_Condition;
 	information = DIA_Mil_325_Miliz_Attack_Info;
@@ -115,7 +115,7 @@ func void DIA_Mil_325_Miliz_Attack_Info()
 
 instance DIA_Mil_325_Miliz_Pass(C_Info)
 {
-	npc = MIL_325_Miliz;
+	npc = Mil_325_Miliz;
 	nr = 5;
 	condition = DIA_Mil_325_Miliz_Pass_Condition;
 	information = DIA_Mil_325_Miliz_Pass_Info;
@@ -161,7 +161,7 @@ func void DIA_Mil_325_Miliz_Pass_No()
 
 instance DIA_Mil_325_Miliz_PERM(C_Info)
 {
-	npc = MIL_325_Miliz;
+	npc = Mil_325_Miliz;
 	nr = 5;
 	condition = DIA_Mil_325_Miliz_PERM_Condition;
 	information = DIA_Mil_325_Miliz_PERM_Info;

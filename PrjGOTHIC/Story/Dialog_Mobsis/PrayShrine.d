@@ -25,7 +25,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 		ShrineIsObsessed = TRUE;
 		if((Npc_GetDistToWP(hero,"NW_TROLLAREA_PATH_37") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_37 == TRUE))
 		{
-			if(shrinehealing == TRUE)
+			if(SHRINEHEALING == TRUE)
 			{
 				ShrineIsObsessed_NW_TROLLAREA_PATH_37 = FALSE;
 				ShrineIsObsessed = FALSE;
@@ -33,7 +33,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 		}
 		else if((Npc_GetDistToWP(hero,"NW_FARM1_CONNECT_XARDAS") < 2000) && (ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS == TRUE))
 		{
-			if(shrinehealing == TRUE)
+			if(SHRINEHEALING == TRUE)
 			{
 				ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS = FALSE;
 				ShrineIsObsessed = FALSE;
@@ -41,7 +41,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 		}
 		else if((Npc_GetDistToWP(hero,"NW_TROLLAREA_PATH_66") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_66 == TRUE))
 		{
-			if(shrinehealing == TRUE)
+			if(SHRINEHEALING == TRUE)
 			{
 				ShrineIsObsessed_NW_TROLLAREA_PATH_66 = FALSE;
 				ShrineIsObsessed = FALSE;
@@ -49,7 +49,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 		}
 		else if((Npc_GetDistToWP(hero,"NW_TROLLAREA_PATH_04") < 2000) && (ShrineIsObsessed_NW_TROLLAREA_PATH_04 == TRUE))
 		{
-			if(shrinehealing == TRUE)
+			if(SHRINEHEALING == TRUE)
 			{
 				ShrineIsObsessed_NW_TROLLAREA_PATH_04 = FALSE;
 				ShrineIsObsessed = FALSE;
@@ -57,7 +57,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 		}
 		else if((Npc_GetDistToWP(hero,"SAGITTA") < 2000) && (ShrineIsObsessed_SAGITTA == TRUE))
 		{
-			if(shrinehealing == TRUE)
+			if(SHRINEHEALING == TRUE)
 			{
 				ShrineIsObsessed_SAGITTA = FALSE;
 				ShrineIsObsessed = FALSE;
@@ -65,7 +65,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 		}
 		else if((Npc_GetDistToWP(hero,"NW_BIGMILL_MALAKSVERSTECK_02") < 2000) && (ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 == TRUE))
 		{
-			if(shrinehealing == TRUE)
+			if(SHRINEHEALING == TRUE)
 			{
 				ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 = FALSE;
 				ShrineIsObsessed = FALSE;
@@ -73,7 +73,7 @@ func void C_IsShrineObsessed(var C_Npc slf)
 		}
 		else if((Npc_GetDistToWP(hero,"NW_FARM3_BIGWOOD_02") < 2000) && (ShrineIsObsessed_NW_FARM3_BIGWOOD_02 == TRUE))
 		{
-			if(shrinehealing == TRUE)
+			if(SHRINEHEALING == TRUE)
 			{
 				ShrineIsObsessed_NW_FARM3_BIGWOOD_02 = FALSE;
 				ShrineIsObsessed = FALSE;
@@ -100,7 +100,7 @@ instance PC_PrayShrine_HEALSHRINE(C_Info)
 
 func int PC_PrayShrine_HEALSHRINE_Condition()
 {
-	if((player_mobsi_production == MOBSI_PrayShrine) && Npc_HasItems(hero,ItMi_UltharsHolyWater_Mis) && (ShrineIsObsessed == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && Npc_HasItems(hero,ItMi_UltharsHolyWater_Mis) && (ShrineIsObsessed == TRUE))
 	{
 		return TRUE;
 	};
@@ -112,21 +112,21 @@ func void PC_PrayShrine_HEALSHRINE_Info()
 	var string ShrinesLeft;
 	Wld_PlayEffect("spellFX_HealShrine",hero,hero,0,0,0,FALSE);
 	Snd_Play("MFX_Heal_Cast");
-	shrinehealing = TRUE;
+	SHRINEHEALING = TRUE;
 	C_IsShrineObsessed(self);
-	shrinehealing = FALSE;
+	SHRINEHEALING = FALSE;
 	ShrinesHealed = ShrinesHealed + 1;
 	if(ShrinesHealed < 7)
 	{
 		B_Say(self,self,"$HEALSHRINE");
 		ShrinesLeft = IntToString(7 - ShrinesHealed);
-		ShrinesText = ConcatStrings(ShrinesLeft,PRINT_NUMBERLEFT);
+		ShrinesText = ConcatStrings(ShrinesLeft,PRINT_NumberLeft);
 		AI_PrintScreen(ShrinesText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	}
 	else
 	{
 		B_Say(self,self,"$HEALLASTSHRINE");
-		MIS_Ulthar_HeileSchreine_PAL = LOG_Success;
+		MIS_Ulthar_HeileSchreine_PAL = LOG_SUCCESS;
 	};
 	B_GivePlayerXP(XP_Ambient);
 	b_endproductiondialog();
@@ -144,7 +144,7 @@ func void PrayShrine_S1()
 			Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 		};
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_PrayShrine;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_PrayShrine;
 		AI_ProcessInfos(her);
 	};
 };
@@ -163,7 +163,7 @@ instance PC_PrayShrine_End(C_Info)
 
 func int PC_PrayShrine_End_Condition()
 {
-	if(player_mobsi_production == MOBSI_PrayShrine)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine)
 	{
 		return TRUE;
 	};
@@ -188,7 +188,7 @@ instance PC_PrayShrine_Paladine(C_Info)
 
 func int PC_PrayShrine_Paladine_Condition()
 {
-	if((player_mobsi_production == MOBSI_PrayShrine) && (MIS_MardukBeten == LOG_Running) && (Kapitel == 1))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (MIS_MardukBeten == LOG_Running) && (Kapitel == 1))
 	{
 		return TRUE;
 	};
@@ -216,7 +216,7 @@ instance PC_PrayShrine_Pray(C_Info)
 
 func int PC_PrayShrine_Pray_Condition()
 {
-	if(player_mobsi_production == MOBSI_PrayShrine)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine)
 	{
 		return TRUE;
 	};
@@ -351,7 +351,7 @@ instance PC_PrayShrine_BlessSword(C_Info)
 
 func int PC_PrayShrine_BlessSword_Condition()
 {
-	if((player_mobsi_production == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && ((Npc_HasItems(hero,ItMw_1H_Blessed_01) >= 1) || (Npc_HasItems(hero,ItMw_2H_Blessed_01) >= 1)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && ((Npc_HasItems(hero,ItMw_1H_Blessed_01) >= 1) || (Npc_HasItems(hero,ItMw_2H_Blessed_01) >= 1)))
 	{
 		return TRUE;
 	};
@@ -407,7 +407,7 @@ instance PC_PrayShrine_BlessSword_Final(C_Info)
 
 func int PC_PrayShrine_BlessSword_Final_Condition()
 {
-	if((player_mobsi_production == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && (PAL_KnowsAbout_FINAL_BLESSING == TRUE) && ((Npc_HasItems(hero,ItMw_1H_Blessed_02) >= 1) || (Npc_HasItems(hero,ItMw_2H_Blessed_02) >= 1)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && (PAL_KnowsAbout_FINAL_BLESSING == TRUE) && ((Npc_HasItems(hero,ItMw_1H_Blessed_02) >= 1) || (Npc_HasItems(hero,ItMw_2H_Blessed_02) >= 1)))
 	{
 		return TRUE;
 	};

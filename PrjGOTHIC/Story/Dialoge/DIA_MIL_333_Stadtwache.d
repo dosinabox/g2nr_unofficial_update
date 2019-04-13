@@ -1,7 +1,7 @@
 
 instance DIA_Mil_333_Stadtwache_EXIT(C_Info)
 {
-	npc = MIL_333_Stadtwache;
+	npc = Mil_333_Stadtwache;
 	nr = 999;
 	condition = DIA_Mil_333_Stadtwache_EXIT_Condition;
 	information = DIA_Mil_333_Stadtwache_EXIT_Info;
@@ -27,7 +27,7 @@ var int MIL_333_Personal_AbsolutionLevel;
 
 instance DIA_Mil_333_Stadtwache_FirstWarn(C_Info)
 {
-	npc = MIL_333_Stadtwache;
+	npc = Mil_333_Stadtwache;
 	nr = 1;
 	condition = DIA_Mil_333_Stadtwache_FirstWarn_Condition;
 	information = DIA_Mil_333_Stadtwache_FirstWarn_Info;
@@ -116,7 +116,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 
 instance DIA_Mil_333_Stadtwache_SecondWarn(C_Info)
 {
-	npc = MIL_333_Stadtwache;
+	npc = Mil_333_Stadtwache;
 	nr = 2;
 	condition = DIA_Mil_333_Stadtwache_SecondWarn_Condition;
 	information = DIA_Mil_333_Stadtwache_SecondWarn_Info;
@@ -144,7 +144,7 @@ func void DIA_Mil_333_Stadtwache_SecondWarn_Info()
 
 instance DIA_Mil_333_Stadtwache_Attack(C_Info)
 {
-	npc = MIL_333_Stadtwache;
+	npc = Mil_333_Stadtwache;
 	nr = 3;
 	condition = DIA_Mil_333_Stadtwache_Attack_Condition;
 	information = DIA_Mil_333_Stadtwache_Attack_Info;
@@ -173,7 +173,7 @@ func void DIA_Mil_333_Stadtwache_Attack_Info()
 
 instance DIA_Mil_333_Stadtwache_Bribe(C_Info)
 {
-	npc = MIL_333_Stadtwache;
+	npc = Mil_333_Stadtwache;
 	nr = 5;
 	condition = DIA_Mil_333_Stadtwache_Bribe_Condition;
 	information = DIA_Mil_333_Stadtwache_Bribe_Info;
@@ -216,7 +216,7 @@ func void DIA_Mil_333_Stadtwache_Bribe_Info()
 
 instance DIA_Mil_333_Stadtwache_PERM(C_Info)
 {
-	npc = MIL_333_Stadtwache;
+	npc = Mil_333_Stadtwache;
 	nr = 5;
 	condition = DIA_Mil_333_Stadtwache_PERM_Condition;
 	information = DIA_Mil_333_Stadtwache_PERM_Info;

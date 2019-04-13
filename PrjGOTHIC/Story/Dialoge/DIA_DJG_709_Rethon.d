@@ -92,7 +92,7 @@ func void DIA_Rethon_PALADINE_Info()
 	AI_Output(other,self,"DIA_Rethon_PALADINE_15_00");	//Паладины не против того, что вы здесь?
 	AI_Output(self,other,"DIA_Rethon_PALADINE_12_01");	//Чушь. У них совсем другие проблемы. Большинство из них рады, что вообще живы.
 	AI_Output(self,other,"DIA_Rethon_PALADINE_12_02");	//Боевой дух у них ни к черту. Это начало их конца.
-	AI_Output(self,other,"DIA_Rethon_PALADINE_12_03");	//Я хочу сказать, ты только посмотри на их старые зазубренные клинки, которые они постоянно чинят.
+	AI_Output(self,other,"DIA_Rethon_PALADINE_12_03");	//Я хочу сказать, ты только посмотри на эти их старые зазубренные клинки, которые они постоянно чинят.
 	AI_Output(self,other,"DIA_Rethon_PALADINE_12_04");	//Любой разумный воин давно бы сбежал отсюда.
 };
 

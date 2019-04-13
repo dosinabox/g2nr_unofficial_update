@@ -175,37 +175,37 @@ func int DIA_Grimbald_TEACHHUNTING_Condition()
 };
 
 
-var int dia_grimbald_teachhunting_onetime;
+var int DIA_Grimbald_TEACHHUNTING_OneTime;
 
 func void DIA_Grimbald_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Grimbald_TEACHHUNTING_15_00");	//Научи меня охотиться.
-	if(DIA_GRIMBALD_TEACHHUNTING_ONETIME == FALSE)
+	if(DIA_Grimbald_TEACHHUNTING_OneTime == FALSE)
 	{
 		B_StartOtherRoutine(self,"JagdOver");
-		DIA_GRIMBALD_TEACHHUNTING_ONETIME = TRUE;
+		DIA_Grimbald_TEACHHUNTING_OneTime = TRUE;
 	};
-	if((player_talent_takeanimaltrophy[TROPHY_BFSting] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_BFWing] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Mandibles] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_CrawlerPlate] == FALSE))
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE))
 	{
 		AI_Output(self,other,"DIA_Grimbald_TEACHHUNTING_07_01");	//Что именно ты хочешь узнать?
 		Info_AddChoice(DIA_Grimbald_TEACHHUNTING,Dialog_Back,DIA_Grimbald_TEACHHUNTING_BACK);
-		if(player_talent_takeanimaltrophy[TROPHY_BFSting] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 		{
 			Info_AddChoice(DIA_Grimbald_TEACHHUNTING,B_BuildLearnString("Жало кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFSting)),DIA_Grimbald_TEACHHUNTING_BFSting);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_BFWing] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
 		{
 			Info_AddChoice(DIA_Grimbald_TEACHHUNTING,B_BuildLearnString("Крылья кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFWing)),DIA_Grimbald_TEACHHUNTING_BFWing);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
 		{
 			Info_AddChoice(DIA_Grimbald_TEACHHUNTING,B_BuildLearnString("Удаление когтей",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),DIA_Grimbald_TEACHHUNTING_Claws);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Mandibles] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE)
 		{
 			Info_AddChoice(DIA_Grimbald_TEACHHUNTING,B_BuildLearnString("Удаление мандибул",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Mandibles)),DIA_Grimbald_TEACHHUNTING_Mandibles);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_CrawlerPlate] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE)
 		{
 			Info_AddChoice(DIA_Grimbald_TEACHHUNTING,B_BuildLearnString("Удаление панцирей краулеров",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate)),DIA_Grimbald_TEACHHUNTING_CrawlerPlate);
 		};

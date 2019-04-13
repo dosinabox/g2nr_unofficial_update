@@ -111,7 +111,7 @@ func void DIA_Khaled_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Khaled_WannaJoin_15_00");	//“ы не возражаешь, если € присоединюсь к вам?
 	AI_Output(self,other,"DIA_Khaled_WannaJoin_11_01");	// огда ты пройдешь испытание, € проголосую за теб€.
-	if((MIS_Torlof_HolPachtVonSekob == LOG_Success) || (MIS_Torlof_BengarMilizKlatschen == LOG_Success))
+	if((MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS) || (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS))
 	{
 		AI_Output(other,self,"DIA_Khaled_WannaJoin_15_02");	//я его уже прошел.
 		AI_Output(self,other,"DIA_Khaled_WannaJoin_11_03");	//Ќу, тогда все в пор€дке.

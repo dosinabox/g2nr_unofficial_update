@@ -1,5 +1,5 @@
 
-instance MIL_317_Ruga(Npc_Default)
+instance Mil_317_Ruga(Npc_Default)
 {
 	name[0] = "Руга";
 	guild = GIL_MIL;
@@ -13,7 +13,7 @@ instance MIL_317_Ruga(Npc_Default)
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItKe_City_Tower_03,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_NormalBart03,BodyTex_N,itar_mil_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_NormalBart03,BodyTex_N,ITAR_Mil_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

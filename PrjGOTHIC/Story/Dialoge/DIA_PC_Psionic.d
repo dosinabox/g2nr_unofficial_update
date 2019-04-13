@@ -60,7 +60,7 @@ func void DIA_Lester_Hello_Lester()
 {
 	Info_ClearChoices(DIA_Lester_Hello);
 	AI_Output(other,self,"DIA_Lester_Hello_Lester_15_00");	//Лестер! Как ты оказался здесь?
-	AI_Output(self,other,"DIA_Lester_Hello_Lester_13_01");	//Это был безумный побег. После того, как Барьер рухнул, я бродил там некоторое время в полном смятении.
+	AI_Output(self,other,"DIA_Lester_Hello_Lester_13_01");	//Это был безумный побег. После того, как барьер рухнул, я бродил там некоторое время в полном смятении.
 	AI_Output(self,other,"DIA_Lester_Hello_Lester_13_02");	//Потом я потратил несколько дней, пробираясь через все эти леса, пока, наконец, не оказался в этой долине.
 	AI_Output(self,other,"DIA_Lester_Hello_Lester_13_03");	//Диего, Милтен и Горн все еще в Долине Рудников. По крайней мере, я так думаю.
 };
@@ -80,7 +80,7 @@ func void DIA_Lester_Hello_KnowFourFriends()
 {
 	Info_ClearChoices(DIA_Lester_Hello);
 	AI_Output(other,self,"DIA_Lester_Hello_KnowFourFriends_15_00");	//Конечно. Как они?
-	AI_Output(self,other,"DIA_Lester_Hello_KnowFourFriends_13_01");	//Насколько я знаю, они выжили при разрушении Барьера.
+	AI_Output(self,other,"DIA_Lester_Hello_KnowFourFriends_13_01");	//Насколько я знаю, они выжили при разрушении барьера.
 	AI_Output(self,other,"DIA_Lester_Hello_KnowFourFriends_13_02");	//Но я понятия не имею, где они сейчас - эта троица, вероятно, все еще ошивается в Долине Рудников.
 	AI_Output(self,other,"DIA_Lester_Hello_KnowFourFriends_13_03");	//Если ты наткнешься на них, дай мне знать.
 };
@@ -89,7 +89,7 @@ func void DIA_Lester_Hello_WhoFourFriends()
 {
 	Info_ClearChoices(DIA_Lester_Hello);
 	AI_Output(other,self,"DIA_Lester_Hello_WhoFourFriends_15_00");	//Диего, Милтен и КТО?
-	AI_Output(self,other,"DIA_Lester_Hello_WhoFourFriends_13_01");	//Только не говори мне, что ты ничего этого не помнишь. Фокусирующие камни - тролль - огромная куча руды, принадлежащая магам Воды?
+	AI_Output(self,other,"DIA_Lester_Hello_WhoFourFriends_13_01");	//Только не говори мне, что ты ничего этого не помнишь. Фокусирующие камни - тролль - огромная куча руды, принадлежащая магам воды?
 	AI_Output(other,self,"DIA_Lester_Hello_WhoFourFriends_15_02");	//Я не знаю...
 	AI_Output(self,other,"DIA_Lester_Hello_WhoFourFriends_13_03");	//Память к тебе еще вернется. Мне тоже понадобилось некоторое время, чтобы привести свою голову в порядок.
 };
@@ -184,7 +184,7 @@ func void DIA_Lester_SEND_XARDAS_Info()
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_01");	//Ты не думаешь, что мне показалось? Ты хочешь сказать, что это действительно был...
 	AI_Output(other,self,"DIA_Lester_SEND_XARDAS_15_02");	//... дракон. Да.
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_03");	//Ты опять лезешь в самое пекло. Я прав?
-	AI_Output(other,self,"DIA_Lester_SEND_XARDAS_15_04");	//Ну, не сказал бы, что в самое... пока...
+	AI_Output(other,self,"DIA_Lester_SEND_XARDAS_15_04");	//Не сказал бы, что в самое... пока...
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_05");	//(вздыхает) Хорошо, если это так важно, то я зайду к нему - но не сейчас.
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_06");	//Сейчас я собираюсь отдохнуть. Я все еще измотан после этого бегства из колонии.
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_07");	//Мне кажется, у тебя большие планы. Увидимся позже у Ксардаса.
@@ -267,7 +267,7 @@ instance DIA_Addon_Lester_PASSAGEPLANTSSUCCESS(C_Info)
 
 func int DIA_Addon_Lester_PASSAGEPLANTSSUCCESS_Condition()
 {
-	if(MIS_Addon_Lester_PickForConstantino == LOG_Success)
+	if(MIS_Addon_Lester_PickForConstantino == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -336,18 +336,18 @@ func void DIA_Lester_Sleep_Info()
 };
 
 
-instance DIA_LESTER_KAP3_EXIT(C_Info)
+instance DIA_Lester_KAP3_EXIT(C_Info)
 {
 	npc = PC_Psionic;
 	nr = 999;
-	condition = dia_lester_kap3_exit_condition;
-	information = dia_lester_kap3_exit_info;
+	condition = DIA_Lester_KAP3_EXIT_Condition;
+	information = DIA_Lester_KAP3_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_lester_kap3_exit_condition()
+func int DIA_Lester_KAP3_EXIT_Condition()
 {
 	if(Kapitel == 3)
 	{
@@ -355,7 +355,7 @@ func int dia_lester_kap3_exit_condition()
 	};
 };
 
-func void dia_lester_kap3_exit_info()
+func void DIA_Lester_KAP3_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -385,7 +385,7 @@ func void DIA_Lester_BACKINTOWN_Info()
 	AI_Output(other,self,"DIA_Lester_BACKINTOWN_15_01");	//В это я готов поверить.
 	AI_Output(self,other,"DIA_Lester_BACKINTOWN_13_02");	//После того, как ты ушел, здесь начался ад кромешный.
 	AI_Output(self,other,"DIA_Lester_BACKINTOWN_13_03");	//Поговори с Ксардасом, он ждет тебя!
-	AI_Output(self,other,"DIA_Lester_BACKINTOWN_13_04");	//Он передал мне эту руну для тебя. Она поможет тебе добраться до него побыстрее. Увидимся там.
+	AI_Output(self,other,"DIA_Lester_BACKINTOWN_13_04");	//Передал мне эту руну для тебя. Она поможет тебе добраться до него побыстрее. Увидимся там.
 	CreateInvItems(self,ItRu_TeleportXardas,1);
 	B_GiveInvItems(self,other,ItRu_TeleportXardas,1);
 	AI_StopProcessInfos(self);
@@ -406,7 +406,7 @@ instance DIA_Lester_PERM3(C_Info)
 
 func int DIA_Lester_PERM3_Condition()
 {
-	if((Kapitel >= 3) && (Lester_IsOnBoard != LOG_Success))
+	if((Kapitel >= 3) && (Lester_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -431,7 +431,7 @@ func void DIA_Lester_PERM3_Info()
 				AI_Output(other,self,"DIA_Lester_PERM3_15_05");	//Люди в черных рясах - или Ищущие, как мы, маги, называем их - были последователями сильного архидемона. Тебе это ни о чем не говорит?
 				AI_Output(self,other,"DIA_Lester_PERM3_13_06");	//Ммм. Нет. Если только ты не хочешь сказать мне, что...
 				AI_Output(other,self,"DIA_Lester_PERM3_15_07");	//Да, именно. Ищущие были последователями Спящего. Безумцы из секты отступников из Болотного Лагеря.
-				AI_Output(other,self,"DIA_Lester_PERM3_15_08");	//Это твои люди, Лестер. Бывшее Братство Спящего. Теперь они просто бездушные приспешники Зла.
+				AI_Output(other,self,"DIA_Lester_PERM3_15_08");	//Это твои люди, Лестер. Бывшее Братство Спящего. Теперь они просто бездушные приспешники зла.
 				AI_Output(self,other,"DIA_Lester_PERM3_13_09");	//У меня были подозрения, но я надеялся, что это не так. Ты хочешь сказать, он вернулся? Спящий опять здесь?
 				AI_Output(other,self,"DIA_Lester_PERM3_15_10");	//Хороший вопрос. Я знаю наверняка, только что я должен остановить Ищущих до того, как они станут слишком сильны.
 				AI_Output(self,other,"DIA_Lester_PERM3_13_11");	//Мне это не нравится, но я думаю, ты прав. Мне очень жаль, но с моей головой творится такое...
@@ -441,14 +441,14 @@ func void DIA_Lester_PERM3_Info()
 			};
 		};
 	}
-	else if(Lester_IsOnBoard == LOG_Success)
+	else if(Lester_IsOnBoard == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lester_PERM3_13_12");	//Головные боли все еще мучают меня, но я надеюсь, эта проблема скоро будет решена.
 		AI_Output(self,other,"DIA_Lester_PERM3_13_13");	//Так или иначе.
 	}
 	else if(hero.guild == GIL_DJG)
 	{
-		AI_Output(self,other,"DIA_Lester_PERM3_13_14");	//Мои головные боли стали просто невыносимыми. А теперь еще эти люди-ящеры постоянно нападают на меня. Я задаю себе вопрос - откуда они все взялись?
+		AI_Output(self,other,"DIA_Lester_PERM3_13_14");	//Мои головные боли стали просто невыносимыми. А теперь еще эти люди-ящеры постоянно нападают на меня. Я задаю себе вопрос - откуда они все взялись.
 	}
 	else
 	{
@@ -458,18 +458,18 @@ func void DIA_Lester_PERM3_Info()
 };
 
 
-instance DIA_LESTER_KAP4_EXIT(C_Info)
+instance DIA_Lester_KAP4_EXIT(C_Info)
 {
 	npc = PC_Psionic;
 	nr = 999;
-	condition = dia_lester_kap4_exit_condition;
-	information = dia_lester_kap4_exit_info;
+	condition = DIA_Lester_KAP4_EXIT_Condition;
+	information = DIA_Lester_KAP4_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_lester_kap4_exit_condition()
+func int DIA_Lester_KAP4_EXIT_Condition()
 {
 	if(Kapitel == 4)
 	{
@@ -477,24 +477,24 @@ func int dia_lester_kap4_exit_condition()
 	};
 };
 
-func void dia_lester_kap4_exit_info()
+func void DIA_Lester_KAP4_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_LESTER_KAP5_EXIT(C_Info)
+instance DIA_Lester_KAP5_EXIT(C_Info)
 {
 	npc = PC_Psionic;
 	nr = 999;
-	condition = dia_lester_kap5_exit_condition;
-	information = dia_lester_kap5_exit_info;
+	condition = DIA_Lester_KAP5_EXIT_Condition;
+	information = DIA_Lester_KAP5_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_lester_kap5_exit_condition()
+func int DIA_Lester_KAP5_EXIT_Condition()
 {
 	if(Kapitel == 5)
 	{
@@ -502,7 +502,7 @@ func int dia_lester_kap5_exit_condition()
 	};
 };
 
-func void dia_lester_kap5_exit_info()
+func void DIA_Lester_KAP5_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -535,7 +535,7 @@ func void DIA_Lester_XARDASWEG_Info()
 	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_04");	//Он не сказал. Он только попросил меня передать тебе это письмо.
 	CreateInvItems(self,ItWr_XardasLetterToOpenBook_MIS,1);
 	B_GiveInvItems(self,other,ItWr_XardasLetterToOpenBook_MIS,1);
-	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_05");	//Я прочел его. Извини. Мне было просто любопытно.
+	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_05");	//Я прочел его. Извини. Мне просто было любопытно.
 	AI_Output(other,self,"DIA_Lester_XARDASWEG_15_06");	//И?
 	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_07");	//Не знаю, я ничего не понял. Но мне ясно одно: Ксардаса мы теперь увидим нескоро.
 	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_08");	//Я думаю, здесь стало слишком жарко для него, и он направился в горы.
@@ -566,13 +566,13 @@ func void DIA_Lester_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_00");	//Я узнал, где скрывается враг.
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_01");	//Не спрашивай меня, почему я так думаю, но мне кажется, я должен отправиться с тобой.
-	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_02");	//Что ты хочешь сказать этим?
+	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_02");	//Что ты хочешь этим сказать?
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_03");	//Я не могу объяснить этого, но я знаю, что смогу получить ответ, только если отправлюсь с тобой.
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_04");	//Извини, но корабль уже полон.
-		AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_05");	//Может, так и нужно. Может, моя судьба ничего не значит по сравнению с событиями, что ждут нас впереди.
-		AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_06");	//Ты знаешь, что тебе нужно делать. Сражайся со Злом - а обо мне не волнуйся.
+		AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_05");	//Может так и нужно. Может, моя судьба ничего не значит по сравнению с событиями, что ждут нас впереди.
+		AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_06");	//Ты знаешь, что тебе нужно делать. Сражайся со злом - а обо мне не волнуйся.
 		AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_07");	//Моя судьба не важна.
 	}
 	else
@@ -589,7 +589,8 @@ func void DIA_Lester_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_Yes_15_01");	//Встретимся в гавани. Я приду туда, когда буду готов.
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_Yes_13_02");	//Поторопись. Времени у нас мало.
 	self.flags = NPC_FLAG_IMMORTAL;
-	Lester_IsOnBoard = LOG_Success;
+	Lester_IsOnBoard = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Crewmember_Success);
 	Crewmember_Count = Crewmember_Count + 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
@@ -626,7 +627,7 @@ instance DIA_Lester_LeaveMyShip(C_Info)
 
 func int DIA_Lester_LeaveMyShip_Condition()
 {
-	if((Lester_IsOnBoard == LOG_Success) && (MIS_ReadyforChapter6 == FALSE))
+	if((Lester_IsOnBoard == LOG_SUCCESS) && (MIS_ReadyforChapter6 == FALSE))
 	{
 		return TRUE;
 	};
@@ -656,7 +657,7 @@ instance DIA_Lester_StillNeedYou(C_Info)
 
 func int DIA_Lester_StillNeedYou_Condition()
 {
-	if(((Lester_IsOnBoard == LOG_OBSOLETE) || (Lester_IsOnBoard == LOG_Failed)) && (Crewmember_Count < Max_Crew))
+	if(((Lester_IsOnBoard == LOG_OBSOLETE) || (Lester_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
 		return TRUE;
 	};
@@ -670,7 +671,7 @@ func void DIA_Lester_StillNeedYou_Info()
 		AI_Output(self,other,"DIA_Lester_StillNeedYou_13_01");	//Я знал это! Мы будем сражаться рука об руку. Как в старые времена!
 		AI_Output(self,other,"DIA_Lester_StillNeedYou_13_02");	//Берегись, Зло! Мы свернем тебе шею!
 		self.flags = NPC_FLAG_IMMORTAL;
-		Lester_IsOnBoard = LOG_Success;
+		Lester_IsOnBoard = LOG_SUCCESS;
 		Crewmember_Count = Crewmember_Count + 1;
 		if(MIS_ReadyforChapter6 == TRUE)
 		{
@@ -689,18 +690,18 @@ func void DIA_Lester_StillNeedYou_Info()
 };
 
 
-instance DIA_LESTER_KAP6_EXIT(C_Info)
+instance DIA_Lester_KAP6_EXIT(C_Info)
 {
 	npc = PC_Psionic;
 	nr = 999;
-	condition = dia_lester_kap6_exit_condition;
-	information = dia_lester_kap6_exit_info;
+	condition = DIA_Lester_KAP6_EXIT_Condition;
+	information = DIA_Lester_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_lester_kap6_exit_condition()
+func int DIA_Lester_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -708,7 +709,7 @@ func int dia_lester_kap6_exit_condition()
 	};
 };
 
-func void dia_lester_kap6_exit_info()
+func void DIA_Lester_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

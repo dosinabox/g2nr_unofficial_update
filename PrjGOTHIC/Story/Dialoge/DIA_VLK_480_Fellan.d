@@ -175,7 +175,7 @@ func void DIA_Fellan_Stop_Gold()
 func void DIA_Fellan_Stop_Just()
 {
 	AI_Output(other,self,"DIA_Fellan_Stop_Just_15_00");	//Просто перестань молотить. Хорошо?
-	AI_Output(self,other,"DIA_Fellan_Stop_Just_06_01");	//Не приставай ко мне, ладно?
+	AI_Output(self,other,"DIA_Fellan_Stop_Just_06_01");	//Не приставай кол мне, ладно?
 };
 
 
@@ -207,7 +207,7 @@ func void DIA_Fellan_klar_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Fellan_klar_06_02");	//Состояние крыши ухудшается прямо на глазах. В следующий дождь вода в доме поднимется до пояса. И в этом будешь виноват ты!
+		AI_Output(self,other,"DIA_Fellan_klar_06_02");	//Состояние крыши ухудшается прямо на глазах. В следующий дождь, вода в доме поднимется до пояса. И в этом будешь виноват ты!
 	};
 	AI_StopProcessInfos(self);
 };

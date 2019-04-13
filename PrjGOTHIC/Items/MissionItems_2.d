@@ -122,7 +122,7 @@ instance ITKE_ErzBaronFlur(C_Item)
 	material = MAT_METAL;
 	description = "От первой двери.";
 	text[2] = "На нем выгравировано имя.";
-	text[3] = "Гомеш";
+	text[3] = "Гомес";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -137,7 +137,7 @@ instance ITKE_ErzBaronRaum(C_Item)
 	material = MAT_METAL;
 	description = "От второй двери.";
 	text[2] = "На нем выгравировано имя.";
-	text[3] = "Гомеш";
+	text[3] = "Гомес";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -281,12 +281,12 @@ instance ItKe_Bromor(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ от комнаты";
-	text[1] = "отеля.";
+	text[1] = "в барделе.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
-instance ItKe_Rune_MIS(C_Item)
+instance ITKE_RUNE_MIS(C_Item)
 {
 	name = "Ключ";
 	mainflag = ITEM_KAT_NONE;
@@ -541,7 +541,7 @@ instance ItRi_Tengron(C_Item)
 	on_unequip = UnEquip_ItRi_Tengron;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = NAME_ADDON_TENGRONSRING;
+	description = NAME_ADDON_TengronsRing;
 	text[2] = NAME_Bonus_HP;
 	count[2] = Ri_Hp;
 	text[5] = NAME_Value;

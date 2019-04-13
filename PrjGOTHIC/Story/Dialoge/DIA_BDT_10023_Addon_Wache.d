@@ -43,7 +43,7 @@ func int DIA_Addon_10023_Wache_Hi_Condition()
 func void DIA_Addon_10023_Wache_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_10023_Wache_Hi_11_00");	//Ёй, куда ты идешь? “ы хочешь попасть в тот проход?
-	AI_Output(other,self,"DIA_Addon_10023_Wache_Hi_15_01");	//Ќу да, а почему бы и нет?
+	AI_Output(other,self,"DIA_Addon_10023_Wache_Hi_15_01");	//Ќу да, а почему бы нет?
 	AI_Output(self,other,"DIA_Addon_10023_Wache_Hi_11_02");	//“ам еще группа рабов. я не возражаю, чтобы ты туда шел, но не надо их избивать до такого состо€ни€, чтобы они не могли работать.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_Hi_11_03");	//¬ конце концов, мы не хотим, чтобы они просто так сидели. ќни должны добывать золото.
 	AI_Output(other,self,"DIA_Addon_10023_Wache_Hi_15_04");	//ясно. ј кто это приказал?
@@ -138,7 +138,7 @@ func void DIA_Addon_10023_Wache_go_Blood()
 		else
 		{
 			AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_07");	//я же тебе сказал...
-			AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_08");	//... хватит, дальше € знаю.
+			AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_08");	//...хватит, дальше € знаю.
 		};
 		Info_ClearChoices(DIA_Addon_10023_Wache_go);
 	};
@@ -148,7 +148,7 @@ func void DIA_Addon_10023_Wache_go_Thorus()
 {
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Thorus_15_00");	//я поговорил с “орусом. ќн приказал отпустить рабов.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Thorus_11_01");	//Ќу, если “орус приказал. Ќо € спрашиваю себ€, зачем ему это могло понадобитьс€...
-	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Thorus_15_02");	//... кажетс€, тебе не плат€т за то, чтобы ты задавал вопросы.
+	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Thorus_15_02");	//...кажетс€, тебе не плат€т за то, чтобы ты задавал вопросы.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Thorus_11_03");	//Ћадно, ладно. я теперь здесь, как пон€тно, не нужен, так что € пойду съем кусочек м€са.
 	Ready_Togo = TRUE;
 	AI_StopProcessInfos(self);

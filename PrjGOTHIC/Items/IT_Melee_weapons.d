@@ -1361,12 +1361,12 @@ instance ItMw_1H_Special_01(C_Item)
 	cond_value[2] = Condition_Special_1H_1;
 	visual = "ItMw_045_1h_Sword_smith_02.3DS";
 	description = name;
-	text[0] = NAME_Damage;
-	count[0] = damageTotal;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
 	count[3] = cond_value[2];
-	text[2] = NAME_ADDON_BONUS_1H;
-	count[2] = Waffenbonus_10;
+	text[4] = NAME_ADDON_BONUS_1H;
+	count[4] = Waffenbonus_10;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1391,8 +1391,8 @@ instance ItMw_2H_Special_01(C_Item)
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
 	count[3] = cond_value[2];
-	text[2] = NAME_ADDON_BONUS_2H;
-	count[2] = Waffenbonus_10;
+	text[4] = NAME_ADDON_BONUS_2H;
+	count[4] = Waffenbonus_10;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

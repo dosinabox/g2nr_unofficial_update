@@ -79,7 +79,7 @@ func void PrayIdol_S1()
 	{
 		Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_PRAYIDOL;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_PRAYIDOL;
 		AI_ProcessInfos(her);
 	};
 };
@@ -98,7 +98,7 @@ instance PC_PrayIdol_End(C_Info)
 
 func int PC_PrayIdol_End_Condition()
 {
-	if(player_mobsi_production == MOBSI_PRAYIDOL)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL)
 	{
 		return TRUE;
 	};
@@ -123,7 +123,7 @@ instance PC_PrayIdol_PrayIdol(C_Info)
 
 func int PC_PrayIdol_PrayIdol_Condition()
 {
-	if(player_mobsi_production == MOBSI_PRAYIDOL)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL)
 	{
 		return TRUE;
 	};
@@ -251,7 +251,7 @@ instance PC_PrayShrine_UPGRATEBELIARSWEAPON(C_Info)
 
 func int PC_PrayShrine_UPGRATEBELIARSWEAPON_Condition()
 {
-	if((player_mobsi_production == MOBSI_PRAYIDOL) && (C_ScCanUpgrateBeliarsWeapon() == TRUE) && (C_ScHasBeliarsWeapon() == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL) && (C_ScCanUpgrateBeliarsWeapon() == TRUE) && (C_ScHasBeliarsWeapon() == TRUE))
 	{
 		return TRUE;
 	};

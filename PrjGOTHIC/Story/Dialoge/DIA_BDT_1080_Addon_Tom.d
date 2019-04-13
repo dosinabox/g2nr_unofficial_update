@@ -79,7 +79,7 @@ func void DIA_Addon_Tom_HI_Info()
 	AI_Output(other,self,"DIA_Addon_Tom_HI_15_02");	//Что не так?
 	AI_Output(self,other,"DIA_Addon_Tom_HI_11_03");	//У меня были хорошие отношения с пиратами, понимаешь?
 	AI_Output(self,other,"DIA_Addon_Tom_HI_11_04");	//Я всегда встречал ребят возле лагеря и торговал с ними.
-	AI_Output(self,other,"DIA_Addon_Tom_HI_11_05");	//Я отоваривал половину лагеря! 'Том, принеси мне то, Том, принеси мне это'.
+	AI_Output(self,other,"DIA_Addon_Tom_HI_11_05");	//Я отоварил половину лагеря! 'Том, принеси мне то, Том, принеси мне это'.
 	AI_Output(self,other,"DIA_Addon_Tom_HI_11_06");	//А потом вмешался этот ублюдок Эстебан.
 };
 
@@ -208,7 +208,7 @@ func void DIA_Addon_Tom_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Tom_PERM_11_03");	//А иначе бы я не сидел тут и считал камни...
+		AI_Output(self,other,"DIA_Addon_Tom_PERM_11_03");	//А иначе бы я сидел тут и считал камни...
 	};
 };
 

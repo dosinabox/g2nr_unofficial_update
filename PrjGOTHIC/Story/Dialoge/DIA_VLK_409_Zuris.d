@@ -150,7 +150,7 @@ func void DIA_Zuris_WAREZ_Info()
 	AI_Output(other,self,"DIA_Zuris_WAREZ_15_00");	//Покажи мне свои товары.
 	if((Zuris_einmal == FALSE) && !Npc_KnowsInfo(other,DIA_Zuris_Potions))
 	{
-		AI_Output(self,other,"DIA_Zuris_GREET_14_02");	//Я только что получил несколько новых зелий. Мой гость, мастер Дарон, маг Огня, принес мне их из монастыря.
+		AI_Output(self,other,"DIA_Zuris_GREET_14_02");	//Я только что получил несколько новых зелий. Мой гость, Мастер Дарон, Маг Огня, принес мне их из монастыря.
 		Zuris_einmal = TRUE;
 	};
 };
@@ -300,7 +300,7 @@ func int DIA_Zuris_Kloster_Condition()
 func void DIA_Zuris_Kloster_Info()
 {
 	AI_Output(other,self,"DIA_Zuris_Kloster_14_00");	//Расскажи мне о монастыре.
-	AI_Output(self,other,"DIA_Zuris_Kloster_14_01");	//Тебе лучше поговорить об этом с самим мастером Дароном. Он знает больше меня.
+	AI_Output(self,other,"DIA_Zuris_Kloster_14_01");	//Тебе лучше поговорить об этом с самим Мастером Дароном. Он знает больше меня.
 };
 
 

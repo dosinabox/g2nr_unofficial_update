@@ -1,7 +1,7 @@
 
 instance DIA_Alwin_EXIT(C_Info)
 {
-	npc = VLK_424_Alwin;
+	npc = Vlk_424_Alwin;
 	nr = 999;
 	condition = DIA_Alwin_EXIT_Condition;
 	information = DIA_Alwin_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Alwin_EXIT_Info()
 
 instance DIA_Alwin_PICKPOCKET(C_Info)
 {
-	npc = VLK_424_Alwin;
+	npc = Vlk_424_Alwin;
 	nr = 900;
 	condition = DIA_Alwin_PICKPOCKET_Condition;
 	information = DIA_Alwin_PICKPOCKET_Info;
@@ -58,7 +58,7 @@ func void DIA_Alwin_PICKPOCKET_BACK()
 
 instance DIA_Alwin_Sheep(C_Info)
 {
-	npc = VLK_424_Alwin;
+	npc = Vlk_424_Alwin;
 	nr = 3;
 	condition = DIA_Alwin_Sheep_Condition;
 	information = DIA_Alwin_Sheep_Info;
@@ -82,7 +82,7 @@ func void DIA_Alwin_Sheep_Info()
 
 instance DIA_Alwin_Fellan(C_Info)
 {
-	npc = VLK_424_Alwin;
+	npc = Vlk_424_Alwin;
 	nr = 2;
 	condition = DIA_Alwin_Fellan_Condition;
 	information = DIA_Alwin_Fellan_Info;
@@ -110,7 +110,7 @@ func void DIA_Alwin_Fellan_Info()
 
 instance DIA_Alwin_FellanRunning(C_Info)
 {
-	npc = VLK_424_Alwin;
+	npc = Vlk_424_Alwin;
 	nr = 2;
 	condition = DIA_Alwin_FellanRunning_Condition;
 	information = DIA_Alwin_FellanRunning_Info;
@@ -129,7 +129,7 @@ func int DIA_Alwin_FellanRunning_Condition()
 
 func void DIA_Alwin_FellanRunning_Info()
 {
-	AI_Output(other,self,"DIA_Alwin_FellanRunning_15_00");	//Я могу поговорить с Фелланом...
+	AI_Output(other,self,"DIA_Alwin_FellanRunning_15_00");	//Я могу поговорить с Фелланом ...
 	AI_Output(self,other,"DIA_Alwin_FellanRunning_12_01");	//Ты хочешь помочь мне? А зачем тебе это?
 	AI_Output(other,self,"DIA_Alwin_FellanRunning_15_02");	//Ты скажи мне.
 	AI_Output(self,other,"DIA_Alwin_FellanRunning_12_03");	//Ох, вот ты как! Хорошо - если ты заставишь его перестать молотить, я заплачу тебе 25 золотых монет.
@@ -148,22 +148,22 @@ func void DIA_Alwin_FellanRunning_Info()
 
 func void DIA_Alwin_FellanRunning_Ok()
 {
-	AI_Output(other,self,"DIA_Alwin_FellanRunning_Ok_15_00");	//Я посмотрю, что можно сделать...
+	AI_Output(other,self,"DIA_Alwin_FellanRunning_Ok_15_00");	//Я посмотрю, что можно сделать ...
 	AI_Output(self,other,"DIA_Alwin_FellanRunning_Ok_12_01");	//Подумай об этом. И помни, я заплачу тебе 25 золотых.
 	Info_ClearChoices(DIA_Alwin_FellanRunning);
 };
 
 func void DIA_Alwin_FellanRunning_Problems()
 {
-	AI_Output(other,self,"DIA_Alwin_FellanRunning_Problems_15_00");	//Если я начну бить его, у меня будут проблемы с ополчением...
-	AI_Output(self,other,"DIA_Alwin_Add_12_00");	//Здесь, в порту, никто не обращает внимания на драки...
+	AI_Output(other,self,"DIA_Alwin_FellanRunning_Problems_15_00");	//Если я начну бить его, у меня будут проблемы с ополчением ...
+	AI_Output(self,other,"DIA_Alwin_Add_12_00");	//Здесь, в порту, никто не обращает внимания на драки ...
 	AI_Output(self,other,"DIA_Alwin_Add_12_01");	//Но если ты украдешь что-нибудь, или убьешь овцу, у тебя будут большие проблемы.
 };
 
 
 instance DIA_Alwin_FellanSuccess(C_Info)
 {
-	npc = VLK_424_Alwin;
+	npc = Vlk_424_Alwin;
 	nr = 4;
 	condition = DIA_Alwin_FellanSuccess_Condition;
 	information = DIA_Alwin_FellanSuccess_Info;
@@ -188,19 +188,19 @@ func void DIA_Alwin_FellanSuccess_Info()
 	{
 		AI_Output(self,other,"DIA_Alwin_FellanSuccess_12_02");	//Ты оказал мне большую услугу. Знаешь что, я дам тебе 30 золотых монет.
 		B_GiveInvItems(self,other,ItMi_Gold,30);
-		MIS_AttackFellan = LOG_Success;
+		MIS_AttackFellan = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 	}
 	else
 	{
-		MIS_AttackFellan = LOG_Failed;
+		MIS_AttackFellan = LOG_FAILED;
 	};
 };
 
 
 instance DIA_Alwin_Endlos(C_Info)
 {
-	npc = VLK_424_Alwin;
+	npc = Vlk_424_Alwin;
 	nr = 8;
 	condition = DIA_Alwin_Endlos_Condition;
 	information = DIA_Alwin_Endlos_Info;
@@ -220,7 +220,7 @@ func int DIA_Alwin_Endlos_Condition()
 func void DIA_Alwin_Endlos_Info()
 {
 	AI_Output(other,self,"DIA_Alwin_Endlos_15_00");	//Как твои овцы?
-	if((MIS_AttackFellan != LOG_Success) && (Npc_IsDead(Fellan) == FALSE))
+	if((MIS_AttackFellan != LOG_SUCCESS) && (Npc_IsDead(Fellan) == FALSE))
 	{
 		AI_Output(self,other,"DIA_Alwin_Endlos_12_01");	//Стук этого Феллана сведет их с ума. Однажды они все разбегутся.
 	}
@@ -230,7 +230,7 @@ func void DIA_Alwin_Endlos_Info()
 	}
 	else if(Kapitel == 3)
 	{
-		if(MIS_RescueBennet != LOG_Success)
+		if(MIS_RescueBennet != LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Alwin_Endlos_12_03");	//Я, пожалуй, забью одну из них. На мясо для последней трапезы!
 			AI_Output(other,self,"DIA_Alwin_Endlos_15_04");	//Для кого?
@@ -251,7 +251,7 @@ func void DIA_Alwin_Endlos_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Alwin_Endlos_12_12");	//Я говорю им - прощайте. Лорд Хаген приказал, чтобы все овцы пошли на провиант для его армии.
+		AI_Output(self,other,"DIA_Alwin_Endlos_12_12");	//Я говорю им - прощайте. Лорд Хаген приказал, чтобы вес овцы пошли на провиант для его армии.
 		AI_Output(self,other,"DIA_Alwin_Endlos_12_13");	//Ну, теперь я хотя бы буду проводить больше времени со своей женой.
 	};
 };

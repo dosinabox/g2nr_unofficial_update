@@ -7,11 +7,11 @@ const int Value_SchnellerHering = 30;
 const int Value_LousHammer = 30;
 const int Mana_LousHammer = 1;
 const int Value_SchlafHammer = 60;
-const int VALUE_FIRESTEW = 180;
+const int Value_FireStew = 180;
 const int STR_FireStew = 1;
 const int HP_FireStew = 5;
 const int STR_MeatSoup = 1;
-const int VALUE_SHELLFLESH = 60;
+const int Value_Shellflesh = 60;
 const int HP_Shellflesh = 20;
 
 instance ItFo_Addon_Shellflesh(C_Item)
@@ -19,7 +19,7 @@ instance ItFo_Addon_Shellflesh(C_Item)
 	name = "Мясо моллюска";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = VALUE_SHELLFLESH;
+	value = Value_Shellflesh;
 	visual = "ItAt_Meatbugflesh.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOODHUGE";
@@ -197,7 +197,7 @@ instance ItFo_Addon_FireStew(C_Item)
 	name = "Пламенная нарезка";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = VALUE_FIRESTEW;
+	value = Value_FireStew;
 	visual = "ItFo_Stew.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -206,7 +206,7 @@ instance ItFo_Addon_FireStew(C_Item)
 	text[1] = NAME_Bonus_Str;
 	count[1] = STR_FireStew;
 	text[5] = NAME_Value;
-	count[5] = VALUE_FIRESTEW;
+	count[5] = Value_FireStew;
 };
 
 
@@ -223,7 +223,7 @@ instance ItFo_Addon_Meatsoup(C_Item)
 	name = "Мясная похлебка";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = VALUE_FISHSOUP;
+	value = Value_FishSoup;
 	visual = "ItFo_FishSoup.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -232,7 +232,7 @@ instance ItFo_Addon_Meatsoup(C_Item)
 	text[1] = NAME_Bonus_Str;
 	count[1] = STR_MeatSoup;
 	text[5] = NAME_Value;
-	count[5] = VALUE_FISHSOUP;
+	count[5] = Value_FishSoup;
 };
 
 

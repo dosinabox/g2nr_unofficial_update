@@ -141,7 +141,7 @@ func int DIA_Randolph_Geschichte_Condition()
 func void DIA_Randolph_Geschichte_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_Geschichte_15_00");	//Ты ведь нездешний, да?
-	AI_Output(self,other,"DIA_Randolph_Geschichte_06_01");	//Я пришел с Южных островов. Когда-то ходили глашатаи и объявляли, что на Хоринисе нужны люди, чтобы добывать магическую руду.
+	AI_Output(self,other,"DIA_Randolph_Geschichte_06_01");	//Я пришел с южных островов. Когда-то ходили глашатаи и объявляли, что на Хоринисе нужны люди, чтобы добывать магическую руду.
 	AI_Output(self,other,"DIA_Randolph_Geschichte_06_02");	//Но когда я приехал сюда, они возвели этот огромный барьер. И мне расхотелось идти туда. Поэтому я начал работать в порту.
 	AI_Output(self,other,"DIA_Randolph_Geschichte_06_03");	//Затем сюда перестали заплывать корабли, и я пошел работать на Акила. У меня была работа и похуже, сейчас еще ничего.
 };
@@ -317,7 +317,7 @@ instance DIA_Randolph_WETTKAMPFZUENDE(C_Info)
 
 func int DIA_Randolph_WETTKAMPFZUENDE_Condition()
 {
-	if((MIS_Rukhar_Wettkampf == LOG_Success) && (Kapitel < 4))
+	if((MIS_Rukhar_Wettkampf == LOG_SUCCESS) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -357,7 +357,7 @@ instance DIA_Randolph_PERM(C_Info)
 	condition = DIA_Randolph_PERM_Condition;
 	information = DIA_Randolph_PERM_Info;
 	permanent = TRUE;
-	description = "Ты из ума выжил?";
+	description = "Ты в порядке?";
 };
 
 
@@ -370,7 +370,7 @@ func int DIA_Randolph_PERM_Condition()
 };
 
 
-var int dia_randolph_perm_gotmoney;
+var int DIA_Randolph_PERM_GotMoney;
 
 func void DIA_Randolph_PERM_Info()
 {
@@ -381,16 +381,16 @@ func void DIA_Randolph_PERM_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Randolph_PERM_15_00");	//Ты в порядке?
-		if(((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL)) && (MIS_HealRandolph != LOG_Success))
+		if(((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL)) && (MIS_HealRandolph != LOG_SUCCESS))
 		{
-			if((DIA_Sagitta_HEALRANDOLPH_GotOne == FALSE) && (DIA_Sagitta_HEALRANDOLPH_KnowsPrice == TRUE) && (DIA_RANDOLPH_PERM_GOTMONEY == FALSE))
+			if((DIA_Sagitta_HEALRANDOLPH_GotOne == FALSE) && (DIA_Sagitta_HEALRANDOLPH_KnowsPrice == TRUE) && (DIA_Randolph_PERM_GotMoney == FALSE))
 			{
 				AI_Output(other,self,"DIA_Randolph_PERM_15_01");	//Ты послал меня, не дав денег, и не предупредил, что это лекарство такое дорогое?!
 				AI_Output(other,self,"DIA_Randolph_PERM_15_02");	//Сагитта хочет 300 золотых за него.
 				AI_Output(self,other,"DIA_Randolph_PERM_06_03");	//Я могу дать тебе только 150 золотых. Пожалуйста. Ты должен помочь мне. Пожалуйста.
 				CreateInvItems(self,ItMi_Gold,150);
 				B_GiveInvItems(self,other,ItMi_Gold,150);
-				DIA_RANDOLPH_PERM_GOTMONEY = TRUE;
+				DIA_Randolph_PERM_GotMoney = TRUE;
 			}
 			else
 			{
@@ -400,7 +400,7 @@ func void DIA_Randolph_PERM_Info()
 			};
 			Log_CreateTopic(TOPIC_HealRandolph,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_HealRandolph,LOG_Running);
-			B_LogEntry(TOPIC_HealRandolph,"Рендольф, похоже, решил бросить пить и послал меня к Саггите за лекарством от похмельного синдрома.");
+			B_LogEntry(TOPIC_HealRandolph,"Рендольф, похоже, решил бросить пить и послал меня к Сагитте за лекарством от похмельного синдрома.");
 			MIS_HealRandolph = LOG_Running;
 		}
 		else
@@ -433,7 +433,7 @@ func int DIA_Randolph_Heilung_Condition()
 func void DIA_Randolph_Heilung_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_Heilung_15_00");	//Спиртное ударило тебе в голову, ха?
-	AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только не в этой жизни. Ты можешь мне поверить, парень.
+	AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только ни в этой жизни. Ты можешь мне поверить, парень.
 	B_NpcClearObsessionByDMT(self);
 };
 
@@ -466,7 +466,7 @@ func void DIA_Randolph_SAGITTAHEAL_Info()
 	};
 	AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_01");	//Ох! Спасибо, друг. Теперь я смогу хотя бы поспать.
 	AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_02");	//Чем я могу отплатить тебе за это?
-	if(DIA_RANDOLPH_PERM_GOTMONEY == FALSE)
+	if(DIA_Randolph_PERM_GotMoney == FALSE)
 	{
 		AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_03");	//Я думаю, эти несколько монет могут только помочь мне спасти лицо. Но боюсь, это все, что у меня есть.
 		CreateInvItems(self,ItMi_Gold,150);
@@ -477,7 +477,7 @@ func void DIA_Randolph_SAGITTAHEAL_Info()
 		AI_Output(other,self,"DIA_Randolph_SAGITTAHEAL_15_04");	//Я заплатил за тебя кучу денег. Твои жалкие несколько монет никак не могут компенсировать мои затраты.
 		AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_05");	//Ну, в таком случае мне повезло, что я встретил такого великодушного паладина, тебе так не кажется?
 	};
-	MIS_HealRandolph = LOG_Success;
+	MIS_HealRandolph = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HealRandolph);
 	B_NpcClearObsessionByDMT(self);
 };

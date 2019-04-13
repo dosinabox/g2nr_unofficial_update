@@ -13,7 +13,7 @@ instance VLK_4120_Bilgot(Npc_Default)
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItPo_Health_02,4);
 	CreateInvItems(self,ItMi_OldCoin,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Weak_Ulf_Wohlers,BodyTex_P,itar_mil_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Weak_Ulf_Wohlers,BodyTex_P,ITAR_Mil_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

@@ -228,16 +228,16 @@ func int DIA_Regis_PERM_Condition()
 func void DIA_Regis_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Regis_PERM_15_00");	//Слышал что-нибудь интересное?
-	if((Regis_Bogendieb == FALSE) && (MIS_Bosper_Bogen != LOG_Success))
+	if((Regis_Bogendieb == FALSE) && (MIS_Bosper_Bogen != LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Regis_PERM_13_01");	//Можно сказать и так.
 		AI_Output(self,other,"DIA_Regis_PERM_13_02");	//Говорят, Боспер, мастер-лучник, был ограблен. Причем самым наглым образом!
 		AI_Output(self,other,"DIA_Regis_PERM_13_03");	//Вор вломился в его лавку средь бела дня и схватил лук.
-		AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!'. Но вор оказался очень проворным.
+		AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!' Но вор оказался очень проворным.
 		MIS_Bosper_Bogen = LOG_Running;
 		Regis_Bogendieb = TRUE;
 	}
-	else if((MIS_Bosper_Bogen == LOG_Success) && (Regis_Bogendieb != 2))
+	else if((MIS_Bosper_Bogen == LOG_SUCCESS) && (Regis_Bogendieb != 2))
 	{
 		AI_Output(self,other,"DIA_Regis_PERM_13_05");	//А потом какой-то честный человек нашел этот лук и вернул Босперу.
 		AI_Output(self,other,"DIA_Regis_PERM_13_06");	//Это странно - в наше время обычно никому нет дела до других, но этот парень сам зашел к нему и вернул лук.
@@ -247,7 +247,7 @@ func void DIA_Regis_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Regis_PERM_13_07");	//Пока все тихо. Но я думаю, что когда придут орки, мы это заметим...
 	}
-	else if(MIS_RescueBennet == LOG_Success)
+	else if(MIS_RescueBennet == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Regis_PERM_13_08");	//Выяснилось, что этот наемник невиновен, и им пришлось отпустить его.
 		AI_Output(self,other,"DIA_Regis_PERM_13_09");	//Лорд Хаген, должно быть, вне себя от ярости.

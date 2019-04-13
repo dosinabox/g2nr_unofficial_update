@@ -37,7 +37,7 @@ instance DIA_Serpentes_NOTALK(C_Info)
 
 func int DIA_Serpentes_NOTALK_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (knows_fire_contest == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (KNOWS_FIRE_CONTEST == FALSE) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -104,7 +104,7 @@ instance DIA_Serpentes_YOURSTORY(C_Info)
 
 func int DIA_Serpentes_YOURSTORY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && (Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) == FALSE) && (mis_golem != LOG_Success))
+	if(Npc_KnowsInfo(hero,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && (Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) == FALSE) && (MIS_GOLEM != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -141,15 +141,15 @@ func int DIA_Serpentes_TEST_Condition()
 
 func void DIA_Serpentes_TEST_Info()
 {
-	AI_Output(other,self,"DIA_Serpentes_TEST_15_00");	//Я готов пройти твое испытание, Мастер.
+	AI_Output(other,self,"DIA_Serpentes_TEST_15_00");	//Я готов пройти твое испытание, мастер.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_01");	//Итак, ты хочешь подвергнуться этому испытанию. Только самые мужественные послушники требуют этого. Но мужество - это не все, что тебе понадобится.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_02");	//Достаточно ли ты умен, чтобы пройти это испытание? А сил у тебя хватит встретить все опасности, что поджидают тебя?
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_03");	//Если нет, ты заплатишь за это своей жизнью.
-	AI_Output(self,other,"DIA_Serpentes_TEST_10_04");	//А теперь слушай: В Месте Камней найди того, кто никогда не был рожден - найди того, кто когда-то был вызван.
+	AI_Output(self,other,"DIA_Serpentes_TEST_10_04");	//А теперь слушай: В Месте Камней, найди того, кто никогда не был рожден - найди того, кто когда-то был вызван.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_05");	//Одолей того, кого нельзя одолеть - померься силами с живой скалой, сразись с бессмертным камнем - и уничтожь его.
 	Wld_InsertNpc(MagicGolem,"FP_MAGICGOLEM");
 	Magic_Golem = Hlp_GetNpc(MagicGolem);
-	mis_golem = LOG_Running;
+	MIS_GOLEM = LOG_Running;
 	Log_CreateTopic(TOPIC_Golem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Golem,LOG_Running);
 	B_LogEntry(TOPIC_Golem,"Серпентес дал мне испытание. Он хочет, чтобы я 'нашел ему того, кто когда-то был вызван', живую скалу, и победил его.");
@@ -163,13 +163,13 @@ instance DIA_Serpentes_NOIDEA(C_Info)
 	condition = DIA_Serpentes_NOIDEA_Condition;
 	information = DIA_Serpentes_NOIDEA_Info;
 	permanent = FALSE;
-	description = "Что за создание это должно быть?";
+	description = "Живой скалой?.. Что за создание это должно быть?";
 };
 
 
 func int DIA_Serpentes_NOIDEA_Condition()
 {
-	if((mis_golem == LOG_Running) && (hero.guild == GIL_NOV))
+	if((MIS_GOLEM == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -177,7 +177,7 @@ func int DIA_Serpentes_NOIDEA_Condition()
 
 func void DIA_Serpentes_NOIDEA_Info()
 {
-	AI_Output(other,self,"DIA_Serpentes_NOIDEA_15_00");	//С живой скалой? Что за создание это должно быть?
+	AI_Output(other,self,"DIA_Serpentes_NOIDEA_15_00");	//Живой скалой?.. Что за создание это должно быть?
 	AI_Output(self,other,"DIA_Serpentes_NOIDEA_10_01");	//Я сказал тебе все. (с издевкой) Или это испытание кажется тебе слишком сложным?
 	AI_Output(self,other,"DIA_Serpentes_NOIDEA_10_02");	//Теперь ты узнаешь, что означает пройти Испытание Огнем - я больше не буду отвечать на твои вопросы.
 	AI_StopProcessInfos(self);
@@ -197,7 +197,7 @@ instance DIA_Serpentes_NOHELP(C_Info)
 
 func int DIA_Serpentes_NOHELP_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && (Npc_IsDead(Magic_Golem) == FALSE) && (mis_golem == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((Npc_KnowsInfo(other,DIA_Ulthar_TEST) == FALSE) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
+	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && (Npc_IsDead(Magic_Golem) == FALSE) && (MIS_GOLEM == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((Npc_KnowsInfo(other,DIA_Ulthar_TEST) == FALSE) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
 	{
 		return TRUE;
 	};
@@ -223,7 +223,7 @@ instance DIA_Serpentes_SUCCESS(C_Info)
 
 func int DIA_Serpentes_SUCCESS_Condition()
 {
-	if(Npc_IsDead(MagicGolem) && (mis_golem == LOG_Running) && (hero.guild == GIL_NOV))
+	if(Npc_IsDead(MagicGolem) && (MIS_GOLEM == LOG_Running) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -232,7 +232,7 @@ func int DIA_Serpentes_SUCCESS_Condition()
 func void DIA_Serpentes_SUCCESS_Info()
 {
 	var C_Npc Garwig;
-	Garwig = Hlp_GetNpc(NOV_608_Garwig);
+	Garwig = Hlp_GetNpc(Nov_608_Garwig);
 	AI_Output(other,self,"DIA_Serpentes_SUCCESS_15_00");	//Я победил голема.
 	AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_01");	//Что? Ты действительно сделал это? Но без Молота Инноса ты никогда бы не смог уничтожить этого голема.
 	if(Npc_IsDead(Garwig))
@@ -252,7 +252,7 @@ func void DIA_Serpentes_SUCCESS_Info()
 		Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
 		Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
 	};
-	mis_golem = LOG_Success;
+	MIS_GOLEM = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GOLEM);
 };
 
@@ -370,7 +370,7 @@ func void DIA_Serpentes_MinenAnteile_Info()
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteile_10_04");	//Последний случай, с которым нам пришлось иметь дело, открывает бездонную пропасть, и с этим нужно разобраться раз и навсегда.
 		Info_ClearChoices(DIA_Serpentes_MinenAnteile);
 		Info_AddChoice(DIA_Serpentes_MinenAnteile,"У меня и так уже много заданий. Найди кого-нибудь еще.",DIA_Serpentes_MinenAnteile_nein);
-		Info_AddChoice(DIA_Serpentes_MinenAnteile,"Что ты там придумал?",DIA_Serpentes_MinenAnteile_was);
+		Info_AddChoice(DIA_Serpentes_MinenAnteile,"Ну что там еще?",DIA_Serpentes_MinenAnteile_was);
 		Info_AddChoice(DIA_Serpentes_MinenAnteile,"Разве это не работа ополчения?",DIA_Serpentes_MinenAnteile_miliz);
 	}
 	else
@@ -401,9 +401,9 @@ func void DIA_Serpentes_MinenAnteile_was()
 	AI_Output(other,self,"DIA_Serpentes_MinenAnteile_was_15_00");	//Ну что там еще?
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_01");	//Кто-то в городе продает фальшивые акции шахт бывшей исправительной колонии.
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_02");	//Эти бумаги абсолютно бесполезны и не имеют особого значения. Но все же, они могут посеять волнения и недовольства среди людей, что мы не можем позволить себе в текущей ситуации.
-	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_03");	//Этот мошенник предположительно имеет связи со всеми наиболее влиятельными торговцами в городе и сельской местности, и ему даже удалось продать свои поддельные акции некоторым из них.
+	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_03");	//Этот мошенник предположительно имеет связи со всеми наиболее влиятельными торговцами в городе и сельской местности, и ему уже удалось продать свои поддельные акции некоторым из них.
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_04");	//Найди этого мошенника и приведи его сюда. В такие тяжелые времена мы не потерпим жуликов и грабителей.
-	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_05");	//Это дело должно стать показательным, чтоб другим было неповадно.
+	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_10_05");	//Это дело должно стать показательным, чтобы другим было неповадно.
 	Info_AddChoice(DIA_Serpentes_MinenAnteile,"Я попробую прояснить этот вопрос.",DIA_Serpentes_MinenAnteile_was_ja);
 };
 
@@ -542,7 +542,7 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 	};
 	SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter - SerpentesMinenAnteilCount;
 	MinenAnteilLeft = IntToString(SalandrilMinenAnteil_MAINCounter);
-	MinenAnteilText = ConcatStrings(MinenAnteilLeft,PRINT_NUMBERLEFT);
+	MinenAnteilText = ConcatStrings(MinenAnteilLeft,PRINT_NumberLeft);
 	AI_PrintScreen(MinenAnteilText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	if(SerpentesMinenAnteilCounter < SalandrilVerteilteMinenAnteil)
 	{

@@ -44,7 +44,7 @@ func int DIA_Addon_Quarhodron_Hello_Condition()
 
 func void DIA_Addon_Quarhodron_Hello_Info()
 {
-	if((player_talent_foreignlanguage[LANGUAGE_1] == TRUE) || (player_talent_foreignlanguage[LANGUAGE_2] == TRUE) || (player_talent_foreignlanguage[LANGUAGE_3] == TRUE))
+	if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_11_00");	//Почему ты нарушаешь мой покой, страж?
 		AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_11_01");	//Говори, что тебе нужно?
@@ -188,7 +188,7 @@ func void B_Quarhodron_Fragen_Choices()
 		};
 		if(Quarhodrons_NextQuestion == 7)
 		{
-			AI_Output(self,other,"DIA_Addon_Quarhodron_Fragen_Choices_11_04");	//Кто закрыл портал, чтобы не пропустить Зло в наш мир?
+			AI_Output(self,other,"DIA_Addon_Quarhodron_Fragen_Choices_11_04");	//Кто закрыл портал, чтобы не пропустить зло в наш мир?
 			Log_AddEntry(TOPIC_Addon_Quarhodron," --- Кто закрыл портал и защитил мир от зла? ---");
 			Quarhodrons_NextQuestion = Quarhodron_AlleFragenGestellt;
 		}
@@ -206,7 +206,7 @@ func void B_Quarhodron_Fragen_Choices()
 		}
 		else if(Quarhodrons_NextQuestion == 4)
 		{
-			AI_Output(self,other,"DIA_Addon_Quarhodron_Fragen_Choices_11_07");	//Кто привел в наш мир Зло?
+			AI_Output(self,other,"DIA_Addon_Quarhodron_Fragen_Choices_11_07");	//Кто привел в наш мир зло?
 			Log_AddEntry(TOPIC_Addon_Quarhodron," --- Кто виновен в несчастьях, постигших жителей Яркендара? ---");
 			Quarhodrons_NextQuestion = 5;
 		}

@@ -109,7 +109,7 @@ func void DIA_GornDJG_WHATSUP_Info()
 	AI_Output(other,self,"DIA_GornDJG_WHATSUP_15_00");	//Что-нибудь выяснил?
 	AI_Output(self,other,"DIA_GornDJG_WHATSUP_12_01");	//Я все еще выжидаю. Мне кажется, там, наверху, в этих руинах на скале, может что-то быть. Ночью там виден свет и доносятся крики.
 	Info_ClearChoices(DIA_GornDJG_WHATSUP);
-	Info_AddChoice(DIA_GornDJG_WHATSUP,"Может, это Лестер?",DIA_GornDJG_WHATSUP_Lester);
+	Info_AddChoice(DIA_GornDJG_WHATSUP,"Может, это Лестер, который вернулся в свои старые руины на скале?",DIA_GornDJG_WHATSUP_Lester);
 	Info_AddChoice(DIA_GornDJG_WHATSUP,"Дракон?",DIA_GornDJG_WHATSUP_A_Dragon);
 	B_LogEntry(TOPIC_Dragonhunter,"Горн находится у подножья плоскогорья, ведущего к старой крепости в скалах. Отсюда он может наблюдать за плоскогорьем и барьером орков.");
 };
@@ -205,9 +205,9 @@ func void DIA_GornDJG_HELPKILLDRACONIANS_Info()
 	AI_Output(other,self,"DIA_GornDJG_HELPKILLDRACONIANS_15_00");	//Ты поможешь мне пробиться в эту крепость?
 	AI_Output(self,other,"DIA_GornDJG_HELPKILLDRACONIANS_12_01");	//Я даже не знаю. Боюсь, орки как назло начнут атаку, как только я отвернусь.
 	AI_Output(other,self,"DIA_GornDJG_HELPKILLDRACONIANS_15_02");	//Это паранойя!
-	AI_Output(self,other,"DIA_GornDJG_HELPKILLDRACONIANS_12_03");	//Ничем не могу помочь. Я никогда не прощу себе, если опоздаю, понимаешь? Но с другой стороны...
+	AI_Output(self,other,"DIA_GornDJG_HELPKILLDRACONIANS_12_03");	//Ничем не могу помочь. Я никогда не прощу себе, если опоздаю, понимаешь? Но с другой стороны ...
 	AI_Output(self,other,"DIA_GornDJG_HELPKILLDRACONIANS_12_04");	//Ладно! Зачем я вообще тогда здесь? Пошли на это плоскогорье и пробьем себе дорогу к крепости.
-	AI_Output(self,other,"DIA_GornDJG_HELPKILLDRACONIANS_12_05");	//Небольшая разминка не помешает. Кроме того, я хочу разглядеть поближе монстров, что бродят там.
+	AI_Output(self,other,"DIA_GornDJG_HELPKILLDRACONIANS_12_05");	//Небольшая разминка не  помешает. Кроме того, я хочу разглядеть поближе монстров, что бродят там.
 	AI_Output(self,other,"DIA_GornDJG_HELPKILLDRACONIANS_12_06");	//Дай мне знать, когда будешь готов!
 	B_LogEntry(TOPIC_Dragonhunter,"Горн хочет помочь мне добраться через плоскогорье до крепости в скалах.");
 };
@@ -233,7 +233,7 @@ func int DIA_GornDJG_LOSGEHTS_Condition()
 func void DIA_GornDJG_LOSGEHTS_Info()
 {
 	AI_Output(other,self,"DIA_GornDJG_LOSGEHTS_15_00");	//Пошли в атаку!
-	AI_Output(self,other,"DIA_GornDJG_LOSGEHTS_12_01");	//Как в старые времена, да? Но я хочу, чтоб ты знал: это мой бой. На этот раз я пойду первым!
+	AI_Output(self,other,"DIA_GornDJG_LOSGEHTS_12_01");	//Как в старые времена, да? Но я хочу, чтобы ты знал: Это мой бой. На этот раз, я пойду первым!
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	Npc_ExchangeRoutine(self,"RunToRockRuinBridge");
@@ -292,7 +292,7 @@ func void DIA_GornDJG_DRAGONDEAD_Info()
 	AI_Output(other,self,"DIA_GornDJG_DRAGONDEAD_15_00");	//Каменный дракон мертв!
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_01");	//Я больше не слышу воплей! Ты был в этой крепости в скалах?
 	AI_Output(other,self,"DIA_GornDJG_DRAGONDEAD_15_02");	//Да!
-	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_03");	//Ха-ха! Я так и думал. Где бы ты ни появился, там камня на камне не остается.
+	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_03");	//Ха ха!  Я так и думал. Где бы ты ни появился, там камня на камне не остается.
 	AI_Output(other,self,"DIA_GornDJG_DRAGONDEAD_15_04");	//Что ты собираешься делать дальше?
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_05");	//Я побуду здесь еще немного, а затем вернусь к Ли. Может, мы там еще встретимся!
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_06");	//Меня уже тошнит от этих мест. Пришло время убираться с этого острова.

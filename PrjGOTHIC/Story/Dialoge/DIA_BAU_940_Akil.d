@@ -20,8 +20,8 @@ func int DIA_Akil_EXIT_Condition()
 
 func void DIA_Akil_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_Akil_EXIT_15_00");	//Я должен идти!
-	if(AKIL_SAUER == TRUE)
+	AI_Output(other,self,"DIA_Akil_EXIT_15_00");	//Я должен идти.
+	if(Akil_Sauer == TRUE)
 	{
 		AI_Output(self,other,"DIA_Akil_EXIT_13_01");	//Не буду задерживать тебя.
 	}
@@ -55,7 +55,7 @@ func int DIA_Akil_Hallo_Condition()
 func void DIA_Akil_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Hallo_15_00");	//У тебя какие-то проблемы?
-	AI_Output(self,other,"DIA_Akil_Hallo_13_01");	//(в поту) ...Э-э... нет, нет... все в порядке. (нервно) Это... тебе лучше уйти сейчас.
+	AI_Output(self,other,"DIA_Akil_Hallo_13_01");	//(в поту)... Э-э... нет, нет... все в порядке. (нервно) Это... тебе лучше уйти сейчас.
 	AI_Output(other,self,"DIA_Akil_Hallo_15_02");	//Ты в этом уверен?
 	AI_Output(self,other,"DIA_Akil_Hallo_13_03");	//Э-э... да, да... все в порядке. Ты... э-э... я... я сейчас не могу говорить с тобой.
 	Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
@@ -125,7 +125,7 @@ func void DIA_Akil_NachKampf_Info()
 		AI_Output(self,other,"DIA_Akil_NachKampf_13_04");	//Это наемники с фермы Онара. Эти ублюдки только и знают, что грабить и убивать.
 	};
 	AI_Output(self,other,"DIA_Akil_NachKampf_13_05");	//Я боялся худшего...
-	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает) ... слава Инносу, до этого не дошло. Скажи мне, что я могу сделать для тебя?
+	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает)... слава Инносу до этого не дошло. Скажи мне, что я могу сделать для тебя?
 	Info_ClearChoices(DIA_Akil_NachKampf);
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
@@ -221,11 +221,11 @@ func int DIA_Addon_Akil_MissingPeople_Condition()
 func void DIA_Addon_Akil_MissingPeople_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Akil_MissingPeople_15_00");	//Ты слышал что-нибудь о пропавших горожанах?
-	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_01");	//Слышал? Не смеши меня. У меня у самого пропало несколько людей.
+	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_01");	//Слышал? Не смеши меня. У меня самого пропало несколько людей.
 	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_02");	//У меня на полях работали Тонак и Телбор. Но три дня назад они пропали.
-	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_03");	//Я точно знаю, что они не стали бы просто так уходить с фермы, не сказав мне об этом.
+	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_03");	//Я точно знаю, что они не стали бы просто так уходить с фермы, не сказав об этом мне.
 	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_04");	//Однако они исчезли, и никто не знает, где они сейчас.
-	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_05");	//Если ты узнаешь что-нибудь об их судьбе, обязательно дай мне знать.
+	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_05");	//Если ты узнаешь что-нибудь об их судьбе, обязательно дай мне знать
 	B_GivePlayerXP(XP_Ambient);
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
@@ -267,7 +267,7 @@ func void DIA_Addon_Akil_ReturnPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Akil_ReturnPeople_13_03");	//Возьми в качестве награды это золото.
 	B_GiveInvItems(self,other,ItMi_Gold,100);
 	B_GivePlayerXP(XP_Ambient);
-	MIS_Akil_BringMissPeopleBack = LOG_Success;
+	MIS_Akil_BringMissPeopleBack = LOG_SUCCESS;
 };
 
 
@@ -326,7 +326,7 @@ var int Knows_Taverne;
 
 func void DIA_Akil_Gegend_Info()
 {
-	AI_Output(other,self,"DIA_Akil_Gegend_15_00");	//Ты знаешь здешние места?
+	AI_Output(other,self,"DIA_Akil_Gegend_15_00");	//Ты знаешь здешние места...
 	AI_Output(self,other,"DIA_Akil_Gegend_13_01");	//Конечно, что ты хочешь узнать?
 };
 
@@ -381,7 +381,7 @@ func int DIA_Akil_Taverne_Condition()
 func void DIA_Akil_Taverne_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Gegend_Taverne_15_00");	//Что это за таверна к востоку отсюда?
-	AI_Output(self,other,"DIA_Akil_Gegend_Taverne_13_01");	//Спроси об этом Рэндольфа. Он знает о ней лучше меня. Он бывал там несколько раз.
+	AI_Output(self,other,"DIA_Akil_Gegend_Taverne_13_01");	//Спроси об этом Рендольфа. Он знает о ней лучше меня. Он бывал там несколько раз.
 };
 
 
@@ -436,7 +436,7 @@ func void DIA_Akil_Perm_Info()
 	AI_Output(other,self,"DIA_Akil_Perm_15_00");	//Есть что-нибудь интересное?
 	if(Kapitel == 3)
 	{
-		if(MIS_Akil_SchafDiebe == LOG_Success)
+		if(MIS_Akil_SchafDiebe == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Akil_Perm_13_01");	//Нет. Я надеюсь, теперь мои овцы больше не будут пропадать.
 		}
@@ -582,7 +582,7 @@ func void DIA_Akil_SCHAFDIEBEPLATT_Info()
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEBEPLATT_13_05");	//Возьми это в качестве благодарности за бескорыстную услугу, что ты оказал мне.
 	CreateInvItems(self,ItMi_Gold,150);
 	B_GiveInvItems(self,other,ItMi_Gold,150);
-	MIS_Akil_SchafDiebe = LOG_Success;
+	MIS_Akil_SchafDiebe = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Akil_SchafDiebe);
 };
 
@@ -617,18 +617,18 @@ func void DIA_Akil_AkilsSchaf_Info()
 };
 
 
-instance DIA_AKIL_KAP4_EXIT(C_Info)
+instance DIA_Akil_KAP4_EXIT(C_Info)
 {
 	npc = BAU_940_Akil;
 	nr = 999;
-	condition = dia_akil_kap4_exit_condition;
-	information = dia_akil_kap4_exit_info;
+	condition = DIA_Akil_KAP4_EXIT_Condition;
+	information = DIA_Akil_KAP4_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_akil_kap4_exit_condition()
+func int DIA_Akil_KAP4_EXIT_Condition()
 {
 	if(Kapitel == 4)
 	{
@@ -636,24 +636,24 @@ func int dia_akil_kap4_exit_condition()
 	};
 };
 
-func void dia_akil_kap4_exit_info()
+func void DIA_Akil_KAP4_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_AKIL_KAP5_EXIT(C_Info)
+instance DIA_Akil_KAP5_EXIT(C_Info)
 {
 	npc = BAU_940_Akil;
 	nr = 999;
-	condition = dia_akil_kap5_exit_condition;
-	information = dia_akil_kap5_exit_info;
+	condition = DIA_Akil_KAP5_EXIT_Condition;
+	information = DIA_Akil_KAP5_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_akil_kap5_exit_condition()
+func int DIA_Akil_KAP5_EXIT_Condition()
 {
 	if(Kapitel == 5)
 	{
@@ -661,24 +661,24 @@ func int dia_akil_kap5_exit_condition()
 	};
 };
 
-func void dia_akil_kap5_exit_info()
+func void DIA_Akil_KAP5_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_AKIL_KAP6_EXIT(C_Info)
+instance DIA_Akil_KAP6_EXIT(C_Info)
 {
 	npc = BAU_940_Akil;
 	nr = 999;
-	condition = dia_akil_kap6_exit_condition;
-	information = dia_akil_kap6_exit_info;
+	condition = DIA_Akil_KAP6_EXIT_Condition;
+	information = DIA_Akil_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_akil_kap6_exit_condition()
+func int DIA_Akil_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -686,7 +686,7 @@ func int dia_akil_kap6_exit_condition()
 	};
 };
 
-func void dia_akil_kap6_exit_info()
+func void DIA_Akil_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

@@ -212,7 +212,7 @@ func void DIA_Hokurn_Learn_Info()
 	AI_Output(self,other,"DIA_Hokurn_Learn_01_01");	//я мог бы обучить теб€ некоторым вещам. я лучший боец на многие мили вокруг.
 	AI_Output(self,other,"DIA_Hokurn_Learn_01_02");	//“ак как мы друзь€, € сделаю тебе скидку. Ёто будет стоить 300 золотых монет.
 	Info_ClearChoices(DIA_Hokurn_Learn);
-	Info_AddChoice(DIA_Hokurn_Learn,"Ёто слишком дорого дл€ мен€.",DIA_Hokurn_Learn_TooExpensive);
+	Info_AddChoice(DIA_Hokurn_Learn,"Ёто дл€ мен€ слишком дорого.",DIA_Hokurn_Learn_TooExpensive);
 	if(Npc_HasItems(other,ItMi_Gold) >= 300)
 	{
 		Info_AddChoice(DIA_Hokurn_Learn,"’орошо, вот деньги.",DIA_Hokurn_Learn_OK);
@@ -313,7 +313,7 @@ instance DIA_Hokurn_Teach(C_Info)
 	condition = DIA_Hokurn_Teach_Condition;
 	information = DIA_Hokurn_Teach_Info;
 	permanent = TRUE;
-	description = "Ќачнем обучение.";
+	description = "ƒавай начнем обучение.";
 };
 
 
@@ -336,7 +336,7 @@ func void DIA_Hokurn_Teach_Info()
 	{
 		if(hero.guild == GIL_PAL)
 		{
-			AI_Output(self,other,"DIA_Hokurn_Teach_01_02");	//ј потом посмотрим, что можно выжать из твоих ржавых паладинских костей, ха?
+			AI_Output(self,other,"DIA_Hokurn_Teach_01_02");	//ј потом мы посмотрим, что можно выжать из твоих ржавых паладинских костей, ха?
 		}
 		else if(hero.guild == GIL_KDF)
 		{
@@ -409,7 +409,7 @@ instance DIA_Hokurn_StayHere(C_Info)
 	condition = DIA_Hokurn_StayHere_Condition;
 	information = DIA_Hokurn_StayHere_Info;
 	permanent = FALSE;
-	description = "ј что ты вообще здесь делаешь, кстати?";
+	description = " стати, а что ты вообще здесь делаешь?";
 };
 
 

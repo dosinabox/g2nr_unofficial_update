@@ -107,7 +107,7 @@ func void DIA_Addon_Juan_Losung_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Juan_Losung_15_00");	//Говорят, у тебя есть интересные вещи...
 	AI_Output(self,other,"DIA_Addon_Juan_Losung_13_01");	//И что? Эстебан хочет меня обуть? Я все время работаю, целыми днями не выхожу из этой жалкой дыры...
-	AI_Output(self,other,"DIA_Addon_Juan_Losung_13_02");	//... а он просто посылает кого-то, чтобы забрать мои вещи? Я же не склад!
+	AI_Output(self,other,"DIA_Addon_Juan_Losung_13_02");	//...а он просто посылает кого-то, чтобы забрать мои вещи? Я же не склад!
 	AI_Output(other,self,"DIA_Addon_Juan_Losung_15_03");	//Ну и что? Это не мои проблемы.
 	AI_Output(self,other,"DIA_Addon_Juan_Losung_13_04");	//Это Я создаю тебе проблемы. Ты хочешь доставить товары - отлично, заплати за них!
 	AI_Output(self,other,"DIA_Addon_Juan_Losung_13_05");	//Возьми золото у Эстебана или у Ворона, или я не знаю где еще. Мне без разницы. Если кому-то нужны эти товары, за них придется заплатить!

@@ -131,7 +131,7 @@ func void DIA_Addon_Hakon_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Hakon_MissingPeople_12_05");	//Он утверждал, что нашел способ пробраться в одну из городских башен, где хранится оружие ополчения.
 	AI_Output(self,other,"DIA_Addon_Hakon_MissingPeople_12_06");	//С тех пор я его не видел. Хотя раньше я встречался с ним каждый день.
 	AI_Output(self,other,"DIA_Addon_Hakon_MissingPeople_12_07");	//Я рассказал об этом ополчению.
-	AI_Output(self,other,"DIA_Addon_Hakon_MissingPeople_12_08");	//Но лорд Андрэ сказал, что не понимает, о чем я говорю. Он даже не знал, что это за парень.
+	AI_Output(self,other,"DIA_Addon_Hakon_MissingPeople_12_08");	//Но лорд Андре сказал, что не понимает, о чем я говорю. Он даже не знал, что это за парень.
 	Log_CreateTopic(TOPIC_Addon_Joe,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Joe,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Joe,"Хакон, торговец из Хориниса, говорит, что человек по имени Джо бесследно исчез. Хакон утверждает, что Джо знает, как проникнуть в одну из башен города, где ополчение хранит оружие.");
@@ -158,7 +158,7 @@ func int DIA_Hakon_OutOfTown_Condition()
 func void DIA_Hakon_OutOfTown_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Add_15_02");	//Расскажи мне подробнее о местности вокруг города.
-	AI_Output(self,other,"DIA_Hakon_Add_12_03");	//Сейчас там стало очень опасно.
+	AI_Output(self,other,"DIA_Hakon_Add_12_03");	//Сейчас там стало очень опасно
 	AI_Output(self,other,"DIA_Hakon_Add_12_04");	//Из-за бандитов, с одной стороны, и из-за нашествия диких зверей с другой.
 	AI_Output(self,other,"DIA_Hakon_Add_12_05");	//Даже зверям, похоже, нечего есть в эти смутные времена.
 	AI_Output(self,other,"DIA_Hakon_Add_12_06");	//Они стали подходить совсем близко к городу, чего раньше не было.
@@ -187,7 +187,7 @@ func void DIA_Hakon_Paladine_Info()
 	AI_Output(self,other,"DIA_Hakon_Add_12_08");	//Да! Они разорили меня!
 	AI_Output(self,other,"DIA_Hakon_Add_12_09");	//Теперь все, что можно купить в этом городе - это короткий меч, и то в лучшем случае.
 	AI_Output(self,other,"DIA_Hakon_Add_12_10");	//Они забрали себе все, что длиннее фута с половиной.
-	AI_Output(self,other,"DIA_Hakon_Add_12_11");	//(с сарказмом) А взамен, теперь я могу бесплатно жить в отеле - ха-ха!
+	AI_Output(self,other,"DIA_Hakon_Add_12_11");	//(с сарказмом) А взамен, теперь я могу бесплатно жить в отеле - ха!
 };
 
 
@@ -223,7 +223,7 @@ func void DIA_Hakon_WoWaffen_Info()
 	};
 	AI_Output(self,other,"DIA_Hakon_Add_12_15");	//А теперь все, что он делает, забирают паладины.
 	AI_Output(self,other,"DIA_Hakon_Add_12_16");	//Он работает на этих парней днем и ночью как безумный, без какой-либо оплаты. Он думает, что это его долг.
-	AI_Output(self,other,"DIA_Hakon_Add_12_17");	//Все, что я могу предложить тебе сейчас - это остатки...
+	AI_Output(self,other,"DIA_Hakon_Add_12_17");	//Все, что я могу предложить тебе сейчас - это остатки ...
 };
 
 
@@ -248,10 +248,10 @@ func int DIA_Hakon_HaradBandits_Condition()
 
 func void DIA_Hakon_HaradBandits_Info()
 {
-	AI_Output(other,self,"DIA_Hakon_Add_15_18");	//Гарад рассказал мне о нападении бандитов...
+	AI_Output(other,self,"DIA_Hakon_Add_15_18");	//Гарад рассказал мне о нападении бандитов ...
 	AI_Output(self,other,"DIA_Hakon_Add_12_19");	//Ох? И?
 	AI_Output(other,self,"DIA_Hakon_Add_15_20");	//Он проголосует за меня при поступлении в ученики, если я уничтожу этих бандитов.
-	AI_Output(self,other,"DIA_Hakon_Add_12_21");	//(смеется) Старый добрый Гарад. Возможно, он так хочет сказать мне 'извини' за то, что он не может сейчас делать оружие для меня.
+	AI_Output(self,other,"DIA_Hakon_Add_12_21");	//(смеется) Старый добрый Гарад. Возможно, он так хочет сказать мне 'извини', за то, что не может сейчас делать оружие для меня.
 };
 
 
@@ -308,13 +308,13 @@ func int DIA_Hakon_Wieviel_Condition()
 
 func void DIA_Hakon_Wieviel_Info()
 {
-	AI_Output(other,self,"DIA_Hakon_Banditen_Ehre_15_00");	//Я разберусь с этим...
-	AI_Output(self,other,"DIA_Hakon_Banditen_Kohle_12_01");	//Что, ТЫ хочешь расправиться с бандитами? В одиночку? Ты, наверное, хороший боец?
+	AI_Output(other,self,"DIA_Hakon_Banditen_Ehre_15_00");	//Я разберусь с этим ...
+	AI_Output(self,other,"DIA_Hakon_Banditen_Kohle_12_01");	//Что, ТЫ хочешь расправиться с бандитами? В одиночку? Ты, наверное хороший боец?
 	AI_Output(other,self,"DIA_Hakon_Banditen_Kohle_15_00");	//Сколько ты готов дать за это?
 	if(Npc_KnowsInfo(other,DIA_Hakon_HaradBandits))
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_25");	//(лукаво) Ты ведь хочешь быть на хорошем счету у Гарада, да?
-		AI_Output(self,other,"DIA_Hakon_Add_12_26");	//Я не думаю, что должен платить тебе за это...
+		AI_Output(self,other,"DIA_Hakon_Add_12_26");	//Я не думаю, что должен платить тебе за это ...
 	}
 	else
 	{
@@ -348,9 +348,9 @@ func int DIA_Hakon_Miliz_Condition()
 func void DIA_Hakon_Miliz_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Miliz_15_00");	//Ты не знаешь, кто в ополчении занимался их поиском?
-	AI_Output(self,other,"DIA_Hakon_Miliz_12_01");	//Парень по имени Пабло. Он и еще несколько парней ходили на поиски этих бандитов. Но они не нашли их.
+	AI_Output(self,other,"DIA_Hakon_Miliz_12_01");	//Парень по имени Пабло. Он, и еще несколько парней ходили на поиски этих бандитов. Но они не нашли их.
 	AI_Output(other,self,"DIA_Hakon_Miliz_15_02");	//Ты знаешь, где мне найти Пабло?
-	AI_Output(self,other,"DIA_Hakon_Miliz_12_03");	//Он патрулирует город. Ты найдешь его либо на рыночной площади, либо в нижней части города.
+	AI_Output(self,other,"DIA_Hakon_Miliz_12_03");	//Он патрулирует город. Ты найдешь его либо на рыночной пощади, либо в нижней части города.
 	B_LogEntry(TOPIC_HakonBanditen,"Пабло, городской стражник, занимался бесплодными поисками бандитов.");
 };
 
@@ -404,7 +404,7 @@ func int DIA_Hakon_Success_Condition()
 func void DIA_Hakon_Success_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Success_15_00");	//Я расправился с бандитами.
-	AI_Output(self,other,"DIA_Hakon_Add_12_27");	//Правда? Кто-нибудь может подтвердить это? У тебя есть доказательства?
+	AI_Output(self,other,"DIA_Hakon_Add_12_27");	//Правда? Кто-нибудь может подтвердить это. У тебя есть доказательства?
 	AI_Output(other,self,"DIA_Hakon_Add_15_28");	//(вздыхает) Мне что, вернуться назад и отрезать им головы?
 	AI_Output(self,other,"DIA_Hakon_Add_12_29");	//(поспешно) Нет - я не думаю, что это необходимо. Я верю тебе.
 	AI_Output(self,other,"DIA_Hakon_Success_12_01");	//Ты оказал очень большую услугу всем торговцам в городе.
@@ -417,7 +417,7 @@ func void DIA_Hakon_Success_Info()
 		AI_Output(self,other,"DIA_Hakon_Success_12_02");	//Вот деньги, как я и обещал.
 		B_GiveInvItems(self,other,ItMi_Gold,100);
 	};
-	MIS_HakonBandits = LOG_Success;
+	MIS_HakonBandits = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Hakon_Bandits);
 };
 

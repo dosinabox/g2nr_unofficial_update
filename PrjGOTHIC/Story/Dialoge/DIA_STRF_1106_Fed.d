@@ -34,7 +34,7 @@ instance DIA_Fed_HALLO(C_Info)
 
 func int DIA_Fed_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Fajeth_Kill_Snapper != LOG_Success))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_Fajeth_Kill_Snapper != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -97,9 +97,9 @@ func int DIA_Fed_Perm_Condition()
 func void DIA_Fed_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Fed_Perm_15_00");	//С тобой все в порядке?
-	if(MIS_Fajeth_Kill_Snapper != LOG_Success)
+	if(MIS_Fajeth_Kill_Snapper != LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_Fed_Perm_08_01");	//Там снепперы! Ты чувствуешь их запах? Я чувствую...
+		AI_Output(self,other,"DIA_Fed_Perm_08_01");	//Там снепперы! Ты чувствуешь их запах?.. Я чувствую...
 	}
 	else
 	{

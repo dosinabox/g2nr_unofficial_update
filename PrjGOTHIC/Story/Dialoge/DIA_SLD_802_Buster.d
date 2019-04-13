@@ -66,7 +66,7 @@ func void DIA_Buster_Hello_WhoAreYou()
 func void DIA_Buster_Hello_IKnowLee()
 {
 	AI_Output(other,self,"DIA_Buster_Hello_IKnowLee_15_00");	//Я знаю Ли!
-	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_01");	//Все знают Ли! Это ни чего не значит, приятель. Сейчас ты разговариваешь со МНОЙ!
+	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_01");	//Все знают Ли! Это ни чего не значит, приятель. Сейчас, ты разговариваешь со МНОЙ!
 	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_02");	//Итак, куда ты направляешься?
 	Info_ClearChoices(DIA_Buster_Hello);
 	Info_AddChoice(DIA_Buster_Hello,"Это не твое дело.",DIA_Buster_Hello_NotYourBusiness);
@@ -104,7 +104,7 @@ func void DIA_Buster_Hello_ImNoDanger()
 
 func void DIA_Buster_Hello_SlewBeasts()
 {
-	AI_Output(other,self,"DIA_Buster_Hello_SlewBeasts_15_00");	//Я тоже убил парочку-другую тварей.
+	AI_Output(other,self,"DIA_Buster_Hello_SlewBeasts_15_00");	//Я тоже убил парочку другую тварей.
 	AI_Output(self,other,"DIA_Buster_Hello_SlewBeasts_13_01");	//Ха! (смеется) Ты, наверное, прихлопнул несколько долгоносиков на поле и выгнал парочку крыс из их нор.
 	AI_Output(self,other,"DIA_Buster_Hello_SlewBeasts_13_02");	//А мы здесь имеем дело с орками! Да, и с этими коварными городскими стражниками. (иронический смех)
 	Info_ClearChoices(DIA_Buster_Hello);
@@ -277,13 +277,13 @@ func void DIA_Buster_WannaJoin_Info()
 	{
 		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 		{
-			AI_Output(self,other,"DIA_Buster_WannaJoin_13_01");	//У парня с таким ударом, как у тебя, не должно возникнуть с этим особых проблем.
+			AI_Output(self,other,"DIA_Buster_WannaJoin_13_01");	//У парня с таким ударом как у тебя, не должно возникнуть с этим особых проблем.
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_Buster_WannaJoin_13_02");	//Ты не особенно хороший боец, но и трусом тебя назвать нельзя.
 		};
-		AI_Output(self,other,"DIA_Buster_WannaJoin_13_03");	//Мой голос не много значит, так как здесь я не очень давно, но если Ли спросит, я проголосую за тебя.
+		AI_Output(self,other,"DIA_Buster_WannaJoin_13_03");	//Мой голос не много значит, так как я здесь не очень давно, но если Ли спросит, я проголосую за тебя.
 		Buster_Duell = TRUE;
 		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
@@ -291,10 +291,10 @@ func void DIA_Buster_WannaJoin_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Buster_WannaJoin_13_04");	//Ты? Я не помню, чтобы таких трусов, как ты, когда-либо принимали в наемники...
+		AI_Output(self,other,"DIA_Buster_WannaJoin_13_04");	//Ты? Я не помню, чтобы таких трусов как ты когда-либо принимали в наемники...
 		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_CANCEL)
 		{
-			AI_Output(self,other,"DIA_Buster_WannaJoin_13_05");	//Ты убегаешь от дуэли - таким, как ты, здесь нечего делать!
+			AI_Output(self,other,"DIA_Buster_WannaJoin_13_05");	//Ты убегаешь от дуэли - таким как ты здесь нечего делать!
 		};
 	};
 };
@@ -371,7 +371,7 @@ func void DIA_Buster_AboutSentenza_Info()
 {
 	AI_Output(other,self,"DIA_Buster_AboutSentenza_15_00");	//Что там насчет Сентензы?
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_01");	//Он попытается вытрясти из тебя золото, когда ты будешь входить на ферму - он делает это со всеми.
-	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_02");	//На твоем месте, я бы заплатил. Я сам так и сделал, когда пришел туда в первый раз. И что хорошо, он проголосовал за меня после этого.
+	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_02");	//На твоем месте, я бы заплатил. Я сам так и сделал, когда пришел туда первый раз. И что хорошо, он проголосовал за меня после этого.
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_03");	//Услуга за услугу, как он сказал. Я потерял при этом все свое золото, но его все равно было немного. А потом я даже порадовался этому.
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_04");	//Я видел, как он избивал парня, который решил НЕ платить ему.
 	AI_Output(other,self,"DIA_Buster_AboutSentenza_15_05");	//Спасибо за совет.
@@ -421,7 +421,7 @@ func void DIA_Buster_LeeLeader_Info()
 {
 	AI_Output(other,self,"DIA_Buster_LeeLeader_15_00");	//Наемников возглавляет Ли, да?
 	AI_Output(self,other,"DIA_Buster_LeeLeader_13_01");	//Правильно - эй, теперь я вспомнил, где видел тебя! Ты тоже был в колонии.
-	AI_Output(other,self,"DIA_Buster_LeeLeader_15_02");	//(вздыхает) Так было.
+	AI_Output(other,self,"DIA_Buster_LeeLeader_15_02");	//(вздыхает) Как и я.
 	AI_Output(self,other,"DIA_Buster_LeeLeader_13_03");	//Я не видел тебя, когда все рвануло. И незадолго перед этим тоже.
 	AI_Output(other,self,"DIA_Buster_LeeLeader_15_04");	//У меня были другие проблемы.
 	AI_Output(self,other,"DIA_Buster_LeeLeader_13_05");	//Тогда ты многое пропустил - с тех пор многое изменилось.
@@ -450,7 +450,7 @@ func int DIA_Buster_WhatHappened_Condition()
 func void DIA_Buster_WhatHappened_Info()
 {
 	AI_Output(other,self,"DIA_Buster_WhatHappened_15_00");	//Что стало с наемниками из колонии?
-	AI_Output(self,other,"DIA_Buster_WhatHappened_13_01");	//После того, как Барьера не стало, Ли вывел нас из колонии. Он сказал, что нам ничего не страшно, если мы будем держаться вместе. И он был прав.
+	AI_Output(self,other,"DIA_Buster_WhatHappened_13_01");	//После того, как Барьера не стало, Ли вывел нас из колонии. Он сказал, что нам ничего  не страшно, если мы будем держаться вместе. И он был прав.
 	AI_Output(self,other,"DIA_Buster_WhatHappened_13_02");	//Вскоре мы нашли здесь себе тепленькое местечко. Лендлорд платит нам, чтобы мы не пускали ополчение из города.
 	AI_Output(self,other,"DIA_Buster_WhatHappened_13_03");	//Хотя большинство из нас готово делать это даже бесплатно.
 	AI_Output(self,other,"DIA_Buster_WhatHappened_13_04");	//Онар кормит нас всех, и мы можем спокойно ждать, когда подвернется возможность убраться с этого проклятого острова.
@@ -639,7 +639,7 @@ instance DIA_Buster_BringTrophyShadowbeast(C_Info)
 
 func int DIA_Buster_BringTrophyShadowbeast_Condition()
 {
-	if((MIS_Buster_KillShadowbeasts_DJG == LOG_Running) && (Npc_HasItems(other,ItAt_ShadowHorn) || (player_talent_takeanimaltrophy[TROPHY_ShadowHorn] == FALSE)) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	if((MIS_Buster_KillShadowbeasts_DJG == LOG_Running) && (Npc_HasItems(other,ItAt_ShadowHorn) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -660,21 +660,13 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_00");	//Мой торговец из города передал прощальный привет.
 		AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_01");	//Что это значит?
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_02");	//Он мертв. Можешь оставить эти рога себе. Теперь я все равно не знаю, что с ними делать.
-		MIS_Buster_KillShadowbeasts_DJG = LOG_Success;
+		MIS_Buster_KillShadowbeasts_DJG = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 	}
-	else if(player_talent_takeanimaltrophy[TROPHY_ShadowHorn] == FALSE)
-	{
-		AI_Output(other,self,"DIA_Buster_ANIMALTROPHYSHADOWBEAST_15_03");	//А как нужно потрошить мракориса?
-		AI_Output(self,other,"DIA_Buster_ANIMALTROPHYSHADOWBEAST_13_04");	//Ты этого не знаешь? Ох, парень, я думал о тебе лучше.
-		Info_ClearChoices(DIA_Buster_BringTrophyShadowbeast);
-		Info_AddChoice(DIA_Buster_BringTrophyShadowbeast,"Я вернусь к тебе с рогами.",DIA_Buster_BringTrophyShadowbeast_back);
-		Info_AddChoice(DIA_Buster_BringTrophyShadowbeast,B_BuildLearnString("Научи меня.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ShadowHorn)),DIA_Buster_BringTrophyShadowbeast_teach);
-	}
-	else
+	else if(Npc_HasItems(other,ItAt_ShadowHorn) >= 1)
 	{
 		BusterTrophyShadowbeastCount = Npc_HasItems(other,ItAt_ShadowHorn);
-		XP_BringBusterTrophyShadowbeast = Shadowbeast.level * XP_PER_VICTORY;
+		XP_BringBusterTrophyShadowbeast = 30 * XP_PER_VICTORY;
 		BustersBusterTrophyShadowbeastOffer = Value_ShadowHorn + Buster_Bonus;
 		if(BusterTrophyShadowbeastCount == 1)
 		{
@@ -696,6 +688,19 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 		BusterTrophyShadowbeastGeld = BusterTrophyShadowbeastCount * BustersBusterTrophyShadowbeastOffer;
 		CreateInvItems(self,ItMi_Gold,BusterTrophyShadowbeastGeld);
 		B_GiveInvItems(self,other,ItMi_Gold,BusterTrophyShadowbeastGeld);
+	}
+	else if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
+	{
+		AI_Output(other,self,"DIA_Buster_ANIMALTROPHYSHADOWBEAST_15_03");	//А как нужно потрошить мракориса?
+		AI_Output(self,other,"DIA_Buster_ANIMALTROPHYSHADOWBEAST_13_04");	//Ты этого не знаешь? Ох, парень, я думал о тебе лучше.
+		Info_ClearChoices(DIA_Buster_BringTrophyShadowbeast);
+		Info_AddChoice(DIA_Buster_BringTrophyShadowbeast,"Я вернусь к тебе с рогами.",DIA_Buster_BringTrophyShadowbeast_back);
+		Info_AddChoice(DIA_Buster_BringTrophyShadowbeast,B_BuildLearnString("Научи меня.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ShadowHorn)),DIA_Buster_BringTrophyShadowbeast_teach);
+	}
+	else
+	{
+		Info_ClearChoices(DIA_Buster_BringTrophyShadowbeast);
+		Info_AddChoice(DIA_Buster_BringTrophyShadowbeast,"Я вернусь к тебе с рогами.",DIA_Buster_BringTrophyShadowbeast_back);
 	};
 };
 
@@ -752,7 +757,7 @@ instance DIA_Buster_Perm4(C_Info)
 	condition = DIA_Buster_Perm4_Condition;
 	information = DIA_Buster_Perm4_Info;
 	permanent = TRUE;
-	description = "Что ты думаешь об охотников на драконов?";
+	description = "Что ты думаешь об охотниках на драконов?";
 };
 
 
@@ -797,18 +802,18 @@ func void DIA_Buster_KAP5_EXIT_Info()
 };
 
 
-instance DIA_BUSTER_KAP6_EXIT(C_Info)
+instance DIA_Buster_KAP6_EXIT(C_Info)
 {
 	npc = SLD_802_Buster;
 	nr = 999;
-	condition = dia_buster_kap6_exit_condition;
-	information = dia_buster_kap6_exit_info;
+	condition = DIA_Buster_KAP6_EXIT_Condition;
+	information = DIA_Buster_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_buster_kap6_exit_condition()
+func int DIA_Buster_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -816,7 +821,7 @@ func int dia_buster_kap6_exit_condition()
 	};
 };
 
-func void dia_buster_kap6_exit_info()
+func void DIA_Buster_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

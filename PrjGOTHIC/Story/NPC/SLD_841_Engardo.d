@@ -1,7 +1,7 @@
 
 instance SLD_841_Engardo(Npc_Default)
 {
-	name[0] = "Ёндарго";
+	name[0] = "Ёнгардо";
 	guild = GIL_BDT;
 	id = 841;
 	voice = 13;
@@ -12,7 +12,7 @@ instance SLD_841_Engardo(Npc_Default)
 	aivar[AIV_EnemyOverride] = TRUE;
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal_Erpresser,BodyTex_N,itar_sld_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal_Erpresser,BodyTex_N,ItAr_Sld_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

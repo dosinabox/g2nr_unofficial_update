@@ -1,5 +1,5 @@
 
-instance SLD_810_Dar(Npc_Default)
+instance Sld_810_Dar(Npc_Default)
 {
 	name[0] = "Дар";
 	guild = GIL_SLD;
@@ -14,7 +14,7 @@ instance SLD_810_Dar(Npc_Default)
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_Joint,10);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal_Spassvogel,BodyTex_N,itar_sld_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal_Spassvogel,BodyTex_N,ItAr_Sld_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

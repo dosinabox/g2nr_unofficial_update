@@ -67,7 +67,7 @@ func int DIA_Meldor_Interessantes_Condition()
 func void DIA_Meldor_Interessantes_Info()
 {
 	AI_Output(other,self,"DIA_Meldor_Interessantes_15_00");	//Что здесь интересного?
-	AI_Output(self,other,"DIA_Meldor_Interessantes_07_01");	//Здесь есть бордель и кабак. Хозяина кабака зовут Кардиф. Если тебе нужна информация, я советую поговорить именно с ним.
+	AI_Output(self,other,"DIA_Meldor_Interessantes_07_01");	//Здесь есть бордель и кабак. Хозяина кабака зовут Кардиф. Если тебе нужна информация, я советую проговорить именно с ним.
 	AI_Output(self,other,"DIA_Meldor_Interessantes_07_02");	//Тебе, кстати, не нужны деньги?
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Кардиф, владелец таверны в гавани, приторговывает информацией.");
@@ -204,13 +204,13 @@ func void DIA_Meldor_Smoke_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
-	if(Hlp_IsItem(heroArmor,itar_mil_l) == TRUE)
+	if(Hlp_IsItem(heroArmor,ITAR_Mil_L) == TRUE)
 	{
 		AI_Output(self,other,"DIA_Meldor_Smoke_07_01");	//(оценивающе) Нет, понятия не имею.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Meldor_Smoke_07_02");	//На твоем месте я бы попытал счастья в 'Красном Фонаре'.
+		AI_Output(self,other,"DIA_Meldor_Smoke_07_02");	//На твоем месте, я бы попытал счастья в 'Красном Фонаре'.
 	};
 };
 
@@ -235,11 +235,11 @@ func int DIA_Meldor_PERM_Condition()
 
 func void DIA_Meldor_PERM_Info()
 {
-	AI_Output(other,self,"DIA_Meldor_PERM_15_00");	//Ничего интересного не было в последнее время?
+	AI_Output(other,self,"DIA_Meldor_PERM_15_00");	//Ничего интересного не было последнее время?
 	if(Kapitel <= 1)
 	{
-		AI_Output(self,other,"DIA_Meldor_PERM_07_01");	//Недавно городская стража перевернула вверх дном весь портовый квартал.
-		AI_Output(self,other,"DIA_Meldor_PERM_07_02");	//Они искали украденное. В последнее время развелось уж больно много воров. Особенно в зажиточных кварталах.
+		AI_Output(self,other,"DIA_Meldor_PERM_07_01");	//Недавно, городская стража перевернула вверх дном весть портовый квартал.
+		AI_Output(self,other,"DIA_Meldor_PERM_07_02");	//Они искали украденное. Последнее время развелось уж больно много воров. Особенно в зажиточных кварталах.
 		AI_Output(self,other,"DIA_Meldor_PERM_07_03");	//Они пытались во всем обвинить бедняков из портового квартала.
 	}
 	else if((Andre_Diebesgilde_aufgeraeumt == TRUE) && (Meldor_DGNews == FALSE))

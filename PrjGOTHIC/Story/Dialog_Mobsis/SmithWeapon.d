@@ -15,7 +15,7 @@ instance PC_SmithWeapon_End(C_Info)
 
 func int PC_SmithWeapon_End_Condition()
 {
-	if(player_mobsi_production == MOBSI_SmithWeapon)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon)
 	{
 		return TRUE;
 	};
@@ -42,7 +42,7 @@ instance PC_Common(C_Info)
 
 func int PC_Common_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (Normalwaffen == FALSE) && (Erzwaffen == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (Normalwaffen == FALSE) && (Erzwaffen == FALSE))
 	{
 		return TRUE;
 	};
@@ -66,7 +66,7 @@ instance PC_Ore(C_Info)
 
 func int PC_Ore_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (Normalwaffen == FALSE) && (Erzwaffen == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (Normalwaffen == FALSE) && (Erzwaffen == FALSE))
 	{
 		return TRUE;
 	};
@@ -91,7 +91,7 @@ instance PC_CommonBACK(C_Info)
 
 func int PC_CommonBACK_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (Normalwaffen == TRUE) && (Erzwaffen == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (Normalwaffen == TRUE) && (Erzwaffen == FALSE))
 	{
 		return TRUE;
 	};
@@ -116,7 +116,7 @@ instance PC_OreBACK(C_Info)
 
 func int PC_OreBACK_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (Normalwaffen == FALSE) && (Erzwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (Normalwaffen == FALSE) && (Erzwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -139,7 +139,7 @@ instance PC_ItMw_1H_Common(C_Info)
 
 func int PC_ItMw_1H_Common_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_Common] == TRUE) && (Normalwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE) && (Normalwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -165,7 +165,7 @@ instance PC_WEAPON_1H_Harad_01(C_Info)
 
 func int PC_WEAPON_1H_Harad_01_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_1H_Harad_01] == TRUE) && (Normalwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_1H_Harad_01] == TRUE) && (Normalwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -191,7 +191,7 @@ instance PC_WEAPON_1H_Harad_02(C_Info)
 
 func int PC_WEAPON_1H_Harad_02_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_1H_Harad_02] == TRUE) && (Normalwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_1H_Harad_02] == TRUE) && (Normalwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -217,7 +217,7 @@ instance PC_WEAPON_1H_Harad_03(C_Info)
 
 func int PC_WEAPON_1H_Harad_03_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_1H_Harad_03] == TRUE) && (Normalwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_1H_Harad_03] == TRUE) && (Normalwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -243,7 +243,7 @@ instance PC_WEAPON_1H_Harad_04(C_Info)
 
 func int PC_WEAPON_1H_Harad_04_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_1H_Harad_04] == TRUE) && (Normalwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_1H_Harad_04] == TRUE) && (Normalwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -269,7 +269,7 @@ instance PC_ItMw_1H_Special_01(C_Info)
 
 func int PC_ItMw_1H_Special_01_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_1H_Special_01] == TRUE) && (Erzwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == TRUE) && (Erzwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -304,7 +304,7 @@ instance PC_ItMw_2H_Special_01(C_Info)
 
 func int PC_ItMw_2H_Special_01_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_2H_Special_01] == TRUE) && (Erzwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == TRUE) && (Erzwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -339,7 +339,7 @@ instance PC_ItMw_1H_Special_02(C_Info)
 
 func int PC_ItMw_1H_Special_02_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_1H_Special_02] == TRUE) && (Erzwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == TRUE) && (Erzwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -374,7 +374,7 @@ instance PC_ItMw_2H_Special_02(C_Info)
 
 func int PC_ItMw_2H_Special_02_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_2H_Special_02] == TRUE) && (Erzwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == TRUE) && (Erzwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -409,7 +409,7 @@ instance PC_ItMw_1H_Special_03(C_Info)
 
 func int PC_ItMw_1H_Special_03_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_1H_Special_03] == TRUE) && (Erzwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] == TRUE) && (Erzwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -444,7 +444,7 @@ instance PC_ItMw_2H_Special_03(C_Info)
 
 func int PC_ItMw_2H_Special_03_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_2H_Special_03] == TRUE) && (Erzwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] == TRUE) && (Erzwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -479,7 +479,7 @@ instance PC_ItMw_1H_Special_04(C_Info)
 
 func int PC_ItMw_1H_Special_04_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_1H_Special_04] == TRUE) && (Erzwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] == TRUE) && (Erzwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -515,7 +515,7 @@ instance PC_ItMw_2H_Special_04(C_Info)
 
 func int PC_ItMw_2H_Special_04_Condition()
 {
-	if((player_mobsi_production == MOBSI_SmithWeapon) && (player_talent_smith[WEAPON_2H_Special_04] == TRUE) && (Erzwaffen == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] == TRUE) && (Erzwaffen == TRUE))
 	{
 		return TRUE;
 	};
@@ -546,7 +546,7 @@ func void smithweapon_s1()
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_SmithWeapon;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_SmithWeapon;
 		AI_ProcessInfos(her);
 	};
 	PC_ItMw_1H_Common.description = NAME_ItMw_1H_Common_01;

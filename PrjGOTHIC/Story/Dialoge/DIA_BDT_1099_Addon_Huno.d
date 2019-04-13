@@ -130,7 +130,7 @@ func void DIA_Addon_Huno_Hi_JA()
 	AI_Output(other,self,"DIA_Addon_Huno_Hi_JA_15_00");	//Ну да. В Старом Лагере.
 	AI_Output(self,other,"DIA_Addon_Huno_Hi_JA_06_01");	//Старый Лагерь... да... ты тот любопытный паренек... Я думал, ты помер.
 	AI_Output(other,self,"DIA_Addon_Huno_Hi_JA_15_02");	//Все так думают. Еще есть выжившие?
-	AI_Output(self,other,"DIA_Addon_Huno_Hi_JA_06_03");	//Немного. Некоторые последовали за Вороном, как и я. Для многих других Старый Лагерь стал братской могилой.
+	AI_Output(self,other,"DIA_Addon_Huno_Hi_JA_06_03");	//Немного. Некоторые последовали за Вороном, как я. Для многих других Старый Лагерь стал братской могилой.
 	Info_ClearChoices(DIA_Addon_Huno_Hi);
 	Knows_Flucht = TRUE;
 };
@@ -168,7 +168,7 @@ func void DIA_Addon_Huno_Blitz_Info()
 	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_01");	//Ну, как только Барьера не стало, случился приличный переполох.
 	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_02");	//Кто-то прятался, кто-то бежал, а кто-то грабил все подряд.
 	AI_Output(other,self,"DIA_Addon_Huno_Blitz_15_03");	//А ты что делал?
-	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_04");	//Я только собирался покинуть лагерь, как случилась эта яркая вспышка, ну и мои глаза чуть не выпрыгнули от боли.
+	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_04");	//Я только собирался покинуть лагерь, как случилась эта яркая вспышка, и мои глаза чуть не выпрыгнули от боли.
 	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_05");	//Что же ты думаешь? В меня угодило этой чертовой молнией! До сих пор кажется, что я слышу этот треск.
 	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_06");	//Позже мне сказали, что меня нашел Торус. Он-то и забрал меня с собой.
 };
@@ -202,18 +202,18 @@ func void DIA_Addon_Huno_Armor_Info()
 	if(Huno_ArmorCheap == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_01");	//Могу предложить эти. Дорого? Не меня вини, а Эстебана.
-		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_02");	//Проклятый шакал дерет всю свою долю с каждых доспехов, что я продаю.
+		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_02");	//Проклятый шакал дерет свою долю с каждых доспехов, что я продаю.
 		BDT_Armor_H_Value = 2100;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита (Защита: оружие 45, стрелы 45. Цена: 2100 золотых)",DIA_Addon_Huno_Armor_BUY);
+		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: оружие 50, стрелы 50. (2100 золота)",DIA_Addon_Huno_Armor_BUY);
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_Huno_Armor_15_03");	//Фиск сказал, что я могу рассчитывать на скидку.
+		AI_Output(other,self,"DIA_Addon_Huno_Armor_15_03");	//Фиск сказал, что я могу рассчитывать на скидку?
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_04");	//Фиск, говоришь? Хм, ну, я ему и в самом деле должен. Ладно, будет тебе скидка.
 		BDT_Armor_H_Value = 1400;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита (Защита: оружие 45, стрелы 45. Цена: 1400 золотых)",DIA_Addon_Huno_Armor_BUY);
+		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: оружие 50, стрелы 50. (1400 золота)",DIA_Addon_Huno_Armor_BUY);
 	};
 };
 
@@ -228,7 +228,7 @@ func void DIA_Addon_Huno_Armor_BUY()
 	if(B_GiveInvItems(other,self,ItMi_Gold,BDT_Armor_H_Value))
 	{
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_Buy_06_01");	//Отлично.
-		B_GiveInvItems(self,other,itar_bdt_h,1);
+		B_GiveInvItems(self,other,ItAr_BDT_H,1);
 	}
 	else
 	{
@@ -451,7 +451,7 @@ func void DIA_Addon_Huno_Paket_Info()
 		Huno_zuSnaf = TRUE;
 	};
 	B_LogEntry(Topic_Addon_Esteban,"Хуно сказал, что я должен поговорить со Снафом.");
-	MIS_Huno_Stahl = LOG_Success;
+	MIS_Huno_Stahl = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_HunoStahl);
 };
 

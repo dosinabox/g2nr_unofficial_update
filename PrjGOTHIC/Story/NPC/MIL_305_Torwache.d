@@ -1,5 +1,5 @@
 
-instance MIL_305_Torwache(Npc_Default)
+instance Mil_305_Torwache(Npc_Default)
 {
 	name[0] = NAME_Torwache;
 	guild = GIL_MIL;
@@ -12,7 +12,7 @@ instance MIL_305_Torwache(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal01,BodyTex_N,itar_pal_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal01,BodyTex_N,ItAr_PAL_M);
 	Mdl_SetModelFatness(self,0.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

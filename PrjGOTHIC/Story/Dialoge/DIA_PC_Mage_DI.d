@@ -117,7 +117,7 @@ func void DIA_Milten_DI_Rat_Info()
 func void DIA_Milten_DI_Rat_nein()
 {
 	AI_Output(other,self,"DIA_Milten_DI_Rat_nein_15_00");	//Нет.
-	AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_01");	//(возмущенно) Ты такой... Что ты будешь делать, если ты встретишься с драконами здесь, на острове?
+	AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_01");	//(возмущенно) Ты такой...Что ты будешь делать, если ты встретишься с драконами здесь, на острове?
 	AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_02");	//Ты так и не поумнел? Здесь у нас есть даже алхимический стол, мы могли бы спокойно перезарядить Глаз.
 	AI_Output(self,other,"DIA_Milten_DI_Rat_nein_03_03");	//А ты о чем думаешь? Мне остается только надеяться, что твоя непредусмотрительность не будет стоить нам жизней.
 	Info_ClearChoices(DIA_Milten_DI_Rat);
@@ -193,7 +193,7 @@ var int DIA_Milten_DI_TeachMagic_OneTime;
 func void DIA_Milten_DI_TeachMagic_Info()
 {
 	AI_Output(other,self,"DIA_Milten_DI_TeachMagic_15_00");	//Я хочу повысить свои магические способности.
-	if(OrkSturmDI == FALSE)
+	if(ORkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_03_01");	//Я сделаю все, что смогу.
 	}
@@ -279,31 +279,31 @@ func void DIA_Milten_DI_TeachMagic_Runen_Paladin()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
-	if(player_talent_runes[SPL_PalLight] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalLight] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString("Свет",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalLight)),DIA_Milten_DI_TeachMagic_Runen_Paladin_SPL_PalLight);
 	};
-	if(player_talent_runes[SPL_PalLightHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalLightHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString("Малое исцеление",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalLightHeal)),DIA_Milten_DI_TeachMagic_Runen_Paladin_SPL_PalLightHeal);
 	};
-	if(player_talent_runes[SPL_PalHolyBolt] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalHolyBolt] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString("Святая стрела",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalHolyBolt)),DIA_Milten_DI_TeachMagic_Runen_Paladin_SPL_PalHolyBolt);
 	};
-	if(player_talent_runes[SPL_PalMediumHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalMediumHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString("Среднее исцеление",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalMediumHeal)),DIA_Milten_DI_TeachMagic_Runen_Paladin_SPL_PalMediumHeal);
 	};
-	if(player_talent_runes[SPL_PalRepelEvil] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalRepelEvil] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString("Изгнание зла",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalRepelEvil)),DIA_Milten_DI_TeachMagic_Runen_Paladin_SPL_PalRepelEvil);
 	};
-	if(player_talent_runes[SPL_PalFullHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalFullHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString("Большое исцеление",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalFullHeal)),DIA_Milten_DI_TeachMagic_Runen_Paladin_SPL_PalFullHeal);
 	};
-	if(player_talent_runes[SPL_PalDestroyEvil] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalDestroyEvil] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString("Уничтожение зла",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalDestroyEvil)),DIA_Milten_DI_TeachMagic_Runen_Paladin_SPL_PalDestroyEvil);
 	};
@@ -348,19 +348,19 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_4()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
-	if(player_talent_runes[SPL_SummonGolem] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonGolem] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_SummonGolem,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGolem)),DIA_Milten_DI_TeachMagic_Runen_Circle_4_SPL_SummonGolem);
 	};
-	if(player_talent_runes[SPL_DestroyUndead] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_DestroyUndead] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_DestroyUndead,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_DestroyUndead)),DIA_Milten_DI_TeachMagic_Runen_Circle_4_SPL_DestroyUndead);
 	};
-	if(player_talent_runes[SPL_LightningFlash] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_LightningFlash] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_LightningFlash,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightningFlash)),DIA_Milten_DI_TeachMagic_Runen_Circle_4_SPL_LightningFlash);
 	};
-	if(player_talent_runes[SPL_ChargeFireball] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_ChargeFireball] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_ChargeFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ChargeFireball)),DIA_Milten_DI_TeachMagic_Runen_Circle_4_SPL_ChargeFireball);
 	};
@@ -390,19 +390,19 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_5()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
-	if(player_talent_runes[SPL_IceWave] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_IceWave] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_IceWave,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_IceWave)),DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_IceWave);
 	};
-	if(player_talent_runes[SPL_SummonDemon] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonDemon] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_SummonDemon,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonDemon)),DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_SummonDemon);
 	};
-	if(player_talent_runes[SPL_FullHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_FullHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_FullHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_FullHeal)),DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_FullHeal);
 	};
-	if(player_talent_runes[SPL_Pyrokinesis] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Pyrokinesis] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_Pyrokinesis,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Pyrokinesis)),DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_Pyrokinesis);
 	};
@@ -432,25 +432,25 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_6()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
-	if(player_talent_runes[SPL_Firerain] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_Firerain,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firerain)),DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_Firerain);
 	};
-	if(player_talent_runes[SPL_BreathOfDeath] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_BreathOfDeath] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_BreathOfDeath,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_BreathOfDeath)),DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_BreathOfDeath);
 	};
-	if(player_talent_runes[SPL_MassDeath] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_MassDeath] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_MassDeath,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MassDeath)),DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_MassDeath);
 	};
-	if(player_talent_runes[SPL_ArmyOfDarkness] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] == FALSE)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_ArmyOfDarkness,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ArmyOfDarkness)),DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_ArmyOfDarkness);
 	};
-	if(player_talent_runes[SPL_Shrink] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
 	{
-		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),dia_milten_di_teachmagic_runen_circle_6_spl_shrink);
+		Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_Shrink);
 	};
 };
 
@@ -474,7 +474,7 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_ArmyOfDarkness()
 	B_TeachPlayerTalentRunes(self,other,SPL_ArmyOfDarkness);
 };
 
-func void dia_milten_di_teachmagic_runen_circle_6_spl_shrink()
+func void DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_Shrink()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
 };
@@ -505,8 +505,8 @@ func int DIA_Milten_DI_DementorObsessionBook_Condition()
 
 func void DIA_Milten_DI_DementorObsessionBook_Info()
 {
-	AI_Output(other,self,"DIA_Milten_DI_DementorObsessionBook_15_00");	//Эта книга, альманах Одержимых, говорит тебе о чем-то?
-	AI_Output(self,other,"DIA_Milten_DI_DementorObsessionBook_03_01");	//Пирокар - эксперт по таким книгам.
+	AI_Output(other,self,"DIA_Milten_DI_DementorObsessionBook_15_00");	//Эта книга, Альманах Одержимых, говорит тебе о чем-то?
+	AI_Output(self,other,"DIA_Milten_DI_DementorObsessionBook_03_01");	//Пирокар эксперт по таким книгам.
 	AI_Output(self,other,"DIA_Milten_DI_DementorObsessionBook_03_02");	//Извини. Я знаю слишком мало, чтобы сказать что-либо умное об этом.
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -573,12 +573,12 @@ func void DIA_Milten_DI_UndeadDragonDead_Info()
 		{
 			AI_Output(other,self,"DIA_Milten_DI_UndeadDragonDead_15_04");	//Что ты собираешься делать сейчас?
 			AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_05");	//Я думаю об основании собственной академии, чтобы проповедовать нашу веру. Но из этого может ничего не получиться.
-			AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_06");	//Я никогда не жалел о том, что стал магом Огня. А как тебе это?
+			AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_06");	//Я никогда не жалел о том, что стал Магом Огня. А как тебе это?
 			AI_Output(other,self,"DIA_Milten_DI_UndeadDragonDead_15_07");	//Я даже не знаю.
 			AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_08");	//(смеется) Сухо, как всегда. Эй, парень. Ты только что спас мир. Разве это недостаточная причина для радости?
 			AI_Output(other,self,"DIA_Milten_DI_UndeadDragonDead_15_09");	//Ммм. Может быть.
 		};
-		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_10");	//Да ладно, дружище, я думаю, что главное, что тебе сейчас нужно - немного поспать.
+		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_10");	//Да ладно, дружище, я думаю, что главное, что тебе сейчас нужно, - немного поспать.
 		DIA_Milten_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_11");	//Тебе нужно пойти к капитану и сказать ему, чтобы он поднимал якорь.

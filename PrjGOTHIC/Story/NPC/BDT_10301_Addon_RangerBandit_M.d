@@ -13,7 +13,7 @@ instance BDT_10301_Addon_RangerBandit_M(Npc_Default)
 	EquipItem(self,ItRw_Sld_Bow);
 	CreateInvItems(self,ItWr_StonePlateCommon_Addon,2);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal03,BodyTex_N,itar_bdt_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal03,BodyTex_N,ItAr_BDT_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

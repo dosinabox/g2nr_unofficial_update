@@ -22,7 +22,7 @@ func void B_StopInflate()
 	};
 };
 
-func int ZS_Inflate()
+func void ZS_Inflate()
 {
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_RestartInflate);
 	Npc_StopAni(self,"S_INFLATE_VICTIM");

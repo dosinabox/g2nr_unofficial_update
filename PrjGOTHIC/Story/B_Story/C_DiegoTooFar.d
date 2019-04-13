@@ -11,6 +11,7 @@ const int LOC_GRIMESMINE = 9;
 const int LOC_BURG = 10;
 const int LOC_ORCBARRIER = 11;
 const int LOC_ORCBARRIER_FAR = 12;
+const int LOC_ROCK = 13;
 
 func int C_DiegoTooFar(var int tolerance)
 {
@@ -61,6 +62,10 @@ func int C_DiegoTooFar(var int tolerance)
 	else if(Npc_GetDistToWP(hero,"OW_PATH_BLOODFLY01_SPAWN01") < (5000 + tolerance))
 	{
 		return LOC_ORCBARRIER_FAR;
+	}
+	else if(Npc_GetDistToWP(hero,"PATH_TO_PLATEAU04_SMALLPATH") < (1000 + tolerance))
+	{
+		return LOC_ROCK;
 	};
 	return FALSE;
 };

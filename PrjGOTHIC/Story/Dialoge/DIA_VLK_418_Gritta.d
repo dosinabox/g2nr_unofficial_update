@@ -112,7 +112,7 @@ func void DIA_Gritta_WantsMoney_Info()
 {
 	AI_Output(other,self,"DIA_Gritta_WantsMoney_15_00");	//Меня прислал Маттео. Он говорит, что ты задолжала ему.
 	AI_Output(self,other,"DIA_Gritta_WantsMoney_16_01");	//Он хочет получить деньги? За что? То, что он мне прислал, ни на что не годится. Ткань отвратительная, а швы расползаются прямо на глазах.
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_16_02");	//А ты видел, какого они цвета? Это не тот цвет, что я заказывала. Это надувательство!
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_16_02");	//А ты выдел, какого они цвета? Это не тот цвет, что я заказывала. Это надувательство!
 	AI_Output(self,other,"DIA_Gritta_WantsMoney_16_03");	//Послушай, если бы мой муж был жив, он бы не посмел заявлять такое. Ох, мой бедный муж...
 	Info_ClearChoices(DIA_Gritta_WantsMoney);
 	Info_AddChoice(DIA_Gritta_WantsMoney,"Хватит. Где золото?",DIA_Gritta_WantsMoney_WhereMoney);
@@ -121,9 +121,9 @@ func void DIA_Gritta_WantsMoney_Info()
 
 func void DIA_Gritta_WantsMoney_Continue01()
 {
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_continue01_16_00");	//... он был таким хорошим человеком. Красивый, работящий, настоящий джентльмен. У нас было все. Богатство, счастье...
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue01_16_01");	//... иногда нас даже приглашали в высший свет. На торжества, где можно было похвастаться нарядом и прической...
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue01_16_02");	//... на званые обеды... Тогда все было совсем по-другому. Тогда никто бы не осмелился унижать бедную вдову такими...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_continue01_16_00");	//...он был таким хорошим человеком. Красивый, работящий, настоящий джентльмен. У нас было все. Богатство, счастье...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue01_16_01");	//...иногда нас даже приглашали в высший свет. На торжества, где можно было похвастаться нарядом и прической...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue01_16_02");	//...на званые обеды... Тогда все было совсем по-другому. Тогда никто бы не осмелился унижать бедную вдову такими...
 	Info_ClearChoices(DIA_Gritta_WantsMoney);
 	Info_AddChoice(DIA_Gritta_WantsMoney,"Хватит. Где золото?",DIA_Gritta_WantsMoney_WhereMoney);
 	Info_AddChoice(DIA_Gritta_WantsMoney,"Продолжить ...",DIA_Gritta_WantsMoney_Continue02);
@@ -131,9 +131,9 @@ func void DIA_Gritta_WantsMoney_Continue01()
 
 func void DIA_Gritta_WantsMoney_Continue02()
 {
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_continue02_16_00");	//... нелепыми заявлениями. А что мне теперь делать? Моя пенсия еле позволяет сводить концы с концами, а жизнь становится все труднее и труднее. Да ты сам можешь это видеть...
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue02_16_01");	//... людям приходится экономить и потуже затягивать пояса. Уже много недель ни один корабль не заходил в город. Мой муж был капитаном торгового корабля - на самом деле, он даже владел этим кораблем...
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue02_16_02");	//... из своих долгих плаваний он всегда привозил мне подарки - изысканные ткани с материка, дорогие специи из южных стран...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_continue02_16_00");	//...нелепыми заявлениями. А что мне теперь делать? Моя пенсия еле позволяет сводить концы с концами, а жизнь становится все труднее и труднее. Да ты сам это можешь видеть...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue02_16_01");	//...людям приходится экономить и потуже затягивать пояса. Уже много недель ни один корабль не заходил в город. Мой муж был капитаном торгового корабля - на самом деле, он даже владел этим кораблем...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue02_16_02");	//...из своих долгих плаваний он всегда привозил мне подарки - изысканные ткани с материка, дорогие специи из южных стран...
 	Info_ClearChoices(DIA_Gritta_WantsMoney);
 	Info_AddChoice(DIA_Gritta_WantsMoney,"Хватит. Где золото?",DIA_Gritta_WantsMoney_WhereMoney);
 	Info_AddChoice(DIA_Gritta_WantsMoney,"Продолжить ...",DIA_Gritta_WantsMoney_Continue03);
@@ -141,10 +141,10 @@ func void DIA_Gritta_WantsMoney_Continue02()
 
 func void DIA_Gritta_WantsMoney_Continue03()
 {
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_continue03_16_00");	//... большинство даже не слышали о таких вещах. Но однажды, я получила известие, что Гритта затонула - так назывался этот корабль, мой муж назвал его так из...
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue03_16_01");	//... любви ко мне. Я плакала и молилась, чтобы моему мужу удалось выжить в этой катастрофе. Я надеялась, я ждала новостей о нем, но все мои молитвы были тщетными...
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue04_16_02");	//... да смилостивится Иннос над его душой. Пусть он спит спокойно. С тех пор мне приходится жить вот в этих скромных условиях. А теперь этот бездушный, бессердечный Маттео...
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue04_16_03");	//... хочет отнять у меня последние сбережения. Пожалуйста, сжалься над бедной женщиной. Если бы мой муж был жив, Маттео не посмел бы сделать это. Ох, мой бедный муж...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_continue03_16_00");	//...большинство даже не слышали о таких вещах. Но однажды, я получила известие, что Гритта затонула - так назывался этот корабль, мой муж назвал его так из...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue03_16_01");	//...любви ко мне. Я плакала и молилась, чтобы моему мужу удалось выжить в этой катастрофе. Я надеялась, я ждала новостей о нем, но все мои молитвы были тщетными...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue04_16_02");	//...да смилостивится Иннос над его душой. Пусть он спит спокойно. С тех пор мне приходится жить вот в этих скромных условиях. А теперь этот бездушный, бессердечный Маттео...
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_Continue04_16_03");	//...хочет отнять у меня последние сбережения. Пожалуйста, сжалься над бедной женщиной. Если бы мой муж был жив, Маттео не посмел бы сделать это. Ох, мой бедный муж...
 	Info_ClearChoices(DIA_Gritta_WantsMoney);
 	Info_AddChoice(DIA_Gritta_WantsMoney,"Хватит. Где золото?",DIA_Gritta_WantsMoney_WhereMoney);
 	Info_AddChoice(DIA_Gritta_WantsMoney,"Продолжить ...",DIA_Gritta_WantsMoney_Continue01);
@@ -162,7 +162,7 @@ func void DIA_Gritta_WantsMoney_WhereMoney()
 
 func void DIA_Gritta_WantsMoney_EnoughStuff()
 {
-	AI_Output(other,self,"DIA_Gritta_WantsMoney_EnoughStuff_15_00");	//Ну, тогда мы просто продадим некоторые из твоих тряпок. Я уверен, что в твоем сундуке их целая груда...
+	AI_Output(other,self,"DIA_Gritta_WantsMoney_EnoughStuff_15_00");	//Тогда мы просто продадим некоторые из твоих тряпок. Я уверен, что в твоем сундуке их целая груда...
 	AI_Output(self,other,"DIA_Gritta_WantsMoney_EnoughStuff_16_01");	//Как ты смеешь, деревенщина! Ладно, вот, возьми золото.
 	B_GiveInvItems(self,other,ItMi_Gold,100);
 	AI_Output(other,self,"DIA_Gritta_WantsMoney_EnoughStuff_15_02");	//(ухмыляется) Видишь, это было не так уж сложно.
@@ -174,7 +174,7 @@ func void DIA_Gritta_WantsMoney_EnoughStuff()
 func void DIA_Gritta_WantsMoney_IWillPay()
 {
 	AI_Output(other,self,"DIA_Gritta_WantsMoney_IWillPay_15_00");	//Я собираюсь заплатить эту сумму за тебя.
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_IWillPay_16_01");	//Ты сделаешь это ради меня? Ох, я знала, что ты не такой жадный, как этот Маттео!
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_IWillPay_16_01");	//Ты сделаешь это ради меня? Ох, я знала, что ты не такой жадный как этот Маттео!
 	AI_Output(other,self,"DIA_Gritta_WantsMoney_IWillPay_15_02");	//Да, да, не стоит благодарностей.
 	AI_Output(self,other,"DIA_Gritta_WantsMoney_IWillPay_16_03");	//Возвращайся, когда вернешь деньги Маттео - я хочу отблагодарить тебя.
 	Info_ClearChoices(DIA_Gritta_WantsMoney);
@@ -184,7 +184,7 @@ func void DIA_Gritta_WantsMoney_IWillPay()
 func void DIA_Gritta_WantsMoney_BeatUp()
 {
 	AI_Output(other,self,"DIA_Gritta_WantsMoney_BeatUp_15_00");	//(угрожающе) Выкладывай деньги, или мне придется проучить тебя!
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_BeatUp_16_01");	//(вызывающе) Да ты просто обычный бандит. Давай, доставай свое оружие, и я позову стражу!
+	AI_Output(self,other,"DIA_Gritta_WantsMoney_BeatUp_16_01");	//(вызывающе) Да ты просто обычный бандит. Давай, доставая свое оружие, и я позову стражу!
 	Gritta_Threatened = TRUE;
 	AI_StopProcessInfos(self);
 };
@@ -203,7 +203,7 @@ instance DIA_Gritta_WINE(C_Info)
 
 func int DIA_Gritta_WINE_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Gritta_WantPay == TRUE) && (MIS_Matteo_Gold == LOG_Success) && (Npc_HasItems(self,ItMi_Gold) >= 100))
+	if(Npc_IsInState(self,ZS_Talk) && (Gritta_WantPay == TRUE) && (MIS_Matteo_Gold == LOG_SUCCESS) && (Npc_HasItems(self,ItMi_Gold) >= 100))
 	{
 		return TRUE;
 	};
@@ -214,7 +214,7 @@ func void DIA_Gritta_WINE_Info()
 	AI_Output(self,other,"DIA_Gritta_WINE_16_00");	//Это было очень благородно с твоей стороны заплатить за меня. Я хочу отблагодарить тебя.
 	AI_Output(self,other,"DIA_Gritta_WINE_16_01");	//Вот бутылка вина, которую мой муж, да упокоит Иннос его душу, привез с южных островов.
 	AI_Output(self,other,"DIA_Gritta_WINE_16_02");	//Также я расскажу о тебе всем! Наконец-то в городе появился человек, чья добродетель...
-	AI_Output(other,self,"DIA_Gritta_WINE_15_03");	//Да-да-да, не стоит благодарностей.
+	AI_Output(other,self,"DIA_Gritta_WINE_15_03");	//Да-да, не стоит благодарностей.
 	B_GivePlayerXP(XP_PayForGritta);
 	B_GiveInvItems(self,other,ItFo_Wine,1);
 	AI_StopProcessInfos(self);
@@ -310,7 +310,7 @@ func void DIA_Gritta_Perm3U4U5_Info()
 	AI_Output(other,self,"DIA_Gritta_Perm3U4U5_15_00");	//Как дела?
 	if(Kapitel == 3)
 	{
-		if(MIS_RescueBennet != LOG_Success)
+		if(MIS_RescueBennet != LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Gritta_Perm3U4U5_16_01");	//Все здесь катится в тартарары. Куда не взглянешь, везде одни преступления и насилие. Только представь, недавно убили даже паладина!
 			Info_ClearChoices(DIA_Gritta_Perm3U4U5);
@@ -323,7 +323,7 @@ func void DIA_Gritta_Perm3U4U5_Info()
 		{
 			AI_Output(self,other,"DIA_Gritta_Perm3U4U5_16_02");	//Ох, я так взволнована. Лорд Хаген освободил этого наемника.
 			AI_Output(other,self,"DIA_Gritta_Perm3U4U5_15_03");	//А какое это имеет отношение к тебе?
-			AI_Output(self,other,"DIA_Gritta_Perm3U4U5_16_04");	//Да ты сам подумай. Ты веришь, что наемники сидели бы сложа руки, когда их товарища собирались повесить?
+			AI_Output(self,other,"DIA_Gritta_Perm3U4U5_16_04");	//Да ты сам подумай. Ты веришь, что наемники сидели бы, сложа руки, когда их товарища собирались повесить?
 			AI_Output(self,other,"DIA_Gritta_Perm3U4U5_16_05");	//Они бы попытались освободить его, и пролилось бы много крови. Но, слава Инносу, все разрешилось удачно.
 		};
 	}

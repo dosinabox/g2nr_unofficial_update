@@ -1,7 +1,7 @@
 
 instance DIA_Mil_310_Stadtwache_EXIT(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 999;
 	condition = DIA_Mil_310_Stadtwache_EXIT_Condition;
 	information = DIA_Mil_310_Stadtwache_EXIT_Info;
@@ -27,7 +27,7 @@ var int MIL_310_Personal_AbsolutionLevel;
 
 instance DIA_Mil_310_Stadtwache_FirstWarn(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 1;
 	condition = DIA_Mil_310_Stadtwache_FirstWarn_Condition;
 	information = DIA_Mil_310_Stadtwache_FirstWarn_Info;
@@ -119,7 +119,7 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 			}
 			else
 			{
-				AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_22");	//Я просто хотел рассмотреть тебя. Похоже, у тебя есть деньги. Можешь проходить.
+				AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_22");	//Я просто хотел рассмотреть тебя. Похоже, у тебя есть деньги. Можешь походить.
 			};
 			self.aivar[AIV_PASSGATE] = TRUE;
 			Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
@@ -135,7 +135,7 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 
 instance DIA_Mil_310_Stadtwache_SecondWarn(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 2;
 	condition = DIA_Mil_310_Stadtwache_SecondWarn_Condition;
 	information = DIA_Mil_310_Stadtwache_SecondWarn_Info;
@@ -163,7 +163,7 @@ func void DIA_Mil_310_Stadtwache_SecondWarn_Info()
 
 instance DIA_Mil_310_Stadtwache_Attack(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 3;
 	condition = DIA_Mil_310_Stadtwache_Attack_Condition;
 	information = DIA_Mil_310_Stadtwache_Attack_Info;
@@ -192,7 +192,7 @@ func void DIA_Mil_310_Stadtwache_Attack_Info()
 
 instance DIA_Mil_310_Stadtwache_Bribe(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 5;
 	condition = DIA_Mil_310_Stadtwache_Bribe_Condition;
 	information = DIA_Mil_310_Stadtwache_Bribe_Info;
@@ -235,7 +235,7 @@ func void DIA_Mil_310_Stadtwache_Bribe_Info()
 
 instance DIA_Mil_310_Stadtwache_Passierschein(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 4;
 	condition = DIA_Mil_310_Stadtwache_Passierschein_Condition;
 	information = DIA_Mil_310_Stadtwache_Passierschein_Info;
@@ -275,7 +275,7 @@ func void DIA_Mil_310_Stadtwache_Passierschein_Info()
 
 instance DIA_Mil_310_Stadtwache_ZumSchmied(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 3;
 	condition = DIA_Mil_310_Stadtwache_ZumSchmied_Condition;
 	information = DIA_Mil_310_Stadtwache_ZumSchmied_Info;
@@ -301,7 +301,7 @@ func void DIA_Mil_310_Stadtwache_ZumSchmied_Info()
 	{
 		AI_Output(self,other,"DIA_Mil_310_Stadtwache_ZumSchmied_07_01");	//(зло) Да? А почему ты это сразу не сказал?
 		AI_Output(other,self,"DIA_Mil_310_Stadtwache_ZumSchmied_15_02");	//Мне просто было интересно, как ты будешь реагировать.
-		AI_Output(self,other,"DIA_Mil_310_Stadtwache_ZumSchmied_07_03");	//Что?! Еще раз выкинешь такой номер, и я покажу тебе, как я реагирую на такие выходки, тупая деревенщина!
+		AI_Output(self,other,"DIA_Mil_310_Stadtwache_ZumSchmied_07_03");	//Что?! Еще раз выкинешь такой номер, и я покажу тебе, как я реагирую на такие выходки, тупой деревенщина!
 	}
 	else
 	{
@@ -319,7 +319,7 @@ func void DIA_Mil_310_Stadtwache_ZumSchmied_Info()
 
 instance DIA_Addon_Mil_310_Stadtwache_Constantino(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 2;
 	condition = DIA_Addon_Mil_310_Stadtwache_Constantino_Condition;
 	information = DIA_Addon_Mil_310_Stadtwache_Constantino_Info;
@@ -348,7 +348,7 @@ func void DIA_Addon_Mil_310_Stadtwache_Constantino_Info()
 			self.aivar[AIV_PASSGATE] = TRUE;
 			Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
 			Mil_310_schonmalreingelassen = TRUE;
-			MIS_Addon_Lester_PickForConstantino = LOG_Success;
+			MIS_Addon_Lester_PickForConstantino = LOG_SUCCESS;
 			B_CheckLog();
 			B_GivePlayerXP(XP_Addon_PickForConstantino);
 			AI_StopProcessInfos(self);
@@ -376,7 +376,7 @@ func void DIA_Addon_Mil_310_Stadtwache_Constantino_Info()
 
 instance DIA_Mil_310_Stadtwache_MilizWerden(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 2;
 	condition = DIA_Mil_310_Stadtwache_MilizWerden_Condition;
 	information = DIA_Mil_310_Stadtwache_MilizWerden_Info;
@@ -403,7 +403,7 @@ func void DIA_Mil_310_Stadtwache_MilizWerden_Info()
 
 instance DIA_Mil_310_Stadtwache_Paladine(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 1;
 	condition = DIA_Mil_310_Stadtwache_Paladine_Condition;
 	information = DIA_Mil_310_Stadtwache_Paladine_Info;
@@ -447,7 +447,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_EyeInnos()
 
 func void DIA_Mil_310_Stadtwache_Paladine_EvilArmy()
 {
-	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_EvilArmy_15_00");	//Силы Зла собираются в Долине Хориниса!
+	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_EvilArmy_15_00");	//Силы зла собираются в Долине Хориниса!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_EvilArmy_07_01");	//В Долине Рудников? Ты пришел оттуда? Ты видел там армию?
 	Info_ClearChoices(DIA_Mil_310_Stadtwache_Paladine);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Нет, но меня послал человек, который видел их.",DIA_Mil_310_Stadtwache_Paladine_NoSomeone);
@@ -458,7 +458,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_EvilArmy()
 func void DIA_Mil_310_Stadtwache_Paladine_AttackSoon()
 {
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_AttackSoon_15_00");	//Город скоро подвергнется нападению!
-	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_AttackSoon_07_01");	//Что? Кого? Орков? Ты видел армию?
+	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_AttackSoon_07_01");	//Что? Кого? Орков? ты видел армию?
 	Info_ClearChoices(DIA_Mil_310_Stadtwache_Paladine);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Нет, но меня послал человек, который видел их.",DIA_Mil_310_Stadtwache_Paladine_NoSomeone);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Нет. Но я знаю, что ее ведут драконы!",DIA_Mil_310_Stadtwache_Paladine_NoDragons);
@@ -468,7 +468,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_AttackSoon()
 func void DIA_Mil_310_Stadtwache_Paladine_NoDragons()
 {
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_15_00");	//Нет. Но я знаю, что ее ведут драконы!
-	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_07_01");	//Ну конечно! А моя бабушка консультирует генералов орков.
+	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_07_01");	//Ну конечно! Моя бабушка консультирует генералов орков.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_07_02");	//Я не думаю, что мы позволим тебе донести эти бредовые сплетни до ушей лорда Хагена!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_NoDragons_07_03");	//Проваливай!
 	Player_KnowsLordHagen = TRUE;
@@ -519,15 +519,15 @@ func void DIA_Mil_310_Stadtwache_Paladine_APaladin()
 func void DIA_Mil_310_Stadtwache_Paladine_CantTellYou()
 {
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_CantTellYou_15_00");	//Я не вправе рассказывать тебе об этом.
-	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_CantTellYou_07_01");	//Не говори так, мой мальчик! Я состою в городской страже.
+	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_CantTellYou_07_01");	//Не говорит так, мой мальчик! Я состою в городской страже.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_CantTellYou_07_02");	//Ты можешь рассказать мне ВСЕ. Итак, кто послал тебя?
 };
 
 func void DIA_Mil_310_Stadtwache_Paladine_DepecheDragons()
 {
-	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_15_00");	//Армию Зла возглавляют драконы!
+	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_15_00");	//Армию зла возглавляют драконы!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_01");	//Что? Это не может быть правдой. А я чуть не впустил тебя!
-	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_02");	//Если бы ты рассказал ЭТУ историю лорду Хагену, он бы повесил меня за халатность.
+	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_02");	//Если бы ты рассказал ЭТУ историю Лорду Хагену, он бы повесил меня за халатность.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_03");	//Проваливай!
 	Player_KnowsLordHagen = TRUE;
 	AI_StopProcessInfos(self);
@@ -554,7 +554,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_Only2()
 
 instance DIA_Mil_310_Stadtwache_PERM(C_Info)
 {
-	npc = MIL_310_Stadtwache;
+	npc = Mil_310_Stadtwache;
 	nr = 5;
 	condition = DIA_Mil_310_Stadtwache_PERM_Condition;
 	information = DIA_Mil_310_Stadtwache_PERM_Info;

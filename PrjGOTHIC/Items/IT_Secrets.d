@@ -79,7 +79,7 @@ instance ItSe_LockpickFisch(C_Item)
 
 func void Use_LockpickFisch()
 {
-	B_PlayerFindItem(ItKe_Lockpick,3);
+	B_PlayerFindItem(ItKE_lockpick,3);
 };
 
 
@@ -187,7 +187,7 @@ instance ItSe_HannasBeutel(C_Item)
 
 func void HannasBeutel()
 {
-	CreateInvItems(hero,ItKe_Lockpick,10);
+	CreateInvItems(hero,ItKE_lockpick,10);
 	CreateInvItems(hero,ItKe_ThiefTreasure,1);
 	Print(PRINT_HannasBeutel);
 };

@@ -1,5 +1,5 @@
 
-instance BDT_1015_Bandit_L(Npc_Default)
+instance Bdt_1015_Bandit_L(Npc_Default)
 {
 	name[0] = NAME_Bandit;
 	guild = GIL_BDT;
@@ -13,7 +13,7 @@ instance BDT_1015_Bandit_L(Npc_Default)
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItWr_BanditLetter_MIS,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal01,BodyTex_B,itar_bdt_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal01,BodyTex_B,ItAr_BDT_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

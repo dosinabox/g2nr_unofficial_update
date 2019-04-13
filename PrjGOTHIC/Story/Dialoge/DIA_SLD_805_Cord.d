@@ -1,7 +1,7 @@
 
 instance DIA_Cord_EXIT(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 999;
 	condition = DIA_Cord_EXIT_Condition;
 	information = DIA_Cord_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Cord_EXIT_Info()
 
 instance DIA_Addon_Cord_MeetingIsRunning(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 1;
 	condition = DIA_Addon_Cord_MeetingIsRunning_Condition;
 	information = DIA_Addon_Cord_MeetingIsRunning_Info;
@@ -60,7 +60,7 @@ func void DIA_Addon_Cord_MeetingIsRunning_Info()
 
 instance DIA_Cord_Hallo(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 2;
 	condition = DIA_Cord_Hallo_Condition;
 	information = DIA_Cord_Hallo_Info;
@@ -71,7 +71,7 @@ instance DIA_Cord_Hallo(C_Info)
 
 func int DIA_Cord_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE) && (RangerMeetingRunning != LOG_Success))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE) && (RangerMeetingRunning != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -86,7 +86,7 @@ func void DIA_Cord_Hallo_Info()
 		AI_Output(other,self,"DIA_Cord_Hallo_15_02");	//Что?
 		AI_Output(self,other,"DIA_Cord_Hallo_14_03");	//Когда вы, крестьяне, обращаетесь ко мне, вы всегда просите убить ни в чем не повинных зверей.
 		AI_Output(other,self,"DIA_Cord_Hallo_15_04");	//Я не крестьянин.
-		AI_Output(self,other,"DIA_Cord_Hallo_14_05");	//Ох? И чего же ты хочешь?
+		AI_Output(self,other,"DIA_Cord_Hallo_14_05");	//Ох? И чего же тогда ты хочешь?
 	};
 };
 
@@ -95,7 +95,7 @@ var int Cord_SchonmalGefragt;
 
 instance DIA_Cord_WannaJoin(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 5;
 	condition = DIA_Cord_WannaJoin_Condition;
 	information = DIA_Cord_WannaJoin_Info;
@@ -161,7 +161,7 @@ func void DIA_Cord_WannaJoin_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_12");	//Другими словами: ты зеленый новичок!
-		AI_Output(self,other,"DIA_Cord_WannaJoin_14_13");	//Мы, наемники, должны быть уверены, что можем всецело положиться на наших товарищей. От этого зависит наша жизнь.
+		AI_Output(self,other,"DIA_Cord_WannaJoin_14_13");	//Мы наемники, должны быть уверены, что можем всецело положиться на наших товарищей. От этого зависит наша жизнь.
 		B_Cord_BeBetter();
 		Log_CreateTopic(TOPIC_CordProve,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_CordProve,LOG_Running);
@@ -172,7 +172,7 @@ func void DIA_Cord_WannaJoin_Info()
 
 instance DIA_Addon_Cord_YouAreRanger(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 2;
 	condition = DIA_Addon_Cord_YouAreRanger_Condition;
 	information = DIA_Addon_Cord_YouAreRanger_Info;
@@ -327,7 +327,7 @@ func void DIA_Addon_Cord_YouAreRanger_Gold()
 
 func void DIA_Addon_Cord_YouAreRanger_nix()
 {
-	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_nix_15_00");	//На самом деле мне ничего не нужно. Я и сам справлюсь.
+	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_nix_15_00");	//На самом деле, мне ничего не нужно. Я и сам справлюсь.
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_nix_14_01");	//Как скажешь.
 	B_DIA_Addon_Cord_YouAreRanger_WARN();
 	Info_ClearChoices(DIA_Addon_Cord_YouAreRanger);
@@ -344,7 +344,7 @@ func void DIA_Addon_Cord_YouAreRanger_reicht()
 
 instance DIA_Addon_Cord_RangerHelp2GetSLD(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 2;
 	condition = DIA_Addon_Cord_RangerHelp2GetSLD_Condition;
 	information = DIA_Addon_Cord_RangerHelp2GetSLD_Info;
@@ -465,7 +465,7 @@ func void DIA_Addon_Cord_RangerHelp2GetSLD_Info()
 
 instance DIA_Addon_Cord_TalkedToDexter(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 5;
 	condition = DIA_Addon_Cord_TalkedToDexter_Condition;
 	information = DIA_Addon_Cord_TalkedToDexter_Info;
@@ -498,7 +498,7 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_07");	//Не понимаю... Не мог же Патрик просто так взять и исчезнуть.
 	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_08");	//Что ж, ты выполнил условия сделки...
-	MIS_Addon_Cord_Look4Patrick = LOG_Success;
+	MIS_Addon_Cord_Look4Patrick = LOG_SUCCESS;
 	TOPIC_End_RangerHelpSLD = TRUE;
 	B_GivePlayerXP(XP_Addon_Cord_Look4Patrick);
 	AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_09");	//Что насчет задания Торлофа?
@@ -506,18 +506,18 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	Cord_RangerHelp_TorlofsProbe = TRUE;
 	if(Torlof_Probe == Probe_Sekob)
 	{
-		MIS_Torlof_HolPachtVonSekob = LOG_Success;
+		MIS_Torlof_HolPachtVonSekob = LOG_SUCCESS;
 	}
 	else if(Torlof_Probe == Probe_Bengar)
 	{
-		MIS_Torlof_BengarMilizKlatschen = LOG_Success;
+		MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	};
 };
 
 
 instance DIA_Cord_ReturnPatrick(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 8;
 	condition = DIA_Cord_ReturnPatrick_Condition;
 	information = DIA_Cord_ReturnPatrick_Info;
@@ -541,7 +541,7 @@ func void DIA_Cord_ReturnPatrick_Info()
 	AI_Output(other,self,"DIA_Addon_Cord_ReturnPatrick_15_02");	//У меня есть одна просьба.
 	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_03");	//Да?
 	AI_Output(other,self,"DIA_Addon_Cord_ReturnPatrick_15_04");	//Давай обойдемся без благодарностей.
-	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_05");	//Но я не собирался тебя благодарить.
+	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_05");	//Но я и не собирался тебя благодарить.
 	AI_Output(other,self,"DIA_Addon_Cord_ReturnPatrick_15_06");	//Что?..
 	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_07");	//(усмехается) Я собирался сказать тебе, что ты нахальный и скользкий малый.
 	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_09");	//(усмехается) Продолжай в том же духе!
@@ -552,7 +552,7 @@ func void DIA_Cord_ReturnPatrick_Info()
 
 instance DIA_Cord_ExplainSkills(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 1;
 	condition = DIA_Cord_ExplainSkills_Condition;
 	information = DIA_Cord_ExplainSkills_Info;
@@ -573,18 +573,18 @@ func void DIA_Cord_ExplainSkills_Info()
 {
 	AI_Output(other,self,"DIA_Cord_ExplainSkills_15_00");	//Что я должен изучить сначала, обращение с одноручным или двуручным оружием?
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_01");	//Эти два вида оружия весьма похожи друг на друга.
-	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_02");	//Когда ты достигнешь следующего уровня в одном из них, ты автоматически повышаешь и уровень владения другим.
+	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_02");	//Когда ты достигаешь следующего уровня в одном из них, ты автоматически повышаешь и уровень владения другим.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_03");	//Если, например, ты хорошо владеешь одноручным мечом, но все еще новичок в том, что касается двуручного...
-	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_04");	//... навык владения двуручным оружием также повысится, когда ты будешь тренировать одноручное.
+	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_04");	//...навык владения двуручным оружием также повысится, когда ты будешь тренировать одноручное.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_05");	//Если ты тренируешься только с одним типом оружия, ты найдешь процесс обучения более изматывающим.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_06");	//Если же ты всегда тренируешь оба вида оружия, ты достигнешь того же результата, затратив меньше усилий.
-	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_07");	//И еще, результат все равно будет одним и тем же - так что тебе выбирать.
+	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_07");	//И еще, результат все равно будет один и тем же - так что тебе выбирать.
 };
 
 
 instance DIA_Cord_ExplainWeapons(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 2;
 	condition = DIA_Cord_ExplainWeapons_Condition;
 	information = DIA_Cord_ExplainWeapons_Info;
@@ -603,7 +603,7 @@ func int DIA_Cord_ExplainWeapons_Condition()
 
 func void DIA_Cord_ExplainWeapons_Info()
 {
-	AI_Output(other,self,"DIA_Cord_ExplainWeapons_15_00");	//Ну, а каковы преимущества одноручного и двуручного оружия?
+	AI_Output(other,self,"DIA_Cord_ExplainWeapons_15_00");	//Каковы преимущества одноручного и двуручного оружия?
 	AI_Output(self,other,"DIA_Cord_ExplainWeapons_14_01");	//Хороший вопрос. Я вижу, что ты размышлял над этим вопросом.
 	AI_Output(self,other,"DIA_Cord_ExplainWeapons_14_02");	//Одноручное оружие быстрее, но оно наносит меньший урон врагам.
 	AI_Output(self,other,"DIA_Cord_ExplainWeapons_14_03");	//Двуручное оружие наносит больший урон, но им не получится размахивать так же быстро, как одноручным.
@@ -617,7 +617,7 @@ var int Cord_Merke_2h;
 
 instance DIA_Cord_Teach(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 3;
 	condition = DIA_Cord_Teach_Condition;
 	information = DIA_Cord_Teach_Info;
@@ -767,7 +767,7 @@ func void DIA_Cord_Teach_1H_5()
 
 instance DIA_Cord_PICKPOCKET(C_Info)
 {
-	npc = SLD_805_Cord;
+	npc = Sld_805_Cord;
 	nr = 900;
 	condition = DIA_Cord_PICKPOCKET_Condition;
 	information = DIA_Cord_PICKPOCKET_Info;

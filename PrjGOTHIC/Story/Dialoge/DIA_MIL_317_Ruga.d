@@ -1,7 +1,7 @@
 
 instance DIA_Ruga_EXIT(C_Info)
 {
-	npc = MIL_317_Ruga;
+	npc = Mil_317_Ruga;
 	nr = 999;
 	condition = DIA_Ruga_EXIT_Condition;
 	information = DIA_Ruga_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Ruga_EXIT_Info()
 
 instance DIA_Ruga_PICKPOCKET(C_Info)
 {
-	npc = MIL_317_Ruga;
+	npc = Mil_317_Ruga;
 	nr = 900;
 	condition = DIA_Ruga_PICKPOCKET_Condition;
 	information = DIA_Ruga_PICKPOCKET_Info;
@@ -72,7 +72,7 @@ func void DIA_Ruga_PICKPOCKET_BACK()
 
 instance DIA_Ruga_Hallo(C_Info)
 {
-	npc = MIL_317_Ruga;
+	npc = Mil_317_Ruga;
 	nr = 2;
 	condition = DIA_Ruga_Hallo_Condition;
 	information = DIA_Ruga_Hallo_Info;
@@ -100,7 +100,7 @@ func void DIA_Ruga_Hallo_Info()
 
 instance DIA_Ruga_Train(C_Info)
 {
-	npc = MIL_317_Ruga;
+	npc = Mil_317_Ruga;
 	nr = 5;
 	condition = DIA_Ruga_Train_Condition;
 	information = DIA_Ruga_Train_Info;
@@ -143,7 +143,7 @@ func void DIA_Ruga_Train_Info()
 
 instance DIA_Ruga_Teach(C_Info)
 {
-	npc = MIL_317_Ruga;
+	npc = Mil_317_Ruga;
 	nr = 100;
 	condition = DIA_Ruga_Teach_Condition;
 	information = DIA_Ruga_Teach_Info;
@@ -202,7 +202,7 @@ func void DIA_Ruga_Teach_1H_5()
 
 instance DIA_Ruga_TEACHDEX(C_Info)
 {
-	npc = MIL_317_Ruga;
+	npc = Mil_317_Ruga;
 	nr = 101;
 	condition = DIA_Ruga_TEACHDEX_Condition;
 	information = DIA_Ruga_TEACHDEX_Info;

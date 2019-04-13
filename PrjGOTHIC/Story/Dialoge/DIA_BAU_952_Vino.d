@@ -88,7 +88,7 @@ func void DIA_Vino_SeekWork_Info()
 			{
 				AI_Output(other,self,"DIA_Vino_SeekWork_15_05");	//ќн предложил купить у него чистую одежду дешевле, если € буду помогать на ферме.
 				AI_Output(self,other,"DIA_Vino_SeekWork_05_06");	//’мм. ” мен€ нет дл€ теб€ никакой работы, но ты можешь принести мне и парн€м что-нибудь выпить.
-				AI_Output(self,other,"DIA_Vino_SeekWork_05_07");	//ѕринеси мне бутылку вина, и € скажу Ћобарту, что ты очень помог нам. (смеетс€ издевательски)
+				AI_Output(self,other,"DIA_Vino_SeekWork_05_07");	//ѕринеси мне бутылку вина, и € скажу Ћобарту, что ты очень помог нам (смеетс€ издевательски).
 				MIS_Vino_Wein = LOG_Running;
 				Log_CreateTopic(TOPIC_Vino,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_Vino,LOG_Running);
@@ -139,7 +139,7 @@ func void DIA_Vino_BringWine_Info()
 			AI_Output(self,other,"DIA_Vino_BringWine_05_03");	//Ћобарт услышит только хорошее о тебе.
 		};
 	};
-	MIS_Vino_Wein = LOG_Success;
+	MIS_Vino_Wein = LOG_SUCCESS;
 	B_GivePlayerXP(XP_VinoWein);
 };
 
@@ -263,17 +263,17 @@ func int DIA_Vino_DMTAMSTART_Condition()
 };
 
 
-var int dia_vino_dmtamstart_onetime;
+var int DIA_Vino_DMTAMSTART_OneTime;
 
 func void DIA_Vino_DMTAMSTART_Info()
 {
 	AI_Output(other,self,"DIA_Vino_DMTAMSTART_15_00");	//ј как у теб€ дела?
-	if((FoundVinosKellerei == TRUE) && (DIA_VINO_DMTAMSTART_ONETIME == FALSE) && (hero.guild != GIL_MIL))
+	if((FoundVinosKellerei == TRUE) && (DIA_Vino_DMTAMSTART_OneTime == FALSE) && (hero.guild != GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Vino_DMTAMSTART_05_01");	//ƒерьмово. ќполчение нашло мой тайный винокуренный заводик.
 		AI_Output(self,other,"DIA_Vino_DMTAMSTART_05_02");	//ќстаетс€ наде€тьс€, что они никогда не узнают, что он принадлежал мне.
 		B_GivePlayerXP(XP_AmbientKap3);
-		DIA_VINO_DMTAMSTART_ONETIME = TRUE;
+		DIA_Vino_DMTAMSTART_OneTime = TRUE;
 	}
 	else
 	{
@@ -482,18 +482,18 @@ func void DIA_Vino_KAP5_EXIT_Info()
 };
 
 
-instance DIA_VINO_KAP6_EXIT(C_Info)
+instance DIA_Vino_KAP6_EXIT(C_Info)
 {
 	npc = BAU_952_Vino;
 	nr = 999;
-	condition = dia_vino_kap6_exit_condition;
-	information = dia_vino_kap6_exit_info;
+	condition = DIA_Vino_KAP6_EXIT_Condition;
+	information = DIA_Vino_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_vino_kap6_exit_condition()
+func int DIA_Vino_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -501,7 +501,7 @@ func int dia_vino_kap6_exit_condition()
 	};
 };
 
-func void dia_vino_kap6_exit_info()
+func void DIA_Vino_KAP6_EXIT_Info()
 {
 	B_NpcClearObsessionByDMT(self);
 };

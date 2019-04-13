@@ -57,7 +57,7 @@ func void DIA_Landstreicher_HALLO_wer()
 {
 	AI_Output(other,self,"DIA_Landstreicher_HALLO_wer_15_00");	//ј кто это был?
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_01");	//ќн был похож на одного из этих головастых послушников из монастыр€.
-	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_02");	//ћожешь говорить что угодно, но, по-моему, у этих парней не все в пор€дке с головой.
+	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_02");	//ћожешь говорить, что угодно, но, по-моему, у этих парней не все в пор€дке с головой.
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_03");	//“олько посмотри на их дурацкое оде€ние. я бы не хотел быть пойманным на улице ночью в такой одежке. (смеетс€)

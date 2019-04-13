@@ -1,7 +1,7 @@
 
 instance DIA_Bodo_EXIT(C_Info)
 {
-	npc = BAU_903_Bodo;
+	npc = Bau_903_Bodo;
 	nr = 999;
 	condition = DIA_Bodo_EXIT_Condition;
 	information = DIA_Bodo_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Bodo_EXIT_Info()
 
 instance DIA_Bodo_Hallo(C_Info)
 {
-	npc = BAU_903_Bodo;
+	npc = Bau_903_Bodo;
 	nr = 1;
 	condition = DIA_Bodo_Hallo_Condition;
 	information = DIA_Bodo_Hallo_Info;
@@ -63,7 +63,7 @@ func void DIA_Bodo_Hallo_Info()
 
 instance DIA_Bodo_Bauernaufstand(C_Info)
 {
-	npc = BAU_903_Bodo;
+	npc = Bau_903_Bodo;
 	nr = 2;
 	condition = DIA_Bodo_Bauernaufstand_Condition;
 	information = DIA_Bodo_Bauernaufstand_Info;
@@ -87,7 +87,7 @@ func void DIA_Bodo_Bauernaufstand_Info()
 
 instance DIA_Bodo_Bett(C_Info)
 {
-	npc = BAU_903_Bodo;
+	npc = Bau_903_Bodo;
 	nr = 3;
 	condition = DIA_Bodo_Bett_Condition;
 	information = DIA_Bodo_Bett_Info;
@@ -111,7 +111,7 @@ func void DIA_Bodo_Bett_Info()
 
 instance DIA_Bodo_Cipher(C_Info)
 {
-	npc = BAU_903_Bodo;
+	npc = Bau_903_Bodo;
 	nr = 4;
 	condition = DIA_Bodo_Cipher_Condition;
 	information = DIA_Bodo_Cipher_Info;
@@ -130,18 +130,18 @@ func int DIA_Bodo_Cipher_Condition()
 
 func void DIA_Bodo_Cipher_Info()
 {
-	AI_Output(other,self,"DIA_Bodo_Cipher_15_00");	//Сифер сказал мне, что кто-то украл у него тюк болотной травы...
+	AI_Output(other,self,"DIA_Bodo_Cipher_15_00");	//Сифер сказал мне, что кто-то украл у него тюк болотной травы ...
 	AI_Output(self,other,"DIA_Bodo_Cipher_12_01");	//И?
 	AI_Output(other,self,"DIA_Bodo_Cipher_15_02");	//Он думает, что это сделал ты.
-	AI_Output(self,other,"DIA_Bodo_Cipher_12_03");	//Ах, ВОТ почему этот парень все время так пялится на меня.
+	AI_Output(self,other,"DIA_Bodo_Cipher_12_03");	//Ох, ВОТ почему этот парень все время так пялится на меня.
 	AI_Output(self,other,"DIA_Bodo_Cipher_12_04");	//Я стараюсь быть с ним максимально дружелюбным последнее время, потому что, похоже, ему вожжа попала под хвост.
-	AI_Output(self,other,"DIA_Bodo_Cipher_12_05");	//Но я ничего не могу поделать. Я стараюсь улыбаться ему, а он в ответ смотрит так, как будто хочет убить меня.
+	AI_Output(self,other,"DIA_Bodo_Cipher_12_05");	//Но я ничего не могу поделать. Я стараюсь улыбаться ему, а ан в ответ смотрит так, как будто хочет убить меня.
 };
 
 
 instance DIA_Bodo_WeedOrElse(C_Info)
 {
-	npc = BAU_903_Bodo;
+	npc = Bau_903_Bodo;
 	nr = 5;
 	condition = DIA_Bodo_WeedOrElse_Condition;
 	information = DIA_Bodo_WeedOrElse_Info;
@@ -160,7 +160,7 @@ func int DIA_Bodo_WeedOrElse_Condition()
 
 func void DIA_Bodo_WeedOrElse_Info()
 {
-	AI_Output(other,self,"DIA_Bodo_WeedOrElse_15_00");	//Отдай мне эту траву или...
+	AI_Output(other,self,"DIA_Bodo_WeedOrElse_15_00");	//Отдай мне эту траву или ...
 	AI_Output(self,other,"DIA_Bodo_WeedOrElse_12_01");	//Послушай, все, что у меня есть - это один косяк из болотной травы. Возьми его и оставь меня в покое.
 	B_GiveInvItems(self,other,ItMi_Joint,1);
 	if(other.guild == GIL_NONE)
@@ -173,7 +173,7 @@ func void DIA_Bodo_WeedOrElse_Info()
 
 instance DIA_Bodo_WeedPERM(C_Info)
 {
-	npc = BAU_903_Bodo;
+	npc = Bau_903_Bodo;
 	nr = 6;
 	condition = DIA_Bodo_WeedPERM_Condition;
 	information = DIA_Bodo_WeedPERM_Info;
@@ -192,14 +192,14 @@ func int DIA_Bodo_WeedPERM_Condition()
 
 func void DIA_Bodo_WeedPERM_Info()
 {
-	AI_Output(other,self,"DIA_Bodo_WeedPERM_15_00");	//Я не верю ни одному твоему слову. Отдай мне эту траву!
+	AI_Output(other,self,"DIA_Bodo_WeedPERM_15_00");	//Я не верб ни одному твоему слову. Отдай мне эту траву!
 	AI_Output(self,other,"DIA_Bodo_WeedPERM_12_01");	//У меня ее нет. Честно.
 };
 
 
 instance DIA_Bodo_PICKPOCKET(C_Info)
 {
-	npc = BAU_903_Bodo;
+	npc = Bau_903_Bodo;
 	nr = 900;
 	condition = DIA_Bodo_PICKPOCKET_Condition;
 	information = DIA_Bodo_PICKPOCKET_Info;

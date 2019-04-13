@@ -134,25 +134,25 @@ func void B_Pal_ZOMBIE_RISE()
 func void B_SetVisuals_Pal_Zombie01()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_PAL_Skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,itar_pal_skel);
 };
 
 func void B_SetVisuals_Pal_Zombie02()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,ITAR_PAL_Skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,itar_pal_skel);
 };
 
 func void B_SetVisuals_Pal_Zombie03()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,DEFAULT,ITAR_PAL_Skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,DEFAULT,itar_pal_skel);
 };
 
 func void B_SetVisuals_Pal_Zombie04()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,ITAR_PAL_Skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,itar_pal_skel);
 };
 
 
@@ -248,7 +248,7 @@ instance MayaZombie04_Totenw(Mst_Default_Zombie)
 	Npc_SetToFistMode(self);
 };
 
-instance Summoned_Zombie(Mst_Default_Zombie)
+instance Summoned_ZOMBIE(Mst_Default_Zombie)
 {
 	name[0] = NAME_Addon_Summoned_Zombie;
 	guild = GIL_SummonedZombie;

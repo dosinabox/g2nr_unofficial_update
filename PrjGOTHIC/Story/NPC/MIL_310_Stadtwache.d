@@ -1,5 +1,5 @@
 
-instance MIL_310_Stadtwache(Npc_Default)
+instance Mil_310_Stadtwache(Npc_Default)
 {
 	name[0] = NAME_Stadtwache;
 	guild = GIL_MIL;
@@ -12,7 +12,7 @@ instance MIL_310_Stadtwache(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Raven,BodyTex_N,itar_mil_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Raven,BodyTex_N,ITAR_Mil_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

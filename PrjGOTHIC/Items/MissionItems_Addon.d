@@ -37,7 +37,7 @@ func void Use_SaturasFirstMessage()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сатурас");
 	Doc_Show(nDocID);
-	if((Use_SaturasFirstMessage_OneTime == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_Success))
+	if((Use_SaturasFirstMessage_OneTime == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS))
 	{
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
@@ -133,7 +133,7 @@ func void Use_Map_NewWorld_Ornaments()
 	{
 		B_SetPlayerMap(ItWr_Map_NewWorld_Ornaments_Addon);
 	};
-	sc_saw_ornament_map = TRUE;
+	SC_SAW_ORNAMENT_MAP = TRUE;
 	Document = Doc_CreateMap();
 	Doc_SetPages(Document,1);
 	Doc_SetPage(Document,0,"Map_NewWorld_Ornaments.tga",TRUE);
@@ -201,7 +201,7 @@ func void Equip_ItRi_Ranger_Addon()
 {
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
 	{
-		if(entered_addonworld == FALSE)
+		if(ENTERED_ADDONWORLD == FALSE)
 		{
 			if(Npc_HasItems(hero,ItRi_Ranger_Addon) == FALSE)
 			{
@@ -436,7 +436,7 @@ prototype EffectItemPrototype_Addon(C_Item)
 	name = "Камень";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = VALUE_COAL;
+	value = Value_Coal;
 	visual = "ItMi_Coal.3ds";
 	material = MAT_STONE;
 	description = name;
@@ -470,7 +470,7 @@ instance ItMi_Rake(C_Item)
 	visual = "ItMi_Rake.3DS";
 	material = MAT_WOOD;
 	scemeName = "RAKE";
-	on_state[1] = use_rake;
+	on_state[1] = Use_Rake;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -478,7 +478,7 @@ instance ItMi_Rake(C_Item)
 };
 
 
-func void use_rake()
+func void Use_Rake()
 {
 };
 
@@ -632,7 +632,7 @@ func void Equip_WispDetector()
 	var C_Npc DetWsp;
 	if(Equip_WispDetector_OneTime == FALSE)
 	{
-		player_talent_wispdetector[WISPSKILL_NF] = TRUE;
+		PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NF] = TRUE;
 		WispSearching = WispSearch_NF;
 		Equip_WispDetector_OneTime = TRUE;
 	};
@@ -759,7 +759,7 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 func void Use_StonePlateCommon()
 {
 	var int nDocID;
-	if(player_talent_foreignlanguage[LANGUAGE_1] == TRUE)
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,1);
@@ -817,7 +817,7 @@ func void Use_Addon_Stone_01()
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(player_talent_foreignlanguage[LANGUAGE_1] == TRUE)
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
 		Doc_PrintLines(nDocID,0,"Мы, последние трое из Совета Пяти, установили в храме ловушки и спрятали вход, чтобы меч больше никогда не покинул храм.");
 	}
@@ -861,7 +861,7 @@ func void Use_Addon_Stone_05()
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(player_talent_foreignlanguage[LANGUAGE_1] == TRUE)
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
 		Doc_PrintLines(nDocID,0,"Я, тот, кто был против решения Совета Трех, создал первую ловушку. Лишь я знаю правильную дверь.");
 	}
@@ -905,7 +905,7 @@ func void Use_Addon_Stone_03()
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(player_talent_foreignlanguage[LANGUAGE_1] == TRUE)
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
 		Doc_PrintLines(nDocID,0,"КАРДИМОН создал вторую ловушку. Лишь тот, кто следует по пути света, достигнет третьего зала.");
 	}
@@ -951,7 +951,7 @@ func void Use_Addon_Stone_04()
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(player_talent_foreignlanguage[LANGUAGE_1] == TRUE)
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
 		Doc_PrintLines(nDocID,0,"Третью ловушку создал КУАРХОДРОН. Лишь он знает, как открыть вход.");
 	}
@@ -995,7 +995,7 @@ func void Use_Addon_Stone_02()
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
 	Doc_PrintLine(nDocID,0,"");
-	if(player_talent_foreignlanguage[LANGUAGE_1] == TRUE)
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
 		Doc_PrintLines(nDocID,0,"Внешние ворота с помощью КАРДИМОНА закрыл Куадходрон. Этот ритуал стал для них смертельным.");
 		Doc_PrintLine(nDocID,0,"");
@@ -1319,7 +1319,7 @@ func void Use_GregsBottle()
 };
 
 
-instance ItMi_ErolsKelch(C_Item)
+instance itmi_erolskelch(C_Item)
 {
 	name = "Поцарапанная серебряная чаша";
 	mainflag = ITEM_KAT_NONE;

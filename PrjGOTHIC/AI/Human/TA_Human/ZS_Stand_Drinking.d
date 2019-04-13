@@ -15,7 +15,7 @@ func void ZS_Stand_Drinking()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Stand_Drinking_Loop()
+func int ZS_Stand_Drinking_loop()
 {
 	var int random;
 	if(Npc_IsOnFP(self,"STAND"))
@@ -68,7 +68,7 @@ func int ZS_Stand_Drinking_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Stand_Drinking_End()
+func void ZS_Stand_Drinking_end()
 {
 	AI_UseItemToState(self,ItFo_Booze,-1);
 };

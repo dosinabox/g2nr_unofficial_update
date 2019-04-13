@@ -74,7 +74,7 @@ func int DIA_Jesper_Hallo_Condition()
 
 func void DIA_Jesper_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Jesper_Hallo_09_00");	//Эй, что ты тут делаешь? Тебе тут не место!
+	AI_Output(self,other,"DIA_Jesper_Hallo_09_00");	//Эй, Что ты тут делаешь? Тебе тут не место!
 	AI_Output(self,other,"DIA_Jesper_Hallo_09_01");	//Так что выкладывай, что ты делаешь здесь?
 	Info_ClearChoices(DIA_Jesper_Hallo);
 	Info_AddChoice(DIA_Jesper_Hallo,"Я пришел убить тебя.",DIA_Jesper_Hallo_Kill);
@@ -172,7 +172,7 @@ func void DIA_Jesper_Bezahlen_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Jesper_Bezahlen_09_02");	//Ты хочешь узнать, как двигаться, не издавая ни единого звука? Это обойдется тебе в 100 золотых монет.
-		B_Say_Gold(self,other,JESPER_COST);
+		B_Say_Gold(self,other,Jesper_Cost);
 		Info_ClearChoices(DIA_Jesper_Bezahlen);
 		Info_AddChoice(DIA_Jesper_Bezahlen,"Может быть, позже ...(НАЗАД)",DIA_Jesper_Bezahlen_Spaeter);
 		Info_AddChoice(DIA_Jesper_Bezahlen,"Хорошо, я хочу научиться красться (заплатить 100 золотых).",DIA_Jesper_Bezahlen_Okay);
@@ -213,11 +213,11 @@ instance DIA_Jesper_Schleichen(C_Info)
 };
 
 
-var int dia_jesper_schleichen_permanent;
+var int DIA_Jesper_Schleichen_permanent;
 
 func int DIA_Jesper_Schleichen_Condition()
 {
-	if((Jesper_TeachSneak == TRUE) && (DIA_JESPER_SCHLEICHEN_PERMANENT == FALSE))
+	if((Jesper_TeachSneak == TRUE) && (DIA_Jesper_Schleichen_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -231,7 +231,7 @@ func void DIA_Jesper_Schleichen_Info()
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_01");	//Умение красться очень важно для любого вора. Особенно, если ты ходишь по чужому дому.
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_02");	//Там нельзя топать, как ты это делаешь сейчас. Большинство людей спит очень чутким сном.
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_03");	//Только когда ты крадешься, никто не услышит тебя, и ты сможешь работать беспрепятственно.
-		DIA_JESPER_SCHLEICHEN_PERMANENT = TRUE;
+		DIA_Jesper_Schleichen_permanent = TRUE;
 	};
 };
 
@@ -322,7 +322,7 @@ instance DIA_Jesper_Tuer(C_Info)
 
 func int DIA_Jesper_Tuer_Condition()
 {
-	if((MIS_CassiaRing == LOG_Success) && (Kapitel >= 3))
+	if((MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};
@@ -331,7 +331,7 @@ func int DIA_Jesper_Tuer_Condition()
 func void DIA_Jesper_Tuer_Info()
 {
 	AI_Output(other,self,"DIA_Jesper_Tuer_15_00");	//А что за этой закрытой дверью?
-	AI_Output(self,other,"DIA_Jesper_Tuer_09_01");	//(ухмыляется) За ней находится сундук - сундук мастера-медвежатника Фингерcа.
+	AI_Output(self,other,"DIA_Jesper_Tuer_09_01");	//(ухмыляется) За ней находится сундук - сундук мастера-медвежатника Фингера.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_02");	//Он поставил такой невероятно сложный замок на него, что до сих пор никому не удалось открыть его.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_03");	//К сожалению, он как-то попался - и его засунули за Барьер, где он, вероятно, и умер.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_04");	//Но если ты хочешь попытаться открыть его сундук, вот ключ от этой комнаты.

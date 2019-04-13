@@ -37,7 +37,7 @@ instance DIA_Pyrokar_WELCOME(C_Info)
 
 func int DIA_Pyrokar_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (knows_fire_contest == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (KNOWS_FIRE_CONTEST == FALSE) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -75,9 +75,9 @@ func void DIA_Pyrokar_Hagen_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Hagen_11_01");	//Ты скажешь нам, о чем ты собираешься говорить с ними?
 	AI_Output(other,self,"DIA_Pyrokar_Hagen_15_02");	//У меня для них важное сообщение.
 	AI_Output(self,other,"DIA_Pyrokar_Hagen_11_03");	//Что это за сообщение?
-	AI_Output(other,self,"DIA_Pyrokar_Hagen_15_04");	//Армия Зла собирается в Долине Рудников. Ее возглавляют драконы! Мы должны остановить их, пока это еще возможно.
+	AI_Output(other,self,"DIA_Pyrokar_Hagen_15_04");	//Армия зла собирается в Долине Рудников. Ее возглавляют драконы! Мы должны остановить их, пока это еще возможно.
 	AI_Output(self,other,"DIA_Pyrokar_Hagen_11_05");	//Хм. Мы должны обдумать твои слова, послушник. Когда придет время, мы дадим тебе знать, что по этому поводу решил Совет.
-	AI_Output(self,other,"DIA_Pyrokar_Hagen_11_06");	//А пока тебе лучше уделить самое пристальное внимание своим обязанностям послушника.
+	AI_Output(self,other,"DIA_Pyrokar_Hagen_11_06");	//А пока, тебе лучше уделить самое пристальное внимание своим обязанностям послушника.
 	if(Npc_KnowsInfo(other,DIA_Pyrokar_Auge))
 	{
 		AI_Output(self,other,"DIA_Pyrokar_ALL_11_07");	//Мы больше не будем отрывать тебя от работы - ты можешь идти.
@@ -99,7 +99,7 @@ instance DIA_Pyrokar_Auge(C_Info)
 
 func int DIA_Pyrokar_Auge_Condition()
 {
-	if((knows_fire_contest == FALSE) && (other.guild == GIL_NOV))
+	if((KNOWS_FIRE_CONTEST == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -142,7 +142,7 @@ func int DIA_Addon_Pyrokar_MissingPeople_Condition()
 func void DIA_Addon_Pyrokar_MissingPeople_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Pyrokar_MissingPeople_15_00");	//Жители Хориниса таинственным образом исчезают.
-	AI_Output(self,other,"DIA_Addon_Pyrokar_MissingPeople_11_01");	//Мне это известно, и я глубоко опечален этими исчезновениями. Но этим делом занимаются маги Воды.
+	AI_Output(self,other,"DIA_Addon_Pyrokar_MissingPeople_11_01");	//Мне это известно, и я глубоко опечален этими исчезновениями. Но этим делом занимаются маги воды.
 	AI_Output(self,other,"DIA_Addon_Pyrokar_MissingPeople_11_02");	//Они же пытаются выяснить причины странных землетрясений, происходящих в северо-восточной части Хориниса.
 	AI_Output(self,other,"DIA_Addon_Pyrokar_MissingPeople_11_03");	//До сих пор они не давали мне понять, что им требуется наша помощь. Поэтому мы не предпринимаем никаких действий.
 	AI_Output(other,self,"DIA_Addon_Pyrokar_MissingPeople_15_04");	//Да, но...
@@ -150,7 +150,7 @@ func void DIA_Addon_Pyrokar_MissingPeople_Info()
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Маги Огня огорчены исчезновениями горожан. Однако, они говорят, что это этим должны заниматься Маги Воды. В монастыре мне не удастся найти помощи по этому вопросу.");
-	if((other.guild == GIL_NOV) && (knows_fire_contest == FALSE))
+	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == FALSE))
 	{
 		AI_StopProcessInfos(self);
 	};
@@ -174,7 +174,7 @@ func int DIA_Pyrokar_GOAWAY_Condition()
 	{
 		return FALSE;
 	};
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(hero,DIA_Pyrokar_Auge) && (knows_fire_contest == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(hero,DIA_Pyrokar_Hagen) && Npc_KnowsInfo(hero,DIA_Pyrokar_Auge) && (KNOWS_FIRE_CONTEST == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -200,7 +200,7 @@ instance DIA_Pyrokar_FIRE(C_Info)
 
 func int DIA_Pyrokar_FIRE_Condition()
 {
-	if((knows_fire_contest == TRUE) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen))
+	if((KNOWS_FIRE_CONTEST == TRUE) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Pyrokar_Hagen))
 	{
 		return TRUE;
 	};
@@ -228,13 +228,13 @@ instance DIA_Pyrokar_TEST(C_Info)
 	condition = DIA_Pyrokar_TEST_Condition;
 	information = DIA_Pyrokar_TEST_Info;
 	permanent = FALSE;
-	description = "Я готов пройти твое испытание, мастер.";
+	description = "Я готов пройти испытание, Мастер.";
 };
 
 
 func int DIA_Pyrokar_TEST_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (mis_schnitzeljagd == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (MIS_SCHNITZELJAGD == FALSE) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -272,7 +272,7 @@ func void DIA_Pyrokar_TEST_Info()
 	CreateInvItems(Ulf,ItKe_MagicChest,1);
 	Ulf.aivar[AIV_DropDeadAndKill] = TRUE;
 	Ulf.aivar[AIV_NewsOverride] = TRUE;
-	mis_schnitzeljagd = LOG_Running;
+	MIS_SCHNITZELJAGD = LOG_Running;
 	AI_StopProcessInfos(self);
 };
 
@@ -290,7 +290,7 @@ instance DIA_Pyrokar_RUNNING(C_Info)
 
 func int DIA_Pyrokar_RUNNING_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
 	{
 		return TRUE;
 	};
@@ -329,7 +329,7 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 
 func int DIA_Pyrokar_SUCCESS_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && ((Npc_HasItems(other,ItMi_RuneBlank) >= 1) || (Npc_HasItems(other,ItRu_FireBolt) >= 1)))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && ((Npc_HasItems(other,ItMi_RuneBlank) >= 1) || (Npc_HasItems(other,ItRu_FireBolt) >= 1)))
 	{
 		return TRUE;
 	};
@@ -342,8 +342,8 @@ func void DIA_Pyrokar_SUCCESS_Info()
 	AI_Output(other,self,"DIA_Pyrokar_SUCCESS_15_02");	//... и одной левой победил всех тех монстров, что уже считали меня своей добычей.
 	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_03");	//А другие послушники? Что насчет Агона? Они не опередили тебя?
 	AI_Output(other,self,"DIA_Pyrokar_SUCCESS_15_04");	//Они не смогли. Я думаю, им было не суждено пройти это испытание.
-	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_05");	//Что ж, в таком случае мы объявляем, что ты прошел это испытание. А этот рунный камень теперь твой.
-	mis_schnitzeljagd = LOG_Success;
+	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_05");	//Что ж, в таком случае, мы объявляем, что ты прошел это испытание. А этот рунный камень теперь твой.
+	MIS_SCHNITZELJAGD = LOG_SUCCESS;
 	B_GivePlayerXP(XP_SCHNITZELJAGD);
 };
 
@@ -361,7 +361,7 @@ instance DIA_Pyrokar_Todo(C_Info)
 
 func int DIA_Pyrokar_Todo_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Success) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((mis_rune != LOG_Success) || (mis_golem != LOG_Success)))
+	if((MIS_SCHNITZELJAGD == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((MIS_RUNE != LOG_SUCCESS) || (MIS_GOLEM != LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -371,11 +371,11 @@ func void DIA_Pyrokar_Todo_Info()
 {
 	AI_Output(self,other,"DIA_Pyrokar_Todo_11_00");	//Ты прошел испытание, которому подверг тебя я.
 	AI_Output(self,other,"DIA_Pyrokar_Todo_11_01");	//Но...
-	if(mis_rune != LOG_Success)
+	if(MIS_RUNE != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_Todo_11_02");	//... тебе еще необходимо пройти испытание Ультара.
 	};
-	if(mis_golem != LOG_Success)
+	if(MIS_GOLEM != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_Todo_11_03");	//... тебе еще необходимо выполнить задание Серпентеса.
 	};
@@ -396,7 +396,7 @@ instance DIA_Pyrokar_MAGICAN(C_Info)
 
 func int DIA_Pyrokar_MAGICAN_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Success) && (mis_rune == LOG_Success) && (mis_golem == LOG_Success) && (other.guild == GIL_NOV))
+	if((MIS_SCHNITZELJAGD == LOG_SUCCESS) && (MIS_RUNE == LOG_SUCCESS) && (MIS_GOLEM == LOG_SUCCESS) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -436,18 +436,18 @@ func void DIA_Pyrokar_OATH_Info()
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_01");	//Хорошо, тогда принеси Клятву Огня.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_02");	//(торжественно) Клянешься ли ты, перед лицом Инноса Всемогущего, его слуг и Священного Огня...
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_03");	//... что с этого момента и до конца дней вся жизнь твоя будет едина с огнем...
-	AI_Output(self,other,"DIA_Pyrokar_OATH_11_04");	//... до тех пор, пока твое тело и душа не найдут покой в этих священных чертогах и пламя твоей жизни не угаснет?
+	AI_Output(self,other,"DIA_Pyrokar_OATH_11_04");	//... до тех пор пока твое тело и душа не найдут покой в этих священных чертогах и пламя твоей жизни не угаснет?
 	AI_Output(other,self,"DIA_Pyrokar_OATH_15_05");	//Клянусь.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_06");	//Произнеся слова этой клятвы, ты присоединился к Соглашению Огня.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_07");	//Носи эту робу в знак этих вечных уз.
-	CreateInvItems(hero,itar_kdf_l,1);
-	AI_EquipArmor(hero,itar_kdf_l);
+	CreateInvItems(hero,ItAr_KDF_L,1);
+	AI_EquipArmor(hero,ItAr_KDF_L);
 	other.guild = GIL_KDF;
 	Npc_ExchangeRoutine(Lothar,"START");
 	Npc_SetTrueGuild(other,GIL_KDF);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
-	KDF_Aufnahme = LOG_Success;
+	KDF_Aufnahme = LOG_SUCCESS;
 	SLD_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_OBSOLETE;
 	B_GivePlayerXP(XP_BecomeMage);
@@ -482,7 +482,7 @@ func void DIA_Pyrokar_Lernen_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_01");	//Прежде всего, теперь ты имеешь право изучать Круги Магии. Они дадут тебе власть над рунами.
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_02");	//Чем выше ты будешь подниматься в шести Кругах Магии, тем более сильными заклинаниями ты сможешь овладеть.
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_03");	//Ты сможешь узнать формулы заклинаний у наших братьев в монастыре. Каждый из них специализируется в определенной области.
-	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_04");	//Каррас, например, мастер вызова, а Хиглас обучит тебя магии Огня.
+	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_04");	//Каррас, например, мастер вызова, а Хиглас обучит тебя магии огня.
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_05");	//Никто не знает больше о силах льда, чем Мардук. Парлан может обучить тебя другим различным заклинаниям - и он введет тебя в первые круги.
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_06");	//Но каждый из них будет учить тебя только формулам - руны ты должен будешь создавать сам.
 	Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
@@ -542,15 +542,15 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	if(MIS_HelpDyrian == LOG_Running)
 	{
-		MIS_HelpDyrian = LOG_Failed;
+		MIS_HelpDyrian = LOG_FAILED;
 	};
 	if(MIS_HelpOpolos == LOG_Running)
 	{
-		MIS_HelpOpolos = LOG_Failed;
+		MIS_HelpOpolos = LOG_FAILED;
 	};
 	if(MIS_HelpBabo == LOG_Running)
 	{
-		MIS_HelpBabo = LOG_Failed;
+		MIS_HelpBabo = LOG_FAILED;
 	};
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
@@ -562,14 +562,14 @@ func void DIA_Pyrokar_Wunsch_Dyrian()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Dyrian_11_02");	//Этому послушнику будет позволено остаться в монастыре, и он займет место садовника, которое сейчас вакантно.
 	B_GivePlayerXP(XP_HelpDyrian);
 	B_StartOtherRoutine(Dyrian,"FAVOUR");
-	MIS_HelpDyrian = LOG_Success;
+	MIS_HelpDyrian = LOG_SUCCESS;
 	if(MIS_HelpOpolos == LOG_Running)
 	{
-		MIS_HelpOpolos = LOG_Failed;
+		MIS_HelpOpolos = LOG_FAILED;
 	};
 	if(MIS_HelpBabo == LOG_Running)
 	{
-		MIS_HelpBabo = LOG_Failed;
+		MIS_HelpBabo = LOG_FAILED;
 	};
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
@@ -579,18 +579,18 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	AI_Teleport(Dyrian,"TAVERNE");
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Babo_15_00");	//Позволь послушнику Бабо возглавить монастырский сад.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_01");	//Да будет так.
-	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_02");	//С сего момента послушник Бабо будет отвечать за монастырский сад.
+	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_02");	//С сего момента, послушник Бабо будет отвечать за монастырский сад.
 	B_GivePlayerXP(XP_HelpBabo);
 	B_StartOtherRoutine(Babo,"FAVOUR");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
-	MIS_HelpBabo = LOG_Success;
+	MIS_HelpBabo = LOG_SUCCESS;
 	if(MIS_HelpDyrian == LOG_Running)
 	{
-		MIS_HelpDyrian = LOG_Failed;
+		MIS_HelpDyrian = LOG_FAILED;
 	};
 	if(MIS_HelpOpolos == LOG_Running)
 	{
-		MIS_HelpOpolos = LOG_Failed;
+		MIS_HelpOpolos = LOG_FAILED;
 	};
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
@@ -604,14 +604,14 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	B_GivePlayerXP(XP_HelpOpolos);
 	B_StartOtherRoutine(Opolos,"FAVOUR");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
-	MIS_HelpOpolos = LOG_Success;
+	MIS_HelpOpolos = LOG_SUCCESS;
 	if(MIS_HelpDyrian == LOG_Running)
 	{
-		MIS_HelpDyrian = LOG_Failed;
+		MIS_HelpDyrian = LOG_FAILED;
 	};
 	if(MIS_HelpBabo == LOG_Running)
 	{
-		MIS_HelpBabo = LOG_Failed;
+		MIS_HelpBabo = LOG_FAILED;
 	};
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 };
@@ -630,7 +630,7 @@ instance DIA_Pyrokar_Nachricht(C_Info)
 
 func int DIA_Pyrokar_Nachricht_Condition()
 {
-	if((mis_oldworld == LOG_Running) && (other.guild == GIL_KDF))
+	if((MIS_OLDWORLD == LOG_Running) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -638,7 +638,7 @@ func int DIA_Pyrokar_Nachricht_Condition()
 
 func void DIA_Pyrokar_Nachricht_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_Nachricht_15_00");	//Я принес новости от лорда Хагена. Он хочет получить доказательства присутствия драконов в армии Зла.
+	AI_Output(other,self,"DIA_Pyrokar_Nachricht_15_00");	//Я принес новости от лорда Хагена. Он хочет получить доказательства присутствия драконов и армии Зла.
 	if(EnterOW_Kapitel2 == FALSE)
 	{
 		AI_Teleport(Sergio,"NW_MONASTERY_PLACE_09");
@@ -679,20 +679,20 @@ func int DIA_Pyrokar_TEACH_Condition()
 
 func void DIA_Pyrokar_TEACH_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_TEACH_15_00");	//Обучи меня последнему Кругу магии.
+	AI_Output(other,self,"DIA_Pyrokar_TEACH_15_00");	//Обучи меня последнему Кругу Магии.
 	if(MIS_SCKnowsWayToIrdorath == TRUE)
 	{
 		if(B_TeachMagicCircle(self,other,6))
 		{
-			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_01");	//Много времени прошло с тех пор, как ты связал себя с Огнем. Многое произошло с тех пор, но покоя все нет.
-			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_02");	//Ты - Избранный Инноса. И тебе понадобятся все твои силы, чтобы победить в этой битве.
+			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_01");	//Много времени прошло с тех пор, как ты связал себя с огнем. Многое произошло с тех пор, но покоя все нет.
+			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_02");	//Ты Избранный Инноса. И тебе понадобятся все твои силы, чтобы победить в этой битве.
 			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_03");	//Я посвящаю тебя, о, Избранный. Ты входишь в шестой Круг - да принесешь ты с собой свет и рассеешь тьму.
 			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_04");	//Теперь ты можешь узнать формулы этого последнего круга от меня, если ты того желаешь.
 			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_05");	//Ох - и еще одно. Мне понадобилось некоторое время, чтобы признать тебя.
 			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_06");	//Ты получил это письмо от меня, когда они швырнули тебя за Барьер.
 			AI_Output(other,self,"DIA_Pyrokar_TEACH_15_07");	//Да, ты таким образом избавил меня от пустой болтовни судьи.
 			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_08");	//И ты Избранный Инноса.
-			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_09");	//Получи же теперь мое благословение, о, Избранный!
+			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_09");	//Получи же теперь мое благословение, о Избранный!
 			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_10");	//Иннос, свет солнца и огонь дерева, благослови этого человека, твоего избранного слугу.
 			AI_Output(self,other,"DIA_Pyrokar_TEACH_11_11");	//Дай ему мужество, силу и мудрость следовать по пути, который ты предначертал ему.
 		};
@@ -730,24 +730,24 @@ func void DIA_Pyrokar_SPELLS_Info()
 	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
 	Info_ClearChoices(DIA_Pyrokar_SPELLS);
 	Info_AddChoice(DIA_Pyrokar_SPELLS,Dialog_Back,DIA_Pyrokar_SPELLS_BACK);
-	if(player_talent_runes[SPL_Firerain] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE)
 	{
 		Info_AddChoice(DIA_Pyrokar_SPELLS,B_BuildLearnString(NAME_SPL_Firerain,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firerain)),DIA_Pyrokar_SPELLS_Firerain);
 		abletolearn = abletolearn + 1;
 	};
-	if(player_talent_runes[SPL_BreathOfDeath] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_BreathOfDeath] == FALSE)
 	{
 		Info_AddChoice(DIA_Pyrokar_SPELLS,B_BuildLearnString(NAME_SPL_BreathOfDeath,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_BreathOfDeath)),DIA_Pyrokar_SPELLS_BreathOfDeath);
 		abletolearn = abletolearn + 1;
 	};
-	if(player_talent_runes[SPL_MassDeath] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_MassDeath] == FALSE)
 	{
 		Info_AddChoice(DIA_Pyrokar_SPELLS,B_BuildLearnString(NAME_SPL_MassDeath,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MassDeath)),DIA_Pyrokar_SPELLS_MassDeath);
 		abletolearn = abletolearn + 1;
 	};
-	if(player_talent_runes[SPL_Shrink] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
 	{
-		Info_AddChoice(DIA_Pyrokar_SPELLS,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),dia_pyrokar_spells_shrink);
+		Info_AddChoice(DIA_Pyrokar_SPELLS,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Pyrokar_SPELLS_Shrink);
 		abletolearn = abletolearn + 1;
 	};
 	if(abletolearn < 1)
@@ -776,7 +776,7 @@ func void DIA_Pyrokar_SPELLS_MassDeath()
 	B_TeachPlayerTalentRunes(self,other,SPL_MassDeath);
 };
 
-func void dia_pyrokar_spells_shrink()
+func void DIA_Pyrokar_SPELLS_Shrink()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
 };
@@ -803,8 +803,8 @@ func int DIA_Pyrokar_Parlan_Condition()
 
 func void DIA_Pyrokar_Parlan_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_Parlan_15_00");	//Меня прислал Парлан. Я хочу повысить мои магические способности.
-	AI_Output(self,other,"DIA_Pyrokar_Parlan_11_01");	//Что ж, ты многое узнал, и твоя сила выросла. С этого момента ты будешь учиться у меня.
+	AI_Output(other,self,"DIA_Pyrokar_Parlan_15_00");	//Меня прислал Парлан. Я хочу повысить мои магические способности
+	AI_Output(self,other,"DIA_Pyrokar_Parlan_11_01");	//Что ж, ты многое узнал, и твоя сила выросла. С этого момента, ты будешь учиться у меня.
 };
 
 
@@ -887,13 +887,13 @@ func void DIA_Pyrokar_PERM_Info()
 {
 	if(hero.guild == GIL_KDF)
 	{
-		AI_Output(other,self,"DIA_Pyrokar_PERM_15_00");	//Благослови меня, Мастер.
+		AI_Output(other,self,"DIA_Pyrokar_PERM_15_00");	//Благослови меня, мастер.
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Pyrokar_PERM_15_01");	//Как насчет благословения? Мне оно не помешало бы.
 	};
-	if((Kapitel == 5) && (MIS_PyrokarClearDemonTower == LOG_Success))
+	if((Kapitel == 5) && (MIS_PyrokarClearDemonTower == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Pyrokar_PERM_11_02");	//Да увенчается успехом твоя последняя битва против нашего заклятого врага. Да пребудет с тобой Иннос.
 	}
@@ -1015,7 +1015,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 {
 	if(hero.guild == GIL_KDF)
 	{
-		AI_Output(other,self,"DIA_Pyrokar_GIVEINNOSEYE_wer_15_00");	//Кто мог совершить столь дерзкий поступок, Мастер?
+		AI_Output(other,self,"DIA_Pyrokar_GIVEINNOSEYE_wer_15_00");	//Кто мог совершить столь дерзкий поступок, мастер?
 	}
 	else
 	{
@@ -1069,7 +1069,7 @@ instance DIA_Pyrokar_FOUNDINNOSEYE(C_Info)
 	nr = 35;
 	condition = DIA_Pyrokar_FOUNDINNOSEYE_Condition;
 	information = DIA_Pyrokar_FOUNDINNOSEYE_Info;
-	description = "Я нашел Глаз Инноса.";
+	description = "Я нашел Глаз Инноса. Он поврежден.";
 };
 
 
@@ -1090,7 +1090,7 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_04");	//Да пребудет с нами Иннос! Они осквернили наш Круг Солнца.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_05");	//Даже в своих худших кошмарах не мог я представить, что они обладают такой силой.
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
-	MIS_NovizenChase = LOG_Success;
+	MIS_NovizenChase = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Pyrokar_FOUNDINNOSEYE);
 	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,"Что мы теперь можем сделать?",DIA_Pyrokar_FOUNDINNOSEYE_was);
@@ -1099,7 +1099,7 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 func void DIA_Pyrokar_FOUNDINNOSEYE_was()
 {
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_was_15_00");	//Что мы теперь можем сделать?
-	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_01");	//Враг стал очень опасен. Но все же, этот древний артефакт представлял серьезную угрозу для него.
+	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_01");	//Враг стал очень силен. Но все же, этот древний артефакт представлял серьезную угрозу для него.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_02");	//Мы должны исцелить Глаз и восстановить его былую силу. Но время работает против нас.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_03");	//Я даже представить себе не могу, что теперь ждет всех нас. Без защиты Глаза, мы беспомощны и находимся полностью в руках врага.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_04");	//Иди в город, к Ватрасу, магу Воды. В этой ужасной ситуации, только он знает, что нужно делать. Отнеси Глаз ему, и поторопись.
@@ -1117,7 +1117,7 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_was_vatras()
 {
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_15_00");	//Почему Ватрас?
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_11_01");	//Привилегия ношения робы мага не дает тебе права обсуждать мои приказы, брат.
-	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_11_02");	//Ватрас - слуга Аданоса. Только знания магов Воды могут принести нам прояснение в этот мрачный час.
+	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_11_02");	//Ватрас слуга Аданоса. Только знания Магов Воды могут принести нам прояснение в этот мрачный час.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_11_03");	//Это все, что тебе нужно знать.
 };
 
@@ -1158,7 +1158,7 @@ func void DIA_Pyrokar_SPOKETOVATRAS_Info()
 	AI_Output(other,self,"DIA_Pyrokar_SPOKETOVATRAS_15_00");	//Я говорил с Ватрасом.
 	AI_Output(self,other,"DIA_Pyrokar_SPOKETOVATRAS_11_01");	//Ах, хорошо. Где он?
 	AI_Output(other,self,"DIA_Pyrokar_SPOKETOVATRAS_15_02");	//Он готовит ритуал в Круге Солнца, чтобы исцелить Глаз Инноса.
-	AI_Output(self,other,"DIA_Pyrokar_SPOKETOVATRAS_11_03");	//Если это правда, то, может быть, у нас все же есть надежда.
+	AI_Output(self,other,"DIA_Pyrokar_SPOKETOVATRAS_11_03");	//Если это правда, то, может быть, у нас все же сеть надежда.
 	AI_Output(other,self,"DIA_Pyrokar_SPOKETOVATRAS_15_04");	//Ватрас хочет, чтобы Ксардас и ты помогли ему в этом.
 	AI_Output(self,other,"DIA_Pyrokar_SPOKETOVATRAS_11_05");	//ЧТО? Ксардас тоже будет там? Ты ведь это не серьезно.
 	AI_Output(other,self,"DIA_Pyrokar_SPOKETOVATRAS_15_06");	//Послушай. Это не мое решение. Ватрас настаивает.
@@ -1193,8 +1193,8 @@ func void DIA_Pyrokar_XARDASVERTRAUEN_Info()
 	AI_Output(other,self,"DIA_Pyrokar_XARDASVERTRAUEN_15_00");	//Без тебя ничего не получится. Ватрас не сможет провести этот ритуал.
 	AI_Output(other,self,"DIA_Pyrokar_XARDASVERTRAUEN_15_01");	//Ты должен довериться Ксардасу.
 	AI_Output(self,other,"DIA_Pyrokar_XARDASVERTRAUEN_11_02");	//Я ничего не могу поделать, ты слышишь? У меня нет ни малейшего доказательства, что Ксардас не работает против нас. Я не могу сделать это.
-	AI_Output(other,self,"DIA_Pyrokar_XARDASVERTRAUEN_15_03");	//А что, если я принесу тебе доказательство?
-	AI_Output(self,other,"DIA_Pyrokar_XARDASVERTRAUEN_11_04");	//Боюсь, это невозможно. Это должно быть что-то, что действительно потрясет меня.
+	AI_Output(other,self,"DIA_Pyrokar_XARDASVERTRAUEN_15_03");	//А что если я принесу тебе доказательство?
+	AI_Output(self,other,"DIA_Pyrokar_XARDASVERTRAUEN_11_04");	//Боюсь, это невозможно. Это должно быть  что-то, что действительно потрясет меня.
 	AI_Output(self,other,"DIA_Pyrokar_XARDASVERTRAUEN_11_05");	//Что касается Ксардаса, то у меня большие сомнения насчет того, что он вообще может произвести на меня впечатление.
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокара прямо в дрожь бросает, когда он слышит о Ксардасе. Я должен обсудить с Ксардасом, как заставить Пирокара принять участие в ритуале в Круге Солнца.");
 	Pyrokar_DeniesInnosEyeRitual = TRUE;
@@ -1280,7 +1280,7 @@ instance DIA_Pyrokar_AUGEGEHEILT(C_Info)
 
 func int DIA_Pyrokar_AUGEGEHEILT_Condition()
 {
-	if((MIS_RitualInnosEyeRepair == LOG_Success) && (Kapitel == 3))
+	if((MIS_RitualInnosEyeRepair == LOG_SUCCESS) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -1292,12 +1292,12 @@ func void DIA_Pyrokar_AUGEGEHEILT_Info()
 	AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_01");	//Я почти не верил, что это возможно.
 	if(hero.guild == GIL_KDF)
 	{
-		AI_Output(other,self,"DIA_Pyrokar_AUGEGEHEILT_15_02");	//Да, Мастер.
+		AI_Output(other,self,"DIA_Pyrokar_AUGEGEHEILT_15_02");	//Да, мастер.
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_03");	//Ты уже неоднократно доказал, что готов к вступлению в Высший Орден Магов Огня.
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_04");	//С этого дня ты являешься членом Совета и будешь представлять наш Орден по всему свету. Теперь ты один из высших Магов Огня.
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_05");	//Носи эту священную робу с достоинством и неси в мир порядок, честь и славу, брат мой.
-		CreateInvItem(hero,itar_kdf_h);
-		AI_EquipArmor(hero,itar_kdf_h);
+		CreateInvItem(hero,ItAr_KDF_H);
+		AI_EquipArmor(hero,ItAr_KDF_H);
 		heroGIL_KDF2 = TRUE;
 	};
 };
@@ -1329,15 +1329,15 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	B_GiveInvItems(self,other,ItMi_InnosEye_MIS,1);
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_02");	//Помни, что тебе нужно сначала поговорить с драконом, прежде чем ты сможешь атаковать его.
 	AI_Output(self,other,"DIA_Pyrokar_Add_11_01");	//Сила Глаза заставит драконов говорить с тобой, и говорить правду.
-	AI_Output(self,other,"DIA_Pyrokar_Add_11_02");	//Кроме того, он даст защиту от их атак.
+	AI_Output(self,other,"DIA_Pyrokar_Add_11_02");	//Кроме того, он дает защиту от их атак.
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_05");	//Однако, его сила не вечна. Тебе придется снова пополнять его магической энергией.
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_06");	//Для этого тебе понадобится эссенция из сердца дракона, которую нужно объединить с Глазом на алхимическом столе.
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_07");	//Только тогда ты сможешь приблизиться к очередному дракону.
 	AI_Output(other,self,"DIA_Pyrokar_KAP3_READY_15_08");	//Спасибо. Я запомню это.
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_09");	//Теперь у тебя есть все необходимое. Иди же. У тебя не так много времени.
-	player_talent_alchemy[CHARGE_Innoseye] = TRUE;
+	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
-	topic_end_innoseye = TRUE;
+	TOPIC_END_INNOSEYE = TRUE;
 	B_GivePlayerXP(XP_Ambient);
 	CreateInvItems(Gorax,ItMi_RuneBlank,1);
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
@@ -1378,7 +1378,7 @@ func void DIA_Pyrokar_BUCHDERBESSENEN_Info()
 	B_GivePlayerXP(XP_Ambient);
 	if(hero.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_04");	//Я полагаю, что она не единственная. Иди и найди еще эти книги проклятия.
+		AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_04");	//Я полагаю, что он не единственный. Иди и найди еще эти книги проклятия.
 		AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_05");	//Я подозреваю, что это инструмент Ищущих.
 		AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_06");	//Они используют его, чтобы контролировать потерянные души своих жертв.
 		AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_07");	//Они, очевидно, записывают имена тех, кем они планируют овладеть, в эти книги.
@@ -1394,7 +1394,7 @@ func void DIA_Pyrokar_BUCHDERBESSENEN_Info()
 		B_LogEntry(TOPIC_DEMENTOREN,"Пирокар хочет, чтобы Альманах Одержимых не принес вреда. Он дал мне список всех, кого Ищущие планируют сделать одержимыми. В этом списке Пирокара позднее могут появиться новые имена.");
 	};
 	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_12");	//Не приближайся к Ищущим, иначе они овладеют тобой.
-	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_13");	//Если же ты все же поймешь, что не в состоянии сопротивляться их зову, возвращайся ко мне как можно скорее.
+	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_13");	//Если ты все же поймешь, что не в состоянии сопротивляться их зову, возвращайся ко мне как можно скорее.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHDERBESSENEN_11_14");	//Только здесь, в монастыре, твоя душа может быть спасена.
 	if((Npc_IsDead(Karras) == FALSE) && (hero.guild == GIL_KDF))
 	{
@@ -1434,7 +1434,7 @@ func void DIA_Pyrokar_SCOBSESSED_Info()
 	{
 		if(hero.guild == GIL_KDF)
 		{
-			AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_00");	//Исцели меня, Мастер, ибо я одержим.
+			AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_00");	//Исцели меня, мастер, ибо я одержим.
 			AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_01");	//Да будет так! Возьми это зелье. Оно избавит тебя от ночных кошмаров.
 			AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_02");	//Да избавит тебя Иннос от этой напасти.
 			AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_03");	//Действуй от его имени и остерегайся черного взгляда врага.
@@ -1546,7 +1546,7 @@ func void DIA_Pyrokar_AlmanachBringen_Info()
 		AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_06");	//Ты уже принес целую кучу этих вражеских книг.
 		AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_07");	//Я буду удивлен, если тебе удастся найти еще.
 	};
-	AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_08");	//Вот, возьми. Это дар от монастыря, который поможет тебе противостоять Злу.
+	AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_08");	//Вот, возьми. Это дар от монастыря, который поможет тебе противостоять злу.
 	if(DIA_Pyrokar_AlmanachBringen_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_09");	//И не забывай время от времени заглядывать в мое магическое письмо.
@@ -1631,8 +1631,8 @@ func void DIA_Pyrokar_DRACHENTOT_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_DRACHENTOT_15_00");	//Все драконы мертвы.
 	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_01");	//Это воистину хорошие новости. Но это совершенно не меняет наше положение, которое кажется безнадежным.
-	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_02");	//Ищущие все еще не ушли. Скорее наоборот. Я слышу все больше и больше сообщений о том, что за последние несколько дней их численность даже увеличилась.
-	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_03");	//Уничтожение драконов нанесло врагу серьезный удар, но этого недостаточно. Нам нужно вырвать это Зло с корнем.
+	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_02");	//Ищущие все еще не ушли. Скорее наоборот. Я слышу все больше и больше сообщений о том, что за последние несколько дней, их численность даже увеличилась.
+	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_03");	//Уничтожение драконов нанесло врагу серьезный удар, но этого недостаточно. Нам нужно вырвать это зло с корнем.
 };
 
 
@@ -1688,11 +1688,11 @@ func void DIA_Pyrokar_WASISTIRDORATH_Info()
 	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_02");	//Около 40 лет назад северный и западный храмы этого ужасного божества были уничтожены.
 	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_03");	//Мужественные рыцари того времени отдали все, чтобы сравнять эти величественные сооружения с землей.
 	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_04");	//Тогда черные орды врага были бессильны против превосходящих их мужеством и числом рыцарей и паладинов.
-	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_05");	//Было бы несложно уничтожить и оставшиеся два храма, чтобы избавить землю от Зла навсегда...
-	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_06");	//... но после того, как пал второй храм, они просто растворились.
+	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_05");	//Было бы несложно уничтожить и оставшиеся два храма, чтобы избавить землю от зла навсегда...
+	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_06");	//... но после того как пал второй храм, они просто растворились.
 	AI_Output(other,self,"DIA_Pyrokar_WASISTIRDORATH_15_07");	//(насмешливо) Растворился. Целый храм. Да, точно.
 	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_08");	//Не смейся. Ситуация серьезная. Чертоги Ирдората действительно восстановили свою силу, и теперь врага будет победить очень трудно.
-	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_09");	//Поэтому сначала ты должен найти этот храм, и я думаю, это будет твоя следующая и самая тяжелая задача.
+	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_09");	//Поэтому, сначала ты должен найти этот храм, и я думаю, это будет твоя следующая и самая тяжелая задача.
 	AI_Output(other,self,"DIA_Pyrokar_WASISTIRDORATH_15_10");	//Посмотрим.
 	B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Согласно Пирокару, Чертоги Ирдората - это забытый храм вызова бога Белиара. Я должен найти этот храм.");
 };
@@ -1845,7 +1845,7 @@ instance DIA_Pyrokar_SCWILLJORGEN(C_Info)
 	nr = 59;
 	condition = DIA_Pyrokar_SCWILLJORGEN_Condition;
 	information = DIA_Pyrokar_SCWILLJORGEN_Info;
-	description = "Йорген - опытный моряк.";
+	description = "Йорген - опытный моряк. Он мог бы помочь мне добраться до Острова Ирдорат.";
 };
 
 
@@ -1859,7 +1859,7 @@ func int DIA_Pyrokar_SCWILLJORGEN_Condition()
 
 func void DIA_Pyrokar_SCWILLJORGEN_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_SCWILLJORGEN_15_00");	//Йорген - опытный моряк. Он мог бы помочь мне добраться до острова Ирдорат.
+	AI_Output(other,self,"DIA_Pyrokar_SCWILLJORGEN_15_00");	//Йорген - опытный моряк. Он мог бы помочь мне добраться до Острова Ирдорат.
 	AI_Output(self,other,"DIA_Pyrokar_SCWILLJORGEN_11_01");	//Боюсь, это будет не так уж просто.
 	AI_Output(self,other,"DIA_Pyrokar_SCWILLJORGEN_11_02");	//Он попросился работать в нашем монастыре. Но он не платил вступительного взноса и не привел овцы.
 	AI_Output(self,other,"DIA_Pyrokar_SCWILLJORGEN_11_03");	//Йорген должен сначала закончить свою работу, а потом ты можешь забрать его, если пожелаешь.
@@ -1889,7 +1889,7 @@ func int DIA_Pyrokar_MACHDTFREI_Condition()
 
 func void DIA_Pyrokar_MACHDTFREI_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_MACHDTFREI_15_00");	//А что можно сделать, чтобы я мог забрать Йоргена с собой прямо СЕЙЧАС?
+	AI_Output(other,self,"DIA_Pyrokar_MACHDTFREI_15_00");	//А что можно сделать, чтобы я мог забрать Йоргена с собой СЕЙЧАС?
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_01");	//Ммм. Действительно, есть кое-что, что ты мог бы сделать для меня. Твои хорошие отношения с Ксардасом могли бы помочь тебе в этом.
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_02");	//Мое внимание привлекло то, что последние несколько дней в его башне творятся странные вещи.
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_03");	//Много людей слышало громкие вопли в ночи, исходящие оттуда, и видели странный свет, пляшущий над этой башней.
@@ -1926,7 +1926,7 @@ func void DIA_Pyrokar_DTCLEARED_Info()
 	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_01");	//Так что там было... нет, подожди, я не хочу даже знать.
 	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_02");	//Если Йорген тебе все еще нужен, можешь забрать его из монастыря.
 	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_03");	//Да хранит тебя Иннос.
-	MIS_PyrokarClearDemonTower = LOG_Success;
+	MIS_PyrokarClearDemonTower = LOG_SUCCESS;
 	B_GivePlayerXP(XP_PyrokarClearDemonTower);
 };
 
@@ -2068,18 +2068,18 @@ func void DIA_Pyrokar_PotionofDeath_Weapon()
 };
 
 
-instance DIA_PYROKAR_KAP6_EXIT(C_Info)
+instance DIA_Pyrokar_KAP6_EXIT(C_Info)
 {
 	npc = KDF_500_Pyrokar;
 	nr = 999;
-	condition = dia_pyrokar_kap6_exit_condition;
-	information = dia_pyrokar_kap6_exit_info;
+	condition = DIA_Pyrokar_KAP6_EXIT_Condition;
+	information = DIA_Pyrokar_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_pyrokar_kap6_exit_condition()
+func int DIA_Pyrokar_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -2087,7 +2087,7 @@ func int dia_pyrokar_kap6_exit_condition()
 	};
 };
 
-func void dia_pyrokar_kap6_exit_info()
+func void DIA_Pyrokar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

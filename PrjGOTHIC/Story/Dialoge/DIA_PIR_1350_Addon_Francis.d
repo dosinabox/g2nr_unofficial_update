@@ -100,7 +100,7 @@ func int DIA_Addon_Francis_AboutGreg_Condition()
 
 func void DIA_Addon_Francis_AboutGreg_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Francis_AboutGreg_15_00");	//Грег - твой начальник?
+	AI_Output(other,self,"DIA_Addon_Francis_AboutGreg_15_00");	//Грег твой начальник?
 	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_01");	//Только не пытайся мне сказать, что ты его знаешь!
 	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_02");	//Любой моряк... да что там, даже последняя сухопутная крыса знает ужасного капитана Грега!
 	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_03");	//(высокомерно) А он оставил за главного МЕНЯ!
@@ -299,11 +299,12 @@ func void DIA_Francis_PICKPOCKET_DoIt()
 	{
 		B_GiveInvItems(self,other,ITKE_Greg_ADDON_MIS,1);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GivePlayerXP(XP_Ambient);
+		B_GiveThiefXP();
 		Info_ClearChoices(DIA_Francis_PICKPOCKET);
 	}
 	else
 	{
+		B_ResetThiefLevel();
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

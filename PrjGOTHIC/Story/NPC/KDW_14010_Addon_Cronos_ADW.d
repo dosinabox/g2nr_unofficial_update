@@ -12,6 +12,7 @@ instance KDW_14010_Addon_Cronos_ADW(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
+	EquipItem(self,ItMW_Addon_Stab05);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_NormalBart_Cronos,BodyTex_P,itar_kdw_h);
 	Mdl_SetModelFatness(self,0);

@@ -1,5 +1,5 @@
 
-instance MIL_326_Miliz(Npc_Default)
+instance Mil_326_Miliz(Npc_Default)
 {
 	name[0] = NAME_Miliz;
 	guild = GIL_MIL;
@@ -11,7 +11,7 @@ instance MIL_326_Miliz(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Torlof,BodyTex_N,itar_mil_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Torlof,BodyTex_N,ItAr_MIL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

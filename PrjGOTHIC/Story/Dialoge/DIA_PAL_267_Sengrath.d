@@ -81,7 +81,7 @@ instance DIA_Sengrath_Perm(C_Info)
 	condition = DIA_Sengrath_Perm_Condition;
 	information = DIA_Sengrath_Perm_Info;
 	permanent = FALSE;
-	description = "А у кого здесь можно поучиться чему-нибудь?";
+	description = "Кто здесь может научить меня чему-нибудь?";
 };
 
 

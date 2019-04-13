@@ -132,7 +132,7 @@ func void DIA_Rupert_HelpMeIntoOV_Info()
 	AI_Output(other,self,"DIA_Rupert_HelpMeIntoOV_15_00");	//“ы можешь помочь мне попасть в верхний квартал?
 	AI_Output(self,other,"DIA_Rupert_HelpMeIntoOV_03_01");	//я? Ќет, мое слово мало что значит!
 	AI_Output(self,other,"DIA_Rupert_HelpMeIntoOV_03_02");	//¬сего несколько людей в нижней части города вли€тельны настолько, что могут заставить стражу пропустить теб€.
-	AI_Output(self,other,"DIA_Rupert_HelpMeIntoOV_03_03");	//ћаттео, мой босс - один из них. ¬озможно, тебе стоит поговорить с ним.
+	AI_Output(self,other,"DIA_Rupert_HelpMeIntoOV_03_03");	//ћаттео, мой босс, - один из них. ¬озможно, тебе стоит поговорить с ним.
 	Log_CreateTopic(TOPIC_OV,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_OV,LOG_Running);
 	B_LogEntry(TOPIC_OV,"„тобы попасть в верхний квартал, мне нужна помощь вли€тельных граждан из нижней части города.");
@@ -246,8 +246,8 @@ func int DIA_Rupert_YourOffer_Condition()
 
 func void DIA_Rupert_YourOffer_Info()
 {
-	AI_Output(other,self,"DIA_Rupert_YourOffer_15_00");	//„то ты можешь мне предложить?
-	AI_Output(self,other,"DIA_Rupert_YourOffer_03_01");	//—ейчас у мен€ мало что есть.
+	AI_Output(other,self,"DIA_Rupert_YourOffer_15_00");	//„то ты можешь предложить?
+	AI_Output(self,other,"DIA_Rupert_YourOffer_03_01");	//—ейчас, у мен€ мало что есть.
 	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Rupert_YourOffer_03_02");	//Ётот чертов лендлорд не поставл€ет больше продукты, а того, что мы получаем с маленьких ферм, недостаточно дл€ удовлетворени€ потребностей города.
@@ -342,7 +342,7 @@ func void DIA_Rupert_Mercs_Info()
 {
 	AI_Output(other,self,"DIA_Rupert_Mercs_15_00");	//„то ты знаешь о наемниках ќнара?
 	AI_Output(self,other,"DIA_Rupert_Mercs_03_01");	//я слышал, что большинство из них бывшие каторжники из колонии.
-	AI_Output(self,other,"DIA_Rupert_Mercs_03_02");	//ј их главарь, по слухам, был большой шишкой при короле - генералом или что-то в этом роде, которого осудили за предательство!
+	AI_Output(self,other,"DIA_Rupert_Mercs_03_02");	//ј их главарь, по слухам, был большой шишкой при короле - генералом или что-то в этом роде, - которого осудили за предательство!
 	AI_Output(self,other,"DIA_Rupert_Mercs_03_03");	//”жасные времена!
 };
 

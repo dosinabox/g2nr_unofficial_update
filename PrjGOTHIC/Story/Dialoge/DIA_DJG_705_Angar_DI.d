@@ -67,7 +67,7 @@ instance DIA_Angar_DI_ORKS(C_Info)
 
 func int DIA_Angar_DI_ORKS_Condition()
 {
-	if((OrkSturmDI == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if((ORkSturmDI == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
 	{
 		return TRUE;
 	};
@@ -80,7 +80,7 @@ func void DIA_Angar_DI_ORKS_Info()
 	AI_Output(self,other,"DIA_Angar_DI_ORKS_04_02");	//Этого недостаточно.
 	Info_ClearChoices(DIA_Angar_DI_ORKS);
 	Info_AddChoice(DIA_Angar_DI_ORKS,"Расслабься.",DIA_Angar_DI_ORKS_no);
-	Info_AddChoice(DIA_Angar_DI_ORKS,"Так помоги мне ...",DIA_Angar_DI_ORKS_follow);
+	Info_AddChoice(DIA_Angar_DI_ORKS,"Так помоги мне и прекрати скулить.",DIA_Angar_DI_ORKS_follow);
 };
 
 func void DIA_Angar_DI_ORKS_follow()
@@ -129,7 +129,7 @@ func void DIA_Angar_DI_FOLLOW_Info()
 		AI_Output(self,other,"DIA_Angar_DI_FOLLOW_04_02");	//Удачи.
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"Start");
-		Angar_DI_Party = LOG_Success;
+		Angar_DI_Party = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 	}
 	else

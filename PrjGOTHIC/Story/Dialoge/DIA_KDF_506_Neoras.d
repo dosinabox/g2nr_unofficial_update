@@ -74,7 +74,7 @@ func void DIA_Neoras_Arbeit_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_Arbeit_15_00");	//У тебя есть работа для меня?
 	AI_Output(self,other,"DIA_Neoras_Arbeit_01_01");	//Да, мне нужны травы для моих экспериментов. Мы сами выращиваем их, но у нас совсем закончилась огненная крапива.
-	AI_Output(self,other,"DIA_Neoras_Arbeit_01_02");	//Семи цветков будет достаточно. Принеси мне их - ох, да - я еще потерял рецепт магических зелий.
+	AI_Output(self,other,"DIA_Neoras_Arbeit_01_02");	//Семи цветков будет достаточно. Принеси мне их - ох, да, еще - я потерял рецепт магических зелий.
 	AI_Output(self,other,"DIA_Neoras_Arbeit_01_03");	//Если ты найдешь его, я буду очень благодарен.
 	MIS_NeorasPflanzen = LOG_Running;
 	MIS_NeorasRezept = LOG_Running;
@@ -118,7 +118,7 @@ func void DIA_Neoras_Rezept_Info()
 		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
 		AI_Output(self,other,"DIA_Neoras_Rezept_01_02");	//Хорошо. Я боялся, что он потерян для меня навсегда.
 		AI_Output(self,other,"DIA_Neoras_Rezept_01_03");	//Вот, возьми в знак моей благодарности это магическое зелье.
-		MIS_NeorasRezept = LOG_Success;
+		MIS_NeorasRezept = LOG_SUCCESS;
 		B_GivePlayerXP(XP_NeorasRezept);
 		B_GiveInvItems(self,other,ItPo_Mana_02,1);
 	}
@@ -155,7 +155,7 @@ func void DIA_Neoras_Flieder_Info()
 	if(B_GiveInvItems(other,self,ItPl_Mana_Herb_01,7))
 	{
 		AI_Output(self,other,"DIA_Neoras_Flieder_01_01");	//Превосходно, теперь я могу работать. Возьми этот свиток с заклинанием 'Кулак Ветра', надеюсь, он тебе пригодится.
-		MIS_NeorasPflanzen = LOG_Success;
+		MIS_NeorasPflanzen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_NeorasPflanzen);
 		B_GiveInvItems(self,other,ItSc_Windfist,1);
 	}
@@ -190,42 +190,42 @@ func void DIA_Neoras_TEACH_Info()
 		AI_Output(self,other,"DIA_Neoras_TEACH_01_01");	//Я могу обучить тебя секретам алхимии.
 		Info_ClearChoices(DIA_Neoras_TEACH);
 		Info_AddChoice(DIA_Neoras_TEACH,Dialog_Back,DIA_Neoras_TEACH_BACK);
-		if(player_talent_alchemy[POTION_Health_01] == FALSE)
+		if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 		{
 			Info_AddChoice(DIA_Neoras_TEACH,B_BuildLearnString("Лечебная эссенция",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Neoras_TEACH_HEALTH_01);
 		};
-		if((player_talent_alchemy[POTION_Health_02] == FALSE) && (player_talent_alchemy[POTION_Health_01] == TRUE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE))
 		{
 			Info_AddChoice(DIA_Neoras_TEACH,B_BuildLearnString("Лечебный экстракт",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Neoras_TEACH_Health_02);
 		};
-		if((player_talent_alchemy[POTION_Health_03] == FALSE) && (player_talent_alchemy[POTION_Health_02] == TRUE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE))
 		{
 			Info_AddChoice(DIA_Neoras_TEACH,B_BuildLearnString("Лечебный эликсир",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Neoras_TEACH_Health_03);
 		};
-		if((player_talent_alchemy[POTION_Perm_Health] == FALSE) && (player_talent_alchemy[POTION_Health_03] == TRUE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE))
 		{
 			Info_AddChoice(DIA_Neoras_TEACH,B_BuildLearnString("Эликсир жизни",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Neoras_TEACH_Perm_Health);
 		};
-		if(player_talent_alchemy[POTION_Mana_01] == FALSE)
+		if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 		{
 			Info_AddChoice(DIA_Neoras_TEACH,B_BuildLearnString("Эссенция маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Neoras_TEACH_Mana_01);
 		};
-		if((player_talent_alchemy[POTION_Mana_02] == FALSE) && (player_talent_alchemy[POTION_Mana_01] == TRUE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
 		{
 			Info_AddChoice(DIA_Neoras_TEACH,B_BuildLearnString("Экстракт маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Neoras_TEACH_Mana_02);
 		};
-		if((player_talent_alchemy[POTION_Mana_03] == FALSE) && (player_talent_alchemy[POTION_Mana_02] == TRUE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE))
 		{
 			Info_AddChoice(DIA_Neoras_TEACH,B_BuildLearnString("Эликсир маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),DIA_Neoras_TEACH_Mana_03);
 		};
-		if((player_talent_alchemy[POTION_Perm_Mana] == FALSE) && (player_talent_alchemy[POTION_Mana_03] == TRUE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE))
 		{
 			Info_AddChoice(DIA_Neoras_TEACH,B_BuildLearnString("Эликсир духа",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Neoras_TEACH_Perm_Mana);
 		};
 	}
 	else if(hero.guild == GIL_NOV)
 	{
-		AI_Output(self,other,"DIA_Neoras_TEACH_01_02");	//Я не обучаю новичков. Если однажды ты будешь принят в Круг Огня,
+		AI_Output(self,other,"DIA_Neoras_TEACH_01_02");	//Я не обучаю новичков. Если, однажды, ты будешь принят в Круг Огня,
 		AI_Output(self,other,"DIA_Neoras_TEACH_01_03");	//тогда я покажу тебе, как создавать сильные зелья.
 	}
 	else
@@ -428,7 +428,7 @@ func void DIA_Neoras_BrewForMe_Speed()
 
 func void DIA_Neoras_BrewForMe_Mana()
 {
-	AI_Output(other,self,"DIA_Neoras_BrewForMe_Mana_15_00");	//Свари мне экстракт маны.
+	AI_Output(other,self,"DIA_Neoras_BrewForMe_Mana_15_00");	//Свари мне эликсир маны.
 	AI_Output(self,other,"DIA_Neoras_BrewForMe_Mana_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 	if((Npc_HasItems(other,ItPl_Mana_Herb_02) >= 2) && (Npc_HasItems(other,ItPl_Temp_Herb) >= 1) && (Npc_HasItems(other,ItMi_Gold) >= 10))
 	{
@@ -452,7 +452,7 @@ func void DIA_Neoras_BrewForMe_Mana()
 
 func void DIA_Neoras_BrewForMe_Health()
 {
-	AI_Output(other,self,"DIA_Neoras_BrewForMe_Health_15_00");	//Свари мне лечебный экстракт.
+	AI_Output(other,self,"DIA_Neoras_BrewForMe_Health_15_00");	//Свари мне лечебный эликсир.
 	AI_Output(self,other,"DIA_Neoras_BrewForMe_Health_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 	if((Npc_HasItems(other,ItPl_Health_Herb_02) >= 2) && (Npc_HasItems(other,ItPl_Temp_Herb) >= 1) && (Npc_HasItems(other,ItMi_Gold) >= 10))
 	{
@@ -524,9 +524,9 @@ func void DIA_Neoras_DRACHENEIER_Info()
 	AI_Output(other,self,"DIA_Neoras_DRACHENEIER_15_00");	//Ты так усердно работаешь, что даже вспотел.
 	AI_Output(self,other,"DIA_Neoras_DRACHENEIER_01_01");	//Да, я полностью истощен. Уже несколько дней я пытаюсь приготовить это чертово зелье. И ничего не получается.
 	Info_ClearChoices(DIA_Neoras_DRACHENEIER);
-	Info_AddChoice(DIA_Neoras_DRACHENEIER,"Это не мои проблемы.",DIA_Neoras_DRACHENEIER_no);
+	Info_AddChoice(DIA_Neoras_DRACHENEIER,"Меня эта проблема не касается.",DIA_Neoras_DRACHENEIER_no);
 	Info_AddChoice(DIA_Neoras_DRACHENEIER,"А что это должно быть за зелье?",DIA_Neoras_DRACHENEIER_trank);
-	Info_AddChoice(DIA_Neoras_DRACHENEIER,"В чем проблема?",DIA_Neoras_DRACHENEIER_ei);
+	Info_AddChoice(DIA_Neoras_DRACHENEIER,"А в чем проблема?",DIA_Neoras_DRACHENEIER_ei);
 };
 
 func void DIA_Neoras_DRACHENEIER_ei()
@@ -541,7 +541,7 @@ func void DIA_Neoras_DRACHENEIER_ei()
 
 func void DIA_Neoras_DRACHENEIER_ei_jep()
 {
-	AI_Output(other,self,"DIA_Neoras_DRACHENEIER_ei_jep_15_00");	//Я попробую что-нибудь сделать.
+	AI_Output(other,self,"DIA_Neoras_DRACHENEIER_ei_jep_15_00");	//Я попробую что-рибудь сделать.
 	AI_Output(self,other,"DIA_Neoras_DRACHENEIER_ei_jep_01_01");	//Эй. Я просто пошутил. Я не верю, что тебе действительно удастся найти яйцо дракона.
 	AI_Output(other,self,"DIA_Neoras_DRACHENEIER_ei_jep_15_02");	//Давай лучше подождем.
 	Info_ClearChoices(DIA_Neoras_DRACHENEIER);
@@ -596,12 +596,12 @@ var int Neoras_DragonEggDrink_Day;
 func void DIA_Neoras_FOUNDDRAGONEGG_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_15_00");	//Вот, я нашел для тебя яйцо дракона.
-	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_01");	//Ты что, издеваешься надо мной?
+	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_01");	//Ты издеваешься надо мной.
 	B_GiveInvItems(other,self,ItAt_DragonEgg_MIS,1);
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_02");	//Оно настоящее! Я даже не думал, что это возможно. Где ты нашел его?
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_15_03");	//Тебе этого лучше не знать.
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_04");	//Превосходно. Что ты хочешь за него?
-	MIS_Neoras_DragonEgg = LOG_Success;
+	MIS_Neoras_DragonEgg = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Neoras_DragonEgg);
 	Info_ClearChoices(DIA_Neoras_FOUNDDRAGONEGG);
 	Info_AddChoice(DIA_Neoras_FOUNDDRAGONEGG,"Даже не знаю.",DIA_Neoras_FOUNDDRAGONEGG_irgendwas);
@@ -692,7 +692,7 @@ func int DIA_Neoras_USEDDRAGONEGGDRINK_Condition()
 func void DIA_Neoras_USEDDRAGONEGGDRINK_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_USEDDRAGONEGGDRINK_15_00");	//Я попробовал твое зелье из яйца дракона. Отличная штука!
-	AI_Output(self,other,"DIA_Neoras_USEDDRAGONEGGDRINK_01_01");	//Ммм. Очень интересно. Я должен продолжать свои исследования.
+	AI_Output(self,other,"DIA_Neoras_USEDDRAGONEGGDRINK_01_01");	//Ммм. Очень интересно. Я должен продолжить свои исследования.
 	AI_Output(other,self,"DIA_Neoras_USEDDRAGONEGGDRINK_15_02");	//Ты не мог бы сделать мне еще?
 	AI_Output(self,other,"DIA_Neoras_USEDDRAGONEGGDRINK_01_03");	//Будет лучше, если мы повторим это через несколько недель. Иначе, боюсь, у тебя могут вырасти рога.
 };

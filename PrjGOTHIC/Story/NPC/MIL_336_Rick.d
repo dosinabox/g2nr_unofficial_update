@@ -1,5 +1,5 @@
 
-instance MIL_336_Rick(Npc_Default)
+instance Mil_336_Rick(Npc_Default)
 {
 	name[0] = "Ðèê";
 	guild = GIL_NONE;
@@ -12,7 +12,7 @@ instance MIL_336_Rick(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_N_Ricelord,BodyTex_N,itar_mil_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_N_Ricelord,BodyTex_N,ITAR_Mil_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
@@ -33,7 +33,7 @@ func void Rtn_MilComing_336()
 	TA_Stand_ArmsCrossed(22,0,8,0,"NW_FARM3_HOUSE");
 };
 
-func void rtn_flucht2_336()
+func void Rtn_Flucht2_336()
 {
 	TA_Smalltalk(8,0,22,0,"NW_RUMBOLD_FLUCHT2");
 	TA_Smalltalk(22,0,8,0,"NW_RUMBOLD_FLUCHT2");

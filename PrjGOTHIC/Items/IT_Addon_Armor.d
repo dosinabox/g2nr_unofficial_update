@@ -236,7 +236,7 @@ instance ITAR_Fake_RANGER(C_Item)
 
 instance ITAR_KDW_L_Addon(C_Item)
 {
-	name = "Light CoW";
+	name = "Мантия мага воды";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 50;
@@ -331,7 +331,7 @@ instance ItAr_FireArmor_Addon(C_Item)
 	protection[PROT_POINT] = 100;
 	protection[PROT_FIRE] = 50;
 	protection[PROT_MAGIC] = 50;
-	value = VALUE_ITAR_Xardas;
+	value = VALUE_ITAR_XARDAS;
 	wear = WEAR_TORSO | WEAR_EFFECT;
 	effect = "SPELLFX_FIREARMOR";
 	visual = "ItAr_Xardas.3ds";

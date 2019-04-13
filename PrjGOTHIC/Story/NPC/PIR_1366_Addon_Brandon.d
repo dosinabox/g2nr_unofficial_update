@@ -12,6 +12,7 @@ instance PIR_1366_Addon_Brandon(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_Addon_PIR1hAxe);
 	CreateInvItems(self,ItPo_Health_03,1);
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Tough_Okyl,BodyTex_N,ITAR_PIR_M_Addon);
 	Mdl_SetModelFatness(self,1.1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

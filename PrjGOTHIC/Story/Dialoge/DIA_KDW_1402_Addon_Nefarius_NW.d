@@ -112,7 +112,7 @@ instance DIA_Addon_Nefarius_SCbringOrnaments(C_Info)
 
 func int DIA_Addon_Nefarius_SCbringOrnaments_Condition()
 {
-	if(MIS_Addon_Lares_Ornament2Saturas == LOG_Success)
+	if(MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -236,13 +236,13 @@ func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_07");	//Теперь у нас есть все части. Осталось их собрать.
 			AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_08");	//Мы используем наши объединенные силы, чтобы сделать из фрагментов кольцо.
-			MIS_Addon_Nefarius_BringMissingOrnaments = LOG_Success;
+			MIS_Addon_Nefarius_BringMissingOrnaments = LOG_SUCCESS;
 		};
 		AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_09");	//Вот, возьми в награду это золото.
 		MissingOrnamentsGeld = MissingOrnamentsCount * Addon_NefariussMissingOrnamentsOffer;
 		CreateInvItems(self,ItMi_Gold,MissingOrnamentsGeld);
 		B_GiveInvItems(self,other,ItMi_Gold,MissingOrnamentsGeld);
-		if(MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Success)
+		if(MIS_Addon_Nefarius_BringMissingOrnaments == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_10");	//Следуй за мной!
 			AI_StopProcessInfos(self);
@@ -275,7 +275,7 @@ instance DIA_Addon_Nefarius_Ringritual(C_Info)
 
 func int DIA_Addon_Nefarius_Ringritual_Condition()
 {
-	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_Success) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PORTALTEMPEL_42") < 1000))
+	if((MIS_Addon_Nefarius_BringMissingOrnaments == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PORTALTEMPEL_42") < 1000))
 	{
 		return TRUE;
 	};
@@ -328,7 +328,7 @@ func void DIA_Addon_Nefarius_RingRitualEnds_Info()
 	B_StartOtherRoutine(KDW_1403_Addon_Myxir_NW,"Start");
 	B_StartOtherRoutine(KDW_1404_Addon_Riordian_NW,"Start");
 	B_StartOtherRoutine(KDW_1405_Addon_Merdarion_NW,"Start");
-	RitualRingRuns = LOG_Success;
+	RitualRingRuns = LOG_SUCCESS;
 	B_LogEntry(TOPIC_Addon_Ornament,"Украшенное кольцо восстановлено. Я должен забрать его у Сатураса.");
 };
 
@@ -339,13 +339,13 @@ instance DIA_Addon_Nefarius_OpenedPortal(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Nefarius_OpenedPortal_Condition;
 	information = DIA_Addon_Nefarius_OpenedPortal_Info;
-	description = "И что теперь?";
+	description = "Что теперь?";
 };
 
 
 func int DIA_Addon_Nefarius_OpenedPortal_Condition()
 {
-	if(RitualRingRuns == LOG_Success)
+	if(RitualRingRuns == LOG_SUCCESS)
 	{
 		return TRUE;
 	};

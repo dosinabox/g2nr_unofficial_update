@@ -1,5 +1,5 @@
 
-instance BDT_1014_Bandit_L(Npc_Default)
+instance Bdt_1014_Bandit_L(Npc_Default)
 {
 	name[0] = "Браго";
 	guild = GIL_BDT;

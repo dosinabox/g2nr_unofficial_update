@@ -10,7 +10,7 @@ func void ZS_MM_Rtn_Wusel()
 	AI_GotoFP(self,"FP_ROAM");
 };
 
-func int ZS_MM_Rtn_Wusel_Loop()
+func int ZS_MM_Rtn_Wusel_loop()
 {
 	if(!Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_MM_WuselEnd],0) && (self.aivar[AIV_MM_WuselStart] != OnlyRoutine))
 	{
@@ -37,7 +37,7 @@ func int ZS_MM_Rtn_Wusel_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_MM_Rtn_Wusel_End()
+func void ZS_MM_Rtn_Wusel_end()
 {
 };
 

@@ -442,18 +442,18 @@ func void DIA_Udar_KAP5_EXIT_Info()
 };
 
 
-instance DIA_UDAR_KAP6_EXIT(C_Info)
+instance DIA_Udar_KAP6_EXIT(C_Info)
 {
 	npc = PAL_268_Udar;
 	nr = 999;
-	condition = dia_udar_kap6_exit_condition;
-	information = dia_udar_kap6_exit_info;
+	condition = DIA_Udar_KAP6_EXIT_Condition;
+	information = DIA_Udar_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_udar_kap6_exit_condition()
+func int DIA_Udar_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -461,7 +461,7 @@ func int dia_udar_kap6_exit_condition()
 	};
 };
 
-func void dia_udar_kap6_exit_info()
+func void DIA_Udar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

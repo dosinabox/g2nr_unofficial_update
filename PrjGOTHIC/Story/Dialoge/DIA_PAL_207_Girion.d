@@ -1,7 +1,7 @@
 
 instance DIA_Girion_EXIT(C_Info)
 {
-	npc = PAL_207_Girion;
+	npc = Pal_207_Girion;
 	nr = 999;
 	condition = DIA_Girion_EXIT_Condition;
 	information = DIA_Girion_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Girion_EXIT_Info()
 
 instance DIA_Girion_Hallo(C_Info)
 {
-	npc = PAL_207_Girion;
+	npc = Pal_207_Girion;
 	nr = 2;
 	condition = DIA_Girion_Hallo_Condition;
 	information = DIA_Girion_Hallo_Info;
@@ -48,7 +48,7 @@ func void DIA_Girion_Hallo_Info()
 
 instance DIA_Girion_CanTeach(C_Info)
 {
-	npc = PAL_207_Girion;
+	npc = Pal_207_Girion;
 	nr = 5;
 	condition = DIA_Girion_CanTeach_Condition;
 	information = DIA_Girion_CanTeach_Info;
@@ -85,7 +85,7 @@ func void DIA_Girion_CanTeach_Info()
 
 instance DIA_Girion_Teach(C_Info)
 {
-	npc = PAL_207_Girion;
+	npc = Pal_207_Girion;
 	nr = 100;
 	condition = DIA_Girion_Teach_Condition;
 	information = DIA_Girion_Teach_Info;
@@ -123,8 +123,8 @@ func void DIA_Girion_Teach_Back()
 	{
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_00");	//Вообще-то говоря, твое обучение еще не завершено, но я больше ничему не могу научить тебя.
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_01");	//Если ты хочешь отточить свое мастерство еще больше, тебе лучше поискать настоящего мастера меча.
-		AI_Output(other,self,"DIA_DIA_Girion_Teach_15_02");	//И где мне найти такого человека?
-		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_03");	//Лорд Хаген - мастер-мечник. Он наверняка сможет обучить тебя.
+		AI_Output(other,self,"DIA_DIA_Girion_Teach_15_02");	//Где мне найти такого человека?
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_03");	//Лорд Хаген - мастер-мечник. Он, наверняка сможет обучить тебя.
 		DIA_Girion_Teach_permanent = TRUE;
 	};
 	Info_ClearChoices(DIA_Girion_Teach);
@@ -199,7 +199,7 @@ func void DIA_Girion_Teach_2H_5()
 
 instance DIA_Girion_CATCHPLAYERSTOLENSHIP(C_Info)
 {
-	npc = PAL_207_Girion;
+	npc = Pal_207_Girion;
 	nr = 5;
 	condition = DIA_Girion_CATCHPLAYERSTOLENSHIP_Condition;
 	information = DIA_Girion_CATCHPLAYERSTOLENSHIP_Info;
@@ -275,16 +275,16 @@ func void DIA_Girion_CATCHPLAYERSTOLENSHIP_ship()
 	B_GirionStayOnShip();
 	AI_Output(other,self,"DIA_Girion_CATCHPLAYERSTOLENSHIP_ship_15_10");	//Я переживу это.
 	AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_ship_08_11");	//Тогда делай то, что должен. А я подожду тебя здесь.
+	B_GivePlayerXP(XP_Crewmember_Success);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Ship");
-	Crewmember_Count = Crewmember_Count + 1;
-	Girion_IsOnBoard = LOG_Success;
+	Girion_IsOnBoard = LOG_SUCCESS;
 };
 
 
 instance DIA_Girion_Verrat(C_Info)
 {
-	npc = PAL_207_Girion;
+	npc = Pal_207_Girion;
 	nr = 2;
 	condition = DIA_Girion_Verrat_Condition;
 	information = DIA_Girion_Verrat_Info;
@@ -311,7 +311,7 @@ func void DIA_Girion_Verrat_Info()
 
 instance DIA_Girion_OnShip(C_Info)
 {
-	npc = PAL_207_Girion;
+	npc = Pal_207_Girion;
 	nr = 2;
 	condition = DIA_Girion_OnShip_Condition;
 	information = DIA_Girion_OnShip_Info;
@@ -322,7 +322,7 @@ instance DIA_Girion_OnShip(C_Info)
 
 func int DIA_Girion_OnShip_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Girion_IsOnBoard == LOG_Success))
+	if(Npc_IsInState(self,ZS_Talk) && (Girion_IsOnBoard == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -337,7 +337,7 @@ func void DIA_Girion_OnShip_Info()
 
 instance DIA_Girion_PICKPOCKET(C_Info)
 {
-	npc = PAL_207_Girion;
+	npc = Pal_207_Girion;
 	nr = 900;
 	condition = DIA_Girion_PICKPOCKET_Condition;
 	information = DIA_Girion_PICKPOCKET_Info;

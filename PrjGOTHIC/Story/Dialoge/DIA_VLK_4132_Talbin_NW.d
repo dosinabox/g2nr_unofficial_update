@@ -39,8 +39,8 @@ func int DIA_Talbin_NW_Condition()
 func void DIA_Talbin_NW_Info()
 {
 	AI_Output(other,self,"DIA_Talbin_NW_15_00");	//Этот Проход был не таким уж и страшным, правда?
-	AI_Output(self,other,"DIA_Talbin_NW_07_01");	//Спасибо, что спас меня. Вот...
-	AI_Output(self,other,"DIA_Talbin_NW_07_02");	//... я нашел этот камень в Проходе. Я думаю, он пригодится тебе.
+	AI_Output(self,other,"DIA_Talbin_NW_07_01");	//Спасибо, что спас меня.
+	AI_Output(self,other,"DIA_Talbin_NW_07_02");	//Вот. Я нашел этот камень в Проходе. Я думаю, он пригодится тебе.
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Talbin_NW_07_03");	//Мне кажется, это рунный камень.

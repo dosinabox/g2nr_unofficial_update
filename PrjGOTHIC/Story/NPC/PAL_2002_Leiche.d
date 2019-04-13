@@ -18,7 +18,7 @@ instance PAL_2002_Leiche(Npc_Default)
 	CreateInvItems(self,ItPo_Mana_02,2);
 	CreateInvItems(self,ItMi_Gold,100);
 	CreateInvItems(self,ItPo_Health_02,2);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal20,BodyTex_N,itar_pal_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal20,BodyTex_N,ItAr_PAL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

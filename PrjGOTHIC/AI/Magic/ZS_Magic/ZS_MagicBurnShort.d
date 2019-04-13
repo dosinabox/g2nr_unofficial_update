@@ -33,7 +33,7 @@ func void B_RestartBurnShort()
 	};
 };
 
-func int ZS_MagicBurnShort()
+func void ZS_MagicBurnShort()
 {
 	Npc_PercEnable(self,PERC_ASSESSSTOPMAGIC,B_StopMagicBurnShort);
 	if(!Npc_HasBodyFlag(self,BS_FLAG_INTERRUPTABLE))

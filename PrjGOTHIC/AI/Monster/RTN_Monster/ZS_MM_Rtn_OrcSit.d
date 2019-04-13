@@ -11,7 +11,7 @@ func void ZS_MM_Rtn_OrcSit()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_MM_Rtn_OrcSit_Loop()
+func int ZS_MM_Rtn_OrcSit_loop()
 {
 	if(!Wld_IsTime(self.aivar[AIV_MM_OrcSitStart],0,self.aivar[AIV_MM_OrcSitEnd],0) && (self.aivar[AIV_MM_OrcSitStart] != OnlyRoutine))
 	{
@@ -36,7 +36,7 @@ func int ZS_MM_Rtn_OrcSit_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_MM_Rtn_OrcSit_End()
+func void ZS_MM_Rtn_OrcSit_end()
 {
 	AI_PlayAniBS(self,"T_GUARDSLEEP_2_STAND",BS_STAND);
 };

@@ -123,7 +123,7 @@ func void DIA_Isgaroth_tot_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_tot_15_00");	//Я убил волка.
 	AI_Output(self,other,"DIA_Isgaroth_tot_01_01");	//Хорошая работа, послушник. Ты мужественный человек. А теперь возвращайся в монастырь и принимайся за свои обязанности.
-	MIS_IsgarothWolf = LOG_Success;
+	MIS_IsgarothWolf = LOG_SUCCESS;
 	B_GivePlayerXP(XP_IsgarothWolf);
 	AI_StopProcessInfos(self);
 };
@@ -151,7 +151,7 @@ func int DIA_Isgaroth_Job_Condition()
 func void DIA_Isgaroth_Job_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Job_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Isgaroth_Job_01_01");	//Я маг Огня. Жрец нашего бога Инноса.
+	AI_Output(self,other,"DIA_Isgaroth_Job_01_01");	//Я Маг Огня. Жрец нашего бога Инноса.
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_02");	//Этот алтарь посвящен ЕМУ, высшему богу, создателю огня и верховному судье.
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_03");	//Ко мне приходят люди, чтобы помолиться Инносу и получить благословение.
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_04");	//А за небольшое пожертвование ты можешь получить от меня много полезного.

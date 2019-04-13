@@ -109,7 +109,7 @@ func int DIA_Andre_CantharFalle_Condition()
 	};
 };
 
-func int DIA_Andre_CantharFalle_Info()
+func void DIA_Andre_CantharFalle_Info()
 {
 	if(Andre_Steckbrief == FALSE)
 	{
@@ -307,7 +307,7 @@ func void DIA_Andre_PETZMASTER_Info()
 	if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_13");	//Если ты дерешься со всяким сбродом в гавани - это одно...
-		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_14");	//Но когда ты нападаешь на граждан или королевских солдат, я должен принять меры.
+		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_14");	//Но когда ты нападаешь на граждан или королевских солдат, я должен принимать меры.
 		if(PETZCOUNTER_City_Sheepkiller > 0)
 		{
 			AI_Output(self,other,"DIA_Andre_PETZMASTER_08_15");	//А эту овцу было обязательно убивать?
@@ -436,7 +436,7 @@ func void DIA_Andre_Message_EyeInnos()
 func void DIA_Andre_Message_Dragons()
 {
 	AI_Output(other,self,"DIA_Andre_Message_Dragons_15_00");	//Армия орков, возглавляемая ДРА...
-	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_01");	//(прерывает) Я ЗНАЮ, что армия орков становится все сильнее.
+	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_01");	//(прерывает) Я ЗНАЮ, что армия орков становится все сильнее
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_02");	//Ты же не хочешь мне сказать, что ты ТОЛЬКО это хочешь доложить лорду Хагену.
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_03");	//Он оторвет тебе голову, если ты будешь попусту тратить его время, отвлекая его такими историями.
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_04");	//Я уверен, что ты достаточно умен и понимаешь это сам.
@@ -542,7 +542,7 @@ func void DIA_Andre_AskToJoin_Info()
 	if(Npc_KnowsInfo(other,DIA_Andre_Message))
 	{
 		AI_Output(self,other,"DIA_Andre_AskToJoin_08_01");	//Хорошо. Нам нужны люди. И меня не интересует, почему ты решил присоединиться к нам.
-		AI_Output(self,other,"DIA_Andre_AskToJoin_08_02");	//Если ты поступишь на службу к паладинам, я помогу тебе добиться аудиенции у лорда Хагена.
+		AI_Output(self,other,"DIA_Andre_AskToJoin_08_02");	//Если ты поступишь на службы к паладинам, я помогу тебе добиться аудиенции у лорда Хагена.
 	}
 	else
 	{
@@ -551,7 +551,7 @@ func void DIA_Andre_AskToJoin_Info()
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_04");	//Однако у меня есть приказ принимать в ополчение только граждан этого города.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_05");	//Мой командующий опасается, что в наши ряды могут проникнуть шпионы или диверсанты.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_06");	//Он хочет таким образом свести риск к минимуму.
-	AI_Output(self,other,"DIA_Andre_AskToJoin_08_07");	//Поэтому ты сначала должен стать гражданином города. Не знаю, имеет это правило смысл или нет, но приказ есть приказ.
+	AI_Output(self,other,"DIA_Andre_AskToJoin_08_07");	//Поэтому, ты сначала должен стать гражданином города. Не знаю, имеет это правило смысл или нет, но приказ есть приказ.
 	Log_CreateTopic(TOPIC_BecomeMIL,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BecomeMIL,LOG_Running);
 	B_LogEntry(TOPIC_BecomeMIL,"Прежде чем я смогу вступить в ряды городской стражи, я должен стать гражданином города.");
@@ -795,7 +795,7 @@ func void DIA_Andre_Auslieferung_Back()
 func void DIA_Andre_Auslieferung_Rengaru()
 {
 	AI_Teleport(Rengaru,"NW_CITY_HABOUR_KASERN_RENGARU");
-	AI_Output(other,self,"DIA_Andre_Auslieferung_Rengaru_15_00");	//Ренгару украл у торговца Джоры. Он пытался скрыться, но я поймал его.
+	AI_Output(other,self,"DIA_Andre_Auslieferung_Rengaru_15_00");	//Ренгар украл у торговца Джоры. Он пытался скрыться, но я поймал его.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Rengaru_08_01");	//Хорошо, мои люди уже схватили его. Больше он не сможет воровать у добропорядочных граждан.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Rengaru_08_02");	//Вот твои деньги.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
@@ -843,7 +843,7 @@ func void DIA_Andre_Auslieferung_Canthar()
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Canthar_08_03");	//Понимаю. Я с радостью заплачу награду за этого ублюдка. Можешь считать, что он уже за решеткой.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 	B_StartOtherRoutine(Canthar,"KNAST");
-	MIS_Canthars_KomproBrief = LOG_Failed;
+	MIS_Canthars_KomproBrief = LOG_FAILED;
 	B_CheckLog();
 	Canthar_Ausgeliefert = TRUE;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
@@ -856,13 +856,13 @@ func void DIA_Andre_Auslieferung_Sarah()
 	AI_Teleport(Canthar,"NW_CITY_SARAH");
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_00");	//Сара продает оружие Онару.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_01");	//Сара? Торговка оружием с рыночной площади? У тебя есть доказательство?
-	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо с деталями поставки оружия ему.
+	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо, с деталями поставки оружия ему.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_03");	//Она поплатится за это. Я прикажу арестовать ее.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 	B_StartOtherRoutine(Sarah,"KNAST");
 	B_StartOtherRoutine(Canthar,"MARKTSTAND");
 	Sarah_Ausgeliefert = TRUE;
-	MIS_Canthars_KomproBrief = LOG_Success;
+	MIS_Canthars_KomproBrief = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
@@ -949,7 +949,7 @@ func void DIA_Andre_DGRunning_Success()
 	AI_Output(other,self,"DIA_Andre_DGRunning_Success_15_00");	//Я всех их ликвидировал!
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
 	DG_gefunden = TRUE;
-	MIS_Andre_GuildOfThieves = LOG_Success;
+	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(MIS_CassiaKelche == LOG_Running)
 	{
@@ -995,7 +995,7 @@ func void DIA_Andre_JOIN_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Andre_JOIN_08_00");	//Интендант Мартин ручается за тебя и даже рекомендует тебя мне. Этого мне достаточно.
 	}
-	else if((MIS_Andre_GuildOfThieves == LOG_Success) && (Player_IsApprentice == APP_NONE))
+	else if((MIS_Andre_GuildOfThieves == LOG_SUCCESS) && (Player_IsApprentice == APP_NONE))
 	{
 		AI_Output(self,other,"DIA_Andre_JOIN_08_01");	//Я сдержу свое слово и приму тебя в ополчение, даже хотя ты и не являешься гражданином этого города.
 		AI_Output(self,other,"DIA_Andre_JOIN_08_02");	//Но никому об этом не говори! Чем меньше людей будут знать об этом исключении, тем меньше мне придется оправдываться.
@@ -1022,7 +1022,7 @@ func void DIA_Andre_JOIN_Info()
 			AI_Output(self,other,"DIA_Andre_JOIN_08_12");	//И Боспер уважаемый человек в этом городе.
 		};
 		AI_Output(self,other,"DIA_Andre_JOIN_08_13");	//Если он поручился за тебя, ничто не мешает твоему вступлению в ряды ополчения.
-		if(MIS_Andre_GuildOfThieves == LOG_Success)
+		if(MIS_Andre_GuildOfThieves == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Andre_JOIN_08_14");	//Кроме того, тебе удалось избавить город от гильдии воров. Я бы принял тебя только за этот подвиг.
 		};
@@ -1033,7 +1033,7 @@ func void DIA_Andre_JOIN_Info()
 		return;
 	};
 	AI_Output(self,other,"DIA_Andre_JOIN_08_16");	//Ты можешь вступить в наши ряды, если хочешь. Но твое решение должно быть окончательным.
-	AI_Output(self,other,"DIA_Andre_JOIN_08_17");	//После того, как ты наденешь доспехи ополчения, ты уже не сможешь просто так снять их и выйти из наших рядов.
+	AI_Output(self,other,"DIA_Andre_JOIN_08_17");	//После того, как ты наденешь доспехи ополчения, ты уже не сможешь просто так снять его и выйти из наших рядов.
 	AI_Output(self,other,"DIA_Andre_JOIN_08_18");	//Ты готов сражаться вместе с нами за Инноса и короля?
 	Info_ClearChoices(DIA_Andre_JOIN);
 	Info_AddChoice(DIA_Andre_JOIN,"Я пока не уверен...",DIA_Andre_JOIN_No);
@@ -1049,11 +1049,11 @@ func void DIA_Andre_JOIN_Yes()
 	Snd_Play("LEVELUP");
 	Npc_ExchangeRoutine(Lothar,"START");
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_02");	//Вот твои доспехи.
-	B_GiveInvItems(self,other,itar_mil_l,1);
+	B_GiveInvItems(self,other,ITAR_Mil_L,1);
 	AI_Output(self,other,"DIA_Andre_JOIN_Yes_08_03");	//Носи их с гордостью и достоинством.
 	SLD_Aufnahme = LOG_OBSOLETE;
 	KDF_Aufnahme = LOG_OBSOLETE;
-	MIL_Aufnahme = LOG_Success;
+	MIL_Aufnahme = LOG_SUCCESS;
 	B_GivePlayerXP(XP_BecomeMiliz);
 	Info_ClearChoices(DIA_Andre_JOIN);
 };
@@ -1166,11 +1166,11 @@ func void DIA_Andre_FOUND_PECK_SOMEWHERE()
 
 func void DIA_Andre_FOUND_PECK_REDLIGHT()
 {
-	AI_Output(other,self,"DIA_Andre_FOUND_PECK_REDLIGHT_15_00");	//Он был в Красном Фонаре.
+	AI_Output(other,self,"DIA_Andre_FOUND_PECK_REDLIGHT_15_00");	//Он был в 'Красном Фонаре'.
 	AI_Output(self,other,"DIA_Andre_FOUND_PECK_REDLIGHT_08_01");	//То есть он развлекался с девочками вместо того, чтобы выполнять свои обязанности.
 	AI_Output(self,other,"DIA_Andre_FOUND_PECK_REDLIGHT_08_02");	//Я думаю, мне нужно серьезно поговорить с ним.
 	B_GivePlayerXP(XP_FoundPeck * 2);
-	MIS_Andre_Peck = LOG_Success;
+	MIS_Andre_Peck = LOG_SUCCESS;
 	Info_ClearChoices(DIA_Andre_FOUND_PECK);
 };
 
@@ -1241,7 +1241,7 @@ func void DIA_Andre_FOUND_STUFF_Info()
 {
 	AI_Output(other,self,"DIA_Andre_FOUND_STUFF_15_00");	//Насчет тюка...
 	AI_Output(self,other,"DIA_Andre_FOUND_STUFF_08_01");	//Ты нашел его?
-	if((Npc_HasItems(other,ItMi_HerbPaket) > 0) || (MIS_Cipher_Paket == LOG_Success))
+	if((Npc_HasItems(other,ItMi_HerbPaket) > 0) || (MIS_Cipher_Paket == LOG_SUCCESS))
 	{
 		Info_ClearChoices(DIA_Andre_FOUND_STUFF);
 		if(Npc_HasItems(other,ItMi_HerbPaket) > 0)
@@ -1262,8 +1262,8 @@ func void DIA_Andre_FOUND_STUFF_Ja()
 	B_GiveInvItems(other,self,ItMi_HerbPaket,1);
 	AI_Output(self,other,"DIA_Andre_FOUND_STUFF_Ja_08_01");	//Отлично. Мы будем охранять эту траву.
 	B_AndreSold();
-	MIS_Andre_WAREHOUSE = LOG_Success;
-	MIS_Cipher_Paket = LOG_Failed;
+	MIS_Andre_WAREHOUSE = LOG_SUCCESS;
+	MIS_Cipher_Paket = LOG_FAILED;
 	B_GivePlayerXP(XP_Warehouse_Super * 2);
 	Info_ClearChoices(DIA_Andre_FOUND_STUFF);
 };
@@ -1273,7 +1273,7 @@ func void DIA_Andre_FOUND_STUFF_Becken()
 	AI_Output(other,self,"DIA_Andre_FOUND_STUFF_Becken_15_00");	//Я выбросил ее в море.
 	AI_Output(self,other,"DIA_Andre_FOUND_STUFF_Becken_08_01");	//Да? Ну, главное, что она теперь не сможет попасть в плохие руки.
 	B_AndreSold();
-	MIS_Andre_WAREHOUSE = LOG_Success;
+	MIS_Andre_WAREHOUSE = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Warehouse_Super);
 	Info_ClearChoices(DIA_Andre_FOUND_STUFF);
 };
@@ -1292,7 +1292,7 @@ instance DIA_Andre_FIND_DEALER(C_Info)
 
 func int DIA_Andre_FIND_DEALER_Condition()
 {
-	if((MIS_Andre_WAREHOUSE == LOG_Success) && (Npc_IsDead(Borka) == FALSE))
+	if((MIS_Andre_WAREHOUSE == LOG_SUCCESS) && (Npc_IsDead(Borka) == FALSE))
 	{
 		return TRUE;
 	};
@@ -1354,7 +1354,7 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		{
 			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_04");	//Ты был недостаточно осторожен.
 		};
-		MIS_Andre_REDLIGHT = LOG_Failed;
+		MIS_Andre_REDLIGHT = LOG_FAILED;
 		B_CheckLog();
 	}
 	else if(Borka_Deal == 2)
@@ -1364,7 +1364,7 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_07");	//Он продал мне болотной травы.
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_08");	//Отлично, этого достаточно для нас. Я прикажу немедленно арестовать его.
 		B_StartOtherRoutine(Borka,"PRISON");
-		MIS_Andre_REDLIGHT = LOG_Success;
+		MIS_Andre_REDLIGHT = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Redlight);
 		B_AndreSold();
 	}
@@ -1388,7 +1388,7 @@ instance DIA_Andre_HILFBAUERLOBART(C_Info)
 
 func int DIA_Andre_HILFBAUERLOBART_Condition()
 {
-	if(MIS_Andre_WAREHOUSE == LOG_Success)
+	if(MIS_Andre_WAREHOUSE == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -1428,7 +1428,7 @@ instance DIA_Andre_LOBART_SUCCESS(C_Info)
 
 func int DIA_Andre_LOBART_SUCCESS_Condition()
 {
-	if(MIS_AndreHelpLobart == LOG_Success)
+	if(MIS_AndreHelpLobart == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -1536,7 +1536,7 @@ func void DIA_Addon_Andre_ReturnedMissingPeople_Info()
 		B_AndreSold();
 	};
 	AI_Output(self,other,"DIA_Addon_Andre_ReturnedMissingPeople_08_08");	//Ты сделал великое дело!
-	MIS_Addon_Andre_MissingPeople = LOG_Success;
+	MIS_Addon_Andre_MissingPeople = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Andre_MissingPeople);
 };
 
@@ -1559,7 +1559,7 @@ instance DIA_Andre_BerichtDrachen(C_Info)
 
 func int DIA_Andre_BerichtDrachen_Condition()
 {
-	if((EnterOW_Kapitel2 == TRUE) && (mis_oldworld != LOG_Success))
+	if((EnterOW_Kapitel2 == TRUE) && (MIS_OLDWORLD != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -1714,7 +1714,7 @@ func void DIA_Andre_PERM_Info()
 	};
 	if(other.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Andre_PERM_08_03");	//С этого времени ты должен докладывать непосредственно лорду Хагену. Иди, поговори с ним.
+		AI_Output(self,other,"DIA_Andre_PERM_08_03");	//С этого времени ты должен докладывать непосредственно Лорду Хагену. Иди, поговори с ним.
 	};
 };
 
@@ -1768,7 +1768,7 @@ func int DIA_Andre_BerichtTorAuf_Condition()
 func void DIA_Andre_BerichtTorAuf_Info()
 {
 	AI_Output(other,self,"DIA_Andre_Add_15_16");	//Замок в Долине Рудников штурмовали орки!
-	AI_Output(self,other,"DIA_Andre_Add_08_09");	//Лорд Хаген должен услышать об этом.
+	AI_Output(self,other,"DIA_Andre_Add_08_09");	//Нет! Лорд Хаген должен услышать об этом.
 	B_Andre_GotoLordHagen();
 };
 

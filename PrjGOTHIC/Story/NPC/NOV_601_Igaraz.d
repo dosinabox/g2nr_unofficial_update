@@ -12,7 +12,7 @@ instance NOV_601_Igaraz(Npc_Default)
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItKe_IgarazChest_Mis,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Normal_Stone,BodyTex_N,itar_nov_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Normal_Stone,BodyTex_N,ItAr_NOV_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);
@@ -36,7 +36,7 @@ func void Rtn_CONTEST_601()
 
 func void Rtn_CONTESTWAIT_601()
 {
-	TA_Stand_ArmsCrossed(8,0,23,4,"NW_TAVERNE_TROLLAREA_66");
-	TA_Stand_ArmsCrossed(23,4,8,0,"NW_TAVERNE_TROLLAREA_66");
+	TA_Stand_ArmsCrossed(8,0,23,4,"NW_TAVERNE_TROLLAREA_06");
+	TA_Stand_ArmsCrossed(23,4,8,0,"NW_TAVERNE_TROLLAREA_06");
 };
 

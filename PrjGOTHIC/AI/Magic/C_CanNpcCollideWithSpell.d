@@ -207,7 +207,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		};
 		if(C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
 		{
-			COLL_APPLYDOUBLEDAMAGE;
+			return COLL_APPLYDOUBLEDAMAGE;
 		};
 		return COLL_DOEVERYTHING;
 	};

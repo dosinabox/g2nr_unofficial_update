@@ -156,7 +156,7 @@ func void DIA_Addon_BDT_1084_Senyan_Hi_bad()
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_03");	//И если они найдут тебя, они убьют тебя.
 	AI_Output(other,self,"DIA_Addon_BDT_1084_Senyan_Hi_bad_15_04");	//Многие уже пытались.
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_05");	//Значит, ты дерешься не хуже, чем плетешь интриги. Придти в лагерь в таких доспехах, это...
-	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_06");	//...все равно что прийти к волкам, будучи овцой. Твоя жизнь висит на волоске, сын риска.
+	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_06");	//...все равно что придти к волкам, будучи овцой. Твоя жизнь висит на волоске, сын риска.
 	Senyan_Bad = TRUE;
 	Info_ClearChoices(DIA_Addon_BDT_1084_Senyan_Hi);
 	if(Senyan_Good == TRUE)
@@ -291,7 +291,7 @@ instance DIA_Addon_BDT_1084_Senyan_Found(C_Info)
 
 func int DIA_Addon_Senyan_Found_Condition()
 {
-	if((Senyan_Erpressung == LOG_Running) && (MIS_Judas == LOG_Success))
+	if((Senyan_Erpressung == LOG_Running) && (MIS_Judas == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -317,7 +317,7 @@ instance DIA_Addon_BDT_1084_Senyan_derbe(C_Info)
 
 func int DIA_Addon_Senyan_derbe_Condition()
 {
-	if((Senyan_Erpressung == LOG_Running) && (MIS_Judas == LOG_Success) && (Npc_IsDead(Fisk) || Npc_IsDead(Esteban)))
+	if((Senyan_Erpressung == LOG_Running) && (MIS_Judas == LOG_SUCCESS) && (Npc_IsDead(Fisk) || Npc_IsDead(Esteban)))
 	{
 		return TRUE;
 	};

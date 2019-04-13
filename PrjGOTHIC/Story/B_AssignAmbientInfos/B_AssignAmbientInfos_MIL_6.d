@@ -72,7 +72,7 @@ func void DIA_Addon_MIL_6_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_MIL_6_MissingPeople_15_00");	//Я слышал, что исчезли несколько горожан.
 	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_01");	//И я недавно слышал слухи об исчезновении людей.
 	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_02");	//Не могу даже представить, чем это можно объяснить.
-	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_03");	//И мы не можем сделать ничего, кроме того, чтобы смотреть в оба и исполнять свой долг стражников.
+	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_03");	//И мы не можем сделать ничего кроме того, чтобы смотреть в оба и исполнять свой долг стражников.
 };
 
 

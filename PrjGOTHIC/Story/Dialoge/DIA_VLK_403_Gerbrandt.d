@@ -162,7 +162,7 @@ func void DIA_Gerbrandt_Hello_Yes_Yes()
 	Info_ClearChoices(DIA_Gerbrandt_Hello);
 };
 
-func void B_Gerbrandt_PissOff()
+func void B_GErbrandt_PissOff()
 {
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_00");	//Что это все значит - ты издеваешься надо мной?
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_01");	//Ты и твой приятель Диего уже и так дел натворили.
@@ -210,7 +210,7 @@ func void DIA_Gerbrandt_Perm_Info()
 	}
 	else if(Kapitel >= 3)
 	{
-		if(MIS_DiegosResidence != LOG_Success)
+		if(MIS_DiegosResidence != LOG_SUCCESS)
 		{
 			if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
 			{
@@ -219,12 +219,12 @@ func void DIA_Gerbrandt_Perm_Info()
 			}
 			else
 			{
-				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_06");	//Это никого не касается, кроме меня. Я занят!
+				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_06");	//Это никого не касается кроме меня. Я занят!
 			};
 		}
 		else
 		{
-			B_Gerbrandt_PissOff();
+			B_GErbrandt_PissOff();
 		};
 	};
 };
@@ -256,14 +256,14 @@ func void DIA_Gerbrandt_GreetingsFromDiego_Info()
 	AI_Output(other,self,"DIA_Gerbrandt_GreetingsFromDiego_15_02");	//Он попросил меня вручить тебе это письмо.
 	B_GiveInvItems(other,self,ItWr_DiegosLetter_MIS,1);
 	B_UseFakeScroll();
-	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_03");	//(возбужденно) Этого не может быть. Мне конец!
+	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_03");	//(возбужденно) Этого не может быть. Нет. Мне конец!
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_04");	//(в страхе) Он что, уже в городе?
 	AI_Output(other,self,"DIA_Gerbrandt_GreetingsFromDiego_15_05");	//Кто?
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_06");	//Диего, конечно же!
 	AI_Output(other,self,"DIA_Gerbrandt_GreetingsFromDiego_15_07");	//Да, я должен скоро встретиться с ним.
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_08");	//(в отчаянии, про себя) Это конец! Все пропало!
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_09");	//У меня нет времени, мне нужно уходить отсюда. Быстро. Если он найдет меня здесь, мне конец!
-	MIS_DiegosResidence = LOG_Success;
+	MIS_DiegosResidence = LOG_SUCCESS;
 	B_GivePlayerXP(XP_DiegosResidence);
 	DIEGO_COMING = TRUE;
 };

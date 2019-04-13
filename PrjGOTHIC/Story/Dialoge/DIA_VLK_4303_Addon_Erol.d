@@ -120,7 +120,7 @@ func void DIA_Addon_Erol_what_dein()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_what_dein_15_00");	//Так это твои вещи лежат под мостом?
 	AI_Output(self,other,"DIA_Addon_Erol_what_dein_10_01");	//Да. Тележка, товары, все остальное.
-	if(Npc_HasItems(other,ItMi_ErolsKelch) > 0)
+	if(Npc_HasItems(other,itmi_erolskelch) > 0)
 	{
 		AI_Output(other,self,"DIA_Addon_Erol_what_dein_Add_15_00");	//Я кое-что оттуда забрал...
 		AI_Output(self,other,"DIA_Addon_Erol_what_dein_Add_10_01");	//Можешь оставить эти вещи себе, ценности они не представляют.
@@ -137,7 +137,7 @@ func void DIA_Addon_Erol_what_dein()
 func void DIA_Addon_Erol_what_Was()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_what_Was_15_00");	//Каменные таблички?
-	AI_Output(self,other,"DIA_Addon_Erol_what_Was_10_01");	//Да. Их хотел купить у меня городской маг Воды. Я обещал ему, что достану их.
+	AI_Output(self,other,"DIA_Addon_Erol_what_Was_10_01");	//Да. Их хотел купить у меня городской маг воды. Я обещал ему, что достану их.
 	AI_Output(self,other,"DIA_Addon_Erol_what_Was_10_02");	//Я должен любой ценой вернуть их, иначе пострадает моя репутация.
 	Info_AddChoice(DIA_Addon_Erol_what,"Где ты берешь эти таблички?",DIA_Addon_Erol_what_woher);
 	Info_AddChoice(DIA_Addon_Erol_what,"Зачем таблички нужны магу воды?",DIA_Addon_Erol_what_KDW);
@@ -145,7 +145,7 @@ func void DIA_Addon_Erol_what_Was()
 
 func void DIA_Addon_Erol_what_KDW()
 {
-	AI_Output(other,self,"DIA_Addon_Erol_what_KDW_15_00");	//Зачем таблички нужны магу Воды?
+	AI_Output(other,self,"DIA_Addon_Erol_what_KDW_15_00");	//Зачем таблички нужны магу воды?
 	AI_Output(self,other,"DIA_Addon_Erol_what_KDW_10_01");	//Он сказал, что изучает их, и просил привезти как можно больше.
 };
 
@@ -153,7 +153,7 @@ func void DIA_Addon_Erol_what_woher()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_what_woher_15_00");	//Где ты берешь эти таблички?
 	AI_Output(self,other,"DIA_Addon_Erol_what_woher_10_01");	//Нахожу их в древних строениях, например, мавзолеях. А иногда их можно найти в пещерах.
-	AI_Output(self,other,"DIA_Addon_Erol_what_woher_10_02");	//Я продал магу Воды уже целую кучу табличек.
+	AI_Output(self,other,"DIA_Addon_Erol_what_woher_10_02");	//Я продал магу воды уже целую кучу табличек.
 	AI_Output(self,other,"DIA_Addon_Erol_what_woher_10_03");	//Впрочем, здесь они встречаются довольно редко. Чаще всего я нахожу их на северо-востоке Хориниса.
 	Info_AddChoice(DIA_Addon_Erol_what,"Почему бы тебе просто не поискать новые таблички?",DIA_Addon_Erol_what_neue);
 };
@@ -201,7 +201,7 @@ func void DIA_Addon_Erol_FernandosWeapons_Info()
 	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_01");	//Поставках оружия? Да, кое-что знаю. Какая-то свинья из города продала им столько оружия, что они еле его увезли.
 	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_02");	//Часть его хранится на мосту у напавших на меня бандитов.
 	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_03");	//Часть увезли куда-то в сторону фермы Бенгара на верхних пастбищах.
-	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_04");	//Возможно, бандиты хотели переправить оружие через Проход.
+	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_04");	//Возможно, бандиты хотели переправить оружие через проход.
 	Info_ClearChoices(DIA_Addon_Erol_FernandosWeapons);
 	Info_AddChoice(DIA_Addon_Erol_FernandosWeapons,Dialog_Back,DIA_Addon_Erol_FernandosWeapons_back);
 	Info_AddChoice(DIA_Addon_Erol_FernandosWeapons,"Где находятся эти верхние пастбища?",DIA_Addon_Erol_FernandosWeapons_bengar);
@@ -210,7 +210,7 @@ func void DIA_Addon_Erol_FernandosWeapons_Info()
 func void DIA_Addon_Erol_FernandosWeapons_bengar()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_FernandosWeapons_bengar_15_00");	//Где находятся эти верхние пастбища?
-	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_bengar_10_01");	//В центральной части Хориниса находится 'Мертвая гарпия', таверна Орлана.
+	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_bengar_10_01");	//В центральной части Хориниса находится 'Мертвая Гарпия', таверна Орлана.
 	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_bengar_10_02");	//От нее на юг ведет дорога. Она проходит через верхние пастбища к проходу в Долину Рудников.
 	Info_ClearChoices(DIA_Addon_Erol_FernandosWeapons);
 };
@@ -288,8 +288,8 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_06");	//Этого достаточно. Маг Воды получит то, что я обещал, и я смогу, наконец, вернуться домой.
-			MIS_Addon_Erol_BanditStuff = LOG_Success;
+			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_06");	//Этого достаточно. Маг воды получит то, что я обещал, и я смогу, наконец, вернуться домой.
+			MIS_Addon_Erol_BanditStuff = LOG_SUCCESS;
 			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 		};
 		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_07");	//Конечно же, я тебе заплачу.
@@ -297,7 +297,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 		CreateInvItems(self,ItMi_Gold,StoneplatesGeld);
 		B_GiveInvItems(self,other,ItMi_Gold,StoneplatesGeld);
 		Npc_RemoveInvItems(self,ItWr_StonePlateCommon_Addon,Npc_HasItems(self,ItWr_StonePlateCommon_Addon));
-		if(MIS_Addon_Erol_BanditStuff == LOG_Success)
+		if(MIS_Addon_Erol_BanditStuff == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_08");	//Я иду домой. Если хочешь, можешь пойти со мной.
 			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_09");	//Когда мы доберемся до моего дома, я смогу продать тебе некоторые вещи.
@@ -312,12 +312,12 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Erol_Stoneplates_15_10");	//Эта табличка подойдет?
 		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_11");	//Нет. Она обладает магической силой.
-		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_12");	//Такие таблички маг Воды не покупает.
+		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_12");	//Такие таблички маг воды не покупает.
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Addon_Erol_Stoneplates_15_13");	//Сколько тебе нужно табличек?
-		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_14");	//Чтобы спасти мою репутацию, мне нужно передать магу Воды три таблички.
+		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_14");	//Чтобы спасти мою репутацию, мне нужно передать магу воды три таблички.
 	};
 };
 
@@ -402,7 +402,7 @@ func void DIA_Addon_Erol_PreTrade_Info()
 	B_Say(other,self,"$TRADE_2");
 	AI_Output(self,other,"DIA_Addon_Erol_PreTrade_10_00");	//Я ничего не могу тебе продать. Все мои вещи остались под мостом.
 	AI_Output(self,other,"DIA_Addon_Erol_PreTrade_10_01");	//Что-то у меня купить ты сможешь только тогда, когда я доберусь до дома.
-	if(MIS_Addon_Erol_BanditStuff != LOG_Success)
+	if(MIS_Addon_Erol_BanditStuff != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Erol_PreTrade_10_02");	//Но я не могу вернуться, пока не достану таблички для мага.
 	};
@@ -435,7 +435,7 @@ func void DIA_Addon_Erol_SLD_Info()
 	AI_Output(other,self,"DIA_Addon_Erol_SLD_15_00");	//(удивленно) Это и есть твой дом?
 	AI_Output(self,other,"DIA_Addon_Erol_SLD_10_01");	//Да. А что? Что-нибудь не так?
 	AI_Output(other,self,"DIA_Addon_Erol_SLD_15_02");	//У тебя нет проблем с наемниками?
-	AI_Output(self,other,"DIA_Addon_Erol_SLD_10_03");	//Пока я не сую нос в их дела, они меня не трогают.
+	AI_Output(self,other,"DIA_Addon_Erol_SLD_10_03");	//Пока я не сую нос в их дела, они меня не трогают .
 	AI_Output(self,other,"DIA_Addon_Erol_SLD_10_04");	//К тому же, они неплохие покупатели. И я плачу им, чтобы они охраняли мой дом, пока я в отъезде.
 	B_GivePlayerXP(XP_Ambient);
 	if(Erol_IsAtHome == FALSE)
@@ -460,7 +460,7 @@ instance DIA_Addon_Erol_Trade(C_Info)
 
 func int DIA_Addon_Erol_Trade_Condition()
 {
-	if((MIS_Addon_Erol_BanditStuff == LOG_Success) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") < 3000))
+	if((MIS_Addon_Erol_BanditStuff == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_BIGFARM_HUT_IN_01") < 3000))
 	{
 		return TRUE;
 	};
@@ -506,10 +506,10 @@ func int DIA_Addon_Erol_Teach_Condition()
 func void DIA_Addon_Erol_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_Teach_15_00");	//Покажи мне, как сделать удар сильнее.
-	if(MIS_Addon_Erol_BanditStuff != LOG_Success)
+	if(MIS_Addon_Erol_BanditStuff != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Erol_Teach_10_01");	//Хорошо, но ты окажешь мне одну услугу.
-		AI_Output(self,other,"DIA_Addon_Erol_Teach_10_02");	//Помоги мне спасти мою репутацию. Принеси мне каменные таблички для мага Воды.
+		AI_Output(self,other,"DIA_Addon_Erol_Teach_10_02");	//Помоги мне спасти мою репутацию. Принеси мне каменные таблички для мага воды.
 		AI_Output(self,other,"DIA_Addon_Erol_Teach_10_03");	//Тогда я покажу тебе, как увеличить твою силу в бою.
 	}
 	else if(Erol_Bonus == FALSE)
@@ -517,7 +517,7 @@ func void DIA_Addon_Erol_Teach_Info()
 		AI_Output(self,other,"DIA_Addon_Erol_Teach_Add_10_00");	//Хорошо. Смотри внимательно. Есть один простой прием.
 		AI_Output(self,other,"DIA_Addon_Erol_Teach_Add_10_01");	//Когда ты наносишь удар, используй не силу руки, а силу всего тела.
 		AI_Output(self,other,"DIA_Addon_Erol_Teach_Add_10_02");	//В одно и то же время ты должен развернуть бедро, вынести вперед плечо и распрямить руку.
-		AI_Output(self,other,"DIA_Addon_Erol_Teach_Add_10_03");	//(смеется) Если ты нанесешь удар правильно, то ты это поймешь!
+		AI_Output(self,other,"DIA_Addon_Erol_Teach_Add_10_03");	//(смеется) Если ты нанесешь удар правильно, ты это поймешь!
 		B_RaiseAttribute(other,ATR_STRENGTH,1);
 		Erol_Bonus = TRUE;
 	}

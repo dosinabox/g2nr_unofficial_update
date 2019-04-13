@@ -80,7 +80,7 @@ func void DIA_Addon_Bill_Hello_Info()
 	AI_Output(other,self,"DIA_Addon_Bill_Hello_15_00");	//Как у тебя дела?
 	AI_Output(self,other,"DIA_Addon_Bill_Hello_03_01");	//Тебя прислал сюда Генри?
 	AI_Output(self,other,"DIA_Addon_Bill_Hello_03_02");	//Скажи ему, что он получит свое дерево, как только я закончу.
-	AI_Output(self,other,"DIA_Addon_Bill_Hello_03_03");	//А если он не хочет ждать, может прийти сюда и помочь мне пилить.
+	AI_Output(self,other,"DIA_Addon_Bill_Hello_03_03");	//А если он не хочет ждать, может придти сюда и помочь мне пилить.
 	Npc_ExchangeRoutine(self,"START");
 };
 
@@ -203,7 +203,7 @@ func void DIA_Addon_Bill_AngusnHank_Info()
 	AI_Output(other,self,"DIA_Addon_Bill_AngusnHank_15_00");	//Я ищу Ангуса и Хэнка.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_01");	//(вздыхает) Я не знаю, где они. Должно быть, бандиты их убили.
 	AI_Output(other,self,"DIA_Addon_Bill_AngusnHank_15_02");	//Вы были друзьями, верно?
-	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_03");	//Все, что я знаю - это то, что они должны были встретиться с бандитами в какой-то пещере неподалеку отсюда.
+	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_03");	//Все, что я знаю, - это то, что они должны были встретиться с бандитами в какой-то пещере неподалеку отсюда.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_04");	//Она должна быть где-то на востоке от лагеря.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_05");	//Не знаю, где именно она находится. Сам я там ни разу не был.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_06");	//Может быть, тебе стоит поговорить с Аллигатором Джеком. Он любит бродить вокруг лагеря.
@@ -303,7 +303,7 @@ func void DIA_Addon_Bill_KilledEsteban_Info()
 	AI_Output(other,self,"DIA_Addon_Bill_KilledEsteban_15_02");	//Успокойся, сынок!
 	AI_Output(self,other,"DIA_Addon_Bill_KilledEsteban_03_03");	//(вздыхает) Ну ладно. По крайней мере, эта свинья мертва.
 	B_LogEntry(TOPIC_Addon_KillJuan,"Хуан мертв. Билл очень рад.");
-	MIS_Addon_Bill_SearchAngusMurder = LOG_Success;
+	MIS_Addon_Bill_SearchAngusMurder = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Bill_KillAngusMurder);
 };
 

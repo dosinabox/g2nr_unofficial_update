@@ -225,7 +225,7 @@ instance ItSc_Light(C_Item)
 	cond_value[2] = SPL_Cost_Scroll;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
-	description = NAME_SPL_Light;
+	description = NAME_SPL_LIGHT;
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;

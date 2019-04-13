@@ -178,8 +178,8 @@ func void DIA_Lares_HALLO_LEE()
 
 func void DIA_Lares_HALLO_NOIDEA()
 {
-	AI_Output(other,self,"DIA_Lares_HALLO_NOIDEA_15_00");	//Ли?
-	AI_Output(self,other,"DIA_Lares_HALLO_NOIDEA_09_01");	//Тебе, похоже, многое пришлось пережить. Ли был предводителем наемников в Новом Лагере.
+	AI_Output(other,self,"DIA_Lares_HALLO_NOIDEA_15_00");	//Ли?..
+	AI_Output(self,other,"DIA_Lares_HALLO_NOIDEA_09_01");	//Тебе, похоже, многое пришлось пережить. Ли был предводителем наемником в Новом Лагере.
 	B_Lares_AboutLee();
 	Info_ClearChoices(DIA_Lares_HALLO);
 };
@@ -240,7 +240,7 @@ func int DIA_Addon_Lares_WhatAreYouGuys_Condition()
 func void DIA_Addon_Lares_WhatAreYouGuys_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_WhatAreYouGuys_15_00");	//Что у вас за дела с Ватрасом?
-	AI_Output(self,other,"DIA_Addon_Lares_WhatAreYouGuys_09_01");	//Я заключил с магами Воды небольшое соглашение. Понимаешь?
+	AI_Output(self,other,"DIA_Addon_Lares_WhatAreYouGuys_09_01");	//Я заключил с магами воды небольшое соглашение. Понимаешь?
 	AI_Output(other,self,"DIA_Addon_Lares_WhatAreYouGuys_15_02");	//Что за соглашение?
 	AI_Output(self,other,"DIA_Addon_Lares_WhatAreYouGuys_09_03");	//Мы на них работаем, а они заботятся о том, чтобы из-за нашего прошлого в колонии у нас не было проблем.
 	AI_Output(other,self,"DIA_Addon_Lares_WhatAreYouGuys_15_04");	//Ты говоришь о 'Кольце Воды'?
@@ -274,9 +274,9 @@ func int DIA_Addon_Lares_Ranger_Condition()
 func void DIA_Addon_Lares_Ranger_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_Ranger_15_00");	//Расскажи мне о 'Кольце Воды'.
-	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_01");	//Кольцо для магов Воды - то же самое, что паладины для магов Огня.
+	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_01");	//Кольцо для магов воды - то же самое, что паладины для магов огня.
 	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_02");	//Но в отличие от паладинов, мы действуем тайно.
-	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_03");	//Кольцо - это могучее оружие в битвах с силами Зла, угрожающими Хоринису.
+	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_03");	//Кольцо - это могучее оружие в битвах с силами зла, угрожающими Хоринису.
 	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_04");	//Но сила Кольца основывается на том, что имена его членов хранятся в тайне.
 	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_05");	//Поэтому помалкивай об этом!
 	AI_Output(other,self,"DIA_Addon_Lares_Ranger_15_06");	//Конечно.
@@ -321,7 +321,7 @@ func void DIA_Addon_Lares_WannaBeRanger_BACK()
 
 func void DIA_Addon_Lares_WannaBeRanger_AboutYou()
 {
-	AI_Output(other,self,"DIA_Addon_Lares_WannaBeRanger_AboutYou_15_00");	//Что ты сделал для того, чтобы произвести впечатление на магов Воды?
+	AI_Output(other,self,"DIA_Addon_Lares_WannaBeRanger_AboutYou_15_00");	//Что ты сделал для того, чтобы произвести впечатление на магов воды?
 	AI_Output(self,other,"DIA_Addon_Lares_WannaBeRanger_AboutYou_09_01");	//Я защищал их все то время, пока мы жили за Барьером.
 	AI_Output(self,other,"DIA_Addon_Lares_WannaBeRanger_AboutYou_09_02");	//(улыбается) И у них есть множество причин быть мне благодарными.
 };
@@ -355,7 +355,7 @@ instance DIA_Addon_Lares_RingBack(C_Info)
 
 func int DIA_Addon_Lares_RingBack_Condition()
 {
-	if((SC_IsRanger == TRUE) && (MIS_Addon_Lares_ComeToRangerMeeting != LOG_Success) && ((Npc_GetDistToWP(self,"NW_CITY_HABOUR_02_B") < 1000) || (Npc_GetDistToWP(self,"NW_CITY_HABOUR_TAVERN01_08") < 1000)))
+	if((SC_IsRanger == TRUE) && (MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS) && ((Npc_GetDistToWP(self,"NW_CITY_HABOUR_02_B") < 1000) || (Npc_GetDistToWP(self,"NW_CITY_HABOUR_TAVERN01_08") < 1000)))
 	{
 		return TRUE;
 	};
@@ -472,7 +472,7 @@ func void DIA_Addon_Lares_GetRangerArmor_Info()
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_06");	//Помни: наши имена должны оставаться в тайне. Никто не должен знать, что мы являемся членами общества.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_07");	//Болтать о Кольце Воды запрещено. Это наше главное правило. Запомни его.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_08");	//Вопросы есть?
-	MIS_Addon_Lares_ComeToRangerMeeting = LOG_Success;
+	MIS_Addon_Lares_ComeToRangerMeeting = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Addon_Lares_GetRangerArmor);
 	Info_AddChoice(DIA_Addon_Lares_GetRangerArmor,"Я должен идти.",DIA_Addon_Lares_GetRangerArmor_end);
@@ -514,7 +514,7 @@ func void DIA_Addon_Lares_GetRangerArmor_Learn()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_GetRangerArmor_Learn_15_00");	//Как вы можете помочь мне?
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_01");	//Я могу сделать тебя более ловким.
-	if(Npc_IsDead(SLD_805_Cord) == FALSE)
+	if(Npc_IsDead(Sld_805_Cord) == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_02");	//Если тебе нужно улучшить свое мастерство ближнего боя, поговори с Кордом. Он мастер клинка.
 	};
@@ -522,7 +522,7 @@ func void DIA_Addon_Lares_GetRangerArmor_Learn()
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_03");	//Гаан научит тебя правильно разделывать животных.
 	};
-	if(Npc_IsDead(MIL_350_Addon_Martin) == FALSE)
+	if(Npc_IsDead(Mil_350_Addon_Martin) == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_04");	//Мартину есть что рассказать тебе о паладинах.
 	};
@@ -550,7 +550,7 @@ instance DIA_Addon_Lares_Teleportstation(C_Info)
 
 func int DIA_Addon_Lares_Teleportstation_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Success) && (SCUsed_TELEPORTER == TRUE) && (MIS_Lares_BringRangerToMe != 0))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SCUsed_TELEPORTER == TRUE) && (MIS_Lares_BringRangerToMe != 0))
 	{
 		return TRUE;
 	};
@@ -559,14 +559,14 @@ func int DIA_Addon_Lares_Teleportstation_Condition()
 func void DIA_Addon_Lares_Teleportstation_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_Teleportstation_15_00");	//Тебе доводилось пользоваться телепортами?
-	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_01");	//Нет, но я о них слышал. Маги Воды сами пока не уверены в их надежности.
+	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_01");	//Нет, но я о них слышал. Маги воды сами пока не уверены в их надежности.
 	AI_Output(other,self,"DIA_Addon_Lares_Teleportstation_15_02");	//Я уже проходил через телепорт.
 	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_03");	//(смеется) Ну конечно! Ты же вообще ничего не боишься, не так ли?
 	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_04");	//Ну что ж, если тебе не страшно ими пользоваться, попроси трактирщика Орлана впустить тебя в его пещеру.
-	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_05");	//В ней спрятан один из телепортов магов Воды. Пещера находится неподалеку от его таверны.
+	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_05");	//В ней спрятан один из телепортов магов воды. Пещера находится неподалеку от его таверны.
 	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_06");	//Выходи через восточные городские ворота и иди по дороге прямо. Не промахнешься.
 	B_LogEntry(TOPIC_Addon_TeleportsNW,"Ларес рассказал мне, что неподалеку от таверны Орлана спрятан телепорт.");
-	ORLAN_HINT_LARES = TRUE;
+	Orlan_Hint_Lares = TRUE;
 };
 
 
@@ -593,7 +593,7 @@ func void DIA_Addon_Lares_Ornament_Info()
 	AI_Output(other,self,"DIA_Addon_Lares_Ornament_15_00");	//Ватрас просил передать тебе этот орнамент. Он сказал, что его нужно отнести назад.
 	B_GiveInvItems(other,self,ItMi_Ornament_Addon_Vatras,1);
 	AI_Output(self,other,"DIA_Addon_Lares_Ornament_09_01");	//(вздыхает) Ну конечно! Как всегда, работа достается мне. Я так и знал.
-	AI_Output(self,other,"DIA_Addon_Lares_Ornament_09_02");	//Теперь мне придется тащиться через пол-острова, чтобы отдать эту штуковину магам Воды.
+	AI_Output(self,other,"DIA_Addon_Lares_Ornament_09_02");	//Теперь мне придется тащиться через пол-острова, чтобы отдать эту штуковину магам воды.
 };
 
 
@@ -654,7 +654,7 @@ func void DIA_Addon_Lares_YourMission_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_03");	//Я делаю то, что делаем мы все. Выполняю задание, которое дали мне маги Воды.
+		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_03");	//Я делаю то, что делаем мы все. Выполняю задание, которое дали мне маги воды.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_04");	//Некоторые из пропавших людей были рыбаками. Они пропали вместе со своими лодками.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_05");	//Поэтому я нахожусь здесь и наблюдаю за гаванью. Если что-то еще произойдет, я это замечу.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_06");	//Но ты можешь мне помочь.
@@ -710,7 +710,7 @@ func void DIA_Addon_Lares_BaltramAbloese_Info()
 			AI_Output(self,other,"DIA_Addon_Lares_BaltramAbloese_09_04");	//(улыбается) Кто знает, может, ты решишь стать одним из нас...
 		};
 	};
-	MIS_Lares_BringRangerToMe = LOG_Success;
+	MIS_Lares_BringRangerToMe = LOG_SUCCESS;
 	Lares_CanBringScToPlaces = TRUE;
 };
 
@@ -795,7 +795,7 @@ func void DIA_Addon_Lares_PeopleMissing_Success()
 	AI_Output(self,other,"DIA_Addon_Lares_PeopleMissing_Success_09_03");	//Ты уверен? В таком случае мы должны освободить их.
 	AI_Output(other,self,"DIA_Addon_Lares_PeopleMissing_Success_15_04");	//Я над этим работаю.
 	AI_Output(self,other,"DIA_Addon_Lares_PeopleMissing_Success_09_05");	//Очень хорошо. И не забывай, если тебе понадобится моя помощь...
-	AI_Output(other,self,"DIA_Addon_Lares_PeopleMissing_Success_15_06");	//... то я знаю, где тебя найти. Все понятно.
+	AI_Output(other,self,"DIA_Addon_Lares_PeopleMissing_Success_15_06");	//...то я знаю, где тебя найти. Все понятно.
 	Lares_CanBringScToPlaces = TRUE;
 	Info_ClearChoices(DIA_Addon_Lares_PeopleMissing);
 };
@@ -925,7 +925,7 @@ func int DIA_Lares_Paladine_Condition()
 func void DIA_Lares_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Lares_Paladine_15_00");	//Мне во что бы то ни стало нужно поговорить с паладинами!
-	AI_Output(self,other,"DIA_Lares_Paladine_09_01");	//Что тебе нужно от них?
+	AI_Output(self,other,"DIA_Lares_Paladine_09_01");	//Что тебе нужно от НИХ?
 	AI_Output(other,self,"DIA_Lares_Paladine_15_02");	//У них есть амулет, Глаз Инноса. Я должен заполучить его.
 	AI_Output(self,other,"DIA_Lares_Paladine_09_03");	//И ты думаешь, они отдадут его тебе? Тебе никогда не попасть в верхний квартал города.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Lares_Vatras))
@@ -1038,11 +1038,11 @@ func void DIA_Addon_Lares_Gilde_MIL()
 
 func void DIA_Addon_Lares_Gilde_KDF()
 {
-	AI_Output(other,self,"DIA_Addon_Lares_Gilde_KDF_15_00");	//Магов Огня.
-	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_01");	//(смеется) Уверен, Ватрас не предвидел твой выбор. Иначе бы он не послал тебя ко мне.
+	AI_Output(other,self,"DIA_Addon_Lares_Gilde_KDF_15_00");	//Магов огня.
+	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_01");	//(смеется) Уверен, Ватрас не предвидел твой выбор. Иначе он бы не послал тебя ко мне.
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_02");	//Путь в послушники требует денег.
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_03");	//Если ты не заплатишь, тебя просто не пустят в монастырь.
-	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_04");	//Единственный, кто может тут тебе помочь - это сам Ватрас. Так что поговори с ним.
+	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_04");	//Единственный, кто может тут тебе помочь, - это сам Ватрас. Так что поговори с ним.
 	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
 	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Ларес сказал, что Ватрас знает легкий способ попасть в монастырь.");
@@ -1330,7 +1330,7 @@ instance DIA_Lares_GoNow(C_Info)
 
 func int DIA_Lares_GoNow_Condition()
 {
-	if(((Lares_WayToOnar == TRUE) || (MIS_Addon_Lares_Ornament2Saturas == LOG_Running) || (RangerHelp_OrnamentForest == TRUE)) && ((LaresGuide_ZumPortal == 0) || (LaresGuide_ZumPortal == 8)) && ((LaresGuide_ZuOnar == FALSE) || (LaresGuide_ZuOnar != LOG_Success)) && ((LaresGuide_OrnamentForest == 0) || (LaresGuide_OrnamentForest == 3)) && (Kapitel < 3))
+	if(((Lares_WayToOnar == TRUE) || (MIS_Addon_Lares_Ornament2Saturas == LOG_Running) || (RangerHelp_OrnamentForest == TRUE)) && ((LaresGuide_ZumPortal == 0) || (LaresGuide_ZumPortal == 8)) && ((LaresGuide_ZuOnar == FALSE) || (LaresGuide_ZuOnar == LOG_SUCCESS)) && ((LaresGuide_OrnamentForest == 0) || (LaresGuide_OrnamentForest == 3)) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -1364,7 +1364,7 @@ func void DIA_Lares_GoNow_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_GoNow_09_04");	//Куда?
 		Info_ClearChoices(DIA_Lares_GoNow);
 		Info_AddChoice(DIA_Lares_GoNow,Dialog_Back,DIA_Lares_GoNow_warte);
-		if(Lares_WayToOnar == TRUE)
+		if((Lares_WayToOnar == TRUE) && (LaresGuide_ZuOnar != LOG_SUCCESS))
 		{
 			Info_AddChoice(DIA_Lares_GoNow,"На ферму Онара.",DIA_Lares_GoNow_Onar);
 		};
@@ -1372,7 +1372,7 @@ func void DIA_Lares_GoNow_Info()
 		{
 			Info_AddChoice(DIA_Lares_GoNow,"Давай вернем орнамент Ватраса.",DIA_Lares_GoNow_Maya);
 		};
-		if((ornament_switched_forest == FALSE) && (LaresGuide_OrnamentForest == 0) && (RangerHelp_OrnamentForest == TRUE))
+		if((ORNAMENT_SWITCHED_FOREST == FALSE) && (LaresGuide_OrnamentForest == 0) && (RangerHelp_OrnamentForest == TRUE))
 		{
 			Info_AddChoice(DIA_Lares_GoNow,"В лес на востоке.",DIA_Lares_GoNow_Forest);
 		};
@@ -1443,7 +1443,7 @@ func void DIA_Lares_GUIDE_Info()
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
-	LaresGuide_ZuOnar = LOG_Success;
+	LaresGuide_ZuOnar = LOG_SUCCESS;
 };
 
 
@@ -1477,11 +1477,11 @@ func void DIA_Addon_Lares_ArrivedPortalInter1_Info()
 
 func void DIA_Addon_Lares_ArrivedPortalInter1_teil2()
 {
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_00");	//Мы, ребята из бывшего Нового Лагеря, сохранили хорошие отношения с магами Воды.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_01");	//Даже Ли готов защищать магов Воды от любой опасности, если только это будет в его силах.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_00");	//Мы, ребята из бывшего Нового Лагеря, сохранили хорошие отношения с магами воды.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_01");	//Даже Ли готов защищать магов воды от любой опасности, если только это будет в его силах.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_02");	//Чтобы поддерживать связь с магами, я практически постоянно нахожусь в городе, работая вместе с Ватрасом.
 	B_MakeRangerReadyForMeeting(self);
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги Воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
 	if(Cavalorn_RangerHint == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_15_04");	//А как ко всему этому относится Кавалорн? Насколько я знаю, в Новом Лагере он ничем таким не занимался.
@@ -1494,14 +1494,14 @@ func void DIA_Addon_Lares_ArrivedPortalInter1_teil2()
 func void DIA_Addon_Lares_ArrivedPortalInter1_wer()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_wer_15_00");	//Сатурас? Кто это такой?
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_01");	//Он был главным у магов Воды в Новом Лагере в Долине Рудников, когда Барьер еще не был разрушен.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_02");	//Мы с Ли тогда заключили с магами Воды союз.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_01");	//Он был главным у магов воды в Новом Лагере в Долине Рудников, когда Барьер еще не был разрушен.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_02");	//Мы с Ли тогда заключили с магами воды союз.
 	DIA_Addon_Lares_ArrivedPortalInter1_teil2();
 };
 
 func void DIA_Addon_Lares_ArrivedPortalInter1_ja()
 {
-	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_ja_15_00");	//Конечно. Он был предводителем магов Воды в Новом Лагере.
+	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_ja_15_00");	//Конечно. Он был предводителем магов воды в Новом Лагере.
 	DIA_Addon_Lares_ArrivedPortalInter1_teil2();
 };
 
@@ -1581,10 +1581,10 @@ func int DIA_Addon_Lares_ArrivedPortalInter2_Condition()
 
 func void DIA_Addon_Lares_ArrivedPortalInter2_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_00");	//Маги Воды полностью погружены в работу. Они уже несколько недель раскапывают какие-то руины на северо-востоке. Никто не знает, что они пытаются там найти.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_00");	//Маги воды полностью погружены в работу. Они уже несколько недель раскапывают какие-то руины на северо-востоке. Никто не знает, что они пытаются там найти.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_01");	//Все началось с землетрясений, таких, какие бывали в худшие дни Барьера.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_02");	//Из-под земли появились ужасные каменные создания, убивающие каждого, кто подходил к ним ближе, чем на тридцать метров.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_03");	//Маги Воды взяли ситуацию в свои руки и уничтожили монстров. А теперь они проводят раскопки, пытаясь найти объяснение этим странным событиям.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_03");	//Маги воды взяли ситуацию в свои руки и уничтожили монстров. А теперь они проводят раскопки, пытаясь найти объяснение этим странным событиям.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_04");	//Но ты скоро сам все увидишь.
 	LaresGuide_ZumPortal = 5;
 	B_LogEntry(TOPIC_Addon_KDW,"Ларес рассказал мне о раскопках магов воды. Маги занимаются расследованием необычных событий, происходящих в последнее время - странных землетрясений и появления из-под земли загадочных каменных существ.");
@@ -1663,7 +1663,7 @@ func void DIA_Addon_Lares_ArrivedPortal_Info()
 {
 	B_MakeRangerReadyToLeaveMeeting(self);
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_00");	//Мы на месте.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_01");	//Возьми орнамент. Маги Воды должны быть где-то внизу. Отнеси орнамент им.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_01");	//Возьми орнамент. Маги воды должны быть где-то внизу. Отнеси орнамент им
 	B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_02");	//Если внизу ты встретишь каких-нибудь диких зверей, с которыми не сможешь справиться, беги к Сатурасу.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_03");	//Он с ними разберется. Ну а мне нужно возвращаться.
@@ -1690,7 +1690,7 @@ instance DIA_Addon_Lares_Albern(C_Info)
 
 func int DIA_Addon_Lares_Albern_Condition()
 {
-	if((Lares_Angekommen == TRUE) && (Npc_GetDistToWP(self,"NW_TROLLAREA_RUINS_41") > 1000) && (MIS_Addon_Lares_Ornament2Saturas != LOG_Success))
+	if((Lares_Angekommen == TRUE) && (Npc_GetDistToWP(self,"NW_TROLLAREA_RUINS_41") > 1000) && (MIS_Addon_Lares_Ornament2Saturas != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -1742,7 +1742,7 @@ func void DIA_Addon_Lares_GOFORESTPRE_nein()
 
 func void DIA_Addon_Lares_GOFORESTPRE_Info()
 {
-	if(ornament_switched_forest == TRUE)
+	if(ORNAMENT_SWITCHED_FOREST == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_09_00");	//Ты все еще хочешь пойти со мной в лес?
 	}
@@ -1771,11 +1771,11 @@ func int DIA_Addon_Lares_GOFOREST_Condition()
 {
 	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_FOREST_PATH_62") && (LaresGuide_OrnamentForest == 2) && Npc_IsDead(Stoneguardian_Ornament))
 	{
-		if((ornament_switched_forest == FALSE) && Npc_IsInState(self,ZS_Talk))
+		if((ORNAMENT_SWITCHED_FOREST == FALSE) && Npc_IsInState(self,ZS_Talk))
 		{
 			return TRUE;
 		};
-		if(ornament_switched_forest == TRUE)
+		if(ORNAMENT_SWITCHED_FOREST == TRUE)
 		{
 			return TRUE;
 		};
@@ -1784,7 +1784,7 @@ func int DIA_Addon_Lares_GOFOREST_Condition()
 
 func void DIA_Addon_Lares_GOFOREST_Info()
 {
-	if(ornament_switched_forest == TRUE)
+	if(ORNAMENT_SWITCHED_FOREST == TRUE)
 	{
 		B_MakeRangerReadyToLeaveMeeting(self);
 		AI_Output(self,other,"DIA_Addon_Lares_GOFOREST_09_00");	//Ну вот. Дальше ты дойдешь сам. А я отправляюсь обратно.
@@ -2058,7 +2058,7 @@ func int DIA_Lares_AnyNews_Condition()
 func void DIA_Lares_AnyNews_Info()
 {
 	AI_Output(other,self,"DIA_Lares_AnyNews_15_00");	//Есть новости?
-	if(MIS_RescueBennet == LOG_Success)
+	if(MIS_RescueBennet == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lares_AnyNews_09_01");	//Основные новости связаны с тобой. Беннета отпустили, и он возвращается на ферму.
 		AI_Output(self,other,"DIA_Lares_AnyNews_09_02");	//Иди к нему, я думаю, он хочет отблагодарить тебя лично.
@@ -2232,7 +2232,8 @@ func void DIA_Lares_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_Yes_15_00");	//Я знал, что могу положиться на тебя.
 	AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_Yes_15_01");	//Встретимся у корабля.
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_Yes_09_02");	//Ты человек действия - это мне нравится. Увидимся позже.
-	Lares_IsOnBoard = LOG_Success;
+	Lares_IsOnBoard = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Crewmember_Success);
 	Crewmember_Count = Crewmember_Count + 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
@@ -2255,7 +2256,7 @@ func void DIA_Lares_KnowWhereEnemy_No()
 	}
 	else
 	{
-		Lares_IsOnBoard = LOG_Failed;
+		Lares_IsOnBoard = LOG_FAILED;
 	};
 	Info_ClearChoices(DIA_Lares_KnowWhereEnemy);
 };
@@ -2274,7 +2275,7 @@ instance DIA_Lares_LeaveMyShip(C_Info)
 
 func int DIA_Lares_LeaveMyShip_Condition()
 {
-	if((Lares_IsOnBoard == LOG_Success) && (MIS_ReadyforChapter6 == FALSE))
+	if((Lares_IsOnBoard == LOG_SUCCESS) && (MIS_ReadyforChapter6 == FALSE))
 	{
 		return TRUE;
 	};
@@ -2290,7 +2291,7 @@ func void DIA_Lares_LeaveMyShip_Info()
 	}
 	else
 	{
-		Lares_IsOnBoard = LOG_Failed;
+		Lares_IsOnBoard = LOG_FAILED;
 	};
 	Crewmember_Count = Crewmember_Count - 1;
 	Npc_ExchangeRoutine(self,"ShipOff");
@@ -2310,7 +2311,7 @@ instance DIA_Lares_StillNeedYou(C_Info)
 
 func int DIA_Lares_StillNeedYou_Condition()
 {
-	if(((Lares_IsOnBoard == LOG_OBSOLETE) || (Lares_IsOnBoard == LOG_Failed)) && (Crewmember_Count < Max_Crew))
+	if(((Lares_IsOnBoard == LOG_OBSOLETE) || (Lares_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
 		return TRUE;
 	};
@@ -2323,7 +2324,7 @@ func void DIA_Lares_StillNeedYou_Info()
 	{
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_01");	//Обычно я не позволяю людям так обращаться со мной, но так как ты - один из нас, на этот раз я тебя прощу.
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_02");	//Встретимся на корабле.
-		Lares_IsOnBoard = LOG_Success;
+		Lares_IsOnBoard = LOG_SUCCESS;
 		Crewmember_Count = Crewmember_Count + 1;
 		if(MIS_ReadyforChapter6 == TRUE)
 		{

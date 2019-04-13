@@ -1,5 +1,5 @@
 
-instance PAL_209_Paladin(Npc_Default)
+instance Pal_209_Paladin(Npc_Default)
 {
 	name[0] = NAME_Ritter;
 	guild = GIL_PAL;
@@ -11,7 +11,7 @@ instance PAL_209_Paladin(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_P_Normal_Fletcher,BodyTex_P,itar_pal_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_P_Normal_Fletcher,BodyTex_P,ItAr_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

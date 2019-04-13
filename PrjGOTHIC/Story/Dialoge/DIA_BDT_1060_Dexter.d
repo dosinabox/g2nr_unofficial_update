@@ -56,7 +56,7 @@ func void DIA_Dexter_Hallo_Info()
 		AI_Output(other,self,"DIA_Dexter_Hallo_15_02");	//КТО-ТО распространяет листки бумаги с моим изображением. КОЕ-КТО сказал мне, что это ты.
 		AI_Output(self,other,"DIA_Dexter_Hallo_09_03");	//Кто-то слишком много болтает.
 		AI_Output(self,other,"DIA_Addon_Dexter_Hallo_09_04");	//Впрочем, ты прав. Я распространял объявления о розыске. Я искал тебя - и ты явился.
-		MIS_Steckbriefe = LOG_Success;
+		MIS_Steckbriefe = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 	};
 	AI_Output(other,self,"DIA_Addon_Dexter_Hallo_15_05");	//Итак, что тебе от меня надо?
@@ -269,7 +269,7 @@ func void DIA_Dexter_Vor_Info()
 	AI_Output(other,self,"DIA_Addon_Dexter_Vor_15_00");	//Я должен узнать, куда ты отправил людей.
 	AI_Output(self,other,"DIA_Addon_Dexter_Vor_09_01");	//(смеется) Ты мог бы попробовать силой заставить меня говорить...
 	AI_Output(self,other,"DIA_Addon_Dexter_Vor_09_02");	//(угрожающе) Думаю, тебе лучше уйти.
-	AI_Output(self,other,"DIA_Dexter_Vor_09_02");	//Если я увижу тебя еще раз, то без колебаний убью! Я предупредил тебя.
+	AI_Output(self,other,"DIA_Dexter_Vor_09_02");	//Если я увижу тебя еще раз, то без колебаний убью!
 	Dexter_NoMoreSmallTalk = TRUE;
 	AI_StopProcessInfos(self);
 };

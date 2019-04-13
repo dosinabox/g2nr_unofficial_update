@@ -1,7 +1,7 @@
 
 instance DIA_Ingmar_EXIT(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 999;
 	condition = DIA_Ingmar_EXIT_Condition;
 	information = DIA_Ingmar_EXIT_Info;
@@ -26,7 +26,7 @@ func void DIA_Ingmar_EXIT_Info()
 
 instance DIA_Ingmar_Hallo(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 2;
 	condition = DIA_Ingmar_Hallo_Condition;
 	information = DIA_Ingmar_Hallo_Info;
@@ -52,7 +52,7 @@ func void DIA_Ingmar_Hallo_Info()
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_00");	//Согласно полученным мной сообщениям, Долина Рудников - опасное место.
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_01");	//Позаботься о своем снаряжении, прежде чем отправляться туда.
 	}
-	else if((mis_oldworld == LOG_Success) && (LordHagen.aivar[AIV_TalkedToPlayer] == TRUE))
+	else if((MIS_OLDWORLD == LOG_SUCCESS) && (LordHagen.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_02");	//Обстановка в Долине Рудников очень тревожит меня. Но мы разработаем план, чтобы преодолеть все опасности и вытащить наших парней оттуда вместе с рудой.
 		DIA_Ingmar_Hallo_permanent = TRUE;
@@ -66,7 +66,7 @@ func void DIA_Ingmar_Hallo_Info()
 
 instance DIA_Ingmar_Krieg(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 99;
 	condition = DIA_Ingmar_Krieg_Condition;
 	information = DIA_Ingmar_Krieg_Info;
@@ -94,7 +94,7 @@ func void DIA_Ingmar_Krieg_Info()
 
 instance DIA_Ingmar_CanTeach(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 100;
 	condition = DIA_Ingmar_CanTeach_Condition;
 	information = DIA_Ingmar_CanTeach_Info;
@@ -129,7 +129,7 @@ func void DIA_Ingmar_CanTeach_Info()
 
 instance DIA_Ingmar_Teach(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 6;
 	condition = DIA_Ingmar_Teach_Condition;
 	information = DIA_Ingmar_Teach_Info;
@@ -185,7 +185,7 @@ func void DIA_Ingmar_Teach_5()
 
 instance DIA_Ingmar_KAP3_EXIT(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 999;
 	condition = DIA_Ingmar_KAP3_EXIT_Condition;
 	information = DIA_Ingmar_KAP3_EXIT_Info;
@@ -210,7 +210,7 @@ func void DIA_Ingmar_KAP3_EXIT_Info()
 
 instance DIA_Ingmar_KAP4_EXIT(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 999;
 	condition = DIA_Ingmar_KAP4_EXIT_Condition;
 	information = DIA_Ingmar_KAP4_EXIT_Info;
@@ -235,7 +235,7 @@ func void DIA_Ingmar_KAP4_EXIT_Info()
 
 instance DIA_Ingmar_ORKELITE(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 40;
 	condition = DIA_Ingmar_ORKELITE_Condition;
 	information = DIA_Ingmar_ORKELITE_Info;
@@ -254,7 +254,7 @@ func int DIA_Ingmar_ORKELITE_Condition()
 func void DIA_Ingmar_ORKELITE_Info()
 {
 	AI_Output(other,self,"DIA_Ingmar_ORKELITE_15_00");	//Орки готовят массированное наступление.
-	AI_Output(self,other,"DIA_Ingmar_ORKELITE_06_01");	//Да ну? Ну что ж, это очень интересно. А откуда тебе это известно?
+	AI_Output(self,other,"DIA_Ingmar_ORKELITE_06_01");	//Да ну? Что ж, это очень интересно. А откуда тебе это известно?
 	if(TalkedTo_AntiPaladin == TRUE)
 	{
 		AI_Output(other,self,"DIA_Ingmar_ORKELITE_15_02");	//Я говорил с ними.
@@ -303,7 +303,7 @@ func void DIA_Ingmar_ORKELITE_wasTun()
 
 instance DIA_Ingmar_HAUPTQUARTIER(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 41;
 	condition = DIA_Ingmar_HAUPTQUARTIER_Condition;
 	information = DIA_Ingmar_HAUPTQUARTIER_Info;
@@ -329,13 +329,13 @@ func void DIA_Ingmar_HAUPTQUARTIER_Info()
 	B_GivePlayerXP(XP_KilledOrkOberst);
 	CreateInvItems(self,ItMi_Gold,300);
 	B_GiveInvItems(self,other,ItMi_Gold,300);
-	MIS_KillOrkOberst = LOG_Success;
+	MIS_KillOrkOberst = LOG_SUCCESS;
 };
 
 
 instance DIA_Ingmar_KAP5_EXIT(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 999;
 	condition = DIA_Ingmar_KAP5_EXIT_Condition;
 	information = DIA_Ingmar_KAP5_EXIT_Info;
@@ -358,18 +358,18 @@ func void DIA_Ingmar_KAP5_EXIT_Info()
 };
 
 
-instance DIA_INGMAR_KAP6_EXIT(C_Info)
+instance DIA_Ingmar_KAP6_EXIT(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 999;
-	condition = dia_ingmar_kap6_exit_condition;
-	information = dia_ingmar_kap6_exit_info;
+	condition = DIA_Ingmar_KAP6_EXIT_Condition;
+	information = DIA_Ingmar_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_ingmar_kap6_exit_condition()
+func int DIA_Ingmar_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -377,7 +377,7 @@ func int dia_ingmar_kap6_exit_condition()
 	};
 };
 
-func void dia_ingmar_kap6_exit_info()
+func void DIA_Ingmar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -385,7 +385,7 @@ func void dia_ingmar_kap6_exit_info()
 
 instance DIA_Ingmar_PICKPOCKET(C_Info)
 {
-	npc = PAL_201_Ingmar;
+	npc = Pal_201_Ingmar;
 	nr = 900;
 	condition = DIA_Ingmar_PICKPOCKET_Condition;
 	information = DIA_Ingmar_PICKPOCKET_Info;

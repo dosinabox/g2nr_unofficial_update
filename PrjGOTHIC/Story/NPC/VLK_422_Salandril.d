@@ -11,6 +11,7 @@ instance VLK_422_Salandril(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_CreateAmbientInv(self);
+	CreateInvItems(self,ItKe_Salandril,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Asghan,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

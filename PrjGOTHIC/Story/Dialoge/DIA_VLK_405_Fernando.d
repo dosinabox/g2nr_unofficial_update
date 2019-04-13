@@ -153,7 +153,7 @@ instance DIA_Fernando_Minental(C_Info)
 
 func int DIA_Fernando_Minental_Condition()
 {
-	if((NpcObsessedByDMT_Fernando == FALSE) && (mis_oldworld == LOG_Running) && (Kapitel == 2) && (EnterOW_Kapitel2 == FALSE) && (Fernando_HatsZugegeben == FALSE) && (Fernando_ImKnast == FALSE))
+	if((NpcObsessedByDMT_Fernando == FALSE) && (MIS_OLDWORLD == LOG_Running) && (Kapitel == 2) && (EnterOW_Kapitel2 == FALSE) && (Fernando_HatsZugegeben == FALSE) && (Fernando_ImKnast == FALSE))
 	{
 		return TRUE;
 	};
@@ -166,11 +166,11 @@ func void DIA_Fernando_Minental_Info()
 	AI_Output(self,other,"DIA_Fernando_Minental_14_02");	//Я хочу предложить тебе сделку. Ты приносишь мне доклад о том, что там происходит с рудой, а за это я дам тебе...
 	if(other.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Fernando_Minental_14_03");	//... рунный камень.
+		AI_Output(self,other,"DIA_Fernando_Minental_14_03");	//...рунный камень.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Fernando_Minental_14_04");	//... кольцо, которое повысит твои жизненные силы.
+		AI_Output(self,other,"DIA_Fernando_Minental_14_04");	//...кольцо, которое повысит твои жизненные силы.
 	};
 	AI_Output(other,self,"DIA_Fernando_Minental_15_05");	//Я посмотрю, что можно сделать.
 	B_NpcClearObsessionByDMT(self);
@@ -232,7 +232,7 @@ func void DIA_Addon_Fernando_BanditTrader_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_10");	//(умоляюще) Я не хотел этого делать! Поверь мне!
+		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_10");	//(умоляюще) Я не хотел этого делать! Поверь мне!.
 		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_11");	//(умоляюще) Сначала я продавал им только еду. Дела у меня шли неважно, и это было для меня единственным выходом.
 		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_12");	//(умоляюще) Но потом бандиты стали агрессивными и даже угрожали убить меня, если я не продам им оружие.
 		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_13");	//(умоляюще) Ты не можешь обвинять меня! Я всего лишь жертва обстоятельств.

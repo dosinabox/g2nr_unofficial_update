@@ -128,8 +128,8 @@ func int DIA_Gerold_Gold_Condition()
 
 func void DIA_Gerold_Gold_Info()
 {
-	AI_Output(other,self,"DIA_Gerold_Gold_15_00");	//А что, если я заплачу золотом?
-	AI_Output(self,other,"DIA_Gerold_Gold_12_01");	//... хм...
+	AI_Output(other,self,"DIA_Gerold_Gold_15_00");	//А что если я заплачу золотом?
+	AI_Output(self,other,"DIA_Gerold_Gold_12_01");	//... хм ...
 	AI_Output(self,other,"DIA_Gerold_Gold_12_02");	//Нет.
 };
 
@@ -156,13 +156,13 @@ func int DIA_Gerold_Deal_Condition()
 func void DIA_Gerold_Deal_Info()
 {
 	AI_Output(other,self,"DIA_Gerold_Deal_15_00");	//У меня есть записка для одного из заключенных. Ты можешь передать ее?
-	AI_Output(self,other,"DIA_Gerold_Deal_12_01");	//Хм... в принципе, я не вижу препятствий для этого. Для кого эта записка?
+	AI_Output(self,other,"DIA_Gerold_Deal_12_01");	//Хм ... в принципе, я не вижу препятствий для этого. Для кого эта записка?
 	AI_Output(other,self,"DIA_Gerold_Deal_15_02");	//Для Горна.
 	AI_Output(self,other,"DIA_Gerold_Deal_12_03");	//Это очень важный заключенный. Я не думаю, что Гаронд согласится. Но если это для тебя так важно, мы всегда можем договориться.
 	AI_Output(other,self,"DIA_Gerold_Deal_15_04");	//Что ты хочешь за это?
 	AI_Output(self,other,"DIA_Gerold_Deal_12_05");	//Наши пайки последнее время стали совсем скудные. Я хочу нормальной еды.
 	AI_Output(self,other,"DIA_Gerold_Deal_12_06");	//Принеси мне колбасы и буханку свежего хлеба - и немного сладкого меда.
-	AI_Output(self,other,"DIA_Gerold_Deal_12_07");	//Бутылку вина, чтобы запить все это... Да, этого должно хватить. Я верю, у тебя получится достать все это. Так что заходи, когда найдешь продукты.
+	AI_Output(self,other,"DIA_Gerold_Deal_12_07");	//Бутылку вина, чтобы запить все это ... Да этого должно хватить. Я верю, у тебя получится достать все это. Так что заходи, когда найдешь продукты.
 	B_LogEntry(TOPIC_RescueGorn,"Если я принесу Герольду колбасу, хлеб, вино и мед, он передаст записку Горну.");
 };
 
@@ -193,10 +193,10 @@ func void DIA_Gerold_Stuff_Info()
 	AI_Output(other,self,"DIA_Gerold_Stuff_15_00");	//Я принес тебе кое-что. Вот еда, как ты и просил.
 	if((Npc_HasItems(other,ItFo_Honey) >= 1) && (Npc_HasItems(other,ItFo_Bread) >= 1) && (Npc_HasItems(other,ItFo_Wine) >= 1) && (Npc_HasItems(other,ItFo_Sausage) >= 1))
 	{
-		AI_PrintScreen("Honig gegeben",-1,34,FONT_ScreenSmall,2);
-		AI_PrintScreen("Brot gegeben",-1,37,FONT_ScreenSmall,2);
-		AI_PrintScreen("Wein gegeben",-1,40,FONT_ScreenSmall,2);
-		AI_PrintScreen("Wurst gegeben",-1,43,FONT_ScreenSmall,2);
+		AI_PrintScreen("Мед отдан",-1,34,FONT_ScreenSmall,2);
+		AI_PrintScreen("Хлеб отдан",-1,37,FONT_ScreenSmall,2);
+		AI_PrintScreen("Вино отдано",-1,40,FONT_ScreenSmall,2);
+		AI_PrintScreen("Колбаса отдана",-1,43,FONT_ScreenSmall,2);
 		Npc_RemoveInvItems(other,ItFo_Honey,1);
 		Npc_RemoveInvItems(other,ItFo_Bread,1);
 		Npc_RemoveInvItems(other,ItFo_Wine,1);
@@ -381,7 +381,7 @@ func void DIA_Gerold_KAP4_ALLESRUHIG_geben()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_03");	//Быстрее пошли в храм, пока остальные не повылезли из своих нор. Я не могу ждать до завтра.
+		AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_03");	//Быстрее, пошли в храм, пока остальные не повылезли из своих нор. Я не могу ждать до завтра.
 	};
 	AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_04");	//Я думаю, в это время в храме никого нет. Я буду ждать тебя там.
 	AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_05");	//Но смотри, чтобы это не оказалась черствая корка хлеба или какой-нибудь сырой кусок мяса, ты понял?
@@ -427,12 +427,12 @@ func void DIA_Gerold_MoreFood()
 	Info_ClearChoices(DIA_Gerold_FOOD);
 	if(Gerold_FoodCounter > 8)
 	{
-		AI_Output(self,other,"DIA_Gerold_MoreFood_12_00");	//Этого достаточно. Этого достаточно! Теперь меня некоторое время не будет мучить голод.
+		AI_Output(self,other,"DIA_Gerold_MoreFood_12_00");	//Этого достаточно. Этого достаточно! Теперь я меня некоторое время не будет мучить голод.
 		AI_Output(self,other,"DIA_Gerold_MoreFood_12_01");	//Вот мое золото. Я все равно ничего не могу на него купить здесь, а тебе оно, может быть, пригодится.
 		AI_Output(self,other,"DIA_Gerold_MoreFood_12_02");	//А теперь я лучше пойду, пока никто не увидел нас.
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"Start");
-		MIS_GeroldGiveFood = LOG_Success;
+		MIS_GeroldGiveFood = LOG_SUCCESS;
 		B_GivePlayerXP(XP_GeroldGiveFood);
 		CreateInvItems(self,ItMi_Gold,450);
 		B_GiveInvItems(self,other,ItMi_Gold,450);
@@ -492,14 +492,14 @@ func void DIA_Gerold_FOOD_nichts()
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 	Npc_ExchangeRoutine(self,"Start");
-	MIS_GeroldGiveFood = LOG_Failed;
+	MIS_GeroldGiveFood = LOG_FAILED;
 	B_GivePlayerXP(XP_Ambient);
 };
 
 func void DIA_Gerold_FOOD_kaese_nichtmehr()
 {
-	var int xp_geroldgivefoodlow;
-	var int teiler;
+	var int XP_GeroldGiveFoodLow;
+	var int Teiler;
 	AI_Output(other,self,"DIA_Gerold_FOOD_kaese_nichtmehr_15_00");	//Это все, что у меня есть.
 	AI_Output(self,other,"DIA_Gerold_FOOD_kaese_nichtmehr_12_01");	//И я, по-твоему, поверю в это? Ладно, это все же лучше, чем ничего. Вот, возьми немного золота за это.
 	CreateInvItems(self,ItMi_Gold,50);
@@ -508,16 +508,16 @@ func void DIA_Gerold_FOOD_kaese_nichtmehr()
 	AI_StopProcessInfos(self);
 	if(Gerold_FoodCounter < 4)
 	{
-		teiler = 3;
+		Teiler = 3;
 	}
 	else
 	{
-		teiler = 2;
+		Teiler = 2;
 	};
-	xp_geroldgivefoodlow = XP_GeroldGiveFood / teiler;
+	XP_GeroldGiveFoodLow = XP_GeroldGiveFood / Teiler;
 	Npc_ExchangeRoutine(self,"Start");
 	MIS_GeroldGiveFood = LOG_OBSOLETE;
-	B_GivePlayerXP(xp_geroldgivefoodlow);
+	B_GivePlayerXP(XP_GeroldGiveFoodLow);
 };
 
 func void DIA_Gerold_FOOD_kaese()
@@ -588,7 +588,7 @@ func void DIA_Gerold_PERM4_Info()
 	{
 		AI_Output(self,other,"DIA_Gerold_PERM4_12_01");	//Если орки атакуют нас опять, даже полный желудок не поможет мне.
 	}
-	else if(MIS_GeroldGiveFood == LOG_Success)
+	else if(MIS_GeroldGiveFood == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Gerold_PERM4_12_02");	//Ты, должно быть, шутишь. В меня больше не лезет. Спасибо еще раз.
 	}
@@ -633,18 +633,18 @@ func void DIA_Gerold_KAP5_EXIT_Info()
 };
 
 
-instance DIA_GEROLD_KAP6_EXIT(C_Info)
+instance DIA_Gerold_KAP6_EXIT(C_Info)
 {
 	npc = PAL_261_Gerold;
 	nr = 999;
-	condition = dia_gerold_kap6_exit_condition;
-	information = dia_gerold_kap6_exit_info;
+	condition = DIA_Gerold_KAP6_EXIT_Condition;
+	information = DIA_Gerold_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_gerold_kap6_exit_condition()
+func int DIA_Gerold_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -652,7 +652,7 @@ func int dia_gerold_kap6_exit_condition()
 	};
 };
 
-func void dia_gerold_kap6_exit_info()
+func void DIA_Gerold_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

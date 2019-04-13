@@ -16,7 +16,7 @@ instance MobsiBrief(C_Item)
 func void UseMobsiBrief()
 {
 	var int nDocID;
-	player_mobsi_production = MOBSI_NONE;
+	PLAYER_MOBSI_PRODUCTION = MOBSI_NONE;
 	self.aivar[AIV_INVINCIBLE] = FALSE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
@@ -86,7 +86,7 @@ func void Use_TestTrigger()
 };
 
 
-instance ch(Npc_Default)
+instance CH(Npc_Default)
 {
 	name[0] = "Characterhelper";
 	guild = GIL_NONE;
@@ -171,7 +171,7 @@ func void B_SetHeroEquipment()
 	CreateInvItems(hero,ItMi_Gold,500);
 	CreateInvItems(hero,ItPo_Health_03,5);
 	CreateInvItems(hero,ItPo_Mana_03,5);
-	CreateInvItems(hero,ItKe_Lockpick,30);
+	CreateInvItems(hero,ItKE_lockpick,30);
 };
 
 func void B_SetKDFRunes()
@@ -403,19 +403,19 @@ func void CH_Language_BACK()
 
 func void CH_Language_Peasant()
 {
-	player_talent_foreignlanguage[LANGUAGE_1] = TRUE;
+	PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] = TRUE;
 	Info_ClearChoices(CH_Language);
 };
 
 func void CH_Language_Warrior()
 {
-	player_talent_foreignlanguage[LANGUAGE_2] = TRUE;
+	PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] = TRUE;
 	Info_ClearChoices(CH_Language);
 };
 
 func void CH_Language_Priest()
 {
-	player_talent_foreignlanguage[LANGUAGE_3] = TRUE;
+	PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] = TRUE;
 	Info_ClearChoices(CH_Language);
 };
 
@@ -461,8 +461,8 @@ func void CH_Guild_BACK()
 
 func void CH_FakeBandit()
 {
-	CreateInvItems(hero,itar_bdt_m,1);
-	CreateInvItems(hero,itar_bdt_h,1);
+	CreateInvItems(hero,ItAr_BDT_M,1);
+	CreateInvItems(hero,ItAr_BDT_H,1);
 	CreateInvItems(hero,ITAR_Thorus_Addon,1);
 	AI_EquipBestArmor(hero);
 };
@@ -472,8 +472,8 @@ func void ch_nov()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_NOV;
 	Npc_SetTrueGuild(other,GIL_NOV);
-	CreateInvItem(hero,itar_nov_l);
-	AI_EquipArmor(hero,itar_nov_l);
+	CreateInvItem(hero,ItAr_NOV_L);
+	AI_EquipArmor(hero,ItAr_NOV_L);
 };
 
 func void ch_kdf()
@@ -481,8 +481,8 @@ func void ch_kdf()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_KDF;
 	Npc_SetTrueGuild(other,GIL_KDF);
-	CreateInvItem(hero,itar_kdf_l);
-	AI_EquipArmor(hero,itar_kdf_l);
+	CreateInvItem(hero,ItAr_KDF_L);
+	AI_EquipArmor(hero,ItAr_KDF_L);
 };
 
 func void ch_sld()
@@ -490,8 +490,8 @@ func void ch_sld()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_SLD;
 	Npc_SetTrueGuild(other,GIL_SLD);
-	CreateInvItem(hero,itar_sld_m);
-	AI_EquipArmor(hero,itar_sld_m);
+	CreateInvItem(hero,itar_sld_M);
+	AI_EquipArmor(hero,itar_sld_M);
 };
 
 func void ch_djg()
@@ -508,8 +508,8 @@ func void ch_mil()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_MIL;
 	Npc_SetTrueGuild(other,GIL_MIL);
-	CreateInvItem(hero,itar_mil_l);
-	AI_EquipArmor(hero,itar_mil_l);
+	CreateInvItem(hero,ITAR_Mil_L);
+	AI_EquipArmor(hero,ITAR_Mil_L);
 };
 
 func void ch_pal()
@@ -517,8 +517,8 @@ func void ch_pal()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_PAL;
 	Npc_SetTrueGuild(other,GIL_PAL);
-	CreateInvItem(hero,itar_pal_m);
-	AI_EquipArmor(hero,itar_pal_m);
+	CreateInvItem(hero,ItAr_PAL_M);
+	AI_EquipArmor(hero,ItAr_PAL_M);
 	B_SetPaladinEquipment();
 };
 
@@ -1622,7 +1622,7 @@ func void dia_ch_mana_20()
 };
 
 
-instance dia_ch_kreise(C_Info)
+instance DIA_CH_KREISE(C_Info)
 {
 	npc = ch;
 	nr = 4;
@@ -1759,25 +1759,25 @@ func void DIA_CH_Runen_1()
 {
 	Info_ClearChoices(DIA_CH_Runen);
 	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
-	if(player_talent_runes[SPL_SummonGoblinSkeleton] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonGoblinSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGoblinSkeleton)),CH_Training_Runen_Circle_1_SPL_SummonGoblinSkeleton);
 	};
-	if(player_talent_runes[SPL_LightHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_LightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightHeal)),CH_Training_Runen_Circle_1_SPL_LightHeal);
 	};
-	if(player_talent_runes[SPL_Zap] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Zap] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Zap,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Zap)),CH_Training_Runen_Circle_1_SPL_Zap);
 	};
-	if(player_talent_runes[SPL_Firebolt] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Firebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt)),CH_Training_Runen_Circle_1_SPL_Firebolt);
 	};
-	if(player_talent_runes[SPL_Light] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Light] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Light,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),CH_Training_Runen_Circle_1_SPL_LIGHT);
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_LIGHT,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),CH_Training_Runen_Circle_1_SPL_LIGHT);
 	};
 };
 
@@ -1810,23 +1810,23 @@ func void DIA_CH_Runen_2()
 {
 	Info_ClearChoices(DIA_CH_Runen);
 	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
-	if(player_talent_runes[SPL_InstantFireball] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),CH_Training_Runen_Circle_2_SPL_InstantFireball);
 	};
-	if(player_talent_runes[SPL_Icebolt] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),CH_Training_Runen_Circle_2_SPL_Icebolt);
 	};
-	if(player_talent_runes[SPL_SummonWolf] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonWolf] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonWolf,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonWolf)),CH_Training_Runen_Circle_2_SPL_SummonWolf);
 	};
-	if(player_talent_runes[SPL_WindFist] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),CH_Training_Runen_Circle_2_SPL_WINDFIST);
 	};
-	if(player_talent_runes[SPL_Sleep] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Sleep] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Sleep,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Sleep)),CH_Training_Runen_Circle_2_SPL_Sleep);
 	};
@@ -1861,27 +1861,27 @@ func void DIA_CH_Runen_3()
 {
 	Info_ClearChoices(DIA_CH_Runen);
 	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
-	if(player_talent_runes[SPL_MediumHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_MediumHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_MediumHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MediumHeal)),CH_Training_Runen_Circle_3_SPL_MediumHeal);
 	};
-	if(player_talent_runes[SPL_ChargeZap] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_ChargeZap] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_ChargeZap,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ChargeZap)),ch_training_runen_circle_4_spl_thunderball);
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_ChargeZap,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ChargeZap)),CH_Training_Runen_Circle_4_SPL_ThunderBall);
 	};
-	if(player_talent_runes[SPL_Firestorm] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Firestorm] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Firestorm,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firestorm)),ch_training_runen_circle_5_spl_firestorm);
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Firestorm,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firestorm)),CH_Training_Runen_Circle_5_SPL_Firestorm);
 	};
-	if(player_talent_runes[SPL_SummonSkeleton] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonSkeleton] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonSkeleton)),CH_Training_Runen_Circle_3_SPL_SummonSkeleton);
 	};
-	if(player_talent_runes[SPL_Fear] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Fear] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Fear,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Fear)),CH_Training_Runen_Circle_3_SPL_Fear);
 	};
-	if(player_talent_runes[SPL_IceCube] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_IceCube] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_IceCube,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_IceCube)),CH_Training_Runen_Circle_3_SPL_IceCube);
 	};
@@ -1892,12 +1892,12 @@ func void CH_Training_Runen_Circle_3_SPL_MediumHeal()
 	B_TeachPlayerTalentRunes(self,other,SPL_MediumHeal);
 };
 
-func void ch_training_runen_circle_3_spl_lightningflash()
+func void CH_Training_Runen_Circle_3_SPL_LightningFlash()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_LightningFlash);
 };
 
-func void ch_training_runen_circle_3_spl_chargefireball()
+func void CH_Training_Runen_Circle_3_SPL_ChargeFireball()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_ChargeFireball);
 };
@@ -1921,25 +1921,25 @@ func void DIA_CH_Runen_4()
 {
 	Info_ClearChoices(DIA_CH_Runen);
 	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
-	if(player_talent_runes[SPL_SummonGolem] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonGolem] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonGolem,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGolem)),CH_Training_Runen_Circle_4_SPL_SummonGolem);
 	};
-	if(player_talent_runes[SPL_DestroyUndead] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_DestroyUndead] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_DestroyUndead,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_DestroyUndead)),CH_Training_Runen_Circle_4_SPL_DestroyUndead);
 	};
-	if(player_talent_runes[SPL_LightningFlash] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_LightningFlash] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_LightningFlash,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightningFlash)),ch_training_runen_circle_3_spl_lightningflash);
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_LightningFlash,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightningFlash)),CH_Training_Runen_Circle_3_SPL_LightningFlash);
 	};
-	if(player_talent_runes[SPL_ChargeFireball] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_ChargeFireball] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_ChargeFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ChargeFireball)),ch_training_runen_circle_3_spl_chargefireball);
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_ChargeFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ChargeFireball)),CH_Training_Runen_Circle_3_SPL_ChargeFireball);
 	};
 };
 
-func void ch_training_runen_circle_4_spl_thunderball()
+func void CH_Training_Runen_Circle_4_SPL_ThunderBall()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_ChargeZap);
 };
@@ -1954,7 +1954,7 @@ func void CH_Training_Runen_Circle_4_SPL_DestroyUndead()
 	B_TeachPlayerTalentRunes(self,other,SPL_DestroyUndead);
 };
 
-func void ch_training_runen_circle_4_spl_pyrokinesis()
+func void CH_Training_Runen_Circle_4_SPL_Pyrokinesis()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Pyrokinesis);
 };
@@ -1963,25 +1963,25 @@ func void DIA_CH_Runen_5()
 {
 	Info_ClearChoices(DIA_CH_Runen);
 	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
-	if(player_talent_runes[SPL_IceWave] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_IceWave] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_IceWave,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_IceWave)),CH_Training_Runen_Circle_5_SPL_IceWave);
 	};
-	if(player_talent_runes[SPL_SummonDemon] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonDemon] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_SummonDemon,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonDemon)),CH_Training_Runen_Circle_5_SPL_SummonDemon);
 	};
-	if(player_talent_runes[SPL_FullHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_FullHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_FullHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_FullHeal)),CH_Training_Runen_Circle_5_SPL_FullHeal);
 	};
-	if(player_talent_runes[SPL_Pyrokinesis] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Pyrokinesis] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Pyrokinesis,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Pyrokinesis)),ch_training_runen_circle_4_spl_pyrokinesis);
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Pyrokinesis,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Pyrokinesis)),CH_Training_Runen_Circle_4_SPL_Pyrokinesis);
 	};
 };
 
-func void ch_training_runen_circle_5_spl_firestorm()
+func void CH_Training_Runen_Circle_5_SPL_Firestorm()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Firestorm);
 };
@@ -2005,25 +2005,25 @@ func void DIA_CH_Runen_6()
 {
 	Info_ClearChoices(DIA_CH_Runen);
 	Info_AddChoice(DIA_CH_Runen,Dialog_Back,DIA_CH_Runen_BACK);
-	if(player_talent_runes[SPL_Firerain] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Firerain,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firerain)),CH_Training_Runen_Circle_6_SPL_Firerain);
 	};
-	if(player_talent_runes[SPL_BreathOfDeath] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_BreathOfDeath] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_BreathOfDeath,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_BreathOfDeath)),CH_Training_Runen_Circle_6_SPL_BreathOfDeath);
 	};
-	if(player_talent_runes[SPL_MassDeath] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_MassDeath] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_MassDeath,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_MassDeath)),CH_Training_Runen_Circle_6_SPL_MassDeath);
 	};
-	if(player_talent_runes[SPL_ArmyOfDarkness] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_ArmyOfDarkness,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ArmyOfDarkness)),CH_Training_Runen_Circle_6_SPL_ArmyOfDarkness);
 	};
-	if(player_talent_runes[SPL_Shrink] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),ch_training_runen_circle_6_spl_shrink);
+		Info_AddChoice(DIA_CH_Runen,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),CH_Training_Runen_Circle_6_SPL_Shrink);
 	};
 };
 
@@ -2047,7 +2047,7 @@ func void CH_Training_Runen_Circle_6_SPL_ArmyOfDarkness()
 	B_TeachPlayerTalentRunes(self,other,SPL_ArmyOfDarkness);
 };
 
-func void ch_training_runen_circle_6_spl_shrink()
+func void CH_Training_Runen_Circle_6_SPL_Shrink()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
 };
@@ -2448,18 +2448,18 @@ func void DIA_CH_Dieb_Start_Info()
 };
 
 
-instance DIA_CH_DIEB_STOPPER(C_Info)
+instance DIA_CH_Dieb_Stopper(C_Info)
 {
 	npc = ch;
 	nr = 99;
-	condition = dia_ch_dieb_stopper_condition;
-	information = dia_ch_dieb_stopper_info;
+	condition = DIA_CH_Dieb_Stopper_Condition;
+	information = DIA_CH_Dieb_Stopper_Info;
 	permanent = TRUE;
 	description = "ZURÜCK";
 };
 
 
-func int dia_ch_dieb_stopper_condition()
+func int DIA_CH_Dieb_Stopper_Condition()
 {
 	if(DiebStart == TRUE)
 	{
@@ -2467,24 +2467,24 @@ func int dia_ch_dieb_stopper_condition()
 	};
 };
 
-func void dia_ch_dieb_stopper_info()
+func void DIA_CH_Dieb_Stopper_Info()
 {
 	DiebStart = FALSE;
 };
 
 
-instance DIA_CH_DIEB_STEAL(C_Info)
+instance DIA_CH_Dieb_Steal(C_Info)
 {
 	npc = ch;
 	nr = 7;
-	condition = dia_ch_dieb_steal_condition;
-	information = dia_ch_dieb_steal_info;
+	condition = DIA_CH_Dieb_Steal_Condition;
+	information = DIA_CH_Dieb_Steal_Info;
 	permanent = TRUE;
 	description = "Taschendiebstahl";
 };
 
 
-func int dia_ch_dieb_steal_condition()
+func int DIA_CH_Dieb_Steal_Condition()
 {
 	if(DiebStart == TRUE)
 	{
@@ -2492,26 +2492,26 @@ func int dia_ch_dieb_steal_condition()
 	};
 };
 
-func void dia_ch_dieb_steal_info()
+func void DIA_CH_Dieb_Steal_Info()
 {
-	Info_ClearChoices(dia_ch_dieb_steal);
-	Info_AddChoice(dia_ch_dieb_steal,Dialog_Back,dia_ch_dieb_steal_back);
-	Info_AddChoice(dia_ch_dieb_steal,B_BuildLearnString("Taschendiebstahl",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1)),CH_Training_Thief_Pickpocket);
+	Info_ClearChoices(DIA_CH_Dieb_Steal);
+	Info_AddChoice(DIA_CH_Dieb_Steal,Dialog_Back,DIA_CH_Dieb_Steal_BACK);
+	Info_AddChoice(DIA_CH_Dieb_Steal,B_BuildLearnString("Taschendiebstahl",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1)),CH_Training_Thief_Pickpocket);
 };
 
 
-instance DIA_CH_DIEB_SCHLEICHEN(C_Info)
+instance DIA_CH_Dieb_Schleichen(C_Info)
 {
 	npc = ch;
 	nr = 8;
-	condition = dia_ch_dieb_schleichen_condition;
-	information = dia_ch_dieb_schleichen_info;
+	condition = DIA_CH_Dieb_Schleichen_Condition;
+	information = DIA_CH_Dieb_Schleichen_Info;
 	permanent = TRUE;
 	description = "Schleichen";
 };
 
 
-func int dia_ch_dieb_schleichen_condition()
+func int DIA_CH_Dieb_Schleichen_Condition()
 {
 	if(DiebStart == TRUE)
 	{
@@ -2519,26 +2519,26 @@ func int dia_ch_dieb_schleichen_condition()
 	};
 };
 
-func void dia_ch_dieb_schleichen_info()
+func void DIA_CH_Dieb_Schleichen_Info()
 {
-	Info_ClearChoices(dia_ch_dieb_schleichen);
-	Info_AddChoice(dia_ch_dieb_schleichen,Dialog_Back,dia_ch_dieb_schleichen_back);
-	Info_AddChoice(dia_ch_dieb_schleichen,B_BuildLearnString("Schleichen",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),CH_Training_Thief_Sneak);
+	Info_ClearChoices(DIA_CH_Dieb_Schleichen);
+	Info_AddChoice(DIA_CH_Dieb_Schleichen,Dialog_Back,DIA_CH_Dieb_Schleichen_BACK);
+	Info_AddChoice(DIA_CH_Dieb_Schleichen,B_BuildLearnString("Schleichen",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),CH_Training_Thief_Sneak);
 };
 
 
-instance DIA_CH_DIEB_PICKLOCK(C_Info)
+instance DIA_CH_Dieb_Picklock(C_Info)
 {
 	npc = ch;
 	nr = 9;
-	condition = dia_ch_dieb_picklock_condition;
-	information = dia_ch_dieb_picklock_info;
+	condition = DIA_CH_Dieb_Picklock_Condition;
+	information = DIA_CH_Dieb_Picklock_Info;
 	permanent = TRUE;
 	description = "Schlösser öffnen";
 };
 
 
-func int dia_ch_dieb_picklock_condition()
+func int DIA_CH_Dieb_Picklock_Condition()
 {
 	if(DiebStart == TRUE)
 	{
@@ -2546,26 +2546,26 @@ func int dia_ch_dieb_picklock_condition()
 	};
 };
 
-func void dia_ch_dieb_picklock_info()
+func void DIA_CH_Dieb_Picklock_Info()
 {
-	Info_ClearChoices(dia_ch_dieb_picklock);
-	Info_AddChoice(dia_ch_dieb_picklock,Dialog_Back,dia_ch_dieb_picklock_back);
-	Info_AddChoice(dia_ch_dieb_picklock,B_BuildLearnString("Schlösser knacken",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),CH_Training_Thief_Picklock);
+	Info_ClearChoices(DIA_CH_Dieb_Picklock);
+	Info_AddChoice(DIA_CH_Dieb_Picklock,Dialog_Back,DIA_CH_Dieb_Picklock_BACK);
+	Info_AddChoice(DIA_CH_Dieb_Picklock,B_BuildLearnString("Schlösser knacken",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),CH_Training_Thief_Picklock);
 };
 
 
-instance DIA_CH_DIEB_ALLE(C_Info)
+instance DIA_CH_Dieb_Alle(C_Info)
 {
 	npc = ch;
 	nr = 12;
-	condition = dia_ch_dieb_alle_condition;
-	information = dia_ch_dieb_alle_info;
+	condition = DIA_CH_Dieb_Alle_Condition;
+	information = DIA_CH_Dieb_Alle_Info;
 	permanent = TRUE;
 	description = "Alle Diebestalente lernen";
 };
 
 
-func int dia_ch_dieb_alle_condition()
+func int DIA_CH_Dieb_Alle_Condition()
 {
 	if(DiebStart == TRUE)
 	{
@@ -2573,58 +2573,58 @@ func int dia_ch_dieb_alle_condition()
 	};
 };
 
-func void dia_ch_dieb_alle_info()
+func void DIA_CH_Dieb_Alle_Info()
 {
 	var int kosten_alle;
 	kosten_alle = B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1) + B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1) + B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1);
-	Info_ClearChoices(dia_ch_dieb_alle);
-	Info_AddChoice(dia_ch_dieb_alle,Dialog_Back,dia_ch_dieb_alle_back);
-	Info_AddChoice(dia_ch_dieb_alle,B_BuildLearnString("Alle Diebestalente",kosten_alle),ch_training_thief_alle);
+	Info_ClearChoices(DIA_CH_Dieb_Alle);
+	Info_AddChoice(DIA_CH_Dieb_Alle,Dialog_Back,DIA_CH_Dieb_Alle_BACK);
+	Info_AddChoice(DIA_CH_Dieb_Alle,B_BuildLearnString("Alle Diebestalente",kosten_alle),CH_Training_Thief_Alle);
 };
 
-func void dia_ch_dieb_alle_back()
+func void DIA_CH_Dieb_Alle_BACK()
 {
-	Info_ClearChoices(dia_ch_dieb_alle);
+	Info_ClearChoices(DIA_CH_Dieb_Alle);
 	B_TeachThiefTalent(self,other,NPC_TALENT_PICKLOCK);
 	B_TeachThiefTalent(self,other,NPC_TALENT_PICKPOCKET);
 	B_TeachThiefTalent(self,other,NPC_TALENT_SNEAK);
 };
 
-func void ch_training_thief_alle()
+func void CH_Training_Thief_Alle()
 {
-	Info_ClearChoices(dia_ch_dieb_alle);
+	Info_ClearChoices(DIA_CH_Dieb_Alle);
 };
 
-func void dia_ch_dieb_steal_back()
+func void DIA_CH_Dieb_Steal_BACK()
 {
-	Info_ClearChoices(dia_ch_dieb_steal);
+	Info_ClearChoices(DIA_CH_Dieb_Steal);
 };
 
-func void dia_ch_dieb_schleichen_back()
+func void DIA_CH_Dieb_Schleichen_BACK()
 {
-	Info_ClearChoices(dia_ch_dieb_schleichen);
+	Info_ClearChoices(DIA_CH_Dieb_Schleichen);
 };
 
-func void dia_ch_dieb_picklock_back()
+func void DIA_CH_Dieb_Picklock_BACK()
 {
-	Info_ClearChoices(dia_ch_dieb_picklock);
+	Info_ClearChoices(DIA_CH_Dieb_Picklock);
 };
 
 func void CH_Training_Thief_Picklock()
 {
-	Info_ClearChoices(dia_ch_dieb_picklock);
+	Info_ClearChoices(DIA_CH_Dieb_Picklock);
 	B_TeachThiefTalent(self,other,NPC_TALENT_PICKLOCK);
 };
 
 func void CH_Training_Thief_Pickpocket()
 {
-	Info_ClearChoices(dia_ch_dieb_steal);
+	Info_ClearChoices(DIA_CH_Dieb_Steal);
 	B_TeachThiefTalent(self,other,NPC_TALENT_PICKPOCKET);
 };
 
 func void CH_Training_Thief_Sneak()
 {
-	Info_ClearChoices(dia_ch_dieb_schleichen);
+	Info_ClearChoices(DIA_CH_Dieb_Schleichen);
 	B_TeachThiefTalent(self,other,NPC_TALENT_SNEAK);
 };
 
@@ -2756,19 +2756,19 @@ func void DIA_CH_Misc_Health_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Health);
 	Info_AddChoice(DIA_CH_Misc_Health,Dialog_Back,DIA_CH_Misc_Health_BACK);
-	if(player_talent_alchemy[POTION_Health_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString("Essenz der Heilung",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),CH_Training_Alchemy_POTION_Health_01);
 	};
-	if(player_talent_alchemy[POTION_Health_02] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString("Extrakt der Heilung",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),CH_Training_Alchemy_POTION_Health_02);
 	};
-	if(player_talent_alchemy[POTION_Health_03] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString("Elixier der Heilung",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),CH_Training_Alchemy_POTION_Health_03);
 	};
-	if(player_talent_alchemy[POTION_Perm_Health] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString("Permanenter Heiltrank",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),CH_Training_Alchemy_POTION_Perm_Health);
 	};
@@ -2827,19 +2827,19 @@ func void DIA_CH_Misc_Mana_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Mana);
 	Info_AddChoice(DIA_CH_Misc_Mana,Dialog_Back,DIA_CH_Misc_Mana_BACK);
-	if(player_talent_alchemy[POTION_Perm_Mana] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString("Permanenter Manatrank",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),CH_Training_Alchemy_POTION_Perm_Mana);
 	};
-	if(player_talent_alchemy[POTION_Mana_03] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString("Manaelixier",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),CH_Training_Alchemy_POTION_Mana_03);
 	};
-	if(player_talent_alchemy[POTION_Mana_02] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString("Manaextrakt",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),CH_Training_Alchemy_POTION_Mana_02);
 	};
-	if(player_talent_alchemy[POTION_Mana_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString("Manaessenz",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),CH_Training_Alchemy_POTION_Mana_01);
 	};
@@ -2898,19 +2898,19 @@ func void DIA_CH_Misc_Special_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Special);
 	Info_AddChoice(DIA_CH_Misc_Special,Dialog_Back,DIA_CH_Misc_Special_BACK);
-	if(player_talent_alchemy[CHARGE_Innoseye] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString("Auge aufladen",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,CHARGE_Innoseye)),CH_Training_Alchemy_Charge_InnosEye);
 	};
-	if(player_talent_alchemy[POTION_Speed] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString("Trank der Geschwindigkeit",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),CH_Training_Alchemy_POTION_Speed);
 	};
-	if(player_talent_alchemy[POTION_Perm_STR] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString("Elixier der Stärke",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),CH_Training_Alchemy_POTION_Perm_STR);
 	};
-	if(player_talent_alchemy[POTION_Perm_DEX] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString("Geschicklichkeitstrank",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),CH_Training_Alchemy_POTION_Perm_DEX);
 	};
@@ -3021,23 +3021,23 @@ func void DIA_CH_Misc_Smithniedrig_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Smithniedrig);
 	Info_AddChoice(DIA_CH_Misc_Smithniedrig,Dialog_Back,DIA_CH_Misc_Smithniedrig_BACK);
-	if(player_talent_smith[WEAPON_Common] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_ItMw_1H_Common_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),CH_Training_Smith_Common);
 	};
-	if(player_talent_smith[WEAPON_1H_Special_01] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_ItMw_1H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01)),CH_Training_Smith_1hSpecial1);
 	};
-	if(player_talent_smith[WEAPON_2H_Special_01] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_ItMw_2H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_01)),CH_Training_Smith_2hSpecial1);
 	};
-	if(player_talent_smith[WEAPON_1H_Special_02] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_ItMw_1H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_02)),CH_Training_Smith_1hSpecial2);
 	};
-	if(player_talent_smith[WEAPON_2H_Special_02] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Smithniedrig,B_BuildLearnString(NAME_ItMw_2H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_02)),CH_Training_Smith_2hSpecial2);
 	};
@@ -3067,19 +3067,19 @@ func void DIA_CH_Misc_SmithHoch_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_SmithHoch);
 	Info_AddChoice(DIA_CH_Misc_SmithHoch,Dialog_Back,DIA_CH_Misc_SmithHoch_BACK);
-	if(player_talent_smith[WEAPON_1H_Special_03] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_1H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_03)),CH_Training_Smith_1hSpecial3);
 	};
-	if(player_talent_smith[WEAPON_2H_Special_03] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_03)),CH_Training_Smith_2hSpecial3);
 	};
-	if(player_talent_smith[WEAPON_1H_Special_04] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_1H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_04)),CH_Training_Smith_1hSpecial4);
 	};
-	if(player_talent_smith[WEAPON_2H_Special_04] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_SmithHoch,B_BuildLearnString(NAME_ItMw_2H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_04)),CH_Training_Smith_2hSpecial4);
 	};
@@ -3221,19 +3221,19 @@ func void DIA_CH_Misc_Animal_allg_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Animal_allg);
 	Info_AddChoice(DIA_CH_Misc_Animal_allg,Dialog_Back,DIA_CH_Misc_Animal_allg_BACK);
-	if(player_talent_takeanimaltrophy[TROPHY_Teeth] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Zähne reissen",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),CH_Training_TROPHYS_Teeth);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Klauen hacken",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),CH_Training_TROPHYS_Claws);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Fell abziehen",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),CH_Training_TROPHYS_Fur);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Heart] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Herzen nehmen",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Heart)),CH_Training_TROPHYS_Heart);
 	};
@@ -3288,19 +3288,19 @@ func void DIA_CH_Misc_Animal_Speziell_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Animal_Speziell);
 	Info_AddChoice(DIA_CH_Misc_Animal_Speziell,Dialog_Back,DIA_CH_Misc_Animal_Speziell_BACK);
-	if(player_talent_takeanimaltrophy[TROPHY_BFSting] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Blutfliegenstachel",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFSting)),CH_Training_TROPHYS_BFSting);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_BFWing] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Blutfliegenflügel",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFWing)),CH_Training_TROPHYS_BFWing);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_CrawlerPlate] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Crawlerplatten nehmen",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate)),CH_Training_TROPHYS_CrawlerPlate);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Mandibles] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Zangen rausschneiden",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Mandibles)),CH_Training_TROPHYS_Mandibles);
 	};
@@ -3355,23 +3355,23 @@ func void DIA_CH_Misc_Animal_other_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Animal_other);
 	Info_AddChoice(DIA_CH_Misc_Animal_other,Dialog_Back,DIA_CH_Misc_Animal_other_BACK);
-	if(player_talent_takeanimaltrophy[TROPHY_ShadowHorn] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Horn des Schattenläufers",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ShadowHorn)),CH_Training_TROPHYS_ShadowHorn);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_FireTongue] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_FireTongue] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Feuerzunge",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_FireTongue)),CH_Training_TROPHYS_FireTongue);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_DrgSnapperHorn] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Drachensnapperhorn",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DrgSnapperHorn)),CH_Training_TROPHYS_DrgSnapperHorn);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_DragonScale] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Drachenschuppen ziehen",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonScale)),CH_Training_TROPHYS_DragonScale);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_DragonBlood] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Drachenblut zapfen",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonBlood)),CH_Training_TROPHYS_DragonBlood);
 	};
@@ -3483,19 +3483,19 @@ func void DIA_CH_Misc_PalHeal_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_PalHeal);
 	Info_AddChoice(DIA_CH_Misc_PalHeal,Dialog_Back,DIA_CH_Misc_PalHeal_BACK);
-	if(player_talent_runes[SPL_PalFullHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalFullHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_PalHeal,B_BuildLearnString(NAME_SPL_PalFullHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalFullHeal)),CH_Training_Runen_Paladin_SPL_PalFullHeal);
 	};
-	if(player_talent_runes[SPL_PalMediumHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalMediumHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_PalHeal,B_BuildLearnString(NAME_SPL_PalMediumHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalMediumHeal)),CH_Training_Runen_Paladin_SPL_PalMediumHeal);
 	};
-	if(player_talent_runes[SPL_PalLightHeal] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalLightHeal] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_PalHeal,B_BuildLearnString(NAME_SPL_PalLightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalLightHeal)),CH_Training_Runen_Paladin_SPL_PalLightHeal);
 	};
-	if(player_talent_runes[SPL_PalLight] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalLight] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_PalHeal,B_BuildLearnString(NAME_SPL_PalLight,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalLight)),CH_Training_Runen_Paladin_SPL_PalLight);
 	};
@@ -3550,15 +3550,15 @@ func void DIA_CH_Misc_PalKampf_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_PalKampf);
 	Info_AddChoice(DIA_CH_Misc_PalKampf,Dialog_Back,DIA_CH_Misc_PalKampf_BACK);
-	if(player_talent_runes[SPL_PalDestroyEvil] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalDestroyEvil] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_PalKampf,B_BuildLearnString(NAME_SPL_PalDestroyEvil,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalDestroyEvil)),CH_Training_Runen_Paladin_SPL_PalDestroyEvil);
 	};
-	if(player_talent_runes[SPL_PalRepelEvil] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalRepelEvil] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_PalKampf,B_BuildLearnString(NAME_SPL_PalRepelEvil,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalRepelEvil)),CH_Training_Runen_Paladin_SPL_PalRepelEvil);
 	};
-	if(player_talent_runes[SPL_PalHolyBolt] == FALSE)
+	if(PLAYER_TALENT_RUNES[SPL_PalHolyBolt] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_PalKampf,B_BuildLearnString(NAME_SPL_PalHolyBolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalHolyBolt)),CH_Training_Runen_Paladin_SPL_PalHolyBolt);
 	};

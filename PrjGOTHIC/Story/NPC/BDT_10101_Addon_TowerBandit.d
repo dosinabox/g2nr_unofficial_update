@@ -12,7 +12,7 @@ instance BDT_10101_Addon_TowerBandit(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_L_Ratford,BodyTex_L,itar_bdt_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_L_Ratford,BodyTex_L,ItAr_BDT_M);
 	Mdl_SetModelFatness(self,0.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

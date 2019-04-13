@@ -85,7 +85,7 @@ func void DIA_Addon_Owen_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_Hello_13_03");	//Одет ты так же, как и мы, но я тебя не знаю.
 	}
-	else if((Hlp_IsItem(itm,itar_bdt_m) == TRUE) || (Hlp_IsItem(itm,itar_bdt_h) == TRUE))
+	else if((Hlp_IsItem(itm,ItAr_BDT_M) == TRUE) || (Hlp_IsItem(itm,ItAr_BDT_H) == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_Hello_13_04");	//Честно говоря, да.
 	}
@@ -170,7 +170,7 @@ func int DIA_Addon_Owen_Henry_Condition()
 func void DIA_Addon_Owen_Henry_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Owen_Henry_15_00");	//Генри нужно дерево.
-	if(MIS_Owen_FindMalcom != LOG_Success)
+	if(MIS_Owen_FindMalcom != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_Henry_13_01");	//Сначала я должен выяснить, что случилось с моим другом Малькомом.
 	}
@@ -205,7 +205,7 @@ func int DIA_Addon_Owen_MalcomStunt_Condition()
 
 func void DIA_Addon_Owen_MalcomStunt_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Owen_MalcomStunt_15_00");	//
+	AI_Output(other,self,"DIA_Addon_Owen_MalcomStunt_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_01");	//Мой приятель Мальком пропал.
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_02");	//На нас напал один из этих луркеров.
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_03");	//Мы убежали в эту пещеру.
@@ -269,13 +269,13 @@ func void DIA_Addon_Owen_MalcomDead_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Owen_MalcomDead_15_00");	//Твой приятель Мальком мертв.
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_01");	//Я так и знал. Бедняга. Я должен был ему помочь.
-	if(SC_MADESTUNT == TRUE)
+	if(SC_MadeStunt == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_02");	//А ты храбрец.
 		AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_03");	//Я бы ни за что не смог спуститься в эту яму.
 	};
 	B_LogEntry(TOPIC_Addon_MalcomsStunt,"Я рассказал Оуэну о смерти Малькома. Он воспринял новость довольно спокойно.");
-	MIS_Owen_FindMalcom = LOG_Success;
+	MIS_Owen_FindMalcom = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Owen_MalcomDead);
 };
 

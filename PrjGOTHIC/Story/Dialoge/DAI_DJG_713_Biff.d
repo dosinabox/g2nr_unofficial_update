@@ -170,7 +170,7 @@ func void DIA_Biff_WASHIERIMTAL_Info()
 
 func void DIA_Biff_WASHIERIMTAL_ihrtot()
 {
-	AI_Output(other,self,"DIA_Biff_WASHIERIMTAL_ihrtot_15_00");	//Ну да, либо это, либо ты станешь трупом!
+	AI_Output(other,self,"DIA_Biff_WASHIERIMTAL_ihrtot_15_00");	//Ну да,  либо это, либо ты станешь трупом!
 	AI_Output(self,other,"DIA_Biff_WASHIERIMTAL_ihrtot_07_01");	//И что? Это часть игры. Если ты хочешь стать богатым, ты должен рисковать.
 	Info_ClearChoices(DIA_Biff_WASHIERIMTAL);
 };
@@ -287,9 +287,9 @@ var int biff_labert_geldeintreiben;
 
 func int DIA_Biff_GELDEINTREIBEN_Condition()
 {
-	if((DJG_Biff_SCGold < (Npc_HasItems(hero,ItMi_Gold) - 1)) && (Npc_GetBodyState(hero) != BS_INVENTORY) && (Npc_GetBodyState(hero) != BS_MOBINTERACT_INTERRUPT) && ((Npc_GetBodyState(hero) != BS_STAND) || (biff_labert_geldeintreiben == TRUE)) && ((Npc_GetBodyState(hero) != BS_ITEMINTERACT) || (biff_labert_geldeintreiben == TRUE)) && (DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
+	if((DJG_Biff_SCGold < (Npc_HasItems(hero,ItMi_Gold) - 1)) && (Npc_GetBodyState(hero) != BS_INVENTORY) && (Npc_GetBodyState(hero) != BS_MOBINTERACT_INTERRUPT) && ((Npc_GetBodyState(hero) != BS_STAND) || (BIFF_LABERT_GELDEINTREIBEN == TRUE)) && ((Npc_GetBodyState(hero) != BS_ITEMINTERACT) || (BIFF_LABERT_GELDEINTREIBEN == TRUE)) && (DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
-		biff_labert_geldeintreiben = TRUE;
+		BIFF_LABERT_GELDEINTREIBEN = TRUE;
 		return TRUE;
 	};
 };
@@ -311,7 +311,7 @@ func void DIA_Biff_GELDEINTREIBEN_geben()
 	AI_StopProcessInfos(self);
 	B_GiveInvItems(other,self,ItMi_Gold,BiffsAnteil);
 	B_Biff_SetRefuseTalk();
-	biff_labert_geldeintreiben = FALSE;
+	BIFF_LABERT_GELDEINTREIBEN = FALSE;
 	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
 };
 
@@ -328,7 +328,7 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
 {
 	AI_Output(other,self,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_15_00");	//Боюсь, дальше наши пути расходятся.
 	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_07_01");	//Как скажешь. Тогда я заберу свою долю.
-	biff_labert_geldeintreiben = FALSE;
+	BIFF_LABERT_GELDEINTREIBEN = FALSE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 	B_Attack(self,other,AR_NONE,1);
@@ -432,6 +432,7 @@ func int DIA_Biff_KOHLEWEGGEBEN_Condition()
 {
 	if((DJG_Biff_SCGold > Npc_HasItems(hero,ItMi_Gold)) && (DJG_Biff_HalbeHalbe == TRUE) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
+		return TRUE;
 	};
 };
 
@@ -525,7 +526,7 @@ func void DIA_Biff_MEHRGELD_ok()
 	AI_Output(other,self,"DIA_Biff_MEHRGELD_ok_15_00");	//Хорошо. Ты этого стоишь.
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
-		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_01");	//Да уж, это точно. Теперь пошли дальше.
+		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_01");	//Да уж, это точно. Теперь, пошли дальше.
 		AI_StopProcessInfos(self);
 		if(DJG_Biff_HalbeHalbe == TRUE)
 		{
@@ -535,7 +536,7 @@ func void DIA_Biff_MEHRGELD_ok()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_02");	//Ах ты, ничтожество! Ты даже не можешь заплатить компаньону.
+		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_02");	//Ах ты ничтожество! Ты даже не можешь заплатить компаньону.
 		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_03");	//Я думаю, мне стоит поискать другого партнера.
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"Start");
@@ -582,12 +583,12 @@ func void DIA_Biff_HEILUNG_Info()
 	AI_Output(other,self,"DIA_Biff_HEILUNG_15_00");	//Тебе нужно лечебное зелье?
 	AI_Output(self,other,"DIA_Biff_HEILUNG_07_01");	//Конечно. Не помешает.
 	Info_ClearChoices(DIA_Biff_HEILUNG);
-	Info_AddChoice(DIA_Biff_HEILUNG,"Я дам тебе что-нибудь позже.",DIA_Biff_HEILUNG_Spaeter);
-	Info_AddChoice(DIA_Biff_HEILUNG,"(самое маленькое лечебное зелье)",DIA_Biff_HEILUNG_HeilTrankLow);
-	Info_AddChoice(DIA_Biff_HEILUNG,"(лучшее лечебное зелье)",dia_biff_heilung_heiltrank);
+	Info_AddChoice(DIA_Biff_HEILUNG,"Я дам тебе что-нибудь позже.",DIA_Biff_HEILUNG_spaeter);
+	Info_AddChoice(DIA_Biff_HEILUNG,"(самое маленькое лечебное зелье)",DIA_Biff_HEILUNG_heiltrankLow);
+	Info_AddChoice(DIA_Biff_HEILUNG,"(лучшее лечебное зелье)",DIA_Biff_HEILUNG_heiltrank);
 };
 
-func void dia_biff_heilung_heiltrank()
+func void DIA_Biff_HEILUNG_heiltrank()
 {
 	if(B_GiveInvItems(other,self,ItPo_Health_03,1))
 	{
@@ -603,12 +604,12 @@ func void dia_biff_heilung_heiltrank()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_heiltrank_07_00");	//
+		AI_Output(self,other,"DIA_Biff_HEILUNG_heiltrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
 	};
 	AI_StopProcessInfos(self);
 };
 
-func void DIA_Biff_HEILUNG_HeilTrankLow()
+func void DIA_Biff_HEILUNG_heiltrankLow()
 {
 	if(B_GiveInvItems(other,self,ItPo_Health_01,1))
 	{
@@ -624,15 +625,15 @@ func void DIA_Biff_HEILUNG_HeilTrankLow()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_heiltrankLow_07_00");	//
+		AI_Output(self,other,"DIA_Biff_HEILUNG_heiltrankLow_07_00");	//К сожалению, его у тебя нет. Вернемся к этому вопросу позже.
 	};
 	AI_StopProcessInfos(self);
 };
 
-func void DIA_Biff_HEILUNG_Spaeter()
+func void DIA_Biff_HEILUNG_spaeter()
 {
-	AI_Output(other,self,"DIA_Biff_HEILUNG_spaeter_15_00");	//
-	AI_Output(self,other,"DIA_Biff_HEILUNG_spaeter_07_01");	//
+	AI_Output(other,self,"DIA_Biff_HEILUNG_spaeter_15_00");	//Я дам тебе что-нибудь позже.
+	AI_Output(self,other,"DIA_Biff_HEILUNG_spaeter_07_01");	//Только не забудь.
 	AI_StopProcessInfos(self);
 };
 
@@ -707,7 +708,7 @@ func void DIA_Biff_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_Yes_15_00");	//Ты не хочешь присоединиться?
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_Yes_07_01");	//Меня не волнуют враги. Мне нужно...
-	AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_Yes_15_02");	//Там, куда мы направляемся, больше золота, чем ты сможешь унести.
+	AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_Yes_15_02");	//Там куда мы направляемся, больше золота, чем ты сможешь унести.
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_Yes_07_03");	//В таком случае, я в деле. Куда мы направляемся?
 	AI_Output(other,self,"DIA_Biff_KnowWhereEnemy_Yes_15_04");	//Сначала нам нужно выбраться из Долины Рудников.
 	AI_Output(self,other,"DIA_Biff_KnowWhereEnemy_Yes_07_05");	//Нет проблем. Я уже в пути. Встретимся у Прохода.
@@ -716,7 +717,7 @@ func void DIA_Biff_KnowWhereEnemy_Yes()
 	B_LogEntry(Topic_Crew,"Перспектива разбогатеть убедила Биффа присоединиться ко мне. Пока он получает достаточно золота, я могу рассчитывать на него.");
 	B_GivePlayerXP(XP_Crewmember_Success);
 	self.flags = NPC_FLAG_IMMORTAL;
-	Biff_IsOnBoard = LOG_Success;
+	Biff_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count = Crewmember_Count + 1;
 	Biff_FollowsThroughPass = LOG_Running;
 	AI_StopProcessInfos(self);
@@ -746,7 +747,7 @@ instance DIA_Biff_Pass(C_Info)
 
 func int DIA_Biff_Pass_Condition()
 {
-	if((Npc_GetDistToWP(self,"START") < 1000) && (Biff_IsOnBoard == LOG_Success))
+	if((Npc_GetDistToWP(self,"START") < 1000) && (Biff_IsOnBoard == LOG_SUCCESS))
 	{
 		return TRUE;
 	};

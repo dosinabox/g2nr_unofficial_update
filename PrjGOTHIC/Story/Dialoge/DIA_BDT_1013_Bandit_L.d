@@ -1,7 +1,7 @@
 
 instance DIA_BDT_1013_BANDIT_FIRSTEXIT(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 999;
 	condition = DIA_BDT_1013_BANDIT_FIRSTEXIT_Condition;
 	information = DIA_BDT_1013_BANDIT_FIRSTEXIT_Info;
@@ -27,7 +27,7 @@ func void DIA_BDT_1013_BANDIT_FIRSTEXIT_Info()
 
 instance DIA_BDT_1013_BANDIT_EXIT(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 999;
 	condition = DIA_BDT_1013_BANDIT_EXIT_Condition;
 	information = DIA_BDT_1013_BANDIT_EXIT_Info;
@@ -52,7 +52,7 @@ func void DIA_BDT_1013_BANDIT_EXIT_Info()
 
 instance DIA_BDT_1013_BANDIT_WHERE(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 3;
 	condition = DIA_BDT_1013_BANDIT_WHERE_Condition;
 	information = DIA_BDT_1013_BANDIT_WHERE_Info;
@@ -70,11 +70,11 @@ func void DIA_BDT_1013_BANDIT_WHERE_Info()
 {
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_01_00");	//Эй - откуда ты такой взялся, а?
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Я спустился с гор.",DIA_BDT_1013_BANDIT_WHERE_Mountain);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Я пришел от Ксардаса...",DIA_BDT_1013_BANDIT_WHERE_Xardas);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Я спустился с гор.",dia_bdt_1013_bandit_where_mountain);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Я пришел от Ксардаса...",dia_bdt_1013_bandit_where_xardas);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_Mountain()
+func void dia_bdt_1013_bandit_where_mountain()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_15_00");	//Я спустился с гор.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_01");	//Точно. Ты спустился с гор. И это плохо для тебя.
@@ -83,12 +83,12 @@ func void DIA_BDT_1013_BANDIT_WHERE_Mountain()
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_03");	//Тебя ищут - целая куча плохих парней.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_04");	//Есть человек, с которым тебе просто необходимо переговорить. Иди за мной!
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",DIA_BDT_1013_BANDIT_WHERE_Later);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Кто ищет меня?",DIA_BDT_1013_BANDIT_WHERE_Who);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",DIA_BDT_1013_BANDIT_WHERE_Yes);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",dia_bdt_1013_bandit_where_later);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Кто ищет меня?",dia_bdt_1013_bandit_where_who);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",dia_bdt_1013_bandit_where_yes);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_Xardas()
+func void dia_bdt_1013_bandit_where_xardas()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_XARDAS_15_00");	//Я пришел от Ксардаса...
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_XARDAS_01_01");	//Это тот старый маг? Он называет себя Ксардасом... Браго это будет интересно...
@@ -96,7 +96,7 @@ func void DIA_BDT_1013_BANDIT_WHERE_Xardas()
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_Yes()
+func void dia_bdt_1013_bandit_where_yes()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_YES_15_00");	//Хорошо! Ты идешь первым!
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_YES_01_01");	//Просто следуй за мной, пещера находится вон там.
@@ -104,56 +104,56 @@ func void DIA_BDT_1013_BANDIT_WHERE_Yes()
 	AI_StopProcessInfos(self);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_Who()
+func void dia_bdt_1013_bandit_where_who()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_WHO_15_00");	//Кто ищет меня?
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_WHO_01_01");	//За тобой охотится половина Хориниса, а ты хочешь сказать мне, что ничего не знаешь об этом?
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_WHO_01_02");	//Ах! Понимаю! Ты не хочешь говорить мне об этом, хм? Хорошо - это твое дело.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_WHO_01_03");	//Так ты идешь или нет?
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",DIA_BDT_1013_BANDIT_WHERE_Later);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"С кем я должен поговорить?",DIA_BDT_1013_BANDIT_WHERE_TalkPartner);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",DIA_BDT_1013_BANDIT_WHERE_Yes);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",dia_bdt_1013_bandit_where_later);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"С кем я должен поговорить?",dia_bdt_1013_bandit_where_talkpartner);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",dia_bdt_1013_bandit_where_yes);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_TalkPartner()
+func void dia_bdt_1013_bandit_where_talkpartner()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_TALKPARTNER_15_00");	//С кем я должен поговорить?
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_TALKPARTNER_01_01");	//С нашим главарем. Его зовут Браго. Он лучше все тебе объяснит, чем я.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_TALKPARTNER_01_02");	//Ну что ты - мы идем?
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",DIA_BDT_1013_BANDIT_WHERE_Later);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Откуда мне знать, что это не ловушка?",DIA_BDT_1013_BANDIT_WHERE_NoTrap);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",DIA_BDT_1013_BANDIT_WHERE_Yes);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",dia_bdt_1013_bandit_where_later);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Откуда мне знать, что это не ловушка?",dia_bdt_1013_bandit_where_notrap);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",dia_bdt_1013_bandit_where_yes);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_NoTrap()
+func void dia_bdt_1013_bandit_where_notrap()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_NOTRAP_15_00");	//Откуда мне знать, что это не ловушка?
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_NOTRAP_01_01");	//Знаешь, я уже устал от тебя. Если тебе не нужна моя помощь, можешь просто идти в город, пусть там тебя посадят за решетку!
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_NOTRAP_01_02");	//Либо ты сейчас идешь со мной, либо забудь о том, что я тебе говорил!
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",DIA_BDT_1013_BANDIT_WHERE_Later);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Кое-кто уже пытался провести меня ...",DIA_BDT_1013_BANDIT_WHERE_Damals);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",DIA_BDT_1013_BANDIT_WHERE_Yes);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",dia_bdt_1013_bandit_where_later);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Кое-кто уже пытался провести меня ...",dia_bdt_1013_bandit_where_damals);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",dia_bdt_1013_bandit_where_yes);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_Damals()
+func void dia_bdt_1013_bandit_where_damals()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_15_00");	//Полегче, приятель! Кое-кто уже пытался провести меня...
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_01_01");	//Ох?
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_15_02");	//Этот парень предложил, чтобы мы вместе нашли амулет и поделили доход.
-	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_15_03");	//А когда мы достигли нашей цели, он со своими дружками напал на меня.
+	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_15_03");	//А когда мы достигли нашей цели, он и со своими дружками напал на меня.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_01_04");	//Похоже, ты просто связался с плохими людьми - и где это было?
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Это не так уж важно.",DIA_BDT_1013_BANDIT_WHERE_NotImportant);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Я был заключенным в горнодобывающей колонии.",DIA_BDT_1013_BANDIT_WHERE_Prisoner);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Это не так уж важно.",dia_bdt_1013_bandit_where_notimportant);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Я был заключенным в горнодобывающей колонии.",dia_bdt_1013_bandit_where_prisoner);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_Prisoner()
+func void dia_bdt_1013_bandit_where_prisoner()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_PRISONER_15_00");	//Я был заключенным в горнодобывающей колонии.
-	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_PRISONER_01_01");	//(потрясенно) Ты пришел из-за Барьера? Парень, тогда мы были там вместе.
+	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_PRISONER_01_01");	//(потрясенный) Ты пришел из-за Барьера? Парень, тогда мы были там вместе.
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_PRISONER_15_02");	//Я не знаю тебя...
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_PRISONER_01_03");	//Я был шахтером в Старом Лагере. Я оттуда почти никогда не выходил.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_PRISONER_01_04");	//(заговорщицки) Но сейчас важнее то, что у тебя большие проблемы!
@@ -169,16 +169,16 @@ func void DIA_BDT_1013_BANDIT_WHERE_Prisoner()
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_NotImportant()
+func void dia_bdt_1013_bandit_where_notimportant()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_NOTIMPORTANT_15_00");	//Это не так уж важно.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_NOTIMPORTANT_01_01");	//Как знаешь. Так как, ты идешь или нет?
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",DIA_BDT_1013_BANDIT_WHERE_Later);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",DIA_BDT_1013_BANDIT_WHERE_Yes);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",dia_bdt_1013_bandit_where_later);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",dia_bdt_1013_bandit_where_yes);
 };
 
-func void DIA_BDT_1013_BANDIT_WHERE_Later()
+func void dia_bdt_1013_bandit_where_later()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_LATER_15_00");	//Может быть, позже...
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_LATER_01_01");	//Позже не будет, приятель!
@@ -187,9 +187,9 @@ func void DIA_BDT_1013_BANDIT_WHERE_Later()
 };
 
 
-instance dia_1013_bandit_ambush(C_Info)
+instance DIA_1013_BANDIT_AMBUSH(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 1;
 	condition = DIA_1013_BANDIT_AMBUSH_Condition;
 	information = DIA_1013_BANDIT_AMBUSH_Info;
@@ -224,7 +224,7 @@ func void DIA_1013_BANDIT_AMBUSH_Info()
 
 instance DIA_1013_BANDIT_NAME(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 1;
 	condition = DIA_1013_BANDIT_NAME_Condition;
 	information = DIA_1013_BANDIT_NAME_Info;
@@ -256,7 +256,7 @@ func void DIA_1013_BANDIT_NAME_Info()
 
 instance DIA_1013_BANDIT_DEXTER(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 1;
 	condition = DIA_1013_BANDIT_DEXTER_Condition;
 	information = DIA_1013_BANDIT_DEXTER_Info;
@@ -297,7 +297,7 @@ func void DIA_1013_BANDIT_DEXTER_Info()
 
 instance DIA_1013_BANDIT_PIC(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 2;
 	condition = DIA_1013_BANDIT_PIC_Condition;
 	information = DIA_1013_BANDIT_PIC_Info;
@@ -324,7 +324,7 @@ func void DIA_1013_BANDIT_PIC_Info()
 
 instance DIA_1013_BANDIT_FromMaleth(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 3;
 	condition = DIA_1013_BANDIT_FromMaleth_Condition;
 	information = DIA_1013_BANDIT_FromMaleth_Info;
@@ -335,7 +335,7 @@ instance DIA_1013_BANDIT_FromMaleth(C_Info)
 
 func int DIA_1013_BANDIT_FromMaleth_Condition()
 {
-	if((Bdt13_Friend == TRUE) && ((MIS_Maleth_Bandits == LOG_Running) || (MIS_Maleth_Bandits == LOG_Success)))
+	if((Bdt13_Friend == TRUE) && ((MIS_Maleth_Bandits == LOG_Running) || (MIS_Maleth_Bandits == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -348,8 +348,8 @@ func void DIA_1013_BANDIT_FromMaleth_Info()
 	AI_Output(other,self,"DIA_1013_BANDIT_FromMaleth_15_00");	//Меня послал один из фермеров у города...
 	AI_Output(self,other,"DIA_1013_BANDIT_FromMaleth_01_01");	//Что? Фермеры знают об этом укрытии?
 	AI_Output(other,self,"DIA_1013_BANDIT_FromMaleth_15_02");	//Они заметили пропажу овцы.
-	b14 = Hlp_GetNpc(BDT_1014_Bandit_L);
-	b15 = Hlp_GetNpc(BDT_1015_Bandit_L);
+	b14 = Hlp_GetNpc(Bdt_1014_Bandit_L);
+	b15 = Hlp_GetNpc(Bdt_1015_Bandit_L);
 	if(Npc_IsDead(b14) && Npc_IsDead(b15))
 	{
 		AI_Output(self,other,"DIA_1013_BANDIT_FromMaleth_01_03");	//Черт! Ну, тогда мне стоит поискать другое место. Если они найдут это логово пустым, может быть, они прекратят искать меня.
@@ -369,7 +369,7 @@ func void DIA_1013_BANDIT_FromMaleth_Info()
 
 instance DIA_1013_BANDIT_FromCavalorn(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 3;
 	condition = DIA_1013_BANDIT_FromCavalorn_Condition;
 	information = DIA_1013_BANDIT_FromCavalorn_Info;
@@ -403,7 +403,7 @@ var int bdt13_Gossip_Wildnis;
 
 instance DIA_1013_BANDIT_PERM(C_Info)
 {
-	npc = BDT_1013_Bandit_L;
+	npc = Bdt_1013_Bandit_L;
 	nr = 4;
 	condition = DIA_1013_BANDIT_PERM_Condition;
 	information = DIA_1013_BANDIT_PERM_Info;

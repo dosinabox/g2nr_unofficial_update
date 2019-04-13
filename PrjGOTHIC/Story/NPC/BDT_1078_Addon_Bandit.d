@@ -12,7 +12,7 @@ instance BDT_1078_Addon_Bandit(Npc_Default)
 	EquipItem(self,ItMw_1H_Mace_L_01);
 	EquipItem(self,ItRw_Bow_M_02);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Richter,BodyTex_N,itar_bdt_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Richter,BodyTex_N,ItAr_BDT_M);
 	Mdl_SetModelFatness(self,-0.75);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

@@ -181,7 +181,7 @@ instance DIA_Sarah_Trade(C_Info)
 
 func int DIA_Sarah_Trade_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sarah_HALLO) && (MIS_Canthars_KomproBrief != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Sarah_HALLO) && (MIS_Canthars_KomproBrief != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -191,7 +191,7 @@ func void DIA_Sarah_Trade_Info()
 {
 	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Sarah_Trade_15_00");	//Покажи мне свои товары.
-	SARAH_WAFFENGESEHEN = TRUE;
+	Sarah_WaffenGesehen = TRUE;
 };
 
 
@@ -208,7 +208,7 @@ instance DIA_Sarah_IMKNAST(C_Info)
 
 func int DIA_Sarah_IMKNAST_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_Success) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_Canthars_KomproBrief == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

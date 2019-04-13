@@ -2,8 +2,8 @@
 func void B_CloseTopics_Yoly()
 {
 	B_CloseTopic(TOPIC_Addon_PickForConstantino,0,Mil_310_schonmalreingelassen,3);
-	B_CloseTopic(TOPIC_Addon_Greg_NW,MIS_Addon_Greg_RakeCave,entered_addonworld,3);
-	B_CloseTopic(TOPIC_Addon_Ornament,0,entered_addonworld,3);
+	B_CloseTopic(TOPIC_Addon_Greg_NW,MIS_Addon_Greg_RakeCave,ENTERED_ADDONWORLD,3);
+	B_CloseTopic(TOPIC_Addon_Ornament,0,ENTERED_ADDONWORLD,3);
 	B_CloseTopic(TOPIC_Addon_RingOfWater,RangerMeetingRunning,0,3);
 	B_CloseTopic(TOPIC_Addon_HolRiordian,MIS_Addon_Saturas_BringRiordian2Me,0,3);
 	B_CloseTopic(TOPIC_Addon_CavalornTheHut,0,TOPIC_End_CavalornTheHut,6);
@@ -12,12 +12,12 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_MissingPeople,0,Sklaven_Flucht,6);
 	B_CloseTopic(TOPIC_Addon_WhoStolePeople,MIS_Addon_Vatras_WhereAreMissingPeople,0,6);
 	B_CloseTopic(TOPIC_Addon_BringRangerToLares,MIS_Lares_BringRangerToMe,0,4);
-	B_CloseTopic(TOPIC_Addon_KDW,0,entered_addonworld,4);
+	B_CloseTopic(TOPIC_Addon_KDW,0,ENTERED_ADDONWORLD,4);
 	B_CloseTopic(TOPIC_Addon_TeleportsNW,0,SCUsed_AllNWTeleporststones,6);
 	B_CloseTopic(TOPIC_Addon_RangerHelpKDF,MIS_Addon_Daron_GetStatue,TOPIC_End_RangerHelpKDF,2);
 	B_CloseTopic(TOPIC_Addon_RangerHelpSLD,SLD_Aufnahme,TOPIC_End_RangerHelpSLD,2);
 	B_CloseTopic(TOPIC_Addon_RangerHelpMIL,MIL_Aufnahme,0,2);
-	B_CloseTopic(TOPIC_Addon_Stoneplates,0,player_talent_foreignlanguage,4);
+	B_CloseTopic(TOPIC_Addon_Stoneplates,0,PLAYER_TALENT_FOREIGNLANGUAGE,4);
 	B_CloseTopic(TOPIC_Addon_FarimsFish,MIS_Addon_Farim_PaladinFisch,0,6);
 	B_CloseTopic(TOPIC_Addon_Lucia,0,TOPIC_END_Lucia,6);
 	B_CloseTopic(TOPIC_Addon_Erol,MIS_Addon_Erol_BanditStuff,0,4);
@@ -55,8 +55,8 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(Topic_MarcosJungs,MIS_Marcos_Jungs,0,6);
 	B_CloseTopic(TOPIC_Buster_KillShadowbeasts,MIS_Buster_KillShadowbeasts_DJG,0,6);
 	B_CloseTopic(TOPIC_Ulthar_HeileSchreine_PAL,MIS_Ulthar_HeileSchreine_PAL,0,6);
-	B_CloseTopic(TOPIC_DEMENTOREN,0,topic_end_dementoren,999);
-	B_CloseTopic(TOPIC_INNOSEYE,0,topic_end_innoseye,4);
+	B_CloseTopic(TOPIC_DEMENTOREN,0,TOPIC_END_DEMENTOREN,999);
+	B_CloseTopic(TOPIC_INNOSEYE,0,TOPIC_END_INNOSEYE,4);
 	B_CloseTopic(TOPIC_TraitorPedro,0,SCFoundPedro,999);
 	B_CloseTopic(TOPIC_SekobDMT,0,TOPIC_END_SekobDMT,6);
 	B_CloseTopic(TOPIC_AkilSchafDiebe,MIS_Akil_SchafDiebe,0,6);
@@ -67,15 +67,15 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_MinenAnteile,0,TOPIC_END_MinenAnteile,6);
 	B_CloseTopic(TOPIC_RichterLakai,MIS_Lee_JudgeRichter,0,6);
 	B_CloseTopic(TOPIC_KillHoshPak,MIS_KillHoshPak,0,6);
-	B_CloseTopic(TOPIC_Urshak,0,urshak_sucked,6);
+	B_CloseTopic(TOPIC_Urshak,0,URSHAK_SUCKED,6);
 	B_CloseTopic(TOPIC_DRACHENJAGD,0,MIS_AllDragonsDead,5);
 	B_CloseTopic(TOPIC_LobartsOrKProblem,0,TOPIC_END_LobartsOrKProblem,6);
 	B_CloseTopic(TOPIC_SylvioKillIceGolem,MIS_DJG_Sylvio_KillIceGolem,TOPIC_END_SylvioKillIceGolem,6);
 	B_CloseTopic(TOPIC_Dragonhunter,0,MIS_AllDragonsDead,5);
 	B_CloseTopic(TOPIC_AngarsAmulett,0,DJG_AngarGotAmulett,5);
 	B_CloseTopic(TOPIC_JanBecomesSmith,MIS_JanBecomesSmith,0,6);
-	B_CloseTopic(TOPIC_FerrosSword,MIS_FerrosSword,0,6);
-	B_CloseTopic(TOPIC_DRACHENEIER,0,topic_end_dracheneier,6);
+	B_CloseTopic(TOPIC_FerrosSword,MIS_FErrosSword,0,6);
+	B_CloseTopic(TOPIC_DRACHENEIER,0,TOPIC_END_DRACHENEIER,6);
 	B_CloseTopic(TOPIC_DRACHENEIERNeoras,MIS_Neoras_DragonEgg,0,6);
 	B_CloseTopic(TOPIC_OrcElite,0,TOPIC_END_OrcElite,6);
 	B_CloseTopic(TOPIC_KillTrollBlack,MIS_Raoul_KillTrollBlack,0,6);

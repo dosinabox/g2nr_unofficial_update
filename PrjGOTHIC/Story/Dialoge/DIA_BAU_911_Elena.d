@@ -135,7 +135,7 @@ func void DIA_Elena_Regeln_Info()
 	AI_Output(other,self,"DIA_Elena_Regeln_15_00");	//Здесь есть какие-нибудь правила, которых мне нужно придерживаться?
 	AI_Output(self,other,"DIA_Elena_Regeln_16_01");	//Не трогай того, что тебе не принадлежит.
 	AI_Output(self,other,"DIA_Elena_Regeln_16_02");	//Не суй свой нос в чужие дела.
-	AI_Output(self,other,"DIA_Elena_Regeln_16_03");	//Если тебе хочется подраться, дерись с наемниками.
+	AI_Output(self,other,"DIA_Elena_Regeln_16_03");	//А если тебе хочется подраться, дерись с наемниками.
 	AI_Output(self,other,"DIA_Elena_Regeln_16_04");	//Если ты начнешь драку с фермером, все здесь будут против тебя.
 };
 
@@ -193,7 +193,7 @@ func int DIA_Elena_TRADE_Condition()
 
 func void DIA_Elena_TRADE_Info()
 {
-	AI_Output(other,self,"DIA_Elena_TRADE_15_00");	//Покажи мне свои товары.
+	AI_Output(other,self,"DIA_Elena_TRADE_15_00");	//Покажи мне свои товары!
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Elena_TRADE_16_01");	//Выбирай.
 };
@@ -241,7 +241,7 @@ func void DIA_Elena_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Elena_PERM_16_06");	//Все только и говорят о скором нападении орков. Но я не очень-то верю в это. Я думаю, что здесь, на ферме, мы в безопасности.
+		AI_Output(self,other,"DIA_Elena_PERM_16_06");	//Все только и говорят, что о скором нападении орков. Но я не очень-то верю в это. Я думаю, что здесь, на ферме, мы в безопасности.
 	};
 };
 

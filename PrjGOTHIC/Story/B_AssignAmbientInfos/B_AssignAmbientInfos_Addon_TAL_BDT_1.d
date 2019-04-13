@@ -67,7 +67,7 @@ func int DIA_Addon_TAL_BDT_1_Lager_Condition()
 
 func void DIA_Addon_TAL_BDT_1_Lager_Info()
 {
-	AI_Output(other,self,"DIA_Addon_TAL_BDT_1_Lager_15_00");	//Можешь рассказать мне что-нибудь о лагере?
+	AI_Output(other,self,"DIA_Addon_TAL_BDT_1_Lager_15_00");	//Можешь рассказать мне что-нибудь о лагере.
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Lager_01_01");	//Смотри, с кем связываешься! Если ты начнешь драться без причины, они все очень быстро набросятся на тебя!
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Lager_01_02");	//Большинство из них чересчур пекутся о своем золоте и некоторые внимательно следят за другими.
 };

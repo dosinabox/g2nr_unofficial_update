@@ -34,7 +34,7 @@ instance DIA_Dyrian_Hello(C_Info)
 
 func int DIA_Dyrian_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (mis_rune == FALSE) && (mis_schnitzeljagd == FALSE) && (mis_golem == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -94,7 +94,7 @@ instance DIA_Dyrian_Job(C_Info)
 
 func int DIA_Dyrian_Job_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Dyrian_Hello) && (mis_rune == FALSE) && (mis_schnitzeljagd == FALSE) && (mis_golem == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Dyrian_Hello) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
 	{
 		return TRUE;
 	};
@@ -104,7 +104,7 @@ func void DIA_Dyrian_Job_Info()
 {
 	AI_Output(other,self,"DIA_Dyrian_Job_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Dyrian_Job_13_01");	//Я грешен. Я нарушил правила поведения в монастыре.
-	AI_Output(self,other,"DIA_Dyrian_Job_13_02");	//Теперь я жду решения Высшего Совета. Не знаю, оставят ли они меня в монастыре.
+	AI_Output(self,other,"DIA_Dyrian_Job_13_02");	//Теперь я жду решения Высшего Совета. Не знаю, оставят ли меня в монастыре.
 };
 
 
@@ -121,7 +121,7 @@ instance DIA_Dyrian_WhatDone(C_Info)
 
 func int DIA_Dyrian_WhatDone_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Dyrian_Job) && (mis_rune == FALSE) && (mis_schnitzeljagd == FALSE) && (mis_golem == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
 	{
 		return TRUE;
 	};
@@ -131,7 +131,7 @@ func void DIA_Dyrian_WhatDone_Info()
 {
 	AI_Output(other,self,"DIA_Dyrian_WhatDone_15_00");	//Расскажи мне, что произошло.
 	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_01");	//Я взял книгу в комнате одного из магов, когда подметал там, чтобы почитать ее на досуге.
-	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_02");	//Мастер Хиглас, конечно, сразу заметил пропажу и спросил меня об этой книге.
+	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_02");	//Мастер Хиглас, конечно же, сразу заметил пропажу и спросил меня об этой книге.
 	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_03");	//Из страха быть наказанным, я солгал. А затем он застал меня в моей келье, когда я читал эту книгу.
 	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_04");	//Он очень разозлился и сообщил об этом Высшему Совету. Теперь они решают, могу ли я остаться в монастыре.
 };
@@ -150,7 +150,7 @@ instance DIA_Dyrian_CanHelp(C_Info)
 
 func int DIA_Dyrian_CanHelp_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Dyrian_Job) && (mis_rune == FALSE) && (mis_schnitzeljagd == FALSE) && (mis_golem == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Dyrian_Job) && (MIS_RUNE == FALSE) && (MIS_SCHNITZELJAGD == FALSE) && (MIS_GOLEM == FALSE))
 	{
 		return TRUE;
 	};
@@ -176,7 +176,7 @@ instance DIA_Dyrian_Scroll(C_Info)
 
 func int DIA_Dyrian_Scroll_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) || (mis_rune == LOG_Running) || (mis_golem == LOG_Running))
+	if((MIS_SCHNITZELJAGD == LOG_Running) || (MIS_RUNE == LOG_Running) || (MIS_GOLEM == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -186,7 +186,7 @@ func void DIA_Dyrian_Scroll_Info()
 {
 	AI_Output(self,other,"DIA_Dyrian_Scroll_13_00");	//Эй, ты действительно потребовал Испытания Огнем?
 	AI_Output(other,self,"DIA_Dyrian_Scroll_15_01");	//Да. И я намерен пройти его.
-	AI_Output(self,other,"DIA_Dyrian_Scroll_13_02");	//Хорошо - возможно, я могу помочь тебе в этом. Я могу дать тебе свиток с очень сильным заклинанием. Заклинанием 'Сон'. Ну, как?
+	AI_Output(self,other,"DIA_Dyrian_Scroll_13_02");	//Хорошо - возможно, я могу помочь тебе в этом. Я могу дать тебе свиток с очень сильным заклинанием. Заклинанием СОН. Ну, как?
 	Info_ClearChoices(DIA_Dyrian_Scroll);
 	Info_AddChoice(DIA_Dyrian_Scroll,"Нет, мне не нужна твоя помощь.",DIA_Dyrian_Scroll_No);
 	Info_AddChoice(DIA_Dyrian_Scroll,"Что ты хочешь за это?",DIA_Dyrian_Scroll_How);
@@ -197,7 +197,7 @@ func void DIA_Dyrian_Scroll_What()
 {
 	AI_Output(other,self,"DIA_Dyrian_Scroll_What_15_00");	//И что мне делать с ним?
 	AI_Output(self,other,"DIA_Dyrian_Scroll_What_13_01");	//При помощи этого заклинания ты можешь погружать людей в магический сон на короткое время. Но только если их воля слабее твоей.
-	AI_Output(self,other,"DIA_Dyrian_Scroll_What_13_02");	//Это может быть очень полезным, если кто-то стоит у тебя на пути...
+	AI_Output(self,other,"DIA_Dyrian_Scroll_What_13_02");	//Это моет быть очень полезным, если кто-то стоит у тебя на пути...
 	AI_Output(other,self,"DIA_Dyrian_Scroll_What_15_03");	//А как я узнаю, чья воля сильнее?
 	AI_Output(self,other,"DIA_Dyrian_Scroll_What_13_04");	//Не стоит даже и пытаться испытывать это заклинание на магах. Но большинство послушников погрузить в сон тебе удастся.
 };
@@ -273,7 +273,7 @@ instance DIA_Dyrian_HelloAgain(C_Info)
 
 func int DIA_Dyrian_HelloAgain_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_KDF) && (MIS_HelpDyrian == LOG_Success))
+	if(Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_KDF) && (MIS_HelpDyrian == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -361,7 +361,7 @@ instance DIA_Dyrian_Kneipe(C_Info)
 
 func int DIA_Dyrian_Kneipe_Condition()
 {
-	if((MIS_HelpDyrian == LOG_Failed) && (other.guild == GIL_KDF))
+	if((MIS_HelpDyrian == LOG_FAILED) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};

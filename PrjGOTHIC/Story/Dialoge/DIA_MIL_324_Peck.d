@@ -123,7 +123,7 @@ func void DIA_Peck_FOUND_PECK_Info()
 	AI_Output(other,self,"DIA_Peck_FOUND_PECK_15_02");	//Мне нужно оружие, так что возвращайся в казармы.
 	AI_Output(self,other,"DIA_Peck_FOUND_PECK_12_03");	//Черт, твое оружие может подождать.
 	AI_Output(other,self,"DIA_Peck_FOUND_PECK_15_04");	//Пошли, Андрэ уже тоже ищет тебя.
-	AI_Output(self,other,"DIA_Peck_FOUND_PECK_12_05");	//Хм-м-м... черт. Ладно, я уже иду - но когда будешь докладывать Андрэ, не говори ему, что я был здесь.
+	AI_Output(self,other,"DIA_Peck_FOUND_PECK_12_05");	//Хммм ... черт. Ладно, я уже иду - но когда будешь докладывать Андрэ, не говори ему, что я был здесь.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"STORAGE");
 	Npc_ExchangeRoutine(Vanja,"ALONE");
@@ -156,7 +156,7 @@ func void DIA_Peck_WEAPON_Info()
 	AI_Output(other,self,"DIA_Peck_WEAPON_15_00");	//Я пришел за оружием.
 	if(MIS_Andre_Peck == LOG_Running)
 	{
-		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
+		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сначала сходи к Андрэ и доложи ему.
 	}
 	else
 	{
@@ -167,10 +167,10 @@ func void DIA_Peck_WEAPON_Info()
 			AI_Output(self,other,"DIA_Peck_Add_12_00");	//Это лучшее, что у меня есть.
 			B_GiveInvItems(self,hero,ItMw_Schwert1,1);
 		}
-		else if(MIS_Andre_Peck == LOG_Success)
+		else if(MIS_Andre_Peck == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Peck_WEAPON_12_04");	//Я не забуду тебе этого. Кто сказал Андрэ, что я был в Красном Фонаре, а?
-			AI_Output(self,other,"DIA_Peck_WEAPON_12_05");	//И теперь ты хочешь получить от меня меч... хорошо, ты получишь меч. Вот. А теперь пошел к черту!
+			AI_Output(self,other,"DIA_Peck_WEAPON_12_05");	//И теперь ты хочешь получить от меня меч ... хорошо, ты получишь меч. Вот. А теперь пошел к черту!
 			B_GiveInvItems(self,hero,ItMw_1h_MISC_Sword,1);
 		};
 		DIA_Peck_WEAPON_perm = TRUE;
@@ -209,14 +209,14 @@ func int DIA_Peck_WEAPON2_Condition()
 func void DIA_Peck_WEAPON2_Info()
 {
 	AI_Output(self,other,"DIA_Peck_Add_15_01");	//У тебя нет оружия получше для меня?
-	if(MIS_Andre_Peck == LOG_Success)
+	if(MIS_Andre_Peck == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Peck_Add_12_06");	//Я не забыл, что ты донес на меня лорду Андрэ.
 		B_Peck_LeckMich();
 	}
 	else if(Kapitel < 3)
 	{
-		AI_Output(self,other,"DIA_Peck_Add_12_02");	//Пока нет...
+		AI_Output(self,other,"DIA_Peck_Add_12_02");	//Пока нет ...
 	}
 	else
 	{
@@ -251,7 +251,7 @@ func int DIA_Peck_PERM_Condition()
 func void DIA_Peck_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Peck_PERM_15_00");	//С тобой все в порядке?
-	if(MIS_Andre_Peck == LOG_Success)
+	if(MIS_Andre_Peck == LOG_SUCCESS)
 	{
 		B_Peck_LeckMich();
 	}
@@ -261,7 +261,7 @@ func void DIA_Peck_PERM_Info()
 	}
 	else if(Kapitel == 3)
 	{
-		if(MIS_RescueBennet != LOG_Success)
+		if(MIS_RescueBennet != LOG_SUCCESS)
 		{
 			if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 			{
@@ -282,7 +282,7 @@ func void DIA_Peck_PERM_Info()
 			AI_Output(self,other,"DIA_Peck_PERM_12_06");	//Я очень рад, что это дело об убийстве теперь закрыто.
 			AI_Output(other,self,"DIA_Peck_PERM_15_07");	//Почему?
 			AI_Output(self,other,"DIA_Peck_PERM_12_08");	//Наемники просто так не отступили бы. Они бы не стали сидеть сложа руки и спокойно наблюдать за тем, как мы повесим одного из них.
-			AI_Output(self,other,"DIA_Peck_PERM_12_09");	//Они даже могли напасть на город. Я даже думать не хочу о том, к чему это могло привести.
+			AI_Output(self,other,"DIA_Peck_PERM_12_09");	//Они даже могли напасть на город. Я даже думать не хочу от том, к чему это могло привести.
 		};
 	};
 };

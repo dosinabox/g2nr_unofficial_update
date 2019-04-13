@@ -179,7 +179,7 @@ func int DIA_Engrom_B_NpcObsessedByDMT_Condition()
 
 func void DIA_Engrom_B_NpcObsessedByDMT_Info()
 {
-	MIS_Tabin_LookForEngrom = LOG_Success;
+	MIS_Tabin_LookForEngrom = LOG_SUCCESS;
 	B_NpcObsessedByDMT(self);
 };
 
@@ -241,18 +241,18 @@ func void DIA_Engrom_KAP5_EXIT_Info()
 };
 
 
-instance DIA_ENGROM_KAP6_EXIT(C_Info)
+instance DIA_Engrom_KAP6_EXIT(C_Info)
 {
 	npc = VLK_4131_Engrom;
 	nr = 999;
-	condition = dia_engrom_kap6_exit_condition;
-	information = dia_engrom_kap6_exit_info;
+	condition = DIA_Engrom_KAP6_EXIT_Condition;
+	information = DIA_Engrom_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_engrom_kap6_exit_condition()
+func int DIA_Engrom_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -260,7 +260,7 @@ func int dia_engrom_kap6_exit_condition()
 	};
 };
 
-func void dia_engrom_kap6_exit_info()
+func void DIA_Engrom_KAP6_EXIT_Info()
 {
 	B_NpcClearObsessionByDMT(self);
 };

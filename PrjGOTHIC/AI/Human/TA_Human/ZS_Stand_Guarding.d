@@ -11,7 +11,7 @@ func void ZS_Stand_Guarding()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Stand_Guarding_Loop()
+func int ZS_Stand_Guarding_loop()
 {
 	var int random;
 	if(Npc_IsOnFP(self,"STAND"))
@@ -54,7 +54,7 @@ func int ZS_Stand_Guarding_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Stand_Guarding_End()
+func void ZS_Stand_Guarding_end()
 {
 	AI_PlayAni(self,"T_HGUARD_2_STAND");
 };

@@ -11,7 +11,7 @@ func void ZS_Bandit()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Bandit_Loop()
+func int ZS_Bandit_loop()
 {
 	var int random;
 	if(self.aivar[AIV_TAPOSITION] == NOTINPOS)
@@ -47,7 +47,7 @@ func int ZS_Bandit_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Bandit_End()
+func void ZS_Bandit_end()
 {
 	if(C_BodyStateContains(self,BS_SIT))
 	{

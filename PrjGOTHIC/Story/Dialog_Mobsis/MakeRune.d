@@ -6,7 +6,7 @@ func void makerune_s1()
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_MakeRune;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_MakeRune;
 		AI_ProcessInfos(her);
 	};
 };
@@ -25,7 +25,7 @@ instance PC_MakeRune_End(C_Info)
 
 func int PC_MakeRune_End_Condition()
 {
-	if(player_mobsi_production == MOBSI_MakeRune)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune)
 	{
 		return TRUE;
 	};
@@ -50,7 +50,7 @@ instance PC_Circle_01(C_Info)
 
 func int PC_Circle_01_Condition()
 {
-	if((player_mobsi_production == MOBSI_MakeRune) && ((player_talent_runes[SPL_Light] == TRUE) || (player_talent_runes[SPL_Firebolt] == TRUE) || (player_talent_runes[SPL_LightHeal] == TRUE) || (player_talent_runes[SPL_SummonGoblinSkeleton] == TRUE) || (player_talent_runes[SPL_Zap] == TRUE)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_Light] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Firebolt] == TRUE) || (PLAYER_TALENT_RUNES[SPL_LightHeal] == TRUE) || (PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Zap] == TRUE)))
 	{
 		return TRUE;
 	};
@@ -60,23 +60,23 @@ func void PC_Circle_01_Info()
 {
 	Info_ClearChoices(PC_Circle_01);
 	Info_AddChoice(PC_Circle_01,Dialog_Back,PC_Circle_01_BACK);
-	if(player_talent_runes[SPL_Light] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Light] == TRUE)
 	{
-		Info_AddChoice(PC_Circle_01,NAME_SPL_Light,PC_ItRu_Light_Info);
+		Info_AddChoice(PC_Circle_01,NAME_SPL_LIGHT,PC_ItRu_Light_Info);
 	};
-	if(player_talent_runes[SPL_Firebolt] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Firebolt] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_01,NAME_SPL_Firebolt,PC_ItRu_Firebolt_Info);
 	};
-	if(player_talent_runes[SPL_Zap] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Zap] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_01,NAME_SPL_Zap,PC_ItRu_Zap_Info);
 	};
-	if(player_talent_runes[SPL_LightHeal] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_LightHeal] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_01,NAME_SPL_LightHeal,PC_ItRu_LightHeal_Info);
 	};
-	if(player_talent_runes[SPL_SummonGoblinSkeleton] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_01,NAME_SPL_SummonGoblinSkeleton,PC_ItRu_SumGobSkel_Info);
 	};
@@ -100,7 +100,7 @@ instance PC_Circle_02(C_Info)
 
 func int PC_Circle_02_Condition()
 {
-	if((player_mobsi_production == MOBSI_MakeRune) && ((player_talent_runes[SPL_InstantFireball] == TRUE) || (player_talent_runes[SPL_Icebolt] == TRUE) || (player_talent_runes[SPL_SummonWolf] == TRUE) || (player_talent_runes[SPL_WindFist] == TRUE) || (player_talent_runes[SPL_Sleep] == TRUE) || (player_talent_runes[SPL_Whirlwind] == TRUE) || (player_talent_runes[SPL_IceLance] == TRUE)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_InstantFireball] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Icebolt] == TRUE) || (PLAYER_TALENT_RUNES[SPL_SummonWolf] == TRUE) || (PLAYER_TALENT_RUNES[SPL_WindFist] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Sleep] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Whirlwind] == TRUE) || (PLAYER_TALENT_RUNES[SPL_IceLance] == TRUE)))
 	{
 		return TRUE;
 	};
@@ -110,31 +110,31 @@ func void PC_Circle_02_Info()
 {
 	Info_ClearChoices(PC_Circle_02);
 	Info_AddChoice(PC_Circle_02,Dialog_Back,PC_Circle_02_BACK);
-	if(player_talent_runes[SPL_InstantFireball] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_02,NAME_SPL_InstantFireball,PC_ItRu_InstFireball_Info);
 	};
-	if(player_talent_runes[SPL_Icebolt] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Icebolt] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_02,NAME_SPL_Icebolt,PC_ItRu_Icebolt_Info);
 	};
-	if(player_talent_runes[SPL_SummonWolf] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonWolf] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_02,NAME_SPL_SummonWolf,PC_ItRu_SumWolf_Info);
 	};
-	if(player_talent_runes[SPL_WindFist] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_WindFist] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_02,NAME_SPL_WINDFIST,PC_ItRu_Windfist_Info);
 	};
-	if(player_talent_runes[SPL_Sleep] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Sleep] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_02,NAME_SPL_Sleep,PC_ItRu_Sleep_Info);
 	};
-	if(player_talent_runes[SPL_Whirlwind] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Whirlwind] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_02,NAME_SPL_Whirlwind,PC_ItRu_Whirlwind_Info);
 	};
-	if(player_talent_runes[SPL_IceLance] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_IceLance] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_02,NAME_SPL_IceLance,PC_ItRu_Icelance_Info);
 	};
@@ -158,7 +158,7 @@ instance PC_Circle_03(C_Info)
 
 func int PC_Circle_03_Condition()
 {
-	if((player_mobsi_production == MOBSI_MakeRune) && ((player_talent_runes[SPL_MediumHeal] == TRUE) || (player_talent_runes[SPL_SummonSkeleton] == TRUE) || (player_talent_runes[SPL_Fear] == TRUE) || (player_talent_runes[SPL_IceCube] == TRUE) || (player_talent_runes[SPL_ChargeZap] == TRUE) || (player_talent_runes[SPL_Firestorm] == TRUE) || (player_talent_runes[SPL_Geyser] == TRUE) || (player_talent_runes[SPL_Thunderstorm] == TRUE)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_MediumHeal] == TRUE) || (PLAYER_TALENT_RUNES[SPL_SummonSkeleton] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Fear] == TRUE) || (PLAYER_TALENT_RUNES[SPL_IceCube] == TRUE) || (PLAYER_TALENT_RUNES[SPL_ChargeZap] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Firestorm] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Geyser] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Thunderstorm] == TRUE)))
 	{
 		return TRUE;
 	};
@@ -168,35 +168,35 @@ func void PC_Circle_03_Info()
 {
 	Info_ClearChoices(PC_Circle_03);
 	Info_AddChoice(PC_Circle_03,Dialog_Back,PC_Circle_03_BACK);
-	if(player_talent_runes[SPL_MediumHeal] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_MediumHeal] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_03,NAME_SPL_MediumHeal,PC_ItRu_MediumHeal_Info);
 	};
-	if(player_talent_runes[SPL_SummonSkeleton] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonSkeleton] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_03,NAME_SPL_SummonSkeleton,PC_ItRu_SumSkel_Info);
 	};
-	if(player_talent_runes[SPL_Fear] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Fear] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_03,NAME_SPL_Fear,PC_ItRu_Fear_Info);
 	};
-	if(player_talent_runes[SPL_IceCube] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_IceCube] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_03,NAME_SPL_IceCube,PC_ItRu_IceCube_Info);
 	};
-	if(player_talent_runes[SPL_ChargeZap] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_ChargeZap] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_03,NAME_SPL_ChargeZap,PC_ItRu_ThunderBall_Info);
 	};
-	if(player_talent_runes[SPL_Firestorm] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Firestorm] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_03,NAME_SPL_Firestorm,PC_ItRu_Firestorm_Info);
 	};
-	if(player_talent_runes[SPL_Geyser] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Geyser] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_03,NAME_SPL_Geyser,PC_ItRu_Geyser_Info);
 	};
-	if(player_talent_runes[SPL_Thunderstorm] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Thunderstorm] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_03,NAME_SPL_Thunderstorm,PC_ItRu_thunderstorm_Info);
 	};
@@ -220,7 +220,7 @@ instance PC_Circle_04(C_Info)
 
 func int PC_Circle_04_Condition()
 {
-	if((player_mobsi_production == MOBSI_MakeRune) && ((player_talent_runes[SPL_DestroyUndead] == TRUE) || (player_talent_runes[SPL_LightningFlash] == TRUE) || (player_talent_runes[SPL_ChargeFireball] == TRUE) || (player_talent_runes[SPL_SummonGolem] == TRUE) || (player_talent_runes[SPL_WaterFist] == TRUE)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_DestroyUndead] == TRUE) || (PLAYER_TALENT_RUNES[SPL_LightningFlash] == TRUE) || (PLAYER_TALENT_RUNES[SPL_ChargeFireball] == TRUE) || (PLAYER_TALENT_RUNES[SPL_SummonGolem] == TRUE) || (PLAYER_TALENT_RUNES[SPL_WaterFist] == TRUE)))
 	{
 		return TRUE;
 	};
@@ -230,23 +230,23 @@ func void PC_Circle_04_Info()
 {
 	Info_ClearChoices(PC_Circle_04);
 	Info_AddChoice(PC_Circle_04,Dialog_Back,PC_Circle_04_BACK);
-	if(player_talent_runes[SPL_SummonGolem] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonGolem] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_04,NAME_SPL_SummonGolem,PC_ItRu_SumGol_Info);
 	};
-	if(player_talent_runes[SPL_DestroyUndead] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_DestroyUndead] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_04,NAME_SPL_DestroyUndead,PC_ItRu_HarmUndead_Info);
 	};
-	if(player_talent_runes[SPL_ChargeFireball] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_ChargeFireball] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_04,NAME_SPL_ChargeFireball,PC_ItRu_ChargeFireball_Info);
 	};
-	if(player_talent_runes[SPL_LightningFlash] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_LightningFlash] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_04,NAME_SPL_LightningFlash,PC_ItRu_LightningFlash_Info);
 	};
-	if(player_talent_runes[SPL_WaterFist] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_WaterFist] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_04,NAME_SPL_WaterFist,PC_ItRu_Waterfist_Info);
 	};
@@ -270,7 +270,7 @@ instance PC_Circle_05(C_Info)
 
 func int PC_Circle_05_Condition()
 {
-	if((player_mobsi_production == MOBSI_MakeRune) && ((player_talent_runes[SPL_IceWave] == TRUE) || (player_talent_runes[SPL_SummonDemon] == TRUE) || (player_talent_runes[SPL_FullHeal] == TRUE) || (player_talent_runes[SPL_Pyrokinesis] == TRUE)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_IceWave] == TRUE) || (PLAYER_TALENT_RUNES[SPL_SummonDemon] == TRUE) || (PLAYER_TALENT_RUNES[SPL_FullHeal] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Pyrokinesis] == TRUE)))
 	{
 		return TRUE;
 	};
@@ -280,19 +280,19 @@ func void PC_Circle_05_Info()
 {
 	Info_ClearChoices(PC_Circle_05);
 	Info_AddChoice(PC_Circle_05,Dialog_Back,PC_Circle_05_BACK);
-	if(player_talent_runes[SPL_IceWave] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_IceWave] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_05,NAME_SPL_IceWave,PC_ItRu_IceWave_Info);
 	};
-	if(player_talent_runes[SPL_SummonDemon] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_SummonDemon] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_05,NAME_SPL_SummonDemon,PC_ItRu_SumDemon_Info);
 	};
-	if(player_talent_runes[SPL_FullHeal] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_FullHeal] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_05,NAME_SPL_FullHeal,PC_ItRu_FullHeal_Info);
 	};
-	if(player_talent_runes[SPL_Pyrokinesis] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Pyrokinesis] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_05,NAME_SPL_Pyrokinesis,PC_ItRu_Pyrokinesis_Info);
 	};
@@ -316,7 +316,7 @@ instance PC_Circle_06(C_Info)
 
 func int PC_Circle_06_Condition()
 {
-	if((player_mobsi_production == MOBSI_MakeRune) && ((player_talent_runes[SPL_Firerain] == TRUE) || (player_talent_runes[SPL_BreathOfDeath] == TRUE) || (player_talent_runes[SPL_MassDeath] == TRUE) || (player_talent_runes[SPL_ArmyOfDarkness] == TRUE) || (player_talent_runes[SPL_Shrink] == TRUE)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && ((PLAYER_TALENT_RUNES[SPL_Firerain] == TRUE) || (PLAYER_TALENT_RUNES[SPL_BreathOfDeath] == TRUE) || (PLAYER_TALENT_RUNES[SPL_MassDeath] == TRUE) || (PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] == TRUE) || (PLAYER_TALENT_RUNES[SPL_Shrink] == TRUE)))
 	{
 		return TRUE;
 	};
@@ -326,23 +326,23 @@ func void PC_Circle_06_Info()
 {
 	Info_ClearChoices(PC_Circle_06);
 	Info_AddChoice(PC_Circle_06,Dialog_Back,PC_Circle_06_BACK);
-	if(player_talent_runes[SPL_Firerain] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Firerain] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_06,NAME_SPL_Firerain,PC_ItRu_Firerain_Info);
 	};
-	if(player_talent_runes[SPL_BreathOfDeath] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_BreathOfDeath] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_06,NAME_SPL_BreathOfDeath,PC_ItRu_BreathOfDeath_Info);
 	};
-	if(player_talent_runes[SPL_MassDeath] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_MassDeath] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_06,NAME_SPL_MassDeath,PC_ItRu_MassDeath_Info);
 	};
-	if(player_talent_runes[SPL_ArmyOfDarkness] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_06,NAME_SPL_ArmyOfDarkness,PC_ItRu_ArmyOfDarkness_Info);
 	};
-	if(player_talent_runes[SPL_Shrink] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_Shrink] == TRUE)
 	{
 		Info_AddChoice(PC_Circle_06,NAME_SPL_Shrink,PC_ItRu_Shrink_Info);
 	};
@@ -366,7 +366,7 @@ instance PC_SPL_MasterOfDisaster(C_Info)
 
 func int PC_SPL_MasterOfDisaster_Condition()
 {
-	if((player_mobsi_production == MOBSI_MakeRune) && (player_talent_runes[SPL_MasterOfDisaster] == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && (PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] == TRUE))
 	{
 		return TRUE;
 	};
@@ -376,7 +376,7 @@ func void PC_SPL_MasterOfDisaster_Info()
 {
 	Info_ClearChoices(PC_SPL_MasterOfDisaster);
 	Info_AddChoice(PC_SPL_MasterOfDisaster,Dialog_Back,PC_SPL_MasterOfDisaster_BACK);
-	if(player_talent_runes[SPL_MasterOfDisaster] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] == TRUE)
 	{
 		Info_AddChoice(PC_SPL_MasterOfDisaster,"Секрет библиотеки!",PC_SPL_MasterOfDisaster_Create);
 	};
@@ -416,7 +416,7 @@ instance PC_SPL_PalTeleportSecret(C_Info)
 
 func int PC_SPL_PalTeleportSecret_Condition()
 {
-	if((player_mobsi_production == MOBSI_MakeRune) && (player_talent_runes[SPL_PalTeleportSecret] == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_MakeRune) && (PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] == TRUE))
 	{
 		return TRUE;
 	};
@@ -426,7 +426,7 @@ func void PC_SPL_PalTeleportSecret_Info()
 {
 	Info_ClearChoices(PC_SPL_PalTeleportSecret);
 	Info_AddChoice(PC_SPL_PalTeleportSecret,Dialog_Back,PC_SPL_PalTeleportSecret_BACK);
-	if(player_talent_runes[SPL_PalTeleportSecret] == TRUE)
+	if(PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] == TRUE)
 	{
 		Info_AddChoice(PC_SPL_PalTeleportSecret,"Секрет библиотеки!",PC_SPL_PalTeleportSecret_Create);
 	};

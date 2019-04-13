@@ -87,7 +87,7 @@ func void ZS_Dead()
 	self.aivar[AIV_TAPOSITION] = FALSE;
 };
 
-func int ZS_Dead_Loop()
+func int ZS_Dead_loop()
 {
 	if(self.aivar[AIV_TAPOSITION] == FALSE)
 	{

@@ -4,7 +4,7 @@ var int RckDragnIsDead;
 var int FreDragnIsDead;
 var int IcDragnIsDead;
 
-func int B_DragonKillCounter(var C_Npc current_dragon)
+func void B_DragonKillCounter(var C_Npc current_dragon)
 {
 	var C_Npc Ravn;
 	var C_Npc SwapDragn;

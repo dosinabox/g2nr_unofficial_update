@@ -248,13 +248,13 @@ func void DIA_Alrik_WannaFight_Info()
 	Info_ClearChoices(DIA_Alrik_WannaFight);
 	if(((Alrik_ArenaKampfVerloren > 0) && (Npc_HasItems(self,ItMw_AlriksSword_Mis) == 0)) || (Npc_HasEquippedMeleeWeapon(self) == FALSE))
 	{
-		if(MIS_Alrik_Sword == LOG_Success)
+		if(MIS_Alrik_Sword == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_01");	//—начала верни мне мой меч. ј там посмотрим...
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Alrik_WannaFight_09_02");	//Ќет, нет. ѕрежде, чем выйти против теб€ еще раз, мне нужно раздобыть оружие получше!
+			AI_Output(self,other,"DIA_Alrik_WannaFight_09_02");	//Ќет, нет. ѕрежде чем выйти против теб€ еще раз, мне раздобыть нужно оружие получше!
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_03");	//ћне несколько дней назад пришлось продать свой меч.
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_04");	//— ним € непобедим! ≈сли ты вернешь его мне, € готов оп€ть сражатьс€ с тобой!
 			Alrik_VomSchwertErzaehlt = TRUE;
@@ -413,14 +413,14 @@ func void DIA_Alrik_AfterFight_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Alrik_AfterFight_09_07");	//Ёй, € же предупреждал: тот, кто убежит за угол, проигрывает! ≈сли хочешь попробовать еще раз, € к твоим услугам!
+			AI_Output(self,other,"DIA_Alrik_AfterFight_09_07");	//Ёй, € же предупреждал, тот, кто убежит за угол проигрывает! ≈сли хочешь попробовать еще раз, € к твоим услугам!
 		};
 		if(Alrik_Kaempfe == 1)
 		{
 			AI_Output(self,other,"DIA_Alrik_AfterFight_09_08");	//» еще одно: никто не говорит о том, что происходит за складом.
 			if((other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 			{
-				AI_Output(self,other,"DIA_Alrik_AfterFight_09_09");	//ќполчение готово за малейшее прегрешение засунуть теб€ за решетку. ј эти парни не люб€т, когда делаютс€ ставки на бой.
+				AI_Output(self,other,"DIA_Alrik_AfterFight_09_09");	//ќполчение готово за малейшее прегрешение засунуть теб€ за решетку. ј эти парни не люб€т когда делаютс€ ставки на бой.
 			};
 		};
 		self.aivar[AIV_ArenaFight] = AF_NONE;
@@ -477,7 +477,7 @@ func void DIA_Alrik_DuWohnst_Info()
 	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_01");	//“олько временно. (ухмыл€етс€)  огда имеешь столько денег, как у мен€, можно позволить себе немного роскоши!
 	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_02");	//я был инструктором в армии, но € бросил это зан€тие и выбрал судьбу искател€ приключений.
 	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_03");	//» вот € застр€л в этой дыре. ћои последние 100 золотых ушли в карман стражникам у городских ворот.
-	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_04");	//» вот € пытаюсь оп€ть разбогатеть. ћне даже пришлось продать свой меч.
+	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_04");	//» вот € пытаюсь оп€ть разбогатеть. ћне даже пришлось продать мой меч.
 	Alrik_VomSchwertErzaehlt = TRUE;
 };
 
@@ -495,7 +495,7 @@ instance DIA_Alrik_WerSchwert(C_Info)
 
 func int DIA_Alrik_WerSchwert_Condition()
 {
-	if((Alrik_VomSchwertErzaehlt == TRUE) && (MIS_Alrik_Sword != LOG_Success))
+	if((Alrik_VomSchwertErzaehlt == TRUE) && (MIS_Alrik_Sword != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -537,10 +537,10 @@ func void DIA_Alrik_HaveSword_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_HaveSword_15_00");	//я принес твой меч!
 	B_GiveInvItems(other,self,ItMw_AlriksSword_Mis,1);
-	if(MIS_Alrik_Sword != LOG_Success)
+	if(MIS_Alrik_Sword != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Alrik_HaveSword_09_01");	//јх! »м значительно удобнее сражатьс€, чем палкой!
-		MIS_Alrik_Sword = LOG_Success;
+		MIS_Alrik_Sword = LOG_SUCCESS;
 		B_GivePlayerXP(XP_AlriksSword);
 	}
 	else

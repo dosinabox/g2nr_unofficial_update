@@ -18,7 +18,7 @@ func int DIA_Addon_Logan_EXIT_Condition()
 func void DIA_Addon_Logan_EXIT_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
-	if(((!MIS_HlpLogan == LOG_Running) || (!MIS_HlpLogan == LOG_Success)) && (Logan_Inside == FALSE))
+	if(((!MIS_HlpLogan == LOG_Running) || (!MIS_HlpLogan == LOG_SUCCESS)) && (Logan_Inside == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Logan_EXIT_10_01");	//(ворчливо) Да-а, просто убегаешь. А я останусь здесь и остановлю каждого, кто подойдет слишком близко.
 	};
@@ -178,7 +178,7 @@ func void DIA_Addon_Logan_HI_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_Logan_HI_15_03");	//Ну, это зависит от того, в чем тебе нужна помощь.
+		AI_Output(other,self,"DIA_Addon_Logan_HI_15_03");	//Это зависит от того, в чем тебе нужна помощь?
 	};
 	AI_Output(self,other,"DIA_Addon_Logan_HI_10_04");	//Болотные акулы начинают подбираться ко мне слишком близко. Самое время прикончить некоторых из них.
 	Log_CreateTopic(Topic_Addon_Logan,LOG_MISSION);
@@ -243,7 +243,7 @@ func void DIA_Addon_Logan_Lager_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Logan_Lager_15_00");	//А что в лагере?
 	AI_Output(self,other,"DIA_Addon_Logan_Lager_10_01");	//(ворчливо) Вопрос в том, чего НЕТ в лагере. Там нет болотных акул, там нет болотных кочек... Вообще НЕТ болота.
-	AI_Output(self,other,"DIA_Addon_Logan_Lager_10_02");	//Зато там есть и выпивка, и золото. И насколько я знаю, там даже есть женщина. Понял?
+	AI_Output(self,other,"DIA_Addon_Logan_Lager_10_02");	//Зато там есть выпивка и золото. И насколько я знаю, там даже есть женщина. Понял?
 };
 
 
@@ -308,7 +308,7 @@ func void DIA_Addon_Logan_tot_Info()
 	AI_Output(other,self,"DIA_Addon_Logan_tot_15_01");	//Отлично, мне нужно сделать еще что-нибудь? Если нет, я пойду...
 	AI_Output(self,other,"DIA_Addon_Logan_tot_10_02");	//Иди. И если ты захочешь научиться чему-нибудь еще, ты знаешь, где меня искать.
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	MIS_HlpLogan = LOG_Success;
+	MIS_HlpLogan = LOG_SUCCESS;
 	B_CheckLog();
 	B_LogEntry(Topic_Addon_Franco,"Я помог Логану. Посмотрим, что скажет на это Франко.");
 	AI_StopProcessInfos(self);
@@ -356,7 +356,7 @@ instance DIA_Addon_Logan_Allg(C_Info)
 
 func int DIA_Addon_Logan_Allg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Logan_Lern) && ((player_talent_takeanimaltrophy[TROPHY_Teeth] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)))
+	if(Npc_KnowsInfo(other,DIA_Addon_Logan_Lern) && ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)))
 	{
 		return TRUE;
 	};
@@ -366,15 +366,15 @@ func void DIA_Addon_Logan_Allg_Info()
 {
 	Info_ClearChoices(DIA_Addon_Logan_Allg);
 	Info_AddChoice(DIA_Addon_Logan_Allg,Dialog_Back,DIA_Addon_Logan_Allg_BACK);
-	if(player_talent_takeanimaltrophy[TROPHY_Teeth] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString("Удаление зубов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Addon_Logan_Allg_Teeth);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString("Удаление когтей",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),DIA_Addon_Logan_Allg_Claws);
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString("Снятие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Addon_Logan_Allg_Fur);
 	};

@@ -82,7 +82,7 @@ func void DIA_Addon_Skip_NW_WerBistDu_ja()
 	AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_03");	//Хорошо, что я этого не сделал.
 	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
 	{
-		AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_04");	//Меня бы сразу бросили за решетку.
+		AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_04");	//Меня бы сразу же бросили за решетку.
 	}
 	else
 	{

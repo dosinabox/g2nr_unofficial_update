@@ -139,7 +139,7 @@ instance DIA_Jorgen_Milten(C_Info)
 
 func int DIA_Jorgen_Milten_Condition()
 {
-	if((Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE) && (mis_oldworld == LOG_Success) && (MiltenNW.aivar[AIV_TalkedToPlayer] == TRUE))
+	if((Kapitel == 3) && (MIS_SCKnowsInnosEyeIsBroken == FALSE) && (MIS_OLDWORLD == LOG_SUCCESS) && (MiltenNW.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
 		return TRUE;
 	};
@@ -147,7 +147,7 @@ func int DIA_Jorgen_Milten_Condition()
 
 func void DIA_Jorgen_Milten_Info()
 {
-	AI_Output(other,self,"DIA_Jorgen_Milten_15_00");	//Если ты идешь в монастырь, тебе нужно поговорить с Милтеном. Он наверняка сможет помочь тебе.
+	AI_Output(other,self,"DIA_Jorgen_Milten_15_00");	//Если ты идешь в монастырь, тебе нужно поговорить с Милтеном. Он, наверняка, сможет помочь тебе.
 	AI_Output(self,other,"DIA_Jorgen_Milten_07_01");	//Как ты думаешь, меня примут туда?
 	AI_Output(other,self,"DIA_Jorgen_Milten_15_02");	//Возможно. Но мне почему-то тяжело представить тебя в робе послушника.
 	AI_Output(self,other,"DIA_Jorgen_Milten_07_03");	//Хватит нести чепуху - роба так роба. Мне прежде всего нужна еда, а то мне скоро придется обгладывать кору с деревьев.
@@ -177,8 +177,8 @@ func void DIA_Jorgen_Home_Info()
 	AI_Output(other,self,"DIA_Jorgen_Home_15_00");	//Откуда ты?
 	AI_Output(self,other,"DIA_Jorgen_Home_07_01");	//Я был капитаном большого китобойного судна, парень. Мой дом - море.
 	AI_Output(self,other,"DIA_Jorgen_Home_07_02");	//Мой корабль, 'Магдалена', был потоплен пиратами несколько месяцев назад, и вот теперь я на мели здесь.
-	AI_Output(self,other,"DIA_Jorgen_Home_07_03");	//Я очень хотел поскорее опять выйти в море, но с тех пор, как я прибыл сюда, ни одной шхуны не зашло в этот проклятый порт.
-	AI_Output(self,other,"DIA_Jorgen_Home_07_04");	//Единственный корабль, пришвартовавшийся в Хоринисе - это чертова военная галера короля, а они никого не берут.
+	AI_Output(self,other,"DIA_Jorgen_Home_07_03");	//Я очень хотел поскорее опять выйти в море, но с тех пор как я прибыл сюда, ни одной шхуны не зашло в этот проклятый порт.
+	AI_Output(self,other,"DIA_Jorgen_Home_07_04");	//Единственный корабль, пришвартовавшийся в Хоринисе, - это чертова военная галера короля, а они никого не берут.
 	AI_Output(self,other,"DIA_Jorgen_Home_07_05");	//И что мне теперь делать? В городе для меня нет работы. Я пробовал уже все.
 };
 
@@ -265,7 +265,7 @@ func void DIA_Jorgen_NEUHIER_Info()
 	{
 		AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_03");	//Я чувствую себя идиотом среди этих всегда ворчащих благодетелей.
 	};
-	AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_04");	//Ну, а что еще мне делать? Чем помирать с голоду в городе, лучше уж выполнять работу, которую дают мне послушники.
+	AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_04");	//Ну. А что еще мне делать? Чем помирать с голоду в городе, лучше уж выполнять работу, которую дают мне послушники.
 };
 
 
@@ -341,7 +341,7 @@ instance DIA_Jorgen_BEMYCAPTAIN(C_Info)
 
 func int DIA_Jorgen_BEMYCAPTAIN_Condition()
 {
-	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE) && (MIS_PyrokarClearDemonTower != LOG_Success) && Npc_KnowsInfo(other,DIA_Jorgen_Home))
+	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE) && (MIS_PyrokarClearDemonTower != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Jorgen_Home))
 	{
 		return TRUE;
 	};
@@ -379,7 +379,7 @@ instance DIA_Jorgen_BEMYCAPTAIN2(C_Info)
 
 func int DIA_Jorgen_BEMYCAPTAIN2_Condition()
 {
-	if(MIS_PyrokarClearDemonTower == LOG_Success)
+	if(MIS_PyrokarClearDemonTower == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -505,7 +505,7 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 	if(Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_OUT_06") < 1000)
 	{
 		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_01");	//Отлично. Это не самое плохое место.
-		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_02");	//Они дают мне идиотские поручения вроде пасти овец, но все же люди здесь далеко не такие ограниченные и тупые, как в монастыре.
+		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_02");	//Они дают мне идиотские поручения, типа пасти овец, но все же люде здесь далеко не такие ограниченные и тупые, как в монастыре.
 		if(DIA_Jorgen_PERM5_NOTCAPTAIN_XPGiven == FALSE)
 		{
 			B_GivePlayerXP(XP_Ambient);
@@ -522,18 +522,18 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 };
 
 
-instance DIA_JORGEN_KAP6_EXIT(C_Info)
+instance DIA_Jorgen_KAP6_EXIT(C_Info)
 {
 	npc = VLK_4250_Jorgen;
 	nr = 999;
-	condition = dia_jorgen_kap6_exit_condition;
-	information = dia_jorgen_kap6_exit_info;
+	condition = DIA_Jorgen_KAP6_EXIT_Condition;
+	information = DIA_Jorgen_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_jorgen_kap6_exit_condition()
+func int DIA_Jorgen_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -541,7 +541,7 @@ func int dia_jorgen_kap6_exit_condition()
 	};
 };
 
-func void dia_jorgen_kap6_exit_info()
+func void DIA_Jorgen_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

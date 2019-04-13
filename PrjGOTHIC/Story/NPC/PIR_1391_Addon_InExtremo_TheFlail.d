@@ -1,7 +1,7 @@
 
 instance PIR_1391_Addon_InExtremo_TheFlail(Npc_Default)
 {
-	name[0] = "Цеп";
+	name[0] = "Моргенштерн";
 	npcType = npctype_main;
 	guild = GIL_NONE;
 	level = 4;
@@ -16,6 +16,7 @@ instance PIR_1391_Addon_InExtremo_TheFlail(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 88;
 	attribute[ATR_HITPOINTS] = 88;
 	CreateInvItem(self,ItMi_IEDrum);
+	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"HUM_IE_FLAIL_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_FLAIL",DEFAULT,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_STRONG;

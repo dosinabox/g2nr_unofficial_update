@@ -52,7 +52,7 @@ instance ItKe_MonastarySecretLibrary_Mis(C_Item)
 	name = "Ключ";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = VALUE_KEY_02;
+	value = Value_Key_02;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -347,7 +347,7 @@ func void UseITWr_ForgedShipLetter_MIS()
 };
 
 
-instance ItKe_OC_MainGate_MIS(C_Item)
+instance ITKE_OC_MAINGATE_MIS(C_Item)
 {
 	name = "Ключ от башни главных ворот";
 	mainflag = ITEM_KAT_NONE;
@@ -365,7 +365,7 @@ instance ItKe_Ship_Levelchange_MIS(C_Item)
 	name = "Ключ от капитанской каюты";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = VALUE_KEY_03;
+	value = Value_Key_03;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;

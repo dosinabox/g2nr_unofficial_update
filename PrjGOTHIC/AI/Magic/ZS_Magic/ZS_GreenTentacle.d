@@ -22,14 +22,14 @@ func void B_StopGreententacle()
 	};
 };
 
-func int ZS_Greententacle()
+func void ZS_Greententacle()
 {
 	var int randy;
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_RestartGreententacle);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_AssessDamage);
-	Npc_StopAni(self,"s_GreententacleA_Victim");
-	Npc_StopAni(self,"s_GreententacleB_Victim");
-	Npc_StopAni(self,"s_GreententacleC_Victim");
+	Npc_StopAni(self,"S_GREENTENTACLEA_VICTIM");
+	Npc_StopAni(self,"S_GREENTENTACLEB_VICTIM");
+	Npc_StopAni(self,"S_GREENTENTACLEC_VICTIM");
 	Npc_ClearAIQueue(self);
 	AI_Standup(self);
 	if(!C_BodyStateContains(self,BS_UNCONSCIOUS))

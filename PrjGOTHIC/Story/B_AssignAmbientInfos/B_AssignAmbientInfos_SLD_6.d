@@ -41,11 +41,11 @@ func int DIA_SLD_6_JOIN_Condition()
 func void DIA_SLD_6_JOIN_Info()
 {
 	AI_Output(other,self,"DIA_SLD_6_JOIN_15_00");	//Я хочу присоединиться к вам!
-	if(MIS_Torlof_BengarMilizKlatschen == LOG_Success)
+	if(MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_SLD_6_JOIN_06_01");	//Я слышал об этом деле с ополчением. Торлоф говорит, что ты прошел испытание. Ты получишь мой голос.
 	}
-	else if(MIS_Torlof_HolPachtVonSekob == LOG_Success)
+	else if(MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_SLD_6_JOIN_06_02");	//Обирать фермеров - это одно, но вступать в бой с ополчением - это совсем другое. Если Онар найдет место для тебя, я буду не против.
 	}
@@ -147,19 +147,19 @@ func void DIA_SLD_6_STANDARD_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_05");	//Как там лорд Хаген, он еще не обгадил штаны от страха перед драконами?
+			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_05");	//Как там ваш лорд Хаген, он еще не обгадил штаны от страха перед драконами?
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_06");	//Похоже, теперь ему придется оторвать свою вельможную задницу от кресла и выползти из города.
 		};
 	};
 	if(Kapitel == 3)
 	{
-		if(MIS_RescueBennet == LOG_Success)
+		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_07");	//Лорд Хаген может считать себя везунчиком. Еще несколько дней - и мы бы ворвались в город и освободили Беннета сами.
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_08");	//Если Беннета не выпустят из тюрьмы, мы сами пойдем туда и освободим его.
+			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_08");	//Если Беннета не выпустят из тюрьмы,  мы сами пойдем туда и освободим его.
 		};
 	};
 	if(Kapitel == 4)
@@ -167,7 +167,7 @@ func void DIA_SLD_6_STANDARD_Info()
 		if(hero.guild == GIL_DJG)
 		{
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_09");	//Что ты все ошиваешься здесь? Разве ты не отправился в долину вместе с остальными?
-			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_10");	//Чтобы вы там все и остались.
+			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_10");	//Чтоб вы там все и остались.
 		}
 		else
 		{

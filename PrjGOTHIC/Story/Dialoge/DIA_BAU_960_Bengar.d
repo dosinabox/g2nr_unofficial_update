@@ -98,7 +98,7 @@ func void DIA_Bengar_TAGELOEHNER_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_TAGELOEHNER_15_00");	//Ты нанимаешь поденных рабочих?
 	AI_Output(self,other,"DIA_Bengar_TAGELOEHNER_10_01");	//Онар увольняет работников, которые не нужны на его ферме.
-	AI_Output(self,other,"DIA_Bengar_TAGELOEHNER_10_02");	//Затем он посылает их ко мне. Я кормлю их, и они работают на меня.
+	AI_Output(self,other,"DIA_Bengar_TAGELOEHNER_10_02");	//Затем он посылает их ко мне. Я кормлю их, а они работают на меня.
 };
 
 
@@ -263,7 +263,7 @@ func void DIA_Bengar_REBELLIEREN_Info()
 	AI_Output(other,self,"DIA_Bengar_REBELLIEREN_15_00");	//Что ты думаешь об Онаре?
 	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_01");	//Это жадный ублюдок. Из-за него нас всех повесят.
 	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_02");	//Однажды придут паладины из города и заставят нас, мелких фермеров, расплачиваться за все, что он наделал.
-	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_03");	//Но у меня нет выбора. Ополчение приходит сюда только затем, чтобы собирать налоги, а не затем, чтобы защищать мою ферму.
+	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_03");	//Но у меня нет выбора. Ополчение приходит сюда только чтобы собирать налоги, а не затем, чтобы защищать мою ферму.
 	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_04");	//Если я буду проявлять лояльность к городу, я останусь совсем один.
 	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_05");	//А так, Онар хотя бы иногда присылает наемников посмотреть, как мы тут живем.
 };
@@ -523,7 +523,7 @@ instance DIA_Bengar_BALTHASARDARFAUFWEIDE(C_Info)
 
 func int DIA_Bengar_BALTHASARDARFAUFWEIDE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR) && (MIS_Torlof_BengarMilizKlatschen == LOG_Success) && (Bengar_MilSuccess == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR) && (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS) && (Bengar_MilSuccess == TRUE))
 	{
 		return TRUE;
 	};
@@ -535,8 +535,8 @@ func void DIA_Bengar_BALTHASARDARFAUFWEIDE_Info()
 	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_01");	//Почему?
 	AI_Output(other,self,"DIA_Bengar_BALTHASARDARFAUFWEIDE_15_02");	//(угрожающе) Потому что я так сказал.
 	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_03");	//Ммм. Хорошо, как скажешь.
-	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_04");	//Только пусть он пасет своих овец где-нибудь за полем.
-	MIS_Balthasar_BengarsWeide = LOG_Success;
+	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_04");	//только пусть он пасет своих овец где-нибудь за полем.
+	MIS_Balthasar_BengarsWeide = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -626,7 +626,7 @@ func void DIA_Bengar_ALLEIN_Info()
 	};
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_04");	//Новые орды монстров каждый день приходят через Проход. Скоро они всех нас сожрут.
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_05");	//Если бы только меня защищали хотя бы несколько наемников...
-	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_06");	//Один из них даже был готов работать на меня. Но он передумал, впрочем. Мне кажется, его звали Вольф.
+	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_06");	//Один из них даже был готов работать на меня. Но он передумал, впрочем. Мне кажется, его звали 'Вольф'.
 	MIS_BengarsHelpingSLD = LOG_Running;
 	Log_CreateTopic(TOPIC_BengarALLEIN,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BengarALLEIN,LOG_Running);
@@ -672,7 +672,7 @@ instance DIA_Bengar_SLDDA(C_Info)
 
 func int DIA_Bengar_SLDDA_Condition()
 {
-	if((Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_Success) && (Npc_IsDead(SLD_Wolf) == FALSE))
+	if((Npc_GetDistToWP(SLD_Wolf,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && (Npc_IsDead(SLD_Wolf) == FALSE))
 	{
 		return TRUE;
 	};
@@ -701,7 +701,7 @@ instance DIA_Bengar_MALAKWIEDERDA(C_Info)
 
 func int DIA_Bengar_MALAKWIEDERDA_Condition()
 {
-	if((Npc_GetDistToWP(Malak,"FARM3") < 3000) && ((MIS_GetMalakBack == LOG_Success) || (NpcObsessedByDMT_Malak == TRUE)) && (Npc_IsDead(Malak) == FALSE))
+	if((Npc_GetDistToWP(Malak,"FARM3") < 3000) && ((MIS_GetMalakBack == LOG_SUCCESS) || (NpcObsessedByDMT_Malak == TRUE)) && (Npc_IsDead(Malak) == FALSE))
 	{
 		return TRUE;
 	};
@@ -755,7 +755,7 @@ func void DIA_Bengar_PERM_Info()
 		};
 	};
 	AI_StopProcessInfos(self);
-	if(Npc_IsDead(SLD_Wolf) && (MIS_BengarsHelpingSLD == LOG_Success))
+	if(Npc_IsDead(SLD_Wolf) && (MIS_BengarsHelpingSLD == LOG_SUCCESS))
 	{
 		B_StartOtherRoutine(SLD_815_Soeldner,"Start");
 		B_StartOtherRoutine(SLD_817_Soeldner,"Start");
@@ -813,18 +813,18 @@ func void DIA_Bengar_KAP5_EXIT_Info()
 };
 
 
-instance DIA_BENGAR_KAP6_EXIT(C_Info)
+instance DIA_Bengar_KAP6_EXIT(C_Info)
 {
 	npc = BAU_960_Bengar;
 	nr = 999;
-	condition = dia_bengar_kap6_exit_condition;
-	information = dia_bengar_kap6_exit_info;
+	condition = DIA_Bengar_KAP6_EXIT_Condition;
+	information = DIA_Bengar_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_bengar_kap6_exit_condition()
+func int DIA_Bengar_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -832,7 +832,7 @@ func int dia_bengar_kap6_exit_condition()
 	};
 };
 
-func void dia_bengar_kap6_exit_info()
+func void DIA_Bengar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

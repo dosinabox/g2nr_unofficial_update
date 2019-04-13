@@ -6,7 +6,7 @@ func void potionalchemy_s1()
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_PotionAlchemy;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_PotionAlchemy;
 		AI_ProcessInfos(her);
 	};
 };
@@ -25,7 +25,7 @@ instance PC_PotionAlchemy_End(C_Info)
 
 func int PC_PotionAlchemy_End_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -53,7 +53,7 @@ instance PC_Booze_Start(C_Info)
 
 func int PC_Booze_Start_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -78,7 +78,7 @@ instance PC_Booze_Stop(C_Info)
 
 func int PC_Booze_Stop_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (BoozeStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (BoozeStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -103,7 +103,7 @@ instance PC_Booze_Lou(C_Info)
 
 func int PC_Booze_Lou_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (BoozeStart == TRUE) && (Knows_LousHammer == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (BoozeStart == TRUE) && (Knows_LousHammer == TRUE))
 	{
 		return TRUE;
 	};
@@ -142,7 +142,7 @@ instance PC_Booze_Schlaf(C_Info)
 
 func int PC_Booze_Schlaf_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (BoozeStart == TRUE) && (Knows_Schlafhammer == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (BoozeStart == TRUE) && (Knows_Schlafhammer == TRUE))
 	{
 		return TRUE;
 	};
@@ -181,7 +181,7 @@ instance PC_Booze_SchnellerHering(C_Info)
 
 func int PC_Booze_SchnellerHering_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (BoozeStart == TRUE) && (Knows_SchnellerHering == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (BoozeStart == TRUE) && (Knows_SchnellerHering == TRUE))
 	{
 		return TRUE;
 	};
@@ -219,7 +219,7 @@ instance PC_Charge_InnosEye(C_Info)
 
 func int PC_Charge_InnosEye_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[CHARGE_Innoseye] == TRUE) && (Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis) >= 1) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == TRUE) && (Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis) >= 1) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -273,7 +273,7 @@ instance PC_Mana_Start(C_Info)
 
 func int PC_Mana_Start_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (ManaStart == FALSE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (ManaStart == FALSE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -298,7 +298,7 @@ instance PC_Mana_Stop(C_Info)
 
 func int PC_Mana_Stop_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (ManaStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (ManaStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -323,7 +323,7 @@ instance PC_ItPo_Mana_01(C_Info)
 
 func int PC_ItPo_Mana_01_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Mana_01] == TRUE) && (ManaStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE) && (ManaStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -360,7 +360,7 @@ instance PC_ItPo_Mana_02(C_Info)
 
 func int PC_ItPo_Mana_02_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Mana_02] == TRUE) && (ManaStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE) && (ManaStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -397,7 +397,7 @@ instance PC_ItPo_Mana_03(C_Info)
 
 func int PC_ItPo_Mana_03_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Mana_03] == TRUE) && (ManaStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE) && (ManaStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -434,7 +434,7 @@ instance PC_ItPo_Mana_04(C_Info)
 
 func int PC_ItPo_Mana_04_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Mana_04] == TRUE) && (ManaStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_04] == TRUE) && (ManaStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -473,7 +473,7 @@ instance PC_Health_Start(C_Info)
 
 func int PC_Health_Start_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (HealthStart == FALSE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (HealthStart == FALSE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -498,7 +498,7 @@ instance PC_Health_Stop(C_Info)
 
 func int PC_Health_Stop_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (HealthStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (HealthStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -523,7 +523,7 @@ instance PC_ItPo_Health_01(C_Info)
 
 func int PC_ItPo_Health_01_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Health_01] == TRUE) && (HealthStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (HealthStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -560,7 +560,7 @@ instance PC_ItPo_Health_02(C_Info)
 
 func int PC_ItPo_Health_02_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Health_02] == TRUE) && (HealthStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (HealthStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -597,7 +597,7 @@ instance PC_ItPo_Health_03(C_Info)
 
 func int PC_ItPo_Health_03_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Health_03] == TRUE) && (HealthStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (HealthStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -634,7 +634,7 @@ instance PC_ItPo_Health_04(C_Info)
 
 func int PC_ItPo_Health_04_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Health_04] == TRUE) && (HealthStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Health_04] == TRUE) && (HealthStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -673,7 +673,7 @@ instance PC_Special_Start(C_Info)
 
 func int PC_Special_Start_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (SpecialStart == FALSE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (SpecialStart == FALSE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -698,7 +698,7 @@ instance PC_Special_Stop(C_Info)
 
 func int PC_Special_Stop_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (SpecialStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (SpecialStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -723,7 +723,7 @@ instance PC_ItPo_Addon_Geist(C_Info)
 
 func int PC_ItPo_Addon_Geist_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (Knows_MCELIXIER == TRUE) && (SpecialStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (Knows_MCELIXIER == TRUE) && (SpecialStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -769,7 +769,7 @@ instance PC_ItPo_Perm_Health(C_Info)
 
 func int PC_ItPo_Perm_Health_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Perm_Health] == TRUE) && (SpecialStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == TRUE) && (SpecialStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -806,7 +806,7 @@ instance PC_ItPo_Perm_Mana(C_Info)
 
 func int PC_ItPo_Perm_Mana_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Perm_Mana] == TRUE) && (SpecialStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == TRUE) && (SpecialStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -843,7 +843,7 @@ instance PC_ItPo_Dex(C_Info)
 
 func int PC_ItPo_Dex_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Perm_DEX] == TRUE) && (SpecialStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == TRUE) && (SpecialStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -880,7 +880,7 @@ instance PC_ItPo_Strg(C_Info)
 
 func int PC_ItPo_Strg_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Perm_STR] == TRUE) && (SpecialStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == TRUE) && (SpecialStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -917,7 +917,7 @@ instance PC_ItPo_Speed(C_Info)
 
 func int PC_ItPo_Speed_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_Speed] == TRUE) && (SpecialStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Speed] == TRUE) && (SpecialStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -956,7 +956,7 @@ instance PC_Tabak_Start(C_Info)
 
 func int PC_Tabak_Start_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (TabakStart == FALSE) && (BoozeStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (TabakStart == FALSE) && (BoozeStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -981,7 +981,7 @@ instance PC_Tabak_Stop(C_Info)
 
 func int PC_Tabak_Stop_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (TabakStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (TabakStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -1006,7 +1006,7 @@ instance PC_ItMi_Joint(C_Info)
 
 func int PC_ItMi_Joint_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (TabakStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (TabakStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -1042,7 +1042,7 @@ instance PC_ItMi_Addon_Joint_01(C_Info)
 
 func int PC_ItMi_Addon_Joint_01_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (TabakStart == TRUE) && (Green_Extrem == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (TabakStart == TRUE) && (Green_Extrem == TRUE))
 	{
 		return TRUE;
 	};
@@ -1079,7 +1079,7 @@ instance PC_ItMi_Tabak(C_Info)
 
 func int PC_ItMi_Tabak_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (Npc_HasItems(hero,ItMi_ApfelTabak) >= 1) && (TabakStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (Npc_HasItems(hero,ItMi_ApfelTabak) >= 1) && (TabakStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -1144,7 +1144,7 @@ instance PC_ItPo_MegaDrink(C_Info)
 
 func int PC_ItPo_MegaDrink_Condition()
 {
-	if((player_mobsi_production == MOBSI_PotionAlchemy) && (player_talent_alchemy[POTION_MegaDrink] == TRUE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == TRUE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};

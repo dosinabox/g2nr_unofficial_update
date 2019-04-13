@@ -1,7 +1,7 @@
 
 instance DIA_Mil_309_Stadtwache_EXIT(C_Info)
 {
-	npc = MIL_309_Stadtwache;
+	npc = Mil_309_Stadtwache;
 	nr = 999;
 	condition = DIA_Mil_309_Stadtwache_EXIT_Condition;
 	information = DIA_Mil_309_Stadtwache_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Mil_309_Stadtwache_EXIT_Info()
 
 instance DIA_Mil_309_Stadtwache_Hallo(C_Info)
 {
-	npc = MIL_309_Stadtwache;
+	npc = Mil_309_Stadtwache;
 	nr = 2;
 	condition = DIA_Mil_309_Stadtwache_Hallo_Condition;
 	information = DIA_Mil_309_Stadtwache_Hallo_Info;
@@ -44,24 +44,24 @@ func void DIA_Mil_309_Stadtwache_Hallo_Info()
 	{
 		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_01");	//¬се в пор€дке. Ќо мы должны быть настороже.
 	}
-	else if((Stadtwache_310.aivar[AIV_PASSGATE] == FALSE) && (Mil_309_News < 1))
+	else if((Stadtwache_310.aivar[AIV_PASSGATE] == FALSE) && (MIl_309_News < 1))
 	{
 		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_02");	//ѕослушай. ћы не можем пропустить теб€ в город.
 		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_03");	//Ќо € дам тебе совет, и совершенно бесплатно.
 		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_04");	//ƒержись подальше от этого леса впереди - там брод€т полчища ужасных монстров.
-		Mil_309_News = 1;
+		MIl_309_News = 1;
 	}
-	else if((Stadtwache_310.aivar[AIV_PASSGATE] == FALSE) && (Mil_309_News == 1))
+	else if((Stadtwache_310.aivar[AIV_PASSGATE] == FALSE) && (MIl_309_News == 1))
 	{
 		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_05");	//¬озвращайс€ туда, откуда выполз, подонок!
 	};
-	if((Stadtwache_310.aivar[AIV_PASSGATE] == TRUE) && (Mil_309_News < 2))
+	if((Stadtwache_310.aivar[AIV_PASSGATE] == TRUE) && (MIl_309_News < 2))
 	{
 		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_06");	//ѕослушай, ты имеешь право находитьс€ в городе. Ќо это не означает, что ты можешь делать здесь все, что тебе заблагорассудитс€.
 		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_07");	//≈сли ты не придерживаешьс€ общеприн€тых правил, ты потер€ешь свои права здесь!
-		Mil_309_News = 2;
+		MIl_309_News = 2;
 	}
-	else if((Stadtwache_310.aivar[AIV_PASSGATE] == TRUE) && (Mil_309_News == 2))
+	else if((Stadtwache_310.aivar[AIV_PASSGATE] == TRUE) && (MIl_309_News == 2))
 	{
 		AI_Output(self,other,"DIA_Mil_309_Stadtwache_Hallo_06_08");	//ƒавай - проходи!
 	};

@@ -53,7 +53,7 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_Info()
 	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Сколько ты хочешь?",DIA_BDT_1020_Wegelagerer_FirstWarn_HowMuch);
 	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Ты шутишь.",DIA_BDT_1020_Wegelagerer_FirstWarn_Joke);
 	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Убирайся с дороги!",DIA_BDT_1020_Wegelagerer_PissOff);
-	if(mis_schnitzeljagd == LOG_Running)
+	if(MIS_SCHNITZELJAGD == LOG_Running)
 	{
 		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Скажи, ты не видел послушника?",DIA_BDT_1020_Wegelagerer_AGON);
 	};
@@ -130,7 +130,7 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney()
 
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney()
 {
-	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_15_00");	//Извини, у меня нет денег.
+	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_15_00");	//Извини, у меня  нет денег.
 	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_06_01");	//Да уж, воистину тяжелые времена настали.
 	if(Npc_HasEquippedMeleeWeapon(other))
 	{
@@ -167,7 +167,7 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_15_00");	//Вот, возьми мое оружие.
 	AI_DrawWeapon(other);
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_06_01");	//
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_06_01");	//Отойди от этого оружия. Ну подожди!
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_GuardStopsIntruder,1);
 };

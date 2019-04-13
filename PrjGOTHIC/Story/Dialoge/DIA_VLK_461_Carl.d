@@ -22,7 +22,7 @@ func void DIA_Carl_EXIT_Info()
 
 func void B_CarlSayHallo()
 {
-	AI_Output(self,other,"DIA_Carl_Hallo_05_00");	//Похоже, в городе есть несколько воров, которые крадут у зажиточных граждан.
+	AI_Output(self,other,"DIA_Carl_Hallo_05_00");	//Похоже, в городе есть несколько воров, которые крадут у зажиточных горожан.
 	AI_Output(self,other,"DIA_Carl_Hallo_05_01");	//Городская стража недавно перевернула портовый квартал вверх дном, но они ничего не нашли.
 };
 

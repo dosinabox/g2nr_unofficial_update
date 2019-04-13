@@ -1,5 +1,5 @@
 
-instance MIL_350_Addon_Martin(Npc_Default)
+instance Mil_350_Addon_Martin(Npc_Default)
 {
 	name[0] = "Мартин";
 	guild = GIL_NONE;
@@ -12,7 +12,7 @@ instance MIL_350_Addon_Martin(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_OldMan_Gravo,BodyTex_P,itar_mil_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_OldMan_Gravo,BodyTex_P,ITAR_Mil_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

@@ -55,7 +55,7 @@ instance DIA_BullcoDJG_WARTEMAL(C_Info)
 	condition = DIA_BullcoDJG_WARTEMAL_Condition;
 	information = DIA_BullcoDJG_WARTEMAL_Info;
 	permanent = TRUE;
-	description = "Все в порядке?";
+	description = "А все остальное в порядке?";
 };
 
 
@@ -114,7 +114,7 @@ instance DIA_Bullco_WASNUN(C_Info)
 	nr = 8;
 	condition = DIA_Bullco_WASNUN_Condition;
 	information = DIA_Bullco_WASNUN_Info;
-	description = "Что ты планируешь делать дальше?";
+	description = "Что ты будешь делать теперь, когда Сильвио мертв?";
 };
 
 

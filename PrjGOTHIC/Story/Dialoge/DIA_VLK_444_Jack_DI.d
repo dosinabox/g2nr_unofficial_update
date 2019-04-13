@@ -45,7 +45,7 @@ var int DIA_Jack_DI_GREET_OneTime;
 
 func void DIA_Jack_DI_GREET_Info()
 {
-	if(OrkSturmDI == FALSE)
+	if(ORkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Jack_DI_GREET_14_00");	//Надеюсь, ты знаешь, что делаешь, приятель.
 		AI_Output(other,self,"DIA_Jack_DI_GREET_15_01");	//На это не уйдет много времени.

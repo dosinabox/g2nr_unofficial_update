@@ -1,7 +1,7 @@
 
 instance DIA_Dar_EXIT(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 999;
 	condition = DIA_Dar_EXIT_Condition;
 	information = DIA_Dar_EXIT_Info;
@@ -26,7 +26,7 @@ func void DIA_Dar_EXIT_Info()
 
 instance DIA_Dar_Hallo(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 1;
 	condition = DIA_Dar_Hallo_Condition;
 	information = DIA_Dar_Hallo_Info;
@@ -73,7 +73,7 @@ var int Dar_einmal;
 
 instance DIA_Dar_PERM(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 2;
 	condition = DIA_Dar_PERM_Condition;
 	information = DIA_Dar_PERM_Info;
@@ -92,7 +92,7 @@ func int DIA_Dar_PERM_Condition()
 
 func void DIA_Dar_PERM_Info()
 {
-	AI_Output(other,self,"DIA_Dar_PERM_15_00");	//Ты что-нибудь делаешь еще, кроме как куришь?
+	AI_Output(other,self,"DIA_Dar_PERM_15_00");	//Ты чувствуешь что-нибудь кроме дыма?
 	if((Dar_LostAgainstCipher == TRUE) && (Dar_einmal == FALSE))
 	{
 		AI_Output(self,other,"DIA_Dar_PERM_03_01");	//(саркастически) Иногда я позволяю всяким мстительным болотным наркоманам задать мне взбучку...
@@ -100,14 +100,14 @@ func void DIA_Dar_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Dar_PERM_03_02");	//Сейчас нет.
+		AI_Output(self,other,"DIA_Dar_PERM_03_02");	//Но не сейчас.
 	};
 };
 
 
 instance DIA_Dar_WannaJoin(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 3;
 	condition = DIA_Dar_WannaJoin_Condition;
 	information = DIA_Dar_WannaJoin_Info;
@@ -133,7 +133,7 @@ func void DIA_Dar_WannaJoin_Info()
 
 instance DIA_Dar_DuDieb(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_DuDieb_Condition;
 	information = DIA_Dar_DuDieb_Info;
@@ -162,7 +162,7 @@ func void DIA_Dar_DuDieb_Info()
 
 instance DIA_Dar_WoPaket(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_WoPaket_Condition;
 	information = DIA_Dar_WoPaket_Info;
@@ -201,7 +201,7 @@ func void DIA_Dar_WoPaket_Info()
 
 instance DIA_Dar_AufsMaul(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 5;
 	condition = DIA_Dar_AufsMaul_Condition;
 	information = DIA_Dar_AufsMaul_Info;
@@ -229,7 +229,7 @@ func void DIA_Dar_AufsMaul_Info()
 
 instance DIA_Dar_Kameradenschwein(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 1;
 	condition = DIA_Dar_Kameradenschwein_Condition;
 	information = DIA_Dar_Kameradenschwein_Info;
@@ -242,7 +242,8 @@ func int DIA_Dar_Kameradenschwein_Condition()
 {
 	if(Dar_LostAgainstCipher == TRUE)
 	{
-		TRUEself.aivar[AIV_LastFightComment] == FALSE;
+		self.aivar[AIV_LastFightComment] = FALSE;
+		return TRUE;
 	};
 };
 
@@ -258,7 +259,7 @@ func void DIA_Dar_Kameradenschwein_Info()
 
 instance DIA_Dar_Pilztabak(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 6;
 	condition = DIA_Dar_Pilztabak_Condition;
 	information = DIA_Dar_Pilztabak_Info;
@@ -300,7 +301,7 @@ func void DIA_Dar_Pilztabak_Info()
 
 instance DIA_Dar_KAP3_EXIT(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 999;
 	condition = DIA_Dar_KAP3_EXIT_Condition;
 	information = DIA_Dar_KAP3_EXIT_Info;
@@ -325,7 +326,7 @@ func void DIA_Dar_KAP3_EXIT_Info()
 
 instance DIA_Dar_KAP4_EXIT(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 999;
 	condition = DIA_Dar_KAP4_EXIT_Condition;
 	information = DIA_Dar_KAP4_EXIT_Info;
@@ -350,7 +351,7 @@ func void DIA_Dar_KAP4_EXIT_Info()
 
 instance DIA_Dar_ORCRING(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_ORCRING_Condition;
 	information = DIA_Dar_ORCRING_Info;
@@ -434,7 +435,7 @@ func void DIA_Dar_ORCRING_wie()
 	AI_Output(other,self,"DIA_Dar_ORCRING_wie_15_00");	//Как это должно выглядеть?
 	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_01");	//Я не знаю точно. Какой-нибудь трофей орков вполне подошел бы.
 	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_02");	//Что-нибудь вроде эмблемы лидера орков, ну или что-то вроде. Знамя, нарукавная нашивка или кольцо, ну, ты понял.
-	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_03");	//Я не могу произвести впечатление без этого. Это очевидно.
+	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_03");	//Я не смогу произвести впечатление без этого. Это очевидно.
 	Log_CreateTopic(TOPIC_Dar_BringOrcEliteRing,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Dar_BringOrcEliteRing,LOG_Running);
 	B_LogEntry(TOPIC_Dar_BringOrcEliteRing,"Дар хочет стать важной шишкой в рядах наемников. Он хочет заполучить трофей орков. Знамя, нарукавную нашивку, кольцо, или еще что-нибудь.");
@@ -445,14 +446,14 @@ func void DIA_Dar_ORCRING_wie()
 func void DIA_Dar_ORCRING_no()
 {
 	AI_Output(other,self,"DIA_Dar_ORCRING_no_15_00");	//Меня это не интересует.
-	AI_Output(self,other,"DIA_Dar_ORCRING_no_03_01");	//(злобно) Конечно, нет. Я бы очень удивился, если бы это было не так.
+	AI_Output(self,other,"DIA_Dar_ORCRING_no_03_01");	//(злобно) Конечно нет. Я бы очень удивился, если бы это было не так.
 	Info_ClearChoices(DIA_Dar_ORCRING);
 };
 
 
 instance DIA_Dar_FIGHTAGAINSTPALOVER(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_FIGHTAGAINSTPALOVER_Condition;
 	information = DIA_Dar_FIGHTAGAINSTPALOVER_Info;
@@ -479,7 +480,7 @@ func void DIA_Dar_FIGHTAGAINSTPALOVER_Info()
 
 instance DIA_Dar_BRINGORCELITERING(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_BRINGORCELITERING_Condition;
 	information = DIA_Dar_BRINGORCELITERING_Info;
@@ -501,7 +502,7 @@ func void DIA_Dar_BRINGORCELITERING_Info()
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_03_01");	//Что ты там принес мне?
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_15_02");	//Кольцо предводителя орков.
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_03_03");	//Ух ты, в таком случае... Что ты хочешь за него?
-	MIS_Dar_BringOrcEliteRing = LOG_Success;
+	MIS_Dar_BringOrcEliteRing = LOG_SUCCESS;
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 	Info_AddChoice(DIA_Dar_BRINGORCELITERING,"Что ты можешь предложить мне?",DIA_Dar_BRINGORCELITERING_was);
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
@@ -532,7 +533,7 @@ func void DIA_Dar_BRINGORCELITERING_geld_ok()
 {
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_geld_ok_15_00");	//Договорились. Держи кольцо.
 	B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
-	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_ok_03_01");	//Спасибо. Не терпится услышать, что скажут другие об этом.
+	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_ok_03_01");	//Спасибо. Не терпится услышать, что другие скажут об этом.
 	CreateInvItems(self,ItMi_Gold,1200);
 	B_GiveInvItems(self,other,ItMi_Gold,1200);
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);
@@ -549,7 +550,7 @@ func void DIA_Dar_BRINGORCELITERING_geld_no()
 func void DIA_Dar_BRINGORCELITERING_was()
 {
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_was_15_00");	//Что ты можешь предложить мне?
-	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_03_01");	//Ладно, забирай деньги, либо этот амулет, который я... ну, скажем, приобрел недавно.
+	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_03_01");	//Либо забирай деньги, либо этот амулет, который я... ну, скажем, приобрел недавно.
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_03_02");	//Он повысит твою ловкость. Я сам испытывал его.
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 	Info_AddChoice(DIA_Dar_BRINGORCELITERING,"Заплати мне золотом.",DIA_Dar_BRINGORCELITERING_geld);
@@ -571,7 +572,7 @@ func void DIA_Dar_BRINGORCELITERING_was_am()
 
 instance DIA_Dar_KAP5_EXIT(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 999;
 	condition = DIA_Dar_KAP5_EXIT_Condition;
 	information = DIA_Dar_KAP5_EXIT_Info;
@@ -594,18 +595,18 @@ func void DIA_Dar_KAP5_EXIT_Info()
 };
 
 
-instance DIA_DAR_KAP6_EXIT(C_Info)
+instance DIA_Dar_KAP6_EXIT(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 999;
-	condition = dia_dar_kap6_exit_condition;
-	information = dia_dar_kap6_exit_info;
+	condition = DIA_Dar_KAP6_EXIT_Condition;
+	information = DIA_Dar_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_dar_kap6_exit_condition()
+func int DIA_Dar_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -613,7 +614,7 @@ func int dia_dar_kap6_exit_condition()
 	};
 };
 
-func void dia_dar_kap6_exit_info()
+func void DIA_Dar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -621,7 +622,7 @@ func void dia_dar_kap6_exit_info()
 
 instance DIA_Dar_PICKPOCKET(C_Info)
 {
-	npc = SLD_810_Dar;
+	npc = Sld_810_Dar;
 	nr = 900;
 	condition = DIA_Dar_PICKPOCKET_Condition;
 	information = DIA_Dar_PICKPOCKET_Info;

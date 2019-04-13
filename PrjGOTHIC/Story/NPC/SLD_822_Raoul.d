@@ -1,5 +1,5 @@
 
-instance SLD_822_Raoul(Npc_Default)
+instance Sld_822_Raoul(Npc_Default)
 {
 	name[0] = "Рауль";
 	guild = GIL_SLD;
@@ -11,7 +11,7 @@ instance SLD_822_Raoul(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Ian,BodyTex_L,itar_sld_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Ian,BodyTex_L,ItAr_Sld_L);
 	Mdl_SetModelFatness(self,1.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

@@ -107,7 +107,7 @@ func void DIA_Bosper_SeekWork_Info()
 	AI_Output(self,other,"DIA_Bosper_SeekWork_11_01");	//Ммм - мне не помешал бы новый ученик.
 	AI_Output(self,other,"DIA_Bosper_SeekWork_11_02");	//Последний, что у меня был, бросил свою работу пару дней назад.
 	AI_Output(self,other,"DIA_Bosper_SeekWork_11_03");	//Ты что-нибудь знаешь об охоте, а?
-	if(player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
 		AI_Output(other,self,"DIA_Bosper_SeekWork_15_04");	//Нуууу...
 		AI_Output(self,other,"DIA_Bosper_SeekWork_11_05");	//Я мог бы научить тебя снимать шкуры с животных.
@@ -149,13 +149,13 @@ func void DIA_Bosper_LEHRLING_Info()
 	var int stimmen;
 	stimmen = 0;
 	AI_Output(other,self,"DIA_Bosper_LEHRLING_15_00");	//Я хочу стать твоим учеником!
-	if(MIS_Bosper_WolfFurs == LOG_Success)
+	if(MIS_Bosper_WolfFurs == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Bosper_LEHRLING_11_01");	//(ухмыляется) Отлично! Похоже, ты уже знаешь основы.
 		stimmen = stimmen + 1;
 		if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
-			if((MIS_Harad_Orc == LOG_Success) || (MIS_HakonBandits == LOG_Success))
+			if((MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS))
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_02");	//Гарад считает, что ты хороший человек.
 				stimmen = stimmen + 1;
@@ -171,7 +171,7 @@ func void DIA_Bosper_LEHRLING_Info()
 		};
 		if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
-			if(MIS_Thorben_GetBlessings == LOG_Success)
+			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_05");	//Торбен дает тебе свое благословение. Я не так набожен, как он, но все же это хорошо.
 				stimmen = stimmen + 1;
@@ -204,7 +204,7 @@ func void DIA_Bosper_LEHRLING_Info()
 		};
 		if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
-			if(MIS_Matteo_Gold == LOG_Success)
+			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_12");	//Маттео говорит, что ты стоишь столько же, сколько золото равное твоему весу.
 				stimmen = stimmen + 1;
@@ -232,7 +232,7 @@ func void DIA_Bosper_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_17");	//Ты получил одобрение четырех мастеров. Этого достаточно, чтобы быть принятым в ученики.
 			};
-			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_18");	//Ты можешь начать работать на меня, когда только захочешь.
+			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_18");	//Ты можешь начать работать на меня когда только захочешь.
 			Info_ClearChoices(DIA_Bosper_LEHRLING);
 			Info_AddChoice(DIA_Bosper_LEHRLING,"Хорошо - я подумаю над этим.",DIA_Bosper_LEHRLING_Later);
 			Info_AddChoice(DIA_Bosper_LEHRLING,"Я готов стать твоим учеником!",DIA_Bosper_LEHRLING_OK);
@@ -246,7 +246,7 @@ func void DIA_Bosper_LEHRLING_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Bosper_LEHRLING_11_21");	//Прежде чем взять тебя к себе, я должен сначала понять, годен ли ты вообще хоть на что-то.
-		if(MIS_Bosper_Bogen == LOG_Success)
+		if(MIS_Bosper_Bogen == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_22");	//Ты вернул назад мой лук, но это ничего не говорит о твоем таланте охотника.
 		};
@@ -263,7 +263,7 @@ func void DIA_Bosper_LEHRLING_OK()
 	Bosper_StartGuild = other.guild;
 	Bosper_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("gritta",GIL_NONE);
-	MIS_Apprentice = LOG_Success;
+	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
 	B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
 	Info_ClearChoices(DIA_Bosper_LEHRLING);
@@ -298,7 +298,7 @@ func int DIA_Bosper_OtherMasters_Condition()
 
 func void DIA_Bosper_OtherMasters_Info()
 {
-	AI_Output(other,self,"DIA_Bosper_OtherMasters_15_00");	//А что, если я захочу поступить в ученики к другому мастеру?
+	AI_Output(other,self,"DIA_Bosper_OtherMasters_15_00");	//А что если я захочу поступить в ученики к другому мастеру?
 	AI_Output(self,other,"DIA_Bosper_OtherMasters_11_01");	//(раздраженно) Бред!
 	AI_Output(self,other,"DIA_Bosper_OtherMasters_11_02");	//Гарад и Маттео уже имеют учеников.
 	AI_Output(self,other,"DIA_Bosper_OtherMasters_11_03");	//Алхимик Константино - одинокий волк. У него не было ученика уже многие годы.
@@ -362,17 +362,17 @@ var int Bosper_Zustimmung_Once;
 func void DIA_Bosper_ZUSTIMMUNG_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_ZUSTIMMUNG_15_00");	//Я получу твое одобрение на работу с другим мастером?
-	if((MIS_Bosper_Bogen == LOG_Success) || (MIS_Bosper_WolfFurs == LOG_Success))
+	if((MIS_Bosper_Bogen == LOG_SUCCESS) || (MIS_Bosper_WolfFurs == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Bosper_ZUSTIMMUNG_11_01");	//(разочарованно) Я надеялся, что ты выберешь меня.
 		AI_Output(self,other,"DIA_Bosper_ZUSTIMMUNG_11_02");	//Но если ты решил так...
 		AI_Output(other,self,"DIA_Bosper_ZUSTIMMUNG_15_03");	//Это означает, что ты проголосуешь за меня?
 		AI_Output(self,other,"DIA_Bosper_ZUSTIMMUNG_11_04");	//Если никто больше из мастеров не будет возражать - то да.
-		if(MIS_Bosper_Bogen == LOG_Success)
+		if(MIS_Bosper_Bogen == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Bosper_ZUSTIMMUNG_11_05");	//Ты ведь все же вернул назад мой лук.
 		};
-		if(MIS_Bosper_WolfFurs == LOG_Success)
+		if(MIS_Bosper_WolfFurs == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Bosper_ZUSTIMMUNG_11_06");	//Но из тебя бы получился такой хороший охотник!
 		};
@@ -417,9 +417,9 @@ func int DIA_Bosper_Job_Condition()
 func void DIA_Bosper_Job_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_Job_15_00");	//Что ты хочешь, чтобы я сделал для тебя?
-	if(player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
-		AI_Output(self,other,"DIA_Bosper_Job_11_01");	//Я научу тебя снимать шкуры с животных, и ты принесешь мне - скажем, полдюжины волчьих шкур.
+		AI_Output(self,other,"DIA_Bosper_Job_11_01");	//Я научу тебя снимать шкуры с животных, и ты принесешь мне - скажем - полдюжины волчьих шкур.
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"Боспер может обучить меня снимать шкуры с животных.");
 	}
@@ -437,7 +437,7 @@ func void DIA_Bosper_Job_Info()
 	Log_CreateTopic(TOPIC_BosperWolf,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BosperWolf,LOG_Running);
 	B_LogEntry(TOPIC_BosperWolf,"Я должен принести Босперу шесть волчьих шкур. Тогда я смогу либо работать на него, либо получу его одобрение на работу с другими мастерами.");
-	if(player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
 		B_LogEntry(TOPIC_BosperWolf,"Я должен попросить его обучить меня снимать шкуры с животных.");
 	};
@@ -479,7 +479,7 @@ func void DIA_Bosper_BringFur_Info()
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_04");	//Вот деньги, как я и обещал тебе.
 		B_GiveInvItems(self,other,ItMi_Gold,Value_WolfFur * 6);
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_05");	//И? Что скажешь? Разве это не лучше, чем корпеть над мечами день напролет или наполнять бутылочки в пыльной каморке?
-		MIS_Bosper_WolfFurs = LOG_Success;
+		MIS_Bosper_WolfFurs = LOG_SUCCESS;
 		B_LogEntry(TOPIC_Lehrling,"Боспер примет меня в ученики, если другие мастера не будут против.");
 	}
 	else
@@ -502,7 +502,7 @@ instance DIA_Bosper_TeachFUR(C_Info)
 
 func int DIA_Bosper_TeachFUR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bosper_Job) && (player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Bosper_Job) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE))
 	{
 		return TRUE;
 	};
@@ -631,7 +631,7 @@ func void DIA_Bosper_BogenSuccess_Info()
 	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_03");	//Надеюсь, у тебя не возникло проблем из-за этого...
 	AI_Output(other,self,"DIA_Bosper_BogenSuccess_15_04");	//Нет - мне приходилось делать такое и раньше.
 	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_05");	//Хм - но все же спасибо. Я твой должник!
-	MIS_Bosper_Bogen = LOG_Success;
+	MIS_Bosper_Bogen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Bosper_Bogen);
 	Npc_RemoveInvItems(self,ItRw_Bow_L_03_MIS,1);
 };
@@ -720,7 +720,7 @@ func void DIA_Bosper_AlsLehrling_Info()
 	}
 	else if((Bosper_Lehrling_Day <= (Wld_GetDay() - 4)) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
-		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_05");	//Где ты болтаешься так долго?
+		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_05");	//Где ты болтался так долго?
 		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_06");	//Мне нужны еще шкуры. Ты принес их?
 		Bosper_Lehrling_Day = Wld_GetDay();
 	}
@@ -808,13 +808,13 @@ func void DIA_Bosper_SellFur_Info()
 		};
 		if(Npc_HasItems(other,ItAt_WolfFur) > 0)
 		{
-			AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры - это хорошо...
+			AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры это хорошо...
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur);
 			B_GiveInvItems(other,self,ItAt_WolfFur,Npc_HasItems(other,ItAt_WolfFur));
 		};
 		if(Npc_HasItems(other,ItAt_WargFur) > 0)
 		{
-			AI_Output(self,other,"DIA_Bosper_SellFur_11_04");	//Шкура варга? Это опасные звери...
+			AI_Output(self,other,"DIA_Bosper_SellFur_11_04");	//Шкура варга? Это опасные звери ...
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WargFur) * Value_WargFur);
 			B_GiveInvItems(other,self,ItAt_WargFur,Npc_HasItems(other,ItAt_WargFur));
 		};
@@ -831,7 +831,7 @@ func void DIA_Bosper_SellFur_Info()
 				AI_Output(self,other,"DIA_Bosper_SellFur_11_06");	//А это что за шкура, черт побери?
 				AI_Output(other,self,"DIA_Bosper_SellFur_15_07");	//Я снял ее с тролля.
 				AI_Output(self,other,"DIA_Bosper_SellFur_11_08");	//Это... она стоит целое состояние.
-				Bosper_TrollFurSold == TRUE;
+				Bosper_TrollFurSold = TRUE;
 			}
 			else
 			{

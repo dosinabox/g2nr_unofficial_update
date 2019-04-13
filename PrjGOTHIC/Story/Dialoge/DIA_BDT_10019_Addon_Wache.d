@@ -63,7 +63,7 @@ func void DIA_Addon_BDT_10019_Wache_Hi_Raven()
 
 func void DIA_Addon_BDT_10019_Wache_Hi_Ja()
 {
-	AI_Output(other,self,"DIA_Addon_BDT_10019_Wache_Hi_Ja_15_00");	//Да.
+	AI_Output(other,self,"DIA_Addon_BDT_10019_Wache_Hi_Ja_15_00");	//Хорошо.
 	AI_Output(self,other,"DIA_Addon_BDT_10019_Wache_Hi_Ja_06_01");	//Тогда постарайся быть осторожнее, чем эти бедняги.
 	B_Say_Wache_kaputt();
 	Info_ClearChoices(DIA_Addon_BDT_10019_Wache_Hi);

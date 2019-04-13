@@ -13,7 +13,7 @@ instance SLD_802_Buster(Npc_Default)
 	EquipItem(self,ItRw_Sld_Bow);
 	CreateInvItems(self,ItRw_Arrow,10);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Drax,BodyTex_N,itar_sld_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Drax,BodyTex_N,ItAr_Sld_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

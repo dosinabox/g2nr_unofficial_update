@@ -88,7 +88,7 @@ func void DIA_Moe_Hallo_Gehen()
 {
 	AI_Output(other,self,"DIA_Moe_Hallo_Gehen_15_00");	//Ќет, € не иду в кабак...
 	AI_Output(self,other,"DIA_Moe_Hallo_Gehen_01_01");	//я так и подумал. Ќо это не так уж важно - мы можем перейти пр€мо к делу.
-	AI_Output(self,other,"DIA_Moe_Hallo_Gehen_01_02");	//“ак как ты здесь новичок, € хочу сделать тебе заманчивое предложение. “ы дашь мне 50 золотых монет и можешь идти дальше.
+	AI_Output(self,other,"DIA_Moe_Hallo_Gehen_01_02");	//“ак как ты здесь новичок, € хочу сделать тебе заманчивое предложение. “ы даешь мне 50 золотых монет и можешь идти дальше.
 	AI_Output(self,other,"DIA_Moe_Hallo_Gehen_01_03");	//Ёто плата за свободный вход в кабак.
 	Info_ClearChoices(DIA_Moe_Hallo);
 	Info_AddChoice(DIA_Moe_Hallo,"ƒавай спросим, что думает по этому поводу ополчение...",DIA_Moe_Hallo_Miliz);
@@ -105,7 +105,7 @@ func void DIA_Moe_Hallo_Kneipe()
 
 func void DIA_Moe_Hallo_Witz()
 {
-	AI_Output(other,self,"DIA_Moe_Hallo_Witz_15_00");	//ќх, так это портовый трактир. ј €-то прин€л его за дворец губернатора.
+	AI_Output(other,self,"DIA_Moe_Hallo_Witz_15_00");	//ќх, так это портовый трактир. ј € то прин€л его за дворец губернатора.
 	AI_Output(self,other,"DIA_Moe_Hallo_Witz_01_01");	//Ёй - держи свои шуточки при себе, кретин, или € заставлю теб€ грызть булыжники из мостовой.
 	Info_ClearChoices(DIA_Moe_Hallo);
 	Info_AddChoice(DIA_Moe_Hallo,"ѕонимаю, чтобы пройти дальше мне придетс€ сломать тебе пару ребер ...",DIA_Moe_Hallo_Pruegel);
@@ -169,7 +169,7 @@ func void DIA_Moe_Hallo_Zahlen()
 	}
 	else if(Npc_HasItems(hero,ItMi_Gold) > 9)
 	{
-		AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_02");	//... но у мен€ нет с собой столько золота.
+		AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_02");	//...но у мен€ нет с собой столько золота.
 		AI_Output(self,other,"DIA_Moe_Hallo_Zahlen_01_03");	//Ёто не важно. ѕросто отдай мне все, что у теб€ есть.
 		Info_ClearChoices(DIA_Moe_Hallo);
 		Info_AddChoice(DIA_Moe_Hallo,"«абудь об этом, ты не получишь ни цента!",DIA_Moe_Hallo_Vergisses);
@@ -177,7 +177,7 @@ func void DIA_Moe_Hallo_Zahlen()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_04");	//... но у мен€ нет даже и 10 монет.
+		AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_04");	//...но у мен€ нет даже и 10 монет.
 		AI_Output(self,other,"DIA_Moe_Hallo_Zahlen_01_05");	//„ерт, неужели сегодн€ мне не повезло?!
 		AI_Output(self,other,"DIA_Moe_Hallo_Zahlen_01_06");	//’орошо, (вздох) ты можешь идти.
 		AI_StopProcessInfos(self);
@@ -187,7 +187,7 @@ func void DIA_Moe_Hallo_Zahlen()
 func void DIA_Moe_Hallo_Vergisses()
 {
 	AI_Output(other,self,"DIA_Moe_Hallo_Vergisses_15_00");	//«абудь об этом, ты не получишь ни цента!
-	AI_Output(self,other,"DIA_Moe_Hallo_Vergisses_01_01");	//“огда € возьму все, что у теб€ есть, а ты будешь лежать распростертым на земле передо мной.
+	AI_Output(self,other,"DIA_Moe_Hallo_Vergisses_01_01");	//“огда € возьму все, что у теб€ есть, - а ты будешь лежать распростертым на земле передо мной.
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -236,7 +236,7 @@ func void DIA_Moe_Harbor_Back()
 func void DIA_Moe_Harbor_Ship()
 {
 	AI_Output(other,self,"DIA_Moe_Harbor_Ship_15_00");	// ак тут с корабл€ми?
-	AI_Output(self,other,"DIA_Moe_Harbor_Ship_01_01");	//≈динственный корабль, который пришел за последнее врем€ - это корабль паладинов.
+	AI_Output(self,other,"DIA_Moe_Harbor_Ship_01_01");	//≈динственный корабль, который пришел за последнее врем€, - это корабль паладинов.
 	AI_Output(self,other,"DIA_Moe_Harbor_Ship_01_02");	//ќн стоит вон там, за скалами к юго-западу.
 };
 
@@ -248,7 +248,7 @@ func void DIA_Moe_Harbor_Militia()
 
 func void DIA_Moe_Harbor_Rumors()
 {
-	AI_Output(other,self,"DIA_Moe_Harbor_Rumors_15_00");	// акие слухи брод€т последнее врем€?
+	AI_Output(other,self,"DIA_Moe_Harbor_Rumors_15_00");	// акие слухи брод€т в последнее врем€?
 	if(Kapitel == 1)
 	{
 		AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_01");	//ћы здесь не любим людей, которые задают слишком много вопросов. ќсобенно, если они чужаки.
@@ -273,7 +273,7 @@ func void DIA_Moe_Harbor_Rumors()
 	}
 	else if(Kapitel == 3)
 	{
-		if(MIS_RescueBennet == LOG_Success)
+		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
 			if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 			{

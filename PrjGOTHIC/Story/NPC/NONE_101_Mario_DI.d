@@ -1,5 +1,5 @@
 
-instance NONE_101_Mario_DI(Npc_Default)
+instance None_101_Mario_DI(Npc_Default)
 {
 	name[0] = "Марио";
 	guild = GIL_DMT;
@@ -16,7 +16,7 @@ instance NONE_101_Mario_DI(Npc_Default)
 	EquipItem(self,ItMw_Sturmbringer);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ITWR_DementorObsessionBook_MIS,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Kirgo,BodyTex_B,itar_mil_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Kirgo,BodyTex_B,ItAr_MIL_M);
 	Mdl_SetModelFatness(self,1.2);
 	Mdl_ApplyOverlayMds(self,"Humans_MILITIA.mds");
 	B_GiveNpcTalents(self);

@@ -37,7 +37,7 @@ instance DIA_Hilda_Hallo(C_Info)
 
 func int DIA_Hilda_Hallo_Condition()
 {
-	if((MIS_Lobart_Rueben != LOG_Success) && (Kapitel < 3))
+	if((MIS_Lobart_Rueben != LOG_SUCCESS) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -70,7 +70,7 @@ instance DIA_Hilda_WasZuEssen(C_Info)
 
 func int DIA_Hilda_WasZuEssen_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Hilda_Hallo) || (MIS_Lobart_Rueben == LOG_Success)) && (Kapitel < 3))
+	if((Npc_KnowsInfo(other,DIA_Hilda_Hallo) || (MIS_Lobart_Rueben == LOG_SUCCESS)) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -82,7 +82,7 @@ func void DIA_Hilda_WasZuEssen_Info()
 	if(hero.guild == GIL_NONE)
 	{
 		AI_Output(other,self,"DIA_Hilda_WasZuEssen_15_00");	//Ты дашь мне что-нибудь поесть?
-		if(MIS_Lobart_Rueben == LOG_Success)
+		if(MIS_Lobart_Rueben == LOG_SUCCESS)
 		{
 			if(!Npc_KnowsInfo(other,DIA_Hilda_PfanneTooLate))
 			{
@@ -152,7 +152,7 @@ func void DIA_Hilda_BringBeet_Info()
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_01");	//Отлично! (смеется) Этого должно хватить, чтобы накормить наших работников до отвала!
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_02");	//Раз уж ты все равно здесь... Я видела, как мимо прошел странствующий торговец. Это было несколько минут назад.
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_03");	//Я думаю, он где-нибудь остановился по пути в город. Сходи к нему. Может у него найдется сковородка для меня.
-		MIS_Lobart_RuebenToHilda = LOG_Success;
+		MIS_Lobart_RuebenToHilda = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 	}
 	else
@@ -184,7 +184,7 @@ instance DIA_Hilda_Einkaufen(C_Info)
 
 func int DIA_Hilda_Einkaufen_Condition()
 {
-	if((MIS_Lobart_RuebenToHilda == LOG_Success) && (Kapitel < 3))
+	if((MIS_Lobart_RuebenToHilda == LOG_SUCCESS) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -230,7 +230,7 @@ func void DIA_Hilda_PfanneGeholt_Info()
 	AI_Output(other,self,"DIA_Hilda_PfanneGeholt_15_00");	//Вот твоя сковородка.
 	B_GiveInvItems(other,self,ItMi_Pan,1);
 	AI_Output(self,other,"DIA_Hilda_PfanneGeholt_17_01");	//Отлично. Посмотрим, хорошая ли она...
-	MIS_Hilda_PfanneKaufen = LOG_Success;
+	MIS_Hilda_PfanneKaufen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HildaHolPfanne);
 };
 
@@ -269,7 +269,7 @@ func void DIA_Hilda_PfanneTooLate_Info()
 		AI_Output(other,self,"DIA_Hilda_PfanneTooLate_15_02");	//Извини, я немного подзадержался. Вот твоя сковородка!
 		B_GiveInvItems(other,self,ItMi_Pan,1);
 		AI_Output(self,other,"DIA_Hilda_PfanneTooLate_17_03");	//Ах-х, давай же ее сюда! Ну и нахал же ты - просто невероятно!
-		MIS_Hilda_PfanneKaufen = LOG_Success;
+		MIS_Hilda_PfanneKaufen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_HildaHolPfanne / 2);
 		AI_StopProcessInfos(self);
 	}
@@ -287,7 +287,7 @@ func void DIA_Hilda_PfanneTooLate_Info()
 			AI_Output(self,other,"DIA_Hilda_PfanneTooLate_17_07");	//Прочь с глаз моих, грязный вор!
 			B_MemorizePlayerCrime(self,other,CRIME_THEFT);
 		};
-		MIS_Hilda_PfanneKaufen = LOG_Failed;
+		MIS_Hilda_PfanneKaufen = LOG_FAILED;
 		B_CheckLog();
 		AI_StopProcessInfos(self);
 	};
@@ -332,7 +332,7 @@ instance DIA_Hilda_KRANK(C_Info)
 
 func int DIA_Hilda_KRANK_Condition()
 {
-	if((Kapitel >= 3) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)) && (MIS_HealHilda != LOG_Success))
+	if((Kapitel >= 3) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)) && (MIS_HealHilda != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -344,7 +344,7 @@ var int DIA_Hilda_KRANK_OnTime;
 func void DIA_Hilda_KRANK_Info()
 {
 	AI_Output(other,self,"DIA_Hilda_KRANK_15_00");	//Как ты себя чувствуешь?
-	AI_Output(self,other,"DIA_Hilda_KRANK_17_01");	//Отвратительно. У меня опять эта жуткая лихорадка.
+	AI_Output(self,other,"DIA_Hilda_KRANK_17_01");	//Отвратительно. У меня опять эта ужасная лихорадка.
 	AI_Output(self,other,"DIA_Hilda_KRANK_17_02");	//Мне бы нужно сходить к городскому лекарю, но я слишком слаба для этого.
 	if(DIA_Hilda_KRANK_OnTime == FALSE)
 	{
@@ -402,7 +402,7 @@ func void DIA_Hilda_HEILUNGBRINGEN_Info()
 	AI_Output(self,other,"DIA_Hilda_HEILUNGBRINGEN_17_02");	//Надеюсь, этих нескольких монет будет достаточно.
 	CreateInvItems(self,ItMi_Gold,50);
 	B_GiveInvItems(self,other,ItMi_Gold,50);
-	MIS_HealHilda = LOG_Success;
+	MIS_HealHilda = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HealHilda);
 	AI_StopProcessInfos(self);
 };
@@ -421,7 +421,7 @@ instance DIA_Hilda_DISTURB(C_Info)
 
 func int DIA_Hilda_DISTURB_Condition()
 {
-	if((MIS_HealHilda == LOG_Success) || (((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (Kapitel > 3)))
+	if((MIS_HealHilda == LOG_SUCCESS) || (((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (Kapitel > 3)))
 	{
 		return TRUE;
 	};
@@ -429,7 +429,7 @@ func int DIA_Hilda_DISTURB_Condition()
 
 func void DIA_Hilda_DISTURB_Info()
 {
-	if(MIS_HealHilda == LOG_Success)
+	if(MIS_HealHilda == LOG_SUCCESS)
 	{
 		AI_Output(other,self,"DIA_Hilda_DISTURB_15_00");	//Как твое здоровье?
 		AI_Output(self,other,"DIA_Hilda_DISTURB_17_01");	//Уже лучше, спасибо тебе.
@@ -441,18 +441,18 @@ func void DIA_Hilda_DISTURB_Info()
 };
 
 
-instance DIA_HILDA_KAP4_EXIT(C_Info)
+instance DIA_Hilda_KAP4_EXIT(C_Info)
 {
 	npc = BAU_951_Hilda;
 	nr = 999;
-	condition = dia_hilda_kap4_exit_condition;
-	information = dia_hilda_kap4_exit_info;
+	condition = DIA_Hilda_KAP4_EXIT_Condition;
+	information = DIA_Hilda_KAP4_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_hilda_kap4_exit_condition()
+func int DIA_Hilda_KAP4_EXIT_Condition()
 {
 	if(Kapitel == 4)
 	{
@@ -460,24 +460,24 @@ func int dia_hilda_kap4_exit_condition()
 	};
 };
 
-func void dia_hilda_kap4_exit_info()
+func void DIA_Hilda_KAP4_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_HILDA_KAP5_EXIT(C_Info)
+instance DIA_Hilda_KAP5_EXIT(C_Info)
 {
 	npc = BAU_951_Hilda;
 	nr = 999;
-	condition = dia_hilda_kap5_exit_condition;
-	information = dia_hilda_kap5_exit_info;
+	condition = DIA_Hilda_KAP5_EXIT_Condition;
+	information = DIA_Hilda_KAP5_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_hilda_kap5_exit_condition()
+func int DIA_Hilda_KAP5_EXIT_Condition()
 {
 	if(Kapitel == 5)
 	{
@@ -485,24 +485,24 @@ func int dia_hilda_kap5_exit_condition()
 	};
 };
 
-func void dia_hilda_kap5_exit_info()
+func void DIA_Hilda_KAP5_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_HILDA_KAP6_EXIT(C_Info)
+instance DIA_Hilda_KAP6_EXIT(C_Info)
 {
 	npc = BAU_951_Hilda;
 	nr = 999;
-	condition = dia_hilda_kap6_exit_condition;
-	information = dia_hilda_kap6_exit_info;
+	condition = DIA_Hilda_KAP6_EXIT_Condition;
+	information = DIA_Hilda_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_hilda_kap6_exit_condition()
+func int DIA_Hilda_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -510,7 +510,7 @@ func int dia_hilda_kap6_exit_condition()
 	};
 };
 
-func void dia_hilda_kap6_exit_info()
+func void DIA_Hilda_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

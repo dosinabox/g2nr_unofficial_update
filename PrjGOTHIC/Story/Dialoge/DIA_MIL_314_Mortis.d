@@ -1,7 +1,7 @@
 
 instance DIA_Mortis_EXIT(C_Info)
 {
-	npc = MIL_314_Mortis;
+	npc = Mil_314_Mortis;
 	nr = 999;
 	condition = DIA_Mortis_EXIT_Condition;
 	information = DIA_Mortis_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Mortis_EXIT_Info()
 
 instance DIA_Mortis_Hallo(C_Info)
 {
-	npc = MIL_314_Mortis;
+	npc = Mil_314_Mortis;
 	nr = 2;
 	condition = DIA_Mortis_Hallo_Condition;
 	information = DIA_Mortis_Hallo_Info;
@@ -48,7 +48,7 @@ func void DIA_Mortis_Hallo_Info()
 
 instance DIA_Mortis_Waffe(C_Info)
 {
-	npc = MIL_314_Mortis;
+	npc = Mil_314_Mortis;
 	nr = 2;
 	condition = DIA_Mortis_Waffe_Condition;
 	information = DIA_Mortis_Waffe_Info;
@@ -75,7 +75,7 @@ func void DIA_Mortis_Waffe_Info()
 
 instance DIA_Mortis_Paket(C_Info)
 {
-	npc = MIL_314_Mortis;
+	npc = Mil_314_Mortis;
 	nr = 2;
 	condition = DIA_Mortis_Paket_Condition;
 	information = DIA_Mortis_Paket_Info;
@@ -104,7 +104,7 @@ func void DIA_Mortis_Paket_Info()
 
 instance DIA_Mortis_Redlight(C_Info)
 {
-	npc = MIL_314_Mortis;
+	npc = Mil_314_Mortis;
 	nr = 2;
 	condition = DIA_Mortis_Redlight_Condition;
 	information = DIA_Mortis_Redlight_Info;
@@ -134,7 +134,7 @@ func void DIA_Mortis_Redlight_Info()
 
 instance DIA_Mortis_CanTeach(C_Info)
 {
-	npc = MIL_314_Mortis;
+	npc = Mil_314_Mortis;
 	nr = 5;
 	condition = DIA_Mortis_CanTeach_Condition;
 	information = DIA_Mortis_CanTeach_Info;
@@ -170,7 +170,7 @@ func void DIA_Mortis_CanTeach_Info()
 
 instance DIA_Mortis_Teach(C_Info)
 {
-	npc = MIL_314_Mortis;
+	npc = Mil_314_Mortis;
 	nr = 100;
 	condition = DIA_Mortis_Teach_Condition;
 	information = DIA_Mortis_Teach_Info;
@@ -189,7 +189,7 @@ func int DIA_Mortis_Teach_Condition()
 
 func void DIA_Mortis_Teach_Info()
 {
-	AI_Output(other,self,"DIA_Mortis_Teach_15_00");	//
+	AI_Output(other,self,"DIA_Mortis_Teach_15_00");	//Я хочу стать сильнее.
 	Info_ClearChoices(DIA_Mortis_Teach);
 	Info_AddChoice(DIA_Mortis_Teach,Dialog_Back,DIA_Mortis_Teach_BACK);
 	Info_AddChoice(DIA_Mortis_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Mortis_Teach_1);
@@ -226,7 +226,7 @@ func void DIA_Mortis_Teach_5()
 
 instance DIA_Mortis_PICKPOCKET(C_Info)
 {
-	npc = MIL_314_Mortis;
+	npc = Mil_314_Mortis;
 	nr = 900;
 	condition = DIA_Mortis_PICKPOCKET_Condition;
 	information = DIA_Mortis_PICKPOCKET_Info;

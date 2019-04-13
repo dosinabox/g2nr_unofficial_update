@@ -47,9 +47,9 @@ func void DIA_Bilgot_HALLO_Info()
 func void DIA_Bilgot_HALLO_Zufall()
 {
 	AI_Output(other,self,"DIA_Bilgot_HALLO_Zufall_15_00");	//Я просто случайно забрел сюда...
-	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_01");	//Парень, никто не входит сюда СЛУЧАЙНО. Мы заперты здесь - окруженные снепперами!
+	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_01");	//Парень, никто не заходит сюда СЛУЧАЙНО. Мы заперты здесь - окруженные снепперами!
 	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_02");	//И дня не проходит, чтобы они не загрызли кого-нибудь из наших.
-	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_03");	//Так ты не скажешь мне, откуда ты пришел? Хорошо - пусть тебя тогда съедят снепперы!
+	AI_Output(self,other,"DIA_Bilgot_HALLO_Zufall_05_03");	//Так ты не скажешь мне, откуда ты пришел? Хорошо - пусть тогда тебя съедят снепперы!
 	AI_StopProcessInfos(self);
 };
 
@@ -59,7 +59,7 @@ func void DIA_Bilgot_HALLO_Burg()
 	AI_Output(self,other,"DIA_Bilgot_HALLO_Burg_05_01");	//Как там дела?
 	AI_Output(other,self,"DIA_Bilgot_HALLO_Burg_15_02");	//Не лучше, чем здесь. Орки все еще там, если ты это имел в виду.
 	AI_Output(self,other,"DIA_Bilgot_HALLO_Burg_05_03");	//Черт. Нигде нельзя чувствовать себя в безопасности.
-	AI_Output(self,other,"DIA_Bilgot_HALLO_Burg_05_04");	//Я скажу тебе кое-что. Если бы я не был напуган до смерти, я бы сбежал отсюда.
+	AI_Output(self,other,"DIA_Bilgot_HALLO_Burg_05_04");	//Я скажу тебе кое-что. Если бы я не был напуган до смерти, я бы бежал отсюда.
 	Info_ClearChoices(DIA_Bilgot_HALLO);
 };
 
@@ -114,7 +114,7 @@ func void DIA_Bilgot_Hilfe_Info()
 {
 	AI_Output(other,self,"DIA_Bilgot_Hilfe_15_00");	//Что ты знаешь о снепперах?
 	AI_Output(self,other,"DIA_Bilgot_Hilfe_05_01");	//Зачем тебе знать это? И не говори мне, что просто из любопытства!
-	AI_Output(other,self,"DIA_Bilgot_Hilfe_15_02");	//Я собираюсь поохотиться на этих снепперов.
+	AI_Output(other,self,"DIA_Bilgot_Hilfe_15_02");	//Я собираюсь поохотиться на этих снепперов,
 	AI_Output(self,other,"DIA_Bilgot_Hilfe_05_03");	//Это безумие. Я наблюдал за ними - что за кровожадные твари!
 	AI_Output(other,self,"DIA_Bilgot_Hilfe_15_04");	//Тогда расскажи мне, что ты о них знаешь.
 	AI_Output(self,other,"DIA_Bilgot_Hilfe_05_05");	//Хм... я мог бы помочь тебе, но только при одном условии!
@@ -179,7 +179,7 @@ instance DIA_Bilgot_TAKEYOUWITHME(C_Info)
 
 func int DIA_Bilgot_TAKEYOUWITHME_Condition()
 {
-	if((MIS_Fajeth_Kill_Snapper == LOG_Success) && Npc_KnowsInfo(other,DIA_Bilgot_KNOWSLEADSNAPPER))
+	if((MIS_Fajeth_Kill_Snapper == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bilgot_KNOWSLEADSNAPPER))
 	{
 		return TRUE;
 	};
@@ -250,7 +250,7 @@ func void DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Info()
 	AI_Output(self,other,"DIA_Bilgot_BEIBRUECKEANGEKOMMEN_05_03");	//Прощай!
 	AI_StopProcessInfos(self);
 	TschuessBilgot = TRUE;
-	MIS_RescueBilgot = LOG_Success;
+	MIS_RescueBilgot = LOG_SUCCESS;
 	B_GivePlayerXP(XP_BilgotEscort);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"FLEEOUTOFOW");
@@ -278,7 +278,7 @@ func int DIA_Bilgot_LetztePause_Condition()
 
 func void DIA_Bilgot_LetztePause_Info()
 {
-	AI_Output(other,self,"DIA_Bilgot_LetztePause_15_00");	//Что ты делаешь здесь? Я думал, ты пошел через Проход!
+	AI_Output(other,self,"DIA_Bilgot_LetztePause_15_00");	//Что ты делаешь здесь? Я думал, ты пошел через Проход?
 	AI_Output(self,other,"DIA_Bilgot_LetztePause_05_01");	//Я просто не в силах идти. Мне нужно передохнуть немного. Я справлюсь. Не волнуйся!
 	AI_Output(other,self,"DIA_Bilgot_LetztePause_15_02");	//Как скажешь.
 	AI_Output(self,other,"DIA_Bilgot_LetztePause_05_03");	//Просто немного передохну.

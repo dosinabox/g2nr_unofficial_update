@@ -1,5 +1,5 @@
 
-func int B_StopMagicFlee()
+func void B_StopMagicFlee()
 {
 	Npc_PercDisable(self,PERC_ASSESSDAMAGE);
 	Npc_SetTarget(self,other);
@@ -48,7 +48,9 @@ func int ZS_MagicFlee_Loop()
 	{
 		Npc_ClearAIQueue(self);
 		B_StopMagicFlee();
+		return LOOP_END;
 	};
+	return LOOP_CONTINUE;
 };
 
 func void ZS_MagicFlee_End()

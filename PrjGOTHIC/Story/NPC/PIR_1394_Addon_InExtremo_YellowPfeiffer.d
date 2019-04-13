@@ -1,7 +1,7 @@
 
 instance PIR_1394_Addon_InExtremo_YellowPfeiffer(Npc_Default)
 {
-	name[0] = "Æוכעûי Ïפויפונ";
+	name[0] = "Æוכעûי Ïפאיפונ";
 	npcType = npctype_main;
 	guild = GIL_NONE;
 	level = 4;
@@ -16,6 +16,7 @@ instance PIR_1394_Addon_InExtremo_YellowPfeiffer(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 88;
 	attribute[ATR_HITPOINTS] = 88;
 	CreateInvItem(self,ItMi_IEDudelGelb);
+	B_CreateAmbientInv(self);
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"Hum_IE_Pfeiffer_INSTRUMENT",DEFAULT,DEFAULT,"HUM_HEAD_Pfeiffer",DEFAULT,DEFAULT,-1);
 	fight_tactic = FAI_HUMAN_STRONG;

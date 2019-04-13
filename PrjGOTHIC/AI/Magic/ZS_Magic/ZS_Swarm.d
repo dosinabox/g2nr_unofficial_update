@@ -22,7 +22,7 @@ func void B_StopSwarm()
 	};
 };
 
-func int ZS_Swarm()
+func void ZS_Swarm()
 {
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_RestartSwarm);
 	Npc_StopAni(self,"S_SWARM_VICTIM");

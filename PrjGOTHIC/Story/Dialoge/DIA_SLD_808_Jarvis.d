@@ -1,7 +1,7 @@
 
 instance DIA_Jarvis_EXIT(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 999;
 	condition = DIA_Jarvis_EXIT_Condition;
 	information = DIA_Jarvis_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Jarvis_EXIT_Info()
 
 instance DIA_Jarvis_Hello(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 1;
 	condition = DIA_Jarvis_Hello_Condition;
 	information = DIA_Jarvis_Hello_Info;
@@ -50,7 +50,7 @@ func void DIA_Jarvis_Hello_Info()
 
 instance DIA_Jarvis_DieLage(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 2;
 	condition = DIA_Jarvis_DieLage_Condition;
 	information = DIA_Jarvis_DieLage_Info;
@@ -74,7 +74,7 @@ func void DIA_Jarvis_DieLage_Info()
 
 instance DIA_Jarvis_TwoFronts(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 3;
 	condition = DIA_Jarvis_TwoFronts_Condition;
 	information = DIA_Jarvis_TwoFronts_Info;
@@ -106,7 +106,7 @@ func void DIA_Jarvis_TwoFronts_Info()
 
 instance DIA_Jarvis_LeesPlan(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 4;
 	condition = DIA_Jarvis_LeesPlan_Condition;
 	information = DIA_Jarvis_LeesPlan_Info;
@@ -137,7 +137,7 @@ func void DIA_Jarvis_LeesPlan_Info()
 
 instance DIA_Jarvis_SylviosPlan(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 5;
 	condition = DIA_Jarvis_SylviosPlan_Condition;
 	information = DIA_Jarvis_SylviosPlan_Info;
@@ -166,7 +166,7 @@ func void DIA_Jarvis_SylviosPlan_Info()
 
 instance DIA_Jarvis_WannaJoin(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 6;
 	condition = DIA_Jarvis_WannaJoin_Condition;
 	information = DIA_Jarvis_WannaJoin_Info;
@@ -195,7 +195,7 @@ func void DIA_Jarvis_WannaJoin_Info()
 
 instance DIA_Jarvis_MissionKO(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 7;
 	condition = DIA_Jarvis_MissionKO_Condition;
 	information = DIA_Jarvis_MissionKO_Info;
@@ -227,7 +227,7 @@ func void DIA_Jarvis_MissionKO_Info()
 
 instance DIA_Jarvis_DuellRegeln(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_DuellRegeln_Condition;
 	information = DIA_Jarvis_DuellRegeln_Info;
@@ -255,7 +255,7 @@ func void DIA_Jarvis_DuellRegeln_Info()
 
 instance DIA_Jarvis_SylviosMen(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_SylviosMen_Condition;
 	information = DIA_Jarvis_SylviosMen_Info;
@@ -275,7 +275,7 @@ func int DIA_Jarvis_SylviosMen_Condition()
 func void DIA_Jarvis_SylviosMen_Info()
 {
 	AI_Output(other,self,"DIA_Jarvis_SylviosMen_15_00");	//Кто из наемников люди Сильвио?
-	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_01");	//Их шестеро. Прежде всего, сам Сильвио и его правая рука Буллко.
+	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_01");	//Их шестеро. Прежде всего, сам Сильвио и его правая рука Булко.
 	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_02");	//Также есть Род, Сентенза, Фестер и Рауль.
 	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_03");	//Остальные занимают либо нейтральную позицию, либо на стороне Ли.
 	B_LogEntry(TOPIC_JarvisSLDKo,"Люди Сильвио - это сам Сильвио, его правая рука Булко, Род, Сентенза, Фестер и Рауль.");
@@ -284,7 +284,7 @@ func void DIA_Jarvis_SylviosMen_Info()
 
 instance DIA_Jarvis_HowMany(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_HowMany_Condition;
 	information = DIA_Jarvis_HowMany_Info;
@@ -303,17 +303,17 @@ func int DIA_Jarvis_HowMany_Condition()
 
 func void DIA_Jarvis_HowMany_Info()
 {
-	AI_Output(other,self,"DIA_Jarvis_HowMany_15_00");	//И сколько людей Сильвио я должен победить?
+	AI_Output(other,self,"DIA_Jarvis_HowMany_15_00");	//Сколько людей Сильвио я должен победить?
 	AI_Output(self,other,"DIA_Jarvis_HowMany_04_01");	//Если ты вырубишь троих из них, ты докажешь, на чьей ты стороне.
 	AI_Output(self,other,"DIA_Jarvis_HowMany_04_02");	//Кого ты выберешь - это твое дело.
-	AI_Output(self,other,"DIA_Jarvis_HowMany_04_03");	//Дам одну подсказку: не стоит пытаться проявить мужество. Не выступай против самого Сильвио - он сделает из тебя котлету.
+	AI_Output(self,other,"DIA_Jarvis_HowMany_04_03");	//Дам одну подсказку: Не стоит пытаться проявить мужество. Не выступай против самого Сильвио - он сделает из тебя котлету.
 	B_LogEntry(TOPIC_JarvisSLDKo,"Вполне достаточно, если я вырублю троих людей Сильвио. Впрочем, с самим Сильвио мне лучше пока не связываться.");
 };
 
 
 instance DIA_Jarvis_HowManyLeft(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_HowManyLeft_Condition;
 	information = DIA_Jarvis_HowManyLeft_Info;
@@ -337,7 +337,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 	victories = 0;
 	if((Bullco.aivar[AIV_DefeatedByPlayer] == TRUE) || (Bullco.aivar[AIV_KilledByPlayer] == TRUE))
 	{
-		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_01");	//Я отдубасил Буллко.
+		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_01");	//Я отдубасил Булко.
 		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_02");	//Я слышал. Неплохо.
 		victories = victories + 1;
 	};
@@ -401,10 +401,10 @@ func void DIA_Jarvis_HowManyLeft_Info()
 		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_15");	//Этого достаточно, вполне достаточно.
 		if(victories == 6)
 		{
-			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_16");	//Ты им всем начистил физиономию, да?
+			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_16");	//Ты им всем начистил физиономию, Да?
 		};
 		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_17");	//Я поражен - если Ли спросит мое мнение, я проголосую за тебя без колебаний.
-		MIS_Jarvis_SldKO = LOG_Success;
+		MIS_Jarvis_SldKO = LOG_SUCCESS;
 		self.aivar[AIV_IGNORE_Murder] = FALSE;
 		B_GivePlayerXP(XP_Ambient * victories);
 		B_LogEntry(TOPIC_SLDRespekt,"Джарвис проголосует за меня, если я решу присоединиться к наемникам.");
@@ -417,7 +417,7 @@ var int Jarvis_SylvioComment;
 
 instance DIA_Jarvis_PERM(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_PERM_Condition;
 	information = DIA_Jarvis_PERM_Info;
@@ -453,7 +453,7 @@ func void DIA_Jarvis_PERM_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Jarvis_PERM_04_03");	//Последнее время люди Сильвио ходят какие-то подавленные. (грязный смешок)
+			AI_Output(self,other,"DIA_Jarvis_PERM_04_03");	//Последнее время, люди Сильвио ходят какие-то подавленные. (грязный смешок)
 		};
 	};
 	if(Kapitel >= 4)
@@ -474,7 +474,7 @@ func void DIA_Jarvis_PERM_Info()
 
 instance DIA_Jarvis_PICKPOCKET(C_Info)
 {
-	npc = SLD_808_Jarvis;
+	npc = Sld_808_Jarvis;
 	nr = 900;
 	condition = DIA_Jarvis_PICKPOCKET_Condition;
 	information = DIA_Jarvis_PICKPOCKET_Info;

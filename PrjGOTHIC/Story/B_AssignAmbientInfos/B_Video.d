@@ -23,14 +23,14 @@ func void B_Video()
 	AI_Output(other,self,"OUTRO_Xardas_15_01");	//Ксардас! Что именно произошло в Храме Ирдората?
 	AI_Output(self,other,"OUTRO_Xardas_14_02");	//С помощью Инноса ты уничтожил воплощение Зла.
 	AI_Output(self,other,"OUTRO_Xardas_14_03");	//И я впитал его силу...
-	AI_Output(self,other,"OUTRO_Xardas_14_04");	//С тех пор, как я покинул Круг Огня, это было единственной моей целью.
+	AI_Output(self,other,"OUTRO_Xardas_14_04");	//С тех пор как Я покинул Круг Огня, это было единственной моей целью.
 	AI_Output(self,other,"OUTRO_Xardas_14_05");	//Чтобы достичь ее, я помог тебе выполнить твое предназначение.
 	AI_Output(self,other,"OUTRO_Xardas_14_06");	//То, что мне не удалось в Храме Спящего, наконец, свершилось.
 	AI_Output(self,other,"OUTRO_Xardas_14_07");	//Белиар выбрал меня.
-	AI_Output(other,self,"OUTRO_Xardas_15_08");	//Так ты теперь повинуешься богу Тьмы?
+	AI_Output(other,self,"OUTRO_Xardas_15_08");	//Так ты теперь повинуешься богу тьмы?
 	AI_Output(self,other,"OUTRO_Xardas_14_09");	//Нет. Я повинуюсь Белиару не больше, чем ты повинуешься Инносу!
 	AI_Output(self,other,"OUTRO_Xardas_14_10");	//Даже боги не знают, какая судьба нас ждет...
-	AI_Output(self,other,"OUTRO_Xardas_14_11");	//И я только начинаю осознавать возможности, которые открываются передо мной...
+	AI_Output(self,other,"OUTRO_Xardas_14_11");	//И я только начинаю осознавать возможности, которые открываются предо мной...
 	AI_Output(self,other,"OUTRO_Xardas_14_12");	//Но одно можно сказать с определенностью. Мы еще встретимся...
 	AI_Output(self,other,"OUTRO_Xardas_04_00");	//(кричит) До встречи!
 	AI_Output(self,other,"Cutscene_Drachen_04_00");	//(смотрит вдаль, видит что-то) Хммм?
@@ -43,7 +43,7 @@ func void B_Video()
 	AI_Output(self,other,"Cutscene_OrcSturm_04_02");	//Аааааа! (разное)
 	AI_Output(self,other,"OUTRO_Schiff_12_00");	//Мы перегружены. Мы должны выбросить часть золота за борт.
 	AI_Output(other,self,"OUTRO_Schiff_15_01");	//Руки прочь от этого золота!
-	AI_Output(self,other,"OUTRO_Schiff_12_02");	//Послушай, будет действительно лучше, если мы...
+	AI_Output(self,other,"OUTRO_Schiff_12_02");	//Послушай, будет действительно лучше, если мы ...
 	AI_Output(other,self,"OUTRO_Schiff_15_03");	//Я даже и слышать не хочу об этом...
 	AI_Output(self,other,"OUTRO_Schiff_11_04");	//Я слышал, война с орками идет плохо...
 	AI_Output(other,self,"OUTRO_Schiff_15_05");	//И?
@@ -51,11 +51,11 @@ func void B_Video()
 	AI_Output(other,self,"OUTRO_Schiff_15_07");	//Это золото останется на борту!
 	AI_Output(self,other,"OUTRO_Schiff_12_08");	//Что толку от этого золота, если мы опрокинемся в самый легкий шторм?
 	AI_Output(other,self,"OUTRO_Schiff_15_09");	//Но я не вижу шторма...
-	AI_Output(self,other,"OUTRO_Schiff_12_10");	//ПОКА нет...
+	AI_Output(self,other,"OUTRO_Schiff_12_10");	//ПОКА нет ...
 	AI_Output(other,self,"OUTRO_Schiff_15_11");	//Расслабься! Все будет в порядке!
-	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ... люди?
+	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ...люди?
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_01");	//(пренебрежительно) Люди слабы.
-	AI_Output(self,other,"DIA_Addon_AddonIntro_14_02");	//(пренебрежительно) Они слишком легко поддаются соблазнам Зла.
+	AI_Output(self,other,"DIA_Addon_AddonIntro_14_02");	//(пренебрежительно) Они слишком легко поддаются соблазнам зла.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_03");	//Таким образом они вовлекаются в дела, которые не могут понять и уж тем более не могут контролировать.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_04");	//Твердые в своей вере уже начали сражение с врагом.
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_00");	//После исчезновения Барьера и уничтожения Спящего, гнев Белиара стал еще страшнее!

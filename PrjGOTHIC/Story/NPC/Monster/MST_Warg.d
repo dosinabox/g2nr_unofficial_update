@@ -71,3 +71,11 @@ instance BlackWolf(Mst_Default_Warg)
 	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
+instance WARGTRANSFORM(Mst_Default_Warg)
+{
+	Npc_PercEnable(self,PERC_ASSESSSURPRISE,b_stopmagictransform);
+	B_SetVisuals_WARG();
+	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,1);
+};
+

@@ -139,9 +139,9 @@ func void DIA_Matteo_TRADE_Info()
 {
 	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Matteo_TRADE_15_00");	//Покажи мне свои товары.
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_Success) && (Matteo_TradeNewsPermanent == FALSE))
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == FALSE))
 	{
-		AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно более строгими.
+		AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно боле строгими.
 		AI_Output(self,other,"DIA_Matteo_TRADE_09_02");	//Я надеюсь, все успокоится, когда этого убийцу повесят.
 		Matteo_TradeNewsPermanent = 1;
 	};
@@ -163,7 +163,7 @@ instance DIA_Matteo_LEATHER(C_Info)
 	condition = DIA_Matteo_LEATHER_Condition;
 	information = DIA_Matteo_LEATHER_Info;
 	permanent = TRUE;
-	description = "Купить кожаные доспехи. Защита: оружие 25, стрелы 20. (250 золота)";
+	description = "Купить кожаные доспехи. Защита: оружие 25, стрелы 20, огонь 5. (250 золота)";
 };
 
 
@@ -186,7 +186,7 @@ func void DIA_Matteo_LEATHER_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Matteo_LEATHER_09_02");	//Эти доспехи стоят недешево - но они, определенно, стоят своих денег. Так что возвращайся, когда у тебя будет достаточно золота
+		AI_Output(self,other,"DIA_Matteo_LEATHER_09_02");	//Эти доспехи стоят недешево - но они, определенно, стоят своих денег. Так что возвращайся, когда у тебя будет достаточно золота.
 	};
 };
 
@@ -387,7 +387,7 @@ func void B_Matteo_RegDichAb()
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_02");	//В принципе, это МОЕ золото.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_03");	//Гритта, племянница плотника, уже давно не отдает мне долг.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_04");	//Но эта маленькая вертихвостка постоянно дефилирует в новых платьях - это означает, что деньги у нее есть.
-	AI_Output(self,other,"B_Matteo_RegDichAb_09_05");	//Я хочу, чтобы ты выбил из нее этот долг. Но мастер Торбен, плотник - тоже очень влиятельный человек.
+	AI_Output(self,other,"B_Matteo_RegDichAb_09_05");	//Я хочу, чтобы ты выбил из нее этот долг. Но мастер Торбен - плотник - тоже очень влиятельный человек.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_06");	//Принеси мне эти деньги, и я помогу тебе.
 	MIS_Matteo_Gold = LOG_Running;
 	Log_CreateTopic(TOPIC_Matteo,LOG_MISSION);
@@ -462,7 +462,7 @@ func void DIA_MAtteo_GoldRunning_Info()
 	{
 		AI_Output(self,other,"DIA_Matteo_GoldRunning_09_01");	//На этом золоте кровь Гритты! Я не говорил, что нужно убивать ее!
 		AI_Output(self,other,"DIA_Matteo_GoldRunning_09_02");	//Я не хочу иметь никакого отношения к этому делу. Ты можешь забыть о нашей сделке! Не хочу даже вспоминать об этом!
-		MIS_Matteo_Gold = LOG_Failed;
+		MIS_Matteo_Gold = LOG_FAILED;
 		B_CheckLog();
 		AI_StopProcessInfos(self);
 		return;
@@ -481,7 +481,7 @@ func void DIA_MAtteo_GoldRunning_Info()
 			AI_Output(self,other,"DIA_Matteo_GoldRunning_09_07");	//Но все же - 100 золотых есть 100 золотых.
 			AI_Output(self,other,"DIA_Matteo_GoldRunning_09_08");	//Ты выполнил свою часть сделки.
 		};
-		MIS_Matteo_Gold = LOG_Success;
+		MIS_Matteo_Gold = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Matteo_Gold);
 	}
 	else
@@ -506,7 +506,7 @@ var int DIA_Matteo_Zustimmung_perm;
 
 func int DIA_Matteo_Zustimmung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && ((MIS_Matteo_Gold == LOG_Running) || (MIS_Matteo_Gold == LOG_Success)) && (Player_IsApprentice == APP_NONE) && (DIA_Matteo_Zustimmung_perm == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && ((MIS_Matteo_Gold == LOG_Running) || (MIS_Matteo_Gold == LOG_SUCCESS)) && (Player_IsApprentice == APP_NONE) && (DIA_Matteo_Zustimmung_perm == FALSE))
 	{
 		return TRUE;
 	};
@@ -515,7 +515,7 @@ func int DIA_Matteo_Zustimmung_Condition()
 func void DIA_MAtteo_Zustimmung_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_Zustimmung_15_00");	//Помоги мне стать учеником одного из мастеров!
-	if(MIS_Matteo_Gold == LOG_Success)
+	if(MIS_Matteo_Gold == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Matteo_Zustimmung_09_01");	//Не волнуйся, я выполню свои обещания.
 		AI_Output(self,other,"DIA_Matteo_Zustimmung_09_02");	//Другие мастера услышат от меня о тебе только хорошее.
@@ -555,7 +555,7 @@ func void DIA_MAtteo_HowCanYouHelp_Info()
 	AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_01");	//Это просто. Я использую свое влияние, чтобы убедить других здешних мастеров взять тебя в ученики.
 	if(other.guild == GIL_NONE)
 	{
-		AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_02");	//Став учеником, ты автоматически станешь гражданином города и сможешь попасть в верхний квартал. Помимо этого, ты сможешь что-нибудь заработать.
+		AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_02");	//Став учеником, ты автоматически станешь и гражданином города и сможешь попасть в верхний квартал. Помимо этого, ты сможешь что-нибудь заработать.
 	};
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
@@ -586,7 +586,7 @@ func void DIA_MAtteo_WoAlsLehrling_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WoAlsLehrling_15_00");	//А к кому я могу поступить в ученики?
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_01");	//К любому мастеру на этой улице.
-	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_02");	//Это может быть кузнец Гарад, мастер-лучник Боспер, плотник Торбен или алхимик Константино.
+	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_02");	//Это может быть кузнец Гарад, мастер-лучник Боспер, плотник Торбен или алхимик  Константино.
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_03");	//Один из них обязательно возьмет тебя.
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_04");	//Но важно, чтобы с этим были согласны другие мастера. Таков обычай Хориниса.
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
@@ -619,7 +619,7 @@ func void DIA_MAtteo_WieZustimmung_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WieZustimmung_15_00");	//Как мне получить одобрение других мастеров?
 	AI_Output(self,other,"DIA_Matteo_WieZustimmung_09_01");	//Ты просто должен убедить их. Иди и поговори с ними.
-	AI_Output(self,other,"DIA_Matteo_WieZustimmung_09_02");	//Но, а если хотя бы двое из них будут против тебя, тебе не поступить в ученики! Так что постарайся понравиться им!
+	AI_Output(self,other,"DIA_Matteo_WieZustimmung_09_02");	//Но если хотя бы двое из них будут против тебя, тебе не поступить в ученики! Так что постарайся понравиться им!
 	B_LogEntry(TOPIC_Lehrling,"Я смогу получить одобрение мастеров, только если я проявлю себя с лучшей стороны перед ними.");
 };
 

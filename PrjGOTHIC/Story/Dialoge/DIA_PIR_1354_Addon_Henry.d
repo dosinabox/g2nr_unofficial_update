@@ -120,14 +120,14 @@ func void DIA_Addon_Henry_Hello_Info()
 };
 
 
-var int henry_sc_frech;
+var int Henry_SC_Frech;
 
 func void DIA_Addon_Henry_Hello_Feind()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Hello_Feind_15_00");	//Враг!
 	AI_Output(self,other,"DIA_Addon_Henry_Hello_Feind_04_01");	//Ищешь приключений на свою задницу, клоун?
 	AI_Output(self,other,"DIA_Addon_Henry_Hello_Feind_04_02");	//Говори, что тебе надо, или убирайся, да поскорее.
-	HENRY_SC_FRECH = TRUE;
+	Henry_SC_Frech = TRUE;
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,PIR_1354_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
 	Info_ClearChoices(DIA_Addon_Henry_Hello);
@@ -235,7 +235,7 @@ func void DIA_Addon_Henry_WantEnter_Info()
 		Henry_Zoll_WhatFor = TRUE;
 	};
 	itm = Npc_GetEquippedArmor(other);
-	if((Hlp_IsItem(itm,itar_kdf_l) == TRUE) || (Hlp_IsItem(itm,itar_kdf_h) == TRUE) || (Hlp_IsItem(itm,ITAR_RANGER_Addon) == TRUE) || (Hlp_IsItem(itm,itar_mil_l) == TRUE) || (Hlp_IsItem(itm,itar_mil_m) == TRUE))
+	if((Hlp_IsItem(itm,ItAr_KDF_L) == TRUE) || (Hlp_IsItem(itm,ItAr_KDF_H) == TRUE) || (Hlp_IsItem(itm,ITAR_RANGER_Addon) == TRUE) || (Hlp_IsItem(itm,ITAR_Mil_L) == TRUE) || (Hlp_IsItem(itm,ItAr_MIL_M) == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
@@ -429,7 +429,7 @@ func void DIA_Addon_Henry_Tribut_Info()
 		AI_Output(self,other,"DIA_Addon_Henry_Tribut_04_04");	//У тебя посылка для Скипа.
 		Henry_Amount = Henry_Amount - 100;
 	};
-	if(MIS_Henry_FreeBDTTower == LOG_Success)
+	if(MIS_Henry_FreeBDTTower == LOG_SUCCESS)
 	{
 		if(Henry_Amount < 500)
 		{
@@ -490,7 +490,7 @@ instance DIA_Addon_Henry_Palisade(C_Info)
 	condition = DIA_Addon_Henry_Palisade_Condition;
 	information = DIA_Addon_Henry_Palisade_Info;
 	permanent = FALSE;
-	description = "Что ты делаешь здесь?";
+	description = "Что ты здесь делаешь?";
 };
 
 
@@ -564,7 +564,7 @@ instance DIA_Addon_Henry_Turmbanditen(C_Info)
 
 func int DIA_Addon_Henry_Turmbanditen_WhatFor_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Henry_Palisade_WhatFor) && (MIS_Henry_FreeBDTTower != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Addon_Henry_Palisade_WhatFor) && (MIS_Henry_FreeBDTTower != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -590,7 +590,7 @@ func void DIA_Addon_Henry_Turmbanditen_WhatFor_Info()
 		Npc_ExchangeRoutine(SawPirate,"START");
 		HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
 		Npc_ExchangeRoutine(HammerPirate,"START");
-		MIS_Henry_FreeBDTTower = LOG_Success;
+		MIS_Henry_FreeBDTTower = LOG_SUCCESS;
 		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни убиты.");
 		B_GivePlayerXP(XP_Addon_Henry_FreeBDTTower);
 	}
@@ -679,7 +679,7 @@ func void DIA_Addon_Henry_Entercrew_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Entercrew_04_06");	//Ну что ж, добро пожаловать!
 		AI_Output(self,other,"DIA_Addon_Henry_Entercrew_04_07");	//Еще один боец нам не помешает.
-		if(MIS_Henry_FreeBDTTower == LOG_Success)
+		if(MIS_Henry_FreeBDTTower == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_02");	//Хм-м. Я бы приказал тебе взять одного из моих ребят и выкурить засевших в башне бандитов...
 			AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_03");	//Но ты это уже сделал.
@@ -719,7 +719,7 @@ instance DIA_Addon_Henry_Owen(C_Info)
 
 func int DIA_Addon_Henry_Owen_Condition()
 {
-	if((MIS_Henry_FreeBDTTower == LOG_Success) && (Henry_EnterCrewMember == TRUE) && !Npc_IsDead(Malcom))
+	if((MIS_Henry_FreeBDTTower == LOG_SUCCESS) && (Henry_EnterCrewMember == TRUE) && !Npc_IsDead(Malcom))
 	{
 		return TRUE;
 	};
@@ -796,7 +796,7 @@ func void DIA_Addon_Henry_Owen2_Info()
 		B_GiveInvItems(self,other,ItMi_Gold,200);
 		B_StartOtherRoutine(PIR_1367_Addon_Owen,"PostStart");
 		B_LogEntry(TOPIC_Addon_HolOwen,"Оуэн отнесет Генри дерево.");
-		MIS_Henry_HolOwen = LOG_Success;
+		MIS_Henry_HolOwen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_Owen_ComesToHenry);
 	}
 	else
@@ -822,7 +822,7 @@ instance DIA_Addon_Henry_Palisade_CanHelp(C_Info)
 
 func int DIA_Addon_Henry_Palisade_CanHelp_Condition()
 {
-	if((MIS_Henry_HolOwen == LOG_Success) || (MIS_Henry_HolOwen == LOG_OBSOLETE))
+	if((MIS_Henry_HolOwen == LOG_SUCCESS) || (MIS_Henry_HolOwen == LOG_OBSOLETE))
 	{
 		return TRUE;
 	};

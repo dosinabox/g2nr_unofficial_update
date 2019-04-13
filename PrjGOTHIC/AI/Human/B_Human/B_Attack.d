@@ -58,7 +58,7 @@ func void B_Attack(var C_Npc slf,var C_Npc oth,var int attack_reason,var int wai
 	{
 		B_SetAttitude(slf,ATT_HOSTILE);
 	};
-	if(Npc_IsPlayer(oth))
+	if(C_NpcIsHero(oth))
 	{
 		slf.aivar[AIV_LastFightAgainstPlayer] = FIGHT_CANCEL;
 		slf.aivar[AIV_LastFightComment] = FALSE;

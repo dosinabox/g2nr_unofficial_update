@@ -35,7 +35,7 @@ instance DIA_Urshak_HALLO(C_Info)
 
 func int DIA_Urshak_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (urshak_sucked == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (URSHAK_SUCKED == FALSE))
 	{
 		return TRUE;
 	};
@@ -43,7 +43,7 @@ func int DIA_Urshak_HALLO_Condition()
 
 func void DIA_Urshak_HALLO_Info()
 {
-	AI_Output(self,other,"DIA_Urshak_HALLO_18_00");	//(агрессивно) ХРОТОК ДЖАБАРТ!!!
+	AI_Output(self,other,"DIA_Urshak_HALLO_18_00");	//(агрессивно) КРОТОК ДЖАБАРТ!!!
 	AI_Output(self,other,"DIA_Urshak_HALLO_18_01");	//Стой! Моя знать тебя. Ты друг человек с мягким голосом.
 	AI_Output(self,other,"DIA_Urshak_HALLO_18_02");	//Друг убивать злого демона КРУШАКА.
 	B_GivePlayerXP(XP_UrshakFound);
@@ -83,7 +83,7 @@ instance DIA_Urshak_WASMACHENORKS(C_Info)
 
 func int DIA_Urshak_WASMACHENORKS_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (urshak_sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (URSHAK_SUCKED == FALSE))
 	{
 		return TRUE;
 	};
@@ -111,7 +111,7 @@ instance DIA_Urshak_SOVIELE(C_Info)
 
 func int DIA_Urshak_SOVIELE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (urshak_sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (URSHAK_SUCKED == FALSE))
 	{
 		return TRUE;
 	};
@@ -136,7 +136,7 @@ instance DIA_Urshak_ZAUN(C_Info)
 
 func int DIA_Urshak_ZAUN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (urshak_sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (URSHAK_SUCKED == FALSE))
 	{
 		return TRUE;
 	};
@@ -156,13 +156,13 @@ instance DIA_Urshak_WASHASTDUVOR(C_Info)
 	nr = 9;
 	condition = DIA_Urshak_WASHASTDUVOR_Condition;
 	information = DIA_Urshak_WASHASTDUVOR_Info;
-	description = "Что ты планируешь делать дальше?";
+	description = "Что вы планируете делать дальше?";
 };
 
 
 func int DIA_Urshak_WASHASTDUVOR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (urshak_sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (URSHAK_SUCKED == FALSE))
 	{
 		return TRUE;
 	};
@@ -213,7 +213,7 @@ instance DIA_Urshak_HOSHPAKDEAD(C_Info)
 
 func int DIA_Urshak_HOSHPAKDEAD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_WASHASTDUVOR) && Npc_IsDead(Hosh_Pak) && (urshak_sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_WASHASTDUVOR) && Npc_IsDead(Hosh_Pak) && (URSHAK_SUCKED == FALSE))
 	{
 		return TRUE;
 	};
@@ -227,7 +227,7 @@ func void DIA_Urshak_HOSHPAKDEAD_Info()
 	AI_Output(other,self,"DIA_Urshak_HOSHPAKDEAD_15_03");	//Я понимаю. Хош-Пак был твоим учителем.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_04");	//Ур-Шак теперь должен носить ношу горя, должен дать Хош-Пак последний обряд. Ур-Шак надо идти.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_05");	//Друг лучше уходить проход. Слишком опасно здесь.
-	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_06");	//Ур-Шак печалиться, если человек тоже умирать.
+	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_06");	//Ур-Шак печалиться если человек тоже умирать.
 	B_LogEntry(TOPIC_Urshak,"Хош-Пак мертв. Мой друг орк направляется в палатку Хош-Пака. Он скорбит по своему наставнику. Я должен отпустить его.");
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,20);
@@ -249,7 +249,7 @@ instance DIA_Urshak_GEH(C_Info)
 
 func int DIA_Urshak_GEH_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && ((Npc_GetDistToWP(self,"OW_HOSHPAK_04") < 1000) == FALSE) && (Npc_RefuseTalk(self) == FALSE) && (urshak_sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && ((Npc_GetDistToWP(self,"OW_HOSHPAK_04") < 1000) == FALSE) && (Npc_RefuseTalk(self) == FALSE) && (URSHAK_SUCKED == FALSE))
 	{
 		return TRUE;
 	};
@@ -274,7 +274,7 @@ instance DIA_Urshak_HOSHPAKRACHE(C_Info)
 
 func int DIA_Urshak_HOSHPAKRACHE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") <= 1000) && (urshak_sucked == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") <= 1000) && (URSHAK_SUCKED == FALSE))
 	{
 		return TRUE;
 	};
@@ -282,7 +282,7 @@ func int DIA_Urshak_HOSHPAKRACHE_Condition()
 
 func void DIA_Urshak_HOSHPAKRACHE_Info()
 {
-	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_00");	//(агрессивно) ХРОТОК! Я узнавать, что ты быть здесь когда Хош-Пак убивать. Твоя делать большая ошибка, чужак.
+	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_00");	//(агрессивно) КХРОТОК! Я узнавать, что ты быть здесь когда Хош-Пак убивать. Твоя делать большая ошибка, чужак.
 	AI_Output(other,self,"DIA_Urshak_HOSHPAKRACHE_15_01");	//Я вижу, ты занял свое место здесь. Ты обманул меня.
 	AI_Output(other,self,"DIA_Urshak_HOSHPAKRACHE_15_02");	//Твое положение среди твоих людей выше, чем ты это говорил. Теперь ты сам не более чем инструмент в руках дьявола.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_03");	//Чужак прав. Ур-Шак наполняться только ненависть и месть теперь.
@@ -290,7 +290,7 @@ func void DIA_Urshak_HOSHPAKRACHE_Info()
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_05");	//Чужак теперь покидать долина и идти проход. Ур-Шак не будет убивать чужак сейчас. Честь шамана говорит Ур-Шак не убивать.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_06");	//Следующий раз мы встречаться мы враги. Твоя лучше уходить сейчас.
 	AI_StopProcessInfos(self);
-	urshak_sucked = TRUE;
+	URSHAK_SUCKED = TRUE;
 	B_LogEntry(TOPIC_Urshak,"Ур-Шак был принят назад, в совет шаманов орков. Теперь он на стороне врага и немного напряжен. Лучше мне не вставать у него на пути, пока я не решу все дела с орками. К тому времени, он должен успокоиться.");
 	B_GivePlayerXP(XP_UrshakBecomesShaman);
 };
@@ -318,6 +318,6 @@ func void DIA_Urshak_KEINEWAHL_Info()
 {
 	AI_Output(self,other,"DIA_Urshak_KEINEWAHL_18_00");	//Твоя уходить. Моя больше не говорить с чужак.
 	AI_StopProcessInfos(self);
-	urshak_sucked = TRUE;
+	URSHAK_SUCKED = TRUE;
 };
 

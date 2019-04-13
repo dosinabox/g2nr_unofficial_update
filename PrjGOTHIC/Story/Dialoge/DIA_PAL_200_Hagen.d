@@ -174,7 +174,7 @@ func void DIA_Hagen_PETZMASTER_Info()
 			AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_03");	//Не говоря уже о других обвинениях.
 		};
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_04");	//Страже приказано казнить убийц на месте.
-		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_05");	//Убийства неприемлемы в этом городе. Но ты можешь подтвердить свое раскаяние, заплатив штраф.
+		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_05");	//Убийства неприемлемы в этом городе. Но ты можешь подтвердить свое раскаяние, заплатив штраф
 	};
 	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
 	{
@@ -256,7 +256,7 @@ instance DIA_Lord_Hagen_Hallo(C_Info)
 
 func int DIA_Lord_Hagen_Hallo_Condition()
 {
-	if((hero.guild != GIL_NONE) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (Kapitel < 3))
+	if((hero.guild != GIL_NONE) && (hero.guild != GIL_SHEEP) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -303,7 +303,7 @@ func void DIA_Lord_Hagen_Frieden_Info()
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_02");	//Я знаю генерала Ли. Мне также известно об обстоятельствах, при которых он был приговорен к исправительным работам в колонии.
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_03");	//Я считаю его благородным человеком. Я готов даровать ему помилование - но только ему!
-	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_04");	//Это не касается его людей. Впрочем, большинство из них - отъявленные головорезы и заслуживают наказания!
+	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_04");	//Это не касается его людей, впрочем. Большинство из них - отъявленные головорезы и заслуживают наказания!
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_05");	//Я ни за что не помилую их. Можешь так и передать Ли.
 	Hagen_FriedenAbgelehnt = TRUE;
 	if(!Npc_KnowsInfo(other,DIA_Lord_Hagen_Armee))
@@ -335,7 +335,7 @@ func int DIA_Lord_Hagen_Armee_Condition()
 
 func void DIA_Lord_Hagen_Armee_Info()
 {
-	AI_Output(other,self,"DIA_Lord_Hagen_Armee_15_00");	//Силы Зла собираются очень близко отсюда. В Долине Рудников.
+	AI_Output(other,self,"DIA_Lord_Hagen_Armee_15_00");	//Силы зла собираются очень близко отсюда. В Долине Рудников.
 	AI_Output(self,other,"DIA_Lord_Hagen_Armee_04_01");	//В Долине Рудников? Мы отправили туда экспедицию. До нас также доходили сведения, что Проход оккупирован орками.
 	AI_Output(self,other,"DIA_Lord_Hagen_Armee_04_02");	//Но до сего момента до меня не доходило никаких сведений об армии Зла.
 	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_Frieden))
@@ -454,7 +454,7 @@ func void DIA_Lord_Hagen_Pass_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Pass_04_01");	//Я дам тебе ключ от ворот Прохода. Однако тебе самому придется решать, как пробраться через толпы орков.
 	AI_Output(self,other,"DIA_Lord_Hagen_Pass_04_02");	//Да защитит тебя Иннос.
 	AI_StopProcessInfos(self);
-	mis_oldworld = LOG_Running;
+	MIS_OLDWORLD = LOG_Running;
 	B_Kapitelwechsel(2,NEWWORLD_ZEN);
 	CreateInvItems(self,ItKe_Pass_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Pass_MIS,1);
@@ -566,7 +566,7 @@ func void DIA_Lord_Hagen_Minental_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_05");	//Без достаточного количества оружия из магической руды у королевской армии нет ни единого шанса против элитных воинов орков.
 		if(other.guild != GIL_SLD)
 		{
-			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_06");	//А шахты с магической рудой, находящиеся на острове - последние, к которым у нас еще есть доступ.
+			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_06");	//А шахты с магической рудой, находящиеся на острове, - последние, к которым у нас еще есть доступ.
 		};
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_07");	//Как только наш корабль будет загружен рудой, мы отправимся назад, на материк.
 		KnowsPaladins_Ore = TRUE;
@@ -686,7 +686,7 @@ func int DIA_Lord_Hagen_Knight_Condition()
 func void DIA_Lord_Hagen_Knight_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Knight_15_00");	//Я хочу поступить на службу в орден.
-	if(MIS_RescueBennet == LOG_Success)
+	if(MIS_RescueBennet == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_01");	//Хорошо, ты доказал, что у тебя есть мужество, опыт и знания, чтобы служить Инносу.
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_02");	//Твои дела свидетельствуют о том, что у тебя чистое сердце.
@@ -697,7 +697,7 @@ func void DIA_Lord_Hagen_Knight_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_04");	//Стать воином Инноса означает полностью посвятить себя служению Инносу.
+		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_04");	//Стать воином Инноса означает  полностью посвятить себя служению Инносу.
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_05");	//Только самые благородные и мужественные воины могут быть приняты в орден.
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_06");	//Если ты твердо решил стать паладином, ты должен доказать, что достоин этого.
 	};
@@ -721,8 +721,8 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_05");	//Тогда отныне ты принадлежишь к нашему братству.
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_06");	//Я произвожу тебя в воины Инноса.
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_07");	//Я даю тебе оружие и доспехи рыцаря. Носи их с гордостью, рыцарь!
-	CreateInvItems(self,itar_pal_m,1);
-	B_GiveInvItems(self,other,itar_pal_m,1);
+	CreateInvItems(self,ItAr_PAL_M,1);
+	B_GiveInvItems(self,other,ItAr_PAL_M,1);
 	if(other.HitChance[NPC_TALENT_2H] >= other.HitChance[NPC_TALENT_1H])
 	{
 		CreateInvItems(self,ItMw_2h_Pal_Sword,1);
@@ -734,7 +734,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 		B_GiveInvItems(self,other,ItMw_1h_Pal_Sword,1);
 	};
 	AI_UnequipArmor(other);
-	AI_EquipArmor(other,itar_pal_m);
+	AI_EquipArmor(other,ItAr_PAL_M);
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_08");	//С этого времени благодаря твоему рангу ты будешь иметь доступ в монастырь.
 	if(Npc_IsDead(Albrecht) == FALSE)
 	{
@@ -760,7 +760,7 @@ instance DIA_Lord_Hagen_WhatProof(C_Info)
 
 func int DIA_Lord_Hagen_WhatProof_Condition()
 {
-	if((Hagen_GaveInfoKnight == TRUE) && (MIS_RescueBennet != LOG_Success))
+	if((Hagen_GaveInfoKnight == TRUE) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -829,7 +829,7 @@ func int DIA_Lord_Hagen_KAP3U4_PERM_Condition()
 func void DIA_Lord_Hagen_KAP3U4_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_KAP3U4_PERM_15_00");	//Как ситуация?
-	if(mis_oldworld == LOG_Success)
+	if(MIS_OLDWORLD == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_04");	//Я должен найти способ спасти эту экспедицию.
 		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_05");	//Мы должны сделать что-то с драконами.
@@ -841,7 +841,7 @@ func void DIA_Lord_Hagen_KAP3U4_PERM_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_KAP3U4_PERM_04_01");	//Я с ума сойду здесь. Я солдат, а не бюрократ.
-		AI_Output(self,other,"DIA_Lord_Hagen_KAP3U4_PERM_04_02");	//Из-за всей этой бумажной работы, что я должен делать, я уже почти забыл ощущение клинка в руке.
+		AI_Output(self,other,"DIA_Lord_Hagen_KAP3U4_PERM_04_02");	//Из-за всей этой бумажной работы, что я должен делать, я уже почти забыл ощущение от клинка в руке.
 	};
 };
 
@@ -859,7 +859,7 @@ instance DIA_Lord_Hagen_EyeBroken(C_Info)
 
 func int DIA_Lord_Hagen_EyeBroken_Condition()
 {
-	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_Success))
+	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -869,7 +869,7 @@ func void DIA_Lord_Hagen_EyeBroken_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_07");	//Глаз у меня, но он поврежден.
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_08");	//ЧТО? О, Иннос! Что ты наделал? Нам нужен этот Глаз!
-	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_09");	//Поговори с Пирокаром! Должен быть способ восстановить его.
+	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_09");	//Поговори с  Пирокаром! Должен быть способ восстановить его.
 	Hagen_KnowsEyeKaputt = TRUE;
 };
 
@@ -887,7 +887,7 @@ instance DIA_Lord_Hagen_BACKINTOWN(C_Info)
 
 func int DIA_Lord_Hagen_BACKINTOWN_Condition()
 {
-	if((mis_oldworld == LOG_Running) && (Npc_HasItems(hero,ItWr_PaladinLetter_MIS) >= 1) && (Kapitel == 3))
+	if((MIS_OLDWORLD == LOG_Running) && (Npc_HasItems(hero,ItWr_PaladinLetter_MIS) >= 1) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -898,21 +898,21 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_00");	//Я принес тебе новости от Гаронда. Вот, он начертал эти строки для тебя.
 	B_GiveInvItems(other,self,ItWr_PaladinLetter_MIS,1);
 	B_UseFakeScroll();
-	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_01");	//Наша ситуация хуже, чем я опасался. Но доложи мне о ситуации в Долине Рудников!
+	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_01");	//Наша ситуация хуже, чем я опасался. Но доложи мне о ситуации в Долине Рудников.
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_02");	//Паладины заперты в замке Долины Рудников, окруженном орками.
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_03");	//Они потеряли много людей в старательских операциях и добыли очень мало руды.
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_04");	//И, должен добавить, без помощи извне им всем скоро придет конец. Вот такие дела.
 	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_05");	//Я должен найти способ спасти эту экспедицию. Ты многое сделал для нас. Иннос благодарит тебя...
-	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_06");	//Мне не интересна его благодарность. Мне нужен его Глаз.
+	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_06");	//Мне не интересна его благодарность. Мне нужен его глаз.
 	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_07");	//Да, конечно. Я держу свое слово. Возьми это письмо. Оно откроет перед тобой монастырские врата.
-	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_08");	//Поговори с Пирокаром, высшим магом Огня, и покажи ему это письмо с полномочиями. Он предоставит тебе доступ к Глазу Инноса.
+	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_08");	//Поговори с Пирокаром, высшим Магом Огня, и покажи ему это письмо с полномочиями. Он предоставит тебе доступ к Глазу Инноса.
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_00");	//И еще одно, прежде чем ты уйдешь...
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_01");	//Возьми эту руну в знак моей благодарности. Она вернет тебя в город, когда ты этого захочешь.
 	B_GiveInvItems(self,other,ItRu_TeleportSeaport,1);
 	CreateInvItems(self,ItWr_PermissionToWearInnosEye_MIS,1);
 	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
 	MIS_InnosEyeStolen = TRUE;
-	mis_oldworld = LOG_Success;
+	MIS_OLDWORLD = LOG_SUCCESS;
 	B_LogEntry(TOPIC_INNOSEYE,"Лорд Хаген дал мне записку. Она заставит мастера Пирокара в монастыре отдать мне Глаз Инноса.");
 	Wld_InsertNpc(VLK_4250_Jorgen,"NW_MONASTERY_BRIDGE_01");
 	Wld_InsertNpc(BDT_1050_Landstreicher,"NW_TROLLAREA_NOVCHASE_01");
@@ -1053,7 +1053,7 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_03");	//(в ярости) Ах, гнусная мразь!
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_04");	//Перед лицом новых доказательств мне не остается ничего другого.
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_05");	//Властью, данной мне королем и церковью, я провозглашаю...
-	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_06");	//... что с заключенного Беннета снимаются все обвинения и он подлежит освобождению.
+	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_06");	//...что с заключенного Беннета снимаются все обвинения и он подлежит освобождению.
 	B_StartOtherRoutine(Bennet,"START");
 	B_StartOtherRoutine(Hodges,"START");
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_07");	//Корнелиус должен быть немедленно посажен под арест за лжесвидетельство.
@@ -1072,7 +1072,7 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	{
 		B_StartOtherRoutine(Cornelius,"PRISON");
 	};
-	MIS_RescueBennet = LOG_Success;
+	MIS_RescueBennet = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RescueBennet);
 	if(hero.guild == GIL_MIL)
 	{
@@ -1108,7 +1108,7 @@ func void DIA_Lord_Hagen_AugeAmStart_Info()
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_12");	//И ты восстановил его!
 	};
-	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_13");	//Значит, ты Избранный Инноса!
+	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_13");	//Значит ты Избранный Инноса!
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_14");	//Я должен отправляться в путь и убить всех драконов в Долине Рудников!
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_15");	//Иди с Инносом и уничтожь Зло с его помощью!
 };
@@ -1183,7 +1183,7 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_08");	//Это знак их силы. Значит, орки выбрались из-за своих частоколов и сражаются в открытом поле.
 		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_09");	//Я не видел, чтобы их было много. В основном, это их предводители и всего несколько бойцов.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_10");	//Да? Значит, они замышляют что-то еще. Это не похоже на орков, чтобы их лидеры в одиночку покидали свои защитные частоколы.
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Но, впрочем, это может стать хорошей возможностью, впрочем, нанести им чувствительный удар.
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Но это может стать хорошей возможностью, впрочем, нанести им чувствительный удар.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_12");	//Если они потеряют своих лидеров, их боевой дух резко снизится.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_13");	//У тебя новое задание, рыцарь. Иди и убей всех лидеров орков, каких найдешь в прилежащих землях.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_14");	//Принеси мне их кольца. Это будет серьезный удар по оркам.
@@ -1199,7 +1199,7 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 	}
 	else
 	{
-		if(MIS_KillOrkOberst == LOG_Success)
+		if(MIS_KillOrkOberst == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_17");	//Одного твоего слова, что ты убил полководца орков, недостаточно для меня.
 		};
@@ -1364,7 +1364,7 @@ func void DIA_Lord_Hagen_NeedShip_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_NeedShip_15_00");	//Мне нужен корабль.
 	if(hero.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_01");	//Он многим нужен, солдат.
+		AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_01");	//Он много кому нужен, солдат.
 	}
 	else if(hero.guild == GIL_KDF)
 	{

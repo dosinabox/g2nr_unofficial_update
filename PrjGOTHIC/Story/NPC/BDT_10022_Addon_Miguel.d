@@ -15,7 +15,7 @@ instance BDT_10022_Addon_Miguel(Npc_Default)
 	CreateInvItems(self,ItPo_Health_02,8);
 	CreateInvItems(self,ItPo_Health_03,5);
 	CreateInvItems(self,ItPo_Mana_01,7);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_OldMan_Gravo,BodyTex_P,itar_bdt_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_OldMan_Gravo,BodyTex_P,ItAr_BDT_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

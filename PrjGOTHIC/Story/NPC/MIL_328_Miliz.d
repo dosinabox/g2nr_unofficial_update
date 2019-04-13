@@ -1,5 +1,5 @@
 
-instance MIL_328_Miliz(Npc_Default)
+instance Mil_328_Miliz(Npc_Default)
 {
 	name[0] = NAME_Wache;
 	guild = GIL_NONE;

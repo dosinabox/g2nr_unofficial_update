@@ -67,7 +67,7 @@ func int DIA_Marduk_Arbeit_Condition()
 
 func void DIA_Marduk_Arbeit_Info()
 {
-	AI_Output(other,self,"DIA_Marduk_Arbeit_15_00");	//Могу я сделать что-нибудь для тебя, Мастер?
+	AI_Output(other,self,"DIA_Marduk_Arbeit_15_00");	//Могу я сделать что-нибудь для тебя, мастер?
 	AI_Output(self,other,"DIA_Marduk_Arbeit_05_01");	//Для меня? Нет, мне не нужна твоя помощь. Лучше помолись за воинов Инноса, отправившихся в Долину Рудников.
 	MIS_MardukBeten = LOG_Running;
 	B_StartOtherRoutine(Sergio,"WAIT");
@@ -100,7 +100,7 @@ func void DIA_Marduk_Gebetet_Info()
 {
 	AI_Output(other,self,"DIA_Marduk_Gebetet_15_00");	//Я помолился за паладинов.
 	AI_Output(self,other,"DIA_Marduk_Gebetet_05_01");	//Это хорошо. А теперь возвращайся к своей работе.
-	MIS_MardukBeten = LOG_Success;
+	MIS_MardukBeten = LOG_SUCCESS;
 	B_GivePlayerXP(XP_MardukBeten);
 	B_StartOtherRoutine(Sergio,"START");
 };
@@ -128,9 +128,9 @@ func void DIA_Marduk_Evil_Info()
 {
 	AI_Output(other,self,"DIA_Marduk_Evil_15_00");	//Что такое 'Зло'?
 	AI_Output(self,other,"DIA_Marduk_Evil_05_01");	//Зло повсюду. Оно порождение Белиара, извечного противника Инноса.
-	AI_Output(self,other,"DIA_Marduk_Evil_05_02");	//Это всепоглощающая Тьма, которая пытается навсегда закрыть от нас Свет Инноса.
+	AI_Output(self,other,"DIA_Marduk_Evil_05_02");	//Это всепоглощающая тьма, которая пытается навсегда закрыть от нас Свет Инноса.
 	AI_Output(self,other,"DIA_Marduk_Evil_05_03");	//Белиар - Повелитель Тьмы, Ненависти и Разрушений.
-	AI_Output(self,other,"DIA_Marduk_Evil_05_04");	//Только те из нас, чьи сердца горят Святым Огнем Инноса, несут сияющий Свет Инноса в наш мир и изгоняют Тьму.
+	AI_Output(self,other,"DIA_Marduk_Evil_05_04");	//Только те из нас, чьи сердца горят Святым Огнем Инноса, несут сияющий Свет Инноса в наш мир и изгоняют тьму.
 };
 
 
@@ -156,7 +156,7 @@ func void DIA_Marduk_Pal_Info()
 {
 	AI_Output(other,self,"DIA_Marduk_Pal_15_00");	//Но в монастыре живут только маги и послушники.
 	AI_Output(self,other,"DIA_Marduk_Pal_05_01");	//Правильно. В отличие от нашей общины, которая чтит Слово Инноса...
-	AI_Output(self,other,"DIA_Marduk_Pal_05_02");	//... паладины чтят превыше всего дела нашего Владыки.
+	AI_Output(self,other,"DIA_Marduk_Pal_05_02");	//...паладины чтят превыше всего дела нашего Владыки.
 	AI_Output(self,other,"DIA_Marduk_Pal_05_03");	//Мы все - представители Инноса, но паладины - его воины, идущие в бой с его именем на устах и прославляя его величие.
 };
 
@@ -217,32 +217,32 @@ func void DIA_Marduk_TEACH_Info()
 	AI_Output(other,self,"DIA_Marduk_TEACH_15_00");	//Обучи меня.
 	Info_ClearChoices(DIA_Marduk_TEACH);
 	Info_AddChoice(DIA_Marduk_TEACH,Dialog_Back,DIA_Marduk_TEACH_BACK);
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (player_talent_runes[SPL_Zap] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_Zap] == FALSE))
 	{
 		Info_AddChoice(DIA_Marduk_TEACH,B_BuildLearnString(NAME_SPL_Zap,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Zap)),DIA_Marduk_TEACH_ZAP);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (player_talent_runes[SPL_Icebolt] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE))
 	{
 		Info_AddChoice(DIA_Marduk_TEACH,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_Marduk_TEACH_Icebolt);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (player_talent_runes[SPL_IceCube] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (PLAYER_TALENT_RUNES[SPL_IceCube] == FALSE))
 	{
 		Info_AddChoice(DIA_Marduk_TEACH,B_BuildLearnString(NAME_SPL_IceCube,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_IceCube)),DIA_Marduk_TEACH_IceCube);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (player_talent_runes[SPL_ChargeZap] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (PLAYER_TALENT_RUNES[SPL_ChargeZap] == FALSE))
 	{
 		Info_AddChoice(DIA_Marduk_TEACH,B_BuildLearnString(NAME_SPL_ChargeZap,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ChargeZap)),DIA_Marduk_TEACH_ThunderBall);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4) && (player_talent_runes[SPL_LightningFlash] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4) && (PLAYER_TALENT_RUNES[SPL_LightningFlash] == FALSE))
 	{
 		Info_AddChoice(DIA_Marduk_TEACH,B_BuildLearnString(NAME_SPL_LightningFlash,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightningFlash)),DIA_Marduk_TEACH_LightningFlash);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5) && (player_talent_runes[SPL_IceWave] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5) && (PLAYER_TALENT_RUNES[SPL_IceWave] == FALSE))
 	{
 		Info_AddChoice(DIA_Marduk_TEACH,B_BuildLearnString(NAME_SPL_IceWave,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_IceWave)),DIA_Marduk_TEACH_IceWave);
 		abletolearn = abletolearn + 1;
@@ -401,7 +401,7 @@ func void DIA_Marduk_Kap3_Hello_NotYourConcern()
 func void DIA_Marduk_Kap3_Hello_Soon()
 {
 	AI_Output(other,self,"DIA_Marduk_Kap3_Hello_Soon_15_00");	//Совсем недавно.
-	AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Soon_05_01");	//Тогда добро пожаловать. В этой битве нам нужны все, у кого есть мужество противостоять Злу.
+	AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Soon_05_01");	//Тогда добро пожаловать. В этой битве нам нужны все, у кого есть мужество противостоять злу.
 	AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Soon_05_02");	//Судьба всех нас лежит в руках людей вроде тебя. Да придаст тебе Иннос так необходимое тебе мужество.
 	Info_ClearChoices(DIA_Marduk_Kap3_Hello);
 };
@@ -441,12 +441,12 @@ func void DIA_Marduk_TrainPals_Info()
 	AI_Output(other,self,"DIA_Marduk_TrainPals_15_00");	//Чему ты можешь обучить меня?
 	AI_Output(self,other,"DIA_Marduk_TrainPals_05_01");	//Естественно, я не могу обучить тебя боевым искусствам.
 	AI_Output(self,other,"DIA_Marduk_TrainPals_05_02");	//Но я могу, впрочем, донести сущность Инноса и его дары до тебя.
-	AI_Output(self,other,"DIA_Marduk_TrainPals_05_03");	//Кроме того, в мои обязанности входит подготовить тебя к Освящению Меча.
+	AI_Output(self,other,"DIA_Marduk_TrainPals_05_03");	//Кроме того, я мои обязанности входит подготовить тебя к Освящению Меча.
 	AI_Output(other,self,"DIA_Marduk_TrainPals_15_04");	//А магии?
-	AI_Output(self,other,"DIA_Marduk_TrainPals_05_05");	//Здесь мы только учим нашей магии. Ты должен изучать магию паладинов в городе.
+	AI_Output(self,other,"DIA_Marduk_TrainPals_05_05");	//Здесь мы учим только нашей магии. Ты должен изучать магию паладинов в городе.
 	Info_ClearChoices(DIA_Marduk_TrainPals);
 	Info_AddChoice(DIA_Marduk_TrainPals,"Может быть, позже.",DIA_Marduk_TrainPals_Later);
-	Info_AddChoice(DIA_Marduk_TrainPals,"Что ты хочешь этим сказать?",DIA_Marduk_TrainPals_Meaning);
+	Info_AddChoice(DIA_Marduk_TrainPals,"Что ты хочешь сказать этим?",DIA_Marduk_TrainPals_Meaning);
 	Info_AddChoice(DIA_Marduk_TrainPals,"Что такое Освящение Меча?",DIA_Marduk_TrainPals_Blessing);
 };
 
@@ -471,7 +471,7 @@ func void DIA_Marduk_TrainPals_Blessing()
 	AI_Output(other,self,"DIA_Marduk_TrainPals_Blessing_15_00");	//Что такое Освящение Меча?
 	AI_Output(self,other,"DIA_Marduk_TrainPals_Blessing_05_01");	//Освящение Меча - это один из самых священных ритуалов паладинов.
 	AI_Output(self,other,"DIA_Marduk_TrainPals_Blessing_05_02");	//Во время этой церемонии святая сила Инноса протекает через меч паладина и придает мечу невообразимую силу.
-	AI_Output(self,other,"DIA_Marduk_TrainPals_Blessing_05_03");	//Меч, освященный таким образом - самое ценное, что есть у паладина, и он не расстается с ним до конца дней своих.
+	AI_Output(self,other,"DIA_Marduk_TrainPals_Blessing_05_03");	//Меч, освященный таким образом, - самое ценное, что есть у паладина, и он не расстается с ним до конца своих дней.
 	Marduk_TrainPals_permanent = TRUE;
 };
 
@@ -500,7 +500,7 @@ func void DIA_Marduk_SwordBlessing_Info()
 	AI_Output(other,self,"DIA_Marduk_SwordBlessing_15_00");	//Я хочу освятить мой меч.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_01");	//Если ты твердо решил сделать этот шаг, тебе сначала нужно найти магический меч.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_02");	//Затем ты должен вернуться в эту часовню и молиться.
-	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_03");	//Во время молитвы и после разумного пожертвования нашему Владыке Инносу ты должен попросить у Инноса благословления и помощи в битве против Зла.
+	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_03");	//Во время молитвы и после разумного пожертвования нашему Владыке Инносу ты должен попросить у Инноса благоволения и помощи в битве против Зла.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_04");	//Если Иннос будет благосклонен к тебе, твой меч в тот же момент будет освящен нашим Владыкой.
 	Info_ClearChoices(DIA_Marduk_SwordBlessing);
 	Info_AddChoice(DIA_Marduk_SwordBlessing,Dialog_Back,DIA_Marduk_SwordBlessing_Back);
@@ -516,7 +516,7 @@ func void DIA_Marduk_SwordBlessing_Back()
 func void DIA_Marduk_SwordBlessing_Donation()
 {
 	AI_Output(other,self,"DIA_Marduk_SwordBlessing_Donation_15_00");	//Что за пожертвование?
-	AI_Output(self,other,"DIA_Marduk_SwordBlessing_Donation_05_01");	//Ну, учитывая милость, что будет оказана тебе, суммы в 5000 золотых будет более чем достаточно.
+	AI_Output(self,other,"DIA_Marduk_SwordBlessing_Donation_05_01");	//Ну, учитывая милость, что будет оказана тебе, суммы в 5000 монет будет более чем достаточно.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_Donation_05_02");	//Конечно, ты можешь пожертвовать больше.
 };
 
@@ -561,15 +561,15 @@ func void DIA_Marduk_Kap3_PERM_Info()
 		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_02");	//Он украл Глаз Инноса, один из самых важных наших артефактов. И это только вершина айсберга.
 	};
 	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_04");	//(озабоченно) Враг, по-видимому, уже вошел в город.
-	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_15_05");	//Что ты имеешь в виду?
+	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_15_05");	//Чт ты имеешь в виду?
 	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_06");	//Один из паладинов, Лотар, был убит на улице.
 	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_07");	//(зло) Прямо средь бела дня! Это зашло слишком далеко, но я боюсь, что это только начало.
 	Info_ClearChoices(DIA_Marduk_Kap3_PERM);
 	Info_AddChoice(DIA_Marduk_Kap3_PERM,Dialog_Back,DIA_Marduk_Kap3_PERM_BAck);
 	Info_AddChoice(DIA_Marduk_Kap3_PERM,"Что будет теперь?",DIA_Marduk_Kap3_PERM_AndNow);
-	if(MIS_RescueBennet == LOG_Success)
+	if(MIS_RescueBennet == LOG_SUCCESS)
 	{
-		Info_AddChoice(DIA_Marduk_Kap3_PERM,"Беннет не виновен.",DIA_Marduk_Kap3_PERM_BennetisNotGuilty);
+		Info_AddChoice(DIA_Marduk_Kap3_PERM,"Беннет не виновен. Свидетель солгал.",DIA_Marduk_Kap3_PERM_BennetisNotGuilty);
 	}
 	else
 	{
@@ -605,7 +605,7 @@ func void DIA_Marduk_Kap3_PERM_AndNow()
 
 func void DIA_Marduk_Kap3_PERM_BennetisNotGuilty()
 {
-	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_15_00");	//Беннет невиновен. Свидетель солгал.
+	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_15_00");	//Беннет не виновен. Свидетель солгал.
 	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_05_01");	//Откуда ты это знаешь?
 	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_15_02");	//Я нашел доказательства.
 	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_BennetisNotGuilty_05_03");	//Иногда мне кажется, что предательство и жадность - наши самые величайшие враги.

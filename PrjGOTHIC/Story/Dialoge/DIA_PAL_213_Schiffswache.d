@@ -168,7 +168,7 @@ func int DIA_Pal_213_Schiffswache_IAmKDF_Condition()
 
 func void DIA_Pal_213_Schiffswache_IAmKDF_Info()
 {
-	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF_15_00");	//Ты сомневаешься в намерениях мага Огня?
+	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF_15_00");	//Ты сомневаешься в намерениях Мага Огня?
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF_01_01");	//(нервно) Нет, конечно же, нет. Да простит меня Иннос.
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF_01_02");	//(нервно) Маги Огня - стражи мудрости Инноса...
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF_01_03");	//(нервно) ...тот, кто сомневается в них, сомневается в Инносе и не заслуживает пощады.
@@ -222,7 +222,7 @@ func int DIA_Pal_213_Schiffswache_IAmKDF3_Condition()
 
 func void DIA_Pal_213_Schiffswache_IAmKDF3_Info()
 {
-	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF3_15_00");	//Ты осмелишься атаковать мага Огня?
+	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF3_15_00");	//Ты осмелишься атаковать Мага Огня?
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF3_01_01");	//(нервно) Я никогда не подниму руку на мага.
 	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF3_15_02");	//Так что ты все-таки будешь делать, если я взойду на борт?
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF3_01_03");	//(робко) Ничего, господин.

@@ -197,7 +197,7 @@ instance DIA_Torlof_DeineStimme(C_Info)
 
 func int DIA_Torlof_DeineStimme_Condition()
 {
-	if((Torlof_Go == TRUE) && (other.guild == GIL_NONE) && (MIS_Torlof_HolPachtVonSekob != LOG_Success) && (MIS_Torlof_BengarMilizKlatschen != LOG_Success))
+	if((Torlof_Go == TRUE) && (other.guild == GIL_NONE) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS) && (MIS_Torlof_BengarMilizKlatschen != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -249,7 +249,7 @@ func void DIA_Torlof_RUF_Info()
 	{
 		Points_Sld = Points_Sld + 1;
 	}
-	else if(MIS_Jarvis_SldKO == LOG_Success)
+	else if(MIS_Jarvis_SldKO == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_03");	//Джарвис полагает, что ты на правильной стороне.
 		Points_Sld = Points_Sld + 1;
@@ -276,7 +276,7 @@ func void DIA_Torlof_RUF_Info()
 	{
 		Points_Sld = Points_Sld + 1;
 	}
-	else if((MIS_Cipher_Paket == LOG_Success) || (MIS_Cipher_BringWeed == LOG_Success))
+	else if((MIS_Cipher_Paket == LOG_SUCCESS) || (MIS_Cipher_BringWeed == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_08");	//Сифер говорит, что ему абсолютно ясно, что ты достоин присоединиться к нам. Похоже, что-то сделало его безгранично счастливым.
 		Points_Sld = Points_Sld + 1;
@@ -333,7 +333,7 @@ func void DIA_Torlof_RUF_Info()
 	}
 	else if(Bullco.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		AI_Output(self,other,"DIA_Torlof_RUF_01_16");	//О Сильвио и Буллко даже говорить нечего. Эти два кретина всегда против всех и вся.
+		AI_Output(self,other,"DIA_Torlof_RUF_01_16");	//О Сильвио и Булко даже говорить нечего. Эти два кретина всегда против всех и вся.
 	};
 	if(Npc_IsDead(Buster))
 	{
@@ -364,9 +364,9 @@ func void DIA_Torlof_RUF_Info()
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_22");	//Остальные наемники ничего не сказали.
 	};
-	if((MIS_Torlof_HolPachtVonSekob != LOG_Success) && (MIS_Torlof_BengarMilizKlatschen != LOG_Success))
+	if((MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS) && (MIS_Torlof_BengarMilizKlatschen != LOG_SUCCESS))
 	{
-		AI_Output(self,other,"DIA_Torlof_RUF_01_23");	//Большинство из них просто ждет, пройдешь ли ты испытание.
+		AI_Output(self,other,"DIA_Torlof_RUF_01_23");	//Большинство из них просто ждут, пройдешь ли ты испытание.
 	}
 	else
 	{
@@ -376,7 +376,7 @@ func void DIA_Torlof_RUF_Info()
 			AI_Output(self,other,"DIA_Addon_Torlof_RUF_01_00");	//(усмехается) Пусть Корд в этом и поучаствовал...
 			Points_Sld = Points_Sld + 4;
 		}
-		else if(MIS_Torlof_HolPachtVonSekob == LOG_Success)
+		else if(MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Torlof_RUF_01_25");	//Хотя многие считают, что заставить фермера заплатить ренту было слишком легко, чтобы считать это испытанием.
 			Points_Sld = Points_Sld + 3;
@@ -456,7 +456,7 @@ func void B_Torlof_HolPachtVonSekob()
 	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_01");	//Онар хочет, чтобы тот выложил 50 золотых монет. Есть вопросы?
 	AI_Output(other,self,"B_Torlof_HolPachtvonSekob_15_02");	//Где ферма Секоба?
 	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_03");	//На севере этой долины. Если смотреть отсюда, она будет справа от большого перекрестка.
-	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_04");	//Если у тебя будут проблемы, фермеры на полях помогут тебе найти дорогу.
+	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_04");	//Если у тебя будут проблемы, фермеры на полях помогут тебе нейти дорогу.
 	MIS_Torlof_HolPachtVonSekob = LOG_Running;
 	Sekob.flags = 0;
 	CreateInvItems(Sekob,ItMi_Gold,50);
@@ -475,8 +475,8 @@ func void B_Torlof_BengarMilizKlatschen()
 	AI_Output(self,other,"B_Torlof_BengarMilizKlatschen_01_05");	//Если ты заблудишься, поспрашивай фермеров на полях, они покажут тебе дорогу.
 	MIS_Torlof_BengarMilizKlatschen = LOG_Running;
 	Bengar.flags = 0;
-	Wld_InsertNpc(MIL_335_Rumbold,"FARM3");
-	Wld_InsertNpc(MIL_336_Rick,"FARM3");
+	Wld_InsertNpc(Mil_335_Rumbold,"FARM3");
+	Wld_InsertNpc(Mil_336_Rick,"FARM3");
 	B_InitNpcGlobals();
 	Log_CreateTopic(TOPIC_TorlofMiliz,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TorlofMiliz,LOG_Running);
@@ -564,14 +564,14 @@ func void DIA_Torlof_SekobSuccess_Info()
 		{
 			B_Torlof_TheOtherMissionDay();
 		};
-		MIS_Torlof_HolPachtVonSekob = LOG_Success;
+		MIS_Torlof_HolPachtVonSekob = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Torlof_SekobsKohlebekommen);
 		B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
 		Torlof_ProbeBestanden = TRUE;
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Torlof_SekobSuccess_01_04");	//И? Ты что, промотал все деньги? Ты должен принести их мне! И побыстрее!
+		AI_Output(self,other,"DIA_Torlof_SekobSuccess_01_04");	//И? Ты что, промотал все деньги?  Ты должен принести их мне! И побыстрее!
 	};
 };
 
@@ -609,7 +609,7 @@ func void DIA_Torlof_BengarSuccess_Info()
 	{
 		B_Torlof_TheOtherMissionDay();
 	};
-	MIS_Torlof_BengarMilizKlatschen = LOG_Success;
+	MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Bengar_MILIZKLATSCHEN);
 	B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
 	Torlof_ProbeBestanden = TRUE;
@@ -676,7 +676,7 @@ func int DIA_Torlof_TheOtherMission_Condition()
 
 func void DIA_Torlof_TheOtherMission_Info()
 {
-	if((Torlof_KnowsDragons == FALSE) && (enter_oldworld_firsttime_trigger_onetime == TRUE))
+	if((Torlof_KnowsDragons == FALSE) && (ENTER_OLDWORLD_FIRSTTIME_TRIGGER_ONETIME == TRUE))
 	{
 		B_Torlof_Dragons();
 	};
@@ -708,7 +708,7 @@ instance DIA_Torlof_Dragons(C_Info)
 
 func int DIA_Torlof_Dragons_Condition()
 {
-	if((enter_oldworld_firsttime_trigger_onetime == TRUE) && (Kapitel <= 3) && (other.guild == GIL_SLD) && (Torlof_KnowsDragons == FALSE))
+	if((ENTER_OLDWORLD_FIRSTTIME_TRIGGER_ONETIME == TRUE) && (Kapitel <= 3) && (other.guild == GIL_SLD) && (Torlof_KnowsDragons == FALSE))
 	{
 		return TRUE;
 	};
@@ -925,7 +925,7 @@ func void DIA_Torlof_DmtSuccess_Info()
 	AI_Output(other,self,"DIA_Torlof_DmtSuccess_15_00");	//Люди с гор в черных рясах больше не будут беспокоить нас.
 	AI_Output(self,other,"DIA_Torlof_DmtSuccess_01_01");	//Ты смог разобраться с ними? Отлично!
 	AI_Output(self,other,"DIA_Torlof_DmtSuccess_01_02");	//Я сразу не доверял этим парням. За версту было видно, что от них будут одни неприятности...
-	MIS_Torlof_Dmt = LOG_Success;
+	MIS_Torlof_Dmt = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Torlof_DMT);
 };
 
@@ -977,8 +977,8 @@ func void DIA_Torlof_WOISTSYLVIO_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_WOISTSYLVIO_15_00");	//Что, часть наемников ушла отсюда?
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_01");	//Сильвио забрал нескольких парней и ушел через проход.
-	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_02");	//Поговаривают, что там появились драконы. Когда он услышал это, его было не остановить.
-	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_03");	//Кто знает? Сокровища драконов можно очень дорого продать.
+	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_02");	//Поговаривают, что там появились драконы. Когда он это услышал, его было не остановить.
+	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_03");	//Кто знает? Сокровища драконов наверняка можно очень дорого продать.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_04");	//Но меня это не касается. Я моряк. Я принадлежу морю, и мне нет дела до душного логова дракона.
 };
 
@@ -1230,18 +1230,18 @@ func void DIA_Torlof_PERM5_NOTCAPTAIN_Info()
 };
 
 
-instance DIA_TORLOF_KAP6_EXIT(C_Info)
+instance DIA_Torlof_KAP6_EXIT(C_Info)
 {
 	npc = SLD_801_Torlof;
 	nr = 999;
-	condition = dia_torlof_kap6_exit_condition;
-	information = dia_torlof_kap6_exit_info;
+	condition = DIA_Torlof_KAP6_EXIT_Condition;
+	information = DIA_Torlof_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_torlof_kap6_exit_condition()
+func int DIA_Torlof_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -1249,7 +1249,7 @@ func int dia_torlof_kap6_exit_condition()
 	};
 };
 
-func void dia_torlof_kap6_exit_info()
+func void DIA_Torlof_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

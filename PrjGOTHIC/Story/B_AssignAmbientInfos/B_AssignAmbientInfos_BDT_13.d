@@ -38,7 +38,7 @@ func int DIA_BDT_13_STANDARD_Condition()
 	};
 };
 
-func void b_verschwinde_stimme13()
+func void B_Verschwinde_Stimme13()
 {
 	AI_Output(self,other,"DIA_BDT_13_STANDARD_13_01");	//Проваливай!
 };
@@ -53,7 +53,7 @@ func void DIA_BDT_13_STANDARD_Info()
 	};
 	if(randy == 1)
 	{
-		b_verschwinde_stimme13();
+		B_Verschwinde_Stimme13();
 	};
 	if(randy == 2)
 	{

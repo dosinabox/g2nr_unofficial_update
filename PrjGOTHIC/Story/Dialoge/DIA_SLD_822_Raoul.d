@@ -1,7 +1,7 @@
 
 instance DIA_Raoul_EXIT(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 999;
 	condition = DIA_Raoul_EXIT_Condition;
 	information = DIA_Raoul_EXIT_Info;
@@ -26,7 +26,7 @@ func void DIA_Raoul_EXIT_Info()
 
 instance DIA_Raoul_NoSentenza(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 1;
 	condition = DIA_Raoul_NoSentenza_Condition;
 	information = DIA_Raoul_NoSentenza_Info;
@@ -56,7 +56,7 @@ func void DIA_Raoul_NoSentenza_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_05");	//Где же он? А, ладно, неважно, тебе повезло...
+		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_05");	//Где же он? А, ладно, не важно, тебе повезло...
 	};
 	AI_StopProcessInfos(self);
 };
@@ -64,7 +64,7 @@ func void DIA_Raoul_NoSentenza_Info()
 
 instance DIA_Raoul_Hello(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 1;
 	condition = DIA_Raoul_Hello_Condition;
 	information = DIA_Raoul_Hello_Info;
@@ -98,7 +98,7 @@ var int Raoul_gesagt;
 
 instance DIA_Raoul_PERMNone(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 1;
 	condition = DIA_Raoul_PERMNone_Condition;
 	information = DIA_Raoul_PERMNone_Info;
@@ -134,7 +134,7 @@ func void DIA_Raoul_PERMNone_Info()
 
 instance DIA_Raoul_WannaJoin(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_WannaJoin_Condition;
 	information = DIA_Raoul_WannaJoin_Info;
@@ -163,7 +163,7 @@ func void DIA_Raoul_WannaJoin_Info()
 
 instance DIA_Raoul_AboutSylvio(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_AboutSylvio_Condition;
 	information = DIA_Raoul_AboutSylvio_Info;
@@ -190,7 +190,7 @@ func void DIA_Raoul_AboutSylvio_Info()
 
 instance DIA_Raoul_Stimme(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_Stimme_Condition;
 	information = DIA_Raoul_Stimme_Info;
@@ -219,7 +219,7 @@ func void DIA_Raoul_Stimme_Info()
 
 instance DIA_Raoul_Duell(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_Duell_Condition;
 	information = DIA_Raoul_Duell_Info;
@@ -249,7 +249,7 @@ func void DIA_Raoul_Duell_Info()
 
 instance DIA_Raoul_PERM(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 900;
 	condition = DIA_Raoul_PERM_Condition;
 	information = DIA_Raoul_PERM_Info;
@@ -271,7 +271,7 @@ func void DIA_Raoul_PERM_Info()
 	AI_Output(other,self,"DIA_Raoul_PERM_15_00");	//Все в порядке?
 	if(MIS_Raoul_KillTrollBlack == LOG_Running)
 	{
-		AI_Output(self,other,"DIA_Raoul_PERM_01_01");	//Не болтай попусту. Иди и принеси шкуру черного тролля.
+		AI_Output(self,other,"DIA_Raoul_PERM_01_01");	//Не болтай попусту. Или и принеси шкуру черного тролля.
 	}
 	else
 	{
@@ -286,7 +286,7 @@ func void DIA_Raoul_PERM_Info()
 
 instance DIA_Raoul_TROLL(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_TROLL_Condition;
 	information = DIA_Raoul_TROLL_Info;
@@ -328,7 +328,7 @@ func void DIA_Raoul_TROLL_Info()
 func void DIA_Raoul_TROLL_weg()
 {
 	AI_Output(other,self,"DIA_Raoul_TROLL_weg_15_00");	//Я должен идти.
-	AI_Output(self,other,"DIA_Raoul_TROLL_weg_01_01");	//Да проваливай!
+	AI_Output(self,other,"DIA_Raoul_TROLL_weg_01_01");	//Да, проваливай.
 	AI_StopProcessInfos(self);
 };
 
@@ -361,7 +361,7 @@ func void B_Raoul_Blame()
 	AI_Output(other,self,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_15_02");	//А что мне с этого будет?
 	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_03");	//Глупый вопрос. Почет, и твоя челюсть останется не сломанной.
 	AI_Output(other,self,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_15_04");	//Не так уж много.
-	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_05");	//Скажем, я заплачу тебе целую кучу денег, если ты принесешь мне шкуру черного тролля. Как тебе?
+	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_05");	//Ммм. Скажем, я заплачу тебе целую кучу денег, если ты принесешь мне шкуру черного тролля. Как тебе?
 	AI_Output(other,self,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_15_06");	//Уже лучше.
 	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_07");	//Тогда чего ты ждешь?
 	Log_CreateTopic(TOPIC_KillTrollBlack,LOG_MISSION);
@@ -393,7 +393,7 @@ func void DIA_Raoul_TROLL_rechnung_noProb()
 
 instance DIA_Raoul_TrophyFur(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 3;
 	condition = DIA_Raoul_TrophyFur_Condition;
 	information = DIA_Raoul_TrophyFur_Info;
@@ -404,7 +404,7 @@ instance DIA_Raoul_TrophyFur(C_Info)
 
 func int DIA_Raoul_TrophyFur_Condition()
 {
-	if((player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE) && (MIS_Raoul_KillTrollBlack == LOG_Running))
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) && (MIS_Raoul_KillTrollBlack == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -424,7 +424,7 @@ func void DIA_Raoul_TrophyFur_Info()
 
 instance DIA_Raoul_TROLLFELL(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 3;
 	condition = DIA_Raoul_TROLLFELL_Condition;
 	information = DIA_Raoul_TROLLFELL_Info;
@@ -451,7 +451,7 @@ func void DIA_Raoul_TROLLFELL_Info()
 	Info_ClearChoices(DIA_Raoul_TROLLFELL);
 	Info_AddChoice(DIA_Raoul_TROLLFELL,"Этого недостаточно.",DIA_Raoul_TROLLFELL_nein);
 	Info_AddChoice(DIA_Raoul_TROLLFELL,"Готово.",DIA_Raoul_TROLLFELL_ja);
-	MIS_Raoul_KillTrollBlack = LOG_Success;
+	MIS_Raoul_KillTrollBlack = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Raoul_KillTrollBlack);
 };
 
@@ -478,7 +478,7 @@ func void DIA_Raoul_TROLLFELL_nein()
 
 instance DIA_Raoul_FELLZURUECK(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 3;
 	condition = DIA_Raoul_FELLZURUECK_Condition;
 	information = DIA_Raoul_FELLZURUECK_Info;
@@ -505,7 +505,7 @@ func void DIA_Raoul_FELLZURUECK_Info()
 
 instance DIA_Raoul_GotTrollFurBack(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 3;
 	condition = DIA_Raoul_GotTrollFurBack_Condition;
 	information = DIA_Raoul_GotTrollFurBack_Info;
@@ -525,14 +525,14 @@ func void DIA_Raoul_GotTrollFurBack_Info()
 {
 	AI_Output(other,self,"DIA_Raoul_GotTrollFurBack_15_00");	//Никогда больше не пытайся обмануть меня, понятно?
 	AI_Output(self,other,"DIA_Raoul_GotTrollFurBack_01_01");	//Хорошо. Ты знаешь здешние законы. Так что успокойся.
-	MIS_Raoul_DoesntPayTrollFur = LOG_Success;
+	MIS_Raoul_DoesntPayTrollFur = LOG_SUCCESS;
 	AI_StopProcessInfos(self);
 };
 
 
 instance DIA_Raoul_KAP3_EXIT(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 999;
 	condition = DIA_Raoul_KAP3_EXIT_Condition;
 	information = DIA_Raoul_KAP3_EXIT_Info;
@@ -557,7 +557,7 @@ func void DIA_Raoul_KAP3_EXIT_Info()
 
 instance DIA_Raoul_KAP4_EXIT(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 999;
 	condition = DIA_Raoul_KAP4_EXIT_Condition;
 	information = DIA_Raoul_KAP4_EXIT_Info;
@@ -582,7 +582,7 @@ func void DIA_Raoul_KAP4_EXIT_Info()
 
 instance DIA_Raoul_KAP5_EXIT(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 999;
 	condition = DIA_Raoul_KAP5_EXIT_Condition;
 	information = DIA_Raoul_KAP5_EXIT_Info;
@@ -607,7 +607,7 @@ func void DIA_Raoul_KAP5_EXIT_Info()
 
 instance DIA_Raoul_Ship(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_Ship_Condition;
 	information = DIA_Raoul_Ship_Info;
@@ -627,7 +627,7 @@ func void DIA_Raoul_Ship_Info()
 {
 	AI_Output(other,self,"DIA_Raoul_Ship_15_00");	//Ты не отказался бы от океанского круиза?
 	AI_Output(self,other,"DIA_Raoul_Ship_01_01");	//Что ты замышляешь? Ты хочешь захватить корабль паладинов? (смеется)
-	AI_Output(other,self,"DIA_Raoul_Ship_15_02");	//А что, если и так?
+	AI_Output(other,self,"DIA_Raoul_Ship_15_02");	//А что если и так?
 	AI_Output(self,other,"DIA_Raoul_Ship_01_03");	//(серьезно) У тебя совсем крыша поехала. Нет, спасибо. Это не для меня.
 	AI_Output(self,other,"DIA_Raoul_Ship_01_04");	//Я не вижу причин покидать Хоринис. Мне все равно, где зарабатывать деньги, здесь или на материке.
 	AI_Output(self,other,"DIA_Raoul_Ship_01_05");	//Найди кого-нибудь еще.
@@ -638,18 +638,18 @@ func void DIA_Raoul_Ship_Info()
 };
 
 
-instance DIA_RAOUL_KAP6_EXIT(C_Info)
+instance DIA_Raoul_KAP6_EXIT(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 999;
-	condition = dia_raoul_kap6_exit_condition;
-	information = dia_raoul_kap6_exit_info;
+	condition = DIA_Raoul_KAP6_EXIT_Condition;
+	information = DIA_Raoul_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_raoul_kap6_exit_condition()
+func int DIA_Raoul_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -657,7 +657,7 @@ func int dia_raoul_kap6_exit_condition()
 	};
 };
 
-func void dia_raoul_kap6_exit_info()
+func void DIA_Raoul_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -665,7 +665,7 @@ func void dia_raoul_kap6_exit_info()
 
 instance DIA_Raoul_PICKPOCKET(C_Info)
 {
-	npc = SLD_822_Raoul;
+	npc = Sld_822_Raoul;
 	nr = 900;
 	condition = DIA_Raoul_PICKPOCKET_Condition;
 	information = DIA_Raoul_PICKPOCKET_Info;

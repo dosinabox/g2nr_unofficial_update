@@ -1,5 +1,5 @@
 
-instance SLD_816_Fester(Npc_Default)
+instance Sld_816_Fester(Npc_Default)
 {
 	name[0] = "Фестер";
 	guild = GIL_SLD;
@@ -13,7 +13,7 @@ instance SLD_816_Fester(Npc_Default)
 	EquipItem(self,ItRw_Sld_Bow);
 	CreateInvItems(self,ItRw_Arrow,10);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart05,BodyTex_N,itar_sld_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart05,BodyTex_N,ItAr_Sld_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

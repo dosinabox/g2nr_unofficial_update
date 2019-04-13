@@ -126,7 +126,7 @@ func void DIA_Maleth_BanditsDEAD_Info()
 	AI_Output(other,self,"DIA_Maleth_BanditsDEAD_15_02");	//Они не на того напали...
 	AI_Output(self,other,"DIA_Maleth_BanditsDEAD_08_03");	//Слава Инносу! Вот - здесь немного, но я хочу, чтобы ты принял это!
 	B_GiveInvItems(self,other,ItFo_Wine,3);
-	MIS_Maleth_Bandits = LOG_Success;
+	MIS_Maleth_Bandits = LOG_SUCCESS;
 	B_GivePlayerXP(XP_MalethKillBandits);
 	AI_Output(self,other,"DIA_Maleth_BanditsDEAD_08_04");	//Я расскажу остальным об этом!
 };
@@ -148,10 +148,10 @@ func int DIA_Maleth_BanditsALIVE_Condition()
 	var C_Npc b13;
 	var C_Npc b14;
 	var C_Npc b15;
-	b13 = Hlp_GetNpc(BDT_1013_Bandit_L);
-	b14 = Hlp_GetNpc(BDT_1014_Bandit_L);
-	b15 = Hlp_GetNpc(BDT_1015_Bandit_L);
-	if((!Npc_IsDead(b13) || !Npc_IsDead(b14) || !Npc_IsDead(b15)) && Npc_KnowsInfo(other,DIA_Maleth_BANDITS) && (MIS_Maleth_Bandits != LOG_Success))
+	b13 = Hlp_GetNpc(Bdt_1013_Bandit_L);
+	b14 = Hlp_GetNpc(Bdt_1014_Bandit_L);
+	b15 = Hlp_GetNpc(Bdt_1015_Bandit_L);
+	if((!Npc_IsDead(b13) || !Npc_IsDead(b14) || !Npc_IsDead(b15)) && Npc_KnowsInfo(other,DIA_Maleth_BANDITS) && (MIS_Maleth_Bandits != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -473,18 +473,18 @@ func void DIA_Maleth_PERM3_Info()
 };
 
 
-instance DIA_MALETH_KAP4_EXIT(C_Info)
+instance DIA_Maleth_KAP4_EXIT(C_Info)
 {
 	npc = BAU_954_Maleth;
 	nr = 999;
-	condition = dia_maleth_kap4_exit_condition;
-	information = dia_maleth_kap4_exit_info;
+	condition = DIA_Maleth_KAP4_EXIT_Condition;
+	information = DIA_Maleth_KAP4_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_maleth_kap4_exit_condition()
+func int DIA_Maleth_KAP4_EXIT_Condition()
 {
 	if(Kapitel == 4)
 	{
@@ -492,24 +492,24 @@ func int dia_maleth_kap4_exit_condition()
 	};
 };
 
-func void dia_maleth_kap4_exit_info()
+func void DIA_Maleth_KAP4_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_MALETH_KAP5_EXIT(C_Info)
+instance DIA_Maleth_KAP5_EXIT(C_Info)
 {
 	npc = BAU_954_Maleth;
 	nr = 999;
-	condition = dia_maleth_kap5_exit_condition;
-	information = dia_maleth_kap5_exit_info;
+	condition = DIA_Maleth_KAP5_EXIT_Condition;
+	information = DIA_Maleth_KAP5_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_maleth_kap5_exit_condition()
+func int DIA_Maleth_KAP5_EXIT_Condition()
 {
 	if(Kapitel == 5)
 	{
@@ -517,24 +517,24 @@ func int dia_maleth_kap5_exit_condition()
 	};
 };
 
-func void dia_maleth_kap5_exit_info()
+func void DIA_Maleth_KAP5_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_MALETH_KAP6_EXIT(C_Info)
+instance DIA_Maleth_KAP6_EXIT(C_Info)
 {
 	npc = BAU_954_Maleth;
 	nr = 999;
-	condition = dia_maleth_kap6_exit_condition;
-	information = dia_maleth_kap6_exit_info;
+	condition = DIA_Maleth_KAP6_EXIT_Condition;
+	information = DIA_Maleth_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_maleth_kap6_exit_condition()
+func int DIA_Maleth_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -542,7 +542,7 @@ func int dia_maleth_kap6_exit_condition()
 	};
 };
 
-func void dia_maleth_kap6_exit_info()
+func void DIA_Maleth_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

@@ -79,7 +79,7 @@ func int DIA_Valentino_WhoAgain_Condition()
 func void DIA_Valentino_WhoAgain_Info()
 {
 	AI_Output(other,self,"DIA_Valentino_Add_15_01");	//Я спросил тебя, кто ты такой!
-	AI_Output(self,other,"DIA_Valentino_HALLO_wasmachstdu_03_01");	//Я Валентино Великолепный. Бонвиван и любимчик женщин.
+	AI_Output(self,other,"DIA_Valentino_HALLO_wasmachstdu_03_01");	//Я Валентино Великолепный. Бонвиан и любимчик женщин.
 	AI_Output(self,other,"DIA_Valentino_HALLO_wasmachstdu_03_02");	//Бедный заботами, богатый мудростью и золотом, женщины так и бросаются на меня.
 	AI_Output(self,other,"DIA_Valentino_HALLO_wasmachstdu_03_03");	//Если у тебя есть проблемы, держи их при себе. Мне они не нужны.
 };
@@ -106,9 +106,9 @@ func int DIA_Valentino_Manieren_Condition()
 
 func void DIA_Valentino_Manieren_Info()
 {
-	AI_Output(other,self,"DIA_Valentino_Add_15_02");	//(вздыхает) Похоже, мне придется поучить тебя хорошим манерам!
+	AI_Output(other,self,"DIA_Valentino_Add_15_02");	//Похоже, мне придется поучить тебя хорошим манерам!
 	AI_Output(self,other,"DIA_Valentino_HALLO_klappe_03_01");	//Меня это не волнует! Молоти меня, сколько хочешь. А когда я встану завтра утром, я опять буду красавчиком.
-	AI_Output(self,other,"DIA_Valentino_HALLO_klappe_03_02");	//Но тебе придется жить дальше с этим преступлением до конца своих дней.
+	AI_Output(self,other,"DIA_Valentino_HALLO_klappe_03_02");	//Но тебе придется жить дальше с этим преступлением до конца своих дней
 };
 
 
@@ -192,11 +192,12 @@ func void DIA_Valentino_PICKPOCKET_DoIt()
 	{
 		B_GiveInvItems(self,other,ItKe_Valentino,1);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GivePlayerXP(XP_Ambient);
+		B_GiveThiefXP();
 		Info_ClearChoices(DIA_Valentino_PICKPOCKET);
 	}
 	else
 	{
+		B_ResetThiefLevel();
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

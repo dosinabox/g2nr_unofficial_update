@@ -106,7 +106,7 @@ instance DIA_Kjorn_BuyInfos(C_Info)
 	condition = DIA_Kjorn_BuyInfos_Condition;
 	information = DIA_Kjorn_BuyInfos_Info;
 	permanent = TRUE;
-	description = "Мне нужна кое-какая информация.";
+	description = "Мне нужна информация.";
 };
 
 

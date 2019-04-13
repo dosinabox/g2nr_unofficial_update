@@ -73,7 +73,7 @@ func void DIA_Kervo_HILFE_Info()
 	Info_ClearChoices(DIA_Kervo_HILFE);
 	Info_AddChoice(DIA_Kervo_HILFE,"Ладно. Я ухожу.",DIA_Kervo_HILFE_tschau);
 	Info_AddChoice(DIA_Kervo_HILFE,"Но ты же не можешь оставаться здесь вечно.",DIA_Kervo_HILFE_ewig);
-	if(KERVO_GOTSTUFF == TRUE)
+	if(Kervo_GotStuff == TRUE)
 	{
 		Info_AddChoice(DIA_Kervo_HILFE,"Что ты мне дашь, если я убью этих тварей?",DIA_Kervo_HILFE_Problem);
 	};
@@ -87,7 +87,7 @@ func void DIA_Kervo_HILFE_ewig()
 };
 
 
-var int kervo_promisenugget;
+var int Kervo_PromiseNugget;
 
 func void DIA_Kervo_HILFE_Problem()
 {
@@ -102,7 +102,7 @@ func void DIA_Kervo_HILFE_Problem()
 		AI_Output(self,other,"DIA_Kervo_HILFE_Problem_13_03");	//Я нашел кусок руды.
 	};
 	AI_Output(self,other,"DIA_Kervo_HILFE_Problem_13_04");	//Я отдам тебе его.
-	KERVO_PROMISENUGGET = TRUE;
+	Kervo_PromiseNugget = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -135,7 +135,7 @@ func void DIA_Kervo_LurkerPlatt_Info()
 {
 	AI_Output(other,self,"DIA_Kervo_LurkerPlatt_15_00");	//Луркеров больше нет.
 	AI_Output(self,other,"DIA_Kervo_LurkerPlatt_13_01");	//Отлично. Теперь я опять смогу спать спокойно.
-	if(KERVO_PROMISENUGGET == TRUE)
+	if(Kervo_PromiseNugget == TRUE)
 	{
 		AI_Output(self,other,"DIA_Kervo_LurkerPlatt_13_02");	//Вот то, что я обещал тебе.
 		if(hero.guild == GIL_KDF)
@@ -148,7 +148,7 @@ func void DIA_Kervo_LurkerPlatt_Info()
 		};
 	};
 	B_GivePlayerXP(XP_KervoKillLurker);
-	MIS_Kervo_KillLurker = LOG_Success;
+	MIS_Kervo_KillLurker = LOG_SUCCESS;
 };
 
 
@@ -164,7 +164,7 @@ instance DIA_Kervo_VERGISSES(C_Info)
 
 func int DIA_Kervo_VERGISSES_Condition()
 {
-	if(MIS_Kervo_KillLurker == LOG_Success)
+	if(MIS_Kervo_KillLurker == LOG_SUCCESS)
 	{
 		return TRUE;
 	};

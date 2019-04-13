@@ -2,7 +2,7 @@
 func void PC_Sleep(var int t)
 {
 	AI_StopProcessInfos(self);
-	player_mobsi_production = MOBSI_NONE;
+	PLAYER_MOBSI_PRODUCTION = MOBSI_NONE;
 	self.aivar[AIV_INVINCIBLE] = FALSE;
 	if(Wld_IsTime(0,0,t,0))
 	{
@@ -37,7 +37,7 @@ func void sleepabit_s1()
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(rock)))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_SleepAbit;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_SleepAbit;
 		AI_ProcessInfos(her);
 		if(SC_IsObsessed == TRUE)
 		{
@@ -61,7 +61,7 @@ instance PC_NoSleep(C_Info)
 
 func int PC_NoSleep_Condition()
 {
-	if(player_mobsi_production == MOBSI_SleepAbit)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
 		return 1;
 	};
@@ -72,7 +72,7 @@ func void PC_NoSleep_Info()
 	AI_StopProcessInfos(self);
 	Wld_StopEffect("DEMENTOR_FX");
 	self.aivar[AIV_INVINCIBLE] = FALSE;
-	player_mobsi_production = MOBSI_NONE;
+	PLAYER_MOBSI_PRODUCTION = MOBSI_NONE;
 };
 
 
@@ -89,7 +89,7 @@ instance PC_SleepTime_Morning(C_Info)
 
 func int PC_SleepTime_Morning_Condition()
 {
-	if(player_mobsi_production == MOBSI_SleepAbit)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
 		return 1;
 	};
@@ -114,7 +114,7 @@ instance PC_SleepTime_Noon(C_Info)
 
 func int PC_SleepTime_Noon_Condition()
 {
-	if(player_mobsi_production == MOBSI_SleepAbit)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
 		return 1;
 	};
@@ -139,7 +139,7 @@ instance PC_SleepTime_Evening(C_Info)
 
 func int PC_SleepTime_Evening_Condition()
 {
-	if(player_mobsi_production == MOBSI_SleepAbit)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
 		return 1;
 	};
@@ -164,7 +164,7 @@ instance PC_SleepTime_Midnight(C_Info)
 
 func int PC_SleepTime_Midnight_Condition()
 {
-	if(player_mobsi_production == MOBSI_SleepAbit)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
 		return 1;
 	};

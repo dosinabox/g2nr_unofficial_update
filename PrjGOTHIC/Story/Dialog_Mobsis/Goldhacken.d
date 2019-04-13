@@ -111,7 +111,7 @@ func void Goldhacken_S1()
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
-		player_mobsi_production = MOBSI_GOLDHACKEN;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_GOLDHACKEN;
 		AI_ProcessInfos(her);
 	};
 };
@@ -130,7 +130,7 @@ instance PC_Goldhacken_End(C_Info)
 
 func int PC_Goldhacken_End_Condition()
 {
-	if(player_mobsi_production == MOBSI_GOLDHACKEN)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_GOLDHACKEN)
 	{
 		return TRUE;
 	};
@@ -156,7 +156,7 @@ instance PC_Goldhacken_Addon_Hour(C_Info)
 
 func int PC_Goldhacken_Addon_Hour_Condition()
 {
-	if(player_mobsi_production == MOBSI_GOLDHACKEN)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_GOLDHACKEN)
 	{
 		return TRUE;
 	};
@@ -236,7 +236,7 @@ instance PC_Goldhacken_Addon_TSchlag(C_Info)
 
 func int PC_Goldhacken_Addon_TSchlag_Condition()
 {
-	if((player_mobsi_production == MOBSI_GOLDHACKEN) && (Truemmer_Count >= 2) && (Knows_Truemmerschlag == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_GOLDHACKEN) && (Truemmer_Count >= 2) && (Knows_Truemmerschlag == TRUE))
 	{
 		return TRUE;
 	};
@@ -287,7 +287,7 @@ instance PC_Goldhacken_Addon_Chance(C_Info)
 
 func int PC_Goldhacken_Addon_Chance_Condition()
 {
-	if(player_mobsi_production == MOBSI_GOLDHACKEN)
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_GOLDHACKEN)
 	{
 		return TRUE;
 	};

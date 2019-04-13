@@ -35,7 +35,7 @@ func void ZS_Stand_RangerMeeting()
 	};
 };
 
-func int ZS_Stand_RangerMeeting_Loop()
+func int ZS_Stand_RangerMeeting_loop()
 {
 	var int random;
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
@@ -102,7 +102,7 @@ func int ZS_Stand_RangerMeeting_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Stand_RangerMeeting_End()
+func void ZS_Stand_RangerMeeting_end()
 {
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
 	{

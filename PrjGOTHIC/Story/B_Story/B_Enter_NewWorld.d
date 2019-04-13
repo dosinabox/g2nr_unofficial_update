@@ -5,7 +5,7 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 	{
 		Wld_InsertNpc(KDW_140300_Addon_Myxir_CITY,"CITY1");
 	};
-	if(entered_addonworld == TRUE)
+	if(ENTERED_ADDONWORLD == TRUE)
 	{
 		B_RemoveNpc(KDW_1400_Addon_Saturas_NW);
 		B_RemoveNpc(KDW_1401_Addon_Cronos_NW);
@@ -289,7 +289,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				CreateInvItems(Bromor,ITWR_DementorObsessionBook_MIS,1);
 			};
 		};
-		if((MIS_Canthars_KomproBrief != LOG_Success) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && (Npc_IsDead(Canthar) == FALSE))
+		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && (Npc_IsDead(Canthar) == FALSE))
 		{
 			B_RemoveNpc(Sarah);
 			B_StartOtherRoutine(Canthar,"MARKTSTAND");
@@ -384,9 +384,9 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_FARM1_GOBBO_02");
 			Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_FARM1_GOBBO_03");
 			Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_FARM1_GOBBO_04");
-			Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_FARM1_Wolf_01");
-			Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_FARM1_Wolf_02");
-			Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_FARM1_Wolf_03");
+			Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_FARM1_WOLF_01");
+			Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_FARM1_WOLF_02");
+			Wld_InsertNpc(OrcWarrior_Rest,"FP_ROAM_FARM1_WOLF_03");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_CITY_TO_FOREST_39");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_CITY_TO_FOREST_42");
 			Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_CITY_TO_FOREST_41");
@@ -562,13 +562,13 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 	if(Talbin_FollowsThroughPass == LOG_Running)
 	{
 		Wld_InsertNpc(VLK_4132_Talbin_NW,"LEVELCHANGE");
-		Talbin_FollowsThroughPass = LOG_Success;
+		Talbin_FollowsThroughPass = LOG_SUCCESS;
 	};
 };
 
 
 var int EnterNW_Kapitel5;
-var int pal_schiffswache_exchange_onetime;
+var int Pal_Schiffswache_Exchange_onetime;
 var int Rosi_FleeFromSekob_Kap5;
 
 func void B_ENTER_NEWWORLD_Kapitel_5()
@@ -589,11 +589,11 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		};
 		if(GornDJG_is_alive == TRUE)
 		{
-			Wld_InsertNpc(PC_Fighter_NW_nach_DJG,"Bigfarm");
+			Wld_InsertNpc(PC_Fighter_NW_nach_DJG,"BIGFARM");
 		};
 		if(DJG_Angar_is_alive == TRUE)
 		{
-			Wld_InsertNpc(DJG_705_Angar_NW,"Bigfarm");
+			Wld_InsertNpc(DJG_705_Angar_NW,"BIGFARM");
 		};
 		Wld_InsertNpc(Xardas_DT_Demon1,"FP_ROAM_NW_XARDASTOWER_DEMON_02");
 		Wld_InsertNpc(Xardas_DT_Demon2,"NW_XARDAS_TOWER_IN1_24");
@@ -607,14 +607,14 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		Wld_InsertNpc(Waran,"NW_FARM3_PATH_11_SMALLRIVER_11");
 		Wld_InsertNpc(Lurker,"NW_FARM3_MOUNTAINLAKE_05");
 		Wld_InsertNpc(Lurker,"NW_FARM3_MOUNTAINLAKE_05");
-		Wld_InsertNpc(NONE_101_Mario,"NW_CITY_ENTRANCE_01");
+		Wld_InsertNpc(None_101_Mario,"NW_CITY_ENTRANCE_01");
 		Wld_InsertItem(ItWr_HallsofIrdorath_Mis,"FP_NW_ITEM_LIBRARY_IRDORATHBOOK");
 		Wld_InsertItem(ItWr_Seamap_Irdorath,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		Wld_InsertItem(ItWr_XardasSeamapBook_Mis,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		Wld_InsertItem(ItPo_PotionOfDeath_01_Mis,"FP_NW_ITEM_LIBRARY_SEAMAP2");
 		if(hero.guild == GIL_PAL)
 		{
-			Wld_InsertItem(itar_pal_h,"FP_ITEM_PALFINALARMOR");
+			Wld_InsertItem(ItAr_PAl_H,"FP_ITEM_PALFINALARMOR");
 			Wld_InsertItem(ItMi_RuneBlank,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		};
 		if(hero.guild == GIL_DJG)
@@ -654,39 +654,39 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 				B_StartOtherRoutine(Sekob,"Obsessed");
 			};
 		};
-		Wld_InsertNpc(PAL_285_Ritter,"CITY1");
-		Wld_InsertNpc(PAL_286_Ritter,"CITY1");
-		Wld_InsertNpc(PAL_287_Ritter,"CITY1");
-		Wld_InsertNpc(PAL_288_Ritter,"CITY1");
-		Wld_InsertNpc(PAL_289_Ritter,"CITY1");
-		Wld_InsertNpc(PAL_290_Ritter,"CITY1");
-		Wld_InsertNpc(PAL_291_Ritter,"CITY1");
-		Wld_InsertNpc(PAL_292_Ritter,"CITY1");
-		Wld_InsertNpc(PAL_293_Ritter,"CITY1");
+		Wld_InsertNpc(Pal_285_Ritter,"CITY1");
+		Wld_InsertNpc(Pal_286_RITTER,"CITY1");
+		Wld_InsertNpc(Pal_287_Ritter,"CITY1");
+		Wld_InsertNpc(Pal_288_Ritter,"CITY1");
+		Wld_InsertNpc(Pal_289_Ritter,"CITY1");
+		Wld_InsertNpc(Pal_290_Ritter,"CITY1");
+		Wld_InsertNpc(Pal_291_Ritter,"CITY1");
+		Wld_InsertNpc(Pal_292_Ritter,"CITY1");
+		Wld_InsertNpc(Pal_293_Ritter,"CITY1");
 		Schiffswache_212.flags = 0;
 		Schiffswache_213.flags = 0;
-		PAL_220_Schiffswache.flags = 0;
-		PAL_221_Schiffswache.flags = 0;
-		PAL_222_Schiffswache.flags = 0;
-		PAL_223_Schiffswache.flags = 0;
-		PAL_224_Schiffswache.flags = 0;
-		PAL_225_Schiffswache.flags = 0;
-		PAL_226_Schiffswache.flags = 0;
-		PAL_227_Schiffswache.flags = 0;
-		PAL_228_Schiffswache.flags = 0;
-		B_StartOtherRoutine(PAL_220_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_221_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_222_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_223_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_224_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_225_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_226_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_227_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_228_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(PAL_230_Ritter,"ShipFree");
-		B_StartOtherRoutine(PAL_231_Ritter,"ShipFree");
-		B_StartOtherRoutine(PAL_240_Ritter,"ShipFree");
-		B_StartOtherRoutine(PAL_241_Ritter,"ShipFree");
+		Pal_220_Schiffswache.flags = 0;
+		Pal_221_Schiffswache.flags = 0;
+		Pal_222_Schiffswache.flags = 0;
+		Pal_223_Schiffswache.flags = 0;
+		Pal_224_Schiffswache.flags = 0;
+		Pal_225_Schiffswache.flags = 0;
+		Pal_226_Schiffswache.flags = 0;
+		Pal_227_Schiffswache.flags = 0;
+		Pal_228_Schiffswache.flags = 0;
+		B_StartOtherRoutine(Pal_220_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(Pal_221_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(Pal_222_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(Pal_223_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(Pal_224_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(Pal_225_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(Pal_226_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(Pal_227_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(Pal_228_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(Pal_230_Ritter,"ShipFree");
+		B_StartOtherRoutine(Pal_231_Ritter,"ShipFree");
+		B_StartOtherRoutine(Pal_240_Ritter,"ShipFree");
+		B_StartOtherRoutine(Pal_241_Ritter,"ShipFree");
 		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 		{
 			IntroduceChapter(KapWechsel_5,KapWechsel_5_Text,"chapter5_PAL.tga","chapter_01.wav",6000);
@@ -701,17 +701,17 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		};
 		EnterNW_Kapitel5 = TRUE;
 	};
-	if((MIS_OCGateOpen == TRUE) && (PAL_SCHIFFSWACHE_EXCHANGE_ONETIME == FALSE))
+	if((MIS_OCGateOpen == TRUE) && (Pal_Schiffswache_Exchange_onetime == FALSE))
 	{
 		B_StartOtherRoutine(PAL_212_Schiffswache,"ShipFree");
 		B_StartOtherRoutine(PAL_213_Schiffswache,"ShipFree");
-		PAL_SCHIFFSWACHE_EXCHANGE_ONETIME = TRUE;
+		Pal_Schiffswache_Exchange_onetime = TRUE;
 		MIS_ShipIsFree = TRUE;
 	};
 	if(Biff_FollowsThroughPass == LOG_Running)
 	{
 		Wld_InsertNpc(DJG_713_Biff_NW,"LEVELCHANGE");
-		Biff_FollowsThroughPass = LOG_Success;
+		Biff_FollowsThroughPass = LOG_SUCCESS;
 	};
 };
 

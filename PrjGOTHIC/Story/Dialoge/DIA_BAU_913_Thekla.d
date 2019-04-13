@@ -39,7 +39,7 @@ func int DIA_Thekla_HALLO_Condition()
 
 func void DIA_Thekla_HALLO_Info()
 {
-	AI_Output(self,other,"DIA_Thekla_HALLO_17_00");	//Что ты здесь делаешь, на моей кухне?
+	AI_Output(self,other,"DIA_Thekla_HALLO_17_00");	//Что ты делаешь здесь, на моей кухне?
 };
 
 
@@ -65,7 +65,7 @@ func int DIA_Thekla_Lecker_Condition()
 func void DIA_Thekla_Lecker_Info()
 {
 	AI_Output(other,self,"DIA_Thekla_Lecker_15_00");	//Как у тебя здесь вкусно пахнет!
-	AI_Output(self,other,"DIA_Thekla_Lecker_17_01");	//Не подлизывайся! Знаю я таких, как ты, как облупленных! Вон их сколько вокруг бродит!
+	AI_Output(self,other,"DIA_Thekla_Lecker_17_01");	//Не подлизывайся! Я знаю таких, как ты, как облупленных! Вон их сколько вокруг бродит!
 	AI_Output(self,other,"DIA_Thekla_Lecker_17_02");	//Сначала вы пытаетесь подхалимничать, а затем, когда от вас что-то нужно, то никого не найдешь!
 };
 
@@ -167,8 +167,8 @@ func int DIA_Thekla_WannaJoin_Condition()
 func void DIA_Thekla_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Thekla_WannaJoin_15_00");	//Вообще-то я планировал присоединиться к наемникам...
-	AI_Output(self,other,"DIA_Thekla_WannaJoin_17_01");	//Так ты еще и преступник из колонии?
-	AI_Output(self,other,"DIA_Thekla_WannaJoin_17_02");	//Могла бы догадаться! Оставь меня в покое! Здесь вашего брата уже и так хватает!
+	AI_Output(self,other,"DIA_Thekla_WannaJoin_17_01");	//Так ты тоже преступник из колонии?
+	AI_Output(self,other,"DIA_Thekla_WannaJoin_17_02");	//Я могла бы догадаться! Оставь меня в покое! Здесь вашего брата уже и так хватает!
 };
 
 
@@ -220,13 +220,13 @@ func int DIA_Thekla_Problem_Condition()
 func void DIA_Thekla_Problem_Info()
 {
 	AI_Output(other,self,"DIA_Thekla_Problem_15_00");	//Почему ты не любишь наемников?
-	AI_Output(self,other,"DIA_Thekla_Problem_17_01");	//Эти кретины действуют мне на нервы! Особенно Сильвио и его жирный приятель Буллко.
+	AI_Output(self,other,"DIA_Thekla_Problem_17_01");	//Ах, эти кретины действуют мне на нервы! Особенно Сильвио и его жирный приятель Булко.
 	AI_Output(self,other,"DIA_Thekla_Problem_17_02");	//Эти двое сидят вон там, в углу, целыми днями напролет и отравляют мне жизнь.
 	AI_Output(self,other,"DIA_Thekla_Problem_17_03");	//То суп им слишком горячий, то мясо слишком жесткое, ну и все тому подобное...
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(other,self,"DIA_Thekla_Problem_15_04");	//А почему ты ничего не делаешь с этим?
-		AI_Output(self,other,"DIA_Thekla_Problem_17_05");	//А что я могу сделать, мистер Остряк-Самоучка? Врезать им своей скалкой? Да, с фермерами это проходит, но ведь эти ублюдки, недолго думая, ответят мечом!
+		AI_Output(self,other,"DIA_Thekla_Problem_17_05");	//А что я могу сделать, мистер Остряк-Самоучка? Врезать им своей скалкой? Да, с фермерами это проходит, но ведь эти ублюдки недолго думая ответят мечом!
 	};
 };
 
@@ -254,7 +254,7 @@ func void DIA_Thekla_Manieren_Info()
 {
 	AI_Output(other,self,"DIA_Thekla_Manieren_15_00");	//Хочешь, я научу этих двоих хорошим манерам?
 	AI_Output(self,other,"DIA_Thekla_Manieren_17_01");	//Тебе лучше не связываться с ними. Как я знаю, у Сильвио магические доспехи. Его нельзя победить.
-	AI_Output(other,self,"DIA_Thekla_Manieren_15_02");	//А что насчет Буллко?
+	AI_Output(other,self,"DIA_Thekla_Manieren_15_02");	//А что насчет Булко?
 	AI_Output(self,other,"DIA_Thekla_Manieren_17_03");	//Этот парень силен как бык. Пока он легко справлялся со всеми, кто пытался выступить против него или Сильвио.
 };
 
@@ -282,7 +282,7 @@ func void DIA_Thekla_AfterFight_Info()
 {
 	if(Bullco.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 	{
-		AI_Output(self,other,"DIA_Thekla_AfterFight_17_00");	//Ты действительно смог выбить дурь из этого Буллко.
+		AI_Output(self,other,"DIA_Thekla_AfterFight_17_00");	//Ты действительно смог выбить дурь из этого Булко.
 		AI_Output(self,other,"DIA_Thekla_AfterFight_17_01");	//Должно быть, ты очень устал, пока молотил эту жирную свинью.
 	}
 	else
@@ -322,7 +322,7 @@ func void DIA_Thekla_SagittaPaket_Info()
 	B_GiveInvItems(other,self,ItMi_TheklasPaket,1);
 	AI_Output(other,self,"DIA_Thekla_SagittaPaket_15_00");	//Вот пакет от Сагитты.
 	AI_Output(self,other,"DIA_Thekla_SagittaPaket_17_01");	//Огромное спасибо. От тебя есть хоть какая-то польза в отличие от других.
-	MIS_Thekla_Paket = LOG_Success;
+	MIS_Thekla_Paket = LOG_SUCCESS;
 	B_GivePlayerXP(XP_TheklasPaket);
 };
 
@@ -358,7 +358,7 @@ func void DIA_Thekla_PERM_Info()
 		AI_Output(self,other,"DIA_Thekla_PERM_17_01");	//Она закончилась.
 		AI_Output(other,self,"DIA_Thekla_PERM_15_02");	//Не осталось даже маленькой миски?
 		AI_Output(self,other,"DIA_Thekla_PERM_17_03");	//Нет.
-		AI_Output(other,self,"DIA_Thekla_PERM_15_04");	//А могу я облизать горшок, а?
+		AI_Output(other,self,"DIA_Thekla_PERM_15_04");	//А могу облизать горшок, а?
 		AI_Output(self,other,"DIA_Thekla_PERM_17_05");	//Прекрати!
 		AI_Output(self,other,"DIA_Thekla_PERM_17_06");	//Если тебе так понравилась моя похлебка, тебе придется сделать кое-что, чтобы получить ее.
 		AI_Output(other,self,"DIA_Thekla_PERM_15_07");	//Что?
@@ -368,9 +368,9 @@ func void DIA_Thekla_PERM_Info()
 		CreateInvItems(Sagitta,ItMi_TheklasPaket,1);
 		Log_CreateTopic(TOPIC_TheklaEintopf,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_TheklaEintopf,LOG_Running);
-		B_LogEntry(TOPIC_TheklaEintopf,"Если я принесу Текле травы от знахарки Саггиты, она сварит еще одну похлебку для меня. Саггита живет за фермой Секоба.");
+		B_LogEntry(TOPIC_TheklaEintopf,"Если я принесу Текле травы от знахарки Сагитты, она сварит еще одну похлебку для меня. Сагитта живет за фермой Секоба.");
 	}
-	else if(MIS_Thekla_Paket == LOG_Success)
+	else if(MIS_Thekla_Paket == LOG_SUCCESS)
 	{
 		if(Kapitel <= 2)
 		{
@@ -388,13 +388,13 @@ func void DIA_Thekla_PERM_Info()
 		};
 		if((Kapitel == 3) || (Kapitel == 4))
 		{
-			if((Thekla_MehrEintopfKap3 == FALSE) && (MIS_RescueBennet == LOG_Success))
+			if((Thekla_MehrEintopfKap3 == FALSE) && (MIS_RescueBennet == LOG_SUCCESS))
 			{
 				AI_Output(self,other,"DIA_Thekla_PERM_17_13");	//Я слышала, ты помог Беннету выбраться из тюрьмы. Отличная работа, парень.
 				B_GiveInvItems(self,other,ItFo_XPStew,1);
 				Thekla_MehrEintopfKap3 = TRUE;
 			}
-			else if(MIS_RescueBennet != LOG_Success)
+			else if(MIS_RescueBennet != LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Thekla_PERM_17_14");	//Эти ублюдки из ополчения бросили Беннета за решетку.
 				AI_Output(self,other,"DIA_Thekla_PERM_17_15");	//Окажи мне услугу, вызволи его оттуда, хорошо? А тем временем я сварю для тебя очень вкусную похлебку.
@@ -416,7 +416,7 @@ func void DIA_Thekla_PERM_Info()
 			}
 			else
 			{
-				AI_Output(self,other,"DIA_Thekla_PERM_17_20");	//Все! Похлебка закончилась.
+				AI_Output(self,other,"DIA_Thekla_PERM_17_20");	//Все! Похлебка вся закончилась.
 			};
 		};
 	}

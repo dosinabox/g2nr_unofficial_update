@@ -53,3 +53,10 @@ instance BeachWaran2(Mst_Default_Waran)
 	Npc_SetToFistMode(self);
 };
 
+instance WARANTRANSFORM(Mst_Default_Waran)
+{
+	Npc_PercEnable(self,PERC_ASSESSSURPRISE,b_stopmagictransform);
+	B_SetVisuals_Waran();
+	Npc_SetToFistMode(self);
+};
+

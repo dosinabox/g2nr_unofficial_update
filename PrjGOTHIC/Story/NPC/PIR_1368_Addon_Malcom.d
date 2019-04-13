@@ -11,6 +11,7 @@ instance PIR_1368_Addon_Malcom(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Addon_PIR1hAxe);
 	CreateInvItems(self,ItWr_TwoHStonePlate3_Addon,1);
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal_Sly,BodyTex_N,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,1.1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

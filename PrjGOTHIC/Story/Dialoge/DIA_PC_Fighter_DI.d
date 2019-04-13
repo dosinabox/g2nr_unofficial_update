@@ -43,7 +43,7 @@ func int DIA_Gorn_DI_Hallo_Condition()
 func void DIA_Gorn_DI_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Gorn_DI_Hallo_15_00");	//Все тип-топ?
-	if(OrkSturmDI == FALSE)
+	if(ORkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Gorn_DI_Hallo_12_01");	//Пока да. Помни, я хочу действовать.
 	}

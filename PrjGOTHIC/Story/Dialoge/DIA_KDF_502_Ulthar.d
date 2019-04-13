@@ -95,7 +95,7 @@ instance DIA_Ulthar_WHEN(C_Info)
 
 func int DIA_Ulthar_WHEN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulthar_MAGETEST) && (knows_fire_contest == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Ulthar_MAGETEST) && (KNOWS_FIRE_CONTEST == FALSE))
 	{
 		return TRUE;
 	};
@@ -129,15 +129,15 @@ func int DIA_Ulthar_TEST_Condition()
 
 func void DIA_Ulthar_TEST_Info()
 {
-	AI_Output(other,self,"DIA_Ulthar_TEST_15_00");	//Я готов пройти твое испытание, Мастер.
+	AI_Output(other,self,"DIA_Ulthar_TEST_15_00");	//Я готов пройти твое испытание, мастер.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_01");	//Я не удивлен, что ты знаешь этот старый закон.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_02");	//Но я подозреваю, что ты не осознаешь, какому риску ты себя подвергаешь. Помни, что нетерпеливый дух не выдержит Испытание Огнем.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_03");	//Уже очень давно никто не подвергался этому испытанию. А пройти его и остаться в живых вообще удалось только одному человеку.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_04");	//Тогда это был молодой и амбициозный послушник, а теперь это давний и постоянный член Высшего Совета - я говорю о Серпентесе.
-	AI_Output(other,self,"DIA_Ulthar_TEST_15_05");	//Недолго ему осталось быть единственным, кто прошел это испытание.
+	AI_Output(other,self,"DIA_Ulthar_TEST_15_05");	//Недолго ему осталось быть единственным, кто пошел это испытание.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_06");	//Тогда я не буду больше испытывать твое терпение. Вот мое испытание для тебя:
-	AI_Output(self,other,"DIA_Ulthar_TEST_05_07");	//Создай руну 'Огненная стрела'. Это все - да поможет тебе Иннос.
-	mis_rune = LOG_Running;
+	AI_Output(self,other,"DIA_Ulthar_TEST_05_07");	//Создай руну 'огненная стрела'. Это все - да поможет тебе Иннос.
+	MIS_RUNE = LOG_Running;
 	Log_CreateTopic(TOPIC_Rune,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Rune,LOG_Running);
 	B_LogEntry(TOPIC_Rune,"Ультар дал мне испытание. Я должен создать руну Огненная стрела.");
@@ -158,7 +158,7 @@ instance DIA_Ulthar_RUNNING(C_Info)
 
 func int DIA_Ulthar_RUNNING_Condition()
 {
-	if((mis_rune == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (Npc_HasItems(other,ItRu_FireBolt) == 0))
+	if((MIS_RUNE == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (Npc_HasItems(other,ItRu_FireBolt) == 0))
 	{
 		return TRUE;
 	};
@@ -184,7 +184,7 @@ instance DIA_Ulthar_SUCCESS(C_Info)
 
 func int DIA_Ulthar_SUCCESS_Condition()
 {
-	if((mis_rune == LOG_Running) && (Npc_HasItems(hero,ItRu_FireBolt) >= 1))
+	if((MIS_RUNE == LOG_Running) && (Npc_HasItems(hero,ItRu_FireBolt) >= 1))
 	{
 		return TRUE;
 	};
@@ -196,11 +196,11 @@ func void DIA_Ulthar_SUCCESS_Info()
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_01");	//Отлично, послушник. Храни ее - свою первую руну.
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_02");	//Когда ты достигнешь первого Круга Огня, ты сможешь использовать ее.
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_03");	//Ты прошел это испытание к моему полному удовлетворению.
-	if((mis_golem == LOG_Running) && (Npc_IsDead(Magic_Golem) == FALSE))
+	if((MIS_GOLEM == LOG_Running) && (Npc_IsDead(Magic_Golem) == FALSE))
 	{
 		AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_04");	//Но опасное испытание, что приготовил Серпентес, еще ожидает тебя!
 	};
-	mis_rune = LOG_Success;
+	MIS_RUNE = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RUNE);
 };
 
@@ -291,7 +291,7 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_02");	//Ты должен очистить эти алтари, чтобы ситуация не усугубилась.
 		CreateInvItems(self,ItMi_UltharsHolyWater_Mis,1);
 		B_GiveInvItems(self,other,ItMi_UltharsHolyWater_Mis,1);
-		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_03");	//Возьми эту святую воду и окропи ей основание алтаря.
+		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_03");	//Возьми эту святую воду и окропи ей основания алтаря.
 		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_04");	//Со святыми словами очищения к алтарю вернется его былая сила.
 		if(Npc_HasItems(other,ItWr_Map_Shrine_MIS) == FALSE)
 		{
@@ -335,7 +335,7 @@ instance DIA_Ulthar_SchreineGeheilt(C_Info)
 
 func int DIA_Ulthar_SchreineGeheilt_Condition()
 {
-	if(MIS_Ulthar_HeileSchreine_PAL == LOG_Success)
+	if(MIS_Ulthar_HeileSchreine_PAL == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -344,7 +344,7 @@ func int DIA_Ulthar_SchreineGeheilt_Condition()
 func void DIA_Ulthar_SchreineGeheilt_Info()
 {
 	AI_Output(other,self,"DIA_Ulthar_SchreineGeheilt_15_00");	//Я очистил все алтари.
-	AI_Output(self,other,"DIA_Ulthar_SchreineGeheilt_05_01");	//Превосходно, сын мой. Я горжусь тобой. Да не оставит тебя вниманием Иннос.
+	AI_Output(self,other,"DIA_Ulthar_SchreineGeheilt_05_01");	//Превосходно, сын мой. Я горжусь тобой. Да не оставит тебя внимание Инноса.
 	AI_Output(self,other,"DIA_Ulthar_SchreineGeheilt_05_02");	//Возьми этот Амулет силы, он может пригодиться тебе в твоих сражениях с врагом.
 	CreateInvItems(self,ItAm_Dex_Strg_01,1);
 	B_GiveInvItems(self,other,ItAm_Dex_Strg_01,1);
@@ -429,18 +429,18 @@ func void DIA_Ulthar_KAP5_EXIT_Info()
 };
 
 
-instance DIA_ULTHAR_KAP6_EXIT(C_Info)
+instance DIA_Ulthar_KAP6_EXIT(C_Info)
 {
 	npc = KDF_502_Ulthar;
 	nr = 999;
-	condition = dia_ulthar_kap6_exit_condition;
-	information = dia_ulthar_kap6_exit_info;
+	condition = DIA_Ulthar_KAP6_EXIT_Condition;
+	information = DIA_Ulthar_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_ulthar_kap6_exit_condition()
+func int DIA_Ulthar_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -448,7 +448,7 @@ func int dia_ulthar_kap6_exit_condition()
 	};
 };
 
-func void dia_ulthar_kap6_exit_info()
+func void DIA_Ulthar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

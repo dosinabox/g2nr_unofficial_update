@@ -159,7 +159,7 @@ instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 	name = "Ключ Ксардаса";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = VALUE_KEY_02;
+	value = Value_Key_02;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -550,16 +550,16 @@ instance ItWr_Astronomy_Mis(C_Item)
 };
 
 
-var int Astronomy_Once;
+var int Astronomy_once;
 
 func void Use_Astronomy()
 {
 	var int nDocID;
-	if(Astronomy_Once == FALSE)
+	if(Astronomy_once == FALSE)
 	{
 		B_RaiseAttribute(self,ATR_MANA_MAX,2);
 		Print(Print_ReadAstronomy);
-		Astronomy_Once = TRUE;
+		Astronomy_once = TRUE;
 	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);

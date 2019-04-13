@@ -179,14 +179,14 @@ func void DIA_Wasili_FirstOldCoin_mehr()
 	AI_Output(other,self,"DIA_Wasili_FirstOldCoin_mehr_15_00");	//Этого недостаточно. Как насчет двух?
 	if(DIA_Wasili_FirstOldCoin_mehr_OneTime == FALSE)
 	{
-		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_01");	//Не пойдет! Я еще не выжил из ума! Проваливай.
+		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_01");	//Не пойдет! Я не еще не выжил из ума! Проваливай.
 		DIA_Wasili_FirstOldCoin_mehr_OneTime = TRUE;
 		B_GiveInvItems(self,other,ItMi_OldCoin,1);
 		AI_StopProcessInfos(self);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_02");	//Аххх. Черт. Хорошо. 2 золотые монеты за каждую старинную монетку, что ты принесешь мне - это мое последнее предложение.
+		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_02");	//Аххх. Черт. Хорошо. 2 золотые монеты за каждую старинную монетку, что ты принесешь мне, - это мое последнее предложение.
 		WasilisOldCoinOffer = 2;
 		Info_AddChoice(DIA_Wasili_FirstOldCoin,"В таком случае, 3 было бы неплохо.",DIA_Wasili_FirstOldCoin_ZumTeufel);
 	};

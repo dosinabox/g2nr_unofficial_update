@@ -41,27 +41,27 @@ const string StPl_StandardText = "";
 
 func int C_SCHasStPlSkill()
 {
-	if(player_talent_foreignlanguage[LANGUAGE_1] == FALSE)
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
 	{
 		return FALSE;
 	};
 	if(StoneplateLevel == 1)
 	{
-		if(player_talent_foreignlanguage[LANGUAGE_1] == TRUE)
+		if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 		{
 			return TRUE;
 		};
 	}
 	else if(StoneplateLevel == 2)
 	{
-		if(player_talent_foreignlanguage[LANGUAGE_2] == TRUE)
+		if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE)
 		{
 			return TRUE;
 		};
 	}
 	else if(StoneplateLevel == 3)
 	{
-		if(player_talent_foreignlanguage[LANGUAGE_3] == TRUE)
+		if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == TRUE)
 		{
 			return TRUE;
 		};

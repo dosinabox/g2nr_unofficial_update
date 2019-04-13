@@ -151,7 +151,7 @@ func void DIA_Cassia_News_Info()
 		AI_Output(other,self,"DIA_Cassia_News_15_05");	//Что это за игры?
 		AI_Output(self,other,"DIA_Cassia_News_16_06");	//Мы хотели, чтобы ты умер за то, что сдал одного из наших друзей. Вот почему мы послали Аттилу.
 		AI_Output(self,other,"DIA_Cassia_News_16_07");	//Твое присутствие здесь, однако, открывает новые возможности...
-		AI_Output(other,self,"DIA_Cassia_News_15_08");	//Что ты хочешь предложить мне?
+		AI_Output(other,self,"DIA_Cassia_News_15_08");	//... что ты хочешь предложить мне?
 		AI_Output(self,other,"DIA_Cassia_News_16_09");	//Ты можешь присоединиться к нам.
 	};
 	if((Npc_GetTrueGuild(other) == GIL_NONE) || (Npc_GetTrueGuild(other) == GIL_NOV))
@@ -418,11 +418,11 @@ func int DIA_Cassia_Ablehnen_Condition()
 
 func void DIA_Cassia_Ablehnen_Info()
 {
-	AI_Output(other,self,"DIA_Cassia_Ablehnen_15_00");	//А что, если я не хочу присоединяться к вам?
+	AI_Output(other,self,"DIA_Cassia_Ablehnen_15_00");	//А что если я не хочу присоединяться к вам?..
 	if(MIS_ThiefGuild_sucked == FALSE)
 	{
 		AI_Output(self,other,"DIA_Cassia_Ablehnen_16_01");	//Ты теряешь шанс, который дается один раз в жизни, но ты можешь идти.
-		AI_Output(self,other,"DIA_Cassia_Ablehnen_16_02");	//(серьезно) И даже не думай предать нас. Ты горько пожалеешь об этом.
+		AI_Output(self,other,"DIA_Cassia_Ablehnen_16_02");	//(серьезно) И даже не думай, чтобы предать нас. Ты горько пожалеешь об этом.
 		Info_ClearChoices(DIA_Cassia_Ablehnen);
 		Info_AddChoice(DIA_Cassia_Ablehnen,"Хорошо, я в деле.",DIA_Cassia_Ablehnen_Okay);
 		Info_AddChoice(DIA_Cassia_Ablehnen,"Мне нужно время на размышление.",DIA_Cassia_Ablehnen_Frist);
@@ -456,7 +456,7 @@ func void DIA_Cassia_Ablehnen_Kill()
 func void DIA_Cassia_Ablehnen_Frist()
 {
 	AI_Output(other,self,"DIA_Cassia_Ablehnen_Frist_15_00");	//Мне нужно время на размышление.
-	AI_Output(self,other,"DIA_Cassia_Ablehnen_Frist_16_01");	//Пожалуйста. Я дам тебе два дня на принятие этого решения. После этого тебе лучше не появляться здесь.
+	AI_Output(self,other,"DIA_Cassia_Ablehnen_Frist_16_01");	//Пожалуйста. Я дам тебе два дня на принятие этого решения. После этого, тебе лучше не появляться здесь.
 	Cassia_Day = B_GetDayPlus();
 	Cassia_Frist = TRUE;
 	Info_ClearChoices(DIA_Cassia_Ablehnen);
@@ -658,7 +658,7 @@ func void DIA_Cassia_Aufnahme_Info()
 	AI_Output(self,other,"DIA_Cassia_Aufnahme_16_03");	//Кроме того, ты должен знать, что у нас есть секретный знак. Особый кивок.
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Cassia_Aufnahme_16_04");	//Вот такой. Когда ты говоришь с правильными людьми и делаешь этот знак, они поймут, что ты один из нас.
-	MIS_CassiaRing = LOG_Success;
+	MIS_CassiaRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_CassiaRing);
 	Knows_SecretSign = TRUE;
 	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
@@ -680,7 +680,7 @@ instance DIA_Cassia_Versteck(C_Info)
 
 func int DIA_Cassia_Versteck_Condition()
 {
-	if((MIS_CassiaRing == LOG_Success) && Npc_KnowsInfo(other,DIA_Ramirez_Beute))
+	if((MIS_CassiaRing == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Ramirez_Beute))
 	{
 		return TRUE;
 	};
@@ -707,7 +707,7 @@ instance DIA_Cassia_Blutkelche(C_Info)
 
 func int DIA_Cassia_Blutkelche_Condition()
 {
-	if((MIS_CassiaRing == LOG_Success) && (MIS_CassiaKelche != LOG_Running))
+	if((MIS_CassiaRing == LOG_SUCCESS) && (MIS_CassiaKelche != LOG_Running))
 	{
 		return TRUE;
 	};
@@ -761,14 +761,14 @@ func int DIA_Cassia_abgeben_Condition()
 
 func void DIA_Cassia_abgeben_Info()
 {
-	AI_Output(other,self,"DIA_Cassia_abgeben_15_00");	//Насчет кровавых кубков...
+	AI_Output(other,self,"DIA_Cassia_abgeben_15_00");	//Насчет Кровавых Кубков...
 	if(B_GiveInvItems(other,self,ItMi_BloodCup_MIS,6))
 	{
 		AI_Output(other,self,"DIA_Cassia_abgeben_15_01");	//У меня есть все шесть кубков.
 		AI_Output(self,other,"DIA_Cassia_abgeben_16_02");	//Отличная работа. А я тем временем подыскала покупателя.
 		AI_Output(self,other,"DIA_Cassia_abgeben_16_03");	//Ты можешь получить свою награду. Спасибо, что сделал это для меня.
 		AI_Output(self,other,"DIA_Cassia_abgeben_16_04");	//Мне больше нечего тебе предложить, но ты можешь учиться у меня, когда захочешь. Ну и всегда помни - на этом острове много что плохо лежит... (улыбается)
-		MIS_CassiaKelche = LOG_Success;
+		MIS_CassiaKelche = LOG_SUCCESS;
 		B_GivePlayerXP(XP_CassiaBlutkelche);
 	}
 	else
@@ -791,7 +791,7 @@ instance DIA_Cassia_Belohnung(C_Info)
 
 func int DIA_Cassia_Belohnung_Condition()
 {
-	if(MIS_CassiaKelche == LOG_Success)
+	if(MIS_CassiaKelche == LOG_SUCCESS)
 	{
 		return TRUE;
 	};

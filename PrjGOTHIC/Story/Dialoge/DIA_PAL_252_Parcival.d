@@ -46,7 +46,7 @@ func int DIA_Parcival_Schurfer_Condition()
 func void DIA_Parcival_Schurfer_Info()
 {
 	AI_Output(other,self,"DIA_Parcival_Schurfer_15_00");	//Что ты можешь рассказать мне о старателях?
-	AI_Output(self,other,"DIA_Parcival_Schurfer_13_01");	//Я отправил все три отряда.
+	AI_Output(self,other,"DIA_Parcival_Schurfer_13_01");	//Я отправлял все три отряда.
 	AI_Output(self,other,"DIA_Parcival_Schurfer_13_02");	//Их возглавили Маркос, Фаджет и Сильвестро.
 	AI_Output(self,other,"DIA_Parcival_Schurfer_13_03");	//Группа Маркоса пошла по направлению к старой шахте - ее ведет старый рудокоп Гримс.
 	AI_Output(self,other,"DIA_Parcival_Schurfer_13_04");	//Другие две группы вышли вместе.
@@ -118,7 +118,7 @@ instance DIA_Parcival_DRAGON(C_Info)
 	nr = 2;
 	condition = DIA_Parcival_DRAGON_Condition;
 	information = DIA_Parcival_DRAGON_Info;
-	description = "Как ситуация?";
+	description = "Как обстановка?";
 };
 
 
@@ -207,7 +207,7 @@ func void DIA_Parcival_BRAVE_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Parcival_BRAVE_13_03");	//Эй! Тебе что, нечего больше делать, как болтать со мной? Проваливай!
+		AI_Output(self,other,"DIA_Parcival_BRAVE_13_03");	//Эй! Тебе что,  нечего больше делать, как болтать со мной? Проваливай!
 		B_GivePlayerXP(XP_Ambient);
 	};
 	Parcival_BRAVE_LaberCount = Parcival_BRAVE_LaberCount + 1;
@@ -443,7 +443,7 @@ instance DIA_Parcival_TalkedGarond(C_Info)
 
 func int DIA_Parcival_TalkedGarond_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Parcival_Jan) && (MIS_JanBecomesSmith == LOG_Success) && Npc_KnowsInfo(other,DIA_Parcival_DRAGON))
+	if(Npc_KnowsInfo(other,DIA_Parcival_Jan) && (MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Parcival_DRAGON))
 	{
 		return TRUE;
 	};
@@ -536,18 +536,18 @@ func void DIA_Parcival_VERRAETER_Info()
 };
 
 
-instance DIA_PARCIVAL_KAP6_EXIT(C_Info)
+instance DIA_Parcival_KAP6_EXIT(C_Info)
 {
 	npc = PAL_252_Parcival;
 	nr = 999;
-	condition = dia_parcival_kap6_exit_condition;
-	information = dia_parcival_kap6_exit_info;
+	condition = DIA_Parcival_KAP6_EXIT_Condition;
+	information = DIA_Parcival_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_parcival_kap6_exit_condition()
+func int DIA_Parcival_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -555,7 +555,7 @@ func int dia_parcival_kap6_exit_condition()
 	};
 };
 
-func void dia_parcival_kap6_exit_info()
+func void DIA_Parcival_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

@@ -142,7 +142,7 @@ instance DIA_Dobar_Teach(C_Info)
 
 func int DIA_Dobar_Teach_Condition()
 {
-	if((Dobar_Learnsmith == TRUE) && (player_talent_smith[WEAPON_1H_Special_01] == FALSE))
+	if((Dobar_Learnsmith == TRUE) && (PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE))
 	{
 		return TRUE;
 	};
@@ -150,7 +150,7 @@ func int DIA_Dobar_Teach_Condition()
 
 func void DIA_Dobar_Teach_Info()
 {
-	AI_Output(other,self,"DIA_Dobar_Teach_15_00");	//Покажи мне, как выковать хороший меч.
+	AI_Output(other,self,"DIA_Dobar_Teach_15_00");	//Покажи мне, как выковать хороший меч!
 	if(B_TeachPlayerTalentSmith(self,hero,WEAPON_1H_Special_01))
 	{
 		AI_Output(self,other,"DIA_Dobar_Teach_08_01");	//Разогрей сталь, чтобы она равномерно светилась по всей длине, без этого хороший меч не выковать.
@@ -255,11 +255,12 @@ func void DIA_Dobar_PICKPOCKET_DoIt()
 	{
 		B_GiveInvItems(self,other,ItMi_Nugget,1);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GivePlayerXP(XP_Ambient);
+		B_GiveThiefXP();
 		Info_ClearChoices(DIA_Dobar_PICKPOCKET);
 	}
 	else
 	{
+		B_ResetThiefLevel();
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

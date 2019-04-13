@@ -94,7 +94,7 @@ func void DIA_Pablo_WANTED_Info()
 {
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_00");	//Эй, ты, подожди - мне кажется, я тебя знаю.
 	AI_Output(other,self,"DIA_Pablo_WANTED_15_01");	//Что тебе нужно?
-	AI_Output(self,other,"DIA_Pablo_WANTED_12_02");	//Я где-то уже видел твое лицо... ах - точно!
+	AI_Output(self,other,"DIA_Pablo_WANTED_12_02");	//Я где-то уже видел твое лицо ... ах - точно!
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_03");	//Вот - мы нашли этот листок у одного из бандитов, на которых наткнулись несколько дней назад - рисунок очень похож на тебя.
 	B_GiveInvItems(self,other,ItWr_Poster_MIS,1);
@@ -106,7 +106,7 @@ func void DIA_Pablo_WANTED_Info()
 
 func void DIA_Pablo_WANTED_NOTHING()
 {
-	AI_Output(other,self,"DIA_Pablo_WANTED_NOTHING_15_00");	//Нет, боюсь, что ты ошибаешься. Со мной все в порядке...
+	AI_Output(other,self,"DIA_Pablo_WANTED_NOTHING_15_00");	//Нет, боюсь, что ты ошибаешься. Со мной все в порядке ...
 	AI_Output(self,other,"DIA_Pablo_WANTED_NOTHING_12_01");	//Как скажешь, чужеземец.
 	AI_Output(self,other,"DIA_Pablo_Add_12_00");	//Но если это все же ТВОЯ физиономия - и если у тебя возникнут проблемы - постарайся решать их за городом. Здесь и без того трудностей хватает.
 	AI_Output(self,other,"DIA_Pablo_WANTED_NOTHING_12_03");	//А чужаки, которые приносят в город проблемы, долго здесь не задерживаются - надеюсь, я ясно выразился.
@@ -117,7 +117,7 @@ func void DIA_Pablo_WANTED_NOTHING()
 func void DIA_Pablo_WANTED_IRONY()
 {
 	AI_Output(other,self,"DIA_Pablo_WANTED_IRONY_15_00");	//Хм, я сам бы об этом никогда не догадался.
-	AI_Output(self,other,"DIA_Pablo_WANTED_IRONY_12_01");	//Очень смешно... что этим парням было нужно от тебя?
+	AI_Output(self,other,"DIA_Pablo_WANTED_IRONY_12_01");	//Очень смешно ... что этим парням было нужно от тебя?
 	AI_Output(other,self,"DIA_Pablo_Add_15_01");	//Спроси их сам. Они ведь сидят у вас за решеткой, разве нет?
 	AI_Output(self,other,"DIA_Pablo_WANTED_IRONY_12_03");	//Нет - они мертвы.
 	AI_Output(other,self,"DIA_Pablo_WANTED_IRONY_15_04");	//Ну, тогда мы никогда этого не узнаем.
@@ -146,7 +146,7 @@ func void DIA_Pablo_Banditen_Info()
 {
 	AI_Output(other,self,"DIA_Pablo_Add_15_03");	//Что ты знаешь об этих бандитах?
 	AI_Output(self,other,"DIA_Pablo_Add_12_04");	//Все они пришли из этой чертовой колонии. Но затем разделились на несколько групп.
-	AI_Output(self,other,"DIA_Pablo_Add_12_05");	//Часть из них устроили себе логово в горах, а другие присоединились к Онару, лендлорду.
+	AI_Output(self,other,"DIA_Pablo_Add_12_05");	//Часть из них устроила себе логово в горах, а другие присоединились к Онару, лендлорду.
 	AI_Output(self,other,"DIA_Pablo_Add_12_06");	//Но больше всего проблем доставляют бандиты около города.
 	AI_Output(self,other,"DIA_Pablo_Add_12_07");	//Вот почему ни один из торговцев даже носа не высовывает за городские ворота.
 };
@@ -174,19 +174,19 @@ func int DIA_Pablo_HakonBandits_Condition()
 func void DIA_Pablo_HakonBandits_Info()
 {
 	AI_Output(other,self,"DIA_Pablo_Add_15_20");	//Что ты знаешь о бандитах, ограбивших торговца Хакона?
-	AI_Output(self,other,"DIA_Pablo_Add_12_21");	//Ох, ЭТО дело... Не напоминай мне...
+	AI_Output(self,other,"DIA_Pablo_Add_12_21");	//Ох, ЭТО дело... Не напоминай мне ...
 	AI_Output(self,other,"DIA_Pablo_Add_12_22");	//Насколько я знаю, именно они ответственны за большинство нападений на торговцев.
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_01");	//Эти крысы уползли в свою нору и больше не высовываются оттуда.
-	AI_Output(self,other,"DIA_Pablo_Banditen_12_02");	//Как-то нам даже удалось выследить их и погнаться за ними. Но нам пришлось прервать погоню в лесу у города.
+	AI_Output(self,other,"DIA_Pablo_Banditen_12_02");	//Как-то, нам даже удалось выследить их и погнаться за ними. Но нам пришлось прервать погоню в лесу у города.
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_03");	//Там бродит слишком много всяких зверей и это слишком опасно.
 	B_LogEntry(TOPIC_HakonBanditen,"Бандиты, ограбившие Хакона, скрываются где-то в лесу неподалеку от города.");
 	if(Pablo_AndreMelden == FALSE)
 	{
-		AI_Output(self,other,"DIA_Pablo_Add_12_23");	//Но есть кое-что еще...
+		AI_Output(self,other,"DIA_Pablo_Add_12_23");	//Но есть еще кое-что ...
 		AI_Output(self,other,"DIA_Pablo_Banditen_12_04");	//Часть украденных товаров всплыла в Хоринисе.
-		AI_Output(other,self,"DIA_Pablo_Banditen_15_05");	//Это означает, что они имеют возможность контрабандой доставлять товары в город и продавать их...
+		AI_Output(other,self,"DIA_Pablo_Banditen_15_05");	//Это означает, что они имеют возможность контрабандой доставлять товары в город и продавать их ...
 		AI_Output(self,other,"DIA_Pablo_Banditen_12_06");	//Да, мы подозреваем, что у них есть свой человек в городе. Но нам пока не удалось поймать его.
-		AI_Output(self,other,"DIA_Pablo_Banditen_12_07");	//Если тебе удастся выяснить что-нибудь об этом деле, помни, что лорд Андрэ назначил награду за голову этого скупщика краденного.
+		AI_Output(self,other,"DIA_Pablo_Banditen_12_07");	//Если тебе удастся выяснить что-нибудь об этом деле, помни, что Лорд Андрэ назначил награду за голову этого скупщика краденного.
 		B_LogEntry(TOPIC_HakonBanditen,"Эти бандиты, вероятно, состоят в сговоре с кем-то из городских дельцов. Лорд Андре назначил награду за голову этого дельца.");
 	};
 };
@@ -220,9 +220,9 @@ func void DIA_Pablo_MyBandits_Info()
 		AI_Output(self,other,"DIA_Pablo_Add_12_10");	//(требовательно) За что тебя разыскивают?
 		AI_Output(other,self,"DIA_Pablo_Add_15_11");	//Я не знаю - честно!
 		AI_Output(self,other,"DIA_Pablo_Add_12_12");	//Да, да. Конечно. Я хочу, чтобы ты кое-что понял. Если бы я думал, что ты был сообщником этих бандитов, ты бы уже отдыхал за решеткой.
-		AI_Output(self,other,"DIA_Pablo_Add_12_13");	//Но все же, мне лучше доложить об этом инциденте лорду Андрэ...
+		AI_Output(self,other,"DIA_Pablo_Add_12_13");	//Но се же, мне лучше доложить об этом инциденте лорду Андрэ ...
 		Pablo_AndreMelden = TRUE;
-		AI_Output(self,other,"DIA_Pablo_Add_12_14");	//Но - отвечая на твой вопрос...
+		AI_Output(self,other,"DIA_Pablo_Add_12_14");	//Но - отвечая на твой вопрос ...
 	};
 	AI_Output(self,other,"DIA_Pablo_Add_12_15");	//Мы нашли их неподалеку от поместья лендлорда.
 	AI_Output(self,other,"DIA_Pablo_Add_12_16");	//Но они были не похожи на людей Онара.
@@ -253,7 +253,7 @@ func void DIA_Pablo_Perm_Info()
 	AI_Output(other,self,"DIA_Pablo_Perm_15_00");	//Как обстановка?
 	if(Kapitel == 3)
 	{
-		if(MIS_RescueBennet != LOG_Success)
+		if(MIS_RescueBennet != LOG_SUCCESS)
 		{
 			if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 			{
@@ -263,7 +263,7 @@ func void DIA_Pablo_Perm_Info()
 			else if(hero.guild == GIL_KDF)
 			{
 				AI_Output(self,other,"DIA_Pablo_Perm_12_03");	//Я глубоко потрясен убийством достопочтенного паладина Лотара.
-				AI_Output(self,other,"DIA_Pablo_Perm_12_04");	//Но я знаю, что церковь подберет справедливое наказание для этого злодея.
+				AI_Output(self,other,"DIA_Pablo_Perm_12_04");	//Но я знаю, что церковь подберет справедливое наказание для этого злодей.
 			}
 			else
 			{

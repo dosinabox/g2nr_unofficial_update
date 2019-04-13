@@ -17,6 +17,11 @@ func int DIA_Addon_Merdarion_ADW_EXIT_Condition()
 
 func void DIA_Addon_Merdarion_ADW_EXIT_Info()
 {
+	if((Npc_KnowsInfo(other,DIA_Addon_Merdarion_FokusGeben) || (Merdarion_GotFocusCount > 0)) && !SC_ADW_ActivatedAllTelePortStones && (TriggeredTeleporterADW <= Merdarion_GotFocusCount) && (Npc_HasItems(other,ItMi_Focus) == 0))
+	{
+		CreateInvItems(self,ItMi_Focus,1);
+		B_GiveInvItems(self,other,ItMi_Focus,1);
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -50,7 +55,7 @@ func void DIA_Addon_Merdarion_ADWHello_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_06_03");	//Ёти телепортационные камни, видимо, не работают, но все еще слышно, как они гуд€т.
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_06_04");	//’от€ они неактивны, в них еще осталась кака€-то энерги€.
 	Info_ClearChoices(DIA_Addon_Merdarion_ADWHello);
-	Info_AddChoice(DIA_Addon_Merdarion_ADWHello,"√де эти телепорты черпают энергию?",DIA_Addon_Merdarion_ADWHello_reaktor);
+	Info_AddChoice(DIA_Addon_Merdarion_ADWHello,"„то эти камни делают?",DIA_Addon_Merdarion_ADWHello_reaktor);
 	Info_AddChoice(DIA_Addon_Merdarion_ADWHello," ак ты думаешь, как их можно активировать?",DIA_Addon_Merdarion_ADWHello_was);
 };
 
@@ -66,7 +71,7 @@ func void DIA_Addon_Merdarion_ADWHello_was()
 
 func void DIA_Addon_Merdarion_ADWHello_focus()
 {
-	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_focus_15_00");	//„то может дать достаточное количество магической энергии?
+	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_focus_15_00");	//„то может дать достаточное количество магической энергии?..
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_focus_06_01");	//ћне приходит в голову только одна иде€. ћагическа€ фокусировка.
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_focus_06_02");	//я имею в виду один из п€ти фокусирующих камней, которые были использованы при создании магического Ѕарьера в ƒолине –удников.
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_focus_06_03");	//Ќасколько € знаю, некоторое врем€ назад ты вернул их нам.
@@ -113,7 +118,7 @@ instance DIA_Addon_Merdarion_FokusGeben(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Merdarion_FokusGeben_Condition;
 	information = DIA_Addon_Merdarion_FokusGeben_Info;
-	description = "ƒай мне фокусирующий камень.";
+	description = "ƒай мне фокусирующий камень. я попробую заставить телепортеры работать.";
 };
 
 
@@ -165,7 +170,7 @@ func void DIA_Addon_Merdarion_FirstFocus_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_01");	//ƒа, € вижу. «начит, € был прав.
 	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_02");	//я поговорил с другими об этом.
 	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_03");	//ћы хотим, чтобы ты попыталс€ активировать все остальные телепортационные камни.
-	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_04");	//≈сли мы сможем быстро перемещатьс€ из одной части города в другую, нам это очень поможет в исследовани€х.
+	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_04");	//≈сли мы сможем быстро перемещатьс€ из одной части города в другую, нам это очень  поможет исследовани€х, .
 	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_05");	//¬от еще один фокусирующий камень.
 	CreateInvItems(self,ItMi_Focus,1);
 	B_GiveInvItems(self,other,ItMi_Focus,1);
@@ -271,7 +276,7 @@ instance DIA_Addon_Merdarion_ADW_TEACH_MANA(C_Info)
 	condition = DIA_Addon_Merdarion_ADW_TEACH_MANA_Condition;
 	information = DIA_Addon_Merdarion_ADW_TEACH_MANA_Info;
 	permanent = TRUE;
-	description = "я хочу повысить свои магические способности.";
+	description = "я хочу увеличить мою магическую энергию.";
 };
 
 

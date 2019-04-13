@@ -1,7 +1,7 @@
 
 instance DIA_Addon_BenchPirate_EXIT(C_Info)
 {
-	npc = PIR_1363_Addon_Pirat;
+	npc = PIR_1363_Addon_PIRAT;
 	nr = 999;
 	condition = DIA_Addon_BenchPirate_EXIT_Condition;
 	information = DIA_Addon_BenchPirate_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Addon_BenchPirate_EXIT_Info()
 
 instance DIA_Addon_BenchPirate_Hello(C_Info)
 {
-	npc = PIR_1363_Addon_Pirat;
+	npc = PIR_1363_Addon_PIRAT;
 	nr = 1;
 	condition = DIA_Addon_BenchPirate_Hello_Condition;
 	information = DIA_Addon_BenchPirate_Hello_Info;
@@ -59,7 +59,7 @@ func void DIA_Addon_BenchPirate_Hello_Info()
 	}
 	else if(randy == 0)
 	{
-		AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_04");	//Фрэнсис, который остался за главного - всего лишь жалкий клоун. Никто не воспринимает его всерьез.
+		AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_04");	//Фрэнсис, который остался за главного, - всего лишь жалкий клоун. Никто не воспринимает его всерьез.
 	}
 	else if(randy == 1)
 	{
@@ -74,7 +74,7 @@ func void DIA_Addon_BenchPirate_Hello_Info()
 
 instance DIA_Addon_BenchPirate_Anheuern(C_Info)
 {
-	npc = PIR_1363_Addon_Pirat;
+	npc = PIR_1363_Addon_PIRAT;
 	nr = 11;
 	condition = DIA_Addon_BenchPirate_Anheuern_Condition;
 	information = DIA_Addon_BenchPirate_Anheuern_Info;
@@ -101,7 +101,7 @@ func void DIA_Addon_BenchPirate_Anheuern_Info()
 
 instance DIA_Addon_BenchPirate_ComeOn(C_Info)
 {
-	npc = PIR_1363_Addon_Pirat;
+	npc = PIR_1363_Addon_PIRAT;
 	nr = 12;
 	condition = DIA_Addon_BenchPirate_ComeOn_Condition;
 	information = DIA_Addon_BenchPirate_ComeOn_Info;
@@ -144,7 +144,7 @@ func void DIA_Addon_BenchPirate_ComeOn_Info()
 
 instance DIA_Addon_BenchPirate_GoHome(C_Info)
 {
-	npc = PIR_1363_Addon_Pirat;
+	npc = PIR_1363_Addon_PIRAT;
 	nr = 13;
 	condition = DIA_Addon_BenchPirate_GoHome_Condition;
 	information = DIA_Addon_BenchPirate_GoHome_Info;
@@ -172,7 +172,7 @@ func void DIA_Addon_BenchPirate_GoHome_Info()
 
 instance DIA_Addon_BenchPirate_TooFar(C_Info)
 {
-	npc = PIR_1363_Addon_Pirat;
+	npc = PIR_1363_Addon_PIRAT;
 	nr = 14;
 	condition = DIA_Addon_BenchPirate_TooFar_Condition;
 	information = DIA_Addon_BenchPirate_TooFar_Info;

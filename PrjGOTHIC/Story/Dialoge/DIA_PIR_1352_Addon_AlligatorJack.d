@@ -20,9 +20,9 @@ var int DIA_Addon_AlligatorJack_Exit_Info_OneTime;
 
 func void DIA_Addon_AlligatorJack_Exit_Info()
 {
-	if((MIS_KrokoJagd == LOG_Success) && (DIA_Addon_AlligatorJack_Exit_Info_OneTime == FALSE))
+	if((MIS_KrokoJagd == LOG_SUCCESS) && (DIA_Addon_AlligatorJack_Exit_Info_OneTime == FALSE))
 	{
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_00");	//Если я тебе понадоблюсь, ты можешь найти меня у моего лагеря рядом с частоколом.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_00");	//Если я тебе понадоблюсь, ты сможешь найти меня у моего лагеря рядом с частоколом.
 		if(PIR_1354_Addon_Henry.aivar[AIV_TalkedToPlayer] == FALSE)
 		{
 			AI_Output(other,self,"DIA_Addon_AlligatorJack_Exit_15_01");	//Частоколом?
@@ -107,7 +107,7 @@ instance DIA_Addon_AlligatorJack_WerBistDu(C_Info)
 	nr = 5;
 	condition = DIA_Addon_AlligatorJack_WerBistDu_Condition;
 	information = DIA_Addon_AlligatorJack_WerBistDu_Info;
-	description = "Кто ты?";
+	description = "Кто ты такой?";
 };
 
 
@@ -168,7 +168,7 @@ func void B_AlligatorJack_Besser()
 func void DIA_Addon_AlligatorJack_Vorschlag_tot()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_Vorschlag_tot_15_00");	//Я должен убить Ворона.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_01");	//(смеется) Что? Ты? И как ты собираешься это сделать?
+	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_01");	//(смеется) Что? Ты? И как же ты собираешься это сделать?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_02");	//Разве он тебе по силам?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_03");	//Ты к нему и близко не подойдешь. Его бандиты с тебя живьем шкуру сдерут.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_04");	//Ты даже через первый их пост не пройдешь.
@@ -191,7 +191,7 @@ instance DIA_Addon_AlligatorJack_BDTRuestung(C_Info)
 	nr = 5;
 	condition = DIA_Addon_AlligatorJack_BDTRuestung_Condition;
 	information = DIA_Addon_AlligatorJack_BDTRuestung_Info;
-	description = "Мне нужны доспехи бандитов.";
+	description = "Мне нужны бандитские доспехи.";
 };
 
 
@@ -285,7 +285,7 @@ func void DIA_Addon_AlligatorJack_PIRLager_Info()
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_PIRLager_15_00");	//Где находится ваш лагерь?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_01");	//Видишь этот проход? Иди через него и направляйся на запад. Рано или поздно ты дойдешь до нашего берега.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_02");	//Там и стоят наши дома.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_03");	//Я бы мог тебя проводить, но ты должен оказать мне одну услугу.
+	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_03");	//Я мог бы тебя проводить, но ты должен оказать мне одну услугу.
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_PIRLager_15_04");	//Какую же?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_05");	//Прежде чем возвращаться в лагерь, я должен добыть ребятам еды.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_06");	//Судя по виду, ты сильный человек.
@@ -578,7 +578,7 @@ func void DIA_Addon_AlligatorJack_HuntEnd_Info()
 	B_LogEntry(TOPIC_Addon_BringMeat,"Аллигатор Джек дал мне десять кусков мяса. Я должен передать их Моргану.");
 	B_LogEntry(TOPIC_Addon_RatHunt,"Охота была удачной. Мы убили несколько болотных крыс.");
 	B_GiveInvItems(self,other,ItFoMuttonRaw,10);
-	MIS_KrokoJagd = LOG_Success;
+	MIS_KrokoJagd = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_KrokoJagd);
 };
 
@@ -625,7 +625,7 @@ instance DIA_Addon_AlligatorJack_Lake(C_Info)
 
 func int DIA_Addon_AlligatorJack_Lake_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Angus) == TRUE) && (MIS_Addon_Morgan_SeekTraitor != LOG_Success))
+	if((Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Angus) == TRUE) && (MIS_Addon_Morgan_SeekTraitor != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -634,7 +634,7 @@ func int DIA_Addon_AlligatorJack_Lake_Condition()
 func void DIA_Addon_AlligatorJack_Lake_Info()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_Lake_15_00");	//Что это за озеро?
-	if(MIS_KrokoJagd == LOG_Success)
+	if(MIS_KrokoJagd == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_01");	//Помнишь нашу охоту?
 		AI_Output(other,self,"DIA_Addon_AlligatorJack_Lake_15_02");	//Да.
@@ -645,7 +645,7 @@ func void DIA_Addon_AlligatorJack_Lake_Info()
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_04");	//Озеро в большой низине.
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_05");	//Иди от лагеря на восток. Не заметить низину невозможно.
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_06");	//Там еще множество небольших водопадов.
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_07");	//Будь внимателен - если у тебя под ногами ничего нет, кроме песка, значит, ты пропустил поворот и угодил в каньон.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_07");	//Будь внимателен - если у тебя под ногами нет ничего, кроме песка, значит, ты пропустил поворот и угодил в каньон.
 	};
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"Пещера должна быть в низине на востоке от лагеря, рядом с озером.");
 };
@@ -747,7 +747,7 @@ func void DIA_Addon_AlligatorJack_Teach_Bow_5()
 
 func void DIA_Addon_AlligatorJack_Teach_FUR()
 {
-	if(player_talent_takeanimaltrophy[TROPHY_ReptileSkin] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
 	{
 		if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_ReptileSkin))
 		{
@@ -763,7 +763,7 @@ func void DIA_Addon_AlligatorJack_Teach_FUR()
 
 func void DIA_Addon_AlligatorJack_Teach_Teeth()
 {
-	if(player_talent_takeanimaltrophy[TROPHY_Teeth] == FALSE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 	{
 		B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Teeth);
 	}

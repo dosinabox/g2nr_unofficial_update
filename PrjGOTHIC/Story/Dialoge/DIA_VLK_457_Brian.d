@@ -108,7 +108,7 @@ func void DIA_Brian_AboutLehrling_Info()
 	AI_Output(other,self,"DIA_Brian_AboutLehrling_15_00");	//Каково это, быть учеником кузнеца?
 	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_01");	//Почему ты спрашиваешь? Ты хочешь стать моим преемником?
 	AI_Output(other,self,"DIA_Brian_AboutLehrling_15_02");	//Может быть.
-	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_03");	//Почему бы и нет? Я почти закончил свое обучение и собираюсь вскоре покинуть город.
+	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_03");	//Почему бы и нет... Я почти закончил свое обучение и собираюсь вскоре покинуть город.
 	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_04");	//Но не из-за Гарада. Он хороший мастер, я многому научился у него.
 };
 
@@ -256,7 +256,7 @@ func void DIA_Brian_WASKAUFEN_Info()
 		AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_01");	//Если у меня еще есть парочка лишних стальных болванок, ты можешь взять их. Боюсь, что это все.
 		if(MIS_Jack_NewLighthouseOfficer == 0)
 		{
-			AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_02");	//С тех пор, как Гарада больше нет здесь, ополчение глаз с меня не спускает.
+			AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_02");	//С тех пор как Гарада больше нет здесь, ополчение глаз с меня не спускает.
 			AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_03");	//Мне не позволено продолжать работать в кузнице. Они боятся, что я все распродам и свалю.
 		};
 	}
@@ -312,7 +312,7 @@ instance DIA_Brian_RepairNecklace(C_Info)
 
 func int DIA_Brian_RepairNecklace_Condition()
 {
-	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_Success) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
 		return TRUE;
 	};
@@ -400,13 +400,13 @@ func int DIA_Brian_NEWLIGHTHOUSEOFFICER_Condition()
 
 func void DIA_Brian_NEWLIGHTHOUSEOFFICER_Info()
 {
-	AI_Output(other,self,"DIA_Brian_NEWLIGHTHOUSEOFFICER_15_00");	//Я слышал, ты интересовался маяком старого Джека.
+	AI_Output(other,self,"DIA_Brian_NEWLIGHTHOUSEOFFICER_15_00");	//Я слышал, что ты интересовался маяком старого Джека.
 	AI_Output(other,self,"DIA_Brian_NEWLIGHTHOUSEOFFICER_15_01");	//Джек собирается выйти в море. Но ему не на кого оставить маяк.
 	AI_Output(self,other,"DIA_Brian_NEWLIGHTHOUSEOFFICER_04_02");	//Но Джек должен понимать, что в его отсутствие я превращу маяк в кузницу.
 	AI_Output(other,self,"DIA_Brian_NEWLIGHTHOUSEOFFICER_15_03");	//Это проблема?
 	AI_Output(self,other,"DIA_Brian_NEWLIGHTHOUSEOFFICER_04_04");	//(смеется) Не для меня. Мне все равно не заполучить кузницу Гарада. Я уже выбросил эту мысль из головы.
 	AI_Output(self,other,"DIA_Brian_NEWLIGHTHOUSEOFFICER_04_05");	//Согласен. Встретимся у Джека.
-	MIS_Jack_NewLighthouseOfficer = LOG_Success;
+	MIS_Jack_NewLighthouseOfficer = LOG_SUCCESS;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Lighthouse");
 };
@@ -425,7 +425,7 @@ instance DIA_Brian_LIGHTHOUSEFREE(C_Info)
 
 func int DIA_Brian_LIGHTHOUSEFREE_Condition()
 {
-	if((MIS_Jack_NewLighthouseOfficer == LOG_Success) && (Npc_GetDistToWP(self,"NW_LIGHTHOUSE_IN_01") < 1000) && (Kapitel == 5))
+	if((MIS_Jack_NewLighthouseOfficer == LOG_SUCCESS) && (Npc_GetDistToWP(self,"NW_LIGHTHOUSE_IN_01") < 1000) && (Kapitel == 5))
 	{
 		return TRUE;
 	};
@@ -433,7 +433,7 @@ func int DIA_Brian_LIGHTHOUSEFREE_Condition()
 
 func void DIA_Brian_LIGHTHOUSEFREE_Info()
 {
-	AI_Output(other,self,"DIA_Brian_LIGHTHOUSEFREE_15_00");	//И, что скажешь?
+	AI_Output(other,self,"DIA_Brian_LIGHTHOUSEFREE_15_00");	//И что скажешь?
 	AI_Output(self,other,"DIA_Brian_LIGHTHOUSEFREE_04_01");	//Боже, какой бардак. Джек не узнает это место, когда я все здесь устрою как надо.
 };
 

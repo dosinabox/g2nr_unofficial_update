@@ -102,10 +102,10 @@ func void DIA_Addon_Samuel_Versteck_Info()
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_02");	//Я должен попасть в хижину Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_05");	//Неужели? А зачем, интересно?
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_01");	//Мне нужны бандитские доспехи.
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_06");	//(смеется) Фрэнсис ни за что не пустит тебя в хижину, чтоб ты мог покопаться в вещах Грега.
+	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_06");	//(смеется) Фрэнсис ни за что не пустит тебя в хижину, чтобы ты мог покопаться в вещах Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_07");	//Если только...
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_03");	//Что?
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_08");	//... Если только у тебя не будет что-то, что действительно нужно Фрэнсису.
+	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_08");	//...Если только у тебя не будет что-то, что действительно нужно Фрэнсису.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_09");	//Я знаю, что Фрэнсис что-то спрятал в заброшенной шахте в каньоне.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_10");	//Однажды мы вместе стояли в карауле, и он как всегда заснул. Я услышал, как он бормочет об этом во сне.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_11");	//Не знаю, что он там зарыл, но возможно, что это настолько для него важно, что за этот предмет он пропустит тебя в хижину...
@@ -307,7 +307,7 @@ func void DIA_Addon_Samuel_Stronger_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_09");	//Что тебе приготовить?
+		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_09");	//Что тебе приготовить.
 	};
 	Info_ClearChoices(DIA_Addon_Samuel_Stronger);
 	Info_AddChoice(DIA_Addon_Samuel_Stronger,Dialog_Back,DIA_Addon_Samuel_Stronger_Back);
@@ -359,7 +359,7 @@ func void DIA_Addon_Samuel_Stronger_SchnellerHering()
 
 func void DIA_Addon_Samuel_Stronger_LousHammer()
 {
-	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_LousHammer_15_00");	//Я хочу 'Молот Лу'!
+	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_LousHammer_15_00");	//Я хочу 'Молоток Лу'!
 	if(B_GiveInvItems(other,self,ItMi_Gold,30))
 	{
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_LousHammer_14_01");	//Отличное пойло! Наслаждайся!
@@ -474,7 +474,7 @@ func void DIA_Addon_Samuel_News_Info()
 	{
 		if(!Npc_IsDead(Morgan))
 		{
-			AI_Output(self,other,"DIA_Addon_Samuel_News_14_04");	//С тех пор, как Грег уехал, ничего интересного не происходило. Морган и большинство парней целыми днями пьянствуют.
+			AI_Output(self,other,"DIA_Addon_Samuel_News_14_04");	//С тех пор как Грег уехал, ничего интересного не происходило. Морган и большинство парней целыми днями пьянствуют.
 		};
 		if(!Npc_IsDead(Henry))
 		{

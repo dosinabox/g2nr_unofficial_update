@@ -47,7 +47,7 @@ func int ZS_Circle_Loop()
 			};
 		};
 	}
-	else if(MIS_RitualInnosEyeRepair != LOG_Success)
+	else if(MIS_RitualInnosEyeRepair != LOG_SUCCESS)
 	{
 		randy = Hlp_Random(1000);
 		if(Npc_GetStateTime(self) > randy)

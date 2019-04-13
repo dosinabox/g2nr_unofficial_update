@@ -408,7 +408,7 @@ instance ItRu_Light(C_Item)
 	mag_circle = 1;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
-	description = NAME_SPL_Light;
+	description = NAME_SPL_LIGHT;
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;

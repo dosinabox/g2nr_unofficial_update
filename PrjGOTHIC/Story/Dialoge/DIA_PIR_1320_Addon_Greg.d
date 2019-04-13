@@ -80,6 +80,10 @@ func void DIA_Addon_Greg_ImNew_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_03");	//Какого черта, что здесь происходит?
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_04");	//Частокол еще не закончен! Каньон просто кишит зверьем, а все только и делают, что слоняются вокруг.
 	GregIsBack = TRUE;
+	if(MIS_KrokoJagd == LOG_Running)
+	{
+		MIS_KrokoJagd = LOG_FAILED;
+	};
 	if(!Npc_IsDead(Francis))
 	{
 		AI_TurnToNPC(self,Francis);
@@ -272,7 +276,7 @@ func void DIA_Addon_Greg_AboutCanyon_Compadres()
 func void DIA_Addon_Greg_AboutCanyon_Job()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_AboutCanyon_Job_15_00");	//А что это за звери, которых я должен убить?
-	AI_Output(self,other,"DIA_Addon_Greg_AboutCanyon_Job_01_01");	//Избавься от бритвозубов! Другие существа не опасны.
+	AI_Output(self,other,"DIA_Addon_Greg_AboutCanyon_Job_01_01");	//Избавься от бритвозубов! Другие существа неопасны.
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
 };
 
@@ -281,7 +285,7 @@ func void DIA_Addon_Greg_AboutCanyon_RazorsDead()
 	AI_Output(other,self,"DIA_Addon_Greg_AboutCanyon_RazorsDead_15_00");	//Я уничтожил всех бритвозубов.
 	AI_Output(self,other,"DIA_Addon_Greg_AboutCanyon_RazorsDead_01_01");	//Хорошо. Похоже, от тебя есть польза.
 	B_LogEntry(TOPIC_Addon_ClearCanyon,"Грег был впечатлен, когда я сообщил ему, что убил всех бритвозубов в каньоне.");
-	MIS_Addon_Greg_ClearCanyon = LOG_Success;
+	MIS_Addon_Greg_ClearCanyon = LOG_SUCCESS;
 	B_Addon_PiratesGoHome();
 	B_GivePlayerXP(XP_addon_ClearCanyon);
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
@@ -310,7 +314,7 @@ func int DIA_Addon_Greg_BanditArmor_Condition()
 func void DIA_Addon_Greg_BanditArmor_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_BanditArmor_15_00");	//Мне нужны бандитские доспехи.
-	if(MIS_Addon_Greg_ClearCanyon != LOG_Success)
+	if(MIS_Addon_Greg_ClearCanyon != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_BanditArmor_01_01");	//Сначала покажи, на что ты способен. После этого поговорим.
 		if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
@@ -405,7 +409,7 @@ func void DIA_Addon_Greg_Sauber2_Info()
 	CreateInvItems(self,ItMi_Gold,200);
 	B_GiveInvItems(self,other,ItMi_Gold,200);
 	B_LogEntry(TOPIC_Addon_MorganBeach,"Я доложил Грегу, что пляж на севере очищен от монстров.");
-	MIS_Addon_MorganLurker = LOG_Success;
+	MIS_Addon_MorganLurker = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Morgan_LurkerPlatt);
 };
 
@@ -435,7 +439,7 @@ func void DIA_Addon_Greg_BanditPlatt2_Info()
 	CreateInvItems(self,ItMi_Gold,200);
 	B_GiveInvItems(self,other,ItMi_Gold,200);
 	B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни мертвы. Грег очень доволен.");
-	MIS_Henry_FreeBDTTower = LOG_Success;
+	MIS_Henry_FreeBDTTower = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Henry_FreeBDTTower);
 };
 
@@ -467,7 +471,7 @@ func void DIA_Addon_Greg_BanditGoldmine_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_BanditGoldmine_01_03");	//Хорошая работа. Вот, держи, у меня для тебя награда.
 	B_GiveInvItems(self,other,ItRi_Addon_STR_01,1);
 	B_LogEntry(TOPIC_Addon_ScoutBandits,"Я рассказал Грегу о золотой шахте.");
-	MIS_Greg_ScoutBandits = LOG_Success;
+	MIS_Greg_ScoutBandits = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Greg_ScoutBandits);
 };
 
@@ -522,7 +526,7 @@ func void DIA_Addon_Greg_NiceToSeeYou_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NiceToSeeYou_15_00");	//А как ты сюда попал?
 	AI_Output(self,other,"DIA_Addon_Greg_NiceToSeeYou_01_01");	//Не ожидал увидеть меня здесь, да?
-	AI_Output(self,other,"DIA_Addon_Greg_NiceToSeeYou_01_02");	//Давай сразу расставим точки над 'i'. Я Грег, и это мой лагерь.
+	AI_Output(self,other,"DIA_Addon_Greg_NiceToSeeYou_01_02");	//Давай сразу расставим точки над i. Я Грег, и это мой лагерь.
 	AI_Output(self,other,"DIA_Addon_Greg_NiceToSeeYou_01_03");	//Тебя устраивает такой ответ?
 };
 

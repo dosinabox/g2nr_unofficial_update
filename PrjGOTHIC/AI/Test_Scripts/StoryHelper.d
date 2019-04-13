@@ -20,7 +20,7 @@ func void UseItPo_Story()
 };
 
 
-instance sh(Npc_Default)
+instance SH(Npc_Default)
 {
 	name[0] = "Storyhelper";
 	guild = GIL_NONE;
@@ -144,7 +144,7 @@ func void StoryHelper_BACK2()
 
 func void StoryHelper_KAPITEL2ANFANG()
 {
-	mis_oldworld = LOG_Running;
+	MIS_OLDWORLD = LOG_Running;
 	B_Kapitelwechsel(2,NEWWORLD_ZEN);
 	AI_StopProcessInfos(self);
 };
@@ -180,10 +180,10 @@ func void StoryHelper_BACK3()
 
 func void StoryHelper_KAPITEL3ANFANG()
 {
-	mis_oldworld = LOG_Running;
+	MIS_OLDWORLD = LOG_Running;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
-	MIS_ScoutMine = LOG_Success;
+	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
 	B_NPC_IsAliveCheck(OldWorld_Zen);
 	B_Kapitelwechsel(3,NEWWORLD_ZEN);
@@ -222,14 +222,14 @@ func void StoryHelper_BACK4()
 
 func void StoryHelper_KAPITEL4ANFANG()
 {
-	mis_oldworld = LOG_Running;
+	MIS_OLDWORLD = LOG_Running;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
-	MIS_ScoutMine = LOG_Success;
+	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
 	B_NPC_IsAliveCheck(OldWorld_Zen);
 	B_Kapitelwechsel(3,NEWWORLD_ZEN);
-	player_talent_alchemy[CHARGE_Innoseye] = TRUE;
+	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	CreateInvItems(self,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
@@ -270,14 +270,14 @@ func void StoryHelper_BACK5()
 
 func void StoryHelper_KAPITEL5ANFANG()
 {
-	mis_oldworld = LOG_Running;
+	MIS_OLDWORLD = LOG_Running;
 	CreateInvItems(hero,ItWr_PaladinLetter_MIS,1);
 	KnowsPaladins_Ore = TRUE;
-	MIS_ScoutMine = LOG_Success;
+	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
 	B_NPC_IsAliveCheck(OldWorld_Zen);
 	B_Kapitelwechsel(3,NEWWORLD_ZEN);
-	player_talent_alchemy[CHARGE_Innoseye] = TRUE;
+	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;

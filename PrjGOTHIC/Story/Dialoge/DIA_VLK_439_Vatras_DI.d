@@ -190,7 +190,7 @@ func void DIA_Vatras_DI_PEDROTOT_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_00");	//Я нашел предателя Педро.
 	B_GivePlayerXP(XP_Ambient);
-	if((MIS_Gorax_KillPedro == LOG_Success) && Npc_IsDead(Pedro_DI))
+	if((MIS_Gorax_KillPedro == LOG_SUCCESS) && Npc_IsDead(Pedro_DI))
 	{
 		AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_01");	//Он мертв.
 		AI_Output(self,other,"DIA_Vatras_DI_PEDROTOT_05_02");	//Я крайне разочарован. Я не ожидал этого от тебя.
@@ -247,7 +247,7 @@ instance DIA_Vatras_DI_Talente(C_Info)
 	condition = DIA_Vatras_DI_Talente_Condition;
 	information = DIA_Vatras_DI_Talente_Info;
 	permanent = TRUE;
-	description = "Научи меня тому, что знаешь сам.";
+	description = "Научи меня магии.";
 };
 
 
@@ -306,47 +306,47 @@ func void DIA_Vatras_DI_Talente_ALCHIMIE()
 {
 	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
-	if(player_talent_alchemy[POTION_Health_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Лечебная эссенция",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Vatras_DI_Talente_POTION_Health_01);
 	};
-	if((player_talent_alchemy[POTION_Health_02] == FALSE) && (player_talent_alchemy[POTION_Health_01] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE))
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Лечебный экстракт",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Vatras_DI_Talente_POTION_Health_02);
 	};
-	if((player_talent_alchemy[POTION_Health_03] == FALSE) && (player_talent_alchemy[POTION_Health_02] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE))
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Лечебный эликсир",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Vatras_DI_Talente_POTION_Health_03);
 	};
-	if(player_talent_alchemy[POTION_Mana_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Эссенция маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Vatras_DI_Talente_POTION_Mana_01);
 	};
-	if((player_talent_alchemy[POTION_Mana_02] == FALSE) && (player_talent_alchemy[POTION_Mana_01] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Экстракт маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Vatras_DI_Talente_POTION_Mana_02);
 	};
-	if((player_talent_alchemy[POTION_Mana_03] == FALSE) && (player_talent_alchemy[POTION_Mana_02] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE))
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Эликсир маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),DIA_Vatras_DI_Talente_POTION_Mana_03);
 	};
-	if(player_talent_alchemy[POTION_Speed] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Зелье ускорения",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),DIA_Vatras_DI_Talente_POTION_Speed);
 	};
-	if(player_talent_alchemy[POTION_Perm_STR] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Эликсир силы",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Vatras_DI_Talente_POTION_Perm_STR);
 	};
-	if(player_talent_alchemy[POTION_Perm_DEX] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE)
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Эликсир ловкости",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Vatras_DI_Talente_POTION_Perm_DEX);
 	};
-	if((player_talent_alchemy[POTION_Perm_Mana] == FALSE) && (player_talent_alchemy[POTION_Mana_03] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE))
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Эликсир духа",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Vatras_DI_Talente_POTION_Perm_Mana);
 	};
-	if((player_talent_alchemy[POTION_Perm_Health] == FALSE) && (player_talent_alchemy[POTION_Health_03] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE))
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Эликсир жизни",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Vatras_DI_Talente_POTION_Perm_Health);
 	};
@@ -476,7 +476,7 @@ var int DIA_Vatras_DI_DementorObsessionBook_OneTime;
 
 func void DIA_Vatras_DI_DementorObsessionBook_Info()
 {
-	AI_Output(other,self,"DIA_Vatras_DI_DementorObsessionBook_15_00");	//Я принес альманах Одержимых.
+	AI_Output(other,self,"DIA_Vatras_DI_DementorObsessionBook_15_00");	//Я принес Альманах Одержимых
 	if(DIA_Vatras_DI_DementorObsessionBook_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_DementorObsessionBook_05_01");	//Хм. Я думаю, будет лучше всего, если я отнесу его в монастырь к Пирокару. Если, конечно, нам удастся выбраться отсюда.
@@ -487,6 +487,7 @@ func void DIA_Vatras_DI_DementorObsessionBook_Info()
 		AI_Output(self,other,"DIA_Vatras_DI_DementorObsessionBook_05_02");	//У тебя есть еще? Принеси мне все, что найдешь.
 	};
 	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,1);
+	Npc_RemoveInvItems(self,ITWR_DementorObsessionBook_MIS,1);
 	B_GivePlayerXP(XP_Ambient);
 };
 

@@ -31,8 +31,8 @@ const int VALUE_ITAR_DJG_L = 3000;
 const int VALUE_ITAR_DJG_M = 12000;
 const int VALUE_ITAR_DJG_H = 20000;
 const int VALUE_ITAR_DJG_Babe = 0;
-const int VALUE_ITAR_Xardas = 15000;
-const int VALUE_ITAR_Lester = 300;
+const int VALUE_ITAR_XARDAS = 15000;
+const int VALUE_ITAR_LESTER = 300;
 const int VALUE_ITAR_Diego = 450;
 const int VALUE_ITAR_CorAngar = 600;
 const int VALUE_ITAR_Dementor = 500;
@@ -244,7 +244,7 @@ instance ITAR_Vlk_H(C_Item)
 
 instance ITAR_VlkBabe_L(C_Item)
 {
-	name = "Одежда горожанина 1";
+	name = "Одежда горожанки 1";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -273,7 +273,7 @@ instance ITAR_VlkBabe_L(C_Item)
 
 instance ITAR_VlkBabe_M(C_Item)
 {
-	name = "Одежда горожанина 2";
+	name = "Одежда горожанки 2";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -302,7 +302,7 @@ instance ITAR_VlkBabe_M(C_Item)
 
 instance ITAR_VlkBabe_H(C_Item)
 {
-	name = "Одежда горожанина 3";
+	name = "Одежда горожанки 3";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -329,7 +329,7 @@ instance ITAR_VlkBabe_H(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_MIL_L(C_Item)
+instance ITAR_Mil_L(C_Item)
 {
 	name = "Легкие доспехи ополчения";
 	mainflag = ITEM_KAT_ARMOR;
@@ -394,7 +394,7 @@ func void UnEquip_ITAR_MIL_L()
 };
 
 
-instance ITAR_MIL_M(C_Item)
+instance ItAr_MIL_M(C_Item)
 {
 	name = "Тяжелые доспехи ополчения";
 	mainflag = ITEM_KAT_ARMOR;
@@ -459,7 +459,7 @@ func void UnEquip_ITAR_MIL_M()
 };
 
 
-instance ITAR_PAL_M(C_Item)
+instance ItAr_PAL_M(C_Item)
 {
 	name = "Доспехи рыцаря";
 	mainflag = ITEM_KAT_ARMOR;
@@ -488,7 +488,7 @@ instance ITAR_PAL_M(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_PAL_H(C_Item)
+instance ItAr_PAl_H(C_Item)
 {
 	name = "Доспехи паладина";
 	mainflag = ITEM_KAT_ARMOR;
@@ -633,7 +633,7 @@ instance ITAR_BauBabe_M(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_SLD_L(C_Item)
+instance ItAr_Sld_L(C_Item)
 {
 	name = "Легкие доспехи наемника";
 	mainflag = ITEM_KAT_ARMOR;
@@ -698,7 +698,7 @@ func void UnEquip_ITAR_SLD_L()
 };
 
 
-instance ITAR_SLD_M(C_Item)
+instance itar_sld_M(C_Item)
 {
 	name = "Средние доспехи наемника";
 	mainflag = ITEM_KAT_ARMOR;
@@ -763,7 +763,7 @@ func void UnEquip_ITAR_SLD_M()
 };
 
 
-instance ITAR_SLD_H(C_Item)
+instance ItAr_Sld_H(C_Item)
 {
 	name = "Тяжелые доспехи наемника";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1009,7 +1009,7 @@ instance ITAR_DJG_Babe(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_NOV_L(C_Item)
+instance ItAr_NOV_L(C_Item)
 {
 	name = "Роба послушника";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1074,7 +1074,7 @@ func void UnEquip_ITAR_NOV_L()
 };
 
 
-instance ITAR_KDF_L(C_Item)
+instance ItAr_KDF_L(C_Item)
 {
 	name = "Мантия мага огня";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1139,7 +1139,7 @@ func void UnEquip_ITAR_KDF_L()
 };
 
 
-instance ITAR_KDF_H(C_Item)
+instance ItAr_KDF_H(C_Item)
 {
 	name = "Тяжелая огненная мантия";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1269,7 +1269,7 @@ func void UnEquip_ITAR_Leather_L()
 };
 
 
-instance ITAR_BDT_M(C_Item)
+instance ItAr_BDT_M(C_Item)
 {
 	name = "Средние доспехи бандита";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1299,7 +1299,7 @@ instance ITAR_BDT_M(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_BDT_H(C_Item)
+instance ItAr_BDT_H(C_Item)
 {
 	name = "Тяжелые доспехи бандита";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1339,7 +1339,7 @@ instance ITAR_Xardas(C_Item)
 	protection[PROT_POINT] = 100;
 	protection[PROT_FIRE] = 50;
 	protection[PROT_MAGIC] = 50;
-	value = VALUE_ITAR_Xardas;
+	value = value_itar_xardas;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Xardas.3ds";
 	visual_change = "Armor_Xardas.asc";
@@ -1368,7 +1368,7 @@ instance ITAR_Lester(C_Item)
 	protection[PROT_POINT] = 25;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Lester;
+	value = value_itar_lester;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Lester.3ds";
 	visual_change = "Armor_Lester.asc";

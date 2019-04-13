@@ -43,7 +43,7 @@ func int DIA_Lares_DI_Hallo_Condition()
 func void DIA_Lares_DI_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Lares_DI_Hallo_15_00");	//Как дела?
-	if(OrkSturmDI == TRUE)
+	if(ORkSturmDI == TRUE)
 	{
 		AI_Output(self,other,"DIA_Lares_DI_Hallo_09_01");	//Поторопись. Орки, наверняка, вернутся опять.
 	}

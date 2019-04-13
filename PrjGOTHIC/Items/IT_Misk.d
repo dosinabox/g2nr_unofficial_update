@@ -24,7 +24,7 @@ const int Value_Pitch = 10;
 const int Value_Rockcrystal = 30;
 const int Value_Aquamarine = 100;
 const int Value_HolyWater = 20;
-const int VALUE_COAL = 15;
+const int Value_Coal = 15;
 const int Value_DarkPearl = 1000;
 const int VALUE_ItMi_ApfelTabak = 10;
 const int VALUE_ItMi_PilzTabak = 10;
@@ -253,14 +253,14 @@ instance ItMi_Lute(C_Item)
 	visual = "ItMi_Lute.3DS";
 	material = MAT_WOOD;
 	scemeName = "LUTE";
-	on_state[0] = use_lute;
+	on_state[0] = Use_Lute;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 
-func void use_lute()
+func void Use_Lute()
 {
 };
 
@@ -274,14 +274,14 @@ instance ItMi_Brush(C_Item)
 	visual = "ItMi_Brush.3ds";
 	material = MAT_WOOD;
 	scemeName = "BRUSH";
-	on_state[0] = use_brush;
+	on_state[0] = Use_Brush;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 
-func void use_brush()
+func void Use_Brush()
 {
 };
 
@@ -327,7 +327,7 @@ instance ItMi_Packet(C_Item)
 };
 
 
-func void usepacket()
+func void UsePacket()
 {
 };
 
@@ -716,7 +716,7 @@ instance ItMi_Coal(C_Item)
 	name = "”голь";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = VALUE_COAL;
+	value = Value_Coal;
 	visual = "ItMi_Coal.3ds";
 	material = MAT_STONE;
 	description = name;

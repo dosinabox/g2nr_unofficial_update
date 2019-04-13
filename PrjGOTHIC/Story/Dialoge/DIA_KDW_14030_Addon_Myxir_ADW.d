@@ -61,7 +61,7 @@ func void DIA_Addon_Myxir_ADWHello_wie()
 func void DIA_Addon_Myxir_ADWHello_Watt()
 {
 	AI_Output(other,self,"DIA_Addon_Myxir_ADWHello_Watt_15_00");	//Та нежить, что мне доводилось встречать, была не очень-то разговорчивой.
-	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_Watt_12_01");	//Но зодчие призывали не злобных бездушных созданий, таких, как зомби или скелеты.
+	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_Watt_12_01");	//Но зодчие призывали не злобных бездушных созданий, таких как зомби или скелеты.
 	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_Watt_12_02");	//Им удавалось вызывать духов великих воинов, жрецов и правителей.
 	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_Watt_12_03");	//Я не сомневаюсь, что они на самом деле существовали.
 };
@@ -126,13 +126,13 @@ func void DIA_Addon_Myxir_GeistTafel_Info()
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_10");	//Здесь написано, как тот, кто верит в Аданоса, может вызвать духа.
 	AI_Output(other,self,"DIA_Addon_Myxir_GeistTafel_15_11");	//Ты думаешь, что это сработает?
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_12");	//Мне в руки попадалось множество бессмысленных манускриптов.
-	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_13");	//Например, записи Ю'Бериона, предводителя Братства Спящего.
+	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_13");	//Например, записи И'Бериона, предводителя Братства Спящего.
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_14");	//Но автору ЭТИХ записей я верю.
 	MIS_ADDON_Myxir_GeistBeschwoeren = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Myxir_GeistTafel);
 	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Ты серьезно?",DIA_Addon_Myxir_GeistTafel_geist);
 	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Почему Куарходрон? Почему не верховный жрец Кардимон?",DIA_Addon_Myxir_GeistTafel_Khardimon);
-	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Братство Спящего распространяло не одну лишь ложь.",DIA_Addon_Myxir_GeistTafel_psi);
+	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Братство Спящего распространяло не одну лишь ложь. Спящий на самом деле существовал.",DIA_Addon_Myxir_GeistTafel_psi);
 };
 
 func void DIA_Addon_Myxir_GeistTafel_Khardimon()
@@ -223,7 +223,7 @@ func void DIA_Addon_Myxir_TalkedToGhost_Info()
 	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_01");	//(восхищенно) Тебе действительно удалось пробудить его от смертного сна?
 	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_02");	//Невероятно! Меня все больше и больше восхищают эти зодчие.
 	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_03");	//Кто знает, чего бы они могли добиться, если бы их цивилизация не погибла...
-	MIS_ADDON_Myxir_GeistBeschwoeren = LOG_Success;
+	MIS_ADDON_Myxir_GeistBeschwoeren = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Myxir_GeistBeschwoeren);
 	if((Saturas_KnowsHow2GetInTempel == FALSE) && (Ghost_SCKnowsHow2GetInAdanosTempel == TRUE))
 	{
@@ -266,22 +266,22 @@ func void DIA_Addon_Myxir_ADW_Teach_Info()
 		B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_MyxirTeach);
 		DIA_Addon_Myxir_ADW_Teach_OneTime = TRUE;
 	};
-	if((player_talent_foreignlanguage[LANGUAGE_1] == FALSE) || (player_talent_foreignlanguage[LANGUAGE_2] == FALSE) || (player_talent_foreignlanguage[LANGUAGE_3] == FALSE))
+	if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE))
 	{
 		Info_ClearChoices(DIA_Addon_Myxir_ADW_Teach);
 		Info_AddChoice(DIA_Addon_Myxir_ADW_Teach,Dialog_Back,DIA_Addon_Myxir_ADW_Teach_BACK);
 	};
-	if(player_talent_foreignlanguage[LANGUAGE_1] == FALSE)
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
 	{
 		B_DIA_Addon_Myxir_TeachL1();
 		Info_AddChoice(DIA_Addon_Myxir_ADW_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_1,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_1)),DIA_Addon_Myxir_ADW_Teach_LANGUAGE_1);
 	}
-	else if((player_talent_foreignlanguage[LANGUAGE_2] == FALSE) && (player_talent_foreignlanguage[LANGUAGE_1] == TRUE))
+	else if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE))
 	{
 		B_DIA_Addon_Myxir_TeachL2();
 		Info_AddChoice(DIA_Addon_Myxir_ADW_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_2,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_2)),DIA_Addon_Myxir_ADW_Teach_LANGUAGE_2);
 	}
-	else if((player_talent_foreignlanguage[LANGUAGE_3] == FALSE) && (player_talent_foreignlanguage[LANGUAGE_1] == TRUE) && (player_talent_foreignlanguage[LANGUAGE_2] == TRUE))
+	else if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE))
 	{
 		B_DIA_Addon_Myxir_TeachL3();
 		Info_AddChoice(DIA_Addon_Myxir_ADW_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_3,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_3)),DIA_Addon_Myxir_ADW_Teach_LANGUAGE_3);

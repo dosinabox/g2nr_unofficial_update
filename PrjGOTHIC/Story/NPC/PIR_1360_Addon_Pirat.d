@@ -1,5 +1,5 @@
 
-instance PIR_1360_Addon_Pirat(Npc_Default)
+instance PIR_1360_Addon_PIRAT(Npc_Default)
 {
 	name[0] = NAME_Addon_Pirat;
 	guild = GIL_PIR;
@@ -10,6 +10,7 @@ instance PIR_1360_Addon_Pirat(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_L_Ratford,BodyTex_L,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

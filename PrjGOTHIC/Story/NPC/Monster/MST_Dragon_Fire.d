@@ -41,6 +41,7 @@ func void B_SetVisuals_Dragon_Fire()
 instance Dragon_Fire(Mst_Default_Dragon_Fire)
 {
 	name[0] = "Феоматар";
+	flags = NPC_FLAG_IMMORTAL;
 	B_SetVisuals_Dragon_Fire();
 	Npc_SetToFistMode(self);
 };

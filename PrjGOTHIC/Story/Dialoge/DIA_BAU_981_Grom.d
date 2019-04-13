@@ -41,25 +41,25 @@ func void DIA_Grom_HALLO_Info()
 	AI_Output(other,self,"DIA_Grom_HALLO_15_00");	//Все в порядке?
 	AI_Output(self,other,"DIA_Grom_HALLO_08_01");	//Ах, незнакомый странник. Я очень занят. Что ты хочешь?
 	Info_ClearChoices(DIA_Grom_HALLO);
-	Info_AddChoice(DIA_Grom_HALLO,"Что здесь интересного?",dia_grom_hallo_waszusehen);
-	Info_AddChoice(DIA_Grom_HALLO,"Что ты делаешь здесь?",dia_grom_hallo_was);
+	Info_AddChoice(DIA_Grom_HALLO,"Что здесь интересного?",DIA_Grom_HALLO_waszusehen);
+	Info_AddChoice(DIA_Grom_HALLO,"Что ты делаешь здесь?",DIA_Grom_HALLO_was);
 };
 
-func void dia_grom_hallo_waszusehen()
+func void DIA_Grom_HALLO_waszusehen()
 {
 	AI_Output(other,self,"DIA_Grom_HALLO_waszusehen_15_00");	//На что интересное стоит обратить внимание здесь?
 	AI_Output(self,other,"DIA_Grom_HALLO_waszusehen_08_01");	//Интересное - это хорошо сказано. Если ты углубишься в здешний лес, то наткнешься на очень злобных парней.
 	AI_Output(self,other,"DIA_Grom_HALLO_waszusehen_08_02");	//Они около десяти футов высотой, волосатые и в очень дурном расположении духа. Так что лучше не ходи туда, если не считаешь, что достаточно силен.
 };
 
-func void dia_grom_hallo_was()
+func void DIA_Grom_HALLO_was()
 {
 	AI_Output(other,self,"DIA_Grom_HALLO_was_15_00");	//Чем ты занимаешься здесь?
 	AI_Output(self,other,"DIA_Grom_HALLO_was_08_01");	//Ну, чем обычно занимаются дровосеки и охотники?
-	Info_AddChoice(DIA_Grom_HALLO,Dialog_Back,dia_grom_hallo_back);
+	Info_AddChoice(DIA_Grom_HALLO,Dialog_Back,DIA_Grom_HALLO_BACK);
 };
 
-func void dia_grom_hallo_back()
+func void DIA_Grom_HALLO_BACK()
 {
 	Info_ClearChoices(DIA_Grom_HALLO);
 };
@@ -146,27 +146,27 @@ func int DIA_Grom_TEACHHUNTING_Condition()
 func void DIA_Grom_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Grom_TEACHHUNTING_15_00");	//Научи меня охотиться.
-	if((player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Teeth] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Heart] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Mandibles] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_ShadowHorn] == FALSE))
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE))
 	{
 		AI_Output(self,other,"DIA_Grom_TEACHHUNTING_08_01");	//Что ты хочешь узнать?
 		Info_AddChoice(DIA_Grom_TEACHHUNTING,Dialog_Back,DIA_Grom_TEACHHUNTING_BACK);
-		if(player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 		{
 			Info_AddChoice(DIA_Grom_TEACHHUNTING,B_BuildLearnString("Снятие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Grom_TEACHHUNTING_Fur);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Teeth] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 		{
 			Info_AddChoice(DIA_Grom_TEACHHUNTING,B_BuildLearnString("Удаление зубов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Grom_TEACHHUNTING_Teeth);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Heart] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE)
 		{
 			Info_AddChoice(DIA_Grom_TEACHHUNTING,B_BuildLearnString("Удаление сердца",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Heart)),DIA_Grom_TEACHHUNTING_Heart);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Mandibles] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE)
 		{
 			Info_AddChoice(DIA_Grom_TEACHHUNTING,B_BuildLearnString("Удаление мандибул",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Mandibles)),DIA_Grom_TEACHHUNTING_Mandibles);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_ShadowHorn] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
 		{
 			Info_AddChoice(DIA_Grom_TEACHHUNTING,B_BuildLearnString("Рог мракориса",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ShadowHorn)),DIA_Grom_TEACHHUNTING_ShadowHorn);
 		};
@@ -186,7 +186,7 @@ func void DIA_Grom_TEACHHUNTING_Fur()
 {
 	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Fur))
 	{
-		AI_Output(self,other,"DIA_Grom_TEACHHUNTING_Fur_08_00");	//Сделай разрез вдоль ноги животного, чтобы ты смог снять с него шкуру. Снимай ее с зада наперед, а не наоборот.
+		AI_Output(self,other,"DIA_Grom_TEACHHUNTING_Fur_08_00");	//Сделай разрез вдоль ног животного, чтобы ты мог снять с него шкуру. Снимай ее с зада наперед, а не наоборот.
 	};
 	Info_ClearChoices(DIA_Grom_TEACHHUNTING);
 };

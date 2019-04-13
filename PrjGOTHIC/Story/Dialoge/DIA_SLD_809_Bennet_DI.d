@@ -43,7 +43,7 @@ func int DIA_Bennet_DI_Hello_Condition()
 func void DIA_Bennet_DI_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_DI_Hello_15_00");	//У тебя все в порядке?
-	if(OrkSturmDI == FALSE)
+	if(ORkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Bennet_DI_Hello_06_01");	//Кузница на корабле немного проржавела. Морская соль разъедает ее. Здесь будет непросто выковать что-нибудь приличное. Ну, а кроме этого...
 	}
@@ -107,41 +107,41 @@ func void DIA_Bennet_DI_Smith_Info()
 	AI_Output(self,other,"DIA_Bennet_DI_Smith_06_01");	//Это зависит от того, что ты хочешь научиться делать.
 	Info_ClearChoices(DIA_Bennet_DI_Smith);
 	Info_AddChoice(DIA_Bennet_DI_Smith,Dialog_Back,DIA_Bennet_DI_Smith_BACK);
-	if(player_talent_smith[WEAPON_Common] == FALSE)
+	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 	{
 		Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString("Научиться кузнечному делу",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Bennet_DI_Smith_Common);
 	};
-	if(player_talent_smith[WEAPON_Common] == TRUE)
+	if(PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE)
 	{
-		if(player_talent_smith[WEAPON_1H_Special_01] == FALSE)
+		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01)),DIA_Bennet_DI_Smith_1hSpecial1);
 		};
-		if(player_talent_smith[WEAPON_2H_Special_01] == FALSE)
+		if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_01)),DIA_Bennet_DI_Smith_2hSpecial1);
 		};
-		if(player_talent_smith[WEAPON_1H_Special_02] == FALSE)
+		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_02)),DIA_Bennet_DI_Smith_1hSpecial2);
 		};
-		if(player_talent_smith[WEAPON_2H_Special_02] == FALSE)
+		if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_02)),DIA_Bennet_DI_Smith_2hSpecial2);
 		};
-		if(player_talent_smith[WEAPON_1H_Special_03] == FALSE)
+		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_03)),DIA_Bennet_DI_Smith_1hSpecial3);
 		};
-		if(player_talent_smith[WEAPON_2H_Special_03] == FALSE)
+		if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_03)),DIA_Bennet_DI_Smith_2hSpecial3);
 		};
-		if(player_talent_smith[WEAPON_1H_Special_04] == FALSE)
+		if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_1H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_04)),DIA_Bennet_DI_Smith_1hSpecial4);
 		};
-		if(player_talent_smith[WEAPON_2H_Special_04] == FALSE)
+		if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] == FALSE)
 		{
 			Info_AddChoice(DIA_Bennet_DI_Smith,B_BuildLearnString(NAME_ItMw_2H_Special_04,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_04)),DIA_Bennet_DI_Smith_2hSpecial4);
 		};

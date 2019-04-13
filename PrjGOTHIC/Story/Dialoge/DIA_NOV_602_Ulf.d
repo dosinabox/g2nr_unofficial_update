@@ -34,7 +34,7 @@ instance DIA_Ulf_Hallo(C_Info)
 
 func int DIA_Ulf_Hallo_Condition()
 {
-	if((hero.guild != GIL_NOV) && (hero.guild != GIL_KDF) && (mis_schnitzeljagd == FALSE))
+	if((hero.guild != GIL_NOV) && (hero.guild != GIL_KDF) && (MIS_SCHNITZELJAGD == FALSE))
 	{
 		return TRUE;
 	};
@@ -78,7 +78,7 @@ func void DIA_Ulf_Wirte_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Wirte_15_00");	//Кто эти трое трактирщиков?
 	AI_Output(self,other,"DIA_Ulf_Wirte_03_01");	//Один из них - вот этот добрый человек за прилавком.
-	AI_Output(self,other,"DIA_Ulf_Wirte_03_02");	//Также еще Корагон - хозяин таверны на храмовой площади, и Кардиф - владелец бара в портовом районе.
+	AI_Output(self,other,"DIA_Ulf_Wirte_03_02");	//Также еще Карагон - хозяин таверны на храмовой площади, и Кардиф - владелец бара в портовом районе.
 };
 
 
@@ -105,7 +105,7 @@ func void DIA_Ulf_Kloster_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Kloster_15_00");	//Что ты можешь рассказать мне о монастыре?
 	AI_Output(self,other,"DIA_Ulf_Kloster_03_01");	//Мы, послушники, ищем просвещение в молитвах Инносу и изучении принципов веры под руководством магов.
-	AI_Output(self,other,"DIA_Ulf_Kloster_03_02");	//Мы служим им так же, как служим Инносу, и готовим себя к единению с Огнем.
+	AI_Output(self,other,"DIA_Ulf_Kloster_03_02");	//Мы служим им так же, как мы служим Инносу, и готовим себя к единению с огнем.
 };
 
 
@@ -160,7 +160,7 @@ func int DIA_Ulf_Aufnahme_Condition()
 
 func void DIA_Ulf_Aufnahme_Info()
 {
-	AI_Output(other,self,"DIA_Ulf_Aufnahme_15_00");	//А как мне стать послушником?
+	AI_Output(other,self,"DIA_Ulf_Aufnahme_15_00");	//Как мне стать послушником?
 	AI_Output(self,other,"DIA_Ulf_Aufnahme_03_01");	//Если человек чувствует глубокое желание...
 	AI_Output(other,self,"DIA_Ulf_Aufnahme_15_02");	//Эй! Просто скажи мне, каковы условия.
 	AI_Output(self,other,"DIA_Ulf_Aufnahme_03_03");	//Ты должен принести дары. Овцу и...
@@ -193,7 +193,7 @@ func int DIA_Ulf_Gold_Condition()
 func void DIA_Ulf_Gold_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Gold_15_00");	//Как мне раздобыть такую огромную сумму?
-	AI_Output(self,other,"DIA_Ulf_Gold_03_01");	//Так как очевидно, что ты не знаешь никого, кто бы мог заплатить за тебя, тебе просто нужно заработать ее.
+	AI_Output(self,other,"DIA_Ulf_Gold_03_01");	//Так как очевидно, что ты не знаешь никого, кто мог бы заплатить за тебя, тебе просто нужно заработать ее.
 };
 
 
@@ -218,7 +218,7 @@ func int DIA_Ulf_Schaf_Condition()
 
 func void DIA_Ulf_Schaf_Info()
 {
-	AI_Output(other,self,"DIA_Ulf_Schaf_15_00");	//А где я могу найти овцу?
+	AI_Output(other,self,"DIA_Ulf_Schaf_15_00");	//Где я могу найти овцу?
 	AI_Output(self,other,"DIA_Ulf_Schaf_03_01");	//У фермеров, конечно же. Но ты не получишь ее даром.
 	B_LogEntry(Topic_Kloster,"Я могу раздобыть овцу у фермеров.");
 };
@@ -237,7 +237,7 @@ instance DIA_Ulf_Suche(C_Info)
 
 func int DIA_Ulf_Suche_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_42") <= 1000))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_42") <= 1000))
 	{
 		return TRUE;
 	};
@@ -250,7 +250,7 @@ func void DIA_Ulf_Suche_Info()
 	AI_Output(self,other,"DIA_Ulf_Suche_03_02");	//Точно. Я как раз хотел посидеть, попить холодного пива, когда из-за угла вышел Дарон и сказал мне, что я был избран.
 	AI_Output(self,other,"DIA_Ulf_Suche_03_03");	//Кто бы мог подумать? Воля Инноса непостижима. А что привело тебя сюда?
 	AI_Output(other,self,"DIA_Ulf_Suche_15_04");	//Я потребовал прохождения Испытания Огнем.
-	AI_Output(self,other,"DIA_Ulf_Suche_03_05");	//Это невозможно! Похоже, мужества у тебя хватит на десятерых. Это значит, что ты тоже будешь искать 'то, что верующий находит в конце пути'?
+	AI_Output(self,other,"DIA_Ulf_Suche_03_05");	//Это невозможно?! Похоже мужества у тебя на десятерых хватит. Это значит, что ты тоже будешь искать 'то, что верующий находит в конце пути'?
 	AI_Output(other,self,"DIA_Ulf_Suche_15_06");	//Похоже на это.
 };
 
@@ -262,13 +262,13 @@ instance DIA_Ulf_Rausgefunden(C_Info)
 	condition = DIA_Ulf_Rausgefunden_Condition;
 	information = DIA_Ulf_Rausgefunden_Info;
 	permanent = FALSE;
-	description = "Ты еще ничего не нашел";
+	description = "Ты еще ничего не нашел?";
 };
 
 
 func int DIA_Ulf_Rausgefunden_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_42") <= 1000))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_42") <= 1000))
 	{
 		return TRUE;
 	};
@@ -278,7 +278,7 @@ func void DIA_Ulf_Rausgefunden_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Rausgefunden_15_00");	//Ты еще ничего не нашел?
 	AI_Output(self,other,"DIA_Ulf_Rausgefunden_03_01");	//Ну, я пытался идти за Агоном - но я потерял его.
-	AI_Output(self,other,"DIA_Ulf_Rausgefunden_03_02");	//И что же теперь? Что они говорят? Следуй знакам Инноса. Но я не понимаю эту загадку с путем...
+	AI_Output(self,other,"DIA_Ulf_Rausgefunden_03_02");	//И что теперь?.. Что они говорят? Следуй знакам Инноса. Но я не понимаю эту загадку с путем...
 	AI_Output(self,other,"DIA_Ulf_Rausgefunden_03_03");	//Так что я продолжу свои поиски.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FOLLOW");
@@ -298,7 +298,7 @@ instance DIA_Ulf_Folgen(C_Info)
 
 func int DIA_Ulf_Folgen_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Ulf_Rausgefunden))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Ulf_Rausgefunden))
 	{
 		return TRUE;
 	};
@@ -325,7 +325,7 @@ instance DIA_Ulf_Stop(C_Info)
 
 func int DIA_Ulf_Stop_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Ulf_Folgen))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Ulf_Folgen))
 	{
 		return TRUE;
 	};
@@ -353,7 +353,7 @@ instance DIA_Ulf_Abrechnung(C_Info)
 
 func int DIA_Ulf_Abrechnung_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && (Npc_HasItems(other,ItMi_RuneBlank) >= 1))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && (Npc_HasItems(other,ItMi_RuneBlank) >= 1))
 	{
 		return TRUE;
 	};
@@ -382,7 +382,7 @@ func void DIA_Ulf_Abrechnung_Lass()
 
 func void DIA_Ulf_Abrechnung_Schnell()
 {
-	AI_Output(other,self,"DIA_Ulf_Abrechnung_Schnell_15_00");	//Ты, возможно, что-то не понимаешь - мне нужно вернуться в монастырь.
+	AI_Output(other,self,"DIA_Ulf_Abrechnung_Schnell_15_00");	//Ты, возможно, что-то не понимаешь... Мне нужно вернуться в монастырь.
 	AI_Output(self,other,"DIA_Ulf_Abrechnung_Schnell_03_01");	//Тебе больше никуда не нужно идти!
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,0);
@@ -413,7 +413,7 @@ instance DIA_Ulf_Troll(C_Info)
 
 func int DIA_Ulf_Troll_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Ulf_Rausgefunden) && ((Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_14") <= 1000) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_15") <= 1000)))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Ulf_Rausgefunden) && ((Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_14") <= 1000) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_15") <= 1000)))
 	{
 		return TRUE;
 	};

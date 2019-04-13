@@ -110,7 +110,7 @@ instance DIA_Addon_Brahim_MissingPeople(C_Info)
 
 func int DIA_Addon_Brahim_MissingPeople_Condition()
 {
-	if((SC_HearedAboutMissingPeople == TRUE) && (entered_addonworld == FALSE))
+	if((SC_HearedAboutMissingPeople == TRUE) && (ENTERED_ADDONWORLD == FALSE))
 	{
 		return TRUE;
 	};
@@ -148,14 +148,14 @@ func int DIA_Brahim_BUY_Condition()
 func void DIA_Brahim_BUY_Info()
 {
 	B_GiveTradeInv(self);
-	AI_Output(other,self,"DIA_Brahim_BUY_15_00");	//Покажи мне свои карты.
+	AI_Output(other,self,"DIA_Brahim_BUY_15_00");	//Покажи мне твои карты.
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Brahim_BUY_07_01");	//Ты не найдешь лучше даже в монастыре.
 	};
 	if(hero.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Brahim_BUY_07_02");	//Хорошая карта - это очень важно, особенно для людей, прибывших с материка, мистер паладин.
+		AI_Output(self,other,"DIA_Brahim_BUY_07_02");	//Хорошая карта - это очень важно, особенно для людей, прибывших с материка, мистер Паладин.
 	};
 	Brahim_ShowedMaps = TRUE;
 };

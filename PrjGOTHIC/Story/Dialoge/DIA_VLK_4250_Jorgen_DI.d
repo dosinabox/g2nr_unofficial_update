@@ -43,7 +43,7 @@ func int DIA_Jorgen_DI_Hallo_Condition()
 func void DIA_Jorgen_DI_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Jorgen_DI_Hallo_15_00");	//Все в порядке?
-	if(OrkSturmDI == FALSE)
+	if(ORkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Jorgen_DI_Hallo_07_01");	//Конечно - пока эти монстры не приближаются к нам...
 	}

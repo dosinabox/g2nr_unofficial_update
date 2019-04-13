@@ -1,7 +1,7 @@
 
 instance DIA_Girion_DI_XIT(C_Info)
 {
-	npc = PAL_207_Girion_DI;
+	npc = Pal_207_Girion_DI;
 	nr = 999;
 	condition = DIA_Girion_DI_EXIT_Condition;
 	information = DIA_Girion_DI_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Girion_DI_EXIT_Info()
 
 instance DIA_Girion_DI_Hallo(C_Info)
 {
-	npc = PAL_207_Girion_DI;
+	npc = Pal_207_Girion_DI;
 	nr = 2;
 	condition = DIA_Girion_DI_Hallo_Condition;
 	information = DIA_Girion_DI_Hallo_Info;
@@ -43,7 +43,7 @@ func int DIA_Girion_DI_Hallo_Condition()
 func void DIA_Girion_DI_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Girion_DI_Hallo_15_00");	//Все в порядке?
-	if(OrkSturmDI == TRUE)
+	if(ORkSturmDI == TRUE)
 	{
 		AI_Output(self,other,"DIA_Girion_DI_Hallo_08_01");	//У орков хватило мужества, чтобы атаковать меня.
 		AI_Output(self,other,"DIA_Girion_DI_Hallo_08_02");	//Но им стоило лучше подумать, прежде чем нападать на паладина из королевской стражи.
@@ -61,7 +61,7 @@ func void DIA_Girion_DI_Hallo_Info()
 
 instance DIA_Girion_DI_Teach(C_Info)
 {
-	npc = PAL_207_Girion_DI;
+	npc = Pal_207_Girion_DI;
 	nr = 5;
 	condition = DIA_Girion_DI_Teach_Condition;
 	information = DIA_Girion_DI_Teach_Info;
@@ -112,7 +112,7 @@ func void DIA_Girion_DI_Teach_CROSSBOW_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,90))
 	{
-		AI_Output(self,other,"DIA_Girion_DI_Teach_CROSSBOW_5_08_00");	//Всегда расслабляй левую руку перед выстрелом. Это позволит тебе более точно прицелиться.
+		AI_Output(self,other,"DIA_Girion_DI_Teach_CROSSBOW_5_08_00");	//Всегда расслабляй свою левую руку перед выстрелом. Это позволит тебе более точно прицелиться.
 	};
 	Info_ClearChoices(DIA_Girion_DI_Teach);
 	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
@@ -196,7 +196,7 @@ func void DIA_Girion_DI_Teach_Back()
 
 instance DIA_Girion_DI_OrcEliteRing(C_Info)
 {
-	npc = PAL_207_Girion_DI;
+	npc = Pal_207_Girion_DI;
 	nr = 99;
 	condition = DIA_Girion_DI_OrcEliteRing_Condition;
 	information = DIA_Girion_DI_OrcEliteRing_Info;
@@ -249,7 +249,7 @@ func void DIA_Girion_DI_OrcEliteRing_behalten()
 
 instance DIA_Girion_DI_UndeadDragonDead(C_Info)
 {
-	npc = PAL_207_Girion_DI;
+	npc = Pal_207_Girion_DI;
 	nr = 2;
 	condition = DIA_Girion_DI_UndeadDragonDead_Condition;
 	information = DIA_Girion_DI_UndeadDragonDead_Info;
@@ -272,7 +272,7 @@ var int DIA_Girion_DI_UndeadDragonDead_OneTime;
 func void DIA_Girion_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Girion_DI_UndeadDragonDead_15_00");	//Мы готовы к отплытию.
-	AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_01");	//Это хорошо. А то я уже начал думать, что сгинем здесь на этом утесе.
+	AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_01");	//Это хорошо. А то я  уже начал думать, что сгнием здесь на этом утесе.
 	if(DIA_Girion_DI_UndeadDragonDead_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_02");	//Теперь немедленно верни корабль мне.
@@ -282,7 +282,7 @@ func void DIA_Girion_DI_UndeadDragonDead_Info()
 		AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_06");	//Ладно. Я, тем не менее, рад видеть тебя на борту в полном здравии.
 		if(hero.guild == GIL_PAL)
 		{
-			AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_07");	//Ты настоящий воин Инноса. У меня нет сомнений на этот счет. И я рад, что ты на нашей стороне.
+			AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_07");	//Ты настоящий воин Инноса. У меня нет сомнений на этот счет. Я рад, что ты на нашей стороне.
 		}
 		else
 		{
@@ -297,7 +297,7 @@ func void DIA_Girion_DI_UndeadDragonDead_Info()
 
 instance DIA_Girion_DI_PICKPOCKET(C_Info)
 {
-	npc = PAL_207_Girion_DI;
+	npc = Pal_207_Girion_DI;
 	nr = 900;
 	condition = DIA_Girion_DI_PICKPOCKET_Condition;
 	information = DIA_Girion_DI_PICKPOCKET_Info;

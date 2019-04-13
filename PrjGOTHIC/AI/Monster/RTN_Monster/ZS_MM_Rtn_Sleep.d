@@ -29,7 +29,7 @@ func void ZS_MM_Rtn_Sleep()
 	AI_PlayAniBS(self,"T_STAND_2_SLEEP",BS_LIE);
 };
 
-func int ZS_MM_Rtn_Sleep_Loop()
+func int ZS_MM_Rtn_Sleep_loop()
 {
 	if(!Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) && (self.aivar[AIV_MM_SleepStart] != OnlyRoutine))
 	{
@@ -39,7 +39,7 @@ func int ZS_MM_Rtn_Sleep_Loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_MM_Rtn_Sleep_End()
+func void ZS_MM_Rtn_Sleep_end()
 {
 	AI_PlayAniBS(self,"T_SLEEP_2_STAND",BS_STAND);
 };

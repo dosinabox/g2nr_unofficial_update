@@ -77,7 +77,7 @@ func int DIA_Bdt_1064_BanditGuard_SecondWarn_Condition()
 
 func void DIA_Bdt_1064_BanditGuard_SecondWarn_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Dexwache_Add_04_01");	//Ты хочешь, чтобы я тебя ткнул этой штукой? Еще ОДИН шаг - и я сброшу тебя в обрыв!
+	AI_Output(self,other,"DIA_Addon_Dexwache_Add_04_01");	//Ты хочешь, чтобы я тебя ткнул этой штукой. Еще ОДИН шаг - и я сброшу тебя в обрыв!
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Bdt_1064_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_SecondWarnGiven;
 	AI_StopProcessInfos(self);

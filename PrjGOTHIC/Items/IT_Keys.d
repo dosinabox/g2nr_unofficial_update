@@ -1,10 +1,10 @@
 
 const int Value_Lockpick = 10;
 const int Value_Key_01 = 3;
-const int VALUE_KEY_02 = 3;
-const int VALUE_KEY_03 = 3;
+const int Value_Key_02 = 3;
+const int Value_Key_03 = 3;
 
-instance ItKe_Lockpick(C_Item)
+instance ItKE_lockpick(C_Item)
 {
 	name = "Отмычка";
 	mainflag = ITEM_KAT_NONE;
@@ -35,7 +35,7 @@ instance ItKe_Key_02(C_Item)
 	name = "Ключ";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
-	value = VALUE_KEY_02;
+	value = Value_Key_02;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -48,7 +48,7 @@ instance ItKe_Key_03(C_Item)
 	name = "Ключ";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
-	value = VALUE_KEY_03;
+	value = Value_Key_03;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;

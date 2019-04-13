@@ -5,7 +5,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 	{
 		return;
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Teeth] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_WOLF)
 		{
@@ -52,7 +52,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 			CreateInvItems(slf,ItAt_TrollTooth,4);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Claws] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARAN)
 		{
@@ -87,7 +87,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 			CreateInvItems(slf,ItAt_LurkerClaw,1);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Fur] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SHEEP)
 		{
@@ -122,38 +122,38 @@ func void B_GiveDeathInv(var C_Npc slf)
 			CreateInvItems(slf,ItAt_Addon_KeilerFur,1);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_ReptileSkin] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_LURKER)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,itat_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,itat_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,itat_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,itat_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARAN)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,itat_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,itat_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
 		{
 			CreateInvItems(slf,ItAt_SharkSkin,1);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Heart] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_STONEGOLEM)
 		{
@@ -176,35 +176,35 @@ func void B_GiveDeathInv(var C_Npc slf)
 			CreateInvItems(slf,ItAt_DemonHeart,1);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_ShadowHorn] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SHADOWBEAST)
 		{
 			CreateInvItems(slf,ItAt_ShadowHorn,1);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_FireTongue] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_FireTongue] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
 		{
 			CreateInvItems(slf,ItAt_WaranFiretongue,1);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_BFWing] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_BLOODFLY)
 		{
 			CreateInvItems(slf,ItAt_Wing,2);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_BFSting] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_BLOODFLY)
 		{
 			CreateInvItems(slf,ItAt_Sting,1);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_Mandibles] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_GIANT_BUG)
 		{
@@ -219,7 +219,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 			CreateInvItems(slf,ItAt_CrawlerMandibles,1);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_CrawlerPlate] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_MINECRAWLER)
 		{
@@ -230,14 +230,14 @@ func void B_GiveDeathInv(var C_Npc slf)
 			CreateInvItems(slf,ItAt_CrawlerPlate,2);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_DrgSnapperHorn] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == TRUE)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
 		{
 			CreateInvItems(slf,ItAt_DrgSnapperHorn,2);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_DragonScale] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == TRUE)
 	{
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
 		{
@@ -248,7 +248,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		};
 	};
-	if(player_talent_takeanimaltrophy[TROPHY_DragonBlood] == TRUE)
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == TRUE)
 	{
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
 		{

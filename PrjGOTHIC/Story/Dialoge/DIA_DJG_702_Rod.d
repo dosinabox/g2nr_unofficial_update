@@ -122,7 +122,7 @@ func void DIA_RodDJG_WARTEMAL_Info()
 	AI_Output(other,self,"DIA_RodDJG_WARTEMAL_15_00");	//„то с тобой?
 	if(((DJG_SwampParty == TRUE) || (Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT2_02") < 1000)) && Npc_IsDead(DJG_Cipher))
 	{
-		AI_Output(self,other,"DIA_RodDJG_WARTEMAL_06_01");	//ѕослушай, парень. я думаю, эта тварь немного нам не по зубам. я, пожалуй, попробую тихонько смытьс€.
+		AI_Output(self,other,"DIA_RodDJG_WARTEMAL_06_01");	//ѕослушай, парень. я думаю, эта тварь немного нам не по зубам. я пожалуй, попробую тихонько смытьс€.
 		DJG_SwampParty = FALSE;
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		AI_StopProcessInfos(self);

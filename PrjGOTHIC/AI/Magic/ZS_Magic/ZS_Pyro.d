@@ -16,7 +16,7 @@ func void B_StopPyro()
 	};
 };
 
-func int ZS_Pyro()
+func void ZS_Pyro()
 {
 	Npc_PercEnable(self,PERC_ASSESSSTOPMAGIC,B_StopPyro);
 	if(!Npc_HasBodyFlag(self,BS_FLAG_INTERRUPTABLE))

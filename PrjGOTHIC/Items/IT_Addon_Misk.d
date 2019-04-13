@@ -160,12 +160,12 @@ instance ItMi_IECello(C_Item)
 	visual = "Itmi_IE_Cello.3ds";
 	material = MAT_WOOD;
 	scemeName = "CELLO";
-	on_state[0] = use_cello;
+	on_state[0] = Use_Cello;
 	description = name;
 };
 
 
-func void use_cello()
+func void Use_Cello()
 {
 };
 
@@ -190,12 +190,12 @@ instance ItMi_IEDrum(C_Item)
 	visual = "Itmi_IE_Drum.3ds";
 	material = MAT_WOOD;
 	scemeName = "PAUKE";
-	on_state[0] = use_drum;
+	on_state[0] = Use_Drum;
 	description = name;
 };
 
 
-func void use_drum()
+func void Use_Drum()
 {
 };
 
@@ -209,12 +209,12 @@ instance ItMi_IEDrumScheit(C_Item)
 	visual = "Itmi_IE_Drumscheit.3ds";
 	material = MAT_WOOD;
 	scemeName = "DRUMSCHEIT";
-	on_state[0] = use_drumscheit;
+	on_state[0] = Use_Drumscheit;
 	description = name;
 };
 
 
-func void use_drumscheit()
+func void Use_Drumscheit()
 {
 };
 
@@ -239,12 +239,12 @@ instance ItMi_IEDudelBlau(C_Item)
 	visual = "Itmi_IE_DudelBlau.3ds";
 	material = MAT_WOOD;
 	scemeName = "DUDEL";
-	on_state[0] = use_dudel;
+	on_state[0] = Use_Dudel;
 	description = name;
 };
 
 
-func void use_dudel()
+func void Use_Dudel()
 {
 };
 
@@ -258,7 +258,7 @@ instance ItMi_IEDudelGelb(C_Item)
 	visual = "Itmi_IE_DudelGelb.3ds";
 	material = MAT_WOOD;
 	scemeName = "DUDEL";
-	on_state[0] = use_dudel;
+	on_state[0] = Use_Dudel;
 	description = name;
 };
 
@@ -271,12 +271,12 @@ instance ItMi_IEHarfe(C_Item)
 	visual = "Itmi_IE_Harfe.3ds";
 	material = MAT_WOOD;
 	scemeName = "HARFE";
-	on_state[0] = use_harfe;
+	on_state[0] = Use_Harfe;
 	description = name;
 };
 
 
-func void use_harfe()
+func void Use_Harfe()
 {
 };
 
@@ -290,12 +290,12 @@ instance ItMi_IELaute(C_Item)
 	visual = "Itmi_IE_Laute.3ds";
 	material = MAT_WOOD;
 	scemeName = "IELAUTE";
-	on_state[0] = use_laute;
+	on_state[0] = Use_Laute;
 	description = name;
 };
 
 
-func void use_laute()
+func void Use_Laute()
 {
 };
 
@@ -321,7 +321,7 @@ instance ItMi_Addon_Lennar_Paket(C_Item)
 
 func void Use_LennarPaket()
 {
-	B_PlayerFindItem(ItKe_Lockpick,Lennar_picklock_amount);
+	B_PlayerFindItem(ItKE_lockpick,Lennar_picklock_amount);
 	Snd_Play("Geldbeutel");
 	LennarPaket_Open = TRUE;
 };

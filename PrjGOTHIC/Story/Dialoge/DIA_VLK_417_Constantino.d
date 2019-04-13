@@ -348,7 +348,7 @@ func void DIA_Constantino_HerbsRunning_Success()
 {
 	AI_Output(other,self,"DIA_Constantino_HerbsRunning_Success_15_00");	//Я принес все растения, что ты просил!
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_Success_10_01");	//Что? Ты пытаешься обмануть меня, да?
-	AI_PrintScreen("11 Gegenstдnde gegeben (Pflanzen)",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("11 Предметов отдано (Растения)",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Npc_RemoveInvItems(other,ItPl_Mana_Herb_01,1);
 	Npc_RemoveInvItems(other,ItPl_Mana_Herb_02,1);
 	Npc_RemoveInvItems(other,ItPl_Mana_Herb_03,1);
@@ -373,7 +373,7 @@ func void DIA_Constantino_HerbsRunning_Success()
 	CreateInvItems(self,ItPl_Perm_Herb,1);
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_Success_10_02");	//Клянусь Аданосом! Они все здесь, у меня перед глазами!
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_Success_10_03");	//Кто знает, может, когда-нибудь из тебя действительно получится приличный алхимик.
-	MIS_Constantino_BringHerbs = LOG_Success;
+	MIS_Constantino_BringHerbs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Constantino_Herbs);
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
@@ -403,7 +403,7 @@ instance DIA_Constantino_LEHRLING(C_Info)
 
 func int DIA_Constantino_LEHRLING_Condition()
 {
-	if((MIS_Constantino_BringHerbs == LOG_Success) && (Player_IsApprentice == APP_NONE))
+	if((MIS_Constantino_BringHerbs == LOG_SUCCESS) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};
@@ -421,7 +421,7 @@ func void DIA_Constantino_LEHRLING_Info()
 		if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_02");	//Гараду важно только, чтобы ты был способен защищать город в случае нападения орков.
-			if((MIS_Harad_Orc == LOG_Success) || (MIS_HakonBandits == LOG_Success))
+			if((MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS))
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_03");	//И, похоже, ты смог убедить его в этом.
 				stimmen = stimmen + 1;
@@ -439,7 +439,7 @@ func void DIA_Constantino_LEHRLING_Info()
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_06");	//Боспер очень неохотно отзывался о твоих способностях.
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_07");	//Я полагаю, что он хотел бы взять тебя в ученики сам.
-			if((MIS_Bosper_Bogen == LOG_Success) || (MIS_Bosper_WolfFurs == LOG_Success))
+			if((MIS_Bosper_Bogen == LOG_SUCCESS) || (MIS_Bosper_WolfFurs == LOG_SUCCESS))
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_08");	//Но все же, в конце концов, он согласился.
 				stimmen = stimmen + 1;
@@ -457,7 +457,7 @@ func void DIA_Constantino_LEHRLING_Info()
 		if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_12");	//Торбен - очень религиозный человек.
-			if(MIS_Thorben_GetBlessings == LOG_Success)
+			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_13");	//Он дал тебе свое благословение. Это хороший знак.
 				stimmen = stimmen + 1;
@@ -473,7 +473,7 @@ func void DIA_Constantino_LEHRLING_Info()
 		};
 		if(Matteo.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
-			if(MIS_Matteo_Gold == LOG_Success)
+			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_16");	//Что касается Маттео - он расхваливает тебя на каждом углу.
 				stimmen = stimmen + 1;
@@ -529,7 +529,7 @@ func void DIA_Constantino_LEHRLING_Yes()
 	Constantino_StartGuild = other.guild;
 	Constantino_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("alchemist",GIL_NONE);
-	MIS_Apprentice = LOG_Success;
+	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
 	B_LogEntry(Topic_Bonus,"Константино принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
 	Info_ClearChoices(DIA_Constantino_LEHRLING);
@@ -570,7 +570,7 @@ func void DIA_Constantino_AlsLehrling_Info()
 	if(B_GetGreatestPetzCrime(self) > CRIME_NONE)
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_01");	//Иди к лорду Андрэ и уладь этот вопрос с ним.
+		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_01");	//Или к лорду Андрэ и уладь этот вопрос с ним.
 		Constantino_Lehrling_Day = Wld_GetDay();
 		AI_StopProcessInfos(self);
 	}
@@ -704,7 +704,7 @@ func void DIA_Constantino_MushroomsRunning_Sell()
 	Dunkelpilz_dabei = FALSE;
 	if(Npc_HasItems(other,ItPl_Mushroom_01) > 0)
 	{
-		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_00");	//Я принес несколько черных грибов.
+		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_00");	//Я принес несколько черных грибов...
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Sell_10_01");	//Ах! Это лучшие грибы! Отлично! Вот твое золото!
 		Dunkelpilz_dabei = TRUE;
 		Constantino_DunkelpilzCounter = Constantino_DunkelpilzCounter + Npc_HasItems(other,ItPl_Mushroom_01);
@@ -849,7 +849,7 @@ func int DIA_Constantino_TEACH_Condition()
 func void DIA_Constantino_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Constantino_TEACH_15_00");	//Каким рецептам ты можешь обучить меня?
-	if((player_talent_alchemy[POTION_Health_01] == TRUE) && (player_talent_alchemy[POTION_Health_02] == TRUE) && (player_talent_alchemy[POTION_Health_03] == TRUE) && (player_talent_alchemy[POTION_Perm_Health] == TRUE) && (player_talent_alchemy[POTION_Mana_01] == TRUE) && (player_talent_alchemy[POTION_Mana_02] == TRUE) && (player_talent_alchemy[POTION_Perm_STR] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == TRUE))
 	{
 		AI_Output(self,other,"DIA_Constantino_TEACH_10_01");	//Извини. Я больше ничему не могу научить тебя.
 	}
@@ -859,31 +859,31 @@ func void DIA_Constantino_TEACH_Info()
 		Info_ClearChoices(DIA_Constantino_TEACH);
 		Info_AddChoice(DIA_Constantino_TEACH,Dialog_Back,DIA_Constantino_Teach_BACK);
 	};
-	if(player_talent_alchemy[POTION_Health_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
 		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Лечебная эссенция",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Constantino_TEACH_Health01);
 	};
-	if((player_talent_alchemy[POTION_Health_01] == TRUE) && (player_talent_alchemy[POTION_Health_02] == FALSE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE))
 	{
 		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Лечебный экстракт",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Constantino_TEACH_Health02);
 	};
-	if((player_talent_alchemy[POTION_Health_02] == TRUE) && (player_talent_alchemy[POTION_Health_03] == FALSE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE))
 	{
 		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Лечебный эликсир",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Constantino_TEACH_Health03);
 	};
-	if((player_talent_alchemy[POTION_Perm_Health] == FALSE) && (player_talent_alchemy[POTION_Health_03] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE))
 	{
 		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Эликсир жизни",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Constantino_TEACH_PermHealth);
 	};
-	if(player_talent_alchemy[POTION_Mana_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
 		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Эссенция маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Constantino_TEACH_Mana01);
 	};
-	if((player_talent_alchemy[POTION_Mana_02] == FALSE) && (player_talent_alchemy[POTION_Mana_01] == TRUE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
 	{
 		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Экстракт маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Constantino_TEACH_Mana02);
 	};
-	if(player_talent_alchemy[POTION_Perm_STR] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE)
 	{
 		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Эликсир силы",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Constantino_TEACH_PermSTR);
 	};

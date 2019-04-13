@@ -164,7 +164,7 @@ func void DIA_Cornelius_DontBelieveYou_WantSurvive()
 	AI_Output(other,self,"DIA_Cornelius_DontBelieveYou_WantSurvive_15_00");	//Ты ведь очень дорожишь своей жизнью, правда?
 	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WantSurvive_13_01");	//(испуганно) Если ты нападешь на меня, тебя повесят.
 	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WantSurvive_13_02");	//У меня очень влиятельные друзья. Так что даже не думай тронуть меня хотя бы пальцем.
-	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WantSurvive_13_03");	//А теперь убирайся отсюда! Или я позову стражу!
+	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WantSurvive_13_03");	//А теперь убирайся отсюда! Иди я позову стражу!
 	AI_StopProcessInfos(self);
 };
 
@@ -206,7 +206,7 @@ instance DIA_Cornelius_PayCornelius(C_Info)
 	nr = 4;
 	condition = DIA_Cornelius_PayCornelius_Condition;
 	information = DIA_Cornelius_PayCornelius_Info;
-	permanent = TRUE;
+	permanent = FALSE;
 	description = "Вот золото.";
 };
 

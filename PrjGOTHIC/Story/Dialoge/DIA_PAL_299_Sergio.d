@@ -116,7 +116,7 @@ func void DIA_Sergio_Aufgabe_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_Aufgabe_15_00");	//Мне нужен доступ в библиотеку.
 	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_01");	//Ну, я не могу обеспечить тебе доступ. Для этого ты должен сначала выполнить свои задания.
-	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
+	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к Мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
 	Sergio_Sends = TRUE;
 	Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
 	Log_CreateTopic(Topic_IsgarothWolf,LOG_MISSION);
@@ -146,7 +146,7 @@ func int DIA_Sergio_WHAT_Condition()
 func void DIA_Sergio_WHAT_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_WHAT_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Sergio_WHAT_04_01");	//Я молюсь Инносу, чтобы он укрепил мою руку и мою волю.
+	AI_Output(self,other,"DIA_Sergio_WHAT_04_01");	//Я молюсь Инносу, чтобы  он укрепил мою руку и мою волю.
 	AI_Output(self,other,"DIA_Sergio_WHAT_04_02");	//Тогда я буду готов к любым опасностям и уничтожу всех его врагов с его именем на устах.
 	AI_Output(other,self,"DIA_Sergio_WHAT_15_03");	//Каких врагов?
 	AI_Output(self,other,"DIA_Sergio_WHAT_04_04");	//Всех тех, кто противится воле Инноса. Не важно, человек это или вызванное существо.
@@ -176,7 +176,7 @@ func void DIA_Sergio_Babo_Info()
 	AI_Output(other,self,"DIA_Sergio_Babo_15_00");	//Не мог бы ты немного потренировать Бабо?
 	AI_Output(self,other,"DIA_Sergio_Babo_04_01");	//А почему он не попросит сам?
 	AI_Output(other,self,"DIA_Sergio_Babo_15_02");	//Я думаю, он робеет.
-	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение 2 часов. Мы будем начинать в 5 утра. Можешь передать ему это.
+	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение двух часов. Мы будем начинать в 5 утра. Можешь передать ему это.
 	Npc_ExchangeRoutine(self,"TRAIN");
 	B_StartOtherRoutine(Babo,"TRAIN");
 	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренироваться с Бабо по два часа каждое утро.");
@@ -205,7 +205,7 @@ func void DIA_Sergio_WHY_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_WHY_15_00");	//Почему ты не с другими паладинами?
 	AI_Output(self,other,"DIA_Sergio_WHY_04_01");	//Может показаться немного странным, что я здесь, однако не надо забывать, что мы, паладины, также служим магам, так как они проповедуют волю Инноса.
-	AI_Output(self,other,"DIA_Sergio_WHY_04_02");	//Мы, паладины - воины Инноса. Его воля - закон для нас. В настоящий момент я жду новых приказов от магов.
+	AI_Output(self,other,"DIA_Sergio_WHY_04_02");	//Мы, паладины, - воины Инноса. Его воля - закон для нас. В настоящий момент я жду новых приказов от магов.
 };
 
 
@@ -287,8 +287,8 @@ func int DIA_Sergio_Guide_Condition()
 func void DIA_Sergio_Guide_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_Guide_15_00");	//Как дела?
-	AI_Output(self,other,"DIA_Sergio_Guide_04_01");	//Я должен сопроводить тебя к Проходу. Но самая опасная часть путешествия начинается там.
-	AI_Output(self,other,"DIA_Sergio_Guide_04_02");	//Но не будем терять времени.
+	AI_Output(self,other,"DIA_Sergio_Guide_04_01");	//Я должен сопроводить тебя к Проходу. Но самая опасная часть путешествия только начинается там.
+	AI_Output(self,other,"DIA_Sergio_Guide_04_02");	//Но не будем терять времени
 	AI_StopProcessInfos(self);
 };
 

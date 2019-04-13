@@ -104,9 +104,9 @@ func void DIA_Wolf_WannaBuy_Info()
 	AI_Output(other,self,"DIA_Wolf_WannaBuy_15_00");	//Ты можешь что-нибудь продать?
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_01");	//Ох, лучше не спрашивай.
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_02");	//Беннет, один из новых парней, теперь заведует оружием и доспехами.
-	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_03");	//В колонии я отвечал за весь арсенал Ли, и вот пришел хороший кузнец и - пфу - я остался без работы.
+	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_03");	//В колонии я отвечал за весь арсенал Ли, и вот пришел хороший кузнец и - пфф - я остался без работы.
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_04");	//Мне очень нужна новая работа, даже если это будет охрана местных ферм.
-	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_05");	//Меня это не волнует, лишь бы только не бить баклуши здесь.
+	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_05");	//Меня это не волнует, лишь бы только не быть баклуши здесь.
 };
 
 
@@ -212,7 +212,7 @@ instance DIA_Wolf_PERM(C_Info)
 
 func int DIA_Wolf_PERM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wolf_WannaBuy) && (MIS_BengarsHelpingSLD == 0) && (Wolf_IsOnBoard != LOG_Failed))
+	if(Npc_KnowsInfo(other,DIA_Wolf_WannaBuy) && (MIS_BengarsHelpingSLD == 0) && (Wolf_IsOnBoard != LOG_FAILED))
 	{
 		return TRUE;
 	};
@@ -238,7 +238,7 @@ instance DIA_Wolf_Stadt(C_Info)
 
 func int DIA_Wolf_Stadt_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wolf_WannaBuy) && (MIS_BengarsHelpingSLD == 0) && (Wolf_IsOnBoard != LOG_Failed))
+	if(Npc_KnowsInfo(other,DIA_Wolf_WannaBuy) && (MIS_BengarsHelpingSLD == 0) && (Wolf_IsOnBoard != LOG_FAILED))
 	{
 		return TRUE;
 	};
@@ -305,7 +305,7 @@ instance DIA_Wolf_TeachCrawlerPlates(C_Info)
 
 func int DIA_Wolf_TeachCrawlerPlates_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wolf_AboutCrawler) && (player_talent_takeanimaltrophy[TROPHY_CrawlerPlate] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Wolf_AboutCrawler) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE))
 	{
 		return TRUE;
 	};
@@ -348,7 +348,7 @@ func void DIA_Wolf_BringPlates_Info()
 	AI_Output(other,self,"DIA_Wolf_BringPlates_15_00");	//Я принес панцири краулеров для доспехов.
 	B_GiveInvItems(other,self,ItAt_CrawlerPlate,10);
 	AI_Output(self,other,"DIA_Wolf_BringPlates_08_01");	//Хорошо! Давай их сюда.
-	MIS_Wolf_BringCrawlerPlates = LOG_Success;
+	MIS_Wolf_BringCrawlerPlates = LOG_SUCCESS;
 };
 
 
@@ -446,7 +446,7 @@ instance DIA_Wolf_BENGAR(C_Info)
 
 func int DIA_Wolf_BENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wolf_Hallo) && (MIS_BengarsHelpingSLD == LOG_Running) && (Kapitel >= 3) && (Wolf_IsOnBoard != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Wolf_Hallo) && (MIS_BengarsHelpingSLD == LOG_Running) && (Kapitel >= 3) && (Wolf_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -469,7 +469,7 @@ func void DIA_Wolf_BENGAR_Info()
 	};
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
-		AI_Output(self,other,"DIA_Wolf_BENGAR_08_05");	//Я согласен. А так как ты один из нас, я не возьму много за эту работу. Дай мне 300 золотых, и я сразу же отправлюсь туда.
+		AI_Output(self,other,"DIA_Wolf_BENGAR_08_05");	//Я согласен. А так как ты один из нас, я не возьму много за эту работу. Дай мне 300 золотых, и я сразу же отправляюсь туда.
 		Wolf_BENGAR_geld = 300;
 	}
 	else
@@ -491,7 +491,7 @@ func void DIA_Wolf_BENGAR_geld()
 	{
 		AI_Output(self,other,"DIA_Wolf_BENGAR_geld_08_01");	//Хорошо. Я иду туда. Посмотрим, что там за звери.
 		AI_Output(self,other,"DIA_Wolf_BENGAR_geld_08_02");	//Увидимся позже.
-		MIS_BengarsHelpingSLD = LOG_Success;
+		MIS_BengarsHelpingSLD = LOG_SUCCESS;
 		B_GivePlayerXP(XP_BengarsHelpingSLD);
 		AI_StopProcessInfos(self);
 		AI_UseMob(self,"BENCH",-1);
@@ -527,7 +527,7 @@ instance DIA_Wolf_PERMKAP3(C_Info)
 
 func int DIA_Wolf_PERMKAP3_Condition()
 {
-	if((Kapitel >= 3) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_Success) && (Wolf_IsOnBoard != LOG_Success))
+	if((Kapitel >= 3) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && (Wolf_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -627,14 +627,14 @@ func int DIA_Wolf_SHIP_Condition()
 func void DIA_Wolf_SHIP_Info()
 {
 	AI_Output(other,self,"DIA_Wolf_SHIP_15_00");	//А ты не хочешь отправиться со мной в путешествие на корабле?
-	if((MIS_BengarsHelpingSLD == LOG_Success) && !Npc_IsDead(Bengar))
+	if((MIS_BengarsHelpingSLD == LOG_SUCCESS) && !Npc_IsDead(Bengar))
 	{
 		AI_Output(self,other,"DIA_Wolf_SHIP_08_01");	//Нет. Теперь не хочу. Я нашел себе работу. Может быть, в другой раз.
 		wolf_SaidNo = TRUE;
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Wolf_SHIP_08_02");	//Да, конечно. Нужно сваливать отсюда. Ты не пожалеешь об этом. Я помогу тебе защитить корабль. Куда мы направляемся?
+		AI_Output(self,other,"DIA_Wolf_SHIP_08_02");	//Да, конечно. Нужно сваливать отсюда. Ты не пожалеешь об этом. Я помогу тебе защищать корабль. Куда мы направляемся?
 		MIS_BengarsHelpingSLD = LOG_OBSOLETE;
 		Log_CreateTopic(Topic_Crew,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Crew,LOG_Running);
@@ -688,7 +688,7 @@ func void DIA_Wolf_KnowWhereEnemy_Yes()
 	AI_Output(self,other,"DIA_Wolf_KnowWhereEnemy_Yes_08_02");	//Можешь считать, что я уже там.
 	B_GivePlayerXP(XP_Crewmember_Success);
 	self.flags = NPC_FLAG_IMMORTAL;
-	Wolf_IsOnBoard = LOG_Success;
+	Wolf_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count = Crewmember_Count + 1;
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
@@ -723,7 +723,7 @@ instance DIA_Wolf_LeaveMyShip(C_Info)
 
 func int DIA_Wolf_LeaveMyShip_Condition()
 {
-	if((Wolf_IsOnBoard == LOG_Success) && (MIS_ReadyforChapter6 == FALSE))
+	if((Wolf_IsOnBoard == LOG_SUCCESS) && (MIS_ReadyforChapter6 == FALSE))
 	{
 		return TRUE;
 	};
@@ -733,7 +733,7 @@ func void DIA_Wolf_LeaveMyShip_Info()
 {
 	AI_Output(other,self,"DIA_Wolf_LeaveMyShip_15_00");	//Я решил, что ты мне не нужен.
 	AI_Output(self,other,"DIA_Wolf_LeaveMyShip_08_01");	//Сначала ты вселяешь в меня надежду, а потом даешь от ворот поворот. Ты еще пожалеешь об этом!
-	Wolf_IsOnBoard = LOG_Failed;
+	Wolf_IsOnBoard = LOG_FAILED;
 	Crewmember_Count = Crewmember_Count - 1;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
@@ -754,7 +754,7 @@ instance DIA_Wolf_SHIPOFF(C_Info)
 
 func int DIA_Wolf_SHIPOFF_Condition()
 {
-	if(Wolf_IsOnBoard == LOG_Failed)
+	if(Wolf_IsOnBoard == LOG_FAILED)
 	{
 		return TRUE;
 	};
@@ -769,18 +769,18 @@ func void DIA_Wolf_SHIPOFF_Info()
 };
 
 
-instance DIA_WOLF_KAP6_EXIT(C_Info)
+instance DIA_Wolf_KAP6_EXIT(C_Info)
 {
 	npc = SLD_811_Wolf;
 	nr = 999;
-	condition = dia_wolf_kap6_exit_condition;
-	information = dia_wolf_kap6_exit_info;
+	condition = DIA_Wolf_KAP6_EXIT_Condition;
+	information = DIA_Wolf_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_wolf_kap6_exit_condition()
+func int DIA_Wolf_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -788,7 +788,7 @@ func int dia_wolf_kap6_exit_condition()
 	};
 };
 
-func void dia_wolf_kap6_exit_info()
+func void DIA_Wolf_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

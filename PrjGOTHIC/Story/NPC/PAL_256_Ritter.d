@@ -11,7 +11,7 @@ instance PAL_256_Ritter(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_NormalBart_Cronos,BodyTex_P,itar_pal_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_NormalBart_Cronos,BodyTex_P,ItAr_PAL_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

@@ -1,7 +1,7 @@
 
 func void evt_ornament_switch_bigfarm_01_func()
 {
-	if(ornament_switched_bigfarm == FALSE)
+	if(ORNAMENT_SWITCHED_BIGFARM == FALSE)
 	{
 		Wld_InsertNpc(Stoneguardian_Ornament,"FP_EVENT_SPAWN_STONEGUARDIAN_ORNAMENT_BIGFARM_01");
 		Wld_InsertItem(ItMi_OrnamentEffekt_BIGFARM_Addon,"FP_EVENT_STONEGUARDIAN_ORNAMENT_EFFECT_BIGFARM_01");
@@ -14,25 +14,25 @@ func void evt_ornament_switch_bigfarm_01_func()
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
 		B_LogEntry(TOPIC_Addon_Ornament,"Я активировал механизм круга камней, находящегося неподалеку от фермы Секоба. Раздался грохот, а потом появился каменный страж, который попытался меня убить.");
-		ornament_switched_bigfarm = TRUE;
+		ORNAMENT_SWITCHED_BIGFARM = TRUE;
 	};
 };
 
 func void evt_ornament_switch_farm_01_func()
 {
-	if(ornament_switched_farm == FALSE)
+	if(ORNAMENT_SWITCHED_FARM == FALSE)
 	{
 		Wld_PlayEffect("FX_EarthQuake",hero,hero,0,0,0,FALSE);
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
 		B_LogEntry(TOPIC_Addon_Ornament,"Я активировал механизм круга камней, находящегося неподалеку от фермы Лобарта. Земля затряслась, но ничего не произошло.");
-		ornament_switched_farm = TRUE;
+		ORNAMENT_SWITCHED_FARM = TRUE;
 	};
 };
 
 func void evt_ornament_switch_forest_01_func()
 {
-	if(ornament_switched_forest == FALSE)
+	if(ORNAMENT_SWITCHED_FOREST == FALSE)
 	{
 		Wld_InsertNpc(Stoneguardian_Ornament,"FP_EVENT_SPAWN_STONEGUARDIAN_ORNAMENT_FOREST_01");
 		Wld_InsertItem(ItMi_OrnamentEffekt_FOREST_Addon,"FP_EVENT_STONEGUARDIAN_ORNAMENT_EFFECT_FOREST_01");
@@ -45,7 +45,7 @@ func void evt_ornament_switch_forest_01_func()
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
 		B_LogEntry(TOPIC_Addon_Ornament,"Я активировал механизм круга камней, находящегося в лесу на севере. Появился огромный каменный страж в очень дурном настроении.");
-		ornament_switched_forest = TRUE;
+		ORNAMENT_SWITCHED_FOREST = TRUE;
 	};
 };
 

@@ -114,7 +114,7 @@ func int DIA_Karras_Aufgabe_Condition()
 func void DIA_Karras_Aufgabe_Info()
 {
 	AI_Output(other,self,"DIA_Karras_Aufgabe_15_00");	//У тебя есть поручение для меня?
-	AI_Output(self,other,"DIA_Karras_Aufgabe_10_01");	//Да. Это касается безумного Игнаца. Он живет в Хоринисе и экспериментирует с различными зельями и лечебными настойками. Но также он занимается магическими заклинаниями.
+	AI_Output(self,other,"DIA_Karras_Aufgabe_10_01");	//Да. Это касается безумного Игнаца. Он живет в  Хоринисе и экспериментирует с различными зельями и лечебными настойками. Но также он занимается магическими заклинаниями.
 	AI_Output(self,other,"DIA_Karras_Aufgabe_10_02");	//И это очень беспокоит меня. Я задаю себе вопрос - а угодна ли эта магия Инносу?
 	AI_Output(self,other,"DIA_Karras_Aufgabe_10_03");	//Чтобы проверить это, мне хотелось бы заполучить некоторые из его свитков.
 	AI_Output(self,other,"DIA_Karras_Aufgabe_10_04");	//Я хочу, чтобы ты отправился в город и купил у него три свитка для меня.
@@ -154,7 +154,7 @@ func void DIA_Karras_Success_Info()
 	AI_Output(self,other,"DIA_Karras_Success_10_01");	//Отлично, мой юный друг.
 	AI_Output(self,other,"DIA_Karras_Success_10_02");	//Теперь ты можешь полностью посвятить себя обучению в библиотеке.
 	AI_Output(self,other,"DIA_Karras_Success_10_03");	//И возьми этот свиток в качестве награды.
-	MIS_KarrasVergessen = LOG_Success;
+	MIS_KarrasVergessen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KarrasCharm);
 	B_GiveInvItems(other,self,ItSc_Charm,3);
 	B_GiveInvItems(self,other,ItSc_SumWolf,1);
@@ -246,32 +246,32 @@ func void DIA_Karras_TEACH_Info()
 	abletolearn = 0;
 	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
 	Info_ClearChoices(DIA_Karras_TEACH);
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (player_talent_runes[SPL_SummonGoblinSkeleton] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonGoblinSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGoblinSkeleton)),DIA_Karras_TEACH_SUMGOBL);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (player_talent_runes[SPL_SummonWolf] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (PLAYER_TALENT_RUNES[SPL_SummonWolf] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonWolf,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonWolf)),DIA_Karras_TEACHSummonWolf);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (player_talent_runes[SPL_SummonSkeleton] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (PLAYER_TALENT_RUNES[SPL_SummonSkeleton] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonSkeleton)),DIA_Karras_TEACH_SummonSkeleton);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4) && (player_talent_runes[SPL_SummonGolem] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4) && (PLAYER_TALENT_RUNES[SPL_SummonGolem] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonGolem,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGolem)),DIA_Karras_TEACH_SummonGolem);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5) && (player_talent_runes[SPL_SummonDemon] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5) && (PLAYER_TALENT_RUNES[SPL_SummonDemon] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonDemon,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonDemon)),DIA_Karras_TEACH_SummonDemon);
 		abletolearn = abletolearn + 1;
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 6) && (player_talent_runes[SPL_ArmyOfDarkness] == FALSE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 6) && (PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_ArmyOfDarkness,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ArmyOfDarkness)),DIA_Karras_TEACH_ArmyOfDarkness);
 		abletolearn = abletolearn + 1;
@@ -343,7 +343,7 @@ func int DIA_Karras_CIRCLE4_Condition()
 
 func void DIA_Karras_CIRCLE4_Info()
 {
-	AI_Output(other,self,"DIA_Karras_CIRCLE4_15_00");	//Я хочу изучить четвертый Круг магии.
+	AI_Output(other,self,"DIA_Karras_CIRCLE4_15_00");	//Я хочу изучить четвертый Круг Магии.
 	if(MIS_ReadyforChapter4 == TRUE)
 	{
 		if(B_TeachMagicCircle(self,other,4))
@@ -542,7 +542,7 @@ instance DIA_Karras_InnosEyeRetrieved(C_Info)
 
 func int DIA_Karras_InnosEyeRetrieved_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Success))
+	if((Kapitel == 3) && (MIS_NovizenChase == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -589,7 +589,7 @@ func void DIA_Karras_KAP3_Perm_Info()
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_03");	//Они имеют очевидное демоническое происхождение. Ну, по крайней мере, они находятся или находились под влиянием демонов.
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_04");	//Будь осторожен при встрече с ними.
 		AI_Output(other,self,"DIA_Karras_KAP3_Perm_15_05");	//Надо же! Какая свежая концепция!
-		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_06");	//Я приношу свои извинения, но у меня недостаточно материала, чтобы сделать более детальное утверждение.
+		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_06");	//Я приношу свои извинения, но у меня недостаточно материала, чтобы сделать более детальные утверждения.
 		AI_Output(self,other,"DIA_Karras_KAP3_Perm_10_07");	//Но ты мог бы принести мне что-нибудь, принадлежащее им, для изучения...
 		MIS_KarrasResearchDMT = LOG_Running;
 		B_LogEntry(TOPIC_DEMENTOREN,"Чтобы продолжать свои исследования, Каррасу нужно что-нибудь, что было в прямом контакте с Ищущими.");
@@ -634,7 +634,7 @@ func void DIA_Karras_KAP3_Perm_Material()
 {
 	AI_Output(other,self,"DIA_Karras_KAP3_Perm_Material_15_00");	//Что именно тебе нужно?
 	AI_Output(self,other,"DIA_Karras_KAP3_Perm_Material_10_01");	//Откуда я знаю? Любой предмет, который принадлежит только этим созданиям.
-	Info_AddChoice(DIA_Karras_KAP3_Perm,"Ты хочешь, чтобы я принес тебе труп?",DIA_Karras_KAP3_Perm_Corpse);
+	Info_AddChoice(DIA_Karras_KAP3_Perm,"Ты хочешь, чтобы я принес тебе труп, что ли?",DIA_Karras_KAP3_Perm_Corpse);
 };
 
 func void DIA_Karras_KAP3_Perm_WillSee()
@@ -669,7 +669,7 @@ var int KarrasGotResearchDMTBook_Day;
 
 func void DIA_Karras_HaveBook_Info()
 {
-	AI_Output(other,self,"DIA_Karras_HaveBook_15_00");	//Я принес альманах Одержимых. Может быть, он чем-нибудь тебе поможет.
+	AI_Output(other,self,"DIA_Karras_HaveBook_15_00");	//Я принес Альманах Одержимых. Может быть, он чем-нибудь тебе поможет.
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_01");	//Покажи.
 	Npc_RemoveInvItems(other,ITWR_DementorObsessionBook_MIS,1);
 	AI_PrintScreen(PRINT_ItemGegeben,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
@@ -679,7 +679,7 @@ func void DIA_Karras_HaveBook_Info()
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_05");	//Эти создания имеют частично демоническую и частично человеческую природу.
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_06");	//Однако я пока не могу сказать, имеем ли мы дело с типичной спиритуальной одержимостью или с чистой физической мутацией.
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_07");	//Заходи попозже. Тогда я определенно смогу сказать больше.
-	MIS_KarrasResearchDMT = LOG_Success;
+	MIS_KarrasResearchDMT = LOG_SUCCESS;
 	B_LogEntry(TOPIC_DEMENTOREN,"Каррас смог использовать Альманах одержимых для продолжения своих исследований. Я должен вернуться к нему позже.");
 	KarrasGotResearchDMTBook_Day = Wld_GetDay();
 	B_GivePlayerXP(XP_KarrasResearchDMT);
@@ -699,7 +699,7 @@ instance DIA_Karras_ResearchDMTEnd(C_Info)
 
 func int DIA_Karras_ResearchDMTEnd_Condition()
 {
-	if((MIS_KarrasResearchDMT == LOG_Success) && (hero.guild == GIL_KDF) && (SC_KnowsMadPsi == FALSE))
+	if((MIS_KarrasResearchDMT == LOG_SUCCESS) && (hero.guild == GIL_KDF) && (SC_KnowsMadPsi == FALSE))
 	{
 		return TRUE;
 	};
@@ -714,7 +714,7 @@ func void DIA_Karras_ResearchDMTEnd_Info()
 		AI_Output(other,self,"DIA_Karras_ResearchDMTEnd_15_02");	//Выкладывай!
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_03");	//Когда-то они были людьми, как ты или я. Они сделали трагическую ошибку, посвятив себя нечистой магии очень сильного архидемона.
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_04");	//Под влиянием этого архидемона, а также очень сильных наркотиков, единственной целью их существования стало служение ему, и со временем от их былой сущности осталась лишь тень.
-		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_05");	//Сегодня же, они не более чем орудие Зла, не обладающее собственной волей, и они никогда не перестанут охотиться на последователей Инноса.
+		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_05");	//Сегодня же, они не более чем орудие зла, не обладающее собственной волей, и они никогда не перестанут охотиться на последователей Инноса.
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_06");	//Мы должны проявлять осторожность. Похоже, они боятся этих священных чертогов Инноса.
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_07");	//Однако, если их сила продолжит расти, я не смогу поручиться, что мы будем здесь в безопасности.
 		AI_Output(other,self,"DIA_Karras_ResearchDMTEnd_15_08");	//Спасибо. Это все было очень поучительно.
@@ -803,7 +803,7 @@ func void DIA_Karras_KarrasBlessedStone_Info()
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_02");	//Хорошо. Я сделаю для тебя амулет, защищающий от черного взгляда Ищущих.
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_03");	//Дай мне немного времени. Над этим нужно поработать.
 	KarrasMakesBlessedStone_Day = Wld_GetDay();
-	MIS_Karras_FindBlessedStone = LOG_Success;
+	MIS_Karras_FindBlessedStone = LOG_SUCCESS;
 	B_LogEntry(TOPIC_DEMENTOREN,"Каррас даст мне амулет, который будет защищать меня от ментальных атак Ищущих. Это должно сильно облегчить мне жизнь.");
 	B_GivePlayerXP(XP_Karras_FoundBlessedStone);
 	AI_StopProcessInfos(self);
@@ -825,7 +825,7 @@ var int DIA_Karras_ItAm_Prot_BlackEye_Mis_NoPerm;
 
 func int DIA_Karras_ItAm_Prot_BlackEye_Mis_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Karras_FindBlessedStone == LOG_Success) && (DIA_Karras_ItAm_Prot_BlackEye_Mis_NoPerm == FALSE))
+	if((hero.guild == GIL_KDF) && (MIS_Karras_FindBlessedStone == LOG_SUCCESS) && (DIA_Karras_ItAm_Prot_BlackEye_Mis_NoPerm == FALSE))
 	{
 		return TRUE;
 	};

@@ -41,7 +41,7 @@ func int DIA_Engor_HALLO_Condition()
 
 func void DIA_Engor_HALLO_Info()
 {
-	AI_Output(self,other,"DIA_Engor_HALLO_13_00");	//Ах, ты тот парень, которому удалось пройти через Проход?
+	AI_Output(self,other,"DIA_Engor_HALLO_13_00");	//А, ты тот парень, которому удалось пройти через Проход?
 	AI_Output(other,self,"DIA_Engor_HALLO_15_01");	//Да.
 	AI_Output(self,other,"DIA_Engor_HALLO_13_02");	//Отлично. Я Энгор - я обеспечиваю эту экспедицию.
 	AI_Output(self,other,"DIA_Engor_HALLO_13_03");	//Только не думай, что можешь получить от меня что-нибудь бесплатно!
@@ -146,7 +146,7 @@ instance DIA_Engor_RSkaufen(C_Info)
 	condition = DIA_Engor_RSkaufen_Condition;
 	information = DIA_Engor_RSkaufen_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи ополчения (Защита: Оружие 60, Стрелы 60. Цена: 2500 золота)";
+	description = "Купить тяжелые доспехи ополчения. Защита: оружие 70, стрелы 70, огонь 10, магия 10. (2500 золота)";
 };
 
 
@@ -166,7 +166,7 @@ func void DIA_Engor_RSkaufen_Info()
 	{
 		AI_Output(other,self,"DIA_Engor_RSkaufen_15_00");	//Дай мне доспехи.
 		AI_Output(self,other,"DIA_Engor_RSkaufen_13_01");	//Вот, держи, они надежно защитят тебя - это чертовски хорошие доспехи.
-		B_GiveInvItems(self,other,itar_mil_m,1);
+		B_GiveInvItems(self,other,ItAr_MIL_M,1);
 		DIA_Engor_RSkaufen_perm = TRUE;
 	}
 	else
@@ -329,7 +329,7 @@ func void DIA_Engor_BRINGMEAT_Info()
 	{
 		AI_Output(self,other,"DIA_Engor_BRINGMEAT_13_02");	//Отлично, ты принес достаточно мяса. Этого хватит на некоторое время.
 		AI_Output(self,other,"DIA_Engor_BRINGMEAT_13_03");	//Но даже не надейся, что я теперь буду давать тебе что-нибудь бесплатно!
-		MIS_Engor_BringMeat = LOG_Success;
+		MIS_Engor_BringMeat = LOG_SUCCESS;
 		B_GivePlayerXP(XP_BringMeat);
 		Log_AddEntry(TOPIC_BringMeat,"Энгор получил свое мясо. Он разделит его между защитниками замка.");
 	};
@@ -349,7 +349,7 @@ instance DIA_Engor_Business(C_Info)
 
 func int DIA_Engor_Business_Condition()
 {
-	if((Kapitel >= 4) && (MIS_Engor_BringMeat == LOG_Success))
+	if((Kapitel >= 4) && (MIS_Engor_BringMeat == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -402,11 +402,12 @@ func void DIA_Engor_PICKPOCKET_DoIt()
 	{
 		B_GiveInvItems(self,other,ItWr_Map_OldWorld,1);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GivePlayerXP(XP_Ambient);
+		B_GiveThiefXP();
 		Info_ClearChoices(DIA_Engor_PICKPOCKET);
 	}
 	else
 	{
+		B_ResetThiefLevel();
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};

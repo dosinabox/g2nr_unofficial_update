@@ -10,7 +10,7 @@ instance DJG_705_Angar_DI(Npc_Default)
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	EquipItem(self,ItMw_Zweihaender2);
 	CreateInvItems(self,ItPo_Health_02,6);
 	CreateInvItems(self,ItMi_OldCoin,1);
 	B_CreateAmbientInv(self);

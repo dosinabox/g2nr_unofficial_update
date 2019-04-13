@@ -17,7 +17,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	var C_Npc Trd_Matteo;
 	var C_Npc Trd_Halvor;
 	var C_Npc Trd_Bosper;
-	var C_Npc trd_harad;
+	var C_Npc Trd_Harad;
 	var C_Npc Trd_Brian;
 	var C_Npc Trd_Brahim;
 	var C_Npc Trd_Constantino;
@@ -53,7 +53,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	var C_Npc Trd_Lutero;
 	Trd_Cronos_NW = Hlp_GetNpc(KDW_1401_Addon_Cronos_NW);
 	Trd_Cronos_ADW = Hlp_GetNpc(KDW_14010_Addon_Cronos_ADW);
-	Trd_Martin = Hlp_GetNpc(MIL_350_Addon_Martin);
+	Trd_Martin = Hlp_GetNpc(Mil_350_Addon_Martin);
 	Trd_Garett = Hlp_GetNpc(PIR_1357_Addon_Garett);
 	Trd_Fisk = Hlp_GetNpc(BDT_1097_Addon_Fisk);
 	Trd_Huno = Hlp_GetNpc(BDT_1099_Addon_Huno);
@@ -67,7 +67,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	Trd_Matteo = Hlp_GetNpc(VLK_416_Matteo);
 	Trd_Halvor = Hlp_GetNpc(VLK_469_Halvor);
 	Trd_Bosper = Hlp_GetNpc(VLK_413_Bosper);
-	trd_harad = Hlp_GetNpc(VLK_412_Harad);
+	Trd_Harad = Hlp_GetNpc(VLK_412_Harad);
 	Trd_Brian = Hlp_GetNpc(VLK_457_Brian);
 	Trd_Brahim = Hlp_GetNpc(VLK_437_Brahim);
 	Trd_Constantino = Hlp_GetNpc(VLK_417_Constantino);
@@ -184,7 +184,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Bosper(slf);
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(trd_harad))
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Harad))
 		{
 			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Harad(slf);
@@ -422,7 +422,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 		{
 			B_ClearDeadTrader(slf);
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(trd_harad))
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Harad))
 		{
 			B_ClearDeadTrader(slf);
 		};

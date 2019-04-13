@@ -41,11 +41,11 @@ func int DIA_SLD_7_JOIN_Condition()
 func void DIA_SLD_7_JOIN_Info()
 {
 	AI_Output(other,self,"DIA_SLD_7_JOIN_15_00");	//Я хочу присоединиться к вам!
-	if(MIS_Torlof_BengarMilizKlatschen == LOG_Success)
+	if(MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_SLD_7_JOIN_07_01");	//Я слышал, ты вступил в ополчение. Такие люди, как ты, нужны нам!
 	}
-	else if(MIS_Torlof_HolPachtVonSekob == LOG_Success)
+	else if(MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_SLD_7_JOIN_07_02");	//Я не считаю сбор ренты с фермеров таким уж сложным занятием, но если Онар готов платить за это, я не против.
 	}
@@ -131,7 +131,7 @@ func void DIA_SLD_7_STANDARD_Info()
 		{
 			if(other.guild == GIL_SLD)
 			{
-				AI_Output(self,other,"DIA_SLD_7_STANDARD_07_01");	//С тех пор, как ты присоединился к нам, на ферме все спокойно - ополчение здесь больше не появляется.
+				AI_Output(self,other,"DIA_SLD_7_STANDARD_07_01");	//С тех пор как ты присоединился к нам, на ферме все спокойно - ополчение здесь больше не появляется.
 			}
 			else
 			{
@@ -141,7 +141,7 @@ func void DIA_SLD_7_STANDARD_Info()
 		else if(other.guild == GIL_SLD)
 		{
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_03");	//Драконы в Долине Рудников! Не хотел бы я сейчас оказаться на месте паладинов.
-			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_04");	//Я думаю, король даст лорду Хагену хорошего пинка под зад, когда тот вернется с пустыми руками из-за драконов.
+			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_04");	//Я думаю, король даст лорду Хагену хорошего пинка под зад,  когда тот вернется с пустыми руками из-за драконов.
 		}
 		else
 		{
@@ -150,7 +150,7 @@ func void DIA_SLD_7_STANDARD_Info()
 	};
 	if(Kapitel == 3)
 	{
-		if(MIS_RescueBennet == LOG_Success)
+		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
 			if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 			{

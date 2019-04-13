@@ -22,37 +22,37 @@ func int B_TeachPlayerTalentWispDetector(var C_Npc slf,var C_Npc oth,var int Wis
 	B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned);
 	if(WispSkill == WISPSKILL_FF)
 	{
-		player_talent_wispdetector[WISPSKILL_FF] = TRUE;
+		PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FF] = TRUE;
 		B_WISPDETECTOR_LearnEffect(slf);
 		B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_FF);
 	};
 	if(WispSkill == WISPSKILL_NONE)
 	{
-		player_talent_wispdetector[WISPSKILL_NONE] = TRUE;
+		PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NONE] = TRUE;
 		B_WISPDETECTOR_LearnEffect(slf);
 		B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_NONE);
 	};
 	if(WispSkill == WISPSKILL_RUNE)
 	{
-		player_talent_wispdetector[WISPSKILL_RUNE] = TRUE;
+		PLAYER_TALENT_WISPDETECTOR[WISPSKILL_RUNE] = TRUE;
 		B_WISPDETECTOR_LearnEffect(slf);
 		B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_RUNE);
 	};
 	if(WispSkill == WISPSKILL_MAGIC)
 	{
-		player_talent_wispdetector[WISPSKILL_MAGIC] = TRUE;
+		PLAYER_TALENT_WISPDETECTOR[WISPSKILL_MAGIC] = TRUE;
 		B_WISPDETECTOR_LearnEffect(slf);
 		B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_MAGIC);
 	};
 	if(WispSkill == WISPSKILL_FOOD)
 	{
-		player_talent_wispdetector[WISPSKILL_FOOD] = TRUE;
+		PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FOOD] = TRUE;
 		B_WISPDETECTOR_LearnEffect(slf);
 		B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_FOOD);
 	};
 	if(WispSkill == WISPSKILL_POTIONS)
 	{
-		player_talent_wispdetector[WISPSKILL_POTIONS] = TRUE;
+		PLAYER_TALENT_WISPDETECTOR[WISPSKILL_POTIONS] = TRUE;
 		B_WISPDETECTOR_LearnEffect(slf);
 		B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_POTIONS);
 	};

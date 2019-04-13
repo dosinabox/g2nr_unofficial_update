@@ -230,7 +230,7 @@ func void DIA_Addon_Pedro_Statuette_Abgeben_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Pedro_Statuette_Abgeben_15_00");	//Я могу отдать статуэтку тебе?
 	AI_Output(self,other,"DIA_Addon_Pedro_Statuette_Abgeben_09_01");	//Конечно. Я позабочусь о ней. Благодарю тебя за щедрость.
-	MIS_Addon_Daron_GetStatue = LOG_Success;
+	MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
 };
 
@@ -257,10 +257,10 @@ func int DIA_Pedro_Rules_Condition()
 func void DIA_Pedro_Rules_Info()
 {
 	AI_Output(other,self,"DIA_Pedro_Rules_15_00");	//Что это за правила, по которым вы живете?
-	AI_Output(self,other,"DIA_Pedro_Rules_09_01");	//Иннос - бог правды и закона. Поэтому мы НИКОГДА не лжем и не совершаем преступления.
+	AI_Output(self,other,"DIA_Pedro_Rules_09_01");	//Иннос - бог правды и закона. Поэтому мы НИКОГДА не лжем и не совершаем преступлений.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_02");	//Если ты согрешишь против брата из нашей общины или украдешь нашу собственность, тебе придется заплатить за это штраф.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_03");	//Иннос также бог правления и огня.
-	AI_Output(self,other,"DIA_Pedro_Rules_09_04");	//Будучи послушником, ты должен проявлять ПОСЛУШАНИЕ и УВАЖЕНИЕ ко всем магам Огня.
+	AI_Output(self,other,"DIA_Pedro_Rules_09_04");	//Будучи послушником, ты должен проявлять ПОСЛУШАНИЕ и УВАЖЕНИЕ  ко всем Магам Огня.
 	AI_Output(other,self,"DIA_Pedro_Rules_15_05");	//Понятно.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_06");	//Кроме того, послушник ОБЯЗАН выполнять работу в монастыре на благо общины.
 	if(hero.guild == GIL_NONE)
@@ -334,8 +334,8 @@ func void DIA_Pedro_AUFNAHME_YES()
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_GiveInvItems(self,hero,ItKe_Innos_MIS,1);
-	CreateInvItems(other,itar_nov_l,1);
-	AI_EquipArmor(other,itar_nov_l);
+	CreateInvItems(other,ItAr_NOV_L,1);
+	AI_EquipArmor(other,ItAr_NOV_L);
 	other.guild = GIL_NOV;
 	Npc_SetTrueGuild(other,GIL_NOV);
 	DIA_Pedro_AUFNAHME_NOPERM = TRUE;

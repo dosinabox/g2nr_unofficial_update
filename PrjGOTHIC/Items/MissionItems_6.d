@@ -127,7 +127,7 @@ instance ItKe_EVT_UNDEAD_01(C_Item)
 	name = "Ключ Архола";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = VALUE_KEY_03;
+	value = Value_Key_03;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -139,7 +139,7 @@ instance ItKe_EVT_UNDEAD_02(C_Item)
 	name = "Ключ ключника";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = VALUE_KEY_03;
+	value = Value_Key_03;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -152,7 +152,7 @@ instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
 	name = "Ключ от комнаты черного мага";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = VALUE_KEY_03;
+	value = Value_Key_03;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -203,7 +203,7 @@ instance ItKe_ChestMasterDementor_MIS(C_Item)
 	name = "Ключ от сундука черного мага";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = VALUE_KEY_03;
+	value = Value_Key_03;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -244,7 +244,7 @@ func void Use_RezeptFuerMegaTrank()
 	Doc_PrintLines(nDocID,0,"Эту смесь нужно довести до кипения, постоянно помешивая, и пропустить через дистиллятор.");
 	Doc_PrintLines(nDocID,0,"Получившийся эликсир нужно использовать с осторожностью. Он обладает сильными побочными эффектами и может отрицательно повлиять на ману.");
 	Doc_Show(nDocID);
-	player_talent_alchemy[POTION_MegaDrink] = TRUE;
+	PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
 };
 
 

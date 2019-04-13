@@ -63,7 +63,7 @@ func int ZS_Guide_Player_Loop()
 	return LOOP_CONTINUE;
 };
 
-func int ZS_Guide_Player_End()
+func void ZS_Guide_Player_End()
 {
 };
 

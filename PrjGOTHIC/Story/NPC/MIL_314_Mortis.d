@@ -1,5 +1,5 @@
 
-instance MIL_314_Mortis(Npc_Default)
+instance Mil_314_Mortis(Npc_Default)
 {
 	name[0] = "Мортис";
 	guild = GIL_MIL;

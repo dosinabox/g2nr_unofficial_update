@@ -1,7 +1,7 @@
 
 instance DIA_Fester_EXIT(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 999;
 	condition = DIA_Fester_EXIT_Condition;
 	information = DIA_Fester_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Fester_EXIT_Info()
 
 instance DIA_Fester_Hello(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 1;
 	condition = DIA_Fester_Hello_Condition;
 	information = DIA_Fester_Hello_Info;
@@ -46,7 +46,7 @@ func void DIA_Fester_Hello_Info()
 
 instance DIA_Fester_Auftrag(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 2;
 	condition = DIA_Fester_Auftrag_Condition;
 	information = DIA_Fester_Auftrag_Info;
@@ -66,7 +66,7 @@ func int DIA_Fester_Auftrag_Condition()
 func void DIA_Fester_Auftrag_Info()
 {
 	AI_Output(other,self,"DIA_Fester_Auftrag_15_00");	//Зачем?
-	AI_Output(self,other,"DIA_Fester_Auftrag_08_01");	//Последнее время у фермеров все больше проблем с полевыми хищниками.
+	AI_Output(self,other,"DIA_Fester_Auftrag_08_01");	//Последнее время у фермеров все больше с полевыми хищниками.
 	AI_Output(self,other,"DIA_Fester_Auftrag_08_02");	//Нескольких крестьян эти твари даже съели.
 	AI_Output(self,other,"DIA_Fester_Auftrag_08_03");	//А этот жирный Онар не видит здесь никакой проблемы. Нам не платят жалование уже неделю.
 	AI_Output(self,other,"DIA_Fester_Auftrag_08_04");	//И в этом есть моя вина. Теперь Ли хочет, чтобы я лично уничтожил гнездо этих тварей.
@@ -76,7 +76,7 @@ func void DIA_Fester_Auftrag_Info()
 
 instance DIA_Fester_YouFight(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 3;
 	condition = DIA_Fester_YouFight_Condition;
 	information = DIA_Fester_YouFight_Info;
@@ -102,7 +102,7 @@ func void DIA_Fester_YouFight_Info()
 
 instance DIA_Fester_WoNest(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 4;
 	condition = DIA_Fester_WoNest_Condition;
 	information = DIA_Fester_WoNest_Info;
@@ -132,7 +132,7 @@ const int FC_Join = 1;
 
 instance DIA_Fester_Together(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 5;
 	condition = DIA_Fester_Together_Condition;
 	information = DIA_Fester_Together_Info;
@@ -151,7 +151,7 @@ func int DIA_Fester_Together_Condition()
 
 func void DIA_Fester_Together_Info()
 {
-	AI_Output(other,self,"DIA_Fester_Together_15_00");	//Мы могли бы атаковать это гнездо вместе...
+	AI_Output(other,self,"DIA_Fester_Together_15_00");	//Мы могли бы  атаковать это гнездо вместе...
 	AI_Output(self,other,"DIA_Fester_Together_08_01");	//Ты хочешь помочь мне? Почему?
 	Info_ClearChoices(DIA_Fester_Together);
 	Info_AddChoice(DIA_Fester_Together,"Я хочу получить за это золото!",DIA_Fester_Together_Gold);
@@ -173,7 +173,7 @@ func void DIA_Fester_Together_Join()
 func void DIA_Fester_Together_Gold()
 {
 	AI_Output(other,self,"DIA_Fester_Together_Gold_15_00");	//Я хочу получить за это золото!
-	AI_Output(self,other,"DIA_Fester_Together_Gold_08_01");	//(смеется) Ах ты шельмец! Ты хочешь воспользоваться моим положением, а?
+	AI_Output(self,other,"DIA_Fester_Together_Gold_08_01");	//(смеется) Ах ты шельмец! Ты хочешь воспользоваться моим положением, ха?
 	AI_Output(self,other,"DIA_Fester_Together_Gold_08_02");	//То есть, либо я заплачу тебе, либо отправлюсь к праотцам?
 	AI_Output(self,other,"DIA_Fester_Together_Gold_08_03");	//Хорошо. Я могу заплатить тебе 50 золотых - это все, что у меня есть.
 	Fester_Choice = FC_Gold;
@@ -185,7 +185,7 @@ var int Fester_Losgeh_Day;
 
 instance DIA_Fester_TogetherNOW(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 6;
 	condition = DIA_Fester_TogetherNOW_Condition;
 	information = DIA_Fester_TogetherNOW_Info;
@@ -212,7 +212,7 @@ func void DIA_Fester_TogetherNOW_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Fester_TogetherNOW_08_02");	//Прямо сейчас? А может, тебе сначала раздобыть снаряжение получше?
-		AI_Output(self,other,"DIA_Fester_TogetherNOW_08_03");	//Ты бы мог сходить сначала на ферму...
+		AI_Output(self,other,"DIA_Fester_TogetherNOW_08_03");	//Ты мог бы сходить сначала на ферму...
 		Info_ClearChoices(DIA_Fester_TogetherNOW);
 		Info_AddChoice(DIA_Fester_TogetherNOW,"Хорошо, давай подождем еще немного...",DIA_Fester_TogetherNOW_Later);
 		Info_AddChoice(DIA_Fester_TogetherNOW,"Лучшей возможности, чем сейчас, не будет.",DIA_Fester_TogetherNOW_NOW);
@@ -243,7 +243,7 @@ func void DIA_Fester_TogetherNOW_Later()
 
 instance DIA_Fester_InCave(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 7;
 	condition = DIA_Fester_InCave_Condition;
 	information = DIA_Fester_InCave_Info;
@@ -280,7 +280,7 @@ func void DIA_Fester_InCave_Info()
 
 instance DIA_Fester_WasMitAbmachung(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 8;
 	condition = DIA_Fester_WasMitAbmachung_Condition;
 	information = DIA_Fester_WasMitAbmachung_Info;
@@ -332,7 +332,7 @@ var int Fester_FightSylvio;
 
 instance DIA_Fester_PERMPruegel(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 9;
 	condition = DIA_Fester_PERMPruegel_Condition;
 	information = DIA_Fester_PERMPruegel_Info;
@@ -387,7 +387,7 @@ func void DIA_Fester_PERMPruegel_Info()
 
 instance DIA_Fester_PICKPOCKET(C_Info)
 {
-	npc = SLD_816_Fester;
+	npc = Sld_816_Fester;
 	nr = 900;
 	condition = DIA_Fester_PICKPOCKET_Condition;
 	information = DIA_Fester_PICKPOCKET_Info;

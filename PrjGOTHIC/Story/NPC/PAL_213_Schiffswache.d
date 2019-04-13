@@ -11,7 +11,7 @@ instance PAL_213_Schiffswache(Npc_Default)
 	fight_tactic = FAI_NAILED;
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Cavalorn,BodyTex_B,itar_pal_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Cavalorn,BodyTex_B,ItAr_PAL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

@@ -52,7 +52,7 @@ var int BookstandMayaArt;
 
 func int C_CanReadBookStand()
 {
-	if((player_talent_foreignlanguage[LANGUAGE_1] == TRUE) || (player_talent_foreignlanguage[LANGUAGE_2] == TRUE) || (player_talent_foreignlanguage[LANGUAGE_3] == TRUE))
+	if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == TRUE))
 	{
 		return TRUE;
 	};

@@ -37,7 +37,7 @@ instance DIA_Addon_Saturas_Nefarius(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Saturas_Nefarius_Condition;
 	information = DIA_Addon_Saturas_Nefarius_Info;
-	description = "Я взялся помочь Нефариусу и найти потерянные части орнамента. ";
+	description = "Я взялся помочь Нефариусу и найти потерянные части орнамента.";
 };
 
 
@@ -54,15 +54,15 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 	AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_00");	//Я взялся помочь Нефариусу и найти потерянные части орнамента.
 	AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_01");	//Что? Быть того не может! Ты опять вмешиваешься?
 	AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_02");	//Не надо беспокоиться. Все доставлю как есть.
-	if((ornament_switched_forest == FALSE) && Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon))
+	if((ORNAMENT_SWITCHED_FOREST == FALSE) && Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon))
 	{
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_03");	//(вздыхает) Ты хоть знаешь, что ты ищешь?
 		AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_04");	//Ну, Нефариус дал мне эту карту...
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_05");	//Покажи ее мне!
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_06");	//Хм. В большом лесу чрезвычайно опасно. Не следует направляться туда одному.
-		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_07");	//Найди кого-нибудь в Хоринисе, кто мог бы пойти с тобой.
-		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_08");	//Не то, чтобы я о тебе волнуюсь, но монстры могут съесть орнамент вместе с тобой.
+		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_07");	//Найди кого-нибудь в Хоринисе, кто бы мог пойти с тобой.
+		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_08");	//Не то чтобы я о тебе волнуюсь, но монстры могут съесть орнамент вместе с тобой.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_09");	//Вот твоя карта...
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
@@ -96,7 +96,7 @@ func void DIA_Addon_Saturas_Hallo_weiЯtdu()
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_00");	//Ты хоть имеешь представление о том, что ты наделал?
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_01");	//Ты настолько сильно пошатнул базовую структуру магического естества, что в Хоринисе все чуть не оглохли.
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_02");	//Скажи спасибо, что Барьера больше нет.
-	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_weiЯtdu_15_03");	//Что же ты жалуешься, старче? Все ведь сработано как надо.
+	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_weiЯtdu_15_03");	//Что же ты жалуешься, старче? Все ведь сработало как надо.
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_04");	//(высокомерно) Следите за языком, юноша!
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_05");	//(раздраженно) Что, во имя всех стихий, тебе здесь нужно?
 	Info_ClearChoices(DIA_Addon_Saturas_Hallo);
@@ -118,14 +118,14 @@ func void DIA_Addon_Saturas_Hallo_Video()
 	AI_Output(self,other,"DIA_Addon_Saturas_Video_14_00");	//(раздраженно) Ты каким-то образом высосал всю магическую энергию из нашей горы руды, а потом просто исчез!
 	AI_Output(self,other,"DIA_Addon_Saturas_Video_14_01");	//(раздраженно) И зачем только тебе это понадобилось!
 	Info_ClearChoices(DIA_Addon_Saturas_Hallo);
-	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Мне очень жаль. Я не понимал, что делаю.",DIA_Addon_Saturas_Hallo_sorry);
-	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Ваш план все равно не сработал бы.",DIA_Addon_Saturas_Hallo_Spott);
-	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Это было необходимо.",DIA_Addon_Saturas_Hallo_notwendig);
+	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Мне правда очень жаль. Я не ведал, что творил.",DIA_Addon_Saturas_Hallo_sorry);
+	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Ваш план не сработал бы, как ни крути. Хе-хе, взорвать гору руды, чтобы убрать Барьер... Смех, да и только.",DIA_Addon_Saturas_Hallo_Spott);
+	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Такова жизнь. Без мощи накопленной вами руды, я бы не смог одолеть Спящего.",DIA_Addon_Saturas_Hallo_notwendig);
 };
 
 func void DIA_Addon_Saturas_Hallo_notwendig()
 {
-	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_notwendig_15_00");	//Такова жизнь. Без мощи накопленной вами руды я бы не смог одолеть Спящего.
+	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_notwendig_15_00");	//Такова жизнь. Без мощи накопленной вами руды, я бы не смог одолеть Спящего.
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_notwendig_14_01");	//(злится) Что за бред ты несешь?! Спящий? Одолеть Спящего?!
 	DIA_Addon_Saturas_Hallo_weiЯtdu();
 };
@@ -153,7 +153,7 @@ instance DIA_Addon_Saturas_keineAhnung(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Saturas_keineAhnung_Condition;
 	information = DIA_Addon_Saturas_keineAhnung_Info;
-	description = "Совершенно не представляю.";
+	description = "Понятия не имею. Просто заглянул. Нельзя?";
 };
 
 
@@ -262,7 +262,7 @@ func void DIA_Addon_Saturas_Ornament_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_Ornament_15_04");	//Почему ты все еще так кипятишься из-за той руды?
 	AI_Output(other,self,"DIA_Addon_Saturas_Ornament_15_05");	//Ведь я тогда уже работал на вас. На меня можно было положиться.
 	AI_Output(self,other,"DIA_Addon_Saturas_Ornament_14_06");	//(вздыхает) И к чему это нас привело, ответь? Хм-м, даже не думай, что я тебе доверяю...
-	MIS_Addon_Lares_Ornament2Saturas = LOG_Success;
+	MIS_Addon_Lares_Ornament2Saturas = LOG_SUCCESS;
 	Wld_InsertNpc(Bloodfly,"FP_ROAM_NW_TROLLAREA_RUINS_07");
 	Wld_InsertNpc(Giant_Bug,"FP_ROAM_NW_TROLLAREA_RUINS_03");
 	Wld_InsertNpc(Lurker,"NW_TROLLAREA_RIVERSIDE_01");
@@ -296,7 +296,7 @@ instance DIA_Addon_Saturas_geheimbund(C_Info)
 
 func int DIA_Addon_Saturas_geheimbund_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Success) && (SC_KnowsRanger == TRUE) && (SC_IsRanger == FALSE))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SC_KnowsRanger == TRUE) && (SC_IsRanger == FALSE))
 	{
 		return TRUE;
 	};
@@ -312,7 +312,7 @@ func void DIA_Addon_Saturas_geheimbund_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Saturas_geheimbund_14_03");	//(совершенно разбито) Не знаю, что мне следовало бы сказать. Просто я доверяю тебе, пока ты у меня на глазах.
 	AI_Output(other,self,"DIA_Addon_Saturas_geheimbund_15_04");	//О Кольце мне сказал Ватрас.
-	AI_Output(self,other,"DIA_Addon_Saturas_geheimbund_14_05");	//(смиренно) Что? Ватрас? (саркастически) Отлично! Из всех магов Воды, которые есть на острове, ты встречаешься именно с тем, который тебя НЕ ЗНАЕТ.
+	AI_Output(self,other,"DIA_Addon_Saturas_geheimbund_14_05");	//(смиренно) Что? Ватрас? (саркастически) Отлично! Из всех магов воды, которые есть на острове, ты встречаешься именно с тем, который тебя НЕ ЗНАЕТ.
 	AI_Output(self,other,"DIA_Addon_Saturas_geheimbund_14_06");	//Предупреждаю, в этот раз не делай глупостей.
 	AI_Output(other,self,"DIA_Addon_Saturas_geheimbund_15_07");	//(сухо) Постараюсь...
 	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
@@ -333,7 +333,7 @@ instance DIA_Addon_Saturas_wasmachstdu(C_Info)
 
 func int DIA_Addon_Saturas_wasmachstdu_Condition()
 {
-	if(MIS_Addon_Lares_Ornament2Saturas == LOG_Success)
+	if(MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -361,7 +361,7 @@ instance DIA_Addon_Saturas_Erdbeben(C_Info)
 
 func int DIA_Addon_Saturas_Erdbeben_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Success) && Npc_KnowsInfo(other,DIA_Addon_Saturas_wasmachstdu) && Npc_KnowsInfo(other,DIA_Addon_Merdarion_Bedrohung))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Addon_Saturas_wasmachstdu) && Npc_KnowsInfo(other,DIA_Addon_Merdarion_Bedrohung))
 	{
 		return TRUE;
 	};
@@ -389,7 +389,7 @@ instance DIA_Addon_Saturas_WhatsOrnament(C_Info)
 
 func int DIA_Addon_Saturas_WhatsOrnament_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_Success) && (SC_KnowsOrnament == FALSE) && (RitualRingRuns == 0))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SC_KnowsOrnament == FALSE) && (RitualRingRuns == 0))
 	{
 		return TRUE;
 	};
@@ -410,7 +410,7 @@ instance DIA_Addon_Saturas_ScRanger(C_Info)
 	condition = DIA_Addon_Saturas_ScRanger_Condition;
 	information = DIA_Addon_Saturas_ScRanger_Info;
 	permanent = TRUE;
-	description = "Я стал членом общества Кольца Воды.";
+	description = "Теперь я принадлежу к Кольцу Воды.";
 };
 
 
@@ -472,7 +472,7 @@ var int DIA_Addon_Saturas_OpenPortal_NoPerm;
 
 func int DIA_Addon_Saturas_OpenPortal_Condition()
 {
-	if((RitualRingRuns == LOG_Success) && (DIA_Addon_Saturas_OpenPortal_NoPerm == FALSE))
+	if((RitualRingRuns == LOG_SUCCESS) && (DIA_Addon_Saturas_OpenPortal_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -485,7 +485,7 @@ func void DIA_Addon_Saturas_OpenPortal_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_01");	//(лукаво) Хорошо! Как один из наших новых детей, ты должен быть удостоен этой чести.
 		AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_02");	//Однако я по-прежнему жду вестей от Ватраса. Мы никуда не пойдем, пока не дождемся их.
-		if((RangerMeetingRunning == LOG_Success) && (Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven) || Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened)))
+		if((RangerMeetingRunning == LOG_SUCCESS) && (Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven) || Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened)))
 		{
 			AI_Output(other,self,"DIA_Addon_Saturas_OpenPortal_15_03");	//У МЕНЯ есть для тебя послание от Ватраса.
 			B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven,Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven));
@@ -538,7 +538,7 @@ instance DIA_Addon_Saturas_PERM(C_Info)
 	condition = DIA_Addon_Saturas_PERM_Condition;
 	information = DIA_Addon_Saturas_PERM_Info;
 	permanent = TRUE;
-	description = "Ты можешь научить меня чему-нибудь из области магии?";
+	description = "Ты можешь немного поучить меня магии?";
 };
 
 

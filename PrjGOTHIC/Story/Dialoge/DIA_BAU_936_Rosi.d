@@ -46,7 +46,7 @@ func void DIA_Rosi_HALLO_Info()
 	if(hero.guild != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Rosi_HALLO_17_02");	//Обычно приходят либо головорезы с гор, либо эти ужасные солдаты ополчения из города.
-		AI_Output(self,other,"DIA_Rosi_HALLO_17_03");	//Последнее время они наведываются на нашу ферму очень часто. Но ты не похож ни на одного из них.
+		AI_Output(self,other,"DIA_Rosi_HALLO_17_03");	//Последнее время они наведываются на нашу ферму очень часто. Но ты не похож на одного из них.
 	};
 };
 
@@ -77,7 +77,7 @@ func void DIA_Rosi_WASMACHSTDU_Info()
 		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_01");	//Я задаю себе этот вопрос уже несколько лет. Секоб, мой муж, умудрился перессориться со всеми соседями.
 		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_02");	//Он задолжал всем в округе. И еще он ворует продукты из запасов Онара и продает их в городе.
 		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_03");	//Он сколотил целое состояние своими темными делишками.
-		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_04");	//Он заставил наших работников трудиться до полного изнеможения. За это его за глаза называют душегубом.
+		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_04");	//Он заставляет наших работников трудиться до полного изнеможения. За это его все за глаза называют душегубом.
 		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_05");	//Мне не очень приятно называть себя женой Секоба, поверь мне. Иногда мне даже хочется, чтобы Барьер все еще стоял на месте.
 	};
 	AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_06");	//Ты хочешь купить какой-нибудь еды или, возможно, что-то для охоты в лесу?
@@ -100,7 +100,7 @@ instance DIA_Rosi_WAREZ(C_Info)
 
 func int DIA_Rosi_WAREZ_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) || ((Kapitel >= 5) && Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB)) || Npc_IsDead(Sekob)) && (MIS_bringRosiBackToSekob != LOG_Success))
+	if((Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) || ((Kapitel >= 5) && Npc_KnowsInfo(other,DIA_Rosi_FLEEFROMSEKOB)) || Npc_IsDead(Sekob)) && (MIS_bringRosiBackToSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -136,7 +136,7 @@ func void DIA_Rosi_BARRIERE_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_BARRIERE_15_00");	//Барьер?
 	AI_Output(self,other,"DIA_Rosi_BARRIERE_17_01");	//Ну, купол, который закрывал старую Долину Рудников.
-	AI_Output(self,other,"DIA_Rosi_BARRIERE_17_02");	//Многих фермеров или простых работников, совершивших преступление, тогда просто бросали туда, и они никогда не возвращались назад.
+	AI_Output(self,other,"DIA_Rosi_BARRIERE_17_02");	//Многих фермеров и простых работников, совершивших преступление, тогда просто бросали туда, и они никогда не возвращались назад.
 };
 
 
@@ -213,8 +213,8 @@ func int DIA_Rosi_Miliz_Condition()
 func void DIA_Rosi_Miliz_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_Miliz_15_00");	//А почему ополчение нападает на ваши фермы?
-	AI_Output(self,other,"DIA_Rosi_Miliz_17_01");	//Потому что здесь никого нет, кто не позволит им просто грабить наши фермы, вместо того, чтобы покупать наши продукты.
-	AI_Output(self,other,"DIA_Rosi_Miliz_17_02");	//Король далеко, а нам остается только работать на Онара, надеясь, что он пришлет помощь, когда она действительно будет нам необходима.
+	AI_Output(self,other,"DIA_Rosi_Miliz_17_01");	//Потому что здесь нет никого, кто не позволит им просто грабить наши фермы, вместо того, чтобы покупать наши продукты.
+	AI_Output(self,other,"DIA_Rosi_Miliz_17_02");	//Король далеко, и нам остается только работать на Онара, надеясь, что он пришлет помощь, когда она действительно будет нам необходима.
 };
 
 
@@ -241,7 +241,7 @@ func void DIA_Rosi_ONAR_Info()
 	AI_Output(other,self,"DIA_Rosi_ONAR_15_00");	//А на что похожа помощь Онара?
 	AI_Output(self,other,"DIA_Rosi_ONAR_17_01");	//Иногда мы заранее узнаем, что ополчение планирует нанести нам визит.
 	AI_Output(self,other,"DIA_Rosi_ONAR_17_02");	//Тогда мы посылаем кого-нибудь к лендлорду с просьбой о помощи.
-	AI_Output(self,other,"DIA_Rosi_ONAR_17_03");	//И затем, обычно вскоре, появляются наемники, которым он платит, чтобы те пришли сюда и прогнали ополчение.
+	AI_Output(self,other,"DIA_Rosi_ONAR_17_03");	//И затем обычно вскоре появляются наемники, которым он платит, чтобы те пришли сюда и прогнали ополчение.
 	AI_Output(self,other,"DIA_Rosi_ONAR_17_04");	//Но, откровенно говоря, наемники не многим лучше ополчения.
 };
 
@@ -268,7 +268,7 @@ func int DIA_Rosi_PERMKAP1_Condition()
 func void DIA_Rosi_PERMKAP1_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_PERMKAP1_15_00");	//Выше нос.
-	if(MIS_bringRosiBackToSekob == LOG_Success)
+	if(MIS_bringRosiBackToSekob == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Rosi_PERMKAP1_17_01");	//Проваливай!
 	}
@@ -464,7 +464,7 @@ instance DIA_Rosi_ANGEKOMMEN(C_Info)
 
 func int DIA_Rosi_ANGEKOMMEN_Condition()
 {
-	if((Kapitel == 5) && (MIS_bringRosiBackToSekob != LOG_Success) && (Rosi_FleeFromSekob_Kap5 == TRUE) && (((Npc_GetDistToWP(self,"CITY2") < 6000) && (hero.guild == GIL_PAL)) || ((Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_02") < 6000) && (hero.guild == GIL_DJG)) || ((Npc_GetDistToWP(self,"KLOSTER") < 6000) && (hero.guild == GIL_KDF))))
+	if((Kapitel == 5) && (MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE) && (((Npc_GetDistToWP(self,"CITY2") < 6000) && (hero.guild == GIL_PAL)) || ((Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_02") < 6000) && (hero.guild == GIL_DJG)) || ((Npc_GetDistToWP(self,"KLOSTER") < 6000) && (hero.guild == GIL_KDF))))
 	{
 		return TRUE;
 	};
@@ -478,7 +478,7 @@ func void DIA_Rosi_ANGEKOMMEN_Info()
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Till.aivar[AIV_PARTYMEMBER] = FALSE;
 	MIS_bringRosiBackToSekob = LOG_OBSOLETE;
-	MIS_RosisFlucht = LOG_Success;
+	MIS_RosisFlucht = LOG_SUCCESS;
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_02");	//Пожалуйста, прими этот скромный дар. Ты заслужил его.
 	CreateInvItems(Rosi,ItMi_Gold,650);
 	B_GiveInvItems(self,other,ItMi_Gold,450);
@@ -497,7 +497,7 @@ func void DIA_Rosi_ANGEKOMMEN_Info()
 		Npc_ExchangeRoutine(self,"CITY");
 		B_StartOtherRoutine(Till,"CITY");
 	}
-	else if(Npc_GetDistToWP(self,"BIGFARM") < 8000)
+	else if(Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_02") < 8000)
 	{
 		Npc_ExchangeRoutine(self,"BIGFARM");
 		B_StartOtherRoutine(Till,"BIGFARM");
@@ -522,7 +522,7 @@ instance DIA_Rosi_TRAIT(C_Info)
 
 func int DIA_Rosi_TRAIT_Condition()
 {
-	if((MIS_bringRosiBackToSekob == LOG_Success) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+	if((MIS_bringRosiBackToSekob == LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
 	{
 		return TRUE;
 	};
@@ -535,7 +535,7 @@ func void DIA_Rosi_TRAIT_Info()
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Till.aivar[AIV_PARTYMEMBER] = FALSE;
-	MIS_RosisFlucht = LOG_Failed;
+	MIS_RosisFlucht = LOG_FAILED;
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -566,18 +566,18 @@ func void DIA_Rosi_MinenAnteil_Info()
 };
 
 
-instance DIA_ROSI_KAP6_EXIT(C_Info)
+instance DIA_Rosi_KAP6_EXIT(C_Info)
 {
 	npc = BAU_936_Rosi;
 	nr = 999;
-	condition = dia_rosi_kap6_exit_condition;
-	information = dia_rosi_kap6_exit_info;
+	condition = DIA_Rosi_KAP6_EXIT_Condition;
+	information = DIA_Rosi_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_rosi_kap6_exit_condition()
+func int DIA_Rosi_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -585,7 +585,7 @@ func int dia_rosi_kap6_exit_condition()
 	};
 };
 
-func void dia_rosi_kap6_exit_info()
+func void DIA_Rosi_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

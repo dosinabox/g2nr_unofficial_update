@@ -110,7 +110,7 @@ func void evt_teleportstation_func()
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"В небольшой пещере в каньоне есть телепорт. Я активировал его.");
 				B_GivePlayerXP(XP_Ambient);
 			};
-			if((MIS_KrokoJagd == LOG_Success) && (SCUsed_ADW_TELEPORTSTATION_PIRATES_JACKSMONSTER == FALSE))
+			if((MIS_KrokoJagd == LOG_SUCCESS) && (SCUsed_ADW_TELEPORTSTATION_PIRATES_JACKSMONSTER == FALSE))
 			{
 				Wld_InsertNpc(Gobbo_Black,"ADW_PIRATECAMP_WATERHOLE_GOBBO");
 				Wld_InsertNpc(Gobbo_Black,"ADW_PIRATECAMP_WATERHOLE_GOBBO");

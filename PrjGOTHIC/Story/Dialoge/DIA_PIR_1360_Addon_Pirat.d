@@ -1,7 +1,7 @@
 
 instance DIA_Addon_HammerPirate_EXIT(C_Info)
 {
-	npc = PIR_1360_Addon_Pirat;
+	npc = PIR_1360_Addon_PIRAT;
 	nr = 999;
 	condition = DIA_Addon_HammerPirate_EXIT_Condition;
 	information = DIA_Addon_HammerPirate_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Addon_HammerPirate_EXIT_Info()
 
 instance DIA_Addon_HammerPirate_Hello(C_Info)
 {
-	npc = PIR_1360_Addon_Pirat;
+	npc = PIR_1360_Addon_PIRAT;
 	nr = 1;
 	condition = DIA_Addon_HammerPirate_Hello_Condition;
 	information = DIA_Addon_HammerPirate_Hello_Info;
@@ -60,7 +60,7 @@ func void DIA_Addon_HammerPirate_Hello_Info()
 
 instance DIA_Addon_HammerPirate_Anheuern(C_Info)
 {
-	npc = PIR_1360_Addon_Pirat;
+	npc = PIR_1360_Addon_PIRAT;
 	nr = 11;
 	condition = DIA_Addon_HammerPirate_Anheuern_Condition;
 	information = DIA_Addon_HammerPirate_Anheuern_Info;
@@ -91,7 +91,7 @@ func void DIA_Addon_HammerPirate_Anheuern_Info()
 
 instance DIA_Addon_HammerPirate_ComeOn(C_Info)
 {
-	npc = PIR_1360_Addon_Pirat;
+	npc = PIR_1360_Addon_PIRAT;
 	nr = 12;
 	condition = DIA_Addon_HammerPirate_ComeOn_Condition;
 	information = DIA_Addon_HammerPirate_ComeOn_Info;
@@ -132,7 +132,7 @@ func void DIA_Addon_HammerPirate_ComeOn_Info()
 
 instance DIA_Addon_HammerPirate_GoHome(C_Info)
 {
-	npc = PIR_1360_Addon_Pirat;
+	npc = PIR_1360_Addon_PIRAT;
 	nr = 13;
 	condition = DIA_Addon_HammerPirate_GoHome_Condition;
 	information = DIA_Addon_HammerPirate_GoHome_Info;
@@ -160,7 +160,7 @@ func void DIA_Addon_HammerPirate_GoHome_Info()
 
 instance DIA_Addon_HammerPirate_TooFar(C_Info)
 {
-	npc = PIR_1360_Addon_Pirat;
+	npc = PIR_1360_Addon_PIRAT;
 	nr = 14;
 	condition = DIA_Addon_HammerPirate_TooFar_Condition;
 	information = DIA_Addon_HammerPirate_TooFar_Info;
@@ -189,7 +189,7 @@ func void DIA_Addon_HammerPirate_TooFar_Info()
 
 instance DIA_Addon_HammerPirate_Success(C_Info)
 {
-	npc = PIR_1360_Addon_Pirat;
+	npc = PIR_1360_Addon_PIRAT;
 	nr = 14;
 	condition = DIA_Addon_HammerPirate_Success_Condition;
 	information = DIA_Addon_HammerPirate_Success_Info;

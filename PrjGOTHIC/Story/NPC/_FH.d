@@ -1,5 +1,5 @@
 
-instance fh(Npc_Default)
+instance FH(Npc_Default)
 {
 	name[0] = "Помощник";
 	npcType = NPCTYPE_FRIEND;

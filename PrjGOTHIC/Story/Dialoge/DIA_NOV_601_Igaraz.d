@@ -37,7 +37,7 @@ instance DIA_Igaranz_Hello(C_Info)
 
 func int DIA_Igaraz_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (knows_fire_contest == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (KNOWS_FIRE_CONTEST == FALSE))
 	{
 		return TRUE;
 	};
@@ -104,7 +104,7 @@ instance DIA_Igaranz_NotWork(C_Info)
 
 func int DIA_Igaraz_NotWork_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (knows_fire_contest == FALSE) && (other.guild == GIL_NOV))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (KNOWS_FIRE_CONTEST == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -114,7 +114,7 @@ func void DIA_Igaraz_NotWork_Info()
 {
 	AI_Output(other,self,"DIA_Igaranz_NotWork_15_00");	//Почему ты не работаешь?
 	AI_Output(self,other,"DIA_Igaranz_NotWork_13_01");	//Мне позволено изучать учения Инноса. Я постигаю его мудрость.
-	AI_Output(self,other,"DIA_Igaranz_NotWork_13_02");	//Однажды он выберет меня - и тогда я пройду Испытание Магией и войду в Круг Огня.
+	AI_Output(self,other,"DIA_Igaranz_NotWork_13_02");	//Однажды он выберет меня - и тогда я пройду испытание магией и войду в Круг Огня.
 };
 
 
@@ -131,7 +131,7 @@ instance DIA_Igaranz_Choosen(C_Info)
 
 func int DIA_Igaraz_Choosen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (knows_fire_contest == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Igaranz_NotWork) && (Npc_GetDistToWP(self,"NW_MONASTERY_GRASS_01") <= 500) && (KNOWS_FIRE_CONTEST == FALSE) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -140,8 +140,8 @@ func int DIA_Igaraz_Choosen_Condition()
 func void DIA_Igaraz_Choosen_Info()
 {
 	AI_Output(other,self,"DIA_Igaranz_Choosen_15_00");	//Кто такие Избранные?
-	AI_Output(self,other,"DIA_Igaranz_Choosen_13_01");	//Это послушники, которым Иннос предписал пройти Испытание Магией.
-	AI_Output(self,other,"DIA_Igaranz_Choosen_13_02");	//Тот, кто проходит его, принимается в ряды магов Огня.
+	AI_Output(self,other,"DIA_Igaranz_Choosen_13_01");	//Это послушники, которым Иннос предписал пройти испытание магией.
+	AI_Output(self,other,"DIA_Igaranz_Choosen_13_02");	//Тот, кто проходит его, принимается в ряды Магов Огня.
 	Info_ClearChoices(DIA_Igaranz_Choosen);
 	Info_AddChoice(DIA_Igaranz_Choosen,Dialog_Back,DIA_Igaranz_Choosen_back);
 	Info_AddChoice(DIA_Igaranz_Choosen,"Что такое Испытание Магией?",DIA_Igaranz_Choosen_TestOfMagic);
@@ -215,7 +215,7 @@ func int DIA_Igaraz_IMTHEMAN_Condition()
 
 func void DIA_Igaraz_IMTHEMAN_Info()
 {
-	AI_Output(self,other,"DIA_Igaraz_IMTHEMAN_13_00");	//(гордо) Это свершилось. Иннос выбрал меня, и я приму участие в Испытании Магией.
+	AI_Output(self,other,"DIA_Igaraz_IMTHEMAN_13_00");	//(гордо) Это свершилось. Иннос выбрал меня я приму участие в испытании магией.
 };
 
 
@@ -291,7 +291,7 @@ instance DIA_Igaraz_ADD(C_Info)
 
 func int DIA_Igaraz_ADD_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) && (mis_golem == LOG_Running) && (Npc_IsDead(Magic_Golem) == FALSE) && (Npc_KnowsInfo(other,DIA_Igaraz_Stein) == FALSE) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
+	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_06") <= 3500)) && (MIS_GOLEM == LOG_Running) && (Npc_IsDead(Magic_Golem) == FALSE) && (Npc_KnowsInfo(other,DIA_Igaraz_Stein) == FALSE) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
 	{
 		return TRUE;
 	};
@@ -309,7 +309,7 @@ func void DIA_Igaraz_ADD_Info()
 	AI_Output(self,other,"DIA_Igaraz_Add_13_07");	//Продолжай идти по тропинке в горы. Она должна быть где-то там.
 	AI_Output(self,other,"DIA_Igaraz_Add_13_08");	//Если ты дойдешь до моста - значит, ты зашел слишком далеко.
 	AI_Output(self,other,"DIA_Igaraz_Add_13_09");	//(смеется) ЕСЛИ тебе вообще удастся уйти далеко...
-	AI_Output(self,other,"DIA_Igaraz_Add_13_10");	//Это все, что я могу сказать тебе... (с сарказмом) Это ведь все же должно быть твое ИСПЫТАНИЕ!
+	AI_Output(self,other,"DIA_Igaraz_Add_13_10");	//Это все что я могу сказать тебе... (с сарказмом) Это ведь все же должно быть твое ИСПЫТАНИЕ!
 };
 
 
@@ -358,7 +358,7 @@ instance DIA_Igaraz_Stein(C_Info)
 
 func int DIA_Igaraz_Stein_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_66") <= 3500) && (other.guild == GIL_NOV) && (Npc_HasItems(other,ItMi_RuneBlank) >= 1))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && (Npc_HasItems(other,ItMi_RuneBlank) >= 1))
 	{
 		return TRUE;
 	};

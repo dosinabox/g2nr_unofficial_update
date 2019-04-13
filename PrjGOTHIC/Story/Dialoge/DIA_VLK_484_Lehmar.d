@@ -249,7 +249,7 @@ func void DIA_Lehmar_GELDZURUECK_Info()
 	if((RangerHelp_LehmarKohle == TRUE) && (Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)))
 	{
 		AI_Output(self,other,"DIA_Addon_Lehmar_GELDZURUECK_09_00");	//Оставь их. Ларес уже обо всем позаботился.
-		AI_Output(self,other,"DIA_Addon_Lehmar_GELDZURUECK_09_01");	//Похоже, вы с этим мошенником приятели, а? Ладно, ладно, это не мое дело. Удачи.
+		AI_Output(self,other,"DIA_Addon_Lehmar_GELDZURUECK_09_01");	//Похоже, вы с этим мошенником приятели, а? Ладно, это не мое дело. Удачи.
 		Lehmar_GeldGeliehen = 0;
 		AI_StopProcessInfos(self);
 	}
@@ -313,7 +313,7 @@ func void DIA_Lehmar_NOCHMALGELD_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Lehmar_NOCHMALGELD_09_02");	//Больше не можешь! Я понес большие издержки и теперь у меня на счету каждый цент.
-		AI_Output(self,other,"DIA_Lehmar_NOCHMALGELD_09_03");	//
+		AI_Output(self,other,"DIA_Lehmar_NOCHMALGELD_09_03");	//Заходи через несколько дней!
 	};
 };
 
@@ -325,7 +325,7 @@ instance DIA_Lehmar_PICKPOCKET(C_Info)
 	condition = DIA_Lehmar_PICKPOCKET_Condition;
 	information = DIA_Lehmar_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть ее книгу будет легче легкого)";
+	description = "(Украсть его книгу будет легче легкого)";
 };
 
 

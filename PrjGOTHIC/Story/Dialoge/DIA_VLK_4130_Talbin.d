@@ -98,7 +98,7 @@ func void DIA_Talbin_WASMACHTIHR_strf()
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_01");	//Нет, нет! С чего ты взял? Я просто хотел подзаработать здесь.
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_02");	//Кто-то сказал мне, что здесь лучшие охотничьи угодья на острове.
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_03");	//Райские угодья, если ты понимаешь, что я имею в виду.
-	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_04");	//Но единственное, что можно заработать здесь после того, как появились эти чертовы орки - это удар топором, если зайдешь слишком далеко!
+	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_04");	//Но единственное, что можно заработать здесь после того, как появились эти чертовы орки, - это удар топором, если зайдешь слишком далеко!
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_05");	//И я позволил этим идиотам обмануть меня.
 	AI_Output(other,self,"DIA_Talbin_WASMACHTIHR_strf_15_06");	//Я знаю этих шутников!
 };
@@ -231,11 +231,11 @@ instance DIA_Talbin_PayTeacher(C_Info)
 };
 
 
-var int dia_talbin_payteacher_noperm;
+var int DIA_Talbin_PayTeacher_noPerm;
 
 func int DIA_Talbin_PayTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (DIA_TALBIN_PAYTEACHER_NOPERM == FALSE) && (Talbin_FollowsThroughPass == 0) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (DIA_Talbin_PayTeacher_noPerm == FALSE) && (Talbin_FollowsThroughPass == 0) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -248,7 +248,7 @@ func void DIA_Talbin_PayTeacher_Info()
 		AI_Output(other,self,"DIA_Talbin_PayTeacher_15_00");	//Вот твой сыр. Ты обучишь меня теперь?
 		AI_Output(self,other,"DIA_Talbin_PayTeacher_07_01");	//У тебя действительно есть сыр? Ох, давненько я не ел ничего подобного. Спасибо. Ээ, а что насчет... Ах, да, конечно!
 		Talbin_TeachAnimalTrophy = TRUE;
-		DIA_TALBIN_PAYTEACHER_NOPERM = TRUE;
+		DIA_Talbin_PayTeacher_noPerm = TRUE;
 	}
 	else
 	{
@@ -280,23 +280,23 @@ func int DIA_Talbin_TEACHHUNTING_Condition()
 func void DIA_Talbin_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Talbin_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
-	if((player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_ShadowHorn] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Heart] == FALSE))
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE))
 	{
 		AI_Output(self,other,"DIA_Talbin_TEACHHUNTING_07_01");	//А что ты хочешь знать?
 		Info_AddChoice(DIA_Talbin_TEACHHUNTING,Dialog_Back,DIA_Talbin_TEACHHUNTING_BACK);
-		if(player_talent_takeanimaltrophy[TROPHY_Claws] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
 		{
 			Info_AddChoice(DIA_Talbin_TEACHHUNTING,B_BuildLearnString("Удаление когтей",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),DIA_Talbin_TEACHHUNTING_Claws);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Fur] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 		{
 			Info_AddChoice(DIA_Talbin_TEACHHUNTING,B_BuildLearnString("Снятие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Talbin_TEACHHUNTING_Fur);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_ShadowHorn] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
 		{
 			Info_AddChoice(DIA_Talbin_TEACHHUNTING,B_BuildLearnString("Рог мракориса",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ShadowHorn)),DIA_Talbin_TEACHHUNTING_ShadowHorn);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Heart] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE)
 		{
 			Info_AddChoice(DIA_Talbin_TEACHHUNTING,B_BuildLearnString("Удаление сердца",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Heart)),DIA_Talbin_TEACHHUNTING_Heart);
 		};
@@ -422,7 +422,7 @@ func int DIA_Talbin_KAP4_WASNEUES_Condition()
 func void DIA_Talbin_KAP4_WASNEUES_Info()
 {
 	AI_Output(other,self,"DIA_Talbin_KAP4_WASNEUES_15_00");	//Здесь никто не проходил?
-	AI_Output(self,other,"DIA_Talbin_KAP4_WASNEUES_07_01");	//Проходил. Недавно здесь были очень забавные парни! Они расхаживали в расфуфыренных доспехах, и у них был очень важный и напыщенный вид.
+	AI_Output(self,other,"DIA_Talbin_KAP4_WASNEUES_07_01");	//Походил. Недавно здесь были очень забавные парни! Они расхаживали в расфуфыренных доспехах, и у них был очень важный и напыщенный вид.
 };
 
 
@@ -530,7 +530,7 @@ func void DIA_Talbin_FOUNDENGROM_Info()
 		AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_06");	//Ищущие? Кто это такие?
 		AI_Output(other,self,"DIA_Talbin_FOUNDENGROM_15_07");	//Приспешники преисподней. Это они командуют орками.
 	};
-	AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_08");	//О, Иннос. Мне нужно выбираться отсюда, даже если при этом я найду свою смерть. Сейчас или никогда!
+	AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_08");	//О, Иннос. Мне нужно выбираться отсюда, даже если я при этом найду свою смерть. Сейчас или никогда!
 	AI_StopProcessInfos(self);
 	Log_CreateTopic(TOPIC_Talbin_Runs,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_Running);
@@ -566,7 +566,7 @@ func void DIA_Talbin_WOHIN_Info()
 	AI_Output(other,self,"DIA_Talbin_WOHIN_15_00");	//Куда ты собрался?
 	if(Npc_GetDistToWP(self,"START") < 1000)
 	{
-		AI_Output(self,other,"DIA_Talbin_WOHIN_07_01");	//Доведи меня до Прохода. Пожалуйста!
+		AI_Output(self,other,"DIA_Talbin_WOHIN_07_01");	//Доведи меня до Прохода. Пожалуйста!!
 		Info_ClearChoices(DIA_Talbin_WOHIN);
 		Info_AddChoice(DIA_Talbin_WOHIN,"У меня нет времени на тебя.",DIA_Talbin_WOHIN_);
 		Info_AddChoice(DIA_Talbin_WOHIN,"Просто иди вперед.",DIA_Talbin_WOHIN_durch);
@@ -656,18 +656,18 @@ func void DIA_Talbin_KAP5_EXIT_Info()
 };
 
 
-instance DIA_TALBIN_KAP6_EXIT(C_Info)
+instance DIA_Talbin_KAP6_EXIT(C_Info)
 {
 	npc = VLK_4130_Talbin;
 	nr = 999;
-	condition = dia_talbin_kap6_exit_condition;
-	information = dia_talbin_kap6_exit_info;
+	condition = DIA_Talbin_KAP6_EXIT_Condition;
+	information = DIA_Talbin_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_talbin_kap6_exit_condition()
+func int DIA_Talbin_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -675,7 +675,7 @@ func int dia_talbin_kap6_exit_condition()
 	};
 };
 
-func void dia_talbin_kap6_exit_info()
+func void DIA_Talbin_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

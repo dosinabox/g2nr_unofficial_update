@@ -1,4 +1,7 @@
 
+var int DIA_Salandril_PICKPOCKET_perm;
+var int dia_salandril_pickpocket_removed;
+
 instance DIA_Salandril_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;
@@ -20,6 +23,11 @@ func int DIA_Salandril_EXIT_Condition()
 
 func void DIA_Salandril_EXIT_Info()
 {
+	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+	{
+		CreateInvItem(self,ItKe_Salandril);
+		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -35,11 +43,9 @@ instance DIA_Salandril_PICKPOCKET(C_Info)
 };
 
 
-var int dia_salandril_pickpocket_perm;
-
 func int DIA_Salandril_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (DIA_SALANDRIL_PICKPOCKET_PERM == FALSE) && (other.attribute[ATR_DEXTERITY] >= (30 - Theftdiff)))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (DIA_Salandril_PICKPOCKET_perm == FALSE) && ((Npc_HasItems(self,ItKe_Salandril) >= 1) || (DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)) && (other.attribute[ATR_DEXTERITY] >= (30 - Theftdiff)))
 	{
 		return TRUE;
 	};
@@ -56,15 +62,25 @@ func void DIA_Salandril_PICKPOCKET_DoIt()
 {
 	if(other.attribute[ATR_DEXTERITY] >= 30)
 	{
-		CreateInvItems(self,ItKe_Salandril,1);
+		if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+		{
+			CreateInvItem(self,ItKe_Salandril);
+			DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+		};
 		B_GiveInvItems(self,other,ItKe_Salandril,1);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		DIA_SALANDRIL_PICKPOCKET_PERM = TRUE;
-		B_GivePlayerXP(XP_Ambient);
+		DIA_Salandril_PICKPOCKET_perm = TRUE;
+		B_GiveThiefXP();
 		Info_ClearChoices(DIA_Salandril_PICKPOCKET);
 	}
 	else
 	{
+		B_ResetThiefLevel();
+		if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+		{
+			CreateInvItem(self,ItKe_Salandril);
+			DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+		};
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
@@ -89,7 +105,7 @@ instance DIA_Salandril_Hallo(C_Info)
 
 func int DIA_Salandril_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (mis_oldworld != LOG_Success))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_OLDWORLD != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -117,7 +133,7 @@ instance DIA_Salandril_Trank(C_Info)
 
 func int DIA_Salandril_Trank_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (mis_oldworld == LOG_Success) && (Npc_KnowsInfo(other,DIA_Salandril_KLOSTER) == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_OLDWORLD == LOG_SUCCESS) && (Npc_KnowsInfo(other,DIA_Salandril_KLOSTER) == FALSE))
 	{
 		return TRUE;
 	};
@@ -153,6 +169,11 @@ func int DIA_Salandril_Trade_Condition()
 
 func void DIA_Salandril_Trade_Info()
 {
+	if(Npc_HasItems(self,ItKe_Salandril) >= 1)
+	{
+		Npc_RemoveInvItem(self,ItKe_Salandril);
+		DIA_SALANDRIL_PICKPOCKET_REMOVED = TRUE;
+	};
 	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Salandril_Trade_15_00");	//Покажи мне свои товары.
 	if(other.guild == GIL_KDF)
@@ -191,6 +212,11 @@ func int DIA_Salandril_KAP3_EXIT_Condition()
 
 func void DIA_Salandril_KAP3_EXIT_Info()
 {
+	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+	{
+		CreateInvItem(self,ItKe_Salandril);
+		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -226,6 +252,11 @@ func void DIA_Salandril_KLOSTER_Info()
 		AI_Output(other,self,"DIA_Salandril_KLOSTER_15_03");	//У меня есть приказ, и я выполню его. Так что, либо ты пойдешь сам, либо мне придется заставить тебя.
 	};
 	AI_Output(self,other,"DIA_Salandril_KLOSTER_13_04");	//Что? Да я протащу тебя через весь город за шиворот, как паршивого щенка, и вышвырну за ворота.
+	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+	{
+		CreateInvItem(self,ItKe_Salandril);
+		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+	};
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -251,11 +282,16 @@ func int DIA_Salandril_GehinsKloster_Condition()
 
 func void DIA_Salandril_GehinsKloster_Info()
 {
-	AI_Output(other,self,"DIA_Salandril_GehinsKloster_15_00");	//Так ты пойдешь в монастырь, или тебя еще раз проучить?
+	AI_Output(other,self,"DIA_Salandril_GehinsKloster_15_00");	//Так ты пойдешь в монастырь, или тебя еще раз проучить?..
 	AI_Output(self,other,"DIA_Salandril_GehinsKloster_13_01");	//Ты еще пожалеешь об этом. Да, черт тебя побери, я пойду в этот монастырь, но тебе это просто так с рук не сойдет.
+	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+	{
+		CreateInvItem(self,ItKe_Salandril);
+		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KlosterUrteil");
-	MIS_Serpentes_BringSalandril_SLD = LOG_Success;
+	MIS_Serpentes_BringSalandril_SLD = LOG_SUCCESS;
 };
 
 
@@ -272,7 +308,7 @@ instance DIA_Salandril_Verschwinde(C_Info)
 
 func int DIA_Salandril_Verschwinde_Condition()
 {
-	if((MIS_Serpentes_BringSalandril_SLD == LOG_Success) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -280,7 +316,12 @@ func int DIA_Salandril_Verschwinde_Condition()
 
 func void DIA_Salandril_Verschwinde_Info()
 {
-	b_verschwinde_stimme13();
+	B_Verschwinde_Stimme13();
+	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+	{
+		CreateInvItem(self,ItKe_Salandril);
+		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -306,6 +347,11 @@ func int DIA_Salandril_KAP4_EXIT_Condition()
 
 func void DIA_Salandril_KAP4_EXIT_Info()
 {
+	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+	{
+		CreateInvItem(self,ItKe_Salandril);
+		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -331,22 +377,27 @@ func int DIA_Salandril_KAP5_EXIT_Condition()
 
 func void DIA_Salandril_KAP5_EXIT_Info()
 {
+	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+	{
+		CreateInvItem(self,ItKe_Salandril);
+		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+	};
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_SALANDRIL_KAP6_EXIT(C_Info)
+instance DIA_Salandril_KAP6_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;
 	nr = 999;
-	condition = dia_salandril_kap6_exit_condition;
-	information = dia_salandril_kap6_exit_info;
+	condition = DIA_Salandril_KAP6_EXIT_Condition;
+	information = DIA_Salandril_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_salandril_kap6_exit_condition()
+func int DIA_Salandril_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -354,8 +405,13 @@ func int dia_salandril_kap6_exit_condition()
 	};
 };
 
-func void dia_salandril_kap6_exit_info()
+func void DIA_Salandril_KAP6_EXIT_Info()
 {
+	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
+	{
+		CreateInvItem(self,ItKe_Salandril);
+		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
+	};
 	AI_StopProcessInfos(self);
 };
 

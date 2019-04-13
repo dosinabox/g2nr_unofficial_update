@@ -37,7 +37,7 @@ func void evt_orkoberst()
 			Wld_InsertNpc(UndeadOrcWarrior,"FP_ROAM_DI_MARIOSSKELETONS_03");
 			Wld_InsertNpc(UndeadOrcWarrior,"FP_ROAM_DI_MARIOSSKELETONS_04");
 		};
-		OrkSturmDI = TRUE;
+		ORkSturmDI = TRUE;
 		B_LogEntry(TOPIC_HallenVonIrdorath,"Полковник орков крепкий орешек. Где-то в его тронном зале должен быть какой-то секрет.");
 		EVT_ORKOBERST_OneTime = TRUE;
 	};

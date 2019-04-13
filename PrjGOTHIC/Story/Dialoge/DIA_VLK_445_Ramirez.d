@@ -113,7 +113,7 @@ func void DIA_Ramirez_Hallo_Info()
 	if(Join_Thiefs == TRUE)
 	{
 		AI_Output(self,other,"DIA_Ramirez_Hallo_14_02");	//Итак, ты с нами. Что ж, тогда я желаю тебе успеха - но будь осторожен.
-		AI_Output(self,other,"DIA_Ramirez_Hallo_14_03");	//Ох, и еще одно - меня не интересует, кто ты там наверху, и кем ты работаешь.
+		AI_Output(self,other,"DIA_Ramirez_Hallo_14_03");	//Ох, и еще одно - меня не интересует кто ты там наверху, и  кем ты работаешь.
 		AI_Output(self,other,"DIA_Ramirez_Hallo_14_04");	//Но здесь, внизу, ты один из нас. Вор. Не больше и не меньше.
 		DIA_Ramirez_Hallo_permanent = TRUE;
 	};
@@ -250,7 +250,7 @@ func int DIA_Ramirez_Teach_Condition()
 
 func void DIA_Ramirez_Teach_Info()
 {
-	AI_Output(other,self,"DIA_Ramirez_Teach_15_00");	//Научи меня пользоваться отмычками.
+	AI_Output(other,self,"DIA_Ramirez_Teach_15_00");	//Научи меня пользоваться отмычками!
 	if(Ramirez_Zweimal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Ramirez_Teach_14_06");	//Вскрытие замков - это высшее искусство.
@@ -292,7 +292,7 @@ func void DIA_Ramirez_Viertel_Info()
 	AI_Output(self,other,"DIA_Ramirez_Viertel_14_01");	//В верхней части города, конечно же.
 	AI_Output(self,other,"DIA_Ramirez_Viertel_14_02");	//Но если ты хочешь пробраться в какой-то дом, лучше дождаться ночи, ночью все спят - за исключением городской стражи.
 	AI_Output(self,other,"DIA_Ramirez_Viertel_14_03");	//Они патрулируют город всю ночь. Я знаю одного из них - Вамбо. Его интересует только золото.
-	AI_Output(self,other,"DIA_Ramirez_Viertel_14_04");	//Его услуги стоят недешево, но если ты ему заплатишь, тебе больше ни о чем не нужно будет волноваться.
+	AI_Output(self,other,"DIA_Ramirez_Viertel_14_04");	//Его услуги стоят недешево, но если ты ему заплатишь, тебе больше не о чем не нужно будет волноваться.
 };
 
 
@@ -309,7 +309,7 @@ instance DIA_Ramirez_Sextant(C_Info)
 
 func int DIA_Ramirez_Sextant_Condition()
 {
-	if((Knows_SecretSign == TRUE) && (MIS_CassiaRing == LOG_Success) && (Kapitel >= 2))
+	if((Knows_SecretSign == TRUE) && (MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 2))
 	{
 		return TRUE;
 	};
@@ -355,7 +355,7 @@ func void DIA_Ramirez_Success_Info()
 	AI_Output(self,other,"DIA_Ramirez_Success_14_02");	//Вот, держи, ты заслужил эти деньги.
 	B_GiveInvItems(self,other,ItMi_Gold,Value_Sextant / 2);
 	Ramirez_Sextant = TRUE;
-	MIS_RamirezSextant = LOG_Success;
+	MIS_RamirezSextant = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RamirezSextant);
 };
 

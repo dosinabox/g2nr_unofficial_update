@@ -73,7 +73,7 @@ func void DIA_Oric_Bruder_Info()
 	AI_Output(other,self,"DIA_Oric_Bruder_15_00");	//У меня есть известие для тебя.
 	AI_Output(self,other,"DIA_Oric_Bruder_11_01");	//Что за известие?
 	AI_Output(other,self,"DIA_Oric_Bruder_15_02");	//Твой брат мертв. Он погиб у Прохода.
-	AI_Output(self,other,"DIA_Oric_Bruder_11_03");	//(бормочет) ...мой брат...
+	AI_Output(self,other,"DIA_Oric_Bruder_11_03");	//(бормочет)... мой брат...
 	AI_Output(self,other,"DIA_Oric_Bruder_11_04");	//Иннос подвергает меня суровым испытаниям. Но он погиб как его слуга...
 	AI_Output(self,other,"DIA_Oric_Bruder_11_05");	//Эта новость - стрела, пронзившая мое сердце. Я буду искать новые силы в молитвах.
 	OricBruder = TRUE;
@@ -103,7 +103,7 @@ func int DIA_Oric_ScoutMine_Condition()
 func void DIA_Oric_ScoutMine_Info()
 {
 	AI_Output(other,self,"DIA_Oric_ScoutMine_15_00");	//Я отправляюсь к шахтам.
-	AI_Output(self,other,"DIA_Oric_ScoutMine_11_01");	//Будь осторожен. Это нелегкая задача. Прежде всего, найди паладинов. Они возглавляют эти три группы.
+	AI_Output(self,other,"DIA_Oric_ScoutMine_11_01");	//Будь острожен. Это нелегкая задача. Прежде всего, найди паладинов. Они возглавляют эти три группы.
 	AI_Output(self,other,"DIA_Oric_ScoutMine_11_02");	//Если тебе нужно больше информации, поговори с Парсивалем.
 };
 
@@ -115,7 +115,7 @@ instance DIA_Oric_Perm(C_Info)
 	condition = DIA_Oric_Perm_Condition;
 	information = DIA_Oric_Perm_Info;
 	permanent = TRUE;
-	description = "Как ситуация?";
+	description = "Как обстановка?";
 };
 
 
@@ -134,7 +134,7 @@ func void DIA_Oric_Perm_Info()
 	{
 		AI_Output(self,other,"DIA_Oric_Perm_11_01");	//Ты должен найти старателей и выяснить, сколько у них руды. А там будет видно, как и когда мы сможем покинуть эту долину.
 	}
-	else if(MIS_ScoutMine == LOG_Success)
+	else if(MIS_ScoutMine == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Oric_Perm_11_02");	//Ситуация накалилась до предела. Но мы не отступим. Иннос всегда с нами. Он выведет нас из этой долины.
 	}
@@ -255,8 +255,8 @@ func void DIA_Oric_CanHelp_Info()
 	AI_Output(self,other,"DIA_Oric_CanHelp_11_02");	//Впрочем, есть кое-что. Кое-что очень важное, что ты мог бы сделать для нас за пределами этих стен.
 	AI_Output(self,other,"DIA_Oric_CanHelp_11_03");	//Мы планируем отрубить змею голову.
 	Info_ClearChoices(DIA_Oric_CanHelp);
-	Info_AddChoice(DIA_Oric_CanHelp,"Я думаю, тебе лучше поискать кого-нибудь еще. ",DIA_Oric_CanHelp_NotYourMan);
-	Info_AddChoice(DIA_Oric_CanHelp,"Что ты хочешь этим сказать?",DIA_Oric_CanHelp_WhatYouMean);
+	Info_AddChoice(DIA_Oric_CanHelp,"Я думаю, тебе лучше поискать кого-нибудь еще.",DIA_Oric_CanHelp_NotYourMan);
+	Info_AddChoice(DIA_Oric_CanHelp,"Что ты хочешь сказать этим?",DIA_Oric_CanHelp_WhatYouMean);
 };
 
 func void DIA_Oric_CanHelp_NotYourMan()
@@ -279,7 +279,7 @@ func void DIA_Oric_CanHelp_WhatYouMean()
 	}
 	else if(hero.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_07");	//Мне нелегко просить тебя об этом, Мастер. Но ты как нельзя лучше подходишь для этого задания.
+		AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_07");	//Мне нелегко просить тебя об этом, мастер. Но ты как нельзя лучше подходишь для этого задания.
 	}
 	else
 	{
@@ -443,7 +443,7 @@ func void DIA_Oric_HoshDead_Info()
 	AI_Output(other,self,"DIA_Oric_HoshDead_15_00");	//Хош-Пак мертв!
 	AI_Output(self,other,"DIA_Oric_HoshDead_11_01");	//Отлично, это обязательно посеет хаос в рядах орков. Может быть, у нас все еще есть какие-то шансы.
 	AI_Output(self,other,"DIA_Oric_HoshDead_11_02");	//Я думаю, это позволит нам получить передышку, по крайней мере, на неделю.
-	MIS_KillHoshPak = LOG_Success;
+	MIS_KillHoshPak = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KillHosh_Pak);
 };
 
@@ -478,7 +478,7 @@ func void DIA_Oric_AnyNews_Info()
 	{
 		AI_Output(self,other,"DIA_Oric_AnyNews_11_02");	//Да. Ты наш герой. Уничтожить всех драконов разом - это воистину героический подвиг. Я потрясен!
 	}
-	else if(MIS_KillHoshPak == LOG_Success)
+	else if(MIS_KillHoshPak == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Oric_AnyNews_11_03");	//Орки, похоже, выбиты из колеи смертью Хош-Пака.
 	}
@@ -531,7 +531,7 @@ func void DIA_Oric_DragonPlettBericht_Info()
 	{
 		if((Npc_IsDead(SwampDragon) == FALSE) && (Oric_SwampdragonInfo_OneTime == FALSE))
 		{
-			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_03");	//Несколько дней назад к западу от нашего замка появилось большое болото. Это довольно подозрительно, так тебе не кажется?
+			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_03");	//Несколько дней назад к западу от нашего замка появилось большое болото. Это довольно подозрительно, тебе так не кажется?
 			B_LogEntry(TOPIC_DRACHENJAGD,"Орик дал мне повод к размышлению: За последние несколько дней к западу от замка образовалось большое болото. Он считает это очень подозрительным.");
 			Oric_SwampdragonInfo_OneTime = TRUE;
 		}
@@ -589,18 +589,18 @@ func void DIA_Oric_KAP5_EXIT_Info()
 };
 
 
-instance DIA_ORIC_KAP6_EXIT(C_Info)
+instance DIA_Oric_KAP6_EXIT(C_Info)
 {
 	npc = PAL_251_Oric;
 	nr = 999;
-	condition = dia_oric_kap6_exit_condition;
-	information = dia_oric_kap6_exit_info;
+	condition = DIA_Oric_KAP6_EXIT_Condition;
+	information = DIA_Oric_KAP6_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_oric_kap6_exit_condition()
+func int DIA_Oric_KAP6_EXIT_Condition()
 {
 	if(Kapitel == 6)
 	{
@@ -608,7 +608,7 @@ func int dia_oric_kap6_exit_condition()
 	};
 };
 
-func void dia_oric_kap6_exit_info()
+func void DIA_Oric_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

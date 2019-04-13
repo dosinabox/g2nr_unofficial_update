@@ -43,7 +43,7 @@ func int DIA_Dragomir_Hello_Condition()
 func void DIA_Dragomir_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Dragomir_Hello_12_00");	//Путешествуешь так далеко от дома?
-	AI_Output(self,other,"DIA_Dragomir_Hello_12_01");	//Здесь тебе не помешает осторожность, особенно когда ты совсем один.
+	AI_Output(self,other,"DIA_Dragomir_Hello_12_01");	//Здесь тебе не помещает осторожность, особенно когда ты совсем один.
 };
 
 
@@ -120,12 +120,12 @@ func void DIA_Dragomir_Dangerous_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Dangerous_15_00");	//А разве здесь не опасно?
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_01");	//Ну... Не очень, если ты можешь постоять за себя. Мой арбалет уже неоднократно спасал меня.
-	AI_Output(other,self,"DIA_Dragomir_Dangerous_15_02");	//Хм. Он не такой уж и большой.
+	AI_Output(other,self,"DIA_Dragomir_Dangerous_15_02");	//Хм. Он не такой уж большой.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_03");	//Но смертоносный, если ты знаешь, как обращаться с ним. Да, у меня был арбалет побольше. Но, к сожалению, я потерял его.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_04");	//Я забрел слишком далеко на север, в горы. Там находится большой каменный круг с жертвенным алтарем.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_05");	//Пока я охотился там на падальщиков, из леса выбежали эти чертовы скелеты и напали на меня.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_06");	//Мне пришлось бежать со всех ног.
-	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_07");	//А когда я бежал, арбалет выскользнул из моей руки. Я думаю, что он все еще лежит там, у этого странного круга на севере.
+	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_07");	//А когда я бежал, арбалет выскользнул из моей руки. Я думаю, он все еще лежит там, у этого странного круга на севере.
 	Log_CreateTopic(TOPIC_DragomirsArmbrust,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DragomirsArmbrust,LOG_Running);
 	B_LogEntry(TOPIC_DragomirsArmbrust,"Драгомир потерял свой арбалет в странном каменном круге, находящемся высоко в северных горах.");
@@ -162,7 +162,7 @@ func void DIA_Dragomir_Armbrust_Info()
 	AI_Output(self,other,"DIA_Dragomir_Armbrust_12_04");	//Естественно, я готов заплатить за эту твою услугу. Надеюсь, этого будет достаточно.
 	CreateInvItems(self,ItMi_Gold,150);
 	B_GiveInvItems(self,other,ItMi_Gold,150);
-	MIS_DragomirsArmbrust = LOG_Success;
+	MIS_DragomirsArmbrust = LOG_SUCCESS;
 	B_GivePlayerXP(XP_DragomirsArmbrust);
 };
 

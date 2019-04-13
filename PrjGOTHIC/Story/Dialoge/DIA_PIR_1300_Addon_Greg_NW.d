@@ -63,7 +63,7 @@ func void DIA_Addon_Greg_NW_Hallo_weg()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_Hallo_weg_15_00");	//Мне надо идти.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_weg_01_01");	//Итак, ты отказываешься мне помогать, верно? Хорошо, я это запомню. Мы еще встретимся!
 	AI_StopProcessInfos(self);
-	MIS_Addon_Greg_BringMeToTheCity = LOG_Failed;
+	MIS_Addon_Greg_BringMeToTheCity = LOG_FAILED;
 };
 
 func void DIA_Addon_Greg_NW_Hallo_ja()
@@ -179,14 +179,14 @@ func void DIA_Addon_Greg_NW_Stadtwachen_klamotten()
 	CreateInvItems(self,ItMi_Gold,50);
 	B_GiveInvItems(self,other,ItMi_Gold,50);
 	B_GivePlayerXP(XP_Greg_NW_GiveBauArmor);
-	AI_Output(other,self,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_15_04");	//Что? Жалкие 50 монет? Да ты, должно быть, шутишь.
+	AI_Output(other,self,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_15_04");	//Что? Жалкие 50 золотых монет? Ты, должно быть, шутишь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_05");	//Золото - это не самое важное на свете, друг мой. Возьми пока то, что я тебе предлагаю.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_06");	//У меня есть предчувствие, что мы скоро встретимся снова.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_klamotten_01_07");	//И кто знает, может быть, у меня будет возможность отплатить тебе услугой за услугу. Береги себя!
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Markt");
 	B_LogEntry(TOPIC_Addon_Greg_NW,"Я дал ему одежду крестьянина. В ней он может пройти в город.");
-	MIS_Addon_Greg_BringMeToTheCity = LOG_Success;
+	MIS_Addon_Greg_BringMeToTheCity = LOG_SUCCESS;
 };
 
 func void DIA_Addon_Greg_NW_Stadtwachen_nochnicht()
@@ -232,7 +232,7 @@ instance DIA_Addon_Greg_NW_PERM(C_Info)
 
 func int DIA_Addon_Greg_NW_PERM_Condition()
 {
-	if(((MIS_Addon_Greg_BringMeToTheCity == LOG_Success) || (MIS_Addon_Greg_BringMeToTheCity == LOG_Failed)) && (GregLocation == Greg_Farm1))
+	if(((MIS_Addon_Greg_BringMeToTheCity == LOG_SUCCESS) || (MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED)) && (GregLocation == Greg_Farm1))
 	{
 		return TRUE;
 	};
@@ -268,11 +268,11 @@ func int DIA_Addon_Greg_NW_MeetGregSecondTime_Condition()
 func void DIA_Addon_Greg_NW_MeetGregSecondTime_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_MeetGregSecondTime_01_00");	//Вы только посмотрите!
-	if(MIS_Addon_Greg_BringMeToTheCity == LOG_Success)
+	if(MIS_Addon_Greg_BringMeToTheCity == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_MeetGregSecondTime_01_01");	//Мальчик-фермер.
 	}
-	else if(MIS_Addon_Greg_BringMeToTheCity == LOG_Failed)
+	else if(MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_MeetGregSecondTime_01_02");	//Паренек, который так грубо отказался мне помочь. Итак, мы встретились снова...
 	}
@@ -384,7 +384,7 @@ func void DIA_Addon_Greg_NW_was_NoHelp()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_was_NoHelp_15_00");	//Я не могу тебе помочь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_01");	//(зло) Нет, ты не ХОЧЕШЬ мне помочь.
-	if((MIS_Addon_Greg_BringMeToTheCity == LOG_Running) || (MIS_Addon_Greg_BringMeToTheCity == LOG_Failed))
+	if((MIS_Addon_Greg_BringMeToTheCity == LOG_Running) || (MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_02");	//Второй раз ты отказываешься выполнить мою просьбу.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_03");	//Мой тебе совет: постарайся сделать так, чтобы я тебя больше не видел.
@@ -524,7 +524,7 @@ func void DIA_Addon_Greg_NW_RakeCaveThere_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_02");	//Я закопал свои вещи где-то внутри. Место отмечено крестом.
 	B_Greg_GoNow();
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCaveThere_15_04");	//А как же ты?
-	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_05");	//Кто-то же должен защищать тыл. А теперь иди внутрь.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_05");	//Кто-то же должен защищать тыл. А теперь - иди внутрь.
 	Log_CreateTopic(TOPIC_Addon_Greg_NW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Greg_NW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Greg_NW,"Этот парень хочет, чтобы я достал из пещеры его вещи. Он закопал их, а место пометил крестом. Для работы он дал мне кирку.");
@@ -544,7 +544,7 @@ instance DIA_Addon_Greg_NW_RakeCavePlundered(C_Info)
 
 func int DIA_Addon_Greg_NW_RakeCavePlundered_Condition()
 {
-	if(((MIS_Addon_Greg_RakeCave_Day <= (Wld_GetDay() - 2)) || (rakeplace[1] == TRUE)) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter) && (Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000))
+	if(((MIS_Addon_Greg_RakeCave_Day <= (Wld_GetDay() - 2)) || (RAKEPLACE[1] == TRUE)) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (GregLocation >= Greg_Taverne) && (GregLocation < Greg_Dexter) && (Npc_GetDistToWP(self,"NW_BIGFARM_LAKE_CAVE_01") < 1000))
 	{
 		return TRUE;
 	};
@@ -553,7 +553,7 @@ func int DIA_Addon_Greg_NW_RakeCavePlundered_Condition()
 func void DIA_Addon_Greg_NW_RakeCavePlundered_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_01_00");	//Что ты там так долго делал? Нашел то, что я тебя просил?
-	if(rakeplace[1] == TRUE)
+	if(RAKEPLACE[1] == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_Greg_NW_RakeCavePlundered,"Да, я выкопал кошелек с золотом.",DIA_Addon_Greg_NW_RakeCavePlundered_gold);
 	};
@@ -563,7 +563,7 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_Info()
 func void DIA_Addon_Greg_NW_RakeCavePlundered_No()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCavePlundered_No_15_00");	//Нет.
-	if(rakeplace[1] == TRUE)
+	if(RAKEPLACE[1] == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
 		AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCavePlundered_No_15_02");	//Э-э... там ничего не было.
@@ -623,7 +623,7 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_gold()
 		AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCavePlundered_gold_15_08");	//У меня уже ничего нет.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_gold_01_09");	//Дерьмо собачье! Мне что, заставить тебя отдать мои вещи силой?
 		AI_StopProcessInfos(self);
-		MIS_Addon_Greg_RakeCave = LOG_Failed;
+		MIS_Addon_Greg_RakeCave = LOG_FAILED;
 		GregLocation = Greg_Bigcross;
 		Npc_ExchangeRoutine(self,"Bigcross");
 		B_Attack(self,other,AR_NONE,1);
@@ -696,7 +696,7 @@ instance DIA_Addon_Greg_NW_PermTaverne(C_Info)
 
 func int DIA_Addon_Greg_NW_PermTaverne_Condition()
 {
-	if(((GregLocation == Greg_Bigcross) && (Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) == FALSE) && (((Npc_GetDistToWP(self,"BIGCROSS") < 1000) == FALSE) || (MIS_Addon_Greg_RakeCave == LOG_Success))) || ((GregLocation == Greg_Dexter) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WasWillstDu)))
+	if(((GregLocation == Greg_Bigcross) && (Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) == FALSE) && (((Npc_GetDistToWP(self,"BIGCROSS") < 1000) == FALSE) || (MIS_Addon_Greg_RakeCave == LOG_SUCCESS))) || ((GregLocation == Greg_Dexter) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WasWillstDu)))
 	{
 		return TRUE;
 	};
@@ -709,7 +709,7 @@ func void DIA_Addon_Greg_NW_PermTaverne_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_PermTaverne_01_01");	//Сначала принеси мне все мои вещи. Потом мы поговорим.
 	}
-	else if(MIS_Addon_Greg_RakeCave == LOG_Success)
+	else if(MIS_Addon_Greg_RakeCave == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_PermTaverne_01_02");	//Конечно, я благодарен, что ты мне помог. Но это не делает нас друзьями. Понимаешь, о чем я?
 	}
@@ -740,7 +740,7 @@ func int DIA_Addon_Greg_NW_Bigcross_Condition()
 
 func void DIA_Addon_Greg_NW_Bigcross_Info()
 {
-	if((MIS_Addon_Greg_BringMeToTheCity == LOG_Failed) || (MIS_Addon_Greg_RakeCave == LOG_Failed))
+	if((MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_00");	//Это же наш господин Ненадежность!
 	};
@@ -751,7 +751,7 @@ func void DIA_Addon_Greg_NW_Bigcross_Info()
 	if((MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_05");	//Ну что, ты нашел мои вещи?
-		if((rakeplace[1] == FALSE) || (rakeplace[2] == FALSE) || (rakeplace[3] == FALSE) || (rakeplace[4] == FALSE) || (rakeplace[5] == FALSE))
+		if((RAKEPLACE[1] == FALSE) || (RAKEPLACE[2] == FALSE) || (RAKEPLACE[3] == FALSE) || (RAKEPLACE[4] == FALSE) || (RAKEPLACE[5] == FALSE))
 		{
 			AI_Output(other,self,"DIA_Addon_Greg_NW_Bigcross_15_06");	//Нет, еще не все.
 			AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_07");	//Так поторопись! Не так уж это и сложно.
@@ -829,13 +829,13 @@ func void DIA_Addon_Greg_NW_DexterFound_weg()
 
 func void DIA_Addon_Greg_NW_DexterFound_wo()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_00");	//
+	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_00");	//Думаю, я могу помочь тебе его найти.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_01");	//Действительно? И где же он сейчас?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_02");	//Недалеко отсюда.
 	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_03");	//Похоже, он стал главарем шайки бандитов.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_04");	//Ха! Да, похоже, это он.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_05");	//Я знал, что этот трус прячется где-то здесь.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_06");	//Теперь все, что мне осталось сделать - обыскать все убежища и тайные укрытия в округе.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_06");	//Теперь все, что мне осталось сделать, - обыскать все убежища и тайные укрытия в округе.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_07");	//Я найду этого ублюдка, и твоя помощь мне не нужна.
 	Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
 	B_GivePlayerXP(XP_Ambient);
@@ -959,9 +959,9 @@ func void DIA_Addon_Greg_NW_RavensLetter_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_04");	//Скажи, ты, случайно, не знаешь, как попасть за горный хребет на северо-востоке Хориниса?
 	if((Nefarius_NW.aivar[AIV_TalkedToPlayer] == TRUE) && (Saturas_NW.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
-		AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_05");	//Возможно, через портал, который обнаружили маги Воды.
+		AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_05");	//Возможно, через портал, который обнаружили маги воды.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
-		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_07");	//Маги Воды... А мысли получше у тебя есть?
+		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_07");	//Маги воды... А мысли получше у тебя есть?
 	};
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_08");	//Нет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_09");	//(вздыхает) Значит, я здесь застрял.
@@ -991,7 +991,7 @@ func void DIA_Addon_Greg_NW_WasWillstDu_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_WasWillstDu_15_00");	//А что тебе было нужно от Декстера?
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_01");	//Я приплыл сюда из-за северо-восточных гор. И я хочу туда вернуться.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_02");	//Я надеялся, что этот ублюдок расскажет мне, как добраться туда без корабля.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_02");	//Я надеялся, что это ублюдок расскажет мне, как добраться туда без корабля.
 	Npc_ExchangeRoutine(self,"DexterThrone");
 	Info_ClearChoices(DIA_Addon_Greg_NW_WasWillstDu);
 	Info_AddChoice(DIA_Addon_Greg_NW_WasWillstDu,"А что находится за этими горами?",DIA_Addon_Greg_NW_WasWillstDu_da);
@@ -1031,7 +1031,7 @@ instance DIA_Addon_Greg_NW_FoundTreasure(C_Info)
 
 func int DIA_Addon_Greg_NW_FoundTreasure_Condition()
 {
-	if((rakeplace[1] == TRUE) && (rakeplace[2] == TRUE) && (rakeplace[3] == TRUE) && (rakeplace[4] == TRUE) && (rakeplace[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE))
+	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE))
 	{
 		return TRUE;
 	};
@@ -1040,7 +1040,7 @@ func int DIA_Addon_Greg_NW_FoundTreasure_Condition()
 func void DIA_Addon_Greg_NW_FoundTreasure_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_15_00");	//Я нашел все закопанные вещи.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_01_01");	//Тогда у тебя должно быть около ста золотых, золотая чаша, серебряное блюдо и амулет. Давай их сюда!
+	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_01_01");	//Тогда у тебя должно быть около ста золотых, золотая чаша, серебряное блюдо и амулет. Давай их сюда.
 	Info_ClearChoices(DIA_Addon_Greg_NW_FoundTreasure);
 	Info_AddChoice(DIA_Addon_Greg_NW_FoundTreasure,"У меня с собой их нет.",DIA_Addon_Greg_NW_FoundTreasure_not);
 	if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldCup) && Npc_HasItems(other,ItMi_SilverChalice) && Npc_HasItems(other,ItAm_Prot_Point_01))
@@ -1076,7 +1076,7 @@ func void DIA_Addon_Greg_NW_FoundTreasure_ja()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_ja_01_07");	//Вот твоя доля.
 	B_GiveInvItems(self,other,ItMi_Gold,30);
 	Info_ClearChoices(DIA_Addon_Greg_NW_FoundTreasure);
-	MIS_Addon_Greg_RakeCave = LOG_Success;
+	MIS_Addon_Greg_RakeCave = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Greg_RakeCave);
 };
 

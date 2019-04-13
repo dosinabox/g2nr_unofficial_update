@@ -115,12 +115,12 @@ func void DIA_Addon_Fortuno_Hi_HILFE()
 
 func void DIA_Addon_Fortuno_Hi_JOINT()
 {
-	AI_Output(other,self,"DIA_Addon_Fortuno_Hi_JOINT_15_00");	//Вот, возьми эту болотную траву.
+	AI_Output(other,self,"DIA_Addon_Fortuno_Hi_JOINT_15_00");	//Вот возьми эту болотную траву.
 	if(B_GiveInvItems(other,self,ItMi_Joint,1))
 	{
 		AI_UseItem(self,ItMi_Joint);
 	};
-	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_JOINT_13_01");	//Не зеленый, не зеленый, не зеленый, не сильный...
+	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_JOINT_13_01");	//Не зеленый, не сильный, не зеленый, не сильный...
 };
 
 func void DIA_Addon_Fortuno_Hi_GREEN()
@@ -131,7 +131,7 @@ func void DIA_Addon_Fortuno_Hi_GREEN()
 		AI_UseItem(self,ItMi_Addon_Joint_01);
 	};
 	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_GREEN_13_01");	//(приходя в себя) А-А-А-Х...
-	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_GREEN_13_02");	//Моя голова... кто я... Фортуно... Что случилось?
+	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_GREEN_13_02");	//Моя голова... кто... я... Фортуно... Что случилось?
 	Info_ClearChoices(DIA_Addon_Fortuno_Hi);
 	Fortuno_Geheilt_01 = TRUE;
 	B_GivePlayerXP(XP_Addon_Fortuno_01);
@@ -161,8 +161,8 @@ func int DIA_Addon_Fortuno_wer_Condition()
 func void DIA_Addon_Fortuno_wer_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_wer_15_00");	//Да, скажи мне, что с тобой случилось.
-	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_01");	//Когда-то я принадлежал к Братству Спящего. Тогда все было в порядке.
-	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_02");	//Да, мы все - осужденные преступники, но для нас, послушников, жизнь была беззаботной...
+	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_01");	//Когда-то я принадлежал к Братству Спящих. Тогда все было в порядке.
+	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_02");	//Да, все мы - осужденные преступники, но для нас, послушников, жизнь была беззаботной...
 	AI_Output(other,self,"DIA_Addon_Fortuno_wer_15_03");	//Эй, я тоже был заключенным в Долине Рудников. Расскажи что-нибудь новенькое.
 	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_04");	//Я... я ничего не помню. Тьма покрывает мою память...
 	AI_Output(other,self,"DIA_Addon_Fortuno_wer_15_05");	//Ну же, сосредоточься. Что случилось? Когда ты пришел в себя?
@@ -363,7 +363,7 @@ func int DIA_Addon_Fortuno_more_Condition()
 func void DIA_Addon_Fortuno_more_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_more_15_00");	//И?..
-	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_01");	//Ах! Я снова помню! Теперь я понимаю... О, Аданос, что же я наделал?
+	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_01");	//Ах! Я... Я снова помню! Теперь я понимаю... О, Аданос, что же я наделал?
 	AI_Output(other,self,"DIA_Addon_Fortuno_more_15_02");	//Да, что ты наделал? И самое главное - что наделал Ворон?
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_03");	//Я помог ему... заключить контракт. С НИМ. Ему были нужны различные зелья... Я варил их для него.
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_04");	//Он пытался открыть портал и попасть в храм.
@@ -377,7 +377,7 @@ func void DIA_Addon_Fortuno_more_Info()
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_12");	//Место упокоения жреца Аданоса. Она находится в шахте.
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_13");	//Еще я помню каменные таблички. Он считал, что они укажут ему путь.
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_14");	//И когда он сумел расшифровать то, что на них написано, я ему стал не нужен.
-	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_15");	//Он использовал на мне заклинание забвения... а ты освободил меня.
+	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_15");	//Он использовал на мне заклинания забвения... а ты освободил меня.
 	SC_KnowsFortunoInfos = TRUE;
 	B_LogEntry(TOPIC_Addon_RavenKDW,"Ворону нужен мощный артефакт из храма Аданоса.");
 	Log_AddEntry(TOPIC_Addon_RavenKDW,"Ворону зачем-то понадобилась гробница жреца древней религии, которую он раскопал в шахте.");

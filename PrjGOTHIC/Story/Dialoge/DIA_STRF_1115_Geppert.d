@@ -37,11 +37,11 @@ func int DIA_Geppert_HALLO_Condition()
 };
 
 
-var int kervo_gotstuff;
+var int Kervo_GotStuff;
 
 func void DIA_Geppert_HALLO_Info()
 {
-	if((Npc_IsDead(Kervo) == FALSE) && (KERVO_GOTSTUFF == FALSE))
+	if((Npc_IsDead(Kervo) == FALSE) && (Kervo_GotStuff == FALSE))
 	{
 		if(hero.guild == GIL_KDF)
 		{
@@ -51,24 +51,24 @@ func void DIA_Geppert_HALLO_Info()
 		{
 			CreateInvItems(Kervo,ItMi_Nugget,1);
 		};
-		KERVO_GOTSTUFF = TRUE;
+		Kervo_GotStuff = TRUE;
 	};
 	AI_Output(self,other,"DIA_Geppert_HALLO_10_00");	//Стой! Кто идет?
 	AI_Output(self,other,"DIA_Geppert_HALLO_10_01");	//Ты пришел не за тем, чтобы отправить меня назад, в шахту? Нет?
 	AI_Output(self,other,"DIA_Geppert_HALLO_10_02");	//Я должен разочаровать тебя. Я ни за что не вернусь назад.
 	Info_ClearChoices(DIA_Geppert_HALLO);
-	Info_AddChoice(DIA_Geppert_HALLO,"Что ты делаешь здесь?",dia_geppert_hallo_wasmachtihr);
-	Info_AddChoice(DIA_Geppert_HALLO,"Ты сбежавший каторжник, правильно?",dia_geppert_hallo_flucht);
+	Info_AddChoice(DIA_Geppert_HALLO,"Что ты делаешь здесь?",DIA_Geppert_HALLO_Wasmachtihr);
+	Info_AddChoice(DIA_Geppert_HALLO,"Ты сбежавший каторжник, правильно?",DIA_Geppert_HALLO_Flucht);
 };
 
-func void dia_geppert_hallo_flucht()
+func void DIA_Geppert_HALLO_Flucht()
 {
 	AI_Output(other,self,"DIA_Geppert_HALLO_Flucht_15_00");	//Ты сбежавший каторжник, правильно?
 	AI_Output(self,other,"DIA_Geppert_HALLO_Flucht_10_01");	//Какой ты проницательный. А почему еще, по-твоему, я забился в эту грязную дыру?
 	Info_ClearChoices(DIA_Geppert_HALLO);
 };
 
-func void dia_geppert_hallo_wasmachtihr()
+func void DIA_Geppert_HALLO_Wasmachtihr()
 {
 	AI_Output(other,self,"DIA_Geppert_HALLO_Wasmachtihr_15_00");	//Что ты делаешь здесь?
 	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))

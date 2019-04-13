@@ -271,7 +271,7 @@ instance DIA_Addon_Elvrich_WhereIsLucia(C_Info)
 
 func int DIA_Addon_Elvrich_WhereIsLucia_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && (MIS_LuciasLetter != LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && (MIS_LuciasLetter != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -350,7 +350,7 @@ func void DIA_Addon_Elvrich_LuciaLetter_Info()
 	Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Lucia,"Элврих не хочет верить, что Люсия ушла с бандитами добровольно. Несмотря на письмо, которое она ему написала, он все еще надеется на ее возвращение.");
 	B_GivePlayerXP(XP_Addon_LuciasLetter);
-	MIS_LuciasLetter = LOG_Success;
+	MIS_LuciasLetter = LOG_SUCCESS;
 };
 
 

@@ -1,5 +1,5 @@
 
-instance SLD_805_Cord(Npc_Default)
+instance Sld_805_Cord(Npc_Default)
 {
 	name[0] = "Корд";
 	guild = GIL_NONE;
@@ -12,7 +12,7 @@ instance SLD_805_Cord(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Cord,BodyTex_N,itar_sld_h);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Cord,BodyTex_N,ItAr_Sld_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

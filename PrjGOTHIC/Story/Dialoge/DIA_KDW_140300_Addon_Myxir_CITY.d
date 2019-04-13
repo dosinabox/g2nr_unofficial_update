@@ -74,7 +74,7 @@ var int DIA_Addon_Myxir_CITY_Teach_OneTime;
 
 func int DIA_Addon_Myxir_CITY_Teach_Condition()
 {
-	if((Myxir_Addon_TeachPlayer == TRUE) && (DIA_Addon_Myxir_CITY_Teach_NoPerm == FALSE) && (DIA_Addon_Myxir_Teach_NoPerm == FALSE) && (DIA_Addon_Myxir_ADW_Teach_NoPerm == FALSE))
+	if((DIA_Addon_Myxir_CITY_Teach_NoPerm == FALSE) && (DIA_Addon_Myxir_Teach_NoPerm == FALSE) && (DIA_Addon_Myxir_ADW_Teach_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -89,22 +89,22 @@ func void DIA_Addon_Myxir_CITY_Teach_Info()
 		B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_MyxirTeach);
 		DIA_Addon_Myxir_CITY_Teach_OneTime = TRUE;
 	};
-	if((player_talent_foreignlanguage[LANGUAGE_1] == FALSE) || (player_talent_foreignlanguage[LANGUAGE_2] == FALSE) || (player_talent_foreignlanguage[LANGUAGE_3] == FALSE))
+	if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE))
 	{
 		Info_ClearChoices(DIA_Addon_Myxir_CITY_Teach);
 		Info_AddChoice(DIA_Addon_Myxir_CITY_Teach,Dialog_Back,DIA_Addon_Myxir_CITY_Teach_BACK);
 	};
-	if(player_talent_foreignlanguage[LANGUAGE_1] == FALSE)
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
 	{
 		B_DIA_Addon_Myxir_TeachL1();
 		Info_AddChoice(DIA_Addon_Myxir_CITY_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_1,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_1)),DIA_Addon_Myxir_CITY_Teach_LANGUAGE_1);
 	}
-	else if((player_talent_foreignlanguage[LANGUAGE_2] == FALSE) && (player_talent_foreignlanguage[LANGUAGE_1] == TRUE))
+	else if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE))
 	{
 		B_DIA_Addon_Myxir_TeachL2();
 		Info_AddChoice(DIA_Addon_Myxir_CITY_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_2,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_2)),DIA_Addon_Myxir_CITY_Teach_LANGUAGE_2);
 	}
-	else if((player_talent_foreignlanguage[LANGUAGE_3] == FALSE) && (player_talent_foreignlanguage[LANGUAGE_1] == TRUE) && (player_talent_foreignlanguage[LANGUAGE_2] == TRUE))
+	else if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE) && (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == TRUE))
 	{
 		B_DIA_Addon_Myxir_TeachL3();
 		Info_AddChoice(DIA_Addon_Myxir_CITY_Teach,B_BuildLearnString(NAME_ADDON_LEARNLANGUAGE_3,B_GetLearnCostTalent(other,NPC_TALENT_FOREIGNLANGUAGE,LANGUAGE_3)),DIA_Addon_Myxir_CITY_Teach_LANGUAGE_3);

@@ -98,7 +98,7 @@ instance DIA_Ignaz_Traenke(C_Info)
 
 func int DIA_Ignaz_Traenke_Condition()
 {
-	if(MIS_Ignaz_Charm != LOG_Success)
+	if(MIS_Ignaz_Charm != LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -138,7 +138,7 @@ func void DIA_Ignaz_Experiment_Info()
 	AI_Output(other,self,"DIA_Ignaz_Add_15_00");	//Это имеет смысл, только если жертва ДЕЙСТВИТЕЛЬНО очень зла после драки.
 	AI_Output(other,self,"DIA_Ignaz_Add_15_01");	//(себе под нос) Здесь, в портовом квартале, люди привычны к дракам. Мне лучше поискать жертву где-нибудь в другом месте...
 	AI_Output(self,other,"DIA_Ignaz_Experiment_14_05");	//Да, ты все правильно понимаешь. Но чтобы разозлить кого-нибудь, достаточно просто атаковать - вовсе нет необходимости сбивать его с ног.
-	AI_Output(self,other,"DIA_Ignaz_Experiment_14_06");	//Только ты должен проделать все это без свидетелей - если неподалеку будут находиться другие люди, у тебя обязательно возникнут проблемы с лордом Андрэ.
+	AI_Output(self,other,"DIA_Ignaz_Experiment_14_06");	//Только ты должен проделать все это без свидетелей - если неподалеку будут находиться другие люди, у тебя обязательно возникнут проблемы с Лордом Андрэ.
 	AI_Output(self,other,"DIA_Ignaz_Experiment_14_07");	//Также не имеет смысла налагать это заклинание на того, кто атакует тебя. Выжди подходящий момент.
 };
 
@@ -234,7 +234,7 @@ func void DIA_Ignaz_Danach_Info()
 	Ignaz_TeachAlchemy = TRUE;
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTeacher,"Игнац может показать мне рецепты приготовления зелий. Он живет в портовом квартале.");
-	MIS_Ignaz_Charm = LOG_Success;
+	MIS_Ignaz_Charm = LOG_SUCCESS;
 	B_GivePlayerXP(XP_MIS_Ignaz_Charm);
 	CreateInvItems(self,ItSc_Charm,3);
 };
@@ -254,7 +254,7 @@ instance DIA_Ignaz_Trade(C_Info)
 
 func int DIA_Ignaz_Trade_Condition()
 {
-	if((MIS_Ignaz_Charm == LOG_Success) || Npc_KnowsInfo(other,DIA_Ignaz_Running))
+	if((MIS_Ignaz_Charm == LOG_SUCCESS) || Npc_KnowsInfo(other,DIA_Ignaz_Running))
 	{
 		return TRUE;
 	};
@@ -293,22 +293,22 @@ func void DIA_Ignaz_Teach_Info()
 	var int talente;
 	talente = 0;
 	AI_Output(other,self,"DIA_Ignaz_Teach_15_00");	//Обучи меня искусству алхимии.
-	if((player_talent_alchemy[POTION_Speed] == FALSE) || (player_talent_alchemy[POTION_Mana_01] == FALSE) || (player_talent_alchemy[POTION_Health_01] == FALSE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE))
 	{
 		Info_ClearChoices(DIA_Ignaz_Teach);
 		Info_AddChoice(DIA_Ignaz_Teach,Dialog_Back,DIA_Ignaz_Teach_BACK);
 	};
-	if(player_talent_alchemy[POTION_Speed] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE)
 	{
 		Info_AddChoice(DIA_Ignaz_Teach,B_BuildLearnString("Зелье ускорения",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),DIA_Ignaz_Teach_Speed);
 		talente = talente + 1;
 	};
-	if(player_talent_alchemy[POTION_Mana_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
 		Info_AddChoice(DIA_Ignaz_Teach,B_BuildLearnString("Эссенция маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Ignaz_Teach_Mana);
 		talente = talente + 1;
 	};
-	if(player_talent_alchemy[POTION_Health_01] == FALSE)
+	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
 		Info_AddChoice(DIA_Ignaz_Teach,B_BuildLearnString("Лечебная эссенция",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Ignaz_Teach_Health);
 		talente = talente + 1;

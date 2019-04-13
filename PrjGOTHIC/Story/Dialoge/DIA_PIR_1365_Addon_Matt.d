@@ -119,7 +119,7 @@ func void DIA_Addon_Matt_PERM_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_03");	//Сейчас в лагере все спокойно. Так что я собираюсь немного отдохнуть.
-		AI_Output(self,other,"DIA_Addon_Matt_Job_10_04");	//На твоем месте, кстати, я бы сделал то же самое.
+		AI_Output(self,other,"DIA_Addon_Matt_Job_10_04");	//На твоем месте, кстати, я бы сделал те же самое.
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_05");	//Бандиты здесь, так что ситуация может измениться быстрее, чем мы предполагали.
 	};
 };

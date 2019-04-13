@@ -58,7 +58,7 @@ func void DIA_Till_HALLO_Info()
 func void DIA_Till_HALLO_selber()
 {
 	AI_Output(other,self,"DIA_Till_HALLO_selber_15_00");	//Ты командуешь здесь?
-	AI_Output(self,other,"DIA_Till_HALLO_selber_03_01");	//Э-э. Нет, я всего лишь сын Секоба. Но когда старика больше не будет с нами, вся земля, что ты видишь вокруг, перейдет ко мне.
+	AI_Output(self,other,"DIA_Till_HALLO_selber_03_01");	//Э-э. Нет, я всего лишь сын Секоба. Но когда старика больше не будет с нами, все земля, что ты видишь вокруг, перейдет ко мне.
 	AI_Output(other,self,"DIA_Till_HALLO_selber_15_02");	//Потрясающе!
 	Info_ClearChoices(DIA_Till_HALLO);
 };
@@ -91,8 +91,8 @@ func int DIA_Till_FELDARBEITER_Condition()
 
 func void DIA_Till_FELDARBEITER_Info()
 {
-	AI_Output(other,self,"DIA_Till_FELDARBEITER_15_00");	//Вы всегда так обращаетесь со своими работниками?
-	AI_Output(self,other,"DIA_Till_FELDARBEITER_03_01");	//Конечно - иначе нельзя. Если не поддерживать дисциплину, никто не будет работать - это известное правило.
+	AI_Output(other,self,"DIA_Till_FELDARBEITER_15_00");	//Вы так всегда обращаетесь со своими работниками?
+	AI_Output(self,other,"DIA_Till_FELDARBEITER_03_01");	//Конечно  - иначе нельзя. Если не поддерживать дисциплину, никто не будет - это известное правило.
 };
 
 
@@ -178,7 +178,7 @@ func int DIA_Till_WARUMNICHTSLD_Condition()
 func void DIA_Till_WARUMNICHTSLD_Info()
 {
 	AI_Output(other,self,"DIA_Till_WARUMNICHTSLD_15_00");	//А разве наемники не помогают вам защищаться от ополчения?
-	AI_Output(self,other,"DIA_Till_WARUMNICHTSLD_03_01");	//Да пока наемники почешутся, я уже успею прогнать всех воров.
+	AI_Output(self,other,"DIA_Till_WARUMNICHTSLD_03_01");	//Да пока наемники почешутся, я уже успеваю прогнать всех воров.
 };
 
 
@@ -331,7 +331,7 @@ instance DIA_Till_BRONKOWIEDERANARBEIT(C_Info)
 
 func int DIA_Till_BRONKOWIEDERANARBEIT_Condition()
 {
-	if((MIS_Sekob_Bronko_eingeschuechtert == LOG_Success) && (DIA_Till_BRONKOZURARBEIT_noPerm == TRUE) && (Kapitel < 5))
+	if((MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS) && (DIA_Till_BRONKOZURARBEIT_noPerm == TRUE) && (Kapitel < 5))
 	{
 		return TRUE;
 	};
@@ -341,7 +341,7 @@ func void DIA_Till_BRONKOWIEDERANARBEIT_Info()
 {
 	AI_Output(other,self,"DIA_Till_BRONKOWIEDERANARBEIT_15_00");	//Бронко вернулся к работе.
 	AI_Output(self,other,"DIA_Till_BRONKOWIEDERANARBEIT_03_01");	//Правда? Это превосходно.
-	AI_Output(other,self,"DIA_Till_BRONKOWIEDERANARBEIT_15_02");	//Да. И теперь я хочу получить мои деньги.
+	AI_Output(other,self,"DIA_Till_BRONKOWIEDERANARBEIT_15_02");	//Да. И тепрь я хочу получить мои деньги.
 	IntToFloat(Till_Angebot);
 	if(Till_Angebot <= 50)
 	{
@@ -382,7 +382,7 @@ func void DIA_Till_PERMKAP1_Info()
 {
 	if(Kapitel == 5)
 	{
-		if((MIS_bringRosiBackToSekob != LOG_Success) && (Rosi_FleeFromSekob_Kap5 == TRUE))
+		if((MIS_bringRosiBackToSekob != LOG_SUCCESS) && (Rosi_FleeFromSekob_Kap5 == TRUE))
 		{
 			AI_Output(other,self,"DIA_Till_PERMKAP1_15_00");	//А до дома-то далеко, а? Папочка не сможет помочь тебе здесь.
 			AI_Output(self,other,"DIA_Till_PERMKAP1_03_01");	//Когда-нибудь я набью тебе морду.
@@ -399,7 +399,7 @@ func void DIA_Till_PERMKAP1_Info()
 	}
 	else if(Till_HatSeinGeldBehalten == TRUE)
 	{
-		AI_Output(other,self,"DIA_Till_PERMKAP1_15_06");	//Ах ты, жалкий маленький...
+		AI_Output(other,self,"DIA_Till_PERMKAP1_15_06");	//Ах ты жалкий маленький...
 		AI_Output(self,other,"DIA_Till_PERMKAP1_03_07");	//Уходи.
 		AI_StopProcessInfos(self);
 	}

@@ -98,7 +98,7 @@ instance DIA_Daron_Paladine(C_Info)
 	condition = DIA_Daron_Paladine_Condition;
 	information = DIA_Daron_Paladine_Info;
 	permanent = FALSE;
-	description = "Мне нужно поговорить с паладинами ...";
+	description = "Мне нужно поговорить с паладинами. Ты можешь помочь мне в этом?";
 };
 
 
@@ -114,8 +114,8 @@ func void DIA_Daron_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Daron_Paladine_15_00");	//Мне нужно поговорить с паладинами. Ты можешь помочь мне в этом?
 	AI_Output(self,other,"DIA_Daron_Paladine_10_01");	//Ну, для этого ты должен иметь доступ в верхний квартал города. Однако входить туда позволено только гражданам и городской страже.
-	AI_Output(self,other,"DIA_Daron_Paladine_10_02");	//Ну и, конечно же, нам, магам Огня.
-	AI_Output(other,self,"DIA_Daron_Paladine_15_03");	//Как я могу стать магом Огня?
+	AI_Output(self,other,"DIA_Daron_Paladine_10_02");	//Ну и, конечно же, нам, Магам Огня.
+	AI_Output(other,self,"DIA_Daron_Paladine_15_03");	//Как я могу стать Магом Огня?
 	AI_Output(self,other,"DIA_Daron_Paladine_10_04");	//Ты должен вступить в наш орден в качестве послушника. А по прошествии некоторого времени, возможно, ты будешь принят в ряды магов.
 	AI_Output(self,other,"DIA_Daron_Paladine_10_05");	//Однако, этот путь долог, полон тяжелой работы и утомительного обучения.
 };
@@ -144,7 +144,7 @@ func void DIA_Daron_AboutSegen_Info()
 {
 	AI_Output(other,self,"DIA_Daron_AboutSegen_15_00");	//Я пришел, чтобы получить твое благословение!
 	AI_Output(self,other,"DIA_Daron_AboutSegen_10_01");	//Это хорошо - тогда ты, вероятно, захочешь пожертвовать золото святой церкви Инноса, правда?
-	AI_Output(other,self,"DIA_Daron_AboutSegen_15_02");	//Вообще-то я хотел получить твое благословение, чтобы поступить в ученики к одному из мастеров в нижней части города...
+	AI_Output(other,self,"DIA_Daron_AboutSegen_15_02");	//Вообще-то, я хотел получить твое благословение, чтобы поступить в ученики к одному из мастеров в нижней части города...
 	if(Daron_Segen == TRUE)
 	{
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_03");	//Но я уже дал тебе мое благословение, сын мой.
@@ -226,7 +226,7 @@ instance DIA_Daron_Woher(C_Info)
 	condition = DIA_Daron_Woher_Condition;
 	information = DIA_Daron_Woher_Info;
 	permanent = FALSE;
-	description = "Откуда ты?";
+	description = "Откуда ты пришел?";
 };
 
 
@@ -271,7 +271,7 @@ func int DIA_Daron_Innos_Condition()
 func void DIA_Daron_Innos_Info()
 {
 	AI_Output(other,self,"DIA_Daron_Innos_15_00");	//Расскажи мне об Инносе.
-	AI_Output(self,other,"DIA_Daron_Innos_10_01");	//Иннос, наш всемогущий владыка - наш свет и огонь.
+	AI_Output(self,other,"DIA_Daron_Innos_10_01");	//Иннос, наш всемогущий владыка, - наш свет и огонь.
 	AI_Output(self,other,"DIA_Daron_Innos_10_02");	//Он выбирал людей в качестве проводников своей воли на земле. Он дает им магию и законы.
 	AI_Output(self,other,"DIA_Daron_Innos_10_03");	//Мы говорим и действуем от его имени. Мы осуществляем правосудие согласно его воле и проповедуем его слово.
 };
@@ -299,7 +299,7 @@ func int DIA_Daron_Kloster_Condition()
 func void DIA_Daron_Kloster_Info()
 {
 	AI_Output(other,self,"DIA_Daron_Kloster_15_00");	//Расскажи мне подробнее о монастыре.
-	AI_Output(self,other,"DIA_Daron_Kloster_10_01");	//Мы обучаем наших студентов всем формам магии. Но сила магов Огня не ограничивается только магией.
+	AI_Output(self,other,"DIA_Daron_Kloster_10_01");	//Мы обучаем наших студентов всем формам магии. Но сила Магов Огня не ограничивается только магией.
 	AI_Output(self,other,"DIA_Daron_Kloster_10_02");	//Мы также хорошо разбираемся в искусстве алхимии и создании рун.
 	AI_Output(self,other,"DIA_Daron_Kloster_10_03");	//Еще мы делаем превосходное вино.
 };
@@ -353,14 +353,14 @@ func int DIA_Addon_Daron_GuildHelp_Condition()
 func void DIA_Addon_Daron_GuildHelp_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_00");	//Я слышал, у вас пропала ценная статуэтка.
-	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_01");	//Неужели? Об этом знал только маг Воды Ватрас.
+	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_01");	//Неужели? Об этом знал только маг воды Ватрас.
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_02");	//В чем проблема?
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_03");	//С континента в монастырь была отправлена драгоценная статуэтка. Но до нас она так и не дошла.
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_04");	//Корабль был ограблен?
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_05");	//Нет. Он в целости и сохранности прибыл в Хоринис. Я встретил его и забрал статуэтку.
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_06");	//Но когда я возвращался в монастырь, на меня напали гоблины и отобрали ее у меня.
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_07");	//(сердито) И не надо на меня так смотреть. Маги, к твоему сведению, тоже люди.
-	MIS_Addon_Vatras_Go2Daron = LOG_Success;
+	MIS_Addon_Vatras_Go2Daron = LOG_SUCCESS;
 	MIS_Addon_Daron_GetStatue = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Daron_GuildHelp);
 	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Значит, сейчас она у гоблинов?",DIA_Addon_Daron_GuildHelp_gobbos);
@@ -393,7 +393,7 @@ func void DIA_Addon_Daron_GuildHelp_woTaverne()
 {
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_woTaverne_15_00");	//Таверна Орлана? Где она находится?
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_woTaverne_10_01");	//Если ты выйдешь из города через эти ворота и пойдешь прямо по дороге, ты дойдешь до отдельно стоящего дома.
-	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_woTaverne_10_02");	//Это и есть таверна Орлана, 'Мертвая гарпия'.
+	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_woTaverne_10_02");	//Это и есть таверна Орлана, 'Мертвая Гарпия'.
 };
 
 func void DIA_Addon_Daron_GuildHelp_auftrag()
@@ -447,13 +447,13 @@ instance DIA_Addon_Daron_ReturnedStatue(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Daron_ReturnedStatue_Condition;
 	information = DIA_Addon_Daron_ReturnedStatue_Info;
-	description = "Я отнес твою статуэтку в монастырь.";
+	description = "Я отнес твою статуэтку в монастырь. Можешь быть спокоен.";
 };
 
 
 func int DIA_Addon_Daron_ReturnedStatue_Condition()
 {
-	if((DIA_Gorax_GOLD_perm == TRUE) && (MIS_Addon_Daron_GetStatue == LOG_Success))
+	if((DIA_Gorax_GOLD_perm == TRUE) && (MIS_Addon_Daron_GetStatue == LOG_SUCCESS))
 	{
 		return TRUE;
 	};

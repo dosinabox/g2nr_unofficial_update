@@ -62,9 +62,9 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(Topic_BaboTrain,0,Babo_Training,2);
 	B_CloseTopic(Topic_KarrasCharm,MIS_KarrasVergessen,0,2);
 	B_CloseTopic(TOPIC_FireContest,0,Fire_Contest,2);
-	B_CloseTopic(TOPIC_Golem,mis_golem,0,2);
-	B_CloseTopic(TOPIC_Rune,mis_rune,0,2);
-	B_CloseTopic(TOPIC_Schnitzeljagd,mis_schnitzeljagd,0,2);
+	B_CloseTopic(TOPIC_Golem,MIS_GOLEM,0,2);
+	B_CloseTopic(TOPIC_Rune,MIS_RUNE,0,2);
+	B_CloseTopic(TOPIC_Schnitzeljagd,MIS_SCHNITZELJAGD,0,2);
 	B_CloseTopic(Topic_BaboGaertner,MIS_HelpBabo,0,2);
 	B_CloseTopic(Topic_DyrianDrin,MIS_HelpDyrian,0,2);
 	B_CloseTopic(Topic_OpolosStudy,MIS_HelpOpolos,0,2);
@@ -83,7 +83,7 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_PepeWolves,MIS_Pepe_KillWolves,0,6);
 	B_CloseTopic(TOPIC_KickBullco,MIS_Pepe_KickBullco,0,4);
 	B_CloseTopic(TOPIC_Frieden,MIS_Lee_Friedensangebot,0,6);
-	B_CloseTopic(Topic_MISOLDWORLD,mis_oldworld,0,3);
+	B_CloseTopic(Topic_MISOLDWORLD,MIS_OLDWORLD,0,3);
 	B_CloseTopic(TOPIC_ScoutMine,MIS_ScoutMine,0,3);
 	B_CloseTopic(TOPIC_RescueGorn,MIS_RescueGorn,0,3);
 	B_CloseTopic(TOPIC_FajethKillSnapper,MIS_Fajeth_Kill_Snapper,0,3);

@@ -52,7 +52,7 @@ instance DIA_Addon_Merdarion_Aufgabe(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Merdarion_Aufgabe_Condition;
 	information = DIA_Addon_Merdarion_Aufgabe_Info;
-	description = "Чем ты занимаешься здесь?";
+	description = "Что ты хочешь здесь сделать?";
 };
 
 
@@ -168,7 +168,7 @@ instance DIA_Addon_Merdarion_PERM(C_Info)
 	condition = DIA_Addon_Merdarion_PERM_Condition;
 	information = DIA_Addon_Merdarion_PERM_Info;
 	permanent = TRUE;
-	description = "Ты можешь научить меня чему-нибудь из области магии?";
+	description = "Ты можешь научить меня магии?";
 };
 
 
@@ -199,7 +199,7 @@ instance DIA_Addon_Merdarion_Teleportstein(C_Info)
 
 func int DIA_Addon_Merdarion_Teleportstein_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) && (MIS_Addon_Lares_Ornament2Saturas == LOG_Success))
+	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) && (MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -273,7 +273,7 @@ func void DIA_Addon_Merdarion_WHereOtherTeleports_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_WHereOtherTeleports_15_00");	//Где остальные телепортационные камни?
 	AI_Output(self,other,"DIA_Addon_Merdarion_WHereOtherTeleports_06_01");	//Мы пока что нашли только один, где-то посередине Хориниса.
-	AI_Output(self,other,"DIA_Addon_Merdarion_WHereOtherTeleports_06_02");	//Рядом с таверной 'Мертвая гарпия'.
+	AI_Output(self,other,"DIA_Addon_Merdarion_WHereOtherTeleports_06_02");	//Рядом с таверной 'Мертвая Гарпия'.
 	B_LogEntry(TOPIC_Addon_TeleportsNW,"Рядом с таверной 'Мертвая Гарпия' должен быть еще один телепорт.");
 };
 

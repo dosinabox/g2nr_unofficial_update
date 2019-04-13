@@ -1,5 +1,5 @@
 
-instance BAU_900_Onar(Npc_Default)
+instance Bau_900_Onar(Npc_Default)
 {
 	name[0] = "Онар";
 	guild = GIL_BAU;

@@ -1,16 +1,16 @@
 
-instance DIA_MILTENNW_EXIT(C_Info)
+instance DIA_MiltenNW_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
-	condition = dia_miltennw_exit_condition;
-	information = dia_miltennw_exit_info;
+	condition = DIA_MiltenNW_EXIT_Condition;
+	information = DIA_MiltenNW_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_miltennw_exit_condition()
+func int DIA_MiltenNW_EXIT_Condition()
 {
 	if(Kapitel < 3)
 	{
@@ -18,7 +18,7 @@ func int dia_miltennw_exit_condition()
 	};
 };
 
-func void dia_miltennw_exit_info()
+func void DIA_MiltenNW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -74,7 +74,7 @@ func void DIA_MiltenNW_KAP3_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_00");	//(не веря) Я не могу поверить в это. Ты действительно стал паладином?
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_01");	//Похоже на то.
-		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_02");	//(в эйфории) Если такие, как ты, становятся паладинами, то прихвостням Белиара нужно держать ухо востро.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_02");	//(в эйфории) Если такие как ты становятся паладинами, то прихвостням Белиара нужно держать ухо востро.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_03");	//Какая-то горстка орков для тебя не проблема.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_05");	//Я знаю, но все равно хорошо, что ты на нашей стороне.
@@ -93,7 +93,7 @@ func void DIA_MiltenNW_KAP3_Hello_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_15");	//Я рад, конечно, и судя по тому, как ты выглядишь, все орки должны бояться тебя.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_16");	//Дело не только в орках.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_17");	//Я знаю, но, тем не менее, они доставляют проблемы. А ты важная птица.
-		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_18");	//Ты победил Спящего. Нам всем может понадобиться твоя помощь однажды.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_18");	//Ты победил Спящего. Нам всем однажды может понадобиться твоя помощь.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_19");	//Ох, ладно.
 	};
 };
@@ -151,7 +151,7 @@ func void DIA_MiltenNW_FourFriends_Info()
 	if(Npc_IsDead(PC_Fighter_NW_vor_DJG) == FALSE)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_01");	//Горн, похоже, ничуть не изменился после заключения в тюрьме Гаронда.
-		if(MIS_RescueGorn != LOG_Success)
+		if(MIS_RescueGorn != LOG_SUCCESS)
 		{
 			AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_02");	//Как ему удалось выбраться?
 			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_03");	//Мне пришлось солгать Гаронду, так что он снял все обвинения.
@@ -208,7 +208,7 @@ func void DIA_MiltenNW_KAP3_Entry_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_03_02");	//Я не могу пустить тебя в монастырь. У меня будут проблемы с Высшим Советом.
-		AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_03_03");	//Без разрешения верховных магов я никого не могу пустить в монастырь.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_03_03");	//Без разрешения верховных магов, я никого не могу пустить в монастырь.
 		Info_ClearChoices(DIA_MiltenNW_KAP3_Entry);
 		Info_AddChoice(DIA_MiltenNW_KAP3_Entry,Dialog_Back,DIA_MiltenNW_KAP3_Entry_BACK);
 		Info_AddChoice(DIA_MiltenNW_KAP3_Entry,"Но это важно!",DIA_MiltenNW_KAP3_Entry_Important);
@@ -268,7 +268,7 @@ func int DIA_MiltenNW_KAP3_NovizenChase_Condition()
 func void DIA_MiltenNW_KAP3_NovizenChase_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KAP3_NovizenChase_15_00");	//Ты знаешь, где Педро?
-	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_01");	//Ты думаешь, я стоял бы здесь, если бы знал, где скрывается этот предатель?
+	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_01");	//Ты думаешь, я стоял бы здесь если бы я знал, где скрывается этот предатель?
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_02");	//Он должен заплатить за то, что сделал. Я надеюсь, нам удастся вернуть Глаз.
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_03");	//Ты должен помочь нам. Найди его и принеси назад Глаз Инноса.
 };
@@ -295,24 +295,24 @@ func int DIA_MiltenNW_KAP3_Perm_Condition()
 
 func void DIA_MiltenNW_KAP3_Perm_Info()
 {
-	AI_Output(other,self,"DIA_MiltenNW_KAP3_Perm_15_00");	//Ты знаешь что-нибудь о людях в черных рясах?
-	AI_Output(self,other,"DIA_MiltenNW_KAP3_Perm_03_01");	//Нет, но у меня плохое предчувствие насчет их.
+	AI_Output(other,self,"DIA_MiltenNW_KAP3_Perm_15_00");	//Ты знаешь, что-нибудь о людях в черных рясах?
+	AI_Output(self,other,"DIA_MiltenNW_KAP3_Perm_03_01");	//Нет, но у меня плохое предчувствие насчет них.
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Perm_03_02");	//Будь осторожен, если наткнешься на них.
 };
 
 
-instance DIA_MILTENNW_KAP4_EXIT(C_Info)
+instance DIA_MiltenNW_KAP4_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
-	condition = dia_miltennw_kap4_exit_condition;
-	information = dia_miltennw_kap4_exit_info;
+	condition = DIA_MiltenNW_KAP4_EXIT_Condition;
+	information = DIA_MiltenNW_KAP4_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_miltennw_kap4_exit_condition()
+func int DIA_MiltenNW_KAP4_EXIT_Condition()
 {
 	if(Kapitel == 4)
 	{
@@ -320,7 +320,7 @@ func int dia_miltennw_kap4_exit_condition()
 	};
 };
 
-func void dia_miltennw_kap4_exit_info()
+func void DIA_MiltenNW_KAP4_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -367,23 +367,23 @@ func void DIA_MiltenNW_KAP4_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_09");	//Нет, ситуация все еще очень серьезная. Все, что нам остается - это верить в Инноса.
+		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_09");	//Нет, ситуация все еще очень серьезная. Все, что нам остается, - это верить в Инноса.
 	};
 };
 
 
-instance DIA_MILTENNW_KAP5_EXIT(C_Info)
+instance DIA_MiltenNW_KAP5_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
-	condition = dia_miltennw_kap5_exit_condition;
-	information = dia_miltennw_kap5_exit_info;
+	condition = DIA_MiltenNW_KAP5_EXIT_Condition;
+	information = DIA_MiltenNW_KAP5_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_miltennw_kap5_exit_condition()
+func int DIA_MiltenNW_KAP5_EXIT_Condition()
 {
 	if(Kapitel == 5)
 	{
@@ -391,7 +391,7 @@ func int dia_miltennw_kap5_exit_condition()
 	};
 };
 
-func void dia_miltennw_kap5_exit_info()
+func void DIA_MiltenNW_KAP5_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -419,11 +419,11 @@ func int DIA_MiltenNW_AllDragonsDead_Condition()
 func void DIA_MiltenNW_AllDragonsDead_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_AllDragonsDead_15_00");	//Я убил всех драконов.
-	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_01");	//Правда? Значит, есть еще проблеск надежды на горизонте. Теперь все, что нам остается - это отрубить голову Злу.
+	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_01");	//Правда? Значит, есть еще проблеск надежды на горизонте. Теперь все, что нам остается, - это отрубить голову Злу.
 	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_02");	//Если ты действительно сделал это, мы обязательно победим в этой войне.
-	AI_Output(other,self,"DIA_MiltenNW_AllDragonsDead_15_03");	//Я?
-	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_04");	//Конечно же, ты. Кто же еще?
-	if(MiltenNW_IsOnBoard == LOG_Success)
+	AI_Output(other,self,"DIA_MiltenNW_AllDragonsDead_15_03");	//Кому, мне?
+	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_04");	//Тебе, конечно же. Кому же еще?
+	if(MiltenNW_IsOnBoard == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_05");	//Мы должны выступать как можно скорее, иначе может стать слишком поздно.
 	};
@@ -479,7 +479,7 @@ var int SCToldMiltenHeKnowWhereEnemy;
 func void DIA_MiltenNW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KnowWhereEnemy_15_00");	//Я знаю, где скрывается враг. На небольшом острове, недалеко отсюда.
-	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_01");	//Это наш шанс. Мы должны отправляться туда немедленно и уничтожить Зло раз и навсегда.
+	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_01");	//Это наш шанс. Мы должны отправляться туда немедленно и уничтожить зло раз и навсегда.
 	SCToldMiltenHeKnowWhereEnemy = TRUE;
 	Log_CreateTopic(Topic_Crew,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Crew,LOG_Running);
@@ -520,7 +520,7 @@ func void DIA_MiltenNW_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_MiltenNW_KnowWhereEnemy_Yes_15_01");	//Встретимся в гавани. Жди меня там.
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_Yes_03_02");	//Хорошо. Я буду там, когда ты будешь готов.
 	self.flags = NPC_FLAG_IMMORTAL;
-	MiltenNW_IsOnBoard = LOG_Success;
+	MiltenNW_IsOnBoard = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Crewmember_Success);
 	Crewmember_Count = Crewmember_Count + 1;
 	if(MIS_ReadyforChapter6 == TRUE)
@@ -586,7 +586,7 @@ instance DIA_MiltenNW_LeaveMyShip(C_Info)
 
 func int DIA_MiltenNW_LeaveMyShip_Condition()
 {
-	if((MiltenNW_IsOnBoard == LOG_Success) && (MIS_ReadyforChapter6 == FALSE))
+	if((MiltenNW_IsOnBoard == LOG_SUCCESS) && (MIS_ReadyforChapter6 == FALSE))
 	{
 		return TRUE;
 	};
@@ -615,7 +615,7 @@ instance DIA_MiltenNW_StillNeedYou(C_Info)
 
 func int DIA_MiltenNW_StillNeedYou_Condition()
 {
-	if(((MiltenNW_IsOnBoard == LOG_OBSOLETE) || (MiltenNW_IsOnBoard == LOG_Failed)) && (Crewmember_Count < Max_Crew))
+	if(((MiltenNW_IsOnBoard == LOG_OBSOLETE) || (MiltenNW_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
 		return TRUE;
 	};
@@ -624,10 +624,10 @@ func int DIA_MiltenNW_StillNeedYou_Condition()
 func void DIA_MiltenNW_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_StillNeedYou_15_00");	//Ты нужен мне.
-	AI_Output(self,other,"DIA_MiltenNW_StillNeedYou_03_01");	//Твое решение делает мне честь. Вперед, мы не можем терять время!
+	AI_Output(self,other,"DIA_MiltenNW_StillNeedYou_03_01");	//Твое решение делает мне честь. Вперед, мы не можем терять времени!
 	AI_Output(self,other,"DIA_MiltenNW_StillNeedYou_03_02");	//Я отправляюсь в порт. Встретимся там.
 	self.flags = NPC_FLAG_IMMORTAL;
-	MiltenNW_IsOnBoard = LOG_Success;
+	MiltenNW_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count = Crewmember_Count + 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
@@ -667,22 +667,22 @@ func void DIA_MiltenNW_Teach_Info()
 	{
 		Info_ClearChoices(DIA_MiltenNW_Teach);
 		Info_AddChoice(DIA_MiltenNW_Teach,Dialog_Back,DIA_MiltenNW_Teach_BACK);
-		if(player_talent_runes[SPL_WindFist] == FALSE)
+		if(PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE)
 		{
 			Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_MiltenNW_Teach_Windfist);
 		};
-		if(player_talent_runes[SPL_InstantFireball] == FALSE)
+		if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
 		{
 			Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_MiltenNW_Teach_Feuerball);
 		};
-		if(player_talent_runes[SPL_Icebolt] == FALSE)
+		if(PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE)
 		{
 			Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_MiltenNW_Teach_Eispfeil);
 		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_MiltenNW_Teach_03_01");	//Ты все еще не достиг второго Круга магии. Я ничему не могу научить тебя.
+		AI_Output(self,other,"DIA_MiltenNW_Teach_03_01");	//Ты все еще не достиг второго круга магии. Я ничему не могу научить тебя.
 	};
 };
 

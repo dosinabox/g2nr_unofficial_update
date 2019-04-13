@@ -64,7 +64,7 @@ func int DIA_Rukhar_WASMACHSTDU_Condition()
 func void DIA_Rukhar_WASMACHSTDU_Info()
 {
 	AI_Output(other,self,"DIA_Rukhar_WASMACHSTDU_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_01");	//Еще несколько недель назад вкалывал как раб на ферме Онара.
+	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_01");	//Еще несколько недель назад  вкалывал как раб на ферме Онара.
 	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_02");	//Но однажды я понял, что больше так не выдержу и сбежал оттуда.
 	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_03");	//Теперь я сам себе хозяин. Все, что принадлежит мне, находится в этом сундуке. И больше мне ничего не нужно.
 	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_04");	//Не хочешь посостязаться со мной?
@@ -157,8 +157,8 @@ func void DIA_Rukhar_RANDOLPHWILL_Info()
 {
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_15_00");	//Я нашел человека, который хочет сразиться с тобой.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_01");	//Кто это?
-	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_15_02");	//Рэндольф.
-	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_03");	//Хо-хо-хо. Рэндольф хвастун? Ну хорошо. Почему бы и нет.
+	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_15_02");	//Рендольф.
+	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_03");	//Хо хо. Рендольф хвастун? Хорошо. Почему бы и нет.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_04");	//Пришли этого слизняка ко мне, и сделай ставку.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_05");	//Ты можешь выставить его еще раз не раньше чем через 2 дня. Кто знает? Может, тебе повезет, и он успеет протрезветь.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_06");	//Какова твоя ставка?
@@ -173,7 +173,7 @@ func void DIA_Rukhar_RANDOLPHWILL_Info()
 func void DIA_Rukhar_RANDOLPHWILL_annehmen()
 {
 	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
-	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_annehmen_12_00");	//Я возьму твою ставку и подержу ее у себя, пока состязание не будет окончено, хорошо?
+	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_annehmen_12_00");	//Я возьму твою ставку и подержу е у себя, пока состязание не будет окончено, хорошо?
 	DIA_Rukhar_RANDOLPHWILL_noPerm = TRUE;
 };
 
@@ -189,14 +189,14 @@ func void DIA_Rukhar_RANDOLPHWILL_mehr()
 
 func void DIA_Rukhar_RANDOLPHWILL_nix()
 {
-	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_nix_15_00");	//Ноль.
+	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_nix_15_00");	//Ноль
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_nix_12_01");	//Тогда нам лучше забыть о состязании.
 	AI_StopProcessInfos(self);
 };
 
 func void DIA_Rukhar_RANDOLPHWILL_10()
 {
-	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_10_15_00");	//10 золотых.
+	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_10_15_00");	//10 золотых
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_10_12_01");	//Да ладно, ты, должно быть, шутишь. Еще несколько золотых не разорят тебя.
 	Rukhar_Einsatz = 10;
 	Rukhar_Gewinn = 20;
@@ -207,7 +207,7 @@ func void DIA_Rukhar_RANDOLPHWILL_10()
 
 func void DIA_Rukhar_RANDOLPHWILL_20()
 {
-	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_20_15_00");	//20.
+	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_20_15_00");	//20
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_20_12_01");	//Если ты хочешь сделать ставку, то делай уж это по-человечески.
 	Rukhar_Einsatz = 20;
 	Rukhar_Gewinn = 40;
@@ -218,7 +218,7 @@ func void DIA_Rukhar_RANDOLPHWILL_20()
 
 func void DIA_Rukhar_RANDOLPHWILL_50()
 {
-	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_50_15_00");	//50.
+	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_50_15_00");	//50
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_50_12_01");	//Не робей. Смелее.
 	Rukhar_Einsatz = 50;
 	Rukhar_Gewinn = 100;
@@ -229,8 +229,8 @@ func void DIA_Rukhar_RANDOLPHWILL_50()
 
 func void DIA_Rukhar_RANDOLPHWILL_100()
 {
-	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_100_15_00");	//100.
-	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_100_12_01");	//Вот это уже мне нравится.
+	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_100_15_00");	//100
+	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_100_12_01");	//Вот это мне уже нравится.
 	Rukhar_Einsatz = 100;
 	Rukhar_Gewinn = 200;
 	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
@@ -265,7 +265,7 @@ func void DIA_Rukhar_ICHSEHEDICH_Info()
 	AI_Output(other,self,"DIA_Rukhar_ICHSEHEDICH_15_00");	//Вот моя ставка.
 	if(B_GiveInvItems(other,self,ItMi_Gold,Rukhar_Einsatz))
 	{
-		AI_Output(self,other,"DIA_Rukhar_ICHSEHEDICH_12_01");	//Хорошо. Но только не тяни, приведи Рэндольфа побыстрее, слышишь?
+		AI_Output(self,other,"DIA_Rukhar_ICHSEHEDICH_12_01");	//Хорошо. Но только не тяни, приведи Рендольфа побыстрее, слышишь?
 		DIA_Rukhar_ICHSEHEDICH_noPerm = TRUE;
 		MIS_Rukhar_Wettkampf = LOG_Running;
 		B_GivePlayerXP(XP_Ambient);
@@ -291,7 +291,7 @@ instance DIA_Rukhar_GELDZURUECK(C_Info)
 
 func int DIA_Rukhar_GELDZURUECK_Condition()
 {
-	if((MIS_Rukhar_Wettkampf == LOG_Success) && (Rukhar_Won_Wettkampf == TRUE))
+	if((MIS_Rukhar_Wettkampf == LOG_SUCCESS) && (Rukhar_Won_Wettkampf == TRUE))
 	{
 		return TRUE;
 	};
@@ -318,7 +318,7 @@ instance DIA_Rukhar_HAENSELN(C_Info)
 
 func int DIA_Rukhar_HAENSELN_Condition()
 {
-	if((MIS_Rukhar_Wettkampf == LOG_Success) && (Rukhar_Won_Wettkampf == FALSE))
+	if((MIS_Rukhar_Wettkampf == LOG_SUCCESS) && (Rukhar_Won_Wettkampf == FALSE))
 	{
 		return TRUE;
 	};
@@ -369,7 +369,7 @@ func int DIA_Rukhar_Perm_Condition()
 func void DIA_Rukhar_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Rukhar_Perm_15_00");	//Ничего интересного не произошло?
-	AI_Output(self,other,"DIA_Rukhar_Perm_12_01");	//Ничего такого, о чем бы я знал. Никто ничего мне не рассказывает.
+	AI_Output(self,other,"DIA_Rukhar_Perm_12_01");	//Ничего такого, о чем бы я зал. Никто ничего мне не рассказывает.
 };
 
 

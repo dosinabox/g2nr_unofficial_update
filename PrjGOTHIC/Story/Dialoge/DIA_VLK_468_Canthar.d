@@ -52,7 +52,7 @@ func int DIA_Canthar_EXIT_Condition()
 
 func void DIA_Canthar_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_Canthar_EXIT_15_00");	//Мне нужно идти.
+	AI_Output(other,self,"DIA_Canthar_EXIT_15_00");	//Мне нужно идти!
 	AI_Output(self,other,"DIA_Canthar_EXIT_09_01");	//Как знаешь.
 	AI_StopProcessInfos(self);
 };
@@ -272,7 +272,7 @@ func void DIA_Canthar_WhatOffer_No()
 {
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_No_15_00");	//Нет! Оставь эту бумагу себе!
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_No_09_01");	//Хм. Похоже, я недооценил тебя, а?
-	AI_Output(self,other,"DIA_Canthar_WhatOffer_No_09_02");	//Ладно. Тебе нужно что-нибудь еще? Может, тебе показать мои товары?
+	AI_Output(self,other,"DIA_Canthar_WhatOffer_No_09_02");	//Ладно. Тебе нужно что-нибудь еще? Может тебе показать мои товары?
 	Info_ClearChoices(DIA_Canthar_WhatOffer);
 };
 
@@ -299,7 +299,7 @@ func int DIA_Canthar_TRADE_Condition()
 
 func void DIA_Canthar_TRADE_Info()
 {
-	AI_Output(other,self,"DIA_Canthar_TRADE_15_00");	//Покажи мне свои товары.
+	AI_Output(other,self,"DIA_Canthar_TRADE_15_00");	//Покажи мне свои товары!
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Canthar_TRADE_09_01");	//Выбирай.
 };
@@ -340,7 +340,7 @@ func void DIA_Canthar_PAYPRICEINCITY_Info()
 	AI_Output(other,self,"DIA_Canthar_PAYPRICEINCITY_15_05");	//А моя роль в этом какая?
 	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_06");	//Я дам тебе письмо, которое ты должен подложить в ее карман.
 	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_07");	//Затем ты пойдешь к Андрэ и скажешь ему, что Сара продает оружие Онару.
-	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_08");	//Ее посадят в тюрьму, ты получишь награду, а я - свой прилавок.
+	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_08");	//Ее посадят в тюрьму, ты получишь награду, а я свой прилавок.
 	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_09");	//У тебя есть два дня на выполнение этого.
 	if(Canthar_Gefallen == FALSE)
 	{
@@ -433,7 +433,7 @@ func void DIA_Canthar_SARAHERLEDIGT_Info()
 	{
 		AI_Output(other,self,"DIA_Canthar_SARAHERLEDIGT_15_04");	//Сара мертва.
 		AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_05");	//Правда? Превосходно. Значит, ты выполнил свою часть нашей маленькой сделки.
-		MIS_Canthars_KomproBrief = LOG_Success;
+		MIS_Canthars_KomproBrief = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 		Npc_ExchangeRoutine(self,"MARKTSTAND");
 	};
@@ -454,7 +454,7 @@ instance DIA_Canthar_Success(C_Info)
 
 func int DIA_Canthar_Success_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_Success) && (Npc_IsDead(Sarah) == FALSE))
+	if((MIS_Canthars_KomproBrief == LOG_SUCCESS) && (Npc_IsDead(Sarah) == FALSE))
 	{
 		return TRUE;
 	};
@@ -512,7 +512,7 @@ func int DIA_Canthar_Again_Condition()
 func void DIA_Canthar_Again_Info()
 {
 	AI_Output(self,other,"DIA_Canthar_Again_09_00");	//Ох, опять ты.
-	if(MIS_Canthars_KomproBrief == LOG_Failed)
+	if(MIS_Canthars_KomproBrief == LOG_FAILED)
 	{
 		AI_Output(other,self,"DIA_Canthar_Again_15_01");	//Почему ты не в тюрьме?
 		AI_Output(self,other,"DIA_Canthar_Again_09_02");	//Меня отпустили. Как я уже говорил тебе - я очень влиятельный человек в этом городе.

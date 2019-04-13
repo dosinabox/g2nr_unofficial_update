@@ -14,7 +14,7 @@ func void ZS_Unconscious()
 	Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
-	if((self.guild < GIL_SEPERATOR_HUM) && Npc_IsPlayer(other))
+	if((self.guild < GIL_SEPERATOR_HUM) && C_NpcIsHero(other))
 	{
 		self.aivar[AIV_DefeatedByPlayer] = TRUE;
 		self.aivar[AIV_LastFightAgainstPlayer] = FIGHT_LOST;
@@ -28,7 +28,7 @@ func void ZS_Unconscious()
 			self.aivar[AIV_ArenaFight] = AF_AFTER;
 		};
 	};
-	if(Npc_IsPlayer(self))
+	if(C_NpcIsHero(self))
 	{
 		other.aivar[AIV_LastFightAgainstPlayer] = FIGHT_WON;
 		if(other.aivar[AIV_ArenaFight] == AF_RUNNING)

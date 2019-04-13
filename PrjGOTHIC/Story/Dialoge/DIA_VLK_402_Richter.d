@@ -1,7 +1,7 @@
 
 instance DIA_Richter_EXIT(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 999;
 	condition = DIA_Richter_EXIT_Condition;
 	information = DIA_Richter_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Richter_EXIT_Info()
 
 instance DIA_Richter_Hello(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 4;
 	condition = DIA_Richter_Hello_Condition;
 	information = DIA_Richter_Hello_Info;
@@ -70,7 +70,7 @@ func void DIA_Richter_Hello_MayBe()
 
 instance DIA_Richter_Perm(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 800;
 	condition = DIA_Richter_Perm_Condition;
 	information = DIA_Richter_Perm_Info;
@@ -109,7 +109,7 @@ func void DIA_Richter_Perm_Info()
 
 instance DIA_Richter_RichtersLakai(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 2;
 	condition = DIA_Richter_RichtersLakai_Condition;
 	information = DIA_Richter_RichtersLakai_Info;
@@ -128,7 +128,7 @@ func int DIA_Richter_RichtersLakai_Condition()
 func void DIA_Richter_RichtersLakai_Info()
 {
 	AI_Output(other,self,"DIA_Richter_RichtersLakai_15_00");	//Испытай меня.
-	AI_Output(self,other,"DIA_Richter_RichtersLakai_10_01");	//М-м-м. Хорошо. Слушай. Принеси мне священный молот магов Огня. Они хранят его где-то в подвалах монастыря.
+	AI_Output(self,other,"DIA_Richter_RichtersLakai_10_01");	//М-м-м. Хорошо. Слушай. Принеси мне священный молот Магов Огня. Они хранят его где-то в подвалах монастыря.
 	AI_Output(self,other,"DIA_Richter_RichtersLakai_10_02");	//Если тебе удастся это, я подумаю насчет того, чтобы принять тебя в телохранители.
 	Info_ClearChoices(DIA_Richter_RichtersLakai);
 	Info_AddChoice(DIA_Richter_RichtersLakai,"Я должен украсть у магов? Да у тебя крыша поехала.",DIA_Richter_RichtersLakai_nein);
@@ -154,7 +154,7 @@ func void DIA_Richter_RichtersLakai_ja()
 
 instance DIA_Richter_KillMorgahard(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 2;
 	condition = DIA_Richter_KillMorgahard_Condition;
 	information = DIA_Richter_KillMorgahard_Info;
@@ -190,7 +190,7 @@ func void DIA_Richter_KillMorgahard_Info()
 	Wld_InsertNpc(BDT_1035_Fluechtling,"REICH");
 	B_InitNpcGlobals();
 	B_GivePlayerXP(XP_BringHolyHammer);
-	MIS_Richter_BringHolyHammer = LOG_Success;
+	MIS_Richter_BringHolyHammer = LOG_SUCCESS;
 	B_LogEntry(TOPIC_RichterLakai,"Несколько заключенных сбежали от судьи. Я должен найти их и прикончить, а также прикончить их главаря - МОРГАХАРДА. Они, предположительно, скрываются в горах, где-то по направлению к новой башне Ксардаса.");
 	MIS_Richter_KillMorgahard = LOG_Running;
 	AI_StopProcessInfos(self);
@@ -199,7 +199,7 @@ func void DIA_Richter_KillMorgahard_Info()
 
 instance DIA_Richter_KilledMorgahard(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 2;
 	condition = DIA_Richter_KilledMorgahard_Condition;
 	information = DIA_Richter_KilledMorgahard_Info;
@@ -223,13 +223,13 @@ func void DIA_Richter_KilledMorgahard_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,400);
 	B_GivePlayerXP(XP_KillMorgahard);
 	B_LogEntry(TOPIC_RichterLakai,"Судью, похоже, огорчила новость о смерти Моргахарда. А, ладно, мне до этого нет дела. Моя основная цель - выполнение задания Ли.");
-	MIS_Richter_KillMorgahard = LOG_Success;
+	MIS_Richter_KillMorgahard = LOG_SUCCESS;
 };
 
 
 instance DIA_Richter_KilledMorgahardPERM(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 2;
 	condition = DIA_Richter_KilledMorgahardPERM_Condition;
 	information = DIA_Richter_KilledMorgahardPERM_Info;
@@ -240,7 +240,7 @@ instance DIA_Richter_KilledMorgahardPERM(C_Info)
 
 func int DIA_Richter_KilledMorgahardPERM_Condition()
 {
-	if((MIS_Richter_KillMorgahard == LOG_Success) && (MIS_RichtersPermissionForShip == 0))
+	if((MIS_Richter_KillMorgahard == LOG_SUCCESS) && (MIS_RichtersPermissionForShip == 0))
 	{
 		return TRUE;
 	};
@@ -255,7 +255,7 @@ func void DIA_Richter_KilledMorgahardPERM_Info()
 
 instance DIA_Richter_PermissionForShip(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 2;
 	condition = DIA_Richter_PermissionForShip_Condition;
 	information = DIA_Richter_PermissionForShip_Info;
@@ -277,21 +277,21 @@ func void DIA_Richter_PermissionForShip_Info()
 	AI_Output(self,other,"DIA_Richter_PermissionForShip_10_01");	//(смеется) Ты, должно быть, тронулся рассудком. Что ты хочешь, чтобы я сделал?
 	AI_Output(other,self,"DIA_Richter_PermissionForShip_15_02");	//Ты уже слышал. Либо ты дашь мне эту бумагу, либо я сдам тебя ополчению.
 	AI_Output(self,other,"DIA_Richter_PermissionForShip_10_03");	//(рычит) Никто не смеет меня шантажировать! Тем более ты! Я скормлю тебя волкам, презренный кусок дерьма!
-	AI_Output(other,self,"DIA_Richter_PermissionForShip_15_04");	//Моргахард напал на губернатора по твоему приказу. У меня есть документ, подтверждающий это.
+	AI_Output(other,self,"DIA_Richter_PermissionForShip_15_04");	//Моргахард убил губернатора по твоему приказу. У меня есть документ, подтверждающий это.
 	AI_Output(self,other,"DIA_Richter_PermissionForShip_10_05");	//(Рычит) Ах-х.
 	AI_Output(self,other,"DIA_Richter_PermissionForShip_10_06");	//Ты пожалеешь об этом. Этот шантаж не сойдет тебе с рук просто так.
 	AI_Output(self,other,"DIA_Richter_PermissionForShip_10_07");	//Вот твоя бумага. А теперь проваливай. Я разберусь с тобой позже.
 	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
 	B_GiveInvItems(self,other,ITWr_ForgedShipLetter_MIS,1);
 	B_LogEntry(Topic_Ship,"Письмо о подтверждении полномочий должно позволить без проблем завладеть кораблем. Интересно, что скажет на это Ли.");
-	MIS_RichtersPermissionForShip = LOG_Success;
+	MIS_RichtersPermissionForShip = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RichtersPermissionForShip);
 };
 
 
 instance DIA_Richter_perm2(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 2;
 	condition = DIA_Richter_perm2_Condition;
 	information = DIA_Richter_perm2_Info;
@@ -302,7 +302,7 @@ instance DIA_Richter_perm2(C_Info)
 
 func int DIA_Richter_perm2_Condition()
 {
-	if((MIS_RichtersPermissionForShip == LOG_Success) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_RichtersPermissionForShip == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -317,7 +317,7 @@ func void DIA_Richter_perm2_Info()
 
 instance DIA_Richter_PICKPOCKET(C_Info)
 {
-	npc = VLK_402_Richter;
+	npc = Vlk_402_Richter;
 	nr = 900;
 	condition = DIA_Richter_PICKPOCKET_Condition;
 	information = DIA_Richter_PICKPOCKET_Info;

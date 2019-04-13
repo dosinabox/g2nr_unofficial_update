@@ -9,7 +9,7 @@ instance DJG_705_Angar_NW(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	EquipItem(self,ItMw_Zweihaender2);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_CorAngar,BodyTex_B,ITAR_CorAngar);
 	Mdl_SetModelFatness(self,0);

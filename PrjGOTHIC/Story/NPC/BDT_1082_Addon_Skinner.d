@@ -13,7 +13,7 @@ instance BDT_1082_Addon_Skinner(Npc_Default)
 	EquipItem(self,ItMw_Addon_Betty);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,itke_addon_skinner,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough01,BodyTex_L,itar_bdt_h);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough01,BodyTex_L,ItAr_BDT_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

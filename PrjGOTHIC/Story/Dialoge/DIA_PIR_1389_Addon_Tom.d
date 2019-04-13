@@ -1,21 +1,21 @@
 
-instance DIA_ADDON_PIR_1389_TOM_EXIT(C_Info)
+instance DIA_Addon_PIR_1389_Tom_EXIT(C_Info)
 {
 	npc = PIR_1389_Addon_Tom;
 	nr = 999;
-	condition = dia_addon_pir_tom_exit_condition;
-	information = dia_addon_pir_tom_exit_info;
+	condition = DIA_Addon_PIR_Tom_EXIT_Condition;
+	information = DIA_Addon_PIR_Tom_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
-func int dia_addon_pir_tom_exit_condition()
+func int DIA_Addon_PIR_Tom_EXIT_Condition()
 {
 	return TRUE;
 };
 
-func void dia_addon_pir_tom_exit_info()
+func void DIA_Addon_PIR_Tom_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };

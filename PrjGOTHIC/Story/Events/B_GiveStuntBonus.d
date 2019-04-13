@@ -15,6 +15,6 @@ func void B_GiveStuntBonus_FUNC()
 		StuntBonus_Once = FALSE;
 		Snd_Play("MFX_BELIARWEAP");
 	};
-	SC_MADESTUNT = TRUE;
+	SC_MadeStunt = TRUE;
 };
 

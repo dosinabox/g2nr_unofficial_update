@@ -153,7 +153,7 @@ var int DIA_Gestath_TEACHHUNTING_OneTime;
 func void DIA_Gestath_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Gestath_TEACHHUNTING_15_00");	//Научи меня потрошить животных.
-	if((player_talent_takeanimaltrophy[TROPHY_FireTongue] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_CrawlerPlate] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_Mandibles] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_DrgSnapperHorn] == FALSE) || ((Gestath_DragonTrophy == TRUE) && ((player_talent_takeanimaltrophy[TROPHY_DragonScale] == FALSE) || (player_talent_takeanimaltrophy[TROPHY_DragonBlood] == FALSE))))
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_FireTongue] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) || ((Gestath_DragonTrophy == TRUE) && ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE))))
 	{
 		if(DIA_Gestath_TEACHHUNTING_OneTime == FALSE)
 		{
@@ -165,29 +165,29 @@ func void DIA_Gestath_TEACHHUNTING_Info()
 			AI_Output(self,other,"DIA_Gestath_TEACHHUNTING_09_02");	//Что ты хочешь узнать?
 		};
 		Info_AddChoice(DIA_Gestath_TEACHHUNTING,Dialog_Back,DIA_Gestath_TEACHHUNTING_BACK);
-		if(player_talent_takeanimaltrophy[TROPHY_FireTongue] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_FireTongue] == FALSE)
 		{
 			Info_AddChoice(DIA_Gestath_TEACHHUNTING,B_BuildLearnString("Огненный язык",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_FireTongue)),DIA_Gestath_TEACHHUNTING_FireTongue);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_CrawlerPlate] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE)
 		{
 			Info_AddChoice(DIA_Gestath_TEACHHUNTING,B_BuildLearnString("Удаление панцирей краулеров",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate)),DIA_Gestath_TEACHHUNTING_CrawlerPlate);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_Mandibles] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE)
 		{
 			Info_AddChoice(DIA_Gestath_TEACHHUNTING,B_BuildLearnString("Удаление мандибул",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Mandibles)),DIA_Gestath_TEACHHUNTING_Mandibles);
 		};
-		if(player_talent_takeanimaltrophy[TROPHY_DrgSnapperHorn] == FALSE)
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE)
 		{
 			Info_AddChoice(DIA_Gestath_TEACHHUNTING,B_BuildLearnString("Рог драконьего снеппера",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DrgSnapperHorn)),DIA_Gestath_TEACHHUNTING_DrgSnapperHorn);
 		};
 		if(Gestath_DragonTrophy == TRUE)
 		{
-			if(player_talent_takeanimaltrophy[TROPHY_DragonScale] == FALSE)
+			if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE)
 			{
 				Info_AddChoice(DIA_Gestath_TEACHHUNTING,B_BuildLearnString("Удаление чешуи драконов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonScale)),DIA_Gestath_TEACHHUNTING_DragonScale);
 			};
-			if(player_talent_takeanimaltrophy[TROPHY_DragonBlood] == FALSE)
+			if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE)
 			{
 				Info_AddChoice(DIA_Gestath_TEACHHUNTING,B_BuildLearnString("Сбор крови дракона",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonBlood)),DIA_Gestath_TEACHHUNTING_DragonBlood);
 			};

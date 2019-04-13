@@ -153,7 +153,7 @@ func void DIA_Addon_Bromor_LuciaGold_einfachgeben()
 	AI_Output(other,self,"DIA_Addon_Bromor_LuciaGold_einfachgeben_15_00");	//Вот блюдо.
 	B_GiveInvItems(other,self,ItMi_BromorsGeld_Addon,1);
 	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_einfachgeben_07_01");	//Благодарю. Очень щедро с твоей стороны. Что-нибудь еще?
-	MIS_Bromor_LuciaStoleGold = LOG_Success;
+	MIS_Bromor_LuciaStoleGold = LOG_SUCCESS;
 	Bromor_Hausverbot = FALSE;
 	B_GivePlayerXP(XP_Addon_Bromor_LuciaGold);
 	Info_ClearChoices(DIA_Addon_Bromor_LuciaGold);
@@ -206,7 +206,7 @@ func void DIA_Addon_Bromor_LuciaGold_geben()
 	B_GiveInvItems(other,self,ItMi_BromorsGeld_Addon,1);
 	AI_Output(self,other,"DIA_Addon_Bromor_LuciaGold_geben_07_01");	//Благодарю. Иди к Наде. Она составит тебе компанию наверху.
 	Bromor_Pay = 1;
-	MIS_Bromor_LuciaStoleGold = LOG_Success;
+	MIS_Bromor_LuciaStoleGold = LOG_SUCCESS;
 	Bromor_Hausverbot = FALSE;
 	B_GivePlayerXP(XP_Addon_Bromor_LuciaGold);
 	Info_ClearChoices(DIA_Addon_Bromor_LuciaGold);
@@ -233,7 +233,7 @@ func int DIA_Bromor_Pay_Condition()
 };
 
 
-var int dia_bromor_pay_onetime;
+var int DIA_Bromor_Pay_OneTime;
 
 func void DIA_Bromor_Pay_Info()
 {
@@ -242,9 +242,9 @@ func void DIA_Bromor_Pay_Info()
 	{
 		AI_Output(self,other,"DIA_Bromor_Pay_07_01");	//Отлично. (ухмыляется) Ты долго не забудешь следующие несколько часов твоей жизни.
 		AI_Output(self,other,"DIA_Bromor_Pay_07_02");	//Иди наверх с Надей. Удачи.
-		if(DIA_BROMOR_PAY_ONETIME == FALSE)
+		if(DIA_Bromor_Pay_OneTime == FALSE)
 		{
-			DIA_BROMOR_PAY_ONETIME = TRUE;
+			DIA_Bromor_Pay_OneTime = TRUE;
 		};
 		Bromor_Pay = 1;
 	}

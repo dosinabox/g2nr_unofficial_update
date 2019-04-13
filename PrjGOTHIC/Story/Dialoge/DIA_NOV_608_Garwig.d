@@ -1,7 +1,7 @@
 
 instance DIA_Garwig_EXIT(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 999;
 	condition = DIA_Garwig_EXIT_Condition;
 	information = DIA_Garwig_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Garwig_EXIT_Info()
 
 instance DIA_Garwig_Wurst(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 3;
 	condition = DIA_Garwig_Wurst_Condition;
 	information = DIA_Garwig_Wurst_Info;
@@ -58,7 +58,7 @@ func void DIA_Garwig_Wurst_Info()
 
 instance DIA_Garwig_Hello(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 3;
 	condition = DIA_Garwig_Hello_Condition;
 	information = DIA_Garwig_Hello_Info;
@@ -85,7 +85,7 @@ func void DIA_Garwig_Hello_Info()
 
 instance DIA_Garwig_Room(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 5;
 	condition = DIA_Garwig_Room_Condition;
 	information = DIA_Garwig_Room_Info;
@@ -110,7 +110,7 @@ func void DIA_Garwig_Room_Info()
 
 instance DIA_Garwig_Hammer(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 99;
 	condition = DIA_Garwig_Hammer_Condition;
 	information = DIA_Garwig_Hammer_Info;
@@ -130,15 +130,15 @@ func int DIA_Garwig_Hammer_Condition()
 func void DIA_Garwig_Hammer_Info()
 {
 	AI_Output(other,self,"DIA_Garwig_Hammer_15_00");	//Расскажи мне об этом молоте.
-	AI_Output(self,other,"DIA_Garwig_Hammer_06_01");	//Это священный Молот Инноса. Этим молотом святой Робар поразил каменного Часового.
-	AI_Output(self,other,"DIA_Garwig_Hammer_06_02");	//В священных писаниях говорится, что каменный Часовой был неуязвим. Он возвышался над полем боя, как башня, и оружие его врагов разбивалось о его каменную кожу.
+	AI_Output(self,other,"DIA_Garwig_Hammer_06_01");	//Это священный Молот Инноса. Этим молотом святой Робар поразил Каменного Часового.
+	AI_Output(self,other,"DIA_Garwig_Hammer_06_02");	//В священных писаниях говорится, что Каменный часовой был неуязвим. Он возвышался над полем боя, как башня, и оружие его врагов разбивалось о его каменную кожу.
 	AI_Output(self,other,"DIA_Garwig_Hammer_06_03");	//С именем Инноса на устах, Робар бросился на этого монстра и поразил его одним могучим ударом своего молота.
 };
 
 
 instance DIA_Garwig_Shield(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 98;
 	condition = DIA_Garwig_Shield_Condition;
 	information = DIA_Garwig_Shield_Info;
@@ -159,13 +159,13 @@ func void DIA_Garwig_Shield_Info()
 {
 	AI_Output(other,self,"DIA_Garwig_Shield_15_00");	//Расскажи мне об этом щите.
 	AI_Output(self,other,"DIA_Garwig_Shield_06_01");	//Щит Огня принадлежал Доминику в битве на Южных островах.
-	AI_Output(self,other,"DIA_Garwig_Shield_06_02");	//Но сила этого щита не должна больше использоваться - поэтому мы прибили его на стене.
+	AI_Output(self,other,"DIA_Garwig_Shield_06_02");	//Но сила этого щита не должна  больше использоваться - поэтому, мы прибили его на стене.
 };
 
 
 instance DIA_Garwig_Auge(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 4;
 	condition = DIA_Garwig_Auge_Condition;
 	information = DIA_Garwig_Auge_Info;
@@ -184,14 +184,14 @@ func int DIA_Garwig_Auge_Condition()
 
 func void DIA_Garwig_Auge_Info()
 {
-	AI_Output(other,self,"DIA_Garwig_Auge_15_00");	//А Глаз Инноса тоже хранится здесь?
-	AI_Output(self,other,"DIA_Garwig_Auge_06_01");	//Конечно, нет. Что за странная мысль. Никто не знает, где хранится этот божественный артефакт.
+	AI_Output(other,self,"DIA_Garwig_Auge_15_00");	//А Глаз Инноса тоже храниться здесь?
+	AI_Output(self,other,"DIA_Garwig_Auge_06_01");	//Конечно нет. Что за странная мысль. Никто не знает, где хранится этот божественный артефакт.
 };
 
 
 instance DIA_Garwig_SLEEP(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 23;
 	condition = DIA_Garwig_SLEEP_Condition;
 	information = DIA_Garwig_SLEEP_Info;
@@ -226,9 +226,9 @@ func void DIA_Garwig_SLEEP_BACK()
 
 func void DIA_Garwig_SLEEP_EXCHANGE()
 {
-	AI_Output(other,self,"DIA_Garwig_SLEEP_EXCHANGE_15_00");	//Что, если я сменю тебя ненадолго?
+	AI_Output(other,self,"DIA_Garwig_SLEEP_EXCHANGE_15_00");	//Что если я сменю тебя ненадолго?
 	AI_Output(self,other,"DIA_Garwig_SLEEP_EXCHANGE_06_01");	//Это испытание? Маги послали тебя испытать меня, правильно? Оох, я знал это!
-	AI_Output(self,other,"DIA_Garwig_SLEEP_EXCHANGE_06_02");	//Но я пройду это испытание. Скажи своим магам, что я был непоколебим как скала и что я буду сопротивляться всем искушениям. Что я хороший страж.
+	AI_Output(self,other,"DIA_Garwig_SLEEP_EXCHANGE_06_02");	//Но я пройду это испытание. Скажи своим магам, что я был непоколебимым как скала и что я буду сопротивляться всем искушениям. Что я хороший страж.
 };
 
 func void DIA_Garwig_SLEEP_THIEF()
@@ -257,7 +257,7 @@ func void DIA_Garwig_SLEEP_AGAIN()
 
 instance DIA_Garwig_THIEF(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 2;
 	condition = DIA_Garwig_THIEF_Condition;
 	information = DIA_Garwig_THIEF_Info;
@@ -291,7 +291,7 @@ func void DIA_Garwig_THIEF_Info()
 
 instance DIA_Garwig_Abgeben(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 2;
 	condition = DIA_Garwig_Abgeben_Condition;
 	information = DIA_Garwig_Abgeben_Info;
@@ -313,7 +313,7 @@ func void DIA_Garwig_Abgeben_Info()
 	AI_Output(other,self,"DIA_Garwig_Abgeben_15_00");	//Я принес молот назад.
 	if(Hammer_Taken == TRUE)
 	{
-		AI_Output(self,other,"DIA_Garwig_Abgeben_06_01");	//Ах ты, подлый вор!
+		AI_Output(self,other,"DIA_Garwig_Abgeben_06_01");	//Ах ты подлый вор!
 	}
 	else
 	{
@@ -327,7 +327,7 @@ func void DIA_Garwig_Abgeben_Info()
 
 instance DIA_Garwig_PICKPOCKET(C_Info)
 {
-	npc = NOV_608_Garwig;
+	npc = Nov_608_Garwig;
 	nr = 900;
 	condition = DIA_Garwig_PICKPOCKET_Condition;
 	information = DIA_Garwig_PICKPOCKET_Info;

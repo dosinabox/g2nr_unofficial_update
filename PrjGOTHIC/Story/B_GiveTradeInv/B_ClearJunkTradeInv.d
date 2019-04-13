@@ -20,7 +20,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_CrawlerMandibles,Npc_HasItems(slf,ItAt_CrawlerMandibles));
 		Npc_RemoveInvItems(slf,ItAt_Wing,Npc_HasItems(slf,ItAt_Wing));
 		Npc_RemoveInvItems(slf,ItAt_Sting,Npc_HasItems(slf,ItAt_Sting));
-		Npc_RemoveInvItems(slf,ItAt_LurkerSkin,Npc_HasItems(slf,ItAt_LurkerSkin));
+		Npc_RemoveInvItems(slf,itat_LurkerSkin,Npc_HasItems(slf,itat_LurkerSkin));
 		Npc_RemoveInvItems(slf,ItAt_WargFur,Npc_HasItems(slf,ItAt_WargFur));
 		Npc_RemoveInvItems(slf,ItAt_DrgSnapperHorn,Npc_HasItems(slf,ItAt_DrgSnapperHorn));
 		Npc_RemoveInvItems(slf,ItAt_CrawlerPlate,Npc_HasItems(slf,ItAt_CrawlerPlate));

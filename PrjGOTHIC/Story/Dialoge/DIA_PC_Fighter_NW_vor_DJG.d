@@ -40,7 +40,7 @@ func int DIA_GornNW_Hallo_Condition()
 func void DIA_GornNW_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_GornNW_Add_15_00");	//С тобой все в порядке?
-	if(MIS_RescueGorn == LOG_Success)
+	if(MIS_RescueGorn == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_GornNW_Add_12_01");	//Ты спас меня, парень.
 		AI_Output(self,other,"DIA_GornNW_Add_12_02");	//Я никогда не забуду этого.
@@ -75,7 +75,7 @@ func void DIA_GornNW_WhatNext_Info()
 	AI_Output(other,self,"DIA_GornNW_Add_15_05");	//Что ты собираешься делать теперь?
 	AI_Output(self,other,"DIA_GornNW_Add_12_06");	//Сначала я отъемся.
 	AI_Output(other,self,"DIA_GornNW_Add_15_07");	//А потом?
-	AI_Output(self,other,"DIA_GornNW_Add_12_08");	//Кто знает... Возможно, я опять вернусь в колонию.
+	AI_Output(self,other,"DIA_GornNW_Add_12_08");	//Кто знает ... Возможно, я опять вернусь в колонию.
 	AI_Output(self,other,"DIA_GornNW_Add_12_09");	//Кто-то ведь должен присматривать за орками - иначе они могут появиться у нас на пороге без всякого предупреждения.
 };
 

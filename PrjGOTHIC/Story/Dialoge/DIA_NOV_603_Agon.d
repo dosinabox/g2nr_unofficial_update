@@ -34,7 +34,7 @@ instance DIA_Agon_Hello(C_Info)
 
 func int DIA_Agon_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (mis_schnitzeljagd == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_SCHNITZELJAGD == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -96,7 +96,7 @@ instance DIA_Agon_New(C_Info)
 
 func int DIA_Agon_New_Condition()
 {
-	if((mis_schnitzeljagd == FALSE) && (other.guild == GIL_NOV))
+	if((MIS_SCHNITZELJAGD == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -123,7 +123,7 @@ instance DIA_Agon_YouAndBabo(C_Info)
 
 func int DIA_Agon_YouAndBabo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Opolos_Monastery) && (mis_schnitzeljagd == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Opolos_Monastery) && (MIS_SCHNITZELJAGD == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -177,7 +177,7 @@ instance DIA_Agon_GetHerb(C_Info)
 
 func int DIA_Agon_GetHerb_Condition()
 {
-	if(mis_schnitzeljagd == FALSE)
+	if(MIS_SCHNITZELJAGD == FALSE)
 	{
 		return TRUE;
 	};
@@ -203,7 +203,7 @@ instance DIA_Agon_GolemDead(C_Info)
 
 func int DIA_Agon_GolemDead_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && Npc_IsDead(Magic_Golem))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsDead(Magic_Golem))
 	{
 		return TRUE;
 	};
@@ -224,7 +224,7 @@ func void DIA_Agon_GolemDead_NoWay()
 	AI_Output(other,self,"DIA_Agon_GolemDead_NoWay_15_00");	//(угрожающе) Только если тебе удастся выбраться отсюда живым.
 	AI_Output(self,other,"DIA_Agon_GolemDead_NoWay_07_01");	//Ты хочешь убить меня? У тебя ничего не получится.
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	B_Attack(self,other,AR_KILL,1);
 };
 
 func void DIA_Agon_GolemDead_ShutUp()
@@ -242,7 +242,7 @@ func void DIA_Agon_GolemDead_ShutUp_MyChest()
 	AI_Output(other,self,"DIA_Agon_GolemDead_ShutUp_MyChest_15_00");	//Черта с два. Этот сундук мой.
 	AI_Output(self,other,"DIA_Agon_GolemDead_ShutUp_MyChest_07_01");	//(в ярости) Нет, ты не сделаешь этого. Я убью тебя.
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	B_Attack(self,other,AR_KILL,1);
 };
 
 func void DIA_Agon_GolemDead_ShutUp_YouWin()
@@ -251,7 +251,7 @@ func void DIA_Agon_GolemDead_ShutUp_YouWin()
 	AI_Output(self,other,"DIA_Agon_GolemDead_ShutUp_YouWin_07_01");	//(в ярости) Нет, тебе не обмануть меня. Ты пытаешься избавиться от меня.
 	AI_Output(self,other,"DIA_Agon_GolemDead_ShutUp_YouWin_07_02");	//Я не допущу этого!
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	B_Attack(self,other,AR_KILL,1);
 };
 
 func void DIA_Agon_GolemDead_Congrat()
@@ -262,7 +262,7 @@ func void DIA_Agon_GolemDead_Congrat()
 	AI_Output(self,other,"DIA_Agon_GolemDead_Congrat_07_03");	//(нервно) Ты хочешь оспорить мою победу. Ты хочешь убить меня и забрать всю славу себе!
 	AI_Output(self,other,"DIA_Agon_GolemDead_Congrat_07_04");	//У тебя ничего не выйдет!
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	B_Attack(self,other,AR_KILL,1);
 };
 
 
@@ -279,7 +279,7 @@ instance DIA_Agon_GolemLives(C_Info)
 
 func int DIA_Agon_GolemLives_Condition()
 {
-	if((mis_schnitzeljagd == LOG_Running) && (Npc_IsDead(Magic_Golem) == FALSE))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (Npc_IsDead(Magic_Golem) == FALSE))
 	{
 		return TRUE;
 	};
@@ -291,7 +291,7 @@ func void DIA_Agon_GolemLives_Info()
 	AI_Output(self,other,"DIA_Agon_GolemLives_07_01");	//(решительно) Этого не может быть! Я не позволю это.
 	AI_Output(self,other,"DIA_Agon_GolemLives_07_02");	//Твой труп никогда никто не найдет.
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,0);
+	B_Attack(self,other,AR_KILL,0);
 };
 
 

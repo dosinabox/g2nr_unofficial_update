@@ -34,7 +34,7 @@ instance DIA_GornNW_nach_DJG_AllDragonsDead(C_Info)
 
 func int DIA_GornNW_nach_DJG_AllDragonsDead_Condition()
 {
-	if(Gorn_IsOnBoard != LOG_Success)
+	if(Gorn_IsOnBoard != LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -81,7 +81,7 @@ func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Info()
 	{
 		AI_Output(other,self,"DIA_GornNW_nach_DJG_KnowWhereEnemy_15_04");	//Сейчас моя команда почти укомплектована, но я думаю, что тебе тоже могло бы найтись место на борту.
 		AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_05");	//Если тебе придется вышвырнуть кого-нибудь из своей команды ради меня - выбери самого слабого.
-		AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_06");	//В наше суровое время нельзя разбрасываться людьми, способными крепко держать оружие в руках.
+		AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_06");	//В наше суровое время, нельзя разбрасываться людьми, способными крепко держать оружие в руках.
 	}
 	else
 	{
@@ -97,7 +97,7 @@ func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes()
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes_12_01");	//Корабль? Ха! Могу сказать одно. С тобой никогда не бывает скучно. До скорой встречи.
 	B_GivePlayerXP(XP_Crewmember_Success);
 	self.flags = NPC_FLAG_IMMORTAL;
-	Gorn_IsOnBoard = LOG_Success;
+	Gorn_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count = Crewmember_Count + 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
@@ -132,7 +132,7 @@ instance DIA_GornNW_nach_DJG_LeaveMyShip(C_Info)
 
 func int DIA_GornNW_nach_DJG_LeaveMyShip_Condition()
 {
-	if((Gorn_IsOnBoard == LOG_Success) && (MIS_ReadyforChapter6 == FALSE))
+	if((Gorn_IsOnBoard == LOG_SUCCESS) && (MIS_ReadyforChapter6 == FALSE))
 	{
 		return TRUE;
 	};
@@ -161,7 +161,7 @@ instance DIA_GornNW_nach_DJG_StillNeedYou(C_Info)
 
 func int DIA_GornNW_nach_DJG_StillNeedYou_Condition()
 {
-	if(((Gorn_IsOnBoard == LOG_OBSOLETE) || (Gorn_IsOnBoard == LOG_Failed)) && (Crewmember_Count < Max_Crew))
+	if(((Gorn_IsOnBoard == LOG_OBSOLETE) || (Gorn_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
 		return TRUE;
 	};
@@ -172,7 +172,7 @@ func void DIA_GornNW_nach_DJG_StillNeedYou_Info()
 	AI_Output(other,self,"DIA_GornNW_nach_DJG_StillNeedYou_15_00");	//Возвращайся. ТЫ нужен мне.
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_StillNeedYou_12_01");	//Наконец-то. А я уж думал, ты оставишь гнить меня здесь, пока будешь развлекаться там. До скорой встречи.
 	self.flags = NPC_FLAG_IMMORTAL;
-	Gorn_IsOnBoard = LOG_Success;
+	Gorn_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count = Crewmember_Count + 1;
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)

@@ -1,5 +1,5 @@
 
-instance VLK_2000_Thorus(Npc_Default)
+instance Vlk_2000_Thorus(Npc_Default)
 {
 	name[0] = "Торус";
 	guild = GIL_NONE;
@@ -15,7 +15,7 @@ instance VLK_2000_Thorus(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Thorus,BodyTex_B,itar_mil_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Thorus,BodyTex_B,ItAr_MIL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

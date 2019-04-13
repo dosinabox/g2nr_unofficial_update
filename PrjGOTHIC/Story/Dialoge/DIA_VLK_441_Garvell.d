@@ -120,7 +120,7 @@ func void DIA_Garvell_eilig_Info()
 	AI_Output(self,other,"DIA_Garvell_eilig_04_01");	//Скоро придут орки и сожгут город дотла.
 	AI_Output(other,self,"DIA_Garvell_eilig_15_02");	//Почему ты так думаешь?
 	AI_Output(self,other,"DIA_Garvell_eilig_04_03");	//Парень, ты видишь, что паладины теперь повсюду? Почему, как ты думаешь, они здесь?
-	AI_Output(self,other,"DIA_Garvell_eilig_04_04");	//Я скажу тебе. Они здесь, потому что скоро на нас нападут орки. А это не доставит нам радости.
+	AI_Output(self,other,"DIA_Garvell_eilig_04_04");	//Я сажу тебе. Они здесь, потому что скоро на нас нападут орки. А это не доставит нам радости.
 };
 
 
@@ -147,7 +147,7 @@ func void DIA_Garvell_Schiff_Info()
 	AI_Output(other,self,"DIA_Garvell_Schiff_15_00");	//Почему ты не можешь закончить корабль?
 	AI_Output(self,other,"DIA_Garvell_Schiff_04_01");	//Ох, у нас тысячи проблем. Остов пока еще не очень стабилен и не хватает досок на обшивку.
 	AI_Output(self,other,"DIA_Garvell_Schiff_04_02");	//У меня почти не осталось средств на покупку материалов, а последняя партия вся была поедена жучком.
-	AI_Output(self,other,"DIA_Garvell_Schiff_04_03");	//Мои парни работают не очень эффективно. Один хочет построить быстрый корабль, а другого волнует только резная фигура, которая будет установлена на носу судна.
+	AI_Output(self,other,"DIA_Garvell_Schiff_04_03");	//Мои парни работают не очень эффективно. Один хочет построить быстрый корабль, а другого волнует только резная фигура, которая будет установлена на носу судна
 	AI_Output(self,other,"DIA_Garvell_Schiff_04_04");	//Как будто нам больше нечем заняться!
 	AI_Output(self,other,"DIA_Addon_Garvell_Schiff_04_00");	//К тому же один из моих парней просто перестал приходить на работу. Я начинаю опасаться, что это еще сильнее задержит постройку.
 };
@@ -222,7 +222,7 @@ func void DIA_Addon_Garvell_MissingPeople_Farim()
 func void DIA_Addon_Garvell_MissingPeople_wo()
 {
 	AI_Output(other,self,"DIA_Addon_Garvell_MissingPeople_wo_15_00");	//Когда в последний раз ты видел Монти?
-	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_wo_04_01");	//(сердито) Первый раз он не потрудился прийти на работу два дня назад.
+	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_wo_04_01");	//(сердито) Первый раз он не потрудился придти на работу два дня назад.
 };
 
 
@@ -295,7 +295,7 @@ func void B_GarvellWeiter()
 func void B_GarvellSuccess()
 {
 	AI_Output(self,other,"DIA_Garvell_Success_04_00");	//Спасибо за информацию. Судя по всему, у нас сколько угодно времени на постройку судна.
-	MIS_Garvell_Infos = LOG_Success;
+	MIS_Garvell_Infos = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -398,7 +398,7 @@ func int DIA_Garvell_City_Condition()
 func void DIA_Garvell_City_Info()
 {
 	AI_Output(other,self,"DIA_Garvell_City_15_00");	//Что касается орка около города...
-	AI_Output(self,other,"DIA_Garvell_City_04_01");	//Дааа?
+	AI_Output(self,other,"DIA_Garvell_City_04_01");	//Дааа?..
 	AI_Output(other,self,"DIA_Garvell_City_15_02");	//Не волнуйся насчет него. Городская стража позаботится о нем.
 	Tell_Garvell = Tell_Garvell + 1;
 	B_GivePlayerXP(XP_Ambient);
@@ -435,7 +435,7 @@ func int DIA_Garvell_Perm_Condition()
 func void DIA_Garvell_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Garvell_Perm_15_00");	//Что происходит в гавани?
-	if(MIS_Garvell_Infos != LOG_Success)
+	if(MIS_Garvell_Infos != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Garvell_Perm_04_01");	//Орки дышат нам в спину, а ты спрашиваешь о гавани?
 		AI_Output(other,self,"DIA_Garvell_Perm_15_02");	//Я только хотел...

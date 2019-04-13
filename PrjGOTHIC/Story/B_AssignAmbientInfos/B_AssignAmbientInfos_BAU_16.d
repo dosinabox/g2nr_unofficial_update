@@ -115,7 +115,7 @@ func void DIA_BAU_16_STANDARD_Info()
 	};
 	if(Kapitel == 2)
 	{
-		AI_Output(self,other,"DIA_BAU_16_STANDARD_16_02");	//Говорят, что в Долине Рудников собирается армия Зла. Скоро они будут здесь.
+		AI_Output(self,other,"DIA_BAU_16_STANDARD_16_02");	//Говорят, что в Долине Рудников собирается армия зла. Скоро они будут здесь.
 	};
 	if(Kapitel == 3)
 	{
@@ -123,7 +123,7 @@ func void DIA_BAU_16_STANDARD_Info()
 	};
 	if(Kapitel == 4)
 	{
-		AI_Output(self,other,"DIA_BAU_16_STANDARD_16_04");	//Кто-то из наемников ушел отсюда. Я даже не знаю, хорошо это или плохо.
+		AI_Output(self,other,"DIA_BAU_16_STANDARD_16_04");	//Кое-кто из наемников ушел отсюда. Я даже не знаю, хорошо это или плохо.
 	};
 	if(Kapitel >= 5)
 	{

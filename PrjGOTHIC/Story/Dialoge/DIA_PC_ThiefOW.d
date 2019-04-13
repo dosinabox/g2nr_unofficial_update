@@ -21,7 +21,7 @@ func void DIA_DiegoOw_EXIT_Info()
 };
 
 
-instance DIA_DiegoOW_Hallo(C_Info)
+instance DIA_DiegoOw_Hallo(C_Info)
 {
 	npc = PC_ThiefOW;
 	nr = 1;
@@ -43,10 +43,10 @@ func void DIA_DiegoOw_Hallo_Info()
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Но теперь я вернулся, и ищу доказательства появления драконов.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_03");	//Для кого ты это делаешь?
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_04");	//Я работаю на лорда Хагена. С помощью паладинов драконов можно остановить.
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, я отправился в Хоринис.
+	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, Я отправился в Хоринис.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_06");	//Я хотел предупредить паладинов о драконах. Сам не знаю, зачем мне это было нужно?
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_07");	//Этот напыщенный Лотар даже не стал слушать меня - и, конечно же, не позволил мне поговорить с лордом Хагеном.
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_08");	//Вместо этого они отправили меня назад, с экспедицией. Так что лучше не напоминай мне о паладинах...
+	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_08");	//Вместо этого, они отправили меня назад, с экспедицией. Так что лучше не напоминай мне о паладинах...
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_09");	//Очень важно остановить драконов, пока у нас еще есть время - и не важно, кто поможет нам сделать это.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_10");	//Остановить их? Да нам нужно уносить ноги из этой долины пока у нас еще есть время для ЭТОГО.
 	AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_03");	//Скажи - как тебе удалось пробраться через Проход? Я думал, там все кишит орками.
@@ -95,7 +95,7 @@ func void DIA_DiegoOw_Beweise_Info()
 	if(Npc_GetDistToWP(self,"LOCATION_02_05") <= 1000)
 	{
 		AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_01");	//Здесь, в задней части пещеры хранятся ЧЕТЫРЕ ящика руды. Их добыли люди Сильвестро.
-		AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их, но меня здесь к тому времени уже не будет.
+		AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их - но меня здесь к тому времени уже не будет.
 	}
 	else
 	{
@@ -181,9 +181,9 @@ func int DIA_DiegoOw_Perm_Condition()
 
 func void DIA_DiegoOw_Perm_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Perm_15_00");	//Что мне нужно знать о Долине?
+	AI_Output(other,self,"DIA_DiegoOw_Perm_15_00");	//Что мне нужно знать о долине?
 	AI_Output(self,other,"DIA_DiegoOw_Perm_11_01");	//С тех пор, как Барьер пал, здесь многое переменилось. Теперь здесь заправляют орки.
-	AI_Output(self,other,"DIA_DiegoOw_Perm_11_02");	//А мы, люди, теперь не более чем корм для истинных правителей этой Долины: драконов.
+	AI_Output(self,other,"DIA_DiegoOw_Perm_11_02");	//А мы, люди, теперь не более чем корм для истинных правителей этой долины: драконов.
 	AI_Output(self,other,"DIA_DiegoOw_Perm_11_03");	//Держись подальше от всех, кто сильнее тебя - и избегай всего, что напоминает дракона.
 };
 
@@ -209,8 +209,8 @@ func int DIA_DiegoOw_Gorn_Condition()
 
 func void DIA_DiegoOw_Gorn_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Gorn_15_00");	//Я хочу купить свободу Горну, но Гаронд просит за это 1000 золотых.
-	AI_Output(self,other,"DIA_DiegoOw_Gorn_11_01");	//Немаленькая сумма. У меня есть 300 монет, ты можешь взять их. Остальное найди сам.
+	AI_Output(other,self,"DIA_DiegoOw_Gorn_15_00");	//Я хочу купить свободу  Горну, но Гаронд просит за это 1000 золотых.
+	AI_Output(self,other,"DIA_DiegoOw_Gorn_11_01");	//Не маленькая сумма. У меня есть 300 монет, ты можешь взять их. Остальное найди сам.
 	B_GiveInvItems(self,other,ItMi_Gold,300);
 	B_LogEntry(TOPIC_RescueGorn,"Диего заплатил 300 золота за освобождение Горна.");
 };
@@ -360,7 +360,7 @@ func int DIA_Addon_ThiefOW_Together_Condition()
 func void DIA_Addon_ThiefOW_Together_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Diego_Together_15_00");	//Давай пойдем вместе.
-	AI_Output(self,other,"DIA_Addon_Diego_Together_11_01");	//К Проходу? Почему бы и нет...
+	AI_Output(self,other,"DIA_Addon_Diego_Together_11_01");	//К проходу? Почему бы и нет...
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_02");	//Иди первым. Ты ведь недавно оттуда.
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_03");	//Но даже не думай о том, чтобы подойти слишком близко к замку или Стене орков.
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_04");	//Кроме того, нам следует избегать лагерей паладинов.
@@ -477,7 +477,7 @@ func void DIA_Addon_ThiefOW_GoHome_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_09");	//Ты, наверное, шутишь? Мы должны разделиться? Здесь?
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_10");	//Только через мой труп!
-		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_11");	//Мы идем к Проходу немедленно. И вместе.
+		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_11");	//Мы идем к проходу немедленно. И вместе.
 	};
 };
 
@@ -527,6 +527,7 @@ func int DIA_Addon_ThiefOW_TooFar_Condition()
 			Diego_TooFarComment = FALSE;
 		};
 	};
+	return FALSE;
 };
 
 func void DIA_Addon_ThiefOW_TooFar_Info()
@@ -564,7 +565,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 	}
 	else if(C_DiegoTooFar(1000) == LOC_LAKE)
 	{
-		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_12");	//Эта дорога нас никуда не приведет.
+		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_12");	//Эта дорога никуда нас не приведет.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_13");	//Чтобы попасть к проходу, мы должны идти в другом направлении!
 	}
 	else if(C_DiegoTooFar(1000) == LOC_XARDAS)
@@ -656,6 +657,11 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_29");	//Если мы продолжим двигаться в этом направлении, мы снова упремся в Стену орков.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_30");	//Пойдем к проходу!
+	}
+	else if(C_DiegoTooFar(1000) == LOC_ROCK)
+	{
+		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_09");	//Если мы продолжим лезть на эту гору, мы наверняка встретим дракона.
+		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_08");	//Не стоит туда идти.
 	};
 	Diego_TooFarComment = TRUE;
 };
@@ -718,7 +724,7 @@ func int DIA_Addon_ThiefOW_Nostalgie_Condition()
 
 func void DIA_Addon_ThiefOW_Nostalgie_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_01");	//Помнишь, тогда?
+	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_01");	//Помнишь, тогда?..
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_02");	//Когда мы первый раз встретились?
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_03");	//Кажется, это было сотни лет назад...
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_04");	//В этом месте было что-то ЕЩЕ. Черт! Я не могу вспомнить.

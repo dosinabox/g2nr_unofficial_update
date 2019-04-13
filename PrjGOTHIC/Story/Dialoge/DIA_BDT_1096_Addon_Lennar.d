@@ -216,7 +216,7 @@ instance DIA_Addon_Lennar_Train(C_Info)
 	condition = DIA_Addon_Lennar_Train_Condition;
 	information = DIA_Addon_Lennar_Train_Info;
 	permanent = TRUE;
-	description = "Научи меня добывать золото! (50 золотых)";
+	description = "Я готов учиться добыче золота! (50 золотых)";
 };
 
 
