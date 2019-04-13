@@ -69,7 +69,8 @@ instance ItMw_2h_Rod(C_Item)
 	range = Range_Sld2hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Rod;
-	visual = "ItMw_035_2h_sld_sword_01.3DS";
+	//visual = "ItMw_035_2h_sld_sword_01.3DS";
+	visual = "ItMw_035_2h_sld_sword_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -92,7 +93,8 @@ instance ItMw_2h_Rod_Fake(C_Item)
 	range = Range_Sld2hSchwert;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Rod;
-	visual = "ItMw_035_2h_sld_sword_01.3DS";
+	//visual = "ItMw_035_2h_sld_sword_01.3DS";
+	visual = "ItMw_035_2h_sld_sword_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -747,7 +749,7 @@ instance Holy_Hammer_MIS(C_Item)
 	name = "Священный молот";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_MISSION | ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_HolyHammer;
 	owner = Nov_608_Garwig;
 	damageTotal = Damage_HolyHammer;

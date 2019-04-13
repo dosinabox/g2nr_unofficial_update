@@ -111,12 +111,12 @@ func void B_GiveTradeInv(var C_Npc slf)
 	Trd_Cipher = Hlp_GetNpc(SLD_803_Cipher);
 	Trd_Hodges = Hlp_GetNpc(BAU_908_Hodges);
 //	разоружение перед началом торговли с ГГ
-//	AI_UnequipWeapons(slf);
+	AI_UnequipWeapons(slf);
 	EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
-	Npc_RemoveInvItem(slf,Hlp_GetInstanceID(EquipWeap));
+	Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipWeap),Npc_HasItems(slf,Hlp_GetInstanceID(EquipWeap)));
 	CreateInvItem(slf,Hlp_GetInstanceID(EquipWeap));
 	EquipWeap = Npc_GetEquippedRangedWeapon(slf);
-	Npc_RemoveInvItem(slf,Hlp_GetInstanceID(EquipWeap));
+	Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipWeap),Npc_HasItems(slf,Hlp_GetInstanceID(EquipWeap)));
 	CreateInvItem(slf,Hlp_GetInstanceID(EquipWeap));
 	B_ClearRuneInv(slf);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)

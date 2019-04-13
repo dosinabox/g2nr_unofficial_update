@@ -1,15 +1,17 @@
 
 func void B_MagicHurtNpc(var C_Npc slf,var C_Npc oth,var int damage)
 {
-	var int effectiveDamage;
-	if((oth.flags != NPC_FLAG_IMMORTAL) || (oth.protection[PROT_MAGIC] != IMMUNE))
+//	var int effectiveDamage;
+//	if((oth.flags != NPC_FLAG_IMMORTAL) || (oth.protection[PROT_MAGIC] != IMMUNE))
+	if((oth.flags != NPC_FLAG_IMMORTAL) && (oth.protection[PROT_MAGIC] != IMMUNE))
 	{
-		effectiveDamage = damage - oth.protection[PROT_MAGIC];
+		/*effectiveDamage = damage - oth.protection[PROT_MAGIC];
 		if(effectiveDamage < 0)
 		{
 			effectiveDamage = 0;
 		};
-		Npc_ChangeAttribute(oth,ATR_HITPOINTS,-effectiveDamage);
+		Npc_ChangeAttribute(oth,ATR_HITPOINTS,-effectiveDamage);*/
+		Npc_ChangeAttribute(oth,ATR_HITPOINTS,-damage);
 	};
 	if(Npc_IsDead(oth))
 	{

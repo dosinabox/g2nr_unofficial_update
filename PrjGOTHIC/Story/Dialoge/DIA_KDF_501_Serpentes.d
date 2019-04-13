@@ -249,7 +249,7 @@ func void DIA_Serpentes_SUCCESS_Info()
 	{
 		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_05");	//И будет лучше, если я заберу этот молот.
 		Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
-		AI_PrintScreen(PRINT_ItemGegeben,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen("Отдан Священный молот",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
 	};
 	MIS_GOLEM = LOG_SUCCESS;

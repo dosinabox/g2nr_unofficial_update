@@ -41,6 +41,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_2H_OrcAxe_02,1);
 	CreateInvItems(self,ItMw_2H_OrcAxe_03,1);
 	CreateInvItems(self,ItMw_2H_OrcAxe_04,1);
+	CreateInvItems(self,ItMw_2H_OrcMace_01,1);
 	CreateInvItems(self,ItMw_2H_OrcSword_01,1);
 	CreateInvItems(self,ItMw_2H_OrcSword_02,1);
 	CreateInvItems(self,ItMw_ShortSword3,1);
@@ -229,6 +230,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItRu_Deathbolt,1);
 	CreateInvItems(self,ItRu_Deathball,1);
 	CreateInvItems(self,ItRu_Concussionbolt,1);
+	CreateInvItems(self,ItRu_Inflate,1);
 	CreateInvItems(self,ItRu_Thunderstorm,1);
 	CreateInvItems(self,ItRu_Whirlwind,1);
 	CreateInvItems(self,ItRu_Geyser,1);
@@ -314,7 +316,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Addon_BookXP250,1);
 	CreateInvItems(self,ItWr_Addon_BookXP500,1);
 	CreateInvItems(self,ItWr_Addon_BookXP1000,1);
-	CreateInvItems(self,ItWr_Addon_LPBook,1);
+//	CreateInvItems(self,ItWr_Addon_LPBook,1);
 	CreateInvItems(self,ItWr_Addon_BookLP2,1);
 	CreateInvItems(self,ItWr_Addon_BookLP3,1);
 	CreateInvItems(self,ItWr_Addon_BookLP5,1);

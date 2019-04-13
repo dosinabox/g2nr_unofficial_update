@@ -3,7 +3,7 @@ var int hero_2h_max_bonus;
 
 func void Equip_2H_01()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_01) > 100)
 		{
@@ -39,7 +39,7 @@ func void UnEquip_2H_01()
 
 func void Equip_2H_02()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_02) > 100)
 		{
@@ -75,7 +75,7 @@ func void UnEquip_2H_02()
 
 func void Equip_2H_03()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_03) > 100)
 		{
@@ -111,7 +111,7 @@ func void UnEquip_2H_03()
 
 func void Equip_2H_04()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_04) > 100)
 		{
@@ -147,7 +147,7 @@ func void UnEquip_2H_04()
 
 func void Equip_2H_05()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_05) > 100)
 		{
@@ -183,7 +183,7 @@ func void UnEquip_2H_05()
 
 func void Equip_2H_06()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_06) > 100)
 		{
@@ -219,7 +219,7 @@ func void UnEquip_2H_06()
 
 func void Equip_2H_07()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_07) > 100)
 		{
@@ -255,7 +255,7 @@ func void UnEquip_2H_07()
 
 func void Equip_2H_08()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_08) > 100)
 		{
@@ -291,7 +291,7 @@ func void UnEquip_2H_08()
 
 func void Equip_2H_09()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_09) > 100)
 		{
@@ -327,7 +327,7 @@ func void UnEquip_2H_09()
 
 func void Equip_2H_10()
 {
-	if(Npc_IsPlayer(self))
+	if(Npc_IsPlayer(self) && (self.HitChance[NPC_TALENT_2H] < 100))
 	{
 		if((self.HitChance[NPC_TALENT_2H] + Waffenbonus_10) > 100)
 		{

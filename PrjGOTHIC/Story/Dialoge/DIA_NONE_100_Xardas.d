@@ -124,7 +124,7 @@ instance DIA_Xardas_AWAY(C_Info)
 	condition = DIA_Xardas_AWAY_Condition;
 	information = DIA_Xardas_AWAY_Info;
 	permanent = FALSE;
-	description = "Тогда давай побыстрее уносить отсюда ноги! (режим трусости у ИИ)";
+	description = "Тогда давай побыстрее уносить отсюда ноги!";
 };
 
 
@@ -142,7 +142,7 @@ func void DIA_Xardas_AWAY_Info()
 	AI_Output(self,other,"DIA_Xardas_AWAY_14_01");	//Если мы сбежим сейчас, это всего лишь отсрочит нашу встречу с драконами.
 	AI_Output(self,other,"DIA_Xardas_AWAY_14_02");	//При помощи солдат и магов, живущих здесь, мы можем остановить их до того, как армия Тьмы будет полностью сформирована.
 	AI_Output(self,other,"DIA_Xardas_AWAY_14_03");	//У нас не будет лучшего шанса для этого.
-	NpcWantToFlee = TRUE;
+//	NpcWantToFlee = FALSE;
 };
 
 
@@ -313,7 +313,7 @@ instance DIA_Xardas_WEAPON(C_Info)
 	condition = DIA_Xardas_WEAPON_Condition;
 	information = DIA_Xardas_WEAPON_Info;
 	permanent = FALSE;
-	description = "Мне нужно оружие. (лимит запаса стрел и болтов у торговцев)";
+	description = "Мне нужно оружие.";
 };
 
 
@@ -330,7 +330,7 @@ func void DIA_Xardas_WEAPON_Info()
 	AI_Output(other,self,"DIA_Xardas_WEAPON_15_00");	//Мне нужно оружие.
 	AI_Output(self,other,"DIA_Xardas_WEAPON_14_01");	//Я могу дать тебе только то немногое, что у меня есть здесь.
 	AI_Output(self,other,"DIA_Xardas_WEAPON_14_02");	//Посмотри в моей башне. Ты можешь взять все, что покажется тебе полезным.
-	TradersHaveLimitedAmmo = TRUE;
+//	TradersHaveLimitedAmmo = FALSE;
 };
 
 

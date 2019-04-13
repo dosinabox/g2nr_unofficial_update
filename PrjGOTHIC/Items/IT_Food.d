@@ -290,9 +290,9 @@ instance ItFo_CoragonsBeer(C_Item)
 	on_state[0] = Use_CoragonsBeerBeer;
 	description = name;
 	text[0] = "Особое пиво Корагона.";
-	text[1] = NAME_Bonus_HP;
+	text[1] = NAME_Bonus_HpMax;
 	count[1] = HP_Beer;
-	text[2] = NAME_Bonus_Mana;
+	text[2] = NAME_Bonus_ManaMax;
 	count[2] = Mana_Beer;
 	text[5] = NAME_Value;
 	count[5] = Value_Beer;
@@ -307,7 +307,7 @@ func void Use_CoragonsBeerBeer()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS_MAX,HP_Beer);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer);
 	concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(HP_Beer));
-	PrintScreen(concatText,55,-1,FONT_Screen,2);
+	PrintScreen(concatText,-1,53,FONT_Screen,2);
 	B_NpcSetDrunk(40);
 };
 

@@ -121,6 +121,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItMw_2H_OrcAxe_02,1);
 	CreateInvItems(self,ItMw_2H_OrcAxe_03,1);
 	CreateInvItems(self,ItMw_2H_OrcAxe_04,1);
+	CreateInvItems(self,ItMw_2H_OrcMace_01,1);
 	CreateInvItems(self,ItMw_2H_OrcSword_01,1);
 	CreateInvItems(self,ItMw_2H_OrcSword_02,1);
 	CreateInvItems(self,ItMw_ShortSword3,1);

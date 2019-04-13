@@ -243,7 +243,8 @@ func void startup_addon_part_entrance_01()
 	Wld_InsertNpc(NONE_Addon_114_Lance_ADW,"ADW_ENTRANCE");
 	Wld_InsertNpc(VLK_4304_Addon_William,"ADW_ENTRANCE");
 	Wld_InsertNpc(PIR_1352_Addon_AlligatorJack,"ADW_ENTRANCE");
-	Wld_InsertNpc(Blattcrawler,"ADW_ENTRANCE_PLATEAU_08");
+//	Wld_InsertNpc(Blattcrawler,"ADW_ENTRANCE_PLATEAU_08");
+	Wld_InsertNpc(Blattcrawler,"ADW_ENTRANCE_BUILDING1_13");
 	Wld_InsertNpc(Blattcrawler,"ADW_ENTRANCE_2_VALLEY_05");
 	Wld_InsertNpc(Blattcrawler,"ADW_ENTRANCE_2_VALLEY_05");
 	Wld_InsertNpc(Blattcrawler,"ADW_ENTRANCE_2_VALLEY_05");
@@ -1782,7 +1783,7 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(MIL_316_Wambo,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_321_Rangar,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_326_Miliz,"NW_CITY_ENTRANCE_01");
-	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");	//мальчик на побегушках
+//	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");	//мальчик на побегушках
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_05");

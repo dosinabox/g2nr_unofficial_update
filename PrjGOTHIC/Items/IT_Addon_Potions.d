@@ -72,7 +72,7 @@ instance ItPo_Health_Addon_04(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_HEALTHPOTION";
 	description = "Чистое здоровье";
-	text[0] = "Полное восстановление здоровья.";
+	text[1] = "Полное восстановление здоровья.";
 	text[5] = NAME_Value;
 	count[5] = Value_HpTrunk;
 };
@@ -98,7 +98,7 @@ instance ItPo_Mana_Addon_04(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_MANAPOTION";
 	description = "Чистая мана";
-	text[0] = "Полное восстановление маны.";
+	text[1] = "Полное восстановление маны.";
 	text[5] = NAME_Value;
 	count[5] = Value_ManaTrunk;
 };

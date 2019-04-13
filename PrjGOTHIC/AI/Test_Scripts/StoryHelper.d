@@ -68,6 +68,72 @@ func void StoryHelper_Exit_Info()
 	AI_StopProcessInfos(self);
 };
 
+instance StoryHelper_PatchSettings(C_Info)
+{
+	npc = sh;
+	condition = StoryHelper_PatchSettings_Condition;
+	information = StoryHelper_PatchSettings_Info;
+	important = FALSE;
+	permanent = TRUE;
+	description = "Настройки неофициального обновления";
+};
+
+
+func int StoryHelper_PatchSettings_Condition()
+{
+	return TRUE;
+};
+
+func void StoryHelper_PatchSettings_Info()
+{
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
+};
+
+func void StoryHelper_Limit()
+{
+	if(TradersHaveLimitedAmmo == TRUE)
+	{
+		TradersHaveLimitedAmmo = FALSE;
+		PrintScreen("Лимит выключен",-1,-1,FONT_Screen,2);
+	}
+	else
+	{
+		TradersHaveLimitedAmmo = TRUE;
+		PrintScreen("Лимит включен",-1,-1,FONT_Screen,2);
+	};
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
+};
+
+func void StoryHelper_Flee()
+{
+	if(NpcWantToFlee == TRUE)
+	{
+		NpcWantToFlee = FALSE;
+		PrintScreen("Режим трусости выключен",-1,-1,FONT_Screen,2);
+	}
+	else
+	{
+		NpcWantToFlee = TRUE;
+		PrintScreen("Режим трусости включен",-1,-1,FONT_Screen,2);
+	};
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
+};
+
+func void StoryHelper_PatchSettings_BACK()
+{
+	Info_ClearChoices(StoryHelper_PatchSettings);
+};
+
+/////////////////////////
 
 instance StoryHelper_INFO1(C_Info)
 {

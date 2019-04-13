@@ -56,7 +56,8 @@ instance ItMW_1H_FerrosSword_Mis(C_Item)
 	range = Range_Special_1H_2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Special_1H_2;
-	visual = "ItMw_060_1h_Sword_smith_03.3DS";
+	//visual = "ItMw_060_1h_Sword_smith_03.3DS";
+	visual = "ItMw_060_1h_Sword_smith_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -161,16 +162,18 @@ instance ItAt_DragonEgg_MIS(C_Item)
 
 instance ItRi_OrcEliteRing(C_Item)
 {
-	name = "Кольцо предводителей орков";
+	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_MISSION | ITEM_RING | ITEM_MULTI;
 	value = Value_OrcEliteRing;
+//	cond_atr[2] = ATR_STRENGTH;
+//	cond_value[2] = 20;
 	visual = "ItRi_Str_02.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	on_equip = Equip_OrcEliteRing;
 	on_unequip = UnEquip_OrcEliteRing;
-	description = name;
+	description = "Кольцо предводителей орков";
 	text[0] = "Это грубое кольцо кажется";
 	text[1] = "странно холодным.";
 	text[5] = NAME_Value;
@@ -185,20 +188,20 @@ instance ItRi_OrcEliteRing(C_Item)
 
 func void Equip_OrcEliteRing()
 {
-	var string strMessage;
+//	var string strMessage;
 	if(self.attribute[ATR_STRENGTH] >= 20)
 	{
 		Npc_ChangeAttribute(self,ATR_STRENGTH,-20);
 		Print(PRINT_OrcEliteRingEquip);
 		OrcEliteRing_Equipped = TRUE;
-	}
-	else
+	};
+/*	else
 	{
 		strMessage = ConcatStrings(PRINT_STRENGTH_MISSING," ");
 		strMessage = ConcatStrings(strMessage,IntToString(20 - self.attribute[ATR_STRENGTH]));
 		Print(strMessage);
 		OrcEliteRing_Equipped = FALSE;
-	};
+	};*/
 };
 
 func void UnEquip_OrcEliteRing()

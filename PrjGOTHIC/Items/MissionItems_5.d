@@ -509,7 +509,7 @@ instance ItPo_HealRandolph_MIS(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Лекарство от алкоголизма";
+	description = "Лекарство от похмелья";
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Essenz;
 	text[5] = NAME_Value;

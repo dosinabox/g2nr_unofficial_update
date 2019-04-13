@@ -5,7 +5,7 @@ func int B_TeachThiefTalent(var C_Npc slf,var C_Npc oth,var int talent)
 	kosten = B_GetLearnCostTalent(oth,talent,1);
 	if((talent != NPC_TALENT_PICKLOCK) && (talent != NPC_TALENT_SNEAK) && (talent != NPC_TALENT_ACROBAT) && (talent != NPC_TALENT_PICKPOCKET))
 	{
-		Print("*** ERROR: Wrong Parameter ***");
+		Print("*** ОШИБКА: Неправильный параметр ***");
 		return FALSE;
 	};
 	if(oth.lp < kosten)

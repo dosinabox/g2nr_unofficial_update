@@ -7,30 +7,61 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 	kosten = B_GetLearnCostTalent(oth,talent,1) * percent;
 	if((talent != NPC_TALENT_1H) && (talent != NPC_TALENT_2H) && (talent != NPC_TALENT_BOW) && (talent != NPC_TALENT_CROSSBOW))
 	{
-		Print("*** ERROR: Wrong Parameter ***");
+		Print("*** ОШИБКА: Неправильный параметр ***");
 		return FALSE;
 	};
 	if(talent == NPC_TALENT_1H)
 	{
 //		realHitChance = oth.HitChance[NPC_TALENT_1H];
+		if(oth.HitChance[NPC_TALENT_1H] >= 100)
+		{
+			PrintScreen("Дальнейшее обучение невозможно!",-1,-1,FONT_Screen,2);
+			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
+			return FALSE;
+		};
 		realHitChance = oth.aivar[REAL_TALENT_1H];
 	}
 	else if(talent == NPC_TALENT_2H)
 	{
 //		realHitChance = oth.HitChance[NPC_TALENT_2H];
+		if(oth.HitChance[NPC_TALENT_2H] >= 100)
+		{
+			PrintScreen("Дальнейшее обучение невозможно!",-1,-1,FONT_Screen,2);
+			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
+			return FALSE;
+		};
 		realHitChance = oth.aivar[REAL_TALENT_2H];
 	}
 	else if(talent == NPC_TALENT_BOW)
 	{
 //		realHitChance = oth.HitChance[NPC_TALENT_BOW];
+		if(oth.HitChance[NPC_TALENT_BOW] >= 100)
+		{
+			PrintScreen("Дальнейшее обучение невозможно!",-1,-1,FONT_Screen,2);
+			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
+			return FALSE;
+		};
 		realHitChance = oth.aivar[REAL_TALENT_BOW];
 	}
 	else if(talent == NPC_TALENT_CROSSBOW)
 	{
 //		realHitChance = oth.HitChance[NPC_TALENT_CROSSBOW];
+		if(oth.HitChance[NPC_TALENT_CROSSBOW] >= 100)
+		{
+			PrintScreen("Дальнейшее обучение невозможно!",-1,-1,FONT_Screen,2);
+			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
+			return FALSE;
+		};
 		realHitChance = oth.aivar[REAL_TALENT_CROSSBOW];
 	};
-	if(realHitChance >= teacherMAX)
+	if(realHitChance > teacherMAX)
+	{
+		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
+		PrintScreen(concatText,-1,-1,FONT_Screen,2);
+		B_Say(slf,oth,"$YOULEARNEDSOMETHING");
+		return FALSE;
+	};
+	if(realHitChance == teacherMAX)
 	{
 		concatText = ConcatStrings(PRINT_NoLearnOverPersonalMAX,IntToString(teacherMAX));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);

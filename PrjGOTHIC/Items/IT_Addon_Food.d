@@ -226,7 +226,7 @@ instance ItFo_Addon_FireStew(C_Item)
 	description = name;
 	text[1] = NAME_Bonus_Str;
 	count[1] = STR_FireStew;
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = HP_FireStew;
 	text[5] = NAME_Value;
 	count[5] = Value_FireStew;
@@ -240,7 +240,7 @@ func void Use_FireStew()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS_MAX,HP_FireStew);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_FireStew);
 	concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(HP_FireStew));
-	PrintScreen(concatText,55,-1,FONT_Screen,2);
+	PrintScreen(concatText,-1,53,FONT_Screen,2);
 };
 
 

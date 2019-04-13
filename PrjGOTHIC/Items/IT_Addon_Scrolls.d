@@ -23,8 +23,9 @@ instance ItSc_Geyser(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_Geyser;
+	text[4] = NAME_Addon_SpellDontKill;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -46,7 +47,7 @@ instance ItSc_Icelance(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_Icelance;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -69,8 +70,9 @@ instance ItSc_Waterfist(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_Waterfist;
+	text[4] = NAME_Addon_SpellDontKill;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -92,7 +94,7 @@ instance ItSc_Thunderstorm(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_Thunderstorm;
 	text[5] = NAME_Value;
 	count[5] = value;

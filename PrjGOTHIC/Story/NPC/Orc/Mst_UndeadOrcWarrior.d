@@ -39,7 +39,8 @@ func void B_SetVisuals_UndeadOrcWarrior()
 instance UndeadOrcWarrior(Mst_Default_UndeadOrcWarrior)
 {
 	B_SetVisuals_UndeadOrcWarrior();
-	EquipItem(self,ItMw_2H_OrcAxe_02);
+	//EquipItem(self,ItMw_2H_OrcAxe_02);
+	EquipItem(self,ItMw_2H_OrcMace_01);
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };

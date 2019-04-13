@@ -31,7 +31,7 @@ instance ItRu_Thunderstorm(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Thunderstorm;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_Thunderstorm;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -54,8 +54,12 @@ instance ItRu_Whirlwind(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Whirlwind;
-	text[2] = NAME_Sec_Duration;
-	count[2] = SPL_TIME_WHIRLWIND;
+	text[2] = NAME_Dam_Magic;
+	count[2] = 60;
+	//text[3] = "Чистый урон в секунду:";
+	//count[3] = SPL_Whirlwind_DAMAGE;
+	text[3] = NAME_Sec_Duration;
+	count[3] = SPL_TIME_WHIRLWIND;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -77,8 +81,9 @@ instance ItRu_Geyser(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Geyser;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_Geyser;
+	text[4] = NAME_Addon_SpellDontKill;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -100,8 +105,9 @@ instance ItRu_Waterfist(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Waterfist;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_Waterfist;
+	text[4] = NAME_Addon_SpellDontKill;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -123,7 +129,7 @@ instance ItRu_Icelance(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Icelance;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_Icelance;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -146,7 +152,7 @@ instance ItRu_BeliarsRage(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Energyball;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_DAMAGE_Energyball;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -169,10 +175,10 @@ instance ItRu_SuckEnergy(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_SuckEnergy;
-	text[2] = NAME_Damage;
+	text[2] = "Чистый урон в секунду:";
 	count[2] = SPL_SuckEnergy_Damage;
 	text[3] = NAME_Sec_Duration;
-	count[3] = SPL_TIME_SuckEnergy;
+	count[3] = 8;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -217,7 +223,7 @@ instance ItRu_Swarm(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Swarm;
-	text[2] = NAME_Damage;
+	text[2] = "Чистый урон в секунду:";
 	count[2] = SPL_Swarm_Damage;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_Swarm;
@@ -242,7 +248,7 @@ instance ItRu_Skull(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_MinManakosten;
 	count[1] = SPL_Cost_Skull;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_Damage_Skull;
 	text[4] = NAME_Addon_NeedsAllMana;
 	text[5] = NAME_Value;
@@ -309,7 +315,7 @@ instance ItRu_Inflate(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Inflate;
-	text[2] = NAME_Dam_Magic;
+	text[2] = "Чистый урон в секунду:";
 	count[2] = SPL_Inflate_Damage;
 	text[3] = NAME_Sec_Duration;
 	count[3] = SPL_TIME_Inflate;

@@ -7,7 +7,7 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 	kosten = B_GetLearnCostAttribute(oth,attrib) * points;
 	if((attrib != ATR_STRENGTH) && (attrib != ATR_DEXTERITY) && (attrib != ATR_MANA_MAX))
 	{
-		Print("*** ERROR: Wrong Parameter ***");
+		Print("*** ОШИБКА: Неправильный параметр ***");
 		return FALSE;
 	};
 	if(attrib == ATR_STRENGTH)

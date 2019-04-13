@@ -57,7 +57,7 @@ func void B_BlitzInArsch()
 	Abzug = hero.attribute[ATR_HITPOINTS] - BlitzInArsch_Hitpoints;
 	if(Abzug > 0)
 	{
-		concatText1 = ConcatStrings(" ",NAME_Damage);
+		concatText1 = ConcatStrings(" ","урон");
 		concatText2 = ConcatStrings(IntToString(Abzug),concatText1);
 		AI_PrintScreen(concatText2,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
 		Wld_PlayEffect("spellFX_BELIARSRAGE",hero,hero,0,0,0,FALSE);

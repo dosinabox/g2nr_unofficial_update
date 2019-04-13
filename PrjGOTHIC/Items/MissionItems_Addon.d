@@ -717,34 +717,6 @@ func void UnEquip_MorgansRing()
 };
 */
 
-var int Morgan_Bonus;
-
-func void Equip_MorgansRing()
-{
-	Morgan_Bonus = 100 - self.HitChance[NPC_TALENT_1H];  
-	if(self.HitChance[NPC_TALENT_1H] > 90)
-	{
-		B_AddFightSkill(self,NPC_TALENT_1H,Morgan_Bonus);
-	}
-	else
-	{
-		B_AddFightSkill(self,NPC_TALENT_1H,10);
-	};
-};
-
-func void UnEquip_MorgansRing()
-{
-	if(Morgan_Bonus < 10)
-	{
-		B_AddFightSkill(self,NPC_TALENT_1H,-Morgan_Bonus);
-	}
-	else
-	{
-		B_AddFightSkill(self,NPC_TALENT_1H,-10);
-	};
-};
-
-
 instance ItMi_Focus(C_Item)
 {
 	name = "Фокусирующий камень";

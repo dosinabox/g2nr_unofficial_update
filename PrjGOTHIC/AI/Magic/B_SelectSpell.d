@@ -304,7 +304,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			return FALSE;
 		};
 	};
-	if((slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK))
+	if((slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE))
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))
 		{
@@ -335,7 +335,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			return FALSE;
 		};
-	}; */
+	};
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
 	{
 //		if(!Npc_HasItems(slf,ItRu_InstantFireball))
@@ -354,7 +354,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			return FALSE;
 		};
-	};
+	}; */
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
 	{
 //		if(!Npc_HasItems(slf,ItRu_InstantFireball))

@@ -1018,7 +1018,7 @@ func void DIA_Addon_Saturas_BeliarWeapGeben_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_BeliarWeapGeben_15_00");	//Возьми Коготь Белиара и уничтожь его.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_01");	//Как скажешь, сын мой. Дай мне Коготь.
 	B_ClearBeliarsWeapon();
-	AI_PrintScreen(PRINT_ItemGegeben,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Отдан Коготь Белиара",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_02");	//Теперь Коготь лишен своей силы. Я утоплю его в глубинах моря.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_03");	//Мудрость Аданоса укроет его от Зла.
 	TOPIC_END_Klaue = TRUE;

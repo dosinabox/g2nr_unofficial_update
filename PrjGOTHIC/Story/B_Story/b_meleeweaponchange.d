@@ -9,6 +9,13 @@ var int ChangedTwoHHero;
 var int ScriptPatchWeaponChange;
 var int PlayerIsTransformed;
 var int Saved_exp_next;
+var int Morgan_Bonus;
+var int MorgansRingEquipped;
+var int MorgansRingEquippedAt90;
+var int MorgansRingEquippedAt100;
+var int KeuleEquipped;
+var int Keule_Bonus;
+var int Keule_Fix_Needed;
 
 func void b_meleeweaponchange(var int oneh,var int twoh,var int manamax)
 {
@@ -26,6 +33,129 @@ func void b_meleeweaponundochange()
 	ChangedOneHHero = 0;
 	ChangedTwoHHero = 0;
 	ScriptPatchWeaponChange = TRUE;
+};
+
+func void Equip_MorgansRing()
+{
+	Morgan_Bonus = 100 - self.HitChance[NPC_TALENT_1H];
+	if(self.HitChance[NPC_TALENT_1H] >= 100)
+	{
+		if(ChangedOneHHero > 0)
+		{
+			MorgansRingEquippedAt90 = TRUE;
+		}
+		else if(ChangedOneHHero == 0)
+		{
+			MorgansRingEquippedAt100 = TRUE;
+		};
+	}
+	else if(self.HitChance[NPC_TALENT_1H] == 90)
+	{
+		if(KeuleEquipped == TRUE)
+		{
+			MorgansRingEquippedAt100 = TRUE;
+		}
+		else
+		{
+			MorgansRingEquippedAt90 = TRUE;
+		};
+		B_AddFightSkill(self,NPC_TALENT_1H,Morgan_Bonus);
+	}
+	else if(self.HitChance[NPC_TALENT_1H] > 90)
+	{
+		B_AddFightSkill(self,NPC_TALENT_1H,Morgan_Bonus);
+		MorgansRingEquippedAt90 = TRUE;
+	}
+	else if(self.HitChance[NPC_TALENT_1H] < 90)
+	{
+		B_AddFightSkill(self,NPC_TALENT_1H,10);
+		MorgansRingEquipped = TRUE;
+	};
+};
+
+func void UnEquip_MorgansRing()
+{
+	if(MorgansRingEquippedAt100 == TRUE)
+	{
+		MorgansRingEquippedAt100 = FALSE;
+	}
+	else if(MorgansRingEquippedAt90 == TRUE)
+	{
+		if(self.HitChance[NPC_TALENT_1H] == 100)
+		{
+			B_AddFightSkill(self,NPC_TALENT_1H,-Morgan_Bonus);
+		}
+		else
+		{
+			B_AddFightSkill(self,NPC_TALENT_1H,-Morgan_Bonus);
+		};
+		MorgansRingEquippedAt90 = FALSE;
+	}
+	else if(MorgansRingEquipped == TRUE)
+	{
+		if(Keule_Fix_Needed == TRUE)
+		{
+			B_AddFightSkill(self,NPC_TALENT_1H,-Keule_Bonus);
+		}
+		else
+		{
+			B_AddFightSkill(self,NPC_TALENT_1H,-10);
+		};
+		//Print("тест 2");
+		MorgansRingEquipped = FALSE;
+	};
+};
+
+func void Equip_1H_Keule()
+{
+	if(Npc_IsPlayer(self))
+	{
+		B_AddFightSkill(self,NPC_TALENT_1H,-10);
+		b_meleeweaponchange(-10,0,0);
+		KeuleEquipped = TRUE;
+	};
+};
+
+func void UnEquip_1H_Keule()
+{
+	Keule_Bonus = 100 - self.HitChance[NPC_TALENT_1H];
+	if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
+	{
+		if(self.HitChance[NPC_TALENT_1H] > 90)
+		{
+			if(MorgansRingEquipped == TRUE)
+			{
+				B_AddFightSkill(self,NPC_TALENT_1H,Keule_Bonus);
+				Keule_Fix_Needed = TRUE;
+				//Print("тест 1");
+			}
+			else if(self.HitChance[NPC_TALENT_1H] <= 90)
+			{
+				B_AddFightSkill(self,NPC_TALENT_1H,10);
+			};
+		};
+		B_AddFightSkill(self,NPC_TALENT_1H,10);
+		b_meleeweaponundochange();
+		KeuleEquipped = FALSE;
+	};
+};
+
+func void Equip_2H_Keule()
+{
+	if(Npc_IsPlayer(self))
+	{
+		B_AddFightSkill(self,NPC_TALENT_2H,-10);
+		b_meleeweaponchange(0,-10,0);
+	};
+};
+
+func void UnEquip_2H_Keule()
+{
+	if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
+	{
+		B_AddFightSkill(self,NPC_TALENT_2H,10);
+		b_meleeweaponundochange();
+	};
 };
 
 func void b_startmagictransform(var int Level)

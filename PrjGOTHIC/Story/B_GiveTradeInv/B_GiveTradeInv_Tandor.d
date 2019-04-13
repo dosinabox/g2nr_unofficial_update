@@ -71,9 +71,9 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Schlachtaxt,1);
 		CreateInvItems(slf,ItRw_Bow_H_02,1);
 		CreateInvItems(slf,ItRw_Crossbow_H_01,1);
-		CreateInvItems(slf,ItRw_Addon_FireArrow,20);
-		CreateInvItems(slf,ItRw_Addon_MagicArrow,20);
-		CreateInvItems(slf,ItRw_Addon_MagicBolt,10);
+//		CreateInvItems(slf,ItRw_Addon_FireArrow,20);
+//		CreateInvItems(slf,ItRw_Addon_MagicArrow,20);
+//		CreateInvItems(slf,ItRw_Addon_MagicBolt,10);
 		Tandor_ItemsGiven_Chapter_4 = TRUE;
 	};
 	if((Kapitel >= 5) && (Tandor_ItemsGiven_Chapter_5 == FALSE))
@@ -82,9 +82,9 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,100);
 		CreateInvItems(slf,ItMw_Drachenschneide,1);
-		CreateInvItems(slf,ItRw_Addon_FireArrow,20);
-		CreateInvItems(slf,ItRw_Addon_MagicArrow,20);
-		CreateInvItems(slf,ItRw_Addon_MagicBolt,10);
+//		CreateInvItems(slf,ItRw_Addon_FireArrow,20);
+//		CreateInvItems(slf,ItRw_Addon_MagicArrow,20);
+//		CreateInvItems(slf,ItRw_Addon_MagicBolt,10);
 		Tandor_ItemsGiven_Chapter_5 = TRUE;
 	};
 };

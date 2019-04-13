@@ -27,7 +27,7 @@ instance ItMw_1H_Mace_L_01(C_Item)
 	name = "Кочерга";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_WOOD;
+	material = MAT_METAL;
 	value = Value_Schuerhaken;
 	damageTotal = Damage_Schuerhaken;
 	damagetype = DAM_EDGE;
@@ -142,7 +142,7 @@ instance ItMw_1h_Vlk_Axe(C_Item)
 	name = "Топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_VLKAxe;
 	damageTotal = Damage_VLKAxe;
 	damagetype = DAM_EDGE;
@@ -165,7 +165,7 @@ instance ItMw_1H_Mace_L_04(C_Item)
 	name = "Молот кузнеца";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Schmiedehammer;
 	damageTotal = Damage_Schmiedehammer;
 	damagetype = DAM_BLUNT;
@@ -231,7 +231,7 @@ instance ItMw_Nagelknueppel(C_Item)
 
 instance ItMw_1H_Sword_L_03(C_Item)
 {
-	name = "Волчий нож";
+	name = "Старый волчий нож";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
@@ -375,7 +375,7 @@ instance ItMw_2H_Axe_L_01(C_Item)
 	name = "Кирка";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE | ITEM_NSPLIT;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Spitzhacke;
 	damageTotal = Damage_Spitzhacke;
 	damagetype = DAM_EDGE;
@@ -421,7 +421,7 @@ instance ItMw_1h_Misc_Axe(C_Item)
 	name = "Ржавый топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_MiscAxe;
 	damageTotal = Damage_MiscAxe;
 	damagetype = DAM_EDGE;
@@ -490,7 +490,7 @@ instance ItMw_1h_Sld_Axe(C_Item)
 	name = "Грубый тесак";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Sld1hAxt;
 	damageTotal = Damage_Sld1hAxt;
 	damagetype = DAM_EDGE;
@@ -536,7 +536,7 @@ instance ItMw_2h_Sld_Axe(C_Item)
 	name = "Грубый боевой топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Sld2hAxe;
 	damageTotal = Damage_Sld2hAxe;
 	damagetype = DAM_EDGE;
@@ -628,7 +628,7 @@ instance ItMw_2H_OrcAxe_01(C_Item)
 	name = "Краш Пах";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Orkaxt_01;
 	damageTotal = Damage_Orkaxt_01;
 	damagetype = DAM_EDGE;
@@ -651,7 +651,7 @@ instance ItMw_2H_OrcAxe_02(C_Item)
 	name = "Краш Уррок";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Orkaxt_02;
 	damageTotal = Damage_Orkaxt_02;
 	damagetype = DAM_EDGE;
@@ -674,7 +674,7 @@ instance ItMw_2H_OrcAxe_03(C_Item)
 	name = "Краш Агаш";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Orkaxt_03;
 	damageTotal = Damage_Orkaxt_03;
 	damagetype = DAM_EDGE;
@@ -697,7 +697,7 @@ instance ItMw_2H_OrcAxe_04(C_Item)
 	name = "Краш Брокдар";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Orkaxt_04;
 	damageTotal = Damage_Orkaxt_04;
 	damagetype = DAM_EDGE;
@@ -705,6 +705,29 @@ instance ItMw_2H_OrcAxe_04(C_Item)
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Orkaxt_04;
 	visual = "ItMw_2H_OrcAxe_04.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_TwoHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMw_2H_OrcMace_01(C_Item)
+{
+	name = "Краш Каррок";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_2HD_AXE;
+	material = MAT_WOOD;
+	value = Value_Orkmace_01;
+	damageTotal = Damage_Orkmace_01;
+	damagetype = DAM_BLUNT;
+	range = Range_Orkmace_01;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = Condition_Orkmace_01;
+	visual = "ItMw_2H_OrcMace_01.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -904,7 +927,7 @@ instance ItMw_Kriegshammer1(C_Item)
 	name = "Военный молот";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Kriegshammer1;
 	damageTotal = Damage_Kriegshammer1;
 	damagetype = DAM_BLUNT;
@@ -927,7 +950,7 @@ instance ItMw_Hellebarde(C_Item)
 	name = "Алебарда";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Hellebarde;
 	damageTotal = Damage_Hellebarde;
 	damagetype = DAM_EDGE;
@@ -957,7 +980,8 @@ instance ItMw_Nagelkeule2(C_Item)
 	range = Range_Nagelkeule2;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Nagelkeule2;
-	visual = "ItMw_018_1h_Mace_01.3DS";
+	//visual = "ItMw_018_1h_Mace_01.3DS";
+	visual = "ItMw_028_1h_Mace_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -973,7 +997,7 @@ instance ItMw_Schiffsaxt(C_Item)
 	name = "Корабельный топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Schiffsaxt;
 	damageTotal = Damage_Schiffsaxt;
 	damagetype = DAM_EDGE;
@@ -993,7 +1017,7 @@ instance ItMw_Schiffsaxt(C_Item)
 
 instance ItMw_Piratensaebel(C_Item)
 {
-	name = "Пиратская абордажная сабля";
+	name = "Пиратская сабля";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
@@ -1003,7 +1027,8 @@ instance ItMw_Piratensaebel(C_Item)
 	range = Range_Piratensaebel;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Piratensaebel;
-	visual = "ItMw_030_1h_sword_03.3DS";
+	//visual = "ItMw_030_1h_sword_03.3DS";
+	visual = "ItMw_030_1h_sword_04.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -1160,7 +1185,7 @@ instance ItMw_Streitaxt1(C_Item)
 	name = "Легкий боевой топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Streitaxt1;
 	damageTotal = Damage_Streitaxt1;
 	damagetype = DAM_EDGE;
@@ -1232,7 +1257,7 @@ instance ItMw_Doppelaxt(C_Item)
 	name = "Двойной топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Doppelaxt;
 	damageTotal = Damage_Doppelaxt;
 	damagetype = DAM_EDGE;
@@ -1255,7 +1280,7 @@ instance ItMw_Bartaxt(C_Item)
 	name = "Бердыш";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Bartaxt;
 	damageTotal = Damage_Bartaxt;
 	damagetype = DAM_EDGE;
@@ -1454,7 +1479,7 @@ instance ItMw_Streitkolben(C_Item)
 	name = "Булава";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Streitkolben;
 	damageTotal = Damage_Streitkolben;
 	damagetype = DAM_BLUNT;
@@ -1523,7 +1548,7 @@ instance ItMw_Rabenschnabel(C_Item)
 	name = "Клюв ворона";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Rabenschnabel;
 	damageTotal = Damage_Rabenschnabel;
 	damagetype = DAM_BLUNT;
@@ -1569,7 +1594,7 @@ instance ItMw_Inquisitor(C_Item)
 	name = "Инквизитор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Inquisitor;
 	damageTotal = Damage_Inquisitor;
 	damagetype = DAM_EDGE;
@@ -1592,7 +1617,7 @@ instance ItMw_Streitaxt2(C_Item)
 	name = "Боевой топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Streitaxt2;
 	damageTotal = Damage_Streitaxt2;
 	damagetype = DAM_EDGE;
@@ -1690,7 +1715,7 @@ instance ItMw_ElBastardo(C_Item)
 	name = "Эль-бастардо";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_ElBastardo;
 	damageTotal = Damage_ElBastardo;
 	damagetype = DAM_EDGE;
@@ -1716,7 +1741,7 @@ instance ItMw_Kriegshammer2(C_Item)
 	name = "Тяжелый военный молот";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Kriegshammer2;
 	damageTotal = Damage_Kriegshammer2;
 	damagetype = DAM_BLUNT;
@@ -1765,7 +1790,7 @@ instance ItMw_Folteraxt(C_Item)
 	name = "Топор палача";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Folteraxt;
 	damageTotal = Damage_Folteraxt;
 	damagetype = DAM_EDGE;
@@ -1834,7 +1859,7 @@ instance ItMw_Schlachtaxt(C_Item)
 	name = "Военный топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Schlachtaxt;
 	damageTotal = Damage_Schlachtaxt;
 	damagetype = DAM_EDGE;
@@ -1880,7 +1905,7 @@ instance ItMw_Barbarenstreitaxt(C_Item)
 	name = "Боевой топор варваров";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Barbarenstreitaxt;
 	damageTotal = Damage_Barbarenstreitaxt;
 	damagetype = DAM_EDGE;
@@ -1978,7 +2003,7 @@ instance ItMw_Berserkeraxt(C_Item)
 	name = "Топор берсеркера";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Berserkeraxt;
 	damageTotal = Damage_Berserkeraxt;
 	damagetype = DAM_EDGE;
