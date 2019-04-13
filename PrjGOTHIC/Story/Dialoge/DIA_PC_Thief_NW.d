@@ -24,7 +24,7 @@ func void DIA_DiegoNW_EXIT_Info()
 instance DIA_DiegoNW_Perm(C_Info)
 {
 	npc = PC_Thief_NW;
-	nr = 998;
+	nr = 800;
 	condition = DIA_DiegoNW_Perm_Condition;
 	information = DIA_DiegoNW_Perm_Info;
 	permanent = TRUE;
@@ -412,7 +412,7 @@ var int Diego_Teach;
 instance DIA_DiegoNW_CanYouTeach(C_Info)
 {
 	npc = PC_Thief_NW;
-	nr = 995;
+	nr = 888;
 	condition = DIA_DiegoNW_CanYouTeach_Condition;
 	information = DIA_DiegoNW_CanYouTeach_Info;
 	permanent = TRUE;
@@ -451,7 +451,7 @@ var int DiegoNW_Merke_STR;
 instance DIA_DiegoNW_Teach(C_Info)
 {
 	npc = PC_Thief_NW;
-	nr = 995;
+	nr = 888;
 	condition = DIA_DiegoNW_Teach_Condition;
 	information = DIA_DiegoNW_Teach_Info;
 	permanent = TRUE;

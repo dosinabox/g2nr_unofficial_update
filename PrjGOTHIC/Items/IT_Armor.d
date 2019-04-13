@@ -1442,7 +1442,7 @@ instance ITAR_Xardas(C_Item)
 
 instance ITAR_Lester(C_Item)
 {
-	name = "“€жела€ роба послушника";
+	name = "“€жела€ роба сектанта";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 25;

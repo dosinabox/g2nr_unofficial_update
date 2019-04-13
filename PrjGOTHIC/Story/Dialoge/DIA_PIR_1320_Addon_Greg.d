@@ -689,7 +689,7 @@ func int DIA_Addon_Greg_ItemsInADW_Condition()
 {
 	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE))
 	{
-		if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Prot_Point_01))
+		if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Addon_Greg))
 		{
 			return TRUE;
 		};

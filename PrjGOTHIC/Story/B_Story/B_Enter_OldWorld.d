@@ -5,6 +5,7 @@ func void B_ENTER_OLDWORLD_Kapitel_1()
 {
 	if(EnterOW_Kapitel1 == FALSE)
 	{
+		Wld_InsertItem(ItRw_Bow_H_02,"FP_ROAM_ITEM_SPECIAL_01");
 		EnterOW_Kapitel1 = TRUE;
 	};
 };
@@ -387,7 +388,6 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
-		Wld_InsertItem(ItRw_Bow_H_02,"FP_ROAM_ITEM_SPECIAL_01");
 		if(Npc_IsDead(DragonSnapper_NC_Cave))
 		{
 			Wld_InsertNpc(Shadowbeast,"OW_PATH_07_15_CAVE3");

@@ -180,7 +180,10 @@ func void DIA_Torlof_Duellregeln_Info()
 	AI_Output(self,other,"DIA_Torlof_Duellregeln_01_02");	//Нельзя просто так взять и напасть на кого-нибудь без предупреждения.
 	AI_Output(self,other,"DIA_Torlof_Duellregeln_01_03");	//Обязательно должен иметь место устный вызов. Оскорбление, например, или еще какая-нибудь причина для сражения.
 	AI_Output(self,other,"DIA_Torlof_Duellregeln_01_04");	//Никто из наблюдателей не имеет права вмешиваться в дуэль. Если только один из дуэлянтов не будет убит.
-	B_LogEntry(TOPIC_SLDRespekt,"Правила дуэли: Дуэль должна начаться с вызова, тогда в нее никто не имеет права вмешаться. Противника в дуэли нельзя убивать.");
+	if(other.guild == GIL_NONE)
+	{
+		B_LogEntry(TOPIC_SLDRespekt,"Правила дуэли: Дуэль должна начаться с вызова, тогда в нее никто не имеет права вмешаться. Противника в дуэли нельзя убивать.");
+	};
 };
 
 
@@ -276,7 +279,7 @@ func void DIA_Torlof_RUF_Info()
 	{
 		Points_Sld += 1;
 	}
-	else if((MIS_Cipher_Paket == LOG_SUCCESS) || (MIS_Cipher_BringWeed == LOG_SUCCESS))
+	else if(GotCipherVote == TRUE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_08");	//Сифер говорит, что ему абсолютно ясно, что ты достоин присоединиться к нам. Похоже, что-то сделало его безгранично счастливым.
 		Points_Sld += 1;
@@ -402,17 +405,20 @@ func void DIA_Torlof_RUF_Info()
 			AI_Output(self,other,"DIA_Torlof_RUF_01_29");	//Как бы то ни было, ты уже победил в нескольких честных дуэлях.
 		};
 	};
-	if(Points_Sld >= 9)
+	if((Points_Sld >= 9) && ((MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS) || (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS)))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_30");	//Большинство наемников за тебя, и мы считаем, что ты можешь присоединиться к нам в любое время.
 		AI_Output(self,other,"DIA_Torlof_RUF_01_31");	//Иди, поговори с Ли. Он объяснит тебе детали.
 		Torlof_GenugStimmen = TRUE;
-		B_LogEntry(TOPIC_BecomeSLD,"Я заслужил уважение наемников. Теперь, я должен переговорить с Ли.");
+		B_LogEntry(TOPIC_BecomeSLD,"Я заслужил уважение наемников. Теперь я должен переговорить с Ли.");
 	}
 	else if(Points_Sld >= 7)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_32");	//Это довольно много, но пока еще не достаточно.
-		AI_Output(self,other,"DIA_Torlof_RUF_01_33");	//Тебе нужно еще сразиться с несколькими парнями.
+		if(Sld_Duelle_gewonnen < 3)
+		{
+			AI_Output(self,other,"DIA_Torlof_RUF_01_33");	//Тебе нужно еще сразиться с несколькими парнями.
+		};
 	}
 	else
 	{
@@ -645,7 +651,7 @@ instance DIA_Torlof_Welcome(C_Info)
 
 func int DIA_Torlof_Welcome_Condition()
 {
-	if((other.guild == GIL_SLD) && (Kapitel <= 1))
+	if((other.guild == GIL_SLD) && (Kapitel == 1))
 	{
 		return TRUE;
 	};

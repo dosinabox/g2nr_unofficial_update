@@ -860,7 +860,7 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_03");	//“ы должен выследить бывшего рудного барона ¬орона и узнать, с какой целью он похищает жителей города.
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_04");	//ј мы останемс€ здесь и попытаемс€ разобратьс€ с бандитами.
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_05");	//ѕередай это письмо —атурасу. ќтныне он будет давать тебе задани€.
-	if(MIS_Addon_Lares_Ornament2Saturas != LOG_SUCCESS)
+	if((MIS_Addon_Lares_Ornament2Saturas != LOG_SUCCESS) && (Kapitel < 3))
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_08");	//Ћарес отведет теб€ к нему, если он еще не получил орнамент.
 	};
@@ -908,15 +908,12 @@ func void DIA_Addon_Vatras_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_05_01");	//ƒа?
 	Info_ClearChoices(DIA_Addon_Vatras_MissingPeople);
 	Info_AddChoice(DIA_Addon_Vatras_MissingPeople,Dialog_Back,DIA_Addon_Vatras_MissingPeople_BACK);
+	Info_AddChoice(DIA_Addon_Vatras_MissingPeople,"ѕозволь рассказать тебе то, что € знаю...",DIA_Addon_Vatras_MissingPeople_Report);
 	if(SCKnowsMissingPeopleAreInAddonWorld == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_Vatras_MissingPeople,"я знаю, где наход€тс€ пропавшие люди.",DIA_Addon_Vatras_MissingPeople_Success);
-	}
-	else
-	{
-		Info_AddChoice(DIA_Addon_Vatras_MissingPeople,"ѕозволь рассказать тебе то, что € знаю...",DIA_Addon_Vatras_MissingPeople_Report);
 	};
-	if(DIA_Addon_Vatras_MissingPeople_Wo_NoPerm == FALSE)
+	if((DIA_Addon_Vatras_MissingPeople_Wo_NoPerm == FALSE) && (SCKnowsMissingPeopleAreInAddonWorld == FALSE))
 	{
 		Info_AddChoice(DIA_Addon_Vatras_MissingPeople,"√де мне их искать?",DIA_Addon_Vatras_MissingPeople_Wo);
 	};

@@ -58,13 +58,13 @@ func void Use_BookstandAnimals2_S1()
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"ќхота и трофеи");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"— каждого звер€ или животного можно получить трофеи, преумножающие славу и богатство опытного охотника.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0," ровавые мухи");
 		Doc_PrintLines(nDocID,0,"„тобы выпотрошить этих летающих дь€волов, необходимо обладать двум€ навыками: у них можно вырезать крыль€ и жала.");
 		Doc_PrintLines(nDocID,0,"ќба этих навыка используютс€ опытными охотниками дл€ добывани€ трофеев.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"ѕолевые хищники и краулеры атакуют при помощи мандибул. ћандибулы краулеров особенно цен€тс€, так как они содержат железы, повышающие магическую силу.");
 		Doc_PrintLines(nDocID,1,"ќднако, их следует использовать аккуратно, так как человеческий организм постепенно становитс€ невосприимчив к ним.");
@@ -99,6 +99,7 @@ func void Use_BookstandAnimals3_S1()
 		Doc_PrintLines(nDocID,0,"Ётот зверь - €щер, изрыгающий огонь, который может убить любого в пределах нескольких шагов от этой твари.");
 		Doc_PrintLines(nDocID,0,"“олько те, кто обладает защитой от огн€, могут охотитьс€ на этих созданий и добывать их ценные €зыки.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"ћракорис");
 		Doc_PrintLines(nDocID,1,"ћракорис - это древний зверь, предпочитающий уединение и живущий под покровом леса.");

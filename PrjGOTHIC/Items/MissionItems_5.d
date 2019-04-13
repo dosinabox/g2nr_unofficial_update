@@ -217,15 +217,13 @@ instance ItWr_UseLampIdiot_Mis(C_Item)
 	name = "Помятая записка";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 50;
+	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseItWr_UseLampIdiot_Mis;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "из книги 'Чертоги Ирдората'.";
-	text[5] = NAME_Value;
-	count[5] = value;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -367,7 +365,7 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
-	value = 10;
+	value = 0;
 //	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
@@ -379,8 +377,8 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	text[1] = PRINT_UnknownEffect;
 //	text[1] = "???";
 //	count[1] = Mana_Essenz;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -419,7 +417,7 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
-	value = 10;
+	value = 0;
 //	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
@@ -430,8 +428,8 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	description = "Слезы Инноса";
 	text[0] = "Это зелье наделяет магов Огня особыми способностями.";
 	text[1] = "Любой другой принявший его, найдет свою смерть.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItAm_AmulettOfDeath_Mis(C_Item)

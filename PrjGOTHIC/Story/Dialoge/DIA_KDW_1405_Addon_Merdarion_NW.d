@@ -73,7 +73,7 @@ func void DIA_Addon_Merdarion_Aufgabe_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_04");	//(задумываясь) Я даже, пожалуй, никогда не слышал и не читал про нее...
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(Cronos_NW,"START");
-	if(Nefarius_NW.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Addon_Nefarius_SCbringOrnaments))
 	{
 		B_LogEntry(TOPIC_Addon_KDW,"Нефариус ищет пропавший орнамент.");
 	};

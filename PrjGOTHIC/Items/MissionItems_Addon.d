@@ -773,7 +773,7 @@ instance ItMi_Addon_Steel_Paket(C_Item)
 	flags = ITEM_MISSION;
 	value = 300;
 	visual = "ItMi_Packet.3ds";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	description = name;
 	text[0] = "Пакет очень тяжелый.";
 	text[1] = "В нем находится большой слиток стали.";

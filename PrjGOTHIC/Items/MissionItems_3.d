@@ -11,7 +11,7 @@ instance ItMi_InnosEye_MIS(C_Item)
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
 	visual = "ItMi_InnosEye_MIS.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
@@ -66,7 +66,7 @@ instance ItMi_InnosEye_Discharged_Mis(C_Item)
 	value = 0;
 //	visual = "ItMi_InnosEye_MIS.3DS";
 	visual = "ItMi_InnosEye_Discharged_MIS.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
 	description = name;
 	on_equip = Equip_ItMi_InnosEye_Discharged_Mis;
 	text[0] = "√лаз потух и не си€ет.";
@@ -89,7 +89,7 @@ instance ItMi_InnosEye_Broken_Mis(C_Item)
 	value = 0;
 //	visual = "ItMi_InnosEye_MIS.3DS";
 	visual = "ItMi_InnosEye_Broken_MIS.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
 	description = name;
 	on_equip = Equip_ItMi_InnosEye_Broken_Mis;
 	text[0] = TEXT_Innoseye_Setting;

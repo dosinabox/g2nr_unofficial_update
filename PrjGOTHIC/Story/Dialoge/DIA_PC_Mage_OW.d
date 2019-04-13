@@ -391,6 +391,37 @@ func void DIA_MiltenOW_Lehren_Info()
 };
 
 
+instance DIA_MiltenOW_TeachCircle1(C_Info)
+{
+	npc = PC_Mage_OW;
+	nr = 91;
+	condition = DIA_MiltenOW_TeachCircle1_Condition;
+	information = DIA_MiltenOW_TeachCircle1_Info;
+	permanent = TRUE;
+	description = B_BuildLearnString("Первый Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
+};
+
+
+func int DIA_MiltenOW_TeachCircle1_Condition()
+{
+	if((other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_MiltenOW_Lehren) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_MiltenOW_TeachCircle1_Info()
+{
+	AI_Output(other,self,"DIA_Parlan_TECH_CIRCLE1_15_00");	//Научи меня первому Кругу магии.
+	if(B_TeachMagicCircle(self,other,1))
+	{
+		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_RUNES_03_00");	//Ох, нет! Я не большой специалист в этом, но мы как-нибудь справимся.
+		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_1_03_00");	//Да ведет тебя рука Инноса.
+		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_5_03_00");	//Да осветит Иннос твой путь.
+	};
+};
+
+
 instance DIA_MiltenOW_TeachCircle2(C_Info)
 {
 	npc = PC_Mage_OW;

@@ -12,14 +12,15 @@ instance DIA_Babo_Kap1_EXIT(C_Info)
 
 func int DIA_Babo_Kap1_EXIT_Condition()
 {
-	if(Kapitel == 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Babo_Kap1_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -387,7 +388,7 @@ func void DIA_Babo_PlantLore_Info()
 	MIS_HelpBabo = LOG_Running;
 	Log_CreateTopic(Topic_BaboGaertner,LOG_MISSION);
 	Log_SetTopicStatus(Topic_BaboGaertner,LOG_Running);
-	B_LogEntry(Topic_BaboGaertner,"Бабо предпочел бы пропалывать травы, чем подметать двор.");
+	B_LogEntry(Topic_BaboGaertner,"Бабо предпочел бы пропалывать травы, а не подметать двор.");
 };
 
 
@@ -541,60 +542,6 @@ func void DIA_Babo_HowIsIt_Info()
 	{
 		AI_Output(self,other,"DIA_Babo_HowIsIt_03_03");	//(испуганно) Х... х... хорошо, Мастер.
 		AI_Output(self,other,"DIA_Babo_HowIsIt_03_04");	//Я, я усердно работаю и пытаюсь не разочаровать магов.
-	};
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Babo_Kap2_EXIT(C_Info)
-{
-	npc = NOV_612_Babo;
-	nr = 999;
-	condition = DIA_Babo_Kap2_EXIT_Condition;
-	information = DIA_Babo_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Babo_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Babo_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Babo_Kap3_EXIT(C_Info)
-{
-	npc = NOV_612_Babo;
-	nr = 999;
-	condition = DIA_Babo_Kap3_EXIT_Condition;
-	information = DIA_Babo_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Babo_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Babo_Kap3_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
 	};
 	AI_StopProcessInfos(self);
 };
@@ -774,6 +721,36 @@ func void DIA_Babo_Kap3_Unhappy_Yes()
 };
 
 
+func void B_GiveBaboDocs()
+{
+	AI_WaitTillEnd(self,other);
+	if(Npc_HasItems(other,ItWr_BabosDocs_MIS))
+	{
+		B_GiveInvItems(other,self,ItWr_BabosDocs_MIS,1);
+	}
+	else
+	{
+		B_GiveInvItems(other,self,ItWr_BabosPinUp_MIS,1);
+		Npc_RemoveInvItem(other,ItWr_BabosLetter_MIS);
+		CreateInvItem(self,ItWr_BabosLetter_MIS);
+		AI_PrintScreen("Письмо Бабо отдано",-1,43,FONT_ScreenSmall,2);
+	};
+	B_UseFakeScroll();
+	MIS_BabosDocs = LOG_SUCCESS;
+	Igaraz.aivar[AIV_IGNORE_Theft] = FALSE;
+	Feger2.aivar[AIV_IGNORE_Theft] = FALSE;
+	Feger3.aivar[AIV_IGNORE_Theft] = FALSE;
+	if(BabosDocsRejected == TRUE)
+	{
+		B_GivePlayerXP(XP_BabosDocs / 2);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_BabosDocs);
+	};
+};
+
+
 instance DIA_Babo_Kap3_HaveYourDocs(C_Info)
 {
 	npc = NOV_612_Babo;
@@ -815,10 +792,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem()
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Просто шучу.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Это мое дело.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_MyConcern);
-	if(Igaraz_ISPartner == LOG_SUCCESS)
-	{
-		Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Игарац и я теперь партнеры.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner);
-	};
+	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Игарац и я теперь партнеры.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner);
 };
 
 func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke()
@@ -826,23 +800,9 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke()
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_15_00");	//Просто шучу.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_03_01");	//(кисло) Ха-ха, но мне что-то не смешно. Где же они?
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_15_02");	//Здесь.
-	if(Npc_HasItems(other,ItWr_BabosDocs_MIS))
-	{
-		B_GiveInvItems(other,self,ItWr_BabosDocs_MIS,1);
-	}
-	else
-	{
-		B_GiveInvItems(other,self,ItWr_BabosPinUp_MIS,1);
-//		B_GiveInvItems(other,self,ItWr_BabosLetter_MIS,1);
-		Npc_RemoveInvItem(other,ItWr_BabosLetter_MIS);
-		CreateInvItem(self,ItWr_BabosLetter_MIS);
-		AI_PrintScreen("Письмо Бабо отдано",-1,40,FONT_ScreenSmall,2);
-	};
-	B_UseFakeScroll();
+	B_GiveBaboDocs();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_03_03");	//Я не хотел обидеть тебя, но я просто очень переживаю.
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_15_04");	//Все хорошо. Наслаждайся своими записками.
-	MIS_BabosDocs = LOG_SUCCESS;
-	B_GivePlayerXP(XP_BabosDocs);
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 };
 
@@ -851,6 +811,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_MyConcern()
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_MyConcern_15_00");	//Это мое дело.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_MyConcern_03_01");	//Эти записи принадлежат мне. Ты не имеешь права забирать их себе.
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_MyConcern_15_02");	//Еще увидимся.
+	BabosDocsRejected = TRUE;
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 };
 
@@ -860,8 +821,12 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner()
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_03_01");	//(ошеломленно) Что? Ты не можешь поступить со мной так.
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_02");	//А я думаю, что могу. Я придержу у себя эти бумаги, пусть все пока останется так, как есть.
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_03");	//Я должен обговорить финансовую часть с Игарацем.
-	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_04");	//А ты пока занимайся своими растениями.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_03_05");	//Ты свинья. Презренная жадная свинья. Иннос покарает тебя.
+	BabosDocsRejected = TRUE;
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,Dialog_Ende,DIA_Babo_Kap3_HaveYourDocs_End);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Придержи язык.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm);
@@ -902,38 +867,26 @@ func void DIA_Babo_Kap3_HaveYourDocs_IWantMore_NotEnough()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_NotEnough_15_00");	//Этого недостаточно.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_NotEnough_03_01");	//Но у меня нет больше денег. Если бы я знал об этом раньше, ноги бы моей не было в монастыре.
+	BabosDocsRejected = TRUE;
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 };
 
 func void DIA_Babo_Kap3_HaveYourDocs_IWantMore_ThatsEnough()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_ThatsEnough_15_00");	//Договорились.
+	B_GiveBaboDocs();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_ThatsEnough_03_01");	//Вот деньги и свиток.
 	CreateInvItems(self,ItSc_MediumHeal,1);
 	CreateInvItems(self,ItMi_Gold,121);
 	B_GiveInvItems(self,other,ItSc_MediumHeal,1);
 	B_GiveInvItems(self,other,ItMi_Gold,121);
-	MIS_BabosDocs = LOG_SUCCESS;
-	B_GivePlayerXP(XP_BabosDocs);
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 };
 
 func void DIA_Babo_Kap3_HaveYourDocs_HereTheyAre()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_15_00");	//Вот, держи.
-	if(Npc_HasItems(other,ItWr_BabosDocs_MIS))
-	{
-		B_GiveInvItems(other,self,ItWr_BabosDocs_MIS,1);
-	}
-	else
-	{
-		B_GiveInvItems(other,self,ItWr_BabosPinUp_MIS,1);
-//		B_GiveInvItems(other,self,ItWr_BabosLetter_MIS,1);
-		Npc_RemoveInvItem(other,ItWr_BabosLetter_MIS);
-		CreateInvItem(self,ItWr_BabosLetter_MIS);
-		AI_PrintScreen("Письмо Бабо отдано",-1,43,FONT_ScreenSmall,2);
-	};
-	B_UseFakeScroll();
+	B_GiveBaboDocs();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_03_01");	//Да, все на месте.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_03_02");	//Ты читал их?
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_15_03");	//Это имеет какое-то значение?
@@ -941,9 +894,34 @@ func void DIA_Babo_Kap3_HaveYourDocs_HereTheyAre()
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_03_05");	//Теперь я надеюсь, что смогу опять спать спокойно.
 	CreateInvItems(self,ItSc_MediumHeal,1);
 	B_GiveInvItems(self,other,ItSc_MediumHeal,1);
-	MIS_BabosDocs = LOG_SUCCESS;
-	B_GivePlayerXP(XP_BabosDocs);
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
+};
+
+
+instance DIA_Babo_Kap3_HaveYourDocs2(C_Info)
+{
+	npc = NOV_612_Babo;
+	nr = 31;
+	condition = DIA_Babo_Kap3_HaveYourDocs2_Condition;
+	information = DIA_Babo_Kap3_HaveYourDocs2_Info;
+	permanent = FALSE;
+	description = "Вот, держи.";
+};
+
+
+func int DIA_Babo_Kap3_HaveYourDocs2_Condition()
+{
+	if((BabosDocsRejected == TRUE) && (Npc_HasItems(other,ItWr_BabosDocs_MIS) || (Npc_HasItems(other,ItWr_BabosPinUp_MIS) && Npc_HasItems(other,ItWr_BabosLetter_MIS))))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Babo_Kap3_HaveYourDocs2_Info()
+{
+	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_15_00");	//Вот, держи.
+	B_GiveBaboDocs();
+	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_03_05");	//Теперь я надеюсь, что смогу опять спать спокойно.
 };
 
 
@@ -972,8 +950,15 @@ func void DIA_Babo_Kap3_Perm_Info()
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_01");	//(неубедительно) Да, конечно. Моя вера в мудрость и силу Инноса придает мне силы.
-		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_02");	//(уклончиво) Я не хочу показаться невежливым, но у меня много дел сегодня.
-		AI_Output(other,self,"DIA_Babo_Kap3_Perm_15_03");	//Можешь продолжать.
+		if(MIS_HelpBabo == LOG_SUCCESS)
+		{
+			AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_15_04");	//А ты пока занимайся своими растениями.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_02");	//(уклончиво) Я не хочу показаться невежливым, но у меня много дел сегодня.
+			AI_Output(other,self,"DIA_Babo_Kap3_Perm_15_03");	//Можешь продолжать.
+		};
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_04");	//(облегченно) Спасибо.
 	}
 	else
@@ -981,60 +966,6 @@ func void DIA_Babo_Kap3_Perm_Info()
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_05");	//Все хорошо, но мне нужно возвращаться к работе, иначе мне ни за что не закончить ее сегодня.
 		AI_Output(self,other,"DIA_Babo_Kap3_Perm_03_06");	//Я не хочу опять трудиться до полуночи, чтобы выполнить свою работу и не быть наказанным.
 	};
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Babo_Kap4_EXIT(C_Info)
-{
-	npc = NOV_612_Babo;
-	nr = 999;
-	condition = DIA_Babo_Kap4_EXIT_Condition;
-	information = DIA_Babo_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Babo_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Babo_Kap4_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Babo_Kap5_EXIT(C_Info)
-{
-	npc = NOV_612_Babo;
-	nr = 999;
-	condition = DIA_Babo_Kap5_EXIT_Condition;
-	information = DIA_Babo_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Babo_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Babo_Kap5_EXIT_Info()
-{
 	if(Parlan_DontTalkToNovice == LOG_Running)
 	{
 		Parlan_DontTalkToNovice = LOG_SUCCESS;

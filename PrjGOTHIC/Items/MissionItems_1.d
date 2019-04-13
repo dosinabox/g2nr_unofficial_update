@@ -126,17 +126,18 @@ instance ItMi_CoragonsSilber(C_Item)
 
 instance ItMi_TheklasPaket(C_Item)
 {
-	name = "Пакет Теклы";
+	name = "Пакет для Теклы";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = 0;
+	value = 100;
 	visual = "ItMi_Packet.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = Use_TheklasPacket;
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	text[0] = "Легкий пакет с травами Сагитты.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -371,7 +372,6 @@ instance ItMi_HerbPaket(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 200;
-//	visual = "ItMi_Packet.3ds";
 	visual = "ItMi_HerbPaket.3ds";
 	material = MAT_LEATHER;
 	description = name;
@@ -391,8 +391,6 @@ instance ItKe_Storage(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от портового склада.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 

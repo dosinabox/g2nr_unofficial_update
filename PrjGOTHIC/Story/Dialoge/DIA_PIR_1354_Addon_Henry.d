@@ -513,17 +513,17 @@ instance DIA_Addon_Henry_Palisade(C_Info)
 
 func int DIA_Addon_Henry_Palisade_Condition()
 {
-	if(GregIsBack == FALSE)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Addon_Henry_Palisade_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Palisade_15_00");	//Что ты здесь делаешь?
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_04_01");	//А как ты думаешь? Я должен проследить за тем, чтобы эти жалкие лентяи построили частокол в срок.
-	AI_Output(self,other,"DIA_Addon_Henry_Palisade_04_02");	//Если он не будет построен, капитан Грег даст мне хорошего пинка под зад.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Henry_Palisade_04_02");	//Если он не будет построен, капитан Грег даст мне хорошего пинка под зад.
+	};
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_04_03");	//Также я решаю, пропускать ли в лагерь всяких проходимцев вроде тебя.
 };
 
@@ -1036,7 +1036,7 @@ instance DIA_Addon_Henry_Palisade_Train(C_Info)
 
 func int DIA_Addon_Henry_Palisade_Train_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Henry_Palisade) && (GregIsBack == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Henry_Palisade))
 	{
 		return TRUE;
 	};
@@ -1047,14 +1047,17 @@ func void DIA_Addon_Henry_Palisade_Train_Info()
 	AI_Output(other,self,"DIA_Addon_Henry_Palisade_Train_15_00");	//Грег - ваш командир?
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_01");	//Да. Но для тебя он - КАПИТАН Грег. Это понятно?
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_02");	//Он - великий человек. Когда ты с ним встретишься, тебе лучше не быть на стороне его врагов. Ты даже не успеешь об этом пожалеть.
-	if((SC_SawGregInTaverne == TRUE) || (PlayerTalkedToGregNW == TRUE))
+	if((SC_SawGregInTaverne == TRUE) || (PlayerTalkedToGregNW == TRUE) || (Greg.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
 		AI_Output(other,self,"DIA_Addon_Henry_Palisade_Train_15_03");	//Я с ним уже встречался.
 		AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_04");	//Очень хорошо. Значит, ты понимаешь, о чем я говорю.
 	};
-	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_05");	//Впрочем, его сейчас нет в лагере.
-	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_06");	//Нами командует Фрэнсис.
-	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_07");	//Он целый день сидит перед хижиной Грега и смотрит, как мы работаем.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_05");	//Впрочем, его сейчас нет в лагере.
+		AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_06");	//Нами командует Фрэнсис.
+		AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_07");	//Он целый день сидит перед хижиной Грега и смотрит, как мы работаем.
+	};
 };
 
 

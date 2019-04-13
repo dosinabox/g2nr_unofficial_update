@@ -179,7 +179,7 @@ instance DIA_Addon_Nefarius_ADW_Runen(C_Info)
 	condition = DIA_Addon_Nefarius_ADW_Runen_Condition;
 	information = DIA_Addon_Nefarius_ADW_Runen_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун)";
+	description = "Я хочу изучить новые заклинания.";
 };
 
 
@@ -193,6 +193,7 @@ func int DIA_Addon_Nefarius_ADW_Runen_Condition()
 
 func void DIA_Addon_Nefarius_ADW_Runen_Info()
 {
+	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Addon_Nefarius_ADW_Runen);
 	Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,Dialog_Back,DIA_Addon_Nefarius_ADW_Runen_BACK);
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 6)

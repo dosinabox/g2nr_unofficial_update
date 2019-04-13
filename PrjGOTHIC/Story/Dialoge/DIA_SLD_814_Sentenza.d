@@ -57,7 +57,7 @@ func void DIA_Sentenza_Hello_JustLooking()
 {
 	AI_Output(other,self,"DIA_Sentenza_Hello_JustLooking_15_00");	//Я просто прогуливаюсь. Вот и все.
 	AI_Output(self,other,"DIA_Sentenza_Hello_JustLooking_09_01");	//(смеется) Таких как ты, здесь ожидают большие проблемы! Это ты мне заявляешь, что просто прогуливаешься?
-	AI_Output(self,other,"DIA_Sentenza_Hello_JustLooking_09_02");	//Ха! Ты идешь на двор! Зачем еще тебе нужно было бы проделывать столь долгий путь?
+	AI_Output(self,other,"DIA_Sentenza_Hello_JustLooking_09_02");	//Ха! Ты идешь на двор! Зачем еще тебе нужно было проделывать столь долгий путь?
 	AI_Output(self,other,"DIA_Sentenza_Hello_JustLooking_09_03");	//Так что прекращай нести эту чушь. Сейчас я обыщу тебя, и можешь топать дальше.
 	Info_ClearChoices(DIA_Sentenza_Hello);
 	Info_AddChoice(DIA_Sentenza_Hello,"Не распускай руки!",DIA_Sentenza_Hello_HandsOff);

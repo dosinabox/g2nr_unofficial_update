@@ -12,14 +12,15 @@ instance DIA_Igaranz_Kap1_EXIT(C_Info)
 
 func int DIA_Igaraz_Kap1_EXIT_Condition()
 {
-	if(Kapitel == 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Igaraz_Kap1_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -237,7 +238,7 @@ instance DIA_Igaraz_METOO(C_Info)
 };
 
 
-var int DIA_Igaraz_METOO_NOPERM;
+//var int DIA_Igaraz_METOO_NOPERM;
 
 func int DIA_Igaraz_METOO_Condition()
 {
@@ -390,60 +391,6 @@ func void DIA_Igaraz_Stein_Info()
 };
 
 
-instance DIA_Igaranz_Kap2_EXIT(C_Info)
-{
-	npc = NOV_601_Igaraz;
-	nr = 999;
-	condition = DIA_Igaraz_Kap2_EXIT_Condition;
-	information = DIA_Igaraz_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Igaraz_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Igaraz_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Igaranz_Kap3_EXIT(C_Info)
-{
-	npc = NOV_601_Igaraz;
-	nr = 999;
-	condition = DIA_Igaraz_Kap3_EXIT_Condition;
-	information = DIA_Igaraz_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Igaraz_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Igaraz_Kap3_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Igaranz_TalkAboutBabo(C_Info)
 {
 	npc = NOV_601_Igaraz;
@@ -477,7 +424,7 @@ instance DIA_Igaranz_BabosBelongings(C_Info)
 	condition = DIA_Igaraz_BabosBelongings_Condition;
 	information = DIA_Igaraz_BabosBelongings_Info;
 	permanent = FALSE;
-	description = "У тебя есть кое-что принадлежащее Бабо.";
+	description = "У тебя есть кое-что, принадлежащее Бабо.";
 };
 
 
@@ -491,7 +438,7 @@ func int DIA_Igaraz_BabosBelongings_Condition()
 
 func void DIA_Igaraz_BabosBelongings_Info()
 {
-	AI_Output(other,self,"DIA_Igaranz_BabosBelongings_15_00");	//У тебя есть кое-что принадлежащее Бабо.
+	AI_Output(other,self,"DIA_Igaranz_BabosBelongings_15_00");	//У тебя есть кое-что, принадлежащее Бабо.
 	AI_Output(self,other,"DIA_Igaranz_BabosBelongings_13_01");	//И что бы это могло быть?
 	AI_Output(other,self,"DIA_Igaranz_BabosBelongings_15_02");	//Несколько листков бумаги. Бабо хотел бы получить их назад.
 	AI_Output(self,other,"DIA_Igaranz_BabosBelongings_13_03");	//(насмешливо) Да? Надо же! Могу представить. Вынужден огорчить, я предпочел бы оставить их у себя. Похоже, тут налицо противоречие интересов.
@@ -511,7 +458,7 @@ instance DIA_Igaranz_WhereDocs(C_Info)
 
 func int DIA_Igaraz_WhereDocs_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_BabosBelongings))
+	if(Npc_KnowsInfo(other,DIA_Igaranz_BabosBelongings) && (GotIgarazChestKey == FALSE))
 	{
 		return TRUE;
 	};
@@ -589,14 +536,14 @@ instance DIA_Igaranz_BuyIt(C_Info)
 	nr = 31;
 	condition = DIA_Igaraz_BuyIt_Condition;
 	information = DIA_Igaraz_BuyIt_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Я хочу купить эти бумаги.";
 };
 
 
 func int DIA_Igaraz_BuyIt_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Igaranz_Price) && (Npc_HasItems(other,ItMi_Gold) >= 300))
+	if(Npc_KnowsInfo(other,DIA_Igaranz_Price) && (GotIgarazChestKey == FALSE) && Npc_HasItems(self,ItKe_IgarazChest_Mis))
 	{
 		return TRUE;
 	};
@@ -605,15 +552,18 @@ func int DIA_Igaraz_BuyIt_Condition()
 func void DIA_Igaraz_BuyIt_Info()
 {
 	AI_Output(other,self,"DIA_Igaranz_BuyIt_15_00");	//Я хочу купить эти бумаги.
-	if(Npc_HasItems(self,ItKe_IgarazChest_Mis))
+	if(B_GiveInvItems(other,self,ItMi_Gold,300))
 	{
 		AI_Output(self,other,"DIA_Igaranz_BuyIt_13_01");	//Послушай, я сейчас не могу отлучиться. Я дам тебе ключ от моего сундука. В нем все равно больше ничего нет.
-		B_GiveInvItems(other,self,ItMi_Gold,300);
+		self.aivar[AIV_IGNORE_Theft] = TRUE;
+		Feger2.aivar[AIV_IGNORE_Theft] = TRUE;
+		Feger3.aivar[AIV_IGNORE_Theft] = TRUE;
 		B_GiveInvItems(self,other,ItKe_IgarazChest_Mis,1);
+		GotIgarazChestKey = TRUE;
 	}
 	else
 	{
-		B_Say(self,other,"$SpareMe");
+		AI_Output(self,other,"DIA_Igaranz_Price_13_03");	//300 монет, и ты можешь делать с этими бумагами все, что захочешь.
 		AI_StopProcessInfos(self);
 	};
 };
@@ -661,64 +611,6 @@ func void DIA_Igaraz_PICKPOCKET_DoIt()
 func void DIA_Igaraz_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Igaraz_PICKPOCKET);
-};
-
-
-instance DIA_Igaranz_Kap4_EXIT(C_Info)
-{
-	npc = NOV_601_Igaraz;
-	nr = 999;
-	condition = DIA_Igaraz_Kap4_EXIT_Condition;
-	information = DIA_Igaraz_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Igaraz_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Igaraz_Kap4_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Igaranz_Kap5_EXIT(C_Info)
-{
-	npc = NOV_601_Igaraz;
-	nr = 999;
-	condition = DIA_Igaraz_Kap5_EXIT_Condition;
-	information = DIA_Igaraz_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Igaraz_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Igaraz_Kap5_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
 };
 
 

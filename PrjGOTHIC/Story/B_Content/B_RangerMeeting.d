@@ -144,6 +144,18 @@ func void B_SchlussMitRangerMeeting()
 	{
 		B_StartOtherRoutine(Cavalorn,"Stadt");
 	};
+	if(LaresGuide_ZuOnar != LOG_SUCCESS)
+	{
+		LaresGuide_ZuOnar = FALSE;
+	};
+	if(LaresGuide_ZumPortal != 8)
+	{
+		LaresGuide_ZumPortal = 0;
+	};
+	if(LaresGuide_OrnamentForest != 3)
+	{
+		LaresGuide_OrnamentForest = 0;
+	};
 	B_StartOtherRoutine(Lares,"Start");
 	B_StartOtherRoutine(Cord,"Start");
 	if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)

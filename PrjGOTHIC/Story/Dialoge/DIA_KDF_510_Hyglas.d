@@ -291,7 +291,7 @@ instance DIA_Hyglas_TEACH(C_Info)
 	condition = DIA_Hyglas_TEACH_Condition;
 	information = DIA_Hyglas_TEACH_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун)";
+	description = "Я хочу изучить новые заклинания.";
 };
 
 
@@ -307,7 +307,8 @@ func void DIA_Hyglas_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	AI_Output(other,self,"DIA_Hyglas_TEACH_15_00");	//Обучи меня.
+//	AI_Output(other,self,"DIA_Hyglas_TEACH_15_00");	//Обучи меня.
+	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Hyglas_TEACH);
 	Info_AddChoice(DIA_Hyglas_TEACH,Dialog_Back,DIA_Hyglas_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE))

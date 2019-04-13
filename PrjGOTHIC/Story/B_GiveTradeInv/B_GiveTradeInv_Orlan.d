@@ -26,6 +26,8 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 //		CreateInvItems(slf,ItMw_Schlachtaxt,1);
 //		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
 		CreateInvItems(slf,ItRw_Bow_L_01,1);
+		CreateInvItems(slf,ItRw_Bow_L_02,1);
+		CreateInvItems(slf,ItRw_Crossbow_L_01,1);
 		CreateInvItems(slf,ItBE_Addon_Leather_01,1);
 		CreateInvItems(slf,ItRi_Prot_Mage_02,1);
 		Orlan_ItemsGiven_Chapter_1 = TRUE;

@@ -125,6 +125,7 @@ func void DIA_Addon_Fortuno_Hi_JOINT()
 func void DIA_Addon_Fortuno_Hi_GREEN()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_Hi_GREEN_15_00");	//Вот, возьми этот 'Зеленый послушник'.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItMi_Addon_Joint_01,1);
 	AI_UseItem(self,ItMi_Addon_Joint_01);
 	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_GREEN_13_01");	//(приходя в себя) А-А-А-Х...

@@ -969,6 +969,25 @@ func void DIA_Addon_Greg_NW_CaughtDexter2_Info()
 };
 
 
+func void B_GregTalksAboutPortal()
+{
+	if(GregToldAboutPortal == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_04");	//Скажи, ты, случайно, не знаешь, как попасть за горный хребет на северо-востоке Хориниса?
+		if(Npc_KnowsInfo(other,DIA_Addon_Nefarius_keineahnung) || Npc_KnowsInfo(other,DIA_Addon_Nefarius_SCbringOrnaments) || Npc_KnowsInfo(other,DIA_Addon_Riordian_Atlantis) || Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) || Npc_KnowsInfo(other,DIA_Addon_Vatras_CloseMeeting))
+		{
+			AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_05");	//Возможно, через портал, который обнаружили маги Воды.
+			AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
+			AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_07");	//Маги Воды... А мысли получше у тебя есть?
+		};
+		AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_08");	//Нет.
+		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_09");	//(вздыхает) Значит, я здесь застрял.
+		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_10");	//На Декстера у меня была последняя надежда.
+		GregToldAboutPortal = TRUE;
+	};
+};
+
+
 instance DIA_Addon_Greg_NW_RavensLetter(C_Info)
 {
 	npc = PIR_1300_Addon_Greg_NW;
@@ -995,16 +1014,7 @@ func void DIA_Addon_Greg_NW_RavensLetter_Info()
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_02");	//Черт возьми! Это мне совсем не поможет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_03");	//Нельзя было его просто так убивать.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_04");	//Скажи, ты, случайно, не знаешь, как попасть за горный хребет на северо-востоке Хориниса?
-	if((Nefarius_NW.aivar[AIV_TalkedToPlayer] == TRUE) && (Saturas_NW.aivar[AIV_TalkedToPlayer] == TRUE))
-	{
-		AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_05");	//Возможно, через портал, который обнаружили маги Воды.
-		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
-		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_07");	//Маги Воды... А мысли получше у тебя есть?
-	};
-	AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_08");	//Нет.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_09");	//(вздыхает) Значит, я здесь застрял.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_10");	//На Декстера у меня была последняя надежда.
+	B_GregTalksAboutPortal();
 	AI_PrintScreen("Приказы получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 };
 
@@ -1021,7 +1031,7 @@ instance DIA_Addon_Greg_NW_WasWillstDu(C_Info)
 
 func int DIA_Addon_Greg_NW_WasWillstDu_Condition()
 {
-	if((GregLocation == Greg_Dexter) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_RavensLetter))
+	if((GregLocation == Greg_Dexter) && (Npc_KnowsInfo(other,DIA_Addon_Greg_NW_RavensLetter) || (MIS_Addon_Vatras_WhereAreMissingPeople == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -1032,6 +1042,7 @@ func void DIA_Addon_Greg_NW_WasWillstDu_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_WasWillstDu_15_00");	//А что тебе было нужно от Декстера?
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_01");	//Я приплыл сюда из-за северо-восточных гор. И я хочу туда вернуться.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_02");	//Я надеялся, что этот ублюдок расскажет мне, как добраться туда без корабля.
+	B_GregTalksAboutPortal();
 	Npc_ExchangeRoutine(self,"DexterThrone");
 	Info_ClearChoices(DIA_Addon_Greg_NW_WasWillstDu);
 	Info_AddChoice(DIA_Addon_Greg_NW_WasWillstDu,"А что находится за этими горами?",DIA_Addon_Greg_NW_WasWillstDu_da);
@@ -1073,7 +1084,7 @@ func void B_GiveGregItems()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_03");	//Золотая чаша.
 	B_GiveInvItems(other,self,ItMi_GregsSilverPlate,1);
 	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_04");	//Серебряное блюдо.
-	B_GiveInvItems(other,self,ItAm_Prot_Point_01,1);
+	B_GiveInvItems(other,self,ItAm_Addon_Greg,1);
 	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_05");	//И амулет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_ja_01_06");	//Очень хорошо. Вижу, тебе хватило ума не присваивать себе мои вещи.
 	MIS_Addon_Greg_RakeCave = LOG_SUCCESS;
@@ -1105,7 +1116,7 @@ func void DIA_Addon_Greg_NW_FoundTreasure_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_01_01");	//Тогда у тебя должно быть около ста золотых, золотая чаша, серебряное блюдо и амулет. Давай их сюда!
 	Info_ClearChoices(DIA_Addon_Greg_NW_FoundTreasure);
 	Info_AddChoice(DIA_Addon_Greg_NW_FoundTreasure,"У меня с собой их нет.",DIA_Addon_Greg_NW_FoundTreasure_not);
-	if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Prot_Point_01))
+	if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Addon_Greg))
 	{
 		Info_AddChoice(DIA_Addon_Greg_NW_FoundTreasure,"Вот твои вещи.",DIA_Addon_Greg_NW_FoundTreasure_ja);
 	};

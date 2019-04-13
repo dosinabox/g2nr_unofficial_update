@@ -456,7 +456,7 @@ func void DIA_Addon_Saturas_StonePlateHint_wo()
 func void DIA_Addon_Saturas_StonePlateHint_unter()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_StonePlateHint_unter_15_00");	//А что, если от них ничего не осталось?
-	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_unter_14_01");	//Если ты не найдешь их, то скорее всего они утонули вместе с городом.
+	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_unter_14_01");	//Если ты не найдешь их, то, скорее всего, они утонули вместе с городом.
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_unter_14_02");	//Однако если они существуют, то их важность для наших исследований невозможно переоценить.
 };
 
@@ -580,7 +580,8 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 	var int XP_RavenNeuigkeit;
 	AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_00");	//Насчет Ворона...
 	RavenNeuigkeit = 0;
-	if((Thorus.aivar[AIV_TalkedToPlayer] == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE) && (RavenIsInTempel == FALSE))
+//	if((Thorus.aivar[AIV_TalkedToPlayer] == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE) && (RavenIsInTempel == FALSE))
+	if((Thorus.aivar[AIV_TalkedToPlayer] == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_01");	//Я побывал в лагере бандитов к востоку отсюда. Ворон - их предводитель.
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_02");	//Но прежде чем оказаться рядом с Вороном, я был вынужден убрать с дороги нескольких бандитов.
@@ -1054,7 +1055,8 @@ instance DIA_Addon_Saturas_ADW_PreTeachCircle(C_Info)
 
 func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 {
-	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1))
+//	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1))
+	if(hero.guild == GIL_KDF)
 	{
 		return TRUE;
 	};
@@ -1096,7 +1098,8 @@ func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 	var int kosten;
 	circle = Npc_GetTalentSkill(other,NPC_TALENT_MAGE) + 1;
 	kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
-	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
+//	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
+	if((Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
 	{
 //		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Я хочу перейти на следующий уровень магии",kosten);
 		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Следующий Круг магии",kosten);

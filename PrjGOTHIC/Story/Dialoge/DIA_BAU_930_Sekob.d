@@ -426,7 +426,10 @@ func void DIA_Sekob_DMTWEG_Info()
 		B_StartOtherRoutine(Rosi,"Start");
 		B_StartOtherRoutine(Till,"Start");
 	};
-	B_StartOtherRoutine(Balthasar,"Start");
+	if(BalthasarMovedToBengar == FALSE)
+	{
+		B_StartOtherRoutine(Balthasar,"Start");
+	};
 	B_StartOtherRoutine(BAU_933_Rega,"Start");
 	B_StartOtherRoutine(BAU_934_Babera,"Start");
 	B_StartOtherRoutine(BAU_937_Bauer,"Start");

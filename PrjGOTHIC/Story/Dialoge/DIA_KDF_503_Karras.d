@@ -249,7 +249,7 @@ instance DIA_Karras_TEACH(C_Info)
 	condition = DIA_Karras_TEACH_Condition;
 	information = DIA_Karras_TEACH_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун)";
+	description = "Я хочу изучить новые заклинания.";
 };
 
 
@@ -265,7 +265,8 @@ func void DIA_Karras_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
+//	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
+	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Karras_TEACH);
 	Info_AddChoice(DIA_Karras_TEACH,Dialog_Back,DIA_Karras_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == FALSE))

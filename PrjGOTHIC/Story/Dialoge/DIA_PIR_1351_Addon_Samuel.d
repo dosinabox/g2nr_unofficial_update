@@ -242,7 +242,7 @@ instance DIA_Addon_Samuel_Rum(C_Info)
 	condition = DIA_Addon_Samuel_Rum_Condition;
 	information = DIA_Addon_Samuel_Rum_Info;
 	permanent = TRUE;
-	description = "Дай мне рома! (30 золотых)";
+	description = "Дай мне рома! (20 золотых)";
 };
 
 
@@ -257,7 +257,7 @@ func int DIA_Addon_Samuel_Rum_Condition()
 func void DIA_Addon_Samuel_Rum_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Rum_15_00");	//Дай мне рома!
-	if(B_GiveInvItems(other,self,ItMi_Gold,30))
+	if(B_GiveInvItems(other,self,ItMi_Gold,Value_Rum))
 	{
 		if(Samuel_Rum_Varianz == 0)
 		{

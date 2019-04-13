@@ -47,8 +47,11 @@ func int DIA_Bennet_HALLO_Condition()
 func void DIA_Bennet_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Bennet_HALLO_06_00");	//Я не продаю оружие. Халед продает. Он находится в доме Онара.
-	Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTrader,"Халед - торговец оружием.");
+	if(Khaled_weiter == FALSE)
+	{
+		Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
+		B_LogEntry(Topic_SoldierTrader,"Халед - торговец оружием.");
+	};
 };
 
 
@@ -1044,6 +1047,7 @@ func void DIA_Bennet_ShowInnosEye_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_ShowInnosEye_15_00");	//Ты можешь взглянуть на этот амулет?
 	AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_01");	//Конечно, давай посмотрим.
+	AI_PrintScreen(Print_InnoseyeGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_02");	//Хммм, превосходная работа. Оправа сломана. Но, думаю, я смогу починить ее, впрочем.
 	AI_Output(other,self,"DIA_Bennet_ShowInnosEye_15_03");	//Сколько это займет времени?
 	if(MIS_RescueBennet != LOG_SUCCESS)
@@ -1056,6 +1060,7 @@ func void DIA_Bennet_ShowInnosEye_Info()
 		AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_06");	//Если ты оставишь его мне, к завтрашнему утру он будет как новенький.
 		AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_07");	//И я даже не возьму с тебя денег за эту работу. Ведь это ты вытащил меня из тюрьмы.
 	};
+	AI_PrintScreen(Print_InnosEyeGet,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	B_LogEntry(TOPIC_INNOSEYE,"Беннет - кузнец, который нужен мне, чтобы починить амулет.");
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 };
@@ -1118,7 +1123,7 @@ func void DIA_Bennet_GetInnosEye_Info()
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_01");	//Да, держи.
 		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Repaired;
 		CreateInvItems(other,ItMi_InnosEye_Broken_Mis,1);
-		AI_PrintScreen(Print_InnosEyeGet,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(Print_InnosEyeGet,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_02");	//Мне пришлось сделать новую оправу для камня.
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_03");	//Я работал всю ночь, и теперь он как новенький.
 		B_LogEntry(TOPIC_INNOSEYE,"Амулет опять как новенький. Беннет проделал отличную работу.");

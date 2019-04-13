@@ -459,7 +459,7 @@ instance DIA_Addon_Lares_GetRangerArmor(C_Info)
 
 func int DIA_Addon_Lares_GetRangerArmor_Condition()
 {
-	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && (Npc_GetDistToWP(self,"NW_TAVERNE_IN_RANGERMEETING_LARES") < 200) && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running) && (Npc_GetDistToWP(self,"NW_TAVERNE_IN_RANGERMEETING_LARES") <= 200) && (RangerMeetingRunning == LOG_Running) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -492,7 +492,7 @@ func void DIA_Addon_Lares_GetRangerArmor_weapons()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_GetRangerArmor_weapons_15_00");	//„то насчет оружи€?
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_weapons_09_01");	//“радиционное оружие членов братства  ольца - боевой посох, однако каждый может использовать то оружие, которое ему нравитс€.
-	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_weapons_09_02");	//¬от один из наших посохов. я так и не смог им овладеть, но может быть тебе он пригодитс€.
+	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_weapons_09_02");	//¬от один из наших посохов. я так и не смог им овладеть, но, может быть, тебе он пригодитс€.
 	CreateInvItems(self,ItMw_RangerStaff_Addon,1);
 	B_GiveInvItems(self,other,ItMw_RangerStaff_Addon,1);
 };

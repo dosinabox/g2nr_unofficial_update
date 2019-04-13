@@ -501,7 +501,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_SilverNecklace,1);
 	CreateInvItems(self,ItMi_SilverCandleHolder,1);
 	CreateInvItems(self,ItMi_Sextant,1);
-	CreateInvItems(self,ItMi_Packet,1);
+//	CreateInvItems(self,ItMi_Packet,1);
 	CreateInvItems(self,ItMi_Pocket,1);
 	CreateInvItems(self,ItMi_BloodCup_MIS,1);
 	CreateInvItems(self,ItMi_ApfelTabak,1);
@@ -519,6 +519,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_Skull,1);
 	CreateInvItems(self,ItMi_Addon_Shell_01,10);
 	CreateInvItems(self,ItMi_Addon_Shell_02,10);
+	CreateInvItems(self,ItMi_Grog_Crate,5);
 	CreateInvItems(self,ItRw_Bow_L_01,1);
 	CreateInvItems(self,ItRw_Bow_L_02,1);
 	CreateInvItems(self,ItRw_Bow_L_03,1);
@@ -575,6 +576,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItAm_Prot_Point_01);
 	CreateInvItem(self,ItAm_Prot_Total_01);
 	CreateInvItem(self,ItAm_Addon_Franco);
+	CreateInvItem(self,ItAm_Addon_Greg);
 	CreateInvItem(self,ItAm_Addon_Health);
 	CreateInvItem(self,ItAm_Addon_MANA);
 	CreateInvItem(self,ItAm_Addon_STR);

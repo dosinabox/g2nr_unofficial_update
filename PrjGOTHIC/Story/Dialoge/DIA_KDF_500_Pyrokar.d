@@ -791,7 +791,7 @@ instance DIA_Pyrokar_SPELLS(C_Info)
 	condition = DIA_Pyrokar_SPELLS_Condition;
 	information = DIA_Pyrokar_SPELLS_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун)";
+	description = "Я хочу изучить новые заклинания.";
 };
 
 
@@ -807,7 +807,8 @@ func void DIA_Pyrokar_SPELLS_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
+//	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
+	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Pyrokar_SPELLS);
 	Info_AddChoice(DIA_Pyrokar_SPELLS,Dialog_Back,DIA_Pyrokar_SPELLS_BACK);
 	if(PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE)

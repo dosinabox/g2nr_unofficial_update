@@ -80,6 +80,45 @@ func void UnEquip_ItAm_Addon_Franco()
 };
 
 
+instance ItAm_Addon_Greg(C_Item)
+{
+	name = NAME_Amulett;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_AMULET | ITEM_MISSION;
+	value = 900;
+	visual = "ItAm_Addon_Greg.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_ItAm_Addon_Greg;
+	on_unequip = UnEquip_ItAm_Addon_Greg;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Амулет капитана";
+	text[1] = NAME_Prot_Edge;
+	count[1] = 5;
+	text[2] = NAME_Prot_Point;
+	count[2] = 5;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
+};
+
+
+func void Equip_ItAm_Addon_Greg()
+{
+	self.protection[PROT_EDGE] += 5;
+	self.protection[PROT_BLUNT] += 5;
+	self.protection[PROT_POINT] += 5;
+};
+
+func void UnEquip_ItAm_Addon_Greg()
+{
+	self.protection[PROT_EDGE] -= 5;
+	self.protection[PROT_BLUNT] -= 5;
+	self.protection[PROT_POINT] -= 5;
+};
+
+
 instance ItAm_Addon_Health(C_Item)
 {
 	name = NAME_Amulett;
@@ -575,5 +614,26 @@ func void UnEquip_ItRi_Addon_STR_02()
 	self.protection[PROT_EDGE] += NewValue - OldValue;
 	self.protection[PROT_BLUNT] += NewValue - OldValue;
 	STR_Artefakt_Effekt = FALSE;
+};
+
+instance TestAmulet(C_Item)
+{
+	name = NAME_Amulett;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_AMULET | ITEM_MISSION;
+	value = 36;
+	visual = "ItAm_Addon_Greg.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Амулет тестировщика";
+	text[1] = "Если я существую, то все в порядке.";
+	text[2] = "Если у меня есть модель, то все в порядке.";
+	text[3] = "Дата сборки:";
+	count[3] = 1901;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 

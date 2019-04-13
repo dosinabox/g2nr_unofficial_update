@@ -371,14 +371,6 @@ func void DIA_Nagur_Deal_Info()
 		B_GiveInvItems(self,other,ItMi_Gold,Nagur_Deal);
 		AI_Output(self,other,"DIA_Nagur_Deal_08_05");	//“ы хорошо поработал. я сообщил об этом моим хоз€евам.
 		AI_Output(self,other,"DIA_Nagur_Deal_08_06");	//„то из этого выйдет - не знаю.
-		if(!Npc_IsDead(VLK_476_Fenia))
-		{
-			CreateInvItems(VLK_476_Fenia,ItFo_Cheese,5);
-			CreateInvItems(VLK_476_Fenia,ItFo_Apple,10);
-			CreateInvItems(VLK_476_Fenia,ItFo_Beer,5);
-			CreateInvItems(VLK_476_Fenia,ItFo_Bacon,5);
-			CreateInvItems(VLK_476_Fenia,ItFo_Sausage,5);
-		};
 		MIS_Nagur_Bote = LOG_SUCCESS;
 		MIS_Baltram_ScoutAkil = LOG_FAILED;
 		B_GivePlayerXP(XP_Nagur_Bote);

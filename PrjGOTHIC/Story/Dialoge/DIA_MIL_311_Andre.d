@@ -1158,7 +1158,7 @@ instance DIA_Andre_LORDHAGEN(C_Info)
 
 func int DIA_Andre_LORDHAGEN_Condition()
 {
-	if((other.guild == GIL_MIL) && (Kapitel < 3))
+	if((other.guild == GIL_MIL) && (Kapitel < 3) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -1219,19 +1219,49 @@ instance DIA_Andre_FOUND_PECK(C_Info)
 
 func int DIA_Andre_FOUND_PECK_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Peck_FOUND_PECK) && (MIS_Andre_Peck == LOG_Running) && (Npc_IsDead(Peck) == FALSE))
+	if(MIS_Andre_Peck == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(Peck))
+		{
+			return TRUE;
+		}
+		else if(Npc_KnowsInfo(hero,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+		{
+			return TRUE;
+		}
+		else if((Peck.aivar[AIV_TalkedToPlayer] == TRUE) && (Kapitel >= 3))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Andre_FOUND_PECK_Info()
 {
 	AI_Output(other,self,"DIA_Andre_FOUND_PECK_15_00");	//Мне удалось найти Пека.
-	AI_Output(self,other,"DIA_Andre_FOUND_PECK_08_01");	//Да, он уже вернулся на свой пост и приступил к выполнению своих обязанностей. Где ты нашел его?
-	Info_ClearChoices(DIA_Andre_FOUND_PECK);
-	Info_AddChoice(DIA_Andre_FOUND_PECK,"Я случайно наткнулся на него в городе.",DIA_Andre_FOUND_PECK_SOMEWHERE);
-	Info_AddChoice(DIA_Andre_FOUND_PECK,"Он был в Красном Фонаре.",DIA_Andre_FOUND_PECK_REDLIGHT);
+	if(Npc_IsDead(Peck))
+	{
+		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_02");	//Он мертв.
+		AI_Output(self,other,"DIA_Maleth_GEHSTOCK_08_01");	//Это невероятно! Я...
+		AI_Output(self,other,"DIA_Maleth_BanditsDEAD_08_04");	//Я расскажу остальным об этом!
+		MIS_Andre_Peck = LOG_OBSOLETE;
+		B_GivePlayerXP(XP_FoundPeck / 2);
+	}
+	else if(Kapitel < 3)
+	{
+		AI_Output(self,other,"DIA_Andre_FOUND_PECK_08_01");	//Да, он уже вернулся на свой пост и приступил к выполнению своих обязанностей. Где ты нашел его?
+		Info_ClearChoices(DIA_Andre_FOUND_PECK);
+		Info_AddChoice(DIA_Andre_FOUND_PECK,"Я случайно наткнулся на него в городе.",DIA_Andre_FOUND_PECK_SOMEWHERE);
+		Info_AddChoice(DIA_Andre_FOUND_PECK,"Он был в Красном Фонаре.",DIA_Andre_FOUND_PECK_REDLIGHT);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Andre_ReturnedMissingPeople_08_01");	//А я-то думал, где ты был все это время!
+		AI_Output(self,other,"DIA_Andre_PMSchulden_08_04");	//Ты глубоко разочаровал меня!
+		MIS_Andre_Peck = LOG_FAILED;
+		B_CheckLog();
+		AI_StopProcessInfos(self);
+	};
 };
 
 func void DIA_Andre_FOUND_PECK_SOMEWHERE()
@@ -1538,7 +1568,7 @@ instance DIA_Addon_Andre_MissingPeople(C_Info)
 
 func int DIA_Addon_Andre_MissingPeople_Condition()
 {
-	if((MIS_Addon_Vatras_WhereAreMissingPeople == LOG_Running) && (other.guild == GIL_MIL))
+	if((SC_HearedAboutMissingPeople == TRUE) && (other.guild == GIL_MIL))
 	{
 		return TRUE;
 	};
@@ -1569,7 +1599,7 @@ instance DIA_Addon_Andre_MissingPeople2(C_Info)
 
 func int DIA_Addon_Andre_MissingPeople2_Condition()
 {
-	if((MIS_Addon_Vatras_WhereAreMissingPeople == LOG_Running) && (other.guild != GIL_MIL) && (SCKnowsMissingPeopleAreInAddonWorld == FALSE))
+	if((SC_HearedAboutMissingPeople == TRUE) && (other.guild != GIL_MIL))
 	{
 		return TRUE;
 	};
@@ -1613,7 +1643,7 @@ func void DIA_Addon_Andre_ReturnedMissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Andre_ReturnedMissingPeople_08_04");	//Как много людей ты спас?
 	AI_Output(other,self,"DIA_Addon_Andre_ReturnedMissingPeople_15_05");	//Всех тех, кто был еще жив...
 	AI_Output(self,other,"DIA_Addon_Andre_ReturnedMissingPeople_08_06");	//Всех?! Я... Э-э-э...
-	if(other.guild == GIL_MIL)
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Addon_Andre_ReturnedMissingPeople_08_07");	//Я тобой горжусь! И я рад, что принял тебя в наши ряды.
 		B_AndreSold();

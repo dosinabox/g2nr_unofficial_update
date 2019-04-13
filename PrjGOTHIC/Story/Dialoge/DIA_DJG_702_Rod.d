@@ -149,6 +149,50 @@ func void DIA_RodDJG_WARTEMAL_Info()
 };
 
 
+func void B_GiveRodSword()
+{
+	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
+	AI_Output(other,self,"DIA_Rod_GiveItBack_15_00");	//Вот, держи свой меч!
+	AI_Output(self,other,"DIA_Rod_GiveItBack_06_01");	//Вовремя!
+	if(Rod_SchwertXPGiven == FALSE)
+	{
+		if(CurrentLevel == NEWWORLD_ZEN)
+		{
+			B_GivePlayerXP(XP_Ambient);
+		}
+		else
+		{
+			B_GivePlayerXP(50);
+		};
+		Rod_SchwertXPGiven = TRUE;
+	};
+};
+
+instance DIA_RodDJG_GiveItBack(C_Info)
+{
+	npc = DJG_702_Rod;
+	nr = 7;
+	condition = DIA_RodDJG_GiveItBack_Condition;
+	information = DIA_RodDJG_GiveItBack_Info;
+	permanent = TRUE;
+	description = "Вот, держи свой меч!";
+};
+
+
+func int DIA_RodDJG_GiveItBack_Condition()
+{
+	if(Npc_HasItems(other,ItMw_2h_Rod))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_RodDJG_GiveItBack_Info()
+{
+	B_GiveRodSword();
+};
+
+
 instance DIA_Rod_PICKPOCKET(C_Info)
 {
 	npc = DJG_702_Rod;

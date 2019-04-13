@@ -183,7 +183,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(Sekob,"FleeDMT");
 			B_StartOtherRoutine(Rosi,"FleeDMT");
 			B_StartOtherRoutine(Till,"FleeDMT");
-			B_StartOtherRoutine(Balthasar,"FleeDMT");
+			if(BalthasarMovedToBengar == FALSE)
+			{
+				B_StartOtherRoutine(Balthasar,"FleeDMT");
+			};
 			B_StartOtherRoutine(BAU_933_Rega,"FleeDMT");
 			B_StartOtherRoutine(BAU_934_Babera,"FleeDMT");
 			B_StartOtherRoutine(BAU_937_Bauer,"FleeDMT");

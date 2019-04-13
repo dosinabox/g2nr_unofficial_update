@@ -324,7 +324,7 @@ instance DIA_Jarvis_HowManyLeft(C_Info)
 
 func int DIA_Jarvis_HowManyLeft_Condition()
 {
-	if((MIS_Jarvis_SldKO == LOG_Running) && Npc_KnowsInfo(other,DIA_Jarvis_HowMany))
+	if((MIS_Jarvis_SldKO == LOG_Running) && Npc_KnowsInfo(other,DIA_Jarvis_HowMany) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -334,81 +334,94 @@ func void DIA_Jarvis_HowManyLeft_Info()
 {
 	var int victories;
 	AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_00");	//Сколько людей Сильвио мне еще нужно уложить?
-	victories = 0;
-	if((Bullco.aivar[AIV_DefeatedByPlayer] == TRUE) || (Bullco.aivar[AIV_KilledByPlayer] == TRUE))
+	if(MIS_ReadyforChapter4 == TRUE)
 	{
-		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_01");	//Я отдубасил Буллко.
-		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_02");	//Я слышал. Неплохо.
-		victories += 1;
-	};
-	if((Rod.aivar[AIV_DefeatedByPlayer] == TRUE) || (Rod.aivar[AIV_KilledByPlayer] == TRUE))
-	{
-		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_03");	//Род теперь ходит сильно потрепанным.
-		victories += 1;
-	};
-	if((Sentenza.aivar[AIV_DefeatedByPlayer] == TRUE) || (Sentenza.aivar[AIV_KilledByPlayer] == TRUE))
-	{
-		if(Npc_KnowsInfo(other,DIA_Sentenza_Hello))
-		{
-			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_04");	//Сентенза пытался вытрясти из меня золото - не самая лучшая идея.
-		}
-		else
-		{
-			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_05");	//Я вырубил Сентензу.
-		};
-		victories += 1;
-	};
-	if((Fester.aivar[AIV_DefeatedByPlayer] == TRUE) || (Fester.aivar[AIV_KilledByPlayer] == TRUE))
-	{
-//		if(MIS_Fester_KillBugs == LOG_OBSOLETE)
-		if(MIS_Fester_KillBugs == LOG_SUCCESS)
-		{
-			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_06");	//Фестер пытался провести меня - это была его ошибка.
-		}
-		else
-		{
-			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_07");	//Фестер получил по заслугам.
-		};
-		victories += 1;
-	};
-	if((Raoul.aivar[AIV_DefeatedByPlayer] == TRUE) || (Raoul.aivar[AIV_KilledByPlayer] == TRUE))
-	{
-		if(victories == 0)
-		{
-			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_08");	//Что касается Рауля...
-		}
-		else
-		{
-			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_09");	//Я пошел поговорить с Раулем...
-		};
-		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_10");	//И?
-		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_11");	//Оказалось, что ему крайне необходима взбучка.
-		victories += 1;
-	};
-	if(victories < 3)
-	{
-		if(victories == 0)
-		{
-			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_12");	//Ты пока не вырубил ни одного из людей Сильвио.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_13");	//Хорошо, продолжай в том же духе.
-		};
-		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_14");	//Я хочу, чтобы ты вырубил как минимум троих из них.
+		AI_Output(self,other,"DIA_Jarvis_PERM_04_04");	//Сильвио наконец-то свалил. После того, как он услышал о драконах, он со своими парнями отправился в колонию.
+		MIS_Jarvis_SldKO = LOG_FAILED;
+		B_CheckLog();
+		self.aivar[AIV_IGNORE_Murder] = FALSE;
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_15");	//Этого достаточно, вполне достаточно.
-		if(victories >= 5)
+		victories = 0;
+		if((Bullco.aivar[AIV_DefeatedByPlayer] == TRUE) || (Bullco.aivar[AIV_KilledByPlayer] == TRUE))
 		{
-			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_16");	//Ты им всем начистил физиономию, да?
+			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_01");	//Я отдубасил Буллко.
+			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_02");	//Я слышал. Неплохо.
+			victories += 1;
 		};
-		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_17");	//Я поражен - если Ли спросит мое мнение, я проголосую за тебя без колебаний.
-		MIS_Jarvis_SldKO = LOG_SUCCESS;
-		self.aivar[AIV_IGNORE_Murder] = FALSE;
-		B_GivePlayerXP(XP_Ambient * victories);
-		B_LogEntry(TOPIC_SLDRespekt,"Джарвис проголосует за меня, если я решу присоединиться к наемникам.");
+		if((Rod.aivar[AIV_DefeatedByPlayer] == TRUE) || (Rod.aivar[AIV_KilledByPlayer] == TRUE))
+		{
+			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_03");	//Род теперь ходит сильно потрепанным.
+			victories += 1;
+		};
+		if((Sentenza.aivar[AIV_DefeatedByPlayer] == TRUE) || (Sentenza.aivar[AIV_KilledByPlayer] == TRUE))
+		{
+			if(Npc_KnowsInfo(other,DIA_Sentenza_Hello))
+			{
+				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_04");	//Сентенза пытался вытрясти из меня золото - не самая лучшая идея.
+			}
+			else
+			{
+				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_05");	//Я вырубил Сентензу.
+			};
+			victories += 1;
+		};
+		if((Fester.aivar[AIV_DefeatedByPlayer] == TRUE) || (Fester.aivar[AIV_KilledByPlayer] == TRUE))
+		{
+	//		if(MIS_Fester_KillBugs == LOG_OBSOLETE)
+			if(MIS_Fester_KillBugs == LOG_SUCCESS)
+			{
+				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_06");	//Фестер пытался провести меня - это была его ошибка.
+			}
+			else
+			{
+				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_07");	//Фестер получил по заслугам.
+			};
+			victories += 1;
+		};
+		if((Raoul.aivar[AIV_DefeatedByPlayer] == TRUE) || (Raoul.aivar[AIV_KilledByPlayer] == TRUE))
+		{
+			if(victories == 0)
+			{
+				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_08");	//Что касается Рауля...
+			}
+			else
+			{
+				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_09");	//Я пошел поговорить с Раулем...
+			};
+			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_10");	//И?
+			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_11");	//Оказалось, что ему крайне необходима взбучка.
+			victories += 1;
+		};
+		if(victories < 3)
+		{
+			if(victories == 0)
+			{
+				AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_12");	//Ты пока не вырубил ни одного из людей Сильвио.
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_13");	//Хорошо, продолжай в том же духе.
+			};
+			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_14");	//Я хочу, чтобы ты вырубил как минимум троих из них.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_15");	//Этого достаточно, вполне достаточно.
+			if(victories >= 5)
+			{
+				AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_16");	//Ты им всем начистил физиономию, да?
+			};
+			if(other.guild == GIL_NONE)
+			{
+				AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_17");	//Я поражен - если Ли спросит мое мнение, я проголосую за тебя без колебаний.
+				B_LogEntry(TOPIC_SLDRespekt,"Джарвис проголосует за меня, если я решу присоединиться к наемникам.");
+			};
+			MIS_Jarvis_SldKO = LOG_SUCCESS;
+			self.aivar[AIV_IGNORE_Murder] = FALSE;
+			B_GivePlayerXP(XP_Ambient * victories);
+		};
 	};
 };
 

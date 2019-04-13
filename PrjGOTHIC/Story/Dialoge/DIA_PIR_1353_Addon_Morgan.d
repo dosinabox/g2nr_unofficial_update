@@ -260,7 +260,7 @@ instance DIA_Addon_Morgan_JoinMorgan(C_Info)
 
 func int DIA_Addon_Morgan_JoinMorgan_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Morgan_Sleep) && (GregIsBack == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Morgan_Sleep))
 	{
 		return TRUE;
 	};
@@ -270,7 +270,10 @@ func void DIA_Addon_Morgan_JoinMorgan_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_JoinMorgan_15_00");	//я хочу вступить в твой отр€д.
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_01");	//(смеетс€) ћой отр€д? ћой отр€д сейчас вал€етс€ на пл€же.
-	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_03");	//ќни палец о палец не удар€т до тех пор, пока капитан не вернетс€. Ёто € тебе точно говорю.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_03");	//ќни палец о палец не удар€т до тех пор, пока капитан не вернетс€. Ёто € тебе точно говорю.
+	};
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_04");	//Ќо если ты хочешь показать всем остальным, из чего ты сделан, то ступай на северный пл€ж.
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_05");	//“ам полно луркеров... и черт знает, чего еще.
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//–азберись с ними, и ты заработаешь уважение (зевает) людей...

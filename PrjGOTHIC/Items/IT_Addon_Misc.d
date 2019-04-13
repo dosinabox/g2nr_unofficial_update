@@ -337,6 +337,29 @@ func void Use_LennarPaket()
 };
 
 
+instance ItMi_Grog_Crate(C_Item)
+{
+	name = "ящик с грогом";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MISSION | ITEM_MULTI;
+	value = Value_Grog * 4;
+	visual = "ItMi_Crate.3ds";
+	scemeName = "MAPSEALED";
+	on_state[0] = Use_Grog_Crate;
+	material = MAT_WOOD;
+	description = name;
+	text[0] = "¬нутри наход€тс€ четыре бутылки грога.";
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void Use_Grog_Crate()
+{
+	B_PlayerFindItem(ItFo_Addon_Grog,4);
+};
+
+
 instance ItMi_Zeitspalt_Addon(C_Item)
 {
 	name = "„ерна€ руда";

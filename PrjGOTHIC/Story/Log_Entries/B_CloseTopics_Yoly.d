@@ -40,7 +40,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_VatrasAbloesung,0,VatrasCanLeaveTown_Kap3,4);
 	B_CloseTopic(TOPIC_Bronkoeingeschuechtert,MIS_Sekob_Bronko_eingeschuechtert,0,6);
 	B_CloseTopic(TOPIC_BalthasarsSchafe,MIS_Balthasar_BengarsWeide,0,6);
-	if((hero.guild != GIL_NONE) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if((hero.guild != GIL_NONE) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG) && (MIS_Balthasar_BengarsWeide == LOG_Running))
 	{
 		Log_SetTopicStatus(TOPIC_BalthasarsSchafe,LOG_OBSOLETE);
 	};

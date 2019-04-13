@@ -15,6 +15,10 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin)) && ((Npc_GetDistToWP(slf,"NW_CITY_PALCAMP_15") < 5000) || (Npc_GetDistToWP(slf,"NW_CITY_HABOUR_TAVERN01_04") < 5000)))
+		{
+			return TRUE;
+		};
 	};
 	if(slf.aivar[AIV_IgnoresArmor] == TRUE)
 	{

@@ -13,6 +13,12 @@ func void B_BlessAttribute(var C_Npc oth,var int attrib,var int points)
 	{
 		oth.attribute[ATR_DEXTERITY] += points;
 		oth.aivar[REAL_DEXTERITY] += points;
+		if((oth.attribute[ATR_DEXTERITY] >= 90) && !Npc_GetTalentSkill(oth,NPC_TALENT_ACROBAT))
+		{
+			Npc_SetTalentSkill(oth,NPC_TALENT_ACROBAT,1);
+			PrintScreen(PRINT_Addon_AcrobatBonus,-1,53,FONT_Screen,2);
+			Snd_Play("LevelUp");
+		};
 		concatText = ConcatStrings(PRINT_BlessDEX,IntToString(points));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 	};

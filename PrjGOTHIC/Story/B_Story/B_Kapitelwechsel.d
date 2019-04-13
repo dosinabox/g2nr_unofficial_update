@@ -4,6 +4,10 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	Kapitel = neues_Kapitel;
 	if(neues_Kapitel == 1)
 	{
+		if(Mob_HasItems("KVI_SECRET_DEV_CHEST",ItPl_Mushroom_01))
+		{
+			CreateInvItem(hero,TestAmulet);
+		};
 		IntroduceChapter(KapWechsel_1,KapWechsel_1_Text,"chapter1.tga","chapter_01.wav",6000);
 	}
 	else if(neues_Kapitel == 2)

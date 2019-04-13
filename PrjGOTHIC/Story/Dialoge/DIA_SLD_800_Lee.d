@@ -640,7 +640,7 @@ func void DIA_Lee_KeinSld_Info()
 	};
 	AI_Output(self,other,"DIA_Lee_KeinSld_04_02");	//Что ж, теперь ты не сможешь стать наемником.
 	AI_Output(self,other,"DIA_Lee_KeinSld_04_03");	//Но кто знает, может быть, ты сможешь сделать что-нибудь для меня - или я для тебя.
-	AI_Output(self,other,"DIA_Lee_KeinSld_04_04");	//Посмотрим. Но, как бы то ни было я желаю тебе всего наилучшего.
+	AI_Output(self,other,"DIA_Lee_KeinSld_04_04");	//Посмотрим. Но, как бы то ни было, я желаю тебе всего наилучшего.
 	AI_Output(self,other,"DIA_Lee_KeinSld_04_05");	//Но даже и не думай обвести меня вокруг пальца, понял?
 };
 

@@ -56,6 +56,8 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 	AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_02");	//Не надо беспокоиться. Все доставлю как есть.
 	if((ORNAMENT_SWITCHED_FOREST == FALSE) && Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon))
 	{
+		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_03");	//(вздыхает) Ты хоть знаешь, что ты ищешь?
 		AI_Output(other,self,"DIA_ADDON_Saturas_Nefarius_15_04");	//Ну, Нефариус дал мне эту карту...
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_05");	//Покажи ее мне!
@@ -63,13 +65,18 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 //		B_UseFakeScroll();
 		B_UseFakeMap();
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_06");	//Хм. В большом лесу чрезвычайно опасно. Не следует направляться туда одному.
-		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_07");	//Найди кого-нибудь в Хоринисе, кто мог бы пойти с тобой.
+		if(Kapitel < 3)
+		{
+			AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_07");	//Найди кого-нибудь в Хоринисе, кто мог бы пойти с тобой.
+			B_LogEntry(TOPIC_Addon_Ornament,"Сатурас посоветовал мне не отправляться в одиночку на поиски части орнамента, которая находится в лесу. Я должен найти в Хоринисе кого-нибудь, кто пойдет со мной.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_Addon_Ornament,"Сатурас предупредил меня, что в лесу, где мне предстоит искать орнамент, может быть довольно опасно.");
+		};
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_08");	//Не то, чтобы я о тебе волнуюсь, но монстры могут съесть орнамент вместе с тобой.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_09");	//Вот твоя карта...
 		AI_PrintScreen("Карта Нефариуса получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
-		B_LogEntry(TOPIC_Addon_Ornament,"Сатурас посоветовал мне не отправляться в одиночку на поиски части орнамента, которая находится в лесу. Я должен найти в Хоринисе кого-нибудь, кто пойдет со мной.");
 	};
 };
 
@@ -348,7 +355,7 @@ func void DIA_Addon_Saturas_wasmachstdu_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_wasmachstdu_15_00");	//Что ты здесь делаешь?
 	AI_Output(self,other,"DIA_Addon_Saturas_wasmachstdu_14_01");	//(почтительно) В этих чертогах сокрыты древние тайны. Загадочные тайны.
 	AI_Output(self,other,"DIA_Addon_Saturas_wasmachstdu_14_02");	//По надписям и фрескам видно, что это очень древняя культура.
-	AI_Output(self,other,"DIA_Addon_Saturas_wasmachstdu_14_03");	//Все надписи, которые ты видишь сделаны на совершенно неизвестном нам языке.
+	AI_Output(self,other,"DIA_Addon_Saturas_wasmachstdu_14_03");	//Все надписи, которые ты видишь, сделаны на совершенно неизвестном нам языке.
 	AI_Output(self,other,"DIA_Addon_Saturas_wasmachstdu_14_04");	//Мы только начинаем изучать его и расшифровали лишь малую часть.
 };
 
@@ -461,6 +468,70 @@ func void DIA_Addon_Saturas_ScRanger_Info()
 };
 
 
+func void B_GiveVatrasLetterToSaturas()
+{
+	if(VatrasLetterGivenToSaturas == FALSE)
+	{
+		AI_Output(other,self,"DIA_Addon_Saturas_OpenPortal_15_03");	//У меня есть для тебя послание от Ватраса.
+		if(Vatras2Saturas_FindRaven_Open == TRUE)
+		{
+			B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven_opened,1);
+			B_UseFakeScroll();
+			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_04");	//(раздраженно) Вижу. И, конечно же, ты не удержался и наверняка вскрыл его?
+			AI_Output(other,self,"DIA_Addon_Saturas_OpenPortal_15_05");	//Ну, э-э...
+			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_06");	//(грозно) Надеюсь, мое и так хрупкое доверие к тебе не пошатнется окончательно. Ради твоего же блага.
+		}
+		else
+		{
+			B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven,1);
+			B_UseFakeScroll();
+			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_07");	//(удивленно) Интересно. Хорошо.
+			B_GivePlayerXP(XP_Ambient);
+		};
+		VatrasLetterGivenToSaturas = TRUE;
+	};
+};
+
+func void B_GivePortalRingToSC()
+{
+	AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_08");	//Вот, возьми кольцо. Мы встретимся у портала и подождем тебя.
+	CreateInvItems(self,ItMi_PortalRing_Addon,1);
+	B_GiveInvItems(self,other,ItMi_PortalRing_Addon,1);
+	AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_09");	//Если Нефариус прав, портал откроется, как только в него вставят кольцо.
+	DIA_Addon_Saturas_OpenPortal_NoPerm = TRUE;
+	B_LogEntry(TOPIC_Addon_Ornament,"Сатурас дал мне украшенное кольцо. Я должен открыть портал, вставив кольцо в механизм, а затем пройти через портал.");
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"OpenPortal");
+	B_StartOtherRoutine(KDW_1401_Addon_Cronos_NW,"OpenPortal");
+	B_StartOtherRoutine(KDW_1402_Addon_Nefarius_NW,"OpenPortal");
+	B_StartOtherRoutine(KDW_1403_Addon_Myxir_NW,"OpenPortal");
+	B_StartOtherRoutine(KDW_1404_Addon_Riordian_NW,"OpenPortal");
+	B_StartOtherRoutine(KDW_1405_Addon_Merdarion_NW,"OpenPortal");
+};
+
+instance DIA_Addon_Saturas_GiveVatrasLetter(C_Info)
+{
+	npc = KDW_1400_Addon_Saturas_NW;
+	nr = 5;
+	condition = DIA_Addon_Saturas_GiveVatrasLetter_Condition;
+	information = DIA_Addon_Saturas_GiveVatrasLetter_Info;
+	description = "У меня есть для тебя послание от Ватраса.";
+};
+
+func int DIA_Addon_Saturas_GiveVatrasLetter_Condition()
+{
+	if((VatrasLetterGivenToSaturas == FALSE) && (RangerMeetingRunning == LOG_SUCCESS) && (Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven) || Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened)))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Saturas_GiveVatrasLetter_Info()
+{
+	B_GiveVatrasLetterToSaturas();
+};
+
+
 instance DIA_Addon_Saturas_OpenPortal(C_Info)
 {
 	npc = KDW_1400_Addon_Saturas_NW;
@@ -471,8 +542,6 @@ instance DIA_Addon_Saturas_OpenPortal(C_Info)
 	description = "Дай мне кольцо. Я открою портал.";
 };
 
-
-var int DIA_Addon_Saturas_OpenPortal_NoPerm;
 
 func int DIA_Addon_Saturas_OpenPortal_Condition()
 {
@@ -488,42 +557,22 @@ func void DIA_Addon_Saturas_OpenPortal_Info()
 	if(SaturasKnows_SC_IsRanger == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_01");	//(лукаво) Хорошо! Как один из наших новых детей, ты должен быть удостоен этой чести.
-		AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_02");	//Однако я по-прежнему жду вестей от Ватраса. Мы никуда не пойдем, пока не дождемся их.
-		if((RangerMeetingRunning == LOG_SUCCESS) && (Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven) || Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened)))
+		if(VatrasLetterGivenToSaturas == TRUE)
 		{
-			AI_Output(other,self,"DIA_Addon_Saturas_OpenPortal_15_03");	//У МЕНЯ есть для тебя послание от Ватраса.
-			if(Vatras2Saturas_FindRaven_Open == TRUE)
-			{
-				B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven_opened,1);
-				B_UseFakeScroll();
-				AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_04");	//(раздраженно) Вижу. И, конечно же, ты не удержался и наверняка вскрыл его?
-				AI_Output(other,self,"DIA_Addon_Saturas_OpenPortal_15_05");	//Ну, э-э...
-				AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_06");	//(грозно) Надеюсь, мое и так хрупкое доверие к тебе не пошатнется окончательно. Ради твоего же блага.
-			}
-			else
-			{
-				B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven,1);
-				B_UseFakeScroll();
-				AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_07");	//(удивленно) Интересно. Хорошо.
-				B_GivePlayerXP(XP_Ambient);
-			};
-			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_08");	//Вот, возьми кольцо. Мы встретимся у портала и подождем тебя.
-			CreateInvItems(self,ItMi_PortalRing_Addon,1);
-			B_GiveInvItems(self,other,ItMi_PortalRing_Addon,1);
-			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_09");	//Если Нефариус прав, портал откроется, как только в него вставят кольцо.
-			DIA_Addon_Saturas_OpenPortal_NoPerm = TRUE;
-			B_LogEntry(TOPIC_Addon_Ornament,"Сатурас дал мне украшенное кольцо. Я должен открыть портал, вставив кольцо в механизм, а затем пройти через портал.");
-			AI_StopProcessInfos(self);
-			Npc_ExchangeRoutine(self,"OpenPortal");
-			B_StartOtherRoutine(KDW_1401_Addon_Cronos_NW,"OpenPortal");
-			B_StartOtherRoutine(KDW_1402_Addon_Nefarius_NW,"OpenPortal");
-			B_StartOtherRoutine(KDW_1403_Addon_Myxir_NW,"OpenPortal");
-			B_StartOtherRoutine(KDW_1404_Addon_Riordian_NW,"OpenPortal");
-			B_StartOtherRoutine(KDW_1405_Addon_Merdarion_NW,"OpenPortal");
+			B_GivePortalRingToSC();
 		}
 		else
 		{
-			AI_StopProcessInfos(self);
+			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_02");	//Однако я по-прежнему жду вестей от Ватраса. Мы никуда не пойдем, пока не дождемся их.
+			if((RangerMeetingRunning == LOG_SUCCESS) && (Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven) || Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened)))
+			{
+				B_GiveVatrasLetterToSaturas();
+				B_GivePortalRingToSC();
+			}
+			else
+			{
+				AI_StopProcessInfos(self);
+			};
 		};
 	}
 	else

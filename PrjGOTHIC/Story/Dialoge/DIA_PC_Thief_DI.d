@@ -170,7 +170,14 @@ func int DIA_PC_Thief_DI_Training_Talente_Condition()
 func void DIA_PC_Thief_DI_Training_Talente_Info()
 {
 	AI_Output(other,self,"DIA_PC_Thief_DI_Training_15_00");	//Обучи меня.
-	AI_Output(self,other,"DIA_PC_Thief_DI_Training_11_01");	//Что тебе нужно?
+	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
+	{
+		AI_Output(self,other,"DIA_DiegoNW_Teach_11_01");	//Я могу научить тебя, как стать более ловким.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_PC_Thief_DI_Training_11_01");	//Что тебе нужно?
+	};
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))

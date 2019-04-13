@@ -10,7 +10,7 @@ instance MIL_350_Addon_Martin(Npc_Default)
 	aivar[AIV_NPCIsRanger] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_Meisterdegen);
 //	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_OldMan_Gravo,BodyTex_P,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);

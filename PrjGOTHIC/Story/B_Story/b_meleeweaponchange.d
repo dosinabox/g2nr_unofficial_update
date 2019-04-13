@@ -270,7 +270,7 @@ func void b_stopmagictransform()
 		{
 			Npc_RemoveInvItem(hero,ItSc_TrfDragonSnapper);
 		};
-		//восстановить уровень, порог опыта для level up и здоровье ГГ с учётом level up-ов в облике зверя
+		//восстановить уровень, порог опыта для level up и здоровье ГГ с учетом level up-ов в облике зверя
 		hero.level = hero.aivar[REAL_LEVEL] + LevelUpsDuringTransform;
 		if(LevelUpsDuringTransform > 0)
 		{

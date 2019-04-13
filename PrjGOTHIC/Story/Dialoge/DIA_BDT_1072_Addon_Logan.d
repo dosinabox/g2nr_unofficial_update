@@ -18,7 +18,7 @@ func int DIA_Addon_Logan_EXIT_Condition()
 func void DIA_Addon_Logan_EXIT_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
-	if(((!MIS_HlpLogan == LOG_Running) || (!MIS_HlpLogan == LOG_SUCCESS)) && (Logan_Inside == FALSE))
+	if((MIS_HlpLogan == LOG_Running) && (Logan_Inside == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Logan_EXIT_10_01");	//(ворчливо) Да-а, просто убегаешь. А я останусь здесь и остановлю каждого, кто подойдет слишком близко.
 	};
@@ -115,10 +115,14 @@ func void DIA_Addon_Logan_How2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Logan_How2_15_00");	//Как у тебя дела?
 	AI_Output(self,other,"DIA_Addon_Logan_How2_10_01");	//Ну, по крайней мере я теперь внутри. Люсия варит какой-то гадкий ликер.
-	AI_Output(self,other,"DIA_Addon_Logan_How2_10_02");	//Но Эстебан не пускает меня в шахту. Ну никак не хочет. Он дал мне другую работу.
-	AI_Output(other,self,"DIA_Addon_Logan_How2_15_03");	//И? Что он хочет от тебя?
-	AI_Output(self,other,"DIA_Addon_Logan_How2_10_04");	//На его жизнь покушались. И он хочет, чтобы я выяснил, кто за этим стоит.
-	AI_Output(self,other,"DIA_Addon_Logan_How2_10_05");	//(тихо) Эстебан считает, что в этом замешан Снаф. Мне нужно следить за ним...
+	if(!Npc_IsDead(Esteban))
+	{
+		AI_Output(self,other,"DIA_Addon_Logan_How2_10_02");	//Но Эстебан не пускает меня в шахту. Ну никак не хочет. Он дал мне другую работу.
+		AI_Output(other,self,"DIA_Addon_Logan_How2_15_03");	//И? Что он хочет от тебя?
+		AI_Output(self,other,"DIA_Addon_Logan_How2_10_04");	//На его жизнь покушались. И он хочет, чтобы я выяснил, кто за этим стоит.
+		AI_Output(self,other,"DIA_Addon_Logan_How2_10_05");	//(тихо) Эстебан считает, что в этом замешан Снаф. Мне нужно следить за ним...
+		LoganToldAboutEsteban = TRUE;
+	};
 };
 
 
@@ -135,7 +139,7 @@ instance DIA_Addon_Logan_Attentat(C_Info)
 
 func int DIA_Addon_Logan_Attentat_Condition()
 {
-	if((MIS_Judas == LOG_Running) && (Logan_Inside == TRUE))
+	if((MIS_Judas == LOG_Running) && (Logan_Inside == TRUE) && (LoganToldAboutEsteban == TRUE))
 	{
 		return TRUE;
 	};

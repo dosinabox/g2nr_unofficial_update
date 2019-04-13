@@ -1,4 +1,5 @@
 
+var int Fenia_ItemsGiven_Paket;
 var int Fenia_ItemsGiven_Chapter_1;
 var int Fenia_ItemsGiven_Chapter_2;
 var int Fenia_ItemsGiven_Chapter_3;
@@ -7,6 +8,15 @@ var int Fenia_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Fenia(var C_Npc slf)
 {
+	if((MIS_Baltram_ScoutAkil == LOG_FAILED) && (Fenia_ItemsGiven_Paket == FALSE))
+	{
+		CreateInvItems(slf,ItFo_Cheese,5);
+		CreateInvItems(slf,ItFo_Apple,10);
+		CreateInvItems(slf,ItFo_Beer,5);
+		CreateInvItems(slf,ItFo_Bacon,5);
+		CreateInvItems(slf,ItFo_Sausage,5);
+		Fenia_ItemsGiven_Paket = TRUE;
+	};
 	if((Kapitel >= 1) && (Fenia_ItemsGiven_Chapter_1 == FALSE))
 	{
 		CreateInvItems(slf,ItMi_Gold,50);

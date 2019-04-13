@@ -140,13 +140,14 @@ func void DIA_Addon_Francis_Key_Info()
 	AI_Output(other,self,"DIA_Addon_Francis_Key_15_00");	//Отдай мне ключ от хижины Грега!
 	AI_Output(self,other,"DIA_Addon_Francis_Key_13_01");	//Должно быть, ты шутишь!
 	Info_ClearChoices(DIA_Addon_Francis_Key);
-	Info_AddChoice(DIA_Addon_Francis_Key,"Я подумаю насчет этого...",DIA_Addon_Francis_Key_BACK);
+	Info_AddChoice(DIA_Addon_Francis_Key,"Я подумаю над этим.",DIA_Addon_Francis_Key_BACK);
 	Info_AddChoice(DIA_Addon_Francis_Key,"Я дам тебе 2000 золотых!",DIA_Addon_Francis_Key_2000Gold);
 	Info_AddChoice(DIA_Addon_Francis_Key,"Я дам тебе 1000 золотых!",DIA_Addon_Francis_Key_1000Gold);
 };
 
 func void DIA_Addon_Francis_Key_BACK()
 {
+	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_back_15_00");	//Я подумаю над этим.
 	Info_ClearChoices(DIA_Addon_Francis_Key);
 };
 

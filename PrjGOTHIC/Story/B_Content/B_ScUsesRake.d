@@ -58,9 +58,9 @@ func void B_SCGetTreasure_S1()
 		}
 		else if((Npc_GetDistToWP(hero,"NW_BIGMILL_FARM3_01") < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[5] == FALSE))
 		{
-			Wld_InsertItem(ItAm_Prot_Point_01,"NW_BIGMILL_FARM3_01");
+			Wld_InsertItem(ItAm_Addon_Greg,"NW_BIGMILL_FARM3_01");
 			RAKEPLACE[5] = TRUE;
-			RakeTreasureSuccess(ItAm_Prot_Point_01);
+			RakeTreasureSuccess(ItAm_Addon_Greg);
 		}
 		else if((Npc_GetDistToWP(hero,"ADW_ENTRANCE_RAKEPLACE_01") < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[12] == FALSE))
 		{
