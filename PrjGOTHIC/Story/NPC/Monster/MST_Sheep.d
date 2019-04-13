@@ -59,6 +59,7 @@ instance Hammel(Mst_Default_Sheep)
 instance Follow_Sheep(Mst_Default_Sheep)
 {
 	name[0] = "Бетси";
+	level = 0;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetVisuals_Sheep();
 	Npc_SetToFistMode(self);

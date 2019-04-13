@@ -20,7 +20,7 @@ instance ItFo_Addon_Shellflesh(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
 	value = Value_Shellflesh;
-	visual = "ItAt_Meatbugflesh.3DS";
+	visual = "ItAt_Shellflesh.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOODHUGE";
 	on_state[0] = Use_Shellflesh;
@@ -34,6 +34,7 @@ instance ItFo_Addon_Shellflesh(C_Item)
 	count[1] = HP_Shellflesh;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 };
 
 

@@ -1062,6 +1062,7 @@ var int SC_IsBlackEyeProtected;
 var int Player_TalkedAboutDragonsToAndre;
 var int NpcWantToFlee;
 var int TradersHaveLimitedAmmo;
+var int Dont_Fix_Unlim;
 var int Bennet_Ammo_Day;
 var int Bosper_Ammo_Day;
 var int Diego_DI_Ammo_Day;

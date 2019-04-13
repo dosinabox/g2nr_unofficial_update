@@ -2,7 +2,7 @@
 const int AM_EyeProtEdge = 10;
 const int AM_EyeProtPoint = 10;
 const int AM_EyeProtMage = 20;
-const int AM_EyeProtFire = 30;
+const int AM_EyeProtFire = 20;
 
 instance ItMi_InnosEye_MIS(C_Item)
 {
@@ -43,7 +43,7 @@ func void Equip_InnosEye()
 	self.protection[PROT_POINT] += AM_EyeProtPoint;
 	self.protection[PROT_FIRE] += AM_EyeProtFire;
 	self.protection[PROT_MAGIC] += AM_EyeProtMage;
-	PrintScreen("",-1,-1,FONT_Screen,0);
+//	PrintScreen("",-1,-1,FONT_Screen,0);
 	SC_IsWearingInnosEye = TRUE;
 };
 

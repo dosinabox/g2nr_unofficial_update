@@ -1,6 +1,11 @@
 
 func void ZS_MM_Flee()
 {
+	if((self.guild == GIL_DRAGON) || (self.guild == GIL_TROLL) || (self.guild == GIL_STONEGOLEM) || (self.guild == GIL_ICEGOLEM) || (self.guild == GIL_FIREGOLEM))
+	{
+		AI_ContinueRoutine(self);
+		return;
+	};
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	B_ValidateOther();
 	AI_Standup(self);

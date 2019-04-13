@@ -16,7 +16,13 @@ func void B_StopMagicFlee()
 func void ZS_MagicFlee()
 {
 	var int randy;
-	if(self.guild == GIL_DRAGON)
+	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)))
+	{
+		B_Say(self,other,"$ISAIDSTOPMAGIC");
+		AI_ContinueRoutine(self);
+		return;
+	}
+	else if(self.guild == GIL_DRAGON)
 	{
 		AI_ContinueRoutine(self);
 		return;

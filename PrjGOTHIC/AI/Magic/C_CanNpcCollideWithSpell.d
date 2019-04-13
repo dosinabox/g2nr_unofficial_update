@@ -133,13 +133,45 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		};
 		return COLL_DOEVERYTHING;
 	};
-	if((spellType == SPL_Zap) || (spellType == SPL_ChargeZap) || (spellType == SPL_ConcussionBolt))
+	/*if((spellType == SPL_Zap) || (spellType == SPL_ChargeZap) || (spellType == SPL_ConcussionBolt))
 	{
 		if(C_NpcIsDown(self))
 		{
 			return COLL_DONOTHING;
 		};
 		return COLL_APPLYDAMAGE | COLL_DONTKILL;
+	};*/
+	if(spellType == SPL_ConcussionBolt)
+	{
+		if(C_NpcIsDown(self))
+		{
+			return COLL_DONOTHING;
+		};
+		return COLL_APPLYDAMAGE | COLL_DONTKILL;
+	};
+	if(spellType == SPL_Zap)
+	{
+		if(C_NpcIsDown(self))
+		{
+			return COLL_DONOTHING;
+		};
+		if(C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
+		{
+			return COLL_APPLYDOUBLEDAMAGE;
+		};
+		return COLL_APPLYDAMAGE | COLL_DONTKILL;
+	};
+	if((spellType == SPL_ChargeZap) || (spellType == SPL_LightningFlash))
+	{
+		if((self.protection[PROT_MAGIC] == IMMUNE) && C_NpcIsDown(self))
+		{
+			return COLL_DONOTHING;
+		};
+		if(C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
+		{
+			return COLL_APPLYDOUBLEDAMAGE;
+		};
+		return COLL_DOEVERYTHING;
 	};
 	if(other.guild == GIL_DMT)
 	{
@@ -199,26 +231,15 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		};
 		return COLL_DOEVERYTHING;
 	};
-	if(spellType == SPL_LightningFlash)
+	/*if(spellType == SPL_Fear)
 	{
-		if(C_NpcIsDown(self))
-		{
-			return COLL_DONOTHING;
-		};
-		if(C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
-		{
-			return COLL_APPLYDOUBLEDAMAGE;
-		};
-		return COLL_DOEVERYTHING;
-	};
-	if(spellType == SPL_Fear)
-	{
-		if(!C_NpcIsGolem(self) && (self.guild != GIL_SWAMPSHARK) && (self.guild != GIL_TROLL) && !C_NpcIsEvil(self) && !C_NpcIsGateGuard(self))
+		//Print("spellType == SPL_Fear");
+		if(!C_NpcIsGolem(self) && (self.guild != GIL_SWAMPSHARK) && (self.guild != GIL_TROLL) && !C_NpcIsEvil(self) && !C_NpcIsGateGuard(self) && (self.guild != GIL_KDF) && (self.guild != GIL_PAL) && (self.guild != GIL_KDW) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Vatras)))
 		{
 			return COLL_DOEVERYTHING;
 		};
 		return COLL_DONOTHING;
-	};
+	};*/
 	if(spellType == SPL_DestroyUndead)
 	{
 		if(C_NpcIsUndead(self))

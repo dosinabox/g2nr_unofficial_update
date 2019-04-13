@@ -146,6 +146,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_Bau_M);
 	CreateInvItem(self,ITAR_BauBabe_L);
 	CreateInvItem(self,ITAR_BauBabe_M);
+	CreateInvItem(self,ITAR_SLD_S);
 	CreateInvItem(self,ITAR_SLD_L);
 	CreateInvItem(self,ITAR_SLD_M);
 	CreateInvItem(self,ITAR_SLD_H);
@@ -166,6 +167,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_CorAngar);
 	CreateInvItem(self,ITAR_KDW_H);
 	CreateInvItem(self,ITAR_Dementor);
+	CreateInvItem(self,ITAR_Dementor_Boss);
 	CreateInvItem(self,ITAR_Prisoner);
 	CreateInvItems(self,ITAR_PIR_L_Addon,1);
 	CreateInvItems(self,ITAR_PIR_M_Addon,1);

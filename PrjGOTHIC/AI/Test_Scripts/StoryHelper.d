@@ -89,6 +89,7 @@ func void StoryHelper_PatchSettings_Info()
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
 	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+	Info_AddChoice(StoryHelper_PatchSettings,"Бесконечная сталь и мензурки у торговцев",StoryHelper_Unlimfix);
 	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
 };
 
@@ -107,6 +108,7 @@ func void StoryHelper_Limit()
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
 	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+	Info_AddChoice(StoryHelper_PatchSettings,"Бесконечная сталь и мензурки у торговцев",StoryHelper_Unlimfix);
 	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
 };
 
@@ -125,6 +127,26 @@ func void StoryHelper_Flee()
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
 	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+	Info_AddChoice(StoryHelper_PatchSettings,"Бесконечная сталь и мензурки у торговцев",StoryHelper_Unlimfix);
+	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
+};
+
+func void StoryHelper_Unlimfix()
+{
+	if(Dont_Fix_Unlim == TRUE)
+	{
+		Dont_Fix_Unlim = FALSE;
+		PrintScreen("Баг исправлен",-1,-1,FONT_Screen,2);
+	}
+	else
+	{
+		Dont_Fix_Unlim = TRUE;
+		PrintScreen("Сталь и мензурки бесконечны",-1,-1,FONT_Screen,2);
+	};
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+	Info_AddChoice(StoryHelper_PatchSettings,"Бесконечная сталь и мензурки у торговцев",StoryHelper_Unlimfix);
 	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
 };
 

@@ -384,9 +384,9 @@ instance ItFo_SmellyFish(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MISSION;
 	value = 15;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItFo_Fish_02.3DS";
 	material = MAT_LEATHER;
-	scemeName = "FOOD";
+	scemeName = "FOODHUGE";
 	on_state[0] = Use_SmellyFish;
 	description = name;
 	text[1] = NAME_Bonus_HP;
@@ -408,11 +408,11 @@ instance ItFo_HalvorFish_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItFo_Fish_02.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_HalvorFish;
-	description = "Странно выглядящая рыба";
+	description = name;
 	text[0] = "Что-то с этой рыбой не так.";
 	text[1] = "Похоже, она была зашита...";
 };
@@ -458,6 +458,7 @@ func void UseHalvorMessage()
 	Doc_PrintLines(nDocID,0,"    Ополчение становится подозрительным.");
 	Doc_PrintLines(nDocID,0,"    Не предпринимайте ничего,");
 	Doc_PrintLines(nDocID,0,"    пока я не дам знать о себе!");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"    Халвор");
 	Doc_Show(nDocID);
 };

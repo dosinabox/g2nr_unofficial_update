@@ -40,19 +40,28 @@ func void B_AssessMagic()
 		AI_StartState(self,ZS_MagicFreeze,0,"");
 		return;
 	};
-	if(Npc_GetLastHitSpellID(self) == SPL_ChargeZap)
+	if((Npc_GetLastHitSpellID(self) == SPL_ChargeZap) && (self.guild != GIL_DRAGON))
 	{
-		Npc_ClearAIQueue(self);
+		/*Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);
 		AI_StartState(self,ZS_ShortZapped,0,"");
-		return;
+		return;*/
+		var int razrjad;
+		razrjad = Hlp_Random(2);
+		if(razrjad == 0)
+		{
+			Npc_ClearAIQueue(self);
+			B_ClearPerceptions(self);
+			AI_StartState(self,ZS_ShortZapped,0,"");
+			return;
+		};
 	};
-	if(Npc_GetLastHitSpellID(self) == SPL_Fear)
+	/*if(Npc_GetLastHitSpellID(self) == SPL_Fear)
 	{
 		Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);
 		Npc_SetTarget(self,other);
-		if((self.guild < GIL_SEPERATOR_HUM) && (self.guild != GIL_KDF) && (self.guild != GIL_PAL))
+		if((self.guild < GIL_SEPERATOR_HUM) && (self.guild != GIL_KDF) && (self.guild != GIL_PAL) && (self.guild != GIL_KDW) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Vatras)))
 		{
 			AI_StartState(self,ZS_MagicFlee,0,"");
 			return;
@@ -62,7 +71,7 @@ func void B_AssessMagic()
 			AI_StartState(self,ZS_MM_Flee,0,"");
 			return;
 		};
-	};
+	};*/
 	if(Npc_GetLastHitSpellID(self) == SPL_Firerain)
 	{
 		Npc_ClearAIQueue(self);
