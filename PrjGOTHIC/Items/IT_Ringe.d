@@ -332,6 +332,45 @@ func void UnEquip_ItRi_Prot_Mage_02()
 };
 
 
+instance ItRi_Prot_Mage_03(C_Item)
+{
+	name = NAME_Ring;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_RING;
+	value = 450;
+	visual = "ItRi_Xardas.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_ItRi_Prot_Mage_03;
+	on_unequip = UnEquip_ItRi_Prot_Mage_03;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Кольцо оберега";
+	text[2] = NAME_Prot_Fire;
+	count[2] = 3;
+	text[3] = NAME_Prot_Magic;
+	count[3] = 3;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+	inv_rotz = INVCAM_Z_RING_STANDARD;
+	inv_rotx = INVCAM_X_RING_STANDARD;
+};
+
+
+func void Equip_ItRi_Prot_Mage_03()
+{
+	self.protection[PROT_FIRE] += 3;
+	self.protection[PROT_MAGIC] += 3;
+};
+
+func void UnEquip_ItRi_Prot_Mage_03()
+{
+	self.protection[PROT_FIRE] -= 3;
+	self.protection[PROT_MAGIC] -= 3;
+};
+
+
 instance ItRi_Prot_Total_00(C_Item)
 {
 	name = NAME_Ring;

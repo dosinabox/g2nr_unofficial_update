@@ -290,7 +290,7 @@ func void DIA_Gorax_Aufgabe2_Info()
 {
 	AI_Output(other,self,"DIA_Gorax_Aufgabe2_15_00");	//У тебя есть еще какое-нибудь поручение для меня?
 	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_01");	//Да. Как ты знаешь, мы делаем здесь превосходное вино, и часть его продаем.
-	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_02");	//Орлан, хозяин трактира 'Мертвая Гарпия' заказал солидную партию. Мы договорились на сумму в 240 золотых монет.
+	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_02");	//Орлан, хозяин трактира 'Мертвая гарпия' заказал солидную партию. Мы договорились на сумму в 240 золотых монет.
 	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_03");	//Отнеси ему эти бутылки - но смотри, чтобы он не обсчитал тебя.
 	B_GiveInvItems(self,other,ItFo_Wine,12);
 	MIS_GoraxWein = LOG_Running;
@@ -371,7 +371,7 @@ func void DIA_Gorax_Orlan_240()
 };
 
 
-instance DIA_Gorax_Orlan_TooLate(C_Info)
+/*instance DIA_Gorax_Orlan_TooLate(C_Info)
 {
 	npc = KDF_508_Gorax;
 	nr = 3;
@@ -396,7 +396,7 @@ func void DIA_Gorax_Orlan_TooLate_Info()
 	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
 	Goraxday = Wld_GetDay() + 1;
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_Gorax_JOB(C_Info)
@@ -457,7 +457,34 @@ func void DIA_Gorax_TRADE_Info()
 	Trade_IsActive = TRUE;
 };
 
+/////////////////////////////////////////////////////
+instance DIA_Gorax_NOTRADE(C_Info)
+{
+	npc = KDF_508_Gorax;
+	nr = 99;
+	condition = DIA_Gorax_NOTRADE_Condition;
+	information = DIA_Gorax_NOTRADE_Info;
+	permanent = TRUE;
+	description = "Мне нужно кое-что...";
+};
 
+
+func int DIA_Gorax_NOTRADE_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Gorax_JOB) && (Goraxday > Wld_GetDay()) && (other.guild == GIL_NOV))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Gorax_NOTRADE_Info()
+{
+	AI_Output(other,self,"DIA_Gorax_TRADE_15_00");	//Мне нужно кое-что...
+	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
+	AI_StopProcessInfos(self);
+};
+
+/////////////////////////////////////////////////////
 instance DIA_Gorax_KDF(C_Info)
 {
 	npc = KDF_508_Gorax;

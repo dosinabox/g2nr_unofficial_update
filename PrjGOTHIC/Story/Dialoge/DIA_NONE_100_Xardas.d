@@ -87,7 +87,14 @@ func void DIA_Xardas_Hello_Info()
 
 func void DIA_Addon_Xardas_Hello_Man()
 {
-	PlayVideo("Intro_ADDON");
+	PlayVideo("Intro_ADDON.BIK");
+	/////восстановление
+	AI_Output(self,other,"DIA_Addon_AddonIntro_14_01");	//(пренебрежительно) Люди слабы.
+	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ... люди?
+	AI_Output(self,other,"DIA_Addon_AddonIntro_14_02");	//(пренебрежительно) Они слишком легко поддаются соблазнам Зла.
+	AI_Output(self,other,"DIA_Addon_AddonIntro_14_03");	//Таким образом они вовлекаются в дела, которые не могут понять и уж тем более не могут контролировать.
+	AI_Output(self,other,"DIA_Addon_AddonIntro_14_04");	//Твердые в своей вере уже начали сражение с врагом.
+	/////
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_10");	//Ты должен стать их союзником! Это единственный способ остановить Белиара.
 	Addon_zuerst = TRUE;
 };
@@ -112,7 +119,8 @@ func void DIA_Addon_Xardas_Hello_Dragons()
 	{
 		AI_Output(self,other,"DIA_Addon_Xardas_Hello_Dragons_14_06");	//Но это еще не все. Есть еще кое-что, что угрожает нам. Об этом я узнал лишь недавно.
 		Info_ClearChoices(DIA_Xardas_Hello);
-		Info_AddChoice(DIA_Xardas_Hello,"О какой ДРУГОЙ угрозе ты говоришь?",DIA_Addon_Xardas_Hello_Man);
+//		Info_AddChoice(DIA_Xardas_Hello,"О какой ДРУГОЙ угрозе ты говоришь?",DIA_Addon_Xardas_Hello_Man);
+		Info_AddChoice(DIA_Xardas_Hello,"Что это за НОВАЯ угроза, о которой ты говоришь?",DIA_Addon_Xardas_Hello_Man);
 	};
 };
 
@@ -221,7 +229,7 @@ instance DIA_Addon_Xardas_Portal(C_Info)
 
 func int DIA_Addon_Xardas_Portal_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_WhatsOrnament) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_WhatsOrnament) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -249,7 +257,7 @@ instance DIA_Addon_Xardas_PortalAgain(C_Info)
 
 func int DIA_Addon_Xardas_PortalAgain_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -274,7 +282,7 @@ instance DIA_Addon_Xardas_AddonSuccess(C_Info)
 
 func int DIA_Addon_Xardas_AddonSuccess_Condition()
 {
-	if(C_ScHasBeliarsWeapon() || (Saturas_KlaueInsMeer == TRUE))
+	if(C_ScHasBeliarsWeapon() || (Saturas_KlaueInsMeer == TRUE) || (RavenIsDead == TRUE))
 	{
 		return TRUE;
 	};
@@ -297,7 +305,10 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_11");	//У меня его больше нет...
-		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_12");	//Я отдал его магам Воды, чтобы они утопили его в море...
+		if(Saturas_KlaueInsMeer == TRUE)
+		{
+			AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_12");	//Я отдал его магам Воды, чтобы они утопили его в море...
+		};
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_14");	//Это оружие могло бы сослужить нам огромную службу!
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_15");	//Я думаю, что я сделал правильный выбор.
@@ -506,7 +517,8 @@ func void DIA_Xardas_ABOUTLESTER_Info()
 	AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_05");	//И?
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_06");	//Если эти люди существуют, то их присутствие несет определенную угрозу.
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_07");	//И мне это не нравится. Вот, возьми кольцо. Оно защитит тебя от магии.
-	B_GiveInvItems(self,other,ItRi_Prot_Mage_01,1);
+//	B_GiveInvItems(self,other,ItRi_Prot_Mage_01,1);
+	B_GiveInvItems(self,other,ItRi_Prot_Mage_03,1);
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -678,7 +690,7 @@ func void DIA_Xardas_DMTSINDDA_Info()
 	{
 		AI_Output(other,self,"DIA_Xardas_DMTSINDDA_15_00");	//Лестер сказал, что ты хотел видеть меня как можно быстрее.
 	};
-//	AI_Output(other,self,"DIA_Xardas_DMTSINDDA_15_01");	//Что, черт возьми, произошло здесь?
+	AI_Output(self,other,"DIA_Xardas_Hello_14_00");	//Наконец-то! Я много дней пытался вызвать тебя сюда.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_02");	//Враг узнал, кем ты являешься на самом деле, и планирует завладеть Глазом Инноса.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_03");	//Он распознал эту угрозу. Это заставило его выйти из тени и решиться на открытую атаку.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_04");	//Игра в прятки окончена. Вчера еще никто не знал, какова будет атака врага. Но теперь это становится слишком очевидно.

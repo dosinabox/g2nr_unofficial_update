@@ -76,6 +76,10 @@ func void DIA_Alwin_Sheep_Info()
 {
 	AI_Output(other,self,"DIA_Alwin_Sheep_15_00");	//Это твои овцы?
 	AI_Output(self,other,"DIA_Alwin_Sheep_12_01");	//Единственная овца, что принадлежит мне, отзывается на имя Люси. (смеется) Это моя жена - Люси.
+	if(SC_KnowsKlosterTribut == TRUE)
+	{
+		AI_Output(other,self,"DIA_Pepe_Liesel_15_00");	//Могу я купить овцу?
+	};
 	AI_Output(self,other,"DIA_Alwin_Sheep_12_02");	//Эти овцы принадлежат ополчению. Они забирают их у фермеров и приводят ко мне.
 };
 

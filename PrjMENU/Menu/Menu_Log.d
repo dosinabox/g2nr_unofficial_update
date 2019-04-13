@@ -169,7 +169,7 @@ instance MENU_ITEM_CONTENT_VIEWER(C_MENU_ITEM_DEF)
 instance MENU_ITEM_DAY_TITLE(C_MENU_ITEM_DEF)
 {
 	text[0] = "Δενό:";
-	posx = 1500;
+	posx = 1400;
 	posy = 6000;
 	fontname = LOG_FONT_DATETIME;
 	flags = flags & ~IT_SELECTABLE;
@@ -178,7 +178,7 @@ instance MENU_ITEM_DAY_TITLE(C_MENU_ITEM_DEF)
 instance MENU_ITEM_TIME_TITLE(C_MENU_ITEM_DEF)
 {
 	text[0] = "Βπεμÿ:";
-	posx = 1500;
+	posx = 1400;
 	posy = 6300;
 	fontname = LOG_FONT_DATETIME;
 	flags = flags & ~IT_SELECTABLE;
@@ -187,7 +187,7 @@ instance MENU_ITEM_TIME_TITLE(C_MENU_ITEM_DEF)
 instance MENU_ITEM_DAY(C_MENU_ITEM_DEF)
 {
 	text[0] = "XX";
-	posx = 2300;
+	posx = 2270;
 	posy = 6000;
 	dimx = 300;
 	fontname = LOG_FONT_DATETIME;
@@ -197,7 +197,7 @@ instance MENU_ITEM_DAY(C_MENU_ITEM_DEF)
 instance MENU_ITEM_TIME(C_MENU_ITEM_DEF)
 {
 	text[0] = "XX:XX";
-	posx = 2300;
+	posx = 2270;
 	posy = 6300;
 	fontname = LOG_FONT_DATETIME;
 	flags = flags & ~IT_SELECTABLE;

@@ -10,7 +10,7 @@ instance PAL_251_Oric(Npc_Default)
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Pal_Sword);
-	EquipItem(self,ItRw_Mil_Crossbow);
+//	EquipItem(self,ItRw_Mil_Crossbow);
 	CreateInvItems(self,ItSc_PalRepelEvil,1);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Tough_Lee_ähnlich,BodyTex_N,ITAR_PAL_H);

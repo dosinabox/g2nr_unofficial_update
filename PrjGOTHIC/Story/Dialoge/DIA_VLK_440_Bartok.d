@@ -410,9 +410,9 @@ func void DIA_Bartok_Zusammen_Later()
 func void DIA_Bartok_Zusammen_Pay()
 {
 	Info_ClearChoices(DIA_Bartok_Zusammen);
+	AI_Output(other,self,"DIA_Bartok_HuntNOW_GO_15_00");	//Вот, держи...
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
-		AI_Output(other,self,"DIA_Bartok_HuntNOW_GO_15_00");	//Вот, держи...
 		Bartok_Bereit = TRUE;
 	}
 	else

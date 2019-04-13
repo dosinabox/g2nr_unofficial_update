@@ -4,8 +4,10 @@ const int SPL_Cost_SummonMud = 10;
 instance Spell_SummonMud(C_Spell_Proto)
 {
 	time_per_mana = 0;
-	spellType = SPELL_BAD;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
+	targetCollectRange = 0;
+	targetCollectAzi = 0;
+	targetCollectElev = 0;
 };
 
 

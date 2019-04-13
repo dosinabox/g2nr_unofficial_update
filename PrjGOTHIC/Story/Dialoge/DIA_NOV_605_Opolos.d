@@ -77,8 +77,8 @@ func void DIA_Opolos_Wurst_Info()
 	AI_Output(self,other,"DIA_Opolos_Wurst_12_01");	//Ох, фантастика! Наконец-то! Вкуснейшая баранья колбаса!
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben += 1;
-	CreateInvItems(self,ItFo_Sausage,1);
-	B_UseItem(self,ItFo_Sausage);
+//	CreateInvItems(self,ItFo_Schafswurst,1);
+	B_UseItem(self,ItFo_Schafswurst);
 	if(Wurst_Gegeben >= 13)
 	{
 		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
@@ -182,7 +182,7 @@ func void DIA_Opolos_beibringen_Info()
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_05");	//Если ты принесешь его мне, чтобы я мог изучить его, то я потренирую тебя.
 	Log_CreateTopic(Topic_OpolosRezept,LOG_MISSION);
 	Log_SetTopicStatus(Topic_OpolosRezept,LOG_Running);
-	B_LogEntry(Topic_OpolosRezept,"Ополос хочет взглянуть на рецепт приготовления зелий маны. Возможно, мне удастся позаимствовать его, работая на Неораса.");
+	B_LogEntry(Topic_OpolosRezept,"Ополос хочет взглянуть на рецепт приготовления магических зелий. Возможно, мне удастся позаимствовать его, работая на Неораса.");
 };
 
 
@@ -214,12 +214,12 @@ func void DIA_Opolos_rezept_Info()
 	{
 		AI_Output(other,self,"DIA_Opolos_rezept_15_00");	//Я принес рецепт, как ты и хотел.
 		AI_Output(self,other,"DIA_Opolos_rezept_12_01");	//Хорошо, дай я прочту его.
-		AI_PrintScreen("Рецепт магической эссенции отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen("Рецепт магических зелий отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Opolos_rezept_12_02");	//Ага... хм... да... понятно... так, так...
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Opolos_rezept_12_03");	//Хорошо. Огромное спасибо. Если хочешь, ты можешь потренироваться со мной.
-		AI_PrintScreen("Рецепт магической эссенции получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		AI_PrintScreen("Рецепт магических зелий получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Opolos_Rezept = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 		DIA_Opolos_rezept_permanent = TRUE;
@@ -519,6 +519,10 @@ func int DIA_Opolos_Kap3_EXIT_Condition()
 
 func void DIA_Opolos_Kap3_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -637,6 +641,10 @@ func int DIA_Opolos_Kap4_EXIT_Condition()
 
 func void DIA_Opolos_Kap4_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -662,6 +670,10 @@ func int DIA_Opolos_Kap5_EXIT_Condition()
 
 func void DIA_Opolos_Kap5_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 

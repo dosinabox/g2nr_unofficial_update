@@ -124,13 +124,14 @@ func void PC_PrayShrine_HEALSHRINE_Info()
 	{
 		B_Say(self,self,"$HEALSHRINE");
 		ShrinesLeft = IntToString(7 - ShrinesHealed);
-		ShrinesText = ConcatStrings(ShrinesLeft,PRINT_NumberLeft);
+		ShrinesText = ConcatStrings(PRINT_ShrinesLeft,ShrinesLeft);
 		AI_PrintScreen(ShrinesText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	}
 	else
 	{
 		B_Say(self,self,"$HEALLASTSHRINE");
 		MIS_Ulthar_HeileSchreine_PAL = LOG_SUCCESS;
+		AI_PrintScreen("Все алтари очищены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	};
 	B_GivePlayerXP(XP_Ambient);
 	b_endproductiondialog();

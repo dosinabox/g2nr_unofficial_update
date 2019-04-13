@@ -134,7 +134,6 @@ prototype C_MENU_DEF(C_MENU)
 	dimx = 8192;
 	dimy = 8192;
 	alpha = 254;
-	items[0] = "ITEM_BACK";
 	flags = MENU_EXCLUSIVE | MENU_DONTSCALE_DIM | MENU_ALIGN_CENTER;
 	eventtimermsec = 1000;
 	musictheme = "";

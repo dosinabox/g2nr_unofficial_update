@@ -111,6 +111,35 @@ func void DIA_Rengaru_HALLODIEB_Info()
 };
 
 
+////////////////////////
+
+/*instance DIA_Rengaru_Refuse(C_Info)
+{
+	npc = VLK_492_Rengaru;
+	nr = 1;
+	condition = DIA_Rengaru_Refuse_Condition;
+	information = DIA_Rengaru_Refuse_Info;
+	permanent = TRUE;
+	important = TRUE;
+};
+
+
+func int DIA_Rengaru_Refuse_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") > 1000) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Rengaru_Refuse_Info()
+{
+	AI_StopProcessInfos(self);
+};*/
+
+
+//////////////////////////
+
 instance DIA_Rengaru_GOTYOU(C_Info)
 {
 	npc = VLK_492_Rengaru;
@@ -126,7 +155,10 @@ func int DIA_Rengaru_GOTYOU_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -172,7 +204,8 @@ func void DIA_Rengaru_GOTYOU_Anteil()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_15_02");	//Хорошо, похоже, у меня нет выбора. Давай, разделим пополам.
+//		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_15_02");	//Хорошо, похоже, у меня нет выбора. Давай разделим пополам.
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_07_01");	//Вот твоя половина! А теперь отпусти меня!
 		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 		Info_AddChoice(DIA_Rengaru_GOTYOU,"Нет, ты отдашь мне все!",DIA_Rengaru_GOTYOU_Anteil_alles);
 		Info_AddChoice(DIA_Rengaru_GOTYOU,"Хорошо, давай мне половину тогда.",DIA_Rengaru_GOTYOU_Anteil_GehtKlar);
@@ -200,7 +233,8 @@ func void DIA_Rengaru_GOTYOU_Anteil_GehtKlar()
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_15_00");	//Хорошо, давай мне половину тогда.
 	if(B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold) / 2))
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_07_01");	//Вот твоя половина! А теперь отпусти меня!
+//		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_07_01");	//Вот твоя половина! А теперь отпусти меня!
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим.
 		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	}
 	else

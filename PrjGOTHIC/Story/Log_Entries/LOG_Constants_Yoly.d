@@ -82,7 +82,7 @@ const string LogText_Addon_Erol_Teach = "Торговец Эрол может сделать меня сильне
 const string LogText_Addon_CronosTrade = "Маг Воды Кронос торгует очень интересными вещами.";
 const string LogText_Addon_VatrasTrade = "Ватраса интересуют странные каменные таблички. Он обещает хорошо платить за них.";
 const string LogText_Addon_MartinTrade = "Интендант Мартин может продать мне кое-что из запасов паладинов.";
-const string LogText_Addon_ErolTrade = "Торговец Эрол торгует различными товарами. Его хижина находится между фермой Онара и таверной 'Мертвая Гарпия'.";
+const string LogText_Addon_ErolTrade = "Торговец Эрол торгует различными товарами. Его хижина находится между фермой Онара и таверной 'Мертвая гарпия'.";
 const string LogText_Addon_WispLearned = "Мой блуждающий огонек может находить для меня следующие вещи:";
 const string LogText_Addon_WispLearned_NF = "Оружие ближнего боя";
 const string LogText_Addon_WispLearned_FF = "Дальнобойное оружие и боеприпасы";
@@ -150,7 +150,7 @@ var int TOPIC_END_SylvioKillIceGolem;
 const string TOPIC_AngarsAmulett = "Амулет Ангара";
 const string TOPIC_JanBecomesSmith = "Ян и кузница";
 const string TOPIC_FerrosSword = "Меч Ферроса";
-const string TOPIC_DRACHENEIERNeoras = "Зелье Неораса из драконьих яиц";
+const string TOPIC_DRACHENEIERNeoras = "Зелье Неораса из драконьего яйца";
 const string TOPIC_DRACHENEIER = "Драконьи яйца";
 
 var int topic_end_dracheneier;

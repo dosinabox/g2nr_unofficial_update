@@ -17,7 +17,11 @@ func int DIA_Addon_Cronos_EXIT_Condition()
 
 func void DIA_Addon_Cronos_EXIT_Info()
 {
-	B_EquipTrader(self);
+//	B_EquipTrader(self);
+	if(Trade_IsActive == TRUE)
+	{
+		Trade_IsActive = FALSE;
+	};
 	AI_StopProcessInfos(self);
 };
 

@@ -12,7 +12,7 @@ instance STRF_1139_Addon_Sklave(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_P_Tough_Torrez,BodyTex_P,ITAR_Prisoner);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_P_Tough_Torrez,BodyTex_P,ITAR_Slave);
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

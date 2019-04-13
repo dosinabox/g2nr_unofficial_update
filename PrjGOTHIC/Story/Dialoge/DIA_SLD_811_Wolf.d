@@ -639,7 +639,7 @@ func void DIA_Wolf_SHIP_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Wolf_SHIP_08_02");	//Да, конечно. Нужно сваливать отсюда. Ты не пожалеешь об этом. Я помогу тебе защищать корабль. Куда мы направляемся?
+		AI_Output(self,other,"DIA_Wolf_SHIP_08_02");	//Да, конечно. Нужно сваливать отсюда. Ты не пожалеешь об этом. Я помогу тебе защитить корабль. Куда мы направляемся?
 		MIS_BengarsHelpingSLD = LOG_OBSOLETE;
 		Log_CreateTopic(Topic_Crew,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Crew,LOG_Running);

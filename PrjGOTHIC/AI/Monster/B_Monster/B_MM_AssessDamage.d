@@ -15,6 +15,11 @@ func void B_MM_AssessDamage()
 		{
 //			Npc_ChangeAttribute(self,ATR_HITPOINTS,-1000);
 			Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);
+			if(!C_BodyStateContains(self,BS_PARADE))
+			{
+				Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",self,self,0,0,0,FALSE);
+				Snd_Play("MFX_Transform_Cast");
+			};
 			B_GiveDeathXP(other,self);
 			return;
 		};

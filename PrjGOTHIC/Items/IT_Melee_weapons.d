@@ -487,7 +487,7 @@ instance ItMw_2H_Sword_M_01(C_Item)
 
 instance ItMw_1h_Mil_Sword(C_Item)
 {
-	name = "Грубый палаш";
+	name = "Широкий меч";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
@@ -1053,6 +1053,29 @@ instance ItMw_Piratensaebel(C_Item)
 	cond_value[2] = Condition_Piratensaebel;
 //	visual = "ItMw_030_1h_sword_03.3DS";
 	visual = "ItMw_030_1h_sword_04.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_OneHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMw_Lightsaebel(C_Item)
+{
+	name = "Легкая сабля";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_SWD;
+	material = MAT_METAL;
+	value = 800;
+	damageTotal = 55;
+	damagetype = DAM_EDGE;
+	range = Range_Piratensaebel;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = 45;
+	visual = "ItMw_030_1h_sword_05.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

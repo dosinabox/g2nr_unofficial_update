@@ -122,7 +122,7 @@ instance DIA_Addon_Bloodwyn_Wait(C_Info)
 
 func int DIA_Addon_Bloodwyn_Wait_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Minecrawler_Killed >= 9))
+	if(Npc_IsInState(self,ZS_Talk) && (Minecrawler_Killed > 9))
 	{
 		return TRUE;
 	};
@@ -235,7 +235,8 @@ func void DIA_Addon_Bloodwyn_Wait_GOOD3()
 func void DIA_Addon_Bloodwyn_Wait_BAD3()
 {
 	AI_Output(other,self,"DIA_Addon_Bloodwyn_Wait_Raven_BAD3_15_00");	//Да, это была его самая большая ошибка...
-	Bloodwyn_Wut();
+//	Bloodwyn_Wut();
+	Bloodwyn_Lach();
 	Info_ClearChoices(DIA_Addon_Bloodwyn_Wait);
 	Info_AddChoice(DIA_Addon_Bloodwyn_Wait,PRINT_ADDON_ENOUGHTALK,DIA_Addon_Bloodwyn_Wait_FIGHT);
 };

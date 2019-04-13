@@ -273,8 +273,8 @@ func void DIA_Addon_Merdarion_WHereOtherTeleports_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_WHereOtherTeleports_15_00");	//Где остальные телепортационные камни?
 	AI_Output(self,other,"DIA_Addon_Merdarion_WHereOtherTeleports_06_01");	//Мы пока что нашли только один, где-то посередине Хориниса.
-	AI_Output(self,other,"DIA_Addon_Merdarion_WHereOtherTeleports_06_02");	//Рядом с таверной 'Мертвая Гарпия'.
-	B_LogEntry(TOPIC_Addon_TeleportsNW,"Рядом с таверной 'Мертвая Гарпия' должен быть еще один телепорт.");
+	AI_Output(self,other,"DIA_Addon_Merdarion_WHereOtherTeleports_06_02");	//Рядом с таверной 'Мертвая гарпия'.
+	B_LogEntry(TOPIC_Addon_TeleportsNW,"Рядом с таверной 'Мертвая гарпия' должен быть еще один телепорт.");
 };
 
 

@@ -42,7 +42,7 @@ const int Value_GoldRing = 250;
 const int Value_GoldNecklace = 300;
 const int Value_GoldCandleHolder = 120;
 const int Value_GoldCup = 350;
-const int Value_BloodCup = 200;
+const int Value_BloodCup = 400;
 const int Value_GoldChalice = 500;
 const int Value_GoldChest = 750;
 const int Value_JeweleryChest = 1000;
@@ -539,7 +539,7 @@ instance ItMi_BloodCup_MIS(C_Item)
 //	visual = "ItMi_GoldCup.3DS";
 	visual = "ItMi_BloodCup.3DS";
 	material = MAT_METAL;
-	description = "Кровавый кубок";
+	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

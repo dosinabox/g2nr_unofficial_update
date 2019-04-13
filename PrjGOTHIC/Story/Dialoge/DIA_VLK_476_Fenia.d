@@ -110,7 +110,7 @@ instance DIA_Fenia_HANDELN(C_Info)
 
 func int DIA_Fenia_HANDELN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo))
+	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
 	{
 		return TRUE;
 	};
@@ -123,7 +123,34 @@ func void DIA_Fenia_HANDELN_Info()
 	Trade_IsActive = TRUE;
 };
 
+////////////////////////////////////////
+instance DIA_Fenia_NOHANDELN(C_Info)
+{
+	npc = VLK_476_Fenia;
+	nr = 10;
+	condition = DIA_Fenia_NOHANDELN_Condition;
+	information = DIA_Fenia_NOHANDELN_Info;
+	permanent = TRUE;
+	description = DIALOG_TRADE_v4;
+};
 
+
+func int DIA_Fenia_NOHANDELN_Condition()
+{
+	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Fenia_NOHANDELN_Info()
+{
+	AI_Output(other,self,"DIA_Fenia_HANDELN_15_00");	//Покажи мне свои товары.
+	B_Say(self,other,"$NOTNOW");
+	AI_StopProcessInfos(self);
+};
+
+////////////////////////////////////////
 instance DIA_Fenia_Infos(C_Info)
 {
 	npc = VLK_476_Fenia;

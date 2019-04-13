@@ -10,8 +10,7 @@ Menu\Menu_Opt_Graphics.d
 Menu\Menu_Opt_Video.d
 Menu\Menu_Opt_Audio.d
 Menu\Menu_Opt_Controls.d
-Menu\Menu_Opt_Ext.d
-Menu\Menu_Misc.d
+Menu\Menu_Misk.d
 Menu\Menu_Savegame.d
 Menu\Menu_Log.d
 Menu\Menu_Status.d

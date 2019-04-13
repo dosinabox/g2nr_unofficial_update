@@ -90,6 +90,12 @@ func void DIA_DiegoOw_Beweise_Info()
 		AI_Output(other,self,"DIA_DiegoOw_Garond_15_00");	//Я здесь по поручению Гаронда. Он хочет знать, сколько руды было добыто к этому времени.
 		AI_Output(self,other,"DIA_DiegoOw_Garond_11_01");	//И тогда он даст тебе доказательства?
 		AI_Output(other,self,"DIA_DiegoOw_Garond_15_02");	//Именно. Поэтому - ты можешь сказать что-нибудь на этот счет?
+		if(Npc_KnowsInfo(other,DIA_Parcival_Diego))
+		{
+			AI_Output(self,other,"DIA_DiegoOw_Garond_11_03");	//Конечно, что ты хочешь знать?
+			AI_Output(self,other,"DIA_DiegoOw_Silvestro_15_00");	//Что ты знаешь о руде Сильвестро?
+		};
+		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 	}
 	else
 	{
@@ -106,7 +112,6 @@ func void DIA_DiegoOw_Beweise_Info()
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их.
 	};
 	Silvestro_Ore = TRUE;
-	B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 };
 
 
@@ -215,7 +220,7 @@ func void DIA_DiegoOw_Gorn_Info()
 	AI_Output(other,self,"DIA_DiegoOw_Gorn_15_00");	//Я хочу купить свободу Горну, но Гаронд просит за это 1000 золотых.
 	AI_Output(self,other,"DIA_DiegoOw_Gorn_11_01");	//Немаленькая сумма. У меня есть 300 монет, ты можешь взять их. Остальное найди сам.
 	B_GiveInvItems(self,other,ItMi_Gold,300);
-	B_LogEntry(TOPIC_RescueGorn,"Диего заплатил 300 золота за освобождение Горна.");
+	B_LogEntry(TOPIC_RescueGorn,"Диего заплатил 300 золотых за освобождение Горна.");
 };
 
 
@@ -736,6 +741,7 @@ func void DIA_Addon_ThiefOW_Nostalgie_Info()
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_03");	//Кажется, это было сотни лет назад...
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_04");	//В этом месте было что-то ЕЩЕ. Черт! Я не могу вспомнить.
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_05");	//Ну ладно...
+	Diego_Nostalgie = TRUE;
 	B_GivePlayerXP(1000);
 //	hero.exp += 500;
 	PrintScreen(NAME_Addon_NostalgieBonus,-1,57,FONT_Screen,2);

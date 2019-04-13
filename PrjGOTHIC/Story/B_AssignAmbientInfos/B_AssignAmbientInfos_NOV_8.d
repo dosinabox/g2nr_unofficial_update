@@ -16,6 +16,10 @@ func int DIA_NOV_8_EXIT_Condition()
 
 func void DIA_NOV_8_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -95,8 +99,8 @@ func void DIA_NOV_8_Wurst_Info()
 	AI_Output(self,other,"DIA_NOV_8_Wurst_08_01");	//Не надейся, не откажусь. Спасибо - это именно то, что мне было нужно.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben += 1;
-	CreateInvItems(self,ItFo_Sausage,1);
-	B_UseItem(self,ItFo_Sausage);
+//	CreateInvItems(self,ItFo_Schafswurst,1);
+	B_UseItem(self,ItFo_Schafswurst);
 	if(Wurst_Gegeben >= 13)
 	{
 		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);

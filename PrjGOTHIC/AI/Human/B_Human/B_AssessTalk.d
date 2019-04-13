@@ -51,6 +51,16 @@ func void B_AssessTalk()
 			};
 		};
 	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
+	{
+		if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+		{
+			if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_05_01") > 1000)
+			{
+				return;
+			};
+		};
+	};
 	if(self.guild < GIL_SEPERATOR_HUM)
 	{
 		if(B_AssessEnemy())

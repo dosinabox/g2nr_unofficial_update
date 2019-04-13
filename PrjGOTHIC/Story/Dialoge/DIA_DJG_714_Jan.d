@@ -294,30 +294,41 @@ func int Jan_Training_Talente_Condition()
 func void Jan_Training_Talente_Info()
 {
 	AI_Output(other,self,"DIA_Jan_TeachPlayer_15_00");	//Обучи меня кузнечному делу.
-	AI_Output(self,other,"DIA_Jan_TeachPlayer_10_01");	//Что именно ты хочешь научиться ковать?
-	Info_ClearChoices(Jan_Training_Talente);
-	Info_AddChoice(Jan_Training_Talente,Dialog_Back,Jan_Training_Smith_Back);
-	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
+	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG) && (PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE))
 	{
-		Info_AddChoice(Jan_Training_Talente,B_BuildLearnString("Кузнечное дело",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),Jan_Training_Smith_Common);
-	};
-	if(PLAYER_TALENT_SMITH[WEAPON_Common] == TRUE)
+		B_Say(self,other,"$NOLEARNOVERPERSONALMAX");
+	}
+	else if((PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == TRUE) && (PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == TRUE) && (PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == TRUE) && (PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == TRUE))
 	{
-		if((PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Jan_TeachPlayer_10_01");	//Что именно ты хочешь научиться ковать?
+		Info_ClearChoices(Jan_Training_Talente);
+		Info_AddChoice(Jan_Training_Talente,Dialog_Back,Jan_Training_Smith_Back);
+		if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 		{
-			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_1H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01)),Jan_Training_Smith_1hSpecial1);
-		};
-		if((PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString("Кузнечное дело",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),Jan_Training_Smith_Common);
+		}
+		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 		{
-			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_2H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_01)),Jan_Training_Smith_2hSpecial1);
-		};
-		if((PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
-		{
-			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_1H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_02)),Jan_Training_Smith_1hSpecial2);
-		};
-		if((PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
-		{
-			Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_2H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_02)),Jan_Training_Smith_2hSpecial2);
+			if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] == FALSE)
+			{
+				Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_1H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01)),Jan_Training_Smith_1hSpecial1);
+			};
+			if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] == FALSE)
+			{
+				Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_2H_Special_01,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_01)),Jan_Training_Smith_2hSpecial1);
+			};
+			if(PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] == FALSE)
+			{
+				Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_1H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_02)),Jan_Training_Smith_1hSpecial2);
+			};
+			if(PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] == FALSE)
+			{
+				Info_AddChoice(Jan_Training_Talente,B_BuildLearnString(NAME_ItMw_2H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_02)),Jan_Training_Smith_2hSpecial2);
+			};
 		};
 	};
 };
@@ -510,7 +521,7 @@ instance DIA_Jan_DJG_ARMOR_M(C_Info)
 	condition = DIA_Jan_DJG_ARMOR_M_Condition;
 	information = DIA_Jan_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов (120/120/35/35, 12000 золота)";
+	description = "Средние доспехи охотника на драконов (120/120/35/35, 12000 золотых)";
 };
 
 
@@ -624,9 +635,9 @@ func void DIA_Jan_DragonBlood_Info()
 	{
 		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
 		{
-			Info_AddChoice(DIA_Jan_DragonBlood,"(все)",DIA_Jan_DragonBlood_all);
+			Info_AddChoice(DIA_Jan_DragonBlood,"(отдать все пробирки)",DIA_Jan_DragonBlood_all);
 		};
-		Info_AddChoice(DIA_Jan_DragonBlood,"(одну пробирку)",DIA_Jan_DragonBlood_1);
+		Info_AddChoice(DIA_Jan_DragonBlood,"(отдать одну пробирку)",DIA_Jan_DragonBlood_1);
 	};
 };
 
@@ -656,12 +667,12 @@ func void DIA_Jan_DragonBlood_1()
 	{
 		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
 		{
-			Info_AddChoice(DIA_Jan_DragonBlood,"(все)",DIA_Jan_DragonBlood_all);
+			Info_AddChoice(DIA_Jan_DragonBlood,"(отдать все пробирки)",DIA_Jan_DragonBlood_all);
 		};
-		Info_AddChoice(DIA_Jan_DragonBlood,"(одну пробирку)",DIA_Jan_DragonBlood_1);
+		Info_AddChoice(DIA_Jan_DragonBlood,"(отдать одну пробирку)",DIA_Jan_DragonBlood_1);
 	};
 	BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
-	BloodText = ConcatStrings(BloodLeft,PRINT_NumberLeft);
+	BloodText = ConcatStrings(PRINT_BloodLeft,BloodLeft);
 	AI_PrintScreen(BloodText,-1,-1,FONT_ScreenSmall,2);
 };
 
@@ -670,8 +681,8 @@ func void DIA_Jan_DragonBlood_all()
 	var int DragonBloodCount;
 	var int DragonBloodGeld;
 	var int XP_DJG_BringDragonBloods;
-	var string BloodText;
-	var string BloodLeft;
+//	var string BloodText;
+//	var string BloodLeft;
 	DragonBloodCount = Npc_HasItems(other,ItAt_DragonBlood);
 	B_GiveInvItems(other,self,ItAt_DragonBlood,DragonBloodCount);
 	XP_DJG_BringDragonBloods = DragonBloodCount * XP_AmbientKap4;
@@ -681,18 +692,18 @@ func void DIA_Jan_DragonBlood_all()
 	B_GiveInvItems(self,other,ItMi_Gold,DragonBloodGeld);
 	Npc_RemoveInvItems(self,ItAt_DragonBlood,DragonBloodCount);
 	Info_ClearChoices(DIA_Jan_DragonBlood);
-	Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
+	/*Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
 	if(Npc_HasItems(other,ItAt_DragonBlood))
 	{
 		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
 		{
-			Info_AddChoice(DIA_Jan_DragonBlood,"(все)",DIA_Jan_DragonBlood_all);
+			Info_AddChoice(DIA_Jan_DragonBlood,"(отдать все пробирки)",DIA_Jan_DragonBlood_all);
 		};
-		Info_AddChoice(DIA_Jan_DragonBlood,"(одну пробирку)",DIA_Jan_DragonBlood_1);
+		Info_AddChoice(DIA_Jan_DragonBlood,"(отдать одну пробирку)",DIA_Jan_DragonBlood_1);
 	};
 	BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
 	BloodText = ConcatStrings(BloodLeft,PRINT_NumberLeft);
-	AI_PrintScreen(BloodText,-1,-1,FONT_ScreenSmall,2);
+	AI_PrintScreen(BloodText,-1,-1,FONT_ScreenSmall,2);*/
 };
 
 

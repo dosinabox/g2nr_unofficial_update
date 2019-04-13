@@ -16,6 +16,21 @@ func void ZS_Dead()
 			B_CountCanyonRazor();
 		};
 	};
+	if(Greg_Rejected == TRUE)
+	{
+		if(C_AmIDexterBandit(self))
+		{
+			DexterBanditsBodyCount += 1;
+			if(DexterBanditsBodyCount >= 19)
+			{
+				B_Greg_ComesToDexterLater();
+			};
+		};
+	}
+	else
+	{
+		B_Greg_ComesToDexter();
+	};
 	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE)
 	{
 		if(Npc_GetDistToNpc(self,other) < 300)

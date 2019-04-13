@@ -180,8 +180,11 @@ func void DIA_Dobar_Waffe_Info()
 {
 	AI_Output(other,self,"DIA_Dobar_Waffe_15_00");	//Ты можешь сделать оружие для меня?
 	AI_Output(self,other,"DIA_Dobar_Waffe_08_01");	//У меня нет времени на это. Тандор распоряжается всем оружием - я только кую его, а Парлаф затачивает.
-	Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-	B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+	if(!Npc_KnowsInfo(other,DIA_Keroloth_WantTeach) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo) && !Npc_KnowsInfo(other,DIA_Garond_Equipment))
+	{
+		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+		B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+	};
 };
 
 

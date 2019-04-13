@@ -76,7 +76,7 @@ func void DIA_Edda_Stadt_Info()
 	AI_Output(self,other,"DIA_Edda_Stadt_17_04");	//Единственная ценная вещь, что у меня была, уже пропала.
 	AI_Output(self,other,"DIA_Edda_Stadt_17_05");	//Кто-то украл мою статую Инноса.
 	Edda_Schlafplatz = TRUE;
-	Wld_AssignRoomToGuild("hafen08",GIL_NONE);
+//	Wld_AssignRoomToGuild("hafen08",GIL_NONE);
 };
 
 
@@ -177,7 +177,7 @@ instance DIA_Edda_Statue(C_Info)
 
 func int DIA_Edda_Statue_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Edda_Stadt) && Npc_HasItems(other,ItMi_InnosStatue))
+	if(Npc_KnowsInfo(other,DIA_Edda_Stadt) && (Npc_HasItems(other,ItMi_EddasStatue) || Npc_HasItems(other,ItMi_InnosStatue)))
 	{
 		return TRUE;
 	};
@@ -186,12 +186,21 @@ func int DIA_Edda_Statue_Condition()
 func void DIA_Edda_Statue_Info()
 {
 	AI_Output(other,self,"DIA_Edda_Statue_15_00");	//Посмотри, я принес статую Инноса для тебя.
-	AI_Output(self,other,"DIA_Edda_Statue_17_01");	//Ох - огромное тебе спасибо. Да не оставит тебя свет Инноса...
+	if(Npc_HasItems(other,ItMi_EddasStatue))
+	{
+		B_GiveInvItems(other,self,ItMi_EddasStatue,1);
+		B_GivePlayerXP(XP_Edda_Statue * 2);
+		AI_Output(self,other,"DIA_Maria_BringPlate_17_01");	//Да! Это она! Огромное тебе спасибо!
+	}
+	else
+	{
+		B_GiveInvItems(other,self,ItMi_InnosStatue,1);
+		B_GivePlayerXP(XP_Edda_Statue);
+		AI_Output(self,other,"DIA_Edda_Statue_17_01");	//Ох - огромное тебе спасибо. Да не оставит тебя свет Инноса...
+	};
 	AI_Output(other,self,"DIA_Edda_Statue_15_02");	//Не стоит благодарностей.
-	B_GiveInvItems(other,self,ItMi_InnosStatue,1);
-	B_GivePlayerXP(XP_Edda_Statue);
+	
 };
-
 
 instance DIA_Edda_PICKPOCKET(C_Info)
 {
@@ -206,8 +215,11 @@ instance DIA_Edda_PICKPOCKET(C_Info)
 
 func int DIA_Edda_PICKPOCKET_Condition()
 {
-//	return C_StealItems(20,Hlp_GetInstanceID(ItMi_InnosStatue),1);
-	if(Npc_HasItems(self,ItMi_InnosStatue))
+	if(Npc_HasItems(self,ItMi_EddasStatue))
+	{
+		return C_StealItem(20,Hlp_GetInstanceID(ItMi_EddasStatue));
+	}
+	else if(Npc_HasItems(self,ItMi_InnosStatue))
 	{
 		return C_StealItem(20,Hlp_GetInstanceID(ItMi_InnosStatue));
 	}
@@ -226,8 +238,14 @@ func void DIA_Edda_PICKPOCKET_Info()
 
 func void DIA_Edda_PICKPOCKET_DoIt()
 {
-//	B_StealItems(20,Hlp_GetInstanceID(ItMi_InnosStatue),1);
-	B_StealItem(20,Hlp_GetInstanceID(ItMi_InnosStatue));
+	if(Npc_HasItems(self,ItMi_EddasStatue))
+	{
+		B_StealItem(20,Hlp_GetInstanceID(ItMi_EddasStatue));
+	}
+	else if(Npc_HasItems(self,ItMi_InnosStatue))
+	{
+		B_StealItem(20,Hlp_GetInstanceID(ItMi_InnosStatue));
+	};
 	Info_ClearChoices(DIA_Edda_PICKPOCKET);
 };
 

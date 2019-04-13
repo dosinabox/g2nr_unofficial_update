@@ -94,7 +94,7 @@ instance DIA_Oric_ScoutMine(C_Info)
 
 func int DIA_Oric_ScoutMine_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel < 3) && Npc_KnowsInfo(other,DIA_Oric_HALLO) && (Fajeth_Ore == FALSE) && (Marcos_Ore == FALSE) && (Silvestro_Ore == FALSE))
+	if((MIS_ScoutMine == LOG_Running) && (Kapitel < 3) && Npc_KnowsInfo(other,DIA_Oric_HALLO) && ((Fajeth_Ore == FALSE) || (Marcos_Ore == FALSE) || (Silvestro_Ore == FALSE)))
 	{
 		return TRUE;
 	};

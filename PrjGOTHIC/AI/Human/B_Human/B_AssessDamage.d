@@ -6,6 +6,13 @@ func void B_AssessDamage()
 	var C_Npc rav;
 	Quarho = Hlp_GetNpc(NONE_ADDON_111_Quarhodron);
 	Rhadem = Hlp_GetNpc(NONE_ADDON_112_Rhademes);
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Greg_NW))
+	{
+		if((B_Greg_ComesToDexter_OneTime == TRUE) && Npc_IsPlayer(other) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WodennNu))
+		{
+			return;
+		};
+	};
 	B_ArrowBonusDamage(other,self);
 	if(Npc_IsInState(self,ZS_ReactToDamage))
 	{
@@ -31,6 +38,7 @@ func void B_AssessDamage()
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(rav))
 		{
 			self.aivar[AIV_EnemyOverride] = FALSE;
+			Npc_ExchangeRoutine(self,"WaitForPlayer");
 		};
 	};
 	if(Npc_IsInState(self,ZS_Attack))

@@ -121,6 +121,7 @@ func void DIA_Sergio_Aufgabe_Info()
 	Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
 	Log_CreateTopic(Topic_IsgarothWolf,LOG_MISSION);
 	Log_SetTopicStatus(Topic_IsgarothWolf,LOG_Running);
+	MIS_IsgarothWolf = LOG_Running;
 	B_LogEntry(Topic_IsgarothWolf,"Мастеру Исгароту необходима помощь в часовне. Я должен найти его.");
 };
 

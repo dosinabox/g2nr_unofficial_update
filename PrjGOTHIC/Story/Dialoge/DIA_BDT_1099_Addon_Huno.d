@@ -209,15 +209,15 @@ func void DIA_Addon_Huno_Armor_Info()
 		};
 		BDT_Armor_H_Value = 2100;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/15/0. (2100 золота)",DIA_Addon_Huno_Armor_BUY);
+		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/15/0. (2100 золотых)",DIA_Addon_Huno_Armor_BUY);
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Addon_Huno_Armor_15_03");	//Фиск сказал, что я могу рассчитывать на скидку.
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_04");	//Фиск, говоришь? Хм, ну, я ему и в самом деле должен. Ладно, будет тебе скидка.
-		BDT_Armor_H_Value = 1400;
+		BDT_Armor_H_Value = 1000;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/15/0. (1400 золота)",DIA_Addon_Huno_Armor_BUY);
+		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/15/0. (1000 золотых)",DIA_Addon_Huno_Armor_BUY);
 	};
 };
 
@@ -235,15 +235,16 @@ func void DIA_Addon_Huno_Armor_BUY()
 		AI_PrintScreen("Тяжелые доспехи бандита получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		CreateInvItem(hero,ITAR_BDT_H);
 		AI_EquipArmor(hero,ITAR_BDT_H);
+		Huno_ArmorPerm = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_Buy_06_02");	//Без золота даже не рассчитывай.
 	};
-	if(BDT_Armor_H_Value < 2100)
+	/*if(BDT_Armor_H_Value < 2100)
 	{
 		Huno_ArmorPerm = TRUE;
-	};
+	};*/
 	Info_ClearChoices(DIA_Addon_Huno_Armor);
 };
 

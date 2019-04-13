@@ -6,6 +6,9 @@ instance Spell_IceWave(C_Spell_Proto)
 	time_per_mana = 0;
 	damage_per_level = 60;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
+	targetCollectRange = 0;
+	targetCollectAzi = 0;
+	targetCollectElev = 0;
 };
 
 

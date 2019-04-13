@@ -289,9 +289,19 @@ func void DIA_Addon_Esteban_Auftrag_Info()
 		AI_Output(self,other,"DIA_Addon_Esteban_Auftrag_07_03");	//И кто же это? Скажи мне его имя - и мои ребята свернут ему шею...
 		AI_Output(other,self,"DIA_Addon_Esteban_Auftrag_15_04");	//Его организовал торговец Фиск. В данный момент он сидит в баре, пьет и ничего не подозревает...
 		AI_Output(self,other,"DIA_Addon_Esteban_Auftrag_07_05");	//ХА! Отличная работа, сынок. Мои охранники займутся им.
-		AI_TurnToNPC(self,Wache_01);
-		AI_Output(self,other,"DIA_Addon_Esteban_Auftrag_07_06");	//Вы слышали, что он сказал, ребята. Пойдите и схватите Фиска.
-		AI_TurnToNPC(self,other);
+		if(!Npc_IsDead(Wache_01) || !Npc_IsDead(Wache_02))
+		{
+			if(!Npc_IsDead(Wache_01))
+			{
+				AI_TurnToNPC(self,Wache_01);
+			}
+			else
+			{
+				AI_TurnToNPC(self,Wache_02);
+			};
+			AI_Output(self,other,"DIA_Addon_Esteban_Auftrag_07_06");	//Вы слышали, что он сказал, ребята. Пойдите и схватите Фиска.
+			AI_TurnToNPC(self,other);
+		};
 		Bodyguard_Killer = TRUE;
 	}
 	else
@@ -399,7 +409,8 @@ instance DIA_Addon_Esteban_fight(C_Info)
 
 func int DIA_Addon_Esteban_fight_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Stone) && (Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1000) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1000))
+//	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Stone) && (Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1000) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1000))
+	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Stone))
 	{
 		return TRUE;
 	};
@@ -411,8 +422,16 @@ func void DIA_Addon_Esteban_fight_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_01");	//Не каждый получает такое предложение. Но если оно тебе не нравится, ты можешь свободно покинуть лагерь...
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_02");	//А может быть, ты сдержишь слово и дашь мне красный камень?
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_03");	//Эй! Еще одно слово - и моим охранникам придется применить силу.
-	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?
-	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_05");	//Что?.. А, понятно, ты хочешь обвести меня... Ну, погоди...
+	if((Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1500) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1500))
+	{
+		AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?
+		AI_Output(self,other,"DIA_Addon_Esteban_fight_07_05");	//Что?.. А, понятно, ты хочешь обвести меня... Ну, погоди...
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Addon_Esteban_Duell_15_00");	//Давай сюда камень СЕЙЧАС ЖЕ, или я заберу его сам!
+		B_Say(self,other,"$StupidBeastKilled");
+	};
 	Bodyguard_Killer = FALSE;
 	B_StartOtherRoutine(Wache_01,"TOT");
 	B_KillNpc(Wache_01);
@@ -436,7 +455,7 @@ instance DIA_Addon_Esteban_Duell(C_Info)
 
 func int DIA_Addon_Esteban_Duell_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Rot) && (Bodyguard_Killer != TRUE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Rot) && (Bodyguard_Killer == FALSE))
 	{
 		return TRUE;
 	};

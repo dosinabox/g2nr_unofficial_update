@@ -181,8 +181,8 @@ instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от сундука на ферме Секоба.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItWr_CorneliusTagebuch_Mis(C_Item)
@@ -216,7 +216,7 @@ func void UseCorneliusTagebuch()
 	Doc_PrintLines(nDocID,0,"Что-то странное произошло со мной прошлой ночью. Мне нанес визит один из этих парней в черных капюшонах, о которых ходит столько слухов последнее время. Я не очень-то испугался, даже несмотря на то, что, как говорят, они - само Зло. Эти люди прямо-таки источают силу. Но голос был спокойным и располагающим к себе.");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLines(nDocID,1,"Он предложил мне 20,000 золота за то, чтобы один из наемников был осужден. Он сказал, что я пойму, что он имел в виду, когда это произойдет.");
+	Doc_PrintLines(nDocID,1,"Он предложил мне 20000 золотых за то, чтобы один из наемников был осужден. Он сказал, что я пойму, что он имел в виду, когда это произойдет.");
 	Doc_PrintLines(nDocID,1,"Конечно же, я согласился. Эти наемники все равно не заслуживают лучшей участи. Если бы не они, у меня все было бы хорошо. И это золото позволит мне спокойно встретить старость.");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Это произошло - один из наемников был арестован. Сдержать мое слово будет просто.");
@@ -495,8 +495,8 @@ func void Use_BabosLetter()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"Дорогой Бабо,");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Ты, наверняка, задаешься вопросом, как мы смогли написать тебе это письмо. Мы отнесли все наши сбережения мастеру Марласу и попросили его написать эти строчки. Мы желаем тебе всего наилучшего и посылаем тебе картину в качестве прощального дара, чтобы ты всегда помнил о нас во время долгих ночей в монастыре.");
-	Doc_PrintLines(nDocID,0,"Удачи. Надеемся, тебе понравится эта картина.");
+	Doc_PrintLines(nDocID,0,"Ты, наверняка, задаешься вопросом, как мы смогли написать тебе это письмо. Мы отнесли все наши сбережения мастеру Марласу и попросили его написать эти строчки. Мы желаем тебе всего наилучшего и посылаем тебе рисунок в качестве прощального дара, чтобы ты всегда помнил о нас во время долгих ночей в монастыре.");
+	Doc_PrintLines(nDocID,0,"Удачи. Надеемся, тебе понравится этот рисунок.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Фехт и Бонка");
 	Doc_Show(nDocID);
@@ -551,6 +551,7 @@ instance ItWr_BabosDocs_MIS(C_Item)
 func void Use_BabosDocs()
 {
 	BabosDocsOpen = TRUE;
+	AI_PrintScreen("Получено письмо и рисунок",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	CreateInvItems(self,ItWr_BabosLetter_MIS,1);
 	CreateInvItems(self,ItWr_BabosPinUp_MIS,1);
 };
@@ -567,8 +568,8 @@ instance ItKe_IgarazChest_Mis(C_Item)
 	description = name;
 	text[0] = "Это ключ от сундука,";
 	text[1] = "принадлежащего Игарацу.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItWr_Astronomy_Mis(C_Item)

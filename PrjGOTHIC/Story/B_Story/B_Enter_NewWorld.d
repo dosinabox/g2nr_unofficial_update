@@ -295,10 +295,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_ITEM_FARM1_03");
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_NW_ITEM_TROLL_10");
-			if(!Npc_IsDead(Ulf))
+			/*if(!Npc_IsDead(Ulf))
 			{
 				B_KillNpc(Ulf);
-			};
+			};*/
 			if(!Npc_IsDead(Vino))
 			{
 				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
@@ -327,6 +327,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		};
 		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && !Npc_IsDead(Canthar))
 		{
+			B_RemoveSarahWeapons();
 			B_RemoveNpc(Sarah);
 			B_NpcSetReleased(Canthar);
 			Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
@@ -349,6 +350,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		ShrineIsObsessed_SAGITTA = TRUE;
 		ShrineIsObsessed_NW_BIGMILL_MALAKSVERSTECK_02 = TRUE;
 		ShrineIsObsessed_NW_FARM3_BIGWOOD_02 = TRUE;
+		Wld_InsertNpc(PC_Mage_NW,"NW_MONASTERY_ARMCHAIR_05");
 		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 		{
 			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_MIL.tga","chapter_01.wav",6000);

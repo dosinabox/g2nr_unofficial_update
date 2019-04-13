@@ -151,25 +151,19 @@ func int DIA_Mortis_CanTeach_Condition()
 	};
 };
 
-var int Mortis_CanTeach_Info_Once;
-
 func void DIA_Mortis_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Mortis_CanTeach_15_00");	//я хочу стать сильнее.
 	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Mortis_CanTeach_13_01");	//ѕон€тно. ≈сли у теб€ достаточно опыта, € могу потренировать теб€.
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"ћортис, городской стражник, может помочь мне повысить мою силу.");
 		Mortis_TeachSTR = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Mortis_CanTeach_13_02");	// онечно, хочешь. Ќо пока ты не станешь одним из нас или паладином, € не буду помогать тебе.
-	};
-	if(Mortis_CanTeach_Info_Once == FALSE)
-	{
-		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"ћортис, городской стражник, может помочь мне повысить мою силу.");
-		Mortis_CanTeach_Info_Once = TRUE;
 	};
 };
 

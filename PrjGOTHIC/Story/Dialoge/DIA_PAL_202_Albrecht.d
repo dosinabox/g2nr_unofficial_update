@@ -99,6 +99,7 @@ func void DIA_Albrecht_CanTeach_Info()
 		AI_Output(self,other,"DIA_Albrecht_CanTeach_03_01");	//≈сли ты докажешь, что достоин этого, € награжу теб€ магическими рунами паладинов.
 		AI_Output(self,other,"DIA_Albrecht_CanTeach_03_02");	// роме того, € могу научить теб€, как повысить свои магические способности.
 		Albrecht_TeachMANA = TRUE;
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"ѕаладин јльбрехт может помочь мне повысить мои магические способности.");
 	}
 	else

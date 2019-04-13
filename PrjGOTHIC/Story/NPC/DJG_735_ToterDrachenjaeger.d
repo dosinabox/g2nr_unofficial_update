@@ -9,7 +9,7 @@ instance DJG_735_ToterDrachenjaeger(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	CreateInvItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Richter,BodyTex_N,ITAR_DJG_L);
 	Mdl_SetModelFatness(self,1);

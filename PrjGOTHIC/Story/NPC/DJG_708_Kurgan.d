@@ -13,7 +13,7 @@ instance DJG_708_Kurgan(Npc_Default)
 	EquipItem(self,ItRw_Crossbow_M_01);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_ImportantGrey,BodyTex_N,ITAR_DJG_H);
-	Mdl_SetModelFatness(self,2);
+	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,60);

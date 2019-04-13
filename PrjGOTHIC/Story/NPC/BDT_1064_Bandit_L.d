@@ -1,7 +1,7 @@
 
 instance BDT_1064_Bandit_L(Npc_Default)
 {
-	name[0] = NAME_Wache;
+	name[0] = NAME_Bandit;
 	guild = GIL_BDT;
 	id = 1064;
 	voice = 4;
@@ -9,7 +9,7 @@ instance BDT_1064_Bandit_L(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_EnemyOverride] = TRUE;
 	aivar[AIV_NewsOverride] = TRUE;
-	B_SetAttributesToChapter(self,4);
+	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);

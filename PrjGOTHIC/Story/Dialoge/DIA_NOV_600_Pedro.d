@@ -69,14 +69,10 @@ func void DIA_Pedro_Wurst_Info()
 	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Pedro_Wurst_15_00");	//Вот, возьми колбасу, брат!
 	AI_Output(self,other,"DIA_Pedro_Wurst_09_01");	//Я рад, что ты подумал обо мне. Обычно обо мне забывают.
-	AI_Output(self,other,"DIA_Pedro_Wurst_09_02");	//Ты можешь дать мне еще одну колбаску?
-	AI_Output(other,self,"DIA_Pedro_Wurst_15_03");	//Забудь об этом, тогда ее на всех не хватит.
-	AI_Output(self,other,"DIA_Pedro_Wurst_09_04");	//Эй, всего одну колбаску - никто даже не заметит этого. А ты кое-что получишь за это - я знаю место, где растет огненная крапива.
-	AI_Output(self,other,"DIA_Pedro_Wurst_09_05");	//Если ты отнесешь ее Неорасу, он наверняка даст тебе ключ от библиотеки. Что скажешь?
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben += 1;
-	CreateInvItems(self,ItFo_Sausage,1);
-	B_UseItem(self,ItFo_Sausage);
+//	CreateInvItems(self,ItFo_Schafswurst,1);
+	B_UseItem(self,ItFo_Schafswurst);
 	if(Wurst_Gegeben >= 13)
 	{
 		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
@@ -87,6 +83,11 @@ func void DIA_Pedro_Wurst_Info()
 		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
 		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	};
+	AI_Output(self,other,"DIA_Pedro_Wurst_09_02");	//Ты можешь дать мне еще одну колбаску?
+	AI_Output(other,self,"DIA_Pedro_Wurst_15_03");	//Забудь об этом, тогда ее на всех не хватит.
+	AI_Output(self,other,"DIA_Pedro_Wurst_09_04");	//Эй, всего одну колбаску - никто даже не заметит этого. А ты кое-что получишь за это - я знаю место, где растет огненная крапива.
+	AI_Output(self,other,"DIA_Pedro_Wurst_09_05");	//Если ты отнесешь ее Неорасу, он наверняка даст тебе ключ от библиотеки. Что скажешь?
+	
 	Info_ClearChoices(DIA_Pedro_Wurst);
 	if(Npc_HasItems(other,ItFo_Schafswurst))
 	{
@@ -172,10 +173,13 @@ func void DIA_Pedro_TEMPEL_Info()
 		AI_Output(other,self,"DIA_Pedro_TEMPEL_15_04");	//Это целая куча золота.
 		AI_Output(self,other,"DIA_Pedro_TEMPEL_09_05");	//Это знак того, что ты начинаешь новую жизнь в качестве слуги Инноса. Когда ты будешь принят, все твои предыдущие прегрешения будут прощены.
 		AI_Output(self,other,"DIA_Pedro_TEMPEL_09_06");	//И хорошенько подумай - потом ты не сможешь отказаться от своего решения стать слугой Инноса.
-		SC_KnowsKlosterTribut = TRUE;
-		Log_CreateTopic(Topic_Kloster,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Kloster,LOG_Running);
-		B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и огромная сумма золотом.");
+		if(SC_KnowsKlosterTribut == FALSE)
+		{
+			SC_KnowsKlosterTribut = TRUE;
+			Log_CreateTopic(Topic_Kloster,LOG_MISSION);
+			Log_SetTopicStatus(Topic_Kloster,LOG_Running);
+			B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
+		};
 	};
 };
 

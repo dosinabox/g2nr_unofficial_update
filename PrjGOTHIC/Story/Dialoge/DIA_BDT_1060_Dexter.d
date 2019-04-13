@@ -215,6 +215,7 @@ func void DIA_Addon_Dexter_missingPeople_RavenTot()
 {
 	AI_Output(other,self,"DIA_Addon_Dexter_missingPeople_RavenTot_15_00");	//Рудный барон здесь, в Хоринисе?
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_RavenTot_09_01");	//Он больше не рудный барон. У него свои планы, и скоро Хоринис падет к его ногам.
+	AI_Output(self,other,"DIA_Dexter_Hallo_09_04");	//Но это правда. Я раздал своим парням эти объявления о розыске. У меня не было другого выбора.
 };
 
 

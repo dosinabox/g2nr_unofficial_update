@@ -230,7 +230,14 @@ func void DIA_Sylvio_ICEGOLEMSKILLED_Info()
 	MIS_DJG_Sylvio_KillIceGolem = LOG_SUCCESS;
 	B_GivePlayerXP(XP_SylvioDJGIceGolemDead);
 	Npc_ExchangeRoutine(self,"IceWait1");
-	B_StartOtherRoutine(DJG_Bullco,"IceWait1");
+	if(!Npc_IsDead(DJG_Bullco))
+	{
+		if(C_BodyStateContains(DJG_Bullco,BS_SIT))
+		{
+			AI_Standup(DJG_Bullco);
+		};
+		B_StartOtherRoutine(DJG_Bullco,"IceWait1");
+	};
 };
 
 
@@ -257,7 +264,8 @@ func void DIA_Sylvio_WASJETZT_Info()
 	AI_Output(other,self,"DIA_Sylvio_WASJETZT_15_00");	//Что еще?
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_09_01");	//Ну. Мне что-то обстановка там не очень нравится.
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_09_02");	//Будет лучше всего, если ты пойдешь вперед, а я пойду за тобой.
-	Info_AddChoice(DIA_Sylvio_WASJETZT,"Хорошо, пошли.",DIA_Sylvio_WASJETZT_ok);
+//	Info_AddChoice(DIA_Sylvio_WASJETZT,"Хорошо, пошли.",DIA_Sylvio_WASJETZT_ok);
+	Info_AddChoice(DIA_Sylvio_WASJETZT,"Я, пожалуй, пойду.",DIA_Sylvio_WASJETZT_ok);
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Ты боишься?",DIA_Sylvio_WASJETZT_trennen);
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Я не собираюсь делать всю грязную работу за тебя.",DIA_Sylvio_WASJETZT_nein);
 	if(DJG_Sylvio_PromisedMoney == TRUE)
@@ -274,7 +282,8 @@ func void DIA_Sylvio_WASJETZT_trennen()
 
 func void DIA_Sylvio_WASJETZT_ok()
 {
-	AI_Output(other,self,"DIA_Sylvio_WASJETZT_ok_15_00");	//Хорошо, пошли.
+//	AI_Output(other,self,"DIA_Sylvio_WASJETZT_ok_15_00");	//Хорошо, пошли.
+	AI_Output(other,self,"DIA_Attila_Hallo_Ende_15_00");	//Я, пожалуй, пойду.
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_ok_09_01");	//Давай, быстрее!
 	AI_StopProcessInfos(self);
 };

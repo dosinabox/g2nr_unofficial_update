@@ -89,7 +89,8 @@ func void DIA_Canthar_PersonalCRIMES_Info()
 		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_01");	//(насмешливо) Ты думал, что так просто сможешь справиться со мной?
 	};
 	AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_02");	//Либо ты сейчас извинишься, либо я позабочусь, чтобы ты горько пожалел о том, что сделал!
-	AI_Output(other,self,"DIA_Canthar_PersonalCRIMES_15_03");	//А что именно ты имел в виду?
+//	AI_Output(other,self,"DIA_Canthar_PersonalCRIMES_15_03");	//А что именно ты имел в виду?
+	AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_03");	//Что ты имеешь в виду?
 	B_Say_Gold(self,other,100);
 	Info_ClearChoices(DIA_Canthar_PersonalCRIMES);
 	Info_AddChoice(DIA_Canthar_PersonalCRIMES,"У меня нет столько!",DIA_Canthar_PersonalCRIMES_NotEnough);
@@ -141,8 +142,11 @@ func void DIA_Canthar_Hallo_Info()
 	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_00");	//Посмотрите, кто у нас здесь!
-		AI_Output(self,other,"DIA_Canthar_Hallo_09_01");	//Ты ведь идешь в город - я не прав?
-		AI_Output(other,self,"DIA_Canthar_Hallo_15_02");	//Может быть.
+		if(Canthar_InStadt == FALSE)
+		{
+			AI_Output(self,other,"DIA_Canthar_Hallo_09_01");	//Ты ведь идешь в город - я не прав?
+			AI_Output(other,self,"DIA_Canthar_Hallo_15_02");	//Может быть.
+		};
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_03");	//Хм! (фыркает) ты похож на беглеца! Все беглецы направляются в город.
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_04");	//Возможно, ты даже беглый каторжник из колонии.
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_05");	//(торопливо) Меня не волнует, откуда ты пришел. Но мне кажется, у меня есть интересное предложение для тебя...
@@ -200,7 +204,7 @@ func int DIA_Canthar_WhatOffer_Condition()
 func void DIA_Canthar_WhatOffer_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_15_00");	//Что ты можешь предложить мне?
-	if(Canthar_GotMe == TRUE)
+	if((Canthar_GotMe == TRUE) && (Canthar_InStadt == FALSE))
 	{
 		if(!Npc_HasEquippedArmor(other))
 		{
@@ -426,7 +430,7 @@ func void DIA_Canthar_SARAHERLEDIGT_Info()
 	{
 		if(MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() + 2))
 		{
-			AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_00");	//У тебя нет работы для меня?
+//			AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_00");	//У тебя нет работы для меня?
 			AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_01");	//Сначала подложи письмо Саре, а затем сходи к Андрэ и обвини ее.
 			AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_02");	//Сделай же это. И не пытайся обмануть меня, ты пожалеешь об этом.
 		}
@@ -470,7 +474,7 @@ func void DIA_Canthar_Success_Info()
 {
 	AI_Output(self,other,"DIA_Canthar_Success_09_00");	//Отлично. Сара отправилась туда, где ей самое место.
 	AI_Output(self,other,"DIA_Canthar_Success_09_01");	//Я забрал ее товары, так что, если тебе нужно оружие, заходи ко мне.
-	if(Kapitel == 1)
+	/*if(Kapitel == 1)
 	{
 		CreateInvItems(self,ItMw_ShortSword3,1);
 		CreateInvItems(self,ItMw_ShortSword4,1);
@@ -482,16 +486,25 @@ func void DIA_Canthar_Success_Info()
 	};
 	if(Kapitel == 2)
 	{
+		CreateInvItems(self,ItMw_ShortSword3,1);
+		CreateInvItems(self,ItMw_ShortSword4,1);
+		CreateInvItems(self,ItMw_ShortSword5,1);
+		CreateInvItems(self,ItMw_Kriegshammer1,1);
+		CreateInvItems(self,ItMw_1h_Vlk_Sword,1);
+		CreateInvItems(self,ItMw_1h_Nov_Mace,1);
+		CreateInvItems(self,ItMw_1H_Sword_L_03,1);
+		//////
 		CreateInvItems(self,ItMw_Stabkeule,1);
 		CreateInvItems(self,ItMw_Steinbrecher,1);
 		CreateInvItems(self,ItMw_Schwert2,1);
 		CreateInvItems(self,ItMw_Bartaxt,1);
-	};
+	};*/
 	if(Canthar_Gefallen == FALSE)
 	{
 		AI_Output(other,self,"DIA_Canthar_Success_15_02");	//Ты собирался дать мне оружие.
 		AI_Output(self,other,"DIA_Canthar_Success_09_03");	//Правильно. Вот, это оружие - произведение оружейного искусства.
-		B_GiveInvItems(self,other,ItMw_Schiffsaxt,1);
+//		B_GiveInvItems(self,other,ItMw_Schiffsaxt,1);
+		B_GiveInvItems(self,other,ItMw_Lightsaebel,1);
 	};
 	B_GivePlayerXP(XP_Canthars_KomproBrief);
 };

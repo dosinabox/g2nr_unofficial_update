@@ -17,6 +17,10 @@ func int DIA_Garwig_EXIT_Condition()
 
 func void DIA_Garwig_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -45,11 +49,11 @@ func void DIA_Garwig_Wurst_Info()
 	var string NovizeText;
 	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Garwig_Wurst_15_00");	//Хочешь колбасы?
-	AI_Output(self,other,"DIA_Garwig_Wurst_06_01");	//Ах, как вкусно. Огромное спасибо тебе, брат.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben += 1;
-	CreateInvItems(self,ItFo_Sausage,1);
-	B_UseItem(self,ItFo_Sausage);
+//	CreateInvItems(self,ItFo_Schafswurst,1);
+	B_UseItem(self,ItFo_Schafswurst);
 	if(Wurst_Gegeben >= 13)
 	{
 		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
@@ -60,6 +64,7 @@ func void DIA_Garwig_Wurst_Info()
 		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
 		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	};
+	AI_Output(self,other,"DIA_Garwig_Wurst_06_01");	//Ах, как вкусно. Огромное спасибо тебе, брат.
 };
 
 
@@ -283,7 +288,9 @@ func int DIA_Garwig_THIEF_Condition()
 
 func void DIA_Garwig_THIEF_Info()
 {
-	if(Hammer_Taken == TRUE)
+	var C_Item EquipWeap;
+	EquipWeap = Npc_GetEquippedMeleeWeapon(other);
+	if((Hammer_Taken == TRUE) || Hlp_IsItem(EquipWeap,Holy_Hammer_MIS))
 	{
 		AI_Output(self,other,"DIA_Garwig_THIEF_06_00");	//(разочаровано) Вор! Ты опозорил не только себя и меня, но и весь монастырь!
 		if((MIS_GOLEM != LOG_SUCCESS) && Npc_HasItems(other,Holy_Hammer_MIS))

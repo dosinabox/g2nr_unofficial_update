@@ -43,6 +43,14 @@ func int DIA_Larius_Hello_Condition()
 func void DIA_Larius_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Larius_Hello_01_00");	//Что ты делаешь здесь? Если тебе что-то нужно, запишись на прием.
+	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	{
+		AI_Output(self,other,"DIA_Larius_Richterueberfall_01_02");	//Даже если ты воин Инноса...
+	};
+	if(hero.guild == GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_Larius_Richterueberfall_01_03");	//Даже если ты посвященный маг...
+	};
 };
 
 
@@ -141,14 +149,14 @@ func void DIA_Larius_Richterueberfall_Info()
 {
 	AI_Output(other,self,"DIA_Larius_Richterueberfall_15_00");	//Судья нанял бандитов, чтобы они убили тебя. Я могу доказать это.
 	AI_Output(self,other,"DIA_Larius_Richterueberfall_01_01");	//Не пори чепухи, или ты хочешь, чтобы я заковал тебя в кандалы?
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+/*	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Larius_Richterueberfall_01_02");	//Даже если ты воин Инноса...
 	};
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Larius_Richterueberfall_01_03");	//Даже если ты посвященный маг...
-	};
+	};*/
 	AI_Output(self,other,"DIA_Larius_Richterueberfall_01_04");	//Мое слово все еще имеет вес в этом городе. Не смей даже пытаться запятнать светлое имя нашего судьи!
 	B_GivePlayerXP(XP_Ambient);
 	AI_StopProcessInfos(self);

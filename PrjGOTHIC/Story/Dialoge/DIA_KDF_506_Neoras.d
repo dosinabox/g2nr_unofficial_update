@@ -658,8 +658,8 @@ func void DIA_Neoras_FOUNDDRAGONEGG_heil()
 {
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_heil_15_00");	//Как насчет нескольких лечебных зелий?
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_heil_01_01");	//Хороший выбор. Вот, держи. Надеюсь, они тебе пригодятся.
-	CreateInvItems(self,ItPo_Health_03,3);
-	B_GiveInvItems(self,other,ItPo_Health_03,3);
+	CreateInvItems(self,ItPo_Health_Addon_04,5);
+	B_GiveInvItems(self,other,ItPo_Health_Addon_04,5);
 	Info_ClearChoices(DIA_Neoras_FOUNDDRAGONEGG);
 };
 

@@ -166,34 +166,6 @@ func void DIA_Karras_Success_Info()
 };
 
 
-instance DIA_Karras_Trade(C_Info)
-{
-	npc = KDF_503_Karras;
-	nr = 2;
-	condition = DIA_Karras_Trade_Condition;
-	information = DIA_Karras_Trade_Info;
-	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
-	trade = TRUE;
-};
-
-
-func int DIA_Karras_Trade_Condition()
-{
-	if(hero.guild != GIL_NOV)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Karras_Trade_Info()
-{
-	AI_Output(other,self,"DIA_Karras_Trade_15_00");	//Покажи мне свои товары.
-	B_GiveTradeInv(self);
-	Trade_IsActive = TRUE;
-};
-
-
 instance DIA_Karras_JOB(C_Info)
 {
 	npc = KDF_503_Karras;
@@ -227,6 +199,34 @@ func void DIA_Karras_JOB_Info()
 };
 
 
+instance DIA_Karras_Trade(C_Info)
+{
+	npc = KDF_503_Karras;
+	nr = 2;
+	condition = DIA_Karras_Trade_Condition;
+	information = DIA_Karras_Trade_Info;
+	permanent = TRUE;
+	description = DIALOG_TRADE_v4;
+	trade = TRUE;
+};
+
+
+func int DIA_Karras_Trade_Condition()
+{
+	if((hero.guild != GIL_NOV) && Npc_KnowsInfo(other,DIA_Karras_JOB))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Karras_Trade_Info()
+{
+	AI_Output(other,self,"DIA_Karras_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
+};
+
+
 instance DIA_Karras_TEACH(C_Info)
 {
 	npc = KDF_503_Karras;
@@ -240,7 +240,7 @@ instance DIA_Karras_TEACH(C_Info)
 
 func int DIA_Karras_TEACH_Condition()
 {
-	if(other.guild == GIL_KDF)
+	if((other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Karras_JOB))
 	{
 		return TRUE;
 	};
@@ -340,7 +340,7 @@ instance DIA_Karras_CIRCLE4(C_Info)
 
 func int DIA_Karras_CIRCLE4_Condition()
 {
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3)
+	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 3) && Npc_KnowsInfo(other,DIA_Karras_JOB))
 	{
 		return TRUE;
 	};
@@ -359,7 +359,8 @@ func void DIA_Karras_CIRCLE4_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Karras_CIRCLE4_10_03");	//Он еще далеко не закончен.
+//		AI_Output(self,other,"DIA_Karras_CIRCLE4_10_03");	//Он еще далеко не закончен.
+		AI_Output(self,other,"DIA_Karras_CIRCLE4_10_04");	//Время еще не пришло.
 	};
 };
 
@@ -378,7 +379,7 @@ instance DIA_Karras_CIRCLE5(C_Info)
 
 func int DIA_Karras_CIRCLE5_Condition()
 {
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4)
+	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 4) && Npc_KnowsInfo(other,DIA_Karras_JOB))
 	{
 		return TRUE;
 	};

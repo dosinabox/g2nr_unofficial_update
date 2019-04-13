@@ -284,6 +284,7 @@ func void DIA_Nadja_Poppen_Start()
 {
 	Bromor_Pay = 0;
 	Nadja_Nacht += 1;
+	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	PlayVideo("LOVESCENE.BIK");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");

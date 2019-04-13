@@ -218,7 +218,7 @@ instance DIA_Addon_Akil_MissingPeople(C_Info)
 
 func int DIA_Addon_Akil_MissingPeople_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_NachKampf) && (SC_HearedAboutMissingPeople == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Akil_NachKampf) && (SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};
@@ -253,7 +253,8 @@ instance DIA_Addon_Akil_ReturnPeople(C_Info)
 
 func int DIA_Addon_Akil_ReturnPeople_Condition()
 {
-	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE) && ((Npc_GetDistToWP(Tonak_NW,"NW_FARM2_FIELD_TANOK") <= 1000) || (Npc_GetDistToWP(Telbor_NW,"NW_FARM2_FIELD_TELBOR") <= 1000)))
+//	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE) && ((Npc_GetDistToWP(Tonak_NW,"NW_FARM2_FIELD_TANOK") <= 1000) || (Npc_GetDistToWP(Telbor_NW,"NW_FARM2_FIELD_TELBOR") <= 1000)))
+	if((MIS_Akil_BringMissPeopleBack == LOG_Running) && (MissingPeopleReturnedHome == TRUE) && (!Npc_IsDead(Tonak_NW) || !Npc_IsDead(Telbor_NW)))
 	{
 		return TRUE;
 	};
@@ -262,7 +263,8 @@ func int DIA_Addon_Akil_ReturnPeople_Condition()
 func void DIA_Addon_Akil_ReturnPeople_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Akil_ReturnPeople_15_00");	//Насчет твоих работников...
-	if((Npc_GetDistToWP(Tonak_NW,"NW_FARM2_FIELD_TANOK") <= 1000) && (Npc_GetDistToWP(Telbor_NW,"NW_FARM2_FIELD_TELBOR") <= 1000))
+//	if((Npc_GetDistToWP(Tonak_NW,"NW_FARM2_FIELD_TANOK") <= 1000) && (Npc_GetDistToWP(Telbor_NW,"NW_FARM2_FIELD_TELBOR") <= 1000))
+	if(!Npc_IsDead(Tonak_NW) && !Npc_IsDead(Telbor_NW))
 	{
 		AI_Output(self,other,"DIA_Addon_Akil_ReturnPeople_13_01");	//Ты привел их назад! Ты очень храбрый человек.
 	}

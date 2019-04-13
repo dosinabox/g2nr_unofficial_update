@@ -553,7 +553,8 @@ func void DIA_Lord_Hagen_Minental_Info()
 	}
 	else
 	{
-		if(Garond.aivar[AIV_TalkedToPlayer] == TRUE)
+//		if(Garond.aivar[AIV_TalkedToPlayer] == TRUE)
+		if(Npc_KnowsInfo(other,DIA_Garond_NeedProof))
 		{
 			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_02");	//Ты был там. Ты должен знать.
 		}
@@ -599,6 +600,7 @@ func void DIA_Hagen_CanTeach_Info()
 	AI_Output(other,self,"DIA_Hagen_CanTeach_15_00");	//Я ищу мастера-мечника.
 	AI_Output(self,other,"DIA_Hagen_CanTeach_04_01");	//Да? Считай, что ты нашел его.
 	LordHagen_Teach2H = TRUE;
+	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTeacher,"Лорд Хаген может обучить меня сражаться двуручным оружием.");
 };
 
@@ -686,7 +688,12 @@ func int DIA_Lord_Hagen_Knight_Condition()
 func void DIA_Lord_Hagen_Knight_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Knight_15_00");	//Я хочу поступить на службу в орден.
-	if(MIS_RescueBennet == LOG_SUCCESS)
+	if((MIS_OLDWORLD == LOG_Running) && (KAPITEL == 3))
+	{
+		AI_Output(self,other,"DIA_Lord_Hagen_WhatProof_04_01");	//Твои дела покажут, достоин ты или нет.
+		AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_01");	//Наша ситуация хуже, чем я опасался. Но доложи мне о ситуации в Долине Рудников!
+	}
+	else if(MIS_RescueBennet == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_01");	//Хорошо, ты доказал, что у тебя есть мужество, опыт и знания, чтобы служить Инносу.
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_02");	//Твои дела свидетельствуют о том, что у тебя чистое сердце.
@@ -723,13 +730,14 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_07");	//Я даю тебе оружие и доспехи рыцаря. Носи их с гордостью, рыцарь!
 	hero.guild = GIL_PAL;
 	Npc_SetTrueGuild(other,GIL_PAL);
+	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
 	CreateInvItems(other,ITAR_PAL_M,1);
 	AI_EquipArmor(other,ITAR_PAL_M);
-	if(Npc_HasItems(other,ItRu_FakePalLight))
+	/*if(Npc_HasItems(other,ItRu_FakePalLight))
 	{
 		CreateInvItem(other,ItRu_PalLight);
 		Npc_RemoveInvItem(other,ItRu_FakePalLight);
-	};
+	};*/
 	if(other.HitChance[NPC_TALENT_2H] >= other.HitChance[NPC_TALENT_1H])
 	{
 		CreateInvItems(self,ItMw_2h_Pal_Sword,1);
@@ -902,7 +910,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_00");	//Я принес тебе новости от Гаронда. Вот, он начертал эти строки для тебя.
 	B_GiveInvItems(other,self,ItWr_PaladinLetter_MIS,1);
 	B_UseFakeScroll();
-	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_01");	//Наша ситуация хуже, чем я опасался. Но доложи мне о ситуации в Долине Рудников.
+	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_01");	//Наша ситуация хуже, чем я опасался. Но доложи мне о ситуации в Долине Рудников!
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_02");	//Паладины заперты в замке Долины Рудников, окруженном орками.
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_03");	//Они потеряли много людей в старательских операциях и добыли очень мало руды.
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_04");	//И, должен добавить, без помощи извне им всем скоро придет конец. Вот такие дела.
@@ -932,11 +940,12 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	Wld_InsertNpc(DMT_1210_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	Wld_InsertNpc(DMT_1211_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	B_RemoveNpc(Pedro);
-	if(Npc_IsDead(MiltenNW))
+/*	if(Npc_IsDead(MiltenNW))
 	{
 		Wld_InsertNpc(PC_Mage_NW,"NW_MONASTERY_ENTRY_01");
 		B_StartOtherRoutine(MiltenNW,"START");
-	};
+	};*/
+	B_StartOtherRoutine(MiltenNW,"START");
 	Wld_InsertNpc(NOV_650_ToterNovize,"NW_TROLLAREA_RITUALPATH_01");
 	B_KillNpc(NOV_650_ToterNovize);
 	Wld_InsertNpc(NOV_651_ToterNovize,"NW_TROLLAREA_RITUALPATH_01");
@@ -1016,8 +1025,11 @@ func void DIA_Lord_Hagen_RescueBennet_WhySure()
 	AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_Witness_04_01");	//Корнелиус, секретарь губернатора, видел, как произошло убийство.
 	AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_Witness_04_02");	//Его описание подходит к Беннету, в этом нет никаких сомнений. По моему мнению, это достаточное доказательство.
 	AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_Witness_04_03");	//Этот наемник будет повешен за измену.
-	B_LogEntry(TOPIC_RescueBennet,"Корнелиус, секретарь губернатора, является свидетелем. Он утверждает, что был свидетелем убийства.");
-	RecueBennet_KnowsCornelius = TRUE;
+	if(RecueBennet_KnowsCornelius == FALSE)
+	{
+		B_LogEntry(TOPIC_RescueBennet,"Корнелиус, секретарь губернатора, является свидетелем. Он утверждает, что был свидетелем убийства.");
+		RecueBennet_KnowsCornelius = TRUE;
+	};
 	Cornelius.guild = GIL_NONE;
 };
 

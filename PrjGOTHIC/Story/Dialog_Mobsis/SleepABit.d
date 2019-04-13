@@ -20,6 +20,7 @@ func void PC_Sleep(var int t)
 	}
 	else
 	{
+//		B_Say_Overlay(hero,hero,"$AWAKE");
 		PrintScreen(PRINT_SleepOver,-1,-1,FONT_Screen,2);
 		BeerDay = 0;
 		hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];

@@ -110,7 +110,10 @@ func void DIA_Addon_Tom_Juan_Info()
 	AI_Output(self,other,"DIA_Addon_Tom_Juan_11_02");	//Я как раз собирался заключить сделку с пиратами, когда он выскочил из темноты и сбил меня с ног двумя ударами!
 	AI_Output(self,other,"DIA_Addon_Tom_Juan_11_03");	//Этот парень очень быстр! Но недостаточно быстр. Мне удалось убежать от него.
 	SC_Knows_JuanMurderedAngus = TRUE;
-	B_LogEntry(TOPIC_Addon_KillJuan,"Хэнка и Ангуса подстерег и убил Хуан.");
+	if(MIS_Addon_Bill_SearchAngusMurder == LOG_Running)
+	{
+		B_LogEntry(TOPIC_Addon_KillJuan,"Хэнка и Ангуса подстерег и убил Хуан.");
+	};
 };
 
 

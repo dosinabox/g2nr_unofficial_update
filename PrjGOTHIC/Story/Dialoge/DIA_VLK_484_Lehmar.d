@@ -325,7 +325,7 @@ func void DIA_Lehmar_NOCHMALGELD_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Lehmar_NOCHMALGELD_09_02");	//Больше не можешь! Я понес большие издержки и теперь у меня на счету каждый цент.
-		AI_Output(self,other,"DIA_Lehmar_NOCHMALGELD_09_03");	//Заходи через несколько дней!
+//		AI_Output(self,other,"DIA_Lehmar_NOCHMALGELD_09_03");	//Заходи через несколько дней!
 	};
 };
 

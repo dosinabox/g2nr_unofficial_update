@@ -96,6 +96,7 @@ func void DIA_Pablo_WANTED_Info()
 	B_GiveInvItems(self,other,ItWr_Poster_MIS,1);
 	B_UseFakeScroll_Hero();
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_04");	//По-видимому, эти парни искали тебя.
+	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Pablo_WANTED);
 	Info_AddChoice(DIA_Pablo_WANTED,"Нет, боюсь, что ты ошибаешься. Со мной все в порядке...",DIA_Pablo_WANTED_NOTHING);
 	Info_AddChoice(DIA_Pablo_WANTED,"Хм, я сам бы об этом никогда не догадался.",DIA_Pablo_WANTED_IRONY);

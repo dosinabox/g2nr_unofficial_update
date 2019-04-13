@@ -171,9 +171,16 @@ func void DIA_Addon_Bones_Teacher_Info()
 	AI_Output(self,other,"DIA_Addon_Bones_Teacher_01_10");	//Знаешь, честно говоря, я больше ничем не интересовался.
 	AI_Output(self,other,"DIA_Addon_Bones_Teacher_01_11");	//Но думаю, Аллигатору Джеку и Сэмюэлю найдется, чем с тобой поделиться.
 	Knows_HenrysEntertrupp = TRUE;
-	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
-	B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
+	if(Henry_Addon_TeachPlayer == FALSE)
+	{
+		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
+	};
+	if(Morgan_Addon_TeachPlayer == FALSE)
+	{
+		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
+		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
+	};
 };
 
 

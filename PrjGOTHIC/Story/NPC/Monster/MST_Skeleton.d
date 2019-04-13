@@ -1,7 +1,7 @@
 
 prototype Mst_Default_Skeleton(C_Npc)
 {
-	name[0] = "Скелет";
+	name[0] = "Скелет-воин";
 	guild = GIL_SKELETON;
 	aivar[AIV_MM_REAL_ID] = ID_SKELETON;
 	level = 30;
@@ -95,7 +95,7 @@ instance Summoned_Skeleton(Mst_Default_Skeleton)
 
 instance Lesser_Skeleton(Mst_Default_Skeleton)
 {
-	name[0] = "Малый скелет";
+	name[0] = "Скелет";
 	level = 15;
 	attribute[ATR_STRENGTH] = 45;
 	attribute[ATR_DEXTERITY] = 75;

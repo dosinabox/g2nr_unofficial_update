@@ -565,7 +565,7 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 	if(SalandrilMinenAnteil_MAINCounter > 0)
 	{
 		MinenAnteilLeft = IntToString(SalandrilMinenAnteil_MAINCounter);
-		MinenAnteilText = ConcatStrings(PRINT_NumberLeft,MinenAnteilLeft);
+		MinenAnteilText = ConcatStrings(PRINT_MinenAnteilLeft,MinenAnteilLeft);
 		AI_PrintScreen(MinenAnteilText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	}
 	else

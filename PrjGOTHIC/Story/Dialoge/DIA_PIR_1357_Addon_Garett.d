@@ -81,6 +81,17 @@ func void DIA_Addon_Garett_Anheuern_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Anheuern_09_01");	//Как ты думаешь, что здесь начнется, если я уйду?
 	AI_Output(self,other,"DIA_Addon_Garett_Anheuern_09_02");	//Да тут к моему возвращению не останется ни одного ящика!
 	AI_Output(self,other,"DIA_Addon_Garett_Anheuern_09_03");	//Нет, я должен оставаться здесь и охранять наши запасы.
+	if(!Npc_KnowsInfo(other,DIA_Addon_Garett_Hello))
+	{
+		AI_Output(self,other,"DIA_Addon_Garett_Hello_09_01");	//Мое имя Гаретт. Если тебе что-нибудь понадобится, спроси у меня.
+		AI_Output(self,other,"DIA_Addon_Garett_Hello_09_02");	//Я могу достать практически что угодно. Вино, оружие - все, что может тебе понадобиться.
+		AI_Output(self,other,"DIA_Addon_Garett_Hello_09_03");	//Кроме самогона. Если тебе нужен самогон, иди к Сэмюэлю.
+		if(!Npc_KnowsInfo(other,DIA_Addon_Skip_News))
+		{
+			Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
+			B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+		};
+	};
 };
 
 
@@ -108,8 +119,11 @@ func void DIA_Addon_Garett_Hello_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_01");	//Мое имя Гаретт. Если тебе что-нибудь понадобится, спроси у меня.
 	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_02");	//Я могу достать практически что угодно. Вино, оружие - все, что может тебе понадобиться.
 	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_03");	//Кроме самогона. Если тебе нужен самогон, иди к Сэмюэлю.
-	Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Skip_News))
+	{
+		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
+		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+	};
 };
 
 
@@ -126,7 +140,7 @@ instance DIA_Addon_Garett_Samuel(C_Info)
 
 func int DIA_Addon_Garett_Samuel_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) && (Samuel.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (Samuel.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -140,6 +154,7 @@ func void DIA_Addon_Garett_Samuel_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_03");	//Я бы посоветовал тебе запастись грогом.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_04");	//Не все наши ребята приветливо относятся к новичкам, надеюсь, ты меня понимаешь.
 	AI_Output(self,other,"DIA_Addon_Garett_Samuel_09_05");	//А бутылка-другая грога может сотворить настоящие чудеса!
+	Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
 	B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
 };
 
@@ -374,14 +389,15 @@ instance DIA_Addon_Garett_Trade(C_Info)
 	condition = DIA_Addon_Garett_Trade_Condition;
 	information = DIA_Addon_Garett_Trade_Info;
 	permanent = TRUE;
-	description = DIALOG_TRADE;
+//	description = DIALOG_TRADE;
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
 
 func int DIA_Addon_Garett_Trade_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Hello))
+	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern))
 	{
 		return TRUE;
 	};
@@ -389,7 +405,7 @@ func int DIA_Addon_Garett_Trade_Condition()
 
 func void DIA_Addon_Garett_Trade_Info()
 {
-	var int Garett_Random;
+	/*var int Garett_Random;
 	Garett_Random = Hlp_Random(3);
 	if(Garett_Random == 0)
 	{
@@ -402,7 +418,8 @@ func void DIA_Addon_Garett_Trade_Info()
 	else
 	{
 		B_Say(other,self,"$TRADE_3");
-	};
+	};*/
+	AI_Output(other,self,"DIA_Orlan_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	if(TradersHaveLimitedAmmo == TRUE)
 	{
@@ -416,5 +433,57 @@ func void DIA_Addon_Garett_Trade_Info()
 	{
 		B_RefreshAmmo(self,25);
 	};
+	Trade_IsActive = TRUE;
+};
+
+instance DIA_Addon_Garett_ArmorM(C_Info)
+{
+	npc = PIR_1357_Addon_Garett;
+	nr = 8;
+	condition = DIA_Addon_Garett_ArmorM_Condition;
+	information = DIA_Addon_Garett_ArmorM_Info;
+	permanent = TRUE;
+	description = "А как насчет доспехов получше?";
+};
+
+
+func int DIA_Addon_Garett_ArmorM_Condition()
+{
+	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && Npc_KnowsInfo(other,DIA_Addon_Greg_JoinPirates) && (Greg_NoHelpInNW == TRUE) && (Garett_Armor_Given == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Garett_ArmorM_Info()
+{
+	AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
+	AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
+	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
+	Info_AddChoice(DIA_Addon_Garett_ArmorM,Dialog_Back,DIA_Addon_Garett_ArmorM_Back);
+	Info_AddChoice(DIA_Addon_Garett_ArmorM,"Купить доспехи пирата. Защита: 55/55/15/0. (1300 золотых)",DIA_Addon_Garett_ArmorM_Buy);
+};
+
+func void DIA_Addon_Garett_ArmorM_Buy()
+{
+	AI_Output(other,self,"DIA_Lee_BuyArmorM_15_00");	//Дай мне эти доспехи.
+	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_PIR_M_Addon))
+	{
+		B_Say(self,other,"$ABS_GOOD");
+		CreateInvItem(hero,ITAR_PIR_M_Addon);
+		AI_PrintScreen("Доспехи пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		AI_EquipArmor(hero,ITAR_PIR_M_Addon);
+		Garett_Armor_Given = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Matteo_LEATHER_09_02");	//Эти доспехи стоят недешево - но они, определенно, стоят своих денег. Так что возвращайся, когда у тебя будет достаточно золота
+	};
+	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
+};
+
+func void DIA_Addon_Garett_ArmorM_Back()
+{
+	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
 };
 

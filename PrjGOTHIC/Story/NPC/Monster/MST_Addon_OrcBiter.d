@@ -35,9 +35,28 @@ func void Set_OrcBiter_Visuals()
 };
 
 
+func void Set_Zerk_Visuals()
+{
+	Mdl_SetVisual(self,"Scavenger.mds");
+	Mdl_ApplyOverlayMds(self,"Orcbiter.mds");
+	Mdl_SetVisualBody(self,"Zerk_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
+};
+
+
 instance OrcBiter(Mst_Default_OrcBiter)
 {
 	Set_OrcBiter_Visuals();
+	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,2);
+};
+
+instance Zerk(Mst_Default_OrcBiter)
+{
+	name[0] = "Болотный кусач";
+	fight_tactic = FAI_MOLERAT;
+	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
+	aivar[AIV_MM_FollowTime] = FOLLOWTIME_SHORT;
+	Set_Zerk_Visuals();
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,2);
 };

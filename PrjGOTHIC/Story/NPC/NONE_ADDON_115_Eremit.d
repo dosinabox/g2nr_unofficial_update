@@ -8,6 +8,8 @@ instance NONE_ADDON_115_Eremit(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_ToughGuy] = TRUE;
+	aivar[AIV_IgnoresFakeGuild] = TRUE;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);

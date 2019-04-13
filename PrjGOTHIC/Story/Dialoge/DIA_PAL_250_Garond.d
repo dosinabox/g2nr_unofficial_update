@@ -319,6 +319,10 @@ func void DIA_Garond_NeedProof_Info()
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
 	B_LogEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
 	B_LogEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
+	if(Silvestro_Ore == TRUE)
+	{
+		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
+	};
 };
 
 
@@ -378,7 +382,7 @@ func void DIA_Garond_Equipment_Info()
 	if(other.guild == GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Garond_Equipment_10_02");	//Поговори об этом с Тандором. Он выдаст тебе все необходимое.
-		if(!Npc_KnowsInfo(other,DIA_Keroloth_WantTeach) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo))
+		if(!Npc_KnowsInfo(other,DIA_Keroloth_WantTeach) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo) && !Npc_KnowsInfo(other,DIA_Dobar_Waffe))
 		{
 			Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
 			B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
@@ -510,7 +514,14 @@ func void DIA_Garond_Silvestro_Info()
 {
 	AI_Output(other,self,"DIA_Garond_Silvestro_15_00");	//Насчет шахты Сильвестро...
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_01");	//Ты видел его? Ты говорил с ним?
-	AI_Output(other,self,"DIA_Garond_Silvestro_15_02");	//Все, кто находился в шахте, мертвы. Растерзаны краулерами.
+	if(!Npc_HasItems(PAL_Leiche1,ItWr_Silvestro_MIS) || Npc_KnowsInfo(other,DIA_DiegoOw_Mine))
+	{
+		AI_Output(other,self,"DIA_Garond_Silvestro_15_02");	//Все, кто находился в шахте, мертвы. Растерзаны краулерами.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Neoras_Rezept_15_04");	//Я еще не нашел его.
+	};
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_03");	//А что насчет руды? Ты знаешь, сколько они добыли?
 	AI_Output(other,self,"DIA_Garond_Silvestro_15_04");	//Им удалось спрятать несколько ящиков. Они в пещере - по пути от замка к шахте.
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_05");	//Черт! Это были хорошие люди - да проявит Иннос милосердие к их душам.
@@ -932,7 +943,7 @@ func void DIA_Garond_DragonPlettBericht_Info()
 	var int CurrentDragonCount;
 	var int Drachengeld;
 	var int XP_LocalGarond;
-	B_LogEntry(TOPIC_DRACHENJAGD,"Гаронда по долгу службы должно интересовать, как обстоят дела с драконами, хотя мне кажется, ему на это наплевать.");
+//	B_LogEntry(TOPIC_DRACHENJAGD,"Гаронда по долгу службы должно интересовать, как обстоят дела с драконами, хотя мне кажется, ему на это наплевать.");
 	if(Garond_DragonCounter < MIS_KilledDragons)
 	{
 		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_00");	//У меня есть новости о драконах.
@@ -978,7 +989,8 @@ func void DIA_Garond_DragonPlettBericht_Info()
 	{
 		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_07");	//Ты можешь еще что-нибудь рассказать о драконах?
 		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_08");	//Мне нужно заниматься другими делами. Пусть мой помощник-стратег Орик расскажет тебе об этом.
-		B_LogEntry(TOPIC_DRACHENJAGD,"У офицера Гаронда, отвечающего за стратегию, Орика, возможно есть полезная информация для меня.");
+		B_LogEntry(TOPIC_DRACHENJAGD,"Гаронда по долгу службы должно интересовать, как обстоят дела с драконами, хотя мне кажется, ему на это наплевать.");
+		B_LogEntry(TOPIC_DRACHENJAGD,"У офицера Орика, отвечающего за стратегию, возможно, есть полезная информация для меня.");
 		Garond_OricExperte_OneTime = TRUE;
 	}
 	else if(MIS_AllDragonsDead == FALSE)

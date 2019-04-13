@@ -277,15 +277,15 @@ func void DIA_Addon_Edgor_Start_Info()
 		Info_AddChoice(DIA_Addon_Edgor_TrainStart,Dialog_Back,DIA_Addon_Edgor_TrainStart_BACK);
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 		{
-			Info_AddChoice(DIA_Addon_Edgor_TrainStart,"∆ало кровавой мухи (1 очко обучени€, 100 золота)",DIA_Addon_Edgor_TrainStart_Sting);
+			Info_AddChoice(DIA_Addon_Edgor_TrainStart,"∆ало кровавой мухи (1 очко обучени€, 100 золотых)",DIA_Addon_Edgor_TrainStart_Sting);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
 		{
-			Info_AddChoice(DIA_Addon_Edgor_TrainStart," рыль€ кровавой мухи (1 очко обучени€, 100 золота)",DIA_Addon_Edgor_TrainStart_Wing);
+			Info_AddChoice(DIA_Addon_Edgor_TrainStart," рыль€ кровавой мухи (1 очко обучени€, 100 золотых)",DIA_Addon_Edgor_TrainStart_Wing);
 		};
 		if(Knows_Bloodfly == FALSE)
 		{
-			Info_AddChoice(DIA_Addon_Edgor_TrainStart,"—екрет из жала (1 очко обучени€, 100 золота)",DIA_Addon_Edgor_TrainStart_GIFT);
+			Info_AddChoice(DIA_Addon_Edgor_TrainStart,"—екрет из жала (1 очко обучени€, 100 золотых)",DIA_Addon_Edgor_TrainStart_GIFT);
 		};
 	}
 	else

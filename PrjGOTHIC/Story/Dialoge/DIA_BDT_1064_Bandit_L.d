@@ -41,7 +41,11 @@ func int DIA_Bdt_1064_BanditGuard_FirstWarn_Condition()
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
+	if(B_Greg_ComesToDexter_OneTime == TRUE)
+	{
+		return FALSE;
+	}
+	else if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -69,7 +73,11 @@ instance DIA_Bdt_1064_BanditGuard_SecondWarn(C_Info)
 
 func int DIA_Bdt_1064_BanditGuard_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
+	if(B_Greg_ComesToDexter_OneTime == TRUE)
+	{
+		return FALSE;
+	}
+	else if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
 	{
 		return TRUE;
 	};
@@ -77,7 +85,7 @@ func int DIA_Bdt_1064_BanditGuard_SecondWarn_Condition()
 
 func void DIA_Bdt_1064_BanditGuard_SecondWarn_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Dexwache_Add_04_01");	//Ты хочешь, чтобы я тебя ткнул этой штукой. Еще ОДИН шаг - и я сброшу тебя в обрыв!
+	AI_Output(self,other,"DIA_Addon_Dexwache_Add_04_01");	//Ты хочешь, чтобы я тебя ткнул этой штукой? Еще ОДИН шаг - и я сброшу тебя в обрыв!
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Bdt_1064_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_SecondWarnGiven;
 	AI_StopProcessInfos(self);
@@ -97,7 +105,11 @@ instance DIA_Bdt_1064_BanditGuard_Attack(C_Info)
 
 func int DIA_Bdt_1064_BanditGuard_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
+	if(B_Greg_ComesToDexter_OneTime == TRUE)
+	{
+		return FALSE;
+	}
+	else if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
 	{
 		return TRUE;
 	};
@@ -126,7 +138,11 @@ instance DIA_Addon_BanditGuard_PERM(C_Info)
 
 func int DIA_BanditGuard_PERM_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == TRUE))
+	if(B_Greg_ComesToDexter_OneTime == TRUE)
+	{
+		return FALSE;
+	}
+	else if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
 		return TRUE;
 	};

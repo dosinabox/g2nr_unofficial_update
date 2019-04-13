@@ -30,7 +30,8 @@ const int HP_Blueplant = 5;
 const int Mana_Blueplant = 5;
 const int Value_Planeberry = 10;
 const int HP_Planeberry = 5;
-const int Value_Temp_Herb = 100;
+//const int Value_Temp_Herb = 100;
+const int Value_Temp_Herb = 10;
 const int HP_Temp_Herb = 5;
 const int Value_Perm_Herb = 500;
 const int HP_Perm_Herb = 5;
@@ -250,7 +251,7 @@ func void Use_Health_Herb_03()
 
 instance ItPl_Dex_Herb_01(C_Item)
 {
-	name = "Гоблинские ягоды";
+	name = "Гоблинская ягода";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
 	value = Value_Dex_Herb_01;

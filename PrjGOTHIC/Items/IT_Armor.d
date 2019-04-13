@@ -732,6 +732,38 @@ func void UnEquip_ITAR_SLD_L()
 };
 
 
+instance ITAR_SLD_M2(C_Item)
+{
+	name = "Средние доспехи наемника";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 50;
+	protection[PROT_BLUNT] = 50;
+	protection[PROT_POINT] = 50;
+	protection[PROT_FIRE] = 20;	//0;
+	protection[PROT_MAGIC] = 5;
+	value = VALUE_ITAR_SLD_M;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Sld_M.3ds";
+	visual_change = "Armor_Sld_M.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_SLD_M;
+	on_unequip = UnEquip_ITAR_SLD_M;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
 instance ITAR_SLD_M(C_Item)
 {
 	name = "Средние доспехи наемника";
@@ -1614,6 +1646,35 @@ instance ITAR_Dementor_Boss(C_Item)
 	wear = WEAR_TORSO;
 	visual = "ItAr_Xardas.3ds";
 	visual_change = "Armor_Dementor_Boss.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_Slave(C_Item)
+{
+	name = "Штаны раба";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 20;
+	protection[PROT_BLUNT] = 20;
+	protection[PROT_POINT] = 5; //20
+	protection[PROT_FIRE] = 10;	//0;
+	protection[PROT_MAGIC] = 0;
+	value = 5;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Prisoner.3ds";
+	visual_change = "Armor_Slave.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;

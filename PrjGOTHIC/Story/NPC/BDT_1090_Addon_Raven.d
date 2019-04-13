@@ -19,7 +19,9 @@ instance BDT_1090_Addon_Raven(Npc_Default)
 	attribute[ATR_MANA_MAX] = 666666;
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_BeliarWeapon_Raven);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
+	CreateInvItems(self,ItMi_GoldNugget_Addon,8);
+	CreateInvItems(self,ItPo_Health_03,2);
 	CreateInvItems(self,ItMi_Addon_Stone_01,1);
 	CreateInvItems(self,ItMi_Addon_Stone_02,1);
 	CreateInvItems(self,ItMi_Addon_Stone_03,1);

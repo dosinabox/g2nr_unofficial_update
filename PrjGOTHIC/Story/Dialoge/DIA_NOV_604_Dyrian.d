@@ -17,6 +17,10 @@ func int DIA_Dyrian_EXIT_Condition()
 
 func void DIA_Dyrian_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -73,8 +77,8 @@ func void DIA_Dyrian_Wurst_Info()
 	AI_Output(self,other,"DIA_Dyrian_Wurst_13_01");	//Спасибо. Надеюсь, это не последняя колбаса, что я получу здесь.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben += 1;
-	CreateInvItems(self,ItFo_Sausage,1);
-	B_UseItem(self,ItFo_Sausage);
+//	CreateInvItems(self,ItFo_Schafswurst,1);
+	B_UseItem(self,ItFo_Schafswurst);
 	if(Wurst_Gegeben >= 13)
 	{
 		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);

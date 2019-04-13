@@ -50,10 +50,12 @@ func void DIA_Babo_Hello_Info()
 	AI_Output(self,other,"DIA_Babo_Hello_03_02");	//Четыре недели. Тебе уже выдали боевой посох?
 	AI_Output(other,self,"DIA_Babo_Hello_15_03");	//Пока нет.
 	AI_Output(self,other,"DIA_Babo_Hello_03_04");	//Тогда возьми вот этот. Мы, послушники, всегда ходим с посохом, чтобы показать, что мы способны защитить себя. Ты умеешь сражаться?
+	CreateInvItems(other,ItMw_1h_Nov_Mace,1);
+	AI_PrintScreen("Боевой посох получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	AI_Output(other,self,"DIA_Babo_Hello_15_05");	//Ну, мне случалось пользоваться оружием...
 	AI_Output(self,other,"DIA_Babo_Hello_03_06");	//Если хочешь, я могу обучить тебя кое-чему. Но у меня есть просьба...
-	B_GiveInvItems(self,other,ItMw_1h_Nov_Mace,1);
-	AI_EquipBestMeleeWeapon(self);
+//	B_GiveInvItems(self,other,ItMw_1h_Nov_Mace,1);
+//	AI_EquipBestMeleeWeapon(self);
 };
 
 
@@ -259,14 +261,11 @@ func void DIA_Babo_Wurst_Info()
 	var string NovizeText;
 	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Babo_Wurst_15_00");	//Вот, держи колбасу.
-	AI_Output(self,other,"DIA_Babo_Wurst_03_01");	//У-у-у, баранья колбаса, отлично! Какой потрясающий вкус - м-м-м, дай мне еще одну колбаску!
-	AI_Output(other,self,"DIA_Babo_Wurst_15_02");	//Тогда у меня не хватит колбасы для других.
-	AI_Output(self,other,"DIA_Babo_Wurst_03_03");	//У тебя все равно на одну колбаску больше, чем нужно. Ну, на ту, что предназначена для тебя. Мы же друзья. Что мы будем делить какую-то колбасу?
-	AI_Output(self,other,"DIA_Babo_Wurst_03_04");	//Ну же, я дам тебе за нее свиток 'Огненная стрела'.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben += 1;
-	CreateInvItems(self,ItFo_Sausage,1);
-	B_UseItem(self,ItFo_Sausage);
+//	CreateInvItems(self,ItFo_Schafswurst,1);
+	B_UseItem(self,ItFo_Schafswurst);
 	if(Wurst_Gegeben >= 13)
 	{
 		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
@@ -277,6 +276,10 @@ func void DIA_Babo_Wurst_Info()
 		NovizeText = ConcatStrings(PRINT_NovizenLeft,NovizeLeft);
 		AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	};
+	AI_Output(self,other,"DIA_Babo_Wurst_03_01");	//У-у-у, баранья колбаса, отлично! Какой потрясающий вкус - м-м-м, дай мне еще одну колбаску!
+	AI_Output(other,self,"DIA_Babo_Wurst_15_02");	//Тогда у меня не хватит колбасы для других.
+	AI_Output(self,other,"DIA_Babo_Wurst_03_03");	//У тебя все равно на одну колбаску больше, чем нужно. Ну, на ту, что предназначена для тебя. Мы же друзья. Что мы будем делить какую-то колбасу?
+	AI_Output(self,other,"DIA_Babo_Wurst_03_04");	//Ну же, я дам тебе за нее свиток 'Огненная стрела'.
 	Info_ClearChoices(DIA_Babo_Wurst);
 	if(Npc_HasItems(other,ItFo_Schafswurst))
 	{
@@ -589,6 +592,10 @@ func int DIA_Babo_Kap3_EXIT_Condition()
 
 func void DIA_Babo_Kap3_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -829,7 +836,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke()
 //		B_GiveInvItems(other,self,ItWr_BabosLetter_MIS,1);
 		Npc_RemoveInvItem(other,ItWr_BabosLetter_MIS);
 		CreateInvItem(self,ItWr_BabosLetter_MIS);
-		AI_PrintScreen("Письмо Бабо отдано",-1,43,FONT_ScreenSmall,2);
+		AI_PrintScreen("Письмо Бабо отдано",-1,40,FONT_ScreenSmall,2);
 	};
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_03_03");	//Я не хотел обидеть тебя, но я просто очень переживаю.
@@ -999,6 +1006,10 @@ func int DIA_Babo_Kap4_EXIT_Condition()
 
 func void DIA_Babo_Kap4_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -1024,6 +1035,10 @@ func int DIA_Babo_Kap5_EXIT_Condition()
 
 func void DIA_Babo_Kap5_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 

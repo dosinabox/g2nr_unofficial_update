@@ -306,7 +306,7 @@ instance CAMMODMOBBED_BACK(CCAMSYS_DEF)
 	bestelevation = 80;
 	maxelevation = 90;
 	minelevation = 60;
-	bestazimuth = 90;
+	bestazimuth = -90;
 	minazimuth = 0;
 	maxazimuth = 180;
 };
@@ -319,7 +319,7 @@ instance CAMMODMOBBEDHIGH(CCAMSYS_DEF)
 	bestelevation = 80;
 	maxelevation = 90;
 	minelevation = 60;
-	bestazimuth = 90;
+	bestazimuth = -90;
 	minazimuth = 0;
 	maxazimuth = 180;
 };
@@ -345,7 +345,7 @@ instance CAMMODMOBBEDHIGH_BACK(CCAMSYS_DEF)
 	bestelevation = 80;
 	maxelevation = 90;
 	minelevation = 60;
-	bestazimuth = 90;
+	bestazimuth = -90;
 	minazimuth = 0;
 	maxazimuth = 180;
 };
@@ -391,11 +391,11 @@ instance CAMMODMOBBEDLOW_BACK(CCAMSYS_DEF)
 
 instance CAMMODMOBBENCH(CCAMSYS_DEF)
 {
-	bestrange = 1.2;
-	minrange = 0.5;
-	maxrange = 1.9;
-	bestelevation = 10;
-	minelevation = 30;
+	bestrange = 2;
+	minrange = 1.2;
+	maxrange = 2.8;
+	bestelevation = 20;
+	minelevation = 15;
 	maxelevation = 90;
 	bestazimuth = 0;
 	minazimuth = -180;

@@ -212,7 +212,7 @@ func void DIA_Moe_Hallo_Alles()
 instance DIA_Moe_Harbor(C_Info)
 {
 	npc = VLK_432_Moe;
-	nr = 998;
+	nr = 800;
 	condition = DIA_Moe_Harbor_Condition;
 	information = DIA_Moe_Harbor_Info;
 	permanent = TRUE;

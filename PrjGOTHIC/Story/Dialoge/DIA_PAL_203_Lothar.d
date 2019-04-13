@@ -70,11 +70,11 @@ func void DIA_Lothar_FirstEXIT_Info()
 		Lothar_ImOV = TRUE;
 		Npc_ExchangeRoutine(self,"START");
 	};
-	if(Canthar_InStadt == FALSE)
+	/*if(Canthar_InStadt == FALSE)
 	{
 		Npc_ExchangeRoutine(Canthar,"START");
 		Canthar_InStadt = TRUE;
-	};
+	};*/
 	AI_StopProcessInfos(self);
 };
 
@@ -113,14 +113,15 @@ func void DIA_Lothar_Hallo_Info()
 	AI_Output(self,other,"DIA_Lothar_Hallo_01_07");	//Я Лотар. Паладин короля и преданный слуга Инноса.
 	AI_Output(self,other,"DIA_Lothar_Hallo_01_08");	//Наш командующий, лорд Хаген, вверил мне задачу объяснять всем новоприбывшим новые законы, которым должны подчиняться все жители этого города.
 	AI_Output(self,other,"DIA_Addon_Lothar_Hallo_01_00");	//Недавно в городе начали пропадать люди, так что горожанам нужно быть осторожнее, чтобы не разделить эту судьбу.
-	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+	/*if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
 	{
 		B_StartOtherRoutine(Lester,"XARDAS");
 	};
 	if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
 	{
 		Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
-	};
+	};*/
+	B_PlayerEnteredCity();
 };
 
 
@@ -168,7 +169,8 @@ instance DIA_Lothar_EyeInnos(C_Info)
 
 func int DIA_Lothar_EyeInnos_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+//	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
 	{
 		return TRUE;
 	};
@@ -210,7 +212,8 @@ instance DIA_Lothar_Dragons(C_Info)
 
 func int DIA_Lothar_Dragons_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+//	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
 	{
 		return TRUE;
 	};
@@ -248,7 +251,8 @@ instance DIA_Addon_Lothar_Ornament(C_Info)
 
 func int DIA_Addon_Lothar_Ornament_Condition()
 {
-	if((LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_Running))
+//	if((LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_Running))
+	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -260,7 +264,10 @@ func void DIA_Addon_Lothar_Ornament_Info()
 	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_01_01");	//Конечно. Мы уничтожили его. Оно угрожало близлежащим фермам.
 	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_01_02");	//А почему тебя это интересует?
 	Info_ClearChoices(DIA_Addon_Lothar_Ornament);
-	Info_AddChoice(DIA_Addon_Lothar_Ornament,"Я ищу часть металлического орнамента.",DIA_Addon_Lothar_Ornament_suche);
+	if(Lord_Hagen_GotOrnament == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Lothar_Ornament,"Я ищу часть металлического орнамента.",DIA_Addon_Lothar_Ornament_suche);
+	};
 	Info_AddChoice(DIA_Addon_Lothar_Ornament,"Ты думаешь, это нормально?",DIA_Addon_Lothar_Ornament_normal);
 };
 
@@ -295,7 +302,8 @@ instance DIA_Lothar_WhoDragons(C_Info)
 
 func int DIA_Lothar_WhoDragons_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+//	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
 		return TRUE;
 	};
@@ -491,6 +499,10 @@ func void DIA_Lothar_ToMiliz_Info()
 		AI_Output(self,other,"DIA_Lothar_Add_01_27");	//По прямому указанию лорда Хагена, на службу в ополчение принимаются только граждане города.
 		AI_Output(other,self,"DIA_Lothar_Add_15_28");	//Понимаю.
 	};
+	if((MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS) || (MIS_Thorben_GetBlessings == LOG_SUCCESS) || (MIS_Matteo_Gold == LOG_SUCCESS) || (MIS_Bosper_WolfFurs == LOG_SUCCESS) || (MIS_Bosper_Bogen == LOG_SUCCESS))
+	{
+		AI_Output(self,other,"DIA_Lothar_Add_01_12");	//Я слышал, ты уже получил одобрение некоторых мастеров.
+	};
 	AI_Output(self,other,"DIA_Lothar_Add_01_29");	//Если ты хочешь узнать больше, поговори с лордом Андрэ в казармах.
 };
 
@@ -632,7 +644,7 @@ func void B_Lothar_Blubb()
 //	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
 //	AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
 //	AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
-	AI_Output(self,other,"DIA_Lothar_Add_01_12");	//Я слышал, ты уже получил одобрение некоторых мастеров.
+//	AI_Output(self,other,"DIA_Lothar_Add_01_12");	//Я слышал, ты уже получил одобрение некоторых мастеров.
 //	AI_Output(self,other,"DIA_Lothar_Add_01_13");	//Похоже, ты полон решимости добиться своего, да?
 //	AI_Output(self,other,"DIA_Lothar_Add_01_01");	//Ты должен повиноваться законам, как и все остальные!
 //	AI_Output(self,other,"DIA_Lothar_Add_01_02");	//Лорд Хаген не принимает.
@@ -758,7 +770,7 @@ instance DIA_Lothar_OWRunning(C_Info)
 
 func int DIA_Lothar_OWRunning_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && !Npc_HasItems(hero,ItWr_PaladinLetter_MIS))
+	if((MIS_OLDWORLD == LOG_Running) && !Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
 		return TRUE;
 	};
@@ -789,7 +801,7 @@ instance DIA_Lothar_OWRunningBrief(C_Info)
 
 func int DIA_Lothar_OWRunningBrief_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && Npc_HasItems(hero,ItWr_PaladinLetter_MIS))
+	if((MIS_OLDWORLD == LOG_Running) && Npc_HasItems(hero,ItWr_PaladinLetter_MIS) && Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
 		return TRUE;
 	};
@@ -798,8 +810,11 @@ func int DIA_Lothar_OWRunningBrief_Condition()
 func void DIA_Lothar_OWRunningBrief_Info()
 {
 	AI_Output(other,self,"DIA_Lothar_Add_15_59");	//У меня есть доказательство! Вот письмо от командующего Гаронда!
+	AI_PrintScreen("Письмо Гаронда лорду Хагену отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Lothar_Add_01_60");	//Так драконы действительно существуют?
+	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Lothar_Add_01_61");	//Я был несправедлив к тебе. Я буду молить Инноса о прощении за мое поведение.
+	AI_PrintScreen("Письмо Гаронда лорду Хагену получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_StopProcessInfos(self);
 };
 
@@ -817,7 +832,8 @@ instance DIA_Lothar_PERM(C_Info)
 
 func int DIA_Lothar_PERM_Condition()
 {
-	if((Mil_305_schonmalreingelassen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+//	if((Mil_305_schonmalreingelassen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Mil_305_schonmalreingelassen == TRUE)
 	{
 		return TRUE;
 	};

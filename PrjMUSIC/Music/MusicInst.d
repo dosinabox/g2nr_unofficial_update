@@ -515,3 +515,68 @@ instance END_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "dlc_dayfgt.sgt";
 };
 
+/*instance TAV_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "lob_daystd.sgt";
+};
+
+instance TAV_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "kh_dayfgt.sgt";
+};*/
+
+instance BOR_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "kh_daystd.sgt";
+};
+
+instance BOR_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "kh_dayfgt.sgt";
+};
+
+instance OBS_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "kh_daystd.sgt";
+};
+
+instance OBS_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "kh_dayfgt.sgt";
+};
+
+instance NWP_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "may_daystd.sgt";
+};
+
+instance NWP_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "may_dayfgt.sgt";
+};
+
+instance TRO_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance TRO_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+
+instance HOF_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "lob_daystd.sgt";
+};
+
+instance RVE_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "bdt_day_std.sgt";
+};
+
+instance RVE_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "adw_day_fgt.sgt";
+};
+

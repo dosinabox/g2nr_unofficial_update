@@ -116,8 +116,8 @@ instance ItKe_OrkKnastDI_MIS(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = "Ключ полковника орков";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItKe_EVT_UNDEAD_01(C_Item)
@@ -129,8 +129,8 @@ instance ItKe_EVT_UNDEAD_01(C_Item)
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = "Ключ Архола";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItKe_EVT_UNDEAD_02(C_Item)
@@ -142,8 +142,8 @@ instance ItKe_EVT_UNDEAD_02(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ ключника";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
@@ -155,8 +155,8 @@ instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = "Ключ черного мага";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItWr_LastDoorToUndeadDrgDI_MIS(C_Item)
@@ -208,8 +208,8 @@ instance ItKe_ChestMasterDementor_MIS(C_Item)
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = "Ключ от сундука черного мага";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItWr_Rezept_MegaDrink_MIS(C_Item)

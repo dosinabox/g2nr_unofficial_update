@@ -40,7 +40,7 @@ func void B_AssessMagic()
 		AI_StartState(self,ZS_MagicFreeze,0,"");
 		return;
 	};
-	if((Npc_GetLastHitSpellID(self) == SPL_ChargeZap) && (self.guild != GIL_DRAGON))
+	if((Npc_GetLastHitSpellID(self) == SPL_ChargeZap) && (self.guild != GIL_DRAGON) && (other.guild != GIL_DRAGON))
 	{
 		/*Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);

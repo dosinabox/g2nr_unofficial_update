@@ -95,6 +95,7 @@ func void B_GiveTradeInv_Zuris(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_03,20);
 		CreateInvItems(slf,ItPo_Perm_Health,1);
 		CreateInvItems(slf,ItPo_Speed,1);
+		CreateInvItems(slf,ItFo_Addon_Pfeffer_01,1);
 		Zuris_ItemsGiven_Chapter_5 = TRUE;
 	};
 };

@@ -471,7 +471,8 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 		}
 		else if(skill == SPL_Pyrokinesis)
 		{
-			kosten = 10;
+//			kosten = 10;
+			kosten = 15;
 		}
 		else if(skill == SPL_WaterFist)
 		{
@@ -479,7 +480,8 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 		}
 		else if(skill == SPL_Firestorm)
 		{
-			kosten = 15;
+//			kosten = 15;
+			kosten = 10;
 		}
 		else if(skill == SPL_IceWave)
 		{

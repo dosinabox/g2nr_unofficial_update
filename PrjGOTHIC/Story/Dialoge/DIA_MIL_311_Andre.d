@@ -76,6 +76,14 @@ func void B_Andre_CantharFalle()
 {
 	AI_Output(self,other,"B_Andre_CantharFalle_08_00");	//Ко мне приходил торговец Кантар. Он сказал, что ты беглый каторжник из колонии.
 	AI_Output(self,other,"B_Andre_CantharFalle_08_01");	//Я не знаю, правда ли это, и предпочитаю не спрашивать тебя об этом, но ты должен уладить этот вопрос.
+	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
+	{
+		if(Andre_Steckbrief == FALSE)
+		{
+			AI_Output(self,other,"DIA_Andre_Add_08_05");	//Мне не нужны в ополчении люди с запятнанной репутацией.
+		};
+	};
+	B_RemoveSarahWeapons();
 	B_RemoveNpc(Sarah);
 	if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
 	{
@@ -621,7 +629,14 @@ func void DIA_Addon_Andre_MartinEmpfehlung_Info()
 	B_GiveInvItems(other,self,ItWr_Martin_MilizEmpfehlung_Addon,1);
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_02");	//(удивленно) Ну надо же!.. Тебе, должно быть, пришлось потрудиться! Не так-то просто получить нечто подобное от Мартина.
-	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_03");	//Ладно, я убежден. Если Мартин за тебя ручается, я согласен тебя принять. Скажи мне, когда ты будешь готов.
+	if(hero.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_03");	//Ладно, я убежден. Если Мартин за тебя ручается, я согласен тебя принять. Скажи мне, когда ты будешь готов.
+	}
+	else
+	{
+		B_GivePlayerXP(50);
+	};
 	Andre_Knows_MartinEmpfehlung = TRUE;
 };
 
@@ -822,6 +837,12 @@ func void DIA_Andre_Auslieferung_Halvor()
 {
 	AI_Teleport(Halvor,"NW_CITY_HABOUR_KASERN_HALVOR");
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Halvor_15_00");	//Халвор торгует краденым. Он продает товары, украденные бандитами у торговцев.
+	AI_WaitTillEnd(self,other);
+	if(Npc_HasItems(other,ItWr_HalvorMessage))
+	{
+		B_GiveInvItems(other,self,ItWr_HalvorMessage,1);
+		B_UseFakeScroll();
+	};
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_01");	//Так вот, кто этим занимается. Мои люди немедленно схватят его.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_02");	//Я не думаю, что это будет сложно. Я готов вручить тебе твою награду прямо сейчас.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
@@ -854,6 +875,11 @@ func void DIA_Andre_Auslieferung_Canthar()
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Canthar_15_00");	//Торговец Кантар пытается избавиться от Сары!
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Canthar_08_01");	//Сары? Торговки оружием с рыночной площади?
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Canthar_15_02");	//Я должен был подсунуть Саре письмо, которое подтвердило бы, что она поставляет оружие Онару.
+	if(Npc_HasItems(other,ItWr_Canthars_KomproBrief_MIS))
+	{
+		B_GiveInvItems(other,self,ItWr_Canthars_KomproBrief_MIS,1);
+		B_UseFakeScroll();
+	};
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Canthar_08_03");	//Понимаю. Я с радостью заплачу награду за этого ублюдка. Можешь считать, что он уже за решеткой.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 	B_NpcSetJailed(Canthar);
@@ -874,6 +900,7 @@ func void DIA_Andre_Auslieferung_Sarah()
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо с деталями поставки оружия ему.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_03");	//Она поплатится за это. Я прикажу арестовать ее.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
+	B_RemoveSarahWeapons();
 	B_NpcSetJailed(Sarah);
 	B_StartOtherRoutine(Sarah,"KNAST");
 	B_StartOtherRoutine(Canthar,"MARKTSTAND");

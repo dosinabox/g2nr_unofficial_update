@@ -354,7 +354,7 @@ func int DIA_Addon_Fortuno_more_Condition()
 func void DIA_Addon_Fortuno_more_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_more_15_00");	//И?..
-	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_01");	//Ах! Я... Я снова помню! Теперь я понимаю... О, Аданос, что же я наделал?
+	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_01");	//Ах! Я снова помню! Теперь я понимаю... О, Аданос, что же я наделал?
 	AI_Output(other,self,"DIA_Addon_Fortuno_more_15_02");	//Да, что ты наделал? И самое главное - что наделал Ворон?
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_03");	//Я помог ему... заключить контракт. С НИМ. Ему были нужны различные зелья... Я варил их для него.
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_04");	//Он пытался открыть портал и попасть в храм.

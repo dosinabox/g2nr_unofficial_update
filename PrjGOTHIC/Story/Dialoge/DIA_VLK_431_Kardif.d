@@ -85,7 +85,14 @@ func int DIA_Kardif_Hi_Condition()
 func void DIA_Kardif_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Kardif_Hi_15_00");	//Как дела?
-	AI_Output(self,other,"DIA_Kardif_Hi_14_01");	//Если ты хочешь что-нибудь выпить, заказывай.
+	if(self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST)
+	{
+		AI_Output(self,other,"DIA_Kardif_Hi_14_01");	//Если ты хочешь что-нибудь выпить, заказывай.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Kardif_Hallo_14_01");	//А тебе какое до этого дело?
+	};
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Кардиф торгует напитками в таверне в гавани.");
 };
@@ -201,7 +208,7 @@ instance DIA_Kardif_TRADE(C_Info)
 
 func int DIA_Kardif_TRADE_Condition()
 {
-	if(Kardif_OneQuestion == FALSE)
+	if((Kardif_OneQuestion == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
 	{
 		return TRUE;
 	};
@@ -214,7 +221,34 @@ func void DIA_Kardif_TRADE_Info()
 	Trade_IsActive = TRUE;
 };
 
+/////////////////////////////////////////////////////
+instance DIA_Kardif_NOTRADE(C_Info)
+{
+	npc = VLK_431_Kardif;
+	nr = 2;
+	condition = DIA_Kardif_NOTRADE_Condition;
+	information = DIA_Kardif_NOTRADE_Info;
+	permanent = TRUE;
+	description = "Дай мне что-нибудь выпить.";
+};
 
+
+func int DIA_Kardif_NOTRADE_Condition()
+{
+	if((Kardif_OneQuestion == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Kardif_NOTRADE_Info()
+{
+	AI_Output(other,self,"DIA_Kardif_TRADE_15_00");	//Дай мне что-нибудь выпить.
+	AI_Output(self,other,"DIA_Kardif_Hallo_14_01");	//А тебе какое до этого дело?
+	AI_StopProcessInfos(self);
+};
+
+/////////////////////////////////////////////////////
 instance DIA_Kardif_TradeInfo(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -390,10 +424,17 @@ func void DIA_Addon_Kardif_MissingPeople_Info()
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_03");	//В нижней части города тоже исчезли люди.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_04");	//Если хочешь знать больше, поговори с Корагоном.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_05");	//У него пивная в нижней части города, и думаю, что от его уха не укрываются такие новости.
-		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_06");	//Халвор, торговец рыбой из лавки на пристани, тоже может кое-что знать - к нему заходит много людей.
+		if(Halvor_Ausgeliefert == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_06");	//Халвор, торговец рыбой из лавки на пристани, тоже может кое-что знать - к нему заходит много людей.
+			B_LogEntry(TOPIC_Addon_WhoStolePeople,"Кардиф говорит, что мне стоит поговорить о пропавших людях с Корагоном, владельцем трактира в нижней части города, а также с Халвором, торгующим рыбой в гавани.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_Addon_WhoStolePeople,"Кардиф говорит, что мне стоит поговорить о пропавших людях с Корагоном, владельцем трактира в нижней части города.");
+		};
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-		B_LogEntry(TOPIC_Addon_WhoStolePeople,"Кардиф говорит, что мне стоит поговорить о пропавших людях с Корагоном, владельцем трактира в нижней части города, а также с Халвором, торгующим рыбой в гавани.");
 		DIA_Addon_Kardif_MissingPeople_permanent = TRUE;
 	}
 	else
@@ -456,6 +497,7 @@ func void DIA_Kardif_Lernen_Info()
 		};
 		if(!Npc_KnowsInfo(other,DIA_Brahim_GREET))
 		{
+			Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 			B_LogEntry(TOPIC_CityTrader,"Ибрагим рисует карты и продает их в гавани.");
 		};
 		DIA_Kardif_Lernen_permanent = TRUE;
@@ -535,7 +577,7 @@ func void DIA_Kardif_Diebeswerk2_Info()
 		AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_02");	//Выкладывай, что там у тебя?
 		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.
 		AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_04");	//И?
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном плотником.
+		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном, плотником.
 		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_06");	//Говорят, что этот Дарон носит с собой несметные сокровища. Но ты ничего не слышал от меня, понятно?
 		DIA_Kardif_Diebeswerk2_permanent = TRUE;
 	}

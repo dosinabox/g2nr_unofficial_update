@@ -66,7 +66,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 			{
 				PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] = TRUE;
 				PrintScreen(PRINT_LearnRunes,-1,-1,FONT_Screen,2);
-				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Святая стрела': 1 святая вода, свиток не нужен.");
+				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Святой удар': 1 святая вода. Свиток не нужен.");
 			};
 		}
 		else if(hero.guild == GIL_PAL)

@@ -66,6 +66,17 @@ func int DIA_Addon_Riordian_WhatToFind_Condition()
 func void DIA_Addon_Riordian_WhatToFind_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_WhatToFind_15_00");	//Что вы здесь уже обнаружили?
+	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_03");	//На востоке, недалеко отсюда, мы нашли тело рыбака.
+	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_04");	//Тебе стоит на него взглянуть.
+	if(Npc_HasItems(other,ITWr_Addon_William_01))
+	{
+		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
+		AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
+	};
+	if(Saturas_AboutWilliam == FALSE)
+	{
+		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
+	};
 	AI_Output(self,other,"DIA_Addon_Riordian_WhatToFind_10_01");	//На востоке раскинулось огромное болото, на котором находится большая крепость.
 	AI_Output(self,other,"DIA_Addon_Riordian_WhatToFind_10_02");	//Насколько мы поняли, в ней обосновались бандиты.
 	AI_Output(self,other,"DIA_Addon_Riordian_WhatToFind_10_03");	//На твоем месте я бы туда не ходил. Там повсюду сторожевые посты и охранники.
@@ -164,21 +175,11 @@ func void DIA_Addon_Riordian_Gegend_ost()
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_ost_10_03");	//Будь осторожнее.
 };
 
-
-var int DIA_Addon_Riordian_Gegend_west_OneTime;
-
 func void DIA_Addon_Riordian_Gegend_west()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_Gegend_west_15_00");	//Вы уже побывали на западе?
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_01");	//Еще нет. Но мы знаем, что там находится берег моря.
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_02");	//Видимо, на этом берегу устроили свой лагерь пираты.
-	if((DIA_Addon_Riordian_Gegend_west_OneTime == FALSE) && Npc_HasItems(VLK_4304_Addon_William,ITWr_Addon_William_01))
-	{
-		AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_03");	//На востоке, недалеко отсюда, мы нашли тело рыбака.
-		AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_04");	//Тебе стоит на него взглянуть.
-		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
-		DIA_Addon_Riordian_Gegend_west_OneTime = TRUE;
-	};
 };
 
 

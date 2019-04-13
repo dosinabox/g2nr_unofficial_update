@@ -7,6 +7,8 @@ instance PC_ThiefOW(Npc_Default)
 	voice = 11;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_IgnoresFakeGuild] = TRUE;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_FollowDist] = 300;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;

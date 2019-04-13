@@ -1,5 +1,5 @@
 
-const int fix_version_start = 18;
+const int fix_version_start = 19;
 var int fix_version_save;
 
 func void startup_global()
@@ -568,8 +568,8 @@ func void startup_addon_part_piratescamp_01()
 	Wld_InsertNpc(Zombie01,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
 	Wld_InsertNpc(MayaZombie02,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
 	Wld_InsertNpc(Zombie03,"ADW_PIRATECAMP_LONEBEACH_CAVE_03");
-	Wld_InsertNpc(Lurker_SecretCave1,"ADW_PIRATECAMP_SECRETCAVE_01");
-	Wld_InsertNpc(Lurker_SecretCave2,"ADW_PIRATECAMP_SECRETCAVE_01");
+//	Wld_InsertNpc(Lurker_SecretCave1,"ADW_PIRATECAMP_SECRETCAVE_01");
+//	Wld_InsertNpc(Lurker_SecretCave2,"ADW_PIRATECAMP_SECRETCAVE_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
 	Wld_InsertNpc(Meatbug,"ADW_PIRATECAMP_LUMBER_01");
@@ -1379,11 +1379,14 @@ func void Startup_Surface()
 	Wld_InsertNpc(Swampshark,"FP_ROAM_SWAMP_7_01");
 	Wld_InsertNpc(SwampDrone,"OW_DRAGONSWAMP_023");
 	Wld_InsertNpc(SwampDrone,"OW_DRAGONSWAMP_023");
-	Wld_InsertNpc(Swamprat,"OW_PATH_046");
+//	Wld_InsertNpc(Swamprat,"OW_PATH_046");
+	Wld_InsertNpc(Zerk,"OW_PATH_046");
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_9_02");
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_9_02");
-	Wld_InsertNpc(Swamprat,"FP_ROAM_SWAMP_10_01");
-	Wld_InsertNpc(Swamprat,"FP_ROAM_SWAMP_11_01");
+//	Wld_InsertNpc(Swamprat,"FP_ROAM_SWAMP_10_01");
+//	Wld_InsertNpc(Swamprat,"FP_ROAM_SWAMP_11_01");
+	Wld_InsertNpc(Zerk,"FP_ROAM_SWAMP_10_01");
+	Wld_InsertNpc(Zerk,"FP_ROAM_SWAMP_11_01");
 	Wld_InsertNpc(SwampDrone,"FP_ROAM_SWAMP_17_01");
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_13_01");
 	Wld_InsertNpc(Draconian,"FP_ROAM_SWAMP_14_02");
@@ -1856,14 +1859,15 @@ func void INIT_SUB_NewWorld_Part_City_01()
 	Wld_AssignRoomToGuild("hafen05",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen06",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen07",GIL_VLK);
-	if(Edda_Schlafplatz == TRUE)
+	Wld_AssignRoomToGuild("hafen08",GIL_NONE);
+	/*if(Edda_Schlafplatz == TRUE)
 	{
 		Wld_AssignRoomToGuild("hafen08",GIL_NONE);
 	}
 	else
 	{
 		Wld_AssignRoomToGuild("hafen08",GIL_VLK);
-	};
+	};*/
 	Wld_AssignRoomToGuild("hafen09",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("hafen10",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen11",GIL_VLK);
@@ -2346,6 +2350,7 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(BDT_1060_Dexter,"NW_CASTLEMINE_HUT_10");
 	Wld_InsertNpc(BDT_1061_Wache,"NW_CASTLEMINE_PATH_03");
 	Wld_InsertNpc(BDT_1062_Bandit_L,"NW_CASTLEMINE_TOWER_CAMPFIRE_04");
+	Wld_InsertNpc(BDT_1063_Bandit_L,"NW_CASTLEMINE_HUT_BENCH_CAVE");
 	Wld_InsertNpc(BDT_1064_Bandit_L,"NW_CASTLEMINE_HUT_01");
 	Wld_InsertNpc(BDT_1065_Bandit_L,"NW_CASTLEMINE_HUT_01");
 	Wld_InsertNpc(BDT_1066_Bandit_L,"NW_CASTLEMINE_HUT_01");
@@ -2439,6 +2444,7 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 	Wld_InsertNpc(Lesser_Skeleton,"NW_CRYPT_MONSTER06");
 	Wld_InsertNpc(Wisp,"NW_BIGFARM_FOREST_03_NAVIGATION");
 	Wld_InsertNpc(Keiler,"NW_BIGFARM_FOREST_03_NAVIGATION");
+//	Wld_InsertNpc(BDT_1017_Bandit_L,"NW_BIGFARM_FOREST_03_NAVIGATION2");
 	Wld_InsertNpc(Keiler,"NW_FARM4_WOOD_NAVIGATION_09");
 	Wld_InsertNpc(Keiler,"NW_FARM4_WOOD_NAVIGATION_09");
 	Wld_InsertNpc(Wolf,"NW_CASTLEMINE_TROLL_05");

@@ -137,6 +137,7 @@ func void DIA_Lares_HALLO_Info()
 		AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.
 		B_GivePlayerXP(500);
 	};
+	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Lares_HALLO);
 	Info_AddChoice(DIA_Lares_HALLO,"Мы уже встречались раньше?",DIA_Lares_HALLO_NO);
 	Info_AddChoice(DIA_Lares_HALLO,"Эй, Ларес, старый пройдоха! А как ты попал сюда?",DIA_Lares_HALLO_YES);
@@ -167,6 +168,8 @@ func void B_Lares_AboutLee()
 	AI_Output(self,other,"B_Lares_AboutLee_09_00");	//Я выбрался из колонии вместе с ним. Сразу после того, как Барьер был уничтожен.
 	AI_Output(self,other,"B_Lares_AboutLee_09_01");	//Он и его парни сейчас на ферме лендлорда Онара.
 	AI_Output(self,other,"B_Lares_AboutLee_09_02");	//Он договорился с этим фермером. Ли с парнями защищает ферму, а Онар кормит их за это.
+	AI_Output(self,other,"DIA_Lares_WhyInCity_09_03");	//А зачем ТЫ пришел в город?
+	AI_Output(other,self,"DIA_Lares_Alternative_15_00");	//У меня есть выбор?
 };
 
 func void DIA_Lares_HALLO_LEE()
@@ -518,6 +521,7 @@ func void DIA_Addon_Lares_GetRangerArmor_Learn()
 	if(!Npc_IsDead(Sld_805_Cord))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_02");	//Если тебе нужно улучшить свое мастерство ближнего боя, поговори с Кордом. Он мастер клинка.
+		Cord_RangerHelp_Fight = TRUE;
 	};
 	if(!Npc_IsDead(BAU_961_Gaan))
 	{
@@ -1119,6 +1123,10 @@ func void DIA_Lares_AboutSld_Schiff()
 	AI_Output(self,other,"DIA_Lares_Schiff_09_02");	//Но это может занять некоторое время...
 	AI_Output(other,self,"DIA_Lares_Schiff_15_03");	//Почему?
 	AI_Output(self,other,"DIA_Lares_Schiff_09_04");	//Тебе лучше спросить об этом Ли, если встретишь его... У него есть план.
+	if(Lares_WayToOnar == TRUE)
+	{
+		AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//Я могу отвести тебя туда, если хочешь. Я все равно уже слишком долго здесь ошиваюсь.
+	};
 };
 
 func void DIA_Lares_AboutSld_WayToOnar()
@@ -1183,6 +1191,7 @@ func void DIA_Lares_WhereGuildOfThieves_Info()
 	AI_Output(self,other,"DIA_Lares_WhereGuildOfThieves_09_01");	//(смеется) Не обижайся, но даже если бы знал, не сказал бы.
 	AI_Output(self,other,"DIA_Lares_WhereGuildOfThieves_09_02");	//Эти люди обычно ОЧЕНЬ жестко реагируют на такие вещи.
 	AI_Output(self,other,"DIA_Lares_WhereGuildOfThieves_09_03");	//Если ты собираешься связаться с ними, тебе нужно быть поосторожнее.
+	AI_Output(self,other,"DIA_Lares_WegZumHof_09_02");	//Ополчение в гавани бывает редко, но все же не стоит рисковать и вызывать их подозрения...
 };
 
 
@@ -1270,6 +1279,7 @@ func void DIA_Lares_OtherGuild_Info()
 		}
 		else
 		{
+			AI_Output(self,other,"DIA_Lares_OtherGuild_09_09");	//Я слышал, ты был принят.
 			AI_Output(self,other,"DIA_Lares_OtherGuild_09_02");	//Так теперь ты один из паладинов короля!
 		};
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_03");	//(лукаво) Только ты мог провернуть такое...
@@ -1450,6 +1460,11 @@ func void DIA_Lares_GUIDE_Info()
 	};
 	AI_Output(self,other,"DIA_Lares_GUIDE_09_02");	//Что ж, оставшуюся часть пути ты сможешь пройти сам. А мне нужно возвращаться в город...
 	AI_Output(self,other,"DIA_Lares_GUIDE_09_03");	//Просто пойдешь по этой дороге. Но помни - сумей постоять за себя, не нарушай закон и все будет в порядке.
+	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Lares_Paladine))
+	{
+		AI_Output(self,other,"DIA_Lares_Alternative_09_01");	//На твоем месте я бы пошел на ферму Онара и поговорил с Ли.
+		AI_Output(self,other,"DIA_Lares_Alternative_09_02");	//Я уверен, он найдет способ попасть в верхний квартал.
+	};
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");

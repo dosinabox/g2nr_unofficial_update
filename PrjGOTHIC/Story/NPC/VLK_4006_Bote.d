@@ -4,10 +4,10 @@ instance VLK_4006_Bote(Npc_Default)
 	name[0] = "Посыльный";
 	guild = GIL_VLK;
 	id = 4006;
-	voice = 6;
+	voice = 9;
 	flags = 0;
-	npcType = NPCTYPE_AMBIENT;
-	B_SetAttributesToChapter(self,3);
+	npcType = NPCTYPE_MAIN;
+	B_SetAttributesToChapter(self,1);
 	attribute[ATR_HITPOINTS_MAX] = 500;
 	attribute[ATR_HITPOINTS] = 500;
 	fight_tactic = FAI_HUMAN_COWARD;

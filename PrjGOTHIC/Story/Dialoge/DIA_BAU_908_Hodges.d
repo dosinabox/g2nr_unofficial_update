@@ -38,7 +38,7 @@ instance DIA_Hodges_HALLO(C_Info)
 
 func int DIA_Hodges_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)) && (other.guild == GIL_NONE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
 	{
 		return TRUE;
 	};
@@ -46,7 +46,14 @@ func int DIA_Hodges_HALLO_Condition()
 
 func void DIA_Hodges_HALLO_Info()
 {
-	AI_Output(other,self,"DIA_Hodges_HALLO_15_00");	//Привет, я новичок здесь.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(other,self,"DIA_Hodges_HALLO_15_00");	//Привет, я новичок здесь.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Addon_BDT_10004_Finn_Hi_15_00");	//Привет!
+	};
 	AI_Output(self,other,"DIA_Hodges_HALLO_03_01");	//Не пойми меня неправильно, но сейчас у меня нет настроения разговаривать - я абсолютно измотан.
 	AI_Output(other,self,"DIA_Hodges_HALLO_15_02");	//Ты ужасно занят, да?
 	AI_Output(self,other,"DIA_Hodges_HALLO_03_03");	//Даже не говори. Беннет делает столько оружия, что я едва успеваю полировать его.

@@ -182,7 +182,14 @@ func void DIA_Addon_Greg_JoinPirates_Info()
 	MIS_Addon_Greg_ClearCanyon = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_ClearCanyon,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_ClearCanyon,LOG_Running);
-	B_LogEntry(TOPIC_Addon_ClearCanyon,"Грег хочет, чтобы я взял на себя работу Моргана и очистил каньон от зверей.");
+	if(Greg_NoHelpInNW == FALSE)
+	{
+		B_LogEntry(TOPIC_Addon_ClearCanyon,"Грег хочет, чтобы я взял на себя работу Моргана и очистил каньон от зверей.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Addon_ClearCanyon,"Грег хочет, чтобы я взял на себя работу Моргана и очистил каньон от зверей. Похоже, он все еще злится на меня за то, что я не помог ему в Хоринисе.");
+	};
 	Info_ClearChoices(DIA_Addon_Greg_JoinPirates);
 	Info_AddChoice(DIA_Addon_Greg_JoinPirates,"В таком случае мне пора.",DIA_Addon_Greg_JoinPirates_Leave);
 	if(!Npc_IsDead(Brandon) || !Npc_IsDead(Matt))
@@ -198,9 +205,18 @@ func void DIA_Addon_Greg_JoinPirates_Leave()
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_01");	//И еще кое-что. Теперь ты один из нас.
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_02");	//Поэтому сначала найди себе нормальную одежду охотника.
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_03");	//Вот, надень это. Надеюсь, тебе это снаряжение придется впору.
-	CreateInvItem(hero,ITAR_PIR_M_Addon);
-	AI_PrintScreen("Доспехи пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-	AI_EquipArmor(hero,ITAR_PIR_M_Addon);
+	if(Greg_NoHelpInNW == FALSE)
+	{
+		CreateInvItem(hero,ITAR_PIR_M_Addon);
+		AI_PrintScreen("Доспехи пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		AI_EquipArmor(hero,ITAR_PIR_M_Addon);
+	}
+	else
+	{
+		CreateInvItem(hero,ITAR_PIR_L_Addon);
+		AI_PrintScreen("Одежда пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		AI_EquipArmor(hero,ITAR_PIR_L_Addon);
+	};
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_04");	//И не мешкай, скорее принимайся за дело!
 	Info_ClearChoices(DIA_Addon_Greg_JoinPirates);
 };
@@ -413,8 +429,16 @@ func void DIA_Addon_Greg_Sauber2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_Sauber2_15_00");	//На северном побережье теперь безопасно.
 	AI_Output(self,other,"DIA_Addon_Greg_Sauber2_01_01");	//Отлично. Держи свою награду.
-	CreateInvItems(self,ItMi_Gold,200);
-	B_GiveInvItems(self,other,ItMi_Gold,200);
+	if(Greg_NoHelpInNW == FALSE)
+	{
+		CreateInvItems(self,ItMi_Gold,200);
+		B_GiveInvItems(self,other,ItMi_Gold,200);
+	}
+	else
+	{
+		CreateInvItems(self,ItMi_Gold,100);
+		B_GiveInvItems(self,other,ItMi_Gold,100);
+	};
 	B_LogEntry(TOPIC_Addon_MorganBeach,"Я доложил Грегу, что пляж на севере очищен от монстров.");
 	MIS_Addon_MorganLurker = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Morgan_LurkerPlatt);
@@ -443,9 +467,18 @@ func void DIA_Addon_Greg_BanditPlatt2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_BanditPlatt2_15_00");	//Бандиты в башне уничтожены.
 	AI_Output(self,other,"DIA_Addon_Greg_BanditPlatt2_01_01");	//Прекрасно. Хорошая работа. Вот твоя награда.
-	CreateInvItems(self,ItMi_Gold,200);
-	B_GiveInvItems(self,other,ItMi_Gold,200);
-	B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни мертвы. Грег очень доволен.");
+	if(Greg_NoHelpInNW == FALSE)
+	{
+		CreateInvItems(self,ItMi_Gold,200);
+		B_GiveInvItems(self,other,ItMi_Gold,200);
+		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни мертвы. Грег очень доволен.");
+	}
+	else
+	{
+		CreateInvItems(self,ItMi_Gold,100);
+		B_GiveInvItems(self,other,ItMi_Gold,100);
+		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни мертвы.");
+	};
 	MIS_Henry_FreeBDTTower = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Henry_FreeBDTTower);
 };
@@ -627,9 +660,12 @@ func void DIA_Addon_Greg_RavenDead_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_RavenDead_15_00");	//С Вороном покончено...
 	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_01");	//Чтоб меня... Не ожидал я этого... Застал его врасплох, да?
-	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_02");	//Ну, на мой взгляд, это стоит пятиста золотых монет.
-	CreateInvItems(self,ItMi_Gold,500);
-	B_GiveInvItems(self,other,ItMi_Gold,500);
+	if(Greg_NoHelpInNW == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_02");	//Ну, на мой взгляд, это стоит пятиста золотых монет.
+		CreateInvItems(self,ItMi_Gold,500);
+		B_GiveInvItems(self,other,ItMi_Gold,500);
+	};
 	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_03");	//А ты смелый. Продолжай в том же духе.
 	B_GivePlayerXP(XP_ADDON_GregRavenLohn);
 };

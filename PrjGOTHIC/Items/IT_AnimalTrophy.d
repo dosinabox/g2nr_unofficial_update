@@ -28,6 +28,7 @@ const int Value_DemonHeart = 300;
 const int Value_StoneGolemHeart = 300;
 const int Value_FireGolemHeart = 300;
 const int Value_IceGolemHeart = 300;
+const int Value_SwampGolemHeart = 100;
 const int Value_UndeadDragonSoulStone = 400;
 const int Value_IcedragonHeart = 400;
 const int Value_FiredragonHeart = 400;
@@ -457,6 +458,20 @@ instance ItAt_IceGolemHeart(C_Item)
 	value = Value_IceGolemHeart;
 	visual = "ItAt_IceGolemHeart.3DS";
 	material = MAT_STONE;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = 190;
+};
+
+instance ItAt_SwampGolemHeart(C_Item)
+{
+	name = "Сердце болотного голема";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI | ITEM_MISSION;
+	value = Value_SwampGolemHeart;
+	visual = "ItAt_SwampGolemHeart.3DS";
+	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

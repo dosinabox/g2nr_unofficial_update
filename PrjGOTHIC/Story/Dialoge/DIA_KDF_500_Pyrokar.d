@@ -446,6 +446,37 @@ func void DIA_Pyrokar_OATH_Info()
 	AI_Output(other,self,"DIA_Pyrokar_OATH_15_05");	//Клянусь.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_06");	//Произнеся слова этой клятвы, ты присоединился к Соглашению Огня.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_07");	//Носи эту робу в знак этих вечных уз.
+	///////////отмена квестов послушника///////////
+	if(MIS_NeorasPflanzen == LOG_Running)
+	{
+		MIS_NeorasPflanzen = LOG_OBSOLETE;
+	};
+	if(MIS_NeorasRezept == LOG_Running)
+	{
+		MIS_NeorasRezept = LOG_OBSOLETE;
+	};
+	if(MIS_IsgarothWolf == LOG_Running)
+	{
+		MIS_IsgarothWolf = LOG_OBSOLETE;
+	};
+	if(MIS_ParlanFegen == LOG_Running)
+	{
+		MIS_ParlanFegen = LOG_OBSOLETE;
+	};
+	if(MIS_GoraxEssen == LOG_Running)
+	{
+		MIS_GoraxEssen = LOG_OBSOLETE;
+	};
+	if(MIS_GoraxWein == LOG_Running)
+	{
+		MIS_GoraxWein = LOG_OBSOLETE;
+	};
+	if(MIS_MardukBeten == LOG_Running)
+	{
+		MIS_MardukBeten = LOG_OBSOLETE;
+	};
+	B_CheckLog();
+	/////////////////////
 	hero.guild = GIL_KDF;
 	Npc_SetTrueGuild(hero,GIL_KDF);
 	CreateInvItem(hero,ITAR_KDF_L);
@@ -461,15 +492,27 @@ func void DIA_Pyrokar_OATH_Info()
 	if(!Npc_IsDead(Ulf))
 	{
 		B_StartOtherRoutine(Ulf,"BackToMonastery");
+		Ulf.aivar[AIV_DropDeadAndKill] = FALSE;
+		Ulf.aivar[AIV_NewsOverride] = FALSE;
+		Ulf.aivar[AIV_IgnoresArmor] = FALSE;
+		Ulf.aivar[AIV_IgnoresFakeGuild] = FALSE;
 	};
 	if(!Npc_IsDead(Igaraz))
 	{
 		B_StartOtherRoutine(Igaraz,"Start");
+		Igaraz.aivar[AIV_DropDeadAndKill] = FALSE;
+		Igaraz.aivar[AIV_NewsOverride] = FALSE;
+		Igaraz.aivar[AIV_IgnoresArmor] = FALSE;
+		Igaraz.aivar[AIV_IgnoresFakeGuild] = FALSE;
 	};
 	if(!Npc_IsDead(Agon))
 	{
 		B_StartOtherRoutine(Nov607,"Start");
 		B_StartOtherRoutine(Agon,"Start");
+		Agon.aivar[AIV_DropDeadAndKill] = FALSE;
+		Agon.aivar[AIV_NewsOverride] = FALSE;
+		Agon.aivar[AIV_IgnoresArmor] = FALSE;
+		Agon.aivar[AIV_IgnoresFakeGuild] = FALSE;
 	};
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_09");	//Нам также очень интересно знать, как он оценивает ситуацию. Так что ты теперь можешь отправляться в Хоринис.

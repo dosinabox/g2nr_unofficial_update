@@ -27,3 +27,9 @@ func void Rtn_Start_1068()
 	TA_Sit_Chair(8,0,0,2,"NW_CASTLEMINE_TOWER_06");
 };
 
+func void Rtn_Attack_1068()
+{
+	TA_Stand_WP(0,2,8,0,"NW_CASTLEMINE_TOWER_04");
+	TA_Stand_WP(8,0,0,2,"NW_CASTLEMINE_TOWER_04");
+};
+

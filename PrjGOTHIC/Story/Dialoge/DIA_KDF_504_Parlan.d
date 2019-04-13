@@ -302,7 +302,7 @@ func void DIA_Parlan_WELCOME_Info()
 //	Snd_Play("LEVELUP");
 	Log_CreateTopic(Topic_Gemeinschaft,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Gemeinschaft,LOG_Running);
-	B_LogEntry(Topic_Gemeinschaft,"В обязанности послушника входит выполнять работы на благо общины.");
+	B_LogEntry(Topic_Gemeinschaft,"В обязанности послушника входят работы на благо общины.");
 	if(Pedro_NOV_Aufnahme_LostInnosStatue_Daron == FALSE)
 	{
 		if(Liesel_Giveaway == FALSE)
@@ -536,7 +536,7 @@ func void DIA_Parlan_Stand_Info()
 		MIS_KlosterArbeit = LOG_SUCCESS;
 		Wld_AssignRoomToGuild("Kloster02",GIL_PUBLIC);
 		B_GiveInvItems(self,other,ItKe_KlosterBibliothek,1);
-		if(MIS_NeorasPflanzen == LOG_Running)
+		/*if(MIS_NeorasPflanzen == LOG_Running)
 		{
 			MIS_NeorasPflanzen = LOG_OBSOLETE;
 		};
@@ -563,7 +563,7 @@ func void DIA_Parlan_Stand_Info()
 		if(MIS_MardukBeten == LOG_Running)
 		{
 			MIS_MardukBeten = LOG_OBSOLETE;
-		};
+		};*/
 		B_CheckLog();
 	}
 	else if(Kloster_Punkte >= 1)
@@ -782,7 +782,8 @@ instance DIA_Parlan_MAGE(C_Info)
 
 func int DIA_Parlan_MAGE_Condition()
 {
-	if((other.guild == GIL_KDF) && Npc_IsInState(self,ZS_Talk))
+//	if((other.guild == GIL_KDF) && Npc_IsInState(self,ZS_Talk))
+	if(other.guild == GIL_KDF)
 	{
 		return TRUE;
 	};
@@ -974,6 +975,11 @@ func void DIA_Parlan_TEACH_Info()
 		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_FullHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_FullHeal)),DIA_Parlan_TEACH_FullHeal);
 		abletolearn += 1;
 	};
+	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5) && (PLAYER_TALENT_RUNES[SPL_Shrink] == FALSE))
+	{
+		Info_AddChoice(DIA_Parlan_TEACH,B_BuildLearnString(NAME_SPL_Shrink,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Shrink)),DIA_Parlan_TEACH_Shrink);
+		abletolearn += 1;
+	};
 	if(abletolearn < 1)
 	{
 		AI_Output(self,other,"DIA_Parlan_TEACH_05_01");	//Пока я ничему не могу научить тебя.
@@ -1023,6 +1029,11 @@ func void DIA_Parlan_TEACH_DestroyUndead()
 func void DIA_Parlan_TEACH_FullHeal()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_FullHeal);
+};
+
+func void DIA_Parlan_TEACH_Shrink()
+{
+	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
 };
 
 
@@ -1098,7 +1109,8 @@ instance DIA_Parlan_IAmParlan(C_Info)
 
 func int DIA_Parlan_IAmParlan_Condition()
 {
-	if((Kapitel >= 3) && Npc_IsInState(self,ZS_Talk) && ((other.guild != GIL_NOV) && (other.guild != GIL_KDF)))
+//	if((Kapitel >= 3) && Npc_IsInState(self,ZS_Talk) && ((other.guild != GIL_NOV) && (other.guild != GIL_KDF)))
+	if((Kapitel >= 3) && ((other.guild != GIL_NOV) && (other.guild != GIL_KDF)))
 	{
 		return TRUE;
 	};
@@ -1120,10 +1132,10 @@ func void DIA_Parlan_IAmParlan_Info()
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Я буду делать то, что сочту нужным.",DIA_Parlan_IAmParlan_MyChoice);
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Конечно.",DIA_Parlan_IAmParlan_OK);
 	};
-	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+/*	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		Wld_InsertItem(ItKe_KlosterBibliothek,"NW_MONASTERY_CORRIDOR_02");
-	};
+	};*/
 };
 
 func void DIA_Parlan_IAmParlan_MyChoice()
@@ -1155,7 +1167,8 @@ instance DIA_Parlan_Bibliothek(C_Info)
 
 func int DIA_Parlan_Bibliothek_Condition()
 {
-	if((other.guild != GIL_KDF) && (Kapitel >= 3) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+//	if((other.guild != GIL_KDF) && (Kapitel >= 3) && (other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	if((other.guild != GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};
@@ -1164,6 +1177,10 @@ func int DIA_Parlan_Bibliothek_Condition()
 func void DIA_Parlan_Bibliothek_Info()
 {
 	AI_Output(other,self,"DIA_Parlan_Bibliothek_15_00");	//У тебя есть что-нибудь для меня?
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	{
+		AI_Output(self,other,"DIA_Parlan_IAmParlan_05_00");	//Я вижу, ты решил сражаться на нашей стороне. Я рад.
+	};
 	AI_Output(self,other,"DIA_Parlan_Bibliothek_05_01");	//Да. Как читателю библиотеки, тебе выдается ключ от нее. Там ты найдешь братьев Карраса и Хигласа.
 	AI_Output(self,other,"DIA_Parlan_Bibliothek_05_02");	//Если хочешь, ты можешь поговорить с ними.
 	if(other.guild != GIL_PAL)
@@ -1187,7 +1204,8 @@ instance DIA_Parlan_DontDisturb(C_Info)
 
 func int DIA_Parlan_DontDisturb_Condition()
 {
-	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && ((other.guild != GIL_PAL) || (other.guild != GIL_NOV) || (other.guild != GIL_KDF)))
+//	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && ((other.guild != GIL_PAL) || (other.guild != GIL_NOV) || (other.guild != GIL_KDF)))
+	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
 	{
 		return TRUE;
 	};
@@ -1199,6 +1217,7 @@ func void DIA_Parlan_DontDisturb_Info()
 	AI_Output(self,other,"DIA_Parlan_DontDisturb_05_01");	//Они должны очищать свой дух физическим трудом и готовить себя к жизни в монастыре.
 	AI_Output(self,other,"DIA_Parlan_DontDisturb_05_02");	//(резко) Я не потерплю вмешательства в их работу!
 	Parlan_DontTalkToNovice = LOG_Running;
+	AI_StopProcessInfos(self);
 };
 
 

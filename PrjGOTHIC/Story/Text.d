@@ -13,12 +13,12 @@ const string MOBNAME_ANVIL = "Наковальня";
 const string MOBNAME_BUCKET = "Ведро с водой";
 const string MOBNAME_FORGE = "Кузнечный горн";
 const string MOBNAME_GRINDSTONE = "Точильный камень";
-const string MOBNAME_WHEEL = "Ворот";
+const string MOBNAME_WHEEL = "Лебедка";
 const string MOBNAME_LAB = "Алхимический стол";
 const string MOBNAME_BOOKSTAND = "Книжный стенд";
 const string MOBNAME_BOOKSBOARD = "Книжный стенд";
 const string MOBNAME_CHAIR = "";
-const string MOBNAME_CAULDRON = "Котел";
+const string MOBNAME_CAULDRON = "";
 const string MOBNAME_SEAT = "";
 const string MOBNAME_THRONE = "";
 const string MOBNAME_PAN = "Сковорода";
@@ -55,18 +55,18 @@ const string MOBNAME_GR_PEASANT2 = "Таверна";
 const string MOBNAME_INCITY01 = "Порт";
 const string MOBNAME_INCITY02 = "Рыночная площадь";
 const string MOBNAME_INCITY03 = "Верхний квартал";
-const string MOBNAME_INCITY04 = "Торговый район";
+const string MOBNAME_INCITY04 = "Портовый квартал";
 const string MOBNAME_INCITY05 = "Храмовая площадь";
 const string MOBNAME_BOW_01 = "Лавка 'У смертоносной стрелы'";
-const string MOBNAME_MIX_01 = "Всякая всячина Маттео";
-const string MOBNAME_MIX_02 = "Рыбная лавка Хальвора 'Скользкая форель'";
-const string MOBNAME_SMITH_01 = "У горячей наковальни";
+const string MOBNAME_MIX_01 = "Лавка 'Всякая всячина Маттео'";
+const string MOBNAME_MIX_02 = "Рыбная лавка Халвора 'Скользкая форель'";
+const string MOBNAME_SMITH_01 = "Лавка 'У горячей наковальни'";
 const string MOBNAME_BAR_01 = "Таверна 'У одноногого разбойника'";
 const string MOBNAME_BAR_02 = "Таверна 'У веселого поросенка'";
+const string MOBNAME_TAVERN_01 = "Таверна 'Мертвая гарпия'";
 const string MOBNAME_Hotel_01 = "Постоялый двор 'У спящего толстосума'";
-const string MOBNAME_Hotel_02 = "Красный Фонарь";
-const string MOBNAME_TAVERN_01 = "У мертвой гарпии";
-const string MOBNAME_SALANDRIL = "Зелья Саландрила";
+const string MOBNAME_Hotel_02 = "Бордель 'Красный Фонарь'";
+const string MOBNAME_SALANDRIL = "Лавка 'Зелья Саландрила'";
 const string MOBNAME_GRAVETEAM_01 = "Сноэльк - 'Смотри-ка, выключатель'";
 const string MOBNAME_GRAVETEAM_02 = "Оэльк - 'НЕЕЕЕЕТ'";
 const string MOBNAME_GRAVETEAM_03 = "Ходжес - 'Все будет хорошо'";
@@ -163,8 +163,8 @@ const string TXT_GUILDS[66] =
 	"Молодой волк",
 	"Краулер",
 	"Луркер",
+	"Скелет-воин",
 	"Скелет",
-	"Малый скелет",
 	"Скелет-маг",
 	"Зомби",
 	"Снеппер",
@@ -262,7 +262,7 @@ const string TXT_SPELLS[100] =
 	"Превращение в мракориса",
 	"Превращение в драконьего снеппера",
 	"Забвение",
-	"Святая стрела",
+	"Святой удар",
 	"Стрела смерти",
 	"Шар смерти",
 	"Стрела сотрясения",
@@ -363,7 +363,7 @@ const string NAME_SPL_TrfLurker = "Превращение в луркера";
 const string NAME_SPL_TrfShadowbeast = "Превращение в мракориса";
 const string NAME_SPL_TrfDragonSnapper = "Превращение в драконьего снеппера";
 const string NAME_SPL_Charm = "Забвение";
-const string NAME_SPL_MasterOfDisaster = "Святая стрела";
+const string NAME_SPL_MasterOfDisaster = "Святой удар";
 const string NAME_SPL_Deathbolt = "Стрела смерти";
 const string NAME_SPL_Deathball = "Шар смерти";
 const string NAME_SPL_ConcussionBolt = "Стрела сотрясения";
@@ -530,7 +530,7 @@ const string NAME_Addon_BeArSLD = "Вместе с доспехами наемника +";
 const string NAME_Addon_BeArMIL = "Вместе с доспехами ополчения +";
 const string NAME_Addon_BeArKDF = "Вместе с мантией мага +";
 const string NAME_Addon_BeArNOV = "Вместе с робой послушника +";
-const string NAME_Addon_BeArMC = "Вместе с доспехами из брони краулеров +";
+const string NAME_Addon_BeArMC = "Вместе с доспехами из панцирей краулеров +";
 const string NAME_Addon_BeArLeather = "Вместе с кожаными доспехами +";
 const string PRINT_Addon_BDTArmor = "Тот, кто носит эти доспехи, принадлежит к бандитам.";
 const string PRINT_Addon_KUMU_01 = "Мы - три брата из одной касты.";
@@ -617,11 +617,11 @@ const string NAME_Addon_Harad_04 = "Эль-бастардо";
 const string NAME_ItMw_Streitaxt1 = "Легкий боевой топор";
 const string NAME_ItMw_Banditenaxt = "Бандитский топор";
 const string PRINT_Addon_gegeben = " отдано";
-const string PRINT_GoldGegeben = " золота отдано";
+const string PRINT_GoldGegeben = " золотых отдано";
 const string PRINT_ItemGegeben = " предмет отдан";
 const string PRINT_ItemsGegeben = " предметов отдано";
 const string PRINT_Addon_erhalten = " получено";
-const string PRINT_GoldErhalten = " золота получено";
+const string PRINT_GoldErhalten = " золотых получено";
 const string PRINT_ItemErhalten = " предмет получен";
 const string PRINT_ItemsErhalten = " предметов получено";
 const string PRINT_Addon_RuneGiven = "Белиар дарует вам еще одно заклинание";
@@ -718,7 +718,7 @@ const string PRINT_BlessHitpoints = "Иннос слышит тебя и дарует тебе исцеление."
 const string Print_BlessMana_Hit = "Иннос слышит тебя, и ты чувствуешь себя так, как будто родился заново.";
 const string Print_BlessNone = "Иннос благодарит тебя за твои молитвы.";
 const string Print_NotEnoughGold = "Недостаточно золота.";
-const string Bless_Sword = "Освятить меч (5000 золота)";
+const string Bless_Sword = "Освятить меч (5000 золотых)";
 const string Bless_Sword2 = "Освятить меч (Слезы Инноса)";
 const string Pray_Paladin1 = "... Иннос, распространи свою длань над слугами своими ...";
 const string Pray_Paladin2 = "... благослови их своим огнем и даруй им силу ...";
@@ -735,15 +735,15 @@ const string PRINT_ADDON_HACKCHANCE = "Улучшен навык рудокопа! (+";
 const string PRINT_Addon_StuntBonus = "Бонус за храбрость";
 const string PRINT_Addon_ExploitBonus = "Штраф за безрассудство";
 const string PRINT_ADDON_ENOUGHTALK = "Хватит трепаться. Дерись.";
-const string PRINT_FullyHealed = "Полностью исцелен.";
+const string PRINT_FullyHealed = "Полностью исцелен!";
 const string PRINT_Eat1 = "Вы чувствуете себя освеженным.";
 const string PRINT_Eat2 = "Сочная и свежая пища.";
 const string PRINT_Eat3 = "Вы чувствуете, как силы наполняют вас!";
 const string Print_ReadAstronomy = "Чувство божественного просвещения наполняет вас.";
-const string PRINT_GornsTreasure = "Получено 100 золота.";
-const string PRINT_KerolothsGeldBeutel = "Получено 300 золота.";
-const string PRINT_MalethBanditsGold = "Получено 300 золота.";
-const string Print_DiegosTreasure = "Получено 2000 золота.";
+const string PRINT_GornsTreasure = "Получено 100 золотых.";
+const string PRINT_KerolothsGeldBeutel = "Получено 300 золотых.";
+const string PRINT_MalethBanditsGold = "Получено 300 золотых.";
+const string Print_DiegosTreasure = "Получено 2000 золотых.";
 const string PRINT_IrdorathBookDoesntOpen = "Эту книгу невозможно открыть.";
 const string PRINT_IrdorathBookHiddenKey = "В переплете этой книги спрятан ключ!";
 const string PRINT_FishLetter = "В этой рыбе спрятана записка.";
@@ -753,9 +753,11 @@ const string PRINT_GotFourItems = "Получено 4 предмета";
 const string PRINT_OrcEliteRingEquip = "Вы чувствуете слабость.";
 const string PRINT_SCIsObsessed = "Вы чувствуете удушье!";
 const string PRINT_ClearSCObsession = "Вы чувствуете себя освобожденным!";
-const string PRINT_NumberLeft = " осталось";
+//const string PRINT_NumberLeft = " осталось";
 const string PRINT_MinenAnteilLeft = "Осталось акций: ";
 const string PRINT_NovizenLeft = "Осталось послушников: ";
+const string PRINT_BloodLeft = "Осталось пробирок: ";
+const string PRINT_ShrinesLeft = "Осталось алтарей: ";
 const string PRINT_Addon_CanyonRazorsLeft = "Осталось бритвозубов: ";
 const string PRINT_DragKillCount = "Враг повержен. На этот раз я не буду гнить под камнями. Пришло время возвращаться на корабль.";
 const string PRINT_Smith_1H_Special_01 = " (1 кусок руды)";
@@ -773,11 +775,11 @@ const string PRINT_FoundAmulett = "Найден амулет";
 const string PRINT_FoundScroll = "Найден свиток с заклинанием";
 const string PRINT_FoundPotion = "Найдено зелье";
 const string PRINT_FoundMap = "Найдена карта";
-const string PRINT_FoundGold10 = "Найдено 10 золота";
-const string PRINT_FoundGold25 = "Найдено 25 золота";
-const string PRINT_FoundGold50 = "Найдено 50 золота";
-const string PRINT_FoundGold100 = "Найдено 100 золота";
-const string PRINT_FoundRuneBlank = "Найдена руна";
+const string PRINT_FoundGold10 = "Найдено 10 золотых";
+const string PRINT_FoundGold25 = "Найдено 25 золотых";
+const string PRINT_FoundGold50 = "Найдено 50 золотых";
+const string PRINT_FoundGold100 = "Найдено 100 золотых";
+const string PRINT_FoundRuneBlank = "Найден рунный камень";
 const string PRINT_FoundOreNugget = "Найден кусок руды";
 const string PRINT_FoundLockpick = "Найдена отмычка";
 const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек...";
@@ -795,7 +797,7 @@ const string PRINT_LevelUp = "Повышение уровня!";
 const string PRINT_NewLogEntry = "Новая запись в дневнике";
 const string PRINT_TeleportTooFarAway = "Слишком далеко";
 const string PRINT_BiffsAnteil = "Доля Биффа: ";
-const string PRINT_BiffGold = " золота";
+const string PRINT_BiffGold = " золотых";
 const string PRINT_Addon_SCIsWearingRangerRing = "Теперь вы носите знак 'Кольца Воды'.";
 var string TEXT_Innoseye_Setting;
 const string TEXT_Innoseye_Setting_Broken = "Оправа этого амулета повреждена.";

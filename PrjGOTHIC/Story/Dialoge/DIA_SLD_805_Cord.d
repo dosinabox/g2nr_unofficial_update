@@ -222,9 +222,6 @@ func void DIA_Addon_Cord_YouAreRanger_Info()
 	if(hero.guild == GIL_NONE)
 	{
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"”ходи отсюда. я хочу зан€ть твое место на этой ферме.",DIA_Addon_Cord_YouAreRanger_weg);
-	};
-	if(hero.guild == GIL_NONE)
-	{
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"“ы бы мог помочь мне стать наемником.",DIA_Addon_Cord_YouAreRanger_SLDAufnahme);
 	};
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"«аплати мне за молчание.",DIA_Addon_Cord_YouAreRanger_Gold);
@@ -536,7 +533,7 @@ instance DIA_Cord_ReturnPatrick(C_Info)
 
 func int DIA_Cord_ReturnPatrick_Condition()
 {
-	if((Npc_GetDistToWP(Patrick_NW,"NW_BIGFARM_PATRICK") <= 1000) && (MissingPeopleReturnedHome == TRUE))
+	if((Npc_GetDistToWP(Patrick_NW,"NW_BIGFARM_PATRICK") <= 1000) && (MissingPeopleReturnedHome == TRUE) && !Npc_IsDead(Patrick_NW))
 	{
 		return TRUE;
 	};

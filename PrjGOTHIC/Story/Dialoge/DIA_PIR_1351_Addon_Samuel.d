@@ -44,8 +44,11 @@ func void DIA_Addon_Samuel_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Samuel_Hello_14_00");	//А, новичок!
 	AI_Output(self,other,"DIA_Addon_Samuel_Hello_14_01");	//Итак, чего ты хочешь? Рому или чего-нибудь покрепче?
-	Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Garett_Samuel))
+	{
+		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
+		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_SamuelTrade);
+	};
 };
 
 
@@ -142,13 +145,14 @@ func void DIA_Addon_Samuel_Recipe_Info()
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_15_00");	//У меня есть для тебя рецепт!
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_14_01");	//Отлично, показывай. Что это за рецепт?
 	Info_ClearChoices(DIA_Addon_Samuel_Recipe);
+	Info_AddChoice(DIA_Addon_Samuel_Recipe,Dialog_Back,DIA_Addon_Samuel_Recipe_Back);
 	if((Samuel_Knows_LousHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept))
 	{
-		Info_AddChoice(DIA_Addon_Samuel_Recipe,"Молот Лу",DIA_Addon_Samuel_Recipe_LousHammer);
+		Info_AddChoice(DIA_Addon_Samuel_Recipe,"(отдать рецепт 'Молота Лу')",DIA_Addon_Samuel_Recipe_LousHammer);
 	};
 	if((Samuel_Knows_SchlafHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept2))
 	{
-		Info_AddChoice(DIA_Addon_Samuel_Recipe,"Двойной Молот Лу",DIA_Addon_Samuel_Recipe_LousDoubleHammer);
+		Info_AddChoice(DIA_Addon_Samuel_Recipe,"(отдать рецепт двойного 'Молота Лу')",DIA_Addon_Samuel_Recipe_LousDoubleHammer);
 	};
 };
 

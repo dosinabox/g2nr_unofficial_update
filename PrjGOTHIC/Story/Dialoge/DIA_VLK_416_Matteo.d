@@ -180,7 +180,7 @@ instance DIA_Matteo_LEATHER(C_Info)
 	condition = DIA_Matteo_LEATHER_Condition;
 	information = DIA_Matteo_LEATHER_Info;
 	permanent = TRUE;
-	description = "Купить кожаные доспехи. Защита: 25/20/15/0. (250 золота)";
+	description = "Купить кожаные доспехи. Защита: 25/20/15/0. (250 золотых)";
 };
 
 

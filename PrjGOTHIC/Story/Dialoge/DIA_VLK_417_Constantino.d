@@ -706,7 +706,8 @@ func void DIA_Constantino_MushroomsRunning_Info()
 	};
 	if(Npc_HasItems(other,ItPl_Mushroom_01) || Npc_HasItems(other,ItPl_Mushroom_02))
 	{
-		Info_AddChoice(DIA_Constantino_MushroomsRunning,"Я принес несколько грибов...",DIA_Constantino_MushroomsRunning_Sell);
+//		Info_AddChoice(DIA_Constantino_MushroomsRunning,"Я принес несколько грибов...",DIA_Constantino_MushroomsRunning_Sell);
+		Info_AddChoice(DIA_Constantino_MushroomsRunning,"Посмотри, что у меня есть...",DIA_Constantino_MushroomsRunning_Sell);
 	};
 };
 
@@ -714,9 +715,10 @@ func void DIA_Constantino_MushroomsRunning_Sell()
 {
 	var int Dunkelpilz_dabei;
 	Dunkelpilz_dabei = FALSE;
+	AI_Output(other,self,"DIA_Coragon_Add_15_15");	//Посмотри, что у меня есть...
 	if(Npc_HasItems(other,ItPl_Mushroom_01))
 	{
-		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_00");	//Я принес несколько черных грибов...
+		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_00");	//Я принес несколько черных грибов.
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Sell_10_01");	//Ах! Это лучшие грибы! Отлично! Вот твое золото!
 		Dunkelpilz_dabei = TRUE;
 		Constantino_DunkelpilzCounter = Constantino_DunkelpilzCounter + Npc_HasItems(other,ItPl_Mushroom_01);

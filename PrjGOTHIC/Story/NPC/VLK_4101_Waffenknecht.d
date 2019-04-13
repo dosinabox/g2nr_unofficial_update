@@ -10,6 +10,7 @@ instance VLK_4101_Waffenknecht(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Ulbert,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,1);

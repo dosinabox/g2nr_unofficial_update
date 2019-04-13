@@ -31,16 +31,18 @@ instance DIA_Keroloth_HELLO(C_Info)
 	condition = DIA_Keroloth_HELLO_Condition;
 	information = DIA_Keroloth_HELLO_Info;
 	permanent = FALSE;
-	important = TRUE;
+//	important = TRUE;
+	description = "Ты тренируешь людей?";
 };
 
 
 func int DIA_Keroloth_HELLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	/*if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
-	};
+	};*/
+	return TRUE;
 };
 
 func void DIA_Keroloth_HELLO_Info()
@@ -63,7 +65,7 @@ instance DIA_Keroloth_WantTeach(C_Info)
 
 func int DIA_Keroloth_WantTeach_Condition()
 {
-	if(Keroloths_BeutelLeer == FALSE)
+	if((Keroloths_BeutelLeer == FALSE) && Npc_KnowsInfo(other,DIA_Keroloth_HELLO))
 	{
 		return TRUE;
 	};
@@ -76,9 +78,12 @@ func void DIA_Keroloth_WantTeach_Info()
 	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_02");	//Но, кроме таланта, тебе понадобится хорошее оружие, если ты хочешь выжить здесь.
 	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_03");	//Обратись к рыцарю Тандору. Он снарядит тебя.
 	Keroloth_TeachPlayer = TRUE;
-	Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
-	if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo))
+	if(!Npc_KnowsInfo(other,DIA_Sengrath_Perm))
+	{
+		Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
+		B_LogEntry(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
+	};
+	if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo) && !Npc_KnowsInfo(other,DIA_Dobar_Waffe))
 	{
 		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
 		B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
@@ -89,7 +94,7 @@ func void DIA_Keroloth_WantTeach_Info()
 instance DIA_Keroloth_Teacher(C_Info)
 {
 	npc = PAL_258_Keroloth;
-	nr = 6;
+	nr = 99;
 	condition = DIA_Keroloth_Teacher_Condition;
 	information = DIA_Keroloth_Teacher_Info;
 	permanent = TRUE;

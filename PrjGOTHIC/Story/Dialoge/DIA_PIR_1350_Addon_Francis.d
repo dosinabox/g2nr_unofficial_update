@@ -12,10 +12,11 @@ instance DIA_Addon_Francis_EXIT(C_Info)
 
 func int DIA_Addon_Francis_EXIT_Condition()
 {
-	if(GregIsBack == FALSE)
+/*	if(GregIsBack == FALSE)
 	{
 		return TRUE;
-	};
+	};*/
+	return TRUE;
 };
 
 func void DIA_Addon_Francis_EXIT_Info()

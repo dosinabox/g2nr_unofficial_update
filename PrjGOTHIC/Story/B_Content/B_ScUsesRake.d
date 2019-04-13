@@ -21,6 +21,8 @@ func void B_SCGetTreasure_S1()
 	var C_Item GregsArmor;
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
 	{
+//		Snd_Play("GOL_AMBIENT_A2");
+//		AI_PlayAni(hero,"T_PLUNDER");
 		if((Npc_GetDistToWP(hero,"NW_BIGFARM_LAKE_CAVE_07") < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[1] == FALSE))
 		{
 			Wld_InsertItem(ItSe_GoldPocket25,"NW_BIGFARM_LAKE_CAVE_07");

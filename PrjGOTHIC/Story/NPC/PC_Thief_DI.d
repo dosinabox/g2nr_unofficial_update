@@ -10,11 +10,14 @@ instance PC_Thief_DI(Npc_Default)
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
+	aivar[AIV_IgnoresFakeGuild] = TRUE;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	CreateInvItems(self,ItRw_Arrow,10);
 	EquipItem(self,ItMw_1h_Sld_Sword);
-	EquipItem(self,ItRw_Bow_M_02);
+	EquipItem(self,ItRw_Bow_M_03);
+//	EquipItem(self,ItRw_Bow_M_02);
 //	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_Diego,BodyTex_L,ITAR_Diego);
 	Mdl_SetModelFatness(self,0);

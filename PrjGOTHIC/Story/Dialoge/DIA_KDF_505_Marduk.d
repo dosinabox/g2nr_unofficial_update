@@ -360,7 +360,7 @@ instance DIA_Marduk_Kap3_Hello(C_Info)
 
 func int DIA_Marduk_Kap3_Hello_Condition()
 {
-	if((Kapitel == 3) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
+	if((Kapitel >= 3) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG) || (hero.guild == GIL_SLD)))
 	{
 		return TRUE;
 	};
@@ -373,7 +373,7 @@ func void DIA_Marduk_Kap3_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Info_05_01");	//С каких это пор ты стал паладином?
 	};
-	if(hero.guild == GIL_DJG)
+	if((hero.guild == GIL_DJG) || (hero.guild == GIL_SLD))
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Info_05_02");	//Откуда ты пришел?
 	};
@@ -383,7 +383,7 @@ func void DIA_Marduk_Kap3_Hello_Info()
 	{
 		Info_AddChoice(DIA_Marduk_Kap3_Hello,"Совсем недавно.",DIA_Marduk_Kap3_Hello_Soon);
 	};
-	if(hero.guild == GIL_DJG)
+	if((hero.guild == GIL_DJG) || (hero.guild == GIL_SLD))
 	{
 		Info_AddChoice(DIA_Marduk_Kap3_Hello,"Я пришел с фермы.",DIA_Marduk_Kap3_Hello_DJG);
 	};
@@ -397,7 +397,7 @@ func void DIA_Marduk_Kap3_Hello_NotYourConcern()
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_NotYourConcern_05_01");	//(ворчливо) Паладин всегда должен быть вежливым и скромным. Ты должен защищать тех, кто не может защитить себя сам.
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_NotYourConcern_05_02");	//(ворчливо) Это привилегия, и ты должен быть благодарен, что Иннос дает тебе такую возможность. Подумай об этом!
 	};
-	if(hero.guild == GIL_DJG)
+	if((hero.guild == GIL_DJG) || (hero.guild == GIL_SLD))
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_NotYourConcern_05_03");	//(зло) Эх, раньше всякий сброд не пускали в монастырь. Твое поведение доказывает, что это были хорошие времена.
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_NotYourConcern_05_04");	//(предупреждающе) Я предупреждаю тебя, не стоит сеять тут смуту - ты будешь немедленно наказан. Мы не будем проявлять фальшивое великодушие.

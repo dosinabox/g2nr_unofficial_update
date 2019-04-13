@@ -400,7 +400,7 @@ func void DIA_Addon_Daron_GuildHelp_woTaverne()
 {
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_woTaverne_15_00");	//Таверна Орлана? Где она находится?
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_woTaverne_10_01");	//Если ты выйдешь из города через эти ворота и пойдешь прямо по дороге, ты дойдешь до отдельно стоящего дома.
-	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_woTaverne_10_02");	//Это и есть таверна Орлана, 'Мертвая Гарпия'.
+	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_woTaverne_10_02");	//Это и есть таверна Орлана, 'Мертвая гарпия'.
 };
 
 func void DIA_Addon_Daron_GuildHelp_auftrag()
@@ -410,7 +410,7 @@ func void DIA_Addon_Daron_GuildHelp_auftrag()
 	Info_ClearChoices(DIA_Addon_Daron_GuildHelp);
 	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Дарон был ограблен мерзкими гоблинами. У него пропала ценная статуэтка, которую он должен был доставить в монастырь. Эти гоблины, похоже, скрываются в пещере около таверны 'Мертвая Гарпия'.");
+	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Дарон был ограблен мерзкими гоблинами. У него пропала ценная статуэтка, которую он должен был доставить в монастырь. Эти гоблины, похоже, скрываются в пещере около таверны 'Мертвая гарпия'.");
 };
 
 
@@ -534,9 +534,9 @@ func void DIA_Daron_Spende_Info()
 	if(Daron_Spende < 1000)
 	{
 		Info_AddChoice(DIA_Daron_Spende,"Но у меня недостаточно золота... (НАЗАД)",DIA_Daron_Spende_BACK);
-		Info_AddChoice(DIA_Daron_Spende,"(50  золота)",DIA_Daron_Spende_50);
-		Info_AddChoice(DIA_Daron_Spende,"(100 золота)",DIA_Daron_Spende_100);
-		Info_AddChoice(DIA_Daron_Spende,"(200 золота)",DIA_Daron_Spende_200);
+		Info_AddChoice(DIA_Daron_Spende,"(50 золотых)",DIA_Daron_Spende_50);
+		Info_AddChoice(DIA_Daron_Spende,"(100 золотых)",DIA_Daron_Spende_100);
+		Info_AddChoice(DIA_Daron_Spende,"(200 золотых)",DIA_Daron_Spende_200);
 	}
 	else
 	{

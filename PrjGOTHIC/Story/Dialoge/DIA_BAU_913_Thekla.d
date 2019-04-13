@@ -302,6 +302,10 @@ func void DIA_Thekla_AfterFight_Info()
 };
 
 
+var int Thekla_MehrEintopfKap1;
+var int Thekla_MehrEintopfKap3;
+var int Thekla_MehrEintopfKap5;
+
 instance DIA_Thekla_SagittaPaket(C_Info)
 {
 	npc = BAU_913_Thekla;
@@ -328,12 +332,15 @@ func void DIA_Thekla_SagittaPaket_Info()
 	AI_Output(self,other,"DIA_Thekla_SagittaPaket_17_01");	//Огромное спасибо. От тебя есть хоть какая-то польза в отличие от других.
 	MIS_Thekla_Paket = LOG_SUCCESS;
 	B_GivePlayerXP(XP_TheklasPaket);
+	if(Kapitel > 2)
+	{
+		AI_Output(other,self,"DIA_Thekla_Hunger_15_00");	//Я голоден!
+		AI_Output(self,other,"DIA_Thekla_PERM_17_10");	//Хорошо. Я сжалюсь над тобой. Вот, держи. Не могу смотреть, как ты умираешь от голода у меня на глазах.
+		B_GiveInvItems(self,other,ItFo_XPStew,1);
+		Thekla_MehrEintopfKap1 = TRUE;
+	};
 };
 
-
-var int Thekla_MehrEintopfKap1;
-var int Thekla_MehrEintopfKap3;
-var int Thekla_MehrEintopfKap5;
 
 instance DIA_Thekla_PERM(C_Info)
 {

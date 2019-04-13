@@ -49,10 +49,10 @@ func void DIA_Tandor_Hallo_Info()
 	AI_Output(self,other,"DIA_Tandor_Hallo_08_00");	//Ты пришел через Проход? Это хорошо. Мы уже потеряли там много хороших людей.
 	AI_Output(self,other,"DIA_Tandor_Hallo_08_01");	//Я хорошо знаю, каково там - я служил в разведотряде некоторое время.
 	AI_Output(self,other,"DIA_Tandor_Hallo_08_02");	//У тебя есть оружие? Если тебе нужно хорошее оружие, обратись ко мне.
-	if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Keroloth_WantTeach))
+	if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Keroloth_WantTeach) && !Npc_KnowsInfo(other,DIA_Dobar_Waffe))
 	{
 		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-		B_LogEntry(TOPIC_Trader_OC,"Тандор торгует оружием в замке.");
+		B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
 	};
 };
 

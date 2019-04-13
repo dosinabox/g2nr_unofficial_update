@@ -28,23 +28,23 @@ func void Rtn_Start_701()
 
 func void Rtn_IceWait1_701()
 {
-	TA_Stand_ArmsCrossed(0,0,23,0,"OW_ICEREGION_ENTRANCE");
-	TA_Stand_ArmsCrossed(23,0,24,0,"OW_ICEREGION_ENTRANCE");
+	TA_Stand_ArmsCrossed(8,0,23,0,"OW_ICEREGION_ENTRANCE");
+	TA_Stand_ArmsCrossed(23,0,8,0,"OW_ICEREGION_ENTRANCE");
 };
 
-/*
 func void Rtn_IceWait2_701()
 {
-	TA_Stand_ArmsCrossed(0,0,23,0,"OW_DJG_ICEREGION_WAIT2_02");
-	TA_Stand_ArmsCrossed(23,0,24,0,"OW_DJG_ICEREGION_WAIT2_02");
+	TA_Stand_ArmsCrossed(8,0,23,0,"OW_DJG_ICEREGION_WAIT1_02");
+	TA_Stand_ArmsCrossed(23,0,8,0,"OW_DJG_ICEREGION_WAIT1_02");
 };
 
 func void Rtn_IceDragon_701()
 {
-	TA_Stand_ArmsCrossed(0,0,23,0,"OW_ICEDRAGON_02");
-	TA_Stand_ArmsCrossed(23,0,24,0,"OW_ICEDRAGON_02");
+	TA_Stand_ArmsCrossed(8,0,23,0,"OW_DJG_ICEREGION_WAIT2_02");
+	TA_Stand_ArmsCrossed(23,0,8,0,"OW_DJG_ICEREGION_WAIT2_02");
 };
 
+/*
 func void Rtn_Follow_701()
 {
 	TA_Follow_Player(0,0,23,0,"SPAWN_OW_BLACKGOBBO_A1");

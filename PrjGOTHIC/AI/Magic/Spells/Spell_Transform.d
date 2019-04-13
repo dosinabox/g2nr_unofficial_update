@@ -17,6 +17,9 @@ instance Spell_Transform(C_Spell_Proto)
 	time_per_mana = 0;
 	spellType = SPELL_NEUTRAL;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
+	targetCollectRange = 0;
+	targetCollectAzi = 0;
+	targetCollectElev = 0;
 	canTurnDuringInvest = 0;
 };
 

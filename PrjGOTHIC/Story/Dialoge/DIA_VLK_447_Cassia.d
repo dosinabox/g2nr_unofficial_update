@@ -481,7 +481,7 @@ instance DIA_Cassia_BevorLernen(C_Info)
 
 func int DIA_Cassia_BevorLernen_Condition()
 {
-	if((Join_Thiefs == TRUE) && Npc_KnowsInfo(other,DIA_Cassia_Lernen) && ((Cassia_TeachPickpocket == FALSE) || (Cassia_TeachDEX == FALSE)))
+	if((Join_Thiefs == TRUE) && Npc_KnowsInfo(other,DIA_Cassia_Lernen) && (((Cassia_TeachPickpocket == FALSE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET)) || (Cassia_TeachDEX == FALSE)))
 	{
 		return TRUE;
 	};
@@ -501,11 +501,7 @@ func void DIA_Cassia_BevorLernen_Info()
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_16_02");	//Конечно. Карманное воровство и ловкость обойдутся тебе по 100 золотых монет.
 		Info_ClearChoices(DIA_Cassia_BevorLernen);
 		Info_AddChoice(DIA_Cassia_BevorLernen,"Может быть, позже...",DIA_Cassia_BevorLernen_Spaeter);
-		if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
-		{
-			Cassia_TeachPickpocket = TRUE;
-		}
-		else
+		if((Cassia_TeachPickpocket == FALSE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 		{
 			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу научиться карманному воровству. (заплатить 100 золотых)",DIA_Cassia_BevorLernen_Pickpocket);
 		};
@@ -666,7 +662,7 @@ func void DIA_Cassia_Aufnahme_Info()
 	AI_Output(self,other,"DIA_Cassia_Aufnahme_16_02");	//Возьми этот ключ. Он открывает дверь в отель. (улыбается) Теперь тебе не придется каждый раз плыть сюда.
 	B_GiveInvItems(self,other,ItKe_ThiefGuildKey_Hotel_MIS,1);
 	AI_Output(self,other,"DIA_Cassia_Aufnahme_16_03");	//Кроме того, ты должен знать, что у нас есть секретный знак. Особый кивок.
-	AI_PlayAni(other,"T_YES");
+	AI_PlayAni(self,"T_YES");
 	AI_Output(self,other,"DIA_Cassia_Aufnahme_16_04");	//Вот такой. Когда ты говоришь с правильными людьми и делаешь этот знак, они поймут, что ты один из нас.
 	MIS_CassiaRing = LOG_SUCCESS;
 	B_GivePlayerXP(XP_CassiaRing);
@@ -816,7 +812,7 @@ func void DIA_Cassia_Belohnung_Info()
 	AI_Output(self,other,"DIA_Cassia_Belohnung_16_01");	//Что ты выбираешь?
 	Info_ClearChoices(DIA_Cassia_Belohnung);
 	Info_AddChoice(DIA_Cassia_Belohnung,"400 золотых",DIA_Cassia_Belohnung_Gold);
-	Info_AddChoice(DIA_Cassia_Belohnung,"4 лечебных эликсира",DIA_Cassia_Belohnung_Trank);
+	Info_AddChoice(DIA_Cassia_Belohnung,"6 лечебных эликсиров",DIA_Cassia_Belohnung_Trank);
 	Info_AddChoice(DIA_Cassia_Belohnung,NAME_ADDON_CASSIASBELOHNUNGSRING,DIA_Cassia_Belohnung_Ring);
 };
 
@@ -830,7 +826,7 @@ func void DIA_Cassia_Belohnung_Gold()
 func void DIA_Cassia_Belohnung_Trank()
 {
 	AI_Output(other,self,"DIA_Cassia_Belohnung_15_03");	//Дай мне зелья.
-	B_GiveInvItems(self,other,ItPo_Health_03,4);
+	B_GiveInvItems(self,other,ItPo_Health_03,6);
 	Info_ClearChoices(DIA_Cassia_Belohnung);
 };
 

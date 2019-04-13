@@ -69,7 +69,7 @@ instance DIA_Addon_Bill_Hello(C_Info)
 
 func int DIA_Addon_Bill_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (GregIsBack == FALSE))
 	{
 		return TRUE;
 	};
@@ -246,6 +246,21 @@ func void DIA_Addon_Bill_FoundFriends_Info()
 	Log_CreateTopic(TOPIC_Addon_KillJuan,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_KillJuan,LOG_Running);
 	B_LogEntry(TOPIC_Addon_KillJuan,"Билл был потрясен, когда я сказал ему о смерти Ангуса и Хэнка. Он хочет знать имена их убийц.");
+	if(Npc_KnowsInfo(other,DIA_Addon_Fisk_Lieferung))
+	{
+		if(SC_Knows_JuanMurderedAngus == TRUE)
+		{
+			B_LogEntry(TOPIC_Addon_KillJuan,"Фиск говорил, что парень по имени Хуан украл его посылку, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_Addon_KillJuan,"Фиск говорил, что парень по имени Хуан украл его посылку, сорвав сделку пиратов и бандитов. Он прячется где-то на болоте. Возможно, он причастен к убийству Ангуса и Хэнка.");
+		};
+	};
+	if(SC_Knows_JuanMurderedAngus == TRUE)
+	{
+		B_LogEntry(TOPIC_Addon_KillJuan,"Бандит Том торговал с Ангусом и Хэнком, когда на них напал Хуан.");
+	};
 };
 
 

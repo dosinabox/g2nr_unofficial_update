@@ -9,7 +9,7 @@ instance PIR_1370_Addon_Angus(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_Addon_PIR2hAxe);
+	CreateInvItem(self,ItMw_Addon_PIR2hAxe);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItRi_Addon_MorgansRing_Mission,1);
 	CreateInvItems(self,ItWr_Addon_Pirates_01,1);

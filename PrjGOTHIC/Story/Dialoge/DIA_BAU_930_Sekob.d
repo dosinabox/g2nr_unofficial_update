@@ -189,7 +189,10 @@ func void DIA_Sekob_Defeated_Info()
 	AI_Output(self,other,"DIA_Sekob_Defeated_01_04");	//Мой последний урожай полностью погиб от засухи. Я ХОЧУ заплатить ренту, но мне просто НЕЧЕМ. Мне очень жаль.
 	Info_ClearChoices(DIA_Sekob_Defeated);
 	Info_AddChoice(DIA_Sekob_Defeated,"Заплати ренту, или я убью тебя.",DIA_Sekob_Defeated_hart);
-	Info_AddChoice(DIA_Sekob_Defeated,"Хорошо, я поговорю с Онаром.",DIA_Sekob_Defeated_weich);
+	if(Onar_WegenSekob == FALSE)
+	{
+		Info_AddChoice(DIA_Sekob_Defeated,"Хорошо, я поговорю с Онаром.",DIA_Sekob_Defeated_weich);
+	};
 };
 
 func void DIA_Sekob_Defeated_weich()
@@ -231,7 +234,7 @@ instance DIA_Sekob_Again(C_Info)
 
 func int DIA_Sekob_Again_Condition()
 {
-	if((MIS_Sekob_RedeMitOnar == LOG_Running) && Npc_KnowsInfo(other,DIA_Sekob_Defeated) && (Sekob_Pachtbezahlt == FALSE))
+	if((MIS_Sekob_RedeMitOnar == LOG_Running) && Npc_KnowsInfo(other,DIA_Sekob_Defeated) && (Sekob_Pachtbezahlt == FALSE) && (MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

@@ -10,6 +10,7 @@ func void B_AssessSurprise()
 
 func void ZS_Attack()
 {
+	B_Greg_ComesToDexter();
 	Perception_Set_Minimal();
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_AssessSurprise);
 	B_ValidateOther();
@@ -48,7 +49,7 @@ func void ZS_Attack()
 
 func int ZS_Attack_Loop()
 {
-	B_Greg_ComesToDexter();
+//	B_Greg_ComesToDexter();
 	if((BragoBanditsAttacked == FALSE) && ((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1013)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1014)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1015))))
 	{
 		BragoBanditsAttacked = TRUE;

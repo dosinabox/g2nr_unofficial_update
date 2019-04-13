@@ -96,8 +96,16 @@ func void DIA_Addon_Saturas_ADWStart_missingPeople()
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
+	if(Npc_HasItems(other,ITWr_Addon_William_01))
+	{
+		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
+		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.
+	};
 	Saturas_AboutWilliam = TRUE;
-	B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Riordian_WhatToFind))
+	{
+		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
+	};
 };
 
 func void DIA_Addon_Saturas_ADWStart_wastun()

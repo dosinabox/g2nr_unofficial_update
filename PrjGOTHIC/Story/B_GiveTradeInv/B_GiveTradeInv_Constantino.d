@@ -31,6 +31,13 @@ func void B_GiveTradeInv_Constantino(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Rockcrystal,2);
 		CreateInvItems(slf,ItAt_GoblinBone,2);
 		CreateInvItems(slf,ItPl_Mushroom_01,5);
+		if(Player_IsApprentice == APP_Constantino)
+		{
+			if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
+			{
+				CreateInvItems(slf,ItPo_Perm_LittleMana,1);
+			};
+		};
 		Constantino_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Constantino_ItemsGiven_Chapter_3 == FALSE))

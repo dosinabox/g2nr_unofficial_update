@@ -7,7 +7,7 @@ instance Spell_Deathbolt(C_Spell_Proto)
 	time_per_mana = 0;
 	damage_per_level = SPL_DAMAGE_Deathbolt;
 	//изменить тип если нужно
-	damagetype = DAM_FIRE;
+	damagetype = DAM_FIRE;	//DAM_MAGIC;
 };
 
 

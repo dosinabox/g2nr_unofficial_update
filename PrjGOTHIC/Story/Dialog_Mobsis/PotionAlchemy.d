@@ -858,7 +858,7 @@ instance PC_ItPo_Dex(C_Info)
 	condition = PC_ItPo_Dex_Condition;
 	information = PC_ItPo_Dex_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_DEX_Elixier," (1 гоблинские ягоды, 1 царский щавель)");
+	description = ConcatStrings(NAME_DEX_Elixier," (1 гоблинская ягода, 1 царский щавель)");
 };
 
 

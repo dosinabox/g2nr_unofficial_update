@@ -154,8 +154,16 @@ func void DIA_MiltenNW_FourFriends_Info()
 		if(MIS_RescueGorn != LOG_SUCCESS)
 		{
 			AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_02");	//Как ему удалось выбраться?
-			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_03");	//Мне пришлось солгать Гаронду, так что он снял все обвинения.
-			AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_04");	//Но это только между нами, понятно?
+			if(Npc_KnowsInfo(other,DIA_DiegoOw_Gorn))
+			{
+				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_03");	//Мне пришлось солгать Гаронду, так что он снял все обвинения.
+				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_04");	//Но это только между нами, понятно?
+				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_07");	//Горн не виноват.
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_10");	//Диего выкупил Горна - похоже, что Барьер изменил и его.
+			};
 		};
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_05");	//В любом случае, он хотел отправиться к Ли и посмотреть, что происходит на ферме.
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_06");	//После голодания в темнице, он, вероятно, сейчас пытается восполнить потерю в весе и испытывает на прочность кладовку наемников.
@@ -237,6 +245,7 @@ func void DIA_MiltenNW_KAP3_Entry_Permit()
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_01");	//Покажи.
 	B_GiveInvItems(other,self,ItWr_PermissionToWearInnosEye_MIS,1);
 	B_UseFakeScroll();
+	AI_Output(self,other,"DIA_MiltenOW_Hello_NO_03_01");	//Ты через многое прошел, да?
 	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_02");	//(колеблясь) Хорошо. Вот ключ от монастыря. Ты найдешь Пирокара в церкви.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
@@ -296,7 +305,7 @@ func int DIA_MiltenNW_KAP3_Perm_Condition()
 func void DIA_MiltenNW_KAP3_Perm_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KAP3_Perm_15_00");	//Ты знаешь что-нибудь о людях в черных рясах?
-	AI_Output(self,other,"DIA_MiltenNW_KAP3_Perm_03_01");	//Нет, но у меня плохое предчувствие насчет них.
+	AI_Output(self,other,"DIA_MiltenNW_KAP3_Perm_03_01");	//Нет, но у меня плохое предчувствие насчет их.
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Perm_03_02");	//Будь осторожен, если наткнешься на них.
 };
 
@@ -493,7 +502,14 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 	if(!Npc_IsDead(Lester))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_04");	//И не забудь Лестера. Если ты не вытащишь его из долины, он сгниет там.
-		B_LogEntry(Topic_Crew,"Если я не возьму Лестера с собой, ему никогда не выбраться из этой долины.");
+		if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+		{
+			B_LogEntry(Topic_Crew,"Лестер может обладать ценной информацией. Мне следует проведать его в башне Ксардаса.");
+		}
+		else
+		{
+			B_LogEntry(Topic_Crew,"Если я не возьму Лестера с собой, ему никогда не выбраться из той долины.");
+		};
 	};
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_05");	//Я также вижу свою роль во всем этом. Я могу повысить твою ману и помочь в создании рун. Когда мы приступим?
 	if(SCToldMiltenHeKnowWhereEnemy == FALSE)
@@ -733,6 +749,7 @@ func int DIA_MiltenNW_Mana_Condition()
 func void DIA_MiltenNW_Mana_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_Mana_15_00");	//Я хочу повысить свои магические способности.
+	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_04");	//Я посмотрю, что можно сделать.
 	Info_ClearChoices(DIA_MiltenNW_Mana);
 	Info_AddChoice(DIA_MiltenNW_Mana,Dialog_Back,DIA_MiltenNW_Mana_BACK);
 	Info_AddChoice(DIA_MiltenNW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenNW_Mana_1);

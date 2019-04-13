@@ -9,6 +9,9 @@ instance Spell_FireRain(C_Spell_Proto)
 	//изменить тип если нужно
 	damagetype = DAM_FIRE;	//DAM_MAGIC;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
+	targetCollectRange = 0;
+	targetCollectAzi = 0;
+	targetCollectElev = 0;
 };
 
 

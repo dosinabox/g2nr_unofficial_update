@@ -2,7 +2,8 @@
 instance PAL_2004_Bruder(Npc_Default)
 {
 	name[0] = NAME_Paladin;
-	guild = GIL_NONE;
+//	guild = GIL_NONE;
+	guild = GIL_PAL;
 	id = 2004;
 	voice = 4;
 	flags = 0;
@@ -15,7 +16,8 @@ instance PAL_2004_Bruder(Npc_Default)
 	attribute[ATR_HITPOINTS] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItRu_FakePalLight,1);
+	CreateInvItems(self,ItRu_PalLight,1);
+//	CreateInvItems(self,ItRu_FakePalLight,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal02,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

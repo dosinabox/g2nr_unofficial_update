@@ -26,9 +26,10 @@ func void open_adanostempelchest_01_func_s1()
 {
 	if(OPEN_ADANOSTEMPELCHEST_01_FUNC_OneTime == FALSE)
 	{
+		b_awake_stoneguardian(Stoneguardian_TREASUREPITS_05A);
 		b_awake_stoneguardian(Stoneguardian_TREASUREPITS_05C);
 		b_awake_stoneguardian(Stoneguardian_TREASUREPITS_05E);
-		if(!Npc_IsDead(Stoneguardian_TREASUREPITS_05C) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05E))
+		if(!Npc_IsDead(Stoneguardian_TREASUREPITS_05A) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05C) || !Npc_IsDead(Stoneguardian_TREASUREPITS_05E))
 		{
 			Snd_Play("THRILLJINGLE_03");
 		};
@@ -62,7 +63,9 @@ func void adw_adanostempel_stonegrd_trigg_func_02()
 	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime == FALSE)
 	{
 		b_awake_stoneguardian(Stoneguardian_RHADEMES_14A);
+		b_awake_stoneguardian(Stoneguardian_RHADEMES_14B);
 		b_awake_stoneguardian(Stoneguardian_RHADEMES_14D);
+		b_awake_stoneguardian(Stoneguardian_RHADEMES_14E);
 		b_awake_stoneguardian(Stoneguardian_RHADEMES_14F);
 		SC_TookRhademesTrap = TRUE;
 		ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_02_OneTime = TRUE;

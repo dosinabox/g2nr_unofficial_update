@@ -60,9 +60,9 @@ func void DIA_GornOW_Hello_Info()
 		}
 		else
 		{
-			CreateInvItem(hero,ITAR_SLD_M);
+			CreateInvItem(hero,ITAR_SLD_M2);
 			AI_PrintScreen("Средние доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-			AI_EquipArmor(hero,ITAR_SLD_M);
+			AI_EquipArmor(hero,ITAR_SLD_M2);
 		};
 		AI_Output(other,self,"DIA_GornOW_Add_15_03");	//Спасибо! Увидимся у Милтена.
 	}

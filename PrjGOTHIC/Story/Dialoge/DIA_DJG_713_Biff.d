@@ -164,6 +164,7 @@ func void DIA_Biff_WASHIERIMTAL_Info()
 	AI_Output(other,self,"DIA_Biff_WASHIERIMTAL_15_00");	//Что ты надеешься найти здесь, в Долине Рудников?
 	AI_Output(self,other,"DIA_Biff_WASHIERIMTAL_07_01");	//Золото и славу. Что же еще? Когда я покончу с драконами, я буду купаться в золоте.
 	AI_Output(self,other,"DIA_Biff_WASHIERIMTAL_07_02");	//У меня будет достаточно, чтобы провести остаток своей жизни, пытаясь посетить все таверны и бордели в стране.
+	B_LogEntry(TOPIC_Dragonhunter,"Охотник на драконов Бифф - типичный наемник. Если я заплачу ему, он будет сражаться вместе со мной.");
 	Info_AddChoice(DIA_Biff_WASHIERIMTAL,"Что ж, тогда я желаю тебе удачи.",DIA_Biff_WASHIERIMTAL_vielglueck);
 	Info_AddChoice(DIA_Biff_WASHIERIMTAL,"Ну да, либо это, либо ты станешь трупом!",DIA_Biff_WASHIERIMTAL_ihrtot);
 };
@@ -196,7 +197,8 @@ instance DIA_Biff_ARBEITEN(C_Info)
 
 func int DIA_Biff_ARBEITEN_Condition()
 {
-	if((DJG_BiffParty == FALSE) && Npc_KnowsInfo(other,DIA_Biff_HALLO) && (DJG_Biff_Stay == FALSE))
+//	if((DJG_BiffParty == FALSE) && Npc_KnowsInfo(other,DIA_Biff_HALLO) && (DJG_Biff_Stay == FALSE))
+	if((DJG_BiffParty == FALSE) && Npc_KnowsInfo(other,DIA_Biff_WASHIERIMTAL) && (DJG_Biff_Stay == FALSE))
 	{
 		return TRUE;
 	};
@@ -205,7 +207,7 @@ func int DIA_Biff_ARBEITEN_Condition()
 func void DIA_Biff_ARBEITEN_Info()
 {
 	AI_Output(other,self,"DIA_Biff_ARBEITEN_15_00");	//Ты бы не хотел поработать на меня?
-	B_LogEntry(TOPIC_Dragonhunter,"Охотник на драконов Бифф - типичный наемник. Если я заплачу ему, он будет сражаться вместе со мной.");
+//	B_LogEntry(TOPIC_Dragonhunter,"Охотник на драконов Бифф - типичный наемник. Если я заплачу ему, он будет сражаться вместе со мной.");
 	if(DJG_BiffParty_nomore >= 6)
 	{
 		AI_Output(self,other,"DIA_Biff_ARBEITEN_07_01");	//Мы уже как-то пытались. Из этого не вышло ничего хорошего. Так что спасибо, не хочу.
@@ -300,7 +302,7 @@ func void DIA_Biff_GELDEINTREIBEN_Info()
 	B_BiffsAnteil_Berechnung();
 	B_BiffsAnteil_PrintScreen();
 	Info_ClearChoices(DIA_Biff_GELDEINTREIBEN);
-	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Я не могу платить тебе.",DIA_Biff_GELDEINTREIBEN_zuTeuer);
+	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Я не могу позволить себе такие расходы.",DIA_Biff_GELDEINTREIBEN_zuTeuer);
 	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Вот твоя доля.",DIA_Biff_GELDEINTREIBEN_geben);
 };
 
@@ -321,7 +323,8 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer()
 	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_zuTeuer_07_01");	//Хватит ныть. Мы договорились на половину.
 	Info_ClearChoices(DIA_Biff_GELDEINTREIBEN);
 	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Боюсь, дальше наши пути расходятся.",DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen);
-	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Вот твоя доля.",DIA_Biff_GELDEINTREIBEN_geben);
+	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Хорошо, похоже, у меня нет выбора. Давай разделим пополам.",DIA_Biff_GELDEINTREIBEN_geben2);
+//	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Вот твоя доля.",DIA_Biff_GELDEINTREIBEN_geben);
 };
 
 func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
@@ -336,6 +339,17 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
 	DJG_BiffParty = FALSE;
 	DJG_Biff_HalbeHalbe = FALSE;
 	DJG_BiffParty_nomore += 1;
+};
+
+func void DIA_Biff_GELDEINTREIBEN_geben2()
+{
+	AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_15_02");	//Хорошо, похоже, у меня нет выбора. Давай разделим пополам.
+	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_geben_07_01");	//Хорошо. Тогда в путь.
+	AI_StopProcessInfos(self);
+	B_GiveInvItems(other,self,ItMi_Gold,BiffsAnteil);
+	B_Biff_SetRefuseTalk();
+	BIFF_LABERT_GELDEINTREIBEN = FALSE;
+	DJG_Biff_SCGold = Npc_HasItems(hero,ItMi_Gold);
 };
 
 
@@ -371,7 +385,8 @@ func void DIA_Biff_ICHBLEIBHIER_Info()
 	{
 		Npc_ExchangeRoutine(self,"Stay_Rock");
 	};
-	if(Npc_GetDistToWP(self,"CASTLE_36") < 10000)
+//	if(Npc_GetDistToWP(self,"CASTLE_36") < 10000)
+	if(Npc_GetDistToWP(self,"CASTLE_30") < 1000)
 	{
 		Npc_ExchangeRoutine(self,"Stay_Fire");
 	};

@@ -17,6 +17,7 @@ func void Equip_2H_01()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_01);
 			b_meleeweaponchange(0,Waffenbonus_01,0);
 		};
+		Current2HBonus = 1;
 	};
 };
 
@@ -34,6 +35,7 @@ func void UnEquip_2H_01()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 
@@ -53,6 +55,7 @@ func void Equip_2H_02()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_02);
 			b_meleeweaponchange(0,Waffenbonus_02,0);
 		};
+		Current2HBonus = 2;
 	};
 };
 
@@ -70,6 +73,7 @@ func void UnEquip_2H_02()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 
@@ -89,6 +93,7 @@ func void Equip_2H_03()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_03);
 			b_meleeweaponchange(0,Waffenbonus_03,0);
 		};
+		Current2HBonus = 3;
 	};
 };
 
@@ -106,6 +111,7 @@ func void UnEquip_2H_03()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 
@@ -125,6 +131,7 @@ func void Equip_2H_04()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_04);
 			b_meleeweaponchange(0,Waffenbonus_04,0);
 		};
+		Current2HBonus = 4;
 	};
 };
 
@@ -142,6 +149,7 @@ func void UnEquip_2H_04()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 
@@ -161,6 +169,7 @@ func void Equip_2H_05()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_05);
 			b_meleeweaponchange(0,Waffenbonus_05,0);
 		};
+		Current2HBonus = 5;
 	};
 };
 
@@ -178,6 +187,7 @@ func void UnEquip_2H_05()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 
@@ -197,6 +207,7 @@ func void Equip_2H_06()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_06);
 			b_meleeweaponchange(0,Waffenbonus_06,0);
 		};
+		Current2HBonus = 6;
 	};
 };
 
@@ -214,6 +225,7 @@ func void UnEquip_2H_06()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 
@@ -233,6 +245,7 @@ func void Equip_2H_07()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_07);
 			b_meleeweaponchange(0,Waffenbonus_07,0);
 		};
+		Current2HBonus = 7;
 	};
 };
 
@@ -250,6 +263,7 @@ func void UnEquip_2H_07()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 
@@ -269,6 +283,7 @@ func void Equip_2H_08()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_08);
 			b_meleeweaponchange(0,Waffenbonus_08,0);
 		};
+		Current2HBonus = 8;
 	};
 };
 
@@ -286,6 +301,7 @@ func void UnEquip_2H_08()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 
@@ -305,6 +321,7 @@ func void Equip_2H_09()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_09);
 			b_meleeweaponchange(0,Waffenbonus_09,0);
 		};
+		Current2HBonus = 9;
 	};
 };
 
@@ -322,6 +339,7 @@ func void UnEquip_2H_09()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 
@@ -341,6 +359,7 @@ func void Equip_2H_10()
 			B_AddFightSkill(self,NPC_TALENT_2H,Waffenbonus_10);
 			b_meleeweaponchange(0,Waffenbonus_10,0);
 		};
+		Current2HBonus = 10;
 	};
 };
 
@@ -358,6 +377,7 @@ func void UnEquip_2H_10()
 			B_AddFightSkill(self,NPC_TALENT_2H,-hero_2h_max_bonus);
 			b_meleeweaponundochange();
 		};
+		Current2HBonus = 0;
 	};
 };
 

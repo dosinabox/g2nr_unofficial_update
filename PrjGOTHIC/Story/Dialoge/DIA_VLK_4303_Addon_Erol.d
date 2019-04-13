@@ -105,7 +105,7 @@ func void DIA_Addon_Erol_what_Info()
 	AI_Output(self,other,"DIA_Addon_Erol_what_10_02");	//Хорошо, что я еще не забыл свой коронный хук справа, иначе я тоже был бы мертв.
 	Log_CreateTopic(TOPIC_Addon_Erol,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Erol,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Erol,"На торговца Эрола напали бандиты. Они забрали все его товары. Эрол хочет, чтобы я вернул похищенные каменные таблички. Бандиты расположились на мосту неподалеку от таверны 'Мертвая Гарпия'.");
+	B_LogEntry(TOPIC_Addon_Erol,"На торговца Эрола напали бандиты. Они забрали все его товары. Эрол хочет, чтобы я вернул похищенные каменные таблички. Бандиты расположились на мосту неподалеку от таверны 'Мертвая гарпия'.");
 	MIS_Addon_Erol_BanditStuff = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Erol_what);
 	Info_AddChoice(DIA_Addon_Erol_what,"Так это твои вещи лежат под мостом?",DIA_Addon_Erol_what_dein);
@@ -211,7 +211,7 @@ func void DIA_Addon_Erol_FernandosWeapons_Info()
 func void DIA_Addon_Erol_FernandosWeapons_bengar()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_FernandosWeapons_bengar_15_00");	//Где находятся эти верхние пастбища?
-	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_bengar_10_01");	//В центральной части Хориниса находится 'Мертвая Гарпия', таверна Орлана.
+	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_bengar_10_01");	//В центральной части Хориниса находится 'Мертвая гарпия', таверна Орлана.
 	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_bengar_10_02");	//От нее на юг ведет дорога. Она проходит через верхние пастбища к проходу в Долину Рудников.
 	Info_ClearChoices(DIA_Addon_Erol_FernandosWeapons);
 };
@@ -370,7 +370,14 @@ func int DIA_Addon_Erol_PreTeach_Condition()
 func void DIA_Addon_Erol_PreTeach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_PreTeach_15_00");	//Ты смог отбиться от бандитов?
-	AI_Output(self,other,"DIA_Addon_Erol_PreTeach_10_01");	//Да. Но они все еще сидят на мосту.
+	if(Npc_IsDead(BDT_10305_Addon_RangerBandit_L) && Npc_IsDead(BDT_10304_Addon_RangerBandit_M) && Npc_IsDead(BDT_10303_Addon_RangerBandit_L) && Npc_IsDead(BDT_10302_Addon_RangerBandit_L) && Npc_IsDead(BDT_10301_Addon_RangerBandit_M) && Npc_IsDead(BDT_10300_Addon_RangerBandit_L))
+	{
+		AI_Output(self,other,"DIA_Addon_Erol_SLD_10_01");	//Да. А что? Что-нибудь не так?
+	}
+	else
+	{ 
+		AI_Output(self,other,"DIA_Addon_Erol_PreTeach_10_01");	//Да. Но они все еще сидят на мосту.
+	};
 	AI_Output(other,self,"DIA_Addon_Erol_PreTeach_15_02");	//Ты можешь научить меня такому удару?
 	AI_Output(self,other,"DIA_Addon_Erol_PreTeach_10_03");	//Конечно.
 	Erol_Addon_TeachPlayer = TRUE;
@@ -474,9 +481,9 @@ func void DIA_Addon_Erol_Trade_Info()
 {
 	B_Say(other,self,"$TRADE_2");
 	B_GiveTradeInv(self);
-	AI_Output(self,other,"DIA_Addon_Erol_Trade_10_00");	//Впрочем, выбора у меня нет.
 	if(Erol_IsAtHome == FALSE)
 	{
+		AI_Output(self,other,"DIA_Addon_Erol_Trade_10_00");	//Впрочем, выбора у меня нет.
 		Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
 		B_LogEntry(Topic_OutTrader,LogText_Addon_ErolTrade);
 		Npc_ExchangeRoutine(self,"Home");

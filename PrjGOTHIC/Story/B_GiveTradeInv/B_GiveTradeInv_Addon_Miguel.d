@@ -14,6 +14,7 @@ func void B_GiveTradeInv_Addon_Miguel(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_02,4);
 		CreateInvItems(slf,ItPo_Health_02,4);
 		CreateInvItems(slf,ItPo_Health_Addon_04,1);
+		CreateInvItems(slf,ItPl_Dex_Herb_01,1);
 		Miguel_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (Miguel_ItemsGiven_Chapter_2 == FALSE))

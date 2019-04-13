@@ -87,7 +87,8 @@ instance DIA_Isgaroth_Wolf(C_Info)
 
 func int DIA_Isgaroth_Wolf_Condition()
 {
-	if((MIS_KlosterArbeit == LOG_Running) && (Sergio_Sends == TRUE) && (Kapitel == 1))
+//	if((MIS_KlosterArbeit == LOG_Running) && (Sergio_Sends == TRUE) && (Kapitel == 1))
+	if((MIS_IsgarothWolf == LOG_Running) && (Sergio_Sends == TRUE) && (Kapitel == 1))
 	{
 		return TRUE;
 	};
@@ -97,7 +98,7 @@ func void DIA_Isgaroth_Wolf_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Wolf_15_00");	//Меня послал Сержио. Он поручил мне свои обязанности. Что нужно сделать?
 	AI_Output(self,other,"DIA_Isgaroth_Wolf_01_01");	//Здесь недавно появился черный волк. Найди его и убей.
-	MIS_IsgarothWolf = LOG_Running;
+//	MIS_IsgarothWolf = LOG_Running;
 	B_LogEntry(Topic_IsgarothWolf,"Около алтаря бродит черный волк. Я должен найти его и убить.");
 };
 
@@ -108,7 +109,8 @@ instance DIA_Isgaroth_tot(C_Info)
 	nr = 2;
 	condition = DIA_Isgaroth_tot_Condition;
 	information = DIA_Isgaroth_tot_Info;
-	permanent = TRUE;
+//	permanent = TRUE;
+	permanent = FALSE;
 	description = "Я убил волка.";
 };
 
@@ -116,7 +118,8 @@ instance DIA_Isgaroth_tot(C_Info)
 func int DIA_Isgaroth_tot_Condition()
 {
 	Wolfi = Hlp_GetNpc(BlackWolf);
-	if((MIS_IsgarothWolf == LOG_Running) && Npc_IsDead(Wolfi))
+//	if((MIS_IsgarothWolf == LOG_Running) && Npc_IsDead(Wolfi))
+	if(Npc_KnowsInfo(other,DIA_Isgaroth_Wolf) && Npc_IsDead(Wolfi))
 	{
 		return TRUE;
 	};
@@ -125,7 +128,14 @@ func int DIA_Isgaroth_tot_Condition()
 func void DIA_Isgaroth_tot_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_tot_15_00");	//Я убил волка.
-	AI_Output(self,other,"DIA_Isgaroth_tot_01_01");	//Хорошая работа, послушник. Ты мужественный человек. А теперь возвращайся в монастырь и принимайся за свои обязанности.
+	if(other.guild == GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_Isgaroth_EXIT_01_00");	//Пусть Иннос всегда освещает твой путь.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Isgaroth_tot_01_01");	//Хорошая работа, послушник. Ты мужественный человек. А теперь возвращайся в монастырь и принимайся за свои обязанности.
+	};
 	MIS_IsgarothWolf = LOG_SUCCESS;
 	B_GivePlayerXP(XP_IsgarothWolf);
 	AI_StopProcessInfos(self);
@@ -217,9 +227,13 @@ func void DIA_Isgaroth_Kloster_Info()
 	{
 		AI_Output(self,other,"DIA_Isgaroth_Kloster_01_02");	//Если ты хочешь стать послушником монастыря, ты должен принести овцу и...
 		B_Say_Gold(self,other,Summe_Kloster);
-		Log_CreateTopic(Topic_Kloster,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Kloster,LOG_Running);
-		B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
+		if(SC_KnowsKlosterTribut == FALSE)
+		{
+			SC_KnowsKlosterTribut = TRUE;
+			Log_CreateTopic(Topic_Kloster,LOG_MISSION);
+			Log_SetTopicStatus(Topic_Kloster,LOG_Running);
+			B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
+		};
 	}
 	else
 	{

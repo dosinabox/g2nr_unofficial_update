@@ -135,7 +135,7 @@ func void DIA_Addon_Riordian_SaturasWantYou_Info()
 };
 
 
-var int Riordian_PermNews;
+//var int Riordian_PermNews;
 
 instance DIA_Addon_Riordian_Perm(C_Info)
 {
@@ -150,7 +150,8 @@ instance DIA_Addon_Riordian_Perm(C_Info)
 
 func int DIA_Addon_Riordian_Perm_Condition()
 {
-	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_SUCCESS)
+//	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_SUCCESS)
+	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Hallo))
 	{
 		return TRUE;
 	};
@@ -159,10 +160,19 @@ func int DIA_Addon_Riordian_Perm_Condition()
 func void DIA_Addon_Riordian_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_Perm_15_00");	//Есть что-нибудь новое?
-	if(Riordian_PermNews == FALSE)
+	/*if(Riordian_PermNews == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_Perm_10_01");	//Да! Я нашел подтверждение, что эта древняя цивилизация действительно поклонялась Аданосу!
 		Riordian_PermNews = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Riordian_Perm_10_02");	//Нет, пока нет. Приходи позже.
+	};*/
+	if(MIS_Addon_Saturas_BringRiordian2Me == LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Addon_Riordian_Perm_10_01");	//Да! Я нашел подтверждение, что эта древняя цивилизация действительно поклонялась Аданосу!
+//		Riordian_PermNews = TRUE;
 	}
 	else
 	{

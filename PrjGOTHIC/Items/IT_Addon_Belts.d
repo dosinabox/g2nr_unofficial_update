@@ -341,7 +341,7 @@ instance ItBE_Addon_MC(C_Item)
 	material = MAT_WOOD;
 	on_equip = Equip_ItBE_Addon_MC;
 	on_unequip = UnEquip_ItBE_Addon_MC;
-	description = "Пояс из краулера";
+	description = "Пояс из панциря краулера";
 	text[1] = NAME_Prot_Edge;
 	count[1] = Belt_Prot_01;
 	text[2] = NAME_Prot_Point;

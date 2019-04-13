@@ -13,7 +13,7 @@ instance VLK_4304_Addon_William(Npc_Default)
 	CreateInvItems(self,ITWr_Addon_William_01,1);
 	CreateInvItems(self,ItKe_Lockpick,2);
 	CreateInvItems(self,ItFo_Apple,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Homer,BodyTex_N,ITAR_Bau_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Homer,BodyTex_N,ITAR_Slave);
 	Mdl_SetModelFatness(self,0.9);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

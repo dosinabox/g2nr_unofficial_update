@@ -169,6 +169,7 @@ func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou()
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Что ты собираешься делать с этим золотом?",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Откуда у тебя это золото?",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Где спрятано это золото?",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold);
+	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Почему ты не заберешь его сам?",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_Why);
 };
 
 func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan()
@@ -190,10 +191,14 @@ func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold()
 {
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_15_00");	//Где спрятано это золото?
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_11_01");	//Прямо на торговой площади. Над заброшенной шахтой. Оно в кожаном кошельке.
-	if(Diego_angekommen == TRUE)
+	if(Diego_Nostalgie == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoNW_WillHelpYou_WhereGold_11_01");	//Обойдись без комментариев. Я и сам помню, что мы проходили мимо этого места.
 		AI_Output(self,other,"DIA_Addon_DiegoNW_WillHelpYou_WhereGold_11_02");	//Просто принеси мне золото.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_11_02");	//Я собирался пойти и забрать его, но неожиданно около этого места появилась банда орков.
 	};
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_11_02");	//Но проверь, чтобы это был тот самый кошелек, чтобы не ходить туда вхолостую.
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_15_03");	//Как я опознаю его?
@@ -207,6 +212,12 @@ func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_End_TryIt()
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_TryIt_15_00");	//Я попытаюсь найти твое золото.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_TryIt_11_01");	//(ухмыляется) Сделай это. Этого будет достаточно для меня.
 	Info_ClearChoices(DIA_DiegoNW_NeedHelp);
+};
+
+func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_Why()
+{
+	AI_Output(other,self,"DIA_DiegoNW_HelpYou_15_04");	//Почему ты не заберешь его сам?
+	AI_Output(self,other,"DIA_DiegoNW_HelpYou_11_05");	//Потому что там, где оно спрятано, ошиваются орки. Ты как нельзя лучше подходишь для этой работы, поверь мне.
 };
 
 
@@ -237,6 +248,7 @@ func void DIA_DiegoNW_HelpYou_Info()
 	AI_Output(self,other,"DIA_DiegoNW_HelpYou_11_03");	//Хорошо. Я спрятал золото в Долине Рудников, и ты должен забрать его оттуда для меня.
 	AI_Output(self,other,"DIA_DiegoNW_HelpYou_11_06");	//А я буду ждать здесь и все подготовлю для дальнейших действий.
 	DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold();
+	DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_Why();
 	DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_WhereGold_End_TryIt();
 	MIS_HelpDiegoNW = LOG_Running;
 	Log_CreateTopic(TOPIC_HelpDiegoNW,LOG_MISSION);
@@ -427,6 +439,7 @@ func void DIA_DiegoNW_CanYouTeach_Info()
 	}
 	else
 	{
+		AI_Output(self,other,"DIA_DiegoOW_Teach_11_01");	//Сейчас не время для этого. У меня есть дела поважнее.
 		AI_Output(self,other,"DIA_DiegoNW_CanYouTeach_11_02");	//Сначала мне нужно решить свои проблемы.
 	};
 };

@@ -10,6 +10,7 @@ instance VLK_4143_HaupttorWache(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
+	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ITKE_OC_MAINGATE_MIS,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal18,BodyTex_N,ITAR_MIL_L);

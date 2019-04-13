@@ -7,7 +7,7 @@ instance DJG_713_Biff(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_PARTYMEMBER] = TRUE;
+//	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
@@ -58,8 +58,10 @@ func void Rtn_Stay_Rock_713()
 
 func void Rtn_Stay_Fire_713()
 {
-	TA_Stand_Guarding(8,0,23,0,"CASTLE_29");
-	TA_Stand_Guarding(23,0,8,0,"CASTLE_29");
+//	TA_Stand_Guarding(8,0,23,0,"CASTLE_29");
+//	TA_Stand_Guarding(23,0,8,0,"CASTLE_29");
+	TA_Stand_Guarding(8,0,23,0,"CASTLE_28");
+	TA_Stand_Guarding(23,0,8,0,"CASTLE_28");
 };
 
 func void Rtn_Stay_Ice_713()

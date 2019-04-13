@@ -776,7 +776,7 @@ instance ItFo_Addon_Krokofleisch_Mission(C_Item)
 
 instance ItRi_Addon_MorgansRing_Mission(C_Item)
 {
-	name = "Кольцо Моргана";
+	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING | ITEM_MISSION;
 	value = 500;
@@ -787,7 +787,7 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	on_unequip = UnEquip_MorgansRing;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = name;
+	description = "Кольцо Моргана";
 	text[0] = "Кольцо украшено множеством рун.";
 	text[2] = NAME_ADDON_BONUS_1H;
 	count[2] = 10;
@@ -1010,7 +1010,7 @@ func void Use_Addon_Stone_03()
 	Doc_PrintLine(nDocID,0,"");
 	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
-		Doc_PrintLines(nDocID,0,"КАРДИМОН создал вторую ловушку. Лишь тот, кто следует по пути света, достигнет третьего зала.");
+		Doc_PrintLines(nDocID,0,"КАРДИМОН создал вторую ловушку. Лишь тот, кто следует по пути света до самого конца, достигнет третьего зала.");
 	}
 	else
 	{
@@ -1317,8 +1317,8 @@ instance ITKE_Addon_Bloodwyn_01(C_Item)
 	material = MAT_METAL;
 	description = "Ключ Бладвина";
 	text[0] = "Открывает его сундук в храме.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ITKE_Addon_Heiler(C_Item)
@@ -1332,8 +1332,8 @@ instance ITKE_Addon_Heiler(C_Item)
 	description = "Ключ каменного стража";
 	text[0] = "Ключ от сундука в странном";
 	text[1] = "древнем строении на болоте.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItMi_TempelTorKey(C_Item)

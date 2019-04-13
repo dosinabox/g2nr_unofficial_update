@@ -71,6 +71,7 @@ func void Equip_MorgansRing()
 		B_AddFightSkill(self,NPC_TALENT_1H,10);
 		MorgansRingEquipped = TRUE;
 	};
+	MorgansRing = TRUE;
 };
 
 func void UnEquip_MorgansRing()
@@ -101,9 +102,9 @@ func void UnEquip_MorgansRing()
 		{
 			B_AddFightSkill(self,NPC_TALENT_1H,-10);
 		};
-		//Print("тест 2");
 		MorgansRingEquipped = FALSE;
 	};
+	MorgansRing = FALSE;
 };
 
 func void Equip_1H_Keule()

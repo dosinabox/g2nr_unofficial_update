@@ -27,3 +27,9 @@ func void Rtn_Start_1067()
 	TA_Sleep(8,0,0,0,"NW_CASTLEMINE_TOWER_08");
 };
 
+func void Rtn_Attack_1067()
+{
+	TA_Stand_WP(0,0,8,0,"NW_CASTLEMINE_TOWER_05");
+	TA_Stand_WP(8,0,0,0,"NW_CASTLEMINE_TOWER_05");
+};
+

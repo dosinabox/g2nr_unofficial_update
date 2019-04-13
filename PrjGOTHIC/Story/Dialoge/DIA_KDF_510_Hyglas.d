@@ -146,14 +146,16 @@ instance DIA_Hyglas_FIREBOLT(C_Info)
 	nr = 9;
 	condition = DIA_Hyglas_FIREBOLT_Condition;
 	information = DIA_Hyglas_FIREBOLT_Info;
-	permanent = FALSE;
+//	permanent = FALSE;
+	permanent = TRUE;
 	description = "Какие ингредиенты нужны для создания руны огненной стрелы?";
 };
 
 
 func int DIA_Hyglas_FIREBOLT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_RUNE == LOG_Running) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
+//	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_RUNE == LOG_Running) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
 		return TRUE;
 	};
@@ -169,7 +171,7 @@ func void DIA_Hyglas_FIREBOLT_Info()
 instance DIA_Hyglas_TALENT_FIREBOLT(C_Info)
 {
 	npc = KDF_510_Hyglas;
-	nr = 990;
+	nr = 800;
 	condition = DIA_Hyglas_TALENT_FIREBOLT_Condition;
 	information = DIA_Hyglas_TALENT_FIREBOLT_Info;
 	permanent = TRUE;
@@ -180,7 +182,8 @@ instance DIA_Hyglas_TALENT_FIREBOLT(C_Info)
 
 func int DIA_Hyglas_TALENT_FIREBOLT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE) && Npc_HasItems(other,ItMi_RuneBlank) && Npc_HasItems(other,ItMi_Sulfur))
+//	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE) && Npc_HasItems(other,ItMi_RuneBlank) && Npc_HasItems(other,ItMi_Sulfur))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
 		return TRUE;
 	};
@@ -191,7 +194,7 @@ var int Firebolt_Scroll_Once;
 func void DIA_Hyglas_TALENT_FIREBOLT_Info()
 {
 	AI_Output(other,self,"DIA_Hyglas_TALENT_FIREBOLT_15_00");	//Научи меня создавать руну огненной стрелы.
-	if(Npc_HasItems(other,ItSc_Firebolt))
+	if(Npc_HasItems(other,ItSc_Firebolt) && Npc_HasItems(other,ItMi_RuneBlank) && Npc_HasItems(other,ItMi_Sulfur))
 	{
 		if(B_TeachPlayerTalentRunes(self,other,SPL_Firebolt))
 		{
@@ -202,22 +205,24 @@ func void DIA_Hyglas_TALENT_FIREBOLT_Info()
 	}
 	else
 	{
-//		B_Say(self,other,"$NOTNOW");
 		AI_Output(self,other,"DIA_Hyglas_CONTEST_14_04");	//Хорошо, я научу тебя. Но сначала ты должен найти все необходимые ингредиенты.
 		if(Firebolt_Scroll_Once == FALSE)
 		{
-			B_LogEntry(TOPIC_Rune,"Пока у меня нет свитка огненной стрелы, Хиглас не сможет обучить меня созданию руны.");
-			if(!Npc_IsDead(Gorax))
+			if(!Npc_HasItems(other,ItSc_Firebolt))
 			{
-				CreateInvItem(Gorax,ItSc_Firebolt);
-				B_LogEntry(TOPIC_Rune,"Возможно, я смогу купить такой свиток у Горакса.");
-			}
-			else
-			{
-				Wld_InsertItem(ItSc_Firebolt,"FP_ITEM_KLOSTER_01");
-				B_LogEntry(TOPIC_Rune,"Похоже, что мне придется искать этот свиток по всему монастырю.");
+				B_LogEntry(TOPIC_Rune,"Пока у меня нет свитка огненной стрелы, Хиглас не сможет обучить меня созданию руны.");
+				if(!Npc_IsDead(Gorax))
+				{
+					CreateInvItem(Gorax,ItSc_Firebolt);
+					B_LogEntry(TOPIC_Rune,"Возможно, я смогу купить такой свиток у Горакса.");
+				}
+				else
+				{
+					Wld_InsertItem(ItSc_Firebolt,"FP_ITEM_KLOSTER_01");
+					B_LogEntry(TOPIC_Rune,"Похоже, что мне придется искать этот свиток по всему монастырю.");
+				};
+				Firebolt_Scroll_Once = TRUE;
 			};
-			Firebolt_Scroll_Once = TRUE;
 		};
 		AI_StopProcessInfos(self);
 	};

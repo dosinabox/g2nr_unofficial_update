@@ -537,7 +537,8 @@ instance ItMw_Addon_Betty(C_Item)
 {
 	name = "Бетти";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_AXE | ITEM_MISSION;
+//	flags = ITEM_AXE | ITEM_MISSION;
+	flags = ITEM_SWD | ITEM_MISSION;
 	material = MAT_METAL;
 	value = Value_Betty;
 	damageTotal = Damage_Betty;

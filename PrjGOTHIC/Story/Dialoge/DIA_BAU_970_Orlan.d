@@ -121,11 +121,14 @@ func void DIA_Orlan_WERBISTDU_Info()
 {
 	AI_Output(other,self,"DIA_Orlan_WERBISTDU_15_00");	//Ты кто?
 	AI_Output(self,other,"DIA_Orlan_WERBISTDU_05_01");	//Я Орлан, хозяин этой скромной таверны.
-	AI_Output(self,other,"DIA_Orlan_WERBISTDU_05_02");	//Ты что-нибудь ищешь, чужеземец? Может быть, приличный меч или хорошие доспехи?
+	if(Kapitel <= 3)
+	{
+		AI_Output(self,other,"DIA_Orlan_WERBISTDU_05_02");	//Ты что-нибудь ищешь, чужеземец? Может быть, приличный меч или хорошие доспехи?
+	};
 	AI_Output(self,other,"DIA_Orlan_WERBISTDU_05_03");	//Глоток вина, или, может быть, тебе нужна информация?
 	AI_Output(self,other,"DIA_Orlan_WERBISTDU_05_04");	//Я могу дать тебе все это и даже больше, если у тебя есть звонкие монеты.
 	Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
-	B_LogEntry(Topic_OutTrader,"Орлан - трактирщик в таверне 'У мертвой гарпии'. Я могу купить у него припасы и кое-какое оружие.");
+	B_LogEntry(Topic_OutTrader,"Орлан - трактирщик в таверне 'Мертвая гарпия'. Я могу купить у него припасы и кое-какое оружие.");
 };
 
 
@@ -366,7 +369,7 @@ func void DIA_Orlan_RUESTUNG_Info()
 	AI_Output(self,other,"DIA_Orlan_RUESTUNG_05_01");	//У меня есть очень хороший экземпляр, я уверен, это заинтересует тебя.
 	Info_ClearChoices(DIA_Orlan_RUESTUNG);
 	Info_AddChoice(DIA_Orlan_RUESTUNG,Dialog_Back,DIA_Orlan_RUESTUNG_BACK);
-	Info_AddChoice(DIA_Orlan_RUESTUNG,"Кожаные доспехи. Защита: 25/20/15/0. (250 золота)",DIA_Orlan_RUESTUNG_Buy);
+	Info_AddChoice(DIA_Orlan_RUESTUNG,"Кожаные доспехи. Защита: 25/20/15/0. (250 золотых)",DIA_Orlan_RUESTUNG_Buy);
 };
 
 func void DIA_Orlan_RUESTUNG_Buy()
@@ -644,7 +647,8 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	AI_Output(other,self,"DIA_Orlan_WETTKAMPFLAEUFT_15_01");	//Что случилось?
 	AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_02");	//Состязание 'кто кого перепьет' наконец-то закончилось.
 	AI_Output(other,self,"DIA_Orlan_WETTKAMPFLAEUFT_15_03");	//Кто победил?
-	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && Mob_HasItems("CHEST_RUKHAR",ItFo_Water))
+//	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && Mob_HasItems("CHEST_RUKHAR",ItFo_Water))
+	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && (Mob_HasItems("CHEST_RUKHAR",ItFo_Water) > 0))
 	{
 		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_04");	//На этот раз Рэндольф. Рухару нынче не повезло.
 	}

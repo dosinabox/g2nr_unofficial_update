@@ -436,8 +436,8 @@ func void DIA_Addon_Saturas_ScRanger_Info()
 		if(Hlp_IsItem(itm,ITAR_RANGER_Addon))
 		{
 			AI_Output(self,other,"DIA_Addon_Saturas_ScRanger_14_01");	//Я вижу, ты носишь доспехи наших детей.
-		}
-		else
+		};
+		if((SCIsWearingRangerRing == TRUE) && (RangerRingIsLaresRing == FALSE))
 		{
 			AI_Output(self,other,"DIA_Addon_Saturas_ScRanger_14_02");	//Я вижу, на тебе наш тайный знак. Аквамариновое кольцо.
 		};

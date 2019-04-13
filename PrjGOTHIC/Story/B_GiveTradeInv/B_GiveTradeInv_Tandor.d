@@ -26,6 +26,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 //		CreateInvItems(slf,ItMw_Drachenschneide,1);
 		CreateInvItems(slf,ItRw_Bow_L_03,1);
 		CreateInvItems(slf,ItRw_Bow_L_04,1);
+		CreateInvItems(slf,ItRw_Mil_Crossbow,1);
 //		CreateInvItems(slf,ItRw_Bow_M_03,1);
 //		CreateInvItems(slf,ItRw_Crossbow_M_02,1);
 //		CreateInvItems(slf,ItRw_Bow_H_02,1);
@@ -47,7 +48,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Bow_M_02,1);
 		CreateInvItems(slf,ItRw_Crossbow_M_01,1);
 		CreateInvItems(slf,ItRw_Bow_M_03,1);
-		CreateInvItems(slf,ItRw_Crossbow_M_02,1);
+//		CreateInvItems(slf,ItRw_Crossbow_M_02,1);
 		Tandor_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Tandor_ItemsGiven_Chapter_3 == FALSE))

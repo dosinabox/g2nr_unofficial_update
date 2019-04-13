@@ -84,7 +84,8 @@ func void DIA_Vino_SeekWork_Info()
 		if(!Npc_IsDead(Lobart))
 		{
 			AI_Output(self,other,"DIA_Vino_SeekWork_05_04");	//Ќо если ты хочешь работать на Ћобарта в качестве поденного рабочего, € могу только предупредить теб€. ќн платит люд€м вроде теб€ сущие гроши!
-			if((Mob_HasItems("CHEST_LOBART",ITAR_Bau_L) || Npc_HasItems(Lobart,ITAR_Bau_L)) && (Lobart_Kleidung_Verkauft == FALSE) && (Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG) || Npc_KnowsInfo(other,DIA_Lobart_WorkNOW)))
+//			if((Mob_HasItems("CHEST_LOBART",ITAR_Bau_L) || Npc_HasItems(Lobart,ITAR_Bau_L)) && (Lobart_Kleidung_Verkauft == FALSE) && (Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG) || Npc_KnowsInfo(other,DIA_Lobart_WorkNOW)))
+			if((Lobart_Kleidung_Verkauft == FALSE) && (Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG) || Npc_KnowsInfo(other,DIA_Lobart_WorkNOW)))
 			{
 				AI_Output(other,self,"DIA_Vino_SeekWork_15_05");	//ќн предложил купить у него чистую одежду дешевле, если € буду помогать на ферме.
 				AI_Output(self,other,"DIA_Vino_SeekWork_05_06");	//’мм. ” мен€ нет дл€ теб€ никакой работы, но ты можешь принести мне и парн€м что-нибудь выпить.

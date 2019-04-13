@@ -114,7 +114,7 @@ instance DIA_Addon_Bengar_MissingPeople(C_Info)
 
 func int DIA_Addon_Bengar_MissingPeople_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_WOVONLEBTIHR) && (SC_HearedAboutMissingPeople == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Bengar_WOVONLEBTIHR) && (SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};
@@ -194,7 +194,8 @@ instance DIA_Addon_Bengar_ReturnPardos(C_Info)
 
 func int DIA_Addon_Bengar_ReturnPardos_Condition()
 {
-	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && (Npc_GetDistToWP(Pardos_NW,"NW_FARM3_HOUSE_IN_NAVI_2") <= 1000) && (MissingPeopleReturnedHome == TRUE))
+//	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && (Npc_GetDistToWP(Pardos_NW,"NW_FARM3_HOUSE_IN_NAVI_2") <= 1000) && (MissingPeopleReturnedHome == TRUE))
+	if((MIS_Bengar_BringMissPeopleBack == LOG_Running) && !Npc_IsDead(Pardos_NW) && (MissingPeopleReturnedHome == TRUE))
 	{
 		return TRUE;
 	};
@@ -203,8 +204,15 @@ func int DIA_Addon_Bengar_ReturnPardos_Condition()
 func void DIA_Addon_Bengar_ReturnPardos_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_00");	//Пардос вернулся?
-	AI_Output(self,other,"DIA_Addon_Bengar_ReturnPardos_10_01");	//Да, он в доме, отдыхает. Спасибо за все...
-	AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_02");	//Не стоит.
+	if(Npc_GetDistToWP(Pardos_NW,"NW_FARM3_HOUSE_IN_NAVI_2") <= 1000)
+	{
+		AI_Output(self,other,"DIA_Addon_Bengar_ReturnPardos_10_01");	//Да, он в доме, отдыхает. Спасибо за все...
+		AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_02");	//Не стоит.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Bengar_MILIZ_10_04");	//Я уж думал, что никто не придет.
+	};
 	AI_Output(self,other,"DIA_Addon_Bengar_ReturnPardos_10_03");	//Я хотел бы наградить тебя, но у меня ничего нет...
 	AI_Output(other,self,"DIA_Addon_Bengar_ReturnPardos_15_04");	//Забудь об этом.
 	B_GivePlayerXP(XP_Ambient);

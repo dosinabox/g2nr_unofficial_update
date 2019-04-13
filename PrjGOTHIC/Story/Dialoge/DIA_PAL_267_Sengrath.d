@@ -106,8 +106,11 @@ func void DIA_Sengrath_Perm_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Sengrath_Perm_03_02");	//Спроси Керолота. Он обучает парней обращению с мечом. Может, и тебя он сможет чему-нибудь научить.
-		Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
-		B_LogEntry(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
+		if(!Npc_KnowsInfo(other,DIA_Keroloth_WantTeach))
+		{
+			Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
+			B_LogEntry(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
+		};
 	};
 };
 

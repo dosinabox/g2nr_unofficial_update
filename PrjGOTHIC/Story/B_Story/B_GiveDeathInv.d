@@ -179,6 +179,10 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_IceGolemHeart,1);
 		};
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPGOLEM)
+		{
+			CreateInvItems(slf,ItAt_SwampGolemHeart,1);
+		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_DEMON)
 		{
 			CreateInvItems(slf,ItAt_DemonHeart,1);

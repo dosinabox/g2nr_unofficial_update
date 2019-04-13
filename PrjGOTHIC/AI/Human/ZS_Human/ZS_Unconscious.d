@@ -52,10 +52,26 @@ func void ZS_Unconscious()
 	{
 		Dar_LostAgainstCipher = TRUE;
 	};
+	/*if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(VLK_431_Kardif))
+	{
+		Kardif_Beaten = TRUE;
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor))
+	{
+		Halvor_Beaten = TRUE;
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(VLK_476_Fenia))
+	{
+		Fenia_Beaten = TRUE;
+	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Brahim))
 	{
-		Brahim_Attacked_Day = Wld_GetDay() + 1;
+		Brahim_Beaten = TRUE;
 	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ignaz))
+	{
+		Ignaz_Beaten = TRUE;
+	};*/
 };
 
 func int ZS_Unconscious_Loop()

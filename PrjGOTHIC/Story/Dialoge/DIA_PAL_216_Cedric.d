@@ -72,6 +72,7 @@ func void DIA_Cedric_CanTeach_Info()
 	{
 		AI_Output(self,other,"DIA_Cedric_CanTeach_12_01");	//Я могу научить тебя сражаться одноручным оружием.
 		Cedric_Teach1H = TRUE;
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"Паладин Седрик может обучить меня искусству сражения одноручным оружием.");
 	}
 	else

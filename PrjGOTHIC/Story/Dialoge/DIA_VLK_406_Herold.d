@@ -20,7 +20,14 @@ func int DIA_Herold_Info_Condition()
 
 func void DIA_Herold_Info_Info()
 {
-	AI_Output(self,other,"DIA_Herold_Info_04_00");	//Отстань от меня, я на работе.
+	if(Wld_IsTime(5,0,23,55))
+	{
+		AI_Output(self,other,"DIA_Herold_Info_04_00");	//Отстань от меня, я на работе.
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+	};
 	AI_StopProcessInfos(self);
 };
 

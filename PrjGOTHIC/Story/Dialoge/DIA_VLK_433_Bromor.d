@@ -126,7 +126,8 @@ instance DIA_Addon_Bromor_LuciaGold(C_Info)
 
 func int DIA_Addon_Bromor_LuciaGold_Condition()
 {
-	if((NpcObsessedByDMT_Bromor == FALSE) && (MIS_Bromor_LuciaStoleGold == LOG_Running) && Npc_HasItems(other,ItMi_BromorsGeld_Addon))
+//	if((NpcObsessedByDMT_Bromor == FALSE) && (MIS_Bromor_LuciaStoleGold == LOG_Running) && Npc_HasItems(other,ItMi_BromorsGeld_Addon))
+	if((MIS_Bromor_LuciaStoleGold == LOG_Running) && Npc_HasItems(other,ItMi_BromorsGeld_Addon))
 	{
 		return TRUE;
 	};
@@ -238,6 +239,7 @@ var int DIA_Bromor_Pay_OneTime;
 func void DIA_Bromor_Pay_Info()
 {
 	AI_Output(other,self,"DIA_Bromor_Pay_15_00");	//Я хочу развлечься.
+	AI_Output(self,other,"DIA_Bromor_GIRLS_07_01");	//Ну да, все сюда за этим приходят.
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
 		AI_Output(self,other,"DIA_Bromor_Pay_07_01");	//Отлично. (ухмыляется) Ты долго не забудешь следующие несколько часов твоей жизни.

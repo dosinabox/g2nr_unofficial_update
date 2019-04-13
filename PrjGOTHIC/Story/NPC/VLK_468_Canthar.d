@@ -47,7 +47,7 @@ func void Rtn_Marktstand_468()
 
 func void Rtn_Knast_468()
 {
-	TA_Sit_Bench(8,0,23,0,"NW_CITY_HABOUR_KASERN_RENGARU");
-	TA_Sit_Bench(23,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
+	TA_Stand_ArmsCrossed(8,0,23,0,"NW_CITY_HABOUR_KASERN_RENGARU");
+	TA_Stand_ArmsCrossed(23,0,8,0,"NW_CITY_HABOUR_KASERN_RENGARU");
 };
 

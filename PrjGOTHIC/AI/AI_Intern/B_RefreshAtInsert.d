@@ -1,8 +1,74 @@
 
+func int C_NpcCanEquipWeapons(var C_Npc slf)
+{
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Elvrich))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Quarhodron))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Xardas))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(GornOW)) && (MIS_RescueGorn != LOG_SUCCESS))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rengaru)) && (Rengaru_Ausgeliefert == TRUE))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Halvor)) && (Halvor_Ausgeliefert == TRUE))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Nagur)) && (Nagur_Ausgeliefert == TRUE))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sarah)) && (Sarah_Ausgeliefert == TRUE))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Canthar)) && (Canthar_Ausgeliefert == TRUE) && (Andre_CantharFalle == FALSE))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet)) && (Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fernando)) && (Fernando_ImKnast == TRUE))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Borka)) && (MIS_Andre_REDLIGHT == LOG_SUCCESS))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+
 func void B_RefreshMeleeWeapon(var C_Npc slf)
 {
 	var int rnd;
 	rnd = Hlp_Random(2);
+	if(!C_NpcCanEquipWeapons(slf))
+	{
+		return;
+	};
 	if((slf.guild == GIL_MIL) || (slf.guild == GIL_SLD) || (slf.guild == GIL_DJG) || (slf.guild == GIL_PIR))
 	{
 		if(rnd == 0)
@@ -47,7 +113,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 			CreateInvItem(slf,ItMw_1H_Mace_L_03);
 		};
 	}
-	else if((slf.guild == GIL_VLK) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Vatras)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Myxir_CITY)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Elvrich)))
+	else if((slf.guild == GIL_VLK) && C_NpcCanEquipWeapons(slf))
 	{
 		if(rnd == 0)
 		{
@@ -58,7 +124,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 			CreateInvItem(slf,ItMw_1H_Mace_L_01);
 		};
 	}
-	else if((slf.guild != GIL_DMT) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Quarhodron)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Vatras)) && (slf.guild != GIL_KDF) && (slf.guild != GIL_KDW) && (slf.guild != GIL_STRF) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Xardas)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(GornOW)))
+	else if((slf.guild != GIL_DMT) && (slf.guild != GIL_KDF) && (slf.guild != GIL_KDW) && (slf.guild != GIL_STRF))
 	{
 		CreateInvItem(slf,ItMw_1h_Bau_Mace);
 	};

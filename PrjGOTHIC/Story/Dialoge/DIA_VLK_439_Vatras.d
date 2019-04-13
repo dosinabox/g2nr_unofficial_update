@@ -312,6 +312,8 @@ func void DIA_Addon_Vatras_CavalornSentMe_Info()
 };
 
 
+var int Vatras_ToldAboutDuty;
+
 instance DIA_Addon_Vatras_TellMe(C_Info)
 {
 	npc = VLK_439_Vatras;
@@ -362,13 +364,14 @@ func void DIA_Addon_Vatras_TellMe_Philo()
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_01");	//Мы стоим на пути порядка Инноса и хаоса Белиара.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_02");	//Если одна из сторон одержит верх, то это будет означать либо полный хаос, либо окончательную потерю свободы.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_03");	//Поэтому мы поддерживаем баланс двух сил. Благодаря нам существует все живое.
-	if(MIS_Vatras_FindTheBanditTrader == FALSE)
+	Vatras_ToldAboutDuty = TRUE;
+	/*if(MIS_Vatras_FindTheBanditTrader == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Vatras_TellMe,"И что это значит для меня?",DIA_Addon_Vatras_TellMe_Konkret);
-	};
+	};*/
 };
 
-func void DIA_Addon_Vatras_TellMe_Konkret()
+/*func void DIA_Addon_Vatras_TellMe_Konkret()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_Konkret_15_00");	//(хмуро) И что это значит для меня?
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_01");	//Падение Барьера стало причиной возникновения многих опасностей.
@@ -385,7 +388,7 @@ func void DIA_Addon_Vatras_TellMe_Konkret()
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
 //	B_LogEntry(TOPIC_Addon_Bandittrader,"Интендант паладинов Мартин также занимается поставкой оружия. Я могу найти его в гавани, где паладины хранят свои запасы.");
 	B_LogEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
-};
+};*/
 
 func void DIA_Addon_Vatras_TellMe_OtherKdW()
 {
@@ -412,6 +415,43 @@ func void DIA_Addon_Vatras_TellMe_WerNoch()
 	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_WerNoch_15_00");	//Кто является членом Кольца Воды?
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_WerNoch_05_01");	//Пока ты не вступишь в наше братство, я не могу сообщать тебе подробности.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_WerNoch_05_02");	//Но ты наверняка уже встречался с ними.
+};
+
+
+instance DIA_Addon_Vatras_Bandittrader(C_Info)
+{
+	npc = VLK_439_Vatras;
+	nr = 2;
+	condition = DIA_Addon_Vatras_Bandittrader_Condition;
+	information = DIA_Addon_Vatras_Bandittrader_Info;
+	description = "И что это значит для меня?";
+};
+
+
+func int DIA_Addon_Vatras_Bandittrader_Condition()
+{
+	if((Vatras_ToldAboutDuty == TRUE) || (SC_IsRanger == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+
+func void DIA_Addon_Vatras_Bandittrader_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_Konkret_15_00");	//(хмуро) И что это значит для меня?
+	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_01");	//Падение Барьера стало причиной возникновения многих опасностей.
+	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_02");	//Бандиты, наверное, самая очевидная из них.
+	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_03");	//И дело не только в том, что теперь нельзя путешествовать в безопасности...
+	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_04");	//В городе есть кто-то, кто помогает бандитам!
+	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Add_05_00");	//Мы узнали, что бандиты получают регулярные поставки от торговца оружием в Хоринисе.
+	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_05");	//Сейчас мы пытаемся всеми силами помешать этому.
+	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_06");	//Если что-нибудь узнаешь об этом, дай мне знать.
+	MIS_Vatras_FindTheBanditTrader = LOG_Running;
+	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
+	B_LogEntry(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
+	B_LogEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
 };
 
 
@@ -711,7 +751,7 @@ func void DIA_Addon_Vatras_GuildBypass_WhichGuild()
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_WhichGuild_05_02");	//А именно: городское ополчение, монастырь магов Огня и отряд наемников на ферме землевладельца.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_WhichGuild_05_03");	//Выбор за тобой, сын мой.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_WhichGuild_05_04");	//Ларес поможет тебе принять это непростое решение. Поговори с ним.
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Я могу присоединиться к ОПОЛЧЕНИЮ, МАГАМ ОГНЯ или НАЕМНИКАМ, живущим на ферме крупного землевладельца.");
+	B_LogEntry(TOPIC_Addon_RingOfWater,"Я могу присоединиться к городскому ОПОЛЧЕНИЮ, МАГАМ ОГНЯ в монастыре или НАЕМНИКАМ, живущим на ферме крупного землевладельца.");
 	Info_ClearChoices(DIA_Addon_Vatras_GuildBypass);
 	Info_AddChoice(DIA_Addon_Vatras_GuildBypass,"Так и сделаем.",DIA_Addon_Vatras_GuildBypass_BACK);
 };
@@ -763,10 +803,10 @@ func void DIA_Addon_Vatras_NowRanger_Info()
 			AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_10");	//Ты первый маг Огня среди нас. Я очень рад этому факту.
 		};
 		AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_11");	//Да хранит тебя Аданос. А теперь иди и познакомься со своими братьями.
-		AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_12");	//Они будут ждать тебя в таверне 'Мертвая Гарпия'. Братья готовы принять тебя в наше общество.
+		AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_12");	//Они будут ждать тебя в таверне 'Мертвая гарпия'. Братья готовы принять тебя в наше общество.
 		AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_13");	//Ты наверняка знаешь эту таверну. Она находится по пути к ферме Онара.
 		AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_14");	//Не забудь надеть кольцо, чтобы братья узнали тебя.
-		B_LogEntry(TOPIC_Addon_RingOfWater,"Я стал членом Кольца Воды. Мои новые братья ждут меня в таверне 'Мертвая Гарпия'.");
+		B_LogEntry(TOPIC_Addon_RingOfWater,"Я стал членом Кольца Воды. Мои новые братья ждут меня в таверне 'Мертвая гарпия'.");
 		SC_IsRanger = TRUE;
 		Lares_CanBringScToPlaces = TRUE;
 		MIS_Addon_Lares_ComeToRangerMeeting = LOG_Running;
@@ -1131,6 +1171,7 @@ func void DIA_Addon_Vatras_Waffen_Success()
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_CaughtFernando_15_09");	//Пока нет.
 		AI_Output(self,other,"DIA_Addon_Vatras_CaughtFernando_05_10");	//Тогда поспеши и как можно скорее отправляйся к нему. Это безобразие необходимо немедленно остановить.
+		Vatras_ToMartin = TRUE;
 	};
 };
 
@@ -1270,10 +1311,11 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	var int flag;
 	anzahl = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
 	anzahl2 += anzahl;
-	if(anzahl == 1)
+	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички..
+	/*if(anzahl == 1)
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
-	};
+	};*/
 	if((flag == FALSE) && (anzahl2 > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running))
 	{
 		MIS_Addon_Erol_BanditStuff = LOG_FAILED;
@@ -1291,7 +1333,19 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	else if(anzahl >= 5)
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_04");	//Вот, возьми в награду несколько магических свитков...
-		B_GiveInvItems(self,other,ItSc_InstantFireball,anzahl);
+//		B_GiveInvItems(self,other,ItSc_InstantFireball,anzahl);
+		if(!Npc_HasItems(other,ItRu_InstantFireball))
+		{
+			B_GiveInvItems(self,other,ItSc_InstantFireball,anzahl);
+		}
+		else if(!Npc_HasItems(other,ItRu_Icelance))
+		{
+			B_GiveInvItems(self,other,ItSc_Icelance,anzahl);
+		}
+		else
+		{
+			B_GiveInvItems(self,other,ItSc_SumSkel,anzahl);
+		};
 	}
 	else
 	{
@@ -1316,7 +1370,7 @@ instance DIA_Addon_Vatras_GuildHelp(C_Info)
 
 func int DIA_Addon_Vatras_GuildHelp_Condition()
 {
-	if(RangerHelp_gildeKDF == TRUE)
+	if((RangerHelp_gildeKDF == TRUE) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -1328,7 +1382,7 @@ func void DIA_Addon_Vatras_GuildHelp_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_01");	//Это твой выбор? Идти по пути Огня?
 	AI_Output(other,self,"DIA_Addon_Vatras_GuildHelp_15_02");	//Да. Я хочу стать магом Огня.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_03");	//Насколько мне известно, они с радостью принимают послушников. Так зачем тебе нужна моя помощь?
-	if(SC_KnowsKlosterTribut == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Pedro_TEMPEL))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_GuildHelp_15_04");	//Послушник перед воротам монастыря требует, чтобы я заплатил за вход. Он требует овцу и золото.
 	}
@@ -1762,9 +1816,12 @@ func void DIA_Vatras_MISSION_YES()
 	Log_SetTopicStatus(TOPIC_Botschaft,LOG_Running);
 	B_LogEntry(TOPIC_Botschaft,"Ватрас дал мне записку для мастера Исгарота. Он находится в часовне неподалеку от монастыря.");
 	Info_ClearChoices(DIA_Vatras_MISSION);
-	Info_AddChoice(DIA_Vatras_MISSION,"Я возьму заклинание света.",DIA_Vatras_MISSION_LIGHT);
+/*	Info_AddChoice(DIA_Vatras_MISSION,"Я возьму заклинание света.",DIA_Vatras_MISSION_LIGHT);
 	Info_AddChoice(DIA_Vatras_MISSION,"Я выбираю лечебное заклинание.",DIA_Vatras_MISSION_HEAL);
-	Info_AddChoice(DIA_Vatras_MISSION,"Дай мне 'Ледяную стрелу'.",DIA_Vatras_MISSION_ICE);
+	Info_AddChoice(DIA_Vatras_MISSION,"Дай мне 'Ледяную стрелу'.",DIA_Vatras_MISSION_ICE);*/
+	Info_AddChoice(DIA_Vatras_MISSION,"(выбрать свиток света)",DIA_Vatras_MISSION_LIGHT);
+	Info_AddChoice(DIA_Vatras_MISSION,"(выбрать свиток лечения легких ранений)",DIA_Vatras_MISSION_HEAL);
+	Info_AddChoice(DIA_Vatras_MISSION,"(выбрать свиток ледяной стрелы)",DIA_Vatras_MISSION_ICE);
 };
 
 func void DIA_Vatras_MISSION_NO()

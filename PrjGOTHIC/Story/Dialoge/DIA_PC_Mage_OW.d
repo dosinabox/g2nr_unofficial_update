@@ -176,7 +176,14 @@ func int DIA_MiltenOW_Wo_Condition()
 func void DIA_MiltenOW_Wo_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Wo_Forget_15_00");	//А где сейчас Горн и Диего?
-	AI_Output(self,other,"DIA_MiltenOW_Wo_Forget_03_01");	//Ну, Горн сидит здесь, в темнице, за то, что сопротивлялся аресту.
+	if(MIS_RescueGorn != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_MiltenOW_Wo_Forget_03_01");	//Ну, Горн сидит здесь, в темнице, за то, что сопротивлялся аресту.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_01");	//Горн, похоже, ничуть не изменился после заключения в тюрьме Гаронда.
+	};
 	AI_Output(self,other,"DIA_MiltenOW_Wo_Forget_03_02");	//Диего прикрепили к отряду старателей. Спроси паладина Парсиваля, он отправлял этот отряд.
 	KnowsAboutGorn = TRUE;
 	SearchForDiego = LOG_Running;
@@ -239,7 +246,7 @@ func void DIA_MiltenOW_Preis_Info()
 	AI_Output(other,self,"DIA_MiltenOW_Preis_15_00");	//Гаронд хочет 1000 золотых монет за Горна.
 	AI_Output(self,other,"DIA_MiltenOW_Preis_03_01");	//Немаленькая сумма. Я могу пожертвовать 250 монет.
 	B_GiveInvItems(self,other,ItMi_Gold,250);
-	B_LogEntry(TOPIC_RescueGorn,"Милтен дал мне 250 золота, чтобы я заплатил за освобождение Горна.");
+	B_LogEntry(TOPIC_RescueGorn,"Милтен дал мне 250 золотых, чтобы я заплатил за освобождение Горна.");
 };
 
 

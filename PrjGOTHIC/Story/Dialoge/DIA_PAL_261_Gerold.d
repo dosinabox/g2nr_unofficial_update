@@ -50,6 +50,7 @@ func void DIA_Gerold_Hallo_Info()
 	AI_Output(other,self,"DIA_Gerold_Hallo_15_02");	//А кто там?
 	AI_Output(self,other,"DIA_Gerold_Hallo_12_03");	//Несколько каторжников и наемник Горн. Серьезный парень - сильный как бык.
 	AI_Output(self,other,"DIA_Gerold_Hallo_12_04");	//Четыре человека еле затолкали его туда.
+	KnowsAboutGorn = TRUE;
 };
 
 
@@ -77,7 +78,7 @@ func void DIA_Gerold_Jail_Info()
 	AI_Output(other,self,"DIA_Gerold_Jail_15_00");	//Ты пропустишь меня в темницу?
 	AI_Output(self,other,"DIA_Gerold_Jail_12_01");	//Нет. НИКТО не может входить в темницу. Это касается ВСЕХ. Тебя, Милтена и всех остальных.
 	AI_Output(self,other,"DIA_Gerold_Jail_12_02");	//Здесь вам не таверна, куда вы можете входить и выходить когда захотите. Помни об этом.
-	KnowsAboutGorn = TRUE;
+//	KnowsAboutGorn = TRUE;
 };
 
 
@@ -240,7 +241,7 @@ func int DIA_Gerold_Antwort_Condition()
 func void DIA_Gerold_Antwort_Info()
 {
 	AI_Output(other,self,"DIA_Gerold_Antwort_15_00");	//Горн получил записку?
-	if(DayContactGorn < Wld_GetDay())
+	if((DayContactGorn < Wld_GetDay()) || (MIS_RescueGorn == LOG_SUCCESS))
 	{
 		Npc_RemoveInvItem(self,ItWr_LetterForGorn_MIS);
 		AI_Output(self,other,"DIA_Gerold_Antwort_12_01");	//Да, и я должен передать тебе его слова:
@@ -456,7 +457,7 @@ func void DIA_Gerold_MoreFood()
 				AI_Output(self,other,"DIA_Gerold_MoreFood_12_04");	//Да. Еще, еще!
 			};
 		};
-		if(Npc_HasItems(other,ItFo_FishSoup))
+		if(Npc_HasItems(other,ItFo_FishSoup) || Npc_HasItems(other,ItFo_EddasFishSoup))
 		{
 			Info_AddChoice(DIA_Gerold_FOOD,"(дать уху)",DIA_Gerold_FOOD_Suppe);
 		};
@@ -466,7 +467,7 @@ func void DIA_Gerold_MoreFood()
 		};
 		if(Npc_HasItems(other,ItFoMutton))
 		{
-			Info_AddChoice(DIA_Gerold_FOOD,"(дать мясо)",DIA_Gerold_FOOD_fleisch);
+			Info_AddChoice(DIA_Gerold_FOOD,"(дать жареное мясо)",DIA_Gerold_FOOD_fleisch);
 		};
 		if(Npc_HasItems(other,ItFo_Bacon))
 		{
@@ -476,7 +477,7 @@ func void DIA_Gerold_MoreFood()
 		{
 			Info_AddChoice(DIA_Gerold_FOOD,"(дать сыр)",DIA_Gerold_FOOD_kaese);
 		};
-		if(Npc_HasItems(other,ItFo_Sausage))
+		if(Npc_HasItems(other,ItFo_Sausage) || Npc_HasItems(other,ItFo_Schafswurst))
 		{
 			Info_AddChoice(DIA_Gerold_FOOD,"(дать колбасу)",DIA_Gerold_FOOD_Wurst);
 		};
@@ -498,31 +499,27 @@ func void DIA_Gerold_FOOD_nichts()
 	B_Attack(self,other,AR_NONE,1);
 	Npc_ExchangeRoutine(self,"Start");
 	MIS_GeroldGiveFood = LOG_FAILED;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(100);
 };
 
 func void DIA_Gerold_FOOD_kaese_nichtmehr()
 {
-	var int XP_GeroldGiveFoodLow;
-	var int Teiler;
 	AI_Output(other,self,"DIA_Gerold_FOOD_kaese_nichtmehr_15_00");	//Это все, что у меня есть.
 	AI_Output(self,other,"DIA_Gerold_FOOD_kaese_nichtmehr_12_01");	//И я, по-твоему, поверю в это? Ладно, это все же лучше, чем ничего. Вот, возьми немного золота за это.
 	CreateInvItems(self,ItMi_Gold,50);
 	B_GiveInvItems(self,other,ItMi_Gold,50);
 	AI_Output(self,other,"DIA_Gerold_FOOD_kaese_nichtmehr_12_02");	//Хорошо. А теперь мне нужно возвращаться на мой пост.
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"Start");
+	MIS_GeroldGiveFood = LOG_OBSOLETE;
 	if(Gerold_FoodCounter < 4)
 	{
-		Teiler = 3;
+		B_GivePlayerXP(100);
 	}
 	else
 	{
-		Teiler = 2;
+		B_GivePlayerXP(XP_GeroldGiveFood / 2);
 	};
-	XP_GeroldGiveFoodLow = XP_GeroldGiveFood / Teiler;
-	Npc_ExchangeRoutine(self,"Start");
-	MIS_GeroldGiveFood = LOG_OBSOLETE;
-	B_GivePlayerXP(XP_GeroldGiveFoodLow);
 };
 
 func void DIA_Gerold_FOOD_kaese()
@@ -535,7 +532,14 @@ func void DIA_Gerold_FOOD_kaese()
 func void DIA_Gerold_FOOD_Wurst()
 {
 	AI_Output(other,self,"DIA_Gerold_FOOD_Wurst_15_00");	//Кусок колбасы?
-	B_GiveInvItems(other,self,ItFo_Sausage,1);
+	if(Npc_HasItems(other,ItFo_Sausage))
+	{
+		B_GiveInvItems(other,self,ItFo_Sausage,1);
+	}
+	else
+	{
+		B_GiveInvItems(other,self,ItFo_Schafswurst,1);
+	};
 	DIA_Gerold_MoreFood();
 };
 
@@ -556,15 +560,14 @@ func void DIA_Gerold_FOOD_fleisch()
 func void DIA_Gerold_FOOD_Suppe()
 {
 	AI_Output(other,self,"DIA_Gerold_FOOD_Suppe_15_00");	//Хороший суп еще никому не повредил, тебе так не кажется?
-	B_GiveInvItems(other,self,ItFo_FishSoup,1);
-	/*if(Npc_HasItems(other,ItFo_FishSoup))
+	if(Npc_HasItems(other,ItFo_FishSoup))
 	{
 		B_GiveInvItems(other,self,ItFo_FishSoup,1);
 	}
 	else
 	{
-		B_GiveInvItems(other,self,ItFo_Stew,1);
-	};*/
+		B_GiveInvItems(other,self,ItFo_EddasFishSoup,1);
+	};
 	DIA_Gerold_MoreFood();
 };
 
@@ -572,14 +575,6 @@ func void DIA_Gerold_FOOD_Stew()
 {
 	AI_Output(other,self,"DIA_Gerold_FOOD_Suppe_15_00");	//Хороший суп еще никому не повредил, тебе так не кажется?
 	B_GiveInvItems(other,self,ItFo_Stew,1);
-	/*if(Npc_HasItems(other,ItFo_FishSoup))
-	{
-		B_GiveInvItems(other,self,ItFo_FishSoup,1);
-	}
-	else
-	{
-		B_GiveInvItems(other,self,ItFo_Stew,1);
-	};*/
 	DIA_Gerold_MoreFood();
 };
 

@@ -401,6 +401,7 @@ func void DIA_Addon_Greg_NW_was_NoHelp()
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_02");	//Второй раз ты отказываешься выполнить мою просьбу.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_03");	//Мой тебе совет: постарайся сделать так, чтобы я тебя больше не видел.
+		Greg_NoHelpInNW = TRUE;
 	}
 	else
 	{
@@ -819,7 +820,8 @@ instance DIA_Addon_Greg_NW_DexterFound(C_Info)
 
 func int DIA_Addon_Greg_NW_DexterFound_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) && (GregLocation == Greg_Bigcross) && ((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE)))
+//	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) && (GregLocation == Greg_Bigcross) && ((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE)))
+	if((SC_KnowsGregsSearchsDexter == TRUE) && ((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE)))
 	{
 		return TRUE;
 	};
@@ -831,34 +833,47 @@ func void DIA_Addon_Greg_NW_DexterFound_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_01_01");	//Черт возьми, откуда мне знать его имя?!
 	Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
 	Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я просто предположил.",DIA_Addon_Greg_NW_DexterFound_weg);
-	Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я могу помочь тебе его найти.",DIA_Addon_Greg_NW_DexterFound_together);
-	Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Думаю, я могу помочь тебе его найти.",DIA_Addon_Greg_NW_DexterFound_wo);
+	Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Давай пойдем вместе.",DIA_Addon_Greg_NW_DexterFound_together);
+	Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я могу помочь тебе его найти.",DIA_Addon_Greg_NW_DexterFound_wo);
 };
 
 func void DIA_Addon_Greg_NW_DexterFound_weg()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_weg_15_00");	//Я просто предположил.
+	Greg_Rejected = TRUE;
 	Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
-};
-
-func void DIA_Addon_Greg_NW_DexterFound_wo()
-{
-	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_00");	//Думаю, я могу помочь тебе его найти.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_01");	//Действительно? И где же он сейчас?
-	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_02");	//Недалеко отсюда.
-	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_03");	//Похоже, он стал главарем шайки бандитов.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_04");	//Ха! Да, похоже, это он.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_05");	//Я знал, что этот трус прячется где-то здесь.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_06");	//Теперь все, что мне осталось сделать - обыскать все убежища и тайные укрытия в округе.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_07");	//Я найду этого ублюдка, и твоя помощь мне не нужна.
-	Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
-	B_GivePlayerXP(XP_Ambient);
 };
 
 func void DIA_Addon_Greg_NW_DexterFound_together()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_together_15_00");	//Я могу помочь тебе его найти.
+	AI_Output(other,self,"DIA_Addon_Diego_Together_15_00");	//Давай пойдем вместе.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_together_01_01");	//Нет, я пойду один. У меня с ним свои личные счеты.
+};
+
+func void DIA_Addon_Greg_NW_DexterFound_wo()
+{
+//	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_00");	//Думаю, я могу помочь тебе его найти.
+	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_together_15_00");	//Я могу помочь тебе его найти.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_01");	//Действительно? И где же он сейчас?
+	if(GregLocation == Greg_Bigcross)
+	{
+		AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_02");	//Недалеко отсюда.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Rosi_HILFE_15_02");	//Я отведу тебя на ферму лендлорда.
+		AI_Output(self,other,"DIA_Addon_Greg_NW_PERM_01_01");	//Послушай, сынок. У меня есть неотложные дела.
+	};
+	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_03");	//Похоже, он стал главарем шайки бандитов.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_04");	//Ха! Да, похоже, это он.
+	if(GregLocation == Greg_Bigcross)
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_05");	//Я знал, что этот трус прячется где-то здесь.
+	};
+	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_06");	//Теперь все, что мне осталось сделать - обыскать все убежища и тайные укрытия в округе.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_07");	//Я найду этого ублюдка, и твоя помощь мне не нужна.
+	Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
+	B_GivePlayerXP(XP_Ambient);
 };
 
 

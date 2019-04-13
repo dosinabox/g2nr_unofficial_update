@@ -268,11 +268,11 @@ func void DIA_Vatras_DI_Talente_Info()
 	AI_Output(self,other,"DIA_Vatras_DI_Talente_05_01");	//Я сделаю все, что в моих силах.
 	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 6))
 	{
 		Info_AddChoice(DIA_Vatras_DI_Talente,"Круги магии",DIA_Vatras_DI_Talente_CIRCLES);
 	};
-	Info_AddChoice(DIA_Vatras_DI_Talente,"Алхимия - искусство приготовления зелий",DIA_Vatras_DI_Talente_ALCHIMIE);
+	Info_AddChoice(DIA_Vatras_DI_Talente,"Алхимия",DIA_Vatras_DI_Talente_ALCHIMIE);
 };
 
 func void DIA_Vatras_DI_Talente_CIRCLES()

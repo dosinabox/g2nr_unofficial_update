@@ -2,50 +2,43 @@
 instance MENU_OPT_AUDIO(C_MENU_DEF)
 {
 	backpic = MENU_BACK_PIC;
-	items[0] = "MENUITEM_AUDIO_HEADLINE";
-	items[1] = "MENUITEM_AUDIO_SFXVOL";
-	items[2] = "MENUITEM_AUDIO_SFXVOL_SLIDER";
-	items[3] = "MENUITEM_AUDIO_MUSICVOL";
-	items[4] = "MENUITEM_AUDIO_MUSICVOL_SLIDER";
-	items[5] = "MENUITEM_AUDIO_MUSIC";
-	items[6] = "MENUITEM_AUDIO_MUSIC_CHOICE";
-	items[7] = "MENUITEM_AUDIO_PROVIDER";
-	items[8] = "MENUITEM_AUDIO_PROVIDER_CHOICE";
-	items[9] = "MENUITEM_AUDIO_SPEEKER";
-	items[10] = "MENUITEM_AUDIO_SPEEKER_CHOICE";
-	items[11] = "MENUITEM_AUDIO_REVERB";
-	items[12] = "MENUITEM_AUDIO_REVERB_CHOICE";
-	items[13] = "MENUITEM_AUDIO_REVERB_SPEECH";
-	items[14] = "MENUITEM_AUDIO_REVERB_SPEECH_CHOICE";
-	items[15] = "MENUITEM_AUDIO_SAMPLERATE";
-	items[16] = "MENUITEM_AUDIO_SAMPLERATE_CHOICE";
-	items[17] = "MENUITEM_AUDIO_BACK";
+	items[0] = "MENUITEM_AUDIO_SFXVOL";
+	items[1] = "MENUITEM_AUDIO_SFXVOL_SLIDER";
+	items[2] = "MENUITEM_AUDIO_MUSICVOL";
+	items[3] = "MENUITEM_AUDIO_MUSICVOL_SLIDER";
+	items[4] = "MENUITEM_AUDIO_SOUND";
+	items[5] = "MENUITEM_AUDIO_SOUND_CHOICE";
+	items[6] = "MENUITEM_AUDIO_MUSIC";
+	items[7] = "MENUITEM_AUDIO_MUSIC_CHOICE";
+	items[8] = "MENUITEM_AUDIO_SUB_TITLES";
+	items[9] = "MENUITEM_AUDIO_SUB_TITLES_CHOICE";
+	items[10] = "MENUITEM_AUDIO_SUB_TITLES2";
+	items[11] = "MENUITEM_AUDIO_SUB_TITLES2_CHOICE";
+	items[12] = "MENUITEM_AUDIO_PROVIDER";
+	items[13] = "MENUITEM_AUDIO_PROVIDER_CHOICE";
+	items[14] = "MENUITEM_AUDIO_SPEEKER";
+	items[15] = "MENUITEM_AUDIO_SPEEKER_CHOICE";
+	items[16] = "MENUITEM_AUDIO_SAMPLERATE";
+	items[17] = "MENUITEM_AUDIO_SAMPLERATE_CHOICE";
+	items[18] = "MENUITEM_AUDIO_REVERB";
+	items[19] = "MENUITEM_AUDIO_REVERB_CHOICE";
+	items[20] = "MENUITEM_AUDIO_REVERB_SPEECH";
+	items[21] = "MENUITEM_AUDIO_REVERB_SPEECH_CHOICE";
+	items[22] = "MENUITEM_AUDIO_BACK";
 	flags = flags | MENU_SHOW_INFO;
 };
 
 
 const int MENU_SOUND_DY = 550;
 
-instance MENUITEM_AUDIO_HEADLINE(C_MENU_ITEM_DEF)
-{
-	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "ОПЦИИ ЗВУКА";
-	type = MENU_ITEM_TEXT;
-	posx = 0;
-	posy = MENU_TITLE_Y;
-	dimx = 8100;
-	flags = flags & ~IT_SELECTABLE;
-	flags = flags | IT_TXT_CENTER;
-};
-
 instance MENUITEM_AUDIO_SFXVOL(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Эффекты";
+	text[0] = "Громкость игры";
 	text[1] = "Громкость эффектов и голоса";
 	posx = 1000;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 0);
-	dimx = 3400;
+	posy = MENU_START_Y - (MENU_SOUND_DY * 3);
+	dimx = 4000;
 	dimy = 750;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
@@ -55,8 +48,8 @@ instance MENUITEM_AUDIO_SFXVOL_SLIDER(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_SLIDER_BACK_PIC;
 	type = MENU_ITEM_SLIDER;
-	posx = 4300;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 0);
+	posx = MENU_BUTTONS;
+	posy = (MENU_START_Y - (MENU_SOUND_DY * 3)) + MENU_SLIDER_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_SLIDER_DY;
 	onchgsetoption = "soundVolume";
@@ -69,11 +62,11 @@ instance MENUITEM_AUDIO_SFXVOL_SLIDER(C_MENU_ITEM_DEF)
 instance MENUITEM_AUDIO_MUSICVOL(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Музыка";
+	text[0] = "Громкость музыки";
 	text[1] = "Громкость фоновой музыки";
 	posx = 1000;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 1);
-	dimx = 3400;
+	posy = MENU_START_Y - (MENU_SOUND_DY * 2);
+	dimx = 4000;
 	dimy = 750;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
@@ -83,8 +76,8 @@ instance MENUITEM_AUDIO_MUSICVOL_SLIDER(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_SLIDER_BACK_PIC;
 	type = MENU_ITEM_SLIDER;
-	posx = 4300;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 1);
+	posx = MENU_BUTTONS;
+	posy = (MENU_START_Y - (MENU_SOUND_DY * 2)) + MENU_SLIDER_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_SLIDER_DY;
 	onchgsetoption = "musicVolume";
@@ -94,13 +87,42 @@ instance MENUITEM_AUDIO_MUSICVOL_SLIDER(C_MENU_ITEM_DEF)
 	flags = flags & ~IT_SELECTABLE;
 };
 
+instance MENUITEM_AUDIO_SOUND(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_ITEM_BACK_PIC;
+	text[0] = "Общий звук";
+	text[1] = NEEDS_RESTART;
+	posx = 1000;
+	posy = MENU_START_Y - (MENU_SOUND_DY * 1);
+	dimx = 3000;
+	dimy = 750;
+	onselaction[0] = SEL_ACTION_UNDEF;
+	flags = flags | IT_EFFECTS_NEXT;
+};
+
+instance MENUITEM_AUDIO_SOUND_CHOICE(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_CHOICE_BACK_PIC;
+	type = MENU_ITEM_CHOICEBOX;
+	text[0] = "откл|вкл";
+	fontname = MENU_FONT_SMALL;
+	posx = MENU_BUTTONS;
+	posy = (MENU_START_Y - (MENU_SOUND_DY * 1)) + MENU_CHOICE_YPLUS;
+	dimx = MENU_SLIDER_DX;
+	dimy = MENU_CHOICE_DY;
+	onchgsetoption = "soundEnabled";
+	onchgsetoptionsection = "SOUND";
+	flags = flags & ~IT_SELECTABLE;
+	flags = flags | IT_TXT_CENTER | IT_PERF_OPTION | IT_NEEDS_RESTART;
+};
+
 instance MENUITEM_AUDIO_MUSIC(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Музыка";
-	text[1] = "Фоновая музыка вкл/откл.";
+	text[1] = "Фоновая музыка вкл/откл";
 	posx = 1000;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 2);
+	posy = MENU_START_Y - (MENU_SOUND_DY * 0);
 	dimx = 3000;
 	dimy = 750;
 	onselaction[0] = SEL_ACTION_UNDEF;
@@ -113,8 +135,8 @@ instance MENUITEM_AUDIO_MUSIC_CHOICE(C_MENU_ITEM_DEF)
 	type = MENU_ITEM_CHOICEBOX;
 	text[0] = "откл|вкл";
 	fontname = MENU_FONT_SMALL;
-	posx = 4300;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 2) + MENU_CHOICE_YPLUS;
+	posx = MENU_BUTTONS;
+	posy = (MENU_START_Y - (MENU_SOUND_DY * 0)) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "musicEnabled";
@@ -123,13 +145,71 @@ instance MENUITEM_AUDIO_MUSIC_CHOICE(C_MENU_ITEM_DEF)
 	flags = flags | IT_TXT_CENTER | IT_PERF_OPTION | IT_NEEDS_RESTART;
 };
 
+instance MENUITEM_AUDIO_SUB_TITLES(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_ITEM_BACK_PIC;
+	text[0] = "Субтитры";
+	text[1] = "Субтитры диалогов вкл/откл";
+	posx = 1000;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 1);
+	dimx = 4000;
+	dimy = 750;
+	onselaction[0] = SEL_ACTION_UNDEF;
+	flags = flags | IT_EFFECTS_NEXT;
+};
+
+instance MENUITEM_AUDIO_SUB_TITLES_CHOICE(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_CHOICE_BACK_PIC;
+	type = MENU_ITEM_CHOICEBOX;
+	text[0] = "откл|вкл";
+	fontname = MENU_FONT_SMALL;
+	posx = MENU_BUTTONS;
+	posy = (MENU_START_Y + (MENU_SOUND_DY * 1)) + MENU_CHOICE_YPLUS;
+	dimx = MENU_SLIDER_DX;
+	dimy = MENU_CHOICE_DY;
+	onchgsetoption = "subTitles";
+	onchgsetoptionsection = "GAME";
+	flags = flags & ~IT_SELECTABLE;
+	flags = flags | IT_TXT_CENTER;
+};
+
+instance MENUITEM_AUDIO_SUB_TITLES2(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_ITEM_BACK_PIC;
+	text[0] = "Субтитры фона";
+	text[1] = "Субтитры реплик вне диалогов вкл/откл";
+	posx = 1000;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 2);
+	dimx = 4000;
+	dimy = 750;
+	onselaction[0] = SEL_ACTION_UNDEF;
+	flags = flags | IT_EFFECTS_NEXT;
+};
+
+instance MENUITEM_AUDIO_SUB_TITLES2_CHOICE(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_CHOICE_BACK_PIC;
+	type = MENU_ITEM_CHOICEBOX;
+	text[0] = "откл|вкл";
+	fontname = MENU_FONT_SMALL;
+	posx = MENU_BUTTONS;
+	posy = (MENU_START_Y + (MENU_SOUND_DY * 2)) + MENU_CHOICE_YPLUS;
+	dimx = MENU_SLIDER_DX;
+	dimy = MENU_CHOICE_DY;
+	onchgsetoption = "subTitlesNoise";
+	onchgsetoptionsection = "GAME";
+	flags = flags & ~IT_SELECTABLE;
+	flags = flags | IT_TXT_CENTER;
+};
+
 instance MENUITEM_AUDIO_PROVIDER(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Драйвер";
-	text[1] = "Для вступления в силу, необходимо перезапустить игру.";
+	text[1] = NEEDS_RESTART;
 	posx = 1000;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 3);
+	posy = MENU_START_Y + (MENU_SOUND_DY * 3);
 	dimx = 3000;
 	dimy = 750;
 	onselaction[0] = SEL_ACTION_UNDEF;
@@ -143,7 +223,7 @@ instance MENUITEM_AUDIO_PROVIDER_CHOICE(C_MENU_ITEM_DEF)
 	text[0] = "1|2|3|4|5";
 	fontname = MENU_FONT_SMALL;
 	posx = 4300;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 3) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 3) + MENU_CHOICE_YPLUS;
 	dimx = 3000;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "soundProviderIndex";
@@ -156,10 +236,10 @@ instance MENUITEM_AUDIO_PROVIDER_CHOICE(C_MENU_ITEM_DEF)
 instance MENUITEM_AUDIO_SPEEKER(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Динамики";
-	text[1] = "";
+	text[0] = "Конфигурация";
+	text[1] = "Оборудование для воспроизведения";
 	posx = 1000;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 4);
+	posy = MENU_START_Y + (MENU_SOUND_DY * 4);
 	dimx = 3000;
 	dimy = 750;
 	onselaction[0] = SEL_ACTION_UNDEF;
@@ -173,7 +253,7 @@ instance MENUITEM_AUDIO_SPEEKER_CHOICE(C_MENU_ITEM_DEF)
 	text[0] = "2 динамика|наушники|surround|4 динамика|динамики 5.1|динамики 7.1";
 	fontname = MENU_FONT_SMALL;
 	posx = 4300;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 4) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 4) + MENU_CHOICE_YPLUS;
 	dimx = 3000;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "soundSpeakerIndex";
@@ -182,72 +262,14 @@ instance MENUITEM_AUDIO_SPEEKER_CHOICE(C_MENU_ITEM_DEF)
 	flags = flags | IT_TXT_CENTER | IT_PERF_OPTION;
 };
 
-instance MENUITEM_AUDIO_REVERB(C_MENU_ITEM_DEF)
-{
-	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Реверб. окруж.";
-	text[1] = "Реверберация в пещерах и т.п.";
-	posx = 1000;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 5);
-	dimx = 3000;
-	dimy = 750;
-	onselaction[0] = SEL_ACTION_UNDEF;
-	flags = flags | IT_EFFECTS_NEXT;
-};
-
-instance MENUITEM_AUDIO_REVERB_CHOICE(C_MENU_ITEM_DEF)
-{
-	backpic = MENU_CHOICE_BACK_PIC;
-	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
-	fontname = MENU_FONT_SMALL;
-	posx = 4300;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 5) + MENU_CHOICE_YPLUS;
-	dimx = MENU_CHOICE_DX;
-	dimy = MENU_CHOICE_DY;
-	onchgsetoption = "soundUseReverb";
-	onchgsetoptionsection = "SOUND";
-	flags = flags & ~IT_SELECTABLE;
-	flags = flags | IT_TXT_CENTER | IT_PERF_OPTION | IT_NEEDS_RESTART;
-};
-
-instance MENUITEM_AUDIO_REVERB_SPEECH(C_MENU_ITEM_DEF)
-{
-	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Реверб. голоса";
-	text[1] = "вы хотите, чтобы реверберация влияла на голоса?";
-	posx = 1000;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 6);
-	dimx = 3000;
-	dimy = 750;
-	onselaction[0] = SEL_ACTION_UNDEF;
-	flags = flags | IT_EFFECTS_NEXT;
-};
-
-instance MENUITEM_AUDIO_REVERB_SPEECH_CHOICE(C_MENU_ITEM_DEF)
-{
-	backpic = MENU_CHOICE_BACK_PIC;
-	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "нет|средне|полная";
-	fontname = MENU_FONT_SMALL;
-	posx = 4300;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 6) + MENU_CHOICE_YPLUS;
-	dimx = MENU_SLIDER_DX;
-	dimy = MENU_CHOICE_DY;
-	onchgsetoption = "useSpeechReverbLevel";
-	onchgsetoptionsection = "GAME";
-	flags = flags & ~IT_SELECTABLE;
-	flags = flags | IT_TXT_CENTER | IT_PERF_OPTION;
-};
-
 instance MENUITEM_AUDIO_SAMPLERATE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Кач-во звука";
-	text[1] = "Для вступления в силу, необходимо перезапустить игру.";
+	text[0] = "Качество звука";
+	text[1] = NEEDS_RESTART;
 	posx = 1000;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 7);
-	dimx = 3000;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 5);
+	dimx = 4000;
 	dimy = 750;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
@@ -259,8 +281,8 @@ instance MENUITEM_AUDIO_SAMPLERATE_CHOICE(C_MENU_ITEM_DEF)
 	type = MENU_ITEM_CHOICEBOX;
 	text[0] = "22 кгц|44 кгц";
 	fontname = MENU_FONT_SMALL;
-	posx = 4300;
-	posy = MENU_START_SOUND_Y + (MENU_SOUND_DY * 7) + MENU_CHOICE_YPLUS;
+	posx = MENU_BUTTONS;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 5) + MENU_CHOICE_YPLUS;
 	dimx = MENU_CHOICE_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "soundSampleRateIndex";
@@ -269,14 +291,72 @@ instance MENUITEM_AUDIO_SAMPLERATE_CHOICE(C_MENU_ITEM_DEF)
 	flags = flags | IT_TXT_CENTER | IT_PERF_OPTION | IT_NEEDS_RESTART;
 };
 
+instance MENUITEM_AUDIO_REVERB(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_ITEM_BACK_PIC;
+	text[0] = "Ревербация";
+	text[1] = "Реверберация в пещерах и помещениях";
+	posx = 1000;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 6);
+	dimx = 4000;
+	dimy = 750;
+	onselaction[0] = SEL_ACTION_UNDEF;
+	flags = flags | IT_EFFECTS_NEXT;
+};
+
+instance MENUITEM_AUDIO_REVERB_CHOICE(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_CHOICE_BACK_PIC;
+	type = MENU_ITEM_CHOICEBOX;
+	text[0] = "откл|вкл";
+	fontname = MENU_FONT_SMALL;
+	posx = MENU_BUTTONS;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 6) + MENU_CHOICE_YPLUS;
+	dimx = MENU_CHOICE_DX;
+	dimy = MENU_CHOICE_DY;
+	onchgsetoption = "soundUseReverb";
+	onchgsetoptionsection = "SOUND";
+	flags = flags & ~IT_SELECTABLE;
+	flags = flags | IT_TXT_CENTER | IT_PERF_OPTION | IT_NEEDS_RESTART;
+};
+
+instance MENUITEM_AUDIO_REVERB_SPEECH(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_ITEM_BACK_PIC;
+	text[0] = "Ревербация голоса";
+	text[1] = "Влияние ревербации на голоса";
+	posx = 1000;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 7);
+	dimx = 4000;
+	dimy = 750;
+	onselaction[0] = SEL_ACTION_UNDEF;
+	flags = flags | IT_EFFECTS_NEXT;
+};
+
+instance MENUITEM_AUDIO_REVERB_SPEECH_CHOICE(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_CHOICE_BACK_PIC;
+	type = MENU_ITEM_CHOICEBOX;
+	text[0] = "нет|средне|полная";
+	fontname = MENU_FONT_SMALL;
+	posx = MENU_BUTTONS;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 7) + MENU_CHOICE_YPLUS;
+	dimx = MENU_SLIDER_DX;
+	dimy = MENU_CHOICE_DY;
+	onchgsetoption = "useSpeechReverbLevel";
+	onchgsetoptionsection = "GAME";
+	flags = flags & ~IT_SELECTABLE;
+	flags = flags | IT_TXT_CENTER | IT_PERF_OPTION;
+};
+
 instance MENUITEM_AUDIO_BACK(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Назад";
 	posx = 1000;
-	posy = MENU_BACK_Y;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 9) + 100;
 	dimx = 6192;
-	dimy = MENU_SOUND_DY;
+	dimy = MENU_OPT_DY;
 	onselaction[0] = SEL_ACTION_BACK;
 	flags = flags | IT_TXT_CENTER;
 };

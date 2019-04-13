@@ -277,7 +277,7 @@ instance DIA_Cipher_TRADE(C_Info)
 
 func int DIA_Cipher_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat))
+	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
 	{
 		return TRUE;
 	};
@@ -299,6 +299,35 @@ func void DIA_Cipher_TRADE_Info()
 };
 
 
+///////////////////////////////////////////////////////////
+instance DIA_Cipher_NOTRADE(C_Info)
+{
+	npc = SLD_803_Cipher;
+	nr = 2;
+	condition = DIA_Cipher_NOTRADE_Condition;
+	information = DIA_Cipher_NOTRADE_Info;
+	permanent = TRUE;
+	description = DIALOG_TRADE_v4;
+	trade = TRUE;
+};
+
+
+func int DIA_Cipher_NOTRADE_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Cipher_NOTRADE_Info()
+{
+	AI_Output(other,self,"DIA_Cipher_TRADE_15_00");	//Покажи мне свои товары.
+	B_Say(self,other,"$SpareMe");
+	AI_StopProcessInfos(self);
+};
+
+///////////////////////////////////////////////////////////
 instance DIA_Cipher_DarDieb(C_Info)
 {
 	npc = SLD_803_Cipher;

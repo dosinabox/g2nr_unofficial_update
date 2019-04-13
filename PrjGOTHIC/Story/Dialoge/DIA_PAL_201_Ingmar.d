@@ -118,6 +118,7 @@ func void DIA_Ingmar_CanTeach_Info()
 	{
 		AI_Output(self,other,"DIA_Ingmar_CanTeach_06_01");	//Я могу научить тебя как стать сильнее, чтобы ты мог эффективнее действовать своим оружием.
 		Ingmar_TeachSTR = TRUE;
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"Паладин Ингмар может помочь мне стать сильнее.");
 	}
 	else

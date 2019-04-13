@@ -94,8 +94,8 @@ instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 	visual = "ItMi_Packet.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "“€желый пакет";
-	text[1] = "с различными товарами";
+	text[0] = "“€желый пакет с";
+	text[1] = "различными товарами";
 	text[2] = "дл€ пирата —кипа.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -342,7 +342,7 @@ instance ItMi_Zeitspalt_Addon(C_Item)
 	name = "„ерна€ руда";
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
-	value = 0;
+	value = 100;
 	visual = "ItMi_Zeitspalt_Addon.3DS";
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_Zeitspalt_Addon;
@@ -352,6 +352,8 @@ instance ItMi_Zeitspalt_Addon(C_Item)
 	description = name;
 //	text[0] = PRINT_UnknownEffect;
 	text[1] = TEXT_Zeitspalt_Setting;
+	text[5] = NAME_Value;
+	count[5] = value;
 	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
 };
 

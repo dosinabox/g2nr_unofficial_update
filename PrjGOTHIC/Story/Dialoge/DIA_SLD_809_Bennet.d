@@ -330,12 +330,15 @@ func void DIA_Bennet_WannaSmithORE_Info()
 	{
 		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_07");	//Если бы у меня была магическая руда, я бы, возможно, согласился.
 		AI_Output(other,self,"DIA_Bennet_WannaSmithORE_15_08");	//Ах, да ладно. Я с наемниками, и я знаю кузнечное дело. Что еще тебе нужно?
-		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_09");	//Скажи мне, как интересно я должен ковать магическое оружие, не имея магической руды?
+		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_09");	//Скажи мне, как, интересно, я должен ковать магическое оружие, не имея магической руды?
 		AI_Output(other,self,"DIA_Bennet_WannaSmithORE_15_10");	//Нууу...
 		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_11");	//Вот что скажу. Мне нужно как минимум 5 кусков руды - или ты можешь забыть об этом.
 		if(MIS_Bennet_BringOre == FALSE)
 		{
 			MIS_Bennet_BringOre = LOG_Running;
+			Log_CreateTopic(TOPIC_BennetOre,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_BennetOre,LOG_Running);
+			B_LogEntry(TOPIC_BennetOre,"Кузнецу наемников Беннету нужно пять кусков магической руды.");
 		};
 	}
 	else
@@ -407,7 +410,9 @@ func void DIA_Bennet_BringOre_Info()
 	AI_Output(self,other,"DIA_Bennet_BringOre_06_02");	//Да ты что! Я потрясен!
 	AI_Output(self,other,"DIA_Bennet_BringOre_06_03");	//Оставь себе два куска. Они тебе понадобятся, чтобы сделать твое собственное оружие.
 	B_GiveInvItems(self,other,ItMi_Nugget,2);
+	B_LogEntry(TOPIC_BennetOre,"Беннет получил руду и вернул мне некоторую ее часть.");
 	MIS_Bennet_BringOre = LOG_SUCCESS;
+	B_GivePlayerXP(100);
 };
 
 
@@ -758,11 +763,11 @@ func int DIA_Bennet_ThankYou_Condition()
 
 func void DIA_Bennet_ThankYou_Info()
 {
-	if(hero.guild == GIL_SLD)
+	/*if(hero.guild == GIL_SLD)
 	{
 		hero.guild = GIL_DJG;
 		Npc_SetTrueGuild(hero,GIL_DJG);
-	};
+	};*/
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_00");	//Ох, я уж думал, что меня наверняка повесят!
 	AI_Output(other,self,"DIA_Bennet_ThankYou_15_01");	//Что ж, в конце концов, все окончилось хорошо.
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_02");	//Да уж. Ты бы видел выражение лица солдата, который выпускал меня!
@@ -798,8 +803,10 @@ func void DIA_Bennet_Present_Info()
 	AI_Output(self,other,"DIA_Bennet_Present_06_01");	//Мы все слышали о драконах, которые вроде бы появились в Долине.
 	AI_Output(other,self,"DIA_Bennet_Present_15_02");	//Они действительно там!
 	AI_Output(self,other,"DIA_Bennet_Present_06_03");	//Хорошо, я верю тебе.
-	if(hero.guild == GIL_DJG)
+	if(hero.guild == GIL_SLD)
 	{
+		hero.guild = GIL_DJG;
+		Npc_SetTrueGuild(hero,GIL_DJG);
 		AI_Output(self,other,"DIA_Bennet_Present_06_04");	//Как бы там ни было, некоторые из парней решили отправиться в Долину.
 		AI_Output(self,other,"DIA_Bennet_Present_06_05");	//(ухмыляется) Они собираются навести там порядок.
 		AI_Output(other,self,"DIA_Bennet_Present_15_06");	//А какое это имеет отношение ко мне?
@@ -877,7 +884,7 @@ instance DIA_Bennet_DJG_ARMOR_M(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_M_Condition;
 	information = DIA_Bennet_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов (120/120/35/35, 12000 золота)";
+	description = "Средние доспехи охотника на драконов (120/120/35/35, 12000 золотых)";
 };
 
 
@@ -950,7 +957,7 @@ instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "Тяжелые доспехи охотника на драконов (150/150/50/50, 20000 золота)";
+	description = "Тяжелые доспехи охотника на драконов (150/150/50/50, 20000 золотых)";
 };
 
 

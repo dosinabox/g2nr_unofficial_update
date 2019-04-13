@@ -1,4 +1,50 @@
 
+func int C_NpcIsAfraidOfOrcs(var C_Npc slf)
+{
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(KDF_511_Daron))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Xardas))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Mario))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(PC_Thief_NW))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bartok))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lester))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
+
 func int B_AssessEnemy()
 {
 	var C_Npc pcl;
@@ -13,7 +59,7 @@ func int B_AssessEnemy()
 	};
 	if(((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE)) && (other.guild == GIL_ORC) && (CurrentLevel == NEWWORLD_ZEN))
 	{
-		if((Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Myxir_CITY)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(KDF_511_Daron)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Vatras)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Xardas)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Mario)) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(PC_Thief_NW)))
+		if(C_NpcIsAfraidOfOrcs(self))
 		{
 			B_Flee();
 			return FALSE;

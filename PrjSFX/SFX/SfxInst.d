@@ -2,7 +2,7 @@
 instance GAMESTART(C_SFX_DEF)
 {
 	file = "gamestart.wav";
-	vol = 127;
+	vol = 90;
 };
 
 instance NEWGAME(C_SFX_DEF)
@@ -140,21 +140,18 @@ instance VOB_WINDMILL(C_SFX_DEF)
 instance PISS_START(C_SFX_DEF)
 {
 	file = "piss_start.wav";
-//	vol = 10;
 	vol = 80;
 };
 
 instance PISS_LOOP(C_SFX_DEF)
 {
 	file = "piss_loop.wav";
-//	vol = 10;
 	vol = 80;
 };
 
 instance PISS_END(C_SFX_DEF)
 {
 	file = "piss_end.wav";
-//	vol = 10;
 	vol = 80;
 };
 
@@ -1354,6 +1351,12 @@ instance CHAIR_USE(C_SFX_DEF)
 	vol = 15;
 };
 
+instance PAN_FRYING_LONG(C_SFX_DEF)
+{
+	file = "pan_frying.wav";
+	vol = 65;
+};
+
 instance PAN_FRYING(C_SFX_DEF)
 {
 	file = "pan_frying_01.wav";
@@ -2095,21 +2098,18 @@ instance OW_WINDCAVE3(C_SFX_DEF)
 instance OW_RIVER(C_SFX_DEF)
 {
 	file = "river01stereo.wav";
-//	vol = 20;
 	vol = 50;
 };
 
 instance OW_RIVER2(C_SFX_DEF)
 {
 	file = "river02stereo.wav";
-//	vol = 30;
 	vol = 50;
 };
 
 instance OW_RIVERBRIDGE(C_SFX_DEF)
 {
 	file = "river_underbridge.wav";
-//	vol = 50;
 	vol = 80;
 };
 
@@ -2152,7 +2152,6 @@ instance WOOD_DAY2(C_SFX_DEF)
 instance WOOD_NIGHT1(C_SFX_DEF)
 {
 	file = "night_wood.wav";
-//	vol = 70;
 	vol = 20;
 };
 
@@ -8265,8 +8264,8 @@ instance BOWRELOAD(C_SFX_DEF)
 
 instance CROSSBOWSHOOT(C_SFX_DEF)
 {
-	file = "Bow_Fire_01.wav";
-	vol = 40;
+	file = "Bow_Fire_02.wav";
+	vol = 50;
 };
 
 instance CROSSBOWRELOAD(C_SFX_DEF)
@@ -10084,7 +10083,6 @@ instance SVM_19_DEAD(C_SFX_DEF)
 	vol = 120;
 };
 
-// Звуки луков и арбалетов.
 instance BOW_DRAWSOUND(C_SFX_DEF)
 {
 	file = "Bow_Draw.wav";
@@ -10133,15 +10131,15 @@ instance CROSSBOW_REFUSE(C_SFX_DEF)
 	vol = 80;
 };
 
-instance OW_River3(C_SFX_DEF)
+instance OW_RIVER3(C_SFX_DEF)
 {
 	file = "river03stereo.wav";
-	vol = 85;
+	vol = 90;
 };
 
-instance OW_River3V2(C_SFX_DEF)
+instance OW_RIVER3V2(C_SFX_DEF)
 {
-	file = "river03stereov2.wav";
+	file = "river03stereo.wav";
 	vol = 85;
 };
 

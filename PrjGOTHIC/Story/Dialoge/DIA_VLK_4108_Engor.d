@@ -47,8 +47,11 @@ func void DIA_Engor_HALLO_Info()
 	AI_Output(self,other,"DIA_Engor_HALLO_13_02");	//Отлично. Я Энгор - я обеспечиваю эту экспедицию.
 	AI_Output(self,other,"DIA_Engor_HALLO_13_03");	//Только не думай, что можешь получить от меня что-нибудь бесплатно!
 	AI_Output(self,other,"DIA_Engor_HALLO_13_04");	//Но если в твоих карманах позванивает золото, мы всегда договоримся.
-	Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-	B_LogEntry(TOPIC_Trader_OC,"Энгор заведует припасами замка и ведет небольшой бизнес на стороне.");
+	if(!Npc_KnowsInfo(other,DIA_Parlaf_ENGOR))
+	{
+		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+		B_LogEntry(TOPIC_Trader_OC,"Энгор заведует припасами замка и ведет небольшой бизнес на стороне.");
+	};
 };
 
 
@@ -148,7 +151,7 @@ instance DIA_Engor_RSkaufen(C_Info)
 	condition = DIA_Engor_RSkaufen_Condition;
 	information = DIA_Engor_RSkaufen_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи ополчения. Защита: 70/70/20/10. (2500 золота)";
+	description = "Купить тяжелые доспехи ополчения. Защита: 70/70/20/10. (2500 золотых)";
 };
 
 

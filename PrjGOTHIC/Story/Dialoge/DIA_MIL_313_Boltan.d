@@ -21,6 +21,46 @@ func void DIA_Boltan_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
+func int C_PrisonIsEmpty()
+{
+	if(MIS_Andre_REDLIGHT == LOG_SUCCESS)
+	{
+		return FALSE;
+	}
+	else if(Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000)
+	{
+		return FALSE;
+	}
+	else if(Sarah_Ausgeliefert == TRUE)
+	{
+		return FALSE;
+	}
+	else if(Rengaru_Ausgeliefert == TRUE)
+	{
+		return FALSE;
+	}
+	else if(Nagur_Ausgeliefert == TRUE)
+	{
+		return FALSE;
+	}
+	else if(Halvor_Ausgeliefert == TRUE)
+	{
+		return FALSE;
+	}
+	else if(Fernando_ImKnast == TRUE)
+	{
+		return FALSE;
+	}
+	else if((MIS_RescueBennet == LOG_SUCCESS) && (CorneliusFlee == FALSE) && !Npc_IsDead(Cornelius))
+	{
+		return FALSE;
+	}
+	else
+	{
+		return TRUE;
+	};
+};
+
 
 instance DIA_Boltan_HALLO(C_Info)
 {
@@ -74,7 +114,7 @@ func void DIA_Boltan_ToConvicts_Info()
 			AI_Output(self,other,"DIA_Boltan_Add_05_06");	//Мы арестовали эту свинью, что убила паладина Лотара.
 		};
 	}
-	else if((Canthar_Ausgeliefert == FALSE) && (Sarah_Ausgeliefert == FALSE) && (Rengaru_Ausgeliefert == FALSE) && (Nagur_Ausgeliefert == FALSE) && (Fernando_ImKnast == FALSE))
+	else if(C_PrisonIsEmpty())
 	{
 		AI_Output(self,other,"DIA_Boltan_Add_05_02");	//Все камеры сейчас пусты.
 	}

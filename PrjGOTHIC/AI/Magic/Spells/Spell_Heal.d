@@ -1,7 +1,9 @@
 
 const int SPL_Cost_PalLightHeal = 10;
-const int SPL_Cost_PalMediumHeal = 25;
-const int SPL_Cost_PalFullHeal = 50;
+//const int SPL_Cost_PalMediumHeal = 25;
+//const int SPL_Cost_PalFullHeal = 50;
+const int SPL_Cost_PalMediumHeal = 20;
+const int SPL_Cost_PalFullHeal = 40;
 const int SPL_Cost_LightHeal = 10;
 const int SPL_Cost_MediumHeal = 25;
 const int SPL_Cost_FullHeal = 50;

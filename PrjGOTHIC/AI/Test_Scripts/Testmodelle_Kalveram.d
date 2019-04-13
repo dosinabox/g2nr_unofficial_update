@@ -56,6 +56,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_Nagelkeule2,1);
 	CreateInvItems(self,ItMw_Schiffsaxt,1);
 	CreateInvItems(self,ItMw_Piratensaebel,1);
+	CreateInvItems(self,ItMw_Lightsaebel,1);
 	CreateInvItems(self,ItMw_Schwert,1);
 	CreateInvItems(self,ItMw_1H_Common_01,1);
 	CreateInvItems(self,ItMw_Stabkeule,1);
@@ -175,6 +176,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_Dementor);
 	CreateInvItem(self,ITAR_Dementor_Boss);
 	CreateInvItem(self,ITAR_Prisoner);
+	CreateInvItem(self,ITAR_Slave);
 	CreateInvItems(self,ITAR_PIR_L_Addon,1);
 	CreateInvItems(self,ITAR_PIR_M_Addon,1);
 	CreateInvItems(self,ITAR_PIR_H_Addon,1);
@@ -590,6 +592,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItRi_Prot_Edge_02);
 	CreateInvItem(self,ItRi_Prot_Mage_01);
 	CreateInvItem(self,ItRi_Prot_Mage_02);
+	CreateInvItem(self,ItRi_Prot_Mage_03);
 	CreateInvItem(self,ItRi_Prot_Point_01);
 	CreateInvItem(self,ItRi_Prot_Point_02);
 	CreateInvItem(self,ItRi_Prot_Total_00);
@@ -646,6 +649,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItAt_StoneGolemHeart,10);
 	CreateInvItems(self,ItAt_FireGolemHeart,10);
 	CreateInvItems(self,ItAt_IceGolemHeart,10);
+	CreateInvItems(self,ItAt_SwampGolemHeart,10);
 	CreateInvItems(self,ItAt_UndeadDragonSoulStone,10);
 	CreateInvItems(self,ItAt_IcedragonHeart,10);
 	CreateInvItems(self,ItAt_RockdragonHeart,10);
@@ -1173,7 +1177,7 @@ instance Gold(C_Item)
 func void UseGold()
 {
 	CreateInvItems(self,ItMi_Gold,1000);
-	PrintScreen("1000 золота получено.",-1,45,FONT_Screen,2);
+	PrintScreen("1000 золотых получено.",-1,45,FONT_Screen,2);
 	Snd_Play("Geldbeutel");
 /*	PrintScreen("Наказание за читерство: -100 EXP",-1,55,FONT_Screen,2);
 	if(hero.exp >= 100)
@@ -1467,7 +1471,11 @@ instance D36TestBook(C_Item)
 func void UseD36TestBook()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	/*Knows_SecretSign = TRUE;
+	/*Ranger_SCKnowsDexter = TRUE;
+	Greg_Rejected = TRUE;
+	Greg_NoHelpInNW = TRUE;
+	SC_IsRanger = TRUE;
+	Knows_SecretSign = TRUE;
 	B_StartOtherRoutine(Ulf,"BackToMonastery");
 	B_StartOtherRoutine(Igaraz,"Start");
 	B_StartOtherRoutine(Agon,"Start");

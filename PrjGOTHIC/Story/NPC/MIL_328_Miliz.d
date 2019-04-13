@@ -1,7 +1,7 @@
 
 instance MIL_328_Miliz(Npc_Default)
 {
-	name[0] = NAME_Wache;
+	name[0] = "Охранник";
 	guild = GIL_NONE;
 	id = 328;
 	voice = 8;

@@ -1,5 +1,6 @@
 
-const int SPL_Cost_PalRepelEvil = 30;
+//const int SPL_Cost_PalRepelEvil = 30;
+const int SPL_Cost_PalRepelEvil = 25;
 const int SPL_Damage_PalRepelEvil = 300;
 
 instance Spell_PalRepelEvil(C_Spell_Proto)

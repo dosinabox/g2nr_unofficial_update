@@ -73,8 +73,11 @@ func void DIA_Parlaf_ENGOR_Info()
 	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_02");	//Конечно, с ним можно договориться, но только за золото и весьма недешево.
 	AI_Output(other,self,"DIA_Parlaf_ENGOR_15_03");	//А ты не можешь позволить себе это?
 	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_04");	//За те гроши, что нам платят, я могу купить только пару реп!
-	Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-	Log_AddEntry(TOPIC_Trader_OC,"Энгор заведует припасами замка и ведет небольшой бизнес на стороне.");
+	if(!Npc_KnowsInfo(other,DIA_Engor_HALLO))
+	{
+		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+		Log_AddEntry(TOPIC_Trader_OC,"Энгор заведует припасами замка и ведет небольшой бизнес на стороне.");
+	};
 };
 
 

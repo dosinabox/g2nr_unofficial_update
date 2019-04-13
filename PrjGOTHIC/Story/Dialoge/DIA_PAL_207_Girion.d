@@ -73,6 +73,7 @@ func void DIA_Girion_CanTeach_Info()
 		AI_Output(self,other,"DIA_Girion_CanTeach_08_01");	//Ёто хорошо, что ты хочешь обучитьс€ самому благородному из всех боевых стилей.  ак и подобает насто€щему воину »нноса.
 		AI_Output(self,other,"DIA_Girion_CanTeach_08_02");	//я обучу теб€. ќбратись ко мне, когда будешь готов.
 		Girion_Teach2H = TRUE;
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"ѕаладин √ирион может обучить мен€ искусству сражени€ двуручным оружием.");
 	}
 	else

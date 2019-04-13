@@ -419,8 +419,8 @@ func void DIA_Harad_LEHRLING_OK()
 	MIS_Apprentice = LOG_SUCCESS;
 	B_LogEntry(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
 	B_LogEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 	B_GivePlayerXP(XP_Lehrling);
+	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
 	Info_ClearChoices(DIA_Harad_LEHRLING);
 };
@@ -981,8 +981,8 @@ func void DIA_Harad_Erzklingen_Info()
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_04");	//Так, что я могу предложить тебе?
 		Info_ClearChoices(DIA_Harad_Erzklingen);
 		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золота)",DIA_Harad_Erzklingen_2h);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золота)",DIA_Harad_Erzklingen_1h);
+		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
+		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золотых)",DIA_Harad_Erzklingen_1h);
 	};
 };
 
@@ -1018,8 +1018,8 @@ func void DIA_Harad_Erzklingen_2h()
 		B_Harad_NotEnoughGold();
 		Info_ClearChoices(DIA_Harad_Erzklingen);
 		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золота)",DIA_Harad_Erzklingen_2h);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золота)",DIA_Harad_Erzklingen_1h);
+		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
+		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золотых)",DIA_Harad_Erzklingen_1h);
 	};
 };
 
@@ -1038,8 +1038,8 @@ func void DIA_Harad_Erzklingen_1h()
 		B_Harad_NotEnoughGold();
 		Info_ClearChoices(DIA_Harad_Erzklingen);
 		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золота)",DIA_Harad_Erzklingen_2h);
-		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золота)",DIA_Harad_Erzklingen_1h);
+		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);
+		Info_AddChoice(DIA_Harad_Erzklingen,"Одноручный меч (2000 золотых)",DIA_Harad_Erzklingen_1h);
 	};
 };
 

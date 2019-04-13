@@ -9,7 +9,9 @@ instance PAL_207_Girion_DI(Npc_Default)
 	npcType = NPCTYPE_FRIEND;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
-	aivar[AIV_ToughGuyNewsOverride] = TRUE; 
+	aivar[AIV_ToughGuyNewsOverride] = TRUE;
+	aivar[AIV_IgnoresFakeGuild] = TRUE;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);

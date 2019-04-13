@@ -55,7 +55,7 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 	if(potion == POTION_Perm_DEX)
 	{
 		PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] = TRUE;
-		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭЛИКСИРА ЛОВКОСТИ': 1 гоблинские ягоды и 1 царский щавель.");
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭЛИКСИРА ЛОВКОСТИ': 1 гоблинская ягода и 1 царский щавель.");
 	};
 	if(potion == POTION_Perm_Mana)
 	{

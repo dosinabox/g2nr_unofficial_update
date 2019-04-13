@@ -38,9 +38,17 @@ instance DIA_Mika_Refuse(C_Info)
 func int DIA_Mika_Refuse_Condition()
 {
 //	if(Npc_IsInState(self,ZS_Talk) && (Lares.aivar[AIV_PARTYMEMBER] == TRUE))
-	if(Npc_IsInState(self,ZS_Talk) && ((Lares.aivar[AIV_PARTYMEMBER] == TRUE) || (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_02") < 1000)))
+//	if(Npc_IsInState(self,ZS_Talk) && ((Lares.aivar[AIV_PARTYMEMBER] == TRUE) || (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_02") < 1000)))
+	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_FARM2_PATH_03") >= 10000))
 	{
-		return TRUE;
+		if((Lares.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToNpc(self,Lares) < 2000))
+		{
+			return TRUE;
+		}
+		else if(Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_03") < 3000)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -63,7 +71,7 @@ instance DIA_Mika_WOHIN(C_Info)
 
 func int DIA_Mika_WOHIN_Condition()
 {
-	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) && (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_02") >= 1000))
+	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) && (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_03") >= 3000))
 	{
 		return TRUE;
 	};
@@ -117,14 +125,22 @@ func int DIA_Mika_WASGEFAEHRLICH_Condition()
 
 func void DIA_Mika_WASGEFAEHRLICH_Info()
 {
+	var C_Item itm;
+	itm = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Mika_WASGEFAEHRLICH_15_00");	//ј что такого опасного здесь?
 	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_01");	//ћного чего.
-	if(other.protection[PROT_EDGE] < ITAR_Leather_L.protection[PROT_EDGE])
+	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_02");	//Ќу, например, бандиты. ќни только и ждут, когда к ним в лапы попадет кто-нибудь вроде теб€.
+	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_03");	//ј если теб€ не поймают бандиты, то дикие животные из леса или наемники, которые шл€ютс€ вокруг, позабот€тс€ о тебе.
+	if(!Npc_HasEquippedArmor(other) || Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M) || Hlp_IsItem(itm,ITAR_Vlk_L) || Hlp_IsItem(itm,ITAR_Vlk_M) || Hlp_IsItem(itm,ITAR_Vlk_H))
+	{
+		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_04");	//“ак что постарайс€ сначала хот€ бы добыть приличные доспехи. Ѕез них тут нечего делать.
+	};
+	/*if(other.protection[PROT_EDGE] < ITAR_Leather_L.protection[PROT_EDGE])
 	{
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_02");	//Ќу, например, бандиты. ќни только и ждут, когда к ним в лапы попадет кто-нибудь вроде теб€.
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_03");	//ј если теб€ не поймают бандиты, то дикие животные из леса или наемники, которые шл€ютс€ вокруг, позабот€тс€ о тебе.
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_04");	//“ак что постарайс€ сначала хот€ бы добыть приличные доспехи. Ѕез них тут нечего делать.
-	};
+	};*/
 	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_05");	//я уверен, что ты прибежишь за помощью ко мне, не успев даже дойти до следующего поворота этой дороги.
 };
 

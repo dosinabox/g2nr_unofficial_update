@@ -29,6 +29,7 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		CreateInvItems(slf,ItSc_SumDemon,1);
 		CreateInvItems(slf,ItRw_Crossbow_L_01,1);
 		CreateInvItems(slf,ItRw_Crossbow_L_02,1);
+		CreateInvItems(slf,ItPl_Dex_Herb_01,1);
 //		CreateInvItems(slf,ItRw_Crossbow_H_01,1);
 		Engor_ItemsGiven_Chapter_1 = TRUE;
 	};

@@ -144,7 +144,10 @@ func void DIA_Garvell_Schiff_Info()
 	AI_Output(self,other,"DIA_Garvell_Schiff_04_02");	//” мен€ почти не осталось средств на покупку материалов, а последн€€ парти€ вс€ была поедена жучком.
 	AI_Output(self,other,"DIA_Garvell_Schiff_04_03");	//ћои парни работают не очень эффективно. ќдин хочет построить быстрый корабль, а другого волнует только резна€ фигура, котора€ будет установлена на носу судна.
 	AI_Output(self,other,"DIA_Garvell_Schiff_04_04");	// ак будто нам больше нечем зан€тьс€!
-	AI_Output(self,other,"DIA_Addon_Garvell_Schiff_04_00");	//  тому же один из моих парней просто перестал приходить на работу. я начинаю опасатьс€, что это еще сильнее задержит постройку.
+	if(MissingPeopleReturnedHome == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Garvell_Schiff_04_00");	//  тому же один из моих парней просто перестал приходить на работу. я начинаю опасатьс€, что это еще сильнее задержит постройку.
+	};
 };
 
 
@@ -242,8 +245,15 @@ func int DIA_Garvell_ReturnMonty_Condition()
 func void DIA_Garvell_ReturnMonty_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Garvell_ReturnMonty_15_00");	// ак продвигаютс€ дела?
-	AI_Output(self,other,"DIA_Addon_Garvell_ReturnMonty_04_01");	//ћонти вернулс€! —ейчас он изучает чертежи.
-	AI_Output(self,other,"DIA_Addon_Garvell_ReturnMonty_04_02");	//ћожет быть, теперь нам и удастс€ построить корабль...
+	if(!Npc_IsDead(Monty_NW))
+	{
+		AI_Output(self,other,"DIA_Addon_Garvell_ReturnMonty_04_01");	//ћонти вернулс€! —ейчас он изучает чертежи.
+		AI_Output(self,other,"DIA_Addon_Garvell_ReturnMonty_04_02");	//ћожет быть, теперь нам и удастс€ построить корабль...
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Garvell_Schiff_04_01");	//ќх, у нас тыс€чи проблем. ќстов пока еще не очень стабилен и не хватает досок на обшивку.
+	};
 	B_GivePlayerXP(XP_Ambient);
 };
 

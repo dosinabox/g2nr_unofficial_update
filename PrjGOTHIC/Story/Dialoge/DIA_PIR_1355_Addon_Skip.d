@@ -576,8 +576,11 @@ func void DIA_Addon_Skip_News_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_News_15_00");	//Ты можешь мне что-нибудь продать?
 	AI_Output(self,other,"DIA_Addon_Skip_News_08_01");	//Если ты хочешь торговать, иди к Гаретту. Он отвечает за наши запасы.
-	Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) && !Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern))
+	{
+		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
+		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+	};
 };
 
 

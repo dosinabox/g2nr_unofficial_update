@@ -242,11 +242,14 @@ func void DIA_Addon_Henry_WantEnter_Info()
 	};
 	itm = Npc_GetEquippedArmor(other);
 //	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_H))
-	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_PAL_M) || Hlp_IsItem(itm,ITAR_DJG_L) || Hlp_IsItem(itm,ITAR_DJG_M) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_S) || Hlp_IsItem(itm,ITAR_SLD_H))
+	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_PAL_M) || Hlp_IsItem(itm,ITAR_DJG_L) || Hlp_IsItem(itm,ITAR_DJG_M) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_M2) || Hlp_IsItem(itm,ITAR_SLD_H))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
-		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_09");	//Или свою роскошную броню ты у кого-то украл?
+		if(!Hlp_IsItem(itm,ITAR_KDF_L) && !Hlp_IsItem(itm,ITAR_KDF_H))
+		{
+			AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_09");	//Или свою роскошную броню ты у кого-то украл?
+		};
 	}
 	else
 	{
@@ -880,9 +883,12 @@ func void DIA_Addon_Henry_WhatTeach_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WhatTeach_Add_04_03");	//Конечно, почему нет?
+		if(!Npc_KnowsInfo(other,DIA_Addon_Bones_Teacher))
+		{
+			Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
+			B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
+		};
 		Henry_Addon_TeachPlayer = TRUE;
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_HenryTeach);
 	};
 };
 
@@ -959,7 +965,8 @@ func void DIA_Addon_Henry_Teach_Back()
 
 func void DIA_Addon_Henry_Teach_CB_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,75);
+//	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,75);
+	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,80);
 	Info_ClearChoices(DIA_Addon_Henry_Teach);
 	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
 	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
@@ -970,7 +977,8 @@ func void DIA_Addon_Henry_Teach_CB_1()
 
 func void DIA_Addon_Henry_Teach_CB_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,75);
+//	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,75);
+	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,80);
 	Info_ClearChoices(DIA_Addon_Henry_Teach);
 	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
 	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);

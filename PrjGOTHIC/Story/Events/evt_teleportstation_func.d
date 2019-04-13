@@ -14,7 +14,7 @@ func void evt_teleportstation_func()
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
-				B_LogEntry(TOPIC_Addon_TeleportsNW,"Телепорт в пещере к востоку от города ведет к таверне 'Мертвая Гарпия'.");
+				B_LogEntry(TOPIC_Addon_TeleportsNW,"Телепорт в пещере к востоку от города ведет к таверне 'Мертвая гарпия'.");
 				SCUsed_NW_TELEPORTSTATION_CITY = TRUE;
 			};
 		}
@@ -25,7 +25,7 @@ func void evt_teleportstation_func()
 			{
 				Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
-				B_LogEntry(TOPIC_Addon_TeleportsNW,"Телепорт у таверны 'Мертвая Гарпия' ведет к порталу таинственных зодчих.");
+				B_LogEntry(TOPIC_Addon_TeleportsNW,"Телепорт у таверны 'Мертвая гарпия' ведет к порталу таинственных зодчих.");
 				SCUsed_NW_TELEPORTSTATION_TAVERNE = TRUE;
 			};
 		}

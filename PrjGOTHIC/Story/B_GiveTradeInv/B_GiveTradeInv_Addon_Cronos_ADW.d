@@ -104,6 +104,7 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Geyser,3);
 		CreateInvItems(slf,ItSc_Thunderstorm,3);
 		CreateInvItems(slf,ItSc_Waterfist,2);
+		CreateInvItems(slf,ItPl_Dex_Herb_01,1);
 		Cronos_ADW_ItemsGiven_Chapter_4 = TRUE;
 	};
 	if((Kapitel >= 5) && (Cronos_ADW_ItemsGiven_Chapter_5 == FALSE))

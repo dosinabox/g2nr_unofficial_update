@@ -13,7 +13,7 @@ instance MENU_MAIN(C_MENU_DEF)
 	items[7] = "MENUITEM_MAIN_INTRO";
 	items[8] = "MENUITEM_MAIN_CREDITS";
 	items[9] = "MENUITEM_MAIN_EXIT";
-	defaultoutgame = 2;
+	defaultoutgame = 3;
 	defaultingame = 4;
 	flags = flags | MENU_SHOW_INFO;
 };
@@ -26,7 +26,7 @@ instance MENUITEM_MAIN_NEWGAME(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Новая игра";
-	text[1] = "Старт нового приключения";
+	text[1] = "Начать новое приключение";
 	posx = 0;
 	posy = MENU_MAIN_Y + (MENU_MAIN_DY * 0);
 	dimx = 8100;
@@ -81,7 +81,7 @@ instance MENUITEM_MAIN_OPTIONS(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Опции";
-	text[1] = "Опции графики, звука и игровые опции";
+	text[1] = "Опции графики, звука и игры";
 	posx = 0;
 	posy = MENU_MAIN_Y + (MENU_MAIN_DY * 4);
 	dimx = 8100;
@@ -95,7 +95,7 @@ instance MENUITEM_MAIN_INTRO(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Заставка";
-	text[1] = "Проиграть заставку";
+	text[1] = "Проиграть начальный ролик";
 	posx = 0;
 	posy = MENU_MAIN_Y + (MENU_MAIN_DY * 5);
 	dimx = 8100;
@@ -109,7 +109,7 @@ instance MENUITEM_MAIN_CREDITS(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Титры";
-	text[1] = "Титры";
+	text[1] = "Разработчики игры";
 	posx = 0;
 	posy = MENU_MAIN_Y + (MENU_MAIN_DY * 6);
 	dimx = 8100;

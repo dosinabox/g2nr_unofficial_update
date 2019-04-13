@@ -286,10 +286,10 @@ func void DIA_Hakon_Banditen_Info()
 	AI_Output(self,other,"DIA_Hakon_Banditen_12_01");	//Что я знаю о них? Они ограбили меня на пути в город!
 	AI_Output(self,other,"DIA_Hakon_Banditen_12_02");	//И не только меня. Они давно уже здесь разбойничают.
 	AI_Output(self,other,"DIA_Hakon_Banditen_12_03");	//Ополчение пыталось выследить их, но безуспешно.
-	MIS_HakonBandits = LOG_Running;
+	/*MIS_HakonBandits = LOG_Running;
 	Log_CreateTopic(TOPIC_HakonBanditen,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_HakonBanditen,LOG_Running);
-	B_LogEntry(TOPIC_HakonBanditen,"Хакон, торговец оружием, был ограблен бандитами неподалеку от города.");
+	B_LogEntry(TOPIC_HakonBanditen,"Хакон, торговец оружием, был ограблен бандитами неподалеку от города.");*/
 };
 
 
@@ -306,7 +306,8 @@ instance DIA_Hakon_Wieviel(C_Info)
 
 func int DIA_Hakon_Wieviel_Condition()
 {
-	if(MIS_HakonBandits == LOG_Running)
+//	if(MIS_HakonBandits == LOG_Running)
+	if(Npc_KnowsInfo(hero,DIA_Hakon_Banditen))
 	{
 		return TRUE;
 	};
@@ -328,6 +329,10 @@ func void DIA_Hakon_Wieviel_Info()
 		AI_Output(self,other,"DIA_Hakon_Banditen_Kohle_12_02");	//Ладно, мне это тоже нужно. Я заплачу тебе 100 золотых, если ты уничтожишь этих бандитов.
 		MIS_HakonBanditsPay = TRUE;
 	};
+	MIS_HakonBandits = LOG_Running;
+	Log_CreateTopic(TOPIC_HakonBanditen,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_HakonBanditen,LOG_Running);
+	B_LogEntry(TOPIC_HakonBanditen,"Хакон, торговец оружием, был ограблен бандитами неподалеку от города.");
 	Info_ClearChoices(DIA_Hakon_Banditen);
 };
 
@@ -404,7 +409,7 @@ instance DIA_Hakon_Success(C_Info)
 
 func int DIA_Hakon_Success_Condition()
 {
-	if((MIS_HakonBandits == LOG_Running) && Npc_IsDead(Bandit_1) && Npc_IsDead(Bandit_2) && Npc_IsDead(Bandit_3))
+	if((MIS_HakonBandits == LOG_Running) && Npc_IsDead(Bandit_1) && Npc_IsDead(Bandit_2) && Npc_IsDead(Bandit_3) && Npc_KnowsInfo(hero,DIA_Hakon_Wo))
 	{
 		return TRUE;
 	};
@@ -413,7 +418,7 @@ func int DIA_Hakon_Success_Condition()
 func void DIA_Hakon_Success_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Success_15_00");	//Я расправился с бандитами.
-	AI_Output(self,other,"DIA_Hakon_Add_12_27");	//Правда? Кто-нибудь может подтвердить это. У тебя есть доказательства?
+	AI_Output(self,other,"DIA_Hakon_Add_12_27");	//Правда? Кто-нибудь может подтвердить это? У тебя есть доказательства?
 	AI_Output(other,self,"DIA_Hakon_Add_15_28");	//(вздыхает) Мне что, вернуться назад и отрезать им головы?
 	AI_Output(self,other,"DIA_Hakon_Add_12_29");	//(поспешно) Нет - я не думаю, что это необходимо. Я верю тебе.
 	AI_Output(self,other,"DIA_Hakon_Success_12_01");	//Ты оказал очень большую услугу всем торговцам в городе.

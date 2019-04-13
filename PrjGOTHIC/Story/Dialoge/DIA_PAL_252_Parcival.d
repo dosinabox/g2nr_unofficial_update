@@ -70,7 +70,7 @@ instance DIA_Parcival_Diego(C_Info)
 
 func int DIA_Parcival_Diego_Condition()
 {
-	if((SearchForDiego == LOG_Running) && (Kapitel < 3))
+	if((SearchForDiego == LOG_Running) && (Kapitel < 3) && Npc_KnowsInfo(hero,DIA_Parcival_Schurfer))
 	{
 		return TRUE;
 	};
