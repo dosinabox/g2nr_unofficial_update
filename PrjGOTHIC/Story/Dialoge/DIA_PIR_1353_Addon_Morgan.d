@@ -103,7 +103,7 @@ func int DIA_Addon_Morgan_Anheuern_Condition()
 func void DIA_Addon_Morgan_Anheuern_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Morgan_Anheuern_07_00");	//Замечательно! Теперь Грег заставит меня пилить доски!
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if((MIS_Addon_Greg_ClearCanyon == LOG_Running) || (MIS_Addon_MorganLurker == LOG_Running))
 	{
 		AI_Output(self,other,"DIA_Addon_Morgan_Anheuern_07_01");	//(с сарказмом) Удачи в потрошении монстров!
 	};

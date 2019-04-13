@@ -467,5 +467,13 @@ func void DIA_Addon_Esteban_Duell_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_Duell_07_01");	//ќ, у теб€ есть последнее желание.  ак мило. я сделаю тебе одолжение и избавлю теб€ от твоей тупости!
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
+	if(Hlp_IsValidNpc(Wache_01) && !C_NpcIsDown(Wache_01) && (Npc_GetDistToNpc(Wache_01,other) <= 1500))
+	{
+		B_Attack(Wache_01,other,AR_NONE,1);
+	};
+	if(Hlp_IsValidNpc(Wache_02) && !C_NpcIsDown(Wache_02) && (Npc_GetDistToNpc(Wache_02,other) <= 1500))
+	{
+		B_Attack(Wache_02,other,AR_NONE,1);
+	};
 };
 

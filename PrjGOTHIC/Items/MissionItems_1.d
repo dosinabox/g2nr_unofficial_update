@@ -809,9 +809,6 @@ instance ItWr_Passage_MIS(C_Item)
 	description = name;
 	text[0] = "Эта записка должна помочь мне";
 	text[1] = "встретиться с лордом Хагеном.";
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 

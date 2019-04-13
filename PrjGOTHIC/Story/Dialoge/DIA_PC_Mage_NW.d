@@ -278,7 +278,7 @@ func void DIA_MiltenNW_FourFriends_Info()
 	if(!Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_02");	//Лестер исчез, впрочем - и я понятия не имею, где он сейчас ошивается.
-		if(Npc_KnowsInfo(other,DIA_Lester_Hello) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN) || Npc_KnowsInfo(other,DIA_Lester_XARDASWEG))
+		if(Npc_KnowsInfo(other,DIA_Lester_Hello) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
 		{
 			AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03");	//Я встретил Лестера - он теперь с Ксардасом.
 			AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_04");	//Ну, хоть какие-то хорошие новости.

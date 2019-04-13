@@ -208,7 +208,7 @@ func void DIA_Parcival_BRAVE_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Parcival_BRAVE_13_03");	//Эй! Тебе что, нечего больше делать, как болтать со мной? Проваливай!
-		B_GivePlayerXP(XP_Ambient);
+		B_GivePlayerXP(XP_AmbientKap2);
 	};
 	Parcival_BRAVE_LaberCount += 1;
 };

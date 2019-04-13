@@ -100,7 +100,7 @@ func void DIA_PC_Thief_DI_RAT_Info()
 		if((OrkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime2 == FALSE))
 		{
 			AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_09");	//Еще одно. Я бы предпочел, чтобы ты не приводил всех этих тварей, что бродят здесь, к кораблю. Я надеюсь, этот рейд орков был последней атакой, которую нам пришлось отражать здесь!
-			B_GivePlayerXP(XP_Ambient);
+			B_GivePlayerXP(XP_AmbientKap6);
 			DIA_PC_Thief_DI_RAT_OneTime2 = TRUE;
 		};
 	};

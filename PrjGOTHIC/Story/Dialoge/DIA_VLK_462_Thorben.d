@@ -339,9 +339,15 @@ func int DIA_Thorben_GiveBook_Condition()
 func void DIA_Thorben_GiveBook_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
-//	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
-	AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
+	if(ClassicLehmarBook == FALSE)
+	{
+		AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
+	}
+	else
+	{
+		B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
+	};
 	if(Thorben_TeachPlayer == TRUE)
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_01");	//Если бы не ты, я бы платил Лемару до конца своих дней.
@@ -830,7 +836,7 @@ instance DIA_Thorben_PICKPOCKET_Book(C_Info)
 
 func int DIA_Thorben_PICKPOCKET_Book_Condition()
 {
-	if((SchuldBuch_Stolen_Thorben == FALSE) && Npc_KnowsInfo(other,DIA_Thorben_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 20))
+	if((ClassicLehmarBook == FALSE) && (SchuldBuch_Stolen_Thorben == FALSE) && Npc_KnowsInfo(other,DIA_Thorben_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 20))
 	{
 		return TRUE;
 	};

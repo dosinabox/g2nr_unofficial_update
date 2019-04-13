@@ -635,7 +635,7 @@ func void DIA_Torlof_BengarSuccess_Info()
 	if(Torlof_Probe == Probe_Bengar)
 	{
 		AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_03");	//ќтлично!
-		AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_04");	//“ы прошел испытание. “ы смог разобратьс€ с ополчением, этого достаточно, чтобы заслужить уважение большинства.
+		AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_04");	//“ы прошел испытание. “ы смог разобратьс€ с ополчением - этого достаточно, чтобы заслужить уважение большинства.
 	}
 	else
 	{

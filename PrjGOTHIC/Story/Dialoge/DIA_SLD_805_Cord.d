@@ -567,7 +567,7 @@ instance DIA_Cord_ExplainSkills(C_Info)
 	condition = DIA_Cord_ExplainSkills_Condition;
 	information = DIA_Cord_ExplainSkills_Info;
 	permanent = FALSE;
-	description = "Что я должен изучить сначала, обращение с одноручным или двуручным оружием?";
+	description = "Что я должен изучить сначала: обращение с одноручным или двуручным оружием?";
 };
 
 
@@ -581,7 +581,7 @@ func int DIA_Cord_ExplainSkills_Condition()
 
 func void DIA_Cord_ExplainSkills_Info()
 {
-	AI_Output(other,self,"DIA_Cord_ExplainSkills_15_00");	//Что я должен изучить сначала, обращение с одноручным или двуручным оружием?
+	AI_Output(other,self,"DIA_Cord_ExplainSkills_15_00");	//Что я должен изучить сначала: обращение с одноручным или двуручным оружием?
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_01");	//Эти два вида оружия весьма похожи друг на друга.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_02");	//Когда ты достигнешь следующего уровня в одном из них, ты автоматически повышаешь и уровень владения другим.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_03");	//Если, например, ты хорошо владеешь одноручным мечом, но все еще новичок в том, что касается двуручного...

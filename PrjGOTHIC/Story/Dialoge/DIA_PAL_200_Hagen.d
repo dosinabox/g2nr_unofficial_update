@@ -380,7 +380,7 @@ func void DIA_Lord_Hagen_Proof_Info()
 	if((hero.guild != GIL_NONE) && (hero.guild != GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_01");	//Именно. Пройди через Проход в Долину Рудников. Когда ты будешь там, найди нашу экспедицию, а когда ты найдешь их, поговори с командующим Гарондом.
-		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_02");	//Вряд ли кто-то лучше него знает ситуацию там.
+		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_02");	//Вряд ли кто-то лучше его знает ситуацию там.
 		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_03");	//Если он подтвердит твои слова, я буду готов помочь тебе.
 		AI_Output(other,self,"DIA_Lord_Hagen_Proof_15_04");	//Значит ли это, что ты отдашь мне Глаз Инноса?
 		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_05");	//Глаз Инноса... хорошо. Принеси мне доказательство, и я распоряжусь, чтобы тебе было позволено надеть этот амулет.
@@ -736,7 +736,15 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	hero.guild = GIL_PAL;
 	Npc_SetTrueGuild(other,GIL_PAL);
 	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
-	CreateInvItems(other,ITAR_PAL_M,1);
+	if(Helms_Enabled == TRUE)
+	{
+		CreateInvItems(other,ITAR_PALN_M,1);
+		CreateInvItems(hero,ITHE_PAL_M,1);
+	}
+	else
+	{
+		CreateInvItems(other,ITAR_PAL_M,1);
+	};
 	AI_EquipArmor(other,ITAR_PAL_M);
 	/*if(Npc_HasItems(other,ItRu_FakePalLight))
 	{

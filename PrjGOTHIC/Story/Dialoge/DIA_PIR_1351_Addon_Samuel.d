@@ -193,7 +193,7 @@ instance DIA_Addon_Samuel_Grog(C_Info)
 	condition = DIA_Addon_Samuel_Grog_Condition;
 	information = DIA_Addon_Samuel_Grog_Info;
 	permanent = TRUE;
-	description = "Я пришел за своей порцией грога. (10 золотых)";
+	description = B_BuildPriceString("Я пришел за своей порцией грога.",Value_Grog);
 };
 
 
@@ -208,7 +208,7 @@ func int DIA_Addon_Samuel_Grog_Condition()
 func void DIA_Addon_Samuel_Grog_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Grog_15_00");	//Я пришел за своей порцией грога.
-	if(B_GiveInvItems(other,self,ItMi_Gold,10))
+	if(B_GiveInvItems(other,self,ItMi_Gold,Value_Grog))
 	{
 		if(Samuel_Grog_Varianz == 0)
 		{
@@ -242,7 +242,7 @@ instance DIA_Addon_Samuel_Rum(C_Info)
 	condition = DIA_Addon_Samuel_Rum_Condition;
 	information = DIA_Addon_Samuel_Rum_Info;
 	permanent = TRUE;
-	description = "Дай мне рома! (20 золотых)";
+	description = B_BuildPriceString("Дай мне рома!",Value_Rum);
 };
 
 
@@ -281,6 +281,20 @@ func void DIA_Addon_Samuel_Rum_Info()
 	};
 };
 
+func void B_BuildSamuelDrinksDialog()
+{
+	Info_ClearChoices(DIA_Addon_Samuel_Stronger);
+	Info_AddChoice(DIA_Addon_Samuel_Stronger,Dialog_Back,DIA_Addon_Samuel_Stronger_Back);
+	if(Samuel_Knows_SchlafHammer == TRUE)
+	{
+		Info_AddChoice(DIA_Addon_Samuel_Stronger,B_BuildPriceString("Двойной Молот Лу",Value_SchlafHammer),DIA_Addon_Samuel_Stronger_LousDoubleHammer);
+	};
+	if(Samuel_Knows_LousHammer == TRUE)
+	{
+		Info_AddChoice(DIA_Addon_Samuel_Stronger,B_BuildPriceString("Молот Лу",Value_LousHammer),DIA_Addon_Samuel_Stronger_LousHammer);
+	};
+	Info_AddChoice(DIA_Addon_Samuel_Stronger,B_BuildPriceString("Быстрая селедка",Value_SchnellerHering),DIA_Addon_Samuel_Stronger_SchnellerHering);
+};
 
 var int Samuel_Stronger_Varianz;
 var int Samuel_DoppelHammer_Varianz;
@@ -325,21 +339,7 @@ func void DIA_Addon_Samuel_Stronger_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_09");	//Что тебе приготовить?
 	};
-	Info_ClearChoices(DIA_Addon_Samuel_Stronger);
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,Dialog_Back,DIA_Addon_Samuel_Stronger_Back);
-	if(Samuel_Knows_SchlafHammer == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Двойной Молот Лу (60 золотых)",DIA_Addon_Samuel_Stronger_LousDoubleHammer);
-	};
-	if(Samuel_Knows_LousHammer == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
-	};
-	/*if(Player_KnowsSchnellerHering == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
-	};*/
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	B_BuildSamuelDrinksDialog();
 };
 
 func void B_Addon_Samuel_NoGold()
@@ -355,7 +355,7 @@ func void DIA_Addon_Samuel_Stronger_Back()
 func void DIA_Addon_Samuel_Stronger_SchnellerHering()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_SchnellerHering_15_00");	//Дай мне 'Быструю селедку'.
-	if(B_GiveInvItems(other,self,ItMi_Gold,30))
+	if(B_GiveInvItems(other,self,ItMi_Gold,Value_SchnellerHering))
 	{
 		AI_Output(self,other,"DIa_Addon_Samuel_Stronger_SchnellerHering_14_01");	//Злой напиток. Но эффективный!
 		B_GiveInvItems(self,other,ItFo_Addon_SchnellerHering,1);
@@ -364,27 +364,13 @@ func void DIA_Addon_Samuel_Stronger_SchnellerHering()
 	{
 		B_Addon_Samuel_NoGold();
 	};
-	Info_ClearChoices(DIA_Addon_Samuel_Stronger);
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,Dialog_Back,DIA_Addon_Samuel_Stronger_Back);
-	if(Samuel_Knows_SchlafHammer == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Двойной Молот Лу (60 золотых)",DIA_Addon_Samuel_Stronger_LousDoubleHammer);
-	};
-	if(Samuel_Knows_LousHammer == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
-	};
-	/*if(Player_KnowsSchnellerHering == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
-	};*/
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	B_BuildSamuelDrinksDialog();
 };
 
 func void DIA_Addon_Samuel_Stronger_LousHammer()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_LousHammer_15_00");	//Я хочу 'Молот Лу'!
-	if(B_GiveInvItems(other,self,ItMi_Gold,30))
+	if(B_GiveInvItems(other,self,ItMi_Gold,Value_LousHammer))
 	{
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_LousHammer_14_01");	//Отличное пойло! Наслаждайся!
 		B_GiveInvItems(self,other,ItFo_Addon_LousHammer,1);
@@ -393,21 +379,7 @@ func void DIA_Addon_Samuel_Stronger_LousHammer()
 	{
 		B_Addon_Samuel_NoGold();
 	};
-	Info_ClearChoices(DIA_Addon_Samuel_Stronger);
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,Dialog_Back,DIA_Addon_Samuel_Stronger_Back);
-	if(Samuel_Knows_SchlafHammer == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Двойной Молот Лу (60 золотых)",DIA_Addon_Samuel_Stronger_LousDoubleHammer);
-	};
-	if(Samuel_Knows_LousHammer == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
-	};
-	/*if(Player_KnowsSchnellerHering == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
-	};*/
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	B_BuildSamuelDrinksDialog();
 };
 
 func void DIA_Addon_Samuel_Stronger_LousDoubleHammer()
@@ -418,10 +390,11 @@ func void DIA_Addon_Samuel_Stronger_LousDoubleHammer()
 		if(Samuel_DoppelHammer_Varianz == 0)
 		{
 			AI_Output(self,other,"DIA_Addon_Samuel_Stronger_LousDoubleHammer_14_01");	//Не делай глупостей, сынок. Очень надеюсь, что ты берешь это не для себя.
+			Samuel_DoppelHammer_Varianz = 1;
 		}
 		else
 		{
-			AI_Output(self,other,"DIa_Addon_Samuel_Stronger_LousDoubleHammer_14_02");	//Да! Ничто так не укрепляет дух!
+			AI_Output(self,other,"DIA_Addon_Samuel_Stronger_LousDoubleHammer_14_02");	//Да! Ничто так не укрепляет дух!
 		};
 		B_GiveInvItems(self,other,ItFo_Addon_SchlafHammer,1);
 	}
@@ -429,21 +402,7 @@ func void DIA_Addon_Samuel_Stronger_LousDoubleHammer()
 	{
 		B_Addon_Samuel_NoGold();
 	};
-	Info_ClearChoices(DIA_Addon_Samuel_Stronger);
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,Dialog_Back,DIA_Addon_Samuel_Stronger_Back);
-	if(Samuel_Knows_SchlafHammer == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Двойной Молот Лу (60 золотых)",DIA_Addon_Samuel_Stronger_LousDoubleHammer);
-	};
-	if(Samuel_Knows_LousHammer == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
-	};
-	/*if(Player_KnowsSchnellerHering == TRUE)
-	{
-		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
-	};*/
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	B_BuildSamuelDrinksDialog();
 };
 
 

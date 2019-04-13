@@ -225,7 +225,7 @@ func void DIA_Pedro_DI_PERM_Info()
 			AI_Output(other,self,"DIA_Pedro_DI_PERM_15_01");	//Хочешь, я принесу тебе подушку?
 			AI_Output(self,other,"DIA_Pedro_DI_PERM_09_02");	//Пощади меня, пожалуйста. Я буду сидеть здесь очень тихо и не издам ни звука.
 			AI_Output(other,self,"DIA_Pedro_DI_PERM_15_03");	//М-м-м.
-			B_GivePlayerXP(XP_Ambient);
+			B_GivePlayerXP(XP_AmbientKap6);
 			PedroDI_Flee = LOG_SUCCESS;
 		}
 		else if(Npc_IsDead(Dragon_Undead))

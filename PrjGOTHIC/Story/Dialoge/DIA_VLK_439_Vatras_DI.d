@@ -191,7 +191,7 @@ var int DIA_Vatras_DI_PEDROTOT_VatrasSucked;
 func void DIA_Vatras_DI_PEDROTOT_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_00");	//Я нашел предателя Педро.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 	self.flags = 0;
 	if((MIS_Gorax_KillPedro == LOG_SUCCESS) && Npc_IsDead(Pedro_DI))
 	{

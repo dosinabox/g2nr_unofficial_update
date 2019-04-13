@@ -103,7 +103,7 @@ func void DIA_Biff_DI_ORKS_Info()
 	AI_Output(self,other,"DIA_Biff_DI_ORKS_07_00");	//Эти мерзкие твари!
 	AI_Output(other,self,"DIA_Biff_DI_ORKS_15_01");	//Черт, что ты делаешь здесь? Ты должен был охранять корабль.
 	AI_Output(self,other,"DIA_Biff_DI_ORKS_07_02");	//Да никуда он не денется.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 };

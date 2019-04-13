@@ -37,7 +37,6 @@ instance ItMi_Addon_Joint_01(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Addon_Joint_01;
-//	visual = "ItMi_Joint_US.3ds";
 	visual = "ItMi_Addon_Joint_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "JOINT";
@@ -45,7 +44,6 @@ instance ItMi_Addon_Joint_01(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 	inv_zbias = 200;
 };
 
@@ -103,12 +101,10 @@ instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 
 instance ItMi_BromorsGeld_Addon(C_Item)
 {
-//	name = "Золотая чаша";
 	name = "Золотое блюдо";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_Nugget;
-//	visual = "ItMi_GoldChalice.3DS";
 	visual = "ItMi_MariasGoldPlate.3DS";
 	material = MAT_METAL;
 	description = name;
@@ -120,7 +116,6 @@ instance ItMi_BromorsGeld_Addon(C_Item)
 
 instance ItSe_ADDON_CavalornsBeutel(C_Item)
 {
-//	name = "Кожаный мешочек Кавалорна";
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
@@ -171,15 +166,8 @@ instance ItMi_IECello(C_Item)
 	visual = "Itmi_IE_Cello.3ds";
 	material = MAT_WOOD;
 	scemeName = "CELLO";
-//	on_state[0] = Use_Cello;
 	description = name;
 };
-
-/*
-func void Use_Cello()
-{
-};
-*/
 
 instance ItMi_IECelloBow(C_Item)
 {
@@ -201,15 +189,8 @@ instance ItMi_IEDrum(C_Item)
 	visual = "Itmi_IE_Drum.3ds";
 	material = MAT_WOOD;
 	scemeName = "PAUKE";
-//	on_state[0] = Use_Drum;
 	description = name;
 };
-
-/*
-func void Use_Drum()
-{
-};
-*/
 
 instance ItMi_IEDrumScheit(C_Item)
 {
@@ -220,15 +201,8 @@ instance ItMi_IEDrumScheit(C_Item)
 	visual = "Itmi_IE_Drumscheit.3ds";
 	material = MAT_WOOD;
 	scemeName = "DRUMSCHEIT";
-//	on_state[0] = Use_Drumscheit;
 	description = name;
 };
-
-/*
-func void Use_Drumscheit()
-{
-};
-*/
 
 instance ItMi_IEDrumStick(C_Item)
 {
@@ -250,15 +224,8 @@ instance ItMi_IEDudelBlau(C_Item)
 	visual = "Itmi_IE_DudelBlau.3ds";
 	material = MAT_WOOD;
 	scemeName = "DUDEL";
-//	on_state[0] = Use_Dudel;
 	description = name;
 };
-
-/*
-func void Use_Dudel()
-{
-};
-*/
 
 instance ItMi_IEDudelGelb(C_Item)
 {
@@ -269,7 +236,6 @@ instance ItMi_IEDudelGelb(C_Item)
 	visual = "Itmi_IE_DudelGelb.3ds";
 	material = MAT_WOOD;
 	scemeName = "DUDEL";
-//	on_state[0] = Use_Dudel;
 	description = name;
 };
 
@@ -282,15 +248,8 @@ instance ItMi_IEHarfe(C_Item)
 	visual = "Itmi_IE_Harfe.3ds";
 	material = MAT_WOOD;
 	scemeName = "HARFE";
-//	on_state[0] = Use_Harfe;
 	description = name;
 };
-
-/*
-func void Use_Harfe()
-{
-};
-*/
 
 instance ItMi_IELaute(C_Item)
 {
@@ -301,15 +260,8 @@ instance ItMi_IELaute(C_Item)
 	visual = "Itmi_IE_Laute.3ds";
 	material = MAT_WOOD;
 	scemeName = "IELAUTE";
-//	on_state[0] = Use_Laute;
 	description = name;
 };
-
-/*
-func void Use_Laute()
-{
-};
-*/
 
 instance ItMi_Addon_Lennar_Paket(C_Item)
 {
@@ -388,7 +340,7 @@ func void Use_Zeitspalt_Addon()
 		Wld_PlayEffect("spellFX_BELIARSRAGE",self,self,0,0,0,FALSE);
 		Wld_StopEffect("SLOW_MOTION");
 		Wld_PlayEffect("SLOW_MOTION",self,self,0,0,0,FALSE);
-		TEXT_Zeitspalt_Setting = "Замедление времени.";
+		TEXT_Zeitspalt_Setting = PRINT_SlowTime;
 		Zeitspalt_Used = TRUE;
 	};
 };

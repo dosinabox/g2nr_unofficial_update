@@ -84,7 +84,7 @@ func void DIA_Buster_Hello_NotYourBusiness()
 func void DIA_Buster_Hello_GoingToFarm()
 {
 	AI_Output(other,self,"DIA_Buster_Hello_GoingToFarm_15_00");	//Как скажешь. Я хочу увидеть лендлорда.
-	AI_Output(self,other,"DIA_Buster_Hello_GoingToFarm_13_01");	//Да?.. Хм - ты не кажешься мне таким уж опасным.
+	AI_Output(self,other,"DIA_Buster_Hello_GoingToFarm_13_01");	//Да?.. Хм, ты не кажешься мне таким уж опасным.
 	Info_ClearChoices(DIA_Buster_Hello);
 	Info_AddChoice(DIA_Buster_Hello,"Хочешь проверить?",DIA_Buster_Hello_WannaTestIt);
 	Info_AddChoice(DIA_Buster_Hello,"Я тоже убил парочку-другую тварей.",DIA_Buster_Hello_SlewBeasts);
@@ -673,7 +673,7 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_02");	//Он мертв. Можешь оставить эти рога себе. Теперь я все равно не знаю, что с ними делать.
 		MIS_Buster_KillShadowbeasts_DJG = LOG_SUCCESS;
 		B_CheckLog();
-		B_GivePlayerXP(XP_Ambient);
+		B_GivePlayerXP(XP_AmbientKap5);
 	}
 	else if(Npc_HasItems(other,ItAt_ShadowHorn))
 	{

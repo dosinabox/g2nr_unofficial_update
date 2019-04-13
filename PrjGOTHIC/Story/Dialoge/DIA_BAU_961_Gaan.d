@@ -1,4 +1,15 @@
 
+var int GaanTeachHornOneTime;
+
+func void B_GaanTeachHornComment()
+{
+	if((MIS_Gaan_Snapper == LOG_SUCCESS) && (Gaan_TeachPlayer == TRUE) && (GaanTeachHornOneTime == FALSE))
+	{
+		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_00");	//Теперь, когда этот огромный снеппер мертв, я могу показать тебе, как вырезать его рог.
+		GaanTeachHornOneTime = TRUE;
+	};
+};
+
 instance DIA_Gaan_EXIT(C_Info)
 {
 	npc = BAU_961_Gaan;
@@ -19,6 +30,7 @@ func int DIA_Gaan_EXIT_Condition()
 
 func void DIA_Gaan_EXIT_Info()
 {
+	B_GaanTeachHornComment();
 	AI_StopProcessInfos(self);
 	if(DIA_Gaan_EXIT_oneTime == FALSE)
 	{
@@ -262,7 +274,6 @@ instance DIA_Gaan_MONSTER(C_Info)
 
 func int DIA_Gaan_MONSTER_Condition()
 {
-//	if((MIS_Gaan_Snapper == LOG_Running) && !Npc_IsDead(Gaans_Snapper))
 	if(MIS_Gaan_Snapper == LOG_Running)
 	{
 		return TRUE;
@@ -289,7 +300,6 @@ instance DIA_Gaan_WASZAHLSTDU(C_Info)
 
 func int DIA_Gaan_WASZAHLSTDU_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && !Npc_IsDead(Gaans_Snapper))
 	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (MIS_Gaan_Snapper == LOG_Running))
 	{
 		return TRUE;
@@ -305,13 +315,12 @@ func void DIA_Gaan_WASZAHLSTDU_Info()
 	if((Gaan_TeachPlayer == TRUE) && (Npc_HasItems(self,ItMi_Gold) >= 100))
 	{
 		Gaan_Deal = 150;
-		B_Say_Gold(self,other,Gaan_Deal);
 	}
 	else
 	{
 		Gaan_Deal = 50;
-		B_Say_Gold(self,other,Gaan_Deal);
 	};
+	B_Say_Gold(self,other,Gaan_Deal);
 	MIS_Gaan_Deal = LOG_Running;
 };
 
@@ -328,7 +337,6 @@ instance DIA_Gaan_WOHERMONSTER(C_Info)
 
 func int DIA_Gaan_WOHERMONSTER_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && !Npc_IsDead(Gaans_Snapper))
 	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (MIS_Gaan_Snapper == LOG_Running))
 	{
 		return TRUE;
@@ -407,6 +415,7 @@ func void DIA_Gaan_AskTeacher_Info()
 		AI_Output(self,other,"DIA_Gaan_AskTeacher_03_01");	//Нет проблем. За 100 золотых монет я могу показать тебе, как выпотрошить животных, которых ты убьешь.
 	};
 	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_02");	//Шкуры и другие трофеи можно выгодно продать на рынке.
+	B_GaanTeachHornComment();
 	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
 	B_LogEntry(TOPIC_OutTeacher,"Гаан может обучить меня добывать трофеи животных.");
 };
@@ -445,8 +454,6 @@ func void DIA_Gaan_PayTeacher_Info()
 	};
 };
 
-var int GaanTeachHornOneTime;
-
 instance DIA_Gaan_TEACHHUNTING(C_Info)
 {
 	npc = BAU_961_Gaan;
@@ -471,15 +478,8 @@ func void DIA_Gaan_TEACHHUNTING_Info()
 	AI_Output(other,self,"DIA_Gaan_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_SUCCESS)))
 	{
-		if((MIS_Gaan_Snapper == LOG_SUCCESS) && (GaanTeachHornOneTime == FALSE))
-		{
-			AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_00");	//Теперь, когда этот огромный снеппер мертв, я могу показать тебе, как вырезать его рог.
-			GaanTeachHornOneTime = TRUE;
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_03_01");	//Это зависит от того, что ты уже знаешь.
-		};
+		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_03_01");	//Это зависит от того, что ты уже знаешь.
+		B_GaanTeachHornComment();
 		Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 		{

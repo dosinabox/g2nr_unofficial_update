@@ -130,7 +130,7 @@ func int DIA_Malak_WOPASS_Condition()
 func void DIA_Malak_WOPASS_Info()
 {
 	AI_Output(other,self,"DIA_Malak_WOPASS_15_00");	//Где мне найти проход в старую Долину Рудников?
-	AI_Output(self,other,"DIA_Malak_WOPASS_08_01");	//Около двух водопадов на другой стороне этого пастбища.
+	AI_Output(self,other,"DIA_Malak_WOPASS_08_01");	//Около двух водопадов, на другой стороне этого пастбища.
 };
 
 

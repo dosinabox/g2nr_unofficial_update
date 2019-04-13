@@ -24,6 +24,11 @@ func void B_MM_AssessDamage()
 			return;
 		};
 	};
+	if(self.guild == GIL_WISP)
+	{
+		Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",self,self,0,0,0,FALSE);
+		Snd_Play("WSP_WHOSH4");
+	};
 	if((self.guild == GIL_Stoneguardian) && (self.aivar[AIV_EnemyOverride] == TRUE))
 	{
 		b_awake_stoneguardian(self);

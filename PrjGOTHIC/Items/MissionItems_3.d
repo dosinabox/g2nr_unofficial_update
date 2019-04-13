@@ -64,7 +64,6 @@ instance ItMi_InnosEye_Discharged_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
-//	visual = "ItMi_InnosEye_MIS.3DS";
 	visual = "ItMi_InnosEye_Discharged_MIS.3DS";
 	material = MAT_METAL;
 	description = name;
@@ -87,7 +86,6 @@ instance ItMi_InnosEye_Broken_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
-//	visual = "ItMi_InnosEye_MIS.3DS";
 	visual = "ItMi_InnosEye_Broken_MIS.3DS";
 	material = MAT_METAL;
 	description = name;
@@ -117,9 +115,6 @@ instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "О подтверждении полномочий.";
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -937,7 +932,7 @@ instance ItWr_MorgahardTip(C_Item)
 {
 	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;

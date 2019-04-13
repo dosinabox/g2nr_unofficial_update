@@ -568,7 +568,8 @@ instance DIA_Karras_InnosEyeRetrieved(C_Info)
 
 func int DIA_Karras_InnosEyeRetrieved_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_SUCCESS))
+//	if((Kapitel == 3) && (MIS_NovizenChase == LOG_SUCCESS))
+	if(MIS_NovizenChase == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -589,7 +590,7 @@ func void DIA_Karras_InnosEyeRetrieved_Info()
 	AI_Output(other,self,"DIA_Karras_InnosEyeRetrieved_15_03");	//Я уже почувствовал это на своей шкуре.
 	AI_Output(self,other,"DIA_Karras_InnosEyeRetrieved_10_04");	//Сейчас не время для шуток. Ситуация серьезна. Очень серьезна. Теперь мы даже не знаем, кому можно доверять, а кому нет.
 	AI_Output(self,other,"DIA_Karras_InnosEyeRetrieved_10_05");	//Враг уже преуспел в искушении послушника Педро. Он может преуспеть в этом и со многими другими.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 

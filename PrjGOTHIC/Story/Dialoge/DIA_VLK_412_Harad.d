@@ -43,6 +43,7 @@ func int DIA_Harad_Hallo_Condition()
 func void DIA_Harad_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Harad_Hallo_12_00");	//(раздраженно) Что ты хочешь?
+	B_PlayerEnteredCity();
 };
 
 
@@ -65,7 +66,7 @@ func int DIA_Harad_Arbeit_Condition()
 func void DIA_Harad_Arbeit_Info()
 {
 	AI_Output(other,self,"DIA_Harad_Arbeit_15_00");	//Я ищу работу!
-	AI_Output(self,other,"DIA_Harad_Arbeit_12_01");	//Хм - мне не помешал бы новый ученик.
+	AI_Output(self,other,"DIA_Harad_Arbeit_12_01");	//Хм, мне не помешал бы новый ученик.
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_02");	//Брайан скоро закончит свое обучение, а затем покинет город.
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_03");	//А ты на что-нибудь годишься?
 	AI_Output(other,self,"DIA_Harad_Arbeit_15_04");	//Ну, если ты имеешь в виду, знаю ли я работу кузнеца...
@@ -147,10 +148,10 @@ func void DIA_Harad_OrcRunning_Info()
 func void DIA_Harad_OrcRunning_TooHard()
 {
 	AI_Output(other,self,"DIA_Harad_OrcRunning_TooHard_15_00");	//Но орк - это очень серьезный противник...
-	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_01");	//Хм - судя по тому, как ты выглядишь, возможно, ты прав. У тебя слишком мало мяса на костях. Но это можно поправить.
+	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_01");	//Хм, судя по тому, как ты выглядишь, возможно, ты прав. У тебя слишком мало мяса на костях. Но это можно поправить.
 	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_02");	//Тем не менее, ты должен доказать мне, что у тебя хватит мужества сражаться, если это будет необходимо.
 	AI_Output(other,self,"DIA_Harad_OrcRunning_TooHard_15_03");	//А нет ли для меня противника немного поменьше?
-	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_04");	//Хм - (задумчиво) Хакон, торговец оружием на рыночной площади, сказал мне, что на него напали бандиты несколько дней назад.
+	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_04");	//Хм... (задумчиво) Хакон, торговец оружием на рыночной площади, сказал мне, что на него напали бандиты несколько дней назад.
 	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_05");	//Эти ублюдки, по слухам, устроили себе логово где-то за восточными воротами.
 	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_06");	//Эти трусливые шакалы не должны быть так уж сильны.
 	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_07");	//Убей этих ублюдков! Всех! Тогда я пойму, что ты не опозоришь наш город.

@@ -15,7 +15,8 @@ instance VLK_447_Cassia(Npc_Default)
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItKe_ThiefGuildKey_Hotel_MIS,1);
 	CreateInvItems(self,ItKe_ThiefTreasure,1);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_BlackHair,BodyTexBabe_N,ITAR_VlkBabe_H);
+//	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_BlackHair,BodyTexBabe_N,ITAR_VlkBabe_H);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_PinkHair,BodyTexBabe_N,ITAR_VlkBabe_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);

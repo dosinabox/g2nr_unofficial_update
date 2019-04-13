@@ -459,7 +459,7 @@ instance DIA_Pal_213_Schiffswache_IAmDJG3(C_Info)
 	condition = DIA_Pal_213_Schiffswache_IAmDJG3_Condition;
 	information = DIA_Pal_213_Schiffswache_IAmDJG3_Info;
 	permanent = FALSE;
-	description = "” мен€ письменное разрешение.";
+	description = "” мен€ письменное разрешение. я уполномочен взойти на этот корабль.";
 };
 
 

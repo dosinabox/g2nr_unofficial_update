@@ -352,7 +352,7 @@ func void DIA_Pedro_AUFNAHME_YES()
 	Npc_SetTrueGuild(hero,GIL_NOV);
 	CreateInvItem(hero,ITAR_NOV_L);
 	AI_PrintScreen("Роба послушника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-	AI_EquipArmor(hero,ITAR_NOV_L);
+//	AI_EquipArmor(hero,ITAR_NOV_L);
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_04");	//Когда ты войдешь в монастырь, подойди к Парлану. С этого момента он будет отвечать за тебя.
 	AI_Output(other,self,"DIA_Pedro_AUFNAHME_YES_15_05");	//Мои прегрешения теперь прощены?
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.

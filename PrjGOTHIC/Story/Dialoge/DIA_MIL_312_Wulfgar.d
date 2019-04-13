@@ -332,6 +332,16 @@ func void DIA_Wulfgar_AlsMil_Info()
 	AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_02");	//Руга научит тебя пользоваться арбалетом, а Мортис поможет тебе стать сильнее.
 	AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_03");	//Но самое важное - это научиться правильно держать свой меч.
 	AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_04");	//Я еще сделаю из тебя отличного воина!
+	if(Mortis_TeachSTR == FALSE)
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Ополченец Мортис может помочь мне повысить мою силу.");	
+	};
+	if(!Npc_KnowsInfo(other,DIA_Ruga_Hallo))
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом.");
+	};
 };
 
 

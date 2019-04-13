@@ -53,9 +53,9 @@ instance OrcBiter(Mst_Default_OrcBiter)
 instance Zerk(Mst_Default_OrcBiter)
 {
 	name[0] = "Болотный кусач";
-	fight_tactic = FAI_MOLERAT;
-	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
-	aivar[AIV_MM_FollowTime] = FOLLOWTIME_SHORT;
+//	fight_tactic = FAI_MOLERAT;
+//	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
+//	aivar[AIV_MM_FollowTime] = FOLLOWTIME_SHORT;
 	Set_Zerk_Visuals();
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,2);

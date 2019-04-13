@@ -10,7 +10,7 @@ instance VLK_470_Sarah(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_Blondie,BodyTexBabe_N,ITAR_VlkBabe_L);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Blondie,BodyTexBabe_N,ITAR_VlkBabe_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

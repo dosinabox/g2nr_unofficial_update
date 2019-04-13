@@ -2,7 +2,7 @@
 prototype Mst_Default_Wisp(C_Npc)
 {
 	name[0] = "Блуждающий огонек";
-	guild = GIL_BLOODFLY;
+	guild = GIL_WISP;
 	aivar[AIV_MM_REAL_ID] = ID_WISP;
 	level = 4;
 	attribute[ATR_STRENGTH] = 20;
@@ -24,7 +24,6 @@ prototype Mst_Default_Wisp(C_Npc)
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
 //	aivar[AIV_MM_ThreatenBeforeAttack] = TRUE;
-	aivar[AIV_MM_ThreatenBeforeAttack] = FALSE;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_SHORT;
 	aivar[AIV_MM_FollowInWater] = TRUE;
 	aivar[AIV_MM_Packhunter] = FALSE;
@@ -50,7 +49,8 @@ instance Wisp_Detector(Mst_Default_Wisp)
 	level = 0;
 	npcType = npctype_main;
 	B_SetVisuals_Wisp();
-	damage[DAM_INDEX_MAGIC] = 50;
+	damage[DAM_INDEX_MAGIC] = 20;
+	//было 50, но вроде это слишком
 	senses_range = 3000;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);

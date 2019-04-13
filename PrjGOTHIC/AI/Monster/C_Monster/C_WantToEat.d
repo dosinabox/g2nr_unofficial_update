@@ -9,7 +9,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Npc_GetDistToNpc(slf,hero) <= FIGHT_DIST_MONSTER_ATTACKRANGE)
+	if(Npc_GetDistToNpc(slf,hero) <= 100)
 	{
 		return FALSE;
 	};
@@ -208,7 +208,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	};
-	if(slf.guild == GIL_SUMMONED_WOLF)
+	/*if(slf.guild == GIL_SUMMONED_WOLF)
 	{
 		if(oth.guild == GIL_SHEEP)
 		{
@@ -222,7 +222,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	};
+	};*/
 	if(slf.guild == GIL_MINECRAWLER)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)
@@ -248,6 +248,10 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	};
 	if(slf.guild == GIL_LURKER)
 	{
+		if(oth.guild == GIL_GOBBO)
+		{
+			return TRUE;
+		};
 		if(oth.guild < GIL_SEPERATOR_HUM)
 		{
 			return TRUE;
@@ -256,12 +260,8 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if(oth.guild == GIL_GOBBO)
-		{
-			return TRUE;
-		};
 	};
-/*	if(slf.guild == GIL_ZOMBIE)
+	/*if(slf.guild == GIL_ZOMBIE)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)
 		{
@@ -271,7 +271,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	}; */
+	};*/
 	if(slf.guild == GIL_SNAPPER)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)

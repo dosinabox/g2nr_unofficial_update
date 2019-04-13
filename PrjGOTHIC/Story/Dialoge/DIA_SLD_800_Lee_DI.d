@@ -203,7 +203,7 @@ func void DIA_Lee_DI_UndeadDragonDead_Info()
 	{
 		AI_Output(self,other,"DIA_Lee_DI_UndeadDragonDead_04_02");	//Ты ведь доставишь меня на материк, да?
 		AI_Output(other,self,"DIA_Lee_DI_UndeadDragonDead_15_03");	//Да. Хоринис проживет и без тебя.
-		AI_Output(self,other,"DIA_Lee_Add_04_26");	//Значит, я наконец, смогу нанести королю так долго откладываемый визит вежливости.
+		AI_Output(self,other,"DIA_Lee_Add_04_26");	//Значит, я, наконец, смогу нанести королю так долго откладываемый визит вежливости.
 		AI_Output(self,other,"DIA_Lee_Add_04_27");	//Я столько ждал этого...
 		AI_Output(self,other,"DIA_Lee_DI_UndeadDragonDead_04_05");	//Как ты думаешь? Разве терпение не должно быть вознаграждено?
 		AI_Output(other,self,"DIA_Lee_DI_UndeadDragonDead_15_06");	//Терпение и убийственные доводы.

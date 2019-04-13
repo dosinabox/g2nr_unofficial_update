@@ -70,7 +70,7 @@ instance DIA_Constantino_Hallo(C_Info)
 
 func int DIA_Constantino_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -79,6 +79,7 @@ func int DIA_Constantino_Hallo_Condition()
 func void DIA_Constantino_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Constantino_Hallo_10_00");	//„то тебе нужно? я не подаю милостыню.
+	B_PlayerEnteredCity();
 };
 
 
@@ -304,7 +305,7 @@ func void DIA_Constantino_ZUSTIMMUNG_Info()
 	AI_Output(self,other,"DIA_Constantino_ZUSTIMMUNG_10_01");	//“ы пришел получить мое одобрение?
 	if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 	{
-		AI_Output(self,other,"DIA_Constantino_ZUSTIMMUNG_10_02");	//’м - что касаетс€ моего мнени€, ты можешь стать учеником любого мастера.
+		AI_Output(self,other,"DIA_Constantino_ZUSTIMMUNG_10_02");	//’м, что касаетс€ моего мнени€, ты можешь стать учеником любого мастера.
 	}
 	else
 	{

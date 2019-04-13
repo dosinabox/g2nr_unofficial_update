@@ -218,7 +218,7 @@ func void DIA_Addon_Merdarion_Teleportstein_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_04");	//Ћадно. —троители этих залов передвигались своим способом.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_05");	//Ќасколько мы можем судить, они умели телепортироватьс€.
 	AI_Output(other,self,"DIA_Addon_Merdarion_Teleportstein_15_06");	//¬ этом нет ничего необычного.
-	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_07");	//“елепортационные камни, которые мы нашли в ’оринисе, на самом деле, весьма необычны.
+	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_07");	//“елепортационные камни, которые мы нашли в ’оринисе, в самом деле, весьма необычны.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_08");	// ажетс€, что телепортационный камень в этих залах может вести в город.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_09");	//Ќо ни у кого из нас не хватило смелости это проверить.
 	Info_ClearChoices(DIA_Addon_Merdarion_Teleportstein);

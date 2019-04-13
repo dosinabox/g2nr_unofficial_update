@@ -1,7 +1,7 @@
 
 instance BDT_1000_Bandit_L(Npc_Default)
 {
-	name[0] = "Ѕрод€га";
+	name[0] = NAME_Out;
 	guild = GIL_BDT;
 	id = 1000;
 	voice = 1;

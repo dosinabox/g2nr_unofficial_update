@@ -12,10 +12,7 @@ instance DIA_Marduk_Kap1_EXIT(C_Info)
 
 func int DIA_Marduk_Kap1_EXIT_Condition()
 {
-	if(Kapitel == 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Marduk_Kap1_EXIT_Info()
@@ -125,7 +122,7 @@ instance DIA_Marduk_Evil(C_Info)
 
 func int DIA_Marduk_Evil_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Marduk_JOB))
+	if(Npc_KnowsInfo(other,DIA_Marduk_JOB))
 	{
 		return TRUE;
 	};
@@ -153,7 +150,7 @@ instance DIA_Marduk_Pal(C_Info)
 
 func int DIA_Marduk_Pal_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Marduk_JOB))
+	if(Npc_KnowsInfo(other,DIA_Marduk_JOB))
 	{
 		return TRUE;
 	};
@@ -181,7 +178,7 @@ instance DIA_Marduk_BEFORETEACH(C_Info)
 
 func int DIA_Marduk_BEFORETEACH_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Marduk_JOB))
+	if(Npc_KnowsInfo(other,DIA_Marduk_JOB) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -211,7 +208,7 @@ instance DIA_Marduk_TEACH(C_Info)
 
 func int DIA_Marduk_TEACH_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Marduk_BEFORETEACH) && (other.guild == GIL_KDF))
+	if(Npc_KnowsInfo(other,DIA_Marduk_BEFORETEACH) && (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -298,56 +295,6 @@ func void DIA_Marduk_TEACH_IceWave()
 };
 
 
-instance DIA_Marduk_Kap2_EXIT(C_Info)
-{
-	npc = KDF_505_Marduk;
-	nr = 999;
-	condition = DIA_Marduk_Kap2_EXIT_Condition;
-	information = DIA_Marduk_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Marduk_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Marduk_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Marduk_Kap3_EXIT(C_Info)
-{
-	npc = KDF_505_Marduk;
-	nr = 999;
-	condition = DIA_Marduk_Kap3_EXIT_Condition;
-	information = DIA_Marduk_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Marduk_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Marduk_Kap3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Marduk_Kap3_Hello(C_Info)
 {
 	npc = KDF_505_Marduk;
@@ -361,7 +308,7 @@ instance DIA_Marduk_Kap3_Hello(C_Info)
 
 func int DIA_Marduk_Kap3_Hello_Condition()
 {
-	if((Kapitel >= 3) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG) || (hero.guild == GIL_SLD)))
+	if((Kapitel >= 3) && ((other.guild == GIL_PAL) || (other.guild == GIL_DJG) || (other.guild == GIL_SLD)))
 	{
 		return TRUE;
 	};
@@ -370,21 +317,21 @@ func int DIA_Marduk_Kap3_Hello_Condition()
 func void DIA_Marduk_Kap3_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Info_05_00");	//Добро пожаловать, сын мой.
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Info_05_01");	//С каких это пор ты стал паладином?
 	};
-	if((hero.guild == GIL_DJG) || (hero.guild == GIL_SLD))
+	if((other.guild == GIL_DJG) || (other.guild == GIL_SLD))
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Info_05_02");	//Откуда ты пришел?
 	};
 	Info_ClearChoices(DIA_Marduk_Kap3_Hello);
 	Info_AddChoice(DIA_Marduk_Kap3_Hello,"Это не твое дело.",DIA_Marduk_Kap3_Hello_NotYourConcern);
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		Info_AddChoice(DIA_Marduk_Kap3_Hello,"Совсем недавно.",DIA_Marduk_Kap3_Hello_Soon);
 	};
-	if((hero.guild == GIL_DJG) || (hero.guild == GIL_SLD))
+	if((other.guild == GIL_DJG) || (other.guild == GIL_SLD))
 	{
 		Info_AddChoice(DIA_Marduk_Kap3_Hello,"Я пришел с фермы.",DIA_Marduk_Kap3_Hello_DJG);
 	};
@@ -393,12 +340,12 @@ func void DIA_Marduk_Kap3_Hello_Info()
 func void DIA_Marduk_Kap3_Hello_NotYourConcern()
 {
 	AI_Output(other,self,"DIA_Marduk_Kap3_Hello_NotYourConcern_15_00");	//Это не твое дело.
-	if(hero.guild == GIL_PAL)
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_NotYourConcern_05_01");	//(ворчливо) Паладин всегда должен быть вежливым и скромным. Ты должен защищать тех, кто не может защитить себя сам.
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_NotYourConcern_05_02");	//(ворчливо) Это привилегия, и ты должен быть благодарен, что Иннос дает тебе такую возможность. Подумай об этом!
 	};
-	if((hero.guild == GIL_DJG) || (hero.guild == GIL_SLD))
+	if((other.guild == GIL_DJG) || (other.guild == GIL_SLD))
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_NotYourConcern_05_03");	//(зло) Эх, раньше всякий сброд не пускали в монастырь. Твое поведение доказывает, что это были хорошие времена.
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_NotYourConcern_05_04");	//(предупреждающе) Я предупреждаю тебя, не стоит сеять тут смуту - ты будешь немедленно наказан. Мы не будем проявлять фальшивое великодушие.
@@ -438,7 +385,7 @@ var int Marduk_TrainPals_permanent;
 
 func int DIA_Marduk_TrainPals_Condition()
 {
-	if((hero.guild == GIL_PAL) && (Marduk_TrainPals_permanent == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Marduk_JOB) && (other.guild == GIL_PAL) && (Marduk_TrainPals_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -448,10 +395,10 @@ func void DIA_Marduk_TrainPals_Info()
 {
 	AI_Output(other,self,"DIA_Marduk_TrainPals_15_00");	//Чему ты можешь обучить меня?
 	AI_Output(self,other,"DIA_Marduk_TrainPals_05_01");	//Естественно, я не могу обучить тебя боевым искусствам.
-	AI_Output(self,other,"DIA_Marduk_TrainPals_05_02");	//Но я могу, впрочем, донести сущность Инноса и его дары до тебя.
-	AI_Output(self,other,"DIA_Marduk_TrainPals_05_03");	//Кроме того, в мои обязанности входит подготовить тебя к Освящению Меча.
 	AI_Output(other,self,"DIA_Marduk_TrainPals_15_04");	//А магии?
 	AI_Output(self,other,"DIA_Marduk_TrainPals_05_05");	//Здесь мы только учим нашей магии. Ты должен изучать магию паладинов в городе.
+	AI_Output(self,other,"DIA_Marduk_TrainPals_05_02");	//Но я могу, впрочем, донести сущность Инноса и его дары до тебя.
+	AI_Output(self,other,"DIA_Marduk_TrainPals_05_03");	//Кроме того, в мои обязанности входит подготовить тебя к Освящению Меча.
 	Info_ClearChoices(DIA_Marduk_TrainPals);
 	Info_AddChoice(DIA_Marduk_TrainPals,"Может быть, позже.",DIA_Marduk_TrainPals_Later);
 	Info_AddChoice(DIA_Marduk_TrainPals,"Что ты хочешь сказать этим?",DIA_Marduk_TrainPals_Meaning);
@@ -638,31 +585,6 @@ func void DIA_Marduk_Kap3_PERM_thief()
 };
 
 
-instance DIA_Marduk_Kap4_EXIT(C_Info)
-{
-	npc = KDF_505_Marduk;
-	nr = 999;
-	condition = DIA_Marduk_Kap4_EXIT_Condition;
-	information = DIA_Marduk_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Marduk_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Marduk_Kap4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Marduk_Kap4U5_PERM(C_Info)
 {
 	npc = KDF_505_Marduk;
@@ -676,7 +598,7 @@ instance DIA_Marduk_Kap4U5_PERM(C_Info)
 
 func int DIA_Marduk_Kap4U5_PERM_Condition()
 {
-	if((Kapitel == 4) || (Kapitel == 5))
+	if(Kapitel >= 4)
 	{
 		return TRUE;
 	};
@@ -686,31 +608,6 @@ func void DIA_Marduk_Kap4U5_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Marduk_Kap4U5_PERM_15_00");	//Есть новости?
 	AI_Output(self,other,"DIA_Marduk_Kap4U5_PERM_05_01");	//Нет, о, боже, ситуация все еще очень критическая.
-};
-
-
-instance DIA_Marduk_Kap5_EXIT(C_Info)
-{
-	npc = KDF_505_Marduk;
-	nr = 999;
-	condition = DIA_Marduk_Kap5_EXIT_Condition;
-	information = DIA_Marduk_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Marduk_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Marduk_Kap5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

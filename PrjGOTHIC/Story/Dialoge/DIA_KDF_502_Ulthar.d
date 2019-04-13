@@ -12,10 +12,7 @@ instance DIA_Ulthar_EXIT(C_Info)
 
 func int DIA_Ulthar_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Ulthar_EXIT_Info()
@@ -205,31 +202,6 @@ func void DIA_Ulthar_SUCCESS_Info()
 };
 
 
-instance DIA_Ulthar_KAP3_EXIT(C_Info)
-{
-	npc = KDF_502_Ulthar;
-	nr = 999;
-	condition = DIA_Ulthar_KAP3_EXIT_Condition;
-	information = DIA_Ulthar_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ulthar_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ulthar_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Ulthar_PermAbKap3(C_Info)
 {
 	npc = KDF_502_Ulthar;
@@ -276,7 +248,7 @@ instance DIA_Ulthar_SCHREINEVERGIFTET(C_Info)
 
 func int DIA_Ulthar_SCHREINEVERGIFTET_Condition()
 {
-	if((Pedro_Traitor == TRUE) && (hero.guild == GIL_PAL))
+	if((Pedro_Traitor == TRUE) && (hero.guild == GIL_PAL) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -329,7 +301,7 @@ instance DIA_Ulthar_WARN(C_Info)
 
 func int DIA_Ulthar_WARN_Condition()
 {
-	if((Pedro_Traitor == TRUE) && (hero.guild != GIL_PAL))
+	if((Pedro_Traitor == TRUE) && (hero.guild != GIL_PAL) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -374,31 +346,6 @@ func void DIA_Ulthar_SchreineGeheilt_Info()
 };
 
 
-instance DIA_Ulthar_KAP4_EXIT(C_Info)
-{
-	npc = KDF_502_Ulthar;
-	nr = 999;
-	condition = DIA_Ulthar_KAP4_EXIT_Condition;
-	information = DIA_Ulthar_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ulthar_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ulthar_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Ulthar_SchreineGeheiltNoPAL(C_Info)
 {
 	npc = KDF_502_Ulthar;
@@ -424,56 +371,6 @@ func void DIA_Ulthar_SchreineGeheiltNoPAL_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Ulthar_KAP5_EXIT(C_Info)
-{
-	npc = KDF_502_Ulthar;
-	nr = 999;
-	condition = DIA_Ulthar_KAP5_EXIT_Condition;
-	information = DIA_Ulthar_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ulthar_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ulthar_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Ulthar_KAP6_EXIT(C_Info)
-{
-	npc = KDF_502_Ulthar;
-	nr = 999;
-	condition = DIA_Ulthar_KAP6_EXIT_Condition;
-	information = DIA_Ulthar_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ulthar_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ulthar_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Ulthar_PICKPOCKET(C_Info)
 {

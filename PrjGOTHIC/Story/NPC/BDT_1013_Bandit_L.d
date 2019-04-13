@@ -46,9 +46,3 @@ func void rtn_away2_1013()
 	TA_FleeToWp(12,0,0,0,"NW_XARDAS_MONSTER_INSERT_01");
 };
 
-func void rtn_away3_1013()
-{
-	TA_FleeToWp(0,0,12,0,"NW_XARDAS_MONSTER_INSERT_02");
-	TA_FleeToWp(12,0,0,0,"NW_XARDAS_MONSTER_INSERT_02");
-};
-

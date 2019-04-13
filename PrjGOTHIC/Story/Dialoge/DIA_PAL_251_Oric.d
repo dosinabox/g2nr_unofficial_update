@@ -12,10 +12,7 @@ instance DIA_Oric_EXIT(C_Info)
 
 func int DIA_Oric_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Oric_EXIT_Info()
@@ -150,56 +147,6 @@ func void DIA_Oric_Perm_Info()
 		AI_Output(self,other,"DIA_Oric_Perm_11_03");	//Твое появление здесь вселяет в нас надежду.
 		AI_Output(self,other,"DIA_Oric_Perm_11_04");	//Ты нужен нам. Иди, поговори с Гарондом - он все объяснит тебе.
 	};
-};
-
-
-instance DIA_Oric_KAP3_EXIT(C_Info)
-{
-	npc = PAL_251_Oric;
-	nr = 999;
-	condition = DIA_Oric_KAP3_EXIT_Condition;
-	information = DIA_Oric_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Oric_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Oric_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Oric_KAP4_EXIT(C_Info)
-{
-	npc = PAL_251_Oric;
-	nr = 999;
-	condition = DIA_Oric_KAP4_EXIT_Condition;
-	information = DIA_Oric_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Oric_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Oric_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -486,7 +433,7 @@ func void DIA_Oric_AnyNews_Info()
 	{
 		AI_Output(self,other,"DIA_Oric_AnyNews_11_01");	//Ты имеешь в виду, кроме того, что орки вторглись в замок?
 	}
-	else if(MIS_AllDragonsDead == TRUE)
+	else if(Npc_KnowsInfo(other,DIA_Garond_AllDragonDead))
 	{
 		AI_Output(self,other,"DIA_Oric_AnyNews_11_02");	//Да. Ты наш герой. Уничтожить всех драконов разом - это воистину героический подвиг. Я потрясен!
 	}
@@ -575,56 +522,6 @@ func void DIA_Oric_DragonPlettBericht_Info()
 	};
 };
 
-
-instance DIA_Oric_KAP5_EXIT(C_Info)
-{
-	npc = PAL_251_Oric;
-	nr = 999;
-	condition = DIA_Oric_KAP5_EXIT_Condition;
-	information = DIA_Oric_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Oric_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Oric_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Oric_KAP6_EXIT(C_Info)
-{
-	npc = PAL_251_Oric;
-	nr = 999;
-	condition = DIA_Oric_KAP6_EXIT_Condition;
-	information = DIA_Oric_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Oric_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Oric_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Oric_PICKPOCKET(C_Info)
 {

@@ -309,9 +309,15 @@ func int DIA_Coragon_GiveBook_Condition()
 func void DIA_Coragon_GiveBook_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
-//	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
-	AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
+	if(ClassicLehmarBook == FALSE)
+	{
+		AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
+	}
+	else
+	{
+		B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
+	};
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_19");	//Спасибо! Ты спас меня. Лемар может быть очень неприятным человеком.
 	B_GivePlayerXP(XP_Schuldenbuch);
 	B_Coragon_Bier();
@@ -420,7 +426,7 @@ instance DIA_Coragon_PICKPOCKET_Book(C_Info)
 
 func int DIA_Coragon_PICKPOCKET_Book_Condition()
 {
-	if((SchuldBuch_Stolen_Coragon == FALSE) && Npc_KnowsInfo(other,DIA_Coragon_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 30))
+	if((ClassicLehmarBook == FALSE) && (SchuldBuch_Stolen_Coragon == FALSE) && Npc_KnowsInfo(other,DIA_Coragon_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 30))
 	{
 		return TRUE;
 	};

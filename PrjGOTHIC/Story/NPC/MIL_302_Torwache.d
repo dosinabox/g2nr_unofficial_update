@@ -1,6 +1,7 @@
 
 instance MIL_302_Torwache(Npc_Default)
 {
+	//удалить в 22 версии
 	name[0] = NAME_Torwache;
 	guild = GIL_MIL;
 	id = 302;

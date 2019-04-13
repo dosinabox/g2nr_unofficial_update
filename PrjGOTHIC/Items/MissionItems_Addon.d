@@ -807,7 +807,7 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = value_StonePlateCommon;
 	visual = "ItMi_StonePlate_Read_06.3ds";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	on_state[0] = Use_StonePlateCommon;
 	scemeName = "MAP";
 	inv_rotx = -90;
@@ -851,7 +851,6 @@ func void Use_StonePlateCommon()
 	Doc_Show(nDocID);
 };
 
-
 instance ItMi_Addon_Stone_01(C_Item)
 {
 	name = "Красная каменная табличка";
@@ -868,9 +867,8 @@ instance ItMi_Addon_Stone_01(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-	text[0] = "Красная каменная табличка.";
+//	text[0] = "Красная каменная табличка.";
 };
-
 
 func void Use_Addon_Stone_01()
 {
@@ -896,141 +894,6 @@ func void Use_Addon_Stone_01()
 	Doc_Show(nDocID);
 };
 
-
-instance ItMi_Addon_Stone_05(C_Item)
-{
-	name = "Желтая каменная табличка";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_StonePlate_Read_04.3ds";
-	material = MAT_STONE;
-	on_state[0] = Use_Addon_Stone_05;
-	scemeName = "MAP";
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_WEAKGLIMMER";
-	inv_rotx = -90;
-	inv_roty = 0;
-	inv_rotz = 0;
-	description = name;
-	text[0] = "Желтая каменная табличка.";
-};
-
-
-func void Use_Addon_Stone_05()
-{
-	var int nDocID;
-	nDocID = Doc_Create();
-	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_01.TGA",0);
-	Doc_SetFont(nDocID,-1,FONT_Book);
-	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
-	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
-	{
-		Doc_PrintLines(nDocID,0,"Я, тот, кто был против решения Совета Трех, создал первую ловушку. Лишь я знаю правильную дверь.");
-	}
-	else
-	{
-		Doc_PrintLines(nDocID,0,"Fjewheege Egdgsmkd Ygc slje asdkjhnead Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe Iuhdfb. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh.");
-		B_CannotUse_Addon();
-		B_Say(self,self,"$CANTREADTHIS");
-	};
-//	Doc_PrintLine(nDocID,0,"");
-	Doc_Show(nDocID);
-};
-
-
-instance ItMi_Addon_Stone_03(C_Item)
-{
-	name = "Синяя каменная табличка";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_StonePlate_Read_05.3ds";
-	material = MAT_STONE;
-	on_state[0] = Use_Addon_Stone_03;
-	scemeName = "MAP";
-	inv_rotx = -90;
-	inv_roty = 0;
-	inv_rotz = 0;
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_WEAKGLIMMER";
-	description = name;
-	text[0] = "Синяя каменная табличка.";
-};
-
-
-func void Use_Addon_Stone_03()
-{
-	var int nDocID;
-	nDocID = Doc_Create();
-	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_03.TGA",0);
-	Doc_SetFont(nDocID,-1,FONT_Book);
-	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
-	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
-	{
-		Doc_PrintLines(nDocID,0,"КАРДИМОН создал вторую ловушку. Лишь тот, кто следует по пути света до самого конца, достигнет третьего зала.");
-	}
-	else
-	{
-		Doc_PrintLines(nDocID,0,"KHARDIMON Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh. Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe.");
-		B_CannotUse_Addon();
-		B_Say(self,self,"$CANTREADTHIS");
-	};
-//	Doc_PrintLine(nDocID,0,"");
-//	Doc_PrintLines(nDocID,0,"");
-//	Doc_PrintLine(nDocID,0,"");
-	Doc_Show(nDocID);
-};
-
-
-instance ItMi_Addon_Stone_04(C_Item)
-{
-	name = "Зеленая каменная табличка";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_StonePlate_Read_01.3ds";
-	material = MAT_STONE;
-	on_state[0] = Use_Addon_Stone_04;
-	scemeName = "MAP";
-	inv_rotx = -90;
-	inv_roty = 0;
-	inv_rotz = 0;
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_WEAKGLIMMER";
-	description = name;
-	text[0] = "Зеленая каменная табличка.";
-};
-
-
-func void Use_Addon_Stone_04()
-{
-	var int nDocID;
-	nDocID = Doc_Create();
-	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_04.TGA",0);
-	Doc_SetFont(nDocID,-1,FONT_Book);
-	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
-	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
-	{
-		Doc_PrintLines(nDocID,0,"Третью ловушку создал КУАРХОДРОН. Лишь он знает, как открыть вход.");
-	}
-	else
-	{
-		Doc_PrintLines(nDocID,0,"Esfjwedbwe ewzbfujbwe. Fjewheege QUARHODRON Ygc slje asdkjhnead. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Gkjsdhad Uhnd.");
-		B_CannotUse_Addon();
-		B_Say(self,self,"$CANTREADTHIS");
-	};
-//	Doc_PrintLine(nDocID,0,"");
-	Doc_Show(nDocID);
-};
-
-
 instance ItMi_Addon_Stone_02(C_Item)
 {
 	name = "Фиолетовая каменная табличка";
@@ -1047,9 +910,8 @@ instance ItMi_Addon_Stone_02(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[0] = "Фиолетовая каменная табличка.";
+//	text[0] = "Фиолетовая каменная табличка.";
 };
-
 
 func void Use_Addon_Stone_02()
 {
@@ -1082,6 +944,133 @@ func void Use_Addon_Stone_02()
 	Doc_Show(nDocID);
 };
 
+instance ItMi_Addon_Stone_03(C_Item)
+{
+	name = "Синяя каменная табличка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI | ITEM_MISSION;
+	value = 0;
+	visual = "ItMi_StonePlate_Read_05.3ds";
+	material = MAT_STONE;
+	on_state[0] = Use_Addon_Stone_03;
+	scemeName = "MAP";
+	inv_rotx = -90;
+	inv_roty = 0;
+	inv_rotz = 0;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_WEAKGLIMMER";
+	description = name;
+//	text[0] = "Синяя каменная табличка.";
+};
+
+func void Use_Addon_Stone_03()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_03.TGA",0);
+	Doc_SetFont(nDocID,-1,FONT_Book);
+	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
+	Doc_PrintLine(nDocID,0,"");
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	{
+		Doc_PrintLines(nDocID,0,"КАРДИМОН создал вторую ловушку. Лишь тот, кто следует по пути света до самого конца, достигнет третьего зала.");
+	}
+	else
+	{
+		Doc_PrintLines(nDocID,0,"KHARDIMON Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh. Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe.");
+		B_CannotUse_Addon();
+		B_Say(self,self,"$CANTREADTHIS");
+	};
+//	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLines(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
+	Doc_Show(nDocID);
+};
+
+instance ItMi_Addon_Stone_04(C_Item)
+{
+	name = "Зеленая каменная табличка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI | ITEM_MISSION;
+	value = 0;
+	visual = "ItMi_StonePlate_Read_01.3ds";
+	material = MAT_STONE;
+	on_state[0] = Use_Addon_Stone_04;
+	scemeName = "MAP";
+	inv_rotx = -90;
+	inv_roty = 0;
+	inv_rotz = 0;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_WEAKGLIMMER";
+	description = name;
+//	text[0] = "Зеленая каменная табличка.";
+};
+
+func void Use_Addon_Stone_04()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_04.TGA",0);
+	Doc_SetFont(nDocID,-1,FONT_Book);
+	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
+	Doc_PrintLine(nDocID,0,"");
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	{
+		Doc_PrintLines(nDocID,0,"Третью ловушку создал КУАРХОДРОН. Лишь он знает, как открыть вход.");
+	}
+	else
+	{
+		Doc_PrintLines(nDocID,0,"Esfjwedbwe ewzbfujbwe. Fjewheege QUARHODRON Ygc slje asdkjhnead. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Gkjsdhad Uhnd.");
+		B_CannotUse_Addon();
+		B_Say(self,self,"$CANTREADTHIS");
+	};
+//	Doc_PrintLine(nDocID,0,"");
+	Doc_Show(nDocID);
+};
+
+instance ItMi_Addon_Stone_05(C_Item)
+{
+	name = "Желтая каменная табличка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI | ITEM_MISSION;
+	value = 0;
+	visual = "ItMi_StonePlate_Read_04.3ds";
+	material = MAT_STONE;
+	on_state[0] = Use_Addon_Stone_05;
+	scemeName = "MAP";
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_WEAKGLIMMER";
+	inv_rotx = -90;
+	inv_roty = 0;
+	inv_rotz = 0;
+	description = name;
+//	text[0] = "Желтая каменная табличка.";
+};
+
+func void Use_Addon_Stone_05()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_01.TGA",0);
+	Doc_SetFont(nDocID,-1,FONT_Book);
+	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
+	Doc_PrintLine(nDocID,0,"");
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	{
+		Doc_PrintLines(nDocID,0,"Я, тот, кто был против решения Совета Трех, создал первую ловушку. Лишь я знаю правильную дверь.");
+	}
+	else
+	{
+		Doc_PrintLines(nDocID,0,"Fjewheege Egdgsmkd Ygc slje asdkjhnead Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe Iuhdfb. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh.");
+		B_CannotUse_Addon();
+		B_Say(self,self,"$CANTREADTHIS");
+	};
+//	Doc_PrintLine(nDocID,0,"");
+	Doc_Show(nDocID);
+};
 
 instance ItMI_Addon_Kompass_Mis(C_Item)
 {
@@ -1090,7 +1079,7 @@ instance ItMI_Addon_Kompass_Mis(C_Item)
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 500;
 	visual = "ItMi_Compass_01.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

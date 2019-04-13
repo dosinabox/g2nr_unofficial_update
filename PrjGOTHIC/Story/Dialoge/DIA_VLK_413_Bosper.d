@@ -46,6 +46,7 @@ func void DIA_Bosper_HALLO_Info()
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_00");	//Добро пожаловать в мою лавку, чужеземец!
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_01");	//Я Боспер. Я делаю луки и торгую шкурами.
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_02");	//Что привело тебя в Хоринис?
+	B_PlayerEnteredCity();
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Боспер делает луки и торгует шкурами. Его лавка находится у восточных ворот, в нижней части города.");
 };
@@ -641,7 +642,7 @@ func void DIA_Bosper_BogenSuccess_Info()
 	AI_Output(other,self,"DIA_Bosper_BogenSuccess_15_02");	//В темной дыре, полной крыс.
 	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_03");	//Надеюсь, у тебя не возникло проблем из-за этого...
 	AI_Output(other,self,"DIA_Bosper_BogenSuccess_15_04");	//Нет - мне приходилось делать такое и раньше.
-	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_05");	//Хм - но все же спасибо. Я твой должник!
+	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_05");	//Хм, но все же спасибо. Я твой должник!
 	MIS_Bosper_Bogen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Bosper_Bogen);
 	Npc_RemoveInvItems(self,ItRw_Bow_L_03_MIS,1);

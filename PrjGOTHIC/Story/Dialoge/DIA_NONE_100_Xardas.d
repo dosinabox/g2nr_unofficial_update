@@ -2,7 +2,7 @@
 instance DIA_Xardas_FirstEXIT(C_Info)
 {
 	npc = NONE_100_Xardas;
-	nr = 999;
+	nr = 990;
 	condition = DIA_Xardas_FirstEXIT_Condition;
 	information = DIA_Xardas_FirstEXIT_Info;
 	permanent = FALSE;
@@ -109,7 +109,7 @@ func void DIA_Addon_Xardas_Hello_Dragons()
 	AI_Output(self,other,"DIA_Xardas_Hello_14_04");	//... был изгнан. Ты победил его, да, это так - но не в наших силах остановить войну, которая разгорается сейчас.
 	AI_Output(other,self,"DIA_Xardas_Hello_15_05");	//Ты говоришь об орках?
 	AI_Output(self,other,"DIA_Xardas_Hello_14_06");	//Я говорю о гораздо более ужасных созданиях.
-	AI_Output(self,other,"DIA_Xardas_Hello_14_07");	//Своим последним, яростным воплем, Спящий привел в движение армии Тьмы.
+	AI_Output(self,other,"DIA_Xardas_Hello_14_07");	//Своим последним яростным воплем Спящий привел в движение армии Тьмы.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_08");	//Это был приказ всем созданиям Тьмы. Слово силы, которому они все обязаны повиноваться.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_09");	//Его последним приказом было: ИДИТЕ! И они пошли. Все. Даже драконы.
 	AI_Output(other,self,"DIA_Xardas_Hello_15_10");	//(изумленно) Драконы?
@@ -555,11 +555,11 @@ func void DIA_Xardas_FirstPal_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_FirstPal_15_00");	//Я был в городе...
 	AI_Output(self,other,"DIA_Xardas_FirstPal_14_01");	//И? Ты смог поговорить с предводителем паладинов?
-	if(((other.guild == GIL_NONE) || (other.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		AI_Output(other,self,"DIA_Xardas_FirstPal_15_02");	//Меня к нему не пропустят...
 		AI_Output(self,other,"DIA_Xardas_FirstPal_14_03");	//Чушь! Должен быть способ увидеться с ним.
-		if(other.guild != GIL_NOV)
+		if(other.guild == GIL_NONE)
 		{
 			AI_Output(self,other,"DIA_Xardas_FirstPal_14_04");	//Если все остальное не получится, вступи в монастырь.
 			AI_Output(self,other,"DIA_Xardas_FirstPal_14_05");	//Это, возможно, сомнительная затея с точки зрения морали, но это даст тебе то, что тебе нужно.

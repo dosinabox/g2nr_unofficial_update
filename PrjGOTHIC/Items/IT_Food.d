@@ -584,7 +584,10 @@ func void Use_DarkWine()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,10);
 	Npc_ChangeAttribute(self,ATR_MANA,10);
 	B_NpcSetDrunk(40);
-	Mdl_ApplyOverlayMdsTimed(self,"HUMANS_ACROBATIC.MDS",10000);
+	if(Npc_IsPlayer(self))
+	{
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_ACROBATIC.MDS",10000);
+	};
 };
 
 

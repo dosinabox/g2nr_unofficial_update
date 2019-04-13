@@ -56,13 +56,14 @@ func void DIA_GornOW_Hello_Info()
 //			AI_EquipArmor(hero,ITAR_SLD_H);
 			CreateInvItem(hero,ITAR_SLD_S);
 			AI_PrintScreen("Старые доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-			AI_EquipArmor(hero,ITAR_SLD_S);
+//			AI_EquipArmor(hero,ITAR_SLD_S);
 		}
 		else
 		{
 			CreateInvItem(hero,ITAR_SLD_M2);
 			AI_PrintScreen("Средние доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-			AI_EquipArmor(hero,ITAR_SLD_M2);
+//			AI_EquipArmor(hero,ITAR_SLD_M2);
+			Lee_SldMGiven = TRUE;
 		};
 		AI_Output(other,self,"DIA_GornOW_Add_15_03");	//Спасибо! Увидимся у Милтена.
 	}

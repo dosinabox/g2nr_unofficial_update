@@ -372,7 +372,7 @@ instance ItAt_DrgSnapperHorn(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_DrgSnapperHorn;
 	visual = "ItAt_DrgSnapperHorn.3DS";
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -385,7 +385,7 @@ instance ItAt_CrawlerPlate(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_CrawlerPlate;
 	visual = "ItAt_CrawlerPlate.3DS";
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -463,7 +463,7 @@ instance ItAt_ShadowHorn(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_ShadowHorn;
 	visual = "ItAt_ShadowHorn.3DS";
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -489,7 +489,7 @@ instance ItAt_TrollTooth(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_TrollTooth;
 	visual = "ItAt_TrollTooth.3DS";
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

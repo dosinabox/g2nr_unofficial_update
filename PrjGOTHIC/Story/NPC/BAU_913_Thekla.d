@@ -11,7 +11,8 @@ instance BAU_913_Thekla(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_Brown,BodyTexBabe_N,ITAR_BauBabe_M);
+//	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_N_Brown,BodyTexBabe_N,ITAR_BauBabe_M);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe4",FaceBabe_N_Brown,BodyTexBabe_N,ITAR_BauBabe_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);

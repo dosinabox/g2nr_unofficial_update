@@ -157,8 +157,11 @@ func void DIA_Mortis_CanTeach_Info()
 	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Mortis_CanTeach_13_01");	//Понятно. Если у тебя достаточно опыта, я могу потренировать тебя.
-		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Мортис, городской стражник, может помочь мне повысить мою силу.");
+		if(!Npc_KnowsInfo(other,DIA_Wulfgar_AlsMil))
+		{
+			Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_CityTeacher,"Ополченец Мортис может помочь мне повысить мою силу.");
+		};
 		Mortis_TeachSTR = TRUE;
 	}
 	else

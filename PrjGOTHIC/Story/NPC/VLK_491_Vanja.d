@@ -12,7 +12,7 @@ instance VLK_491_Vanja(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe",FaceBabe_B_RedLocks,BodyTexBabe_B,ITAR_VlkBabe_H);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_B_RedLocks,BodyTexBabe_B,ITAR_VlkBabe_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);

@@ -610,7 +610,7 @@ instance DIA_Hanna_PICKPOCKET_Book(C_Info)
 
 func int DIA_Hanna_PICKPOCKET_Book_Condition()
 {
-	if(Npc_HasItems(self,ItWr_Schuldenbuch) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 35))
+	if((ClassicLehmarBook == FALSE) && Npc_HasItems(self,ItWr_Schuldenbuch) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 35))
 	{
 		return TRUE;
 	};

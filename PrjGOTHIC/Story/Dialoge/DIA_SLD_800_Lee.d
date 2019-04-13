@@ -1,4 +1,31 @@
 
+var int Lee_Teleport;
+
+func void B_Lee_Teleport()
+{
+	if((Lee_Teleport == FALSE) && (Kapitel >= 3))
+	{
+		AI_Output(self,other,"DIA_Lee_Add_04_05");	//Ах. Хорошо, что ты пришел.
+		AI_Output(other,self,"DIA_Lee_Add_15_06");	//Что случилось?
+		AI_Output(self,other,"DIA_Lee_Add_04_07");	//Я нашел это в старой часовне.
+		B_GiveInvItems(self,other,ItRu_TeleportFarm,1);
+		AI_Output(self,other,"DIA_Lee_Add_04_08");	//Это магическая руна. Я думаю, она может в любое время перенести тебя сюда, на ферму.
+		AI_Output(self,other,"DIA_Lee_Add_04_09");	//Я подумал, что ты сможешь пользоваться ей.
+		Lee_Teleport = TRUE;
+	};
+};
+
+var int Lee_Sends_To_Buster;
+
+func void B_Lee_Sends_To_Buster()
+{
+	if((Kapitel >= 3) && (Kapitel < 5) && (Lee_Sends_To_Buster == FALSE) && !Npc_IsDead(Buster) && !Npc_KnowsInfo(other,DIA_Buster_SHADOWBEASTS) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	{
+		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_07");	//Ох, да. Чуть не забыл... Бастер хочет поболтать с тобой. Он не говорит мне, о чем. Может, стоит найти его?
+		Lee_Sends_To_Buster = TRUE;
+	};
+};
+
 instance DIA_Lee_EXIT(C_Info)
 {
 	npc = SLD_800_Lee;
@@ -12,44 +39,14 @@ instance DIA_Lee_EXIT(C_Info)
 
 func int DIA_Lee_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Lee_EXIT_Info()
 {
+	B_Lee_Teleport();
+	B_Lee_Sends_To_Buster();
 	AI_StopProcessInfos(self);
-};
-
-
-var int Lee_Teleport;
-
-func void B_Lee_Teleport()
-{
-	if((Kapitel >= 3) && (Lee_Teleport == FALSE))
-	{
-		AI_Output(self,other,"DIA_Lee_Add_04_05");	//Ах. Хорошо, что ты пришел.
-		AI_Output(other,self,"DIA_Lee_Add_15_06");	//Что случилось?
-		AI_Output(self,other,"DIA_Lee_Add_04_07");	//Я нашел это в старой часовне.
-		B_GiveInvItems(self,other,ItRu_TeleportFarm,1);
-		AI_Output(self,other,"DIA_Lee_Add_04_08");	//Это магическая руна. Я думаю, она может в любое время перенести тебя сюда, на ферму.
-		AI_Output(self,other,"DIA_Lee_Add_04_09");	//Я подумал, что ты сможешь пользоваться ей.
-		Lee_Teleport = TRUE;
-	};
-};
-
-
-var int Lee_Sends_To_Buster;
-
-func void B_Lee_Sends_To_Buster()
-{
-	if((Lee_Sends_To_Buster == FALSE) && !Npc_IsDead(Buster) && !Npc_KnowsInfo(other,DIA_Buster_SHADOWBEASTS) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
-	{
-		AI_Output(self,other,"DIA_Lee_DoAboutBennet_04_07");	//Ох, да. Чуть не забыл... Бастер хочет поболтать с тобой. Он не говорит мне, о чем. Может, стоит найти его?
-		Lee_Sends_To_Buster = TRUE;
-	};
 };
 
 
@@ -387,15 +384,21 @@ func void DIA_Lee_LeesPlan_Info()
 {
 	AI_Output(other,self,"DIA_Lee_LeesPlan_15_00");	//А чем ты здесь занимаешься?
 	AI_Output(self,other,"DIA_Lee_LeesPlan_04_01");	//Это просто: я делаю все возможное, чтобы мы все смогли убраться с этого острова.
-	AI_Output(self,other,"DIA_Lee_LeesPlan_04_02");	//Онар нанял нас для защиты его фермы, и именно этим мы и намерены заниматься.
-	AI_Output(self,other,"DIA_Lee_LeesPlan_04_03");	//Но наша награда - нечто большее, чем просто плата за работу. Помогая фермерам, мы отрезаем город от провизии.
-	AI_Output(self,other,"DIA_Lee_LeesPlan_04_04");	//А чем меньше паладины едят, тем скорее они прислушаются, когда, наконец, я сделаю им предложение о мире.
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if((MIS_Lee_Friedensangebot == FALSE) || (MIS_Lee_Friedensangebot == LOG_Running))
 	{
-		AI_Output(self,other,"DIA_Lee_LeesPlan_04_05");	//Плохо только, что тебе пришлось присоединиться именно к ним.
+		AI_Output(self,other,"DIA_Lee_LeesPlan_04_02");	//Онар нанял нас для защиты его фермы, и именно этим мы и намерены заниматься.
+		AI_Output(self,other,"DIA_Lee_LeesPlan_04_03");	//Но наша награда - нечто большее, чем просто плата за работу. Помогая фермерам, мы отрезаем город от провизии.
+		AI_Output(self,other,"DIA_Lee_LeesPlan_04_04");	//А чем меньше паладины едят, тем скорее они прислушаются, когда, наконец, я сделаю им предложение о мире.
+		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+		{
+			AI_Output(self,other,"DIA_Lee_LeesPlan_04_05");	//Плохо только, что тебе пришлось присоединиться именно к ним.
+		};
+	}
+	if(MIS_Lee_Friedensangebot == FALSE)
+	{
+		AI_Output(other,self,"DIA_Lee_LeesPlan_15_06");	//Что за предложение ты хочешь сделать?
+		AI_Output(self,other,"DIA_Lee_LeesPlan_04_07");	//Естественно, условием будет наше помилование и свободный путь на материк. Ты все узнаешь, когда придет время.
 	};
-	AI_Output(other,self,"DIA_Lee_LeesPlan_15_06");	//Что за предложение ты хочешь сделать?
-	AI_Output(self,other,"DIA_Lee_LeesPlan_04_07");	//Естественно, условием будет наше помилование и свободный путь на материк. Ты все узнаешь, когда придет время.
 };
 
 
@@ -484,6 +487,8 @@ func void DIA_Lee_OtherSld_Info()
 	AI_Output(self,other,"DIA_Lee_OtherSld_04_02");	//Поговори с Торлофом. Он обычно находится перед домом. Он даст тебе испытание.
 	AI_Output(self,other,"DIA_Lee_OtherSld_04_03");	//Если ты сможешь пройти его, ты завоюешь большую часть необходимого уважения.
 	AI_Output(self,other,"DIA_Lee_OtherSld_04_04");	//Он расскажет тебе обо всем, что тебе нужно знать.
+	Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_BecomeSLD,LOG_Running);
 	B_LogEntry(TOPIC_BecomeSLD,"Чтобы быть принятым в ряды наемников, я должен пройти испытание Торлофа и заслужить уважение остальных наемников.");
 };
 
@@ -515,6 +520,7 @@ func void DIA_Addon_Lee_Ranger_Info()
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_04");	//Я больше не связан соглашением с магами Воды, которое мы заключили с ними в те времена, когда еще стоял Барьер.
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_05");	//Конечно, если я могу чем-то им помочь, я это делаю. Но большую часть времени я занят своими делами. Ни на что другое времени не остается.
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_06");	//Если ты хочешь узнать об этом обществе больше, поговори с Кордом. Насколько я знаю, он один из них.
+	B_Lee_Teleport();
 	RangerHelp_gildeSLD = TRUE;
 	SC_KnowsCordAsRangerFromLee = TRUE;
 };
@@ -597,7 +603,7 @@ func void DIA_Lee_JoinNOW_Info()
 			Npc_SetTrueGuild(hero,GIL_SLD);
 			CreateInvItem(hero,ITAR_SLD_L);
 			AI_PrintScreen("Легкие доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-			AI_EquipArmor(hero,ITAR_SLD_L);
+//			AI_EquipArmor(hero,ITAR_SLD_L);
 			Snd_Play("LEVELUP");
 			Npc_ExchangeRoutine(Lothar,"START");
 			KDF_Aufnahme = LOG_OBSOLETE;
@@ -675,6 +681,10 @@ func void DIA_Lee_ToHagen_Info()
 {
 	AI_Output(other,self,"DIA_Lee_ToHagen_15_00");	//И как мне теперь добраться до паладинов?
 	AI_Output(self,other,"DIA_Lee_ToHagen_04_01");	//Очень просто. Ты отнесешь им наше предложение о мире.
+	if(!Npc_KnowsInfo(other,DIA_Lee_LeesPlan))
+	{
+		AI_Output(other,self,"DIA_Lee_LeesPlan_15_06");	//Что за предложение ты хочешь сделать?
+	};
 	AI_Output(self,other,"DIA_Lee_ToHagen_04_02");	//Я знаю лорда Хагена, командующего паладинов, со времен моей службы в королевской армии.
 	AI_Output(self,other,"DIA_Lee_ToHagen_04_03");	//Я знаю, о чем он думает - у него недостаточно людей. Он примет это предложение. По крайней мере, он выслушает тебя.
 	AI_Output(self,other,"DIA_Lee_ToHagen_04_04");	//Я написал ему письмо - держи.
@@ -797,7 +807,7 @@ instance DIA_Lee_Success(C_Info)
 func int DIA_Lee_Success_Condition()
 {
 //	if((MIS_RescueGorn == LOG_SUCCESS) && (Kapitel >= 3) && (other.guild == GIL_SLD))
-	if((MIS_RescueGorn == LOG_SUCCESS) && (other.guild == GIL_SLD))
+	if((MIS_RescueGorn == LOG_SUCCESS) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -809,7 +819,7 @@ func void DIA_Lee_Success_Info()
 	AI_Output(self,other,"DIA_Lee_Success_04_01");	//Да, он уже рассказал мне об этом. Отлично сработано.
 	AI_Output(self,other,"DIA_Lee_Success_04_02");	//Он стоит больше, чем Сильвио и все его парни вместе взятые.
 	B_Lee_Teleport();
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 };
 
 
@@ -904,14 +914,16 @@ instance DIA_Lee_Report(C_Info)
 	nr = 3;
 	condition = DIA_Lee_Report_Condition;
 	information = DIA_Lee_Report_Info;
-	permanent = TRUE;
+//	permanent = TRUE;
+	permanent = FALSE;
 	description = "Я пришел из Долины Рудников. Замок, находящийся там, был атакован драконами!";
 };
 
 
 func int DIA_Lee_Report_Condition()
 {
-	if((EnterOW_Kapitel2 == TRUE) && (Kapitel <= 3))
+//	if((EnterOW_Kapitel2 == TRUE) && (Kapitel <= 3))
+	if(EnterOW_Kapitel2 == TRUE)
 	{
 		return TRUE;
 	};
@@ -923,16 +935,19 @@ func void DIA_Lee_Report_Info()
 	AI_Output(self,other,"DIA_Lee_Add_04_19");	//Так это правда! Ларес говорил, что в городе циркулируют слухи о драконах... Я не поверил в это...
 	AI_Output(self,other,"DIA_Lee_Add_04_20");	//А что насчет паладинов?
 	AI_Output(other,self,"DIA_Lee_Add_15_21");	//Они понесли большие потери.
-	if(other.guild == GIL_SLD)
+	if(MIS_Lee_Friedensangebot == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lee_Add_04_22");	//Хорошо! Может теперь лорд Хаген более взвешенно подумает о моем предложении...
-		AI_Output(self,other,"DIA_Lee_Add_04_23");	//А если нет... (жестко) Тогда мы найдем другой способ вырваться отсюда...
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Lee_Add_04_24");	//Хорошо! Может, это заставит лорда Хагена отправиться со своими людьми в Долину Рудников...
-		AI_Output(self,other,"DIA_Lee_Add_04_25");	//Чем меньше паладинов останется здесь, тем лучше.
+		if(other.guild != GIL_PAL)
+		{
+			AI_Output(self,other,"DIA_Lee_Add_04_25");	//Чем меньше паладинов останется здесь, тем лучше.
+		};
 	};
+	AI_Output(self,other,"DIA_Lee_Add_04_23");	//А если нет... (жестко) Тогда мы найдем другой способ вырваться отсюда...
 };
 
 
@@ -974,8 +989,6 @@ func void DIA_Lee_ArmorM_Info()
 };
 
 
-var int Lee_SldMGiven;
-
 instance DIA_Lee_BuyArmorM(C_Info)
 {
 	npc = SLD_800_Lee;
@@ -1003,7 +1016,7 @@ func void DIA_Lee_BuyArmorM_Info()
 		AI_Output(self,other,"DIA_Lee_BuyArmorM_04_01");	//Держи. Это очень хорошие доспехи.
 		CreateInvItem(hero,ITAR_SLD_M);
 		AI_PrintScreen("Средние доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_SLD_M);
+//		AI_EquipArmor(hero,ITAR_SLD_M);
 		Lee_SldMGiven = TRUE;
 	}
 	else
@@ -1011,58 +1024,6 @@ func void DIA_Lee_BuyArmorM_Info()
 		AI_Output(self,other,"DIA_Lee_BuyArmorM_04_02");	//Но это не подарок! Сначала я хочу увидеть золото!
 	};
 };
-
-
-instance DIA_Lee_KAP3_EXIT(C_Info)
-{
-	npc = SLD_800_Lee;
-	nr = 999;
-	condition = DIA_Lee_KAP3_EXIT_Condition;
-	information = DIA_Lee_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lee_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lee_KAP3_EXIT_Info()
-{
-	B_Lee_Teleport();
-	B_Lee_Sends_To_Buster();
-	AI_StopProcessInfos(self);
-};
-
-
-/*instance DIA_Lee_Teleport(C_Info)
-{
-	npc = SLD_800_Lee;
-	nr = 1;
-	condition = DIA_Lee_Teleport_Condition;
-	information = DIA_Lee_Teleport_Info;
-	permanent = FALSE;
-	important = TRUE;
-};
-
-
-func int DIA_Lee_Teleport_Condition()
-{
-	if((Kapitel >= 3) && (Lee_Teleport == FALSE) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lee_Teleport_Info()
-{
-	B_Lee_Teleport();
-};*/
 
 
 instance DIA_Lee_ArmorH(C_Info)
@@ -1092,8 +1053,6 @@ func void DIA_Lee_ArmorH_Info()
 };
 
 
-var int Lee_SldHGiven;
-
 instance DIA_Lee_BuyArmorH(C_Info)
 {
 	npc = SLD_800_Lee;
@@ -1121,7 +1080,7 @@ func void DIA_Lee_BuyArmorH_Info()
 		AI_Output(self,other,"DIA_Lee_BuyArmorH_04_01");	//Держи. Это очень хорошие доспехи. Я сам такие ношу.
 		CreateInvItem(hero,ITAR_SLD_H);
 		AI_PrintScreen("Тяжелые доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_SLD_H);
+//		AI_EquipArmor(hero,ITAR_SLD_H);
 		Lee_SldHGiven = TRUE;
 	}
 	else
@@ -1177,7 +1136,7 @@ func void DIA_Lee_Richter_wieviel()
 {
 	AI_Output(other,self,"DIA_Lee_Richter_wieviel_15_00");	//Нет проблем. Сколько?
 	AI_Output(self,other,"DIA_Lee_Richter_wieviel_04_01");	//Твоя награда зависит от того, что ты сообщишь мне. Так что постарайся.
-	B_Lee_Sends_To_Buster();
+	B_Lee_Teleport();
 	Info_ClearChoices(DIA_Lee_Richter);
 };
 
@@ -1186,7 +1145,6 @@ func void DIA_Lee_Richter_nein()
 	AI_Output(other,self,"DIA_Lee_Richter_nein_15_00");	//Я не буду заниматься этим. Я не хочу прислуживать этой свинье.
 	AI_Output(self,other,"DIA_Lee_Richter_nein_04_01");	//Не нервничай так. Помни о том, что именно он засадил тебя за решетку и засунул за Барьер. Или ты забыл это?
 	AI_Output(self,other,"DIA_Lee_Richter_nein_04_02");	//Поступай, как знаешь, но я надеюсь, ты примешь правильное решение.
-	B_Lee_Sends_To_Buster();
 	Info_ClearChoices(DIA_Lee_Richter);
 };
 
@@ -1269,7 +1227,6 @@ func void DIA_Lee_TalkAboutBennet_Info()
 	AI_Output(self,other,"DIA_Lee_TalkAboutBennet_04_01");	//Так ты уже знаешь. Эти ублюдки посадили его за решетку. Вот и все.
 	AI_Output(self,other,"DIA_Lee_TalkAboutBennet_04_02");	//Как будто мне не хватает проблем с моими людьми - теперь я должен заботиться еще и о паладинах.
 	B_Lee_Teleport();
-	B_Lee_Sends_To_Buster();
 };
 
 
@@ -1366,10 +1323,9 @@ func void DIA_Lee_AnyNews_Info()
 		AI_Output(self,other,"DIA_Lee_AnyNews_04_01");	//Ну, по крайней мере, тюрьма, похоже, не сильно сказалась на его здоровье.
 		AI_Output(self,other,"DIA_Lee_AnyNews_04_02");	//Отличная работа.
 		B_Lee_Teleport();
-		B_Lee_Sends_To_Buster();
 		if(DIA_Lee_AnyNews_OneTime == FALSE)
 		{
-			B_GivePlayerXP(XP_Ambient);
+			B_GivePlayerXP(XP_AmbientKap3);
 			DIA_Lee_AnyNews_OneTime = TRUE;
 		};
 	}
@@ -1407,34 +1363,6 @@ func void DIA_Lee_SYLVIO_Info()
 	AI_Output(self,other,"DIA_Lee_SYLVIO_04_04");	//Все закончилось тем, что они вооружились у Беннета, а затем свалили.
 	AI_Output(self,other,"DIA_Lee_SYLVIO_04_05");	//(облегченно) Ах. Откровенно говоря, я даже рад, что Сильвио наконец ушел с фермы.
 	B_Lee_Teleport();
-	B_Lee_Sends_To_Buster();
-};
-
-
-instance DIA_Lee_KAP4_EXIT(C_Info)
-{
-	npc = SLD_800_Lee;
-	nr = 999;
-	condition = DIA_Lee_KAP4_EXIT_Condition;
-	information = DIA_Lee_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lee_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lee_KAP4_EXIT_Info()
-{
-	B_Lee_Teleport();
-	B_Lee_Sends_To_Buster();
-	AI_StopProcessInfos(self);
 };
 
 
@@ -1605,7 +1533,7 @@ func void DIA_Lee_DRACHENEI_Info()
 		AI_Output(self,other,"DIA_Lee_DRACHENEI_04_05");	//Похоже, они очень крепкие. Поговори об этом с Беннетом.
 		B_LogEntry(TOPIC_DRACHENEIER,"Ли не знает, что делать с драконьим яйцом. Он отправил меня к кузнецу Беннету.");
 	};
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 };
 
 
@@ -1635,32 +1563,7 @@ func void DIA_Lee_KAP4_Perm_Info()
 	AI_Output(other,self,"DIA_Lee_KAP4_Perm_15_02");	//По-моему, это тоже неплохо.
 	AI_Output(self,other,"DIA_Lee_KAP4_Perm_04_03");	//Но, к сожалению, у нас не стало меньше работы. Парни все чаще и чаще выражают недовольство, им теперь приходится работать еще и за людей Сильвио.
 	AI_Output(self,other,"DIA_Lee_KAP4_Perm_04_04");	//Но это мои проблемы. Я справлюсь.
-};
-
-
-instance DIA_Lee_KAP5_EXIT(C_Info)
-{
-	npc = SLD_800_Lee;
-	nr = 999;
-	condition = DIA_Lee_KAP5_EXIT_Condition;
-	information = DIA_Lee_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lee_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lee_KAP5_EXIT_Info()
-{
 	B_Lee_Teleport();
-	AI_StopProcessInfos(self);
 };
 
 
@@ -1945,28 +1848,3 @@ func void DIA_Lee_StillNeedYou_Info()
 	B_CheckLog();
 };
 
-/*
-instance DIA_Lee_KAP6_EXIT(C_Info)
-{
-	npc = SLD_800_Lee;
-	nr = 999;
-	condition = DIA_Lee_KAP6_EXIT_Condition;
-	information = DIA_Lee_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lee_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lee_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/

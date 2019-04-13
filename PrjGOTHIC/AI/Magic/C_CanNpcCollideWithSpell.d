@@ -11,7 +11,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 {
 	if(spellType == SPL_Whirlwind)
 	{
-		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_DEMON) || (self.guild == GIL_SUMMONED_DEMON) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.flags == NPC_FLAG_IMMORTAL) || (self.guild == GIL_SHADOWBEAST) || (self.guild == GIL_Gargoyle))
+		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || (self.guild == GIL_DEMON) || (self.guild == GIL_SUMMONED_DEMON) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.flags == NPC_FLAG_IMMORTAL) || (self.guild == GIL_SHADOWBEAST) || (self.guild == GIL_Gargoyle))
 		{
 			return COLL_DONOTHING;
 		};
@@ -59,7 +59,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_APPLYDOUBLEDAMAGE;
 		};
-		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_DEMON) || (self.guild == GIL_SUMMONED_DEMON) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
+		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_WISP) || (self.guild == GIL_DEMON) || (self.guild == GIL_SUMMONED_DEMON) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON))
 		{
 			return COLL_DONOTHING;
 		};
@@ -67,7 +67,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_WaterFist)
 	{
-		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE))
+		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || (self.guild == GIL_WISP))
 		{
 			return COLL_DONOTHING;
 		};
@@ -103,7 +103,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_GreenTentacle)
 	{
-		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGateGuard(self) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_DEMON) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.guild == GIL_HARPY) || (self.aivar[AIV_MM_REAL_ID] == ID_SKELETON_MAGE) || (self.guild == GIL_Gargoyle))
+		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGateGuard(self) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_WISP) || (self.guild == GIL_DEMON) || (self.guild == GIL_TROLL) || (self.guild == GIL_DRAGON) || (self.guild == GIL_HARPY) || (self.aivar[AIV_MM_REAL_ID] == ID_SKELETON_MAGE) || (self.guild == GIL_Gargoyle))
 		{
 			return COLL_DONOTHING;
 		};
@@ -111,7 +111,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_Swarm)
 	{
-		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_DEMON) || (self.guild == GIL_SUMMONED_DEMON) || (self.guild == GIL_TROLL) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_DRAGON) || (self.guild == GIL_Gargoyle) || (self.guild == GIL_DMT) || C_NpcIsUndead(self))
+		if(C_NpcIsDown(self) || C_BodyStateContains(self,BS_SWIM) || C_BodyStateContains(self,BS_DIVE) || C_NpcIsGolem(self) || (self.guild == GIL_DEMON) || (self.guild == GIL_SUMMONED_DEMON) || (self.guild == GIL_TROLL) || (self.guild == GIL_BLOODFLY) || (self.guild == GIL_WISP) || (self.guild == GIL_DRAGON) || (self.guild == GIL_Gargoyle) || (self.guild == GIL_DMT) || C_NpcIsUndead(self))
 		{
 			return COLL_DONOTHING;
 		};
@@ -131,7 +131,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_WindFist)
 	{
-		if(Npc_GetDistToNpc(other,self) >= 1000)
+		if((Npc_GetDistToNpc(other,self) >= 1000) || (self.guild == GIL_WISP))
 		{
 			return COLL_DONOTHING;
 		};

@@ -101,7 +101,7 @@ func void DIA_Fajeth_Hallo_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Fajeth_Hallo_12_10");	//ѕослушай - € не знаю, зачем √аронд прислал мне наемника - но, должно быть, у него были на то причины.
+		AI_Output(self,other,"DIA_Fajeth_Hallo_12_10");	//ѕослушай - € не знаю, зачем √аронд прислал мне наемника, но, должно быть, у него были на то причины.
 		AI_Output(self,other,"DIA_Fajeth_Hallo_12_11");	//Ќо прежде чем € отправлю теб€ назад, ты должен выполнить одно задание дл€ мен€.
 		Info_AddChoice(DIA_Fajeth_Hallo,"” всего есть сво€ цена. ≈сли ты заплатишь мне, возможно, € и соглашусь.",DIA_Fajeth_Hallo_SLDJa);
 		Info_AddChoice(DIA_Fajeth_Hallo,"Ќет, у мен€ нет времени на то, чтобы решать твои проблемы.",DIA_Fajeth_Hallo_SLDNein);

@@ -49,6 +49,7 @@ func int DIA_Mil_325_Miliz_FirstWarn_Condition()
 
 func void DIA_Mil_325_Miliz_FirstWarn_Info()
 {
+	B_PlayerEnteredCity();
 	if(Npc_GetDistToWP(other,Mil_325_Checkpoint) < 650)
 	{
 		other.aivar[AIV_LastDistToWP] = 0;

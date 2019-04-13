@@ -186,7 +186,7 @@ const string TXT_GUILDS[66] =
 	"Болотный голем",
 	"Каменный страж",
 	"Пантера",
-	"A",
+	"Блуждающий огонек",
 	"Каменный страж",
 	"Зомби",
 	"",
@@ -471,7 +471,7 @@ const string TXT_INV_CAT[9] =
 };
 const string NAME_Paladin = "Паладин";
 const string NAME_Miliz = "Ополченец";
-const string NAME_Torwache = "Стражник у ворот";
+const string NAME_Torwache = "Стражник у прохода";
 const string NAME_Tuerwache = "Стражник у двери";
 const string NAME_Stadtwache = "Городской стражник";
 const string NAME_Arbeiter = "Рабочий";
@@ -489,6 +489,7 @@ const string NAME_Bauer = "Крестьянин";
 const string NAME_Baeuerin = "Крестьянка";
 const string NAME_Bandit = "Бандит";
 const string NAME_Halsabschneider = "Головорез";
+const string NAME_Out = "Бродяга";
 const string NAME_Straefling = "Каторжник";
 const string NAME_Waffenknecht = "Оруженосец";
 const string NAME_Dementor = "Ищущий";
@@ -700,9 +701,9 @@ const string PRINT_ProdItemsMissing = "Недостаточно ингредиентов!";
 const string PRINT_TabakSuccess = "Создан новый табак!";
 const string PRINT_JointSuccess = "Косяк из болотной травы готов!";
 const string PRINT_Addon_Joint_01_Success = "'Зеленый послушник' готов!";
-const string PRINT_NoInnosTears = "Вам не хватает 'Слез Инноса'.";
-const string PRINT_Addon_GuildNeeded = "Вы не состоите в гильдии.";
-const string PRINT_Addon_GuildNeeded_NOV = "Вы пока еще не маг.";
+const string PRINT_NoInnosTears = "Вам не хватает 'Слез Инноса'!";
+const string PRINT_Addon_GuildNeeded = "Вы не состоите в гильдии!";
+const string PRINT_Addon_GuildNeeded_NOV = "Вы пока еще не маг!";
 const string PRINT_KeyMissing = "Мне никогда не открыть это без правильного ключа!";
 const string PRINT_PicklockMissing = "Здесь бы пригодилась отмычка!";
 const string PRINT_Picklock_or_KeyMissing = "Хм... у меня нет отмычки или ключа.";
@@ -938,4 +939,6 @@ const string NAME_TROPHY_FireTongue = "Огненный язык";
 
 const string PRINT_HiddenInFish = "В этой рыбе что-то спрятано.";
 const string PRINT_UnknownEffect = "Эффект неизвестен.";
+const string PRINT_LousHammerNoEffect = "Больше не дает никакого эффекта, кроме опьянения.";
+const string PRINT_SlowTime = "Замедление времени.";
 

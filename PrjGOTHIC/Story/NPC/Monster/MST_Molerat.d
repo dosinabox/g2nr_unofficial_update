@@ -21,6 +21,7 @@ prototype Mst_Default_Molerat(C_Npc)
 	fight_tactic = FAI_MOLERAT;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
+	aivar[AIV_MM_ThreatenBeforeAttack] = TRUE;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_SHORT;
 	aivar[AIV_MM_FollowInWater] = TRUE;
 	start_aistate = ZS_MM_AllScheduler;

@@ -2057,8 +2057,8 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(VLK_4003_Buergerin,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_4004_Arbeiter,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(VLK_4005_Arbeiter,"NW_CITY_ENTRANCE_01");
-	Wld_InsertNpc(MIL_302_Torwache,"NW_CITY_ENTRANCE_01");
-	Wld_InsertNpc(MIL_303_Torwache,"NW_CITY_ENTRANCE_01");
+//	Wld_InsertNpc(MIL_302_Torwache,"NW_CITY_ENTRANCE_01");
+//	Wld_InsertNpc(MIL_303_Torwache,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_306_Tuerwache,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_307_Tuerwache,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_316_Wambo,"NW_CITY_ENTRANCE_01");

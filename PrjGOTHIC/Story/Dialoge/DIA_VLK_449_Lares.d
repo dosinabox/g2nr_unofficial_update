@@ -473,7 +473,7 @@ func void DIA_Addon_Lares_GetRangerArmor_Info()
 	AI_WaitTillEnd(other,self);
 	CreateInvItem(hero,ITAR_RANGER_Addon);
 	AI_PrintScreen("Доспехи 'Кольца Воды' получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-	AI_EquipArmor(hero,ITAR_RANGER_Addon);
+//	AI_EquipArmor(hero,ITAR_RANGER_Addon);
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_05");	//Носи их с гордостью! Но никогда не надевай их в городе или каком-либо другом населенном месте.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_06");	//Помни: наши имена должны оставаться в тайне. Никто не должен знать, что мы являемся членами общества.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_07");	//Болтать о Кольце Воды запрещено. Это наше главное правило. Запомни его.
@@ -1094,7 +1094,7 @@ func void DIA_Lares_AboutSld_Info()
 	Info_AddChoice(DIA_Lares_AboutSld,"А почему ТЫ не с Ли и наемниками?",DIA_Lares_AboutSld_WhyNotYou);
 	Info_AddChoice(DIA_Lares_AboutSld,"Расскажи мне подробнее о наемниках.",DIA_Lares_AboutSld_Sld);
 	Info_AddChoice(DIA_Lares_AboutSld,"Как мне найти ферму лендлорда?",DIA_Lares_AboutSld_WayToOnar);
-	if((KnowsAboutGorn == TRUE) && (MIS_RescueGorn != LOG_SUCCESS) && (Kapitel < 3))
+	if((KnowsAboutGorn == TRUE) && (MIS_RescueGorn != LOG_SUCCESS))
 	{
 		Info_AddChoice(DIA_Lares_AboutSld,"Горн сказал тебе обо мне? Что произошло с ним?",DIA_Lares_AboutSld_Gorn);
 	};
@@ -1338,12 +1338,22 @@ func int DIA_Addon_Lares_Forest_Condition()
 func void DIA_Addon_Lares_Forest_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_RangerHelp_Forest_15_00");	//Ты можешь проводить меня через восточный лес?
-	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_Forest_09_01");	//Конечно. Но что тебе там нужно?
+	if(Kapitel < 3)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_Forest_09_01");	//Конечно. Но что тебе там нужно?
+	};
 	AI_Output(other,self,"DIA_Addon_Lares_RangerHelp_Forest_15_02");	//Нефариус поручил мне найти недостающие орнаменты.
 	AI_Output(other,self,"DIA_Addon_Lares_RangerHelp_Forest_15_03");	//Одно из указанных им мест находится как раз в этом лесу.
-	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_Forest_09_04");	//Понимаю. Пока тебе идти туда одному было бы слишком опасно.
-	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_Forest_09_05");	//Хорошо. Когда ты будешь готов отправляться, скажи.
-	RangerHelp_OrnamentForest = TRUE;
+	if(Kapitel < 3)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_Forest_09_04");	//Понимаю. Пока тебе идти туда одному было бы слишком опасно.
+		AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_Forest_09_05");	//Хорошо. Когда ты будешь готов отправляться, скажи.
+		RangerHelp_OrnamentForest = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_OrnamentBringJob_09_02");	//Но сейчас я не могу уйти. Я должен наблюдать за гаванью.
+	};
 };
 
 

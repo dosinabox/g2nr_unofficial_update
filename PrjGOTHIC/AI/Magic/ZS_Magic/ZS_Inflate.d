@@ -111,11 +111,11 @@ func int ZS_Inflate_Loop()
 		}
 		else if(Npc_GetStateTime(self) == 17)
 		{
-			Mdl_SetModelFatness(self,2);
+			Mdl_SetModelFatness(self,3);
 		}
 		else if(Npc_GetStateTime(self) == 18)
 		{
-			Mdl_SetModelFatness(self,1);
+			Mdl_SetModelFatness(self,2);
 		}
 		else if(Npc_GetStateTime(self) == 19)
 		{
@@ -128,7 +128,8 @@ func int ZS_Inflate_Loop()
 		}
 		else
 		{
-			B_MagicHurtNpc(other,self,1);
+			//B_MagicHurtNpc(other,self,1);
+			B_MagicHurtNpc(other,self,self.attribute - 1);
 		};
 	};
 	return LOOP_CONTINUE;

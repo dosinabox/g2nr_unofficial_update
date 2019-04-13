@@ -925,7 +925,7 @@ instance ITAR_DJG_Crawler(C_Item)
 	visual = "ItAr_Djg_Crawler.3ds";
 	visual_change = "Armor_Djg_Crawler.asc";
 	visual_skin = 0;
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	on_equip = Equip_ITAR_DJG_Crawler;
 	on_unequip = UnEquip_ITAR_DJG_Crawler;
 	description = name;
@@ -1668,6 +1668,172 @@ instance ITAR_Slave(C_Item)
 	count[3] = protection[PROT_FIRE];
 //	text[4] = NAME_Prot_Magic;
 //	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_BEGGAR(C_Item)
+{
+	name = "Грязная накидка";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 20;
+	protection[PROT_BLUNT] = 20;
+	protection[PROT_POINT] = 5;
+	protection[PROT_FIRE] = 0;
+	protection[PROT_MAGIC] = 0;
+	value = 0;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Prisoner.3ds";
+	visual_change = "Armor_Beggar.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+};
+
+instance ITAR_OHT(C_Item)
+{
+	name = "Доспехи охотника на орков";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 65;
+	protection[PROT_BLUNT] = 65;
+	protection[PROT_POINT] = 65;
+	protection[PROT_FIRE] = 15;
+	protection[PROT_MAGIC] = 0;
+	value = 3000;
+	wear = WEAR_TORSO;
+	visual = "ITAR_OHT.3ds";
+	visual_change = "ARMOR_OHT.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_DJGN_M(C_Item)
+{
+	name = "Средние доспехи охотника на драконов";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 120 - 5;
+	protection[PROT_BLUNT] = 120 - 5;
+	protection[PROT_POINT] = 120 - 5;
+	protection[PROT_FIRE] = 35 - 5;	//75;
+	protection[PROT_MAGIC] = 35 - 5;
+	value = VALUE_ITAR_DJG_M - 1000;
+	wear = WEAR_TORSO;
+	visual = "ITAR_DJGN_M.3ds";
+	visual_change = "ARMOR_DJGN_M.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_DJGN_H(C_Item)
+{
+	name = "Тяжелые доспехи охотника на драконов";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 150 - 10;
+	protection[PROT_BLUNT] = 150 - 10;
+	protection[PROT_POINT] = 150 - 10;
+	protection[PROT_FIRE] = 50 - 10;	//100;
+	protection[PROT_MAGIC] = 50 - 10;
+	value = VALUE_ITAR_DJG_H - 2000;
+	wear = WEAR_TORSO;
+	visual = "ITAR_DJGN_H.3ds";
+	visual_change = "ARMOR_DJGN_H.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_PALN_M(C_Item)
+{
+	name = "Доспехи рыцаря";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 100 - 5;
+	protection[PROT_BLUNT] = 100 - 5;
+	protection[PROT_POINT] = 100 - 5;
+	protection[PROT_FIRE] = 25 - 5;	//50;
+	protection[PROT_MAGIC] = 25 - 5;
+	value = VALUE_ITAR_PAL_M - 1000;
+	wear = WEAR_TORSO;
+	visual = "ITAR_PALN_M.3ds";
+	visual_change = "ARMOR_PALN_M.asc";
+	visual_skin = 0;
+	material = MAT_METAL;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_PALN_H(C_Item)
+{
+	name = "Доспехи паладина";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 150 - 10;
+	protection[PROT_BLUNT] = 150 - 10;
+	protection[PROT_POINT] = 150 - 10;
+	protection[PROT_FIRE] = 50 - 10;	//100;
+	protection[PROT_MAGIC] = 50 - 10;
+	value = VALUE_ITAR_PAL_H - 2000;
+	wear = WEAR_TORSO;
+	visual = "ITAR_PALN_H.3ds";
+	visual_change = "ARMOR_PALN_H.asc";
+	visual_skin = 0;
+	material = MAT_METAL;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };

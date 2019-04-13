@@ -125,16 +125,26 @@ instance DIA_Vino_BringWine(C_Info)
 
 func int DIA_Vino_BringWine_Condition()
 {
-	if((MIS_Vino_Wein == LOG_Running) && Npc_HasItems(other,ItFo_Wine) && (Kapitel < 3))
+	if((MIS_Vino_Wein == LOG_Running) && (Kapitel < 3))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Vino_BringWine_Info()
 {
 	AI_Output(other,self,"DIA_Vino_BringWine_15_00");	//Вот твое вино.
-	B_GiveInvItems(other,self,ItFo_Wine,1);
+	if(Npc_HasItems(other,ItFo_Wine))
+	{
+		B_GiveInvItems(other,self,ItFo_Wine,1);
+	}
+	else if(Npc_HasItems(other,ItFo_DarkWine))
+	{
+		B_GiveInvItems(other,self,ItFo_DarkWine,1);
+	};
 	AI_Output(self,other,"DIA_Vino_BringWine_05_01");	//Я, пожалуй, не буду спрашивать, где ты взял его, хорошо? (смеется) Кого это волнует?
 	if(!Npc_IsDead(Lobart))
 	{
@@ -145,8 +155,16 @@ func void DIA_Vino_BringWine_Info()
 		};
 	};
 	MIS_Vino_Wein = LOG_SUCCESS;
-	B_GivePlayerXP(XP_VinoWein);
-	B_UseItem(self,ItFo_Wine);
+	if(Npc_HasItems(self,ItFo_Wine))
+	{
+		B_UseItem(self,ItFo_Wine);
+		B_GivePlayerXP(XP_VinoWein);
+	}
+	else if(Npc_HasItems(self,ItFo_DarkWine))
+	{
+		B_UseItem(self,ItFo_DarkWine);
+		B_GivePlayerXP(XP_VinoWein * 2);
+	};
 };
 
 

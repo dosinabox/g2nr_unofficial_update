@@ -14,7 +14,7 @@ func void B_CheckDynamicText()
 	}
 	else
 	{
-		TEXT_LousHammer_Setting = "Больше не дает никакого эффекта, кроме опьянения.";
+		TEXT_LousHammer_Setting = PRINT_LousHammerNoEffect;
 	};
 	if(Zeitspalt_Used == FALSE)
 	{
@@ -22,7 +22,7 @@ func void B_CheckDynamicText()
 	}
 	else
 	{
-		TEXT_Zeitspalt_Setting = "Замедление времени.";
+		TEXT_Zeitspalt_Setting = PRINT_SlowTime;
 	};
 	if(MegaDrink_Used == FALSE)
 	{

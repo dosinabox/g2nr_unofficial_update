@@ -44,7 +44,7 @@ func void DIA_GornNW_Hallo_Info()
 	{
 		AI_Output(self,other,"DIA_GornNW_Add_12_01");	//“ы спас мен€, парень.
 		AI_Output(self,other,"DIA_GornNW_Add_12_02");	//я никогда не забуду этого.
-		B_GivePlayerXP(XP_Ambient);
+		B_GivePlayerXP(XP_AmbientKap3);
 	}
 	else
 	{

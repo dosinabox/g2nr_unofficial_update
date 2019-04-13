@@ -851,7 +851,7 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	B_LogEntry(TOPIC_Addon_Sklaven,"Я должен узнать, с какой целью Ворон похищает жителей Хориниса.");
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -2153,7 +2153,7 @@ func void DIA_Addon_Vatras_AddonSolved_Info()
 		AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_05");	//Кажется, дело касается Глаза Инноса, не так ли?
 	};
 	VatrasCanLeaveTown_Kap3 = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -2187,13 +2187,13 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Info()
 		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_01");	//Меня прислал Ксардас.
 	};
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_05_03");	//Я знаю. Я уже узнал об этом от одного очень огорченного послушника.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_05_04");	//Ищущие использовали Круг Солнца магов Огня, чтобы уничтожить Глаз.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_05_05");	//Я бы назвал это вынужденным шагом врага.
 	Info_ClearChoices(DIA_Vatras_INNOSEYEKAPUTT);
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"В этом городе новости распространяются быстро.",DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten);
-	if((hero.guild == GIL_KDF) && (MIS_Pyrokar_GoToVatrasInnoseye == LOG_Running))
+	if(MIS_Pyrokar_GoToVatrasInnoseye == LOG_Running)
 	{
 		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Почему Пирокар послал меня именно к тебе?",DIA_Vatras_INNOSEYEKAPUTT_warumdu);
 	};
@@ -2204,10 +2204,16 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge()
 {
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_15_00");	//Что теперь будет с Глазом?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_01");	//Мы должны восстановить его. Но это, боюсь, будет непростой задачей.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_02");	//Оправа разбита на две части. Искусный кузнец должен быть способен починить ее.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_03");	//Но проблема не в этом. Меня больше волнует драгоценный камень.
+	if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_02");	//Оправа разбита на две части. Искусный кузнец должен быть способен починить ее.
+		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_03");	//Но проблема не в этом. Меня больше волнует драгоценный камень.
+	};
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_04");	//Он тускл и безжизненен. Враг, похоже, хорошо знал, как ослабить его.
-	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти кузнеца, способного починить оправу Глаза?",DIA_Vatras_INNOSEYEKAPUTT_Auge_schmied);
+	if(!Npc_KnowsInfo(other,DIA_Bennet_GiveInnosEye))
+	{
+		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти кузнеца, способного починить оправу Глаза?",DIA_Vatras_INNOSEYEKAPUTT_Auge_schmied);
+	};
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Как можно восстановить силу камня?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein);
 };
 
@@ -2227,7 +2233,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut()
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_15_00");	//Где мне найти болотную траву?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_01");	//Я слышал о старой шаманке Сагитте, живущей в лесу. Предположительно, она продает такие травы.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_02");	//Но также ты можешь попытать счастья в местной гавани.
-	if(Npc_HasItems(Sagitta,ItPl_SwampHerb) < 3)
+	if(!Npc_IsDead(Sagitta) && (Npc_HasItems(Sagitta,ItPl_SwampHerb) < 3))
 	{
 		CreateInvItems(Sagitta,ItPl_SwampHerb,3);
 	};
@@ -2270,7 +2276,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_warumdu()
 func void DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten()
 {
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten_15_00");	//В этом городе новости распространяются быстро.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten_05_01");	//Это конечно хорошо, но враг тоже не будет спать.
+	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten_05_01");	//Это, конечно, хорошо, но враг тоже не будет спать.
 };
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
@@ -2382,7 +2388,10 @@ func void DIA_Vatras_RitualInnosEyeRepair_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_RitualInnosEyeRepair_15_00");	//Как обстоят дела с Глазом Инноса?
 	AI_Output(self,other,"DIA_Vatras_RitualInnosEyeRepair_05_01");	//Помни: только ритуал обращения в Круге Солнца вместе с Ксардасом и Пирокаром восстановит Глаз.
-	AI_Output(self,other,"DIA_Vatras_RitualInnosEyeRepair_05_02");	//И не забудь принести Глаз с отремонтированной оправой.
+	if(RitualInnosEyeRuns != LOG_Running)
+	{
+		AI_Output(self,other,"DIA_Vatras_RitualInnosEyeRepair_05_02");	//И не забудь принести Глаз с отремонтированной оправой.
+	};
 };
 
 

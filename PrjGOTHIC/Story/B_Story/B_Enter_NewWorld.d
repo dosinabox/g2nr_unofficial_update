@@ -108,14 +108,14 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 /*		if(hero.guild == GIL_KDF))
 		{
 			B_StartOtherRoutine(Agon,"StillAlive");
-		}; */
-		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
-		{
-			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
 		if(!Npc_IsDead(Ambusher_1013))
 		{
 			B_StartOtherRoutine(Ambusher_1013,"AWAY");
+		}; */
+		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
+		{
+			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
 		Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
 		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
@@ -219,7 +219,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Wolf,"NW_PATH_TO_MONASTER_AREA_10");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
-		if(!Npc_IsDead(Ambusher_1013))
+		if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_ToCavalorn == TRUE))
 		{
 			B_KillNpc(Ambusher_1013);
 		};
@@ -719,7 +719,15 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		};
 		if(hero.guild == GIL_PAL)
 		{
-			Wld_InsertItem(ITAR_PAL_H,"FP_ITEM_PALFINALARMOR");
+			if(Helms_Enabled == TRUE)
+			{
+				Wld_InsertItem(ITAR_PALN_H,"FP_ITEM_PALFINALARMOR");
+				Wld_InsertItem(ITHE_PAL_H,"FP_ITEM_PALFINALWEAPON");
+			}
+			else
+			{
+				Wld_InsertItem(ITAR_PAL_H,"FP_ITEM_PALFINALARMOR");
+			};
 			Wld_InsertItem(ItMi_RuneBlank,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		};
 		if(hero.guild == GIL_KDF)

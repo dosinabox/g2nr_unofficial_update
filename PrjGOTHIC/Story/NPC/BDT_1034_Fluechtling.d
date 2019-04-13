@@ -11,7 +11,7 @@ instance BDT_1034_Fluechtling(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Weak05,BodyTex_N,ITAR_Leather_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Weak05,BodyTex_N,ITAR_Beggar);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

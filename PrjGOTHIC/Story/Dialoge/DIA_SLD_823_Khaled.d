@@ -49,7 +49,7 @@ func void DIA_Khaled_Hallo_Info()
 	{
 		if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) && (other.guild == GIL_NONE))
 		{
-			AI_Output(self,other,"DIA_Khaled_Hallo_11_01");	//’м - так ты хочешь присоединитьс€ к нам, да? ј у теб€ есть хот€ бы приличное оружие?
+			AI_Output(self,other,"DIA_Khaled_Hallo_11_01");	//’м, так ты хочешь присоединитьс€ к нам, да? ј у теб€ есть хот€ бы приличное оружие?
 		}
 		else if(Npc_KnowsInfo(other,DIA_Lee_KeinSld) || (Lee_IsOnBoard == TRUE))
 		{

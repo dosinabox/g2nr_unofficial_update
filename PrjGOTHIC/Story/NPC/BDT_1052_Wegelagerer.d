@@ -1,7 +1,7 @@
 
 instance BDT_1052_Wegelagerer(Npc_Default)
 {
-	name[0] = "Ѕрод€га";
+	name[0] = NAME_Out;
 	guild = GIL_BDT;
 	id = 1051;
 	voice = 6;

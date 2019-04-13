@@ -178,6 +178,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_Dementor_Boss);
 	CreateInvItem(self,ITAR_Prisoner);
 	CreateInvItem(self,ITAR_Slave);
+	CreateInvItem(self,ITAR_Beggar);
 	CreateInvItems(self,ITAR_PIR_L_Addon,1);
 	CreateInvItems(self,ITAR_PIR_M_Addon,1);
 	CreateInvItems(self,ITAR_PIR_H_Addon,1);
@@ -385,6 +386,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDF_CIRC4,1);
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDF_CIRC5,1);
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDF_CIRC6,1);
+	CreateInvItems(self,Openbook1,1);
 	CreateInvItems(self,ItFo_Apple,10);
 	CreateInvItems(self,ItFo_Cheese,10);
 	CreateInvItems(self,ItFo_Bacon,10);
@@ -877,7 +879,7 @@ instance Itemhoshi(Npc_Default)
 
 instance Hoshi_Testmodell(Npc_Default)
 {
-	name[0] = "Хош";
+	name[0] = "Хоша";
 	guild = GIL_MIL;
 	id = 20000;
 	voice = 6;
@@ -891,7 +893,7 @@ instance Hoshi_Testmodell(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,80);
-	daily_routine = Rtn_Start_302;
+	daily_routine = Rtn_Start_20000;
 };
 
 
@@ -1266,6 +1268,37 @@ func void UseArmor()
 };
 
 
+instance Helmets(C_Item)
+{
+	name = NAME_Bag;
+	mainflag = ITEM_KAT_NONE;
+	flags = 0;
+	value = 0;
+	visual = "ItMi_Bag.3ds";
+	scemeName = "MAPSEALED";
+	material = MAT_LEATHER;
+	on_state[0] = UseHelmets;
+	description = name;
+	text[0] = "Мешок наполнен экспериментальными";
+	text[1] = "доспехами и шлемами!";
+};
+
+func void UseHelmets()
+{
+	Snd_Play("Geldbeutel");
+	Print("Найдено много разных доспехов и шлемов!");
+	CreateInvItem(self,ITAR_OHT);
+	CreateInvItem(self,ITAR_DJGN_M);
+	CreateInvItem(self,ITAR_DJGN_H);
+	CreateInvItem(self,ITAR_PALN_M);
+	CreateInvItem(self,ITAR_PALN_H);
+	CreateInvItem(self,ITHE_OHT);
+	CreateInvItem(self,ITHE_DJG_M);
+	CreateInvItem(self,ITHE_DJG_H);
+	CreateInvItem(self,ITHE_PAL_M);
+	CreateInvItem(self,ITHE_PAL_H);
+};
+
 instance Runenbrief(C_Item)
 {
 	name = "Новые руны";
@@ -1480,6 +1513,12 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
+	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
+	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
+	Wld_InsertNpc(BDT_1033_Fluechtling,"NW_TAVERNE_IN_06");
+	Wld_InsertNpc(BDT_1034_Fluechtling,"NW_TAVERNE_IN_06");
+	Wld_InsertNpc(BDT_1035_Fluechtling,"NW_BIGFARM_HOUSE_OUT_05");
+	Wld_InsertNpc(BDT_1030_Morgahard,"NW_BIGFARM_HOUSE_OUT_05");
 };
 
 instance WastelandRune(C_Item)

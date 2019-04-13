@@ -326,7 +326,8 @@ func void DIA_Addon_Fortuno_Trank_Info()
 	}
 	else if(B_GiveInvItems(other,self,ItPo_Addon_Geist_01,1))
 	{
-		Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_OBSOLETE);
+//		Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_OBSOLETE);
+		Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_FAILED);
 		AI_StopProcessInfos(self);
 		AI_UseItem(self,ItPo_Addon_Geist_01);
 	};

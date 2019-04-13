@@ -541,9 +541,17 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 		AI_Output(self,other,"DIA_Jan_DJG_ARMOR_M_10_01");	//“ы увидишь, они сто€т своих денег.
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		Npc_RemoveInvItems(self,ItMi_Gold,VALUE_ITAR_DJG_M);
-		CreateInvItem(hero,ITAR_DJG_M);
+		if(Helms_Enabled == TRUE)
+		{
+			CreateInvItem(hero,ITAR_DJGN_M);
+			CreateInvItem(hero,ITHE_DJG_M);
+		}
+		else
+		{
+			CreateInvItem(hero,ITAR_DJG_M);
+		};
 		AI_PrintScreen("—редние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_DJG_M);
+//		AI_EquipArmor(hero,ITAR_DJG_M);
 		Jan_DIA_Jan_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else

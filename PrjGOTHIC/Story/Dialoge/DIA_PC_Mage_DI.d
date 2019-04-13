@@ -129,7 +129,7 @@ func void DIA_Milten_DI_Rat_ja()
 {
 	AI_Output(other,self,"DIA_Milten_DI_Rat_ja_15_00");	//Конечно.
 	AI_Output(self,other,"DIA_Milten_DI_Rat_ja_03_01");	//Извини, что я задаю такой глупый вопрос. Я немного нервничаю.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 	Info_ClearChoices(DIA_Milten_DI_Rat);
 };
 
@@ -157,7 +157,7 @@ func void DIA_Milten_DI_PEDROTOT_Info()
 	AI_Output(other,self,"DIA_Milten_DI_PEDROTOT_15_00");	//Я нашел Педро.
 	AI_Output(self,other,"DIA_Milten_DI_PEDROTOT_03_01");	//(удивленно) Что? Где? Здесь, на острове? Черт, но это абсолютно невероятно.
 	AI_Output(self,other,"DIA_Milten_DI_PEDROTOT_03_02");	//Я понятия не имел, что он такой подонок.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 	if(Npc_IsDead(Pedro_DI))
 	{
 		AI_Output(other,self,"DIA_Milten_DI_PEDROTOT_15_03");	//Он мертв.
@@ -514,7 +514,7 @@ func void DIA_Milten_DI_DementorObsessionBook_Info()
 	AI_Output(other,self,"DIA_Milten_DI_DementorObsessionBook_15_00");	//Эта книга, альманах Одержимых, говорит тебе о чем-то?
 	AI_Output(self,other,"DIA_Milten_DI_DementorObsessionBook_03_01");	//Пирокар - эксперт по таким книгам.
 	AI_Output(self,other,"DIA_Milten_DI_DementorObsessionBook_03_02");	//Извини. Я знаю слишком мало, чтобы сказать что-либо умное об этом.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 };
 
 
@@ -541,7 +541,7 @@ func void DIA_Milten_DI_DragonEgg_Info()
 	AI_Output(other,self,"DIA_Milten_DI_DragonEgg_15_00");	//Ты имел дело с драконьими яйцами?
 	AI_Output(self,other,"DIA_Milten_DI_DragonEgg_03_01");	//Нет, не совсем. Я слышал, что искусный алхимик как-то смог сварить зелье из них.
 	AI_Output(self,other,"DIA_Milten_DI_DragonEgg_03_02");	//Но, пожалуйста, не спрашивай меня о рецепте. Я понятия не имею, как оно готовится.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 };
 
 

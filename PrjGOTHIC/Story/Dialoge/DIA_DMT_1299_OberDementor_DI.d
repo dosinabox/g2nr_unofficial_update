@@ -57,7 +57,7 @@ func void DIA_Schwarzmagier_HELLO_schlaefer()
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_schlaefer_09_01");	//Ёто было в далеком прошлом. ѕовелитель открыл нам глаза. “еперь никто не остановит нас.
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_schlaefer_09_02");	//ѕовелитель показал нам единственно возможный путь борьбы с вами, неверующими.
 	TOPIC_END_DEMENTOREN = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 };
 
 func void DIA_Schwarzmagier_HELLO_dmt()

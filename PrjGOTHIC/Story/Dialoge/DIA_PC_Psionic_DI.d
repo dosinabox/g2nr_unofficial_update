@@ -52,7 +52,7 @@ func void DIA_Lester_DI_Hello_Info()
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_01");	//Марио слинял, когда на нас напали орки. Несмотря на весь хаос, что творился на корабле, я смог проследить за ним.
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_02");	//Он просто пошел через ряды орков, и те его даже пальцем не тронули.
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_03");	//Я с самого начала не доверял этому парню. Он заодно с врагом.
-		B_GivePlayerXP(XP_Ambient);
+		B_GivePlayerXP(XP_AmbientKap6);
 		DIA_Lester_DI_SCGotWarning1 = TRUE;
 	}
 	else if(!Npc_IsDead(Mario_DI) && (DIA_Lester_DI_SCGotWarning2 == FALSE))
@@ -91,7 +91,7 @@ func void DIA_Lester_DI_MarioArsch_Info()
 	AI_Output(other,self,"DIA_Lester_DI_MarioArsch_15_00");	//Ты был прав. Марио предал нас.
 	AI_Output(self,other,"DIA_Lester_DI_MarioArsch_13_01");	//Да. Возможно, я не очень-то проницательный, но в этом случае мне было ясно с самого начала.
 	AI_Output(self,other,"DIA_Lester_DI_MarioArsch_13_02");	//Постарайся тщательнее выбирать себе компаньонов в будущем.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 };
 
 
