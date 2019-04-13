@@ -8,4 +8,3 @@ func void b_awake_stoneguardian(var C_Npc slf)
 		slf.aivar[AIV_EnemyOverride] = FALSE;
 	};
 };
-

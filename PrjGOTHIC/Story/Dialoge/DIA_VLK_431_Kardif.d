@@ -546,7 +546,7 @@ func void DIA_Kardif_Diebeswerk2_Info()
 instance DIA_Kardif_Zurueck(C_Info)
 {
 	npc = VLK_431_Kardif;
-	nr = 5;
+	nr = 10;
 	condition = DIA_Kardif_Zurueck_Condition;
 	information = DIA_Kardif_Zurueck_Info;
 	permanent = TRUE;

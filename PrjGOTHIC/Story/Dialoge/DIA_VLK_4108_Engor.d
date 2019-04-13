@@ -244,7 +244,7 @@ instance DIA_Engor_BRINGMEAT(C_Info)
 
 func int DIA_Engor_BRINGMEAT_Condition()
 {
-	if((MIS_Engor_BringMeat == LOG_Running) && (Meat_Counter < Meat_Amount) && (Npc_HasItems(hero,ItFo_Bacon) || Npc_HasItems(hero,ItFoMuttonRaw) || Npc_HasItems(hero,ItFoMutton) || Npc_HasItems(hero,ItFo_Sausage)))
+	if((MIS_Engor_BringMeat == LOG_Running) && (Meat_Counter < Meat_Amount) && (Npc_HasItems(hero,ItFo_Bacon) || Npc_HasItems(hero,ItFoMuttonRaw) || Npc_HasItems(hero,ItFoMutton) || Npc_HasItems(hero,ItFo_Sausage) || (Npc_HasItems(hero,ItFo_Schafswurst) && ((Kapitel > 1) || (MIS_GoraxEssen == LOG_SUCCESS)))))
 	{
 		return TRUE;
 	};
@@ -257,11 +257,13 @@ func void DIA_Engor_BRINGMEAT_Info()
 	var string ConcatMutton;
 	var string ConcatBacon;
 	var string ConcatSausage;
+	var string ConcatSchafswurst;
 	var string GesamtFleisch;
 	var int RawCounter;
 	var int MuttonCounter;
 	var int BaconCounter;
 	var int SausageCounter;
+	var int SchafswurstCounter;
 	info_ypos = 35;
 	AI_Output(other,self,"DIA_Engor_BRINGMEAT_15_00");	//Вот, я принес тебе кое-что.
 	if(Npc_HasItems(other,ItFoMuttonRaw) && (Meat_Counter < Meat_Amount))
@@ -344,11 +346,31 @@ func void DIA_Engor_BRINGMEAT_Info()
 		AI_PrintScreen(ConcatSausage,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
+	if(Npc_HasItems(other,ItFo_Schafswurst) && ((Kapitel > 1) || (MIS_GoraxEssen == LOG_SUCCESS)) && (Meat_Counter < Meat_Amount))
+	{
+		Npc_GetInvItem(other,ItFo_Schafswurst);
+		SchafswurstCounter = Meat_Amount - Meat_Counter;
+		if(Npc_HasItems(other,ItFo_Schafswurst) > SchafswurstCounter)
+		{
+			ConcatSchafswurst = IntToString(SchafswurstCounter);
+			Meat_Counter += SchafswurstCounter;
+			Npc_RemoveInvItems(other,ItFo_Schafswurst,SchafswurstCounter);
+		}
+		else
+		{
+			ConcatSchafswurst = IntToString(Npc_HasItems(other,ItFo_Schafswurst));
+			Meat_Counter += Npc_HasItems(other,ItFo_Schafswurst);
+			Npc_RemoveInvItems(other,ItFo_Schafswurst,Npc_HasItems(other,ItFo_Schafswurst));
+		};
+		ConcatSchafswurst = ConcatStrings(ConcatSchafswurst," бараньих колбас отдано");
+		AI_PrintScreen(ConcatSchafswurst,-1,info_ypos,FONT_ScreenSmall,3);
+		info_ypos += 3;
+	};
 	if(Meat_Amount > Meat_Counter)
 	{
 		AI_Output(self,other,"DIA_Engor_BRINGMEAT_13_01");	//Для начала и это неплохо, но мне нужно больше.
 		GesamtFleisch = IntToString(Meat_Counter);
-		GesamtFleisch = ConcatStrings("В целом отдано мяса: ",GesamtFleisch);
+		GesamtFleisch = ConcatStrings("Всего отдано мяса: ",GesamtFleisch);
 		AI_PrintScreen(GesamtFleisch,-1,info_ypos,FONT_ScreenSmall,3);
 	};
 	if(Meat_Counter >= Meat_Amount)

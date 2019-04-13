@@ -552,7 +552,7 @@ instance ItKe_IgarazChest_Mis(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
-	visual = "ItKe_Key_01.3ds";
+	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от сундука,";
@@ -868,7 +868,8 @@ instance ItMi_KarrasBlessedStone_Mis(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 0;
-	visual = "ItMi_Rockcrystal.3ds";
+//	visual = "ItMi_Rockcrystal.3ds";
+	visual = "ItMi_KarrasBlessedStone.3ds";
 	visual_skin = 0;
 	material = MAT_STONE;
 	description = name;

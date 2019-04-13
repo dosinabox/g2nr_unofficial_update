@@ -36,6 +36,11 @@ func void B_SetVisuals_OrcShaman()
 	Mdl_SetVisualBody(self,"Orc_BodyShaman",DEFAULT,DEFAULT,"Orc_HeadShaman",DEFAULT,DEFAULT,-1);
 };
 
+func void B_SetVisuals_Hosh_Pak()
+{
+	Mdl_SetVisual(self,"Orc.mds");
+	Mdl_SetVisualBody(self,"Hosh_Body",DEFAULT,DEFAULT,"",DEFAULT,DEFAULT,-1);
+};
 
 instance OrcShaman_Sit(Mst_Default_OrcShaman)
 {
@@ -48,8 +53,14 @@ instance OrcShaman_Sit(Mst_Default_OrcShaman)
 instance OrcShaman_Hosh_Pak(Mst_Default_OrcShaman)
 {
 	name[0] = "Хош-Пак";
-	B_SetVisuals_OrcShaman();
-	EquipItem(self,ItMw_2H_OrcAxe_01);
+	level = 40;
+	attribute[ATR_STRENGTH] = 105;
+	attribute[ATR_HITPOINTS_MAX] = 400;
+	attribute[ATR_HITPOINTS] = 400;
+//	B_SetVisuals_OrcShaman();
+//	EquipItem(self,ItMw_2H_OrcAxe_01);
+	B_SetVisuals_Hosh_Pak();
+	EquipItem(self,ItMw_2H_OrcMace_01);
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_OrcSitStart] = OnlyRoutine;
 };
@@ -57,8 +68,14 @@ instance OrcShaman_Hosh_Pak(Mst_Default_OrcShaman)
 instance OrcShaman_Sit_CanyonLibraryKey(Mst_Default_OrcShaman)
 {
 	name[0] = "Главарь орды";
-	B_SetVisuals_OrcShaman();
-	EquipItem(self,ItMw_2H_OrcAxe_01);
+	level = 40;
+	attribute[ATR_STRENGTH] = 105;
+	attribute[ATR_HITPOINTS_MAX] = 400;
+	attribute[ATR_HITPOINTS] = 400;
+//	B_SetVisuals_OrcShaman();
+//	EquipItem(self,ItMw_2H_OrcAxe_01);
+	B_SetVisuals_Hosh_Pak();
+	EquipItem(self,ItMw_2H_OrcAxe_03);
 	CreateInvItems(self,itke_canyonlibrary_hierarchy_books_addon,1);
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_OrcSitStart] = OnlyRoutine;

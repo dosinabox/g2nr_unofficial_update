@@ -78,7 +78,7 @@ instance Summoned_Skeleton(Mst_Default_Skeleton)
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
 	start_aistate = ZS_MM_Rtn_Summoned;
-	B_SetVisuals_Lesser_Skeleton();
+//	B_SetVisuals_Lesser_Skeleton();
 	EquipItem(self,ItMw_2H_Sword_M_01);
 };
 

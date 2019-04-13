@@ -611,7 +611,7 @@ instance DIA_Cassia_Pickpocket(C_Info)
 	condition = DIA_Cassia_Pickpocket_Condition;
 	information = DIA_Cassia_Pickpocket_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня карманному воровству",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1));
+	description = B_BuildLearnString("Карманная кража",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1));
 };
 
 

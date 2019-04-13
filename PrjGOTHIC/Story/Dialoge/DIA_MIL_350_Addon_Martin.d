@@ -321,7 +321,8 @@ func void DIA_Addon_Martin_Auftrag_Info()
 	};
 	B_StartOtherRoutine(MIL_321_Rangar,"PrePalCampKlau");
 	Info_ClearChoices(DIA_Addon_Martin_Auftrag);
-	Info_AddChoice(DIA_Addon_Martin_Auftrag,"(еще)",DIA_Addon_Martin_Auftrag_weiter);
+//	Info_AddChoice(DIA_Addon_Martin_Auftrag,"(еще)",DIA_Addon_Martin_Auftrag_weiter);
+	Info_AddChoice(DIA_Addon_Martin_Auftrag,Dialog_Ende,DIA_Addon_Martin_Auftrag_weiter);
 };
 
 func void DIA_Addon_Martin_Auftrag_weiter()

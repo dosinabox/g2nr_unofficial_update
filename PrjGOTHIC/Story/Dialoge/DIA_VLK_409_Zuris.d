@@ -142,6 +142,10 @@ func void DIA_Zuris_WAREZ_Info()
 		AI_Output(self,other,"DIA_Zuris_GREET_14_02");	//Я только что получил несколько новых зелий. Мой гость, мастер Дарон, маг Огня, принес мне их из монастыря.
 		Zuris_einmal = TRUE;
 	};
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	{
+		ZurisMinenAnteil = TRUE;
+	};
 	Trade_IsActive = TRUE;
 };
 
@@ -306,7 +310,8 @@ instance DIA_Zuris_Minenanteil(C_Info)
 
 func int DIA_Zuris_Minenanteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running))
+	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running))
+	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (ZurisMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

@@ -198,7 +198,7 @@ var C_Npc Wolfi;
 var C_Npc Fed;
 var C_Npc Kervo;
 var C_Npc Geppert;
-var C_Npc Bote;
+//var C_Npc Bote;
 var C_Npc Jorgen;
 var C_Npc LeuchtturmBandit_1021;
 var C_Npc LeuchtturmBandit_1022;
@@ -538,7 +538,7 @@ func void B_InitNpcGlobals()
 	Fed = Hlp_GetNpc(STRF_1106_Fed);
 	Kervo = Hlp_GetNpc(STRF_1116_Kervo);
 	Geppert = Hlp_GetNpc(STRF_1115_Geppert);
-	Bote = Hlp_GetNpc(VLK_4006_Bote);
+//	Bote = Hlp_GetNpc(VLK_4006_Bote);
 	Jorgen = Hlp_GetNpc(VLK_4250_Jorgen);
 	LeuchtturmBandit_1021 = Hlp_GetNpc(BDT_1021_LeuchtturmBandit);
 	LeuchtturmBandit_1022 = Hlp_GetNpc(BDT_1022_LeuchtturmBandit);

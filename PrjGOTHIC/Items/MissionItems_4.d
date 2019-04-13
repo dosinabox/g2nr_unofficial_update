@@ -18,7 +18,7 @@ instance ItAm_Mana_Angar_MIS(C_Item)
 	//description = "Магический амулет Ангара";
 	description = "Амулет магии";
 	text[0] = "Этот амулет принадлежит Ангару.";
-	text[2] = NAME_Bonus_Mana;
+	text[2] = NAME_Bonus_ManaMax;
 	count[2] = 10;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -141,7 +141,8 @@ instance ItAt_TalbinsLurkerSkin(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_ReptileSkin;
-	visual = "ItAt_LurkerSkin.3DS";
+//	visual = "ItAt_LurkerSkin.3DS";
+	visual = "ItAt_TalbinsLurkerSkin.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "На внутренней стороне клеймо - 'Талбин'.";
@@ -235,7 +236,9 @@ instance ItPo_DragonEggDrinkNeoras_MIS(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Зелье из драконьего яйца";
-	text[0] = PRINT_UnknownEffect;
+//	text[0] = PRINT_UnknownEffect;
+	text[1] = TEXT_DragonEggDrinkNeoras_Setting;
+	count[1] = COUNT_DragonEggDrinkNeoras_Setting;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -246,6 +249,8 @@ func void Use_DragonEggDrinkNeoras()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Elixier);
 	B_RaiseAttribute(self,ATR_STRENGTH,3);
 	Snd_Play("DEM_Warn");
+	TEXT_DragonEggDrinkNeoras_Setting = NAME_Bonus_Str;
+	COUNT_DragonEggDrinkNeoras_Setting = 3;
 	Neoras_SCUsedDragonEggDrink = TRUE;
 };
 

@@ -74,7 +74,7 @@ instance ItMW_Addon_Stab02(C_Item)
 	description = name;
 	text[1] = NAME_Damage;
 	count[1] = damageTotal;
-	text[2] = NAME_Bonus_Mana;
+	text[2] = NAME_Bonus_ManaMax;
 	count[2] = 20;
 	text[3] = NAME_Mana_needed;
 	count[3] = cond_value[2];

@@ -359,7 +359,7 @@ func void DIA_Constantino_HerbsRunning_Success()
 {
 	AI_Output(other,self,"DIA_Constantino_HerbsRunning_Success_15_00");	//Я принес все растения, что ты просил!
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_Success_10_01");	//Что? Ты пытаешься обмануть меня, да?
-	AI_PrintScreen("11 предметов отдано (растения)",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("11 растений отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Npc_RemoveInvItems(other,ItPl_Mana_Herb_01,1);
 	Npc_RemoveInvItems(other,ItPl_Mana_Herb_02,1);
 	Npc_RemoveInvItems(other,ItPl_Mana_Herb_03,1);

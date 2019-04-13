@@ -1554,9 +1554,14 @@ func void init_surface()
 
 func void init_oldworld()
 {
+	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	};
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
 	INIT_SUB_Surface();
+	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
@@ -1573,7 +1578,11 @@ func void startup_oldworld()
 	Startup_Oldcamp();
 	Startup_Demontower();
 	Startup_Surface();
-	Wld_SetTime(0,0);
+//	Wld_SetTime(0,0);
+	if(Wld_IsTime(4,0,21,0))
+	{
+		Wld_SetTime(23,59);
+	};
 };
 
 func void STARTUP_NewWorld_Part_City_01()
@@ -1946,8 +1955,8 @@ func void STARTUP_NewWorld_Part_Farm_01()
 	Wld_InsertNpc(YGobbo_Green,"NW_FARM1_PATH_CITY_19_B");
 	Wld_InsertNpc(YBloodfly,"NW_FARM1_PATH_CITY_10_B");
 	Wld_InsertNpc(YBloodfly,"NW_FARM1_PATH_CITY_10_B");
-	Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
-	Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+//	Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+//	Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
 	Wld_InsertNpc(YGiant_Bug,"NW_FARM1_CITYWALL_RIGHT_02");
 	Wld_InsertNpc(YGiant_Bug,"NW_FARM1_OUT_13");
 	Wld_InsertNpc(YGiant_Bug_VinoRitual1,"NW_FARM1_OUT_15");
@@ -2493,14 +2502,15 @@ func void STARTUP_NewWorld_Part_GreatPeasant_01()
 
 func void INIT_SUB_NewWorld_Part_GreatPeasant_01()
 {
-	if(MIS_Addon_Erol_BanditStuff == LOG_SUCCESS)
+/*	if(MIS_Addon_Erol_BanditStuff == LOG_SUCCESS)
 	{
 		Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 	}
 	else
 	{
 		Wld_AssignRoomToGuild("grpwaldhuette01",GIL_SLD);
-	};
+	};*/
+	Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grphaupthaus01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpschmiede01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("grpscheune01",GIL_PUBLIC);
@@ -3038,6 +3048,11 @@ func void STARTUP_NewWorld()
 
 func void INIT_NewWorld()
 {
+	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	};
+	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
@@ -3088,6 +3103,10 @@ func void STARTUP_AddonWorld()
 
 func void INIT_AddonWorld()
 {
+	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	};
 	init_sub_addon_part_banditscamp_01();
 	init_sub_addon_part_piratescamp_01();
 	init_sub_addon_part_entrance_01();
@@ -3095,6 +3114,7 @@ func void INIT_AddonWorld()
 	init_sub_addon_part_canyon_01();
 	init_sub_addon_part_valley_01();
 	init_sub_addon_part_adanostemple_01();
+	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();

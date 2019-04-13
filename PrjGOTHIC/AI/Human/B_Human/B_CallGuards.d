@@ -13,6 +13,10 @@ func int C_WantToCallGuards(var C_Npc slf)
 
 func void B_CallGuards()
 {
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cavalorn)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Gaan)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Orlan)))
+	{
+		return;
+	};
 	if(!C_WantToCallGuards(self))
 	{
 		return;

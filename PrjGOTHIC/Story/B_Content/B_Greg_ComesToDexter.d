@@ -13,7 +13,6 @@ func void B_Greg_ComesToDexter()
 		};
 		if(B_Greg_ComesToDexter_OneTime == FALSE)
 		{
-			
 			Dexter.aivar[AIV_EnemyOverride] = FALSE;
 			Npc_SendPassivePerc(Dexter,PERC_ASSESSFIGHTSOUND,Dexter,hero);
 			GregLocation = Greg_Dexter;

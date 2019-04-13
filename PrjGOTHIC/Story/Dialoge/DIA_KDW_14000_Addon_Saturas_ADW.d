@@ -584,8 +584,15 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 	if((SC_KnowsRavensGoldmine == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime2 == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_05");	//Он владеет золотым рудником и заключенными, добывающими золото.
-		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_06");	//Это на него похоже. Ты должен освободить узников.
-		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_07");	//(вздыхает) Да, конечно. Я работаю над этим.
+		if(!Npc_KnowsInfo(other,DIA_Addon_Saturas_FreedMissingPeople))
+		{
+			AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_06");	//Это на него похоже. Ты должен освободить узников.
+			AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_07");	//(вздыхает) Да, конечно. Я работаю над этим.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Saturas_TuerZu_14_10");	//Верно!
+		};
 		DIA_Addon_Saturas_RavenInfos_OneTime2 = TRUE;
 		RavenNeuigkeit += 1;
 	};
@@ -1018,7 +1025,7 @@ func void DIA_Addon_Saturas_BeliarWeapGeben_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_BeliarWeapGeben_15_00");	//Возьми Коготь Белиара и уничтожь его.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_01");	//Как скажешь, сын мой. Дай мне Коготь.
 	B_ClearBeliarsWeapon();
-	AI_PrintScreen("Отдан Коготь Белиара",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Коготь Белиара отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_02");	//Теперь Коготь лишен своей силы. Я утоплю его в глубинах моря.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_03");	//Мудрость Аданоса укроет его от Зла.
 	TOPIC_END_Klaue = TRUE;
@@ -1083,7 +1090,8 @@ func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 	kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
 	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
 	{
-		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Я хочу перейти на следующий уровень магии.",kosten);
+//		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Я хочу перейти на следующий уровень магии",kosten);
+		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Следующий Круг магии",kosten);
 		return TRUE;
 	};
 };

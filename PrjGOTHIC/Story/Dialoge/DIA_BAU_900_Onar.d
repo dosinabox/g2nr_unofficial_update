@@ -131,7 +131,7 @@ instance DIA_Onar_WorkAsSld(C_Info)
 
 func int DIA_Onar_WorkAsSld_Condition()
 {
-	if((Lee_SendToOnar == FALSE) && (Onar_WegenSldWerden == FALSE) && Npc_KnowsInfo(other,DIA_Onar_Work))
+	if((Lee_SendToOnar == FALSE) && (Onar_WegenSldWerden == FALSE) && Npc_KnowsInfo(other,DIA_Onar_Work) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -229,7 +229,7 @@ func void DIA_Onar_WegenSekob_Info()
 	{
 		AI_Output(self,other,"DIA_Onar_WegenSekob_14_01");	//Что, черт возьми, тебе нужно здесь? Отнеси деньги Торлофу.
 	}
-	else
+	else if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Onar_WegenSekob_14_02");	//Какого дьявола ты лезешь в это дело?
 		AI_Output(other,self,"DIA_Onar_WegenSekob_15_03");	//Я хочу стать наемником. Собрать ренту - это мое испытание.

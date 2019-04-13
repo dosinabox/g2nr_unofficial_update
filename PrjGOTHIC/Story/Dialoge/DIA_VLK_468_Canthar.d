@@ -303,6 +303,10 @@ func void DIA_Canthar_TRADE_Info()
 	AI_Output(other,self,"DIA_Canthar_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Canthar_TRADE_09_01");	//Выбирай.
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	{
+		CantharMinenAnteil = TRUE;
+	};
 	Trade_IsActive = TRUE;
 };
 
@@ -630,7 +634,8 @@ instance DIA_Canthar_MinenAnteil(C_Info)
 
 func int DIA_Canthar_MinenAnteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Canthar_WhatOffer))
+	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Canthar_WhatOffer))
+	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (CantharMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

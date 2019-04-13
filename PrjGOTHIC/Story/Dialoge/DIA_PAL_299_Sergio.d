@@ -106,7 +106,7 @@ instance DIA_Sergio_Aufgabe(C_Info)
 
 func int DIA_Sergio_Aufgabe_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Sergio_Isgaroth))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Sergio_Isgaroth) && (Parlan_Erlaubnis == FALSE))
 	{
 		return TRUE;
 	};
@@ -345,7 +345,7 @@ func int DIA_Sergio_Perm_Condition()
 
 func void DIA_Sergio_Perm_Info()
 {
-	if(other.guild == GIL_PAL)
+	if((other.guild == GIL_PAL) || (other.guild == GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Sergio_Perm_04_00");	//Хвала Инносу, брат. Если ты пришел узнать что-нибудь об Освящении Меча, поговори с Мардуком.
 	}

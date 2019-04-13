@@ -38,18 +38,18 @@ const int Value_Sc_BreathOfDeath = 250;
 const int Value_Sc_MassDeath = 250;
 const int Value_Sc_ArmyOfDarkness = 250;
 const int Value_Sc_Shrink = 250;
-const int Value_Sc_TrfSheep = 25;
-const int Value_Sc_TrfScavenger = 50;
-const int Value_Sc_TrfGiantRat = 50;
-const int Value_Sc_TrfGiantBug = 60;
-const int Value_Sc_TrfWolf = 75;
-const int Value_Sc_TrfWaran = 80;
-const int Value_Sc_TrfSnapper = 125;
-const int Value_Sc_TrfWarg = 125;
-const int Value_Sc_TrfFireWaran = 200;
-const int Value_Sc_TrfLurker = 80;
-const int Value_Sc_TrfShadowbeast = 200;
-const int Value_Sc_TrfDragonSnapper = 200;
+const int Value_Sc_TrfSheep = 200;
+const int Value_Sc_TrfGiantRat = 300;
+const int Value_Sc_TrfWolf = 400;
+const int Value_Sc_TrfScavenger = 500;
+const int Value_Sc_TrfGiantBug = 600;
+const int Value_Sc_TrfLurker = 700;
+const int Value_Sc_TrfSnapper = 800;
+const int Value_Sc_TrfWaran = 900;
+const int Value_Sc_TrfWarg = 1000;
+const int Value_Sc_TrfShadowbeast = 1100;
+const int Value_Sc_TrfFireWaran = 1300;
+const int Value_Sc_TrfDragonSnapper = 1500;
 
 instance ItSc_PalLight(C_Item)
 {

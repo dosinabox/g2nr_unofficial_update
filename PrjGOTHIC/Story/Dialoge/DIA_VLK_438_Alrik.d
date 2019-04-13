@@ -543,6 +543,17 @@ func void DIA_Alrik_HaveSword_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_HaveSword_15_00");	//Я принес твой меч!
 	B_GiveInvItems(other,self,ItMw_AlriksSword_Mis,1);
+	AI_EquipBestMeleeWeapon(self);
+	if(Alrik_EinmalSchwertBonus == FALSE)
+	{
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_Standup(self);
+			B_TurnToNpc(self,other);
+		};
+		B_AddFightSkill(self,NPC_TALENT_1H,20);
+		Alrik_EinmalSchwertBonus = TRUE;
+	};
 	if(MIS_Alrik_Sword != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Alrik_HaveSword_09_01");	//Ах! Им значительно удобнее сражаться, чем палкой!
@@ -553,12 +564,6 @@ func void DIA_Alrik_HaveSword_Info()
 	{
 		AI_Output(self,other,"DIA_Alrik_HaveSword_09_02");	//Отлично! Интересно, осмелишься ли ты вызвать меня теперь!
 	};
-	if(Alrik_EinmalSchwertBonus == FALSE)
-	{
-		B_AddFightSkill(self,NPC_TALENT_1H,20);
-		Alrik_EinmalSchwertBonus = TRUE;
-	};
-	AI_EquipBestMeleeWeapon(self);
 };
 
 

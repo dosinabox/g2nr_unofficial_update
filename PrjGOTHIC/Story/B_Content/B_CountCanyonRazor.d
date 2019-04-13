@@ -48,7 +48,14 @@ func void B_CountCanyonRazor()
 	var string CanyonRazorText;
 	var string CanyonRazorLeft;
 	CanyonRazorLeft = IntToString(10 - CanyonRazorBodyCount);
-	CanyonRazorText = ConcatStrings(CanyonRazorLeft,PRINT_Addon_CanyonRazorsLeft);
-	AI_PrintScreen(CanyonRazorText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	CanyonRazorText = ConcatStrings(PRINT_Addon_CanyonRazorsLeft,CanyonRazorLeft);
+	if(CanyonRazorBodyCount < 10)
+	{
+		AI_PrintScreen(CanyonRazorText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	}
+	else
+	{
+		AI_PrintScreen("Все бритвозубы убиты!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+	};
 };
 

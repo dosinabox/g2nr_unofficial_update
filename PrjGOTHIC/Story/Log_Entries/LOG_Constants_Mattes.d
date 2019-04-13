@@ -1,7 +1,7 @@
 
 const string Topic_Addon_Logan = "Охота на болотных акул";
 const string Topic_Addon_Stoneplate = "Каменная табличка в болотах";
-const string Topic_Addon_Franco = "Вперед (в лагерь бандитов)";
+const string Topic_Addon_Franco = "Вперед, в лагерь бандитов";
 const string Topic_Addon_Senyan = "Смертельная ситуация";
 const string Topic_Addon_Esteban = "Покушение на убийство";
 const string Topic_Addon_Huno = "Сталь для Хуно";

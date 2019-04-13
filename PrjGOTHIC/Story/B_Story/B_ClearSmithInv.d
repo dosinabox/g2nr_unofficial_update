@@ -62,14 +62,15 @@ func void B_ClearJunkInv(var C_Npc slf)
 	her = Hlp_GetNpc(PC_Hero);
 	if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(her))
 	{
-		Npc_RemoveInvItems(slf,ItMi_Stomper,Npc_HasItems(self,ItMi_Stomper));
-		Npc_RemoveInvItems(slf,ItMi_Hammer,Npc_HasItems(self,ItMi_Hammer));
-		Npc_RemoveInvItems(slf,ItMi_Scoop,Npc_HasItems(self,ItMi_Scoop));
-		Npc_RemoveInvItems(slf,ItMi_Saw,Npc_HasItems(self,ItMi_Saw));
-		Npc_RemoveInvItems(slf,ItMi_Rake,Npc_HasItems(self,ItMi_Rake));
-		Npc_RemoveInvItems(slf,ItMi_Broom,Npc_HasItems(self,ItMi_Broom));
-		Npc_RemoveInvItems(slf,ItMi_Lute,Npc_HasItems(self,ItMi_Lute));
-		Npc_RemoveInvItems(slf,ItMi_Brush,Npc_HasItems(self,ItMi_Brush));
+		Npc_RemoveInvItems(slf,ItMi_Stomper,Npc_HasItems(slf,ItMi_Stomper));
+		Npc_RemoveInvItems(slf,ItMi_Hammer,Npc_HasItems(slf,ItMi_Hammer));
+		Npc_RemoveInvItems(slf,ItMi_Scoop,Npc_HasItems(slf,ItMi_Scoop));
+		Npc_RemoveInvItems(slf,ItMi_Saw,Npc_HasItems(slf,ItMi_Saw));
+		Npc_RemoveInvItems(slf,ItMi_Rake,Npc_HasItems(slf,ItMi_Rake));
+		Npc_RemoveInvItems(slf,ItMi_Broom,Npc_HasItems(slf,ItMi_Broom));
+		Npc_RemoveInvItems(slf,ItMi_Lute,Npc_HasItems(slf,ItMi_Lute));
+		Npc_RemoveInvItems(slf,ItMi_Brush,Npc_HasItems(slf,ItMi_Brush));
+		Npc_RemoveInvItems(slf,ItMw_TrainSword,Npc_HasItems(slf,ItMw_TrainSword));
 	};
 };
 

@@ -46,6 +46,10 @@ func void ZS_Dead()
 		Npc_RemoveInvItems(self,ItMw_1h_MISC_Sword,Npc_HasItems(self,ItMw_1h_MISC_Sword));
 		Npc_RemoveInvItems(self,ItMw_1h_Misc_Axe,Npc_HasItems(self,ItMw_1h_Misc_Axe)); 
 	};
+	if(self.guild == GIL_SUMMONED_SKELETON)
+	{
+		Npc_RemoveInvItems(self,ItMw_2H_Sword_M_01,Npc_HasItems(self,ItMw_2H_Sword_M_01));
+	};
 	if(Npc_IsPlayer(other))
 	{
 		self.aivar[AIV_KilledByPlayer] = TRUE;

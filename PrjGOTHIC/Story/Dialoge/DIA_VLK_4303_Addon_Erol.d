@@ -291,7 +291,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_06");	//Этого достаточно. Маг Воды получит то, что я обещал, и я смогу, наконец, вернуться домой.
 			MIS_Addon_Erol_BanditStuff = LOG_SUCCESS;
-			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
+//			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 		};
 		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_07");	//Конечно же, я тебе заплачу.
 		StoneplatesGeld = Addon_ErolsStoneplatesOffer * Npc_HasItems(self,ItWr_StonePlateCommon_Addon);
@@ -306,7 +306,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 			AI_UseMob(self,"BENCH",-1);
 			AI_GotoWP(self,"NW_TAVERN_TO_FOREST_03");
 			Npc_ExchangeRoutine(self,"Start");
-			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
+//			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 		};
 	}
 	else if(C_ScHasMagicStonePlate())

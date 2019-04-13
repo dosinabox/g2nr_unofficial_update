@@ -19,6 +19,12 @@ func void DIA_Addon_Greg_NW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 	PlayerTalkedToGregNW = TRUE;
+	if(GregWolfs == FALSE)
+	{
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+		GregWolfs = TRUE;
+	};
 };
 
 
@@ -48,6 +54,12 @@ func void DIA_Addon_Greg_NW_Hallo_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_01_03");	//Послушай, ты выглядишь сообразительным парнем. Уверен, ты в жизни далеко пойдешь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_01_04");	//Ты не дурак, я вижу это по твоим глазам.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Hallo_01_05");	//Наверняка ты хочешь заработать пригоршню золотых монет, не так ли?
+	if(GregWolfs == FALSE)
+	{
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+		GregWolfs = TRUE;
+	};
 	PlayerTalkedToGregNW = TRUE;
 	SC_MeetsGregTime = 1;
 	Info_ClearChoices(DIA_Addon_Greg_NW_Hallo);
@@ -955,6 +967,7 @@ func void DIA_Addon_Greg_NW_RavensLetter_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_00");	//Я нашел только это письмо.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_01");	//Покажи.
+	AI_PrintScreen("Приказы отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_02");	//Черт возьми! Это мне совсем не поможет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_03");	//Нельзя было его просто так убивать.
@@ -968,6 +981,7 @@ func void DIA_Addon_Greg_NW_RavensLetter_Info()
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_08");	//Нет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_09");	//(вздыхает) Значит, я здесь застрял.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_10");	//На Декстера у меня была последняя надежда.
+	AI_PrintScreen("Приказы получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 };
 
 
@@ -1042,10 +1056,10 @@ func int DIA_Addon_Greg_NW_FoundTreasure_Condition()
 func void DIA_Addon_Greg_NW_FoundTreasure_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_15_00");	//Я нашел все закопанные вещи.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_01_01");	//Тогда у тебя должно быть около ста золотых, золотой кубок, серебряная чаша и амулет. Давай их сюда.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_01_01");	//Тогда у тебя должно быть около ста золотых, золотая чаша, серебряное блюдо и амулет. Давай их сюда!
 	Info_ClearChoices(DIA_Addon_Greg_NW_FoundTreasure);
 	Info_AddChoice(DIA_Addon_Greg_NW_FoundTreasure,"У меня с собой их нет.",DIA_Addon_Greg_NW_FoundTreasure_not);
-	if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldCup) && Npc_HasItems(other,ItMi_SilverChalice) && Npc_HasItems(other,ItAm_Prot_Point_01))
+	if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Prot_Point_01))
 	{
 		Info_AddChoice(DIA_Addon_Greg_NW_FoundTreasure,"Вот твои вещи.",DIA_Addon_Greg_NW_FoundTreasure_ja);
 	};
@@ -1062,10 +1076,10 @@ func void DIA_Addon_Greg_NW_FoundTreasure_ja()
 	{
 		AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_02");	//100 золотых.
 	};
-	B_GiveInvItems(other,self,ItMi_GoldCup,1);
-	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_03");	//Золотой кубок.
-	B_GiveInvItems(other,self,ItMi_SilverChalice,1);
-	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_04");	//Серебряная чаша.
+	B_GiveInvItems(other,self,ItMi_GoldChalice,1);
+	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_03");	//Золотая чаша.
+	B_GiveInvItems(other,self,ItMi_GregsSilverPlate,1);
+	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_04");	//Серебряное блюдо.
 	B_GiveInvItems(other,self,ItAm_Prot_Point_01,1);
 	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_05");	//И амулет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_ja_01_06");	//Очень хорошо. Вижу, тебе хватило ума не присваивать себе мои вещи.

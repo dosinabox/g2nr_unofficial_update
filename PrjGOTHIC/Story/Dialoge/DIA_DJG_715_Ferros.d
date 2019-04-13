@@ -191,11 +191,13 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Info()
 	Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,Dialog_Back,DIA_DJG_715_Ferros_FerrosAnySword_Back);
 	if(Npc_HasItems(other,ItMw_1H_Special_01))
 	{
-		Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,ItMw_1H_Special_01.name,DIA_DJG_715_Ferros_FerrosAnySword_Silverblade);
+//		Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,ItMw_1H_Special_01.name,DIA_DJG_715_Ferros_FerrosAnySword_Silverblade);
+		Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,"(отдать 'Длинный рудный меч')",DIA_DJG_715_Ferros_FerrosAnySword_Silverblade);
 	};
 	if(Npc_HasItems(other,ItMw_1H_Special_02))
 	{
-		Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,ItMw_1H_Special_02.name,DIA_DJG_715_Ferros_FerrosAnySword_Oreblade);
+//		Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,ItMw_1H_Special_02.name,DIA_DJG_715_Ferros_FerrosAnySword_Oreblade);
+		Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,"(отдать 'Полуторный рудный меч')",DIA_DJG_715_Ferros_FerrosAnySword_Oreblade);
 	};
 };
 
@@ -249,6 +251,11 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_Yes()
 {
 	B_Ferros_FerrosAnySword_Yes1();
 	B_GiveInvItems(other,self,ItMw_1H_Special_01,1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
@@ -266,6 +273,11 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_Yes()
 {
 	B_Ferros_FerrosAnySword_Yes1();
 	B_GiveInvItems(other,self,ItMw_1H_Special_02,1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
@@ -303,6 +315,11 @@ func void DIA_DJG_715_Ferros_FerrosHisSword_Info()
 {
 	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosHisSword_15_00");	//Я нашел твой меч.
 	B_GiveInvItems(other,self,ItMW_1H_FerrosSword_Mis,1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 	MIS_FerrosSword = LOG_SUCCESS;

@@ -417,6 +417,23 @@ instance ItMw_1h_MISC_Sword(C_Item)
 	count[5] = value;
 };
 
+instance ItMw_TrainSword(C_Item)
+{
+	name = "“ренировочный меч";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_AXE;
+	material = MAT_WOOD;
+	value = 0;
+	damageTotal = 5;
+	damagetype = DAM_BLUNT;
+	range = 40;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = 5;
+	visual = "ItMw_TrainSword.3DS";
+	description = name;
+	text[4] = NAME_OneHanded;
+};
+
 instance ItMw_1h_Misc_Axe(C_Item)
 {
 	name = "–жавый топор";
@@ -513,7 +530,8 @@ instance ItMw_1h_Sld_Sword(C_Item)
 {
 	name = "√рубый меч";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_AXE;
+//	flags = ITEM_AXE;
+	flags = ITEM_SWD;
 	material = MAT_METAL;
 	value = Value_Sld1hSchwert;
 	damageTotal = Damage_Sld1hSchwert;
@@ -1598,7 +1616,8 @@ instance ItMw_Inquisitor(C_Item)
 	material = MAT_WOOD;
 	value = Value_Inquisitor;
 	damageTotal = Damage_Inquisitor;
-	damagetype = DAM_EDGE;
+//	damagetype = DAM_EDGE;
+	damagetype = DAM_BLUNT;
 	range = Range_Inquisitor;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Inquisitor;
@@ -1715,8 +1734,10 @@ instance ItMw_ElBastardo(C_Item)
 {
 	name = "Ёль-бастардо";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_AXE;
-	material = MAT_WOOD;
+//	flags = ITEM_AXE;
+//	material = MAT_WOOD;
+	flags = ITEM_SWD;
+	material = MAT_METAL;
 	value = Value_ElBastardo;
 	damageTotal = Damage_ElBastardo;
 	damagetype = DAM_EDGE;

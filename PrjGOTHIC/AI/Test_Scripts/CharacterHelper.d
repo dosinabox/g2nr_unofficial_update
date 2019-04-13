@@ -120,7 +120,7 @@ func void B_SetHeroExp()
 	hero.lp = hero.level * LP_PER_LEVEL;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40 + (10 * hero.level);
 	hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
-	Attributes = "Повышение уровня!  Очки обучения:";
+	Attributes = "Повышение уровня! Очки обучения:";
 	Attributes = ConcatStrings(Attributes,IntToString(hero.lp));
 	Attributes = ConcatStrings(Attributes,"  Здоровье:");
 	Attributes = ConcatStrings(Attributes,IntToString(hero.attribute[ATR_HITPOINTS_MAX]));
@@ -593,7 +593,7 @@ func void CH_Lernpunkte_50()
 {
 	Info_ClearChoices(CH_Lernpunkte);
 	hero.lp += 50;
-	PrintScreen("+ 50 LP",-1,-1,FONT_Screen,3);
+	PrintScreen("+ 50 очков обучения",-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };
 
@@ -601,7 +601,7 @@ func void CH_Lernpunkte_25()
 {
 	Info_ClearChoices(CH_Lernpunkte);
 	hero.lp += 25;
-	PrintScreen("+ 25 LP",-1,-1,FONT_Screen,3);
+	PrintScreen("+ 25 очков обучения",-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };
 
@@ -609,7 +609,7 @@ func void CH_Lernpunkte_10()
 {
 	Info_ClearChoices(CH_Lernpunkte);
 	hero.lp += 10;
-	PrintScreen("+ 10 LP",-1,-1,FONT_Screen,3);
+	PrintScreen("+ 10 очков обучения",-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };
 
@@ -617,7 +617,7 @@ func void CH_Lernpunkte_5()
 {
 	Info_ClearChoices(CH_Lernpunkte);
 	hero.lp += 5;
-	PrintScreen("+ 5 LP",-1,-1,FONT_Screen,3);
+	PrintScreen("+ 5 очков обучения",-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };
 
@@ -1539,10 +1539,10 @@ func void DIA_CH_Mana_Info()
 {
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
 };
 
 func void DIA_CH_Mana_BACK()
@@ -1555,10 +1555,10 @@ func void dia_ch_mana_1()
 	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MAX);
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
 };
 
 func void dia_ch_mana_5()
@@ -1566,10 +1566,10 @@ func void dia_ch_mana_5()
 	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MAX);
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
 };
 
 func void dia_ch_mana_10()
@@ -1577,10 +1577,10 @@ func void dia_ch_mana_10()
 	B_TeachAttributePoints(self,other,ATR_MANA_MAX,10,T_MAX);
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
 };
 
 func void dia_ch_mana_20()
@@ -1588,10 +1588,10 @@ func void dia_ch_mana_20()
 	B_TeachAttributePoints(self,other,ATR_MANA_MAX,20,T_MAX);
 	Info_ClearChoices(DIA_CH_Mana);
 	Info_AddChoice(DIA_CH_Mana,Dialog_Back,DIA_CH_Mana_BACK);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
-	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 20",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 20),dia_ch_mana_20);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 10",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 10),dia_ch_mana_10);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 5",B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),dia_ch_mana_5);
+	Info_AddChoice(DIA_CH_Mana,B_BuildLearnString("Макс. мана + 1",B_GetLearnCostAttribute(other,ATR_MANA_MAX)),dia_ch_mana_1);
 };
 
 
@@ -3210,7 +3210,8 @@ func void DIA_CH_Misc_Animal_Speziell_Info()
 	Info_AddChoice(DIA_CH_Misc_Animal_Speziell,Dialog_Back,DIA_CH_Misc_Animal_Speziell_BACK);
 	if(Knows_Bloodfly == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,"Секрет из жала. Цена:1 LP",CH_Training_TROPHYS_BFGift);
+//		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,"Секрет из жала. Цена: 1 очко обучения",CH_Training_TROPHYS_BFGift);
+		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,"Секрет из жала (1 очко обучения)",CH_Training_TROPHYS_BFGift);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 	{

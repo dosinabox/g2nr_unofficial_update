@@ -298,6 +298,10 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 			if(!Npc_IsDead(Gorax))
 			{
 				AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_05");	//Горакс может продать тебе карту, на которой помечены наши алтари.
+				if(!Npc_HasItems(Gorax,ItWr_Map_Shrine_MIS))
+				{
+					CreateInvItems(Gorax,ItWr_Map_Shrine_MIS,1);
+				};
 			}
 			else
 			{

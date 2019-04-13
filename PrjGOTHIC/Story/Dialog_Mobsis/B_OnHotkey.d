@@ -180,7 +180,13 @@ func void player_hotkey_lame_potion()
 {
 	if(!Npc_IsInState(hero,ZS_Dead))
 	{
-		if(Npc_HasItems(hero,ItPo_Mana_03) && ((hero.attribute[ATR_MANA_MAX] - hero.attribute[ATR_MANA]) >= Mana_Elixier))
+		if(Npc_HasItems(hero,ItPo_Mana_Addon_04) && ((hero.attribute[ATR_MANA]) <= (hero.attribute[ATR_MANA_MAX] / 4)))
+		{
+			hero.attribute[ATR_MANA] = hero.attribute[ATR_MANA_MAX];
+			Npc_RemoveInvItem(hero,ItPo_Mana_Addon_04);
+			B_LameSchlork();
+		}
+		else if(Npc_HasItems(hero,ItPo_Mana_03) && ((hero.attribute[ATR_MANA_MAX] - hero.attribute[ATR_MANA]) >= Mana_Elixier))
 		{
 			Npc_ChangeAttribute(hero,ATR_MANA,Mana_Elixier);
 			Npc_RemoveInvItem(hero,ItPo_Mana_03);
@@ -218,6 +224,12 @@ func void player_hotkey_lame_potion()
 				Npc_RemoveInvItem(hero,ItPo_Mana_03);
 				B_LameSchlork();
 			}
+			else if(Npc_HasItems(hero,ItPo_Mana_Addon_04))
+			{
+				hero.attribute[ATR_MANA] = hero.attribute[ATR_MANA_MAX];
+				Npc_RemoveInvItem(hero,ItPo_Mana_Addon_04);
+				B_LameSchlork();
+			}
 			else
 			{
 				Print("Нет зелий маны!");
@@ -225,7 +237,7 @@ func void player_hotkey_lame_potion()
 		}
 		else
 		{
-			Print("Уже максимальная мана!");
+			Print("Мана уже максимальная!");
 		};
 	};
 };
@@ -234,7 +246,13 @@ func void player_hotkey_lame_heal()
 {
 	if(!Npc_IsInState(hero,ZS_Dead))
 	{
-		if(Npc_HasItems(hero,ItPo_Health_03) && ((hero.attribute[ATR_HITPOINTS_MAX] - hero.attribute[ATR_HITPOINTS]) >= HP_Elixier))
+		if(Npc_HasItems(hero,ItPo_Health_Addon_04) && ((hero.attribute[ATR_HITPOINTS]) <= (hero.attribute[ATR_HITPOINTS_MAX] / 4)))
+		{
+			hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
+			Npc_RemoveInvItem(hero,ItPo_Health_Addon_04);
+			B_LameSchlork();
+		}
+		else if(Npc_HasItems(hero,ItPo_Health_03) && ((hero.attribute[ATR_HITPOINTS_MAX] - hero.attribute[ATR_HITPOINTS]) >= HP_Elixier))
 		{
 			Npc_ChangeAttribute(hero,ATR_HITPOINTS,HP_Elixier);
 			Npc_RemoveInvItem(hero,ItPo_Health_03);
@@ -272,6 +290,12 @@ func void player_hotkey_lame_heal()
 				Npc_RemoveInvItem(hero,ItPo_Health_03);
 				B_LameSchlork();
 			}
+			else if(Npc_HasItems(hero,ItPo_Health_Addon_04))
+			{
+				hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
+				Npc_RemoveInvItem(hero,ItPo_Health_Addon_04);
+				B_LameSchlork();
+			}
 			else
 			{
 				Print("Нет лечебных зелий!");
@@ -279,7 +303,7 @@ func void player_hotkey_lame_heal()
 		}
 		else
 		{
-			Print("Уже максимальное здоровье!");
+			Print("Здоровье уже максимальное!");
 		};
 	};
 };

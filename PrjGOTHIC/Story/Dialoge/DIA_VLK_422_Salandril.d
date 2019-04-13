@@ -156,7 +156,8 @@ func void DIA_Salandril_Trade_Info()
 		AI_Output(self,other,"DIA_Salandril_Trade_13_01");	//С удовольствием, преподобный брат.
 		if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 		{
-			SC_KnowsProspektorSalandril = TRUE;
+			//SC_KnowsProspektorSalandril = TRUE;
+			SalandrilMinenAnteil = TRUE;
 		};
 	};
 	if(other.guild == GIL_PAL)
@@ -192,6 +193,31 @@ func void DIA_Salandril_KAP3_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
+
+instance DIA_Salandril_Minenanteil(C_Info)
+{
+	npc = VLK_422_Salandril;
+	nr = 3;
+	condition = DIA_Salandril_Minenanteil_Condition;
+	information = DIA_Salandril_Minenanteil_Info;
+	description = "Ты продаешь поддельные акции!";
+};
+
+
+func int DIA_Salandril_Minenanteil_Condition()
+{
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (SalandrilMinenAnteil == TRUE) && (SC_KnowsProspektorSalandril == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Salandril_Minenanteil_Info()
+{
+	AI_Output(other,self,"DIA_Canthar_Minenanteil_15_00");	//Ты продаешь поддельные акции!
+	AI_Output(self,other,"SVM_13_NOTNOW");	//Оставь меня в покое!
+	B_GivePlayerXP(XP_Ambient);
+};
 
 instance DIA_Salandril_KLOSTER(C_Info)
 {
@@ -250,6 +276,10 @@ func int DIA_Salandril_GehinsKloster_Condition()
 func void DIA_Salandril_GehinsKloster_Info()
 {
 	AI_Output(other,self,"DIA_Salandril_GehinsKloster_15_00");	//Так ты пойдешь в монастырь, или тебя еще раз проучить?
+	if(Npc_HasItems(self,ItWr_MinenAnteil_Mis) && (hero.guild == GIL_KDF))
+	{
+		B_GiveInvItems(self,other,ItWr_MinenAnteil_Mis,Npc_HasItems(self,ItWr_MinenAnteil_Mis));
+	};
 	AI_Output(self,other,"DIA_Salandril_GehinsKloster_13_01");	//Ты еще пожалеешь об этом. Да, черт тебя побери, я пойду в этот монастырь, но тебе это просто так с рук не сойдет.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KlosterUrteil");
@@ -273,7 +303,8 @@ instance DIA_Salandril_Verschwinde(C_Info)
 
 func int DIA_Salandril_Verschwinde_Condition()
 {
-	if((MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk))
+//	if((MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_KnowsInfo(other,DIA_Salandril_GehinsKloster) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

@@ -268,7 +268,7 @@ instance DIA_Garwig_THIEF(C_Info)
 
 func int DIA_Garwig_THIEF_Condition()
 {
-	if(Npc_HasItems(other,Holy_Hammer_MIS))
+	if(Npc_HasItems(other,Holy_Hammer_MIS) && (GarwigThiefOneTime == FALSE))
 	{
 		return TRUE;
 	};
@@ -286,6 +286,7 @@ func void DIA_Garwig_THIEF_Info()
 		AI_Output(self,other,"DIA_Garwig_THIEF_06_02");	//(в отчаянии) Молот исчез! Как это могло произойти?
 		AI_Output(self,other,"DIA_Garwig_THIEF_06_03");	//Я провалил испытание. Иннос накажет меня!
 	};
+	GarwigThiefOneTime = TRUE;
 };
 
 
@@ -322,6 +323,7 @@ func void DIA_Garwig_Abgeben_Info()
 	AI_Output(self,other,"DIA_Garwig_Abgeben_06_03");	//Но я не вправе судить тебя. Пусть Иннос осудит тебя, и ты понесешь заслуженную кару!
 	B_GiveInvItems(other,self,Holy_Hammer_MIS,1);
 	Hammer_Taken = FALSE;
+	GarwigThiefOneTime = FALSE;
 };
 
 

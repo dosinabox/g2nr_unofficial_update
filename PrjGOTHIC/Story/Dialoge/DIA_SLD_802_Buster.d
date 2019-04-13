@@ -275,19 +275,20 @@ func void DIA_Buster_WannaJoin_Info()
 	AI_Output(other,self,"DIA_Buster_WannaJoin_15_00");	//Я хочу присоединиться к наемникам!
 	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 	{
+		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 		{
 			AI_Output(self,other,"DIA_Buster_WannaJoin_13_01");	//У парня с таким ударом, как у тебя, не должно возникнуть с этим особых проблем.
+			B_LogEntry(TOPIC_SLDRespekt,"С тех пор, как я победил Бастера, он не имеет ничего против моего вступления в ряды наемников.");
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_Buster_WannaJoin_13_02");	//Ты не особенно хороший боец, но и трусом тебя назвать нельзя.
+			B_LogEntry(TOPIC_SLDRespekt,"Бастер не имеет ничего против моего вступления в ряды наемников.");
 		};
 		AI_Output(self,other,"DIA_Buster_WannaJoin_13_03");	//Мой голос не много значит, так как здесь я не очень давно, но если Ли спросит, я проголосую за тебя.
 		Buster_Duell = TRUE;
-		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
-		B_LogEntry(TOPIC_SLDRespekt,"С тех пор, как я победил Бастера, он не имеет ничего против моего вступления в ряды наемников.");
 	}
 	else
 	{

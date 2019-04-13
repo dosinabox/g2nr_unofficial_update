@@ -7,8 +7,10 @@ prototype Mst_Default_Meatbug(C_Npc)
 	level = 1;
 	attribute[ATR_STRENGTH] = 1;
 	attribute[ATR_DEXTERITY] = 1;
-	attribute[ATR_HITPOINTS_MAX] = 10;
-	attribute[ATR_HITPOINTS] = 10;
+//	attribute[ATR_HITPOINTS_MAX] = 10;
+//	attribute[ATR_HITPOINTS] = 10;
+	attribute[ATR_HITPOINTS_MAX] = 5;
+	attribute[ATR_HITPOINTS] = 5;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
 	protection[PROT_BLUNT] = 0;

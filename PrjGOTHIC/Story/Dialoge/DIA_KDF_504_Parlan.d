@@ -804,7 +804,8 @@ instance DIA_Parlan_CIRCLE1(C_Info)
 	condition = DIA_Parlan_CIRCLE1_Condition;
 	information = DIA_Parlan_CIRCLE1_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня первому Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
+//	description = B_BuildLearnString("Научи меня первому Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
+	description = B_BuildLearnString("Первый Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
 };
 
 
@@ -835,7 +836,8 @@ instance DIA_Parlan_CIRCLE2(C_Info)
 	condition = DIA_Parlan_CIRCLE2_Condition;
 	information = DIA_Parlan_CIRCLE2_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня второму Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
+//	description = B_BuildLearnString("Научи меня второму Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
+	description = B_BuildLearnString("Второй Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
 };
 
 
@@ -873,7 +875,8 @@ instance DIA_Parlan_CIRCLE3(C_Info)
 	condition = DIA_Parlan_CIRCLE3_Condition;
 	information = DIA_Parlan_CIRCLE3_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня третьему Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
+//	description = B_BuildLearnString("Научи меня третьему Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
+	description = B_BuildLearnString("Третий Круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
 };
 
 

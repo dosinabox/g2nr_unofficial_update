@@ -2,7 +2,8 @@
 func void B_StopMagicFlee()
 {
 	Npc_PercDisable(self,PERC_ASSESSDAMAGE);
-	Npc_SetTarget(self,other);
+//	Npc_SetTarget(self,other);
+	Npc_SetTarget(self,hero);
 	if(self.guild < GIL_SEPERATOR_HUM)
 	{
 		AI_StartState(self,ZS_Flee,0,"");
@@ -36,10 +37,12 @@ func void ZS_MagicFlee()
 	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicFlee);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
-	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
+//	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
+	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(hero);
 	self.aivar[AIV_Guardpassage_Status] = GP_NONE;
 	Npc_SetRefuseTalk(self,0);
-	Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,other));
+//	Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,other));
+	Npc_SetTempAttitude(self,Npc_GetPermAttitude(self,hero));
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
 	if(!Npc_HasBodyFlag(self,BS_FLAG_INTERRUPTABLE))
@@ -73,7 +76,7 @@ func int ZS_MagicFlee_Loop()
 	if(Npc_GetStateTime(self) > SPL_TIME_Fear)
 	{
 		Npc_ClearAIQueue(self);
-		other = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
+//		other = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
 		B_StopMagicFlee();
 		return LOOP_END;
 	};

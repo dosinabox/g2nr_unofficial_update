@@ -60,8 +60,10 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_01,10);
 		CreateInvItems(slf,ItPo_Health_02,5);
 		CreateInvItems(slf,ItPo_Health_03,5);
-		CreateInvItems(slf,ItPo_Mana_01,25);
-		CreateInvItems(slf,ItPo_Mana_02,25);
+//		CreateInvItems(slf,ItPo_Mana_01,25);
+//		CreateInvItems(slf,ItPo_Mana_02,25);
+		CreateInvItems(slf,ItPo_Mana_01,30);
+		CreateInvItems(slf,ItPo_Mana_02,30);
 		CreateInvItems(slf,ItMi_Pitch,2);
 		CreateInvItems(slf,ItMi_Rockcrystal,1);
 		CreateInvItems(slf,ItMi_Coal,2);
@@ -77,8 +79,10 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_01,10);
 		CreateInvItems(slf,ItPo_Health_02,5);
 		CreateInvItems(slf,ItPo_Health_03,5);
-		CreateInvItems(slf,ItPo_Mana_01,25);
-		CreateInvItems(slf,ItPo_Mana_02,25);
+//		CreateInvItems(slf,ItPo_Mana_01,25);
+//		CreateInvItems(slf,ItPo_Mana_02,25);
+		CreateInvItems(slf,ItPo_Mana_01,35);
+		CreateInvItems(slf,ItPo_Mana_02,35);
 		CreateInvItems(slf,ItMi_Pitch,2);
 		CreateInvItems(slf,ItMi_Rockcrystal,1);
 		CreateInvItems(slf,ItMi_Coal,1);

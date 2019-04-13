@@ -1390,6 +1390,10 @@ func void DIA_Lares_GoNow_Maya()
 	AI_Output(other,self,"DIA_Addon_Lares_GoNow_Maya_15_00");	//Давай вернем орнамент Ватраса.
 	LaresGuide_ZumPortal = 1;
 	Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
+	if((KAPITEL > 1) && !Npc_IsDead(BDT_1020_Bandit_L))
+	{
+		B_StartOtherRoutine(BDT_1020_Bandit_L,"Intercept");
+	};
 	DIA_Lares_GoNow_GoingConditions();
 };
 
@@ -1643,6 +1647,10 @@ func int DIA_Addon_Lares_ArrivedPortalInterWeiter4_Condition()
 func void DIA_Addon_Lares_ArrivedPortalInterWeiter4_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter4_09_00");	//Очень хорошо. Здесь может быть опасно.
+	if((KAPITEL > 1) && !Npc_IsDead(BDT_1020_Bandit_L))
+	{
+		B_StartOtherRoutine(BDT_1020_Bandit_L,"Intercept");
+	};
 	LaresGuide_ZumPortal = 7;
 };
 
@@ -1861,6 +1869,10 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 	else if(LaresGuide_ZumPortal == 5)
 	{
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL5");
+		if((KAPITEL > 1) && !Npc_IsDead(BDT_1020_Bandit_L))
+		{
+			B_StartOtherRoutine(BDT_1020_Bandit_L,"Hide");
+		};
 	}
 	else if(LaresGuide_ZumPortal == 6)
 	{

@@ -38,14 +38,15 @@ instance ItMi_Addon_Joint_01(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_Addon_Joint_01;
 //	visual = "ItMi_Joint_US.3ds";
-	visual = "ItMi_Joint.3ds";
+	visual = "ItMi_Addon_Joint_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "JOINT";
 	on_state[0] = Use_Addon_Joint_01;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+	inv_zbias = 200;
 };
 
 
@@ -102,16 +103,15 @@ instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 
 instance ItMi_BromorsGeld_Addon(C_Item)
 {
-	name = "Золотая чаша Бромора";
+	name = "Золотая чаша";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_Nugget;
 	visual = "ItMi_GoldChalice.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "На дне этой чаши";
-	text[1] = "острым предметом нацарапано";
-	text[2] = "имя 'Бромор'.";
+	text[0] = "Острым предметом на дне";
+	text[1] = "нацарапано имя 'Бромор'.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -211,7 +211,7 @@ func void Use_Drum()
 
 instance ItMi_IEDrumScheit(C_Item)
 {
-	name = "Тромба марина";
+	name = "Трумшайт";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 1;
@@ -348,7 +348,8 @@ instance ItMi_Zeitspalt_Addon(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[0] = PRINT_UnknownEffect;
+//	text[0] = PRINT_UnknownEffect;
+	text[1] = TEXT_Zeitspalt_Setting;
 	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
 };
 
@@ -360,6 +361,8 @@ func void Use_Zeitspalt_Addon()
 		Wld_PlayEffect("spellFX_BELIARSRAGE",self,self,0,0,0,FALSE);
 		Wld_StopEffect("SLOW_MOTION");
 		Wld_PlayEffect("SLOW_MOTION",self,self,0,0,0,FALSE);
+		TEXT_Zeitspalt_Setting = "Замедление времени.";
+		Zeitspalt_Used = TRUE;
 	};
 };
 

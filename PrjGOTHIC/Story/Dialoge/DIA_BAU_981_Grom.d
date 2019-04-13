@@ -40,12 +40,12 @@ func void DIA_Grom_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Grom_HALLO_15_00");	//¬се в пор€дке?
 	AI_Output(self,other,"DIA_Grom_HALLO_08_01");	//јх, незнакомый странник. я очень зан€т. „то ты хочешь?
-	Info_ClearChoices(DIA_Grom_HALLO);
-	Info_AddChoice(DIA_Grom_HALLO,"Ќа что интересное стоит обратить внимание здесь?",DIA_Grom_HALLO_waszusehen);
-	Info_AddChoice(DIA_Grom_HALLO,"„ем ты занимаешьс€ здесь?",DIA_Grom_HALLO_was);
+//	Info_ClearChoices(DIA_Grom_HALLO);
+//	Info_AddChoice(DIA_Grom_HALLO,"Ќа что интересное стоит обратить внимание здесь?",DIA_Grom_HALLO_waszusehen);
+//	Info_AddChoice(DIA_Grom_HALLO,"„ем ты занимаешьс€ здесь?",DIA_Grom_HALLO_was);
 };
 
-func void DIA_Grom_HALLO_waszusehen()
+/*func void DIA_Grom_HALLO_waszusehen()
 {
 	AI_Output(other,self,"DIA_Grom_HALLO_waszusehen_15_00");	//Ќа что интересное стоит обратить внимание здесь?
 	AI_Output(self,other,"DIA_Grom_HALLO_waszusehen_08_01");	//»нтересное - это хорошо сказано. ≈сли ты углубишьс€ в здешний лес, то наткнешьс€ на очень злобных парней.
@@ -63,7 +63,55 @@ func void DIA_Grom_HALLO_BACK()
 {
 	Info_ClearChoices(DIA_Grom_HALLO);
 };
+*/
+instance DIA_Grom_HALLO2(C_Info)
+{
+	npc = BAU_981_Grom;
+	nr = 4;
+	condition = DIA_Grom_HALLO2_Condition;
+	information = DIA_Grom_HALLO2_Info;
+	description = "„ем ты занимаешьс€ здесь?";
+};
 
+
+func int DIA_Grom_HALLO2_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Grom_HALLO))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Grom_HALLO2_Info()
+{
+	AI_Output(other,self,"DIA_Grom_HALLO_was_15_00");	//„ем ты занимаешьс€ здесь?
+	AI_Output(self,other,"DIA_Grom_HALLO_was_08_01");	//Ќу, чем обычно занимаютс€ дровосеки и охотники?
+};
+
+instance DIA_Grom_HALLO3(C_Info)
+{
+	npc = BAU_981_Grom;
+	nr = 11;
+	condition = DIA_Grom_HALLO3_Condition;
+	information = DIA_Grom_HALLO3_Info;
+	description = "Ќа что интересное стоит обратить внимание здесь?";
+};
+
+
+func int DIA_Grom_HALLO3_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Grom_HALLO))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Grom_HALLO3_Info()
+{
+	AI_Output(other,self,"DIA_Grom_HALLO_waszusehen_15_00");	//Ќа что интересное стоит обратить внимание здесь?
+	AI_Output(self,other,"DIA_Grom_HALLO_waszusehen_08_01");	//»нтересное - это хорошо сказано. ≈сли ты углубишьс€ в здешний лес, то наткнешьс€ на очень злобных парней.
+	AI_Output(self,other,"DIA_Grom_HALLO_waszusehen_08_02");	//ќни около дес€ти футов высотой, волосатые и в очень дурном расположении духа. “ак что лучше не ходи туда, если не считаешь, что достаточно силен.
+};
 
 instance DIA_Grom_AskTeacher(C_Info)
 {
@@ -77,7 +125,8 @@ instance DIA_Grom_AskTeacher(C_Info)
 
 func int DIA_Grom_AskTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Grom_HALLO))
+//	if(Npc_KnowsInfo(other,DIA_Grom_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Grom_HALLO2))
 	{
 		return TRUE;
 	};

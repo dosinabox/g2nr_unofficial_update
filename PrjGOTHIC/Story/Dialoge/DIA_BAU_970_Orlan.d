@@ -35,7 +35,7 @@ instance DIA_Orlan_Wein(C_Info)
 
 func int DIA_Orlan_Wein_Condition()
 {
-	if((MIS_GoraxWein == LOG_Running) && (Npc_HasItems(other,ItFo_Wine) >= 12))
+	if((MIS_GoraxWein == LOG_Running) && (Npc_HasItems(other,ItFo_Wine) >= 12) && (Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU)))
 	{
 		return TRUE;
 	};
@@ -315,7 +315,8 @@ func void DIA_Addon_Orlan_WhenRangerMeeting_Today()
 	AI_Output(self,other,"DIA_Addon_Orlan_WhenRangerMeeting_Today_05_02");	//Надеюсь, мы начнем не слишком поздно.
 	B_MakeRangerReadyForMeetingALL();
 	Info_ClearChoices(DIA_Addon_Orlan_WhenRangerMeeting);
-	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,"(еще)",DIA_Addon_Orlan_WhenRangerMeeting_Los);
+//	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,"(еще)",DIA_Addon_Orlan_WhenRangerMeeting_Los);
+	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,Dialog_Ende,DIA_Addon_Orlan_WhenRangerMeeting_Los);
 };
 
 func void DIA_Addon_Orlan_WhenRangerMeeting_theyCome()
@@ -324,7 +325,8 @@ func void DIA_Addon_Orlan_WhenRangerMeeting_theyCome()
 	AI_Output(self,other,"DIA_Addon_Orlan_WhenRangerMeeting_theyCome_05_01");	//Посмотрим...
 	B_MakeRangerReadyForMeetingALL();
 	Info_ClearChoices(DIA_Addon_Orlan_WhenRangerMeeting);
-	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,"(еще)",DIA_Addon_Orlan_WhenRangerMeeting_Los);
+//	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,"(еще)",DIA_Addon_Orlan_WhenRangerMeeting_Los);
+	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,Dialog_Ende,DIA_Addon_Orlan_WhenRangerMeeting_Los);
 };
 
 func void DIA_Addon_Orlan_WhenRangerMeeting_Los()
@@ -431,6 +433,10 @@ func void DIA_Orlan_TRADE_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Orlan_TRADE_05_03");	//Если ты сможешь заплатить.
+	};
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	{
+		OrlanMinenAnteil = TRUE;
 	};
 	Trade_IsActive = TRUE;
 };
@@ -751,7 +757,8 @@ instance DIA_Orlan_Minenanteil(C_Info)
 
 func int DIA_Orlan_Minenanteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU))
+	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU))
+	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (OrlanMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

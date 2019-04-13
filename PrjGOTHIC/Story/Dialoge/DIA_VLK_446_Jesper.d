@@ -210,7 +210,8 @@ instance DIA_Jesper_Schleichen(C_Info)
 	condition = DIA_Jesper_Schleichen_Condition;
 	information = DIA_Jesper_Schleichen_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
+//	description = B_BuildLearnString("Научи меня красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
+	description = B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
 };
 
 

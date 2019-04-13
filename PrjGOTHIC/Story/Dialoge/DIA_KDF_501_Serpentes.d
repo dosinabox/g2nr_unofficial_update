@@ -249,8 +249,9 @@ func void DIA_Serpentes_SUCCESS_Info()
 	{
 		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_05");	//И будет лучше, если я заберу этот молот.
 		Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
-		AI_PrintScreen("Отдан Священный молот",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen("Священный молот отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
+		GarwigThiefOneTime = FALSE;
 	};
 	MIS_GOLEM = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GOLEM);
@@ -607,7 +608,7 @@ instance DIA_Serpentes_SalandrilHERE(C_Info)
 
 func int DIA_Serpentes_SalandrilHERE_Condition()
 {
-	if(Npc_GetDistToWP(Salandril,"ALTAR") < 10000)
+	if((Npc_GetDistToWP(Salandril,"ALTAR") < 10000) && !Npc_IsDead(Salandril))
 	{
 		if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 		{

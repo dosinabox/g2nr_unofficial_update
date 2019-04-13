@@ -78,6 +78,7 @@ func void B_Sentenza_SearchMe()
 	playerGold = Npc_HasItems(other,ItMi_Gold);
 	AI_Output(other,self,"DIA_Sentenza_Hello_SearchMe_15_00");	//Как хочешь. Можешь обыскать меня!
 	AI_Output(self,other,"DIA_Sentenza_Hello_SearchMe_09_01");	//Так, посмотрим, что у нас здесь есть...
+	AI_GotoNpc(self,hero);
 	if(playerGold >= 50)
 	{
 		AI_Output(self,other,"DIA_Sentenza_Hello_SearchMe_09_02");	//Ах! Золото! Очень опасно носить с собой такое количество золота.

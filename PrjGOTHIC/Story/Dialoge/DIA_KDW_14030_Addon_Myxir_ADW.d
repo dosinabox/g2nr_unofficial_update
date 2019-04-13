@@ -126,7 +126,7 @@ func void DIA_Addon_Myxir_GeistTafel_Info()
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_10");	//Здесь написано, как тот, кто верит в Аданоса, может вызвать духа.
 	AI_Output(other,self,"DIA_Addon_Myxir_GeistTafel_15_11");	//Ты думаешь, что это сработает?
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_12");	//Мне в руки попадалось множество бессмысленных манускриптов.
-	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_13");	//Например, записи И'Бериона, предводителя Братства Спящего.
+	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_13");	//Например, записи Ю'Бериона, предводителя Братства Спящего.
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistTafel_12_14");	//Но автору ЭТИХ записей я верю.
 	MIS_ADDON_Myxir_GeistBeschwoeren = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Myxir_GeistTafel);

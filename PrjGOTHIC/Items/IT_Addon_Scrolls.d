@@ -117,8 +117,10 @@ instance ItSc_Whirlwind(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Sec_Duration;
-	count[2] = SPL_TIME_WHIRLWIND;
+	text[2] = NAME_Dam_Magic;
+	count[2] = 60;
+	text[3] = NAME_Sec_Duration;
+	count[3] = SPL_TIME_WHIRLWIND;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

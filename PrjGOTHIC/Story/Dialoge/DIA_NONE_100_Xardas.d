@@ -673,11 +673,12 @@ func int DIA_Xardas_DMTSINDDA_Condition()
 
 func void DIA_Xardas_DMTSINDDA_Info()
 {
+	AI_Output(other,self,"DIA_Xardas_DMTSINDDA_15_01");	//Что, черт возьми, произошло здесь?
 	if(Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
 	{
 		AI_Output(other,self,"DIA_Xardas_DMTSINDDA_15_00");	//Лестер сказал, что ты хотел видеть меня как можно быстрее.
 	};
-	AI_Output(other,self,"DIA_Xardas_DMTSINDDA_15_01");	//Что, черт возьми, произошло здесь?
+//	AI_Output(other,self,"DIA_Xardas_DMTSINDDA_15_01");	//Что, черт возьми, произошло здесь?
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_02");	//Враг узнал, кем ты являешься на самом деле, и планирует завладеть Глазом Инноса.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_03");	//Он распознал эту угрозу. Это заставило его выйти из тени и решиться на открытую атаку.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_04");	//Игра в прятки окончена. Вчера еще никто не знал, какова будет атака врага. Но теперь это становится слишком очевидно.

@@ -1,7 +1,7 @@
 
 instance ItSe_ErzFisch(C_Item)
 {
-	name = "Рыба-шар";
+	name = "Круглая рыба";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 25;

@@ -131,7 +131,7 @@ instance ITKE_ErzBaronRaum(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
-	visual = "ItKe_Key_01.3ds";
+	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = "Ключ от второй двери";
 	text[0] = "На нем выгравировано имя:";
@@ -207,10 +207,11 @@ instance ItAt_ClawLeader(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 100;
-	visual = "ItAt_Claw.3DS";
+//	visual = "ItAt_Claw.3DS";
+	visual = "ItAt_ClawLeader.3DS";
 	material = MAT_LEATHER;
 //	description = "Когти вожака стаи";
-//	description = name;
+	description = name;
 	text[0] = "Когти вожака стаи снепперов.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -259,7 +260,8 @@ instance ItKe_Pass_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItKe_Key_02.3ds";
+//	visual = "ItKe_Key_02.3ds";
+	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 //	description = "Маленький ключик";
 	description = name;
@@ -267,6 +269,7 @@ instance ItKe_Pass_MIS(C_Item)
 	text[1] = "открывает ворота Прохода.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItKe_Bromor(C_Item)
@@ -535,7 +538,7 @@ instance ItRi_Tengron(C_Item)
 //	description = NAME_ADDON_TengronsRing;
 	description = "Кольцо жизни";
 	text[0] = "Это кольцо принадлежит Тенгрону.";
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = Ri_Hp;
 	text[5] = NAME_Value;
 	count[5] = value;

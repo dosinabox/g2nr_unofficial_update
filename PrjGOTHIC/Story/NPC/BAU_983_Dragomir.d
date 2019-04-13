@@ -11,6 +11,7 @@ instance BAU_983_Dragomir(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
+	CreateInvItems(self,ItRw_Bolt,10);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Tough_Lee_ähnlich,BodyTex_N,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,1);

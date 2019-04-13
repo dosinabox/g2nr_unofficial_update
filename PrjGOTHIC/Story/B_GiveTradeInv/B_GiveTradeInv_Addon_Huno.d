@@ -14,6 +14,7 @@ func void B_GiveTradeInv_Addon_Huno(var C_Npc slf)
 //		CreateInvItems(slf,ItMw_Streitaxt1,1);
 //		CreateInvItems(slf,ItMw_Schwert2,1);
 //		CreateInvItems(slf,ItMw_Morgenstern,1);
+		CreateInvItems(slf,ItMw_1H_Sword_L_03,1);
 		CreateInvItems(slf,ItMw_2H_Axe_L_01,5);
 		CreateInvItems(slf,ItRi_Str_02,1);
 		Huno_ItemsGiven_Chapter_1 = TRUE;

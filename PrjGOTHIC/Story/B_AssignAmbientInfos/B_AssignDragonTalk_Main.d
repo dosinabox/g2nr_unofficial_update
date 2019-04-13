@@ -113,7 +113,10 @@ func void DIA_DragonTalk_Main_3_Info()
 	AI_Output(other,self,"DIA_DragonTalk_Main_3_15_03");	//»так, говори: „то € должен сделать?
 	AI_Output(self,other,"DIA_DragonTalk_Main_3_20_04");	//„тобы противосто€ть моему ’оз€ину, тебе понадоб€тс€ вещи, которые ты никогда не сможешь заполучить.
 	AI_Output(other,self,"DIA_DragonTalk_Main_3_15_05");	//» что это за вещи?
-	AI_Output(self,other,"DIA_DragonTalk_Main_3_20_06");	//“ы должен добыть лучшие доспехи, которые встречаютс€ в вашем земном мире, и надеть их на себ€.
+	if((other.guild != GIL_KDF) && (other.guild != GIL_NOV))
+	{
+		AI_Output(self,other,"DIA_DragonTalk_Main_3_20_06");	//“ы должен добыть лучшие доспехи, которые встречаютс€ в вашем земном мире, и надеть их на себ€.
+	};
 	if((other.guild == GIL_PAL) || (other.guild == GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Dragons_Add_20_01");	//“ебе понадобитс€ меч, благословленный вашим богом.

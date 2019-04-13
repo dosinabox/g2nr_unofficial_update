@@ -197,13 +197,13 @@ func void DIA_Nagur_Auftrag_Info()
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_06");	//И не пытайся продать эти товары сам. Ты все понял?
-	//смерть мальчика на побегушках
+	/*смерть мальчика на побегушках
 	if(!Npc_IsDead(Bote))
 	{
 		AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
 		B_StartOtherRoutine(Bote,"Rest");
 		B_KillNpc(Bote);
-	};
+	};*/
 	Info_ClearChoices(DIA_Nagur_Auftrag);
 	Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились.",DIA_Nagur_Auftrag_Okay);
 	if(Baltram.aivar[AIV_TalkedToPlayer] == FALSE)
@@ -282,6 +282,7 @@ func void DIA_Nagur_Success_Info()
 	B_GiveInvItems(other,self,ItMi_BaltramPaket,1);
 	Npc_RemoveInvItem(self,ItMi_BaltramPaket);
 	AI_Output(self,other,"DIA_Nagur_Success_08_01");	//Отлично. Теперь мне нужно продать его. Заходи завтра.
+	B_GivePlayerXP(XP_NagurOnlyGaveMoney);
 	B_LogEntry(TOPIC_Nagur,"Нагур получил посылку. Он заплатит мне золотом завтра.");
 	AI_StopProcessInfos(self);
 	NagurDay = B_GetDayPlus();
@@ -437,6 +438,7 @@ func void DIA_Nagur_Sign_Info()
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Nagur_Sign_08_00");	//Так тебе удалось это. Теперь ты знаешь, кто мои хозяева.
 	AI_Output(self,other,"DIA_Nagur_Sign_08_01");	//Не забывай о том, что Кассия говорит тебе - нам не интересно, кто ты такой. Ты один из нас, и только это имеет значение.
+	B_GivePlayerXP(XP_NagurGotThief);
 	AI_StopProcessInfos(self);
 };
 

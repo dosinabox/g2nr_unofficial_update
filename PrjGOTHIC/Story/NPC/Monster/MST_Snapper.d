@@ -94,6 +94,7 @@ instance NewMine_LeadSnapper(Mst_Default_Snapper)
 {
 	B_SetVisuals_Snapper();
 	Npc_SetToFistMode(self);
+	Mdl_SetModelScale(self,1.1,1.1,1.1);
 	name[0] = "Вожак стаи";
 //	attribute[ATR_STRENGTH] = 60;
 //	attribute[ATR_DEXTERITY] = 60;

@@ -304,7 +304,8 @@ instance DIA_Oric_NeedStuff(C_Info)
 
 func int DIA_Oric_NeedStuff_Condition()
 {
-	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE))
+//	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE))
+	if(OrikToldMissionChapter4 == TRUE)
 	{
 		return TRUE;
 	};
@@ -316,18 +317,18 @@ func void DIA_Oric_NeedStuff_Info()
 	AI_Output(self,other,"DIA_Oric_NeedStuff_11_01");	//У нас мало что осталось, чем мы могли бы поделиться с тобой.
 	AI_Output(self,other,"DIA_Oric_NeedStuff_11_02");	//Ну, я могу предложить тебе вот это.
 	Info_ClearChoices(DIA_Oric_NeedStuff);
-	Info_AddChoice(DIA_Oric_NeedStuff,"или эликсир ловкости",DIA_Oric_NeedStuff_Dexterity);
-	Info_AddChoice(DIA_Oric_NeedStuff,"или эликсир силы",DIA_Oric_NeedStuff_Strength);
-	Info_AddChoice(DIA_Oric_NeedStuff,"или 3 эликсира маны",DIA_Oric_NeedStuff_Mana);
-	Info_AddChoice(DIA_Oric_NeedStuff,"3 лечебных эликсира",DIA_Oric_NeedStuff_Health);
+	Info_AddChoice(DIA_Oric_NeedStuff,"(выбрать эликсир ловкости)",DIA_Oric_NeedStuff_Dexterity);
+	Info_AddChoice(DIA_Oric_NeedStuff,"(выбрать эликсир силы)",DIA_Oric_NeedStuff_Strength);
+	Info_AddChoice(DIA_Oric_NeedStuff,"(выбрать 5 зелий чистой маны)",DIA_Oric_NeedStuff_Mana);
+	Info_AddChoice(DIA_Oric_NeedStuff,"(выбрать 5 зелий чистого здоровья)",DIA_Oric_NeedStuff_Health);
 };
 
 func void DIA_Oric_NeedStuff_Health()
 {
 	AI_Output(other,self,"DIA_Oric_NeedStuff_Health_15_00");	//Я возьму эти лечебные зелья.
 	AI_Output(self,other,"DIA_Oric_NeedStuff_Health_11_01");	//Хороший выбор. Надеюсь, они помогут тебе.
-	CreateInvItems(self,ItPo_Health_03,3);
-	B_GiveInvItems(self,other,ItPo_Health_03,3);
+	CreateInvItems(self,ItPo_Health_Addon_04,5);
+	B_GiveInvItems(self,other,ItPo_Health_Addon_04,5);
 	Info_ClearChoices(DIA_Oric_NeedStuff);
 };
 
@@ -335,8 +336,8 @@ func void DIA_Oric_NeedStuff_Mana()
 {
 	AI_Output(other,self,"DIA_Oric_NeedStuff_Mana_15_00");	//Я возьму эти зелья маны.
 	AI_Output(self,other,"DIA_Oric_NeedStuff_Mana_11_01");	//Надеюсь, они помогут тебе. Да хранит тебя Иннос.
-	CreateInvItems(self,ItPo_Mana_03,3);
-	B_GiveInvItems(self,other,ItPo_Health_03,3);
+	CreateInvItems(self,ItPo_Mana_Addon_04,5);
+	B_GiveInvItems(self,other,ItPo_Mana_Addon_04,5);
 	Info_ClearChoices(DIA_Oric_NeedStuff);
 };
 

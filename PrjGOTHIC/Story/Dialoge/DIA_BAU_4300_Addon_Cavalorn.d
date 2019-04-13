@@ -96,7 +96,7 @@ var int DIA_Addon_Cavalorn_MeetingIsRunning_OneTime;
 
 func int DIA_Addon_Cavalorn_MeetingIsRunning_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_Running) && (Npc_GetDistToWP(self,"NW_LITTLESTONEHENDGE") > 2000))
 	{
 		return TRUE;
 	};
@@ -369,8 +369,8 @@ func int DIA_Addon_Cavalorn_Banditen_Condition()
 func void DIA_Addon_Cavalorn_Banditen_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_00");	//Что такое с бандитами?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_01");	//Ты что, с Луны свалился?
-	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Э-э...
+//	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_01");	//Ты что, с Луны свалился?
+//	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Э-э...
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_03");	//Я говорю обо всем этом сброде из исправительной колонии, которые чувствуют себя здесь как дома, грабят и убивают всех, кого могут.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_04");	//(вздыхает) Думаю, мне повезло, что они меня не убили. Я отвлекся буквально на секунду - и меня уже оглушили ударом сзади дубинкой по голове.
 	if(!C_BragoBanditsDead())

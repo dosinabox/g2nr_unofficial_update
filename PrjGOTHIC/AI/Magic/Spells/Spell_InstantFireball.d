@@ -6,6 +6,7 @@ instance Spell_InstantFireball(C_Spell_Proto)
 {
 	time_per_mana = 0;
 	damage_per_level = SPL_DAMAGE_InstantFireball;
+	//изменить тип если нужно
 	damagetype = DAM_FIRE;	//DAM_MAGIC;
 };
 

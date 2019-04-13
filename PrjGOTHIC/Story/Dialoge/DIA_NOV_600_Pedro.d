@@ -380,7 +380,10 @@ instance DIA_Pedro_Monastery(C_Info)
 
 func int DIA_Pedro_Monastery_Condition()
 {
-	return TRUE;
+	if(other.guild != GIL_KDF)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Pedro_Monastery_Info()

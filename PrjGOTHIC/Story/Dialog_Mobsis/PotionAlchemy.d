@@ -97,7 +97,7 @@ instance PC_Booze_Lou(C_Info)
 	condition = PC_Booze_Lou_Condition;
 	information = PC_Booze_Lou_Info;
 	permanent = TRUE;
-	description = "Сделать 'Молот Лу' (1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы и 1 ром)";
+	description = "'Молот Лу' (1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы и 1 ром)";
 };
 
 
@@ -137,7 +137,7 @@ instance PC_Booze_Schlaf(C_Info)
 	condition = PC_Booze_Schlaf_Condition;
 	information = PC_Booze_Schlaf_Info;
 	permanent = TRUE;
-	description = "Сделать двойной 'Молот Лу' (1 'Молот Лу' и 1 ром)";
+	description = "Двойной 'Молот Лу' (1 'Молот Лу' и 1 ром)";
 };
 
 
@@ -174,7 +174,7 @@ instance PC_Booze_SchnellerHering(C_Info)
 	condition = PC_Booze_SchnellerHering_Condition;
 	information = PC_Booze_SchnellerHering_Info;
 	permanent = TRUE;
-	description = "Сделать 'Быструю селедку' (1 вода, 1 ром, 1 рыба и 1 снеппер-трава)";
+	description = "'Быстрая селедка' (1 вода, 1 ром, 1 рыба и 1 снеппер-трава)";
 };
 
 
@@ -188,11 +188,18 @@ func int PC_Booze_SchnellerHering_Condition()
 
 func void PC_Booze_SchnellerHering_Info()
 {
-	if(Npc_HasItems(self,ItPl_Speed_Herb_01) && Npc_HasItems(self,ItFo_Fish) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
+	if(Npc_HasItems(self,ItPl_Speed_Herb_01) && (Npc_HasItems(self,ItFo_Fish) || Npc_HasItems(self,ItFo_SmellyFish)) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
 	{
 		Npc_RemoveInvItems(self,ItPl_Speed_Herb_01,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
-		Npc_RemoveInvItems(self,ItFo_Fish,1);
+		if(Npc_HasItems(self,ItFo_Fish))
+		{
+			Npc_RemoveInvItems(self,ItFo_Fish,1);
+		}
+		else if(Npc_HasItems(self,ItFo_SmellyFish))
+		{
+			Npc_RemoveInvItems(self,ItFo_SmellyFish,1);
+		};
 		Npc_RemoveInvItems(self,ItFo_Water,1);
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_SchnellerHering,1);
@@ -1038,7 +1045,7 @@ instance PC_ItMi_Joint(C_Info)
 	condition = PC_ItMi_Joint_Condition;
 	information = PC_ItMi_Joint_Info;
 	permanent = TRUE;
-	description = "Сделать косяк из болотной травы (1 болотная трава)";
+	description = "Косяк из болотной травы (1 болотная трава)";
 };
 
 
@@ -1074,7 +1081,7 @@ instance PC_ItMi_Addon_Joint_01(C_Info)
 	condition = PC_ItMi_Addon_Joint_01_Condition;
 	information = PC_ItMi_Addon_Joint_01_Info;
 	permanent = TRUE;
-	description = "Изготовить 'Зеленый послушник' (2 болотных травы, 1 луговой горец)";
+	description = "'Зеленый послушник' (2 болотных травы, 1 луговой горец)";
 };
 
 

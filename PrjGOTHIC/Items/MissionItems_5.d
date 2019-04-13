@@ -51,12 +51,14 @@ instance ItKe_MonastarySecretLibrary_Mis(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_02;
-	visual = "ItKe_Key_02.3ds";
+//	visual = "ItKe_Key_02.3ds";
+	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "из книги 'Чертоги Ирдората'.";
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItWr_HallsofIrdorath_Mis(C_Item)
@@ -384,7 +386,7 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Слезы Инноса";
-	text[0] = PRINT_UnknownEffect;
+	text[1] = PRINT_UnknownEffect;
 //	text[1] = "???";
 //	count[1] = Mana_Essenz;
 	text[5] = NAME_Value;
@@ -404,9 +406,9 @@ func void UseItPo_PotionOfDeath()
 		self.aivar[REAL_STRENGTH] += 5;
 		Npc_ChangeAttribute(self,ATR_DEXTERITY,5);
 		self.aivar[REAL_DEXTERITY] += 5;
-		PrintScreen(PRINT_LearnSTR5,-1,45,FONT_Screen,2);
-		PrintScreen(PRINT_LearnDEX5,-1,55,FONT_Screen,2);
-		PrintScreen(PRINT_FullyHealed,-1,65,FONT_Screen,2);
+		PrintScreen(PRINT_LearnSTR5,-1,43,FONT_Screen,2);
+		PrintScreen(PRINT_LearnDEX5,-1,48,FONT_Screen,2);
+		PrintScreen(PRINT_FullyHealed,-1,53,FONT_Screen,2);
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_Speed);
 	}
 	else

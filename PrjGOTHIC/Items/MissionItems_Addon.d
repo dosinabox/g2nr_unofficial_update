@@ -833,7 +833,8 @@ func void Use_Addon_Stone_01()
 	Doc_PrintLine(nDocID,0,"");
 	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
-		Doc_PrintLines(nDocID,0,"Мы, последние трое из Совета Пяти, установили в храме ловушки и спрятали вход, чтобы меч больше никогда не покинул храм.");
+//		Doc_PrintLines(nDocID,0,"Мы, последние трое из Совета Пяти, установили в храме ловушки и спрятали вход, чтобы меч больше никогда не покинул храм.");
+		Doc_PrintLines(nDocID,0,"Мы, последние трое из Совета Пяти, установили в храме ловушки и спрятали вход, чтобы меч больше никогда не увидел свет.");
 	}
 	else
 	{
@@ -1050,10 +1051,11 @@ instance ItSE_Addon_FrancisChest(C_Item)
 	name = "Сундук с сокровищами";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = 200;
-	visual = "ItMi_GoldChest.3ds";
+	value = 750;
+//	visual = "ItMi_GoldChest.3ds";
+	visual = "ItSE_Addon_FrancisChest.3ds";
 	scemeName = "MAPSEALED";
-	material = MAT_LEATHER;
+	material = MAT_METAL;
 	on_state[0] = FrancisChest;
 	description = name;
 	text[0] = "Сундук очень тяжелый.";
@@ -1064,7 +1066,8 @@ instance ItSE_Addon_FrancisChest(C_Item)
 
 func void FrancisChest()
 {
-	CreateInvItems(hero,ItMi_GoldChest,1);
+//	CreateInvItems(hero,ItMi_GoldChest,1);
+	CreateInvItems(hero,ItSE_Addon_EmptyFrancisChest,1);
 	CreateInvItems(hero,ItMw_FrancisDagger_Mis,1);
 	CreateInvItems(hero,ItMi_Gold,153);
 	CreateInvItems(hero,ItMi_GoldCup,1);
@@ -1072,6 +1075,19 @@ func void FrancisChest()
 	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
 	Snd_Play("Geldbeutel");
 	Print("Вы нашли несколько предметов!");
+};
+
+
+instance ItSE_Addon_EmptyFrancisChest(C_Item)
+{
+	name = "Пустой сундук";
+	mainflag = ITEM_KAT_NONE;
+	value = 750;
+	visual = "ItSE_Addon_FrancisChest.3ds";
+	material = MAT_METAL;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -1155,8 +1171,11 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Личная доля: 1701");
 	Doc_Show(nDocID);
+	if(Francis_HasProof == FALSE)
+	{
+		B_Say(self,self,"$ADDON_THISLITTLEBASTARD");
+	};
 	Francis_HasProof = TRUE;
-	B_Say(self,self,"$ADDON_THISLITTLEBASTARD");
 };
 
 
@@ -1223,8 +1242,8 @@ instance ITKE_Addon_Heiler(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ каменного стража";
-	text[0] = "Ключ от сундука";
-	text[1] = "в странном древнем строении на болоте.";
+	text[0] = "Ключ от сундука в странном";
+	text[1] = "древнем строении на болоте.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1308,12 +1327,14 @@ func void Use_TreasureMap()
 
 instance ItMi_Addon_GregsTreasureBottle_MIS(C_Item)
 {
-	name = "Послание в бутылке";
+//	name = "Послание в бутылке";
+	name = "Бутылка";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItFo_Water.3DS";
-	material = MAT_LEATHER;
+//	visual = "ItFo_Water.3DS";
+	visual = "ItMi_Addon_GregsTreasureBottle_MIS.3DS";
+	material = MAT_GLAS;
 	on_state[0] = Use_GregsBottle;
 	scemeName = "MAPSEALED";
 	description = name;
@@ -1333,7 +1354,8 @@ instance ItMi_ErolsKelch(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 125;
-	visual = "ItMi_SilverChalice.3DS";
+//	visual = "ItMi_SilverChalice.3DS";
+	visual = "ItMi_ErolsKelch.3DS";
 	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;

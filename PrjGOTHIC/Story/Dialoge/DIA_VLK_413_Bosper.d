@@ -497,7 +497,8 @@ instance DIA_Bosper_TeachFUR(C_Info)
 	condition = DIA_Bosper_TeachFUR_Condition;
 	information = DIA_Bosper_TeachFUR_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня снимать шкуры с животных!",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
+//	description = B_BuildLearnString("Научи меня снимать шкуры с животных!",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
+	description = B_BuildLearnString("Снятие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
 };
 
 
@@ -562,6 +563,10 @@ func void DIA_Bosper_Trade_Info()
 		else
 		{
 			B_RefreshAmmo(self,50);
+		};
+		if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+		{
+			BosperMinenAnteil = TRUE;
 		};
 		Trade_IsActive = TRUE;
 	}
@@ -886,7 +891,8 @@ instance DIA_Bosper_Minenanteil(C_Info)
 
 func int DIA_Bosper_Minenanteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running))
+	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running))
+	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (BosperMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};
@@ -896,6 +902,10 @@ func void DIA_Bosper_Minenanteil_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_Minenanteil_15_00");	//Я вижу, ты продаешь акции шахт.
 	AI_Output(self,other,"DIA_Bosper_Minenanteil_11_01");	//Гм. Я ничего не знаю об этом. Ты можешь забрать их, если хочешь.
+	if(Npc_HasItems(self,ItWr_MinenAnteil_Mis) && (Player_IsApprentice == APP_Bosper))
+	{
+		B_GiveInvItems(self,other,ItWr_MinenAnteil_Mis,Npc_HasItems(self,ItWr_MinenAnteil_Mis));
+	};
 	B_GivePlayerXP(XP_Ambient);
 };
 

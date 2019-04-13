@@ -44,6 +44,10 @@ func void ZS_Attack()
 func int ZS_Attack_Loop()
 {
 	B_Greg_ComesToDexter();
+	if((BragoBanditsAttacked == FALSE) && ((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1013)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1014)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ambusher_1015))))
+	{
+		BragoBanditsAttacked = TRUE;
+	};
 	Npc_GetTarget(self);
 	if(C_WantToFlee(self,other))
 	{

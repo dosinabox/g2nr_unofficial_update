@@ -105,6 +105,10 @@ func int ZS_Stand_Eating_Loop()
 		{
 			AI_PlayAniBS(self,"T_FOODHUGE_RANDOM_1",BS_ITEMINTERACT);
 		};
+		/*if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
+		{
+			Npc_ChangeAttribute(self,ATR_HITPOINTS,1);
+		};*/
 		Npc_SetStateTime(self,0);
 	};
 	return LOOP_CONTINUE;

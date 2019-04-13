@@ -13,7 +13,17 @@ func int DIA_Ambient_NEWS_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (B_GetPlayerCrime(self) != CRIME_NONE))
 	{
-		return TRUE;
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garwig))
+		{
+			if(!Npc_HasItems(other,Holy_Hammer_MIS))
+			{
+				return TRUE;
+			};
+		}
+		else
+		{
+			return TRUE;
+		};
 	};
 };
 

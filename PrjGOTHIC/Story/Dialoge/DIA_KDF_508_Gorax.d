@@ -329,8 +329,8 @@ func void DIA_Gorax_Orlan_Info()
 		AI_Output(self,other,"DIA_Gorax_Orlan_14_01");	//И? Ты получил 240 золотых монет?
 		DIA_Gorax_Orlan_permanent = TRUE;
 		Info_ClearChoices(DIA_Gorax_Orlan);
-		Info_AddChoice(DIA_Gorax_Orlan,"Он надул меня! (Отдать 100 монет)",DIA_Gorax_Orlan_100);
-		Info_AddChoice(DIA_Gorax_Orlan,"Я принес золото. (Отдать 240 монет)",DIA_Gorax_Orlan_240);
+		Info_AddChoice(DIA_Gorax_Orlan,"Он надул меня! (отдать 100 монет)",DIA_Gorax_Orlan_100);
+		Info_AddChoice(DIA_Gorax_Orlan,"Я принес золото. (отдать 240 монет)",DIA_Gorax_Orlan_240);
 	}
 	else
 	{

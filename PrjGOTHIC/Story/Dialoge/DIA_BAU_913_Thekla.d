@@ -284,6 +284,7 @@ func void DIA_Thekla_AfterFight_Info()
 	{
 		AI_Output(self,other,"DIA_Thekla_AfterFight_17_00");	//Ты действительно смог выбить дурь из этого Буллко.
 		AI_Output(self,other,"DIA_Thekla_AfterFight_17_01");	//Должно быть, ты очень устал, пока молотил эту жирную свинью.
+		B_GivePlayerXP(XP_Thekla_BlameSylvio);
 	}
 	else
 	{

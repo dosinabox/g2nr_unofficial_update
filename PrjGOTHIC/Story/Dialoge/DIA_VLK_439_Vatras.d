@@ -1,7 +1,7 @@
 
 var int Vatras_SchickeLeuteWeg;
 var int Vatras_LaresExit;
-var int Vatras_MORE;
+//var int Vatras_MORE;
 
 instance DIA_Addon_Vatras_KillerWarning(C_Info)
 {
@@ -141,7 +141,7 @@ func void DIA_Vatras_EXIT_Info()
 		Vatras_LaresExit = TRUE;
 	};
 	AI_StopProcessInfos(self);
-	Vatras_MORE = FALSE;
+//	Vatras_MORE = FALSE;
 	if(Vatras_SchickeLeuteWeg == TRUE)
 	{
 		B_StartOtherRoutine(VLK_455_Buerger,"VATRASAWAY");
@@ -1347,7 +1347,7 @@ func void DIA_Addon_Vatras_GuildHelp_Info()
 };
 
 
-instance DIA_Vatras_MORE(C_Info)
+/*instance DIA_Vatras_MORE(C_Info)
 {
 	npc = VLK_439_Vatras;
 	nr = 998;
@@ -1369,7 +1369,7 @@ func int DIA_Vatras_MORE_Condition()
 func void DIA_Vatras_MORE_Info()
 {
 	Vatras_MORE = TRUE;
-};
+};*/
 
 
 instance DIA_Vatras_INFLUENCE(C_Info)
@@ -1385,7 +1385,8 @@ instance DIA_Vatras_INFLUENCE(C_Info)
 
 func int DIA_Vatras_INFLUENCE_Condition()
 {
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (Player_IsApprentice == APP_NONE) && (Vatras_MORE == TRUE))
+//	if((MIS_Thorben_GetBlessings == LOG_Running) && (Player_IsApprentice == APP_NONE) && (Vatras_MORE == TRUE))
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};
@@ -1428,7 +1429,8 @@ instance DIA_Vatras_WoKdF(C_Info)
 
 func int DIA_Vatras_WoKdF_Condition()
 {
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen > 0) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo) && (Vatras_MORE == TRUE))
+//	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen > 0) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo) && (Vatras_MORE == TRUE))
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen > 0) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo))
 	{
 		return TRUE;
 	};
@@ -1455,7 +1457,8 @@ instance DIA_Vatras_Spende(C_Info)
 func int DIA_Vatras_Spende_Condition()
 {
 //	if(Vatras_MORE == TRUE)
-	if((Vatras_MORE == TRUE) && (Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
+//	if((Vatras_MORE == TRUE) && (Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
+	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
 	{
 		return TRUE;
 	};
@@ -1523,10 +1526,11 @@ instance DIA_Vatras_CanTeach(C_Info)
 
 func int DIA_Vatras_CanTeach_Condition()
 {
-	if(Vatras_MORE == TRUE)
+	/*if(Vatras_MORE == TRUE)
 	{
 		return TRUE;
-	};
+	};*/
+	return TRUE;
 };
 
 func void DIA_Vatras_CanTeach_Info()
@@ -1554,7 +1558,8 @@ instance DIA_Vatras_Teach(C_Info)
 
 func int DIA_Vatras_Teach_Condition()
 {
-	if((Vatras_TeachMANA == TRUE) && (Vatras_MORE == TRUE))
+//	if((Vatras_TeachMANA == TRUE) && (Vatras_MORE == TRUE))
+	if(Vatras_TeachMANA == TRUE)
 	{
 		return TRUE;
 	};
@@ -1611,10 +1616,11 @@ instance DIA_Vatras_GODS(C_Info)
 
 func int DIA_Vatras_GODS_Condition()
 {
-	if(Vatras_MORE == TRUE)
+	/*if(Vatras_MORE == TRUE)
 	{
 		return TRUE;
-	};
+	};*/
+	return TRUE;
 };
 
 func void DIA_Vatras_GODS_Info()
@@ -1686,10 +1692,11 @@ instance DIA_Vatras_HEAL(C_Info)
 
 func int DIA_Vatras_HEAL_Condition()
 {
-	if(Vatras_MORE == TRUE)
+	/*if(Vatras_MORE == TRUE)
 	{
 		return TRUE;
-	};
+	};*/
+	return TRUE;
 };
 
 func void DIA_Vatras_HEAL_Info()
@@ -2185,7 +2192,14 @@ func int DIA_Vatras_BEGINN_Condition()
 func void DIA_Vatras_BEGINN_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_BEGINN_15_00");	//Я сделал все, как ты сказал мне. Вот починенный Глаз.
-	B_GivePlayerXP(XP_RitualInnosEyeRuns);
+	if(Npc_HasItems(other,ItPl_SwampHerb) >= 3)
+	{
+		B_GivePlayerXP(XP_RitualInnosEyeRuns + XP_Ambient);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_RitualInnosEyeRuns);
+	};
 	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_Mis,1);
 	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
 	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
@@ -2195,7 +2209,7 @@ func void DIA_Vatras_BEGINN_Info()
 	{
 		AI_Output(other,self,"DIA_Vatras_BEGINN_15_04");	//Гм. Да. Вот три растения.
 		AI_Output(self,other,"DIA_Vatras_BEGINN_05_05");	//Превосходно.
-		B_GivePlayerXP(XP_Ambient);
+//		B_GivePlayerXP(XP_Ambient);
 	}
 	else
 	{
@@ -2210,7 +2224,7 @@ func void DIA_Vatras_BEGINN_Info()
 func void DIA_Vatras_BEGINN_los()
 {
 	AI_StopProcessInfos(self);
-	Vatras_MORE = FALSE;
+//	Vatras_MORE = FALSE;
 	Npc_ExchangeRoutine(self,"RITUALINNOSEYE");
 	B_StartOtherRoutine(Xardas,"RITUALINNOSEYE");
 	B_StartOtherRoutine(Pyrokar,"RITUALINNOSEYE");
@@ -2244,7 +2258,7 @@ func void DIA_Vatras_AUGEGEHEILT_Info()
 	AI_Output(self,other,"DIA_Vatras_AUGEGEHEILT_05_02");	//Надеюсь, я еще увижу тебя, когда ты выполнишь свою миссию. Прощай.
 	B_LogEntry(TOPIC_INNOSEYE,"Глаз был восстановлен. Пирокар отдает его мне, и начинается охота на драконов.");
 	AI_StopProcessInfos(self);
-	Vatras_MORE = FALSE;
+//	Vatras_MORE = FALSE;
 	RitualInnosEyeRuns = LOG_SUCCESS;
 	MIS_RitualInnosEyeRepair = LOG_SUCCESS;
 	B_StartOtherRoutine(Pyrokar,"RitualInnosEyeRepair");
@@ -2503,7 +2517,7 @@ func void DIA_Vatras_StillNeedYou_Info()
 	Crewmember_Count += 1;
 	B_Vatras_GeheWeg(lang);
 	AI_StopProcessInfos(self);
-	Vatras_MORE = FALSE;
+//	Vatras_MORE = FALSE;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
 		Npc_ExchangeRoutine(self,"SHIP");
@@ -2539,6 +2553,6 @@ func void DIA_Addon_Vatras_PISSOFFFOREVVER_Info()
 {
 	B_VatrasPissedOff();
 	AI_StopProcessInfos(self);
-	Vatras_MORE = FALSE;
+//	Vatras_MORE = FALSE;
 };
 

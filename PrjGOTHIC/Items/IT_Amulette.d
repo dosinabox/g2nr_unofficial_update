@@ -288,7 +288,7 @@ instance ItAm_Hp_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет жизни";
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = Am_Hp;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -330,7 +330,7 @@ instance ItAm_Mana_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет магии";
-	text[2] = NAME_Bonus_Mana;
+	text[2] = NAME_Bonus_ManaMax;
 	count[2] = Am_Mana;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -409,9 +409,9 @@ instance ItAm_Hp_Mana_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет просвещения";
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = Am_HpMana_Hp;
-	text[3] = NAME_Bonus_Mana;
+	text[3] = NAME_Bonus_ManaMax;
 	count[3] = Am_HpMana_Mana;
 	text[5] = NAME_Value;
 	count[5] = value;

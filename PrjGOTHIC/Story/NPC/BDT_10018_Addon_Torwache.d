@@ -1,7 +1,7 @@
 
 instance BDT_10018_Addon_Torwache(Npc_Default)
 {
-	name[0] = NAME_Torwache;
+	name[0] = NAME_Wache;
 	guild = GIL_BDT;
 	id = 10018;
 	voice = 4;

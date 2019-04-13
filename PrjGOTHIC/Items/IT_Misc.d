@@ -64,7 +64,7 @@ instance ItMi_Stomper(C_Item)
 
 instance ItMi_RuneBlank(C_Item)
 {
-	name = "–уна";
+	name = "–унный камень";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_RuneBlank;
@@ -305,7 +305,8 @@ instance ItMi_Joint(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+	inv_zbias = 200;
 };
 
 
@@ -429,11 +430,12 @@ instance ItMi_GoldNecklace(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_AMULET;
 	value = Value_GoldNecklace;
-	visual = "ItMi_GoldNecklace.3DS";
+	visual = "ItMi_GoldNecklace_Chain.3DS";
 	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 //	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 };
 
@@ -632,11 +634,12 @@ instance ItMi_SilverNecklace(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_AMULET;
 	value = Value_SilverNecklace;
-	visual = "ItMi_SilverNecklace.3DS";
+	visual = "ItMi_SilverNecklace_Chain.3DS";
 	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 190;
 };
 
 instance ItMi_Sulfur(C_Item)
@@ -760,6 +763,7 @@ instance ItMi_ApfelTabak(C_Item)
 	text[0] = " исет с €блочным табаком.";
 	text[5] = NAME_Value;
 	count[5] = value;
+//	inv_zbias = 190;
 };
 
 instance ItMi_PilzTabak(C_Item)
@@ -774,6 +778,7 @@ instance ItMi_PilzTabak(C_Item)
 	text[0] = "“емный €блочно-грибной табак.";
 	text[5] = NAME_Value;
 	count[5] = value;
+//	inv_zbias = 190;
 };
 
 instance ItMi_DoppelTabak(C_Item)
@@ -788,6 +793,7 @@ instance ItMi_DoppelTabak(C_Item)
 	text[0] = "Ќа вкус похоже на €блоко...";
 	text[5] = NAME_Value;
 	count[5] = value;
+//	inv_zbias = 190;
 };
 
 instance ItMi_Honigtabak(C_Item)
@@ -802,6 +808,7 @@ instance ItMi_Honigtabak(C_Item)
 	text[0] = "—ладкий €блочный табак.";
 	text[5] = NAME_Value;
 	count[5] = value;
+//	inv_zbias = 190;
 };
 
 instance ItMi_SumpfTabak(C_Item)
@@ -816,5 +823,6 @@ instance ItMi_SumpfTabak(C_Item)
 	text[0] = "—месь из болотной травы.";
 	text[5] = NAME_Value;
 	count[5] = value;
+//	inv_zbias = 190;
 };
 

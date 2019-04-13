@@ -1,7 +1,7 @@
 
 func void G_CanNotCast(var int bIsPlayer,var int nCircleNeeded,var int nCirclePossessed)
 {
-	var string strMessage;
+	/*var string strMessage;
 	var int nDifference;
 	var string strDifference;
 	nDifference = nCircleNeeded - nCirclePossessed;
@@ -11,6 +11,10 @@ func void G_CanNotCast(var int bIsPlayer,var int nCircleNeeded,var int nCirclePo
 	if(bIsPlayer)
 	{
 		Print(strMessage);
+	};*/
+	if(bIsPlayer)
+	{
+		Print("Не изучен необходимый Круг магии.");
 	};
 };
 

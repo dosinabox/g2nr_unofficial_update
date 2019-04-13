@@ -256,7 +256,8 @@ instance DIA_Bennet_TeachCOMMON(C_Info)
 	condition = DIA_Bennet_TeachCOMMON_Condition;
 	information = DIA_Bennet_TeachCOMMON_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научиться кузнечному делу",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common));
+//	description = B_BuildLearnString("Научиться кузнечному делу",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common));
+	description = B_BuildLearnString("Кузнечное дело",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common));
 };
 
 
@@ -1178,7 +1179,7 @@ func void DIA_Bennet_DRACHENEIER_Info()
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_03");	//Давай посмотрим.
 	};
 	Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,1);
-	AI_PrintScreen("Отдано яйцо",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("Яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	if(DRACHENEIER_angebotenXP_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_04");	//Ммм. Очень твердый материал. Идеально подходит для доспехов. Если только удастся открыть их.
@@ -1248,7 +1249,7 @@ func void DIA_Bennet_DRACHENEIER_nein()
 	AI_Output(other,self,"DIA_Bennet_DRACHENEIER_nein_15_00");	//Тогда можешь оставить золото себе. Я пока попридержу эти яйца.
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_nein_06_01");	//Дай мне знать, если передумаешь.
 	CreateInvItems(other,ItAt_DragonEgg_MIS,1);
-	AI_PrintScreen("Получено яйцо",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	AI_PrintScreen("Яйцо получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	BennetsDragonEggOffer = 0;
 	Info_ClearChoices(DIA_Bennet_DRACHENEIER);
 };
@@ -1289,7 +1290,7 @@ func void DIA_Bennet_EierBringen_Info()
 	{
 		AI_Output(other,self,"DIA_Bennet_EierBringen_15_02");	//Вот. Я принес еще одно.
 		Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,1);
-		AI_PrintScreen("Отдано яйцо",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen("Яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		DragonEggCounter += 1;
 		B_GivePlayerXP(XP_DJG_BringDragonEgg);
 	}

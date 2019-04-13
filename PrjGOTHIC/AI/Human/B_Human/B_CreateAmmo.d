@@ -21,7 +21,14 @@ func void B_CreateAmmo(var C_Npc slf)
 			CreateInvItems(slf,ItRw_Arrow,10);
 		};
 	}
-	else if(rangedWeapon.munition == ItRw_Addon_FireArrow)
+	else if(rangedWeapon.munition == ItRw_Bolt)
+	{
+		if(Npc_HasItems(slf,ItRw_Bolt) < 10)
+		{
+			CreateInvItems(slf,ItRw_Bolt,10);
+		};
+	};
+	/*else if(rangedWeapon.munition == ItRw_Addon_FireArrow)
 	{
 		if(Npc_HasItems(slf,ItRw_Addon_FireArrow) < 5)
 		{
@@ -35,20 +42,13 @@ func void B_CreateAmmo(var C_Npc slf)
 			CreateInvItems(slf,ItRw_Addon_MagicArrow,5);
 		};
 	}
-	else if(rangedWeapon.munition == ItRw_Bolt)
-	{
-		if(Npc_HasItems(slf,ItRw_Bolt) < 10)
-		{
-			CreateInvItems(slf,ItRw_Bolt,10);
-		};
-	}
 	else if(rangedWeapon.munition == ItRw_Addon_MagicBolt)
 	{
 		if(Npc_HasItems(slf,ItRw_Addon_MagicBolt) < 5)
 		{
 			CreateInvItems(slf,ItRw_Addon_MagicBolt,5);
 		};
-	};
+	};*/
 };
 
 

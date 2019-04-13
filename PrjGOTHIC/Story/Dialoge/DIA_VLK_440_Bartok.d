@@ -251,7 +251,8 @@ instance DIA_Bartok_TeachSneak(C_Info)
 	condition = DIA_Bartok_TeachSneak_Condition;
 	information = DIA_Bartok_TeachSneak_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня красться!",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
+//	description = B_BuildLearnString("Научи меня красться!",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
+	description = B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
 };
 
 
@@ -543,6 +544,7 @@ func void DIA_Bartok_Angekommen_Info()
 	AI_Output(self,other,"DIA_Bartok_Angekommen_04_03");	//Еще увидимся!
 	AI_Output(self,other,"DIA_Bartok_Angekommen_04_04");	//Ты можешь продать шкуры Босперу.
 	Bartok_Ende = TRUE;
+	B_GivePlayerXP(XP_Bartok_Deal);
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");

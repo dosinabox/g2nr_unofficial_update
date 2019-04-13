@@ -150,7 +150,7 @@ instance PC_Goldhacken_Addon_Hour(C_Info)
 	condition = PC_Goldhacken_Addon_Hour_Condition;
 	information = PC_Goldhacken_Addon_Hour_Info;
 	permanent = TRUE;
-	description = "Ударить несильно.";
+	description = "(ударить несильно)";
 };
 
 
@@ -169,7 +169,7 @@ func void PC_Goldhacken_Addon_Hour_Info()
 {
 	var int CurrentChance;
 	var int MultiNugget;
-	Learn_by_doing += 1;
+/*	Learn_by_doing += 1;
 	if(Learn_by_doing == 10)
 	{
 		B_Upgrade_Hero_HackChance(2);
@@ -181,43 +181,56 @@ func void PC_Goldhacken_Addon_Hour_Info()
 	else if(Learn_by_doing == 20)
 	{
 		B_Upgrade_Hero_HackChance(5);
-	};
+	};*/
 	CurrentChance = Hlp_Random(100);
 	MultiNugget = Hlp_Random(10);
 	if(B_GoldMob_Bestimmung())
 	{
+		Learn_by_doing += 1;
+		if(Learn_by_doing == 10)
+		{
+			B_Upgrade_Hero_HackChance(2);
+		}
+		else if(Learn_by_doing == 15)
+		{
+			B_Upgrade_Hero_HackChance(3);
+		}
+		else if(Learn_by_doing == 20)
+		{
+			B_Upgrade_Hero_HackChance(5);
+		};
 		if(CurrentChance <= Hero_HackChance)
 		{
 			if((GoldCounter >= 20) && (MultiNugget >= 8))
 			{
 				CreateInvItems(hero,ItMi_GoldNugget_Addon,3);
-				PrintScreen("Добыто 3 золотых самородка!",-1,-1,FONT_ScreenSmall,2);
+				PrintScreen("Добыто 3 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
 				Truemmer_Count = 0;
 			}
 			else if((GoldCounter >= 7) && (MultiNugget >= 5))
 			{
 				CreateInvItems(hero,ItMi_GoldNugget_Addon,2);
-				PrintScreen("Добыто 2 золотых самородка!",-1,-1,FONT_ScreenSmall,2);
+				PrintScreen("Добыто 2 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
 				Truemmer_Count = 0;
 				GoldCounter += 1;
 			}
 			else
 			{
 				CreateInvItems(hero,ItMi_GoldNugget_Addon,1);
-				PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,2);
+				PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);
 				Truemmer_Count = 0;
 				GoldCounter += 1;
 			};
 		}
 		else
 		{
-			PrintScreen("Золотые осколки разлетаются во все стороны...",-1,-1,FONT_ScreenSmall,2);
+			PrintScreen("Золотые осколки разлетаются во все стороны...",-1,53,FONT_ScreenSmall,1);
 			Truemmer_Count += 1;
 		};
 	}
 	else
 	{
-		PrintScreen("Здесь больше нечего делать.",-1,-1,FONT_ScreenSmall,2);
+		PrintScreen("Здесь больше нечего делать.",-1,53,FONT_ScreenSmall,2);
 		b_endproductiondialog();
 	};
 };
@@ -230,7 +243,7 @@ instance PC_Goldhacken_Addon_TSchlag(C_Info)
 	condition = PC_Goldhacken_Addon_TSchlag_Condition;
 	information = PC_Goldhacken_Addon_TSchlag_Info;
 	permanent = TRUE;
-	description = "Ударить изо всех сил.";
+	description = "(ударить изо всех сил)";
 };
 
 
@@ -248,7 +261,7 @@ func void PC_Goldhacken_Addon_TSchlag_Info()
 	TruemmerChance = Hlp_Random(100);
 	if(TruemmerChance < 5)
 	{
-		PrintScreen("Ничего...",-1,-1,FONT_ScreenSmall,2);
+		PrintScreen("Ничего...",-1,53,FONT_ScreenSmall,1);
 	}
 	else
 	{
@@ -257,17 +270,17 @@ func void PC_Goldhacken_Addon_TSchlag_Info()
 		if(TruemmerChance >= 85)
 		{
 			CreateInvItems(hero,ItMi_GoldNugget_Addon,3);
-			PrintScreen("Добыто 3 золотых самородка!",-1,-1,FONT_ScreenSmall,2);
+			PrintScreen("Добыто 3 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
 		}
 		else if(TruemmerChance >= 50)
 		{
 			CreateInvItems(hero,ItMi_GoldNugget_Addon,2);
-			PrintScreen("Добыто 2 золотых самородка!",-1,-1,FONT_ScreenSmall,2);
+			PrintScreen("Добыто 2 золотых самородка!",-1,-1,FONT_ScreenSmall,1);
 		}
 		else
 		{
 			CreateInvItems(hero,ItMi_GoldNugget_Addon,1);
-			PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,2);
+			PrintScreen("Добыт 1 золотой самородок!",-1,-1,FONT_ScreenSmall,1);
 		};
 	};
 	Truemmer_Count = 0;
@@ -298,7 +311,7 @@ func void PC_Goldhacken_Addon_Chance_Info()
 	var string concatText;
 	if(Hero_HackChance < 20)
 	{
-		concatText = ConcatStrings("совершенный новичок (",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("полный новичок (",IntToString(Hero_HackChance));
 	}
 	else if(Hero_HackChance < 40)
 	{
@@ -325,6 +338,6 @@ func void PC_Goldhacken_Addon_Chance_Info()
 		concatText = ConcatStrings("гуру среди рудокопов (",IntToString(Hero_HackChance));
 	};
 	concatText = ConcatStrings(concatText," процентов)");
-	PrintScreen(concatText,-1,-1,FONT_ScreenSmall,2);
+	PrintScreen(concatText,-1,34,FONT_ScreenSmall,2);
 };
 

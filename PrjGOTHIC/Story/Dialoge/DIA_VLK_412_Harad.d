@@ -191,7 +191,7 @@ func int DIA_Harad_OrcSuccess_Condition()
 {
 	if(MIS_Harad_Orc == LOG_Running)
 	{
-		if(Npc_HasItems(other,ItMw_2H_OrcAxe_01) || Npc_HasItems(other,ItMw_2H_OrcAxe_02) || Npc_HasItems(other,ItMw_2H_OrcAxe_03) || Npc_HasItems(other,ItMw_2H_OrcAxe_04) || Npc_HasItems(other,ItMw_2H_OrcSword_01) || Npc_HasItems(other,ItMw_2H_OrcSword_02))
+		if(Npc_HasItems(other,ItMw_2H_OrcMace_01) || Npc_HasItems(other,ItMw_2H_OrcAxe_01) || Npc_HasItems(other,ItMw_2H_OrcAxe_02) || Npc_HasItems(other,ItMw_2H_OrcAxe_03) || Npc_HasItems(other,ItMw_2H_OrcAxe_04) || Npc_HasItems(other,ItMw_2H_OrcSword_01) || Npc_HasItems(other,ItMw_2H_OrcSword_02))
 		{
 			return TRUE;
 		};
@@ -225,6 +225,10 @@ func void DIA_Harad_OrcSuccess_Info()
 	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_01))
 	{
 		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_01,1);
+	}
+	else if(Npc_HasItems(other,ItMw_2H_OrcMace_01))
+	{
+		B_GiveInvItems(other,self,ItMw_2H_OrcMace_01,1);
 	};
 	B_InspectMeleeWeapon(self);
 	if(Harad_HakonMission == TRUE)
@@ -733,7 +737,7 @@ func void B_HaradSmithChoices()
 	};
 	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 	{
-		Info_AddChoice(DIA_Harad_TeachSmith,B_BuildLearnString("Научиться ковать",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Harad_TeachSmith_Common);
+		Info_AddChoice(DIA_Harad_TeachSmith,B_BuildLearnString("Кузнечное дело",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Harad_TeachSmith_Common);
 	};
 };
 

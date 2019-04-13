@@ -38,7 +38,7 @@ instance DIA_Hodges_HALLO(C_Info)
 
 func int DIA_Hodges_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && ((Kapitel != 3) || (MIS_RescueBennet == LOG_SUCCESS)) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -279,7 +279,8 @@ instance DIA_Hodges_BennetsCrime(C_Info)
 
 func int DIA_Hodges_BennetsCrime_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_SUCCESS))
+//	if(Npc_KnowsInfo(other,DIA_Hodges_DontWork) && (MIS_RescueBennet != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Hodges_WhatHappened) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

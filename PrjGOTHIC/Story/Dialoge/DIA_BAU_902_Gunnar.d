@@ -70,7 +70,8 @@ instance DIA_Gunnar_Everywhere(C_Info)
 	nr = 2;
 	condition = DIA_Gunnar_Everywhere_Condition;
 	information = DIA_Gunnar_Everywhere_Info;
-	permanent = TRUE;
+//	permanent = TRUE;
+	permanent = FALSE;
 	description = "Наемники приходят отовсюду?";
 };
 

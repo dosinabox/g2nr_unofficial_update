@@ -64,7 +64,10 @@ func void B_GiveDeathInv(var C_Npc slf)
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
 		{
-			CreateInvItems(slf,ItAt_Claw,2);
+			if(!Npc_HasItems(slf,ItAt_ClawLeader))
+			{
+				CreateInvItems(slf,ItAt_Claw,2);
+			};
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
 		{

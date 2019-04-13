@@ -225,7 +225,8 @@ instance DIA_Jergan_Teach(C_Info)
 	condition = DIA_Jergan_Teach_Condition;
 	information = DIA_Jergan_Teach_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Покажи мне, как отделять когти",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws));
+//	description = B_BuildLearnString("Покажи мне, как отделять когти",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws));
+	description = B_BuildLearnString("Удаление когтей",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws));
 };
 
 

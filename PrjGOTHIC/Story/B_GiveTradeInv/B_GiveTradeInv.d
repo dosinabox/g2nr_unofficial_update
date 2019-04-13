@@ -1,12 +1,12 @@
 
 func int C_AmIWeaponTrader(var C_Npc slf)
 {
-
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cronos_NW))
+	/*if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cronos_NW))
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Erol))
+	else*/
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Erol))
 	{
 		return TRUE;
 	}
@@ -30,10 +30,10 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet))
+	/*else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet))
 	{
 		return TRUE;
-	}
+	}*/
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet_DI))
 	{
 		return TRUE;
@@ -90,10 +90,10 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Diego_DI))
+	/*else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Diego_DI))
 	{
 		return TRUE;
-	}
+	}*/
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor))
 	{
 		return TRUE;
@@ -224,7 +224,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	Trd_Cipher = Hlp_GetNpc(SLD_803_Cipher);
 	Trd_Hodges = Hlp_GetNpc(BAU_908_Hodges);
 //	разоружение перед началом торговли с ГГ
-	if(C_AmIWeaponTrader(self))
+	if(C_AmIWeaponTrader(slf))
 	{
 		AI_UnequipWeapons(slf);
 		EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
@@ -235,6 +235,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 		CreateInvItem(slf,Hlp_GetInstanceID(EquipWeap));
 	};
 	B_ClearRuneInv(slf);
+	B_ClearTools(slf);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 	{
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cronos_NW))

@@ -22,6 +22,7 @@ func void B_GiveTradeInv_Sarah(var C_Npc slf)
 //		CreateInvItems(slf,ItMw_Bartaxt,1);
 		CreateInvItems(slf,ItMw_1h_Vlk_Sword,1);
 		CreateInvItems(slf,ItMw_1h_Nov_Mace,1);
+		CreateInvItems(slf,ItMw_1H_Sword_L_03,1);
 //		CreateInvItems(slf,ItMw_Zweihaender2,1);
 //		CreateInvItems(slf,ItMw_Schwert5,1);
 //		CreateInvItems(slf,ItMw_Inquisitor,1);

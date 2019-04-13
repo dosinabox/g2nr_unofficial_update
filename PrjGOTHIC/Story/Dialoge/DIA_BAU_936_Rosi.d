@@ -112,6 +112,10 @@ func void DIA_Rosi_WAREZ_Info()
 	AI_Output(other,self,"DIA_Rosi_WAREZ_15_00");	//Что ты можешь предложить мне?
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Rosi_WAREZ_17_01");	//Выбирай.
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	{
+		RosiMinenAnteil = TRUE;
+	};
 	Trade_IsActive = TRUE;
 };
 
@@ -557,7 +561,8 @@ instance DIA_Rosi_MinenAnteil(C_Info)
 
 func int DIA_Rosi_MinenAnteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU))
+	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU))
+	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (RosiMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

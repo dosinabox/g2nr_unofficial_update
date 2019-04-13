@@ -101,6 +101,10 @@ func void DIA_Hakon_Trade_Info()
 	{
 		AI_Output(self,other,"DIA_Hakon_Trade_12_01");	//Для меня большая честь, что представитель святой церкви проявил интерес к моим товарам.
 	};
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	{
+		HakonMinenAnteil = TRUE;
+	};
 	Trade_IsActive = TRUE;
 };
 
@@ -440,7 +444,8 @@ instance DIA_Hakon_Minenanteil(C_Info)
 
 func int DIA_Hakon_Minenanteil_Condition()
 {
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running))
+	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running))
+	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (HakonMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

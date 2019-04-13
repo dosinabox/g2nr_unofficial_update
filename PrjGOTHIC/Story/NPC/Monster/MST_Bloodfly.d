@@ -14,7 +14,7 @@ prototype Mst_Default_Bloodfly(C_Npc)
 	protection[PROT_BLUNT] = 20;
 	protection[PROT_EDGE] = 20;
 	protection[PROT_POINT] = 20;
-	protection[PROT_FIRE] = 17;	//20;
+	protection[PROT_FIRE] = 16;	//20;
 	protection[PROT_FLY] = 20;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

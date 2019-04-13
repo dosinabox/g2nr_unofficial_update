@@ -28,6 +28,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_2h_Bau_Axe,1);
 	CreateInvItems(self,ItMw_2H_Axe_L_01,1);
 	CreateInvItems(self,ItMw_1h_MISC_Sword,1);
+	CreateInvItems(self,ItMw_TrainSword,1);
 	CreateInvItems(self,ItMw_1h_Misc_Axe,1);
 	CreateInvItems(self,ItMw_2H_Sword_M_01,1);
 	CreateInvItems(self,ItMw_1h_Mil_Sword,1);
@@ -301,6 +302,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItSc_Waterfist,10);
 	CreateInvItems(self,ItSc_Thunderstorm,10);
 	CreateInvItems(self,ItSc_Whirlwind,10);
+	CreateInvItems(self,ItSc_SummonMud,10);
 	CreateInvItems(self,ItSe_ErzFisch,1);
 	CreateInvItems(self,ItSe_GoldFisch,1);
 	CreateInvItems(self,ItSe_Ringfisch,1);
@@ -462,15 +464,15 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMiSwordrawhot,1);
 	CreateInvItems(self,ItMiSwordbladehot,1);
 	CreateInvItems(self,ItMiSwordblade,1);
-	CreateInvItems(self,ItMi_RuneBlank,1);
-	CreateInvItems(self,ItMi_Sulfur,1);
-	CreateInvItems(self,ItMi_Quartz,1);
-	CreateInvItems(self,ItMi_Pitch,1);
-	CreateInvItems(self,ItMi_Rockcrystal,1);
-	CreateInvItems(self,ItMi_Aquamarine,1);
-	CreateInvItems(self,ItMi_HolyWater,1);
-	CreateInvItems(self,ItMi_Coal,1);
-	CreateInvItems(self,ItMi_DarkPearl,1);
+	CreateInvItems(self,ItMi_RuneBlank,10);
+	CreateInvItems(self,ItMi_Sulfur,10);
+	CreateInvItems(self,ItMi_Quartz,10);
+	CreateInvItems(self,ItMi_Pitch,10);
+	CreateInvItems(self,ItMi_Rockcrystal,10);
+	CreateInvItems(self,ItMi_Aquamarine,10);
+	CreateInvItems(self,ItMi_HolyWater,10);
+	CreateInvItems(self,ItMi_Coal,10);
+	CreateInvItems(self,ItMi_DarkPearl,10);
 	CreateInvItems(self,ItMi_GoldCandleHolder,1);
 	CreateInvItems(self,ItMi_GoldNecklace,1);
 	CreateInvItems(self,ItMi_GoldCup,1);
@@ -479,6 +481,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_GoldRing,1);
 	CreateInvItems(self,ItMi_GoldPlate,1);
 	CreateInvItems(self,ItMi_SilverChalice,1);
+	CreateInvItems(self,ItMi_GregsSilverPlate,1);
 	CreateInvItems(self,ItMi_JeweleryChest,1);
 	CreateInvItems(self,ItMi_InnosStatue,1);
 	CreateInvItems(self,ItMi_SilverRing,1);
@@ -499,7 +502,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_GoldNugget_Addon,10);
 	CreateInvItems(self,ItMi_Addon_WhitePearl,10);
 	CreateInvItems(self,ItMi_Addon_Joint_01,10);
-	CreateInvItems(self,ItMi_BaltramPaket,10);
+	CreateInvItems(self,ItMi_BaltramPaket,1);
 	CreateInvItems(self,ItMi_Packet_Baltram4Skip_Addon,1);
 	CreateInvItems(self,ItMi_BromorsGeld_Addon,10);
 	CreateInvItems(self,ItSe_ADDON_CavalornsBeutel,10);
@@ -817,6 +820,8 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItRi_Addon_MorgansRing_Mission,1);
 	CreateInvItems(self,ItMi_Focus,1);
 	CreateInvItems(self,ItMi_Addon_Steel_Paket,1);
+	CreateInvItems(self,ItMi_Addon_Lennar_Paket,1);
+	CreateInvItems(self,ItMi_Zeitspalt_Addon,1);
 	CreateInvItems(self,ItWr_StonePlateCommon_Addon,1);
 	CreateInvItems(self,ItMi_Addon_Stone_01,1);
 	CreateInvItems(self,ItMi_Addon_Stone_05,1);
@@ -1416,7 +1421,9 @@ instance Hosh4(C_Item)
 
 func void UseHoshiTagebuch()
 {
-	GregIsBack_S1();
+//	GregIsBack_S1();
+//	Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
+	Wolf_ProduceCrawlerArmor = TRUE;
 };
 
 

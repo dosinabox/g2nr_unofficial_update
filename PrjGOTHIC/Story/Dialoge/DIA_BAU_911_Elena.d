@@ -197,6 +197,10 @@ func void DIA_Elena_TRADE_Info()
 	AI_Output(other,self,"DIA_Elena_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Elena_TRADE_16_01");	//Выбирай.
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	{
+		ElenaMinenAnteil = TRUE;
+	};
 	Trade_IsActive = TRUE;
 };
 
@@ -261,7 +265,8 @@ instance DIA_Elena_MINENANTEIL(C_Info)
 func int DIA_Elena_MINENANTEIL_Condition()
 {
 //	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Elena_HALLO))
-	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Elena_TRADE))
+//	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Elena_TRADE))
+	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (ElenaMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

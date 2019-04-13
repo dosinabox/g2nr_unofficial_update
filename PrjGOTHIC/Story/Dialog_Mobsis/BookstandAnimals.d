@@ -59,7 +59,7 @@ func void Use_BookstandAnimals2_S1()
 		Doc_PrintLine(nDocID,0,"Охота и трофеи");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи, преумножающие славу и благосостояние опытного охотника.");
+		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи, преумножающие славу и богатство опытного охотника.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Кровавые мухи");
 		Doc_PrintLines(nDocID,0,"Чтобы выпотрошить этих летающих дьяволов, необходимо обладать двумя навыками.");

@@ -346,6 +346,7 @@ func void DIA_Torlof_RUF_Info()
 		{
 			AI_Output(self,other,"DIA_Torlof_RUF_01_18");	//Хотя ты и проиграл ему.
 		};
+		Points_Sld += 1;
 	}
 	else if(Buster.aivar[AIV_TalkedToPlayer] == TRUE)
 	{

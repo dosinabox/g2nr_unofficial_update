@@ -134,7 +134,7 @@ func void DIA_Addon_Carlos_Attentat_Info()
 };
 
 
-instance DIA_Addon_Carlos_PERM(C_Info)
+/*instance DIA_Addon_Carlos_PERM(C_Info)
 {
 	npc = BDT_1079_Addon_Carlos;
 	nr = 3;
@@ -160,6 +160,58 @@ func void DIA_Addon_Carlos_PERM_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Edgor_Hi_15_00");	//Как дела?
 	};
+	AI_Output(self,other,"DIA_Addon_Carlos_PERM_12_00");	//Оставь меня в покое!
+	AI_StopProcessInfos(self);
+};*/
+
+instance DIA_Addon_Carlos_PERM(C_Info)
+{
+	npc = BDT_1079_Addon_Carlos;
+	nr = 3;
+	condition = DIA_Addon_Carlos_PERM_Condition;
+	information = DIA_Addon_Carlos_PERM_Info;
+	permanent = TRUE;
+	description = "И как тебе нравится быть командиром у охотников?";
+};
+
+
+func int DIA_Addon_Carlos_PERM_Condition()
+{
+	if(Npc_IsDead(Franco))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Carlos_PERM_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Carlos_PERM_15_00");	//И как тебе нравится быть командиром у охотников?
+	AI_Output(self,other,"DIA_Addon_Carlos_PERM_12_00");	//Оставь меня в покое!
+	AI_StopProcessInfos(self);
+};
+
+instance DIA_Addon_Carlos_PERM2(C_Info)
+{
+	npc = BDT_1079_Addon_Carlos;
+	nr = 3;
+	condition = DIA_Addon_Carlos_PERM2_Condition;
+	information = DIA_Addon_Carlos_PERM2_Info;
+	permanent = TRUE;
+	description = "Как дела?";
+};
+
+
+func int DIA_Addon_Carlos_PERM2_Condition()
+{
+	if(!Npc_IsDead(Franco))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Carlos_PERM2_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Edgor_Hi_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_Carlos_PERM_12_00");	//Оставь меня в покое!
 	AI_StopProcessInfos(self);
 };

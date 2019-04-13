@@ -6,6 +6,7 @@ instance Spell_FireRain(C_Spell_Proto)
 {
 	time_per_mana = 0;
 	damage_per_level = SPL_Damage_FireRain;
+	//изменить тип если нужно
 	damagetype = DAM_FIRE;	//DAM_MAGIC;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
 };

@@ -78,10 +78,10 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_TrfWolf,1);
 		CreateInvItems(slf,ItSc_TrfSheep,1);
 		CreateInvItems(slf,ItSc_TrfScavenger,1);
-		if((hero.guild == GIL_PAL) || (hero.guild == GIL_MIL))
+		/*if((hero.guild == GIL_PAL) || (hero.guild == GIL_MIL))
 		{
 			CreateInvItems(slf,ItWr_Map_Shrine_MIS,1);
-		};
+		};*/
 		CreateInvItems(slf,ItBe_Addon_Prot_MAGIC,1);
 		Gorax_ItemsGiven_Chapter_3 = TRUE;
 	};

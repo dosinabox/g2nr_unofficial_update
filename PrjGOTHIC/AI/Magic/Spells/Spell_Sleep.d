@@ -22,7 +22,7 @@ func int Spell_Logic_Sleep(var int manaInvested)
 		{
 			self.attribute[ATR_MANA] -= SPL_Cost_Sleep;
 		};
-		if(!C_BodyStateContains(other,BS_SWIM) && !C_BodyStateContains(other,BS_DIVE) && !C_NpcIsDown(other) && (other.guild < GIL_SEPERATOR_HUM) && (other.flags != NPC_FLAG_IMMORTAL) && (Npc_GetDistToNpc(self,other) <= 1000) && (other.guild != GIL_KDF) && (other.guild != GIL_DMT) && (other.guild != GIL_PAL))
+		if(!C_BodyStateContains(other,BS_SWIM) && !C_BodyStateContains(other,BS_DIVE) && !C_NpcIsDown(other) && (other.guild < GIL_SEPERATOR_HUM) && (other.flags != NPC_FLAG_IMMORTAL) && (Npc_GetDistToNpc(self,other) <= 1000) && (other.guild != GIL_KDF) && (other.guild != GIL_DMT) && (other.guild != GIL_PAL) && (other.guild != GIL_KDW) && (Hlp_GetInstanceID(other) != Hlp_GetInstanceID(Vatras)) && (Hlp_GetInstanceID(other) != Hlp_GetInstanceID(Myxir_CITY)) && (Hlp_GetInstanceID(other) != Hlp_GetInstanceID(KDF_511_Daron)))
 		{
 			Npc_ClearAIQueue(other);
 			B_ClearPerceptions(other);

@@ -173,7 +173,8 @@ instance DIA_Hyglas_TALENT_FIREBOLT(C_Info)
 	condition = DIA_Hyglas_TALENT_FIREBOLT_Condition;
 	information = DIA_Hyglas_TALENT_FIREBOLT_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня создавать руну огненной стрелы",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt));
+//	description = B_BuildLearnString("Научи меня создавать руну огненной стрелы",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt));
+	description = B_BuildLearnString("Руна огненной стрелы",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt));
 };
 
 

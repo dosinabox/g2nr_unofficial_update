@@ -366,6 +366,7 @@ func void Equip_ITAR_MIL_L()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		MILArmor_Equipped = TRUE;
 		if(MIL01_Equipped == TRUE)
 		{
@@ -382,6 +383,7 @@ func void UnEquip_ITAR_MIL_L()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		MILArmor_Equipped = FALSE;
 		if(MIL01_Equipped == TRUE)
 		{
@@ -431,6 +433,7 @@ func void Equip_ITAR_MIL_M()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		MILArmor_Equipped = TRUE;
 		if(MIL01_Equipped == TRUE)
 		{
@@ -447,6 +450,7 @@ func void UnEquip_ITAR_MIL_M()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		MILArmor_Equipped = FALSE;
 		if(MIL01_Equipped == TRUE)
 		{
@@ -1078,6 +1082,7 @@ func void Equip_ITAR_NOV_L()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		NOVArmor_Equipped = TRUE;
 		if(NOV01_Equipped == TRUE)
 		{
@@ -1094,6 +1099,7 @@ func void UnEquip_ITAR_NOV_L()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		NOVArmor_Equipped = FALSE;
 		if(NOV01_Equipped == TRUE)
 		{
@@ -1543,7 +1549,7 @@ instance ITAR_Prisoner(C_Item)
 	flags = 0;
 	protection[PROT_EDGE] = 20;
 	protection[PROT_BLUNT] = 20;
-	protection[PROT_POINT] = 20;
+	protection[PROT_POINT] = 5; //20
 	protection[PROT_FIRE] = 10;	//0;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Prisoner;

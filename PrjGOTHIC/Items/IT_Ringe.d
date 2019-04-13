@@ -514,7 +514,7 @@ instance ItRi_HP_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо жизни";
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = Ri_Hp;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -558,7 +558,7 @@ instance ItRi_Hp_02(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо живости";
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = Ri_Hp02;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -672,7 +672,7 @@ instance ItRi_Mana_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо магии";
-	text[2] = NAME_Bonus_Mana;
+	text[2] = NAME_Bonus_ManaMax;
 	count[2] = Ri_Mana;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -716,7 +716,7 @@ instance ItRi_Mana_02(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо астральной силы";
-	text[2] = NAME_Bonus_Mana;
+	text[2] = NAME_Bonus_ManaMax;
 	count[2] = Ri_Mana02;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -760,9 +760,9 @@ instance ItRi_Hp_Mana_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо просвещения";
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = Ri_HpMana_Hp;
-	text[3] = NAME_Bonus_Mana;
+	text[3] = NAME_Bonus_ManaMax;
 	count[3] = Ri_HpMana_Mana;
 	text[5] = NAME_Value;
 	count[5] = value;

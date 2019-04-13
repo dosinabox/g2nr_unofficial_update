@@ -210,7 +210,7 @@ func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 			AI_Output(other,self,"DIA_Addon_Nefarius_MissingOrnaments_15_02");	//Я нашел еще один.
 			B_GivePlayerXP(XP_Addon_BringMissingOrnament);
 			Npc_RemoveInvItems(other,ItMi_Ornament_Addon,1);
-			AI_PrintScreen("Отдан орнамент",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+			AI_PrintScreen("Орнамент отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 			MissingOrnamentsCounter += 1;
 		}
 		else

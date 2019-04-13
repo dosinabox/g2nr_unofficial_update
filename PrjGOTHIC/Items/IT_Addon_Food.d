@@ -52,7 +52,8 @@ instance ItFo_Addon_Rum(C_Item)
 	value = Value_Rum;
 //	visual = "ItMi_Rum_02.3ds";
 	visual = "ItMi_Rum_01.3ds";
-	material = MAT_GLAS;
+//	material = MAT_GLAS;
+	material = MAT_STONE;
 	on_state[0] = UseRum;
 	scemeName = "POTIONFAST";
 //	description = "Белый ром";
@@ -79,7 +80,8 @@ instance ItFo_Addon_Grog(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_Grog;
 	visual = "ItMi_Rum_02.3ds";
-	material = MAT_GLAS;
+//	material = MAT_GLAS;
+	material = MAT_STONE;
 	on_state[0] = UseGrog;
 	scemeName = "POTIONFAST";
 //	description = "Настоящий грог моряков";
@@ -109,11 +111,13 @@ instance ItFo_Addon_LousHammer(C_Item)
 	value = Value_LousHammer;
 //	visual = "ItMi_Rum_01.3ds";
 	visual = "ItMi_Rum_04.3ds";
-	material = MAT_GLAS;
+//	material = MAT_GLAS;
+	material = MAT_STONE;
 	on_state[0] = UseLouHammer;
 	scemeName = "POTIONFAST";
 	description = name;
-	text[0] = PRINT_UnknownEffect;
+//	text[0] = PRINT_UnknownEffect;
+	text[1] = TEXT_LousHammer_Setting;
 	text[5] = NAME_Value;
 	count[5] = Value_LousHammer;
 };
@@ -125,6 +129,7 @@ func void UseLouHammer()
 	{
 		B_RaiseAttribute(self,ATR_MANA_MAX,Mana_LousHammer);
 		Npc_ChangeAttribute(self,ATR_MANA,Mana_LousHammer);
+		TEXT_LousHammer_Setting = "Больше не дает никакого эффекта, кроме опьянения.";
 		Hammer_Once = TRUE;
 	};
 	B_NpcSetDrunk(60);
@@ -139,7 +144,8 @@ instance ItFo_Addon_SchlafHammer(C_Item)
 	value = Value_SchlafHammer;
 //	visual = "ItMi_Rum_01.3ds";
 	visual = "ItMi_Rum_05.3ds";
-	material = MAT_GLAS;
+//	material = MAT_GLAS;
+	material = MAT_STONE;
 	on_state[0] = UseSchlafHammer;
 	scemeName = "POTIONFAST";
 	description = name;
@@ -169,7 +175,8 @@ instance ItFo_Addon_SchnellerHering(C_Item)
 	value = Value_SchnellerHering;
 //	visual = "ItMi_Rum_01.3ds";
 	visual = "ItMi_Rum_03.3ds";
-	material = MAT_GLAS;
+//	material = MAT_GLAS;
+	material = MAT_STONE;
 	on_state[0] = UseSchnellerHering;
 	scemeName = "POTIONFAST";
 	description = name;
@@ -179,6 +186,9 @@ instance ItFo_Addon_SchnellerHering(C_Item)
 	text[0] = "Временно повышает скорость.";
 	text[1] = NAME_Duration;
 	count[1] = Time_SchnellerHering / 60000;
+//	text[0] = TEXT_SchnellerHering_Setting;
+//	text[1] = TEXT_SchnellerHering_Setting2;
+//	count[1] = COUNT_SchnellerHering_Setting;
 	text[5] = NAME_Value;
 	count[5] = Value_SchnellerHering;
 };
@@ -192,6 +202,9 @@ func void UseSchnellerHering()
 	{
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_SchnellerHering);
 	};
+//	TEXT_SchnellerHering_Setting = "Временно повышает скорость.";
+//	TEXT_SchnellerHering_Setting2 = NAME_Duration;
+//	COUNT_SchnellerHering_Setting = Time_SchnellerHering / 60000;
 	Player_KnowsSchnellerHering = TRUE;
 };
 
@@ -211,6 +224,7 @@ instance ItFo_Addon_Pfeffer_01(C_Item)
 	text[3] = "ОСТОРОЖНО, ЖГУЧИЙ!";
 	text[5] = NAME_Value;
 	count[5] = value;
+//	inv_zbias = 190;
 };
 
 instance ItFo_Addon_FireStew(C_Item)

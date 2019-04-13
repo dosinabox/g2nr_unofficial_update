@@ -413,15 +413,23 @@ func void DIA_Neoras_BrewForMe_Back()
 func void DIA_Neoras_BrewForMe_Speed()
 {
 	AI_Output(other,self,"DIA_Neoras_BrewForMe_Speed_15_00");	//Свари мне зелье скорости.
-	AI_Output(self,other,"DIA_Neoras_BrewForMe_Speed_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 	if(Npc_HasItems(other,ItPl_Speed_Herb_01) && Npc_HasItems(other,ItPl_Temp_Herb) && (Npc_HasItems(other,ItMi_Gold) >= 10))
 	{
+		AI_Output(self,other,"DIA_Neoras_BrewForMe_Speed_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 		AI_Output(other,self,"DIA_Neoras_BrewForMe_Speed_15_02");	//Да, вот, держи.
-		B_GiveInvItems(other,self,ItPl_Speed_Herb_01,1);
-		B_GiveInvItems(other,self,ItPl_Temp_Herb,1);
+//		B_GiveInvItems(other,self,ItPl_Speed_Herb_01,1);
+//		B_GiveInvItems(other,self,ItPl_Temp_Herb,1);
+		Npc_RemoveInvItems(other,ItPl_Speed_Herb_01,1);
+		Npc_RemoveInvItems(other,ItPl_Temp_Herb,1);
+		AI_PrintScreen("Снеппер-трава отдано",-1,31,FONT_ScreenSmall,2);
+		AI_PrintScreen("Луговой горец отдано",-1,28,FONT_ScreenSmall,2);
 		B_GiveInvItems(other,self,ItMi_Gold,10);
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Speed_01_03");	//Хорошо, спасибо. Сейчас я дам тебе зелье, тебе не придется ждать долго.
 		B_GiveInvItems(self,other,ItPo_Speed,1);
+	}
+	else if(Npc_HasItems(other,ItMi_Gold) < 10)
+	{
+		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_07");	//За само приготовление я беру 10 золотых монет.
 	}
 	else
 	{
@@ -437,15 +445,23 @@ func void DIA_Neoras_BrewForMe_Speed()
 func void DIA_Neoras_BrewForMe_Mana()
 {
 	AI_Output(other,self,"DIA_Neoras_BrewForMe_Mana_15_00");	//Свари мне экстракт маны.
-	AI_Output(self,other,"DIA_Neoras_BrewForMe_Mana_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 	if((Npc_HasItems(other,ItPl_Mana_Herb_02) >= 2) && Npc_HasItems(other,ItPl_Temp_Herb) && (Npc_HasItems(other,ItMi_Gold) >= 10))
 	{
+		AI_Output(self,other,"DIA_Neoras_BrewForMe_Mana_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 		AI_Output(other,self,"DIA_Neoras_BrewForMe_Mana_15_02");	//Да, вот, держи.
-		B_GiveInvItems(other,self,ItPl_Mana_Herb_02,2);
-		B_GiveInvItems(other,self,ItPl_Temp_Herb,1);
+//		B_GiveInvItems(other,self,ItPl_Mana_Herb_02,2);
+//		B_GiveInvItems(other,self,ItPl_Temp_Herb,1);
+		Npc_RemoveInvItems(other,ItPl_Mana_Herb_02,2);
+		Npc_RemoveInvItems(other,ItPl_Temp_Herb,1);
+		AI_PrintScreen("2 предметов отдано (Огненная трава)",-1,31,FONT_ScreenSmall,2);
+		AI_PrintScreen("Луговой горец отдано",-1,28,FONT_ScreenSmall,2);
 		B_GiveInvItems(other,self,ItMi_Gold,10);
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Mana_01_03");	//Хорошо. Сейчас я дам тебе зелье, тебе не придется ждать долго.
 		B_GiveInvItems(self,other,ItPo_Mana_02,1);
+	}
+	else if(Npc_HasItems(other,ItMi_Gold) < 10)
+	{
+		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_07");	//За само приготовление я беру 10 золотых монет.
 	}
 	else
 	{
@@ -461,15 +477,23 @@ func void DIA_Neoras_BrewForMe_Mana()
 func void DIA_Neoras_BrewForMe_Health()
 {
 	AI_Output(other,self,"DIA_Neoras_BrewForMe_Health_15_00");	//Свари мне лечебный экстракт.
-	AI_Output(self,other,"DIA_Neoras_BrewForMe_Health_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 	if((Npc_HasItems(other,ItPl_Health_Herb_02) >= 2) && Npc_HasItems(other,ItPl_Temp_Herb) && (Npc_HasItems(other,ItMi_Gold) >= 10))
 	{
+		AI_Output(self,other,"DIA_Neoras_BrewForMe_Health_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 		AI_Output(other,self,"DIA_Neoras_BrewForMe_Health_15_02");	//Да, вот, держи.
-		B_GiveInvItems(other,self,ItPl_Health_Herb_02,2);
-		B_GiveInvItems(other,self,ItPl_Temp_Herb,1);
+//		B_GiveInvItems(other,self,ItPl_Health_Herb_02,2);
+//		B_GiveInvItems(other,self,ItPl_Temp_Herb,1);
+		Npc_RemoveInvItems(other,ItPl_Health_Herb_02,2);
+		Npc_RemoveInvItems(other,ItPl_Temp_Herb,1);
+		AI_PrintScreen("2 предметов отдано (Лечебное растение)",-1,31,FONT_ScreenSmall,2);
+		AI_PrintScreen("Луговой горец отдано",-1,28,FONT_ScreenSmall,2);
 		B_GiveInvItems(other,self,ItMi_Gold,10);
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Health_01_03");	//Хорошо. Сейчас я дам тебе зелье, тебе не придется ждать долго.
 		B_GiveInvItems(self,other,ItPo_Health_02,1);
+	}
+	else if(Npc_HasItems(other,ItMi_Gold) < 10)
+	{
+		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_07");	//За само приготовление я беру 10 золотых монет.
 	}
 	else
 	{

@@ -194,7 +194,7 @@ var int DIA_Opolos_rezept_permanent;
 
 func int DIA_Opolos_rezept_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Opolos_beibringen) && (other.guild == GIL_NOV) && (DIA_Opolos_rezept_permanent == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Opolos_beibringen) && ((other.guild == GIL_NOV) || (other.guild == GIL_KDF)) && (DIA_Opolos_rezept_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -540,19 +540,26 @@ func void DIA_Opolos_Kap3_PERM_Info()
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_15_00");	//Как твои овцы?
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_12_01");	//А как ты думаешь? Они стоят вокруг и жуют траву.
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_12_02");	//Хотел бы я знать, что происходит снаружи. Маги, похоже, очень нервничают.
-	Info_ClearChoices(DIA_Opolos_Kap3_PERM);
-	Info_AddChoice(DIA_Opolos_Kap3_PERM,Dialog_Back,DIA_Opolos_Kap3_PERM_BACK);
-	if(Opolos_Dragons == FALSE)
+	if((Opolos_Dragons == FALSE) || (Opolos_DMT == FALSE) || (Opolos_Pedro == FALSE))
 	{
-		Info_AddChoice(DIA_Opolos_Kap3_PERM,"В Долине Рудников появились драконы. Вместе с армией орков они осаждают королевские войска.",DIA_Opolos_Kap3_PERM_DRAGONS);
-	};
-	if(Opolos_DMT == FALSE)
+		Info_ClearChoices(DIA_Opolos_Kap3_PERM);
+		Info_AddChoice(DIA_Opolos_Kap3_PERM,Dialog_Back,DIA_Opolos_Kap3_PERM_BACK);
+		if(Opolos_Dragons == FALSE)
+		{
+			Info_AddChoice(DIA_Opolos_Kap3_PERM,"В Долине Рудников появились драконы. Вместе с армией орков они осаждают королевские войска.",DIA_Opolos_Kap3_PERM_DRAGONS);
+		};
+		if(Opolos_DMT == FALSE)
+		{
+			Info_AddChoice(DIA_Opolos_Kap3_PERM,"Неизвестные в черных рясах стоят на каждом перекрестке.",DIA_Opolos_Kap3_PERM_DMT);
+		};
+		if(((MIS_NovizenChase == LOG_Running) || (MIS_NovizenChase == LOG_SUCCESS)) && (Opolos_Pedro == FALSE))
+		{
+			Info_AddChoice(DIA_Opolos_Kap3_PERM,"Педро предал нас.",DIA_Opolos_Kap3_PERM_PEDRO);
+		};
+	}
+	else
 	{
-		Info_AddChoice(DIA_Opolos_Kap3_PERM,"Неизвестные в черных рясах стоят на каждом перекрестке.",DIA_Opolos_Kap3_PERM_DMT);
-	};
-	if((MIS_NovizenChase == LOG_Running) && (Opolos_Pedro == FALSE))
-	{
-		Info_AddChoice(DIA_Opolos_Kap3_PERM,"Педро предал нас.",DIA_Opolos_Kap3_PERM_PEDRO);
+		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
 	};
 };
 

@@ -152,6 +152,10 @@ func void DIA_Matteo_TRADE_Info()
 		AI_Output(self,other,"DIA_Matteo_TRADE_09_04");	//Это хорошо, что ты опять пополняешь свои запасы, кто знает, будет ли еще существовать этот город на следующей неделе.
 		Matteo_TradeNewsPermanent = 2;
 	};
+	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
+	{
+		MatteoMinenAnteil = TRUE;
+	};
 	Trade_IsActive = TRUE;
 };
 
@@ -693,7 +697,8 @@ instance DIA_Matteo_Minenanteil(C_Info)
 
 func int DIA_Matteo_Minenanteil_Condition()
 {
-	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Matteo_SellWhat))
+//	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Matteo_SellWhat))
+	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (MatteoMinenAnteil == TRUE))
 	{
 		return TRUE;
 	};

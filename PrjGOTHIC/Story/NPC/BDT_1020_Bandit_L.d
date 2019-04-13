@@ -18,7 +18,18 @@ instance BDT_1020_Bandit_L(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,30);
+	daily_routine = Rtn_Intercept_1020;
+};
+
+func void Rtn_Intercept_1020()
+{
 	TA_Guard_Passage(0,0,12,0,"NW_TROLLAREA_PATH_47");
 	TA_Guard_Passage(12,0,0,0,"NW_TROLLAREA_PATH_47");
+};
+
+func void Rtn_Hide_1020()
+{
+	TA_Guard_Passage(0,0,12,0,"NW_TROLLAREA_GOBBO_01");
+	TA_Guard_Passage(12,0,0,0,"NW_TROLLAREA_GOBBO_01");
 };
 

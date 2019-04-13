@@ -47,7 +47,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 			CreateInvItem(slf,ItMw_1H_Mace_L_03);
 		};
 	}
-	else if((slf.guild == GIL_VLK) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Vatras)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Vatras_DI)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Myxir_CITY)))
+	else if((slf.guild == GIL_VLK) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Vatras)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Myxir_CITY)))
 	{
 		if(rnd == 0)
 		{
@@ -58,7 +58,7 @@ func void B_RefreshMeleeWeapon(var C_Npc slf)
 			CreateInvItem(slf,ItMw_1H_Mace_L_01);
 		};
 	}
-	else if((slf.guild != GIL_DMT) && (slf.guild != GIL_KDF) && (slf.guild != GIL_KDW) && (slf.guild != GIL_STRF) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Xardas)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(GornOW)))
+	else if((slf.guild != GIL_DMT) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Vatras)) && (slf.guild != GIL_KDF) && (slf.guild != GIL_KDW) && (slf.guild != GIL_STRF) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Xardas)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(GornOW)))
 	{
 		CreateInvItem(slf,ItMw_1h_Bau_Mace);
 	};

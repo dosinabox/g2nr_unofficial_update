@@ -44,7 +44,7 @@ instance ItAm_Addon_Franco(C_Item)
 	count[2] = STR_Franco;
 	text[3] = NAME_Bonus_Dex;
 	count[3] = DEX_Franco;
-	text[4] = NAME_Bonus_HP;
+	text[4] = NAME_Bonus_HpMax;
 	count[4] = HP_ItAm_Addon_Franco;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -91,7 +91,7 @@ instance ItAm_Addon_Health(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет целителей";
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = HP_Amulett_Solo_Bonus;
 	text[3] = PRINT_Addon_KUMU_01;
 	text[4] = PRINT_Addon_KUMU_02;
@@ -140,7 +140,7 @@ instance ItRi_Addon_Health_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо целителей";
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = HP_Ring_Solo_Bonus;
 	text[3] = PRINT_Addon_KUMU_01;
 	text[4] = PRINT_Addon_KUMU_02;
@@ -191,7 +191,7 @@ instance ItRi_Addon_Health_02(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо целителей";
-	text[2] = NAME_Bonus_HP;
+	text[2] = NAME_Bonus_HpMax;
 	count[2] = HP_Ring_Solo_Bonus;
 	text[3] = PRINT_Addon_KUMU_01;
 	text[4] = PRINT_Addon_KUMU_02;
@@ -242,7 +242,7 @@ instance ItAm_Addon_MANA(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет жрецов";
-	text[2] = NAME_Bonus_Mana;
+	text[2] = NAME_Bonus_ManaMax;
 	count[2] = MA_Amulett_Solo_Bonus;
 	text[3] = PRINT_Addon_KUMU_01;
 	text[4] = PRINT_Addon_KUMU_02;
@@ -291,7 +291,7 @@ instance ItRi_Addon_MANA_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо жрецов";
-	text[2] = NAME_Bonus_Mana;
+	text[2] = NAME_Bonus_ManaMax;
 	count[2] = MA_Ring_Solo_Bonus;
 	text[3] = PRINT_Addon_KUMU_01;
 	text[4] = PRINT_Addon_KUMU_02;
@@ -342,7 +342,7 @@ instance ItRi_Addon_MANA_02(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо жрецов";
-	text[2] = NAME_Bonus_Mana;
+	text[2] = NAME_Bonus_ManaMax;
 	count[2] = MA_Ring_Solo_Bonus;
 	text[3] = PRINT_Addon_KUMU_01;
 	text[4] = PRINT_Addon_KUMU_02;

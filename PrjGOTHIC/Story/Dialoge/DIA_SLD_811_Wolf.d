@@ -301,7 +301,8 @@ instance DIA_Wolf_TeachCrawlerPlates(C_Info)
 	condition = DIA_Wolf_TeachCrawlerPlates_Condition;
 	information = DIA_Wolf_TeachCrawlerPlates_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня снимать панцири с краулеров!",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate));
+	//description = B_BuildLearnString("Научи меня снимать панцири с краулеров!",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate));
+	description = B_BuildLearnString("Снятие панцирей c краулеров",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate));
 };
 
 

@@ -329,7 +329,10 @@ instance ItPo_MegaDrink(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-	text[0] = PRINT_UnknownEffect;
+//	text[0] = PRINT_UnknownEffect;
+	text[0] = TEXT_MegaDrink_Setting2;
+	text[1] = TEXT_MegaDrink_Setting;
+	count[1] = COUNT_MegaDrink_Setting;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -347,5 +350,9 @@ func void UseItPo_MegaDrink()
 	};
 	Npc_ChangeAttribute(self,ATR_MANA,-ATR_MANA);
 	Snd_Play("DEM_Warn");
+	TEXT_MegaDrink_Setting2 = "Повышение доминирующего параметра.";
+	TEXT_MegaDrink_Setting = "Прибавка к силе или ловкости:";
+	COUNT_MegaDrink_Setting = STRorDEX_MegaDrink;
+	MegaDrink_Used = TRUE;
 };
 
