@@ -63,7 +63,7 @@ instance DIA_Igaraz_Wurst(C_Info)
 	condition = DIA_Igaraz_Wurst_Condition;
 	information = DIA_Igaraz_Wurst_Info;
 	permanent = FALSE;
-	description = "Я занимаюсь распределением колбасы.";
+	description = "Я раздаю колбасу.";
 };
 
 
@@ -215,7 +215,7 @@ func int DIA_Igaraz_IMTHEMAN_Condition()
 
 func void DIA_Igaraz_IMTHEMAN_Info()
 {
-	AI_Output(self,other,"DIA_Igaraz_IMTHEMAN_13_00");	//(гордо) Это свершилось. Иннос выбрал меня, и я приму участие в испытании магией.
+	AI_Output(self,other,"DIA_Igaraz_IMTHEMAN_13_00");	//(гордо) Это свершилось. Иннос выбрал меня, и я приму участие в Испытании Магией.
 };
 
 

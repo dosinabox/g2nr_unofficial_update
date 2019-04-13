@@ -102,7 +102,14 @@ func void DIA_Marduk_Gebetet_Info()
 	AI_Output(self,other,"DIA_Marduk_Gebetet_05_01");	//Это хорошо. А теперь возвращайся к своей работе.
 	MIS_MardukBeten = LOG_SUCCESS;
 	B_GivePlayerXP(XP_MardukBeten);
-	B_StartOtherRoutine(Sergio,"START");
+	if((Babo_Training == TRUE) && (DIA_Babo_Windfaust_permanent == FALSE))
+	{
+		B_StartOtherRoutine(Sergio,"TRAIN");
+	}
+	else
+	{
+		B_StartOtherRoutine(Sergio,"START");
+	};
 };
 
 
@@ -401,7 +408,7 @@ func void DIA_Marduk_Kap3_Hello_NotYourConcern()
 func void DIA_Marduk_Kap3_Hello_Soon()
 {
 	AI_Output(other,self,"DIA_Marduk_Kap3_Hello_Soon_15_00");	//Совсем недавно.
-	AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Soon_05_01");	//Тогда добро пожаловать. В этой битве нам нужны все, у кого есть мужество противостоять злу.
+	AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Soon_05_01");	//Тогда добро пожаловать. В этой битве нам нужны все, у кого есть мужество противостоять Злу.
 	AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Soon_05_02");	//Судьба всех нас лежит в руках людей вроде тебя. Да придаст тебе Иннос так необходимое тебе мужество.
 	Info_ClearChoices(DIA_Marduk_Kap3_Hello);
 };

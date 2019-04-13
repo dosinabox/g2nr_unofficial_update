@@ -2,13 +2,13 @@
 instance BAU_945_Egill(Npc_Default)
 {
 	name[0] = "Ёгилл";
-	guild = GIL_OUT;
+	guild = GIL_NONE;
 	id = 945;
 	voice = 8;
 	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,3);
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItPo_Health_02,1);

@@ -191,8 +191,6 @@ func void DIA_Ehnim_STREIT5_Attack()
 	AI_StopProcessInfos(self);
 	DIA_Ehnim_STREIT5_noPerm = TRUE;
 	other.aivar[AIV_INVINCIBLE] = FALSE;
-	self.guild = GIL_NONE;
-	Egill.guild = GIL_NONE;
 	B_Attack(self,Egill,AR_NONE,0);
 	B_GivePlayerXP(XP_EgillEhnimStreit);
 };

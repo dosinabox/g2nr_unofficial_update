@@ -188,8 +188,8 @@ func void B_Quarhodron_Fragen_Choices()
 		};
 		if(Quarhodrons_NextQuestion == 7)
 		{
-			AI_Output(self,other,"DIA_Addon_Quarhodron_Fragen_Choices_11_04");	// то закрыл портал, чтобы не пропустить зло в наш мир?
-			Log_AddEntry(TOPIC_Addon_Quarhodron," ---  то закрыл портал и защитил мир от зла? ---");
+			AI_Output(self,other,"DIA_Addon_Quarhodron_Fragen_Choices_11_04");	// то закрыл портал, чтобы не пропустить «ло в наш мир?
+			Log_AddEntry(TOPIC_Addon_Quarhodron," ---  то закрыл портал и защитил мир от «ла? ---");
 			Quarhodrons_NextQuestion = Quarhodron_AlleFragenGestellt;
 		}
 		else if(Quarhodrons_NextQuestion == 6)
@@ -206,7 +206,7 @@ func void B_Quarhodron_Fragen_Choices()
 		}
 		else if(Quarhodrons_NextQuestion == 4)
 		{
-			AI_Output(self,other,"DIA_Addon_Quarhodron_Fragen_Choices_11_07");	// то привел в наш мир зло?
+			AI_Output(self,other,"DIA_Addon_Quarhodron_Fragen_Choices_11_07");	// то привел в наш мир «ло?
 			Log_AddEntry(TOPIC_Addon_Quarhodron," ---  то виновен в несчасть€х, постигших жителей яркендара? ---");
 			Quarhodrons_NextQuestion = 5;
 		}

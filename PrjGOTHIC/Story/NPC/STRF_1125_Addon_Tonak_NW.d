@@ -2,7 +2,7 @@
 instance STRF_1125_Addon_Tonak_NW(Npc_Default)
 {
 	name[0] = "Тонак";
-	guild = GIL_BAU;
+	guild = GIL_OUT;
 	id = 1125;
 	voice = 3;
 	flags = 0;

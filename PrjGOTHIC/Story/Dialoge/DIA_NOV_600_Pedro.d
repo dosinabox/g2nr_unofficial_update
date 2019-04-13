@@ -333,17 +333,17 @@ func void DIA_Pedro_AUFNAHME_YES()
 {
 	AI_Output(other,self,"DIA_Pedro_AUFNAHME_YES_15_00");	//Да, я хочу посвятить свою жизнь служению Инносу.
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_01");	//Тогда добро пожаловать, брат. Я даю тебе этот ключ от монастырских ворот.
-	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_02");	//В знак твоего добровольного принятия этого решения, ты должен сам открыть эти ворота и войти внутрь.
-	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_03");	//Теперь ты послушник. Носи эту робу в знак того, что теперь ты член нашего братства.
-	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_04");	//Когда ты войдешь в монастырь, подойди к Парлану. С этого момента он будет отвечать за тебя.
-	AI_Output(other,self,"DIA_Pedro_AUFNAHME_YES_15_05");	//Мои прегрешения теперь прощены?
-	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
+	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_02");	//В знак твоего добровольного принятия этого решения, ты должен сам открыть эти ворота и войти внутрь.
+	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_03");	//Теперь ты послушник. Носи эту робу в знак того, что теперь ты член нашего братства.
 	hero.guild = GIL_NOV;
 	Npc_SetTrueGuild(hero,GIL_NOV);
 	CreateInvItem(hero,ITAR_NOV_L);
 	AI_EquipArmor(hero,ITAR_NOV_L);
+	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_04");	//Когда ты войдешь в монастырь, подойди к Парлану. С этого момента он будет отвечать за тебя.
+	AI_Output(other,self,"DIA_Pedro_AUFNAHME_YES_15_05");	//Мои прегрешения теперь прощены?
+	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.
 	DIA_Pedro_AUFNAHME_NOPERM = TRUE;
 	NOV_Aufnahme = TRUE;
 	B_GivePlayerXP(XP_AufnahmeNovize);

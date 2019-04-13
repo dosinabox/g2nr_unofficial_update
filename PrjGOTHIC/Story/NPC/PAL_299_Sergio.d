@@ -25,7 +25,8 @@ instance PAL_299_Sergio(Npc_Default)
 func void Rtn_Start_299()
 {
 	TA_Pray_Innos(8,0,23,0,"NW_MONASTERY_CHAPELL_02");
-	TA_Pray_Innos(23,0,8,0,"NW_MONASTERY_CHAPELL_02");
+	TA_Stand_Guarding(23,0,0,0,"NW_MONASTERY_PLACE_09");
+	TA_Pray_Innos(0,0,8,0,"NW_MONASTERY_CHAPELL_02");
 };
 
 func void Rtn_WaitForPlayer_299()

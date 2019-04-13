@@ -2,7 +2,7 @@
 instance STRF_1127_Addon_Pardos_NW(Npc_Default)
 {
 	name[0] = "Пардос";
-	guild = GIL_BAU;
+	guild = GIL_OUT;
 	id = 1127;
 	voice = 3;
 	flags = 0;

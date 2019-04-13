@@ -113,8 +113,11 @@ func void DIA_Kardif_Hallo_Info()
 	AI_Output(other,self,"DIA_Kardif_Hallo_15_02");	//Мои уши всегда открыты для новостей.
 	AI_Output(self,other,"DIA_Kardif_Hallo_14_03");	//А кошелек у тебя тоже открыт?
 	AI_Output(self,other,"DIA_Kardif_Hallo_14_04");	//Каждая информация, которую я сообщу тебе, будет стоить 10 золотых монет.
-	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"Кардиф, владелец кабака в гавани, приторговывает информацией.");
+	if(!Npc_KnowsInfo(other,DIA_Meldor_Interessantes))
+	{
+		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTrader,"Кардиф, владелец кабака в гавани, приторговывает информацией.");
+	};
 	Info_ClearChoices(DIA_Kardif_Hallo);
 	Info_AddChoice(DIA_Kardif_Hallo,"Я не готов платить за информацию больше 5 монет.",DIA_Kardif_Hallo_Angebot);
 	Info_AddChoice(DIA_Kardif_Hallo,"Забудь об этом - я найду нужную мне информацию в другом месте.",DIA_Kardif_Hallo_Hart);
@@ -430,12 +433,27 @@ func void DIA_Kardif_Lernen_Info()
 		AI_Output(self,other,"DIA_Kardif_Lernen_14_07");	//Просто осмотрись в портовом районе, ты обязательно найдешь их. А если ты хочешь лучше ориентироваться здесь, зайди к Ибрагиму и купи у него карту.
 		AI_Output(self,other,"DIA_Kardif_Lernen_14_08");	//Его совсем легко найти. Он живет в соседнем доме направо от моего трактира. (бормочет) Я должен был взять в два раза больше за эту информацию.
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Карл, кузнец в портовом квартале, может сделать меня сильнее.");
-		B_LogEntry(TOPIC_CityTeacher,"Ларес может помочь мне повысить мою ловкость.");
-		B_LogEntry(TOPIC_CityTeacher,"Альрик может обучить меня искусству владения одноручным оружием. Он ошивается за складом в портовом квартале.");
-		B_LogEntry(TOPIC_CityTeacher,"Игнац может показать мне рецепты приготовления зелий. Он живет в портовом квартале.");
-		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTrader,"Ибрагим рисует карты и продает их в гавани.");
+		if(!Npc_KnowsInfo(other,DIA_Carl_Lernen))
+		{
+			B_LogEntry(TOPIC_CityTeacher,"Карл, кузнец в портовом квартале, может сделать меня сильнее.");
+		};
+		if(Lares_TeachDEX == FALSE)
+		{
+			B_LogEntry(TOPIC_CityTeacher,"Ларес может помочь мне повысить мою ловкость и силу.");
+		};
+		if(Alrik_Teach1H == FALSE)
+		{
+			B_LogEntry(TOPIC_CityTeacher,"Альрик может обучить меня искусству сражения одноручным оружием. Он ошивается за складом в портовом квартале.");
+		};
+		if(Ignaz_TeachAlchemy == FALSE)
+		{
+			B_LogEntry(TOPIC_CityTeacher,"Игнац может показать мне рецепты приготовления зелий. Он живет в портовом квартале.");
+		};
+		if(!Npc_KnowsInfo(other,DIA_Brahim_GREET))
+		{
+			Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+			B_LogEntry(TOPIC_CityTrader,"Ибрагим рисует карты и продает их в гавани.");
+		};
 		DIA_Kardif_Lernen_permanent = TRUE;
 	}
 	else
@@ -799,7 +817,7 @@ func void DIA_Kardif_Crew_Info()
 		AI_Output(self,other,"DIA_Kardif_Crew_14_05");	//Иди, поговори со старым Джеком. Он ошивается в этом порту, сколько я себя помню. В том, что касается морского дела, это тот человек, что тебе нужен.
 		Log_CreateTopic(Topic_Captain,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Captain,LOG_Running);
-		B_LogEntry(Topic_Captain,"Кардиф отправил меня к старому Джеку. Возможно, он сможет помочь мне");
+		B_LogEntry(Topic_Captain,"Кардиф отправил меня к старому Джеку. Возможно, он сможет помочь мне.");
 	};
 };
 

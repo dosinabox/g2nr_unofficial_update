@@ -276,7 +276,7 @@ func void DIA_Addon_Lares_Ranger_Info()
 	AI_Output(other,self,"DIA_Addon_Lares_Ranger_15_00");	//Расскажи мне о 'Кольце Воды'.
 	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_01");	//Кольцо для магов Воды - то же самое, что паладины для магов Огня.
 	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_02");	//Но в отличие от паладинов, мы действуем тайно.
-	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_03");	//Кольцо - это могучее оружие в битвах с силами зла, угрожающими Хоринису.
+	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_03");	//Кольцо - это могучее оружие в битвах с силами Зла, угрожающими Хоринису.
 	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_04");	//Но сила Кольца основывается на том, что имена его членов хранятся в тайне.
 	AI_Output(self,other,"DIA_Addon_Lares_Ranger_09_05");	//Поэтому помалкивай об этом!
 	AI_Output(other,self,"DIA_Addon_Lares_Ranger_15_06");	//Конечно.
@@ -1889,8 +1889,11 @@ func void DIA_Lares_DEX_Info()
 	AI_Output(other,self,"DIA_Lares_DEX_15_00");	//Ты можешь научить меня чему-нибудь?
 	AI_Output(self,other,"DIA_Addon_Lares_DEX_Add_09_01");	//Конечно. Я могу помочь тебе стать более сильным и ловким.
 	Lares_TeachDEX = TRUE;
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Ларес может помочь мне повысить мою ловкость и силу.");
+	if(DIA_Kardif_Lernen_permanent == FALSE)
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Ларес может помочь мне повысить мою ловкость и силу.");
+	};
 };
 
 

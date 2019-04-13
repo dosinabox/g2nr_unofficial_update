@@ -88,7 +88,7 @@ func void DIA_Moe_Hallo_Gehen()
 {
 	AI_Output(other,self,"DIA_Moe_Hallo_Gehen_15_00");	//Ќет, € не иду в кабак...
 	AI_Output(self,other,"DIA_Moe_Hallo_Gehen_01_01");	//я так и подумал. Ќо это не так уж важно - мы можем перейти пр€мо к делу.
-	AI_Output(self,other,"DIA_Moe_Hallo_Gehen_01_02");	//“ак как ты здесь новичок, € хочу сделать тебе заманчивое предложение. “ы даешь мне 50 золотых монет и можешь идти дальше.
+	AI_Output(self,other,"DIA_Moe_Hallo_Gehen_01_02");	//“ак как ты здесь новичок, € хочу сделать тебе заманчивое предложение. “ы дашь мне 50 золотых монет и можешь идти дальше.
 	AI_Output(self,other,"DIA_Moe_Hallo_Gehen_01_03");	//Ёто плата за свободный вход в кабак.
 	Info_ClearChoices(DIA_Moe_Hallo);
 	Info_AddChoice(DIA_Moe_Hallo,"ƒавай спросим, что думает по этому поводу ополчение...",DIA_Moe_Hallo_Miliz);

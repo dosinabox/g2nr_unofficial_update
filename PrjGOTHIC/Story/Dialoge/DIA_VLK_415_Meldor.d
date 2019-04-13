@@ -69,8 +69,11 @@ func void DIA_Meldor_Interessantes_Info()
 	AI_Output(other,self,"DIA_Meldor_Interessantes_15_00");	//Что здесь интересного?
 	AI_Output(self,other,"DIA_Meldor_Interessantes_07_01");	//Здесь есть бордель и кабак. Хозяина кабака зовут Кардиф. Если тебе нужна информация, я советую поговорить именно с ним.
 	AI_Output(self,other,"DIA_Meldor_Interessantes_07_02");	//Тебе, кстати, не нужны деньги?
-	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"Кардиф, владелец таверны в гавани, приторговывает информацией.");
+	if(!Npc_KnowsInfo(other,DIA_Kardif_Hallo))
+	{
+		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTrader,"Кардиф, владелец кабака в гавани, приторговывает информацией.");
+	};
 };
 
 
@@ -239,7 +242,7 @@ func void DIA_Meldor_PERM_Info()
 	if(Kapitel <= 1)
 	{
 		AI_Output(self,other,"DIA_Meldor_PERM_07_01");	//Недавно городская стража перевернула вверх дном весь портовый квартал.
-		AI_Output(self,other,"DIA_Meldor_PERM_07_02");	//Они искали украденное. Последнее время развелось уж больно много воров. Особенно в зажиточных кварталах.
+		AI_Output(self,other,"DIA_Meldor_PERM_07_02");	//Они искали украденное. В последнее время развелось уж больно много воров. Особенно в зажиточных кварталах.
 		AI_Output(self,other,"DIA_Meldor_PERM_07_03");	//Они пытались во всем обвинить бедняков из портового квартала.
 	}
 	else if((Andre_Diebesgilde_aufgeraeumt == TRUE) && (Meldor_DGNews == FALSE))

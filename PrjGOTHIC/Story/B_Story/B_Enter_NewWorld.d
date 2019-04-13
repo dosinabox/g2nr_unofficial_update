@@ -250,12 +250,12 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(BAU_967_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_968_Bauer,"FleeFromPass");
 			B_StartOtherRoutine(BAU_969_Bauer,"FleeFromPass");
-			if(hero.guild == GIL_KDF)
+/*			if(hero.guild == GIL_KDF)
 			{
 				CreateInvItems(Malak,ITWR_DementorObsessionBook_MIS,1);
-			};
+			}; */
 		};
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+		if(!Npc_IsDead(Hilda) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
 		{
 			B_StartOtherRoutine(Hilda,"KRANK");
 		};
@@ -281,9 +281,12 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			if(!Npc_IsDead(Vino))
 			{
 				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
-				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
+//				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
 				Vino_isAlive_Kap3 = TRUE;
-				B_StartOtherRoutine(Lobart,"OBESESSIONRITUAL");
+				if(!Npc_IsDead(Lobart))
+				{
+					B_StartOtherRoutine(Lobart,"OBESESSIONRITUAL");
+				};
 				Wld_InsertNpc(DMT_DementorSpeakerVino1,"FP_STAND_DEMENTOR_KDF_31");
 				Wld_InsertNpc(DMT_DementorSpeakerVino2,"FP_STAND_DEMENTOR_KDF_32");
 				Wld_InsertNpc(DMT_DementorSpeakerVino3,"FP_STAND_DEMENTOR_KDF_33");
@@ -291,10 +294,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				B_KillNpc(YGiant_Bug_VinoRitual1);
 				B_KillNpc(YGiant_Bug_VinoRitual2);
 			};
-			if(!Npc_IsDead(Bromor))
+/*			if(!Npc_IsDead(Bromor))
 			{
 				CreateInvItems(Bromor,ITWR_DementorObsessionBook_MIS,1);
-			};
+			}; */
 		};
 		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && !Npc_IsDead(Canthar))
 		{
@@ -340,12 +343,15 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 {
 	if(EnterNW_Kapitel4 == FALSE)
 	{
-		if(MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS)
+		if(!Npc_IsDead(Salandril) && (MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS))
 		{
 			B_StartOtherRoutine(Salandril,"Start");
 		};
 		B_StartOtherRoutine(Jorgen,"Kloster");
-		B_KillNpc(BDT_1050_Landstreicher);
+		if(!Npc_IsDead(BDT_1050_Landstreicher))
+		{
+			B_KillNpc(BDT_1050_Landstreicher);
+		};
 		Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_ITEM_XARDAS_01");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDASCAVE_DJG_01");
 		Wld_InsertNpc(Draconian,"FP_ROAM_XARDASCAVE_DJG_02");
@@ -361,7 +367,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
 		Wld_InsertNpc(Maya_Troll,"NW_TROLLAREA_RUINS_41");
-		if(MIS_HealHilda == LOG_SUCCESS)
+		if(!Npc_IsDead(Hilda) && (MIS_HealHilda == LOG_SUCCESS))
 		{
 			B_StartOtherRoutine(Hilda,"START");
 		};
@@ -571,7 +577,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(DMT_DementorAmbientWalker7,"CITY1");
 			if(!Npc_IsDead(Randolph))
 			{
-				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
+//				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
 				B_StartOtherRoutine(Randolph,"Obsessed");
 			};
 		};
@@ -595,7 +601,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 	{
 		B_RemoveNpc(Xardas);
 		B_StartOtherRoutine(Lester,"XardasWeg");
-		if(MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS)
+		if(!Npc_IsDead(Salandril) && (MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS))
 		{
 			B_StartOtherRoutine(Salandril,"Start");
 		};
@@ -668,7 +674,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			Wld_InsertNpc(DMT_DementorAmbientWalker2,"CITY1");
 			if(!Npc_IsDead(Sekob))
 			{
-				CreateInvItems(Sekob,ITWR_DementorObsessionBook_MIS,1);
+//				CreateInvItems(Sekob,ITWR_DementorObsessionBook_MIS,1);
 				B_StartOtherRoutine(Sekob,"Obsessed");
 			};
 		};

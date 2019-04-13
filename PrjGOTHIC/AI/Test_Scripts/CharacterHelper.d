@@ -3234,12 +3234,12 @@ func void CH_Training_TROPHYS_BFWing()
 
 func void CH_Training_TROPHYS_CrawlerPlate()
 {
-	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Mandibles);
+	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_CrawlerPlate);
 };
 
 func void CH_Training_TROPHYS_Mandibles()
 {
-	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_CrawlerPlate);
+	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Mandibles);
 };
 
 

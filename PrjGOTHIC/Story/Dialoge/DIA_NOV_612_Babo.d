@@ -113,7 +113,6 @@ func void DIA_Babo_Sergio_Info()
 	AI_Output(self,other,"DIA_Babo_Sergio_03_01");	//Спасибо! Какая честь для меня!
 	AI_Output(self,other,"DIA_Babo_Sergio_03_02");	//Если хочешь, я также могу показать тебе несколько секретов боевого искусства.
 	Babo_TeachPlayer = TRUE;
-	Babo_Training = TRUE;
 	B_GivePlayerXP(XP_Ambient * 2);
 	Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
 	B_LogEntry(Topic_KlosterTeacher,"Бабо может обучить меня искусству обращения с двуручным оружием.");
@@ -441,6 +440,10 @@ func void DIA_Babo_Windfaust_Info()
 		B_GivePlayerXP(XP_Feger);
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"FEGEN");
+		if(Babo_Training == TRUE)
+		{
+			B_StartOtherRoutine(Sergio,"START");
+		};
 		B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников.");
 	}
 	else

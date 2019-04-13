@@ -25,3 +25,9 @@ func void Rtn_Start_507()
 	TA_Guard_Passage(23,0,8,0,"NW_MONASTERY_CELLAR_15");
 };
 
+func void Rtn_PassGranted_507()
+{
+	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_CELLAR_15");
+	TA_Sleep(23,0,8,0,"NW_MONASTERY_MAGE01_BED_02");
+};
+

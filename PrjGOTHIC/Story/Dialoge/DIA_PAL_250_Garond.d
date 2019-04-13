@@ -1006,7 +1006,7 @@ func int DIA_Garond_AllDragonDead_Condition()
 func void DIA_Garond_AllDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Garond_AllDragonDead_15_00");	//Все драконы мертвы.
-	AI_Output(self,other,"DIA_Garond_AllDragonDead_10_01");	//(недоверчиво) Все? То есть зло изгнано отсюда навеки?
+	AI_Output(self,other,"DIA_Garond_AllDragonDead_10_01");	//(недоверчиво) Все? То есть Зло изгнано отсюда навеки?
 	AI_Output(other,self,"DIA_Garond_AllDragonDead_15_02");	//Нет. Остался их предводитель.
 	AI_Output(self,other,"DIA_Garond_AllDragonDead_10_03");	//Разве не драконы были предводителями орков?
 	AI_Output(other,self,"DIA_Garond_AllDragonDead_15_04");	//Да, это так, но у них также есть свой хозяин. Мы должны уничтожить и его тоже.

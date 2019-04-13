@@ -79,7 +79,7 @@ instance YWolf(Mst_Default_Wolf)
 	protection[PROT_POINT] = 0;
 	protection[PROT_FIRE] = 10;
 	protection[PROT_FLY] = 10;
-	fight_tactic = FAI_MONSTER_COWARD;
+//	fight_tactic = FAI_MONSTER_COWARD;
 	B_SetVisuals_Wolf();
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,1);

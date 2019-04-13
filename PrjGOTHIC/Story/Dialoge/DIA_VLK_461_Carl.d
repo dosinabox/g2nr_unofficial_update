@@ -22,7 +22,7 @@ func void DIA_Carl_EXIT_Info()
 
 func void B_CarlSayHallo()
 {
-	AI_Output(self,other,"DIA_Carl_Hallo_05_00");	//ѕохоже, в городе есть несколько воров, которые крадут у зажиточных горожан.
+	AI_Output(self,other,"DIA_Carl_Hallo_05_00");	//ѕохоже, в городе есть несколько воров, которые крадут у зажиточных граждан.
 	AI_Output(self,other,"DIA_Carl_Hallo_05_01");	//√ородска€ стража недавно перевернула портовый квартал вверх дном, но они ничего не нашли.
 };
 
@@ -154,8 +154,11 @@ func void DIA_Carl_Lernen_Info()
 	AI_Output(self,other,"DIA_Carl_Lernen_05_02");	//Ќо € мало что знаю об изготовлении оружи€, чтобы учить теб€ этому.
 	AI_Output(self,other,"DIA_Carl_Lernen_05_03");	//≈сли ты хочешь обучитьс€ этому ремеслу, поговори с √арадом. ќн-то уж точно знает, как ковать оружие!
 	AI_Output(self,other,"DIA_Carl_Lernen_05_04");	//Ќо если ты хочешь немного потренировать свои мускулы, тут € могу помочь.
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher," арл, кузнец в портовом квартале, может сделать мен€ сильнее.");
+	if(DIA_Kardif_Lernen_permanent == FALSE)
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher," арл, кузнец в портовом квартале, может сделать мен€ сильнее.");
+	};
 };
 
 

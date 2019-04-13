@@ -1555,7 +1555,7 @@ func void DIA_Pyrokar_AlmanachBringen_Info()
 		AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_06");	//Ты уже принес целую кучу этих вражеских книг.
 		AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_07");	//Я буду удивлен, если тебе удастся найти еще.
 	};
-	AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_08");	//Вот, возьми. Это дар от монастыря, который поможет тебе противостоять злу.
+	AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_08");	//Вот, возьми. Это дар от монастыря, который поможет тебе противостоять Злу.
 	if(DIA_Pyrokar_AlmanachBringen_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_AlmanachBringen_11_09");	//И не забывай время от времени заглядывать в мое магическое письмо.
@@ -1640,8 +1640,8 @@ func void DIA_Pyrokar_DRACHENTOT_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_DRACHENTOT_15_00");	//Все драконы мертвы.
 	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_01");	//Это воистину хорошие новости. Но это совершенно не меняет наше положение, которое кажется безнадежным.
-	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_02");	//Ищущие все еще не ушли. Скорее наоборот. Я слышу все больше и больше сообщений о том, что за последние несколько дней, их численность даже увеличилась.
-	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_03");	//Уничтожение драконов нанесло врагу серьезный удар, но этого недостаточно. Нам нужно вырвать это зло с корнем.
+	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_02");	//Ищущие все еще не ушли. Скорее наоборот. Я слышу все больше и больше сообщений о том, что за последние несколько дней их численность даже увеличилась.
+	AI_Output(self,other,"DIA_Pyrokar_DRACHENTOT_11_03");	//Уничтожение драконов нанесло врагу серьезный удар, но этого недостаточно. Нам нужно вырвать это Зло с корнем.
 };
 
 
@@ -1697,8 +1697,8 @@ func void DIA_Pyrokar_WASISTIRDORATH_Info()
 	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_02");	//Около 40 лет назад северный и западный храмы этого ужасного божества были уничтожены.
 	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_03");	//Мужественные рыцари того времени отдали все, чтобы сравнять эти величественные сооружения с землей.
 	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_04");	//Тогда черные орды врага были бессильны против превосходящих их мужеством и числом рыцарей и паладинов.
-	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_05");	//Было бы несложно уничтожить и оставшиеся два храма, чтобы избавить землю от зла навсегда...
-	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_06");	//... но после того как пал второй храм, они просто растворились.
+	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_05");	//Было бы несложно уничтожить и оставшиеся два храма, чтобы избавить землю от Зла навсегда...
+	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_06");	//... но после того, как пал второй храм, они просто растворились.
 	AI_Output(other,self,"DIA_Pyrokar_WASISTIRDORATH_15_07");	//(насмешливо) Растворился. Целый храм. Да, точно.
 	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_08");	//Не смейся. Ситуация серьезная. Чертоги Ирдората действительно восстановили свою силу, и теперь врага будет победить очень трудно.
 	AI_Output(self,other,"DIA_Pyrokar_WASISTIRDORATH_11_09");	//Поэтому сначала ты должен найти этот храм, и я думаю, это будет твоя следующая и самая тяжелая задача.

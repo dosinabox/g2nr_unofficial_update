@@ -630,8 +630,11 @@ func void DIA_Alrik_Ausbilden_Info()
 			AI_Output(self,other,"DIA_Alrik_Ausbilden_09_03");	//Как только у тебя будет необходимый опыт - пожалуйста.
 		};
 		Alrik_Teach1H = TRUE;
-		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Альрик может обучить меня искусству сражения одноручным оружием. Он ошивается за складом в портовом квартале.");
+		if(DIA_Kardif_Lernen_permanent == FALSE)
+		{
+			Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_CityTeacher,"Альрик может обучить меня искусству сражения одноручным оружием. Он ошивается за складом в портовом квартале.");
+		};
 	};
 };
 

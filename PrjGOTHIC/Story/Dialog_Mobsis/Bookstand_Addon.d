@@ -142,7 +142,7 @@ func void Use_BookstandMaya()
 		Doc_PrintLine(StPl_nDocID,0,"");
 		Doc_SetMargins(StPl_nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(StPl_nDocID,1,"");
-		Doc_PrintLines(StPl_nDocID,1,"Но так как РАДЕМЕС изгнал или убил всех стражей мертвых, он лишил нас надежды избавления от этого зла.");
+		Doc_PrintLines(StPl_nDocID,1,"Но так как РАДЕМЕС изгнал или убил всех стражей мертвых, он лишил нас надежды избавления от этого Зла.");
 		Doc_PrintLine(StPl_nDocID,1,"");
 		Doc_PrintLine(StPl_nDocID,1,"");
 		Doc_PrintLines(StPl_nDocID,1,"И тогда, когда не стало ни одного стража мертвых, оставшиеся четыре предводителя нашего народа, лишенные своей былой власти, приняли горькое решение сдать ЯРКЕНДАР.");

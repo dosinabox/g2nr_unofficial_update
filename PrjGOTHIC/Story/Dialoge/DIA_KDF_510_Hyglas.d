@@ -135,8 +135,8 @@ func void DIA_Hyglas_CONTEST_Info()
 	AI_Output(self,other,"DIA_Hyglas_CONTEST_14_01");	//И ты хочешь, чтобы я обучил тебя этому?
 	AI_Output(other,self,"DIA_Hyglas_CONTEST_15_02");	//Я не знаю другого способа выполнить это задание.
 	AI_Output(self,other,"DIA_Hyglas_CONTEST_14_03");	//Хмм...
-	AI_Output(self,other,"DIA_Hyglas_CONTEST_14_04");	//Хорошо, я научу тебя. Но сначала, ты должен найти все необходимые ингредиенты.
-	B_LogEntry(TOPIC_Rune,"Хиглас готов обучить меня создавать руну 'Огненная стрела', если я принесу ему все необходимые ингредиенты.");
+	AI_Output(self,other,"DIA_Hyglas_CONTEST_14_04");	//Хорошо, я научу тебя. Но сначала ты должен найти все необходимые ингредиенты.
+	B_LogEntry(TOPIC_Rune,"Хиглас готов обучить меня создавать руну огненной стрелы, если я принесу ему все необходимые ингредиенты.");
 };
 
 
@@ -173,7 +173,7 @@ instance DIA_Hyglas_TALENT_FIREBOLT(C_Info)
 	condition = DIA_Hyglas_TALENT_FIREBOLT_Condition;
 	information = DIA_Hyglas_TALENT_FIREBOLT_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня создавать руну ОГНЕННОЙ СТРЕЛЫ",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt));
+	description = B_BuildLearnString("Научи меня создавать руну огненной стрелы",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt));
 };
 
 
@@ -189,7 +189,7 @@ var int Firebolt_Scroll_Once;
 
 func void DIA_Hyglas_TALENT_FIREBOLT_Info()
 {
-	AI_Output(other,self,"DIA_Hyglas_TALENT_FIREBOLT_15_00");	//Научи меня создавать руну ОГНЕННОЙ СТРЕЛЫ.
+	AI_Output(other,self,"DIA_Hyglas_TALENT_FIREBOLT_15_00");	//Научи меня создавать руну огненной стрелы.
 	if(Npc_HasItems(other,ItSc_Firebolt))
 	{
 		if(B_TeachPlayerTalentRunes(self,other,SPL_Firebolt))

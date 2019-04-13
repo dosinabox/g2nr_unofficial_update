@@ -100,7 +100,7 @@ func void DIA_JAN_Dragons_HelpYou()
 func void DIA_JAN_Dragons_Reward()
 {
 	AI_Output(other,self,"DIA_JAN_Dragons_Reward_15_00");	//А что мне будет, если я помогу тебе?
-	AI_Output(self,other,"DIA_JAN_Dragons_Reward_10_01");	//У меня ничего нет. Единственно, я могу научить тебя чему-нибудь.
+	AI_Output(self,other,"DIA_JAN_Dragons_Reward_10_01");	//У меня ничего нет. Единственное, я могу научить тебя чему-нибудь.
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_JAN_Dragons_Reward_10_02");	//Я знаю способ, как сделать клинок, выкованный из магической руды, еще прочнее.
@@ -621,7 +621,7 @@ func void DIA_Jan_DragonBlood_Info()
 	if(Npc_HasItems(other,ItAt_DragonBlood))
 	{
 		Info_AddChoice(DIA_Jan_DragonBlood,"(Все)",DIA_Jan_DragonBlood_all);
-		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну пробирку)",DIA_Jan_DragonBlood_1);
+		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну мензурку)",DIA_Jan_DragonBlood_1);
 	};
 };
 

@@ -337,7 +337,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 	};
 	if((Npc_IsDead(MayaZombie04_Totenw) || Npc_HasItems(other,ItMi_Addon_Stone_02) || (Saturas_SCFound_ItMi_Addon_Stone_02 == TRUE)) && (FOUNDHOUSEINFO[5] == FALSE))
 	{
-		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_17");	//Дом стражей мертвых защищают силы зла.
+		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_17");	//Дом стражей мертвых защищают силы Зла.
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_18");	//Я раньше никогда не встречал такое количество зомби в одном месте.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_19");	//Какая печальная судьба! Стражи мертвых пали жертвой своих же способностей.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_20");	//Их тесная связь с миром мертвых сослужила им злую службу. Надеюсь, ты освободил их от страданий.

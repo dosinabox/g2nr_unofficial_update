@@ -155,13 +155,13 @@ func int DIA_Karras_Success_Condition()
 func void DIA_Karras_Success_Info()
 {
 	AI_Output(other,self,"DIA_Karras_Success_15_00");	//¬от свитки, которые ты хотел получить.
+	B_GiveInvItems(other,self,ItSc_Charm,3);
 	AI_Output(self,other,"DIA_Karras_Success_10_01");	//ќтлично, мой юный друг.
 	AI_Output(self,other,"DIA_Karras_Success_10_02");	//“еперь ты можешь полностью посв€тить себ€ обучению в библиотеке.
 	AI_Output(self,other,"DIA_Karras_Success_10_03");	//» возьми этот свиток в качестве награды.
+	B_GiveInvItems(self,other,ItSc_SumWolf,1);
 	MIS_KarrasVergessen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KarrasCharm);
-	B_GiveInvItems(other,self,ItSc_Charm,3);
-	B_GiveInvItems(self,other,ItSc_SumWolf,1);
 };
 
 
@@ -716,7 +716,7 @@ func void DIA_Karras_ResearchDMTEnd_Info()
 		AI_Output(other,self,"DIA_Karras_ResearchDMTEnd_15_02");	//¬ыкладывай!
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_03");	// огда-то они были людьми, как ты или €. ќни сделали трагическую ошибку, посв€тив себ€ нечистой магии очень сильного архидемона.
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_04");	//ѕод вли€нием этого архидемона, а также очень сильных наркотиков, единственной целью их существовани€ стало служение ему, и со временем от их былой сущности осталась лишь тень.
-		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_05");	//—егодн€ же, они не более чем орудие зла, не обладающее собственной волей, и они никогда не перестанут охотитьс€ на последователей »нноса.
+		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_05");	//—егодн€ же, они не более чем орудие «ла, не обладающее собственной волей, и они никогда не перестанут охотитьс€ на последователей »нноса.
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_06");	//ћы должны про€вл€ть осторожность. ѕохоже, они бо€тс€ этих св€щенных чертогов »нноса.
 		AI_Output(self,other,"DIA_Karras_ResearchDMTEnd_10_07");	//ќднако, если их сила продолжит расти, € не смогу поручитьс€, что мы будем здесь в безопасности.
 		AI_Output(other,self,"DIA_Karras_ResearchDMTEnd_15_08");	//—пасибо. Ёто все было очень поучительно.

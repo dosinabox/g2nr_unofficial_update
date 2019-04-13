@@ -534,7 +534,7 @@ func void DIA_Addon_Saturas_AdanosZorn_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_01");	//В свое время храм этого города был великим и знаменитым сооружением.
 	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_02");	//Все почитали его и молились нашему богу Аданосу.
 	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_03");	//Радемес, сын командующего Куарходрона, осквернил храм.
-	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_04");	//В результате этого жители один за другим пали жертвой зла.
+	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_04");	//В результате этого жители один за другим пали жертвой Зла.
 	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_05");	//Подозреваю, что Аданос не мог простить этого, и его возмездие обрушилось на весь край.
 	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_06");	//Именно поэтому так важно остановить Ворона. Он собирается сделать то же самое...
 };
@@ -744,12 +744,12 @@ func void DIA_Addon_Saturas_TalkedToGhost_Info()
 func void DIA_Addon_Saturas_TalkedToGhost_wasistdas()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_15_00");	//А что это за Коготь Белиара?
-	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_01");	//Воплощение чистого зла. Белиар своими руками выковал этот меч.
+	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_01");	//Воплощение чистого Зла. Белиар своими руками выковал этот меч.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_02");	//Владелец меча получает в свои руки ужасное орудие разрушения.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_03");	//И чем могущественнее владелец, тем больше становится сила Когтя.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_04");	//Только самые непреклонные и сильные духом могут устоять перед ним.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_05");	//Теперь мне понятно, почему зодчие закрыли свою долину.
-	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_06");	//Они впустили в этот мир орудие зла и поддались его темному влиянию.
+	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_06");	//Они впустили в этот мир орудие Зла и поддались его темному влиянию.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_07");	//Злоба и жадность заставляла их уничтожать друг друга.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_08");	//Наконец, терпение Аданоса истощилось, и он обрушил на долину свой гнев, затопив ее в море.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_09");	//Создатели портала поступили мудро, спрятав город от остального мира.
@@ -842,7 +842,7 @@ func void DIA_Addon_Saturas_RavensDead_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_RavensDead_15_02");	//Да. Ворон мертв.
 	AI_Output(self,other,"DIA_Addon_Saturas_RavensDead_14_03");	//Значит, все кончено. Слава Аданосу.
 	AI_Output(self,other,"DIA_Addon_Saturas_RavensDead_14_04");	//Ты сделал славное дело, сын мой. Мы все перед тобой в долгу.
-	AI_Output(self,other,"DIA_Addon_Saturas_RavensDead_14_05");	//Ты вырвал мощное оружие из лап зла и восстановил равновесие в этой части мира.
+	AI_Output(self,other,"DIA_Addon_Saturas_RavensDead_14_05");	//Ты вырвал мощное оружие из лап Зла и восстановил равновесие в этой части мира.
 	AI_Output(self,other,"DIA_Addon_Saturas_RavensDead_14_06");	//Когда закончились землетрясения, мы обсудили план дальнейших действий и пришли к соглашению.
 	AI_Output(self,other,"DIA_Addon_Saturas_RavensDead_14_07");	//Возьми Коготь Белиара. Отныне - ты его хозяин.
 	AI_Output(self,other,"DIA_Addon_Saturas_RavensDead_14_08");	//В твоих руках он станет орудием справедливости.
@@ -925,7 +925,7 @@ func void DIA_Addon_Saturas_BeliarsWeapon_wastun()
 	AI_Output(other,self,"DIA_Addon_Saturas_BeliarsWeapon_wastun_15_00");	//Что же мне делать с этим оружием?
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_01");	//Решать тебе. Ты завоевал меч, и ты теперь его хозяин.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_02");	//Я могу лишь дать тебе совет.
-	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_03");	//Ты можешь или отдать его мне, и я прослежу, чтобы он больше никогда не попал в руки зла...
+	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_03");	//Ты можешь или отдать его мне, и я прослежу, чтобы он больше никогда не попал в руки Зла...
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_04");	//... или покорить его силу и использовать меч в сражениях.
 	Info_AddChoice(DIA_Addon_Saturas_BeliarsWeapon,"Ты можешь сохранить меч?",DIA_Addon_Saturas_BeliarsWeapon_geben);
 };
@@ -933,7 +933,7 @@ func void DIA_Addon_Saturas_BeliarsWeapon_wastun()
 func void DIA_Addon_Saturas_BeliarsWeapon_geben()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_BeliarsWeapon_geben_15_00");	//Ты можешь сохранить меч?
-	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_geben_14_03");	//Если ты отдашь его мне, я лишу меч его сил, и он больше никогда не сможет послужить злу.
+	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_geben_14_03");	//Если ты отдашь его мне, я лишу меч его сил, и он больше никогда не сможет послужить Злу.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_geben_14_04");	//Так что решай. Выбор за тобой.
 	Log_CreateTopic(TOPIC_Addon_Klaue,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Klaue,LOG_Running);
@@ -1017,7 +1017,7 @@ func void DIA_Addon_Saturas_BeliarWeapGeben_Info()
 	B_ClearBeliarsWeapon();
 	AI_PrintScreen(PRINT_ItemGegeben,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_02");	//Теперь Коготь лишен своей силы. Я утоплю его в глубинах моря.
-	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_03");	//Мудрость Аданоса укроет его от зла.
+	AI_Output(self,other,"DIA_Addon_Saturas_BeliarWeapGeben_14_03");	//Мудрость Аданоса укроет его от Зла.
 	TOPIC_END_Klaue = TRUE;
 	B_GivePlayerXP(XP_Addon_BeliarsWeaponAbgegeben);
 	Saturas_KlaueInsMeer = TRUE;

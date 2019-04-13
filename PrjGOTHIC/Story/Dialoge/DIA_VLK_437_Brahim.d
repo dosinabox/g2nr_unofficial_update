@@ -93,8 +93,11 @@ func void DIA_Brahim_GREET_Info()
 	AI_Output(self,other,"DIA_Brahim_GREET_07_01");	//ћен€ зовут »брагим. я рисую карты и продаю их.
 	AI_Output(self,other,"DIA_Brahim_GREET_07_02");	//“ак как ты недавно здесь, возможно, тебе пригодитс€ карта города.
 	AI_Output(self,other,"DIA_Brahim_GREET_07_03");	//Ёто очень недорого и очень полезно, пока ты здесь не освоишьс€.
-	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"»брагим рисует карты и продает их в гавани.");
+	if(DIA_Kardif_Lernen_permanent == FALSE)
+	{
+		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTrader,"»брагим рисует карты и продает их в гавани.");
+	};
 };
 
 

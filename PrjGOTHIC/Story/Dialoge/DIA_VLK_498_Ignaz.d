@@ -138,7 +138,7 @@ func void DIA_Ignaz_Experiment_Info()
 	AI_Output(other,self,"DIA_Ignaz_Add_15_00");	//Это имеет смысл, только если жертва ДЕЙСТВИТЕЛЬНО очень зла после драки.
 	AI_Output(other,self,"DIA_Ignaz_Add_15_01");	//(себе под нос) Здесь, в портовом квартале, люди привычны к дракам. Мне лучше поискать жертву где-нибудь в другом месте...
 	AI_Output(self,other,"DIA_Ignaz_Experiment_14_05");	//Да, ты все правильно понимаешь. Но чтобы разозлить кого-нибудь, достаточно просто атаковать - вовсе нет необходимости сбивать его с ног.
-	AI_Output(self,other,"DIA_Ignaz_Experiment_14_06");	//Только ты должен проделать все это без свидетелей - если неподалеку будут находиться другие люди, у тебя обязательно возникнут проблемы с Лордом Андрэ.
+	AI_Output(self,other,"DIA_Ignaz_Experiment_14_06");	//Только ты должен проделать все это без свидетелей - если неподалеку будут находиться другие люди, у тебя обязательно возникнут проблемы с лордом Андрэ.
 	AI_Output(self,other,"DIA_Ignaz_Experiment_14_07");	//Также не имеет смысла налагать это заклинание на того, кто атакует тебя. Выжди подходящий момент.
 };
 
@@ -232,8 +232,11 @@ func void DIA_Ignaz_Danach_Info()
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_04");	//Теперь я могу уделить тебе время и обучить тебя искусству алхимии.
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_05");	//Я также могу продать тебе что-нибудь полезное, если ты, конечно, хочешь этого.
 	Ignaz_TeachAlchemy = TRUE;
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Игнац может показать мне рецепты приготовления зелий. Он живет в портовом квартале.");
+	if(DIA_Kardif_Lernen_permanent == FALSE)
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Игнац может показать мне рецепты приготовления зелий. Он живет в портовом квартале.");
+	};
 	MIS_Ignaz_Charm = LOG_SUCCESS;
 	B_GivePlayerXP(XP_MIS_Ignaz_Charm);
 	CreateInvItems(self,ItSc_Charm,3);

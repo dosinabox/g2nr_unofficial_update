@@ -430,7 +430,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_Info()
 	Mil_310_Scheisse_erzaehlt = TRUE;
 	Info_ClearChoices(DIA_Mil_310_Stadtwache_Paladine);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Город скоро подвергнется нападению!",DIA_Mil_310_Stadtwache_Paladine_AttackSoon);
-	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Силы зла собираются в Долине Хориниса!",DIA_Mil_310_Stadtwache_Paladine_EvilArmy);
+	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Силы Зла собираются в Долине Хориниса!",DIA_Mil_310_Stadtwache_Paladine_EvilArmy);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Я пришел, чтобы получить Глаз Инноса!",DIA_Mil_310_Stadtwache_Paladine_EyeInnos);
 };
 
@@ -450,7 +450,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_EyeInnos()
 
 func void DIA_Mil_310_Stadtwache_Paladine_EvilArmy()
 {
-	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_EvilArmy_15_00");	//Силы зла собираются в Долине Хориниса!
+	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_EvilArmy_15_00");	//Силы Зла собираются в Долине Хориниса!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_EvilArmy_07_01");	//В Долине Рудников? Ты пришел оттуда? Ты видел там армию?
 	Info_ClearChoices(DIA_Mil_310_Stadtwache_Paladine);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Нет, но меня послал человек, который видел их.",DIA_Mil_310_Stadtwache_Paladine_NoSomeone);
@@ -506,7 +506,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_AMage()
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_AMage_07_05");	//Я не верю тебе. Если ты настоящий посланник, то давай, выкладывай свои новости или проваливай!
 	Info_ClearChoices(DIA_Mil_310_Stadtwache_Paladine);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Я могу передать это сообщение только паладинам!",DIA_Mil_310_Stadtwache_Paladine_OnlyPaladins);
-	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Армию зла возглавляют драконы!",DIA_Mil_310_Stadtwache_Paladine_DepecheDragons);
+	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Армию Зла возглавляют драконы!",DIA_Mil_310_Stadtwache_Paladine_DepecheDragons);
 };
 
 func void DIA_Mil_310_Stadtwache_Paladine_APaladin()
@@ -516,7 +516,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_APaladin()
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_APaladin_07_02");	//Дай мне твое сообщение, и я доложу о тебе.
 	Info_ClearChoices(DIA_Mil_310_Stadtwache_Paladine);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Я могу передать это сообщение только паладинам!",DIA_Mil_310_Stadtwache_Paladine_OnlyPaladins);
-	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Армию зла возглавляют драконы!",DIA_Mil_310_Stadtwache_Paladine_DepecheDragons);
+	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Армию Зла возглавляют драконы!",DIA_Mil_310_Stadtwache_Paladine_DepecheDragons);
 };
 
 func void DIA_Mil_310_Stadtwache_Paladine_CantTellYou()
@@ -528,7 +528,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_CantTellYou()
 
 func void DIA_Mil_310_Stadtwache_Paladine_DepecheDragons()
 {
-	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_15_00");	//Армию зла возглавляют драконы!
+	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_15_00");	//Армию Зла возглавляют драконы!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_01");	//Что? Это не может быть правдой. А я чуть не впустил тебя!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_02");	//Если бы ты рассказал ЭТУ историю лорду Хагену, он бы повесил меня за халатность.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_03");	//Проваливай!
@@ -544,7 +544,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_OnlyPaladins()
 	Player_KnowsLordHagen = TRUE;
 	Info_ClearChoices(DIA_Mil_310_Stadtwache_Paladine);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Нет. Это сообщение предназначено ТОЛЬКО паладинам.",DIA_Mil_310_Stadtwache_Paladine_Only2);
-	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Армию зла возглавляют драконы!",DIA_Mil_310_Stadtwache_Paladine_DepecheDragons);
+	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Армию Зла возглавляют драконы!",DIA_Mil_310_Stadtwache_Paladine_DepecheDragons);
 };
 
 func void DIA_Mil_310_Stadtwache_Paladine_Only2()

@@ -268,7 +268,7 @@ instance DIA_Garwig_THIEF(C_Info)
 
 func int DIA_Garwig_THIEF_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Npc_HasItems(hero,Holy_Hammer_MIS))
+	if(Npc_HasItems(other,Holy_Hammer_MIS))
 	{
 		return TRUE;
 	};

@@ -724,7 +724,7 @@ instance Holy_Hammer_MIS(C_Item)
 	cond_value[2] = Condition_HolyHammer;
 	visual = "ItMw_030_2h_kdf_hammer_01.3DS";
 	description = name;
-	text[2] = "Урон:                   ??";
+	text[2] = "Урон:                     ??";
 	text[3] = "Необходима сила:          ??";
 	text[4] = "Двуручное оружие";
 	text[5] = "Цена:  невозможно определить";

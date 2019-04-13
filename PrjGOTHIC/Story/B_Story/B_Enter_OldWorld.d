@@ -101,11 +101,11 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		{
 			B_StartOtherRoutine(Engrom,"Obsessed");
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
-			if(hero.guild == GIL_KDF)
-			{
+			if(hero.guild != GIL_KDF)
+/*			{
 				CreateInvItems(Engrom,ITWR_DementorObsessionBook_MIS,1);
 			}
-			else
+			else */
 			{
 				B_KillNpc(Engrom);
 			};
@@ -153,7 +153,10 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		B_KillNpc(DJG_739_ToterDrachenjaeger);
 		Wld_InsertNpc(DJG_740_ToterDrachenjaeger,"OC1");
 		B_KillNpc(DJG_740_ToterDrachenjaeger);
-		Npc_ExchangeRoutine(Brutus,"Meatbugs");
+		if(!Npc_IsDead(Brutus))
+		{
+			Npc_ExchangeRoutine(Brutus,"Meatbugs");
+		};
 		Wld_InsertNpc(Meatbug_Brutus1,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus2,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus3,"OC_FOLTER_SHARP");
@@ -441,10 +444,10 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		{
 			CreateInvItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS,1);
 		};
-		if(!Npc_IsDead(Brutus))
+/*		if(!Npc_IsDead(Brutus))
 		{
 			CreateInvItems(VLK_4100_Brutus,ITWR_DementorObsessionBook_MIS,1);
-		};
+		}; */
 		if(TschuessBilgot == TRUE)
 		{
 			B_RemoveNpc(Bilgot);

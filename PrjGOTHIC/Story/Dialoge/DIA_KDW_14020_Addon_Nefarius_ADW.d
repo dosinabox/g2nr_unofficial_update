@@ -105,8 +105,8 @@ func void DIA_Addon_Nefarius_Neues_flut()
 func void DIA_Addon_Nefarius_Neues_was()
 {
 	AI_Output(other,self,"DIA_Addon_Nefarius_Neues_was_15_00");	//Но в чем провинились зодчие?
-	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_was_05_01");	//Один из них посвятил себя злу. Это был великий полководец по имени Куарходрон.
-	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_was_05_02");	//Именно он открыл злу путь в город.
+	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_was_05_01");	//Один из них посвятил себя Злу. Это был великий полководец по имени Куарходрон.
+	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_was_05_02");	//Именно он открыл Злу путь в город.
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_was_05_03");	//Его последователи сходили с ума и начинали сражаться с обычными людьми.
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_was_05_04");	//Последовавшие бедствия стали причиной гибели цивилизации.
 };

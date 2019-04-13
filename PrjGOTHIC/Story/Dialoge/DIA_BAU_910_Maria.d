@@ -226,9 +226,9 @@ func void DIA_Maria_Belohnung_Info()
 func void DIA_Maria_Belohnung_Gold()
 {
 	AI_Output(other,self,"DIA_Maria_Belohnung_Gold_15_00");	//Вообще-то нет.
+	AI_Output(self,other,"DIA_Maria_Belohnung_Gold_17_01");	//Тогда возьми это золото в качестве награды. Ты заслужил его.
 	B_GiveInvItems(self,other,ItMi_Gold,50);
 	Maria_Belohnung = TRUE;
-	AI_Output(self,other,"DIA_Maria_Belohnung_Gold_17_01");	//Тогда возьми это золото в качестве награды. Ты заслужил его.
 	Info_ClearChoices(DIA_Maria_Belohnung);
 };
 

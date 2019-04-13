@@ -320,7 +320,7 @@ instance DIA_Lord_Hagen_Armee(C_Info)
 	condition = DIA_Lord_Hagen_Armee_Condition;
 	information = DIA_Lord_Hagen_Armee_Info;
 	permanent = FALSE;
-	description = "Силы зла собираются очень близко отсюда. В Долине Рудников.";
+	description = "Силы Зла собираются очень близко отсюда. В Долине Рудников.";
 };
 
 
@@ -334,7 +334,7 @@ func int DIA_Lord_Hagen_Armee_Condition()
 
 func void DIA_Lord_Hagen_Armee_Info()
 {
-	AI_Output(other,self,"DIA_Lord_Hagen_Armee_15_00");	//Силы зла собираются очень близко отсюда. В Долине Рудников.
+	AI_Output(other,self,"DIA_Lord_Hagen_Armee_15_00");	//Силы Зла собираются очень близко отсюда. В Долине Рудников.
 	AI_Output(self,other,"DIA_Lord_Hagen_Armee_04_01");	//В Долине Рудников? Мы отправили туда экспедицию. До нас также доходили сведения, что Проход оккупирован орками.
 	AI_Output(self,other,"DIA_Lord_Hagen_Armee_04_02");	//Но до сего момента до меня не доходило никаких сведений об армии Зла.
 	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_Frieden))

@@ -775,7 +775,7 @@ func void DIA_Lobart_DMT_Info()
 func void DIA_Lobart_DMT_FrauHeilen()
 {
 	AI_Output(other,self,"DIA_Lobart_DMT_FrauHeilen_15_00");	//Почему ты не отведешь жену к лекарю?
-	AI_Output(self,other,"DIA_Lobart_DMT_FrauHeilen_05_01");	//Мы должны бы сходить в город к Ватрасу, но я с места не сойду, пока на моей ферме царит такой хаос.
+	AI_Output(self,other,"DIA_Lobart_DMT_FrauHeilen_05_01");	//Мы должны сходить в город к Ватрасу, но я с места не сойду, пока на моей ферме царит такой хаос.
 	Log_CreateTopic(TOPIC_HealHilda,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_HealHilda,LOG_Running);
 	B_LogEntry(TOPIC_HealHilda,"Жена Лобарта Хильда больна, но у Ватраса есть лекарство, которое может вылечить ее.");
