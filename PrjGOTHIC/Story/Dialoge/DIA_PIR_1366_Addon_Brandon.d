@@ -72,7 +72,7 @@ func void DIA_Addon_Brandon_AnyNews_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Brandon_Alright_04_01");	//Пожалуй. Например, я ранен. У тебя не найдется лечебного эликсира?
 		}
-		else if(C_AllCanyonRazorDead() == FALSE)
+		else if(!C_AllCanyonRazorDead())
 		{
 			AI_Output(self,other,"DIA_Addon_Brandon_Alright_04_02");	//Что еще? Мы будем, наконец, охотиться или нет?
 		}
@@ -178,7 +178,7 @@ instance DIA_Addon_Brandon_SchnellerHering(C_Info)
 
 func int DIA_Addon_Brandon_SchnellerHering_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Brandon_WannaLearn) && (Npc_HasItems(other,ItFo_Addon_SchnellerHering) > 0))
+	if(Npc_KnowsInfo(other,DIA_Addon_Brandon_WannaLearn) && Npc_HasItems(other,ItFo_Addon_SchnellerHering))
 	{
 		return TRUE;
 	};
@@ -347,7 +347,7 @@ func int DIA_Addon_Brandon_ComeOn_Condition()
 func void DIA_Addon_Brandon_ComeOn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Brandon_Weiter_15_00");	//Пойдем со мной.
-	if(C_GregsPiratesTooFar() == TRUE)
+	if(C_GregsPiratesTooFar())
 	{
 		AI_Output(self,other,"DIA_Addon_Brandon_ComeOn_04_02");	//Давай сначала вернемся немного назад.
 		AI_StopProcessInfos(self);
@@ -406,7 +406,7 @@ instance DIA_Addon_Brandon_TooFar(C_Info)
 
 func int DIA_Addon_Brandon_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (C_GregsPiratesTooFar() == TRUE))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar())
 	{
 		return TRUE;
 	};

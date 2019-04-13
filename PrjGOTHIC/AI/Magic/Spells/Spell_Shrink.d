@@ -30,13 +30,13 @@ func void Spell_Cast_Shrink()
 {
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Shrink;
+		self.attribute[ATR_MANA] -= SPL_Cost_Shrink;
 	};
-	if((other.flags != NPC_FLAG_IMMORTAL) && !C_NpcIsUndead(other) && (other.guild > GIL_SEPERATOR_HUM) && (other.aivar[AIV_MM_ShrinkState] == 0))
+	if((other.flags != NPC_FLAG_IMMORTAL) && !C_NpcIsUndead(other) && (other.guild > GIL_SEPERATOR_HUM) && (other.aivar[AIV_MM_ShrinkState] == 0) && !C_NpcIsGolem(other) && (other.guild != GIL_DEMON) && (other.guild != GIL_SUMMONED_DEMON))
 	{
 		Npc_ClearAIQueue(other);
 		B_ClearPerceptions(other);

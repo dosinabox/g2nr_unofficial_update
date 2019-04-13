@@ -57,6 +57,7 @@ func void DIA_Dexter_Hallo_Info()
 		AI_Output(self,other,"DIA_Dexter_Hallo_09_03");	// то-то слишком много болтает.
 		AI_Output(self,other,"DIA_Addon_Dexter_Hallo_09_04");	//¬прочем, ты прав. я распростран€л объ€влени€ о розыске. я искал теб€ - и ты €вилс€.
 		MIS_Steckbriefe = LOG_SUCCESS;
+		B_CheckLog();
 		B_GivePlayerXP(XP_Ambient);
 	};
 	AI_Output(other,self,"DIA_Addon_Dexter_Hallo_15_05");	//»так, что тебе от мен€ надо?
@@ -317,7 +318,7 @@ func void DIA_Dexter_Kill_ENDE()
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_SuddenEnemyInferno,1);
 	itm = Npc_GetEquippedArmor(Greg_NW);
-	if(Hlp_IsItem(itm,ITAR_PIR_H_Addon) == FALSE)
+	if(!Hlp_IsItem(itm,ITAR_PIR_H_Addon))
 	{
 		AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
 	};

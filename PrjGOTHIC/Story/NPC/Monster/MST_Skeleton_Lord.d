@@ -35,7 +35,7 @@ func void B_SetVisuals_Skeleton_Lord()
 	Mdl_ApplyOverlayMds(self,"humans_2hST2.mds");
 	Mdl_ApplyOverlayMds(self,"humans_BowT1.mds");
 	Mdl_ApplyOverlayMds(self,"humans_CBowT1.mds");
-	B_SetNpcVisual(self,MALE,"Ske_Head",0,0,itar_pal_skel);
+	B_SetNpcVisual(self,MALE,"Ske_Head",0,0,ITAR_PAL_SKEL);
 };
 
 
@@ -63,12 +63,12 @@ instance Skeleton_Lord_Archol(Mst_Skeleton_Lord)
 	attribute[ATR_HITPOINTS] = 400;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 10;
+/*	protection[PROT_BLUNT] = 10;
 	protection[PROT_EDGE] = 20;
 	protection[PROT_POINT] = 1000;
 	protection[PROT_FIRE] = 10;
 	protection[PROT_FLY] = 10;
-	protection[PROT_MAGIC] = 10;
+	protection[PROT_MAGIC] = 10; */
 	B_SetVisuals_Skeleton_Lord();
 	CreateInvItems(self,ItMi_Gold,650);
 	CreateInvItems(self,ItKe_EVT_UNDEAD_01,1);

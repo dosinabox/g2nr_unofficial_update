@@ -22,7 +22,7 @@ instance ItPo_Addon_Geist_01(C_Item)
 
 func void UseItPo_Geist_01()
 {
-	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] - 1000;
+	self.attribute[ATR_HITPOINTS] -= 1000;
 };
 
 

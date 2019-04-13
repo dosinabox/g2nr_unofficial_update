@@ -29,7 +29,7 @@ func void Rtn_PreStart_4132()
 
 func void Rtn_Farm_4132()
 {
-	TA_Stand_Eating(8,0,0,0,"NW_FARM2_OUT_07");
-	TA_Sit_Bench(0,0,8,0,"NW_FARM2_OUT_06");
+	TA_Sit_Bench(8,0,21,0,"NW_FARM2_OUT_06");
+	TA_Stand_Eating(21,0,8,0,"NW_FARM2_OUT_07");
 };
 

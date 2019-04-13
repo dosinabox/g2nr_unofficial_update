@@ -11,7 +11,7 @@ instance BDT_1050_Landstreicher(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal02,BodyTex_N,ItAr_BDT_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal02,BodyTex_N,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

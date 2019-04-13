@@ -23,7 +23,7 @@ instance BDT_1044_Bandit_L(Npc_Default)
 
 func void Rtn_Start_1044()
 {
-	TA_Smalltalk(0,0,12,0,"NW_CASTLEMINE_TOWER_STAND_02");
+	TA_Stand_Drinking(0,0,12,0,"NW_CASTLEMINE_TOWER_STAND_02");
 	TA_Smalltalk(12,0,0,0,"NW_CASTLEMINE_TOWER_STAND_02");
 };
 

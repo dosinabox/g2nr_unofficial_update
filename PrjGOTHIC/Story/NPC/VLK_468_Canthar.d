@@ -2,7 +2,7 @@
 instance VLK_468_Canthar(Npc_Default)
 {
 	name[0] = "Кантар";
-	guild = GIL_NONE;
+	guild = GIL_VLK;
 	id = 468;
 	voice = 9;
 	flags = 0;

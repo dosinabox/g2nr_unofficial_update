@@ -1,5 +1,5 @@
 
-instance Bau_903_Bodo(Npc_Default)
+instance BAU_903_Bodo(Npc_Default)
 {
 	name[0] = "Бодо";
 	guild = GIL_BAU;

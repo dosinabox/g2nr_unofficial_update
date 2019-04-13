@@ -142,7 +142,7 @@ instance DIA_Fellan_Stop(C_Info)
 
 func int DIA_Fellan_Stop_Condition()
 {
-	if(MIS_AttackFellan == LOG_Running)
+	if((MIS_AttackFellan == LOG_Running) && (FellanGeschlagen == FALSE))
 	{
 		return TRUE;
 	};
@@ -175,7 +175,7 @@ func void DIA_Fellan_Stop_Gold()
 func void DIA_Fellan_Stop_Just()
 {
 	AI_Output(other,self,"DIA_Fellan_Stop_Just_15_00");	//Просто перестань молотить. Хорошо?
-	AI_Output(self,other,"DIA_Fellan_Stop_Just_06_01");	//Не приставай кол мне, ладно?
+	AI_Output(self,other,"DIA_Fellan_Stop_Just_06_01");	//Не приставай ко мне, ладно?
 };
 
 

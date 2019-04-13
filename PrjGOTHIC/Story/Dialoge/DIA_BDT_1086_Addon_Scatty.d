@@ -115,7 +115,7 @@ func void DIA_Addon_Scatty_last_Info()
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_01");	//Он старший по шахте. Но сам он почти никогда не спускается. Большинство времени он проводит в храме с Вороном.
 	AI_Output(other,self,"DIA_Addon_Scatty_last_15_02");	//'Почти никогда' - это как часто, если быть точным?
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_03");	//Последний раз я его видел, когда он выходил из гробницы...
-	AI_Output(self,other,"DIA_Addon_Scatty_last_01_04");	//(быстро) ...Хотя нет, подожди! Последний раз был, когда он посылал рабов добывать золото.
+	AI_Output(self,other,"DIA_Addon_Scatty_last_01_04");	//(быстро) ... Хотя нет, подожди! Последний раз был, когда он посылал рабов добывать золото.
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_05");	//В отличие от Ворона, его ОЧЕНЬ интересует золото.
 };
 
@@ -234,10 +234,8 @@ func int DIA_Addon_Scatty_Bier_Condition()
 func void DIA_Addon_Scatty_Bier_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Scatty_Bier_15_00");	//Вот, пожалуйста.
-	if(B_GiveInvItems(other,self,ItFo_Beer,1))
-	{
-		AI_UseItem(self,ItFo_Beer);
-	};
+	B_GiveInvItems(other,self,ItFo_Beer,1);
+	AI_UseItem(self,ItFo_Beer);
 	AI_Output(self,other,"DIA_Addon_Scatty_Bier_01_01");	//О, спасибо, это вкусно. Спасибо. Ты - мой герой.
 	B_GivePlayerXP(XP_Ambient * 5);
 };
@@ -299,7 +297,7 @@ func void DIA_Addon_Scatty_teach_Info()
 		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_02");	//У каждого рудокопа есть свои приемы, позволяющие ему отделить самородки от породы.
 		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_03");	//В конечном итоге, эти приемы и отличают просто рудокопа от хорошего рудокопа.
 		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_04");	//Кроме этого, повторенье - мать ученья. Только работая, ты станешь хорошим рудокопом.
-		other.lp = other.lp - 1;
+		other.lp -= 1;
 		B_Upgrade_Hero_HackChance(10);
 		Scatty_teach_perm = TRUE;
 	}

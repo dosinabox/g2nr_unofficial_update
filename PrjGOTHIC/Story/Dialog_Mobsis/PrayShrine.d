@@ -119,7 +119,7 @@ func void PC_PrayShrine_HEALSHRINE_Info()
 	SHRINEHEALING = TRUE;
 	C_IsShrineObsessed(self);
 	SHRINEHEALING = FALSE;
-	ShrinesHealed = ShrinesHealed + 1;
+	ShrinesHealed += 1;
 	if(ShrinesHealed < 7)
 	{
 		B_Say(self,self,"$HEALSHRINE");
@@ -390,7 +390,7 @@ func void PC_PrayShrine_BlessSword_Info()
 		Npc_RemoveInvItems(hero,ItMi_Gold,Gold_BlessSword);
 		concatDonation = ConcatStrings(IntToString(Gold_BlessSword),PRINT_GoldGegeben);
 		AI_PrintScreen(concatDonation,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-		if(Npc_HasItems(hero,ItMw_2H_Blessed_01) >= 1)
+		if(Npc_HasItems(hero,ItMw_2H_Blessed_01))
 		{
 			Npc_RemoveInvItems(hero,ItMw_2H_Blessed_01,1);
 			CreateInvItems(hero,ItMw_2H_Blessed_02,1);
@@ -441,11 +441,11 @@ func void PC_PrayShrine_BlessSword_Final_Info()
 		PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
 		Snd_Play("DEM_Die");
 	}
-	else if((Npc_HasItems(hero,ItPo_PotionOfDeath_01_Mis) >= 1) || (Npc_HasItems(hero,ItPo_PotionOfDeath_02_Mis) >= 1))
+	else if(Npc_HasItems(hero,ItPo_PotionOfDeath_01_Mis) || Npc_HasItems(hero,ItPo_PotionOfDeath_02_Mis))
 	{
 		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_01_Mis,1);
 		Npc_RemoveInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
-		if(Npc_HasItems(hero,ItMw_2H_Blessed_02) >= 1)
+		if(Npc_HasItems(hero,ItMw_2H_Blessed_02))
 		{
 			Npc_RemoveInvItems(hero,ItMw_2H_Blessed_02,1);
 			CreateInvItems(hero,ItMw_2H_Blessed_03,1);

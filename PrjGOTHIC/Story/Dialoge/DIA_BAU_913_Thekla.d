@@ -39,7 +39,7 @@ func int DIA_Thekla_HALLO_Condition()
 
 func void DIA_Thekla_HALLO_Info()
 {
-	AI_Output(self,other,"DIA_Thekla_HALLO_17_00");	//Что ты делаешь здесь, на моей кухне?
+	AI_Output(self,other,"DIA_Thekla_HALLO_17_00");	//Что ты здесь делаешь, на моей кухне?
 };
 
 
@@ -365,7 +365,6 @@ func void DIA_Thekla_PERM_Info()
 		AI_Output(self,other,"DIA_Thekla_PERM_17_08");	//Сходи к Сагитте, знахарке, что живет за фермой Секоба, и принеси мне от нее пакет с травой.
 		AI_Output(self,other,"DIA_Thekla_PERM_17_09");	//Если ты принесешь мне эти травы, я сварю похлебку для тебя.
 		MIS_Thekla_Paket = LOG_Running;
-		CreateInvItems(Sagitta,ItMi_TheklasPaket,1);
 		Log_CreateTopic(TOPIC_TheklaEintopf,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_TheklaEintopf,LOG_Running);
 		B_LogEntry(TOPIC_TheklaEintopf,"Если я принесу Текле травы от знахарки Сагитты, она сварит еще одну похлебку для меня. Сагитта живет за фермой Секоба.");

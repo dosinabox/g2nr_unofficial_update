@@ -12,7 +12,7 @@ instance DJG_740_ToterDrachenjaeger(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	CreateInvItems(self,ItMi_DarkPearl,1);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart01,BodyTex_N,itar_djg_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart01,BodyTex_N,ITAR_DJG_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

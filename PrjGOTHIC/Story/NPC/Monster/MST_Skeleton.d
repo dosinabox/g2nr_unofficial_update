@@ -59,8 +59,8 @@ instance Skeleton(Mst_Default_Skeleton)
 instance Summoned_Skeleton(Mst_Default_Skeleton)
 {
 	name[0] = "Вызванный скелет";
-	guild = gil_summoned_skeleton;
-	aivar[AIV_MM_REAL_ID] = id_summoned_skeleton;
+	guild = GIL_SUMMONED_SKELETON;
+	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_SKELETON;
 	level = 0;
 	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 150;
@@ -104,7 +104,7 @@ instance Lesser_Skeleton(Mst_Default_Skeleton)
 
 instance Crypt_Skeleton_Room_01(Mst_Default_Skeleton)
 {
-	name[0] = "Страж склепа";
+	name[0] = NAME_Crypt_Skeleton;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
 	EquipItem(self,ItMw_1h_MISC_Sword);
@@ -113,7 +113,7 @@ instance Crypt_Skeleton_Room_01(Mst_Default_Skeleton)
 
 instance Crypt_Skeleton_Room_02(Mst_Default_Skeleton)
 {
-	name[0] = "Страж склепа";
+	name[0] = NAME_Crypt_Skeleton;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
 	EquipItem(self,ItMw_2H_Sword_M_01);
@@ -122,7 +122,7 @@ instance Crypt_Skeleton_Room_02(Mst_Default_Skeleton)
 
 instance Crypt_Skeleton_Room_03(Mst_Default_Skeleton)
 {
-	name[0] = "Страж склепа";
+	name[0] = NAME_Crypt_Skeleton;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetVisuals_Skeleton();
 	EquipItem(self,ItMw_1h_MISC_Sword);

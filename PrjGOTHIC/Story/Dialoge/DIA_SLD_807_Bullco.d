@@ -1,7 +1,7 @@
 
 instance DIA_Bullco_EXIT(C_Info)
 {
-	npc = Sld_807_Bullco;
+	npc = SLD_807_Bullco;
 	nr = 999;
 	condition = DIA_Bullco_EXIT_Condition;
 	information = DIA_Bullco_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Bullco_EXIT_Info()
 
 instance DIA_Bullco_Hallo(C_Info)
 {
-	npc = Sld_807_Bullco;
+	npc = SLD_807_Bullco;
 	nr = 1;
 	condition = DIA_Bullco_Hallo_Condition;
 	information = DIA_Bullco_Hallo_Info;
@@ -54,7 +54,7 @@ func void DIA_Bullco_Hallo_Info()
 
 instance DIA_Bullco_Quatscher(C_Info)
 {
-	npc = Sld_807_Bullco;
+	npc = SLD_807_Bullco;
 	nr = 2;
 	condition = DIA_Bullco_Quatscher_Condition;
 	information = DIA_Bullco_Quatscher_Info;
@@ -85,7 +85,7 @@ var int Bullco_scharf;
 
 instance DIA_Bullco_PleaseLeave(C_Info)
 {
-	npc = Sld_807_Bullco;
+	npc = SLD_807_Bullco;
 	nr = 3;
 	condition = DIA_Bullco_PleaseLeave_Condition;
 	information = DIA_Bullco_PleaseLeave_Info;
@@ -122,7 +122,7 @@ var int Bullco_HitCounter;
 
 instance DIA_Bullco_DailyCheck(C_Info)
 {
-	npc = Sld_807_Bullco;
+	npc = SLD_807_Bullco;
 	nr = 4;
 	condition = DIA_Bullco_DailyCheck_Condition;
 	information = DIA_Bullco_DailyCheck_Info;
@@ -151,7 +151,7 @@ func void DIA_Bullco_DailyCheck_Info()
 	{
 		AI_Output(self,other,"DIA_Bullco_DailyCheck_06_03");	//Глазам своим не верю! Этот урод все еще здесь!
 	};
-	Bullco_HitCounter = Bullco_HitCounter + 1;
+	Bullco_HitCounter += 1;
 	Bullco_Leave_Day = B_GetDayPlus();
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
@@ -160,7 +160,7 @@ func void DIA_Bullco_DailyCheck_Info()
 
 instance DIA_Bullco_WontLeave(C_Info)
 {
-	npc = Sld_807_Bullco;
+	npc = SLD_807_Bullco;
 	nr = 5;
 	condition = DIA_Bullco_WontLeave_Condition;
 	information = DIA_Bullco_WontLeave_Info;
@@ -197,7 +197,7 @@ func void DIA_Bullco_WontLeave_Info()
 
 instance DIA_Bullco_PepesSchafe(C_Info)
 {
-	npc = Sld_807_Bullco;
+	npc = SLD_807_Bullco;
 	nr = 6;
 	condition = DIA_Bullco_PepesSchafe_Condition;
 	information = DIA_Bullco_PepesSchafe_Info;
@@ -235,7 +235,7 @@ func void DIA_Bullco_PepesSchafe_Info()
 
 instance DIA_BullcoSLD_PICKPOCKET(C_Info)
 {
-	npc = Sld_807_Bullco;
+	npc = SLD_807_Bullco;
 	nr = 900;
 	condition = DIA_BullcoSLD_PICKPOCKET_Condition;
 	information = DIA_BullcoSLD_PICKPOCKET_Info;

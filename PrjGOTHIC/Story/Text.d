@@ -138,7 +138,7 @@ const string TXT_GUILDS[66] =
 	"Послушник",
 	"Охотник на драконов",
 	"Наемник",
-	"Фермер",
+	"Крестьянин",
 	"Бандит",
 	"Каторжник",
 	"Ищущий",
@@ -182,7 +182,7 @@ const string TXT_GUILDS[66] =
 	"Аллигатор",
 	"Болотный голем",
 	"Стражник",
-	"Каменная пума",
+	"Пантера",
 	"A",
 	"Стражник",
 	"Зомби",
@@ -204,16 +204,16 @@ const string TXT_SPELLS[100] =
 	"Малое исцеление",
 	"Святая стрела",
 	"Среднее исцеление",
-	"Изгнание зла",
+	"Изгнание Зла",
 	"Большое исцеление",
-	"Уничтожение зла",
+	"Уничтожение Зла",
 	"Телепорт",
 	"В порт",
 	"В монастырь",
 	"К лендлорду",
 	"К Ксардасу",
 	"К проходу Хориниса",
-	"К проходу долины рудников",
+	"К проходу Долины Рудников",
 	"В замок",
 	"К старой демонической башне",
 	"К таверне",
@@ -245,7 +245,7 @@ const string TXT_SPELLS[100] =
 	"Огненный дождь",
 	"Дыхание смерти",
 	"Волна смерти",
-	"Армия тьмы",
+	"Армия Тьмы",
 	"Уменьшение монстра",
 	"Овца",
 	"Падальщик",
@@ -261,9 +261,9 @@ const string TXT_SPELLS[100] =
 	"Драконий снеппер",
 	"Забвение",
 	"Святая стрела",
-	"TXT_SPL_DEATHBOLT",
-	"TXT_SPL_DEATHBALL",
-	"TXT_SPL_CONCUSSIONBOLT",
+	"Стрела смерти",
+	"Шар смерти",
+	"Стрела сотрясения",
 	"TXT_SPL_RESERVED_64",
 	"TXT_SPL_RESERVED_65",
 	"TXT_SPL_RESERVED_66",
@@ -284,11 +284,11 @@ const string TXT_SPELLS[100] =
 	"Рой насекомых",
 	"Корень-ловушка",
 	"Землетрясение",
-	"Создание стража",
+	"Вызов стража",
 	"Гнев Белиара",
 	"Кража энергии",
 	"Крик смерти",
-	"Создание зомби",
+	"Вызов зомби",
 	"Вызов Мада",
 	"TXT_SPL_RESERVED_90",
 	"TXT_SPL_RESERVED_91",
@@ -305,16 +305,16 @@ const string NAME_SPL_PalLight = "Святой свет";
 const string NAME_SPL_PalLightHeal = "Малое исцеление";
 const string NAME_SPL_PalHolyBolt = "Святая стрела";
 const string NAME_SPL_PalMediumHeal = "Среднее исцеление";
-const string NAME_SPL_PalRepelEvil = "Изгнание зла";
+const string NAME_SPL_PalRepelEvil = "Изгнание Зла";
 const string NAME_SPL_PalFullHeal = "Большое исцеление";
-const string NAME_SPL_PalDestroyEvil = "Уничтожение зла";
+const string NAME_SPL_PalDestroyEvil = "Уничтожение Зла";
 const string NAME_SPL_PalTeleportSecret = "Телепорт";
 const string NAME_SPL_TeleportSeaport = "Телепорт в порт";
 const string NAME_SPL_TeleportMonastery = "Телепорт в монастырь";
 const string NAME_SPL_TeleportFarm = "Телепорт к лендлорду";
 const string NAME_SPL_TeleportXardas = "Телепорт к Ксардасу";
-const string NAME_SPL_TeleportPassNW = "Телепорт к Проходу Хориниса";
-const string NAME_SPL_TeleportPassOW = "Телепорт к Проходу долины рудников";
+const string NAME_SPL_TeleportPassNW = "Телепорт к проходу Хориниса";
+const string NAME_SPL_TeleportPassOW = "Телепорт к проходу Долины Рудников";
 const string NAME_SPL_TeleportOC = "Телепорт в замок";
 const string NAME_SPL_TeleportOWDemonTower = "Телепорт в древнюю демоническую башню";
 const string NAME_SPL_TeleportTaverne = "Телепорт к таверне";
@@ -346,7 +346,7 @@ const string NAME_SPL_FullHeal = "Лечение тяжелых ранений";
 const string NAME_SPL_Firerain = "Огненный дождь";
 const string NAME_SPL_BreathOfDeath = "Дыхание смерти";
 const string NAME_SPL_MassDeath = "Волна смерти";
-const string NAME_SPL_ArmyOfDarkness = "Армия тьмы";
+const string NAME_SPL_ArmyOfDarkness = "Армия Тьмы";
 const string NAME_SPL_Shrink = "Уменьшение монстра";
 const string NAME_SPL_TrfSheep = "Превращение в овцу";
 const string NAME_SPL_TrfScavenger = "Превращение в падальщика";
@@ -362,9 +362,9 @@ const string NAME_SPL_TrfShadowbeast = "Превращение в мракориса";
 const string NAME_SPL_TrfDragonSnapper = "Превращение в драконьего снеппера";
 const string NAME_SPL_Charm = "Забвение";
 const string NAME_SPL_MasterOfDisaster = "Святая стрела";
-const string NAME_SPL_Deathbolt = "NAME_SPL_DEATHBOLT";
-const string NAME_SPL_Deathball = "NAME_SPL_DEATHBALL";
-const string NAME_SPL_ConcussionBolt = "NAME_SPL_CONCUSSIONBOLT";
+const string NAME_SPL_Deathbolt = "Стрела смерти";
+const string NAME_SPL_Deathball = "Шар смерти";
+const string NAME_SPL_ConcussionBolt = "Стрела сотрясения";
 const string NAME_SPL_Reserved_64 = "NAME_SPL_RESERVED_64";
 const string NAME_SPL_Reserved_65 = "NAME_SPL_RESERVED_65";
 const string NAME_SPL_Reserved_66 = "NAME_SPL_RESERVED_66";
@@ -385,11 +385,11 @@ const string NAME_SPL_Plague = "Нашествие насекомых";
 const string NAME_SPL_Swarm = "Рой насекомых";
 const string NAME_SPL_GreenTentacle = "Корень-ловушка";
 const string NAME_SPL_Earthquake = "Землетрясение";
-const string NAME_SPL_SummonGuardian = "Создание стража";
+const string NAME_SPL_SummonGuardian = "Вызов стража";
 const string NAME_SPL_BeliarsRage = "Гнев Белиара";
 const string NAME_SPL_SuckEnergy = "Кража энергии";
 const string NAME_SPL_Skull = "Крик смерти";
-const string NAME_SPL_SummonZombie = "Создание зомби";
+const string NAME_SPL_SummonZombie = "Вызов зомби";
 const string NAME_SPL_SummonMud = "Вызов Мада";
 const string NAME_SPL_Reserved_90 = "NAME_SPL_RESERVED_90";
 const string NAME_SPL_Reserved_91 = "NAME_SPL_RESERVED_91";
@@ -499,7 +499,7 @@ const string NAME_Addon_Esteban_Guard = "Телохранитель";
 const string NAME_Addon_Sklave = "Раб";
 const string NAME_Addon_Buddler = "Рудокоп";
 const string NAME_ADDON_SCAVENGERGL = "Луговой падальщик";
-const string NAME_Addon_Summoned_Guardian = "Вызванный каменный часовой";
+const string NAME_Addon_Summoned_Guardian = "Вызванный страж";
 const string NAME_Addon_Summoned_Zombie = "Вызванный зомби";
 const string NAME_ADDON_BELIARSWEAPON = "Коготь Белиара";
 const string NAME_Addon_Undead_Mud = "Мад-нежить";
@@ -508,6 +508,7 @@ const string Dialog_Ende = "КОНЕЦ";
 const string Dialog_Ende_v1 = "Я должен идти!";
 const string Dialog_Ende_v2 = "Мне нужно идти.";
 const string Dialog_Ende_v3 = "Еще увидимся.";
+const string Dialog_Ende_v4 = "Я вернусь позже...";
 const string Dialog_Back = "НАЗАД";
 const string DIALOG_TRADE = "(Торговать)";
 const string DIALOG_TRADE_v1 = "Давай займемся делом.";
@@ -546,8 +547,8 @@ const string NAME_Sec_Duration = "Длительность (сек)";
 const string NAME_Mana_needed = "Необходимо маны:";
 const string NAME_Str_needed = "Необходима сила:";
 const string NAME_Dex_needed = "Необходима ловкость:";
-const string NAME_Spell_Load = "Boostable spell";
-const string NAME_Spell_Invest = "Sustainable spell";
+const string NAME_Spell_Load = "Заклинание заряда";
+const string NAME_Spell_Invest = "Заклинание покрова";
 const string NAME_Dam_Edge = "Урон оружием";
 const string NAME_Dam_Point = "Урон стрелами";
 const string NAME_Dam_Fire = "Урон огнем";
@@ -574,7 +575,7 @@ const string NAME_HealingPerCast = "Лечение:";
 const string NAME_Addon_NostalgieBonus = "Бонус ностальгии:";
 const string NAME_Addon_NeedsAllMana = "Использует всю ману";
 const string NAME_Addon_SpellDontKill = "Заклинание не убивает";
-const string NAME_Addon_Damage_Min = "Урон (мин)";
+const string NAME_Addon_Damage_Min = "Урон (мин.)";
 const string NAME_ADDON_WISPSKILL_FF = "Дальнобойное оружие и боеприпасы";
 const string NAME_ADDON_WISPSKILL_NONE = "Золото, ключи и утварь";
 const string NAME_ADDON_WISPSKILL_RUNE = "Руны и свитки";
@@ -686,15 +687,15 @@ const string PRINT_Addon_Joint_01_Success = "Зеленый послушник готов!";
 const string PRINT_NoInnosTears = "Вам не хватает 'Слез Инноса'.";
 const string PRINT_Addon_GuildNeeded = "Вы не состоите в гильдии.";
 const string PRINT_Addon_GuildNeeded_NOV = "Вы пока еще не маг.";
-const string PRINT_KeyMissing = "Мне нужен подходящий ключ.";
-const string PRINT_PicklockMissing = "Мне нужна отмычка.";
-const string PRINT_Picklock_or_KeyMissing = "Мне нужен либо ключ, либо отмычка.";
-const string PRINT_NeverOpen = "Это мне никогда не открыть.";
+const string PRINT_KeyMissing = "Мне никогда не открыть это без правильного ключа!";
+const string PRINT_PicklockMissing = "Здесь бы пригодилась отмычка!";
+const string PRINT_Picklock_or_KeyMissing = "Хм... у меня нет отмычки или ключа";
+const string PRINT_NeverOpen = "Я никогда не смогу открыть этот замок!";
 const string PRINT_Toofar_Away = "Слишком далеко.";
 const string PRINT_WrongSide = "Не с той стороны.";
-const string PRINT_MissingItem = "У меня нет нужного предмета.";
+const string PRINT_MissingItem = "И как я это сделаю?";
 const string PRINT_AnotherUser = "Уже используется.";
-const string PRINT_NoPicklockTalent = "У меня нет нужного навыка.";
+const string PRINT_NoPicklockTalent = "Я не умею открывать замки отмычкой.";
 const string PRINT_NOTHINGTOGET = "Из этого не выйдет ничего хорошего...";
 const string PRINT_NOTHINGTOGET02 = "Там ничего нет...";
 const string PRINT_NOTHINGTOGET03 = "Нечего взять...";
@@ -709,19 +710,20 @@ const string Print_BlessNone = "Иннос благодарит тебя за твои молитвы.";
 const string Print_NotEnoughGold = "Недостаточно золота.";
 const string Bless_Sword = "Освятить меч (5000 золота)";
 const string Bless_Sword2 = "Освятить меч (Слезы Инноса)";
-const string Pray_Paladin1 = "... Иннос, распростри свою длань над слугами своими ...";
+const string Pray_Paladin1 = "... Иннос, распространи свою длань над слугами своими ...";
 const string Pray_Paladin2 = "... благослови их своим огнем и даруй им силу ...";
 const string Pray_Paladin3 = "... чтобы они мужественно сражались с твоим именем на устах ...";
 const string Pray_Paladin4 = "... до победы или смерти, согласно воле твоей.";
 const string DIALOG_ADDON_ATTENTAT_DESCRIPTION = "Что ты знаешь о покушении на Эстебана?";
+const string DIALOG_ADDON_ATTENTAT_DESCRIPTION2 = "По поводу нападения на Эстебана...";
 const string DIALOG_ADDON_ATTENTAT_PRO = "Я убью этих предателей.";
 const string DIALOG_ADDON_ATTENTAT_CONTRA = "Я ищу этих ребят, чтобы выступить против Эстебана.";
 const string DIALOG_ADDON_MINE_DESCRIPTION = "Ты нужен в шахте. (Дать красный камень)";
 const string DIALOG_ADDON_GOLD_DESCRIPTION = "Что мне следует знать о добыче золота?";
 const string PRINT_ADDON_KNOWSBF = "Изучено - яд из жала";
 const string PRINT_ADDON_HACKCHANCE = "Улучшен навык рудокопа! (+";
-const string PRINT_Addon_StuntBonus = "Бонус акробатики";
-const string PRINT_Addon_ExploitBonus = "Минус за безрассудство";
+const string PRINT_Addon_StuntBonus = "Бонус за храбрость";
+const string PRINT_Addon_ExploitBonus = "Штраф за безрассудство";
 const string PRINT_ADDON_ENOUGHTALK = "Хватит трепаться. Дерись.";
 const string PRINT_FullyHealed = "Полностью исцелен.";
 const string PRINT_Eat1 = "Вы чувствуете себя освеженным.";
@@ -769,7 +771,7 @@ const string PRINT_FoundOreNugget = "Найден кусок руды";
 const string PRINT_FoundLockpick = "Найдена отмычка";
 const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек...";
 const string PRINT_GotPlants = "Найдены травы";
-const string PRINT_NoSweeping = "Чтобы подмести все эти комнаты потребуется вечность!";
+const string PRINT_NoSweeping = "На подметание этих келий у меня уйдет целая вечность!";
 const string PRINT_Mandibles = "Этот секрет не дает никакого эффекта.";
 const string PRINT_Bloodfly = "На вкус горький и ядовитый.";
 const string PRINT_PILZ = "Грибной табак";
@@ -799,8 +801,10 @@ const string Pickpocket_60_Female = "(Украсть ее кошелек будет довольно рискован
 const string Pickpocket_80_Female = "(Украсть ее кошелек будет довольно трудно)";
 const string Pickpocket_100_Female = "(Украсть ее кошелек будет чертовски трудно)";
 const string Pickpocket_120_Female = "(Украсть ее кошелек практически невозможно)";
+const string Pickpocket_20_Key = "(Нет ничего проще, чем украсть его его ключ)";
 const string Pickpocket_40_Key = "(Украсть его ключ будет довольно просто)";
 const string Pickpocket_60_Key = "(Украсть его ключ будет довольно рискованно)";
+const string DIALOG_SecretSign = "(Показать сигнал воров)";
 
 const int YPOS_GoldGiven = 34;
 const int YPOS_GoldTaken = 34;
@@ -849,3 +853,24 @@ const string NAME_Circle_3 = "3-й Круг магии";
 const string NAME_Circle_4 = "4-й Круг магии";
 const string NAME_Circle_5 = "5-й Круг магии";
 const string NAME_Circle_6 = "6-й Круг магии";
+
+const string NAME_Hammel = "Баран";
+const string NAME_Crypt_Skeleton = "Страж склепа";
+const string NAME_YWolf = "Молодой волк";
+const string NAME_YGiant_Bug = "Молодой полевой хищник";
+
+const string PRINT_Addon_EvidenceGiven = "Улики отданы";
+
+const string NAME_HP_Essenz = "Лечебная эссенция";
+const string NAME_HP_Extrakt = "Лечебный экстракт";
+const string NAME_HP_Elixier = "Лечебный эликсир";
+const string NAME_Mana_Essenz = "Эссенция маны";
+const string NAME_Mana_Extrakt = "Экстракт маны";
+const string NAME_Mana_Elixier = "Эликсир маны";
+const string NAME_STR_Elixier = "Эликсир силы";
+const string NAME_DEX_Elixier = "Эликсир ловкости";
+const string NAME_HPMax_Elixier = "Эликсир жизни";
+const string NAME_ManaMax_Elixier = "Эликсир духа";
+const string NAME_Speed_Elixier = "Зелье ускорения";
+const string NAME_MegaDrink = "Эмбарла фиргасто";
+

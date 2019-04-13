@@ -38,7 +38,7 @@ func void B_AssessUseMob()
 		};
 	};
 	detMob = Npc_GetDetectedMob(other);
-	if((Hlp_StrCmp(detMob,"CHESTBIG") == FALSE) && (Hlp_StrCmp(detMob,"CHESTSMALL") == FALSE))
+	if(!Hlp_StrCmp(detMob,"CHESTBIG") && !Hlp_StrCmp(detMob,"CHESTSMALL"))
 	{
 		return;
 	};

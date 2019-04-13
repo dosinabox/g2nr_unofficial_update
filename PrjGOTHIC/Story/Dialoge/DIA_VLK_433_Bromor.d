@@ -220,13 +220,13 @@ instance DIA_Bromor_Pay(C_Info)
 	condition = DIA_Bromor_Pay_Condition;
 	information = DIA_Bromor_Pay_Info;
 	permanent = TRUE;
-	description = "Я хочу развлечься (заплатить 50 золотых).";
+	description = "Я хочу развлечься. (заплатить 50 золотых)";
 };
 
 
 func int DIA_Bromor_Pay_Condition()
 {
-	if((Bromor_Pay == FALSE) && (Bromor_Hausverbot == FALSE) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS) && (NpcObsessedByDMT_Bromor == FALSE) && (Npc_IsDead(Nadja) == FALSE))
+	if((Bromor_Pay == FALSE) && (Bromor_Hausverbot == FALSE) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS) && (NpcObsessedByDMT_Bromor == FALSE) && !Npc_IsDead(Nadja))
 	{
 		return TRUE;
 	};
@@ -344,16 +344,13 @@ instance DIA_Bromor_PICKPOCKET(C_Info)
 	condition = DIA_Bromor_PICKPOCKET_Condition;
 	information = DIA_Bromor_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Воровать этот ключ рискованно)";
+	description = Pickpocket_60_Key;
 };
 
 
 func int DIA_Bromor_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItKe_Bromor) >= 1) && (other.attribute[ATR_DEXTERITY] >= (50 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(50,Hlp_GetInstanceID(ItKe_Bromor),1);
 };
 
 func void DIA_Bromor_PICKPOCKET_Info()
@@ -365,19 +362,8 @@ func void DIA_Bromor_PICKPOCKET_Info()
 
 func void DIA_Bromor_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 50)
-	{
-		B_GiveInvItems(self,other,ItKe_Bromor,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Bromor_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(50,Hlp_GetInstanceID(ItKe_Bromor),1);
+	Info_ClearChoices(DIA_Bromor_PICKPOCKET);
 };
 
 func void DIA_Bromor_PICKPOCKET_BACK()

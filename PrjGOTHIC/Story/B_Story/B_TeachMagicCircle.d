@@ -14,7 +14,7 @@ func int B_TeachMagicCircle(var C_Npc slf,var C_Npc oth,var int circle)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	oth.lp = oth.lp - kosten;
+	oth.lp -= kosten;
 	Npc_SetTalentSkill(oth,NPC_TALENT_MAGE,circle);
 	Log_CreateTopic(TOPIC_TalentMagicCircle,LOG_NOTE);
 	B_LogEntry(TOPIC_TalentMagicCircle,"Магические руны, к которым я имею доступ, подразделяются по кругам. Я не могу использовать заклинание, требующее более высокого круга, нежели изученный мной.");
@@ -33,13 +33,13 @@ func int B_TeachMagicCircle(var C_Npc slf,var C_Npc oth,var int circle)
 	if(circle == 3)
 	{
 		PrintScreen(PRINT_LearnCircle_3,-1,-1,FONT_Screen,2);
-		B_LogEntry(TOPIC_TalentMagicCircle,"Заклинания 3-го круга: лечение средних ранений, шаровая молния, малая огненная буря, создание скелета, страх и ледяной блок.");
+		B_LogEntry(TOPIC_TalentMagicCircle,"Заклинания 3-го круга: лечение средних ранений, шаровая молния, малая огненная буря, вызов скелета, страх и ледяной блок.");
 		return TRUE;
 	};
 	if(circle == 4)
 	{
 		PrintScreen(PRINT_LearnCircle_4,-1,-1,FONT_Screen,2);
-		B_LogEntry(TOPIC_TalentMagicCircle,"Заклинания 4-го круга: молния, создание каменного голема, уничтожение нежити и большой огненный шар.");
+		B_LogEntry(TOPIC_TalentMagicCircle,"Заклинания 4-го круга: молния, вызов голема, уничтожение нежити и большой огненный шар.");
 		return TRUE;
 	};
 	if(circle == 5)
@@ -51,7 +51,7 @@ func int B_TeachMagicCircle(var C_Npc slf,var C_Npc oth,var int circle)
 	if(circle == 6)
 	{
 		PrintScreen(PRINT_LearnCircle_6,-1,-1,FONT_Screen,2);
-		B_LogEntry(TOPIC_TalentMagicCircle,"Заклинания 6-го круга: огненный дождь, дыхание смерти, волна смерти, армия тьмы и сморщивание монстра.");
+		B_LogEntry(TOPIC_TalentMagicCircle,"Заклинания 6-го круга: огненный дождь, дыхание смерти, волна смерти, армия Тьмы и уменьшение монстра.");
 		return TRUE;
 	};
 };

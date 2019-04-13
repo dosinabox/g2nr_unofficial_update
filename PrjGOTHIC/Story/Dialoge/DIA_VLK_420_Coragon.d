@@ -130,7 +130,7 @@ func int DIA_Coragon_WhatsUp_Condition()
 func void DIA_Coragon_WhatsUp_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Gelaber_15_00");	//Как идут дела?
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_01");	//А, не спрашивай. На висельной площади по приказу лорда Андре раздают бесплатное пиво.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_01");	//А, не спрашивай. На висельной площади по приказу лорда Андрэ раздают бесплатное пиво.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_02");	//Ко мне практически никто не заходит. Ну, кроме этих богачей из верхнего квартала.
 	AI_Output(other,self,"DIA_Coragon_Add_15_03");	//А что с ними не так?
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_04");	//(смеется) Некоторые из этих франтов ужасно действуют на нервы.
@@ -207,7 +207,7 @@ var int Coragon_Bier;
 
 func void B_Coragon_Bier()
 {
-	Coragon_Bier = Coragon_Bier + 1;
+	Coragon_Bier += 1;
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_14");	//Вот, возьми это в качестве награды.
 	B_GiveInvItems(self,other,ItFo_CoragonsBeer,1);
 	if(Coragon_Bier < 2)
@@ -243,10 +243,8 @@ func int DIA_Coragon_BringSilber_Condition()
 func void DIA_Coragon_BringSilber_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_12");	//Я принес твое серебро.
-	if(B_GiveInvItems(other,self,ItMi_CoragonsSilber,8))
-	{
-		Npc_RemoveInvItems(self,ItMi_CoragonsSilber,8);
-	};
+	B_GiveInvItems(other,self,ItMi_CoragonsSilber,8);
+	Npc_RemoveInvItems(self,ItMi_CoragonsSilber,8);
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_13");	//Правда?
 	B_GivePlayerXP(XP_CoragonsSilber);
 	B_Coragon_Bier();
@@ -267,7 +265,7 @@ instance DIA_Coragon_Schuldenbuch(C_Info)
 
 func int DIA_Coragon_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) > 0)
+	if(Npc_HasItems(other,ItWr_Schuldenbuch))
 	{
 		return TRUE;
 	};
@@ -294,7 +292,7 @@ instance DIA_Coragon_GiveBook(C_Info)
 
 func int DIA_Coragon_GiveBook_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Coragon_Schuldenbuch) && (Npc_HasItems(other,ItWr_Schuldenbuch) >= 1))
+	if(Npc_KnowsInfo(other,DIA_Coragon_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch))
 	{
 		return TRUE;
 	};
@@ -334,7 +332,7 @@ func void DIA_Coragon_ToOV_Info()
 	AI_Output(other,self,"DIA_Coragon_Add_15_23");	//Как мне попасть в верхний квартал?
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_24");	//Ты должен стать гражданином города. Найди себе работу!
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_25");	//Лучше всего наймись к одному из ремесленников из нижней части города. Тогда ты станешь гражданином.
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_26");	//А если этого будет недостаточно, отправляйся в казармы и поговори с лордом Андре.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_26");	//А если этого будет недостаточно, отправляйся в казармы и поговори с лордом Андрэ.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_27");	//Возможно, он примет тебя в ряды ополчения. Это откроет тебе путь в верхний квартал.
 };
 
@@ -420,7 +418,7 @@ instance DIA_Coragon_Ring(C_Info)
 
 func int DIA_Coragon_Ring_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Coragon_News) && (Npc_HasItems(other,ItRi_ValentinosRing) > 0))
+	if(Npc_KnowsInfo(other,DIA_Coragon_News) && Npc_HasItems(other,ItRi_ValentinosRing))
 	{
 		return TRUE;
 	};

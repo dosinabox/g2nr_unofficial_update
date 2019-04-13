@@ -120,7 +120,7 @@ instance DIA_Balthasar_AERGERMITNACHBARN(C_Info)
 
 func int DIA_Balthasar_AERGERMITNACHBARN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_WASMACHSTDU) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && ((Npc_IsDead(BalthasarSheep1) == FALSE) || (Npc_IsDead(BalthasarSheep2) == FALSE) || (Npc_IsDead(BalthasarSheep3) == FALSE)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_WASMACHSTDU) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
 	{
 		return TRUE;
 	};
@@ -174,7 +174,7 @@ instance DIA_Balthasar_TALKTOBENGAR(C_Info)
 
 func int DIA_Balthasar_TALKTOBENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && ((Npc_IsDead(BalthasarSheep1) == FALSE) || (Npc_IsDead(BalthasarSheep2) == FALSE) || (Npc_IsDead(BalthasarSheep3) == FALSE)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
 	{
 		return TRUE;
 	};
@@ -204,7 +204,7 @@ instance DIA_Balthasar_BENGARUEBERREDET(C_Info)
 
 func int DIA_Balthasar_BENGARUEBERREDET_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_TALKTOBENGAR) && (MIS_Balthasar_BengarsWeide == LOG_SUCCESS) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && ((Npc_IsDead(BalthasarSheep1) == FALSE) || (Npc_IsDead(BalthasarSheep2) == FALSE) || (Npc_IsDead(BalthasarSheep3) == FALSE)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_TALKTOBENGAR) && (MIS_Balthasar_BengarsWeide == LOG_SUCCESS) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
 	{
 		return TRUE;
 	};
@@ -271,7 +271,7 @@ func void DIA_Balthasar_PERMKAP1_Info()
 	else
 	{
 		AI_Output(self,hero,"DIA_Balthasar_PERMKAP1_05_02");	//Настали тяжелые времена. Я не могу найти моих овец!
-		if(Npc_IsDead(Sekob) == FALSE)
+		if(!Npc_IsDead(Sekob))
 		{
 			AI_Output(self,hero,"DIA_Balthasar_PERMKAP1_05_03");	//Я думаю, лучше пойти к Секобу и признаться.
 		};

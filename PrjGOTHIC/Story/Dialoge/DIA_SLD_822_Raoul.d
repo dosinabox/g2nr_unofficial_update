@@ -1,7 +1,7 @@
 
 instance DIA_Raoul_EXIT(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 999;
 	condition = DIA_Raoul_EXIT_Condition;
 	information = DIA_Raoul_EXIT_Info;
@@ -26,7 +26,7 @@ func void DIA_Raoul_EXIT_Info()
 
 instance DIA_Raoul_NoSentenza(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 1;
 	condition = DIA_Raoul_NoSentenza_Condition;
 	information = DIA_Raoul_NoSentenza_Info;
@@ -65,7 +65,7 @@ func void DIA_Raoul_NoSentenza_Info()
 
 instance DIA_Raoul_Hello(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 1;
 	condition = DIA_Raoul_Hello_Condition;
 	information = DIA_Raoul_Hello_Info;
@@ -103,7 +103,7 @@ var int Raoul_gesagt;
 
 instance DIA_Raoul_PERMNone(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 1;
 	condition = DIA_Raoul_PERMNone_Condition;
 	information = DIA_Raoul_PERMNone_Info;
@@ -139,7 +139,7 @@ func void DIA_Raoul_PERMNone_Info()
 
 instance DIA_Raoul_WannaJoin(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_WannaJoin_Condition;
 	information = DIA_Raoul_WannaJoin_Info;
@@ -168,7 +168,7 @@ func void DIA_Raoul_WannaJoin_Info()
 
 instance DIA_Raoul_AboutSylvio(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_AboutSylvio_Condition;
 	information = DIA_Raoul_AboutSylvio_Info;
@@ -195,7 +195,7 @@ func void DIA_Raoul_AboutSylvio_Info()
 
 instance DIA_Raoul_Stimme(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_Stimme_Condition;
 	information = DIA_Raoul_Stimme_Info;
@@ -206,7 +206,7 @@ instance DIA_Raoul_Stimme(C_Info)
 
 func int DIA_Raoul_Stimme_Condition()
 {
-	if(self.aivar[AIV_DefeatedByPlayer] == TRUE)
+	if((self.aivar[AIV_DefeatedByPlayer] == TRUE) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -224,7 +224,7 @@ func void DIA_Raoul_Stimme_Info()
 
 instance DIA_Raoul_Duell(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_Duell_Condition;
 	information = DIA_Raoul_Duell_Info;
@@ -254,7 +254,7 @@ func void DIA_Raoul_Duell_Info()
 
 instance DIA_Raoul_PERM(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 900;
 	condition = DIA_Raoul_PERM_Condition;
 	information = DIA_Raoul_PERM_Info;
@@ -291,7 +291,7 @@ func void DIA_Raoul_PERM_Info()
 
 instance DIA_Raoul_TROLL(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_TROLL_Condition;
 	information = DIA_Raoul_TROLL_Info;
@@ -398,12 +398,12 @@ func void DIA_Raoul_TROLL_rechnung_noProb()
 
 instance DIA_Raoul_TrophyFur(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 3;
 	condition = DIA_Raoul_TrophyFur_Condition;
 	information = DIA_Raoul_TrophyFur_Info;
 	permanent = TRUE;
-	description = "Сначала скажи мне, как снять шкуру с черного тролля.";
+	description = B_BuildLearnString("Сначала скажи мне, как снять шкуру с черного тролля.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
 };
 
 
@@ -429,7 +429,7 @@ func void DIA_Raoul_TrophyFur_Info()
 
 instance DIA_Raoul_TROLLFELL(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 3;
 	condition = DIA_Raoul_TROLLFELL_Condition;
 	information = DIA_Raoul_TROLLFELL_Info;
@@ -483,7 +483,7 @@ func void DIA_Raoul_TROLLFELL_nein()
 
 instance DIA_Raoul_FELLZURUECK(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 3;
 	condition = DIA_Raoul_FELLZURUECK_Condition;
 	information = DIA_Raoul_FELLZURUECK_Info;
@@ -510,7 +510,7 @@ func void DIA_Raoul_FELLZURUECK_Info()
 
 instance DIA_Raoul_GotTrollFurBack(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 3;
 	condition = DIA_Raoul_GotTrollFurBack_Condition;
 	information = DIA_Raoul_GotTrollFurBack_Info;
@@ -520,7 +520,7 @@ instance DIA_Raoul_GotTrollFurBack(C_Info)
 
 func int DIA_Raoul_GotTrollFurBack_Condition()
 {
-	if((MIS_Raoul_DoesntPayTrollFur == LOG_Running) && (Npc_HasItems(self,ItAt_TrollBlackFur) == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	if((MIS_Raoul_DoesntPayTrollFur == LOG_Running) && !Npc_HasItems(self,ItAt_TrollBlackFur) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 	{
 		return TRUE;
 	};
@@ -537,7 +537,7 @@ func void DIA_Raoul_GotTrollFurBack_Info()
 
 instance DIA_Raoul_KAP3_EXIT(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 999;
 	condition = DIA_Raoul_KAP3_EXIT_Condition;
 	information = DIA_Raoul_KAP3_EXIT_Info;
@@ -562,7 +562,7 @@ func void DIA_Raoul_KAP3_EXIT_Info()
 
 instance DIA_Raoul_KAP4_EXIT(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 999;
 	condition = DIA_Raoul_KAP4_EXIT_Condition;
 	information = DIA_Raoul_KAP4_EXIT_Info;
@@ -587,7 +587,7 @@ func void DIA_Raoul_KAP4_EXIT_Info()
 
 instance DIA_Raoul_KAP5_EXIT(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 999;
 	condition = DIA_Raoul_KAP5_EXIT_Condition;
 	information = DIA_Raoul_KAP5_EXIT_Info;
@@ -612,7 +612,7 @@ func void DIA_Raoul_KAP5_EXIT_Info()
 
 instance DIA_Raoul_Ship(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_Ship_Condition;
 	information = DIA_Raoul_Ship_Info;
@@ -636,7 +636,7 @@ func void DIA_Raoul_Ship_Info()
 	AI_Output(self,other,"DIA_Raoul_Ship_01_03");	//(серьезно) У тебя совсем крыша поехала. Нет, спасибо. Это не для меня.
 	AI_Output(self,other,"DIA_Raoul_Ship_01_04");	//Я не вижу причин покидать Хоринис. Мне все равно, где зарабатывать деньги, здесь или на материке.
 	AI_Output(self,other,"DIA_Raoul_Ship_01_05");	//Найди кого-нибудь еще.
-	if(Npc_IsDead(Torlof) == FALSE)
+	if(!Npc_IsDead(Torlof))
 	{
 		AI_Output(self,other,"DIA_Raoul_Ship_01_06");	//Спроси Торлофа. Он ходил по морям, насколько я знаю.
 	};
@@ -645,7 +645,7 @@ func void DIA_Raoul_Ship_Info()
 
 instance DIA_Raoul_KAP6_EXIT(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 999;
 	condition = DIA_Raoul_KAP6_EXIT_Condition;
 	information = DIA_Raoul_KAP6_EXIT_Info;
@@ -670,7 +670,7 @@ func void DIA_Raoul_KAP6_EXIT_Info()
 
 instance DIA_Raoul_PICKPOCKET(C_Info)
 {
-	npc = Sld_822_Raoul;
+	npc = SLD_822_Raoul;
 	nr = 900;
 	condition = DIA_Raoul_PICKPOCKET_Condition;
 	information = DIA_Raoul_PICKPOCKET_Info;

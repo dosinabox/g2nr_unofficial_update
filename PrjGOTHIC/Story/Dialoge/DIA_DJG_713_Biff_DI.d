@@ -33,7 +33,7 @@ instance DIA_Biff_DI_HALLO(C_Info)
 
 func int DIA_Biff_DI_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -42,7 +42,7 @@ func int DIA_Biff_DI_HALLO_Condition()
 func void DIA_Biff_DI_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Biff_DI_HALLO_07_00");	//И? Где все те сокровища, что ты мне обещал?
-	if(Npc_KnowsInfo(other,DIA_Biff_DI_ORKS) == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Biff_DI_ORKS))
 	{
 		AI_Output(other,self,"DIA_Biff_DI_HALLO_15_01");	//Что я там говорил тебе раньше, в море?
 	};
@@ -66,7 +66,7 @@ instance DIA_Biff_DI_perm(C_Info)
 
 func int DIA_Biff_DI_perm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Biff_DI_HALLO) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Biff_DI_HALLO) && !Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -92,7 +92,7 @@ instance DIA_Biff_DI_ORKS(C_Info)
 
 func int DIA_Biff_DI_ORKS_Condition()
 {
-	if((Npc_GetDistToWP(self,"DI_SHIP_03") < 1000) && (OrkSturmDI == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if((Npc_GetDistToWP(self,"DI_SHIP_03") < 1000) && (OrkSturmDI == TRUE) && !Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};

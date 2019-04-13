@@ -13,8 +13,8 @@ instance BDT_10017_Addon_Juan(Npc_Default)
 	CreateInvItems(self,ItMi_Addon_Steel_Paket,1);
 	CreateInvItems(self,ItMi_Addon_Lennar_Paket,1);
 	CreateInvItems(self,ItFo_Addon_Grog,20);
-	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_NormalBart01,BodyTex_L,ItAr_BDT_H);
+//	B_CreateAmbientInv(self);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_NormalBart01,BodyTex_L,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);

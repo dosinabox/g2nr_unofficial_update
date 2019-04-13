@@ -34,7 +34,7 @@ instance DIA_Bennet_DI_Hello(C_Info)
 
 func int DIA_Bennet_DI_Hello_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -68,7 +68,7 @@ instance DIA_Bennet_DI_TRADE(C_Info)
 
 func int DIA_Bennet_DI_TRADE_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -76,14 +76,14 @@ func int DIA_Bennet_DI_TRADE_Condition()
 
 func void DIA_Bennet_DI_TRADE_Info()
 {
-	if(Bennet_DI_flag == 1)
+	if(Bennet_DI_flag == TRUE)
 	{
 		B_ClearSmithInv(self);
 		if(Bennet_DI_swordraws > 0)
 		{
 			CreateInvItems(self,ItMiSwordraw,Bennet_DI_swordraws);
 		};
-		Bennet_DI_flag = 0;
+		Bennet_DI_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Bennet_DI_TRADE_15_00");	//Какое оружие ты можешь продать мне?
 	B_GiveTradeInv(self);
@@ -104,7 +104,7 @@ instance DIA_Bennet_DI_Smith(C_Info)
 
 func int DIA_Bennet_DI_Smith_Condition()
 {
-	if((Bennet_TeachSmith == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if(!Npc_IsDead(UndeadDragon) && (Bennet_TeachSmith == TRUE))
 	{
 		return TRUE;
 	};
@@ -221,7 +221,7 @@ instance DIA_Bennet_TeachSTR(C_Info)
 
 func int DIA_Bennet_TeachSTR_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};

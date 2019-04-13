@@ -2,15 +2,17 @@
 instance VLK_4302_Addon_Elvrich(Npc_Default)
 {
 	name[0] = "Элврих";
-	guild = GIL_NONE;
+	guild = GIL_VLK;
 	id = 4302;
 	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
 	aivar[AIV_NoFightParker] = TRUE;
+	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Axe);
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_B_Normal01,BodyTex_B,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
@@ -37,6 +39,6 @@ func void Rtn_BackInTheCity_4302()
 	TA_Repair_Hut(18,0,19,0,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
 	TA_Saw(19,0,20,0,"NW_CITY_MERCHANT_SHOP01_FRONT_01");
 	TA_Repair_Hut(20,0,0,0,"NW_CITY_MERCHANT_HUT_01_FRONT");
-	TA_Sit_Bench(0,0,6,0,"NW_CITY_MERCHANT_HUT_01_FRONT");
+	TA_Sit_Throne(0,0,6,0,"NW_CITY_CHAIR_BOSPER");
 };
 

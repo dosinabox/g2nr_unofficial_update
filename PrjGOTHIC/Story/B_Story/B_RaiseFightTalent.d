@@ -3,7 +3,7 @@ func void B_RaiseRealFightTalentPercent(var C_Npc oth,var int talent,var int per
 {
 	if(talent == NPC_TALENT_1H)
 	{
-		oth.aivar[REAL_TALENT_1H] = oth.aivar[REAL_TALENT_1H] + percent;
+		oth.aivar[REAL_TALENT_1H] += percent;
 		if(oth.aivar[REAL_TALENT_1H] > 100)
 		{
 			oth.aivar[REAL_TALENT_1H] = 100;
@@ -11,7 +11,7 @@ func void B_RaiseRealFightTalentPercent(var C_Npc oth,var int talent,var int per
 	}
 	else if(talent == NPC_TALENT_2H)
 	{
-		oth.aivar[REAL_TALENT_2H] = oth.aivar[REAL_TALENT_2H] + percent;
+		oth.aivar[REAL_TALENT_2H] += percent;
 		if(oth.aivar[REAL_TALENT_2H] > 100)
 		{
 			oth.aivar[REAL_TALENT_2H] = 100;
@@ -19,7 +19,7 @@ func void B_RaiseRealFightTalentPercent(var C_Npc oth,var int talent,var int per
 	}
 	else if(talent == NPC_TALENT_BOW)
 	{
-		oth.aivar[REAL_TALENT_BOW] = oth.aivar[REAL_TALENT_BOW] + percent;
+		oth.aivar[REAL_TALENT_BOW] += percent;
 		if(oth.aivar[REAL_TALENT_BOW] > 100)
 		{
 			oth.aivar[REAL_TALENT_BOW] = 100;
@@ -27,7 +27,7 @@ func void B_RaiseRealFightTalentPercent(var C_Npc oth,var int talent,var int per
 	}
 	else if(talent == NPC_TALENT_CROSSBOW)
 	{
-		oth.aivar[REAL_TALENT_CROSSBOW] = oth.aivar[REAL_TALENT_CROSSBOW] + percent;
+		oth.aivar[REAL_TALENT_CROSSBOW] += percent;
 		if(oth.aivar[REAL_TALENT_CROSSBOW] > 100)
 		{
 			oth.aivar[REAL_TALENT_CROSSBOW] = 100;

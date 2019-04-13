@@ -47,9 +47,13 @@ func void DIA_Randolph_SchwereLuft_Info()
 	AI_Output(other,self,"DIA_Randolph_SchwereLuft_15_02");	//Ты будешь участвовать в схватке?
 	AI_Output(self,other,"DIA_Randolph_SchwereLuft_06_03");	//Я не останусь в стороне, когда начнется драка. Но я также не собираюсь провоцировать ее.
 	Akils_SLDStillthere = TRUE;
-	Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
-	B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+	if(Hilfe == FALSE)
+	{
+		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+		Hilfe = TRUE;
+	};
 	B_NpcClearObsessionByDMT(self);
 };
 
@@ -141,7 +145,7 @@ func int DIA_Randolph_Geschichte_Condition()
 func void DIA_Randolph_Geschichte_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_Geschichte_15_00");	//Ты ведь нездешний, да?
-	AI_Output(self,other,"DIA_Randolph_Geschichte_06_01");	//Я пришел с южных островов. Когда-то ходили глашатаи и объявляли, что на Хоринисе нужны люди, чтобы добывать магическую руду.
+	AI_Output(self,other,"DIA_Randolph_Geschichte_06_01");	//Я пришел с Южных островов. Когда-то ходили глашатаи и объявляли, что на Хоринисе нужны люди, чтобы добывать магическую руду.
 	AI_Output(self,other,"DIA_Randolph_Geschichte_06_02");	//Но когда я приехал сюда, они возвели этот огромный барьер. И мне расхотелось идти туда. Поэтому я начал работать в порту.
 	AI_Output(self,other,"DIA_Randolph_Geschichte_06_03");	//Затем сюда перестали заплывать корабли, и я пошел работать на Акила. У меня была работа и похуже, сейчас еще ничего.
 };
@@ -372,6 +376,7 @@ func int DIA_Randolph_PERM_Condition()
 
 
 var int DIA_Randolph_PERM_GotMoney;
+var int DIA_Randolph_PERM_OneTime;
 
 func void DIA_Randolph_PERM_Info()
 {
@@ -399,9 +404,13 @@ func void DIA_Randolph_PERM_Info()
 				AI_Output(self,other,"DIA_Randolph_PERM_06_05");	//Но есть лекарство, которое может помочь.
 				AI_Output(self,other,"DIA_Randolph_PERM_06_06");	//Сагитта, ведьма-целительница, уже готовила его для меня. Но я не думаю, что теперь смогу добраться до нее сам. Там повсюду орки.
 			};
-			Log_CreateTopic(TOPIC_HealRandolph,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_HealRandolph,LOG_Running);
-			B_LogEntry(TOPIC_HealRandolph,"Рэндольф, похоже, решил бросить пить и послал меня к Сагитте за лекарством от похмельного синдрома.");
+			if(DIA_Randolph_PERM_OneTime == FALSE)
+			{
+				Log_CreateTopic(TOPIC_HealRandolph,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_HealRandolph,LOG_Running);
+				B_LogEntry(TOPIC_HealRandolph,"Рэндольф, похоже, решил бросить пить и послал меня к Сагитте за лекарством от похмельного синдрома.");
+				DIA_Randolph_PERM_OneTime = TRUE;
+			};
 			MIS_HealRandolph = LOG_Running;
 		}
 		else
@@ -436,6 +445,10 @@ func void DIA_Randolph_Heilung_Info()
 	AI_Output(other,self,"DIA_Randolph_Heilung_15_00");	//Спиртное ударило тебе в голову, ха?
 	AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только ни в этой жизни. Ты можешь мне поверить, парень.
 	B_NpcClearObsessionByDMT(self);
+	if(Rukhar_Won_Wettkampf == TRUE)
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
 };
 
 
@@ -461,10 +474,7 @@ func void DIA_Randolph_SAGITTAHEAL_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_SAGITTAHEAL_15_00");	//Держи. Это облегчит твое похмелье.
 	B_GiveInvItems(other,self,ItPo_HealRandolph_MIS,1);
-	if(Npc_IsInState(self,ZS_Pick_FP))
-	{
-		B_UseItem(self,ItPo_HealRandolph_MIS);
-	};
+	B_UseItem(self,ItPo_HealRandolph_MIS);
 	AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_01");	//Ох! Спасибо, друг. Теперь я смогу хотя бы поспать.
 	AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_02");	//Чем я могу отплатить тебе за это?
 	if(DIA_Randolph_PERM_GotMoney == FALSE)
@@ -481,6 +491,7 @@ func void DIA_Randolph_SAGITTAHEAL_Info()
 	MIS_HealRandolph = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HealRandolph);
 	B_NpcClearObsessionByDMT(self);
+	Npc_ExchangeRoutine(self,"Start");
 };
 
 

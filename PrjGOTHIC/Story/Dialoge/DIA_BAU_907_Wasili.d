@@ -114,7 +114,7 @@ var int Wasili_BringOldCoin_NoMore;
 
 func int DIA_Wasili_FirstOldCoin_Condition()
 {
-	if((MIS_Wasili_BringOldCoin == LOG_Running) && (WasilisOldCoinOffer == 0) && (Npc_HasItems(other,ItMi_OldCoin) >= 1) && (Wasili_BringOldCoin_NoMore == FALSE))
+	if((MIS_Wasili_BringOldCoin == LOG_Running) && (WasilisOldCoinOffer == 0) && Npc_HasItems(other,ItMi_OldCoin) && (Wasili_BringOldCoin_NoMore == FALSE))
 	{
 		return TRUE;
 	};
@@ -186,7 +186,7 @@ func void DIA_Wasili_FirstOldCoin_mehr()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_02");	//Аххх. Черт. Хорошо. 2 золотые монеты за каждую старинную монетку, что ты принесешь мне, - это мое последнее предложение.
+		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_02");	//Аххх. Черт. Хорошо. 2 золотые монеты за каждую старинную монетку, что ты принесешь мне - это мое последнее предложение.
 		WasilisOldCoinOffer = 2;
 		Info_AddChoice(DIA_Wasili_FirstOldCoin,"В таком случае, 3 было бы неплохо.",DIA_Wasili_FirstOldCoin_ZumTeufel);
 	};
@@ -224,7 +224,7 @@ instance DIA_Wasili_BringOldCoin(C_Info)
 
 func int DIA_Wasili_BringOldCoin_Condition()
 {
-	if((WasilisOldCoinOffer > 0) && (Npc_HasItems(other,ItMi_OldCoin) >= 1) && (Wasili_BringOldCoin_NoMore == FALSE))
+	if((WasilisOldCoinOffer > 0) && Npc_HasItems(other,ItMi_OldCoin) && (Wasili_BringOldCoin_NoMore == FALSE))
 	{
 		return TRUE;
 	};
@@ -247,7 +247,7 @@ func void DIA_Wasili_BringOldCoin_Info()
 		B_GivePlayerXP(XP_BringOldCoin);
 		B_GiveInvItems(other,self,ItMi_OldCoin,1);
 		Npc_RemoveInvItem(self,ItMi_OldCoin);
-		OldCoinCounter = OldCoinCounter + 1;
+		OldCoinCounter += 1;
 	}
 	else
 	{
@@ -255,7 +255,7 @@ func void DIA_Wasili_BringOldCoin_Info()
 		B_GiveInvItems(other,self,ItMi_OldCoin,OldCoinCount);
 		Npc_RemoveInvItems(self,ItMi_OldCoin,Npc_HasItems(self,ItMi_OldCoin));
 		XP_BringOldCoins = OldCoinCount * XP_BringOldCoin;
-		OldCoinCounter = OldCoinCounter + OldCoinCount;
+		OldCoinCounter += OldCoinCount;
 		B_GivePlayerXP(XP_BringOldCoins);
 	};
 	AI_Output(self,other,"DIA_Wasili_BringOldCoin_01_04");	//Спасибо. Вот твои деньги. Приноси мне все, что найдешь.

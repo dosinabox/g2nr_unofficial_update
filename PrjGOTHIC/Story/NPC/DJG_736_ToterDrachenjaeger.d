@@ -11,7 +11,7 @@ instance DJG_736_ToterDrachenjaeger(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Orik,BodyTex_B,itar_djg_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Orik,BodyTex_B,ITAR_DJG_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

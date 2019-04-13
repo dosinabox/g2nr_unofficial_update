@@ -44,7 +44,7 @@ instance DIA_Dragon_Undead_Hello(C_Info)
 
 func int DIA_Dragon_Undead_Hello_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_MIS) >= 1)
+	if(SC_IsWearingInnosEye == TRUE)
 	{
 		return TRUE;
 	};
@@ -76,7 +76,7 @@ func void DIA_Dragon_Undead_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_03");	//Как я вижу, теперь его носишь ты. За это бесчинство ты сейчас умрешь!
 	};
-	Info_AddChoice(DIA_Dragon_Undead_Hello,"Хватит болтать.",DIA_Dragon_Undead_Hello_attack);
+	Info_AddChoice(DIA_Dragon_Undead_Hello,"Хватит болтать. Я загоню тебя обратно под камень, из-под которого ты вылез, монстр.",DIA_Dragon_Undead_Hello_attack);
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"По чьему повелению ты ведешь своих прихвостней на войну против человечества?",DIA_Dragon_Undead_Hello_Auftraggeber);
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"Зачем ты здесь?",DIA_Dragon_Undead_Hello_warum);
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"Кто ты?",DIA_Dragon_Undead_Hello_wer);
@@ -102,7 +102,7 @@ func void DIA_Dragon_Undead_Hello_wer()
 	{
 		AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_07");	//Так же, как твоя судьба - проповедовать веру в Инноса, маг Огня.
 	};
-	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_08");	//Разве ты не ощущаешь связь, которая соединяет нас? Да. Ты знаешь кто я.
+	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_08");	//Разве ты не ощущаешь связь, которая соединяет нас? Да. Ты знаешь, кто я.
 	AI_Output(other,self,"DIA_Dragon_Undead_Hello_wer_15_09");	//(смущенно) Нет. Этого не может быть. Ксардас всегда говорил...
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_10");	//Ксардас слаб и не представляет угрозы для меня. Ты один достоин противостоять мне.
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_11");	//Так предопределено. Пришло время принять свою судьбу.
@@ -133,6 +133,7 @@ func void DIA_Dragon_Undead_Hello_attack()
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_attack_20_02");	//Твои кости помогут мне выпустить ветра смерти в этот мир.
 	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
 	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
+	SC_IsWearingInnosEye = FALSE;
 	AI_StopProcessInfos(self);
 	DragonTalk_Exit_Free = FALSE;
 	self.flags = 0;

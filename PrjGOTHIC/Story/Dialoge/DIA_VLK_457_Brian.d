@@ -254,9 +254,9 @@ func void DIA_Brian_WASKAUFEN_Info()
 	if(Npc_IsDead(Harad))
 	{
 		AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_01");	//Если у меня еще есть парочка лишних стальных болванок, ты можешь взять их. Боюсь, что это все.
-		if(MIS_Jack_NewLighthouseOfficer == 0)
+		if(MIS_Jack_NewLighthouseOfficer == FALSE)
 		{
-			AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_02");	//С тех пор как Гарада больше нет здесь, ополчение глаз с меня не спускает.
+			AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_02");	//С тех пор, как Гарада больше нет здесь, ополчение глаз с меня не спускает.
 			AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_03");	//Мне не позволено продолжать работать в кузнице. Они боятся, что я все распродам и свалю.
 		};
 	}
@@ -322,7 +322,7 @@ func void DIA_Brian_RepairNecklace_Info()
 {
 	AI_Output(other,self,"DIA_Brian_RepairNecklace_15_00");	//Ты можешь ремонтировать ювелирные изделия?
 	AI_Output(self,other,"DIA_Brian_RepairNecklace_04_01");	//Я всего лишь помощник, я радуюсь, когда мне позволяют сделать хотя бы кинжал.
-	if(Npc_IsDead(Harad) == FALSE)
+	if(!Npc_IsDead(Harad))
 	{
 		AI_Output(self,other,"DIA_Brian_RepairNecklace_04_02");	//Ювелирные изделия? Тебе лучше обратиться к мастеру.
 	};

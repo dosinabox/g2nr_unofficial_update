@@ -42,7 +42,7 @@ func int DIA_Hanna_Hello_Condition()
 
 func void DIA_Hanna_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Hanna_Hello_17_00");	//Ах, клиент - что я могу сделать для тебя?
+	AI_Output(self,other,"DIA_Hanna_Hello_17_00");	//Ага, клиент - что я могу сделать для тебя?
 };
 
 
@@ -106,8 +106,8 @@ func void DIA_Hanna_WhyPay_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_12");	//А почему паладины платят за все?
 	AI_Output(self,other,"DIA_Hanna_Add_17_13");	//Я не знаю точно, с чем это связано.
-	AI_Output(self,other,"DIA_Hanna_Add_17_14");	//С одной стороны я думаю, они хотят, чтобы нищие не ошивались ночью на улицах. Так безопаснее для всех.
-	AI_Output(self,other,"DIA_Hanna_Add_17_15");	//Ну а с другой стороны они хотят завоевать расположение странствующих торговцев.
+	AI_Output(self,other,"DIA_Hanna_Add_17_14");	//С одной стороны, я думаю, они хотят, чтобы нищие не ошивались ночью на улицах. Так безопаснее для всех.
+	AI_Output(self,other,"DIA_Hanna_Add_17_15");	//Ну, а с другой стороны, они хотят завоевать расположение странствующих торговцев.
 	AI_Output(self,other,"DIA_Hanna_Add_17_16");	//Сейчас, когда фермеры подняли восстание, нам остается полагаться только на торговцев в вопросах обеспечения города продовольствием.
 	AI_Output(self,other,"DIA_Hanna_Add_17_17");	//Кроме того, я думаю, они хотят поднять немного моральный дух в городе.
 	AI_Output(self,other,"DIA_Hanna_Add_17_18");	//Лорд Андрэ даже приказал раздавать бесплатное пиво на Площади Правосудия.
@@ -251,6 +251,7 @@ func void DIA_Hanna_AnyNews_No()
 	AI_Output(other,self,"DIA_Hanna_AnyNews_No_15_00");	//В общем, да.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_No_17_01");	//Ну, значит я права. Сейчас все думают только о себе. Так что тебе нужно?
 	MIS_HannaRetrieveLetter = LOG_FAILED;
+	B_CheckLog();
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 };
 
@@ -260,6 +261,7 @@ func void DIA_Hanna_AnyNews_Depends()
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Depends_17_01");	//Это зависит от того, сколько на этом можно заработать, ты хочешь сказать?
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Depends_17_02");	//Я не люблю таких, как ты.
 	MIS_HannaRetrieveLetter = LOG_FAILED;
+	B_CheckLog();
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 };
 
@@ -283,7 +285,7 @@ func void DIA_Hanna_AnyNews_Yes()
 func void DIA_Hanna_AnyNews_Yes_Footboy()
 {
 	AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_Footboy_15_00");	//Я тебе не мальчик на побегушках.
-	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Footboy_17_01");	//Понимаю - проблемы простой женщины слишком ничтожны для тебя. Значит, тебе придется заняться этим самой.
+	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Footboy_17_01");	//Понимаю - проблемы простой женщины слишком ничтожны для тебя. Значит, мне придется заняться этим самой.
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 };
 
@@ -311,6 +313,7 @@ func void DIA_Hanna_AnyNews_Yes_Reward_BeNice()
 	AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_Reward_BeNice_15_00");	//Ну, ты могла бы быть немного поласковее со мной... Как женщина...
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Reward_BeNice_17_01");	//Ну, ты хам! Я... убирайся отсюда! Неотесанный мужлан!
 	MIS_HannaRetrieveLetter = LOG_FAILED;
+	B_CheckLog();
 	AI_StopProcessInfos(self);
 };
 
@@ -346,7 +349,7 @@ instance DIA_Hanna_ThisLetter(C_Info)
 
 func int DIA_Hanna_ThisLetter_Condition()
 {
-	if((MIS_HannaRetrieveLetter == LOG_Running) && (Npc_HasItems(other,ItWr_ShatteredGolem_MIS) >= 1))
+	if((MIS_HannaRetrieveLetter == LOG_Running) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS))
 	{
 		return TRUE;
 	};
@@ -356,11 +359,11 @@ func void DIA_Hanna_ThisLetter_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_ThisLetter_15_00");	//Ты этот документ имела в виду?
 	AI_Output(self,other,"DIA_Hanna_ThisLetter_17_01");	//Да, именно его. Спасибо.
+	B_GiveInvItems(other,self,ItWr_ShatteredGolem_MIS,1);
 	AI_Output(other,self,"DIA_Hanna_ThisLetter_15_02");	//Как насчет моей награды?
 	AI_Output(self,other,"DIA_Hanna_ThisLetter_17_03");	//Не так быстро. Вот твои деньги.
 	CreateInvItems(self,ItMi_Gold,Hanna_PriceForLetter);
 	B_GiveInvItems(self,other,ItMi_Gold,Hanna_PriceForLetter);
-	B_GiveInvItems(other,self,ItWr_ShatteredGolem_MIS,1);
 	MIS_HannaRetrieveLetter = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HannaRetrieveLetter);
 };
@@ -414,7 +417,7 @@ instance DIA_Hanna_AusKeller(C_Info)
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if(Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) >= 1)
+	if(Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS))
 	{
 		return TRUE;
 	};
@@ -456,7 +459,7 @@ instance DIA_Hanna_Schuldenbuch(C_Info)
 
 func int DIA_Hanna_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) >= 1)
+	if(Npc_HasItems(other,ItWr_Schuldenbuch))
 	{
 		return TRUE;
 	};
@@ -484,7 +487,7 @@ instance DIA_Hanna_GiveSchuldenbuch(C_Info)
 
 func int DIA_Hanna_GiveSchuldenbuch_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && (Npc_HasItems(other,ItWr_Schuldenbuch) >= 1))
+	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch))
 	{
 		return TRUE;
 	};

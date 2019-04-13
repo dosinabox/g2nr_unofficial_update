@@ -13,7 +13,7 @@ instance KDW_14000_Addon_Saturas_ADW(Npc_Default)
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Saturas,BodyTex_B,itar_kdw_h);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Saturas,BodyTex_B,ITAR_KDW_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

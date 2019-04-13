@@ -52,7 +52,7 @@ func void DIA_Addon_Quarhodron_Hello_Info()
 		Info_AddChoice(DIA_Addon_Quarhodron_Hello,"Что находится в храме Аданоса?",DIA_Addon_Quarhodron_Hello_schwert);
 		Info_AddChoice(DIA_Addon_Quarhodron_Hello,"Кто-то смог проникнуть в храм Аданоса.",DIA_Addon_Quarhodron_Hello_raven);
 		Info_AddChoice(DIA_Addon_Quarhodron_Hello,"Расскажи мне, как попасть в храм Аданоса.",DIA_Addon_Quarhodron_Hello_tempel);
-		Info_AddChoice(DIA_Addon_Quarhodron_Hello,"Наша страна содрогается от землетрясений.",DIA_Addon_Quarhodron_Hello_erdbeben);
+		Info_AddChoice(DIA_Addon_Quarhodron_Hello,"Наша страна содрогается от землетрясений. Мы должны что-то сделать, иначе весь остров уйдет под воду.",DIA_Addon_Quarhodron_Hello_erdbeben);
 		DIA_Addon_Quarhodron_Hello_NoPerm = TRUE;
 		Npc_RemoveInvItems(hero,ItWr_Addon_SUMMONANCIENTGHOST,1);
 		SC_TalkedToGhost = TRUE;
@@ -84,7 +84,7 @@ func void DIA_Addon_Quarhodron_Hello_erdbeben()
 	AI_Output(other,self,"DIA_Addon_Quarhodron_Hello_erdbeben_15_00");	//Наша страна содрогается от землетрясений. Мы должны что-то сделать, иначе весь остров уйдет под воду.
 	AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_erdbeben_11_01");	//Мы ничего не сможем сделать.
 	AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_erdbeben_11_02");	//Гнев Аданоса пал на Яркендар, чтобы покарать потерявших веру.
-	DIA_Addon_Quarhodron_Hello_ChoiceCounter = DIA_Addon_Quarhodron_Hello_ChoiceCounter + 1;
+	DIA_Addon_Quarhodron_Hello_ChoiceCounter += 1;
 	B_Quarhodron_Hello_KommZumPunkt();
 };
 
@@ -93,7 +93,7 @@ func void DIA_Addon_Quarhodron_Hello_raven()
 	AI_Output(other,self,"DIA_Addon_Quarhodron_Hello_raven_15_00");	//Кто-то смог проникнуть в храм Аданоса.
 	AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_raven_11_01");	//Вздор! Я лично запечатал дверь. Пройти в храм невозможно.
 	AI_Output(other,self,"DIA_Addon_Quarhodron_Hello_raven_15_02");	//В самом деле?
-	DIA_Addon_Quarhodron_Hello_ChoiceCounter = DIA_Addon_Quarhodron_Hello_ChoiceCounter + 1;
+	DIA_Addon_Quarhodron_Hello_ChoiceCounter += 1;
 	B_Quarhodron_Hello_KommZumPunkt();
 };
 
@@ -101,7 +101,7 @@ func void DIA_Addon_Quarhodron_Hello_tempel()
 {
 	AI_Output(other,self,"DIA_Addon_Quarhodron_Hello_tempel_15_00");	//Расскажи мне, как попасть в храм Аданоса.
 	AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_tempel_11_01");	//Храм останется закрытым навеки. Так решил совет.
-	DIA_Addon_Quarhodron_Hello_ChoiceCounter = DIA_Addon_Quarhodron_Hello_ChoiceCounter + 1;
+	DIA_Addon_Quarhodron_Hello_ChoiceCounter += 1;
 	B_Quarhodron_Hello_KommZumPunkt();
 };
 
@@ -109,7 +109,7 @@ func void DIA_Addon_Quarhodron_Hello_schwert()
 {
 	AI_Output(other,self,"DIA_Addon_Quarhodron_Hello_schwert_15_00");	//Что находится в храме Аданоса?
 	AI_Output(self,other,"DIA_Addon_Quarhodron_Hello_schwert_11_01");	//Моя величайшая печаль. Мое величайшее разочарование.
-	DIA_Addon_Quarhodron_Hello_ChoiceCounter = DIA_Addon_Quarhodron_Hello_ChoiceCounter + 1;
+	DIA_Addon_Quarhodron_Hello_ChoiceCounter += 1;
 	B_Quarhodron_Hello_KommZumPunkt();
 };
 
@@ -266,11 +266,11 @@ func void DIA_Addon_Quarhodron_Fragen_warr()
 	};
 	if(Quarhodrons_NextQuestion == 3)
 	{
-		Quarhodrons_RichtigeAntworten = Quarhodrons_RichtigeAntworten + 1;
+		Quarhodrons_RichtigeAntworten += 1;
 	};
 	if(Quarhodrons_NextQuestion == 5)
 	{
-		Quarhodrons_RichtigeAntworten = Quarhodrons_RichtigeAntworten + 1;
+		Quarhodrons_RichtigeAntworten += 1;
 	};
 	B_Quarhodron_Fragen_Choices();
 };
@@ -284,7 +284,7 @@ func void DIA_Addon_Quarhodron_Fragen_prie()
 	};
 	if(Quarhodrons_NextQuestion == 4)
 	{
-		Quarhodrons_RichtigeAntworten = Quarhodrons_RichtigeAntworten + 1;
+		Quarhodrons_RichtigeAntworten += 1;
 	};
 	B_Quarhodron_Fragen_Choices();
 };
@@ -298,7 +298,7 @@ func void DIA_Addon_Quarhodron_Fragen_gele()
 	};
 	if(Quarhodrons_NextQuestion == 6)
 	{
-		Quarhodrons_RichtigeAntworten = Quarhodrons_RichtigeAntworten + 1;
+		Quarhodrons_RichtigeAntworten += 1;
 	};
 	B_Quarhodron_Fragen_Choices();
 };
@@ -308,7 +308,7 @@ func void DIA_Addon_Quarhodron_Fragen_totenw()
 	AI_Output(other,self,"DIA_Addon_Quarhodron_Fragen_totenw_15_00");	//Стражи мертвых.
 	if(Quarhodrons_NextQuestion == 0)
 	{
-		Quarhodrons_RichtigeAntworten = Quarhodrons_RichtigeAntworten + 1;
+		Quarhodrons_RichtigeAntworten += 1;
 	};
 	if(Quarhodrons_NextQuestion == 0)
 	{
@@ -326,7 +326,7 @@ func void DIA_Addon_Quarhodron_Fragen_heiler()
 	};
 	if(Quarhodrons_NextQuestion == 7)
 	{
-		Quarhodrons_RichtigeAntworten = Quarhodrons_RichtigeAntworten + 1;
+		Quarhodrons_RichtigeAntworten += 1;
 	};
 	B_Quarhodron_Fragen_Choices();
 };
@@ -358,7 +358,7 @@ instance DIA_Addon_Quarhodron_GibMirKey(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Quarhodron_GibMirKey_Condition;
 	information = DIA_Addon_Quarhodron_GibMirKey_Info;
-	description = "(потребовать ключ от храма)";
+	description = "Послушай меня! В храм Аданоса смог попасть очень злой человек.";
 };
 
 

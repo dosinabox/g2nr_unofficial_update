@@ -1,5 +1,5 @@
 
-instance Mil_335_Rumbold(Npc_Default)
+instance MIL_335_Rumbold(Npc_Default)
 {
 	name[0] = "Румболд";
 	guild = GIL_NONE;
@@ -9,10 +9,10 @@ instance Mil_335_Rumbold(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_DropDeadAndKill] = TRUE;
 	B_SetAttributesToChapter(self,1);
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_Mil_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

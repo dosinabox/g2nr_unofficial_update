@@ -240,7 +240,7 @@ func void DIA_Halvor_MESSAGE_OFFER()
 func void DIA_Halvor_MESSAGE_PRISON()
 {
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_PRISON_15_00");	//Похоже, тебе светит тюрьма.
-	AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_01");	//Нет, подожди, ты е можешь поступить так! Ведь я... я... ты же понимаешь... я мелкая рыбешка.
+	AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_01");	//Нет, подожди, ты не можешь поступить так! Ведь я... я... ты же понимаешь... я мелкая рыбешка.
 	AI_Output(other,self,"DIA_Halvor_MESSAGE_PRISON_15_02");	//Тебе стоило подумать об этом раньше. А теперь я собираюсь сообщить о тебе лорду Андрэ.
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_03");	//Ты пожалеешь об этом.
 	Betrayal_Halvor = TRUE;
@@ -262,7 +262,7 @@ func void DIA_Halvor_MESSAGE_Okay()
 	B_GiveInvItems(other,self,ItWr_HalvorMessage,1);
 	Npc_RemoveInvItems(self,ItWr_HalvorMessage,1);
 	Halvor_Deal = TRUE;
-	Diebesgilde_Okay = Diebesgilde_Okay + 1;
+	Diebesgilde_Okay += 1;
 	CreateInvItems(self,ItSe_ErzFisch,1);
 	CreateInvItems(self,ItSe_GoldFisch,1);
 	CreateInvItems(self,ItSe_Ringfisch,1);
@@ -278,7 +278,7 @@ instance DIA_Halvor_Zeichen(C_Info)
 	condition = DIA_Halvor_Zeichen_Condition;
 	information = DIA_Halvor_Zeichen_Info;
 	permanent = FALSE;
-	description = "(Показать сигнал воров)";
+	description = DIALOG_SecretSign;
 };
 
 
@@ -294,7 +294,7 @@ func void DIA_Halvor_Zeichen_Info()
 {
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_00");	//Понимаю. Ты пришел не просто купить рыбу.
-	AI_Output(self,other,"DIA_Halvor_Zeichen_06_01");	//(тихо) Я готов сделать тебе предложение. Если у тебя есть серебряные тарелки или чаши, я возьму их по хорошей цене.
+	AI_Output(self,other,"DIA_Halvor_Zeichen_06_01");	//(тихо) Я готов сделать тебе предложение. Если у тебя есть серебряные тарелки или кубки, я возьму их по хорошей цене.
 	CreateInvItems(self,ItKE_lockpick,20);
 	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
 	B_LogEntry(Topic_Diebesgilde,"Халвор купит серебряные тарелки и кубки по очень хорошей цене.");
@@ -325,7 +325,7 @@ func void DIA_Halvor_Hehlerei_Info()
 	Halvor_Score = 0;
 	if(Halvor_Day != Wld_GetDay())
 	{
-		if((Npc_HasItems(other,ItMi_SilverPlate) >= 1) || (Npc_HasItems(other,ItMi_SilverCup) >= 1))
+		if(Npc_HasItems(other,ItMi_SilverPlate) || Npc_HasItems(other,ItMi_SilverCup))
 		{
 			Halvor_Score = (Npc_HasItems(other,ItMi_SilverPlate) * (Value_SilverPlate / 2)) + (Npc_HasItems(other,ItMi_SilverCup) * (Value_SilverCup / 2));
 			if(Halvor_Score <= 1000)
@@ -344,7 +344,7 @@ func void DIA_Halvor_Hehlerei_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Halvor_Zeichen_06_02");	//Заходи, когда у тебя будут серебряные тарелки или чаши.
+			AI_Output(self,other,"DIA_Halvor_Zeichen_06_02");	//Заходи, когда у тебя будут серебряные тарелки или кубки.
 			Info_ClearChoices(DIA_Halvor_Hehlerei);
 		};
 	}
@@ -426,7 +426,7 @@ func void DIA_Halvor_Crew_StealShip()
 	Info_ClearChoices(DIA_Halvor_Crew);
 	Info_AddChoice(DIA_Halvor_Crew,Dialog_Back,DIA_Halvor_Crew_BACK);
 	Info_AddChoice(DIA_Halvor_Crew,"Хочешь плыть со мной?",DIA_Halvor_Crew_JoinMe);
-	if(Npc_IsDead(Jack) == FALSE)
+	if(!Npc_IsDead(Jack))
 	{
 		Info_AddChoice(DIA_Halvor_Crew,"Ты можешь помочь мне?",DIA_Halvor_Crew_HelpMe);
 	};

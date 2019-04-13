@@ -2,7 +2,7 @@
 instance BAU_4300_Addon_Cavalorn(Npc_Default)
 {
 	name[0] = "Кавалорн";
-	guild = GIL_NONE;
+	guild = GIL_BAU;
 	id = 4300;
 	voice = 8;
 	flags = NPC_FLAG_IMMORTAL;
@@ -12,6 +12,7 @@ instance BAU_4300_Addon_Cavalorn(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ShortSword2);
 	EquipItem(self,ItRw_Sld_Bow);
+	B_CreateAmbientInv(self);
 	CreateInvItems(self,ITAR_Bau_L,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_B_Cavalorn,BodyTex_B,ITAR_RANGER_Addon);
 	Mdl_SetModelFatness(self,1);
@@ -25,7 +26,7 @@ instance BAU_4300_Addon_Cavalorn(Npc_Default)
 func void Rtn_Start_4300()
 {
 	TA_Stand_Eating(5,0,20,0,"NW_XARDAS_GOBBO_01");
-	TA_Stand_Eating(20,0,5,0,"NW_XARDAS_GOBBO_01");
+	TA_Sit_Campfire(20,0,5,0,"NW_XARDAS_GOBBO_01");
 };
 
 func void Rtn_KillBandits_4300()
@@ -61,6 +62,6 @@ func void Rtn_Parking_4300()
 func void Rtn_Stadt_4300()
 {
 	TA_Sit_Bench(5,0,20,0,"NW_CITY_MERCHANT_PATH_15");
-	TA_Sit_Bench(20,0,5,0,"NW_CITY_MERCHANT_PATH_15");
+	TA_Sit_Chair(20,0,5,0,"NW_CITY_TAVERN_IN_07");
 };
 

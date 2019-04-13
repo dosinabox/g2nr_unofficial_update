@@ -447,7 +447,7 @@ func void DIA_Jora_AlriksSchwert_Info()
 	AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_00");	//Альрик говорит, что у тебя его меч...
 	AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_01");	//Ты имеешь в виду этого оборванца, что продал мне свое оружие за несколько факелов и кусок мяса?
 	AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_02");	//Да, это он.
-	if(Npc_HasItems(self,ItMw_AlriksSword_Mis) > 0)
+	if(Npc_HasItems(self,ItMw_AlriksSword_Mis))
 	{
 		AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_03");	//Его меч все еще у меня.
 		AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_04");	//Сколько ты хочешь за него?
@@ -482,7 +482,7 @@ instance DIA_Jora_BUYAlriksSchwert(C_Info)
 
 func int DIA_Jora_BUYAlriksSchwert_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jora_AlriksSchwert) && (Npc_HasItems(self,ItMw_AlriksSword_Mis) > 0))
+	if(Npc_KnowsInfo(other,DIA_Jora_AlriksSchwert) && Npc_HasItems(self,ItMw_AlriksSword_Mis))
 	{
 		return TRUE;
 	};

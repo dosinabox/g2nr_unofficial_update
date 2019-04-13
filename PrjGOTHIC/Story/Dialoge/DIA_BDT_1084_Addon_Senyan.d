@@ -157,7 +157,7 @@ func void DIA_Addon_BDT_1084_Senyan_Hi_bad()
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_03");	//И если они найдут тебя, они убьют тебя.
 	AI_Output(other,self,"DIA_Addon_BDT_1084_Senyan_Hi_bad_15_04");	//Многие уже пытались.
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_05");	//Значит, ты дерешься не хуже, чем плетешь интриги. Придти в лагерь в таких доспехах, это...
-	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_06");	//...все равно что придти к волкам, будучи овцой. Твоя жизнь висит на волоске, сын риска.
+	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_06");	//... все равно что придти к волкам, будучи овцой. Твоя жизнь висит на волоске, сын риска.
 	Senyan_Bad = TRUE;
 	Info_ClearChoices(DIA_Addon_BDT_1084_Senyan_Hi);
 	if(Senyan_Good == TRUE)
@@ -193,9 +193,17 @@ func int DIA_Addon_Senyan_unterwegs_Condition()
 func void DIA_Addon_Senyan_unterwegs_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Senyan_unterwegs_15_00");	//По поводу Эстебана...
-	AI_Output(self,other,"DIA_Addon_Senyan_unterwegs_12_01");	//Ты уже поговорил с ним?
-	AI_Output(other,self,"DIA_Addon_Senyan_unterwegs_15_02");	//Еще нет.
-	AI_Output(self,other,"DIA_Addon_Senyan_unterwegs_12_03");	//Тогда тебе следует сделать это поскорее.
+	if(!Npc_IsDead(Esteban))
+	{
+		AI_Output(self,other,"DIA_Addon_Senyan_unterwegs_12_01");	//Ты уже поговорил с ним?
+		AI_Output(other,self,"DIA_Addon_Senyan_unterwegs_15_02");	//Еще нет.
+		AI_Output(self,other,"DIA_Addon_Senyan_unterwegs_12_03");	//Тогда тебе следует сделать это поскорее.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Addon_Tom_Dead_15_00");	//Эстебан мертв.
+		B_Senyan_Attack();
+	};
 };
 
 
@@ -212,7 +220,7 @@ instance DIA_Addon_Senyan_Attentat(C_Info)
 
 func int DIA_Addon_Senyan_Attentat_Condition()
 {
-	if((MIS_Judas == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi))
+	if((MIS_Judas == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_BDT_1084_Senyan_Hi) && !Npc_IsDead(Esteban))
 	{
 		return TRUE;
 	};

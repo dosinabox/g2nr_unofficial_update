@@ -107,7 +107,7 @@ func void DIA_Jack_Job_Info()
 {
 	AI_Output(other,self,"DIA_Jack_Job_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Jack_Job_14_01");	//Когда я был еще юношей, я отправился странствовать по морям, и пережил много сильных штормов.
-	AI_Output(self,other,"DIA_Jack_Job_14_02");	//Но много лет назад, я осел здесь, и с тех пор работал смотрителем маяка Хориниса.
+	AI_Output(self,other,"DIA_Jack_Job_14_02");	//Но много лет назад я осел здесь, и с тех пор работал смотрителем маяка Хориниса.
 	AI_Output(self,other,"DIA_Jack_Job_14_03");	//В этом нет ничего сложного. Совсем. Но этот старый маяк стал мне родным домом.
 	AI_Output(self,other,"DIA_Jack_Job_14_04");	//Но я так давно уже не был в нем.
 	AI_Output(other,self,"DIA_Jack_Job_15_05");	//Почему?
@@ -163,7 +163,7 @@ instance DIA_Jack_Harbor(C_Info)
 
 func int DIA_Jack_Harbor_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jack_City) && ((Npc_GetDistToWP(self,"LIGHTHOUSE") < 3000) == FALSE) && (JackIsCaptain == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Jack_City) && (Npc_GetDistToWP(self,"LIGHTHOUSE") >= 3000) && (JackIsCaptain == FALSE))
 	{
 		return TRUE;
 	};
@@ -205,7 +205,7 @@ func void DIA_Jack_Harbor_Leave()
 {
 	AI_Output(other,self,"DIA_Jack_Harbor_Leave_15_00");	//Так почему ты не уедешь отсюда?
 	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_01");	//Сегодня никто не возьмет на корабль старого морского волка вроде меня.
-	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_02");	//Большинство полагает, что Старый Джек ни на что не годен, и что его старые кости разъедает подагра.
+	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_02");	//Большинство полагает, что cтарый Джек ни на что не годен, и что его старые кости разъедает подагра.
 	AI_Output(other,self,"DIA_Jack_Harbor_Leave_15_03");	//И? Они правы?
 	AI_Output(self,other,"DIA_Jack_Harbor_Leave_14_04");	//Вздор. Как только я опять почувствую под своими ногами палубу, я дам фору любому из этих нахальных юнцов.
 };
@@ -355,7 +355,7 @@ instance DIA_Jack_BEMYCAPTAIN(C_Info)
 
 func int DIA_Jack_BEMYCAPTAIN_Condition()
 {
-	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE) && (MIS_Jack_KillLighthouseBandits == LOG_SUCCESS) && (MIS_Jack_NewLighthouseOfficer == 0))
+	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE) && (MIS_Jack_KillLighthouseBandits == LOG_SUCCESS) && (MIS_Jack_NewLighthouseOfficer == FALSE))
 	{
 		return TRUE;
 	};
@@ -382,12 +382,12 @@ func void DIA_Jack_BEMYCAPTAIN_seaman()
 	B_LogEntry(Topic_Captain,"Джек, старый морской волк из гавани, мог бы стать хорошим капитаном. Но сначала я должен найти кого-нибудь, кто посторожит его маяк.");
 	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"Забудь. Это я просто так сказал.",DIA_Jack_BEMYCAPTAIN_no);
-	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"А что если я приведу к тебе кого-нибудь, кто позаботился бы о маяке в твое отсутствие?",DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer);
+	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"А что, если я приведу к тебе кого-нибудь, кто позаботился бы о маяке в твое отсутствие?",DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer);
 };
 
 func void DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer()
 {
-	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_15_00");	//А что если я приведу к тебе кого-нибудь, кто позаботился бы о маяке в твое отсутствие?
+	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_15_00");	//А что, если я приведу к тебе кого-нибудь, кто позаботился бы о маяке в твое отсутствие?
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_01");	//Неплохая идея, приятель. И у меня есть подходящая кандидатура.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_02");	//У Гарада, кузнеца, есть подмастерье по имени Брайан. Я много раз беседовал с ним.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer_14_03");	//Я бы хотел доверить свой маяк ему. Я думаю, он лучше всего подходит для этого.
@@ -505,7 +505,7 @@ func int DIA_Jack_LOSFAHREN_Condition()
 func void DIA_Jack_LOSFAHREN_Info()
 {
 	AI_Output(other,self,"DIA_Jack_LOSFAHREN_15_00");	//Отлично, старик. Поднять паруса!
-	if(B_CaptainConditions(self) == TRUE)
+	if(B_CaptainConditions(self))
 	{
 		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_01");	//Все в полном порядке. А теперь покажи мне свою морскую карту.
 		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_02");	//Это будет нелегкое плавание. Но я все же надеюсь, что мы доберемся туда целыми и невредимыми.

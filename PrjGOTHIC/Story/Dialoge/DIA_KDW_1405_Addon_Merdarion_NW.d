@@ -263,7 +263,7 @@ instance DIA_Addon_Merdarion_WHereOtherTeleports(C_Info)
 
 func int DIA_Addon_Merdarion_WHereOtherTeleports_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Teleportstein))
+	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Teleportstein) && (SCUsed_NW_TELEPORTSTATION_MAYA == FALSE))
 	{
 		return TRUE;
 	};
@@ -290,7 +290,7 @@ instance DIA_Addon_Merdarion_TeleportsteinSuccess(C_Info)
 
 func int DIA_Addon_Merdarion_TeleportsteinSuccess_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Teleportstein) && (SCUsed_NW_TELEPORTSTATION_MAYA == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Teleportstein) && (SCUsed_AllNWTeleporststones == TRUE))
 	{
 		return TRUE;
 	};

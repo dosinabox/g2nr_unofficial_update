@@ -1,5 +1,5 @@
 
-instance Vlk_424_Alwin(Npc_Default)
+instance VLK_424_Alwin(Npc_Default)
 {
 	name[0] = "Алвин";
 	guild = GIL_VLK;

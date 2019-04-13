@@ -19,7 +19,7 @@ func void DIA_Gestath_EXIT_Info()
 {
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
-	if(Hlp_IsItem(heroArmor,ITAR_DJG_Crawler) == TRUE)
+	if(Hlp_IsItem(heroArmor,ITAR_DJG_Crawler))
 	{
 		AI_Output(self,other,"DIA_Gestath_EXIT_09_00");	//(сухо) Хорошие доспехи!
 	};
@@ -185,7 +185,7 @@ func void DIA_Gestath_TEACHHUNTING_Info()
 		{
 			if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE)
 			{
-				Info_AddChoice(DIA_Gestath_TEACHHUNTING,B_BuildLearnString("Удаление чешуи драконов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonScale)),DIA_Gestath_TEACHHUNTING_DragonScale);
+				Info_AddChoice(DIA_Gestath_TEACHHUNTING,B_BuildLearnString("Удаление чешуи дракона",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonScale)),DIA_Gestath_TEACHHUNTING_DragonScale);
 			};
 			if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE)
 			{

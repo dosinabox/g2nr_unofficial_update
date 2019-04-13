@@ -1,7 +1,7 @@
 
 instance DIA_Rod_EXIT(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 999;
 	condition = DIA_Rod_EXIT_Condition;
 	information = DIA_Rod_EXIT_Info;
@@ -24,7 +24,7 @@ func void DIA_Rod_EXIT_Info()
 
 instance DIA_Rod_Hello(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 1;
 	condition = DIA_Rod_Hello_Condition;
 	information = DIA_Rod_Hello_Info;
@@ -56,7 +56,7 @@ var int Rod_SchwachGesagt;
 
 instance DIA_Rod_WannaLearn(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 2;
 	condition = DIA_Rod_WannaLearn_Condition;
 	information = DIA_Rod_WannaLearn_Info;
@@ -80,7 +80,7 @@ func void DIA_Rod_WannaLearn_Info()
 	{
 		AI_Output(self,other,"DIA_Rod_WannaLearn_06_01");	//Я неплохой боец, но это не означает, что я хороший учитель.
 		AI_Output(self,other,"DIA_Rod_WannaLearn_06_02");	//И все же я думаю, я могу показать тебе основы боя двуручным оружием.
-		if(Npc_HasItems(self,ItMw_2h_Rod) == 0)
+		if(!Npc_HasItems(self,ItMw_2h_Rod))
 		{
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_03");	//Да, если ты отдашь мне назад мой меч.
 		}
@@ -102,7 +102,7 @@ var int Rod_Merke_2h;
 
 instance DIA_Rod_Teach(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 3;
 	condition = DIA_Rod_Teach_Condition;
 	information = DIA_Rod_Teach_Info;
@@ -159,7 +159,7 @@ func void DIA_Rod_Teach_2H_5()
 
 instance DIA_Rod_WannaJoin(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 4;
 	condition = DIA_Rod_WannaJoin_Condition;
 	information = DIA_Rod_WannaJoin_Info;
@@ -180,7 +180,7 @@ func int DIA_Rod_WannaJoin_Condition()
 func void DIA_Rod_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Rod_WannaJoin_15_00");	//Я хочу присоединиться к наемникам!
-	if(Npc_HasItems(self,ItMw_2h_Rod) == 0)
+	if(!Npc_HasItems(self,ItMw_2h_Rod))
 	{
 		AI_Output(self,other,"DIA_Rod_WannaJoin_06_01");	//А как насчет того, чтобы сначала вернуть мне мой меч, а?
 	}
@@ -210,7 +210,7 @@ func void DIA_Rod_WannaJoin_Info()
 
 instance DIA_Rod_Duell(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 6;
 	condition = DIA_Rod_Duell_Condition;
 	information = DIA_Rod_Duell_Info;
@@ -223,11 +223,7 @@ func int DIA_Rod_Duell_Condition()
 {
 	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		if((Rod_WetteGewonnen == FALSE) && (Rod_SchwachGesagt == TRUE))
-		{
-			return TRUE;
-		};
-		if(MIS_Jarvis_SldKO == LOG_Running)
+		if(((Rod_WetteGewonnen == FALSE) && (Rod_SchwachGesagt == TRUE)) || (MIS_Jarvis_SldKO == LOG_Running))
 		{
 			return TRUE;
 		};
@@ -252,7 +248,7 @@ func void DIA_Rod_Duell_Info()
 
 instance DIA_Rod_StarkGenug(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 5;
 	condition = DIA_Rod_StarkGenug_Condition;
 	information = DIA_Rod_StarkGenug_Info;
@@ -275,13 +271,13 @@ func void DIA_Rod_StarkGenug_Info()
 	AI_Output(self,other,"DIA_Rod_StarkGenug_06_01");	//Чушь! Ты даже не смог ПОДНЯТЬ приличный меч вроде моего!
 	Log_CreateTopic(Topic_RodWette,LOG_MISSION);
 	Log_SetTopicStatus(Topic_RodWette,LOG_Running);
-	B_LogEntry(Topic_RodWette,"Наемник Род не думает, что я смогу удержать его меч.");
+	B_LogEntry(Topic_RodWette,"Наемник Род думает, что я не смогу удержать его меч.");
 };
 
 
 instance DIA_Rod_BINStarkGenug(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 5;
 	condition = DIA_Rod_BINStarkGenug_Condition;
 	information = DIA_Rod_BINStarkGenug_Info;
@@ -310,7 +306,7 @@ var int Rod_WetteAngenommen;
 
 instance DIA_Rod_Wette(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 5;
 	condition = DIA_Rod_Wette_Condition;
 	information = DIA_Rod_Wette_Info;
@@ -321,7 +317,7 @@ instance DIA_Rod_Wette(C_Info)
 
 func int DIA_Rod_Wette_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_WetteGewonnen == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && (Npc_HasItems(self,ItMw_2h_Rod) > 0) && (Rod_WetteAngenommen == FALSE))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (Rod_WetteGewonnen == FALSE) && Npc_KnowsInfo(other,DIA_Rod_BINStarkGenug) && Npc_HasItems(self,ItMw_2h_Rod) && (Rod_WetteAngenommen == FALSE))
 	{
 		return TRUE;
 	};
@@ -360,6 +356,8 @@ func void DIA_Rod_Wette_Yes()
 			AI_UnequipWeapons(other);
 			AI_EquipBestMeleeWeapon(other);
 			AI_ReadyMeleeWeapon(other);
+			AI_Wait(other,2);
+			AI_RemoveWeapon(other);
 			AI_Output(other,self,"DIA_Rod_Wette_Yes_15_04");	//Так достаточно?!
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_05");	//(сбитый с толку) Похоже, ты побил меня.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_06");	//Я никак не ожидал от тебя такого. Ты не похож на человека, обладающего такой силой.
@@ -373,7 +371,7 @@ func void DIA_Rod_Wette_Yes()
 			AI_Output(other,self,"DIA_Rod_Wette_Yes_15_08");	//Я не могу поднять это оружие.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_09");	//(смеется) Что я и говорил!
 		};
-		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_10");	//А теперь, отдай мне мое оружие назад.
+		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_10");	//А теперь отдай мне мое оружие назад.
 		Info_ClearChoices(DIA_Rod_Wette);
 		Info_AddChoice(DIA_Rod_Wette,"Думаю, что нет...",DIA_Rod_Wette_KeepIt);
 		Info_AddChoice(DIA_Rod_Wette,"Вот, держи.",DIA_Rod_Wette_GiveBack);
@@ -420,7 +418,7 @@ var int Rod_SchwertXPGiven;
 
 instance DIA_Rod_GiveItBack(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 7;
 	condition = DIA_Rod_GiveItBack_Condition;
 	information = DIA_Rod_GiveItBack_Info;
@@ -431,7 +429,7 @@ instance DIA_Rod_GiveItBack(C_Info)
 
 func int DIA_Rod_GiveItBack_Condition()
 {
-	if(Npc_HasItems(other,ItMw_2h_Rod) > 0)
+	if(Npc_HasItems(other,ItMw_2h_Rod))
 	{
 		return TRUE;
 	};
@@ -452,7 +450,7 @@ func void DIA_Rod_GiveItBack_Info()
 
 instance DIA_Rod_PERM(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 1;
 	condition = DIA_Rod_PERM_Condition;
 	information = DIA_Rod_PERM_Info;
@@ -504,7 +502,7 @@ func void DIA_Rod_PERM_Info()
 
 instance DIA_RodSLD_PICKPOCKET(C_Info)
 {
-	npc = Sld_804_Rod;
+	npc = SLD_804_Rod;
 	nr = 900;
 	condition = DIA_RodSLD_PICKPOCKET_Condition;
 	information = DIA_RodSLD_PICKPOCKET_Info;

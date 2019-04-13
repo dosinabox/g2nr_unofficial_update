@@ -61,6 +61,7 @@ instance ItFo_Addon_Rum(C_Item)
 func void UseRum()
 {
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Rum);
+	B_NpcSetDrunk(50);
 };
 
 
@@ -85,6 +86,7 @@ instance ItFo_Addon_Grog(C_Item)
 func void UseGrog()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Grog);
+	B_NpcSetDrunk(40);
 };
 
 
@@ -115,6 +117,7 @@ func void UseLouHammer()
 		Npc_ChangeAttribute(self,ATR_MANA,Mana_LousHammer);
 		Hammer_Once = TRUE;
 	};
+	B_NpcSetDrunk(60);
 };
 
 
@@ -139,8 +142,9 @@ func void UseSchlafHammer()
 {
 	if(self.attribute[ATR_HITPOINTS] > 2)
 	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] / 2;
+		self.attribute[ATR_HITPOINTS] /= 2;
 	};
+	B_NpcSetDrunk(80);
 };
 
 

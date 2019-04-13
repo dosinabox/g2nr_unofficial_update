@@ -47,7 +47,7 @@ func void DIA_Marcos_Hallo_Info()
 	{
 		AI_Output(other,self,"DIA_Marcos_Hallo_15_01");	//Избранный Инноса всегда говорит правду.
 		AI_Output(self,other,"DIA_Marcos_Hallo_04_02");	//Прошу простить меня, о, преподобный маг. Я не понял сразу, с кем я говорю.
-		AI_Output(other,self,"DIA_Marcos_Hallo_15_03");	//Да, ничего, все нормально.
+		AI_Output(other,self,"DIA_Marcos_Hallo_15_03");	//Да ничего, все нормально.
 		AI_Output(self,other,"DIA_Marcos_Hallo_04_04");	//Если мне будет позволено спросить - что привело тебя сюда?
 	}
 	else if(other.guild == GIL_MIL)
@@ -99,13 +99,13 @@ instance DIA_Marcos_Garond(C_Info)
 	condition = DIA_Marcos_Garond_Condition;
 	information = DIA_Marcos_Garond_Info;
 	permanent = FALSE;
-	description = "Я пришел от Гаронда ...";
+	description = "Я пришел от Гаронда - он хочет знать, какое количество руды готово к транспортировке.";
 };
 
 
 func int DIA_Marcos_Garond_Condition()
 {
-	if((Kapitel == 2) && (MIS_OLDWORLD == LOG_Running))
+	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2))
 	{
 		return TRUE;
 	};

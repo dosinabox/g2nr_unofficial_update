@@ -1,7 +1,7 @@
 
 func void B_GiveStuntBonus_FUNC()
 {
-	if(StuntBonus_Once == FALSE)
+	if((StuntBonus_Once == FALSE) && (MIS_Owen_FindMalcom == LOG_Running))
 	{
 		PrintScreen(PRINT_Addon_StuntBonus,-1,45,FONT_Screen,2);
 		B_GivePlayerXP(XP_STUNTBONUS);

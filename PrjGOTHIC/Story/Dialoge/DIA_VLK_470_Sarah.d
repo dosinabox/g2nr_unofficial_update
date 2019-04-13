@@ -152,7 +152,7 @@ instance DIA_Sarah_AkilsHof(C_Info)
 
 func int DIA_Sarah_AkilsHof_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sarah_Bauern))
+	if(Npc_KnowsInfo(other,DIA_Sarah_Bauern) && (Akil.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -229,7 +229,7 @@ instance DIA_Sarah_Success(C_Info)
 	condition = DIA_Sarah_Success_Condition;
 	information = DIA_Sarah_Success_Info;
 	permanent = FALSE;
-	description = " антар пыталс€ подставить теб€ ...";
+	description = " антар пыталс€ подставить теб€ и заполучить твой прилавок.";
 };
 
 

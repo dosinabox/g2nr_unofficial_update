@@ -6,12 +6,13 @@ instance VLK_4143_HaupttorWache(Npc_Default)
 	id = 4143;
 	voice = 13;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = npctype_main;
+	npcType = NPCTYPE_OCMAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal18,BodyTex_N,ITAR_Mil_L);
+	CreateInvItems(self,ITKE_OC_MAINGATE_MIS,1);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal18,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

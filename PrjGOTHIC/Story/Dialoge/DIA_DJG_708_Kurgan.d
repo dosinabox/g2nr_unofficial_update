@@ -42,7 +42,7 @@ func void DIA_Kurgan_HELLO_Info()
 	AI_Output(other,self,"DIA_Kurgan_HELLO_15_01");	//„то ты этим хочешь сказать?
 	AI_Output(self,other,"DIA_Kurgan_HELLO_01_02");	//я хочу сказать, что пребывание здесь может не очень хорошо сказатьс€ на твоем здоровье. Ёто место просто кишит орками и монстрами.
 	AI_Output(self,other,"DIA_Kurgan_HELLO_01_03");	//Ќе говор€ уже о драконах. Ёто просто дружеское предупреждение.
-	B_LogEntry(TOPIC_Dragonhunter,"” входа в ƒолину рудников мне встретилась группа охотников на драконов. Ёти парни хорошо вооружены, но, боюсь, это не произведет особого впечатлени€ на драконов.");
+	B_LogEntry(TOPIC_Dragonhunter,"” входа в ƒолину –удников мне встретилась группа охотников на драконов. Ёти парни хорошо вооружены, но, боюсь, это не произведет особого впечатлени€ на драконов.");
 };
 
 
@@ -74,7 +74,7 @@ instance DIA_Kurgan_Leader(C_Info)
 	npc = DJG_708_Kurgan;
 	condition = DIA_Kurgan_Leader_Condition;
 	information = DIA_Kurgan_Leader_Info;
-	description = "“ы что здесь, за главного?";
+	description = "“ы что, здесь за главного?";
 };
 
 

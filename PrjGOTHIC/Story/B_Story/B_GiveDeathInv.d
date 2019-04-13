@@ -126,27 +126,27 @@ func void B_GiveDeathInv(var C_Npc slf)
 	{
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_LURKER)
 		{
-			CreateInvItems(slf,itat_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
 		{
-			CreateInvItems(slf,itat_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
 		{
-			CreateInvItems(slf,itat_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
 		{
-			CreateInvItems(slf,itat_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARAN)
 		{
-			CreateInvItems(slf,itat_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
 		{
-			CreateInvItems(slf,itat_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_LurkerSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
 		{

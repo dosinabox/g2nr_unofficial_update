@@ -12,7 +12,7 @@ instance SLD_818_Soeldner(Npc_Default)
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_NormalBart02,BodyTex_L,itar_sld_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_NormalBart02,BodyTex_L,ITAR_SLD_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

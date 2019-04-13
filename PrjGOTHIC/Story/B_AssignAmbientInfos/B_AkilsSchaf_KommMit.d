@@ -22,11 +22,11 @@ func void DIA_AkilsSchaf_KommMit_Info()
 	B_KommMit();
 	B_LieselMaeh();
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	if(Npc_IsDead(BDT_1025_Bandit_H) == FALSE)
+	if(!Npc_IsDead(BDT_1025_Bandit_H))
 	{
 		BDT_1025_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
 	};
-	if(Npc_IsDead(BDT_1026_Bandit_H) == FALSE)
+	if(!Npc_IsDead(BDT_1026_Bandit_H))
 	{
 		BDT_1026_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
 	};

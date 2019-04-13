@@ -132,9 +132,9 @@ func void DIA_Addon_Cronos_NW_Trade_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Cronos_NW_Trade_04_01");	//Почему бы и нет? Если я правильно помню, мы с тобой уже вели дела.
 		DIA_Addon_Cronos_NW_Trade_OneTime = TRUE;
+		Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
+		B_LogEntry(Topic_OutTrader,LogText_Addon_CronosTrade);
 	};
 	AI_Output(self,other,"DIA_Addon_Cronos_NW_Trade_04_02");	//Итак, что тебе нужно?
-	Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
-	B_LogEntry(Topic_OutTrader,LogText_Addon_CronosTrade);
 };
 

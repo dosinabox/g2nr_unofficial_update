@@ -134,25 +134,25 @@ func void B_Pal_ZOMBIE_RISE()
 func void B_SetVisuals_Pal_Zombie01()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,itar_pal_skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,ITAR_PAL_SKEL);
 };
 
 func void B_SetVisuals_Pal_Zombie02()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,itar_pal_skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",1,DEFAULT,ITAR_PAL_SKEL);
 };
 
 func void B_SetVisuals_Pal_Zombie03()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,DEFAULT,itar_pal_skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",0,DEFAULT,ITAR_PAL_SKEL);
 };
 
 func void B_SetVisuals_Pal_Zombie04()
 {
 	Mdl_SetVisual(self,"Zombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,itar_pal_skel);
+	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,ITAR_PAL_SKEL);
 };
 
 

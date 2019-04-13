@@ -34,10 +34,7 @@ instance DIA_Rangar_PICKPOCKET(C_Info)
 
 func int DIA_Rangar_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItKe_City_Tower_02) >= 1) && (other.attribute[ATR_DEXTERITY] >= (30 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(30,Hlp_GetInstanceID(ItKe_City_Tower_02),1);
 };
 
 func void DIA_Rangar_PICKPOCKET_Info()
@@ -49,19 +46,8 @@ func void DIA_Rangar_PICKPOCKET_Info()
 
 func void DIA_Rangar_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 30)
-	{
-		B_GiveInvItems(self,other,ItKe_City_Tower_02,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Rangar_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(30,Hlp_GetInstanceID(ItKe_City_Tower_02),1);
+	Info_ClearChoices(DIA_Rangar_PICKPOCKET);
 };
 
 func void DIA_Rangar_PICKPOCKET_BACK()
@@ -83,7 +69,7 @@ instance DIA_Rangar_Hallo(C_Info)
 
 func int DIA_Rangar_Hallo_Condition()
 {
-	if(((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 500) == FALSE) && ((Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") < 500) == FALSE))
+	if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
 	{
 		return TRUE;
 	};
@@ -111,7 +97,7 @@ instance DIA_Rangar_Ork(C_Info)
 
 func int DIA_Rangar_Ork_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rangar_Hallo) && ((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 500) == FALSE) && ((Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") < 500) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Rangar_Hallo) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
 	{
 		return TRUE;
 	};
@@ -138,7 +124,7 @@ instance DIA_Rangar_Bier(C_Info)
 
 func int DIA_Rangar_Bier_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rangar_Hallo) && ((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 500) == FALSE) && ((Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") < 500) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Rangar_Hallo) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
 	{
 		return TRUE;
 	};
@@ -152,8 +138,8 @@ func void DIA_Rangar_Bier_Info()
 		if(Knows_Paladins == FALSE)
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_01");	//Ах, нет ничего лучше, чем холодный эль.
-			CreateInvItems(self,ItFo_Booze,1);
-			B_UseItem(self,ItFo_Booze);
+			CreateInvItems(self,ItFo_Beer,1);
+			B_UseItem(self,ItFo_Beer);
 			AI_Output(other,self,"DIA_Rangar_Bier_15_02");	//Ты что-то хотел сказать насчет орков...
 			AI_Output(self,other,"DIA_Rangar_Bier_07_03");	//Ах, да, точно. Орки не представляют угрозы для города.
 			AI_Output(self,other,"DIA_Rangar_Bier_07_04");	//Они застряли в Долине Рудников. А Проход охраняется паладинами.
@@ -164,8 +150,8 @@ func void DIA_Rangar_Bier_Info()
 		else if((Knows_Paladins == 1) && (Knows_Ork == TRUE))
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_06");	//Я бы не отказался еще от одной пинты.
-			CreateInvItems(self,ItFo_Booze,1);
-			B_UseItem(self,ItFo_Booze);
+			CreateInvItems(self,ItFo_Beer,1);
+			B_UseItem(self,ItFo_Beer);
 			AI_Output(other,self,"DIA_Rangar_Bier_15_07");	//Говорят, орков видели у самого города.
 			AI_Output(self,other,"DIA_Rangar_Bier_07_08");	//Да, точно, опасный орк около города. Этот орк - настоящий монстр. Он скоро нападет на город.
 			AI_Output(self,other,"DIA_Rangar_Bier_07_09");	//Послушай, мы порвем этого орка как тузик тряпку, если он подойдет близко к городу. Понял?
@@ -176,8 +162,8 @@ func void DIA_Rangar_Bier_Info()
 		else
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_11");	//Горький эль - однозначно лучший.
-			CreateInvItems(self,ItFo_Booze,1);
-			B_UseItem(self,ItFo_Booze);
+			CreateInvItems(self,ItFo_Beer,1);
+			B_UseItem(self,ItFo_Beer);
 			AI_Output(self,other,"DIA_Rangar_Bier_07_12");	//Знаешь, нечасто встретишь парня, готового угостить тебя пивом. Ты наш человек.
 			Info_ClearChoices(DIA_Rangar_Bier);
 		};

@@ -23,6 +23,6 @@ instance STRF_1107_Straefling(Npc_Default)
 func void Rtn_Start_1107()
 {
 	TA_Cook_Cauldron(8,0,23,0,"OC_EBR_KITCHEN_COOK");
-	TA_Cook_Cauldron(23,0,8,0,"OC_EBR_KITCHEN_COOK");
+	TA_Cook_Stove(23,0,8,0,"OC_EBR_KITCHEN_TO_HALL");
 };
 

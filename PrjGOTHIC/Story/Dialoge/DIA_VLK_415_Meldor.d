@@ -204,7 +204,7 @@ func void DIA_Meldor_Smoke_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
-	if(Hlp_IsItem(heroArmor,ITAR_Mil_L) == TRUE)
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L))
 	{
 		AI_Output(self,other,"DIA_Meldor_Smoke_07_01");	//(оценивающе) Нет, понятия не имею.
 	}

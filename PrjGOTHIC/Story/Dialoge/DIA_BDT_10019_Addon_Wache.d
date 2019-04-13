@@ -49,7 +49,6 @@ func void B_Say_Wache_kaputt()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10019_Wache_kaputt_15_00");	//Почему они умерли?
 	AI_Output(self,other,"DIA_Addon_BDT_10019_Wache_kaputt_06_01");	//(злобно смеется) Заработались до смерти.
-	Info_ClearChoices(DIA_Addon_BDT_10019_Wache_Hi);
 };
 
 func void DIA_Addon_BDT_10019_Wache_Hi_Raven()

@@ -233,7 +233,7 @@ func void DIA_Regis_PERM_Info()
 		AI_Output(self,other,"DIA_Regis_PERM_13_01");	//Можно сказать и так.
 		AI_Output(self,other,"DIA_Regis_PERM_13_02");	//Говорят, Боспер, мастер-лучник, был ограблен. Причем самым наглым образом!
 		AI_Output(self,other,"DIA_Regis_PERM_13_03");	//Вор вломился в его лавку средь бела дня и схватил лук.
-		AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!' Но вор оказался очень проворным.
+		AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!'. Но вор оказался очень проворным.
 		MIS_Bosper_Bogen = LOG_Running;
 		Regis_Bogendieb = TRUE;
 	}

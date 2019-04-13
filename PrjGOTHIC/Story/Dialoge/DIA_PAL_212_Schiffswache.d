@@ -26,7 +26,7 @@ instance DIA_Pal_212_Schiffswache_WERSEIDIHR(C_Info)
 	npc = PAL_212_Schiffswache;
 	condition = DIA_Pal_212_Schiffswache_WERSEIDIHR_Condition;
 	information = DIA_Pal_212_Schiffswache_WERSEIDIHR_Info;
-	description = "Кто ты?";
+	description = "Кто вы?";
 };
 
 
@@ -50,7 +50,7 @@ instance DIA_Pal_212_Schiffswache_WASMACHSTDU2(C_Info)
 	npc = PAL_212_Schiffswache;
 	condition = DIA_Pal_212_Schiffswache_WASMACHSTDU2_Condition;
 	information = DIA_Pal_212_Schiffswache_WASMACHSTDU2_Info;
-	description = "Что ты делаешь здесь?";
+	description = "Что вы делаете здесь?";
 };
 
 

@@ -10,6 +10,7 @@ instance PIR_1371_Addon_Hank(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_PIR1hSword);
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Lefty,BodyTex_N,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

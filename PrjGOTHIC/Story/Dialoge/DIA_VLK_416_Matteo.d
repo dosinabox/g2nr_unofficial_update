@@ -181,7 +181,8 @@ func void DIA_Matteo_LEATHER_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,250))
 	{
 		AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
-		B_GiveInvItems(self,other,ITAR_Leather_L,1);
+		CreateInvItem(hero,ITAR_Leather_L);
+		AI_EquipArmor(hero,ITAR_Leather_L);
 		Matteo_LeatherBought = TRUE;
 	}
 	else

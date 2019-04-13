@@ -16,7 +16,7 @@ instance VLK_4152_Olav(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItSe_Olav,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart22,BodyTex_N,ITAR_Mil_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart22,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

@@ -73,7 +73,7 @@ func void DIA_Oric_Bruder_Info()
 	AI_Output(other,self,"DIA_Oric_Bruder_15_00");	//У меня есть известие для тебя.
 	AI_Output(self,other,"DIA_Oric_Bruder_11_01");	//Что за известие?
 	AI_Output(other,self,"DIA_Oric_Bruder_15_02");	//Твой брат мертв. Он погиб у Прохода.
-	AI_Output(self,other,"DIA_Oric_Bruder_11_03");	//(бормочет)... мой брат...
+	AI_Output(self,other,"DIA_Oric_Bruder_11_03");	//(бормочет) ...мой брат...
 	AI_Output(self,other,"DIA_Oric_Bruder_11_04");	//Иннос подвергает меня суровым испытаниям. Но он погиб как его слуга...
 	AI_Output(self,other,"DIA_Oric_Bruder_11_05");	//Эта новость - стрела, пронзившая мое сердце. Я буду искать новые силы в молитвах.
 	OricBruder = TRUE;
@@ -103,7 +103,7 @@ func int DIA_Oric_ScoutMine_Condition()
 func void DIA_Oric_ScoutMine_Info()
 {
 	AI_Output(other,self,"DIA_Oric_ScoutMine_15_00");	//Я отправляюсь к шахтам.
-	AI_Output(self,other,"DIA_Oric_ScoutMine_11_01");	//Будь острожен. Это нелегкая задача. Прежде всего, найди паладинов. Они возглавляют эти три группы.
+	AI_Output(self,other,"DIA_Oric_ScoutMine_11_01");	//Будь осторожен. Это нелегкая задача. Прежде всего, найди паладинов. Они возглавляют эти три группы.
 	AI_Output(self,other,"DIA_Oric_ScoutMine_11_02");	//Если тебе нужно больше информации, поговори с Парсивалем.
 };
 
@@ -316,8 +316,8 @@ func void DIA_Oric_NeedStuff_Info()
 	AI_Output(self,other,"DIA_Oric_NeedStuff_11_01");	//У нас мало что осталось, чем мы могли бы поделиться с тобой.
 	AI_Output(self,other,"DIA_Oric_NeedStuff_11_02");	//Ну, я могу предложить тебе вот это.
 	Info_ClearChoices(DIA_Oric_NeedStuff);
-	Info_AddChoice(DIA_Oric_NeedStuff,"или 1 эликсира ловкости",DIA_Oric_NeedStuff_Dexterity);
-	Info_AddChoice(DIA_Oric_NeedStuff,"или 1 эликсира силы",DIA_Oric_NeedStuff_Strength);
+	Info_AddChoice(DIA_Oric_NeedStuff,"или эликсир ловкости",DIA_Oric_NeedStuff_Dexterity);
+	Info_AddChoice(DIA_Oric_NeedStuff,"или эликсир силы",DIA_Oric_NeedStuff_Strength);
 	Info_AddChoice(DIA_Oric_NeedStuff,"или 3 эликсира маны",DIA_Oric_NeedStuff_Mana);
 	Info_AddChoice(DIA_Oric_NeedStuff,"3 лечебных эликсира",DIA_Oric_NeedStuff_Health);
 };
@@ -529,26 +529,26 @@ func void DIA_Oric_DragonPlettBericht_Info()
 	};
 	if(((Oric_DragonCounter < MIS_KilledDragons) || (Oric_FirstQuestion == FALSE)) && ((Oric_SwampdragonInfo_OneTime == FALSE) || (Oric_RockdragonInfo_OneTime == FALSE) || (Oric_FiredragonInfo_OneTime == FALSE) || (Oric_IcedragonInfo_OneTime == FALSE)))
 	{
-		if((Npc_IsDead(SwampDragon) == FALSE) && (Oric_SwampdragonInfo_OneTime == FALSE))
+		if(!Npc_IsDead(SwampDragon) && (Oric_SwampdragonInfo_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_03");	//Несколько дней назад к западу от нашего замка появилось большое болото. Это довольно подозрительно, так тебе не кажется?
 			B_LogEntry(TOPIC_DRACHENJAGD,"Орик дал мне повод к размышлению: За последние несколько дней к западу от замка образовалось большое болото. Он считает это очень подозрительным.");
 			Oric_SwampdragonInfo_OneTime = TRUE;
 		}
-		else if((Npc_IsDead(RockDragon) == FALSE) && (Oric_RockdragonInfo_OneTime == FALSE))
+		else if(!Npc_IsDead(RockDragon) && (Oric_RockdragonInfo_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_04");	//На юге находится крепость в скалах, далеко за вулканом.
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_05");	//Наши разведчики докладывают, что эта крепость хорошо охраняется. Может быть, один из них скрывается там.
 			B_LogEntry(TOPIC_DRACHENJAGD,"Разведчики паладинов сообщили Орику, что крепость в скалах за вулканом на юге хорошо охраняется. Орик подозревает, что дракон находится там.");
 			Oric_RockdragonInfo_OneTime = TRUE;
 		}
-		else if((Npc_IsDead(FireDragon) == FALSE) && (Oric_FiredragonInfo_OneTime == FALSE))
+		else if(!Npc_IsDead(FireDragon) && (Oric_FiredragonInfo_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_06");	//После прошлого нападения драконов, один из них, по слухам, полетел в направлении вулкана на юге. Тебе стоит поискать его там.
-			B_LogEntry(TOPIC_DRACHENJAGD,"По-видимому, последнего дракона, нападавшего на замок в Долине рудников, видели неподалеку от вулкана.");
+			B_LogEntry(TOPIC_DRACHENJAGD,"По-видимому, последнего дракона, нападавшего на замок в Долине Рудников, видели неподалеку от вулкана.");
 			Oric_FiredragonInfo_OneTime = TRUE;
 		}
-		else if((Npc_IsDead(IceDragon) == FALSE) && (Oric_IcedragonInfo_OneTime == FALSE))
+		else if(!Npc_IsDead(IceDragon) && (Oric_IcedragonInfo_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_07");	//На западе находится обширная ледяная долина. Я не удивлюсь, если один из драконов скрывается там.
 			B_LogEntry(TOPIC_DRACHENJAGD,"Согласно информации, полученной от Орика, заснеженный район на западе может быть логовом дракона.");
@@ -627,10 +627,7 @@ instance DIA_Oric_PICKPOCKET(C_Info)
 
 func int DIA_Oric_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= (85 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
 };
 
 func void DIA_Oric_PICKPOCKET_Info()
@@ -642,19 +639,8 @@ func void DIA_Oric_PICKPOCKET_Info()
 
 func void DIA_Oric_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 85)
-	{
-		B_GiveInvItems(self,other,ItSc_PalRepelEvil,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Oric_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
+	Info_ClearChoices(DIA_Oric_PICKPOCKET);
 };
 
 func void DIA_Oric_PICKPOCKET_BACK()

@@ -28,16 +28,13 @@ instance DIA_Pablo_PICKPOCKET(C_Info)
 	condition = DIA_Pablo_PICKPOCKET_Condition;
 	information = DIA_Pablo_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Нет ничего проще, чем украсть его его ключ)";
+	description = Pickpocket_20_Key;
 };
 
 
 func int DIA_Pablo_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItKe_City_Tower_01) >= 1) && (other.attribute[ATR_DEXTERITY] >= (20 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_01),1);
 };
 
 func void DIA_Pablo_PICKPOCKET_Info()
@@ -49,19 +46,8 @@ func void DIA_Pablo_PICKPOCKET_Info()
 
 func void DIA_Pablo_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 20)
-	{
-		B_GiveInvItems(self,other,ItKe_City_Tower_01,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Pablo_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_04),1);
+	Info_ClearChoices(DIA_Pablo_PICKPOCKET);
 };
 
 func void DIA_Pablo_PICKPOCKET_BACK()
@@ -146,7 +132,7 @@ func void DIA_Pablo_Banditen_Info()
 {
 	AI_Output(other,self,"DIA_Pablo_Add_15_03");	//Что ты знаешь об этих бандитах?
 	AI_Output(self,other,"DIA_Pablo_Add_12_04");	//Все они пришли из этой чертовой колонии. Но затем разделились на несколько групп.
-	AI_Output(self,other,"DIA_Pablo_Add_12_05");	//Часть из них устроила себе логово в горах, а другие присоединились к Онару, лендлорду.
+	AI_Output(self,other,"DIA_Pablo_Add_12_05");	//Часть из них устроили себе логово в горах, а другие присоединились к Онару, лендлорду.
 	AI_Output(self,other,"DIA_Pablo_Add_12_06");	//Но больше всего проблем доставляют бандиты около города.
 	AI_Output(self,other,"DIA_Pablo_Add_12_07");	//Вот почему ни один из торговцев даже носа не высовывает за городские ворота.
 };
@@ -177,7 +163,7 @@ func void DIA_Pablo_HakonBandits_Info()
 	AI_Output(self,other,"DIA_Pablo_Add_12_21");	//Ох, ЭТО дело... Не напоминай мне...
 	AI_Output(self,other,"DIA_Pablo_Add_12_22");	//Насколько я знаю, именно они ответственны за большинство нападений на торговцев.
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_01");	//Эти крысы уползли в свою нору и больше не высовываются оттуда.
-	AI_Output(self,other,"DIA_Pablo_Banditen_12_02");	//Как-то, нам даже удалось выследить их и погнаться за ними. Но нам пришлось прервать погоню в лесу у города.
+	AI_Output(self,other,"DIA_Pablo_Banditen_12_02");	//Как-то нам даже удалось выследить их и погнаться за ними. Но нам пришлось прервать погоню в лесу у города.
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_03");	//Там бродит слишком много всяких зверей и это слишком опасно.
 	B_LogEntry(TOPIC_HakonBanditen,"Бандиты, ограбившие Хакона, скрываются где-то в лесу неподалеку от города.");
 	if(Pablo_AndreMelden == FALSE)
@@ -187,7 +173,7 @@ func void DIA_Pablo_HakonBandits_Info()
 		AI_Output(other,self,"DIA_Pablo_Banditen_15_05");	//Это означает, что они имеют возможность контрабандой доставлять товары в город и продавать их...
 		AI_Output(self,other,"DIA_Pablo_Banditen_12_06");	//Да, мы подозреваем, что у них есть свой человек в городе. Но нам пока не удалось поймать его.
 		AI_Output(self,other,"DIA_Pablo_Banditen_12_07");	//Если тебе удастся выяснить что-нибудь об этом деле, помни, что лорд Андрэ назначил награду за голову этого скупщика краденного.
-		B_LogEntry(TOPIC_HakonBanditen,"Эти бандиты, вероятно, состоят в сговоре с кем-то из городских дельцов. Лорд Андре назначил награду за голову этого дельца.");
+		B_LogEntry(TOPIC_HakonBanditen,"Эти бандиты, вероятно, состоят в сговоре с кем-то из городских дельцов. Лорд Андрэ назначил награду за голову этого дельца.");
 	};
 };
 

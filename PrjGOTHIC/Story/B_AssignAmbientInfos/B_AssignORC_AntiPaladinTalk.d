@@ -22,7 +22,7 @@ func void B_AssignORC_AntiPaladinTalk(var C_Npc Antipaladin)
 	{
 		AI_Output(self,other,"DIA_ORC_AntiPaladin_18_06");	//КХРОКГНАР! Мы убивать тебя, паладин.
 	};
-	AntiPaladinTalkcount = AntiPaladinTalkcount + 1;
+	AntiPaladinTalkcount += 1;
 	TalkedTo_AntiPaladin = TRUE;
 	AI_StopProcessInfos(Antipaladin);
 	Antipaladin.aivar[AIV_EnemyOverride] = FALSE;

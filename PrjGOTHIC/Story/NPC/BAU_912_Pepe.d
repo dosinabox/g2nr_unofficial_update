@@ -1,5 +1,5 @@
 
-instance Bau_912_Pepe(Npc_Default)
+instance BAU_912_Pepe(Npc_Default)
 {
 	name[0] = "Пепе";
 	guild = GIL_BAU;

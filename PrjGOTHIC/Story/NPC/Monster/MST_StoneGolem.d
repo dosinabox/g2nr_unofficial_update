@@ -43,8 +43,8 @@ instance StoneGolem(Mst_Default_StoneGolem)
 instance Summoned_Golem(Mst_Default_StoneGolem)
 {
 	name[0] = "Вызванный голем";
-	guild = gil_summoned_golem;
-	aivar[AIV_MM_REAL_ID] = id_summoned_golem;
+	guild = GIL_SUMMONED_GOLEM;
+	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_GOLEM;
 	level = 0;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);
@@ -79,7 +79,7 @@ func void ZS_GolemDown_END()
 
 func void B_GolemRise()
 {
-	if((Npc_GetDistToNpc(self,hero) <= 700) && (Mob_HasItems("NW_GOLEMCHEST",ItSe_Golemchest_Mis) == 0))
+	if((Npc_GetDistToNpc(self,hero) <= 700) && !Mob_HasItems("NW_GOLEMCHEST",ItSe_Golemchest_Mis))
 	{
 		AI_PlayAni(self,"T_RISE");
 		self.noFocus = FALSE;

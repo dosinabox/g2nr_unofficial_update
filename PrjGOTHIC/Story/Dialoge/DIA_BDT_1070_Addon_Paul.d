@@ -223,7 +223,7 @@ instance DIA_Addon_Paul_MaulPaul(C_Info)
 	condition = DIA_Addon_Paul_MaulPaul_Condition;
 	information = DIA_Addon_Paul_MaulPaul_Info;
 	permanent = FALSE;
-	description = "Расскажи мне, что тебе известно!";
+	description = "Пол, скажи мне, что тебе известно, или я размажу тебя по этой стенке!";
 };
 
 
@@ -265,7 +265,7 @@ instance DIA_Addon_BDT_1070_Paul_Mine(C_Info)
 
 func int DIA_Addon_Paul_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && (Npc_HasItems(other,ItMi_Addon_Stone_01) >= 1))
+	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};
@@ -277,7 +277,7 @@ func void DIA_Addon_Paul_Mine_Info()
 	B_GiveInvItems(other,self,ItMi_Addon_Stone_01,1);
 	AI_Output(self,other,"DIA_Addon_BDT_1070_Paul_Mine_03_00");	//Наконец! Вот, я хочу, чтобы ты взял за это мою руду.
 	B_GiveInvItems(self,other,ItMi_Nugget,2);
-	Player_SentBuddler = Player_SentBuddler + 1;
+	Player_SentBuddler += 1;
 	B_GivePlayerXP(XP_Addon_MINE);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"MINE");

@@ -12,7 +12,7 @@ instance BDT_1023_LeuchtturmBandit(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart03,BodyTex_N,ItAr_BDT_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart03,BodyTex_N,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

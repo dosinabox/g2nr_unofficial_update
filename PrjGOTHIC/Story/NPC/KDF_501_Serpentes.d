@@ -15,7 +15,7 @@ instance KDF_501_Serpentes(Npc_Default)
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_PSIONIC",Face_N_ImportantGrey,BodyTex_N,ItAr_KDF_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_PSIONIC",Face_N_ImportantGrey,BodyTex_N,ITAR_KDF_H);
 	Mdl_SetModelFatness(self,-2);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

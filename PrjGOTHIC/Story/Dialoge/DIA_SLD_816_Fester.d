@@ -1,7 +1,7 @@
 
 instance DIA_Fester_EXIT(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 999;
 	condition = DIA_Fester_EXIT_Condition;
 	information = DIA_Fester_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Fester_EXIT_Info()
 
 instance DIA_Fester_Hello(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 1;
 	condition = DIA_Fester_Hello_Condition;
 	information = DIA_Fester_Hello_Info;
@@ -46,7 +46,7 @@ func void DIA_Fester_Hello_Info()
 
 instance DIA_Fester_Auftrag(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 2;
 	condition = DIA_Fester_Auftrag_Condition;
 	information = DIA_Fester_Auftrag_Info;
@@ -76,7 +76,7 @@ func void DIA_Fester_Auftrag_Info()
 
 instance DIA_Fester_YouFight(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 3;
 	condition = DIA_Fester_YouFight_Condition;
 	information = DIA_Fester_YouFight_Info;
@@ -102,7 +102,7 @@ func void DIA_Fester_YouFight_Info()
 
 instance DIA_Fester_WoNest(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 4;
 	condition = DIA_Fester_WoNest_Condition;
 	information = DIA_Fester_WoNest_Info;
@@ -132,7 +132,7 @@ const int FC_Join = 1;
 
 instance DIA_Fester_Together(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 5;
 	condition = DIA_Fester_Together_Condition;
 	information = DIA_Fester_Together_Info;
@@ -185,7 +185,7 @@ var int Fester_Losgeh_Day;
 
 instance DIA_Fester_TogetherNOW(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 6;
 	condition = DIA_Fester_TogetherNOW_Condition;
 	information = DIA_Fester_TogetherNOW_Info;
@@ -243,7 +243,7 @@ func void DIA_Fester_TogetherNOW_Later()
 
 instance DIA_Fester_InCave(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 7;
 	condition = DIA_Fester_InCave_Condition;
 	information = DIA_Fester_InCave_Info;
@@ -280,7 +280,7 @@ func void DIA_Fester_InCave_Info()
 
 instance DIA_Fester_WasMitAbmachung(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 8;
 	condition = DIA_Fester_WasMitAbmachung_Condition;
 	information = DIA_Fester_WasMitAbmachung_Info;
@@ -332,7 +332,7 @@ var int Fester_FightSylvio;
 
 instance DIA_Fester_PERMPruegel(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 9;
 	condition = DIA_Fester_PERMPruegel_Condition;
 	information = DIA_Fester_PERMPruegel_Info;
@@ -387,7 +387,7 @@ func void DIA_Fester_PERMPruegel_Info()
 
 instance DIA_Fester_PICKPOCKET(C_Info)
 {
-	npc = Sld_816_Fester;
+	npc = SLD_816_Fester;
 	nr = 900;
 	condition = DIA_Fester_PICKPOCKET_Condition;
 	information = DIA_Fester_PICKPOCKET_Info;

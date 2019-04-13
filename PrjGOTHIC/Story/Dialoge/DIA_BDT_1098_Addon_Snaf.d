@@ -100,7 +100,7 @@ func int DIA_Addon_Snaf_Cook_Condition()
 func void DIA_Addon_Snaf_Cook_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_Cook_15_00");	//А что у вас в меню, сэр?
-	AI_Output(self,other,"DIA_Addon_Snaf_Cook_01_01");	//Советовал бы попробовать наше новое блюдо, умник. Оно называется 'Пламенная нарезка в соусе 'Плавленые зубы'.
+	AI_Output(self,other,"DIA_Addon_Snaf_Cook_01_01");	//Советовал бы попробовать наше новое блюдо, умник. Оно называется 'Пламенная нарезка' в соусе 'Плавленые зубы'.
 	Info_ClearChoices(DIA_Addon_Snaf_Cook);
 	Info_AddChoice(DIA_Addon_Snaf_Cook,"Пламенная нарезка?",DIA_Addon_Snaf_Cook_FEUER);
 	Info_AddChoice(DIA_Addon_Snaf_Cook,"А что за соус такой - 'Плавленые зубы'?",DIA_Addon_Snaf_Cook_HAMMER);
@@ -158,7 +158,7 @@ instance DIA_Addon_Snaf_Booze(C_Info)
 
 func int DIA_Addon_Snaf_Booze_Condition()
 {
-	if((Npc_HasItems(other,ItFo_Addon_LousHammer) >= 1) && (MIS_SnafHammer == LOG_Running))
+	if(Npc_HasItems(other,ItFo_Addon_LousHammer) && (MIS_SnafHammer == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -169,6 +169,12 @@ func void DIA_Addon_Snaf_Booze_Info()
 	B_GiveInvItems(other,self,ItFo_Addon_LousHammer,1);
 	AI_Output(other,self,"DIA_Addon_Snaf_Booze_15_00");	//Вот твой самогон, приятель.
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_01");	//Прекрасно. Позволь мне приготовить соус.
+	AI_GotoWP(self,"BL_INN_BAR_03");
+	AI_UseMob(self,"CAULDRON",1);
+	AI_Wait(self,1);
+	AI_UseMob(self,"CAULDRON",-1);
+	AI_Wait(self,1);
+	AI_GotoNpc(self,other);
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_02");	//Вот, готово. Можешь попробовать прямо сейчас. Силушки-то в ручонках прибавится, спору нет.
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_03");	//А еще, если тебе понадобится моя помощь... Теперь вся информация для тебя - бесплатно.
 	Snaf_Tip_Kosten = 0;
@@ -201,7 +207,7 @@ func void DIA_Addon_Snaf_Attentat_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_Attentat_15_00");	//Что ты знаешь о нападении?
 	AI_Output(self,other,"DIA_Addon_Snaf_Attentat_01_01");	//Ты говоришь про нападение на Эстебана?
-	AI_Output(self,other,"DIA_Addon_Snaf_Attentat_01_02");	//Ну, ты меня понимаешь, хозяин таверны слышит все, но не утверждает, что все, что он слышал, - правда.
+	AI_Output(self,other,"DIA_Addon_Snaf_Attentat_01_02");	//Ну, ты меня понимаешь, хозяин таверны слышит все, но не утверждает, что все, что он слышал - правда.
 	Info_ClearChoices(DIA_Addon_Snaf_Attentat);
 	Info_AddChoice(DIA_Addon_Snaf_Attentat,"Скажи хоть, к кому я могу с этим обратиться.",DIA_Addon_Snaf_Attentat_GoWhere);
 	Info_AddChoice(DIA_Addon_Snaf_Attentat,"А что ты бы сделал, будь ты на моем месте?",DIA_Addon_Snaf_Attentat_YouBeingMe);

@@ -131,7 +131,7 @@ func int DIA_Addon_BL_BDT_13_Gold_Condition()
 
 func void DIA_Addon_BL_BDT_13_Gold_Info()
 {
-	BDT_13_Nerver = BDT_13_Nerver + 1;
+	BDT_13_Nerver += 1;
 	AI_Output(other,self,"DIA_Addon_BL_BDT_13_Gold_15_00");	// ак мне достать много золота и побыстрее?
 	if(BDT_13_Nerver <= 2)
 	{

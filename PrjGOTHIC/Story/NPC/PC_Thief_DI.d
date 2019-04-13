@@ -13,7 +13,7 @@ instance PC_Thief_DI(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_Diego,BodyTex_L,ITAR_Diego);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

@@ -10,7 +10,7 @@ instance BAU_936_Rosi(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Hure,BodyTexBabe_N,ITAR_BauBabe_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
@@ -71,6 +71,6 @@ func void Rtn_Bigfarm_936()
 func void Rtn_Kloster_936()
 {
 	TA_Stand_ArmsCrossed(8,0,22,0,"NW_MONASTERY_SHEEP_01");
-	TA_Stand_ArmsCrossed(22,0,8,0,"NW_MONASTERY_SHEEP_01");
+	TA_Sleep(22,0,8,0,"NW_MONASTERY_NOVICE01_07");
 };
 

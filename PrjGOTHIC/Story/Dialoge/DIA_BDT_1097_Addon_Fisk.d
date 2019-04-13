@@ -241,7 +241,7 @@ instance DIA_Addon_Fisk_GivePaket(C_Info)
 
 func int DIA_Addon_Fisk_GivePaket_Condition()
 {
-	if((MIS_Lennar_Lockpick == LOG_Running) && (Npc_HasItems(other,ItMi_Addon_Lennar_Paket) >= 1))
+	if((MIS_Lennar_Lockpick == LOG_Running) && Npc_HasItems(other,ItMi_Addon_Lennar_Paket))
 	{
 		return TRUE;
 	};

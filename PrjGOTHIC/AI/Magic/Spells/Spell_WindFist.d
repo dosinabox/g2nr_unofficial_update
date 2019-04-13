@@ -28,7 +28,7 @@ func int Spell_Logic_WindFist(var int manaInvested)
 	}
 	else if((manaInvested > (STEP_WindFist * 1)) && (self.aivar[AIV_SpellLevel] <= 1))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - STEP_WindFist;
+		self.attribute[ATR_MANA] -= STEP_WindFist;
 		if(self.attribute[ATR_MANA] < 0)
 		{
 			self.attribute[ATR_MANA] = 0;
@@ -38,7 +38,7 @@ func int Spell_Logic_WindFist(var int manaInvested)
 	}
 	else if((manaInvested > (STEP_WindFist * 2)) && (self.aivar[AIV_SpellLevel] <= 2))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - STEP_WindFist;
+		self.attribute[ATR_MANA] -= STEP_WindFist;
 		if(self.attribute[ATR_MANA] < 0)
 		{
 			self.attribute[ATR_MANA] = 0;
@@ -48,7 +48,7 @@ func int Spell_Logic_WindFist(var int manaInvested)
 	}
 	else if((manaInvested > (STEP_WindFist * 3)) && (self.aivar[AIV_SpellLevel] <= 3))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - STEP_WindFist;
+		self.attribute[ATR_MANA] -= STEP_WindFist;
 		if(self.attribute[ATR_MANA] < 0)
 		{
 			self.attribute[ATR_MANA] = 0;
@@ -65,7 +65,7 @@ func int Spell_Logic_WindFist(var int manaInvested)
 
 func void Spell_Cast_WindFist(var int spellLevel)
 {
-	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - STEP_WindFist;
+	self.attribute[ATR_MANA] -= STEP_WindFist;
 	if(self.attribute[ATR_MANA] < 0)
 	{
 		self.attribute[ATR_MANA] = 0;

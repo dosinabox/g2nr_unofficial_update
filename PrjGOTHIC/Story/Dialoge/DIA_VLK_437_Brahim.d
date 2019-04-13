@@ -174,7 +174,7 @@ instance DIA_Brahim_Kap3_EXIT(C_Info)
 
 func int DIA_Brahim_Kap3_EXIT_Condition()
 {
-	if((Kapitel >= 3) && (Npc_KnowsInfo(other,DIA_Brahim_Kap3_First_EXIT) || (Npc_HasItems(other,ItWr_ShatteredGolem_MIS) == 0)))
+	if((Kapitel >= 3) && (Npc_KnowsInfo(other,DIA_Brahim_Kap3_First_EXIT) || !Npc_HasItems(other,ItWr_ShatteredGolem_MIS)))
 	{
 		return TRUE;
 	};
@@ -203,7 +203,7 @@ instance DIA_Brahim_Kap3_First_EXIT(C_Info)
 
 func int DIA_Brahim_Kap3_First_EXIT_Condition()
 {
-	if((Kapitel >= 3) && (Npc_HasItems(other,ItWr_ShatteredGolem_MIS) >= 1))
+	if((Kapitel >= 3) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS))
 	{
 		return TRUE;
 	};

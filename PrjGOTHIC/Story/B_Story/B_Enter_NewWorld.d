@@ -1,19 +1,19 @@
 
 func void B_ENTER_NEWWORLD_Kapitel_1()
 {
-	if((RavenIsDead == TRUE) && Npc_IsDead(KDW_140300_Addon_Myxir_CITY))
+	if((RavenIsDead == TRUE) && Npc_IsDead(Myxir_CITY))
 	{
 		Wld_InsertNpc(KDW_140300_Addon_Myxir_CITY,"CITY1");
 	};
 	if(ENTERED_ADDONWORLD == TRUE)
 	{
-		B_RemoveNpc(KDW_1400_Addon_Saturas_NW);
-		B_RemoveNpc(KDW_1401_Addon_Cronos_NW);
-		B_RemoveNpc(KDW_1402_Addon_Nefarius_NW);
-		B_RemoveNpc(KDW_1403_Addon_Myxir_NW);
-		B_RemoveNpc(KDW_1404_Addon_Riordian_NW);
-		B_RemoveNpc(KDW_1405_Addon_Merdarion_NW);
-		B_RemoveNpc(PIR_1301_Addon_Skip_NW);
+		B_RemoveNpc(Saturas_NW);
+		B_RemoveNpc(Cronos_NW);
+		B_RemoveNpc(Nefarius_NW);
+		B_RemoveNpc(Myxir_NW);
+		B_RemoveNpc(Riordian_NW);
+		B_RemoveNpc(Merdarion_NW);
+		B_RemoveNpc(Skip_NW);
 		if(SC_GotPORTALTEMPELWALKTHROUGHKey == FALSE)
 		{
 			Wld_InsertNpc(Stoneguardian_MerdarionsSchluessel,"NW_TROLLAREA_PORTALTEMPEL_22");
@@ -39,7 +39,7 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 {
 	if(GregIsBack == TRUE)
 	{
-		B_RemoveNpc(PIR_1300_Addon_Greg_NW);
+		B_RemoveNpc(Greg_NW);
 	};
 	if(EnterNW_Kapitel2 == FALSE)
 	{
@@ -120,11 +120,15 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 {
 	if(EnterNW_Kapitel3 == FALSE)
 	{
-		if(Npc_IsDead(Salandril) == FALSE)
+		if(!Npc_IsDead(Salandril))
 		{
 			Salandril.aivar[AIV_ToughGuy] = TRUE;
 		};
 		Cornelius.flags = 0;
+		if(!Npc_HasItems(Cornelius,ItWr_CorneliusTagebuch_Mis))
+		{
+			CreateInvItems(Cornelius,ItWr_CorneliusTagebuch_Mis,1);
+		};
 		if(!Npc_IsDead(Hodges))
 		{
 			B_StartOtherRoutine(Hodges,"BENNETWEG");
@@ -139,21 +143,19 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");
 			B_StartOtherRoutine(GornNW_vor_DJG,"START");
 		};
-		if(Npc_IsDead(Lares) == FALSE)
+		if(!Npc_IsDead(Lares))
 		{
 			B_StartOtherRoutine(Lares,"START");
 		};
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_PASS_GATE_02");
+		B_ClearRuneInv(PAL_297_Ritter);
+		B_ClearRuneInv(PAL_298_Ritter);
 		B_KillNpc(PAL_297_Ritter);
 		B_KillNpc(PAL_298_Ritter);
-		if(hero.guild == GIL_KDF)
-		{
-			B_KillNpc(Ulf);
-		};
 		Wld_InsertNpc(Giant_Bug,"FP_ROAM_MEDIUMFOREST_KAP2_01");
 		Wld_InsertNpc(Giant_Bug,"FP_ROAM_MEDIUMFOREST_KAP2_02");
 		Wld_InsertNpc(Giant_Bug,"FP_ROAM_MEDIUMFOREST_KAP2_05");
-		if(Npc_IsDead(Sekob) == FALSE)
+		if(!Npc_IsDead(Sekob))
 		{
 			B_StartOtherRoutine(Sekob,"FleeDMT");
 			B_StartOtherRoutine(Rosi,"FleeDMT");
@@ -170,11 +172,12 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Sekob.flags = NPC_FLAG_IMMORTAL;
 		};
 		B_StartOtherRoutine(Lester,"WAITFORPLAYER");
+		B_NpcSetJailed(Bennet);
 		B_StartOtherRoutine(Bennet,"PRISON");
 		B_StartOtherRoutine(Sergio,"WAIT");
 		B_StartOtherRoutine(Peck,"STORAGE");
 		B_StartOtherRoutine(Vanja,"ALONE");
-		B_RemoveNpc(PAL_203_Lothar);
+		B_RemoveNpc(Lothar);
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Bloodfly,"NW_TROLLAREA_RIVERSIDE_09");
@@ -236,7 +239,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(BDT_1026_Bandit_H,"NW_FOREST_CAVE1_03");
 		Wld_InsertNpc(BDT_1027_Bandit_H,"NW_FOREST_CAVE1_04");
 		Wld_InsertNpc(Follow_Sheep_AKIL,"NW_FOREST_CAVE1_IN_02");
-		if(Npc_IsDead(Malak) == FALSE)
+		if(!Npc_IsDead(Malak))
 		{
 			B_StartOtherRoutine(Malak,"FleeFromPass");
 			Malak_isAlive_Kap3 = TRUE;
@@ -252,9 +255,9 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				CreateInvItems(Malak,ITWR_DementorObsessionBook_MIS,1);
 			};
 		};
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 		{
-			B_StartOtherRoutine(Hilda,"Krank");
+			B_StartOtherRoutine(Hilda,"KRANK");
 		};
 		if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 		{
@@ -271,8 +274,11 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_ITEM_FARM1_03");
 			Wld_InsertItem(ItMi_KarrasBlessedStone_Mis,"FP_NW_ITEM_TROLL_10");
-			B_StartOtherRoutine(Hilda,"KRANK");
-			if(Npc_IsDead(Vino) == FALSE)
+			if(!Npc_IsDead(Ulf))
+			{
+				B_KillNpc(Ulf);
+			};
+			if(!Npc_IsDead(Vino))
 			{
 				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
 				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
@@ -285,21 +291,25 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				B_KillNpc(YGiant_Bug_VinoRitual1);
 				B_KillNpc(YGiant_Bug_VinoRitual2);
 			};
-			if(Npc_IsDead(Bromor) == FALSE)
+			if(!Npc_IsDead(Bromor))
 			{
 				CreateInvItems(Bromor,ITWR_DementorObsessionBook_MIS,1);
 			};
 		};
-		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && (Npc_IsDead(Canthar) == FALSE))
+		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && !Npc_IsDead(Canthar))
 		{
 			B_RemoveNpc(Sarah);
+			B_NpcSetReleased(Canthar);
 			B_StartOtherRoutine(Canthar,"MARKTSTAND");
 			AI_Teleport(Canthar,"NW_CITY_SARAH");
 			Canthar_Sperre = TRUE;
 			Canthar_WiederRaus = TRUE;
 		};
 		CreateInvItems(Lester,ItMw_1h_Bau_Axe,1);
-		CreateInvItems(Ehnim,ItMi_Moleratlubric_MIS,1);
+		if(!Npc_IsDead(Ehnim))
+		{
+			CreateInvItems(Ehnim,ItMi_Moleratlubric_MIS,1);
+		};
 		ShrineIsObsessed_NW_TROLLAREA_PATH_37 = TRUE;
 		ShrineIsObsessed_NW_FARM1_CONNECT_XARDAS = TRUE;
 		ShrineIsObsessed_NW_TROLLAREA_PATH_66 = TRUE;
@@ -559,8 +569,11 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(DMT_DementorAmbientWalker10,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker8,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker7,"CITY1");
-			CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
-			B_StartOtherRoutine(Randolph,"Obsessed");
+			if(!Npc_IsDead(Randolph))
+			{
+				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
+				B_StartOtherRoutine(Randolph,"Obsessed");
+			};
 		};
 		EnterNW_Kapitel4 = TRUE;
 	};
@@ -586,7 +599,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		{
 			B_StartOtherRoutine(Salandril,"Start");
 		};
-		if(Npc_IsDead(Sekob) == FALSE)
+		if(!Npc_IsDead(Sekob))
 		{
 			B_StartOtherRoutine(Rosi,"FleeFromSekob");
 			B_StartOtherRoutine(Till,"FleeFromSekob");
@@ -612,19 +625,19 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		Wld_InsertNpc(Waran,"NW_FARM3_PATH_11_SMALLRIVER_11");
 		Wld_InsertNpc(Lurker,"NW_FARM3_MOUNTAINLAKE_05");
 		Wld_InsertNpc(Lurker,"NW_FARM3_MOUNTAINLAKE_05");
-		Wld_InsertNpc(None_101_Mario,"NW_CITY_ENTRANCE_01");
+		Wld_InsertNpc(NONE_101_Mario,"NW_CITY_ENTRANCE_01");
 		Wld_InsertItem(ItWr_HallsofIrdorath_Mis,"FP_NW_ITEM_LIBRARY_IRDORATHBOOK");
 		Wld_InsertItem(ItWr_Seamap_Irdorath,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		Wld_InsertItem(ItWr_XardasSeamapBook_Mis,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		Wld_InsertItem(ItPo_PotionOfDeath_01_Mis,"FP_NW_ITEM_LIBRARY_SEAMAP2");
 		if(hero.guild == GIL_PAL)
 		{
-			Wld_InsertItem(ItAr_PAl_H,"FP_ITEM_PALFINALARMOR");
+			Wld_InsertItem(ITAR_PAL_H,"FP_ITEM_PALFINALARMOR");
 			Wld_InsertItem(ItMi_RuneBlank,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		};
-		if(hero.guild == GIL_DJG)
+/*		if(hero.guild == GIL_DJG)
 		{
-		};
+		}; */
 		if(hero.guild == GIL_KDF)
 		{
 			Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_KDF_01");
@@ -653,45 +666,45 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			Wld_InsertNpc(DMT_DementorAmbientWalker5,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker4,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker2,"CITY1");
-			if(Npc_IsDead(Sekob) == FALSE)
+			if(!Npc_IsDead(Sekob))
 			{
 				CreateInvItems(Sekob,ITWR_DementorObsessionBook_MIS,1);
 				B_StartOtherRoutine(Sekob,"Obsessed");
 			};
 		};
-		Wld_InsertNpc(Pal_285_Ritter,"CITY1");
-		Wld_InsertNpc(Pal_286_RITTER,"CITY1");
-		Wld_InsertNpc(Pal_287_Ritter,"CITY1");
-		Wld_InsertNpc(Pal_288_Ritter,"CITY1");
-		Wld_InsertNpc(Pal_289_Ritter,"CITY1");
-		Wld_InsertNpc(Pal_290_Ritter,"CITY1");
-		Wld_InsertNpc(Pal_291_Ritter,"CITY1");
-		Wld_InsertNpc(Pal_292_Ritter,"CITY1");
-		Wld_InsertNpc(Pal_293_Ritter,"CITY1");
+		Wld_InsertNpc(PAL_285_Ritter,"CITY1");
+		Wld_InsertNpc(PAL_286_Ritter,"CITY1");
+		Wld_InsertNpc(PAL_287_Ritter,"CITY1");
+		Wld_InsertNpc(PAL_288_Ritter,"CITY1");
+		Wld_InsertNpc(PAL_289_Ritter,"CITY1");
+		Wld_InsertNpc(PAL_290_Ritter,"CITY1");
+		Wld_InsertNpc(PAL_291_Ritter,"CITY1");
+		Wld_InsertNpc(PAL_292_Ritter,"CITY1");
+		Wld_InsertNpc(PAL_293_Ritter,"CITY1");
 		Schiffswache_212.flags = 0;
 		Schiffswache_213.flags = 0;
-		Pal_220_Schiffswache.flags = 0;
-		Pal_221_Schiffswache.flags = 0;
-		Pal_222_Schiffswache.flags = 0;
-		Pal_223_Schiffswache.flags = 0;
-		Pal_224_Schiffswache.flags = 0;
-		Pal_225_Schiffswache.flags = 0;
-		Pal_226_Schiffswache.flags = 0;
-		Pal_227_Schiffswache.flags = 0;
-		Pal_228_Schiffswache.flags = 0;
-		B_StartOtherRoutine(Pal_220_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(Pal_221_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(Pal_222_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(Pal_223_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(Pal_224_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(Pal_225_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(Pal_226_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(Pal_227_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(Pal_228_Schiffswache,"ShipFree");
-		B_StartOtherRoutine(Pal_230_Ritter,"ShipFree");
-		B_StartOtherRoutine(Pal_231_Ritter,"ShipFree");
-		B_StartOtherRoutine(Pal_240_Ritter,"ShipFree");
-		B_StartOtherRoutine(Pal_241_Ritter,"ShipFree");
+		PAL_220_Schiffswache.flags = 0;
+		PAL_221_Schiffswache.flags = 0;
+		PAL_222_Schiffswache.flags = 0;
+		PAL_223_Schiffswache.flags = 0;
+		PAL_224_Schiffswache.flags = 0;
+		PAL_225_Schiffswache.flags = 0;
+		PAL_226_Schiffswache.flags = 0;
+		PAL_227_Schiffswache.flags = 0;
+		PAL_228_Schiffswache.flags = 0;
+		B_StartOtherRoutine(PAL_220_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(PAL_221_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(PAL_222_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(PAL_223_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(PAL_224_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(PAL_225_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(PAL_226_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(PAL_227_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(PAL_228_Schiffswache,"ShipFree");
+		B_StartOtherRoutine(PAL_230_Ritter,"ShipFree");
+		B_StartOtherRoutine(PAL_231_Ritter,"ShipFree");
+		B_StartOtherRoutine(PAL_240_Ritter,"ShipFree");
+		B_StartOtherRoutine(PAL_241_Ritter,"ShipFree");
 		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 		{
 			IntroduceChapter(KapWechsel_5,KapWechsel_5_Text,"chapter5_PAL.tga","chapter_01.wav",6000);

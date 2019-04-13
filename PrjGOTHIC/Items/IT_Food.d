@@ -61,7 +61,7 @@ func void Use_Apple()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Apple);
 	if(Npc_IsPlayer(self))
 	{
-		Apple_Bonus = Apple_Bonus + 1;
+		Apple_Bonus += 1;
 		if(Apple_Bonus == 7)
 		{
 			Print(PRINT_Eat1);
@@ -307,6 +307,7 @@ func void Use_CoragonsBeerBeer()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer);
 	concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(HP_Beer));
 	PrintScreen(concatText,55,-1,FONT_Screen,2);
+	B_NpcSetDrunk(40);
 };
 
 
@@ -431,6 +432,7 @@ func void Use_Beer()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer);
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer);
+	B_NpcSetDrunk(30);
 };
 
 
@@ -458,6 +460,7 @@ func void Use_Booze()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Booze);
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Booze);
+	B_NpcSetDrunk(50);
 };
 
 
@@ -485,6 +488,7 @@ func void Use_Wine()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wine);
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Wine);
+	B_NpcSetDrunk(30);
 };
 
 

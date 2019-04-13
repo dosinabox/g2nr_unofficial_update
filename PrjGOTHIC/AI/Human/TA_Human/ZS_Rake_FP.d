@@ -8,7 +8,7 @@ func void ZS_Rake_FP()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Npc_HasItems(self,ItMi_Rake) == 0)
+	if(!Npc_HasItems(self,ItMi_Rake))
 	{
 		CreateInvItem(self,ItMi_Rake);
 	};

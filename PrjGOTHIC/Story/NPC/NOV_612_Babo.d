@@ -12,7 +12,7 @@ instance NOV_612_Babo(Npc_Default)
 	EquipItem(self,ItMw_1h_Nov_Mace);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMw_1h_Nov_Mace,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal07,BodyTex_N,ItAr_NOV_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal07,BodyTex_N,ITAR_NOV_L);
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

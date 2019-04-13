@@ -344,7 +344,7 @@ func int DIA_Addon_Emilio_GegenEsteban_Condition()
 func void DIA_Addon_Emilio_GegenEsteban_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Emilio_GegenEsteban_15_00");	//Что ты имеешь против Эстебана?
-	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_01");	//Все, о чем эта свинья думает, - это деньги.
+	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_01");	//Все, о чем эта свинья думает - это деньги.
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_02");	//Каждые несколько дней одного из нас съедает краулер.
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_03");	//Но Эстебан даже и не думает послать в шахту несколько бойцов.
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_04");	//А все почему? Потому что эти ребята из личной гвардии Ворона и Эстебан до дрожи в коленях боится говорить с ними.
@@ -365,7 +365,7 @@ instance DIA_Addon_BDT_10015_Emilio_Mine(C_Info)
 
 func int DIA_Addon_Emilio_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && (Npc_HasItems(other,ItMi_Addon_Stone_01) >= 1))
+	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};
@@ -376,7 +376,7 @@ func void DIA_Addon_Emilio_Mine_Info()
 	B_Say(other,self,"$MINE_ADDON_DESCRIPTION");
 	B_GiveInvItems(other,self,ItMi_Addon_Stone_01,1);
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Mine_10_00");	//Значит, ты теперь главный. Ладно, тогда я пошел.
-	Player_SentBuddler = Player_SentBuddler + 1;
+	Player_SentBuddler += 1;
 	B_GivePlayerXP(XP_Addon_MINE);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"MINE");

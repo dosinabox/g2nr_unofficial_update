@@ -1,7 +1,7 @@
 
 instance DIA_Mil_310_Stadtwache_EXIT(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 999;
 	condition = DIA_Mil_310_Stadtwache_EXIT_Condition;
 	information = DIA_Mil_310_Stadtwache_EXIT_Info;
@@ -27,7 +27,7 @@ var int MIL_310_Personal_AbsolutionLevel;
 
 instance DIA_Mil_310_Stadtwache_FirstWarn(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 1;
 	condition = DIA_Mil_310_Stadtwache_FirstWarn_Condition;
 	information = DIA_Mil_310_Stadtwache_FirstWarn_Info;
@@ -51,7 +51,7 @@ func int DIA_Mil_310_Stadtwache_FirstWarn_Condition()
 	{
 		self.aivar[AIV_PASSGATE] = TRUE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_RefuseTalk(self) == FALSE))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -82,18 +82,21 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 	else
 	{
 		itm = Npc_GetEquippedArmor(other);
-		if((Npc_HasEquippedArmor(other) == FALSE) && (hero.guild == GIL_NONE))
+		if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
 		{
 			AI_Output(other,self,"DIA_Mil_310_Stadtwache_FirstWarn_15_07");	//Что?
 			AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_08");	//Тебе туда нельзя!
 			AI_Output(other,self,"DIA_Mil_310_Stadtwache_FirstWarn_15_09");	//Почему?
 			AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_10");	//От таких оборванцев, как ты, одни проблемы!
 			AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_11");	//В городе и так хватает всякого сброда. Нам не нужны люди, у которых нет денег.
-			Log_CreateTopic(TOPIC_City,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_City,LOG_Running);
-			B_LogEntry(TOPIC_City,"Чтобы стражники позволили мне войти в город, я должен выглядеть так, как будто у меня есть деньги. Ну, или я должен найти какой-нибудь другой способ.");
+			if(self.aivar[AIV_Guardpassage_Status] == GP_NONE)
+			{
+				Log_CreateTopic(TOPIC_City,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_City,LOG_Running);
+				B_LogEntry(TOPIC_City,"Чтобы стражники позволили мне войти в город, я должен выглядеть так, как будто у меня есть деньги. Ну, или я должен найти какой-нибудь другой способ.");
+			};
 		}
-		else if((Hlp_IsItem(itm,ITAR_Bau_L) == TRUE) || (Hlp_IsItem(itm,ITAR_Bau_M) == TRUE))
+		else if(Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M))
 		{
 			if(self.aivar[AIV_TalkedToPlayer] == TRUE)
 			{
@@ -119,7 +122,7 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 			}
 			else
 			{
-				AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_22");	//Я просто хотел рассмотреть тебя. Похоже, у тебя есть деньги. Можешь походить.
+				AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_22");	//Я просто хотел рассмотреть тебя. Похоже, у тебя есть деньги. Можешь проходить.
 			};
 			self.aivar[AIV_PASSGATE] = TRUE;
 			Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
@@ -135,7 +138,7 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 
 instance DIA_Mil_310_Stadtwache_SecondWarn(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 2;
 	condition = DIA_Mil_310_Stadtwache_SecondWarn_Condition;
 	information = DIA_Mil_310_Stadtwache_SecondWarn_Info;
@@ -146,7 +149,7 @@ instance DIA_Mil_310_Stadtwache_SecondWarn(C_Info)
 
 func int DIA_Mil_310_Stadtwache_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Mil_310_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_310_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -163,7 +166,7 @@ func void DIA_Mil_310_Stadtwache_SecondWarn_Info()
 
 instance DIA_Mil_310_Stadtwache_Attack(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 3;
 	condition = DIA_Mil_310_Stadtwache_Attack_Condition;
 	information = DIA_Mil_310_Stadtwache_Attack_Info;
@@ -174,7 +177,7 @@ instance DIA_Mil_310_Stadtwache_Attack(C_Info)
 
 func int DIA_Mil_310_Stadtwache_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Mil_310_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_310_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -192,7 +195,7 @@ func void DIA_Mil_310_Stadtwache_Attack_Info()
 
 instance DIA_Mil_310_Stadtwache_Bribe(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 5;
 	condition = DIA_Mil_310_Stadtwache_Bribe_Condition;
 	information = DIA_Mil_310_Stadtwache_Bribe_Info;
@@ -235,7 +238,7 @@ func void DIA_Mil_310_Stadtwache_Bribe_Info()
 
 instance DIA_Mil_310_Stadtwache_Passierschein(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 4;
 	condition = DIA_Mil_310_Stadtwache_Passierschein_Condition;
 	information = DIA_Mil_310_Stadtwache_Passierschein_Info;
@@ -255,7 +258,7 @@ func int DIA_Mil_310_Stadtwache_Passierschein_Condition()
 func void DIA_Mil_310_Stadtwache_Passierschein_Info()
 {
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Passierschein_15_00");	//У меня есть пропуск!
-	if(Npc_HasEquippedArmor(other) == FALSE)
+	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_Mil_310_Stadtwache_Passierschein_07_01");	//Да ну? И кого ты убил ради этой бумажки?
 		AI_Output(other,self,"DIA_Mil_310_Stadtwache_Passierschein_15_02");	//Так ты позволишь мне пройти или нет?
@@ -275,7 +278,7 @@ func void DIA_Mil_310_Stadtwache_Passierschein_Info()
 
 instance DIA_Mil_310_Stadtwache_ZumSchmied(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 3;
 	condition = DIA_Mil_310_Stadtwache_ZumSchmied_Condition;
 	information = DIA_Mil_310_Stadtwache_ZumSchmied_Info;
@@ -288,7 +291,7 @@ func int DIA_Mil_310_Stadtwache_ZumSchmied_Condition()
 {
 	var C_Item itm;
 	itm = Npc_GetEquippedArmor(other);
-	if(((Hlp_IsItem(itm,ITAR_Bau_L) == TRUE) || (Hlp_IsItem(itm,ITAR_Bau_M) == TRUE)) && Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (Mil_310_schonmalreingelassen == FALSE))
+	if((Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M)) && Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (Mil_310_schonmalreingelassen == FALSE))
 	{
 		return TRUE;
 	};
@@ -319,7 +322,7 @@ func void DIA_Mil_310_Stadtwache_ZumSchmied_Info()
 
 instance DIA_Addon_Mil_310_Stadtwache_Constantino(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 2;
 	condition = DIA_Addon_Mil_310_Stadtwache_Constantino_Condition;
 	information = DIA_Addon_Mil_310_Stadtwache_Constantino_Info;
@@ -339,7 +342,7 @@ func int DIA_Addon_Mil_310_Stadtwache_Constantino_Condition()
 func void DIA_Addon_Mil_310_Stadtwache_Constantino_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Mil_310_Stadtwache_Constantino_15_00");	//Я принес травы для алхимика Константино.
-	if((Npc_HasItems(other,ItPl_Mana_Herb_01) > 0) || (Npc_HasItems(other,ItPl_Mana_Herb_02) > 0) || (Npc_HasItems(other,ItPl_Mana_Herb_03) > 0) || (Npc_HasItems(other,ItPl_Health_Herb_01) > 0) || (Npc_HasItems(other,ItPl_Health_Herb_02) > 0) || (Npc_HasItems(other,ItPl_Health_Herb_03) > 0) || (Npc_HasItems(other,ItPl_Dex_Herb_01) > 0) || (Npc_HasItems(other,ItPl_Strength_Herb_01) > 0) || (Npc_HasItems(other,ItPl_Speed_Herb_01) > 0) || (Npc_HasItems(other,ItPl_Temp_Herb) > 0) || (Npc_HasItems(other,ItPl_Perm_Herb) > 0) || (Npc_HasItems(other,ItPl_Beet) > 0))
+	if(Npc_HasItems(other,ItPl_Mana_Herb_01) || Npc_HasItems(other,ItPl_Mana_Herb_02) || Npc_HasItems(other,ItPl_Mana_Herb_03) || Npc_HasItems(other,ItPl_Health_Herb_01) || Npc_HasItems(other,ItPl_Health_Herb_02) || Npc_HasItems(other,ItPl_Health_Herb_03) || Npc_HasItems(other,ItPl_Dex_Herb_01) || Npc_HasItems(other,ItPl_Strength_Herb_01) || Npc_HasItems(other,ItPl_Speed_Herb_01) || Npc_HasItems(other,ItPl_Temp_Herb) || Npc_HasItems(other,ItPl_Perm_Herb) || Npc_HasItems(other,ItPl_Beet))
 	{
 		AI_Output(self,other,"DIA_Addon_Mil_310_Stadtwache_Constantino_07_01");	//Правда? Ты же не будешь возражать, если я взгляну на них, не так ли?
 		if((Npc_HasItems(other,ItPl_Mana_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Mana_Herb_02) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Mana_Herb_03) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Health_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Health_Herb_02) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Health_Herb_03) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Dex_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Strength_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Speed_Herb_01) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Temp_Herb) >= MinimumPassagePlants) || (Npc_HasItems(other,ItPl_Perm_Herb) >= MinimumPassagePlants))
@@ -376,7 +379,7 @@ func void DIA_Addon_Mil_310_Stadtwache_Constantino_Info()
 
 instance DIA_Mil_310_Stadtwache_MilizWerden(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 2;
 	condition = DIA_Mil_310_Stadtwache_MilizWerden_Condition;
 	information = DIA_Mil_310_Stadtwache_MilizWerden_Info;
@@ -403,7 +406,7 @@ func void DIA_Mil_310_Stadtwache_MilizWerden_Info()
 
 instance DIA_Mil_310_Stadtwache_Paladine(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 1;
 	condition = DIA_Mil_310_Stadtwache_Paladine_Condition;
 	information = DIA_Mil_310_Stadtwache_Paladine_Info;
@@ -554,7 +557,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_Only2()
 
 instance DIA_Mil_310_Stadtwache_PERM(C_Info)
 {
-	npc = Mil_310_Stadtwache;
+	npc = MIL_310_Stadtwache;
 	nr = 5;
 	condition = DIA_Mil_310_Stadtwache_PERM_Condition;
 	information = DIA_Mil_310_Stadtwache_PERM_Info;

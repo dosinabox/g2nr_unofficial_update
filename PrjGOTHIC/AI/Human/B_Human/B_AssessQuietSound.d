@@ -21,7 +21,7 @@ func void B_AssessQuietSound()
 	{
 		return;
 	};
-	if((Npc_GetAttitude(self,other) != ATT_HOSTILE) && (Npc_CheckInfo(self,1) == FALSE))
+	if((Npc_GetAttitude(self,other) != ATT_HOSTILE) && !Npc_CheckInfo(self,1))
 	{
 		return;
 	};

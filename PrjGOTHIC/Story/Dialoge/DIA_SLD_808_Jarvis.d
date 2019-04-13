@@ -1,7 +1,7 @@
 
 instance DIA_Jarvis_EXIT(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 999;
 	condition = DIA_Jarvis_EXIT_Condition;
 	information = DIA_Jarvis_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Jarvis_EXIT_Info()
 
 instance DIA_Jarvis_Hello(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 1;
 	condition = DIA_Jarvis_Hello_Condition;
 	information = DIA_Jarvis_Hello_Info;
@@ -50,7 +50,7 @@ func void DIA_Jarvis_Hello_Info()
 
 instance DIA_Jarvis_DieLage(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 2;
 	condition = DIA_Jarvis_DieLage_Condition;
 	information = DIA_Jarvis_DieLage_Info;
@@ -74,7 +74,7 @@ func void DIA_Jarvis_DieLage_Info()
 
 instance DIA_Jarvis_TwoFronts(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 3;
 	condition = DIA_Jarvis_TwoFronts_Condition;
 	information = DIA_Jarvis_TwoFronts_Info;
@@ -106,7 +106,7 @@ func void DIA_Jarvis_TwoFronts_Info()
 
 instance DIA_Jarvis_LeesPlan(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 4;
 	condition = DIA_Jarvis_LeesPlan_Condition;
 	information = DIA_Jarvis_LeesPlan_Info;
@@ -137,7 +137,7 @@ func void DIA_Jarvis_LeesPlan_Info()
 
 instance DIA_Jarvis_SylviosPlan(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 5;
 	condition = DIA_Jarvis_SylviosPlan_Condition;
 	information = DIA_Jarvis_SylviosPlan_Info;
@@ -166,7 +166,7 @@ func void DIA_Jarvis_SylviosPlan_Info()
 
 instance DIA_Jarvis_WannaJoin(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 6;
 	condition = DIA_Jarvis_WannaJoin_Condition;
 	information = DIA_Jarvis_WannaJoin_Info;
@@ -195,7 +195,7 @@ func void DIA_Jarvis_WannaJoin_Info()
 
 instance DIA_Jarvis_MissionKO(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 7;
 	condition = DIA_Jarvis_MissionKO_Condition;
 	information = DIA_Jarvis_MissionKO_Info;
@@ -221,13 +221,13 @@ func void DIA_Jarvis_MissionKO_Info()
 	self.aivar[AIV_IGNORE_Murder] = TRUE;
 	Log_CreateTopic(TOPIC_JarvisSLDKo,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_JarvisSLDKo,LOG_Running);
-	B_LogEntry(TOPIC_JarvisSLDKo,"Джарвис хочет, чтобы я вырубил парочку парней Сильвио, тогда он отдаст свой голос за меня.");
+	B_LogEntry(TOPIC_JarvisSLDKo,"Джарвис хочет, чтобы я вырубил парочку парней Сильвио, тогда он проголосует за меня.");
 };
 
 
 instance DIA_Jarvis_DuellRegeln(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_DuellRegeln_Condition;
 	information = DIA_Jarvis_DuellRegeln_Info;
@@ -255,7 +255,7 @@ func void DIA_Jarvis_DuellRegeln_Info()
 
 instance DIA_Jarvis_SylviosMen(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_SylviosMen_Condition;
 	information = DIA_Jarvis_SylviosMen_Info;
@@ -284,7 +284,7 @@ func void DIA_Jarvis_SylviosMen_Info()
 
 instance DIA_Jarvis_HowMany(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_HowMany_Condition;
 	information = DIA_Jarvis_HowMany_Info;
@@ -313,7 +313,7 @@ func void DIA_Jarvis_HowMany_Info()
 
 instance DIA_Jarvis_HowManyLeft(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_HowManyLeft_Condition;
 	information = DIA_Jarvis_HowManyLeft_Info;
@@ -339,12 +339,12 @@ func void DIA_Jarvis_HowManyLeft_Info()
 	{
 		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_01");	//Я отдубасил Буллко.
 		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_02");	//Я слышал. Неплохо.
-		victories = victories + 1;
+		victories += 1;
 	};
 	if((Rod.aivar[AIV_DefeatedByPlayer] == TRUE) || (Rod.aivar[AIV_KilledByPlayer] == TRUE))
 	{
 		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_03");	//Род теперь ходит сильно потрепанным.
-		victories = victories + 1;
+		victories += 1;
 	};
 	if((Sentenza.aivar[AIV_DefeatedByPlayer] == TRUE) || (Sentenza.aivar[AIV_KilledByPlayer] == TRUE))
 	{
@@ -356,7 +356,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 		{
 			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_05");	//Я вырубил Сентензу.
 		};
-		victories = victories + 1;
+		victories += 1;
 	};
 	if((Fester.aivar[AIV_DefeatedByPlayer] == TRUE) || (Fester.aivar[AIV_KilledByPlayer] == TRUE))
 	{
@@ -368,7 +368,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 		{
 			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_07");	//Фестер получил по заслугам.
 		};
-		victories = victories + 1;
+		victories += 1;
 	};
 	if((Raoul.aivar[AIV_DefeatedByPlayer] == TRUE) || (Raoul.aivar[AIV_KilledByPlayer] == TRUE))
 	{
@@ -382,7 +382,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 		};
 		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_10");	//И?
 		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_11");	//Оказалось, что ему крайне необходима взбучка.
-		victories = victories + 1;
+		victories += 1;
 	};
 	if(victories < 3)
 	{
@@ -417,7 +417,7 @@ var int Jarvis_SylvioComment;
 
 instance DIA_Jarvis_PERM(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 8;
 	condition = DIA_Jarvis_PERM_Condition;
 	information = DIA_Jarvis_PERM_Info;
@@ -474,7 +474,7 @@ func void DIA_Jarvis_PERM_Info()
 
 instance DIA_Jarvis_PICKPOCKET(C_Info)
 {
-	npc = Sld_808_Jarvis;
+	npc = SLD_808_Jarvis;
 	nr = 900;
 	condition = DIA_Jarvis_PICKPOCKET_Condition;
 	information = DIA_Jarvis_PICKPOCKET_Info;

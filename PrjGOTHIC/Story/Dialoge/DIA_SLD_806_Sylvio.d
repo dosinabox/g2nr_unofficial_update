@@ -41,7 +41,7 @@ func void DIA_Sylvio_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Sylvio_Hallo_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Sylvio_Hallo_09_01");	//Разве я давал тебе разрешение обратиться ко мне?
-	Sylvio_angequatscht = Sylvio_angequatscht + 1;
+	Sylvio_angequatscht += 1;
 	AI_StopProcessInfos(self);
 };
 
@@ -71,7 +71,7 @@ func void DIA_Sylvio_Thekla_Info()
 	AI_Output(self,other,"DIA_Sylvio_Thekla_09_01");	//Да? И что за проблемы у этой милой леди? И почему она не пришла сама?
 	AI_Output(other,self,"DIA_Sylvio_Thekla_15_02");	//Ты прекрасно знаешь, черт побери...
 	AI_Output(self,other,"DIA_Sylvio_Thekla_09_03");	//(цинично-дружелюбно) Почему бы тебе не обсудить этот вопрос с моим другом Буллко?
-	Sylvio_angequatscht = Sylvio_angequatscht + 1;
+	Sylvio_angequatscht += 1;
 	AI_StopProcessInfos(self);
 };
 
@@ -96,7 +96,7 @@ func void DIA_Sylvio_Gossip_Info()
 {
 	AI_Output(other,self,"DIA_Sylvio_Gossip_15_00");	//О тебе многие говорят...
 	AI_Output(self,other,"DIA_Sylvio_Gossip_09_01");	//Эти многие говорят слишком много.
-	Sylvio_angequatscht = Sylvio_angequatscht + 1;
+	Sylvio_angequatscht += 1;
 	AI_StopProcessInfos(self);
 };
 
@@ -122,7 +122,7 @@ func void DIA_Sylvio_AboutLee_Info()
 	AI_Output(other,self,"DIA_Sylvio_AboutLee_15_00");	//Что ты думаешь о Ли?
 	AI_Output(self,other,"DIA_Sylvio_AboutLee_09_01");	//(слегка иронично) Ох, он хороший боец. Я бы не стал вступать в схватку с ним.
 	AI_Output(self,other,"DIA_Sylvio_AboutLee_09_02");	//(холодно) Если конечно, ее можно было бы избежать.
-	Sylvio_angequatscht = Sylvio_angequatscht + 1;
+	Sylvio_angequatscht += 1;
 	AI_StopProcessInfos(self);
 };
 
@@ -144,23 +144,23 @@ func int DIA_Sylvio_MenDefeated_Condition()
 	victories = 0;
 	if(Rod.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
-		victories = victories + 1;
+		victories += 1;
 	};
 	if(Sentenza.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
-		victories = victories + 1;
+		victories += 1;
 	};
 	if(Fester.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
-		victories = victories + 1;
+		victories += 1;
 	};
 	if(Raoul.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
-		victories = victories + 1;
+		victories += 1;
 	};
 	if(Bullco.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
-		victories = victories + 1;
+		victories += 1;
 	};
 	if((MIS_Jarvis_SldKO != FALSE) && (victories >= 2))
 	{
@@ -202,7 +202,7 @@ func void DIA_Sylvio_Asshole_Info()
 	AI_Output(other,self,"DIA_Sylvio_Asshole_15_00");	//Эй, дерьмо...
 	AI_Output(self,other,"DIA_Sylvio_Asshole_09_01");	//Ты что, действительно думаешь, что я вызову тебя на дуэль?
 	AI_Output(self,other,"DIA_Sylvio_Asshole_09_02");	//Проваливай туда, откуда ты выполз.
-	Sylvio_angequatscht = Sylvio_angequatscht + 1;
+	Sylvio_angequatscht += 1;
 	AI_StopProcessInfos(self);
 };
 

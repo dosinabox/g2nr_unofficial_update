@@ -202,7 +202,7 @@ func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 	var string concatText;
 	AI_Output(other,self,"DIA_Addon_Nefarius_MissingOrnaments_15_00");	//Насчет пропавших фрагментов...
 	AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_01");	//Да?
-	if(Npc_HasItems(other,ItMi_Ornament_Addon) >= 1)
+	if(Npc_HasItems(other,ItMi_Ornament_Addon))
 	{
 		MissingOrnamentsCount = Npc_HasItems(other,ItMi_Ornament_Addon);
 		if(MissingOrnamentsCount == 1)
@@ -211,7 +211,7 @@ func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 			B_GivePlayerXP(XP_Addon_BringMissingOrnament);
 			Npc_RemoveInvItems(other,ItMi_Ornament_Addon,1);
 			AI_PrintScreen(PRINT_ItemGegeben,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-			MissingOrnamentsCounter = MissingOrnamentsCounter + 1;
+			MissingOrnamentsCounter += 1;
 		}
 		else
 		{
@@ -220,7 +220,7 @@ func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 			concatText = ConcatStrings(IntToString(MissingOrnamentsCount),PRINT_ItemsGegeben);
 			AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 			XP_Addon_BringMissingOrnaments = MissingOrnamentsCount * XP_Addon_BringMissingOrnament;
-			MissingOrnamentsCounter = MissingOrnamentsCounter + MissingOrnamentsCount;
+			MissingOrnamentsCounter += MissingOrnamentsCount;
 			B_GivePlayerXP(XP_Addon_BringMissingOrnaments);
 		};
 		AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_04");	//Отлично!
@@ -309,7 +309,7 @@ instance DIA_Addon_Nefarius_RingRitualEnds(C_Info)
 
 func int DIA_Addon_Nefarius_RingRitualEnds_Condition()
 {
-	if((Npc_RefuseTalk(self) == FALSE) && (RitualRingRuns == LOG_Running))
+	if(!Npc_RefuseTalk(self) && (RitualRingRuns == LOG_Running))
 	{
 		return TRUE;
 	};

@@ -41,7 +41,7 @@ instance ItMW_Addon_Stab01(C_Item)
 	cond_value[2] = Condition_Stab01;
 	visual = "ItMW_MageStaff_Good_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF1";
-	description = "Посох мага огня";
+	description = "Посох мага Огня";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -125,7 +125,7 @@ instance ItMW_Addon_Stab03(C_Item)
 	cond_value[2] = Condition_Stab03;
 	visual = "ItMW_MageStaff_Blades_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF3";
-	description = "Посох магов Воды";
+	description = "Посох мага Воды";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;

@@ -33,7 +33,7 @@ instance DIA_Milten_DI_Hello(C_Info)
 
 func int DIA_Milten_DI_Hello_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -62,7 +62,7 @@ instance DIA_Milten_DI_TRADE(C_Info)
 
 func int DIA_Milten_DI_TRADE_Condition()
 {
-	if((Npc_IsDead(UndeadDragon) == FALSE) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
+	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
 	{
 		return TRUE;
 	};
@@ -92,7 +92,7 @@ instance DIA_Milten_DI_Rat(C_Info)
 
 func int DIA_Milten_DI_Rat_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Milten_DI_Hello) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
 	{
 		return TRUE;
 	};
@@ -181,7 +181,7 @@ instance DIA_Milten_DI_TeachMagic(C_Info)
 
 func int DIA_Milten_DI_TeachMagic_Condition()
 {
-	if((Npc_IsDead(UndeadDragon) == FALSE) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
+	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_Milten_DI_Hello))
 	{
 		return TRUE;
 	};
@@ -578,7 +578,7 @@ func void DIA_Milten_DI_UndeadDragonDead_Info()
 			AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_08");	//(смеется) Сухо, как всегда. Эй, парень. Ты только что спас мир. Разве это недостаточная причина для радости?
 			AI_Output(other,self,"DIA_Milten_DI_UndeadDragonDead_15_09");	//Ммм. Может быть.
 		};
-		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_10");	//Да ладно, дружище, я думаю, что главное, что тебе сейчас нужно, - немного поспать.
+		AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_10");	//Да ладно, дружище, я думаю, что главное, что тебе сейчас нужно - немного поспать.
 		DIA_Milten_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Milten_DI_UndeadDragonDead_03_11");	//Тебе нужно пойти к капитану и сказать ему, чтобы он поднимал якорь.

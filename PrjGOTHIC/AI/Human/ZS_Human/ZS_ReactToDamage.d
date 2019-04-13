@@ -17,7 +17,7 @@ func int ZS_ReactToDamage_Loop()
 		{
 			AI_TurnToNPC(self,other);
 		};
-		self.aivar[AIV_StateTime] = self.aivar[AIV_StateTime] + 1;
+		self.aivar[AIV_StateTime] += 1;
 	};
 	if(Npc_GetStateTime(self) > 10)
 	{

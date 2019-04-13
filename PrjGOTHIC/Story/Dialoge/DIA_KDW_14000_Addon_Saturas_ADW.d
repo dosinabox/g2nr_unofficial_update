@@ -218,7 +218,7 @@ instance DIA_Addon_Saturas_LanceLeiche(C_Info)
 
 func int DIA_Addon_Saturas_LanceLeiche_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && (Npc_HasItems(NONE_Addon_114_Lance_ADW,ItRi_LanceRing) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(NONE_Addon_114_Lance_ADW,ItRi_LanceRing))
 	{
 		return TRUE;
 	};
@@ -315,7 +315,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_01,1);
 			Saturas_SCFound_ItMi_Addon_Stone_01 = TRUE;
-			BroughtToken = BroughtToken + 1;
+			BroughtToken += 1;
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_06");	//Бандиты используют эти таблички в качестве денег.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_07");	//На табличках знак Куарходрона, великого воина.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_08");	//Это и есть тот командующий, по вине сына которого, Радемеса, погиб весь город.
@@ -326,7 +326,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_02,1);
 			Saturas_SCFound_ItMi_Addon_Stone_02 = TRUE;
-			BroughtToken = BroughtToken + 1;
+			BroughtToken += 1;
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_10");	//Я нашел эту табличку в здании к югу отсюда.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//A! Табличка стражей мертвых. Вот кто вызывал духов их мертвецов.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_12");	//Зодчие поддерживали очень тесную связь с предками.
@@ -336,7 +336,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_03,1);
 			Saturas_SCFound_ItMi_Addon_Stone_03 = TRUE;
-			BroughtToken = BroughtToken + 1;
+			BroughtToken += 1;
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_13");	//Я нашел эту табличку в здании к юго-западу отсюда.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_14");	//Судя по табличке, она как-то связана с дворцом городских жрецов.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_15");	//Верховного жреца звали Кардимон. О нем известно немного.
@@ -346,7 +346,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_04,1);
 			Saturas_SCFound_ItMi_Addon_Stone_04 = TRUE;
-			BroughtToken = BroughtToken + 1;
+			BroughtToken += 1;
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_15");	//Это лежало у здания рядом с огромным болотом.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_16");	//Скорее всего, это был дворец целителей.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_17");	//О них мы знаем немного. Похоже, они исчезли первыми.
@@ -356,7 +356,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_05,1);
 			Saturas_SCFound_ItMi_Addon_Stone_05 = TRUE;
-			BroughtToken = BroughtToken + 1;
+			BroughtToken += 1;
 			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_18");	//Эта вещь лежала в большом здании в глубоком ущелье.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_19");	//Это библиотека древнего народа.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_20");	//Предположительно, это табличка ученых.
@@ -369,7 +369,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		};
 		XP_BroughtTokens = XP_Addon_ForOneToken * BroughtToken;
 		B_GivePlayerXP(XP_BroughtTokens);
-		Saturas_BroughtTokenAmount = Saturas_BroughtTokenAmount + BroughtToken;
+		Saturas_BroughtTokenAmount += BroughtToken;
 		if(Saturas_BroughtTokenAmount < 5)
 		{
 			if(Ghost_SCKnowsHow2GetInAdanosTempel == FALSE)
@@ -442,7 +442,7 @@ func void DIA_Addon_Saturas_StonePlateHint_wo()
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_wo_14_02");	//Он скажет, где тебе искать эти дворцы.
 	Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
-	B_LogEntry(TOPIC_Addon_HousesOfRulers,"Сатурас хочет, чтобы я обыскал дворцы зодчих. Риордан скажет мне, где найти эти строения.");
+	B_LogEntry(TOPIC_Addon_HousesOfRulers,"Сатурас хочет, чтобы я обыскал дворцы зодчих. Риордиан скажет мне, где найти эти строения.");
 };
 
 func void DIA_Addon_Saturas_StonePlateHint_unter()
@@ -579,7 +579,7 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_03");	//Отлично. Удачи. Но не забывай, что тебе нужно действовать быстро.
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_04");	//Ворон ни при каких обстоятельствах не должен достигнуть цели.
 		DIA_Addon_Saturas_RavenInfos_OneTime1 = TRUE;
-		RavenNeuigkeit = RavenNeuigkeit + 1;
+		RavenNeuigkeit += 1;
 	};
 	if((SC_KnowsRavensGoldmine == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime2 == FALSE))
 	{
@@ -587,7 +587,7 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_06");	//Это на него похоже. Ты должен освободить узников.
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_07");	//(вздыхает) Да, конечно. Я работаю над этим.
 		DIA_Addon_Saturas_RavenInfos_OneTime2 = TRUE;
-		RavenNeuigkeit = RavenNeuigkeit + 1;
+		RavenNeuigkeit += 1;
 	};
 	if((SC_KnowsFortunoInfos == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime3 == FALSE))
 	{
@@ -600,7 +600,7 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_14");	//Плохо. Ты должен поторопиться и остановить Ворона.
 		Addon_Saturas_Fortuno = TRUE;
 		DIA_Addon_Saturas_RavenInfos_OneTime3 = TRUE;
-		RavenNeuigkeit = RavenNeuigkeit + 1;
+		RavenNeuigkeit += 1;
 	};
 	if((RavenIsInTempel == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime4 == FALSE))
 	{
@@ -610,7 +610,7 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_18");	//(взволнованно) Что?! Это КАТАСТРОФА! Почему ты не последовал за ним?!
 		DIA_Addon_Saturas_RavenInfos_OneTime4 = TRUE;
 		MIS_ADDON_Saturas_GoToRaven = LOG_SUCCESS;
-		RavenNeuigkeit = RavenNeuigkeit + 1;
+		RavenNeuigkeit += 1;
 	};
 	if(RavenNeuigkeit != 0)
 	{
@@ -686,7 +686,7 @@ instance DIA_Addon_Saturas_GhostQuestions(C_Info)
 
 func int DIA_Addon_Saturas_GhostQuestions_Condition()
 {
-	if((Npc_IsDead(Quarhodron) == FALSE) && (SC_TalkedToGhost == TRUE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE))
+	if(!Npc_IsDead(Quarhodron) && (SC_TalkedToGhost == TRUE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE))
 	{
 		return TRUE;
 	};
@@ -757,7 +757,7 @@ func void DIA_Addon_Saturas_TalkedToGhost_wasistdas()
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_11");	//Теперь ты понимаешь всю важность твоего задания?
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_12");	//Ворон - опытный боец, а жажда власти ослепила его.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_13");	//В его руках Коготь будет неудержимым оружием разрушения.
-	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_14");	//Ворон не должен завладеть когтем, иначе все будет потеряно.
+	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_wasistdas_14_14");	//Ворон не должен завладеть Когтем, иначе все будет потеряно.
 	Log_CreateTopic(TOPIC_Addon_Klaue,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Klaue,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Klaue,"В храме Аданоса находится могучее оружие. Оно называется 'Коготь Белиара'. Ворон не должен получить его в свои руки!");
@@ -926,7 +926,7 @@ func void DIA_Addon_Saturas_BeliarsWeapon_wastun()
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_01");	//Решать тебе. Ты завоевал меч, и ты теперь его хозяин.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_02");	//Я могу лишь дать тебе совет.
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_03");	//Ты можешь или отдать его мне, и я прослежу, чтобы он больше никогда не попал в руки зла...
-	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_04");	//...или покорить его силу и использовать меч в сражениях.
+	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_wastun_14_04");	//... или покорить его силу и использовать меч в сражениях.
 	Info_AddChoice(DIA_Addon_Saturas_BeliarsWeapon,"Ты можешь сохранить меч?",DIA_Addon_Saturas_BeliarsWeapon_geben);
 };
 

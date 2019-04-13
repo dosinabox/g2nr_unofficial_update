@@ -152,13 +152,13 @@ func void DIA_Bosper_LEHRLING_Info()
 	if(MIS_Bosper_WolfFurs == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Bosper_LEHRLING_11_01");	//(ухмыляется) Отлично! Похоже, ты уже знаешь основы.
-		stimmen = stimmen + 1;
+		stimmen += 1;
 		if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if((MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS))
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_02");	//Гарад считает, что ты хороший человек.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else
 			{
@@ -174,7 +174,7 @@ func void DIA_Bosper_LEHRLING_Info()
 			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_05");	//Торбен дает тебе свое благословение. Я не так набожен, как он, но все же это хорошо.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else
 			{
@@ -190,7 +190,7 @@ func void DIA_Bosper_LEHRLING_Info()
 			if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_08");	//Константино говорит, что ты можешь стать учеником кого захочешь.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else
 			{
@@ -207,7 +207,7 @@ func void DIA_Bosper_LEHRLING_Info()
 			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_12");	//Маттео говорит, что ты стоишь столько же, сколько золото равное твоему весу.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else if(MIS_Matteo_Gold == LOG_Running)
 			{
@@ -232,7 +232,7 @@ func void DIA_Bosper_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_17");	//Ты получил одобрение четырех мастеров. Этого достаточно, чтобы быть принятым в ученики.
 			};
-			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_18");	//Ты можешь начать работать на меня когда только захочешь.
+			AI_Output(self,other,"DIA_Bosper_LEHRLING_11_18");	//Ты можешь начать работать на меня, когда только захочешь.
 			Info_ClearChoices(DIA_Bosper_LEHRLING);
 			Info_AddChoice(DIA_Bosper_LEHRLING,"Хорошо - я подумаю над этим.",DIA_Bosper_LEHRLING_Later);
 			Info_AddChoice(DIA_Bosper_LEHRLING,"Я готов стать твоим учеником!",DIA_Bosper_LEHRLING_OK);
@@ -284,7 +284,7 @@ instance DIA_Bosper_OtherMasters(C_Info)
 	condition = DIA_Bosper_OtherMasters_Condition;
 	information = DIA_Bosper_OtherMasters_Info;
 	permanent = FALSE;
-	description = "А что если я захочу поступить в ученики к другому мастеру?";
+	description = "А что, если я захочу поступить в ученики к другому мастеру?";
 };
 
 
@@ -298,7 +298,7 @@ func int DIA_Bosper_OtherMasters_Condition()
 
 func void DIA_Bosper_OtherMasters_Info()
 {
-	AI_Output(other,self,"DIA_Bosper_OtherMasters_15_00");	//А что если я захочу поступить в ученики к другому мастеру?
+	AI_Output(other,self,"DIA_Bosper_OtherMasters_15_00");	//А что, если я захочу поступить в ученики к другому мастеру?
 	AI_Output(self,other,"DIA_Bosper_OtherMasters_11_01");	//(раздраженно) Бред!
 	AI_Output(self,other,"DIA_Bosper_OtherMasters_11_02");	//Гарад и Маттео уже имеют учеников.
 	AI_Output(self,other,"DIA_Bosper_OtherMasters_11_03");	//Алхимик Константино - одинокий волк. У него не было ученика уже многие годы.
@@ -378,10 +378,10 @@ func void DIA_Bosper_ZUSTIMMUNG_Info()
 		};
 		if(Bosper_Zustimmung_Once == FALSE)
 		{
+			B_LogEntry(TOPIC_Lehrling,"Боспер даст мне свое одобрение, если я захочу стать учеником другого мастера.");
 			B_GivePlayerXP(XP_Zustimmung);
 			Bosper_Zustimmung_Once = TRUE;
 		};
-		B_LogEntry(TOPIC_Lehrling,"Боспер даст мне свое одобрение, если я захочу стать учеником другого мастера.");
 	}
 	else
 	{
@@ -419,7 +419,7 @@ func void DIA_Bosper_Job_Info()
 	AI_Output(other,self,"DIA_Bosper_Job_15_00");	//Что ты хочешь, чтобы я сделал для тебя?
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
-		AI_Output(self,other,"DIA_Bosper_Job_11_01");	//Я научу тебя снимать шкуры с животных, и ты принесешь мне - скажем - полдюжины волчьих шкур.
+		AI_Output(self,other,"DIA_Bosper_Job_11_01");	//Я научу тебя снимать шкуры с животных, и ты принесешь мне - скажем, полдюжины волчьих шкур.
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"Боспер может обучить меня снимать шкуры с животных.");
 	}
@@ -496,7 +496,7 @@ instance DIA_Bosper_TeachFUR(C_Info)
 	condition = DIA_Bosper_TeachFUR_Condition;
 	information = DIA_Bosper_TeachFUR_Info;
 	permanent = TRUE;
-	description = "Научи меня снимать шкуры с животных! (5 LP)";
+	description = B_BuildLearnString("Научи меня снимать шкуры с животных!",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
 };
 
 
@@ -720,7 +720,7 @@ func void DIA_Bosper_AlsLehrling_Info()
 	}
 	else if((Bosper_Lehrling_Day <= (Wld_GetDay() - 4)) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
-		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_05");	//Где ты болтался так долго?
+		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_05");	//Где ты болтаешься так долго?
 		AI_Output(self,other,"DIA_Bosper_AlsLehrling_11_06");	//Мне нужны еще шкуры. Ты принес их?
 		Bosper_Lehrling_Day = Wld_GetDay();
 	}
@@ -791,40 +791,40 @@ func int DIA_Bosper_SellFur_Condition()
 func void DIA_Bosper_SellFur_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_SellFur_15_00");	//Я принес несколько шкур для тебя...
-	if((Npc_HasItems(other,ItAt_SheepFur) > 0) || (Npc_HasItems(other,ItAt_WolfFur) > 0) || (Npc_HasItems(other,ItAt_WargFur) > 0) || (Npc_HasItems(other,ItAt_ShadowFur) > 0) || (Npc_HasItems(other,ItAt_TrollFur) > 0) || (Npc_HasItems(other,ItAt_TrollBlackFur) > 0) || (Npc_HasItems(other,ItAt_Addon_KeilerFur) > 0))
+	if(Npc_HasItems(other,ItAt_SheepFur) || Npc_HasItems(other,ItAt_WolfFur) || Npc_HasItems(other,ItAt_WargFur) || Npc_HasItems(other,ItAt_ShadowFur) || Npc_HasItems(other,ItAt_TrollFur) || Npc_HasItems(other,ItAt_TrollBlackFur) || Npc_HasItems(other,ItAt_Addon_KeilerFur))
 	{
-		if(Npc_HasItems(other,ItAt_Addon_KeilerFur) > 0)
+		if(Npc_HasItems(other,ItAt_Addon_KeilerFur))
 		{
-			AI_Wait(self,3);
+			B_Say(self,other,"$ABS_GOOD");
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_Addon_KeilerFur) * Value_Keilerfur);
 			B_GiveInvItems(other,self,ItAt_Addon_KeilerFur,Npc_HasItems(other,ItAt_Addon_KeilerFur));
 		};
-		if(Npc_HasItems(other,ItAt_SheepFur) > 0)
+		if(Npc_HasItems(other,ItAt_SheepFur))
 		{
 			AI_Output(self,other,"DIA_Bosper_SellFur_11_01");	//Овечьи шкуры? Ты ведь не убивал овец фермеров на пастбищах, нет?
 			AI_Output(other,self,"DIA_Bosper_SellFur_15_02");	//Я даже и не думал заниматься этим...
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_SheepFur) * Value_SheepFur);
 			B_GiveInvItems(other,self,ItAt_SheepFur,Npc_HasItems(other,ItAt_SheepFur));
 		};
-		if(Npc_HasItems(other,ItAt_WolfFur) > 0)
+		if(Npc_HasItems(other,ItAt_WolfFur))
 		{
-			AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры это хорошо...
+			AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры - это хорошо...
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur);
 			B_GiveInvItems(other,self,ItAt_WolfFur,Npc_HasItems(other,ItAt_WolfFur));
 		};
-		if(Npc_HasItems(other,ItAt_WargFur) > 0)
+		if(Npc_HasItems(other,ItAt_WargFur))
 		{
 			AI_Output(self,other,"DIA_Bosper_SellFur_11_04");	//Шкура варга? Это опасные звери...
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WargFur) * Value_WargFur);
 			B_GiveInvItems(other,self,ItAt_WargFur,Npc_HasItems(other,ItAt_WargFur));
 		};
-		if(Npc_HasItems(other,ItAt_ShadowFur) > 0)
+		if(Npc_HasItems(other,ItAt_ShadowFur))
 		{
 			AI_Output(self,other,"DIA_Bosper_SellFur_11_05");	//Ах, и даже шкура мракориса - она дорогого стоит.
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_ShadowFur) * Value_ShadowFur);
 			B_GiveInvItems(other,self,ItAt_ShadowFur,Npc_HasItems(other,ItAt_ShadowFur));
 		};
-		if((Npc_HasItems(other,ItAt_TrollFur) > 0) || (Npc_HasItems(other,ItAt_TrollBlackFur) > 0))
+		if(Npc_HasItems(other,ItAt_TrollFur) || Npc_HasItems(other,ItAt_TrollBlackFur))
 		{
 			if(Bosper_TrollFurSold == FALSE)
 			{
@@ -838,12 +838,12 @@ func void DIA_Bosper_SellFur_Info()
 				AI_Output(self,other,"DIA_Bosper_SellFur_11_09");	//Еще одна шкура огромного тролля... ты что, охотишься на них?
 				AI_Output(other,self,"DIA_Bosper_SellFur_15_10");	//Когда я натыкаюсь на одного из них, я не упускаю такой возможности...
 			};
-			if(Npc_HasItems(other,ItAt_TrollFur) > 0)
+			if(Npc_HasItems(other,ItAt_TrollFur))
 			{
 				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_TrollFur) * Value_TrollFur);
 				B_GiveInvItems(other,self,ItAt_TrollFur,Npc_HasItems(other,ItAt_TrollFur));
 			};
-			if(Npc_HasItems(other,ItAt_TrollBlackFur) > 0)
+			if(Npc_HasItems(other,ItAt_TrollBlackFur))
 			{
 				AI_Output(self,other,"DIA_Bosper_SellFur_11_11");	//И шкура черного тролля, надо же!
 				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_TrollBlackFur) * Value_TrollBlackFur);

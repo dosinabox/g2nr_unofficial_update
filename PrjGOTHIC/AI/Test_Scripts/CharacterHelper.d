@@ -433,8 +433,8 @@ func void CH_Guild_BACK()
 
 func void CH_FakeBandit()
 {
-	CreateInvItems(hero,ItAr_BDT_M,1);
-	CreateInvItems(hero,ItAr_BDT_H,1);
+	CreateInvItems(hero,ITAR_BDT_M,1);
+	CreateInvItems(hero,ITAR_BDT_H,1);
 	CreateInvItems(hero,ITAR_Thorus_Addon,1);
 	AI_EquipBestArmor(hero);
 };
@@ -444,8 +444,8 @@ func void ch_nov()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_NOV;
 	Npc_SetTrueGuild(other,GIL_NOV);
-	CreateInvItem(hero,ItAr_NOV_L);
-	AI_EquipArmor(hero,ItAr_NOV_L);
+	CreateInvItem(hero,ITAR_NOV_L);
+	AI_EquipArmor(hero,ITAR_NOV_L);
 };
 
 func void ch_kdf()
@@ -453,8 +453,8 @@ func void ch_kdf()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_KDF;
 	Npc_SetTrueGuild(other,GIL_KDF);
-	CreateInvItem(hero,ItAr_KDF_L);
-	AI_EquipArmor(hero,ItAr_KDF_L);
+	CreateInvItem(hero,ITAR_KDF_L);
+	AI_EquipArmor(hero,ITAR_KDF_L);
 };
 
 func void ch_sld()
@@ -462,8 +462,8 @@ func void ch_sld()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_SLD;
 	Npc_SetTrueGuild(other,GIL_SLD);
-	CreateInvItem(hero,itar_sld_M);
-	AI_EquipArmor(hero,itar_sld_M);
+	CreateInvItem(hero,ITAR_SLD_M);
+	AI_EquipArmor(hero,ITAR_SLD_M);
 };
 
 func void ch_djg()
@@ -471,8 +471,8 @@ func void ch_djg()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_DJG;
 	Npc_SetTrueGuild(other,GIL_DJG);
-	CreateInvItem(hero,itar_djg_m);
-	AI_EquipArmor(hero,itar_djg_m);
+	CreateInvItem(hero,ITAR_DJG_M);
+	AI_EquipArmor(hero,ITAR_DJG_M);
 };
 
 func void ch_mil()
@@ -480,8 +480,8 @@ func void ch_mil()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_MIL;
 	Npc_SetTrueGuild(other,GIL_MIL);
-	CreateInvItem(hero,ITAR_Mil_L);
-	AI_EquipArmor(hero,ITAR_Mil_L);
+	CreateInvItem(hero,ITAR_MIL_L);
+	AI_EquipArmor(hero,ITAR_MIL_L);
 };
 
 func void ch_pal()
@@ -489,8 +489,8 @@ func void ch_pal()
 	Info_ClearChoices(CH_Guild);
 	other.guild = GIL_PAL;
 	Npc_SetTrueGuild(other,GIL_PAL);
-	CreateInvItem(hero,ItAr_PAL_M);
-	AI_EquipArmor(hero,ItAr_PAL_M);
+	CreateInvItem(hero,ITAR_PAL_M);
+	AI_EquipArmor(hero,ITAR_PAL_M);
 	B_SetPaladinEquipment();
 };
 
@@ -2485,15 +2485,15 @@ func void DIA_CH_Dieb_Start_Info()
 {
 	Info_ClearChoices(DIA_CH_Dieb_Start);
 	Info_AddChoice(DIA_CH_Dieb_Start,Dialog_Back,DIA_CH_Dieb_Start_BACK);
-	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
 		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString(" арманна€ кража",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1)),CH_Training_Thief_Pickpocket);
 	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
 		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("¬злом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),CH_Training_Thief_Picklock);
 	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 	{
 		Info_AddChoice(DIA_CH_Dieb_Start,B_BuildLearnString("ѕодкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),CH_Training_Thief_Sneak);
 	};
@@ -2649,19 +2649,19 @@ func void DIA_CH_Misc_Health_Info()
 	Info_AddChoice(DIA_CH_Misc_Health,Dialog_Back,DIA_CH_Misc_Health_BACK);
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString("Ћечебна€ эссенци€",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),CH_Training_Alchemy_POTION_Health_01);
+		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),CH_Training_Alchemy_POTION_Health_01);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString("Ћечебный экстракт",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),CH_Training_Alchemy_POTION_Health_02);
+		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),CH_Training_Alchemy_POTION_Health_02);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString("Ћечебный эликсир",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),CH_Training_Alchemy_POTION_Health_03);
+		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),CH_Training_Alchemy_POTION_Health_03);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString("Ёликсир жизни",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),CH_Training_Alchemy_POTION_Perm_Health);
+		Info_AddChoice(DIA_CH_Misc_Health,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),CH_Training_Alchemy_POTION_Perm_Health);
 	};
 };
 
@@ -2716,19 +2716,19 @@ func void DIA_CH_Misc_Mana_Info()
 	Info_AddChoice(DIA_CH_Misc_Mana,Dialog_Back,DIA_CH_Misc_Mana_BACK);
 	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString("Ёликсир духа",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),CH_Training_Alchemy_POTION_Perm_Mana);
+		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),CH_Training_Alchemy_POTION_Perm_Mana);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString("Ёликсир маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),CH_Training_Alchemy_POTION_Mana_03);
+		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString(NAME_Mana_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),CH_Training_Alchemy_POTION_Mana_03);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString("Ёкстракт маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),CH_Training_Alchemy_POTION_Mana_02);
+		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString(NAME_Mana_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),CH_Training_Alchemy_POTION_Mana_02);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString("Ёссенци€ маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),CH_Training_Alchemy_POTION_Mana_01);
+		Info_AddChoice(DIA_CH_Misc_Mana,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),CH_Training_Alchemy_POTION_Mana_01);
 	};
 };
 
@@ -2787,15 +2787,15 @@ func void DIA_CH_Misc_Special_Info()
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString("«елье ускорени€",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),CH_Training_Alchemy_POTION_Speed);
+		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_Speed_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),CH_Training_Alchemy_POTION_Speed);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString("Ёликсир силы",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),CH_Training_Alchemy_POTION_Perm_STR);
+		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_STR_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),CH_Training_Alchemy_POTION_Perm_STR);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString("Ёликсир ловкости",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),CH_Training_Alchemy_POTION_Perm_DEX);
+		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_DEX_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),CH_Training_Alchemy_POTION_Perm_DEX);
 	};
 };
 
@@ -3510,7 +3510,7 @@ instance CH_Language(C_Info)
 
 func int CH_Language_Condition()
 {
-	if(MiscStart == TRUE)
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PaladinStart == FALSE))
 	{
 		return TRUE;
 	};

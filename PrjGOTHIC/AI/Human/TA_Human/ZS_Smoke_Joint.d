@@ -8,7 +8,7 @@ func void ZS_Smoke_Joint()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Npc_HasItems(self,ItMi_Joint) == 0)
+	if(!Npc_HasItems(self,ItMi_Joint))
 	{
 		CreateInvItem(self,ItMi_Joint);
 	};

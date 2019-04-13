@@ -55,7 +55,7 @@ instance DIA_CipherDJG_HELLOAGAIN(C_Info)
 
 func int DIA_CipherDJG_HELLOAGAIN_Condition()
 {
-	if((Npc_IsDead(SwampDragon) == FALSE) && Npc_KnowsInfo(other,DIA_Cipher_HALLO))
+	if(!Npc_IsDead(SwampDragon) && Npc_KnowsInfo(other,DIA_Cipher_HALLO))
 	{
 		return TRUE;
 	};
@@ -69,12 +69,12 @@ func void DIA_CipherDJG_HELLOAGAIN_Info()
 	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_07_03");	//Там где-то должен прятаться дракон. Это вонючее болото затопило все вокруг вскоре после того, как он появился здесь.
 	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_07_04");	//Я еще хорошо помню время, когда здесь невозможно было ноги замочить.
 	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_07_05");	//Но теперь я ни за что не пойду туда один.
-	if(Npc_IsDead(DJG_Rod) == FALSE)
+	if(!Npc_IsDead(DJG_Rod))
 	{
 		AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_07_06");	//Правда, со мной Род. Но он побежит сломя голову даже при виде мясного жука.
 	};
 	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_07_07");	//А как насчет тебя? Ты ведь тоже пришел сюда не на прогулку, правда? Пойдем туда вместе.
-	B_LogEntry(TOPIC_Dragonhunter,"Сифер сказал мне, что в болотах Долины рудников живет дракон.");
+	B_LogEntry(TOPIC_Dragonhunter,"Сифер сказал мне, что в болотах Долины Рудников живет дракон.");
 	Info_AddChoice(DIA_CipherDJG_HELLOAGAIN,"Я предпочитаю действовать в одиночку.",DIA_CipherDJG_HELLOAGAIN_GoAlone);
 	Info_AddChoice(DIA_CipherDJG_HELLOAGAIN,"Почему бы и нет. Помощь мне не помешает.",DIA_CipherDJG_HELLOAGAIN_GoTogether);
 };
@@ -106,7 +106,7 @@ instance DIA_CipherDJG_GOTOGETHERAGAIN(C_Info)
 
 func int DIA_CipherDJG_GOTOGETHERAGAIN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_CipherDJG_HELLOAGAIN) && (DJG_SwampParty == FALSE) && (Npc_IsDead(SwampDragon) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_CipherDJG_HELLOAGAIN) && (DJG_SwampParty == FALSE) && !Npc_IsDead(SwampDragon))
 	{
 		return TRUE;
 	};
@@ -131,7 +131,7 @@ instance DIA_CipherDJG_GO(C_Info)
 
 func int DIA_CipherDJG_GO_Condition()
 {
-	if((DJG_SwampParty == TRUE) && (Npc_IsDead(SwampDragon) == FALSE))
+	if((DJG_SwampParty == TRUE) && !Npc_IsDead(SwampDragon))
 	{
 		return TRUE;
 	};
@@ -164,7 +164,7 @@ instance DIA_CipherDJG_SwampWait2(C_Info)
 
 func int DIA_CipherDJG_SwampWait2_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT1_01") < 700) && (Npc_IsDead(SwampDragon) == FALSE))
+	if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT1_01") < 700) && !Npc_IsDead(SwampDragon))
 	{
 		return TRUE;
 	};
@@ -195,14 +195,14 @@ instance DIA_CipherDJG_GoForSwampDragon(C_Info)
 	npc = DJG_703_Cipher;
 	condition = DIA_CipherDJG_GoForSwampDragon_Condition;
 	information = DIA_CipherDJG_GoForSwampDragon_Info;
-	important = 1;
-	permanent = 0;
+	important = TRUE;
+	permanent = FALSE;
 };
 
 
 func int DIA_CipherDJG_GoForSwampDragon_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT2_01") < 1000) && (Npc_IsDead(SwampDragon) == FALSE))
+	if((Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT2_01") < 1000) && !Npc_IsDead(SwampDragon))
 	{
 		return TRUE;
 	};
@@ -239,7 +239,7 @@ instance DIA_CipherDJG_SWAMPDRAGONDEAD(C_Info)
 
 func int DIA_CipherDJG_SWAMPDRAGONDEAD_Condition()
 {
-	if((Npc_IsDead(SwampDragon) == TRUE) && (DJG_SwampParty == TRUE) && (DJG_SwampParty_GoGoGo == TRUE))
+	if(Npc_IsDead(SwampDragon) && (DJG_SwampParty == TRUE) && (DJG_SwampParty_GoGoGo == TRUE))
 	{
 		return TRUE;
 	};
@@ -273,18 +273,24 @@ instance DIA_CipherDJG_WHATNEXT(C_Info)
 
 func int DIA_CipherDJG_WHATNEXT_Condition()
 {
-	if(Npc_IsDead(SwampDragon) == TRUE)
+	if(Npc_IsDead(SwampDragon))
 	{
 		return TRUE;
 	};
 };
+
+var int DIA_CipherDJG_WHATNEXT_Once;
 
 func void DIA_CipherDJG_WHATNEXT_Info()
 {
 	AI_Output(other,self,"DIA_CipherDJG_WHATNEXT_15_00");	//Болотный дракон мертв! Что ты будешь делать дальше?
 	AI_Output(self,other,"DIA_CipherDJG_WHATNEXT_07_01");	//Понятия не имею. Я еще об этом не думал. А ты теперь можешь вернуться в Хоринис как герой.
 	AI_Output(self,other,"DIA_CipherDJG_WHATNEXT_07_02");	//Ручаюсь, на этом можно сделать состояние. Подумай над этим.
-	B_LogEntry(TOPIC_Dragonhunter,"Сифер думает, что теперь, когда болотный дракон мертв, он может заработать кучу денег как великий 'герой'. Что ж, посмотрим.");
+	if(DIA_CipherDJG_WHATNEXT_Once == FALSE)
+	{
+		B_LogEntry(TOPIC_Dragonhunter,"Сифер думает, что теперь, когда болотный дракон мертв, он может заработать кучу денег как великий 'герой'. Что ж, посмотрим.");
+		DIA_CipherDJG_WHATNEXT_Once = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 

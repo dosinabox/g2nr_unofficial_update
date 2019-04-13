@@ -34,7 +34,7 @@ instance DIA_ORC_AntiPaladin1(C_Info)
 
 func int DIA_ORC_AntiPaladin1_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -81,7 +81,7 @@ instance DIA_ORC_AntiPaladin2(C_Info)
 
 func int DIA_ORC_AntiPaladin2_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -128,7 +128,7 @@ instance DIA_ORC_AntiPaladin3(C_Info)
 
 func int DIA_ORC_AntiPaladin3_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};

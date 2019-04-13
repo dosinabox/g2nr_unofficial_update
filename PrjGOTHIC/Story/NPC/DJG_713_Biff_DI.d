@@ -16,7 +16,7 @@ instance DJG_713_Biff_DI(Npc_Default)
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	CreateInvItems(self,ItPo_Health_02,6);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal16,BodyTex_N,itar_djg_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal16,BodyTex_N,ITAR_DJG_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

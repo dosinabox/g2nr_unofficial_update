@@ -89,7 +89,7 @@ instance DIA_Addon_Lennar_Attentat(C_Info)
 	condition = DIA_Addon_Lennar_Attentat_Condition;
 	information = DIA_Addon_Lennar_Attentat_Info;
 	permanent = FALSE;
-	description = "Ќасчет попытки покушени€ на Ёстебана...";
+	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION2;
 };
 
 
@@ -156,7 +156,7 @@ instance DIA_Addon_Lennar_Mine(C_Info)
 
 func int DIA_Addon_Lennar_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && (Npc_HasItems(other,ItMi_Addon_Stone_01) >= 1))
+	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};
@@ -170,7 +170,7 @@ func void DIA_Addon_Lennar_Mine_Info()
 	AI_Output(self,other,"DIA_Addon_Lennar_Mine_01_01");	//ќтлично! Ќу теперь-то € разнесу эту чертову скалу на кусочки! я уже знаю, где именно буду работать!
 	AI_Output(self,other,"DIA_Addon_Lennar_Mine_01_02");	//ƒа, один совет: когда ты работаешь с породой, не бей киркой слишком сильно. »наче она может застр€ть в золоте!
 	B_Upgrade_Hero_HackChance(10);
-	Player_SentBuddler = Player_SentBuddler + 1;
+	Player_SentBuddler += 1;
 	B_GivePlayerXP(XP_Addon_MINE);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"MINE");

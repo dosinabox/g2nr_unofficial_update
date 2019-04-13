@@ -98,7 +98,7 @@ instance DIA_Grimes_Weg(C_Info)
 
 func int DIA_Grimes_Weg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Grimes_Erz) && (Npc_KnowsInfo(other,DIA_Marcos_Garond) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Grimes_Erz) && !Npc_KnowsInfo(other,DIA_Marcos_Garond))
 	{
 		return TRUE;
 	};

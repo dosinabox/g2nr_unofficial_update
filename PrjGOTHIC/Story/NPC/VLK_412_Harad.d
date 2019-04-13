@@ -10,6 +10,7 @@ instance VLK_412_Harad(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1H_Mace_L_04);
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart20,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

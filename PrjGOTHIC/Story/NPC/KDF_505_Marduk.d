@@ -10,7 +10,7 @@ instance KDF_505_Marduk(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_OldMan_Gravo,BodyTex_P,ItAr_KDF_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_OldMan_Gravo,BodyTex_P,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

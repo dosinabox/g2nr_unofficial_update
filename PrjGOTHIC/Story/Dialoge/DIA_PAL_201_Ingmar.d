@@ -1,7 +1,7 @@
 
 instance DIA_Ingmar_EXIT(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 999;
 	condition = DIA_Ingmar_EXIT_Condition;
 	information = DIA_Ingmar_EXIT_Info;
@@ -26,7 +26,7 @@ func void DIA_Ingmar_EXIT_Info()
 
 instance DIA_Ingmar_Hallo(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 2;
 	condition = DIA_Ingmar_Hallo_Condition;
 	information = DIA_Ingmar_Hallo_Info;
@@ -66,7 +66,7 @@ func void DIA_Ingmar_Hallo_Info()
 
 instance DIA_Ingmar_Krieg(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 99;
 	condition = DIA_Ingmar_Krieg_Condition;
 	information = DIA_Ingmar_Krieg_Info;
@@ -94,7 +94,7 @@ func void DIA_Ingmar_Krieg_Info()
 
 instance DIA_Ingmar_CanTeach(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 100;
 	condition = DIA_Ingmar_CanTeach_Condition;
 	information = DIA_Ingmar_CanTeach_Info;
@@ -129,7 +129,7 @@ func void DIA_Ingmar_CanTeach_Info()
 
 instance DIA_Ingmar_Teach(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 6;
 	condition = DIA_Ingmar_Teach_Condition;
 	information = DIA_Ingmar_Teach_Info;
@@ -185,7 +185,7 @@ func void DIA_Ingmar_Teach_5()
 
 instance DIA_Ingmar_KAP3_EXIT(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 999;
 	condition = DIA_Ingmar_KAP3_EXIT_Condition;
 	information = DIA_Ingmar_KAP3_EXIT_Info;
@@ -210,7 +210,7 @@ func void DIA_Ingmar_KAP3_EXIT_Info()
 
 instance DIA_Ingmar_KAP4_EXIT(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 999;
 	condition = DIA_Ingmar_KAP4_EXIT_Condition;
 	information = DIA_Ingmar_KAP4_EXIT_Info;
@@ -235,7 +235,7 @@ func void DIA_Ingmar_KAP4_EXIT_Info()
 
 instance DIA_Ingmar_ORKELITE(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 40;
 	condition = DIA_Ingmar_ORKELITE_Condition;
 	information = DIA_Ingmar_ORKELITE_Info;
@@ -303,7 +303,7 @@ func void DIA_Ingmar_ORKELITE_wasTun()
 
 instance DIA_Ingmar_HAUPTQUARTIER(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 41;
 	condition = DIA_Ingmar_HAUPTQUARTIER_Condition;
 	information = DIA_Ingmar_HAUPTQUARTIER_Info;
@@ -335,7 +335,7 @@ func void DIA_Ingmar_HAUPTQUARTIER_Info()
 
 instance DIA_Ingmar_KAP5_EXIT(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 999;
 	condition = DIA_Ingmar_KAP5_EXIT_Condition;
 	information = DIA_Ingmar_KAP5_EXIT_Info;
@@ -360,7 +360,7 @@ func void DIA_Ingmar_KAP5_EXIT_Info()
 
 instance DIA_Ingmar_KAP6_EXIT(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 999;
 	condition = DIA_Ingmar_KAP6_EXIT_Condition;
 	information = DIA_Ingmar_KAP6_EXIT_Info;
@@ -385,7 +385,7 @@ func void DIA_Ingmar_KAP6_EXIT_Info()
 
 instance DIA_Ingmar_PICKPOCKET(C_Info)
 {
-	npc = Pal_201_Ingmar;
+	npc = PAL_201_Ingmar;
 	nr = 900;
 	condition = DIA_Ingmar_PICKPOCKET_Condition;
 	information = DIA_Ingmar_PICKPOCKET_Info;
@@ -396,10 +396,7 @@ instance DIA_Ingmar_PICKPOCKET(C_Info)
 
 func int DIA_Ingmar_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= (105 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(105,Hlp_GetInstanceID(ItWr_Manowar),1);
 };
 
 func void DIA_Ingmar_PICKPOCKET_Info()
@@ -411,19 +408,8 @@ func void DIA_Ingmar_PICKPOCKET_Info()
 
 func void DIA_Ingmar_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 105)
-	{
-		B_GiveInvItems(self,other,ItWr_Manowar,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Ingmar_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(105,Hlp_GetInstanceID(ItWr_Manowar),1);
+	Info_ClearChoices(DIA_Ingmar_PICKPOCKET);
 };
 
 func void DIA_Ingmar_PICKPOCKET_BACK()

@@ -78,7 +78,7 @@ func void DIA_Schwarzmagier_HELLO_meister()
 	AI_PlayAni(self,"T_PRACTICEMAGIC5");
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_00");	//(угрожающе) Хватит болтовни! Я уничтожу тебя.
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_01");	//Твой взор потухнет, и твой дух растает во тьме.
-	if(Npc_HasItems(other,ItAm_Prot_BlackEye_Mis))
+	if(SC_IsBlackEyeProtected == TRUE)
 	{
 		AI_Output(other,self,"DIA_Schwarzmagier_HELLO_meister_15_02");	//(себе под нос) Без этого амулета вызова душ у меня бы были большие проблемы сейчас.
 	}
@@ -87,7 +87,7 @@ func void DIA_Schwarzmagier_HELLO_meister()
 		hero.attribute[ATR_MANA] = 0;
 		if(hero.attribute[ATR_HITPOINTS] > 50)
 		{
-			hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS] / 2;
+			hero.attribute[ATR_HITPOINTS] /= 2;
 		};
 		SC_ObsessionCounter = 100;
 		B_SCIsObsessed(hero);

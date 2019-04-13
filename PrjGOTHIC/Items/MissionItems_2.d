@@ -35,7 +35,7 @@ func void UsePaladinLetter()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Лорд Хаген!");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Экспедиция в Долину рудников завершилась провалом. Мы понесли огромные потери. Те, кому удалось выжить, заперты в замке, окруженном орками.");
+	Doc_PrintLines(nDocID,0,"Экспедиция в Долину Рудников завершилась провалом. Мы понесли огромные потери. Те, кому удалось выжить, заперты в замке, окруженном орками.");
 	Doc_PrintLines(nDocID,0,"Мы неоднократно подвергались нападению драконов. Они опустошили земли вокруг замка. Надеюсь, с помощью Инноса мы сможем продержаться до прибытия подкрепления. Сами прорвать кольцо мы не сможем.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Да поможет нам Иннос.");
@@ -99,14 +99,14 @@ instance ItKe_PrisonKey_MIS(C_Item)
 
 instance ItKe_OC_Store(C_Item)
 {
-	name = "Ключ от кладовой";
+	name = "Ключ от склада";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от кладовой";
+	text[2] = "Это ключ от склада";
 	text[3] = "в замке.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -120,7 +120,7 @@ instance ITKE_ErzBaronFlur(C_Item)
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-	description = "От первой двери";
+	description = "От первой двери.";
 	text[2] = "На нем выгравировано имя:";
 	text[3] = "Гомез.";
 	text[5] = NAME_Value;
@@ -135,7 +135,7 @@ instance ITKE_ErzBaronRaum(C_Item)
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
-	description = "От второй двери";
+	description = "От второй двери.";
 	text[2] = "На нем выгравировано имя:";
 	text[3] = "Гомез.";
 	text[5] = NAME_Value;
@@ -278,7 +278,7 @@ instance ItKe_Bromor(C_Item)
 	count[5] = value;
 };
 
-instance ITKE_RUNE_MIS(C_Item)
+instance ItKe_Rune_MIS(C_Item)
 {
 	name = "Ключ";
 	mainflag = ITEM_KAT_NONE;
@@ -432,15 +432,15 @@ func void UseManowar()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Клич Доминика");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Мы заслужим Его уважение.");
-	Doc_PrintLines(nDocID,0,"Иннос всегда со мной и моими братьями.");
-	Doc_PrintLines(nDocID,0,"Я убью любого, кто попытается остановить меня");
-	Doc_PrintLines(nDocID,0,"в моем сердце горит Его огонь.");
-	Doc_PrintLines(nDocID,0,"Мой меч служит только Ему.");
-	Doc_PrintLines(nDocID,0,"Его имя всегда у меня на устах.");
-	Doc_PrintLines(nDocID,0,"Любой, кто противостоит мне,");
-	Doc_PrintLines(nDocID,0,"падет от рук моих,");
-	Doc_PrintLines(nDocID,0,"ведь я воин Инноса.");
+	Doc_PrintLines(nDocID,0,"Мы заслужим Его уважение");
+	Doc_PrintLines(nDocID,0,"Иннос всегда со мной и моими братьями");
+	Doc_PrintLines(nDocID,0,"Я убью всех, кто встанет на моем пути");
+	Doc_PrintLines(nDocID,0,"ибо в моем сердце горит Его огонь");
+	Doc_PrintLines(nDocID,0,"Мой клинок служит только Ему");
+	Doc_PrintLines(nDocID,0,"Его имя всегда у меня на устах");
+	Doc_PrintLines(nDocID,0,"Любой, кто противостоит мне");
+	Doc_PrintLines(nDocID,0,"падет от моей руки");
+	Doc_PrintLines(nDocID,0,"ведь я воин Инноса");
 	Doc_Show(nDocID);
 };
 
@@ -544,16 +544,16 @@ instance ItRi_Tengron(C_Item)
 
 func void Equip_ItRi_Tengron()
 {
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] + Ri_Hp;
-	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] + Ri_Hp;
+	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp;
+	self.attribute[ATR_HITPOINTS] += Ri_Hp;
 };
 
 func void UnEquip_ItRi_Tengron()
 {
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] - Ri_Hp;
+	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp;
 	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 1))
 	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] - Ri_Hp;
+		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
 	}
 	else
 	{

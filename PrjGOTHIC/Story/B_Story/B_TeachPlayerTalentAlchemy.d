@@ -9,7 +9,7 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	oth.lp = oth.lp - kosten;
+	oth.lp -= kosten;
 	Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
 	B_LogEntry(TOPIC_TalentAlchemy,"Чтобы сварить зелье, мне нужна пустая мензурка и необходимые для этого зелья ингредиенты. Из этих ингредиентов, я могу приготовить зелье на столе алхимика.");
 	if(potion == POTION_Health_01)

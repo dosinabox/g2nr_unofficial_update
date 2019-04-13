@@ -61,7 +61,7 @@ instance DIA_Wolf_WannaJoin(C_Info)
 
 func int DIA_Wolf_WannaJoin_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wolf_Hallo) && (Kapitel < 2))
+	if(Npc_KnowsInfo(other,DIA_Wolf_Hallo) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -346,8 +346,8 @@ func int DIA_Wolf_BringPlates_Condition()
 func void DIA_Wolf_BringPlates_Info()
 {
 	AI_Output(other,self,"DIA_Wolf_BringPlates_15_00");	//Я принес панцири краулеров для доспехов.
-	B_GiveInvItems(other,self,ItAt_CrawlerPlate,10);
 	AI_Output(self,other,"DIA_Wolf_BringPlates_08_01");	//Хорошо! Давай их сюда.
+	B_GiveInvItems(other,self,ItAt_CrawlerPlate,10);
 	MIS_Wolf_BringCrawlerPlates = LOG_SUCCESS;
 };
 
@@ -389,14 +389,15 @@ func void DIA_Wolf_ArmorReady_Info()
 		}
 		else
 		{
-			CreateInvItems(self,ITAR_DJG_Crawler,1);
 			Npc_RemoveInvItems(self,ItAt_CrawlerPlate,10);
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_02");	//Я закончил их. Вот, держи.
-			B_GiveInvItems(self,other,ITAR_DJG_Crawler,1);
+			CreateInvItem(hero,ITAR_DJG_Crawler);
+			AI_EquipArmor(hero,ITAR_DJG_Crawler);
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_03");	//Получилось неплохо, мне кажется...
 			AI_Output(other,self,"DIA_Wolf_ArmorReady_15_04");	//Спасибо!
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_05");	//Да ладно.
 			Player_GotCrawlerArmor = TRUE;
+			CreateInvItems(Bennet,ItBE_Addon_MC,1);
 		};
 	}
 	else
@@ -686,10 +687,10 @@ func void DIA_Wolf_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Wolf_KnowWhereEnemy_Yes_15_00");	//Добро пожаловать на борт!
 	AI_Output(other,self,"DIA_Wolf_KnowWhereEnemy_Yes_15_01");	//Приходи в гавань. Мы скоро отправляемся.
 	AI_Output(self,other,"DIA_Wolf_KnowWhereEnemy_Yes_08_02");	//Можешь считать, что я уже там.
-	B_GivePlayerXP(XP_Crewmember_Success);
 	self.flags = NPC_FLAG_IMMORTAL;
 	Wolf_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
+	B_GivePlayerXP(XP_Crewmember_Success);
+	Crewmember_Count += 1;
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
@@ -734,8 +735,10 @@ func void DIA_Wolf_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_Wolf_LeaveMyShip_15_00");	//Я решил, что ты мне не нужен.
 	AI_Output(self,other,"DIA_Wolf_LeaveMyShip_08_01");	//Сначала ты вселяешь в меня надежду, а потом даешь от ворот поворот. Ты еще пожалеешь об этом!
 	Wolf_IsOnBoard = LOG_FAILED;
-	Crewmember_Count = Crewmember_Count - 1;
+	B_CheckLog();
+	Crewmember_Count -= 1;
 	AI_StopProcessInfos(self);
+	self.flags = 0;
 	B_Attack(self,other,AR_NONE,1);
 	Npc_ExchangeRoutine(self,"Start");
 };

@@ -63,7 +63,7 @@ instance DIA_Ramirez_Zeichen(C_Info)
 	condition = DIA_Ramirez_Zeichen_Condition;
 	information = DIA_Ramirez_Zeichen_Info;
 	permanent = FALSE;
-	description = "(Показать сигнал воров)";
+	description = DIALOG_SecretSign;
 };
 
 
@@ -134,7 +134,7 @@ instance DIA_Ramirez_Beute(C_Info)
 
 func int DIA_Ramirez_Beute_Condition()
 {
-	if((Mob_HasItems("THIEF_CHEST_01",ItMi_Gold) < 50) || (Mob_HasItems("THIEF_CHEST_02",ItMi_Gold) < 100) || (Mob_HasItems("THIEF_CHEST_02",ItMi_SilverCup) == FALSE) || (Mob_HasItems("THIEF_CHEST_03",ItMi_Gold) < 75))
+	if((Mob_HasItems("THIEF_CHEST_01",ItMi_Gold) < 50) || (Mob_HasItems("THIEF_CHEST_02",ItMi_Gold) < 100) || !Mob_HasItems("THIEF_CHEST_02",ItMi_SilverCup) || (Mob_HasItems("THIEF_CHEST_03",ItMi_Gold) < 75))
 	{
 		return TRUE;
 	};
@@ -185,7 +185,7 @@ func void DIA_Ramirez_Bezahlen_Info()
 		Ramirez_Cost = 300;
 	};
 	AI_Output(other,self,"DIA_Ramirez_Bezahlen_15_00");	//Ты можешь научить меня чему-нибудь?
-	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK) == TRUE)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
 		AI_Output(self,other,"DIA_Ramirez_Bezahlen_14_01");	//Мне нечему тебя учить. Ты уже знаешь об отмычках все.
 		if(other.attribute[ATR_DEXTERITY] < T_MAX)
@@ -200,7 +200,7 @@ func void DIA_Ramirez_Bezahlen_Info()
 		AI_Output(self,other,"DIA_Ramirez_Bezahlen_14_02");	//Я могу показать тебе, как пользоваться отмычками. Это будет стоить тебе...
 		B_Say_Gold(self,other,Ramirez_Cost);
 		Info_ClearChoices(DIA_Ramirez_Bezahlen);
-		Info_AddChoice(DIA_Ramirez_Bezahlen,"Может быть, позже... (НАЗАД)",DIA_Ramirez_Bezahlen_Spaeter);
+		Info_AddChoice(DIA_Ramirez_Bezahlen,"Может быть, позже...",DIA_Ramirez_Bezahlen_Spaeter);
 		Info_AddChoice(DIA_Ramirez_Bezahlen,"Хорошо, я готов заплатить...",DIA_Ramirez_Bezahlen_Okay);
 	};
 };
@@ -242,7 +242,7 @@ instance DIA_Ramirez_Teach(C_Info)
 
 func int DIA_Ramirez_Teach_Condition()
 {
-	if((Ramirez_TeachPlayer == TRUE) && (Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK) == FALSE))
+	if((Ramirez_TeachPlayer == TRUE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
 		return TRUE;
 	};
@@ -341,7 +341,7 @@ instance DIA_Ramirez_Success(C_Info)
 
 func int DIA_Ramirez_Success_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Ramirez_Sextant) && (Npc_HasItems(other,ItMi_Sextant) > 0))
+	if(Npc_KnowsInfo(other,DIA_Ramirez_Sextant) && Npc_HasItems(other,ItMi_Sextant))
 	{
 		return TRUE;
 	};

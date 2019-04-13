@@ -57,7 +57,7 @@ func void Use_Addon_Joint_01()
 		if(FirstJoint == FALSE)
 		{
 			FirstJoint = TRUE;
-			B_GivePlayerXP(5);
+			B_GivePlayerXP(50);
 		};
 		Wld_PlayEffect("SLOW_TIME",self,self,0,0,0,FALSE);
 	};
@@ -76,6 +76,7 @@ instance ItMi_BaltramPaket(C_Item)
 	text[2] = "Тяжелый пакет с";
 	text[3] = "различными товарами";
 	text[4] = "с фермы Акила.";
+	count[5] = value;
 };
 
 instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
@@ -90,6 +91,7 @@ instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 	text[2] = "Тяжелый пакет";
 	text[3] = "с различными товарами";
 	text[4] = "для пирата Скипа.";
+	count[5] = value;
 };
 
 instance ItMi_BromorsGeld_Addon(C_Item)
@@ -134,7 +136,7 @@ func void Use_CavalornsBeutel()
 	SC_OpenedCavalornsBeutel = TRUE;
 	Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
-	B_LogEntry(TOPIC_Addon_CavalornTheHut,"Я нашел мешочек с куском руды около хижины Кавалорна в Долине рудников. Его, должно быть, забыл там старый пройдоха Кавалорн.");
+	B_LogEntry(TOPIC_Addon_CavalornTheHut,"Я нашел мешочек с куском руды около хижины Кавалорна в Долине Рудников. Его, должно быть, забыл там старый пройдоха Кавалорн.");
 };
 
 
@@ -158,15 +160,15 @@ instance ItMi_IECello(C_Item)
 	visual = "Itmi_IE_Cello.3ds";
 	material = MAT_WOOD;
 	scemeName = "CELLO";
-	on_state[0] = Use_Cello;
+//	on_state[0] = Use_Cello;
 	description = name;
 };
 
-
+/*
 func void Use_Cello()
 {
 };
-
+*/
 
 instance ItMi_IECelloBow(C_Item)
 {
@@ -188,15 +190,15 @@ instance ItMi_IEDrum(C_Item)
 	visual = "Itmi_IE_Drum.3ds";
 	material = MAT_WOOD;
 	scemeName = "PAUKE";
-	on_state[0] = Use_Drum;
+//	on_state[0] = Use_Drum;
 	description = name;
 };
 
-
+/*
 func void Use_Drum()
 {
 };
-
+*/
 
 instance ItMi_IEDrumScheit(C_Item)
 {
@@ -207,15 +209,15 @@ instance ItMi_IEDrumScheit(C_Item)
 	visual = "Itmi_IE_Drumscheit.3ds";
 	material = MAT_WOOD;
 	scemeName = "DRUMSCHEIT";
-	on_state[0] = Use_Drumscheit;
+//	on_state[0] = Use_Drumscheit;
 	description = name;
 };
 
-
+/*
 func void Use_Drumscheit()
 {
 };
-
+*/
 
 instance ItMi_IEDrumStick(C_Item)
 {
@@ -237,15 +239,15 @@ instance ItMi_IEDudelBlau(C_Item)
 	visual = "Itmi_IE_DudelBlau.3ds";
 	material = MAT_WOOD;
 	scemeName = "DUDEL";
-	on_state[0] = Use_Dudel;
+//	on_state[0] = Use_Dudel;
 	description = name;
 };
 
-
+/*
 func void Use_Dudel()
 {
 };
-
+*/
 
 instance ItMi_IEDudelGelb(C_Item)
 {
@@ -256,7 +258,7 @@ instance ItMi_IEDudelGelb(C_Item)
 	visual = "Itmi_IE_DudelGelb.3ds";
 	material = MAT_WOOD;
 	scemeName = "DUDEL";
-	on_state[0] = Use_Dudel;
+//	on_state[0] = Use_Dudel;
 	description = name;
 };
 
@@ -269,15 +271,15 @@ instance ItMi_IEHarfe(C_Item)
 	visual = "Itmi_IE_Harfe.3ds";
 	material = MAT_WOOD;
 	scemeName = "HARFE";
-	on_state[0] = Use_Harfe;
+//	on_state[0] = Use_Harfe;
 	description = name;
 };
 
-
+/*
 func void Use_Harfe()
 {
 };
-
+*/
 
 instance ItMi_IELaute(C_Item)
 {
@@ -288,15 +290,15 @@ instance ItMi_IELaute(C_Item)
 	visual = "Itmi_IE_Laute.3ds";
 	material = MAT_WOOD;
 	scemeName = "IELAUTE";
-	on_state[0] = Use_Laute;
+//	on_state[0] = Use_Laute;
 	description = name;
 };
 
-
+/*
 func void Use_Laute()
 {
 };
-
+*/
 
 instance ItMi_Addon_Lennar_Paket(C_Item)
 {

@@ -11,12 +11,42 @@ instance DJG_709_Rethon(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_CoolPock,BodyTex_N,itar_djg_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_CoolPock,BodyTex_N,ITAR_DJG_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,60);
-	daily_routine = Rtn_Start_709;
+	daily_routine = Rtn_PreStart_709;
+};
+
+
+func void Rtn_PreStart_709()
+{
+	TA_Stand_WP(8,0,8,30,"OC_CENTER_04");
+	TA_Stand_Guarding(8,30,9,0,"OC_CENTER_04");
+	TA_Practice_Sword(9,0,9,30,"OC_CENTER_04");
+	TA_Stand_WP(9,30,10,0,"OC_CENTER_04");
+	TA_Stand_Guarding(10,0,10,30,"OC_CENTER_04");
+	TA_Practice_Sword(10,30,11,0,"OC_CENTER_04");
+	TA_Stand_WP(11,0,11,30,"OC_CENTER_04");
+	TA_Stand_Guarding(11,30,12,0,"OC_CENTER_04");
+	TA_Practice_Sword(12,0,12,30,"OC_CENTER_04");
+	TA_Stand_WP(12,30,13,0,"OC_CENTER_04");
+	TA_Stand_Guarding(13,0,13,30,"OC_CENTER_04");
+	TA_Practice_Sword(13,30,14,0,"OC_CENTER_04");
+	TA_Stand_WP(14,0,14,30,"OC_CENTER_04");
+	TA_Stand_Guarding(14,30,15,0,"OC_CENTER_04");
+	TA_Practice_Sword(15,0,15,30,"OC_CENTER_04");
+	TA_Stand_WP(15,30,16,0,"OC_CENTER_04");
+	TA_Stand_Guarding(16,0,16,30,"OC_CENTER_04");
+	TA_Practice_Sword(16,30,17,0,"OC_CENTER_04");
+	TA_Stand_WP(17,0,17,30,"OC_CENTER_04");
+	TA_Stand_Guarding(17,30,18,0,"OC_CENTER_04");
+	TA_Practice_Sword(18,0,18,30,"OC_CENTER_04");
+	TA_Stand_WP(18,30,19,0,"OC_CENTER_04");
+	TA_Stand_Guarding(19,0,19,30,"OC_CENTER_04");
+	TA_Practice_Sword(19,30,20,0,"OC_CENTER_04");
+	TA_Sit_Campfire(20,0,8,0,"OC_CAMPFIRE_OUT_03");
 };
 
 

@@ -11,7 +11,7 @@ instance SLD_819_Soeldner(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_Tough_Drago,BodyTex_P,ItAr_Sld_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_Tough_Drago,BodyTex_P,ITAR_SLD_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

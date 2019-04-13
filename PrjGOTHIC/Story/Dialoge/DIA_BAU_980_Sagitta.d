@@ -179,6 +179,7 @@ func void DIA_Sagitta_Sagitta_Herb_Info()
 	AI_Output(other,self,"DIA_Sagitta_Sagitta_Herb_15_00");	//Я нашел солнечное алоэ.
 	AI_Output(self,other,"DIA_Sagitta_Sagitta_Herb_17_01");	//Спасибо. Теперь ты можешь спрашивать меня обо всем, что хочешь узнать о приготовлении зелий.
 	B_GiveInvItems(other,self,ItPl_Sagitta_Herb_MIS,1);
+	Npc_RemoveInvItem(self,ItPl_Sagitta_Herb_MIS);
 	Sagitta_TeachAlchemy = TRUE;
 	MIS_Sagitta_Herb = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Sagitta_Sonnenaloe);
@@ -218,38 +219,38 @@ func void DIA_Sagitta_Teach_Info()
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Лечебная эссенция",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Sagitta_Teach_Health_01);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Sagitta_Teach_Health_01);
+		talente += 1;
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE))
 	{
-		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Лечебный экстракт",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Sagitta_Teach_Health_02);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Sagitta_Teach_Health_02);
+		talente += 1;
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Эссенция маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Sagitta_Teach_Mana_01);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Sagitta_Teach_Mana_01);
+		talente += 1;
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
 	{
-		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Экстракт маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Sagitta_Teach_Mana_02);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString(NAME_Mana_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Sagitta_Teach_Mana_02);
+		talente += 1;
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE))
 	{
-		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Эликсир маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),DIA_Sagitta_Teach_Mana_03);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString(NAME_Mana_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),DIA_Sagitta_Teach_Mana_03);
+		talente += 1;
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE))
 	{
-		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Эликсир духа",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Sagitta_Teach_Perm_Mana);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Sagitta_Teach_Perm_Mana);
+		talente += 1;
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE)
 	{
-		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString("Эликсир ловкости",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Sagitta_Teach_Perm_DEX);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString(NAME_DEX_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Sagitta_Teach_Perm_DEX);
+		talente += 1;
 	};
 	if(talente > 0)
 	{
@@ -377,14 +378,14 @@ func int DIA_Sagitta_TRADE_Condition()
 
 func void DIA_Sagitta_TRADE_Info()
 {
-	if(Sagitta_flag == 1)
+	if(Sagitta_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
 		if(Sagitta_flasks > 0)
 		{
 			CreateInvItems(self,ItMi_Flask,Sagitta_flasks);
 		};
-		Sagitta_flag = 0;
+		Sagitta_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Sagitta_TRADE_15_00");	//Какие товары ты можешь предложить мне?
 	B_GiveTradeInv(self);
@@ -466,8 +467,9 @@ func void DIA_Sagitta_Thekla_Info()
 	AI_Output(other,self,"DIA_Sagitta_Thekla_15_00");	//Текла послала меня к тебе за травами.
 	AI_Output(self,other,"DIA_Sagitta_Thekla_17_01");	//Ах, да. Вообще-то я ожидала ее еще несколько дней назад.
 	AI_Output(self,other,"DIA_Sagitta_Thekla_17_02");	//Вот, держи пакет. И поосторожнее с ним!
-	B_GivePlayerXP(XP_AmbientKap3);
+	CreateInvItems(self,ItMi_TheklasPaket,1);
 	B_GiveInvItems(self,other,ItMi_TheklasPaket,1);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -503,7 +505,7 @@ instance DIA_Sagitta_HEALRANDOLPH(C_Info)
 	condition = DIA_Sagitta_HEALRANDOLPH_Condition;
 	information = DIA_Sagitta_HEALRANDOLPH_Info;
 	permanent = TRUE;
-	description = "У Рендольфа похмельный синдром.";
+	description = "У Рэндольфа похмельный синдром.";
 };
 
 
@@ -520,11 +522,10 @@ func int DIA_Sagitta_HEALRANDOLPH_Condition()
 
 func void DIA_Sagitta_HEALRANDOLPH_Info()
 {
-	AI_Output(other,self,"DIA_Sagitta_HEALRANDOLPH_15_00");	//У Рендольфа похмельный синдром.
+	AI_Output(other,self,"DIA_Sagitta_HEALRANDOLPH_15_00");	//У Рэндольфа похмельный синдром.
 	if(DIA_Sagitta_HEALRANDOLPH_KnowsPrice == FALSE)
 	{
 		AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_17_01");	//И когда этот парень образумится?!
-		DIA_Sagitta_HEALRANDOLPH_KnowsPrice = TRUE;
 	};
 	if(DIA_Sagitta_HEALRANDOLPH_GotOne == TRUE)
 	{
@@ -539,6 +540,7 @@ func void DIA_Sagitta_HEALRANDOLPH_Info()
 	{
 		AI_Output(other,self,"DIA_Sagitta_HEALRANDOLPH_15_05");	//Что?
 		AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_17_06");	//Единственное, что ты можешь получить здесь бесплатно - это смерть, малыш.
+		DIA_Sagitta_HEALRANDOLPH_KnowsPrice = TRUE;
 	};
 	Info_ClearChoices(DIA_Sagitta_HEALRANDOLPH);
 	Info_AddChoice(DIA_Sagitta_HEALRANDOLPH,"Нет. Столько золота за такую ерунду?!",DIA_Sagitta_HEALRANDOLPH_no);
@@ -554,7 +556,7 @@ func void DIA_Sagitta_HEALRANDOLPH_geld()
 		CreateInvItems(self,ItPo_HealRandolph_MIS,1);
 		B_GiveInvItems(self,other,ItPo_HealRandolph_MIS,1);
 		DIA_Sagitta_HEALRANDOLPH_GotOne = TRUE;
-		B_LogEntry(TOPIC_HealRandolph,"Сагитта дала мне лекарство для Рендольфа.");
+		B_LogEntry(TOPIC_HealRandolph,"Сагитта дала мне лекарство для Рэндольфа.");
 	}
 	else
 	{

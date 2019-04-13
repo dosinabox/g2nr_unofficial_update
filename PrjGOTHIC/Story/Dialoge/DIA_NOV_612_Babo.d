@@ -49,7 +49,7 @@ func void DIA_Babo_Hello_Info()
 	AI_Output(other,self,"DIA_Babo_Hello_15_01");	//Да. Ты давно здесь?
 	AI_Output(self,other,"DIA_Babo_Hello_03_02");	//Четыре недели. Тебе уже выдали боевой посох?
 	AI_Output(other,self,"DIA_Babo_Hello_15_03");	//Пока нет.
-	AI_Output(self,other,"DIA_Babo_Hello_03_04");	//Тогда возьми вот этот. Мы, послушники всегда ходим с посохом, чтобы показать, что мы способны защитить себя. Ты умеешь сражаться?
+	AI_Output(self,other,"DIA_Babo_Hello_03_04");	//Тогда возьми вот этот. Мы, послушники, всегда ходим с посохом, чтобы показать, что мы способны защитить себя. Ты умеешь сражаться?
 	AI_Output(other,self,"DIA_Babo_Hello_15_05");	//Ну, мне случалось пользоваться оружием...
 	AI_Output(self,other,"DIA_Babo_Hello_03_06");	//Если хочешь, я могу обучить тебя кое-чему. Но у меня есть просьба...
 	B_GiveInvItems(self,other,ItMw_1h_Nov_Mace,1);
@@ -95,7 +95,7 @@ instance DIA_Babo_Sergio(C_Info)
 	condition = DIA_Babo_Sergio_Condition;
 	information = DIA_Babo_Sergio_Info;
 	permanent = FALSE;
-	description = "Я поговорил с Сержио. Он будет тренировать тебя по два часа каждое утро, с пяти часов.";
+	description = "Я поговорил с Сержио. Он будет тренировать тебя по 2 часа каждое утро, с 5 часов.";
 };
 
 
@@ -109,7 +109,7 @@ func int DIA_Babo_Sergio_Condition()
 
 func void DIA_Babo_Sergio_Info()
 {
-	AI_Output(other,self,"DIA_Babo_Sergio_15_00");	//Я поговорил с Сержио. Он будет тренировать тебя по два часа каждое утро, с пяти часов.
+	AI_Output(other,self,"DIA_Babo_Sergio_15_00");	//Я поговорил с Сержио. Он будет тренировать тебя по 2 часа каждое утро, с 5 часов.
 	AI_Output(self,other,"DIA_Babo_Sergio_03_01");	//Спасибо! Какая честь для меня!
 	AI_Output(self,other,"DIA_Babo_Sergio_03_02");	//Если хочешь, я также могу показать тебе несколько секретов боевого искусства.
 	Babo_TeachPlayer = TRUE;
@@ -186,7 +186,7 @@ func void DIA_Babo_Teach_2H_1()
 		{
 			AI_Output(self,other,"DIA_DIA_Babo_Teach_03_03");	//Слуга Инноса всегда готов к бою. Если у тебя нет никакой магии, твой посох - твой самый важный элемент обороны.
 		};
-		Babo_Labercount = Babo_Labercount + 1;
+		Babo_Labercount += 1;
 		if(Babo_Labercount >= 3)
 		{
 			Babo_Labercount = 0;
@@ -219,7 +219,7 @@ func void DIA_Babo_Teach_2H_5()
 		{
 			AI_Output(self,other,"DIA_DIA_Babo_Teach_2H_5_03_03");	//Когда ты бросаешь бой, ты только теряешь.
 		};
-		Babo_Labercount = Babo_Labercount + 1;
+		Babo_Labercount += 1;
 		if(Babo_Labercount >= 3)
 		{
 			Babo_Labercount = 0;
@@ -245,7 +245,7 @@ instance DIA_Babo_Wurst(C_Info)
 
 func int DIA_Babo_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && (Npc_HasItems(self,ItFo_Schafswurst) == 0) && (Npc_HasItems(other,ItFo_Schafswurst) >= 1))
+	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -256,27 +256,30 @@ func void DIA_Babo_Wurst_Info()
 	var string NovizeText;
 	var string NovizeLeft;
 	AI_Output(other,self,"DIA_Babo_Wurst_15_00");	//Вот, держи колбасу.
-	AI_Output(self,other,"DIA_Babo_Wurst_03_01");	//Ох, баранья колбаса, отлично! Какой потрясающий вкус - дай мне еще одну колбаску!
+	AI_Output(self,other,"DIA_Babo_Wurst_03_01");	//У-у-у, баранья колбаса, отлично! Какой потрясающий вкус - м-м-м, дай мне еще одну колбаску!
 	AI_Output(other,self,"DIA_Babo_Wurst_15_02");	//Тогда у меня не хватит колбасы для других.
 	AI_Output(self,other,"DIA_Babo_Wurst_03_03");	//У тебя все равно на одну колбаску больше, чем нужно. Ну, на ту, что предназначена для тебя. Мы же друзья. Что мы будем делить какую-то колбасу?
 	AI_Output(self,other,"DIA_Babo_Wurst_03_04");	//Ну же, я дам тебе за нее свиток 'Огненная стрела'.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben = Wurst_Gegeben + 1;
+	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
 	NovizeLeft = IntToString(13 - Wurst_Gegeben);
 	NovizeText = ConcatStrings(NovizeLeft,PRINT_NovizenLeft);
 	AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	Info_ClearChoices(DIA_Babo_Wurst);
-	Info_AddChoice(DIA_Babo_Wurst,"Хорошо, держи еще одну колбасу.",DIA_Babo_Wurst_JA);
+	if(Npc_HasItems(other,ItFo_Schafswurst))
+	{
+		Info_AddChoice(DIA_Babo_Wurst,"Хорошо, держи еще одну колбасу.",DIA_Babo_Wurst_JA);
+	};
 	Info_AddChoice(DIA_Babo_Wurst,"Нет, я не сделаю этого.",DIA_Babo_Wurst_NEIN);
 };
 
 func void DIA_Babo_Wurst_JA()
 {
 	AI_Output(other,self,"DIA_Babo_Wurst_JA_15_00");	//Хорошо, держи еще одну колбасу.
-	AI_Output(self,other,"DIA_Babo_Wurst_JA_03_01");	//Отлично. Вот твой свиток.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
+	AI_Output(self,other,"DIA_Babo_Wurst_JA_03_01");	//Отлично. Вот твой свиток.
 	B_GiveInvItems(self,other,ItSc_Firebolt,1);
 	Info_ClearChoices(DIA_Babo_Wurst);
 };
@@ -312,7 +315,7 @@ func void DIA_Babo_YouAndAgon_Info()
 {
 	AI_Output(other,self,"DIA_Babo_YouAndAgon_15_00");	//Что произошло между тобой и Агоном?
 	AI_Output(self,other,"DIA_Babo_YouAndAgon_03_01");	//Ох, мы поспорили о том, как нужно ухаживать за огненной крапивой.
-	AI_Output(self,other,"DIA_Babo_YouAndAgon_03_02");	//Агон поливал ее так, что корни бедного растения почти совсем сгнили.
+	AI_Output(self,other,"DIA_Babo_YouAndAgon_03_02");	//Агон поливал их так, что корни бедных растений почти совсем сгнили.
 	AI_Output(self,other,"DIA_Babo_YouAndAgon_03_03");	//А когда они сгнили совсем, он обвинил в этом меня.
 	AI_Output(self,other,"DIA_Babo_YouAndAgon_03_04");	//Теперь меня постоянно заставляют подметать двор в наказание.
 };
@@ -400,7 +403,7 @@ func void DIA_Babo_Fegen_Info()
 	AI_Output(self,other,"DIA_Babo_Fegen_03_01");	//Ты взвалил на себя слишком много работы. Знаешь что - я помогу тебе. Тебе ни за что не справиться одному.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_02");	//Но мне очень нужен свиток с заклинанием 'Кулак Ветра'. Знаешь, мне повезло, и мне было позволено прочесть книгу о нем.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_03");	//И теперь, естественно, я хочу испытать это заклинание. Так что если ты принесешь мне этот свиток, я помогу тебе.
-	B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников, если я принесу ему свиток с заклинанием Кулак Ветра.");
+	B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников, если я принесу ему свиток с заклинанием 'Кулак Ветра'.");
 };
 
 
@@ -411,7 +414,7 @@ instance DIA_Babo_Windfaust(C_Info)
 	condition = DIA_Babo_Windfaust_Condition;
 	information = DIA_Babo_Windfaust_Info;
 	permanent = TRUE;
-	description = "Насчет свитка... (отдать Кулак Ветра)";
+	description = "Насчет свитка... (отдать 'Кулак Ветра')";
 };
 
 
@@ -433,7 +436,7 @@ func void DIA_Babo_Windfaust_Info()
 	{
 		AI_Output(other,self,"DIA_Babo_Windfaust_15_02");	//Вот свиток, который ты хотел получить.
 		AI_Output(self,other,"DIA_Babo_Windfaust_03_03");	//Отлично. Тогда я помогу тебе подметать кельи.
-		NOV_Helfer = NOV_Helfer + 1;
+		NOV_Helfer += 1;
 		DIA_Babo_Windfaust_permanent = TRUE;
 		B_GivePlayerXP(XP_Feger);
 		AI_StopProcessInfos(self);
@@ -472,11 +475,11 @@ func void DIA_Babo_Life_Info()
 {
 	AI_Output(other,self,"DIA_Babo_Life_15_00");	//Как жизнь в монастыре?
 	AI_Output(self,other,"DIA_Babo_Life_03_01");	//Не хочу жаловаться, но я никогда не думал, что здесь такие жесткие правила. Если ты нарушаешь правила, тебя наказывают.
-	AI_Output(self,other,"DIA_Babo_Life_03_02");	//Конечно, многие послушники хотят изучать учения Инноса в библиотеке, чтобы подготовиться стать избранными.
-	AI_Output(self,other,"DIA_Babo_Life_03_03");	//Но я думаю, что лучшая подготовка к испытанию магией - это тщательно выполнять нашу работу.
-	if(Npc_KnowsInfo(other,DIA_Igaranz_Choosen) == FALSE)
+	AI_Output(self,other,"DIA_Babo_Life_03_02");	//Конечно, многие послушники хотят изучать учения Инноса в библиотеке, чтобы подготовиться стать Избранными.
+	AI_Output(self,other,"DIA_Babo_Life_03_03");	//Но я думаю, что лучшая подготовка к Испытанию Магией - это тщательно выполнять нашу работу.
+	if(!Npc_KnowsInfo(other,DIA_Igaranz_Choosen))
 	{
-		AI_Output(other,self,"DIA_Babo_Life_15_04");	//Что ты там говорил об избранных, и что за испытание?
+		AI_Output(other,self,"DIA_Babo_Life_15_04");	//Что ты там говорил об Избранных, и что за Испытание?
 		AI_Output(self,other,"DIA_Babo_Life_03_05");	//Поговори с братом Игарацем. Он больше знает об этом.
 	};
 };
@@ -763,7 +766,7 @@ instance DIA_Babo_Kap3_HaveYourDocs(C_Info)
 
 func int DIA_Babo_Kap3_HaveYourDocs_Condition()
 {
-	if(((MIS_BabosDocs == LOG_Running) && (Npc_HasItems(other,ItWr_BabosDocs_MIS) >= 1)) || ((Npc_HasItems(other,ItWr_BabosPinUp_MIS) >= 1) && (Npc_HasItems(other,ItWr_BabosLetter_MIS) >= 1)))
+	if(((MIS_BabosDocs == LOG_Running) && Npc_HasItems(other,ItWr_BabosDocs_MIS)) || (Npc_HasItems(other,ItWr_BabosPinUp_MIS) && Npc_HasItems(other,ItWr_BabosLetter_MIS)))
 	{
 		return TRUE;
 	};
@@ -786,7 +789,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_Info()
 
 func void DIA_Babo_Kap3_HaveYourDocs_KeepThem()
 {
-	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_15_00");	//Я подержу их пока у себя .
+	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_15_00");	//Я подержу их пока у себя.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_03_01");	//(ошеломленно) Что?! Что это все значит? Что ты задумал?
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Просто шучу.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke);
@@ -802,7 +805,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke()
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_15_00");	//Просто шучу.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_03_01");	//(кисло) Ха-ха, но мне что-то не смешно. Где же они?
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke_15_02");	//Здесь.
-	if(Npc_HasItems(other,ItWr_BabosDocs_MIS) >= 1)
+	if(Npc_HasItems(other,ItWr_BabosDocs_MIS))
 	{
 		B_GiveInvItems(other,self,ItWr_BabosDocs_MIS,1);
 	}
@@ -881,7 +884,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_IWantMore_NotEnough()
 func void DIA_Babo_Kap3_HaveYourDocs_IWantMore_ThatsEnough()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_ThatsEnough_15_00");	//Договорились.
-	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_ThatsEnough_03_01");	//Вот деньги, и свиток.
+	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_ThatsEnough_03_01");	//Вот деньги и свиток.
 	CreateInvItems(self,ItSc_MediumHeal,1);
 	CreateInvItems(self,ItMi_Gold,121);
 	B_GiveInvItems(self,other,ItSc_MediumHeal,1);
@@ -894,7 +897,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_IWantMore_ThatsEnough()
 func void DIA_Babo_Kap3_HaveYourDocs_HereTheyAre()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_15_00");	//Вот, держи.
-	if(Npc_HasItems(other,ItWr_BabosDocs_MIS) >= 1)
+	if(Npc_HasItems(other,ItWr_BabosDocs_MIS))
 	{
 		B_GiveInvItems(other,self,ItWr_BabosDocs_MIS,1);
 	}

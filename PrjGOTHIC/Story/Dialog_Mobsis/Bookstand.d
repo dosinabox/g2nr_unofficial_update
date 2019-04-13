@@ -6,13 +6,6 @@ func void Use_Bookstand_01_S1()
 	her = Hlp_GetNpc(PC_Hero);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
-		if(hero.guild == GIL_NOV)
-		{
-			KNOWS_FIRE_CONTEST = TRUE;
-			Log_CreateTopic(TOPIC_FireContest,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_FireContest,LOG_Running);
-			B_LogEntry(TOPIC_FireContest,"Будучи послушником, я имею право требовать прохождения Испытания Огнем. Каждый из трех магов Высшего Совета должен дать мне задание. Если я пройду эти испытания, я буду принят в Круг Огня.");
-		};
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
 		Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
@@ -35,6 +28,13 @@ func void Use_Bookstand_01_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Высший совет");
 		Doc_Show(nDocID);
+		if((hero.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == FALSE))
+		{
+			KNOWS_FIRE_CONTEST = TRUE;
+			Log_CreateTopic(TOPIC_FireContest,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_FireContest,LOG_Running);
+			B_LogEntry(TOPIC_FireContest,"Будучи послушником, я имею право требовать прохождения Испытания Огнем. Каждый из трех магов Высшего Совета должен дать мне задание. Если я пройду эти испытания, я буду принят в Круг Огня.");
+		};
 	};
 };
 
@@ -55,13 +55,17 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"... Я надеюсь, что этот купол защитит руду от коварства Белиара. Король настолько наивен, что верит, что мы строим этот купол для предотвращения побегов. Что ж, пока эта уловка позволяет нам следовать нашей высшей цели, пусть так и будет. Мне остается только надеяться, что у нас остается достаточно времени, чтобы подготовиться к битве. Как только купол вокруг Долины рудников будет воздвигнут, я соберу все силы, имеющиеся в моем распоряжении, чтобы принять участие в грядущей битве.");
+		Doc_PrintLines(nDocID,0,"... Я надеюсь, что этот купол защитит руду от коварства Белиара. Король настолько наивен, что верит, что мы строим этот купол для предотвращения побегов. Что ж, пока эта уловка позволяет нам следовать нашей высшей цели, пусть так и будет. Мне остается только надеяться, что у нас остается достаточно времени, чтобы подготовиться к битве. Как только купол вокруг Долины Рудников будет воздвигнут, я соберу все силы, имеющиеся в моем распоряжении, чтобы принять участие в грядущей битве.");
 		Doc_PrintLines(nDocID,0,"");
 		if(hero.guild == GIL_KDF)
 		{
 			PlayerGetsAmulettOfDeath = TRUE;
-			PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] = TRUE;
-			B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Святая стрела': 1 святая вода, свиток не нужен");
+			if(FinalDragonEquipment_Once == FALSE)
+			{
+				PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] = TRUE;
+				PrintScreen(PRINT_LearnRunes,-1,-1,FONT_Screen,2);
+				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Святая стрела': 1 святая вода, свиток не нужен");
+			};
 			Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 			Doc_PrintLine(nDocID,1,"");
 			Doc_PrintLines(nDocID,1,"... Я следовал инструкциям и просто окропил святой водой Инноса чистый рунный камень, лежащий на рунном столе. Рунный камень был уничтожен. Я подозреваю, что это заклинание подвластно только Избранному.");
@@ -72,11 +76,14 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 		else if(hero.guild == GIL_PAL)
 		{
 			PAL_KnowsAbout_FINAL_BLESSING = TRUE;
-			PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] = TRUE;
-			PrintScreen(PRINT_LearnPalTeleportSecret,-1,-1,FONT_Screen,2);
-			Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
-			B_LogEntry(TOPIC_TalentRunes,"Для создания руны необходимы специфические ингредиенты. При помощи этих ингредиентов и чистого рунного камня, можно создать руну на рунном столе.");
-			B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Секретный телепорт': 1 святая вода");
+			if(FinalDragonEquipment_Once == FALSE)
+			{
+				PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] = TRUE;
+				PrintScreen(PRINT_LearnPalTeleportSecret,-1,-1,FONT_Screen,2);
+				Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
+				B_LogEntry(TOPIC_TalentRunes,"Для создания руны необходимы специфические ингредиенты. При помощи этих ингредиентов и чистого рунного камня, можно создать руну на рунном столе.");
+				B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Секретный телепорт': 1 святая вода");
+			};
 			Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 			Doc_PrintLine(nDocID,1,"");
 			Doc_PrintLines(nDocID,1,"Чтобы достичь секретного места, необходимо создать руну телепортации. Для этого необходим чистый рунный камень и небольшая бутылочка святой воды. При помощи этой руны можно телепортироваться в комнату.");
@@ -87,14 +94,17 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 		}
 		else
 		{
-			PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = TRUE;
-			PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = TRUE;
-			PrintScreen(PRINT_LearnSmith,-1,-1,FONT_Screen,2);
-			Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
-			Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
-			B_LogEntry(TOPIC_TalentSmith,"Чтобы выковать оружие, Чтобы выковать оружие, прежде всего мне нужна сырая сталь. Я должен докрасна нагреть ее в огне кузнечного горна, а затем придать форму на наковальне. Особое оружие зачастую требует особых материалов, придающих оружию особые свойства.");
-			B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 4 куска руды и 5 частей драконьей крови, я смогу выковать рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
-			B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 5 кусков руды и 5 частей драконьей крови, я смогу выковать большой рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
+			if(FinalDragonEquipment_Once == FALSE)
+			{
+				PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = TRUE;
+				PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = TRUE;
+				PrintScreen(PRINT_LearnSmith,-1,-1,FONT_Screen,2);
+				Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
+				Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
+				B_LogEntry(TOPIC_TalentSmith,"Чтобы выковать оружие, прежде всего мне нужна сырая сталь. Я должен докрасна нагреть ее в огне кузнечного горна, а затем придать форму на наковальне. Особое оружие зачастую требует особых материалов, придающих оружию особые свойства.");
+				B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 4 куска руды и 5 частей драконьей крови, я смогу выковать рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
+				B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 5 кусков руды и 5 частей драконьей крови, я смогу выковать большой рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
+			};
 			PlayergetsFinalDJGArmor = TRUE;
 			Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 			Doc_PrintLine(nDocID,1,"");

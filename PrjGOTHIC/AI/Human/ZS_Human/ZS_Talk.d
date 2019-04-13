@@ -108,9 +108,6 @@ func void ZS_Talk_End()
 	if(C_NpcIsBotheredByPlayerRoomGuild(self) || ((Wld_GetPlayerPortalGuild() == GIL_PUBLIC) && (Npc_GetAttitude(self,other) != ATT_FRIENDLY)))
 	{
 		AI_StartState(self,ZS_ObservePlayer,0,"");
-	}
-	else
-	{
 	};
 };
 

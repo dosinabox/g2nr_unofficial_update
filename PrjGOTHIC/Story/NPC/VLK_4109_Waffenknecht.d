@@ -11,7 +11,7 @@ instance VLK_4109_Waffenknecht(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Ricelord,BodyTex_N,ITAR_Mil_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Ricelord,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

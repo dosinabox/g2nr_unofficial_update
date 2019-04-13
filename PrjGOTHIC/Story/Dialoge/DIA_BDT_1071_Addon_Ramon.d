@@ -41,7 +41,7 @@ func int DIA_Addon_Ramon_FirstWarn_Condition()
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_RefuseTalk(self) == FALSE))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -53,12 +53,15 @@ func void DIA_Addon_Ramon_FirstWarn_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_00");	//Эй, что там случилось?
 		AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_01");	//Я укокошил Франко.
-		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_02");	//Так что? Значит это теперь ТВОЯ забота - заставлять этих лентяев выполнять свою работу.
+		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_02");	//Так что? Значит, это теперь ТВОЯ забота - заставлять этих лентяев выполнять свою работу.
 		AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_03");	//Эй, я здесь не для того, чтобы нянчиться с охотниками. Мне надо попасть в лагерь.
 		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_04");	//Забудь об этом. Ты убил Франко - теперь ты старший, так делай свою работу.
 		AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_05");	//Если я старший, то я решаю, кто входит следующим.
 		AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_06");	//А я решил, что следующим вхожу я.
-		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_07");	//(смеется) Это не так просто. Мы НИКОГО не просили, так что НИКТО не войдет.
+		if(Npc_KnowsInfo(other,DIA_Addon_Franco_JemandAnderen))
+		{
+			AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_07");	//(смеется) Это не так просто. Мы НИКОГО не просили, так что НИКТО не войдет.
+		};
 		AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_08");	//Торус может послать нового командира охотникам, тогда там освободится место для меня.
 		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_09");	//(смеется) Ты не отстанешь, верно? Ну ладно, тогда давай сюда.
 		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_10");	//Торус позаботится о том, чтобы охотники не остались без командира.
@@ -77,11 +80,11 @@ func void DIA_Addon_Ramon_FirstWarn_Info()
 		if(Npc_KnowsInfo(other,DIA_Addon_Franco_HI))
 		{
 			AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_13");	//Меня послал Франко. Он хочет узнать, не нужен ли кто-нибудь в лагере.
+			AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_14");	//Да, нужен. Вчера еще один парень дал дуба.
+			AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_15");	//Этот идиот поссорился с Эстебаном.
+			AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_16");	//Кто такой Эстебан?
+			AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_17");	//Командир нижнего лагеря. Он определяет, кто пойдет в шахту.
 		};
-		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_14");	//Да, нужен. Вчера еще один парень дал дуба.
-		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_15");	//Этот идиот поссорился с Эстебаном.
-		AI_Output(other,self,"DIA_Addon_Ramon_FirstWarn_15_16");	//Кто такой Эстебан?
-		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_17");	//Командир нижнего лагеря. Он определяет, кто пойдет в шахту.
 		AI_Output(self,other,"DIA_Addon_Ramon_FirstWarn_07_18");	//Так что скажи Франко, что Торусу нужен новый человек. Понял?
 		Log_CreateTopic(Topic_Addon_Franco,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Addon_Franco,LOG_Running);
@@ -136,7 +139,7 @@ instance DIA_Addon_Ramon_SecondWarn(C_Info)
 
 func int DIA_Addon_Ramon_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,BDT_1071_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1071_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -164,7 +167,7 @@ instance DIA_Addon_Ramon_Attack(C_Info)
 
 func int DIA_Addon_Ramon_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,BDT_1071_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1071_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -193,7 +196,7 @@ instance DIA_Addon_Ramon_News(C_Info)
 
 func int DIA_Addon_Ramon_News_Condition()
 {
-	if(!Npc_IsDead(Franco))
+	if(!Npc_IsDead(Franco) && (Ramon_News == TRUE))
 	{
 		return TRUE;
 	};
@@ -219,7 +222,7 @@ instance DIA_Addon_Ramon_Lie(C_Info)
 
 func int DIA_Addon_Ramon_Lie_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Ramon_News) && !Npc_IsDead(Franco))
+	if(!Npc_IsDead(Franco) && (Ramon_News == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Franco_HI))
 	{
 		return TRUE;
 	};

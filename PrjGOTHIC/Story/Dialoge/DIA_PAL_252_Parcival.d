@@ -210,7 +210,7 @@ func void DIA_Parcival_BRAVE_Info()
 		AI_Output(self,other,"DIA_Parcival_BRAVE_13_03");	//Эй! Тебе что, нечего больше делать, как болтать со мной? Проваливай!
 		B_GivePlayerXP(XP_Ambient);
 	};
-	Parcival_BRAVE_LaberCount = Parcival_BRAVE_LaberCount + 1;
+	Parcival_BRAVE_LaberCount += 1;
 };
 
 
@@ -280,7 +280,7 @@ func void DIA_Parcival_ALLESKLAR_Info()
 	{
 		AI_Output(self,other,"DIA_Parcival_ALLESKLAR_13_04");	//Не отвлекай меня.
 	};
-	DIA_Parcival_ALLESKLAR_NervCounter = DIA_Parcival_ALLESKLAR_NervCounter + 1;
+	DIA_Parcival_ALLESKLAR_NervCounter += 1;
 };
 
 
@@ -520,7 +520,7 @@ instance DIA_Parcival_VERRAETER(C_Info)
 
 func int DIA_Parcival_VERRAETER_Condition()
 {
-	if((Npc_RefuseTalk(self) == FALSE) && (MIS_OCGateOpen == TRUE))
+	if(!Npc_RefuseTalk(self) && (MIS_OCGateOpen == TRUE))
 	{
 		return TRUE;
 	};
@@ -532,7 +532,7 @@ func void DIA_Parcival_VERRAETER_Info()
 	AI_Output(self,other,"DIA_Parcival_VERRAETER_13_01");	//Ты заплатишь за это.
 	Npc_SetRefuseTalk(self,30);
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	B_Attack(self,other,AR_KILL,1);
 };
 
 

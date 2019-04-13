@@ -81,11 +81,11 @@ func void DIA_Addon_Owen_Hello_Info()
 	AI_Output(self,other,"DIA_Addon_Owen_Hello_13_01");	//А ты кто такой? Один из бандитов?
 	AI_Output(other,self,"DIA_Addon_Owen_Hello_15_02");	//А что, похож?
 	itm = Npc_GetEquippedArmor(other);
-	if((Hlp_IsItem(itm,ITAR_PIR_M_Addon) == TRUE) || (Hlp_IsItem(itm,ITAR_PIR_L_Addon) == TRUE) || (Hlp_IsItem(itm,ITAR_PIR_H_Addon) == TRUE))
+	if(Hlp_IsItem(itm,ITAR_PIR_M_Addon) || Hlp_IsItem(itm,ITAR_PIR_L_Addon) || Hlp_IsItem(itm,ITAR_PIR_H_Addon))
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_Hello_13_03");	//Одет ты так же, как и мы, но я тебя не знаю.
 	}
-	else if((Hlp_IsItem(itm,ItAr_BDT_M) == TRUE) || (Hlp_IsItem(itm,ItAr_BDT_H) == TRUE))
+	else if(Hlp_IsItem(itm,ITAR_BDT_M) || Hlp_IsItem(itm,ITAR_BDT_H))
 	{
 		AI_Output(self,other,"DIA_Addon_Owen_Hello_13_04");	//Честно говоря, да.
 	}
@@ -234,7 +234,7 @@ instance DIA_Addon_Owen_runter(C_Info)
 
 func int DIA_Addon_Owen_runter_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_Running) && (Npc_HasItems(Malcom,ItWr_TwoHStonePlate3_Addon) > 0))
+	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_Running) && Npc_HasItems(Malcom,ItWr_TwoHStonePlate3_Addon))
 	{
 		return TRUE;
 	};
@@ -259,7 +259,7 @@ instance DIA_Addon_Owen_MalcomDead(C_Info)
 
 func int DIA_Addon_Owen_MalcomDead_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_Running) && (Npc_HasItems(Malcom,ItWr_TwoHStonePlate3_Addon) == 0))
+	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_Running) && !Npc_HasItems(Malcom,ItWr_TwoHStonePlate3_Addon))
 	{
 		return TRUE;
 	};

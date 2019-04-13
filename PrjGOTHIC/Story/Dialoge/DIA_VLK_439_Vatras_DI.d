@@ -34,7 +34,7 @@ instance DIA_Vatras_DI_HEAL(C_Info)
 
 func int DIA_Vatras_DI_HEAL_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -70,7 +70,7 @@ instance DIA_Vatras_DI_TRADE(C_Info)
 
 func int DIA_Vatras_DI_TRADE_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -97,7 +97,7 @@ instance DIA_Vatras_DI_OBSESSION(C_Info)
 
 func int DIA_Vatras_DI_OBSESSION_Condition()
 {
-	if((SC_IsObsessed == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if(!Npc_IsDead(UndeadDragon) && (SC_IsObsessed == TRUE))
 	{
 		return TRUE;
 	};
@@ -114,7 +114,7 @@ func void DIA_Vatras_DI_OBSESSION_Info()
 		if(DIA_Vatras_DI_OBSESSION_Info_OneTime <= 1)
 		{
 			CreateInvItems(self,ItPo_HealObsession_MIS,1);
-			DIA_Vatras_DI_OBSESSION_Info_OneTime = DIA_Vatras_DI_OBSESSION_Info_OneTime + 1;
+			DIA_Vatras_DI_OBSESSION_Info_OneTime += 1;
 		};
 		if(Npc_HasItems(self,ItPo_HealObsession_MIS))
 		{
@@ -147,7 +147,7 @@ instance DIA_Vatras_DI_RAT(C_Info)
 
 func int DIA_Vatras_DI_RAT_Condition()
 {
-	if((Npc_IsDead(UndeadDragon) == FALSE) && (SC_IsObsessed == FALSE))
+	if(!Npc_IsDead(UndeadDragon) && (SC_IsObsessed == FALSE))
 	{
 		return TRUE;
 	};
@@ -254,7 +254,7 @@ instance DIA_Vatras_DI_Talente(C_Info)
 
 func int DIA_Vatras_DI_Talente_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -309,47 +309,47 @@ func void DIA_Vatras_DI_Talente_ALCHIMIE()
 	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ћечебна€ эссенци€",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Vatras_DI_Talente_POTION_Health_01);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Vatras_DI_Talente_POTION_Health_01);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE))
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ћечебный экстракт",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Vatras_DI_Talente_POTION_Health_02);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Vatras_DI_Talente_POTION_Health_02);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE))
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ћечебный эликсир",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Vatras_DI_Talente_POTION_Health_03);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Vatras_DI_Talente_POTION_Health_03);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ёссенци€ маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Vatras_DI_Talente_POTION_Mana_01);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Vatras_DI_Talente_POTION_Mana_01);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ёкстракт маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Vatras_DI_Talente_POTION_Mana_02);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Mana_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Vatras_DI_Talente_POTION_Mana_02);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE))
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ёликсир маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),DIA_Vatras_DI_Talente_POTION_Mana_03);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Mana_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),DIA_Vatras_DI_Talente_POTION_Mana_03);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("«елье ускорени€",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),DIA_Vatras_DI_Talente_POTION_Speed);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Speed_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),DIA_Vatras_DI_Talente_POTION_Speed);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ёликсир силы",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Vatras_DI_Talente_POTION_Perm_STR);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_STR_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Vatras_DI_Talente_POTION_Perm_STR);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ёликсир ловкости",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Vatras_DI_Talente_POTION_Perm_DEX);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_DEX_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Vatras_DI_Talente_POTION_Perm_DEX);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE))
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ёликсир духа",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Vatras_DI_Talente_POTION_Perm_Mana);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Vatras_DI_Talente_POTION_Perm_Mana);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE))
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("Ёликсир жизни",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Vatras_DI_Talente_POTION_Perm_Health);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Vatras_DI_Talente_POTION_Perm_Health);
 	};
 };
 

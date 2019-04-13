@@ -191,7 +191,7 @@ func int DIA_Harad_OrcSuccess_Condition()
 {
 	if(MIS_Harad_Orc == LOG_Running)
 	{
-		if((Npc_HasItems(other,ItMw_2H_OrcAxe_01) > 0) || (Npc_HasItems(other,ItMw_2H_OrcAxe_02) > 0) || (Npc_HasItems(other,ItMw_2H_OrcAxe_03) > 0) || (Npc_HasItems(other,ItMw_2H_OrcAxe_04) > 0) || (Npc_HasItems(other,ItMw_2H_OrcSword_01) > 0))
+		if(Npc_HasItems(other,ItMw_2H_OrcAxe_01) || Npc_HasItems(other,ItMw_2H_OrcAxe_02) || Npc_HasItems(other,ItMw_2H_OrcAxe_03) || Npc_HasItems(other,ItMw_2H_OrcAxe_04) || Npc_HasItems(other,ItMw_2H_OrcSword_01))
 		{
 			return TRUE;
 		};
@@ -202,19 +202,19 @@ func void DIA_Harad_OrcSuccess_Info()
 {
 	AI_Output(other,self,"DIA_Harad_OrcSuccess_15_00");	//я принес тебе оружие орков, как ты хотел.
 	AI_Output(self,other,"DIA_Harad_OrcSuccess_12_01");	//ѕокажи...
-	if(Npc_HasItems(other,ItMw_2H_OrcAxe_01) > 0)
+	if(Npc_HasItems(other,ItMw_2H_OrcAxe_01))
 	{
 		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_01,1);
 	}
-	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_02) > 0)
+	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_02))
 	{
 		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_02,1);
 	}
-	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_03) > 0)
+	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_03))
 	{
 		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_03,1);
 	}
-	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_04) > 0)
+	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_04))
 	{
 		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_04,1);
 	}
@@ -288,14 +288,14 @@ func void DIA_Harad_LEHRLING_Info()
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_03");	//“ы не убил орка, но ’акон рассказал мне, как ты решил проблему с бандитами. Ёто хорошо!
 		};
 		AI_Output(self,other,"DIA_Harad_LEHRLING_12_04");	//„то касаетс€ моего мнени€, то ты можешь приступать к работе хоть сейчас.
-		stimmen = stimmen + 1;
+		stimmen += 1;
 		AI_Output(self,other,"DIA_Harad_LEHRLING_12_05");	//ј другие мастера...
 		if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_06");	//“орбен дал тебе свое благословение.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else
 			{
@@ -313,7 +313,7 @@ func void DIA_Harad_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_10");	//я имел краткий, но напр€женный разговор с ним по этому вопросу.
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_11");	//¬ конце концов, он согласилс€.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else
 			{
@@ -330,7 +330,7 @@ func void DIA_Harad_LEHRLING_Info()
 			if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_15");	// ак всегда,  онстантино ничего не волнует. ќн сказал, что с его точки зрени€, ты можешь стать моим учеником в любой момент.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else
 			{
@@ -347,7 +347,7 @@ func void DIA_Harad_LEHRLING_Info()
 			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_19");	//ћаттео говорит, что ты вернул ему его золото. ћне кажетс€, ты благородный молодой человек.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else if(MIS_Matteo_Gold == LOG_Running)
 			{
@@ -463,9 +463,9 @@ func void DIA_Harad_Zustimmung_Info()
 		if(DIA_Harad_Zustimmung_Permanent == FALSE)
 		{
 			B_GivePlayerXP(XP_Zustimmung);
+			B_LogEntry(TOPIC_Lehrling,"√арад даст мне свое одобрение, если € захочу стать учеником другого мастера.");
 			DIA_Harad_Zustimmung_Permanent = TRUE;
 		};
-		B_LogEntry(TOPIC_Lehrling,"√арад даст мне свое одобрение, если € захочу стать учеником другого мастера.");
 		if(!Npc_IsDead(Brian))
 		{
 			AI_Output(self,other,"DIA_Harad_Zustimmung_12_04");	//Ѕрайан еще поработает здесь некоторое врем€. » € уверен, что рано или поздно найдетс€ крепкий парень, способный заменить его.
@@ -473,7 +473,7 @@ func void DIA_Harad_Zustimmung_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Harad_Zustimmung_12_05");	//ƒругие мастера могут дать свое согласие на это. Ќо € дам сое одобрение только после того, как ты докажешь, что хоть на что-то годен!
+		AI_Output(self,other,"DIA_Harad_Zustimmung_12_05");	//ƒругие мастера могут дать свое согласие на это. Ќо € дам свое одобрение только после того, как ты докажешь, что хоть на что-то годен!
 	};
 };
 
@@ -627,34 +627,54 @@ func void DIA_Harad_SellBlades_Info()
 	AI_Output(other,self,"DIA_Harad_SellBlades_15_00");	//я хочу продать оружие, выкованное мной.
 	EquipWeap = Npc_GetEquippedMeleeWeapon(other);
 	anzahl_common = Npc_HasItems(other,ItMw_1H_Common_01);
-	if(Hlp_IsItem(EquipWeap,ItMw_1H_Common_01) == TRUE)
+	if(Hlp_IsItem(EquipWeap,ItMw_1H_Common_01))
 	{
-		anzahl_common = anzahl_common - 1;
+		if(anzahl_common > 1)
+		{
+			Npc_RemoveInvItem(other,ItMw_1H_Common_01);
+		};
+		anzahl_common -= 1;
 	};
 	anzahl_schwert1 = Npc_HasItems(other,ItMw_Schwert1);
-	if(Hlp_IsItem(EquipWeap,ItMw_Schwert1) == TRUE)
+	if(Hlp_IsItem(EquipWeap,ItMw_Schwert1))
 	{
-		anzahl_schwert1 = anzahl_schwert1 - 1;
+		if(anzahl_schwert1 > 1)
+		{
+			Npc_RemoveInvItem(other,ItMw_Schwert1);
+		};
+		anzahl_schwert1 -= 1;
 	};
 	anzahl_schwert4 = Npc_HasItems(other,ItMw_Schwert4);
-	if(Hlp_IsItem(EquipWeap,ItMw_Schwert4) == TRUE)
+	if(Hlp_IsItem(EquipWeap,ItMw_Schwert4))
 	{
-		anzahl_schwert4 = anzahl_schwert4 - 1;
+		if(anzahl_schwert4 > 1)
+		{
+			Npc_RemoveInvItem(other,ItMw_Schwert4);
+		};
+		anzahl_schwert4 -= 1;
 	};
 	anzahl_rubinklinge = Npc_HasItems(other,ItMw_Rubinklinge);
-	if(Hlp_IsItem(EquipWeap,ItMw_Rubinklinge) == TRUE)
+	if(Hlp_IsItem(EquipWeap,ItMw_Rubinklinge))
 	{
-		anzahl_rubinklinge = anzahl_rubinklinge - 1;
+		if(anzahl_rubinklinge > 1)
+		{
+			Npc_RemoveInvItem(other,ItMw_Rubinklinge);
+		};
+		anzahl_rubinklinge -= 1;
 	};
 	anzahl_elbastardo = Npc_HasItems(other,ItMw_ElBastardo);
-	if(Hlp_IsItem(EquipWeap,ItMw_ElBastardo) == TRUE)
+	if(Hlp_IsItem(EquipWeap,ItMw_ElBastardo))
 	{
-		anzahl_elbastardo = anzahl_elbastardo - 1;
+		if(anzahl_elbastardo > 1)
+		{
+			Npc_RemoveInvItem(other,ItMw_ElBastardo);
+		};
+		anzahl_elbastardo -= 1;
 	};
 	gesamt = anzahl_common + anzahl_schwert1 + anzahl_schwert4 + anzahl_rubinklinge + anzahl_elbastardo;
 	if(gesamt == 0)
 	{
-		if((Hlp_IsItem(EquipWeap,ItMw_1H_Common_01) == TRUE) || (Hlp_IsItem(EquipWeap,ItMw_Schwert1) == TRUE) || (Hlp_IsItem(EquipWeap,ItMw_Schwert4) == TRUE) || (Hlp_IsItem(EquipWeap,ItMw_Rubinklinge) == TRUE) || (Hlp_IsItem(EquipWeap,ItMw_ElBastardo) == TRUE))
+		if(Hlp_IsItem(EquipWeap,ItMw_1H_Common_01) || Hlp_IsItem(EquipWeap,ItMw_Schwert1) || Hlp_IsItem(EquipWeap,ItMw_Schwert4) || Hlp_IsItem(EquipWeap,ItMw_Rubinklinge) || Hlp_IsItem(EquipWeap,ItMw_ElBastardo))
 		{
 			AI_Output(self,other,"DIA_Harad_SellBlades_12_01");	//¬се, что у теб€ есть - это меч, вис€щий на по€се. “ы лучше оставь его себе.
 		}
@@ -674,9 +694,9 @@ func void DIA_Harad_SellBlades_Info()
 		concatText = ConcatStrings(IntToString(gesamt),PRINT_ItemsGegeben);
 		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Harad_SellBlades_12_03");	//ќтлично. ƒержи, что заработал.
-		lohn = (anzahl_common * Value_Common1) + (anzahl_schwert1 * Value_Schwert1) + (anzahl_schwert4 * Value_Schwert4) + (anzahl_rubinklinge * Value_Rubinklinge) + (anzahl_elbastardo * Value_ElBastardo);
-		lohn = lohn / 3;
+		lohn = ((anzahl_common * Value_Common1) + (anzahl_schwert1 * Value_Schwert1) + (anzahl_schwert4 * Value_Schwert4) + (anzahl_rubinklinge * Value_Rubinklinge) + (anzahl_elbastardo * Value_ElBastardo)) / 3;
 		B_GiveInvItems(self,other,ItMi_Gold,lohn);
+		AI_EquipBestMeleeWeapon(other);
 	};
 };
 
@@ -708,7 +728,7 @@ func void B_HaradSmithChoices()
 	};
 	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
 	{
-		Info_AddChoice(DIA_Harad_TeachSmith,B_BuildLearnString("Ќаучитьс€ ковать.",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Harad_TeachSmith_Common);
+		Info_AddChoice(DIA_Harad_TeachSmith,B_BuildLearnString("Ќаучитьс€ ковать",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_Common)),DIA_Harad_TeachSmith_Common);
 	};
 };
 

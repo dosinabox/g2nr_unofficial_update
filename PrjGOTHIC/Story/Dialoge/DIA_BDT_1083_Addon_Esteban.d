@@ -82,7 +82,10 @@ func void DIA_Addon_Esteban_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Esteban_Hi_07_00");	//Так ты тот самый парень, что с боем пробился в лагерь.
 	AI_Output(other,self,"DIA_Addon_Esteban_Hi_15_01");	//Слухи быстро распространяются...
-	AI_Output(self,other,"DIA_Addon_Esteban_Hi_07_02");	//Франко был крепким орешком. Никто не хотел связываться с ним. Никто - кроме тебя.
+	if(Npc_IsDead(Franco))
+	{
+		AI_Output(self,other,"DIA_Addon_Esteban_Hi_07_02");	//Франко был крепким орешком. Никто не хотел связываться с ним. Никто - кроме тебя.
+	};
 	AI_Output(self,other,"DIA_Addon_Esteban_Hi_07_03");	//Просто чтобы сразу прояснить ситуацию - если ты затеешь то же со мной, я убью тебя.
 };
 
@@ -403,7 +406,7 @@ func void DIA_Addon_Esteban_fight_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_01");	//Не каждый получает такое предложение. Но если тебе оно не нравится, ты можешь свободно покинуть лагерь...
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_02");	//А может быть, ты сдержишь слово и дашь мне красный камень?
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_03");	//Эй! Еще одно слово - и моим охранникам придется применить силу.
-	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?..
+	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_05");	//Что?.. А, понятно, ты хочешь обвести меня... Ну, погоди...
 	Bodyguard_Killer = FALSE;
 	B_KillNpc(Wache_01);

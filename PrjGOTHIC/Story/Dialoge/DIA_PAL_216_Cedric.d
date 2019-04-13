@@ -1,7 +1,7 @@
 
 instance DIA_Cedric_EXIT(C_Info)
 {
-	npc = Pal_216_Cedric;
+	npc = PAL_216_Cedric;
 	nr = 999;
 	condition = DIA_Cedric_EXIT_Condition;
 	information = DIA_Cedric_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Cedric_EXIT_Info()
 
 instance DIA_Cedric_Hallo(C_Info)
 {
-	npc = Pal_216_Cedric;
+	npc = PAL_216_Cedric;
 	nr = 2;
 	condition = DIA_Cedric_Hallo_Condition;
 	information = DIA_Cedric_Hallo_Info;
@@ -48,7 +48,7 @@ func void DIA_Cedric_Hallo_Info()
 
 instance DIA_Cedric_CanTeach(C_Info)
 {
-	npc = Pal_216_Cedric;
+	npc = PAL_216_Cedric;
 	nr = 5;
 	condition = DIA_Cedric_CanTeach_Condition;
 	information = DIA_Cedric_CanTeach_Info;
@@ -83,7 +83,7 @@ func void DIA_Cedric_CanTeach_Info()
 
 instance DIA_Cedric_Teach(C_Info)
 {
-	npc = Pal_216_Cedric;
+	npc = PAL_216_Cedric;
 	nr = 100;
 	condition = DIA_Cedric_Teach_Condition;
 	information = DIA_Cedric_Teach_Info;
@@ -144,7 +144,7 @@ func void DIA_Cedric_Teach_2H_5()
 
 instance DIA_Cedric_PICKPOCKET(C_Info)
 {
-	npc = Pal_216_Cedric;
+	npc = PAL_216_Cedric;
 	nr = 900;
 	condition = DIA_Cedric_PICKPOCKET_Condition;
 	information = DIA_Cedric_PICKPOCKET_Info;

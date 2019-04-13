@@ -71,7 +71,7 @@ func int DIA_PAL_298_TRESPASS_Condition()
 func void DIA_PAL_298_TRESPASS_Info()
 {
 	AI_Output(self,other,"DIA_PAL_298_TRESPASS_09_00");	//Ты уверен, что хочешь пойти туда? Боюсь, далеко ты не уйдешь - там орки.
-	AI_Output(other,self,"DIA_PAL_298_TRESPASS_15_01");	//Если есть путь в Долину Рудников, Я найду его.
+	AI_Output(other,self,"DIA_PAL_298_TRESPASS_15_01");	//Если есть путь в Долину Рудников, я найду его.
 	AI_Output(self,other,"DIA_PAL_298_TRESPASS_09_02");	//Хорошо, тогда иди. Иди с Инносом.
 };
 
@@ -83,7 +83,7 @@ instance DIA_PAL_298_Perm1(C_Info)
 	condition = DIA_PAL_298_Perm1_Condition;
 	information = DIA_PAL_298_Perm1_Info;
 	permanent = TRUE;
-	description = "А что если я все же пойду, на свой страх и риск?";
+	description = "А что, если я все же пойду, на свой страх и риск?";
 };
 
 
@@ -97,7 +97,7 @@ func int DIA_PAL_298_Perm1_Condition()
 
 func void DIA_PAL_298_Perm1_Info()
 {
-	AI_Output(other,self,"DIA_PAL_298_Perm1_15_00");	//А что если я все же пойду, на свой страх и риск?
+	AI_Output(other,self,"DIA_PAL_298_Perm1_15_00");	//А что, если я все же пойду, на свой страх и риск?
 	AI_Output(self,other,"DIA_PAL_298_Perm1_09_01");	//Тогда ты погибнешь. Вот почему мы здесь. Чтобы у тебя не возникали такие идиотские идеи.
 };
 

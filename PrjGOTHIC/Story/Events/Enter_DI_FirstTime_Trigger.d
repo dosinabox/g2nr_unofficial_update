@@ -18,16 +18,16 @@ func void enter_di_firsttime_trigger()
 			CreateInvItems(Archol,ItRu_PalDestroyEvil,1);
 		};
 		Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_12");
-		if(Npc_HasItems(hero,ItMi_InnosEye_MIS) == FALSE)
+		if(!Npc_HasItems(hero,ItMi_InnosEye_MIS))
 		{
-			if(Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis) == FALSE)
+			if(!Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis))
 			{
 				Wld_InsertItem(ItSe_XardasNotfallBeutel_MIS,"FP_ITEM_SHIP_12");
 				SC_InnosEyeVergessen_DI = TRUE;
 				B_LogEntry(TOPIC_HallenVonIrdorath,"Прошлой ночью мне приснился сон. Со мной говорил Ксардас, он попросил меня подойти к алхимическому столу на корабле, чтобы забрать кое-что с него. Это очень странно, но я ничего не пил вчера вечером.");
 			};
 			Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_06");
-			if(((Npc_HasItems(hero,ItAt_IcedragonHeart) >= 1) || (Npc_HasItems(hero,ItAt_RockdragonHeart) >= 1) || (Npc_HasItems(hero,ItAt_FiredragonHeart) >= 1) || (Npc_HasItems(hero,ItAt_SwampdragonHeart) >= 1)) == FALSE)
+			if(!Npc_HasItems(hero,ItAt_IcedragonHeart) && !Npc_HasItems(hero,ItAt_RockdragonHeart) && !Npc_HasItems(hero,ItAt_FiredragonHeart) && !Npc_HasItems(hero,ItAt_SwampdragonHeart))
 			{
 				CreateInvItems(OrkElite_AntiPaladinOrkOberst_DI,ItAt_RockdragonHeart,1);
 			};

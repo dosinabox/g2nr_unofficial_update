@@ -10,6 +10,7 @@ instance VLK_492_Rengaru(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
+	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_Gold,50);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_ToughBart01,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);

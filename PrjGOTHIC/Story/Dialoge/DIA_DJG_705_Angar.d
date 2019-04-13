@@ -43,7 +43,7 @@ func void DIA_AngarDJG_HALLO_Info()
 	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_02");	//Забавно, но мне кажется, что я тебя тоже знаю. Но я точно не помню откуда.
 	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_03");	//Что с тобой?
 	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_04");	//Ох. Я уже давно не мог нормально спать. Эти постоянные кошмары...
-	B_LogEntry(TOPIC_Dragonhunter,"Я нашел Ангара в Долине рудников.");
+	B_LogEntry(TOPIC_Dragonhunter,"Я нашел Ангара в Долине Рудников.");
 };
 
 func void B_SCTellsAngarAboutMadPsi()
@@ -122,7 +122,7 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_amulett()
 	else
 	{
 		AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_02");	//Он должен быть где-то там.
-		B_LogEntry(TOPIC_AngarsAmulett,"Амулет находится около гробницы в скале на юге Долины рудников.");
+		B_LogEntry(TOPIC_AngarsAmulett,"Амулет находится около гробницы в скале на юге Долины Рудников.");
 	};
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_03");	//Я подозреваю, что он был украден. Мне крайне необходимо вернуть его себе.
 };
@@ -137,7 +137,7 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_andere()
 	{
 		AI_Output(other,self,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_15_00");	//А что произошло с другими из болотного лагеря?
 	};
-	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_01");	//Последнее, что я помню, - это обрушение Барьера, сопровождавшееся душераздирающим воплем.
+	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_01");	//Последнее, что я помню - это обрушение Барьера, сопровождавшееся душераздирающим воплем.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_02");	//Нас охватил панический страх. Мы упали на землю, корчась от боли. Этот голос... Он становился все громче.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_03");	//А затем вдруг все кончилось, все побежали как безумные и исчезли в ночи, вопя истошными голосами.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_04");	//И больше я их не видел.
@@ -367,7 +367,7 @@ func void DIA_AngarDJG_WHATSINTHERE_Info()
 	AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_01");	//Что-то, что не позволяет мне приблизиться к входу!
 	AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_02");	//Его охраняет магическое существо. Я видел его ночью, он тут рыскал. Отвратительное создание.
 	AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_03");	//Он шнырял между деревьями, и у меня было впечатление, что он высасывает всю жизнь вокруг и впитывает ее, как губка.
-	B_LogEntry(TOPIC_Dragonhunter,"Я нашел Ангара в Долине рудников.");
+	B_LogEntry(TOPIC_Dragonhunter,"Я нашел Ангара в Долине Рудников.");
 };
 
 
@@ -522,7 +522,7 @@ func void DIA_Angar_WHYAREYOUHERE_Info()
 	AI_Output(other,self,"DIA_Angar_WHYAREYOUHERE_15_00");	//Ангар? Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Angar_WHYAREYOUHERE_04_01");	//Я шел к Проходу, когда неожиданно наткнулся на орков. Я не смог оторваться от них.
 	AI_Output(self,other,"DIA_Angar_WHYAREYOUHERE_04_02");	//Я подожду немного, а затем пойду через Проход. Увидимся на другой стороне!
-	B_LogEntry(TOPIC_Dragonhunter,"Я встретил Ангара опять, он застрял в Долине рудников.");
+	B_LogEntry(TOPIC_Dragonhunter,"Я встретил Ангара опять, он застрял в Долине Рудников.");
 	B_GivePlayerXP(XP_AngarDJGAgain);
 	AI_StopProcessInfos(self);
 };

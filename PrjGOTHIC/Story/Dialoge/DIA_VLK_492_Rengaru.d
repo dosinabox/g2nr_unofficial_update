@@ -146,7 +146,7 @@ func void DIA_Rengaru_GOTYOU_Info()
 func void DIA_Rengaru_GOTYOU_YouThief()
 {
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_YouThief_15_00");	//...тебе лучше вернуть золото ƒжоры. » немедленно.
-	if(Npc_HasItems(self,ItMi_Gold) >= 1)
+	if(Npc_HasItems(self,ItMi_Gold))
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//¬от золото, парень! Ќо теперь отпусти мен€. я больше никогда не буду заниматьс€ этим.
 		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
@@ -165,7 +165,7 @@ func void DIA_Rengaru_GOTYOU_YouThief()
 func void DIA_Rengaru_GOTYOU_Anteil()
 {
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_15_00");	//...€ заслуживаю долю от награбленного.
-	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && (Npc_HasItems(self,ItMi_Gold) < 1))
+	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && !Npc_HasItems(self,ItMi_Gold))
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_07_01");	//“ы уже забрал все, что у мен€ было, после того, как вырубил мен€! ѕусти!
 		Info_ClearChoices(DIA_Rengaru_GOTYOU);
@@ -253,13 +253,13 @@ func void DIA_Rengaru_INKNAST_HauAb()
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_HauAb_07_01");	//“ы не пожалеешь об этом! —пасибо, парень!
 	Npc_ExchangeRoutine(self,"Start");
 	AI_StopProcessInfos(self);
-	Diebesgilde_Okay = Diebesgilde_Okay + 1;
+	Diebesgilde_Okay += 1;
 };
 
 func void DIA_Rengaru_INKNAST_Knast()
 {
 	AI_Output(other,self,"DIA_Rengaru_INKNAST_Knast_15_00");	//я позабочусь, чтобы теб€ посадили за решетку.
-	AI_Output(self,other,"DIA_Rengaru_INKNAST_Knast_07_01");	//(устало) я уже устал от этого всего. ≈сли тебе кажетс€, что ты должен это сделать, поступай как знаешь.
+	AI_Output(self,other,"DIA_Rengaru_INKNAST_Knast_07_01");	//(устало) я уже устал от всего этого. ≈сли тебе кажетс€, что ты должен это сделать, поступай как знаешь.
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_Knast_07_02");	//(предупреждающе) Ќо берегись: мои друзь€ это дело так не остав€т...
 	Rengaru_InKnast = TRUE;
 	AI_StopProcessInfos(self);
@@ -313,7 +313,7 @@ instance DIA_Rengaru_Zeichen(C_Info)
 	condition = DIA_Rengaru_Zeichen_Condition;
 	information = DIA_Rengaru_Zeichen_Info;
 	permanent = FALSE;
-	description = "(ѕоказать сигнал воров)";
+	description = DIALOG_SecretSign;
 };
 
 

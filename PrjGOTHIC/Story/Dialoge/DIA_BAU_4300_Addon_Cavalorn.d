@@ -43,10 +43,7 @@ instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
 
 func int DIA_Addon_Cavalorn_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= (25 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(25,Hlp_GetInstanceID(ItRw_Arrow),0);
 };
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
@@ -58,19 +55,21 @@ func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
 {
+	CreateInvItems(self,ItRw_Arrow,44);
+//	B_StealItems(25,Hlp_GetInstanceID(ItRw_Arrow),44);
 	if(other.attribute[ATR_DEXTERITY] >= 25)
 	{
 		B_GiveInvItems(self,other,ItRw_Arrow,44);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
 	}
 	else
 	{
 		B_ResetThiefLevel();
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
-	};
+	}; 
+	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
 };
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_BACK()
@@ -149,7 +148,7 @@ func void DIA_Addon_Cavalorn_HALLO_weissNicht()
 func void DIA_Addon_Cavalorn_HALLO_Ja()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_Ja_15_00");	//Тебя зовут Кавалорн, верно?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Ja_08_01");	//Ага. Вижу, ты все-таки не забыл меня после всего, через что мы прошли в этой клятой колонии.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Ja_08_01");	//Ага. Я вижу, ты все-таки не забыл меня после всего, через что мы прошли в этой клятой колонии.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Ja_08_02");	//Куда ты направляешься?
 	Info_ClearChoices(DIA_Addon_Cavalorn_HALLO);
 	Info_AddChoice(DIA_Addon_Cavalorn_HALLO,"У меня нет определенной цели.",DIA_Addon_Cavalorn_HALLO_keinZiel);
@@ -332,7 +331,7 @@ instance DIA_Addon_Cavalorn_WASMACHSTDU(C_Info)
 
 func int DIA_Addon_Cavalorn_WASMACHSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE))
 	{
 		return TRUE;
 	};
@@ -357,7 +356,7 @@ instance DIA_Addon_Cavalorn_Banditen(C_Info)
 
 func int DIA_Addon_Cavalorn_Banditen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_WASMACHSTDU) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_WASMACHSTDU) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE))
 	{
 		return TRUE;
 	};
@@ -389,7 +388,7 @@ instance DIA_Addon_Cavalorn_ARTEFAKT(C_Info)
 
 func int DIA_Addon_Cavalorn_ARTEFAKT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && (MIS_Addon_Cavalorn_KillBrago != LOG_SUCCESS) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && (MIS_Addon_Cavalorn_KillBrago != LOG_SUCCESS) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -416,7 +415,7 @@ instance DIA_Addon_Cavalorn_HELFEN(C_Info)
 
 func int DIA_Addon_Cavalorn_HELFEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_ARTEFAKT) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS) && (C_BragoBanditsDead() == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_ARTEFAKT) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS) && !C_BragoBanditsDead())
 	{
 		return TRUE;
 	};
@@ -425,7 +424,7 @@ func int DIA_Addon_Cavalorn_HELFEN_Condition()
 func void DIA_Addon_Cavalorn_HELFEN_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_HELFEN_15_00");	//Могу я помочь тебе с бандитами?
-	if((Npc_HasEquippedArmor(other) == FALSE) && (hero.guild == GIL_NONE))
+	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_01");	//(хитро) Возможно. Но ты выглядишь таким тощим, ты наверняка не держал меча несколько недель.
 	};
@@ -453,7 +452,7 @@ instance DIA_Addon_Cavalorn_AUSRUESTUNG(C_Info)
 
 func int DIA_Addon_Cavalorn_AUSRUESTUNG_Condition()
 {
-	if((MIS_Addon_Cavalorn_KillBrago != 0) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0))
+	if((MIS_Addon_Cavalorn_KillBrago != FALSE) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE))
 	{
 		return TRUE;
 	};
@@ -462,7 +461,7 @@ func int DIA_Addon_Cavalorn_AUSRUESTUNG_Condition()
 func void DIA_Addon_Cavalorn_AUSRUESTUNG_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_AUSRUESTUNG_15_00");	//Мне нужна экипировка получше.
-	if(C_BragoBanditsDead() == FALSE)
+	if(!C_BragoBanditsDead())
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_AUSRUESTUNG_08_01");	//Эти свиньи не оставили мне почти ничего.
 	};
@@ -490,7 +489,7 @@ instance DIA_Addon_Cavalorn_LETSKILLBANDITS(C_Info)
 
 func int DIA_Addon_Cavalorn_LETSKILLBANDITS_Condition()
 {
-	if((MIS_Addon_Cavalorn_KillBrago == LOG_Running) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS) && (C_BragoBanditsDead() == FALSE))
+	if((MIS_Addon_Cavalorn_KillBrago == LOG_Running) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE) && (MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS) && !C_BragoBanditsDead())
 	{
 		return TRUE;
 	};
@@ -516,7 +515,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 	if(MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_00");	//И я, наконец, смогу выполнить свое задание. Я и так потерял уже слишком много времени.
-		AI_Output(other,self,"DIA_Addon_Cavalorn_VatrasBrief_15_01");	//Что это за задание?..
+		AI_Output(other,self,"DIA_Addon_Cavalorn_VatrasBrief_15_01");	//Что это за задание?
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_02");	//(сам себе) Ах, да. Ведь сначала мне еще нужно будет попасть в город, и потом...
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_03");	//(вздыхает) Не знаю, как мне удастся сделать это вовремя.
 		AI_Output(other,self,"DIA_Addon_Cavalorn_VatrasBrief_15_04");	//(сухо) А что насчет меня?
@@ -531,7 +530,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_10");	//А если он спросит, где я, просто скажи ему, что я уже на пути к месту встречи, ладно?
 		B_LogEntry(TOPIC_Addon_KDW,"В городе Хоринисе живет маг Воды Ватрас. Он читает проповеди в храме Аданоса.");
 	};
-	if((Npc_HasEquippedArmor(other) == FALSE) && (hero.guild == GIL_NONE) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_11");	//А, да, и еще одно. Для начала купи приличную одежду у какого-нибудь фермера.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_12");	//Иначе тебя могут принять за бандита. Вот пара монет.
@@ -539,7 +538,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		B_GiveInvItems(self,other,ItMi_Gold,50);
 	};
 	MIS_Addon_Cavalorn_KillBrago = LOG_SUCCESS;
-	if(MIS_Addon_Cavalorn_Letter2Vatras == 0)
+	if(MIS_Addon_Cavalorn_Letter2Vatras == FALSE)
 	{
 		MIS_Addon_Cavalorn_Letter2Vatras = LOG_Running;
 	};
@@ -547,6 +546,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 	B_GivePlayerXP(XP_Addon_Cavalorn_KillBrago);
 	Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+	B_LogEntry(TOPIC_Addon_KDW,"Кавалорн хочет, чтобы я доставил украденное бандитами письмо магу Воды Ватрасу, которого можно найти в городе, в храме Аданоса.");
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 
@@ -563,7 +563,7 @@ instance DIA_Addon_Cavalorn_BragoKilled(C_Info)
 
 func int DIA_Addon_Cavalorn_BragoKilled_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running) && (C_BragoBanditsDead() == TRUE))
+	if((Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running) && C_BragoBanditsDead())
 	{
 		return TRUE;
 	};
@@ -588,7 +588,7 @@ instance DIA_Addon_Cavalorn_PCKilledBrago(C_Info)
 
 func int DIA_Addon_Cavalorn_PCKilledBrago_Condition()
 {
-	if((MIS_Addon_Cavalorn_KillBrago == 0) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && (C_BragoBanditsDead() == TRUE))
+	if((MIS_Addon_Cavalorn_KillBrago == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && C_BragoBanditsDead())
 	{
 		return TRUE;
 	};
@@ -656,7 +656,7 @@ func void DIA_Addon_Cavalorn_Ring_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Ring_15_00");	//Расскажи мне о 'Кольце Воды'!
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_01");	//Мне на самом деле нельзя говорить про него.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_02");	//Все, что я могу сделать, - это отослать тебя к Ватрасу. Он - представитель магов Воды в Хоринисе.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_02");	//Все, что я могу сделать - это отослать тебя к Ватрасу. Он - представитель магов Воды в Хоринисе.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_03");	//Лучше тебе поговорить с ним. Скажи, что я тебя рекомендовал.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_04");	//Может быть, он тебя примет в наши ряды. Нам срочно необходимы люди...
 	B_LogEntry(TOPIC_Addon_RingOfWater,"О Кольце Воды мне может рассказать маг Воды Ватрас.");
@@ -705,7 +705,7 @@ instance DIA_Addon_Cavalorn_KdWTask(C_Info)
 
 func int DIA_Addon_Cavalorn_KdWTask_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_JUNGS) && (MIS_Addon_Nefarius_BringMissingOrnaments == 0))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_JUNGS) && (MIS_Addon_Nefarius_BringMissingOrnaments == FALSE))
 	{
 		return TRUE;
 	};
@@ -897,7 +897,7 @@ instance DIA_Addon_Cavalorn_WannaLearn(C_Info)
 
 func int DIA_Addon_Cavalorn_WannaLearn_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (C_BragoBanditsDead() == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && C_BragoBanditsDead())
 	{
 		return TRUE;
 	};
@@ -940,9 +940,9 @@ func void DIA_Addon_Cavalorn_TEACH_Choices()
 {
 	Info_ClearChoices(DIA_Addon_Cavalorn_TEACH);
 	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,Dialog_Back,DIA_Addon_Cavalorn_Teach_Back);
-	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 	{
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString("Красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Addon_Cavalorn_Teach_Sneak);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Addon_Cavalorn_Teach_Sneak);
 	};
 	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_Cavalorn_Teach_Bow_1);
 	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 5),DIA_Addon_Cavalorn_Teach_Bow_5);

@@ -1,5 +1,5 @@
 
-instance Vlk_402_Richter(Npc_Default)
+instance VLK_402_Richter(Npc_Default)
 {
 	name[0] = "Судья";
 	guild = GIL_VLK;

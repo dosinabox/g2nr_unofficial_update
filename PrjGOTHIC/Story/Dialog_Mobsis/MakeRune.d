@@ -389,7 +389,7 @@ func void PC_SPL_MasterOfDisaster_BACK()
 
 func void PC_SPL_MasterOfDisaster_Create()
 {
-	if(Npc_HasItems(hero,ItMi_HolyWater) >= 1)
+	if(Npc_HasItems(hero,ItMi_HolyWater))
 	{
 		Npc_RemoveInvItems(hero,ItMi_HolyWater,1);
 		CreateInvItems(hero,ItRu_MasterOfDisaster,1);
@@ -439,7 +439,7 @@ func void PC_SPL_PalTeleportSecret_BACK()
 
 func void PC_SPL_PalTeleportSecret_Create()
 {
-	if(Npc_HasItems(hero,ItMi_HolyWater) >= 1)
+	if(Npc_HasItems(hero,ItMi_HolyWater))
 	{
 		Npc_RemoveInvItems(hero,ItMi_HolyWater,1);
 		CreateInvItems(hero,ItRu_PalTeleportSecret,1);
@@ -455,7 +455,7 @@ func void PC_SPL_PalTeleportSecret_Create()
 
 func void PC_ItRu_Light_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Light) >= 1) && (Npc_HasItems(hero,ItMi_Gold) >= 1))
+	if(Npc_HasItems(hero,ItSc_Light) && Npc_HasItems(hero,ItMi_Gold))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Light,1);
 		Npc_RemoveInvItems(hero,ItMi_Gold,1);
@@ -472,7 +472,7 @@ func void PC_ItRu_Light_Info()
 
 func void PC_ItRu_Firebolt_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Firebolt) >= 1) && (Npc_HasItems(hero,ItMi_Sulfur) >= 1))
+	if(Npc_HasItems(hero,ItSc_Firebolt) && Npc_HasItems(hero,ItMi_Sulfur))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Firebolt,1);
 		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
@@ -489,7 +489,7 @@ func void PC_ItRu_Firebolt_Info()
 
 func void PC_ItRu_LightHeal_Info()
 {
-	if((Npc_HasItems(hero,ItSc_LightHeal) >= 1) && (Npc_HasItems(hero,ItPl_Health_Herb_01) >= 1))
+	if(Npc_HasItems(hero,ItSc_LightHeal) && Npc_HasItems(hero,ItPl_Health_Herb_01))
 	{
 		Npc_RemoveInvItems(hero,ItSc_LightHeal,1);
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_01,1);
@@ -506,7 +506,7 @@ func void PC_ItRu_LightHeal_Info()
 
 func void PC_ItRu_SumGobSkel_Info()
 {
-	if((Npc_HasItems(hero,ItSc_SumGobSkel) >= 1) && (Npc_HasItems(hero,ItAt_GoblinBone) >= 1))
+	if(Npc_HasItems(hero,ItSc_SumGobSkel) && Npc_HasItems(hero,ItAt_GoblinBone))
 	{
 		Npc_RemoveInvItems(hero,ItSc_SumGobSkel,1);
 		Npc_RemoveInvItems(hero,ItAt_GoblinBone,1);
@@ -523,7 +523,7 @@ func void PC_ItRu_SumGobSkel_Info()
 
 func void PC_ItRu_Zap_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Zap) >= 1) && (Npc_HasItems(hero,ItMi_Rockcrystal) >= 1))
+	if(Npc_HasItems(hero,ItSc_Zap) && Npc_HasItems(hero,ItMi_Rockcrystal))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Zap,1);
 		Npc_RemoveInvItems(hero,ItMi_Rockcrystal,1);
@@ -540,7 +540,7 @@ func void PC_ItRu_Zap_Info()
 
 func void PC_ItRu_InstFireball_Info()
 {
-	if((Npc_HasItems(hero,ItSc_InstantFireball) >= 1) && (Npc_HasItems(hero,ItMi_Pitch) >= 1))
+	if(Npc_HasItems(hero,ItSc_InstantFireball) && Npc_HasItems(hero,ItMi_Pitch))
 	{
 		Npc_RemoveInvItems(hero,ItSc_InstantFireball,1);
 		Npc_RemoveInvItems(hero,ItMi_Pitch,1);
@@ -557,7 +557,7 @@ func void PC_ItRu_InstFireball_Info()
 
 func void PC_ItRu_Icebolt_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Icebolt) >= 1) && (Npc_HasItems(hero,ItMi_Quartz) >= 1))
+	if(Npc_HasItems(hero,ItSc_Icebolt) && Npc_HasItems(hero,ItMi_Quartz))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Icebolt,1);
 		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
@@ -574,7 +574,7 @@ func void PC_ItRu_Icebolt_Info()
 
 func void PC_ItRu_SumWolf_Info()
 {
-	if((Npc_HasItems(hero,ItSc_SumWolf) >= 1) && (Npc_HasItems(hero,ItAt_WolfFur) >= 1))
+	if(Npc_HasItems(hero,ItSc_SumWolf) && Npc_HasItems(hero,ItAt_WolfFur))
 	{
 		Npc_RemoveInvItems(hero,ItSc_SumWolf,1);
 		Npc_RemoveInvItems(hero,ItAt_WolfFur,1);
@@ -591,7 +591,7 @@ func void PC_ItRu_SumWolf_Info()
 
 func void PC_ItRu_Windfist_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Windfist) >= 1) && (Npc_HasItems(hero,ItMi_Coal) >= 1))
+	if(Npc_HasItems(hero,ItSc_Windfist) && Npc_HasItems(hero,ItMi_Coal))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Windfist,1);
 		Npc_RemoveInvItems(hero,ItMi_Coal,1);
@@ -608,7 +608,7 @@ func void PC_ItRu_Windfist_Info()
 
 func void PC_ItRu_Sleep_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Sleep) >= 1) && (Npc_HasItems(hero,ItPl_SwampHerb) >= 1))
+	if(Npc_HasItems(hero,ItSc_Sleep) && Npc_HasItems(hero,ItPl_SwampHerb))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Sleep,1);
 		Npc_RemoveInvItems(hero,ItPl_SwampHerb,1);
@@ -625,7 +625,7 @@ func void PC_ItRu_Sleep_Info()
 
 func void PC_ItRu_MediumHeal_Info()
 {
-	if((Npc_HasItems(hero,ItSc_MediumHeal) >= 1) && (Npc_HasItems(hero,ItPl_Health_Herb_02) >= 1))
+	if(Npc_HasItems(hero,ItSc_MediumHeal) && Npc_HasItems(hero,ItPl_Health_Herb_02))
 	{
 		Npc_RemoveInvItems(hero,ItSc_MediumHeal,1);
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_02,1);
@@ -642,7 +642,7 @@ func void PC_ItRu_MediumHeal_Info()
 
 func void PC_ItRu_LightningFlash_Info()
 {
-	if((Npc_HasItems(hero,ItSc_LightningFlash) >= 1) && (Npc_HasItems(hero,ItMi_Rockcrystal) >= 1) && (Npc_HasItems(hero,ItMi_Quartz) >= 1))
+	if(Npc_HasItems(hero,ItSc_LightningFlash) && Npc_HasItems(hero,ItMi_Rockcrystal) && Npc_HasItems(hero,ItMi_Quartz))
 	{
 		Npc_RemoveInvItems(hero,ItSc_LightningFlash,1);
 		Npc_RemoveInvItems(hero,ItMi_Rockcrystal,1);
@@ -660,7 +660,7 @@ func void PC_ItRu_LightningFlash_Info()
 
 func void PC_ItRu_ChargeFireball_Info()
 {
-	if((Npc_HasItems(hero,ItSc_ChargeFireBall) >= 1) && (Npc_HasItems(hero,ItMi_Sulfur) >= 1) && (Npc_HasItems(hero,ItMi_Pitch) >= 1))
+	if(Npc_HasItems(hero,ItSc_ChargeFireBall) && Npc_HasItems(hero,ItMi_Sulfur) && Npc_HasItems(hero,ItMi_Pitch))
 	{
 		Npc_RemoveInvItems(hero,ItSc_ChargeFireBall,1);
 		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
@@ -678,7 +678,7 @@ func void PC_ItRu_ChargeFireball_Info()
 
 func void PC_ItRu_SumSkel_Info()
 {
-	if((Npc_HasItems(hero,ItSc_SumSkel) >= 1) && (Npc_HasItems(hero,ItAt_SkeletonBone) >= 1))
+	if(Npc_HasItems(hero,ItSc_SumSkel) && Npc_HasItems(hero,ItAt_SkeletonBone))
 	{
 		Npc_RemoveInvItems(hero,ItSc_SumSkel,1);
 		Npc_RemoveInvItems(hero,ItAt_SkeletonBone,1);
@@ -695,7 +695,7 @@ func void PC_ItRu_SumSkel_Info()
 
 func void PC_ItRu_Fear_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Fear) >= 1) && (Npc_HasItems(hero,ItMi_DarkPearl) >= 1))
+	if(Npc_HasItems(hero,ItSc_Fear) && Npc_HasItems(hero,ItMi_DarkPearl))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Fear,1);
 		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
@@ -712,7 +712,7 @@ func void PC_ItRu_Fear_Info()
 
 func void PC_ItRu_IceCube_Info()
 {
-	if((Npc_HasItems(hero,ItSc_IceCube) >= 1) && (Npc_HasItems(hero,ItMi_Quartz) >= 1) && (Npc_HasItems(hero,ItMi_Aquamarine) >= 1))
+	if(Npc_HasItems(hero,ItSc_IceCube) && Npc_HasItems(hero,ItMi_Quartz) && Npc_HasItems(hero,ItMi_Aquamarine))
 	{
 		Npc_RemoveInvItems(hero,ItSc_IceCube,1);
 		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
@@ -723,13 +723,14 @@ func void PC_ItRu_IceCube_Info()
 	else
 	{
 		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	b_endproductiondialog();
 };
 
 func void PC_ItRu_ThunderBall_Info()
 {
-	if((Npc_HasItems(hero,ItSc_ThunderBall) >= 1) && (Npc_HasItems(hero,ItMi_Rockcrystal) >= 1) && (Npc_HasItems(hero,ItMi_Sulfur) >= 1))
+	if(Npc_HasItems(hero,ItSc_ThunderBall) && Npc_HasItems(hero,ItMi_Rockcrystal) && Npc_HasItems(hero,ItMi_Sulfur))
 	{
 		Npc_RemoveInvItems(hero,ItSc_ThunderBall,1);
 		Npc_RemoveInvItems(hero,ItMi_Rockcrystal,1);
@@ -747,7 +748,7 @@ func void PC_ItRu_ThunderBall_Info()
 
 func void PC_ItRu_SumGol_Info()
 {
-	if((Npc_HasItems(hero,ItSc_SumGol) >= 1) && (Npc_HasItems(hero,ItAt_StoneGolemHeart) >= 1))
+	if(Npc_HasItems(hero,ItSc_SumGol) && Npc_HasItems(hero,ItAt_StoneGolemHeart))
 	{
 		Npc_RemoveInvItems(hero,ItSc_SumGol,1);
 		Npc_RemoveInvItems(hero,ItAt_StoneGolemHeart,1);
@@ -764,7 +765,7 @@ func void PC_ItRu_SumGol_Info()
 
 func void PC_ItRu_HarmUndead_Info()
 {
-	if((Npc_HasItems(hero,ItSc_HarmUndead) >= 1) && (Npc_HasItems(hero,ItMi_HolyWater) >= 1))
+	if(Npc_HasItems(hero,ItSc_HarmUndead) && Npc_HasItems(hero,ItMi_HolyWater))
 	{
 		Npc_RemoveInvItems(hero,ItSc_HarmUndead,1);
 		Npc_RemoveInvItems(hero,ItMi_HolyWater,1);
@@ -774,13 +775,14 @@ func void PC_ItRu_HarmUndead_Info()
 	else
 	{
 		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMi_RuneBlank,1);
 	};
 	b_endproductiondialog();
 };
 
 func void PC_ItRu_Pyrokinesis_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Pyrokinesis) >= 1) && (Npc_HasItems(hero,ItMi_Sulfur) >= 1) && (Npc_HasItems(hero,ItAt_WaranFiretongue) >= 1))
+	if(Npc_HasItems(hero,ItSc_Pyrokinesis) && Npc_HasItems(hero,ItMi_Sulfur) && Npc_HasItems(hero,ItAt_WaranFiretongue))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Pyrokinesis,1);
 		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
@@ -798,7 +800,7 @@ func void PC_ItRu_Pyrokinesis_Info()
 
 func void PC_ItRu_Firestorm_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Firestorm) >= 1) && (Npc_HasItems(hero,ItMi_Pitch) >= 1) && (Npc_HasItems(hero,ItMi_Sulfur) >= 1))
+	if(Npc_HasItems(hero,ItSc_Firestorm) && Npc_HasItems(hero,ItMi_Pitch) && Npc_HasItems(hero,ItMi_Sulfur))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Firestorm,1);
 		Npc_RemoveInvItems(hero,ItMi_Pitch,1);
@@ -816,7 +818,7 @@ func void PC_ItRu_Firestorm_Info()
 
 func void PC_ItRu_IceWave_Info()
 {
-	if((Npc_HasItems(hero,ItSc_IceWave) >= 1) && (Npc_HasItems(hero,ItMi_Quartz) >= 1) && (Npc_HasItems(hero,ItMi_Aquamarine) >= 1))
+	if(Npc_HasItems(hero,ItSc_IceWave) && Npc_HasItems(hero,ItMi_Quartz) && Npc_HasItems(hero,ItMi_Aquamarine))
 	{
 		Npc_RemoveInvItems(hero,ItSc_IceWave,1);
 		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
@@ -834,7 +836,7 @@ func void PC_ItRu_IceWave_Info()
 
 func void PC_ItRu_SumDemon_Info()
 {
-	if((Npc_HasItems(hero,ItSc_SumDemon) >= 1) && (Npc_HasItems(hero,ItAt_DemonHeart) >= 1))
+	if(Npc_HasItems(hero,ItSc_SumDemon) && Npc_HasItems(hero,ItAt_DemonHeart))
 	{
 		Npc_RemoveInvItems(hero,ItSc_SumDemon,1);
 		Npc_RemoveInvItems(hero,ItAt_DemonHeart,1);
@@ -851,7 +853,7 @@ func void PC_ItRu_SumDemon_Info()
 
 func void PC_ItRu_FullHeal_Info()
 {
-	if((Npc_HasItems(hero,ItSc_FullHeal) >= 1) && (Npc_HasItems(hero,ItPl_Health_Herb_03) >= 1))
+	if(Npc_HasItems(hero,ItSc_FullHeal) && Npc_HasItems(hero,ItPl_Health_Herb_03))
 	{
 		Npc_RemoveInvItems(hero,ItSc_FullHeal,1);
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,1);
@@ -868,7 +870,7 @@ func void PC_ItRu_FullHeal_Info()
 
 func void PC_ItRu_Firerain_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Firerain) >= 1) && (Npc_HasItems(hero,ItMi_Pitch) >= 1) && (Npc_HasItems(hero,ItMi_Sulfur) >= 1) && (Npc_HasItems(hero,ItAt_WaranFiretongue) >= 1))
+	if(Npc_HasItems(hero,ItSc_Firerain) && Npc_HasItems(hero,ItMi_Pitch) && Npc_HasItems(hero,ItMi_Sulfur) && Npc_HasItems(hero,ItAt_WaranFiretongue))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Firerain,1);
 		Npc_RemoveInvItems(hero,ItMi_Pitch,1);
@@ -886,7 +888,7 @@ func void PC_ItRu_Firerain_Info()
 
 func void PC_ItRu_BreathOfDeath_Info()
 {
-	if((Npc_HasItems(hero,ItSc_BreathOfDeath) >= 1) && (Npc_HasItems(hero,ItMi_Coal) >= 1) && (Npc_HasItems(hero,ItMi_DarkPearl) >= 1))
+	if(Npc_HasItems(hero,ItSc_BreathOfDeath) && Npc_HasItems(hero,ItMi_Coal) && Npc_HasItems(hero,ItMi_DarkPearl))
 	{
 		Npc_RemoveInvItems(hero,ItSc_BreathOfDeath,1);
 		Npc_RemoveInvItems(hero,ItMi_Coal,1);
@@ -904,7 +906,7 @@ func void PC_ItRu_BreathOfDeath_Info()
 
 func void PC_ItRu_MassDeath_Info()
 {
-	if((Npc_HasItems(hero,ItSc_MassDeath) >= 1) && (Npc_HasItems(hero,ItAt_SkeletonBone) >= 1) && (Npc_HasItems(hero,ItMi_DarkPearl) >= 1))
+	if(Npc_HasItems(hero,ItSc_MassDeath) && Npc_HasItems(hero,ItAt_SkeletonBone) && Npc_HasItems(hero,ItMi_DarkPearl))
 	{
 		Npc_RemoveInvItems(hero,ItSc_MassDeath,1);
 		Npc_RemoveInvItems(hero,ItAt_SkeletonBone,1);
@@ -922,7 +924,7 @@ func void PC_ItRu_MassDeath_Info()
 
 func void PC_ItRu_ArmyOfDarkness_Info()
 {
-	if((Npc_HasItems(hero,ItSc_ArmyOfDarkness) >= 1) && (Npc_HasItems(hero,ItAt_SkeletonBone) >= 1) && (Npc_HasItems(hero,ItMi_DarkPearl) >= 1) && (Npc_HasItems(hero,ItAt_StoneGolemHeart) >= 1) && (Npc_HasItems(hero,ItAt_DemonHeart) >= 1))
+	if(Npc_HasItems(hero,ItSc_ArmyOfDarkness) && Npc_HasItems(hero,ItAt_SkeletonBone) && Npc_HasItems(hero,ItMi_DarkPearl) && Npc_HasItems(hero,ItAt_StoneGolemHeart) && Npc_HasItems(hero,ItAt_DemonHeart))
 	{
 		Npc_RemoveInvItems(hero,ItSc_ArmyOfDarkness,1);
 		Npc_RemoveInvItems(hero,ItAt_SkeletonBone,1);
@@ -942,7 +944,7 @@ func void PC_ItRu_ArmyOfDarkness_Info()
 
 func void PC_ItRu_Shrink_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Shrink) >= 1) && (Npc_HasItems(hero,ItAt_GoblinBone) >= 1) && (Npc_HasItems(hero,ItAt_TrollTooth) >= 1))
+	if(Npc_HasItems(hero,ItSc_Shrink) && Npc_HasItems(hero,ItAt_GoblinBone) && Npc_HasItems(hero,ItAt_TrollTooth))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Shrink,1);
 		Npc_RemoveInvItems(hero,ItAt_GoblinBone,1);
@@ -960,7 +962,7 @@ func void PC_ItRu_Shrink_Info()
 
 func void PC_ItRu_Whirlwind_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Whirlwind) >= 1) && (Npc_HasItems(hero,ItAt_Wing) >= 1))
+	if(Npc_HasItems(hero,ItSc_Whirlwind) && Npc_HasItems(hero,ItAt_Wing))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Whirlwind,1);
 		Npc_RemoveInvItems(hero,ItAt_Wing,1);
@@ -977,7 +979,7 @@ func void PC_ItRu_Whirlwind_Info()
 
 func void PC_ItRu_Icelance_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Icelance) >= 1) && (Npc_HasItems(hero,ItMi_Quartz) >= 1))
+	if(Npc_HasItems(hero,ItSc_Icelance) && Npc_HasItems(hero,ItMi_Quartz))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Icelance,1);
 		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
@@ -994,7 +996,7 @@ func void PC_ItRu_Icelance_Info()
 
 func void PC_ItRu_thunderstorm_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Thunderstorm) >= 1) && (Npc_HasItems(hero,ItMi_Quartz) >= 1) && (Npc_HasItems(hero,ItAt_Wing) >= 1))
+	if(Npc_HasItems(hero,ItSc_Thunderstorm) && Npc_HasItems(hero,ItMi_Quartz) && Npc_HasItems(hero,ItAt_Wing))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Thunderstorm,1);
 		Npc_RemoveInvItems(hero,ItMi_Quartz,1);
@@ -1012,7 +1014,7 @@ func void PC_ItRu_thunderstorm_Info()
 
 func void PC_ItRu_Geyser_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Geyser) >= 1) && (Npc_HasItems(hero,ItMi_Aquamarine) >= 1))
+	if(Npc_HasItems(hero,ItSc_Geyser) && Npc_HasItems(hero,ItMi_Aquamarine))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Geyser,1);
 		Npc_RemoveInvItems(hero,ItMi_Aquamarine,1);
@@ -1029,7 +1031,7 @@ func void PC_ItRu_Geyser_Info()
 
 func void PC_ItRu_Waterfist_Info()
 {
-	if((Npc_HasItems(hero,ItSc_Waterfist) >= 1) && (Npc_HasItems(hero,ItMi_Aquamarine) >= 1) && (Npc_HasItems(hero,ItMi_Rockcrystal) >= 1))
+	if(Npc_HasItems(hero,ItSc_Waterfist) && Npc_HasItems(hero,ItMi_Aquamarine) && Npc_HasItems(hero,ItMi_Rockcrystal))
 	{
 		Npc_RemoveInvItems(hero,ItSc_Waterfist,1);
 		Npc_RemoveInvItems(hero,ItMi_Aquamarine,1);

@@ -262,14 +262,14 @@ func int DIA_Ignaz_Trade_Condition()
 
 func void DIA_Ignaz_Trade_Info()
 {
-	if(Ignaz_flag == 1)
+	if(Ignaz_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
 		if(Ignaz_flasks > 0)
 		{
 			CreateInvItems(self,ItMi_Flask,Ignaz_flasks);
 		};
-		Ignaz_flag = 0;
+		Ignaz_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Ignaz_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
@@ -309,18 +309,18 @@ func void DIA_Ignaz_Teach_Info()
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE)
 	{
-		Info_AddChoice(DIA_Ignaz_Teach,B_BuildLearnString("Зелье ускорения",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),DIA_Ignaz_Teach_Speed);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Ignaz_Teach,B_BuildLearnString(NAME_Speed_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),DIA_Ignaz_Teach_Speed);
+		talente += 1;
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Ignaz_Teach,B_BuildLearnString("Эссенция маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Ignaz_Teach_Mana);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Ignaz_Teach,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Ignaz_Teach_Mana);
+		talente += 1;
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Ignaz_Teach,B_BuildLearnString("Лечебная эссенция",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Ignaz_Teach_Health);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Ignaz_Teach,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Ignaz_Teach_Health);
+		talente += 1;
 	};
 	if(talente > 0)
 	{

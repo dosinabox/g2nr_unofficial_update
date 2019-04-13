@@ -18,7 +18,7 @@ func int DIA_Lutero_EXIT_Condition()
 func void DIA_Lutero_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-	if((Lutero_Krallen == LOG_Running) && (MIS_Fajeth_Kill_Snapper == LOG_SUCCESS) && (Npc_KnowsInfo(other,DIA_Bilgot_KNOWSLEADSNAPPER) == FALSE))
+	if((Lutero_Krallen == LOG_Running) && (MIS_Fajeth_Kill_Snapper == LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Bilgot_KNOWSLEADSNAPPER))
 	{
 		Lutero_Krallen = LOG_OBSOLETE;
 		B_CheckLog();
@@ -144,7 +144,7 @@ instance DIA_Lutero_Kralle(C_Info)
 
 func int DIA_Lutero_Kralle_Condition()
 {
-	if((Npc_HasItems(other,ItAt_ClawLeader) >= 1) && Npc_KnowsInfo(other,DIA_Lutero_Snapper))
+	if(Npc_HasItems(other,ItAt_ClawLeader) && Npc_KnowsInfo(other,DIA_Lutero_Snapper))
 	{
 		return TRUE;
 	};
@@ -153,16 +153,17 @@ func int DIA_Lutero_Kralle_Condition()
 func void DIA_Lutero_Kralle_Info()
 {
 	AI_Output(other,self,"DIA_Lutero_Kralle_15_00");	//У меня есть особенные когти снеппера для тебя.
-	Lutero_Krallen = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
 	AI_Output(self,other,"DIA_Lutero_Kralle_13_01");	//Мой клиент будет счастлив услышать это.
 	B_GiveInvItems(other,self,ItAt_ClawLeader,1);
+	Npc_RemoveInvItem(self,ItAt_ClawLeader);
+	Lutero_Krallen = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Ambient);
 	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Lutero_Hello_13_02");	//У меня нет этого рунного камня с собой. Но я знаю, где его можно найти.
 		AI_Output(self,other,"DIA_Lutero_Hello_13_03");	//По пути от города к таверне, ты пойдешь под мостом.
 		AI_Output(self,other,"DIA_Lutero_Hello_13_04");	//Там, в пещере, мой друг спрятал в сундуке рунный камень. Вот ключ.
-		B_GiveInvItems(self,other,itke_rune_mis,1);
+		B_GiveInvItems(self,other,ItKe_Rune_MIS,1);
 	}
 	else
 	{

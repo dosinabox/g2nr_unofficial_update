@@ -69,7 +69,7 @@ instance DIA_Igaraz_Wurst(C_Info)
 
 func int DIA_Igaraz_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && (Npc_HasItems(self,ItFo_Schafswurst) == 0) && (Npc_HasItems(other,ItFo_Schafswurst) >= 1))
+	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -82,7 +82,7 @@ func void DIA_Igaraz_Wurst_Info()
 	AI_Output(other,self,"DIA_Igaraz_Wurst_15_00");	//Я раздаю колбасу.
 	AI_Output(self,other,"DIA_Igaraz_Wurst_13_01");	//Ты работаешь на Горакса, да? Хорошо, тогда давай сюда эту колбасу.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben = Wurst_Gegeben + 1;
+	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
 	NovizeLeft = IntToString(13 - Wurst_Gegeben);
@@ -114,7 +114,7 @@ func void DIA_Igaraz_NotWork_Info()
 {
 	AI_Output(other,self,"DIA_Igaranz_NotWork_15_00");	//Почему ты не работаешь?
 	AI_Output(self,other,"DIA_Igaranz_NotWork_13_01");	//Мне позволено изучать учения Инноса. Я постигаю его мудрость.
-	AI_Output(self,other,"DIA_Igaranz_NotWork_13_02");	//Однажды он выберет меня - и тогда я пройду испытание магией и войду в Круг Огня.
+	AI_Output(self,other,"DIA_Igaranz_NotWork_13_02");	//Однажды он выберет меня - и тогда я пройду Испытание Магией и войду в Круг Огня.
 };
 
 
@@ -140,8 +140,8 @@ func int DIA_Igaraz_Choosen_Condition()
 func void DIA_Igaraz_Choosen_Info()
 {
 	AI_Output(other,self,"DIA_Igaranz_Choosen_15_00");	//Кто такие Избранные?
-	AI_Output(self,other,"DIA_Igaranz_Choosen_13_01");	//Это послушники, которым Иннос предписал пройти испытание магией.
-	AI_Output(self,other,"DIA_Igaranz_Choosen_13_02");	//Тот, кто проходит его, принимается в ряды Магов Огня.
+	AI_Output(self,other,"DIA_Igaranz_Choosen_13_01");	//Это послушники, которым Иннос предписал пройти Испытание Магией.
+	AI_Output(self,other,"DIA_Igaranz_Choosen_13_02");	//Тот, кто проходит его, принимается в ряды магов Огня.
 	Info_ClearChoices(DIA_Igaranz_Choosen);
 	Info_AddChoice(DIA_Igaranz_Choosen,Dialog_Back,DIA_Igaranz_Choosen_back);
 	Info_AddChoice(DIA_Igaranz_Choosen,"Что такое Испытание Магией?",DIA_Igaranz_Choosen_TestOfMagic);
@@ -207,7 +207,7 @@ instance DIA_Igaraz_IMTHEMAN(C_Info)
 
 func int DIA_Igaraz_IMTHEMAN_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500))
 	{
 		return TRUE;
 	};
@@ -215,7 +215,7 @@ func int DIA_Igaraz_IMTHEMAN_Condition()
 
 func void DIA_Igaraz_IMTHEMAN_Info()
 {
-	AI_Output(self,other,"DIA_Igaraz_IMTHEMAN_13_00");	//(гордо) Это свершилось. Иннос выбрал меня я приму участие в испытании магией.
+	AI_Output(self,other,"DIA_Igaraz_IMTHEMAN_13_00");	//(гордо) Это свершилось. Иннос выбрал меня, и я приму участие в испытании магией.
 };
 
 
@@ -291,7 +291,7 @@ instance DIA_Igaraz_ADD(C_Info)
 
 func int DIA_Igaraz_ADD_Condition()
 {
-	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_06") <= 3500)) && (MIS_GOLEM == LOG_Running) && (Npc_IsDead(Magic_Golem) == FALSE) && (Npc_KnowsInfo(other,DIA_Igaraz_Stein) == FALSE) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
+	if(((Npc_GetDistToWP(self,"NW_TAVERNE_TROLLAREA_05") <= 3500) || (Npc_GetDistToWP(self,"NW_TROLLAREA_PATH_66") <= 3500)) && (MIS_GOLEM == LOG_Running) && !Npc_IsDead(Magic_Golem) && !Npc_KnowsInfo(other,DIA_Igaraz_Stein) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
 	{
 		return TRUE;
 	};
@@ -309,7 +309,7 @@ func void DIA_Igaraz_ADD_Info()
 	AI_Output(self,other,"DIA_Igaraz_Add_13_07");	//Продолжай идти по тропинке в горы. Она должна быть где-то там.
 	AI_Output(self,other,"DIA_Igaraz_Add_13_08");	//Если ты дойдешь до моста - значит, ты зашел слишком далеко.
 	AI_Output(self,other,"DIA_Igaraz_Add_13_09");	//(смеется) ЕСЛИ тебе вообще удастся уйти далеко...
-	AI_Output(self,other,"DIA_Igaraz_Add_13_10");	//Это все что я могу сказать тебе... (с сарказмом) Это ведь все же должно быть твое ИСПЫТАНИЕ!
+	AI_Output(self,other,"DIA_Igaraz_Add_13_10");	//Это все, что я могу сказать тебе... (с сарказмом) Это ведь все же должно быть твое ИСПЫТАНИЕ!
 };
 
 
@@ -325,7 +325,7 @@ instance DIA_Igaraz_Pruefung(C_Info)
 
 func int DIA_Igaraz_Pruefung_Condition()
 {
-	if((other.guild == GIL_NOV) && (Npc_HasItems(other,ItMi_RuneBlank) < 1) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
+	if((other.guild == GIL_NOV) && !Npc_HasItems(other,ItMi_RuneBlank) && Npc_KnowsInfo(other,DIA_Igaraz_METOO))
 	{
 		return TRUE;
 	};
@@ -358,7 +358,7 @@ instance DIA_Igaraz_Stein(C_Info)
 
 func int DIA_Igaraz_Stein_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && (Npc_HasItems(other,ItMi_RuneBlank) >= 1))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && Npc_HasItems(other,ItMi_RuneBlank))
 	{
 		return TRUE;
 	};
@@ -594,7 +594,7 @@ func int DIA_Igaraz_BuyIt_Condition()
 func void DIA_Igaraz_BuyIt_Info()
 {
 	AI_Output(other,self,"DIA_Igaranz_BuyIt_15_00");	//Я хочу купить эти бумаги.
-	if(Npc_HasItems(self,ItKe_IgarazChest_Mis) >= 1)
+	if(Npc_HasItems(self,ItKe_IgarazChest_Mis))
 	{
 		AI_Output(self,other,"DIA_Igaranz_BuyIt_13_01");	//Послушай, я сейчас не могу отлучиться. Я дам тебе ключ от моего сундука. В нем все равно больше ничего нет.
 		B_GiveInvItems(other,self,ItMi_Gold,300);
@@ -621,7 +621,7 @@ instance DIA_Igaraz_PICKPOCKET(C_Info)
 
 func int DIA_Igaraz_PICKPOCKET_Condition()
 {
-	if((MIS_BabosDocs == LOG_Running) && (Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItKe_IgarazChest_Mis) >= 1) && (other.attribute[ATR_DEXTERITY] >= (40 - Theftdiff)))
+	if(C_StealItems(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis),1) && (MIS_BabosDocs == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -636,19 +636,8 @@ func void DIA_Igaraz_PICKPOCKET_Info()
 
 func void DIA_Igaraz_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 40)
-	{
-		B_GiveInvItems(self,other,ItKe_IgarazChest_Mis,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Igaraz_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis),1);
+	Info_ClearChoices(DIA_Igaraz_PICKPOCKET);
 };
 
 func void DIA_Igaraz_PICKPOCKET_BACK()

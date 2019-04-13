@@ -412,17 +412,23 @@ instance DIA_Malak_BACKTOBENGAR(C_Info)
 
 func int DIA_Malak_BACKTOBENGAR_Condition()
 {
-	if((MIS_GetMalakBack == LOG_Running) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && (Npc_IsDead(Bengar) == FALSE) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
+	if((MIS_GetMalakBack == LOG_Running) && Npc_KnowsInfo(other,DIA_Malak_FLEEFROMPASS) && !Npc_IsDead(Bengar) && (NpcObsessedByDMT_Malak == FALSE) && (hero.guild != GIL_KDF) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};
 };
 
+var int DIA_Malak_BACKTOBENGAR_Once;
+
 func void DIA_Malak_BACKTOBENGAR_Info()
 {
 	AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_00");	//Ты нужен Бенгару. Он хочет, чтобы ты вернулся на его ферму.
 	AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_01");	//Я не сумасшедший. Пока ферма беззащитна, я ни на шаг отсюда не сойду!
-	B_LogEntry(TOPIC_BengarALLEIN,"Малак не вернется на ферму Бенгара, пока она не будет хорошо защищена.");
+	if(DIA_Malak_BACKTOBENGAR_Once == FALSE)
+	{
+		B_LogEntry(TOPIC_BengarALLEIN,"Малак не вернется на ферму Бенгара, пока она не будет хорошо защищена.");
+		DIA_Malak_BACKTOBENGAR_Once = TRUE;
+	};
 	if(MIS_BengarsHelpingSLD == LOG_SUCCESS)
 	{
 		AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_02");	//Я нанял наемника. Он присмотрит за вашей фермой.

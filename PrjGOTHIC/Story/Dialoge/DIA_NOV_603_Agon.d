@@ -59,7 +59,7 @@ instance DIA_Agon_Wurst(C_Info)
 
 func int DIA_Agon_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && (Npc_HasItems(self,ItFo_Schafswurst) == 0) && (Npc_HasItems(other,ItFo_Schafswurst) >= 1))
+	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -74,7 +74,7 @@ func void DIA_Agon_Wurst_Info()
 	AI_Output(other,self,"DIA_Agon_Wurst_15_02");	//Так ты хочешь колбасу или нет?
 	AI_Output(self,other,"DIA_Agon_Wurst_07_03");	//Ладно, давай ее сюда!
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben = Wurst_Gegeben + 1;
+	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
 	NovizeLeft = IntToString(13 - Wurst_Gegeben);
@@ -279,7 +279,7 @@ instance DIA_Agon_GolemLives(C_Info)
 
 func int DIA_Agon_GolemLives_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && (Npc_IsDead(Magic_Golem) == FALSE))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && !Npc_IsDead(Magic_Golem))
 	{
 		return TRUE;
 	};

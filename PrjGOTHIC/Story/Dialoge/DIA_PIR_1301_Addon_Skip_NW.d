@@ -51,7 +51,7 @@ instance DIA_Addon_Skip_NW_WerBistDu(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Skip_NW_WerBistDu_Condition;
 	information = DIA_Addon_Skip_NW_WerBistDu_Info;
-	description = "Кто ты?";
+	description = "Ты кто такой?";
 };
 
 
@@ -82,7 +82,7 @@ func void DIA_Addon_Skip_NW_WerBistDu_ja()
 	AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_03");	//Хорошо, что я этого не сделал.
 	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
 	{
-		AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_04");	//Меня бы сразу же бросили за решетку.
+		AI_Output(self,other,"DIA_Addon_Skip_NW_WerBistDu_ja_08_04");	//Меня бы сразу бросили за решетку.
 	}
 	else
 	{
@@ -187,7 +187,7 @@ instance DIA_Addon_Skip_NW_Woher(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Skip_NW_Woher_Condition;
 	information = DIA_Addon_Skip_NW_Woher_Info;
-	description = "Откуда ты?";
+	description = "Откуда ты приплыл?";
 };
 
 
@@ -254,7 +254,7 @@ instance DIA_Addon_Skip_NW_MissingPeople(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Skip_NW_MissingPeople_Condition;
 	information = DIA_Addon_Skip_NW_MissingPeople_Info;
-	description = "Пропало много людей.";
+	description = "Пропало много людей. И все улики указывают на то, что ты замешан в этом деле.";
 };
 
 
@@ -339,9 +339,9 @@ func void DIA_Addon_Skip_NW_Name_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Name_08_02");	//Ммм. Никак не могу вспомнить его имя. Хоть ты тресни.
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Name_08_03");	//Но я могу показать тебе, где найти человека, который является главарем банды в этой части Хориниса.
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Name_08_04");	//У тебя есть карта?
-	if(Npc_HasItems(other,ItWr_Map_NewWorld) == FALSE)
+	if(!Npc_HasItems(other,ItWr_Map_NewWorld))
 	{
-		if((Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon) == TRUE) || (Npc_HasItems(other,ItWr_Map_Shrine_MIS) == TRUE) || (Npc_HasItems(other,ItWr_Map_Caves_MIS) == TRUE))
+		if(Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon) || Npc_HasItems(other,ItWr_Map_Shrine_MIS) || Npc_HasItems(other,ItWr_Map_Caves_MIS))
 		{
 			AI_Output(other,self,"DIA_Addon_Skip_NW_Name_15_05");	//Да, есть.
 			AI_Output(self,other,"DIA_Addon_Skip_NW_Name_08_06");	//Но кто-то уже исписал ее. Зачем портить ее еще больше?

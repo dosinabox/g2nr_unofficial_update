@@ -11,7 +11,7 @@ instance PIR_1357_Addon_Garett(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Piratensaebel);
 	CreateInvItems(self,ItBe_Addon_Prot_EdgPoi,1);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_NormalBart05,BodyTex_N,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,1.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

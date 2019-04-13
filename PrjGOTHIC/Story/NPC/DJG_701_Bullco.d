@@ -11,7 +11,7 @@ instance DJG_701_Bullco(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Olli_Kahn,BodyTex_N,itar_djg_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Olli_Kahn,BodyTex_N,ITAR_DJG_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

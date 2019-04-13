@@ -5,7 +5,7 @@ func void B_MM_AssessDamage()
 	var C_Item OthWeap;
 	self.aivar[AIV_MM_PRIORITY] = PRIO_ATTACK;
 	B_BeliarsWeaponSpecialDamage(other,self);
-	if(Npc_HasItems(other,Holy_Hammer_MIS) > 0)
+	if(Npc_HasItems(other,Holy_Hammer_MIS))
 	{
 		MagGol = Hlp_GetNpc(MagicGolem);
 		Npc_GetInvItem(other,Holy_Hammer_MIS);

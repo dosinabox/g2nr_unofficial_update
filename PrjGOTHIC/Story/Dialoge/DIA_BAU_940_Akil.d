@@ -55,13 +55,17 @@ func int DIA_Akil_Hallo_Condition()
 func void DIA_Akil_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Hallo_15_00");	//У тебя какие-то проблемы?
-	AI_Output(self,other,"DIA_Akil_Hallo_13_01");	//(в поту)... Э-э... нет, нет... все в порядке. (нервно) Это... тебе лучше уйти сейчас.
+	AI_Output(self,other,"DIA_Akil_Hallo_13_01");	//(в поту) ...Э-э... нет, нет... все в порядке. (нервно) Это... тебе лучше уйти сейчас.
 	AI_Output(other,self,"DIA_Akil_Hallo_15_02");	//Ты в этом уверен?
 	AI_Output(self,other,"DIA_Akil_Hallo_13_03");	//Э-э... да, да... все в порядке. Ты... э-э... я... я сейчас не могу говорить с тобой.
-	Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
-	B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 	Akils_SLDStillthere = TRUE;
+	if(Hilfe == FALSE)
+	{
+		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+		Hilfe = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -125,7 +129,7 @@ func void DIA_Akil_NachKampf_Info()
 		AI_Output(self,other,"DIA_Akil_NachKampf_13_04");	//Это наемники с фермы Онара. Эти ублюдки только и знают, что грабить и убивать.
 	};
 	AI_Output(self,other,"DIA_Akil_NachKampf_13_05");	//Я боялся худшего...
-	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает) ...слава Инносу, до этого не дошло. Скажи мне, что я могу сделать для тебя?
+	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает) ... слава Инносу, до этого не дошло. Скажи мне, что я могу сделать для тебя?
 	Info_ClearChoices(DIA_Akil_NachKampf);
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
@@ -229,7 +233,7 @@ func void DIA_Addon_Akil_MissingPeople_Info()
 	B_GivePlayerXP(XP_Ambient);
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-	B_LogEntry(TOPIC_Addon_MissingPeople,"Фермер Акил беспокоится о двух пропавших работниках - Тонаке и Телборе");
+	B_LogEntry(TOPIC_Addon_MissingPeople,"Фермер Акил беспокоится о двух пропавших работниках - Тонаке и Телборе.");
 	MIS_Akil_BringMissPeopleBack = LOG_Running;
 };
 
@@ -344,7 +348,7 @@ instance DIA_Akil_Hof(C_Info)
 
 func int DIA_Akil_Hof_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_Gegend))
+	if(Npc_KnowsInfo(other,DIA_Akil_Gegend) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -599,7 +603,7 @@ instance DIA_Akil_AkilsSchaf(C_Info)
 
 func int DIA_Akil_AkilsSchaf_Condition()
 {
-	if((Kapitel >= 3) && (Npc_GetDistToNpc(self,Follow_Sheep_AKIL) < 1000) && (MIS_Akil_SchafDiebe != 0))
+	if((Kapitel >= 3) && (Npc_GetDistToNpc(self,Follow_Sheep_AKIL) < 1000) && (MIS_Akil_SchafDiebe != FALSE))
 	{
 		return TRUE;
 	};

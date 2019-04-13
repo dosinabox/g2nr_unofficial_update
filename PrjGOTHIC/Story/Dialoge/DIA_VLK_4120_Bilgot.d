@@ -40,7 +40,10 @@ func int DIA_Bilgot_HALLO_Condition()
 func void DIA_Bilgot_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Bilgot_HALLO_05_00");	//Эй, откуда ты взялся? Ты пришел из замка?
-	Info_AddChoice(DIA_Bilgot_HALLO,"Да, я пришел из замка - ну и что?",DIA_Bilgot_HALLO_Burg);
+	if(Npc_KnowsInfo(other,DIA_Garond_Hello))
+	{
+		Info_AddChoice(DIA_Bilgot_HALLO,"Да, я пришел из замка - ну и что?",DIA_Bilgot_HALLO_Burg);
+	};
 	Info_AddChoice(DIA_Bilgot_HALLO,"Я просто случайно забрел сюда...",DIA_Bilgot_HALLO_Zufall);
 };
 
@@ -120,7 +123,7 @@ func void DIA_Bilgot_Hilfe_Info()
 	AI_Output(self,other,"DIA_Bilgot_Hilfe_05_05");	//Хм... я мог бы помочь тебе, но только при одном условии!
 	AI_Output(other,self,"DIA_Bilgot_Hilfe_15_06");	//Что ты хочешь?
 	AI_Output(self,other,"DIA_Bilgot_Hilfe_05_07");	//Если тебе удастся убить снепперов - ты должен вытащить меня отсюда!
-	if(Npc_IsDead(Fed) == FALSE)
+	if(!Npc_IsDead(Fed))
 	{
 		AI_Output(self,other,"DIA_Bilgot_Hilfe_05_08");	//Мне здесь долго не продержаться - ты говорил с Федом? У этого парня крыша поехала, и я не хочу кончить как он!
 	};
@@ -210,7 +213,7 @@ instance DIA_Bilgot_LAUFSCHNELLER(C_Info)
 
 func int DIA_Bilgot_LAUFSCHNELLER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bilgot_TAKEYOUWITHME) && (Npc_KnowsInfo(other,DIA_Bilgot_BEIBRUECKEANGEKOMMEN) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Bilgot_TAKEYOUWITHME) && !Npc_KnowsInfo(other,DIA_Bilgot_BEIBRUECKEANGEKOMMEN))
 	{
 		return TRUE;
 	};
@@ -231,6 +234,7 @@ instance DIA_Bilgot_BEIBRUECKEANGEKOMMEN(C_Info)
 	information = DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Info;
 	important = TRUE;
 	permanent = FALSE;
+	description = "Хорошо, пришли. Дальше иди один. Но будь осторожен!";
 };
 
 
@@ -299,7 +303,7 @@ instance DIA_Bilgot_Olav(C_Info)
 
 func int DIA_Bilgot_Olav_Condition()
 {
-	if((Npc_HasItems(Olav,ItSe_Olav) == 0) && Npc_KnowsInfo(other,DIA_Bilgot_Job))
+	if(!Npc_HasItems(Olav,ItSe_Olav) && Npc_KnowsInfo(other,DIA_Bilgot_Job))
 	{
 		return TRUE;
 	};

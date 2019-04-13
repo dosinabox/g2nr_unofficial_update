@@ -38,7 +38,7 @@ instance DIA_Dragon_Fire_Island_Hello(C_Info)
 
 func int DIA_Dragon_Fire_Island_Hello_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_MIS) >= 1)
+	if(SC_IsWearingInnosEye == TRUE)
 	{
 		return TRUE;
 	};
@@ -62,6 +62,7 @@ func void DIA_Dragon_Fire_Island_Hello_Info()
 	AI_Output(self,other,"DIA_Dragon_Fire_Island_Hello_20_07");	//“ы зашел слишком далеко, жалкий человечишка, но тебе не уйти отсюда живым.
 	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
 	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
+	SC_IsWearingInnosEye = FALSE;
 	AI_StopProcessInfos(self);
 	B_LogEntry(TOPIC_HallenVonIrdorath,"≈ще один огненный дракон. я уже по горло сыт этими твар€ми. ћне всего лишь нужно перебратьс€ через пропасть, что лежит за этим огненным драконом.");
 	DragonTalk_Exit_Free = FALSE;

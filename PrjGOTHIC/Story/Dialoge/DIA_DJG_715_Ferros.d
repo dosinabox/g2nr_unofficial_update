@@ -104,7 +104,7 @@ func void DIA_DJG_715_Ferros_War_Info()
 		AI_Output(self,other,"DIA_DJG_715_Ferros_War_01_01");	//Ты ведь давно не видел своего короля, а?
 	};
 	AI_Output(self,other,"DIA_DJG_715_Ferros_War_01_02");	//Орки окружили столицу. Но пала она уже или нет, я не знаю.
-	AI_Output(self,other,"DIA_DJG_715_Ferros_War_01_03");	//Последнее, что я слышал, - что король мертв. Но я в это не верю.
+	AI_Output(self,other,"DIA_DJG_715_Ferros_War_01_03");	//Последнее, что я слышал - что король мертв. Но я в это не верю.
 };
 
 
@@ -129,7 +129,7 @@ func void DIA_DJG_715_Ferros_OldCamp_Info()
 	AI_Output(other,self,"DIA_DJG_715_Ferros_OldCamp_15_00");	//А что ты делаешь здесь, в замке?
 	AI_Output(self,other,"DIA_DJG_715_Ferros_OldCamp_01_01");	//Я услышал о драконах и пришел помочь сражаться с ними.
 	AI_Output(self,other,"DIA_DJG_715_Ferros_OldCamp_01_02");	//К несчастью, я потерял свой меч, когда пробирался мимо орков. И вот я застрял здесь.
-	AI_Output(self,other,"DIA_DJG_715_Ferros_OldCamp_01_03");	//Без меча я не могу выйти отсюда, а те мечи, что продают здесь, - бесполезный хлам.
+	AI_Output(self,other,"DIA_DJG_715_Ferros_OldCamp_01_03");	//Без меча я не могу выйти отсюда, а те мечи, что продают здесь - бесполезный хлам.
 	Info_ClearChoices(DIA_DJG_715_Ferros_OldCamp);
 	Info_AddChoice(DIA_DJG_715_Ferros_OldCamp,"Я желаю тебе удачи в твоих поисках.",DIA_DJG_715_Ferros_OldCamp_No);
 	Info_AddChoice(DIA_DJG_715_Ferros_OldCamp,"Что ты дашь мне, если я найду твой меч?",DIA_DJG_715_Ferros_OldCamp_Price);
@@ -178,7 +178,7 @@ instance DIA_DJG_715_Ferros_FerrosAnySword(C_Info)
 
 func int DIA_DJG_715_Ferros_FerrosAnySword_Condition()
 {
-	if((MIS_FerrosSword == LOG_Running) && ((Npc_HasItems(other,ItMw_1H_Special_01) >= 1) || (Npc_HasItems(other,ItMw_1H_Special_02) >= 1)))
+	if((MIS_FerrosSword == LOG_Running) && (Npc_HasItems(other,ItMw_1H_Special_01) || Npc_HasItems(other,ItMw_1H_Special_02)))
 	{
 		return TRUE;
 	};
@@ -189,11 +189,11 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Info()
 	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_15_00");	//Возможно, у меня есть для тебя другой меч.
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
 	Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,Dialog_Back,DIA_DJG_715_Ferros_FerrosAnySword_Back);
-	if(Npc_HasItems(other,ItMw_1H_Special_01) >= 1)
+	if(Npc_HasItems(other,ItMw_1H_Special_01))
 	{
 		Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,ItMw_1H_Special_01.name,DIA_DJG_715_Ferros_FerrosAnySword_Silverblade);
 	};
-	if(Npc_HasItems(other,ItMw_1H_Special_02) >= 1)
+	if(Npc_HasItems(other,ItMw_1H_Special_02))
 	{
 		Info_AddChoice(DIA_DJG_715_Ferros_FerrosAnySword,ItMw_1H_Special_02.name,DIA_DJG_715_Ferros_FerrosAnySword_Oreblade);
 	};
@@ -291,7 +291,7 @@ instance DIA_DJG_715_Ferros_FerrosHisSword(C_Info)
 
 func int DIA_DJG_715_Ferros_FerrosHisSword_Condition()
 {
-	if((MIS_FerrosSword == LOG_Running) && (Npc_HasItems(other,ItMW_1H_FerrosSword_Mis) >= 1))
+	if((MIS_FerrosSword == LOG_Running) && Npc_HasItems(other,ItMW_1H_FerrosSword_Mis))
 	{
 		return TRUE;
 	};

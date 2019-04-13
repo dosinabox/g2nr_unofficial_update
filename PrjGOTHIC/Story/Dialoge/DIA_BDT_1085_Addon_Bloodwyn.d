@@ -128,6 +128,8 @@ func int DIA_Addon_Bloodwyn_Wait_Condition()
 	};
 };
 
+var int Bloodwyn_KnowsSC;
+
 func void DIA_Addon_Bloodwyn_Wait_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Bloodwyn_Wait_04_00");	//Ты убил краулеров? Отлично. Дальше действую я. Проваливай.
@@ -148,13 +150,21 @@ func void DIA_Addon_Bloodwyn_Wait_Raven()
 	AI_Output(self,other,"DIA_Addon_Bloodwyn_Wait_Raven_04_04");	//Эти бараны все проморгали, но от меня ты не уйдешь. На этот раз я прикончу тебя!
 	AI_Output(other,self,"DIA_Addon_Bloodwyn_Wait_Raven_15_05");	//Как я уже сказал, ты меня не интересуешь, я ищу Ворона.
 	AI_Output(self,other,"DIA_Addon_Bloodwyn_Wait_Raven_04_06");	//Я убью тебя, я не проиграл еще ни одной схватки!
+	Bloodwyn_KnowsSC = TRUE;
 	Bloodwyn_Choices_1();
 };
 
 func void DIA_Addon_Bloodwyn_Wait_FIGHT()
 {
 	AI_Output(other,self,"DIA_Addon_Bloodwyn_Wait_Raven_FIGHT_15_00");	//Хватит трепаться. Дерись.
-	AI_Output(self,other,"DIA_Addon_Bloodwyn_Wait_Raven_FIGHT_04_01");	//(торжествующе) Все равно уже слишком поздно! Ворон уже открывает храм! Ха-ха-ха! Умри, ублюдок!
+	if(Bloodwyn_KnowsSC == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Bloodwyn_Wait_Raven_FIGHT_04_01");	//(торжествующе) Все равно уже слишком поздно! Ворон уже открывает храм! Ха-ха-ха! Умри, ублюдок!
+	}
+	else
+	{
+		B_Say(self,other,"$KillEnemy");
+	};
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -167,9 +177,9 @@ func void Bloodwyn_Lach()
 func void Bloodwyn_Wut()
 {
 	AI_Output(self,other,"DIA_Addon_Bloodwyn_Wut_04_00");	//А-АХ! Ты жалкая тварь!
-	self.attribute[ATR_STRENGTH] = self.attribute[ATR_STRENGTH] - 5;
-	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] - 25;
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] - 25;
+	self.attribute[ATR_STRENGTH] -= 5;
+	self.attribute[ATR_HITPOINTS] -= 25;
+	self.attribute[ATR_HITPOINTS_MAX] -= 25;
 };
 
 func void Bloodwyn_Next_1()

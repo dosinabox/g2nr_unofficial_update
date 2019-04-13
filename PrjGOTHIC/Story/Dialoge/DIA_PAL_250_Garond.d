@@ -65,7 +65,7 @@ func void DIA_Garond_PMSchulden_Info()
 		diff = B_GetTotalPetzCounter(self) - Garond_LastPetzCounter;
 		if(diff > 0)
 		{
-			Garond_Schulden = Garond_Schulden + (diff * 50);
+			Garond_Schulden += diff * 50;
 		};
 		if(Garond_Schulden > 1000)
 		{
@@ -167,8 +167,7 @@ func void DIA_Garond_PETZMASTER_Info()
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_01");	//Я спрашивал себя: сколько это еще будет продолжаться, прежде чем ты придешь ко мне с повинной?
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_02");	//Еще только убийств мне здесь не хватало.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_03");	//У меня на счету каждый человек - а теперь у меня стало на одного бойца меньше!
-		Garond_Schulden = B_GetTotalPetzCounter(self) * 50;
-		Garond_Schulden = Garond_Schulden + 500;
+		Garond_Schulden = B_GetTotalPetzCounter(self) * 50 + 500;
 		if((PETZCOUNTER_City_Theft + PETZCOUNTER_City_Attack + PETZCOUNTER_City_Sheepkiller) > 0)
 		{
 			AI_Output(self,other,"DIA_Garond_PETZMASTER_10_04");	//Не говоря уже обо всем остальном, в чем тебя обвиняют.
@@ -224,7 +223,7 @@ func void DIA_Garond_PETZMASTER_PayNow()
 {
 	AI_Output(other,self,"DIA_Garond_PETZMASTER_PayNow_15_00");	//Я хочу заплатить штраф!
 	B_GiveInvItems(other,self,ItMi_Gold,Garond_Schulden);
-	AI_Output(self,other,"DIA_Garond_PETZMASTER_PayNow_10_01");	//Хорошо, я скажу об этом нашим парням, чтобы немного успокоить их. Но чтобы больше такое не повторялось!
+	AI_Output(self,other,"DIA_Garond_PETZMASTER_PayNow_10_01");	//Хорошо, я скажу об этом нашим парням, чтобы немного успокоить их. Но чтобы больше такого не повторялось!
 	B_GrantAbsolution(LOC_OLDCAMP);
 	Garond_Schulden = 0;
 	Garond_LastPetzCounter = 0;
@@ -267,7 +266,7 @@ func void DIA_Garond_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Garond_Hello_10_00");	//Откуда ты взялся? Ты не из старателей, и ты не один из моих людей. Так кто же ты?
 	AI_Output(other,self,"DIA_Garond_Hello_15_01");	//Я пришел через Проход.
-	AI_Output(self,other,"DIA_Garond_Hello_10_02");	//Через Проход...? Ты действительно прошел там?! О, Иннос всемогущий!
+	AI_Output(self,other,"DIA_Garond_Hello_10_02");	//Через Проход?.. Ты действительно прошел там?! О, Иннос всемогущий!
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Garond_Hello_10_03");	//Зачем ты прошел этот путь, маг?
@@ -476,7 +475,7 @@ func void DIA_Garond_Fajeth_Info()
 	AI_Output(self,other,"DIA_Garond_Fajeth_10_03");	//Хмм... два ящика? Мне не нужны два ящика - мне нужно ДВЕ СОТНИ.
 	AI_Output(other,self,"DIA_Garond_Fajeth_15_04");	//Он хочет, чтобы я передал тебе - ему нужны еще люди.
 	AI_Output(self,other,"DIA_Garond_Fajeth_10_05");	//Что? Я должен послать еще людей на верную смерть? Он может забыть об этом.
-	Ore_Counter = Ore_Counter + 1;
+	Ore_Counter += 1;
 	B_GivePlayerXP(XP_Fajeth_Ore);
 	if(Ore_Counter >= 3)
 	{
@@ -498,7 +497,7 @@ instance DIA_Garond_Silvestro(C_Info)
 
 func int DIA_Garond_Silvestro_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && ((Silvestro_Ore == TRUE) || (Npc_IsDead(PC_ThiefOW) == TRUE)))
+	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && ((Silvestro_Ore == TRUE) || Npc_IsDead(PC_ThiefOW)))
 	{
 		return TRUE;
 	};
@@ -512,7 +511,7 @@ func void DIA_Garond_Silvestro_Info()
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_03");	//А что насчет руды? Ты знаешь, сколько они добыли?
 	AI_Output(other,self,"DIA_Garond_Silvestro_15_04");	//Им удалось спрятать несколько ящиков. Они в пещере - по пути от замка к шахте.
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_05");	//Черт! Это были хорошие люди - да проявит Иннос милосердие к их душам.
-	Ore_Counter = Ore_Counter + 1;
+	Ore_Counter += 1;
 	B_GivePlayerXP(XP_Silvestro_Ore);
 	if(Ore_Counter >= 3)
 	{
@@ -554,7 +553,7 @@ func void DIA_Garond_Marcos_Info()
 	B_StartOtherRoutine(Marcos_Guard2,"MARCOS");
 	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
 	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
-	Ore_Counter = Ore_Counter + 1;
+	Ore_Counter += 1;
 	MIS_Marcos_Jungs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Marcos_Ore);
 	if(Ore_Counter >= 3)
@@ -871,9 +870,17 @@ func void DIA_Garond_BACKINKAP4_Info()
 	};
 	AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_08");	//Если Хаген не пришлет в ближайшее время своих людей, я ничего не могу гарантировать.
 	B_InitNpcGlobals();
-	AI_Teleport(DJG_Angar,"OW_DJG_WATCH_STONEHENGE_01");
-	B_StartOtherRoutine(DJG_Angar,"Start");
-	DJG_Angar_SentToStones = TRUE;
+	if(DJG_AngarGotAmulett == TRUE)
+	{
+		AI_Teleport(DJG_Angar,"OW_CAVALORN_01");
+		B_StartOtherRoutine(DJG_Angar,"LeavingOW");
+	}
+	else
+	{
+		AI_Teleport(DJG_Angar,"OW_DJG_WATCH_STONEHENGE_01");
+		B_StartOtherRoutine(DJG_Angar,"Start");
+		DJG_Angar_SentToStones = TRUE;
+	};
 	B_StartOtherRoutine(Kjorn,"START");
 	B_StartOtherRoutine(Godar,"START");
 	B_StartOtherRoutine(Hokurn,"START");
@@ -930,25 +937,25 @@ func void DIA_Garond_DragonPlettBericht_Info()
 		{
 			AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_02");	//Я убил дракона в болоте к востоку отсюда.
 			Garond_SwampdragonKilled_OneTime = TRUE;
-			CurrentDragonCount = CurrentDragonCount + 1;
+			CurrentDragonCount += 1;
 		};
 		if(Npc_IsDead(RockDragon) && (Garond_RockdragonKilled_OneTime == FALSE))
 		{
 			AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_03");	//Дракон в каменной крепости, к югу отсюда, мертв.
 			Garond_RockdragonKilled_OneTime = TRUE;
-			CurrentDragonCount = CurrentDragonCount + 1;
+			CurrentDragonCount += 1;
 		};
 		if(Npc_IsDead(FireDragon) && (Garond_FireDragonKilled_OneTime == FALSE))
 		{
 			AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_04");	//Огненный дракон из вулкана на юге больше не будет беспокоить вас.
 			Garond_FireDragonKilled_OneTime = TRUE;
-			CurrentDragonCount = CurrentDragonCount + 1;
+			CurrentDragonCount += 1;
 		};
 		if(Npc_IsDead(IceDragon) && (Garond_IcedragonKilled_OneTime == FALSE))
 		{
 			AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_05");	//Я был в западном ледяном районе и расправился с драконом, обитавшем там.
 			Garond_IcedragonKilled_OneTime = TRUE;
-			CurrentDragonCount = CurrentDragonCount + 1;
+			CurrentDragonCount += 1;
 		};
 		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_06");	//Это хорошие новости. Вот. Возьми эти деньги. Надеюсь, они помогут тебе обновить твое снаряжение.
 		Drachengeld = CurrentDragonCount * Garond_KilledDragonGeld;
@@ -1032,7 +1039,7 @@ func void DIA_Garond_JanBecomeSmith_Info()
 {
 	AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_00");	//Я хочу поговорить о кузнеце.
 	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_01");	//Каком кузнеце? Он исчез.
-	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_02");	//Он что вернулся? Тогда можешь сказать ему...
+	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_02");	//Он что, вернулся? Тогда можешь сказать ему...
 	AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_03");	//Нет, я говорю о Яне.
 	if(hero.guild == GIL_DJG)
 	{

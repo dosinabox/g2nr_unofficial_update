@@ -1,5 +1,5 @@
 
-instance Pal_224_Schiffswache(Npc_Default)
+instance PAL_224_Schiffswache(Npc_Default)
 {
 	name[0] = NAME_Schiffswache;
 	guild = GIL_PAL;
@@ -11,7 +11,7 @@ instance Pal_224_Schiffswache(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Normal_Kirgo,BodyTex_B,ItAr_PAL_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Normal_Kirgo,BodyTex_B,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

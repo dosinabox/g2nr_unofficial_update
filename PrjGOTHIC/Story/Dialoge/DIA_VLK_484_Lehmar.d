@@ -325,16 +325,13 @@ instance DIA_Lehmar_PICKPOCKET(C_Info)
 	condition = DIA_Lehmar_PICKPOCKET_Condition;
 	information = DIA_Lehmar_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть его книгу будет легче легкого)";
+	description = "(Нет ничего проще, чем украсть его книгу)";
 };
 
 
 func int DIA_Lehmar_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItWr_Schuldenbuch) >= 1) && (other.attribute[ATR_DEXTERITY] >= (20 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
 };
 
 func void DIA_Lehmar_PICKPOCKET_Info()
@@ -346,19 +343,8 @@ func void DIA_Lehmar_PICKPOCKET_Info()
 
 func void DIA_Lehmar_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 20)
-	{
-		B_GiveInvItems(self,other,ItWr_Schuldenbuch,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
+	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
 };
 
 func void DIA_Lehmar_PICKPOCKET_BACK()

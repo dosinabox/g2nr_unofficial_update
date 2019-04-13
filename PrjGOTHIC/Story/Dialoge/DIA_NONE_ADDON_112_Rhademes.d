@@ -6,7 +6,7 @@ instance DIA_Addon_Rhademes_EXIT(C_Info)
 	condition = DIA_Addon_Rhademes_EXIT_Condition;
 	information = DIA_Addon_Rhademes_EXIT_Info;
 	permanent = TRUE;
-	description = "Я сам найду путь туда! (КОНЕЦ)";
+	description = "Я сам найду путь!";
 };
 
 
@@ -157,7 +157,7 @@ instance DIA_Addon_Rhademes_DeinVater(C_Info)
 
 func int DIA_Addon_Rhademes_DeinVater_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Rhademes_Pforte) && (Npc_HasItems(other,ItMi_Addon_Stone_04) >= 1))
+	if(Npc_KnowsInfo(other,DIA_Addon_Rhademes_Pforte) && Npc_HasItems(other,ItMi_Addon_Stone_04))
 	{
 		return TRUE;
 	};

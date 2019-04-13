@@ -6,7 +6,7 @@ instance DIA_Addon_Logan_EXIT(C_Info)
 	condition = DIA_Addon_Logan_EXIT_Condition;
 	information = DIA_Addon_Logan_EXIT_Info;
 	permanent = TRUE;
-	description = "Я вернусь позже...";
+	description = Dialog_Ende_v4;
 };
 
 
@@ -74,7 +74,7 @@ instance DIA_Addon_BDT_1072_Logan_Mine(C_Info)
 
 func int DIA_Addon_Logan_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && (Npc_HasItems(other,ItMi_Addon_Stone_01) >= 1) && (Npc_GetDistToWP(self,"BL_INN_CORNER_02") <= 1000))
+	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01) && (Npc_GetDistToWP(self,"BL_INN_CORNER_02") <= 1000))
 	{
 		return TRUE;
 	};
@@ -85,7 +85,7 @@ func void DIA_Addon_Logan_Mine_Info()
 	B_Say(other,self,"$MINE_ADDON_DESCRIPTION");
 	B_GiveInvItems(other,self,ItMi_Addon_Stone_01,1);
 	AI_Output(self,other,"DIA_Addon_BDT_1072_Logan_Mine_10_00");	//Так значит, ты это сделал, хм... Ладно, хорошо, что ты не забыл про меня.
-	Player_SentBuddler = Player_SentBuddler + 1;
+	Player_SentBuddler += 1;
 	B_GivePlayerXP(XP_Addon_MINE);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"MINE");
@@ -178,7 +178,7 @@ func void DIA_Addon_Logan_HI_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_Logan_HI_15_03");	//Это зависит от того, в чем тебе нужна помощь?
+		AI_Output(other,self,"DIA_Addon_Logan_HI_15_03");	//Ну, это зависит от того, в чем тебе нужна помощь.
 	};
 	AI_Output(self,other,"DIA_Addon_Logan_HI_10_04");	//Болотные акулы начинают подбираться ко мне слишком близко. Самое время прикончить некоторых из них.
 	Log_CreateTopic(Topic_Addon_Logan,LOG_MISSION);
@@ -216,7 +216,7 @@ func void DIA_Addon_Logan_Why_Info()
 	AI_Output(self,other,"DIA_Addon_Logan_Why_10_05");	//Здесь есть люди, которые уже долгое время ждут возможности попасть внутрь.
 	AI_Output(self,other,"DIA_Addon_Logan_Why_10_06");	//И следующим, кто туда попадет, буду я... (рычит)... Лучше бы это было так...
 	Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Teacher,"Логан может научить меня снимать шкуры и выбирать зубы и когти.");
+	B_LogEntry(Topic_Addon_BDT_Teacher,"Логан может научить меня снимать кожу с рептилий и выдирать зубы и когти.");
 };
 
 
@@ -340,6 +340,11 @@ func void DIA_Addon_Logan_Lern_Info()
 	AI_Output(other,self,"DIA_Addon_Logan_Lern_15_00");	//Покажи мне, как разделывать туши животных...
 	AI_Output(self,other,"DIA_Addon_Logan_Lern_10_01");	//Если ты хочешь научиться разделывать кровавых мух, пойди к Эдгору. Он про них знает буквально все.
 	AI_Output(self,other,"DIA_Addon_Logan_Lern_10_02");	//А если тебя интересуют болотные акулы и ящеры, я могу научить тебя снимать шкуру и вынимать зубы.
+	if(Edgor_Teach == FALSE)
+	{
+		Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
+		B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
+	};
 };
 
 
@@ -350,13 +355,13 @@ instance DIA_Addon_Logan_Allg(C_Info)
 	condition = DIA_Addon_Logan_Allg_Condition;
 	information = DIA_Addon_Logan_Allg_Info;
 	permanent = TRUE;
-	description = "Я хочу обучиться...";
+	description = "Я хочу обучиться тому, что ты умеешь.";
 };
 
 
 func int DIA_Addon_Logan_Allg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Logan_Lern) && ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)))
+	if(Npc_KnowsInfo(other,DIA_Addon_Logan_Lern))
 	{
 		return TRUE;
 	};
@@ -364,19 +369,27 @@ func int DIA_Addon_Logan_Allg_Condition()
 
 func void DIA_Addon_Logan_Allg_Info()
 {
-	Info_ClearChoices(DIA_Addon_Logan_Allg);
-	Info_AddChoice(DIA_Addon_Logan_Allg,Dialog_Back,DIA_Addon_Logan_Allg_BACK);
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
+	AI_Output(other,self,"DIA_Addon_Cavalorn_TEACH_15_00");	//Я хочу обучиться тому, что ты умеешь.
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE))
 	{
-		Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString("Удаление зубов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Addon_Logan_Allg_Teeth);
-	};
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
+		Info_ClearChoices(DIA_Addon_Logan_Allg);
+		Info_AddChoice(DIA_Addon_Logan_Allg,Dialog_Back,DIA_Addon_Logan_Allg_BACK);
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
+		{
+			Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString("Удаление зубов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Addon_Logan_Allg_Teeth);
+		};
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
+		{
+			Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString("Удаление когтей",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),DIA_Addon_Logan_Allg_Claws);
+		};
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
+		{
+			Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString("Кожа рептилий",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ReptileSkin)),DIA_Addon_Logan_Allg_Fur);
+		};
+	}
+	else
 	{
-		Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString("Удаление когтей",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),DIA_Addon_Logan_Allg_Claws);
-	};
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
-	{
-		Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString("Снятие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Addon_Logan_Allg_Fur);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
 	};
 };
 
@@ -397,7 +410,7 @@ func void DIA_Addon_Logan_Allg_Claws()
 
 func void DIA_Addon_Logan_Allg_Fur()
 {
-	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Fur);
+	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_ReptileSkin);
 };
 
 

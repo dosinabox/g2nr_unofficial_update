@@ -10,7 +10,7 @@ instance BAU_908_Hodges(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMw_1h_Bau_Axe,1);
 	CreateInvItems(self,ItMw_1h_Vlk_Axe,1);
 	CreateInvItems(self,ItMw_1H_Mace_L_04,1);

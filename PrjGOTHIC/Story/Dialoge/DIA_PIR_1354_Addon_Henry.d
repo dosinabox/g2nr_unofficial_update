@@ -99,12 +99,12 @@ instance DIA_Addon_Henry_Hello(C_Info)
 
 func int DIA_Addon_Henry_Hello_Condition()
 {
-	if(Npc_GetDistToWP(other,PIR_1354_Checkpoint) <= 700)
+	if((Npc_GetDistToWP(other,PIR_1354_Checkpoint) <= 700) && (self.aivar[AIV_PASSGATE] == FALSE))
 	{
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_RefuseTalk(self) == FALSE))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -156,7 +156,7 @@ instance DIA_Addon_Henry_SecondWarn(C_Info)
 
 func int DIA_Addon_Henry_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,PIR_1354_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PIR_1354_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -184,7 +184,7 @@ instance DIA_Addon_Henry_Attack(C_Info)
 
 func int DIA_Addon_Henry_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,PIR_1354_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PIR_1354_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -235,7 +235,7 @@ func void DIA_Addon_Henry_WantEnter_Info()
 		Henry_Zoll_WhatFor = TRUE;
 	};
 	itm = Npc_GetEquippedArmor(other);
-	if((Hlp_IsItem(itm,ItAr_KDF_L) == TRUE) || (Hlp_IsItem(itm,ItAr_KDF_H) == TRUE) || (Hlp_IsItem(itm,ITAR_RANGER_Addon) == TRUE) || (Hlp_IsItem(itm,ITAR_Mil_L) == TRUE) || (Hlp_IsItem(itm,ItAr_MIL_M) == TRUE))
+	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_H))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
@@ -322,7 +322,7 @@ instance DIA_Addon_Henry_MeatForMorgan(C_Info)
 
 func int DIA_Addon_Henry_MeatForMorgan_Condition()
 {
-	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (MIS_AlligatorJack_BringMeat == LOG_Running) && (Npc_HasItems(other,ItFoMuttonRaw) >= 1))
+	if((self.aivar[AIV_PASSGATE] == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Henry_Einigen) && (MIS_AlligatorJack_BringMeat == LOG_Running) && Npc_HasItems(other,ItFoMuttonRaw))
 	{
 		return TRUE;
 	};
@@ -343,7 +343,7 @@ instance DIA_Addon_Henry_Malcom(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Henry_Malcom_Condition;
 	information = DIA_Addon_Henry_Malcom_Info;
-	description = "Меня послал Мальком.";
+	description = "Меня послал Мальком. Он сказал, что с деревом придется еще немного подождать.";
 };
 
 
@@ -417,17 +417,17 @@ func void DIA_Addon_Henry_Tribut_Info()
 	if(Npc_KnowsInfo(other,DIA_Addon_Henry_Malcom))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Tribut_04_02");	//Ты принес мне сообщение от одного из лесорубов.
-		Henry_Amount = Henry_Amount - 100;
+		Henry_Amount -= 100;
 	};
 	if(Npc_KnowsInfo(other,DIA_Addon_Henry_MeatForMorgan))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Tribut_04_03");	//Аллигатор Джек использует тебя как мальчика на побегушках, чтобы передать мясо Моргану.
-		Henry_Amount = Henry_Amount - 100;
+		Henry_Amount -= 100;
 	};
 	if(Npc_KnowsInfo(other,DIA_Addon_Henry_BaltramPack))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Tribut_04_04");	//У тебя посылка для Скипа.
-		Henry_Amount = Henry_Amount - 100;
+		Henry_Amount -= 100;
 	};
 	if(MIS_Henry_FreeBDTTower == LOG_SUCCESS)
 	{
@@ -437,7 +437,7 @@ func void DIA_Addon_Henry_Tribut_Info()
 		};
 		AI_Output(self,other,"DIA_Addon_Henry_Tribut_Add_04_01");	//Ты разобрался с этими подонками, засевшими в башне.
 		AI_Output(self,other,"DIA_Addon_Henry_Tribut_Add_04_02");	//Не думал я, что с этим можно было справиться в одиночку.
-		Henry_Amount = Henry_Amount - 200;
+		Henry_Amount -= 200;
 	};
 	if(Henry_Amount <= 0)
 	{
@@ -573,7 +573,7 @@ func int DIA_Addon_Henry_Turmbanditen_WhatFor_Condition()
 func void DIA_Addon_Henry_Turmbanditen_WhatFor_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Turmbanditen_15_00");	//Насчет бандитов в башне...
-	if(C_TowerBanditsDead() == TRUE)
+	if(C_TowerBanditsDead())
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_01");	//Да?
 		AI_Output(other,self,"DIA_Addon_Francis_BanditsDead_15_01");	//Они мертвы.

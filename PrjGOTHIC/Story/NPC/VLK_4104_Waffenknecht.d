@@ -11,7 +11,7 @@ instance VLK_4104_Waffenknecht(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Grim,BodyTex_N,ITAR_Mil_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Grim,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

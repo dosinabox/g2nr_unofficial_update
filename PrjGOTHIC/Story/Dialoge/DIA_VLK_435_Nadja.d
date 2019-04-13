@@ -163,7 +163,7 @@ instance DIA_Addon_Nadja_LuciaInfo(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Nadja_LuciaInfo_Condition;
 	information = DIA_Addon_Nadja_LuciaInfo_Info;
-	description = "Ну а теперь мы можем поговорить?";
+	description = "Ну, а теперь мы можем поговорить?";
 };
 
 
@@ -180,7 +180,7 @@ var int Nadja_GaveLuciaInfo;
 
 func void DIA_Addon_Nadja_LuciaInfo_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_15_00");	//Ну а теперь мы можем поговорить?
+	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_15_00");	//Ну, а теперь мы можем поговорить?
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_16_01");	//Да, здесь нас не подслушают.
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_16_02");	//Бромору не нравится, когда мы разговариваем с гостями во время работы, если ему от этого никакой выгоды.
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_16_03");	//Итак, ты хочешь узнать побольше о людях, которые исчезли в порту, не так ли?
@@ -242,7 +242,7 @@ func void DIA_Addon_Nadja_LuciaInfo_weiter()
 	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_weiter_15_00");	//Спасибо, но мне нужно идти.
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_weiter_16_01");	//Очень жаль. Ну что ж, тогда в другой раз.
 	Bromor_Pay = FALSE;
-	Nadja_Nacht = Nadja_Nacht + 1;
+	Nadja_Nacht += 1;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 };
@@ -283,7 +283,7 @@ func void DIA_Nadja_Poppen_Info()
 func void DIA_Nadja_Poppen_Start()
 {
 	Bromor_Pay = FALSE;
-	Nadja_Nacht = Nadja_Nacht + 1;
+	Nadja_Nacht += 1;
 	PlayVideo("LOVESCENE.BIK");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
@@ -308,7 +308,7 @@ instance DIA_Nadja_BUYHERB(C_Info)
 
 func int DIA_Nadja_BUYHERB_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Npc_KnowsInfo(other,DIA_Nadja_WANT_HERB) == FALSE) && (Nadja_Money == FALSE) && (Undercover_Failed == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_Running) && !Npc_KnowsInfo(other,DIA_Nadja_WANT_HERB) && (Nadja_Money == FALSE) && (Undercover_Failed == FALSE))
 	{
 		return TRUE;
 	};
@@ -321,7 +321,7 @@ func void DIA_Nadja_BUYHERB_Info()
 	AI_Output(other,self,"DIA_Nadja_BUYHERB_15_00");	//Могу я здесь купить травки?
 	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 500)
 	{
-		if(Hlp_IsItem(heroArmor,ITAR_Mil_L) == TRUE)
+		if(Hlp_IsItem(heroArmor,ITAR_MIL_L))
 		{
 			AI_Output(self,other,"DIA_Nadja_BUYHERB_16_01");	//Откуда мне знать? Да и если бы знала, все равно не сказала бы городскому стражнику.
 			Undercover_Failed = TRUE;
@@ -348,7 +348,7 @@ instance DIA_Nadja_WANT_HERB(C_Info)
 	condition = DIA_Nadja_WANT_HERB_Condition;
 	information = DIA_Nadja_WANT_HERB_Info;
 	permanent = FALSE;
-	description = "А теперь скажи мне, где можно купить травки (заплатить 50 золотых).";
+	description = "А теперь скажи мне, где можно купить травки. (заплатить 50 золотых)";
 };
 
 
@@ -365,7 +365,7 @@ func void DIA_Nadja_WANT_HERB_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Nadja_WANT_HERB_15_00");	//А теперь скажи мне, где можно купить травки.
-	if(Hlp_IsItem(heroArmor,ITAR_Mil_L) == TRUE)
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L))
 	{
 		AI_Output(self,other,"DIA_Nadja_WANT_HERB_16_01");	//Извини, я забыла.
 	}

@@ -27,7 +27,7 @@ instance DIA_Pedro_DI_YOU(C_Info)
 	nr = 2;
 	condition = DIA_Pedro_DI_YOU_Condition;
 	information = DIA_Pedro_DI_YOU_Info;
-	description = "Предатель!";
+	description = "Предатель! Наконец-то я нашел тебя.";
 };
 
 
@@ -140,7 +140,7 @@ func void DIA_Pedro_DI_ArrivedAtShip_Info()
 	AI_Output(other,self,"DIA_Pedro_DI_ArrivedAtShip_15_02");	//Хватит болтать. Рассказывай, что я должен узнать?
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_09_03");	//Да, конечно. С чего мне начать?
 	Info_ClearChoices(DIA_Pedro_DI_ArrivedAtShip);
-	Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Я услышал достаточно.",DIA_Pedro_DI_ArrivedAtShip_Back);
+	Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Я услышал достаточно. Иди, найди себе место на моем корабле.",DIA_Pedro_DI_ArrivedAtShip_Back);
 	Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Как мне попасть внутрь этого острова?",DIA_Pedro_DI_ArrivedAtShip_Innere);
 	Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"А какие еще монстры населяют этот остров?",DIA_Pedro_DI_ArrivedAtShip_Monster);
 	Info_AddChoice(DIA_Pedro_DI_ArrivedAtShip,"Что там насчет этого полковника орков?",DIA_Pedro_DI_ArrivedAtShip_OrkOberst);

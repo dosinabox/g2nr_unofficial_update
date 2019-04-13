@@ -13,7 +13,7 @@ func int DIA_DragonTalk_Main_1_Condition()
 {
 	if(MIS_KilledDragons == 0)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -70,7 +70,7 @@ func int DIA_DragonTalk_Main_2_Condition()
 {
 	if(MIS_KilledDragons == 1)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -101,7 +101,7 @@ func int DIA_DragonTalk_Main_3_Condition()
 {
 	if(MIS_KilledDragons == 2)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -146,7 +146,7 @@ func int DIA_DragonTalk_Main_4_Condition()
 {
 	if(MIS_KilledDragons == 3)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 

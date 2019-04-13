@@ -1,7 +1,7 @@
 
 instance DIA_Dar_EXIT(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 999;
 	condition = DIA_Dar_EXIT_Condition;
 	information = DIA_Dar_EXIT_Info;
@@ -26,7 +26,7 @@ func void DIA_Dar_EXIT_Info()
 
 instance DIA_Dar_Hallo(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 1;
 	condition = DIA_Dar_Hallo_Condition;
 	information = DIA_Dar_Hallo_Info;
@@ -52,7 +52,7 @@ func void DIA_Dar_Hallo_Info()
 func void DIA_Dar_Hallo_Ja()
 {
 	AI_Output(other,self,"DIA_Dar_Hallo_Ja_15_00");	//Конечно.
-	CreateInvItem(other,ItMi_Joint);
+	B_GiveInvItems(self,other,ItMi_Joint,1);
 	B_UseItem(other,ItMi_Joint);
 	AI_Output(self,other,"DIA_Dar_Hallo_Ja_03_01");	//Неплохо, да?
 	AI_Output(other,self,"DIA_Dar_Hallo_Ja_15_02");	//Где ты взял эту траву?
@@ -73,7 +73,7 @@ var int Dar_einmal;
 
 instance DIA_Dar_PERM(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 2;
 	condition = DIA_Dar_PERM_Condition;
 	information = DIA_Dar_PERM_Info;
@@ -107,7 +107,7 @@ func void DIA_Dar_PERM_Info()
 
 instance DIA_Dar_WannaJoin(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 3;
 	condition = DIA_Dar_WannaJoin_Condition;
 	information = DIA_Dar_WannaJoin_Info;
@@ -133,7 +133,7 @@ func void DIA_Dar_WannaJoin_Info()
 
 instance DIA_Dar_DuDieb(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_DuDieb_Condition;
 	information = DIA_Dar_DuDieb_Info;
@@ -162,7 +162,7 @@ func void DIA_Dar_DuDieb_Info()
 
 instance DIA_Dar_WoPaket(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_WoPaket_Condition;
 	information = DIA_Dar_WoPaket_Info;
@@ -201,7 +201,7 @@ func void DIA_Dar_WoPaket_Info()
 
 instance DIA_Dar_AufsMaul(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 5;
 	condition = DIA_Dar_AufsMaul_Condition;
 	information = DIA_Dar_AufsMaul_Info;
@@ -229,7 +229,7 @@ func void DIA_Dar_AufsMaul_Info()
 
 instance DIA_Dar_Kameradenschwein(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 1;
 	condition = DIA_Dar_Kameradenschwein_Condition;
 	information = DIA_Dar_Kameradenschwein_Info;
@@ -259,7 +259,7 @@ func void DIA_Dar_Kameradenschwein_Info()
 
 instance DIA_Dar_Pilztabak(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 6;
 	condition = DIA_Dar_Pilztabak_Condition;
 	information = DIA_Dar_Pilztabak_Info;
@@ -270,7 +270,7 @@ instance DIA_Dar_Pilztabak(C_Info)
 
 func int DIA_Dar_Pilztabak_Condition()
 {
-	if(Npc_HasItems(other,ItMi_PilzTabak) > 0)
+	if(Npc_HasItems(other,ItMi_PilzTabak))
 	{
 		return TRUE;
 	};
@@ -301,7 +301,7 @@ func void DIA_Dar_Pilztabak_Info()
 
 instance DIA_Dar_KAP3_EXIT(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 999;
 	condition = DIA_Dar_KAP3_EXIT_Condition;
 	information = DIA_Dar_KAP3_EXIT_Info;
@@ -326,7 +326,7 @@ func void DIA_Dar_KAP3_EXIT_Info()
 
 instance DIA_Dar_KAP4_EXIT(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 999;
 	condition = DIA_Dar_KAP4_EXIT_Condition;
 	information = DIA_Dar_KAP4_EXIT_Info;
@@ -351,7 +351,7 @@ func void DIA_Dar_KAP4_EXIT_Info()
 
 instance DIA_Dar_ORCRING(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_ORCRING_Condition;
 	information = DIA_Dar_ORCRING_Info;
@@ -453,7 +453,7 @@ func void DIA_Dar_ORCRING_no()
 
 instance DIA_Dar_FIGHTAGAINSTPALOVER(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_FIGHTAGAINSTPALOVER_Condition;
 	information = DIA_Dar_FIGHTAGAINSTPALOVER_Info;
@@ -480,7 +480,7 @@ func void DIA_Dar_FIGHTAGAINSTPALOVER_Info()
 
 instance DIA_Dar_BRINGORCELITERING(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 4;
 	condition = DIA_Dar_BRINGORCELITERING_Condition;
 	information = DIA_Dar_BRINGORCELITERING_Info;
@@ -572,7 +572,7 @@ func void DIA_Dar_BRINGORCELITERING_was_am()
 
 instance DIA_Dar_KAP5_EXIT(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 999;
 	condition = DIA_Dar_KAP5_EXIT_Condition;
 	information = DIA_Dar_KAP5_EXIT_Info;
@@ -597,7 +597,7 @@ func void DIA_Dar_KAP5_EXIT_Info()
 
 instance DIA_Dar_KAP6_EXIT(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 999;
 	condition = DIA_Dar_KAP6_EXIT_Condition;
 	information = DIA_Dar_KAP6_EXIT_Info;
@@ -622,7 +622,7 @@ func void DIA_Dar_KAP6_EXIT_Info()
 
 instance DIA_Dar_PICKPOCKET(C_Info)
 {
-	npc = Sld_810_Dar;
+	npc = SLD_810_Dar;
 	nr = 900;
 	condition = DIA_Dar_PICKPOCKET_Condition;
 	information = DIA_Dar_PICKPOCKET_Info;

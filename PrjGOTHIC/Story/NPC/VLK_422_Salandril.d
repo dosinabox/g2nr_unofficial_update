@@ -8,10 +8,9 @@ instance VLK_422_Salandril(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
-	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItKe_Salandril,1);
+//	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Asghan,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

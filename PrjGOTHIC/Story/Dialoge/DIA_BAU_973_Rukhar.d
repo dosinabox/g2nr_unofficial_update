@@ -64,7 +64,7 @@ func int DIA_Rukhar_WASMACHSTDU_Condition()
 func void DIA_Rukhar_WASMACHSTDU_Info()
 {
 	AI_Output(other,self,"DIA_Rukhar_WASMACHSTDU_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_01");	//Еще несколько недель назад я вкалывал как раб на ферме Онара.
+	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_01");	//Еще несколько недель назад вкалывал как раб на ферме Онара.
 	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_02");	//Но однажды я понял, что больше так не выдержу и сбежал оттуда.
 	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_03");	//Теперь я сам себе хозяин. Все, что принадлежит мне, находится в этом сундуке. И больше мне ничего не нужно.
 	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_04");	//Не хочешь посостязаться со мной?
@@ -158,7 +158,7 @@ func void DIA_Rukhar_RANDOLPHWILL_Info()
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_15_00");	//Я нашел человека, который хочет сразиться с тобой.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_01");	//Кто это?
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_15_02");	//Рэндольф.
-	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_03");	//Хо-хо. Рэндольф хвастун? Хорошо. Почему бы и нет.
+	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_03");	//Хо-хо-хо. Рэндольф хвастун? Ну хорошо. Почему бы и нет.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_04");	//Пришли этого слизняка ко мне, и сделай ставку.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_05");	//Ты можешь выставить его еще раз не раньше чем через 2 дня. Кто знает? Может, тебе повезет, и он успеет протрезветь.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_06");	//Какова твоя ставка?
@@ -230,7 +230,7 @@ func void DIA_Rukhar_RANDOLPHWILL_50()
 func void DIA_Rukhar_RANDOLPHWILL_100()
 {
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_100_15_00");	//100.
-	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_100_12_01");	//Вот это мне уже нравится.
+	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_100_12_01");	//Вот это уже мне нравится.
 	Rukhar_Einsatz = 100;
 	Rukhar_Gewinn = 200;
 	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);

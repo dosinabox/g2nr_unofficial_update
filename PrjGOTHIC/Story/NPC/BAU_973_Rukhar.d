@@ -22,7 +22,7 @@ instance BAU_973_Rukhar(Npc_Default)
 
 func void Rtn_Start_973()
 {
-	TA_Stand_Drinking(8,0,22,0,"NW_TAVERNE_RUKHAR");
+	TA_Stand_Eating(8,0,22,0,"NW_TAVERNE_RUKHAR");
 	TA_Sit_Bench(22,0,8,0,"NW_TAVERNE_OUT_01");
 };
 
@@ -40,7 +40,7 @@ func void Rtn_WettkampfRukharWon_973()
 
 func void Rtn_WettkampfRukharLost_973()
 {
-	TA_Sit_Bench(8,0,22,0,"NW_TAVERNE_OUT_01");
+	TA_Stand_Drinking(8,0,22,0,"NW_TAVERNE_OUT_01");
 	TA_Sit_Bench(22,0,8,0,"NW_TAVERNE_OUT_01");
 };
 

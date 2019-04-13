@@ -103,7 +103,7 @@ func void DIA_DiegoOw_Beweise_Info()
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их.
 	};
 	Silvestro_Ore = TRUE;
-	B_LogEntry(TOPIC_ScoutMine,"Диего переправил ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро, в безопасное место.");
+	B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 };
 
 
@@ -149,7 +149,7 @@ instance DIA_DiegoOw_Ritter(C_Info)
 
 func int DIA_DiegoOw_Ritter_Condition()
 {
-	if((Npc_HasItems(PAL_Leiche4,ItMi_OldCoin) == 0) || (Npc_HasItems(PAL_Leiche5,ItMi_OldCoin) == 0))
+	if(!Npc_HasItems(PAL_Leiche4,ItMi_OldCoin) || !Npc_HasItems(PAL_Leiche5,ItMi_OldCoin))
 	{
 		return TRUE;
 	};
@@ -170,7 +170,7 @@ instance DIA_DiegoOw_Perm(C_Info)
 	condition = DIA_DiegoOw_Perm_Condition;
 	information = DIA_DiegoOw_Perm_Info;
 	permanent = FALSE;
-	description = "Что мне нужно знать о долине?";
+	description = "Что мне нужно знать о Долине?";
 };
 
 
@@ -181,9 +181,9 @@ func int DIA_DiegoOw_Perm_Condition()
 
 func void DIA_DiegoOw_Perm_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Perm_15_00");	//Что мне нужно знать о долине?
+	AI_Output(other,self,"DIA_DiegoOw_Perm_15_00");	//Что мне нужно знать о Долине?
 	AI_Output(self,other,"DIA_DiegoOw_Perm_11_01");	//С тех пор, как Барьер пал, здесь многое переменилось. Теперь здесь заправляют орки.
-	AI_Output(self,other,"DIA_DiegoOw_Perm_11_02");	//А мы, люди, теперь не более чем корм для истинных правителей этой долины: драконов.
+	AI_Output(self,other,"DIA_DiegoOw_Perm_11_02");	//А мы, люди, теперь не более чем корм для истинных правителей этой Долины: драконов.
 	AI_Output(self,other,"DIA_DiegoOw_Perm_11_03");	//Держись подальше от всех, кто сильнее тебя - и избегай всего, что напоминает дракона.
 };
 
@@ -360,7 +360,7 @@ func int DIA_Addon_ThiefOW_Together_Condition()
 func void DIA_Addon_ThiefOW_Together_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Diego_Together_15_00");	//Давай пойдем вместе.
-	AI_Output(self,other,"DIA_Addon_Diego_Together_11_01");	//К проходу? Почему бы и нет...
+	AI_Output(self,other,"DIA_Addon_Diego_Together_11_01");	//К Проходу? Почему бы и нет...
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_02");	//Иди первым. Ты ведь недавно оттуда.
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_03");	//Но даже не думай о том, чтобы подойти слишком близко к замку или Стене орков.
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_04");	//Кроме того, нам следует избегать лагерей паладинов.
@@ -477,7 +477,7 @@ func void DIA_Addon_ThiefOW_GoHome_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_09");	//Ты, наверное, шутишь? Мы должны разделиться? Здесь?
 		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_10");	//Только через мой труп!
-		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_11");	//Мы идем к проходу немедленно. И вместе.
+		AI_Output(self,other,"DIA_Addon_Diego_GoHome_11_11");	//Мы идем к Проходу немедленно. И вместе.
 	};
 };
 
@@ -730,7 +730,7 @@ func void DIA_Addon_ThiefOW_Nostalgie_Info()
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_04");	//В этом месте было что-то ЕЩЕ. Черт! Я не могу вспомнить.
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_05");	//Ну ладно...
 	B_GivePlayerXP(500);
-	hero.exp = hero.exp + 500;
+	hero.exp += 500;
 	PrintScreen(ConcatStrings(NAME_Addon_NostalgieBonus,IntToString(500)),-1,60,FONT_Screen,2);
 	B_Diego_WirSindDa();
 };
@@ -762,7 +762,7 @@ func void DIA_Addon_ThiefOW_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_PERM_11_01");	//Мне бы не помешало зелье лечения. У тебя не найдется для меня пузырька?
 	}
-	else if((DiegoOW.aivar[AIV_PARTYMEMBER] == FALSE) && (Diego_angekommen == FALSE))
+	else if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (Diego_angekommen == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_PERM_11_02");	//Скажи мне, когда будешь готов.
 	}

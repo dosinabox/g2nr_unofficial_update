@@ -10,7 +10,7 @@ instance KDF_507_Talamon(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Saturas,BodyTex_B,ItAr_KDF_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Saturas,BodyTex_B,ITAR_KDF_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

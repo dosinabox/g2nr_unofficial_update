@@ -4,7 +4,7 @@ func void ZS_MM_Rtn_EatGround()
 	Perception_Set_Monster_Rtn();
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == FALSE)
+	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		AI_GotoWP(self,self.wp);
 	};

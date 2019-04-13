@@ -14,7 +14,7 @@ func int Spell_Logic_Swarm(var int manaInvested)
 {
 	if((Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll)) || (self.attribute[ATR_MANA] >= SPL_Cost_Swarm))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Swarm;
+		self.attribute[ATR_MANA] -= SPL_Cost_Swarm;
 		return SPL_SENDCAST;
 	}
 	else

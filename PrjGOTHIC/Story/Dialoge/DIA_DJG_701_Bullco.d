@@ -33,7 +33,7 @@ instance DIA_BullcoDJG_HALLO(C_Info)
 
 func int DIA_BullcoDJG_HALLO_Condition()
 {
-	if(Npc_IsDead(DJG_Sylvio) == FALSE)
+	if(!Npc_IsDead(DJG_Sylvio))
 	{
 		return TRUE;
 	};

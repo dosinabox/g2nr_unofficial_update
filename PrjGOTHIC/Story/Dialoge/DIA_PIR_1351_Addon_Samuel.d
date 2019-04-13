@@ -105,7 +105,7 @@ func void DIA_Addon_Samuel_Versteck_Info()
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_06");	//(смеется) Фрэнсис ни за что не пустит тебя в хижину, чтобы ты мог покопаться в вещах Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_07");	//Если только...
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_03");	//Что?
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_08");	//...Если только у тебя не будет что-то, что действительно нужно Фрэнсису.
+	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_08");	//... Если только у тебя не будет что-то, что действительно нужно Фрэнсису.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_09");	//Я знаю, что Фрэнсис что-то спрятал в заброшенной шахте в каньоне.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_10");	//Однажды мы вместе стояли в карауле, и он как всегда заснул. Я услышал, как он бормочет об этом во сне.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_11");	//Не знаю, что он там зарыл, но возможно, что это настолько для него важно, что за этот предмет он пропустит тебя в хижину...
@@ -130,7 +130,7 @@ instance DIA_Addon_Samuel_Recipe(C_Info)
 
 func int DIA_Addon_Samuel_Recipe_Condition()
 {
-	if(((Samuel_Knows_LousHammer == FALSE) && (Npc_HasItems(other,ITWr_Addon_Lou_Rezept) > 0)) || ((Samuel_Knows_SchlafHammer == FALSE) && (Npc_HasItems(other,ITWr_Addon_Lou_Rezept2) > 0)))
+	if(((Samuel_Knows_LousHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept)) || ((Samuel_Knows_SchlafHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept2)))
 	{
 		return TRUE;
 	};
@@ -141,13 +141,13 @@ func void DIA_Addon_Samuel_Recipe_Info()
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_15_00");	//У меня есть для тебя рецепт!
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_14_01");	//Отлично, показывай. Что это за рецепт?
 	Info_ClearChoices(DIA_Addon_Samuel_Recipe);
-	if((Samuel_Knows_LousHammer == FALSE) && (Npc_HasItems(other,ITWr_Addon_Lou_Rezept) > 0))
+	if((Samuel_Knows_LousHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept))
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Recipe,"Молот Лу",DIA_Addon_Samuel_Recipe_LousHammer);
 	};
-	if((Samuel_Knows_SchlafHammer == FALSE) && (Npc_HasItems(other,ITWr_Addon_Lou_Rezept2) > 0))
+	if((Samuel_Knows_SchlafHammer == FALSE) && Npc_HasItems(other,ITWr_Addon_Lou_Rezept2))
 	{
-		Info_AddChoice(DIA_Addon_Samuel_Recipe,"Двойной молот Лу",DIA_Addon_Samuel_Recipe_LousDoubleHammer);
+		Info_AddChoice(DIA_Addon_Samuel_Recipe,"Двойной Молот Лу",DIA_Addon_Samuel_Recipe_LousDoubleHammer);
 	};
 };
 
@@ -368,7 +368,7 @@ func void DIA_Addon_Samuel_Stronger_SchnellerHering()
 
 func void DIA_Addon_Samuel_Stronger_LousHammer()
 {
-	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_LousHammer_15_00");	//Я хочу 'Молоток Лу'!
+	AI_Output(other,self,"DIA_Addon_Samuel_Stronger_LousHammer_15_00");	//Я хочу 'Молот Лу'!
 	if(B_GiveInvItems(other,self,ItMi_Gold,30))
 	{
 		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_LousHammer_14_01");	//Отличное пойло! Наслаждайся!
@@ -446,14 +446,14 @@ func int DIA_Addon_Samuel_Trade_Condition()
 
 func void DIA_Addon_Samuel_Trade_Info()
 {
-	if(Samuel_flag == 1)
+	if(Samuel_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
 		if(Samuel_flasks > 0)
 		{
 			CreateInvItems(self,ItMi_Flask,Samuel_flasks);
 		};
-		Samuel_flag = 0;
+		Samuel_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Addon_Samuel_Trade_15_00");	//Что у тебя еще есть?
 	B_GiveTradeInv(self);

@@ -12,8 +12,8 @@ instance PC_Mage_DI(Npc_Default)
 	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
-	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Milten,BodyTex_N,ItAr_KDF_L);
+//	B_CreateAmbientInv(self);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Milten,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

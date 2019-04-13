@@ -41,7 +41,7 @@ var int Kervo_GotStuff;
 
 func void DIA_Geppert_HALLO_Info()
 {
-	if((Npc_IsDead(Kervo) == FALSE) && (Kervo_GotStuff == FALSE))
+	if(!Npc_IsDead(Kervo) && (Kervo_GotStuff == FALSE))
 	{
 		if(hero.guild == GIL_KDF)
 		{

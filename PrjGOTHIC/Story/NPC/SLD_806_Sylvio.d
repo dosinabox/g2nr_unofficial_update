@@ -12,7 +12,7 @@ instance SLD_806_Sylvio(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Scar,BodyTex_N,ItAr_Sld_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Scar,BodyTex_N,ITAR_SLD_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

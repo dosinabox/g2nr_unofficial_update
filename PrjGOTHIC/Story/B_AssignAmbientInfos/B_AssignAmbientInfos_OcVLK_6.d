@@ -40,7 +40,7 @@ func void DIA_OCVLK_6_PEOPLE_Info()
 	AI_Output(other,self,"DIA_OCVLK_6_PEOPLE_15_00");	//Кто командует здесь?
 	AI_Output(self,other,"DIA_OCVLK_6_PEOPLE_06_01");	//Гаронд командует всем фортом - вернее, тем, что от него осталось.
 	AI_Output(self,other,"DIA_OCVLK_6_PEOPLE_06_02");	//Но сам он не предпринимает практически ничего. Ну, если только кто-либо из его людей не попадет в беду.
-	if(Npc_IsDead(Engor) == FALSE)
+	if(!Npc_IsDead(Engor))
 	{
 		AI_Output(self,other,"DIA_OCVLK_6_PEOPLE_06_03");	//Если тебе нужно снаряжение, поговори с Энгором. Ты найдешь его в доме напротив дома Гаронда.
 	};

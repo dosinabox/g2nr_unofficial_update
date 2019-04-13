@@ -3,7 +3,7 @@ var int EVT_ARCHOLDEAD_FUNC_OneTime;
 
 func void evt_archoldead_func()
 {
-	if(Npc_IsDead(Skeleton_Lord_Archol))
+	if(Npc_IsDead(Archol))
 	{
 		Skeleton_Archol1.aivar[AIV_EnemyOverride] = FALSE;
 		Skeleton_Archol2.aivar[AIV_EnemyOverride] = FALSE;

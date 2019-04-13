@@ -43,12 +43,14 @@ instance IceGolem(Mst_Default_IceGolem)
 
 instance IceGolem_Sylvio1(Mst_Default_IceGolem)
 {
+	flags = NPC_FLAG_IMMORTAL;
 	B_SetVisuals_IceGolem();
 	Npc_SetToFistMode(self);
 };
 
 instance IceGolem_Sylvio2(Mst_Default_IceGolem)
 {
+	flags = NPC_FLAG_IMMORTAL;
 	B_SetVisuals_IceGolem();
 	Npc_SetToFistMode(self);
 };

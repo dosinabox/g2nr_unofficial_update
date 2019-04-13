@@ -48,6 +48,7 @@ instance Sheep(Mst_Default_Sheep)
 
 instance Hammel(Mst_Default_Sheep)
 {
+	name[0] = NAME_Hammel;
 	B_SetVisuals_Hammel();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_MM_AllScheduler;
@@ -68,7 +69,6 @@ instance Follow_Sheep(Mst_Default_Sheep)
 
 instance Follow_Sheep_AKIL(Mst_Default_Sheep)
 {
-	name[0] = "Œ‚ˆ‡";
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetVisuals_Sheep();
 	Npc_SetToFistMode(self);
@@ -79,6 +79,7 @@ instance Follow_Sheep_AKIL(Mst_Default_Sheep)
 
 instance Balthasar_Sheep1(Mst_Default_Sheep)
 {
+	name[0] = NAME_Hammel;
 	B_SetVisuals_Hammel();
 	Npc_SetToFistMode(self);
 	start_aistate = ZS_MM_AllScheduler;

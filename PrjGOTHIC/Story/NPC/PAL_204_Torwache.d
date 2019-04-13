@@ -1,5 +1,5 @@
 
-instance Pal_204_Torwache(Npc_Default)
+instance PAL_204_Torwache(Npc_Default)
 {
 	name[0] = NAME_Torwache;
 	guild = GIL_PAL;
@@ -12,7 +12,7 @@ instance Pal_204_Torwache(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Whistler,BodyTex_N,ItAr_PAL_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Whistler,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

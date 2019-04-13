@@ -4,7 +4,7 @@ func void ZS_GotoBed()
 	Perception_Set_Normal();
 	B_ResetAll(self);
 	AI_SetWalkMode(self,NPC_WALK);
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == FALSE)
+	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		AI_GotoWP(self,self.wp);
 	};
@@ -35,6 +35,7 @@ func int ZS_Sleep_Loop()
 		if(Wld_IsMobAvailable(self,"BEDHIGH"))
 		{
 			AI_UseMob(self,"BEDHIGH",1);
+			Mdl_StartFaceAni(self,"S_EYESCLOSED",1,-1);
 		}
 		else if((Player_GetOutOfMyBedComment == FALSE) && C_BodyStateContains(hero,BS_LIE) && (Npc_GetDistToNpc(self,hero) <= 500))
 		{
@@ -48,6 +49,7 @@ func int ZS_Sleep_Loop()
 
 func void ZS_Sleep_End()
 {
+	Mdl_StartFaceAni(self,"S_NEUTRAL",1,-1);
 	if(!Npc_IsInPlayersRoom(self))
 	{
 		B_Say(self,self,"$AWAKE");

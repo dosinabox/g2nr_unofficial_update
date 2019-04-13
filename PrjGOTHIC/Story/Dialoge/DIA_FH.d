@@ -34,14 +34,14 @@ instance DIA_FH_EXIT(C_Info)
 	nr = 999;
 	condition = DIA_FH_EXIT_Condition;
 	information = DIA_FH_EXIT_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
 func int DIA_FH_EXIT_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_EXIT_Info()
@@ -56,19 +56,19 @@ instance DIA_FH_NextFace(C_Info)
 	nr = 3;
 	condition = DIA_FH_NextFace_Condition;
 	information = DIA_FH_NextFace_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "Следующее лицо";
 };
 
 
 func int DIA_FH_NextFace_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_NextFace_Info()
 {
-	FH_SkinTexture = FH_SkinTexture + 1;
+	FH_SkinTexture += 1;
 	Change_FH_Visual();
 };
 
@@ -79,19 +79,19 @@ instance DIA_FH_NextFace10(C_Info)
 	nr = 5;
 	condition = DIA_FH_NextFace10_Condition;
 	information = DIA_FH_NextFace10_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "10 лиц вперед";
 };
 
 
 func int DIA_FH_NextFace10_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_NextFace10_Info()
 {
-	FH_SkinTexture = FH_SkinTexture + 10;
+	FH_SkinTexture += 10;
 	Change_FH_Visual();
 };
 
@@ -102,19 +102,19 @@ instance DIA_FH_PreviousFace(C_Info)
 	nr = 4;
 	condition = DIA_FH_PreviousFace_Condition;
 	information = DIA_FH_PreviousFace_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "Предыдущее лицо";
 };
 
 
 func int DIA_FH_PreviousFace_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_PreviousFace_Info()
 {
-	FH_SkinTexture = FH_SkinTexture - 1;
+	FH_SkinTexture -= 1;
 	Change_FH_Visual();
 };
 
@@ -125,19 +125,19 @@ instance DIA_FH_PreviousFace10(C_Info)
 	nr = 6;
 	condition = DIA_FH_PreviousFace10_Condition;
 	information = DIA_FH_PreviousFace10_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "10 лиц назад";
 };
 
 
 func int DIA_FH_PreviousFace10_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_PreviousFace10_Info()
 {
-	FH_SkinTexture = FH_SkinTexture - 10;
+	FH_SkinTexture -= 10;
 	Change_FH_Visual();
 };
 
@@ -148,14 +148,14 @@ instance DIA_FH_ResetFace(C_Info)
 	nr = 7;
 	condition = DIA_FH_ResetFace_Condition;
 	information = DIA_FH_ResetFace_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "Сброс";
 };
 
 
 func int DIA_FH_ResetFace_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_ResetFace_Info()
@@ -171,14 +171,14 @@ instance DIA_FH_WomanFace(C_Info)
 	nr = 8;
 	condition = DIA_FH_WomanFace_Condition;
 	information = DIA_FH_WomanFace_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "Перейти к женским лицам";
 };
 
 
 func int DIA_FH_WomanFace_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_WomanFace_Info()
@@ -194,14 +194,14 @@ instance DIA_FH_Repeat(C_Info)
 	nr = 1;
 	condition = DIA_FH_Repeat_Condition;
 	information = DIA_FH_Repeat_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "Повторить";
 };
 
 
 func int DIA_FH_Repeat_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_Repeat_Info()
@@ -216,14 +216,14 @@ instance DIA_FH_Sex(C_Info)
 	nr = 9;
 	condition = DIA_FH_Sex_Condition;
 	information = DIA_FH_Sex_Info;
-	permanent = 1;
-	description = "Пол";
+	permanent = TRUE;
+	description = "Изменить пол";
 };
 
 
 func int DIA_FH_Sex_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_Sex_Info()
@@ -246,14 +246,14 @@ instance DIA_FH_Choose_HeadMesh(C_Info)
 	nr = 2;
 	condition = DIA_FH_Choose_HeadMesh_Condition;
 	information = DIA_FH_Choose_HeadMesh_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "Выбор формы головы";
 };
 
 
 func int DIA_FH_Choose_HeadMesh_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_FH_Choose_HeadMesh_Info()

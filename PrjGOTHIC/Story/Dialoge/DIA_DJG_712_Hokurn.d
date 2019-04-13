@@ -48,7 +48,7 @@ func void DIA_Hokurn_Hello_Info()
 	AI_Output(self,other,"DIA_Hokurn_Hello_01_03");	//Когда мне долго не удается промочить горло, мой череп раскалывается и мне кажется, что он вот-вот взорвется.
 	Info_ClearChoices(DIA_Hokurn_Hello);
 	Info_AddChoice(DIA_Hokurn_Hello,"Я ничем не могу помочь тебе.",DIA_Hokurn_Hello_No);
-	if((Npc_HasItems(other,ItFo_Beer) >= 1) || (Npc_HasItems(other,ItFo_Booze) >= 1) || (Npc_HasItems(other,ItFo_Wine) >= 1))
+	if(Npc_HasItems(other,ItFo_Beer) || Npc_HasItems(other,ItFo_Booze) || Npc_HasItems(other,ItFo_Wine))
 	{
 		Info_AddChoice(DIA_Hokurn_Hello,"Вот, возьми это.",DIA_Hokurn_Hello_Yes);
 	};
@@ -94,17 +94,17 @@ func void B_Hokurn_Sauf()
 func void DIA_Hokurn_Hello_Yes()
 {
 	AI_Output(other,self,"DIA_Hokurn_Hello_Yes_15_00");	//Вот, возьми это.
-	if(Npc_HasItems(other,ItFo_Booze) >= 1)
+	if(Npc_HasItems(other,ItFo_Booze))
 	{
 		B_GiveInvItems(other,self,ItFo_Booze,1);
 		B_UseItem(self,ItFo_Booze);
 	}
-	else if(Npc_HasItems(other,ItFo_Wine) >= 1)
+	else if(Npc_HasItems(other,ItFo_Wine))
 	{
 		B_GiveInvItems(other,self,ItFo_Wine,1);
 		B_UseItem(self,ItFo_Wine);
 	}
-	else if(Npc_HasItems(other,ItFo_Beer) >= 1)
+	else if(Npc_HasItems(other,ItFo_Beer))
 	{
 		B_GiveInvItems(other,self,ItFo_Beer,1);
 		B_UseItem(self,ItFo_Beer);
@@ -129,7 +129,7 @@ instance DIA_Hokurn_Drink(C_Info)
 
 func int DIA_Hokurn_Drink_Condition()
 {
-	if((HokurnGetsDrink == FALSE) && ((Npc_HasItems(other,ItFo_Beer) >= 1) || (Npc_HasItems(other,ItFo_Booze) >= 1) || (Npc_HasItems(other,ItFo_Wine) >= 1)))
+	if((HokurnGetsDrink == FALSE) && (Npc_HasItems(other,ItFo_Beer) || Npc_HasItems(other,ItFo_Booze) || Npc_HasItems(other,ItFo_Wine)))
 	{
 		return TRUE;
 	};
@@ -139,17 +139,17 @@ func void DIA_Hokurn_Drink_Info()
 {
 	AI_Output(other,self,"DIA_Hokurn_Drink_15_00");	//Я принес тебе выпивку.
 	AI_Output(self,other,"DIA_Hokurn_Drink_01_01");	//(жадно) Давай сюда!!!
-	if(Npc_HasItems(other,ItFo_Booze) >= 1)
+	if(Npc_HasItems(other,ItFo_Booze))
 	{
 		B_GiveInvItems(other,self,ItFo_Booze,1);
 		B_UseItem(self,ItFo_Booze);
 	}
-	else if(Npc_HasItems(other,ItFo_Wine) >= 1)
+	else if(Npc_HasItems(other,ItFo_Wine))
 	{
 		B_GiveInvItems(other,self,ItFo_Wine,1);
 		B_UseItem(self,ItFo_Wine);
 	}
-	else if(Npc_HasItems(other,ItFo_Beer) >= 1)
+	else if(Npc_HasItems(other,ItFo_Beer))
 	{
 		B_GiveInvItems(other,self,ItFo_Beer,1);
 		B_UseItem(self,ItFo_Beer);
@@ -277,7 +277,7 @@ instance DIA_Hokurn_DrinkAndLearn(C_Info)
 
 func int DIA_Hokurn_DrinkAndLearn_Condition()
 {
-	if((HokurnGetsDrink == TRUE) && ((Npc_HasItems(other,ItFo_Booze) >= 1) || (Npc_HasItems(other,ItFo_Wine) >= 1) || (Npc_HasItems(other,ItFo_Beer) >= 1)))
+	if((HokurnGetsDrink == TRUE) && (Npc_HasItems(other,ItFo_Booze) || Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_Beer)))
 	{
 		return TRUE;
 	};
@@ -286,17 +286,17 @@ func int DIA_Hokurn_DrinkAndLearn_Condition()
 func void DIA_Hokurn_DrinkAndLearn_Info()
 {
 	AI_Output(other,self,"DIA_Hokurn_DrinkAndLearn_15_00");	//Вот, держи выпивку.
-	if(Npc_HasItems(other,ItFo_Booze) >= 1)
+	if(Npc_HasItems(other,ItFo_Booze))
 	{
 		B_GiveInvItems(other,self,ItFo_Booze,1);
 		B_UseItem(self,ItFo_Booze);
 	}
-	else if(Npc_HasItems(other,ItFo_Wine) >= 1)
+	else if(Npc_HasItems(other,ItFo_Wine))
 	{
 		B_GiveInvItems(other,self,ItFo_Wine,1);
 		B_UseItem(self,ItFo_Wine);
 	}
-	else if(Npc_HasItems(other,ItFo_Beer) >= 1)
+	else if(Npc_HasItems(other,ItFo_Beer))
 	{
 		B_GiveInvItems(other,self,ItFo_Beer,1);
 		B_UseItem(self,ItFo_Beer);
@@ -455,7 +455,7 @@ func void DIA_Hokurn_WhereDragon_Info()
 	Info_ClearChoices(DIA_Hokurn_WhereDragon);
 	Info_AddChoice(DIA_Hokurn_WhereDragon,"Ничего, я сам их найду.",DIA_Hokurn_WhereDragon_FindMyself);
 	Info_AddChoice(DIA_Hokurn_WhereDragon,"Я был бы не прочь заплатить тебе за эту информацию.",DIA_Hokurn_WhereDragon_Gold);
-	if(Npc_HasItems(other,ItFo_Booze) >= 1)
+	if(Npc_HasItems(other,ItFo_Booze))
 	{
 		Info_AddChoice(DIA_Hokurn_WhereDragon,"У меня есть еще одна бутылочка джина!",DIA_Hokurn_WhereDragon_Booze);
 	};

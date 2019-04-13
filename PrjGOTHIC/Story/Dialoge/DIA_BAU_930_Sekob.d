@@ -140,7 +140,7 @@ instance DIA_Sekob_InformOnar(C_Info)
 	condition = DIA_Sekob_InformOnar_Condition;
 	information = DIA_Sekob_InformOnar_Info;
 	permanent = FALSE;
-	description = "Тогда мне придется доложить об этом Онару.";
+	description = "Что ж, тогда мне придется доложить об этом Онару.";
 };
 
 
@@ -154,7 +154,7 @@ func int DIA_Sekob_InformOnar_Condition()
 
 func void DIA_Sekob_InformOnar_Info()
 {
-	AI_Output(other,self,"DIA_Sekob_InformOnar_15_00");	//Тогда мне придется доложить об этом Онару.
+	AI_Output(other,self,"DIA_Sekob_InformOnar_15_00");	//Что ж, тогда мне придется доложить об этом Онару.
 	AI_Output(self,other,"DIA_Sekob_InformOnar_01_01");	//Меня это не волнует! Можешь сказать Онару, что у меня ничего нет. Это печальная правда.
 	MIS_Sekob_RedeMitOnar = LOG_Running;
 	AI_StopProcessInfos(self);
@@ -185,7 +185,7 @@ func void DIA_Sekob_Defeated_Info()
 	AI_Output(other,self,"DIA_Sekob_Defeated_15_00");	//Где ты хранишь деньги?!
 	AI_Output(self,other,"DIA_Sekob_Defeated_01_01");	//Не бей меня больше, пожалуйста. Я сделаю все, что ты скажешь.
 	AI_Output(other,self,"DIA_Sekob_Defeated_15_02");	//Заплати ренту.
-	AI_Output(self,other,"DIA_Sekob_Defeated_01_03");	//(хныча) Но, господин, у меня ничего нет. Я простой бедняк, я сам пухну от голода.
+	AI_Output(self,other,"DIA_Sekob_Defeated_01_03");	//(хныча) Но, господин, но у меня ничего нет. Я простой бедняк, я сам пухну от голода.
 	AI_Output(self,other,"DIA_Sekob_Defeated_01_04");	//Мой последний урожай полностью погиб от засухи. Я ХОЧУ заплатить ренту, но мне просто НЕЧЕМ. Мне очень жаль.
 	Info_ClearChoices(DIA_Sekob_Defeated);
 	Info_AddChoice(DIA_Sekob_Defeated,"Заплати ренту, или я убью тебя.",DIA_Sekob_Defeated_hart);
@@ -204,6 +204,7 @@ func void B_Sekob_Kassieren()
 {
 	AI_Output(other,self,"DIA_Sekob_Kassieren_15_00");	//Хватит нести чушь. Дожди шли почти не переставая, и твои закрома ломятся от зерна. Заплати ренту, или я убью тебя.
 	AI_Output(self,other,"DIA_Sekob_Kassieren_01_01");	//(подобострастно) Нет, пожалуйста, вот, возьми золото. Я даже прибавлю сверху, если ты оставишь меня в живых.
+	CreateInvItems(self,ItMi_Gold,60);
 	B_GiveInvItems(self,other,ItMi_Gold,60);
 	AI_Output(other,self,"DIA_Sekob_Kassieren_15_02");	//Вот видишь, это было не так уж и сложно.
 	AI_Output(self,other,"DIA_Sekob_Kassieren_01_03");	//(в отчаянии) Я разорен.
@@ -271,7 +272,7 @@ func void DIA_Sekob_Again_verarscht()
 	AI_Output(other,self,"DIA_Sekob_Again_verarscht_15_00");	//Я поговорил...
 	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_01");	//И? Что он сказал?
 	AI_Output(other,self,"DIA_Sekob_Again_verarscht_15_02");	//Извини, но теперь мне придется оторвать тебе голову.
-	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_03");	//За что? Что я такого сделал?
+	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_03");	//За что? Что такого я сделал?
 	AI_Output(other,self,"DIA_Sekob_Again_verarscht_15_04");	//Ты пытался провести меня.
 	AI_Output(self,other,"DIA_Sekob_Again_verarscht_01_05");	//Я сказал правду - честно!
 	B_Sekob_Kassieren();
@@ -469,7 +470,7 @@ func void DIA_Sekob_BELOHNUNG_Info()
 		AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_06");	//Что?
 		AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_07");	//Прошу извинить меня. Несколько лет назад я поклялся никогда не говорить об этом и не собираюсь нарушать свою клятву.
 	};
-	AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_08");	//Все, что я могу сделать, - это дать тебе немного золота и просить тебя пощадить меня.
+	AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_08");	//Все, что я могу сделать - это дать тебе немного золота и просить тебя пощадить меня.
 	AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_09");	//Тогда давай его сюда. Я тороплюсь.
 	AI_Output(self,other,"DIA_Sekob_BELOHNUNG_01_10");	//Вот.
 	CreateInvItems(self,ItMi_Gold,250);
@@ -685,8 +686,8 @@ func void DIA_Sekob_ROSINEVERBACK_Info()
 	self.flags = 0;
 	B_NpcClearObsessionByDMT(self);
 	B_Attack(self,other,AR_NONE,1);
-	B_GivePlayerXP(XP_Ambient);
 	MIS_bringRosiBackToSekob = LOG_FAILED;
+	B_GivePlayerXP(XP_Ambient);
 };
 
 

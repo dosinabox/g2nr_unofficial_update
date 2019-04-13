@@ -133,7 +133,7 @@ instance DIA_Jorgen_Milten(C_Info)
 	condition = DIA_Jorgen_Milten_Condition;
 	information = DIA_Jorgen_Milten_Info;
 	permanent = FALSE;
-	description = "Если ты идешь в монастырь, тебе нужно поговорить с Милтеном...";
+	description = "Если ты идешь в монастырь, тебе нужно поговорить с Милтеном.";
 };
 
 
@@ -147,7 +147,7 @@ func int DIA_Jorgen_Milten_Condition()
 
 func void DIA_Jorgen_Milten_Info()
 {
-	AI_Output(other,self,"DIA_Jorgen_Milten_15_00");	//Если ты идешь в монастырь, тебе нужно поговорить с Милтеном. Он, наверняка, сможет помочь тебе.
+	AI_Output(other,self,"DIA_Jorgen_Milten_15_00");	//Если ты идешь в монастырь, тебе нужно поговорить с Милтеном. Он наверняка сможет помочь тебе.
 	AI_Output(self,other,"DIA_Jorgen_Milten_07_01");	//Как ты думаешь, меня примут туда?
 	AI_Output(other,self,"DIA_Jorgen_Milten_15_02");	//Возможно. Но мне почему-то тяжело представить тебя в робе послушника.
 	AI_Output(self,other,"DIA_Jorgen_Milten_07_03");	//Хватит нести чепуху - роба так роба. Мне прежде всего нужна еда, а то мне скоро придется обгладывать кору с деревьев.
@@ -178,7 +178,7 @@ func void DIA_Jorgen_Home_Info()
 	AI_Output(self,other,"DIA_Jorgen_Home_07_01");	//Я был капитаном большого китобойного судна, парень. Мой дом - море.
 	AI_Output(self,other,"DIA_Jorgen_Home_07_02");	//Мой корабль, 'Магдалена', был потоплен пиратами несколько месяцев назад, и вот теперь я на мели здесь.
 	AI_Output(self,other,"DIA_Jorgen_Home_07_03");	//Я очень хотел поскорее опять выйти в море, но с тех пор как я прибыл сюда, ни одной шхуны не зашло в этот проклятый порт.
-	AI_Output(self,other,"DIA_Jorgen_Home_07_04");	//Единственный корабль, пришвартовавшийся в Хоринисе, - это чертова военная галера короля, а они никого не берут.
+	AI_Output(self,other,"DIA_Jorgen_Home_07_04");	//Единственный корабль, пришвартовавшийся в Хоринисе - это чертова военная галера короля, а они никого не берут.
 	AI_Output(self,other,"DIA_Jorgen_Home_07_05");	//И что мне теперь делать? В городе для меня нет работы. Я пробовал уже все.
 };
 
@@ -265,7 +265,7 @@ func void DIA_Jorgen_NEUHIER_Info()
 	{
 		AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_03");	//Я чувствую себя идиотом среди этих всегда ворчащих благодетелей.
 	};
-	AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_04");	//Ну а что еще мне делать? Чем помирать с голоду в городе, лучше уж выполнять работу, которую дают мне послушники.
+	AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_04");	//Ну, а что еще мне делать? Чем помирать с голоду в городе, лучше уж выполнять работу, которую дают мне послушники.
 };
 
 
@@ -358,12 +358,12 @@ func void DIA_Jorgen_BEMYCAPTAIN_Info()
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_01");	//Ты не издеваешься надо мной, парень? Если ты скажешь, что это правда, я всегда готов.
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_02");	//Эээ... есть только одна маленькая проблема. Я съел половину кладовки послушников.
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_03");	//Они чуть не сошли с ума от злости, когда узнали. Я не думаю, что главный маг позволит мне вот так просто уйти.
+		Log_CreateTopic(Topic_Captain,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Captain,LOG_Running);
+		B_LogEntry(Topic_Captain,"Йорген готов стать моим капитаном, но я сначала должен оплатить его долг перед монастырем.");
 		DIA_Jorgen_BEMYCAPTAIN_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_04");	//Сначала мне нужно отработать мой долг перед Пирокаром. Извини.
-	Log_CreateTopic(Topic_Captain,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Captain,LOG_Running);
-	B_LogEntry(Topic_Captain,"Йорген готов стать моим капитаном, но я сначала должен оплатить его долг перед монастырем.");
 };
 
 
@@ -459,7 +459,7 @@ func int DIA_Jorgen_LOSFAHREN_Condition()
 func void DIA_Jorgen_LOSFAHREN_Info()
 {
 	AI_Output(other,self,"DIA_Jorgen_LOSFAHREN_15_00");	//Ты готов доставить меня на остров?
-	if(B_CaptainConditions(self) == TRUE)
+	if(B_CaptainConditions(self))
 	{
 		AI_Output(self,other,"DIA_Jorgen_LOSFAHREN_07_01");	//Конечно. Дай мне карту.
 		AI_Output(self,other,"DIA_Jorgen_LOSFAHREN_07_02");	//Отлично. Поднять паруса! Мы отчаливаем!

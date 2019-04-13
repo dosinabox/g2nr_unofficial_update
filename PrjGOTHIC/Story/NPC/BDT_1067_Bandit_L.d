@@ -23,7 +23,7 @@ instance BDT_1067_Bandit_L(Npc_Default)
 
 func void Rtn_Start_1067()
 {
-	TA_Sleep(0,0,12,0,"NW_CASTLEMINE_TOWER_08");
-	TA_Sleep(12,0,0,0,"NW_CASTLEMINE_TOWER_08");
+	TA_Stand_WP(0,0,8,0,"NW_CASTLEMINE_TOWER");
+	TA_Sleep(8,0,0,0,"NW_CASTLEMINE_TOWER_08");
 };
 

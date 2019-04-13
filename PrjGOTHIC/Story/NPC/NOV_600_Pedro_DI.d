@@ -12,7 +12,7 @@ instance NOV_600_Pedro_DI(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_PSIONIC",Face_L_Normal_GorNaBar,BodyTex_L,ItAr_NOV_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_PSIONIC",Face_L_Normal_GorNaBar,BodyTex_L,ITAR_NOV_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

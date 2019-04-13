@@ -10,7 +10,7 @@ instance VLK_476_Fenia(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_GreyCloth,BodyTex_N,ITAR_VlkBabe_L);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");

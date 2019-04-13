@@ -46,9 +46,6 @@ instance ItAt_Addon_BCKopf(C_Item)
 	visual = "ItAt_Blattcrawler_01.3DS";
 	material = MAT_LEATHER;
 	description = "Голова богомола";
-	text[0] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -64,11 +61,8 @@ instance ItAt_Meatbugflesh(C_Item)
 	scemeName = "FOODHUGE";
 	on_state[0] = Use_Meatbugflesh;
 	description = name;
-	text[0] = "";
 	text[1] = NAME_Bonus_HP;
 	count[1] = 10;
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -89,10 +83,6 @@ instance ItAt_SheepFur(C_Item)
 	visual = "ItAt_SheepFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -106,10 +96,6 @@ instance ItAt_WolfFur(C_Item)
 	visual = "ItAt_WolfFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -123,10 +109,6 @@ instance ItAt_BugMandibles(C_Item)
 	visual = "ItAt_BugMandibles.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -140,10 +122,6 @@ instance ItAt_Claw(C_Item)
 	visual = "ItAt_Claw.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -157,10 +135,6 @@ instance ItAt_LurkerClaw(C_Item)
 	visual = "ItAt_LurkerClaw.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -174,10 +148,6 @@ instance ItAt_Teeth(C_Item)
 	visual = "ItAt_Teeth.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -207,7 +177,7 @@ func void Use_Mandibles()
 	if(Mandibles_Bonus <= 9)
 	{
 		Npc_ChangeAttribute(self,ATR_MANA,self.attribute[ATR_MANA_MAX]);
-		Mandibles_Bonus = Mandibles_Bonus + 1;
+		Mandibles_Bonus += 1;
 	}
 	else
 	{
@@ -225,10 +195,6 @@ instance ItAt_Wing(C_Item)
 	visual = "ItAt_Wing.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -244,10 +210,8 @@ instance ItAt_Sting(C_Item)
 	visual = "ItAt_Sting.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
 	text[1] = "Это жало";
 	text[2] = "содержит яд.";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -261,7 +225,7 @@ func void Use_Sting()
 		{
 			Npc_ChangeAttribute(self,ATR_HITPOINTS,self.attribute[ATR_HITPOINTS_MAX]);
 			Print(PRINT_FullyHealed);
-			Bloodfly_Bonus = Bloodfly_Bonus + 1;
+			Bloodfly_Bonus += 1;
 		}
 		else
 		{
@@ -273,13 +237,13 @@ func void Use_Sting()
 		Print(PRINT_Bloodfly);
 		if(self.attribute[ATR_HITPOINTS] > 1)
 		{
-			self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] - 1;
+			self.attribute[ATR_HITPOINTS] -= 1;
 		};
 	};
 };
 
 
-instance itat_LurkerSkin(C_Item)
+instance ItAt_LurkerSkin(C_Item)
 {
 	name = "Кожа рептилии";
 	mainflag = ITEM_KAT_NONE;
@@ -288,10 +252,6 @@ instance itat_LurkerSkin(C_Item)
 	visual = "ItAt_LurkerSkin.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -305,10 +265,6 @@ instance ItAt_WargFur(C_Item)
 	visual = "ItAt_WargFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -322,10 +278,6 @@ instance ItAt_Addon_KeilerFur(C_Item)
 	visual = "ItAt_WargFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -339,10 +291,6 @@ instance ItAt_DrgSnapperHorn(C_Item)
 	visual = "ItAt_DrgSnapperHorn.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -356,10 +304,6 @@ instance ItAt_CrawlerPlate(C_Item)
 	visual = "ItAt_CrawlerPlate.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -373,27 +317,19 @@ instance ItAt_ShadowFur(C_Item)
 	visual = "ItAt_ShadowFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItAt_SharkSkin(C_Item)
 {
-	name = "Шкура болотной акулы";
+	name = "Кожа болотной акулы";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_SharkSkin;
 	visual = "ItAt_SharkSkin.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -407,10 +343,6 @@ instance ItAt_TrollFur(C_Item)
 	visual = "ItAt_TrollFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -424,10 +356,6 @@ instance ItAt_TrollBlackFur(C_Item)
 	visual = "ItAt_TrollFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -441,10 +369,6 @@ instance ItAt_WaranFiretongue(C_Item)
 	visual = "ItAt_WaranFiretongue.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -458,10 +382,6 @@ instance ItAt_ShadowHorn(C_Item)
 	visual = "ItAt_ShadowHorn.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -475,10 +395,6 @@ instance ItAt_SharkTeeth(C_Item)
 	visual = "ItAt_SharkTeeth.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -492,10 +408,6 @@ instance ItAt_TrollTooth(C_Item)
 	visual = "ItAt_TrollTooth.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
@@ -510,10 +422,6 @@ instance ItAt_StoneGolemHeart(C_Item)
 	visual = "ItAt_StoneGolemHeart.3DS";
 	material = MAT_STONE;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -527,27 +435,19 @@ instance ItAt_FireGolemHeart(C_Item)
 	visual = "ItAt_FireGolemHeart.3DS";
 	material = MAT_STONE;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItAt_IceGolemHeart(C_Item)
 {
-	name = "Сердце Ледяного голема";
+	name = "Сердце ледяного голема";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_IceGolemHeart;
 	visual = "ItAt_IceGolemHeart.3DS";
 	material = MAT_STONE;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -561,10 +461,6 @@ instance ItAt_GoblinBone(C_Item)
 	visual = "ItAt_GoblinBone.3DS";
 	material = MAT_WOOD;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -578,10 +474,6 @@ instance ItAt_SkeletonBone(C_Item)
 	visual = "ItAt_SkeletonBone.3DS";
 	material = MAT_WOOD;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -595,10 +487,6 @@ instance ItAt_DemonHeart(C_Item)
 	visual = "ItAt_DemonHeart.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -612,10 +500,6 @@ instance ItAt_UndeadDragonSoulStone(C_Item)
 	visual = "ItAt_UndeadDragonSoulStone.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
@@ -630,10 +514,6 @@ instance ItAt_IcedragonHeart(C_Item)
 	visual = "ItAt_IcedragonHeart.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -647,10 +527,6 @@ instance ItAt_RockdragonHeart(C_Item)
 	visual = "ItAt_RockdragonHeart.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -664,10 +540,6 @@ instance ItAt_SwampdragonHeart(C_Item)
 	visual = "ItAt_SwampdragonHeart.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -681,10 +553,6 @@ instance ItAt_FiredragonHeart(C_Item)
 	visual = "ItAt_FiredragonHeart.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -698,10 +566,6 @@ instance ItAt_DragonBlood(C_Item)
 	visual = "ItAt_DragonBlood.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
@@ -716,10 +580,6 @@ instance ItAt_DragonScale(C_Item)
 	visual = "ItAt_DragonScale.3DS";
 	material = MAT_STONE;
 	description = name;
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

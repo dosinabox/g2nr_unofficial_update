@@ -10,10 +10,10 @@ func int C_PlayerIsFakePirate(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Npc_HasEquippedArmor(other) == TRUE)
+	if(Npc_HasEquippedArmor(oth))
 	{
 		itm = Npc_GetEquippedArmor(oth);
-		if((Hlp_IsItem(itm,ITAR_PIR_L_Addon) == TRUE) || (Hlp_IsItem(itm,ITAR_PIR_M_Addon) == TRUE) || (Hlp_IsItem(itm,ITAR_PIR_H_Addon) == TRUE))
+		if(Hlp_IsItem(itm,ITAR_PIR_L_Addon) || Hlp_IsItem(itm,ITAR_PIR_M_Addon) || Hlp_IsItem(itm,ITAR_PIR_H_Addon))
 		{
 			return TRUE;
 		}

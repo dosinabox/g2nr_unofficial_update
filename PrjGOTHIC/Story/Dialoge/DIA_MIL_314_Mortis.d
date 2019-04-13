@@ -1,7 +1,7 @@
 
 instance DIA_Mortis_EXIT(C_Info)
 {
-	npc = Mil_314_Mortis;
+	npc = MIL_314_Mortis;
 	nr = 999;
 	condition = DIA_Mortis_EXIT_Condition;
 	information = DIA_Mortis_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Mortis_EXIT_Info()
 
 instance DIA_Mortis_Hallo(C_Info)
 {
-	npc = Mil_314_Mortis;
+	npc = MIL_314_Mortis;
 	nr = 2;
 	condition = DIA_Mortis_Hallo_Condition;
 	information = DIA_Mortis_Hallo_Info;
@@ -34,7 +34,7 @@ instance DIA_Mortis_Hallo(C_Info)
 
 func int DIA_Mortis_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && ((Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) == FALSE) && (Kapitel < 3)))
+	if(Npc_IsInState(self,ZS_Talk) && (!Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3)))
 	{
 		return TRUE;
 	};
@@ -48,7 +48,7 @@ func void DIA_Mortis_Hallo_Info()
 
 instance DIA_Mortis_Waffe(C_Info)
 {
-	npc = Mil_314_Mortis;
+	npc = MIL_314_Mortis;
 	nr = 2;
 	condition = DIA_Mortis_Waffe_Condition;
 	information = DIA_Mortis_Waffe_Info;
@@ -59,7 +59,7 @@ instance DIA_Mortis_Waffe(C_Info)
 
 func int DIA_Mortis_Waffe_Condition()
 {
-	if((MIS_Andre_Peck == LOG_Running) && ((Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) == FALSE) && (Kapitel < 3)))
+	if((MIS_Andre_Peck == LOG_Running) && (!Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3)))
 	{
 		return TRUE;
 	};
@@ -75,7 +75,7 @@ func void DIA_Mortis_Waffe_Info()
 
 instance DIA_Mortis_Paket(C_Info)
 {
-	npc = Mil_314_Mortis;
+	npc = MIL_314_Mortis;
 	nr = 2;
 	condition = DIA_Mortis_Paket_Condition;
 	information = DIA_Mortis_Paket_Info;
@@ -104,7 +104,7 @@ func void DIA_Mortis_Paket_Info()
 
 instance DIA_Mortis_Redlight(C_Info)
 {
-	npc = Mil_314_Mortis;
+	npc = MIL_314_Mortis;
 	nr = 2;
 	condition = DIA_Mortis_Redlight_Condition;
 	information = DIA_Mortis_Redlight_Info;
@@ -134,7 +134,7 @@ func void DIA_Mortis_Redlight_Info()
 
 instance DIA_Mortis_CanTeach(C_Info)
 {
-	npc = Mil_314_Mortis;
+	npc = MIL_314_Mortis;
 	nr = 5;
 	condition = DIA_Mortis_CanTeach_Condition;
 	information = DIA_Mortis_CanTeach_Info;
@@ -176,7 +176,7 @@ func void DIA_Mortis_CanTeach_Info()
 
 instance DIA_Mortis_Teach(C_Info)
 {
-	npc = Mil_314_Mortis;
+	npc = MIL_314_Mortis;
 	nr = 100;
 	condition = DIA_Mortis_Teach_Condition;
 	information = DIA_Mortis_Teach_Info;
@@ -232,7 +232,7 @@ func void DIA_Mortis_Teach_5()
 
 instance DIA_Mortis_PICKPOCKET(C_Info)
 {
-	npc = Mil_314_Mortis;
+	npc = MIL_314_Mortis;
 	nr = 900;
 	condition = DIA_Mortis_PICKPOCKET_Condition;
 	information = DIA_Mortis_PICKPOCKET_Info;

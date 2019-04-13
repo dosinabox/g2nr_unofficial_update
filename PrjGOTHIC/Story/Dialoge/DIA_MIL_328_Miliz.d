@@ -1,7 +1,7 @@
 
 instance DIA_328_Miliz_EXIT(C_Info)
 {
-	npc = Mil_328_Miliz;
+	npc = MIL_328_Miliz;
 	nr = 999;
 	condition = DIA_328_Miliz_EXIT_Condition;
 	information = DIA_328_Miliz_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_328_Miliz_EXIT_Info()
 
 instance DIA_328_Miliz_Hi(C_Info)
 {
-	npc = Mil_328_Miliz;
+	npc = MIL_328_Miliz;
 	nr = 1;
 	condition = DIA_328_Miliz_Hi_Condition;
 	information = DIA_328_Miliz_Hi_Info;
@@ -51,7 +51,7 @@ func void DIA_328_Miliz_Hi_Info()
 
 instance DIA_328_Miliz_Kill(C_Info)
 {
-	npc = Mil_328_Miliz;
+	npc = MIL_328_Miliz;
 	nr = 2;
 	condition = DIA_328_Miliz_Kill_Condition;
 	information = DIA_328_Miliz_Kill_Info;
@@ -62,7 +62,7 @@ instance DIA_328_Miliz_Kill(C_Info)
 
 func int DIA_328_Miliz_Kill_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};

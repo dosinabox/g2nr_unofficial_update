@@ -29,7 +29,7 @@ instance DIA_Addon_Carlos_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Carlos_PICKPOCKET_Condition;
 	information = DIA_Addon_Carlos_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_60;
+	description = Pickpocket_80;
 };
 
 
@@ -141,7 +141,7 @@ instance DIA_Addon_Carlos_PERM(C_Info)
 	condition = DIA_Addon_Carlos_PERM_Condition;
 	information = DIA_Addon_Carlos_PERM_Info;
 	permanent = TRUE;
-	description = "И как тебе нравится быть командиром у охотников?";
+	description = "(Спросить у Карлоса)";
 };
 
 
@@ -152,7 +152,14 @@ func int DIA_Addon_Carlos_PERM_Condition()
 
 func void DIA_Addon_Carlos_PERM_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Carlos_PERM_15_00");	//И как тебе нравится быть командиром у охотников?
+	if(Npc_IsDead(Franco))
+	{
+		AI_Output(other,self,"DIA_Addon_Carlos_PERM_15_00");	//И как тебе нравится быть командиром у охотников?
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Addon_Edgor_Hi_15_00");	//Как дела?
+	};
 	AI_Output(self,other,"DIA_Addon_Carlos_PERM_12_00");	//Оставь меня в покое!
 	AI_StopProcessInfos(self);
 };

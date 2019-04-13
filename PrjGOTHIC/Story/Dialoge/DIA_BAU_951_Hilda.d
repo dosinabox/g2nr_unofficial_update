@@ -86,13 +86,7 @@ func void DIA_Hilda_WasZuEssen_Info()
 		{
 			if(!Npc_KnowsInfo(other,DIA_Hilda_PfanneTooLate))
 			{
-				if(Hilda_Stew_Day != Wld_GetDay())
-				{
-					B_GiveInvItems(self,other,ItFo_Stew,1);
-					AI_Output(self,other,"DIA_Hilda_WasZuEssen_17_01");	//Вот, возьми. Ты хороший парень.
-					Hilda_Stew_Day = Wld_GetDay();
-				}
-				else if((Wld_GetDay() == 0) && (Rueben_TagNull == FALSE))
+				if(Rueben_TagNull == FALSE)
 				{
 					AI_Output(self,other,"DIA_Hilda_WasZuEssen_17_02");	//За добавкой можешь зайти завтра.
 					B_GiveInvItems(self,other,ItFo_Stew,1);
@@ -100,6 +94,12 @@ func void DIA_Hilda_WasZuEssen_Info()
 					Rueben_TagNull = TRUE;
 					Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 					B_LogEntry(Topic_Bonus,"Я могу получать тарелку тушеной репы у Хильды каждый день.");
+				}
+				else if(Hilda_Stew_Day != Wld_GetDay())
+				{
+					B_GiveInvItems(self,other,ItFo_Stew,1);
+					AI_Output(self,other,"DIA_Hilda_WasZuEssen_17_01");	//Вот, возьми. Ты хороший парень.
+					Hilda_Stew_Day = Wld_GetDay();
 				}
 				else
 				{
@@ -137,7 +137,7 @@ instance DIA_Hilda_BringBeet(C_Info)
 
 func int DIA_Hilda_BringBeet_Condition()
 {
-	if((MIS_Lobart_RuebenToHilda == LOG_Running) && (Npc_HasItems(other,ItPl_Beet) >= 1) && (Kapitel < 3))
+	if((MIS_Lobart_RuebenToHilda == LOG_Running) && Npc_HasItems(other,ItPl_Beet) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -148,7 +148,7 @@ func void DIA_Hilda_BringBeet_Info()
 	AI_Output(other,self,"DIA_Hilda_BringBeet_15_00");	//Я принес тебе репу...
 	if(Npc_HasItems(other,ItPl_Beet) >= 20)
 	{
-		B_GiveInvItems(other,self,ItPl_Beet,Npc_HasItems(other,ItPl_Beet));
+		B_GiveInvItems(other,self,ItPl_Beet,20);
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_01");	//Отлично! (смеется) Этого должно хватить, чтобы накормить наших работников до отвала!
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_02");	//Раз уж ты все равно здесь... Я видела, как мимо прошел странствующий торговец. Это было несколько минут назад.
 		AI_Output(self,other,"DIA_Hilda_BringBeet_17_03");	//Я думаю, он где-нибудь остановился по пути в город. Сходи к нему. Может у него найдется сковородка для меня.
@@ -202,7 +202,7 @@ func void DIA_Hilda_Einkaufen_Info()
 	MIS_Hilda_PfanneKaufen_Day = B_GetDayPlus();
 	Log_CreateTopic(TOPIC_Hilda,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Hilda,LOG_Running);
-	B_LogEntry(TOPIC_Hilda,"Хильда, жена фермера Лобарта, чтобы я купил для нее у странствующего торговца сковороду.");
+	B_LogEntry(TOPIC_Hilda,"Хильда, жена фермера Лобарта, хочет, чтобы я купил для нее у странствующего торговца сковороду.");
 };
 
 
@@ -219,7 +219,7 @@ instance DIA_Hilda_PfanneGeholt(C_Info)
 
 func int DIA_Hilda_PfanneGeholt_Condition()
 {
-	if((MIS_Hilda_PfanneKaufen == LOG_Running) && (Npc_HasItems(other,ItMi_Pan) > 0) && (Kapitel < 3))
+	if((MIS_Hilda_PfanneKaufen == LOG_Running) && Npc_HasItems(other,ItMi_Pan) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -264,7 +264,7 @@ func void DIA_Hilda_PfanneTooLate_Info()
 	{
 		AI_Output(self,other,"DIA_Hilda_PfanneTooLate_17_01");	//Где ты шлялся все это время? И где мои деньги, что я дала тебе на сковороду?
 	};
-	if(Npc_HasItems(other,ItMi_Pan) > 0)
+	if(Npc_HasItems(other,ItMi_Pan))
 	{
 		AI_Output(other,self,"DIA_Hilda_PfanneTooLate_15_02");	//Извини, я немного подзадержался. Вот твоя сковородка!
 		B_GiveInvItems(other,self,ItMi_Pan,1);

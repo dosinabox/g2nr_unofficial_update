@@ -3,15 +3,15 @@ func void B_ENTER_ADDONWORLD_Kapitel_1()
 {
 	if(RavenIsDead == TRUE)
 	{
-		B_RemoveNpc(KDW_14030_Addon_Myxir_ADW);
+		B_RemoveNpc(Myxir_ADW);
 	};
 	if((Sklaven_weg == TRUE) && (RemoveSklaven == FALSE))
 	{
-		B_RemoveNpc(STRF_1118_Addon_Patrick);
-		B_RemoveNpc(STRF_1119_Addon_Monty);
-		B_RemoveNpc(STRF_1120_Addon_Tonak);
-		B_RemoveNpc(STRF_1121_Addon_Telbor);
-		B_RemoveNpc(STRF_1122_Addon_Pardos);
+		B_RemoveNpc(Patrick);
+		B_RemoveNpc(Monty);
+		B_RemoveNpc(Tonak);
+		B_RemoveNpc(Telbor);
+		B_RemoveNpc(Pardos);
 		RemoveSklaven = TRUE;
 	};
 };

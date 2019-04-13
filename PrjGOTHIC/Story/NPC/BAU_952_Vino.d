@@ -8,7 +8,7 @@ instance BAU_952_Vino(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_N_Weak_Herek,BodyTex_N,ITAR_Bau_L);

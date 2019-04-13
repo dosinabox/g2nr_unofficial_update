@@ -1,7 +1,7 @@
 
 instance DIA_Ruga_EXIT(C_Info)
 {
-	npc = Mil_317_Ruga;
+	npc = MIL_317_Ruga;
 	nr = 999;
 	condition = DIA_Ruga_EXIT_Condition;
 	information = DIA_Ruga_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Ruga_EXIT_Info()
 
 instance DIA_Ruga_PICKPOCKET(C_Info)
 {
-	npc = Mil_317_Ruga;
+	npc = MIL_317_Ruga;
 	nr = 900;
 	condition = DIA_Ruga_PICKPOCKET_Condition;
 	information = DIA_Ruga_PICKPOCKET_Info;
@@ -34,10 +34,7 @@ instance DIA_Ruga_PICKPOCKET(C_Info)
 
 func int DIA_Ruga_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItKe_City_Tower_03) >= 1) && (other.attribute[ATR_DEXTERITY] >= (40 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
 };
 
 func void DIA_Ruga_PICKPOCKET_Info()
@@ -49,19 +46,8 @@ func void DIA_Ruga_PICKPOCKET_Info()
 
 func void DIA_Ruga_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 40)
-	{
-		B_GiveInvItems(self,other,ItKe_City_Tower_03,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Ruga_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
+	Info_ClearChoices(DIA_Ruga_PICKPOCKET);
 };
 
 func void DIA_Ruga_PICKPOCKET_BACK()
@@ -72,7 +58,7 @@ func void DIA_Ruga_PICKPOCKET_BACK()
 
 instance DIA_Ruga_Hallo(C_Info)
 {
-	npc = Mil_317_Ruga;
+	npc = MIL_317_Ruga;
 	nr = 2;
 	condition = DIA_Ruga_Hallo_Condition;
 	information = DIA_Ruga_Hallo_Info;
@@ -100,7 +86,7 @@ func void DIA_Ruga_Hallo_Info()
 
 instance DIA_Ruga_Train(C_Info)
 {
-	npc = Mil_317_Ruga;
+	npc = MIL_317_Ruga;
 	nr = 5;
 	condition = DIA_Ruga_Train_Condition;
 	information = DIA_Ruga_Train_Info;
@@ -143,7 +129,7 @@ func void DIA_Ruga_Train_Info()
 
 instance DIA_Ruga_Teach(C_Info)
 {
-	npc = Mil_317_Ruga;
+	npc = MIL_317_Ruga;
 	nr = 100;
 	condition = DIA_Ruga_Teach_Condition;
 	information = DIA_Ruga_Teach_Info;
@@ -202,7 +188,7 @@ func void DIA_Ruga_Teach_1H_5()
 
 instance DIA_Ruga_TEACHDEX(C_Info)
 {
-	npc = Mil_317_Ruga;
+	npc = MIL_317_Ruga;
 	nr = 101;
 	condition = DIA_Ruga_TEACHDEX_Condition;
 	information = DIA_Ruga_TEACHDEX_Info;

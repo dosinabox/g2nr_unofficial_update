@@ -84,7 +84,7 @@ func void DIA_Addon_Baltram_LaresAbloese_Info()
 	AI_Output(self,other,"DIA_Addon_Baltram_LaresAbloese_01_05");	//Хорошо. Я прослежу, чтобы это сделали.
 	AI_Output(other,self,"DIA_Addon_Baltram_LaresAbloese_15_06");	//Понятно.
 	B_GivePlayerXP(XP_Ambient);
-	B_LogEntry(TOPIC_Addon_BringRangerToLares,"Бальтрам, торговец на рыночной площади, позаботится, чтобы Лареса заменили на его посту. Ларес может покинуть гавань ПРЯМО СЕЙЧАС.");
+	B_LogEntry(TOPIC_Addon_BringRangerToLares,"Бальтрам, торговец на рыночной площади, позаботится, чтобы Лареса сменили на его посту. Ларес может покинуть гавань ПРЯМО СЕЙЧАС.");
 	SC_KnowsBaltramAsRanger = TRUE;
 	Baltram_Exchange4Lares = TRUE;
 };
@@ -145,7 +145,7 @@ func void DIA_Baltram_Trick_Info()
 	AI_Output(other,self,"DIA_Baltram_Trick_15_05");	//Отлично, я согласен.
 	AI_Output(self,other,"DIA_Baltram_Trick_01_06");	//Хорошо, просто скажи Акилу, что тебя послал я. Он передаст тебе пакет. Принеси его мне.
 	MIS_Baltram_ScoutAkil = LOG_Running;
-	B_LogEntry(TOPIC_Nagur,"Бальтрам нанял меня в качестве мальчика на побегушках. Теперь, я должен доставить ему посылку с фермы Акила.");
+	B_LogEntry(TOPIC_Nagur,"Бальтрам нанял меня в качестве мальчика на побегушках. Теперь я должен доставить ему посылку с фермы Акила.");
 	Log_CreateTopic(TOPIC_Baltram,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Baltram,LOG_Running);
 	B_LogEntry(TOPIC_Baltram,"Если я принесу Бальтраму его посылку, он заплатит мне 50 золотых монет.");
@@ -168,7 +168,10 @@ instance DIA_Baltram_WAREZ(C_Info)
 
 func int DIA_Baltram_WAREZ_Condition()
 {
-	return TRUE;
+	if((MIS_BaltramTrade != LOG_Running) && (MIS_BaltramTrade != LOG_FAILED))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Baltram_WAREZ_Info()
@@ -188,7 +191,7 @@ func void DIA_Baltram_WAREZ_Info()
 	};
 	if((MIS_BaltramTrade != LOG_SUCCESS) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
-		AI_Output(self,other,"DIA_Baltram_WAREZ_01_03");	//Такие как ты ничего от меня не получат.
+		AI_Output(self,other,"DIA_Baltram_WAREZ_01_03");	//Такие, как ты, ничего от меня не получат.
 		AI_Output(other,self,"DIA_Baltram_WAREZ_15_04");	//Почему?
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_05");	//Сначала ты сбиваешь фермеров с пути истинного, а затем ведешь себя так, как будто ничего не произошло.
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_06");	//Теперь проваливай, ты распугаешь всех моих клиентов.
@@ -327,7 +330,7 @@ instance DIA_Baltram_AkilsHof(C_Info)
 
 func int DIA_Baltram_AkilsHof_Condition()
 {
-	if(MIS_Baltram_ScoutAkil == LOG_Running)
+	if((MIS_Baltram_ScoutAkil == LOG_Running) && (Akil.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -354,7 +357,7 @@ instance DIA_Baltram_Lieferung(C_Info)
 
 func int DIA_Baltram_Lieferung_Condition()
 {
-	if(Npc_HasItems(other,ItMi_BaltramPaket) >= 1)
+	if(Npc_HasItems(other,ItMi_BaltramPaket))
 	{
 		return TRUE;
 	};
@@ -363,13 +366,13 @@ func int DIA_Baltram_Lieferung_Condition()
 func void DIA_Baltram_Lieferung_Info()
 {
 	AI_Output(other,self,"DIA_Baltram_Lieferung_15_00");	//Я принес пакет от Акила.
-	AI_Output(self,other,"DIA_Baltram_Lieferung_01_01");	//Превосходно. Теперь я опять смогу торговать свежими продуктами. Вот твои 50 золотых монет.
 	B_GiveInvItems(other,self,ItMi_BaltramPaket,1);
+	Npc_RemoveInvItem(self,ItMi_BaltramPaket);
+	AI_Output(self,other,"DIA_Baltram_Lieferung_01_01");	//Превосходно. Теперь я опять смогу торговать свежими продуктами. Вот твои 50 золотых монет.
 	B_GiveInvItems(self,other,ItMi_Gold,50);
 	MIS_Baltram_ScoutAkil = LOG_SUCCESS;
 	MIS_Nagur_Bote = LOG_FAILED;
 	B_GivePlayerXP(XP_Baltram_ScoutAkil);
-	Npc_RemoveInvItems(self,ItMi_BaltramPaket,1);
 	CreateInvItems(self,ItFo_Cheese,5);
 	CreateInvItems(self,ItFo_Apple,10);
 	CreateInvItems(self,ItFo_Beer,5);
@@ -430,11 +433,12 @@ func int DIA_Baltram_HaveYourWarez_Condition()
 
 func void DIA_Baltram_HaveYourWarez_Info()
 {
+	var string concatText;
 	AI_Output(other,self,"DIA_Baltram_HaveYourWarez_15_00");	//Я принес то, что ты просил.
 	AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_01");	//Покажи.
 	if(Npc_HasItems(other,ItFo_Bacon) < 10)
 	{
-		AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_02");	//Мы договорились на 10 окороков. Возвращайся когда добудешь их.
+		AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_02");	//Мы договорились на 10 окороков. Возвращайся, когда добудешь их.
 		BaltramEnoughBacon = FALSE;
 	}
 	else
@@ -453,8 +457,12 @@ func void DIA_Baltram_HaveYourWarez_Info()
 	if((BaltramEnoughBacon == TRUE) && (BaltramEnoughWine == TRUE))
 	{
 		AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_04");	//Хммм, товар не самого лучшего качества, но в наше время не приходится привередничать.
-		B_GiveInvItems(other,self,ItFo_Bacon,10);
-		B_GiveInvItems(other,self,ItFo_Wine,10);
+		Npc_RemoveInvItems(other,ItFo_Bacon,10);
+		CreateInvItems(self,ItFo_Bacon,10);
+		Npc_RemoveInvItems(other,ItFo_Wine,10);
+		CreateInvItems(self,ItFo_Wine,10);
+		concatText = ConcatStrings(IntToString(20),PRINT_ItemsGegeben);
+		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		MIS_BaltramTrade = LOG_SUCCESS;
 		B_GivePlayerXP(XP_BaltramTrade);
 		AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_05");	//Теперь ничто не мешает нам вести дела.

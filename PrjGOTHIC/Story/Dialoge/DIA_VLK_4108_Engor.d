@@ -166,7 +166,8 @@ func void DIA_Engor_RSkaufen_Info()
 	{
 		AI_Output(other,self,"DIA_Engor_RSkaufen_15_00");	//Дай мне доспехи.
 		AI_Output(self,other,"DIA_Engor_RSkaufen_13_01");	//Вот, держи, они надежно защитят тебя - это чертовски хорошие доспехи.
-		B_GiveInvItems(self,other,ItAr_MIL_M,1);
+		CreateInvItem(hero,ITAR_MIL_M);
+		AI_EquipArmor(hero,ITAR_MIL_M);
 		DIA_Engor_RSkaufen_perm = TRUE;
 	}
 	else
@@ -240,7 +241,7 @@ instance DIA_Engor_BRINGMEAT(C_Info)
 
 func int DIA_Engor_BRINGMEAT_Condition()
 {
-	if((MIS_Engor_BringMeat == LOG_Running) && (Meat_Counter < Meat_Amount) && ((Npc_HasItems(hero,ItFo_Bacon) >= 1) || (Npc_HasItems(hero,ItFoMuttonRaw) >= 1) || (Npc_HasItems(hero,ItFoMutton) >= 1) || (Npc_HasItems(hero,ItFo_Sausage) >= 1)))
+	if((MIS_Engor_BringMeat == LOG_Running) && (Meat_Counter < Meat_Amount) && (Npc_HasItems(hero,ItFo_Bacon) || Npc_HasItems(hero,ItFoMuttonRaw) || Npc_HasItems(hero,ItFoMutton) || Npc_HasItems(hero,ItFo_Sausage)))
 	{
 		return TRUE;
 	};
@@ -254,16 +255,21 @@ func void DIA_Engor_BRINGMEAT_Info()
 	var string ConcatBacon;
 	var string ConcatSausage;
 	var string GesamtFleisch;
+	var int RawCounter;
+	var int MuttonCounter;
+	var int BaconCounter;
+	var int SausageCounter;
 	info_ypos = 35;
 	AI_Output(other,self,"DIA_Engor_BRINGMEAT_15_00");	//Вот, я принес тебе кое-что.
-	if((Npc_HasItems(other,ItFoMuttonRaw) >= 1) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFoMuttonRaw) && (Meat_Counter < Meat_Amount))
 	{
 		Npc_GetInvItem(other,ItFoMuttonRaw);
-		if(Npc_HasItems(other,ItFoMuttonRaw) > (Meat_Amount - Meat_Counter))
+		RawCounter = Meat_Amount - Meat_Counter;
+		if(Npc_HasItems(other,ItFoMuttonRaw) > RawCounter)
 		{
-			ConcatRaw = IntToString(Meat_Amount - Meat_Counter);
-			Meat_Counter += Meat_Amount - Meat_Counter;
-			Npc_RemoveInvItems(other,ItFoMuttonRaw,Meat_Amount - Meat_Counter);
+			ConcatRaw = IntToString(RawCounter);
+			Meat_Counter += RawCounter;
+			Npc_RemoveInvItems(other,ItFoMuttonRaw,RawCounter);
 		}
 		else
 		{
@@ -271,19 +277,19 @@ func void DIA_Engor_BRINGMEAT_Info()
 			Meat_Counter += Npc_HasItems(other,ItFoMuttonRaw);
 			Npc_RemoveInvItems(other,ItFoMuttonRaw,Npc_HasItems(other,ItFoMuttonRaw));
 		};
-		ConcatRaw = IntToString(Npc_HasItems(other,ItFoMuttonRaw));
 		ConcatRaw = ConcatStrings(ConcatRaw," кусков сырого мяса отдано");
 		AI_PrintScreen(ConcatRaw,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if((Npc_HasItems(other,ItFoMutton) >= 1) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFoMutton) && (Meat_Counter < Meat_Amount))
 	{
 		Npc_GetInvItem(other,ItFoMutton);
-		if(Npc_HasItems(other,ItFoMutton) > (Meat_Amount - Meat_Counter))
+		MuttonCounter = Meat_Amount - Meat_Counter;
+		if(Npc_HasItems(other,ItFoMutton) > MuttonCounter)
 		{
-			ConcatMutton = IntToString(Meat_Amount - Meat_Counter);
-			Meat_Counter += Meat_Amount - Meat_Counter;
-			Npc_RemoveInvItems(other,ItFoMutton,Meat_Amount - Meat_Counter);
+			ConcatMutton = IntToString(MuttonCounter);
+			Meat_Counter += MuttonCounter;
+			Npc_RemoveInvItems(other,ItFoMutton,MuttonCounter);
 		}
 		else
 		{
@@ -291,19 +297,19 @@ func void DIA_Engor_BRINGMEAT_Info()
 			Meat_Counter += Npc_HasItems(other,ItFoMutton);
 			Npc_RemoveInvItems(other,ItFoMutton,Npc_HasItems(other,ItFoMutton));
 		};
-		ConcatMutton = IntToString(Npc_HasItems(other,ItFoMutton));
 		ConcatMutton = ConcatStrings(ConcatMutton," кусков жареного мяса отдано");
 		AI_PrintScreen(ConcatMutton,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if((Npc_HasItems(other,ItFo_Bacon) >= 1) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFo_Bacon) && (Meat_Counter < Meat_Amount))
 	{
 		Npc_GetInvItem(other,ItFo_Bacon);
-		if(Npc_HasItems(other,ItFo_Bacon) > (Meat_Amount - Meat_Counter))
+		BaconCounter = Meat_Amount - Meat_Counter;
+		if(Npc_HasItems(other,ItFo_Bacon) > BaconCounter)
 		{
-			ConcatBacon = IntToString(Meat_Amount - Meat_Counter);
-			Meat_Counter += Meat_Amount - Meat_Counter;
-			Npc_RemoveInvItems(other,ItFo_Bacon,Meat_Amount - Meat_Counter);
+			ConcatBacon = IntToString(BaconCounter);
+			Meat_Counter += BaconCounter;
+			Npc_RemoveInvItems(other,ItFo_Bacon,BaconCounter);
 		}
 		else
 		{
@@ -311,19 +317,19 @@ func void DIA_Engor_BRINGMEAT_Info()
 			Meat_Counter += Npc_HasItems(other,ItFo_Bacon);
 			Npc_RemoveInvItems(other,ItFo_Bacon,Npc_HasItems(other,ItFo_Bacon));
 		};
-		ConcatBacon = IntToString(Npc_HasItems(other,ItFo_Bacon));
 		ConcatBacon = ConcatStrings(ConcatBacon," окороков отдано");
 		AI_PrintScreen(ConcatBacon,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
-	if((Npc_HasItems(other,ItFo_Sausage) >= 1) && (Meat_Counter < Meat_Amount))
+	if(Npc_HasItems(other,ItFo_Sausage) && (Meat_Counter < Meat_Amount))
 	{
 		Npc_GetInvItem(other,ItFo_Sausage);
-		if(Npc_HasItems(other,ItFo_Sausage) > (Meat_Amount - Meat_Counter))
+		SausageCounter = Meat_Amount - Meat_Counter;
+		if(Npc_HasItems(other,ItFo_Sausage) > SausageCounter)
 		{
-			ConcatSausage = IntToString(Meat_Amount - Meat_Counter);
-			Meat_Counter += Meat_Amount - Meat_Counter;
-			Npc_RemoveInvItems(other,ItFo_Sausage,Meat_Amount - Meat_Counter);
+			ConcatSausage = IntToString(SausageCounter);
+			Meat_Counter += SausageCounter;
+			Npc_RemoveInvItems(other,ItFo_Sausage,SausageCounter);
 		}
 		else
 		{
@@ -331,7 +337,6 @@ func void DIA_Engor_BRINGMEAT_Info()
 			Meat_Counter += Npc_HasItems(other,ItFo_Sausage);
 			Npc_RemoveInvItems(other,ItFo_Sausage,Npc_HasItems(other,ItFo_Sausage));
 		};
-		ConcatSausage = IntToString(Npc_HasItems(other,ItFo_Sausage));
 		ConcatSausage = ConcatStrings(ConcatSausage," колбас отдано");
 		AI_PrintScreen(ConcatSausage,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
@@ -401,10 +406,7 @@ instance DIA_Engor_PICKPOCKET(C_Info)
 
 func int DIA_Engor_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItWr_Map_OldWorld) >= 1) && (other.attribute[ATR_DEXTERITY] >= (40 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(40,Hlp_GetInstanceID(ItWr_Map_OldWorld),0);
 };
 
 func void DIA_Engor_PICKPOCKET_Info()
@@ -416,19 +418,9 @@ func void DIA_Engor_PICKPOCKET_Info()
 
 func void DIA_Engor_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 40)
-	{
-		B_GiveInvItems(self,other,ItWr_Map_OldWorld,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Engor_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	CreateInvItems(self,ItWr_Map_OldWorld,1);
+	B_StealItems(40,Hlp_GetInstanceID(ItWr_Map_OldWorld),1);
+	Info_ClearChoices(DIA_Engor_PICKPOCKET);
 };
 
 func void DIA_Engor_PICKPOCKET_BACK()

@@ -30,7 +30,7 @@ func int Spell_Logic_TrfSheep(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfSheep;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfSheep;
 		Npc_SetActiveSpellInfo(self,sheeptransform);
 		return SPL_SENDCAST;
 	}
@@ -49,7 +49,7 @@ func int Spell_Logic_TrfScavenger(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfScavenger;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfScavenger;
 		Npc_SetActiveSpellInfo(self,scavengertransform);
 		return SPL_SENDCAST;
 	}
@@ -68,7 +68,7 @@ func int Spell_Logic_TrfGiantRat(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfGiantRat;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfGiantRat;
 		Npc_SetActiveSpellInfo(self,giant_rattransform);
 		return SPL_SENDCAST;
 	}
@@ -87,7 +87,7 @@ func int Spell_Logic_TrfGiantBug(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfGiantBug;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfGiantBug;
 		Npc_SetActiveSpellInfo(self,giant_bugtransform);
 		return SPL_SENDCAST;
 	}
@@ -106,7 +106,7 @@ func int Spell_Logic_TrfWolf(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfWolf;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfWolf;
 		Npc_SetActiveSpellInfo(self,wolftransform);
 		return SPL_SENDCAST;
 	}
@@ -125,7 +125,7 @@ func int Spell_Logic_TrfWaran(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfWaran;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfWaran;
 		Npc_SetActiveSpellInfo(self,warantransform);
 		return SPL_SENDCAST;
 	}
@@ -144,7 +144,7 @@ func int Spell_Logic_TrfSnapper(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfSnapper;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfSnapper;
 		Npc_SetActiveSpellInfo(self,snappertransform);
 		return SPL_SENDCAST;
 	}
@@ -163,7 +163,7 @@ func int Spell_Logic_TrfWarg(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfWarg;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfWarg;
 		Npc_SetActiveSpellInfo(self,wargtransform);
 		return SPL_SENDCAST;
 	}
@@ -182,7 +182,7 @@ func int Spell_Logic_TrfFireWaran(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfFireWaran;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfFireWaran;
 		Npc_SetActiveSpellInfo(self,firewarantransform);
 		return SPL_SENDCAST;
 	}
@@ -201,7 +201,7 @@ func int Spell_Logic_TrfLurker(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfLurker;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfLurker;
 		Npc_SetActiveSpellInfo(self,lurkertransform);
 		return SPL_SENDCAST;
 	}
@@ -220,7 +220,7 @@ func int Spell_Logic_TrfShadowbeast(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfShadowbeast;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfShadowbeast;
 		Npc_SetActiveSpellInfo(self,shadowbeasttransform);
 		return SPL_SENDCAST;
 	}
@@ -239,7 +239,7 @@ func int Spell_Logic_TrfDragonSnapper(var int manaInvested)
 			Wld_StopEffect("SLOW_MOTION");
 		};
 		b_startmagictransform();
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_TrfDragonSnapper;
+		self.attribute[ATR_MANA] -= SPL_Cost_TrfDragonSnapper;
 		Npc_SetActiveSpellInfo(self,dragonsnappertransform);
 		return SPL_SENDCAST;
 	}

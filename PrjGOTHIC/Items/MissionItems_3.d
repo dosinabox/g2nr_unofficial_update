@@ -36,6 +36,7 @@ func void Equip_InnosEye()
 	self.protection[PROT_FIRE] += AM_EyeProtFire;
 	self.protection[PROT_MAGIC] += AM_EyeProtMage;
 	PrintScreen("",-1,-1,FONT_Screen,0);
+	SC_IsWearingInnosEye = TRUE;
 };
 
 func void UnEquip_InnosEye()
@@ -45,6 +46,7 @@ func void UnEquip_InnosEye()
 	self.protection[PROT_POINT] -= AM_EyeProtPoint;
 	self.protection[PROT_FIRE] -= AM_EyeProtFire;
 	self.protection[PROT_MAGIC] -= AM_EyeProtMage;
+	SC_IsWearingInnosEye = FALSE;
 };
 
 
@@ -188,11 +190,6 @@ instance ItWr_CorneliusTagebuch_Mis(C_Item)
 func void UseCorneliusTagebuch()
 {
 	var int nDocID;
-	if(Cornelius_IsLiar == FALSE)
-	{
-		B_LogEntry(TOPIC_RescueBennet,"Этот дневник - доказательство, необходимое для подтверждения невиновности Беннета.");
-		Cornelius_IsLiar = TRUE;
-	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
@@ -211,6 +208,11 @@ func void UseCorneliusTagebuch()
 	Doc_PrintLines(nDocID,1,"Это произошло - один из наемников был арестован. Сдержать мое слово будет просто.");
 	Doc_Show(nDocID);
 	PrintScreen("",-1,-1,FONT_Screen,0);
+	if(Cornelius_IsLiar == FALSE)
+	{
+		B_LogEntry(TOPIC_RescueBennet,"Этот дневник - доказательство, необходимое для подтверждения невиновности Беннета.");
+		Cornelius_IsLiar = TRUE;
+	};
 };
 
 
@@ -426,7 +428,7 @@ instance ItMi_MalethsBanditGold(C_Item)
 	material = MAT_METAL;
 	on_state[0] = Use_MalethsBanditGold;
 	description = name;
-	text[2] = "Кошелек доверху набит золотом!";
+	text[2] = "Этот кошелек доверху набит золотом!";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -616,7 +618,7 @@ instance ItPo_HealObsession_MIS(C_Item)
 func void Use_HealObsession()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Essenz);
-	SC_ObsessionTimes = SC_ObsessionTimes + 1;
+	SC_ObsessionTimes += 1;
 	B_ClearSCObsession(self);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_VIOLET",hero,hero,0,0,0,FALSE);
 	Snd_Play("SFX_HealObsession");
@@ -822,6 +824,24 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
+	on_equip = Equip_Prot_BlackEye;
+	on_unequip = UnEquip_Prot_BlackEye;
+};
+
+func void Equip_Prot_BlackEye()
+{
+	if(Npc_IsPlayer(self))
+	{
+		SC_IsBlackEyeProtected = TRUE;
+	};
+};
+
+func void UnEquip_Prot_BlackEye()
+{
+	if(Npc_IsPlayer(self))
+	{
+		SC_IsBlackEyeProtected = FALSE;
+	};
 };
 
 instance ItMi_KarrasBlessedStone_Mis(C_Item)
@@ -857,7 +877,6 @@ instance ItWr_RichterKomproBrief_MIS(C_Item)
 func void Use_RichterKomproBrief()
 {
 	var int nDocID;
-	SCKnowsRichterKomproBrief = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -874,6 +893,11 @@ func void Use_RichterKomproBrief()
 	Doc_PrintLine(nDocID,0,"          королевский секретарь");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
+	if(SCKnowsRichterKomproBrief == FALSE)
+	{
+		B_LogEntry(TOPIC_RichterLakai,"Интересно, поверит ли Лариус в то, что его ограбили по приказу судьи?");
+		SCKnowsRichterKomproBrief = TRUE;
+	};
 };
 
 

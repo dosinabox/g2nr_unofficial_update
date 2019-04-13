@@ -4,11 +4,11 @@ func void ZS_Cook_Pan()
 	Perception_Set_Normal();
 	B_ResetAll(self);
 	AI_SetWalkMode(self,NPC_WALK);
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == FALSE)
+	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Npc_HasItems(self,ItFoMuttonRaw) == 0)
+	if(!Npc_HasItems(self,ItFoMuttonRaw))
 	{
 		CreateInvItem(self,ItFoMuttonRaw);
 	};

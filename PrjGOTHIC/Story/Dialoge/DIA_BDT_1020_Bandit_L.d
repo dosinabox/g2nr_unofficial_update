@@ -36,7 +36,7 @@ instance DIA_BDT_1020_Wegelagerer_FirstWarn(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_FirstWarn_Condition()
 {
-	if((other.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE))
+	if((other.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		return TRUE;
 	};
@@ -117,8 +117,8 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney()
 	if(Wegelagerer_Surprise == FALSE)
 	{
 		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_01");	//(насмешливо) —кажу тебе, 20 золотых - это не така€ уж больша€ плата за жизнь. “ы можешь проходить.
-	};
-	if(Wegelagerer_Surprise == TRUE)
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_02");	//’орошо, этот послушник прошел здесь около часа назад.
 		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_03");	//ѕо-моему, он немного торопилс€, все врем€ огл€дывалс€... ј теперь проваливай.
@@ -186,7 +186,7 @@ instance DIA_BDT_1020_Wegelagerer_SecondWarn(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -236,7 +236,7 @@ instance DIA_BDT_1020_Wegelagerer_Attack(C_Info)
 
 func int DIA_BDT_1020_Wegelagerer_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};

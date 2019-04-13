@@ -12,8 +12,8 @@ func void B_HitpointAngleich(var int BeliarsCost)
 {
 	var int CurrentHitpoints;
 	var string concatText;
-	GivenHitpoints = GivenHitpoints + BeliarsCost;
-	hero.attribute[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX] - BeliarsCost;
+	GivenHitpoints += BeliarsCost;
+	hero.attribute[ATR_HITPOINTS_MAX] -= BeliarsCost;
 	CurrentHitpoints = hero.attribute[ATR_HITPOINTS] - BeliarsCost;
 	if(CurrentHitpoints < 2)
 	{
@@ -28,9 +28,9 @@ func void B_ManaAngleich(var int BeliarsCost)
 {
 	var int CurrentMana;
 	var string concatText;
-	GivenMana = GivenMana + BeliarsCost;
-	hero.attribute[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX] - BeliarsCost;
-	hero.aivar[REAL_MANA_MAX] = hero.aivar[REAL_MANA_MAX] - BeliarsCost;
+	GivenMana += BeliarsCost;
+	hero.attribute[ATR_MANA_MAX] -= BeliarsCost;
+	hero.aivar[REAL_MANA_MAX] -= BeliarsCost;
 	CurrentMana = hero.attribute[ATR_MANA] - BeliarsCost;
 	if(CurrentMana < 0)
 	{
@@ -69,7 +69,7 @@ func void B_GetBeliarsGold(var int Kohle)
 {
 	var string concatText1;
 	var string concatText2;
-	RecievedMoney = RecievedMoney + Kohle;
+	RecievedMoney += Kohle;
 	if(RecievedMoney > BeliarsDispo)
 	{
 		Kohle = 100;
@@ -272,7 +272,7 @@ instance PC_PrayShrine_UPGRATEBELIARSWEAPON(C_Info)
 
 func int PC_PrayShrine_UPGRATEBELIARSWEAPON_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL) && (C_ScCanUpgrateBeliarsWeapon() == TRUE) && (C_ScHasBeliarsWeapon() == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL) && C_ScCanUpgrateBeliarsWeapon() && C_ScHasBeliarsWeapon())
 	{
 		return TRUE;
 	};

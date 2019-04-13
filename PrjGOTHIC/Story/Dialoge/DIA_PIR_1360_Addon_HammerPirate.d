@@ -1,7 +1,7 @@
 
 instance DIA_Addon_HammerPirate_EXIT(C_Info)
 {
-	npc = PIR_1360_Addon_PIRAT;
+	npc = PIR_1360_Addon_Pirat;
 	nr = 999;
 	condition = DIA_Addon_HammerPirate_EXIT_Condition;
 	information = DIA_Addon_HammerPirate_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Addon_HammerPirate_EXIT_Info()
 
 instance DIA_Addon_HammerPirate_Hello(C_Info)
 {
-	npc = PIR_1360_Addon_PIRAT;
+	npc = PIR_1360_Addon_Pirat;
 	nr = 1;
 	condition = DIA_Addon_HammerPirate_Hello_Condition;
 	information = DIA_Addon_HammerPirate_Hello_Info;
@@ -42,7 +42,7 @@ func void DIA_Addon_HammerPirate_Hello_Info()
 	AI_Output(other,self,"DIA_Addon_HammerPirate_Hello_15_00");	//Все в порядке?
 	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		if(C_TowerBanditsDead() == TRUE)
+		if(C_TowerBanditsDead())
 		{
 			AI_Output(self,other,"DIA_Addon_HammerPirate_Hello_07_01");	//Конечно. Мы же расправились с этими подонками.
 		}
@@ -60,7 +60,7 @@ func void DIA_Addon_HammerPirate_Hello_Info()
 
 instance DIA_Addon_HammerPirate_Anheuern(C_Info)
 {
-	npc = PIR_1360_Addon_PIRAT;
+	npc = PIR_1360_Addon_Pirat;
 	nr = 11;
 	condition = DIA_Addon_HammerPirate_Anheuern_Condition;
 	information = DIA_Addon_HammerPirate_Anheuern_Info;
@@ -91,7 +91,7 @@ func void DIA_Addon_HammerPirate_Anheuern_Info()
 
 instance DIA_Addon_HammerPirate_ComeOn(C_Info)
 {
-	npc = PIR_1360_Addon_PIRAT;
+	npc = PIR_1360_Addon_Pirat;
 	nr = 12;
 	condition = DIA_Addon_HammerPirate_ComeOn_Condition;
 	information = DIA_Addon_HammerPirate_ComeOn_Info;
@@ -102,7 +102,7 @@ instance DIA_Addon_HammerPirate_ComeOn(C_Info)
 
 func int DIA_Addon_HammerPirate_ComeOn_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Henry_FreeBDTTower == LOG_Running) && (C_TowerBanditsDead() == FALSE) && Npc_KnowsInfo(other,DIA_Addon_HammerPirate_Anheuern))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (MIS_Henry_FreeBDTTower == LOG_Running) && !C_TowerBanditsDead() && Npc_KnowsInfo(other,DIA_Addon_HammerPirate_Anheuern))
 	{
 		return TRUE;
 	};
@@ -132,7 +132,7 @@ func void DIA_Addon_HammerPirate_ComeOn_Info()
 
 instance DIA_Addon_HammerPirate_GoHome(C_Info)
 {
-	npc = PIR_1360_Addon_PIRAT;
+	npc = PIR_1360_Addon_Pirat;
 	nr = 13;
 	condition = DIA_Addon_HammerPirate_GoHome_Condition;
 	information = DIA_Addon_HammerPirate_GoHome_Info;
@@ -160,7 +160,7 @@ func void DIA_Addon_HammerPirate_GoHome_Info()
 
 instance DIA_Addon_HammerPirate_TooFar(C_Info)
 {
-	npc = PIR_1360_Addon_PIRAT;
+	npc = PIR_1360_Addon_Pirat;
 	nr = 14;
 	condition = DIA_Addon_HammerPirate_TooFar_Condition;
 	information = DIA_Addon_HammerPirate_TooFar_Info;
@@ -189,7 +189,7 @@ func void DIA_Addon_HammerPirate_TooFar_Info()
 
 instance DIA_Addon_HammerPirate_Success(C_Info)
 {
-	npc = PIR_1360_Addon_PIRAT;
+	npc = PIR_1360_Addon_Pirat;
 	nr = 14;
 	condition = DIA_Addon_HammerPirate_Success_Condition;
 	information = DIA_Addon_HammerPirate_Success_Info;
@@ -200,7 +200,7 @@ instance DIA_Addon_HammerPirate_Success(C_Info)
 
 func int DIA_Addon_HammerPirate_Success_Condition()
 {
-	if((C_TowerBanditsDead() == TRUE) && (self.aivar[AIV_PARTYMEMBER] == TRUE))
+	if(C_TowerBanditsDead() && (self.aivar[AIV_PARTYMEMBER] == TRUE))
 	{
 		return TRUE;
 	};

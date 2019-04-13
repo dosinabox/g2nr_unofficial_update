@@ -43,9 +43,9 @@ func void B_AssessTalk()
 	};
 	if(self.guild > GIL_SEPERATOR_HUM)
 	{
-		if(Npc_CheckInfo(self,1) == FALSE)
+		if(!Npc_CheckInfo(self,1))
 		{
-			if(Npc_CheckInfo(self,0) == FALSE)
+			if(!Npc_CheckInfo(self,0))
 			{
 				return;
 			};

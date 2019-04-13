@@ -94,11 +94,7 @@ instance ItSe_GoldPocket25(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = GoldPocket25;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[2] = "Внутри позванивает несколько монет.";
-	text[3] = "";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -121,11 +117,7 @@ instance ItSe_GoldPocket50(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = GoldPocket50;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[2] = "Этот кошелек полон монет.";
-	text[3] = "";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -148,11 +140,8 @@ instance ItSe_GoldPocket100(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = GoldPocket100;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[2] = "Тяжелый мешочек,";
 	text[3] = "полный золотых монет.";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -175,11 +164,7 @@ instance ItSe_HannasBeutel(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = HannasBeutel;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[2] = "Его дала мне Ханна.";
-	text[3] = "";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

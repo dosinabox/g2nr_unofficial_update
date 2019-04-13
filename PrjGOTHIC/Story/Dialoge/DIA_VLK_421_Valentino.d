@@ -108,7 +108,7 @@ func void DIA_Valentino_Manieren_Info()
 {
 	AI_Output(other,self,"DIA_Valentino_Add_15_02");	//Похоже, мне придется поучить тебя хорошим манерам!
 	AI_Output(self,other,"DIA_Valentino_HALLO_klappe_03_01");	//Меня это не волнует! Молоти меня, сколько хочешь. А когда я встану завтра утром, я опять буду красавчиком.
-	AI_Output(self,other,"DIA_Valentino_HALLO_klappe_03_02");	//Но тебе придется жить дальше с этим преступлением до конца своих дней
+	AI_Output(self,other,"DIA_Valentino_HALLO_klappe_03_02");	//Но тебе придется жить дальше с этим преступлением до конца своих дней.
 };
 
 
@@ -173,10 +173,7 @@ instance DIA_Valentino_PICKPOCKET(C_Info)
 
 func int DIA_Valentino_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItKe_Valentino) >= 1) && (other.attribute[ATR_DEXTERITY] >= (30 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Valentino),1);
 };
 
 func void DIA_Valentino_PICKPOCKET_Info()
@@ -188,19 +185,8 @@ func void DIA_Valentino_PICKPOCKET_Info()
 
 func void DIA_Valentino_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 30)
-	{
-		B_GiveInvItems(self,other,ItKe_Valentino,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Valentino_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(30,Hlp_GetInstanceID(ItKe_Valentino),1);
+	Info_ClearChoices(DIA_Valentino_PICKPOCKET);
 };
 
 func void DIA_Valentino_PICKPOCKET_BACK()

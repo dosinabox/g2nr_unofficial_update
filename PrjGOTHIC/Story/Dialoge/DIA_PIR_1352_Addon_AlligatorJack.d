@@ -323,7 +323,7 @@ func void DIA_Addon_AlligatorJack_WasJagen_Info()
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_WasJagen_15_04");	//Что?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_WasJagen_12_05");	//Мясо большинства местных зверей либо имеет вкус старых носков, либо жесткое, как подметки.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_WasJagen_12_06");	//Более-менее съедобно только мясо этих жирных болотных крыс.
-	B_LogEntry(TOPIC_Addon_RatHunt,"Единственное животное здесь, мясо которого можно есть, - это болотная крыса.");
+	B_LogEntry(TOPIC_Addon_RatHunt,"Единственное животное здесь, мясо которого можно есть - это болотная крыса.");
 };
 
 
@@ -596,7 +596,7 @@ instance DIA_Addon_AlligatorJack_Angus(C_Info)
 
 func int DIA_Addon_AlligatorJack_Angus_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Bill_AngusnHank) == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Bill_AngusnHank))
 	{
 		return TRUE;
 	};
@@ -625,7 +625,7 @@ instance DIA_Addon_AlligatorJack_Lake(C_Info)
 
 func int DIA_Addon_AlligatorJack_Lake_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Angus) == TRUE) && (MIS_Addon_Morgan_SeekTraitor != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Angus) && (MIS_Addon_Morgan_SeekTraitor != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -666,7 +666,7 @@ func int DIA_Addon_AlligatorJack_CanLearn_Condition()
 {
 	if(AlligatorJack_Addon_TeachPlayer == FALSE)
 	{
-		if((Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_HuntEnd) == TRUE) || (GregIsBack == TRUE))
+		if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_HuntEnd) || (GregIsBack == TRUE))
 		{
 			return TRUE;
 		};
@@ -681,7 +681,7 @@ func void DIA_Addon_AlligatorJack_CanLearn_Info()
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_01");	//Конечно. Я хороший охотник и могу научить тебя снимать с животных шкуры и выдирать зубы.
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_02");	//Если хочешь, я могу заняться твоим обучением.
 		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,"Аллигатор Джек может обучить меня снимать с животных шкуры и выдирать зубы. Кроме того, он может научить меня лучше стрелять из лука.");
+		B_LogEntry(Topic_Addon_PIR_Teacher,"Аллигатор Джек может обучить меня снимать кожу с рептилий и выдирать зубы. Кроме того, он может научить меня лучше стрелять из лука.");
 		AlligatorJack_Addon_TeachPlayer = TRUE;
 	}
 	else
@@ -703,7 +703,7 @@ func void B_AJ_Teach()
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 	{
-		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString("Зубы животных",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Addon_AlligatorJack_Teach_Teeth);
+		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString("Удаление зубов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Addon_AlligatorJack_Teach_Teeth);
 	};	
 };
 
@@ -838,7 +838,7 @@ func int DIA_Addon_AlligatorJack_ComeOn_Condition()
 func void DIA_Addon_AlligatorJack_ComeOn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_KommMit_15_00");	//Присоединяйся ко мне.
-	if(C_GregsPiratesTooFar() == TRUE)
+	if(C_GregsPiratesTooFar())
 	{
 		B_Say(self,other,"$NOTNOW");
 		AI_StopProcessInfos(self);
@@ -895,7 +895,7 @@ instance DIA_Addon_AlligatorJack_TooFar(C_Info)
 
 func int DIA_Addon_AlligatorJack_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (C_GregsPiratesTooFar() == TRUE) && (MIS_Addon_Greg_ClearCanyon == LOG_Running))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar() && (MIS_Addon_Greg_ClearCanyon == LOG_Running))
 	{
 		return TRUE;
 	};

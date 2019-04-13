@@ -1,7 +1,7 @@
 
 instance DIA_Onar_EXIT(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 999;
 	condition = DIA_Onar_EXIT_Condition;
 	information = DIA_Onar_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Onar_EXIT_Info()
 
 instance DIA_Onar_Hallo(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 1;
 	condition = DIA_Onar_Hallo_Condition;
 	information = DIA_Onar_Hallo_Info;
@@ -49,7 +49,7 @@ func void DIA_Onar_Hallo_Info()
 
 instance DIA_Onar_PERM(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 1;
 	condition = DIA_Onar_PERM_Condition;
 	information = DIA_Onar_PERM_Info;
@@ -92,7 +92,7 @@ func void DIA_Onar_PERM_Info()
 
 instance DIA_Onar_Work(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 2;
 	condition = DIA_Onar_Work_Condition;
 	information = DIA_Onar_Work_Info;
@@ -120,7 +120,7 @@ func void DIA_Onar_Work_Info()
 
 instance DIA_Onar_WorkAsSld(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 2;
 	condition = DIA_Onar_WorkAsSld_Condition;
 	information = DIA_Onar_WorkAsSld_Info;
@@ -148,7 +148,7 @@ func void DIA_Onar_WorkAsSld_Info()
 
 instance DIA_Onar_Aufstand(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 3;
 	condition = DIA_Onar_Aufstand_Condition;
 	information = DIA_Onar_Aufstand_Info;
@@ -175,7 +175,7 @@ func void DIA_Onar_Aufstand_Info()
 
 instance DIA_Onar_WegenPepe(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 4;
 	condition = DIA_Onar_WegenPepe_Condition;
 	information = DIA_Onar_WegenPepe_Info;
@@ -205,7 +205,7 @@ func void DIA_Onar_WegenPepe_Info()
 
 instance DIA_Onar_WegenSekob(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 5;
 	condition = DIA_Onar_WegenSekob_Condition;
 	information = DIA_Onar_WegenSekob_Info;
@@ -237,7 +237,7 @@ func void DIA_Onar_WegenSekob_Info()
 	};
 	AI_Output(other,self,"DIA_Onar_WegenSekob_15_04");	//Но у Секоба нет денег. Я даже пытался выбить их из него.
 	AI_Output(other,self,"DIA_Onar_WegenSekob_15_05");	//Он сказал, что это из-за плохого урожая...
-	AI_Output(self,other,"DIA_Onar_WegenSekob_14_06");	//(вопит) Ты безмозглый кретин! Ты что думаешь, он носит деньги с собой? Он их где-то прячет!
+	AI_Output(self,other,"DIA_Onar_WegenSekob_14_06");	//(вопит) Ты безмозглый кретин! Ты что, думаешь, он носит деньги с собой? Он их где-то прячет!
 	AI_Output(self,other,"DIA_Onar_WegenSekob_14_07");	//Да ты знаешь, сколько дождей было в этот год? Плохой урожай! Надо же!
 	AI_Output(self,other,"DIA_Onar_WegenSekob_14_08");	//Иди, и найди способ выбить из него эти деньги.
 	Onar_WegenSekob = TRUE;
@@ -246,7 +246,7 @@ func void DIA_Onar_WegenSekob_Info()
 
 instance DIA_Onar_LeeSentMe(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 6;
 	condition = DIA_Onar_LeeSentMe_Condition;
 	information = DIA_Onar_LeeSentMe_Info;
@@ -286,7 +286,7 @@ var int Onar_SOLD_XP;
 
 instance DIA_Onar_HowMuch(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 7;
 	condition = DIA_Onar_HowMuch_Condition;
 	information = DIA_Onar_HowMuch_Info;
@@ -315,17 +315,17 @@ func void DIA_Onar_HowMuch_Info()
 	if(Onar_WegenSekob == TRUE)
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_03");	//Ты не отличаешься особой сообразительностью. Это очевидно после твоих похождений к Секобу.
-		SOLD = SOLD - 10;
+		SOLD -= 10;
 	};
 	if((ABSOLUTIONLEVEL_Farm > 1) || ((B_GetGreatestPetzCrime(self) > CRIME_NONE) && (ABSOLUTIONLEVEL_Farm > 0)))
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_04");	//Ты уже неоднократно создавал проблемы здесь, на ферме.
-		SOLD = SOLD - 10;
+		SOLD -= 10;
 	};
 	if((Onar_WegenPepe == TRUE) && ((Onar_WegenSekob == TRUE) || (Onar_WegenSldWerden == TRUE)))
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_05");	//И ты постоянно допекаешь меня всяким вздором.
-		SOLD = SOLD - 10;
+		SOLD -= 10;
 	};
 	AI_Output(self,other,"DIA_Onar_HowMuch_14_06");	//Дай мне подумать...
 	B_Say_Gold(self,other,SOLD);
@@ -368,7 +368,7 @@ func void DIA_Onar_HowMuch_Ok()
 
 instance DIA_Onar_CollectGold(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 8;
 	condition = DIA_Onar_CollectGold_Condition;
 	information = DIA_Onar_CollectGold_Info;
@@ -444,7 +444,7 @@ func void DIA_Onar_CollectGold_Info()
 
 instance DIA_Onar_MariaGold(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 9;
 	condition = DIA_Onar_MariaGold_Condition;
 	information = DIA_Onar_MariaGold_Info;
@@ -471,7 +471,7 @@ func void DIA_Onar_MariaGold_Info()
 	AI_Output(other,self,"DIA_Onar_MariaGold_15_05");	//Нет.
 	AI_Output(self,other,"DIA_Onar_MariaGold_14_06");	//Хорошо, начиная со следующего жалования, ты будешь получать на 10 монет больше.
 	AI_Output(self,other,"DIA_Onar_MariaGold_14_07");	//Но ни монетой больше, понятно?
-	SOLD = SOLD + 10;
+	SOLD += 10;
 };
 
 
@@ -479,7 +479,7 @@ var int Onar_SellSheep;
 
 instance DIA_Onar_WannaSheep(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 10;
 	condition = DIA_Onar_WannaSheep_Condition;
 	information = DIA_Onar_WannaSheep_Info;
@@ -514,7 +514,7 @@ func void DIA_Onar_WannaSheep_Info()
 
 instance DIA_Onar_BuyLiesel(C_Info)
 {
-	npc = Bau_900_Onar;
+	npc = BAU_900_Onar;
 	nr = 10;
 	condition = DIA_Onar_BuyLiesel_Condition;
 	information = DIA_Onar_BuyLiesel_Info;

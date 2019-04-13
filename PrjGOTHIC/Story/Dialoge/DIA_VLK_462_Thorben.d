@@ -129,7 +129,7 @@ func void DIA_Thorben_Arbeit_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_Arbeit_15_00");	//Я ищу работу.
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_01");	//Ты что-нибудь знаешь о плотницком деле?
-	AI_Output(other,self,"DIA_Thorben_Arbeit_15_02");	//Единственное, что я могу получить из дерева, - это огонь.
+	AI_Output(other,self,"DIA_Thorben_Arbeit_15_02");	//Единственное, что я могу получить из дерева - это огонь.
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_03");	//А что насчет замков?
 	AI_Output(other,self,"DIA_Thorben_Arbeit_15_04");	//Нуууу...
 	AI_Output(self,other,"DIA_Thorben_Arbeit_06_05");	//Извини, но я не могу взять тебя, если ты ничего не понимаешь в моем ремесле.
@@ -297,7 +297,7 @@ instance DIA_Thorben_Schuldenbuch(C_Info)
 
 func int DIA_Thorben_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) > 0)
+	if(Npc_HasItems(other,ItWr_Schuldenbuch))
 	{
 		return TRUE;
 	};
@@ -329,7 +329,7 @@ instance DIA_Thorben_PleaseTeach(C_Info)
 
 func int DIA_Thorben_PleaseTeach_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Thorben_Locksmith) && (Thorben_TeachPlayer == FALSE) && (Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK) == 0))
+	if(Npc_KnowsInfo(other,DIA_Thorben_Locksmith) && (Thorben_TeachPlayer == FALSE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
 		return TRUE;
 	};
@@ -357,7 +357,7 @@ func void DIA_Thorben_PleaseTeach_Info()
 	else if(MIS_Matteo_Gold == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_07");	//Ты заплатил долг Гритты Маттео. Похоже, ты хороший человек. Я обучу тебя тому, что ты хочешь знать.
-		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_08");	//Однако я не могу сделать это бесплатно. У целая куча долгов, и мне нужны деньги.
+		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_08");	//Однако я не могу сделать это бесплатно. У меня целая куча долгов, и мне нужны деньги.
 		AI_Output(other,self,"DIA_Thorben_PleaseTeach_15_09");	//Сколько ты возьмешь?
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_10");	//200 золотых монет.
 		Info_ClearChoices(DIA_Thorben_PleaseTeach);
@@ -422,7 +422,7 @@ instance DIA_Thorben_Teach(C_Info)
 
 func int DIA_Thorben_Teach_Condition()
 {
-	if((Thorben_TeachPlayer == TRUE) && (Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK) == 0))
+	if((Thorben_TeachPlayer == TRUE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
 		return TRUE;
 	};
@@ -465,7 +465,7 @@ func int DIA_Thorben_TRADE_Condition()
 func void DIA_Thorben_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_TRADE_15_00");	//Ты можешь продать мне отмычки?
-	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK) > 0)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
 		AI_Output(self,other,"DIA_Thorben_TRADE_06_01");	//Если еще остались...
 	}
@@ -473,10 +473,10 @@ func void DIA_Thorben_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Thorben_TRADE_06_02");	//Хорошо. Но они ничем не помогут тебе, пока ты не научишься пользоваться ими.
 	};
-	if((Npc_HasItems(self,ItKE_lockpick) == 0) && (Kapitel > Dietrichgeben))
+	if(!Npc_HasItems(self,ItKE_lockpick) && (Kapitel > Dietrichgeben))
 	{
 		CreateInvItems(self,ItKE_lockpick,5);
-		Dietrichgeben = Dietrichgeben + 1;
+		Dietrichgeben += 1;
 	};
 	if(THORBEN_TRADELOG == FALSE)
 	{
@@ -562,7 +562,7 @@ instance DIA_Addon_Thorben_ElvrichIsBack(C_Info)
 
 func int DIA_Addon_Thorben_ElvrichIsBack_Condition()
 {
-	if((Elvrich_GoesBack2Thorben == TRUE) && (Npc_IsDead(Elvrich) == FALSE))
+	if((Elvrich_GoesBack2Thorben == TRUE) && !Npc_IsDead(Elvrich))
 	{
 		return TRUE;
 	};
@@ -576,7 +576,8 @@ func void DIA_Addon_Thorben_ElvrichIsBack_Info()
 	CreateInvItems(self,ItMi_Gold,200);
 	B_GiveInvItems(self,other,ItMi_Gold,200);
 	MIS_Thorben_BringElvrichBack = LOG_SUCCESS;
-	VLK_4302_Addon_Elvrich.flags = 0;
+	Elvrich.flags = 0;
+	Elvrich.aivar[AIV_ToughGuy] = FALSE;
 };
 
 
@@ -603,7 +604,7 @@ func void DIA_Thorben_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_Paladine_15_00");	//Что ты знаешь о паладинах?
 	AI_Output(self,other,"DIA_Thorben_Paladine_06_01");	//Немногое. Они прибыли на корабле с материка две недели назад.
-	AI_Output(self,other,"DIA_Thorben_Paladine_06_02");	//С тех пор, они заперлись в верхнем квартале города.
+	AI_Output(self,other,"DIA_Thorben_Paladine_06_02");	//С тех пор они заперлись в верхнем квартале города.
 	AI_Output(self,other,"DIA_Thorben_Paladine_06_03");	//Никто толком не знает, зачем они прибыли.
 	AI_Output(self,other,"DIA_Thorben_Paladine_06_04");	//Многие опасаются нападения орков.
 	AI_Output(self,other,"DIA_Thorben_Paladine_06_05");	//А я думаю, что они здесь, чтобы подавить восстание фермеров.
@@ -636,7 +637,7 @@ func void DIA_Thorben_Bauernaufstand_Info()
 	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_02");	//Он, вероятно, устал отдавать весь свой урожай паладинам и ополчению.
 	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_03");	//Ну а в городе после этого стали расти цены на продовольствие.
 	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_04");	//Ферма Онара находится далеко на восток отсюда. Мы не знаем, были там сражения или нет.
-	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_05");	//Если ты хочешь узнать больше, поспрашивай торговцев на рыночной пощади. Они лучше знают обстановку на острове чем я.
+	AI_Output(self,other,"DIA_Thorben_Bauernaufstand_06_05");	//Если ты хочешь узнать больше, поспрашивай торговцев на рыночной пощади. Они лучше знают обстановку на острове, чем я.
 };
 
 

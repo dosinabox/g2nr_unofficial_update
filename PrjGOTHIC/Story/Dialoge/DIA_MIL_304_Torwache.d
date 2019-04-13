@@ -1,7 +1,7 @@
 
 instance DIA_Mil_304_Torwache_EXIT(C_Info)
 {
-	npc = Mil_304_Torwache;
+	npc = MIL_304_Torwache;
 	nr = 999;
 	condition = DIA_Mil_304_Torwache_EXIT_Condition;
 	information = DIA_Mil_304_Torwache_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Mil_304_Torwache_EXIT_Info()
 
 instance DIA_Mil_304_Torwache_WASMACHSTDU(C_Info)
 {
-	npc = Mil_304_Torwache;
+	npc = MIL_304_Torwache;
 	nr = 3;
 	condition = DIA_Mil_304_Torwache_WASMACHSTDU_Condition;
 	information = DIA_Mil_304_Torwache_WASMACHSTDU_Info;

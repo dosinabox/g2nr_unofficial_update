@@ -15,8 +15,8 @@ func void evt_teleportstation_func()
 				Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
 				B_LogEntry(TOPIC_Addon_TeleportsNW,"Телепорт в пещере к востоку от города ведет к таверне 'Мертвая Гарпия'.");
+				SCUsed_NW_TELEPORTSTATION_CITY = TRUE;
 			};
-			SCUsed_NW_TELEPORTSTATION_CITY = TRUE;
 		}
 		else if(Npc_GetDistToWP(hero,"NW_TELEPORTSTATION_TAVERNE") < 3000)
 		{
@@ -26,8 +26,8 @@ func void evt_teleportstation_func()
 				Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
 				B_LogEntry(TOPIC_Addon_TeleportsNW,"Телепорт у таверны 'Мертвая Гарпия' ведет к порталу таинственных зодчих.");
+				SCUsed_NW_TELEPORTSTATION_TAVERNE = TRUE;
 			};
-			SCUsed_NW_TELEPORTSTATION_TAVERNE = TRUE;
 		}
 		else if(Npc_GetDistToWP(hero,"NW_TELEPORTSTATION_MAYA") < 3000)
 		{
@@ -37,8 +37,8 @@ func void evt_teleportstation_func()
 				Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
 				B_LogEntry(TOPIC_Addon_TeleportsNW,"Телепорт у портала таинственных зодчих ведет к пещере к востоку от города.");
+				SCUsed_NW_TELEPORTSTATION_MAYA = TRUE;
 			};
-			SCUsed_NW_TELEPORTSTATION_MAYA = TRUE;
 		}
 		else
 		{
@@ -61,8 +61,8 @@ func void evt_teleportstation_func()
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"Я активировал телепорт, который находится рядом с порталом, ведущим в Хоринис.");
 				B_GivePlayerXP(XP_Ambient);
+				SCUsed_ADW_TELEPORTSTATION_PORTALTEMPEL = TRUE;
 			};
-			SCUsed_ADW_TELEPORTSTATION_PORTALTEMPEL = TRUE;
 		}
 		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_EAST_WP"))
 		{
@@ -73,8 +73,8 @@ func void evt_teleportstation_func()
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"Мне удалось активировать телепорт, находящийся в верхней части лагеря бандитов.");
 				B_GivePlayerXP(XP_Ambient);
+				SCUsed_ADW_TELEPORTSTATION_ADANOSTEMPEL = TRUE;
 			};
-			SCUsed_ADW_TELEPORTSTATION_ADANOSTEMPEL = TRUE;
 		}
 		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_SOUTHEAST_WP"))
 		{
@@ -85,8 +85,8 @@ func void evt_teleportstation_func()
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"Я активировал телепорт, который находится на болоте, к югу от лагеря бандитов.");
 				B_GivePlayerXP(XP_Ambient);
+				SCUsed_ADW_TELEPORTSTATION_SOUTHEAST = TRUE;
 			};
-			SCUsed_ADW_TELEPORTSTATION_SOUTHEAST = TRUE;
 		}
 		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_SOUTHWEST_WP"))
 		{
@@ -97,8 +97,8 @@ func void evt_teleportstation_func()
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"Я нашел телепорт на юго-западе.");
 				B_GivePlayerXP(XP_Ambient);
+				SCUsed_ADW_TELEPORTSTATION_SOUTHWEST = TRUE;
 			};
-			SCUsed_ADW_TELEPORTSTATION_SOUTHWEST = TRUE;
 		}
 		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ENTRANCE_TELEPORT_WEST_WP"))
 		{
@@ -108,6 +108,7 @@ func void evt_teleportstation_func()
 				Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
 				B_LogEntry(TOPIC_Addon_TeleportsADW,"В небольшой пещере в каньоне есть телепорт. Я активировал его.");
+				SCUsed_ADW_TELEPORTSTATION_PIRATES = TRUE;
 				B_GivePlayerXP(XP_Ambient);
 			};
 			if((MIS_KrokoJagd == LOG_SUCCESS) && (SCUsed_ADW_TELEPORTSTATION_PIRATES_JACKSMONSTER == FALSE))
@@ -120,15 +121,14 @@ func void evt_teleportstation_func()
 				Wld_InsertNpc(Blattcrawler,"ADW_CANYON_TELEPORT_PATH_07");
 				SCUsed_ADW_TELEPORTSTATION_PIRATES_JACKSMONSTER = TRUE;
 			};
-			SCUsed_ADW_TELEPORTSTATION_PIRATES = TRUE;
 		}
 		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ADANOSTEMPEL_RAVENTELEPORT_OUT"))
 		{
 			AI_Teleport(hero,"ADW_ADANOSTEMPEL_TELEPORTSTATION");
 			if(SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT == FALSE)
 			{
+				SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT = TRUE;
 			};
-			SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT = TRUE;
 		}
 		else
 		{
@@ -144,7 +144,7 @@ var int ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime;
 func void adw_portaltempel_focus_func()
 {
 	Npc_RemoveInvItems(hero,ItMi_Focus,1);
-	TriggeredTeleporterADW = TriggeredTeleporterADW + 1;
+	TriggeredTeleporterADW += 1;
 	Snd_Play("MFX_TELEKINESIS_STARTINVEST");
 	if(TriggeredTeleporterADW >= 5)
 	{
@@ -152,7 +152,7 @@ func void adw_portaltempel_focus_func()
 	};
 	if((ADW_PORTALTEMPEL_FOCUS_FUNC_OneTime == FALSE) && (Npc_GetDistToWP(hero,"ADW_PORTALTEMPEL_TELEPORTSTATION") < 3000))
 	{
-		if((Npc_IsDead(Stoneguardian_NailedPortalADW1) == FALSE) && (Stoneguardian_NailedPortalADW1.aivar[AIV_EnemyOverride] == TRUE))
+		if(!Npc_IsDead(Stoneguardian_NailedPortalADW1) && (Stoneguardian_NailedPortalADW1.aivar[AIV_EnemyOverride] == TRUE))
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};

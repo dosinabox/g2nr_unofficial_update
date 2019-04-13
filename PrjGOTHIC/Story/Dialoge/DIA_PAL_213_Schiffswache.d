@@ -36,7 +36,7 @@ instance DIA_Pal_213_Schiffswache_FirstWarn(C_Info)
 
 func int DIA_Pal_213_Schiffswache_FirstWarn_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE))
+	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		return TRUE;
 	};
@@ -72,7 +72,7 @@ instance DIA_Pal_213_Schiffswache_SecondWarn(C_Info)
 
 func int DIA_Pal_213_Schiffswache_SecondWarn_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Pal_213_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Pal_213_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -107,7 +107,7 @@ instance DIA_Pal_213_Schiffswache_Attack(C_Info)
 
 func int DIA_Pal_213_Schiffswache_Attack_Condition()
 {
-	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Pal_213_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((MIS_ShipIsFree == FALSE) && (self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Pal_213_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -154,7 +154,7 @@ instance DIA_Pal_213_Schiffswache_IAmKDF(C_Info)
 	condition = DIA_Pal_213_Schiffswache_IAmKDF_Condition;
 	information = DIA_Pal_213_Schiffswache_IAmKDF_Info;
 	permanent = FALSE;
-	description = "Ты сомневаешься в намерениях Мага Огня?";
+	description = "Ты сомневаешься в намерениях мага Огня?";
 };
 
 
@@ -168,7 +168,7 @@ func int DIA_Pal_213_Schiffswache_IAmKDF_Condition()
 
 func void DIA_Pal_213_Schiffswache_IAmKDF_Info()
 {
-	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF_15_00");	//Ты сомневаешься в намерениях Мага Огня?
+	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF_15_00");	//Ты сомневаешься в намерениях мага Огня?
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF_01_01");	//(нервно) Нет, конечно же, нет. Да простит меня Иннос.
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF_01_02");	//(нервно) Маги Огня - стражи мудрости Инноса...
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF_01_03");	//(нервно) ...тот, кто сомневается в них, сомневается в Инносе и не заслуживает пощады.
@@ -208,7 +208,7 @@ instance DIA_Pal_213_Schiffswache_IAmKDF3(C_Info)
 	condition = DIA_Pal_213_Schiffswache_IAmKDF3_Condition;
 	information = DIA_Pal_213_Schiffswache_IAmKDF3_Info;
 	permanent = FALSE;
-	description = "Ты осмелишься атаковать Мага Огня?";
+	description = "Ты осмелишься атаковать мага Огня?";
 };
 
 
@@ -222,7 +222,7 @@ func int DIA_Pal_213_Schiffswache_IAmKDF3_Condition()
 
 func void DIA_Pal_213_Schiffswache_IAmKDF3_Info()
 {
-	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF3_15_00");	//Ты осмелишься атаковать Мага Огня?
+	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF3_15_00");	//Ты осмелишься атаковать мага Огня?
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF3_01_01");	//(нервно) Я никогда не подниму руку на мага.
 	AI_Output(other,self,"DIA_Pal_213_Schiffswache_IAmKDF3_15_02");	//Так что ты все-таки будешь делать, если я взойду на борт?
 	AI_Output(self,other,"DIA_Pal_213_Schiffswache_IAmKDF3_01_03");	//(робко) Ничего, господин.

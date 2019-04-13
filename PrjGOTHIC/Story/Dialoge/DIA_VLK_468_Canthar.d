@@ -137,7 +137,7 @@ func void DIA_Canthar_Hallo_Info()
 {
 	var C_Item itm;
 	itm = Npc_GetEquippedArmor(other);
-	if(Npc_HasEquippedArmor(other) == FALSE)
+	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_00");	//ѕосмотрите, кто у нас здесь!
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_01");	//“ы ведь идешь в город - € не прав?
@@ -201,7 +201,7 @@ func void DIA_Canthar_WhatOffer_Info()
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_15_00");	//„то ты можешь предложить мне?
 	if(Canthar_GotMe == TRUE)
 	{
-		if(Npc_HasEquippedArmor(other) == FALSE)
+		if(!Npc_HasEquippedArmor(other))
 		{
 			AI_Output(self,other,"DIA_Canthar_WhatOffer_09_01");	//—уд€ по тому, как ты выгл€дишь, стража никогда не пустит теб€ в город.
 		}
@@ -211,7 +211,7 @@ func void DIA_Canthar_WhatOffer_Info()
 		};
 		AI_Output(self,other,"DIA_Canthar_WhatOffer_09_03");	//я могу помочь тебе попасть в город.
 		AI_Output(self,other,"DIA_Canthar_WhatOffer_09_04");	//” мен€ есть вот этот клочок бумаги. — королевской печатью и подписью губернатора. ѕропуск.
-		if(Npc_HasEquippedArmor(other) == FALSE)
+		if(!Npc_HasEquippedArmor(other))
 		{
 			AI_Output(self,other,"DIA_Canthar_WhatOffer_09_05");	//— этим пропуском в кармане ты сможешь спокойно войти в город, и страже придетс€ пропустить теб€.
 		};
@@ -265,7 +265,7 @@ func void DIA_Canthar_WhatOffer_Ok()
 	Info_ClearChoices(DIA_Canthar_WhatOffer);
 	Log_CreateTopic(TOPIC_City,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_City,LOG_Running);
-	B_LogEntry(TOPIC_City,"я получил пропуск у торговца  антара, который позволит мне попасть в город. ¬замен, € должен оказать ему услугу в следующий раз, когда увижу его в городе.");
+	B_LogEntry(TOPIC_City,"я получил пропуск у торговца  антара, который позволит мне попасть в город. ¬замен € должен оказать ему услугу в следующий раз, когда увижу его в городе.");
 };
 
 func void DIA_Canthar_WhatOffer_No()
@@ -318,7 +318,7 @@ instance DIA_Canthar_PAYPRICEINCITY(C_Info)
 
 func int DIA_Canthar_PAYPRICEINCITY_Condition()
 {
-	if((Canthar_InStadt == TRUE) && (Npc_IsDead(Sarah) == FALSE) && (Canthar_GotMe == TRUE))
+	if((Canthar_InStadt == TRUE) && !Npc_IsDead(Sarah) && (Canthar_GotMe == TRUE))
 	{
 		return TRUE;
 	};
@@ -388,9 +388,9 @@ func void DIA_Canthar_PAYPRICEINCITY_Ok()
 	}
 	else
 	{
-		B_LogEntry(TOPIC_Canthar," антар пообещал дать мне оружие, взамен на оказанную ему услугу.");
+		B_LogEntry(TOPIC_Canthar," антар пообещал дать мне оружие взамен на оказанную ему услугу.");
 	};
-	B_LogEntry(TOPIC_Canthar,"я должен подложить письмо торговке —аре, которое даст повод подозревать ее в том, что она продает оружие ќнару. «атем € должен пойти к лорду јндре и настучать на нее.");
+	B_LogEntry(TOPIC_Canthar,"я должен подложить письмо торговке —аре, которое даст повод подозревать ее в том, что она продает оружие ќнару. «атем € должен пойти к лорду јндрэ и настучать на нее.");
 	Info_ClearChoices(DIA_Canthar_PAYPRICEINCITY);
 };
 
@@ -416,7 +416,7 @@ func int DIA_Canthar_SARAHERLEDIGT_Condition()
 
 func void DIA_Canthar_SARAHERLEDIGT_Info()
 {
-	if(Npc_IsDead(Sarah) == FALSE)
+	if(!Npc_IsDead(Sarah))
 	{
 		if(MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() + 2))
 		{
@@ -454,7 +454,7 @@ instance DIA_Canthar_Success(C_Info)
 
 func int DIA_Canthar_Success_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_SUCCESS) && (Npc_IsDead(Sarah) == FALSE))
+	if((MIS_Canthars_KomproBrief == LOG_SUCCESS) && !Npc_IsDead(Sarah))
 	{
 		return TRUE;
 	};

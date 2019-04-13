@@ -40,7 +40,7 @@ func int DIA_NAME_BANDIT_SCHAFBLEIBTHIER_Condition()
 func void DIA_NAME_BANDIT_SCHAFBLEIBTHIER_Info()
 {
 	AI_Output(self,other,"DIA_NAME_BANDIT_SCHAFBLEIBTHIER_09_00");	//Эй ты, кретин! Ты пришел сюда случайно не за овцой, а?
-	if(MIS_Akil_SchafDiebe == 0)
+	if(MIS_Akil_SchafDiebe == FALSE)
 	{
 		AI_Output(other,self,"DIA_NAME_BANDIT_SCHAFBLEIBTHIER_15_01");	//Овцой? Какой овцой?
 		AI_Output(self,other,"DIA_NAME_BANDIT_SCHAFBLEIBTHIER_09_02");	//Это хорошо. А теперь проваливай. Здесь тебе нечего делать.

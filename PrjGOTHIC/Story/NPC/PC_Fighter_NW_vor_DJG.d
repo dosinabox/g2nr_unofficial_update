@@ -10,7 +10,7 @@ instance PC_Fighter_NW_vor_DJG(Npc_Default)
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Gorn,BodyTex_B,ItAr_Sld_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Gorn,BodyTex_B,ITAR_SLD_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

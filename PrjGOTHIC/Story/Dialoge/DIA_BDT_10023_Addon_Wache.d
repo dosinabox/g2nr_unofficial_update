@@ -93,7 +93,7 @@ func void DIA_Addon_10023_Wache_go_Info()
 	{
 		Info_AddChoice(DIA_Addon_10023_Wache_go,"Я поговорил с Торусом. Он приказал отпустить рабов.",DIA_Addon_10023_Wache_go_Thorus);
 	}
-	else if(Npc_IsDead(Bloodwyn) && (Npc_HasItems(other,ItMi_Addon_Bloodwyn_Kopf) >= 1))
+	else if(Npc_IsDead(Bloodwyn) && Npc_HasItems(other,ItMi_Addon_Bloodwyn_Kopf))
 	{
 		Info_AddChoice(DIA_Addon_10023_Wache_go,"(показать голову Бладвина)",DIA_Addon_10023_Wache_go_Blood);
 	}
@@ -141,7 +141,7 @@ func void DIA_Addon_10023_Wache_go_Blood()
 		else
 		{
 			AI_Output(self,other,"DIA_Addon_10023_Wache_go_Blood_11_07");	//Я же тебе сказал...
-			AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_08");	//...хватит, дальше я знаю.
+			AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_08");	//... хватит, дальше я знаю.
 		};
 		Info_ClearChoices(DIA_Addon_10023_Wache_go);
 	};
@@ -151,7 +151,7 @@ func void DIA_Addon_10023_Wache_go_Thorus()
 {
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Thorus_15_00");	//Я поговорил с Торусом. Он приказал отпустить рабов.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Thorus_11_01");	//Ну, если Торус приказал. Но я спрашиваю себя, зачем ему это могло понадобиться...
-	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Thorus_15_02");	//...кажется, тебе не платят за то, чтобы ты задавал вопросы.
+	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Thorus_15_02");	//... кажется, тебе не платят за то, чтобы ты задавал вопросы.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_go_Thorus_11_03");	//Ладно, ладно. Я теперь здесь, как понятно, не нужен, так что я пойду съем кусочек мяса.
 	Ready_Togo = TRUE;
 	AI_StopProcessInfos(self);

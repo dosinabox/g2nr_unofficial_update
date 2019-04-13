@@ -34,7 +34,7 @@ instance DIA_Angar_DI_HALLO(C_Info)
 
 func int DIA_Angar_DI_HALLO_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -43,7 +43,7 @@ func int DIA_Angar_DI_HALLO_Condition()
 func void DIA_Angar_DI_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Angar_DI_HALLO_15_00");	//Как ты?
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		AI_Output(self,other,"DIA_Angar_DI_HALLO_04_01");	//Головные боли стали совсем невыносимыми.
 		AI_Output(self,other,"DIA_Angar_DI_HALLO_04_02");	//Черт. Это когда-нибудь должно кончиться.
@@ -67,7 +67,7 @@ instance DIA_Angar_DI_ORKS(C_Info)
 
 func int DIA_Angar_DI_ORKS_Condition()
 {
-	if((OrkSturmDI == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if((OrkSturmDI == TRUE) && !Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -206,7 +206,7 @@ instance DIA_Angar_DI_FOLLOWSTOP(C_Info)
 
 func int DIA_Angar_DI_FOLLOWSTOP_Condition()
 {
-	if((Angar_DI_Party == LOG_Running) && (((Npc_GetDistToWP(self,"DI_DRACONIANAREA_FIREDRAGON") < 3000) && (Npc_IsDead(FireDragonIsland) == FALSE)) || (Npc_GetDistToWP(self,"SKELETTE") < 3000)))
+	if((Angar_DI_Party == LOG_Running) && (((Npc_GetDistToWP(self,"DI_DRACONIANAREA_FIREDRAGON") < 3000) && !Npc_IsDead(FireDragonIsland)) || (Npc_GetDistToWP(self,"SKELETTE") < 3000)))
 	{
 		return TRUE;
 	};

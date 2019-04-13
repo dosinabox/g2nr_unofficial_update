@@ -12,7 +12,7 @@ instance BDT_1065_Bandit_L(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_ToughBart01,BodyTex_N,ItAr_BDT_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_ToughBart01,BodyTex_N,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
@@ -23,7 +23,7 @@ instance BDT_1065_Bandit_L(Npc_Default)
 
 func void Rtn_Start_1065()
 {
-	TA_Smalltalk(0,0,12,0,"NW_CASTLEMINE_TOWER_C");
+	TA_Smoke_Joint(0,0,12,0,"NW_CASTLEMINE_TOWER_C");
 	TA_Smalltalk(12,0,0,0,"NW_CASTLEMINE_TOWER_C");
 };
 

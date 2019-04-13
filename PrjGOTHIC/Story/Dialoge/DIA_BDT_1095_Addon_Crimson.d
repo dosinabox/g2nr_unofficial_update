@@ -161,7 +161,7 @@ func void DIA_Addon_Crimson_Gold_Info()
 	AI_Output(other,self,"DIA_Addon_Crimson_Gold_15_00");	//Займемся торговлей...
 	Info_ClearChoices(DIA_Addon_Crimson_Gold);
 	Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
-	if(Npc_HasItems(other,ItMi_GoldNugget_Addon) >= 1)
+	if(Npc_HasItems(other,ItMi_GoldNugget_Addon))
 	{
 		Info_AddChoice(DIA_Addon_Crimson_Gold,"Продать все золотые слитки",DIA_Addon_Crimson_Gold_ALLE);
 		Info_AddChoice(DIA_Addon_Crimson_Gold,"Продать 1 золотой слиток",DIA_Addon_Crimson_Gold_1);
@@ -185,7 +185,7 @@ func void DIA_Addon_Crimson_Gold_ALLE()
 	B_GiveInvItems(self,other,ItMi_Gold,CurrentNuggets * 10);
 	Info_ClearChoices(DIA_Addon_Crimson_Gold);
 	Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
-	if(Npc_HasItems(other,ItMi_GoldNugget_Addon) >= 1)
+	if(Npc_HasItems(other,ItMi_GoldNugget_Addon))
 	{
 		Info_AddChoice(DIA_Addon_Crimson_Gold,"Продать все золотые слитки",DIA_Addon_Crimson_Gold_ALLE);
 		Info_AddChoice(DIA_Addon_Crimson_Gold,"Продать 1 золотой слиток",DIA_Addon_Crimson_Gold_1);
@@ -198,7 +198,7 @@ func void DIA_Addon_Crimson_Gold_1()
 	B_GiveInvItems(self,other,ItMi_Gold,10);
 	Info_ClearChoices(DIA_Addon_Crimson_Gold);
 	Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
-	if(Npc_HasItems(other,ItMi_GoldNugget_Addon) >= 1)
+	if(Npc_HasItems(other,ItMi_GoldNugget_Addon))
 	{
 		Info_AddChoice(DIA_Addon_Crimson_Gold,"Продать все золотые слитки",DIA_Addon_Crimson_Gold_ALLE);
 		Info_AddChoice(DIA_Addon_Crimson_Gold,"Продать 1 золотой слиток",DIA_Addon_Crimson_Gold_1);
@@ -264,7 +264,7 @@ func int DIA_Addon_Crimson_FATAGN_Condition()
 
 func void DIA_Addon_Crimson_FATAGN_Info()
 {
-	Crimson_SayBeliar = Crimson_SayBeliar + 1;
+	Crimson_SayBeliar += 1;
 	AI_Output(other,self,"DIA_Addon_Crimson_FATAGN_15_00");	//Ты можешь повторить слова Ворона?
 	if(Crimson_SayBeliar <= 3)
 	{

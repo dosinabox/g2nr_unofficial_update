@@ -12,7 +12,6 @@ instance VLK_440_Bartok(Npc_Default)
 	EquipItem(self,ItRw_Bow_M_03);
 	EquipItem(self,ItMW_Addon_Hacker_1h_01);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItRw_Arrow,40);
 	CreateInvItems(self,ItPo_Health_03,5);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Important_Arto,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);

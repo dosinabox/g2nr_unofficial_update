@@ -105,12 +105,12 @@ func void DIA_Addon_10008_Bandit_soup_Info()
 {
 	AI_Output(other,self,"DIA_Addon_10008_Bandit_soup_15_00");	//Ты рудокоп?
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_soup_01_01");	//Ты по штанам так решил? Нет, я ношу их просто потому, что это удобно.
-	AI_Output(self,other,"DIA_Addon_10008_Bandit_soup_01_02");	//Все, что я здесь делаю, - готовлю тушеное мясо. Вот, попробуй - оно придаст тебе сил.
+	AI_Output(self,other,"DIA_Addon_10008_Bandit_soup_01_02");	//Все, что я здесь делаю - готовлю тушеное мясо. Вот, попробуй - оно придаст тебе сил.
 	B_GiveInvItems(self,other,ItFo_Addon_Meatsoup,1);
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_soup_01_03");	//Это очень важно - тренировать свою силу. Вокруг столько опасностей.
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_soup_01_04");	//Если хочешь, я готов помочь тебе стать сильнее.
 	Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Teacher,"Бандит у котелка может помочь мне стать сильнее.");
+	B_LogEntry(Topic_Addon_BDT_Teacher,"Бандит у котла может помочь мне стать сильнее.");
 };
 
 

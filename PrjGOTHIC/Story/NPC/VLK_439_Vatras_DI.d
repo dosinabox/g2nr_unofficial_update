@@ -14,7 +14,7 @@ instance VLK_439_Vatras_DI(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_B_Saturas,BodyTex_B,itar_kdw_h);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_B_Saturas,BodyTex_B,ITAR_KDW_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

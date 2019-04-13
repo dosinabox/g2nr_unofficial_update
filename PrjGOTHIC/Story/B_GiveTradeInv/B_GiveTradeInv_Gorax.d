@@ -10,7 +10,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 	if((Kapitel >= 1) && (Gorax_ItemsGiven_Chapter_1 == FALSE))
 	{
 		CreateInvItems(slf,ItMi_Gold,100);
-		CreateInvItems(slf,ItKe_Innos_MIS,1);
+//		CreateInvItems(slf,ItKe_Innos_MIS,1);
 		CreateInvItems(slf,ItSc_Sleep,1);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItPo_Mana_01,2);

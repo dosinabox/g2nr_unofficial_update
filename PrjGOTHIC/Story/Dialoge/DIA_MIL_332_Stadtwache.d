@@ -1,7 +1,7 @@
 
 instance DIA_Mil_332_Stadtwache_EXIT(C_Info)
 {
-	npc = Mil_332_Stadtwache;
+	npc = MIL_332_Stadtwache;
 	nr = 999;
 	condition = DIA_Mil_332_Stadtwache_EXIT_Condition;
 	information = DIA_Mil_332_Stadtwache_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Mil_332_Stadtwache_EXIT_Info()
 
 instance DIA_Mil_332_Stadtwache_PERM(C_Info)
 {
-	npc = Mil_332_Stadtwache;
+	npc = MIL_332_Stadtwache;
 	nr = 1;
 	condition = DIA_Mil_332_Stadtwache_PERM_Condition;
 	information = DIA_Mil_332_Stadtwache_PERM_Info;

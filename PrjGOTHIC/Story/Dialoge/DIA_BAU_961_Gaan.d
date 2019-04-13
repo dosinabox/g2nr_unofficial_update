@@ -83,7 +83,7 @@ func int DIA_Gaan_HALLO_Condition()
 func void DIA_Gaan_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_HALLO_15_00");	//У тебя здесь просторно.
-	AI_Output(self,other,"DIA_Gaan_HALLO_03_01");	//Да, мне здесь нравится. Но если ты пойдешь по вон тому проходу, ты можешь переменить свое мнение.
+	AI_Output(self,other,"DIA_Gaan_HALLO_03_01");	//Да, мне здесь нравится. Но если ты пойдешь вон по тому проходу, ты можешь переменить свое мнение.
 	AI_Output(self,other,"DIA_Gaan_HALLO_03_02");	//Если этот клочок земли произвел впечатление на тебя, значит, ты еще не видел Долины Рудников.
 };
 
@@ -126,7 +126,7 @@ instance DIA_Addon_Gaan_Ranger(C_Info)
 
 func int DIA_Addon_Gaan_Ranger_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (SCIsWearingRangerRing == TRUE) && (RangerMeetingRunning == 0))
+	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (SCIsWearingRangerRing == TRUE) && (RangerMeetingRunning == FALSE))
 	{
 		return TRUE;
 	};
@@ -154,7 +154,7 @@ instance DIA_Addon_Gaan_AufgabeBeimRing(C_Info)
 
 func int DIA_Addon_Gaan_AufgabeBeimRing_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Gaan_Ranger) || (RangerMeetingRunning != 0)) && (Kapitel < 3))
+	if((Npc_KnowsInfo(other,DIA_Addon_Gaan_Ranger) || (RangerMeetingRunning != FALSE)) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -213,7 +213,7 @@ func void DIA_Gaan_WALD_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_WALD_15_00");	//Что мне нужно знать о Долине Рудников?
 	AI_Output(self,other,"DIA_Gaan_WALD_03_01");	//Понятия не имею. Я видел эту долину только мельком. По мне, там слишком опасно.
-	AI_Output(self,other,"DIA_Gaan_WALD_03_02");	//Лучше всего, если ты пойдешь туда по проходу, держаться протоптанной дорожки.
+	AI_Output(self,other,"DIA_Gaan_WALD_03_02");	//Лучше всего, если ты пойдешь туда по проходу, держись протоптанной дорожки.
 	AI_Output(self,other,"DIA_Gaan_WALD_03_03");	//Ты можешь пойти либо через большое ущелье, либо по дороге через каменный мост. Этот путь короче и безопаснее.
 	AI_Output(self,other,"DIA_Gaan_WALD_03_04");	//Теперь, когда орки роятся повсюду, нужно быть очень осторожным.
 	AI_Output(self,other,"DIA_Gaan_WALD_03_05");	//Мне совсем не хочется тащить тебя к ведьме-целительнице.
@@ -261,7 +261,7 @@ instance DIA_Gaan_MONSTER(C_Info)
 
 func int DIA_Gaan_MONSTER_Condition()
 {
-	if((MIS_Gaan_Snapper == LOG_Running) && (Npc_IsDead(Gaans_Snapper) == FALSE))
+	if((MIS_Gaan_Snapper == LOG_Running) && !Npc_IsDead(Gaans_Snapper))
 	{
 		return TRUE;
 	};
@@ -270,7 +270,7 @@ func int DIA_Gaan_MONSTER_Condition()
 func void DIA_Gaan_MONSTER_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_MONSTER_15_00");	//А как выглядит этот опасный зверь?
-	AI_Output(self,other,"DIA_Gaan_MONSTER_03_01");	//Я точно не знаю. Я только слышал фырканье и скрежет когтей. Но видел, что он может сделать.
+	AI_Output(self,other,"DIA_Gaan_MONSTER_03_01");	//Я точно не знаю. Я только слышал фырканье и скрежет его когтей. Но видел, что он может сделать.
 	AI_Output(self,other,"DIA_Gaan_MONSTER_03_02");	//Даже волки боятся его. Этот зверь как-то оторвал одному волку голову.
 };
 
@@ -287,7 +287,7 @@ instance DIA_Gaan_WASZAHLSTDU(C_Info)
 
 func int DIA_Gaan_WASZAHLSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (Npc_IsDead(Gaans_Snapper) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && !Npc_IsDead(Gaans_Snapper))
 	{
 		return TRUE;
 	};
@@ -314,7 +314,7 @@ instance DIA_Gaan_WOHERMONSTER(C_Info)
 
 func int DIA_Gaan_WOHERMONSTER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && (Npc_IsDead(Gaans_Snapper) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Gaan_MONSTER) && !Npc_IsDead(Gaans_Snapper))
 	{
 		return TRUE;
 	};
@@ -323,7 +323,7 @@ func int DIA_Gaan_WOHERMONSTER_Condition()
 func void DIA_Gaan_WOHERMONSTER_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_WOHERMONSTER_15_00");	//Откуда пришел этот коварный зверь?
-	AI_Output(self,other,"DIA_Gaan_WOHERMONSTER_03_01");	//Откуда-то издалека. Может быть, из Долины Рудников. Но я не знаю точно.
+	AI_Output(self,other,"DIA_Gaan_WOHERMONSTER_03_01");	//Откуда-то издалека. Может быть, из Долины Рудников. Но я не знаю этого точно.
 	AI_Output(self,other,"DIA_Gaan_WOHERMONSTER_03_02");	//Я никогда не был в Долине Рудников.
 };
 
@@ -340,7 +340,7 @@ instance DIA_Gaan_MONSTERTOT(C_Info)
 
 func int DIA_Gaan_MONSTERTOT_Condition()
 {
-	if((Npc_IsDead(Gaans_Snapper) == TRUE) && (RangerMeetingRunning != LOG_Running))
+	if(Npc_IsDead(Gaans_Snapper) && (RangerMeetingRunning != LOG_Running))
 	{
 		return TRUE;
 	};
@@ -380,7 +380,7 @@ func int DIA_Gaan_AskTeacher_Condition()
 func void DIA_Gaan_AskTeacher_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_AskTeacher_15_00");	//Ты можешь научить меня охотиться?
-	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_01");	//Нет проблем. За 100 золотых монет я могу показать тебе, как выпотрошить животных, что ты убьешь.
+	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_01");	//Нет проблем. За 100 золотых монет я могу показать тебе, как выпотрошить животных, которых ты убьешь.
 	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_02");	//Шкуры и другие трофеи можно выгодно продать на рынке.
 	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
 	B_LogEntry(TOPIC_Teacher,"Гаан может обучить меня добывать трофеи животных.");
@@ -413,7 +413,7 @@ func void DIA_Gaan_PayTeacher_Info()
 	AI_Output(other,self,"DIA_Gaan_PayTeacher_15_00");	//Вот. 100 золотых монет за твой опыт по разделыванию животных.
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
-		AI_Output(self,other,"DIA_Gaan_PayTeacher_03_01");	//Спасибо. Теперь, говори, что ты хочешь.
+		AI_Output(self,other,"DIA_Gaan_PayTeacher_03_01");	//Спасибо. Теперь говори, что ты хочешь.
 		Gaan_TeachPlayer = TRUE;
 		DIA_Gaan_PayTeacher_noPerm = TRUE;
 	}
@@ -495,7 +495,6 @@ func void DIA_Gaan_TEACHHUNTING_Claws()
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_Claws_03_02");	//Торговцы всегда готовы выложить кругленькую сумму за когти.
 	};
 	Info_ClearChoices(DIA_Gaan_TEACHHUNTING);
-	Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
 };
 
 func void DIA_Gaan_TEACHHUNTING_Teeth()
@@ -506,7 +505,6 @@ func void DIA_Gaan_TEACHHUNTING_Teeth()
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_Teeth_03_01");	//Затем нужно отделить их от черепа точным ударом.
 	};
 	Info_ClearChoices(DIA_Gaan_TEACHHUNTING);
-	Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
 };
 
 func void DIA_Gaan_TEACHHUNTING_Fur()
@@ -517,7 +515,6 @@ func void DIA_Gaan_TEACHHUNTING_Fur()
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_Fur_03_01");	//После этого, ты легко сможешь снять шкуру, стягивая ее с животного.
 	};
 	Info_ClearChoices(DIA_Gaan_TEACHHUNTING);
-	Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
 };
 
 func void DIA_Gaan_TEACHHUNTING_BFSting()
@@ -528,7 +525,6 @@ func void DIA_Gaan_TEACHHUNTING_BFSting()
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_BFSting_03_01");	//Если нажать там, жало выдвинется очень далеко, и ты сможешь вырезать его при помощи ножа.
 	};
 	Info_ClearChoices(DIA_Gaan_TEACHHUNTING);
-	Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
 };
 
 func void DIA_Gaan_TEACHHUNTING_BFWing()
@@ -539,7 +535,6 @@ func void DIA_Gaan_TEACHHUNTING_BFWing()
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_BFWing_03_01");	//Нужно быть очень аккуратным, чтобы не повредить нежную ткань крыльев. Они не будут ничего стоить, если ты повредишь их.
 	};
 	Info_ClearChoices(DIA_Gaan_TEACHHUNTING);
-	Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
 };
 
 func void DIA_Gaan_TEACHHUNTING_DrgSnapperHorn()
@@ -552,7 +547,6 @@ func void DIA_Gaan_TEACHHUNTING_DrgSnapperHorn()
 		CreateInvItems(Gaans_Snapper,ItAt_DrgSnapperHorn,1);
 	};
 	Info_ClearChoices(DIA_Gaan_TEACHHUNTING);
-	Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
 };
 
 
@@ -580,7 +574,7 @@ func void B_WasMachtJagd()
 func void DIA_Gaan_JAGD_Info()
 {
 	B_WasMachtJagd();
-	if((Npc_IsDead(Gaans_Snapper) == FALSE) && (Kapitel < 3))
+	if(!Npc_IsDead(Gaans_Snapper) && (Kapitel < 3))
 	{
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_01");	//Последнее животное, которое мне удалось убить, была большая крыса. Дела идут совсем плохо.
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_02");	//Вот уже несколько дней какой-то фыркающий зверь бродит здесь.

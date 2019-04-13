@@ -25,7 +25,7 @@ func int Spell_Logic_ChargeZap(var int manaInvested)
 	}
 	else if((manaInvested > (STEP_ChargeZap * 1)) && (self.aivar[AIV_SpellLevel] <= 1))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - STEP_ChargeZap;
+		self.attribute[ATR_MANA] -= STEP_ChargeZap;
 		if(self.attribute[ATR_MANA] < 0)
 		{
 			self.attribute[ATR_MANA] = 0;
@@ -35,7 +35,7 @@ func int Spell_Logic_ChargeZap(var int manaInvested)
 	}
 	else if((manaInvested > (STEP_ChargeZap * 2)) && (self.aivar[AIV_SpellLevel] <= 2))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - STEP_ChargeZap;
+		self.attribute[ATR_MANA] -= STEP_ChargeZap;
 		if(self.attribute[ATR_MANA] < 0)
 		{
 			self.attribute[ATR_MANA] = 0;
@@ -45,7 +45,7 @@ func int Spell_Logic_ChargeZap(var int manaInvested)
 	}
 	else if((manaInvested > (STEP_ChargeZap * 3)) && (self.aivar[AIV_SpellLevel] <= 3))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - STEP_ChargeZap;
+		self.attribute[ATR_MANA] -= STEP_ChargeZap;
 		if(self.attribute[ATR_MANA] < 0)
 		{
 			self.attribute[ATR_MANA] = 0;
@@ -62,7 +62,7 @@ func int Spell_Logic_ChargeZap(var int manaInvested)
 
 func void Spell_Cast_ChargeZap(var int spellLevel)
 {
-	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - STEP_ChargeZap;
+	self.attribute[ATR_MANA] -= STEP_ChargeZap;
 	if(self.attribute[ATR_MANA] < 0)
 	{
 		self.attribute[ATR_MANA] = 0;

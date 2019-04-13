@@ -19,7 +19,7 @@ func void B_SetNpcVisual(var C_Npc slf,var int gender,var string headMesh,var in
 	{
 		if((bodyTex >= 0) && (bodyTex <= 3))
 		{
-			bodyTex = bodyTex + 4;
+			bodyTex += 4;
 		};
 		Mdl_SetVisualBody(slf,"Hum_Body_Babe0",bodyTex,0,headMesh,faceTex,0,armorInstance);
 	};

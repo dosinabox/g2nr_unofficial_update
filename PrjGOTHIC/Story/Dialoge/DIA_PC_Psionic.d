@@ -535,7 +535,7 @@ func void DIA_Lester_XARDASWEG_Info()
 	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_04");	//Он не сказал. Он только попросил меня передать тебе это письмо.
 	CreateInvItems(self,ItWr_XardasLetterToOpenBook_MIS,1);
 	B_GiveInvItems(self,other,ItWr_XardasLetterToOpenBook_MIS,1);
-	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_05");	//Я прочел его. Извини. Мне просто было любопытно.
+	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_05");	//Я прочел его. Извини. Мне было просто любопытно.
 	AI_Output(other,self,"DIA_Lester_XARDASWEG_15_06");	//И?
 	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_07");	//Не знаю, я ничего не понял. Но мне ясно одно: Ксардаса мы теперь увидим нескоро.
 	AI_Output(self,other,"DIA_Lester_XARDASWEG_13_08");	//Я думаю, здесь стало слишком жарко для него, и он направился в горы.
@@ -571,7 +571,7 @@ func void DIA_Lester_KnowWhereEnemy_Info()
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_04");	//Извини, но корабль уже полон.
-		AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_05");	//Может так и нужно. Может, моя судьба ничего не значит по сравнению с событиями, что ждут нас впереди.
+		AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_05");	//Может, так и нужно. Может, моя судьба ничего не значит по сравнению с событиями, что ждут нас впереди.
 		AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_06");	//Ты знаешь, что тебе нужно делать. Сражайся со злом - а обо мне не волнуйся.
 		AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_07");	//Моя судьба не важна.
 	}
@@ -591,7 +591,7 @@ func void DIA_Lester_KnowWhereEnemy_Yes()
 	self.flags = NPC_FLAG_IMMORTAL;
 	Lester_IsOnBoard = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count = Crewmember_Count + 1;
+	Crewmember_Count += 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
 		Npc_ExchangeRoutine(self,"SHIP");
@@ -639,7 +639,8 @@ func void DIA_Lester_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_Lester_LeaveMyShip_13_01");	//Понимаю. Я, вероятно, сделал бы то же самое на твоем месте.
 	AI_Output(self,other,"DIA_Lester_LeaveMyShip_13_02");	//Но если я понадоблюсь тебе, я буду рад помочь. Ты знаешь, где найти меня.
 	Lester_IsOnBoard = LOG_OBSOLETE;
-	Crewmember_Count = Crewmember_Count - 1;
+	Crewmember_Count -= 1;
+	Lester_Nerver += 1;
 	Npc_ExchangeRoutine(self,"ShipOff");
 };
 
@@ -666,13 +667,13 @@ func int DIA_Lester_StillNeedYou_Condition()
 func void DIA_Lester_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Lester_StillNeedYou_15_00");	//Мне нужен друг, всегда готовый помочь.
-	if(Lester_IsOnBoard == LOG_OBSOLETE)
+	if((Lester_IsOnBoard == LOG_OBSOLETE) && (Lester_Nerver <= 2))
 	{
 		AI_Output(self,other,"DIA_Lester_StillNeedYou_13_01");	//Я знал это! Мы будем сражаться рука об руку. Как в старые времена!
 		AI_Output(self,other,"DIA_Lester_StillNeedYou_13_02");	//Берегись, Зло! Мы свернем тебе шею!
 		self.flags = NPC_FLAG_IMMORTAL;
 		Lester_IsOnBoard = LOG_SUCCESS;
-		Crewmember_Count = Crewmember_Count + 1;
+		Crewmember_Count += 1;
 		if(MIS_ReadyforChapter6 == TRUE)
 		{
 			Npc_ExchangeRoutine(self,"SHIP");
@@ -686,7 +687,9 @@ func void DIA_Lester_StillNeedYou_Info()
 	{
 		AI_Output(self,other,"DIA_Lester_StillNeedYou_13_03");	//Я думаю, будет лучше, если я все же останусь здесь. Удачи.
 		AI_StopProcessInfos(self);
+		Lester_IsOnBoard = LOG_FAILED;
 	};
+	B_CheckLog();
 };
 
 

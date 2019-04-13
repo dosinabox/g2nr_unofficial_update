@@ -99,23 +99,41 @@ instance DIA_Addon_BDT_10014_Thorus_Zeit(C_Info)
 
 func int DIA_Addon_Thorus_Zeit_Condition()
 {
-	if(RavenIsDead == FALSE)
+	if((RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
 };
 
+func void B_Thorus_Attack()
+{
+	if(MIS_Send_Buddler != LOG_SUCCESS)
+	{
+		MIS_Send_Buddler = LOG_OBSOLETE;
+	};
+	B_Say(self,other,"$ALARM");
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_GuardStopsIntruder,0); 
+};
+
 func void DIA_Addon_Thorus_Zeit_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Zeit_15_00");	//Ты не помнишь меня? Я из Старого Лагеря...
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_01");	//Ты был одним из заключенных?! Возможно, ты был одним из моих стражников. И... это делает нас теперь друзьями?
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_02");	//Нет, не делает.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_03");	//Может быть, ты тот, кто уничтожил Барьер, а может - тот, кто убил моих приятелей.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_04");	//И что?
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_05");	//Эти времена прошли.
-	if(!Npc_IsDead(Esteban))
+	if(!Npc_IsDead(Torwache2))
 	{
-		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_06");	//Ты хочешь войти? Тогда достань себе красный камень и больше не трать мое время.
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_01");	//Ты был одним из заключенных?! Возможно, ты был одним из моих стражников. И... это делает нас теперь друзьями?
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_02");	//Нет, не делает.
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_03");	//Может быть, ты тот, кто уничтожил Барьер, а может - тот, кто убил моих приятелей.
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_04");	//И что?
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_05");	//Эти времена прошли.
+		if(!Npc_IsDead(Esteban))
+		{
+			AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_06");	//Ты хочешь войти? Тогда достань себе красный камень и больше не трать мое время.
+		};
+	}
+	else
+	{
+		B_Thorus_Attack();
 	};
 };
 
@@ -144,27 +162,37 @@ func int DIA_Addon_Thorus_GoodOldPerm_Condition()
 func void DIA_Addon_Thorus_GoodOldPerm_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Thorus_Add_15_00");	//Ну ладно тебе, впусти меня. Во имя старых добрых времен.
-	if(Thorus_GoodOldPerm == FALSE)
+	if(!Npc_IsDead(Torwache2))
 	{
-		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_01");	//Давай-ка я объясню тебе кое-что. Ты знаешь, почему я до сих пор жив?
-		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_02");	//Потому что я всегда был верен своим людям.
-		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_03");	//Я согласен не со всем, что делает Ворон. Но я всегда выполняю правила.
-		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_04");	//И ты тоже будешь это делать!
-		Thorus_GoodOldPerm = TRUE;
+		if(Thorus_GoodOldPerm == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Thorus_Add_12_01");	//Давай я объясню тебе кое-что. Ты знаешь, почему я до сих пор жив?
+			AI_Output(self,other,"DIA_Addon_Thorus_Add_12_02");	//Потому что я всегда был верен своим людям.
+			AI_Output(self,other,"DIA_Addon_Thorus_Add_12_03");	//Я согласен не со всем, что делает Ворон. Но я всегда выполняю правила.
+			AI_Output(self,other,"DIA_Addon_Thorus_Add_12_04");	//И ты тоже будешь это делать!
+			Thorus_GoodOldPerm = TRUE;
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Thorus_Add_12_05");	//(твердо) Нет!
+		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_05");	//(твердо) Нет!
+		B_Thorus_Attack();
 	};
 };
 
 func int C_PlayerHasWrongToken()
 {
-	if((C_ScHasMagicStonePlate() == TRUE) || (Npc_HasItems(hero,ItWr_StonePlateCommon_Addon) >= 1) || (Npc_HasItems(hero,ItMi_Addon_Stone_02) >= 1) || (Npc_HasItems(hero,ItMi_Addon_Stone_03) >= 1) || (Npc_HasItems(hero,ItMi_Addon_Stone_04) >= 1) || (Npc_HasItems(hero,ItMi_Addon_Stone_05) >= 1))
+	if(C_ScHasMagicStonePlate() || Npc_HasItems(hero,ItWr_StonePlateCommon_Addon) || Npc_HasItems(hero,ItMi_Addon_Stone_02) || Npc_HasItems(hero,ItMi_Addon_Stone_03) || Npc_HasItems(hero,ItMi_Addon_Stone_04) || Npc_HasItems(hero,ItMi_Addon_Stone_05))
 	{
 		return TRUE;
+	}
+	else
+	{
+		return FALSE;
 	};
-	return FALSE;
 };
 
 
@@ -181,7 +209,7 @@ instance DIA_Addon_BDT_10014_Thorus_Stein(C_Info)
 
 func int DIA_Addon_Thorus_Stein_Condition()
 {
-	if((C_PlayerHasWrongToken() == TRUE) && (RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_Running) && (MIS_Send_Buddler != LOG_SUCCESS))
+	if(C_PlayerHasWrongToken() && (RavenIsDead == FALSE) && (MIS_Send_Buddler != LOG_Running) && (MIS_Send_Buddler != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -190,7 +218,14 @@ func int DIA_Addon_Thorus_Stein_Condition()
 func void DIA_Addon_Thorus_Stein_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Stein_15_00");	//Вот, у меня есть каменная плитка...
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Stein_12_01");	//Это неправильный камень. Только красные камни являются пропуском.
+	if(!Npc_IsDead(Torwache2))
+	{
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Stein_12_01");	//Это неправильный камень. Только красные камни являются пропуском.
+	}
+	else
+	{
+		B_Thorus_Attack();
+	};
 };
 
 
@@ -207,7 +242,7 @@ instance DIA_Addon_BDT_10014_Thorus_Rein(C_Info)
 
 func int DIA_Addon_Thorus_Rein_Condition()
 {
-	if((Npc_HasItems(other,ItMi_Addon_Stone_01) >= 1) && (RavenIsDead == FALSE))
+	if((MIS_Send_Buddler != LOG_SUCCESS) && Npc_HasItems(other,ItMi_Addon_Stone_01) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -216,16 +251,23 @@ func int DIA_Addon_Thorus_Rein_Condition()
 func void DIA_Addon_Thorus_Rein_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Rein_15_00");	//Вот, у меня есть красная каменная табличка...
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_01");	//Хорошо.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_02");	//Ты убил Эстебана - так что ТЫ теперь будешь делать его работу.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_03");	//У них возникли проблемы с краулерами в шахте.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_04");	//Три работника уже погибли. Твоя задача - найти им замену.
-	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Rein_15_05");	//И когда я, наконец, смогу попасть в эту чертову шахту?
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_06");	//Делай свою работу - а после можешь заниматься, чем хочешь.
-	MIS_Send_Buddler = LOG_Running;
-	Log_CreateTopic(Topic_Addon_Buddler,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Addon_Buddler,LOG_Running);
-	B_LogEntry(Topic_Addon_Buddler,"Я занял место Эстебана, и теперь мне нужно послать в шахту трех шахтеров.");
+	if(!Npc_IsDead(Torwache2))
+	{
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_01");	//Хорошо.
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_02");	//Ты убил Эстебана - так что ТЫ теперь будешь делать его работу.
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_03");	//У них возникли проблемы с краулерами в шахте.
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_04");	//Три работника уже погибли. Твоя задача - найти им замену.
+		AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Rein_15_05");	//И когда я, наконец, смогу попасть в эту чертову шахту?
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_06");	//Делай свою работу - а после можешь заниматься, чем хочешь.
+		MIS_Send_Buddler = LOG_Running;
+		Log_CreateTopic(Topic_Addon_Buddler,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Addon_Buddler,LOG_Running);
+		B_LogEntry(Topic_Addon_Buddler,"Я занял место Эстебана, и теперь мне нужно послать в шахту трех шахтеров.");
+	}
+	else
+	{
+		B_Thorus_Attack();
+	};
 };
 
 
@@ -307,11 +349,11 @@ func void DIA_Addon_Thorus_Gefangene_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_00");	//Как там заключенные?
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_01");	//Хм-м, они сделали свою работу. Насколько мне известно, они должны сейчас искать золото.
-	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_02");	//А что, если они убегут?..
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_03");	//...Бладвин пошлет стражников за ними. Но я сильно сомневаюсь, что они настолько глупы, чтобы бежать.
+	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_02");	//А что, если они убегут?
+	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_03");	//... Бладвин пошлет стражников за ними. Но я сильно сомневаюсь, что они настолько глупы, чтобы бежать.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_04");	//Если только...
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_05");	//Если только - что?
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_06");	//...кто-нибудь не подобьет их на это. Но я не знаю никого, кто был бы достаточно глуп для этого... по крайней мере, пока Бладвин здесь.
+	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_06");	//... кто-нибудь не подобьет их на это. Но я не знаю никого, кто был бы достаточно глуп для этого... по крайней мере, пока Бладвин здесь.
 	B_Say(other,self,"$VERSTEHE");
 };
 
@@ -383,16 +425,19 @@ func void DIA_Addon_Thorus_Answer_Info()
 		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Answer_12_01");	//Допустим, а что с Вороном?
 		AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Answer_15_02");	//У Ворона скоро будут другие заботы. Я позабочусь об этом.
 	};
-	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Answer_15_03");	//Ах, да. И позаботься о том, чтобы заключенные покинули лагерь спокойно.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Answer_12_04");	//Хорошо. Я разберусь с охраной.
-	B_LogEntry(TOPIC_Addon_Sklaven,"Бладвин мертв. Теперь Торус позаботится о том, чтобы рабы смогли покинуть лагерь.");
-	if(!Npc_IsDead(PrisonGuard))
+	if(Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
 	{
-		B_LogEntry(TOPIC_Addon_Sklaven,"Нужно снова поговорить с охранником рабов. После этого Патрик и его люди смогут уйти.");
-	}
-	else
-	{
-		B_LogEntry(TOPIC_Addon_Sklaven,"С охранником покончено. Теперь Патрик с людьми может отправляться.");
+		AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Answer_15_03");	//Ах, да. И позаботься о том, чтобы заключенные покинули лагерь спокойно.
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Answer_12_04");	//Хорошо. Я разберусь с охраной.
+		B_LogEntry(TOPIC_Addon_Sklaven,"Бладвин мертв. Теперь Торус позаботится о том, чтобы рабы смогли покинуть лагерь.");
+		if(!Npc_IsDead(PrisonGuard))
+		{
+			B_LogEntry(TOPIC_Addon_Sklaven,"Нужно снова поговорить с охранником рабов. После этого Патрик и его люди смогут уйти.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_Addon_Sklaven,"С охранником покончено. Теперь Патрик с людьми может отправляться.");
+		};
 	};
 };
 
@@ -427,5 +472,40 @@ func void DIA_Addon_Thorus_Raventot_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raventot_12_06");	//Кто знает. У тебя на пути будет много ворот и много переходов. И на одном из них ты можешь встретить меня...
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
+};
+
+
+instance DIA_Addon_Thorus_PICKPOCKET(C_Info)
+{
+	npc = BDT_10014_Addon_Thorus;
+	nr = 900;
+	condition = DIA_Addon_Thorus_PICKPOCKET_Condition;
+	information = DIA_Addon_Thorus_PICKPOCKET_Info;
+	permanent = TRUE;
+	description = Pickpocket_60_Key;
+};
+
+
+func int DIA_Addon_Thorus_PICKPOCKET_Condition()
+{
+	return C_StealItems(60,Hlp_GetInstanceID(ITKE_Addon_Thorus),1);
+};
+
+func void DIA_Addon_Thorus_PICKPOCKET_Info()
+{
+	Info_ClearChoices(DIA_Addon_Thorus_PICKPOCKET);
+	Info_AddChoice(DIA_Addon_Thorus_PICKPOCKET,Dialog_Back,DIA_Addon_Thorus_PICKPOCKET_BACK);
+	Info_AddChoice(DIA_Addon_Thorus_PICKPOCKET,DIALOG_PICKPOCKET,DIA_Addon_Thorus_PICKPOCKET_DoIt);
+};
+
+func void DIA_Addon_Thorus_PICKPOCKET_DoIt()
+{
+	B_StealItems(60,Hlp_GetInstanceID(ITKE_Addon_Thorus),1);
+	Info_ClearChoices(DIA_Addon_Thorus_PICKPOCKET);
+};
+
+func void DIA_Addon_Thorus_PICKPOCKET_BACK()
+{
+	Info_ClearChoices(DIA_Addon_Thorus_PICKPOCKET);
 };
 

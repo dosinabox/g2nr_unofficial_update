@@ -8,7 +8,7 @@ func void ZS_Stand_Sweeping()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Npc_HasItems(self,ItMi_Broom) == 0)
+	if(!Npc_HasItems(self,ItMi_Broom))
 	{
 		CreateInvItem(self,ItMi_Broom);
 	};

@@ -203,7 +203,7 @@ func void DIA_Addon_Bill_AngusnHank_Info()
 	AI_Output(other,self,"DIA_Addon_Bill_AngusnHank_15_00");	//Я ищу Ангуса и Хэнка.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_01");	//(вздыхает) Я не знаю, где они. Должно быть, бандиты их убили.
 	AI_Output(other,self,"DIA_Addon_Bill_AngusnHank_15_02");	//Вы были друзьями, верно?
-	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_03");	//Все, что я знаю, - это то, что они должны были встретиться с бандитами в какой-то пещере неподалеку отсюда.
+	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_03");	//Все, что я знаю - это то, что они должны были встретиться с бандитами в какой-то пещере неподалеку отсюда.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_04");	//Она должна быть где-то на востоке от лагеря.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_05");	//Не знаю, где именно она находится. Сам я там ни разу не был.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_06");	//Может быть, тебе стоит поговорить с Аллигатором Джеком. Он любит бродить вокруг лагеря.
@@ -380,7 +380,7 @@ instance DIA_Addon_Bill_LearnTalent(C_Info)
 
 func int DIA_Addon_Bill_LearnTalent_Condition()
 {
-	if((Bill_Addon_TeachPickPocket == TRUE) && (Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == FALSE))
+	if((Bill_Addon_TeachPickPocket == TRUE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
 		return TRUE;
 	};

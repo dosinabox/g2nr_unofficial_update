@@ -4,6 +4,14 @@ func void B_MM_AssessSurprise()
 	Npc_SetTarget(self,other);
 };
 
+func void B_MM_Flee()
+{
+	Npc_ClearAIQueue(self);
+	B_ClearPerceptions(self);
+	Npc_SetTarget(self,other);
+	AI_StartState(self,ZS_MM_Flee,0,"");
+};
+
 func void ZS_MM_Attack()
 {
 	Npc_SetPercTime(self,1);
@@ -13,12 +21,9 @@ func void ZS_MM_Attack()
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_MM_AssessWarn);
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,B_MM_AssessSurprise);
 	B_ValidateOther();
-	if(self.guild == GIL_SHEEP)
+	if(C_WantToFlee(self,other))
 	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		Npc_SetTarget(self,other);
-		AI_StartState(self,ZS_MM_Flee,0,"");
+		B_MM_Flee();
 		return;
 	};
 	AI_Standup(self);
@@ -34,6 +39,10 @@ func void ZS_MM_Attack()
 func int ZS_MM_Attack_Loop()
 {
 	Npc_GetTarget(self);
+	if(C_WantToFlee(self,other))
+	{
+		return LOOP_END;
+	};
 	if(self.guild == GIL_DRAGON)
 	{
 		self.aivar[AIV_TAPOSITION] += 1;
@@ -112,7 +121,7 @@ func int ZS_MM_Attack_Loop()
 	{
 		if(Npc_GetStateTime(self) > self.aivar[AIV_StateTime])
 		{
-			self.aivar[AIV_SummonTime] = self.aivar[AIV_SummonTime] + 1;
+			self.aivar[AIV_SummonTime] += 1;
 			self.aivar[AIV_StateTime] = Npc_GetStateTime(self);
 		};
 		if(self.aivar[AIV_SummonTime] >= MONSTER_SUMMON_TIME)
@@ -136,7 +145,7 @@ func int ZS_MM_Attack_Loop()
 			self.fight_tactic = self.aivar[AIV_OriginalFightTactic];
 		};
 	};
-	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
+	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
 	{
 		B_CreateAmmo(self);
 		Npc_ChangeAttribute(self,ATR_MANA,ATR_MANA_MAX);
@@ -182,9 +191,14 @@ func int ZS_MM_Attack_Loop()
 func void ZS_MM_Attack_End()
 {
 	other = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
-	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
+	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
 	{
 		AI_RemoveWeapon(self);
+	};
+	if(C_WantToFlee(self,other))
+	{
+		B_MM_Flee();
+		return;
 	};
 	if(Npc_IsDead(other) && C_WantToEat(self,other))
 	{

@@ -200,7 +200,7 @@ instance DIA_Carl_bezahlen(C_Info)
 	condition = DIA_Carl_bezahlen_Condition;
 	information = DIA_Carl_bezahlen_Info;
 	permanent = TRUE;
-	description = "Я хочу потренироваться с тобой. (заплатить 50 золотых).";
+	description = "Я хочу потренироваться с тобой. (заплатить 50 золотых)";
 };
 
 

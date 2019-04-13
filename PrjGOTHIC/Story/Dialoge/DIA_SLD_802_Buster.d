@@ -60,13 +60,13 @@ func void DIA_Buster_Hello_WhoAreYou()
 	Info_ClearChoices(DIA_Buster_Hello);
 	Info_AddChoice(DIA_Buster_Hello,"Это не твое дело.",DIA_Buster_Hello_NotYourBusiness);
 	Info_AddChoice(DIA_Buster_Hello,"Я знаю Ли!",DIA_Buster_Hello_IKnowLee);
-	Info_AddChoice(DIA_Buster_Hello,"Я хочу увидеть лендлорда.",DIA_Buster_Hello_GoingToFarm);
+	Info_AddChoice(DIA_Buster_Hello,"Как скажешь. Я хочу увидеть лендлорда.",DIA_Buster_Hello_GoingToFarm);
 };
 
 func void DIA_Buster_Hello_IKnowLee()
 {
 	AI_Output(other,self,"DIA_Buster_Hello_IKnowLee_15_00");	//Я знаю Ли!
-	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_01");	//Все знают Ли! Это ни чего не значит, приятель. Сейчас, ты разговариваешь со МНОЙ!
+	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_01");	//Все знают Ли! Это ни чего не значит, приятель. Сейчас ты разговариваешь со МНОЙ!
 	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_02");	//Итак, куда ты направляешься?
 	Info_ClearChoices(DIA_Buster_Hello);
 	Info_AddChoice(DIA_Buster_Hello,"Это не твое дело.",DIA_Buster_Hello_NotYourBusiness);
@@ -667,7 +667,7 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 		MIS_Buster_KillShadowbeasts_DJG = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
 	}
-	else if(Npc_HasItems(other,ItAt_ShadowHorn) >= 1)
+	else if(Npc_HasItems(other,ItAt_ShadowHorn))
 	{
 		BusterTrophyShadowbeastCount = Npc_HasItems(other,ItAt_ShadowHorn);
 		XP_BringBusterTrophyShadowbeast = 30 * XP_PER_VICTORY;
@@ -675,10 +675,10 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 		if(BusterTrophyShadowbeastCount == 1)
 		{
 			AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_05");	//Я принес тебе рог мракориса.
-			B_GivePlayerXP(XP_BringBusterTrophyShadowbeast);
 			B_GiveInvItems(other,self,ItAt_ShadowHorn,1);
 			Npc_RemoveInvItem(self,ItAt_ShadowHorn);
-			BusterTrophyShadowbeastCounter = BusterTrophyShadowbeastCounter + 1;
+			BusterTrophyShadowbeastCounter += 1;
+			B_GivePlayerXP(XP_BringBusterTrophyShadowbeast);
 		}
 		else
 		{
@@ -686,7 +686,7 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 			B_GiveInvItems(other,self,ItAt_ShadowHorn,BusterTrophyShadowbeastCount);
 			Npc_RemoveInvItems(self,ItAt_ShadowHorn,BusterTrophyShadowbeastCount);
 			XP_BringBusterTrophyShadowbeasts = BusterTrophyShadowbeastCount * XP_BringBusterTrophyShadowbeast;
-			BusterTrophyShadowbeastCounter = BusterTrophyShadowbeastCounter + BusterTrophyShadowbeastCount;
+			BusterTrophyShadowbeastCounter += BusterTrophyShadowbeastCount;
 			B_GivePlayerXP(XP_BringBusterTrophyShadowbeasts);
 		};
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_07");	//Отлично. Давай сюда. И принеси еще, если сможешь. Кто знает, как долго торговцу будут интересны эти рога.

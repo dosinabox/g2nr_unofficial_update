@@ -1,5 +1,5 @@
 
-instance Mil_307_Tuerwache(Npc_Default)
+instance MIL_307_Tuerwache(Npc_Default)
 {
 	name[0] = NAME_Miliz;
 	guild = GIL_MIL;
@@ -11,7 +11,7 @@ instance Mil_307_Tuerwache(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Horatio,BodyTex_N,ItAr_MIL_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Horatio,BodyTex_N,ITAR_MIL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

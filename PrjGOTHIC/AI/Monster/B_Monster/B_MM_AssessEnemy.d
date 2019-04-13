@@ -4,7 +4,7 @@ func void B_MM_AssessEnemy()
 	var C_Npc pcl;
 	var C_Npc mgo;
 	var C_Npc lar;
-	if((self.guild == GIL_DRAGON) && (Npc_HasItems(hero,ItMi_InnosEye_MIS) >= 1))
+	if((self.guild == GIL_DRAGON) && Npc_HasItems(hero,ItMi_InnosEye_MIS))
 	{
 		return;
 	};

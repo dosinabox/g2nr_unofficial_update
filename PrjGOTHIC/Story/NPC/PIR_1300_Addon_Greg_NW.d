@@ -2,7 +2,7 @@
 instance PIR_1300_Addon_Greg_NW(Npc_Default)
 {
 	name[0] = "Грег";
-	guild = GIL_NONE;
+	guild = GIL_PIR;
 	id = 1300;
 	voice = 1;
 	flags = NPC_FLAG_IMMORTAL;
@@ -33,7 +33,7 @@ func void Rtn_Start_1300()
 func void Rtn_Markt_1300()
 {
 	TA_Stand_Eating(8,0,23,0,"MARKT");
-	TA_Stand_Eating(23,0,8,0,"MARKT");
+	TA_Stand_Drinking(23,0,8,0,"MARKT");
 };
 
 func void Rtn_Taverne_1300()
@@ -51,7 +51,7 @@ func void Rtn_RakeCave_1300()
 func void Rtn_Bigcross_1300()
 {
 	TA_Stand_Eating(8,0,23,0,"BIGCROSS");
-	TA_Stand_Eating(23,0,8,0,"BIGCROSS");
+	TA_Stand_Drinking(23,0,8,0,"BIGCROSS");
 };
 
 func void Rtn_Dexter_1300()
@@ -74,8 +74,8 @@ func void Rtn_DexterHouseWalk_1300()
 
 func void Rtn_DexterThrone_1300()
 {
-	TA_Sit_Throne(0,0,12,0,"NW_CASTLEMINE_HUT_10");
-	TA_Sit_Throne(12,0,0,0,"NW_CASTLEMINE_HUT_10");
+	TA_Sit_Throne(8,0,0,0,"NW_CASTLEMINE_HUT_10");
+	TA_Sleep(0,0,8,0,"NW_CASTLEMINE_HUT_08");
 };
 
 func void Rtn_Tot_1300()

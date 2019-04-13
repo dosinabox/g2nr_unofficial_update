@@ -37,7 +37,7 @@ instance DIA_Sergio_WELCOME(C_Info)
 
 func int DIA_Sergio_WELCOME_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (other.guild == GIL_NOV) && (Npc_KnowsInfo(other,DIA_Sergio_Isgaroth) == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(other,DIA_Sergio_Isgaroth))
 	{
 		return TRUE;
 	};
@@ -176,10 +176,10 @@ func void DIA_Sergio_Babo_Info()
 	AI_Output(other,self,"DIA_Sergio_Babo_15_00");	//Не мог бы ты немного потренировать Бабо?
 	AI_Output(self,other,"DIA_Sergio_Babo_04_01");	//А почему он не попросит сам?
 	AI_Output(other,self,"DIA_Sergio_Babo_15_02");	//Я думаю, он робеет.
-	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение двух часов. Мы будем начинать в 5 утра. Можешь передать ему это.
+	AI_Output(self,other,"DIA_Sergio_Babo_04_03");	//Понимаю. Хорошо, если это так много значит для него, я буду тренировать его каждое утро в течение 2 часов. Мы будем начинать в 5 утра. Можешь передать ему это.
 	Npc_ExchangeRoutine(self,"TRAIN");
 	B_StartOtherRoutine(Babo,"TRAIN");
-	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренироваться с Бабо по два часа каждое утро.");
+	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренировать Бабо по 2 часа каждое утро.");
 };
 
 
@@ -205,7 +205,7 @@ func void DIA_Sergio_WHY_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_WHY_15_00");	//Почему ты не с другими паладинами?
 	AI_Output(self,other,"DIA_Sergio_WHY_04_01");	//Может показаться немного странным, что я здесь, однако не надо забывать, что мы, паладины, также служим магам, так как они проповедуют волю Инноса.
-	AI_Output(self,other,"DIA_Sergio_WHY_04_02");	//Мы, паладины, - воины Инноса. Его воля - закон для нас. В настоящий момент я жду новых приказов от магов.
+	AI_Output(self,other,"DIA_Sergio_WHY_04_02");	//Мы, паладины - воины Инноса. Его воля - закон для нас. В настоящий момент я жду новых приказов от магов.
 };
 
 

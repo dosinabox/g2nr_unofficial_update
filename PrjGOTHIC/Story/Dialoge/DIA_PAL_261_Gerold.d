@@ -129,7 +129,7 @@ func int DIA_Gerold_Gold_Condition()
 func void DIA_Gerold_Gold_Info()
 {
 	AI_Output(other,self,"DIA_Gerold_Gold_15_00");	//А что, если я заплачу золотом?
-	AI_Output(self,other,"DIA_Gerold_Gold_12_01");	//... хм ...
+	AI_Output(self,other,"DIA_Gerold_Gold_12_01");	//... хм...
 	AI_Output(self,other,"DIA_Gerold_Gold_12_02");	//Нет.
 };
 
@@ -147,7 +147,7 @@ instance DIA_Gerold_Deal(C_Info)
 
 func int DIA_Gerold_Deal_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && (Npc_HasItems(other,ItWr_LetterForGorn_MIS) >= 1) && (Kapitel == 2) && (Garond_Kerkerauf == FALSE))
+	if((MIS_RescueGorn == LOG_Running) && Npc_HasItems(other,ItWr_LetterForGorn_MIS) && (Kapitel == 2) && (Garond_Kerkerauf == FALSE))
 	{
 		return TRUE;
 	};
@@ -182,7 +182,7 @@ var int DIA_Gerold_Stuff_permanent;
 
 func int DIA_Gerold_Stuff_Condition()
 {
-	if((Npc_HasItems(other,ItWr_LetterForGorn_MIS) >= 1) && Npc_KnowsInfo(other,DIA_Gerold_Deal) && (Kapitel == 2) && (DIA_Gerold_Stuff_permanent == FALSE))
+	if(Npc_HasItems(other,ItWr_LetterForGorn_MIS) && Npc_KnowsInfo(other,DIA_Gerold_Deal) && (Kapitel == 2) && (DIA_Gerold_Stuff_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -191,16 +191,16 @@ func int DIA_Gerold_Stuff_Condition()
 func void DIA_Gerold_Stuff_Info()
 {
 	AI_Output(other,self,"DIA_Gerold_Stuff_15_00");	//Я принес тебе кое-что. Вот еда, как ты и просил.
-	if((Npc_HasItems(other,ItFo_Honey) >= 1) && (Npc_HasItems(other,ItFo_Bread) >= 1) && (Npc_HasItems(other,ItFo_Wine) >= 1) && (Npc_HasItems(other,ItFo_Sausage) >= 1))
+	if(Npc_HasItems(other,ItFo_Honey) && Npc_HasItems(other,ItFo_Bread) && Npc_HasItems(other,ItFo_Wine) && Npc_HasItems(other,ItFo_Sausage))
 	{
-		AI_PrintScreen("Мед отдан",-1,34,FONT_ScreenSmall,2);
-		AI_PrintScreen("Хлеб отдан",-1,37,FONT_ScreenSmall,2);
-		AI_PrintScreen("Вино отдано",-1,40,FONT_ScreenSmall,2);
-		AI_PrintScreen("Колбаса отдана",-1,43,FONT_ScreenSmall,2);
 		Npc_RemoveInvItems(other,ItFo_Honey,1);
+		AI_PrintScreen("Мед отдан",-1,34,FONT_ScreenSmall,2);
 		Npc_RemoveInvItems(other,ItFo_Bread,1);
+		AI_PrintScreen("Хлеб отдан",-1,37,FONT_ScreenSmall,2);
 		Npc_RemoveInvItems(other,ItFo_Wine,1);
+		AI_PrintScreen("Вино отдано",-1,40,FONT_ScreenSmall,2);
 		Npc_RemoveInvItems(other,ItFo_Sausage,1);
+		AI_PrintScreen("Колбаса отдана",-1,43,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Gerold_Stuff_12_01");	//Хорошо, дай посмотрю. Записка у тебя с собой?
 		AI_Output(other,self,"DIA_Gerold_Stuff_15_02");	//Да, вот. Не забудь, она для Горна.
 		AI_Output(self,other,"DIA_Gerold_Stuff_12_03");	//Заходи завтра, он к этому времени уже получит ее.
@@ -303,7 +303,7 @@ instance DIA_Gerold_Perm(C_Info)
 
 func int DIA_Gerold_Perm_Condition()
 {
-	if((Kapitel < 4) && Npc_KnowsInfo(other,DIA_Gerold_Gold))
+	if((Kapitel < 4) && Npc_KnowsInfo(other,DIA_Gerold_Gold) && (Garond_Kerkerauf == FALSE))
 	{
 		return TRUE;
 	};
@@ -375,7 +375,7 @@ func void DIA_Gerold_KAP4_ALLESRUHIG_geben()
 {
 	AI_Output(other,self,"DIA_Gerold_KAP4_ALLESRUHIG_geben_15_00");	//Возможно, я могу угостить тебя.
 	AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_01");	//Ты с ума сошел? Только не здесь! Если кто-нибудь это увидит, у меня сразу появится куча новых друзей, если ты понимаешь, о чем я.
-	if(Wld_IsTime(23,10,8,0) == FALSE)
+	if(!Wld_IsTime(23,10,8,0))
 	{
 		AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_02");	//Ты найдешь меня в храме, когда все лягут спать.
 	}
@@ -475,7 +475,7 @@ func void DIA_Gerold_MoreFood()
 		{
 			Info_AddChoice(DIA_Gerold_FOOD,"(Дать колбасу)",DIA_Gerold_FOOD_Wurst);
 		};
-		Gerold_FoodCounter = Gerold_FoodCounter + 1;
+		Gerold_FoodCounter += 1;
 	};
 };
 
@@ -551,8 +551,9 @@ func void DIA_Gerold_FOOD_fleisch()
 func void DIA_Gerold_FOOD_Suppe()
 {
 	AI_Output(other,self,"DIA_Gerold_FOOD_Suppe_15_00");	//Хороший суп еще никому не повредил, тебе так не кажется?
-	if(B_GiveInvItems(other,self,ItFo_FishSoup,1))
+	if(Npc_HasItems(other,ItFo_FishSoup))
 	{
+		B_GiveInvItems(other,self,ItFo_FishSoup,1);
 	}
 	else
 	{

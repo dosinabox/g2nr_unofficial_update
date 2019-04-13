@@ -40,11 +40,11 @@ func void Spell_Cast_PalTeleportSecret()
 	B_PrintTeleportTooFarAway(NEWWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"NW_PAL_SECRETCHAMBER");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
@@ -68,11 +68,11 @@ func void Spell_Cast_TeleportSeaport()
 	B_PrintTeleportTooFarAway(NEWWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"HAFEN");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
@@ -96,11 +96,11 @@ func void Spell_Cast_TeleportMonastery()
 	B_PrintTeleportTooFarAway(NEWWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"KLOSTER");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
@@ -124,11 +124,11 @@ func void Spell_Cast_TeleportFarm()
 	B_PrintTeleportTooFarAway(NEWWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"BIGFARM");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
@@ -152,11 +152,11 @@ func void Spell_Cast_TeleportXardas()
 	B_PrintTeleportTooFarAway(NEWWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"XARDAS");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
@@ -180,11 +180,11 @@ func void Spell_Cast_TeleportPassNW()
 	B_PrintTeleportTooFarAway(NEWWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"LEVELCHANGE");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
@@ -208,11 +208,11 @@ func void Spell_Cast_TeleportPassOW()
 	B_PrintTeleportTooFarAway(OldWorld_Zen);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"SPAWN_MOLERAT02_SPAWN01");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
@@ -236,11 +236,11 @@ func void Spell_Cast_TeleportOC()
 	B_PrintTeleportTooFarAway(OldWorld_Zen);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"OC_MAGE_CENTER");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
@@ -264,11 +264,11 @@ func void Spell_Cast_TeleportOWDemonTower()
 	B_PrintTeleportTooFarAway(OldWorld_Zen);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"DT_E3_03");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
@@ -292,11 +292,11 @@ func void Spell_Cast_TeleportTaverne()
 	B_PrintTeleportTooFarAway(NEWWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Teleport;
+		self.attribute[ATR_MANA] -= SPL_Cost_Teleport;
 	};
 	AI_Teleport(self,"NW_TAVERNE_04");
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");

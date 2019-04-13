@@ -23,7 +23,7 @@ instance BDT_1046_Bandit_L(Npc_Default)
 
 func void Rtn_Start_1046()
 {
-	TA_Stand_ArmsCrossed(0,0,12,0,"NW_CASTLEMINE_PATH_01");
-	TA_Stand_ArmsCrossed(12,0,0,0,"NW_CASTLEMINE_PATH_01");
+	TA_Sit_Chair(0,4,8,0,"NW_CASTLEMINE_PATH_HUT_IN_SIT");
+	TA_Stand_ArmsCrossed(8,0,0,4,"NW_CASTLEMINE_PATH_01");
 };
 

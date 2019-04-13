@@ -27,9 +27,9 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 {
 	if(EnterOW_Kapitel3 == FALSE)
 	{
-		B_RemoveNpc(PC_Mage_OW);
-		B_RemoveNpc(PC_Fighter_OW);
-		B_RemoveNpc(PC_ThiefOW);
+		B_RemoveNpc(MiltenOW);
+		B_RemoveNpc(GornOW);
+		B_RemoveNpc(DiegoOW);
 		Wld_InsertNpc(Snapper,"SPAWN_OW_MOLERATS_WOOD_OM");
 		Wld_InsertNpc(Snapper,"SPAWN_OW_MOLERATS_WOOD_OM");
 		Wld_InsertNpc(Snapper,"SPAWN_OW_MOLERATS_WOOD_OM");
@@ -84,7 +84,7 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		};
 		if(TschuessBilgot == TRUE)
 		{
-			B_RemoveNpc(VLK_4120_Bilgot);
+			B_RemoveNpc(Bilgot);
 		};
 		EnterOW_Kapitel3 = TRUE;
 	};
@@ -97,7 +97,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 {
 	if(EnterOW_Kapitel4 == FALSE)
 	{
-		if(Npc_IsDead(Engrom) == FALSE)
+		if(!Npc_IsDead(Engrom))
 		{
 			B_StartOtherRoutine(Engrom,"Obsessed");
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
@@ -111,11 +111,11 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			};
 			EngromIsGone = TRUE;
 		};
-		B_RemoveNpc(STRF_1115_Geppert);
-		B_RemoveNpc(STRF_1116_Kervo);
+		B_RemoveNpc(Geppert);
+		B_RemoveNpc(Kervo);
 		B_RemoveNpc(VLK_4106_Dobar);
-		B_RemoveNpc(VLK_4107_Parlaf);
-		if(Npc_IsDead(Sengrath) == FALSE)
+		B_RemoveNpc(Parlaf);
+		if(!Npc_IsDead(Sengrath))
 		{
 			B_StartOtherRoutine(Sengrath,"OrcBarrier");
 			B_ClearDeadTrader(Sengrath);
@@ -129,7 +129,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		};
 		if(TschuessBilgot == TRUE)
 		{
-			B_RemoveNpc(VLK_4120_Bilgot);
+			B_RemoveNpc(Bilgot);
 		};
 		Wld_InsertNpc(DJG_730_ToterDrachenjaeger,"OC1");
 		B_KillNpc(DJG_730_ToterDrachenjaeger);
@@ -412,7 +412,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertItem(ItMi_KerolothsGeldbeutel_MIS,"FP_OC_KEROLOTHS_GELDBEUTEL");
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_Running);
-		B_LogEntry(TOPIC_Dragonhunter,"Началась масштабная охота на драконов. Она привлекла многих искателей приключений в Долину рудников. Мне остается только надеяться, что они не будут мешаться у меня под ногами.");
+		B_LogEntry(TOPIC_Dragonhunter,"Началась масштабная охота на драконов. Она привлекла многих искателей приключений в Долину Рудников. Мне остается только надеяться, что они не будут мешаться у меня под ногами.");
 		IntroduceChapter(KapWechsel_4,KapWechsel_4_Text,"chapter4.tga","chapter_01.wav",6000);
 		EnterOW_Kapitel4 = TRUE;
 	};
@@ -437,20 +437,23 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 	if(EnterOW_Kapitel5 == FALSE)
 	{
 		VLK_4143_HaupttorWache.flags = 0;
-		CreateInvItems(VLK_4143_HaupttorWache,itke_oc_maingate_mis,1);
-		if(Npc_IsDead(Brutus) == FALSE)
+		if(!Npc_HasItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS))
+		{
+			CreateInvItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS,1);
+		};
+		if(!Npc_IsDead(Brutus))
 		{
 			CreateInvItems(VLK_4100_Brutus,ITWR_DementorObsessionBook_MIS,1);
 		};
 		if(TschuessBilgot == TRUE)
 		{
-			B_RemoveNpc(VLK_4120_Bilgot);
+			B_RemoveNpc(Bilgot);
 		};
 		EnterOW_Kapitel5 = TRUE;
 	};
 	if(Biff_FollowsThroughPass == LOG_SUCCESS)
 	{
-		B_RemoveNpc(DJG_713_Biff);
+		B_RemoveNpc(Biff);
 	};
 };
 
@@ -494,7 +497,7 @@ func void b_enter_oldworld()
 	};
 	CurrentLevel = OldWorld_Zen;
 	B_InitNpcGlobals();
-	if((DJG_BiffParty == TRUE) && (Npc_IsDead(Biff) == FALSE))
+	if((DJG_BiffParty == TRUE) && !Npc_IsDead(Biff))
 	{
 		if(DJG_Biff_HalbeHalbe == TRUE)
 		{
@@ -505,7 +508,7 @@ func void b_enter_oldworld()
 			Npc_SetRefuseTalk(Biff,300);
 		};
 	};
-	if((Npc_IsDead(Bilgot) == TRUE) && (MIS_RescueBilgot == LOG_Running))
+	if(Npc_IsDead(Bilgot) && (MIS_RescueBilgot == LOG_Running))
 	{
 		MIS_RescueBilgot = LOG_FAILED;
 	};

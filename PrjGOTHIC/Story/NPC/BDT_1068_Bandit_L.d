@@ -23,7 +23,7 @@ instance BDT_1068_Bandit_L(Npc_Default)
 
 func void Rtn_Start_1068()
 {
-	TA_Sit_Chair(0,0,12,0,"NW_CASTLEMINE_TOWER_06");
-	TA_Sit_Chair(12,0,0,0,"NW_CASTLEMINE_TOWER_06");
+	TA_Sleep(0,2,8,0,"NW_CASTLEMINE_TOWER_08");
+	TA_Sit_Chair(8,0,0,2,"NW_CASTLEMINE_TOWER_06");
 };
 

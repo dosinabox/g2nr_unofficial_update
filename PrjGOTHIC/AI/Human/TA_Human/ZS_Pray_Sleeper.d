@@ -4,7 +4,7 @@ func void ZS_Pray_Sleeper()
 	Perception_Set_Normal();
 	B_ResetAll(self);
 	AI_SetWalkMode(self,NPC_WALK);
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == FALSE)
+	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		AI_GotoWP(self,self.wp);
 	};

@@ -88,7 +88,7 @@ instance DIA_Addon_Wache_02_Attentat(C_Info)
 	condition = DIA_Addon_Wache_02_Attentat_Condition;
 	information = DIA_Addon_Wache_02_Attentat_Info;
 	permanent = FALSE;
-	description = "Что тебе известно о нападении?";
+	description = "Что ты знаешь о нападении?";
 };
 
 

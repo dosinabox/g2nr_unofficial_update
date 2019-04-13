@@ -154,7 +154,7 @@ instance DIA_Jesper_Bezahlen(C_Info)
 
 func int DIA_Jesper_Bezahlen_Condition()
 {
-	if((Join_Thiefs == TRUE) && (Jesper_TeachSneak == FALSE) && Npc_KnowsInfo(other,DIA_Cassia_Lernen) && (Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) == FALSE))
+	if((Join_Thiefs == TRUE) && (Jesper_TeachSneak == FALSE) && Npc_KnowsInfo(other,DIA_Cassia_Lernen) && !Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 	{
 		return TRUE;
 	};
@@ -174,8 +174,8 @@ func void DIA_Jesper_Bezahlen_Info()
 		AI_Output(self,other,"DIA_Jesper_Bezahlen_09_02");	//Ты хочешь узнать, как двигаться, не издавая ни единого звука? Это обойдется тебе в 100 золотых монет.
 		B_Say_Gold(self,other,Jesper_Cost);
 		Info_ClearChoices(DIA_Jesper_Bezahlen);
-		Info_AddChoice(DIA_Jesper_Bezahlen,"Может быть, позже... (НАЗАД)",DIA_Jesper_Bezahlen_Spaeter);
-		Info_AddChoice(DIA_Jesper_Bezahlen,"Хорошо, я хочу научиться красться (заплатить 100 золотых).",DIA_Jesper_Bezahlen_Okay);
+		Info_AddChoice(DIA_Jesper_Bezahlen,"Может быть, позже...",DIA_Jesper_Bezahlen_Spaeter);
+		Info_AddChoice(DIA_Jesper_Bezahlen,"Хорошо, я хочу научиться красться. (заплатить 100 золотых)",DIA_Jesper_Bezahlen_Okay);
 	};
 };
 
@@ -213,11 +213,11 @@ instance DIA_Jesper_Schleichen(C_Info)
 };
 
 
-var int DIA_Jesper_Schleichen_permanent;
+// var int DIA_Jesper_Schleichen_permanent;
 
 func int DIA_Jesper_Schleichen_Condition()
 {
-	if((Jesper_TeachSneak == TRUE) && (DIA_Jesper_Schleichen_permanent == FALSE))
+	if((Jesper_TeachSneak == TRUE) && !Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 	{
 		return TRUE;
 	};
@@ -231,7 +231,7 @@ func void DIA_Jesper_Schleichen_Info()
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_01");	//Умение красться очень важно для любого вора. Особенно, если ты ходишь по чужому дому.
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_02");	//Там нельзя топать, как ты это делаешь сейчас. Большинство людей спит очень чутким сном.
 		AI_Output(self,other,"DIA_Jesper_Schleichen_09_03");	//Только когда ты крадешься, никто не услышит тебя, и ты сможешь работать беспрепятственно.
-		DIA_Jesper_Schleichen_permanent = TRUE;
+//		DIA_Jesper_Schleichen_permanent = TRUE;
 	};
 };
 
@@ -289,7 +289,7 @@ instance DIA_Jesper_Bogen(C_Info)
 
 func int DIA_Jesper_Bogen_Condition()
 {
-	if((Npc_HasItems(other,ItRw_Bow_L_03_MIS) < 1) && (MIS_Bosper_Bogen == LOG_Running) && (Join_Thiefs == TRUE))
+	if(!Npc_HasItems(other,ItRw_Bow_L_03_MIS) && (MIS_Bosper_Bogen == LOG_Running) && (Join_Thiefs == TRUE))
 	{
 		return TRUE;
 	};
@@ -350,7 +350,7 @@ instance DIA_Jesper_Truhe(C_Info)
 
 func int DIA_Jesper_Truhe_Condition()
 {
-	if((Mob_HasItems("MOB_FINGERS",ItMi_Gold) < 300) || (Mob_HasItems("MOB_FINGERS",ItMi_SilverCup) < 5) || (Mob_HasItems("MOB_FINGERS",ItMi_GoldCup) < 1) || (Mob_HasItems("MOB_FINGERS",ItAm_Strg_01) < 1) || (Mob_HasItems("MOB_FINGERS",ItPo_Perm_DEX) < 1))
+	if((Mob_HasItems("MOB_FINGERS",ItMi_Gold) < 300) || (Mob_HasItems("MOB_FINGERS",ItMi_SilverCup) < 5) || !Mob_HasItems("MOB_FINGERS",ItMi_GoldCup) || !Mob_HasItems("MOB_FINGERS",ItAm_Strg_01) || !Mob_HasItems("MOB_FINGERS",ItPo_Perm_DEX))
 	{
 		return TRUE;
 	};

@@ -201,7 +201,7 @@ func void UseJ3()
 
 instance J4(C_Item)
 {
-	name = "ADW_PIRATES_RemovedFocus und letzte";
+	name = "ADW_PIRATES_RemovedFocus и последнее";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -612,7 +612,7 @@ prototype JOLY_ITEM(C_Item)
 	on_state[0] = usejoly_item1;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Compiling Visual Dummy item";
+	text[2] = "Компиляция визуала фиктивного предмета";
 	text[5] = NAME_Value;
 	count[5] = value_StonePlateCommon;
 	inv_zbias = INVCAM_ENTF_MISC5_STANDARD;

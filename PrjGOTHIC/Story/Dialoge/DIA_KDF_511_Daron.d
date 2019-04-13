@@ -27,16 +27,16 @@ func void B_DaronSegen()
 	}
 	else if((Daron_Spende >= 750) && (Daron_Spende < 1000) && (Bonus_3 == FALSE))
 	{
-		other.lp = other.lp + 1;
+		other.lp += 1;
 		concatText = ConcatStrings(PRINT_LearnLP,IntToString(1));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 		Bonus_3 = TRUE;
 	}
 	else
 	{
+		other.attribute[ATR_HITPOINTS_MAX] += 5;
 		other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
 		other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
-		other.attribute[ATR_HITPOINTS_MAX] = other.attribute[ATR_HITPOINTS_MAX] + 5;
 		concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(5));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 	};
@@ -144,7 +144,7 @@ func void DIA_Daron_AboutSegen_Info()
 {
 	AI_Output(other,self,"DIA_Daron_AboutSegen_15_00");	//Я пришел, чтобы получить твое благословение!
 	AI_Output(self,other,"DIA_Daron_AboutSegen_10_01");	//Это хорошо - тогда ты, вероятно, захочешь пожертвовать золото святой церкви Инноса, правда?
-	AI_Output(other,self,"DIA_Daron_AboutSegen_15_02");	//Вообще-то, я хотел получить твое благословение, чтобы поступить в ученики к одному из мастеров в нижней части города...
+	AI_Output(other,self,"DIA_Daron_AboutSegen_15_02");	//Вообще-то я хотел получить твое благословение, чтобы поступить в ученики к одному из мастеров в нижней части города...
 	if(Daron_Segen == TRUE)
 	{
 		AI_Output(self,other,"DIA_Daron_AboutSegen_10_03");	//Но я уже дал тебе мое благословение, сын мой.
@@ -271,7 +271,7 @@ func int DIA_Daron_Innos_Condition()
 func void DIA_Daron_Innos_Info()
 {
 	AI_Output(other,self,"DIA_Daron_Innos_15_00");	//Расскажи мне об Инносе.
-	AI_Output(self,other,"DIA_Daron_Innos_10_01");	//Иннос, наш всемогущий владыка, - наш свет и огонь.
+	AI_Output(self,other,"DIA_Daron_Innos_10_01");	//Иннос, наш всемогущий владыка - наш свет и огонь.
 	AI_Output(self,other,"DIA_Daron_Innos_10_02");	//Он выбирал людей в качестве проводников своей воли на земле. Он дает им магию и законы.
 	AI_Output(self,other,"DIA_Daron_Innos_10_03");	//Мы говорим и действуем от его имени. Мы осуществляем правосудие согласно его воле и проповедуем его слово.
 };
@@ -363,7 +363,10 @@ func void DIA_Addon_Daron_GuildHelp_Info()
 	MIS_Addon_Vatras_Go2Daron = LOG_SUCCESS;
 	MIS_Addon_Daron_GetStatue = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Daron_GuildHelp);
-	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Значит, сейчас она у гоблинов?",DIA_Addon_Daron_GuildHelp_gobbos);
+	if(Hlp_IsValidNpc(Gobbo_DaronsStatuenKlauer) && Npc_HasItems(Gobbo_DaronsStatuenKlauer,ItMi_LostInnosStatue_Daron))
+	{
+		Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Значит, сейчас она у гоблинов?",DIA_Addon_Daron_GuildHelp_gobbos);
+	};
 	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Где именно ты потерял статуэтку?",DIA_Addon_Daron_GuildHelp_wo);
 	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Ты не пытался вернуть статуэтку?",DIA_Addon_Daron_GuildHelp_wiederholen);
 };
@@ -386,7 +389,10 @@ func void DIA_Addon_Daron_GuildHelp_wo()
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_wo_15_00");	//Где именно ты потерял статуэтку?
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_wo_10_01");	//На пути в монастырь, неподалеку от таверны Орлана.
 	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Я услышал достаточно. Я найду статуэтку.",DIA_Addon_Daron_GuildHelp_auftrag);
-	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Таверна Орлана? Где она находится?",DIA_Addon_Daron_GuildHelp_woTaverne);
+	if(Orlan.aivar[AIV_TalkedToPlayer] == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Таверна Орлана? Где она находится?",DIA_Addon_Daron_GuildHelp_woTaverne);
+	};
 };
 
 func void DIA_Addon_Daron_GuildHelp_woTaverne()
@@ -453,7 +459,7 @@ instance DIA_Addon_Daron_ReturnedStatue(C_Info)
 
 func int DIA_Addon_Daron_ReturnedStatue_Condition()
 {
-	if((DIA_Gorax_GOLD_perm == TRUE) && (MIS_Addon_Daron_GetStatue == LOG_SUCCESS))
+	if(MIS_Addon_Daron_GetStatue == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -555,7 +561,7 @@ func void DIA_Daron_Spende_50()
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_50_10_00");	//Благословляю тебя от имени Инноса. Он несет в этот мир свет и справедливость.
-		Daron_Spende = Daron_Spende + 50;
+		Daron_Spende += 50;
 		B_DaronSegen();
 		Daron_Segen = TRUE;
 		if(MIS_Thorben_GetBlessings == LOG_Running)
@@ -576,7 +582,7 @@ func void DIA_Daron_Spende_100()
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_100_10_00");	//Иннос, ты свет, озаряющий путь праведников.
 		AI_Output(self,other,"DIA_Daron_Spende_100_10_01");	//Я благословляю этого человека от твоего имени. Да будет твой свет сиять над ним вечно.
-		Daron_Spende = Daron_Spende + 100;
+		Daron_Spende += 100;
 		B_DaronSegen();
 		Daron_Segen = TRUE;
 		if(MIS_Thorben_GetBlessings == LOG_Running)
@@ -597,7 +603,7 @@ func void DIA_Daron_Spende_200()
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_200_10_00");	//Иннос, благослови этого человека. Да будет твой свет сиять над ним вечно.
 		AI_Output(self,other,"DIA_Daron_Spende_200_10_01");	//Придай ему силы жить праведной жизнью.
-		Daron_Spende = Daron_Spende + 200;
+		Daron_Spende += 200;
 		B_DaronSegen();
 		Daron_Segen = TRUE;
 		if(MIS_Thorben_GetBlessings == LOG_Running)

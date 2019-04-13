@@ -73,14 +73,14 @@ func int DIA_Bennet_TRADE_Condition()
 
 func void DIA_Bennet_TRADE_Info()
 {
-	if(Bennet_flag == 1)
+	if(Bennet_flag == TRUE)
 	{
 		B_ClearSmithInv(self);
 		if(Bennet_swordraws > 0)
 		{
 			CreateInvItems(self,ItMiSwordraw,Bennet_swordraws);
 		};
-		Bennet_flag = 0;
+		Bennet_flag = FALSE;
 	};
 	var int McBolzenAmount;
 	var int McArrowAmount;
@@ -328,7 +328,7 @@ func void DIA_Bennet_WannaSmithORE_Info()
 	{
 		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_12");	//Отлично, ты принес мне руду, и ты также знаешь, как куется обычный меч.
 		AI_Output(other,self,"DIA_Bennet_WannaSmithORE_15_13");	//Так давай же, обучай меня!
-		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_14");	//Самое главное: не важно, целиком сделан твой меч, - из магической руды, или ты просто покрыл обычный меч ее тонким слоем. Поверхность - только это имеет значение.
+		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_14");	//Самое главное: не важно, целиком сделан твой меч - из магической руды, или ты просто покрыл обычный меч ее тонким слоем. Поверхность - только это имеет значение.
 		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_15");	//А так как эта чертова руда очень дорогая, просто берешь стальную заготовку и несколько кусков руды.
 		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_16");	//Естественно, нельзя просто покрыть готовый меч магической рудой. Оружие нужно создавать с нуля.
 		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_17");	//А все остальное зависит от оружия, которое ты хочешь получить.
@@ -744,8 +744,8 @@ func void DIA_Bennet_ThankYou_Info()
 {
 	if(hero.guild == GIL_SLD)
 	{
-		other.guild = GIL_DJG;
-		Npc_SetTrueGuild(other,GIL_DJG);
+		hero.guild = GIL_DJG;
+		Npc_SetTrueGuild(hero,GIL_DJG);
 	};
 	AI_Output(self,other,"DIA_Bennet_ThankYou_06_00");	//Ох, а я уж думал, что меня наверняка повесят!
 	AI_Output(other,self,"DIA_Bennet_ThankYou_15_01");	//Что ж, в конце концов, все окончилось хорошо.
@@ -790,10 +790,10 @@ func void DIA_Bennet_Present_Info()
 		AI_Output(self,other,"DIA_Bennet_Present_06_07");	//(гордо) Я разработал новый тип доспехов. Доспехи охотника на драконов!
 		AI_Output(self,other,"DIA_Bennet_Present_06_08");	//Они прочнее и легче, чем традиционные доспехи.
 		AI_Output(self,other,"DIA_Bennet_Present_06_09");	//Так как ты спас меня, я хочу, чтобы ты получил первый экземпляр. Это подарок!
-		CreateInvItems(self,itar_djg_l,1);
-		B_GiveInvItems(self,other,itar_djg_l,1);
+		CreateInvItem(hero,ITAR_DJG_L);
+		AI_EquipArmor(hero,ITAR_DJG_L);
 		AI_Output(self,other,"DIA_Bennet_Present_06_10");	//Я подумал, что, возможно, тебе тоже захочется позабавиться там. Тебе понадобится хорошее снаряжение, когда ты отправишься в эту долину.
-		AI_Output(self,other,"DIA_Bennet_Present_06_11");	//Также, мне интересны драконьи чешуйки. Настоящие драконьи чешуйки. Я хорошо заплачу тебе за них.
+		AI_Output(self,other,"DIA_Bennet_Present_06_11");	//Также мне интересны драконьи чешуйки. Настоящие драконьи чешуйки. Я хорошо заплачу тебе за них.
 		AI_Output(other,self,"DIA_Bennet_Present_15_12");	//Сколько я получу за чешуйку?
 		B_Say_Gold(self,other,Value_DragonScale);
 	}
@@ -824,7 +824,7 @@ instance DIA_Bennet_DragonScale(C_Info)
 
 func int DIA_Bennet_DragonScale_Condition()
 {
-	if((Npc_HasItems(other,ItAt_DragonScale) > 0) && (hero.guild == GIL_DJG))
+	if(Npc_HasItems(other,ItAt_DragonScale) && (hero.guild == GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -838,7 +838,7 @@ func void DIA_Bennet_DragonScale_Info()
 	AI_Output(self,other,"DIA_Bennet_DragonScale_06_01");	//Настоящая чешуя дракона!
 	AI_Output(self,other,"DIA_Bennet_DragonScale_06_02");	//Вот твое золото!
 	dragonscalecount = Npc_HasItems(other,ItAt_DragonScale);
-	Bennet_DragonScale_Counter = Bennet_DragonScale_Counter + dragonscalecount;
+	Bennet_DragonScale_Counter += dragonscalecount;
 	B_GiveInvItems(self,other,ItMi_Gold,dragonscalecount * Value_DragonScale);
 	Npc_RemoveInvItems(other,ItAt_DragonScale,dragonscalecount);
 	concatText = ConcatStrings(IntToString(dragonscalecount),PRINT_ItemsGegeben);
@@ -881,8 +881,8 @@ func void DIA_Bennet_DJG_ARMOR_M_Info()
 		AI_Output(other,self,"DIA_Bennet_DJG_ARMOR_M_15_02");	//Да уж, за такую-то цену...
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_M_06_03");	//Ты поймешь, что они стоят этих денег.
 		B_GiveInvItems(other,self,ItMi_Gold,12000);
-		CreateInvItems(self,itar_djg_m,1);
-		B_GiveInvItems(self,other,itar_djg_m,1);
+		CreateInvItem(hero,ITAR_DJG_M);
+		AI_EquipArmor(hero,ITAR_DJG_M);
 		Bennet_DIA_Bennet_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else
@@ -914,7 +914,7 @@ func int DIA_Bennet_BetterArmor_Condition()
 func void DIA_Bennet_BetterArmor_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_BetterArmor_15_00");	//Я знаю, как можно еще улучшить доспехи.
-	AI_Output(self,other,"DIA_Bennet_BetterArmor_06_01");	//(ухмыляется про себя) Ну расскажи мне.
+	AI_Output(self,other,"DIA_Bennet_BetterArmor_06_01");	//(ухмыляется про себя) Ну, расскажи мне.
 	AI_Output(other,self,"DIA_Bennet_BetterArmor_15_02");	//Можно покрыть драконьи чешуйки магической рудой.
 	AI_Output(self,other,"DIA_Bennet_BetterArmor_06_03");	//(смеется) Эта мысль приходила и ко мне. Да, ты прав.
 	AI_Output(self,other,"DIA_Bennet_BetterArmor_06_04");	//Мои новые доспехи превосходят все, что ты когда-либо видел. Они очень легкие и очень прочные.
@@ -952,8 +952,8 @@ func void DIA_Bennet_DJG_ARMOR_H_Info()
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_01");	//Это лучшие доспехи из того, что я когда-либо делал.
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_02");	//Настоящее произведение искусства.
 		B_GiveInvItems(other,self,ItMi_Gold,20000);
-		CreateInvItems(self,itar_djg_h,1);
-		B_GiveInvItems(self,other,itar_djg_h,1);
+		CreateInvItem(hero,ITAR_DJG_H);
+		AI_EquipArmor(hero,ITAR_DJG_H);
 		Bennet_DIA_Bennet_DJG_ARMOR_H_permanent = TRUE;
 	}
 	else
@@ -1008,7 +1008,7 @@ instance DIA_Bennet_ShowInnosEye(C_Info)
 
 func int DIA_Bennet_ShowInnosEye_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_RepairNecklace))
 	{
 		return TRUE;
 	};
@@ -1048,7 +1048,7 @@ instance DIA_Bennet_GiveInnosEye(C_Info)
 
 func int DIA_Bennet_GiveInnosEye_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) >= 1) && (MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) && (MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -1146,7 +1146,7 @@ instance DIA_Bennet_DRACHENEIER(C_Info)
 
 func int DIA_Bennet_DRACHENEIER_Condition()
 {
-	if((Kapitel >= 4) && (BennetsDragonEggOffer == 0) && (Npc_HasItems(other,ItAt_DragonEgg_MIS) >= 1) && (hero.guild == GIL_DJG))
+	if((Kapitel >= 4) && (BennetsDragonEggOffer == 0) && Npc_HasItems(other,ItAt_DragonEgg_MIS) && (hero.guild == GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -1184,7 +1184,7 @@ func void DIA_Bennet_DRACHENEIER_Info()
 	Info_AddChoice(DIA_Bennet_DRACHENEIER,"Договорились.",DIA_Bennet_DRACHENEIER_ok);
 	if(DRACHENEIER_angebotenXP_OneTime == FALSE)
 	{
-		B_LogEntry(TOPIC_DRACHENEIER,"Беннет готов дать за драконьи яйца, которые найду, хорошую цену.");
+		B_LogEntry(TOPIC_DRACHENEIER,"Беннет готов дать хорошую цену за драконьи яйца, которые я найду.");
 		B_GivePlayerXP(XP_DJG_BringDragonEgg);
 		DRACHENEIER_angebotenXP_OneTime = TRUE;
 	};
@@ -1206,9 +1206,9 @@ func void DIA_Bennet_DRACHENEIER_ok()
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_05");	//Насколько я знаю, люди-ящеры обычно обитают в пещерах.
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_06");	//Я не удивлюсь, если тебе удастся найти еще яйца в пещерах неподалеку.
 	B_LogEntry(TOPIC_DRACHENEIER,"Беннет полагает, что мне стоит поискать яйца в пещерах Хориниса. Во многих из них, по слухам, видели человекоящеров.");
-	if(Npc_HasItems(other,ItWr_Map_Caves_MIS) == FALSE)
+	if(!Npc_HasItems(other,ItWr_Map_Caves_MIS))
 	{
-		if(Npc_IsDead(Brahim) == FALSE)
+		if(!Npc_IsDead(Brahim))
 		{
 			AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_08");	//Но сначала ты должен взять карту пещер у картографа в городе. Будет жаль, если ты найдешь не все яйца.
 			B_LogEntry(TOPIC_DRACHENEIER,"Я должен купить карту пещер у картографа в городе, чтобы быть уверенным, что я не пропущу часть яиц.");
@@ -1255,7 +1255,7 @@ instance DIA_Bennet_EierBringen(C_Info)
 
 func int DIA_Bennet_EierBringen_Condition()
 {
-	if((BennetsDragonEggOffer > 0) && (Kapitel >= 4) && (Npc_HasItems(other,ItAt_DragonEgg_MIS) >= 1) && (hero.guild == GIL_DJG))
+	if((BennetsDragonEggOffer > 0) && (Kapitel >= 4) && Npc_HasItems(other,ItAt_DragonEgg_MIS) && (hero.guild == GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -1276,10 +1276,10 @@ func void DIA_Bennet_EierBringen_Info()
 	if(DragonEggCount == 1)
 	{
 		AI_Output(other,self,"DIA_Bennet_EierBringen_15_02");	//Вот. Я принес еще одно.
-		B_GivePlayerXP(XP_DJG_BringDragonEgg);
 		Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,1);
 		AI_PrintScreen(PRINT_ItemGegeben,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		DragonEggCounter = DragonEggCounter + 1;
+		DragonEggCounter += 1;
+		B_GivePlayerXP(XP_DJG_BringDragonEgg);
 	}
 	else
 	{
@@ -1288,7 +1288,7 @@ func void DIA_Bennet_EierBringen_Info()
 		concatText = ConcatStrings(IntToString(DragonEggCount),PRINT_ItemsGegeben);
 		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		XP_DJG_BringDragonEggs = DragonEggCount * XP_DJG_BringDragonEgg;
-		DragonEggCounter = DragonEggCounter + DragonEggCount;
+		DragonEggCounter += DragonEggCount;
 		B_GivePlayerXP(XP_DJG_BringDragonEggs);
 	};
 	if(DragonEggCounter <= 7)
@@ -1355,15 +1355,21 @@ func int DIA_Bennet_KnowWhereEnemy_Condition()
 	};
 };
 
+var int SCToldBennetHeKnowWhereEnemy;
+
 func void DIA_Bennet_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_KnowWhereEnemy_15_00");	//Мне нужно плыть на другой остров. Мне бы пригодился кузнец.
 	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_06_01");	//И ты подумал обо мне?
 	AI_Output(other,self,"DIA_Bennet_KnowWhereEnemy_15_02");	//Да. Что скажешь? По крайней мере, ты сможешь выбраться отсюда.
 	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_06_03");	//Это лучше, чем работать на ферме Онара. Парень, даже ад ЛУЧШЕ, чем здесь. Ты можешь рассчитывать на меня.
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
-	B_LogEntry(Topic_Crew,"Беннет готов отправляться немедленно. Кузнец он непревзойденный. Я уверен, что смогу многому научиться у него.");
+	if(SCToldBennetHeKnowWhereEnemy == FALSE)
+	{
+		Log_CreateTopic(Topic_Crew,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Crew,LOG_Running);
+		B_LogEntry(Topic_Crew,"Беннет готов отправляться немедленно. Кузнец он непревзойденный. Я уверен, что смогу многому научиться у него.");
+		SCToldBennetHeKnowWhereEnemy = TRUE;
+	};
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_Bennet_KnowWhereEnemy_15_04");	//Моя команда сейчас полностью укомплектована.
@@ -1381,10 +1387,10 @@ func void DIA_Bennet_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_Bennet_KnowWhereEnemy_Yes_15_00");	//Будь моим кузнецом. Увидимся в гавани.
 	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_Yes_06_01");	//Хорошо. Увидимся позже.
-	B_GivePlayerXP(XP_Crewmember_Success);
 	self.flags = NPC_FLAG_IMMORTAL;
 	Bennet_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
+	B_GivePlayerXP(XP_Crewmember_Success);
+	Crewmember_Count += 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
 		Npc_ExchangeRoutine(self,"SHIP");
@@ -1429,7 +1435,7 @@ func void DIA_Bennet_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_Bennet_LeaveMyShip_15_00");	//Я хочу найти себе другого кузнеца.
 	AI_Output(self,other,"DIA_Bennet_LeaveMyShip_06_01");	//Сейчас ты думаешь одно, через минуту - другое. Ты не мог бы определиться, а? Когда будешь твердо уверен в том, чего ты хочешь, дай мне знать.
 	Bennet_IsOnBoard = LOG_OBSOLETE;
-	Crewmember_Count = Crewmember_Count - 1;
+	Crewmember_Count -= 1;
 	Npc_ExchangeRoutine(self,"Start");
 };
 
@@ -1459,7 +1465,7 @@ func void DIA_Bennet_StillNeedYou_Info()
 	AI_Output(self,other,"DIA_Bennet_StillNeedYou_06_01");	//(сердито) Хорошо! Всякий может издеваться над простым кузнецом! Увидимся в гавани.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Bennet_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
+	Crewmember_Count += 1;
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
@@ -1469,6 +1475,7 @@ func void DIA_Bennet_StillNeedYou_Info()
 	{
 		Npc_ExchangeRoutine(self,"WAITFORSHIP");
 	};
+	B_CheckLog();
 };
 
 

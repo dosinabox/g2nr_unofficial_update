@@ -15,9 +15,10 @@ func void B_VatrasPissedOff()
 	AI_Output(self,other,"DIA_Addon_Vatras_PissedOffPerm_Add_05_01");	//Убирайся. Для меня ты теперь пария.
 	if(Vatras_IsOnBoard == LOG_SUCCESS)
 	{
-		Crewmember_Count = Crewmember_Count - 1;
+		Crewmember_Count -= 1;
 	};
 	Vatras_IsOnBoard = LOG_FAILED;
+	B_CheckLog();
 	self.flags = 0;
 	VatrasPissedOffForever = TRUE;
 	AI_StopProcessInfos(self);

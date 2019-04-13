@@ -20,7 +20,7 @@ func void ZS_Unconscious()
 		self.aivar[AIV_LastFightAgainstPlayer] = FIGHT_LOST;
 		if((self.aivar[AIV_LastPlayerAR] == AR_NONE) && (self.aivar[AIV_DuelLost] == FALSE) && (self.guild == GIL_SLD))
 		{
-			Sld_Duelle_gewonnen = Sld_Duelle_gewonnen + 1;
+			Sld_Duelle_gewonnen += 1;
 			self.aivar[AIV_DuelLost] = TRUE;
 		};
 		if(self.aivar[AIV_ArenaFight] == AF_RUNNING)
@@ -100,14 +100,18 @@ func void ZS_Unconscious_End()
 		};
 	};
 	Npc_PerceiveAll(self);
-	if(Wld_DetectItem(self,ITEM_KAT_NF) || Wld_DetectItem(self,ITEM_KAT_FF))
+	if(Wld_DetectItem(self,ITEM_KAT_NF))
 	{
-		if(Hlp_IsValidItem(item))
+		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
 		{
-			if(Npc_GetDistToItem(self,item) <= 500)
-			{
-				AI_TakeItem(self,item);
-			};
+			AI_TakeItem(self,item);
+		};
+	}
+	if(Wld_DetectItem(self,ITEM_KAT_FF))
+	{
+		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))
+		{
+			AI_TakeItem(self,item);
 		};
 	};
 	AI_EquipBestMeleeWeapon(self);

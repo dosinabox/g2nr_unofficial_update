@@ -33,7 +33,7 @@ instance DIA_PC_Thief_DI_Hallo(C_Info)
 
 func int DIA_PC_Thief_DI_Hallo_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -47,7 +47,7 @@ func void DIA_PC_Thief_DI_Hallo_Info()
 	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_03");	//Я все время задавал себе вопрос - как оркам так быстро удавалось доставлять провизию и подкрепление.
 	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_04");	//Имея такой аванпост, это было для них легче легкого.
 	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_05");	//На пути вглубь острова, ты, вероятно, наткнешься на ловушку-другую.
-	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_06");	//Если тебе покажется, что ты не знаешь, что делать дальше, вернись ко мне. Возможно, мой опыт сможет помочь тебе.
+	AI_Output(self,other,"DIA_PC_Thief_DI_Hallo_11_06");	//Если тебе покажется, что ты не знаешь, что делать дальше, вернись ко мне. Возможно, мой опыт сможет тебе помочь.
 };
 
 
@@ -64,7 +64,7 @@ instance DIA_PC_Thief_DI_RAT(C_Info)
 
 func int DIA_PC_Thief_DI_RAT_Condition()
 {
-	if((Npc_IsDead(UndeadDragon) == FALSE) && Npc_KnowsInfo(other,DIA_PC_Thief_DI_Hallo))
+	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_PC_Thief_DI_Hallo))
 	{
 		return TRUE;
 	};
@@ -88,7 +88,7 @@ func void DIA_PC_Thief_DI_RAT_Info()
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_04");	//Я сражался с драконом и теперь застрял перед пропастью с подъемным мостом. Этот мост поднят, и я не знаю, как опустить его.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_05");	//Ммм. А ты не пробовал дальнобойное оружие? Может быть, механизм можно активировать при помощи выстрела.
 	}
-	else if(Npc_IsDead(Skeleton_Lord_Archol) && (Npc_KnowsInfo(other,DIA_Schwarzmagier_HELLO) == FALSE))
+	else if(Npc_IsDead(Archol) && !Npc_KnowsInfo(other,DIA_Schwarzmagier_HELLO))
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_RAT_15_06");	//Я встречаю на своем пути полчища нежити и их изощренные ловушки.
 		AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_07");	//Извини, но я никогда не имел дела с нежитью. Здесь тебе придется изобретать что-то самому.
@@ -120,7 +120,7 @@ instance DIA_Diego_DI_TRADE(C_Info)
 
 func int DIA_Diego_DI_TRADE_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -155,7 +155,7 @@ instance DIA_PC_Thief_DI_Training_Talente(C_Info)
 
 func int DIA_PC_Thief_DI_Training_Talente_Condition()
 {
-	if((Npc_IsDead(UndeadDragon) == FALSE) && Npc_KnowsInfo(other,DIA_PC_Thief_DI_Hallo))
+	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_PC_Thief_DI_Hallo))
 	{
 		return TRUE;
 	};
@@ -167,9 +167,9 @@ func void DIA_PC_Thief_DI_Training_Talente_Info()
 	AI_Output(self,other,"DIA_PC_Thief_DI_Training_11_01");	//Что тебе нужно?
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Использование отмычек",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
@@ -185,9 +185,9 @@ func void DIA_PC_Thief_DI_Training_DEX_1()
 	};
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Использование отмычек",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
@@ -203,9 +203,9 @@ func void DIA_PC_Thief_DI_Training_DEX_5()
 	};
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Использование отмычек",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
@@ -221,9 +221,9 @@ func void DIA_PC_Thief_DI_Training_Combat_BOW_1()
 	};
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Использование отмычек",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
@@ -239,9 +239,9 @@ func void DIA_PC_Thief_DI_Training_Combat_BOW_5()
 	};
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Использование отмычек",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
@@ -257,9 +257,9 @@ func void DIA_PC_Thief_DI_Training_Talente_PICKLOCK()
 	};
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK) == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
 	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Использование отмычек",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
 	};
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);

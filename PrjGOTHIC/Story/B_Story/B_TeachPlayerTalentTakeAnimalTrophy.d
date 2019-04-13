@@ -9,7 +9,7 @@ func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	oth.lp = oth.lp - kosten;
+	oth.lp -= kosten;
 	Log_CreateTopic(TOPIC_TalentAnimalTrophy,LOG_NOTE);
 	B_LogEntry(TOPIC_TalentAnimalTrophy,"Теперь я могу:");
 	if(trophy == TROPHY_Teeth)

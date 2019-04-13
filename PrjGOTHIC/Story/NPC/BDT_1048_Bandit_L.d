@@ -24,6 +24,6 @@ instance BDT_1048_Bandit_L(Npc_Default)
 func void Rtn_Start_1048()
 {
 	TA_Sit_Campfire(0,0,12,0,"NW_CASTLEMINE_TOWER_CAMPFIRE_02");
-	TA_Sit_Campfire(12,0,0,0,"NW_CASTLEMINE_TOWER_CAMPFIRE_02");
+	TA_Stand_Drinking(12,0,0,0,"NW_CASTLEMINE_TOWER_CAMPFIRE_02");
 };
 

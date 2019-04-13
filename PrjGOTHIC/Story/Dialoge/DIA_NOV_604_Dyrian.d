@@ -59,7 +59,7 @@ instance DIA_Dyrian_Wurst(C_Info)
 
 func int DIA_Dyrian_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && (Npc_HasItems(self,ItFo_Schafswurst) == 0) && (Npc_HasItems(other,ItFo_Schafswurst) >= 1))
+	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -72,7 +72,7 @@ func void DIA_Dyrian_Wurst_Info()
 	AI_Output(other,self,"DIA_Dyrian_Wurst_15_00");	//Я занимаюсь распределением колбасы.
 	AI_Output(self,other,"DIA_Dyrian_Wurst_13_01");	//Спасибо. Надеюсь, это не последняя колбаса, что я получу здесь.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben = Wurst_Gegeben + 1;
+	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
 	NovizeLeft = IntToString(13 - Wurst_Gegeben);
@@ -104,7 +104,7 @@ func void DIA_Dyrian_Job_Info()
 {
 	AI_Output(other,self,"DIA_Dyrian_Job_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Dyrian_Job_13_01");	//Я грешен. Я нарушил правила поведения в монастыре.
-	AI_Output(self,other,"DIA_Dyrian_Job_13_02");	//Теперь я жду решения Высшего Совета. Не знаю, оставят ли меня в монастыре.
+	AI_Output(self,other,"DIA_Dyrian_Job_13_02");	//Теперь я жду решения Высшего Совета. Не знаю, оставят ли они меня в монастыре.
 };
 
 
@@ -131,7 +131,7 @@ func void DIA_Dyrian_WhatDone_Info()
 {
 	AI_Output(other,self,"DIA_Dyrian_WhatDone_15_00");	//Расскажи мне, что произошло.
 	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_01");	//Я взял книгу в комнате одного из магов, когда подметал там, чтобы почитать ее на досуге.
-	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_02");	//Мастер Хиглас, конечно же, сразу заметил пропажу и спросил меня об этой книге.
+	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_02");	//Мастер Хиглас, конечно, сразу заметил пропажу и спросил меня об этой книге.
 	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_03");	//Из страха быть наказанным, я солгал. А затем он застал меня в моей келье, когда я читал эту книгу.
 	AI_Output(self,other,"DIA_Dyrian_WhatDone_13_04");	//Он очень разозлился и сообщил об этом Высшему Совету. Теперь они решают, могу ли я остаться в монастыре.
 };
@@ -189,7 +189,7 @@ func void DIA_Dyrian_Scroll_Info()
 	AI_Output(self,other,"DIA_Dyrian_Scroll_13_02");	//Хорошо - возможно, я могу помочь тебе в этом. Я могу дать тебе свиток с очень сильным заклинанием. Заклинанием СОН. Ну, как?
 	Info_ClearChoices(DIA_Dyrian_Scroll);
 	Info_AddChoice(DIA_Dyrian_Scroll,"Нет, мне не нужна твоя помощь.",DIA_Dyrian_Scroll_No);
-	Info_AddChoice(DIA_Dyrian_Scroll,"Что ты хочешь за это?",DIA_Dyrian_Scroll_How);
+	Info_AddChoice(DIA_Dyrian_Scroll,"Что ты хочешь за него?",DIA_Dyrian_Scroll_How);
 	Info_AddChoice(DIA_Dyrian_Scroll,"И что мне делать с ним?",DIA_Dyrian_Scroll_What);
 };
 
@@ -227,7 +227,7 @@ func void DIA_Dyrian_Scroll_Yes()
 	MIS_HelpDyrian = LOG_Running;
 	Log_CreateTopic(Topic_DyrianDrin,LOG_MISSION);
 	Log_SetTopicStatus(Topic_DyrianDrin,LOG_Running);
-	B_LogEntry(Topic_DyrianDrin,"Дуриан дал мне свиток с заклинанием Сон. Взамен, он хочет, чтобы если я стану магом, я замолвил за него словечко и он остался в монастыре.");
+	B_LogEntry(Topic_DyrianDrin,"Дуриан дал мне свиток с заклинанием 'Сон'. Взамен он хочет, чтобы если я стану магом, я замолвил за него словечко и он остался в монастыре.");
 	Info_ClearChoices(DIA_Dyrian_Scroll);
 };
 

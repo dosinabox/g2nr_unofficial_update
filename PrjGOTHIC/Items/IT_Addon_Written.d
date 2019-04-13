@@ -33,7 +33,6 @@ func void Use_Hinweis_02()
 	Doc_PrintLines(nDocID,0,"Кто найдет его, сможет забрать вещи Лу.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Снаф");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -59,15 +58,6 @@ instance ITWr_Addon_Health_04(C_Item)
 func void Use_Heilrezept_04()
 {
 	var int nDocID;
-	if(Npc_IsPlayer(self))
-	{
-		if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_04] == FALSE))
-		{
-			PLAYER_TALENT_ALCHEMY[POTION_Health_04] = TRUE;
-			Snd_Play("LevelUP");
-			B_LogEntry(TOPIC_TalentAlchemy,"Также необходимо иметь 1 луговой горец и 3 лечебные эссенции.");
-		};
-	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -83,10 +73,16 @@ func void Use_Heilrezept_04()
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Это зелье может создать только алхимик, знающий рецепт лечебного эликсира.");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
+	if(Npc_IsPlayer(self))
+	{
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_04] == FALSE))
+		{
+			PLAYER_TALENT_ALCHEMY[POTION_Health_04] = TRUE;
+			Snd_Play("LevelUP");
+			B_LogEntry(TOPIC_TalentAlchemy,"Также необходимо иметь 1 луговой горец и 3 лечебные эссенции.");
+		};
+	};
 };
 
 
@@ -111,15 +107,6 @@ instance ITWr_Addon_Mana_04(C_Item)
 func void Use_Manarezept_04()
 {
 	var int nDocID;
-	if(Npc_IsPlayer(self))
-	{
-		if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_04] == FALSE))
-		{
-			PLAYER_TALENT_ALCHEMY[POTION_Mana_04] = TRUE;
-			Snd_Play("LevelUP");
-			B_LogEntry(TOPIC_TalentAlchemy,"Также необходимо иметь 1 луговой горец и 3 эссенции маны.");
-		};
-	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -135,10 +122,16 @@ func void Use_Manarezept_04()
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Это зелье может создать только алхимик, знающий рецепт эликсира маны.");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
+	if(Npc_IsPlayer(self))
+	{
+		if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_04] == FALSE))
+		{
+			PLAYER_TALENT_ALCHEMY[POTION_Mana_04] = TRUE;
+			Snd_Play("LevelUP");
+			B_LogEntry(TOPIC_TalentAlchemy,"Также необходимо иметь 1 луговой горец и 3 эссенции маны.");
+		};
+	};
 };
 
 
@@ -176,7 +169,6 @@ func void Use_Hinweis_01()
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Флетчер");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -233,13 +225,13 @@ instance ITWr_Addon_MCELIXIER_01(C_Item)
 	description = name;
 	text[0] = "Рецепт эликсира изменения сознания.";
 	text[1] = "Это зелье помогает восстановить память.";
+	count[5] = value;
 };
 
 
 func void Use_MCELIXIER_01()
 {
 	var int nDocID;
-	Knows_MCELIXIER = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -254,9 +246,12 @@ func void Use_MCELIXIER_01()
 	Doc_PrintLines(nDocID,0,"Перемешать, вскипятить и добавить красный жгучий перец.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Это зелье может приготовить только опытный алхимик, владеющий навыком экстрагирования секрета из жал кровавых мух.");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_MCELIXIER == FALSE))
+	{
+		Knows_MCELIXIER = TRUE;
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для эликсира изменения сознания: 2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция и 1 красный жгучий перец.");
+	};
 };
 
 
@@ -278,7 +273,6 @@ instance ITWr_Addon_Pirates_01(C_Item)
 func void Use_Pirates_01()
 {
 	var int nDocID;
-	Read_JuansText = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -294,8 +288,8 @@ func void Use_Pirates_01()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"До встречи.");
 	Doc_PrintLine(nDocID,0,"Том");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
+	Read_JuansText = TRUE;
 };
 
 
@@ -311,13 +305,13 @@ instance ITWr_Addon_Joint_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "из сундука Фортуно.";
+	count[5] = value;
 };
 
 
 func void Use_Joint_Rezept_01()
 {
 	var int nDocID;
-	Green_Extrem = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -326,14 +320,17 @@ func void Use_Joint_Rezept_01()
 	Doc_PrintLine(nDocID,0,"Зеленый послушник");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"(...) Косяки здесь довольно хороши, но в болотном лагере они получались все же лучше.");
+	Doc_PrintLines(nDocID,0,"(...) Косяки здесь довольно хороши, но в Болотном Лагере они получались все же лучше.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Если я возьму эссенцию двух болотных трав и добавлю луговой горец, получится косяк с эффектом зеленого послушника.");
+	Doc_PrintLines(nDocID,0,"Если я возьму эссенцию двух болотных трав и добавлю луговой горец, получится косяк с эффектом 'Зеленого послушника'.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Зеленый послушник помогает от любой боли и просветляет разум.");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"'Зеленый послушник' помогает от любой боли и просветляет разум.");
 	Doc_Show(nDocID);
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Green_Extrem == FALSE))
+	{
+		Green_Extrem = TRUE;
+		B_LogEntry(TOPIC_TalentAlchemy, "Ингредиенты для 'Зеленого послушника': 2 болотных травы и 1 луговой горец.");
+	};
 };
 
 
@@ -348,21 +345,21 @@ instance ITWr_Addon_Lou_Rezept(C_Item)
 	on_state[0] = UseLouRezept;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Рецепт Молота Лу.";
+	text[0] = "Рецепт 'Молота Лу'.";
+	count[5] = value;
 };
 
 
 func void UseLouRezept()
 {
 	var int nDocID;
-	Knows_LousHammer = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"Рецепт Молота Лу");
+	Doc_PrintLine(nDocID,0,"Молот Лу");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Ингредиенты для приготовления Молота:");
 	Doc_PrintLine(nDocID,0,"");
@@ -375,12 +372,17 @@ func void UseLouRezept()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Старик, рассказавший мне этот рецепт, предупреждал, что лучше не дышать испарениями этого пойла!");
 	Doc_Show(nDocID);
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_LousHammer == FALSE))
+	{
+		Knows_LousHammer = TRUE;
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'Молота Лу': 1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы и 1 ром.");
+	};
 };
 
 
 instance ITWr_Addon_Lou_Rezept2(C_Item)
 {
-	name = "Двойной Молот Лу";
+	name = "Двойной 'Молот Лу'";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 140;
@@ -389,28 +391,33 @@ instance ITWr_Addon_Lou_Rezept2(C_Item)
 	on_state[0] = UseLouRezept2;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Рецепт двойного Молота Лу.";
+	text[0] = "Рецепт двойного 'Молота Лу'.";
+	count[5] = value;
 };
 
 
 func void UseLouRezept2()
 {
 	var int nDocID;
-	Knows_Schlafhammer = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"Двойной Молот Лу");
+	Doc_PrintLine(nDocID,0,"Двойной 'Молот Лу'");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Возьмите Молот Лу и перегоните его еще раз.");
+	Doc_PrintLines(nDocID,0,"Возьмите 'Молот Лу' и перегоните его еще раз.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Этот напиток способен приготовить только очень опытный винокур.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Если за это возьмется дилетант, он рискует ослепнуть и даже лишиться жизни.");
 	Doc_Show(nDocID);
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_Schlafhammer == FALSE))
+	{
+		Knows_Schlafhammer = TRUE;
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для двойного 'Молота Лу': 1 'Молот Лу' и 1 ром.");
+	};
 };
 
 
@@ -425,14 +432,14 @@ instance ITWr_Addon_Piratentod(C_Item)
 	on_state[0] = UseRezeptPiratentod;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Рецепт Быстрой селедки.";
+	text[0] = "Рецепт 'Быстрой селедки'.";
+	count[5] = value;
 };
 
 
 func void UseRezeptPiratentod()
 {
 	var int nDocID;
-	Knows_SchnellerHering = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -448,8 +455,12 @@ func void UseRezeptPiratentod()
 	Doc_PrintLines(nDocID,0,"свежесорванной снеппер-травы.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Осторожно! Это пойло обладает очень сильным эффектом.");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_SchnellerHering == FALSE))
+	{
+		Knows_SchnellerHering = TRUE;
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'Быстрой селедки': 1 вода, 1 ром, 1 рыба и 1 снеппер-трава.");
+	};
 };
 
 
@@ -458,16 +469,16 @@ instance Fakescroll_Addon(C_Item)
 	name = "Клочок бумаги";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	hp = 5;
+/*	hp = 5;
 	hp_max = 5;
 	weight = 1;
-	value = 0;
+	value = 0; */
 	visual = "Fakescroll.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	description = name;
 	text[5] = NAME_Value;
-	count[5] = value;
+//	count[5] = value;
 };
 
 instance ItWr_Addon_AxtAnleitung(C_Item)
@@ -482,17 +493,13 @@ instance ItWr_Addon_AxtAnleitung(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Инструкция изготовления легкого острого топора.";
+	count[5] = value;
 };
 
 
 func void UseAxtAnleitung()
 {
 	var int nDocID;
-	if((Npc_GetTalentSkill(hero,NPC_TALENT_SMITH) >= 1) && (Knows_Banditenaxt == FALSE))
-	{
-		Knows_Banditenaxt = TRUE;
-		B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужны 1 кусок руды, 3 зуба и 1 дополнительная заготовка.");
-	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -504,15 +511,20 @@ func void UseAxtAnleitung()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Этот топор может выковать любой, знакомый с основами кузнечного дела.");
-	Doc_PrintLines(nDocID,0,"Необходимы два куска раскаленной сырой стали.");
-	Doc_PrintLines(nDocID,0,"Один кусок руды и три зуба волка, снеппера или подобного им зверя.");
+	Doc_PrintLines(nDocID,0,"Необходимы два куска раскаленной сырой стали, один кусок руды и три зуба волка,");
+	Doc_PrintLines(nDocID,0,"снеппера или подобного им зверя.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Перекуйте на наковальне руду и зубы вместе со");
-	Doc_PrintLine(nDocID,0,"сталью.");
+	Doc_PrintLine(nDocID,0,"Перекуйте на наковальне руду и зубы вместе");
+	Doc_PrintLine(nDocID,0,"со сталью.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Такой топор очень легок и наносит значительный");
-	Doc_PrintLines(nDocID,0,"урон.");
+	Doc_PrintLine(nDocID,0,"Такой топор очень легок и наносит");
+	Doc_PrintLine(nDocID,0,"значительный урон.");
 	Doc_Show(nDocID);
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_SMITH) && (Knows_Banditenaxt == FALSE))
+	{
+		Knows_Banditenaxt = TRUE;
+		B_LogEntry(TOPIC_TalentSmith,"Для изготовления бандитского топора нужны: 1 кусок руды, 3 зуба и 1 дополнительная заготовка.");
+	};
 };
 
 

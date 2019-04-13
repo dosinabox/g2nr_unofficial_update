@@ -34,7 +34,7 @@ instance DIA_Jorgen_DI_Hallo(C_Info)
 
 func int DIA_Jorgen_DI_Hallo_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};

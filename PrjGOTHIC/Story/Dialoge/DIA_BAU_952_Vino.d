@@ -84,11 +84,11 @@ func void DIA_Vino_SeekWork_Info()
 		if(!Npc_IsDead(Lobart))
 		{
 			AI_Output(self,other,"DIA_Vino_SeekWork_05_04");	//Ќо если ты хочешь работать на Ћобарта в качестве поденного рабочего, € могу только предупредить теб€. ќн платит люд€м вроде теб€ сущие гроши!
-			if(((Mob_HasItems("CHEST_LOBART",ITAR_Bau_L) == TRUE) || (Npc_HasItems(Lobart,ITAR_Bau_L) > 0)) && (Lobart_Kleidung_Verkauft == FALSE) && (Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG) || Npc_KnowsInfo(other,DIA_Lobart_WorkNOW)))
+			if((Mob_HasItems("CHEST_LOBART",ITAR_Bau_L) || Npc_HasItems(Lobart,ITAR_Bau_L)) && (Lobart_Kleidung_Verkauft == FALSE) && (Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG) || Npc_KnowsInfo(other,DIA_Lobart_WorkNOW)))
 			{
 				AI_Output(other,self,"DIA_Vino_SeekWork_15_05");	//ќн предложил купить у него чистую одежду дешевле, если € буду помогать на ферме.
 				AI_Output(self,other,"DIA_Vino_SeekWork_05_06");	//’мм. ” мен€ нет дл€ теб€ никакой работы, но ты можешь принести мне и парн€м что-нибудь выпить.
-				AI_Output(self,other,"DIA_Vino_SeekWork_05_07");	//ѕринеси мне бутылку вина, и € скажу Ћобарту, что ты очень помог нам (смеетс€ издевательски).
+				AI_Output(self,other,"DIA_Vino_SeekWork_05_07");	//ѕринеси мне бутылку вина, и € скажу Ћобарту, что ты очень помог нам. (смеетс€ издевательски)
 				MIS_Vino_Wein = LOG_Running;
 				Log_CreateTopic(TOPIC_Vino,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_Vino,LOG_Running);
@@ -120,7 +120,7 @@ instance DIA_Vino_BringWine(C_Info)
 
 func int DIA_Vino_BringWine_Condition()
 {
-	if((MIS_Vino_Wein == LOG_Running) && (Npc_HasItems(other,ItFo_Wine) > 0) && (Kapitel < 3))
+	if((MIS_Vino_Wein == LOG_Running) && Npc_HasItems(other,ItFo_Wine) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -333,7 +333,7 @@ instance DIA_Vino_Heilung(C_Info)
 
 func int DIA_Vino_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF) && ((Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") < 4000) == FALSE))
+	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF) && !(Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") < 4000))
 	{
 		return TRUE;
 	};

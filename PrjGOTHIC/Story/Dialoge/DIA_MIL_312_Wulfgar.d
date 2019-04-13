@@ -204,11 +204,14 @@ func void DIA_Wulfgar_HowToBegin_Info()
 	AI_Output(self,other,"DIA_Wulfgar_HowToBegin_04_01");	//Выбирай сам.
 	AI_Output(self,other,"DIA_Wulfgar_HowToBegin_04_02");	//Но даже если ты специализируешься только в одном типе оружия, со временем ты начнешь автоматически изучать и другой тип.
 	AI_Output(self,other,"DIA_Wulfgar_HowToBegin_04_03");	//Если, например, ты хорошо сражаешься одноручным оружием, но все еще новичок в использовании двуручного...
-	AI_Output(self,other,"DIA_Wulfgar_HowToBegin_04_04");	//...твой навык владения двуручным оружием повышается каждый раз, когда ты тренируешься с одноручным...
+	AI_Output(self,other,"DIA_Wulfgar_HowToBegin_04_04");	//... твой навык владения двуручным оружием повышается каждый раз, когда ты тренируешься с одноручным...
 	AI_Output(self,other,"DIA_Wulfgar_HowToBegin_04_05");	//Правда, в этом случае обучение изматывает сильнее, чем когда ты тренируешься с различным типом оружия по очереди.
 	AI_Output(self,other,"DIA_Wulfgar_HowToBegin_04_06");	//Тебе нужно просто начать - и ты сам поймешь, о чем я говорю.
 };
 
+
+var int Wulfgar_Merke_1h;
+var int Wulfgar_Merke_2h;
 
 instance DIA_Wulfgar_Teach(C_Info)
 {
@@ -229,6 +232,16 @@ func int DIA_Wulfgar_Teach_Condition()
 	};
 };
 
+func void B_Wulfgar_Teach()
+{
+	Info_ClearChoices(DIA_Wulfgar_Teach);
+	Info_AddChoice(DIA_Wulfgar_Teach,Dialog_Back,DIA_Wulfgar_Teach_Back);
+	Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Wulfgar_Teach_2H_1);
+	Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Wulfgar_Teach_2H_5);
+	Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Wulfgar_Teach_1H_1);
+	Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Wulfgar_Teach_1H_5);
+};
+
 func void DIA_Wulfgar_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Wulfgar_Teach_15_00");	//Начнем обучение.
@@ -242,17 +255,18 @@ func void DIA_Wulfgar_Teach_Info()
 		{
 			AI_Output(self,other,"DIA_Wulfgar_Add_04_01");	//Конечно, уважаемый.
 		};
-		Info_ClearChoices(DIA_Wulfgar_Teach);
-		Info_AddChoice(DIA_Wulfgar_Teach,Dialog_Back,DIA_Wulfgar_Teach_Back);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Wulfgar_Teach_2H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Wulfgar_Teach_2H_5);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Wulfgar_Teach_1H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Wulfgar_Teach_1H_5);
+		B_Wulfgar_Teach();
+		Wulfgar_Merke_1h = other.HitChance[NPC_TALENT_1H];
+		Wulfgar_Merke_2h = other.HitChance[NPC_TALENT_2H];
 	};
 };
 
 func void DIA_Wulfgar_Teach_Back()
 {
+	if((Wulfgar_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Wulfgar_Merke_2h < other.HitChance[NPC_TALENT_2H]))
+	{
+		AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_04");	//Я еще сделаю из тебя отличного воина!
+	};
 	Info_ClearChoices(DIA_Wulfgar_Teach);
 };
 
@@ -260,12 +274,7 @@ func void DIA_Wulfgar_Teach_1H_1()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,75))
 	{
-		Info_ClearChoices(DIA_Wulfgar_Teach);
-		Info_AddChoice(DIA_Wulfgar_Teach,Dialog_Back,DIA_Wulfgar_Teach_Back);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Wulfgar_Teach_2H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Wulfgar_Teach_2H_5);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Wulfgar_Teach_1H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Wulfgar_Teach_1H_5);
+		B_Wulfgar_Teach();
 	};
 };
 
@@ -273,12 +282,7 @@ func void DIA_Wulfgar_Teach_1H_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,75))
 	{
-		Info_ClearChoices(DIA_Wulfgar_Teach);
-		Info_AddChoice(DIA_Wulfgar_Teach,Dialog_Back,DIA_Wulfgar_Teach_Back);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Wulfgar_Teach_2H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Wulfgar_Teach_2H_5);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Wulfgar_Teach_1H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Wulfgar_Teach_1H_5);
+		B_Wulfgar_Teach();
 	};
 };
 
@@ -286,12 +290,7 @@ func void DIA_Wulfgar_Teach_2H_1()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,75))
 	{
-		Info_ClearChoices(DIA_Wulfgar_Teach);
-		Info_AddChoice(DIA_Wulfgar_Teach,Dialog_Back,DIA_Wulfgar_Teach_Back);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Wulfgar_Teach_2H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Wulfgar_Teach_2H_5);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Wulfgar_Teach_1H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Wulfgar_Teach_1H_5);
+		B_Wulfgar_Teach();
 	};
 };
 
@@ -299,12 +298,7 @@ func void DIA_Wulfgar_Teach_2H_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,75))
 	{
-		Info_ClearChoices(DIA_Wulfgar_Teach);
-		Info_AddChoice(DIA_Wulfgar_Teach,Dialog_Back,DIA_Wulfgar_Teach_Back);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Wulfgar_Teach_2H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Wulfgar_Teach_2H_5);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Wulfgar_Teach_1H_1);
-		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Wulfgar_Teach_1H_5);
+		B_Wulfgar_Teach();
 	};
 };
 

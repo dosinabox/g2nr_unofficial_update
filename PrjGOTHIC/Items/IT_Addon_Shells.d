@@ -7,7 +7,7 @@ func void B_OpenShell()
 {
 	var int shellomizer;
 	shellomizer = Hlp_Random(100);
-	Shell_Opener = Shell_Opener + 1;
+	Shell_Opener += 1;
 	if(Shell_Opener == 1)
 	{
 		B_PlayerFindItem(ItMi_Addon_WhitePearl,1);

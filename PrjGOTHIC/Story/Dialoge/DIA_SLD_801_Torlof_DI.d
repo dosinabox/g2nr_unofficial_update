@@ -34,7 +34,7 @@ instance DIA_Torlof_DI_Hallo(C_Info)
 
 func int DIA_Torlof_DI_Hallo_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -69,7 +69,7 @@ instance DIA_Torlof_DI_Teach(C_Info)
 
 func int DIA_Torlof_DI_Teach_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};

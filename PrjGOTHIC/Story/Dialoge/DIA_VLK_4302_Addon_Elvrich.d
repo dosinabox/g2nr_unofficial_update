@@ -99,7 +99,7 @@ instance DIA_Addon_Elvrich_Wer(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Elvrich_Wer_Condition;
 	information = DIA_Addon_Elvrich_Wer_Info;
-	description = "Кто ты?";
+	description = "Кто ты такой?";
 };
 
 
@@ -172,7 +172,7 @@ func void DIA_Addon_Elvrich_WhatExactly_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_04_04");	//Конечно, я сопротивлялся, но их было слишком много. Ты, кстати, их не встречал?
 	Info_ClearChoices(DIA_Addon_Elvrich_WhatExactly);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Что хотели от тебя бандиты?",DIA_Addon_Elvrich_WhatExactly_Want);
-	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Рассказывай.",DIA_Addon_Elvrich_WhatExactly_lucia);
+	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Расскажи мне о Люсии.",DIA_Addon_Elvrich_WhatExactly_lucia);
 };
 
 func void DIA_Addon_Elvrich_WhatExactly_Want()

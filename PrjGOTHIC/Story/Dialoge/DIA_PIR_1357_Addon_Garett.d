@@ -279,13 +279,11 @@ func int DIA_Addon_Garett_GiveKompass_Condition()
 func void DIA_Addon_Garett_GiveKompass_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Garett_GiveKompass_15_00");	//Вот твой компас.
-	if(B_GiveInvItems(other,self,ItMI_Addon_Kompass_Mis,1))
-	{
-		Npc_RemoveInvItems(self,ItMI_Addon_Kompass_Mis,1);
-	};
+	B_GiveInvItems(other,self,ItMI_Addon_Kompass_Mis,1);
+	Npc_RemoveInvItem(self,ItMI_Addon_Kompass_Mis);
 	AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_01");	//(радостно) Да, это он! Вот уж не думал, что снова его увижу.
 	AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_02");	//Спасибо, приятель!
-	if(Npc_HasItems(self,ItBe_Addon_Prot_EdgPoi) > 0)
+	if(Npc_HasItems(self,ItBe_Addon_Prot_EdgPoi))
 	{
 		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_03");	//На этот раз Грег его не получит.
 		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_04");	//Возьми в награду этот пояс. Это одна из самых ценных моих вещей.

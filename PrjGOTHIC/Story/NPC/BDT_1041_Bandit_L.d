@@ -23,7 +23,7 @@ instance BDT_1041_Bandit_L(Npc_Default)
 
 func void Rtn_Start_1041()
 {
-	TA_Repair_Hut(0,0,12,0,"NW_CASTLEMINE_TOWER_REP_HUT");
-	TA_Repair_Hut(12,0,0,0,"NW_CASTLEMINE_TOWER_REP_HUT");
+	TA_Sit_Chair(0,0,8,0,"NW_CASTLEMINE_HUT_03");
+	TA_Repair_Hut(8,0,0,0,"NW_CASTLEMINE_TOWER_REP_HUT");
 };
 

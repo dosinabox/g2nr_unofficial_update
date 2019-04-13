@@ -214,7 +214,7 @@ instance DIA_Addon_Francis_Buch(C_Info)
 	condition = DIA_Addon_Francis_Buch_Condition;
 	information = DIA_Addon_Francis_Buch_Info;
 	permanent = TRUE;
-	description = "Я нашел твое укрытие. Твои деньги и бухгалтерскую книгу...";
+	description = "Я нашел твое укрытие. Твои деньги и бухгалтерскую книгу.";
 };
 
 
@@ -244,8 +244,8 @@ func void DIA_Addon_Francis_Buch_Info()
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_07");	//Там внутри много ценного...
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_08");	//(нервно) Но ты должен отдать мне книгу и держать свой рот на замке, идет?
 		B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
-		B_GiveInvItems(self,other,ITKE_Greg_ADDON_MIS,1);
 		Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
+		B_GiveInvItems(self,other,ITKE_Greg_ADDON_MIS,1);
 	}
 	else
 	{
@@ -282,10 +282,7 @@ instance DIA_Francis_PICKPOCKET(C_Info)
 
 func int DIA_Francis_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ITKE_Greg_ADDON_MIS) >= 1) && (other.attribute[ATR_DEXTERITY] >= (40 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(40,Hlp_GetInstanceID(ITKE_Greg_ADDON_MIS),1);
 };
 
 func void DIA_Francis_PICKPOCKET_Info()
@@ -297,19 +294,7 @@ func void DIA_Francis_PICKPOCKET_Info()
 
 func void DIA_Francis_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 40)
-	{
-		B_GiveInvItems(self,other,ITKE_Greg_ADDON_MIS,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Francis_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(40,Hlp_GetInstanceID(ITKE_Greg_ADDON_MIS),1);
 	Info_ClearChoices(DIA_Francis_PICKPOCKET);
 };
 

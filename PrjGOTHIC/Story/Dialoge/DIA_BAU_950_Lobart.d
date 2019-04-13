@@ -37,7 +37,7 @@ instance DIA_Lobart_STOLENCLOTHS(C_Info)
 
 func int DIA_Lobart_STOLENCLOTHS_Condition()
 {
-	if((Mob_HasItems("CHEST_LOBART",ITAR_Bau_L) == FALSE) && (Lobart_Kleidung_Verkauft == FALSE) && (hero.guild == GIL_NONE))
+	if(!Mob_HasItems("CHEST_LOBART",ITAR_Bau_L) && (Lobart_Kleidung_Verkauft == FALSE) && (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -47,7 +47,7 @@ func void DIA_Lobart_STOLENCLOTHS_Info()
 {
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
-	if(Hlp_IsItem(heroArmor,ITAR_Bau_L) == TRUE)
+	if(Hlp_IsItem(heroArmor,ITAR_Bau_L))
 	{
 		AI_Output(self,other,"DIA_Lobart_STOLENCLOTHS_05_00");	//Я не могу поверить своим глазам! Этот ублюдок расхаживает в МОЕЙ одежде!
 	}
@@ -63,7 +63,7 @@ func void DIA_Lobart_STOLENCLOTHS_Info()
 	AI_Output(self,other,"DIA_Lobart_STOLENCLOTHS_05_04");	//Отдай немедленно мою одежду!
 	Info_ClearChoices(DIA_Lobart_STOLENCLOTHS);
 	Info_AddChoice(DIA_Lobart_STOLENCLOTHS,"Забудь об этом!",DIA_Lobart_STOLENCLOTHS_ForgetIt);
-	if(Npc_HasItems(other,ITAR_Bau_L) > 0)
+	if(Npc_HasItems(other,ITAR_Bau_L))
 	{
 		Info_AddChoice(DIA_Lobart_STOLENCLOTHS,"Ладно, можешь забрать ее назад.",DIA_Lobart_STOLENCLOTHS_HereYouGo);
 	}
@@ -219,40 +219,46 @@ func int DIA_Lobart_BuyClothes_Condition()
 	};
 };
 
+var int DIA_Lobart_BuyClothes_Once;
+
 func void DIA_Lobart_BuyClothes_Info()
 {
 	Wert_LobartsRuestung = 80;
 	AI_Output(other,self,"DIA_Lobart_BuyClothes_15_00");	//Сколько стоит эта рабочая одежда?
-	AI_Output(self,other,"DIA_Lobart_BuyClothes_05_01");	//Так. Посморим...
+	AI_Output(self,other,"DIA_Lobart_BuyClothes_05_01");	//Так. Посмотрим...
 	if(Lobart_AgainstKing == TRUE)
 	{
-		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
+		Wert_LobartsRuestung -= 10;
 	};
 	if(MIS_Lobart_Rueben == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_02");	//Ты работал для меня на поле.
-		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
+		Wert_LobartsRuestung -= 10;
 	};
 	if(MIS_Hilda_PfanneKaufen == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_03");	//Ты помог моей жене.
-		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
+		Wert_LobartsRuestung -= 10;
 	};
 	if(MIS_Vino_Wein == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_04");	//Вино говорит, что ты очень помог ему. А это кое-что да значит - обычно он не очень-то ладит с поденными работниками.
-		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
+		Wert_LobartsRuestung -= 10;
 	};
 	if(MIS_Maleth_Bandits == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_05");	//Малет говорит, что ты прогнал бандитов. Эти ублюдки доставляли нам много проблем. Спасибо, что избавил нас от них!
-		Wert_LobartsRuestung = Wert_LobartsRuestung - 10;
+		Wert_LobartsRuestung -= 10;
 	};
 	B_Say_Gold(self,other,Wert_LobartsRuestung);
 	if(Wert_LobartsRuestung == 30)
 	{
 		AI_Output(self,other,"DIA_Lobart_GOLD_05_06");	//И дешевле я ее не отдам.
-		B_LogEntry(TOPIC_Kleidung,"Но он не продаст ее мне меньше, чем за 30 золотых монет.");
+		if(DIA_Lobart_BuyClothes_Once == FALSE)
+		{
+			B_LogEntry(TOPIC_Kleidung,"Но он не продаст ее мне меньше, чем за 30 золотых монет.");
+			DIA_Lobart_BuyClothes_Once = TRUE;
+		};
 	};
 	Info_ClearChoices(DIA_Lobart_BuyClothes);
 	Info_AddChoice(DIA_Lobart_BuyClothes,"Это все еще слишком дорого для меня.",DIA_Lobart_BuyClothes_NotYet);
@@ -264,7 +270,7 @@ func void DIA_Lobart_BuyClothes_BUY()
 	AI_Output(other,self,"DIA_Lobart_BuyClothes_BUY_15_00");	//Давай тогда сюда эту рабочую одежду.
 	if(B_GiveInvItems(other,self,ItMi_Gold,Wert_LobartsRuestung))
 	{
-		if(Npc_HasItems(self,ITAR_Bau_L) > 0)
+		if(Npc_HasItems(self,ITAR_Bau_L))
 		{
 			AI_Output(self,other,"DIA_Lobart_BuyClothes_BUY_05_01");	//Хорошо, мой мальчик. Превыше всего я ценю честность. Вот, держи!
 			B_GiveInvItems(self,other,ITAR_Bau_L,1);
@@ -273,6 +279,7 @@ func void DIA_Lobart_BuyClothes_BUY()
 		{
 			AI_Output(self,other,"DIA_Lobart_BuyClothes_BUY_05_02");	//В моем доме есть сундук, где ты найдешь постиранные вещи.
 			AI_Output(self,other,"DIA_Lobart_BuyClothes_BUY_05_03");	//Но даже не думай взять что-нибудь там без разрешения!
+			self.aivar[AIV_IGNORE_Theft] = TRUE;
 		};
 		Lobart_Kleidung_Verkauft = TRUE;
 		Wld_AssignRoomToGuild("farm03",GIL_NONE);
@@ -315,11 +322,11 @@ func int DIA_Lobart_AufstandInfo_Condition()
 func void DIA_Lobart_AufstandInfo_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_AufstandInfo_15_00");	//Как идут здесь дела?
-	AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_01");	//Ты не знаешь, как здесь дела? Мальчик, ты вообще откуда свалился? Мы на пороге гражданской войны!
+	AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_01");	//Ты не знаешь, как здесь идут дела? Мальчик, ты вообще откуда свалился? Мы на пороге гражданской войны!
 	if(hero.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_02");	//До последнего времени фермеры считали долю, отдаваемую городу, вполне справедливой.
-		AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_03");	//Но с тех пор, как в Хоринис пришли паладины, городская стража наведывается к нам все чаще и чаще - они так скоро заберут все, что у нас есть.
+		AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_03");	//Но с тех пор, как в Хоринис пришли паладины, городская стража наведывается к нам все чаще и чаще - и немного понемногу они так скоро заберут все, что у нас есть.
 		AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_04");	//Если так будет продолжаться и дальше, у нас ничего не останется для самих себя.
 	};
 	AI_Output(self,other,"DIA_Lobart_AufstandInfo_05_05");	//Некоторые фермеры стали бунтовать! Онар был первым из них!
@@ -450,12 +457,12 @@ func void DIA_Lobart_WorkNOW_Info()
 	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_02");	//Я хочу сказать, ты можешь помочь на поле. Также здесь еще наверняка найдется кое-какая работенка для тебя.
 	if(hero.guild == GIL_NONE)
 	{
-		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_03");	//Я могу заплатить тебе золотом. Или дать тебе приличную одежду.
+		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_03");	//Я могу заплатить тебе золотом. Или дать приличную одежду.
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_04");	//Эта одежда стоит довольно дорого. Я не могу отдать тебе ее просто так, но я могу продать тебе ее дешевле, если ты поработаешь на меня.
 		Log_CreateTopic(TOPIC_Kleidung,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Kleidung,LOG_Running);
 		B_LogEntry(TOPIC_Kleidung,"Фермер Лобарт готов продать мне рабочую одежду. Он может снизить цену за одежду, если я поработаю на его ферме. Чем больше я сделаю, тем дешевле обойдется мне одежда.");
-		if((Npc_HasEquippedArmor(other) == FALSE) || (Lobart_Kleidung_Verkauft == TRUE))
+		if(!Npc_HasEquippedArmor(other) || (Lobart_Kleidung_Verkauft == TRUE))
 		{
 			AI_Output(self,other,"DIA_Lobart_WorkNOW_05_05");	//Судя по тому, как ты выглядишь, я бы сказал: бери одежду.
 		}
@@ -464,7 +471,7 @@ func void DIA_Lobart_WorkNOW_Info()
 			AI_Output(self,other,"DIA_Lobart_WorkNOW_05_06");	//Но у тебя уже есть одежда, так что ты, вероятно, захочешь золото.
 		};
 	};
-	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_07");	//Работа следующая - небольшое поле репы за амбаром нужно собрать.
+	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_07");	//Работа следующая - на небольшом поле за амбаром нужно собрать репу.
 	Info_ClearChoices(DIA_Lobart_WorkNOW);
 	Info_AddChoice(DIA_Lobart_WorkNOW,"Я должен дергать репу? Ты, должно быть, шутишь!",DIA_Lobart_WorkNOW_WannaFoolMe);
 	Info_AddChoice(DIA_Lobart_WorkNOW,"Хорошо...",DIA_Lobart_WorkNOW_Ok);
@@ -517,7 +524,7 @@ instance DIA_Lobart_RuebenRunning(C_Info)
 
 func int DIA_Lobart_RuebenRunning_Condition()
 {
-	if((MIS_Lobart_Rueben == LOG_Running) && (Npc_HasItems(other,ItPl_Beet) >= 1) && (Kapitel < 3))
+	if((MIS_Lobart_Rueben == LOG_Running) && Npc_HasItems(other,ItPl_Beet) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -532,7 +539,7 @@ func void DIA_Lobart_RuebenRunning_Info()
 		{
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_01");	//Да, похоже, ты не такой уж бездельник, как кажешься.
 		};
-		if(Npc_IsDead(Hilda) == FALSE)
+		if(!Npc_IsDead(Hilda))
 		{
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_02");	//Отнеси ее моей жене в дом и скажи ей, чтобы она приготовила ее.
 			MIS_Lobart_RuebenToHilda = LOG_Running;
@@ -543,10 +550,10 @@ func void DIA_Lobart_RuebenRunning_Info()
 		MIS_Lobart_Rueben = LOG_SUCCESS;
 		B_GivePlayerXP(XP_LobartHolRueben);
 		AI_Output(other,self,"DIA_Lobart_RuebenRunning_15_03");	//Что насчет моей платы?
-		AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_04");	//Я могу дат тебе 5 золотых монет.
+		AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_04");	//Я могу дать тебе 5 золотых монет.
 		if(hero.guild == GIL_NONE)
 		{
-			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_05");	//...или продать тебе одежду дешевле. Что ты выбираешь?
+			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_05");	//... или продать тебе одежду дешевле. Что выбираешь?
 		};
 		Info_ClearChoices(DIA_Lobart_RuebenRunning);
 		if(hero.guild == GIL_NONE)
@@ -752,16 +759,16 @@ func void DIA_Lobart_DMT_Info()
 		};
 		Info_AddChoice(DIA_Lobart_DMT,"Какие у них дела с Вино?",DIA_Lobart_DMT_VinoWas);
 	};
-	if((Npc_IsDead(Hilda) == FALSE) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
+	if(!Npc_IsDead(Hilda) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
 	{
 		AI_Output(self,other,"DIA_Lobart_DMT_05_04");	//Вскоре после этого моя жена опять тяжело заболела. Она почти не встает с постели. С ней часто бывает такое.
 	};
 	AI_Output(self,other,"DIA_Lobart_DMT_05_05");	//Все пошло наперекосяк!
-	if((MIS_HealHilda != LOG_SUCCESS) && (Npc_IsDead(Hilda) == FALSE) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
+	if((MIS_HealHilda != LOG_SUCCESS) && !Npc_IsDead(Hilda) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)))
 	{
 		Info_AddChoice(DIA_Lobart_DMT,"Почему ты не отведешь жену к лекарю?",DIA_Lobart_DMT_FrauHeilen);
 	};
-	Info_AddChoice(DIA_Lobart_DMT,"Почему ты ничего е сделаешь с этими людьми в черном?",DIA_Lobart_DMT_hof);
+	Info_AddChoice(DIA_Lobart_DMT,"Почему ты ничего не сделаешь с этими людьми в черном?",DIA_Lobart_DMT_hof);
 	Info_AddChoice(DIA_Lobart_DMT,"Ты говорил с людьми в черном?",DIA_Lobart_DMT_spokeToThem);
 };
 
@@ -905,7 +912,7 @@ instance DIA_Lobart_ORKPROBLEM(C_Info)
 
 func int DIA_Lobart_ORKPROBLEM_Condition()
 {
-	if(((Npc_IsDead(OrcWarrior_Lobart1) == FALSE) || (Npc_IsDead(OrcWarrior_Lobart2) == FALSE) || (Npc_IsDead(OrcWarrior_Lobart3) == FALSE) || (Npc_IsDead(OrcWarrior_Lobart4) == FALSE) || (Npc_IsDead(OrcWarrior_Lobart5) == FALSE) || (Npc_IsDead(OrcWarrior_Lobart6) == FALSE)) && (Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
+	if((!Npc_IsDead(OrcWarrior_Lobart1) || !Npc_IsDead(OrcWarrior_Lobart2) || !Npc_IsDead(OrcWarrior_Lobart3) || !Npc_IsDead(OrcWarrior_Lobart4) || !Npc_IsDead(OrcWarrior_Lobart5) || !Npc_IsDead(OrcWarrior_Lobart6)) && (Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
 	{
 		return TRUE;
 	};
@@ -935,7 +942,7 @@ instance DIA_Lobart_ORKSWEG(C_Info)
 
 func int DIA_Lobart_ORKSWEG_Condition()
 {
-	if((Npc_IsDead(OrcWarrior_Lobart1) == TRUE) && (Npc_IsDead(OrcWarrior_Lobart2) == TRUE) && (Npc_IsDead(OrcWarrior_Lobart3) == TRUE) && (Npc_IsDead(OrcWarrior_Lobart4) == TRUE) && (Npc_IsDead(OrcWarrior_Lobart5) == TRUE) && (Npc_IsDead(OrcWarrior_Lobart6) == TRUE) && (Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
+	if(Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6) && (Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};

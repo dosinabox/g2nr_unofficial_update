@@ -42,6 +42,10 @@ func void B_ClearBonusFoodInv(var C_Npc slf)
 		{
 			Npc_RemoveInvItems(slf,ItPl_Dex_Herb_01,Npc_HasItems(slf,ItPl_Dex_Herb_01));
 		};
+		if(slf.guild == GIL_PIR)
+		{
+			Npc_RemoveInvItems(slf,ItFo_Addon_Pfeffer_01,Npc_HasItems(slf,ItFo_Addon_Pfeffer_01));
+		};
 	};
 };
 

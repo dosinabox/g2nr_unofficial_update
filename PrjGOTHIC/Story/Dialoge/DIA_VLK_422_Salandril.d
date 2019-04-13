@@ -1,7 +1,4 @@
 
-var int DIA_Salandril_PICKPOCKET_perm;
-var int dia_salandril_pickpocket_removed;
-
 instance DIA_Salandril_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;
@@ -23,11 +20,6 @@ func int DIA_Salandril_EXIT_Condition()
 
 func void DIA_Salandril_EXIT_Info()
 {
-	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-	{
-		CreateInvItem(self,ItKe_Salandril);
-		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -45,10 +37,7 @@ instance DIA_Salandril_PICKPOCKET(C_Info)
 
 func int DIA_Salandril_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (DIA_Salandril_PICKPOCKET_perm == FALSE) && ((Npc_HasItems(self,ItKe_Salandril) >= 1) || (DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)) && (other.attribute[ATR_DEXTERITY] >= (30 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),0);
 };
 
 func void DIA_Salandril_PICKPOCKET_Info()
@@ -60,30 +49,9 @@ func void DIA_Salandril_PICKPOCKET_Info()
 
 func void DIA_Salandril_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 30)
-	{
-		if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-		{
-			CreateInvItem(self,ItKe_Salandril);
-			DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-		};
-		B_GiveInvItems(self,other,ItKe_Salandril,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		DIA_Salandril_PICKPOCKET_perm = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Salandril_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-		{
-			CreateInvItem(self,ItKe_Salandril);
-			DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-		};
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	CreateInvItems(self,ItKe_Salandril,1);
+	B_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),1);
+	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
 };
 
 func void DIA_Salandril_PICKPOCKET_BACK()
@@ -133,7 +101,7 @@ instance DIA_Salandril_Trank(C_Info)
 
 func int DIA_Salandril_Trank_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_OLDWORLD == LOG_SUCCESS) && (Npc_KnowsInfo(other,DIA_Salandril_KLOSTER) == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_OLDWORLD == LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Salandril_KLOSTER))
 	{
 		return TRUE;
 	};
@@ -161,7 +129,7 @@ instance DIA_Salandril_Trade(C_Info)
 
 func int DIA_Salandril_Trade_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Salandril_KLOSTER) == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Salandril_KLOSTER))
 	{
 		return TRUE;
 	};
@@ -169,19 +137,14 @@ func int DIA_Salandril_Trade_Condition()
 
 func void DIA_Salandril_Trade_Info()
 {
-	if(Salandril_flag == 1)
+	if(Salandril_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
 		if(Salandril_flasks > 0)
 		{
 			CreateInvItems(self,ItMi_Flask,Salandril_flasks);
 		};
-		Salandril_flag = 0;
-	};
-	if(Npc_HasItems(self,ItKe_Salandril) >= 1)
-	{
-		Npc_RemoveInvItem(self,ItKe_Salandril);
-		DIA_SALANDRIL_PICKPOCKET_REMOVED = TRUE;
+		Salandril_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Salandril_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
@@ -221,11 +184,6 @@ func int DIA_Salandril_KAP3_EXIT_Condition()
 
 func void DIA_Salandril_KAP3_EXIT_Info()
 {
-	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-	{
-		CreateInvItem(self,ItKe_Salandril);
-		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -261,11 +219,6 @@ func void DIA_Salandril_KLOSTER_Info()
 		AI_Output(other,self,"DIA_Salandril_KLOSTER_15_03");	//У меня есть приказ, и я выполню его. Так что, либо ты пойдешь сам, либо мне придется заставить тебя.
 	};
 	AI_Output(self,other,"DIA_Salandril_KLOSTER_13_04");	//Что? Да я протащу тебя через весь город за шиворот, как паршивого щенка, и вышвырну за ворота.
-	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-	{
-		CreateInvItem(self,ItKe_Salandril);
-		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-	};
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -293,11 +246,6 @@ func void DIA_Salandril_GehinsKloster_Info()
 {
 	AI_Output(other,self,"DIA_Salandril_GehinsKloster_15_00");	//Так ты пойдешь в монастырь, или тебя еще раз проучить?
 	AI_Output(self,other,"DIA_Salandril_GehinsKloster_13_01");	//Ты еще пожалеешь об этом. Да, черт тебя побери, я пойду в этот монастырь, но тебе это просто так с рук не сойдет.
-	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-	{
-		CreateInvItem(self,ItKe_Salandril);
-		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KlosterUrteil");
 	MIS_Serpentes_BringSalandril_SLD = LOG_SUCCESS;
@@ -325,12 +273,7 @@ func int DIA_Salandril_Verschwinde_Condition()
 
 func void DIA_Salandril_Verschwinde_Info()
 {
-	B_Verschwinde_Stimme13();
-	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-	{
-		CreateInvItem(self,ItKe_Salandril);
-		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-	};
+	AI_Output(self,other,"DIA_BDT_13_STANDARD_13_01");	//Проваливай!
 	AI_StopProcessInfos(self);
 };
 
@@ -356,11 +299,6 @@ func int DIA_Salandril_KAP4_EXIT_Condition()
 
 func void DIA_Salandril_KAP4_EXIT_Info()
 {
-	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-	{
-		CreateInvItem(self,ItKe_Salandril);
-		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -386,11 +324,6 @@ func int DIA_Salandril_KAP5_EXIT_Condition()
 
 func void DIA_Salandril_KAP5_EXIT_Info()
 {
-	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-	{
-		CreateInvItem(self,ItKe_Salandril);
-		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-	};
 	AI_StopProcessInfos(self);
 };
 
@@ -416,11 +349,6 @@ func int DIA_Salandril_KAP6_EXIT_Condition()
 
 func void DIA_Salandril_KAP6_EXIT_Info()
 {
-	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
-	{
-		CreateInvItem(self,ItKe_Salandril);
-		DIA_SALANDRIL_PICKPOCKET_REMOVED = FALSE;
-	};
 	AI_StopProcessInfos(self);
 };
 

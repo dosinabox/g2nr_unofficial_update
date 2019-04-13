@@ -96,7 +96,7 @@ func void B_Nagur_Abfertigen()
 {
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
-	if((Hlp_IsItem(heroArmor,ITAR_Mil_L) == FALSE) && (Hlp_IsItem(heroArmor,ItAr_MIL_M) == FALSE) && (Hlp_IsItem(heroArmor,ItAr_PAL_M) == FALSE) && (Hlp_IsItem(heroArmor,ItAr_PAl_H) == FALSE) && (Hlp_IsItem(heroArmor,ItAr_NOV_L) == FALSE) && (Hlp_IsItem(heroArmor,ItAr_KDF_L) == FALSE) && (Hlp_IsItem(heroArmor,ItAr_KDF_H) == FALSE))
+	if(!Hlp_IsItem(heroArmor,ITAR_MIL_L) && !Hlp_IsItem(heroArmor,ITAR_MIL_M) && !Hlp_IsItem(heroArmor,ITAR_PAL_M) && !Hlp_IsItem(heroArmor,ITAR_PAL_H) && !Hlp_IsItem(heroArmor,ITAR_NOV_L) && !Hlp_IsItem(heroArmor,ITAR_KDF_L) && !Hlp_IsItem(heroArmor,ITAR_KDF_H))
 	{
 		AI_Output(self,other,"DIA_Nagur_Add_08_02");	//Ты думаешь, я не узнаю тебя, раз ты надел другую одежду?!
 	};
@@ -198,10 +198,16 @@ func void DIA_Nagur_Auftrag_Info()
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_06");	//И не пытайся продать эти товары сам. Ты все понял?
 	Info_ClearChoices(DIA_Nagur_Auftrag);
-	Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились. (КОНЕЦ)",DIA_Nagur_Auftrag_Okay);
-	Info_AddChoice(DIA_Nagur_Auftrag,"Где мне найти Бальтрама?",DIA_Nagur_Auftrag_Baltram);
+	Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились.",DIA_Nagur_Auftrag_Okay);
+	if(Baltram.aivar[AIV_TalkedToPlayer] == FALSE)
+	{
+		Info_AddChoice(DIA_Nagur_Auftrag,"Где мне найти Бальтрама?",DIA_Nagur_Auftrag_Baltram);
+	};
 	Info_AddChoice(DIA_Nagur_Auftrag,"Когда мне поговорить с Бальтрамом?",DIA_Nagur_Auftrag_Wann);
-	Info_AddChoice(DIA_Nagur_Auftrag,"Где ферма Акила?",DIA_Nagur_Auftrag_Akil);
+	if(Akil.aivar[AIV_TalkedToPlayer] == FALSE)
+	{
+		Info_AddChoice(DIA_Nagur_Auftrag,"Где ферма Акила?",DIA_Nagur_Auftrag_Akil);
+	};
 	Info_AddChoice(DIA_Nagur_Auftrag,"Какой ожидается навар?",DIA_Nagur_Auftrag_Gewinn);
 };
 
@@ -256,7 +262,7 @@ instance DIA_Nagur_Success(C_Info)
 
 func int DIA_Nagur_Success_Condition()
 {
-	if((MIS_Nagur_Bote == LOG_Running) && (Npc_HasItems(other,ItMi_BaltramPaket) >= 1) && (Nagur_Ausgeliefert == FALSE))
+	if((MIS_Nagur_Bote == LOG_Running) && Npc_HasItems(other,ItMi_BaltramPaket) && (Nagur_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -265,13 +271,11 @@ func int DIA_Nagur_Success_Condition()
 func void DIA_Nagur_Success_Info()
 {
 	AI_Output(other,self,"DIA_Nagur_Success_15_00");	//Я принес пакет.
+	B_GiveInvItems(other,self,ItMi_BaltramPaket,1);
+	Npc_RemoveInvItem(self,ItMi_BaltramPaket);
 	AI_Output(self,other,"DIA_Nagur_Success_08_01");	//Отлично. Теперь мне нужно продать его. Заходи завтра.
 	B_LogEntry(TOPIC_Nagur,"Нагур получил посылку. Он заплатит мне золотом завтра.");
 	AI_StopProcessInfos(self);
-	if(B_GiveInvItems(other,self,ItMi_BaltramPaket,1))
-	{
-		Npc_RemoveInvItems(self,ItMi_BaltramPaket,1);
-	};
 	NagurDay = B_GetDayPlus();
 };
 
@@ -313,7 +317,7 @@ func void DIA_Nagur_Deal_Info()
 		MIS_Baltram_ScoutAkil = LOG_FAILED;
 		B_GivePlayerXP(XP_Nagur_Bote);
 		DIA_Nagur_Deal_permanent = TRUE;
-		Diebesgilde_Okay = Diebesgilde_Okay + 1;
+		Diebesgilde_Okay += 1;
 		AI_StopProcessInfos(self);
 	}
 	else
@@ -408,7 +412,7 @@ instance DIA_Nagur_Sign(C_Info)
 	condition = DIA_Nagur_Sign_Condition;
 	information = DIA_Nagur_Sign_Info;
 	permanent = FALSE;
-	description = "(Показать сигнал воров)";
+	description = DIALOG_SecretSign;
 };
 
 

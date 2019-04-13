@@ -1,5 +1,5 @@
 
-instance Sld_803_Cipher(Npc_Default)
+instance SLD_803_Cipher(Npc_Default)
 {
 	name[0] = "Сифер";
 	guild = GIL_SLD;
@@ -10,13 +10,13 @@ instance Sld_803_Cipher(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItRw_Arrow,50);
 	CreateInvItems(self,ItRw_Bow_L_02,1);
 	CreateInvItems(self,ItRw_Sld_Bow,1);
 	CreateInvItems(self,ItMw_2H_OrcAxe_01,1);
 	CreateInvItems(self,ItLsTorch,8);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart10,BodyTex_N,ItAr_Sld_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart10,BodyTex_N,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

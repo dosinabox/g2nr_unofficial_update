@@ -73,7 +73,7 @@ func void DIA_Orlan_Wein_NEIN()
 func void DIA_Orlan_Wein_Nie()
 {
 	AI_Output(other,self,"DIA_Orlan_Wein_Nie_15_00");	//Эй, давай сюда 240 монет.
-	AI_Output(self,other,"DIA_Orlan_Wein_Nie_05_01");	//Ты не хочешь вести со мной бизнес, да? (вздыхает) Ну хорошо, вот твое золото.
+	AI_Output(self,other,"DIA_Orlan_Wein_Nie_05_01");	//(вздыхает) Ну хорошо, хорошо, вот твое золото.
 	B_GiveInvItems(self,other,ItMi_Gold,240);
 	B_GiveInvItems(other,self,ItFo_Wine,12);
 	Info_ClearChoices(DIA_Orlan_Wein);
@@ -107,7 +107,7 @@ instance DIA_Orlan_WERBISTDU(C_Info)
 	nr = 2;
 	condition = DIA_Orlan_WERBISTDU_Condition;
 	information = DIA_Orlan_WERBISTDU_Info;
-	description = "Кто ты?";
+	description = "Ты кто?";
 };
 
 
@@ -241,7 +241,7 @@ func void DIA_Addon_Orlan_Teleportstein_sehen()
 	B_GiveInvItems(self,other,itke_orlan_teleportstation,1);
 	Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_TeleportsNW,"Орлан запер камень-телепорт в пещере к юго-западу от своей таверны.");
+	B_LogEntry(TOPIC_Addon_TeleportsNW,"Орлан запер телепорт в пещере к юго-западу от своей таверны.");
 };
 
 func void DIA_Addon_Orlan_Teleportstein_wo()
@@ -369,9 +369,8 @@ func void DIA_Orlan_RUESTUNG_Buy()
 	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_Leather_L))
 	{
 		AI_Output(self,other,"DIA_Orlan_RUESTUNG_Buy_05_01");	//Мудрый выбор.
-		CreateInvItems(self,ITAR_Leather_L,1);
-		B_GiveInvItems(self,other,ITAR_Leather_L,1);
-		AI_EquipBestArmor(other);
+		CreateInvItem(hero,ITAR_Leather_L);
+		AI_EquipArmor(hero,ITAR_Leather_L);
 		DIA_Orlan_RUESTUNG_noPerm = TRUE;
 	}
 	else
@@ -633,7 +632,7 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	AI_Output(other,self,"DIA_Orlan_WETTKAMPFLAEUFT_15_01");	//Что случилось?
 	AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_02");	//Состязание 'кто кого перепьет' наконец-то закончилось.
 	AI_Output(other,self,"DIA_Orlan_WETTKAMPFLAEUFT_15_03");	//Кто победил?
-	if((Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) == FALSE) && (Mob_HasItems("CHEST_RUKHAR",ItFo_Water) == TRUE))
+	if(!Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) && Mob_HasItems("CHEST_RUKHAR",ItFo_Water))
 	{
 		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_04");	//На этот раз Рэндольф. Рухару нынче не повезло.
 	}
@@ -648,7 +647,17 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(Randolph,"Start");
+	if(Hlp_IsValidNpc(Randolph))
+	{
+		if(Rukhar_Won_Wettkampf == TRUE)
+		{
+			B_StartOtherRoutine(Randolph,"WettkampfRandolphLost");
+		}
+		else
+		{
+			B_StartOtherRoutine(Randolph,"Start");
+		};
+	};
 	if(Hlp_IsValidNpc(Rukhar))
 	{
 		if(Rukhar_Won_Wettkampf == TRUE)

@@ -10,26 +10,26 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	oth.lp = oth.lp - kosten;
+	oth.lp -= kosten;
 	Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
 	B_LogEntry(TOPIC_TalentRunes,"Чтобы создать руну, мне нужен свиток с заклинанием и определенные ингредиенты. При помощи этих ингредиентов и чистого рунного камня я могу создать руну на рунном столе.");
-	if(Npc_IsDead(Gorax) == FALSE)
+	if(!Npc_IsDead(Gorax))
 	{
 		ScrollTrader = Hlp_GetNpc(Gorax);
 	}
-	else if(Npc_IsDead(Isgaroth) == FALSE)
+	else if(!Npc_IsDead(Isgaroth))
 	{
 		ScrollTrader = Hlp_GetNpc(Isgaroth);
 	}
-	else if(Npc_IsDead(Engor) == FALSE)
+	else if(!Npc_IsDead(Engor))
 	{
 		ScrollTrader = Hlp_GetNpc(Engor);
 	}
-	else if(Npc_IsDead(Orlan) == FALSE)
+	else if(!Npc_IsDead(Orlan))
 	{
 		ScrollTrader = Hlp_GetNpc(Orlan);
 	}
-	else if(Npc_IsDead(Cronos_ADW) == FALSE)
+	else if(!Npc_IsDead(Cronos_ADW))
 	{
 		ScrollTrader = Hlp_GetNpc(Cronos_ADW);
 	};
@@ -115,13 +115,13 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_LightHeal] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_LightHeal,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Лечение легких ранений':1 лечебная трава.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Лечение легких ранений': 1 лечебная трава.");
 	};
 	if(spell == SPL_SummonGoblinSkeleton)
 	{
 		PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_SumGobSkel,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Создание скелета гоблина':1 кость гоблина.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Вызов скелета гоблина': 1 кость гоблина.");
 	};
 	if(spell == SPL_InstantFireball)
 	{
@@ -133,7 +133,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_Zap] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_Zap,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Малая молния':1 горный хрусталь.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Малая молния': 1 горный хрусталь.");
 	};
 	if(spell == SPL_SummonWolf)
 	{
@@ -145,7 +145,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_WindFist] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_Windfist,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Кулак ветра':1 уголь.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Кулак ветра': 1 уголь.");
 	};
 	if(spell == SPL_Sleep)
 	{
@@ -175,7 +175,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_SummonSkeleton] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_SumSkel,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Создание скелета': 1 кость скелета.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Вызов скелета': 1 кость скелета.");
 	};
 	if(spell == SPL_Fear)
 	{
@@ -199,19 +199,19 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_SummonGolem] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_SumGol,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны `Пробуждение голема`:1 сердце каменного голема.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Вызов голема': 1 сердце каменного голема.");
 	};
 	if(spell == SPL_DestroyUndead)
 	{
 		PLAYER_TALENT_RUNES[SPL_DestroyUndead] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_HarmUndead,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Уничтожение нежити':1 святая вода.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Уничтожение нежити': 1 святая вода.");
 	};
 	if(spell == SPL_Pyrokinesis)
 	{
 		PLAYER_TALENT_RUNES[SPL_Pyrokinesis] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_Pyrokinesis,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны `Большая огненная буря': 1 сера и 1 язык огненного ящера.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Большая огненная буря': 1 сера и 1 язык огненного ящера.");
 	};
 	if(spell == SPL_Firestorm)
 	{
@@ -259,13 +259,13 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_ArmyOfDarkness,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Армия тьмы': 1 кость скелета, 1 черный жемчуг, 1 сердце каменного голема и 1 cердце демона.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Армия Тьмы': 1 кость скелета, 1 черный жемчуг, 1 сердце каменного голема и 1 cердце демона.");
 	};
 	if(spell == SPL_Shrink)
 	{
 		PLAYER_TALENT_RUNES[SPL_Shrink] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_Shrink,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Сморщивание монстра': 1 кость гоблина и 1 клык тролля.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Уменьшение монстра': 1 кость гоблина и 1 клык тролля.");
 	};
 	if(spell == SPL_Whirlwind)
 	{
@@ -313,7 +313,7 @@ func int B_TeachPlayerPalRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	oth.lp = oth.lp - kosten;
+	oth.lp -= kosten;
 	if(spell == SPL_PalLight)
 	{
 		PLAYER_TALENT_RUNES[SPL_PalLight] = TRUE;

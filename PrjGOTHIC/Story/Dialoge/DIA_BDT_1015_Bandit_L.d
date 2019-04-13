@@ -1,7 +1,7 @@
 
 instance DIA_1015_BANDIT_EXIT(C_Info)
 {
-	npc = Bdt_1015_Bandit_L;
+	npc = BDT_1015_Bandit_L;
 	nr = 999;
 	condition = DIA_1015_BANDIT_EXIT_Condition;
 	information = DIA_1015_BANDIT_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_1015_BANDIT_EXIT_Info()
 
 instance DIA_1015_BANDIT_AMBUSH(C_Info)
 {
-	npc = Bdt_1015_Bandit_L;
+	npc = BDT_1015_Bandit_L;
 	nr = 2;
 	condition = DIA_1015_BANDIT_AMBUSH_Condition;
 	information = DIA_1015_BANDIT_AMBUSH_Info;

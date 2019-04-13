@@ -40,7 +40,7 @@ instance PC_L10(Npc_Default)
 	attribute[ATR_MANA] = 64;
 	attribute[ATR_HITPOINTS_MAX] = 148;
 	attribute[ATR_HITPOINTS] = 148;
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ITAR_Mil_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ITAR_MIL_L);
 	B_AddFightSkill(self,NPC_TALENT_1H,30);
 	B_AddFightSkill(self,NPC_TALENT_2H,10);
 	B_AddFightSkill(self,NPC_TALENT_BOW,10);
@@ -102,7 +102,7 @@ instance PC_L40(Npc_Default)
 	attribute[ATR_MANA] = 172;
 	attribute[ATR_HITPOINTS_MAX] = 520;
 	attribute[ATR_HITPOINTS] = 520;
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ItAr_PAL_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ITAR_PAL_M);
 	B_AddFightSkill(self,NPC_TALENT_1H,90);
 	B_AddFightSkill(self,NPC_TALENT_2H,60);
 	B_AddFightSkill(self,NPC_TALENT_BOW,10);
@@ -142,7 +142,7 @@ instance PC_L60(Npc_Default)
 	attribute[ATR_MANA] = 234;
 	attribute[ATR_HITPOINTS_MAX] = 760;
 	attribute[ATR_HITPOINTS] = 760;
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ItAr_PAl_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ITAR_PAL_H);
 	B_AddFightSkill(self,NPC_TALENT_1H,90);
 	B_AddFightSkill(self,NPC_TALENT_2H,60);
 	B_AddFightSkill(self,NPC_TALENT_BOW,10);
@@ -178,7 +178,7 @@ instance PC_E3Mage(Npc_Default)
 	attribute[ATR_MANA] = 200;
 	attribute[ATR_HITPOINTS_MAX] = 500;
 	attribute[ATR_HITPOINTS] = 500;
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ItAr_KDF_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ITAR_KDF_H);
 	B_AddFightSkill(self,NPC_TALENT_1H,40);
 	B_AddFightSkill(self,NPC_TALENT_2H,30);
 	B_AddFightSkill(self,NPC_TALENT_BOW,20);
@@ -312,7 +312,7 @@ instance PC_E3Paladin(Npc_Default)
 	attribute[ATR_MANA] = 50;
 	attribute[ATR_HITPOINTS_MAX] = 500;
 	attribute[ATR_HITPOINTS] = 500;
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ItAr_PAl_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_N,ITAR_PAL_H);
 	B_AddFightSkill(self,NPC_TALENT_1H,100);
 	B_AddFightSkill(self,NPC_TALENT_2H,90);
 	B_AddFightSkill(self,NPC_TALENT_BOW,80);
@@ -407,12 +407,12 @@ instance PC_Bandit(Npc_Default)
 	CreateInvItems(self,ItRi_Addon_STR_01,1);
 	CreateInvItems(self,ItRi_Addon_STR_02,1);
 	CreateInvItems(self,ITAR_Leather_L,1);
-	CreateInvItems(self,ItAr_Sld_L,1);
-	CreateInvItems(self,itar_sld_M,1);
-	CreateInvItems(self,ItAr_Sld_H,1);
-	CreateInvItems(self,ItAr_MIL_M,1);
-	CreateInvItems(self,ItAr_KDF_H,1);
-	CreateInvItems(self,ItAr_NOV_L,1);
+	CreateInvItems(self,ITAR_SLD_L,1);
+	CreateInvItems(self,ITAR_SLD_M,1);
+	CreateInvItems(self,ITAR_SLD_H,1);
+	CreateInvItems(self,ITAR_MIL_M,1);
+	CreateInvItems(self,ITAR_KDF_H,1);
+	CreateInvItems(self,ITAR_NOV_L,1);
 	CreateInvItems(self,ItBE_Addon_Leather_01,1);
 	CreateInvItems(self,ItBE_Addon_SLD_01,1);
 	CreateInvItems(self,ItBE_Addon_MIL_01,1);

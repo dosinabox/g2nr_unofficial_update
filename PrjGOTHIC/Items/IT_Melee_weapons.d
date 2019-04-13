@@ -374,7 +374,7 @@ instance ItMw_2H_Axe_L_01(C_Item)
 {
 	name = " ирка";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_2HD_AXE | ITEM_NSPLIT;
+	flags = ITEM_2HD_AXE;
 	material = MAT_METAL;
 	value = Value_Spitzhacke;
 	damageTotal = Damage_Spitzhacke;
@@ -1854,7 +1854,7 @@ instance ItMw_Schlachtaxt(C_Item)
 
 instance ItMw_Krummschwert(C_Item)
 {
-	name = "јбордажна€ сабл€";
+	name = "ятаган";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;

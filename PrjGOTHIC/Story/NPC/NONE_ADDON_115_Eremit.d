@@ -11,6 +11,7 @@ instance NONE_ADDON_115_Eremit(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Weak_BaalNetbek,BodyTex_N,NO_ARMOR);
 	Mdl_SetModelFatness(self,1);
 	B_GiveNpcTalents(self);

@@ -30,11 +30,11 @@ func void Spell_Cast_Waterfist()
 {
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Waterfist;
+		self.attribute[ATR_MANA] -= SPL_Cost_Waterfist;
 	};
 	self.aivar[AIV_SelectSpell] += 1;
 };

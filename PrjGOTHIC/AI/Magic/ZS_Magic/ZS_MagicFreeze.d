@@ -35,7 +35,7 @@ func void ZS_MagicFreeze()
 
 func int ZS_MagicFreeze_Loop()
 {
-	if(Npc_GetStateTime(self) > SPL_TIME_FREEZE)
+	if((Npc_GetStateTime(self) > SPL_TIME_FREEZE) || (self.attribute[ATR_HITPOINTS] <= 0))
 	{
 		B_StopMagicFreeze();
 		return LOOP_END;
@@ -57,10 +57,6 @@ func int ZS_MagicFreeze_Loop()
 			};
 			B_MagicHurtNpc(other,self,SPL_FREEZE_DAMAGE);
 		};
-	};
-	if(self.attribute[ATR_HITPOINTS] == 0)
-	{
-		B_ClearRuneInv(self);
 	};
 	return LOOP_CONTINUE;
 };

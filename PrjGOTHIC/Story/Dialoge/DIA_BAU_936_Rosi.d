@@ -72,7 +72,7 @@ func int DIA_Rosi_WASMACHSTDU_Condition()
 func void DIA_Rosi_WASMACHSTDU_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_WASMACHSTDU_15_00");	//Что ты делаешь здесь?
-	if(Npc_IsDead(Sekob) == FALSE)
+	if(!Npc_IsDead(Sekob))
 	{
 		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_01");	//Я задаю себе этот вопрос уже несколько лет. Секоб, мой муж, умудрился перессориться со всеми соседями.
 		AI_Output(self,other,"DIA_Rosi_WASMACHSTDU_17_02");	//Он задолжал всем в округе. И еще он ворует продукты из запасов Онара и продает их в городе.
@@ -126,7 +126,7 @@ instance DIA_Rosi_BARRIERE(C_Info)
 
 func int DIA_Rosi_BARRIERE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) && (Npc_IsDead(Sekob) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) && !Npc_IsDead(Sekob))
 	{
 		return TRUE;
 	};
@@ -178,7 +178,7 @@ instance DIA_Rosi_BENGAR(C_Info)
 
 func int DIA_Rosi_BENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_DuInBarriere) && (Npc_IsDead(Balthasar) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Rosi_DuInBarriere) && !Npc_IsDead(Balthasar) && (Bengar.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -481,7 +481,7 @@ func void DIA_Rosi_ANGEKOMMEN_Info()
 	MIS_RosisFlucht = LOG_SUCCESS;
 	AI_Output(self,other,"DIA_Rosi_ANGEKOMMEN_17_02");	//Пожалуйста, прими этот скромный дар. Ты заслужил его.
 	CreateInvItems(Rosi,ItMi_Gold,650);
-	B_GiveInvItems(self,other,ItMi_Gold,450);
+	B_GiveInvItems(self,other,ItMi_Gold,650);
 	if(Npc_IsDead(Till))
 	{
 		B_GivePlayerXP(XP_SavedRosi);

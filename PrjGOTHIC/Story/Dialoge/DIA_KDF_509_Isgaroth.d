@@ -78,7 +78,7 @@ instance DIA_Isgaroth_Wolf(C_Info)
 	condition = DIA_Isgaroth_Wolf_Condition;
 	information = DIA_Isgaroth_Wolf_Info;
 	permanent = FALSE;
-	description = "Меня послал Сержио. Он поручил мне свои обязанности...";
+	description = "Меня послал Сержио. Он поручил мне свои обязанности. Что нужно сделать?";
 };
 
 
@@ -238,7 +238,7 @@ instance DIA_Isgaroth_Vatras(C_Info)
 
 func int DIA_Isgaroth_Vatras_Condition()
 {
-	if((MIS_Vatras_Message == LOG_Running) && ((Npc_HasItems(other,ItWr_VatrasMessage) == 1) || (Npc_HasItems(other,ItWr_VatrasMessage_Open) == 1)))
+	if((MIS_Vatras_Message == LOG_Running) && (Npc_HasItems(other,ItWr_VatrasMessage) || Npc_HasItems(other,ItWr_VatrasMessage_Open)))
 	{
 		return TRUE;
 	};
@@ -249,12 +249,10 @@ func void DIA_Isgaroth_Vatras_Info()
 	AI_Output(other,self,"DIA_ISgaroth_Vatras_15_00");	//Я несу сообщение от Ватраса.
 	AI_Output(self,other,"DIA_Isgaroth_Vatras_01_01");	//Что это за сообщение?
 	AI_Output(other,self,"DIA_Isgaroth_Vatras_15_02");	//Это письмо, вот.
-	if(Npc_HasItems(other,ItWr_VatrasMessage) == 1)
+	if(Npc_HasItems(other,ItWr_VatrasMessage))
 	{
-		if(B_GiveInvItems(other,self,ItWr_VatrasMessage,1))
-		{
-			Npc_RemoveInvItems(self,ItWr_VatrasMessage,1);
-		};
+		B_GiveInvItems(other,self,ItWr_VatrasMessage,1);
+		Npc_RemoveInvItem(self,ItWr_VatrasMessage);
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_03");	//Хорошо, ты можешь сказать Ватрасу, что я получил его сообщение.
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_04");	//Возьми эти зелья в качестве награды за свое служение, они наверняка пригодятся тебе.
@@ -262,12 +260,10 @@ func void DIA_Isgaroth_Vatras_Info()
 		B_GiveInvItems(self,other,ItPo_Health_02,2);
 		B_GivePlayerXP(XP_Ambient * 2);
 	}
-	else if(Npc_HasItems(other,ItWr_VatrasMessage_Open) == 1)
+	else if(Npc_HasItems(other,ItWr_VatrasMessage_Open))
 	{
-		if(B_GiveInvItems(other,self,ItWr_VatrasMessage_Open,1))
-		{
-			Npc_RemoveInvItems(self,ItWr_VatrasMessage_Open,1);
-		};
+		B_GiveInvItems(other,self,ItWr_VatrasMessage_Open,1);
+		Npc_RemoveInvItem(self,ItWr_VatrasMessage_Open);
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_05");	//Печать сломана. О чем ты думал, идиот!
 		AI_Output(self,other,"DIA_Isgaroth_Vatras_01_06");	//Иди и скажи Ватрасу, что я получил его сообщение.

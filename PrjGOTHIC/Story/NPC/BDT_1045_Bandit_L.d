@@ -23,7 +23,7 @@ instance BDT_1045_Bandit_L(Npc_Default)
 
 func void Rtn_Start_1045()
 {
-	TA_Sit_Bench(0,0,12,0,"NW_CASTLEMINE_PATH_OUTSIDEHUT_02");
-	TA_Sit_Bench(12,0,0,0,"NW_CASTLEMINE_PATH_OUTSIDEHUT_02");
+	TA_Sleep(0,0,8,0,"NW_CASTLEMINE_PATH_HUT_IN_BED");
+	TA_Sit_Bench(8,0,0,0,"NW_CASTLEMINE_PATH_OUTSIDEHUT_02");
 };
 

@@ -25,7 +25,7 @@ func void DIA_Addon_Saturas_EXIT_Info()
 		MIS_Addon_Saturas_BringRiordian2Me = LOG_Running;
 		Log_CreateTopic(TOPIC_Addon_HolRiordian,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_HolRiordian,LOG_Running);
-		B_LogEntry(TOPIC_Addon_HolRiordian,"Сатурас хочет, чтобы я прислал к нему мага Риордана. Он должен быть в дальней части здания.");
+		B_LogEntry(TOPIC_Addon_HolRiordian,"Сатурас хочет, чтобы я прислал к нему мага Риордиана. Он должен быть в дальней части здания.");
 	};
 	AI_StopProcessInfos(self);
 };
@@ -62,11 +62,11 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_06");	//Хм. В большом лесу чрезвычайно опасно. Не следует направляться туда одному.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_07");	//Найди кого-нибудь в Хоринисе, кто бы мог пойти с тобой.
-		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_08");	//Не то чтобы я о тебе волнуюсь, но монстры могут съесть орнамент вместе с тобой.
+		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_08");	//Не то, чтобы я о тебе волнуюсь, но монстры могут съесть орнамент вместе с тобой.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_09");	//Вот твоя карта...
 		Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
-		B_LogEntry(TOPIC_Addon_Ornament,"Сатурас посоветовал мне не отправляться на поиски части орнамента, которая находится в лесу, в одиночку. Я должен найти в Хоринисе кого-нибудь, кто пойдет со мной.");
+		B_LogEntry(TOPIC_Addon_Ornament,"Сатурас посоветовал мне не отправляться в одиночку на поиски части орнамента, которая находится в лесу. Я должен найти в Хоринисе кого-нибудь, кто пойдет со мной.");
 	};
 };
 
@@ -85,7 +85,7 @@ instance DIA_Addon_Saturas_Hallo(C_Info)
 func int DIA_Addon_Saturas_Hallo_Condition()
 {
 	Npc_PerceiveAll(self);
-	if(Wld_DetectNpc(self,Gobbo_Skeleton,ZS_MM_Attack,-1) == FALSE)
+	if(!Wld_DetectNpc(self,Gobbo_Skeleton,ZS_MM_Attack,-1))
 	{
 		return TRUE;
 	};
@@ -119,13 +119,13 @@ func void DIA_Addon_Saturas_Hallo_Video()
 	AI_Output(self,other,"DIA_Addon_Saturas_Video_14_01");	//(раздраженно) И зачем только тебе это понадобилось!
 	Info_ClearChoices(DIA_Addon_Saturas_Hallo);
 	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Мне правда очень жаль. Я не ведал, что творил.",DIA_Addon_Saturas_Hallo_sorry);
-	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Ваш план не сработал бы, как ни крути. Хе-хе, взорвать гору руды, чтобы убрать Барьер... Смех, да и только.",DIA_Addon_Saturas_Hallo_Spott);
-	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Такова жизнь. Без мощи накопленной вами руды, я бы не смог одолеть Спящего.",DIA_Addon_Saturas_Hallo_notwendig);
+	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Ваш план не сработал бы, как ни крути.",DIA_Addon_Saturas_Hallo_Spott);
+	Info_AddChoice(DIA_Addon_Saturas_Hallo,"Такова жизнь. Без мощи накопленной вами руды я бы не смог одолеть Спящего.",DIA_Addon_Saturas_Hallo_notwendig);
 };
 
 func void DIA_Addon_Saturas_Hallo_notwendig()
 {
-	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_notwendig_15_00");	//Такова жизнь. Без мощи накопленной вами руды, я бы не смог одолеть Спящего.
+	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_notwendig_15_00");	//Такова жизнь. Без мощи накопленной вами руды я бы не смог одолеть Спящего.
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_notwendig_14_01");	//(злится) Что за бред ты несешь?! Спящий? Одолеть Спящего?!
 	DIA_Addon_Saturas_Hallo_weiЯtdu();
 };
@@ -159,7 +159,7 @@ instance DIA_Addon_Saturas_keineAhnung(C_Info)
 
 func int DIA_Addon_Saturas_keineAhnung_Condition()
 {
-	if(MIS_Addon_Lares_Ornament2Saturas == 0)
+	if(MIS_Addon_Lares_Ornament2Saturas == FALSE)
 	{
 		return TRUE;
 	};
@@ -317,7 +317,7 @@ func void DIA_Addon_Saturas_geheimbund_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_geheimbund_15_07");	//(сухо) Постараюсь...
 	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Сатурас не готов приять меня в Кольцо Воды. Он сказал, что это принять решение должен Ватрас.");
+	B_LogEntry(TOPIC_Addon_RingOfWater,"Сатурас не готов принять меня в Кольцо Воды. Он сказал, что принять это решение должен Ватрас.");
 };
 
 
@@ -427,9 +427,9 @@ func void DIA_Addon_Saturas_ScRanger_Info()
 	var C_Item itm;
 	AI_Output(other,self,"DIA_Addon_Saturas_ScRanger_15_00");	//Теперь я принадлежу к Кольцу Воды.
 	itm = Npc_GetEquippedArmor(other);
-	if(((SCIsWearingRangerRing == TRUE) && (RangerRingIsLaresRing == FALSE)) || (Hlp_IsItem(itm,ITAR_RANGER_Addon) == TRUE))
+	if(((SCIsWearingRangerRing == TRUE) && (RangerRingIsLaresRing == FALSE)) || Hlp_IsItem(itm,ITAR_RANGER_Addon))
 	{
-		if(Hlp_IsItem(itm,ITAR_RANGER_Addon) == TRUE)
+		if(Hlp_IsItem(itm,ITAR_RANGER_Addon))
 		{
 			AI_Output(self,other,"DIA_Addon_Saturas_ScRanger_14_01");	//Я вижу, ты носишь доспехи наших детей.
 		}
@@ -488,17 +488,18 @@ func void DIA_Addon_Saturas_OpenPortal_Info()
 		if((RangerMeetingRunning == LOG_SUCCESS) && (Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven) || Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened)))
 		{
 			AI_Output(other,self,"DIA_Addon_Saturas_OpenPortal_15_03");	//У МЕНЯ есть для тебя послание от Ватраса.
-			B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven,Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven));
-			B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven_opened,Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened));
-			B_UseFakeScroll();
 			if(Vatras2Saturas_FindRaven_Open == TRUE)
 			{
+				B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven_opened,1);
+				B_UseFakeScroll();
 				AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_04");	//(раздраженно) Вижу. И, конечно же, ты не удержался и наверняка вскрыл его?
 				AI_Output(other,self,"DIA_Addon_Saturas_OpenPortal_15_05");	//Ну, э-э...
 				AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_06");	//(грозно) Надеюсь, мое и так хрупкое доверие к тебе не пошатнется окончательно. Ради твоего же блага.
 			}
 			else
 			{
+				B_GiveInvItems(other,self,ItWr_Vatras2Saturas_FindRaven,1);
+				B_UseFakeScroll();
 				AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_07");	//(удивленно) Интересно. Хорошо.
 				B_GivePlayerXP(XP_Ambient);
 			};
@@ -524,8 +525,11 @@ func void DIA_Addon_Saturas_OpenPortal_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_10");	//Пока Ватрас не дал мне знать, что тебе можно доверять полностью, кольцо побудет у меня.
-		Saturas_WillVertrauensBeweis = TRUE;
-		B_LogEntry(TOPIC_Addon_Ornament,"Сатурас не даст мне кольцо, пока он не получит от Ватраса знак, свидетельствующий о том, что мне можно доверять.");
+		if(Saturas_WillVertrauensBeweis == FALSE)
+		{
+			B_LogEntry(TOPIC_Addon_Ornament,"Сатурас не даст мне кольцо, пока он не получит от Ватраса знак, свидетельствующий о том, что мне можно доверять.");
+			Saturas_WillVertrauensBeweis = TRUE;
+		};
 		AI_StopProcessInfos(self);
 	};
 };
@@ -544,7 +548,7 @@ instance DIA_Addon_Saturas_PERM(C_Info)
 
 func int DIA_Addon_Saturas_PERM_Condition()
 {
-	if(MIS_Addon_Saturas_BringRiordian2Me != 0)
+	if(MIS_Addon_Saturas_BringRiordian2Me != FALSE)
 	{
 		return TRUE;
 	};

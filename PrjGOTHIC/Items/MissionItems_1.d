@@ -350,7 +350,7 @@ const int HP_Hering = 20;
 instance ItFo_SmellyFish(C_Item)
 {
 	name = "Селедка";
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MISSION;
 	value = 15;
 	visual = "ItFo_Fish.3DS";
@@ -602,8 +602,8 @@ instance ItKe_Innos_MIS(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от входа в";
-	text[3] = "монастырь Инноса.";
+	text[2] = "Это ключ от входа";
+	text[3] = "в монастырь Инноса.";
 };
 
 instance ItKe_KlosterSchatz(C_Item)

@@ -37,7 +37,7 @@ instance DIA_Hyglas_Feuer(C_Info)
 
 func int DIA_Hyglas_Feuer_Condition()
 {
-	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == TRUE) && (Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) == FALSE))
+	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == TRUE) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE))
 	{
 		return TRUE;
 	};
@@ -46,7 +46,7 @@ func int DIA_Hyglas_Feuer_Condition()
 func void DIA_Hyglas_Feuer_Info()
 {
 	AI_Output(other,self,"DIA_Hyglas_Feuer_15_00");	//Мне необходимо пройти Испытание Огнем.
-	AI_Output(self,other,"DIA_Hyglas_Feuer_14_01");	//Испытание Огнем - это обряд из древних времен, и не проводилось уже давно.
+	AI_Output(self,other,"DIA_Hyglas_Feuer_14_01");	//Испытание Огнем - это обряд из древних времен, он давно не проводился.
 	AI_Output(self,other,"DIA_Hyglas_Feuer_14_02");	//То, чего ты требуешь, очень опасно. Даже и не думай об этом.
 };
 
@@ -117,7 +117,7 @@ instance DIA_Hyglas_CONTEST(C_Info)
 	condition = DIA_Hyglas_CONTEST_Condition;
 	information = DIA_Hyglas_CONTEST_Info;
 	permanent = FALSE;
-	description = "Я должен пройти Испытание Огнем. Ультар дал мне задание создать руну огненной стрелы.";
+	description = "Я должен пройти Испытание Огнем.";
 };
 
 
@@ -136,7 +136,7 @@ func void DIA_Hyglas_CONTEST_Info()
 	AI_Output(other,self,"DIA_Hyglas_CONTEST_15_02");	//Я не знаю другого способа выполнить это задание.
 	AI_Output(self,other,"DIA_Hyglas_CONTEST_14_03");	//Хмм...
 	AI_Output(self,other,"DIA_Hyglas_CONTEST_14_04");	//Хорошо, я научу тебя. Но сначала, ты должен найти все необходимые ингредиенты.
-	B_LogEntry(TOPIC_Rune,"Хиглас готов обучить меня создавать руну Огненная стрела, если я принесу ему все необходимые ингредиенты.");
+	B_LogEntry(TOPIC_Rune,"Хиглас готов обучить меня создавать руну 'Огненная стрела', если я принесу ему все необходимые ингредиенты.");
 };
 
 
@@ -153,7 +153,7 @@ instance DIA_Hyglas_FIREBOLT(C_Info)
 
 func int DIA_Hyglas_FIREBOLT_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Hyglas_CONTEST) && (MIS_RUNE == LOG_Running) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_RUNE == LOG_Running) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
 		return TRUE;
 	};
@@ -173,27 +173,53 @@ instance DIA_Hyglas_TALENT_FIREBOLT(C_Info)
 	condition = DIA_Hyglas_TALENT_FIREBOLT_Condition;
 	information = DIA_Hyglas_TALENT_FIREBOLT_Info;
 	permanent = TRUE;
-	description = "Научи меня создавать руну ОГНЕННОЙ СТРЕЛЫ.";
+	description = B_BuildLearnString("Научи меня создавать руну ОГНЕННОЙ СТРЕЛЫ",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt));
 };
 
 
 func int DIA_Hyglas_TALENT_FIREBOLT_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE) && (Npc_HasItems(other,ItMi_RuneBlank) >= 1) && (Npc_HasItems(other,ItSc_Firebolt) >= 1) && (Npc_HasItems(other,ItMi_Sulfur) >= 1))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE) && Npc_HasItems(other,ItMi_RuneBlank) && Npc_HasItems(other,ItMi_Sulfur))
 	{
 		return TRUE;
 	};
 };
 
+var int Firebolt_Scroll_Once;
+
 func void DIA_Hyglas_TALENT_FIREBOLT_Info()
 {
 	AI_Output(other,self,"DIA_Hyglas_TALENT_FIREBOLT_15_00");	//Научи меня создавать руну ОГНЕННОЙ СТРЕЛЫ.
-	if(B_TeachPlayerTalentRunes(self,other,SPL_Firebolt))
+	if(Npc_HasItems(other,ItSc_Firebolt))
 	{
-		AI_Output(self,other,"DIA_Hyglas_TALENT_FIREBOLT_14_01");	//Чтобы создать руну огненной стрелы, ты должен объединить на рунном столе серу с рунным камнем.
-		AI_Output(self,other,"DIA_Hyglas_TALENT_FIREBOLT_14_02");	//Сила свитка огненной стрелы перетечет в эту руну, и ты станешь обладателем оружия Инноса.
-		AI_Output(self,other,"DIA_Hyglas_TALENT_FIREBOLT_14_03");	//Когда у тебя будет все необходимое, подойди к рунному столу и создай свою руну.
+		if(B_TeachPlayerTalentRunes(self,other,SPL_Firebolt))
+		{
+			AI_Output(self,other,"DIA_Hyglas_TALENT_FIREBOLT_14_01");	//Чтобы создать руну огненной стрелы, ты должен объединить на рунном столе серу с рунным камнем.
+			AI_Output(self,other,"DIA_Hyglas_TALENT_FIREBOLT_14_02");	//Сила свитка огненной стрелы перетечет в эту руну, и ты станешь обладателем оружия Инноса.
+			AI_Output(self,other,"DIA_Hyglas_TALENT_FIREBOLT_14_03");	//Когда у тебя будет все необходимое, подойди к рунному столу и создай свою руну.
+		};
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+		if(Firebolt_Scroll_Once == FALSE)
+		{
+			B_LogEntry(TOPIC_Rune,"Пока у меня нет свитка огненной стрелы, Хиглас не сможет обучить меня созданию руны.");
+			if(!Npc_IsDead(Gorax))
+			{
+				CreateInvItem(Gorax,ItSc_Firebolt);
+				B_LogEntry(TOPIC_Rune,"Возможно, что я смогу купить еще один свиток у Горакса.");
+			}
+			else
+			{
+				Wld_InsertItem(ItSc_Firebolt,"FP_ITEM_KLOSTER_01");
+				B_LogEntry(TOPIC_Rune,"Похоже, что мне придется искать этот свиток по всему монастырю.");
+			};
+			Firebolt_Scroll_Once = TRUE;
+		};
 	};
+	
 };
 
 
@@ -210,7 +236,7 @@ instance DIA_Hyglas_BLANK_RUNE(C_Info)
 
 func int DIA_Hyglas_BLANK_RUNE_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Hyglas_FIREBOLT) && (MIS_RUNE == LOG_Running) && (Npc_HasItems(other,ItMi_RuneBlank) < 1) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_FIREBOLT) && (MIS_RUNE == LOG_Running) && !Npc_HasItems(other,ItMi_RuneBlank) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
 		return TRUE;
 	};
@@ -219,7 +245,7 @@ func int DIA_Hyglas_BLANK_RUNE_Condition()
 func void DIA_Hyglas_BLANK_RUNE_Info()
 {
 	AI_Output(other,self,"DIA_Hyglas_BLANK_RUNE_15_00");	//Где я могу найти рунный камень?
-	AI_Output(self,other,"DIA_Hyglas_BLANK_RUNE_14_01");	//Послушай, тебе ведь необходимо пройти Испытание Огнем - не мне. Поиски входят в это испытание.
+	AI_Output(self,other,"DIA_Hyglas_BLANK_RUNE_14_01");	//Послушай, ведь тебе необходимо пройти Испытание Огнем - не мне. Поиски входят в это испытание.
 };
 
 
@@ -236,7 +262,7 @@ instance DIA_Hyglas_GOTRUNE(C_Info)
 
 func int DIA_Hyglas_GOTRUNE_Condition()
 {
-	if((Npc_KnowsInfo(hero,DIA_Ulthar_SUCCESS) == FALSE) && (Npc_HasItems(hero,ItRu_FireBolt) >= 1) && (other.guild == GIL_KDF))
+	if((MIS_RUNE == LOG_Running) && Npc_HasItems(other,ItRu_FireBolt) && !Npc_KnowsInfo(other,DIA_Ulthar_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -247,7 +273,7 @@ func void DIA_Hyglas_GOTRUNE_Info()
 	AI_Output(other,self,"DIA_Hyglas_GOTRUNE_15_00");	//Я создал руну.
 	AI_Output(self,other,"DIA_Hyglas_GOTRUNE_14_01");	//Хорошо, хорошо. Я думаю, ты прошел этот тест. Впрочем, это было не так уж и сложно.
 	AI_Output(self,other,"DIA_Hyglas_GOTRUNE_14_02");	//Теперь иди к Ультару и покажи ему плоды своего труда.
-	B_LogEntry(TOPIC_Rune,"Я создал руну Огненная стрела.");
+	B_LogEntry(TOPIC_Rune,"Я создал руну 'Огненная стрела'.");
 };
 
 
@@ -280,27 +306,27 @@ func void DIA_Hyglas_TEACH_Info()
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE))
 	{
 		Info_AddChoice(DIA_Hyglas_TEACH,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_Hyglas_TEACH_InstantFireball);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (PLAYER_TALENT_RUNES[SPL_Firestorm] == FALSE))
 	{
 		Info_AddChoice(DIA_Hyglas_TEACH,B_BuildLearnString(NAME_SPL_Firestorm,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firestorm)),DIA_Hyglas_TEACH_Firestorm);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4) && (PLAYER_TALENT_RUNES[SPL_ChargeFireball] == FALSE))
 	{
 		Info_AddChoice(DIA_Hyglas_TEACH,B_BuildLearnString(NAME_SPL_ChargeFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ChargeFireball)),DIA_Hyglas_TEACH_ChargeFireball);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5) && (PLAYER_TALENT_RUNES[SPL_Pyrokinesis] == FALSE))
 	{
 		Info_AddChoice(DIA_Hyglas_TEACH,B_BuildLearnString(NAME_SPL_Pyrokinesis,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Pyrokinesis)),DIA_Hyglas_TEACH_Pyrokinesis);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 6) && (PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE))
 	{
 		Info_AddChoice(DIA_Hyglas_TEACH,B_BuildLearnString(NAME_SPL_Firerain,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firerain)),DIA_Hyglas_TEACH_Firerain);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if(abletolearn < 1)
 	{
@@ -418,7 +444,7 @@ func void DIA_Hyglas_BringBook_Info()
 	AI_Output(self,other,"DIA_Hyglas_BringBook_14_04");	//Если быть более точным, созвездие Быка сейчас находится в прямой взаимосвязи с созвездием Воина. Я полагаю, ты знаешь, что это означает.
 	AI_Output(other,self,"DIA_Hyglas_BringBook_15_05");	//Хмм. Ну, если быть честным...
 	AI_Output(self,other,"DIA_Hyglas_BringBook_14_06");	//Да, хорошо, я понимаю. Ну, я не могу объяснить тебе сейчас все детали, но это, определенно, предвещает великие перемены. А я не люблю перемены.
-	AI_Output(self,other,"DIA_Hyglas_BringBook_14_07");	//Поэтому, я хочу, чтобы ты принес мне из города книгу. Она называется 'Божественная сила звезд'. Тебе, возможно, придется поискать ее, но я уверен, что ты справишься с этим.
+	AI_Output(self,other,"DIA_Hyglas_BringBook_14_07");	//Поэтому я хочу, чтобы ты принес мне из города книгу. Она называется 'Божественная сила звезд'. Тебе, возможно, придется поискать ее, но я уверен, что ты справишься с этим.
 	Info_ClearChoices(DIA_Hyglas_BringBook);
 	Info_AddChoice(DIA_Hyglas_BringBook,"Достань эту книгу сам.",DIA_Hyglas_BringBook_GetItYourself);
 	Info_AddChoice(DIA_Hyglas_BringBook,"И что я за это получу?",DIA_Hyglas_BringBook_GetForIt);
@@ -469,7 +495,7 @@ instance DIA_Hyglas_HaveBook(C_Info)
 
 func int DIA_Hyglas_HaveBook_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hyglas_BringBook) && (Npc_HasItems(other,ItWr_Astronomy_Mis) >= 1))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_BringBook) && Npc_HasItems(other,ItWr_Astronomy_Mis))
 	{
 		return TRUE;
 	};

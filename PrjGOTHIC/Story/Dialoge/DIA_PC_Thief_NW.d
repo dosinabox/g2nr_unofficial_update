@@ -101,7 +101,7 @@ func void DIA_DiegoNW_NeedHelp_Plan()
 func void DIA_DiegoNW_NeedHelp_WhoAreYou()
 {
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_WhoAreYou_15_00");	//Кто ты?
-	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_01");	//Черт, это все, наверное, из-за одежды. В старой одежде, стражники не пустили бы меня в город.
+	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_01");	//Черт, это все, наверное, из-за одежды. В старой одежде стражники не пустили бы меня в город.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_02");	//Вот почему я купил это одеяние у торговца за городом. Теперь-то, надеюсь, ты вспомнил меня? Я Диего.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_03");	//В старой колонии я учил тебя всему, что необходимо для выживания.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_WhoAreYou_11_04");	//Ты же не мог вот так просто все забыть.
@@ -258,7 +258,7 @@ instance DIA_DiegoNW_HaveYourGold(C_Info)
 
 func int DIA_DiegoNW_HaveYourGold_Condition()
 {
-	if(((OpenedDiegosBag == TRUE) || (Npc_HasItems(other,ItSe_DiegosTreasure_Mis) >= 1)) && (MIS_HelpDiegoNW == LOG_Running) && (Diego_IsOnBoard != LOG_SUCCESS))
+	if(((OpenedDiegosBag == TRUE) || Npc_HasItems(other,ItSe_DiegosTreasure_Mis)) && (MIS_HelpDiegoNW == LOG_Running) && (Diego_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -276,7 +276,7 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 {
 	AI_Output(other,self,"DIA_DiegoNW_HaveYourGold_15_00");	//Я нашел твое золото!
 	AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_01");	//Отлично. Покажи.
-	if(Npc_HasItems(other,ItSe_DiegosTreasure_Mis) >= 1)
+	if(Npc_HasItems(other,ItSe_DiegosTreasure_Mis))
 	{
 		B_GiveInvItems(other,self,ItSe_DiegosTreasure_Mis,1);
 		b_diegonw_diegosrevenge();
@@ -294,7 +294,7 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 		b_diegonw_diegosrevenge();
 		DiegosRevenge = TRUE;
 	};
-	if((Npc_IsDead(Gerbrandt) == FALSE) && (DiegosRevenge == TRUE))
+	if(!Npc_IsDead(Gerbrandt) && (DiegosRevenge == TRUE))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_06");	//Послушай, я все еще не договорился со стражей.
 		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_07");	//Я хочу, чтобы ты отнес это письмо Гербрандту. Это один из торговцев в верхнем квартале.
@@ -544,15 +544,21 @@ func int DIA_DiegoNW_KnowWhereEnemy_Condition()
 	};
 };
 
+var int SCToldDiegoHeKnowWhereEnemy;
+
 func void DIA_DiegoNW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_15_00");	//Я собираюсь покинуть Хоринис.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_11_01");	//Мудрое решение. Я был бы не прочь отправиться с тобой. Этот город изменился слишком быстро - времена, когда здесь можно было разбогатеть, уже в прошлом.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_11_02");	//Я мог бы научить тебя метко стрелять, пользоваться отмычками и мог бы повысить твою ловкость.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_11_03");	//Также, я уверен, тебе не помешает хороший вор.
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
-	B_LogEntry(Topic_Crew,"Конечно же, Диего готов пойти со мной. Ему кажется, что чем скорее он покинет Хоринис, тем лучше. Он мог бы научить меня, как стать более ловким и сделать из меня отличного лучника. Также он может научить меня пользоваться отмычками.");
+	if(SCToldDiegoHeKnowWhereEnemy == FALSE)
+	{
+		Log_CreateTopic(Topic_Crew,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Crew,LOG_Running);
+		B_LogEntry(Topic_Crew,"Конечно же, Диего готов пойти со мной. Ему кажется, что чем скорее он покинет Хоринис, тем лучше. Он мог бы научить меня, как стать более ловким и сделать из меня отличного лучника. Также он может научить меня пользоваться отмычками.");
+		SCToldDiegoHeKnowWhereEnemy = TRUE;
+	};
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_15_04");	//Я подумаю над этим. Но пока моя команда полностью укомплектована.
@@ -572,9 +578,9 @@ func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_01");	//Ммм. Ты прав, в Хоринисе все равно нечего делать. Я поплыву с тобой.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Diego_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
 	B_GivePlayerXP(XP_Crewmember_Success);
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") == 1)
+	Crewmember_Count += 1;
+	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23"))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_02");	//Подожди, я буду готов через минуту.
 		AI_SetWalkMode(self,NPC_WALK);
@@ -632,7 +638,7 @@ func void DIA_DiegoNW_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Буллит вырубил тебя. Тогда мы встретились в первый раз.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_04");	//Им никогда не одолеть тебя. Мы ОБЯЗАТЕЛЬНО встретимся снова. Береги себя.
 	Diego_IsOnBoard = LOG_OBSOLETE;
-	Crewmember_Count = Crewmember_Count - 1;
+	Crewmember_Count -= 1;
 	Npc_ExchangeRoutine(self,"Start");
 };
 
@@ -662,13 +668,14 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 	AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_01");	//Куда подевалась твоя решительность, друг? Конечно, я присоединюсь к тебе - ты только определись с тем, что тебе нужно.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Diego_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") == 1)
+	Crewmember_Count += 1;
+	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23"))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_02");	//Подожди, я буду готов через минуту.
 		AI_GotoWP(self,"NW_CITY_UPTOWN_HUT_01_01");
 		CreateInvItems(self,ITAR_Diego,1);
 		AI_EquipArmor(self,ITAR_Diego);
+		AI_Wait(self,1);
 		AI_GotoWP(self,self.wp);
 	};
 	AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_03");	//Отлично, мы можем идти.
@@ -681,6 +688,7 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 	{
 		Npc_ExchangeRoutine(self,"WAITFORSHIP");
 	};
+	B_CheckLog();
 };
 
 

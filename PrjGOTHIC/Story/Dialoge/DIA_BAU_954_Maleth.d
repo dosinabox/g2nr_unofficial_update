@@ -60,7 +60,7 @@ func void DIA_Maleth_Hallo_Info()
 		};
 		AI_Output(self,other,"DIA_Maleth_Hallo_08_02");	//Тебе повезло, что ты не пришел три недели назад.
 		AI_Output(self,other,"DIA_Maleth_Hallo_08_03");	//Мы бы приняли тебя за беглого каторжника. А с ними у нас разговор короткий!
-		if(Npc_HasEquippedArmor(other) == FALSE)
+		if(!Npc_HasEquippedArmor(other))
 		{
 			AI_Output(self,other,"DIA_Maleth_Hallo_08_04");	//Ты выглядишь абсолютно измотанным.
 		}
@@ -87,7 +87,7 @@ instance DIA_Maleth_BANDITS(C_Info)
 
 func int DIA_Maleth_BANDITS_Condition()
 {
-	if((Kapitel < 3) && (hero.guild == GIL_NONE))
+	if((Kapitel < 3) && (hero.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_BDT_1013_BANDIT_WHERE))
 	{
 		return TRUE;
 	};
@@ -146,13 +146,7 @@ instance DIA_Maleth_BanditsALIVE(C_Info)
 
 func int DIA_Maleth_BanditsALIVE_Condition()
 {
-	var C_Npc b13;
-	var C_Npc b14;
-	var C_Npc b15;
-	b13 = Hlp_GetNpc(Bdt_1013_Bandit_L);
-	b14 = Hlp_GetNpc(Bdt_1014_Bandit_L);
-	b15 = Hlp_GetNpc(Bdt_1015_Bandit_L);
-	if((!Npc_IsDead(b13) || !Npc_IsDead(b14) || !Npc_IsDead(b15)) && Npc_KnowsInfo(other,DIA_Maleth_BANDITS) && (MIS_Maleth_Bandits != LOG_SUCCESS))
+	if((!Npc_IsDead(Ambusher_1013) || !Npc_IsDead(Ambusher_1014) || !Npc_IsDead(Ambusher_1015)) && Npc_KnowsInfo(other,DIA_Maleth_BANDITS) && (MIS_Maleth_Bandits != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -193,7 +187,7 @@ func int DIA_Maleth_ToTheCity_Condition()
 func void DIA_Maleth_ToTheCity_Info()
 {
 	AI_Output(other,self,"DIA_Maleth_ToTheCity_15_00");	//Я иду в город.
-	if(Npc_HasEquippedArmor(other) == FALSE)
+	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_Maleth_ToTheCity_08_01");	//Учитывая то, как ты выглядишь, тебе придется подкупить стражу, чтобы попасть в город.
 		AI_Output(self,other,"DIA_Maleth_ToTheCity_08_02");	//И ты должен знать, что они хотят услышать.
@@ -207,7 +201,7 @@ func void DIA_Maleth_ToTheCity_Info()
 	Log_CreateTopic(TOPIC_City,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_City,LOG_Running);
 	B_LogEntry(TOPIC_City,"Чтобы попасть в город, я могу сказать стражникам у ворот, что я иду с фермы Лобарта и хочу повидать кузнеца.");
-	if(Npc_HasEquippedArmor(other) == FALSE)
+	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_Maleth_ToTheCity_08_06");	//Но это тебе не поможет. Ты не похож на фермера.
 		B_LogEntry(TOPIC_City,"Конечно, я должен быть похож на фермера.");
@@ -260,7 +254,7 @@ instance DIA_Maleth_LOBART(C_Info)
 
 func int DIA_Maleth_LOBART_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && !Npc_IsDead(Lobart) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && !Npc_IsDead(Lobart) && (Lobart.aivar[AIV_TalkedToPlayer] == FALSE) && (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};

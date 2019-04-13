@@ -1,7 +1,7 @@
 
 instance MIL_311_Andre(Npc_Default)
 {
-	name[0] = "Андре";
+	name[0] = "Андрэ";
 	guild = GIL_MIL;
 	id = 311;
 	voice = 8;
@@ -16,7 +16,7 @@ instance MIL_311_Andre(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak12,BodyTex_N,ItAr_PAL_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak12,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

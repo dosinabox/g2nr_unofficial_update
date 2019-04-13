@@ -8,11 +8,11 @@ instance SLD_841_Engardo(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
 	aivar[AIV_EnemyOverride] = TRUE;
 	EquipItem(self,ItMw_2h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal_Erpresser,BodyTex_N,ItAr_Sld_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Normal_Erpresser,BodyTex_N,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

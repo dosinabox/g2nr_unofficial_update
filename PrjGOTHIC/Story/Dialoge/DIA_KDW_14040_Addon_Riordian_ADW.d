@@ -104,7 +104,7 @@ func void DIA_Addon_Riordian_Gegend_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_10_01");	//Что ты хочешь узнать?
 	Info_ClearChoices(DIA_Addon_Riordian_Gegend);
 	Info_AddChoice(DIA_Addon_Riordian_Gegend,Dialog_Back,DIA_Addon_Riordian_Gegend_Back);
-	if((DIA_Addon_Riordian_Gegend_Info_OneTime == FALSE) && (Npc_HasItems(other,ItWr_Map_AddonWorld) == FALSE))
+	if((DIA_Addon_Riordian_Gegend_Info_OneTime == FALSE) && !Npc_HasItems(other,ItWr_Map_AddonWorld))
 	{
 		Info_AddChoice(DIA_Addon_Riordian_Gegend,"Существует ли карта этой местности?",DIA_Addon_Riordian_Gegend_map);
 		DIA_Addon_Riordian_Gegend_Info_OneTime = TRUE;
@@ -304,7 +304,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_04");	//Нет, я так не думаю, но кто знает...
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_05");	//Ладно, в любом случае, тебе лучше от них избавиться.
 		FOUNDHOUSEINFO[1] = TRUE;
-		RiordianHouseNeuigkeit = RiordianHouseNeuigkeit + 1;
+		RiordianHouseNeuigkeit += 1;
 		Log_CreateTopic(TOPIC_Addon_CanyonOrcs,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_CanyonOrcs,LOG_Running);
 		B_LogEntry(TOPIC_Addon_CanyonOrcs,"Маг Воды Риордан будет доволен, если я очищу каньон от орков.");
@@ -316,7 +316,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_08");	//Да, но неизвестно, сколько это еще продлится...
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_09");	//Мне больно видеть разрушение древних строений, свидетелей прошлого...
 		FOUNDHOUSEINFO[2] = TRUE;
-		RiordianHouseNeuigkeit = RiordianHouseNeuigkeit + 1;
+		RiordianHouseNeuigkeit += 1;
 	};
 	if((RavenIsInTempel == TRUE) && (FOUNDHOUSEINFO[3] == FALSE))
 	{
@@ -324,7 +324,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_11");	//(цинично) Он сделал хороший выбор.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_12");	//Это самая неприступная крепость во всей долине.
 		FOUNDHOUSEINFO[3] = TRUE;
-		RiordianHouseNeuigkeit = RiordianHouseNeuigkeit + 1;
+		RiordianHouseNeuigkeit += 1;
 	};
 	if((Npc_IsDead(Minecrawler_Priest) || Npc_HasItems(other,ItMi_Addon_Stone_03) || (Saturas_SCFound_ItMi_Addon_Stone_03 == TRUE)) && (FOUNDHOUSEINFO[4] == FALSE))
 	{
@@ -333,7 +333,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_15");	//Да, ты прав.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_16");	//Странные вещи здесь творятся...
 		FOUNDHOUSEINFO[4] = TRUE;
-		RiordianHouseNeuigkeit = RiordianHouseNeuigkeit + 1;
+		RiordianHouseNeuigkeit += 1;
 	};
 	if((Npc_IsDead(MayaZombie04_Totenw) || Npc_HasItems(other,ItMi_Addon_Stone_02) || (Saturas_SCFound_ItMi_Addon_Stone_02 == TRUE)) && (FOUNDHOUSEINFO[5] == FALSE))
 	{
@@ -342,13 +342,13 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_19");	//Какая печальная судьба! Стражи мертвых пали жертвой своих же способностей.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundHouse_10_20");	//Их тесная связь с миром мертвых сослужила им злую службу. Надеюсь, ты освободил их от страданий.
 		FOUNDHOUSEINFO[5] = TRUE;
-		RiordianHouseNeuigkeit = RiordianHouseNeuigkeit + 1;
+		RiordianHouseNeuigkeit += 1;
 	};
 	if(RiordianHouseNeuigkeit > 0)
 	{
 		RiordianHouseXPs = XP_Addon_Riordian_FoundHouse * RiordianHouseNeuigkeit;
 		B_GivePlayerXP(RiordianHouseXPs);
-		RiordianHousesFoundCount = RiordianHousesFoundCount + RiordianHouseNeuigkeit;
+		RiordianHousesFoundCount += RiordianHouseNeuigkeit;
 	}
 	else
 	{
@@ -632,38 +632,38 @@ func void DIA_Riordian_ADW_TeachAlchemy_Info()
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString("Лечебная эссенция",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Riordian_ADW_TeachAlchemy_Health_01);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Riordian_ADW_TeachAlchemy_Health_01);
+		talente += 1;
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE))
 	{
-		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString("Лечебный экстракт",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Riordian_ADW_TeachAlchemy_Health_02);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Riordian_ADW_TeachAlchemy_Health_02);
+		talente += 1;
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString("Эссенция маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Riordian_ADW_TeachAlchemy_Mana_01);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Riordian_ADW_TeachAlchemy_Mana_01);
+		talente += 1;
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
 	{
-		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString("Экстракт маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Riordian_ADW_TeachAlchemy_Mana_02);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString(NAME_Mana_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Riordian_ADW_TeachAlchemy_Mana_02);
+		talente += 1;
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE))
 	{
-		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString("Эликсир маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),DIA_Riordian_ADW_TeachAlchemy_Mana_03);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString(NAME_Mana_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_03)),DIA_Riordian_ADW_TeachAlchemy_Mana_03);
+		talente += 1;
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE))
 	{
-		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString("Эликсир духа",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Riordian_ADW_TeachAlchemy_Perm_Mana);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Riordian_ADW_TeachAlchemy_Perm_Mana);
+		talente += 1;
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE)
 	{
-		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString("Эликсир ловкости",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Riordian_ADW_TeachAlchemy_Perm_DEX);
-		talente = talente + 1;
+		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString(NAME_DEX_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Riordian_ADW_TeachAlchemy_Perm_DEX);
+		talente += 1;
 	};
 	if(talente > 0)
 	{

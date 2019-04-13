@@ -2,7 +2,7 @@
 instance VLK_438_Alrik(Npc_Default)
 {
 	name[0] = "Альрик";
-	guild = GIL_NONE;
+	guild = GIL_VLK;
 	id = 438;
 	voice = 9;
 	flags = 0;
@@ -16,6 +16,7 @@ instance VLK_438_Alrik(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Bloodwyn,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

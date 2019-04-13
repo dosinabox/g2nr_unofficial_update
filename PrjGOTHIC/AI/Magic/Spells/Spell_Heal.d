@@ -131,11 +131,11 @@ func void Spell_Cast_Heal()
 	{
 		if(Npc_GetActiveSpellIsScroll(self))
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+			self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 		}
 		else
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_LightHeal;
+			self.attribute[ATR_MANA] -= SPL_Cost_LightHeal;
 		};
 		Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_LightHeal);
 		return;
@@ -144,11 +144,11 @@ func void Spell_Cast_Heal()
 	{
 		if(Npc_GetActiveSpellIsScroll(self))
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+			self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 		}
 		else
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_MediumHeal;
+			self.attribute[ATR_MANA] -= SPL_Cost_MediumHeal;
 		};
 		Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_MediumHeal);
 		return;
@@ -157,11 +157,11 @@ func void Spell_Cast_Heal()
 	{
 		if(Npc_GetActiveSpellIsScroll(self))
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+			self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 		}
 		else
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_FullHeal;
+			self.attribute[ATR_MANA] -= SPL_Cost_FullHeal;
 		};
 		Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_FullHeal);
 		return;
@@ -175,11 +175,11 @@ func void Spell_Cast_PalHeal()
 	{
 		if(Npc_GetActiveSpellIsScroll(self))
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+			self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 		}
 		else
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_PalLightHeal;
+			self.attribute[ATR_MANA] -= SPL_Cost_PalLightHeal;
 		};
 		Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_PalLightHeal);
 		return;
@@ -188,11 +188,11 @@ func void Spell_Cast_PalHeal()
 	{
 		if(Npc_GetActiveSpellIsScroll(self))
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+			self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 		}
 		else
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_PalMediumHeal;
+			self.attribute[ATR_MANA] -= SPL_Cost_PalMediumHeal;
 		};
 		Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_PalMediumHeal);
 		return;
@@ -201,11 +201,11 @@ func void Spell_Cast_PalHeal()
 	{
 		if(Npc_GetActiveSpellIsScroll(self))
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+			self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 		}
 		else
 		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_PalFullHeal;
+			self.attribute[ATR_MANA] -= SPL_Cost_PalFullHeal;
 		};
 		Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_PalFullHeal);
 		return;

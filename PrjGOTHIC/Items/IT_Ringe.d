@@ -345,7 +345,7 @@ instance ItRi_Prot_Total_01(C_Item)
 	on_unequip = UnEquip_ItRi_Prot_Total_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо непобедимости";
+	description = "Кольцо неуязвимости";
 	text[1] = NAME_Prot_Magic;
 	count[1] = Ri_TProtMage;
 	text[2] = NAME_Prot_Fire;
@@ -394,7 +394,7 @@ instance ItRi_Prot_Total_02(C_Item)
 	on_unequip = UnEquip_ItRi_Prot_Total_02;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо неуязвимости";
+	description = "Кольцо непобедимости";
 	text[1] = NAME_Prot_Magic;
 	count[1] = Ri_TProtMage02;
 	text[2] = NAME_Prot_Fire;
@@ -526,16 +526,16 @@ instance ItRi_HP_01(C_Item)
 
 func void Equip_ItRi_Hp_01()
 {
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] + Ri_Hp;
-	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] + Ri_Hp;
+	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp;
+	self.attribute[ATR_HITPOINTS] += Ri_Hp;
 };
 
 func void UnEquip_ItRi_Hp_01()
 {
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] - Ri_Hp;
+	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp;
 	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 1))
 	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] - Ri_Hp;
+		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
 	}
 	else
 	{
@@ -570,16 +570,16 @@ instance ItRi_Hp_02(C_Item)
 
 func void Equip_ItRi_Hp_02()
 {
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] + Ri_Hp02;
-	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] + Ri_Hp02;
+	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp02;
+	self.attribute[ATR_HITPOINTS] += Ri_Hp02;
 };
 
 func void UnEquip_ItRi_Hp_02()
 {
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] - Ri_Hp02;
+	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp02;
 	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp02 + 1))
 	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] - Ri_Hp02;
+		self.attribute[ATR_HITPOINTS] -= Ri_Hp02;
 	}
 	else
 	{
@@ -601,7 +601,7 @@ instance ItRi_Str_01(C_Item)
 	on_unequip = UnEquip_ItRi_Str_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо силы";
+	description = "Кольцо могущества";
 	text[2] = NAME_Bonus_Str;
 	count[2] = Ri_Strg;
 	text[5] = NAME_Value;
@@ -684,16 +684,16 @@ instance ItRi_Mana_01(C_Item)
 
 func void Equip_ItRi_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] + Ri_Mana;
-	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] + Ri_Mana;
+	self.attribute[ATR_MANA_MAX] += Ri_Mana;
+	self.attribute[ATR_MANA] += Ri_Mana;
 };
 
 func void UnEquip_ItRi_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] - Ri_Mana;
+	self.attribute[ATR_MANA_MAX] -= Ri_Mana;
 	if(self.attribute[ATR_MANA] >= Ri_Mana)
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - Ri_Mana;
+		self.attribute[ATR_MANA] -= Ri_Mana;
 	}
 	else
 	{
@@ -728,16 +728,16 @@ instance ItRi_Mana_02(C_Item)
 
 func void Equip_ItRi_Mana_02()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] + Ri_Mana02;
-	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] + Ri_Mana02;
+	self.attribute[ATR_MANA_MAX] += Ri_Mana02;
+	self.attribute[ATR_MANA] += Ri_Mana02;
 };
 
 func void UnEquip_ItRi_Mana_02()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] - Ri_Mana02;
+	self.attribute[ATR_MANA_MAX] -= Ri_Mana02;
 	if(self.attribute[ATR_MANA] >= Ri_Mana02)
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - Ri_Mana02;
+		self.attribute[ATR_MANA] -= Ri_Mana02;
 	}
 	else
 	{
@@ -774,19 +774,19 @@ instance ItRi_Hp_Mana_01(C_Item)
 
 func void Equip_ItRi_Hp_Mana_01()
 {
-	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] + Ri_HpMana_Hp;
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] + Ri_HpMana_Hp;
-	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] + Ri_HpMana_Mana;
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] + Ri_HpMana_Mana;
+	self.attribute[ATR_HITPOINTS] += Ri_HpMana_Hp;
+	self.attribute[ATR_HITPOINTS_MAX] += Ri_HpMana_Hp;
+	self.attribute[ATR_MANA] += Ri_HpMana_Mana;
+	self.attribute[ATR_MANA_MAX] += Ri_HpMana_Mana;
 };
 
 func void UnEquip_ItRi_Hp_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] - Ri_HpMana_Mana;
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] - Ri_HpMana_Hp;
+	self.attribute[ATR_MANA_MAX] -= Ri_HpMana_Mana;
+	self.attribute[ATR_HITPOINTS_MAX] -= Ri_HpMana_Hp;
 	if(self.attribute[ATR_HITPOINTS] > (Ri_HpMana_Hp + 1))
 	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] - Ri_HpMana_Hp;
+		self.attribute[ATR_HITPOINTS] -= Ri_HpMana_Hp;
 	}
 	else
 	{
@@ -794,7 +794,7 @@ func void UnEquip_ItRi_Hp_Mana_01()
 	};
 	if(self.attribute[ATR_MANA] >= Ri_HpMana_Mana)
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - Ri_HpMana_Mana;
+		self.attribute[ATR_MANA] -= Ri_HpMana_Mana;
 	}
 	else
 	{
@@ -816,7 +816,7 @@ instance ItRi_Dex_Strg_01(C_Item)
 	on_unequip = UnEquip_ItRi_Dex_Strg_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо власти";
+	description = "Кольцо мощи";
 	text[2] = NAME_Bonus_Str;
 	count[2] = 4;
 	text[3] = NAME_Bonus_Dex;

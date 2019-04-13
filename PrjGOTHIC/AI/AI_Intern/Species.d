@@ -167,8 +167,8 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_GIANT_BUG] = 120;
 	fight_range_fist[GIL_GIANT_BUG] = 120;
 	fight_range_g[GIL_GIANT_BUG] = 50;
-	blood_emitter[GIL_GIANT_BUG] = "BFX_Preset1";
-	blood_texture[GIL_GIANT_BUG] = "BQM_Scavenger2.tga";
+	blood_emitter[GIL_GIANT_BUG] = "BFX_Preset2";
+	blood_texture[GIL_GIANT_BUG] = "BQM_Meatbug.tga";
 	blood_amount[GIL_GIANT_BUG] = 10;
 	blood_max_distance[GIL_GIANT_BUG] = 100;
 	swim_time[GIL_BLOODFLY] = TIME_INFINITE;
@@ -186,6 +186,10 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_BLOODFLY] = 80;
 	fight_range_fist[GIL_BLOODFLY] = 80;
 	fight_range_g[GIL_BLOODFLY] = 100;
+	blood_emitter[GIL_BLOODFLY] = "BFX_Preset2";
+	blood_texture[GIL_BLOODFLY] = "BQM_Meatbug.tga";
+	blood_amount[GIL_BLOODFLY] = 5;
+	blood_max_distance[GIL_BLOODFLY] = 50;
 	swim_time[GIL_WARAN] = TIME_INFINITE;
 	dive_time[GIL_WARAN] = 0;
 	water_depth_knee[GIL_WARAN] = 50;
@@ -202,8 +206,8 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_WARAN] = 250;
 	fight_range_fist[GIL_WARAN] = 50;
 	fight_range_g[GIL_WARAN] = 100;
-	blood_emitter[GIL_WARAN] = "BFX_Preset2";
-	blood_texture[GIL_WARAN] = "BQM_Meatbug.tga";
+	blood_emitter[GIL_WARAN] = "BFX_Preset1";
+	blood_texture[GIL_WARAN] = "BQM_Scavenger2.tga";
 	blood_amount[GIL_WARAN] = 10;
 	blood_max_distance[GIL_WARAN] = 100;
 	swim_time[GIL_WOLF] = TIME_INFINITE;
@@ -244,7 +248,7 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_fist[GIL_SUMMONED_WOLF] = fight_range_fist[GIL_WOLF];
 	fight_range_g[GIL_SUMMONED_WOLF] = fight_range_g[GIL_WOLF];
 	blood_emitter[GIL_SUMMONED_WOLF] = "BFX_Preset1";
-	blood_texture[GIL_SUMMONED_WOLF] = "BQM_Scaveng2.tga";
+	blood_texture[GIL_SUMMONED_WOLF] = "BQM_Scavenger2.tga";
 	blood_flow[GIL_SUMMONED_WOLF] = blood_flow[GIL_WOLF];
 	blood_amount[GIL_SUMMONED_WOLF] = blood_amount[GIL_WOLF];
 	blood_max_distance[GIL_SUMMONED_WOLF] = blood_max_distance[GIL_WOLF];
@@ -261,6 +265,10 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_MINECRAWLER] = 100;
 	fight_range_fist[GIL_MINECRAWLER] = 170;
 	fight_range_g[GIL_MINECRAWLER] = 170;
+	blood_emitter[GIL_MINECRAWLER] = "BFX_Preset2";
+	blood_texture[GIL_MINECRAWLER] = "BQM_Meatbug.tga";
+	blood_amount[GIL_MINECRAWLER] = blood_amount[GIL_GIANT_BUG];
+	blood_max_distance[GIL_MINECRAWLER] = blood_max_distance[GIL_GIANT_BUG];
 	swim_time[GIL_LURKER] = TIME_INFINITE;
 	dive_time[GIL_LURKER] = TIME_INFINITE;
 	water_depth_knee[GIL_LURKER] = 50;
@@ -277,6 +285,10 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_LURKER] = 150;
 	fight_range_fist[GIL_LURKER] = 150;
 	fight_range_g[GIL_LURKER] = 150;
+	blood_emitter[GIL_LURKER] = "BFX_Preset1";
+	blood_texture[GIL_LURKER] = "BQM_Scavenger2.tga";
+	blood_amount[GIL_LURKER] = 10;
+	blood_max_distance[GIL_LURKER] = 100;
 	swim_time[GIL_SKELETON] = 0;
 	dive_time[GIL_SKELETON] = 0;
 	water_depth_knee[GIL_SKELETON] = water_depth_knee[GIL_HUMAN];
@@ -426,6 +438,8 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_SHADOWBEAST_SKELETON] = fight_range_base[GIL_SHADOWBEAST];
 	fight_range_fist[GIL_SHADOWBEAST_SKELETON] = fight_range_fist[GIL_SHADOWBEAST];
 	fight_range_g[GIL_SHADOWBEAST_SKELETON] = fight_range_g[GIL_SHADOWBEAST];
+	blood_emitter[GIL_SHADOWBEAST_SKELETON] = "BFX_Zombie";
+	blood_texture[GIL_SHADOWBEAST_SKELETON] = "BQM_Zombie.tga";
 	swim_time[GIL_HARPY] = TIME_INFINITE;
 	dive_time[GIL_HARPY] = 0;
 	water_depth_knee[GIL_HARPY] = 999999;
@@ -534,7 +548,7 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_fist[GIL_DEMON] = 120;
 	fight_range_g[GIL_DEMON] = 100;
 	blood_emitter[GIL_DEMON] = "BFX_Demon";
-	blood_texture[GIL_DEMON] = "BQM_Scavenger2.tga";
+//	blood_texture[GIL_DEMON] = "BQM_Scavenger2.tga";
 	blood_flow[GIL_DEMON] = 0;
 	blood_amount[GIL_DEMON] = 10;
 	blood_max_distance[GIL_DEMON] = 200;
@@ -554,7 +568,7 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_fist[GIL_SUMMONED_DEMON] = fight_range_fist[GIL_DEMON];
 	fight_range_g[GIL_SUMMONED_DEMON] = fight_range_g[GIL_DEMON];
 	blood_emitter[GIL_SUMMONED_DEMON] = "BFX_Demon";
-	blood_texture[GIL_SUMMONED_DEMON] = "BQM_Scavenger2.tga";
+//	blood_texture[GIL_SUMMONED_DEMON] = "BQM_Scavenger2.tga";
 	blood_flow[GIL_SUMMONED_DEMON] = blood_flow[GIL_DEMON];
 	blood_amount[GIL_SUMMONED_DEMON] = blood_amount[GIL_DEMON];
 	blood_max_distance[GIL_SUMMONED_DEMON] = blood_max_distance[GIL_DEMON];
@@ -585,6 +599,10 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_SWAMPSHARK] = 200;
 	fight_range_fist[GIL_SWAMPSHARK] = 200;
 	fight_range_g[GIL_SWAMPSHARK] = 200;
+	blood_emitter[GIL_SWAMPSHARK] = "BFX_Preset1";
+	blood_texture[GIL_SWAMPSHARK] = "BQM_Scavenger2.tga";
+	blood_amount[GIL_SWAMPSHARK] = 10;
+	blood_max_distance[GIL_SWAMPSHARK] = 200;
 	swim_time[GIL_DRAGON] = 0;
 	dive_time[GIL_DRAGON] = 0;
 	water_depth_knee[GIL_DRAGON] = 100;
@@ -709,6 +727,10 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_Alligator] = fight_range_base[GIL_WARAN];
 	fight_range_fist[GIL_Alligator] = fight_range_fist[GIL_WARAN];
 	fight_range_g[GIL_Alligator] = fight_range_g[GIL_WARAN];
+	blood_emitter[GIL_Alligator] = "BFX_Preset1";
+	blood_texture[GIL_Alligator] = "BQM_Scavenger2.tga";
+	blood_amount[GIL_Alligator] = blood_amount[GIL_WARAN];
+	blood_max_distance[GIL_Alligator] = blood_max_distance[GIL_WARAN];
 	swim_time[GIL_SWAMPGOLEM] = swim_time[GIL_STONEGOLEM];
 	dive_time[GIL_SWAMPGOLEM] = dive_time[GIL_STONEGOLEM];
 	water_depth_knee[GIL_SWAMPGOLEM] = water_depth_knee[GIL_STONEGOLEM];

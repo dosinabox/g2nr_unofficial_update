@@ -8,12 +8,12 @@ instance VLK_4120_Bilgot(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Mil_Sword);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItPo_Health_02,4);
 	CreateInvItems(self,ItMi_OldCoin,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Weak_Ulf_Wohlers,BodyTex_P,ITAR_Mil_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Weak_Ulf_Wohlers,BodyTex_P,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

@@ -18,10 +18,10 @@ func int B_GhostSpecialDamage(var C_Npc oth,var C_Npc slf)
 			}
 			else
 			{
-				GhostAttackWarn = GhostAttackWarn + 1;
+				GhostAttackWarn += 1;
 				if(GhostAttackWarn < 3)
 				{
-					oth.attribute[ATR_HITPOINTS] = oth.attribute[ATR_HITPOINTS] / 2;
+					oth.attribute[ATR_HITPOINTS] /= 2;
 				}
 				else if(Hlp_GetInstanceID(oth) == Hlp_GetInstanceID(her))
 				{

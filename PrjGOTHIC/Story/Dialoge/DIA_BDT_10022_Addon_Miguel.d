@@ -115,7 +115,7 @@ func void DIA_Addon_Miguel_Story_Info()
 	AI_Output(self,other,"DIA_Addon_Miguel_Story_11_01");	//Я много работал над зельями, воздействующими на разум.
 	AI_Output(self,other,"DIA_Addon_Miguel_Story_11_02");	//Однажды вечером мой начальник Игнац выпил результат моего 'эксперимента' вместо своего вина.
 	AI_Output(self,other,"DIA_Addon_Miguel_Story_11_03");	//Это сделало его... э-э... непредсказуемым на некоторое время, и с тех пор он немного не в себе.
-	AI_Output(self,other,"DIA_Addon_Miguel_Story_11_04");	//(фальшиво) За это маги бросили меня за Барьер. 'Исследования запрещенных знаний,' - вот как они это назвали.
+	AI_Output(self,other,"DIA_Addon_Miguel_Story_11_04");	//(фальшиво) За это маги бросили меня за Барьер. 'Исследования запрещенных знаний' - вот как они это назвали.
 };
 
 
@@ -196,7 +196,7 @@ func void DIA_Addon_Miguel_Angefordert_Info()
 	AI_Output(self,other,"DIA_Addon_Miguel_Angefordert_11_01");	//Ну, когда они кого-нибудь теряют.
 	AI_Output(self,other,"DIA_Addon_Miguel_Angefordert_11_02");	//Если рудокопа съедает краулер, утраченного работника заменяют одним из нас.
 	AI_Output(self,other,"DIA_Addon_Miguel_Angefordert_11_03");	//Иногда они и сами друг друга убивают. Но в последнее время с этим полегче.
-	AI_Output(self,other,"DIA_Addon_Miguel_Angefordert_11_04");	//Ворон каким-то образом установил контроль над шахтой, так чтобы все сразу не могли туда попасть.
+	AI_Output(self,other,"DIA_Addon_Miguel_Angefordert_11_04");	//Ворон каким-то образом установил контроль над шахтой так, чтобы все сразу не могли туда попасть.
 	AI_Output(self,other,"DIA_Addon_Miguel_Angefordert_11_05");	//Но я не знаю, что именно он сделал. Я никогда не был внутри.
 };
 
@@ -208,7 +208,7 @@ instance DIA_Addon_Miguel_Fortuno(C_Info)
 	condition = DIA_Addon_Miguel_Fortuno_Condition;
 	information = DIA_Addon_Miguel_Fortuno_Info;
 	permanent = FALSE;
-	description = "У Фортуно не все в порядке с головой ...";
+	description = "У Фортуно не все в порядке с головой, он мог бы выпить зелье и вернуть себе память.";
 };
 
 

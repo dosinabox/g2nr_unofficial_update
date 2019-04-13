@@ -8,7 +8,7 @@ func void ZS_Play_Lute()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Npc_HasItems(self,ItMi_Lute) == 0)
+	if(!Npc_HasItems(self,ItMi_Lute))
 	{
 		CreateInvItem(self,ItMi_Lute);
 	};

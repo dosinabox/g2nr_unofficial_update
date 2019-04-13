@@ -53,7 +53,7 @@ func int ZS_Study_WP_loop()
 		{
 			AI_PlayAni(self,"T_LGUARD_2_STAND");
 			self.aivar[AIV_TAPOSITION] = NOTINPOS;
-			if(Npc_HasItems(self,Fakescroll_Addon) == FALSE)
+			if(!Npc_HasItems(self,Fakescroll_Addon))
 			{
 				CreateInvItem(self,Fakescroll_Addon);
 			};

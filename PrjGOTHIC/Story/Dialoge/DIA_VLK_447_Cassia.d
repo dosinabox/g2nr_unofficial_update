@@ -497,14 +497,14 @@ func void DIA_Cassia_BevorLernen_Info()
 	{
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_16_02");	//Конечно. Карманное воровство и ловкость обойдутся тебе по 100 золотых монет.
 		Info_ClearChoices(DIA_Cassia_BevorLernen);
-		Info_AddChoice(DIA_Cassia_BevorLernen,"Может быть, позже... (НАЗАД)",DIA_Cassia_BevorLernen_Spaeter);
+		Info_AddChoice(DIA_Cassia_BevorLernen,"Может быть, позже...",DIA_Cassia_BevorLernen_Spaeter);
 		if(Cassia_TeachPickpocket == FALSE)
 		{
-			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу научиться карманному воровству (заплатить 100 золотых).",DIA_Cassia_BevorLernen_Pickpocket);
+			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу научиться карманному воровству. (заплатить 100 золотых)",DIA_Cassia_BevorLernen_Pickpocket);
 		};
 		if(Cassia_TeachDEX == FALSE)
 		{
-			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу стать более ловким (заплатить 100 золотых).",DIA_Cassia_BevorLernen_DEX);
+			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу стать более ловким. (заплатить 100 золотых)",DIA_Cassia_BevorLernen_DEX);
 		};
 	};
 };
@@ -612,7 +612,7 @@ instance DIA_Cassia_Pickpocket(C_Info)
 
 func int DIA_Cassia_Pickpocket_Condition()
 {
-	if((Cassia_TeachPickpocket == TRUE) && (Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == FALSE))
+	if((Cassia_TeachPickpocket == TRUE) && !Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
 	{
 		return TRUE;
 	};
@@ -644,7 +644,7 @@ instance DIA_Cassia_Aufnahme(C_Info)
 
 func int DIA_Cassia_Aufnahme_Condition()
 {
-	if((MIS_CassiaRing == LOG_Running) && (Npc_HasItems(other,ItRi_Prot_Point_01_MIS) >= 1))
+	if((MIS_CassiaRing == LOG_Running) && Npc_HasItems(other,ItRi_Prot_Point_01_MIS))
 	{
 		return TRUE;
 	};
@@ -702,14 +702,16 @@ instance DIA_Cassia_Blutkelche(C_Info)
 	nr = 2;
 	condition = DIA_Cassia_Blutkelche_Condition;
 	information = DIA_Cassia_Blutkelche_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "У тебя есть работа для меня?";
 };
 
 
+var int DIA_Cassia_Blutkelche_permanent;
+
 func int DIA_Cassia_Blutkelche_Condition()
 {
-	if((MIS_CassiaRing == LOG_SUCCESS) && (MIS_CassiaKelche != LOG_Running))
+	if((MIS_CassiaRing == LOG_SUCCESS) && (MIS_CassiaKelche == FALSE) && (DIA_Cassia_Blutkelche_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -735,6 +737,7 @@ func void DIA_Cassia_Blutkelche_Info()
 		AI_Output(other,self,"DIA_Cassia_Blutkelche_15_09");	//А мне что с этого будет?
 		AI_Output(self,other,"DIA_Cassia_Blutkelche_16_10");	//Либо половина от дохода, либо ты сможешь выбрать что-нибудь из моей сокровищницы.
 		MIS_CassiaKelche = LOG_Running;
+		DIA_Cassia_Blutkelche_permanent = TRUE;
 		Log_CreateTopic(Topic_CassiaKelche,LOG_MISSION);
 		Log_SetTopicStatus(Topic_CassiaKelche,LOG_Running);
 		B_LogEntry(Topic_CassiaKelche,"Кассия хочет, чтобы я принес ей шесть кровавых кубков. По-видимому, они находятся в городе.");

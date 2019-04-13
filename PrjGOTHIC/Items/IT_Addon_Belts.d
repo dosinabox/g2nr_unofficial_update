@@ -395,7 +395,7 @@ instance ItBe_Addon_STR_5(C_Item)
 	material = MAT_METAL;
 	on_equip = Equip_ItBe_Addon_STR_5;
 	on_unequip = UnEquip_ItBe_Addon_STR_5;
-	description = "Пояс силы";
+	description = "Пояс могущества";
 	text[2] = NAME_Bonus_Str;
 	count[2] = BeltBonus_STR01;
 	text[5] = NAME_Value;
@@ -523,7 +523,7 @@ instance ItBe_Addon_Prot_EDGE(C_Item)
 	material = MAT_METAL;
 	on_equip = Equip_ItBe_Addon_Prot_EDGE;
 	on_unequip = UnEquip_ItBe_Addon_Prot_EDGE;
-	description = "Пояс защиты";
+	description = "Пояс брони";
 	text[2] = NAME_Prot_Edge;
 	count[2] = BeltBonus_ProtEdge;
 	text[5] = NAME_Value;
@@ -557,7 +557,7 @@ instance ItBe_Addon_Prot_Point(C_Item)
 	material = MAT_METAL;
 	on_equip = Equip_ItBe_Addon_Prot_Point;
 	on_unequip = UnEquip_ItBe_Addon_Prot_Point;
-	description = "Пояс защиты";
+	description = "Пояс обороны";
 	text[2] = NAME_Prot_Point;
 	count[2] = BeltBonus_ProtPoint;
 	text[5] = NAME_Value;
@@ -691,7 +691,7 @@ instance ItBe_Addon_Prot_TOTAL(C_Item)
 	material = MAT_METAL;
 	on_equip = Equip_ItBe_Addon_Prot_TOTAL;
 	on_unequip = UnEquip_ItBe_Addon_Prot_TOTAL;
-	description = "Пояс протектора";
+	description = "Пояс защитника";
 	text[1] = NAME_Prot_Edge;
 	count[1] = BeltBonus_ProtTotal;
 	text[2] = NAME_Prot_Point;

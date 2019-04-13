@@ -45,17 +45,19 @@ func int DIA_Kati_SLDNOCHDA_Condition()
 
 func void DIA_Kati_SLDNOCHDA_Info()
 {
-	var int Hilfe;
 	if(Hilfe == FALSE)
 	{
 		AI_Output(self,other,"DIA_Kati_SLDNOCHDA_16_00");	//Эти головорезы угрожают моему мужу! Мы простые граждане Хориниса, преданные королю, а эти наемники хотят ограбить нас!
-		Hilfe = TRUE;
 	};
 	AI_Output(self,other,"DIA_Kati_SLDNOCHDA_16_01");	//Ну не стой же здесь. Сделай что-нибудь! Помоги нам!
 	Akils_SLDStillthere = TRUE;
-	Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
-	B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+	if(Hilfe == FALSE)
+	{
+		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+		Hilfe = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -67,7 +69,7 @@ instance DIA_Kati_HALLO(C_Info)
 	condition = DIA_Kati_HALLO_Condition;
 	information = DIA_Kati_HALLO_Info;
 	permanent = FALSE;
-	description = "Все в порядке?";
+	description = "С тобой все в порядке?";
 };
 
 
@@ -109,7 +111,7 @@ instance DIA_Kati_ESSEN(C_Info)
 
 func int DIA_Kati_ESSEN_Condition()
 {
-	if((Kati_Mahlzeit == TRUE) && (Npc_IsDead(Akil) == FALSE))
+	if((Kati_Mahlzeit == TRUE) && !Npc_IsDead(Akil))
 	{
 		return TRUE;
 	};
@@ -117,12 +119,18 @@ func int DIA_Kati_ESSEN_Condition()
 
 func void DIA_Kati_ESSEN_Info()
 {
+	var string concatText;
 	AI_Output(other,self,"DIA_Kati_ESSEN_15_00");	//Акил говорит, что ты можешь накормить меня.
 	AI_Output(self,other,"DIA_Kati_ESSEN_16_01");	//С тех пор как рухнул Барьер, для нас настали тяжелые времена. Жить здесь стало небезопасно.
-	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба, немного молока и бутылку воды. Извини, но это все, чем мы можем поделиться.
-	B_GiveInvItems(self,other,ItFo_Bread,1);
-	B_GiveInvItems(self,other,ItFo_Water,1);
-	B_GiveInvItems(self,other,ItFoMutton,1);
+	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба, немного мяса и бутылку воды. Извини, но это все, чем мы можем поделиться.
+	Npc_RemoveInvItem(self,ItFo_Bread);
+	CreateInvItem(other,ItFo_Bread);
+	Npc_RemoveInvItem(self,ItFo_Water);
+	CreateInvItem(other,ItFo_Water);
+	Npc_RemoveInvItem(self,ItFoMutton);
+	CreateInvItem(other,ItFoMutton);
+	concatText = ConcatStrings(IntToString(3),PRINT_ItemsErhalten);
+	AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 };
 
 
@@ -195,7 +203,7 @@ instance DIA_Kati_ANDEREHOEFE(C_Info)
 
 func int DIA_Kati_ANDEREHOEFE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Kati_BAUERNAUFSTAND))
+	if(Npc_KnowsInfo(other,DIA_Kati_BAUERNAUFSTAND) && (Bengar.aivar[AIV_TalkedToPlayer] == FALSE) && (Sekob.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -231,7 +239,7 @@ func void DIA_Kati_HIERWEG_Info()
 {
 	AI_Output(other,self,"DIA_Kati_HIERWEG_15_00");	//А вы не думали о том, чтобы уехать отсюда?
 	AI_Output(self,other,"DIA_Kati_HIERWEG_16_01");	//Не так-то просто уехать из этой части страны. Вся эта земля окружена стеной высоких, непроходимых гор.
-	AI_Output(self,other,"DIA_Kati_HIERWEG_16_02");	//Выбраться отсюда можно только лежит через Долину Рудников или через гавань города.
+	AI_Output(self,other,"DIA_Kati_HIERWEG_16_02");	//Выбраться отсюда можно только через Долину Рудников или через гавань города.
 	AI_Output(self,other,"DIA_Kati_HIERWEG_16_03");	//Так как мы не можем позволить себе купить место на корабле, а Долина Рудников - это место, откуда не возвращаются, мы вынуждены оставаться здесь.
 };
 

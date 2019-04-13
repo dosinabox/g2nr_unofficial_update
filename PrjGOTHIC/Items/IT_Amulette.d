@@ -73,7 +73,7 @@ instance ItAm_Prot_Edge_01(C_Item)
 	on_unequip = UnEquip_ItAm_Prot_Edge_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Амулет упряжи";
+	description = "Амулет брони";
 	text[2] = NAME_Prot_Edge;
 	count[2] = Am_ProtEdge;
 	text[5] = NAME_Value;
@@ -141,7 +141,7 @@ instance ItAm_Prot_Mage_01(C_Item)
 	on_unequip = UnEquip_ItAm_Prot_Mage_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Амулет духовной силы";
+	description = "Амулет силы духа";
 	text[2] = NAME_Prot_Magic;
 	count[2] = Am_ProtMage;
 	text[5] = NAME_Value;
@@ -174,7 +174,7 @@ instance ItAm_Prot_Total_01(C_Item)
 	on_unequip = UnEquip_Value_Am_ProtTotal;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Амулет металлической кожи";
+	description = "Амулет рудной кожи";
 	text[1] = NAME_Prot_Fire;
 	count[1] = Am_TProtFire;
 	text[2] = NAME_Prot_Magic;
@@ -298,16 +298,16 @@ instance ItAm_Hp_01(C_Item)
 
 func void Equip_ItAm_Hp_01()
 {
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] + Am_Hp;
-	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] + Am_Hp;
+	self.attribute[ATR_HITPOINTS_MAX] += Am_Hp;
+	self.attribute[ATR_HITPOINTS] += Am_Hp;
 };
 
 func void UnEquip_ItAm_Hp_01()
 {
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] - Am_Hp;
+	self.attribute[ATR_HITPOINTS_MAX] -= Am_Hp;
 	if(self.attribute[ATR_HITPOINTS] > (Am_Hp + 2))
 	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] - Am_Hp;
+		self.attribute[ATR_HITPOINTS] -= Am_Hp;
 	}
 	else
 	{
@@ -340,16 +340,16 @@ instance ItAm_Mana_01(C_Item)
 
 func void Equip_ItAm_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] + Am_Mana;
-	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] + Am_Mana;
+	self.attribute[ATR_MANA_MAX] += Am_Mana;
+	self.attribute[ATR_MANA] += Am_Mana;
 };
 
 func void UnEquip_ItAm_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] - Am_Mana;
+	self.attribute[ATR_MANA_MAX] -= Am_Mana;
 	if(self.attribute[ATR_MANA] > Am_Mana)
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - Am_Mana;
+		self.attribute[ATR_MANA] -= Am_Mana;
 	}
 	else
 	{
@@ -421,19 +421,19 @@ instance ItAm_Hp_Mana_01(C_Item)
 
 func void Equip_ItAm_Hp_Mana_01()
 {
-	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] + Am_HpMana_Hp;
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] + Am_HpMana_Hp;
-	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] + Am_HpMana_Mana;
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] + Am_HpMana_Mana;
+	self.attribute[ATR_HITPOINTS] += Am_HpMana_Hp;
+	self.attribute[ATR_HITPOINTS_MAX] += Am_HpMana_Hp;
+	self.attribute[ATR_MANA] += Am_HpMana_Mana;
+	self.attribute[ATR_MANA_MAX] += Am_HpMana_Mana;
 };
 
 func void UnEquip_ItAm_Hp_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] - Am_HpMana_Mana;
-	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] - Am_HpMana_Hp;
+	self.attribute[ATR_MANA_MAX] -= Am_HpMana_Mana;
+	self.attribute[ATR_HITPOINTS_MAX] -= Am_HpMana_Hp;
 	if(self.attribute[ATR_HITPOINTS] > (Am_HpMana_Hp + 1))
 	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] - Am_HpMana_Hp;
+		self.attribute[ATR_HITPOINTS] -= Am_HpMana_Hp;
 	}
 	else
 	{
@@ -441,7 +441,7 @@ func void UnEquip_ItAm_Hp_Mana_01()
 	};
 	if(self.attribute[ATR_MANA] >= Am_HpMana_Mana)
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - Am_HpMana_Mana;
+		self.attribute[ATR_MANA] -= Am_HpMana_Mana;
 	}
 	else
 	{

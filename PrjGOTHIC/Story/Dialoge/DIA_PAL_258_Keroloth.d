@@ -73,7 +73,7 @@ func void DIA_Keroloth_WantTeach_Info()
 {
 	AI_Output(other,self,"DIA_Keroloth_WantTeach_15_00");	//Ты можешь обучить и меня?
 	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_01");	//Конечно. Я тренирую всех.
-	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_02");	//Но кроме таланта тебе понадобится хорошее оружие, если ты хочешь выжить здесь.
+	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_02");	//Но, кроме таланта, тебе понадобится хорошее оружие, если ты хочешь выжить здесь.
 	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_03");	//Обратись к рыцарю Тандору. Он снарядит тебя.
 	Keroloth_TeachPlayer = TRUE;
 	Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
@@ -240,7 +240,7 @@ func void DIA_Keroloth_Udar_Info()
 	AI_Output(other,self,"DIA_Keroloth_Udar_15_02");	//Ты можешь обучить меня ему?
 	AI_Output(self,other,"DIA_Keroloth_Udar_07_03");	//Нет, но ты можешь попросить Удара. Он хороший - нет, он ЛУЧШИЙ арбалетчик, насколько я знаю.
 	Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher_OC,"Удар, из замка Долины рудников, знает все об арбалетах.");
+	B_LogEntry(TOPIC_Teacher_OC,"Удар из замка Долины Рудников знает все об арбалетах.");
 };
 
 
@@ -406,7 +406,7 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_Info()
 	{
 		Info_AddChoice(DIA_Keroloth_KAP4_GELDGEFUNDEN,"Минутку. А как насчет награды?",DIA_Keroloth_KAP4_GELDGEFUNDEN_Lohn);
 	};
-	Info_AddChoice(DIA_Keroloth_KAP4_GELDGEFUNDEN,"Он был вон там, у кузницы.",DIA_Keroloth_KAP4_GELDGEFUNDEN_Schmiede);
+	Info_AddChoice(DIA_Keroloth_KAP4_GELDGEFUNDEN,"Эээ. Он был вон там, у кузницы.",DIA_Keroloth_KAP4_GELDGEFUNDEN_Schmiede);
 	Info_AddChoice(DIA_Keroloth_KAP4_GELDGEFUNDEN,"Я подозреваю одного охотника на драконов.",DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG);
 	Info_AddChoice(DIA_Keroloth_KAP4_GELDGEFUNDEN,"Откуда мне знать?",DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung);
 };
@@ -450,15 +450,15 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG()
 	};
 	AI_StopProcessInfos(self);
 	other.aivar[AIV_INVINCIBLE] = FALSE;
-	if((Npc_IsDead(Ferros) == FALSE) && (Npc_GetDistToNpc(self,Ferros) <= 2000))
+	if(!Npc_IsDead(Ferros) && (Npc_GetDistToNpc(self,Ferros) <= 2000))
 	{
 		B_Attack(self,Ferros,AR_NONE,1);
 	}
-	else if((Npc_IsDead(Jan) == FALSE) && (Npc_GetDistToNpc(self,Jan) <= 2000))
+	else if(!Npc_IsDead(Jan) && (Npc_GetDistToNpc(self,Jan) <= 2000))
 	{
 		B_Attack(self,Jan,AR_NONE,1);
 	}
-	else if((Npc_IsDead(Rethon) == FALSE) && (Npc_GetDistToNpc(self,Rethon) <= 2000))
+	else if(!Npc_IsDead(Rethon) && (Npc_GetDistToNpc(self,Rethon) <= 2000))
 	{
 		B_Attack(self,Rethon,AR_NONE,1);
 	};

@@ -5,15 +5,15 @@ instance DIA_SylvioDJG_EXIT(C_Info)
 	nr = 999;
 	condition = DIA_SylvioDJG_EXIT_Condition;
 	information = DIA_SylvioDJG_EXIT_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
 func int DIA_SylvioDJG_EXIT_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_SylvioDJG_EXIT_Info()
@@ -33,7 +33,7 @@ instance DIA_SylvioDJG_HelloAgain(C_Info)
 
 func int DIA_SylvioDJG_HelloAgain_Condition()
 {
-	if((Npc_IsDead(IceDragon) == FALSE) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(!Npc_IsDead(IceDragon) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -96,7 +96,7 @@ instance DIA_Sylvio_DEINELEUTE(C_Info)
 
 func int DIA_Sylvio_DEINELEUTE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_DJG_Sylvio_KillIceGolem == 0))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_DJG_Sylvio_KillIceGolem == FALSE))
 	{
 		return TRUE;
 	};
@@ -140,6 +140,8 @@ func void DIA_Sylvio_WASISTPASSIERT_Info()
 	Log_SetTopicStatus(TOPIC_SylvioKillIceGolem,LOG_Running);
 	B_LogEntry(TOPIC_SylvioKillIceGolem,"Сильвио испугался двух ледяных големов у входа в заснеженный район Долины рудников.");
 	MIS_DJG_Sylvio_KillIceGolem = LOG_Running;
+	IceGolem_Sylvio1.flags = 0;
+	IceGolem_Sylvio2.flags = 0;
 };
 
 func void DIA_Sylvio_WASISTPASSIERT_selbst()
@@ -255,7 +257,7 @@ func void DIA_Sylvio_WASJETZT_Info()
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Я не собираюсь делать всю грязную работу за тебя.",DIA_Sylvio_WASJETZT_nein);
 	if(DJG_Sylvio_PromisedMoney == TRUE)
 	{
-		Info_AddChoice(DIA_Sylvio_WASJETZT,"Сначала, я хочу увидеть свои деньги.",DIA_Sylvio_WASJETZT_Geld);
+		Info_AddChoice(DIA_Sylvio_WASJETZT,"Сначала я хочу увидеть свои деньги.",DIA_Sylvio_WASJETZT_Geld);
 	};
 };
 
@@ -281,7 +283,7 @@ func void DIA_Sylvio_WASJETZT_nein()
 
 func void DIA_Sylvio_WASJETZT_Geld()
 {
-	AI_Output(other,self,"DIA_Sylvio_WASJETZT_Geld_15_00");	//Сначала, я хочу увидеть свои деньги.
+	AI_Output(other,self,"DIA_Sylvio_WASJETZT_Geld_15_00");	//Сначала я хочу увидеть свои деньги.
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_Geld_09_01");	//Когда мы завалим дракона, у тебя будет столько денег, что не сможешь унести.
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Я хочу получить свои деньги сейчас.",DIA_Sylvio_WASJETZT_jetztGeld);
 };
@@ -333,7 +335,7 @@ instance DIA_Sylvio_DUHIER(C_Info)
 
 func int DIA_Sylvio_DUHIER_Condition()
 {
-	if((Npc_IsDead(IceDragon) == FALSE) && (IceDragon.aivar[AIV_TalkedToPlayer] == TRUE))
+	if(!Npc_IsDead(IceDragon) && (IceDragon.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
 		return TRUE;
 	};
@@ -402,7 +404,7 @@ instance DIA_SylvioDJG_BUTNOW(C_Info)
 
 func int DIA_SylvioDJG_BUTNOW_Condition()
 {
-	if(Npc_IsDead(IceDragon) && (Npc_RefuseTalk(self) == FALSE) && Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
+	if(Npc_IsDead(IceDragon) && !Npc_RefuseTalk(self) && Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
 	{
 		return TRUE;
 	};
@@ -425,7 +427,7 @@ instance DIA_Sylvio_PICKPOCKET(C_Info)
 	condition = DIA_Sylvio_PICKPOCKET_Condition;
 	information = DIA_Sylvio_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_100;
+	description = Pickpocket_80;
 };
 
 

@@ -34,7 +34,7 @@ instance DIA_Wolf_DI_HALLO(C_Info)
 
 func int DIA_Wolf_DI_HALLO_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -46,7 +46,7 @@ var int DIA_Wolf_DI_HALLO_OneTime;
 func void DIA_Wolf_DI_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Wolf_DI_HALLO_15_00");	//Как дела?
-	if((Bennet_IsOnBoard == LOG_SUCCESS) && (Npc_IsDead(Bennet_DI) == FALSE))
+	if((Bennet_IsOnBoard == LOG_SUCCESS) && !Npc_IsDead(Bennet_DI))
 	{
 		AI_Output(self,other,"DIA_Wolf_DI_HALLO_08_01");	//Тебе ОЧЕНЬ нужно было брать с собой Беннета?
 		AI_Output(other,self,"DIA_Wolf_DI_HALLO_15_02");	//В чем проблема?
@@ -81,7 +81,7 @@ instance DIA_Wolf_DI_Training(C_Info)
 
 func int DIA_Wolf_DI_Training_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};

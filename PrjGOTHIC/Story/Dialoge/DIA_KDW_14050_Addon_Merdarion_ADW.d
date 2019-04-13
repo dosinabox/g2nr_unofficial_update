@@ -17,7 +17,7 @@ func int DIA_Addon_Merdarion_ADW_EXIT_Condition()
 
 func void DIA_Addon_Merdarion_ADW_EXIT_Info()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Merdarion_FokusGeben) || (Merdarion_GotFocusCount > 0)) && !SC_ADW_ActivatedAllTelePortStones && (TriggeredTeleporterADW <= Merdarion_GotFocusCount) && (Npc_HasItems(other,ItMi_Focus) == 0))
+	if((Npc_KnowsInfo(other,DIA_Addon_Merdarion_FokusGeben) || (Merdarion_GotFocusCount > 0)) && !SC_ADW_ActivatedAllTelePortStones && (TriggeredTeleporterADW <= Merdarion_GotFocusCount) && !Npc_HasItems(other,ItMi_Focus))
 	{
 		CreateInvItems(self,ItMi_Focus,1);
 		B_GiveInvItems(self,other,ItMi_Focus,1);
@@ -66,12 +66,12 @@ func void DIA_Addon_Merdarion_ADWHello_was()
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_was_06_02");	//” мен€ несколько дней назад было ощущение, что € уже видел похожую штуку.
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_was_06_03");	//я полагаю, что нам нужно передать им внушительное количество магической энергии, чтобы заставить их снова работать.
 	Info_AddChoice(DIA_Addon_Merdarion_ADWHello,"√де ты видел такие телепортационные камни раньше?",DIA_Addon_Merdarion_ADWHello_wo);
-	Info_AddChoice(DIA_Addon_Merdarion_ADWHello,"„то может дать достаточное количество магической энергии?..",DIA_Addon_Merdarion_ADWHello_focus);
+	Info_AddChoice(DIA_Addon_Merdarion_ADWHello,"„то может дать достаточное количество магической энергии?",DIA_Addon_Merdarion_ADWHello_focus);
 };
 
 func void DIA_Addon_Merdarion_ADWHello_focus()
 {
-	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_focus_15_00");	//„то может дать достаточное количество магической энергии?..
+	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_focus_15_00");	//„то может дать достаточное количество магической энергии?
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_focus_06_01");	//ћне приходит в голову только одна иде€. ћагическа€ фокусировка.
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_focus_06_02");	//я имею в виду один из п€ти фокусирующих камней, которые были использованы при создании магического Ѕарьера в ƒолине –удников.
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_focus_06_03");	//Ќасколько € знаю, некоторое врем€ назад ты вернул их нам.
@@ -232,7 +232,7 @@ func void DIA_Addon_Merdarion_ActivateTeleports_Info()
 	B_GivePlayerXP(XP_Addon_ActivatedTeleportStone);
 	CreateInvItems(self,ItMi_Gold,150);
 	B_GiveInvItems(self,other,ItMi_Gold,150);
-	Merdarion_GotFocusCount = Merdarion_GotFocusCount + 1;
+	Merdarion_GotFocusCount += 1;
 	if((Merdarion_GotFocusCount >= 1) && (Saturas_SCBroughtAllToken == FALSE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE) && (MIS_Saturas_LookingForHousesOfRulers == 0))
 	{
 		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_11");	//ƒа, и кстати, пока € не забыл - —атурас хотел поговорить с тобой.

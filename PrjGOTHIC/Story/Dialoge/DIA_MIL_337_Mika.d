@@ -1,7 +1,7 @@
 
 instance DIA_Mika_EXIT(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 999;
 	condition = DIA_Mika_EXIT_Condition;
 	information = DIA_Mika_EXIT_Info;
@@ -26,7 +26,7 @@ func void DIA_Mika_EXIT_Info()
 
 instance DIA_Mika_Refuse(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 1;
 	condition = DIA_Mika_Refuse_Condition;
 	information = DIA_Mika_Refuse_Info;
@@ -52,7 +52,7 @@ func void DIA_Mika_Refuse_Info()
 
 instance DIA_Mika_WOHIN(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 4;
 	condition = DIA_Mika_WOHIN_Condition;
 	information = DIA_Mika_WOHIN_Info;
@@ -101,7 +101,7 @@ func void DIA_Mika_WOHIN_weg()
 
 instance DIA_Mika_WASGEFAEHRLICH(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 5;
 	condition = DIA_Mika_WASGEFAEHRLICH_Condition;
 	information = DIA_Mika_WASGEFAEHRLICH_Info;
@@ -130,7 +130,7 @@ func void DIA_Mika_WASGEFAEHRLICH_Info()
 
 instance DIA_Mika_WASKOSTETHILFE(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 6;
 	condition = DIA_Mika_WASKOSTETHILFE_Condition;
 	information = DIA_Mika_WASKOSTETHILFE_Info;
@@ -183,7 +183,7 @@ func void DIA_Mika_WASKOSTETHILFE_nochnicht()
 
 instance DIA_Mika_UEBERLEGT(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 7;
 	condition = DIA_Mika_UEBERLEGT_Condition;
 	information = DIA_Mika_UEBERLEGT_Info;
@@ -218,7 +218,7 @@ func void DIA_Mika_UEBERLEGT_Info()
 
 instance DIA_Mika_HILFE(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 8;
 	condition = DIA_Mika_HILFE_Condition;
 	information = DIA_Mika_HILFE_Info;
@@ -276,7 +276,7 @@ func void DIA_Mika_HILFE_schongut()
 
 instance DIA_Mika_Zack(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 8;
 	condition = DIA_Mika_Zack_Condition;
 	information = DIA_Mika_Zack_Info;
@@ -314,7 +314,7 @@ func void DIA_Mika_Zack_los()
 
 instance DIA_Mika_WIEDERNACHHAUSE(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 9;
 	condition = DIA_Mika_WIEDERNACHHAUSE_Condition;
 	information = DIA_Mika_WIEDERNACHHAUSE_Info;
@@ -342,7 +342,7 @@ func void DIA_Mika_WIEDERNACHHAUSE_Info()
 
 instance DIA_Mika_Kap3_EXIT(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 999;
 	condition = DIA_Mika_Kap3_EXIT_Condition;
 	information = DIA_Mika_Kap3_EXIT_Info;
@@ -367,7 +367,7 @@ func void DIA_Mika_Kap3_EXIT_Info()
 
 instance DIA_Mika_Kap3u4u5_PERM(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 39;
 	condition = DIA_Mika_Kap3u4u5_PERM_Condition;
 	information = DIA_Mika_Kap3u4u5_PERM_Info;
@@ -393,7 +393,7 @@ func void DIA_Mika_Kap3u4u5_PERM_Info()
 
 instance DIA_Mika_PICKPOCKET(C_Info)
 {
-	npc = Mil_337_Mika;
+	npc = MIL_337_Mika;
 	nr = 900;
 	condition = DIA_Mika_PICKPOCKET_Condition;
 	information = DIA_Mika_PICKPOCKET_Info;

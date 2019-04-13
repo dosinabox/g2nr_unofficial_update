@@ -164,7 +164,7 @@ func void DIA_Cornelius_DontBelieveYou_WantSurvive()
 	AI_Output(other,self,"DIA_Cornelius_DontBelieveYou_WantSurvive_15_00");	//Ты ведь очень дорожишь своей жизнью, правда?
 	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WantSurvive_13_01");	//(испуганно) Если ты нападешь на меня, тебя повесят.
 	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WantSurvive_13_02");	//У меня очень влиятельные друзья. Так что даже не думай тронуть меня хотя бы пальцем.
-	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WantSurvive_13_03");	//А теперь убирайся отсюда! Иди я позову стражу!
+	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_WantSurvive_13_03");	//А теперь убирайся отсюда! Или я позову стражу!
 	AI_StopProcessInfos(self);
 };
 
@@ -258,7 +258,7 @@ func void DIA_Cornelius_RealStory_Info()
 	AI_Output(self,other,"DIA_Cornelius_RealStory_13_04");	//Тебе достаточно того, что я сказал. Он убьет меня, если я проговорюсь.
 	AI_Output(other,self,"DIA_Cornelius_RealStory_15_05");	//Ты готов подтвердить сказанное тобой перед лордом Хагеном?
 	AI_Output(self,other,"DIA_Cornelius_RealStory_13_06");	//Я пока еще не выжил из ума. Я не собираюсь оставаться в городе.
-	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis) >= 1)
+	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis))
 	{
 		AI_Output(self,other,"DIA_Cornelius_RealStory_13_07");	//Я дам тебе мой дневник, он послужит достаточным доказательством.
 		B_GiveInvItems(self,other,ItWr_CorneliusTagebuch_Mis,1);
@@ -303,13 +303,13 @@ instance DIA_Cornelius_PICKPOCKET(C_Info)
 	condition = DIA_Cornelius_PICKPOCKET_Condition;
 	information = DIA_Cornelius_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Красть эту книгу рискованно)";
+	description = "(Украсть его книгу будет довольно рискованно)";
 };
 
 
 func int DIA_Cornelius_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis) >= 1) && (other.attribute[ATR_DEXTERITY] >= (60 - Theftdiff)))
+	if(C_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1) && (Kapitel >= 3))
 	{
 		return TRUE;
 	};
@@ -324,19 +324,8 @@ func void DIA_Cornelius_PICKPOCKET_Info()
 
 func void DIA_Cornelius_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 60)
-	{
-		B_GiveInvItems(self,other,ItWr_CorneliusTagebuch_Mis,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Cornelius_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1);
+	Info_ClearChoices(DIA_Cornelius_PICKPOCKET);
 };
 
 func void DIA_Cornelius_PICKPOCKET_BACK()

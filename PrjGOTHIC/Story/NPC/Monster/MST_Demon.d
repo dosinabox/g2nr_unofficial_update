@@ -44,8 +44,8 @@ instance Demon(Mst_Default_Demon)
 instance Summoned_Demon(Mst_Default_Demon)
 {
 	name[0] = "Вызванный демон";
-	guild = gil_summoned_demon;
-	aivar[AIV_MM_REAL_ID] = id_summoned_demon;
+	guild = GIL_SUMMONED_DEMON;
+	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_DEMON;
 	level = 0;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);

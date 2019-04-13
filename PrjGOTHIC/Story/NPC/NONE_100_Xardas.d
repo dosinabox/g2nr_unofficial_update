@@ -15,6 +15,7 @@ instance NONE_100_Xardas(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_N_Xardas,BodyTex_N,ITAR_Xardas);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

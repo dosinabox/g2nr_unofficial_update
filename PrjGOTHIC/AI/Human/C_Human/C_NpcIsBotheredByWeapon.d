@@ -9,7 +9,7 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(C_NpcIsToughGuy(slf) && Npc_IsInFightMode(oth,FMODE_MELEE))
+	if(C_NpcIsToughGuy(slf) && (Npc_IsInFightMode(oth,FMODE_MELEE) || Npc_IsInFightMode(oth,FMODE_FAR)))
 	{
 		return FALSE;
 	};

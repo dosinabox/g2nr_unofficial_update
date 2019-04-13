@@ -68,20 +68,26 @@ func int DIA_GornNW_nach_DJG_KnowWhereEnemy_Condition()
 	};
 };
 
+var int SCToldGornHeKnowWhereEnemy;
+
 func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_GornNW_nach_DJG_KnowWhereEnemy_15_00");	//Мне нужны ты и твой топор.
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_01");	//Хорошо. Я не удивлен. Что я могу сделать для тебя?
 	AI_Output(other,self,"DIA_GornNW_nach_DJG_KnowWhereEnemy_15_02");	//Ты поплывешь со мной на другой остров? Нужно кое-кому надрать задницу.
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_03");	//(смеется) Конечно. Всегда готов. Просто скажи, что нужно делать.
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
-	B_LogEntry(Topic_Crew,"Горн был готов на все, когда я рассказал ему об острове. Если мне понадобится его топор, я могу взять его с собой.");
+	if(SCToldGornHeKnowWhereEnemy == FALSE)
+	{
+		Log_CreateTopic(Topic_Crew,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Crew,LOG_Running);
+		B_LogEntry(Topic_Crew,"Горн был готов на все, когда я рассказал ему об острове. Если мне понадобится его топор, я могу взять его с собой.");
+		SCToldGornHeKnowWhereEnemy = TRUE;
+	};
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_GornNW_nach_DJG_KnowWhereEnemy_15_04");	//Сейчас моя команда почти укомплектована, но я думаю, что тебе тоже могло бы найтись место на борту.
 		AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_05");	//Если тебе придется вышвырнуть кого-нибудь из своей команды ради меня - выбери самого слабого.
-		AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_06");	//В наше суровое время, нельзя разбрасываться людьми, способными крепко держать оружие в руках.
+		AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_06");	//В наше суровое время нельзя разбрасываться людьми, способными крепко держать оружие в руках.
 	}
 	else
 	{
@@ -98,7 +104,7 @@ func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes()
 	B_GivePlayerXP(XP_Crewmember_Success);
 	self.flags = NPC_FLAG_IMMORTAL;
 	Gorn_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
+	Crewmember_Count += 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
 		Npc_ExchangeRoutine(self,"SHIP");
@@ -143,7 +149,7 @@ func void DIA_GornNW_nach_DJG_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_GornNW_nach_DJG_LeaveMyShip_15_00");	//Возможно, тебе лучше остаться здесь.
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_LeaveMyShip_12_01");	//Ты хочешь, чтобы я отпустил тебя одного? Ммм. Мне нелегко это сделать, но это твоя война. Найди меня, если решишь, что я все же тебе нужен.
 	Gorn_IsOnBoard = LOG_OBSOLETE;
-	Crewmember_Count = Crewmember_Count - 1;
+	Crewmember_Count -= 1;
 	Npc_ExchangeRoutine(self,"Start");
 };
 
@@ -173,7 +179,7 @@ func void DIA_GornNW_nach_DJG_StillNeedYou_Info()
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_StillNeedYou_12_01");	//Наконец-то. А я уж думал, ты оставишь гнить меня здесь, пока будешь развлекаться там. До скорой встречи.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Gorn_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
+	Crewmember_Count += 1;
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
 	{

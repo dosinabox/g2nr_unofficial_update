@@ -13,7 +13,7 @@ instance VLK_4100_Brutus(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_ToughBald,BodyTex_P,ITAR_Mil_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_P_ToughBald,BodyTex_P,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

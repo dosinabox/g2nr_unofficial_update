@@ -34,7 +34,7 @@ instance DIA_Jack_DI_GREET(C_Info)
 
 func int DIA_Jack_DI_GREET_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if(!Npc_IsDead(UndeadDragon) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

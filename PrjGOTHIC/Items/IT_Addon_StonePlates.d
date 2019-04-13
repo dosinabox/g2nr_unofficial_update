@@ -71,7 +71,7 @@ func int C_SCHasStPlSkill()
 func void Use_StonePlate()
 {
 	var string concatText;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		B_Say(self,self,"$CANTREADTHIS");
 	}
@@ -311,7 +311,7 @@ func void Use_StrStonePlate1()
 {
 	StoneplateItem = StrStonePlate;
 	StoneplateLevel = 1;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_StrStonePlate1_Addon);
 	};
@@ -331,7 +331,7 @@ func void Use_StrStonePlate2()
 {
 	StoneplateItem = StrStonePlate;
 	StoneplateLevel = 2;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_StrStonePlate2_Addon);
 	};
@@ -351,7 +351,7 @@ func void Use_StrStonePlate3()
 {
 	StoneplateItem = StrStonePlate;
 	StoneplateLevel = 3;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_StrStonePlate3_Addon);
 	};
@@ -371,7 +371,7 @@ func void Use_DexStonePlate1()
 {
 	StoneplateItem = DexStonePlate;
 	StoneplateLevel = 1;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_DexStonePlate1_Addon);
 	};
@@ -391,7 +391,7 @@ func void Use_DexStonePlate2()
 {
 	StoneplateItem = DexStonePlate;
 	StoneplateLevel = 2;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_DexStonePlate2_Addon);
 	};
@@ -411,7 +411,7 @@ func void Use_DexStonePlate3()
 {
 	StoneplateItem = DexStonePlate;
 	StoneplateLevel = 3;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_DexStonePlate3_Addon);
 	};
@@ -431,7 +431,7 @@ func void Use_HitPointStonePlate1()
 {
 	StoneplateItem = HitPointStonePlate;
 	StoneplateLevel = 1;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_HitPointStonePlate1_Addon);
 	};
@@ -451,7 +451,7 @@ func void Use_HitPointStonePlate2()
 {
 	StoneplateItem = HitPointStonePlate;
 	StoneplateLevel = 2;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_HitPointStonePlate2_Addon);
 	};
@@ -471,7 +471,7 @@ func void Use_HitPointStonePlate3()
 {
 	StoneplateItem = HitPointStonePlate;
 	StoneplateLevel = 3;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_HitPointStonePlate3_Addon);
 	};
@@ -491,7 +491,7 @@ func void Use_ManaStonePlate1()
 {
 	StoneplateItem = ManaStonePlate;
 	StoneplateLevel = 1;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_ManaStonePlate1_Addon);
 	};
@@ -511,7 +511,7 @@ func void Use_ManaStonePlate2()
 {
 	StoneplateItem = ManaStonePlate;
 	StoneplateLevel = 2;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_ManaStonePlate2_Addon);
 	};
@@ -531,7 +531,7 @@ func void Use_ManaStonePlate3()
 {
 	StoneplateItem = ManaStonePlate;
 	StoneplateLevel = 3;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_ManaStonePlate3_Addon);
 	};
@@ -551,7 +551,7 @@ func void Use_OneHStonePlate1()
 {
 	StoneplateItem = OneHStonePlate;
 	StoneplateLevel = 1;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_OneHStonePlate1_Addon);
 	};
@@ -571,7 +571,7 @@ func void Use_OneHStonePlate2()
 {
 	StoneplateItem = OneHStonePlate;
 	StoneplateLevel = 2;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_OneHStonePlate2_Addon);
 	};
@@ -591,7 +591,7 @@ func void Use_OneHStonePlate3()
 {
 	StoneplateItem = OneHStonePlate;
 	StoneplateLevel = 3;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_OneHStonePlate3_Addon);
 	};
@@ -611,7 +611,7 @@ func void Use_TwoHStonePlate1()
 {
 	StoneplateItem = TwoHStonePlate;
 	StoneplateLevel = 1;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_TwoHStonePlate1_Addon);
 	};
@@ -631,7 +631,7 @@ func void Use_TwoHStonePlate2()
 {
 	StoneplateItem = TwoHStonePlate;
 	StoneplateLevel = 2;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_TwoHStonePlate2_Addon);
 	};
@@ -651,7 +651,7 @@ func void Use_TwoHStonePlate3()
 {
 	StoneplateItem = TwoHStonePlate;
 	StoneplateLevel = 3;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_TwoHStonePlate3_Addon);
 	};
@@ -671,7 +671,7 @@ func void Use_BowStonePlate1()
 {
 	StoneplateItem = BowStonePlate;
 	StoneplateLevel = 1;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_BowStonePlate1_Addon);
 	};
@@ -691,7 +691,7 @@ func void Use_BowStonePlate2()
 {
 	StoneplateItem = BowStonePlate;
 	StoneplateLevel = 2;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_BowStonePlate2_Addon);
 	};
@@ -711,7 +711,7 @@ func void Use_BowStonePlate3()
 {
 	StoneplateItem = BowStonePlate;
 	StoneplateLevel = 3;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_BowStonePlate3_Addon);
 	};
@@ -731,7 +731,7 @@ func void Use_CrsBowStonePlate1()
 {
 	StoneplateItem = CrsBowStonePlate;
 	StoneplateLevel = 1;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_CrsBowStonePlate1_Addon);
 	};
@@ -751,7 +751,7 @@ func void Use_CrsBowStonePlate2()
 {
 	StoneplateItem = CrsBowStonePlate;
 	StoneplateLevel = 2;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_CrsBowStonePlate2_Addon);
 	};
@@ -771,7 +771,7 @@ func void Use_CrsBowStonePlate3()
 {
 	StoneplateItem = CrsBowStonePlate;
 	StoneplateLevel = 3;
-	if(C_SCHasStPlSkill() == FALSE)
+	if(!C_SCHasStPlSkill())
 	{
 		CreateInvItem(hero,ItWr_CrsBowStonePlate3_Addon);
 	};

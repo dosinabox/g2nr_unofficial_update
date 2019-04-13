@@ -33,7 +33,7 @@ instance DIA_Lee_DI_Hallo(C_Info)
 
 func int DIA_Lee_DI_Hallo_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -59,7 +59,7 @@ instance DIA_Lee_DI_PERM6(C_Info)
 
 func int DIA_Lee_DI_PERM6_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lee_DI_Hallo) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if(!Npc_IsDead(UndeadDragon) && Npc_KnowsInfo(other,DIA_Lee_DI_Hallo))
 	{
 		return TRUE;
 	};
@@ -93,7 +93,7 @@ instance DIA_Lee_DI_Teach(C_Info)
 
 func int DIA_Lee_DI_Teach_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -249,5 +249,4 @@ func void DIA_Lee_DI_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Lee_DI_PICKPOCKET);
 };
-
 

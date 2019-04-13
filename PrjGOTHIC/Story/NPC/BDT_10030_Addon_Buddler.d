@@ -25,3 +25,8 @@ func void Rtn_Start_10030()
 	TA_Stand_Drinking(12,0,6,0,"ADW_MINE_22");
 };
 
+func void Rtn_Work_10030()
+{
+	TA_Pick_Ore(8,0,23,0,"ADW_MINE_PICK_02");
+	TA_Pick_Ore(23,0,8,0,"ADW_MINE_PICK_02");
+};

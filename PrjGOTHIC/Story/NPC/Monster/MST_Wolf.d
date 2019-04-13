@@ -46,8 +46,8 @@ instance Wolf(Mst_Default_Wolf)
 instance Summoned_Wolf(Mst_Default_Wolf)
 {
 	name[0] = "Вызванный волк";
-	guild = gil_summoned_wolf;
-	aivar[AIV_MM_REAL_ID] = id_summoned_wolf;
+	guild = GIL_SUMMONED_WOLF;
+	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_WOLF;
 	level = 0;
 	attribute[ATR_STRENGTH] = 50;
 	attribute[ATR_DEXTERITY] = 50;
@@ -68,8 +68,8 @@ instance Summoned_Wolf(Mst_Default_Wolf)
 
 instance YWolf(Mst_Default_Wolf)
 {
+	name[0] = NAME_YWolf;
 	level = 3;
-	name[0] = "Молодой волк";
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_HITPOINTS_MAX] = 20;
@@ -87,7 +87,7 @@ instance YWolf(Mst_Default_Wolf)
 
 instance PEPES_YWolf1(Mst_Default_Wolf)
 {
-	name[0] = "Молодой волк";
+	name[0] = NAME_YWolf;
 	level = 3;
 	attribute[ATR_STRENGTH] = 15;
 	attribute[ATR_DEXTERITY] = 15;
@@ -105,8 +105,8 @@ instance PEPES_YWolf1(Mst_Default_Wolf)
 
 instance PEPES_YWolf2(Mst_Default_Wolf)
 {
+	name[0] = NAME_YWolf;
 	level = 3;
-	name[0] = "Молодой волк";
 	attribute[ATR_STRENGTH] = 15;
 	attribute[ATR_DEXTERITY] = 15;
 	attribute[ATR_HITPOINTS_MAX] = 30;
@@ -123,8 +123,8 @@ instance PEPES_YWolf2(Mst_Default_Wolf)
 
 instance PEPES_YWolf3(Mst_Default_Wolf)
 {
+	name[0] = NAME_YWolf;
 	level = 3;
-	name[0] = "Молодой волк";
 	attribute[ATR_STRENGTH] = 15;
 	attribute[ATR_DEXTERITY] = 15;
 	attribute[ATR_HITPOINTS_MAX] = 30;
@@ -141,8 +141,8 @@ instance PEPES_YWolf3(Mst_Default_Wolf)
 
 instance PEPES_YWolf4(Mst_Default_Wolf)
 {
+	name[0] = NAME_YWolf;
 	level = 3;
-	name[0] = "Молодой волк";
 	attribute[ATR_STRENGTH] = 15;
 	attribute[ATR_DEXTERITY] = 15;
 	attribute[ATR_HITPOINTS_MAX] = 30;

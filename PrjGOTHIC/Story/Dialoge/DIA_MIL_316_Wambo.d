@@ -1,7 +1,7 @@
 
 instance DIA_Wambo_EXIT(C_Info)
 {
-	npc = Mil_316_Wambo;
+	npc = MIL_316_Wambo;
 	nr = 999;
 	condition = DIA_Wambo_EXIT_Condition;
 	information = DIA_Wambo_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Wambo_EXIT_Info()
 
 instance DIA_Wambo_PICKPOCKET(C_Info)
 {
-	npc = Mil_316_Wambo;
+	npc = MIL_316_Wambo;
 	nr = 900;
 	condition = DIA_Wambo_PICKPOCKET_Condition;
 	information = DIA_Wambo_PICKPOCKET_Info;
@@ -34,10 +34,7 @@ instance DIA_Wambo_PICKPOCKET(C_Info)
 
 func int DIA_Wambo_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItKe_City_Tower_04) >= 1) && (other.attribute[ATR_DEXTERITY] >= 40))
-	{
-		return TRUE;
-	};
+	return C_StealItems(50,Hlp_GetInstanceID(ItKe_City_Tower_04),1);
 };
 
 func void DIA_Wambo_PICKPOCKET_Info()
@@ -49,19 +46,8 @@ func void DIA_Wambo_PICKPOCKET_Info()
 
 func void DIA_Wambo_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 50)
-	{
-		B_GiveInvItems(self,other,ItKe_City_Tower_04,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Wambo_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(50,Hlp_GetInstanceID(ItKe_City_Tower_04),1);
+	Info_ClearChoices(DIA_Wambo_PICKPOCKET);
 };
 
 func void DIA_Wambo_PICKPOCKET_BACK()
@@ -72,7 +58,7 @@ func void DIA_Wambo_PICKPOCKET_BACK()
 
 instance DIA_Wambo_Job(C_Info)
 {
-	npc = Mil_316_Wambo;
+	npc = MIL_316_Wambo;
 	nr = 5;
 	condition = DIA_Wambo_Job_Condition;
 	information = DIA_Wambo_Job_Info;
@@ -96,7 +82,7 @@ func void DIA_Wambo_Job_Info()
 
 instance DIA_Wambo_Situation(C_Info)
 {
-	npc = Mil_316_Wambo;
+	npc = MIL_316_Wambo;
 	nr = 10;
 	condition = DIA_Wambo_Situation_Condition;
 	information = DIA_Wambo_Situation_Info;
@@ -122,7 +108,7 @@ func void DIA_Wambo_Situation_Info()
 
 instance DIA_Wambo_Ramirez(C_Info)
 {
-	npc = Mil_316_Wambo;
+	npc = MIL_316_Wambo;
 	nr = 5;
 	condition = DIA_Wambo_Ramirez_Condition;
 	information = DIA_Wambo_Ramirez_Info;
@@ -152,7 +138,7 @@ func void DIA_Wambo_Ramirez_Info()
 
 instance DIA_Wambo_Deal(C_Info)
 {
-	npc = Mil_316_Wambo;
+	npc = MIL_316_Wambo;
 	nr = 5;
 	condition = DIA_Wambo_Deal_Condition;
 	information = DIA_Wambo_Deal_Info;
@@ -184,7 +170,7 @@ func void DIA_Wambo_Deal_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Wambo_Deal_15_03");	//...но с собой их не захватил.
+		AI_Output(other,self,"DIA_Wambo_Deal_15_03");	//... но с собой их не захватил.
 		AI_Output(self,other,"DIA_Wambo_Deal_03_04");	//Я не выношу, когда кто-нибудь пытается одурачить меня. Так что давай сюда золото.
 		AI_StopProcessInfos(self);
 	};

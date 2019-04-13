@@ -1,7 +1,7 @@
 
 instance DIA_Mil_305_Torwache_EXIT(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 999;
 	condition = DIA_Mil_305_Torwache_EXIT_Condition;
 	information = DIA_Mil_305_Torwache_EXIT_Info;
@@ -25,7 +25,7 @@ const string Mil_305_Checkpoint = "NW_CITY_UPTOWN_PATH_02";
 
 instance DIA_Mil_305_Torwache_FirstWarn(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 1;
 	condition = DIA_Mil_305_Torwache_FirstWarn_Condition;
 	information = DIA_Mil_305_Torwache_FirstWarn_Info;
@@ -49,7 +49,7 @@ func int DIA_Mil_305_Torwache_FirstWarn_Condition()
 	{
 		self.aivar[AIV_PASSGATE] = TRUE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_RefuseTalk(self) == FALSE))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -85,7 +85,7 @@ func void DIA_Mil_305_Torwache_FirstWarn_Info()
 
 instance DIA_Mil_305_Torwache_SecondWarn(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 2;
 	condition = DIA_Mil_305_Torwache_SecondWarn_Condition;
 	information = DIA_Mil_305_Torwache_SecondWarn_Info;
@@ -96,7 +96,7 @@ instance DIA_Mil_305_Torwache_SecondWarn(C_Info)
 
 func int DIA_Mil_305_Torwache_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Mil_305_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_305_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -113,7 +113,7 @@ func void DIA_Mil_305_Torwache_SecondWarn_Info()
 
 instance DIA_Mil_305_Torwache_Attack(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 3;
 	condition = DIA_Mil_305_Torwache_Attack_Condition;
 	information = DIA_Mil_305_Torwache_Attack_Info;
@@ -124,7 +124,7 @@ instance DIA_Mil_305_Torwache_Attack(C_Info)
 
 func int DIA_Mil_305_Torwache_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Mil_305_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_305_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -142,7 +142,7 @@ func void DIA_Mil_305_Torwache_Attack_Info()
 
 instance DIA_Mil_305_Torwache_MESSAGE(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 1;
 	condition = DIA_Mil_305_Torwache_MESSAGE_Condition;
 	information = DIA_Mil_305_Torwache_MESSAGE_Info;
@@ -169,7 +169,7 @@ func void DIA_Mil_305_Torwache_MESSAGE_Info()
 
 instance DIA_Mil_305_Torwache_Ausnahme(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 2;
 	condition = DIA_Mil_305_Torwache_Ausnahme_Condition;
 	information = DIA_Mil_305_Torwache_Ausnahme_Info;
@@ -196,7 +196,7 @@ func void DIA_Mil_305_Torwache_Ausnahme_Info()
 
 instance DIA_Mil_305_Torwache_PassAsCitizen(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 2;
 	condition = DIA_Mil_305_Torwache_PassAsCitizen_Condition;
 	information = DIA_Mil_305_Torwache_PassAsCitizen_Info;
@@ -241,7 +241,7 @@ func void DIA_Mil_305_Torwache_PassAsCitizen_Info()
 
 instance DIA_Mil_305_Torwache_PassAsMil(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 3;
 	condition = DIA_Mil_305_Torwache_PassAsMil_Condition;
 	information = DIA_Mil_305_Torwache_PassAsMil_Info;
@@ -272,7 +272,7 @@ func void DIA_Mil_305_Torwache_PassAsMil_Info()
 
 instance DIA_Mil_305_Torwache_PassAsMage(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 3;
 	condition = DIA_Mil_305_Torwache_PassAsMage_Condition;
 	information = DIA_Mil_305_Torwache_PassAsMage_Info;
@@ -304,7 +304,7 @@ func void DIA_Mil_305_Torwache_PassAsMage_Info()
 
 instance DIA_Mil_305_Torwache_PassAsSld(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 3;
 	condition = DIA_Mil_305_Torwache_PassAsSld_Condition;
 	information = DIA_Mil_305_Torwache_PassAsSld_Info;
@@ -336,7 +336,7 @@ func void DIA_Mil_305_Torwache_PassAsSld_Info()
 
 instance DIA_Mil_305_Torwache_PERM(C_Info)
 {
-	npc = Mil_305_Torwache;
+	npc = MIL_305_Torwache;
 	nr = 1;
 	condition = DIA_Mil_305_Torwache_PERM_Condition;
 	information = DIA_Mil_305_Torwache_PERM_Info;

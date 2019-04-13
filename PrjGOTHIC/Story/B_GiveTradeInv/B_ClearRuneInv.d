@@ -2,9 +2,15 @@
 func void B_ClearRuneInv(var C_Npc slf)
 {
 	var C_Npc her;
+	var C_Npc orc;
 	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(her))
+	orc = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst);
+	if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(her))
 	{
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Archol)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(orc)))
+		{
+			return;
+		};
 		Npc_RemoveInvItems(slf,ItRu_PalLightHeal,Npc_HasItems(slf,ItRu_PalLightHeal));
 		Npc_RemoveInvItems(slf,ItRu_PalMediumHeal,Npc_HasItems(slf,ItRu_PalMediumHeal));
 		Npc_RemoveInvItems(slf,ItRu_PalFullHeal,Npc_HasItems(slf,ItRu_PalFullHeal));

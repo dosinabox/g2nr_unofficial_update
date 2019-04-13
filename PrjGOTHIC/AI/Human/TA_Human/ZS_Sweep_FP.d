@@ -4,11 +4,11 @@ func void ZS_Sweep_FP()
 	Perception_Set_Normal();
 	B_ResetAll(self);
 	AI_SetWalkMode(self,NPC_WALK);
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == 0)
+	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Npc_HasItems(self,ItMi_Brush) == 0)
+	if(!Npc_HasItems(self,ItMi_Brush))
 	{
 		CreateInvItem(self,ItMi_Brush);
 	};

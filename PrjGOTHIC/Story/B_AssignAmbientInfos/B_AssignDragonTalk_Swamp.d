@@ -21,6 +21,7 @@ func void DIA_Dragon_Swamp_Exit_Info()
 {
 	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
 	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
+	SC_IsWearingInnosEye = FALSE;
 	AI_Output(self,other,"DIA_Dragon_Swamp_Exit_20_00");	//Сила Глаза иссякла. Твоя жизнь закончится здесь, человек.
 	SwampDragon = Hlp_GetNpc(Dragon_Swamp);
 	SwampDragon.flags = 0;
@@ -28,7 +29,7 @@ func void DIA_Dragon_Swamp_Exit_Info()
 	DragonTalk_Exit_Free = FALSE;
 	if(DJG_SwampParty_GoGoGo == TRUE)
 	{
-		if((DJG_SwampParty == TRUE) && (Npc_IsDead(DJG_Cipher) == FALSE))
+		if((DJG_SwampParty == TRUE) && !Npc_IsDead(DJG_Cipher))
 		{
 			B_StartOtherRoutine(DJG_Rod,"SwampDragon");
 		};
@@ -54,9 +55,9 @@ instance DIA_Dragon_Swamp_Hello(C_Info)
 
 func int DIA_Dragon_Swamp_Hello_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_MIS) >= 1)
+	if(SC_IsWearingInnosEye == TRUE)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 

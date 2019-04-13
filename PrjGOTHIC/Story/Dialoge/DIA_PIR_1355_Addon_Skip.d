@@ -467,7 +467,7 @@ func void DIA_Addon_Skip_AngusHankMurder_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_01");	//Хорошо. Но они оба мертвы. Какая теперь разница?
 		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_02");	//Месть еще не сделала богатым ни одного пирата.
-		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_03");	//Мне бы свой грог назад получить.
+		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_03");	//Я хотя бы получил назад свой грог.
 	}
 	else
 	{
@@ -502,7 +502,7 @@ func void DIA_Addon_Skip_Grog_Info()
 	{
 		Info_ClearChoices(DIA_Addon_Skip_Grog);
 		Info_AddChoice(DIA_Addon_Skip_Grog,Dialog_Back,DIA_Addon_Skip_Grog_back);
-		Info_AddChoice(DIA_Addon_Skip_Grog,"Вот твои 20 бутылок.",DIA_Addon_Skip_Grog_geben);
+		Info_AddChoice(DIA_Addon_Skip_Grog,"Вот тебе 20 бутылок.",DIA_Addon_Skip_Grog_geben);
 	}
 	else
 	{
@@ -520,7 +520,7 @@ func void DIA_Addon_Skip_Grog_geben()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Grog_geben_15_00");	//Вот тебе 20 бутылок.
 	B_GiveInvItems(other,self,ItFo_Addon_Grog,20);
-	B_LogEntry(TOPIC_Addon_SkipsGrog,"Скип получил свои 20 бутылок грога назад и теперь очень счастлив.");
+	B_LogEntry(TOPIC_Addon_SkipsGrog,"Скип получил назад свои 20 бутылок грога и теперь очень счастлив.");
 	MIS_ADDON_SkipsGrog = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_SkipsGrog);
 	AI_Output(self,other,"DIA_Addon_Skip_Grog_geben_08_01");	//Что? Вот так вот просто?
@@ -638,7 +638,7 @@ func int DIA_Addon_Skip_ComeOn_Condition()
 func void DIA_Addon_Skip_ComeOn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_ComeOn_15_00");	//Пойдем со мной.
-	if(C_GregsPiratesTooFar() == TRUE)
+	if(C_GregsPiratesTooFar())
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_ComeOn_08_02");	//Подожди. Давай сначала вернемся в каньон...
 		AI_StopProcessInfos(self);
@@ -700,7 +700,7 @@ instance DIA_Addon_Skip_TooFar(C_Info)
 
 func int DIA_Addon_Skip_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (C_GregsPiratesTooFar() == TRUE))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar())
 	{
 		return TRUE;
 	};
@@ -715,7 +715,7 @@ func void DIA_Addon_Skip_TooFar_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Skip_TooFar_08_03");	//Если ты идешь дальше, то на нас не рассчитывай!
+		AI_Output(self,other,"DIA_Addon_Skip_TooFar_08_03");	//Если ты идешь дальше, то на меня не рассчитывай!
 	};
 	B_Addon_PiratesGoHome();
 	AI_StopProcessInfos(self);
@@ -735,7 +735,7 @@ instance DIA_Addon_Skip_Treffpunkt(C_Info)
 
 func int DIA_Addon_Skip_Treffpunkt_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 800) && (C_AllCanyonRazorDead() == FALSE))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 800) && !C_AllCanyonRazorDead())
 	{
 		return TRUE;
 	};
@@ -788,7 +788,7 @@ instance DIA_Addon_Skip_AllRazorsDead(C_Info)
 
 func int DIA_Addon_Skip_AllRazorsDead_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (C_AllCanyonRazorDead() == TRUE))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_AllCanyonRazorDead())
 	{
 		return TRUE;
 	};

@@ -47,7 +47,7 @@ instance DIA_AmbientDementor(C_Info)
 
 func int DIA_AmbientDementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};

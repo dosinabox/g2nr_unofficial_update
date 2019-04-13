@@ -77,6 +77,6 @@ func void Rtn_Bigfarm_931()
 func void Rtn_Kloster_931()
 {
 	TA_Pick_FP(8,0,22,0,"NW_MONASTERY_HERB_02");
-	TA_Pick_FP(22,0,8,0,"NW_MONASTERY_HERB_02");
+	TA_Sleep(22,0,8,0,"NW_MONASTERY_NOVICE01_06");
 };
 

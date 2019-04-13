@@ -33,7 +33,7 @@ func void Use_SaturasFirstMessage()
 	Doc_PrintLines(nDocID,0,"Найденный нами орнамент имеет гораздо большее значение, чем мы думали. Похоже, что это артефакт-ключ. Увы, у нас только часть его. Мы должны заняться им.");
 	Doc_PrintLines(nDocID,0,"Отправь одного из членов Кольца Воды, чтобы он вернул нам орнамент. Если возможно, не посылай Кавалорна.");
 	Doc_PrintLines(nDocID,0,"Он и так достаточно потрудился, доставляя тебе это письмо.");
-	Doc_PrintLines(nDocID,0,"Надеюсь на то, что мы делаем, - правильно.");
+	Doc_PrintLines(nDocID,0,"Надеюсь на то, что мы делаем - правильно.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сатурас");
 	Doc_Show(nDocID);
@@ -202,7 +202,7 @@ func void Equip_ItRi_Ranger_Addon()
 	{
 		if(ENTERED_ADDONWORLD == FALSE)
 		{
-			if(Npc_HasItems(hero,ItRi_Ranger_Addon) == FALSE)
+			if(!Npc_HasItems(hero,ItRi_Ranger_Addon))
 			{
 				RangerRingIsLaresRing = TRUE;
 			};
@@ -263,7 +263,7 @@ instance ItWr_Martin_MilizEmpfehlung_Addon(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_MartinMilizEmpfehlung_Addon;
 	scemeName = "MAP";
-	description = "Рекомендательное письмо для лорда Андре";
+	description = "Рекомендательное письмо для лорда Андрэ";
 	text[2] = "Это письмо поможет мне";
 	text[3] = "присоединиться к ополчению.";
 };
@@ -280,7 +280,7 @@ func void Use_MartinMilizEmpfehlung_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Уважаемый лорд Андре!");
+	Doc_PrintLines(nDocID,0,"Уважаемый лорд Андрэ!");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"С этим письмом я отправляю вам нового рекрута для ополчения.");
 	Doc_PrintLines(nDocID,0,"Он уже помог мне в одном важном и непростом деле.");
@@ -313,14 +313,6 @@ var int Use_RavensKidnapperMission_Addon_OneTime;
 func void Use_RavensKidnapperMission_Addon()
 {
 	var int nDocID;
-	if((Use_RavensKidnapperMission_Addon_OneTime == FALSE) && (MIS_Addon_Vatras_WhereAreMissingPeople != 0))
-	{
-		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-		B_LogEntry(TOPIC_Addon_WhoStolePeople,"Теперь у меня есть письменные доказательства того, что Ворон, бывший рудный барон, стоит за похищениями граждан Хориниса. Убежище Ворона находится где-то за горами на северо-востоке. Я должен показать этот документ Ватрасу.");
-		Use_RavensKidnapperMission_Addon_OneTime = TRUE;
-	};
-	SCKnowsMissingPeopleAreInAddonWorld = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -337,6 +329,14 @@ func void Use_RavensKidnapperMission_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"     Ворон");
 	Doc_Show(nDocID);
+	SCKnowsMissingPeopleAreInAddonWorld = TRUE;
+	if((Use_RavensKidnapperMission_Addon_OneTime == FALSE) && (MIS_Addon_Vatras_WhereAreMissingPeople != FALSE))
+	{
+		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		B_LogEntry(TOPIC_Addon_WhoStolePeople,"Теперь у меня есть письменные доказательства того, что Ворон, бывший рудный барон, стоит за похищениями граждан Хориниса. Убежище Ворона находится где-то за горами на северо-востоке. Я должен показать этот документ Ватрасу.");
+		Use_RavensKidnapperMission_Addon_OneTime = TRUE;
+	};
 };
 
 
@@ -408,13 +408,6 @@ instance ItWr_LuciasLoveLetter_Addon(C_Item)
 func void Use_LuciasLoveLetter_Addon()
 {
 	var int nDocID;
-	if(MIS_LuciasLetter == FALSE)
-	{
-		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
-		B_LogEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
-		MIS_LuciasLetter = LOG_Running;
-	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -431,6 +424,13 @@ func void Use_LuciasLoveLetter_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"     Люсия");
 	Doc_Show(nDocID);
+	if(MIS_LuciasLetter == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
+		B_LogEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
+		MIS_LuciasLetter = LOG_Running;
+	};
 };
 
 
@@ -473,18 +473,18 @@ instance ItMi_Rake(C_Item)
 	visual = "ItMi_Rake.3DS";
 	material = MAT_WOOD;
 	scemeName = "RAKE";
-	on_state[1] = Use_Rake;
+//	on_state[1] = Use_Rake;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 
-
+/*
 func void Use_Rake()
 {
 };
-
+*/
 
 instance ItRi_Addon_BanditTrader(C_Item)
 {
@@ -543,7 +543,7 @@ func void Use_ItWr_Addon_BanditTrader()
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"ФЕРНАНДО");
 	Doc_Show(nDocID);
-	if((MIS_Vatras_FindTheBanditTrader != 0) && (Use_ItWr_Addon_BanditTrader_OneTime == FALSE))
+	if((MIS_Vatras_FindTheBanditTrader != FALSE) && (Use_ItWr_Addon_BanditTrader_OneTime == FALSE))
 	{
 		B_LogEntry(TOPIC_Addon_Bandittrader,"Я нашел документ, доказывающий, что Фернандо является поставщиком оружия, которого я ищу.");
 		Use_ItWr_Addon_BanditTrader_OneTime = TRUE;
@@ -650,7 +650,7 @@ func void UnEquip_WispDetector()
 {
 	var C_Npc DetWsp;
 	DetWsp = Hlp_GetNpc(Wisp_Detector);
-	if(Npc_IsDead(DetWsp) == FALSE)
+	if(!Npc_IsDead(DetWsp))
 	{
 		Snd_Play("WSP_Dead_A1");
 	};
@@ -1023,6 +1023,7 @@ instance ItMI_Addon_Kompass_Mis(C_Item)
 	visual = "ItMi_Compass_01.3DS";
 	material = MAT_STONE;
 	description = name;
+	count[5] = value;
 };
 
 instance ItSE_Addon_FrancisChest(C_Item)
@@ -1106,7 +1107,6 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_PrintLine(nDocID,0,"----------------------");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Личная доля: 1000");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
@@ -1135,9 +1135,8 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_PrintLine(nDocID,1,"----------------------");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Личная доля: 1701");
-	Doc_PrintLine(nDocID,1,"");
-	Francis_HasProof = TRUE;
 	Doc_Show(nDocID);
+	Francis_HasProof = TRUE;
 	B_Say(self,self,"$ADDON_THISLITTLEBASTARD");
 };
 
@@ -1177,8 +1176,8 @@ func void UseGregsLogbuch()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Я перевезу основную часть команды на материк. Они будут охранять руду. В лагере останется Фрэнсис с небольшой группой людей.");
 	Doc_PrintLines(nDocID,1,"Времени терять нельзя. Я отдал доспехи Бонесу. Он проберется в лагерь бандитов и узнает, что планирует Ворон.");
-	Greg_GaveArmorToBones = TRUE;
 	Doc_Show(nDocID);
+	Greg_GaveArmorToBones = TRUE;
 };
 
 
@@ -1236,7 +1235,7 @@ func void Use_TempelTorKey()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"  Яхедра Акантар");
+	Doc_PrintLine(nDocID,0,"  Джер-эдра Ахантар");
 	Doc_Show(nDocID);
 };
 
@@ -1251,7 +1250,7 @@ instance ItMi_Addon_Bloodwyn_Kopf(C_Item)
 	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
-	count[5] = value;
+//	count[5] = value;
 };
 
 instance ItWR_Addon_TreasureMap(C_Item)
@@ -1308,7 +1307,7 @@ func void Use_GregsBottle()
 };
 
 
-instance itmi_erolskelch(C_Item)
+instance ItMi_ErolsKelch(C_Item)
 {
 	name = "Поцарапанная серебряная чаша";
 	mainflag = ITEM_KAT_NONE;

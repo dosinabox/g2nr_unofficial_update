@@ -123,7 +123,7 @@ instance DIA_Addon_Morgan_Hello(C_Info)
 
 func int DIA_Addon_Morgan_Hello_Condition()
 {
-	if((MIS_AlligatorJack_BringMeat == FALSE) && Npc_IsInState(self,ZS_Talk) && (Npc_IsDead(AlligatorJack) == FALSE) && (GregIsBack == FALSE))
+	if((MIS_AlligatorJack_BringMeat == FALSE) && Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(AlligatorJack) && (GregIsBack == FALSE))
 	{
 		return TRUE;
 	};
@@ -151,7 +151,7 @@ instance DIA_Addon_Morgan_Meat(C_Info)
 
 func int DIA_Addon_Morgan_Meat_Condition()
 {
-	if((MIS_AlligatorJack_BringMeat == LOG_Running) && (Npc_HasItems(other,ItFoMuttonRaw) >= 1))
+	if((MIS_AlligatorJack_BringMeat == LOG_Running) && Npc_HasItems(other,ItFoMuttonRaw))
 	{
 		return TRUE;
 	};
@@ -164,8 +164,8 @@ func void DIA_Addon_Morgan_Meat_Info()
 	if(GregIsBack == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Morgan_Meat_07_01");	//(просыпается) А-а-а. Мне нужно глотнуть рома, чтобы проснуться.
-		CreateInvItems(self,ItFo_Booze,3);
-		B_UseItem(self,ItFo_Booze);
+		CreateInvItems(self,ItFo_Addon_Rum,1);
+		B_UseItem(self,ItFo_Addon_Rum);
 		AI_Output(self,other,"DIA_Addon_Morgan_Meat_07_02");	//Так-то лучше. Еще раз, что ты хотел?
 		AI_Output(other,self,"DIA_Addon_Morgan_Meat_15_03");	//Я принес мясо. От Аллигатора Джека.
 	};
@@ -353,8 +353,8 @@ func void DIA_Addon_Morgan_Auftrag2_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Morgan_Auftrag2_07_01");	//Пока нет.
 		AI_Output(self,other,"DIA_Addon_Morgan_Auftrag2_07_02");	//Отдохни, полежи, выпей рома!
-		CreateInvItems(self,ItFo_Booze,3);
-		B_UseItem(self,ItFo_Booze);
+		CreateInvItems(self,ItFo_Addon_Rum,1);
+		B_UseItem(self,ItFo_Addon_Rum);
 		AI_Output(self,other,"DIA_Addon_Morgan_Auftrag2_07_03");	//Чертовски забористая вещь!
 	}
 	else
@@ -374,7 +374,7 @@ instance DIA_Addon_Morgan_FOUNDTHEM(C_Info)
 	condition = DIA_Addon_Morgan_FOUNDTHEM_Condition;
 	information = DIA_Addon_Morgan_FOUNDTHEM_Info;
 	permanent = TRUE;
-	description = "Насчет Ангуса и Хэнка...";
+	description = "Насчет Хэнка и Ангуса...";
 };
 
 
@@ -399,7 +399,7 @@ func void DIA_Addon_Morgan_FOUNDTHEM_Info()
 		Morgan_AngusStory = TRUE;
 	};
 	Info_ClearChoices(DIA_Addon_Morgan_FOUNDTHEM);
-	if(Npc_HasItems(other,ItRi_Addon_MorgansRing_Mission) > 0)
+	if(Npc_HasItems(other,ItRi_Addon_MorgansRing_Mission))
 	{
 		Info_AddChoice(DIA_Addon_Morgan_FOUNDTHEM,"Я нашел их.",DIA_Addon_Morgan_FOUNDTHEM_Now);
 	}

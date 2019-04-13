@@ -199,7 +199,7 @@ instance DIA_Addon_BDT_10004_Finn_Mine(C_Info)
 
 func int DIA_Addon_Finn_Mine_Condition()
 {
-	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && (Npc_HasItems(other,ItMi_Addon_Stone_01) >= 1))
+	if((MIS_Send_Buddler == LOG_Running) && (Player_SentBuddler < 3) && Npc_HasItems(other,ItMi_Addon_Stone_01))
 	{
 		return TRUE;
 	};
@@ -216,7 +216,7 @@ func void DIA_Addon_Finn_Mine_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10004_Finn_Mine_07_04");	//Если тебе повезет, таким образом ты получишь несколько кусков за раз.
 	B_Upgrade_Hero_HackChance(10);
 	Knows_Truemmerschlag = TRUE;
-	Player_SentBuddler = Player_SentBuddler + 1;
+	Player_SentBuddler += 1;
 	B_GivePlayerXP(XP_Addon_MINE);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"MINE");
@@ -334,7 +334,7 @@ instance DIA_Addon_Finn_Attentat(C_Info)
 	condition = DIA_Addon_Finn_Attentat_Condition;
 	information = DIA_Addon_Finn_Attentat_Info;
 	permanent = FALSE;
-	description = "Насчет попытки покушения на Эстебана...";
+	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION2;
 };
 
 

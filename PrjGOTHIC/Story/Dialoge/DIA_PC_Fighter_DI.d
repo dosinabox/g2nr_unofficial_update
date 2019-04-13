@@ -34,7 +34,7 @@ instance DIA_Gorn_DI_Hallo(C_Info)
 
 func int DIA_Gorn_DI_Hallo_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -67,7 +67,7 @@ instance DIA_Gorn_DI_Teach(C_Info)
 
 func int DIA_Gorn_DI_Teach_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -155,7 +155,7 @@ func void DIA_Gorn_DI_UndeadDragonDead_Info()
 	if(Npc_KnowsInfo(other,DIA_Biff_DI_plunder))
 	{
 		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_08");	//Кто-то должен сказать об этом Биффу, иначе он сгниет на этом острове.
-		if(Npc_IsDead(Biff_DI) == FALSE)
+		if(!Npc_IsDead(Biff_DI))
 		{
 			AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_09");	//Он будет здесь вовремя.
 		};

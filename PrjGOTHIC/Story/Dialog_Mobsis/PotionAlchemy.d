@@ -97,7 +97,7 @@ instance PC_Booze_Lou(C_Info)
 	condition = PC_Booze_Lou_Condition;
 	information = PC_Booze_Lou_Info;
 	permanent = TRUE;
-	description = "ѕопробовать сделать 'ћолот Ћу'";
+	description = "—делать 'ћолот Ћу' (1 вода, 2 репы, 1 болотна€ трава, 1 зуб болотной акулы и 1 ром)";
 };
 
 
@@ -111,12 +111,13 @@ func int PC_Booze_Lou_Condition()
 
 func void PC_Booze_Lou_Info()
 {
-	if((Npc_HasItems(self,ItPl_SwampHerb) >= 1) && (Npc_HasItems(self,ItPl_Beet) >= 2) && (Npc_HasItems(self,ItAt_SharkTeeth) >= 1) && (Npc_HasItems(self,ItFo_Addon_Rum) >= 1))
+	if(Npc_HasItems(self,ItPl_SwampHerb) && (Npc_HasItems(self,ItPl_Beet) >= 2) && Npc_HasItems(self,ItAt_SharkTeeth) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
 	{
 		Npc_RemoveInvItems(self,ItPl_SwampHerb,1);
 		Npc_RemoveInvItems(self,ItPl_Beet,2);
 		Npc_RemoveInvItems(self,ItAt_SharkTeeth,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
+		Npc_RemoveInvItems(self,ItFo_Water,1);
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_LousHammer,1);
 	}
@@ -136,7 +137,7 @@ instance PC_Booze_Schlaf(C_Info)
 	condition = PC_Booze_Schlaf_Condition;
 	information = PC_Booze_Schlaf_Info;
 	permanent = TRUE;
-	description = "—делать 'ћолот Ћу' с двойным ромом";
+	description = "—делать двойной 'ћолот Ћу' (1 'ћолот Ћу' и 1 ром)";
 };
 
 
@@ -150,12 +151,10 @@ func int PC_Booze_Schlaf_Condition()
 
 func void PC_Booze_Schlaf_Info()
 {
-	if((Npc_HasItems(self,ItPl_SwampHerb) >= 1) && (Npc_HasItems(self,ItPl_Beet) >= 2) && (Npc_HasItems(self,ItAt_SharkTeeth) >= 1) && (Npc_HasItems(self,ItFo_Addon_Rum) >= 2))
+	if(Npc_HasItems(self,ItFo_Addon_LousHammer) && Npc_HasItems(self,ItFo_Addon_Rum))
 	{
-		Npc_RemoveInvItems(self,ItPl_SwampHerb,1);
-		Npc_RemoveInvItems(self,ItPl_Beet,2);
-		Npc_RemoveInvItems(self,ItAt_SharkTeeth,1);
-		Npc_RemoveInvItems(self,ItFo_Addon_Rum,2);
+		Npc_RemoveInvItems(self,ItFo_Addon_LousHammer,1);
+		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_SchlafHammer,1);
 	}
@@ -175,7 +174,7 @@ instance PC_Booze_SchnellerHering(C_Info)
 	condition = PC_Booze_SchnellerHering_Condition;
 	information = PC_Booze_SchnellerHering_Info;
 	permanent = TRUE;
-	description = "—делать 'Ѕыструю селедку' (1 снеппер-трава, 1 ром, 1 рыба)";
+	description = "—делать 'Ѕыструю селедку' (1 вода, 1 ром, 1 рыба и 1 снеппер-трава)";
 };
 
 
@@ -189,11 +188,12 @@ func int PC_Booze_SchnellerHering_Condition()
 
 func void PC_Booze_SchnellerHering_Info()
 {
-	if((Npc_HasItems(self,ItPl_Speed_Herb_01) >= 1) && (Npc_HasItems(self,ItFo_Fish) >= 1) && (Npc_HasItems(self,ItFo_Addon_Rum) >= 1))
+	if(Npc_HasItems(self,ItPl_Speed_Herb_01) && Npc_HasItems(self,ItFo_Fish) && Npc_HasItems(self,ItFo_Addon_Rum) && Npc_HasItems(self,ItFo_Water))
 	{
 		Npc_RemoveInvItems(self,ItPl_Speed_Herb_01,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
 		Npc_RemoveInvItems(self,ItFo_Fish,1);
+		Npc_RemoveInvItems(self,ItFo_Water,1);
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_SchnellerHering,1);
 	}
@@ -219,7 +219,7 @@ instance PC_Charge_InnosEye(C_Info)
 
 func int PC_Charge_InnosEye_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == TRUE) && (Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis) >= 1) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == TRUE) && Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -227,21 +227,21 @@ func int PC_Charge_InnosEye_Condition()
 
 func void PC_Charge_InnosEye_Info()
 {
-	if(((Npc_HasItems(hero,ItAt_IcedragonHeart) >= 1) || (Npc_HasItems(hero,ItAt_RockdragonHeart) >= 1) || (Npc_HasItems(hero,ItAt_FiredragonHeart) >= 1) || (Npc_HasItems(hero,ItAt_SwampdragonHeart) >= 1)) && (Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis) >= 1))
+	if((Npc_HasItems(hero,ItAt_IcedragonHeart) || Npc_HasItems(hero,ItAt_RockdragonHeart) || Npc_HasItems(hero,ItAt_FiredragonHeart) || Npc_HasItems(hero,ItAt_SwampdragonHeart)) && (Npc_HasItems(hero,ItMi_InnosEye_Discharged_Mis)))
 	{
-		if(Npc_HasItems(hero,ItAt_SwampdragonHeart) >= 1)
+		if(Npc_HasItems(hero,ItAt_SwampdragonHeart))
 		{
 			Npc_RemoveInvItems(hero,ItAt_SwampdragonHeart,1);
 		}
-		else if(Npc_HasItems(hero,ItAt_RockdragonHeart) >= 1)
+		else if(Npc_HasItems(hero,ItAt_RockdragonHeart))
 		{
 			Npc_RemoveInvItems(hero,ItAt_RockdragonHeart,1);
 		}
-		else if(Npc_HasItems(hero,ItAt_FiredragonHeart) >= 1)
+		else if(Npc_HasItems(hero,ItAt_FiredragonHeart))
 		{
 			Npc_RemoveInvItems(hero,ItAt_FiredragonHeart,1);
 		}
-		else if(Npc_HasItems(hero,ItAt_IcedragonHeart) >= 1)
+		else if(Npc_HasItems(hero,ItAt_IcedragonHeart))
 		{
 			Npc_RemoveInvItems(hero,ItAt_IcedragonHeart,1);
 		};
@@ -317,7 +317,7 @@ instance PC_ItPo_Mana_01(C_Info)
 	condition = PC_ItPo_Mana_01_Condition;
 	information = PC_ItPo_Mana_01_Info;
 	permanent = TRUE;
-	description = "Ёссенци€ маны (2 огненных крапивы и 1 луговой горец)";
+	description = ConcatStrings(NAME_Mana_Essenz," (2 огненных крапивы и 1 луговой горец)");
 };
 
 
@@ -331,7 +331,7 @@ func int PC_ItPo_Mana_01_Condition()
 
 func void PC_ItPo_Mana_01_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Mana_Herb_01) >= 2) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if((Npc_HasItems(hero,ItPl_Mana_Herb_01) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_01,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
@@ -354,7 +354,7 @@ instance PC_ItPo_Mana_02(C_Info)
 	condition = PC_ItPo_Mana_02_Condition;
 	information = PC_ItPo_Mana_02_Info;
 	permanent = TRUE;
-	description = "Ёкстракт маны (2 огненных травы и 1 луговой горец)";
+	description = ConcatStrings(NAME_Mana_Extrakt," (2 огненных травы и 1 луговой горец)");
 };
 
 
@@ -368,7 +368,7 @@ func int PC_ItPo_Mana_02_Condition()
 
 func void PC_ItPo_Mana_02_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Mana_Herb_02) >= 2) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if((Npc_HasItems(hero,ItPl_Mana_Herb_02) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_02,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
@@ -391,7 +391,7 @@ instance PC_ItPo_Mana_03(C_Info)
 	condition = PC_ItPo_Mana_03_Condition;
 	information = PC_ItPo_Mana_03_Info;
 	permanent = TRUE;
-	description = "Ёликсир маны (2 огненных корн€, 1 луговой горец)";
+	description = ConcatStrings(NAME_Mana_Elixier," (2 огненных корн€, 1 луговой горец)");
 };
 
 
@@ -405,7 +405,7 @@ func int PC_ItPo_Mana_03_Condition()
 
 func void PC_ItPo_Mana_03_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Mana_Herb_03) >= 2) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if((Npc_HasItems(hero,ItPl_Mana_Herb_03) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
@@ -442,7 +442,7 @@ func int PC_ItPo_Mana_04_Condition()
 
 func void PC_ItPo_Mana_04_Info()
 {
-	if((Npc_HasItems(hero,ItPo_Mana_01) >= 3) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if((Npc_HasItems(hero,ItPo_Mana_01) >= 3) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPo_Mana_01,3);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
@@ -517,7 +517,7 @@ instance PC_ItPo_Health_01(C_Info)
 	condition = PC_ItPo_Health_01_Condition;
 	information = PC_ItPo_Health_01_Info;
 	permanent = TRUE;
-	description = "Ћечебна€ эссенци€ (2 лечебные травы, 1 луговой горец)";
+	description = ConcatStrings(NAME_HP_Essenz," (2 лечебные травы, 1 луговой горец)");
 };
 
 
@@ -531,7 +531,7 @@ func int PC_ItPo_Health_01_Condition()
 
 func void PC_ItPo_Health_01_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Health_Herb_01) >= 2) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if((Npc_HasItems(hero,ItPl_Health_Herb_01) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_01,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
@@ -554,7 +554,7 @@ instance PC_ItPo_Health_02(C_Info)
 	condition = PC_ItPo_Health_02_Condition;
 	information = PC_ItPo_Health_02_Info;
 	permanent = TRUE;
-	description = "Ћечебный экстракт (2 лечебных растени€, 1 луговой горец)";
+	description = ConcatStrings(NAME_HP_Extrakt," (2 лечебных растени€, 1 луговой горец)");
 };
 
 
@@ -568,7 +568,7 @@ func int PC_ItPo_Health_02_Condition()
 
 func void PC_ItPo_Health_02_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Health_Herb_02) >= 2) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if((Npc_HasItems(hero,ItPl_Health_Herb_02) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_02,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
@@ -591,7 +591,7 @@ instance PC_ItPo_Health_03(C_Info)
 	condition = PC_ItPo_Health_03_Condition;
 	information = PC_ItPo_Health_03_Info;
 	permanent = TRUE;
-	description = "Ћечебный эликсир (2 лечебных корн€, 1 луговой горец)";
+	description = ConcatStrings(NAME_HP_Elixier," (2 лечебных корн€, 1 луговой горец)");
 };
 
 
@@ -605,7 +605,7 @@ func int PC_ItPo_Health_03_Condition()
 
 func void PC_ItPo_Health_03_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Health_Herb_03) >= 2) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if((Npc_HasItems(hero,ItPl_Health_Herb_03) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
@@ -642,7 +642,7 @@ func int PC_ItPo_Health_04_Condition()
 
 func void PC_ItPo_Health_04_Info()
 {
-	if((Npc_HasItems(hero,ItPo_Health_01) >= 3) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if((Npc_HasItems(hero,ItPo_Health_01) >= 3) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPo_Health_01,3);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
@@ -717,7 +717,7 @@ instance PC_ItPo_Addon_Geist(C_Info)
 	condition = PC_ItPo_Addon_Geist_Condition;
 	information = PC_ItPo_Addon_Geist_Info;
 	permanent = TRUE;
-	description = "Ёликсир изменени€ сознани€";
+	description = "Ёликсир изменени€ сознани€ (2 жала кровавой мухи, 1 экстракт маны, 1 лечебна€ эссенци€ и 1 красный жгучий перец)";
 };
 
 
@@ -731,7 +731,7 @@ func int PC_ItPo_Addon_Geist_Condition()
 
 func void PC_ItPo_Addon_Geist_Info()
 {
-	if((Npc_HasItems(hero,ItAt_Sting) >= 2) && (Npc_HasItems(hero,ItPo_Mana_02) >= 1) && (Npc_HasItems(hero,ItPo_Health_01) >= 1) && (Npc_HasItems(hero,ItFo_Addon_Pfeffer_01) >= 1))
+	if((Npc_HasItems(hero,ItAt_Sting) >= 2) && Npc_HasItems(hero,ItPo_Mana_02) && Npc_HasItems(hero,ItPo_Health_01) && Npc_HasItems(hero,ItFo_Addon_Pfeffer_01))
 	{
 		Npc_RemoveInvItems(hero,ItAt_Sting,2);
 		Npc_RemoveInvItems(hero,ItPo_Mana_02,1);
@@ -763,7 +763,7 @@ instance PC_ItPo_Perm_Health(C_Info)
 	condition = PC_ItPo_Perm_Health_Condition;
 	information = PC_ItPo_Perm_Health_Info;
 	permanent = TRUE;
-	description = "Ёликсир жизни (1 лечебный корень, 1 царский щавель)";
+	description = ConcatStrings(NAME_HPMax_Elixier," (1 лечебный корень, 1 царский щавель)");
 };
 
 
@@ -777,7 +777,7 @@ func int PC_ItPo_Perm_Health_Condition()
 
 func void PC_ItPo_Perm_Health_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Health_Herb_03) >= 1) && (Npc_HasItems(hero,ItPl_Perm_Herb) >= 1))
+	if(Npc_HasItems(hero,ItPl_Health_Herb_03) && Npc_HasItems(hero,ItPl_Perm_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
@@ -800,7 +800,7 @@ instance PC_ItPo_Perm_Mana(C_Info)
 	condition = PC_ItPo_Perm_Mana_Condition;
 	information = PC_ItPo_Perm_Mana_Info;
 	permanent = TRUE;
-	description = "Ёликсир духа (1 огненный корень, 1 царский щавель)";
+	description = ConcatStrings(NAME_ManaMax_Elixier," (1 огненный корень, 1 царский щавель)");
 };
 
 
@@ -814,7 +814,7 @@ func int PC_ItPo_Perm_Mana_Condition()
 
 func void PC_ItPo_Perm_Mana_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Mana_Herb_03) >= 1) && (Npc_HasItems(hero,ItPl_Perm_Herb) >= 1))
+	if(Npc_HasItems(hero,ItPl_Mana_Herb_03) && Npc_HasItems(hero,ItPl_Perm_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
@@ -837,7 +837,7 @@ instance PC_ItPo_Dex(C_Info)
 	condition = PC_ItPo_Dex_Condition;
 	information = PC_ItPo_Dex_Info;
 	permanent = TRUE;
-	description = "Ёликсир ловкости (1 гоблинские €годы, 1 царский щавель)";
+	description = ConcatStrings(NAME_DEX_Elixier," (1 гоблинские €годы, 1 царский щавель)");
 };
 
 
@@ -851,7 +851,7 @@ func int PC_ItPo_Dex_Condition()
 
 func void PC_ItPo_Dex_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Dex_Herb_01) >= 1) && (Npc_HasItems(hero,ItPl_Perm_Herb) >= 1))
+	if(Npc_HasItems(hero,ItPl_Dex_Herb_01) && Npc_HasItems(hero,ItPl_Perm_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Dex_Herb_01,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
@@ -874,7 +874,7 @@ instance PC_ItPo_Strg(C_Info)
 	condition = PC_ItPo_Strg_Condition;
 	information = PC_ItPo_Strg_Info;
 	permanent = TRUE;
-	description = "Ёликсир силы (1 драконий корень, 1 царский щавель)";
+	description = ConcatStrings(NAME_STR_Elixier," (1 драконий корень, 1 царский щавель)");
 };
 
 
@@ -888,7 +888,7 @@ func int PC_ItPo_Strg_Condition()
 
 func void PC_ItPo_Strg_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Strength_Herb_01) >= 1) && (Npc_HasItems(hero,ItPl_Perm_Herb) >= 1))
+	if(Npc_HasItems(hero,ItPl_Strength_Herb_01) && Npc_HasItems(hero,ItPl_Perm_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Strength_Herb_01,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
@@ -911,7 +911,7 @@ instance PC_ItPo_Speed(C_Info)
 	condition = PC_ItPo_Speed_Condition;
 	information = PC_ItPo_Speed_Info;
 	permanent = TRUE;
-	description = "«елье ускорени€ (1 снеппер-трава, 1 луговой горец)";
+	description = ConcatStrings(NAME_Speed_Elixier," (1 снеппер-трава, 1 луговой горец)");
 };
 
 
@@ -925,11 +925,49 @@ func int PC_ItPo_Speed_Condition()
 
 func void PC_ItPo_Speed_Info()
 {
-	if((Npc_HasItems(hero,ItPl_Speed_Herb_01) >= 1) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if(Npc_HasItems(hero,ItPl_Speed_Herb_01) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_Speed_Herb_01,1);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
 		CreateInvItems(hero,ItPo_Speed,1);
+		Print(PRINT_AlchemySuccess);
+	}
+	else
+	{
+		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMi_Flask,1);
+	};
+	b_endproductiondialog();
+};
+
+
+instance PC_ItPo_MegaDrink(C_Info)
+{
+	nr = 2;
+	npc = PC_Hero;
+	condition = PC_ItPo_MegaDrink_Condition;
+	information = PC_ItPo_MegaDrink_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_MegaDrink," (10 драконьих €иц, 1 черный жемчуг, 1 сера)");
+};
+
+
+func int PC_ItPo_MegaDrink_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_MegaDrink_Info()
+{
+	if((Npc_HasItems(hero,ItAt_DragonEgg_MIS) >= 10) && Npc_HasItems(hero,ItMi_DarkPearl) && Npc_HasItems(hero,ItMi_Sulfur))
+	{
+		Npc_RemoveInvItems(hero,ItAt_DragonEgg_MIS,10);
+		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
+		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
+		CreateInvItems(hero,ItPo_MegaDrink,1);
 		Print(PRINT_AlchemySuccess);
 	}
 	else
@@ -1014,7 +1052,7 @@ func int PC_ItMi_Joint_Condition()
 
 func void PC_ItMi_Joint_Info()
 {
-	if(Npc_HasItems(hero,ItPl_SwampHerb) >= 1)
+	if(Npc_HasItems(hero,ItPl_SwampHerb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_SwampHerb,1);
 		CreateInvItems(hero,ItMi_Joint,1);
@@ -1050,7 +1088,7 @@ func int PC_ItMi_Addon_Joint_01_Condition()
 
 func void PC_ItMi_Addon_Joint_01_Info()
 {
-	if((Npc_HasItems(hero,ItPl_SwampHerb) >= 2) && (Npc_HasItems(hero,ItPl_Temp_Herb) >= 1))
+	if((Npc_HasItems(hero,ItPl_SwampHerb) >= 2) && Npc_HasItems(hero,ItPl_Temp_Herb))
 	{
 		Npc_RemoveInvItems(hero,ItPl_SwampHerb,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
@@ -1079,7 +1117,7 @@ instance PC_ItMi_Tabak(C_Info)
 
 func int PC_ItMi_Tabak_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (Npc_HasItems(hero,ItMi_ApfelTabak) >= 1) && (TabakStart == TRUE))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && Npc_HasItems(hero,ItMi_ApfelTabak) && (TabakStart == TRUE))
 	{
 		return TRUE;
 	};
@@ -1089,19 +1127,19 @@ func void PC_ItMi_Tabak_Info()
 {
 	Info_ClearChoices(PC_ItMi_Tabak);
 	Info_AddChoice(PC_ItMi_Tabak,Dialog_Back,PC_ItMi_Tabak_BACK);
-	if(Npc_HasItems(hero,ItFo_Honey) >= 1)
+	if(Npc_HasItems(hero,ItFo_Honey))
 	{
 		Info_AddChoice(PC_ItMi_Tabak,"... с медом",PC_ItMi_Tabak_Honey);
 	};
-	if(Npc_HasItems(hero,ItPl_SwampHerb) >= 1)
+	if(Npc_HasItems(hero,ItPl_SwampHerb))
 	{
 		Info_AddChoice(PC_ItMi_Tabak,"... с болотной травой",PC_ItMi_Tabak_Swampherb);
 	};
-	if(Npc_HasItems(hero,ItPl_Mushroom_01) >= 1)
+	if(Npc_HasItems(hero,ItPl_Mushroom_01))
 	{
 		Info_AddChoice(PC_ItMi_Tabak,"... с черным грибом",PC_ItMi_Tabak_Mushroom_01);
 	};
-	if(Npc_HasItems(hero,ItFo_Apple) >= 1)
+	if(Npc_HasItems(hero,ItFo_Apple))
 	{
 		Info_AddChoice(PC_ItMi_Tabak,"... с €блоком",PC_ItMi_Tabak_Double);
 	};
@@ -1145,44 +1183,6 @@ func void PC_ItMi_Tabak_Double()
 	Npc_RemoveInvItems(hero,ItFo_Apple,1);
 	CreateInvItems(hero,ItMi_Doppeltabak,1);
 	Print(PRINT_TabakSuccess);
-	b_endproductiondialog();
-};
-
-
-instance PC_ItPo_MegaDrink(C_Info)
-{
-	nr = 2;
-	npc = PC_Hero;
-	condition = PC_ItPo_MegaDrink_Condition;
-	information = PC_ItPo_MegaDrink_Info;
-	permanent = TRUE;
-	description = "«елье из драконьих €иц (10 драконьих €иц, 1 черный жемчуг, 1 сера)";
-};
-
-
-func int PC_ItPo_MegaDrink_Condition()
-{
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == TRUE) && (BoozeStart == FALSE) && (TabakStart == FALSE) && (HealthStart == FALSE) && (ManaStart == FALSE) && (SpecialStart == FALSE))
-	{
-		return TRUE;
-	};
-};
-
-func void PC_ItPo_MegaDrink_Info()
-{
-	if((Npc_HasItems(hero,ItAt_DragonEgg_MIS) >= 10) && (Npc_HasItems(hero,ItMi_DarkPearl) >= 1) && (Npc_HasItems(hero,ItMi_Sulfur) >= 1))
-	{
-		Npc_RemoveInvItems(hero,ItAt_DragonEgg_MIS,10);
-		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
-		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
-		CreateInvItems(hero,ItPo_MegaDrink,1);
-		Print(PRINT_AlchemySuccess);
-	}
-	else
-	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
-	};
 	b_endproductiondialog();
 };
 

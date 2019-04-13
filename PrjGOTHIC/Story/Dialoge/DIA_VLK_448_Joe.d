@@ -124,7 +124,7 @@ instance DIA_Joe_Sign(C_Info)
 	condition = DIA_Joe_Sign_Condition;
 	information = DIA_Joe_Sign_Info;
 	permanent = FALSE;
-	description = "(Показать сигнал воров)";
+	description = DIALOG_SecretSign;
 };
 
 

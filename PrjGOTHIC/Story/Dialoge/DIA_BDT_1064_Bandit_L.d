@@ -41,7 +41,7 @@ func int DIA_Bdt_1064_BanditGuard_FirstWarn_Condition()
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_RefuseTalk(self) == FALSE))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -69,7 +69,7 @@ instance DIA_Bdt_1064_BanditGuard_SecondWarn(C_Info)
 
 func int DIA_Bdt_1064_BanditGuard_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
 	{
 		return TRUE;
 	};
@@ -97,7 +97,7 @@ instance DIA_Bdt_1064_BanditGuard_Attack(C_Info)
 
 func int DIA_Bdt_1064_BanditGuard_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Bdt_1064_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 75)))
 	{
 		return TRUE;
 	};

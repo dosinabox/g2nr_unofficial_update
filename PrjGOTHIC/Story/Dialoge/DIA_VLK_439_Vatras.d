@@ -229,7 +229,7 @@ instance DIA_Addon_Vatras_Cavalorn(C_Info)
 
 func int DIA_Addon_Vatras_Cavalorn_Condition()
 {
-	if(((Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon_Sealed) >= 1) && (MIS_Addon_Cavalorn_Letter2Vatras == LOG_Running)) || (Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon) >= 1))
+	if((Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon_Sealed) && (MIS_Addon_Cavalorn_Letter2Vatras == LOG_Running)) || Npc_HasItems(other,ItWr_SaturasFirstMessage_Addon))
 	{
 		return TRUE;
 	};
@@ -438,17 +438,17 @@ func void DIA_Addon_Vatras_WannaBeRanger_Info()
 	AI_Output(other,self,"DIA_Addon_Vatras_WannaBeRanger_15_00");	//Я хочу присоединиться к братству Кольца Воды!
 	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ring))
 	{
-		AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_05_01");	//Правда? Значит ты уже выполнил первое требование.
+		AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_05_01");	//Правда? Значит, ты уже выполнил первое требование.
 		AI_Output(other,self,"DIA_Addon_Vatras_WannaBeRanger_15_02");	//Что ты хочешь этим сказать?
 		AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_05_03");	//Должно быть, среди нас есть кто-то, кто доверяет тебе. В противном случае ты бы просто ничего не узнал.
 	};
-	AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_05_04");	//Но я совсем ничего не знаю про вас...
+	AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_05_04");	//Но я совсем ничего не знаю про тебя...
 	AI_Output(other,self,"DIA_Vatras_INFLUENCE_15_04");	//Что ты хочешь знать?
 	AI_Output(self,other,"DIA_Vatras_INFLUENCE_05_05");	//Ну, ты можешь рассказать мне, откуда ты пришел и зачем ты пришел в этот город.
 	AI_Output(other,self,"DIA_Vatras_INFLUENCE_15_06");	//У меня важное сообщение для главы паладинов.
 	AI_Output(self,other,"DIA_Vatras_INFLUENCE_05_07");	//Что за сообщение?
 	Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
-	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Пока мы разговариваем, собирается огромная армия, ведомая драконами. Эта армия намеревается завоевать нашу страну.",DIA_Vatras_INFLUENCE_FIRST_TRUTH);
+	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Пока мы разговариваем, собирается огромная армия, ведомая драконами.",DIA_Vatras_INFLUENCE_FIRST_TRUTH);
 	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Скоро произойдут ужасные вещи!",DIA_Vatras_INFLUENCE_FIRST_LIE);
 };
 
@@ -533,19 +533,19 @@ func void B_Vatras_INFLUENCE_REPEAT()
 	};
 	if(Vatras_Second == TRUE)
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_04");	//...которому сказал некромант Ксардас...
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_04");	//... которому сказал некромант Ксардас...
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_05");	//...который слышал слухи...
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_05");	//... который слышал слухи...
 	};
 	if(Vatras_First == TRUE)
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_06");	//...о том, что пришли драконы, чтобы завоевать страну.
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_06");	//... о том, что пришли драконы, чтобы завоевать страну.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_07");	//...что скоро произойдут ужасные вещи.
+		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_07");	//... что скоро произойдут ужасные вещи.
 	};
 	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_08");	//И ты пришел, чтобы сообщить это паладинам...
 	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
@@ -567,7 +567,7 @@ func void B_Vatras_INFLUENCE_REPEAT()
 		};
 		AI_Output(self,other,"DIA_Vatras_Add_05_05");	//Начнем с начала. Что это за сообщение?
 		Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
-		Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Пришли драконы ...",DIA_Vatras_INFLUENCE_FIRST_TRUTH);
+		Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Пока мы разговариваем, собирается огромная армия, ведомая драконами.",DIA_Vatras_INFLUENCE_FIRST_TRUTH);
 		Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Скоро произойдут ужасные вещи!",DIA_Vatras_INFLUENCE_FIRST_LIE);
 	};
 };
@@ -658,7 +658,7 @@ func void DIA_Addon_Vatras_HowToJoin_WhatsGreat()
 	SC_HearedAboutMissingPeople = TRUE;
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_04");	//Однако...
 	AI_Output(other,self,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_15_05");	//Что еще?
-	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_06");	//...сначала ты должен доставить сообщение паладинам.
+	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_06");	//... сначала ты должен доставить сообщение паладинам.
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_07");	//Это дело первостепенной важности!
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_08");	//Поговори с лордом Хагеном.
 	B_LogEntry(TOPIC_Addon_RingOfWater,"Ватрас хочет, чтобы я передал лорду Хагену важное сообщение.");
@@ -968,16 +968,18 @@ func void DIA_Addon_Vatras_MissingPeople_Success()
 	if(Npc_HasItems(other,ItWr_RavensKidnapperMission_Addon))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Success_15_05");	//Вот.
+		B_GiveInvItems(other,self,ItWr_RavensKidnapperMission_Addon,1);
 		B_UseFakeScroll();
 	};
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Success_05_06");	//Отличная работа. Я боялся, что мы никогда не узнаем ответа на эту загадку.
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
-	if (MIS_Steckbriefe == LOG_Running)
+	if(MIS_Steckbriefe == LOG_Running)
 	{
 		MIS_Steckbriefe = LOG_SUCCESS;
+		B_CheckLog();
 	};
 	Vatras_MissingPeopleReports = 0;
-	if(((MIS_Akil_BringMissPeopleBack != 0) || (MIS_Bengar_BringMissPeopleBack != 0)) && (MISSINGPEOPLEINFO[1] == FALSE))
+	if(((MIS_Akil_BringMissPeopleBack != FALSE) || (MIS_Bengar_BringMissPeopleBack != FALSE)) && (MISSINGPEOPLEINFO[1] == FALSE))
 	{
 		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[1] = TRUE;
@@ -1186,11 +1188,11 @@ func void DIA_Addon_Vatras_WISP_MoreWISP()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_MoreWISP_15_00");	//А что еще может делать ищущий огонек?
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_MoreWISP_05_01");	//Что еще, кроме поиска оружия? Больше ничего, если только ты его не научишь.
-	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_MoreWISP_05_02");	//Мне кажется, Риордан знает, как обучать эти штуки. Он один из нас, и в данный момент он путешествует вместе с Сатурасом.
+	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_MoreWISP_05_02");	//Мне кажется, Риордиан знает, как обучать эти штуки. Он один из нас, и в данный момент он путешествует вместе с Сатурасом.
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_MoreWISP_05_03");	//Возможно, он сможет рассказать тебе больше.
 	if(MIS_Vatras_FindTheBanditTrader == LOG_Running)
 	{
-		B_LogEntry(TOPIC_Addon_Bandittrader,"Мой блуждающий огонек может искать не только оружие ближнего боя. Научить его искать другие предметы может маг Воды Риордан.");
+		B_LogEntry(TOPIC_Addon_Bandittrader,"Мой блуждающий огонек может искать не только оружие ближнего боя. Научить его искать другие предметы может маг Воды Риордиан.");
 	};
 };
 
@@ -1217,7 +1219,7 @@ instance DIA_Addon_Vatras_Stoneplate(C_Info)
 
 func int DIA_Addon_Vatras_Stoneplate_Condition()
 {
-	if((C_ScHasMagicStonePlate() == TRUE) && (Npc_HasItems(other,ItWr_StonePlateCommon_Addon) >= 1))
+	if(C_ScHasMagicStonePlate() && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
 	{
 		return TRUE;
 	};
@@ -1251,7 +1253,7 @@ instance DIA_Addon_Vatras_SellStonplate(C_Info)
 
 func int DIA_Addon_Vatras_SellStonplate_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) && (Npc_HasItems(other,ItWr_StonePlateCommon_Addon) >= 1))
+	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
 	{
 		return TRUE;
 	};
@@ -1263,7 +1265,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	var int anzahl2;
 	var int flag;
 	anzahl = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
-	anzahl2 = anzahl2 + anzahl;
+	anzahl2 += anzahl;
 	if(anzahl == 1)
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
@@ -1418,7 +1420,7 @@ instance DIA_Vatras_WoKdF(C_Info)
 
 func int DIA_Vatras_WoKdF_Condition()
 {
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen == TRUE) && (Vatras_SentToDaron == FALSE) && (Vatras_MORE == TRUE))
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen == TRUE) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo) && (Vatras_MORE == TRUE))
 	{
 		return TRUE;
 	};
@@ -1740,7 +1742,7 @@ func void DIA_Vatras_MISSION_YES()
 	Info_ClearChoices(DIA_Vatras_MISSION);
 	Info_AddChoice(DIA_Vatras_MISSION,"Я возьму заклинание света.",DIA_Vatras_MISSION_LIGHT);
 	Info_AddChoice(DIA_Vatras_MISSION,"Я выбираю лечебное заклинание.",DIA_Vatras_MISSION_HEAL);
-	Info_AddChoice(DIA_Vatras_MISSION,"Дай мне Ледяную стрелу.",DIA_Vatras_MISSION_ICE);
+	Info_AddChoice(DIA_Vatras_MISSION,"Дай мне 'Ледяную стрелу'.",DIA_Vatras_MISSION_ICE);
 };
 
 func void DIA_Vatras_MISSION_NO()
@@ -1761,7 +1763,7 @@ func void DIA_Vatras_MISSION_HEAL()
 
 func void DIA_Vatras_MISSION_ICE()
 {
-	AI_Output(other,self,"DIA_Vatras_MISSION_ICE_15_00");	//Дай мне Ледяную стрелу.
+	AI_Output(other,self,"DIA_Vatras_MISSION_ICE_15_00");	//Дай мне 'Ледяную стрелу'.
 	B_SayVatrasGo();
 	B_GiveInvItems(self,hero,ItSc_Icebolt,1);
 	Info_ClearChoices(DIA_Vatras_MISSION);
@@ -1801,9 +1803,9 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Info()
 	MIS_Vatras_Message = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Vatras_Message);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);
-	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"1 царский щавель",DIA_Vatras_MESSAGE_SUCCESS_Plant);
+	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"Царский щавель",DIA_Vatras_MESSAGE_SUCCESS_Plant);
 	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"Кольцо мастерства",DIA_Vatras_MESSAGE_SUCCESS_Ring);
-	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"1 кусок руды",DIA_Vatras_MESSAGE_SUCCESS_Ore);
+	Info_AddChoice(DIA_Vatras_MESSAGE_SUCCESS,"Кусок руды",DIA_Vatras_MESSAGE_SUCCESS_Ore);
 };
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Plant()
@@ -1915,7 +1917,7 @@ func void DIA_Addon_Vatras_AddonSolved_Info()
 	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_AbloesePre))
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_04");	//ТЕПЕРЬ я могу помочь тебе.
-		AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_05");	//Кажется дело касается Глаза Инноса, не так ли?
+		AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_05");	//Кажется, дело касается Глаза Инноса, не так ли?
 	};
 	VatrasCanLeaveTown_Kap3 = TRUE;
 	B_GivePlayerXP(XP_Ambient);
@@ -1982,7 +1984,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein()
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_01");	//Я вижу только один способ. Союз трех правящих божеств должен дать желаемый эффект.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_02");	//Хорошо подготовленный ритуал обращения в месте уничтожения камня вернет ему его огонь.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_03");	//Однако проблема состоит в том, что ты должен привести в это место земных представителей каждого из этих троих богов.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_04");	//Кроме того, для этого ритуала необходимо много болотной травы. Я думаю, необходимо не менее 3-х растений.
+	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_04");	//Кроме того, для этого ритуала необходимо много болотной травы. Я думаю, необходимо не менее трех растений.
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Кто может быть этими тремя земными представителями богов?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer);
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти болотную траву?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut);
 };
@@ -2122,10 +2124,10 @@ func void DIA_Vatras_BEGINN_Info()
 	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
 	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
 	AI_Output(other,self,"DIA_Vatras_BEGINN_15_02");	//Что насчет болотной травы?
-	AI_Output(self,other,"DIA_Vatras_BEGINN_05_03");	//Ах, да. Ты принес 3 стебля болотной травы?
+	AI_Output(self,other,"DIA_Vatras_BEGINN_05_03");	//Ах, да. Ты принес три стебля болотной травы?
 	if(B_GiveInvItems(other,self,ItPl_SwampHerb,3))
 	{
-		AI_Output(other,self,"DIA_Vatras_BEGINN_15_04");	//Гм. Да. Вот 3 растения.
+		AI_Output(other,self,"DIA_Vatras_BEGINN_15_04");	//Гм. Да. Вот три растения.
 		AI_Output(self,other,"DIA_Vatras_BEGINN_05_05");	//Превосходно.
 		B_GivePlayerXP(XP_Ambient);
 	}
@@ -2163,7 +2165,7 @@ instance DIA_Vatras_AUGEGEHEILT(C_Info)
 
 func int DIA_Vatras_AUGEGEHEILT_Condition()
 {
-	if((Kapitel == 3) && (RitualInnosEyeRuns == LOG_Running) && (Npc_RefuseTalk(self) == FALSE))
+	if((Kapitel == 3) && (RitualInnosEyeRuns == LOG_Running) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -2321,15 +2323,21 @@ func int DIA_Vatras_KnowWhereEnemy_Condition()
 	};
 };
 
+var int SCToldVatrasHeKnowWhereEnemy;
+
 func void DIA_Vatras_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_KnowWhereEnemy_15_00");	//Я знаю, где находится наш враг.
 	AI_Output(self,other,"DIA_Vatras_KnowWhereEnemy_05_01");	//Тогда не будем терять времени и найдем его в его логове, пока он сам не пришел к нам.
 	AI_Output(other,self,"DIA_Vatras_KnowWhereEnemy_15_02");	//Ты хочешь сопровождать меня?
 	AI_Output(self,other,"DIA_Vatras_KnowWhereEnemy_05_03");	//Я много думал об этом. Да, я никогда не был так уверен в своем выборе, мой друг.
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
-	B_LogEntry(Topic_Crew,"Как это ни странно, Ватрас предложил мне сопровождать меня в моем путешествии. Человек, обладающий его навыками и опытом, может оказаться очень полезным для меня.");
+	if(SCToldVatrasHeKnowWhereEnemy == FALSE)
+	{
+		Log_CreateTopic(Topic_Crew,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Crew,LOG_Running);
+		B_LogEntry(Topic_Crew,"Как это ни странно, Ватрас предложил мне сопровождать меня в моем путешествии. Человек, обладающий его навыками и опытом, может оказаться очень полезным для меня.");
+		SCToldVatrasHeKnowWhereEnemy = TRUE;
+	};
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_Vatras_KnowWhereEnemy_15_04");	//В моем списке и так уже слишком много народа. Боюсь, там не найдется места для тебя.
@@ -2347,10 +2355,10 @@ func void DIA_Vatras_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_Vatras_KnowWhereEnemy_Yes_15_00");	//Я сочту за честь, что ты будешь на моей стороне. Встретимся в гавани.
 	AI_Output(self,other,"DIA_Vatras_KnowWhereEnemy_Yes_05_01");	//Только не трать время понапрасну. Помни, друг мой, враг не дремлет.
-	B_GivePlayerXP(XP_Crewmember_Success);
 	self.flags = NPC_FLAG_IMMORTAL;
 	Vatras_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
+	B_GivePlayerXP(XP_Crewmember_Success);
+	Crewmember_Count += 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
 		Npc_ExchangeRoutine(self,"SHIP");
@@ -2396,7 +2404,7 @@ func void DIA_Vatras_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_Vatras_LeaveMyShip_15_00");	//Тебе лучше остаться здесь. Ты нужен городу.
 	AI_Output(self,other,"DIA_Vatras_LeaveMyShip_05_01");	//Возможно, ты прав. И все же я готов сопровождать тебя, если ты этого захочешь. Ты знаешь это.
 	Vatras_IsOnBoard = LOG_OBSOLETE;
-	Crewmember_Count = Crewmember_Count - 1;
+	Crewmember_Count -= 1;
 	Npc_ExchangeRoutine(self,"PRAY");
 };
 
@@ -2426,7 +2434,7 @@ func void DIA_Vatras_StillNeedYou_Info()
 	AI_Output(self,other,"DIA_Vatras_StillNeedYou_05_01");	//Мудрое решение. Надеюсь, ты больше его не переменишь.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Vatras_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
+	Crewmember_Count += 1;
 	B_Vatras_GeheWeg(lang);
 	AI_StopProcessInfos(self);
 	Vatras_MORE = FALSE;
@@ -2438,6 +2446,7 @@ func void DIA_Vatras_StillNeedYou_Info()
 	{
 		Npc_ExchangeRoutine(self,"WAITFORSHIP");
 	};
+	B_CheckLog();
 };
 
 

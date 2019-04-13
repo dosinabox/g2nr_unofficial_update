@@ -15,7 +15,7 @@ instance PAL_2005_Leiche(Npc_Default)
 	attribute[ATR_HITPOINTS] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart01,BodyTex_N,ItAr_PAl_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart01,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

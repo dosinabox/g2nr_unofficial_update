@@ -13,7 +13,7 @@ instance DJG_702_Rod(Npc_Default)
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItPo_Health_02,6);
 	CreateInvItems(self,ItMi_OldCoin,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_ToughBart01,BodyTex_N,itar_djg_m);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_ToughBart01,BodyTex_N,ITAR_DJG_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

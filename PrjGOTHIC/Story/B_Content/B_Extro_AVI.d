@@ -1,15 +1,12 @@
 
 func void B_Extro_Avi()
 {
-	if((Npc_IsDead(PC_Thief_DI) == FALSE) && (Npc_IsDead(PC_Fighter_DI) == FALSE))
-	{
-		DiegAndGornAreOnboard = TRUE;
-	};
 	PlayVideo("Extro_Xardas.BIK");
 	PlayVideo("Credits_Extro.BIK");
 	PlayVideo("Credits2.BIK");
-	if(DiegAndGornAreOnboard == TRUE)
+	if(!Npc_IsDead(PC_Thief_DI) && !Npc_IsDead(PC_Fighter_DI))
 	{
+//		DiegAndGornAreOnboard = TRUE;
 		PlayVideo("Extro_AllesWirdGut.BIK");
 	};
 	ExitSession();

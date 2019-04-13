@@ -505,8 +505,6 @@ instance ItRu_SumGobSkel(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_SummonGoblinSkeleton;
-	text[2] = "Блуждающие кости";
-	text[3] = "мертвых гоблинов.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1110,7 +1108,7 @@ instance ItRu_Deathbolt(C_Item)
 	mag_circle = 6;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
-	description = "Стрела смерти";
+	description = NAME_SPL_Deathbolt;
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
@@ -1133,7 +1131,7 @@ instance ItRu_Deathball(C_Item)
 	mag_circle = 6;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
-	description = "Шар смерти";
+	description = NAME_SPL_Deathball;
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
@@ -1156,7 +1154,7 @@ instance ItRu_Concussionbolt(C_Item)
 	mag_circle = 6;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
-	description = "Стрела сотрясения";
+	description = NAME_SPL_ConcussionBolt;
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;

@@ -10,9 +10,6 @@ instance VLK_458_Rupert(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
-	CreateInvItems(self,ItFo_Apple,12);
-	CreateInvItems(self,ItFo_Bread,5);
-	CreateInvItems(self,ItFo_Milk,5);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal20,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

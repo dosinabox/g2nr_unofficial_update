@@ -57,13 +57,13 @@ instance DIA_Opolos_Wurst(C_Info)
 	condition = DIA_Opolos_Wurst_Condition;
 	information = DIA_Opolos_Wurst_Info;
 	permanent = FALSE;
-	description = "Я принес баранью колбасу ...";
+	description = "Я принес баранью колбасу...";
 };
 
 
 func int DIA_Opolos_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && (Npc_HasItems(self,ItFo_Schafswurst) == 0) && (Npc_HasItems(other,ItFo_Schafswurst) >= 1))
+	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -73,10 +73,10 @@ func void DIA_Opolos_Wurst_Info()
 {
 	var string NovizeText;
 	var string NovizeLeft;
-	AI_Output(other,self,"DIA_Opolos_Wurst_15_00");	//Я принес баранью колбасу ...
+	AI_Output(other,self,"DIA_Opolos_Wurst_15_00");	//Я принес баранью колбасу...
 	AI_Output(self,other,"DIA_Opolos_Wurst_12_01");	//Ох, фантастика! Наконец-то! Вкуснейшая баранья колбаса!
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben = Wurst_Gegeben + 1;
+	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
 	NovizeLeft = IntToString(13 - Wurst_Gegeben);
@@ -109,7 +109,7 @@ func void DIA_Opolos_HowLong_Info()
 	AI_Output(other,self,"DIA_Opolos_HowLong_15_00");	//Ты давно в монастыре?
 	AI_Output(self,other,"DIA_Opolos_HowLong_12_01");	//Уже три года. Но до сих пор меня не пускают в библиотеку. А мне так хочется...
 	AI_Output(other,self,"DIA_Opolos_HowLong_15_02");	//А почему?
-	AI_Output(self,other,"DIA_Opolos_HowLong_12_03");	//Моя работа здесь - пасти овец - а не изучать писания.
+	AI_Output(self,other,"DIA_Opolos_HowLong_12_03");	//Моя работа здесь - пасти овец, а не изучать писания.
 	AI_Output(self,other,"DIA_Opolos_HowLong_12_04");	//И пока мастер Парлан не освободит меня от этой обязанности, мне не позволят начать обучение в библиотеке.
 	MIS_HelpOpolos = LOG_Running;
 	Log_CreateTopic(Topic_OpolosStudy,LOG_MISSION);
@@ -169,13 +169,13 @@ func void DIA_Opolos_beibringen_Info()
 {
 	AI_Output(other,self,"DIA_Opolos_beibringen_15_00");	//Ты можешь чему-нибудь научить меня?
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_01");	//Конечно, мне часто приходилось драться. Я могу научить тебя, как стать сильнее.
-	AI_Output(self,other,"DIA_Opolos_beibringen_12_02");	//Но я бы хотел узнать что-нибудь о зельях, особенно о магических.
+	AI_Output(self,other,"DIA_Opolos_beibringen_12_02");	//Но я бы хотел узнать что-нибудь о зельях, особенно магических.
 	AI_Output(other,self,"DIA_Opolos_beibringen_15_03");	//Чем я могу помочь тебе в этом?
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_04");	//Ну, если ты работаешь на Неораса, то у тебя наверняка будет возможность 'позаимствовать' ненадолго один из его рецептов.
 	AI_Output(self,other,"DIA_Opolos_beibringen_12_05");	//Если ты принесешь его мне, чтобы я мог изучить его, то я потренирую тебя.
 	Log_CreateTopic(Topic_OpolosRezept,LOG_MISSION);
 	Log_SetTopicStatus(Topic_OpolosRezept,LOG_Running);
-	B_LogEntry(Topic_OpolosRezept,"Ополос хочет взглянуть на рецепт приготовления зелий маны. Возможно мне удастся позаимствовать его, работая на Неораса.");
+	B_LogEntry(Topic_OpolosRezept,"Ополос хочет взглянуть на рецепт приготовления зелий маны. Возможно, мне удастся позаимствовать его, работая на Неораса.");
 };
 
 
@@ -186,7 +186,7 @@ instance DIA_Opolos_rezept(C_Info)
 	condition = DIA_Opolos_rezept_Condition;
 	information = DIA_Opolos_rezept_Info;
 	permanent = TRUE;
-	description = "Насчет рецепта ...";
+	description = "Насчет рецепта...";
 };
 
 
@@ -202,18 +202,18 @@ func int DIA_Opolos_rezept_Condition()
 
 func void DIA_Opolos_rezept_Info()
 {
-	if(Npc_HasItems(other,ItWr_ManaRezept) >= 1)
+	if(Npc_HasItems(other,ItWr_ManaRezept))
 	{
 		AI_Output(other,self,"DIA_Opolos_rezept_15_00");	//Я принес рецепт, как ты и хотел.
 		AI_Output(self,other,"DIA_Opolos_rezept_12_01");	//Хорошо, дай я прочту его.
 		B_UseFakeScroll();
-		AI_Output(self,other,"DIA_Opolos_rezept_12_02");	//Ага... хм ... да ... понятно ... так, так ...
+		AI_Output(self,other,"DIA_Opolos_rezept_12_02");	//Ага... хм... да... понятно... так, так...
 		B_UseFakeScroll();
 		AI_Output(self,other,"DIA_Opolos_rezept_12_03");	//Хорошо. Огромное спасибо. Если хочешь, ты можешь потренироваться со мной.
-		DIA_Opolos_rezept_permanent = TRUE;
-		Opolos_TeachSTR = TRUE;
 		Opolos_Rezept = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Ambient);
+		DIA_Opolos_rezept_permanent = TRUE;
+		Opolos_TeachSTR = TRUE;
 		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
 		B_LogEntry(Topic_KlosterTeacher,"Ополос может помочь мне стать сильнее.");
 	}
@@ -222,6 +222,7 @@ func void DIA_Opolos_rezept_Info()
 		AI_Output(other,self,"DIA_Opolos_rezept_15_04");	//Я уже вернул этот рецепт Неорасу.
 		AI_Output(self,other,"DIA_Opolos_rezept_12_05");	//Ох, черт - мне, наверное, никогда не удастся научиться чему-нибудь здесь. Ладно. Я все равно потренирую тебя.
 		Opolos_Rezept = LOG_FAILED;
+		B_CheckLog();
 		DIA_Opolos_rezept_permanent = TRUE;
 		Opolos_TeachSTR = TRUE;
 		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
@@ -316,7 +317,7 @@ func void DIA_Opolos_Agon_Info()
 	AI_Output(self,other,"DIA_Opolos_Agon_12_02");	//Бабо пришел в монастырь незадолго до тебя. И сначала он помогал Агону в саду.
 	AI_Output(self,other,"DIA_Opolos_Agon_12_03");	//Похоже, они что-то там не поделили, и с тех пор Бабо подметает двор.
 	AI_Output(other,self,"DIA_Opolos_Agon_15_04");	//Ты знаешь, что произошло?
-	AI_Output(self,other,"DIA_Opolos_Agon_12_05");	//Точно не знаю. Тебе лучше самому спросить их. Но слова Агона имеет больший вес, чем слово любого другого послушника, потому что он племянник губернатора.
+	AI_Output(self,other,"DIA_Opolos_Agon_12_05");	//Точно не знаю. Тебе лучше самому спросить их. Но слово Агона имеет больший вес, чем слово любого другого послушника, потому что он племянник губернатора.
 };
 
 
@@ -341,7 +342,7 @@ func int DIA_Opolos_LIESEL_Condition()
 
 func void DIA_Opolos_LIESEL_Info()
 {
-	AI_Output(other,self,"DIA_Opolos_LIESEL_15_00");	//Смотри, Я привел Бетси. Могу я оставить ее с тобой?
+	AI_Output(other,self,"DIA_Opolos_LIESEL_15_00");	//Смотри, я привел Бетси. Могу я оставить ее с тобой?
 	Npc_PerceiveAll(self);
 	if(Wld_DetectNpc(self,Follow_Sheep,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 800))
 	{
@@ -355,7 +356,7 @@ func void DIA_Opolos_LIESEL_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Opolos_Add_15_00");	//Хм... куда же это я его подевал. Я приду позже.
+		AI_Output(other,self,"DIA_Opolos_Add_15_00");	//Хм... куда же это я её подевал. Я приду позже.
 	};
 };
 
@@ -367,7 +368,7 @@ instance DIA_Opolos_Biblothek(C_Info)
 	condition = DIA_Opolos_Biblothek_Condition;
 	information = DIA_Opolos_Biblothek_Info;
 	permanent = TRUE;
-	description = "Насчет библиотеки ...";
+	description = "Насчет библиотеки...";
 };
 
 
@@ -381,7 +382,7 @@ func int DIA_Opolos_Biblothek_Condition()
 
 func void DIA_Opolos_Biblothek_Info()
 {
-	AI_Output(other,self,"DIA_Opolos_Biblothek_15_00");	//Насчет библиотеки ...
+	AI_Output(other,self,"DIA_Opolos_Biblothek_15_00");	//Насчет библиотеки...
 	if(Parlan_Erlaubnis == FALSE)
 	{
 		AI_Output(self,other,"DIA_Opolos_Biblothek_12_01");	//Это запертая комната слева, рядом с воротами.
@@ -535,7 +536,7 @@ func void DIA_Opolos_Kap3_PERM_Info()
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_12_02");	//Хотел бы я знать, что происходит снаружи. Маги, похоже, очень нервничают.
 	Info_ClearChoices(DIA_Opolos_Kap3_PERM);
 	Info_AddChoice(DIA_Opolos_Kap3_PERM,Dialog_Back,DIA_Opolos_Kap3_PERM_BACK);
-	Info_AddChoice(DIA_Opolos_Kap3_PERM,"В Долине Рудников появились драконы.",DIA_Opolos_Kap3_PERM_DRAGONS);
+	Info_AddChoice(DIA_Opolos_Kap3_PERM,"В Долине Рудников появились драконы. Вместе с армией орков они осаждают королевские войска.",DIA_Opolos_Kap3_PERM_DRAGONS);
 	Info_AddChoice(DIA_Opolos_Kap3_PERM,"Неизвестные в черных рясах стоят на каждом перекрестке.",DIA_Opolos_Kap3_PERM_DMT);
 	if(MIS_NovizenChase == LOG_Running)
 	{
@@ -589,7 +590,7 @@ func void DIA_Opolos_Kap3_PERM_PEDRO()
 {
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_PEDRO_15_00");	//Педро предал нас.
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_PEDRO_12_01");	//Я слышал об этом, но я думал, что и тебе об этом известно. Вот почему я ничего не сказал.
-	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_PEDRO_12_02");	//Неужели враг сильнее нас - ну я хочу сказать, сможем ли мы победить его?
+	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_PEDRO_12_02");	//Неужели враг сильнее нас - ну, я хочу сказать, сможем ли мы победить его?
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_PEDRO_15_03");	//Мы еще не мертвы.
 	if(Opolos_Pedro == FALSE)
 	{

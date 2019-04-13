@@ -58,7 +58,7 @@ instance DIA_Udar_YouAreBest(C_Info)
 	condition = DIA_Udar_YouAreBest_Condition;
 	information = DIA_Udar_YouAreBest_Info;
 	permanent = FALSE;
-	description = "Я слышал, что ты ЛУЧШИЙ арбалетчик ...";
+	description = "Я слышал, что ты ЛУЧШИЙ арбалетчик во всей округе.";
 };
 
 
@@ -66,7 +66,7 @@ func int DIA_Udar_YouAreBest_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Keroloth_Udar))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -92,7 +92,7 @@ func int DIA_Udar_TeachMe_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Udar_YouAreBest) && (Udar_TeachPlayer != TRUE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -118,7 +118,7 @@ func int DIA_Udar_ImGood_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Udar_YouAreBest))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -147,7 +147,7 @@ func int DIA_Udar_Teach_Condition()
 {
 	if(Udar_TeachPlayer == TRUE)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -239,13 +239,13 @@ instance DIA_Udar_Ring(C_Info)
 	condition = DIA_Udar_Ring_Condition;
 	information = DIA_Udar_Ring_Info;
 	permanent = FALSE;
-	description = "Вот, я принес тебе кольцо Тенгрона ...";
+	description = "Вот, я принес тебе кольцо Тенгрона. Оно будет защищать тебя.";
 };
 
 
 func int DIA_Udar_Ring_Condition()
 {
-	if(Npc_HasItems(other,ItRi_Tengron) >= 1)
+	if(Npc_HasItems(other,ItRi_Tengron))
 	{
 		return TRUE;
 	};
@@ -254,9 +254,9 @@ func int DIA_Udar_Ring_Condition()
 func void DIA_Udar_Ring_Info()
 {
 	AI_Output(other,self,"DIA_Udar_Ring_15_00");	//Вот, я принес тебе кольцо Тенгрона. Оно будет защищать тебя. Тенгрон говорит, что он когда-нибудь вернется и заберет это кольцо назад.
+	B_GiveInvItems(other,self,ItRi_Tengron,1);
 	AI_Output(self,other,"DIA_Udar_Ring_09_01");	//Что? Да ты знаешь, что это за кольцо? Он получил эту награду за мужество, проявленное в бою.
 	AI_Output(self,other,"DIA_Udar_Ring_09_02");	//Говоришь, что он хочет забрать его назад? Если такова воля Инноса, так и будет. Если такова воля Инноса...
-	B_GiveInvItems(other,self,ItRi_Tengron,1);
 	TengronRing = TRUE;
 	B_GivePlayerXP(XP_TengronRing);
 };
@@ -393,7 +393,7 @@ instance DIA_Udar_BADFEELING(C_Info)
 
 func int DIA_Udar_BADFEELING_Condition()
 {
-	if((Npc_RefuseTalk(self) == FALSE) && Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Udar_SENGRATHGEFUNDEN) && (Kapitel >= 4))
+	if(!Npc_RefuseTalk(self) && Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Udar_SENGRATHGEFUNDEN) && (Kapitel >= 4))
 	{
 		return TRUE;
 	};

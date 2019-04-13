@@ -111,17 +111,17 @@ func void DIA_Fajeth_Hallo_Info()
 func void DIA_Fajeth_Hallo_Tun()
 {
 	AI_Output(other,self,"DIA_Fajeth_Hallo_Tun_15_00");	//Что я могу сделать для тебя?
-	AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_01");	//Вот уже несколько дней, орда снепперов бродит вокруг нашего лагеря. Похоже, они просто выжидают подходящей возможности для нападения.
+	AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_01");	//Вот уже несколько дней орда снепперов бродит вокруг нашего лагеря. Похоже, они просто выжидают подходящей возможности для нападения.
 	AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_02");	//Я не знаю, чего они ждут - но пока они здесь, в лагере не будет спокойствия.
-	if(Npc_IsDead(Fed) == FALSE)
+	if(!Npc_IsDead(Fed))
 	{
 		AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_03");	//Фед, помимо всего прочего, напуган ими до смерти - и сводит с ума остальных каторжников.
 	};
-	if(Npc_IsDead(Bilgot) == FALSE)
+	if(!Npc_IsDead(Bilgot))
 	{
 		AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_04");	//И кого мне послать? Билгота? Ха - он тоже слабак.
 	};
-	if(Npc_IsDead(Tengron) == FALSE)
+	if(!Npc_IsDead(Tengron))
 	{
 		AI_Output(self,other,"DIA_Fajeth_Hallo_Tun_12_05");	//Тенгрона? Конечно, он умеет сражаться, но он не обладает хитростью охотника.
 	};
@@ -132,7 +132,7 @@ func void DIA_Fajeth_Hallo_Tun()
 	MIS_Fajeth_Kill_Snapper = LOG_Running;
 	Log_CreateTopic(TOPIC_FajethKillSnapper,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_FajethKillSnapper,LOG_Running);
-	B_LogEntry(TOPIC_FajethKillSnapper,"Фаджет научил меня, как охотиться на снепперов, которые бродят толпами вокруг замка.");
+	B_LogEntry(TOPIC_FajethKillSnapper,"Фаджет дал мне задание поохотиться на снепперов, которые бродят толпами вокруг замка.");
 	Info_ClearChoices(DIA_Fajeth_Hallo);
 	PrintScreen("",-1,-1,FONT_Screen,0);
 };
@@ -221,7 +221,7 @@ instance DIA_Fajeth_SNAPPER_KILLED(C_Info)
 
 func int DIA_Fajeth_SNAPPER_KILLED_Condition()
 {
-	if((MIS_Fajeth_Kill_Snapper == LOG_Running) && (C_SnapperDeath() == TRUE))
+	if((MIS_Fajeth_Kill_Snapper == LOG_Running) && C_SnapperDeath())
 	{
 		return TRUE;
 	};

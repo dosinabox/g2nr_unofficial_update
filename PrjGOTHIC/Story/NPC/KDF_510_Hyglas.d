@@ -10,7 +10,7 @@ instance KDF_510_Hyglas(Npc_Default)
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_NormalBart09,BodyTex_N,ItAr_KDF_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_NormalBart09,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

@@ -11,6 +11,7 @@ instance STRF_1141_Addon_Sklave(Npc_Default)
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_NormalBart01,BodyTex_P,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");

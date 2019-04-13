@@ -42,7 +42,7 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
-	oth.lp = oth.lp - kosten;
+	oth.lp -= kosten;
 	B_RaiseAttribute(oth,attrib,points);
 	return TRUE;
 };

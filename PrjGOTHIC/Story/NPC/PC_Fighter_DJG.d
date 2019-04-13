@@ -14,7 +14,7 @@ instance PC_Fighter_DJG(Npc_Default)
 	CreateInvItems(self,ItPo_Health_02,6);
 	CreateInvItems(self,ItMi_OldCoin,1);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Gorn,BodyTex_B,itar_djg_h);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Gorn,BodyTex_B,ITAR_DJG_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

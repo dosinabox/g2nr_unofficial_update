@@ -64,10 +64,10 @@ func void Use_BookstandMaya()
 	{
 		Doc_PrintLine(StPl_nDocID,0,"");
 		Doc_PrintLine(StPl_nDocID,0,"");
-		Doc_PrintLines(StPl_nDocID,0,"...так как только СТРАЖИ МЕРТВЫХ могут вызывать предков.");
+		Doc_PrintLines(StPl_nDocID,0,"... так как только СТРАЖИ МЕРТВЫХ могут вызывать предков.");
 		Doc_PrintLine(StPl_nDocID,0,"");
 		Doc_PrintLine(StPl_nDocID,0,"");
-		Doc_PrintLines(StPl_nDocID,0,"Их отсутствие - большая потеря для нас. Без совета предков, нам придется полагаться только на себя.");
+		Doc_PrintLines(StPl_nDocID,0,"Их отсутствие - большая потеря для нас. Без совета предков нам придется полагаться только на себя.");
 		Doc_PrintLine(StPl_nDocID,0,"");
 		Doc_PrintLine(StPl_nDocID,0,"");
 		Doc_PrintLines(StPl_nDocID,0,"ЦЕЛИТЕЛЯМ было поручено закрыть портал и уничтожить ключ. Одному Аданосу ведомо, что случилось с ними и удалось ли им достичь своей цели.");
@@ -177,7 +177,7 @@ func void InitUse_BookstandMaya()
 	her = Hlp_GetNpc(PC_Hero);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
-		if(C_CanReadBookStand() == FALSE)
+		if(!C_CanReadBookStand())
 		{
 			StPl_nDocID = Doc_Create();
 			Doc_SetPages(StPl_nDocID,2);
@@ -188,7 +188,7 @@ func void InitUse_BookstandMaya()
 			Doc_Show(StPl_nDocID);
 			B_Say(self,self,"$CANTREADTHIS");
 		}
-		else if(C_CanReadBookStand())
+		else
 		{
 			StPl_nDocID = Doc_Create();
 			Doc_SetPages(StPl_nDocID,2);

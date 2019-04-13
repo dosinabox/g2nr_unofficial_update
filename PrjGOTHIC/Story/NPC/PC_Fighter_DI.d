@@ -16,7 +16,7 @@ instance PC_Fighter_DI(Npc_Default)
 	EquipItem(self,ItRw_Crossbow_M_01);
 	CreateInvItems(self,ItPo_Health_02,6);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Gorn,BodyTex_B,itar_djg_h);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Gorn,BodyTex_B,ITAR_DJG_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

@@ -70,7 +70,7 @@ func int DIA_Tengron_HALLO_Condition()
 func void DIA_Tengron_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Tengron_HALLO_07_00");	//Да пребудет с тобой Иннос! Ты принес мне новости из замка? Скоро прибудет подкрепление?
-	if(Npc_IsDead(Fajeth) == FALSE)
+	if(!Npc_IsDead(Fajeth))
 	{
 		AI_Output(other,self,"DIA_Tengron_HALLO_15_01");	//Я пришел не за тем, чтобы принести новости, а чтобы получить их.
 		AI_Output(self,other,"DIA_Tengron_HALLO_07_02");	//Тогда поговори с Фаджетом. Он командует здесь. Но если у тебя будут новости из замка, дай мне знать.
@@ -152,7 +152,7 @@ func void DIA_Tengron_Situation_Info()
 {
 	AI_Output(other,self,"DIA_Tengron_Situation_15_00");	//Как обстановка?
 	AI_Output(self,other,"DIA_Tengron_Situation_07_01");	//Мы окружены монстрами, и нам удалось добыть очень мало руды. К тому же, мы потеряли много хороших людей.
-	AI_Output(self,other,"DIA_Tengron_Situation_07_02");	//Я не знаю, сколько мы еще подержимся, но мы не сдадимся просто так!
+	AI_Output(self,other,"DIA_Tengron_Situation_07_02");	//Я не знаю, сколько мы еще продержимся, но мы не сдадимся просто так!
 };
 
 

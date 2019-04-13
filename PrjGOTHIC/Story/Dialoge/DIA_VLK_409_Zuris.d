@@ -34,10 +34,7 @@ instance DIA_Zuris_PICKPOCKET(C_Info)
 
 func int DIA_Zuris_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (other.attribute[ATR_DEXTERITY] >= (40 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(40,Hlp_GetInstanceID(ItPo_Health_03),0);
 };
 
 func void DIA_Zuris_PICKPOCKET_Info()
@@ -49,20 +46,9 @@ func void DIA_Zuris_PICKPOCKET_Info()
 
 func void DIA_Zuris_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 40)
-	{
-		CreateInvItems(self,ItPo_Health_03,1);
-		B_GiveInvItems(self,other,ItPo_Health_03,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Zuris_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	CreateInvItems(self,ItPo_Health_03,1);
+	B_StealItems(40,Hlp_GetInstanceID(ItPo_Health_03),1);
+	Info_ClearChoices(DIA_Zuris_PICKPOCKET);
 };
 
 func void DIA_Zuris_PICKPOCKET_BACK()

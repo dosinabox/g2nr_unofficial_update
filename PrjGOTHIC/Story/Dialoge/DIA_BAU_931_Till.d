@@ -48,7 +48,7 @@ func void DIA_Till_HALLO_Info()
 	if(Kapitel < 5)
 	{
 		Info_AddChoice(DIA_Till_HALLO,"Я не рабочий.",DIA_Till_HALLO_keinervoneuch);
-		if(Npc_IsDead(Sekob) == FALSE)
+		if(!Npc_IsDead(Sekob))
 		{
 			Info_AddChoice(DIA_Till_HALLO,"Ты командуешь здесь?",DIA_Till_HALLO_selber);
 		};
@@ -108,7 +108,7 @@ instance DIA_Till_SEKOB(C_Info)
 
 func int DIA_Till_SEKOB_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && (Npc_KnowsInfo(other,DIA_Sekob_HALLO) == FALSE) && (Kapitel < 3) && (Npc_IsDead(Sekob) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && !Npc_KnowsInfo(other,DIA_Sekob_HALLO) && (Kapitel < 3) && !Npc_IsDead(Sekob))
 	{
 		return TRUE;
 	};
@@ -207,7 +207,7 @@ func void DIA_Till_BRONKO_Info()
 	AI_Output(self,other,"DIA_Till_BRONKO_03_02");	//Я уже столько раз задавал ему трепку, чтобы он взялся за ум и начал работать, но все без толку...
 	AI_Output(other,self,"DIA_Till_BRONKO_15_03");	//Да?
 	AI_Output(self,other,"DIA_Till_BRONKO_03_04");	//Он все равно не хочет работать.
-	if(Npc_IsDead(Sekob) == FALSE)
+	if(!Npc_IsDead(Sekob))
 	{
 		AI_Output(self,other,"DIA_Till_BRONKO_03_05");	//Моему отцу очень не нравится, что мне все еще не удалось убедить его вернуться к работе.
 	};
@@ -221,7 +221,7 @@ instance DIA_Till_BRONKOZURARBEIT(C_Info)
 	condition = DIA_Till_BRONKOZURARBEIT_Condition;
 	information = DIA_Till_BRONKOZURARBEIT_Info;
 	permanent = TRUE;
-	description = "Возможно, я смогу помочь тебе.";
+	description = "Может быть, я смогу помочь.";
 };
 
 

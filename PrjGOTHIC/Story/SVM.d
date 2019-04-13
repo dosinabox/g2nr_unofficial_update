@@ -249,7 +249,7 @@ instance SVM_1(C_SVM)
 	Weather = "SVM_1_Weather";	//Какая паршивая погода!
 	IGetYouStill = "SVM_1_IGetYouStill";	//Я все-таки достал тебя!
 	DieEnemy = "SVM_1_DieEnemy";	//Сейчас ты получишь!
-	DieMonster = "SVM_1_DieMonster";	//Еще одной грязной твари настал конец!
+	DieMonster = "SVM_1_DieMonster";	//Еще одна грязная тварь!
 	DirtyThief = "SVM_1_DirtyThief";	//Грязный воришка! Ну, подожди!
 	HandsOff = "SVM_1_HandsOff";	//Убери свои грязные руки!
 	SheepKiller = "SVM_1_SheepKiller";	//Этот кусок дерьма убивает наших овец!
@@ -286,7 +286,7 @@ instance SVM_1(C_SVM)
 	GetOutOfHere = "SVM_1_GetOutOfHere";	//Убирайся отсюда!
 	WhyAreYouInHere = "SVM_1_WhyAreYouInHere";	//Что тебе здесь нужно?! Уходи!
 	YesGoOutOfHere = "SVM_1_YesGoOutOfHere";	//Да, убирайся отсюда!
-	WhatsThisSupposedToBe = "SVM_1_WhatsThisSupposedToBe";	//Эй, ты, что тебе здесь нужно?
+	WhatsThisSupposedToBe = "SVM_1_WhatsThisSupposedToBe";	//Эй ты, что тебе здесь нужно?
 	YouDisturbedMySlumber = "SVM_1_YouDisturbedMySlumber";	//(просыпается) Черт, в чем дело?
 	ITookYourGold = "SVM_1_ITookYourGold";	//Золото! Хм, золото никогда не помешает...
 	ShitNoGold = "SVM_1_ShitNoGold";	//У этого ублюдка нет ни гроша в карманах.
@@ -303,7 +303,7 @@ instance SVM_1(C_SVM)
 	TheresAFight = "SVM_1_TheresAFight";	//(страстно) Сейчас повеселимся!
 	OhMyGodItsAFight = "SVM_1_OhMyGodItsAFight";	//(потрясенно) Они лупят друг друга так, что даже страшно...
 	GoodVictory = "SVM_1_GoodVictory";	//(дьявольский смех) Он заслужил это!
-	NotBad = "SVM_1_NotBad";	//(одобрительно) Совсем не плохо...
+	NotBad = "SVM_1_NotBad";	//(одобрительно) Совсем неплохо...
 	OhMyGodHesDown = "SVM_1_OhMyGodHesDown";	//(себе под нос) Какой он жестокий...
 	CheerFriend01 = "SVM_1_CheerFriend01";	//Да, как раз то, что нужно!
 	CheerFriend02 = "SVM_1_CheerFriend02";	//Чего ты ждешь?
@@ -318,9 +318,9 @@ instance SVM_1(C_SVM)
 	abs_monastery = "SVM_1_ABS_MONASTERY";	//Я слышал, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_1_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
 	abs_good = "SVM_1_ABS_GOOD";	//Это хорошо.
-	sheepkiller_crime = "SVM_1_SHEEPKILLER_CRIME";	//Он убивает наших овец!
-	attack_crime = "SVM_1_ATTACK_CRIME";	//Я не разговариваю с грязными ворами!
-	theft_crime = "SVM_1_THEFT_CRIME";	//Прочь, с глаз моих, грязный вор!
+	sheepkiller_crime = "SVM_1_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
+	attack_crime = "SVM_1_ATTACK_CRIME";	//Я не разговариваю с бандитами!
+	theft_crime = "SVM_1_THEFT_CRIME";	//Прочь с глаз моих, грязный вор!
 	pal_city_crime = "SVM_1_PAL_CITY_CRIME";	//Ты позоришь наш орден! Лорд Хаген будет в ярости!
 	mil_city_crime = "SVM_1_MIL_CITY_CRIME";	//Ты позоришь городскую стражу! Лорд Андрэ научит тебя хорошим манерам!
 	city_crime = "SVM_1_CITY_CRIME";	//Лорд Андрэ узнает о том, что ты сделал!
@@ -439,8 +439,8 @@ instance SVM_3(C_SVM)
 	PALGreetings = "SVM_3_PALGreetings";	//За Инноса!
 	Weather = "SVM_3_Weather";	//Какая паршивая погода!
 	IGetYouStill = "SVM_3_IGetYouStill";	//Я все-таки достал тебя!
-	DieEnemy = "SVM_3_DieEnemy";	//Я разорву тебя на куски
-	DieMonster = "SVM_3_DieMonster";	//Еще одной грязной твари настал конец!
+	DieEnemy = "SVM_3_DieEnemy";	//Я разорву тебя на куски!
+	DieMonster = "SVM_3_DieMonster";	//Еще одна грязная тварь!
 	DirtyThief = "SVM_3_DirtyThief";	//Грязный вор! Ну, подожди!
 	HandsOff = "SVM_3_HandsOff";	//Убери свои грязные руки!
 	SheepKiller = "SVM_3_SheepKiller";	//Этот кусок дерьма убивает наших овец!
@@ -462,10 +462,10 @@ instance SVM_3(C_SVM)
 	StupidBeastKilled = "SVM_3_StupidBeastKilled";	//Тупая тварь!
 	NeverHitMeAgain = "SVM_3_NeverHitMeAgain";	//Даже не пытайся поднимать оружие против меня!
 	YouBetterShouldHaveListened = "SVM_3_YouBetterShouldHaveListened";	//Тебе стоило послушать меня!
-	GetUpAndBeGone = "SVM_3_GetUpAndBeGone";	//А теперь, убирайся отсюда!
+	GetUpAndBeGone = "SVM_3_GetUpAndBeGone";	//А теперь убирайся отсюда!
 	NeverEnterRoomAgain = "SVM_3_NeverEnterRoomAgain";	//И больше не попадайся мне на глаза!
 	ThereIsNoFightingHere = "SVM_3_ThereIsNoFightingHere";	//Драки здесь запрещены, понятно? Пусть это будет тебе уроком!
-	SpareMe = "SVM_3_SpareMe";	//Не трогая меня!
+	SpareMe = "SVM_3_SpareMe";	//Не трогай меня!
 	RunAway = "SVM_3_RunAway";	//Ох, черт!!!
 	Alarm = "SVM_3_Alarm";	//ТРЕВОГА!
 	Guards = "SVM_3_Guards";	//СТРАЖА!
@@ -480,7 +480,7 @@ instance SVM_3(C_SVM)
 	WhatsThisSupposedToBe = "SVM_3_WhatsThisSupposedToBe";	//Эй, ты, что тебе здесь нужно?
 	YouDisturbedMySlumber = "SVM_3_YouDisturbedMySlumber";	//(просыпается) Черт, в чем дело?
 	ITookYourGold = "SVM_3_ITookYourGold";	//Спасибо за золото, герой!
-	ShitNoGold = "SVM_3_ShitNoGold";	//Ах ты сосунок, у тебя даже золота с собой нет!
+	ShitNoGold = "SVM_3_ShitNoGold";	//Ах ты, сосунок, у тебя даже золота с собой нет!
 	ITakeYourWeapon = "SVM_3_ITakeYourWeapon";	//Я думаю, лучше забрать твое оружие.
 	WhatAreYouDoing = "SVM_3_WhatAreYouDoing";	//Смотри! Еще раз - и ты пожалеешь об этом.
 	LookingForTroubleAgain = "SVM_3_LookingForTroubleAgain";	//Тебе все еще мало?
@@ -509,7 +509,7 @@ instance SVM_3(C_SVM)
 	abs_monastery = "SVM_3_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_3_ABS_FARM";	//Говорят, ты ходил к Ли и все уладил.
 	abs_good = "SVM_3_ABS_GOOD";	//Это хорошо.
-	sheepkiller_crime = "SVM_3_SHEEPKILLER_CRIME";	//Он убивает наших овец!
+	sheepkiller_crime = "SVM_3_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_3_ATTACK_CRIME";	//Оставь меня в покое, грязное животное!
 	theft_crime = "SVM_3_THEFT_CRIME";	//Оставь меня в покое, презренный воришка!
 	pal_city_crime = "SVM_3_PAL_CITY_CRIME";	//Ты позоришь наш орден! Подожди, лорд Хаген узнает об этом!
@@ -667,7 +667,7 @@ instance SVM_4(C_SVM)
 	WhatsThisSupposedToBe = "SVM_4_WhatsThisSupposedToBe";	//Что ты там ищешь?
 	YouDisturbedMySlumber = "SVM_4_YouDisturbedMySlumber";	//(просыпается) В чем дело?
 	ITookYourGold = "SVM_4_ITookYourGold";	//Спасибо за золото, герой!
-	ShitNoGold = "SVM_4_ShitNoGold";	//Ах ты сосунок, у тебя даже золота с собой нет!
+	ShitNoGold = "SVM_4_ShitNoGold";	//Ах ты, сосунок, у тебя даже золота с собой нет!
 	ITakeYourWeapon = "SVM_4_ITakeYourWeapon";	//Я думаю, лучше забрать твое оружие.
 	WhatAreYouDoing = "SVM_4_WhatAreYouDoing";	//Смотри! Еще раз, и ты пожалеешь об этом.
 	LookingForTroubleAgain = "SVM_4_LookingForTroubleAgain";	//(агрессивно) Хочешь еще получить по морде?
@@ -698,7 +698,7 @@ instance SVM_4(C_SVM)
 	abs_good = "SVM_4_ABS_GOOD";	//Хорошо.
 	sheepkiller_crime = "SVM_4_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_4_ATTACK_CRIME";	//Ты бандит - убирайся!
-	theft_crime = "SVM_4_THEFT_CRIME";	//Проклятый вор! - я не хочу видеть тебя!
+	theft_crime = "SVM_4_THEFT_CRIME";	//Проклятый вор! Я не хочу видеть тебя!
 	pal_city_crime = "SVM_4_PAL_CITY_CRIME";	//Я не ожидал такого от паладина! Лорд Хаген будет недоволен.
 	mil_city_crime = "SVM_4_MIL_CITY_CRIME";	//Как такой как ты вообще мог попасть в городскую стражу? Лорд Андрэ заставит тебя заплатить за это!
 	city_crime = "SVM_4_CITY_CRIME";	//Лорд Андрэ узнает о твоем поведении!
@@ -814,7 +814,7 @@ instance SVM_5(C_SVM)
 	Weather = "SVM_5_Weather";	//Какая мерзкая погода!
 	IGetYouStill = "SVM_5_IGetYouStill";	//Я все-таки достал тебя!
 	DieEnemy = "SVM_5_DieEnemy";	//Сейчас ты получишь!
-	DieMonster = "SVM_5_DieMonster";	//Еще одной грязной твари настал конец!
+	DieMonster = "SVM_5_DieMonster";	//Еще одна грязная тварь!
 	DirtyThief = "SVM_5_DirtyThief";	//Грязный воришка! Ну, подожди!
 	HandsOff = "SVM_5_HandsOff";	//Убери свои грязные руки!
 	SheepKiller = "SVM_5_SheepKiller";	//Этот кусок дерьма убивает наших овец!
@@ -854,7 +854,7 @@ instance SVM_5(C_SVM)
 	WhatsThisSupposedToBe = "SVM_5_WhatsThisSupposedToBe";	//Эй, ты, что тебе здесь нужно?
 	YouDisturbedMySlumber = "SVM_5_YouDisturbedMySlumber";	//(просыпается) Черт, в чем дело?
 	ITookYourGold = "SVM_5_ITookYourGold";	//Золото! Хм, золото никогда не помешает...
-	ShitNoGold = "SVM_5_ShitNoGold";	//Да у тебя даже нет золота с собой?
+	ShitNoGold = "SVM_5_ShitNoGold";	//Да у тебя даже нет золота с собой!
 	ITakeYourWeapon = "SVM_5_ITakeYourWeapon";	//Я, пожалуй, заберу твое оружие, так будет безопаснее для тебя же.
 	WhatAreYouDoing = "SVM_5_WhatAreYouDoing";	//Эй! Осторожно!
 	LookingForTroubleAgain = "SVM_5_LookingForTroubleAgain";	//(агрессивно) Ты мало получил?
@@ -868,7 +868,7 @@ instance SVM_5(C_SVM)
 	TheresAFight = "SVM_5_TheresAFight";	//(страстно) Сейчас повеселимся!
 	OhMyGodItsAFight = "SVM_5_OhMyGodItsAFight";	//(потрясенно) Они лупят друг друга так, что даже страшно...
 	GoodVictory = "SVM_5_GoodVictory";	//(дьявольский смех) Он заслужил это!
-	NotBad = "SVM_5_NotBad";	//(одобрительно) Совсем не плохо...
+	NotBad = "SVM_5_NotBad";	//(одобрительно) Совсем неплохо...
 	OhMyGodHesDown = "SVM_5_OhMyGodHesDown";	//(себе под нос) Какой он жестокий...
 	CheerFriend01 = "SVM_5_CheerFriend01";	//Да, как раз то, что нужно!
 	CheerFriend02 = "SVM_5_CheerFriend02";	//Чего ты ждешь?
@@ -883,15 +883,15 @@ instance SVM_5(C_SVM)
 	abs_monastery = "SVM_5_ABS_MONASTERY";	//Я слышал, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_5_ABS_FARM";	//Я слышал, ты ходил к Ли и все уладил.
 	abs_good = "SVM_5_ABS_GOOD";	//Это хорошо.
-	sheepkiller_crime = "SVM_5_SHEEPKILLER_CRIME";	//Он убивает наших овец!
-	attack_crime = "SVM_5_ATTACK_CRIME";	//Я не разговариваю с грязными ворами!
+	sheepkiller_crime = "SVM_5_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
+	attack_crime = "SVM_5_ATTACK_CRIME";	//Оставь меня в покое, грязное животное!
 	theft_crime = "SVM_5_THEFT_CRIME";	//Прочь с глаз моих, грязный вор!
 	pal_city_crime = "SVM_5_PAL_CITY_CRIME";	//Ты позоришь наш орден! Лорд Хаген будет в ярости!
 	mil_city_crime = "SVM_5_MIL_CITY_CRIME";	//Ты позоришь городскую стражу! Лорд Андрэ научит тебя хорошим манерам!
 	city_crime = "SVM_5_CITY_CRIME";	//Лорд Андрэ узнает о том, что ты сделал!
 	mona_crime = "SVM_5_MONA_CRIME";	//Отец Парлан не будет рад, когда узнает об этом кощунстве!
 	farm_crime = "SVM_5_FARM_CRIME";	//Ли задаст тебе трепку! Ты плохо кончишь!
-	oc_crime = "SVM_5_OC_CRIME";	//Командующий Гаронд потребует от тебя объяснений!
+	oc_crime = "SVM_5_OC_CRIME";	//Подожди, командующий Гаронд узнает об этом!
 	toughguy_attacklost = "SVM_5_TOUGHGUY_ATTACKLOST";	//Хорошо, хорошо, ты победил. Чего ты хочешь?
 	toughguy_attackwon = "SVM_5_TOUGHGUY_ATTACKWON";	//Тебе еще раз показать, кто тут главный?
 	toughguy_playerattack = "SVM_5_TOUGHGUY_PLAYERATTACK";	//Хочешь еще раз сразиться со мной, да?
@@ -1228,7 +1228,7 @@ instance SVM_7(C_SVM)
 	WhatsThisSupposedToBe = "SVM_7_WhatsThisSupposedToBe";	//Что ты там ищешь?
 	YouDisturbedMySlumber = "SVM_7_YouDisturbedMySlumber";	//(просыпается) В чем дело?
 	ITookYourGold = "SVM_7_ITookYourGold";	//Спасибо за золото, герой!
-	ShitNoGold = "SVM_7_ShitNoGold";	//Ах ты сосунок, у тебя даже золота с собой нет!
+	ShitNoGold = "SVM_7_ShitNoGold";	//Ах ты, сосунок, у тебя даже золота с собой нет!
 	ITakeYourWeapon = "SVM_7_ITakeYourWeapon";	//Я думаю, лучше забрать твое оружие.
 	WhatAreYouDoing = "SVM_7_WhatAreYouDoing";	//Смотри! Еще раз, и ты пожалеешь об этом.
 	LookingForTroubleAgain = "SVM_7_LookingForTroubleAgain";	//(агрессивно) Хочешь еще получить по морде?
@@ -1258,7 +1258,7 @@ instance SVM_7(C_SVM)
 	abs_farm = "SVM_7_ABS_FARM";	//Я слышал, ты обратился к Ли и все уладил.
 	abs_good = "SVM_7_ABS_GOOD";	//Хорошо.
 	sheepkiller_crime = "SVM_7_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
-	attack_crime = "SVM_7_ATTACK_CRIME";	//Ты бандит, убирайся!
+	attack_crime = "SVM_7_ATTACK_CRIME";	//Ты бандит - убирайся!
 	theft_crime = "SVM_7_THEFT_CRIME";	//Проклятый вор! Я не хочу видеть тебя!
 	pal_city_crime = "SVM_7_PAL_CITY_CRIME";	//Я не ожидал такого от паладина! Лорд Хаген будет недоволен.
 	mil_city_crime = "SVM_7_MIL_CITY_CRIME";	//Как такой, как ты, вообще мог попасть в городскую стражу? Лорд Андрэ заставит тебя заплатить за это!
@@ -1375,7 +1375,7 @@ instance SVM_8(C_SVM)
 	Weather = "SVM_8_Weather";	//Какая паршивая погода!
 	IGetYouStill = "SVM_8_IGetYouStill";	//Я все-таки достал тебя!
 	DieEnemy = "SVM_8_DieEnemy";	//Я разорву тебя на куски!
-	DieMonster = "SVM_8_DieMonster";	//Еще одной грязной твари настал конец!
+	DieMonster = "SVM_8_DieMonster";	//Еще одна грязная тварь!
 	DirtyThief = "SVM_8_DirtyThief";	//Грязный вор! Ну, подожди!
 	HandsOff = "SVM_8_HandsOff";	//Убери свои грязные лапы!
 	SheepKiller = "SVM_8_SheepKiller";	//Этот кусок дерьма убивает наших овец!
@@ -1444,7 +1444,7 @@ instance SVM_8(C_SVM)
 	abs_monastery = "SVM_8_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_8_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
 	abs_good = "SVM_8_ABS_GOOD";	//Это хорошо.
-	sheepkiller_crime = "SVM_8_SHEEPKILLER_CRIME";	//Он убивает наших овец!
+	sheepkiller_crime = "SVM_8_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_8_ATTACK_CRIME";	//Оставь меня в покое, грязное животное!
 	theft_crime = "SVM_8_THEFT_CRIME";	//Оставь меня в покое, презренный воришка!
 	pal_city_crime = "SVM_8_PAL_CITY_CRIME";	//Ты позоришь наш орден! Подожди, лорд Хаген узнает об этом!
@@ -1605,7 +1605,7 @@ instance SVM_9(C_SVM)
 	WhatsThisSupposedToBe = "SVM_9_WhatsThisSupposedToBe";	//Что ты задумал? Что ты тут ошиваешься?
 	YouDisturbedMySlumber = "SVM_9_YouDisturbedMySlumber";	//(просыпается) Черт, что тебе нужно?
 	ITookYourGold = "SVM_9_ITookYourGold";	//Ну, по крайней мере, у тебя есть золото с собой.
-	ShitNoGold = "SVM_9_ShitNoGold";	//Даже золота нет - пф-ф-ф.
+	ShitNoGold = "SVM_9_ShitNoGold";	//Даже золота нет - пф-ф-ф...
 	ITakeYourWeapon = "SVM_9_ITakeYourWeapon";	//Пожалуй, я заберу твое оружие.
 	WhatAreYouDoing = "SVM_9_WhatAreYouDoing";	//(предупреждающе) Парень! Не делай этого больше!
 	LookingForTroubleAgain = "SVM_9_LookingForTroubleAgain";	//(агрессивно) Хочешь получить еще?
@@ -1823,7 +1823,7 @@ instance SVM_10(C_SVM)
 	abs_good = "SVM_10_ABS_GOOD";	//Это честно.
 	sheepkiller_crime = "SVM_10_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_10_ATTACK_CRIME";	//Ты бандит - убирайся!
-	theft_crime = "SVM_10_THEFT_CRIME";	//Проклятый вор! - я не хочу видеть тебя!
+	theft_crime = "SVM_10_THEFT_CRIME";	//Проклятый вор! я не хочу видеть тебя!
 	pal_city_crime = "SVM_10_PAL_CITY_CRIME";	//Я не ожидал такого от паладина! Лорд Хаген будет недоволен.
 	mil_city_crime = "SVM_10_MIL_CITY_CRIME";	//Как такой, как ты, вообще мог попасть в городскую стражу? Лорд Андрэ заставит тебя заплатить за это!
 	city_crime = "SVM_10_CITY_CRIME";	//Лорд Андрэ узнает о твоем поведении!
@@ -1882,7 +1882,7 @@ instance SVM_10(C_SVM)
 	Smalltalk19 = "SVM_10_Smalltalk19";	//...это не секрет...
 	Smalltalk20 = "SVM_10_Smalltalk20";	//...тоже мне, большое дело...
 	Smalltalk21 = "SVM_10_Smalltalk21";	//...он думает, это так просто...
-	Smalltalk22 = "SVM_10_Smalltalk22";	//...никому это не интересно ...
+	Smalltalk22 = "SVM_10_Smalltalk22";	//...никому это не интересно...
 	Smalltalk23 = "SVM_10_Smalltalk23";	//...и это правда...
 	Smalltalk24 = "SVM_10_Smalltalk24";	//...просто послушай, что он говорит...
 	Smalltalk25 = "SVM_10_Smalltalk25";	//...если бы он был с нами, все было бы по-другому...
@@ -1940,7 +1940,7 @@ instance SVM_11(C_SVM)
 	Weather = "SVM_11_Weather";	//Какая паршивая погода!
 	IGetYouStill = "SVM_11_IGetYouStill";	//Я все-таки достал тебя!
 	DieEnemy = "SVM_11_DieEnemy";	//Сейчас ты получишь!
-	DieMonster = "SVM_11_DieMonster";	//Еще одной грязной твари настал конец!
+	DieMonster = "SVM_11_DieMonster";	//Еще одна грязная тварь!
 	DirtyThief = "SVM_11_DirtyThief";	//Грязный воришка! Ну, подожди!
 	HandsOff = "SVM_11_HandsOff";	//Убери свои грязные руки!
 	SheepKiller = "SVM_11_SheepKiller";	//Этот кусок дерьма убивает наших овец!
@@ -1962,7 +1962,7 @@ instance SVM_11(C_SVM)
 	StupidBeastKilled = "SVM_11_StupidBeastKilled";	//Тупая тварь!
 	NeverHitMeAgain = "SVM_11_NeverHitMeAgain";	//Даже не пытайся поднимать оружие против меня!
 	YouBetterShouldHaveListened = "SVM_11_YouBetterShouldHaveListened";	//Тебе стоило послушать меня!
-	GetUpAndBeGone = "SVM_11_GetUpAndBeGone";	//А теперь, убирайся отсюда!
+	GetUpAndBeGone = "SVM_11_GetUpAndBeGone";	//А теперь убирайся отсюда!
 	NeverEnterRoomAgain = "SVM_11_NeverEnterRoomAgain";	//И больше не попадайся мне на глаза!
 	ThereIsNoFightingHere = "SVM_11_ThereIsNoFightingHere";	//Драки здесь запрещены, понятно? Пусть это будет тебе уроком!
 	SpareMe = "SVM_11_SpareMe";	//Уходи с миром!
@@ -1980,7 +1980,7 @@ instance SVM_11(C_SVM)
 	WhatsThisSupposedToBe = "SVM_11_WhatsThisSupposedToBe";	//Эй, ты, что тебе здесь нужно?
 	YouDisturbedMySlumber = "SVM_11_YouDisturbedMySlumber";	//(просыпается) Черт, в чем дело?
 	ITookYourGold = "SVM_11_ITookYourGold";	//Золото! Хм, золото никогда не помешает...
-	ShitNoGold = "SVM_11_ShitNoGold";	//Да у тебя даже нет золота с собой?
+	ShitNoGold = "SVM_11_ShitNoGold";	//Да у тебя даже нет золота с собой!
 	ITakeYourWeapon = "SVM_11_ITakeYourWeapon";	//Я, пожалуй, заберу твое оружие, так будет безопаснее для тебя же.
 	WhatAreYouDoing = "SVM_11_WhatAreYouDoing";	//Эй! Осторожно!
 	LookingForTroubleAgain = "SVM_11_LookingForTroubleAgain";	//(агрессивно) Ты мало получил?
@@ -1994,7 +1994,7 @@ instance SVM_11(C_SVM)
 	TheresAFight = "SVM_11_TheresAFight";	//(страстно) Сейчас повеселимся!
 	OhMyGodItsAFight = "SVM_11_OhMyGodItsAFight";	//(потрясенно) Они лупят друг друга так, что даже страшно...
 	GoodVictory = "SVM_11_GoodVictory";	//(дьявольский смех) Он заслужил это!
-	NotBad = "SVM_11_NotBad";	//(одобрительно) Совсем не плохо...
+	NotBad = "SVM_11_NotBad";	//(одобрительно) Совсем неплохо...
 	OhMyGodHesDown = "SVM_11_OhMyGodHesDown";	//(себе под нос) Какой он жестокий...
 	CheerFriend01 = "SVM_11_CheerFriend01";	//Да, как раз то, что нужно!
 	CheerFriend02 = "SVM_11_CheerFriend02";	//Чего ты ждешь?
@@ -2010,8 +2010,8 @@ instance SVM_11(C_SVM)
 	abs_farm = "SVM_11_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
 	abs_good = "SVM_11_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_11_SHEEPKILLER_CRIME";	//Он убивает наших овец!
-	attack_crime = "SVM_11_ATTACK_CRIME";	//Я не разговариваю с грязными ворами!
-	theft_crime = "SVM_11_THEFT_CRIME";	//Прочь, с глаз моих, грязный вор!
+	attack_crime = "SVM_11_ATTACK_CRIME";	//Я не разговариваю с бандитами!
+	theft_crime = "SVM_11_THEFT_CRIME";	//Прочь с глаз моих, грязный вор!
 	pal_city_crime = "SVM_11_PAL_CITY_CRIME";	//Ты позоришь наш орден! Лорд Хаген будет в ярости!
 	mil_city_crime = "SVM_11_MIL_CITY_CRIME";	//Ты позоришь городскую стражу! Лорд Андрэ научит тебя хорошим манерам!
 	city_crime = "SVM_11_CITY_CRIME";	//Лорд Андрэ узнает о том, что ты сделал!
@@ -2168,7 +2168,7 @@ instance SVM_12(C_SVM)
 	WhatsThisSupposedToBe = "SVM_12_WhatsThisSupposedToBe";	//Что ты задумал? Что ты тут ошиваешься?
 	YouDisturbedMySlumber = "SVM_12_YouDisturbedMySlumber";	//(просыпается) Черт, что тебе нужно?
 	ITookYourGold = "SVM_12_ITookYourGold";	//Ну, по крайней мере, у тебя есть золото с собой.
-	ShitNoGold = "SVM_12_ShitNoGold";	//Даже золота нет - пффф.
+	ShitNoGold = "SVM_12_ShitNoGold";	//Даже золота нет - пффф...
 	ITakeYourWeapon = "SVM_12_ITakeYourWeapon";	//Пожалуй, я заберу твое оружие.
 	WhatAreYouDoing = "SVM_12_WhatAreYouDoing";	//(предупреждающе) Парень! Не делай этого больше!
 	LookingForTroubleAgain = "SVM_12_LookingForTroubleAgain";	//(агрессивно) Хочешь получить еще?
@@ -2315,7 +2315,7 @@ instance SVM_13(C_SVM)
 	Weather = "SVM_13_Weather";	//Какая паршивая погода!
 	IGetYouStill = "SVM_13_IGetYouStill";	//Сейчас ты у меня получишь!
 	DieEnemy = "SVM_13_DieEnemy";	//Я разорву тебя на куски!
-	DieMonster = "SVM_13_DieMonster";	//Еще одной грязной твари настал конец!
+	DieMonster = "SVM_13_DieMonster";	//Еще одна грязная тварь!
 	DirtyThief = "SVM_13_DirtyThief";	//Грязный воришка! Ну, подожди!
 	HandsOff = "SVM_13_HandsOff";	//Убери свои грязные руки!
 	SheepKiller = "SVM_13_SheepKiller";	//Этот кусок дерьма убивает наших овец!
@@ -2502,7 +2502,7 @@ instance SVM_14(C_SVM)
 	Weather = "SVM_14_Weather";	//Какая мерзкая погода!
 	IGetYouStill = "SVM_14_IGetYouStill";	//Я все-таки достал тебя!
 	DieEnemy = "SVM_14_DieEnemy";	//Сейчас ты получишь!
-	DieMonster = "SVM_14_DieMonster";	//Еще одной грязной твари настал конец!
+	DieMonster = "SVM_14_DieMonster";	//Еще одна грязная тварь!
 	DirtyThief = "SVM_14_DirtyThief";	//Грязный воришка! Ну, подожди!
 	HandsOff = "SVM_14_HandsOff";	//Убери свои грязные руки!
 	SheepKiller = "SVM_14_SheepKiller";	//Этот кусок дерьма убивает наших овец!
@@ -2524,7 +2524,7 @@ instance SVM_14(C_SVM)
 	StupidBeastKilled = "SVM_14_StupidBeastKilled";	//Тупая тварь!
 	NeverHitMeAgain = "SVM_14_NeverHitMeAgain";	//Даже не пытайся поднимать оружие против меня!
 	YouBetterShouldHaveListened = "SVM_14_YouBetterShouldHaveListened";	//Тебе стоило послушать меня!
-	GetUpAndBeGone = "SVM_14_GetUpAndBeGone";	//А теперь, убирайся отсюда!
+	GetUpAndBeGone = "SVM_14_GetUpAndBeGone";	//А теперь убирайся отсюда!
 	NeverEnterRoomAgain = "SVM_14_NeverEnterRoomAgain";	//И больше не попадайся мне на глаза!
 	ThereIsNoFightingHere = "SVM_14_ThereIsNoFightingHere";	//Драки здесь запрещены, понятно? Пусть это будет тебе уроком!
 	SpareMe = "SVM_14_SpareMe";	//Уходи с миром!
@@ -2542,7 +2542,7 @@ instance SVM_14(C_SVM)
 	WhatsThisSupposedToBe = "SVM_14_WhatsThisSupposedToBe";	//Эй, ты, что тебе здесь нужно?
 	YouDisturbedMySlumber = "SVM_14_YouDisturbedMySlumber";	//(просыпается) Черт, в чем дело?
 	ITookYourGold = "SVM_14_ITookYourGold";	//Золото! Хм, золото никогда не помешает...
-	ShitNoGold = "SVM_14_ShitNoGold";	//Да у тебя даже нет золота с собой?
+	ShitNoGold = "SVM_14_ShitNoGold";	//Да у тебя даже нет золота с собой!
 	ITakeYourWeapon = "SVM_14_ITakeYourWeapon";	//Я, пожалуй, заберу твое оружие, так будет безопаснее для тебя же.
 	WhatAreYouDoing = "SVM_14_WhatAreYouDoing";	//Эй! Осторожно!
 	LookingForTroubleAgain = "SVM_14_LookingForTroubleAgain";	//(агрессивно) Ты мало получил?
@@ -2556,7 +2556,7 @@ instance SVM_14(C_SVM)
 	TheresAFight = "SVM_14_TheresAFight";	//(страстно) Сейчас повеселимся!
 	OhMyGodItsAFight = "SVM_14_OhMyGodItsAFight";	//(потрясенно) Они лупят друг друга так, что даже страшно...
 	GoodVictory = "SVM_14_GoodVictory";	//(дьявольский смех) Он заслужил это!
-	NotBad = "SVM_14_NotBad";	//(одобрительно) Совсем не плохо...
+	NotBad = "SVM_14_NotBad";	//(одобрительно) Совсем неплохо...
 	OhMyGodHesDown = "SVM_14_OhMyGodHesDown";	//(себе под нос) Какой он жестокий...
 	CheerFriend01 = "SVM_14_CheerFriend01";	//Да, как раз то, что нужно!
 	CheerFriend02 = "SVM_14_CheerFriend02";	//Чего ты ждешь?
@@ -2572,7 +2572,7 @@ instance SVM_14(C_SVM)
 	abs_farm = "SVM_14_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
 	abs_good = "SVM_14_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_14_SHEEPKILLER_CRIME";	//Он убивает наших овец!
-	attack_crime = "SVM_14_ATTACK_CRIME";	//Я не разговариваю с грязными ворами!
+	attack_crime = "SVM_14_ATTACK_CRIME";	//Я не разговариваю с бандитами!
 	theft_crime = "SVM_14_THEFT_CRIME";	//Прочь с глаз моих, грязный вор!
 	pal_city_crime = "SVM_14_PAL_CITY_CRIME";	//Ты позоришь наш орден! Лорд Хаген будет в ярости!
 	mil_city_crime = "SVM_14_MIL_CITY_CRIME";	//Ты позоришь городскую стражу! Лорд Андрэ научит тебя хорошим манерам!
@@ -2745,7 +2745,7 @@ instance SVM_16(C_SVM)
 	Weather = "SVM_16_Weather";	//Какая мерзкая погода!
 	IGetYouStill = "SVM_16_IGetYouStill";	//Я все-таки достала тебя!
 	DieEnemy = "SVM_16_DieEnemy";	//Сейчас ты получишь!
-	DieMonster = "SVM_16_DieMonster";	//Еще одной грязной твари настал конец!
+	DieMonster = "SVM_16_DieMonster";	//Еще одна тварь!
 	DirtyThief = "SVM_16_DirtyThief";	//Грязный воришка! Ну, подожди!
 	HandsOff = "SVM_16_HandsOff";	//Убери свои грязные руки!
 	SheepKiller = "SVM_16_SheepKiller";	//Этот кусок дерьма убивает наших овец!
@@ -2767,7 +2767,7 @@ instance SVM_16(C_SVM)
 	StupidBeastKilled = "SVM_16_StupidBeastKilled";	//Тупая тварь!
 	NeverHitMeAgain = "SVM_16_NeverHitMeAgain";	//Даже не пытайся поднимать оружие против меня!
 	YouBetterShouldHaveListened = "SVM_16_YouBetterShouldHaveListened";	//Тебе стоило послушать меня!
-	GetUpAndBeGone = "SVM_16_GetUpAndBeGone";	//А теперь, убирайся отсюда!
+	GetUpAndBeGone = "SVM_16_GetUpAndBeGone";	//А теперь убирайся отсюда!
 	NeverEnterRoomAgain = "SVM_16_NeverEnterRoomAgain";	//И больше не попадайся мне на глаза!
 	ThereIsNoFightingHere = "SVM_16_ThereIsNoFightingHere";	//Драки здесь запрещены, понятно? Пусть это будет тебе уроком!
 	SpareMe = "SVM_16_SpareMe";	//Не трогай меня!
@@ -2917,9 +2917,9 @@ instance SVM_17(C_SVM)
 	MILGreetings = "SVM_17_MILGreetings";	//За короля!
 	PALGreetings = "SVM_17_PALGreetings";	//За Инноса!
 	Weather = "SVM_17_Weather";	//Какая мерзкая погода!
-	IGetYouStill = "SVM_17_IGetYouStill";	//Я все-таки достал тебя!
+	IGetYouStill = "SVM_17_IGetYouStill";	//Я все-таки достала тебя!
 	DieEnemy = "SVM_17_DieEnemy";	//Сейчас ты получишь!
-	DieMonster = "SVM_17_DieMonster";	//Еще одной грязной твари настал конец!
+	DieMonster = "SVM_17_DieMonster";	//Еще одна тварь!
 	DirtyThief = "SVM_17_DirtyThief";	//Грязный воришка! Ну, подожди!
 	HandsOff = "SVM_17_HandsOff";	//Убери свои грязные руки!
 	SheepKiller = "SVM_17_SheepKiller";	//Этот кусок дерьма убивает наших овец!

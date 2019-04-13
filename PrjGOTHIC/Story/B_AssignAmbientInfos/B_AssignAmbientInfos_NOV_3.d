@@ -35,7 +35,7 @@ var int Feger2_Permanent;
 
 func int DIA_NOV_3_Fegen_Condition()
 {
-	if((Kapitel == 1) && (MIS_KlosterArbeit == LOG_Running) && (NOV_Helfer < 4))
+	if((Kapitel == 1) && (MIS_ParlanFegen == LOG_Running) && (NOV_Helfer < 4))
 	{
 		return TRUE;
 	};
@@ -55,8 +55,8 @@ func void DIA_NOV_3_Fegen_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_02");	//Я единственный, кто готов помочь тебе?
 			AI_Output(other,self,"DIA_NOV_3_Fegen_15_03");	//Нет, я уже нашел помощника.
-			AI_Output(self,other,"DIA_NOV_3_Fegen_03_04");	//Тогда, за дело!
-			NOV_Helfer = NOV_Helfer + 1;
+			AI_Output(self,other,"DIA_NOV_3_Fegen_03_04");	//Тогда - за дело!
+			NOV_Helfer += 1;
 			Feger1_Permanent = TRUE;
 			B_GivePlayerXP(XP_Feger);
 			AI_StopProcessInfos(self);
@@ -104,7 +104,7 @@ func void DIA_NOV_3_Fegen_Ja()
 	AI_Output(other,self,"DIA_NOV_3_Fegen_Ja_15_00");	//Хорошо, я заплачу.
 	AI_Output(self,other,"DIA_NOV_3_Fegen_Ja_03_01");	//Хорошо, тогда я готов приступать.
 	B_GiveInvItems(other,self,ItMi_Gold,50);
-	NOV_Helfer = NOV_Helfer + 1;
+	NOV_Helfer += 1;
 	B_GivePlayerXP(XP_Feger);
 	Feger2_Permanent = TRUE;
 	Info_ClearChoices(DIA_NOV_3_Fegen);
@@ -126,7 +126,7 @@ instance DIA_NOV_3_Wurst(C_Info)
 
 func int DIA_NOV_3_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && (Npc_HasItems(self,ItFo_Schafswurst) == 0) && (Npc_HasItems(other,ItFo_Schafswurst) >= 1))
+	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -139,7 +139,7 @@ func void DIA_NOV_3_Wurst_Info()
 	AI_Output(other,self,"DIA_NOV_3_Wurst_15_00");	//Хочешь колбасы?
 	AI_Output(self,other,"DIA_NOV_3_Wurst_03_01");	//Конечно, давай ее сюда. Кто же откажется от такой колбасы.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben = Wurst_Gegeben + 1;
+	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
 	NovizeLeft = IntToString(13 - Wurst_Gegeben);

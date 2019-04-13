@@ -89,13 +89,13 @@ func void DIA_Addon_Fortuno_Hi_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_13_03");	//Зеленый... зеленый послушник... Я не могу найти...
 	Info_ClearChoices(DIA_Addon_Fortuno_Hi);
-	Info_AddChoice(DIA_Addon_Fortuno_Hi,"Я вернусь позже... (КОНЕЦ)",DIA_Addon_Fortuno_Hi_BACK);
+	Info_AddChoice(DIA_Addon_Fortuno_Hi,Dialog_Ende_v4,DIA_Addon_Fortuno_Hi_BACK);
 	Info_AddChoice(DIA_Addon_Fortuno_Hi,"Я могу тебе помочь?",DIA_Addon_Fortuno_Hi_HILFE);
-	if(Npc_HasItems(other,ItMi_Joint) >= 1)
+	if(Npc_HasItems(other,ItMi_Joint))
 	{
 		Info_AddChoice(DIA_Addon_Fortuno_Hi,"Вот, возьми эту болотную траву.",DIA_Addon_Fortuno_Hi_JOINT);
 	};
-	if(Npc_HasItems(other,ItMi_Addon_Joint_01) >= 1)
+	if(Npc_HasItems(other,ItMi_Addon_Joint_01))
 	{
 		Info_AddChoice(DIA_Addon_Fortuno_Hi,"Вот, возьми этот 'Зеленый послушник'.",DIA_Addon_Fortuno_Hi_GREEN);
 	};
@@ -104,6 +104,7 @@ func void DIA_Addon_Fortuno_Hi_Info()
 func void DIA_Addon_Fortuno_Hi_BACK()
 {
 	Info_ClearChoices(DIA_Addon_Fortuno_Hi);
+	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
 	AI_StopProcessInfos(self);
 };
 
@@ -116,22 +117,18 @@ func void DIA_Addon_Fortuno_Hi_HILFE()
 func void DIA_Addon_Fortuno_Hi_JOINT()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_Hi_JOINT_15_00");	//Вот, возьми эту болотную траву.
-	if(B_GiveInvItems(other,self,ItMi_Joint,1))
-	{
-		AI_UseItem(self,ItMi_Joint);
-	};
-	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_JOINT_13_01");	//Не зеленый, не сильный, не зеленый, не сильный...
+	B_GiveInvItems(other,self,ItMi_Joint,1);
+	AI_UseItem(self,ItMi_Joint);
+	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_JOINT_13_01");	//Не зеленый, не зеленый, не зеленый, не сильный...
 };
 
 func void DIA_Addon_Fortuno_Hi_GREEN()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_Hi_GREEN_15_00");	//Вот, возьми этот 'Зеленый послушник'.
-	if(B_GiveInvItems(other,self,ItMi_Addon_Joint_01,1))
-	{
-		AI_UseItem(self,ItMi_Addon_Joint_01);
-	};
+	B_GiveInvItems(other,self,ItMi_Addon_Joint_01,1);
+	AI_UseItem(self,ItMi_Addon_Joint_01);
 	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_GREEN_13_01");	//(приходя в себя) А-А-А-Х...
-	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_GREEN_13_02");	//Моя голова... кто... я... Фортуно... Что случилось?
+	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_GREEN_13_02");	//Моя голова... кто я... Фортуно... Что случилось?
 	Info_ClearChoices(DIA_Addon_Fortuno_Hi);
 	Fortuno_Geheilt_01 = TRUE;
 	B_GivePlayerXP(XP_Addon_Fortuno_01);
@@ -161,7 +158,7 @@ func int DIA_Addon_Fortuno_wer_Condition()
 func void DIA_Addon_Fortuno_wer_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_wer_15_00");	//Да, скажи мне, что с тобой случилось.
-	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_01");	//Когда-то я принадлежал к Братству Спящих. Тогда все было в порядке.
+	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_01");	//Когда-то я принадлежал к Братству Спящего. Тогда все было в порядке.
 	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_02");	//Да, все мы - осужденные преступники, но для нас, послушников, жизнь была беззаботной...
 	AI_Output(other,self,"DIA_Addon_Fortuno_wer_15_03");	//Эй, я тоже был заключенным в Долине Рудников. Расскажи что-нибудь новенькое.
 	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_04");	//Я... я ничего не помню. Тьма покрывает мою память...
@@ -238,7 +235,7 @@ func void B_Fortuno_InfoManager()
 {
 	Info_ClearChoices(DIA_Addon_Fortuno_Trade);
 	Info_AddChoice(DIA_Addon_Fortuno_Trade,Dialog_Back,DIA_Addon_Fortuno_Trade_BACK);
-	if(Npc_HasItems(other,ItPl_SwampHerb) >= 1)
+	if(Npc_HasItems(other,ItPl_SwampHerb))
 	{
 		Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать всю болотную траву)",DIA_Addon_Fortuno_Trade_all);
 		Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать 1 болотную траву)",DIA_Addon_Fortuno_Trade_1);
@@ -259,7 +256,7 @@ instance DIA_Addon_Fortuno_Trade(C_Info)
 
 func int DIA_Addon_Fortuno_Trade_Condition()
 {
-	if((Npc_HasItems(other,ItPl_SwampHerb) >= 1) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_Herb))
+	if(Npc_HasItems(other,ItPl_SwampHerb) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_Herb))
 	{
 		return TRUE;
 	};
@@ -280,10 +277,8 @@ func void DIA_Addon_Fortuno_Trade_all()
 {
 	var int amount;
 	amount = Npc_HasItems(other,ItPl_SwampHerb);
-	if(B_GiveInvItems(other,self,ItPl_SwampHerb,amount))
-	{
-		Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
-	};
+	B_GiveInvItems(other,self,ItPl_SwampHerb,amount);
+	Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
 	B_GiveInvItems(self,other,ItMi_Gold,amount * Value_SwampHerb);
 	B_GivePlayerXP(amount * 10);
 	B_Fortuno_InfoManager();
@@ -291,10 +286,8 @@ func void DIA_Addon_Fortuno_Trade_all()
 
 func void DIA_Addon_Fortuno_Trade_1()
 {
-	if(B_GiveInvItems(other,self,ItPl_SwampHerb,1))
-	{
-		Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
-	};
+	B_GiveInvItems(other,self,ItPl_SwampHerb,1);
+	Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
 	B_GiveInvItems(self,other,ItMi_Gold,Value_SwampHerb);
 	B_GivePlayerXP(10);
 	B_Fortuno_InfoManager();
@@ -314,7 +307,7 @@ instance DIA_Addon_Fortuno_Trank(C_Info)
 
 func int DIA_Addon_Fortuno_Trank_Condition()
 {
-	if((Fortuno_Geheilt_01 == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_FREE) && ((Npc_HasItems(other,ItPo_Addon_Geist_01) >= 1) || (Npc_HasItems(other,ItPo_Addon_Geist_02) >= 1)))
+	if((Fortuno_Geheilt_01 == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Fortuno_FREE) && (Npc_HasItems(other,ItPo_Addon_Geist_01) || Npc_HasItems(other,ItPo_Addon_Geist_02)))
 	{
 		return TRUE;
 	};
@@ -324,12 +317,10 @@ func void DIA_Addon_Fortuno_Trank_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_Trank_15_00");	//У меня есть зелье, которое поможет тебе вспомнить.
 	AI_Output(self,other,"DIA_Addon_Fortuno_Trank_13_01");	//Я верю тебе.
-	if(Npc_HasItems(other,ItPo_Addon_Geist_02) >= 1)
+	if(Npc_HasItems(other,ItPo_Addon_Geist_02))
 	{
-		if(B_GiveInvItems(other,self,ItPo_Addon_Geist_02,1))
-		{
-			AI_UseItem(self,ItPo_Addon_Geist_02);
-		};
+		B_GiveInvItems(other,self,ItPo_Addon_Geist_02,1);
+		AI_UseItem(self,ItPo_Addon_Geist_02);
 		B_GivePlayerXP(XP_Addon_Fortuno_02);
 	}
 	else if(B_GiveInvItems(other,self,ItPo_Addon_Geist_01,1))
@@ -377,7 +368,7 @@ func void DIA_Addon_Fortuno_more_Info()
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_12");	//Место упокоения жреца Аданоса. Она находится в шахте.
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_13");	//Еще я помню каменные таблички. Он считал, что они укажут ему путь.
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_14");	//И когда он сумел расшифровать то, что на них написано, я ему стал не нужен.
-	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_15");	//Он использовал на мне заклинания забвения... а ты освободил меня.
+	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_15");	//Он использовал на мне заклинание забвения... а ты освободил меня.
 	SC_KnowsFortunoInfos = TRUE;
 	B_LogEntry(TOPIC_Addon_RavenKDW,"Ворону нужен мощный артефакт из храма Аданоса.");
 	Log_AddEntry(TOPIC_Addon_RavenKDW,"Ворону зачем-то понадобилась гробница жреца древней религии, которую он раскопал в шахте.");

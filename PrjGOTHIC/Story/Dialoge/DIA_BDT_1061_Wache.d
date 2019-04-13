@@ -66,7 +66,7 @@ func void DIA_1061_Wache_Hallo_Dexter()
 {
 	AI_Output(other,self,"DIA_1061_Wache_Hallo_Dexter_15_00");	//Декстер.
 	AI_Output(self,other,"DIA_1061_Wache_Hallo_Dexter_01_01");	//Ну... похоже, ты действительно знаешь нашего босса. Хорошо, я позволю тебе пройти. Но предупреждаю тебя.
-	AI_Output(self,other,"DIA_1061_Wache_Hallo_Dexter_01_02");	//Если ты подойдешь к кому-нибудь слишком близко, ты не выйдешь оттуда живым!
+	AI_Output(self,other,"DIA_1061_Wache_Hallo_Dexter_01_02");	//Если ты подойдешь к кому-нибудь слишком близко, ты не выйдешь оттуда живьем!
 	AI_Output(self,other,"DIA_1061_Wache_Hallo_Dexter_01_03");	//Так что вдохни поглубже и держи свой меч в ножнах. Ты найдешь Декстера в доме.
 	Knows_Dexter = TRUE;
 	BanditGuard.aivar[AIV_PASSGATE] = TRUE;
@@ -116,7 +116,7 @@ func int DIA_1061_Wache_Perm_Condition()
 
 func void DIA_1061_Wache_Perm_Info()
 {
-	AI_Output(self,other,"DIA_1061_Wache_Perm_01_00");	//Помни: держи себя в руках, и, может быть, ты уйдешь отсюда живым.
+	AI_Output(self,other,"DIA_1061_Wache_Perm_01_00");	//Помни: держи себя в руках, и, может быть, ты уйдешь оттуда живым.
 	AI_StopProcessInfos(self);
 };
 

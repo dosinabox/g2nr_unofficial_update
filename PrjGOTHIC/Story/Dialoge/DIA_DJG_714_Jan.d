@@ -36,7 +36,7 @@ func int DIA_Jan_Hello_Condition()
 {
 	if((Kapitel >= 4) && Npc_IsInState(self,ZS_Talk) && (MIS_OCGateOpen == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -62,7 +62,7 @@ func int DIA_Jan_Dragons_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_JAN_Hello) && (MIS_JanBecomesSmith == FALSE) && (Kapitel == 4) && (MIS_OCGateOpen == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -92,7 +92,7 @@ func void DIA_JAN_Dragons_HelpYou()
 	AI_Output(self,other,"DIA_JAN_Dragons_HelpYou_10_04");	//Представить себе не могу, что он послушает тебя.
 	Log_CreateTopic(TOPIC_JanBecomesSmith,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_JanBecomesSmith,LOG_Running);
-	B_LogEntry(TOPIC_JanBecomesSmith,"Охотник на драконов Ян, находящийся в замке Долины рудников, хочет работать в кузнице. Но Парсиваль запрещает ему это.");
+	B_LogEntry(TOPIC_JanBecomesSmith,"Охотник на драконов Ян, находящийся в замке Долины Рудников, хочет работать в кузнице. Но Парсиваль запрещает ему это.");
 	MIS_JanBecomesSmith = LOG_Running;
 	Info_ClearChoices(DIA_JAN_Dragons);
 };
@@ -131,7 +131,7 @@ func int DIA_Jan_Home_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_JAN_Hello) && (Kapitel >= 4) && (MIS_OCGateOpen == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -158,7 +158,7 @@ func int DIA_Jan_OldCamp_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_JAN_Hello) && (Kapitel == 4) && (MIS_OCGateOpen == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -184,7 +184,7 @@ func int DIA_Jan_Parcival_Condition()
 {
 	if((MIS_JanBecomesSmith != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Parcival_Jan) && (MIS_OCGateOpen == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -220,7 +220,7 @@ func int DIA_Jan_JanIsSmith_Condition()
 {
 	if((MIS_JanBecomesSmith == LOG_SUCCESS) && (MIS_OCGateOpen == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -233,6 +233,7 @@ func void DIA_Jan_JanIsSmith_Info()
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"SMITH");
 	B_StartOtherRoutine(Ferros,"TRAIN");
+	B_StartOtherRoutine(Rethon,"START");
 };
 
 
@@ -251,7 +252,7 @@ func int DIA_Jan_SellWeapons_Condition()
 {
 	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (Jan_TeachPlayer == FALSE) && (MIS_OCGateOpen == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -286,7 +287,7 @@ func int Jan_Training_Talente_Condition()
 {
 	if((Jan_TeachPlayer == TRUE) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (MIS_OCGateOpen == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -369,7 +370,7 @@ func int DIA_Jan_SellArmor_Condition()
 {
 	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (MIS_OCGateOpen == FALSE) && (DIA_JAN_SellArmor_permanent == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -427,9 +428,9 @@ instance DIA_JAN_Dragonscales(C_Info)
 
 func int DIA_Jan_Dragonscales_Condition()
 {
-	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (MIS_OCGateOpen == FALSE) && (DIA_JAN_SellArmor_permanent == TRUE) && (Jan_Sells_Armor == FALSE) && (Npc_HasItems(other,ItAt_DragonScale) >= 1))
+	if((MIS_JanBecomesSmith == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_JAN_JanIsSmith) && (MIS_OCGateOpen == FALSE) && (DIA_JAN_SellArmor_permanent == TRUE) && (Jan_Sells_Armor == FALSE) && Npc_HasItems(other,ItAt_DragonScale))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -477,7 +478,7 @@ func int DIA_Jan_ArmorReady_Condition()
 {
 	if((MIS_OCGateOpen == FALSE) && (Jan_Sells_Armor != FALSE) && (DIA_JAN_ArmorReady_NoPerm == FALSE))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -528,8 +529,8 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 	{
 		AI_Output(self,other,"DIA_Jan_DJG_ARMOR_M_10_01");	//Ты увидишь, они стоят своих денег.
 		B_GiveInvItems(other,self,ItMi_Gold,12000);
-		CreateInvItems(self,itar_djg_m,1);
-		B_GiveInvItems(self,other,itar_djg_m,1);
+		CreateInvItem(hero,ITAR_DJG_M);
+		AI_EquipArmor(hero,ITAR_DJG_M);
 		Jan_DIA_Jan_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else
@@ -617,7 +618,7 @@ func void DIA_Jan_DragonBlood_Info()
 	AI_Output(self,other,"DIA_Jan_DragonBlood_10_01");	//Отлично. Приноси мне всю кровь, что найдешь.
 	Info_ClearChoices(DIA_Jan_DragonBlood);
 	Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
-	if(Npc_HasItems(other,ItAt_DragonBlood) >= 1)
+	if(Npc_HasItems(other,ItAt_DragonBlood))
 	{
 		Info_AddChoice(DIA_Jan_DragonBlood,"(Все)",DIA_Jan_DragonBlood_all);
 		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну пробирку)",DIA_Jan_DragonBlood_1);
@@ -646,7 +647,7 @@ func void DIA_Jan_DragonBlood_1()
 	Npc_RemoveInvItem(self,ItAt_DragonBlood);
 	Info_ClearChoices(DIA_Jan_DragonBlood);
 	Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
-	if(Npc_HasItems(other,ItAt_DragonBlood) >= 1)
+	if(Npc_HasItems(other,ItAt_DragonBlood))
 	{
 		Info_AddChoice(DIA_Jan_DragonBlood,"(Все)",DIA_Jan_DragonBlood_all);
 		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну пробирку)",DIA_Jan_DragonBlood_1);
@@ -673,7 +674,7 @@ func void DIA_Jan_DragonBlood_all()
 	Npc_RemoveInvItems(self,ItAt_DragonBlood,DragonBloodCount);
 	Info_ClearChoices(DIA_Jan_DragonBlood);
 	Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
-	if(Npc_HasItems(other,ItAt_DragonBlood) >= 1)
+	if(Npc_HasItems(other,ItAt_DragonBlood))
 	{
 		Info_AddChoice(DIA_Jan_DragonBlood,"(Все)",DIA_Jan_DragonBlood_all);
 		Info_AddChoice(DIA_Jan_DragonBlood,"(Одну пробирку)",DIA_Jan_DragonBlood_1);

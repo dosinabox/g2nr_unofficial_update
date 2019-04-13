@@ -28,7 +28,7 @@ func void B_GiveTradeInv_Kardif(var C_Npc slf)
 		CreateInvItems(slf,ItFo_Wine,3);
 		if(Knows_SecretSign == TRUE)
 		{
-			CreateInvItems(self,ItKE_lockpick,20);
+			CreateInvItems(slf,ItKE_lockpick,20);
 		};
 		Kardif_ItemsGiven_Chapter_2 = TRUE;
 	};
@@ -42,7 +42,7 @@ func void B_GiveTradeInv_Kardif(var C_Npc slf)
 		CreateInvItems(slf,ItFo_Beer,4);
 		if(Knows_SecretSign == TRUE)
 		{
-			CreateInvItems(self,ItKE_lockpick,20);
+			CreateInvItems(slf,ItKE_lockpick,20);
 		};
 		Kardif_ItemsGiven_Chapter_3 = TRUE;
 	};
@@ -58,7 +58,7 @@ func void B_GiveTradeInv_Kardif(var C_Npc slf)
 		CreateInvItems(slf,ItFo_Beer,4);
 		if(Knows_SecretSign == TRUE)
 		{
-			CreateInvItems(self,ItKE_lockpick,20);
+			CreateInvItems(slf,ItKE_lockpick,20);
 		};
 		Kardif_ItemsGiven_Chapter_4 = TRUE;
 	};
@@ -74,7 +74,7 @@ func void B_GiveTradeInv_Kardif(var C_Npc slf)
 		CreateInvItems(slf,ItFo_Beer,4);
 		if(Knows_SecretSign == TRUE)
 		{
-			CreateInvItems(self,ItKE_lockpick,20);
+			CreateInvItems(slf,ItKE_lockpick,20);
 		};
 		Kardif_ItemsGiven_Chapter_5 = TRUE;
 	};

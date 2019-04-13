@@ -43,7 +43,7 @@ instance Giant_Bug(Mst_Default_Giant_Bug)
 
 instance YGiant_Bug(Mst_Default_Giant_Bug)
 {
-	name[0] = "Молодой полевой хищник";
+	name[0] = NAME_YGiant_Bug;
 	level = 2;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
@@ -55,7 +55,6 @@ instance YGiant_Bug(Mst_Default_Giant_Bug)
 	protection[PROT_FIRE] = 10;
 	protection[PROT_FLY] = 10;
 	protection[PROT_MAGIC] = 0;
-	fight_tactic = FAI_GIANT_BUG;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);
@@ -63,7 +62,7 @@ instance YGiant_Bug(Mst_Default_Giant_Bug)
 
 instance YGiant_Bug_VinoRitual1(Mst_Default_Giant_Bug)
 {
-	name[0] = "Молодой полевой хищник";
+	name[0] = NAME_YGiant_Bug;
 	level = 4;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
@@ -75,7 +74,6 @@ instance YGiant_Bug_VinoRitual1(Mst_Default_Giant_Bug)
 	protection[PROT_FIRE] = 10;
 	protection[PROT_FLY] = 10;
 	protection[PROT_MAGIC] = 0;
-	fight_tactic = FAI_GIANT_BUG;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);
@@ -83,7 +81,7 @@ instance YGiant_Bug_VinoRitual1(Mst_Default_Giant_Bug)
 
 instance YGiant_Bug_VinoRitual2(Mst_Default_Giant_Bug)
 {
-	name[0] = "Молодой полевой хищник";
+	name[0] = NAME_YGiant_Bug;
 	level = 4;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
@@ -95,7 +93,6 @@ instance YGiant_Bug_VinoRitual2(Mst_Default_Giant_Bug)
 	protection[PROT_FIRE] = 0;
 	protection[PROT_FLY] = 0;
 	protection[PROT_MAGIC] = 0;
-	fight_tactic = FAI_GIANT_BUG;
 	B_SetVisuals_Giant_Bug();
 	Mdl_SetModelScale(self,0.9,0.9,0.9);
 	Npc_SetToFistMode(self);

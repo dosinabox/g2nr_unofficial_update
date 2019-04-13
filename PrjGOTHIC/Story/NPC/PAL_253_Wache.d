@@ -12,7 +12,7 @@ instance PAL_253_Wache(Npc_Default)
 	EquipItem(self,ItMw_1h_Pal_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Tough_Pacho,BodyTex_B,ItAr_PAL_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_B_Tough_Pacho,BodyTex_B,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

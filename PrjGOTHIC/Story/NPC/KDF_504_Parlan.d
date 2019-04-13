@@ -15,7 +15,7 @@ instance KDF_504_Parlan(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Corristo,BodyTex_N,ItAr_KDF_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Corristo,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

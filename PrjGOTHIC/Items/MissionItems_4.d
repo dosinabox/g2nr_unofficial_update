@@ -26,16 +26,16 @@ instance ItAm_Mana_Angar_MIS(C_Item)
 
 func void Equip_ItAm_Mana_Angar()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] + Am_Mana;
-	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] + Am_Mana;
+	self.attribute[ATR_MANA_MAX] += Am_Mana;
+	self.attribute[ATR_MANA] += Am_Mana;
 };
 
 func void UnEquip_ItAm_Mana_Angar()
 {
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] - Am_Mana;
+	self.attribute[ATR_MANA_MAX] -= Am_Mana;
 	if(self.attribute[ATR_MANA] > Am_Mana)
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - Am_Mana;
+		self.attribute[ATR_MANA] -= Am_Mana;
 	}
 	else
 	{
@@ -78,6 +78,7 @@ instance ItMi_KerolothsGeldbeutel_MIS(C_Item)
 	material = MAT_METAL;
 	on_state[0] = UseKerolothsGeldbeutel;
 	description = name;
+	text[2] = "Ётот кошелек полон золотых монет.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -101,6 +102,7 @@ instance ItMi_KerolothsGeldbeutelLeer_MIS(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_METAL;
 	description = name;
+	text[2] = "—ейчас этот кошелек пуст.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -137,9 +139,6 @@ instance ItAt_TalbinsLurkerSkin(C_Item)
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "Ќа внутренней стороне клеймо - '“албин'.";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -155,8 +154,6 @@ instance ItAt_DragonEgg_MIS(C_Item)
 	description = name;
 	text[0] = "Ёто €йцо теплое, и изнутри";
 	text[1] = "доноситс€ скребущийс€ звук.";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -175,8 +172,6 @@ instance ItRi_OrcEliteRing(C_Item)
 	description = name;
 	text[0] = "Ёто грубое кольцо кажетс€";
 	text[1] = "странно холодным.";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 	wear = WEAR_EFFECT;
@@ -240,8 +235,6 @@ instance ItWr_Map_Orcelite_MIS(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_Orcelite_MIS;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -262,7 +255,7 @@ func void Use_Map_NewWorld_Orcelite_MIS()
 	Doc_SetLevel(Document,"NewWorld\NewWorld.zen");
 	Doc_SetLevelCoords(Document,-28000,50500,95500,-42500);
 	Doc_Show(Document);
-	if((Use_Map_NewWorld_Orcelite_MIS_OneTime == FALSE) && (MIS_KillOrkOberst != 0))
+	if((Use_Map_NewWorld_Orcelite_MIS_OneTime == FALSE) && (MIS_KillOrkOberst != FALSE))
 	{
 		B_LogEntry(TOPIC_OrcElite,"я нашел странную карту у полковника орков. ќна похожа на стратегическую военную карту орков.");
 		Use_Map_NewWorld_Orcelite_MIS_OneTime = TRUE;
@@ -281,8 +274,6 @@ instance ItWr_Map_Caves_MIS(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_Caves_MIS;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

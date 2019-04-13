@@ -117,6 +117,10 @@ func void DIA_Lothar_Hallo_Info()
 	{
 		B_StartOtherRoutine(Lester,"XARDAS");
 	};
+	if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
+	{
+		Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
+	};
 };
 
 
@@ -461,7 +465,7 @@ instance DIA_Lothar_ToMiliz(C_Info)
 	condition = DIA_Lothar_ToMiliz_Condition;
 	information = DIA_Lothar_ToMiliz_Info;
 	permanent = FALSE;
-	description = "Как я могу поступить на службу в ополчение?";
+	description = "А как я могу поступить на службу в ополчение?";
 };
 
 
@@ -475,7 +479,7 @@ func int DIA_Lothar_ToMiliz_Condition()
 
 func void DIA_Lothar_ToMiliz_Info()
 {
-	AI_Output(other,self,"DIA_Lothar_Add_15_26");	//Как я могу поступить на службу в ополчение?
+	AI_Output(other,self,"DIA_Lothar_Add_15_26");	//А как я могу поступить на службу в ополчение?
 	if(Player_IsApprentice == APP_NONE)
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_27");	//По прямому указанию лорда Хагена, на службу в ополчение принимаются только граждане города.
@@ -571,7 +575,7 @@ func void DIA_Lothar_Schlafen_Info()
 	AI_Output(other,self,"DIA_Lothar_Add_15_22");	//Где я могу провести ночь?
 	AI_Output(self,other,"DIA_Lothar_Add_01_23");	//Если ты ищешь место для ночлега, иди в отель, находящийся перед казармами.
 	AI_Output(self,other,"DIA_Lothar_Add_01_24");	//Паладины платят за ночлег всех путников, которые заходят в этот город.
-	AI_Output(self,other,"DIA_Lothar_Add_01_25");	//Странствующие торговцы с рыночной площади также ночуют там.
+	AI_Output(self,other,"DIA_Lothar_Add_01_25");	//Странствующие торговцы с рыночной площади тоже ночуют там.
 };
 
 
@@ -600,6 +604,7 @@ func void DIA_Lothar_PermB4OV_Info()
 	AI_StopProcessInfos(self);
 };
 
+/*
 func void B_Lothar_Blubb()
 {
 	AI_Output(other,self,"DIA_Lothar_Add_15_00");	//Но я ДОЛЖЕН увидеться с лордом Хагеном!
@@ -627,7 +632,7 @@ func void B_Lothar_Blubb()
 	AI_Output(self,other,"DIA_Lothar_Add_01_02");	//Лорд Хаген не принимает.
 	AI_Output(self,other,"DIA_Lothar_Add_01_03");	//Если у тебя действительно есть что-то ВАЖНОЕ, иди к лорду Андрэ. Он поможет тебе!
 };
-
+*/
 
 instance DIA_Lothar_HelloAgain(C_Info)
 {
@@ -776,7 +781,7 @@ instance DIA_Lothar_PERM(C_Info)
 	condition = DIA_Lothar_PERM_Condition;
 	information = DIA_Lothar_PERM_Info;
 	permanent = TRUE;
-	description = "Ничего интересного не было?";
+	description = "Ничего интересного не было за последнее время?";
 };
 
 

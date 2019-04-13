@@ -10,9 +10,9 @@ func void ZS_Dead()
 		B_GivePlayerXP(self.level * XP_PER_VICTORY);
 		self.aivar[AIV_VictoryXPGiven] = TRUE;
 	};
-	if(C_IAmCanyonRazor(self) == TRUE)
+	if(C_IAmCanyonRazor(self))
 	{
-		CanyonRazorBodyCount = CanyonRazorBodyCount + 1;
+		CanyonRazorBodyCount += 1;
 		if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
 		{
 			B_CountCanyonRazor();
@@ -29,7 +29,7 @@ func void ZS_Dead()
 	{
 		Diego_IsDead = TRUE;
 	};
-	if((self.guild == GIL_GOBBO) || (self.guild == ID_GOBBO_SKELETON))
+	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON))
 	{
 		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));
 		Npc_RemoveInvItems(self,ItMw_1h_MISC_Sword,Npc_HasItems(self,ItMw_1h_MISC_Sword));
@@ -40,15 +40,15 @@ func void ZS_Dead()
 		self.aivar[AIV_KilledByPlayer] = TRUE;
 		if(C_DropUnconscious())
 		{
-			MadKillerCount = MadKillerCount + 1;
+			MadKillerCount += 1;
 		};
 		if((self.guild == GIL_GIANT_BUG) && (MIS_Fester_KillBugs == LOG_Running))
 		{
-			Festers_Giant_Bug_Killed = Festers_Giant_Bug_Killed + 1;
+			Festers_Giant_Bug_Killed += 1;
 		};
 		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Swamprat)) && (MIS_KrokoJagd == LOG_Running))
 		{
-			AlligatorJack_KrokosKilled = AlligatorJack_KrokosKilled + 1;
+			AlligatorJack_KrokosKilled += 1;
 		};
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
 		{
@@ -73,7 +73,7 @@ func void ZS_Dead()
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
 	{
 		Minecrawler_Killed += 1;
-		if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE))
+		if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE) && !Npc_IsDead(Bloodwyn))
 		{
 			AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
 			B_StartOtherRoutine(Bloodwyn,"MINE");

@@ -196,14 +196,14 @@ func int DIA_Constantino_Trade_Condition()
 
 func void DIA_Constantino_Trade_Info()
 {
-	if(Constantino_flag == 1)
+	if(Constantino_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
 		if(Constantino_flasks > 0)
 		{
 			CreateInvItems(self,ItMi_Flask,Constantino_flasks);
 		};
-		Constantino_flag = 0;
+		Constantino_flag = FALSE;
 	};
 	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
@@ -347,7 +347,7 @@ func void DIA_Constantino_HerbsRunning_Info()
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_10_01");	//Если ты не можешь выполнить это задание самостоятельно, из тебя не получится хорошего алхимика!
 	Info_ClearChoices(DIA_Constantino_HerbsRunning);
 	Info_AddChoice(DIA_Constantino_HerbsRunning,"Понимаю.",DIA_Constantino_HerbsRunning_Running);
-	if((Npc_HasItems(other,ItPl_Mana_Herb_01) > 0) && (Npc_HasItems(other,ItPl_Mana_Herb_02) > 0) && (Npc_HasItems(other,ItPl_Mana_Herb_03) > 0) && (Npc_HasItems(other,ItPl_Health_Herb_01) > 0) && (Npc_HasItems(other,ItPl_Health_Herb_02) > 0) && (Npc_HasItems(other,ItPl_Health_Herb_03) > 0) && (Npc_HasItems(other,ItPl_Dex_Herb_01) > 0) && (Npc_HasItems(other,ItPl_Strength_Herb_01) > 0) && (Npc_HasItems(other,ItPl_Speed_Herb_01) > 0) && (Npc_HasItems(other,ItPl_Temp_Herb) > 0) && (Npc_HasItems(other,ItPl_Perm_Herb) > 0))
+	if(Npc_HasItems(other,ItPl_Mana_Herb_01) && Npc_HasItems(other,ItPl_Mana_Herb_02) && Npc_HasItems(other,ItPl_Mana_Herb_03) && Npc_HasItems(other,ItPl_Health_Herb_01) && Npc_HasItems(other,ItPl_Health_Herb_02) && Npc_HasItems(other,ItPl_Health_Herb_03) && Npc_HasItems(other,ItPl_Dex_Herb_01) && Npc_HasItems(other,ItPl_Strength_Herb_01) && Npc_HasItems(other,ItPl_Speed_Herb_01) && Npc_HasItems(other,ItPl_Temp_Herb) && Npc_HasItems(other,ItPl_Perm_Herb))
 	{
 		Info_AddChoice(DIA_Constantino_HerbsRunning,"Я принес все растения, что ты просил!",DIA_Constantino_HerbsRunning_Success);
 	};
@@ -357,7 +357,7 @@ func void DIA_Constantino_HerbsRunning_Success()
 {
 	AI_Output(other,self,"DIA_Constantino_HerbsRunning_Success_15_00");	//Я принес все растения, что ты просил!
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_Success_10_01");	//Что? Ты пытаешься обмануть меня, да?
-	AI_PrintScreen("11 Предметов отдано (Растения)",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_PrintScreen("11 предметов отдано (растения)",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Npc_RemoveInvItems(other,ItPl_Mana_Herb_01,1);
 	Npc_RemoveInvItems(other,ItPl_Mana_Herb_02,1);
 	Npc_RemoveInvItems(other,ItPl_Mana_Herb_03,1);
@@ -426,14 +426,14 @@ func void DIA_Constantino_LEHRLING_Info()
 	if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 	{
 		AI_Output(self,other,"DIA_Constantino_LEHRLING_10_01");	//Что касается моего мнения - да.
-		stimmen = stimmen + 1;
+		stimmen += 1;
 		if(Harad.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			AI_Output(self,other,"DIA_Constantino_LEHRLING_10_02");	//Гараду важно только, чтобы ты был способен защищать город в случае нападения орков.
 			if((MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS))
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_03");	//И, похоже, ты смог убедить его в этом.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else
 			{
@@ -451,7 +451,7 @@ func void DIA_Constantino_LEHRLING_Info()
 			if((MIS_Bosper_Bogen == LOG_SUCCESS) || (MIS_Bosper_WolfFurs == LOG_SUCCESS))
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_08");	//Но все же, в конце концов, он согласился.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else
 			{
@@ -469,7 +469,7 @@ func void DIA_Constantino_LEHRLING_Info()
 			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_13");	//Он дал тебе свое благословение. Это хороший знак.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else
 			{
@@ -485,7 +485,7 @@ func void DIA_Constantino_LEHRLING_Info()
 			if(MIS_Matteo_Gold == LOG_SUCCESS)
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_16");	//Что касается Маттео - он расхваливает тебя на каждом углу.
-				stimmen = stimmen + 1;
+				stimmen += 1;
 			}
 			else if(MIS_Matteo_Gold == LOG_Running)
 			{
@@ -701,9 +701,9 @@ func void DIA_Constantino_MushroomsRunning_Info()
 	{
 		Info_AddChoice(DIA_Constantino_MushroomsRunning,"Почему эти грибы так важны?",DIA_Constantino_MushroomsRunning_Why);
 	};
-	if((Npc_HasItems(other,ItPl_Mushroom_01) > 0) || (Npc_HasItems(other,ItPl_Mushroom_02) > 0))
+	if(Npc_HasItems(other,ItPl_Mushroom_01) || Npc_HasItems(other,ItPl_Mushroom_02))
 	{
-		Info_AddChoice(DIA_Constantino_MushroomsRunning,"Я принес несколько ...",DIA_Constantino_MushroomsRunning_Sell);
+		Info_AddChoice(DIA_Constantino_MushroomsRunning,"Я принес несколько грибов...",DIA_Constantino_MushroomsRunning_Sell);
 	};
 };
 
@@ -711,7 +711,7 @@ func void DIA_Constantino_MushroomsRunning_Sell()
 {
 	var int Dunkelpilz_dabei;
 	Dunkelpilz_dabei = FALSE;
-	if(Npc_HasItems(other,ItPl_Mushroom_01) > 0)
+	if(Npc_HasItems(other,ItPl_Mushroom_01))
 	{
 		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_00");	//Я принес несколько черных грибов...
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Sell_10_01");	//Ах! Это лучшие грибы! Отлично! Вот твое золото!
@@ -720,7 +720,7 @@ func void DIA_Constantino_MushroomsRunning_Sell()
 		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItPl_Mushroom_01) * Value_Mushroom_01);
 		B_GiveInvItems(other,self,ItPl_Mushroom_01,Npc_HasItems(other,ItPl_Mushroom_01));
 	};
-	if(Npc_HasItems(other,ItPl_Mushroom_02) > 0)
+	if(Npc_HasItems(other,ItPl_Mushroom_02))
 	{
 		if(Dunkelpilz_dabei == TRUE)
 		{
@@ -817,7 +817,7 @@ instance DIA_Constantino_NewRecipes(C_Info)
 
 func int DIA_Constantino_NewRecipes_Condition()
 {
-	if((Player_IsApprentice != APP_Constantino) && (Player_IsApprentice > APP_NONE) && (Npc_GetTalentSkill(other,NPC_TALENT_ALCHEMY) > 0))
+	if((Player_IsApprentice != APP_Constantino) && (Player_IsApprentice > APP_NONE) && Npc_GetTalentSkill(other,NPC_TALENT_ALCHEMY))
 	{
 		return TRUE;
 	};
@@ -870,31 +870,31 @@ func void DIA_Constantino_TEACH_Info()
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Лечебная эссенция",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Constantino_TEACH_Health01);
+		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Constantino_TEACH_Health01);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE))
 	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Лечебный экстракт",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Constantino_TEACH_Health02);
+		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Constantino_TEACH_Health02);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE))
 	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Лечебный эликсир",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Constantino_TEACH_Health03);
+		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Constantino_TEACH_Health03);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE))
 	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Эликсир жизни",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Constantino_TEACH_PermHealth);
+		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Constantino_TEACH_PermHealth);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
 	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Эссенция маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Constantino_TEACH_Mana01);
+		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Constantino_TEACH_Mana01);
 	};
 	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
 	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Экстракт маны",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Constantino_TEACH_Mana02);
+		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Constantino_TEACH_Mana02);
 	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE)
 	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString("Эликсир силы",B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Constantino_TEACH_PermSTR);
+		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_STR_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Constantino_TEACH_PermSTR);
 	};
 };
 

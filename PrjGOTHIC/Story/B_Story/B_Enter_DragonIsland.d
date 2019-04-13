@@ -169,7 +169,7 @@ func void startup_dragonisland()
 		Wld_InsertNpc(PC_Mage_DI,"SHIP_DECK_01");
 		if(Lester_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(PC_Mage_DI,"SittingShipDI");
+			B_StartOtherRoutine(Milten_DI,"SittingShipDI");
 		};
 	};
 	if(Lester_IsOnBoard == LOG_SUCCESS)
@@ -177,12 +177,12 @@ func void startup_dragonisland()
 		Wld_InsertNpc(PC_Psionic_DI,"SHIP_DECK_01");
 		if(MiltenNW_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(PC_Psionic_DI,"SittingShipDI");
+			B_StartOtherRoutine(Lester_DI,"SittingShipDI");
 		};
 	};
 	if(Mario_IsOnBoard == LOG_SUCCESS)
 	{
-		Wld_InsertNpc(None_101_Mario_DI,"SHIP_DECK_01");
+		Wld_InsertNpc(NONE_101_Mario_DI,"SHIP_DECK_01");
 	};
 	if(Wolf_IsOnBoard == LOG_SUCCESS)
 	{
@@ -201,7 +201,7 @@ func void startup_dragonisland()
 		Wld_InsertNpc(PC_Thief_DI,"SHIP_DECK_01");
 		if(Lares_IsOnBoard != LOG_SUCCESS)
 		{
-			B_StartOtherRoutine(PC_Thief_DI,"SittingShipDI");
+			B_StartOtherRoutine(Diego_DI,"SittingShipDI");
 		};
 	};
 	if(Gorn_IsOnBoard == LOG_SUCCESS)
@@ -226,7 +226,7 @@ func void startup_dragonisland()
 	};
 	if(Girion_IsOnBoard == LOG_SUCCESS)
 	{
-		Wld_InsertNpc(Pal_207_Girion_DI,"SHIP_DECK_01");
+		Wld_InsertNpc(PAL_207_Girion_DI,"SHIP_DECK_01");
 	};
 	Wld_InsertNpc(NOV_600_Pedro_DI,"SHIP_DECK_01");
 	Wld_InsertItem(ItMi_Flask,"FP_ITEM_SHIP_03");

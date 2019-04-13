@@ -2,7 +2,7 @@
 instance BAU_970_Orlan(Npc_Default)
 {
 	name[0] = "Орлан";
-	guild = GIL_NONE;
+	guild = GIL_BAU;
 	id = 970;
 	voice = 5;
 	flags = NPC_FLAG_IMMORTAL;
@@ -11,7 +11,7 @@ instance BAU_970_Orlan(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_B_Normal_Sharky,BodyTex_B,ITAR_Bau_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

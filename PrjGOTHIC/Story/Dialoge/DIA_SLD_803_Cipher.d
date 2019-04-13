@@ -1,7 +1,7 @@
 
 instance DIA_Cipher_EXIT(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 999;
 	condition = DIA_Cipher_EXIT_Condition;
 	information = DIA_Cipher_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Cipher_EXIT_Info()
 
 instance DIA_Cipher_Hello(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 1;
 	condition = DIA_Cipher_Hello_Condition;
 	information = DIA_Cipher_Hello_Info;
@@ -48,7 +48,7 @@ func void DIA_Cipher_Hello_Info()
 
 instance DIA_Cipher_TradeWhat(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 2;
 	condition = DIA_Cipher_TradeWhat_Condition;
 	information = DIA_Cipher_TradeWhat_Info;
@@ -86,7 +86,7 @@ func void DIA_Cipher_TradeWhat_Info()
 
 instance DIA_Cipher_DoWithThief(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 2;
 	condition = DIA_Cipher_DoWithThief_Condition;
 	information = DIA_Cipher_DoWithThief_Info;
@@ -107,10 +107,10 @@ func void DIA_Cipher_DoWithThief_Info()
 {
 	AI_Output(other,self,"DIA_Cipher_DoWithThief_15_00");	//И что ты собираешься делать с вором?
 	AI_Output(self,other,"DIA_Cipher_DoWithThief_07_01");	//Когда-нибудь я поймаю его, когда он будет курить мою траву.
-	AI_Output(self,other,"DIA_Cipher_DoWithThief_07_02");	//И тогда, я найду укромное местечко и преподам ему урок, который он не скоро забудет.
+	AI_Output(self,other,"DIA_Cipher_DoWithThief_07_02");	//И тогда я найду укромное местечко и преподам ему урок, который он не скоро забудет.
 	AI_Output(self,other,"DIA_Cipher_DoWithThief_07_03");	//Если я вырублю его прямо здесь, посреди двора, на глазах у фермеров, я могу поплатиться за это.
 	AI_Output(other,self,"DIA_Cipher_DoWithThief_15_04");	//Это почему?
-	AI_Output(self,other,"DIA_Cipher_DoWithThief_07_05");	//Вес просто. Мы не можем досаждать фермерам, иначе Ли заставит нас заплатить солидный штраф. Так распорядился Онар.
+	AI_Output(self,other,"DIA_Cipher_DoWithThief_07_05");	//Все просто. Мы не можем досаждать фермерам, иначе Ли заставит нас заплатить солидный штраф. Так распорядился Онар.
 	AI_Output(self,other,"DIA_Cipher_DoWithThief_07_06");	//И чем больше свидетелей, тем больший шум поднимется. И штраф будет больше.
 	AI_Output(self,other,"DIA_Cipher_DoWithThief_07_07");	//Так что это нужно будет сделать аккуратно и тихо...
 };
@@ -118,7 +118,7 @@ func void DIA_Cipher_DoWithThief_Info()
 
 instance DIA_Cipher_WannaJoin(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 2;
 	condition = DIA_Cipher_WannaJoin_Condition;
 	information = DIA_Cipher_WannaJoin_Info;
@@ -150,7 +150,7 @@ func void DIA_Cipher_WannaJoin_Info()
 
 instance DIA_Cipher_YesJoin(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 2;
 	condition = DIA_Cipher_YesJoin_Condition;
 	information = DIA_Cipher_YesJoin_Info;
@@ -177,13 +177,13 @@ func void DIA_Cipher_YesJoin_Info()
 	MIS_Cipher_BringWeed = LOG_Running;
 	Log_CreateTopic(Topic_CipherHerb,LOG_MISSION);
 	Log_SetTopicStatus(Topic_CipherHerb,LOG_Running);
-	B_LogEntry(Topic_CipherHerb,"Сифер отдаст свой голос за меня, если я принесу ему несколько косяков болотной травы болотной травы.");
+	B_LogEntry(Topic_CipherHerb,"Сифер проголосует за меня, если я принесу ему несколько косяков болотной травы болотной травы.");
 };
 
 
 instance DIA_Cipher_Joints(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 2;
 	condition = DIA_Cipher_Joints_Condition;
 	information = DIA_Cipher_Joints_Info;
@@ -211,13 +211,16 @@ func void DIA_Cipher_Joints_Info()
 			AI_Output(self,other,"DIA_Cipher_Joints_07_02");	//Я обязательно проголосую за тебя...
 			B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
 		};
-		MIS_Cipher_BringWeed = LOG_OBSOLETE;
+		if(MIS_Cipher_BringWeed == LOG_Running)
+		{
+			MIS_Cipher_BringWeed = LOG_OBSOLETE;
+		};
 	}
 	else
 	{
 		Info_ClearChoices(DIA_Cipher_Joints);
 		Info_AddChoice(DIA_Cipher_Joints,"Посмотрим, что можно сделать...",DIA_Cipher_Joints_Running);
-		if(Npc_HasItems(other,ItMi_Joint) > 0)
+		if(Npc_HasItems(other,ItMi_Joint))
 		{
 			Info_AddChoice(DIA_Cipher_Joints,"Вот несколько косяков для тебя...",DIA_Cipher_Joints_Success);
 		};
@@ -259,7 +262,7 @@ func void DIA_Cipher_Joints_Success()
 
 instance DIA_Cipher_TRADE(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 2;
 	condition = DIA_Cipher_TRADE_Condition;
 	information = DIA_Cipher_TRADE_Info;
@@ -280,7 +283,7 @@ func int DIA_Cipher_TRADE_Condition()
 func void DIA_Cipher_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Cipher_TRADE_15_00");	//Покажи мне свои товары.
-	if(Npc_HasItems(self,ItMi_Joint) > 0)
+	if(Npc_HasItems(self,ItMi_Joint))
 	{
 		AI_Output(self,other,"DIA_Cipher_TRADE_07_01");	//Конечно. Выбирай.
 	}
@@ -293,7 +296,7 @@ func void DIA_Cipher_TRADE_Info()
 
 instance DIA_Cipher_DarDieb(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 2;
 	condition = DIA_Cipher_DarDieb_Condition;
 	information = DIA_Cipher_DarDieb_Info;
@@ -328,7 +331,7 @@ func void DIA_Cipher_DarDieb_Info()
 
 instance DIA_Cipher_DarLOST(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 2;
 	condition = DIA_Cipher_DarLOST_Condition;
 	information = DIA_Cipher_DarLOST_Info;
@@ -357,7 +360,7 @@ func void DIA_Cipher_DarLOST_Info()
 
 instance DIA_Cipher_KrautPaket(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 2;
 	condition = DIA_Cipher_KrautPaket_Condition;
 	information = DIA_Cipher_KrautPaket_Info;
@@ -368,7 +371,7 @@ instance DIA_Cipher_KrautPaket(C_Info)
 
 func int DIA_Cipher_KrautPaket_Condition()
 {
-	if((Npc_HasItems(other,ItMi_HerbPaket) > 0) && (MIS_Cipher_Paket == LOG_Running))
+	if(Npc_HasItems(other,ItMi_HerbPaket) && (MIS_Cipher_Paket == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -395,7 +398,7 @@ func void DIA_Cipher_KrautPaket_Info()
 
 instance DIA_CipherSLD_PICKPOCKET(C_Info)
 {
-	npc = Sld_803_Cipher;
+	npc = SLD_803_Cipher;
 	nr = 900;
 	condition = DIA_CipherSLD_PICKPOCKET_Condition;
 	information = DIA_CipherSLD_PICKPOCKET_Info;
@@ -419,11 +422,11 @@ func void DIA_CipherSLD_PICKPOCKET_Info()
 func void DIA_CipherSLD_PICKPOCKET_DoIt()
 {
 	B_Beklauen();
-	Info_ClearChoices(DIA_Cipher_PICKPOCKET);
+	Info_ClearChoices(DIA_CipherSLD_PICKPOCKET);
 };
 
 func void DIA_CipherSLD_PICKPOCKET_BACK()
 {
-	Info_ClearChoices(DIA_Cipher_PICKPOCKET);
+	Info_ClearChoices(DIA_CipherSLD_PICKPOCKET);
 };
 

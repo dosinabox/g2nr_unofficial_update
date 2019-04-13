@@ -1,7 +1,7 @@
 
 instance DIA_Girion_DI_XIT(C_Info)
 {
-	npc = Pal_207_Girion_DI;
+	npc = PAL_207_Girion_DI;
 	nr = 999;
 	condition = DIA_Girion_DI_EXIT_Condition;
 	information = DIA_Girion_DI_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Girion_DI_EXIT_Info()
 
 instance DIA_Girion_DI_Hallo(C_Info)
 {
-	npc = Pal_207_Girion_DI;
+	npc = PAL_207_Girion_DI;
 	nr = 2;
 	condition = DIA_Girion_DI_Hallo_Condition;
 	information = DIA_Girion_DI_Hallo_Info;
@@ -34,7 +34,7 @@ instance DIA_Girion_DI_Hallo(C_Info)
 
 func int DIA_Girion_DI_Hallo_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -61,7 +61,7 @@ func void DIA_Girion_DI_Hallo_Info()
 
 instance DIA_Girion_DI_Teach(C_Info)
 {
-	npc = Pal_207_Girion_DI;
+	npc = PAL_207_Girion_DI;
 	nr = 5;
 	condition = DIA_Girion_DI_Teach_Condition;
 	information = DIA_Girion_DI_Teach_Info;
@@ -72,7 +72,7 @@ instance DIA_Girion_DI_Teach(C_Info)
 
 func int DIA_Girion_DI_Teach_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -196,7 +196,7 @@ func void DIA_Girion_DI_Teach_Back()
 
 instance DIA_Girion_DI_OrcEliteRing(C_Info)
 {
-	npc = Pal_207_Girion_DI;
+	npc = PAL_207_Girion_DI;
 	nr = 99;
 	condition = DIA_Girion_DI_OrcEliteRing_Condition;
 	information = DIA_Girion_DI_OrcEliteRing_Info;
@@ -250,7 +250,7 @@ func void DIA_Girion_DI_OrcEliteRing_behalten()
 
 instance DIA_Girion_DI_UndeadDragonDead(C_Info)
 {
-	npc = Pal_207_Girion_DI;
+	npc = PAL_207_Girion_DI;
 	nr = 2;
 	condition = DIA_Girion_DI_UndeadDragonDead_Condition;
 	information = DIA_Girion_DI_UndeadDragonDead_Info;
@@ -298,7 +298,7 @@ func void DIA_Girion_DI_UndeadDragonDead_Info()
 
 instance DIA_Girion_DI_PICKPOCKET(C_Info)
 {
-	npc = Pal_207_Girion_DI;
+	npc = PAL_207_Girion_DI;
 	nr = 900;
 	condition = DIA_Girion_DI_PICKPOCKET_Condition;
 	information = DIA_Girion_DI_PICKPOCKET_Info;

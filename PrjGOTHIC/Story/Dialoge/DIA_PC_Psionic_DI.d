@@ -34,7 +34,7 @@ instance DIA_Lester_DI_Hello(C_Info)
 
 func int DIA_Lester_DI_Hello_Condition()
 {
-	if(Npc_IsDead(UndeadDragon) == FALSE)
+	if(!Npc_IsDead(UndeadDragon))
 	{
 		return TRUE;
 	};
@@ -47,7 +47,7 @@ var int DIA_Lester_DI_SCGotWarning2;
 func void DIA_Lester_DI_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Lester_DI_Hello_15_00");	//Ты хочешь что-то сказать мне?
-	if((Npc_IsDead(Mario_DI) == FALSE) && (OrkSturmDI == TRUE) && (DIA_Lester_DI_SCGotWarning1 == FALSE))
+	if(!Npc_IsDead(Mario_DI) && (OrkSturmDI == TRUE) && (DIA_Lester_DI_SCGotWarning1 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_01");	//Марио слинял, когда на нас напали орки. Несмотря на весь хаос, что творился на корабле, я смог проследить за ним.
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_02");	//Он просто пошел через ряды орков, и те его даже пальцем не тронули.
@@ -55,7 +55,7 @@ func void DIA_Lester_DI_Hello_Info()
 		B_GivePlayerXP(XP_Ambient);
 		DIA_Lester_DI_SCGotWarning1 = TRUE;
 	}
-	else if((Npc_IsDead(Mario_DI) == FALSE) && (DIA_Lester_DI_SCGotWarning2 == FALSE))
+	else if(!Npc_IsDead(Mario_DI) && (DIA_Lester_DI_SCGotWarning2 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_04");	//Этот странный парень, который называет себя Марио, мне не нравится. У него тяжелая аура.
 		AI_Output(self,other,"DIA_Lester_DI_Hello_13_05");	//Будь осторожен, мой друг.

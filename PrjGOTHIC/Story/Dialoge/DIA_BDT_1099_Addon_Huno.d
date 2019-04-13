@@ -168,7 +168,7 @@ func void DIA_Addon_Huno_Blitz_Info()
 	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_01");	//Ну, как только Барьера не стало, случился приличный переполох.
 	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_02");	//Кто-то прятался, кто-то бежал, а кто-то грабил все подряд.
 	AI_Output(other,self,"DIA_Addon_Huno_Blitz_15_03");	//А ты что делал?
-	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_04");	//Я только собирался покинуть лагерь, как случилась эта яркая вспышка, и мои глаза чуть не выпрыгнули от боли.
+	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_04");	//Я только собирался покинуть лагерь, как случилась эта яркая вспышка, ну и мои глаза чуть не выпрыгнули от боли.
 	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_05");	//Что же ты думаешь? В меня угодило этой чертовой молнией! До сих пор кажется, что я слышу этот треск.
 	AI_Output(self,other,"DIA_Addon_Huno_Blitz_06_06");	//Позже мне сказали, что меня нашел Торус. Он-то и забрал меня с собой.
 };
@@ -201,8 +201,11 @@ func void DIA_Addon_Huno_Armor_Info()
 	AI_Output(other,self,"DIA_Addon_Huno_Armor_15_00");	//Мне бы доспехи получше.
 	if(Huno_ArmorCheap == FALSE)
 	{
-		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_01");	//Могу предложить эти. Дорого? Не меня вини, а Эстебана.
-		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_02");	//Проклятый шакал дерет всю свою долю с каждых доспехов, что я продаю.
+		if(!Npc_IsDead(Esteban))
+		{
+			AI_Output(self,other,"DIA_Addon_Huno_Armor_06_01");	//Могу предложить эти. Дорого? Не меня вини, а Эстебана.
+			AI_Output(self,other,"DIA_Addon_Huno_Armor_06_02");	//Проклятый шакал дерет всю свою долю с каждых доспехов, что я продаю.
+		};
 		BDT_Armor_H_Value = 2100;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
 		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: оружие 50, стрелы 50. (2100 золота)",DIA_Addon_Huno_Armor_BUY);
@@ -228,7 +231,8 @@ func void DIA_Addon_Huno_Armor_BUY()
 	if(B_GiveInvItems(other,self,ItMi_Gold,BDT_Armor_H_Value))
 	{
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_Buy_06_01");	//Отлично.
-		B_GiveInvItems(self,other,ItAr_BDT_H,1);
+		CreateInvItem(hero,ITAR_BDT_H);
+		AI_EquipArmor(hero,ITAR_BDT_H);
 	}
 	else
 	{
@@ -249,7 +253,7 @@ instance DIA_Addon_Huno_Attentat(C_Info)
 	condition = DIA_Addon_Huno_Attentat_Condition;
 	information = DIA_Addon_Huno_Attentat_Info;
 	permanent = FALSE;
-	description = "Насчет попытки покушения на Эстебана...";
+	description = DIALOG_ADDON_ATTENTAT_DESCRIPTION2;
 };
 
 
@@ -319,13 +323,13 @@ func void DIA_Addon_Huno_SomeThings_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Huno_SomeThings_15_03");	//Я слышал, что тебя не было на месте во время нападения!
 		AI_Output(self,other,"DIA_Addon_Huno_SomeThings_06_04");	//(подозрительно) Что еще?
-		Huno_Counter = Huno_Counter + 1;
+		Huno_Counter += 1;
 	};
 	if(Paul_TellAll == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Huno_SomeThings_15_05");	//Пол утверждает, что ты ненавидишь Эстебана.
 		AI_Output(self,other,"DIA_Addon_Huno_SomeThings_06_06");	//(подозрительно) Продолжай...
-		Huno_Counter = Huno_Counter + 1;
+		Huno_Counter += 1;
 	};
 	if(Emilio_TellAll == TRUE)
 	{
@@ -425,7 +429,7 @@ instance DIA_Addon_Huno_Paket(C_Info)
 
 func int DIA_Addon_Huno_Paket_Condition()
 {
-	if((MIS_Huno_Stahl == LOG_Running) && (Npc_HasItems(other,ItMi_Addon_Steel_Paket) >= 1))
+	if((MIS_Huno_Stahl == LOG_Running) && Npc_HasItems(other,ItMi_Addon_Steel_Paket))
 	{
 		return TRUE;
 	};
@@ -435,6 +439,7 @@ func void DIA_Addon_Huno_Paket_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Huno_Paket_15_00");	//Вот твоя сталь.
 	B_GiveInvItems(other,self,ItMi_Addon_Steel_Paket,1);
+	Npc_RemoveInvItem(self,ItMi_Addon_Steel_Paket);
 	AI_Output(self,other,"DIA_Addon_Huno_Paket_06_01");	//А Хуан? Он там был?
 	AI_Output(other,self,"DIA_Addon_Huno_Paket_15_02");	//Был, как же еще.
 	AI_Output(self,other,"DIA_Addon_Huno_Paket_06_03");	//Я так и знал. Крыса Эстебан стоял за всем этим.
@@ -478,14 +483,14 @@ func int DIA_Addon_Huno_Trade_Condition()
 
 func void DIA_Addon_Huno_Trade_Info()
 {
-	if(Huno_flag == 1)
+	if(Huno_flag == TRUE)
 	{
 		B_ClearSmithInv(self);
 		if(Huno_swordraws > 0)
 		{
 			CreateInvItems(self,ItMiSwordraw,Huno_swordraws);
 		};
-		Huno_flag = 0;
+		Huno_flag = FALSE;
 	};
 	B_Say(other,self,"$TRADE_3");
 	B_GiveTradeInv(self);

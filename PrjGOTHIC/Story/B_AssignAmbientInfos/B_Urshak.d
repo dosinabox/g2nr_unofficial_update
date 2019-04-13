@@ -43,7 +43,7 @@ func int DIA_Urshak_HALLO_Condition()
 
 func void DIA_Urshak_HALLO_Info()
 {
-	AI_Output(self,other,"DIA_Urshak_HALLO_18_00");	//(агрессивно) КРОТОК ДЖАБАРТ!!!
+	AI_Output(self,other,"DIA_Urshak_HALLO_18_00");	//(агрессивно) ХРОТОК ДЖАБАРТ!!!
 	AI_Output(self,other,"DIA_Urshak_HALLO_18_01");	//Стой! Моя знать тебя. Ты друг человек с мягким голосом.
 	AI_Output(self,other,"DIA_Urshak_HALLO_18_02");	//Друг убивать злого демона КРУШАКА.
 	B_GivePlayerXP(XP_UrshakFound);
@@ -249,7 +249,7 @@ instance DIA_Urshak_GEH(C_Info)
 
 func int DIA_Urshak_GEH_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && ((Npc_GetDistToWP(self,"OW_HOSHPAK_04") < 1000) == FALSE) && (Npc_RefuseTalk(self) == FALSE) && (URSHAK_SUCKED == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") >= 1000) && !Npc_RefuseTalk(self) && (URSHAK_SUCKED == FALSE))
 	{
 		return TRUE;
 	};
@@ -282,7 +282,7 @@ func int DIA_Urshak_HOSHPAKRACHE_Condition()
 
 func void DIA_Urshak_HOSHPAKRACHE_Info()
 {
-	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_00");	//(агрессивно) КХРОТОК! Я узнавать, что ты быть здесь когда Хош-Пак убивать. Твоя делать большая ошибка, чужак.
+	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_00");	//(агрессивно) ХРОТОК! Я узнавать, что ты быть здесь когда Хош-Пак убивать. Твоя делать большая ошибка, чужак.
 	AI_Output(other,self,"DIA_Urshak_HOSHPAKRACHE_15_01");	//Я вижу, ты занял свое место здесь. Ты обманул меня.
 	AI_Output(other,self,"DIA_Urshak_HOSHPAKRACHE_15_02");	//Твое положение среди твоих людей выше, чем ты это говорил. Теперь ты сам не более чем инструмент в руках дьявола.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_03");	//Чужак прав. Ур-Шак наполняться только ненависть и месть теперь.

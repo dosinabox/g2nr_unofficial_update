@@ -84,14 +84,14 @@ func void B_AssessPlayer()
 			B_AssessTalk();
 			return;
 		}
-		else if(!C_BodyStateContains(other,BS_FALL) && !C_BodyStateContains(other,BS_SWIM) && !C_BodyStateContains(other,BS_DIVE) && (B_GetPlayerCrime(self) == CRIME_NONE) && (C_RefuseTalk(self,other) == FALSE) && (C_PlayerHasFakeGuild(self,other) == FALSE))
+		else if(!C_BodyStateContains(other,BS_FALL) && !C_BodyStateContains(other,BS_SWIM) && !C_BodyStateContains(other,BS_DIVE) && (B_GetPlayerCrime(self) == CRIME_NONE) && !C_RefuseTalk(self,other) && !C_PlayerHasFakeGuild(self,other))
 		{
 			self.aivar[AIV_NpcStartedTalk] = TRUE;
 			B_AssessTalk();
 			return;
 		};
 	};
-	if(C_BodyStateContains(self,BS_WALK) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG) && (Npc_RefuseTalk(other) == FALSE) && !C_NpcIsGateGuard(self) && (C_PlayerHasFakeGuild(self,other) == FALSE))
+	if(C_BodyStateContains(self,BS_WALK) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG) && !Npc_RefuseTalk(other) && !C_NpcIsGateGuard(self) && !C_PlayerHasFakeGuild(self,other))
 	{
 		B_LookAtNpc(self,other);
 		B_Say_GuildGreetings(self,other);

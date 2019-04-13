@@ -15,12 +15,13 @@ instance VLK_4112_Den(Npc_Default)
 	attribute[ATR_HITPOINTS] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_Gold,200);
 	CreateInvItems(self,ItMi_SilverRing,1);
 	CreateInvItems(self,ItMi_GoldRing,1);
 	CreateInvItems(self,ItMi_SilverCandleHolder,1);
 	CreateInvItems(self,ItMi_GoldNecklace,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Grim,BodyTex_N,ITAR_Mil_L);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Grim,BodyTex_N,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

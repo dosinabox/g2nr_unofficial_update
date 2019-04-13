@@ -21,7 +21,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_FarimsFish,MIS_Addon_Farim_PaladinFisch,0,6);
 	B_CloseTopic(TOPIC_Addon_Lucia,0,TOPIC_END_Lucia,6);
 	B_CloseTopic(TOPIC_Addon_Erol,MIS_Addon_Erol_BanditStuff,0,4);
-	B_CloseTopic(TOPIC_Addon_Joe,0,TOPIC_END_Joe,4);
+	B_CloseTopic(TOPIC_Addon_Joe,0,TOPIC_END_Joe,6);
 	B_CloseTopic(TOPIC_Addon_BromorsGold,MIS_Bromor_LuciaStoleGold,0,6);
 	B_CloseTopic(TOPIC_Addon_BaltramSkipTrade,0,TOPIC_END_BaltramSkipTrade,6);
 	B_CloseTopic(TOPIC_Addon_TeleportsADW,0,SC_ADW_ActivatedAllTelePortStones,6);

@@ -23,7 +23,7 @@ instance BDT_1042_Bandit_L(Npc_Default)
 
 func void Rtn_Start_1042()
 {
-	TA_Saw(0,0,12,0,"NW_CASTLEMINE_PATH_HUT_02");
-	TA_Saw(12,0,0,0,"NW_CASTLEMINE_PATH_HUT_02");
+	TA_Sit_Bench(0,2,8,0,"NW_CASTLEMINE_PATH_OUTSIDEHUT_02");
+	TA_Saw(8,0,0,2,"NW_CASTLEMINE_PATH_HUT_02");
 };
 

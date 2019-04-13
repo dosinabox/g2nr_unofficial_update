@@ -76,7 +76,7 @@ func void DIA_Talbin_WASMACHTIHR_Info()
 	AI_Output(other,self,"DIA_Talbin_WASMACHTIHR_15_00");	//А ты похож на охотника, который не знает, куда девать свободное время.
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_07_01");	//Ха-ха! Да - ты угадал. Но что мне еще делать - я не могу вернуться через Проход!
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_07_02");	//Поэтому я остаюсь здесь и занимаюсь тем, что умею лучше всего.
-	if(Npc_IsDead(Engrom) == FALSE)
+	if(!Npc_IsDead(Engrom))
 	{
 		AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_07_03");	//Мне жаль, впрочем, моего приятеля Энгрома.
 	};
@@ -98,7 +98,7 @@ func void DIA_Talbin_WASMACHTIHR_strf()
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_01");	//Нет, нет! С чего ты взял? Я просто хотел подзаработать здесь.
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_02");	//Кто-то сказал мне, что здесь лучшие охотничьи угодья на острове.
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_03");	//Райские угодья, если ты понимаешь, что я имею в виду.
-	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_04");	//Но единственное, что можно заработать здесь после того, как появились эти чертовы орки, - это удар топором, если зайдешь слишком далеко!
+	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_04");	//Но единственное, что можно заработать здесь после того, как появились эти чертовы орки - это удар топором, если зайдешь слишком далеко!
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_strf_07_05");	//И я позволил этим идиотам обмануть меня.
 	AI_Output(other,self,"DIA_Talbin_WASMACHTIHR_strf_15_06");	//Я знаю этих шутников!
 };
@@ -123,7 +123,7 @@ instance DIA_Talbin_SORRYFORENGROM(C_Info)
 
 func int DIA_Talbin_SORRYFORENGROM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_WASMACHTIHR) && (Npc_IsDead(Engrom) == FALSE) && (Talbin_FollowsThroughPass == 0) && (Kapitel <= 3) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_WASMACHTIHR) && !Npc_IsDead(Engrom) && (Talbin_FollowsThroughPass == FALSE) && (Kapitel <= 3) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -149,7 +149,7 @@ instance DIA_Talbin_WASJAGDIHR(C_Info)
 
 func int DIA_Talbin_WASJAGDIHR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_WASMACHTIHR) && (Talbin_FollowsThroughPass == 0) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_WASMACHTIHR) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -176,7 +176,7 @@ instance DIA_Talbin_ENGROMANGRY(C_Info)
 
 func int DIA_Talbin_ENGROMANGRY_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Engrom_WhatAboutLeaving) && Npc_KnowsInfo(other,DIA_Talbin_SORRYFORENGROM) && (Npc_IsDead(Engrom) == FALSE) && (Talbin_FollowsThroughPass == 0) && (Kapitel <= 3) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Engrom_WhatAboutLeaving) && Npc_KnowsInfo(other,DIA_Talbin_SORRYFORENGROM) && !Npc_IsDead(Engrom) && (Talbin_FollowsThroughPass == FALSE) && (Kapitel <= 3) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -202,7 +202,7 @@ instance DIA_Talbin_AskTeacher(C_Info)
 
 func int DIA_Talbin_AskTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_WASJAGDIHR) && (Talbin_FollowsThroughPass == 0) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_WASJAGDIHR) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -235,7 +235,7 @@ var int DIA_Talbin_PayTeacher_noPerm;
 
 func int DIA_Talbin_PayTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (DIA_Talbin_PayTeacher_noPerm == FALSE) && (Talbin_FollowsThroughPass == 0) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_AskTeacher) && (DIA_Talbin_PayTeacher_noPerm == FALSE) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -271,7 +271,7 @@ instance DIA_Talbin_TEACHHUNTING(C_Info)
 
 func int DIA_Talbin_TEACHHUNTING_Condition()
 {
-	if((Talbin_TeachAnimalTrophy == TRUE) && (Talbin_FollowsThroughPass == 0) && (Talbin_Runs == FALSE))
+	if((Talbin_TeachAnimalTrophy == TRUE) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -413,7 +413,7 @@ instance DIA_Talbin_KAP4_WASNEUES(C_Info)
 
 func int DIA_Talbin_KAP4_WASNEUES_Condition()
 {
-	if((Kapitel >= 4) && (Talbin_FollowsThroughPass == 0) && (Talbin_Runs == FALSE))
+	if((Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -438,7 +438,7 @@ instance DIA_Talbin_KAP4_WASWOLLTENDJG(C_Info)
 
 func int DIA_Talbin_KAP4_WASWOLLTENDJG_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_KAP4_WASNEUES) && (Kapitel >= 4) && (Talbin_FollowsThroughPass == 0) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_KAP4_WASNEUES) && (Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -468,7 +468,7 @@ instance DIA_Talbin_WOENGROM(C_Info)
 
 func int DIA_Talbin_WOENGROM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_WASMACHTIHR) && (Kapitel >= 4) && (Talbin_FollowsThroughPass == 0) && (EngromIsGone == TRUE) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_WASMACHTIHR) && (Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (EngromIsGone == TRUE) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -502,7 +502,7 @@ instance DIA_Talbin_FOUNDENGROM(C_Info)
 
 func int DIA_Talbin_FOUNDENGROM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_WOENGROM) && ((NpcObsessedByDMT_Engrom == TRUE) || Npc_HasItems(other,ItAt_TalbinsLurkerSkin)) && (Kapitel >= 4) && (Talbin_FollowsThroughPass == 0) && (Talbin_Runs == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Talbin_WOENGROM) && ((NpcObsessedByDMT_Engrom == TRUE) || Npc_HasItems(other,ItAt_TalbinsLurkerSkin)) && (Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
 	{
 		return TRUE;
 	};
@@ -534,7 +534,7 @@ func void DIA_Talbin_FOUNDENGROM_Info()
 	AI_StopProcessInfos(self);
 	Log_CreateTopic(TOPIC_Talbin_Runs,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_Running);
-	B_LogEntry(TOPIC_Talbin_Runs,"Талбин, охотник из Долины рудников, бежал через проход, как будто за ним по пятам гнался рой кровавых мух. Я думаю, он направился в Хоринис.");
+	B_LogEntry(TOPIC_Talbin_Runs,"Талбин, охотник из Долины Рудников, побежал к Проходу, как будто за ним по пятам гнался рой кровавых мух. Я думаю, он направился в Хоринис.");
 	B_GivePlayerXP(XP_Ambient);
 	Npc_ExchangeRoutine(self,"FleePass");
 	Wld_InsertNpc(Snapper,"START");
@@ -555,7 +555,7 @@ instance DIA_Talbin_WOHIN(C_Info)
 
 func int DIA_Talbin_WOHIN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Talbin_FOUNDENGROM) && (Talbin_FollowsThroughPass == 0))
+	if(Npc_KnowsInfo(other,DIA_Talbin_FOUNDENGROM) && (Talbin_FollowsThroughPass == FALSE))
 	{
 		return TRUE;
 	};

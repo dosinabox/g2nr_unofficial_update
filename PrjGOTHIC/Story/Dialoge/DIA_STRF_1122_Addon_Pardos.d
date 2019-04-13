@@ -132,10 +132,8 @@ func void DIA_Addon_Pardos_trank_BACK()
 
 func void DIA_Addon_Pardos_trank_01()
 {
-	if(B_GiveInvItems(other,self,ItPo_Health_01,1))
-	{
-		B_UseItem(self,ItPo_Health_01);
-	};
+	B_GiveInvItems(other,self,ItPo_Health_01,1);
+	B_UseItem(self,ItPo_Health_01);
 	Info_ClearChoices(DIA_Addon_Pardos_trank);
 	Pardos_Geheilt = TRUE;
 	B_SayPardosThanks();
@@ -144,10 +142,8 @@ func void DIA_Addon_Pardos_trank_01()
 
 func void DIA_Addon_Pardos_trank_02()
 {
-	if(B_GiveInvItems(other,self,ItPo_Health_02,1))
-	{
-		B_UseItem(self,ItPo_Health_02);
-	};
+	B_GiveInvItems(other,self,ItPo_Health_02,1);
+	B_UseItem(self,ItPo_Health_02);
 	Info_ClearChoices(DIA_Addon_Pardos_trank);
 	Pardos_Geheilt = TRUE;
 	B_SayPardosThanks();
@@ -156,10 +152,8 @@ func void DIA_Addon_Pardos_trank_02()
 
 func void DIA_Addon_Pardos_trank_03()
 {
-	if(B_GiveInvItems(other,self,ItPo_Health_03,1))
-	{
-		B_UseItem(self,ItPo_Health_03);
-	};
+	B_GiveInvItems(other,self,ItPo_Health_03,1);
+	B_UseItem(self,ItPo_Health_03);
 	Info_ClearChoices(DIA_Addon_Pardos_trank);
 	Pardos_Geheilt = TRUE;
 	B_SayPardosThanks();
@@ -169,10 +163,8 @@ func void DIA_Addon_Pardos_trank_03()
 func void DIA_Addon_Pardos_trank_Soup()
 {
 	AI_Output(other,self,"DIA_Addon_Pardos_trank_soup_15_00");	//Вот, поешь мяса.
-	if(B_GiveInvItems(other,self,ItFo_Addon_Meatsoup,1))
-	{
-		B_UseItem(self,ItFo_Addon_Meatsoup);
-	};
+	B_GiveInvItems(other,self,ItFo_Addon_Meatsoup,1);
+	B_UseItem(self,ItFo_Addon_Meatsoup);
 	Info_ClearChoices(DIA_Addon_Pardos_trank);
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	Pardos_Geheilt = TRUE;

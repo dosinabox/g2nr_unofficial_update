@@ -58,7 +58,7 @@ func void B_NpcObsessedByDMT(var C_Npc medium)
 		AI_PlayAni(medium,"T_PRACTICEMAGIC5");
 		Wld_PlayEffect("spellFX_Fear",medium,medium,0,0,0,FALSE);
 		NpcObsessedByDMT = TRUE;
-		if(Npc_HasItems(medium,ITWR_DementorObsessionBook_MIS) == FALSE)
+		if(!Npc_HasItems(medium,ITWR_DementorObsessionBook_MIS))
 		{
 			CreateInvItems(medium,ITWR_DementorObsessionBook_MIS,1);
 		};

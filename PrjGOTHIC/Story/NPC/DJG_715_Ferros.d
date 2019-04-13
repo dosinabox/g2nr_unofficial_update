@@ -12,7 +12,7 @@ instance DJG_715_Ferros(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Crossbow_M_01);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Orik,BodyTex_B,itar_djg_l);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Orik,BodyTex_B,ITAR_DJG_L);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

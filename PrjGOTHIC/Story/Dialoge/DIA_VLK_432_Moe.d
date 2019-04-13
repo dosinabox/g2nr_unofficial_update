@@ -69,7 +69,7 @@ instance DIA_Moe_Hallo(C_Info)
 
 func int DIA_Moe_Hallo_Condition()
 {
-	if((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF) && (hero.guild != GIL_MIL) && (hero.guild != GIL_NOV) && (Npc_RefuseTalk(self) == FALSE))
+	if((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF) && (hero.guild != GIL_MIL) && (hero.guild != GIL_NOV) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -169,7 +169,7 @@ func void DIA_Moe_Hallo_Zahlen()
 	}
 	else if(Npc_HasItems(hero,ItMi_Gold) > 9)
 	{
-		AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_02");	//...но у мен€ нет с собой столько золота.
+		AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_02");	//... но у мен€ нет с собой столько золота.
 		AI_Output(self,other,"DIA_Moe_Hallo_Zahlen_01_03");	//Ёто не важно. ѕросто отдай мне все, что у теб€ есть.
 		Info_ClearChoices(DIA_Moe_Hallo);
 		Info_AddChoice(DIA_Moe_Hallo,"«абудь об этом, ты не получишь ни цента!",DIA_Moe_Hallo_Vergisses);
@@ -177,7 +177,7 @@ func void DIA_Moe_Hallo_Zahlen()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_04");	//...но у мен€ нет даже и 10 монет.
+		AI_Output(other,self,"DIA_Moe_Hallo_Zahlen_15_04");	//... но у мен€ нет даже и 10 монет.
 		AI_Output(self,other,"DIA_Moe_Hallo_Zahlen_01_05");	//„ерт, неужели сегодн€ мне не повезло?!
 		AI_Output(self,other,"DIA_Moe_Hallo_Zahlen_01_06");	//’орошо, (вздох) ты можешь идти.
 		AI_StopProcessInfos(self);
@@ -187,7 +187,7 @@ func void DIA_Moe_Hallo_Zahlen()
 func void DIA_Moe_Hallo_Vergisses()
 {
 	AI_Output(other,self,"DIA_Moe_Hallo_Vergisses_15_00");	//«абудь об этом, ты не получишь ни цента!
-	AI_Output(self,other,"DIA_Moe_Hallo_Vergisses_01_01");	//“огда € возьму все, что у теб€ есть, - а ты будешь лежать распростертым на земле передо мной.
+	AI_Output(self,other,"DIA_Moe_Hallo_Vergisses_01_01");	//“огда € возьму все, что у теб€ есть, а ты будешь лежать распростертым на земле передо мной.
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -236,7 +236,7 @@ func void DIA_Moe_Harbor_Back()
 func void DIA_Moe_Harbor_Ship()
 {
 	AI_Output(other,self,"DIA_Moe_Harbor_Ship_15_00");	// ак тут с корабл€ми?
-	AI_Output(self,other,"DIA_Moe_Harbor_Ship_01_01");	//≈динственный корабль, который пришел за последнее врем€, - это корабль паладинов.
+	AI_Output(self,other,"DIA_Moe_Harbor_Ship_01_01");	//≈динственный корабль, который пришел за последнее врем€ - это корабль паладинов.
 	AI_Output(self,other,"DIA_Moe_Harbor_Ship_01_02");	//ќн стоит вон там, за скалами к юго-западу.
 };
 

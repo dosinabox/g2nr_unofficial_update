@@ -1,7 +1,7 @@
 
 instance DIA_Rick_EXIT(C_Info)
 {
-	npc = Mil_336_Rick;
+	npc = MIL_336_Rick;
 	nr = 999;
 	condition = DIA_Rick_EXIT_Condition;
 	information = DIA_Rick_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Rick_EXIT_Info()
 
 instance DIA_Rick_HALLO(C_Info)
 {
-	npc = Mil_336_Rick;
+	npc = MIL_336_Rick;
 	nr = 1;
 	condition = DIA_Rick_HALLO_Condition;
 	information = DIA_Rick_HALLO_Info;
@@ -47,7 +47,7 @@ func void DIA_Rick_HALLO_Info()
 
 instance DIA_Rick_PICKPOCKET(C_Info)
 {
-	npc = Mil_336_Rick;
+	npc = MIL_336_Rick;
 	nr = 900;
 	condition = DIA_Rick_PICKPOCKET_Condition;
 	information = DIA_Rick_PICKPOCKET_Info;

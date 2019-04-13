@@ -23,7 +23,7 @@ instance VLK_401_Cornelius(Npc_Default)
 func void Rtn_Start_401()
 {
 	TA_Read_Bookstand(8,0,23,0,"NW_CITY_CORNELIUS");
-	TA_Read_Bookstand(23,0,8,0,"NW_CITY_CORNELIUS");
+	TA_Sit_Throne(23,0,8,0,"NW_CITY_LARIUS");
 };
 
 func void Rtn_Flee_401()

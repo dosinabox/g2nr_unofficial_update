@@ -184,7 +184,7 @@ func int DIA_Wegelagerer_ANGRIFF_Condition()
 {
 	var C_Npc Pal;
 	Pal = Hlp_GetNpc(BDT_1052_Wegelagerer);
-	if((Npc_RefuseTalk(self) == FALSE) && ((BDT_1051_Wegelagerer_Angriff == TRUE) || C_NpcIsDown(Pal)))
+	if(!Npc_RefuseTalk(self) && ((BDT_1051_Wegelagerer_Angriff == TRUE) || C_NpcIsDown(Pal)))
 	{
 		return TRUE;
 	};

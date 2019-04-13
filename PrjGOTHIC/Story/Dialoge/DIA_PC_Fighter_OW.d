@@ -39,8 +39,6 @@ func int DIA_GornOW_Hello_Condition()
 
 func void DIA_GornOW_Hello_Info()
 {
-	var C_Npc Milten;
-	Milten = Hlp_GetNpc(PC_Mage_OW);
 	AI_Output(other,self,"DIA_GornOW_Hello_15_00");	//Хватит бездельничать здесь - ты свободен!
 	AI_Output(self,other,"DIA_GornOW_Hello_12_01");	//Да уж. Давно пора было вытащить меня отсюда.
 	AI_Output(self,other,"DIA_GornOW_Hello_12_02");	//Но я совсем не ожидал, что это будешь ты. Впрочем, я чертовски рад видеть тебя.
@@ -50,8 +48,17 @@ func void DIA_GornOW_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_GornOW_Add_12_00");	//Подожди, у меня есть кое-что, что могло бы пригодиться тебе.
 		AI_Output(self,other,"DIA_GornOW_Add_12_01");	//Я нашел эти доспехи здесь, в камере. Наверное, их спрятал какой-то заключенный.
-		B_GiveInvItems(self,other,itar_sld_M,1);
 		AI_Output(self,other,"DIA_GornOW_Add_12_02");	//Для меня они слишком малы, но тебе могут подойти...
+		if(!Npc_KnowsInfo(other,DIA_MiltenOW_Preis) && !Npc_KnowsInfo(other,DIA_DiegoOw_Gorn))
+		{
+			CreateInvItem(hero,ITAR_SLD_H);
+			AI_EquipArmor(hero,ITAR_SLD_H);
+		}
+		else
+		{
+			CreateInvItem(hero,ITAR_SLD_M);
+			AI_EquipArmor(hero,ITAR_SLD_M);
+		};
 		AI_Output(other,self,"DIA_GornOW_Add_15_03");	//Спасибо! Увидимся у Милтена.
 	}
 	else
@@ -61,7 +68,7 @@ func void DIA_GornOW_Hello_Info()
 	AI_Output(self,other,"DIA_GornOW_Hello_12_06");	//Конечно.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FREE");
-	B_StartOtherRoutine(Milten,"GORNFREE");
+	B_StartOtherRoutine(MiltenOW,"GORNFREE");
 	MIS_RescueGorn = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RescueGorn);
 };
@@ -89,7 +96,7 @@ func int DIA_GornOW_MetMilten_Condition()
 func void DIA_GornOW_MetMilten_Info()
 {
 	AI_Output(self,other,"DIA_GornOW_MetMilten_12_00");	//Послушай - мне здесь уже порядком надоело. Я думаю, нужно выбираться из этой долины.
-	AI_Output(self,other,"DIA_GornOW_MetMilten_12_01");	//Как ты прошел через проход?
+	AI_Output(self,other,"DIA_GornOW_MetMilten_12_01");	//Как ты прошел через Проход?
 	AI_Output(other,self,"DIA_GornOW_MetMilten_15_02");	//Там есть путь через заброшенную шахту.
 	AI_Output(self,other,"DIA_GornOW_MetMilten_12_03");	//Хорошо. Я выжду нужный момент и уберусь отсюда.
 	if(other.guild != GIL_SLD)

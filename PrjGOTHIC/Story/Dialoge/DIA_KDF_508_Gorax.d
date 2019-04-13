@@ -4,7 +4,7 @@ instance DIA_Gorax_Kap1_EXIT(C_Info)
 	npc = KDF_508_Gorax;
 	nr = 999;
 	condition = DIA_Gorax_Kap1_EXIT_Condition;
-	information = DIA_Gorax_KAp1_EXIT_Info;
+	information = DIA_Gorax_Kap1_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
@@ -18,7 +18,7 @@ func int DIA_Gorax_Kap1_EXIT_Condition()
 	};
 };
 
-func void DIA_Gorax_KAp1_EXIT_Info()
+func void DIA_Gorax_Kap1_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
@@ -37,10 +37,7 @@ instance DIA_Gorax_PICKPOCKET(C_Info)
 
 func int DIA_Gorax_PICKPOCKET_Condition()
 {
-	if((self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == TRUE) && (other.attribute[ATR_DEXTERITY] >= (80 - Theftdiff)))
-	{
-		return 1;
-	};
+	return C_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),0);
 };
 
 func void DIA_Gorax_PICKPOCKET_Info()
@@ -52,20 +49,9 @@ func void DIA_Gorax_PICKPOCKET_Info()
 
 func void DIA_Gorax_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 80)
-	{
-		CreateInvItems(self,ItKe_KlosterSchatz,1);
-		B_GiveInvItems(self,other,ItKe_KlosterSchatz,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Gorax_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	CreateInvItems(self,ItKe_KlosterSchatz,1);
+	B_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),1);
+	Info_ClearChoices(DIA_Gorax_PICKPOCKET);
 };
 
 func void DIA_Gorax_PICKPOCKET_BACK()
@@ -163,10 +149,8 @@ func void DIA_Addon_Gorax_DaronsStatue_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_01");	//(вздыхает) Поистине удивительно то, что такую драгоценность принес в монастырь неопытный послушник.
 		AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_02");	//Это еще раз доказывает твою устремленность в служении Инносу.
-		if(B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1))
-		{
-			Npc_RemoveInvItems(self,ItMi_LostInnosStatue_Daron,1);
-		};
+		B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
+		Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
 		AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_03");	//Я перед тобой в долгу, юный послушник.
 		MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_ReturnedLostInnosStatue_Daron);
@@ -202,7 +186,7 @@ func void DIA_Gorax_SLEEP_Info()
 	AI_Output(other,self,"DIA_Gorax_SLEEP_15_00");	//Я ищу место, где можно было бы поспать.
 	AI_Output(self,other,"DIA_Gorax_SLEEP_14_01");	//Есть одна свободная кровать в следующей комнате. Первая дверь направо, рядом с входом. Ты можешь поспать там.
 	AI_Output(self,other,"DIA_Gorax_SLEEP_14_02");	//Ты можешь сложить свои вещи в один из пустых сундуков.
-	AI_Output(self,other,"DIA_Gorax_SLEEP_14_03");	//И помни - тебе нельзя входить в опочивальни магов. Также, без соответствующего разрешения тебе нельзя входить в библиотеку.
+	AI_Output(self,other,"DIA_Gorax_SLEEP_14_03");	//И помни - тебе нельзя входить в опочивальни магов. Также без соответствующего разрешения тебе нельзя входить в библиотеку.
 };
 
 
@@ -230,7 +214,7 @@ func void DIA_Gorax_Aufgabe_Info()
 	AI_Output(other,self,"DIA_Gorax_Aufgabe_15_00");	//У тебя есть какое-нибудь задание для меня?
 	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_01");	//Да, послушники хорошо поработали. А тот, кто хорошо работает, должен хорошо питаться.
 	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_02");	//Я дам тебе ключ от кладовой. Ты найдешь там баранью колбасу. Раздай ее послушникам - но раздели ее по справедливости!
-	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_03");	//А когда закончишь с этим, можешь обратиться ко мне опять.
+	AI_Output(self,other,"DIA_Gorax_Aufgabe_14_03");	//А когда закончишь с этим, можешь опять обратиться ко мне.
 	CreateInvItems(self,ItKe_KlosterStore,1);
 	B_GiveInvItems(self,other,ItKe_KlosterStore,1);
 	MIS_GoraxEssen = LOG_Running;
@@ -247,13 +231,13 @@ instance DIA_Gorax_Wurst(C_Info)
 	condition = DIA_Gorax_Wurst_Condition;
 	information = DIA_Gorax_Wurst_Info;
 	permanent = TRUE;
-	description = "Я раздал колбасу (завершение задания).";
+	description = "Я раздал колбасу.";
 };
 
 
 func int DIA_Gorax_Wurst_Condition()
 {
-	if((MIS_GoraxEssen == LOG_Running) && (Mob_HasItems("WURSTTRUHE",ItFo_Schafswurst) == 0))
+	if((MIS_GoraxEssen == LOG_Running) && !Mob_HasItems("WURSTTRUHE",ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -275,6 +259,7 @@ func void DIA_Gorax_Wurst_Info()
 		AI_Output(self,other,"DIA_Gorax_Wurst_14_03");	//Ты либо съел колбасу сам, либо дал кому-нибудь больше, чем ему причитается.
 		AI_Output(self,other,"DIA_Gorax_Wurst_14_04");	//Послушай, так как ты новичок - и только по этой причине - я на первый раз прощу тебя. Но чтобы больше такого не повторялось, послушник!
 		MIS_GoraxEssen = LOG_FAILED;
+		B_CheckLog();
 	};
 };
 
@@ -292,7 +277,7 @@ instance DIA_Gorax_Aufgabe2(C_Info)
 
 func int DIA_Gorax_Aufgabe2_Condition()
 {
-	if(((MIS_GoraxEssen == LOG_SUCCESS) || (MIS_GoraxEssen == LOG_FAILED)) && (Npc_IsDead(Orlan) == FALSE))
+	if(((MIS_GoraxEssen == LOG_SUCCESS) || (MIS_GoraxEssen == LOG_FAILED)) && !Npc_IsDead(Orlan))
 	{
 		return TRUE;
 	};

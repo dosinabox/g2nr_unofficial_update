@@ -1,5 +1,5 @@
 
-instance Pal_207_Girion_DI(Npc_Default)
+instance PAL_207_Girion_DI(Npc_Default)
 {
 	name[0] = "Гирион";
 	guild = GIL_PAL;
@@ -14,7 +14,7 @@ instance Pal_207_Girion_DI(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Lefty,BodyTex_N,ItAr_PAL_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Lefty,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

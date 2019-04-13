@@ -43,7 +43,7 @@ func int DIA_Albrecht_Hagen_Condition()
 func void DIA_Albrecht_Hagen_Info()
 {
 	AI_Output(other,self,"DIA_Albrecht_Hagen_15_00");	//Мне нужно поговорить с лордом Хагеном!
-	AI_Output(self,other,"DIA_Albrecht_Hagen_03_01");	//Он в главном зале, иди прямо, не ошибешься.
+	AI_Output(self,other,"DIA_Albrecht_Hagen_03_01");	//Он в главном зале, иди прямо, и не ошибешься.
 	AI_Output(self,other,"DIA_Albrecht_Hagen_03_02");	//Не знаю, что тебе нужно от него, но будь краток - он занятой человек!
 };
 

@@ -5,7 +5,7 @@ instance DIA_Addon_Lares_Patch(C_Info)
 	nr = 99;
 	condition = DIA_Addon_Lares_Patch_Condition;
 	information = DIA_Addon_Lares_Patch_Info;
-	description = "(Орнамент - потребовать фрагмент назад)";
+	description = "(Потребовать фрагмент орнамента назад)";
 };
 
 
@@ -122,7 +122,7 @@ instance DIA_Lares_HALLO(C_Info)
 
 func int DIA_Lares_HALLO_Condition()
 {
-	if(RangerMeetingRunning == 0)
+	if(RangerMeetingRunning == FALSE)
 	{
 		return TRUE;
 	};
@@ -399,7 +399,7 @@ instance DIA_Addon_Lares_RingBack2(C_Info)
 
 func int DIA_Addon_Lares_RingBack2_Condition()
 {
-	if(Npc_HasItems(other,ItRi_Ranger_Lares_Addon) && (Lares_GotRingBack == FALSE) && (MIS_Addon_Lares_ComeToRangerMeeting != 0))
+	if(Npc_HasItems(other,ItRi_Ranger_Lares_Addon) && (Lares_GotRingBack == FALSE) && (MIS_Addon_Lares_ComeToRangerMeeting != FALSE))
 	{
 		return TRUE;
 	};
@@ -514,23 +514,23 @@ func void DIA_Addon_Lares_GetRangerArmor_Learn()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_GetRangerArmor_Learn_15_00");	//Как вы можете помочь мне?
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_01");	//Я могу сделать тебя более ловким.
-	if(Npc_IsDead(Sld_805_Cord) == FALSE)
+	if(!Npc_IsDead(Sld_805_Cord))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_02");	//Если тебе нужно улучшить свое мастерство ближнего боя, поговори с Кордом. Он мастер клинка.
 	};
-	if(Npc_IsDead(BAU_961_Gaan) == FALSE)
+	if(!Npc_IsDead(BAU_961_Gaan))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_03");	//Гаан научит тебя правильно разделывать животных.
 	};
-	if(Npc_IsDead(Mil_350_Addon_Martin) == FALSE)
+	if(!Npc_IsDead(MIL_350_Addon_Martin))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_04");	//Мартину есть что рассказать тебе о паладинах.
 	};
-	if(Npc_IsDead(BAU_4300_Addon_Cavalorn) == FALSE)
+	if(!Npc_IsDead(BAU_4300_Addon_Cavalorn))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_05");	//Кавалорн может научить тебя красться, сражаться одноручным оружием и стрелять из лука.
 	};
-	if(Npc_IsDead(BAU_970_Orlan) == FALSE)
+	if(!Npc_IsDead(BAU_970_Orlan))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_06");	//У Орлана всегда найдется для тебя теплая комната и мягкая кровать.
 	};
@@ -550,7 +550,7 @@ instance DIA_Addon_Lares_Teleportstation(C_Info)
 
 func int DIA_Addon_Lares_Teleportstation_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SCUsed_TELEPORTER == TRUE) && (MIS_Lares_BringRangerToMe != 0))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SCUsed_TELEPORTER == TRUE) && (MIS_Lares_BringRangerToMe != FALSE))
 	{
 		return TRUE;
 	};
@@ -609,7 +609,7 @@ instance DIA_Addon_Lares_OrnamentBringJob(C_Info)
 
 func int DIA_Addon_Lares_OrnamentBringJob_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Lares_Ornament) && (MIS_Addon_Lares_Ornament2Saturas == 0))
+	if(Npc_KnowsInfo(other,DIA_Addon_Lares_Ornament) && (MIS_Addon_Lares_Ornament2Saturas == FALSE))
 	{
 		return TRUE;
 	};
@@ -711,6 +711,7 @@ func void DIA_Addon_Lares_BaltramAbloese_Info()
 		};
 	};
 	MIS_Lares_BringRangerToMe = LOG_SUCCESS;
+	B_CheckLog();
 	Lares_CanBringScToPlaces = TRUE;
 };
 
@@ -745,7 +746,7 @@ func void DIA_Addon_Lares_PeopleMissing_Info()
 	{
 		Info_AddChoice(DIA_Addon_Lares_PeopleMissing,"Мне удалось спасти некоторых из похищенных людей.",DIA_Addon_Lares_PeopleMissing_SAVED);
 	}
-	else if((MIS_Lares_BringRangerToMe != 0) && (SCKnowsMissingPeopleAreInAddonWorld == TRUE) && (MissingPeopleReturnedHome == FALSE))
+	else if((MIS_Lares_BringRangerToMe != FALSE) && (SCKnowsMissingPeopleAreInAddonWorld == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		Info_AddChoice(DIA_Addon_Lares_PeopleMissing,"Я знаю, что случилось с пропавшими людьми!",DIA_Addon_Lares_PeopleMissing_Success);
 	}
@@ -795,7 +796,7 @@ func void DIA_Addon_Lares_PeopleMissing_Success()
 	AI_Output(self,other,"DIA_Addon_Lares_PeopleMissing_Success_09_03");	//Ты уверен? В таком случае мы должны освободить их.
 	AI_Output(other,self,"DIA_Addon_Lares_PeopleMissing_Success_15_04");	//Я над этим работаю.
 	AI_Output(self,other,"DIA_Addon_Lares_PeopleMissing_Success_09_05");	//Очень хорошо. И не забывай, если тебе понадобится моя помощь...
-	AI_Output(other,self,"DIA_Addon_Lares_PeopleMissing_Success_15_06");	//...то я знаю, где тебя найти. Все понятно.
+	AI_Output(other,self,"DIA_Addon_Lares_PeopleMissing_Success_15_06");	//... то я знаю, где тебя найти. Все понятно.
 	Lares_CanBringScToPlaces = TRUE;
 	Info_ClearChoices(DIA_Addon_Lares_PeopleMissing);
 };
@@ -1039,10 +1040,10 @@ func void DIA_Addon_Lares_Gilde_MIL()
 func void DIA_Addon_Lares_Gilde_KDF()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_Gilde_KDF_15_00");	//Магов Огня.
-	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_01");	//(смеется) Уверен, Ватрас не предвидел твой выбор. Иначе он бы не послал тебя ко мне.
+	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_01");	//(смеется) Уверен, Ватрас не предвидел твой выбор. Иначе бы он не послал тебя ко мне.
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_02");	//Путь в послушники требует денег.
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_03");	//Если ты не заплатишь, тебя просто не пустят в монастырь.
-	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_04");	//Единственный, кто может тут тебе помочь, - это сам Ватрас. Так что поговори с ним.
+	AI_Output(self,other,"DIA_Addon_Lares_Gilde_KDF_09_04");	//Единственный, кто может тут тебе помочь - это сам Ватрас. Так что поговори с ним.
 	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
 	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Ларес сказал, что Ватрас знает легкий способ попасть в монастырь.");
@@ -1527,7 +1528,7 @@ func int DIA_Addon_Lares_ArrivedPortalInterWeiter_Condition()
 func void DIA_Addon_Lares_ArrivedPortalInterWeiter_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
-	if((MIS_Addon_Erol_BanditStuff == LOG_Running) && (Npc_GetDistToWP(Erol,"NW_TAVERN_TO_FOREST_03") < 1000) && (Npc_IsDead(Erol) == FALSE))
+	if((MIS_Addon_Erol_BanditStuff == LOG_Running) && (Npc_GetDistToWP(Erol,"NW_TAVERN_TO_FOREST_03") < 1000) && !Npc_IsDead(Erol))
 	{
 		AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInterWeiter_15_01");	//У этого парня проблемы с бандитами.
 		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_02");	//Бедняга. К сожалению, сейчас у нас нет на него времени.
@@ -2222,7 +2223,7 @@ func void DIA_Lares_KnowWhereEnemy_Info()
 	else
 	{
 		Info_ClearChoices(DIA_Lares_KnowWhereEnemy);
-		Info_AddChoice(DIA_Lares_KnowWhereEnemy,"Ты не нужен мне.",DIA_Lares_KnowWhereEnemy_No);
+		Info_AddChoice(DIA_Lares_KnowWhereEnemy,"Я ценю твое предложение, но вынужден отказать тебе.",DIA_Lares_KnowWhereEnemy_No);
 		Info_AddChoice(DIA_Lares_KnowWhereEnemy,"Я знал, что могу положиться на тебя.",DIA_Lares_KnowWhereEnemy_Yes);
 	};
 };
@@ -2234,7 +2235,7 @@ func void DIA_Lares_KnowWhereEnemy_Yes()
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_Yes_09_02");	//Ты человек действия - это мне нравится. Увидимся позже.
 	Lares_IsOnBoard = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count = Crewmember_Count + 1;
+	Crewmember_Count += 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
 		Npc_ExchangeRoutine(self,"SHIP");
@@ -2258,6 +2259,7 @@ func void DIA_Lares_KnowWhereEnemy_No()
 	{
 		Lares_IsOnBoard = LOG_FAILED;
 	};
+	B_CheckLog();
 	Info_ClearChoices(DIA_Lares_KnowWhereEnemy);
 };
 
@@ -2293,7 +2295,8 @@ func void DIA_Lares_LeaveMyShip_Info()
 	{
 		Lares_IsOnBoard = LOG_FAILED;
 	};
-	Crewmember_Count = Crewmember_Count - 1;
+	B_CheckLog();
+	Crewmember_Count -= 1;
 	Npc_ExchangeRoutine(self,"ShipOff");
 };
 
@@ -2325,7 +2328,7 @@ func void DIA_Lares_StillNeedYou_Info()
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_01");	//Обычно я не позволяю людям так обращаться со мной, но так как ты - один из нас, на этот раз я тебя прощу.
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_02");	//Встретимся на корабле.
 		Lares_IsOnBoard = LOG_SUCCESS;
-		Crewmember_Count = Crewmember_Count + 1;
+		Crewmember_Count += 1;
 		if(MIS_ReadyforChapter6 == TRUE)
 		{
 			Npc_ExchangeRoutine(self,"SHIP");
@@ -2341,5 +2344,6 @@ func void DIA_Lares_StillNeedYou_Info()
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_04");	//Мне лучше остаться здесь.
 		AI_StopProcessInfos(self);
 	};
+	B_CheckLog();
 };
 

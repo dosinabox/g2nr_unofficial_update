@@ -82,7 +82,7 @@ func void B_AssessFightSound()
 		};
 		return;
 	};
-	if(((C_PlayerIsFakeBandit(self,other) == TRUE) || (C_PlayerIsFakeBandit(self,victim) == TRUE)) && ((other.guild == GIL_BDT) || (victim.guild == GIL_BDT)))
+	if((C_PlayerIsFakeBandit(self,other) || C_PlayerIsFakeBandit(self,victim)) && ((other.guild == GIL_BDT) || (victim.guild == GIL_BDT)))
 	{
 		if(self.guild == GIL_BDT)
 		{

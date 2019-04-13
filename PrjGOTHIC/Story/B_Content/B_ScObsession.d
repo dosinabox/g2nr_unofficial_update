@@ -19,14 +19,14 @@ func void B_SCIsObsessed(var C_Npc dementor)
 	{
 		AI_StopProcessInfos(dementor);
 	};
-	if(Npc_HasItems(hero,ItAm_Prot_BlackEye_Mis) == FALSE)
+	if(SC_IsBlackEyeProtected == FALSE)
 	{
 		if(SC_ObsessionCounter >= 2)
 		{
 			SC_IsObsessed = TRUE;
 			PrintScreen(PRINT_SCIsObsessed,-1,-1,FONT_Screen,2);
 		};
-		SC_ObsessionCounter = SC_ObsessionCounter + 1;
+		SC_ObsessionCounter += 1;
 	};
 };
 

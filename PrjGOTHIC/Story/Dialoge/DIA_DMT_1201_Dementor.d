@@ -34,7 +34,7 @@ instance DIA_DMT_1201_Dementor(C_Info)
 
 func int DIA_DMT_1201_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -81,7 +81,7 @@ instance DIA_DMT_1202_Dementor(C_Info)
 
 func int DIA_DMT_1202_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -128,7 +128,7 @@ instance DIA_DMT_1203_Dementor(C_Info)
 
 func int DIA_DMT_1203_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -175,7 +175,7 @@ instance DIA_DMT_1204_Dementor(C_Info)
 
 func int DIA_DMT_1204_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -222,7 +222,7 @@ instance DIA_DMT_1205_Dementor(C_Info)
 
 func int DIA_DMT_1205_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -269,7 +269,7 @@ instance DIA_DMT_1206_Dementor(C_Info)
 
 func int DIA_DMT_1206_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -316,7 +316,7 @@ instance DIA_DMT_1207_Dementor(C_Info)
 
 func int DIA_DMT_1207_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -363,7 +363,7 @@ instance DIA_DMT_1208_Dementor(C_Info)
 
 func int DIA_DMT_1208_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -410,7 +410,7 @@ instance DIA_DMT_1209_Dementor(C_Info)
 
 func int DIA_DMT_1209_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -457,7 +457,7 @@ instance DIA_DMT_1210_Dementor(C_Info)
 
 func int DIA_DMT_1210_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -504,7 +504,7 @@ instance DIA_DMT_1211_Dementor(C_Info)
 
 func int DIA_DMT_1211_Dementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};

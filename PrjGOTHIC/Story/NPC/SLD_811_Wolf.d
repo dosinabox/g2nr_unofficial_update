@@ -12,7 +12,7 @@ instance SLD_811_Wolf(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Wolf,BodyTex_N,itar_sld_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Wolf,BodyTex_N,ITAR_SLD_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

@@ -57,7 +57,7 @@ instance DIA_Pedro_Wurst(C_Info)
 
 func int DIA_Pedro_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && (Npc_HasItems(self,ItFo_Schafswurst) == 0) && (Npc_HasItems(other,ItFo_Schafswurst) >= 1))
+	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -74,22 +74,26 @@ func void DIA_Pedro_Wurst_Info()
 	AI_Output(self,other,"DIA_Pedro_Wurst_09_04");	//Эй, всего одну колбаску - никто даже не заметит этого. А ты кое-что получишь за это - я знаю место, где растет огненная крапива.
 	AI_Output(self,other,"DIA_Pedro_Wurst_09_05");	//Если ты отнесешь ее Неорасу, он наверняка даст тебе ключ от библиотеки. Что скажешь?
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben = Wurst_Gegeben + 1;
+	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
 	NovizeLeft = IntToString(13 - Wurst_Gegeben);
 	NovizeText = ConcatStrings(NovizeLeft,PRINT_NovizenLeft);
 	AI_PrintScreen(NovizeText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	Info_ClearChoices(DIA_Pedro_Wurst);
-	Info_AddChoice(DIA_Pedro_Wurst,"Ладно, держи еще одну колбасу.",DIA_Pedro_Wurst_JA);
+	if(Npc_HasItems(other,ItFo_Schafswurst))
+	{
+		Info_AddChoice(DIA_Pedro_Wurst,"Ладно, держи еще одну колбасу.",DIA_Pedro_Wurst_JA);
+	};
 	Info_AddChoice(DIA_Pedro_Wurst,"Нет, забудь об этом.",DIA_Pedro_Wurst_NEIN);
 };
 
 func void DIA_Pedro_Wurst_JA()
 {
 	AI_Output(other,self,"DIA_Pedro_Wurst_JA_15_00");	//Ладно, держи еще одну колбасу.
-	AI_Output(self,other,"DIA_Pedro_Wurst_JA_09_01");	//Отлично. Огненная крапива растет слева и справа по другую сторону моста.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
+	AI_Output(self,other,"DIA_Pedro_Wurst_JA_09_01");	//Отлично. Огненная крапива растет слева и справа по другую сторону моста.
+	Wld_InsertItem(ItPl_Mana_Herb_01,"FP_STAND_JORGEN");
 	Info_ClearChoices(DIA_Pedro_Wurst);
 };
 
@@ -176,7 +180,7 @@ instance DIA_Addon_Pedro_Statuette(C_Info)
 	condition = DIA_Addon_Pedro_Statuette_Condition;
 	information = DIA_Addon_Pedro_Statuette_Info;
 	permanent = FALSE;
-	description = "У меня есть вот эта статуэтка...";
+	description = "У меня есть вот эта статуэтка. Думаю, она пропала из монастыря.";
 };
 
 
@@ -230,6 +234,8 @@ func void DIA_Addon_Pedro_Statuette_Abgeben_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Pedro_Statuette_Abgeben_15_00");	//Я могу отдать статуэтку тебе?
 	AI_Output(self,other,"DIA_Addon_Pedro_Statuette_Abgeben_09_01");	//Конечно. Я позабочусь о ней. Благодарю тебя за щедрость.
+	B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
+	Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
 	MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
 };
@@ -333,11 +339,11 @@ func void DIA_Pedro_AUFNAHME_YES()
 	AI_Output(other,self,"DIA_Pedro_AUFNAHME_YES_15_05");	//Мои прегрешения теперь прощены?
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
-	B_GiveInvItems(self,hero,ItKe_Innos_MIS,1);
-	CreateInvItems(other,ItAr_NOV_L,1);
-	AI_EquipArmor(other,ItAr_NOV_L);
-	other.guild = GIL_NOV;
-	Npc_SetTrueGuild(other,GIL_NOV);
+	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
+	hero.guild = GIL_NOV;
+	Npc_SetTrueGuild(hero,GIL_NOV);
+	CreateInvItem(hero,ITAR_NOV_L);
+	AI_EquipArmor(hero,ITAR_NOV_L);
 	DIA_Pedro_AUFNAHME_NOPERM = TRUE;
 	NOV_Aufnahme = TRUE;
 	B_GivePlayerXP(XP_AufnahmeNovize);

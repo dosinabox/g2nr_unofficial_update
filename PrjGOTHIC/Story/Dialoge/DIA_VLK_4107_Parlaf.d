@@ -40,7 +40,7 @@ func void DIA_Parlaf_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Parlaf_HALLO_15_00");	//Привет, как дела?
 	AI_Output(self,other,"DIA_Parlaf_HALLO_03_01");	//А как, по-твоему? Я провел целый день за точильным кругом, затачивая клинки.
-	if(Npc_IsDead(Engor) == FALSE)
+	if(!Npc_IsDead(Engor))
 	{
 		AI_Output(self,other,"DIA_Parlaf_HALLO_03_02");	//А вчера Энгор опять урезал наш паек. Если он будет продолжать в том же духе, мы все помрем с голода.
 		AI_Output(self,other,"DIA_Parlaf_HALLO_03_03");	//Или нас всех перебьют орки. Не самая радужная перспектива.
@@ -60,7 +60,7 @@ instance DIA_Parlaf_ENGOR(C_Info)
 
 func int DIA_Parlaf_ENGOR_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parlaf_HALLO) && (Npc_IsDead(Engor) == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Parlaf_HALLO) && !Npc_IsDead(Engor))
 	{
 		return TRUE;
 	};
@@ -91,7 +91,7 @@ instance DIA_Parlaf_Wo(C_Info)
 
 func int DIA_Parlaf_Wo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Parlaf_ENGOR) && (Npc_IsDead(Engor) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Parlaf_ENGOR) && !Npc_IsDead(Engor) && (Engor.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -117,7 +117,7 @@ instance DIA_Parlaf_HUNGRIG(C_Info)
 
 func int DIA_Parlaf_HUNGRIG_Condition()
 {
-	if((MIS_Engor_BringMeat != LOG_SUCCESS) && Npc_KnowsInfo(hero,DIA_Parlaf_HALLO) && (Npc_IsDead(Engor) == FALSE))
+	if((MIS_Engor_BringMeat != LOG_SUCCESS) && Npc_KnowsInfo(hero,DIA_Parlaf_HALLO) && !Npc_IsDead(Engor))
 	{
 		return TRUE;
 	};
@@ -155,7 +155,7 @@ var int DIA_Parlaf_SATT_OneTime;
 func void DIA_Parlaf_SATT_Info()
 {
 	AI_Output(other,self,"DIA_Parlaf_SATT_15_00");	//Что новенького?
-	if((DIA_Parlaf_SATT_OneTime == FALSE) && (Npc_IsDead(Engor) == FALSE))
+	if((DIA_Parlaf_SATT_OneTime == FALSE) && !Npc_IsDead(Engor))
 	{
 		AI_Output(self,other,"DIA_Parlaf_SATT_03_01");	//Энгор раздал мясные пайки. Ох, как долго я этого ждал.
 		DIA_Parlaf_SATT_OneTime = TRUE;

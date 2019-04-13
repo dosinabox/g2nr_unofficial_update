@@ -16,7 +16,7 @@ instance PAL_2007_Leiche(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_OldCoin,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart_Swiney,BodyTex_N,ItAr_PAL_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart_Swiney,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

@@ -45,11 +45,11 @@ func void Spell_Cast_PalLight()
 {
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_PalLight;
+		self.attribute[ATR_MANA] -= SPL_Cost_PalLight;
 	};
 	self.aivar[AIV_SelectSpell] += 1;
 };
@@ -74,11 +74,11 @@ func void Spell_Cast_Light()
 {
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;
+		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
 	}
 	else
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_LIGHT;
+		self.attribute[ATR_MANA] -= SPL_Cost_LIGHT;
 	};
 	self.aivar[AIV_SelectSpell] += 1;
 };

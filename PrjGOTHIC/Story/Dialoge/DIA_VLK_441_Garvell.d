@@ -28,16 +28,13 @@ instance DIA_Garvell_PICKPOCKET(C_Info)
 	condition = DIA_Garvell_PICKPOCKET_Condition;
 	information = DIA_Garvell_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть его кошелек легче легкого)";
+	description = Pickpocket_20;
 };
 
 
 func int DIA_Garvell_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItSe_GoldPocket25) >= 1) && (other.attribute[ATR_DEXTERITY] >= (10 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
 };
 
 func void DIA_Garvell_PICKPOCKET_Info()
@@ -49,19 +46,8 @@ func void DIA_Garvell_PICKPOCKET_Info()
 
 func void DIA_Garvell_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 10)
-	{
-		B_GiveInvItems(self,other,ItSe_GoldPocket25,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Garvell_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
+	Info_ClearChoices(DIA_Garvell_PICKPOCKET);
 };
 
 func void DIA_Garvell_PICKPOCKET_BACK()
@@ -120,7 +106,7 @@ func void DIA_Garvell_eilig_Info()
 	AI_Output(self,other,"DIA_Garvell_eilig_04_01");	//Скоро придут орки и сожгут город дотла.
 	AI_Output(other,self,"DIA_Garvell_eilig_15_02");	//Почему ты так думаешь?
 	AI_Output(self,other,"DIA_Garvell_eilig_04_03");	//Парень, ты видишь, что паладины теперь повсюду? Почему, как ты думаешь, они здесь?
-	AI_Output(self,other,"DIA_Garvell_eilig_04_04");	//Я сажу тебе. Они здесь, потому что скоро на нас нападут орки. А это не доставит нам радости.
+	AI_Output(self,other,"DIA_Garvell_eilig_04_04");	//Я скажу тебе. Они здесь, потому что скоро на нас нападут орки. А это не доставит нам радости.
 };
 
 
@@ -147,7 +133,7 @@ func void DIA_Garvell_Schiff_Info()
 	AI_Output(other,self,"DIA_Garvell_Schiff_15_00");	//Почему ты не можешь закончить корабль?
 	AI_Output(self,other,"DIA_Garvell_Schiff_04_01");	//Ох, у нас тысячи проблем. Остов пока еще не очень стабилен и не хватает досок на обшивку.
 	AI_Output(self,other,"DIA_Garvell_Schiff_04_02");	//У меня почти не осталось средств на покупку материалов, а последняя партия вся была поедена жучком.
-	AI_Output(self,other,"DIA_Garvell_Schiff_04_03");	//Мои парни работают не очень эффективно. Один хочет построить быстрый корабль, а другого волнует только резная фигура, которая будет установлена на носу судна
+	AI_Output(self,other,"DIA_Garvell_Schiff_04_03");	//Мои парни работают не очень эффективно. Один хочет построить быстрый корабль, а другого волнует только резная фигура, которая будет установлена на носу судна.
 	AI_Output(self,other,"DIA_Garvell_Schiff_04_04");	//Как будто нам больше нечем заняться!
 	AI_Output(self,other,"DIA_Addon_Garvell_Schiff_04_00");	//К тому же один из моих парней просто перестал приходить на работу. Я начинаю опасаться, что это еще сильнее задержит постройку.
 };
@@ -216,7 +202,7 @@ func void DIA_Addon_Garvell_MissingPeople_Farim()
 {
 	AI_Output(other,self,"DIA_Addon_Garvell_MissingPeople_Farim_15_00");	//Где мне найти этого Фарима?
 	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_Farim_04_01");	//Он рыбак. Думаю, ты найдешь его рядом со складом запасов паладинов. Но я не уверен.
-	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Хижина Фарима находится неподалеку от склада провизии паладинов.");
+	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Хижина Фарима находится неподалеку от склада запасов паладинов.");
 };
 
 func void DIA_Addon_Garvell_MissingPeople_wo()
@@ -325,7 +311,7 @@ func void DIA_Garvell_Orks_Info()
 	AI_Output(self,other,"DIA_Garvell_Orks_04_01");	//Выкладывай.
 	AI_Output(other,self,"DIA_Garvell_Orks_15_02");	//Они застряли в Долине Рудников, и, похоже, они собираются остаться там.
 	AI_Output(other,self,"DIA_Garvell_Orks_15_03");	//Чтобы здесь было безопасно, паладины охраняют Проход.
-	Tell_Garvell = Tell_Garvell + 1;
+	Tell_Garvell += 1;
 	B_GivePlayerXP(XP_Ambient);
 	if(Tell_Garvell >= 3)
 	{
@@ -363,7 +349,7 @@ func void DIA_Garvell_Paladine_Info()
 	AI_Output(self,other,"DIA_Garvell_Paladine_04_01");	//Правда? Скажи мне!
 	AI_Output(other,self,"DIA_Garvell_Paladine_15_02");	//Паладины здесь, чтобы добывать магическую руду в Долине Рудников, а не потому, что они ожидают нападения орков на город.
 	AI_Output(other,self,"DIA_Garvell_Paladine_15_03");	//Как только они добудут руду, они вернутся на материк.
-	Tell_Garvell = Tell_Garvell + 1;
+	Tell_Garvell += 1;
 	B_GivePlayerXP(XP_Ambient);
 	if(Tell_Garvell >= 3)
 	{
@@ -399,8 +385,15 @@ func void DIA_Garvell_City_Info()
 {
 	AI_Output(other,self,"DIA_Garvell_City_15_00");	//Что касается орка около города...
 	AI_Output(self,other,"DIA_Garvell_City_04_01");	//Дааа?
-	AI_Output(other,self,"DIA_Garvell_City_15_02");	//Не волнуйся насчет него. Городская стража позаботится о нем.
-	Tell_Garvell = Tell_Garvell + 1;
+	if(Npc_IsDead(CityOrc))
+	{
+		AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Garvell_City_15_02");	//Не волнуйся насчет него. Городская стража позаботится о нем.
+	};
+	Tell_Garvell += 1;
 	B_GivePlayerXP(XP_Ambient);
 	if(Tell_Garvell >= 3)
 	{

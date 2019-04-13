@@ -1,7 +1,7 @@
 
 instance DIA_Girion_EXIT(C_Info)
 {
-	npc = Pal_207_Girion;
+	npc = PAL_207_Girion;
 	nr = 999;
 	condition = DIA_Girion_EXIT_Condition;
 	information = DIA_Girion_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Girion_EXIT_Info()
 
 instance DIA_Girion_Hallo(C_Info)
 {
-	npc = Pal_207_Girion;
+	npc = PAL_207_Girion;
 	nr = 2;
 	condition = DIA_Girion_Hallo_Condition;
 	information = DIA_Girion_Hallo_Info;
@@ -48,7 +48,7 @@ func void DIA_Girion_Hallo_Info()
 
 instance DIA_Girion_CanTeach(C_Info)
 {
-	npc = Pal_207_Girion;
+	npc = PAL_207_Girion;
 	nr = 5;
 	condition = DIA_Girion_CanTeach_Condition;
 	information = DIA_Girion_CanTeach_Info;
@@ -85,7 +85,7 @@ func void DIA_Girion_CanTeach_Info()
 
 instance DIA_Girion_Teach(C_Info)
 {
-	npc = Pal_207_Girion;
+	npc = PAL_207_Girion;
 	nr = 100;
 	condition = DIA_Girion_Teach_Condition;
 	information = DIA_Girion_Teach_Info;
@@ -151,7 +151,7 @@ func void DIA_Girion_Teach_2H_1()
 		{
 			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_03");	//Паладин всегда готов к бою. Но никогда не начинает бой, в котором не может победить.
 		};
-		Girion_Labercount = Girion_Labercount + 1;
+		Girion_Labercount += 1;
 		if(Girion_Labercount >= 3)
 		{
 			Girion_Labercount = 0;
@@ -184,7 +184,7 @@ func void DIA_Girion_Teach_2H_5()
 		{
 			AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_03");	//Отступление - это всегда потеря.
 		};
-		Girion_Labercount = Girion_Labercount + 1;
+		Girion_Labercount += 1;
 		if(Girion_Labercount >= 3)
 		{
 			Girion_Labercount = 0;
@@ -199,7 +199,7 @@ func void DIA_Girion_Teach_2H_5()
 
 instance DIA_Girion_CATCHPLAYERSTOLENSHIP(C_Info)
 {
-	npc = Pal_207_Girion;
+	npc = PAL_207_Girion;
 	nr = 5;
 	condition = DIA_Girion_CATCHPLAYERSTOLENSHIP_Condition;
 	information = DIA_Girion_CATCHPLAYERSTOLENSHIP_Info;
@@ -221,7 +221,7 @@ func void DIA_Girion_CATCHPLAYERSTOLENSHIP_Info()
 	Info_ClearChoices(DIA_Girion_CATCHPLAYERSTOLENSHIP);
 	Info_AddChoice(DIA_Girion_CATCHPLAYERSTOLENSHIP,"Я не знаю, о чем ты говоришь.",DIA_Girion_CATCHPLAYERSTOLENSHIP_no);
 	Info_AddChoice(DIA_Girion_CATCHPLAYERSTOLENSHIP,"Прочь с моей дороги, или мне придется убить тебя.",DIA_Girion_CATCHPLAYERSTOLENSHIP_weg);
-	Info_AddChoice(DIA_Girion_CATCHPLAYERSTOLENSHIP,"Мне нужен этот корабль.",DIA_Girion_CATCHPLAYERSTOLENSHIP_ship);
+	Info_AddChoice(DIA_Girion_CATCHPLAYERSTOLENSHIP,"Мне нужен этот корабль. Поэтому я забираю его.",DIA_Girion_CATCHPLAYERSTOLENSHIP_ship);
 };
 
 func void DIA_Girion_CATCHPLAYERSTOLENSHIP_no()
@@ -246,7 +246,7 @@ func void DIA_Girion_CATCHPLAYERSTOLENSHIP_weg()
 		AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_weg_08_02");	//Даже хотя ты один из нас, это не дает тебе права воровать собственность короля. Умри, проклятый предатель.
 	};
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	B_Attack(self,other,AR_KILL,1);
 	Girion_WantstoKillSC = TRUE;
 };
 
@@ -275,16 +275,16 @@ func void DIA_Girion_CATCHPLAYERSTOLENSHIP_ship()
 	B_GirionStayOnShip();
 	AI_Output(other,self,"DIA_Girion_CATCHPLAYERSTOLENSHIP_ship_15_10");	//Я переживу это.
 	AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_ship_08_11");	//Тогда делай то, что должен. А я подожду тебя здесь.
+	Girion_IsOnBoard = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Crewmember_Success);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Ship");
-	Girion_IsOnBoard = LOG_SUCCESS;
 };
 
 
 instance DIA_Girion_Verrat(C_Info)
 {
-	npc = Pal_207_Girion;
+	npc = PAL_207_Girion;
 	nr = 2;
 	condition = DIA_Girion_Verrat_Condition;
 	information = DIA_Girion_Verrat_Info;
@@ -305,13 +305,13 @@ func void DIA_Girion_Verrat_Info()
 {
 	AI_Output(self,other,"DIA_Girion_Verrat_08_00");	//Предатель!
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	B_Attack(self,other,AR_KILL,1);
 };
 
 
 instance DIA_Girion_OnShip(C_Info)
 {
-	npc = Pal_207_Girion;
+	npc = PAL_207_Girion;
 	nr = 2;
 	condition = DIA_Girion_OnShip_Condition;
 	information = DIA_Girion_OnShip_Info;
@@ -337,7 +337,7 @@ func void DIA_Girion_OnShip_Info()
 
 instance DIA_Girion_PICKPOCKET(C_Info)
 {
-	npc = Pal_207_Girion;
+	npc = PAL_207_Girion;
 	nr = 900;
 	condition = DIA_Girion_PICKPOCKET_Condition;
 	information = DIA_Girion_PICKPOCKET_Info;

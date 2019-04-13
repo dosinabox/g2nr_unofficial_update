@@ -382,7 +382,7 @@ func void DIA_Godar_Dragonstuff_fair()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Godar_Dragonstuff_fair_13_01");	//Без денег не очень. Сначала раздобудь золото.
+		AI_Output(self,other,"DIA_Godar_Dragonstuff_fair_13_01");	//Без денег? Нет уж, сначала раздобудь золото.
 	};
 	Info_ClearChoices(DIA_Godar_Dragonstuff);
 };
@@ -417,12 +417,12 @@ func int DIA_Godar_Teach_Condition()
 func void DIA_Godar_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Godar_Teach_15_00");	//Научи меня охотиться.
-	if((Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE))
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE))
 	{
 		Info_AddChoice(DIA_Godar_Teach,Dialog_Back,DIA_Godar_Teach_Back);
-		if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) == FALSE)
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 		{
-			Info_AddChoice(DIA_Godar_Teach,B_BuildLearnString("Красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Godar_Teach_Thief_Sneak);
+			Info_AddChoice(DIA_Godar_Teach,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Godar_Teach_Thief_Sneak);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 		{
@@ -440,7 +440,7 @@ func void DIA_Godar_Teach_Info()
 		{
 			if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE)
 			{
-				Info_AddChoice(DIA_Godar_Teach,B_BuildLearnString("Удаление чешуи драконов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonScale)),DIA_Godar_Teach_TROPHYS_DragonScale);
+				Info_AddChoice(DIA_Godar_Teach,B_BuildLearnString("Удаление чешуи дракона",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonScale)),DIA_Godar_Teach_TROPHYS_DragonScale);
 			};
 			if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE)
 			{
@@ -536,7 +536,7 @@ func int DIA_Godar_AllDragonsDead_Condition()
 func void DIA_Godar_AllDragonsDead_Info()
 {
 	AI_Output(other,self,"DIA_Godar_AllDragonsDead_15_00");	//Я убил всех драконов.
-	AI_Output(self,other,"DIA_Godar_AllDragonsDead_13_01");	//Ну и ладно. Здесь, в долине, мы все равно найдем, чем поживиться.
+	AI_Output(self,other,"DIA_Godar_AllDragonsDead_13_01");	//Ну и ладно. Здесь, в Долине, мы все равно найдем, чем поживиться.
 };
 
 

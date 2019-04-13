@@ -1,7 +1,7 @@
 
 instance DIA_Cord_EXIT(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 999;
 	condition = DIA_Cord_EXIT_Condition;
 	information = DIA_Cord_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Cord_EXIT_Info()
 
 instance DIA_Addon_Cord_MeetingIsRunning(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 1;
 	condition = DIA_Addon_Cord_MeetingIsRunning_Condition;
 	information = DIA_Addon_Cord_MeetingIsRunning_Info;
@@ -60,7 +60,7 @@ func void DIA_Addon_Cord_MeetingIsRunning_Info()
 
 instance DIA_Cord_Hallo(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 2;
 	condition = DIA_Cord_Hallo_Condition;
 	information = DIA_Cord_Hallo_Info;
@@ -86,7 +86,7 @@ func void DIA_Cord_Hallo_Info()
 		AI_Output(other,self,"DIA_Cord_Hallo_15_02");	//Что?
 		AI_Output(self,other,"DIA_Cord_Hallo_14_03");	//Когда вы, крестьяне, обращаетесь ко мне, вы всегда просите убить ни в чем не повинных зверей.
 		AI_Output(other,self,"DIA_Cord_Hallo_15_04");	//Я не крестьянин.
-		AI_Output(self,other,"DIA_Cord_Hallo_14_05");	//Ох? И чего же тогда ты хочешь?
+		AI_Output(self,other,"DIA_Cord_Hallo_14_05");	//Ох? И чего же ты хочешь?
 	};
 };
 
@@ -95,7 +95,7 @@ var int Cord_SchonmalGefragt;
 
 instance DIA_Cord_WannaJoin(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 5;
 	condition = DIA_Cord_WannaJoin_Condition;
 	information = DIA_Cord_WannaJoin_Info;
@@ -165,14 +165,14 @@ func void DIA_Cord_WannaJoin_Info()
 		B_Cord_BeBetter();
 		Log_CreateTopic(TOPIC_CordProve,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_CordProve,LOG_Running);
-		B_LogEntry(TOPIC_CordProve,"Корд отдаст свой голос за меня, когда я научусь сражаться лучше.");
+		B_LogEntry(TOPIC_CordProve,"Корд проголосует за меня, когда я научусь сражаться лучше.");
 	};
 };
 
 
 instance DIA_Addon_Cord_YouAreRanger(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 2;
 	condition = DIA_Addon_Cord_YouAreRanger_Condition;
 	information = DIA_Addon_Cord_YouAreRanger_Info;
@@ -330,7 +330,7 @@ func void DIA_Addon_Cord_YouAreRanger_Gold()
 
 func void DIA_Addon_Cord_YouAreRanger_nix()
 {
-	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_nix_15_00");	//На самом деле, мне ничего не нужно. Я и сам справлюсь.
+	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_nix_15_00");	//На самом деле мне ничего не нужно. Я и сам справлюсь.
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_nix_14_01");	//Как скажешь.
 	B_DIA_Addon_Cord_YouAreRanger_WARN();
 	Info_ClearChoices(DIA_Addon_Cord_YouAreRanger);
@@ -347,7 +347,7 @@ func void DIA_Addon_Cord_YouAreRanger_reicht()
 
 instance DIA_Addon_Cord_RangerHelp2GetSLD(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 2;
 	condition = DIA_Addon_Cord_RangerHelp2GetSLD_Condition;
 	information = DIA_Addon_Cord_RangerHelp2GetSLD_Info;
@@ -395,7 +395,7 @@ func void B_Cord_IDoItForYou()
 	AI_Output(self,other,"DIA_Addon_Cord_IDoItForYou_14_06");	//Я говорил ему, что это плохая мысль, но этот идиот меня не послушал.
 	AI_Output(self,other,"DIA_Addon_Cord_IDoItForYou_14_07");	//Думаю, они расправились с ним. Но не уверен.
 	AI_Output(self,other,"DIA_Addon_Cord_IDoItForYou_14_08");	//Ты должен выяснить, что с ним случилось.
-	B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Корд готов решить проблему с испытанием Торлофа. Приятель Корда Патрик пропал. Корд Хочет, чтобы я отправился в лагерь бандитов в горах на юго-востоке и выяснил, нет ли там Патрика.");
+	B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Корд готов решить проблему с испытанием Торлофа. Пропал приятель Корда Патрик. Корд хочет, чтобы я отправился в лагерь бандитов в горах на юго-востоке и выяснил, нет ли там Патрика.");
 	Info_ClearChoices(DIA_Addon_Cord_RangerHelp2GetSLD);
 	Info_AddChoice(DIA_Addon_Cord_RangerHelp2GetSLD,"Забудь об этом. Это гораздо сложнее, чем задание Торлофа.",B_Cord_IDoItForYou_mist);
 	Info_AddChoice(DIA_Addon_Cord_RangerHelp2GetSLD,"А почему ты думаешь, что со мной они не расправятся так же, как с Патриком?",B_Cord_IDoItForYou_Dexter);
@@ -443,7 +443,7 @@ func void DIA_Addon_Cord_RangerHelp2GetSLD_Info()
 		{
 			B_Cord_RangerHelpObsolete();
 		}
-		else if(Torlof_Probe == 0)
+		else if(Torlof_Probe == FALSE)
 		{
 			AI_Output(other,self,"DIA_Addon_Cord_RangerHelp2GetSLD_15_06");	//Я пока не получил задание.
 			B_Cord_ComeLaterWhenDone();
@@ -468,7 +468,7 @@ func void DIA_Addon_Cord_RangerHelp2GetSLD_Info()
 
 instance DIA_Addon_Cord_TalkedToDexter(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 5;
 	condition = DIA_Addon_Cord_TalkedToDexter_Condition;
 	information = DIA_Addon_Cord_TalkedToDexter_Info;
@@ -520,7 +520,7 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 
 instance DIA_Cord_ReturnPatrick(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 8;
 	condition = DIA_Cord_ReturnPatrick_Condition;
 	information = DIA_Cord_ReturnPatrick_Info;
@@ -555,7 +555,7 @@ func void DIA_Cord_ReturnPatrick_Info()
 
 instance DIA_Cord_ExplainSkills(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 1;
 	condition = DIA_Cord_ExplainSkills_Condition;
 	information = DIA_Cord_ExplainSkills_Info;
@@ -578,16 +578,16 @@ func void DIA_Cord_ExplainSkills_Info()
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_01");	//Эти два вида оружия весьма похожи друг на друга.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_02");	//Когда ты достигаешь следующего уровня в одном из них, ты автоматически повышаешь и уровень владения другим.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_03");	//Если, например, ты хорошо владеешь одноручным мечом, но все еще новичок в том, что касается двуручного...
-	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_04");	//...навык владения двуручным оружием также повысится, когда ты будешь тренировать одноручное.
+	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_04");	//... навык владения двуручным оружием также повысится, когда ты будешь тренировать одноручное.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_05");	//Если ты тренируешься только с одним типом оружия, ты найдешь процесс обучения более изматывающим.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_06");	//Если же ты всегда тренируешь оба вида оружия, ты достигнешь того же результата, затратив меньше усилий.
-	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_07");	//И еще, результат все равно будет один и тем же - так что тебе выбирать.
+	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_07");	//И еще, результат все равно будет одним и тем же - так что тебе выбирать.
 };
 
 
 instance DIA_Cord_ExplainWeapons(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 2;
 	condition = DIA_Cord_ExplainWeapons_Condition;
 	information = DIA_Cord_ExplainWeapons_Info;
@@ -620,7 +620,7 @@ var int Cord_Merke_2h;
 
 instance DIA_Cord_Teach(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 3;
 	condition = DIA_Cord_Teach_Condition;
 	information = DIA_Cord_Teach_Info;
@@ -637,6 +637,22 @@ func int DIA_Cord_Teach_Condition()
 func void B_Cord_Zeitverschwendung()
 {
 	AI_Output(self,other,"DIA_Cord_Teach_14_03");	//Я не хочу тратить свое время на новичков.
+};
+
+func void B_Cord_Teach()
+{
+	Info_ClearChoices(DIA_Cord_Teach);
+	Info_AddChoice(DIA_Cord_Teach,Dialog_Back,DIA_Cord_Teach_Back);
+	if((Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0) || (Cord_RangerHelp_Fight == TRUE))
+	{
+		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
+		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
+	};
+	if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) || (Cord_RangerHelp_Fight == TRUE))
+	{
+		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
+		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
+	};
 };
 
 func void DIA_Cord_Teach_Info()
@@ -668,18 +684,7 @@ func void DIA_Cord_Teach_Info()
 		};
 		if(Cord_Approved == TRUE)
 		{
-			Info_ClearChoices(DIA_Cord_Teach);
-			Info_AddChoice(DIA_Cord_Teach,Dialog_Back,DIA_Cord_Teach_Back);
-			if((Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0) || (Cord_RangerHelp_Fight == TRUE))
-			{
-				Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
-				Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
-			};
-			if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) || (Cord_RangerHelp_Fight == TRUE))
-			{
-				Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
-				Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
-			};
+			B_Cord_Teach();
 			Cord_Merke_1h = other.HitChance[NPC_TALENT_1H];
 			Cord_Merke_2h = other.HitChance[NPC_TALENT_2H];
 		};
@@ -702,75 +707,31 @@ func void DIA_Cord_Teach_Back()
 func void DIA_Cord_Teach_2H_1()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,90);
-	Info_ClearChoices(DIA_Cord_Teach);
-	Info_AddChoice(DIA_Cord_Teach,Dialog_Back,DIA_Cord_Teach_Back);
-	if(Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0)
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0)
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
-	};
+	B_Cord_Teach();
 };
 
 func void DIA_Cord_Teach_2H_5()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,90);
-	Info_ClearChoices(DIA_Cord_Teach);
-	Info_AddChoice(DIA_Cord_Teach,Dialog_Back,DIA_Cord_Teach_Back);
-	if(Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0)
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0)
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
-	};
+	B_Cord_Teach();
 };
 
 func void DIA_Cord_Teach_1H_1()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,90);
-	Info_ClearChoices(DIA_Cord_Teach);
-	Info_AddChoice(DIA_Cord_Teach,Dialog_Back,DIA_Cord_Teach_Back);
-	if(Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0)
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0)
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
-	};
+	B_Cord_Teach();
 };
 
 func void DIA_Cord_Teach_1H_5()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,90);
-	Info_ClearChoices(DIA_Cord_Teach);
-	Info_AddChoice(DIA_Cord_Teach,Dialog_Back,DIA_Cord_Teach_Back);
-	if(Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0)
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
-	};
-	if(Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0)
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
-	};
+	B_Cord_Teach();
 };
 
 
 instance DIA_Cord_PICKPOCKET(C_Info)
 {
-	npc = Sld_805_Cord;
+	npc = SLD_805_Cord;
 	nr = 900;
 	condition = DIA_Cord_PICKPOCKET_Condition;
 	information = DIA_Cord_PICKPOCKET_Info;

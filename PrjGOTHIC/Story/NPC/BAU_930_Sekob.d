@@ -9,7 +9,7 @@ instance BAU_930_Sekob(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fatbald",Face_P_OldMan_Gravo,BodyTex_P,ITAR_Vlk_H);

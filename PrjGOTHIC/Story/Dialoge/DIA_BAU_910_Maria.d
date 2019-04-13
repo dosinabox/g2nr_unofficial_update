@@ -100,7 +100,7 @@ func void DIA_Maria_Soeldner_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Maria_Soeldner_17_02");	//ќх. Ќу, зато с тех пор как пришли наемники, хот€ бы на ферме стало безопаснее.
+		AI_Output(self,other,"DIA_Maria_Soeldner_17_02");	//ќх. Ќу, зато с тех пор, как пришли наемники, хот€ бы на ферме стало безопаснее.
 	};
 	AI_Output(self,other,"DIA_Maria_Soeldner_17_03");	// огда мы еще были сами по себе, сюда посто€нно приходили стражники из города и грабили нас.
 	AI_Output(self,other,"DIA_Maria_Soeldner_17_04");	//ќни забирали большую часть урожа€. » овец тоже. » ничего не давали нам взамен.
@@ -156,7 +156,7 @@ instance DIA_Maria_BringPlate(C_Info)
 
 func int DIA_Maria_BringPlate_Condition()
 {
-	if(Npc_HasItems(other,ItMi_MariasGoldPlate) > 0)
+	if(Npc_HasItems(other,ItMi_MariasGoldPlate))
 	{
 		return TRUE;
 	};

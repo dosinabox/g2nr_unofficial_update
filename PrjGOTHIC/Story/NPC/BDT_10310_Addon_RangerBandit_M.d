@@ -11,7 +11,7 @@ instance BDT_10310_Addon_RangerBandit_M(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Vlk_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Tough02,BodyTex_L,ItAr_BDT_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Tough02,BodyTex_L,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

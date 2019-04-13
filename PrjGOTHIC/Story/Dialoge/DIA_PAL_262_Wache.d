@@ -59,7 +59,7 @@ instance DIA_Wache_PERM(C_Info)
 
 func int DIA_Wache_PERM_Condition()
 {
-	if(Npc_KnowsInfo(hero,dia_pal_262_greet))
+	if(Npc_KnowsInfo(hero,DIA_PAL_262_GREET))
 	{
 		return TRUE;
 	};

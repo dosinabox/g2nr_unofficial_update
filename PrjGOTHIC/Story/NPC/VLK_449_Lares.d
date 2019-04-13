@@ -2,7 +2,7 @@
 instance VLK_449_Lares(Npc_Default)
 {
 	name[0] = "Ларес";
-	guild = GIL_NONE;
+	guild = GIL_VLK;
 	id = 449;
 	voice = 9;
 	flags = NPC_FLAG_IMMORTAL;
@@ -14,6 +14,7 @@ instance VLK_449_Lares(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Schwert3);
+	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_Gold,100);
 	CreateInvItems(self,ItMi_OldCoin,1);
 	CreateInvItems(self,ItPo_Health_02,5);

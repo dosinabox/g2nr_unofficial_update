@@ -34,10 +34,7 @@ instance DIA_Peck_PICKPOCKET(C_Info)
 
 func int DIA_Peck_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItKe_City_Tower_05) >= 1) && (other.attribute[ATR_DEXTERITY] >= (60 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(60,Hlp_GetInstanceID(ItKe_City_Tower_05),1);
 };
 
 func void DIA_Peck_PICKPOCKET_Info()
@@ -49,19 +46,8 @@ func void DIA_Peck_PICKPOCKET_Info()
 
 func void DIA_Peck_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 60)
-	{
-		B_GiveInvItems(self,other,ItKe_City_Tower_05,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Peck_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(60,Hlp_GetInstanceID(ItKe_City_Tower_05),1);
+	Info_ClearChoices(DIA_Peck_PICKPOCKET);
 };
 
 func void DIA_Peck_PICKPOCKET_BACK()
@@ -170,7 +156,7 @@ func void DIA_Peck_WEAPON_Info()
 		else if(MIS_Andre_Peck == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Peck_WEAPON_12_04");	//Я не забуду тебе этого. Кто сказал Андрэ, что я был в Красном Фонаре, а?
-			AI_Output(self,other,"DIA_Peck_WEAPON_12_05");	//И теперь ты хочешь получить от меня меч ... хорошо, ты получишь меч. Вот. А теперь пошел к черту!
+			AI_Output(self,other,"DIA_Peck_WEAPON_12_05");	//И теперь ты хочешь получить от меня меч... хорошо, ты получишь меч. Вот. А теперь пошел к черту!
 			B_GiveInvItems(self,hero,ItMw_1h_MISC_Sword,1);
 		};
 		DIA_Peck_WEAPON_perm = TRUE;

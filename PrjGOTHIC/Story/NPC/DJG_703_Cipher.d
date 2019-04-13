@@ -14,7 +14,7 @@ instance DJG_703_Cipher(Npc_Default)
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItPo_Health_02,6);
 	CreateInvItems(self,ItMi_OldCoin,1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart10,BodyTex_N,itar_djg_h);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart10,BodyTex_N,ITAR_DJG_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

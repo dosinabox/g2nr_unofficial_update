@@ -19,7 +19,7 @@ func void Use_Bookstand_Rune_01_S1()
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1," ");
+		Doc_PrintLines(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };
@@ -44,7 +44,7 @@ func void Use_Bookstand_Rune_02_S1()
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1," ");
+		Doc_PrintLines(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };
@@ -69,7 +69,7 @@ func void Use_Bookstand_Innos_01_S1()
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1," ");
+		Doc_PrintLines(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };
@@ -94,7 +94,7 @@ func void Use_Bookstand_Innos_02_S1()
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1," ");
+		Doc_PrintLines(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };
@@ -127,7 +127,7 @@ func void Use_Bookstand_Kreise_01_S1()
 		Doc_PrintLine(nDocID,0,"Малая молния");
 		Doc_PrintLine(nDocID,0,"Горный хрусталь");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Скелет гоблина");
+		Doc_PrintLine(nDocID,0,"Вызов скелета гоблина");
 		Doc_PrintLine(nDocID,0,"Кость гоблина");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Лечение легких ранений");
@@ -215,7 +215,7 @@ func void Use_Bookstand_Kreise_03_S1()
 		Doc_PrintLine(nDocID,0,"Смола");
 		Doc_PrintLine(nDocID,0,"Сера");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Создание скелета");
+		Doc_PrintLine(nDocID,0,"Вызов скелета");
 		Doc_PrintLine(nDocID,0,"Кость скелета");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Страх");
@@ -230,10 +230,13 @@ func void Use_Bookstand_Kreise_03_S1()
 		Doc_PrintLine(nDocID,0,"Сера");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_PrintLine(nDocID,0,"Огненный шар");
-		Doc_PrintLine(nDocID,0,"Смола");
-		Doc_PrintLine(nDocID,0,"Сера");
-		Doc_PrintLine(nDocID,0,"");
+		Doc_PrintLine(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"Огненный шар");
+		Doc_PrintLine(nDocID,1,"Смола");
+		Doc_PrintLine(nDocID,1,"Сера");
+		Doc_PrintLine(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Чтобы создать руну, всегда необходим ОДИН из вышеперечисленных ингредиентов.");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Маг должен знать формулу заклинания и должен иметь чистый рунный камень и свиток желаемого заклинания.");
@@ -269,7 +272,7 @@ func void Use_Bookstand_Kreise_04_S1()
 		Doc_PrintLine(nDocID,0,"Горный хрусталь");
 		Doc_PrintLine(nDocID,0,"Ледяной кварц");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Пробуждение голема");
+		Doc_PrintLine(nDocID,0,"Вызов голема");
 		Doc_PrintLine(nDocID,0,"Сердце каменного голема");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Уничтожение нежити");
@@ -362,7 +365,7 @@ func void Use_Bookstand_Kreise_06_S1()
 		Doc_PrintLine(nDocID,0,"Кость скелета");
 		Doc_PrintLine(nDocID,0,"Черный жемчуг");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"Армия тьмы");
+		Doc_PrintLine(nDocID,0,"Армия Тьмы");
 		Doc_PrintLine(nDocID,0,"Кость скелета");
 		Doc_PrintLine(nDocID,0,"Черный жемчуг");
 		Doc_PrintLine(nDocID,0,"Сердце каменного голема");
@@ -371,7 +374,7 @@ func void Use_Bookstand_Kreise_06_S1()
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLine(nDocID,1,"Сморщивание монстра");
+		Doc_PrintLine(nDocID,1,"Уменьшение монстра");
 		Doc_PrintLine(nDocID,1,"Кость гоблина");
 		Doc_PrintLine(nDocID,1,"Клык тролля");
 		Doc_PrintLine(nDocID,1,"");
@@ -405,7 +408,7 @@ func void Use_Bookstand_Rules_01_S1()
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"Страница 2");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1," ");
+		Doc_PrintLines(nDocID,1,"");
 		Doc_Show(nDocID);
 	};
 };

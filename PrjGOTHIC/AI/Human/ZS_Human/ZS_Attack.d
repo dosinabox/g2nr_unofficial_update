@@ -8,6 +8,19 @@ func void B_AssessSurprise()
 	};
 };
 
+func void B_Flee()
+{
+		if(C_NpcIsHero(other))
+		{
+			self.aivar[AIV_LastFightAgainstPlayer] = FIGHT_LOST;
+			self.aivar[AIV_LastFightComment] = FALSE;
+		};
+		Npc_ClearAIQueue(self);
+		B_ClearPerceptions(self);
+		Npc_SetTarget(self,other);
+		AI_StartState(self,ZS_Flee,0,"");
+};
+
 func void ZS_Attack()
 {
 	Perception_Set_Minimal();
@@ -16,10 +29,7 @@ func void ZS_Attack()
 	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
 	if(C_WantToFlee(self,other))
 	{
-		Npc_ClearAIQueue(self);
-		B_ClearPerceptions(self);
-		Npc_SetTarget(self,other);
-		AI_StartState(self,ZS_Flee,0,"");
+		B_Flee();
 		return;
 	};
 	if(self.aivar[AIV_LOADGAME] == FALSE)
@@ -48,6 +58,10 @@ func int ZS_Attack_Loop()
 {
 	B_Greg_ComesToDexter();
 	Npc_GetTarget(self);
+	if(C_WantToFlee(self,other))
+	{
+		return LOOP_END;
+	};
 	if(Npc_GetDistToNpc(self,other) > self.aivar[AIV_FightDistCancel])
 	{
 		Npc_ClearAIQueue(self);
@@ -135,7 +149,7 @@ func int ZS_Attack_Loop()
 	};
 	B_CreateAmmo(self);
 	B_SelectWeapon(self,other);
-	if(Hlp_IsValidNpc(other) && (C_NpcIsDown(other) == FALSE))
+	if(Hlp_IsValidNpc(other) && !C_NpcIsDown(other))
 	{
 		if(other.aivar[AIV_INVINCIBLE] == FALSE)
 		{
@@ -175,7 +189,7 @@ func int ZS_Attack_Loop()
 					self.aivar[AIV_LastFightComment] = FALSE;
 				};
 			}
-			else if((Npc_GetAttitude(self,other) == ATT_HOSTILE) && (!C_NpcIsHero(self)))
+			else if((Npc_GetAttitude(self,other) == ATT_HOSTILE) && !C_NpcIsHero(self))
 			{
 				self.aivar[AIV_ATTACKREASON] = self.aivar[AIV_LastPlayerAR];
 			};
@@ -196,6 +210,11 @@ func int ZS_Attack_Loop()
 func void ZS_Attack_End()
 {
 	other = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
+	if(C_WantToFlee(self,other))
+	{
+		B_Flee();
+		return;
+	};
 	if(self.aivar[AIV_PursuitEnd] == TRUE)
 	{
 		if(Hlp_IsValidNpc(other) && C_NpcIsHero(other) && (self.npcType != NPCTYPE_FRIEND))
@@ -235,7 +254,7 @@ func void ZS_Attack_End()
 			AI_StartState(self,ZS_RansackBody,0,"");
 			return;
 		}
-		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(AlligatorJack)) && (Npc_HasItems(other,ItFoMuttonRaw) > 0))
+		else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(AlligatorJack)) && Npc_HasItems(other,ItFoMuttonRaw))
 		{
 			AI_StartState(self,ZS_GetMeat,0,"");
 			return;

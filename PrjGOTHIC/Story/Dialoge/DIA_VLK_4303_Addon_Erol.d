@@ -120,7 +120,7 @@ func void DIA_Addon_Erol_what_dein()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_what_dein_15_00");	//Так это твои вещи лежат под мостом?
 	AI_Output(self,other,"DIA_Addon_Erol_what_dein_10_01");	//Да. Тележка, товары, все остальное.
-	if(Npc_HasItems(other,itmi_erolskelch) > 0)
+	if(Npc_HasItems(other,ItMi_ErolsKelch))
 	{
 		AI_Output(other,self,"DIA_Addon_Erol_what_dein_Add_15_00");	//Я кое-что оттуда забрал...
 		AI_Output(self,other,"DIA_Addon_Erol_what_dein_Add_10_01");	//Можешь оставить эти вещи себе, ценности они не представляют.
@@ -201,7 +201,7 @@ func void DIA_Addon_Erol_FernandosWeapons_Info()
 	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_01");	//Поставках оружия? Да, кое-что знаю. Какая-то свинья из города продала им столько оружия, что они еле его увезли.
 	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_02");	//Часть его хранится на мосту у напавших на меня бандитов.
 	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_03");	//Часть увезли куда-то в сторону фермы Бенгара на верхних пастбищах.
-	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_04");	//Возможно, бандиты хотели переправить оружие через проход.
+	AI_Output(self,other,"DIA_Addon_Erol_FernandosWeapons_10_04");	//Возможно, бандиты хотели переправить оружие через Проход.
 	Info_ClearChoices(DIA_Addon_Erol_FernandosWeapons);
 	Info_AddChoice(DIA_Addon_Erol_FernandosWeapons,Dialog_Back,DIA_Addon_Erol_FernandosWeapons_back);
 	Info_AddChoice(DIA_Addon_Erol_FernandosWeapons,"Где находятся эти верхние пастбища?",DIA_Addon_Erol_FernandosWeapons_bengar);
@@ -250,7 +250,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 	var int XP_Addon_BringStoneplates;
 	var int StoneplatesGeld;
 	AI_Output(other,self,"DIA_Addon_Erol_Stoneplates_15_00");	//Насчет этих каменных табличек...
-	if(Npc_HasItems(other,ItWr_StonePlateCommon_Addon) >= 1)
+	if(Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
 	{
 		StoneplatesCount = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
 		if(StoneplatesCount == 1)
@@ -258,7 +258,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 			AI_Output(other,self,"DIA_Addon_Erol_Stoneplates_15_01");	//У меня есть одна такая.
 			B_GivePlayerXP(XP_Addon_BringStoneplate);
 			B_GiveInvItems(other,self,ItWr_StonePlateCommon_Addon,1);
-			StoneplatesCounter = StoneplatesCounter + 1;
+			StoneplatesCounter += 1;
 		}
 		else
 		{
@@ -273,7 +273,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 			{
 				B_GiveInvItems(other,self,ItWr_StonePlateCommon_Addon,StoneplatesCount);
 				XP_Addon_BringStoneplates = StoneplatesCount * XP_Addon_BringStoneplate;
-				StoneplatesCounter = StoneplatesCounter + StoneplatesCount;
+				StoneplatesCounter += StoneplatesCount;
 			};
 			B_GivePlayerXP(XP_Addon_BringStoneplates);
 		};

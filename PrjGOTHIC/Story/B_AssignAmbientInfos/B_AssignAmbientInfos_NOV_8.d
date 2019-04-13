@@ -32,7 +32,7 @@ instance DIA_NOV_8_Fegen(C_Info)
 
 func int DIA_NOV_8_Fegen_Condition()
 {
-	if((Kapitel == 1) && (MIS_KlosterArbeit == LOG_Running) && (NOV_Helfer < 4))
+	if((Kapitel == 1) && (MIS_ParlanFegen == LOG_Running) && (NOV_Helfer < 4))
 	{
 		return TRUE;
 	};
@@ -50,7 +50,7 @@ func void DIA_NOV_8_Fegen_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_8_Fegen_08_01");	//Ох, парень. Ты только недавно появился здесь и уже заставляешь других делать свою работу?
 			AI_Output(self,other,"DIA_NOV_8_Fegen_08_02");	//Не расстраивайся, у меня были такие же проблемы, когда я пришел сюда. Поэтому я помогу тебе. Было бы смешно, если бы мы не справились с этим.
-			NOV_Helfer = NOV_Helfer + 1;
+			NOV_Helfer += 1;
 			Feger3_Permanent = TRUE;
 			B_GivePlayerXP(XP_Feger);
 			AI_StopProcessInfos(self);
@@ -62,7 +62,7 @@ func void DIA_NOV_8_Fegen_Info()
 			AI_Output(self,other,"DIA_NOV_8_Fegen_08_03");	//Брат, я понимаю твое состояние. И я уже сказал тебе, что помогу тебе. Именно этим я и занимаюсь.
 		};
 	};
-	if(Hlp_GetInstanceID(Feger3) == Hlp_GetInstanceID(self) == FALSE)
+	if(Hlp_GetInstanceID(Feger3) != Hlp_GetInstanceID(self))
 	{
 		AI_Output(self,other,"DIA_NOV_8_Fegen_08_04");	//Эй, я был бы не против, но я очень занят.
 	};
@@ -81,7 +81,7 @@ instance DIA_NOV_8_Wurst(C_Info)
 
 func int DIA_NOV_8_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && (Npc_HasItems(self,ItFo_Schafswurst) == 0) && (Npc_HasItems(other,ItFo_Schafswurst) >= 1))
+	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -94,7 +94,7 @@ func void DIA_NOV_8_Wurst_Info()
 	AI_Output(other,self,"DIA_NOV_8_Wurst_15_00");	//Как насчет вкусной бараньей колбасы?
 	AI_Output(self,other,"DIA_NOV_8_Wurst_08_01");	//Не надейся, не откажусь. Спасибо - это именно то, что мне было нужно.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
-	Wurst_Gegeben = Wurst_Gegeben + 1;
+	Wurst_Gegeben += 1;
 	CreateInvItems(self,ItFo_Sausage,1);
 	B_UseItem(self,ItFo_Sausage);
 	NovizeLeft = IntToString(13 - Wurst_Gegeben);

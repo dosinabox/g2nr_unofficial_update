@@ -39,7 +39,7 @@ instance DIA_BridgeDementor(C_Info)
 
 func int DIA_BridgeDementor_Condition()
 {
-	if(Npc_RefuseTalk(self) == FALSE)
+	if(!Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};

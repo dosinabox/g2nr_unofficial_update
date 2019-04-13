@@ -8,7 +8,7 @@ func void ZS_Spit_Fire()
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Npc_HasItems(self,ItLsTorchFirespit) == 0)
+	if(!Npc_HasItems(self,ItLsTorchFirespit))
 	{
 		CreateInvItem(self,ItLsTorchFirespit);
 	};

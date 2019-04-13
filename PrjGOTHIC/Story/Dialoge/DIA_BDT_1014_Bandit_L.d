@@ -1,7 +1,7 @@
 
 instance DIA_BDT_1014_BANDIT_EXIT(C_Info)
 {
-	npc = Bdt_1014_Bandit_L;
+	npc = BDT_1014_Bandit_L;
 	nr = 999;
 	condition = DIA_BDT_1014_BANDIT_EXIT_Condition;
 	information = DIA_BDT_1014_BANDIT_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_BDT_1014_BANDIT_EXIT_Info()
 
 instance DIA_BDT_1014_BANDIT_KILLER(C_Info)
 {
-	npc = Bdt_1014_Bandit_L;
+	npc = BDT_1014_Bandit_L;
 	nr = 1;
 	condition = DIA_BDT_1014_BANDIT_KILLER_Condition;
 	information = DIA_BDT_1014_BANDIT_KILLER_Info;

@@ -139,6 +139,7 @@ func int ZS_WatchFight_Loop()
 		{
 			B_TurnToNpc(self,other);
 		};
+		AI_SetWalkMode(self,NPC_WALK);
 		AI_Dodge(self);
 	}
 	else if(Npc_GetStateTime(self) != self.aivar[AIV_StateTime])

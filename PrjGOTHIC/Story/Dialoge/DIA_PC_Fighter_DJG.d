@@ -281,7 +281,7 @@ instance DIA_GornDJG_DRAGONDEAD(C_Info)
 
 func int DIA_GornDJG_DRAGONDEAD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_GornDJG_WHATSUP) && (Npc_GetDistToWP(self,"OW_DJG_ROCKCAMP_01") < 1000) && (Npc_IsDead(RockDragon) == TRUE))
+	if(Npc_KnowsInfo(other,DIA_GornDJG_WHATSUP) && (Npc_GetDistToWP(self,"OW_DJG_ROCKCAMP_01") < 1000) && Npc_IsDead(RockDragon))
 	{
 		return TRUE;
 	};

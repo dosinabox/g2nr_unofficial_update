@@ -116,10 +116,11 @@ func void DIA_Addon_Patrick_ready_Info()
 	B_StartOtherRoutine(Buddler_1,"WORK");
 	B_StartOtherRoutine(Buddler_2,"WORK");
 	B_StartOtherRoutine(Buddler_3,"WORK");
+	B_StartOtherRoutine(Buddler_4,"WORK");
 	B_RemoveNpc(STRF_1128_Addon_Sklave);
 	B_RemoveNpc(STRF_1129_Addon_Sklave);
 	B_RemoveNpc(STRF_1130_Addon_Sklave);
-	B_RemoveNpc(STRF_1136_Addon_Sklave);
+//	B_RemoveNpc(STRF_1136_Addon_Sklave);
 	B_RemoveNpc(STRF_1137_Addon_Sklave);
 	B_RemoveNpc(STRF_1138_Addon_Sklave);
 	B_RemoveNpc(STRF_1139_Addon_Sklave);

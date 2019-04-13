@@ -238,21 +238,21 @@ func void DIA_Torlof_RUF_Info()
 	Points_Sld = 0;
 	if(Npc_IsDead(SLD_Wolf))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(SLD_Wolf.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_02");	//Вольф говорит, что ничего не имеет против тебя.
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	};
 	if(Npc_IsDead(Jarvis))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(MIS_Jarvis_SldKO == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_03");	//Джарвис полагает, что ты на правильной стороне.
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Jarvis.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
@@ -261,12 +261,12 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Cord))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Cord_Approved == TRUE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_06");	//Корд полагает, что ты достаточно хорош, чтобы присоединиться к нам.
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Cord.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
@@ -274,12 +274,12 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Cipher))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if((MIS_Cipher_Paket == LOG_SUCCESS) || (MIS_Cipher_BringWeed == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_08");	//Сифер говорит, что ему абсолютно ясно, что ты достоин присоединиться к нам. Похоже, что-то сделало его безгранично счастливым.
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Cipher.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
@@ -287,7 +287,7 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Rod))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Npc_HasItems(Rod,ItMw_2h_Rod) == 0)
 	{
@@ -298,7 +298,7 @@ func void DIA_Torlof_RUF_Info()
 		AI_Output(self,other,"DIA_Torlof_RUF_01_11");	//Похоже, тебе удалось убедить Рода, что ты достаточно силен.
 		if(Rod.aivar[AIV_DefeatedByPlayer] == FALSE)
 		{
-			Points_Sld = Points_Sld + 1;
+			Points_Sld += 1;
 		};
 	}
 	else if(Rod.aivar[AIV_TalkedToPlayer] == TRUE)
@@ -307,12 +307,12 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Sentenza))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Npc_HasItems(Sentenza,ItMi_Gold) >= 50)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_13");	//Сентенза проголосует за тебя. Он говорит, что ты весьма рассудительный человек.
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 		Torlof_SentenzaCounted = TRUE;
 	}
 	else if(Sentenza.aivar[AIV_TalkedToPlayer] == TRUE)
@@ -321,7 +321,7 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Raoul))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Raoul.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
@@ -329,7 +329,7 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Bullco))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Bullco.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
@@ -337,7 +337,7 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Buster))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Buster_Duell == TRUE)
 	{
@@ -354,7 +354,7 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if(Npc_IsDead(Dar))
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	}
 	else if(Dar_LostAgainstCipher == TRUE)
 	{
@@ -374,23 +374,23 @@ func void DIA_Torlof_RUF_Info()
 		if(Cord_RangerHelp_TorlofsProbe == TRUE)
 		{
 			AI_Output(self,other,"DIA_Addon_Torlof_RUF_01_00");	//(усмехается) Пусть Корд в этом и поучаствовал...
-			Points_Sld = Points_Sld + 4;
+			Points_Sld += 4;
 		}
 		else if(MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Torlof_RUF_01_25");	//Хотя многие считают, что заставить фермера заплатить ренту было слишком легко, чтобы считать это испытанием.
-			Points_Sld = Points_Sld + 3;
+			Points_Sld += 3;
 		}
 		else
 		{
-			Points_Sld = Points_Sld + 5;
+			Points_Sld += 5;
 		};
 		AI_Output(self,other,"DIA_Torlof_RUF_01_26");	//В любом случае, ты можешь рассчитывать на мой голос.
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 	};
 	if(Sld_Duelle_gewonnen >= 3)
 	{
-		Points_Sld = Points_Sld + 1;
+		Points_Sld += 1;
 		if(Points_Sld >= 9)
 		{
 			AI_Output(self,other,"DIA_Torlof_RUF_01_27");	//И ты победил в нескольких честных дуэлях.
@@ -454,12 +454,19 @@ func void B_Torlof_HolPachtVonSekob()
 {
 	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_00");	//Хорошо. Слушай. Фермер Секоб не платит ренту Онару уже несколько недель.
 	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_01");	//Онар хочет, чтобы тот выложил 50 золотых монет. Есть вопросы?
-	AI_Output(other,self,"B_Torlof_HolPachtvonSekob_15_02");	//Где ферма Секоба?
-	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_03");	//На севере этой долины. Если смотреть отсюда, она будет справа от большого перекрестка.
-	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_04");	//Если у тебя будут проблемы, фермеры на полях помогут тебе найти дорогу.
+	if(Sekob.aivar[AIV_TalkedToPlayer] == FALSE)
+	{
+		AI_Output(other,self,"B_Torlof_HolPachtvonSekob_15_02");	//Где ферма Секоба?
+		AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_03");	//На севере этой долины. Если смотреть отсюда, она будет справа от большого перекрестка.
+		AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_04");	//Если у тебя будут проблемы, фермеры на полях помогут тебе найти дорогу.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Torlof_Probe_15_06");	//Нет.
+	};
 	MIS_Torlof_HolPachtVonSekob = LOG_Running;
 	Sekob.flags = 0;
-	CreateInvItems(Sekob,ItMi_Gold,50);
+//	CreateInvItems(Sekob,ItMi_Gold,50);
 	Log_CreateTopic(TOPIC_TorlofPacht,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TorlofPacht,LOG_Running);
 	B_LogEntry(TOPIC_TorlofPacht,"Торлоф попросил меня собрать ренту с фермера Секоба. Он должен заплатить 50 золотых монет.");
@@ -470,13 +477,20 @@ func void B_Torlof_BengarMilizKlatschen()
 	AI_Output(self,other,"B_Torlof_BengarMilizKlatschen_01_00");	//Фермер Бенгар недавно жаловался, что ополчение из города действует ему на нервы.
 	AI_Output(self,other,"B_Torlof_BengarMilizKlatschen_01_01");	//Они давят на этого фермера - возможно, пытаются заставить его порвать отношения с Онаром.
 	AI_Output(self,other,"B_Torlof_BengarMilizKlatschen_01_02");	//Я хочу, чтобы ты отправился на его ферму и дал понять этим ополченцам, что там им делать нечего! Есть вопросы?
-	AI_Output(other,self,"B_Torlof_BengarMilizKlatschen_15_03");	//Как мне найти ферму Бенгара?
-	AI_Output(self,other,"B_Torlof_BengarMilizKlatschen_01_04");	//На юго-западе этой долины есть большая лестница, ведущая на плато в горах. На нем и находится ферма Бенгара.
-	AI_Output(self,other,"B_Torlof_BengarMilizKlatschen_01_05");	//Если ты заблудишься, поспрашивай фермеров на полях, они покажут тебе дорогу.
+	if(Bengar.aivar[AIV_TalkedToPlayer] == FALSE)
+	{
+		AI_Output(other,self,"B_Torlof_BengarMilizKlatschen_15_03");	//Как мне найти ферму Бенгара?
+		AI_Output(self,other,"B_Torlof_BengarMilizKlatschen_01_04");	//На юго-западе этой долины есть большая лестница, ведущая на плато в горах. На нем и находится ферма Бенгара.
+		AI_Output(self,other,"B_Torlof_BengarMilizKlatschen_01_05");	//Если ты заблудишься, поспрашивай фермеров на полях, они покажут тебе дорогу.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Torlof_Probe_15_06");	//Нет.
+	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_Running;
 	Bengar.flags = 0;
-	Wld_InsertNpc(Mil_335_Rumbold,"FARM3");
-	Wld_InsertNpc(Mil_336_Rick,"FARM3");
+	Wld_InsertNpc(MIL_335_Rumbold,"FARM3");
+	Wld_InsertNpc(MIL_336_Rick,"FARM3");
 	B_InitNpcGlobals();
 	Log_CreateTopic(TOPIC_TorlofMiliz,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TorlofMiliz,LOG_Running);
@@ -1038,7 +1052,7 @@ func void DIA_Torlof_BEMYCAPTAIN_Info()
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_07");	//Направляйся в замок в Долине Рудников. Укради у стражника ключ от главных ворот и открой их. А орки позаботятся об остальном!
 	Log_CreateTopic(Topic_Captain,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Captain,LOG_Running);
-	B_LogEntry(Topic_Captain,"Прежде чем Торлоф согласится занять пост капитана, я должен заставить паладинов покинуть город. Он говорит, что нужно устроить инцидент в замке в Долине рудников. Он хочет, чтобы я украл ключ от главных ворот у стражника и впустил орков в замок. Он надеется, что это заставит паладинов покинуть город, чтобы помочь своим товарищам.");
+	B_LogEntry(Topic_Captain,"Прежде чем Торлоф согласится занять пост капитана, я должен заставить паладинов покинуть город. Он говорит, что нужно устроить инцидент в замке в Долине Рудников. Он хочет, чтобы я украл ключ от главных ворот у стражника и впустил орков в замок. Он надеется, что это заставит паладинов покинуть город, чтобы помочь своим товарищам.");
 };
 
 
@@ -1185,7 +1199,7 @@ func int DIA_Torlof_LOSFAHREN_Condition()
 func void DIA_Torlof_LOSFAHREN_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_LOSFAHREN_15_00");	//Мы отправляемся к острову.
-	if(B_CaptainConditions(self) == TRUE)
+	if(B_CaptainConditions(self))
 	{
 		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_01");	//Хорошо. Дай мне морскую карту, и мы поднимаем паруса.
 		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_02");	//(кричит) Поднять паруса!

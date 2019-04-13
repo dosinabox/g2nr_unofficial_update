@@ -250,7 +250,7 @@ func void DIA_Ulf_Suche_Info()
 	AI_Output(self,other,"DIA_Ulf_Suche_03_02");	//Точно. Я как раз хотел посидеть, попить холодного пива, когда из-за угла вышел Дарон и сказал мне, что я был избран.
 	AI_Output(self,other,"DIA_Ulf_Suche_03_03");	//Кто бы мог подумать? Воля Инноса непостижима. А что привело тебя сюда?
 	AI_Output(other,self,"DIA_Ulf_Suche_15_04");	//Я потребовал прохождения Испытания Огнем.
-	AI_Output(self,other,"DIA_Ulf_Suche_03_05");	//Это невозможно! Похоже, мужества у тебя на десятерых хватит. Это значит, что ты тоже будешь искать 'то, что верующий находит в конце пути'?
+	AI_Output(self,other,"DIA_Ulf_Suche_03_05");	//Это невозможно! Похоже, мужества у тебя хватит на десятерых. Это значит, что ты тоже будешь искать 'то, что верующий находит в конце пути'?
 	AI_Output(other,self,"DIA_Ulf_Suche_15_06");	//Похоже на это.
 };
 
@@ -278,7 +278,7 @@ func void DIA_Ulf_Rausgefunden_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Rausgefunden_15_00");	//Ты еще ничего не нашел?
 	AI_Output(self,other,"DIA_Ulf_Rausgefunden_03_01");	//Ну, я пытался идти за Агоном - но я потерял его.
-	AI_Output(self,other,"DIA_Ulf_Rausgefunden_03_02");	//И что теперь?.. Что они говорят? Следуй знакам Инноса. Но я не понимаю эту загадку с путем...
+	AI_Output(self,other,"DIA_Ulf_Rausgefunden_03_02");	//И что же теперь? Что они говорят? Следуй знакам Инноса. Но я не понимаю эту загадку с путем...
 	AI_Output(self,other,"DIA_Ulf_Rausgefunden_03_03");	//Так что я продолжу свои поиски.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FOLLOW");
@@ -353,7 +353,7 @@ instance DIA_Ulf_Abrechnung(C_Info)
 
 func int DIA_Ulf_Abrechnung_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && (Npc_HasItems(other,ItMi_RuneBlank) >= 1))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (other.guild == GIL_NOV) && Npc_HasItems(other,ItMi_RuneBlank))
 	{
 		return TRUE;
 	};

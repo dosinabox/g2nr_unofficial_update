@@ -1,7 +1,7 @@
 
 instance DIA_Boltan_EXIT(C_Info)
 {
-	npc = Mil_313_Boltan;
+	npc = MIL_313_Boltan;
 	nr = 999;
 	condition = DIA_Boltan_EXIT_Condition;
 	information = DIA_Boltan_EXIT_Info;
@@ -24,7 +24,7 @@ func void DIA_Boltan_EXIT_Info()
 
 instance DIA_Boltan_HALLO(C_Info)
 {
-	npc = Mil_313_Boltan;
+	npc = MIL_313_Boltan;
 	nr = 1;
 	condition = DIA_Boltan_HALLO_Condition;
 	information = DIA_Boltan_HALLO_Info;
@@ -46,7 +46,7 @@ func void DIA_Boltan_HALLO_Info()
 
 instance DIA_Boltan_ToConvicts(C_Info)
 {
-	npc = Mil_313_Boltan;
+	npc = MIL_313_Boltan;
 	nr = 2;
 	condition = DIA_Boltan_ToConvicts_Condition;
 	information = DIA_Boltan_ToConvicts_Info;
@@ -95,7 +95,7 @@ func void DIA_Boltan_ToConvicts_Info()
 
 instance DIA_Boltan_HalloBennet(C_Info)
 {
-	npc = Mil_313_Boltan;
+	npc = MIL_313_Boltan;
 	nr = 1;
 	condition = DIA_Boltan_HalloBennet_Condition;
 	information = DIA_Boltan_HalloBennet_Info;
@@ -122,7 +122,7 @@ func void DIA_Boltan_HalloBennet_Info()
 
 instance DIA_Boltan_HalloCanthar(C_Info)
 {
-	npc = Mil_313_Boltan;
+	npc = MIL_313_Boltan;
 	nr = 1;
 	condition = DIA_Boltan_HalloCanthar_Condition;
 	information = DIA_Boltan_HalloCanthar_Info;
@@ -141,7 +141,7 @@ func int DIA_Boltan_HalloCanthar_Condition()
 
 func void DIA_Boltan_HalloCanthar_Info()
 {
-	AI_Output(self,other,"DIA_Boltan_Add_05_11");	//Эй, ты тот парень, что написал жалобу на Кантара, тогровца.
+	AI_Output(self,other,"DIA_Boltan_Add_05_11");	//Эй, ты тот парень, что написал жалобу на Кантара, торговца.
 	AI_Output(self,other,"DIA_Boltan_Add_05_12");	//Много людей приходило, чтобы похлопотать за него. Уважаемых людей.
 	AI_Output(self,other,"DIA_Boltan_Add_05_13");	//Должно быть, произошло какое-то недоразумение. Такое бывает.
 	AI_Output(self,other,"DIA_Boltan_Add_05_14");	//В будущем тебе стоит тщательнее выбирать, кого ты хочешь упечь в тюрьму.

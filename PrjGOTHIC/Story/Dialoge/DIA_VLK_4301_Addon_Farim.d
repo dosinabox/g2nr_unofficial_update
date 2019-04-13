@@ -108,7 +108,7 @@ func int DIA_Addon_Farim_MilizProbs_Condition()
 func void DIA_Addon_Farim_MilizProbs_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_MilizProbs_15_00");	//Неприятности с ополчением?
-	if(((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL)) == FALSE)
+	if((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Addon_Farim_MilizProbs_11_01");	//Эти подонки приходят ко мне и забирают все, что им вздумается.
 	};
@@ -361,7 +361,7 @@ func int DIA_Addon_Farim_WilliamReport_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William))
 	{
-		if((Npc_HasItems(other,ITWr_Addon_William_01) > 0) || (Saturas_AboutWilliam == TRUE))
+		if(Npc_HasItems(other,ITWr_Addon_William_01) || (Saturas_AboutWilliam == TRUE))
 		{
 			return TRUE;
 		};

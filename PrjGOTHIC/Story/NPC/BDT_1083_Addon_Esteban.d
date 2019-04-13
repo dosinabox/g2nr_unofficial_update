@@ -16,7 +16,7 @@ instance BDT_1083_Addon_Esteban(Npc_Default)
 	B_CreateAmbientInv(self);
 	CreateInvItem(self,itke_addon_esteban);
 	CreateInvItems(self,ItMi_Addon_Stone_01,5);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_ToughBart_Quentin,BodyTex_L,ItAr_BDT_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_ToughBart_Quentin,BodyTex_L,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

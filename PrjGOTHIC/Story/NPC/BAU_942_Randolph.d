@@ -38,3 +38,8 @@ func void Rtn_Wettkampf_942()
 	TA_Stand_Drinking(22,0,8,0,"NW_TAVERNE_RUKHAR");
 };
 
+func void Rtn_RandolphWettkampfLost_942()
+{
+	TA_Pick_FP(5,0,21,0,"NW_FARM2_FIELD_04");
+	TA_Stand_Drinking(21,0,5,0,"NW_FARM2_OUT_07");
+};

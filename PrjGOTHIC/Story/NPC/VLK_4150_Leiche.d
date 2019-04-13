@@ -14,7 +14,8 @@ instance VLK_4150_Leiche(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 1;
 	attribute[ATR_HITPOINTS] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal01,BodyTex_B,ITAR_Mil_L);
+	B_CreateAmbientInv(self);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal01,BodyTex_B,ITAR_MIL_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

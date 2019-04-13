@@ -38,26 +38,21 @@ func int dia_bdt_4_standard_condition()
 	};
 };
 
-func void b_verschwinde_stimme4()
-{
-	AI_Output(self,other,"SVM_4_GetOutOfHere");	//Прочь!
-};
-
 func void dia_bdt_4_standard_info()
 {
 	var int randy;
 	randy = Hlp_Random(3);
 	if(randy == 0)
 	{
-		AI_Output(self,other,"SVM_4_WhatsThisSupposedToBe");	//Что ты там ищешь?
+		B_Say(self,other,"$WhatsThisSupposedToBe");
 	};
 	if(randy == 1)
 	{
-		b_verschwinde_stimme4();
+		B_Say(self,other,"$GetOutOfHere");
 	};
 	if(randy == 2)
 	{
-		AI_Output(self,other,"SVM_4_NOTNOW");	//Оставь меня в покое!
+		B_Say(self,other,"$NOTNOW");
 	};
 	AI_StopProcessInfos(self);
 };

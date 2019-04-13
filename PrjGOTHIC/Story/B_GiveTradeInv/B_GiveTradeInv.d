@@ -51,9 +51,10 @@ func void B_GiveTradeInv(var C_Npc slf)
 	var C_Npc Trd_Salandril;
 	var C_Npc Trd_Gaertner;
 	var C_Npc Trd_Lutero;
+	var C_Npc Trd_Rupert;
 	Trd_Cronos_NW = Hlp_GetNpc(KDW_1401_Addon_Cronos_NW);
 	Trd_Cronos_ADW = Hlp_GetNpc(KDW_14010_Addon_Cronos_ADW);
-	Trd_Martin = Hlp_GetNpc(Mil_350_Addon_Martin);
+	Trd_Martin = Hlp_GetNpc(MIL_350_Addon_Martin);
 	Trd_Garett = Hlp_GetNpc(PIR_1357_Addon_Garett);
 	Trd_Fisk = Hlp_GetNpc(BDT_1097_Addon_Fisk);
 	Trd_Huno = Hlp_GetNpc(BDT_1099_Addon_Huno);
@@ -101,6 +102,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	Trd_Salandril = Hlp_GetNpc(VLK_422_Salandril);
 	Trd_Gaertner = Hlp_GetNpc(VLK_411_Gaertner);
 	Trd_Lutero = Hlp_GetNpc(VLK_404_Lutero);
+	Trd_Rupert = Hlp_GetNpc(VLK_458_Rupert);
 	B_ClearRuneInv(slf);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 	{
@@ -354,6 +356,11 @@ func void B_GiveTradeInv(var C_Npc slf)
 			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Lutero(slf);
 		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Rupert))
+		{
+			B_ClearJunkTradeInv(slf);
+			B_GiveTradeInv_Rupert(slf);
+		};
 		slf.aivar[AIV_ChapterInv] = Kapitel + 1;
 	};
 	if(Npc_IsInState(slf,ZS_Dead) || Npc_IsInState(slf,ZS_Unconscious))
@@ -555,6 +562,10 @@ func void B_GiveTradeInv(var C_Npc slf)
 			B_ClearDeadTrader(slf);
 		};
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Lutero))
+		{
+			B_ClearDeadTrader(slf);
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Rupert))
 		{
 			B_ClearDeadTrader(slf);
 		};

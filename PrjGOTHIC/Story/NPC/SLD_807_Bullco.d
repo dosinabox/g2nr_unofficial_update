@@ -1,5 +1,5 @@
 
-instance Sld_807_Bullco(Npc_Default)
+instance SLD_807_Bullco(Npc_Default)
 {
 	name[0] = "Буллко";
 	guild = GIL_SLD;
@@ -14,7 +14,7 @@ instance Sld_807_Bullco(Npc_Default)
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Olli_Kahn,BodyTex_N,itar_sld_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Olli_Kahn,BodyTex_N,ITAR_SLD_M);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

@@ -13,7 +13,7 @@ instance BDT_1025_Bandit_H(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	EquipItem(self,ItRw_Sld_Bow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_B_Normal01,BodyTex_B,ItAr_BDT_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_B_Normal01,BodyTex_B,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

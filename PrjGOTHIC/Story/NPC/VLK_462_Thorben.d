@@ -10,7 +10,7 @@ instance VLK_462_Thorben(Npc_Default)
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Mace);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItKE_lockpick,12);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal04,BodyTex_N,ITAR_Vlk_L);
 	Mdl_SetModelFatness(self,1);

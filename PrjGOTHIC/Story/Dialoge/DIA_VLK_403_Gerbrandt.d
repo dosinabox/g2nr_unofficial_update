@@ -1,5 +1,5 @@
 
-var int diego_coming;
+var int DIEGO_COMING;
 
 instance DIA_Gerbrandt_EXIT(C_Info)
 {
@@ -47,7 +47,7 @@ instance DIA_Gerbrandt_PICKPOCKET(C_Info)
 
 func int DIA_Gerbrandt_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItSe_GoldPocket100) >= 1) && (other.attribute[ATR_DEXTERITY] >= (30 - Theftdiff)) && (DIEGO_COMING != TRUE))
+	if(C_StealItems(30,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (DIEGO_COMING != TRUE))
 	{
 		return TRUE;
 	};
@@ -62,19 +62,8 @@ func void DIA_Gerbrandt_PICKPOCKET_Info()
 
 func void DIA_Gerbrandt_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 30)
-	{
-		B_GiveInvItems(self,other,ItSe_GoldPocket100,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Gerbrandt_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(30,Hlp_GetInstanceID(ItSe_GoldPocket100),1);
+	Info_ClearChoices(DIA_Gerbrandt_PICKPOCKET);
 };
 
 func void DIA_Gerbrandt_PICKPOCKET_BACK()
@@ -219,7 +208,7 @@ func void DIA_Gerbrandt_Perm_Info()
 			}
 			else
 			{
-				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_06");	//Это никого не касается кроме меня. Я занят!
+				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_06");	//Это никого не касается, кроме меня. Я занят!
 			};
 		}
 		else
@@ -243,7 +232,7 @@ instance DIA_Gerbrandt_GreetingsFromDiego(C_Info)
 
 func int DIA_Gerbrandt_GreetingsFromDiego_Condition()
 {
-	if((MIS_DiegosResidence == LOG_Running) && (Npc_HasItems(other,ItWr_DiegosLetter_MIS) >= 1))
+	if((MIS_DiegosResidence == LOG_Running) && Npc_HasItems(other,ItWr_DiegosLetter_MIS))
 	{
 		return TRUE;
 	};

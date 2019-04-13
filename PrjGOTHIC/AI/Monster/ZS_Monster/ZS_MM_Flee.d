@@ -6,6 +6,10 @@ func void ZS_MM_Flee()
 	AI_Standup(self);
 	AI_SetWalkMode(self,NPC_RUN);
 	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
+	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
+	{
+		AI_RemoveWeapon(self);
+	};
 	B_MM_DeSynchronize();
 };
 

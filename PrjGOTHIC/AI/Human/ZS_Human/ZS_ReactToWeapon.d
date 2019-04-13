@@ -55,7 +55,7 @@ func int ZS_ReactToWeapon_Loop()
 		{
 			B_TurnToNpc(self,other);
 		};
-		self.aivar[AIV_StateTime] = self.aivar[AIV_StateTime] + 1;
+		self.aivar[AIV_StateTime] += 1;
 	};
 	if((self.aivar[AIV_TAPOSITION] == FALSE) && (Npc_GetStateTime(self) > 5))
 	{

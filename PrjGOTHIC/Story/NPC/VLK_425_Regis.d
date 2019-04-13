@@ -24,6 +24,6 @@ func void Rtn_Start_425()
 {
 	TA_Sit_Bench(5,30,20,30,"NW_CITY_REGIS");
 	TA_Smalltalk(20,30,0,30,"NW_CITY_MERCHANT_PATH_14_A");
-	TA_Sit_Chair(0,30,5,30,"NW_CITY_TAVERN_IN_04");
+	TA_Stand_Drinking(0,30,5,30,"NW_CITY_TAVERN_IN_02");
 };
 

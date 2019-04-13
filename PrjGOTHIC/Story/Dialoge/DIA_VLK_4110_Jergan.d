@@ -188,7 +188,7 @@ func void DIA_Jergan_Mine_Info()
 {
 	AI_Output(other,self,"DIA_Jergan_Mine_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Jergan_Mine_13_01");	//Я разведчик. Моя работа - следить за врагом. Но все эти снепперы совсем не облегчают мне жизнь.
-	AI_Output(self,other,"DIA_Jergan_Mine_13_02");	//Хотя, сейчас самое время насобирать трофеев - если, конечно, ты знаешь, что делаешь.
+	AI_Output(self,other,"DIA_Jergan_Mine_13_02");	//Хотя сейчас самое время насобирать трофеев - если, конечно, ты знаешь, что делаешь.
 };
 
 
@@ -261,7 +261,7 @@ instance DIA_Jergan_Diego(C_Info)
 
 func int DIA_Jergan_Diego_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && (Npc_KnowsInfo(other,DIA_DiegoOw_Hallo) == FALSE) && Npc_KnowsInfo(other,DIA_Parcival_Diego))
+	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && !Npc_KnowsInfo(other,DIA_DiegoOw_Hallo) && Npc_KnowsInfo(other,DIA_Parcival_Diego))
 	{
 		return TRUE;
 	};
@@ -299,10 +299,10 @@ func int DIA_Jergan_Leader_Condition()
 func void DIA_Jergan_Leader_Info()
 {
 	AI_Output(self,other,"DIA_Jergan_Leader_13_00");	//Ты убил вожака стаи. И как - ты забрал когти этого зверя?
-	if((Npc_HasItems(other,ItAt_ClawLeader) >= 1) || (Lutero_Krallen == LOG_SUCCESS))
+	if(Npc_HasItems(other,ItAt_ClawLeader) || (Lutero_Krallen == LOG_SUCCESS))
 	{
 		AI_Output(other,self,"DIA_Jergan_Leader_15_01");	//Да.
-		AI_Output(self,other,"DIA_Jergan_Leader_13_02");	//Они, стоят целое состояние. Есть люди, которые коллекционируют такие вещи.
+		AI_Output(self,other,"DIA_Jergan_Leader_13_02");	//Они стоят целое состояние. Есть люди, которые коллекционируют такие вещи.
 		AI_Output(self,other,"DIA_Jergan_Leader_13_03");	//Если ты найдешь правильного покупателя, то получишь за них целую кучу золота.
 	}
 	else

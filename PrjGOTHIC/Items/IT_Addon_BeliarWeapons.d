@@ -8,7 +8,7 @@ prototype BeliarWeaponPrototype_1H(C_Item)
 	damagetype = DAM_EDGE;
 	range = Range_Orkschlaechter;
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = 0;
+	cond_value[2] = Condition_VLKDolch;
 	visual = "ItMw_BeliarWeapon_1H.3DS";
 	effect = "SPELLFX_FIRESWORDBLACK";
 	description = name;
@@ -211,7 +211,7 @@ prototype BeliarWeaponPrototype_2H(C_Item)
 	range = Range_Drachenschneide;
 	effect = "SPELLFX_FIRESWORDBLACK";
 	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = 0;
+	cond_value[2] = Condition_VLKDolch;
 	visual = "ItMw_BeliarWeapon_2H.3DS";
 	description = name;
 	text[2] = NAME_TwoHanded;

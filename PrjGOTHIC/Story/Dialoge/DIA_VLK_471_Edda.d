@@ -70,7 +70,7 @@ func void DIA_Edda_Stadt_Info()
 	AI_Output(self,other,"DIA_Edda_Stadt_17_01");	//Большинство горожан опасаются воров. Поэтому лучше не входить в чужие дома.
 	AI_Output(self,other,"DIA_Edda_Stadt_17_02");	//Но если ты ищешь, где остановиться на ночь, можешь поспать в моей хижине. Там есть еще одна кровать.
 	AI_Output(other,self,"DIA_Edda_Stadt_15_03");	//А ты не боишься воров?
-	AI_Output(self,other,"DIA_Edda_Stadt_17_04");	//Единственная ценная вещь, что была у меня, уже пропала.
+	AI_Output(self,other,"DIA_Edda_Stadt_17_04");	//Единственная ценная вещь, что у меня была, уже пропала.
 	AI_Output(self,other,"DIA_Edda_Stadt_17_05");	//Кто-то украл мою статую Инноса.
 	Edda_Schlafplatz = TRUE;
 	Wld_AssignRoomToGuild("hafen08",GIL_NONE);
@@ -160,7 +160,7 @@ instance DIA_Edda_Statue(C_Info)
 
 func int DIA_Edda_Statue_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Edda_Stadt) && (Npc_HasItems(other,ItMi_InnosStatue) >= 1))
+	if(Npc_KnowsInfo(other,DIA_Edda_Stadt) && Npc_HasItems(other,ItMi_InnosStatue))
 	{
 		return TRUE;
 	};
@@ -189,10 +189,7 @@ instance DIA_Edda_PICKPOCKET(C_Info)
 
 func int DIA_Edda_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItMi_InnosStatue) >= 1) && (other.attribute[ATR_DEXTERITY] >= (20 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(20,Hlp_GetInstanceID(ItMi_InnosStatue),1);
 };
 
 func void DIA_Edda_PICKPOCKET_Info()
@@ -204,19 +201,8 @@ func void DIA_Edda_PICKPOCKET_Info()
 
 func void DIA_Edda_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 20)
-	{
-		B_GiveInvItems(self,other,ItMi_InnosStatue,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Edda_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(20,Hlp_GetInstanceID(ItMi_InnosStatue),1);
+	Info_ClearChoices(DIA_Edda_PICKPOCKET);
 };
 
 func void DIA_Edda_PICKPOCKET_BACK()

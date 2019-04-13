@@ -14,10 +14,10 @@ func int C_PlayerIsFakeBandit(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(Npc_HasEquippedArmor(oth) == TRUE)
+	if(Npc_HasEquippedArmor(oth))
 	{
 		itm = Npc_GetEquippedArmor(oth);
-		if((Hlp_IsItem(itm,ItAr_BDT_M) == TRUE) || (Hlp_IsItem(itm,ITAR_Thorus_Addon) == TRUE) || (Hlp_IsItem(itm,ItAr_BDT_H) == TRUE))
+		if(Hlp_IsItem(itm,ITAR_BDT_M) || Hlp_IsItem(itm,ITAR_Thorus_Addon) || Hlp_IsItem(itm,ITAR_BDT_H))
 		{
 			return TRUE;
 		}

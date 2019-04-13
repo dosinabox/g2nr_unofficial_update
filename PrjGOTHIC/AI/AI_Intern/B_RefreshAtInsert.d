@@ -10,7 +10,7 @@ func void B_RefreshAtInsert()
 	if((self.guild < GIL_SEPERATOR_HUM) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(her)))
 	{
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-		if(Npc_HasEquippedWeapon(self) == FALSE)
+		if(!Npc_HasEquippedWeapon(self))
 		{
 			if(self.guild == GIL_MIL)
 			{

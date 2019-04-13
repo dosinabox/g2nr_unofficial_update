@@ -1,7 +1,7 @@
 
 instance DIA_Mil_325_Miliz_EXIT(C_Info)
 {
-	npc = Mil_325_Miliz;
+	npc = MIL_325_Miliz;
 	nr = 999;
 	condition = DIA_Mil_325_Miliz_EXIT_Condition;
 	information = DIA_Mil_325_Miliz_EXIT_Info;
@@ -25,7 +25,7 @@ const string Mil_325_Checkpoint = "NW_CITY_MERCHANT_PATH_03";
 
 instance DIA_Mil_325_Miliz_FirstWarn(C_Info)
 {
-	npc = Mil_325_Miliz;
+	npc = MIL_325_Miliz;
 	nr = 1;
 	condition = DIA_Mil_325_Miliz_FirstWarn_Condition;
 	information = DIA_Mil_325_Miliz_FirstWarn_Info;
@@ -41,7 +41,7 @@ func int DIA_Mil_325_Miliz_FirstWarn_Condition()
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_RefuseTalk(self) == FALSE))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -58,7 +58,7 @@ func void DIA_Mil_325_Miliz_FirstWarn_Info()
 
 instance DIA_Mil_325_Miliz_SecondWarn(C_Info)
 {
-	npc = Mil_325_Miliz;
+	npc = MIL_325_Miliz;
 	nr = 2;
 	condition = DIA_Mil_325_Miliz_SecondWarn_Condition;
 	information = DIA_Mil_325_Miliz_SecondWarn_Info;
@@ -69,7 +69,7 @@ instance DIA_Mil_325_Miliz_SecondWarn(C_Info)
 
 func int DIA_Mil_325_Miliz_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Mil_325_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_325_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -86,7 +86,7 @@ func void DIA_Mil_325_Miliz_SecondWarn_Info()
 
 instance DIA_Mil_325_Miliz_Attack(C_Info)
 {
-	npc = Mil_325_Miliz;
+	npc = MIL_325_Miliz;
 	nr = 3;
 	condition = DIA_Mil_325_Miliz_Attack_Condition;
 	information = DIA_Mil_325_Miliz_Attack_Info;
@@ -97,7 +97,7 @@ instance DIA_Mil_325_Miliz_Attack(C_Info)
 
 func int DIA_Mil_325_Miliz_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Mil_325_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_325_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -115,7 +115,7 @@ func void DIA_Mil_325_Miliz_Attack_Info()
 
 instance DIA_Mil_325_Miliz_Pass(C_Info)
 {
-	npc = Mil_325_Miliz;
+	npc = MIL_325_Miliz;
 	nr = 5;
 	condition = DIA_Mil_325_Miliz_Pass_Condition;
 	information = DIA_Mil_325_Miliz_Pass_Info;
@@ -161,7 +161,7 @@ func void DIA_Mil_325_Miliz_Pass_No()
 
 instance DIA_Mil_325_Miliz_PERM(C_Info)
 {
-	npc = Mil_325_Miliz;
+	npc = MIL_325_Miliz;
 	nr = 5;
 	condition = DIA_Mil_325_Miliz_PERM_Condition;
 	information = DIA_Mil_325_Miliz_PERM_Info;

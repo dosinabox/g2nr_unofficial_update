@@ -9,6 +9,7 @@ instance VLK_4304_Addon_William(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;
+	B_CreateAmbientInv(self);
 	CreateInvItems(self,ITWr_Addon_William_01,1);
 	CreateInvItems(self,ItKE_lockpick,2);
 	CreateInvItems(self,ItFo_Apple,1);

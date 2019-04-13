@@ -126,6 +126,10 @@ func void DIA_Karras_Aufgabe_Info()
 	Log_SetTopicStatus(Topic_KarrasCharm,LOG_Running);
 	B_LogEntry(Topic_KarrasCharm,"Мастер Каррас отправил меня в город. Он хочет, чтобы я принес ему три свитка с заклинаниями, которые изготавливает и продает Игнац.");
 	B_GiveInvItems(self,other,ItMi_Gold,150);
+	if((Npc_HasItems(other,ItSc_Charm) + Npc_HasItems(Ignaz,ItSc_Charm)) < 3)
+	{
+		CreateInvItems(Ignaz,ItSc_Charm,3);
+	};
 };
 
 
@@ -250,32 +254,32 @@ func void DIA_Karras_TEACH_Info()
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonGoblinSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGoblinSkeleton)),DIA_Karras_TEACH_SUMGOBL);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (PLAYER_TALENT_RUNES[SPL_SummonWolf] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonWolf,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonWolf)),DIA_Karras_TEACHSummonWolf);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3) && (PLAYER_TALENT_RUNES[SPL_SummonSkeleton] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonSkeleton)),DIA_Karras_TEACH_SummonSkeleton);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4) && (PLAYER_TALENT_RUNES[SPL_SummonGolem] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonGolem,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGolem)),DIA_Karras_TEACH_SummonGolem);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5) && (PLAYER_TALENT_RUNES[SPL_SummonDemon] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonDemon,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonDemon)),DIA_Karras_TEACH_SummonDemon);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 6) && (PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_ArmyOfDarkness,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_ArmyOfDarkness)),DIA_Karras_TEACH_ArmyOfDarkness);
-		abletolearn = abletolearn + 1;
+		abletolearn += 1;
 	};
 	if(abletolearn < 1)
 	{
@@ -656,7 +660,7 @@ instance DIA_Karras_HaveBook(C_Info)
 
 func int DIA_Karras_HaveBook_Condition()
 {
-	if((MIS_KarrasResearchDMT == LOG_Running) && (Npc_HasItems(hero,ITWR_DementorObsessionBook_MIS) >= 1) && (hero.guild == GIL_KDF))
+	if((MIS_KarrasResearchDMT == LOG_Running) && Npc_HasItems(hero,ITWR_DementorObsessionBook_MIS) && (hero.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -797,6 +801,7 @@ func void DIA_Karras_KarrasBlessedStone_Info()
 {
 	AI_Output(other,self,"DIA_Karras_KarrasBlessedStone_15_00");	//Я принес несколько камней с благословенной земли.
 	B_GiveInvItems(other,self,ItMi_KarrasBlessedStone_Mis,1);
+	Npc_RemoveInvItem(self,ItMi_KarrasBlessedStone_Mis);
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_01");	//Это хорошо. Надеюсь, все алтари по-прежнему стоят на своих местах.
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_02");	//Хорошо. Я сделаю для тебя амулет, защищающий от черного взгляда Ищущих.
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_03");	//Дай мне немного времени. Над этим нужно поработать.

@@ -258,7 +258,7 @@ func int DIA_Addon_Matt_ComeOn_Condition()
 func void DIA_Addon_Matt_ComeOn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Matt_ComeOn_15_00");	//»дем со мной.
-	if(C_GregsPiratesTooFar() == TRUE)
+	if(C_GregsPiratesTooFar())
 	{
 		B_Say(self,other,"$RUNAWAY");
 		AI_StopProcessInfos(self);
@@ -316,7 +316,7 @@ instance DIA_Addon_Matt_TooFar(C_Info)
 
 func int DIA_Addon_Matt_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (C_GregsPiratesTooFar() == TRUE))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar())
 	{
 		return TRUE;
 	};

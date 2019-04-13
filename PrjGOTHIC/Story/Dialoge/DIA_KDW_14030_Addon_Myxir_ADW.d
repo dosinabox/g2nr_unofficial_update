@@ -61,7 +61,7 @@ func void DIA_Addon_Myxir_ADWHello_wie()
 func void DIA_Addon_Myxir_ADWHello_Watt()
 {
 	AI_Output(other,self,"DIA_Addon_Myxir_ADWHello_Watt_15_00");	//Та нежить, что мне доводилось встречать, была не очень-то разговорчивой.
-	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_Watt_12_01");	//Но зодчие призывали не злобных бездушных созданий, таких как зомби или скелеты.
+	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_Watt_12_01");	//Но зодчие призывали не злобных бездушных созданий, таких, как зомби или скелеты.
 	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_Watt_12_02");	//Им удавалось вызывать духов великих воинов, жрецов и правителей.
 	AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_Watt_12_03");	//Я не сомневаюсь, что они на самом деле существовали.
 };

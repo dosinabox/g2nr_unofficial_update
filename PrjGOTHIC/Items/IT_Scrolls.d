@@ -814,7 +814,7 @@ instance ItSc_Firerain(C_Item)
 	text[0] = NAME_MageScroll;
 	text[1] = NAME_Mana_needed;
 	count[1] = SPL_Cost_Scroll;
-	text[2] = NAME_Dam_Fire;
+	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_Damage_FireRain;
 	text[5] = NAME_Value;
 	count[5] = value;

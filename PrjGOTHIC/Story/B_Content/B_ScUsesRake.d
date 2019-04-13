@@ -27,7 +27,7 @@ func void B_SCGetTreasure_S1()
 			RAKEPLACE[1] = TRUE;
 			RakeTreasureSuccess(ItSe_GoldPocket25);
 			GregsArmor = Npc_GetEquippedArmor(Greg_NW);
-			if(Hlp_IsItem(GregsArmor,ITAR_PIR_H_Addon) == FALSE)
+			if(!Hlp_IsItem(GregsArmor,ITAR_PIR_H_Addon))
 			{
 				AI_EquipArmor(Greg_NW,ITAR_PIR_H_Addon);
 			};

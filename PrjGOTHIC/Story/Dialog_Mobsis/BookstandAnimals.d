@@ -18,19 +18,18 @@ func void Use_BookstandAnimals1_S1()
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"Охота и трофеи");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи, преумножающие славу и благосостояние опытного охотника.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Опытный охотник знает все о трофеях жертвы и как получить их.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Изъятие зубов");
-		Doc_PrintLines(nDocID,0,"Зубы - это оружие многих зверей и животных. Если вы знаете, как изъять их у вашей жертвы, то волков, снепперов, мракорисов, болотных акул и троллей можно считать лучшими целями.");
+		Doc_PrintLines(nDocID,0,"Зубы - это оружие многих зверей и животных. Если вы знаете, как изъять их, то волков, снепперов, мракорисов, болотных акул и троллей можно считать лучшими целями.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"Снятие шкур");
-		Doc_PrintLines(nDocID,1,"Талантливые и опытные охотники высоко ценятся, у них всегда много шкур - овец, волков и мракорисов, например.");
-		Doc_PrintLines(nDocID,1,"Очень опытные охотники могут также снимать шкуры с болотных акул и луркеров.");
+		Doc_PrintLines(nDocID,1,"Талантливые и опытные охотники высоко ценятся, у них всегда много шкур - например, овец, волков и мракорисов.");
+		Doc_PrintLines(nDocID,1,"Очень опытные охотники также могут снимать кожу с болотных акул и различных рептилий.");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"Изъятие когтей");
@@ -63,19 +62,17 @@ func void Use_BookstandAnimals2_S1()
 		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи, преумножающие славу и благосостояние опытного охотника.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Кровавые мухи");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Чтобы выпотрошить этих летающих дьяволов, необходимо обладать двумя навыками.");
 		Doc_PrintLines(nDocID,0,"У них можно вырезать крылья и жала.");
 		Doc_PrintLines(nDocID,0,"Оба этих навыка используются опытными охотниками для добывания трофеев.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
+		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Полевые хищники и краулеры атакуют при помощи мандибул. Мандибулы краулеров");
 		Doc_PrintLines(nDocID,1,"особенно ценятся, так как они содержат железы, повышающие магическую силу.");
 		Doc_PrintLines(nDocID,1,"Однако, их следует использовать аккуратно, так как человеческий организм постепенно становится невосприимчив к ним.");
 		Doc_PrintLines(nDocID,1,"Панцири краулеров также весьма популярны. Из них можно изготавливать доспехи.");
-		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1," ");
 		Doc_Show(nDocID);
 		if(Animals_2_permanent == FALSE)
 		{
@@ -114,8 +111,6 @@ func void Use_BookstandAnimals3_S1()
 		Doc_PrintLines(nDocID,1,"Этих созданий осталось очень мало, и поэтому они не представляют особой опасности для людей, если только те не забредут на территорию их охоты.");
 		Doc_PrintLines(nDocID,1,"Рог мракориса считается ценным охотничьим трофеем. Но чтобы заполучить его, охотник");
 		Doc_PrintLines(nDocID,1,"должен уметь правильно вырезать рог.");
-		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLine(nDocID,1,"");
 		Doc_Show(nDocID);
 		if(Animals_3_permanent == FALSE)
 		{

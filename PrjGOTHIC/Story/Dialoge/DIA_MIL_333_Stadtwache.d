@@ -1,7 +1,7 @@
 
 instance DIA_Mil_333_Stadtwache_EXIT(C_Info)
 {
-	npc = Mil_333_Stadtwache;
+	npc = MIL_333_Stadtwache;
 	nr = 999;
 	condition = DIA_Mil_333_Stadtwache_EXIT_Condition;
 	information = DIA_Mil_333_Stadtwache_EXIT_Info;
@@ -27,7 +27,7 @@ var int MIL_333_Personal_AbsolutionLevel;
 
 instance DIA_Mil_333_Stadtwache_FirstWarn(C_Info)
 {
-	npc = Mil_333_Stadtwache;
+	npc = MIL_333_Stadtwache;
 	nr = 1;
 	condition = DIA_Mil_333_Stadtwache_FirstWarn_Condition;
 	information = DIA_Mil_333_Stadtwache_FirstWarn_Info;
@@ -51,7 +51,7 @@ func int DIA_Mil_333_Stadtwache_FirstWarn_Condition()
 	{
 		self.aivar[AIV_PASSGATE] = TRUE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_RefuseTalk(self) == FALSE))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -82,7 +82,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 	else
 	{
 		itm = Npc_GetEquippedArmor(other);
-		if((Npc_HasEquippedArmor(other) == FALSE) || (Hlp_IsItem(itm,ITAR_Bau_L) == TRUE) || (Hlp_IsItem(itm,ITAR_Bau_M) == TRUE))
+		if(!Npc_HasEquippedArmor(other) || Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M))
 		{
 			AI_Output(other,self,"DIA_Mil_333_Stadtwache_FirstWarn_15_07");	//Да?
 			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_08");	//Ты похож на нищего. В этом городе нам не нужны люди, у которых нет денег.
@@ -116,7 +116,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 
 instance DIA_Mil_333_Stadtwache_SecondWarn(C_Info)
 {
-	npc = Mil_333_Stadtwache;
+	npc = MIL_333_Stadtwache;
 	nr = 2;
 	condition = DIA_Mil_333_Stadtwache_SecondWarn_Condition;
 	information = DIA_Mil_333_Stadtwache_SecondWarn_Info;
@@ -127,7 +127,7 @@ instance DIA_Mil_333_Stadtwache_SecondWarn(C_Info)
 
 func int DIA_Mil_333_Stadtwache_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Mil_333_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_333_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -144,7 +144,7 @@ func void DIA_Mil_333_Stadtwache_SecondWarn_Info()
 
 instance DIA_Mil_333_Stadtwache_Attack(C_Info)
 {
-	npc = Mil_333_Stadtwache;
+	npc = MIL_333_Stadtwache;
 	nr = 3;
 	condition = DIA_Mil_333_Stadtwache_Attack_Condition;
 	information = DIA_Mil_333_Stadtwache_Attack_Info;
@@ -155,7 +155,7 @@ instance DIA_Mil_333_Stadtwache_Attack(C_Info)
 
 func int DIA_Mil_333_Stadtwache_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,Mil_333_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,Mil_333_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -173,7 +173,7 @@ func void DIA_Mil_333_Stadtwache_Attack_Info()
 
 instance DIA_Mil_333_Stadtwache_Bribe(C_Info)
 {
-	npc = Mil_333_Stadtwache;
+	npc = MIL_333_Stadtwache;
 	nr = 5;
 	condition = DIA_Mil_333_Stadtwache_Bribe_Condition;
 	information = DIA_Mil_333_Stadtwache_Bribe_Info;
@@ -216,7 +216,7 @@ func void DIA_Mil_333_Stadtwache_Bribe_Info()
 
 instance DIA_Mil_333_Stadtwache_PERM(C_Info)
 {
-	npc = Mil_333_Stadtwache;
+	npc = MIL_333_Stadtwache;
 	nr = 5;
 	condition = DIA_Mil_333_Stadtwache_PERM_Condition;
 	information = DIA_Mil_333_Stadtwache_PERM_Info;

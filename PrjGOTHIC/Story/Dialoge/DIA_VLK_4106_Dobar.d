@@ -135,7 +135,7 @@ instance DIA_Dobar_Teach(C_Info)
 	nr = 3;
 	condition = DIA_Dobar_Teach_Condition;
 	information = DIA_Dobar_Teach_Info;
-	description = B_BuildLearnString("Покажи мне, как выковать хороший меч!",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01));
+	description = B_BuildLearnString("Покажи мне, как выковать хороший меч",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01));
 	permanent = TRUE;
 };
 
@@ -150,7 +150,7 @@ func int DIA_Dobar_Teach_Condition()
 
 func void DIA_Dobar_Teach_Info()
 {
-	AI_Output(other,self,"DIA_Dobar_Teach_15_00");	//Покажи мне, как выковать хороший меч!
+	AI_Output(other,self,"DIA_Dobar_Teach_15_00");	//Покажи мне, как выковать хороший меч.
 	if(B_TeachPlayerTalentSmith(self,hero,WEAPON_1H_Special_01))
 	{
 		AI_Output(self,other,"DIA_Dobar_Teach_08_01");	//Разогрей сталь, чтобы она равномерно светилась по всей длине, без этого хороший меч не выковать.
@@ -208,7 +208,7 @@ func void DIA_Dobar_NEWS_Info()
 	{
 		AI_Output(self,other,"DIA_Dobar_NEWS_08_01");	//Я кую оружие для рыцарей замка. С тех пор, как мы прибыли сюда, я не отхожу от кузницы.
 		AI_Output(self,other,"DIA_Dobar_NEWS_08_02");	//Это оружие нам очень пригодится. Мы еще покажем этим проклятым оркам!
-		if(Npc_IsDead(Parlaf) == FALSE)
+		if(!Npc_IsDead(Parlaf) && (Npc_GetDistToWP(Parlaf,"OC_SMITH_SHARP") < 500))
 		{
 			B_TurnToNpc(self,Parlaf);
 			AI_Output(self,other,"DIA_Dobar_NEWS_08_03");	//(зовет) Эй, Парлаф - затачивай эти мечи получше - орки чертовски сильные противники!
@@ -236,10 +236,7 @@ instance DIA_Dobar_PICKPOCKET(C_Info)
 
 func int DIA_Dobar_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItMi_Nugget) >= 1) && (other.attribute[ATR_DEXTERITY] >= (79 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
 };
 
 func void DIA_Dobar_PICKPOCKET_Info()
@@ -251,19 +248,8 @@ func void DIA_Dobar_PICKPOCKET_Info()
 
 func void DIA_Dobar_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 79)
-	{
-		B_GiveInvItems(self,other,ItMi_Nugget,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Dobar_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
+	Info_ClearChoices(DIA_Dobar_PICKPOCKET);
 };
 
 func void DIA_Dobar_PICKPOCKET_BACK()

@@ -10,7 +10,7 @@ func void PC_Sleep(var int t)
 	}
 	else
 	{
-		t = t + 24;
+		t += 24;
 		Wld_SetTime(t,0);
 	};
 	Wld_StopEffect("DEMENTOR_FX");
@@ -63,7 +63,7 @@ func int PC_NoSleep_Condition()
 {
 	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -91,7 +91,7 @@ func int PC_SleepTime_Morning_Condition()
 {
 	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -116,7 +116,7 @@ func int PC_SleepTime_Noon_Condition()
 {
 	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -141,7 +141,7 @@ func int PC_SleepTime_Evening_Condition()
 {
 	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -166,7 +166,7 @@ func int PC_SleepTime_Midnight_Condition()
 {
 	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 

@@ -1,7 +1,7 @@
 
 instance DIA_PAL_205_Torwache_EXIT(C_Info)
 {
-	npc = Pal_205_Torwache;
+	npc = PAL_205_Torwache;
 	nr = 999;
 	condition = DIA_PAL_205_Torwache_EXIT_Condition;
 	information = DIA_PAL_205_Torwache_EXIT_Info;
@@ -27,7 +27,7 @@ var int PAL_205_schonmalreingelassen;
 
 instance DIA_PAL_205_Torwache_FirstWarn(C_Info)
 {
-	npc = Pal_205_Torwache;
+	npc = PAL_205_Torwache;
 	nr = 1;
 	condition = DIA_PAL_205_Torwache_FirstWarn_Condition;
 	information = DIA_PAL_205_Torwache_FirstWarn_Info;
@@ -51,7 +51,7 @@ func int DIA_PAL_205_Torwache_FirstWarn_Condition()
 	{
 		self.aivar[AIV_PASSGATE] = TRUE;
 	};
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_RefuseTalk(self) == FALSE))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -88,7 +88,7 @@ func void DIA_PAL_205_Torwache_FirstWarn_Info()
 
 instance DIA_PAL_205_Torwache_SecondWarn(C_Info)
 {
-	npc = Pal_205_Torwache;
+	npc = PAL_205_Torwache;
 	nr = 2;
 	condition = DIA_PAL_205_Torwache_SecondWarn_Condition;
 	information = DIA_PAL_205_Torwache_SecondWarn_Info;
@@ -99,7 +99,7 @@ instance DIA_PAL_205_Torwache_SecondWarn(C_Info)
 
 func int DIA_PAL_205_Torwache_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -116,7 +116,7 @@ func void DIA_PAL_205_Torwache_SecondWarn_Info()
 
 instance DIA_PAL_205_Torwache_Attack(C_Info)
 {
-	npc = Pal_205_Torwache;
+	npc = PAL_205_Torwache;
 	nr = 3;
 	condition = DIA_PAL_205_Torwache_Attack_Condition;
 	information = DIA_PAL_205_Torwache_Attack_Info;
@@ -127,7 +127,7 @@ instance DIA_PAL_205_Torwache_Attack(C_Info)
 
 func int DIA_PAL_205_Torwache_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && (Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == TRUE) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -144,7 +144,7 @@ func void DIA_PAL_205_Torwache_Attack_Info()
 
 instance DIA_PAL_205_Torwache_Hagen(C_Info)
 {
-	npc = Pal_205_Torwache;
+	npc = PAL_205_Torwache;
 	nr = 2;
 	condition = DIA_PAL_205_Torwache_Hagen_Condition;
 	information = DIA_PAL_205_Torwache_Hagen_Info;
@@ -171,7 +171,7 @@ func void DIA_PAL_205_Torwache_Hagen_Info()
 
 instance DIA_PAL_205_Torwache_PassAsMil(C_Info)
 {
-	npc = Pal_205_Torwache;
+	npc = PAL_205_Torwache;
 	nr = 3;
 	condition = DIA_PAL_205_Torwache_PassAsMil_Condition;
 	information = DIA_PAL_205_Torwache_PassAsMil_Info;
@@ -200,7 +200,7 @@ func void DIA_PAL_205_Torwache_PassAsMil_Info()
 
 instance DIA_PAL_205_Torwache_PassAsMage(C_Info)
 {
-	npc = Pal_205_Torwache;
+	npc = PAL_205_Torwache;
 	nr = 3;
 	condition = DIA_PAL_205_Torwache_PassAsMage_Condition;
 	information = DIA_PAL_205_Torwache_PassAsMage_Info;
@@ -220,7 +220,7 @@ func int DIA_PAL_205_Torwache_PassAsMage_Condition()
 func void DIA_PAL_205_Torwache_PassAsMage_Info()
 {
 	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMage_15_00");	//Я маг Огня.
-	AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMage_12_01");	//Да, конечно. Прошу простить меня, о, Избранный, я просто выполнял свой долг.
+	AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMage_12_01");	//Да, конечно. Прошу простить меня, о, Избранный, я просто выполняю свой долг.
 	self.aivar[AIV_PASSGATE] = TRUE;
 	PAL_205_schonmalreingelassen = TRUE;
 	AI_StopProcessInfos(self);
@@ -229,7 +229,7 @@ func void DIA_PAL_205_Torwache_PassAsMage_Info()
 
 instance DIA_PAL_205_Torwache_PassAsSld(C_Info)
 {
-	npc = Pal_205_Torwache;
+	npc = PAL_205_Torwache;
 	nr = 3;
 	condition = DIA_PAL_205_Torwache_PassAsSld_Condition;
 	information = DIA_PAL_205_Torwache_PassAsSld_Info;
@@ -258,7 +258,7 @@ func void DIA_PAL_205_Torwache_PassAsSld_Info()
 
 instance DIA_PAL_205_Torwache_PERM(C_Info)
 {
-	npc = Pal_205_Torwache;
+	npc = PAL_205_Torwache;
 	nr = 2;
 	condition = DIA_PAL_205_Torwache_PERM_Condition;
 	information = DIA_PAL_205_Torwache_PERM_Info;

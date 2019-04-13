@@ -10,7 +10,7 @@ instance SLD_809_Bennet(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
-	B_CreateAmbientInv(self);
+//	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_CoolPock,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

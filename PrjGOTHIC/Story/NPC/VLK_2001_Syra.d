@@ -1,5 +1,5 @@
 
-instance Vlk_2001_Syra(Npc_Default)
+instance VLK_2001_Syra(Npc_Default)
 {
 	name[0] = "Сира";
 	guild = GIL_VLK;

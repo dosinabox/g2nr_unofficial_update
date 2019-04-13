@@ -39,10 +39,7 @@ instance DIA_Franco_PICKPOCKET(C_Info)
 
 func int DIA_Franco_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && ((other.attribute[ATR_DEXTERITY] >= (60 - Theftdiff)) && (Npc_HasItems(self,ItAm_Addon_Franco) >= 1)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(60,Hlp_GetInstanceID(ItAm_Addon_Franco),1);
 };
 
 func void DIA_Franco_PICKPOCKET_Info()
@@ -54,21 +51,8 @@ func void DIA_Franco_PICKPOCKET_Info()
 
 func void DIA_Franco_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 60)
-	{
-		B_GiveInvItems(self,other,ItAm_Addon_Franco,1);
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Franco_PICKPOCKET);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		self.attribute[ATR_HITPOINTS_MAX] = 196;
-		self.attribute[ATR_HITPOINTS] = 196;
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(60,Hlp_GetInstanceID(ItAm_Addon_Franco),1);
+	Info_ClearChoices(DIA_Franco_PICKPOCKET);
 };
 
 func void DIA_Franco_PICKPOCKET_BACK()
@@ -227,7 +211,7 @@ func void DIA_Addon_Franco_HaiSuccess_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Franco_HaiSuccess_15_01");	//Ќо он не выжил.
 	};
-	AI_Output(self,other,"DIA_Addon_Franco_HaiSuccess_08_02");	//»так, ты победил болотных акул. —ледовательно, ты полезен... по крайней мере, полезнее, чем большинство местных бездельников.
+	AI_Output(self,other,"DIA_Addon_Franco_HaiSuccess_08_02");	//»так, ты победил болотных акул. —ледовательно, ты полезен... но по крайней мере, полезнее, чем большинство местных бездельников.
 	B_GivePlayerXP(XP_Addon_HlpLogan);
 	B_LogEntry(Topic_Addon_Franco,"ќдной помощи Ћогану оказалось недостаточно дл€ того, чтобы попасть в лагерь.");
 };
@@ -311,7 +295,7 @@ instance DIA_Addon_Franco_WOEDGOR(C_Info)
 
 func int DIA_Addon_Franco_WOEDGOR_Condition()
 {
-	if((MIS_HlpEdgor == LOG_Running) && (Npc_HasItems(other,ItMi_Addon_Stone_04) < 1))
+	if((MIS_HlpEdgor == LOG_Running) && !Npc_HasItems(other,ItMi_Addon_Stone_04) && !Npc_KnowsInfo(other,DIA_Addon_Edgor_Hi))
 	{
 		return TRUE;
 	};
@@ -363,7 +347,7 @@ instance DIA_Addon_Franco_tafel(C_Info)
 
 func int DIA_Addon_Franco_tafel_Condition()
 {
-	if((Npc_HasItems(other,ItMi_Addon_Stone_04) >= 1) && (MIS_HlpEdgor == LOG_Running))
+	if(Npc_HasItems(other,ItMi_Addon_Stone_04) && (MIS_HlpEdgor == LOG_Running))
 	{
 		return TRUE;
 	};

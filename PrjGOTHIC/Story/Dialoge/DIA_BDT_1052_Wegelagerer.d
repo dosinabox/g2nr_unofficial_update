@@ -36,7 +36,7 @@ func int DIA_1052_Wegelagerer_Hello_Condition()
 {
 	var C_Npc Pal;
 	Pal = Hlp_GetNpc(BDT_1051_Wegelagerer);
-	if(C_NpcIsDown(Pal) == FALSE)
+	if(!C_NpcIsDown(Pal))
 	{
 		return TRUE;
 	};
@@ -64,7 +64,7 @@ instance DIA_Wegelagerer_ANGRIFF2(C_Info)
 
 func int DIA_Wegelagerer_ANGRIFF2_Condition()
 {
-	if((Npc_RefuseTalk(self) == FALSE) && C_NpcIsDown(BDT_1051_Wegelagerer))
+	if(!Npc_RefuseTalk(self) && C_NpcIsDown(BDT_1051_Wegelagerer))
 	{
 		return TRUE;
 	};

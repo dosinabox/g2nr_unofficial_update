@@ -66,13 +66,19 @@ func int DIA_Angar_NW_KnowWhereEnemy_Condition()
 	};
 };
 
+var int SCToldAngarHeKnowWhereEnemy;
+
 func void DIA_Angar_NW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Angar_NW_KnowWhereEnemy_15_00");	//Я собираюсь покинуть Хоринис. Ты хочешь присоединиться ко мне?
 	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_04_01");	//Чем дальше я уйду от Долины Рудников, тем лучше. Когда мы отчаливаем?
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
-	B_LogEntry(Topic_Crew,"Ангар будет рад каждой миле, что разделяет его и Долину рудников. Он предложил присоединиться ко мне и путешествовать вместе.");
+	if(SCToldAngarHeKnowWhereEnemy == FALSE)
+	{
+		Log_CreateTopic(Topic_Crew,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Crew,LOG_Running);
+		B_LogEntry(Topic_Crew,"Ангар будет рад каждой миле, что разделяет его и Долину Рудников. Он предложил присоединиться ко мне и путешествовать вместе.");
+		SCToldAngarHeKnowWhereEnemy = TRUE;
+	};
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_Angar_NW_KnowWhereEnemy_15_02");	//У меня сейчас достаточно людей, чтобы управлять кораблем. Возможно, я обращусь к тебе позже.
@@ -92,8 +98,8 @@ func void DIA_Angar_NW_KnowWhereEnemy_Yes()
 	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_Yes_04_01");	//Уже иду.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Angar_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
 	B_GivePlayerXP(XP_Crewmember_Success);
+	Crewmember_Count += 1;
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
 		Npc_ExchangeRoutine(self,"SHIP");
@@ -138,7 +144,7 @@ func void DIA_Angar_NW_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_Angar_NW_LeaveMyShip_15_00");	//Оставайся здесь и лечись от своей головной боли.
 	AI_Output(self,other,"DIA_Angar_NW_LeaveMyShip_04_01");	//Хорошо. Я пойду назад. Может, так даже будет лучше.
 	Angar_IsOnBoard = LOG_OBSOLETE;
-	Crewmember_Count = Crewmember_Count - 1;
+	Crewmember_Count -= 1;
 	Npc_ExchangeRoutine(self,"Start");
 };
 
@@ -165,10 +171,10 @@ func int DIA_Angar_NW_StillNeedYou_Condition()
 func void DIA_Angar_NW_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Angar_NW_StillNeedYou_15_00");	//Возвращайся на борт.
-	AI_Output(self,other,"DIA_Angar_NW_StillNeedYou_04_01");	//Ты даже хуже чем я. Немного определенности тебе совсем бы не помешало. Увидимся позже.
+	AI_Output(self,other,"DIA_Angar_NW_StillNeedYou_04_01");	//Ты даже хуже, чем я. Немного определенности тебе совсем бы не помешало. Увидимся позже.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Angar_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count = Crewmember_Count + 1;
+	Crewmember_Count += 1;
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
@@ -178,6 +184,7 @@ func void DIA_Angar_NW_StillNeedYou_Info()
 	{
 		Npc_ExchangeRoutine(self,"WAITFORSHIP");
 	};
+	B_CheckLog();
 };
 
 

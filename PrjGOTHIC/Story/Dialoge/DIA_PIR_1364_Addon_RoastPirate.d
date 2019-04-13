@@ -36,7 +36,7 @@ instance DIA_Addon_RoastPirate_GimmeGrog(C_Info)
 
 func int DIA_Addon_RoastPirate_GimmeGrog_Condition()
 {
-	if((Npc_IsInState(self,ZS_Talk) == TRUE) && (Npc_WasInState(self,ZS_Roast_Scavenger) == TRUE) && (PIR_1364_Grog == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_WasInState(self,ZS_Roast_Scavenger) && (PIR_1364_Grog == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE))
 	{
 		return TRUE;
 	};
@@ -51,7 +51,7 @@ func void DIA_Addon_RoastPirate_GimmeGrog_Info()
 	B_LogEntry(TOPIC_Addon_RoastGrog,"Пирату у костра нужен грог.");
 	Info_ClearChoices(DIA_Addon_RoastPirate_GimmeGrog);
 	Info_AddChoice(DIA_Addon_RoastPirate_GimmeGrog,"Нет.",DIA_Addon_RoastPirate_GimmeGrog_DontHaveAny);
-	if(Npc_HasItems(other,ItFo_Addon_Grog) >= 1)
+	if(Npc_HasItems(other,ItFo_Addon_Grog))
 	{
 		Info_AddChoice(DIA_Addon_RoastPirate_GimmeGrog,"Вот, глотни.",DIA_Addon_RoastPirate_GimmeGrog_HereIsGrog);
 	};
@@ -241,7 +241,7 @@ func int DIA_Addon_RoastPirate_ComeOn_Condition()
 func void DIA_Addon_RoastPirate_ComeOn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_RoastPirate_ComeOn_15_00");	//Пойдем со мной.
-	if(C_GregsPiratesTooFar() == TRUE)
+	if(C_GregsPiratesTooFar())
 	{
 		B_Say(self,other,"$RUNAWAY");
 		AI_StopProcessInfos(self);
@@ -298,7 +298,7 @@ instance DIA_Addon_RoastPirate_TooFar(C_Info)
 
 func int DIA_Addon_RoastPirate_TooFar_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (C_GregsPiratesTooFar() == TRUE))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_GregsPiratesTooFar())
 	{
 		return TRUE;
 	};

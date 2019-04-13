@@ -3,7 +3,7 @@ func void ZS_MM_Rtn_Wusel()
 {
 	Perception_Set_Monster_Rtn();
 	AI_SetWalkMode(self,NPC_RUN);
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == FALSE)
+	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		AI_GotoWP(self,self.wp);
 	};

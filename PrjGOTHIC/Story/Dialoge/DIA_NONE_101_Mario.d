@@ -1,7 +1,7 @@
 
 instance DIA_None_101_Mario_EXIT(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 999;
 	condition = DIA_None_101_Mario_EXIT_Condition;
 	information = DIA_None_101_Mario_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_None_101_Mario_EXIT_Info()
 
 instance DIA_None_101_Mario_Job(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 4;
 	condition = DIA_None_101_Mario_Job_Condition;
 	information = DIA_None_101_Mario_Job_Info;
@@ -34,7 +34,7 @@ instance DIA_None_101_Mario_Job(C_Info)
 
 func int DIA_None_101_Mario_Job_Condition()
 {
-	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == FALSE) && (Npc_KnowsInfo(other,DIA_None_101_Mario_YouNeedMe) == FALSE))
+	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == FALSE) && !Npc_KnowsInfo(other,DIA_None_101_Mario_YouNeedMe))
 	{
 		return TRUE;
 	};
@@ -50,7 +50,7 @@ func void DIA_None_101_Mario_Job_Info()
 
 instance DIA_None_101_Mario_YouNeedMe(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 4;
 	condition = DIA_None_101_Mario_YouNeedMe_Condition;
 	information = DIA_None_101_Mario_YouNeedMe_Info;
@@ -80,7 +80,7 @@ func void DIA_None_101_Mario_YouNeedMe_Info()
 
 instance DIA_None_101_Mario_WhyNeedYou(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 5;
 	condition = DIA_None_101_Mario_WhyNeedYou_Condition;
 	information = DIA_None_101_Mario_WhyNeedYou_Info;
@@ -110,7 +110,7 @@ func void DIA_None_101_Mario_WhyNeedYou_Info()
 
 instance DIA_None_101_Mario_WhyHere(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 7;
 	condition = DIA_None_101_Mario_WhyHere_Condition;
 	information = DIA_None_101_Mario_WhyHere_Info;
@@ -137,7 +137,7 @@ func void DIA_None_101_Mario_WhyHere_Info()
 
 instance DIA_None_101_Mario_Abilities(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 8;
 	condition = DIA_None_101_Mario_Abilities_Condition;
 	information = DIA_None_101_Mario_Abilities_Info;
@@ -165,7 +165,7 @@ func void DIA_None_101_Mario_Abilities_Info()
 
 instance DIA_None_101_Mario_YourPrice(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 9;
 	condition = DIA_None_101_Mario_YourPrice_Condition;
 	information = DIA_None_101_Mario_YourPrice_Info;
@@ -192,7 +192,7 @@ func void DIA_None_101_Mario_YourPrice_Info()
 
 instance DIA_None_101_Mario_CouldBeDangerous(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 10;
 	condition = DIA_None_101_Mario_CouldBeDangerous_Condition;
 	information = DIA_None_101_Mario_CouldBeDangerous_Info;
@@ -220,7 +220,7 @@ func void DIA_None_101_Mario_CouldBeDangerous_Info()
 
 instance DIA_None_101_Mario_DontNeedYou(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 13;
 	condition = DIA_None_101_Mario_DontNeedYou_Condition;
 	information = DIA_None_101_Mario_DontNeedYou_Info;
@@ -248,7 +248,7 @@ func void DIA_None_101_Mario_DontNeedYou_Info()
 
 instance DIA_None_101_Mario_NeedGoodMen(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 2;
 	condition = DIA_None_101_Mario_NeedGoodMen_Condition;
 	information = DIA_None_101_Mario_NeedGoodMen_Info;
@@ -269,8 +269,8 @@ func void DIA_None_101_Mario_NeedGoodMen_Info()
 {
 	AI_Output(other,self,"DIA_None_101_Mario_NeedGoodMen_15_00");	//Я всегда найду место для хороших людей.
 	AI_Output(self,other,"DIA_None_101_Mario_NeedGoodMen_07_01");	//Конечно, увидимся на корабле.
-	B_GivePlayerXP(XP_Crewmember_Success);
 	Mario_IsOnBoard = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Crewmember_Success);
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
 	{
@@ -285,7 +285,7 @@ func void DIA_None_101_Mario_NeedGoodMen_Info()
 
 instance DIA_Mario_LeaveMyShip(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 11;
 	condition = DIA_Mario_LeaveMyShip_Condition;
 	information = DIA_Mario_LeaveMyShip_Info;
@@ -308,13 +308,14 @@ func void DIA_Mario_LeaveMyShip_Info()
 	AI_Output(self,other,"DIA_Mario_LeaveMyShip_07_01");	//Как скажешь. Ты знаешь, где искать меня!
 	Mario_IsOnBoard = LOG_OBSOLETE;
 	AI_StopProcessInfos(self);
+	Mario_Nerver += 1;
 	Npc_ExchangeRoutine(self,"ShipOff");
 };
 
 
 instance DIA_Mario_StillNeedYou(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 11;
 	condition = DIA_Mario_StillNeedYou_Condition;
 	information = DIA_Mario_StillNeedYou_Info;
@@ -334,7 +335,7 @@ func int DIA_Mario_StillNeedYou_Condition()
 func void DIA_Mario_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Mario_StillNeedYou_15_00");	//Ты мне все-таки нужен!
-	if(Mario_IsOnBoard == LOG_OBSOLETE)
+	if((Mario_IsOnBoard == LOG_OBSOLETE) && (Mario_Nerver <= 2))
 	{
 		AI_Output(self,other,"DIA_Mario_StillNeedYou_07_01");	//Я знал! Увидимся на корабле!
 		Mario_IsOnBoard = LOG_SUCCESS;
@@ -352,14 +353,17 @@ func void DIA_Mario_StillNeedYou_Info()
 	{
 		AI_Output(self,other,"DIA_Mario_StillNeedYou_07_02");	//Ты не смеешь так обращаться со мной. Плевать я на тебя хотел!
 		AI_StopProcessInfos(self);
+		Mario_IsOnBoard = LOG_FAILED;
+		self.flags = 0;
 		B_Attack(self,other,AR_NONE,1);
 	};
+	B_CheckLog();
 };
 
 
 instance DIA_MARIO_PICKPOCKET(C_Info)
 {
-	npc = None_101_Mario;
+	npc = NONE_101_Mario;
 	nr = 900;
 	condition = DIA_MARIO_PICKPOCKET_Condition;
 	information = DIA_MARIO_PICKPOCKET_Info;

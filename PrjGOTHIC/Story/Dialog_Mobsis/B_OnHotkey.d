@@ -3,46 +3,46 @@ func int B_GetBestPlayerMap()
 {
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(Npc_HasItems(hero,ItWr_Map_NewWorld) >= 1)
+		if(Npc_HasItems(hero,ItWr_Map_NewWorld))
 		{
 			return ItWr_Map_NewWorld;
 		}
-		else if(Npc_HasItems(hero,ItWr_Map_Shrine_MIS) >= 1)
+		else if(Npc_HasItems(hero,ItWr_Map_Shrine_MIS))
 		{
 			return ItWr_Map_Shrine_MIS;
 		}
-		else if(Npc_HasItems(hero,ItWr_Map_Caves_MIS) >= 1)
+		else if(Npc_HasItems(hero,ItWr_Map_Caves_MIS))
 		{
 			return ItWr_Map_Caves_MIS;
 		}
-		else if(Npc_HasItems(hero,ItWr_Map_NewWorld_Ornaments_Addon) >= 1)
+		else if(Npc_HasItems(hero,ItWr_Map_NewWorld_Ornaments_Addon))
 		{
 			return ItWr_Map_NewWorld_Ornaments_Addon;
 		}
-		else if(Npc_HasItems(hero,ItWr_Map_NewWorld_Dexter) >= 1)
+		else if(Npc_HasItems(hero,ItWr_Map_NewWorld_Dexter))
 		{
 			return ItWr_Map_NewWorld_Dexter;
 		}
-		else if(Npc_HasItems(hero,ItWr_ShatteredGolem_MIS) >= 1)
+		else if(Npc_HasItems(hero,ItWr_ShatteredGolem_MIS))
 		{
 			return ItWr_ShatteredGolem_MIS;
 		}
-		else if(Npc_HasItems(hero,ItWr_Map_Orcelite_MIS) >= 1)
+		else if(Npc_HasItems(hero,ItWr_Map_Orcelite_MIS))
 		{
 			return ItWr_Map_Orcelite_MIS;
 		}
-		else if(Npc_HasItems(hero,ItWr_Map_NewWorld_City) >= 1)
+		else if(Npc_HasItems(hero,ItWr_Map_NewWorld_City))
 		{
 			return ItWr_Map_NewWorld_City;
 		};
 	}
 	else if(CurrentLevel == OldWorld_Zen)
 	{
-		if(Npc_HasItems(hero,ItWr_Map_OldWorld) >= 1)
+		if(Npc_HasItems(hero,ItWr_Map_OldWorld))
 		{
 			return ItWr_Map_OldWorld;
 		}
-		else if(Npc_HasItems(hero,ItWr_Map_OldWorld_Oremines_MIS) >= 1)
+		else if(Npc_HasItems(hero,ItWr_Map_OldWorld_Oremines_MIS))
 		{
 			return ItWr_Map_OldWorld_Oremines_MIS;
 		};
@@ -52,69 +52,69 @@ func int B_GetBestPlayerMap()
 	}
 	else if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if(Npc_HasItems(hero,ItWr_Map_AddonWorld) >= 1)
+		if(Npc_HasItems(hero,ItWr_Map_AddonWorld))
 		{
 			return ItWr_Map_AddonWorld;
 		}
-		else if(Npc_HasItems(hero,ItWR_Addon_TreasureMap) >= 1)
+		else if(Npc_HasItems(hero,ItWR_Addon_TreasureMap))
 		{
 			return ItWR_Addon_TreasureMap;
 		};
 	};
-	return 0;
+	return FALSE;
 };
 
 func int B_GetAnyPlayerMap()
 {
-	if(Npc_HasItems(hero,ItWr_Map_NewWorld) >= 1)
+	if(Npc_HasItems(hero,ItWr_Map_NewWorld))
 	{
 		return ItWr_Map_NewWorld;
 	}
-	else if(Npc_HasItems(hero,ItWr_Map_Shrine_MIS) >= 1)
+	else if(Npc_HasItems(hero,ItWr_Map_Shrine_MIS))
 	{
 		return ItWr_Map_Shrine_MIS;
 	}
-	else if(Npc_HasItems(hero,ItWr_Map_Caves_MIS) >= 1)
+	else if(Npc_HasItems(hero,ItWr_Map_Caves_MIS))
 	{
 		return ItWr_Map_Caves_MIS;
 	}
-	else if(Npc_HasItems(hero,ItWr_Map_NewWorld_Ornaments_Addon) >= 1)
+	else if(Npc_HasItems(hero,ItWr_Map_NewWorld_Ornaments_Addon))
 	{
 		return ItWr_Map_NewWorld_Ornaments_Addon;
 	}
-	else if(Npc_HasItems(hero,ItWr_Map_NewWorld_Dexter) >= 1)
+	else if(Npc_HasItems(hero,ItWr_Map_NewWorld_Dexter))
 	{
 		return ItWr_Map_NewWorld_Dexter;
 	}
-	else if(Npc_HasItems(hero,ItWr_ShatteredGolem_MIS) >= 1)
+	else if(Npc_HasItems(hero,ItWr_ShatteredGolem_MIS))
 	{
 		return ItWr_ShatteredGolem_MIS;
 	}
-	else if(Npc_HasItems(hero,ItWr_Map_Orcelite_MIS) >= 1)
+	else if(Npc_HasItems(hero,ItWr_Map_Orcelite_MIS))
 	{
 		return ItWr_Map_Orcelite_MIS;
 	}
-	else if(Npc_HasItems(hero,ItWr_Map_NewWorld_City) >= 1)
+	else if(Npc_HasItems(hero,ItWr_Map_NewWorld_City))
 	{
 		return ItWr_Map_NewWorld_City;
 	}
-	else if(Npc_HasItems(hero,ItWr_Map_OldWorld) >= 1)
+	else if(Npc_HasItems(hero,ItWr_Map_OldWorld))
 	{
 		return ItWr_Map_OldWorld;
 	}
-	else if(Npc_HasItems(hero,ItWr_Map_OldWorld_Oremines_MIS) >= 1)
+	else if(Npc_HasItems(hero,ItWr_Map_OldWorld_Oremines_MIS))
 	{
 		return ItWr_Map_OldWorld_Oremines_MIS;
 	}
-	else if(Npc_HasItems(hero,ItWr_Map_AddonWorld) >= 1)
+	else if(Npc_HasItems(hero,ItWr_Map_AddonWorld))
 	{
 		return ItWr_Map_AddonWorld;
 	}
-	else if(Npc_HasItems(hero,ItWR_Addon_TreasureMap) >= 1)
+	else if(Npc_HasItems(hero,ItWR_Addon_TreasureMap))
 	{
 		return ItWR_Addon_TreasureMap;
 	};
-	return 0;
+	return FALSE;
 };
 
 func int player_hotkey_screen_map()
@@ -122,7 +122,7 @@ func int player_hotkey_screen_map()
 	var int OldInstance;
 	var int NewInstance;
 	OldInstance = B_GetPlayerMap();
-	if((OldInstance > 0) && (Npc_HasItems(hero,OldInstance) < 1))
+	if((OldInstance > 0) && !Npc_HasItems(hero,OldInstance))
 	{
 		OldInstance = 0;
 	};
@@ -178,7 +178,7 @@ func void B_LameSchlork()
 
 func void player_hotkey_lame_potion()
 {
-	if(Npc_IsInState(hero,ZS_Dead) == FALSE)
+	if(!Npc_IsInState(hero,ZS_Dead))
 	{
 		if(Npc_HasItems(hero,ItPo_Mana_03) && ((hero.attribute[ATR_MANA_MAX] - hero.attribute[ATR_MANA]) >= Mana_Elixier))
 		{
@@ -232,7 +232,7 @@ func void player_hotkey_lame_potion()
 
 func void player_hotkey_lame_heal()
 {
-	if(Npc_IsInState(hero,ZS_Dead) == FALSE)
+	if(!Npc_IsInState(hero,ZS_Dead))
 	{
 		if(Npc_HasItems(hero,ItPo_Health_03) && ((hero.attribute[ATR_HITPOINTS_MAX] - hero.attribute[ATR_HITPOINTS]) >= HP_Elixier))
 		{

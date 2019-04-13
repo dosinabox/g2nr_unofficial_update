@@ -42,7 +42,7 @@ func void DIA_MiltenOW_Hello_Info()
 	AI_Output(self,other,"DIA_MiltenOW_Hello_03_00");	//Посмотрите, кто вернулся! Наш герой из-за Барьера!
 	Info_ClearChoices(DIA_MiltenOW_Hello);
 	Info_AddChoice(DIA_MiltenOW_Hello,"Рад видеть тебя, Милтен. Ты все еще здесь или здесь опять?",DIA_MiltenOW_Hello_YES);
-	Info_AddChoice(DIA_MiltenOW_Hello,"Я должен знать их?",DIA_MiltenOW_Hello_NO);
+	Info_AddChoice(DIA_MiltenOW_Hello,"Я должен знать тебя?",DIA_MiltenOW_Hello_NO);
 };
 
 func void B_Milten_GornDiegoLester()
@@ -53,7 +53,7 @@ func void B_Milten_GornDiegoLester()
 func void DIA_MiltenOW_Hello_YES()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Hello_YES_15_00");	//Рад видеть тебя, Милтен. Ты все еще здесь или здесь опять?
-	AI_Output(self,other,"DIA_MiltenOW_Hello_YES_03_01");	//Опять. После того как Барьер рухнул, я вступил в монастырь магов Огня.
+	AI_Output(self,other,"DIA_MiltenOW_Hello_YES_03_01");	//Опять. После того, как Барьер рухнул, я вступил в монастырь магов Огня.
 	AI_Output(self,other,"DIA_MiltenOW_Hello_YES_03_02");	//Но когда стало ясно, что паладины хотят отправиться сюда, мой опыт и знание этих мест оказались весьма полезными.
 	AI_Output(self,other,"DIA_MiltenOW_Hello_YES_03_03");	//Поэтому было решено доверить мне эту священную миссию обеспечения магической поддержки этой экспедиции.
 	B_Milten_GornDiegoLester();
@@ -64,7 +64,7 @@ func void DIA_MiltenOW_Hello_YES()
 
 func void DIA_MiltenOW_Hello_NO()
 {
-	AI_Output(other,self,"DIA_MiltenOW_Hello_NO_15_00");	//Я должен знать их?
+	AI_Output(other,self,"DIA_MiltenOW_Hello_NO_15_00");	//Я должен знать тебя?
 	AI_Output(self,other,"DIA_MiltenOW_Hello_NO_03_01");	//Ты через многое прошел, да?
 	B_Milten_GornDiegoLester();
 	Info_ClearChoices(DIA_MiltenOW_Hello);
@@ -120,7 +120,7 @@ func void DIA_MiltenOW_Bericht_Info()
 	AI_Output(other,self,"DIA_MiltenOW_Bericht_15_00");	//Как здесь обстоят дела?
 	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_01");	//Паладины пришли сюда, чтобы добывать магическую руду.
 	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_02");	//Но из-за всех этих нападений драконов и орков я сомневаюсь, что паладины уйдут отсюда с рудой.
-	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_03");	//Нет, клянусь Инносом - я чувствую присутствие чего-то темного... какого-то зла, оно разрастается здесь. Что-то, темное поднимается от этой долины.
+	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_03");	//Нет, клянусь Инносом - я чувствую присутствие чего-то темного... какого-то зла, оно разрастается здесь. Что-то темное поднимается от этой долины.
 	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_04");	//Мы заплатили высокую цену за уничтожение Спящего. Разрушение Барьера погубило и это место.
 	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_05");	//Мы можем считать себя счастливчиками, если нам удастся пережить все это.
 };
@@ -314,7 +314,7 @@ instance DIA_MiltenOW_Versteck(C_Info)
 
 func int DIA_MiltenOW_Versteck_Condition()
 {
-	if((GornsTreasure == TRUE) && (Npc_HasItems(other,ItMi_GornsTreasure_MIS) <= 0) && (Gorns_Beutel == FALSE) && (Kapitel == 2))
+	if((GornsTreasure == TRUE) && !Npc_HasItems(other,ItMi_GornsTreasure_MIS) && (Gorns_Beutel == FALSE) && (Kapitel == 2))
 	{
 		return TRUE;
 	};
@@ -411,7 +411,7 @@ func void DIA_MiltenOW_TeachCircle2_Info()
 	if(B_TeachMagicCircle(self,other,2))
 	{
 		AI_Output(self,other,"DIA_Milten_Add_03_03");	//Я не уверен, что помню все эти официальные и торжественные слова...
-		AI_Output(self,other,"DIA_Milten_Add_03_04");	//Войди во второй круг. Э-э... он покажет тебе направление, но твои дела формируют путь..
+		AI_Output(self,other,"DIA_Milten_Add_03_04");	//Войди во второй круг. Э-э... он покажет тебе направление, но твои дела формируют путь...
 		AI_Output(self,other,"DIA_Milten_Add_03_05");	//Я думаю, ты понимаешь, о чем все это...
 	};
 };
@@ -504,7 +504,7 @@ func int DIA_MiltenOW_Mana_Condition()
 
 func void DIA_MiltenOW_Mana_Info()
 {
-	AI_Output(other,self,"DIA_MiltenOW_Mana_15_00");	//Я хочу повысить мои магические способности
+	AI_Output(other,self,"DIA_MiltenOW_Mana_15_00");	//Я хочу повысить мои магические способности.
 	Info_ClearChoices(DIA_MiltenOW_Mana);
 	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
 	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
@@ -552,7 +552,7 @@ instance DIA_MiltenOW_Perm(C_Info)
 
 func int DIA_MiltenOW_Perm_Condition()
 {
-	if((Kapitel == 2) && (Npc_KnowsInfo(other,DIA_MiltenOW_Frei) == FALSE))
+	if((Kapitel == 2) && !Npc_KnowsInfo(other,DIA_MiltenOW_Frei))
 	{
 		return TRUE;
 	};
@@ -561,7 +561,7 @@ func int DIA_MiltenOW_Perm_Condition()
 func void DIA_MiltenOW_Perm_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Perm_15_00");	//А какие у тебя здесь обязанности?
-	AI_Output(self,other,"DIA_MiltenOW_Perm_03_01");	//Изначально, я должен был проверять магическую руду. Но она здесь редко попадала мне в руки.
+	AI_Output(self,other,"DIA_MiltenOW_Perm_03_01");	//Изначально я должен был проверять магическую руду. Но она здесь редко попадала мне в руки.
 	AI_Output(self,other,"DIA_MiltenOW_Perm_03_02");	//И теперь я сосредоточился на изучении алхимии.
 };
 
@@ -573,7 +573,7 @@ instance DIA_MiltenOW_Plan(C_Info)
 	condition = DIA_MiltenOW_Plan_Condition;
 	information = DIA_MiltenOW_Plan_Info;
 	permanent = TRUE;
-	description = "Что ты планируешь делать дальше?";
+	description = "И что ты планируешь делать дальше?";
 };
 
 
@@ -587,7 +587,7 @@ func int DIA_MiltenOW_Plan_Condition()
 
 func void DIA_MiltenOW_Plan_Info()
 {
-	AI_Output(other,self,"DIA_MiltenOW_Plan_15_00");	//Что ты планируешь делать дальше?
+	AI_Output(other,self,"DIA_MiltenOW_Plan_15_00");	//И что ты планируешь делать дальше?
 	AI_Output(self,other,"DIA_MiltenOW_Plan_03_01");	//Я вернусь. Подожду еще немного, и теперь, когда Горн свободен, я могу отправиться в путь вместе с ним.
 	AI_Output(self,other,"DIA_MiltenOW_Plan_03_02");	//Крайне важно, чтобы Пирокар узнал о ситуации здесь.
 	AI_Output(other,self,"DIA_MiltenOW_Plan_15_03");	//Ну, если ты так считаешь.
@@ -609,10 +609,7 @@ instance DIA_MiltenOW_PICKPOCKET(C_Info)
 
 func int DIA_MiltenOW_PICKPOCKET_Condition()
 {
-	if((self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == TRUE) && (other.attribute[ATR_DEXTERITY] >= (80 - Theftdiff)))
-	{
-		return 1;
-	};
+	return C_StealItems(80,Hlp_GetInstanceID(ItPo_Perm_Mana),1);
 };
 
 func void DIA_MiltenOW_PICKPOCKET_Info()
@@ -624,20 +621,8 @@ func void DIA_MiltenOW_PICKPOCKET_Info()
 
 func void DIA_MiltenOW_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 80)
-	{
-		CreateInvItems(self,ItPo_Perm_Mana,1);
-		B_GiveInvItems(self,other,ItPo_Perm_Mana,1);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_MiltenOW_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	B_StealItems(80,Hlp_GetInstanceID(ItPo_Perm_Mana),1);
+	Info_ClearChoices(DIA_MiltenOW_PICKPOCKET);
 };
 
 func void DIA_MiltenOW_PICKPOCKET_BACK()

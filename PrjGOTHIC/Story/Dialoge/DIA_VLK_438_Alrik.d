@@ -242,11 +242,13 @@ func int DIA_Alrik_WannaFight_Condition()
 	};
 };
 
+var int Alrik_Sword_Once;
+
 func void DIA_Alrik_WannaFight_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_WannaFight_15_00");	//Я хочу сразиться с тобой!
 	Info_ClearChoices(DIA_Alrik_WannaFight);
-	if(((Alrik_ArenaKampfVerloren > 0) && (Npc_HasItems(self,ItMw_AlriksSword_Mis) == 0)) || (Npc_HasEquippedMeleeWeapon(self) == FALSE))
+	if(((Alrik_ArenaKampfVerloren > 0) && !Npc_HasItems(self,ItMw_AlriksSword_Mis)) || !Npc_HasEquippedMeleeWeapon(self))
 	{
 		if(MIS_Alrik_Sword == LOG_SUCCESS)
 		{
@@ -254,13 +256,17 @@ func void DIA_Alrik_WannaFight_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Alrik_WannaFight_09_02");	//Нет, нет. Прежде чем выйти против тебя еще раз, мне раздобыть нужно оружие получше!
+			AI_Output(self,other,"DIA_Alrik_WannaFight_09_02");	//Нет, нет. Прежде, чем выйти против тебя еще раз, мне нужно раздобыть оружие получше!
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_03");	//Мне несколько дней назад пришлось продать свой меч.
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_04");	//С ним я непобедим! Если ты вернешь его мне, я готов опять сражаться с тобой!
 			Alrik_VomSchwertErzaehlt = TRUE;
-			Log_CreateTopic(TOPIC_AlrikSchwert,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_AlrikSchwert,LOG_Running);
-			B_LogEntry(TOPIC_AlrikSchwert,"Альрик продал свой меч торговцу Джоре. Он будет сражаться со мной, только если я верну ему его меч.");
+			if(Alrik_Sword_Once == FALSE)
+			{
+				Log_CreateTopic(TOPIC_AlrikSchwert,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_AlrikSchwert,LOG_Running);
+				B_LogEntry(TOPIC_AlrikSchwert,"Альрик продал свой меч торговцу Джоре. Он будет сражаться со мной, только если я верну ему его меч.");
+				Alrik_Sword_Once = TRUE;
+			};
 		};
 	}
 	else if((Kapitel <= 2) && (Alrik_ArenaKampfVerloren > 3))
@@ -316,7 +322,7 @@ func void DIA_Alrik_WannaFight_Gold()
 	CreateInvItems(self,ItMi_Gold,100);
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Gold_09_03");	//Ты готов?
 	self.aivar[AIV_ArenaFight] = AF_RUNNING;
-	Alrik_Kaempfe = Alrik_Kaempfe + 1;
+	Alrik_Kaempfe += 1;
 	Info_ClearChoices(DIA_Alrik_WannaFight);
 	Info_AddChoice(DIA_Alrik_WannaFight,"Подожди секундочку...",DIA_Alrik_WannaFight_Moment);
 	Info_AddChoice(DIA_Alrik_WannaFight,"Иди сюда!",DIA_Alrik_WannaFight_NOW);
@@ -335,8 +341,8 @@ func void DIA_Alrik_WannaFight_NOW()
 	AI_Output(self,other,"DIA_Alrik_WannaFight_NOW_09_01");	//Посмотрим, на что ты способен!
 	if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
 	{
-		CreateInvItems(self,ItPo_Health_03,1);
-		B_UseItem(self,ItPo_Health_03);
+		CreateInvItems(self,ItPo_Health_Addon_04,1);
+		B_UseItem(self,ItPo_Health_Addon_04);
 	};
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
@@ -348,8 +354,8 @@ func void DIA_Alrik_WannaFight_Moment()
 	AI_Output(self,other,"DIA_Alrik_WannaFight_Moment_09_01");	//Как хочешь... а я начинаю сейчас!
 	if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
 	{
-		CreateInvItems(self,ItPo_Health_03,1);
-		B_UseItem(self,ItPo_Health_03);
+		CreateInvItems(self,ItPo_Health_Addon_04,1);
+		B_UseItem(self,ItPo_Health_Addon_04);
 	};
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
@@ -394,7 +400,7 @@ func void DIA_Alrik_AfterFight_Info()
 				AI_Output(self,other,"DIA_Alrik_AfterFight_09_01");	//Вот твои 100 золотых! Ты заработал их!
 				B_GiveInvItems(self,other,ItMi_Gold,100);
 			}
-			else if(Npc_HasItems(self,ItMi_Gold) == 0)
+			else if(!Npc_HasItems(self,ItMi_Gold))
 			{
 				AI_Output(self,other,"DIA_Alrik_AfterFight_09_02");	//Я вижу, ты уже забрал свое золото.
 				AI_Output(self,other,"DIA_Alrik_AfterFight_09_03");	//Ты мог бы подождать, пока я сам не отдам его тебе - я держу свое слово!
@@ -405,7 +411,7 @@ func void DIA_Alrik_AfterFight_Info()
 				AI_Output(self,other,"DIA_Alrik_AfterFight_09_05");	//Это дурной тон! Но ладно, эти деньги все равно были твоими! Вот остальное.
 				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
 			};
-			Alrik_ArenaKampfVerloren = Alrik_ArenaKampfVerloren + 1;
+			Alrik_ArenaKampfVerloren += 1;
 		}
 		else if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON)
 		{
@@ -413,14 +419,14 @@ func void DIA_Alrik_AfterFight_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Alrik_AfterFight_09_07");	//Эй, я же предупреждал, тот, кто убежит за угол проигрывает! Если хочешь попробовать еще раз, я к твоим услугам!
+			AI_Output(self,other,"DIA_Alrik_AfterFight_09_07");	//Эй, я же предупреждал: тот, кто убежит за угол, проигрывает! Если хочешь попробовать еще раз, я к твоим услугам!
 		};
 		if(Alrik_Kaempfe == 1)
 		{
 			AI_Output(self,other,"DIA_Alrik_AfterFight_09_08");	//И еще одно: никто не говорит о том, что происходит за складом.
 			if((other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 			{
-				AI_Output(self,other,"DIA_Alrik_AfterFight_09_09");	//Ополчение готово за малейшее прегрешение засунуть тебя за решетку. А эти парни не любят когда делаются ставки на бой.
+				AI_Output(self,other,"DIA_Alrik_AfterFight_09_09");	//Ополчение готово за малейшее прегрешение засунуть тебя за решетку. А эти парни не любят, когда делаются ставки на бой.
 			};
 		};
 		self.aivar[AIV_ArenaFight] = AF_NONE;
@@ -477,7 +483,7 @@ func void DIA_Alrik_DuWohnst_Info()
 	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_01");	//Только временно. (ухмыляется) Когда имеешь столько денег, как у меня, можно позволить себе немного роскоши!
 	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_02");	//Я был инструктором в армии, но я бросил это занятие и выбрал судьбу искателя приключений.
 	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_03");	//И вот я застрял в этой дыре. Мои последние 100 золотых ушли в карман стражникам у городских ворот.
-	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_04");	//И вот я пытаюсь опять разбогатеть. Мне даже пришлось продать мой меч.
+	AI_Output(self,other,"DIA_Alrik_DuWohnst_09_04");	//И вот я пытаюсь опять разбогатеть. Мне даже пришлось продать свой меч.
 	Alrik_VomSchwertErzaehlt = TRUE;
 };
 
@@ -527,7 +533,7 @@ instance DIA_Alrik_HaveSword(C_Info)
 
 func int DIA_Alrik_HaveSword_Condition()
 {
-	if(Npc_HasItems(other,ItMw_AlriksSword_Mis) > 0)
+	if(Npc_HasItems(other,ItMw_AlriksSword_Mis))
 	{
 		return TRUE;
 	};
@@ -625,7 +631,7 @@ func void DIA_Alrik_Ausbilden_Info()
 		};
 		Alrik_Teach1H = TRUE;
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Альрик может обучить меня искусству владения одноручным оружием. Он ошивается за складом в портовом квартале.");
+		B_LogEntry(TOPIC_CityTeacher,"Альрик может обучить меня искусству сражения одноручным оружием. Он ошивается за складом в портовом квартале.");
 	};
 };
 
@@ -654,6 +660,11 @@ func int DIA_Alrik_Teach_Condition()
 func void DIA_Alrik_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_Teach_15_00");	//Научи меня обращаться с мечом!
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	Alrik_Merke_1h = other.HitChance[NPC_TALENT_1H];
 	Info_ClearChoices(DIA_Alrik_Teach);
 	Info_AddChoice(DIA_Alrik_Teach,Dialog_Back,DIA_Alrik_Teach_Back);

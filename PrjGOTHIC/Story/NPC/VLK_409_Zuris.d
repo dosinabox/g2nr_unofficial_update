@@ -21,12 +21,13 @@ instance VLK_409_Zuris(Npc_Default)
 
 func void Rtn_Start_409()
 {
-	TA_Stand_ArmsCrossed(5,30,6,25,"NW_CITY_BALTRAM");
+/*	TA_Stand_ArmsCrossed(5,30,6,25,"NW_CITY_BALTRAM");
 	TA_Stand_Guarding(6,25,6,30,"NW_CITY_ZURIS_REGAL");
 	TA_Stand_ArmsCrossed(6,30,8,30,"NW_CITY_BALTRAM");
 	TA_Stand_ArmsCrossed(8,30,11,30,"NW_CITY_BALTRAM");
 	TA_Stand_ArmsCrossed(11,30,14,30,"NW_CITY_BALTRAM");
-	TA_Stand_ArmsCrossed(14,30,20,0,"NW_CITY_BALTRAM");
+	TA_Stand_ArmsCrossed(14,30,20,0,"NW_CITY_BALTRAM"); */
+	TA_Stand_ArmsCrossed(5,30,20,0,"NW_CITY_BALTRAM");
 	TA_Sit_Throne(20,0,0,30,"NW_CITY_CHAIR_ZURIS");
 	TA_Sleep(0,30,5,30,"NW_CITY_BED_ZURIS");
 };

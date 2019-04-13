@@ -22,7 +22,7 @@ func void Use_XardasLetterToOpenBook()
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Я полагал, что один из драконов в Долине рудников являлся источником Зла.");
+	Doc_PrintLines(nDocID,0,"Я полагал, что один из драконов в Долине Рудников являлся источником Зла.");
 	Doc_PrintLines(nDocID,0,"Я ошибался.");
 	Doc_PrintLines(nDocID,0,"Если все прошло так, как я предполагаю,");
 	Doc_PrintLines(nDocID,0,"ты сейчас должен искать Чертоги Ирдората.");
@@ -42,8 +42,8 @@ func void Use_XardasLetterToOpenBook()
 	if(MIS_Xardas_SCCanOpenIrdorathBook == FALSE)
 	{
 		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"В этом письме Ксардас сообщил мне слова, открывающие книгу ЧЕРТОГИ ИРДОРАТА.");
+		MIS_Xardas_SCCanOpenIrdorathBook = TRUE;
 	};
-	MIS_Xardas_SCCanOpenIrdorathBook = TRUE;
 };
 
 
@@ -121,11 +121,6 @@ instance ItWr_HallsofIrdorath_Open_Mis(C_Item)
 func void Use_HallsofIrdorath_Open()
 {
 	var int nDocID;
-	if(ItWr_SCReadsHallsofIrdorath == FALSE)
-	{
-		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Я прочел книгу Ксардаса. В ней упоминается секретная библиотека. Она должна быть где-то здесь, в подвалах монастыря.");
-	};
-	ItWr_SCReadsHallsofIrdorath = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"BOOK_MAGE_L.tga",0);
@@ -149,6 +144,11 @@ func void Use_HallsofIrdorath_Open()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Этот ключ открывает последнюю дверь.");
 	Doc_Show(nDocID);
+	if(ItWr_SCReadsHallsofIrdorath == FALSE)
+	{
+		B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Я прочел книгу Ксардаса. В ней упоминается секретная библиотека. Она должна быть где-то здесь, в подвалах монастыря.");
+		ItWr_SCReadsHallsofIrdorath = TRUE;
+	};
 };
 
 
@@ -271,8 +271,6 @@ instance ItWr_Seamap_Irdorath(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_Seamap_Irdorath;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -347,7 +345,7 @@ func void UseITWr_ForgedShipLetter_MIS()
 };
 
 
-instance ITKE_OC_MAINGATE_MIS(C_Item)
+instance ItKe_OC_MainGate_MIS(C_Item)
 {
 	name = "Ключ от башни главных ворот";
 	mainflag = ITEM_KAT_NONE;
@@ -402,9 +400,9 @@ func void UseItPo_PotionOfDeath()
 		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
 		Npc_ChangeAttribute(self,ATR_STRENGTH,5);
-		self.aivar[REAL_STRENGTH] = self.aivar[REAL_STRENGTH] + 5;
+		self.aivar[REAL_STRENGTH] += 5;
 		Npc_ChangeAttribute(self,ATR_DEXTERITY,5);
-		self.aivar[REAL_DEXTERITY] = self.aivar[REAL_DEXTERITY] + 5;
+		self.aivar[REAL_DEXTERITY] += 5;
 		PrintScreen(PRINT_LearnSTR5,-1,45,FONT_Screen,2);
 		PrintScreen(PRINT_LearnDEX5,-1,55,FONT_Screen,2);
 		PrintScreen(PRINT_FullyHealed,-1,65,FONT_Screen,2);
@@ -501,7 +499,7 @@ instance ItPo_HealRandolph_MIS(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Лекарство от привыкания к алкоголю";
+	description = "Лекарство от алкоголизма";
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Essenz;
 	text[5] = NAME_Value;

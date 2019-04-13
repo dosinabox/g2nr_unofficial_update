@@ -55,7 +55,7 @@ func void DIA_Engardo_HALLO_Info()
 	else if(Chance == 1)
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_01");	//Ты оказался не в том месте не в то время...
-		AI_Output(self,other,"DIA_Engardo_HALLO_13_02");	//...так что, если хочешь жить, лучше топай отсюда. Понял?
+		AI_Output(self,other,"DIA_Engardo_HALLO_13_02");	//... так что, если хочешь жить, лучше топай отсюда. Понял?
 		Chance = 2;
 		AI_StopProcessInfos(self);
 	}

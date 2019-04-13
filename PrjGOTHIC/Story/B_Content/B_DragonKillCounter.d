@@ -29,29 +29,29 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 		IcDragn = Hlp_GetNpc(Dragon_Ice);
 		if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(SwapDragn)) && (SwapDragnIsDead == FALSE))
 		{
-			MIS_KilledDragons = MIS_KilledDragons + 1;
+			MIS_KilledDragons += 1;
 			SwapDragnIsDead = TRUE;
 		};
 		if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(RckDragn)) && (RckDragnIsDead == FALSE))
 		{
-			MIS_KilledDragons = MIS_KilledDragons + 1;
+			MIS_KilledDragons += 1;
 			RckDragnIsDead = TRUE;
 		};
 		if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(FreDragn)) && (FreDragnIsDead == FALSE))
 		{
-			MIS_KilledDragons = MIS_KilledDragons + 1;
+			MIS_KilledDragons += 1;
 			FreDragnIsDead = TRUE;
 		};
 		if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(IcDragn)) && (IcDragnIsDead == FALSE))
 		{
-			MIS_KilledDragons = MIS_KilledDragons + 1;
+			MIS_KilledDragons += 1;
 			IcDragnIsDead = TRUE;
 		};
 	};
 	if(MIS_KilledDragons == 4)
 	{
 		MIS_AllDragonsDead = TRUE;
-		if((DJG_BiffParty == TRUE) && (Npc_IsDead(Biff) == FALSE))
+		if((DJG_BiffParty == TRUE) && !Npc_IsDead(Biff))
 		{
 			DJG_BiffSurvivedLastDragon = TRUE;
 		};

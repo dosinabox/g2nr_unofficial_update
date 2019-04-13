@@ -15,7 +15,7 @@ instance PC_Levelinspektor(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
 	Mdl_SetVisual(self,"HUMANS.MDS");
-	Mdl_SetVisualBody(self,"hum_body_Naked0",BodyTex_Player,0,"Hum_Head_Pony",Face_N_Player,0,ItAr_PAl_H);
+	Mdl_SetVisualBody(self,"hum_body_Naked0",BodyTex_Player,0,"Hum_Head_Pony",Face_N_Player,0,ITAR_PAL_H);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
 	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_SNEAK,1);

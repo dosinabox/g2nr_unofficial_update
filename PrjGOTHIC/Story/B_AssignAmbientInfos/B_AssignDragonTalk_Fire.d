@@ -21,6 +21,7 @@ func void DIA_Dragon_Fire_Exit_Info()
 {
 	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);
 	CreateInvItems(other,ItMi_InnosEye_Discharged_Mis,1);
+	SC_IsWearingInnosEye = FALSE;
 	AI_Output(self,other,"DIA_Dragon_Fire_Exit_20_00");	//Глаз потерял свою силу, и тебе не дожить до следующей зари.
 	AI_StopProcessInfos(self);
 	DragonTalk_Exit_Free = FALSE;
@@ -45,9 +46,9 @@ instance DIA_Dragon_Fire_Hello(C_Info)
 
 func int DIA_Dragon_Fire_Hello_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_MIS) >= 1)
+	if(SC_IsWearingInnosEye == TRUE)
 	{
-		return 1;
+		return TRUE;
 	};
 };
 

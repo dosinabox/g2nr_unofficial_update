@@ -153,7 +153,7 @@ instance DIA_Gaertner_Krautabak(C_Info)
 
 func int DIA_Gaertner_Krautabak_Condition()
 {
-	if((Npc_HasItems(other,ItMi_SumpfTabak) >= 1) && Wld_IsTime(6,45,21,45))
+	if(Npc_HasItems(other,ItMi_SumpfTabak) && Wld_IsTime(6,45,21,45))
 	{
 		return TRUE;
 	};
@@ -164,8 +164,8 @@ func void DIA_Gaertner_Krautabak_Info()
 	AI_Output(other,self,"DIA_Gaertner_Krautabak_15_00");	//У меня есть травяной табак. Хочешь затянуться?
 	AI_Output(self,other,"DIA_Gaertner_Krautabak_09_01");	//Даже не знаю... А, ладно, давай. Покурю немного.
 	B_GiveInvItems(other,self,ItMi_SumpfTabak,1);
-	Npc_RemoveInvItems(self,ItMi_SumpfTabak,1);
-	CreateInvItems(self,ItMi_Joint,1);
+	Npc_RemoveInvItem(self,ItMi_SumpfTabak);
+	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);
 	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
 	AI_Output(self,other,"DIA_Gaertner_Krautabak_09_02");	//Хха... кха-кха....
@@ -182,7 +182,7 @@ instance DIA_Gaertner_Sign(C_Info)
 	condition = DIA_Gaertner_Sign_Condition;
 	information = DIA_Gaertner_Sign_Info;
 	permanent = FALSE;
-	description = "(Показать сигнал воров)";
+	description = DIALOG_SecretSign;
 };
 
 

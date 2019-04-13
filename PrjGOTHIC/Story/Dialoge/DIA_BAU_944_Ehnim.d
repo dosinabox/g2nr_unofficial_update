@@ -111,7 +111,7 @@ instance DIA_Ehnim_STREIT1(C_Info)
 
 func int DIA_Ehnim_STREIT1_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER) && (Npc_KnowsInfo(other,DIA_Egill_STREIT2) == FALSE) && (Hlp_IsValidNpc(Egill) && !C_NpcIsDown(Egill)))
+	if(Npc_KnowsInfo(other,DIA_Egill_FELDRAEUBER) && Npc_KnowsInfo(other,DIA_Ehnim_FELDRAEUBER) && !Npc_KnowsInfo(other,DIA_Egill_STREIT2) && (Hlp_IsValidNpc(Egill) && !C_NpcIsDown(Egill)))
 	{
 		return TRUE;
 	};
@@ -187,10 +187,12 @@ func void DIA_Ehnim_STREIT5_Info()
 func void DIA_Ehnim_STREIT5_Attack()
 {
 	AI_Output(other,self,"DIA_Ehnim_STREIT5_Attack_15_00");	//Почему ты не скажешь это ему сам?
-	AI_Output(self,other,"DIA_Ehnim_STREIT5_Attack_12_01");	//Сейчас пойду и сделаю это .
+	AI_Output(self,other,"DIA_Ehnim_STREIT5_Attack_12_01");	//Сейчас пойду и сделаю это.
 	AI_StopProcessInfos(self);
 	DIA_Ehnim_STREIT5_noPerm = TRUE;
 	other.aivar[AIV_INVINCIBLE] = FALSE;
+	self.guild = GIL_NONE;
+	Egill.guild = GIL_NONE;
 	B_Attack(self,Egill,AR_NONE,0);
 	B_GivePlayerXP(XP_EgillEhnimStreit);
 };
@@ -311,16 +313,16 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 		if(Npc_HasItems(self,ItMi_Moleratlubric_MIS))
 		{
 			B_GiveInvItems(self,other,ItMi_Moleratlubric_MIS,1);
-			if(Npc_IsDead(Vino) == FALSE)
+			if(!Npc_IsDead(Vino))
 			{
 				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_02");	//(себе под нос) Ох. Вино убьет меня за это.
 			};
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_03");	//Черт, и куда же она подевалась? Что за досада. Извини. Похоже, у меня ее не осталось. Вот, возьми свои деньги назад .
+			AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_03");	//Черт, и куда же она подевалась? Что за досада. Извини. Похоже, у меня ее не осталось. Вот, возьми свои деньги назад.
 			B_GiveInvItems(self,other,ItMi_Gold,Ehnim_MoleRatFettOffer);
-			if(Npc_IsDead(Egill) == FALSE)
+			if(!Npc_IsDead(Egill))
 			{
 				AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_04");	//Готов поклясться, это проделки моего брата. Вот ублюдок.
 				AI_StopProcessInfos(self);
@@ -356,7 +358,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_immernoch()
 func void DIA_Ehnim_MoleRatFett_nein()
 {
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_nein_15_00");	//У меня сейчас нет времени на это.
-	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_nein_12_01");	//Тогда ее буду отвлекать тебя, парень.
+	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_nein_12_01");	//Тогда не буду отвлекать тебя, парень.
 	AI_StopProcessInfos(self);
 };
 

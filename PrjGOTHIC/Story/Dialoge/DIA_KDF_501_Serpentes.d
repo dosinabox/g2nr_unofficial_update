@@ -105,7 +105,7 @@ instance DIA_Serpentes_YOURSTORY(C_Info)
 
 func int DIA_Serpentes_YOURSTORY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && (Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) == FALSE) && (MIS_GOLEM != LOG_SUCCESS))
+	if(Npc_KnowsInfo(hero,DIA_Ulthar_TEST) && (other.guild == GIL_NOV) && !Npc_KnowsInfo(hero,DIA_Pyrokar_MAGICAN) && (MIS_GOLEM != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -164,7 +164,7 @@ instance DIA_Serpentes_NOIDEA(C_Info)
 	condition = DIA_Serpentes_NOIDEA_Condition;
 	information = DIA_Serpentes_NOIDEA_Info;
 	permanent = FALSE;
-	description = "Живой скалой? Что за создание это должно быть?";
+	description = "С живой скалой? Что за создание это должно быть?";
 };
 
 
@@ -178,7 +178,7 @@ func int DIA_Serpentes_NOIDEA_Condition()
 
 func void DIA_Serpentes_NOIDEA_Info()
 {
-	AI_Output(other,self,"DIA_Serpentes_NOIDEA_15_00");	//Живой скалой? Что за создание это должно быть?
+	AI_Output(other,self,"DIA_Serpentes_NOIDEA_15_00");	//С живой скалой? Что за создание это должно быть?
 	AI_Output(self,other,"DIA_Serpentes_NOIDEA_10_01");	//Я сказал тебе все. (с издевкой) Или это испытание кажется тебе слишком сложным?
 	AI_Output(self,other,"DIA_Serpentes_NOIDEA_10_02");	//Теперь ты узнаешь, что означает пройти Испытание Огнем - я больше не буду отвечать на твои вопросы.
 	AI_StopProcessInfos(self);
@@ -198,7 +198,7 @@ instance DIA_Serpentes_NOHELP(C_Info)
 
 func int DIA_Serpentes_NOHELP_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && (Npc_IsDead(Magic_Golem) == FALSE) && (MIS_GOLEM == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && ((Npc_KnowsInfo(other,DIA_Ulthar_TEST) == FALSE) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
+	if(Npc_KnowsInfo(hero,DIA_Serpentes_NOIDEA) && !Npc_IsDead(Magic_Golem) && (MIS_GOLEM == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && (!Npc_KnowsInfo(other,DIA_Ulthar_TEST) || Npc_KnowsInfo(other,DIA_Serpentes_YOURSTORY)))
 	{
 		return TRUE;
 	};
@@ -232,8 +232,6 @@ func int DIA_Serpentes_SUCCESS_Condition()
 
 func void DIA_Serpentes_SUCCESS_Info()
 {
-	var C_Npc Garwig;
-	Garwig = Hlp_GetNpc(Nov_608_Garwig);
 	AI_Output(other,self,"DIA_Serpentes_SUCCESS_15_00");	//Я победил голема.
 	AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_01");	//Что? Ты действительно сделал это? Но без Молота Инноса ты никогда бы не смог уничтожить этого голема.
 	if(Npc_IsDead(Garwig))
@@ -247,7 +245,7 @@ func void DIA_Serpentes_SUCCESS_Info()
 	{
 		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_04");	//(с сожалением) Тем не менее, я должен признать, что ты выполнил задание, которое я дал тебе.
 	};
-	if(Npc_HasItems(other,Holy_Hammer_MIS) >= 1)
+	if(Npc_HasItems(other,Holy_Hammer_MIS))
 	{
 		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_05");	//И будет лучше, если я заберу этот молот.
 		Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
@@ -417,50 +415,50 @@ func void DIA_Serpentes_MinenAnteile_was_ja()
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_ja_10_04");	//Тогда за работу. Я желаю тебе успеха, брат.
 	Info_ClearChoices(DIA_Serpentes_MinenAnteile);
 	MIS_Serpentes_MinenAnteil_KDF = LOG_Running;
-	if(Npc_IsDead(Salandril) == FALSE)
+	if(!Npc_IsDead(Salandril))
 	{
 		CreateInvItems(Salandril,ItWr_MinenAnteil_Mis,2);
-		SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter + 2;
+		SalandrilMinenAnteil_MAINCounter += 2;
 	};
-	if(Npc_IsDead(VLK_416_Matteo) == FALSE)
+	if(!Npc_IsDead(VLK_416_Matteo))
 	{
 		CreateInvItems(VLK_416_Matteo,ItWr_MinenAnteil_Mis,1);
-		SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter + 1;
+		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(Npc_IsDead(VLK_413_Bosper) == FALSE)
+	if(!Npc_IsDead(VLK_413_Bosper))
 	{
 		CreateInvItems(VLK_413_Bosper,ItWr_MinenAnteil_Mis,1);
-		SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter + 1;
+		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(Npc_IsDead(VLK_409_Zuris) == FALSE)
+	if(!Npc_IsDead(VLK_409_Zuris))
 	{
 		CreateInvItems(VLK_409_Zuris,ItWr_MinenAnteil_Mis,1);
-		SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter + 1;
+		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(Npc_IsDead(BAU_911_Elena) == FALSE)
+	if(!Npc_IsDead(BAU_911_Elena))
 	{
 		CreateInvItems(BAU_911_Elena,ItWr_MinenAnteil_Mis,2);
-		SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter + 2;
+		SalandrilMinenAnteil_MAINCounter += 2;
 	};
-	if(Npc_IsDead(BAU_970_Orlan) == FALSE)
+	if(!Npc_IsDead(BAU_970_Orlan))
 	{
 		CreateInvItems(BAU_970_Orlan,ItWr_MinenAnteil_Mis,1);
-		SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter + 1;
+		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(Npc_IsDead(VLK_407_Hakon) == FALSE)
+	if(!Npc_IsDead(VLK_407_Hakon))
 	{
 		CreateInvItems(VLK_407_Hakon,ItWr_MinenAnteil_Mis,1);
-		SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter + 1;
+		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(Npc_IsDead(BAU_936_Rosi) == FALSE)
+	if(!Npc_IsDead(BAU_936_Rosi))
 	{
 		CreateInvItems(BAU_936_Rosi,ItWr_MinenAnteil_Mis,1);
-		SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter + 1;
+		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(Npc_IsDead(VLK_468_Canthar) == FALSE)
+	if(!Npc_IsDead(VLK_468_Canthar))
 	{
 		CreateInvItems(VLK_468_Canthar,ItWr_MinenAnteil_Mis,3);
-		SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter + 3;
+		SalandrilMinenAnteil_MAINCounter += 3;
 	};
 	SalandrilVerteilteMinenAnteil = SalandrilMinenAnteil_MAINCounter;
 	Log_CreateTopic(TOPIC_MinenAnteile,LOG_MISSION);
@@ -490,7 +488,7 @@ func void DIA_Serpentes_MinenAnteile_was_jaSLD()
 	Info_ClearChoices(DIA_Serpentes_MinenAnteile);
 	Log_CreateTopic(TOPIC_MinenAnteile,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_MinenAnteile,LOG_Running);
-	B_LogEntry(TOPIC_MinenAnteile,"Я должен доставить Саландрила, алхимика из верхней части Хориниса, в монастырь для суда. Мне не особенно интересует, что он там натворил, пока мне хорошо платят за это.");
+	B_LogEntry(TOPIC_MinenAnteile,"Я должен доставить Саландрила, алхимика из верхней части Хориниса, в монастырь для суда. Меня не особенно интересует, что он там натворил, пока мне хорошо платят за это.");
 };
 
 
@@ -531,17 +529,19 @@ func void DIA_Serpentes_MinenAnteileBringen_Info()
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_00");	//Я смог найти акции шахт.
 		B_GivePlayerXP(XP_BringSerpentesMinenAnteil);
 		B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,1);
-		SerpentesMinenAnteilCounter = SerpentesMinenAnteilCounter + 1;
+		Npc_RemoveInvItem(self,ItWr_MinenAnteil_Mis);
+		SerpentesMinenAnteilCounter += 1;
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Serpentes_MinenAnteileBringen_15_01");	//Я смог найти несколько акций шахт.
 		B_GiveInvItems(other,self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
+		Npc_RemoveInvItems(self,ItWr_MinenAnteil_Mis,SerpentesMinenAnteilCount);
 		XP_BringSerpentesMinenAnteils = SerpentesMinenAnteilCount * XP_BringSerpentesMinenAnteil;
-		SerpentesMinenAnteilCounter = SerpentesMinenAnteilCounter + SerpentesMinenAnteilCount;
+		SerpentesMinenAnteilCounter += SerpentesMinenAnteilCount;
 		B_GivePlayerXP(XP_BringSerpentesMinenAnteils);
 	};
-	SalandrilMinenAnteil_MAINCounter = SalandrilMinenAnteil_MAINCounter - SerpentesMinenAnteilCount;
+	SalandrilMinenAnteil_MAINCounter -= SerpentesMinenAnteilCount;
 	MinenAnteilLeft = IntToString(SalandrilMinenAnteil_MAINCounter);
 	MinenAnteilText = ConcatStrings(MinenAnteilLeft,PRINT_NumberLeft);
 	AI_PrintScreen(MinenAnteilText,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);

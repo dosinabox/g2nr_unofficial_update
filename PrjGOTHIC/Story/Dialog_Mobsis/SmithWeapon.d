@@ -277,7 +277,7 @@ func int PC_ItMw_1H_Special_01_Condition()
 
 func void PC_ItMw_1H_Special_01_Info()
 {
-	if(Npc_HasItems(hero,ItMi_Nugget) >= 1)
+	if(Npc_HasItems(hero,ItMi_Nugget))
 	{
 		Npc_RemoveInvItems(hero,ItMi_Nugget,1);
 		CreateInvItems(hero,ItMw_1H_Special_01,1);
@@ -559,7 +559,7 @@ func int PC_ItMw_Streitaxt1_Condition()
 
 func void PC_ItMw_Streitaxt1_Info()
 {
-	if((Npc_HasItems(hero,ItMi_Nugget) >= 1) && (Npc_HasItems(hero, ItAt_Teeth) >= 3) && (Npc_HasItems(hero,ItMiSwordrawhot) >= 1))
+	if(Npc_HasItems(hero,ItMi_Nugget) && (Npc_HasItems(hero,ItAt_Teeth) >= 3) && Npc_HasItems(hero,ItMiSwordrawhot))
 	{
 		Npc_RemoveInvItems(hero,ItMi_Nugget,1);
 		Npc_RemoveInvItems(hero,ItAt_Teeth,3);

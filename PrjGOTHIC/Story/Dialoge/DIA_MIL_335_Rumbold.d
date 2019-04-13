@@ -1,7 +1,7 @@
 
 instance DIA_Rumbold_EXIT(C_Info)
 {
-	npc = Mil_335_Rumbold;
+	npc = MIL_335_Rumbold;
 	nr = 999;
 	condition = DIA_Rumbold_EXIT_Condition;
 	information = DIA_Rumbold_EXIT_Info;
@@ -23,7 +23,7 @@ func void DIA_Rumbold_EXIT_Info()
 
 instance DIA_Rumbold_PrePerm(C_Info)
 {
-	npc = Mil_335_Rumbold;
+	npc = MIL_335_Rumbold;
 	nr = 1;
 	condition = DIA_Rumbold_PrePerm_Condition;
 	information = DIA_Rumbold_PrePerm_Info;
@@ -50,7 +50,7 @@ func void DIA_Rumbold_PrePerm_Info()
 
 instance DIA_Rumbold_Hallo(C_Info)
 {
-	npc = Mil_335_Rumbold;
+	npc = MIL_335_Rumbold;
 	nr = 1;
 	condition = DIA_Rumbold_Hallo_Condition;
 	information = DIA_Rumbold_Hallo_Info;
@@ -98,7 +98,7 @@ func void DIA_Rumbold_HALLO_verschwindet()
 	AI_Output(self,other,"DIA_Rumbold_HALLO_verschwindet_10_01");	//Так-так. То есть, ты хочешь, чтобы мы исчезли?
 	AI_Output(self,other,"DIA_Rumbold_HALLO_verschwindet_10_02");	//(угрожающе) А что будет, если мы этого не сделаем, эй?
 	Info_ClearChoices(DIA_Rumbold_Hallo);
-	Info_AddChoice(DIA_Rumbold_Hallo,"А что если я заплачу вам, чтобы вы убрались отсюда?",DIA_Rumbold_HALLO_geld);
+	Info_AddChoice(DIA_Rumbold_Hallo,"А что, если я заплачу вам, чтобы вы убрались отсюда?",DIA_Rumbold_HALLO_geld);
 	Info_AddChoice(DIA_Rumbold_Hallo,"В таком случае, вы больше никогда не сможете беспокоить этих фермеров.",DIA_Rumbold_HALLO_AufsMaul);
 };
 
@@ -112,7 +112,7 @@ func void DIA_Rumbold_HALLO_AufsMaul()
 
 func void DIA_Rumbold_HALLO_geld()
 {
-	AI_Output(other,self,"DIA_Rumbold_HALLO_geld_15_00");	//А что если я заплачу вам, чтобы вы убрались отсюда?
+	AI_Output(other,self,"DIA_Rumbold_HALLO_geld_15_00");	//А что, если я заплачу вам, чтобы вы убрались отсюда?
 	AI_Output(self,other,"DIA_Rumbold_HALLO_geld_10_01");	//Ты хочешь заплатить за Бенгара? Это другое дело.
 	AI_Output(self,other,"DIA_Rumbold_HALLO_geld_10_02");	//Дай подумать. Учитывая все, что он нам задолжал, это будет 65 золотых монет.
 	AI_Output(self,other,"DIA_Rumbold_HALLO_geld_10_03");	//Либо плати, либо убирайся с дороги.
@@ -172,7 +172,7 @@ func void DIA_Rumbold_HALLO_ENDAttack()
 
 instance DIA_Rumbold_FightNow(C_Info)
 {
-	npc = Mil_335_Rumbold;
+	npc = MIL_335_Rumbold;
 	nr = 1;
 	condition = DIA_Rumbold_FightNow_Condition;
 	information = DIA_Rumbold_FightNow_Info;
@@ -210,7 +210,7 @@ func void DIA_Rumbold_FightNow_ENDAttack()
 
 instance DIA_Rumbold_StillThere(C_Info)
 {
-	npc = Mil_335_Rumbold;
+	npc = MIL_335_Rumbold;
 	nr = 1;
 	condition = DIA_Rumbold_StillThere_Condition;
 	information = DIA_Rumbold_StillThere_Info;
@@ -248,7 +248,7 @@ func void DIA_Rumbold_StillThere_ENDAttack()
 
 instance DIA_Rumbold_PICKPOCKET(C_Info)
 {
-	npc = Mil_335_Rumbold;
+	npc = MIL_335_Rumbold;
 	nr = 900;
 	condition = DIA_Rumbold_PICKPOCKET_Condition;
 	information = DIA_Rumbold_PICKPOCKET_Info;

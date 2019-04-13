@@ -85,8 +85,6 @@ instance ItWr_Map_NewWorld(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -119,8 +117,6 @@ instance ItWr_Map_NewWorld_City(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_City;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -144,7 +140,7 @@ func void Use_Map_NewWorld_City()
 
 instance ItWr_Map_OldWorld(C_Item)
 {
-	name = "Карта долины рудников";
+	name = "Карта Долины Рудников";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 350;
@@ -153,8 +149,6 @@ instance ItWr_Map_OldWorld(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_Map_OldWorld;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -224,7 +218,6 @@ func void UseEinhandBuch()
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Вероятно, самый известный прием, используемый южанами - это блок одноручным оружием и шаг назад. Шаг назад позволяет бойцу ослабить атакующий удар и в то же время занять превосходную стойку, из которой можно провести контратаку.");
-	Doc_PrintLine(nDocID,1,"");
 	Doc_Show(nDocID);
 };
 

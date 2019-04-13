@@ -1,5 +1,5 @@
 
-instance PIR_1361_Addon_PIRAT(Npc_Default)
+instance PIR_1361_Addon_Pirat(Npc_Default)
 {
 	name[0] = NAME_Addon_Pirat;
 	guild = GIL_PIR;

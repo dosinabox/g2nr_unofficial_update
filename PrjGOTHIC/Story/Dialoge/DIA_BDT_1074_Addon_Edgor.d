@@ -147,7 +147,7 @@ func int DIA_Addon_Edgor_MIS2_Condition()
 func void DIA_Addon_Edgor_MIS2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Edgor_MIS2_15_00");	//‘ранко послал мен€ по поводу этой каменной таблички. “ы ее нашел?
-	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_01");	//ѕри€тель, € даже не пыталс€ ее искать. ¬се, что € знаю, - это то, что она должна быть где-то в этом старом здании на болоте.
+	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_01");	//ѕри€тель, € даже не пыталс€ ее искать. ¬се, что € знаю - это то, что она должна быть где-то в этом старом здании на болоте.
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_02");	//ј мой внутренний голос говорит мне: 'Ёдгор, сторонись старых зданий, сто€щих на болоте'.
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_03");	//я не собираюсь рисковать своей шкурой ради этого раздолба€ ‘ранко!
 	B_LogEntry(Topic_Addon_Stoneplate,"Ёдгор не собираетс€ искать каменную табличку. ќн говорит, что она находитс€ в каком-то старом строении на болотах.");
@@ -196,7 +196,7 @@ instance DIA_Addon_Edgor_Found(C_Info)
 
 func int DIA_Addon_Edgor_Found_Condition()
 {
-	if((Npc_HasItems(other,ItMi_Addon_Stone_04) >= 1) && !Npc_IsDead(Franco) && (MIS_HlpEdgor == LOG_Running))
+	if(Npc_HasItems(other,ItMi_Addon_Stone_04) && !Npc_IsDead(Franco) && (MIS_HlpEdgor == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -233,12 +233,12 @@ func void DIA_Addon_Edgor_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Edgor_Teach_15_00");	//ћожешь научить мен€ кое-чему?
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_01");	//я многое знаю про кровавых мух. я ненавижу этих гадких тварей даже больше, чем € ненавижу ‘ранко!
-	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_02");	//Ќо € знаю, как отрывать от них жала и крыль€, от их мертвых тушек. (с оттенком безуми€) ƒа! ќтрывать от них...
+	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_02");	//Ќо € знаю, как отрывать от них жала и крыль€, от этих мертвых тушек. (с оттенком безуми€) ƒа! ќтрывать от них...
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_03");	// роме того, € знаю, как выдел€ть секрет из оторванных жал.
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_04");	//≈сли хочешь, € могу научить теб€ всей этой фигне.
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_05");	// онечно, € ничего не буду делать бесплатно...
 	Log_CreateTopic(Topic_Addon_BDT_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Teacher,"ќ кровавых мухах Ёдгору известно все.");
+	B_LogEntry(Topic_Addon_BDT_Teacher,Log_Text_Addon_EdgorTeach);
 	Edgor_Teach = TRUE;
 };
 
@@ -270,20 +270,27 @@ func int DIA_Addon_Edgor_Start_Condition()
 func void DIA_Addon_Edgor_Start_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_SEKRET_15_00");	//ѕо поводу кровавых мух...
-	AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_SEKRET_06_01");	//„то бы ты хотел узнать?
-	Info_ClearChoices(DIA_Addon_Edgor_TrainStart);
-	Info_AddChoice(DIA_Addon_Edgor_TrainStart,Dialog_Back,DIA_Addon_Edgor_TrainStart_BACK);
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (Knows_Bloodfly == FALSE))
 	{
-		Info_AddChoice(DIA_Addon_Edgor_TrainStart,"∆ало кровавой мухи (1 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_Sting);
-	};
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
+		AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_SEKRET_06_01");	//„то бы ты хотел узнать?
+		Info_ClearChoices(DIA_Addon_Edgor_TrainStart);
+		Info_AddChoice(DIA_Addon_Edgor_TrainStart,Dialog_Back,DIA_Addon_Edgor_TrainStart_BACK);
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
+		{
+			Info_AddChoice(DIA_Addon_Edgor_TrainStart,"∆ало кровавой мухи (1 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_Sting);
+		};
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
+		{
+			Info_AddChoice(DIA_Addon_Edgor_TrainStart," рыль€ кровавой мухи (1 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_Wing);
+		};
+		if(Knows_Bloodfly == FALSE)
+		{
+			Info_AddChoice(DIA_Addon_Edgor_TrainStart,"—екрет из жала (1 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_GIFT);
+		};
+	}
+	else
 	{
-		Info_AddChoice(DIA_Addon_Edgor_TrainStart," рыль€ кровавой мухи (1 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_Wing);
-	};
-	if(Knows_Bloodfly == FALSE)
-	{
-		Info_AddChoice(DIA_Addon_Edgor_TrainStart,"—екрет из жала (1 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_GIFT);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
 	};
 };
 
@@ -336,9 +343,11 @@ func void DIA_Addon_Edgor_TrainStart_GIFT()
 			AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_GIFT_15_00");	// ак добыть секрет из жала кровавой мухи?
 			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_01");	//–азрежь верхний слой жала вдоль - тогда лечебный секрет и вытечет.
 			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_02");	//Ёто совершенно безопасный способ высосать его из жала - или использовать его дл€ лечебного зель€.
-			other.lp = other.lp - 1;
+			other.lp -= 1;
 			Knows_Bloodfly = TRUE;
 			PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
+			Log_CreateTopic(Topic_Bonus,LOG_NOTE);
+			B_LogEntry(Topic_Bonus,"“еперь € знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.");
 		}
 		else
 		{

@@ -25,7 +25,7 @@ instance BDT_1060_Dexter(Npc_Default)
 
 func void Rtn_Start_1060()
 {
-	TA_Sit_Throne(0,0,12,0,"NW_CASTLEMINE_HUT_10");
-	TA_Sit_Throne(12,0,0,0,"NW_CASTLEMINE_HUT_10");
+	TA_Sleep(0,0,8,0,"NW_CASTLEMINE_HUT_08");
+	TA_Sit_Throne(8,0,0,0,"NW_CASTLEMINE_HUT_10");
 };
 

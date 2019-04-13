@@ -128,7 +128,7 @@ instance DIA_Addon_Bones_Train(C_Info)
 
 func int DIA_Addon_Bones_Train_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Bones_Hello) == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Bones_Hello))
 	{
 		return TRUE;
 	};
@@ -154,7 +154,7 @@ instance DIA_Addon_Bones_Teacher(C_Info)
 
 func int DIA_Addon_Bones_Teacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Bones_Train) == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Bones_Train))
 	{
 		return TRUE;
 	};
@@ -221,11 +221,13 @@ instance DIA_Addon_Bones_WantArmor(C_Info)
 
 func int DIA_Addon_Bones_WantArmor_Condition()
 {
-	if((Greg_GaveArmorToBones == TRUE) && (MIS_Greg_ScoutBandits == 0))
+	if((Greg_GaveArmorToBones == TRUE) && (MIS_Greg_ScoutBandits == FALSE))
 	{
 		return TRUE;
 	};
 };
+
+var int DIA_Addon_Bones_WantArmor_Once;
 
 func void DIA_Addon_Bones_WantArmor_Info()
 {
@@ -234,9 +236,13 @@ func void DIA_Addon_Bones_WantArmor_Info()
 	AI_Output(self,other,"DIA_Addon_Bones_WantArmor_01_02");	//Он сказал мне, что без его приказа я не должен никому их отдавать.
 	if(GregIsBack == TRUE)
 	{
-		AI_Output(self,other,"DIA_Addon_Bones_WantArmor_01_03");	//Нет, я не могу дать их тебе. Тем более, когда Грега здесь нет.
+		AI_Output(self,other,"DIA_Addon_Bones_WantArmor_01_03");	//Нет, я не могу дать их тебе. Тем более, когда Грег здесь.
 	};
-	B_LogEntry(TOPIC_Addon_BDTRuestung,"Бонес не отдаст мне доспехи, пока я не получу разрешение Грега.");
+	if(DIA_Addon_Bones_WantArmor_Once == FALSE)
+	{
+		B_LogEntry(TOPIC_Addon_BDTRuestung,"Бонес не отдаст мне доспехи, пока я не получу разрешение Грега.");
+		DIA_Addon_Bones_WantArmor_Once = TRUE;
+	};
 };
 
 
@@ -267,7 +273,7 @@ func void DIA_Addon_Bones_GiveArmor_Info()
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_03");	//Пусть уж лучше Грег взвалит на меня какую-нибудь скучную работу...
 	AI_Output(other,self,"DIA_Addon_Bones_GiveArmor_15_04");	//(раздраженно) Доспехи.
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_05");	//Да, конечно, вот они.
-	B_GiveInvItems(self,other,ItAr_BDT_M,1);
+	B_GiveInvItems(self,other,ITAR_BDT_M,1);
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_06");	//Будь осторожнее. С этими бандитами шутки плохи.
 	self.flags = 0;
 	PIR_1320_Addon_Greg.flags = 0;

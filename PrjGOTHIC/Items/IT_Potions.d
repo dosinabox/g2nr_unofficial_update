@@ -38,7 +38,7 @@ instance ItPo_Mana_01(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_MANAPOTION";
-	description = "Ёссенци€ маны";
+	description = NAME_Mana_Essenz;
 	text[1] = NAME_Bonus_Mana;
 	count[1] = Mana_Essenz;
 	text[5] = NAME_Value;
@@ -64,7 +64,7 @@ instance ItPo_Mana_02(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_MANAPOTION";
-	description = "Ёкстракт маны";
+	description = NAME_Mana_Extrakt;
 	text[1] = NAME_Bonus_Mana;
 	count[1] = Mana_Extrakt;
 	text[5] = NAME_Value;
@@ -90,7 +90,7 @@ instance ItPo_Mana_03(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_MANAPOTION";
-	description = "Ёликсир маны";
+	description = NAME_Mana_Elixier;
 	text[1] = NAME_Bonus_Mana;
 	count[1] = Mana_Elixier;
 	text[5] = NAME_Value;
@@ -116,7 +116,7 @@ instance ItPo_Health_01(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_HEALTHPOTION";
-	description = "Ћечебна€ эссенци€";
+	description = NAME_HP_Essenz;
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Essenz;
 	text[5] = NAME_Value;
@@ -142,7 +142,7 @@ instance ItPo_Health_02(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_HEALTHPOTION";
-	description = "Ћечебный экстракт";
+	description = NAME_HP_Extrakt;
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Extrakt;
 	text[5] = NAME_Value;
@@ -168,7 +168,7 @@ instance ItPo_Health_03(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_HEALTHPOTION";
-	description = "Ћечебный эликсир";
+	description = NAME_HP_Elixier;
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Elixier;
 	text[5] = NAME_Value;
@@ -194,7 +194,7 @@ instance ItPo_Perm_STR(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Ёликсир силы";
+	description = NAME_STR_Elixier;
 	text[1] = NAME_Bonus_Str;
 	count[1] = STR_Elixier;
 	text[5] = NAME_Value;
@@ -220,7 +220,7 @@ instance ItPo_Perm_DEX(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Ёликсир ловкости";
+	description = NAME_DEX_Elixier;
 	text[1] = NAME_Bonus_Dex;
 	count[1] = DEX_Elixier;
 	text[5] = NAME_Value;
@@ -246,7 +246,7 @@ instance ItPo_Perm_Health(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_HEALTHPOTION";
-	description = "Ёликсир жизни";
+	description = NAME_HPMax_Elixier;
 	text[1] = NAME_Bonus_HpMax;
 	count[1] = HPMax_Elixier;
 	text[5] = NAME_Value;
@@ -273,7 +273,7 @@ instance ItPo_Perm_Mana(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_MANAPOTION";
-	description = "Ёликсир духа";
+	description = NAME_ManaMax_Elixier;
 	text[1] = NAME_Bonus_ManaMax;
 	count[1] = ManaMax_Elixier;
 	text[5] = NAME_Value;
@@ -300,7 +300,7 @@ instance ItPo_Speed(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "«елье ускорени€";
+	description = NAME_Speed_Elixier;
 	text[1] = "¬ременно повышает скорость.";
 	text[3] = NAME_Duration;
 	count[3] = Time_Speed / 60000;
@@ -317,7 +317,7 @@ func void UseItPo_Speed()
 
 instance ItPo_MegaDrink(C_Item)
 {
-	name = "Ёмбарла фиргасто";
+	name = NAME_MegaDrink;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = Value_MegaDrink;

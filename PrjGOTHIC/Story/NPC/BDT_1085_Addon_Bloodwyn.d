@@ -11,6 +11,7 @@ instance BDT_1085_Addon_Bloodwyn(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Sword);
+	B_CreateAmbientInv(self);
 	CreateInvItems(self,ITKE_Addon_Bloodwyn_01,1);
 	CreateInvItems(self,ItMi_Addon_Bloodwyn_Kopf,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Bloodwyn,BodyTex_N,ITAR_Thorus_Addon);

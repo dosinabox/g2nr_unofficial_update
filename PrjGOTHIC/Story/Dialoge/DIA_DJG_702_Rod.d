@@ -43,7 +43,7 @@ func void DIA_RodDJG_HALLO_Info()
 	AI_Output(other,self,"DIA_RodDJG_HALLO_15_00");	//С тобой все в порядке?
 	AI_Output(self,other,"DIA_RodDJG_HALLO_06_01");	//Эти сапоги доконают меня! Эти новые доспехи очень хороши, но почему застежки на этих сапогах должны быть такими тугими?
 	AI_Output(self,other,"DIA_RodDJG_HALLO_06_02");	//А если я чуть ослаблю их, сапоги начинают сваливаться с моих ног.
-	if((Npc_IsDead(SwampDragon) == FALSE) && (DJG_SwampParty == FALSE))
+	if(!Npc_IsDead(SwampDragon) && (DJG_SwampParty == FALSE))
 	{
 		Info_AddChoice(DIA_RodDJG_HALLO,"Чего ты ждешь?",DIA_RodDJG_HALLO_warten);
 	};
@@ -61,7 +61,7 @@ func void DIA_RodDJG_HALLO_warten()
 {
 	AI_Output(other,self,"DIA_RodDJG_HALLO_warten_15_00");	//Чего ты ждешь?
 	Info_ClearChoices(DIA_RodDJG_HALLO);
-	if(Npc_IsDead(DJG_Cipher) == FALSE)
+	if(!Npc_IsDead(DJG_Cipher))
 	{
 		AI_Output(self,other,"DIA_RodDJG_HALLO_warten_06_01");	//Когда Сифер, наконец, соизволит поднять свою задницу. Нам уже пора отправляться в путь.
 		AI_StopProcessInfos(self);
@@ -122,7 +122,7 @@ func void DIA_RodDJG_WARTEMAL_Info()
 	AI_Output(other,self,"DIA_RodDJG_WARTEMAL_15_00");	//Что с тобой?
 	if(((DJG_SwampParty == TRUE) || (Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT2_02") < 1000)) && Npc_IsDead(DJG_Cipher))
 	{
-		AI_Output(self,other,"DIA_RodDJG_WARTEMAL_06_01");	//Послушай, парень. Я думаю, эта тварь немного нам не по зубам. Я пожалуй, попробую тихонько смыться.
+		AI_Output(self,other,"DIA_RodDJG_WARTEMAL_06_01");	//Послушай, парень. Я думаю, эта тварь немного нам не по зубам. Я, пожалуй, попробую тихонько смыться.
 		DJG_SwampParty = FALSE;
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
 		AI_StopProcessInfos(self);

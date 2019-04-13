@@ -7,7 +7,7 @@ func void Equip_1H_01()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_01) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}
@@ -43,7 +43,7 @@ func void Equip_1H_02()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_02) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}
@@ -79,7 +79,7 @@ func void Equip_1H_03()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_03) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}
@@ -115,7 +115,7 @@ func void Equip_1H_04()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_04) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}
@@ -151,7 +151,7 @@ func void Equip_1H_05()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_05) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}
@@ -187,7 +187,7 @@ func void Equip_1H_06()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_06) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}
@@ -224,7 +224,7 @@ func void Equip_1H_07()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_07) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}
@@ -260,7 +260,7 @@ func void Equip_1H_08()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_08) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}
@@ -296,7 +296,7 @@ func void Equip_1H_09()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_09) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}
@@ -332,7 +332,7 @@ func void Equip_1H_10()
 	{
 		if((self.HitChance[NPC_TALENT_1H] + Waffenbonus_10) > 100)
 		{
-			hero_1h_max_bonus = 100-self.HitChance[NPC_TALENT_1H];
+			hero_1h_max_bonus = 100 - self.HitChance[NPC_TALENT_1H];
 			B_AddFightSkill(self,NPC_TALENT_1H,hero_1h_max_bonus);
 			b_meleeweaponchange(hero_1h_max_bonus,0,0);
 		}

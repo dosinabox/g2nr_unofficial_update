@@ -12,7 +12,7 @@ instance PAL_272_Ritter(Npc_Default)
 	EquipItem(self,ItMw_2h_Pal_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal08,BodyTex_N,ItAr_PAL_M);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal08,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

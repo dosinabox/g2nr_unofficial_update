@@ -10,11 +10,9 @@ instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 	material = MAT_METAL;
 	on_state[0] = Use_XardasNotfallBeutel;
 	description = name;
-	text[0] = "";
 	text[1] = "Похоже, что в этом мешочке";
 	text[2] = "находятся твердый объект";
 	text[3] = "и документ.";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -242,15 +240,16 @@ func void Use_RezeptFuerMegaTrank()
 	Doc_PrintLines(nDocID,0,"Я вернул к жизни древнее искусство. Боюсь, правда, Феодарон не оценит мои достижения.");
 	Doc_PrintLines(nDocID,0,"Это, попросту говоря, означает, что я должен превратить весь его выводок в зелье. Если бы только он не сидел на своих яйцах все время как курица, я бы попытался.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Эмбарла фиргасто:");
+	Doc_PrintLine(nDocID,0,NAME_MegaDrink);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"11 драконьих яиц, одна истертая в порошок черная жемчужина и щепотка серы.");
+	Doc_PrintLines(nDocID,0,"10 драконьих яиц, одна истертая в порошок черная жемчужина и щепотка серы.");
 	Doc_PrintLines(nDocID,0,"Эту смесь нужно довести до кипения, постоянно помешивая, и пропустить через дистиллятор.");
 	Doc_PrintLines(nDocID,0,"Получившийся эликсир нужно использовать с осторожностью. Он обладает сильными побочными эффектами и может отрицательно повлиять на ману.");
 	Doc_Show(nDocID);
 	if(PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE)
 	{
 		PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'Эмбарла фиргасто': 10 драконьих яиц, 1 черный жемчуг и 1 сера.");
 	};
 };
 

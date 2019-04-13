@@ -78,7 +78,7 @@ func int DIA_Abuyin_Hallo_Condition()
 func void DIA_Abuyin_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_00");	//(задумчиво) ...Как странно... Мне кажется, что мы с тобой уже встречались, путник...
-	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_01");	//Что ж... велики загадки нашего мира... О, прошу простить мою грубость, сын терпения, я даже не поприветствовал тебя.
+	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_01");	//Что ж... велики загадки нашего мира... О, прошу простить мою грубость, Сын Терпения, я даже не поприветствовал тебя.
 	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_02");	//Добро пожаловать, друг мой, присядь на мой скромный ковер и выкури трубку, наслаждаясь покоем.
 };
 
@@ -212,7 +212,7 @@ instance DIA_Abuyin_Mischung(C_Info)
 
 func int DIA_Abuyin_Mischung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Abuyin_anderen) && (Abuyin_Honigtabak == FALSE) && ((Npc_HasItems(other,ItMi_SumpfTabak) >= 1) || (Npc_HasItems(other,ItMi_PilzTabak) >= 1) || (Npc_HasItems(other,ItMi_DoppelTabak) >= 1) || (Npc_HasItems(other,ItMi_Honigtabak) >= 1)))
+	if(Npc_KnowsInfo(other,DIA_Abuyin_anderen) && (Abuyin_Honigtabak == FALSE) && (Npc_HasItems(other,ItMi_SumpfTabak) || Npc_HasItems(other,ItMi_PilzTabak) || Npc_HasItems(other,ItMi_DoppelTabak) || Npc_HasItems(other,ItMi_Honigtabak)))
 	{
 		return TRUE;
 	};
@@ -223,19 +223,19 @@ func void DIA_Abuyin_Mischung_Info()
 	AI_Output(other,self,"DIA_Abuyin_Mischung_15_00");	//Я принес новый сорт табака...
 	Info_ClearChoices(DIA_Abuyin_Mischung);
 	Info_AddChoice(DIA_Abuyin_Mischung,Dialog_Back,DIA_Abuyin_Mischung_BACK);
-	if(Npc_HasItems(other,ItMi_SumpfTabak) >= 1)
+	if(Npc_HasItems(other,ItMi_SumpfTabak))
 	{
 		Info_AddChoice(DIA_Abuyin_Mischung,PRINT_KRAUT,DIA_Abuyin_Mischung_Sumpf);
 	};
-	if(Npc_HasItems(other,ItMi_PilzTabak) >= 1)
+	if(Npc_HasItems(other,ItMi_PilzTabak))
 	{
 		Info_AddChoice(DIA_Abuyin_Mischung,PRINT_PILZ,DIA_Abuyin_Mischung_Pilz);
 	};
-	if(Npc_HasItems(other,ItMi_DoppelTabak) >= 1)
+	if(Npc_HasItems(other,ItMi_DoppelTabak))
 	{
 		Info_AddChoice(DIA_Abuyin_Mischung,PRINT_DOPPEL,DIA_Abuyin_Mischung_Doppel);
 	};
-	if(Npc_HasItems(other,ItMi_Honigtabak) >= 1)
+	if(Npc_HasItems(other,ItMi_Honigtabak))
 	{
 		Info_AddChoice(DIA_Abuyin_Mischung,PRINT_HONIG,DIA_Abuyin_Mischung_Super);
 	};
@@ -298,7 +298,7 @@ instance DIA_Abuyin_Trade(C_Info)
 
 func int DIA_Abuyin_Trade_Condition()
 {
-	if((Abuyin_Honigtabak == TRUE) && (Npc_HasItems(other,ItMi_Honigtabak) >= 1))
+	if((Abuyin_Honigtabak == TRUE) && Npc_HasItems(other,ItMi_Honigtabak))
 	{
 		return TRUE;
 	};
@@ -329,7 +329,7 @@ instance DIA_Abuyin_Herb(C_Info)
 
 func int DIA_Abuyin_Herb_Condition()
 {
-	if(Npc_HasItems(other,ItMi_HerbPaket) >= 1)
+	if(Npc_HasItems(other,ItMi_HerbPaket))
 	{
 		return TRUE;
 	};
@@ -369,7 +369,7 @@ func void DIA_Abuyin_Weissagung_Info()
 	AI_Output(other,self,"DIA_Abuyin_Weissagung_15_00");	//Ты можешь сделать пророчество?
 	AI_Output(self,other,"DIA_Abuyin_Weissagung_13_01");	//Я к твоим услугам за скромное вознаграждение, о, Отец Щедрости.
 	AI_Output(other,self,"DIA_Abuyin_Weissagung_15_02");	//Сколько ты хочешь?
-	AI_Output(self,other,"DIA_Abuyin_Weissagung_13_03");	//За какие-то 25 монет, я рискну заглянуть для тебя в будущее.
+	AI_Output(self,other,"DIA_Abuyin_Weissagung_13_03");	//За какие-то 25 монет я рискну заглянуть для тебя в будущее.
 	AI_Output(self,other,"DIA_Abuyin_Weissagung_13_04");	//Но помни - будущее всегда неопределенно. Все, что в моих силах - это уловить лишь крошечные фрагменты времени.
 };
 
@@ -381,7 +381,7 @@ instance DIA_Abuyin_Zukunft(C_Info)
 	condition = DIA_Abuyin_Zukunft_Condition;
 	information = DIA_Abuyin_Zukunft_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем (заплатить 25 золотых).";
+	description = "Расскажи мне о будущем. (заплатить 25 золотых)";
 };
 
 
@@ -417,10 +417,10 @@ func void DIA_Abuyin_Zukunft_Trance()
 	AI_Output(self,other,"DIA_Abuyin_Zukunft_Trance_13_00");	//(в трансе) Орки... они охраняют вход... старый туннель... Долина Рудников...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft_Trance_13_01");	//(в трансе) Люди в сверкающих доспехах... маг... твой друг с ними... он ждет тебя...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft_Trance_13_02");	//(в трансе) Огонь! Нападение... могучего существа... пламя... многие... погибнут...
-	AI_Output(self,other,"DIA_Addon_Abuyin_Zukunft_Trance_13_00");	//(в трансе) ...Что это?.. Город... Руины... Куарходрон из Яркендара...
-	AI_Output(self,other,"DIA_Addon_Abuyin_Zukunft_Trance_13_01");	//(в трансе) ...Он был призван... Куарходрон из Яркендара!
+	AI_Output(self,other,"DIA_Addon_Abuyin_Zukunft_Trance_13_00");	//(в трансе) ... Что это?.. Город... Руины... Куарходрон из Яркендара...
+	AI_Output(self,other,"DIA_Addon_Abuyin_Zukunft_Trance_13_01");	//(в трансе) ... Он был призван... Куарходрон из Яркендара!
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
-	AI_Output(self,other,"DIA_Abuyin_Zukunft_Trance_13_03");	//... Извини - видение кончилось. Больше я ничего не смог увидеть.
+	AI_Output(self,other,"DIA_Abuyin_Zukunft_Trance_13_03");	//Извини - видение кончилось. Больше я ничего не смог увидеть.
 	DIA_Abuyin_Zukunft_permanent = TRUE;
 	Abuyin_Zukunft = 1;
 	Info_ClearChoices(DIA_Abuyin_Zukunft);
@@ -490,7 +490,7 @@ func int DIA_Abuyin_Weissagung2_Condition()
 func void DIA_Abuyin_Weissagung2_Info()
 {
 	B_Abuyin_Weissagung();
-	AI_Output(self,other,"DIA_Abuyin_Weissagung2_13_00");	//За какие-то 100 монет, я рискну заглянуть для тебя в будущее.
+	AI_Output(self,other,"DIA_Abuyin_Weissagung2_13_00");	//За какие-то 100 монет я рискну заглянуть для тебя в будущее.
 };
 
 
@@ -501,7 +501,7 @@ instance DIA_Abuyin_Zukunft2(C_Info)
 	condition = DIA_Abuyin_Zukunft2_Condition;
 	information = DIA_Abuyin_Zukunft2_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем (заплатить 100 золотых).";
+	description = "Расскажи мне о будущем. (заплатить 100 золотых)";
 };
 
 
@@ -536,7 +536,7 @@ func void DIA_Abuyin_Zukunft2_Trance()
 	Wld_PlayEffect("SPELLFX_TELEPORT",self,self,0,0,0,FALSE);
 	AI_Output(self,other,"DIA_Abuyin_Zukunft2_Trance_13_00");	//(в трансе) Наемник... ему нужен ты... ужасное убийство... Глаз...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft2_Trance_13_01");	//(в трансе) Зловещие приспешники... они идут... ищут тебя... страж падет...
-	AI_Output(self,other,"DIA_Abuyin_Zukunft2_Trance_13_02");	//(в трансе) ...но трое должны объединиться... только тогда ты получишь то, что должно принадлежать тебе...
+	AI_Output(self,other,"DIA_Abuyin_Zukunft2_Trance_13_02");	//(в трансе) ... но трое должны объединиться... только тогда ты получишь то, что должно принадлежать тебе...
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 	AI_Output(self,other,"DIA_Abuyin_Zukunft2_Trance_13_03");	//Это все. Больше я ничего не смог увидеть.
 	DIA_Abuyin_Zukunft2_permanent = TRUE;
@@ -568,7 +568,7 @@ func int DIA_Abuyin_Weissagung3_Condition()
 func void DIA_Abuyin_Weissagung3_Info()
 {
 	B_Abuyin_Weissagung();
-	AI_Output(self,other,"DIA_Abuyin_Weissagung3_13_00");	//За какие-то 250 монет, я рискну заглянуть для тебя в будущее.
+	AI_Output(self,other,"DIA_Abuyin_Weissagung3_13_00");	//За какие-то 250 монет я рискну заглянуть для тебя в будущее.
 };
 
 
@@ -579,7 +579,7 @@ instance DIA_Abuyin_Zukunft3(C_Info)
 	condition = DIA_Abuyin_Zukunft3_Condition;
 	information = DIA_Abuyin_Zukunft3_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем (заплатить 250 золотых).";
+	description = "Расскажи мне о будущем. (заплатить 250 золотых)";
 };
 
 
@@ -613,7 +613,7 @@ func void DIA_Abuyin_Zukunft3_Trance()
 	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
 	Wld_PlayEffect("SPELLFX_TELEPORT",self,self,0,0,0,FALSE);
 	AI_Output(self,other,"DIA_Abuyin_Zukunft3_Trance_13_00");	//(в трансе) Ты должен пробиться... это суждено только тебе...
-	AI_Output(self,other,"DIA_Abuyin_Zukunft3_Trance_13_01");	//(в трансе) ...сквозь огонь и снег... сквозь лед и пламя...
+	AI_Output(self,other,"DIA_Abuyin_Zukunft3_Trance_13_01");	//(в трансе) ... сквозь огонь и снег... сквозь лед и пламя...
 	AI_Output(self,other,"DIA_Abuyin_Zukunft3_Trance_13_02");	//(в трансе) Люди в странных доспехах... болото... ящеры... они ждут тебя...
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 	AI_Output(self,other,"DIA_Abuyin_Zukunft3_Trance_13_03");	//Это все. Больше я ничего не смог увидеть.
@@ -646,7 +646,7 @@ func int DIA_Abuyin_Weissagung4_Condition()
 func void DIA_Abuyin_Weissagung4_Info()
 {
 	B_Abuyin_Weissagung();
-	AI_Output(self,other,"DIA_Abuyin_Weissagung4_13_00");	//За какие-то 500 монет, я рискну заглянуть для тебя в будущее.
+	AI_Output(self,other,"DIA_Abuyin_Weissagung4_13_00");	//За какие-то 500 монет я рискну заглянуть для тебя в будущее.
 };
 
 
@@ -657,7 +657,7 @@ instance DIA_Abuyin_Zukunft4(C_Info)
 	condition = DIA_Abuyin_Zukunft4_Condition;
 	information = DIA_Abuyin_Zukunft4_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем (заплатить 500 золотых).";
+	description = "Расскажи мне о будущем. (заплатить 500 золотых)";
 };
 
 
@@ -724,7 +724,7 @@ func int DIA_Abuyin_Weissagung5_Condition()
 func void DIA_Abuyin_Weissagung5_Info()
 {
 	B_Abuyin_Weissagung();
-	AI_Output(self,other,"DIA_Abuyin_Weissagung5_13_00");	//За какую-то 1000 монет, я рискну заглянуть для тебя в будущее.
+	AI_Output(self,other,"DIA_Abuyin_Weissagung5_13_00");	//За какую-то 1000 монет я рискну заглянуть для тебя в будущее.
 };
 
 
@@ -735,7 +735,7 @@ instance DIA_Abuyin_Zukunft5(C_Info)
 	condition = DIA_Abuyin_Zukunft5_Condition;
 	information = DIA_Abuyin_Zukunft5_Info;
 	permanent = TRUE;
-	description = "Расскажи мне о будущем (заплатить 1000 золотых).";
+	description = "Расскажи мне о будущем. (заплатить 1000 золотых)";
 };
 
 

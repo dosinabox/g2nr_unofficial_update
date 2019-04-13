@@ -4,11 +4,11 @@ func void ZS_Cook_Cauldron()
 	Perception_Set_Normal();
 	B_ResetAll(self);
 	AI_SetWalkMode(self,NPC_WALK);
-	if(Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) == FALSE)
+	if(!Hlp_StrCmp(Npc_GetNearestWP(self),self.wp))
 	{
 		AI_GotoWP(self,self.wp);
 	};
-	if(Npc_HasItems(self,ItMi_Scoop) == 0)
+	if(!Npc_HasItems(self,ItMi_Scoop))
 	{
 		CreateInvItem(self,ItMi_Scoop);
 	};

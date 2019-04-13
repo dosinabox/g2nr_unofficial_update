@@ -15,7 +15,7 @@ func void player_mob_missing_key()
 
 func void player_mob_missing_lockpick()
 {
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK) == FALSE)
+	if(!Npc_GetTalentSkill(hero,NPC_TALENT_PICKLOCK))
 	{
 		Print(PRINT_NoPicklockTalent);
 		AI_PlayAni(self,"T_DONTKNOW");

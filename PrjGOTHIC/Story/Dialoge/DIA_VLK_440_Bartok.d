@@ -34,10 +34,7 @@ instance DIA_Bartok_PICKPOCKET(C_Info)
 
 func int DIA_Bartok_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItRw_Arrow) >= 40) && (other.attribute[ATR_DEXTERITY] >= (30 - Theftdiff)))
-	{
-		return TRUE;
-	};
+	return C_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),0);
 };
 
 func void DIA_Bartok_PICKPOCKET_Info()
@@ -49,19 +46,9 @@ func void DIA_Bartok_PICKPOCKET_Info()
 
 func void DIA_Bartok_PICKPOCKET_DoIt()
 {
-	if(other.attribute[ATR_DEXTERITY] >= 30)
-	{
-		B_GiveInvItems(self,other,ItRw_Arrow,40);
-		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
-		B_GiveThiefXP();
-		Info_ClearChoices(DIA_Bartok_PICKPOCKET);
-	}
-	else
-	{
-		B_ResetThiefLevel();
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
-	};
+	CreateInvItems(self,ItRw_Arrow,40);
+	B_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),40);
+	Info_ClearChoices(DIA_Bartok_PICKPOCKET);
 };
 
 func void DIA_Bartok_PICKPOCKET_BACK()
@@ -249,13 +236,13 @@ instance DIA_Bartok_TeachSneak(C_Info)
 	condition = DIA_Bartok_TeachSneak_Condition;
 	information = DIA_Bartok_TeachSneak_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
+	description = B_BuildLearnString("Научи меня красться!",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
 };
 
 
 func int DIA_Bartok_TeachSneak_Condition()
 {
-	if((Bartok_TeachPlayer == TRUE) && (Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) == 0))
+	if((Bartok_TeachPlayer == TRUE) && !Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 	{
 		return TRUE;
 	};

@@ -11,8 +11,8 @@ instance PAL_267_Sengrath(Npc_Default)
 	fight_tactic = FAI_NAILED;
 	EquipItem(self,ItMw_1h_Pal_Sword);
 	EquipItem(self,ItRw_Mil_Crossbow);
-	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal03,BodyTex_N,ItAr_PAL_M);
+//	B_CreateAmbientInv(self);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal03,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
