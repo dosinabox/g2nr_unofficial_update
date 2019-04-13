@@ -225,7 +225,7 @@ func int DIA_Addon_Orlan_Teleportstein_Condition()
 func void DIA_Addon_Orlan_Teleportstein_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Orlan_Teleportstein_15_00");	//Ты когда-нибудь использовал телепорты?
-	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_05_01");	//Ты рехнулся? Пока маги воды не убедят меня, что это безопасно, я и близко подходить к ним не буду.
+	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_05_01");	//Ты рехнулся? Пока маги Воды не убедят меня, что это безопасно, я и близко подходить к ним не буду.
 	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_05_02");	//Меня попросили спрятать один из телепортов. Больше я не хочу иметь с этими штуками ничего общего.
 	B_GivePlayerXP(XP_Ambient);
 	Info_ClearChoices(DIA_Addon_Orlan_Teleportstein);
@@ -247,7 +247,7 @@ func void DIA_Addon_Orlan_Teleportstein_sehen()
 func void DIA_Addon_Orlan_Teleportstein_wo()
 {
 	AI_Output(other,self,"DIA_Addon_Orlan_Teleportstein_wo_15_00");	//Где находится телепорт?
-	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_wo_05_01");	//Недалеко от моей таверны, на юге, есть пещера. В ней маги воды его и обнаружили.
+	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_wo_05_01");	//Недалеко от моей таверны, на юге, есть пещера. В ней маги Воды его и обнаружили.
 };
 
 
@@ -397,7 +397,7 @@ instance DIA_Orlan_TRADE(C_Info)
 	information = DIA_Orlan_TRADE_Info;
 	trade = TRUE;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -635,18 +635,17 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	AI_Output(other,self,"DIA_Orlan_WETTKAMPFLAEUFT_15_03");	//Кто победил?
 	if((Mob_HasItems("CHEST_RUKHAR",ItFo_Booze) == FALSE) && (Mob_HasItems("CHEST_RUKHAR",ItFo_Water) == TRUE))
 	{
-		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_04");	//На этот раз Рендольф. Рухару нынче не повезло.
+		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_04");	//На этот раз Рэндольф. Рухару нынче не повезло.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_05");	//Как всегда Рухар напоил Рендольфа в стельку. Этого следовало ожидать.
+		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_05");	//Как всегда Рухар напоил Рэндольфа в стельку. Этого следовало ожидать.
 		Rukhar_Won_Wettkampf = TRUE;
 	};
 	if((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Orlan_WETTKAMPFLAEUFT_05_06");	//Я надеюсь, это было в последний раз. Я не хочу, чтобы подобное повторялось в моем доме. Заруби это у себя на носу.
 	};
-	B_GivePlayerXP(XP_Rukhar_WettkampfVorbei);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 	B_StartOtherRoutine(Randolph,"Start");

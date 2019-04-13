@@ -85,8 +85,8 @@ func int DIA_Kurgan_Leader_Condition()
 
 func void DIA_Kurgan_Leader_Info()
 {
-	AI_Output(other,self,"DIA_Kurgan_Leader_15_00");	//Ты что здесь, за главного?
-	AI_Output(self,other,"DIA_Kurgan_Leader_01_01");	//Я что, похож на главного? Конечно нет. Нам здесь не нужны важничающие кретины, раздающие приказы.
+	AI_Output(other,self,"DIA_Kurgan_Leader_15_00");	//Ты что, здесь за главного?
+	AI_Output(self,other,"DIA_Kurgan_Leader_01_01");	//Я что, похож на главного? Конечно, нет. Нам здесь не нужны важничающие кретины, раздающие приказы.
 	AI_Output(self,other,"DIA_Kurgan_Leader_01_02");	//Когда Сильвио попытался вести себя как командир, мы показали ему и его парням, что мы думаем об этом.
 	AI_Output(self,other,"DIA_Kurgan_Leader_01_03");	//Произошла небольшая стычка. И в конце концов им пришлось убраться.
 	AI_Output(self,other,"DIA_Kurgan_Leader_01_04");	//Надеюсь, Сильвио найдет свой конец в кастрюле какого-нибудь орка.

@@ -52,7 +52,7 @@ instance DIA_BAU_13_PEOPLE(C_Info)
 	condition = DIA_BAU_13_PEOPLE_Condition;
 	information = DIA_BAU_13_PEOPLE_Info;
 	permanent = TRUE;
-	description = "Кто командует здесь?";
+	description = "Кто заправляет здесь?";
 };
 
 
@@ -98,7 +98,7 @@ instance DIA_BAU_13_STANDARD(C_Info)
 	condition = DIA_BAU_13_STANDARD_Condition;
 	information = DIA_BAU_13_STANDARD_Info;
 	permanent = TRUE;
-	description = "Что нового?";
+	description = "Что новенького?";
 };
 
 

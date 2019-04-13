@@ -88,7 +88,7 @@ instance DIA_Coragon_Trade(C_Info)
 	condition = DIA_Coragon_Trade_Condition;
 	information = DIA_Coragon_Trade_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
@@ -103,8 +103,8 @@ func int DIA_Coragon_Trade_Condition()
 
 func void DIA_Coragon_Trade_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Coragon_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 };
 
 
@@ -146,7 +146,7 @@ instance DIA_Addon_Coragon_MissingPeople(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Coragon_MissingPeople_Condition;
 	information = DIA_Addon_Coragon_MissingPeople_Info;
-	description = "Что ты знаешь о пропавших людях?.";
+	description = "Что ты знаешь о пропавших людях?";
 };
 
 
@@ -160,13 +160,13 @@ func int DIA_Addon_Coragon_MissingPeople_Condition()
 
 func void DIA_Addon_Coragon_MissingPeople_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Coragon_MissingPeople_15_00");	//Что ты знаешь о пропавших людях?.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_01");	//°Я слышал, что многие из них пропали в районе порта. Неудивительно, если учитывать, что там творится.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_02");	//°Пропал даже ученик плотника Торбена из нижней части города.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_03");	//°Хакон, один из рыночных торговцев, рассказал мне очень странную историю.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_04");	//°Он говорил, что каждый день этого он встречал одного парня, а потом тот словно исчез с лица земли. Хакон даже обратился в ополчение.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_05");	//°Горожане начинают паниковать. Не понимаю, почему это происходит. Думаю, все это чепуха.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_06");	//°Жизнь в Хоринисе непростая, но за воротами еще опаснее.
+	AI_Output(other,self,"DIA_Addon_Coragon_MissingPeople_15_00");	//Что ты знаешь о пропавших людях?
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_01");	//Я слышал, что многие из них пропали в районе порта. Неудивительно, если учитывать, что там творится.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_02");	//Пропал даже ученик плотника Торбена из нижней части города.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_03");	//Хакон, один из рыночных торговцев, рассказал мне очень странную историю.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_04");	//Он говорил, что каждый день этого он встречал одного парня, а потом тот словно исчез с лица земли. Хакон даже обратился в ополчение.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_05");	//Горожане начинают паниковать. Не понимаю, почему это происходит. Думаю, все это чепуха.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_06");	//Жизнь в Хоринисе непростая, но за воротами еще опаснее.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_07");	//Те, кто не остается в городе, рано или поздно попадет в руки к бандитам или в зубы к диким животным. Все просто.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
@@ -294,7 +294,7 @@ instance DIA_Coragon_GiveBook(C_Info)
 
 func int DIA_Coragon_GiveBook_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) > 0)
+	if(Npc_KnowsInfo(other,DIA_Coragon_Schuldenbuch) && (Npc_HasItems(other,ItWr_Schuldenbuch) >= 1))
 	{
 		return TRUE;
 	};
@@ -304,7 +304,7 @@ func void DIA_Coragon_GiveBook_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
 	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_19");	//Спасибо! Ты спас меня. Лемара может быть очень неприятным человеком.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_19");	//Спасибо! Ты спас меня. Лемар может быть очень неприятным человеком.
 	B_GivePlayerXP(XP_Schuldenbuch);
 	B_Coragon_Bier();
 };

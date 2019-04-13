@@ -56,7 +56,7 @@ instance DIA_Addon_TAL_BDT_1_Lager(C_Info)
 	condition = DIA_Addon_TAL_BDT_1_Lager_Condition;
 	information = DIA_Addon_TAL_BDT_1_Lager_Info;
 	permanent = TRUE;
-	description = "ћожешь рассказать мне что-нибудь о лагере.";
+	description = "ћожешь рассказать мне что-нибудь о лагере?";
 };
 
 
@@ -67,7 +67,7 @@ func int DIA_Addon_TAL_BDT_1_Lager_Condition()
 
 func void DIA_Addon_TAL_BDT_1_Lager_Info()
 {
-	AI_Output(other,self,"DIA_Addon_TAL_BDT_1_Lager_15_00");	//ћожешь рассказать мне что-нибудь о лагере.
+	AI_Output(other,self,"DIA_Addon_TAL_BDT_1_Lager_15_00");	//ћожешь рассказать мне что-нибудь о лагере?
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Lager_01_01");	//—мотри, с кем св€зываешьс€! ≈сли ты начнешь дратьс€ без причины, они все очень быстро наброс€тс€ на теб€!
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_1_Lager_01_02");	//Ѕольшинство из них чересчур пекутс€ о своем золоте и некоторые внимательно след€т за другими.
 };

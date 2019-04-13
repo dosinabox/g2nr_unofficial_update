@@ -147,7 +147,7 @@ instance DIA_Thorben_OtherMasters(C_Info)
 	condition = DIA_Thorben_OtherMasters_Condition;
 	information = DIA_Thorben_OtherMasters_Info;
 	permanent = FALSE;
-	description = "А что если я поступлю в ученики к одному из других здешних мастеров?";
+	description = "А что, если я поступлю в ученики к одному из других здешних мастеров?";
 };
 
 
@@ -161,7 +161,7 @@ func int DIA_Thorben_OtherMasters_Condition()
 
 func void DIA_Thorben_OtherMasters_Info()
 {
-	AI_Output(other,self,"DIA_Thorben_OtherMasters_15_00");	//А что если я поступлю в ученики к одному из других здешних мастеров?
+	AI_Output(other,self,"DIA_Thorben_OtherMasters_15_00");	//А что, если я поступлю в ученики к одному из других здешних мастеров?
 	AI_Output(self,other,"DIA_Thorben_OtherMasters_06_01");	//Хорошо, я дам свое одобрение.
 	AI_Output(self,other,"DIA_Thorben_OtherMasters_06_02");	//Но тебе нужно сначала получить благословение богов.
 	AI_Output(self,other,"DIA_Thorben_OtherMasters_06_03");	//Скажи, ты верующий человек?
@@ -338,7 +338,7 @@ func int DIA_Thorben_PleaseTeach_Condition()
 func void DIA_Thorben_PleaseTeach_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_PleaseTeach_15_00");	//Ты можешь научить меня вскрывать замки отмычками?
-	if(Npc_HasItems(self,ItWr_Schuldenbuch) > 0)
+	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch))
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_01");	//Если бы не ты, я бы платил Лемару до конца своих дней.
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_02");	//Я обучу тебя тому, что ты хочешь знать.
@@ -416,7 +416,7 @@ instance DIA_Thorben_Teach(C_Info)
 	condition = DIA_Thorben_Teach_Condition;
 	information = DIA_Thorben_Teach_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня вскрывать замки!",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1));
+	description = B_BuildLearnString("Научи меня вскрывать замки",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1));
 };
 
 
@@ -439,6 +439,8 @@ func void DIA_Thorben_Teach_Info()
 	};
 };
 
+
+var int thorben_tradelog;
 
 instance DIA_Thorben_TRADE(C_Info)
 {
@@ -476,11 +478,11 @@ func void DIA_Thorben_TRADE_Info()
 		CreateInvItems(self,ItKE_lockpick,5);
 		Dietrichgeben = Dietrichgeben + 1;
 	};
-	if(THORBEN_CITYTRADER == FALSE)
+	if(THORBEN_TRADELOG == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTrader,"Плотник Торбен продает отмычки.");
-		THORBEN_CITYTRADER = TRUE;
+		THORBEN_TRADELOG = TRUE;
 	};
 };
 
@@ -690,7 +692,7 @@ instance DIA_Thorben_GrittaHatteGold(C_Info)
 
 func int DIA_Thorben_GrittaHatteGold_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Thorben_Gritta) && (Npc_HasItems(Gritta,ItMi_Gold) < 100) && !Npc_IsDead(Gritta))
+	if(Npc_KnowsInfo(other,DIA_Thorben_Gritta) && (Npc_HasItems(Gritta,ItMi_Gold) < 80) && !Npc_IsDead(Gritta))
 	{
 		return TRUE;
 	};

@@ -260,7 +260,7 @@ func void DIA_Pedro_Rules_Info()
 	AI_Output(self,other,"DIA_Pedro_Rules_09_01");	//Иннос - бог правды и закона. Поэтому мы НИКОГДА не лжем и не совершаем преступлений.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_02");	//Если ты согрешишь против брата из нашей общины или украдешь нашу собственность, тебе придется заплатить за это штраф.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_03");	//Иннос также бог правления и огня.
-	AI_Output(self,other,"DIA_Pedro_Rules_09_04");	//Будучи послушником, ты должен проявлять ПОСЛУШАНИЕ и УВАЖЕНИЕ  ко всем Магам Огня.
+	AI_Output(self,other,"DIA_Pedro_Rules_09_04");	//Будучи послушником, ты должен проявлять ПОСЛУШАНИЕ и УВАЖЕНИЕ ко всем магам Огня.
 	AI_Output(other,self,"DIA_Pedro_Rules_15_05");	//Понятно.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_06");	//Кроме того, послушник ОБЯЗАН выполнять работу в монастыре на благо общины.
 	if(hero.guild == GIL_NONE)

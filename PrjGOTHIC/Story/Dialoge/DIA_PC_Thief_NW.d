@@ -34,7 +34,7 @@ instance DIA_DiegoNW_Perm(C_Info)
 
 func int DIA_DiegoNW_Perm_Condition()
 {
-	if(Diego_IsOnBoard == FALSE)
+	if((Diego_IsOnBoard == FALSE) && (Kapitel > 3))
 	{
 		return TRUE;
 	};
@@ -82,8 +82,9 @@ func void DIA_DiegoNW_NeedHelp_Info()
 		AI_Output(self,other,"DIA_DiegoNW_NeedHelp_11_00");	//Хорошо, что ты здесь. Ты должен помочь мне.
 	};
 	Info_ClearChoices(DIA_DiegoNW_NeedHelp);
-	if(DiegoOW.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_DiegoOW_Hallo))
 	{
+		Info_AddChoice(DIA_DiegoNW_NeedHelp,"Кто ты?",DIA_DiegoNW_NeedHelp_WhoAreYou);
 	};
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Что это на тебе за одежда?",DIA_DiegoNW_NeedHelp_Clothes);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Что ты делаешь здесь?",DIA_DiegoNW_NeedHelp_Plan);
@@ -132,7 +133,7 @@ func void DIA_DiegoNW_NeedHelp_Problem()
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_11_07");	//Ты должен забрать мое золото там, где оно находится.
 	Info_ClearChoices(DIA_DiegoNW_NeedHelp);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"У меня нет времени на это.",DIA_DiegoNW_NeedHelp_Problem_NoTime);
-	Info_AddChoice(DIA_DiegoNW_NeedHelp,"А что мне с этого будет?",DIA_DiegoNW_NeedHelp_Problem_Reward);
+	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Что мне с этого будет?",DIA_DiegoNW_NeedHelp_Problem_Reward);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Ладно, я помогу тебе.",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou);
 };
 
@@ -163,7 +164,7 @@ func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou()
 	MIS_HelpDiegoNW = LOG_Running;
 	Log_CreateTopic(TOPIC_HelpDiegoNW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_HelpDiegoNW,LOG_Running);
-	B_LogEntry(TOPIC_HelpDiegoNW,"Золото Диего находится в Долине рудников. Оно нужно ему, чтобы попасть в верхнюю часть города, и он попросил меня найти это золото.");
+	B_LogEntry(TOPIC_HelpDiegoNW,"Золото Диего находится в Долине Рудников. Оно нужно ему, чтобы попасть в верхнюю часть города, и он попросил меня найти это золото.");
 	Info_ClearChoices(DIA_DiegoNW_NeedHelp);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Что ты собираешься делать с этим золотом?",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Откуда у тебя это золото?",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold);
@@ -174,14 +175,14 @@ func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan()
 {
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan_15_00");	//Что ты собираешься делать с этим золотом?
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan_11_01");	//Я хочу свести счеты с одним из торговцев в верхнем квартале. Я очень этого хочу.
-	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan_11_02");	//А затем, я буду готов начать новую карьеру!
+	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_YourPlan_11_02");	//А затем я буду готов начать новую карьеру!
 };
 
 func void DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold()
 {
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold_15_00");	//Откуда у тебя это золото?
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold_11_01");	//Я что, единственный что ли, кто откладывал золото для себя в Долине Рудников?
-	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold_11_02");	//Украсть несколько кусков руды было легче легкого. Просто на случай, если нам когда-нибудь удастся выбраться оттуда.
+	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_WillHelpYou_HowGold_11_02");	//Украсть несколько кусков золота было легче легкого. Просто на случай, если нам когда-нибудь удастся выбраться оттуда.
 	AI_Output(self,other,"DIA_Addon_DiegoNW_WillHelpYou_HowGold_11_03");	//Все были так сосредоточены на руде, что на золото никто не обращал внимания...
 };
 
@@ -240,7 +241,7 @@ func void DIA_DiegoNW_HelpYou_Info()
 	MIS_HelpDiegoNW = LOG_Running;
 	Log_CreateTopic(TOPIC_HelpDiegoNW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_HelpDiegoNW,LOG_Running);
-	B_LogEntry(TOPIC_HelpDiegoNW,"Золото Диего находится в Долине рудников. Оно нужно ему, чтобы попасть в верхнюю часть города, и он попросил меня найти это золото.");
+	B_LogEntry(TOPIC_HelpDiegoNW,"Золото Диего находится в Долине Рудников. Оно нужно ему, чтобы попасть в верхнюю часть города, и он попросил меня найти это золото.");
 };
 
 
@@ -340,6 +341,7 @@ func void DIA_DiegoNW_DeliveredLetter_Info()
 	AI_Output(self,other,"DIA_DiegoNW_DeliveredLetter_11_04");	//Боюсь, правда, что в первую очередь мне придется заняться обстановкой моего нового дома. Если я правильно помню, вкус у Гербрандта просто ужасный.
 	B_GivePlayerXP(XP_DiegoHasANewHome);
 	Wld_AssignRoomToGuild("reich01",GIL_PUBLIC);
+	B_StartOtherRoutine(Gerbrandt,"NEWLIFE");
 	Info_ClearChoices(DIA_DiegoNW_DeliveredLetter);
 	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Как тебе удалось провернуть это?",DIA_DiegoNW_DeliveredLetter_YourTrick);
 	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Значит, это теперь твой дом?",DIA_DiegoNW_DeliveredLetter_YourHouse);
@@ -369,7 +371,7 @@ func void DIA_DiegoNW_DeliveredLetter_YourTrick()
 	AI_Output(other,self,"DIA_DiegoNW_TalkedToJudge_YourTrick_15_00");	//Как тебе удалось провернуть это?
 	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_01");	//Ты думаешь, Гербрандт заработал свое состояние на честном бизнесе?
 	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_02");	//Конечно, он никогда не марал руки, когда доходило до грязных дел. У него для этого был помощник.
-	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_03");	//На моей совести тогда много чего было. Гербрандт, в конце концов, решил избавиться от меня. Вероятно, он опасался, что я знаю слишком много.
+	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_03");	//А на моей совести тогда много чего было. Гербрандт, в конце концов, решил избавиться от меня. Вероятно, он опасался, что я знаю слишком много.
 	AI_Output(other,self,"DIA_DiegoNW_TalkedToJudge_YourTrick_15_04");	//Ты никогда не говорил мне об этом.
 	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_05");	//А ты никогда и не спрашивал.
 	Info_ClearChoices(DIA_DiegoNW_DeliveredLetter);
@@ -439,7 +441,7 @@ instance DIA_DiegoNW_Teach(C_Info)
 	condition = DIA_DiegoNW_Teach_Condition;
 	information = DIA_DiegoNW_Teach_Info;
 	permanent = TRUE;
-	description = "Научи меня.";
+	description = "Обучи меня.";
 };
 
 
@@ -560,13 +562,13 @@ func void DIA_DiegoNW_KnowWhereEnemy_Info()
 	{
 		Info_ClearChoices(DIA_DiegoNW_KnowWhereEnemy);
 		Info_AddChoice(DIA_DiegoNW_KnowWhereEnemy,"Возможно, я дам тебе знать, когда придет время.",DIA_DiegoNW_KnowWhereEnemy_No);
-		Info_AddChoice(DIA_DiegoNW_KnowWhereEnemy,"Ты не хочешь присоединиться?",DIA_DiegoNW_KnowWhereEnemy_Yes);
+		Info_AddChoice(DIA_DiegoNW_KnowWhereEnemy,"Почему бы тебе не отправиться в путь со мной? Встретимся в гавани.",DIA_DiegoNW_KnowWhereEnemy_Yes);
 	};
 };
 
 func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 {
-	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_Yes_15_00");	//Почему бы тебе не отправиться в путь со мной? Встретимся у гавани.
+	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_Yes_15_00");	//Почему бы тебе не отправиться в путь со мной? Встретимся в гавани.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_01");	//Ммм. Ты прав, в Хоринисе все равно нечего делать. Я поплыву с тобой.
 	self.flags = NPC_FLAG_IMMORTAL;
 	Diego_IsOnBoard = LOG_SUCCESS;
@@ -597,7 +599,7 @@ func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 func void DIA_DiegoNW_KnowWhereEnemy_No()
 {
 	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_No_15_00");	//Возможно, я дам тебе знать, когда придет время.
-	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_No_11_01");	//Попробуй. И, возможно, Я даже присоединюсь к тебе. Кто знает?
+	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_No_11_01");	//Попробуй. И, возможно, я даже присоединюсь к тебе. Кто знает?
 	Diego_IsOnBoard = LOG_OBSOLETE;
 	Info_ClearChoices(DIA_DiegoNW_KnowWhereEnemy);
 };
@@ -627,7 +629,7 @@ func void DIA_DiegoNW_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_00");	//Ты должен заботиться о городе.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_01");	//Да? Я тебе больше не нужен? Ох, ладно. Не забудь заглянуть ко мне, когда вернешься в город.
 	AI_Output(other,self,"DIA_DiegoNW_LeaveMyShip_15_02");	//Ты думаешь, мы еще встретимся?
-	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Булит вырубил тебя. Тогда мы встретились в первый раз.
+	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_03");	//Я никогда не забуду выражение твоего лица, когда ты лежал на земле после того, как Буллит вырубил тебя. Тогда мы встретились в первый раз.
 	AI_Output(self,other,"DIA_DiegoNW_LeaveMyShip_11_04");	//Им никогда не одолеть тебя. Мы ОБЯЗАТЕЛЬНО встретимся снова. Береги себя.
 	Diego_IsOnBoard = LOG_OBSOLETE;
 	Crewmember_Count = Crewmember_Count - 1;

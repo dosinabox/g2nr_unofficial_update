@@ -38,7 +38,7 @@ instance DIA_1051_Wegelagerer_Hello(C_Info)
 	condition = DIA_Wegelagerer_Hello_Condition;
 	information = DIA_Wegelagerer_Hello_Info;
 	permanent = FALSE;
-	description = "Что ты делаешь здесь?";
+	description = "Что вы делаете здесь?";
 };
 
 
@@ -81,7 +81,7 @@ func void DIA_Wegelagerer_Novice_Info()
 	AI_Output(other,self,"DIA_1051_Wegelagerer_Novice_15_00");	//Я ищу послушника.
 	AI_Output(self,other,"DIA_1051_Wegelagerer_Novice_07_01");	//Очень интересно. Мы тоже кое-кого ищем.
 	Info_ClearChoices(DIA_1051_Wegelagerer_Question);
-	Info_AddChoice(DIA_1051_Wegelagerer_Novice,"Кого вы ищете?",DIA_1051_Wegelagerer_Question_Novice_Who);
+	Info_AddChoice(DIA_1051_Wegelagerer_Novice,"И кого же?",DIA_1051_Wegelagerer_Question_Novice_Who);
 };
 
 
@@ -123,7 +123,7 @@ func void DIA_1051_Wegelagerer_Question_Novice()
 	AI_Output(other,self,"DIA_1051_Wegelagerer_Question_Novice_15_00");	//Я ищу послушника.
 	AI_Output(self,other,"DIA_1051_Wegelagerer_Question_Novice_07_01");	//Очень интересно. Мы тоже кое-кого ищем.
 	Info_ClearChoices(DIA_1051_Wegelagerer_Question);
-	Info_AddChoice(DIA_1051_Wegelagerer_Question,"Кого вы ищете?",DIA_1051_Wegelagerer_Question_Novice_Who);
+	Info_AddChoice(DIA_1051_Wegelagerer_Question,"И кого же?",DIA_1051_Wegelagerer_Question_Novice_Who);
 };
 
 func void DIA_1051_Wegelagerer_Question_Novice_Who()

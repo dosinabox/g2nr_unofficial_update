@@ -129,7 +129,7 @@ func void DIA_Pepe_KillWolves_Info()
 	AI_Output(other,self,"DIA_Pepe_KillWolves_15_00");	//Что если я убью этих волков?
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_01");	//(насмешливо) Ты, сам? Ха ха. Я не верю в это. Я скорее поверю, что мой баран-вожак расправится с ними.
 	AI_Output(other,self,"DIA_Pepe_KillWolves_15_02");	//Забудь об этом. Это было всего лишь предположение. Я пойду к парням, и посмотрим, что ОНИ скажут насчет этого...
-	AI_Output(self,other,"DIA_Pepe_KillWolves_03_03");	//(испуганно) Подожди минутку. Хорошо, хорошо! Эээ... ты величайший воин, и ты можешь уложить сотню волков одной левой. Нет проблем!
+	AI_Output(self,other,"DIA_Pepe_KillWolves_03_03");	//(испуганно) Подожди минутку. Хорошо, хорошо! Эээ... ты величайший воин, и можешь уложить сотню волков одной левой. Нет проблем!
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_04");	//Обычно они шныряют в лесу около пастбища. (как бы между прочим) Я думаю, их всего четверо...
 	AI_StopProcessInfos(self);
 	Wld_InsertNpc(PEPES_YWolf1,"FP_ROAM_NW_BIGFARM_PEPES_WOLFS_01");
@@ -169,13 +169,13 @@ func void DIA_Pepe_KilledWolves_Info()
 	{
 		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_01");	//(пораженно) Ты сделал это! Слава Инносу!
 		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_02");	//Но я все равно не знаю, как сказать Онару, что его овцы пропали.
-		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_03");	//(себе под нос) Это все этот чертов Булко виноват!
+		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_03");	//(себе под нос) Это все этот чертов Буллко виноват!
 		MIS_Pepe_KillWolves = LOG_SUCCESS;
 		B_GivePlayerXP(XP_PepeWolves);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_04");	//ты меня считаешь за идиота? Эти звери еще не все мертвы.
+		AI_Output(self,other,"DIA_Pepe_KilledWolves_03_04");	//Ты меня считаешь за идиота? Эти звери еще не все мертвы.
 	};
 };
 
@@ -187,7 +187,7 @@ instance DIA_Pepe_Bullco(C_Info)
 	condition = DIA_Pepe_Bullco_Condition;
 	information = DIA_Pepe_Bullco_Info;
 	permanent = FALSE;
-	description = "Что ты сказал насчет Булко?";
+	description = "Что ты сказал насчет Буллко?";
 };
 
 
@@ -201,7 +201,7 @@ func int DIA_Pepe_Bullco_Condition()
 
 func void DIA_Pepe_Bullco_Info()
 {
-	AI_Output(other,self,"DIA_Pepe_Bullco_15_00");	//Что ты сказал насчет Булко?
+	AI_Output(other,self,"DIA_Pepe_Bullco_15_00");	//Что ты сказал насчет Буллко?
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_01");	//Это один из наемников. Это его работа охранять пастбище.
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_02");	//Но вместо этого он и его приятель Сильвио день напролет ошиваются в кухне у Теклы.
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_03");	//Это этот ублюдок будет виноват, если мне не заплатят за многие недели работы из-за потери овец.
@@ -209,7 +209,7 @@ func void DIA_Pepe_Bullco_Info()
 	MIS_Pepe_KickBullco = LOG_Running;
 	Log_CreateTopic(TOPIC_KickBullco,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_KickBullco,LOG_Running);
-	B_LogEntry(TOPIC_KickBullco,"Булко плохо охраняет овец Пепе. Пепе хочет, чтобы кто-нибудь проучил его.");
+	B_LogEntry(TOPIC_KickBullco,"Буллко плохо охраняет овец Пепе. Пепе хочет, чтобы кто-нибудь проучил его.");
 };
 
 
@@ -220,7 +220,7 @@ instance DIA_Pepe_BullcoDefeated(C_Info)
 	condition = DIA_Pepe_BullcoDefeated_Condition;
 	information = DIA_Pepe_BullcoDefeated_Info;
 	permanent = FALSE;
-	description = "Булко получил по заслугам.";
+	description = "Буллко получил по заслугам. Я преподал ему урок.";
 };
 
 
@@ -237,7 +237,7 @@ func int DIA_Pepe_BullcoDefeated_Condition()
 
 func void DIA_Pepe_BullcoDefeated_Info()
 {
-	AI_Output(other,self,"DIA_Pepe_BullcoDefeated_15_00");	//Булко получил по заслугам. Я преподал ему урок.
+	AI_Output(other,self,"DIA_Pepe_BullcoDefeated_15_00");	//Буллко получил по заслугам. Я преподал ему урок.
 	AI_Output(self,other,"DIA_Pepe_BullcoDefeated_03_01");	//Эта свинья заслужила это.
 	MIS_Pepe_KickBullco = LOG_SUCCESS;
 	B_GivePlayerXP(XP_KickBullco);

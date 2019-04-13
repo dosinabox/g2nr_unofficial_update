@@ -99,7 +99,7 @@ func void DIA_Fed_Perm_Info()
 	AI_Output(other,self,"DIA_Fed_Perm_15_00");	//С тобой все в порядке?
 	if(MIS_Fajeth_Kill_Snapper != LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_Fed_Perm_08_01");	//Там снепперы! Ты чувствуешь их запах?.. Я чувствую...
+		AI_Output(self,other,"DIA_Fed_Perm_08_01");	//Там снепперы! Ты чувствуешь их запах? Я чувствую...
 	}
 	else
 	{

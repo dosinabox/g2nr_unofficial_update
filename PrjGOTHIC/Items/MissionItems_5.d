@@ -37,7 +37,7 @@ func void Use_XardasLetterToOpenBook()
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"                             Ксардас.");
+	Doc_PrintLine(nDocID,0,"                             Ксардас");
 	Doc_Show(nDocID);
 	if(MIS_Xardas_SCCanOpenIrdorathBook == FALSE)
 	{
@@ -56,7 +56,7 @@ instance ItKe_MonastarySecretLibrary_Mis(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "из книги 'Чертоги Ирдората'";
+	text[0] = "из книги 'Чертоги Ирдората'.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -136,15 +136,15 @@ func void Use_HallsofIrdorath_Open()
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"... и я закрыл вход в библиотеку секретной дверью, чтобы защитить мои записи о храмах Белиара.");
-	Doc_PrintLines(nDocID,0,"Если бы мои братья знали бы об этих записях, эти идиоты, вероятно, уничтожили бы их.");
+	Doc_PrintLines(nDocID,0,"Если бы мои братья узнали об этих записях, эти идиоты, вероятно, уничтожили бы их.");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLines(nDocID,1,"А теперь, они знают только, что эти храмы когда-то существовали.");
+	Doc_PrintLines(nDocID,1,"А теперь они знают только то, что эти храмы когда-то существовали.");
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLines(nDocID,1,"На всякий случай, я заклял нескольких слуг охранять эту библиотеку.");
+	Doc_PrintLines(nDocID,1,"На всякий случай, я вызвал нескольких слуг охранять эту библиотеку.");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Этот ключ открывает последнюю дверь.");
@@ -179,7 +179,7 @@ func void Use_XardasSeamapBook_Mis()
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"... Теперь я почти уверен, что здание, о котором идет речь -- Чертоги Ирдората. Они находятся на острове, недалеко от гавани Хориниса. Интерес Белиара к этим шахтам вполне очевиден ...");
+	Doc_PrintLines(nDocID,0,"... Теперь я почти уверен, что здание, о котором идет речь - Чертоги Ирдората. Они находятся на острове, недалеко от гавани Хориниса. Интерес Белиара к этим шахтам вполне очевиден ...");
 	Doc_PrintLines(nDocID,0,"");
 	if(hero.guild == GIL_PAL)
 	{
@@ -192,7 +192,7 @@ func void Use_XardasSeamapBook_Mis()
 	};
 	if(hero.guild == GIL_KDF)
 	{
-		Doc_PrintLines(nDocID,0,"... В значении этих знамений невозможно ошибиться! Когда Избранный придет, ему понадобится вся помощь, которую мы сможем предоставить. Белиар уже очень силен. Мне удалось раздобыть несколько ценных артефактов, которые я схороню здесь, на всякий случай. Я полагаю, что избранный будет выходцем из наших рядов,");
+		Doc_PrintLines(nDocID,0,"... В значении этих знамений невозможно ошибиться! Когда Избранный придет, ему понадобится вся помощь, которую мы сможем предоставить. Белиар уже очень силен. Мне удалось раздобыть несколько ценных артефактов, которые я схороню здесь, на всякий случай. Я полагаю, что Избранный будет выходцем из наших рядов,");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_SetFont(nDocID,1,FONT_BookHeadline);
 		Doc_SetFont(nDocID,1,FONT_Book);
@@ -208,7 +208,7 @@ func void Use_XardasSeamapBook_Mis()
 		Doc_SetFont(nDocID,1,FONT_Book);
 		Doc_PrintLines(nDocID,1,"Я же не буду сидеть, сложа руки и наблюдать за тем, как другие берут судьбу мира в свои руки.");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"... Я изучал античные письмена и нашел в них, как создать легендарное оружие древних Повелителей Драконов. Однако, я понятия не имею, как раздобыть необходимые ингредиенты. Я записал рецепт в альманахе, так, на всякий случай. Кто знает, какие ужасы принесет с собой будущее - может быть, даже драконов.");
+		Doc_PrintLines(nDocID,1,"... Я изучал древние письмена и нашел в них, как создать легендарное оружие древних Повелителей Драконов. Однако, я понятия не имею, как раздобыть необходимые ингредиенты. Я записал рецепт в альманахе, так, на всякий случай. Кто знает, какие ужасы принесет с собой будущее - может быть, даже драконов.");
 	};
 	Doc_Show(nDocID);
 };
@@ -225,7 +225,7 @@ instance ItWr_UseLampIdiot_Mis(C_Item)
 	on_state[0] = UseItWr_UseLampIdiot_Mis;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "из книги 'Чертоги Ирдората'";
+	text[0] = "из книги 'Чертоги Ирдората'.";
 };
 
 
@@ -243,8 +243,8 @@ func void UseItWr_UseLampIdiot_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"               Лампа несет свет ");
-	Doc_PrintLine(nDocID,0,"               нижним уровням");
+	Doc_PrintLine(nDocID,0,"               Лампа несет свет");
+	Doc_PrintLine(nDocID,0,"               нижним уровням.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
@@ -455,7 +455,7 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 	on_unequip = UnEquip_ItAm_AmulettOfDeath_Mis;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Божественная аура Инноса.";
+	description = name;
 	text[2] = "Этот амулет защищает владельца";
 	text[3] = "от всех форм урона.";
 	text[5] = NAME_Value;
@@ -501,7 +501,7 @@ instance ItPo_HealRandolph_MIS(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Лекарство от привыкания";
+	description = "Лекарство от привыкания к алкоголю";
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Essenz;
 	text[5] = NAME_Value;

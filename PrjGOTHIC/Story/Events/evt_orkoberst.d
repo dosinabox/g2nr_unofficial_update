@@ -17,14 +17,19 @@ func void evt_orkoberst()
 		{
 			Wld_InsertNpc(OrcWarrior_Roam,"DI_SHIP_04");
 		};
+		if(!Npc_IsDead(Vatras_DI))
+		{
+			Vatras_DI.flags = NPC_FLAG_IMMORTAL;
+		};
 		Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_DI_ORK_02");
 		Wld_InsertNpc(OrcWarrior_Roam,"FP_ROAM_DI_ORK_03");
 		B_StartOtherRoutine(Biff_DI,"OrkSturmDI");
 		B_StartOtherRoutine(Jack_DI,"OrkSturmDI");
 		B_StartOtherRoutine(Torlof_DI,"OrkSturmDI");
-		B_StartOtherRoutine(Mario_DI,"OrkSturmDI");
-		if(Npc_IsDead(Mario_DI) == FALSE)
+		if(!Npc_IsDead(Mario_DI))
 		{
+			CreateInvItem(Mario_DI,ITWR_DementorObsessionBook_MIS);
+			B_StartOtherRoutine(Mario_DI,"OrkSturmDI");
 			Wld_InsertNpc(Skeleton_Mario1,"FP_ROAM_DI_MARIOSSKELETONS_01");
 			Wld_InsertNpc(Skeleton_Mario2,"FP_ROAM_DI_MARIOSSKELETONS_02");
 			Wld_InsertNpc(Skeleton_Mario3,"FP_ROAM_DI_MARIOSSKELETONS_03");
@@ -37,10 +42,11 @@ func void evt_orkoberst()
 			Wld_InsertNpc(UndeadOrcWarrior,"FP_ROAM_DI_MARIOSSKELETONS_03");
 			Wld_InsertNpc(UndeadOrcWarrior,"FP_ROAM_DI_MARIOSSKELETONS_04");
 		};
-		ORkSturmDI = TRUE;
-		B_LogEntry(TOPIC_HallenVonIrdorath,"Полковник орков крепкий орешек. Где-то в его тронном зале должен быть какой-то секрет.");
+		OrkSturmDI = TRUE;
+		B_LogEntry(TOPIC_HallenVonIrdorath,"Полковник орков - крепкий орешек. Где-то в его тронном зале должен быть какой-то секрет.");
 		EVT_ORKOBERST_OneTime = TRUE;
 	};
 	PrintScreen("",-1,-1,FONT_Screen,0);
 };
+
 

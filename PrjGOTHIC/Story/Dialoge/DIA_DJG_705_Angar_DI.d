@@ -67,7 +67,7 @@ instance DIA_Angar_DI_ORKS(C_Info)
 
 func int DIA_Angar_DI_ORKS_Condition()
 {
-	if((ORkSturmDI == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
+	if((OrkSturmDI == TRUE) && (Npc_IsDead(UndeadDragon) == FALSE))
 	{
 		return TRUE;
 	};
@@ -129,8 +129,11 @@ func void DIA_Angar_DI_FOLLOW_Info()
 		AI_Output(self,other,"DIA_Angar_DI_FOLLOW_04_02");	//Удачи.
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"Start");
-		Angar_DI_Party = LOG_SUCCESS;
-		B_GivePlayerXP(XP_Ambient);
+		if(Angar_DI_Party != LOG_SUCCESS)
+		{
+			Angar_DI_Party = LOG_SUCCESS;
+			B_GivePlayerXP(XP_Ambient);
+		};
 	}
 	else
 	{
@@ -308,4 +311,5 @@ func void DIA_Angar_DI_FOUNDAMULETT_Info()
 {
 	B_AngarsAmulettAbgeben();
 };
+
 

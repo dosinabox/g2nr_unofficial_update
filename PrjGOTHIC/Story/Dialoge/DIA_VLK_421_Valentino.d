@@ -167,7 +167,7 @@ instance DIA_Valentino_PICKPOCKET(C_Info)
 	condition = DIA_Valentino_PICKPOCKET_Condition;
 	information = DIA_Valentino_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(”красть этот ключ будет легко)";
+	description = Pickpocket_40_Key;
 };
 
 

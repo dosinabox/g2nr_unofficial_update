@@ -379,7 +379,7 @@ instance DIA_Sekob_DMTWEG(C_Info)
 	nr = 31;
 	condition = DIA_Sekob_DMTWEG_Condition;
 	information = DIA_Sekob_DMTWEG_Info;
-	description = "Твой дом пуст.";
+	description = "Твой дом пуст. Людей в черных рясах больше нет.";
 };
 
 

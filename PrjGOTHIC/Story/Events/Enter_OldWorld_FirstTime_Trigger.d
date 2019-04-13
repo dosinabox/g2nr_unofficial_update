@@ -26,9 +26,5 @@ func void enter_oldworld_firsttime_trigger()
 		PlayVideo("DRAGONATTACK.BIK");
 		enter_oldworld_firsttime_trigger_onetime = TRUE;
 	};
-	if(TschuessBilgot == TRUE)
-	{
-		B_RemoveNpc(Bilgot);
-	};
 };
 

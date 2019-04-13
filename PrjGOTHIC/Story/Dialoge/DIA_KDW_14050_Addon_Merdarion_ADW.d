@@ -139,7 +139,7 @@ func void DIA_Addon_Merdarion_FokusGeben_Info()
 	B_GiveInvItems(self,other,ItMi_Focus,1);
 	Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_TeleportsADW,"ћаг воды ћердарион дал мне один из старых камней фокусировки, которые использовались дл€ создани€ Ѕарьера вокруг ƒолины –удников. — его помощью € могу попробовать активировать какой-нибудь телепорт.");
+	B_LogEntry(TOPIC_Addon_TeleportsADW,"ћаг ¬оды ћердарион дал мне один из старых камней фокусировки, которые использовались дл€ создани€ Ѕарьера вокруг ƒолины –удников. — его помощью € могу попробовать активировать какой-нибудь телепорт.");
 };
 
 
@@ -170,7 +170,7 @@ func void DIA_Addon_Merdarion_FirstFocus_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_01");	//ƒа, € вижу. «начит, € был прав.
 	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_02");	//я поговорил с другими об этом.
 	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_03");	//ћы хотим, чтобы ты попыталс€ активировать все остальные телепортационные камни.
-	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_04");	//≈сли мы сможем быстро перемещатьс€ из одной части города в другую, нам это очень  поможет исследовани€х, .
+	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_04");	//≈сли мы сможем быстро перемещатьс€ из одной части города в другую, нам это очень поможет в исследовани€х.
 	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_05");	//¬от еще один фокусирующий камень.
 	CreateInvItems(self,ItMi_Focus,1);
 	B_GiveInvItems(self,other,ItMi_Focus,1);

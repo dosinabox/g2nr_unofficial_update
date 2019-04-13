@@ -137,7 +137,7 @@ instance DIA_Marcos_Perm(C_Info)
 	condition = DIA_Marcos_Perm_Condition;
 	information = DIA_Marcos_Perm_Info;
 	permanent = TRUE;
-	description = "Как ситуация?";
+	description = "Как обстановка?";
 };
 
 

@@ -76,7 +76,7 @@ instance DIA_VLK_8_LOCATION(C_Info)
 	condition = DIA_VLK_8_LOCATION_Condition;
 	information = DIA_VLK_8_LOCATION_Info;
 	permanent = TRUE;
-	description = "„то здесь интересного?";
+	description = "„то интересного здесь можно увидеть?";
 };
 
 
@@ -100,7 +100,7 @@ instance DIA_VLK_8_STANDARD(C_Info)
 	condition = DIA_VLK_8_STANDARD_Condition;
 	information = DIA_VLK_8_STANDARD_Info;
 	permanent = TRUE;
-	description = "„то нового?";
+	description = "„то новенького?";
 };
 
 
@@ -132,7 +132,7 @@ func void DIA_VLK_8_STANDARD_Info()
 	};
 	if(Kapitel == 3)
 	{
-		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_03");	//я слышал, что паладины здесь только затем, чтобы выковыр€ть из острова всю руду. ƒл€ войны на материке, как они говор€т.
+		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_03");	//√овор€т, что паладины здесь только затем, чтобы выковыр€ть из острова всю руду. ƒл€ войны на материке, как они говор€т.
 		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_04");	//“ы понимаешь, что это означает?  ороль даже пальцем не пошевелит, если мы все тут погибнем во врем€ атаки орков.
 		AI_Output(self,other,"DIA_VLK_8_STANDARD_08_05");	//я попробую попасть на корабль, когда паладины будут поднимать €корь.
 	};

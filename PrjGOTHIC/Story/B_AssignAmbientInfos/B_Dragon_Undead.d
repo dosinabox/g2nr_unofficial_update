@@ -67,17 +67,20 @@ func void DIA_Dragon_Undead_Hello_Info()
 	};
 	if(hero.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_07");	//Разве одержимые из  твоего племени были недостаточной причиной для тебя, чтобы искать силу, управляющую ими?
+		AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_07");	//Разве одержимые из твоего племени были недостаточной причиной для тебя, чтобы искать силу, управляющую ими?
 	};
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_20_08");	//Как бы ты не изворачивался, ты не можешь поспорить со всем этим.
 	AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_01");	//Есть только одна вещь, которая не была предопределена!
-	AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_02");	//Ты убил одного из моих слуг! Он должен был нести коготь.
-	AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_03");	//Как я вижу, теперь его носишь ты. За это бесчинство ты сейчас умрешь!
+	AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_02");	//Ты убил одного из моих слуг! Он должен был нести Коготь.
+	if(C_ScHasEquippedBeliarsWeapon() || C_ScHasReadiedBeliarsWeapon() || C_SCHasBeliarsRune())
+	{
+		AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_03");	//Как я вижу, теперь его носишь ты. За это бесчинство ты сейчас умрешь!
+	};
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"Хватит болтать.",DIA_Dragon_Undead_Hello_attack);
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"По чьему повелению ты ведешь своих прихвостней на войну против человечества?",DIA_Dragon_Undead_Hello_Auftraggeber);
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"Зачем ты здесь?",DIA_Dragon_Undead_Hello_warum);
 	Info_AddChoice(DIA_Dragon_Undead_Hello,"Кто ты?",DIA_Dragon_Undead_Hello_wer);
-	B_LogEntry(TOPIC_HallenVonIrdorath,"Сейчас мой враг - дракон-нежить. Я должен убить его, прежде сем смогу покинуть этот проклятый остров.");
+	B_LogEntry(TOPIC_HallenVonIrdorath,"Сейчас мой враг - дракон-нежить. Я должен убить его, прежде чем смогу покинуть этот проклятый остров.");
 };
 
 func void DIA_Dragon_Undead_Hello_wer()
@@ -85,7 +88,7 @@ func void DIA_Dragon_Undead_Hello_wer()
 	AI_Output(other,self,"DIA_Dragon_Undead_Hello_wer_15_00");	//Кто ты?
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_01");	//(смеется) Ты еще не устал задавать этот вопрос? Поищи внутри себя, глупец. Ты поймешь, кто я.
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_02");	//У меня нет имени. Так же, как нет имени и у тебя.
-	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_03");	//Моим создателем мне дана божественная сила. Также как ты владеешь силой, данной тебе твоим богом.
+	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_03");	//Моим создателем мне дана божественная сила. Так же, как ты владеешь силой, данной тебе твоим богом.
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_04");	//Моя судьба - уничтожение этого мира.
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
@@ -97,11 +100,11 @@ func void DIA_Dragon_Undead_Hello_wer()
 	};
 	if(hero.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_07");	//Так же, как твоя судьба - проповедовать веру в Инноса, Маг Огня.
+		AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_07");	//Так же, как твоя судьба - проповедовать веру в Инноса, маг Огня.
 	};
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_08");	//Разве ты не ощущаешь связь, которая соединяет нас? Да. Ты знаешь кто я.
-	AI_Output(other,self,"DIA_Dragon_Undead_Hello_wer_15_09");	//(смущенно) Нет. Этого не может быть. Ксардас всегда говорил ...
-	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_10");	//Ксардас слаб, и не представляет угрозы для меня. Ты один достоин противостоять мне.
+	AI_Output(other,self,"DIA_Dragon_Undead_Hello_wer_15_09");	//(смущенно) Нет. Этого не может быть. Ксардас всегда говорил...
+	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_10");	//Ксардас слаб и не представляет угрозы для меня. Ты один достоин противостоять мне.
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_wer_20_11");	//Так предопределено. Пришло время принять свою судьбу.
 };
 
@@ -125,7 +128,7 @@ func void DIA_Dragon_Undead_Hello_attack()
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_attack_20_01");	//(смеется) Ты еще не готов победить меня. Какое-то мгновение отделяет меня от достижения моей цели.
 	if(C_ScHasEquippedBeliarsWeapon() || C_ScHasReadiedBeliarsWeapon() || C_SCHasBeliarsRune())
 	{
-		AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_04");	//Ты действительно веришь, что можешь ранить меня когтем? (смеется)
+		AI_Output(self,other,"DIA_Addon_UndeadDragon_Add_20_04");	//Ты действительно веришь, что можешь ранить меня Когтем? (смеется)
 	};
 	AI_Output(self,other,"DIA_Dragon_Undead_Hello_attack_20_02");	//Твои кости помогут мне выпустить ветра смерти в этот мир.
 	Npc_RemoveInvItems(other,ItMi_InnosEye_MIS,1);

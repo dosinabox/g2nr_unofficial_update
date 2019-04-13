@@ -362,8 +362,8 @@ func void Equip_ItBE_Addon_MC()
 		self.protection[PROT_EDGE] += BA_Bonus01;
 		self.protection[PROT_BLUNT] += BA_Bonus01;
 		self.protection[PROT_POINT] += BA_Bonus01;
-		self.protection[PROT_MAGIC] += BA_Bonus01;
-		self.protection[PROT_FIRE] += BA_Bonus01;
+		self.protection[PROT_MAGIC] += BA_Bonus02;
+		self.protection[PROT_FIRE] += BA_Bonus02;
 	};
 };
 

@@ -48,7 +48,7 @@ func void DIA_BDT_1_STANDARD_Info()
 	};
 	if(randy == 1)
 	{
-		AI_Output(self,other,"DIA_BDT_1_STANDARD_01_01");	//Тебе нужны проблемы?
+		AI_Output(self,other,"DIA_BDT_1_STANDARD_01_01");	//Ты ищешь проблем?
 	};
 	if(randy == 2)
 	{

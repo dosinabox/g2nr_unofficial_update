@@ -601,7 +601,7 @@ instance ItRi_Str_01(C_Item)
 	on_unequip = UnEquip_ItRi_Str_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо  силы";
+	description = "Кольцо силы";
 	text[2] = NAME_Bonus_Str;
 	count[2] = Ri_Strg;
 	text[5] = NAME_Value;
@@ -760,10 +760,10 @@ instance ItRi_Hp_Mana_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Кольцо просвещения";
-	text[2] = NAME_Bonus_Mana;
-	count[2] = Ri_HpMana_Mana;
-	text[3] = NAME_Bonus_HP;
-	count[3] = Ri_HpMana_Hp;
+	text[2] = NAME_Bonus_HP;
+	count[2] = Ri_HpMana_Hp;
+	text[3] = NAME_Bonus_Mana;
+	count[3] = Ri_HpMana_Mana;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
@@ -774,10 +774,10 @@ instance ItRi_Hp_Mana_01(C_Item)
 
 func void Equip_ItRi_Hp_Mana_01()
 {
-	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] + Ri_HpMana_Mana;
-	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] + Ri_HpMana_Mana;
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS] + Ri_HpMana_Hp;
 	self.attribute[ATR_HITPOINTS_MAX] = self.attribute[ATR_HITPOINTS_MAX] + Ri_HpMana_Hp;
+	self.attribute[ATR_MANA] = self.attribute[ATR_MANA] + Ri_HpMana_Mana;
+	self.attribute[ATR_MANA_MAX] = self.attribute[ATR_MANA_MAX] + Ri_HpMana_Mana;
 };
 
 func void UnEquip_ItRi_Hp_Mana_01()
@@ -792,9 +792,9 @@ func void UnEquip_ItRi_Hp_Mana_01()
 	{
 		self.attribute[ATR_HITPOINTS] = 2;
 	};
-	if(self.attribute[ATR_MANA] >= Ri_HpMana_Hp)
+	if(self.attribute[ATR_MANA] >= Ri_HpMana_Mana)
 	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - Ri_HpMana_Hp;
+		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - Ri_HpMana_Mana;
 	}
 	else
 	{

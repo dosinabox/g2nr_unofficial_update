@@ -86,7 +86,7 @@ instance DIA_Addon_Francis_AboutGreg(C_Info)
 	condition = DIA_Addon_Francis_AboutGreg_Condition;
 	information = DIA_Addon_Francis_AboutGreg_Info;
 	permanent = FALSE;
-	description = "Грег - ваш командир?";
+	description = "Грег - твой начальник?";
 };
 
 
@@ -100,7 +100,7 @@ func int DIA_Addon_Francis_AboutGreg_Condition()
 
 func void DIA_Addon_Francis_AboutGreg_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Francis_AboutGreg_15_00");	//Грег твой начальник?
+	AI_Output(other,self,"DIA_Addon_Francis_AboutGreg_15_00");	//Грег - твой начальник?
 	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_01");	//Только не пытайся мне сказать, что ты его знаешь!
 	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_02");	//Любой моряк... да что там, даже последняя сухопутная крыса знает ужасного капитана Грега!
 	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_03");	//(высокомерно) А он оставил за главного МЕНЯ!
@@ -185,7 +185,7 @@ instance DIA_Addon_Francis_AufsMaul(C_Info)
 	condition = DIA_Addon_Francis_AufsMaul_Condition;
 	information = DIA_Addon_Francis_AufsMaul_Info;
 	permanent = TRUE;
-	description = "Ну... Давай посмотрим, что ты можешь.";
+	description = "Что ж, тогда посмотрим, как ты собираешься меня остановить.";
 };
 
 
@@ -214,7 +214,7 @@ instance DIA_Addon_Francis_Buch(C_Info)
 	condition = DIA_Addon_Francis_Buch_Condition;
 	information = DIA_Addon_Francis_Buch_Info;
 	permanent = TRUE;
-	description = "Я нашел твое укрытие...";
+	description = "Я нашел твое укрытие. Твои деньги и бухгалтерскую книгу...";
 };
 
 
@@ -245,6 +245,7 @@ func void DIA_Addon_Francis_Buch_Info()
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_08");	//(нервно) Но ты должен отдать мне книгу и держать свой рот на замке, идет?
 		B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
 		B_GiveInvItems(self,other,ITKE_Greg_ADDON_MIS,1);
+		Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
 	}
 	else
 	{
@@ -262,6 +263,7 @@ func void DIA_Addon_Francis_Buch_Info()
 		};
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_13");	//(торопливо) А теперь давай мне сюда эту штуку...
 		B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
+		Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
 	};
 	AI_StopProcessInfos(self);
 };
@@ -274,7 +276,7 @@ instance DIA_Francis_PICKPOCKET(C_Info)
 	condition = DIA_Francis_PICKPOCKET_Condition;
 	information = DIA_Francis_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть этот ключ будет легко)";
+	description = Pickpocket_40_Key;
 };
 
 

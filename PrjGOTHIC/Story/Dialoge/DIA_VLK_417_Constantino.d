@@ -184,7 +184,7 @@ instance DIA_Constantino_Trade(C_Info)
 	condition = DIA_Constantino_Trade_Condition;
 	information = DIA_Constantino_Trade_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
@@ -196,8 +196,17 @@ func int DIA_Constantino_Trade_Condition()
 
 func void DIA_Constantino_Trade_Info()
 {
-	B_GiveTradeInv(self);
+	if(Constantino_flag == 1)
+	{
+		B_ClearAlchemyInv(self);
+		if(Constantino_flasks > 0)
+		{
+			CreateInvItems(self,ItMi_Flask,Constantino_flasks);
+		};
+		Constantino_flag = 0;
+	};
 	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 	if(Constantino_Logpatch1 == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);

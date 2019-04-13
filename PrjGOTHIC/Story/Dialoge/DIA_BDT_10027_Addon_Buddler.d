@@ -42,7 +42,7 @@ func void DIA_Addon_10027_Buddler_Hi_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10027_Buddler_Hi_15_00");	//Как дела?
 	if(Sklaven_Flucht == FALSE)
 	{
-		AI_Output(self,other,"DIA_Addon_BDT_10027_Buddler_Hi_11_01");	//Я работаю на железных баронов уже очень долго. Хорошо, что теперь работают другие.
+		AI_Output(self,other,"DIA_Addon_BDT_10027_Buddler_Hi_11_01");	//Я работаю на рудных баронов уже очень долго. Хорошо, что теперь работают другие.
 	}
 	else
 	{

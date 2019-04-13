@@ -17,8 +17,6 @@ instance NOV_600_Pedro_DI(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,30);
-	aivar[AIV_ToughGuy] = TRUE;
-	aivar[AIV_ToughGuyNewsOverride] = TRUE;
 	daily_routine = Rtn_Start_6000;
 };
 

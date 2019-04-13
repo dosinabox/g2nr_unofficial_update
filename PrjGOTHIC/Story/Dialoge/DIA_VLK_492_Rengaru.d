@@ -138,7 +138,7 @@ func void DIA_Rengaru_GOTYOU_Info()
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_15_02");	//“ы украл кошелек у ƒжоры средь бела дн€, и он даже видел, как ты сделал это.
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_15_03");	//ѕоэтому € пришел сказать тебе, что ты гр€зный вор и что...
 	Info_ClearChoices(DIA_Rengaru_GOTYOU);
-	Info_AddChoice(DIA_Rengaru_GOTYOU,"...я заслуживаю долю от награбленного.",DIA_Rengaru_GOTYOU_Anteil);
+	Info_AddChoice(DIA_Rengaru_GOTYOU,"...€ заслуживаю долю от награбленного.",DIA_Rengaru_GOTYOU_Anteil);
 	Info_AddChoice(DIA_Rengaru_GOTYOU,"...тебе лучше вернуть золото ƒжоры. » немедленно.",DIA_Rengaru_GOTYOU_YouThief);
 	Info_AddChoice(DIA_Rengaru_GOTYOU,"...и теперь ты расскажешь мне, кто ты такой.",DIA_Rengaru_GOTYOU_WhoAreYou);
 };
@@ -164,7 +164,7 @@ func void DIA_Rengaru_GOTYOU_YouThief()
 
 func void DIA_Rengaru_GOTYOU_Anteil()
 {
-	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_15_00");	//...я заслуживаю долю от награбленного.
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_15_00");	//...€ заслуживаю долю от награбленного.
 	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && (Npc_HasItems(self,ItMi_Gold) < 1))
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_07_01");	//“ы уже забрал все, что у мен€ было, после того, как вырубил мен€! ѕусти!

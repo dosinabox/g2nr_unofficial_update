@@ -68,7 +68,7 @@ func void DIA_Harad_Arbeit_Info()
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_01");	//Хм - мне не помешал бы новый ученик.
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_02");	//Брайан скоро закончит свое обучение, а затем покинет город.
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_03");	//А ты на что-нибудь годишься?
-	AI_Output(other,self,"DIA_Harad_Arbeit_15_04");	//Если ты имеешь в виду, знаю ли я работу кузнеца ...
+	AI_Output(other,self,"DIA_Harad_Arbeit_15_04");	//Если ты имеешь в виду, знаю ли я работу кузнеца...
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_05");	//Нет. Я о другом.
 	AI_Output(self,other,"DIA_Harad_Arbeit_12_06");	//Рано или поздно, придут орки и возьмут город в кольцо. И тогда в расчет будут приниматься только мужчины, способные защищать город.
 	if(other.guild == GIL_NONE)
@@ -77,7 +77,7 @@ func void DIA_Harad_Arbeit_Info()
 	};
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
-	B_LogEntry(TOPIC_Lehrling,"Если я смогу убедить Гарада, что я хоть на что-нибудь гожусь,  он примет меня в ученики.");
+	B_LogEntry(TOPIC_Lehrling,"Если я смогу убедить Гарада, что я хоть на что-нибудь гожусь, он примет меня в ученики.");
 };
 
 
@@ -123,7 +123,7 @@ instance DIA_Harad_OrcRunning(C_Info)
 	condition = DIA_Harad_OrcRunning_Condition;
 	information = DIA_Harad_OrcRunning_Info;
 	permanent = FALSE;
-	description = "Давай еще поговорим об этих орках ...";
+	description = "Давай еще поговорим об этих орках...";
 };
 
 
@@ -137,17 +137,17 @@ func int DIA_Harad_OrcRunning_Condition()
 
 func void DIA_Harad_OrcRunning_Info()
 {
-	AI_Output(other,self,"DIA_Harad_OrcRunning_15_00");	//Давай еще поговорим об этих орках ...
+	AI_Output(other,self,"DIA_Harad_OrcRunning_15_00");	//Давай еще поговорим об этих орках...
 	AI_Output(self,other,"DIA_Harad_OrcRunning_12_01");	//(отрывисто) Что?
 	Info_ClearChoices(DIA_Harad_OrcRunning);
 	Info_AddChoice(DIA_Harad_OrcRunning,"Можешь считать своего орка мертвым!",DIA_Harad_OrcRunning_Done);
-	Info_AddChoice(DIA_Harad_OrcRunning,"Но орк это очень серьезный противник...",DIA_Harad_OrcRunning_TooHard);
+	Info_AddChoice(DIA_Harad_OrcRunning,"Но орк - это очень серьезный противник...",DIA_Harad_OrcRunning_TooHard);
 };
 
 func void DIA_Harad_OrcRunning_TooHard()
 {
-	AI_Output(other,self,"DIA_Harad_OrcRunning_TooHard_15_00");	//Но орк это очень серьезный противник...
-	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_01");	//Хм - судя по тому, как ты выглядишь, возможно ты прав. У тебя слишком мало мяса на костях. Но это можно поправить.
+	AI_Output(other,self,"DIA_Harad_OrcRunning_TooHard_15_00");	//Но орк - это очень серьезный противник...
+	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_01");	//Хм - судя по тому, как ты выглядишь, возможно, ты прав. У тебя слишком мало мяса на костях. Но это можно поправить.
 	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_02");	//Тем не менее, ты должен доказать мне, что у тебя хватит мужества сражаться, если это будет необходимо.
 	AI_Output(other,self,"DIA_Harad_OrcRunning_TooHard_15_03");	//А нет ли для меня противника немного поменьше?
 	AI_Output(self,other,"DIA_Harad_OrcRunning_TooHard_12_04");	//Хм - (задумчиво) Хакон, торговец оружием на рыночной площади, сказал мне, что на него напали бандиты несколько дней назад.
@@ -201,7 +201,7 @@ func int DIA_Harad_OrcSuccess_Condition()
 func void DIA_Harad_OrcSuccess_Info()
 {
 	AI_Output(other,self,"DIA_Harad_OrcSuccess_15_00");	//Я принес тебе оружие орков, как ты хотел.
-	AI_Output(self,other,"DIA_Harad_OrcSuccess_12_01");	//Покажи ...
+	AI_Output(self,other,"DIA_Harad_OrcSuccess_12_01");	//Покажи...
 	if(Npc_HasItems(other,ItMw_2H_OrcAxe_01) > 0)
 	{
 		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_01,1);
@@ -226,7 +226,7 @@ func void DIA_Harad_OrcSuccess_Info()
 	{
 		AI_Output(self,other,"DIA_Harad_OrcSuccess_12_02");	//Ты ВСЕ ЖЕ сделал это?! Ты настоящий мужчина!
 	};
-	AI_Output(self,other,"DIA_Harad_OrcSuccess_12_03");	//Давно уже не держал я подобного оружия в своих руках - с тех пор как был солдатом во время Войны с Орками.
+	AI_Output(self,other,"DIA_Harad_OrcSuccess_12_03");	//Давно уже не держал я подобного оружия в своих руках - с тех пор, как был солдатом во время войны с орками.
 	AI_Output(self,other,"DIA_Harad_OrcSuccess_12_04");	//Да уж, суровые то были времена, скажу я тебе.
 	if(Player_IsApprentice == APP_Harad)
 	{
@@ -238,7 +238,7 @@ func void DIA_Harad_OrcSuccess_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Harad_OrcSuccess_12_07");	//Жаль, только, что ты выбрал другое ремесло.
+		AI_Output(self,other,"DIA_Harad_OrcSuccess_12_07");	//Жаль только, что ты выбрал другое ремесло.
 		AI_Output(self,other,"DIA_Harad_OrcSuccess_12_08");	//Ты бы очень пригодился мне.
 	};
 	MIS_Harad_Orc = LOG_SUCCESS;
@@ -289,7 +289,7 @@ func void DIA_Harad_LEHRLING_Info()
 		};
 		AI_Output(self,other,"DIA_Harad_LEHRLING_12_04");	//Что касается моего мнения, то ты можешь приступать к работе хоть сейчас.
 		stimmen = stimmen + 1;
-		AI_Output(self,other,"DIA_Harad_LEHRLING_12_05");	//А другие мастера ...
+		AI_Output(self,other,"DIA_Harad_LEHRLING_12_05");	//А другие мастера...
 		if(Thorben.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
 			if(MIS_Thorben_GetBlessings == LOG_SUCCESS)
@@ -308,7 +308,7 @@ func void DIA_Harad_LEHRLING_Info()
 		};
 		if(Bosper.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
-			AI_Output(self,other,"DIA_Harad_LEHRLING_12_09");	//Боспер пытался оговорить меня от идеи взять тебя в ученики. Он хочет, чтобы ты стал ЕГО учеником.
+			AI_Output(self,other,"DIA_Harad_LEHRLING_12_09");	//Боспер пытался отговорить меня от идеи взять тебя в ученики. Он хочет, чтобы ты стал ЕГО учеником.
 			if((MIS_Bosper_Bogen == LOG_SUCCESS) || (MIS_Bosper_WolfFurs == LOG_SUCCESS))
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_10");	//Я имел краткий, но напряженный разговор с ним по этому вопросу.
@@ -323,7 +323,7 @@ func void DIA_Harad_LEHRLING_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Harad_LEHRLING_12_14");	//Боспер пока не знает, кто ты такой
+			AI_Output(self,other,"DIA_Harad_LEHRLING_12_14");	//Боспер пока не знает, кто ты такой.
 		};
 		if(Constantino.aivar[AIV_TalkedToPlayer] == TRUE)
 		{
@@ -379,7 +379,7 @@ func void DIA_Harad_LEHRLING_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Harad_LEHRLING_12_26");	//Тебе нужно получить одобрение, по крайней мере, четырех  мастеров. Иначе ты не сможешь стать учеником в нижней части города.
+			AI_Output(self,other,"DIA_Harad_LEHRLING_12_26");	//Тебе нужно получить одобрение, по крайней мере, четырех мастеров. Иначе ты не сможешь стать учеником в нижней части города.
 			AI_Output(self,other,"DIA_Harad_LEHRLING_12_27");	//Поэтому ты должен поговорить со всеми мастерами, которые еще не уверены в тебе.
 		};
 	}
@@ -530,7 +530,7 @@ func void DIA_Harad_AlsLehrling_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_09");	//Опять ты ...
+		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_09");	//Опять ты...
 		Harad_Lehrling_Day = Wld_GetDay();
 	};
 };
@@ -589,7 +589,7 @@ func void DIA_Harad_Aufgaben_Info()
 	AI_Output(other,self,"DIA_Harad_Aufgaben_15_02");	//Ковать, ковать и ковать?
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_03");	//Ты не так уж бестолков, как кажешься. Я плачу за каждый меч. Если ты не работаешь, то и денег не получаешь. Это просто.
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_05");	//Кроме того, я научу тебя всему, что нужно знать для изготовления обычных мечей.
-	AI_Output(self,other,"DIA_Harad_Aufgaben_12_06");	//Изготовление магических мечей - работа для опытного кузнеца. Тебе до этого еще далеко ...
+	AI_Output(self,other,"DIA_Harad_Aufgaben_12_06");	//Изготовление магических мечей - работа для опытного кузнеца. Тебе до этого еще далеко...
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_07");	//Если тебе нужно место для сна, ты можешь прилечь где-нибудь в моем доме. Все понятно?
 };
 
@@ -751,7 +751,7 @@ func void DIA_Harad_TeachSmith_Common()
 	if(B_TeachPlayerTalentSmith(self,other,WEAPON_Common))
 	{
 		B_Harad_TeachSmith();
-		AI_Output(self,other,"DIA_Harad_TeachCommon_12_03");	//Твой первый меч конечно не станет произведением искусства, но всему остальному ты научишься чуть позже.
+		AI_Output(self,other,"DIA_Harad_TeachCommon_12_03");	//Твой первый меч, конечно, не станет произведением искусства, но всему остальному ты научишься чуть позже.
 	};
 	B_HaradSmithChoices();
 };
@@ -879,7 +879,7 @@ func void DIA_Harad_ImmerNoch_Info()
 {
 	AI_Output(other,self,"DIA_Harad_Add_15_01");	//Ты все еще работаешь на паладинов?
 	AI_Output(self,other,"DIA_Harad_Add_12_02");	//Я закончил заказ лорда Хагена.
-	AI_Output(self,other,"DIA_Harad_Add_12_03");	//Теперь я делаю доля него мечи из магической руды - но на этот раз за плату.
+	AI_Output(self,other,"DIA_Harad_Add_12_03");	//Теперь я делаю для него мечи из магической руды - но на этот раз за деньги.
 	AI_Output(self,other,"DIA_Harad_Add_12_04");	//Но теперь у меня также есть время, чтобы делать оружие для торговцев на рыночной площади.
 	AI_Output(self,other,"DIA_Harad_Add_12_05");	//Так что если ты ищешь хороший меч, обратись к ним.
 };
@@ -909,7 +909,7 @@ func void DIA_Harad_AboutErzklingen_Info()
 	AI_Output(other,self,"DIA_Harad_Add_15_06");	//Расскажи мне о мечах из магической руды!
 	AI_Output(self,other,"DIA_Harad_Waffen_12_02");	//Создание магического меча - очень сложный и дорогой процесс, но в результате получается очень удобный и практически не тупящийся меч.
 	AI_Output(self,other,"DIA_Harad_Waffen_12_03");	//Это очень хороший меч, но все его достоинства раскрываются только в руках паладина.
-	AI_Output(self,other,"DIA_Harad_Waffen_12_04");	//Меч паладина освящается самим Инносом. В результате, он становится зачарованным оружием, наносящим огромный урон врагу!
+	AI_Output(self,other,"DIA_Harad_Waffen_12_04");	//Меч паладина освящается самим Инносом. В результате он становится зачарованным оружием, наносящим огромный урон врагу!
 };
 
 

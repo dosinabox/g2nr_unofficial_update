@@ -162,7 +162,7 @@ instance DIA_Baltram_WAREZ(C_Info)
 	information = DIA_Baltram_WAREZ_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 

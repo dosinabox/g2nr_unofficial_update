@@ -209,10 +209,18 @@ func void DIA_Engrom_BESSEN_Info()
 	AI_Output(other,self,"DIA_Engrom_BESSEN_15_01");	//Давай, я помогу тебе.
 	AI_Output(self,other,"DIA_Engrom_BESSEN_12_02");	//(вопит) Не трогай меня!
 	B_NpcClearObsessionByDMT(self);
-	Npc_SetTarget(self,other);
-	self.aivar[AIV_INVINCIBLE] = FALSE;
-	other.aivar[AIV_INVINCIBLE] = FALSE;
-	AI_StartState(self,ZS_Flee,0,"");
+	if(Npc_GetDistToWP(self,"START") < 1000)
+	{
+		Npc_SetTarget(self,other);
+		self.aivar[AIV_INVINCIBLE] = FALSE;
+		other.aivar[AIV_INVINCIBLE] = FALSE;
+		AI_StartState(self,ZS_Flee,0,"");
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"FleePass");
+		Wld_InsertNpc(OrcWarrior_Scout,"START");
+	};
 };
 
 

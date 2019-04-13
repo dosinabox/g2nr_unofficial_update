@@ -41,8 +41,8 @@ func void DIA_Grom_HALLO_Info()
 	AI_Output(other,self,"DIA_Grom_HALLO_15_00");	//Все в порядке?
 	AI_Output(self,other,"DIA_Grom_HALLO_08_01");	//Ах, незнакомый странник. Я очень занят. Что ты хочешь?
 	Info_ClearChoices(DIA_Grom_HALLO);
-	Info_AddChoice(DIA_Grom_HALLO,"Что здесь интересного?",DIA_Grom_HALLO_waszusehen);
-	Info_AddChoice(DIA_Grom_HALLO,"Что ты делаешь здесь?",DIA_Grom_HALLO_was);
+	Info_AddChoice(DIA_Grom_HALLO,"На что интересное стоит обратить внимание здесь?",DIA_Grom_HALLO_waszusehen);
+	Info_AddChoice(DIA_Grom_HALLO,"Чем ты занимаешься здесь?",DIA_Grom_HALLO_was);
 };
 
 func void DIA_Grom_HALLO_waszusehen()

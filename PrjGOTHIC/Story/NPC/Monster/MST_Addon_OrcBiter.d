@@ -1,7 +1,7 @@
 
 prototype Mst_Default_OrcBiter(C_Npc)
 {
-	name[0] = "Чомпер";
+	name[0] = "Кусач";
 	guild = GIL_SCAVENGER;
 	aivar[AIV_MM_REAL_ID] = ID_OrcBiter;
 	level = 12;

@@ -93,7 +93,7 @@ func void DIA_Addon_Fortuno_Hi_Info()
 	Info_AddChoice(DIA_Addon_Fortuno_Hi,"Я могу тебе помочь?",DIA_Addon_Fortuno_Hi_HILFE);
 	if(Npc_HasItems(other,ItMi_Joint) >= 1)
 	{
-		Info_AddChoice(DIA_Addon_Fortuno_Hi,"Вот возьми эту болотную траву.",DIA_Addon_Fortuno_Hi_JOINT);
+		Info_AddChoice(DIA_Addon_Fortuno_Hi,"Вот, возьми эту болотную траву.",DIA_Addon_Fortuno_Hi_JOINT);
 	};
 	if(Npc_HasItems(other,ItMi_Addon_Joint_01) >= 1)
 	{
@@ -115,7 +115,7 @@ func void DIA_Addon_Fortuno_Hi_HILFE()
 
 func void DIA_Addon_Fortuno_Hi_JOINT()
 {
-	AI_Output(other,self,"DIA_Addon_Fortuno_Hi_JOINT_15_00");	//Вот возьми эту болотную траву.
+	AI_Output(other,self,"DIA_Addon_Fortuno_Hi_JOINT_15_00");	//Вот, возьми эту болотную траву.
 	if(B_GiveInvItems(other,self,ItMi_Joint,1))
 	{
 		AI_UseItem(self,ItMi_Joint);
@@ -308,7 +308,7 @@ instance DIA_Addon_Fortuno_Trank(C_Info)
 	condition = DIA_Addon_Fortuno_Trank_Condition;
 	information = DIA_Addon_Fortuno_Trank_Info;
 	permanent = FALSE;
-	description = "У меня есть зелье для тебя...";
+	description = "У меня есть зелье, которое поможет тебе вспомнить.";
 };
 
 

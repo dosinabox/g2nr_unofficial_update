@@ -310,21 +310,21 @@ func void PC_Goldhacken_Addon_Chance_Info()
 	}
 	else if(Hero_HackChance < 75)
 	{
-		concatText = ConcatStrings("настоящий рудокоп ( ",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("настоящий рудокоп (",IntToString(Hero_HackChance));
 	}
 	else if(Hero_HackChance < 90)
 	{
-		concatText = ConcatStrings("чертовски хороший рудокоп ( ",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("чертовски хороший рудокоп (",IntToString(Hero_HackChance));
 	}
 	else if(Hero_HackChance < 98)
 	{
-		concatText = ConcatStrings("великий рудокоп ( ",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("великий рудокоп (",IntToString(Hero_HackChance));
 	}
 	else
 	{
-		concatText = ConcatStrings("гуру среди рудокопов ( ",IntToString(Hero_HackChance));
+		concatText = ConcatStrings("гуру среди рудокопов (",IntToString(Hero_HackChance));
 	};
-	concatText = ConcatStrings(concatText," проц.)");
+	concatText = ConcatStrings(concatText," процентов)");
 	PrintScreen(concatText,-1,-1,FONT_ScreenSmall,2);
 };
 

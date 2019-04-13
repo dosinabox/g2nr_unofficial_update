@@ -28,7 +28,7 @@ instance DIA_Addon_Patrick_Hi(C_Info)
 	condition = DIA_Addon_Patrick_Hi_Condition;
 	information = DIA_Addon_Patrick_Hi_Info;
 	permanent = FALSE;
-	description = "Меня послали маги воды. Я пришел, чтобы освободить вас.";
+	description = "Меня послали маги Воды. Я пришел, чтобы освободить вас.";
 };
 
 
@@ -39,7 +39,7 @@ func int DIA_Addon_Patrick_Hi_Condition()
 
 func void DIA_Addon_Patrick_Hi_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Patrick_Hi_15_00");	//Меня послали маги воды. Я пришел, чтобы освободить вас.
+	AI_Output(other,self,"DIA_Addon_Patrick_Hi_15_00");	//Меня послали маги Воды. Я пришел, чтобы освободить вас.
 	AI_Output(self,other,"DIA_Addon_Patrick_Hi_07_01");	//Правда? А почему я должен тебе верить?
 	AI_Output(other,self,"DIA_Addon_Patrick_Hi_15_02");	//Ты хочешь отсюда выбраться или нет?
 	AI_Output(self,other,"DIA_Addon_Patrick_Hi_07_03");	//Конечно, хочу, но...
@@ -101,7 +101,7 @@ func void DIA_Addon_Patrick_ready_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_00");	//Все хорошо. Вы можете идти.
 	AI_Output(self,other,"DIA_Addon_Patrick_ready_07_01");	//Отлично! Я знаю на болоте одну пещеру, где мы можем укрыться. Но что нам делать дальше?
-	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_02");	//Идите на юго-запад. Покинув болото, вы найдете развалины древнего храма. Там устроили лагерь маги воды.
+	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_02");	//Идите на юго-запад. Покинув болото, вы найдете развалины древнего храма. Там устроили лагерь маги Воды.
 	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_03");	//Они расскажут вам, как выбраться из этой долины.
 	AI_Output(self,other,"DIA_Addon_Patrick_ready_07_04");	//Спасибо, спасибо большое. Мы все перед тобой в долгу...
 	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_05");	//Не за что.

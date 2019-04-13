@@ -119,7 +119,7 @@ instance DIA_Matteo_TRADE(C_Info)
 	condition = DIA_Matteo_TRADE_Condition;
 	information = DIA_Matteo_TRADE_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
@@ -137,11 +137,11 @@ var int Matteo_TradeNewsPermanent;
 
 func void DIA_Matteo_TRADE_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Matteo_TRADE_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == FALSE))
 	{
-		AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно боле строгими.
+		AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно более строгими.
 		AI_Output(self,other,"DIA_Matteo_TRADE_09_02");	//Я надеюсь, все успокоится, когда этого убийцу повесят.
 		Matteo_TradeNewsPermanent = 1;
 	};
@@ -169,7 +169,7 @@ instance DIA_Matteo_LEATHER(C_Info)
 
 func int DIA_Matteo_LEATHER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Matteo_SellWhat) && (Matteo_LeatherBought == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Matteo_SellWhat) && (Matteo_LeatherBought == FALSE) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -387,7 +387,7 @@ func void B_Matteo_RegDichAb()
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_02");	//В принципе, это МОЕ золото.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_03");	//Гритта, племянница плотника, уже давно не отдает мне долг.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_04");	//Но эта маленькая вертихвостка постоянно дефилирует в новых платьях - это означает, что деньги у нее есть.
-	AI_Output(self,other,"B_Matteo_RegDichAb_09_05");	//Я хочу, чтобы ты выбил из нее этот долг. Но мастер Торбен - плотник - тоже очень влиятельный человек.
+	AI_Output(self,other,"B_Matteo_RegDichAb_09_05");	//Я хочу, чтобы ты выбил из нее этот долг. Но мастер Торбен, плотник - тоже очень влиятельный человек.
 	AI_Output(self,other,"B_Matteo_RegDichAb_09_06");	//Принеси мне эти деньги, и я помогу тебе.
 	MIS_Matteo_Gold = LOG_Running;
 	Log_CreateTopic(TOPIC_Matteo,LOG_MISSION);
@@ -469,7 +469,7 @@ func void DIA_MAtteo_GoldRunning_Info()
 	};
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
-		if(Npc_HasItems(Gritta,ItMi_Gold) < 100)
+		if(Npc_HasItems(Gritta,ItMi_Gold) < 80)
 		{
 			AI_Output(self,other,"DIA_Matteo_GoldRunning_09_03");	//И? Были какие-нибудь проблемы?
 			AI_Output(other,self,"DIA_Matteo_GoldRunning_15_04");	//Ничего такого, о чем стоило бы говорить.
@@ -586,7 +586,7 @@ func void DIA_MAtteo_WoAlsLehrling_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WoAlsLehrling_15_00");	//А к кому я могу поступить в ученики?
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_01");	//К любому мастеру на этой улице.
-	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_02");	//Это может быть кузнец Гарад, мастер-лучник Боспер, плотник Торбен или алхимик  Константино.
+	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_02");	//Это может быть кузнец Гарад, мастер-лучник Боспер, плотник Торбен или алхимик Константино.
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_03");	//Один из них обязательно возьмет тебя.
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_04");	//Но важно, чтобы с этим были согласны другие мастера. Таков обычай Хориниса.
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
@@ -683,7 +683,7 @@ instance DIA_Matteo_Minenanteil(C_Info)
 	nr = 3;
 	condition = DIA_Matteo_Minenanteil_Condition;
 	information = DIA_MAtteo_Minenanteil_Info;
-	description = "У тебя среди других товаров есть и акции горнодобывающей компании.";
+	description = "Я вижу, у тебя среди других товаров есть и акции горнодобывающей компании.";
 };
 
 

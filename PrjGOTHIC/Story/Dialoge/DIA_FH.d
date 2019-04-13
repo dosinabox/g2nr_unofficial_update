@@ -17,13 +17,13 @@ func void Change_FH_Visual()
 	if(FH_SkinTexture < 0)
 	{
 		FH_SkinTexture = 0;
-		PrintScreen("MINUS-Gesichter gibtґs nicht!!!!!!!!!!!",-1,-1,"FONT_OLD_10_WHITE.TGA",2);
+		PrintScreen("Нет лиц с отрицательными номерами!!!!!!!!!!!",-1,-1,"FONT_OLD_10_WHITE.TGA",2);
 	};
 	B_SetNpcVisual(self,sex,FH_HeadMesh,FH_SkinTexture,BodyTex_N,NO_ARMOR);
-	PrintScreen("Skin texture:",-1,10,"FONT_OLD_10_WHITE.TGA",4);
+	PrintScreen("Текстура кожи:",-1,10,"FONT_OLD_10_WHITE.TGA",4);
 	printText = IntToString(FH_SkinTexture);
 	PrintScreen(printText,-1,12,"FONT_OLD_10_WHITE.TGA",2);
-	PrintScreen("Head mesh:",-1,20,"FONT_OLD_10_WHITE.TGA",2);
+	PrintScreen("Меш головы:",-1,20,"FONT_OLD_10_WHITE.TGA",2);
 	PrintScreen(FH_HeadMesh,-1,22,"FONT_OLD_10_WHITE.TGA",2);
 };
 
@@ -126,7 +126,7 @@ instance DIA_FH_PreviousFace10(C_Info)
 	condition = DIA_FH_PreviousFace10_Condition;
 	information = DIA_FH_PreviousFace10_Info;
 	permanent = 1;
-	description = "10 лиц назад ";
+	description = "10 лиц назад";
 };
 
 

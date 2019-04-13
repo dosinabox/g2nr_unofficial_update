@@ -76,7 +76,7 @@ func void DIA_Mil_305_Torwache_FirstWarn_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Mil_305_Torwache_FirstWarn_03_05");	//“олько граждане города и служащие королевских войск могут входить  верхний квартал города!
+		AI_Output(self,other,"DIA_Mil_305_Torwache_FirstWarn_03_05");	//“олько граждане города и служащие королевских войск могут входить в верхний квартал города!
 	};
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,Mil_305_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;

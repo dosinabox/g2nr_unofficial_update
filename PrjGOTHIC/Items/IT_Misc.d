@@ -762,7 +762,7 @@ instance ItMi_PilzTabak(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "“емный €блочно-грибной табак";
+	text[2] = "“емный €блочно-грибной табак.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -790,7 +790,7 @@ instance ItMi_Honigtabak(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "—ладкий €блочный табак";
+	text[2] = "—ладкий €блочный табак.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -804,7 +804,7 @@ instance ItMi_SumpfTabak(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "—месь из болотной травы";
+	text[2] = "—месь из болотной травы.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

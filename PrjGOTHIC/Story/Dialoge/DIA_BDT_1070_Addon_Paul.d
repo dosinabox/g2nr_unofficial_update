@@ -237,18 +237,18 @@ func int DIA_Addon_Paul_MaulPaul_Condition()
 
 func void DIA_Addon_Paul_MaulPaul_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_00");	//(дружелюбно) ѕоль, скажи мне, что тебе известно, или € размажу теб€ по этой стенке!
+	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_00");	//(дружелюбно) ѕол, скажи мне, что тебе известно, или € размажу теб€ по этой стенке!
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_01");	//“ы не можешь избить мен€ просто потому, что ты работаешь на босса.
 	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_02");	//(любезно) ћогу!
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_03");	//Ќе говори глупостей!
-	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_04");	//(нетерпеливо) ѕоль...
+	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_04");	//(нетерпеливо) ѕол...
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_05");	//(лихорадочно) я знаю только, что у ’уно с Ёстебаном какие-то разногласи€.
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_06");	//(лихорадочно) ѕри мне он посто€нно ругаетс€ на Ёстебана. „то тот испортил ему дело и все такое...
 	AI_Output(self,other,"DIA_Addon_Paul_MaulPaul_03_07");	//я только слушал и никогда ничего не говорил.
 	AI_Output(other,self,"DIA_Addon_Paul_MaulPaul_15_08");	//ќтлично! ¬от видишь, это было не так сложно.
 	Npc_ExchangeRoutine(self,"START");
 	Paul_TellAll = TRUE;
-	B_LogEntry(Topic_Addon_Esteban,"ѕоль сказал, что ’уно ненавидит Ёстебана, потому что он проворачивает свои дела.");
+	B_LogEntry(Topic_Addon_Esteban,"ѕол сказал, что ’уно ненавидит Ёстебана, потому что он проворачивает свои дела.");
 };
 
 

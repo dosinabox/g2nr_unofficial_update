@@ -183,7 +183,7 @@ func int DIA_Balthasar_TALKTOBENGAR_Condition()
 func void DIA_Balthasar_TALKTOBENGAR_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_TALKTOBENGAR_15_00");	//Возможно, мне стоит поговорить с Бенгаром.
-	AI_Output(self,other,"DIA_Balthasar_TALKTOBENGAR_05_01");	//Ты сделаешь это для меня? Но что бы ты не говорил ему, имей в виду, я не хочу никаких проблем, хорошо?
+	AI_Output(self,other,"DIA_Balthasar_TALKTOBENGAR_05_01");	//Ты сделаешь это для меня? Но что бы ты ни говорил ему, имей в виду, я не хочу никаких проблем, хорошо?
 	AI_Output(other,self,"DIA_Balthasar_TALKTOBENGAR_15_02");	//Посмотрим.
 	Log_CreateTopic(TOPIC_BalthasarsSchafe,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BalthasarsSchafe,LOG_Running);
@@ -213,7 +213,7 @@ func int DIA_Balthasar_BENGARUEBERREDET_Condition()
 func void DIA_Balthasar_BENGARUEBERREDET_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_BENGARUEBERREDET_15_00");	//Ты можешь опять водить своих овец на пастбища Бенгара. Я поговорил с ним.
-	AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_01");	//Спасибо. Я отправлюсь туда прямо сейчас.
+	AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_01");	//Спасибо. Я отправляюсь туда прямо сейчас.
 	AI_Output(self,other,"DIA_Balthasar_BENGARUEBERREDET_05_02");	//Вот, возьми эти овечьи шкуры в знак моей благодарности.
 	B_GiveInvItems(self,other,ItAt_SheepFur,10);
 	AI_StopProcessInfos(self);

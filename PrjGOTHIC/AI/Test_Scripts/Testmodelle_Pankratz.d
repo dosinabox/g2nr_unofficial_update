@@ -1,7 +1,7 @@
 
 instance J1(C_Item)
 {
-	name = "Monster auffьllen Addon world";
+	name = "Монстры наполняют мир аддона";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -161,7 +161,7 @@ func void UseJOLY_Storyhelpletter()
 
 instance J2(C_Item)
 {
-	name = "Greg_Taverne";
+	name = "Грег идет в таверну";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -220,7 +220,7 @@ func void UseJ4()
 
 instance DJG_inserten(C_Item)
 {
-	name = "JOLY_Storyhelpletter";
+	name = "JOLY Письмо помощника по сюжету";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -228,7 +228,7 @@ instance DJG_inserten(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseDJG_inserten;
 	scemeName = "MAP";
-	description = "JOLY_Storyhelpletter";
+	description = name;
 };
 
 
@@ -248,7 +248,7 @@ func void UseDJG_inserten()
 
 instance SH_Oldworld(Npc_Default)
 {
-	name[0] = "Storyhelper Oldworld";
+	name[0] = "Помощник по сюжету в старом мире";
 	guild = GIL_NONE;
 	id = 9998;
 	voice = 15;
@@ -302,7 +302,7 @@ instance SH_Oldworld_INFO1(C_Info)
 	information = SH_Oldworld_INFO1_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 1";
+	description = KapWechsel_1;
 };
 
 
@@ -315,7 +315,7 @@ func void SH_Oldworld_INFO1_Info()
 {
 	Info_ClearChoices(SH_Oldworld_INFO1);
 	Info_AddChoice(SH_Oldworld_INFO1,Dialog_Back,SH_Oldworld_BACK1);
-	Info_AddChoice(SH_Oldworld_INFO1,"KAPITELANFANG",SH_Oldworld_KAPITEL1ANFANG);
+	Info_AddChoice(SH_Oldworld_INFO1,KapAnfang,SH_Oldworld_KAPITEL1ANFANG);
 };
 
 func void SH_Oldworld_BACK1()
@@ -337,7 +337,7 @@ instance SH_Oldworld_INFO2(C_Info)
 	information = SH_Oldworld_INFO2_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 2";
+	description = KapWechsel_2;
 };
 
 
@@ -350,7 +350,7 @@ func void SH_Oldworld_INFO2_Info()
 {
 	Info_ClearChoices(SH_Oldworld_INFO2);
 	Info_AddChoice(SH_Oldworld_INFO2,Dialog_Back,SH_Oldworld_BACK2);
-	Info_AddChoice(SH_Oldworld_INFO2,"KAPITELANFANG",SH_Oldworld_KAPITEL2ANFANG);
+	Info_AddChoice(SH_Oldworld_INFO2,KapAnfang,SH_Oldworld_KAPITEL2ANFANG);
 };
 
 func void SH_Oldworld_BACK2()
@@ -373,7 +373,7 @@ instance SH_Oldworld_INFO3(C_Info)
 	information = SH_Oldworld_INFO3_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 3";
+	description = KapWechsel_3;
 };
 
 
@@ -386,7 +386,7 @@ func void SH_Oldworld_INFO3_Info()
 {
 	Info_ClearChoices(SH_Oldworld_INFO3);
 	Info_AddChoice(SH_Oldworld_INFO3,Dialog_Back,SH_Oldworld_BACK3);
-	Info_AddChoice(SH_Oldworld_INFO3,"KAPITELANFANG",SH_Oldworld_KAPITEL3ANFANG);
+	Info_AddChoice(SH_Oldworld_INFO3,KapAnfang,SH_Oldworld_KAPITEL3ANFANG);
 };
 
 func void SH_Oldworld_BACK3()
@@ -415,7 +415,7 @@ instance SH_Oldworld_INFO4(C_Info)
 	information = SH_Oldworld_INFO4_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 4";
+	description = KapWechsel_4;
 };
 
 
@@ -428,7 +428,7 @@ func void SH_Oldworld_INFO4_Info()
 {
 	Info_ClearChoices(SH_Oldworld_INFO4);
 	Info_AddChoice(SH_Oldworld_INFO4,Dialog_Back,SH_Oldworld_BACK4);
-	Info_AddChoice(SH_Oldworld_INFO4,"KAPITELANFANG",SH_Oldworld_KAPITEL4ANFANG);
+	Info_AddChoice(SH_Oldworld_INFO4,KapAnfang,SH_Oldworld_KAPITEL4ANFANG);
 };
 
 func void SH_Oldworld_BACK4()
@@ -463,7 +463,7 @@ instance SH_Oldworld_INFO5(C_Info)
 	information = SH_Oldworld_INFO5_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 5";
+	description = KapWechsel_5;
 };
 
 
@@ -476,7 +476,7 @@ func void SH_Oldworld_INFO5_Info()
 {
 	Info_ClearChoices(SH_Oldworld_INFO5);
 	Info_AddChoice(SH_Oldworld_INFO5,Dialog_Back,SH_Oldworld_BACK5);
-	Info_AddChoice(SH_Oldworld_INFO5,"KAPITELANFANG",SH_Oldworld_KAPITEL5ANFANG);
+	Info_AddChoice(SH_Oldworld_INFO5,KapAnfang,SH_Oldworld_KAPITEL5ANFANG);
 };
 
 func void SH_Oldworld_BACK5()
@@ -515,7 +515,7 @@ instance SH_Oldworld_INFO6(C_Info)
 	information = SH_Oldworld_INFO6_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 6";
+	description = KapWechsel_6;
 };
 
 
@@ -528,7 +528,7 @@ func void SH_Oldworld_INFO6_Info()
 {
 	Info_ClearChoices(SH_Oldworld_INFO6);
 	Info_AddChoice(SH_Oldworld_INFO6,Dialog_Back,SH_Oldworld_BACK6);
-	Info_AddChoice(SH_Oldworld_INFO6,"KAPITELANFANG",SH_Oldworld_KAPITEL6ANFANG);
+	Info_AddChoice(SH_Oldworld_INFO6,KapAnfang,SH_Oldworld_KAPITEL6ANFANG);
 };
 
 func void SH_Oldworld_BACK6()
@@ -584,7 +584,7 @@ instance DIA_Dragon_Testmodell_Hello(C_Info)
 	condition = DIA_Dragon_Testmodell_Hello_Condition;
 	information = DIA_Dragon_Testmodell_Hello_Info;
 	permanent = TRUE;
-	description = "Quatsch mich voll";
+	description = "Полная чепуха";
 };
 
 
@@ -595,18 +595,8 @@ func int DIA_Dragon_Testmodell_Hello_Condition()
 
 func void DIA_Dragon_Testmodell_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
-	AI_Output(self,other,"DIA_Dragon_Testmodell_Hello_20_00");	//Du bist weit gekommen, kleiner Mensch, aber diese Halle wirst du nicht mehr lebend verlassen.
-	AI_Output(other,self,"DIA_Dragon_Testmodell_Hello_15_00");	//Mach nicht so einen Wind. Lass uns zur Sache kommen.
+	AI_Output(self,other,"DIA_Dragon_Fire_Island_Hello_20_07");	//Ты зашел слишком далеко, жалкий человечишка, но тебе не уйти отсюда живым.
+	AI_Output(other,self,"DIA_Dragon_Fire_Island_Hello_15_06");	//Хватит попусту сотрясать воздух. Давай перейдем к делу.
 	AI_StopProcessInfos(self);
 	DragonTalk_Exit_Free = FALSE;
 	self.flags = 0;

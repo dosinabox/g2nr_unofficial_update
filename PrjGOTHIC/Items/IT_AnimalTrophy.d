@@ -281,13 +281,13 @@ func void Use_Sting()
 
 instance itat_LurkerSkin(C_Item)
 {
-	name = "Шкура рептилии";
+	name = "Кожа рептилии";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_ReptileSkin;
 	visual = "ItAt_LurkerSkin.3DS";
 	material = MAT_LEATHER;
-	description = "Шкура рептилии.";
+	description = name;
 	text[0] = "";
 	text[1] = "";
 	text[2] = "";

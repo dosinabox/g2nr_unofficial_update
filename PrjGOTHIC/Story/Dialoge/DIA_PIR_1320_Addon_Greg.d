@@ -106,7 +106,7 @@ func void DIA_Addon_Greg_ImNew_Info()
 
 func void B_UseRakeBilanz()
 {
-	if((MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE))
+	if(((MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE)) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_00");	//И не думай, что я забыл, что ты мой должник.
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_01");	//В различных местах Хориниса я зарыл несколько сотен золотых монет.

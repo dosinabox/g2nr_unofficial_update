@@ -6,7 +6,7 @@ instance DIA_Xardas_FirstEXIT(C_Info)
 	condition = DIA_Xardas_FirstEXIT_Condition;
 	information = DIA_Xardas_FirstEXIT_Info;
 	permanent = FALSE;
-	description = "Я немедленно отправляюсь в путь! (КОНЕЦ)";
+	description = "Я немедленно отправляюсь в путь!";
 };
 
 
@@ -81,7 +81,7 @@ func void DIA_Xardas_Hello_Info()
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_04");	//Но хватит об этом. Сейчас-то ты здесь.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_05");	//И над нами нависла новая угроза.
 	Info_ClearChoices(DIA_Xardas_Hello);
-	Info_AddChoice(DIA_Xardas_Hello,"По крайней мере, у нас сейчас достаточно времени. Спящий уничтожен.",DIA_Addon_Xardas_Hello_Dragons);
+	Info_AddChoice(DIA_Xardas_Hello,"Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий...",DIA_Addon_Xardas_Hello_Dragons);
 	Info_AddChoice(DIA_Xardas_Hello,"Что это за НОВАЯ угроза, о которой ты говоришь?",DIA_Addon_Xardas_Hello_Man);
 };
 
@@ -94,10 +94,10 @@ func void DIA_Addon_Xardas_Hello_Man()
 
 func void DIA_Addon_Xardas_Hello_Dragons()
 {
-	AI_Output(other,self,"DIA_Xardas_Hello_15_03");	//По крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий...
+	AI_Output(other,self,"DIA_Xardas_Hello_15_03");	//Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий...
 	AI_Output(self,other,"DIA_Xardas_Hello_14_04");	//...был изгнан. Ты победил его, да, это так - но не в наших силах остановить войну, которая разгорается сейчас.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_07");	//Своим последним, яростным воплем, Спящий привел в движение армии тьмы.
-	AI_Output(self,other,"DIA_Xardas_Hello_14_08");	//Это был приказ всем созданиям тьмы. Слово силы, которому все они обязаны повиноваться.
+	AI_Output(self,other,"DIA_Xardas_Hello_14_08");	//Это был приказ всем созданиям тьмы. Слово силы, которому они все обязаны повиноваться.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_09");	//Его последним приказом было: ИДИТЕ! И они пошли. Все. Даже драконы.
 	AI_Output(other,self,"DIA_Xardas_Hello_15_10");	//(изумленно) Драконы!
 	AI_Output(self,other,"DIA_Xardas_Hello_14_11");	//Это творения древней силы. Я чувствую их присутствие - даже здесь.
@@ -112,7 +112,7 @@ func void DIA_Addon_Xardas_Hello_Dragons()
 	{
 		AI_Output(self,other,"DIA_Addon_Xardas_Hello_Dragons_14_06");	//Но это еще не все. Есть еще кое-что, что угрожает нам. Об этом я узнал лишь недавно.
 		Info_ClearChoices(DIA_Xardas_Hello);
-		Info_AddChoice(DIA_Xardas_Hello,"О какой ДРУГОЙ  угрозе ты говоришь?",DIA_Addon_Xardas_Hello_Man);
+		Info_AddChoice(DIA_Xardas_Hello,"О какой ДРУГОЙ угрозе ты говоришь?",DIA_Addon_Xardas_Hello_Man);
 	};
 };
 
@@ -214,7 +214,7 @@ instance DIA_Addon_Xardas_Portal(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Xardas_Portal_Condition;
 	information = DIA_Addon_Xardas_Portal_Info;
-	description = "Маги воды нашли портал, ведущий в неисследованную часть острова...";
+	description = "Маги Воды нашли портал, ведущий в неисследованную часть острова...";
 };
 
 
@@ -228,7 +228,7 @@ func int DIA_Addon_Xardas_Portal_Condition()
 
 func void DIA_Addon_Xardas_Portal_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_00");	//Маги воды нашли портал, ведущий в неисследованную часть острова...
+	AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_00");	//Маги Воды нашли портал, ведущий в неисследованную часть острова...
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_01");	//Как интересно...
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_02");	//Как только ты узнаешь что-нибудь, что действительно сможет нам помочь, дай мне знать!
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_03");	//Где-то там может быть спрятан артефакт Белиара. Ты должен найти его!
@@ -296,7 +296,7 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_11");	//У меня его больше нет...
-		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_12");	//Я отдал его магам воды, чтобы они утопили его в море...
+		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_12");	//Я отдал его магам Воды, чтобы они утопили его в море...
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_14");	//Это оружие могло бы сослужить нам огромную службу!
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_15");	//Я думаю, что я сделал правильный выбор.
@@ -503,7 +503,7 @@ func void DIA_Xardas_ABOUTLESTER_Info()
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_04");	//Боюсь, что ничего хорошего. Он видел не только дракона, но еще и людей в черных плащах с капюшонами.
 	AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_05");	//И?
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_06");	//Если эти люди существуют, то их присутствие несет определенную угрозу.
-	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_07");	//И мне это не нравится. Вот, возьми мое кольцо. Оно защитит тебя от магии.
+	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_07");	//И мне это не нравится. Вот, возьми кольцо. Оно защитит тебя от магии.
 	B_GiveInvItems(self,other,ItRi_Prot_Mage_01,1);
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -592,7 +592,7 @@ func void DIA_Xardas_KdfSecret_Info()
 	AI_Output(self,other,"DIA_Xardas_KdfSecret_14_01");	//Когда-то я был высшим членом Круга. Даже тогда я подозревал, что демоническая магия может быть ключом к этому магическому барьеру.
 	AI_Output(self,other,"DIA_Xardas_KdfSecret_14_02");	//Но мне было ни за что не убедить остальных членов Круга последовать этому пути.
 	AI_Output(self,other,"DIA_Xardas_KdfSecret_14_03");	//Поэтому я покинул Круг, чтобы изучать черную магию.
-	AI_Output(self,other,"DIA_Xardas_KdfSecret_14_04");	//Это преступление, которому в глазах Магов Огня, (язвительно) 'Посвященных Инноса', всегда таких 'Добрых' и 'Добродетельных', никогда не будет оправдания.
+	AI_Output(self,other,"DIA_Xardas_KdfSecret_14_04");	//Это преступление, которому в глазах магов Огня, (язвительно) 'Посвященных Инноса', всегда таких 'Добрых' и 'Добродетельных', никогда не будет оправдания.
 	AI_Output(self,other,"DIA_Xardas_KdfSecret_14_05");	//Они уверены, что я все еще жив, но они понятия не имеют, где искать меня - и это хорошо.
 };
 
@@ -643,7 +643,7 @@ func int DIA_Xardas_BACKFROMOW_Condition()
 func void DIA_Xardas_BACKFROMOW_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_00");	//Я вернулся из Долины Рудников.
-	AI_Output(self,other,"DIA_Xardas_BACKFROMOW_14_01");	//Давно бы пора. И что ты там видел?
+	AI_Output(self,other,"DIA_Xardas_BACKFROMOW_14_01");	//Давно пора. И что ты там видел?
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_02");	//Ты был прав. Там все кишит врагами, даже яблоку упасть негде.
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_03");	//Орки осаждают замок, а драконы опустошают все вокруг.
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_04");	//Осталось недолго, прежде чем они нападут на Хоринис, если я не ошибаюсь.
@@ -682,7 +682,7 @@ func void DIA_Xardas_DMTSINDDA_Info()
 	B_LogEntry(TOPIC_INNOSEYE,"Врагу теперь известно, что я ищу Глаз Инноса. Мне нужно побыстрее найти его, пока еще не слишком поздно.");
 	Info_ClearChoices(DIA_Xardas_DMTSINDDA);
 	Info_AddChoice(DIA_Xardas_DMTSINDDA,"Меня атаковали маги в черных мантиях.",DIA_Xardas_DMTSINDDA_DMT);
-	Info_AddChoice(DIA_Xardas_DMTSINDDA,"Я, наконец, добыл доказательство, для лорда Хагена.",DIA_Xardas_DMTSINDDA_Beweis);
+	Info_AddChoice(DIA_Xardas_DMTSINDDA,"Я, наконец, добыл доказательство, которое требовал от меня лорд Хаген.",DIA_Xardas_DMTSINDDA_Beweis);
 };
 
 func void DIA_Xardas_DMTSINDDA_DMT()
@@ -695,7 +695,7 @@ func void DIA_Xardas_DMTSINDDA_DMT()
 	{
 		Log_CreateTopic(TOPIC_DEMENTOREN,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_DEMENTOREN,LOG_Running);
-		B_LogEntry(TOPIC_DEMENTOREN,"Ксардас знает кто такие эти люди в черных рясах. Похоже именно Ищущие  заправляют всем в о вражеских рядах, и они очень опасны.");
+		B_LogEntry(TOPIC_DEMENTOREN,"Ксардас знает, кто такие эти люди в черных рясах. Похоже, именно Ищущие заправляют всем во вражеских рядах, и они очень опасны.");
 	};
 };
 
@@ -712,11 +712,11 @@ func void DIA_Xardas_DMTSINDDA_Beweis()
 func void DIA_Xardas_DMTSINDDA_DMT_WhatToDo()
 {
 	AI_Output(other,self,"DIA_Xardas_DMTSINDDA_DMT_WhatToDo_15_00");	//И каков будет наш следующий шаг?
-	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_WhatToDo_14_01");	//Иди и отнеси Лорду Хагену письмо от Гаронда, и добейся от него, чтобы он позволил тебя взять Глаз Инноса.
+	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_WhatToDo_14_01");	//Иди и отнеси лорду Хагену письмо от Гаронда, и добейся от него, чтобы он позволил тебе взять Глаз Инноса.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_WhatToDo_14_02");	//Затем иди в монастырь, и поговори с Пирокаром. Он должен дать тебе Глаз.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_WhatToDo_14_03");	//Сейчас нет ничего более важного, чем обеспечить безопасность этого артефакта.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_DMT_WhatToDo_14_04");	//Иди, пока еще не слишком поздно. Враг также попытается наложить на него свои лапы.
-	B_LogEntry(TOPIC_INNOSEYE,"Глаз находится в монастыре магов огня. Я надеюсь, что лорд Хаген предоставит мне доступ к нему, когда я принесу ему письмо от лорда Гаронда. Верховный маг Пирокар не позволит мне надеть этот амулет без одобрения Хагена.");
+	B_LogEntry(TOPIC_INNOSEYE,"Глаз находится в монастыре магов Огня. Я надеюсь, что лорд Хаген предоставит мне доступ к нему, когда я принесу ему письмо от лорда Гаронда. Верховный маг Пирокар не позволит мне надеть этот амулет без одобрения Хагена.");
 };
 
 
@@ -754,8 +754,8 @@ func void DIA_Xardas_INNOSEYEBROKEN_wasnun()
 {
 	AI_Output(other,self,"DIA_Xardas_INNOSEYEBROKEN_wasnun_15_00");	//И что теперь?
 	AI_Output(self,other,"DIA_Xardas_INNOSEYEBROKEN_wasnun_14_01");	//Это болезненный удар. Мы должны перестроиться. Я должен уединиться, и все взвесить.
-	AI_Output(self,other,"DIA_Xardas_INNOSEYEBROKEN_wasnun_14_02");	//А тем временем, ты отправляйся в город и поговори с Ватрасом, Магом Воды. Возможно, он знает, что нужно делать.
-	B_LogEntry(TOPIC_INNOSEYE,"Ксардас остался не очень доволен уничтожением Глаза Инноса. Маг воды Ватрас в городе Хоринис, возможно, наша единственная надежда.");
+	AI_Output(self,other,"DIA_Xardas_INNOSEYEBROKEN_wasnun_14_02");	//А тем временем, ты отправляйся в город и поговори с Ватрасом, магом Воды. Возможно, он знает, что нужно делать.
+	B_LogEntry(TOPIC_INNOSEYE,"Ксардас остался не очень доволен уничтожением Глаза Инноса. Маг Воды Ватрас в городе Хоринис, возможно, наша единственная надежда.");
 	MIS_Xardas_GoToVatrasInnoseye = LOG_Running;
 };
 
@@ -832,7 +832,7 @@ func void DIA_Xardas_WARUMNICHTJETZT_Info()
 func void DIA_Xardas_WARUMNICHTJETZT_grund()
 {
 	AI_Output(other,self,"DIA_Xardas_WARUMNICHTJETZT_grund_15_00");	//Тогда, по крайней мере объясни мне, почему ты колеблешься.
-	AI_Output(self,other,"DIA_Xardas_WARUMNICHTJETZT_grund_14_01");	//С тех пор, как я отошел от Магов Огня, я старался держаться от них подальше.
+	AI_Output(self,other,"DIA_Xardas_WARUMNICHTJETZT_grund_14_01");	//С тех пор, как я отошел от магов Огня, я старался держаться от них подальше.
 	AI_Output(self,other,"DIA_Xardas_WARUMNICHTJETZT_grund_14_02");	//И я не собираюсь изменять этой привычке, если только у меня совсем уж не будет выбора.
 	AI_Output(self,other,"DIA_Xardas_WARUMNICHTJETZT_grund_14_03");	//Но прежде, чем я предстану перед укоризненным взором этих магов, я сначала хочу убедиться, что у тебя есть хоть какие-то шансы противостоять драконам.
 	AI_Output(self,other,"DIA_Xardas_WARUMNICHTJETZT_grund_14_04");	//С твоим жалким снаряжением, впрочем, тебе далеко не продвинуться. Возвращайся, когда станешь достаточно силен.
@@ -868,7 +868,7 @@ func int DIA_Xardas_BEREIT_Condition()
 func void DIA_Xardas_BEREIT_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_BEREIT_15_00");	//Я готов к сражению с драконами.
-	AI_Output(self,other,"DIA_Xardas_BEREIT_14_01");	//Тогда не будем терять времени. Я немедленно отправляюсь к Кругу Солнца. А ты выполни свои задачи. Я встречу тебя там.
+	AI_Output(self,other,"DIA_Xardas_BEREIT_14_01");	//Тогда не будем терять времени. Я немедленно отправлюсь к Кругу Солнца. А ты выполни свои задачи. Я встречу тебя там.
 	AI_StopProcessInfos(self);
 	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
 	B_GivePlayerXP(XP_Ambient);
@@ -927,8 +927,8 @@ func void DIA_Xardas_PYROWILLNICHT_Info()
 	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_01");	//Сначала он хочет получить доказательства того, что он может доверять тебе.
 	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_02");	//Ах, неужели! Пирокар. Как интересно.
 	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_03");	//Этот старый чудак становится совершенно невыносимым. Но я думаю, у меня есть кое-что, что поможет тебе.
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_04");	//Когда я покидал орден Магов Огня, я взял с собой из монастыря несколько вещей.
-	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_06");	//Я не хотел, чтобы паладины или Маги Огня перевернули все в моей башне вверх дном, и нашли эти вещи.
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_04");	//Когда я покидал орден магов Огня, я взял с собой из монастыря несколько вещей.
+	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_06");	//Я не хотел, чтобы паладины или маги Огня перевернули все в моей башне вверх дном, и нашли эти вещи.
 	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_07");	//Поэтому я спрятал их в надежном месте, где магам никогда не придет в голову искать их.
 	AI_Output(other,self,"DIA_Xardas_PYROWILLNICHT_15_08");	//И где же?
 	AI_Output(self,other,"DIA_Xardas_PYROWILLNICHT_14_09");	//Некоторые из них лежат в запертом сундуке на ферме Секоба.

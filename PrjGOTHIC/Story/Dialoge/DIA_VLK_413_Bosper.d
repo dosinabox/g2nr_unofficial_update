@@ -531,7 +531,7 @@ instance DIA_Bosper_Trade(C_Info)
 	condition = DIA_Bosper_Trade_Condition;
 	information = DIA_Bosper_Trade_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -814,7 +814,7 @@ func void DIA_Bosper_SellFur_Info()
 		};
 		if(Npc_HasItems(other,ItAt_WargFur) > 0)
 		{
-			AI_Output(self,other,"DIA_Bosper_SellFur_11_04");	//Шкура варга? Это опасные звери ...
+			AI_Output(self,other,"DIA_Bosper_SellFur_11_04");	//Шкура варга? Это опасные звери...
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WargFur) * Value_WargFur);
 			B_GiveInvItems(other,self,ItAt_WargFur,Npc_HasItems(other,ItAt_WargFur));
 		};

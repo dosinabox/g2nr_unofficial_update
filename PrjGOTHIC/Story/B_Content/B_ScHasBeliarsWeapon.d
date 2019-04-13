@@ -244,11 +244,19 @@ func void B_UpgrateBeliarsWeapon()
 	var int BeliarsTribute;
 	var string concatText;
 	BeliarsTribute = (BeliarWeapNextLvL - BeliarWeapCurrentLvL) * 5;
-	hero.attribute[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX] - BeliarsTribute;
 	if(BeliarsTribute > 0)
 	{
 		concatText = ConcatStrings(PRINT_Beliarshitpoints_MAX,IntToString(BeliarsTribute));
 		PrintScreen(concatText,-1,-1,FONT_Screen,4);
+		hero.attribute[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX] - BeliarsTribute;
+		if(hero.attribute[ATR_HITPOINTS] > (BeliarsTribute + 2))
+		{
+			hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS] - BeliarsTribute;
+		}
+		else
+		{
+			hero.attribute[ATR_HITPOINTS] = 2;
+		}; 
 	};
 	BeliarDamageChance = BeliarNextDamageChance;
 	BeliarWeapCurrentLvL = BeliarWeapNextLvL;
@@ -520,5 +528,14 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SPL_Skull()
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
+};
+
+func int C_SCHasBlessedSword()
+{
+	if((Npc_HasItems(hero,ItMw_1H_Blessed_02) >= 1) || (Npc_HasItems(hero,ItMw_1H_Blessed_03) >= 1) || (Npc_HasItems(hero,ItMw_2H_Blessed_02) >= 1) || (Npc_HasItems(hero,ItMw_2H_Blessed_03) >= 1))
+	{
+		return TRUE;
+	};
+	return FALSE;
 };
 

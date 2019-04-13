@@ -135,10 +135,10 @@ func void DIA_DJG_715_Ferros_OldCamp_Info()
 	Info_AddChoice(DIA_DJG_715_Ferros_OldCamp,"Что ты дашь мне, если я найду твой меч?",DIA_DJG_715_Ferros_OldCamp_Price);
 	Info_AddChoice(DIA_DJG_715_Ferros_OldCamp,"Я найду твой меч.",DIA_DJG_715_Ferros_OldCamp_Yes);
 	Wld_InsertItem(ItMW_1H_FerrosSword_Mis,"FP_OW_ITEM_08");
-	MIS_FErrosSword = LOG_Running;
+	MIS_FerrosSword = LOG_Running;
 	Log_CreateTopic(TOPIC_FerrosSword,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_FerrosSword,LOG_Running);
-	B_LogEntry(TOPIC_FerrosSword,"Ферос потерял свой меч из-за орков. Это было глупостью.");
+	B_LogEntry(TOPIC_FerrosSword,"Феррос потерял свой меч из-за орков. Это было глупостью.");
 };
 
 func void DIA_DJG_715_Ferros_OldCamp_No()
@@ -160,7 +160,7 @@ func void DIA_DJG_715_Ferros_OldCamp_Yes()
 	AI_Output(other,self,"DIA_DJG_715_Ferros_OldCamp_Yes_15_00");	//Я найду твой меч.
 	AI_Output(self,other,"DIA_DJG_715_Ferros_OldCamp_Yes_01_01");	//Это было бы великолепно. Тебе стоит поискать у большого утеса на юге.
 	AI_Output(self,other,"DIA_DJG_715_Ferros_OldCamp_Yes_01_02");	//Я, вероятно, потерял его там, около палаток орков.
-	B_LogEntry(TOPIC_FerrosSword,"Похоже, Ферос потерял свой меч на высоком утесе на юге, там, где находятся палатки орков.");
+	B_LogEntry(TOPIC_FerrosSword,"Похоже, Феррос потерял свой меч на высоком утесе на юге, там, где находятся палатки орков.");
 	Info_ClearChoices(DIA_DJG_715_Ferros_OldCamp);
 };
 
@@ -178,7 +178,7 @@ instance DIA_DJG_715_Ferros_FerrosAnySword(C_Info)
 
 func int DIA_DJG_715_Ferros_FerrosAnySword_Condition()
 {
-	if((MIS_FErrosSword == LOG_Running) && ((Npc_HasItems(other,ItMw_1H_Special_01) >= 1) || (Npc_HasItems(other,ItMw_1H_Special_02) >= 1)))
+	if((MIS_FerrosSword == LOG_Running) && ((Npc_HasItems(other,ItMw_1H_Special_01) >= 1) || (Npc_HasItems(other,ItMw_1H_Special_02) >= 1)))
 	{
 		return TRUE;
 	};
@@ -236,7 +236,7 @@ func void B_Ferros_FerrosAnySword_Yes2()
 	AI_Output(self,other,"DIA_DJG_715_Ferros_FerrosAnySword_Blade_Yes2_01_00");	//Спасибо. Я твой должник.
 	AI_Output(self,other,"DIA_DJG_715_Ferros_FerrosAnySword_Blade_Yes2_01_01");	//Взамен я покажу тебе парочку трюков, которые позволят тебе лучше использовать силу и ловкость в бою.
 	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher,"Ферос может повысить мои силу и ловкость.");
+	B_LogEntry(TOPIC_Teacher,"Феррос может повысить мои силу и ловкость.");
 };
 
 func void B_Ferros_FerrosAnySword_No()
@@ -251,7 +251,7 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_Yes()
 	B_GiveInvItems(other,self,ItMw_1H_Special_01,1);
 	B_Ferros_FerrosAnySword_Yes2();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
-	MIS_FErrosSword = LOG_SUCCESS;
+	MIS_FerrosSword = LOG_SUCCESS;
 	B_GivePlayerXP(XP_FerrosSword);
 };
 
@@ -267,7 +267,7 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_Yes()
 	B_GiveInvItems(other,self,ItMw_1H_Special_02,1);
 	B_Ferros_FerrosAnySword_Yes2();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
-	MIS_FErrosSword = LOG_SUCCESS;
+	MIS_FerrosSword = LOG_SUCCESS;
 	B_GivePlayerXP(XP_FerrosSword);
 };
 
@@ -291,7 +291,7 @@ instance DIA_DJG_715_Ferros_FerrosHisSword(C_Info)
 
 func int DIA_DJG_715_Ferros_FerrosHisSword_Condition()
 {
-	if((MIS_FErrosSword == LOG_Running) && (Npc_HasItems(other,ItMW_1H_FerrosSword_Mis) >= 1))
+	if((MIS_FerrosSword == LOG_Running) && (Npc_HasItems(other,ItMW_1H_FerrosSword_Mis) >= 1))
 	{
 		return TRUE;
 	};
@@ -302,7 +302,7 @@ func void DIA_DJG_715_Ferros_FerrosHisSword_Info()
 	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosHisSword_15_00");	//Я нашел твой меч.
 	B_GiveInvItems(other,self,ItMW_1H_FerrosSword_Mis,1);
 	B_Ferros_FerrosAnySword_Yes2();
-	MIS_FErrosSword = LOG_SUCCESS;
+	MIS_FerrosSword = LOG_SUCCESS;
 	B_GivePlayerXP(XP_FerrosSword);
 };
 
@@ -320,7 +320,7 @@ instance DIA_Ferros_Teach(C_Info)
 
 func int DIA_Ferros_Teach_Condition()
 {
-	if(MIS_FErrosSword == LOG_SUCCESS)
+	if(MIS_FerrosSword == LOG_SUCCESS)
 	{
 		return TRUE;
 	};

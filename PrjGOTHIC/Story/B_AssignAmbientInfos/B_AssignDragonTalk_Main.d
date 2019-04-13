@@ -5,7 +5,7 @@ instance DIA_DragonTalk_Main_1(C_Info)
 	condition = DIA_DragonTalk_Main_1_Condition;
 	information = DIA_DragonTalk_Main_1_Info;
 	permanent = FALSE;
-	description = "Что заставило тебя появиться здесь?";
+	description = "Слуга Зла. Что заставило тебя появиться здесь?";
 };
 
 
@@ -22,7 +22,7 @@ func void DIA_DragonTalk_Main_1_Info()
 	AI_Output(other,self,"DIA_DragonTalk_Main_1_15_00");	//Слуга Зла. Что заставило тебя появиться здесь? Ты пришел только за тем, чтобы сеять ужас и панику?
 	AI_Output(self,other,"DIA_DragonTalk_Main_1_20_01");	//Наша высшая цель в этом мире, жалкий человечишка, останется скрытой от тебя.
 	Info_AddChoice(DIA_DragonTalk_Main_1,"Как мне заставить говорить других драконов?",DIA_DragonTalk_Main_1_reden);
-	Info_AddChoice(DIA_DragonTalk_Main_1,"Что мне нужно сделать, чтобы изгнать тебя?",DIA_DragonTalk_Main_1_verbannen);
+	Info_AddChoice(DIA_DragonTalk_Main_1,"Что, во имя Инноса должен я сделать, чтобы изгнать вас из царства людей?",DIA_DragonTalk_Main_1_verbannen);
 	DragonTalk_Exit_Free = TRUE;
 };
 
@@ -32,7 +32,7 @@ func void DIA_DragonTalk_Main_1_verbannen()
 	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_01");	//(смеется) Прежде чем ты сможешь действовать, ты сначала должен понять смысл нашего появления здесь.
 	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_02");	//Однако никто не раскроет тебе эту тайну по своей собственной воле.
 	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_03");	//Только Глаз может развязать нам язык и раскрыть тебе наши истинные цели.
-	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_04");	//Но в любом случае, эта информация будет бесполезна для тебя, когда ты будешь мертв
+	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_04");	//Но в любом случае, эта информация будет бесполезна для тебя, когда ты будешь мертв.
 	if(hero.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_05");	//Нам уже сообщили, что ты выбрал путь охотника на дракона.
@@ -62,7 +62,7 @@ instance DIA_DragonTalk_Main_2(C_Info)
 	condition = DIA_DragonTalk_Main_2_Condition;
 	information = DIA_DragonTalk_Main_2_Info;
 	permanent = FALSE;
-	description = "Кто послал вас сюда?";
+	description = "Чьи приказы вы выполняете? Кто послал вас сюда?";
 };
 
 
@@ -78,11 +78,11 @@ func void DIA_DragonTalk_Main_2_Info()
 {
 	AI_Output(other,self,"DIA_DragonTalk_Main_2_15_00");	//Чьи приказы вы выполняете? Кто послал вас сюда?
 	AI_Output(self,other,"DIA_DragonTalk_Main_2_20_01");	//Наше будущее и настоящее контролируются Хозяином при помощи Слова Силы. Скоро никто не сможет сопротивляться ему.
-	AI_Output(self,other,"DIA_DragonTalk_Main_2_20_02");	//Его длинная рука уже протянулась сюда  из Царства Мертвых. Духи ночи собираются в предвкушении его скорого появления.
+	AI_Output(self,other,"DIA_DragonTalk_Main_2_20_02");	//Его длинная рука уже протянулась сюда из Царства Мертвых. Духи ночи собираются в предвкушении его скорого появления.
 	AI_Output(self,other,"DIA_DragonTalk_Main_2_20_03");	//Он раздавит вас, людей, и будет править этим миром.
 	AI_Output(self,other,"DIA_DragonTalk_Main_2_20_04");	//В его тени мы не более чем инструмент его созидательной силы.
 	AI_Output(self,other,"DIA_DragonTalk_Main_2_20_05");	//Хозяин придет и поднимет ваши безжизненные тела из пепла и использует их для окончательного изменения облика этого мира.
-	B_LogEntry(TOPIC_DRACHENJAGD,"Драконы не хозяева сами себе. Они служат повелителю, о котором не хотят говорить ничего кроме туманных пророчеств. Повелитель придет, чтобы уничтожить  мир и все такое... Обычная чушь.");
+	B_LogEntry(TOPIC_DRACHENJAGD,"Драконы не хозяева сами себе. Они служат повелителю, о котором не хотят говорить ничего, кроме туманных пророчеств. Повелитель придет, чтобы уничтожить мир и все такое... Обычная чушь.");
 	DragonTalk_Exit_Free = TRUE;
 };
 

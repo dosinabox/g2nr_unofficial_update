@@ -88,7 +88,7 @@ func void DIA_Addon_TAL_BDT_13_News_Info()
 	AI_Output(self,other,"DIA_Addon_TAL_BDT_13_News_13_02");	//Они привозили нам пленников, но ни разу не получили и монеты. Ничего удивительного, что они разозлились.
 	if(BDT_13_einmal == FALSE)
 	{
-		AI_Output(self,other,"DIA_Addon_TAL_BDT_13_News_13_03");	//Но что они могут сделать? Напасть на лагерь? (смеется) ХА-ХА.
+		AI_Output(self,other,"DIA_Addon_TAL_BDT_13_News_13_03");	//Но что они могут сделать? Напасть на лагерь? (смеется) ХА-ХА-ХА.
 		BDT_13_einmal = TRUE;
 	};
 };

@@ -65,7 +65,7 @@ instance DIA_Sylvio_VERSAGER(C_Info)
 	nr = 6;
 	condition = DIA_Sylvio_VERSAGER_Condition;
 	information = DIA_Sylvio_VERSAGER_Info;
-	description = "А если я не исчезну?";
+	description = "А что, если я не исчезну?";
 };
 
 
@@ -79,7 +79,7 @@ func int DIA_Sylvio_VERSAGER_Condition()
 
 func void DIA_Sylvio_VERSAGER_Info()
 {
-	AI_Output(other,self,"DIA_Sylvio_VERSAGER_15_00");	//А если я не исчезну?
+	AI_Output(other,self,"DIA_Sylvio_VERSAGER_15_00");	//А что, если я не исчезну?
 	AI_Output(self,other,"DIA_Sylvio_VERSAGER_09_01");	//Не строй из себя крутого, выскочка, иначе тебя ждет такой же конец, как вот тех неудачников, лежащих в снегу.
 };
 

@@ -27,7 +27,7 @@ func void Rtn_Start_267()
 	TA_Stand_Guarding(23,0,8,0,"OC_CENTER_GUARD_01");
 };
 
-func void Rtn_ORCBARRIER_267()
+func void Rtn_OrcBarrier_267()
 {
 	TA_Sleep(8,0,23,0,"OW_ORCBARRIER_12");
 	TA_Sleep(23,0,8,0,"OW_ORCBARRIER_12");

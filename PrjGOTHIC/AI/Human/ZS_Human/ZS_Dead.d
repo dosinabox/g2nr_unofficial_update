@@ -29,6 +29,12 @@ func void ZS_Dead()
 	{
 		Diego_IsDead = TRUE;
 	};
+	if((self.guild == GIL_GOBBO) || (self.guild == ID_GOBBO_SKELETON))
+	{
+		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));
+		Npc_RemoveInvItems(self,ItMw_1h_MISC_Sword,Npc_HasItems(self,ItMw_1h_MISC_Sword));
+		Npc_RemoveInvItems(self,ItMw_1h_Misc_Axe,Npc_HasItems(self,ItMw_1h_Misc_Axe)); 
+	};
 	if(Npc_IsPlayer(other))
 	{
 		self.aivar[AIV_KilledByPlayer] = TRUE;
@@ -66,28 +72,27 @@ func void ZS_Dead()
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
 	{
-		if((Minecrawler_Killed >= 9) && (Bloodwyn_Spawn == FALSE))
+		Minecrawler_Killed += 1;
+		if((Minecrawler_Killed > 9) && (Bloodwyn_Spawn == FALSE))
 		{
 			AI_Teleport(Bloodwyn,"ADW_MINE_TO_MC_03");
 			B_StartOtherRoutine(Bloodwyn,"MINE");
-			B_GivePlayerXP(XP_Addon_Bloodywyn);
 			Bloodwyn_Spawn = TRUE;
-		}
-		else
-		{
-			Minecrawler_Killed = Minecrawler_Killed + 1;
 		};
 	};
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);
 	B_ClearRuneInv(self);
+	B_ClearSmithInv(self);
+	B_ClearAlchemyInv(self);
+	B_ClearBonusFoodInv(self);
 	B_DeletePetzCrime(self);
 	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 	AI_UnequipWeapons(self);
 	self.aivar[AIV_TAPOSITION] = FALSE;
 };
 
-func int ZS_Dead_loop()
+func int ZS_Dead_Loop()
 {
 	if(self.aivar[AIV_TAPOSITION] == FALSE)
 	{

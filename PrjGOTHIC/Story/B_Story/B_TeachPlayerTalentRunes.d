@@ -109,7 +109,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_Icebolt] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_Icebolt,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Ледяная стрела': 1 ледяной кварц");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Ледяная стрела': 1 ледяной кварц.");
 	};
 	if(spell == SPL_LightHeal)
 	{
@@ -127,7 +127,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_InstantFireball] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_InstantFireball,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Огненный шар ': 1 смола");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Огненный шар ': 1 смола.");
 	};
 	if(spell == SPL_Zap)
 	{
@@ -205,7 +205,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_DestroyUndead] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_HarmUndead,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Уничтожение нежити':1 святая вода .");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Уничтожение нежити':1 святая вода.");
 	};
 	if(spell == SPL_Pyrokinesis)
 	{
@@ -223,19 +223,19 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_IceWave] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_IceWave,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Ледяная волна': 1 ледяной кварц и 1 аквамарин");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Ледяная волна': 1 ледяной кварц и 1 аквамарин.");
 	};
 	if(spell == SPL_SummonDemon)
 	{
 		PLAYER_TALENT_RUNES[SPL_SummonDemon] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_SumDemon,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Вызов демона': 1 Сердце демона");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Вызов демона': 1 сердце демона.");
 	};
 	if(spell == SPL_FullHeal)
 	{
 		PLAYER_TALENT_RUNES[SPL_FullHeal] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_FullHeal,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Лечение тяжелых ранений? 1 лечебный корень");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Лечение тяжелых ранений': 1 лечебный корень.");
 	};
 	if(spell == SPL_Firerain)
 	{
@@ -247,25 +247,25 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	{
 		PLAYER_TALENT_RUNES[SPL_BreathOfDeath] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_BreathOfDeath,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Дыхание смерти': 1 уголь и 1 черный жемчуг");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Дыхание смерти': 1 уголь и 1 черный жемчуг.");
 	};
 	if(spell == SPL_MassDeath)
 	{
 		PLAYER_TALENT_RUNES[SPL_MassDeath] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_MassDeath,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Волна смерти': 1 кость скелета и 1 черный жемчуг");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Волна смерти': 1 кость скелета и 1 черный жемчуг.");
 	};
 	if(spell == SPL_ArmyOfDarkness)
 	{
 		PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_ArmyOfDarkness,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Армия тьмы': 1 кость скелета, 1 черный жемчуг, 1 сердце каменного голема и 1 Сердце демона. ");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Армия тьмы': 1 кость скелета, 1 черный жемчуг, 1 сердце каменного голема и 1 cердце демона.");
 	};
 	if(spell == SPL_Shrink)
 	{
 		PLAYER_TALENT_RUNES[SPL_Shrink] = TRUE;
 		CreateInvItems(ScrollTrader,ItSc_Shrink,1);
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Сморщивание монстра': 1 кость гоблина и 1 клык тролля");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Сморщивание монстра': 1 кость гоблина и 1 клык тролля.");
 	};
 	if(spell == SPL_Whirlwind)
 	{
@@ -299,6 +299,69 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	};
 	PrintScreen(PRINT_LearnRunes,-1,-1,FONT_Screen,2);
 	Npc_SetTalentSkill(oth,NPC_TALENT_RUNES,1);
+	return TRUE;
+};
+
+
+func int B_TeachPlayerPalRunes(var C_Npc slf,var C_Npc oth,var int spell)
+{
+	var int kosten;
+	kosten = B_GetLearnCostTalent(oth,NPC_TALENT_RUNES,spell);
+	if(oth.lp < kosten)
+	{
+		PrintScreen(PRINT_NotEnoughLearnPoints,-1,-1,FONT_ScreenSmall,2);
+		B_Say(slf,oth,"$NOLEARNNOPOINTS");
+		return FALSE;
+	};
+	oth.lp = oth.lp - kosten;
+	if(spell == SPL_PalLight)
+	{
+		PLAYER_TALENT_RUNES[SPL_PalLight] = TRUE;
+		CreateInvItems(slf,ItRu_PalLight,1);
+		B_GiveInvItems(slf,oth,ItRu_PalLight,1);
+	};
+	if(spell == SPL_PalLightHeal)
+	{
+		PLAYER_TALENT_RUNES[SPL_PalLightHeal] = TRUE;
+		CreateInvItems(slf,ItRu_PalLightHeal,1);
+		B_GiveInvItems(slf,oth,ItRu_PalLightHeal,1);
+	};
+	if(spell == SPL_PalHolyBolt)
+	{
+		PLAYER_TALENT_RUNES[SPL_PalHolyBolt] = TRUE;
+		CreateInvItems(slf,ItRu_PalHolyBolt,1);
+		B_GiveInvItems(slf,oth,ItRu_PalHolyBolt,1);
+	};
+	if(spell == SPL_PalMediumHeal)
+	{
+		PLAYER_TALENT_RUNES[SPL_PalMediumHeal] = TRUE;
+		CreateInvItems(slf,ItRu_PalMediumHeal,1);
+		B_GiveInvItems(slf,oth,ItRu_PalMediumHeal,1);
+	};
+	if(spell == SPL_PalRepelEvil)
+	{
+		PLAYER_TALENT_RUNES[SPL_PalRepelEvil] = TRUE;
+		CreateInvItems(slf,ItRu_PalRepelEvil,1);
+		B_GiveInvItems(slf,oth,ItRu_PalRepelEvil,1);
+	};
+	if(spell == SPL_PalFullHeal)
+	{
+		PLAYER_TALENT_RUNES[SPL_PalFullHeal] = TRUE;
+		CreateInvItems(slf,ItRu_PalFullHeal,1);
+		B_GiveInvItems(slf,oth,ItRu_PalFullHeal,1);
+	};
+	if(spell == SPL_PalDestroyEvil)
+	{
+		PLAYER_TALENT_RUNES[SPL_PalDestroyEvil] = TRUE;
+		CreateInvItems(slf,ItRu_PalDestroyEvil,1);
+		B_GiveInvItems(slf,oth,ItRu_PalDestroyEvil,1);
+	};
+	if(spell == SPL_PalTeleportSecret)
+	{
+		PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] = TRUE;
+		CreateInvItems(slf,ItRu_PalTeleportSecret,1);
+		B_GiveInvItems(slf,oth,ItRu_PalTeleportSecret,1);
+	};
 	return TRUE;
 };
 

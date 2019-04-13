@@ -80,6 +80,25 @@ instance OrcWarrior_Harad(Mst_Default_OrcWarrior)
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
+instance OrcWarrior_Scout(Mst_Default_OrcWarrior)
+{
+	name[0] = "Орк-разведчик";
+	level = 15;
+	attribute[ATR_STRENGTH] = 75;
+	attribute[ATR_DEXTERITY] = 75;
+	attribute[ATR_HITPOINTS_MAX] = 150;
+	attribute[ATR_HITPOINTS] = 150;
+	protection[PROT_BLUNT] = 75;
+	protection[PROT_EDGE] = 75;
+	protection[PROT_POINT] = 75;
+	protection[PROT_FIRE] = 75;
+	protection[PROT_FLY] = 75;
+	B_SetVisuals_OrcWarrior();
+	EquipItem(self,ItMw_2H_OrcAxe_01);
+	start_aistate = ZS_MM_AllScheduler;
+	aivar[AIV_MM_RestStart] = OnlyRoutine;
+};
+
 instance OrcWarrior_Lobart1(Mst_Default_OrcWarrior)
 {
 	B_SetVisuals_OrcWarrior();

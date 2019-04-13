@@ -245,7 +245,7 @@ func void DIA_BDT_1033_Fluechtling_Tip2_frei()
 {
 	AI_Output(other,self,"DIA_BDT_1033_Fluechtling_Tip2_frei_15_00");	//Расслабься. Я просто хочу поговорить.
 	AI_Output(self,other,"DIA_BDT_1033_Fluechtling_Tip2_frei_07_01");	//Но я не хочу говорить с тобой. Проваливай!
-	Info_AddChoice(DIA_BDT_1033_Fluechtling_Tip2,"Ты ведь до смерти испуган, разве нет?",DIA_BDT_1033_Fluechtling_Tip2_frei_verbrechen);
+	Info_AddChoice(DIA_BDT_1033_Fluechtling_Tip2,"Ты ведь напуган до смерти, нет?",DIA_BDT_1033_Fluechtling_Tip2_frei_verbrechen);
 };
 
 func void DIA_BDT_1033_Fluechtling_Tip2_frei_verbrechen()

@@ -104,7 +104,7 @@ instance DIA_PAL_4_STANDARD(C_Info)
 	condition = DIA_PAL_4_STANDARD_Condition;
 	information = DIA_PAL_4_STANDARD_Info;
 	permanent = TRUE;
-	description = "Что нового?";
+	description = "Что новенького?";
 };
 
 

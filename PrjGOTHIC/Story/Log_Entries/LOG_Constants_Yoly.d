@@ -34,7 +34,7 @@ const string TOPIC_Addon_TeleportsADW = "Сила фокусирующих камней";
 const string TOPIC_Addon_Sklaven = "Рабы Ворона";
 const string TOPIC_Addon_Relicts = "Реликвии";
 const string TOPIC_Addon_RavenKDW = "Ворон";
-const string TOPIC_Addon_Lance = "Авангард Магов Воды";
+const string TOPIC_Addon_Lance = "Авангард магов Воды";
 
 var int TOPIC_End_Lance;
 
@@ -68,7 +68,7 @@ const string TOPIC_Addon_VatrasAbloesung = "Замена для Ватраса";
 const string LogText_Addon_SCKnowsMisspeapl = "Многие жители Хориниса пропали без вести. Никто не знает, что с ними стало.";
 const string LogText_Addon_WilliamLeiche = "Тело рыбака лежит в руинах к востоку от лагеря Магов Воды.";
 const string LogText_Addon_RavensGoldmine = "У Ворона есть шахта, и он заставляет рабов добывать в ней золото.";
-const string LogText_Addon_KDWRight = "Только Маги воды имеют право принимать новых членов в 'Кольцо Воды'.";
+const string LogText_Addon_KDWRight = "Только маги Воды имеют право принимать новых членов в 'Кольцо Воды'.";
 const string LogText_Addon_WilliamMissing = "Вильям, один из рыбаков из гавани Хориниса, один из пропавших людей.";
 const string LogText_Addon_Relicts = "В храме Аданоса, правители Яркендара построили 3 зала, полных смертельных загадок, чтобы остановить непрошенных гостей. Разноцветные реликвии зодчих - ключи к ним.";
 const string LogText_Addon_SkipsRumToBaltram = "Скип дал мне ром, который я должен отнести Бальтраму.";
@@ -116,13 +116,13 @@ var int topic_end_dementoren;
 
 const string TOPIC_Buster_KillShadowbeasts = "Рога мракорисов для Бастера";
 const string TOPIC_Ulthar_HeileSchreine_PAL = "Оскверненные алтари";
-const string TOPIC_TraitorPedro = "Педро предатель";
-const string TOPIC_SekobDMT = "Изгнанный Фермер";
+const string TOPIC_TraitorPedro = "Предатель Педро";
+const string TOPIC_SekobDMT = "Изгнанный фермер";
 
 var int TOPIC_END_SekobDMT;
 
 const string TOPIC_AkilSchafDiebe = "Овцекрады";
-const string TOPIC_HealHilda = "Лекарство для  Хильды";
+const string TOPIC_HealHilda = "Лекарство для Хильды";
 const string TOPIC_MalethsGehstock = "Посох Малета";
 
 var int TOPIC_END_MalethsGehstock;
@@ -149,8 +149,8 @@ var int TOPIC_END_SylvioKillIceGolem;
 
 const string TOPIC_AngarsAmulett = "Амулет Ангара";
 const string TOPIC_JanBecomesSmith = "Ян и кузница";
-const string TOPIC_FerrosSword = "Меч Фероса";
-const string TOPIC_DRACHENEIERNeoras = "Зелье Неораса из драконих яиц";
+const string TOPIC_FerrosSword = "Меч Ферроса";
+const string TOPIC_DRACHENEIERNeoras = "Зелье Неораса из драконьих яиц";
 const string TOPIC_DRACHENEIER = "Драконьи яйца";
 
 var int topic_end_dracheneier;

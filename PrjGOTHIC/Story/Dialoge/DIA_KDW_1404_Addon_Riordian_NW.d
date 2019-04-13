@@ -95,9 +95,9 @@ func void DIA_Addon_Riordian_Atlantis_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_01");	//ƒа. ƒо последнего времени мы были уверены, что знаем об острове все.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_02");	//ћы считали, что весь северо-восток острова - один большой горный массив.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_03");	//Ќо мы ошибались.
-	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_04");	//«а этими горами лежит долина. “ам и располагалс€ этот древний город.
+	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_04");	//«а этими горами лежит долина. “ам и располагаетс€ этот древний город.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_05");	//(вздыхает) я бы очень хотел взгл€нуть на его старинные здани€, но они наверн€ка давно рассыпались в прах...
-	B_LogEntry(TOPIC_Addon_KDW,"ћаги воды считают, что за порталом находитс€ древний затер€нный город.");
+	B_LogEntry(TOPIC_Addon_KDW,"ћаги ¬оды считают, что за порталом находитс€ древний затер€нный город.");
 };
 
 

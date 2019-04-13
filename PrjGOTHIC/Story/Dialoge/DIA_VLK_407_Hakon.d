@@ -234,7 +234,7 @@ instance DIA_Hakon_HaradBandits(C_Info)
 	condition = DIA_Hakon_HaradBandits_Condition;
 	information = DIA_Hakon_HaradBandits_Info;
 	permanent = FALSE;
-	description = "Гарад рассказал мне о нападении бандитов ...";
+	description = "Гарад рассказал мне о нападении бандитов...";
 };
 
 
@@ -248,7 +248,7 @@ func int DIA_Hakon_HaradBandits_Condition()
 
 func void DIA_Hakon_HaradBandits_Info()
 {
-	AI_Output(other,self,"DIA_Hakon_Add_15_18");	//Гарад рассказал мне о нападении бандитов ...
+	AI_Output(other,self,"DIA_Hakon_Add_15_18");	//Гарад рассказал мне о нападении бандитов...
 	AI_Output(self,other,"DIA_Hakon_Add_12_19");	//Ох? И?
 	AI_Output(other,self,"DIA_Hakon_Add_15_20");	//Он проголосует за меня при поступлении в ученики, если я уничтожу этих бандитов.
 	AI_Output(self,other,"DIA_Hakon_Add_12_21");	//(смеется) Старый добрый Гарад. Возможно, он так хочет сказать мне 'извини', за то, что не может сейчас делать оружие для меня.
@@ -294,7 +294,7 @@ instance DIA_Hakon_Wieviel(C_Info)
 	condition = DIA_Hakon_Wieviel_Condition;
 	information = DIA_Hakon_Wieviel_Info;
 	permanent = FALSE;
-	description = "Я разберусь с этим ...";
+	description = "Я разберусь с этим...";
 };
 
 
@@ -308,7 +308,7 @@ func int DIA_Hakon_Wieviel_Condition()
 
 func void DIA_Hakon_Wieviel_Info()
 {
-	AI_Output(other,self,"DIA_Hakon_Banditen_Ehre_15_00");	//Я разберусь с этим ...
+	AI_Output(other,self,"DIA_Hakon_Banditen_Ehre_15_00");	//Я разберусь с этим...
 	AI_Output(self,other,"DIA_Hakon_Banditen_Kohle_12_01");	//Что, ТЫ хочешь расправиться с бандитами? В одиночку? Ты, наверное хороший боец?
 	AI_Output(other,self,"DIA_Hakon_Banditen_Kohle_15_00");	//Сколько ты готов дать за это?
 	if(Npc_KnowsInfo(other,DIA_Hakon_HaradBandits))

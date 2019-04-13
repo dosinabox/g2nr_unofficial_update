@@ -59,7 +59,7 @@ instance DIA_Engor_HANDELN(C_Info)
 	information = DIA_Engor_HANDELN_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -75,6 +75,7 @@ func void DIA_Engor_HANDELN_Info()
 {
 	var int McBolzenAmount;
 	var int McArrowAmount;
+	AI_Output(other,self,"DIA_Engor_HANDELN_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	Npc_RemoveInvItems(self,ItRw_Bolt,Npc_HasItems(self,ItRw_Bolt));
 	McBolzenAmount = Kapitel * 50;
@@ -82,7 +83,6 @@ func void DIA_Engor_HANDELN_Info()
 	Npc_RemoveInvItems(self,ItRw_Arrow,Npc_HasItems(self,ItRw_Arrow));
 	McArrowAmount = Kapitel * 50;
 	CreateInvItems(self,ItRw_Arrow,McArrowAmount);
-	AI_Output(other,self,"DIA_Engor_HANDELN_15_00");	//Покажи мне свои товары.
 };
 
 
@@ -234,7 +234,7 @@ instance DIA_Engor_BRINGMEAT(C_Info)
 	condition = DIA_Engor_BRINGMEAT_Condition;
 	information = DIA_Engor_BRINGMEAT_Info;
 	permanent = TRUE;
-	description = "Вот, я принес тебе кое-что. (дать мясо).";
+	description = "Вот, я принес тебе кое-что. (дать мясо)";
 };
 
 
@@ -248,82 +248,100 @@ func int DIA_Engor_BRINGMEAT_Condition()
 
 func void DIA_Engor_BRINGMEAT_Info()
 {
+	var int info_ypos;
 	var string ConcatRaw;
 	var string ConcatMutton;
 	var string ConcatBacon;
 	var string ConcatSausage;
 	var string GesamtFleisch;
+	info_ypos = 35;
 	AI_Output(other,self,"DIA_Engor_BRINGMEAT_15_00");	//Вот, я принес тебе кое-что.
-	if(Npc_HasItems(hero,ItFoMuttonRaw) >= 1)
+	if((Npc_HasItems(other,ItFoMuttonRaw) >= 1) && (Meat_Counter < Meat_Amount))
 	{
-		if((Npc_HasItems(hero,ItFoMuttonRaw) >= Meat_Amount) && (Meat_Counter < Meat_Amount))
+		Npc_GetInvItem(other,ItFoMuttonRaw);
+		if(Npc_HasItems(other,ItFoMuttonRaw) > (Meat_Amount - Meat_Counter))
 		{
-			B_GiveInvItems(hero,self,ItFoMuttonRaw,Meat_Amount - Meat_Counter);
-			Meat_Counter = Meat_Counter + (Meat_Amount - Meat_Counter);
+			ConcatRaw = IntToString(Meat_Amount - Meat_Counter);
+			Meat_Counter += Meat_Amount - Meat_Counter;
+			Npc_RemoveInvItems(other,ItFoMuttonRaw,Meat_Amount - Meat_Counter);
 		}
-		else if((Npc_HasItems(hero,ItFoMuttonRaw) < Meat_Amount) && (Meat_Counter < Meat_Amount))
+		else
 		{
-			Meat_Counter = Meat_Counter + Npc_HasItems(hero,ItFoMuttonRaw);
 			ConcatRaw = IntToString(Npc_HasItems(other,ItFoMuttonRaw));
-			ConcatRaw = ConcatStrings(ConcatRaw," Rohes Fleisch gegeben");
-			AI_PrintScreen(ConcatRaw,-1,35,FONT_ScreenSmall,2);
+			Meat_Counter += Npc_HasItems(other,ItFoMuttonRaw);
 			Npc_RemoveInvItems(other,ItFoMuttonRaw,Npc_HasItems(other,ItFoMuttonRaw));
 		};
+		ConcatRaw = IntToString(Npc_HasItems(other,ItFoMuttonRaw));
+		ConcatRaw = ConcatStrings(ConcatRaw," кусков сырого мяса отдано");
+		AI_PrintScreen(ConcatRaw,-1,info_ypos,FONT_ScreenSmall,3);
+		info_ypos += 3;
 	};
-	if(Npc_HasItems(hero,ItFoMutton) >= 1)
+	if((Npc_HasItems(other,ItFoMutton) >= 1) && (Meat_Counter < Meat_Amount))
 	{
-		if((Npc_HasItems(hero,ItFoMutton) >= Meat_Amount) && (Meat_Counter < Meat_Amount))
+		Npc_GetInvItem(other,ItFoMutton);
+		if(Npc_HasItems(other,ItFoMutton) > (Meat_Amount - Meat_Counter))
 		{
-			B_GiveInvItems(hero,self,ItFoMutton,Meat_Amount - Meat_Counter);
-			Meat_Counter = Meat_Counter + (Meat_Amount - Meat_Counter);
+			ConcatMutton = IntToString(Meat_Amount - Meat_Counter);
+			Meat_Counter += Meat_Amount - Meat_Counter;
+			Npc_RemoveInvItems(other,ItFoMutton,Meat_Amount - Meat_Counter);
 		}
-		else if((Npc_HasItems(hero,ItFoMutton) < Meat_Amount) && (Meat_Counter < Meat_Amount))
+		else
 		{
-			Meat_Counter = Meat_Counter + Npc_HasItems(hero,ItFoMutton);
 			ConcatMutton = IntToString(Npc_HasItems(other,ItFoMutton));
-			ConcatMutton = ConcatStrings(ConcatMutton," Gebratenes Fleisch gegeben");
-			AI_PrintScreen(ConcatMutton,-1,38,FONT_ScreenSmall,2);
+			Meat_Counter += Npc_HasItems(other,ItFoMutton);
 			Npc_RemoveInvItems(other,ItFoMutton,Npc_HasItems(other,ItFoMutton));
 		};
+		ConcatMutton = IntToString(Npc_HasItems(other,ItFoMutton));
+		ConcatMutton = ConcatStrings(ConcatMutton," кусков жареного мяса отдано");
+		AI_PrintScreen(ConcatMutton,-1,info_ypos,FONT_ScreenSmall,3);
+		info_ypos += 3;
 	};
-	if(Npc_HasItems(hero,ItFo_Bacon) >= 1)
+	if((Npc_HasItems(other,ItFo_Bacon) >= 1) && (Meat_Counter < Meat_Amount))
 	{
-		if((Npc_HasItems(hero,ItFo_Bacon) >= Meat_Amount) && (Meat_Counter < Meat_Amount))
+		Npc_GetInvItem(other,ItFo_Bacon);
+		if(Npc_HasItems(other,ItFo_Bacon) > (Meat_Amount - Meat_Counter))
 		{
-			B_GiveInvItems(hero,self,ItFo_Bacon,Meat_Amount - Meat_Counter);
-			Meat_Counter = Meat_Counter + (Meat_Amount - Meat_Counter);
+			ConcatBacon = IntToString(Meat_Amount - Meat_Counter);
+			Meat_Counter += Meat_Amount - Meat_Counter;
+			Npc_RemoveInvItems(other,ItFo_Bacon,Meat_Amount - Meat_Counter);
 		}
-		else if((Npc_HasItems(hero,ItFo_Bacon) < Meat_Amount) && (Meat_Counter < Meat_Amount))
+		else
 		{
-			Meat_Counter = Meat_Counter + Npc_HasItems(hero,ItFo_Bacon);
 			ConcatBacon = IntToString(Npc_HasItems(other,ItFo_Bacon));
-			ConcatBacon = ConcatStrings(ConcatBacon," Schinken gegeben");
-			AI_PrintScreen(ConcatBacon,-1,41,FONT_ScreenSmall,3);
+			Meat_Counter += Npc_HasItems(other,ItFo_Bacon);
 			Npc_RemoveInvItems(other,ItFo_Bacon,Npc_HasItems(other,ItFo_Bacon));
 		};
+		ConcatBacon = IntToString(Npc_HasItems(other,ItFo_Bacon));
+		ConcatBacon = ConcatStrings(ConcatBacon," окороков отдано");
+		AI_PrintScreen(ConcatBacon,-1,info_ypos,FONT_ScreenSmall,3);
+		info_ypos += 3;
 	};
-	if(Npc_HasItems(hero,ItFo_Sausage) >= 1)
+	if((Npc_HasItems(other,ItFo_Sausage) >= 1) && (Meat_Counter < Meat_Amount))
 	{
-		if((Npc_HasItems(hero,ItFo_Sausage) >= Meat_Amount) && (Meat_Counter < Meat_Amount))
+		Npc_GetInvItem(other,ItFo_Sausage);
+		if(Npc_HasItems(other,ItFo_Sausage) > (Meat_Amount - Meat_Counter))
 		{
-			B_GiveInvItems(hero,self,ItFo_Sausage,Meat_Amount - Meat_Counter);
-			Meat_Counter = Meat_Counter + (Meat_Amount - Meat_Counter);
+			ConcatSausage = IntToString(Meat_Amount - Meat_Counter);
+			Meat_Counter += Meat_Amount - Meat_Counter;
+			Npc_RemoveInvItems(other,ItFo_Sausage,Meat_Amount - Meat_Counter);
 		}
-		else if((Npc_HasItems(hero,ItFo_Sausage) < Meat_Amount) && (Meat_Counter < Meat_Amount))
+		else
 		{
-			Meat_Counter = Meat_Counter + Npc_HasItems(hero,ItFo_Sausage);
 			ConcatSausage = IntToString(Npc_HasItems(other,ItFo_Sausage));
-			ConcatSausage = ConcatStrings(ConcatSausage," mal Wurst gegeben");
-			AI_PrintScreen(ConcatSausage,-1,44,FONT_ScreenSmall,3);
+			Meat_Counter += Npc_HasItems(other,ItFo_Sausage);
 			Npc_RemoveInvItems(other,ItFo_Sausage,Npc_HasItems(other,ItFo_Sausage));
 		};
+		ConcatSausage = IntToString(Npc_HasItems(other,ItFo_Sausage));
+		ConcatSausage = ConcatStrings(ConcatSausage," колбас отдано");
+		AI_PrintScreen(ConcatSausage,-1,info_ypos,FONT_ScreenSmall,3);
+		info_ypos += 3;
 	};
 	if(Meat_Amount > Meat_Counter)
 	{
 		AI_Output(self,other,"DIA_Engor_BRINGMEAT_13_01");	//Для начала и это неплохо, но мне нужно больше.
 		GesamtFleisch = IntToString(Meat_Counter);
-		GesamtFleisch = ConcatStrings("Insgesamt Fleisch gegeben: ",GesamtFleisch);
-		AI_PrintScreen(GesamtFleisch,-1,48,FONT_ScreenSmall,3);
+		GesamtFleisch = ConcatStrings("В целом отдано мяса: ",GesamtFleisch);
+		AI_PrintScreen(GesamtFleisch,-1,info_ypos,FONT_ScreenSmall,3);
 	};
 	if(Meat_Counter >= Meat_Amount)
 	{
@@ -343,7 +361,7 @@ instance DIA_Engor_Business(C_Info)
 	condition = DIA_Engor_Business_Condition;
 	information = DIA_Engor_Business_Info;
 	permanent = FALSE;
-	description = "Как торговля?";
+	description = "Как бизнес?";
 };
 
 
@@ -377,7 +395,7 @@ instance DIA_Engor_PICKPOCKET(C_Info)
 	condition = DIA_Engor_PICKPOCKET_Condition;
 	information = DIA_Engor_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Красть его карту рискованно)";
+	description = "(Украсть его карту будет довольно просто)";
 };
 
 

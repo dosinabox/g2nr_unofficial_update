@@ -133,7 +133,7 @@ instance DIA_Jorgen_Milten(C_Info)
 	condition = DIA_Jorgen_Milten_Condition;
 	information = DIA_Jorgen_Milten_Info;
 	permanent = FALSE;
-	description = "≈сли ты идешь в монастырь, тебе нужно поговорить с ћилтеном ...";
+	description = "≈сли ты идешь в монастырь, тебе нужно поговорить с ћилтеном...";
 };
 
 
@@ -265,7 +265,7 @@ func void DIA_Jorgen_NEUHIER_Info()
 	{
 		AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_03");	//я чувствую себ€ идиотом среди этих всегда ворчащих благодетелей.
 	};
-	AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_04");	//Ќу. ј что еще мне делать? „ем помирать с голоду в городе, лучше уж выполн€ть работу, которую дают мне послушники.
+	AI_Output(self,other,"DIA_Jorgen_NEUHIER_07_04");	//Ќу а что еще мне делать? „ем помирать с голоду в городе, лучше уж выполн€ть работу, которую дают мне послушники.
 };
 
 
@@ -505,7 +505,7 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 	if(Npc_GetDistToWP(self,"NW_BIGFARM_KITCHEN_OUT_06") < 1000)
 	{
 		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_01");	//ќтлично. Ёто не самое плохое место.
-		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_02");	//ќни дают мне идиотские поручени€, типа пасти овец, но все же люде здесь далеко не такие ограниченные и тупые, как в монастыре.
+		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_02");	//ќни дают мне идиотские поручени€ типа пасти овец, но все же люди здесь далеко не такие ограниченные и тупые, как в монастыре.
 		if(DIA_Jorgen_PERM5_NOTCAPTAIN_XPGiven == FALSE)
 		{
 			B_GivePlayerXP(XP_Ambient);

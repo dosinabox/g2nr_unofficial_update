@@ -104,7 +104,7 @@ instance DIA_Addon_Brahim_MissingPeople(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Brahim_MissingPeople_Condition;
 	information = DIA_Addon_Brahim_MissingPeople_Info;
-	description = "А правда, что некоторые жители таинственным образом исчезли? ";
+	description = "А правда, что некоторые жители таинственным образом исчезли?";
 };
 
 
@@ -133,13 +133,13 @@ instance DIA_Brahim_BUY(C_Info)
 	information = DIA_Brahim_BUY_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = "Покажи мне твои карты.";
+	description = "Покажи мне свои карты.";
 };
 
 
 func int DIA_Brahim_BUY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET))
+	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET) && (Brahim_attacked_day <= Wld_GetDay()))
 	{
 		return TRUE;
 	};
@@ -147,8 +147,8 @@ func int DIA_Brahim_BUY_Condition()
 
 func void DIA_Brahim_BUY_Info()
 {
+	AI_Output(other,self,"DIA_Brahim_BUY_15_00");	//Покажи мне свои карты.
 	B_GiveTradeInv(self);
-	AI_Output(other,self,"DIA_Brahim_BUY_15_00");	//Покажи мне твои карты.
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Brahim_BUY_07_01");	//Ты не найдешь лучше даже в монастыре.

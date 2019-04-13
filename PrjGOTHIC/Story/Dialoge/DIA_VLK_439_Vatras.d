@@ -346,7 +346,7 @@ func void DIA_Addon_Vatras_TellMe_Info()
 		Info_ClearChoices(DIA_Addon_Vatras_TellMe);
 		Info_AddChoice(DIA_Addon_Vatras_TellMe,Dialog_Back,DIA_Addon_Vatras_TellMe_BACK);
 		Info_AddChoice(DIA_Addon_Vatras_TellMe,"Чем именно вы занимаетесь?",DIA_Addon_Vatras_TellMe_Philo);
-		Info_AddChoice(DIA_Addon_Vatras_TellMe,"А где остальные маги воды?",DIA_Addon_Vatras_TellMe_OtherKdW);
+		Info_AddChoice(DIA_Addon_Vatras_TellMe,"А где остальные маги Воды?",DIA_Addon_Vatras_TellMe_OtherKdW);
 		Info_AddChoice(DIA_Addon_Vatras_TellMe,"Кто является членом Кольца Воды?",DIA_Addon_Vatras_TellMe_WerNoch);
 	};
 };
@@ -389,12 +389,12 @@ func void DIA_Addon_Vatras_TellMe_Konkret()
 
 func void DIA_Addon_Vatras_TellMe_OtherKdW()
 {
-	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_OtherKdW_15_00");	//А где остальные маги воды?
+	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_OtherKdW_15_00");	//А где остальные маги Воды?
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_OtherKdW_05_01");	//Они исследуют постройки древней цивилизации к северо-востоку от Хориниса.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_OtherKdW_05_02");	//Мы подозреваем, что в этих руинах может скрываться проход к той части острова, которая еще не отмечена на карте.
 	Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_KDW,"Маги воды исследуют руины построек древней культуры, которые находятся на северо-востоке от Хориниса. Возможно, там находится проход в неисследованную часть острова.");
+	B_LogEntry(TOPIC_Addon_KDW,"Маги Воды исследуют руины построек древней культуры, которые находятся на северо-востоке от Хориниса. Возможно, там находится проход в неисследованную часть острова.");
 	Info_AddChoice(DIA_Addon_Vatras_TellMe,"Расскажи мне об этом.",DIA_Addon_Vatras_TellMe_Unexplored);
 };
 
@@ -612,7 +612,7 @@ func void DIA_Addon_Vatras_HowToJoin_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_05_02");	//Мы не принимаем кого попало.
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_05_03");	//Если хочешь присоединиться к обществу, ты должен доказать, что готов действовать как один из нас.
 	AI_Output(other,self,"DIA_Addon_Vatras_HowToJoin_15_04");	//Что это значит?
-	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_05_05");	//Перед тем как новый воин вступит в наши ряды, он должен совершить во благо Кольца великое деяние.
+	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_05_05");	//Перед тем, как новый воин вступит в наши ряды, он должен совершить во благо Кольца великое деяние.
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_05_06");	//И только после этого мы решаем, можно ли доверить ему великое дело по сохранению баланса сил на этом острове.
 	Info_ClearChoices(DIA_Addon_Vatras_HowToJoin);
 	Info_AddChoice(DIA_Addon_Vatras_HowToJoin,"И что же мне нужно сделать, чтобы убедить тебя?",DIA_Addon_Vatras_HowToJoin_WhatsGreat);
@@ -633,7 +633,7 @@ func void DIA_Addon_Vatras_HowToJoin_FreedMen()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_WannaBeRanger_FreedMen_15_00");	//Я освободил многих людей. Барьера больше нет.
 	AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_FreedMen_05_01");	//Даже если это ДЕЙСТВИТЕЛЬНО твоя работа...
-	AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_FreedMen_05_02");	//Великое событие в Долине Рудников стало причиной освобождения не только магов воды, но и многих заключенных.
+	AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_FreedMen_05_02");	//Великое событие в Долине Рудников стало причиной освобождения не только магов Воды, но и многих заключенных.
 	AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_FreedMen_05_03");	//Преступники со всей страны рыщут в окрестностях Хориниса, угрожая местному населению.
 	AI_Output(self,other,"DIA_Addon_Vatras_WannaBeRanger_FreedMen_05_04");	//Бандиты уже захватили огромные территории земель за пределами города. Теперь практически невозможно выйти за пределы города и вернуться обратно целым и невредимым.
 };
@@ -708,7 +708,7 @@ func void DIA_Addon_Vatras_GuildBypass_WhichGuild()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_GuildBypass_WhichGuild_15_00");	//В какое сообщество я должен вступить?
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_WhichGuild_05_01");	//Есть только три сообщества, которые обладают достаточной властью.
-	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_WhichGuild_05_02");	//А именно: городское ополчение, монастырь магов огня и отряд наемников на ферме землевладельца.
+	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_WhichGuild_05_02");	//А именно: городское ополчение, монастырь магов Огня и отряд наемников на ферме землевладельца.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_WhichGuild_05_03");	//Выбор за тобой, сын мой.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_WhichGuild_05_04");	//Ларес поможет тебе принять это непростое решение. Поговори с ним.
 	B_LogEntry(TOPIC_Addon_RingOfWater,"Я могу присоединиться к ОПОЛЧЕНИЮ, МАГАМ ОГНЯ или НАЕМНИКАМ, живущим на ферме крупного землевладельца.");
@@ -760,7 +760,7 @@ func void DIA_Addon_Vatras_NowRanger_Info()
 		B_GiveInvItems(self,other,ItRi_Ranger_Addon,1);
 		if(hero.guild == GIL_KDF)
 		{
-			AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_10");	//Ты первый маг огня среди нас. Я очень рад этому факту.
+			AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_10");	//Ты первый маг Огня среди нас. Я очень рад этому факту.
 		};
 		AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_11");	//Да хранит тебя Аданос. А теперь иди и познакомься со своими братьями.
 		AI_Output(self,other,"DIA_Addon_Vatras_NowRanger_05_12");	//Они будут ждать тебя в таверне 'Мертвая Гарпия'. Братья готовы принять тебя в наше общество.
@@ -802,7 +802,7 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_CloseMeeting_15_00");	//Братья Кольца послали меня к тебе.
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_01");	//Хорошо! Я ждал тебя!
-	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_02");	//Я отправлю тебя через портал, чтобы ты присоединился к остальным магам воды.
+	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_02");	//Я отправлю тебя через портал, чтобы ты присоединился к остальным магам Воды.
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_03");	//Ты должен выследить бывшего рудного барона Ворона и узнать, с какой целью он похищает жителей города.
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_04");	//А мы останемся здесь и попытаемся разобраться с бандитами.
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_05");	//Передай это письмо Сатурасу. Отныне он будет давать тебе задания.
@@ -813,7 +813,7 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	CreateInvItems(self,ItWr_Vatras2Saturas_FindRaven,1);
 	B_GiveInvItems(self,other,ItWr_Vatras2Saturas_FindRaven,1);
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_06");	//Да пребудет с тобой Аданос.
-	B_LogEntry(TOPIC_Addon_KDW,"Ватрас дал мне письмо для Сатураса. Я должен присоединиться к магам воды и пройти через портал, чтобы найти бывшего рудного барона Ворона.");
+	B_LogEntry(TOPIC_Addon_KDW,"Ватрас дал мне письмо для Сатураса. Я должен присоединиться к магам Воды и пройти через портал, чтобы найти бывшего рудного барона Ворона.");
 	Log_CreateTopic(TOPIC_Addon_Sklaven,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Sklaven,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Sklaven,"Я должен узнать, с какой целью Ворон похищает жителей Хориниса.");
@@ -892,37 +892,37 @@ func void DIA_Addon_Vatras_MissingPeople_Report()
 	if(((MIS_Akil_BringMissPeopleBack != 0) || (MIS_Bengar_BringMissPeopleBack != 0)) && (MISSINGPEOPLEINFO[1] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_01");	//Фермеры тоже потеряли своих близких.
-		Vatras_MissingPeopleReports = Vatras_MissingPeopleReports + 1;
+		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[1] = TRUE;
 	};
 	if(((Elvrich_GoesBack2Thorben == TRUE) || (Elvrich_SCKnowsPirats == TRUE) || (SC_KnowsDexterAsKidnapper == TRUE)) && (MISSINGPEOPLEINFO[2] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_02");	//Я узнал, что ответственность за эти исчезновения лежит на бандитах.
-		Vatras_MissingPeopleReports = Vatras_MissingPeopleReports + 1;
+		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[2] = TRUE;
 	};
 	if((Elvrich_SCKnowsPirats == TRUE) && (MISSINGPEOPLEINFO[3] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_03");	//Элврих, ученик мастера Торбена, рассказал мне, что бандиты вывозят похищенных людей по морю.
-		Vatras_MissingPeopleReports = Vatras_MissingPeopleReports + 1;
+		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[3] = TRUE;
 	};
 	if((Elvrich_SCKnowsPirats == TRUE) && (MISSINGPEOPLEINFO[4] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_04");	//С этим как-то связаны пираты. Я пока не до конца понял их роль в этом мероприятии.
-		Vatras_MissingPeopleReports = Vatras_MissingPeopleReports + 1;
+		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[4] = TRUE;
 	};
 	if((Elvrich_GoesBack2Thorben == TRUE) && (MISSINGPEOPLEINFO[5] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_05");	//Я спас Элвриха от бандитов.
-		Vatras_MissingPeopleReports = Vatras_MissingPeopleReports + 1;
+		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[5] = TRUE;
 	};
 	if((SC_KnowsLuciaCaughtByBandits == TRUE) && (MISSINGPEOPLEINFO[6] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_06");	//Бандиты захватили девушку по имени Люсия.
-		Vatras_MissingPeopleReports = Vatras_MissingPeopleReports + 1;
+		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[6] = TRUE;
 	};
 	if((Npc_HasItems(other,ItWr_LuciasLoveLetter_Addon) || (MIS_LuciasLetter == LOG_SUCCESS)) && (MISSINGPEOPLEINFO[7] == FALSE))
@@ -932,15 +932,15 @@ func void DIA_Addon_Vatras_MissingPeople_Report()
 		{
 			AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_08");	//По всей видимости, она присоединилась к ним по доброй воле.
 		};
-		Vatras_MissingPeopleReports = Vatras_MissingPeopleReports + 1;
+		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[7] = TRUE;
 	};
 	if((SC_KnowsDexterAsKidnapper == TRUE) && (MISSINGPEOPLEINFO[8] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_09");	//Главаря бандитов зовут Декстер. Он несет ответственность за все эти похищения.
-		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_10");	//Я познакомился с Декстером на каторге. Тогда он работал на торговца рудой Гомеса.
+		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_10");	//Я познакомился с Декстером на каторге. Тогда он работал на торговца рудой Гомеза.
 		AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Report_05_11");	//Он наверняка узнает тебя. Будь осторожен.
-		Vatras_MissingPeopleReports = Vatras_MissingPeopleReports + 1;
+		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[8] = TRUE;
 	};
 	if(Vatras_MissingPeopleReports != 0)
@@ -958,6 +958,8 @@ func void DIA_Addon_Vatras_MissingPeople_Report()
 
 func void DIA_Addon_Vatras_MissingPeople_Success()
 {
+	var int Vatras_MissingPeopleReports;
+	var int XP_Vatras_MissingPeopleReports;
 	AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Success_15_00");	//Я знаю, где находятся пропавшие люди.
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Success_05_01");	//Что ты узнал?
 	AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Success_15_02");	//Человек по прозвищу Ворон спрятал их в удаленной части Хориниса.
@@ -970,7 +972,54 @@ func void DIA_Addon_Vatras_MissingPeople_Success()
 	};
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Success_05_06");	//Отличная работа. Я боялся, что мы никогда не узнаем ответа на эту загадку.
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_Vatras_WhereAreMissingPeople);
+	if (MIS_Steckbriefe == LOG_Running)
+	{
+		MIS_Steckbriefe = LOG_SUCCESS;
+	};
+	Vatras_MissingPeopleReports = 0;
+	if(((MIS_Akil_BringMissPeopleBack != 0) || (MIS_Bengar_BringMissPeopleBack != 0)) && (MISSINGPEOPLEINFO[1] == FALSE))
+	{
+		Vatras_MissingPeopleReports += 1;
+		MISSINGPEOPLEINFO[1] = TRUE;
+	};
+	if(((Elvrich_GoesBack2Thorben == TRUE) || (Elvrich_SCKnowsPirats == TRUE) || (SC_KnowsDexterAsKidnapper == TRUE)) && (MISSINGPEOPLEINFO[2] == FALSE))
+	{
+		Vatras_MissingPeopleReports += 1;
+		MISSINGPEOPLEINFO[2] = TRUE;
+	};
+	if((Elvrich_SCKnowsPirats == TRUE) && (MISSINGPEOPLEINFO[3] == FALSE))
+	{
+		Vatras_MissingPeopleReports += 1;
+		MISSINGPEOPLEINFO[3] = TRUE;
+	};
+	if((Elvrich_SCKnowsPirats == TRUE) && (MISSINGPEOPLEINFO[4] == FALSE))
+	{
+		Vatras_MissingPeopleReports += 1;
+		MISSINGPEOPLEINFO[4] = TRUE;
+	};
+	if((Elvrich_GoesBack2Thorben == TRUE) && (MISSINGPEOPLEINFO[5] == FALSE))
+	{
+		Vatras_MissingPeopleReports += 1;
+		MISSINGPEOPLEINFO[5] = TRUE;
+	};
+	if((SC_KnowsLuciaCaughtByBandits == TRUE) && (MISSINGPEOPLEINFO[6] == FALSE))
+	{
+		Vatras_MissingPeopleReports += 1;
+		MISSINGPEOPLEINFO[6] = TRUE;
+	};
+	if((Npc_HasItems(other,ItWr_LuciasLoveLetter_Addon) || (MIS_LuciasLetter == LOG_SUCCESS)) && (MISSINGPEOPLEINFO[7] == FALSE))
+	{
+		Vatras_MissingPeopleReports += 1;
+		MISSINGPEOPLEINFO[7] = TRUE;
+	};
+	if((SC_KnowsDexterAsKidnapper == TRUE) && (MISSINGPEOPLEINFO[8] == FALSE))
+	{
+		Vatras_MissingPeopleReports += 1;
+		MISSINGPEOPLEINFO[8] = TRUE;
+	};
+	XP_Vatras_MissingPeopleReports = XP_Addon_Vatras_MissingPeopleReport * Vatras_MissingPeopleReports;
+	XP_Vatras_MissingPeopleReports += XP_Addon_Vatras_WhereAreMissingPeople;
+	B_GivePlayerXP(XP_Vatras_MissingPeopleReports);
 };
 
 
@@ -1141,7 +1190,7 @@ func void DIA_Addon_Vatras_WISP_MoreWISP()
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_MoreWISP_05_03");	//Возможно, он сможет рассказать тебе больше.
 	if(MIS_Vatras_FindTheBanditTrader == LOG_Running)
 	{
-		B_LogEntry(TOPIC_Addon_Bandittrader,"Мой блуждающий огонек может искать не только оружие ближнего боя. Научить его искать другие предметы может маг воды Риордан.");
+		B_LogEntry(TOPIC_Addon_Bandittrader,"Мой блуждающий огонек может искать не только оружие ближнего боя. Научить его искать другие предметы может маг Воды Риордан.");
 	};
 };
 
@@ -1211,13 +1260,22 @@ func int DIA_Addon_Vatras_SellStonplate_Condition()
 func void DIA_Addon_Vatras_SellStonplate_Info()
 {
 	var int anzahl;
+	var int anzahl2;
+	var int flag;
 	anzahl = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
+	anzahl2 = anzahl2 + anzahl;
 	if(anzahl == 1)
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
 	}
 	else
 	{
+	};
+	if ((flag != TRUE) && (anzahl2 > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running))
+	{
+		MIS_Addon_Erol_BanditStuff = LOG_FAILED;
+		B_CheckLog();
+		flag = TRUE;
 	};
 	B_GiveInvItems(other,self,ItWr_StonePlateCommon_Addon,anzahl);
 	AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_01");	//Отлично!
@@ -1237,7 +1295,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_03");	//Вот, возьми в награду несколько зелий...
 		B_GiveInvItems(self,other,ItPo_Health_03,anzahl + 1);
 	};
-	B_GivePlayerXP(XP_Addon_VatrasStonplate);
+	B_GivePlayerXP(XP_Addon_VatrasStonplate * anzahl);
 };
 
 
@@ -1249,7 +1307,7 @@ instance DIA_Addon_Vatras_GuildHelp(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Vatras_GuildHelp_Condition;
 	information = DIA_Addon_Vatras_GuildHelp_Info;
-	description = "Ларес сказал, что ты можешь помочь мне попасть в монастырь магов огня.";
+	description = "Ларес сказал, что ты можешь помочь мне попасть в монастырь магов Огня.";
 };
 
 
@@ -1263,9 +1321,9 @@ func int DIA_Addon_Vatras_GuildHelp_Condition()
 
 func void DIA_Addon_Vatras_GuildHelp_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Vatras_GuildHelp_15_00");	//Ларес сказал, что ты можешь помочь мне попасть в монастырь магов огня.
-	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_01");	//Это твой выбор? Идти по пути огня?
-	AI_Output(other,self,"DIA_Addon_Vatras_GuildHelp_15_02");	//Да. Я хочу стать магом огня.
+	AI_Output(other,self,"DIA_Addon_Vatras_GuildHelp_15_00");	//Ларес сказал, что ты можешь помочь мне попасть в монастырь магов Огня.
+	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_01");	//Это твой выбор? Идти по пути Огня?
+	AI_Output(other,self,"DIA_Addon_Vatras_GuildHelp_15_02");	//Да. Я хочу стать магом Огня.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_03");	//Насколько мне известно, они с радостью принимают послушников. Так зачем тебе нужна моя помощь?
 	if(SC_KnowsKlosterTribut == TRUE)
 	{
@@ -1275,18 +1333,18 @@ func void DIA_Addon_Vatras_GuildHelp_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_GuildHelp_15_05");	//Ларес упомянул, что они требуют плату за вход в монастырь.
 	};
-	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_06");	//Я не смогу провести тебя в монастырь. Я все-таки маг воды, знаешь ли. Но я очень хорошо знаю мага огня Дарона.
+	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_06");	//Я не смогу провести тебя в монастырь. Я все-таки маг Воды, знаешь ли. Но я очень хорошо знаю мага Огня Дарона.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_07");	//Большую часть времени он проводит на рыночной площади, собирая пожертвования.
 	Vatras_SentToDaron = TRUE;
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_08");	//Но я слышал, что иногда он отлучается из города.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_09");	//Он рассказал мне о статуэтке, которую у него украли.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_10");	//Эта вещица очень много значит для него. Если ты сумеешь вернуть статуэтку, он обязательно проведет тебя в монастырь.
-	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_11");	//Помни, что даже если ты вступишь в круг огня, ты все еще сможешь присоединиться к нам.
+	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_11");	//Помни, что даже если ты вступишь в Круг Огня, ты все еще сможешь присоединиться к нам.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_12");	//Если, конечно, докажешь свою полезность.
 	MIS_Addon_Vatras_Go2Daron = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Маг огня Дарон поможет мне попасть в монастырь, если я найду его похищенную статуэтку.");
+	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Маг Огня Дарон поможет мне попасть в монастырь, если я найду его похищенную статуэтку.");
 };
 
 
@@ -1343,7 +1401,7 @@ func void DIA_Vatras_INFLUENCE_Info()
 	Snd_Play("LevelUp");
 	B_GivePlayerXP(XP_VatrasTruth);
 	Vatras_Segen = TRUE;
-	B_LogEntry(TOPIC_Thorben,"Маг воды Ватрас благословил меня.");
+	B_LogEntry(TOPIC_Thorben,"Маг Воды Ватрас благословил меня.");
 };
 
 
@@ -1435,7 +1493,7 @@ func void DIA_Vatras_Spende_100()
 	Info_ClearChoices(DIA_Vatras_Spende);
 	if(MIS_Thorben_GetBlessings == LOG_Running)
 	{
-		B_LogEntry(TOPIC_Thorben,"Маг воды Ватрас благословил меня.");
+		B_LogEntry(TOPIC_Thorben,"Маг Воды Ватрас благословил меня.");
 	};
 };
 
@@ -1467,7 +1525,7 @@ func void DIA_Vatras_CanTeach_Info()
 	AI_Output(self,other,"DIA_Vatras_CanTeach_05_03");	//Я могу показать тебе, как направлять и усиливать свои магические способности.
 	Vatras_TeachMANA = TRUE;
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Маг воды Ватрас может помочь мне повысить мои магические способности.");
+	B_LogEntry(TOPIC_CityTeacher,"Маг Воды Ватрас может помочь мне повысить мои магические способности.");
 };
 
 
@@ -1821,12 +1879,12 @@ func void DIA_Addon_Vatras_AbloesePre_Info()
 	AI_Output(other,self,"DIA_Addon_Vatras_AbloesePre_15_00");	//У меня сложности в связи с Глазом Инноса. Я хотел попросить о помощи.
 	AI_Output(self,other,"DIA_Addon_Vatras_AbloesePre_05_01");	//И из-за твоей проблемы мне придется покинуть город?
 	AI_Output(other,self,"DIA_Addon_Vatras_AbloesePre_15_02");	//Я не знаю, возможно.
-	AI_Output(self,other,"DIA_Addon_Vatras_AbloesePre_05_03");	//Я уже много дней жду, чтобы меня сменили. Остальные маги воды должны были уже вернуться в Хоринис.
+	AI_Output(self,other,"DIA_Addon_Vatras_AbloesePre_05_03");	//Я уже много дней жду, чтобы меня сменили. Остальные маги Воды должны были уже вернуться в Хоринис.
 	AI_Output(self,other,"DIA_Addon_Vatras_AbloesePre_05_04");	//Если ты сделаешь так, чтобы хотя бы один из них сменил меня, я смогу помочь тебе.
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 	Log_CreateTopic(TOPIC_Addon_VatrasAbloesung,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_VatrasAbloesung,LOG_Running);
-	B_LogEntry(TOPIC_Addon_VatrasAbloesung,"Ватрас не может помочь мне решить проблему с 'Глазом Инноса' пока не найдется еще одного Мага Воды, готового заменить его в городе.");
+	B_LogEntry(TOPIC_Addon_VatrasAbloesung,"Ватрас не может помочь мне решить проблему с 'Глазом Инноса' пока не найдется еще одного мага Воды, готового заменить его в городе.");
 };
 
 
@@ -1913,7 +1971,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge()
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_01");	//Мы должны восстановить его. Но это, боюсь, будет непростой задачей.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_02");	//Оправа разбита на две части. Искусный кузнец должен быть способен починить ее.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_03");	//Но проблема не в этом. Меня больше волнует драгоценный камень.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_04");	//Он тускл и безжизнен. Враг, похоже, хорошо знал, как ослабить его.
+	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_04");	//Он тускл и безжизненен. Враг, похоже, хорошо знал, как ослабить его.
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти кузнеца, способного починить оправу Глаза?",DIA_Vatras_INNOSEYEKAPUTT_Auge_schmied);
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Как можно восстановить силу камня?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein);
 };
@@ -1923,7 +1981,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein()
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_15_00");	//Как можно восстановить силу камня?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_01");	//Я вижу только один способ. Союз трех правящих божеств должен дать желаемый эффект.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_02");	//Хорошо подготовленный ритуал обращения в месте уничтожения камня вернет ему его огонь.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_03");	//Однако проблема состоит в том, что ты должен привести в это место земных представителей каждого их этих троих богов.
+	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_03");	//Однако проблема состоит в том, что ты должен привести в это место земных представителей каждого из этих троих богов.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_04");	//Кроме того, для этого ритуала необходимо много болотной травы. Я думаю, необходимо не менее 3-х растений.
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Кто может быть этими тремя земными представителями богов?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer);
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти болотную траву?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut);
@@ -1941,7 +1999,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer()
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_15_00");	//Кто может быть этими тремя земными представителями богов?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_05_01");	//Я буду представлять бога Аданоса лично.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_05_02");	//Пирокар, высший маг Огня, был бы подходящей кандидатурой на представителя бога Инноса.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_05_03");	//Но для Белиара, мне не приходит в голову подходящий кандидат. Это должен быть кто-то, кто владеет черной магией.
+	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_05_03");	//Но для Белиара мне не приходит в голову подходящий кандидат. Это должен быть кто-то, кто владеет черной магией.
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Черной магией? А что насчет Ксардаса?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas);
 };
 
@@ -2158,7 +2216,7 @@ func void DIA_Vatras_PERMKAP3_Info()
 	{
 		AI_Output(self,other,"DIA_Vatras_PERMKAP3_05_02");	//Поговори с Пирокаром, он объяснит все, что тебе нужно знать.
 	};
-	AI_Output(self,other,"DIA_Vatras_PERMKAP3_05_03");	//Надеюсь, увидеть тебя опять целым и невредимым, сын мой.
+	AI_Output(self,other,"DIA_Vatras_PERMKAP3_05_03");	//Надеюсь увидеть тебя опять целым и невредимым, сын мой.
 };
 
 

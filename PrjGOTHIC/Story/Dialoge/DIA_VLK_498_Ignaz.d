@@ -248,7 +248,7 @@ instance DIA_Ignaz_Trade(C_Info)
 	information = DIA_Ignaz_Trade_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -262,8 +262,17 @@ func int DIA_Ignaz_Trade_Condition()
 
 func void DIA_Ignaz_Trade_Info()
 {
-	B_GiveTradeInv(self);
+	if(Ignaz_flag == 1)
+	{
+		B_ClearAlchemyInv(self);
+		if(Ignaz_flasks > 0)
+		{
+			CreateInvItems(self,ItMi_Flask,Ignaz_flasks);
+		};
+		Ignaz_flag = 0;
+	};
 	AI_Output(other,self,"DIA_Ignaz_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 };
 
 

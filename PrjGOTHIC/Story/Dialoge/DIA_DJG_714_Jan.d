@@ -78,7 +78,7 @@ func void DIA_Jan_Dragons_Info()
 		AI_Output(self,other,"DIA_Jan_Dragons_10_05");	//Ты ведь один из них. Может, замолвишь за меня словечко?
 	};
 	Info_ClearChoices(DIA_JAN_Dragons);
-	Info_AddChoice(DIA_JAN_Dragons,"Мне нужно идти.",DIA_JAN_Dragons_ShitHappen);
+	Info_AddChoice(DIA_JAN_Dragons,Dialog_Ende_v2,DIA_JAN_Dragons_ShitHappen);
 	Info_AddChoice(DIA_JAN_Dragons,"А что мне будет, если я помогу тебе?",DIA_JAN_Dragons_Reward);
 	Info_AddChoice(DIA_JAN_Dragons,"Я попробую помочь тебе.",DIA_JAN_Dragons_HelpYou);
 };
@@ -441,6 +441,7 @@ func void DIA_Jan_Dragonscales_Info()
 	if(Npc_HasItems(other,ItAt_DragonScale) >= 20)
 	{
 		B_GiveInvItems(other,self,ItAt_DragonScale,20);
+		Npc_RemoveInvItems(self,ItAt_DragonScale,20);
 		AI_Output(self,other,"DIA_JAN_Dragonscales_10_01");	//Хорошо. Думаю, из этого что-нибудь получится.
 		AI_Output(self,other,"DIA_JAN_Dragonscales_10_02");	//Заходи завтра и получишь свои новые доспехи.
 		if(DIA_JAN_Dragonscales_OneTime == FALSE)
@@ -543,7 +544,7 @@ instance DIA_Jan_DragonPlettBericht(C_Info)
 	nr = 3;
 	condition = DIA_Jan_DragonPlettBericht_Condition;
 	information = DIA_Jan_DragonPlettBericht_Info;
-	description = "Насчет драконов ...";
+	description = "Насчет драконов...";
 };
 
 
@@ -641,6 +642,7 @@ func void DIA_Jan_DragonBlood_1()
 	DragonBloodGeld = DragonBloodCount * Value_DragonBlood;
 	CreateInvItems(self,ItMi_Gold,DragonBloodGeld);
 	B_GiveInvItems(self,other,ItMi_Gold,DragonBloodGeld);
+	Npc_RemoveInvItem(self,ItAt_DragonBlood);
 	Info_ClearChoices(DIA_Jan_DragonBlood);
 	Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
 	if(Npc_HasItems(other,ItAt_DragonBlood) >= 1)
@@ -667,6 +669,7 @@ func void DIA_Jan_DragonBlood_all()
 	DragonBloodGeld = DragonBloodCount * Value_DragonBlood;
 	CreateInvItems(self,ItMi_Gold,DragonBloodGeld);
 	B_GiveInvItems(self,other,ItMi_Gold,DragonBloodGeld);
+	Npc_RemoveInvItems(self,ItAt_DragonBlood,DragonBloodCount);
 	Info_ClearChoices(DIA_Jan_DragonBlood);
 	Info_AddChoice(DIA_Jan_DragonBlood,Dialog_Back,DIA_Jan_DragonBlood_BACK);
 	if(Npc_HasItems(other,ItAt_DragonBlood) >= 1)

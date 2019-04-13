@@ -7,6 +7,7 @@ instance VLK_474_Buerger(Npc_Default)
 	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_AMBIENT;
+	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);

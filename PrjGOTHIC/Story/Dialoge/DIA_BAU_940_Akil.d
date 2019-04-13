@@ -6,7 +6,7 @@ instance DIA_Akil_EXIT(C_Info)
 	condition = DIA_Akil_EXIT_Condition;
 	information = DIA_Akil_EXIT_Info;
 	permanent = TRUE;
-	description = Dialog_Ende;
+	description = Dialog_Ende_v1;
 };
 
 
@@ -20,7 +20,7 @@ func int DIA_Akil_EXIT_Condition()
 
 func void DIA_Akil_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_Akil_EXIT_15_00");	//Я должен идти.
+	AI_Output(other,self,"DIA_Akil_EXIT_15_00");	//Я должен идти!
 	if(Akil_Sauer == TRUE)
 	{
 		AI_Output(self,other,"DIA_Akil_EXIT_13_01");	//Не буду задерживать тебя.
@@ -125,7 +125,7 @@ func void DIA_Akil_NachKampf_Info()
 		AI_Output(self,other,"DIA_Akil_NachKampf_13_04");	//Это наемники с фермы Онара. Эти ублюдки только и знают, что грабить и убивать.
 	};
 	AI_Output(self,other,"DIA_Akil_NachKampf_13_05");	//Я боялся худшего...
-	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает)... слава Инносу до этого не дошло. Скажи мне, что я могу сделать для тебя?
+	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает) ...слава Инносу, до этого не дошло. Скажи мне, что я могу сделать для тебя?
 	Info_ClearChoices(DIA_Akil_NachKampf);
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
@@ -278,7 +278,7 @@ instance DIA_Akil_Lieferung(C_Info)
 	condition = DIA_Akil_Lieferung_Condition;
 	information = DIA_Akil_Lieferung_Info;
 	permanent = FALSE;
-	description = "Меня прислал Бальтрам ...";
+	description = "Меня прислал Бальтрам. Я должен забрать посылку для него.";
 };
 
 
@@ -309,7 +309,7 @@ instance DIA_Akil_Gegend(C_Info)
 	condition = DIA_Akil_Gegend_Condition;
 	information = DIA_Akil_Gegend_Info;
 	permanent = FALSE;
-	description = "Ты знаешь здешние места...";
+	description = "Ты знаешь здешние места?";
 };
 
 
@@ -326,7 +326,7 @@ var int Knows_Taverne;
 
 func void DIA_Akil_Gegend_Info()
 {
-	AI_Output(other,self,"DIA_Akil_Gegend_15_00");	//Ты знаешь здешние места...
+	AI_Output(other,self,"DIA_Akil_Gegend_15_00");	//Ты знаешь здешние места?
 	AI_Output(self,other,"DIA_Akil_Gegend_13_01");	//Конечно, что ты хочешь узнать?
 };
 
@@ -381,7 +381,7 @@ func int DIA_Akil_Taverne_Condition()
 func void DIA_Akil_Taverne_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Gegend_Taverne_15_00");	//Что это за таверна к востоку отсюда?
-	AI_Output(self,other,"DIA_Akil_Gegend_Taverne_13_01");	//Спроси об этом Рендольфа. Он знает о ней лучше меня. Он бывал там несколько раз.
+	AI_Output(self,other,"DIA_Akil_Gegend_Taverne_13_01");	//Спроси об этом Рэндольфа. Он знает о ней лучше меня. Он бывал там несколько раз.
 };
 
 
@@ -496,7 +496,7 @@ instance DIA_Akil_SCHAFDIEB(C_Info)
 	nr = 2;
 	condition = DIA_Akil_SCHAFDIEB_Condition;
 	information = DIA_Akil_SCHAFDIEB_Info;
-	description = "Это не новость.";
+	description = "Есть еще новости?";
 };
 
 
@@ -593,7 +593,7 @@ instance DIA_Akil_AkilsSchaf(C_Info)
 	nr = 2;
 	condition = DIA_Akil_AkilsSchaf_Condition;
 	information = DIA_Akil_AkilsSchaf_Info;
-	description = "(вернуть овцу Акила)";
+	description = "(Вернуть овцу Акилу)";
 };
 
 

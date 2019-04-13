@@ -6,7 +6,7 @@ instance DIA_Maleth_EXIT(C_Info)
 	condition = DIA_Maleth_EXIT_Condition;
 	information = DIA_Maleth_EXIT_Info;
 	permanent = TRUE;
-	description = "Мне нужно идти!";
+	description = Dialog_Ende_v2;
 };
 
 
@@ -20,6 +20,7 @@ func int DIA_Maleth_EXIT_Condition()
 
 func void DIA_Maleth_EXIT_Info()
 {
+	AI_Output(other,self,"DIA_Canthar_EXIT_15_00");	//Мне нужно идти.
 	AI_StopProcessInfos(self);
 	if(Maleth_ersterWolf == FALSE)
 	{
@@ -360,7 +361,7 @@ func void DIA_Maleth_PROBLEME_schafe_probleme()
 	Info_AddChoice(DIA_Maleth_PROBLEME,"Эй, полегче на поворотах, приятель.",DIA_Maleth_PROBLEME_schafe_probleme_drohen);
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
-		Info_AddChoice(DIA_Maleth_PROBLEME,"В чем твоя проблема?",DIA_Maleth_PROBLEME_schafe_probleme_geldher_auftrag);
+		Info_AddChoice(DIA_Maleth_PROBLEME,"Что у тебя за проблемы?",DIA_Maleth_PROBLEME_schafe_probleme_geldher_auftrag);
 	};
 };
 

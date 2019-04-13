@@ -51,9 +51,8 @@ func void G_CanNotUse(var int bIsPlayer,var int nAttribute,var int nValue)
 		};
 		nDifference = nValue - nAttributeValue;
 		strDifference = IntToString(nDifference);
-		strMessage = strDifference;
-		strMessage = ConcatStrings(strMessage," ");
-		strMessage = ConcatStrings(strMessage,strAttributeMissing);
+		strMessage = ConcatStrings(strAttributeMissing," ");
+		strMessage = ConcatStrings(strMessage,strDifference);
 	};
 	if(bIsPlayer)
 	{

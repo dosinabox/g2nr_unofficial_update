@@ -28,7 +28,10 @@ func int Spell_Logic_Fear(var int manaInvested)
 
 func void Spell_Cast_Fear()
 {
-	AI_SetNpcsToState(self,ZS_MagicFlee,1000);
+	if(other.guild != GIL_DRAGON)
+	{
+		AI_SetNpcsToState(self,ZS_MagicFlee,1000);
+	}; 
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_Scroll;

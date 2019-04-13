@@ -179,7 +179,7 @@ func void DIA_Wasili_FirstOldCoin_mehr()
 	AI_Output(other,self,"DIA_Wasili_FirstOldCoin_mehr_15_00");	//Этого недостаточно. Как насчет двух?
 	if(DIA_Wasili_FirstOldCoin_mehr_OneTime == FALSE)
 	{
-		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_01");	//Не пойдет! Я не еще не выжил из ума! Проваливай.
+		AI_Output(self,other,"DIA_Wasili_FirstOldCoin_mehr_01_01");	//Не пойдет! Я еще не выжил из ума! Проваливай.
 		DIA_Wasili_FirstOldCoin_mehr_OneTime = TRUE;
 		B_GiveInvItems(self,other,ItMi_OldCoin,1);
 		AI_StopProcessInfos(self);
@@ -246,12 +246,14 @@ func void DIA_Wasili_BringOldCoin_Info()
 		AI_Output(other,self,"DIA_Wasili_BringOldCoin_15_02");	//Одна.
 		B_GivePlayerXP(XP_BringOldCoin);
 		B_GiveInvItems(other,self,ItMi_OldCoin,1);
+		Npc_RemoveInvItem(self,ItMi_OldCoin);
 		OldCoinCounter = OldCoinCounter + 1;
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Wasili_BringOldCoin_15_03");	//Несколько.
 		B_GiveInvItems(other,self,ItMi_OldCoin,OldCoinCount);
+		Npc_RemoveInvItems(self,ItMi_OldCoin,Npc_HasItems(self,ItMi_OldCoin));
 		XP_BringOldCoins = OldCoinCount * XP_BringOldCoin;
 		OldCoinCounter = OldCoinCounter + OldCoinCount;
 		B_GivePlayerXP(XP_BringOldCoins);

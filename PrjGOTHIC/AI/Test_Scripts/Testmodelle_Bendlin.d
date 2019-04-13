@@ -24,7 +24,7 @@ instance ItSc_SummonMud(C_Item)
 
 instance Aya_Testmodell(Npc_Default)
 {
-	name[0] = "Aya";
+	name[0] = "Ёй€";
 	guild = GIL_NONE;
 	id = 55555;
 	voice = 16;
@@ -76,7 +76,7 @@ instance DIA_Aya_KommMit(C_Info)
 	condition = DIA_Aya_KommMit_Condition;
 	information = DIA_Aya_KommMit_Info;
 	permanent = TRUE;
-	description = "Okay, lass uns gehen.";
+	description = "’орошо, пошли.";
 };
 
 
@@ -123,7 +123,7 @@ instance DIA_Aya_WarteHier(C_Info)
 	condition = DIA_Aya_WarteHier_Condition;
 	information = DIA_Aya_WarteHier_Info;
 	permanent = TRUE;
-	description = "Ich fьrchte, ich muss mich von dir trennen.";
+	description = "Ѕоюсь, дальше наши пути расход€тс€.";
 };
 
 

@@ -279,7 +279,7 @@ func void DIA_Oric_CanHelp_WhatYouMean()
 	}
 	else if(hero.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_07");	//Мне нелегко просить тебя об этом, мастер. Но ты как нельзя лучше подходишь для этого задания.
+		AI_Output(self,other,"DIA_Oric_CanHelp_WhatYouMean_11_07");	//Мне нелегко просить тебя об этом, Мастер. Но ты как нельзя лучше подходишь для этого задания.
 	}
 	else
 	{
@@ -531,7 +531,7 @@ func void DIA_Oric_DragonPlettBericht_Info()
 	{
 		if((Npc_IsDead(SwampDragon) == FALSE) && (Oric_SwampdragonInfo_OneTime == FALSE))
 		{
-			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_03");	//Несколько дней назад к западу от нашего замка появилось большое болото. Это довольно подозрительно, тебе так не кажется?
+			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_03");	//Несколько дней назад к западу от нашего замка появилось большое болото. Это довольно подозрительно, так тебе не кажется?
 			B_LogEntry(TOPIC_DRACHENJAGD,"Орик дал мне повод к размышлению: За последние несколько дней к западу от замка образовалось большое болото. Он считает это очень подозрительным.");
 			Oric_SwampdragonInfo_OneTime = TRUE;
 		}

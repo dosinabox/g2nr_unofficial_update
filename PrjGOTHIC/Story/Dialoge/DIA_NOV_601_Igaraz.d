@@ -226,7 +226,7 @@ instance DIA_Igaraz_METOO(C_Info)
 	condition = DIA_Igaraz_METOO_Condition;
 	information = DIA_Igaraz_METOO_Info;
 	permanent = FALSE;
-	description = "Я тоже ...";
+	description = "Я тоже - я потребовал прохождения Испытания Огнем.";
 };
 
 
@@ -594,9 +594,17 @@ func int DIA_Igaraz_BuyIt_Condition()
 func void DIA_Igaraz_BuyIt_Info()
 {
 	AI_Output(other,self,"DIA_Igaranz_BuyIt_15_00");	//Я хочу купить эти бумаги.
-	AI_Output(self,other,"DIA_Igaranz_BuyIt_13_01");	//Послушай, я сейчас не могу отлучиться. Я дам тебе ключ от моего сундука. В нем все равно больше ничего нет.
-	B_GiveInvItems(other,self,ItMi_Gold,300);
-	B_GiveInvItems(self,other,ItKe_IgarazChest_Mis,1);
+	if(Npc_HasItems(self,ItKe_IgarazChest_Mis) >= 1)
+	{
+		AI_Output(self,other,"DIA_Igaranz_BuyIt_13_01");	//Послушай, я сейчас не могу отлучиться. Я дам тебе ключ от моего сундука. В нем все равно больше ничего нет.
+		B_GiveInvItems(other,self,ItMi_Gold,300);
+		B_GiveInvItems(self,other,ItKe_IgarazChest_Mis,1);
+	}
+	else
+	{
+		B_Say(self,other,"$SpareMe");
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -607,7 +615,7 @@ instance DIA_Igaraz_PICKPOCKET(C_Info)
 	condition = DIA_Igaraz_PICKPOCKET_Condition;
 	information = DIA_Igaraz_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть этот ключ будет легко)";
+	description = Pickpocket_40_Key;
 };
 
 

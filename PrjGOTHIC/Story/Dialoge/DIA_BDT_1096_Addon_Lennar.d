@@ -6,7 +6,7 @@ instance DIA_Addon_Lennar_EXIT(C_Info)
 	condition = DIA_Addon_Lennar_EXIT_Condition;
 	information = DIA_Addon_Lennar_EXIT_Info;
 	permanent = TRUE;
-	description = "Мне нужно идти...";
+	description = Dialog_Ende_v2;
 };
 
 
@@ -17,6 +17,7 @@ func int DIA_Addon_Lennar_EXIT_Condition()
 
 func void DIA_Addon_Lennar_EXIT_Info()
 {
+	AI_Output(other,self,"DIA_Angar_DJG_Anwerben_Gehen_15_00");	//Мне нужно идти.
 	AI_StopProcessInfos(self);
 };
 
@@ -253,7 +254,7 @@ instance DIA_Addon_Lennar_Hacker(C_Info)
 	condition = DIA_Addon_Lennar_Hacker_Condition;
 	information = DIA_Addon_Lennar_Hacker_Info;
 	permanent = TRUE;
-	description = "Все в порядке?";
+	description = "Как дела?";
 };
 
 

@@ -27,7 +27,7 @@ instance DIA_Egill_HALLO(C_Info)
 	nr = 3;
 	condition = DIA_Egill_HALLO_Condition;
 	information = DIA_Egill_HALLO_Info;
-	description = "Что новенького?";
+	description = "В чем дело?";
 };
 
 

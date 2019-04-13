@@ -10,6 +10,7 @@ func void B_Greg_ComesToDexter()
 			Dexter.aivar[AIV_EnemyOverride] = FALSE;
 			GregLocation = Greg_Dexter;
 			B_StartOtherRoutine(Greg_NW,"Dexter");
+			B_StartOtherRoutine(BDT_1064_Bandit_L,"Attack");
 			B_Greg_ComesToDexter_OneTime = TRUE;
 		};
 	};

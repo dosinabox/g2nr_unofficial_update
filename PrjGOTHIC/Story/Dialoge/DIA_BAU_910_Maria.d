@@ -264,7 +264,7 @@ func void DIA_Maria_AboutOnar_Info()
 {
 	AI_Output(other,self,"DIA_Maria_AboutOnar_15_00");	//Расскажи мне об Онаре.
 	AI_Output(self,other,"DIA_Maria_AboutOnar_17_01");	//Он хороший человек. Немного сварливый и очень раздражительный, но у нас у всех есть свои недостатки.
-	AI_Output(self,other,"DIA_Maria_AboutOnar_17_02");	//Я спросила своего мужа:  'Почему ты позволяешь солдатам из города так с собой обращаться'?
+	AI_Output(self,other,"DIA_Maria_AboutOnar_17_02");	//Я спросила своего мужа: 'Почему ты позволяешь солдатам из города так с собой обращаться'?
 	AI_Output(self,other,"DIA_Maria_AboutOnar_17_03");	//'Сделай же что-нибудь', - сказала я.
 	AI_Output(self,other,"DIA_Maria_AboutOnar_17_04");	//И он нанял наемников. А теперь мне кажется, что мы ведем войну.
 	AI_Output(self,other,"DIA_Maria_AboutOnar_17_05");	//Но, если подумать, мы ведь действительно воюем, разве нет?

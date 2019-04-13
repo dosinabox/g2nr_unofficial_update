@@ -132,7 +132,7 @@ instance DIA_Addon_Edgor_MIS2(C_Info)
 	condition = DIA_Addon_Edgor_MIS2_Condition;
 	information = DIA_Addon_Edgor_MIS2_Info;
 	permanent = FALSE;
-	description = "Франко послал меня по поводу этой каменной таблички...";
+	description = "Франко послал меня по поводу этой каменной таблички. Ты ее нашел?";
 };
 
 
@@ -147,7 +147,7 @@ func int DIA_Addon_Edgor_MIS2_Condition()
 func void DIA_Addon_Edgor_MIS2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Edgor_MIS2_15_00");	//Франко послал меня по поводу этой каменной таблички. Ты ее нашел?
-	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_01");	//Приятель, я даже не пытался ее искать. Все, что я знаю, - это то, что она должна быть где-то в том старом здании на болоте.
+	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_01");	//Приятель, я даже не пытался ее искать. Все, что я знаю, - это то, что она должна быть где-то в этом старом здании на болоте.
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_02");	//А мой внутренний голос говорит мне: 'Эдгор, сторонись старых зданий, стоящих на болоте'.
 	AI_Output(self,other,"DIA_Addon_Edgor_MIS2_06_03");	//Я не собираюсь рисковать своей шкурой ради этого раздолбая Франко!
 	B_LogEntry(Topic_Addon_Stoneplate,"Эдгор не собирается искать каменную табличку. Он говорит, что она находится в каком-то старом строении на болотах.");
@@ -217,7 +217,7 @@ instance DIA_Addon_Edgor_Teach(C_Info)
 	condition = DIA_Addon_Edgor_Teach_Condition;
 	information = DIA_Addon_Edgor_Teach_Info;
 	permanent = FALSE;
-	description = "Ты можешь научить меня чему-нибудь?";
+	description = "Можешь научить меня кое-чему?";
 };
 
 
@@ -232,7 +232,7 @@ func int DIA_Addon_Edgor_Teach_Condition()
 func void DIA_Addon_Edgor_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Edgor_Teach_15_00");	//Можешь научить меня кое-чему?
-	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_01");	//Я многое знаю про кровавых мух. Я ненавижу этих гадкий тварей даже больше, чем я ненавижу Франко!
+	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_01");	//Я многое знаю про кровавых мух. Я ненавижу этих гадких тварей даже больше, чем я ненавижу Франко!
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_02");	//Но я знаю, как отрывать от них жала и крылья, от их мертвых тушек. (с оттенком безумия) Да! Отрывать от них...
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_03");	//Кроме того, я знаю, как выделять секрет из оторванных жал.
 	AI_Output(self,other,"DIA_Addon_Edgor_Teach_06_04");	//Если хочешь, я могу научить тебя всей этой фигне.
@@ -255,7 +255,7 @@ instance DIA_Addon_Edgor_TrainStart(C_Info)
 	condition = DIA_Addon_Edgor_Start_Condition;
 	information = DIA_Addon_Edgor_Start_Info;
 	permanent = TRUE;
-	description = "Кровавые мухи...";
+	description = "По поводу кровавых мух...";
 };
 
 
@@ -275,11 +275,11 @@ func void DIA_Addon_Edgor_Start_Info()
 	Info_AddChoice(DIA_Addon_Edgor_TrainStart,Dialog_Back,DIA_Addon_Edgor_TrainStart_BACK);
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 	{
-		Info_AddChoice(DIA_Addon_Edgor_TrainStart,"Жало кровавой мухи (5 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_Sting);
+		Info_AddChoice(DIA_Addon_Edgor_TrainStart,"Жало кровавой мухи (1 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_Sting);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
 	{
-		Info_AddChoice(DIA_Addon_Edgor_TrainStart,"Крылья кровавой мухи (5 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_Wing);
+		Info_AddChoice(DIA_Addon_Edgor_TrainStart,"Крылья кровавой мухи (1 LP, 100 золота)",DIA_Addon_Edgor_TrainStart_Wing);
 	};
 	if(Knows_Bloodfly == FALSE)
 	{
@@ -335,7 +335,7 @@ func void DIA_Addon_Edgor_TrainStart_GIFT()
 		{
 			AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_GIFT_15_00");	//Как добыть секрет из жала кровавой мухи?
 			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_01");	//Разрежь верхний слой жала вдоль - тогда лечебный секрет и вытечет.
-			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_02");	//Это совершенно безопасный способ высосать его из жала -  или использовать его для лечебного зелья.
+			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_02");	//Это совершенно безопасный способ высосать его из жала - или использовать его для лечебного зелья.
 			other.lp = other.lp - 1;
 			Knows_Bloodfly = TRUE;
 			PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);

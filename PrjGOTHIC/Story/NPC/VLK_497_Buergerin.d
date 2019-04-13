@@ -39,9 +39,6 @@ func void Rtn_Start_497()
 func void Rtn_NewLife_497()
 {
 	TA_Smalltalk(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_Smalltalk(8,0,11,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_Smalltalk(11,0,15,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_Smalltalk(15,0,18,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_Smalltalk(18,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+	TA_Smalltalk(8,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
 };
 

@@ -174,7 +174,7 @@ func void DIA_Hagen_PETZMASTER_Info()
 			AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_03");	//Не говоря уже о других обвинениях.
 		};
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_04");	//Страже приказано казнить убийц на месте.
-		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_05");	//Убийства неприемлемы в этом городе. Но ты можешь подтвердить свое раскаяние, заплатив штраф
+		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_05");	//Убийства неприемлемы в этом городе. Но ты можешь подтвердить свое раскаяние, заплатив штраф.
 	};
 	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
 	{
@@ -303,7 +303,7 @@ func void DIA_Lord_Hagen_Frieden_Info()
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_02");	//Я знаю генерала Ли. Мне также известно об обстоятельствах, при которых он был приговорен к исправительным работам в колонии.
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_03");	//Я считаю его благородным человеком. Я готов даровать ему помилование - но только ему!
-	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_04");	//Это не касается его людей, впрочем. Большинство из них - отъявленные головорезы и заслуживают наказания!
+	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_04");	//Это не касается его людей. Впрочем, большинство из них - отъявленные головорезы и заслуживают наказания!
 	AI_Output(self,other,"DIA_Lord_Hagen_Frieden_04_05");	//Я ни за что не помилую их. Можешь так и передать Ли.
 	Hagen_FriedenAbgelehnt = TRUE;
 	if(!Npc_KnowsInfo(other,DIA_Lord_Hagen_Armee))
@@ -611,7 +611,7 @@ instance DIA_Hagen_Teach(C_Info)
 	condition = DIA_Hagen_Teach_Condition;
 	information = DIA_Hagen_Teach_Info;
 	permanent = TRUE;
-	description = "Начнем (изучить бой двуручным оружием).";
+	description = "Приступим к обучению! (изучить бой двуручным оружием)";
 };
 
 
@@ -697,7 +697,7 @@ func void DIA_Lord_Hagen_Knight_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_04");	//Стать воином Инноса означает  полностью посвятить себя служению Инносу.
+		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_04");	//Стать воином Инноса означает полностью посвятить себя служению Инносу.
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_05");	//Только самые благородные и мужественные воины могут быть приняты в орден.
 		AI_Output(self,other,"DIA_Lord_Hagen_Knight_04_06");	//Если ты твердо решил стать паладином, ты должен доказать, что достоин этого.
 	};
@@ -841,7 +841,7 @@ func void DIA_Lord_Hagen_KAP3U4_PERM_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_KAP3U4_PERM_04_01");	//Я с ума сойду здесь. Я солдат, а не бюрократ.
-		AI_Output(self,other,"DIA_Lord_Hagen_KAP3U4_PERM_04_02");	//Из-за всей этой бумажной работы, что я должен делать, я уже почти забыл ощущение от клинка в руке.
+		AI_Output(self,other,"DIA_Lord_Hagen_KAP3U4_PERM_04_02");	//Из-за всей этой бумажной работы, что я должен делать, я уже почти забыл ощущение клинка в руке.
 	};
 };
 
@@ -869,7 +869,7 @@ func void DIA_Lord_Hagen_EyeBroken_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_07");	//Глаз у меня, но он поврежден.
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_08");	//ЧТО? О, Иннос! Что ты наделал? Нам нужен этот Глаз!
-	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_09");	//Поговори с  Пирокаром! Должен быть способ восстановить его.
+	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_09");	//Поговори с Пирокаром! Должен быть способ восстановить его.
 	Hagen_KnowsEyeKaputt = TRUE;
 };
 
@@ -881,7 +881,7 @@ instance DIA_Lord_Hagen_BACKINTOWN(C_Info)
 	condition = DIA_Lord_Hagen_BACKINTOWN_Condition;
 	information = DIA_Lord_Hagen_BACKINTOWN_Info;
 	permanent = FALSE;
-	description = "Я принес тебе новости от Гаронда.";
+	description = "Я принес тебе новости от Гаронда. Вот, он начертал эти строки для тебя.";
 };
 
 
@@ -903,9 +903,9 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_03");	//Они потеряли много людей в старательских операциях и добыли очень мало руды.
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_04");	//И, должен добавить, без помощи извне им всем скоро придет конец. Вот такие дела.
 	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_05");	//Я должен найти способ спасти эту экспедицию. Ты многое сделал для нас. Иннос благодарит тебя...
-	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_06");	//Мне не интересна его благодарность. Мне нужен его глаз.
+	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_06");	//Мне не интересна его благодарность. Мне нужен его Глаз.
 	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_07");	//Да, конечно. Я держу свое слово. Возьми это письмо. Оно откроет перед тобой монастырские врата.
-	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_08");	//Поговори с Пирокаром, высшим Магом Огня, и покажи ему это письмо с полномочиями. Он предоставит тебе доступ к Глазу Инноса.
+	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_08");	//Поговори с Пирокаром, высшим магом Огня, и покажи ему это письмо с полномочиями. Он предоставит тебе доступ к Глазу Инноса.
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_00");	//И еще одно, прежде чем ты уйдешь...
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_01");	//Возьми эту руну в знак моей благодарности. Она вернет тебя в город, когда ты этого захочешь.
 	B_GiveInvItems(self,other,ItRu_TeleportSeaport,1);
@@ -927,7 +927,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	Wld_InsertNpc(DMT_1209_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	Wld_InsertNpc(DMT_1210_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	Wld_InsertNpc(DMT_1211_Dementor,"NW_TROLLAREA_RITUALPATH_01");
-	B_StartOtherRoutine(Pedro,"Tot");
+	B_RemoveNpc(Pedro);
 	if(Npc_IsDead(MiltenNW))
 	{
 		Wld_InsertNpc(PC_Mage_NW,"NW_MONASTERY_ENTRY_01");
@@ -1108,7 +1108,7 @@ func void DIA_Lord_Hagen_AugeAmStart_Info()
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_12");	//И ты восстановил его!
 	};
-	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_13");	//Значит ты Избранный Инноса!
+	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_13");	//Значит, ты Избранный Инноса!
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_14");	//Я должен отправляться в путь и убить всех драконов в Долине Рудников!
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_15");	//Иди с Инносом и уничтожь Зло с его помощью!
 };

@@ -33,3 +33,8 @@ func void Rtn_Obsessed_4131()
 	TA_Stand_ArmsCrossed(23,0,8,0,"OW_SAWHUT_MOLERAT_MOVEMENT");
 };
 
+func void Rtn_FleePass_4131()
+{
+	TA_FleeToWP(8,0,23,0,"START");
+	TA_FleeToWP(23,0,8,0,"START");
+};

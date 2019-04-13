@@ -38,6 +38,13 @@ func void ZS_Unconscious()
 	};
 	B_GiveTradeInv(self);
 	B_ClearRuneInv(self);
+	B_ClearSmithInv(self);
+	B_ClearAlchemyInv(self);
+	B_ClearBonusFoodInv(self);
+	if(self.guild == GIL_STRF)
+	{
+		Npc_RemoveInvItems(self,ItMw_2H_Axe_L_01,Npc_HasItems(self,ItMw_2H_Axe_L_01));
+	};
 	if((Npc_IsPlayer(other) || (other.aivar[AIV_PARTYMEMBER] == TRUE)) && (self.aivar[AIV_VictoryXPGiven] == FALSE))
 	{
 		B_GivePlayerXP(self.level * XP_PER_VICTORY);
@@ -47,6 +54,10 @@ func void ZS_Unconscious()
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Dar)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cipher)))
 	{
 		Dar_LostAgainstCipher = TRUE;
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Brahim))
+	{
+		Brahim_attacked_day = Wld_GetDay() + 1;
 	};
 };
 

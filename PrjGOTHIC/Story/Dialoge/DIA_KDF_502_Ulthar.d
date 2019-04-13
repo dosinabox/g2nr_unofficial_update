@@ -115,7 +115,7 @@ instance DIA_Ulthar_TEST(C_Info)
 	condition = DIA_Ulthar_TEST_Condition;
 	information = DIA_Ulthar_TEST_Info;
 	permanent = FALSE;
-	description = "Я готов пройти твое испытание, мастер.";
+	description = "Я готов пройти твое испытание, Мастер.";
 };
 
 
@@ -129,7 +129,7 @@ func int DIA_Ulthar_TEST_Condition()
 
 func void DIA_Ulthar_TEST_Info()
 {
-	AI_Output(other,self,"DIA_Ulthar_TEST_15_00");	//Я готов пройти твое испытание, мастер.
+	AI_Output(other,self,"DIA_Ulthar_TEST_15_00");	//Я готов пройти твое испытание, Мастер.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_01");	//Я не удивлен, что ты знаешь этот старый закон.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_02");	//Но я подозреваю, что ты не осознаешь, какому риску ты себя подвергаешь. Помни, что нетерпеливый дух не выдержит Испытание Огнем.
 	AI_Output(self,other,"DIA_Ulthar_TEST_05_03");	//Уже очень давно никто не подвергался этому испытанию. А пройти его и остаться в живых вообще удалось только одному человеку.
@@ -252,7 +252,7 @@ func int DIA_Ulthar_PermAbKap3_Condition()
 func void DIA_Ulthar_PermAbKap3_Info()
 {
 	AI_Output(other,self,"DIA_Ulthar_PermAbKap3_15_00");	//Есть новости?
-	if(hero.guild == GIL_KDF)
+	if(hero.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Ulthar_PermAbKap3_05_01");	//Пока нет. Иди и занимайся своими задачами. Тебе еще многое нужно сделать.
 	}
@@ -295,7 +295,7 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_04");	//Со святыми словами очищения к алтарю вернется его былая сила.
 		if(Npc_HasItems(other,ItWr_Map_Shrine_MIS) == FALSE)
 		{
-			if(Npc_HasItems(Gorax,ItWr_Map_Shrine_MIS) && (Npc_IsDead(Gorax) == FALSE))
+			if(Npc_IsDead(Gorax) == FALSE)
 			{
 				AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_05");	//Горакс может продать тебе карту, на которой помечены наши алтари.
 			}

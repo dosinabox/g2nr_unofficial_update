@@ -83,6 +83,7 @@ func int DIA_Khaled_TRADE_Condition()
 func void DIA_Khaled_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Khaled_TRADE_15_00");	//Какое оружие ты можешь предложить мне?
+	B_ClearBonusFoodInv(self);
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Khaled_TRADE_11_01");	//Только лучшее. Да ты сам взгляни на него.
 };

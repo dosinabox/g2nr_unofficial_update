@@ -186,7 +186,7 @@ func void DIA_Abuyin_Woher_Info()
 {
 	AI_Output(other,self,"DIA_Abuyin_Woher_15_00");	//Где мне взять яблочный табак?
 	AI_Output(self,other,"DIA_Abuyin_Woher_13_01");	//Я дам тебе две порции. А там делай с ними, что тебе захочется.
-	AI_Output(self,other,"DIA_Abuyin_Woher_13_02");	//Если тебе понадобится еще табак, то направь свои стопы к Зурису, Мастеру Зелий. Он производит это табак и продает его.
+	AI_Output(self,other,"DIA_Abuyin_Woher_13_02");	//Если тебе понадобится еще табак, то направь свои стопы к Зурису, мастеру Зелий. Он производит этот табак и продает его.
 	B_GiveInvItems(self,other,ItMi_ApfelTabak,2);
 };
 
@@ -310,6 +310,7 @@ func void DIA_Abuyin_Trade_Info()
 	Abuyin_Score = Npc_HasItems(other,ItMi_Honigtabak) * VALUE_ItMi_HonigTabak;
 	AI_Output(other,self,"DIA_Abuyin_Trade_15_00");	//Я принес тебе медового табака.
 	B_GiveInvItems(other,self,ItMi_Honigtabak,Npc_HasItems(other,ItMi_Honigtabak));
+	Npc_RemoveInvItems(self,ItMi_Honigtabak,Npc_HasItems(self,ItMi_Honigtabak));
 	B_GiveInvItems(self,other,ItMi_Gold,Abuyin_Score);
 	AI_Output(self,other,"DIA_Abuyin_Trade_13_01");	//Для меня огромное удовольствие иметь с тобой дело.
 };

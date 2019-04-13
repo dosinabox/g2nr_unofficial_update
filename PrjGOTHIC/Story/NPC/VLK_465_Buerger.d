@@ -7,6 +7,7 @@ instance VLK_465_Buerger(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = NPCTYPE_AMBIENT;
+	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Sword);

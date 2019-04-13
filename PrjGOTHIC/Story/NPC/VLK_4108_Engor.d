@@ -25,3 +25,10 @@ func void Rtn_Start_4108()
 	TA_Sleep(22,0,8,0,"OC_GUARD_ROOM_03_SLEEP");
 };
 
+
+func void Rtn_OrcAttack_4108()
+{
+	TA_Sleep(8,0,22,0,"OC_GUARD_IN_01");
+	TA_Sleep(22,0,8,0,"OC_GUARD_IN_01");
+};
+

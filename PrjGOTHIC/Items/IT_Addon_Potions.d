@@ -14,7 +14,7 @@ instance ItPo_Addon_Geist_01(C_Item)
 	description = "«елье изменени€ сознани€";
 	text[2] = "ѕримен€ть с осторожностью!";
 	text[3] = "—ильно воздействует на сознание и";
-	text[4] = "может оказать летальное действие";
+	text[4] = "может оказать летальное действие.";
 	text[5] = NAME_Value;
 	count[5] = Value_ManaEssenz;
 };
@@ -41,7 +41,7 @@ instance ItPo_Addon_Geist_02(C_Item)
 	description = "«елье изменени€ сознани€";
 	text[2] = "ѕримен€ть с осторожностью!";
 	text[3] = "—ильно воздействует на сознание и";
-	text[4] = "может оказать летальное действие";
+	text[4] = "может оказать летальное действие.";
 	text[5] = NAME_Value;
 	count[5] = Value_ManaEssenz;
 };
@@ -69,7 +69,7 @@ instance ItPo_Health_Addon_04(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_HEALTHPOTION";
 	description = "„истое здоровье";
-	text[2] = "ѕолное восстановление здоровь€";
+	text[2] = "ѕолное восстановление здоровь€.";
 	text[5] = NAME_Value;
 	count[5] = Value_HpTrunk;
 };
@@ -94,7 +94,7 @@ instance ItPo_Mana_Addon_04(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_MANAPOTION";
 	description = "„иста€ мана";
-	text[2] = "ѕолное восстановление маны";
+	text[2] = "ѕолное восстановление маны.";
 	text[5] = NAME_Value;
 	count[5] = Value_ManaTrunk;
 };

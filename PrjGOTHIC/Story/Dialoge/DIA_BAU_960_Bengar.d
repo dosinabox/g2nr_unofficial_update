@@ -479,6 +479,7 @@ func void DIA_Bengar_MILIZWEG_Info()
 			B_GivePlayerXP(XP_Bengar_MILIZKLATSCHEN);
 		};
 		Bengar_MilSuccess = TRUE;
+		Npc_ExchangeRoutine(self,"Start");
 	};
 };
 
@@ -535,7 +536,7 @@ func void DIA_Bengar_BALTHASARDARFAUFWEIDE_Info()
 	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_01");	//Почему?
 	AI_Output(other,self,"DIA_Bengar_BALTHASARDARFAUFWEIDE_15_02");	//(угрожающе) Потому что я так сказал.
 	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_03");	//Ммм. Хорошо, как скажешь.
-	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_04");	//только пусть он пасет своих овец где-нибудь за полем.
+	AI_Output(self,other,"DIA_Bengar_BALTHASARDARFAUFWEIDE_10_04");	//Только пусть он пасет своих овец где-нибудь за полем.
 	MIS_Balthasar_BengarsWeide = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -599,7 +600,7 @@ instance DIA_Bengar_ALLEIN(C_Info)
 	nr = 30;
 	condition = DIA_Bengar_ALLEIN_Condition;
 	information = DIA_Bengar_ALLEIN_Info;
-	description = "Как ситуация?";
+	description = "Как дела?";
 };
 
 
@@ -722,7 +723,7 @@ instance DIA_Bengar_PERM(C_Info)
 	condition = DIA_Bengar_PERM_Condition;
 	information = DIA_Bengar_PERM_Info;
 	permanent = TRUE;
-	description = "Все будет хорошо.";
+	description = "Все будет в порядке.";
 };
 
 

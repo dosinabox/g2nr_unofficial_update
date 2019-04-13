@@ -1,5 +1,9 @@
 
 var int PrayDay;
+var int PrayDayOne_0;
+var int PrayDayOne_10;
+var int PrayDayOne_50;
+var int PrayDayOne_100;
 
 var string concatDonation;
 
@@ -182,7 +186,7 @@ instance PC_PrayShrine_Paladine(C_Info)
 	condition = PC_PrayShrine_Paladine_Condition;
 	information = PC_PrayShrine_Paladine_Info;
 	permanent = FALSE;
-	description = "Помолиться за паладинов.";
+	description = "Помолиться за паладинов";
 };
 
 
@@ -259,7 +263,7 @@ func void PC_PrayShrine_Pray_NoPay()
 {
 	var int zufall;
 	zufall = Hlp_Random(100);
-	if(PrayDay == Wld_GetDay())
+	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && (PrayDayOne_0 == TRUE)))
 	{
 		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
 	}
@@ -272,13 +276,17 @@ func void PC_PrayShrine_Pray_NoPay()
 		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
 	};
 	PrayDay = Wld_GetDay();
+	if(PrayDay == 0)
+	{
+		PrayDayOne_0 = TRUE;
+	};
 	Info_ClearChoices(PC_PrayShrine_Pray);
 };
 
 func void PC_PrayShrine_Pray_SmallPay()
 {
 	Npc_RemoveInvItems(hero,ItMi_Gold,10);
-	if(PrayDay == Wld_GetDay())
+	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && (PrayDayOne_10 == TRUE)))
 	{
 		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
 	}
@@ -287,13 +295,17 @@ func void PC_PrayShrine_Pray_SmallPay()
 		B_BlessAttribute(hero,ATR_HITPOINTS_MAX,1);
 	};
 	PrayDay = Wld_GetDay();
+	if(PrayDay == 0)
+	{
+		PrayDayOne_10 = TRUE;
+	};
 	Info_ClearChoices(PC_PrayShrine_Pray);
 };
 
 func void PC_PrayShrine_Pray_MediumPay()
 {
 	Npc_RemoveInvItems(hero,ItMi_Gold,50);
-	if(PrayDay == Wld_GetDay())
+	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && (PrayDayOne_50 == TRUE)))
 	{
 		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
 	}
@@ -302,6 +314,10 @@ func void PC_PrayShrine_Pray_MediumPay()
 		B_BlessAttribute(hero,ATR_HITPOINTS_MAX,2);
 	};
 	PrayDay = Wld_GetDay();
+	if(PrayDay == 0)
+	{
+		PrayDayOne_50 = TRUE;
+	};
 	Info_ClearChoices(PC_PrayShrine_Pray);
 };
 
@@ -310,7 +326,7 @@ func void PC_PrayShrine_Pray_BigPay()
 	var int zufall;
 	zufall = Hlp_Random(100);
 	Npc_RemoveInvItems(hero,ItMi_Gold,100);
-	if(PrayDay == Wld_GetDay())
+	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && (PrayDayOne_100 == TRUE)))
 	{
 		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
 	}
@@ -334,6 +350,10 @@ func void PC_PrayShrine_Pray_BigPay()
 		B_BlessAttribute(hero,ATR_HITPOINTS_MAX,3);
 	};
 	PrayDay = Wld_GetDay();
+	if(PrayDay == 0)
+	{
+		PrayDayOne_100 = TRUE;
+	};
 	Info_ClearChoices(PC_PrayShrine_Pray);
 };
 

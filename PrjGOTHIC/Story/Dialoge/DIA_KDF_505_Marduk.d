@@ -53,7 +53,7 @@ instance DIA_Marduk_Arbeit(C_Info)
 	condition = DIA_Marduk_Arbeit_Condition;
 	information = DIA_Marduk_Arbeit_Info;
 	permanent = FALSE;
-	description = "Могу я сделать что-нибудь для тебя, мастер?";
+	description = "Могу я сделать что-нибудь для тебя, Мастер?";
 };
 
 
@@ -67,7 +67,7 @@ func int DIA_Marduk_Arbeit_Condition()
 
 func void DIA_Marduk_Arbeit_Info()
 {
-	AI_Output(other,self,"DIA_Marduk_Arbeit_15_00");	//Могу я сделать что-нибудь для тебя, мастер?
+	AI_Output(other,self,"DIA_Marduk_Arbeit_15_00");	//Могу я сделать что-нибудь для тебя, Мастер?
 	AI_Output(self,other,"DIA_Marduk_Arbeit_05_01");	//Для меня? Нет, мне не нужна твоя помощь. Лучше помолись за воинов Инноса, отправившихся в Долину Рудников.
 	MIS_MardukBeten = LOG_Running;
 	B_StartOtherRoutine(Sergio,"WAIT");
@@ -198,7 +198,7 @@ instance DIA_Marduk_TEACH(C_Info)
 	condition = DIA_Marduk_TEACH_Condition;
 	information = DIA_Marduk_TEACH_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун).";
+	description = "Обучи меня (созданию рун)";
 };
 
 
@@ -441,9 +441,9 @@ func void DIA_Marduk_TrainPals_Info()
 	AI_Output(other,self,"DIA_Marduk_TrainPals_15_00");	//Чему ты можешь обучить меня?
 	AI_Output(self,other,"DIA_Marduk_TrainPals_05_01");	//Естественно, я не могу обучить тебя боевым искусствам.
 	AI_Output(self,other,"DIA_Marduk_TrainPals_05_02");	//Но я могу, впрочем, донести сущность Инноса и его дары до тебя.
-	AI_Output(self,other,"DIA_Marduk_TrainPals_05_03");	//Кроме того, я мои обязанности входит подготовить тебя к Освящению Меча.
+	AI_Output(self,other,"DIA_Marduk_TrainPals_05_03");	//Кроме того, в мои обязанности входит подготовить тебя к Освящению Меча.
 	AI_Output(other,self,"DIA_Marduk_TrainPals_15_04");	//А магии?
-	AI_Output(self,other,"DIA_Marduk_TrainPals_05_05");	//Здесь мы учим только нашей магии. Ты должен изучать магию паладинов в городе.
+	AI_Output(self,other,"DIA_Marduk_TrainPals_05_05");	//Здесь мы только учим нашей магии. Ты должен изучать магию паладинов в городе.
 	Info_ClearChoices(DIA_Marduk_TrainPals);
 	Info_AddChoice(DIA_Marduk_TrainPals,"Может быть, позже.",DIA_Marduk_TrainPals_Later);
 	Info_AddChoice(DIA_Marduk_TrainPals,"Что ты хочешь сказать этим?",DIA_Marduk_TrainPals_Meaning);
@@ -471,7 +471,7 @@ func void DIA_Marduk_TrainPals_Blessing()
 	AI_Output(other,self,"DIA_Marduk_TrainPals_Blessing_15_00");	//Что такое Освящение Меча?
 	AI_Output(self,other,"DIA_Marduk_TrainPals_Blessing_05_01");	//Освящение Меча - это один из самых священных ритуалов паладинов.
 	AI_Output(self,other,"DIA_Marduk_TrainPals_Blessing_05_02");	//Во время этой церемонии святая сила Инноса протекает через меч паладина и придает мечу невообразимую силу.
-	AI_Output(self,other,"DIA_Marduk_TrainPals_Blessing_05_03");	//Меч, освященный таким образом, - самое ценное, что есть у паладина, и он не расстается с ним до конца своих дней.
+	AI_Output(self,other,"DIA_Marduk_TrainPals_Blessing_05_03");	//Меч, освященный таким образом, - самое ценное, что есть у паладина, и он не расстается с ним до конца дней своих.
 	Marduk_TrainPals_permanent = TRUE;
 };
 
@@ -489,7 +489,7 @@ instance DIA_Marduk_SwordBlessing(C_Info)
 
 func int DIA_Marduk_SwordBlessing_Condition()
 {
-	if(Marduk_TrainPals_permanent == TRUE)
+	if((Marduk_TrainPals_permanent == TRUE) && (C_SCHasBlessedSword() == FALSE))
 	{
 		return TRUE;
 	};
@@ -500,12 +500,15 @@ func void DIA_Marduk_SwordBlessing_Info()
 	AI_Output(other,self,"DIA_Marduk_SwordBlessing_15_00");	//Я хочу освятить мой меч.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_01");	//Если ты твердо решил сделать этот шаг, тебе сначала нужно найти магический меч.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_02");	//Затем ты должен вернуться в эту часовню и молиться.
-	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_03");	//Во время молитвы и после разумного пожертвования нашему Владыке Инносу ты должен попросить у Инноса благоволения и помощи в битве против Зла.
+	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_03");	//Во время молитвы и после разумного пожертвования нашему Владыке Инносу ты должен попросить у Инноса благословления и помощи в битве против Зла.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_05_04");	//Если Иннос будет благосклонен к тебе, твой меч в тот же момент будет освящен нашим Владыкой.
 	Info_ClearChoices(DIA_Marduk_SwordBlessing);
 	Info_AddChoice(DIA_Marduk_SwordBlessing,Dialog_Back,DIA_Marduk_SwordBlessing_Back);
 	Info_AddChoice(DIA_Marduk_SwordBlessing,"Что за пожертвование?",DIA_Marduk_SwordBlessing_Donation);
-	Info_AddChoice(DIA_Marduk_SwordBlessing,"Где мне найти магический меч?",DIA_Marduk_SwordBlessing_OreBlade);
+	if(OreBladeBought == FALSE)
+	{
+		Info_AddChoice(DIA_Marduk_SwordBlessing,"Где мне найти магический меч?",DIA_Marduk_SwordBlessing_OreBlade);
+	};
 };
 
 func void DIA_Marduk_SwordBlessing_Back()
@@ -516,7 +519,7 @@ func void DIA_Marduk_SwordBlessing_Back()
 func void DIA_Marduk_SwordBlessing_Donation()
 {
 	AI_Output(other,self,"DIA_Marduk_SwordBlessing_Donation_15_00");	//Что за пожертвование?
-	AI_Output(self,other,"DIA_Marduk_SwordBlessing_Donation_05_01");	//Ну, учитывая милость, что будет оказана тебе, суммы в 5000 монет будет более чем достаточно.
+	AI_Output(self,other,"DIA_Marduk_SwordBlessing_Donation_05_01");	//Ну, учитывая милость, что будет оказана тебе, суммы в 5000 золотых будет более чем достаточно.
 	AI_Output(self,other,"DIA_Marduk_SwordBlessing_Donation_05_02");	//Конечно, ты можешь пожертвовать больше.
 };
 
@@ -561,7 +564,7 @@ func void DIA_Marduk_Kap3_PERM_Info()
 		AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_02");	//Он украл Глаз Инноса, один из самых важных наших артефактов. И это только вершина айсберга.
 	};
 	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_04");	//(озабоченно) Враг, по-видимому, уже вошел в город.
-	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_15_05");	//Чт ты имеешь в виду?
+	AI_Output(other,self,"DIA_Marduk_Kap3_PERM_15_05");	//Что ты имеешь в виду?
 	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_06");	//Один из паладинов, Лотар, был убит на улице.
 	AI_Output(self,other,"DIA_Marduk_Kap3_PERM_05_07");	//(зло) Прямо средь бела дня! Это зашло слишком далеко, но я боюсь, что это только начало.
 	Info_ClearChoices(DIA_Marduk_Kap3_PERM);

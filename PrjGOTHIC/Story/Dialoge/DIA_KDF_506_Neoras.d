@@ -376,7 +376,7 @@ instance DIA_Neoras_BrewForMe(C_Info)
 	condition = DIA_Neoras_BrewForMe_Condition;
 	information = DIA_Neoras_BrewForMe_Info;
 	permanent = TRUE;
-	description = "Свари мне ...";
+	description = "Свари мне...";
 };
 
 
@@ -392,9 +392,9 @@ func void DIA_Neoras_BrewForMe_Info()
 {
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
 	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"зелье ускорения.",DIA_Neoras_BrewForMe_Speed);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"экстракт маны.",DIA_Neoras_BrewForMe_Mana);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"лечебный экстракт.",DIA_Neoras_BrewForMe_Health);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"...зелье скорости.",DIA_Neoras_BrewForMe_Speed);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"...экстракт маны.",DIA_Neoras_BrewForMe_Mana);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"...лечебный экстракт.",DIA_Neoras_BrewForMe_Health);
 };
 
 func void DIA_Neoras_BrewForMe_Back()
@@ -421,14 +421,14 @@ func void DIA_Neoras_BrewForMe_Speed()
 	};
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
 	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне зелье великой скорости.",DIA_Neoras_BrewForMe_Speed);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне эликсир маны.",DIA_Neoras_BrewForMe_Mana);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный эликсир.",DIA_Neoras_BrewForMe_Health);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне зелье скорости.",DIA_Neoras_BrewForMe_Speed);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне экстракт маны.",DIA_Neoras_BrewForMe_Mana);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный экстракт.",DIA_Neoras_BrewForMe_Health);
 };
 
 func void DIA_Neoras_BrewForMe_Mana()
 {
-	AI_Output(other,self,"DIA_Neoras_BrewForMe_Mana_15_00");	//Свари мне эликсир маны.
+	AI_Output(other,self,"DIA_Neoras_BrewForMe_Mana_15_00");	//Свари мне экстракт маны.
 	AI_Output(self,other,"DIA_Neoras_BrewForMe_Mana_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 	if((Npc_HasItems(other,ItPl_Mana_Herb_02) >= 2) && (Npc_HasItems(other,ItPl_Temp_Herb) >= 1) && (Npc_HasItems(other,ItMi_Gold) >= 10))
 	{
@@ -446,13 +446,13 @@ func void DIA_Neoras_BrewForMe_Mana()
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
 	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
 	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне зелье скорости.",DIA_Neoras_BrewForMe_Speed);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне эликсир маны.",DIA_Neoras_BrewForMe_Mana);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный эликсир.",DIA_Neoras_BrewForMe_Health);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне экстракт маны.",DIA_Neoras_BrewForMe_Mana);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный экстракт.",DIA_Neoras_BrewForMe_Health);
 };
 
 func void DIA_Neoras_BrewForMe_Health()
 {
-	AI_Output(other,self,"DIA_Neoras_BrewForMe_Health_15_00");	//Свари мне лечебный эликсир.
+	AI_Output(other,self,"DIA_Neoras_BrewForMe_Health_15_00");	//Свари мне лечебный экстракт.
 	AI_Output(self,other,"DIA_Neoras_BrewForMe_Health_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 	if((Npc_HasItems(other,ItPl_Health_Herb_02) >= 2) && (Npc_HasItems(other,ItPl_Temp_Herb) >= 1) && (Npc_HasItems(other,ItMi_Gold) >= 10))
 	{
@@ -470,8 +470,8 @@ func void DIA_Neoras_BrewForMe_Health()
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
 	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
 	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне зелье скорости.",DIA_Neoras_BrewForMe_Speed);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне эликсир маны.",DIA_Neoras_BrewForMe_Mana);
-	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный эликсир.",DIA_Neoras_BrewForMe_Health);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне экстракт маны.",DIA_Neoras_BrewForMe_Mana);
+	Info_AddChoice(DIA_Neoras_BrewForMe,"Свари мне лечебный экстракт.",DIA_Neoras_BrewForMe_Health);
 };
 
 
@@ -536,12 +536,12 @@ func void DIA_Neoras_DRACHENEIER_ei()
 	AI_Output(self,other,"DIA_Neoras_DRACHENEIER_ei_01_02");	//Поэтому я пытался заменить этот ингредиент. Однако пока все тщетно.
 	AI_Output(self,other,"DIA_Neoras_DRACHENEIER_ei_01_03");	//Если однажды, в какой-нибудь пещере, ты наткнешься на одну из таких штук, пожалуйста, не забудь обо мне.
 	Info_AddChoice(DIA_Neoras_DRACHENEIER,"А что ты используешь вместо драконьего яйца?",DIA_Neoras_DRACHENEIER_ei_statt);
-	Info_AddChoice(DIA_Neoras_DRACHENEIER,"Я попробую.",DIA_Neoras_DRACHENEIER_ei_jep);
+	Info_AddChoice(DIA_Neoras_DRACHENEIER,"Я попробую что-нибудь сделать.",DIA_Neoras_DRACHENEIER_ei_jep);
 };
 
 func void DIA_Neoras_DRACHENEIER_ei_jep()
 {
-	AI_Output(other,self,"DIA_Neoras_DRACHENEIER_ei_jep_15_00");	//Я попробую что-рибудь сделать.
+	AI_Output(other,self,"DIA_Neoras_DRACHENEIER_ei_jep_15_00");	//Я попробую что-нибудь сделать.
 	AI_Output(self,other,"DIA_Neoras_DRACHENEIER_ei_jep_01_01");	//Эй. Я просто пошутил. Я не верю, что тебе действительно удастся найти яйцо дракона.
 	AI_Output(other,self,"DIA_Neoras_DRACHENEIER_ei_jep_15_02");	//Давай лучше подождем.
 	Info_ClearChoices(DIA_Neoras_DRACHENEIER);
@@ -596,7 +596,7 @@ var int Neoras_DragonEggDrink_Day;
 func void DIA_Neoras_FOUNDDRAGONEGG_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_15_00");	//Вот, я нашел для тебя яйцо дракона.
-	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_01");	//Ты издеваешься надо мной.
+	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_01");	//Ты что, издеваешься надо мной?
 	B_GiveInvItems(other,self,ItAt_DragonEgg_MIS,1);
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_02");	//Оно настоящее! Я даже не думал, что это возможно. Где ты нашел его?
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_15_03");	//Тебе этого лучше не знать.
@@ -692,7 +692,7 @@ func int DIA_Neoras_USEDDRAGONEGGDRINK_Condition()
 func void DIA_Neoras_USEDDRAGONEGGDRINK_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_USEDDRAGONEGGDRINK_15_00");	//Я попробовал твое зелье из яйца дракона. Отличная штука!
-	AI_Output(self,other,"DIA_Neoras_USEDDRAGONEGGDRINK_01_01");	//Ммм. Очень интересно. Я должен продолжить свои исследования.
+	AI_Output(self,other,"DIA_Neoras_USEDDRAGONEGGDRINK_01_01");	//Ммм. Очень интересно. Я должен продолжать свои исследования.
 	AI_Output(other,self,"DIA_Neoras_USEDDRAGONEGGDRINK_15_02");	//Ты не мог бы сделать мне еще?
 	AI_Output(self,other,"DIA_Neoras_USEDDRAGONEGGDRINK_01_03");	//Будет лучше, если мы повторим это через несколько недель. Иначе, боюсь, у тебя могут вырасти рога.
 };

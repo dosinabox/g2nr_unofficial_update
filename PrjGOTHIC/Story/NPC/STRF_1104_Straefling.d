@@ -2,7 +2,7 @@
 instance STRF_1104_Straefling(Npc_Default)
 {
 	name[0] = NAME_Straefling;
-	guild = GIL_OUT;
+	guild = GIL_STRF;
 	id = 1104;
 	voice = 1;
 	flags = 0;

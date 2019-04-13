@@ -47,7 +47,7 @@ func void DIA_Serpentes_NOTALK_Info()
 {
 	AI_Output(self,other,"DIA_Serpentes_NOTALK_10_00");	//(сварливо) Ты осмеливаешься обращаться ко мне, послушник? Возвращайся к своей работе.
 	Info_ClearChoices(DIA_Serpentes_NOTALK);
-	Info_AddChoice(DIA_Serpentes_NOTALK,"Мне нужно идти (КОНЕЦ)",DIA_Serpentes_NOTALK_EXIT);
+	Info_AddChoice(DIA_Serpentes_NOTALK,Dialog_Ende_v1,DIA_Serpentes_NOTALK_EXIT);
 	Info_AddChoice(DIA_Serpentes_NOTALK,"У меня есть еще один вопрос...",DIA_Serpentes_NOTALK_QUESTION);
 };
 
@@ -61,6 +61,7 @@ func void DIA_Serpentes_NOTALK_QUESTION()
 
 func void DIA_Serpentes_NOTALK_EXIT()
 {
+	AI_Output(other,self,"DIA_Lothar_FirstEXIT_15_00");	//Я должен идти!
 	AI_StopProcessInfos(self);
 };
 
@@ -127,7 +128,7 @@ instance DIA_Serpentes_TEST(C_Info)
 	condition = DIA_Serpentes_TEST_Condition;
 	information = DIA_Serpentes_TEST_Info;
 	permanent = FALSE;
-	description = "Я готов пройти твое испытание, мастер.";
+	description = "Я готов пройти твое испытание, Мастер.";
 };
 
 
@@ -141,7 +142,7 @@ func int DIA_Serpentes_TEST_Condition()
 
 func void DIA_Serpentes_TEST_Info()
 {
-	AI_Output(other,self,"DIA_Serpentes_TEST_15_00");	//Я готов пройти твое испытание, мастер.
+	AI_Output(other,self,"DIA_Serpentes_TEST_15_00");	//Я готов пройти твое испытание, Мастер.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_01");	//Итак, ты хочешь подвергнуться этому испытанию. Только самые мужественные послушники требуют этого. Но мужество - это не все, что тебе понадобится.
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_02");	//Достаточно ли ты умен, чтобы пройти это испытание? А сил у тебя хватит встретить все опасности, что поджидают тебя?
 	AI_Output(self,other,"DIA_Serpentes_TEST_10_03");	//Если нет, ты заплатишь за это своей жизнью.
@@ -163,7 +164,7 @@ instance DIA_Serpentes_NOIDEA(C_Info)
 	condition = DIA_Serpentes_NOIDEA_Condition;
 	information = DIA_Serpentes_NOIDEA_Info;
 	permanent = FALSE;
-	description = "Живой скалой?.. Что за создание это должно быть?";
+	description = "Живой скалой? Что за создание это должно быть?";
 };
 
 
@@ -177,7 +178,7 @@ func int DIA_Serpentes_NOIDEA_Condition()
 
 func void DIA_Serpentes_NOIDEA_Info()
 {
-	AI_Output(other,self,"DIA_Serpentes_NOIDEA_15_00");	//Живой скалой?.. Что за создание это должно быть?
+	AI_Output(other,self,"DIA_Serpentes_NOIDEA_15_00");	//Живой скалой? Что за создание это должно быть?
 	AI_Output(self,other,"DIA_Serpentes_NOIDEA_10_01");	//Я сказал тебе все. (с издевкой) Или это испытание кажется тебе слишком сложным?
 	AI_Output(self,other,"DIA_Serpentes_NOIDEA_10_02");	//Теперь ты узнаешь, что означает пройти Испытание Огнем - я больше не буду отвечать на твои вопросы.
 	AI_StopProcessInfos(self);
@@ -500,7 +501,7 @@ instance DIA_Serpentes_MinenAnteileBringen(C_Info)
 	condition = DIA_Serpentes_MinenAnteileBringen_Condition;
 	information = DIA_Serpentes_MinenAnteileBringen_Info;
 	permanent = TRUE;
-	description = "Насчет поддельных акций ...";
+	description = "Насчет поддельных акций...";
 };
 
 
@@ -573,7 +574,7 @@ instance DIA_Serpentes_GOTSalandril(C_Info)
 	nr = 32;
 	condition = DIA_Serpentes_GOTSalandril_Condition;
 	information = DIA_Serpentes_GOTSalandril_Info;
-	description = "Я знаю, кто ввел эти акции в обращение.";
+	description = "Я знаю, кто ввел эти акции в обращение...";
 };
 
 

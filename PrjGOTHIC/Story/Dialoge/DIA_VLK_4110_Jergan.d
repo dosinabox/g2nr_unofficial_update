@@ -125,9 +125,9 @@ var int Jergan_Tell;
 
 func void DIA_Jergan_Gegend_Info()
 {
+	AI_Output(other,self,"DIA_Jergan_Gegend_15_00");	//Что мне нужно знать об этой местности?
 	if(Jergan_Tell == FALSE)
 	{
-		AI_Output(other,self,"DIA_Jergan_Gegend_15_00");	//Что мне нужно знать об этой местности?
 		AI_Output(self,other,"DIA_Jergan_Gegend_13_01");	//Если ты хочешь выжить, беги от всего, что тебе встретится.
 		AI_Output(self,other,"DIA_Jergan_Gegend_13_02");	//Эти зеленокожие твари взяли замок в кольцо уже несколько недель назад. К тому же, где-то здесь спрятались драконы.
 	};
@@ -199,7 +199,7 @@ instance DIA_Jergan_Claw(C_Info)
 	condition = DIA_Jergan_Claw_Condition;
 	information = DIA_Jergan_Claw_Info;
 	permanent = FALSE;
-	description = "Ты можешь напучить меня этому?";
+	description = "Ты можешь научить меня этому?";
 };
 
 
@@ -213,7 +213,7 @@ func int DIA_Jergan_Claw_Condition()
 
 func void DIA_Jergan_Claw_Info()
 {
-	AI_Output(other,self,"DIA_Jergan_Claw_15_00");	//Ты можешь напучить меня этому?
+	AI_Output(other,self,"DIA_Jergan_Claw_15_00");	//Ты можешь научить меня этому?
 	AI_Output(self,other,"DIA_Jergan_Claw_13_01");	//Я могу показать тебе, как отделять когти этих тварей.
 };
 
@@ -225,7 +225,7 @@ instance DIA_Jergan_Teach(C_Info)
 	condition = DIA_Jergan_Teach_Condition;
 	information = DIA_Jergan_Teach_Info;
 	permanent = TRUE;
-	description = "(Изучить удаление когтей)";
+	description = B_BuildLearnString("Покажи мне, как отделять когти",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws));
 };
 
 
@@ -255,7 +255,7 @@ instance DIA_Jergan_Diego(C_Info)
 	condition = DIA_Jergan_Diego_Condition;
 	information = DIA_Jergan_Diego_Info;
 	permanent = FALSE;
-	description = "Ты знаешь, куда отправился Диего? ";
+	description = "Ты знаешь, куда отправился Диего?";
 };
 
 
@@ -299,7 +299,7 @@ func int DIA_Jergan_Leader_Condition()
 func void DIA_Jergan_Leader_Info()
 {
 	AI_Output(self,other,"DIA_Jergan_Leader_13_00");	//Ты убил вожака стаи. И как - ты забрал когти этого зверя?
-	if(Npc_HasItems(other,ItAt_ClawLeader) >= 1)
+	if((Npc_HasItems(other,ItAt_ClawLeader) >= 1) || (Lutero_Krallen == LOG_SUCCESS))
 	{
 		AI_Output(other,self,"DIA_Jergan_Leader_15_01");	//Да.
 		AI_Output(self,other,"DIA_Jergan_Leader_13_02");	//Они, стоят целое состояние. Есть люди, которые коллекционируют такие вещи.

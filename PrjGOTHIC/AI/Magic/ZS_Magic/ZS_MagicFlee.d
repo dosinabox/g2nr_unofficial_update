@@ -9,6 +9,10 @@ func void B_StopMagicFlee()
 func void ZS_MagicFlee()
 {
 	var int randy;
+	if(self.guild == GIL_DRAGON)
+	{
+		AI_ContinueRoutine(self);
+	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicFlee);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	self.aivar[AIV_Guardpassage_Status] = GP_NONE;

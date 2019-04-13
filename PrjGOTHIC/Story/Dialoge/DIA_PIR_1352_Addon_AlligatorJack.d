@@ -658,7 +658,7 @@ instance DIA_Addon_AlligatorJack_CanLearn(C_Info)
 	condition = DIA_Addon_AlligatorJack_CanLearn_Condition;
 	information = DIA_Addon_AlligatorJack_CanLearn_Info;
 	permanent = TRUE;
-	description = "Ты можешь научить меня чему-нибудь?";
+	description = "Ты можешь меня чему-нибудь научить?";
 };
 
 
@@ -697,8 +697,14 @@ func void B_AJ_Teach()
 	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,Dialog_Back,DIA_Addon_AlligatorJack_Teach_Back);
 	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 5),DIA_Addon_AlligatorJack_Teach_Bow_5);
 	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_AlligatorJack_Teach_Bow_1);
-	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString("Шкуры животных",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ReptileSkin)),DIA_Addon_AlligatorJack_Teach_FUR);
-	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString("Зубы животных",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Addon_AlligatorJack_Teach_Teeth);
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString("Кожа рептилий",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ReptileSkin)),DIA_Addon_AlligatorJack_Teach_FUR);
+	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString("Зубы животных",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Addon_AlligatorJack_Teach_Teeth);
+	};	
 };
 
 
@@ -709,7 +715,7 @@ instance DIA_Addon_AlligatorJack_Teach(C_Info)
 	condition = DIA_Addon_AlligatorJack_Teach_Condition;
 	information = DIA_Addon_AlligatorJack_Teach_Info;
 	permanent = TRUE;
-	description = "Учи меня!";
+	description = "Я готов учиться!";
 };
 
 

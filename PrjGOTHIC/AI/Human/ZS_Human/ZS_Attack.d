@@ -2,7 +2,10 @@
 func void B_AssessSurprise()
 {
 	Npc_SetTarget(self,other);
-	self.aivar[AIV_ATTACKREASON] = AR_GuildEnemy;
+	if(!C_NpcIsHero(self))
+	{
+		self.aivar[AIV_ATTACKREASON] = AR_GuildEnemy;
+	};
 };
 
 func void ZS_Attack()
@@ -23,7 +26,7 @@ func void ZS_Attack()
 	{
 		B_Say_AttackReason();
 	};
-	if(Npc_IsInFightMode(self,FMODE_NONE))
+	if((Npc_IsInFightMode(self,FMODE_NONE)) && (self.guild != GIL_STRF))
 	{
 		AI_EquipBestRangedWeapon(self);
 		AI_EquipBestMeleeWeapon(self);
@@ -161,7 +164,10 @@ func int ZS_Attack_Loop()
 		{
 			if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
 			{
-				self.aivar[AIV_ATTACKREASON] = AR_GuildEnemy;
+				if(!C_NpcIsHero(self))
+				{
+					self.aivar[AIV_ATTACKREASON] = AR_GuildEnemy;
+				};
 				if(C_NpcIsHero(other))
 				{
 					self.aivar[AIV_LastPlayerAR] = AR_GuildEnemy;
@@ -169,7 +175,7 @@ func int ZS_Attack_Loop()
 					self.aivar[AIV_LastFightComment] = FALSE;
 				};
 			}
-			else if(Npc_GetAttitude(self,other) == ATT_HOSTILE)
+			else if((Npc_GetAttitude(self,other) == ATT_HOSTILE) && (!C_NpcIsHero(self)))
 			{
 				self.aivar[AIV_ATTACKREASON] = self.aivar[AIV_LastPlayerAR];
 			};

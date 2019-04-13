@@ -75,7 +75,7 @@ func void DIA_GornNW_WhatNext_Info()
 	AI_Output(other,self,"DIA_GornNW_Add_15_05");	//Что ты собираешься делать теперь?
 	AI_Output(self,other,"DIA_GornNW_Add_12_06");	//Сначала я отъемся.
 	AI_Output(other,self,"DIA_GornNW_Add_15_07");	//А потом?
-	AI_Output(self,other,"DIA_GornNW_Add_12_08");	//Кто знает ... Возможно, я опять вернусь в колонию.
+	AI_Output(self,other,"DIA_GornNW_Add_12_08");	//Кто знает... Возможно, я опять вернусь в колонию.
 	AI_Output(self,other,"DIA_GornNW_Add_12_09");	//Кто-то ведь должен присматривать за орками - иначе они могут появиться у нас на пороге без всякого предупреждения.
 };
 

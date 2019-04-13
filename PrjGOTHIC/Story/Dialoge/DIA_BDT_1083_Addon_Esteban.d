@@ -215,7 +215,7 @@ func int DIA_Addon_Esteban_Kerl_Condition()
 func void DIA_Addon_Esteban_Kerl_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Esteban_Kerl_15_00");	//И что мне нужно сделать?
-	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_01");	//Все в лагере знают об этом знают. Поэтому ты играешь в открытую.
+	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_01");	//Все в лагере знают об этом. Поэтому ты играешь в открытую.
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_02");	//Постарайся выяснить, кто на моей стороне, а кто - против, и не дай ребятам себя обдурить!
 	AI_Output(self,other,"DIA_Addon_Esteban_Kerl_07_03");	//Поговори со Снафом. Этот жирный повар много знает.
 	B_LogEntry(Topic_Addon_Esteban,"Чтобы найти виновного, я должен поговорить с людьми в лагере и выяснить, на чьей они стороне. Снаф может мне помочь - ему многое известно.");

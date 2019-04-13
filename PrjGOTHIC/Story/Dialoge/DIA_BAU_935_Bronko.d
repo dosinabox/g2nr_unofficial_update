@@ -114,7 +114,7 @@ instance DIA_Bronko_KEINBAUER(C_Info)
 	condition = DIA_Bronko_KEINBAUER_Condition;
 	information = DIA_Bronko_KEINBAUER_Info;
 	permanent = TRUE;
-	description = "Ты?! Фермер?! Не смеши меня.";
+	description = "Ты?! Фермер?! Не смеши меня. Да ты вообще никто.";
 };
 
 
@@ -197,7 +197,7 @@ instance DIA_Bronko_FLEISSIG(C_Info)
 	condition = DIA_Bronko_FLEISSIG_Condition;
 	information = DIA_Bronko_FLEISSIG_Info;
 	permanent = TRUE;
-	description = "(подразнить Бронко)";
+	description = "(Подразнить Бронко)";
 };
 
 

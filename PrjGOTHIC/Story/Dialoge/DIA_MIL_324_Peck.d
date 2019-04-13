@@ -28,7 +28,7 @@ instance DIA_Peck_PICKPOCKET(C_Info)
 	condition = DIA_Peck_PICKPOCKET_Condition;
 	information = DIA_Peck_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Воровать этот ключ рискованно)";
+	description = Pickpocket_60_Key;
 };
 
 
@@ -123,7 +123,7 @@ func void DIA_Peck_FOUND_PECK_Info()
 	AI_Output(other,self,"DIA_Peck_FOUND_PECK_15_02");	//Мне нужно оружие, так что возвращайся в казармы.
 	AI_Output(self,other,"DIA_Peck_FOUND_PECK_12_03");	//Черт, твое оружие может подождать.
 	AI_Output(other,self,"DIA_Peck_FOUND_PECK_15_04");	//Пошли, Андрэ уже тоже ищет тебя.
-	AI_Output(self,other,"DIA_Peck_FOUND_PECK_12_05");	//Хммм ... черт. Ладно, я уже иду - но когда будешь докладывать Андрэ, не говори ему, что я был здесь.
+	AI_Output(self,other,"DIA_Peck_FOUND_PECK_12_05");	//Хм-м-м... черт. Ладно, я уже иду - но когда будешь докладывать Андрэ, не говори ему, что я был здесь.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"STORAGE");
 	Npc_ExchangeRoutine(Vanja,"ALONE");
@@ -208,7 +208,7 @@ func int DIA_Peck_WEAPON2_Condition()
 
 func void DIA_Peck_WEAPON2_Info()
 {
-	AI_Output(self,other,"DIA_Peck_Add_15_01");	//У тебя нет оружия получше для меня?
+	AI_Output(other,self,"DIA_Peck_Add_15_01");	//У тебя нет оружия получше для меня?
 	if(MIS_Andre_Peck == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Peck_Add_12_06");	//Я не забыл, что ты донес на меня лорду Андрэ.
@@ -216,7 +216,7 @@ func void DIA_Peck_WEAPON2_Info()
 	}
 	else if(Kapitel < 3)
 	{
-		AI_Output(self,other,"DIA_Peck_Add_12_02");	//Пока нет ...
+		AI_Output(self,other,"DIA_Peck_Add_12_02");	//Пока нет...
 	}
 	else
 	{
@@ -282,7 +282,7 @@ func void DIA_Peck_PERM_Info()
 			AI_Output(self,other,"DIA_Peck_PERM_12_06");	//Я очень рад, что это дело об убийстве теперь закрыто.
 			AI_Output(other,self,"DIA_Peck_PERM_15_07");	//Почему?
 			AI_Output(self,other,"DIA_Peck_PERM_12_08");	//Наемники просто так не отступили бы. Они бы не стали сидеть сложа руки и спокойно наблюдать за тем, как мы повесим одного из них.
-			AI_Output(self,other,"DIA_Peck_PERM_12_09");	//Они даже могли напасть на город. Я даже думать не хочу от том, к чему это могло привести.
+			AI_Output(self,other,"DIA_Peck_PERM_12_09");	//Они даже могли напасть на город. Я даже думать не хочу о том, к чему это могло привести.
 		};
 	};
 };

@@ -69,7 +69,7 @@ func int DIA_Angar_NW_KnowWhereEnemy_Condition()
 func void DIA_Angar_NW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Angar_NW_KnowWhereEnemy_15_00");	//Я собираюсь покинуть Хоринис. Ты хочешь присоединиться ко мне?
-	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_04_01");	//Чем дальше я буду от Долины Рудников, тем лучше. Когда мы отчаливаем?
+	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_04_01");	//Чем дальше я уйду от Долины Рудников, тем лучше. Когда мы отчаливаем?
 	Log_CreateTopic(Topic_Crew,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Crew,LOG_Running);
 	B_LogEntry(Topic_Crew,"Ангар будет рад каждой миле, что разделяет его и Долину рудников. Он предложил присоединиться ко мне и путешествовать вместе.");

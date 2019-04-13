@@ -16,7 +16,7 @@ func void Bookstand_Milten_03_S1()
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Поздно.");
 		Doc_PrintLines(nDocID,0,"Обрушение этой старой шахты вызвало сильное недовольство рудных баронов.");
-		Doc_PrintLines(nDocID,0,"Гомес похож на пороховую бочку, которая вот-вот взорвется.");
+		Doc_PrintLines(nDocID,0,"Гомез похож на пороховую бочку, которая вот-вот взорвется.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Корристо");
 		Doc_PrintLine(nDocID,0,"");
@@ -25,7 +25,7 @@ func void Bookstand_Milten_03_S1()
 		Doc_PrintLine(nDocID,0,"Корристо");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Гомес готов со злости разнести все вокруг, и мне кажется, я знаю, что он планирует. Мы должны предупредить Магов Воды, пока еще не слишком поздно.");
+		Doc_PrintLines(nDocID,1,"Гомез готов со злости разнести все вокруг, и мне кажется, я знаю, что он планирует. Мы должны предупредить Магов Воды, пока еще не слишком поздно.");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"Корристо");
 		Doc_PrintLine(nDocID,1,"");

@@ -1,5 +1,8 @@
 
 var int PrayIdolDay;
+var int PrayIdolDayOne_1;
+var int PrayIdolDayOne_5;
+var int PrayIdolDayOne_10;
 var int RecievedMoney;
 var int GivenHitpoints;
 var int GivenMana;
@@ -8,6 +11,7 @@ const int BeliarsDispo = 10000;
 func void B_HitpointAngleich(var int BeliarsCost)
 {
 	var int CurrentHitpoints;
+	var string concatText;
 	GivenHitpoints = GivenHitpoints + BeliarsCost;
 	hero.attribute[ATR_HITPOINTS_MAX] = hero.attribute[ATR_HITPOINTS_MAX] - BeliarsCost;
 	CurrentHitpoints = hero.attribute[ATR_HITPOINTS] - BeliarsCost;
@@ -16,11 +20,14 @@ func void B_HitpointAngleich(var int BeliarsCost)
 		CurrentHitpoints = 2;
 	};
 	hero.attribute[ATR_HITPOINTS] = CurrentHitpoints;
+	concatText = ConcatStrings(PRINT_Beliarshitpoints_MAX,IntToString(BeliarsCost));
+	PrintScreen(concatText,-1,-1,FONT_Screen,4);
 };
 
 func void B_ManaAngleich(var int BeliarsCost)
 {
 	var int CurrentMana;
+	var string concatText;
 	GivenMana = GivenMana + BeliarsCost;
 	hero.attribute[ATR_MANA_MAX] = hero.attribute[ATR_MANA_MAX] - BeliarsCost;
 	hero.aivar[REAL_MANA_MAX] = hero.aivar[REAL_MANA_MAX] - BeliarsCost;
@@ -30,6 +37,8 @@ func void B_ManaAngleich(var int BeliarsCost)
 		CurrentMana = 0;
 	};
 	hero.attribute[ATR_MANA] = CurrentMana;
+	concatText = ConcatStrings(PRINT_Beliarsmana_MAX,IntToString(BeliarsCost));
+	PrintScreen(concatText,-1,-1,FONT_Screen,4);
 };
 
 func void B_BlitzInArsch()
@@ -172,7 +181,7 @@ func void PC_PrayIdol_PrayIdol_NoPay()
 func void PC_PrayIdol_PrayIdol_SmallPay()
 {
 	B_HitpointAngleich(1);
-	if((PrayIdolDay == Wld_GetDay()) || (RecievedMoney >= BeliarsDispo))
+	if(((PrayIdolDay == Wld_GetDay()) && (PrayIdolDay != 0)) || ((Wld_GetDay() == 0) && (PrayIdolDayOne_1 == TRUE)) || (RecievedMoney >= BeliarsDispo))
 	{
 		B_BlitzInArsch();
 	}
@@ -185,13 +194,17 @@ func void PC_PrayIdol_PrayIdol_SmallPay()
 		B_GetBeliarsGold(50);
 	};
 	PrayIdolDay = Wld_GetDay();
+	if(PrayIdolDay == 0)
+	{
+		PrayIdolDayOne_1 = TRUE;
+	};
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 };
 
 func void PC_PrayIdol_PrayIdol_MediumPay()
 {
 	B_HitpointAngleich(5);
-	if((PrayIdolDay == Wld_GetDay()) || (RecievedMoney >= BeliarsDispo))
+	if(((PrayIdolDay == Wld_GetDay()) && (PrayIdolDay != 0)) || ((Wld_GetDay() == 0) && (PrayIdolDayOne_5 == TRUE)) || (RecievedMoney >= BeliarsDispo))
 	{
 		B_BlitzInArsch();
 	}
@@ -204,12 +217,16 @@ func void PC_PrayIdol_PrayIdol_MediumPay()
 		B_GetBeliarsGold(250);
 	};
 	PrayIdolDay = Wld_GetDay();
+	if(PrayIdolDay == 0)
+	{
+		PrayIdolDayOne_5 = TRUE;
+	};
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 };
 
 func void PC_PrayIdol_PrayIdol_BigPayManaPay()
 {
-	if((PrayIdolDay == Wld_GetDay()) || (RecievedMoney >= BeliarsDispo))
+	if(((PrayIdolDay == Wld_GetDay()) && (PrayIdolDay != 0)) || ((Wld_GetDay() == 0) && (PrayIdolDayOne_10 == TRUE)) || (RecievedMoney >= BeliarsDispo))
 	{
 		B_BlitzInArsch();
 	}
@@ -222,6 +239,10 @@ func void PC_PrayIdol_PrayIdol_BigPayManaPay()
 		B_GetBeliarsGold(500);
 	};
 	PrayIdolDay = Wld_GetDay();
+	if(PrayIdolDay == 0)
+	{
+		PrayIdolDayOne_10 = TRUE;
+	};
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 };
 

@@ -33,8 +33,7 @@ func void Rtn_PreStart_311()
 
 func void Rtn_Start_311()
 {
-	TA_Read_Bookstand(8,0,0,10,"NW_CITY_ANDRE");
+	TA_Read_Bookstand(5,0,0,10,"NW_CITY_ANDRE");
 	TA_Smalltalk(0,10,5,0,"NW_CITY_ANDRE_SMALLTALK");
-	TA_Read_Bookstand(5,0,8,0,"NW_CITY_ANDRE");
 };
 

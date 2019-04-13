@@ -133,7 +133,7 @@ func void DIA_Richter_RichtersLakai_Info()
 	Info_ClearChoices(DIA_Richter_RichtersLakai);
 	Info_AddChoice(DIA_Richter_RichtersLakai,"Я должен украсть у магов? Да у тебя крыша поехала.",DIA_Richter_RichtersLakai_nein);
 	Info_AddChoice(DIA_Richter_RichtersLakai,"Хорошо.",DIA_Richter_RichtersLakai_ja);
-	B_LogEntry(TOPIC_RichterLakai,"Судья не доверяет мне. Я должен доказать свою верность ему. Я должен украсть священный молот из подвала монастыря магов огня и принести молот ему.");
+	B_LogEntry(TOPIC_RichterLakai,"Судья не доверяет мне. Я должен доказать свою верность ему. Я должен украсть священный молот из подвала монастыря магов Огня и принести молот ему.");
 	MIS_Richter_BringHolyHammer = LOG_Running;
 };
 

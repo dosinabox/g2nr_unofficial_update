@@ -192,7 +192,7 @@ instance DIA_Addon_Morgan_Job(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Morgan_Job_Condition;
 	information = DIA_Addon_Morgan_Job_Info;
-	description = "Что ты делаешь здесь?";
+	description = "Что ты здесь делаешь?";
 };
 
 
@@ -274,7 +274,7 @@ func void DIA_Addon_Morgan_JoinMorgan_Info()
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_04");	//Но если ты хочешь показать всем остальным, из чего ты сделан, то ступай на северный пляж.
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_05");	//Там полно луркеров... и черт знает, чего еще.
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//Разберись с ними, и ты заработаешь уважение (зевает) людей...
-	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_07");	//Добро пожаловать в мой отряд. Хе-хе. А я пока еще посплю...
+	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_07");	//Добро пожаловать в мой отряд. Хе-хе. А я еще посплю...
 	Log_CreateTopic(TOPIC_Addon_MorganBeach,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MorganBeach,LOG_Running);
 	B_LogEntry(TOPIC_Addon_MorganBeach,"Я присоединился к боевой группе Моргана. Он хочет, чтобы я очистил северный пляж от монстров.");
@@ -334,7 +334,7 @@ instance DIA_Addon_Morgan_Auftrag2(C_Info)
 	condition = DIA_Addon_Morgan_Auftrag2_Condition;
 	information = DIA_Addon_Morgan_Auftrag2_Info;
 	permanent = TRUE;
-	description = "Для меня есть еще какие-нибудь задания?";
+	description = "Для меня есть еще какая-нибудь работа?";
 };
 
 
@@ -401,7 +401,7 @@ func void DIA_Addon_Morgan_FOUNDTHEM_Info()
 	Info_ClearChoices(DIA_Addon_Morgan_FOUNDTHEM);
 	if(Npc_HasItems(other,ItRi_Addon_MorgansRing_Mission) > 0)
 	{
-		Info_AddChoice(DIA_Addon_Morgan_FOUNDTHEM,"Я их нашел.",DIA_Addon_Morgan_FOUNDTHEM_Now);
+		Info_AddChoice(DIA_Addon_Morgan_FOUNDTHEM,"Я нашел их.",DIA_Addon_Morgan_FOUNDTHEM_Now);
 	}
 	else
 	{
@@ -479,7 +479,7 @@ instance DIA_Addon_Morgan_TRAIN(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Morgan_TRAIN_Condition;
 	information = DIA_Addon_Morgan_TRAIN_Info;
-	description = "Ты можешь обучить и меня?";
+	description = "А меня ты можешь чему-нибудь научить?";
 };
 
 
@@ -494,7 +494,7 @@ func int DIA_Addon_Morgan_TRAIN_Condition()
 func void DIA_Addon_Morgan_TRAIN_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_TRAIN_15_00");	//А меня ты можешь чему-нибудь научить?
-	AI_Output(self,other,"DIA_Addon_Morgan_TRAIN_07_01");	//Конечно. Я могу улучшить твое умение обращаться одноручным оружием.
+	AI_Output(self,other,"DIA_Addon_Morgan_TRAIN_07_01");	//Конечно. Я могу улучшить твое умение обращаться с одноручным оружием.
 	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
 	B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_MorganTeach);
 	Morgan_Addon_TeachPlayer = TRUE;
@@ -511,7 +511,7 @@ instance DIA_Addon_Morgan_Teach(C_Info)
 	condition = DIA_Addon_Morgan_Teach_Condition;
 	information = DIA_Addon_Morgan_Teach_Info;
 	permanent = TRUE;
-	description = "Учи меня!";
+	description = "Я готов учиться!";
 };
 
 

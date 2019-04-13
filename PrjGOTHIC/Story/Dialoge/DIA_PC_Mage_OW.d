@@ -41,8 +41,8 @@ func void DIA_MiltenOW_Hello_Info()
 {
 	AI_Output(self,other,"DIA_MiltenOW_Hello_03_00");	//Посмотрите, кто вернулся! Наш герой из-за Барьера!
 	Info_ClearChoices(DIA_MiltenOW_Hello);
-	Info_AddChoice(DIA_MiltenOW_Hello,"Рад видеть тебя, Милтен.",DIA_MiltenOW_Hello_YES);
-	Info_AddChoice(DIA_MiltenOW_Hello,"Я знаю тебя?",DIA_MiltenOW_Hello_NO);
+	Info_AddChoice(DIA_MiltenOW_Hello,"Рад видеть тебя, Милтен. Ты все еще здесь или здесь опять?",DIA_MiltenOW_Hello_YES);
+	Info_AddChoice(DIA_MiltenOW_Hello,"Я должен знать их?",DIA_MiltenOW_Hello_NO);
 };
 
 func void B_Milten_GornDiegoLester()
@@ -53,7 +53,7 @@ func void B_Milten_GornDiegoLester()
 func void DIA_MiltenOW_Hello_YES()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Hello_YES_15_00");	//Рад видеть тебя, Милтен. Ты все еще здесь или здесь опять?
-	AI_Output(self,other,"DIA_MiltenOW_Hello_YES_03_01");	//Опять. После того как Барьер рухнул, я вступил в монастырь Магов Огня.
+	AI_Output(self,other,"DIA_MiltenOW_Hello_YES_03_01");	//Опять. После того как Барьер рухнул, я вступил в монастырь магов Огня.
 	AI_Output(self,other,"DIA_MiltenOW_Hello_YES_03_02");	//Но когда стало ясно, что паладины хотят отправиться сюда, мой опыт и знание этих мест оказались весьма полезными.
 	AI_Output(self,other,"DIA_MiltenOW_Hello_YES_03_03");	//Поэтому было решено доверить мне эту священную миссию обеспечения магической поддержки этой экспедиции.
 	B_Milten_GornDiegoLester();
@@ -148,7 +148,7 @@ func int DIA_MiltenOW_Erz_Condition()
 func void DIA_MiltenOW_Erz_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Erz_15_00");	//Сколько руды удалось добыть?
-	AI_Output(self,other,"DIA_MiltenOW_Erz_03_01");	//Сколько руды?.. Ни одного ящика! У нас уже давно нет вестей от старателей.
+	AI_Output(self,other,"DIA_MiltenOW_Erz_03_01");	//Сколько руды? Ни одного ящика! У нас уже давно нет вестей от старателей.
 	AI_Output(self,other,"DIA_MiltenOW_Erz_03_02");	//Я не удивлюсь, если они все давно мертвы. А нас атакуют драконы и осаждают орки!
 	AI_Output(self,other,"DIA_MiltenOW_Erz_03_03");	//Эта экспедиция обернулась полным провалом.
 };
@@ -280,7 +280,7 @@ instance DIA_MiltenOW_Equipment(C_Info)
 	condition = DIA_MiltenOW_Equipment_Condition;
 	information = DIA_MiltenOW_Equipment_Info;
 	permanent = FALSE;
-	description = "Ты можешь обеспечить меня снаряжением?";
+	description = "Ты можешь обеспечить меня снаряжением? Гаронд попросил меня отправиться в шахты.";
 };
 
 
@@ -295,7 +295,7 @@ func int DIA_MiltenOW_Equipment_Condition()
 func void DIA_MiltenOW_Equipment_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Equipmentt_15_00");	//Ты можешь обеспечить меня снаряжением? Гаронд попросил меня отправиться в шахты.
-	AI_Output(self,other,"DIA_MiltenOW_Equipment_03_01");	//И где я, по-твоему, возьму его? Единственное, что я могу тебе дать, - это ценный рунный камень.
+	AI_Output(self,other,"DIA_MiltenOW_Equipment_03_01");	//И где я, по-твоему, возьму его? Единственное, что я могу тебе дать - это ценный рунный камень.
 	B_GiveInvItems(self,other,ItMi_RuneBlank,1);
 };
 
@@ -308,7 +308,7 @@ instance DIA_MiltenOW_Versteck(C_Info)
 	information = DIA_MiltenOW_Versteck_Info;
 	permanent = FALSE;
 	important = FALSE;
-	description = "Я получил ответ от Горна ...";
+	description = "Я получил ответ от Горна. Он говорит, что его золото находится у южных ворот.";
 };
 
 
@@ -391,7 +391,7 @@ instance DIA_MiltenOW_TeachCircle2(C_Info)
 	condition = DIA_MiltenOW_TeachCircle2_Condition;
 	information = DIA_MiltenOW_TeachCircle2_Info;
 	permanent = TRUE;
-	description = "Обучи меня второму кругу магии!";
+	description = B_BuildLearnString("Обучи меня второму Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
 };
 
 
@@ -405,7 +405,7 @@ func int DIA_MiltenOW_TeachCircle2_Condition()
 
 func void DIA_MiltenOW_TeachCircle2_Info()
 {
-	AI_Output(other,self,"DIA_Milten_Add_15_00");	//Обучи меня второму кругу магии!
+	AI_Output(other,self,"DIA_Milten_Add_15_00");	//Обучи меня второму Кругу магии!
 	AI_Output(self,other,"DIA_Milten_Add_03_01");	//Это обычно привилегия учителей нашего ордена.
 	AI_Output(self,other,"DIA_Milten_Add_03_02");	//Но я думаю, что в твоем случае мы можем сделать исключение...
 	if(B_TeachMagicCircle(self,other,2))
@@ -562,7 +562,7 @@ func void DIA_MiltenOW_Perm_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Perm_15_00");	//А какие у тебя здесь обязанности?
 	AI_Output(self,other,"DIA_MiltenOW_Perm_03_01");	//Изначально, я должен был проверять магическую руду. Но она здесь редко попадала мне в руки.
-	AI_Output(self,other,"DIA_MiltenOW_Perm_03_02");	//И теперь я сосредоточился  на изучении алхимии.
+	AI_Output(self,other,"DIA_MiltenOW_Perm_03_02");	//И теперь я сосредоточился на изучении алхимии.
 };
 
 
@@ -603,7 +603,7 @@ instance DIA_MiltenOW_PICKPOCKET(C_Info)
 	condition = DIA_MiltenOW_PICKPOCKET_Condition;
 	information = DIA_MiltenOW_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Это зелье украсть будет сложно)";
+	description = "(Украсть его зелье будет довольно трудно)";
 };
 
 

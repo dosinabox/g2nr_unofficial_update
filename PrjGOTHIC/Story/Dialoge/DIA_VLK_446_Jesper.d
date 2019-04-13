@@ -81,11 +81,11 @@ func void DIA_Jesper_Hallo_Info()
 	Info_AddChoice(DIA_Jesper_Hallo,"Я просто прогуливаюсь здесь.",DIA_Jesper_Hallo_NurSo);
 	if(Attila_Key == TRUE)
 	{
-		Info_AddChoice(DIA_Jesper_Hallo,"Аттила дал мне ключ ...",DIA_Jesper_Hallo_Willkommen);
+		Info_AddChoice(DIA_Jesper_Hallo,"Аттила дал мне ключ. Вот почему я здесь...",DIA_Jesper_Hallo_Willkommen);
 	}
 	else
 	{
-		Info_AddChoice(DIA_Jesper_Hallo,"Я прикончил Аттилу ...",DIA_Jesper_Hallo_Umgelegt);
+		Info_AddChoice(DIA_Jesper_Hallo,"Я прикончил Аттилу. При нем был ключ от канализации.",DIA_Jesper_Hallo_Umgelegt);
 	};
 	DG_gefunden = TRUE;
 };
@@ -121,7 +121,7 @@ func void DIA_Jesper_Hallo_Umgelegt()
 	AI_Output(self,other,"DIA_Jesper_Hallo_Umgelegt_09_01");	//(с недоверием) ТЫ убил Аттилу?! (презрительно) А, ладно, он все равно был никчемным псом.
 	AI_Output(self,other,"DIA_Jesper_Hallo_Umgelegt_09_02");	//Но я хочу предупредить тебя. Если ты нападешь на МЕНЯ, я тебя убью.
 	Info_ClearChoices(DIA_Jesper_Hallo);
-	Info_AddChoice(DIA_Jesper_Hallo,"Что ты делаешь здесь ...",DIA_Jesper_Hallo_Was);
+	Info_AddChoice(DIA_Jesper_Hallo,"Что ты делаешь в этой темной вонючей дыре?",DIA_Jesper_Hallo_Was);
 	Info_AddChoice(DIA_Jesper_Hallo,"Отведи меня к вашему главарю.",DIA_Jesper_Hallo_Anfuehrer);
 };
 
@@ -174,7 +174,7 @@ func void DIA_Jesper_Bezahlen_Info()
 		AI_Output(self,other,"DIA_Jesper_Bezahlen_09_02");	//Ты хочешь узнать, как двигаться, не издавая ни единого звука? Это обойдется тебе в 100 золотых монет.
 		B_Say_Gold(self,other,Jesper_Cost);
 		Info_ClearChoices(DIA_Jesper_Bezahlen);
-		Info_AddChoice(DIA_Jesper_Bezahlen,"Может быть, позже ...(НАЗАД)",DIA_Jesper_Bezahlen_Spaeter);
+		Info_AddChoice(DIA_Jesper_Bezahlen,"Может быть, позже... (НАЗАД)",DIA_Jesper_Bezahlen_Spaeter);
 		Info_AddChoice(DIA_Jesper_Bezahlen,"Хорошо, я хочу научиться красться (заплатить 100 золотых).",DIA_Jesper_Bezahlen_Okay);
 	};
 };
@@ -209,7 +209,7 @@ instance DIA_Jesper_Schleichen(C_Info)
 	condition = DIA_Jesper_Schleichen_Condition;
 	information = DIA_Jesper_Schleichen_Info;
 	permanent = TRUE;
-	description = "Научи меня красться.";
+	description = B_BuildLearnString("Научи меня красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
 };
 
 
@@ -265,16 +265,14 @@ func void DIA_Jesper_Killer_Info()
 	else if(Npc_IsDead(Cassia))
 	{
 		AI_Output(self,other,"DIA_Jesper_Killer_09_02");	//Убийца! Ты убил Кассию! Но от меня тебе не уйти!
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_NONE,1);
 	}
 	else if(Npc_IsDead(Ramirez))
 	{
 		AI_Output(self,other,"DIA_Jesper_Killer_09_03");	//Я давно работаю с Рамирезом и добыл для него больше золота, чем ты можешь себе представить.
 		AI_Output(self,other,"DIA_Jesper_Killer_09_04");	//А ты взял и убил его, грязный пес! Но сейчас пришло время расплаты!
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_NONE,1);
 	};
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_NONE,1);
 };
 
 
@@ -331,7 +329,7 @@ func int DIA_Jesper_Tuer_Condition()
 func void DIA_Jesper_Tuer_Info()
 {
 	AI_Output(other,self,"DIA_Jesper_Tuer_15_00");	//А что за этой закрытой дверью?
-	AI_Output(self,other,"DIA_Jesper_Tuer_09_01");	//(ухмыляется) За ней находится сундук - сундук мастера-медвежатника Фингера.
+	AI_Output(self,other,"DIA_Jesper_Tuer_09_01");	//(ухмыляется) За ней находится сундук - сундук мастера-медвежатника Фингерcа.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_02");	//Он поставил такой невероятно сложный замок на него, что до сих пор никому не удалось открыть его.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_03");	//К сожалению, он как-то попался - и его засунули за Барьер, где он, вероятно, и умер.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_04");	//Но если ты хочешь попытаться открыть его сундук, вот ключ от этой комнаты.

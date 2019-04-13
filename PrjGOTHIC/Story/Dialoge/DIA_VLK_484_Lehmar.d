@@ -75,7 +75,7 @@ func void DIA_Lehmar_GELDLEIHEN_Info()
 	Info_AddChoice(DIA_Lehmar_GELDLEIHEN,"Я подумаю над этим.",DIA_Lehmar_GELDLEIHEN_back);
 	Info_AddChoice(DIA_Lehmar_GELDLEIHEN,"1000 золотых.",DIA_Lehmar_GELDLEIHEN_1000);
 	Info_AddChoice(DIA_Lehmar_GELDLEIHEN," 200 золотых.",DIA_Lehmar_GELDLEIHEN_200);
-	Info_AddChoice(DIA_Lehmar_GELDLEIHEN,"   50 золотых.",DIA_Lehmar_GELDLEIHEN_50);
+	Info_AddChoice(DIA_Lehmar_GELDLEIHEN,"  50 золотых.",DIA_Lehmar_GELDLEIHEN_50);
 };
 
 func void DIA_Lehmar_GELDLEIHEN_back()

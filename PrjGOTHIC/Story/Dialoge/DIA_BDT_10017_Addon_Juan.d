@@ -150,7 +150,7 @@ instance DIA_Addon_Juan_Trade(C_Info)
 	information = DIA_Addon_Juan_Trade_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = DIALOG_TRADE;
+	description = DIALOG_TRADE_v3;
 };
 
 
@@ -165,5 +165,6 @@ func int DIA_Addon_Juan_Trade_Condition()
 func void DIA_Addon_Juan_Trade_Info()
 {
 	B_Say(other,self,"$TRADE_3");
+	B_GiveTradeInv(self);
 };
 

@@ -88,7 +88,7 @@ func void DIA_Sergio_Isgaroth_XP()
 {
 	AI_Output(other,self,"DIA_Sergio_Isgaroth_XP_15_00");	//Ты не мог бы поделиться своим боевым опытом?
 	AI_Output(self,other,"DIA_Sergio_Isgaroth_XP_04_01");	//Когда ты сражаешься, постарайся, чтобы никто не мог атаковать тебя сзади.
-	other.HitChance[NPC_TALENT_2H] = other.HitChance[NPC_TALENT_2H] + 2;
+	B_RaiseFightTalent(other,NPC_TALENT_2H,2);
 	PrintScreen(PRINT_Learn2H,-1,-1,FONT_ScreenSmall,2);
 	Info_ClearChoices(DIA_Sergio_Isgaroth);
 };
@@ -116,7 +116,7 @@ func void DIA_Sergio_Aufgabe_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_Aufgabe_15_00");	//Мне нужен доступ в библиотеку.
 	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_01");	//Ну, я не могу обеспечить тебе доступ. Для этого ты должен сначала выполнить свои задания.
-	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к Мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
+	AI_Output(self,other,"DIA_Sergio_Aufgabe_04_02");	//Но я могу помочь тебе. Иди к мастеру Исгароту и поговори с ним. Я слышал, ему нужна помощь и собирался сам помочь ему, но я поручаю эту задачу тебе.
 	Sergio_Sends = TRUE;
 	Wld_InsertNpc(BlackWolf,"NW_PATH_TO_MONASTER_AREA_01");
 	Log_CreateTopic(Topic_IsgarothWolf,LOG_MISSION);
@@ -146,7 +146,7 @@ func int DIA_Sergio_WHAT_Condition()
 func void DIA_Sergio_WHAT_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_WHAT_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Sergio_WHAT_04_01");	//Я молюсь Инносу, чтобы  он укрепил мою руку и мою волю.
+	AI_Output(self,other,"DIA_Sergio_WHAT_04_01");	//Я молюсь Инносу, чтобы он укрепил мою руку и мою волю.
 	AI_Output(self,other,"DIA_Sergio_WHAT_04_02");	//Тогда я буду готов к любым опасностям и уничтожу всех его врагов с его именем на устах.
 	AI_Output(other,self,"DIA_Sergio_WHAT_15_03");	//Каких врагов?
 	AI_Output(self,other,"DIA_Sergio_WHAT_04_04");	//Всех тех, кто противится воле Инноса. Не важно, человек это или вызванное существо.
@@ -288,7 +288,7 @@ func void DIA_Sergio_Guide_Info()
 {
 	AI_Output(other,self,"DIA_Sergio_Guide_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Sergio_Guide_04_01");	//Я должен сопроводить тебя к Проходу. Но самая опасная часть путешествия только начинается там.
-	AI_Output(self,other,"DIA_Sergio_Guide_04_02");	//Но не будем терять времени
+	AI_Output(self,other,"DIA_Sergio_Guide_04_02");	//Но не будем терять времени.
 	AI_StopProcessInfos(self);
 };
 

@@ -16,7 +16,10 @@ func void B_Attack(var C_Npc slf,var C_Npc oth,var int attack_reason,var int wai
 	{
 		if(!C_NpcHasAttackReasonToKill(slf) && (attack_reason > slf.aivar[AIV_ATTACKREASON]))
 		{
-			slf.aivar[AIV_ATTACKREASON] = attack_reason;
+			if(!C_NpcIsHero(slf))
+			{
+				slf.aivar[AIV_ATTACKREASON] = attack_reason;
+			};
 			if(Npc_IsPlayer(oth))
 			{
 				slf.aivar[AIV_LastPlayerAR] = attack_reason;
@@ -25,7 +28,10 @@ func void B_Attack(var C_Npc slf,var C_Npc oth,var int attack_reason,var int wai
 	}
 	else
 	{
-		slf.aivar[AIV_ATTACKREASON] = attack_reason;
+		if(!C_NpcIsHero(slf))
+		{
+			slf.aivar[AIV_ATTACKREASON] = attack_reason;
+		};
 		if(Npc_IsPlayer(oth))
 		{
 			slf.aivar[AIV_LastPlayerAR] = attack_reason;

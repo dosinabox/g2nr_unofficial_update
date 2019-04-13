@@ -206,7 +206,7 @@ func void DIA_Addon_Dexter_missingPeople_Raven()
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_Raven_09_06");	//(мрачно) Здесь тебя ждет лишь верная смерть.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-	B_LogEntry(TOPIC_Addon_WhoStolePeople,"У декстера есть клиент. Зовут его Ворон. Ворон - бывший рудный барон. Похоже, что именно Ворон стоит за всеми этими похищениями людей. Теперь мне нужно только получить доказательство этого.");
+	B_LogEntry(TOPIC_Addon_WhoStolePeople,"У Декстера есть хозяин. Зовут его Ворон. Ворон - бывший рудный барон. Похоже, что именно Ворон стоит за всеми этими похищениями людей. Теперь мне нужно только получить доказательство этого.");
 	Info_ClearChoices(DIA_Addon_Dexter_missingPeople);
 };
 
@@ -269,7 +269,7 @@ func void DIA_Dexter_Vor_Info()
 	AI_Output(other,self,"DIA_Addon_Dexter_Vor_15_00");	//Я должен узнать, куда ты отправил людей.
 	AI_Output(self,other,"DIA_Addon_Dexter_Vor_09_01");	//(смеется) Ты мог бы попробовать силой заставить меня говорить...
 	AI_Output(self,other,"DIA_Addon_Dexter_Vor_09_02");	//(угрожающе) Думаю, тебе лучше уйти.
-	AI_Output(self,other,"DIA_Dexter_Vor_09_02");	//Если я увижу тебя еще раз, то без колебаний убью!
+	AI_Output(self,other,"DIA_Dexter_Vor_09_02");	//Если я увижу тебя еще раз, то без колебаний убью! Я предупредил тебя.
 	Dexter_NoMoreSmallTalk = TRUE;
 	AI_StopProcessInfos(self);
 };

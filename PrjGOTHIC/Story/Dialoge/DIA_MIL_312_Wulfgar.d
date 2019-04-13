@@ -363,6 +363,7 @@ func void DIA_Wulfgar_Bonus_Info()
 	AI_Output(self,other,"DIA_Wulfgar_Bonus_04_01");	//Ѕудь внимательным. “ы можешь обмануть некоторых противников, если уклонишьс€ от удара, а затем атакуешь в правильный момент.
 	AI_Output(self,other,"DIA_Wulfgar_Bonus_04_02");	//ѕомни об этом в своем следующем бою!
 	B_RaiseFightTalent(other,NPC_TALENT_1H,2);
+	PrintScreen(PRINT_Learn1H,-1,-1,FONT_ScreenSmall,2);
 };
 
 

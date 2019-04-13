@@ -197,27 +197,27 @@ func void DIA_Addon_Nefarius_ADW_Runen_Info()
 	Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,Dialog_Back,DIA_Addon_Nefarius_ADW_Runen_BACK);
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 6)
 	{
-		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,"6-й круг магии",DIA_Addon_Nefarius_ADW_Runen_6);
+		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,NAME_Circle_6,DIA_Addon_Nefarius_ADW_Runen_6);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 5)
 	{
-		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,"5-й круг магии",DIA_Addon_Nefarius_ADW_Runen_5);
+		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,NAME_Circle_5,DIA_Addon_Nefarius_ADW_Runen_5);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 4)
 	{
-		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,"4-й круг магии",DIA_Addon_Nefarius_ADW_Runen_4);
+		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,NAME_Circle_4,DIA_Addon_Nefarius_ADW_Runen_4);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 3)
 	{
-		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,"3-й круг магии",DIA_Addon_Nefarius_ADW_Runen_3);
+		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,NAME_Circle_3,DIA_Addon_Nefarius_ADW_Runen_3);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2)
 	{
-		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,"2-й круг магии",DIA_Addon_Nefarius_ADW_Runen_2);
+		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,NAME_Circle_2,DIA_Addon_Nefarius_ADW_Runen_2);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1)
 	{
-		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,"1-й круг магии",DIA_Addon_Nefarius_ADW_Runen_1);
+		Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,NAME_Circle_1,DIA_Addon_Nefarius_ADW_Runen_1);
 	};
 };
 

@@ -130,7 +130,7 @@ func void DIA_Addon_Huno_Hi_JA()
 	AI_Output(other,self,"DIA_Addon_Huno_Hi_JA_15_00");	//Ну да. В Старом Лагере.
 	AI_Output(self,other,"DIA_Addon_Huno_Hi_JA_06_01");	//Старый Лагерь... да... ты тот любопытный паренек... Я думал, ты помер.
 	AI_Output(other,self,"DIA_Addon_Huno_Hi_JA_15_02");	//Все так думают. Еще есть выжившие?
-	AI_Output(self,other,"DIA_Addon_Huno_Hi_JA_06_03");	//Немного. Некоторые последовали за Вороном, как я. Для многих других Старый Лагерь стал братской могилой.
+	AI_Output(self,other,"DIA_Addon_Huno_Hi_JA_06_03");	//Немного. Некоторые последовали за Вороном, как и я. Для многих других Старый Лагерь стал братской могилой.
 	Info_ClearChoices(DIA_Addon_Huno_Hi);
 	Knows_Flucht = TRUE;
 };
@@ -202,14 +202,14 @@ func void DIA_Addon_Huno_Armor_Info()
 	if(Huno_ArmorCheap == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_01");	//Могу предложить эти. Дорого? Не меня вини, а Эстебана.
-		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_02");	//Проклятый шакал дерет свою долю с каждых доспехов, что я продаю.
+		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_02");	//Проклятый шакал дерет всю свою долю с каждых доспехов, что я продаю.
 		BDT_Armor_H_Value = 2100;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
 		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: оружие 50, стрелы 50. (2100 золота)",DIA_Addon_Huno_Armor_BUY);
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_Huno_Armor_15_03");	//Фиск сказал, что я могу рассчитывать на скидку?
+		AI_Output(other,self,"DIA_Addon_Huno_Armor_15_03");	//Фиск сказал, что я могу рассчитывать на скидку.
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_04");	//Фиск, говоришь? Хм, ну, я ему и в самом деле должен. Ладно, будет тебе скидка.
 		BDT_Armor_H_Value = 1400;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
@@ -464,7 +464,7 @@ instance DIA_Addon_Huno_Trade(C_Info)
 	information = DIA_Addon_Huno_Trade_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = DIALOG_TRADE;
+	description = DIALOG_TRADE_v3;
 };
 
 
@@ -478,6 +478,15 @@ func int DIA_Addon_Huno_Trade_Condition()
 
 func void DIA_Addon_Huno_Trade_Info()
 {
+	if(Huno_flag == 1)
+	{
+		B_ClearSmithInv(self);
+		if(Huno_swordraws > 0)
+		{
+			CreateInvItems(self,ItMiSwordraw,Huno_swordraws);
+		};
+		Huno_flag = 0;
+	};
 	B_Say(other,self,"$TRADE_3");
 	B_GiveTradeInv(self);
 };

@@ -54,7 +54,7 @@ instance DIA_Addon_Brandon_AnyNews(C_Info)
 	condition = DIA_Addon_Brandon_AnyNews_Condition;
 	information = DIA_Addon_Brandon_AnyNews_Info;
 	permanent = TRUE;
-	description = "Есть новости?";
+	description = "Есть что-нибудь новое?";
 };
 
 
@@ -89,7 +89,7 @@ func void DIA_Addon_Brandon_AnyNews_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Brandon_AnyNews_04_06");	//(заговорщицки) Погоди секунду...
 		AI_PlayAni(self,"T_SEARCH");
-		AI_Output(self,other,"DIA_Addon_Brandon_AnyNews_04_07");	//(смеется) Насколько я вижу, нет! Все по-старому
+		AI_Output(self,other,"DIA_Addon_Brandon_AnyNews_04_07");	//(смеется) Насколько я вижу, нет! Все по-старому.
 	};
 };
 
@@ -172,7 +172,7 @@ instance DIA_Addon_Brandon_SchnellerHering(C_Info)
 	nr = 13;
 	condition = DIA_Addon_Brandon_SchnellerHering_Condition;
 	information = DIA_Addon_Brandon_SchnellerHering_Info;
-	description = "Возьми эту 'Быструю селедку'.";
+	description = "Получай.";
 };
 
 

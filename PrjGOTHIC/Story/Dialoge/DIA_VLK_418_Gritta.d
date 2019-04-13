@@ -203,7 +203,7 @@ instance DIA_Gritta_WINE(C_Info)
 
 func int DIA_Gritta_WINE_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Gritta_WantPay == TRUE) && (MIS_Matteo_Gold == LOG_SUCCESS) && (Npc_HasItems(self,ItMi_Gold) >= 100))
+	if(Npc_IsInState(self,ZS_Talk) && (Gritta_WantPay == TRUE) && (MIS_Matteo_Gold == LOG_SUCCESS) && (Npc_HasItems(self,ItMi_Gold) >= 80))
 	{
 		return TRUE;
 	};
@@ -242,15 +242,15 @@ func int DIA_Gritta_PERM_Condition()
 
 func void DIA_Gritta_PERM_Info()
 {
-	if(Npc_KnowsInfo(other,DIA_Gritta_WINE) && (Npc_HasItems(self,ItMi_Gold) >= 100))
+	if(Npc_KnowsInfo(other,DIA_Gritta_WINE) && (Npc_HasItems(self,ItMi_Gold) >= 80))
 	{
 		AI_Output(self,other,"DIA_Gritta_PERM_16_00");	//Пока в городе есть такие люди как ты, меня не оставляет надежда, что все еще будет хорошо.
 	}
-	else if((Gritta_WantPay == TRUE) && (Npc_HasItems(self,ItMi_Gold) >= 100))
+	else if((Gritta_WantPay == TRUE) && (Npc_HasItems(self,ItMi_Gold) >= 80))
 	{
 		AI_Output(self,other,"DIA_Gritta_PERM_16_01");	//Возвращайся, когда уладишь вопрос с Маттео.
 	}
-	else if((Gritta_Threatened == TRUE) && (Npc_HasItems(self,ItMi_Gold) >= 100))
+	else if((Gritta_Threatened == TRUE) && (Npc_HasItems(self,ItMi_Gold) >= 80))
 	{
 		AI_Output(self,other,"DIA_Gritta_PERM_16_02");	//Что ты уставился на меня как идиот? Ты все равно не осмелишься ударить меня!
 	}

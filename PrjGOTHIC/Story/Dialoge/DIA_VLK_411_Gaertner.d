@@ -120,7 +120,7 @@ instance DIA_Gaertner_Trade(C_Info)
 	condition = DIA_Gaertner_Trade_Condition;
 	information = DIA_Gaertner_Trade_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
@@ -147,7 +147,7 @@ instance DIA_Gaertner_Krautabak(C_Info)
 	condition = DIA_Gaertner_Krautabak_Condition;
 	information = DIA_Gaertner_Krautabak_Info;
 	permanent = FALSE;
-	description = "У меня есть травяной табак.";
+	description = "У меня есть травяной табак. Хочешь затянуться?";
 };
 
 

@@ -27,7 +27,7 @@ instance DIA_Addon_Pardos_NW_Hi(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Pardos_NW_Hi_Condition;
 	information = DIA_Addon_Pardos_NW_Hi_Info;
-	permanent = TRUE;
+	permanent = FALSE;
 	description = "Как идут дела?";
 };
 

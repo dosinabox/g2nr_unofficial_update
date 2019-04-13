@@ -63,7 +63,7 @@ instance DIA_Addon_Miguel_Hi(C_Info)
 	condition = DIA_Addon_Miguel_Hi_Condition;
 	information = DIA_Addon_Miguel_Hi_Info;
 	permanent = FALSE;
-	description = "Что ты делаешь здесь?";
+	description = "Что ты здесь делаешь?";
 };
 
 
@@ -86,7 +86,7 @@ func void DIA_Addon_Miguel_Hi_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Miguel_Hi_11_04");	//Большинство из них можно использовать.
 	AI_Output(self,other,"DIA_Addon_Miguel_Hi_11_05");	//Многие растения имеют лечебные свойства, а из болотной травы получаются отличные косяки.
-	AI_Output(self,other,"DIA_Addon_Miguel_Hi_11_06");	//До того как я попал за Барьер, я работал алхимиком.
+	AI_Output(self,other,"DIA_Addon_Miguel_Hi_11_06");	//До того, как я попал за Барьер, я работал алхимиком.
 };
 
 
@@ -208,7 +208,7 @@ instance DIA_Addon_Miguel_Fortuno(C_Info)
 	condition = DIA_Addon_Miguel_Fortuno_Condition;
 	information = DIA_Addon_Miguel_Fortuno_Info;
 	permanent = FALSE;
-	description = "Насчет Фортуно...";
+	description = "У Фортуно не все в порядке с головой ...";
 };
 
 
@@ -272,7 +272,7 @@ instance DIA_Addon_Miguel_trade(C_Info)
 	information = DIA_Addon_Miguel_trade_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = DIALOG_TRADE;
+	description = DIALOG_TRADE_v1;
 };
 
 

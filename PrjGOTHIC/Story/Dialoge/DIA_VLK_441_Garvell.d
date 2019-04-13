@@ -398,7 +398,7 @@ func int DIA_Garvell_City_Condition()
 func void DIA_Garvell_City_Info()
 {
 	AI_Output(other,self,"DIA_Garvell_City_15_00");	//Что касается орка около города...
-	AI_Output(self,other,"DIA_Garvell_City_04_01");	//Дааа?..
+	AI_Output(self,other,"DIA_Garvell_City_04_01");	//Дааа?
 	AI_Output(other,self,"DIA_Garvell_City_15_02");	//Не волнуйся насчет него. Городская стража позаботится о нем.
 	Tell_Garvell = Tell_Garvell + 1;
 	B_GivePlayerXP(XP_Ambient);

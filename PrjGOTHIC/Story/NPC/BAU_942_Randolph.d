@@ -1,7 +1,7 @@
 
 instance BAU_942_Randolph(Npc_Default)
 {
-	name[0] = "Рендольф";
+	name[0] = "Рэндольф";
 	guild = GIL_OUT;
 	id = 942;
 	voice = 6;

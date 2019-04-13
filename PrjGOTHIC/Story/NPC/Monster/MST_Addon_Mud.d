@@ -1,7 +1,7 @@
 
 prototype Mst_Default_Mud(C_Npc)
 {
-	name[0] = "Тина";
+	name[0] = "Мад";
 	guild = GIL_ZOMBIE;
 	aivar[AIV_MM_REAL_ID] = ID_ZOMBIE;
 	level = 0;

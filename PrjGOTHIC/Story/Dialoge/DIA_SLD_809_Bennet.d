@@ -73,6 +73,15 @@ func int DIA_Bennet_TRADE_Condition()
 
 func void DIA_Bennet_TRADE_Info()
 {
+	if(Bennet_flag == 1)
+	{
+		B_ClearSmithInv(self);
+		if(Bennet_swordraws > 0)
+		{
+			CreateInvItems(self,ItMiSwordraw,Bennet_swordraws);
+		};
+		Bennet_flag = 0;
+	};
 	var int McBolzenAmount;
 	var int McArrowAmount;
 	AI_Output(other,self,"DIA_Bennet_TRADE_15_00");	//А как насчет кузнечного инструмента?
@@ -364,7 +373,7 @@ instance DIA_Bennet_BringOre(C_Info)
 	condition = DIA_Bennet_BringOre_Condition;
 	information = DIA_Bennet_BringOre_Info;
 	permanent = FALSE;
-	description = "Вот, держи - (5 кусков руды).";
+	description = "Вот, держи. (5 кусков руды)";
 };
 
 
@@ -378,7 +387,7 @@ func int DIA_Bennet_BringOre_Condition()
 
 func void DIA_Bennet_BringOre_Info()
 {
-	AI_Output(other,self,"DIA_Bennet_BringOre_15_00");	//Вот держи.
+	AI_Output(other,self,"DIA_Bennet_BringOre_15_00");	//Вот, держи.
 	AI_Output(self,other,"DIA_Bennet_BringOre_06_01");	//(смеется) Покажи!
 	B_GiveInvItems(other,self,ItMi_Nugget,5);
 	AI_Output(self,other,"DIA_Bennet_BringOre_06_02");	//Да ты что! Я потрясен!
@@ -437,7 +446,7 @@ func void DIA_Bennet_TeachSmith_Info()
 	}
 	else if((MIS_ReadyforChapter4 == TRUE) && (Kapitel < 5) && (Bennet_Kap4Smith == FALSE))
 	{
-		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03");	//Пока мне нечему учить тебя. Это лучшее, что я умею ковать сейчас.
+		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03");	//Полагаю, что я превзошел самого себя. Я разработал два боевых клинка. Это лучшее из того, что я когда-либо видел.
 		Bennet_Kap4Smith = TRUE;
 	}
 	else if((Kapitel >= 5) && (Bennet_Kap5Smith == FALSE))
@@ -583,7 +592,7 @@ func void DIA_Bennet_WhyPrison_Info()
 	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_02");	//Но я не делал этого, они хотят оклеветать меня.
 	AI_Output(other,self,"DIA_Bennet_WhyPrison_15_03");	//Зачем бы им это?
 	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_04");	//Откуда мне знать? Ты должен вытащить меня отсюда.
-	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_05");	//Поговори с лордом Хагеном, проломи стену...  ну, я не знаю... сделай же что-нибудь!
+	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_05");	//Поговори с лордом Хагеном, проломи стену... ну, я не знаю... сделай же что-нибудь!
 	MIS_RescueBennet = LOG_Running;
 	Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
@@ -614,7 +623,7 @@ func void DIA_Bennet_WhatHappened_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_WhatHappened_15_00");	//Что произошло?
 	AI_Output(self,other,"DIA_Bennet_WhatHappened_06_01");	//Я пошел в нижнюю часть города с Ходжесом, чтобы купить кое-что для наших парней.
-	AI_Output(self,other,"DIA_Bennet_WhatHappened_06_02");	//Неожиданно мы услышали громкий крик и звук топот убегающих ног.
+	AI_Output(self,other,"DIA_Bennet_WhatHappened_06_02");	//Неожиданно мы услышали громкий крик и звук топота убегающих ног.
 	AI_Output(other,self,"DIA_Bennet_WhatHappened_15_03");	//Давай к делу.
 	AI_Output(self,other,"DIA_Bennet_WhatHappened_06_04");	//Мы сразу поняли - что-то случилось, и нас тут же схватят, если застанут там.
 	AI_Output(self,other,"DIA_Bennet_WhatHappened_06_05");	//И мы побежали. А затем, когда до городских ворот оставалось уже совсем немного, я споткнулся и повредил колено.
@@ -707,7 +716,7 @@ func void DIA_Bennet_Investigation_Info()
 	AI_Output(self,other,"DIA_Bennet_Investigation_06_01");	//Сам лорд Хаген. Так как был убит один из паладинов, это дело подпадает под закон о военном положении.
 	AI_Output(other,self,"DIA_Bennet_Investigation_15_02");	//Что это означает?
 	AI_Output(self,other,"DIA_Bennet_Investigation_06_03");	//Это легко предположить. Если меня не вытащить отсюда, то я буду повешен без долгих разговоров.
-	AI_Output(self,other,"DIA_Bennet_Investigation_06_04");	//Ты должен помочь мне, или начнется война. Ли не отставит это просто так.
+	AI_Output(self,other,"DIA_Bennet_Investigation_06_04");	//Ты должен помочь мне, или начнется война. Ли не оставит это просто так.
 	AI_Output(self,other,"DIA_Bennet_Investigation_06_05");	//Ты сам понимаешь, что это значит.
 };
 
@@ -823,12 +832,17 @@ func int DIA_Bennet_DragonScale_Condition()
 
 func void DIA_Bennet_DragonScale_Info()
 {
+	var int dragonscalecount;
+	var string concatText;
 	AI_Output(other,self,"DIA_Bennet_DragonScale_15_00");	//Я принес тебе несколько драконьих чешуек.
 	AI_Output(self,other,"DIA_Bennet_DragonScale_06_01");	//Настоящая чешуя дракона!
 	AI_Output(self,other,"DIA_Bennet_DragonScale_06_02");	//Вот твое золото!
-	Bennet_DragonScale_Counter = Bennet_DragonScale_Counter + Npc_HasItems(other,ItAt_DragonScale);
-	B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_DragonScale) * Value_DragonScale);
-	B_GiveInvItems(other,self,ItAt_DragonScale,Npc_HasItems(other,ItAt_DragonScale));
+	dragonscalecount = Npc_HasItems(other,ItAt_DragonScale);
+	Bennet_DragonScale_Counter = Bennet_DragonScale_Counter + dragonscalecount;
+	B_GiveInvItems(self,other,ItMi_Gold,dragonscalecount * Value_DragonScale);
+	Npc_RemoveInvItems(other,ItAt_DragonScale,dragonscalecount);
+	concatText = ConcatStrings(IntToString(dragonscalecount),PRINT_ItemsGegeben);
+	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	if((Bennet_DragonScale_Counter >= 20) && (Show_DJG_Armor_M == FALSE))
 	{
 		AI_Output(self,other,"DIA_Bennet_DragonScale_06_03");	//Хорошо, этого должно быть достаточно. Я могу продать тебе новые, улучшенные доспехи, если, конечно, тебе это интересно.
@@ -1004,7 +1018,7 @@ func void DIA_Bennet_ShowInnosEye_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_ShowInnosEye_15_00");	//Ты можешь взглянуть на этот амулет?
 	AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_01");	//Конечно, давай посмотрим.
-	AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_02");	//Хммм, превосходная работа. Оправа сломана. Но, думаю, впрочем, я смогу починить ее.
+	AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_02");	//Хммм, превосходная работа. Оправа сломана. Но, думаю, я смогу починить ее, впрочем.
 	AI_Output(other,self,"DIA_Bennet_ShowInnosEye_15_03");	//Сколько это займет времени?
 	if(MIS_RescueBennet != LOG_SUCCESS)
 	{
@@ -1163,7 +1177,7 @@ func void DIA_Bennet_DRACHENEIER_Info()
 	{
 		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_07");	//Ну и сколько еще ты собираешься вертеть их у меня перед носом? Ты продашь их или нет?
 	};
-	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_08");	//Я заплачу тебе, ммм, скажем, 300 золотых за каждое яйцо, что ты принесешь мне.
+	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_06_08");	//Я заплачу тебе, ммм, ну... скажем, 300 золотых за каждое яйцо, что ты принесешь мне.
 	Info_ClearChoices(DIA_Bennet_DRACHENEIER);
 	Info_AddChoice(DIA_Bennet_DRACHENEIER,"Тогда можешь оставить золото себе. Я пока попридержу эти яйца.",DIA_Bennet_DRACHENEIER_nein);
 	Info_AddChoice(DIA_Bennet_DRACHENEIER,"Это яйца дракона, а не какие-нибудь куриные.",DIA_Bennet_DRACHENEIER_mehr);
@@ -1192,14 +1206,20 @@ func void DIA_Bennet_DRACHENEIER_ok()
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_05");	//Насколько я знаю, люди-ящеры обычно обитают в пещерах.
 	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_06");	//Я не удивлюсь, если тебе удастся найти еще яйца в пещерах неподалеку.
 	B_LogEntry(TOPIC_DRACHENEIER,"Беннет полагает, что мне стоит поискать яйца в пещерах Хориниса. Во многих из них, по слухам, видели человекоящеров.");
-	AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_07");	//Вот. Возьми эту карту. Она поможет тебе найти пещеры.
-	CreateInvItems(self,ItWr_Map_Caves_MIS,1);
-	B_GiveInvItems(self,other,ItWr_Map_Caves_MIS,1);
-	B_LogEntry(TOPIC_DRACHENEIER,"Он дал мне карту пещер, возможно, она поможет мне.");
-	if(1 == 2)
+	if(Npc_HasItems(other,ItWr_Map_Caves_MIS) == FALSE)
 	{
-		AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_08");	//Но сначала ты должен взять карту пещер у картографа в городе. Будет жаль, если ты найдешь не все яйца.
-		B_LogEntry(TOPIC_DRACHENEIER,"Я должен купить карту пещер у картографа в городе, чтобы быть уверенным, что я не пропущу часть яиц.");
+		if(Npc_IsDead(Brahim) == FALSE)
+		{
+			AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_08");	//Но сначала ты должен взять карту пещер у картографа в городе. Будет жаль, если ты найдешь не все яйца.
+			B_LogEntry(TOPIC_DRACHENEIER,"Я должен купить карту пещер у картографа в городе, чтобы быть уверенным, что я не пропущу часть яиц.");
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_07");	//Вот. Возьми эту карту. Она поможет тебе найти пещеры.
+			CreateInvItems(self,ItWr_Map_Caves_MIS,1);
+			B_GiveInvItems(self,other,ItWr_Map_Caves_MIS,1);
+			B_LogEntry(TOPIC_DRACHENEIER,"Он дал мне карту пещер, возможно, она поможет мне.");
+		};
 	};
 	Info_ClearChoices(DIA_Bennet_DRACHENEIER);
 };
@@ -1353,7 +1373,7 @@ func void DIA_Bennet_KnowWhereEnemy_Info()
 	{
 		Info_ClearChoices(DIA_Bennet_KnowWhereEnemy);
 		Info_AddChoice(DIA_Bennet_KnowWhereEnemy,"Я дам тебе знать, когда ты мне понадобишься.",DIA_Bennet_KnowWhereEnemy_No);
-		Info_AddChoice(DIA_Bennet_KnowWhereEnemy,"Будь моим кузнецом. Увидимся в гавани. ",DIA_Bennet_KnowWhereEnemy_Yes);
+		Info_AddChoice(DIA_Bennet_KnowWhereEnemy,"Будь моим кузнецом. Увидимся в гавани.",DIA_Bennet_KnowWhereEnemy_Yes);
 	};
 };
 

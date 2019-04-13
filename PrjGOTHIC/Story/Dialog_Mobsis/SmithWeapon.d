@@ -539,6 +539,43 @@ func void PC_ItMw_2H_Special_04_Info()
 	Erzwaffen = FALSE;
 };
 
+
+instance PC_ItMw_Streitaxt1(C_Info)
+{
+	npc = PC_Hero;
+	condition = PC_ItMw_Streitaxt1_Condition;
+	information = PC_ItMw_Streitaxt1_Info;
+	permanent = TRUE;
+};
+
+
+func int PC_ItMw_Streitaxt1_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_SmithWeapon) && (Knows_Banditenaxt == TRUE) && (Erzwaffen == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItMw_Streitaxt1_Info()
+{
+	if((Npc_HasItems(hero,ItMi_Nugget) >= 1) && (Npc_HasItems(hero, ItAt_Teeth) >= 3) && (Npc_HasItems(hero,ItMiSwordrawhot) >= 1))
+	{
+		Npc_RemoveInvItems(hero,ItMi_Nugget,1);
+		Npc_RemoveInvItems(hero,ItAt_Teeth,3);
+		Npc_RemoveInvItems(hero,ItMiSwordrawhot,1);
+		CreateInvItems(hero,ItMw_Streitaxt1,1);
+		Print(PRINT_SmithSuccess);
+	}
+	else
+	{
+		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMiSwordraw,1);
+	};
+	b_endproductiondialog();
+	Erzwaffen = FALSE;
+};
+
 func void smithweapon_s1()
 {
 	var C_Npc her;
@@ -562,5 +599,6 @@ func void smithweapon_s1()
 	PC_WEAPON_1H_Harad_02.description = NAME_Addon_Harad_02;
 	PC_WEAPON_1H_Harad_03.description = NAME_Addon_Harad_03;
 	PC_WEAPON_1H_Harad_04.description = NAME_Addon_Harad_04;
+	PC_ItMw_Streitaxt1.description = ConcatStrings(NAME_ItMw_Streitaxt1,PRINT_Smith_Streitaxt1);
 };
 

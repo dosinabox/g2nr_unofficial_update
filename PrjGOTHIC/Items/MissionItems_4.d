@@ -46,7 +46,7 @@ func void UnEquip_ItAm_Mana_Angar()
 
 instance ItMW_1H_FerrosSword_Mis(C_Item)
 {
-	name = "Ìוק Ôונמסא";
+	name = "Ìוק Ôוננמסא";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD | ITEM_MISSION;
 	material = MAT_METAL;

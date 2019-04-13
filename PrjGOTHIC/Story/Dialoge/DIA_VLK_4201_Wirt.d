@@ -55,6 +55,38 @@ func void DIA_Wirt_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Wirt_PICKPOCKET);
 };
 
+func void B_GiveBeer(var int DailyQuantity)
+{
+	var int Wirt_GiveBeer_Day;
+	var int Beer_Count;
+	if(Wld_GetDay() != 0)
+	{
+		if((Beer_Count < DailyQuantity) && (Wirt_GiveBeer_Day != Wld_GetDay()))
+		{
+			B_GiveInvItems(self,other,ItFo_Beer,1);
+			Beer_Count += 1;            
+		};
+		if(Beer_Count >= DailyQuantity)
+		{
+			Wirt_GiveBeer_Day = Wld_GetDay();
+			Beer_Count = 0;
+		};
+	}
+	else
+	{
+		if((Beer_Count < DailyQuantity) && (Wirt_GiveBeer_Day != 999))
+		{
+			B_GiveInvItems(self,other,ItFo_Beer,1);
+			Beer_Count += 1;            
+		};
+		if(Beer_Count >= DailyQuantity)
+		{
+			Wirt_GiveBeer_Day = 999;
+			Beer_Count = 0;
+		};
+	};
+};
+
 
 instance DIA_Wirt_Hallo(C_Info)
 {
@@ -78,7 +110,7 @@ func int DIA_Wirt_Hallo_Condition()
 func void DIA_Wirt_Hallo_Info()
 {
 	var int randy;
-	randy = Hlp_Random(2);
+	randy = Hlp_Random(3);
 	AI_Output(self,other,"DIA_Wirt_Hallo_14_00");	//Ёй, не стесн€йс€, подходи. ќтведай холодного пива.
 	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
@@ -93,7 +125,7 @@ func void DIA_Wirt_Hallo_Info()
 	else if(randy == 1)
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_03");	//ѕаладины со всем разберутс€ сами. ј ты можешь пот€гивать здесь пиво и наслаждатьс€ жизнью.
-		B_GiveInvItems(self,other,ItFo_Beer,1);
+		B_GiveBeer(5);
 		AI_StopProcessInfos(self);
 	}
 	else if(randy == 2)

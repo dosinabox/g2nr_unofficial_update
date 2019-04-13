@@ -176,6 +176,7 @@ func int DIA_Rod_WannaJoin_Condition()
 	};
 };
 
+
 func void DIA_Rod_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Rod_WannaJoin_15_00");	//Я хочу присоединиться к наемникам!
@@ -197,10 +198,11 @@ func void DIA_Rod_WannaJoin_Info()
 		};
 		AI_Output(self,other,"DIA_Rod_WannaJoin_06_06");	//Если тебе интересно мое мнение, то я не против.
 		B_LogEntry(TOPIC_SLDRespekt,"Я получу голос Рода, если я захочу присоединиться к наемникам.");
+		DIA_Rod_WannaJoin.permanent = FALSE;
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rod_WannaJoin_06_07");	//У нас места для слабаков!
+		AI_Output(self,other,"DIA_Rod_WannaJoin_06_07");	//У нас места не для слабаков!
 		Rod_SchwachGesagt = TRUE;
 	};
 };
@@ -374,7 +376,7 @@ func void DIA_Rod_Wette_Yes()
 		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_10");	//А теперь, отдай мне мое оружие назад.
 		Info_ClearChoices(DIA_Rod_Wette);
 		Info_AddChoice(DIA_Rod_Wette,"Думаю, что нет...",DIA_Rod_Wette_KeepIt);
-		Info_AddChoice(DIA_Rod_Wette,"Вот держи.",DIA_Rod_Wette_GiveBack);
+		Info_AddChoice(DIA_Rod_Wette,"Вот, держи.",DIA_Rod_Wette_GiveBack);
 	}
 	else
 	{

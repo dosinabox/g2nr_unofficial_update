@@ -412,7 +412,7 @@ func void DIA_Andre_Message_Info()
 	AI_Output(self,other,"DIA_Andre_Message_08_01");	//Ну, ты стоишь перед его представителем. Так что там такое?
 	Info_ClearChoices(DIA_Andre_Message);
 	Info_AddChoice(DIA_Andre_Message,"Это я могу сказать только лорду Хагену.",DIA_Andre_Message_Personal);
-	Info_AddChoice(DIA_Andre_Message,"Армию орков, возглавляют ДРАКОНЫ!",DIA_Andre_Message_Dragons);
+	Info_AddChoice(DIA_Andre_Message,"Армия орков, возглавляемая ДРАКОНАМИ!",DIA_Andre_Message_Dragons);
 	Info_AddChoice(DIA_Andre_Message,"Это насчет священного артефакта - Глаза Инноса.",DIA_Andre_Message_EyeInnos);
 };
 
@@ -436,7 +436,7 @@ func void DIA_Andre_Message_EyeInnos()
 func void DIA_Andre_Message_Dragons()
 {
 	AI_Output(other,self,"DIA_Andre_Message_Dragons_15_00");	//Армия орков, возглавляемая ДРА...
-	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_01");	//(прерывает) Я ЗНАЮ, что армия орков становится все сильнее
+	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_01");	//(прерывает) Я ЗНАЮ, что армия орков становится все сильнее.
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_02");	//Ты же не хочешь мне сказать, что ты ТОЛЬКО это хочешь доложить лорду Хагену.
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_03");	//Он оторвет тебе голову, если ты будешь попусту тратить его время, отвлекая его такими историями.
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_04");	//Я уверен, что ты достаточно умен и понимаешь это сам.
@@ -459,7 +459,7 @@ instance DIA_Andre_Paladine(C_Info)
 	condition = DIA_Andre_Paladine_Condition;
 	information = DIA_Andre_Paladine_Info;
 	permanent = FALSE;
-	description = "Что паладины делают в городе?";
+	description = "Почему паладины прибыли в город?";
 };
 
 
@@ -651,7 +651,7 @@ instance DIA_Andre_GuildOfThieves(C_Info)
 	condition = DIA_Andre_GuildOfThieves_Condition;
 	information = DIA_Andre_GuildOfThieves_Info;
 	permanent = FALSE;
-	description = "В чем твоя проблема?";
+	description = "Что у тебя за проблема?";
 };
 
 
@@ -773,7 +773,7 @@ func void DIA_Andre_Auslieferung_Info()
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Халвор торгует краденым.",DIA_Andre_Auslieferung_Halvor);
 	};
-	if((MIS_Nagur_Bote == LOG_Running) && (Nagur_Ausgeliefert == FALSE))
+	if(((MIS_Nagur_Bote == LOG_Running) || (MIS_Nagur_Bote == LOG_FAILED)) && (Nagur_Ausgeliefert == FALSE))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Нагур убил посыльного Бальтрама.",DIA_Andre_Auslieferung_Nagur);
 	};
@@ -795,7 +795,7 @@ func void DIA_Andre_Auslieferung_Back()
 func void DIA_Andre_Auslieferung_Rengaru()
 {
 	AI_Teleport(Rengaru,"NW_CITY_HABOUR_KASERN_RENGARU");
-	AI_Output(other,self,"DIA_Andre_Auslieferung_Rengaru_15_00");	//Ренгар украл у торговца Джоры. Он пытался скрыться, но я поймал его.
+	AI_Output(other,self,"DIA_Andre_Auslieferung_Rengaru_15_00");	//Ренгару украл у торговца Джоры. Он пытался скрыться, но я поймал его.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Rengaru_08_01");	//Хорошо, мои люди уже схватили его. Больше он не сможет воровать у добропорядочных граждан.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Rengaru_08_02");	//Вот твои деньги.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
@@ -856,7 +856,7 @@ func void DIA_Andre_Auslieferung_Sarah()
 	AI_Teleport(Canthar,"NW_CITY_SARAH");
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_00");	//Сара продает оружие Онару.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_01");	//Сара? Торговка оружием с рыночной площади? У тебя есть доказательство?
-	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо, с деталями поставки оружия ему.
+	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо с деталями поставки оружия ему.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_03");	//Она поплатится за это. Я прикажу арестовать ее.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 	B_StartOtherRoutine(Sarah,"KNAST");
@@ -895,6 +895,10 @@ func void DIA_Andre_DGRunning_Info()
 		AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
 		AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
 		MIS_Andre_GuildOfThieves = LOG_OBSOLETE;
+		if (MIS_CassiaRing == LOG_Running)
+		{
+			MIS_CassiaRing = LOG_OBSOLETE;
+		};
 		if(MIS_CassiaKelche == LOG_Running)
 		{
 			MIS_CassiaKelche = LOG_OBSOLETE;
@@ -951,9 +955,17 @@ func void DIA_Andre_DGRunning_Success()
 	DG_gefunden = TRUE;
 	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GuildOfThievesPlatt);
+	if (MIS_CassiaRing == LOG_Running)
+	{
+		MIS_CassiaRing = LOG_OBSOLETE;
+	};
 	if(MIS_CassiaKelche == LOG_Running)
 	{
 		MIS_CassiaKelche = LOG_OBSOLETE;
+	};
+	if(MIS_RamirezSextant == LOG_Running)
+	{
+		MIS_RamirezSextant = LOG_OBSOLETE;
 	};
 	if(other.guild == GIL_NONE)
 	{
@@ -1151,8 +1163,8 @@ func void DIA_Andre_FOUND_PECK_Info()
 	AI_Output(other,self,"DIA_Andre_FOUND_PECK_15_00");	//Мне удалось найти Пека.
 	AI_Output(self,other,"DIA_Andre_FOUND_PECK_08_01");	//Да, он уже вернулся на свой пост и приступил к выполнению своих обязанностей. Где ты нашел его?
 	Info_ClearChoices(DIA_Andre_FOUND_PECK);
-	Info_AddChoice(DIA_Andre_FOUND_PECK,"Я случайно наткнулся на него ...",DIA_Andre_FOUND_PECK_SOMEWHERE);
-	Info_AddChoice(DIA_Andre_FOUND_PECK,"В 'Красном Фонаре'...",DIA_Andre_FOUND_PECK_REDLIGHT);
+	Info_AddChoice(DIA_Andre_FOUND_PECK,"Я случайно наткнулся на него в городе.",DIA_Andre_FOUND_PECK_SOMEWHERE);
+	Info_AddChoice(DIA_Andre_FOUND_PECK,"Он был в Красном Фонаре.",DIA_Andre_FOUND_PECK_REDLIGHT);
 };
 
 func void DIA_Andre_FOUND_PECK_SOMEWHERE()
@@ -1166,7 +1178,7 @@ func void DIA_Andre_FOUND_PECK_SOMEWHERE()
 
 func void DIA_Andre_FOUND_PECK_REDLIGHT()
 {
-	AI_Output(other,self,"DIA_Andre_FOUND_PECK_REDLIGHT_15_00");	//Он был в 'Красном Фонаре'.
+	AI_Output(other,self,"DIA_Andre_FOUND_PECK_REDLIGHT_15_00");	//Он был в Красном Фонаре.
 	AI_Output(self,other,"DIA_Andre_FOUND_PECK_REDLIGHT_08_01");	//То есть он развлекался с девочками вместо того, чтобы выполнять свои обязанности.
 	AI_Output(self,other,"DIA_Andre_FOUND_PECK_REDLIGHT_08_02");	//Я думаю, мне нужно серьезно поговорить с ним.
 	B_GivePlayerXP(XP_FoundPeck * 2);

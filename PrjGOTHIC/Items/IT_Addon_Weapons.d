@@ -125,7 +125,7 @@ instance ItMW_Addon_Stab03(C_Item)
 	cond_value[2] = Condition_Stab03;
 	visual = "ItMW_MageStaff_Blades_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF3";
-	description = "Посох магов воды";
+	description = "Посох магов Воды";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -310,13 +310,12 @@ instance ItMW_Addon_Keule_1h_01(C_Item)
 	cond_value[2] = Condition_Windknecht;
 	visual = "ItMW_Club_1H_01.3DS";
 	description = name;
-	text[0] = NAME_Damage;
-	count[0] = damageTotal;
-	text[2] = NAME_ADDON_MALUS_1H;
-	count[2] = Waffenbonus_10;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
 	count[3] = cond_value[2];
-	text[4] = NAME_OneHanded;
+	text[4] = NAME_ADDON_MALUS_1H;
+	count[4] = Waffenbonus_10;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -375,7 +374,7 @@ instance ItMw_FrancisDagger_Mis(C_Item)
 
 instance ItMw_RangerStaff_Addon(C_Item)
 {
-	name = "Посох 'Кольца воды'";
+	name = "Посох 'Кольца Воды'";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
@@ -444,7 +443,7 @@ instance ItMw_Addon_PIR2hSword(C_Item)
 
 instance ItMw_Addon_PIR1hAxe(C_Item)
 {
-	name = "Абордажная пика";
+	name = "Абордажный топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_AXE;
 	material = MAT_METAL;
@@ -467,7 +466,7 @@ instance ItMw_Addon_PIR1hAxe(C_Item)
 
 instance ItMw_Addon_PIR1hSword(C_Item)
 {
-	name = "Абордажный нож";
+	name = "Абордажный меч";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;

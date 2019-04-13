@@ -360,7 +360,7 @@ func void UnEquip_ItAm_Mana_01()
 
 instance ItAm_Dex_Strg_01(C_Item)
 {
-	name = "Амулет мощи";
+	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_Am_DexStrg;
@@ -397,7 +397,7 @@ func void UnEquip_ItAm_Dex_Strg_01()
 
 instance ItAm_Hp_Mana_01(C_Item)
 {
-	name = "Амулет просвещения";
+	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_Am_HpMana;

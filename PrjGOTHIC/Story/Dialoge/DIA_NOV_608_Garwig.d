@@ -159,7 +159,7 @@ func void DIA_Garwig_Shield_Info()
 {
 	AI_Output(other,self,"DIA_Garwig_Shield_15_00");	//Расскажи мне об этом щите.
 	AI_Output(self,other,"DIA_Garwig_Shield_06_01");	//Щит Огня принадлежал Доминику в битве на Южных островах.
-	AI_Output(self,other,"DIA_Garwig_Shield_06_02");	//Но сила этого щита не должна  больше использоваться - поэтому, мы прибили его на стене.
+	AI_Output(self,other,"DIA_Garwig_Shield_06_02");	//Но сила этого щита не должна больше использоваться - поэтому мы прибили его на стене.
 };
 
 
@@ -313,7 +313,7 @@ func void DIA_Garwig_Abgeben_Info()
 	AI_Output(other,self,"DIA_Garwig_Abgeben_15_00");	//Я принес молот назад.
 	if(Hammer_Taken == TRUE)
 	{
-		AI_Output(self,other,"DIA_Garwig_Abgeben_06_01");	//Ах ты подлый вор!
+		AI_Output(self,other,"DIA_Garwig_Abgeben_06_01");	//Ах ты, подлый вор!
 	}
 	else
 	{

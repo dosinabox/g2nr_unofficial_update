@@ -32,8 +32,8 @@ func void Use_SaturasFirstMessage()
 	Doc_PrintLines(nDocID,0,"Полагаю, что наши исследования вскорости принесут новые результаты.");
 	Doc_PrintLines(nDocID,0,"Найденный нами орнамент имеет гораздо большее значение, чем мы думали. Похоже, что это артефакт-ключ. Увы, у нас только часть его. Мы должны заняться им.");
 	Doc_PrintLines(nDocID,0,"Отправь одного из членов Кольца Воды, чтобы он вернул нам орнамент. Если возможно, не посылай Кавалорна.");
-	Doc_PrintLines(nDocID,0,"Он и так достаточно потрудился, доставляя тебе это письмо. ");
-	Doc_PrintLines(nDocID,0,"Надеюсь, то, что мы делаем, - правильно.");
+	Doc_PrintLines(nDocID,0,"Он и так достаточно потрудился, доставляя тебе это письмо.");
+	Doc_PrintLines(nDocID,0,"Надеюсь на то, что мы делаем, - правильно.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сатурас");
 	Doc_Show(nDocID);
@@ -41,14 +41,14 @@ func void Use_SaturasFirstMessage()
 	{
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
-		B_LogEntry(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу воды Ватрасу. Теперь это моя задача.");
+		B_LogEntry(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
 		Use_SaturasFirstMessage_OneTime = TRUE;
 	};
 	if(SC_KnowsRanger == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-		Log_AddEntry(TOPIC_Addon_RingOfWater,"Существует какое-то сообщество, которое называется 'Кольцо Воды'. Похоже, что управляют им маги воды.");
+		Log_AddEntry(TOPIC_Addon_RingOfWater,"Существует какое-то сообщество, которое называется 'Кольцо Воды'. Похоже, что управляют им маги Воды.");
 	};
 	if(SC_IsRanger == FALSE)
 	{
@@ -78,7 +78,7 @@ instance ItWr_SaturasFirstMessage_Addon(C_Item)
 	on_state[0] = Use_SaturasFirstMessage;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Письмо Сатураса Ватрасу";
+	text[2] = "Письмо Сатураса Ватрасу.";
 };
 
 instance ItMi_Ornament_Addon(C_Item)
@@ -103,7 +103,7 @@ instance ItMi_Ornament_Addon_Vatras(C_Item)
 	visual = "ItMi_PortalRing_05.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Фрагмент большого, богато украшенного кольца";
+	text[0] = "Фрагмент большого, богато украшенного кольца.";
 	inv_zbias = INVCAM_ENTF_MISC5_STANDARD;
 };
 
@@ -120,7 +120,6 @@ instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
 	description = name;
 	text[0] = "На этой карте отмечены места, где, как полагает";
 	text[1] = "Нефариус, можно найти недостающие орнаменты.";
-	text[2] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -154,7 +153,7 @@ instance ItWr_Map_NewWorld_Dexter(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_Dexter;
 	description = name;
-	text[0] = "Скип пометил место,";
+	text[0] = "Пират Скип пометил место,";
 	text[1] = "где я могу найти предводителя";
 	text[2] = "бандитов Декстера.";
 	text[5] = NAME_Value;
@@ -233,7 +232,7 @@ instance ItRi_Ranger_Lares_Addon(Rangerring_Prototype)
 
 instance ItRi_Ranger_Addon(Rangerring_Prototype)
 {
-	text[1] = "Это кольцо принадлежит  мне.";
+	text[1] = "Это кольцо принадлежит мне.";
 };
 
 instance ItRi_LanceRing(Rangerring_Prototype)
@@ -249,7 +248,8 @@ instance ItMi_PortalRing_Addon(C_Item)
 	value = 0;
 	visual = "ItMi_PortalRing_01.3DS";
 	material = MAT_STONE;
-	description = "Это кольцо открывает портал.";
+	description = name;
+	text[0] = "Это кольцо открывает портал.";
 	inv_zbias = INVCAM_ENTF_MISC3_STANDARD;
 };
 
@@ -303,8 +303,8 @@ instance ItWr_RavensKidnapperMission_Addon(C_Item)
 	on_state[0] = Use_RavensKidnapperMission_Addon;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Я забрал это письмо у";
-	text[3] = "предводителя бандитов Декстера";
+	text[2] = "Я забрал это письмо";
+	text[3] = "у предводителя бандитов Декстера.";
 };
 
 
@@ -350,9 +350,9 @@ instance ItWr_Vatras_KDFEmpfehlung_Addon(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_VatrasKDFEmpfehlung_Addon;
 	scemeName = "MAP";
-	description = "Рекомендательное письмо Ватраса";
+	description = name;
 	text[2] = "Это письмо поможет мне";
-	text[3] = "попасть в монастырь магов огня,";
+	text[3] = "попасть в монастырь магов Огня,";
 	text[4] = "не заплатив за вход.";
 };
 
@@ -368,7 +368,7 @@ func void Use_VatrasKDFEmpfehlung_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Братья огня!");
+	Doc_PrintLines(nDocID,0,"Братья Огня!");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Мне стало известно, что за вход в ваш монастырь вы требуете плату.");
 	Doc_PrintLines(nDocID,0,"С этим письмом я направляю вам молодого человека, который страстно желает присоединиться к вам.");
@@ -382,7 +382,7 @@ instance ItMi_LostInnosStatue_Daron(C_Item)
 {
 	name = "Драгоценная статуэтка Инноса";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI;
+	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_InnosStatue;
 	visual = "ItMi_InnosStatue.3DS";
 	material = MAT_METAL;
@@ -408,10 +408,13 @@ instance ItWr_LuciasLoveLetter_Addon(C_Item)
 func void Use_LuciasLoveLetter_Addon()
 {
 	var int nDocID;
-	Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
-	MIS_LuciasLetter = LOG_Running;
+	if(MIS_LuciasLetter == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
+		B_LogEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
+		MIS_LuciasLetter = LOG_Running;
+	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -493,7 +496,7 @@ instance ItRi_Addon_BanditTrader(C_Item)
 	visual_skin = 0;
 	material = MAT_METAL;
 	description = "Гравированное кольцо";
-	text[2] = "гильдии торговцев Араксоса";
+	text[2] = "гильдии торговцев Араксоса.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
@@ -559,7 +562,7 @@ instance ItWr_Vatras2Saturas_FindRaven(C_Item)
 	on_state[0] = Use_Vatras2Saturas_FindRaven_Sealed;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[2] = "Письмо Ватраса Сатурасу";
+	text[2] = "Письмо Ватраса Сатурасу.";
 };
 
 
@@ -602,7 +605,7 @@ instance ItWr_Vatras2Saturas_FindRaven_opened(C_Item)
 	on_state[0] = Use_Vatras2Saturas_FindRaven;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Письмо Ватраса Сатурасу";
+	text[2] = "Письмо Ватраса Сатурасу.";
 };
 
 instance ItAm_Addon_WispDetector(C_Item)
@@ -749,8 +752,7 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-	text[2] = "Серая каменная табличка";
-	text[3] = "";
+	text[2] = "Серая каменная табличка.";
 	text[5] = NAME_Value;
 	count[5] = value_StonePlateCommon;
 };
@@ -803,8 +805,7 @@ instance ItMi_Addon_Stone_01(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-	text[2] = "Красная каменная табличка";
-	text[3] = "";
+	text[2] = "Красная каменная табличка.";
 };
 
 
@@ -847,8 +848,7 @@ instance ItMi_Addon_Stone_05(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-	text[2] = "Желтая каменная табличка";
-	text[3] = "";
+	text[2] = "Желтая каменная табличка.";
 };
 
 
@@ -891,8 +891,7 @@ instance ItMi_Addon_Stone_03(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[2] = "Синяя каменная табличка";
-	text[3] = "";
+	text[2] = "Синяя каменная табличка.";
 };
 
 
@@ -937,8 +936,7 @@ instance ItMi_Addon_Stone_04(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[2] = "Зеленая каменная табличка";
-	text[3] = "";
+	text[2] = "Зеленая каменная табличка.";
 };
 
 
@@ -981,8 +979,7 @@ instance ItMi_Addon_Stone_02(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[2] = "Фиолетовая каменная табличка";
-	text[3] = "";
+	text[2] = "Фиолетовая каменная табличка.";
 };
 
 
@@ -997,7 +994,7 @@ func void Use_Addon_Stone_02()
 	Doc_PrintLine(nDocID,0,"");
 	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
-		Doc_PrintLines(nDocID,0,"Внешние ворота с помощью КАРДИМОНА закрыл Куадходрон. Этот ритуал стал для них смертельным.");
+		Doc_PrintLines(nDocID,0,"Внешние ворота с помощью КАРДИМОНА закрыл КУАРХОДРОН. Этот ритуал стал для них смертельным.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Рассказать о происшедшем могу только я.");
 		Doc_PrintLine(nDocID,0,"");
@@ -1038,12 +1035,8 @@ instance ItSE_Addon_FrancisChest(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = FrancisChest;
-	description = "Сундук с сокровищами";
+	description = name;
 	text[0] = "Сундук очень тяжелый.";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1198,8 +1191,7 @@ instance ITKE_Addon_Bloodwyn_01(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ Бладвина";
-	text[2] = "Ключ от сундука";
-	text[3] = "";
+	text[2] = "Открывает его сундук в храме.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1214,7 +1206,7 @@ instance ITKE_Addon_Heiler(C_Item)
 	material = MAT_METAL;
 	description = "Ключ каменного стража";
 	text[2] = "Ключ от сундука";
-	text[3] = "В странном древнем строении на болоте";
+	text[3] = "в странном древнем строении на болоте.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1229,7 +1221,7 @@ instance ItMi_TempelTorKey(C_Item)
 	material = MAT_STONE;
 	scemeName = "MAP";
 	on_state[0] = Use_TempelTorKey;
-	text[2] = "Ключ от храма Аданоса";
+	text[2] = "Ключ от храма Аданоса.";
 };
 
 
@@ -1258,8 +1250,6 @@ instance ItMi_Addon_Bloodwyn_Kopf(C_Item)
 	visual = "ItMi_Head_Bloodwyn_01.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1275,7 +1265,6 @@ instance ItWR_Addon_TreasureMap(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_TreasureMap;
 	description = name;
-	text[0] = "";
 	text[1] = "На карте отмечено несколько мест.";
 	text[5] = NAME_Value;
 	count[5] = value;

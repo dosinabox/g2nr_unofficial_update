@@ -70,7 +70,7 @@ func void DIA_Buster_Hello_IKnowLee()
 	AI_Output(self,other,"DIA_Buster_Hello_IKnowLee_13_02");	//Итак, куда ты направляешься?
 	Info_ClearChoices(DIA_Buster_Hello);
 	Info_AddChoice(DIA_Buster_Hello,"Это не твое дело.",DIA_Buster_Hello_NotYourBusiness);
-	Info_AddChoice(DIA_Buster_Hello,"Я хочу увидеть лендлорда.",DIA_Buster_Hello_GoingToFarm);
+	Info_AddChoice(DIA_Buster_Hello,"Как скажешь. Я хочу увидеть лендлорда.",DIA_Buster_Hello_GoingToFarm);
 };
 
 func void DIA_Buster_Hello_NotYourBusiness()
@@ -277,13 +277,13 @@ func void DIA_Buster_WannaJoin_Info()
 	{
 		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 		{
-			AI_Output(self,other,"DIA_Buster_WannaJoin_13_01");	//У парня с таким ударом как у тебя, не должно возникнуть с этим особых проблем.
+			AI_Output(self,other,"DIA_Buster_WannaJoin_13_01");	//У парня с таким ударом, как у тебя, не должно возникнуть с этим особых проблем.
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_Buster_WannaJoin_13_02");	//Ты не особенно хороший боец, но и трусом тебя назвать нельзя.
 		};
-		AI_Output(self,other,"DIA_Buster_WannaJoin_13_03");	//Мой голос не много значит, так как я здесь не очень давно, но если Ли спросит, я проголосую за тебя.
+		AI_Output(self,other,"DIA_Buster_WannaJoin_13_03");	//Мой голос не много значит, так как здесь я не очень давно, но если Ли спросит, я проголосую за тебя.
 		Buster_Duell = TRUE;
 		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
@@ -291,10 +291,10 @@ func void DIA_Buster_WannaJoin_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Buster_WannaJoin_13_04");	//Ты? Я не помню, чтобы таких трусов как ты когда-либо принимали в наемники...
+		AI_Output(self,other,"DIA_Buster_WannaJoin_13_04");	//Ты? Я не помню, чтобы таких трусов, как ты, когда-либо принимали в наемники...
 		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_CANCEL)
 		{
-			AI_Output(self,other,"DIA_Buster_WannaJoin_13_05");	//Ты убегаешь от дуэли - таким как ты здесь нечего делать!
+			AI_Output(self,other,"DIA_Buster_WannaJoin_13_05");	//Ты убегаешь от дуэли - таким, как ты, здесь нечего делать!
 		};
 	};
 };
@@ -371,19 +371,23 @@ func void DIA_Buster_AboutSentenza_Info()
 {
 	AI_Output(other,self,"DIA_Buster_AboutSentenza_15_00");	//Что там насчет Сентензы?
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_01");	//Он попытается вытрясти из тебя золото, когда ты будешь входить на ферму - он делает это со всеми.
-	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_02");	//На твоем месте, я бы заплатил. Я сам так и сделал, когда пришел туда первый раз. И что хорошо, он проголосовал за меня после этого.
+	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_02");	//На твоем месте, я бы заплатил. Я сам так и сделал, когда пришел туда в первый раз. И что хорошо, он проголосовал за меня после этого.
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_03");	//Услуга за услугу, как он сказал. Я потерял при этом все свое золото, но его все равно было немного. А потом я даже порадовался этому.
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_04");	//Я видел, как он избивал парня, который решил НЕ платить ему.
 	AI_Output(other,self,"DIA_Buster_AboutSentenza_15_05");	//Спасибо за совет.
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_06");	//Пожалуйста. Он много для тебя значит?
 	Info_ClearChoices(DIA_Buster_AboutSentenza);
 	Info_AddChoice(DIA_Buster_AboutSentenza,"Нет.",DIA_Buster_AboutSentenza_No);
-	Info_AddChoice(DIA_Buster_AboutSentenza,"Да, вот держи - 5 золотых монет.",DIA_Buster_AboutSentenza_Give);
+	if(Npc_HasItems(other,ItMi_Gold) >= 5)
+	{
+		Info_AddChoice(DIA_Buster_AboutSentenza,"Да, вот держи - 5 золотых монет.",DIA_Buster_AboutSentenza_Give);
+	};
 };
 
 func void DIA_Buster_AboutSentenza_Give()
 {
 	AI_Output(other,self,"DIA_Buster_AboutSentenza_Give_15_00");	//Да, вот держи - 5 золотых монет.
+	B_GiveInvItems(other,self,ItMi_Gold,5);
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_Give_13_01");	//Спасибо. Похоже, все не так уж плохо. Я не забуду твоей доброты.
 	Buster_GoldZumBrennen = TRUE;
 	Buster_Bonus = 50;
@@ -421,7 +425,7 @@ func void DIA_Buster_LeeLeader_Info()
 {
 	AI_Output(other,self,"DIA_Buster_LeeLeader_15_00");	//Наемников возглавляет Ли, да?
 	AI_Output(self,other,"DIA_Buster_LeeLeader_13_01");	//Правильно - эй, теперь я вспомнил, где видел тебя! Ты тоже был в колонии.
-	AI_Output(other,self,"DIA_Buster_LeeLeader_15_02");	//(вздыхает) Как и я.
+	AI_Output(other,self,"DIA_Buster_LeeLeader_15_02");	//(вздыхает) Так было.
 	AI_Output(self,other,"DIA_Buster_LeeLeader_13_03");	//Я не видел тебя, когда все рвануло. И незадолго перед этим тоже.
 	AI_Output(other,self,"DIA_Buster_LeeLeader_15_04");	//У меня были другие проблемы.
 	AI_Output(self,other,"DIA_Buster_LeeLeader_13_05");	//Тогда ты многое пропустил - с тех пор многое изменилось.
@@ -450,7 +454,7 @@ func int DIA_Buster_WhatHappened_Condition()
 func void DIA_Buster_WhatHappened_Info()
 {
 	AI_Output(other,self,"DIA_Buster_WhatHappened_15_00");	//Что стало с наемниками из колонии?
-	AI_Output(self,other,"DIA_Buster_WhatHappened_13_01");	//После того, как Барьера не стало, Ли вывел нас из колонии. Он сказал, что нам ничего  не страшно, если мы будем держаться вместе. И он был прав.
+	AI_Output(self,other,"DIA_Buster_WhatHappened_13_01");	//После того, как Барьера не стало, Ли вывел нас из колонии. Он сказал, что нам ничего не страшно, если мы будем держаться вместе. И он был прав.
 	AI_Output(self,other,"DIA_Buster_WhatHappened_13_02");	//Вскоре мы нашли здесь себе тепленькое местечко. Лендлорд платит нам, чтобы мы не пускали ополчение из города.
 	AI_Output(self,other,"DIA_Buster_WhatHappened_13_03");	//Хотя большинство из нас готово делать это даже бесплатно.
 	AI_Output(self,other,"DIA_Buster_WhatHappened_13_04");	//Онар кормит нас всех, и мы можем спокойно ждать, когда подвернется возможность убраться с этого проклятого острова.
@@ -633,7 +637,7 @@ instance DIA_Buster_BringTrophyShadowbeast(C_Info)
 	condition = DIA_Buster_BringTrophyShadowbeast_Condition;
 	information = DIA_Buster_BringTrophyShadowbeast_Info;
 	permanent = TRUE;
-	description = "Насчет рогов мракорисов ...";
+	description = "Насчет рогов мракорисов...";
 };
 
 
@@ -673,12 +677,14 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 			AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_05");	//Я принес тебе рог мракориса.
 			B_GivePlayerXP(XP_BringBusterTrophyShadowbeast);
 			B_GiveInvItems(other,self,ItAt_ShadowHorn,1);
+			Npc_RemoveInvItem(self,ItAt_ShadowHorn);
 			BusterTrophyShadowbeastCounter = BusterTrophyShadowbeastCounter + 1;
 		}
 		else
 		{
 			AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_06");	//Я принес рога мракорисов для твоего торговца.
 			B_GiveInvItems(other,self,ItAt_ShadowHorn,BusterTrophyShadowbeastCount);
+			Npc_RemoveInvItems(self,ItAt_ShadowHorn,BusterTrophyShadowbeastCount);
 			XP_BringBusterTrophyShadowbeasts = BusterTrophyShadowbeastCount * XP_BringBusterTrophyShadowbeast;
 			BusterTrophyShadowbeastCounter = BusterTrophyShadowbeastCounter + BusterTrophyShadowbeastCount;
 			B_GivePlayerXP(XP_BringBusterTrophyShadowbeasts);

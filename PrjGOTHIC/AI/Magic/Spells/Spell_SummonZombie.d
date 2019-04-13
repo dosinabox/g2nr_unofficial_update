@@ -35,14 +35,15 @@ func void Spell_Cast_SummonZombie()
 	{
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_SummonZombie;
 	};
+	self.aivar[AIV_SelectSpell] += 1;
 	if(Npc_IsPlayer(self))
 	{
+		Wld_StopEffect("SLOW_MOTION");
 		Wld_SpawnNpcRange(self,Summoned_ZOMBIE,1,500);
 	}
 	else
 	{
 		Wld_SpawnNpcRange(self,Zombie01,1,500);
 	};
-	self.aivar[AIV_SelectSpell] += 1;
 };
 

@@ -1,7 +1,7 @@
 
 instance ItPo_Story(C_Item)
 {
-	name = "Gluck";
+	name = "Счастье";
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	visual = "ItPo_Perm_STR.3ds";
@@ -10,7 +10,7 @@ instance ItPo_Story(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Macht, daЯ es weitergeht bei Raven Video I";
+	description = "Власть, которую дает показ Raven Video I";
 };
 
 
@@ -22,7 +22,7 @@ func void UseItPo_Story()
 
 instance SH(Npc_Default)
 {
-	name[0] = "Storyhelper";
+	name[0] = "Помощник по сюжету";
 	guild = GIL_NONE;
 	id = 9999;
 	voice = 15;
@@ -76,7 +76,7 @@ instance StoryHelper_INFO1(C_Info)
 	information = StoryHelper_INFO1_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 1";
+	description = KapWechsel_1;
 };
 
 
@@ -89,8 +89,8 @@ func void StoryHelper_INFO1_Info()
 {
 	Info_ClearChoices(StoryHelper_INFO1);
 	Info_AddChoice(StoryHelper_INFO1,Dialog_Back,StoryHelper_BACK1);
-	Info_AddChoice(StoryHelper_INFO1,"KAPITELANFANG",StoryHelper_KAPITEL1ANFANG);
-	Info_AddChoice(StoryHelper_INFO1,"ADDON Ready for first Meeting with Saturas (forget Lares)",StoryHelper_SATURAS);
+	Info_AddChoice(StoryHelper_INFO1,KapAnfang,StoryHelper_KAPITEL1ANFANG);
+	Info_AddChoice(StoryHelper_INFO1,"АДДОН: Готов к первой встрече с Сатурасом (забыть Лареса)",StoryHelper_SATURAS);
 };
 
 func void StoryHelper_SATURAS()
@@ -121,7 +121,7 @@ instance StoryHelper_INFO2(C_Info)
 	information = StoryHelper_INFO2_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 2";
+	description = KapWechsel_2;
 };
 
 
@@ -134,7 +134,7 @@ func void StoryHelper_INFO2_Info()
 {
 	Info_ClearChoices(StoryHelper_INFO2);
 	Info_AddChoice(StoryHelper_INFO2,Dialog_Back,StoryHelper_BACK2);
-	Info_AddChoice(StoryHelper_INFO2,"KAPITELANFANG",StoryHelper_KAPITEL2ANFANG);
+	Info_AddChoice(StoryHelper_INFO2,KapAnfang,StoryHelper_KAPITEL2ANFANG);
 };
 
 func void StoryHelper_BACK2()
@@ -157,7 +157,7 @@ instance StoryHelper_INFO3(C_Info)
 	information = StoryHelper_INFO3_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 3";
+	description = KapWechsel_3;
 };
 
 
@@ -170,7 +170,7 @@ func void StoryHelper_INFO3_Info()
 {
 	Info_ClearChoices(StoryHelper_INFO3);
 	Info_AddChoice(StoryHelper_INFO3,Dialog_Back,StoryHelper_BACK3);
-	Info_AddChoice(StoryHelper_INFO3,"KAPITELANFANG",StoryHelper_KAPITEL3ANFANG);
+	Info_AddChoice(StoryHelper_INFO3,KapAnfang,StoryHelper_KAPITEL3ANFANG);
 };
 
 func void StoryHelper_BACK3()
@@ -199,7 +199,7 @@ instance StoryHelper_INFO4(C_Info)
 	information = StoryHelper_INFO4_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 4";
+	description = KapWechsel_4;
 };
 
 
@@ -212,7 +212,7 @@ func void StoryHelper_INFO4_Info()
 {
 	Info_ClearChoices(StoryHelper_INFO4);
 	Info_AddChoice(StoryHelper_INFO4,Dialog_Back,StoryHelper_BACK4);
-	Info_AddChoice(StoryHelper_INFO4,"KAPITELANFANG",StoryHelper_KAPITEL4ANFANG);
+	Info_AddChoice(StoryHelper_INFO4,KapAnfang,StoryHelper_KAPITEL4ANFANG);
 };
 
 func void StoryHelper_BACK4()
@@ -247,7 +247,7 @@ instance StoryHelper_INFO5(C_Info)
 	information = StoryHelper_INFO5_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 5";
+	description = KapWechsel_5;
 };
 
 
@@ -260,7 +260,7 @@ func void StoryHelper_INFO5_Info()
 {
 	Info_ClearChoices(StoryHelper_INFO5);
 	Info_AddChoice(StoryHelper_INFO5,Dialog_Back,StoryHelper_BACK5);
-	Info_AddChoice(StoryHelper_INFO5,"KAPITELANFANG",StoryHelper_KAPITEL5ANFANG);
+	Info_AddChoice(StoryHelper_INFO5,KapAnfang,StoryHelper_KAPITEL5ANFANG);
 };
 
 func void StoryHelper_BACK5()
@@ -298,7 +298,7 @@ instance StoryHelper_INFO6(C_Info)
 	information = StoryHelper_INFO6_Info;
 	important = 0;
 	permanent = 1;
-	description = "Kapitel 6";
+	description = KapWechsel_6;
 };
 
 
@@ -311,7 +311,7 @@ func void StoryHelper_INFO6_Info()
 {
 	Info_ClearChoices(StoryHelper_INFO6);
 	Info_AddChoice(StoryHelper_INFO6,Dialog_Back,StoryHelper_BACK6);
-	Info_AddChoice(StoryHelper_INFO6,"KAPITELANFANG",StoryHelper_KAPITEL6ANFANG);
+	Info_AddChoice(StoryHelper_INFO6,KapAnfang,StoryHelper_KAPITEL6ANFANG);
 };
 
 func void StoryHelper_BACK6()

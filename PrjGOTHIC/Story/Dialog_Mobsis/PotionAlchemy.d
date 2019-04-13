@@ -136,7 +136,7 @@ instance PC_Booze_Schlaf(C_Info)
 	condition = PC_Booze_Schlaf_Condition;
 	information = PC_Booze_Schlaf_Info;
 	permanent = TRUE;
-	description = "ћолот Ћу с двойным ромом";
+	description = "—делать 'ћолот Ћу' с двойным ромом";
 };
 
 
@@ -175,7 +175,7 @@ instance PC_Booze_SchnellerHering(C_Info)
 	condition = PC_Booze_SchnellerHering_Condition;
 	information = PC_Booze_SchnellerHering_Info;
 	permanent = TRUE;
-	description = "—делать 'Ѕыструю селедку'";
+	description = "—делать 'Ѕыструю селедку' (1 снеппер-трава, 1 ром, 1 рыба)";
 };
 
 
@@ -354,7 +354,7 @@ instance PC_ItPo_Mana_02(C_Info)
 	condition = PC_ItPo_Mana_02_Condition;
 	information = PC_ItPo_Mana_02_Info;
 	permanent = TRUE;
-	description = "Ёкстракт маны (2 огненных травы и 1 луговой горец) ";
+	description = "Ёкстракт маны (2 огненных травы и 1 луговой горец)";
 };
 
 
@@ -391,7 +391,7 @@ instance PC_ItPo_Mana_03(C_Info)
 	condition = PC_ItPo_Mana_03_Condition;
 	information = PC_ItPo_Mana_03_Info;
 	permanent = TRUE;
-	description = "Ёликсир маны (2 огненных корн€ и 1 луговой горец)";
+	description = "Ёликсир маны (2 огненных корн€, 1 луговой горец)";
 };
 
 
@@ -517,7 +517,7 @@ instance PC_ItPo_Health_01(C_Info)
 	condition = PC_ItPo_Health_01_Condition;
 	information = PC_ItPo_Health_01_Info;
 	permanent = TRUE;
-	description = "Ћечебна€ эссенци€ (2 лечебные травы и 1 луговой горец)";
+	description = "Ћечебна€ эссенци€ (2 лечебные травы, 1 луговой горец)";
 };
 
 
@@ -554,7 +554,7 @@ instance PC_ItPo_Health_02(C_Info)
 	condition = PC_ItPo_Health_02_Condition;
 	information = PC_ItPo_Health_02_Info;
 	permanent = TRUE;
-	description = "Ћечебный экстракт (2 лечебных растени€ и 1 луговой горец)";
+	description = "Ћечебный экстракт (2 лечебных растени€, 1 луговой горец)";
 };
 
 
@@ -591,7 +591,7 @@ instance PC_ItPo_Health_03(C_Info)
 	condition = PC_ItPo_Health_03_Condition;
 	information = PC_ItPo_Health_03_Info;
 	permanent = TRUE;
-	description = "Ћечебный эликсир (2 лечебных корн€ и 1 луговой горец)";
+	description = "Ћечебный эликсир (2 лечебных корн€, 1 луговой горец)";
 };
 
 
@@ -763,7 +763,7 @@ instance PC_ItPo_Perm_Health(C_Info)
 	condition = PC_ItPo_Perm_Health_Condition;
 	information = PC_ItPo_Perm_Health_Info;
 	permanent = TRUE;
-	description = "Ёликсир жизни (1 лечебный корень и 1 царский щавель)";
+	description = "Ёликсир жизни (1 лечебный корень, 1 царский щавель)";
 };
 
 
@@ -800,7 +800,7 @@ instance PC_ItPo_Perm_Mana(C_Info)
 	condition = PC_ItPo_Perm_Mana_Condition;
 	information = PC_ItPo_Perm_Mana_Info;
 	permanent = TRUE;
-	description = "Ёликсир духа (1 огненный корень и 1 царский щавель)";
+	description = "Ёликсир духа (1 огненный корень, 1 царский щавель)";
 };
 
 
@@ -837,7 +837,7 @@ instance PC_ItPo_Dex(C_Info)
 	condition = PC_ItPo_Dex_Condition;
 	information = PC_ItPo_Dex_Info;
 	permanent = TRUE;
-	description = "Ёликсир ловкости (1 гоблинские €годы и 1 царский щавель.)";
+	description = "Ёликсир ловкости (1 гоблинские €годы, 1 царский щавель)";
 };
 
 
@@ -874,7 +874,7 @@ instance PC_ItPo_Strg(C_Info)
 	condition = PC_ItPo_Strg_Condition;
 	information = PC_ItPo_Strg_Info;
 	permanent = TRUE;
-	description = "Ёликсир силы (1 драконий корень и 1 царский щавель.)";
+	description = "Ёликсир силы (1 драконий корень, 1 царский щавель)";
 };
 
 
@@ -911,7 +911,7 @@ instance PC_ItPo_Speed(C_Info)
 	condition = PC_ItPo_Speed_Condition;
 	information = PC_ItPo_Speed_Info;
 	permanent = TRUE;
-	description = "«елье ускорени€ (1 снеппер-трава и 1 луговой горец)";
+	description = "«елье ускорени€ (1 снеппер-трава, 1 луговой горец)";
 };
 
 
@@ -1000,7 +1000,7 @@ instance PC_ItMi_Joint(C_Info)
 	condition = PC_ItMi_Joint_Condition;
 	information = PC_ItMi_Joint_Info;
 	permanent = TRUE;
-	description = "ќбработать болотную траву (1 кос€к)";
+	description = "—делать кос€к из болотной травы (1 болотна€ трава)";
 };
 
 
@@ -1036,7 +1036,7 @@ instance PC_ItMi_Addon_Joint_01(C_Info)
 	condition = PC_ItMi_Addon_Joint_01_Condition;
 	information = PC_ItMi_Addon_Joint_01_Info;
 	permanent = TRUE;
-	description = "»зготовить '«еленого послушника' (1 кос€к)";
+	description = "»зготовить '«еленый послушник' (2 болотных травы, 1 луговой горец)";
 };
 
 
@@ -1073,7 +1073,7 @@ instance PC_ItMi_Tabak(C_Info)
 	condition = PC_ItMi_Tabak_Condition;
 	information = PC_ItMi_Tabak_Info;
 	permanent = TRUE;
-	description = "—мешать табак ...";
+	description = "—мешать табак...";
 };
 
 
@@ -1087,7 +1087,6 @@ func int PC_ItMi_Tabak_Condition()
 
 func void PC_ItMi_Tabak_Info()
 {
-	Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
 	Info_ClearChoices(PC_ItMi_Tabak);
 	Info_AddChoice(PC_ItMi_Tabak,Dialog_Back,PC_ItMi_Tabak_BACK);
 	if(Npc_HasItems(hero,ItFo_Honey) >= 1)
@@ -1102,6 +1101,10 @@ func void PC_ItMi_Tabak_Info()
 	{
 		Info_AddChoice(PC_ItMi_Tabak,"... с черным грибом",PC_ItMi_Tabak_Mushroom_01);
 	};
+	if(Npc_HasItems(hero,ItFo_Apple) >= 1)
+	{
+		Info_AddChoice(PC_ItMi_Tabak,"... с €блоком",PC_ItMi_Tabak_Double);
+	};
 };
 
 func void PC_ItMi_Tabak_BACK()
@@ -1111,6 +1114,8 @@ func void PC_ItMi_Tabak_BACK()
 
 func void PC_ItMi_Tabak_Honey()
 {
+	Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
+	Npc_RemoveInvItems(hero,ItFo_Honey,1);
 	CreateInvItems(hero,ItMi_Honigtabak,1);
 	Print(PRINT_TabakSuccess);
 	b_endproductiondialog();
@@ -1118,6 +1123,8 @@ func void PC_ItMi_Tabak_Honey()
 
 func void PC_ItMi_Tabak_Swampherb()
 {
+	Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
+	Npc_RemoveInvItems(hero,ItPl_SwampHerb,1);
 	CreateInvItems(hero,ItMi_SumpfTabak,1);
 	Print(PRINT_TabakSuccess);
 	b_endproductiondialog();
@@ -1125,7 +1132,18 @@ func void PC_ItMi_Tabak_Swampherb()
 
 func void PC_ItMi_Tabak_Mushroom_01()
 {
+	Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
+	Npc_RemoveInvItems(hero,ItPl_Mushroom_01,1);
 	CreateInvItems(hero,ItMi_PilzTabak,1);
+	Print(PRINT_TabakSuccess);
+	b_endproductiondialog();
+};
+
+func void PC_ItMi_Tabak_Double()
+{
+	Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
+	Npc_RemoveInvItems(hero,ItFo_Apple,1);
+	CreateInvItems(hero,ItMi_Doppeltabak,1);
 	Print(PRINT_TabakSuccess);
 	b_endproductiondialog();
 };

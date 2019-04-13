@@ -89,7 +89,10 @@ func int C_TowerBanditsDead()
 	{
 		TowerBanditsDead = TRUE;
 		return TRUE;
+	}
+	else
+	{
+		return FALSE;
 	};
-	return FALSE;
 };
 

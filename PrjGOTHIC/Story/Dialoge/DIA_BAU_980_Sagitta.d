@@ -351,7 +351,7 @@ func void DIA_Sagitta_HEAL_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Sagitta_HEAL_17_02");	//В настоящий момент тебе ненужно лечение.
+		AI_Output(self,other,"DIA_Sagitta_HEAL_17_02");	//В настоящий момент тебе не нужно лечение.
 	};
 };
 
@@ -363,7 +363,7 @@ instance DIA_Sagitta_TRADE(C_Info)
 	information = DIA_Sagitta_TRADE_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = "Какие товары ты предлагаешь?";
+	description = "Какие товары ты можешь предложить мне?";
 };
 
 
@@ -377,6 +377,15 @@ func int DIA_Sagitta_TRADE_Condition()
 
 func void DIA_Sagitta_TRADE_Info()
 {
+	if(Sagitta_flag == 1)
+	{
+		B_ClearAlchemyInv(self);
+		if(Sagitta_flasks > 0)
+		{
+			CreateInvItems(self,ItMi_Flask,Sagitta_flasks);
+		};
+		Sagitta_flag = 0;
+	};
 	AI_Output(other,self,"DIA_Sagitta_TRADE_15_00");	//Какие товары ты можешь предложить мне?
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Sagitta_TRADE_17_01");	//Выбирай.
@@ -414,7 +423,7 @@ instance DIA_Sagitta_OBSESSION(C_Info)
 	nr = 30;
 	condition = DIA_Sagitta_OBSESSION_Condition;
 	information = DIA_Sagitta_OBSESSION_Info;
-	description = "Я ощущаю внутреннюю тревогу.";
+	description = "Я ощущаю какую-то сильную внутреннюю тревогу. Мне нужна помощь.";
 };
 
 
@@ -429,7 +438,7 @@ func int DIA_Sagitta_OBSESSION_Condition()
 func void DIA_Sagitta_OBSESSION_Info()
 {
 	AI_Output(other,self,"DIA_Sagitta_OBSESSION_15_00");	//Я ощущаю какую-то сильную внутреннюю тревогу. Мне нужна помощь.
-	AI_Output(self,other,"DIA_Sagitta_OBSESSION_17_01");	//Я вижу, сна тебе не достаточно, чтобы восстановиться. Ты попал под воздействие черного взгляда Ищущих.
+	AI_Output(self,other,"DIA_Sagitta_OBSESSION_17_01");	//Я вижу, сна тебе недостаточно, чтобы восстановиться. Ты попал под воздействие черного взгляда Ищущих.
 	AI_Output(self,other,"DIA_Sagitta_OBSESSION_17_02");	//Иди к Пирокару, высшему магу монастыря. Моих скромных знаний здесь недостаточно.
 };
 
@@ -523,7 +532,7 @@ func void DIA_Sagitta_HEALRANDOLPH_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_17_03");	//Я дам тебе лекарство для него. Оно поставит его на  ноги за пару дней.
+		AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_17_03");	//Я дам тебе лекарство для него. Оно поставит его на ноги за пару дней.
 	};
 	AI_Output(self,other,"DIA_Sagitta_HEALRANDOLPH_17_04");	//Но это обойдется тебе в 300 золотых.
 	if(DIA_Sagitta_HEALRANDOLPH_KnowsPrice == FALSE)

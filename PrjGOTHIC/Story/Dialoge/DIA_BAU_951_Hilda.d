@@ -415,7 +415,7 @@ instance DIA_Hilda_DISTURB(C_Info)
 	condition = DIA_Hilda_DISTURB_Condition;
 	information = DIA_Hilda_DISTURB_Info;
 	permanent = TRUE;
-	description = "Как ты?";
+	description = "Как твое здоровье?";
 };
 
 

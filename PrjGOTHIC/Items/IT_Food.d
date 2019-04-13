@@ -292,7 +292,7 @@ instance ItFo_CoragonsBeer(C_Item)
 	count[1] = HP_Beer;
 	text[2] = NAME_Bonus_Mana;
 	count[2] = Mana_Beer;
-	text[4] = "Особое пиво Корагона";
+	text[4] = "Особое пиво Корагона.";
 	text[5] = NAME_Value;
 	count[5] = Value_Beer;
 };
@@ -421,7 +421,7 @@ instance ItFo_Beer(C_Item)
 	count[1] = HP_Beer;
 	text[2] = NAME_Bonus_Mana;
 	count[2] = Mana_Beer;
-	text[4] = "Черное паладинское";
+	text[4] = "Темное паладинское.";
 	text[5] = NAME_Value;
 	count[5] = Value_Beer;
 };

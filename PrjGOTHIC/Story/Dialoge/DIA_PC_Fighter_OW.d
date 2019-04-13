@@ -43,7 +43,7 @@ func void DIA_GornOW_Hello_Info()
 	Milten = Hlp_GetNpc(PC_Mage_OW);
 	AI_Output(other,self,"DIA_GornOW_Hello_15_00");	//Хватит бездельничать здесь - ты свободен!
 	AI_Output(self,other,"DIA_GornOW_Hello_12_01");	//Да уж. Давно пора было вытащить меня отсюда.
-	AI_Output(self,other,"DIA_GornOW_Hello_12_02");	//Но я совсем не ожидал, что это будешь ты, впрочем. Я чертовски рад видеть тебя.
+	AI_Output(self,other,"DIA_GornOW_Hello_12_02");	//Но я совсем не ожидал, что это будешь ты. Впрочем, я чертовски рад видеть тебя.
 	AI_Output(other,self,"DIA_GornOW_Hello_15_03");	//(ухмыляется) Гаронд говорит, что ты ешь слишком много и он больше не может себе позволить кормить тебя.
 	AI_Output(self,other,"DIA_GornOW_Hello_12_04");	//Раз уж ты упомянул об этом, я бы не отказался от пары кружек пива. Но нужно выбираться отсюда. Эта камера мне уже порядком надоела.
 	if(other.guild == GIL_SLD)
@@ -51,8 +51,8 @@ func void DIA_GornOW_Hello_Info()
 		AI_Output(self,other,"DIA_GornOW_Add_12_00");	//Подожди, у меня есть кое-что, что могло бы пригодиться тебе.
 		AI_Output(self,other,"DIA_GornOW_Add_12_01");	//Я нашел эти доспехи здесь, в камере. Наверное, их спрятал какой-то заключенный.
 		B_GiveInvItems(self,other,itar_sld_M,1);
-		AI_Output(self,other,"DIA_GornOW_Add_12_02");	//Для меня они слишком малы, но тебе могут подойти ...
-		AI_Output(other,self,"DIA_GornOW_Add_15_03");	//Спасибо! Увидимся у Милтена ...
+		AI_Output(self,other,"DIA_GornOW_Add_12_02");	//Для меня они слишком малы, но тебе могут подойти...
+		AI_Output(other,self,"DIA_GornOW_Add_15_03");	//Спасибо! Увидимся у Милтена.
 	}
 	else
 	{

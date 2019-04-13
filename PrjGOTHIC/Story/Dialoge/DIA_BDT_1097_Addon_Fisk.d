@@ -94,7 +94,7 @@ instance DIA_Addon_Fisk_Trade(C_Info)
 	information = DIA_Addon_Fisk_Trade_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = DIALOG_TRADE;
+	description = DIALOG_TRADE_v2;
 };
 
 
@@ -353,7 +353,7 @@ func void DIA_Addon_Fisk_Inspektor_Info()
 	AI_Output(self,other,"DIA_Addon_Fisk_Inspektor_12_05");	//У меня нет никакого желания быть втянутым в эту историю из-за твоего дурацкого энтузиазма.
 	Info_ClearChoices(DIA_Addon_Fisk_Inspektor);
 	Info_AddChoice(DIA_Addon_Fisk_Inspektor,"Собственно, я и не работаю на Эстебана.",DIA_Addon_Fisk_Inspektor_AntiEsteban);
-	Info_AddChoice(DIA_Addon_Fisk_Inspektor,"Я не верю тебе!",DIA_Addon_Fisk_Inspektor_DontBelieve);
+	Info_AddChoice(DIA_Addon_Fisk_Inspektor,"Я тебе не верю!",DIA_Addon_Fisk_Inspektor_DontBelieve);
 	Info_AddChoice(DIA_Addon_Fisk_Inspektor,"Понимаю!",DIA_Addon_Fisk_Inspektor_ISee);
 };
 
@@ -405,14 +405,14 @@ func void DIA_Addon_Fisk_Meeting_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fisk_Meeting_15_00");	//Значит, ты спланировал нападение!
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_01");	//Да. Эстебан стоит на моем пути. И это нехорошо.
-	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_02");	//Он не позволяет никому из бандитов работать на меня на руднике. Он хочет,  чтобы все работали только на него.
+	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_02");	//Он не позволяет никому из бандитов работать на меня на руднике. Он хочет, чтобы все работали только на него.
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_12_03");	//Так он хочет получать свою долю с каждой сделки и держать весь лагерь за задницу.
 	Info_ClearChoices(DIA_Addon_Fisk_Meeting);
-	Info_AddChoice(DIA_Addon_Fisk_Meeting,"Что ты собираешься делать дальше?",DIA_Addon_Fisk_Meeting_now);
+	Info_AddChoice(DIA_Addon_Fisk_Meeting,"Что за идея?",DIA_Addon_Fisk_Meeting_now);
 	Info_AddChoice(DIA_Addon_Fisk_Meeting,"И ты, я полагаю, хочешь сам контролировать лагерь.",DIA_Addon_Fisk_Meeting_You);
 	if(!Npc_IsDead(Esteban))
 	{
-		Info_AddChoice(DIA_Addon_Fisk_Meeting,"Знаешь, я ведь могу тебя выдать Эстебану.",DIA_Addon_Fisk_Meeting_sell);
+		Info_AddChoice(DIA_Addon_Fisk_Meeting,"Знаешь, а я ведь могу тебя выдать Эстебану.",DIA_Addon_Fisk_Meeting_sell);
 	};
 };
 
@@ -424,9 +424,9 @@ func void DIA_Addon_Fisk_Meeting_You()
 
 func void DIA_Addon_Fisk_Meeting_sell()
 {
-	AI_Output(other,self,"DIA_Addon_Fisk_Meeting_sell_15_00");	//Знаешь, я ведь могу тебя выдать Эстебану.
+	AI_Output(other,self,"DIA_Addon_Fisk_Meeting_sell_15_00");	//Знаешь, а я ведь могу тебя выдать Эстебану.
 	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_sell_12_01");	//И что? Что с того? Думаешь, что он даст все, что тебе нужно? Ха!
-	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_sell_12_02");	//Забудь и выслушай меня. У меня есть идея получше?
+	AI_Output(self,other,"DIA_Addon_Fisk_Meeting_sell_12_02");	//Забудь и выслушай меня. У меня есть идея получше.
 };
 
 func void DIA_Addon_Fisk_Meeting_now()

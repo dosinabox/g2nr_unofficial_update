@@ -91,7 +91,7 @@ instance DIA_Addon_Tom_Juan(C_Info)
 	condition = DIA_Addon_Tom_Juan_Condition;
 	information = DIA_Addon_Tom_Juan_Info;
 	permanent = FALSE;
-	description = "Что произошло?";
+	description = "Что случилось?";
 };
 
 

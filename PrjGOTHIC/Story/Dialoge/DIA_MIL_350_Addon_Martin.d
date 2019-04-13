@@ -217,7 +217,7 @@ instance DIA_Addon_Martin_Trade(C_Info)
 	information = DIA_Addon_Martin_Trade_Info;
 	trade = TRUE;
 	permanent = TRUE;
-	description = "Что ты можешь предложить мне?";
+	description = "Что ты можешь предложить?";
 };
 
 
@@ -271,7 +271,7 @@ func void DIA_Addon_Martin_Rangerhelp_Info()
 	AI_Output(other,self,"DIA_Addon_Martin_Rangerhelp_15_02");	//Я хочу присоединиться к ополчению.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_03");	//(смеется) Итак, ты хочешь вступить в наши ряды? Мы, знаешь ли, не берем просто так людей с улицы.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_04");	//Тебе, возможно, придется...
-	AI_Output(other,self,"DIA_Addon_Martin_Rangerhelp_15_05");	//Оставь свои нравоучения при себе. Просто скажи, что нужно сделать для то, чтобы вступить в ополчение.
+	AI_Output(other,self,"DIA_Addon_Martin_Rangerhelp_15_05");	//Оставь свои нравоучения при себе. Просто скажи, что нужно сделать для того, чтобы вступить в ополчение.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_06");	//(удивленно) Ну хорошо. Тогда слушай меня внимательно.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_07");	//Надо сказать, что работа интенданта - та еще каторга. Разобраться со всеми этими ящиками и мешками совсем не просто.
 	AI_Output(self,other,"DIA_Addon_Martin_Rangerhelp_07_08");	//А каждый раз, когда я после работы расслабляюсь в таверне Кардифа, кто-то копается в ящиках с запасами, и наутро я обнаруживаю, что что-то пропало.
@@ -357,7 +357,7 @@ func void DIA_Addon_Martin_FromVatras_Info()
 	AI_Output(other,self,"DIA_Addon_Martin_FromVatras_15_02");	//Ватрас.
 	AI_Output(self,other,"DIA_Addon_Martin_FromVatras_07_03");	//Ясно. Ну и что ты знаешь об этом деле?
 	AI_Output(other,self,"DIA_Addon_Martin_FromVatras_15_04");	//Немного, но я постараюсь выяснить больше.
-	AI_Output(self,other,"DIA_Addon_Martin_FromVatras_07_05");	//Итак?..
+	AI_Output(self,other,"DIA_Addon_Martin_FromVatras_07_05");	//Итак?
 };
 
 
@@ -367,7 +367,7 @@ instance DIA_Addon_Martin_TellAll(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Martin_TellAll_Condition;
 	information = DIA_Addon_Martin_TellAll_Info;
-	description = "Расскажи мне, что тебе известно о торговце оружием?";
+	description = "Расскажи мне, что тебе известно о торговце оружием.";
 };
 
 
@@ -381,7 +381,7 @@ func int DIA_Addon_Martin_TellAll_Condition()
 
 func void DIA_Addon_Martin_TellAll_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Martin_TellAll_15_00");	//Расскажи мне, что тебе известно о торговце оружием?
+	AI_Output(other,self,"DIA_Addon_Martin_TellAll_15_00");	//Расскажи мне, что тебе известно о торговце оружием.
 	AI_Output(self,other,"DIA_Addon_Martin_TellAll_07_01");	//Мы знаем, что за этим стоит один из влиятельных торговцев, живущих в верхнем квартале.
 	AI_Output(self,other,"DIA_Addon_Martin_TellAll_07_02");	//Часть проданного оружия даже была взята из запасов ополчения.
 	AI_Output(self,other,"DIA_Addon_Martin_TellAll_07_03");	//Но мы все еще не знаем, кто именно занимается продажами.
@@ -481,7 +481,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_07");	//Думаю, этого достаточно. Итак, Фернандо... Что ж, он получит по заслугам.
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_08");	//А он всегда так спокойно себя вел, когда речь заходила об этом.
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_09");	//Ну теперь-то ему предстоит долгое время гнить за решеткой.
-			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_10");	//Должен сказать, ты сделал большое дело.
+			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_10");	//Должен сказать, что ты сделал большое дело.
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_11");	//Ватрас будет доволен, когда узнает эту новость.
 			B_StartOtherRoutine(Fernando,"Prison");
 			Fernando_ImKnast = TRUE;
@@ -586,7 +586,7 @@ func int DIA_Addon_Martin_GotRangar_Condition()
 func void DIA_Addon_Martin_GotRangar_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_GotRangar_15_00");	//Я узнал, кто ворует вещи.
-	AI_Output(other,self,"DIA_Addon_Martin_GotRangar_15_01");	//В твоих ящиках копался Рагнар.
+	AI_Output(other,self,"DIA_Addon_Martin_GotRangar_15_01");	//В твоих ящиках копался Рангар.
 	AI_Output(self,other,"DIA_Addon_Martin_GotRangar_07_02");	//Ну наконец-то. Теперь я, по крайней мере, буду знать, за кем мне присматривать. Вот сволочь! Ну, если я его поймаю...
 	AI_Output(self,other,"DIA_Addon_Martin_GotRangar_07_03");	//А я-то всегда удивлялся, почему паладины ничего не замечают.
 	AI_Output(other,self,"DIA_Addon_Martin_GotRangar_15_04");	//И? Почему?

@@ -151,7 +151,7 @@ func void DIA_Cassia_News_Info()
 		AI_Output(other,self,"DIA_Cassia_News_15_05");	//Что это за игры?
 		AI_Output(self,other,"DIA_Cassia_News_16_06");	//Мы хотели, чтобы ты умер за то, что сдал одного из наших друзей. Вот почему мы послали Аттилу.
 		AI_Output(self,other,"DIA_Cassia_News_16_07");	//Твое присутствие здесь, однако, открывает новые возможности...
-		AI_Output(other,self,"DIA_Cassia_News_15_08");	//... что ты хочешь предложить мне?
+		AI_Output(other,self,"DIA_Cassia_News_15_08");	//Что ты хочешь предложить мне?
 		AI_Output(self,other,"DIA_Cassia_News_16_09");	//Ты можешь присоединиться к нам.
 	};
 	if((Npc_GetTrueGuild(other) == GIL_NONE) || (Npc_GetTrueGuild(other) == GIL_NOV))
@@ -394,6 +394,7 @@ func void DIA_Cassia_Beitreten_Info()
 	AI_Output(other,self,"DIA_Cassia_Beitreten_15_00");	//Хорошо, я в деле.
 	AI_Output(self,other,"DIA_Cassia_Beitreten_16_01");	//Отлично. Тебе будет дана возможность проявить себя. А если ты захочешь чему-нибудь научиться у нас - всегда пожалуйста.
 	Join_Thiefs = TRUE;
+	Cassia_Frist = FALSE;
 };
 
 
@@ -404,7 +405,7 @@ instance DIA_Cassia_Ablehnen(C_Info)
 	condition = DIA_Cassia_Ablehnen_Condition;
 	information = DIA_Cassia_Ablehnen_Info;
 	permanent = FALSE;
-	description = "А что если я не хочу присоединяться к вам?..";
+	description = "А что, если я не хочу присоединяться к вам?";
 };
 
 
@@ -418,7 +419,7 @@ func int DIA_Cassia_Ablehnen_Condition()
 
 func void DIA_Cassia_Ablehnen_Info()
 {
-	AI_Output(other,self,"DIA_Cassia_Ablehnen_15_00");	//А что если я не хочу присоединяться к вам?..
+	AI_Output(other,self,"DIA_Cassia_Ablehnen_15_00");	//А что, если я не хочу присоединяться к вам?
 	if(MIS_ThiefGuild_sucked == FALSE)
 	{
 		AI_Output(self,other,"DIA_Cassia_Ablehnen_16_01");	//Ты теряешь шанс, который дается один раз в жизни, но ты можешь идти.
@@ -442,6 +443,7 @@ func void DIA_Cassia_Ablehnen_Okay()
 	AI_Output(self,other,"DIA_Cassia_Ablehnen_Okay_16_01");	//(улыбается) Ты принял мудрое решение. Если ты сможешь доказать серьезность своих намерений, то сможешь влиться в наши ряды.
 	AI_Output(self,other,"DIA_Cassia_Ablehnen_Okay_16_02");	//Если же ты хочешь сначала получить воровские навыки - пожалуйста - они тебе понадобятся.
 	Join_Thiefs = TRUE;
+	Cassia_Frist = FALSE;
 	Info_ClearChoices(DIA_Cassia_Ablehnen);
 };
 
@@ -456,7 +458,7 @@ func void DIA_Cassia_Ablehnen_Kill()
 func void DIA_Cassia_Ablehnen_Frist()
 {
 	AI_Output(other,self,"DIA_Cassia_Ablehnen_Frist_15_00");	//Мне нужно время на размышление.
-	AI_Output(self,other,"DIA_Cassia_Ablehnen_Frist_16_01");	//Пожалуйста. Я дам тебе два дня на принятие этого решения. После этого, тебе лучше не появляться здесь.
+	AI_Output(self,other,"DIA_Cassia_Ablehnen_Frist_16_01");	//Пожалуйста. Я дам тебе два дня на принятие этого решения. После этого тебе лучше не появляться здесь.
 	Cassia_Day = B_GetDayPlus();
 	Cassia_Frist = TRUE;
 	Info_ClearChoices(DIA_Cassia_Ablehnen);
@@ -495,7 +497,7 @@ func void DIA_Cassia_BevorLernen_Info()
 	{
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_16_02");	//Конечно. Карманное воровство и ловкость обойдутся тебе по 100 золотых монет.
 		Info_ClearChoices(DIA_Cassia_BevorLernen);
-		Info_AddChoice(DIA_Cassia_BevorLernen,"Может быть, позже ...(НАЗАД)",DIA_Cassia_BevorLernen_Spaeter);
+		Info_AddChoice(DIA_Cassia_BevorLernen,"Может быть, позже... (НАЗАД)",DIA_Cassia_BevorLernen_Spaeter);
 		if(Cassia_TeachPickpocket == FALSE)
 		{
 			Info_AddChoice(DIA_Cassia_BevorLernen,"Я хочу научиться карманному воровству (заплатить 100 золотых).",DIA_Cassia_BevorLernen_Pickpocket);
@@ -604,7 +606,7 @@ instance DIA_Cassia_Pickpocket(C_Info)
 	condition = DIA_Cassia_Pickpocket_Condition;
 	information = DIA_Cassia_Pickpocket_Info;
 	permanent = TRUE;
-	description = "Научи меня карманному воровству (10 LP)";
+	description = B_BuildLearnString("Научи меня карманному воровству",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1));
 };
 
 
@@ -747,7 +749,7 @@ instance DIA_Cassia_abgeben(C_Info)
 	condition = DIA_Cassia_abgeben_Condition;
 	information = DIA_Cassia_abgeben_Info;
 	permanent = TRUE;
-	description = "Насчет Кровавых Кубков...";
+	description = "Насчет кровавых кубков...";
 };
 
 
@@ -761,7 +763,7 @@ func int DIA_Cassia_abgeben_Condition()
 
 func void DIA_Cassia_abgeben_Info()
 {
-	AI_Output(other,self,"DIA_Cassia_abgeben_15_00");	//Насчет Кровавых Кубков...
+	AI_Output(other,self,"DIA_Cassia_abgeben_15_00");	//Насчет кровавых кубков...
 	if(B_GiveInvItems(other,self,ItMi_BloodCup_MIS,6))
 	{
 		AI_Output(other,self,"DIA_Cassia_abgeben_15_01");	//У меня есть все шесть кубков.
@@ -802,7 +804,7 @@ func void DIA_Cassia_Belohnung_Info()
 	AI_Output(other,self,"DIA_Cassia_Belohnung_15_00");	//Я пришел за своей наградой.
 	AI_Output(self,other,"DIA_Cassia_Belohnung_16_01");	//Что ты выбираешь?
 	Info_ClearChoices(DIA_Cassia_Belohnung);
-	Info_AddChoice(DIA_Cassia_Belohnung,"400 золотых.",DIA_Cassia_Belohnung_Gold);
+	Info_AddChoice(DIA_Cassia_Belohnung,"400 золотых",DIA_Cassia_Belohnung_Gold);
 	Info_AddChoice(DIA_Cassia_Belohnung,"4 лечебных эликсира",DIA_Cassia_Belohnung_Trank);
 	Info_AddChoice(DIA_Cassia_Belohnung,NAME_ADDON_CASSIASBELOHNUNGSRING,DIA_Cassia_Belohnung_Ring);
 };

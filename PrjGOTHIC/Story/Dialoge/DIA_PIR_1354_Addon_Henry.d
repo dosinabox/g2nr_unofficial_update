@@ -849,7 +849,7 @@ instance DIA_Addon_Henry_WhatTeach(C_Info)
 	condition = DIA_Addon_Henry_WhatTeach_Condition;
 	information = DIA_Addon_Henry_WhatTeach_Info;
 	permanent = TRUE;
-	description = "Ты можешь научить меня сражаться?";
+	description = "Ты можешь научить меня лучше сражаться?";
 };
 
 

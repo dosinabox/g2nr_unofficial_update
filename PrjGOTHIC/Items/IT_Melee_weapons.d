@@ -625,7 +625,7 @@ instance ItMw_2h_Pal_Sword(C_Item)
 
 instance ItMw_2H_OrcAxe_01(C_Item)
 {
-	name = "Легкий топор орков";
+	name = "Краш Пах";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_METAL;
@@ -648,7 +648,7 @@ instance ItMw_2H_OrcAxe_01(C_Item)
 
 instance ItMw_2H_OrcAxe_02(C_Item)
 {
-	name = "Средний топор орков";
+	name = "Краш Уррок";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_METAL;
@@ -671,7 +671,7 @@ instance ItMw_2H_OrcAxe_02(C_Item)
 
 instance ItMw_2H_OrcAxe_03(C_Item)
 {
-	name = "Тяжелый топор орков";
+	name = "Краш Агаш";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_METAL;
@@ -694,7 +694,7 @@ instance ItMw_2H_OrcAxe_03(C_Item)
 
 instance ItMw_2H_OrcAxe_04(C_Item)
 {
-	name = "Брутальный топор орков";
+	name = "Краш Брокдар";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_METAL;
@@ -717,7 +717,7 @@ instance ItMw_2H_OrcAxe_04(C_Item)
 
 instance ItMw_2H_OrcSword_01(C_Item)
 {
-	name = "Меч ящера";
+	name = "Краш Варрок";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
@@ -740,7 +740,7 @@ instance ItMw_2H_OrcSword_01(C_Item)
 
 instance ItMw_2H_OrcSword_02(C_Item)
 {
-	name = "Военный меч орков";
+	name = "Баш Брокдар";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;

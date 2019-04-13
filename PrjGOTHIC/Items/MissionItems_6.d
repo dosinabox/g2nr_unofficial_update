@@ -11,8 +11,8 @@ instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 	on_state[0] = Use_XardasNotfallBeutel;
 	description = name;
 	text[0] = "";
-	text[1] = "В этом мешочке, похоже,";
-	text[2] = "содержится твердый объект";
+	text[1] = "Похоже, что в этом мешочке";
+	text[2] = "находятся твердый объект";
 	text[3] = "и документ.";
 	text[4] = "";
 	text[5] = NAME_Value;
@@ -57,7 +57,7 @@ func void Use_XardasErmahnungFuerIdioten()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Мой юный протеже, ты очень разочаровал меня. Как ты мог отплыть на корабле и не взять Глаз Инноса?");
-	Doc_PrintLines(nDocID,0,"Мне остается только надеяться, что твоей халатности есть пределы. В противном случае, тебе никогда не удастся избавить мир от Зла  и мне придется лично казнить тебя за твою тупость.");
+	Doc_PrintLines(nDocID,0,"Мне остается только надеяться, что у твоей халатности есть пределы. В противном случае тебе никогда не удастся избавить мир от Зла и мне придется лично казнить тебя за твою тупость.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
@@ -184,7 +184,7 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"КАДОШ ");
+	Doc_PrintLines(nDocID,0,"КАДОШ");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"ЭМЕМ КАДАР");
 	Doc_PrintLine(nDocID,0,"");
@@ -194,7 +194,11 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
-	B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
+	if(Read_LastDoorToUndeadDrgDI_MIS == FALSE)
+	{
+		B_LogEntry(TOPIC_HallenVonIrdorath,"Свиток черного мага содержит слова КАДОШ ЭМЕМ КАДАР. Это похоже на какую-то магическую формулу, но для чего она используется - и что такое Глаз Силы?");
+		Read_LastDoorToUndeadDrgDI_MIS = TRUE;
+	};
 };
 
 
@@ -236,7 +240,7 @@ func void Use_RezeptFuerMegaTrank()
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Я вернул к жизни древнее искусство. Боюсь, правда, Феодарон не оценит мои достижения.");
-	Doc_PrintLines(nDocID,0,"Это означает, попросту говоря, что я должен превратить весь его выводок в зелье. Если бы только он не сидел на своих яйцах все время как курица, я бы попытался.");
+	Doc_PrintLines(nDocID,0,"Это, попросту говоря, означает, что я должен превратить весь его выводок в зелье. Если бы только он не сидел на своих яйцах все время как курица, я бы попытался.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Эмбарла фиргасто:");
 	Doc_PrintLine(nDocID,0,"");
@@ -244,7 +248,10 @@ func void Use_RezeptFuerMegaTrank()
 	Doc_PrintLines(nDocID,0,"Эту смесь нужно довести до кипения, постоянно помешивая, и пропустить через дистиллятор.");
 	Doc_PrintLines(nDocID,0,"Получившийся эликсир нужно использовать с осторожностью. Он обладает сильными побочными эффектами и может отрицательно повлиять на ману.");
 	Doc_Show(nDocID);
-	PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
+	if(PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE)
+	{
+		PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
+	};
 };
 
 
@@ -258,11 +265,14 @@ instance ItWr_Diary_BlackNovice_MIS(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
+	text[0] = "Дневник послушника черного мага.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = Use_Diary_BlackNovice;
 };
 
+
+var int Use_Diary_BlackNovice_Once;
 
 func void Use_Diary_BlackNovice()
 {
@@ -283,9 +293,13 @@ func void Use_Diary_BlackNovice()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Я проник в большой зал уже давным-давно. Я не могу дождаться, когда увижу Мастера. Интересно, позволят ли мне видеть его, когда я стану одним из них.");
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLines(nDocID,1,"Вчера я попытал счастья. Но потерпел неудачу в двух камерах с рычагами еще до того, как смог нажать три переключателя в западном крыле в правильном порядке. Этот пес закрыл камеры! Завтра я попытаюсь стащить у него ключ ...");
+	Doc_PrintLines(nDocID,1,"Вчера я попытал счастья. Но потерпел неудачу в двух камерах с рычагами еще до того, как смог нажать три переключателя в западном крыле в правильном порядке. Этот пес закрыл камеры! Завтра я попытаюсь стащить у него ключ...");
 	Doc_Show(nDocID);
-	B_LogEntry(TOPIC_HallenVonIrdorath,"В дневнике черного мага-послушника упоминаются камеры с рычагами, ключник, комбинации переключателей и много чего еще. Я должен запомнить это, никогда не знаешь заранее, что пригодится, а что нет.");
+	if(Use_Diary_BlackNovice_Once == FALSE)
+	{
+		B_LogEntry(TOPIC_HallenVonIrdorath,"В дневнике послушника черного мага упоминаются камеры с рычагами, ключник, комбинации переключателей и много чего еще. Я должен запомнить это, никогда не знаешь заранее, что пригодится, а что нет.");
+		Use_Diary_BlackNovice_Once = TRUE;
+	};
 };
 
 

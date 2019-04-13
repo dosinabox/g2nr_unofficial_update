@@ -144,7 +144,7 @@ instance DIA_Addon_Crimson_Gold(C_Info)
 	condition = DIA_Addon_Crimson_Gold_Condition;
 	information = DIA_Addon_Crimson_Gold_Info;
 	permanent = TRUE;
-	description = "Продать золотые слитки...";
+	description = "Займемся торговлей...";
 };
 
 
@@ -270,7 +270,7 @@ func void DIA_Addon_Crimson_FATAGN_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Crimson_FATAGN_10_01");	//Конечно. Ты готов?
 		Info_ClearChoices(DIA_Addon_Crimson_FATAGN);
-		Info_AddChoice(DIA_Addon_Crimson_FATAGN,"Хорошо",DIA_Addon_Crimson_FATAGN_LOS);
+		Info_AddChoice(DIA_Addon_Crimson_FATAGN,"Хорошо.",DIA_Addon_Crimson_FATAGN_LOS);
 	}
 	else
 	{

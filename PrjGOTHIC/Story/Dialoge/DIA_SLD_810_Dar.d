@@ -78,7 +78,7 @@ instance DIA_Dar_PERM(C_Info)
 	condition = DIA_Dar_PERM_Condition;
 	information = DIA_Dar_PERM_Info;
 	permanent = TRUE;
-	description = "Ты чувствуешь что-нибудь кроме дыма?";
+	description = "Ты что-нибудь делаешь еще, кроме как куришь?";
 };
 
 
@@ -92,7 +92,7 @@ func int DIA_Dar_PERM_Condition()
 
 func void DIA_Dar_PERM_Info()
 {
-	AI_Output(other,self,"DIA_Dar_PERM_15_00");	//Ты чувствуешь что-нибудь кроме дыма?
+	AI_Output(other,self,"DIA_Dar_PERM_15_00");	//Ты что-нибудь делаешь еще, кроме как куришь?
 	if((Dar_LostAgainstCipher == TRUE) && (Dar_einmal == FALSE))
 	{
 		AI_Output(self,other,"DIA_Dar_PERM_03_01");	//(саркастически) Иногда я позволяю всяким мстительным болотным наркоманам задать мне взбучку...
@@ -100,7 +100,7 @@ func void DIA_Dar_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Dar_PERM_03_02");	//Но не сейчас.
+		AI_Output(self,other,"DIA_Dar_PERM_03_02");	//Сейчас нет.
 	};
 };
 
@@ -435,7 +435,7 @@ func void DIA_Dar_ORCRING_wie()
 	AI_Output(other,self,"DIA_Dar_ORCRING_wie_15_00");	//Как это должно выглядеть?
 	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_01");	//Я не знаю точно. Какой-нибудь трофей орков вполне подошел бы.
 	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_02");	//Что-нибудь вроде эмблемы лидера орков, ну или что-то вроде. Знамя, нарукавная нашивка или кольцо, ну, ты понял.
-	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_03");	//Я не смогу произвести впечатление без этого. Это очевидно.
+	AI_Output(self,other,"DIA_Dar_ORCRING_wie_03_03");	//Я не могу произвести впечатление без этого. Это очевидно.
 	Log_CreateTopic(TOPIC_Dar_BringOrcEliteRing,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Dar_BringOrcEliteRing,LOG_Running);
 	B_LogEntry(TOPIC_Dar_BringOrcEliteRing,"Дар хочет стать важной шишкой в рядах наемников. Он хочет заполучить трофей орков. Знамя, нарукавную нашивку, кольцо, или еще что-нибудь.");
@@ -446,7 +446,7 @@ func void DIA_Dar_ORCRING_wie()
 func void DIA_Dar_ORCRING_no()
 {
 	AI_Output(other,self,"DIA_Dar_ORCRING_no_15_00");	//Меня это не интересует.
-	AI_Output(self,other,"DIA_Dar_ORCRING_no_03_01");	//(злобно) Конечно нет. Я бы очень удивился, если бы это было не так.
+	AI_Output(self,other,"DIA_Dar_ORCRING_no_03_01");	//(злобно) Конечно, нет. Я бы очень удивился, если бы это было не так.
 	Info_ClearChoices(DIA_Dar_ORCRING);
 };
 
@@ -526,7 +526,7 @@ func void DIA_Dar_BRINGORCELITERING_geld()
 	};
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 	Info_AddChoice(DIA_Dar_BRINGORCELITERING,"Этого недостаточно.",DIA_Dar_BRINGORCELITERING_geld_no);
-	Info_AddChoice(DIA_Dar_BRINGORCELITERING,"Договорились.",DIA_Dar_BRINGORCELITERING_geld_ok);
+	Info_AddChoice(DIA_Dar_BRINGORCELITERING,"Договорились. Держи кольцо.",DIA_Dar_BRINGORCELITERING_geld_ok);
 };
 
 func void DIA_Dar_BRINGORCELITERING_geld_ok()
@@ -550,7 +550,7 @@ func void DIA_Dar_BRINGORCELITERING_geld_no()
 func void DIA_Dar_BRINGORCELITERING_was()
 {
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_was_15_00");	//Что ты можешь предложить мне?
-	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_03_01");	//Либо забирай деньги, либо этот амулет, который я... ну, скажем, приобрел недавно.
+	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_03_01");	//Ладно, забирай деньги, либо этот амулет, который я... ну, скажем, приобрел недавно.
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_03_02");	//Он повысит твою ловкость. Я сам испытывал его.
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 	Info_AddChoice(DIA_Dar_BRINGORCELITERING,"Заплати мне золотом.",DIA_Dar_BRINGORCELITERING_geld);

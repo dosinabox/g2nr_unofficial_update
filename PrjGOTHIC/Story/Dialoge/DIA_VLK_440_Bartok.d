@@ -249,7 +249,7 @@ instance DIA_Bartok_TeachSneak(C_Info)
 	condition = DIA_Bartok_TeachSneak_Condition;
 	information = DIA_Bartok_TeachSneak_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Научи меня красться!",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
+	description = B_BuildLearnString("Научи меня красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1));
 };
 
 
@@ -494,7 +494,7 @@ func void DIA_Bartok_ImWald_NachHause()
 func void DIA_Bartok_ImWald_Weiter()
 {
 	AI_Output(other,self,"DIA_Bartok_ImWald_Weiter_15_00");	//Стоит.
-	AI_Output(self,other,"DIA_Bartok_ImWald_Weiter_04_01");	//Хорошо. (по себя) Будем надеяться, что нам повезет...
+	AI_Output(self,other,"DIA_Bartok_ImWald_Weiter_04_01");	//Хорошо. (про себя) Будем надеяться, что нам повезет...
 	if(!Npc_IsDead(CityOrc))
 	{
 		Bartok_OrkStillThere = TRUE;
@@ -576,7 +576,7 @@ func void DIA_Bartok_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Bartok_PERM_04_03");	//Конечно. Давая прикончим еще парочку зверей!
+		AI_Output(self,other,"DIA_Bartok_PERM_04_03");	//Конечно. Давай прикончим еще парочку зверей!
 	};
 };
 

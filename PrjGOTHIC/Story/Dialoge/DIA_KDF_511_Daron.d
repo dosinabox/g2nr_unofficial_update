@@ -187,7 +187,7 @@ func void DIA_Daron_Spenden_Info()
 		AI_Output(self,other,"DIA_Daron_Spenden_10_03");	//Хм, ты ведь бедняк, да? Оставь себе то немногое, что у тебя есть.
 		if(MIS_Thorben_GetBlessings == LOG_Running)
 		{
-			B_LogEntry(TOPIC_Thorben,"Маг огня Дарон не благословил меня. Мне кажется, это означает, что я должен пожертвовать ему немного золота. Без этого он не благословит меня.");
+			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон не благословил меня. Мне кажется, это означает, что я должен пожертвовать ему немного золота. Без этого он не благословит меня.");
 		};
 	}
 	else
@@ -213,7 +213,7 @@ func void DIA_Daron_Spenden_Info()
 		B_GivePlayerXP(XP_InnosSegen);
 		if(MIS_Thorben_GetBlessings == LOG_Running)
 		{
-			B_LogEntry(TOPIC_Thorben,"Маг огня Дарон благословил меня.");
+			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 		};
 	};
 };
@@ -353,7 +353,7 @@ func int DIA_Addon_Daron_GuildHelp_Condition()
 func void DIA_Addon_Daron_GuildHelp_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_00");	//Я слышал, у вас пропала ценная статуэтка.
-	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_01");	//Неужели? Об этом знал только маг воды Ватрас.
+	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_01");	//Неужели? Об этом знал только маг Воды Ватрас.
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_02");	//В чем проблема?
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_03");	//С континента в монастырь была отправлена драгоценная статуэтка. Но до нас она так и не дошла.
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_04");	//Корабль был ограблен?
@@ -526,7 +526,7 @@ func void DIA_Daron_Spende_Info()
 	Info_ClearChoices(DIA_Daron_Spende);
 	if(Daron_Spende < 1000)
 	{
-		Info_AddChoice(DIA_Daron_Spende,"Но у меня недостаточно золота ... (НАЗАД)",DIA_Daron_Spende_BACK);
+		Info_AddChoice(DIA_Daron_Spende,"Но у меня недостаточно золота... (НАЗАД)",DIA_Daron_Spende_BACK);
 		Info_AddChoice(DIA_Daron_Spende,"(50  золота)",DIA_Daron_Spende_50);
 		Info_AddChoice(DIA_Daron_Spende,"(100 золота)",DIA_Daron_Spende_100);
 		Info_AddChoice(DIA_Daron_Spende,"(200 золота)",DIA_Daron_Spende_200);
@@ -560,7 +560,7 @@ func void DIA_Daron_Spende_50()
 		Daron_Segen = TRUE;
 		if(MIS_Thorben_GetBlessings == LOG_Running)
 		{
-			B_LogEntry(TOPIC_Thorben,"Маг огня Дарон благословил меня.");
+			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 		};
 	}
 	else
@@ -581,7 +581,7 @@ func void DIA_Daron_Spende_100()
 		Daron_Segen = TRUE;
 		if(MIS_Thorben_GetBlessings == LOG_Running)
 		{
-			B_LogEntry(TOPIC_Thorben,"Маг огня Дарон благословил меня.");
+			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 		};
 	}
 	else
@@ -602,7 +602,7 @@ func void DIA_Daron_Spende_200()
 		Daron_Segen = TRUE;
 		if(MIS_Thorben_GetBlessings == LOG_Running)
 		{
-			B_LogEntry(TOPIC_Thorben,"Маг огня Дарон благословил меня.");
+			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 		};
 	}
 	else

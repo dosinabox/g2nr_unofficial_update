@@ -251,7 +251,7 @@ func void DIA_Ehnim_MoleRatFett_Info()
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_15_01");	//Ну да. Все еще ссоритесь?
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_12_02");	//Не твое дело. Забудь об этом. Скажи, ты не был недавно на ферме Лобарта?
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_15_03");	//Может быть. А что?
-	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_12_04");	//Ох, ничего такого. Я просто хотел поговорить с Вино о  его винокурне.
+	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_12_04");	//Ох, ничего такого. Я просто хотел поговорить с Вино о его винокурне.
 	Info_ClearChoices(DIA_Ehnim_MoleRatFett);
 	Info_AddChoice(DIA_Ehnim_MoleRatFett,"У меня сейчас нет времени на это.",DIA_Ehnim_MoleRatFett_nein);
 	Info_AddChoice(DIA_Ehnim_MoleRatFett,"Винокурня? Какая винокурня?",DIA_Ehnim_MoleRatFett_was);
@@ -331,7 +331,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_05");	//Так, вообще-то не поступают. Сначала ты договариваешься о сделке, а затем оказывается, что у тебя даже нет денег! Уходи, я не хочу тебя видеть!
+		AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja_12_05");	//Так вообще-то не поступают. Сначала ты договариваешься о сделке, а затем оказывается, что у тебя даже нет денег! Уходи, я не хочу тебя видеть!
 	};
 	AI_StopProcessInfos(self);
 };

@@ -100,7 +100,7 @@ instance DIA_VLK_6_STANDARD(C_Info)
 	condition = DIA_VLK_6_STANDARD_Condition;
 	information = DIA_VLK_6_STANDARD_Info;
 	permanent = TRUE;
-	description = "Что нового?";
+	description = "Что новенького?";
 };
 
 

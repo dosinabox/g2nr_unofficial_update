@@ -48,7 +48,7 @@ func void DIA_Hodges_HALLO_Info()
 	AI_Output(other,self,"DIA_Hodges_HALLO_15_00");	//Привет, я новичок здесь.
 	AI_Output(self,other,"DIA_Hodges_HALLO_03_01");	//Не пойми меня неправильно, но сейчас у меня нет настроения разговаривать - я абсолютно измотан.
 	AI_Output(other,self,"DIA_Hodges_HALLO_15_02");	//Ты ужасно занят, да?
-	AI_Output(self,other,"DIA_Hodges_HALLO_03_03");	//Даже не говори. Беннет делает столько оружия, что едва успеваю полировать его.
+	AI_Output(self,other,"DIA_Hodges_HALLO_03_03");	//Даже не говори. Беннет делает столько оружия, что я едва успеваю полировать его.
 };
 
 
@@ -231,7 +231,7 @@ instance DIA_Hodges_WhatHappened(C_Info)
 	condition = DIA_Hodges_WhatHappened_Condition;
 	information = DIA_Hodges_WhatHappened_Info;
 	permanent = FALSE;
-	description = "Что произошло?";
+	description = "Что случилось?";
 };
 
 

@@ -72,7 +72,7 @@ func void DIA_Addon_MIL_6_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_MIL_6_MissingPeople_15_00");	//я слышал, что исчезли несколько горожан.
 	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_01");	//» € недавно слышал слухи об исчезновении людей.
 	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_02");	//Ќе могу даже представить, чем это можно объ€снить.
-	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_03");	//» мы не можем сделать ничего кроме того, чтобы смотреть в оба и исполн€ть свой долг стражников.
+	AI_Output(self,other,"DIA_Addon_MIL_6_MissingPeople_06_03");	//» мы не можем сделать ничего, кроме того, чтобы смотреть в оба и исполн€ть свой долг стражников.
 };
 
 
@@ -134,7 +134,7 @@ instance DIA_MIL_6_STANDARD(C_Info)
 	condition = DIA_MIL_6_STANDARD_Condition;
 	information = DIA_MIL_6_STANDARD_Info;
 	permanent = TRUE;
-	description = "„то нового?";
+	description = "„то новенького?";
 };
 
 

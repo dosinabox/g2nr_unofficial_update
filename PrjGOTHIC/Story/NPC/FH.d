@@ -1,7 +1,7 @@
 
 instance FH(Npc_Default)
 {
-	name[0] = "Помощник";
+	name[0] = "Помощник по лицам";
 	npcType = NPCTYPE_FRIEND;
 	guild = GIL_NONE;
 	level = 999;

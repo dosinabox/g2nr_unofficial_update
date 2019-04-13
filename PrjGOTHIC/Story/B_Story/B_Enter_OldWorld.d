@@ -82,6 +82,10 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		{
 			Wld_InsertItem(ItMi_Nugget,"FP_ITEM_XARDASALTERTURM_02");
 		};
+		if(TschuessBilgot == TRUE)
+		{
+			B_RemoveNpc(VLK_4120_Bilgot);
+		};
 		EnterOW_Kapitel3 = TRUE;
 	};
 };
@@ -113,7 +117,8 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		B_RemoveNpc(VLK_4107_Parlaf);
 		if(Npc_IsDead(Sengrath) == FALSE)
 		{
-			B_StartOtherRoutine(Sengrath,"ORCBARRIER");
+			B_StartOtherRoutine(Sengrath,"OrcBarrier");
+			B_ClearDeadTrader(Sengrath);
 			if(Npc_HasItems(Sengrath,ItRw_Mil_Crossbow))
 			{
 				Npc_RemoveInvItem(Sengrath,ItRw_Mil_Crossbow);
@@ -121,6 +126,10 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			CreateInvItems(Sengrath,ItRw_SengrathsArmbrust_MIS,1);
 			Sengrath_Missing = TRUE;
 			B_KillNpc(Sengrath);
+		};
+		if(TschuessBilgot == TRUE)
+		{
+			B_RemoveNpc(VLK_4120_Bilgot);
 		};
 		Wld_InsertNpc(DJG_730_ToterDrachenjaeger,"OC1");
 		B_KillNpc(DJG_730_ToterDrachenjaeger);

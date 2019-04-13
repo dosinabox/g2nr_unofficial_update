@@ -5,7 +5,7 @@ instance VLK_439_Vatras_DI(Npc_Default)
 	guild = GIL_VLK;
 	id = 4390;
 	voice = 5;
-	flags = NPC_FLAG_IMMORTAL;
+	flags = 0;
 	npcType = NPCTYPE_FRIEND;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;

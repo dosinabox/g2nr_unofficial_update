@@ -75,7 +75,7 @@ instance ItMi_BaltramPaket(C_Item)
 	description = name;
 	text[2] = "Тяжелый пакет с";
 	text[3] = "различными товарами";
-	text[4] = "с фермы Акила";
+	text[4] = "с фермы Акила.";
 };
 
 instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
@@ -89,7 +89,7 @@ instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 	description = name;
 	text[2] = "Тяжелый пакет";
 	text[3] = "с различными товарами";
-	text[4] = "для пирата Скипа";
+	text[4] = "для пирата Скипа.";
 };
 
 instance ItMi_BromorsGeld_Addon(C_Item)
@@ -101,7 +101,7 @@ instance ItMi_BromorsGeld_Addon(C_Item)
 	visual = "ItMi_GoldChalice.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "На дне этой чаши ";
+	text[2] = "На дне этой чаши";
 	text[3] = "острым предметом нацарапано";
 	text[4] = "имя 'Бромор'.";
 	text[5] = NAME_Value;
@@ -119,11 +119,9 @@ instance ItSe_ADDON_CavalornsBeutel(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_CavalornsBeutel;
 	description = name;
-	text[0] = "";
 	text[1] = "На мешочке прикреплен ярлык";
-	text[2] = "с именем 'Кавалорн'";
-	text[3] = "Внутри находится 1 кусок руды";
-	text[4] = "";
+	text[2] = "с именем 'Кавалорн'.";
+	text[3] = "Внутри находится 1 кусок руды.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -311,9 +309,8 @@ instance ItMi_Addon_Lennar_Paket(C_Item)
 	on_state[0] = Use_LennarPaket;
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Внутри находятся отмычки";
-	text[3] = "";
-	text[4] = "Много отмычек";
+	text[2] = "Внутри находятся отмычки.";
+	text[3] = "Много отмычек.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

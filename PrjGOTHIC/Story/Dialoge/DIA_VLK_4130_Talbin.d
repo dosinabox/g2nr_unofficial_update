@@ -422,7 +422,7 @@ func int DIA_Talbin_KAP4_WASNEUES_Condition()
 func void DIA_Talbin_KAP4_WASNEUES_Info()
 {
 	AI_Output(other,self,"DIA_Talbin_KAP4_WASNEUES_15_00");	//Здесь никто не проходил?
-	AI_Output(self,other,"DIA_Talbin_KAP4_WASNEUES_07_01");	//Походил. Недавно здесь были очень забавные парни! Они расхаживали в расфуфыренных доспехах, и у них был очень важный и напыщенный вид.
+	AI_Output(self,other,"DIA_Talbin_KAP4_WASNEUES_07_01");	//Проходил. Недавно здесь были очень забавные парни! Они расхаживали в расфуфыренных доспехах, и у них был очень важный и напыщенный вид.
 };
 
 
@@ -549,7 +549,7 @@ instance DIA_Talbin_WOHIN(C_Info)
 	condition = DIA_Talbin_WOHIN_Condition;
 	information = DIA_Talbin_WOHIN_Info;
 	permanent = TRUE;
-	description = "Куда ты собрался? ";
+	description = "Куда ты собрался?";
 };
 
 
@@ -566,7 +566,7 @@ func void DIA_Talbin_WOHIN_Info()
 	AI_Output(other,self,"DIA_Talbin_WOHIN_15_00");	//Куда ты собрался?
 	if(Npc_GetDistToWP(self,"START") < 1000)
 	{
-		AI_Output(self,other,"DIA_Talbin_WOHIN_07_01");	//Доведи меня до Прохода. Пожалуйста!!
+		AI_Output(self,other,"DIA_Talbin_WOHIN_07_01");	//Доведи меня до Прохода. Пожалуйста!
 		Info_ClearChoices(DIA_Talbin_WOHIN);
 		Info_AddChoice(DIA_Talbin_WOHIN,"У меня нет времени на тебя.",DIA_Talbin_WOHIN_);
 		Info_AddChoice(DIA_Talbin_WOHIN,"Просто иди вперед.",DIA_Talbin_WOHIN_durch);

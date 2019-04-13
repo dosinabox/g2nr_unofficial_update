@@ -27,7 +27,7 @@ instance DIA_AngarDJG_HALLO(C_Info)
 	nr = 5;
 	condition = DIA_AngarDJG_HALLO_Condition;
 	information = DIA_AngarDJG_HALLO_Info;
-	description = "Я знаю тебя?";
+	description = "Я знаю тебя. Ты Кор Ангар. Ты был храмовником в болотном лагере.";
 };
 
 
@@ -38,11 +38,11 @@ func int DIA_AngarDJG_HALLO_Condition()
 
 func void DIA_AngarDJG_HALLO_Info()
 {
-	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_00");	//Я знаю тебя? Ты Кор Ангар. Ты был храмовником в болотном лагере.
+	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_00");	//Я знаю тебя. Ты Кор Ангар. Ты был храмовником в болотном лагере.
 	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_01");	//(смиренно) Зови меня просто Ангаром. Я потерял свой титул. Братства Спящего больше нет.
 	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_02");	//Забавно, но мне кажется, что я тебя тоже знаю. Но я точно не помню откуда.
 	AI_Output(other,self,"DIA_AngarDJG_HALLO_15_03");	//Что с тобой?
-	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_04");	//Ох. Я уже давно мог нормально спать. Эти постоянные кошмары...
+	AI_Output(self,other,"DIA_AngarDJG_HALLO_04_04");	//Ох. Я уже давно не мог нормально спать. Эти постоянные кошмары...
 	B_LogEntry(TOPIC_Dragonhunter,"Я нашел Ангара в Долине рудников.");
 };
 
@@ -266,7 +266,7 @@ func void DIA_Angar_DJG_ANWERBEN_Info()
 	AI_Output(self,other,"DIA_Angar_DJG_ANWERBEN_04_01");	//Почему бы и нет. Помощь никогда не помещает.
 	if(DJG_Angar_SentToStones == FALSE)
 	{
-		Info_AddChoice(DIA_Angar_DJG_ANWERBEN,"Мне нужно идти.",DIA_Angar_DJG_ANWERBEN_gehen);
+		Info_AddChoice(DIA_Angar_DJG_ANWERBEN,Dialog_Ende_v2,DIA_Angar_DJG_ANWERBEN_gehen);
 		Info_AddChoice(DIA_Angar_DJG_ANWERBEN,"Где ты собираешься искать?",DIA_Angar_DJG_ANWERBEN_wo);
 		Info_AddChoice(DIA_Angar_DJG_ANWERBEN,"Когда ты отправляешься в путь?",DIA_Angar_DJG_ANWERBEN_wann);
 	};

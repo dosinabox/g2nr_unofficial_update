@@ -186,13 +186,16 @@ instance DIA_Addon_Samuel_Grog(C_Info)
 	condition = DIA_Addon_Samuel_Grog_Condition;
 	information = DIA_Addon_Samuel_Grog_Info;
 	permanent = TRUE;
-	description = "Я пришел за своей порцией грога! (10 золотых)";
+	description = "Я пришел за своей порцией грога. (10 золотых)";
 };
 
 
 func int DIA_Addon_Samuel_Grog_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Hello))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Samuel_Grog_Info()
@@ -238,7 +241,10 @@ instance DIA_Addon_Samuel_Rum(C_Info)
 
 func int DIA_Addon_Samuel_Rum_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Hello))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Samuel_Rum_Info()
@@ -285,7 +291,10 @@ instance DIA_Addon_Samuel_Stronger(C_Info)
 
 func int DIA_Addon_Samuel_Stronger_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Hello))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Samuel_Stronger_Info()
@@ -307,7 +316,7 @@ func void DIA_Addon_Samuel_Stronger_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_09");	//Что тебе приготовить.
+		AI_Output(self,other,"DIA_Addon_Samuel_Stronger_14_09");	//Что тебе приготовить?
 	};
 	Info_ClearChoices(DIA_Addon_Samuel_Stronger);
 	Info_AddChoice(DIA_Addon_Samuel_Stronger,Dialog_Back,DIA_Addon_Samuel_Stronger_Back);
@@ -429,15 +438,27 @@ instance DIA_Addon_Samuel_Trade(C_Info)
 
 func int DIA_Addon_Samuel_Trade_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Hello))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Samuel_Trade_Info()
 {
+	if(Samuel_flag == 1)
+	{
+		B_ClearAlchemyInv(self);
+		if(Samuel_flasks > 0)
+		{
+			CreateInvItems(self,ItMi_Flask,Samuel_flasks);
+		};
+		Samuel_flag = 0;
+	};
+	AI_Output(other,self,"DIA_Addon_Samuel_Trade_15_00");	//Что у тебя еще есть?
 	B_GiveTradeInv(self);
 	Npc_RemoveInvItems(self,ItFo_Addon_Grog,Npc_HasItems(self,ItFo_Addon_Grog));
 	CreateInvItems(self,ItFo_Addon_Grog,15);
-	AI_Output(other,self,"DIA_Addon_Samuel_Trade_15_00");	//Что у тебя еще есть?
 	AI_Output(self,other,"DIA_Addon_Samuel_Trade_14_01");	//Я могу продать тебе все, что нужно пирату для жизни.
 };
 
@@ -458,13 +479,21 @@ func int DIA_Addon_Samuel_News_Condition()
 	return TRUE;
 };
 
+var int News_Francis_GotSome;
+
 func void DIA_Addon_Samuel_News_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_News_15_00");	//Что нового в лагере?
 	if(Npc_IsDead(Francis) || (Francis_ausgeschissen == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Samuel_News_14_01");	//Фрэнсис получил по заслугам! Не могу даже описать, как это меня радует.
-		AI_Output(self,other,"DIA_Addon_Samuel_News_14_02");	//А ты нормальный парень. Давай выпьем - я угощаю!
+		if(News_Francis_GotSome == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Samuel_News_14_02");	//А ты нормальный парень. Давай выпьем - я угощаю!
+			B_GiveInvItems(self,other,ItFo_Addon_Rum,1);
+			B_UseItem(other,ItFo_Addon_Rum);
+			News_Francis_GotSome = TRUE;
+		};
 		if(GregIsBack == TRUE)
 		{
 			AI_Output(self,other,"DIA_Addon_Samuel_News_14_03");	//И Грег наконец-то вернулся. Он потерял корабль, но, по крайней мере, восстановил порядок в лагере.

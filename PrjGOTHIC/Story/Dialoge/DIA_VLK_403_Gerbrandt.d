@@ -26,7 +26,7 @@ func void DIA_Gerbrandt_EXIT_Info()
 		{
 			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
 		};
-		Npc_ExchangeRoutine(self,"NEWLIFE");
+		Npc_ExchangeRoutine(self,"FLEE");
 		B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
 		DIEGO_COMING = 2;
 	};
@@ -41,7 +41,7 @@ instance DIA_Gerbrandt_PICKPOCKET(C_Info)
 	condition = DIA_Gerbrandt_PICKPOCKET_Condition;
 	information = DIA_Gerbrandt_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть его кошелек будет легко)";
+	description = Pickpocket_40;
 };
 
 
@@ -162,7 +162,7 @@ func void DIA_Gerbrandt_Hello_Yes_Yes()
 	Info_ClearChoices(DIA_Gerbrandt_Hello);
 };
 
-func void B_GErbrandt_PissOff()
+func void B_Gerbrandt_PissOff()
 {
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_00");	//Что это все значит - ты издеваешься надо мной?
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_01");	//Ты и твой приятель Диего уже и так дел натворили.
@@ -181,7 +181,7 @@ instance DIA_Gerbrandt_Perm(C_Info)
 	condition = DIA_Gerbrandt_Perm_Condition;
 	information = DIA_Gerbrandt_Perm_Info;
 	permanent = TRUE;
-	description = "Есть что-нибудь новенькое?";
+	description = "Есть новости?";
 };
 
 
@@ -224,7 +224,7 @@ func void DIA_Gerbrandt_Perm_Info()
 		}
 		else
 		{
-			B_GErbrandt_PissOff();
+			B_Gerbrandt_PissOff();
 		};
 	};
 };
@@ -256,7 +256,7 @@ func void DIA_Gerbrandt_GreetingsFromDiego_Info()
 	AI_Output(other,self,"DIA_Gerbrandt_GreetingsFromDiego_15_02");	//Он попросил меня вручить тебе это письмо.
 	B_GiveInvItems(other,self,ItWr_DiegosLetter_MIS,1);
 	B_UseFakeScroll();
-	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_03");	//(возбужденно) Этого не может быть. Нет. Мне конец!
+	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_03");	//(возбужденно) Этого не может быть. Мне конец!
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_04");	//(в страхе) Он что, уже в городе?
 	AI_Output(other,self,"DIA_Gerbrandt_GreetingsFromDiego_15_05");	//Кто?
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_06");	//Диего, конечно же!

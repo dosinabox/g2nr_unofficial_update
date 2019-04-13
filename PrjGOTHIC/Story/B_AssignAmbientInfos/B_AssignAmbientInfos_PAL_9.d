@@ -104,7 +104,7 @@ instance DIA_PAL_9_STANDARD(C_Info)
 	condition = DIA_PAL_9_STANDARD_Condition;
 	information = DIA_PAL_9_STANDARD_Info;
 	permanent = TRUE;
-	description = "Что новенького?";
+	description = "Как дела?";
 };
 
 

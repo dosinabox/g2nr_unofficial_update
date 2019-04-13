@@ -116,7 +116,7 @@ instance DIA_MIL_7_STANDARD(C_Info)
 	condition = DIA_MIL_7_STANDARD_Condition;
 	information = DIA_MIL_7_STANDARD_Info;
 	permanent = TRUE;
-	description = "Что нового?";
+	description = "Что новенького?";
 };
 
 

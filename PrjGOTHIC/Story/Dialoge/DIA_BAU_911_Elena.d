@@ -147,7 +147,7 @@ instance DIA_Elena_AUFGABE(C_Info)
 	condition = DIA_Elena_AUFGABE_Condition;
 	information = DIA_Elena_AUFGABE_Info;
 	permanent = FALSE;
-	description = "Что ты делаешь здесь?";
+	description = "А чем ты занимаешься?";
 };
 
 
@@ -178,7 +178,7 @@ instance DIA_Elena_TRADE(C_Info)
 	condition = DIA_Elena_TRADE_Condition;
 	information = DIA_Elena_TRADE_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары!";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
@@ -193,7 +193,7 @@ func int DIA_Elena_TRADE_Condition()
 
 func void DIA_Elena_TRADE_Info()
 {
-	AI_Output(other,self,"DIA_Elena_TRADE_15_00");	//Покажи мне свои товары!
+	AI_Output(other,self,"DIA_Elena_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Elena_TRADE_16_01");	//Выбирай.
 };
@@ -252,7 +252,7 @@ instance DIA_Elena_MINENANTEIL(C_Info)
 	nr = 2;
 	condition = DIA_Elena_MINENANTEIL_Condition;
 	information = DIA_Elena_MINENANTEIL_Info;
-	description = "Ты продаешь акции?";
+	description = "Ты продаешь акции шахт?";
 };
 
 

@@ -30,7 +30,7 @@ instance DIA_Rosi_HALLO(C_Info)
 	nr = 3;
 	condition = DIA_Rosi_HALLO_Condition;
 	information = DIA_Rosi_HALLO_Info;
-	description = "С тобой все в порядке?";
+	description = "У тебя все в порядке?";
 };
 
 

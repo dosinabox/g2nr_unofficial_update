@@ -6,7 +6,7 @@ instance DIA_Addon_Carlos_EXIT(C_Info)
 	condition = DIA_Addon_Carlos_EXIT_Condition;
 	information = DIA_Addon_Carlos_EXIT_Info;
 	permanent = TRUE;
-	description = "Еще увидимся.";
+	description = Dialog_Ende_v3;
 };
 
 
@@ -17,6 +17,7 @@ func int DIA_Addon_Carlos_EXIT_Condition()
 
 func void DIA_Addon_Carlos_EXIT_Info()
 {
+	AI_Output(other,self,"DIA_GornDJG_StartCamp_By_15_00");	//Еще увидимся.
 	AI_StopProcessInfos(self);
 };
 
@@ -77,7 +78,7 @@ func int DIA_Addon_Carlos_HI_Condition()
 
 func void DIA_Addon_Carlos_HI_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Carlos_HI_12_00");	//Эй, это ты тот парень, что укокошил Франко?
+	AI_Output(self,other,"DIA_Addon_Carlos_HI_12_00");	//Эй, ты тот парень, что укокошил Франко?
 	Info_ClearChoices(DIA_Addon_Carlos_HI);
 	Info_AddChoice(DIA_Addon_Carlos_HI,"Что? Я? Нет!",DIA_Addon_Carlos_HI_No);
 	Info_AddChoice(DIA_Addon_Carlos_HI,"Да, а почему ты спрашиваешь?",DIA_Addon_Carlos_HI_Yes);
@@ -120,7 +121,7 @@ func int DIA_Addon_Carlos_Attentat_Condition()
 func void DIA_Addon_Carlos_Attentat_Info()
 {
 	B_Say(other,self,"$ATTENTAT_ADDON_DESCRIPTION");
-	AI_Output(self,other,"DIA_Addon_Carlos_Attentat_12_00");	//После того как нападающий был убит, Торус приказал мне найти нового человека для лагеря.
+	AI_Output(self,other,"DIA_Addon_Carlos_Attentat_12_00");	//После того, как нападающий был убит, Торус приказал мне найти нового человека для лагеря.
 	if(Logan_Inside == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Carlos_Attentat_12_01");	//И Франко послал Логана.

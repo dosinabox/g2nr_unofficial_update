@@ -42,9 +42,9 @@ func void DIA_Landstreicher_HALLO_Info()
 	AI_Output(other,self,"DIA_Landstreicher_HALLO_15_01");	//Что ты имеешь в виду?
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_09_02");	//Ты уже второй здесь, кто несется, как будто ужаленный кровавой мухой.
 	Info_ClearChoices(DIA_Landstreicher_HALLO);
-	Info_AddChoice(DIA_Landstreicher_HALLO,"Мне нужно идти.",DIA_Landstreicher_HALLO_weg);
+	Info_AddChoice(DIA_Landstreicher_HALLO,Dialog_Ende_v2,DIA_Landstreicher_HALLO_weg);
 	Info_AddChoice(DIA_Landstreicher_HALLO,"А куда первый побежал?",DIA_Landstreicher_HALLO_wo);
-	Info_AddChoice(DIA_Landstreicher_HALLO,"Что это за парень?",DIA_Landstreicher_HALLO_wer);
+	Info_AddChoice(DIA_Landstreicher_HALLO,"А кто это был?",DIA_Landstreicher_HALLO_wer);
 };
 
 func void DIA_Landstreicher_HALLO_wo()

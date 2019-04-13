@@ -74,7 +74,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Dragonhunter,0,MIS_AllDragonsDead,5);
 	B_CloseTopic(TOPIC_AngarsAmulett,0,DJG_AngarGotAmulett,5);
 	B_CloseTopic(TOPIC_JanBecomesSmith,MIS_JanBecomesSmith,0,6);
-	B_CloseTopic(TOPIC_FerrosSword,MIS_FErrosSword,0,6);
+	B_CloseTopic(TOPIC_FerrosSword,MIS_FerrosSword,0,6);
 	B_CloseTopic(TOPIC_DRACHENEIER,0,TOPIC_END_DRACHENEIER,6);
 	B_CloseTopic(TOPIC_DRACHENEIERNeoras,MIS_Neoras_DragonEgg,0,6);
 	B_CloseTopic(TOPIC_OrcElite,0,TOPIC_END_OrcElite,6);

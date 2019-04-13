@@ -34,15 +34,15 @@ func void Spell_Cast_SummonGuardian()
 	{
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_SummonGuardian;
 	};
-	self.aivar[AIV_SelectSpell] = self.aivar[AIV_SelectSpell] + 1;
+	self.aivar[AIV_SelectSpell] += 1;
 	if(Npc_IsPlayer(self))
 	{
+		Wld_StopEffect("SLOW_MOTION");
 		Wld_SpawnNpcRange(self,Summoned_Guardian,1,500);
 	}
 	else
 	{
 		Wld_SpawnNpcRange(self,Stoneguardian,1,500);
 	};
-	self.aivar[AIV_SelectSpell] += 1;
 };
 

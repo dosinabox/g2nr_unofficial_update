@@ -275,10 +275,10 @@ func int DIA_Jarvis_SylviosMen_Condition()
 func void DIA_Jarvis_SylviosMen_Info()
 {
 	AI_Output(other,self,"DIA_Jarvis_SylviosMen_15_00");	//Кто из наемников люди Сильвио?
-	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_01");	//Их шестеро. Прежде всего, сам Сильвио и его правая рука Булко.
+	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_01");	//Их шестеро. Прежде всего, сам Сильвио и его правая рука Буллко.
 	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_02");	//Также есть Род, Сентенза, Фестер и Рауль.
 	AI_Output(self,other,"DIA_Jarvis_SylviosMen_04_03");	//Остальные занимают либо нейтральную позицию, либо на стороне Ли.
-	B_LogEntry(TOPIC_JarvisSLDKo,"Люди Сильвио - это сам Сильвио, его правая рука Булко, Род, Сентенза, Фестер и Рауль.");
+	B_LogEntry(TOPIC_JarvisSLDKo,"Люди Сильвио - это сам Сильвио, его правая рука Буллко, Род, Сентенза, Фестер и Рауль.");
 };
 
 
@@ -303,7 +303,7 @@ func int DIA_Jarvis_HowMany_Condition()
 
 func void DIA_Jarvis_HowMany_Info()
 {
-	AI_Output(other,self,"DIA_Jarvis_HowMany_15_00");	//Сколько людей Сильвио я должен победить?
+	AI_Output(other,self,"DIA_Jarvis_HowMany_15_00");	//И сколько людей Сильвио я должен победить?
 	AI_Output(self,other,"DIA_Jarvis_HowMany_04_01");	//Если ты вырубишь троих из них, ты докажешь, на чьей ты стороне.
 	AI_Output(self,other,"DIA_Jarvis_HowMany_04_02");	//Кого ты выберешь - это твое дело.
 	AI_Output(self,other,"DIA_Jarvis_HowMany_04_03");	//Дам одну подсказку: Не стоит пытаться проявить мужество. Не выступай против самого Сильвио - он сделает из тебя котлету.
@@ -337,7 +337,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 	victories = 0;
 	if((Bullco.aivar[AIV_DefeatedByPlayer] == TRUE) || (Bullco.aivar[AIV_KilledByPlayer] == TRUE))
 	{
-		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_01");	//Я отдубасил Булко.
+		AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_01");	//Я отдубасил Буллко.
 		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_02");	//Я слышал. Неплохо.
 		victories = victories + 1;
 	};
@@ -453,7 +453,7 @@ func void DIA_Jarvis_PERM_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Jarvis_PERM_04_03");	//Последнее время, люди Сильвио ходят какие-то подавленные. (грязный смешок)
+			AI_Output(self,other,"DIA_Jarvis_PERM_04_03");	//Последнее время люди Сильвио ходят какие-то подавленные. (грязный смешок)
 		};
 	};
 	if(Kapitel >= 4)

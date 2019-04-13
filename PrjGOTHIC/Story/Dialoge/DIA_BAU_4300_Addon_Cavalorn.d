@@ -37,7 +37,7 @@ instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Cavalorn_PICKPOCKET_Condition;
 	information = DIA_Addon_Cavalorn_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть его колчан стрел будет легко)";
+	description = "(Нет ничего проще, чем украсть его колчан стрел)";
 };
 
 
@@ -121,7 +121,7 @@ instance DIA_Addon_Cavalorn_HALLO(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Cavalorn_HALLO_Condition;
 	information = DIA_Addon_Cavalorn_HALLO_Info;
-	description = "У тебя проблемы?";
+	description = "Проблемы?";
 };
 
 
@@ -165,7 +165,7 @@ func void DIA_Addon_Cavalorn_HALLO_Stadt()
 	AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_Stadt_15_00");	//В город.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_01");	//(смеется) Ну-ну. В город. Хех.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_02");	//У тебя могут возникнуть сложности со стражей. Они уже не пускают каждого прохожего, весь район кишит бандитами.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_03");	//Несколько дней назад один из бывших заключенных Долины Рудников проходил здесь. Он сказал что постоянно покидает Хоринис и возвращается.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_03");	//Несколько дней назад один из бывших заключенных Долины Рудников проходил здесь. Он сказал, что постоянно покидает Хоринис и возвращается.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_04");	//Он пошел в долину под белой башней. Должно быть, где-то там есть проход, около водопада.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_05");	//Может быть, тебе стоит с ним поговорить.
 	Info_ClearChoices(DIA_Addon_Cavalorn_HALLO);
@@ -306,7 +306,11 @@ func void DIA_Addon_Cavalorn_ErzGeben_Info()
 	AI_Output(self,other,"DIA_Addon_Cavalorn_ErzGeben_08_01");	//По рукам. Вот деньги.
 	CreateInvItems(self,ItMi_Gold,100);
 	B_GiveInvItems(self,other,ItMi_Gold,100);
-	if(B_GiveInvItems(other,self,ItSe_ADDON_CavalornsBeutel,1) == FALSE)
+	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel))
+	{
+		B_GiveInvItems(other,self,ItSe_ADDON_CavalornsBeutel,1);
+	}
+	else
 	{
 		B_GiveInvItems(other,self,ItMi_Nugget,1);
 	};
@@ -322,7 +326,7 @@ instance DIA_Addon_Cavalorn_WASMACHSTDU(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Cavalorn_WASMACHSTDU_Condition;
 	information = DIA_Addon_Cavalorn_WASMACHSTDU_Info;
-	description = "Что ты делаешь здесь?";
+	description = "Что ты здесь делаешь?";
 };
 
 
@@ -362,7 +366,7 @@ func int DIA_Addon_Cavalorn_Banditen_Condition()
 func void DIA_Addon_Cavalorn_Banditen_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_00");	//Что такое с бандитами?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_01");	//Ты спал хоть раз за последние несколько недель?
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_01");	//Ты что, с Луны свалился?
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Э-э...
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_03");	//Я говорю обо всем этом сброде из исправительной колонии, которые чувствуют себя здесь как дома, грабят и убивают всех, кого могут.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_04");	//(вздыхает) Думаю, мне повезло, что они меня не убили. Я отвлекся буквально на секунду - и меня уже оглушили ударом сзади дубинкой по голове.
@@ -522,10 +526,10 @@ func void B_Addon_Cavalorn_VatrasBrief()
 	if(MIS_Addon_Cavalorn_Letter2Vatras != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_07");	//Письмо должно быть у одного из бандитов в кармане.
-		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_08");	//Отнеси его к Ватрасу, магу воды, в город. Ты найдешь его в храме Аданоса. Он проповедует там весь день.
+		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_08");	//Отнеси его к Ватрасу, магу Воды, в город. Ты найдешь его в храме Аданоса. Он проповедует там весь день.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_09");	//Скажи ему, что мне не удалось.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_10");	//А если он спросит, где я, просто скажи ему, что я уже на пути к месту встречи, ладно?
-		B_LogEntry(TOPIC_Addon_KDW,"В городе Хоринисе живет маг воды Ватрас. Он читает проповеди в храме Аданоса.");
+		B_LogEntry(TOPIC_Addon_KDW,"В городе Хоринисе живет маг Воды Ватрас. Он читает проповеди в храме Аданоса.");
 	};
 	if((Npc_HasEquippedArmor(other) == FALSE) && (hero.guild == GIL_NONE) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
 	{
@@ -603,7 +607,7 @@ instance DIA_Addon_Cavalorn_JUNGS(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Cavalorn_JUNGS_Condition;
 	information = DIA_Addon_Cavalorn_JUNGS_Info;
-	description = "Интересные на тебе доспехи.";
+	description = "Интересные на тебе доспехи. Ты больше не принадлежишь к Теням?";
 };
 
 
@@ -620,7 +624,7 @@ func void DIA_Addon_Cavalorn_JUNGS_Info()
 	AI_Output(other,self,"DIA_Addon_Cavalorn_JUNGS_15_00");	//Интересные на тебе доспехи. Ты больше не принадлежишь к Теням?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_01");	//Тени? Они не существуют с тех пор, как пал Барьер.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_02");	//Когда мы могли, наконец, уйти из Долины Рудников, незачем было оставаться с ними.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_03");	//Теперь я работаю на магов воды. Я принадлежу к 'Кольцу Воды'.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_JUNGS_08_03");	//Теперь я работаю на магов Воды. Я принадлежу к 'Кольцу Воды'.
 	SC_KnowsRanger = TRUE;
 	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
@@ -652,10 +656,10 @@ func void DIA_Addon_Cavalorn_Ring_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Ring_15_00");	//Расскажи мне о 'Кольце Воды'!
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_01");	//Мне на самом деле нельзя говорить про него.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_02");	//Все, что я могу сделать, - это отослать тебя к Ватрасу. Он - представитель магов воды в Хоринисе.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_03");	//Лучше тебе поговорить с ним. Скажи, что я тебе рекомендовал.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_02");	//Все, что я могу сделать, - это отослать тебя к Ватрасу. Он - представитель магов Воды в Хоринисе.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_03");	//Лучше тебе поговорить с ним. Скажи, что я тебя рекомендовал.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Ring_08_04");	//Может быть, он тебя примет в наши ряды. Нам срочно необходимы люди...
-	B_LogEntry(TOPIC_Addon_RingOfWater,"О Кольце Воды мне может рассказать маг воды Ватрас.");
+	B_LogEntry(TOPIC_Addon_RingOfWater,"О Кольце Воды мне может рассказать маг Воды Ватрас.");
 };
 
 
@@ -666,7 +670,7 @@ instance DIA_Addon_Cavalorn_Feinde(C_Info)
 	condition = DIA_Addon_Cavalorn_Feinde_Condition;
 	information = DIA_Addon_Cavalorn_Feinde_Info;
 	permanent = FALSE;
-	description = "Разве ты и твои ребята раньше не были врагами магов воды?";
+	description = "Разве ты и твои ребята раньше не были врагами магов Воды?";
 };
 
 
@@ -680,11 +684,11 @@ func int DIA_Addon_Cavalorn_Feinde_Condition()
 
 func void DIA_Addon_Cavalorn_Feinde_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Cavalorn_Feinde_15_00");	//Разве ты и твои ребята раньше не были врагами магов воды?
+	AI_Output(other,self,"DIA_Addon_Cavalorn_Feinde_15_00");	//Разве ты и твои ребята раньше не были врагами магов Воды?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_01");	//Эти безумные дни закончились. Теперь нет 'Нового Лагеря' или 'Старого Лагеря'.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_02");	//После того как колония прекратила свое существование, каждый остался сам за себя.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_02");	//После того, как колония прекратила свое существование, каждый остался сам за себя.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_03");	//За большинством из бывших заключенных все еще идет охота.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_04");	//Маги воды сумели разобраться с моим приговором, и теперь я могу передвигаться свободно.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Feinde_08_04");	//Маги Воды сумели разобраться с моим приговором, и теперь я могу передвигаться свободно.
 };
 
 
@@ -695,7 +699,7 @@ instance DIA_Addon_Cavalorn_KdWTask(C_Info)
 	condition = DIA_Addon_Cavalorn_KdWTask_Condition;
 	information = DIA_Addon_Cavalorn_KdWTask_Info;
 	permanent = FALSE;
-	description = "А что, собственно, делают маги воды?";
+	description = "А что, собственно, делают маги Воды?";
 };
 
 
@@ -709,7 +713,7 @@ func int DIA_Addon_Cavalorn_KdWTask_Condition()
 
 func void DIA_Addon_Cavalorn_KdWTask_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Cavalorn_KdWTask_15_00");	//А что, собственно, делают маги воды?
+	AI_Output(other,self,"DIA_Addon_Cavalorn_KdWTask_15_00");	//А что, собственно, делают маги Воды?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_KdWTask_08_01");	//Они затеяли кое-что серьезное. Это касается неизвестной области на острове.
 	AI_Output(other,self,"DIA_Addon_Cavalorn_KdWTask_15_02");	//Неизвестной области? Где же она может быть?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_KdWTask_08_03");	//Я не могу тебе сказать. Поговори с Ватрасом в Хоринисе.
@@ -763,7 +767,7 @@ func int DIA_Addon_Cavalorn_Ornament_Condition()
 func void DIA_Addon_Cavalorn_Ornament_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Ornament_15_00");	//Ты что-то ищешь?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Ornament_08_01");	//А что, так заметно? Да, у меня есть поручение от магов воды, я ищу потерянный орнамент.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Ornament_08_01");	//А что, так заметно? Да, у меня есть поручение от магов Воды, я ищу потерянный орнамент.
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Ornament_15_02");	//Как удобно. У меня то же поручение от Нефариуса.
 	if(SC_KnowsRanger == TRUE)
 	{
@@ -791,7 +795,7 @@ instance DIA_Addon_Cavalorn_Triggered(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Cavalorn_Triggered_Condition;
 	information = DIA_Addon_Cavalorn_Triggered_Info;
-	description = "Я включил этот механизм.";
+	description = "Я пробовал. Но он не работает, ничего не делает.";
 };
 
 
@@ -887,7 +891,7 @@ instance DIA_Addon_Cavalorn_WannaLearn(C_Info)
 	condition = DIA_Addon_Cavalorn_WannaLearn_Condition;
 	information = DIA_Addon_Cavalorn_WannaLearn_Info;
 	permanent = FALSE;
-	description = "Ты можешь научить меня чему-нибудь?";
+	description = "Ты можешь научить меня кое-чему?";
 };
 
 

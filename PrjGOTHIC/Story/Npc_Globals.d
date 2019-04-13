@@ -176,6 +176,7 @@ var C_Npc Randolph;
 var C_Npc Pedro;
 var C_Npc Lares;
 var C_Npc Vatras;
+var C_Npc Vatras_DI;
 var C_Npc Pablo;
 var C_Npc Nov607;
 var C_Npc Magic_Golem;
@@ -309,6 +310,8 @@ var C_Npc Onar;
 var C_Npc Bodo;
 var C_Npc Pepe;
 var C_Npc Garwig;
+var C_Npc Lucia;
+var C_Npc Huno;
 
 func void B_InitNpcGlobals()
 {
@@ -414,6 +417,7 @@ func void B_InitNpcGlobals()
 	Lee = Hlp_GetNpc(SLD_800_Lee);
 	Lee_DI = Hlp_GetNpc(SLD_800_Lee_DI);
 	Vatras = Hlp_GetNpc(VLK_439_Vatras);
+	Vatras_DI = Hlp_GetNpc(VLK_439_Vatras_DI);
 	Pablo = Hlp_GetNpc(MIL_319_Pablo);
 	Nov607 = Hlp_GetNpc(NOV_607_Novize);
 	Lares = Hlp_GetNpc(VLK_449_Lares);
@@ -626,5 +630,7 @@ func void B_InitNpcGlobals()
 	Onar = Hlp_GetNpc(Bau_900_Onar);
 	Bodo = Hlp_GetNpc(Bau_903_Bodo);
 	Pepe = Hlp_GetNpc(Bau_912_Pepe);
+	Lucia = Hlp_GetNpc(BDT_1091_Addon_Lucia);
+	Huno = Hlp_GetNpc(BDT_1099_Addon_Huno);
 };
 

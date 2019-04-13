@@ -43,10 +43,10 @@ func void DIA_DiegoOw_Hallo_Info()
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Но теперь я вернулся, и ищу доказательства появления драконов.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_03");	//Для кого ты это делаешь?
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_04");	//Я работаю на лорда Хагена. С помощью паладинов драконов можно остановить.
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, Я отправился в Хоринис.
+	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, я отправился в Хоринис.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_06");	//Я хотел предупредить паладинов о драконах. Сам не знаю, зачем мне это было нужно?
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_07");	//Этот напыщенный Лотар даже не стал слушать меня - и, конечно же, не позволил мне поговорить с лордом Хагеном.
-	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_08");	//Вместо этого, они отправили меня назад, с экспедицией. Так что лучше не напоминай мне о паладинах...
+	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_08");	//Вместо этого они отправили меня назад, с экспедицией. Так что лучше не напоминай мне о паладинах...
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_09");	//Очень важно остановить драконов, пока у нас еще есть время - и не важно, кто поможет нам сделать это.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_10");	//Остановить их? Да нам нужно уносить ноги из этой долины пока у нас еще есть время для ЭТОГО.
 	AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_03");	//Скажи - как тебе удалось пробраться через Проход? Я думал, там все кишит орками.
@@ -95,7 +95,7 @@ func void DIA_DiegoOw_Beweise_Info()
 	if(Npc_GetDistToWP(self,"LOCATION_02_05") <= 1000)
 	{
 		AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_01");	//Здесь, в задней части пещеры хранятся ЧЕТЫРЕ ящика руды. Их добыли люди Сильвестро.
-		AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их - но меня здесь к тому времени уже не будет.
+		AI_Output(self,other,"DIA_DiegoOw_Silvestro_11_02");	//Гаронд может прийти и забрать их, но меня здесь к тому времени уже не будет.
 	}
 	else
 	{
@@ -143,7 +143,7 @@ instance DIA_DiegoOw_Ritter(C_Info)
 	condition = DIA_DiegoOw_Ritter_Condition;
 	information = DIA_DiegoOw_Ritter_Info;
 	permanent = FALSE;
-	description = "А что насчет этих двух мертвых рыцарей ...";
+	description = "А что насчет этих двух мертвых рыцарей перед твоим укрытием?";
 };
 
 
@@ -195,7 +195,7 @@ instance DIA_DiegoOw_Gorn(C_Info)
 	condition = DIA_DiegoOw_Gorn_Condition;
 	information = DIA_DiegoOw_Gorn_Info;
 	permanent = FALSE;
-	description = "Я хочу купить свободу  Горну ...";
+	description = "Я хочу купить свободу Горну, но Гаронд просит за это 1000 золотых.";
 };
 
 
@@ -209,8 +209,8 @@ func int DIA_DiegoOw_Gorn_Condition()
 
 func void DIA_DiegoOw_Gorn_Info()
 {
-	AI_Output(other,self,"DIA_DiegoOw_Gorn_15_00");	//Я хочу купить свободу  Горну, но Гаронд просит за это 1000 золотых.
-	AI_Output(self,other,"DIA_DiegoOw_Gorn_11_01");	//Не маленькая сумма. У меня есть 300 монет, ты можешь взять их. Остальное найди сам.
+	AI_Output(other,self,"DIA_DiegoOw_Gorn_15_00");	//Я хочу купить свободу Горну, но Гаронд просит за это 1000 золотых.
+	AI_Output(self,other,"DIA_DiegoOw_Gorn_11_01");	//Немаленькая сумма. У меня есть 300 монет, ты можешь взять их. Остальное найди сам.
 	B_GiveInvItems(self,other,ItMi_Gold,300);
 	B_LogEntry(TOPIC_RescueGorn,"Диего заплатил 300 золота за освобождение Горна.");
 };
@@ -690,7 +690,7 @@ instance DIA_Addon_ThiefOW_Angekommen(C_Info)
 
 func int DIA_Addon_ThiefOW_Angekommen_Condition()
 {
-	if(Npc_GetDistToWP(self,"OW_VM_ENTRANCE") < 800)
+	if((Npc_GetDistToWP(self,"OW_VM_ENTRANCE") < 800) && !Npc_KnowsInfo(other,DIA_Addon_ThiefOW_Nostalgie))
 	{
 		return TRUE;
 	};
@@ -724,7 +724,7 @@ func int DIA_Addon_ThiefOW_Nostalgie_Condition()
 
 func void DIA_Addon_ThiefOW_Nostalgie_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_01");	//Помнишь, тогда?..
+	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_01");	//Помнишь, тогда?
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_02");	//Когда мы первый раз встретились?
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_03");	//Кажется, это было сотни лет назад...
 	AI_Output(self,other,"DIA_Addon_Diego_Nostalgie_11_04");	//В этом месте было что-то ЕЩЕ. Черт! Я не могу вспомнить.

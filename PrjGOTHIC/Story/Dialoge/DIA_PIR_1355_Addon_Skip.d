@@ -127,7 +127,7 @@ instance DIA_Addon_Skip_Job(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Skip_Job_Condition;
 	information = DIA_Addon_Skip_Job_Info;
-	description = "Что ты делаешь здесь?";
+	description = "Что ты здесь делаешь?";
 };
 
 
@@ -235,7 +235,7 @@ func void DIA_Addon_Skip_Bandits_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_02");	//Как ты думаешь, почему мы строим эту ограду?
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_03");	//Мы сами привезли сюда этих подонков.
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_04");	//Сначала мы с ними торговали. И скажу тебе, приятель, что у них столько золота, что они не знают, куда его девать!
-	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_05");	//За бутылку рома они были платить любую цену.
+	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_05");	//За бутылку рома они платили любую цену.
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_06");	//Но мирные времена прошли. Теперь у нас война!
 	AI_Output(other,self,"DIA_Addon_Erol_Bandits_15_06");	//Что произошло?
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_07");	//Эти сволочи не заплатили за последнюю поставку.
@@ -300,7 +300,7 @@ func int DIA_Addon_Skip_GregsHut_Condition()
 func void DIA_Addon_Skip_GregsHut_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_GregsHut_15_00");	//Ты можешь сказать, как попасть в его хижину?
-	AI_Output(self,other,"DIA_Addon_Skip_GregsHut_08_01");	//Эй, эй, не так быстро!
+	AI_Output(self,other,"DIA_Addon_Skip_GregsHut_08_01");	//Эй-эй-эй, не так быстро!
 	AI_Output(self,other,"DIA_Addon_Skip_GregsHut_08_02");	//Ты же не собираешься копаться в вещах Грега?
 	AI_Output(self,other,"DIA_Addon_Skip_GregsHut_08_03");	//Когда Грег уезжал, он оставил ключ от хижины Фрэнсису и приказал ему никого не пускать внутрь.
 	B_LogEntry(TOPIC_Addon_BDTRuestung,"У Фрэнсиса есть ключ от хижины, но ему приказано никого в нее не пускать.");
@@ -364,7 +364,7 @@ func void DIA_Addon_Skip_Raven_Info()
 	AI_Output(other,self,"DIA_Addon_Skip_Raven_15_00");	//Ты когда-нибудь видел Ворона?
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_01");	//Да, бывало. Когда мы с Генри дежурили у ворот, мы наблюдали, как Ворон размещает своих людей в башне на юге.
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_02");	//От нее до нашего лагеря камень добросить можно. (смеется) Понятно, что они будут за нами шпионить.
-	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_03");	//А еще я видел, как он расправляется с людьми, которые ему не подчиняется.
+	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_03");	//А еще я видел, как он расправляется с людьми, которые ему не подчиняются.
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_04");	//С теми, кто не выполняет его приказ до последнего слова, у него разговор короткий.
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_05");	//Запомни мои слова: не связывайся с Вороном.
 };
@@ -533,7 +533,7 @@ func void DIA_Addon_Skip_Grog_geben()
 	AI_Output(self,other,"DIA_Addon_Skip_Grog_geben_08_08");	//Если хочешь, я дам тебе его вместо денег?
 	Info_ClearChoices(DIA_Addon_Skip_Grog);
 	Info_AddChoice(DIA_Addon_Skip_Grog,"Я возьму деньги.",DIA_Addon_Skip_Grog_gold);
-	Info_AddChoice(DIA_Addon_Skip_Grog,"Дай мне кольцо.",DIA_Addon_Skip_Grog_ring);
+	Info_AddChoice(DIA_Addon_Skip_Grog,"Я возьму кольцо.",DIA_Addon_Skip_Grog_ring);
 };
 
 func void DIA_Addon_Skip_Grog_ring()
@@ -562,7 +562,7 @@ instance DIA_Addon_Skip_News(C_Info)
 	condition = DIA_Addon_Skip_News_Condition;
 	information = DIA_Addon_Skip_News_Info;
 	permanent = FALSE;
-	description = "Ты можешь что-нибудь продать?";
+	description = "Ты можешь мне что-нибудь продать?";
 };
 
 

@@ -89,7 +89,7 @@ func void DIA_Lester_Hello_WhoFourFriends()
 {
 	Info_ClearChoices(DIA_Lester_Hello);
 	AI_Output(other,self,"DIA_Lester_Hello_WhoFourFriends_15_00");	//Диего, Милтен и КТО?
-	AI_Output(self,other,"DIA_Lester_Hello_WhoFourFriends_13_01");	//Только не говори мне, что ты ничего этого не помнишь. Фокусирующие камни - тролль - огромная куча руды, принадлежащая магам воды?
+	AI_Output(self,other,"DIA_Lester_Hello_WhoFourFriends_13_01");	//Только не говори мне, что ты ничего этого не помнишь. Фокусирующие камни - тролль - огромная куча руды, принадлежащая магам Воды?
 	AI_Output(other,self,"DIA_Lester_Hello_WhoFourFriends_15_02");	//Я не знаю...
 	AI_Output(self,other,"DIA_Lester_Hello_WhoFourFriends_13_03");	//Память к тебе еще вернется. Мне тоже понадобилось некоторое время, чтобы привести свою голову в порядок.
 };
@@ -166,7 +166,7 @@ instance DIA_Lester_SEND_XARDAS(C_Info)
 	condition = DIA_Lester_SEND_XARDAS_Condition;
 	information = DIA_Lester_SEND_XARDAS_Info;
 	permanent = FALSE;
-	description = "Ты должен рассказать Ксардасу об этой тени ...";
+	description = "Ты должен рассказать Ксардасу об этой тени. Это может быть важно.";
 };
 
 
@@ -184,7 +184,7 @@ func void DIA_Lester_SEND_XARDAS_Info()
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_01");	//Ты не думаешь, что мне показалось? Ты хочешь сказать, что это действительно был...
 	AI_Output(other,self,"DIA_Lester_SEND_XARDAS_15_02");	//... дракон. Да.
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_03");	//Ты опять лезешь в самое пекло. Я прав?
-	AI_Output(other,self,"DIA_Lester_SEND_XARDAS_15_04");	//Не сказал бы, что в самое... пока...
+	AI_Output(other,self,"DIA_Lester_SEND_XARDAS_15_04");	//Ну, не сказал бы, что в самое... пока...
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_05");	//(вздыхает) Хорошо, если это так важно, то я зайду к нему - но не сейчас.
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_06");	//Сейчас я собираюсь отдохнуть. Я все еще измотан после этого бегства из колонии.
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_07");	//Мне кажется, у тебя большие планы. Увидимся позже у Ксардаса.
@@ -385,7 +385,7 @@ func void DIA_Lester_BACKINTOWN_Info()
 	AI_Output(other,self,"DIA_Lester_BACKINTOWN_15_01");	//В это я готов поверить.
 	AI_Output(self,other,"DIA_Lester_BACKINTOWN_13_02");	//После того, как ты ушел, здесь начался ад кромешный.
 	AI_Output(self,other,"DIA_Lester_BACKINTOWN_13_03");	//Поговори с Ксардасом, он ждет тебя!
-	AI_Output(self,other,"DIA_Lester_BACKINTOWN_13_04");	//Передал мне эту руну для тебя. Она поможет тебе добраться до него побыстрее. Увидимся там.
+	AI_Output(self,other,"DIA_Lester_BACKINTOWN_13_04");	//Он передал мне эту руну для тебя. Она поможет тебе добраться до него побыстрее. Увидимся там.
 	CreateInvItems(self,ItRu_TeleportXardas,1);
 	B_GiveInvItems(self,other,ItRu_TeleportXardas,1);
 	AI_StopProcessInfos(self);
@@ -448,7 +448,7 @@ func void DIA_Lester_PERM3_Info()
 	}
 	else if(hero.guild == GIL_DJG)
 	{
-		AI_Output(self,other,"DIA_Lester_PERM3_13_14");	//Мои головные боли стали просто невыносимыми. А теперь еще эти люди-ящеры постоянно нападают на меня. Я задаю себе вопрос - откуда они все взялись.
+		AI_Output(self,other,"DIA_Lester_PERM3_13_14");	//Мои головные боли стали просто невыносимыми. А теперь еще эти люди-ящеры постоянно нападают на меня. Я задаю себе вопрос - откуда они все взялись?
 	}
 	else
 	{
@@ -566,7 +566,7 @@ func void DIA_Lester_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_00");	//Я узнал, где скрывается враг.
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_01");	//Не спрашивай меня, почему я так думаю, но мне кажется, я должен отправиться с тобой.
-	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_02");	//Что ты хочешь этим сказать?
+	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_02");	//Что ты хочешь сказать этим?
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_03");	//Я не могу объяснить этого, но я знаю, что смогу получить ответ, только если отправлюсь с тобой.
 	if(Crewmember_Count >= Max_Crew)
 	{

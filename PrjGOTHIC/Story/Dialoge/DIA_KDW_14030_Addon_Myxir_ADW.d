@@ -132,7 +132,7 @@ func void DIA_Addon_Myxir_GeistTafel_Info()
 	Info_ClearChoices(DIA_Addon_Myxir_GeistTafel);
 	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Ты серьезно?",DIA_Addon_Myxir_GeistTafel_geist);
 	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Почему Куарходрон? Почему не верховный жрец Кардимон?",DIA_Addon_Myxir_GeistTafel_Khardimon);
-	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Братство Спящего распространяло не одну лишь ложь. Спящий на самом деле существовал.",DIA_Addon_Myxir_GeistTafel_psi);
+	Info_AddChoice(DIA_Addon_Myxir_GeistTafel,"Братство Спящего распространяло не одну лишь ложь.",DIA_Addon_Myxir_GeistTafel_psi);
 };
 
 func void DIA_Addon_Myxir_GeistTafel_Khardimon()

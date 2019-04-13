@@ -49,7 +49,7 @@ func void DIA_Addon_Saturas_ADWStart_Info()
 	Wld_InsertNpc(Giant_Rat,"ADW_PORTALTEMPEL_11");
 	Wld_InsertNpc(Giant_Rat,"ADW_PORTALTEMPEL_11");
 	Info_ClearChoices(DIA_Addon_Saturas_ADWStart);
-	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Что произошло за последнее время?",DIA_Addon_Saturas_ADWStart_was);
+	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Что происходило тем временем?",DIA_Addon_Saturas_ADWStart_was);
 };
 
 func void DIA_Addon_Saturas_ADWStart_was()
@@ -72,8 +72,8 @@ func void DIA_Addon_Saturas_ADWStart_Raven()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_Raven_14_03");	//Очевидно, землетрясение возникает из-за сопротивления могущественного заклинания нечестивым чарам.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_Raven_14_04");	//На воротах храма лежит магическая печать, и именно ее магия оживляет каменных стражей.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_Raven_14_05");	//Храм защищается. Мы должны остановить Ворона до того, как он ворвется в святая святых.
-	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"И что нам делать дальше?",DIA_Addon_Saturas_ADWStart_wastun);
-	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Ворон всего лишь бывший рудный барон, а не маг.",DIA_Addon_Saturas_ADWStart_RavenOnlyBaron);
+	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Что дальше?",DIA_Addon_Saturas_ADWStart_wastun);
+	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Ворон всего лишь бывший рудный барон, а не маг. Разве ОН может осуществить подобное?",DIA_Addon_Saturas_ADWStart_RavenOnlyBaron);
 	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Что Ворону нужно в храме?",DIA_Addon_Saturas_ADWStart_RavenAim);
 };
 
@@ -95,7 +95,7 @@ func void DIA_Addon_Saturas_ADWStart_missingPeople()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, что это был рыбак из Хориниса. Взгляни сюда.
+	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, что это был рыбак из Хориниса. Взгляни там.
 	Saturas_AboutWilliam = TRUE;
 	B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
 };
@@ -632,7 +632,7 @@ instance DIA_Addon_Saturas_TuerZu(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Saturas_TuerZu_Condition;
 	information = DIA_Addon_Saturas_TuerZu_Info;
-	description = "Я не смог последовать за Вороном!";
+	description = "Я не смог последовать за Вороном. Он закрыл вход изнутри.";
 };
 
 
@@ -869,7 +869,7 @@ instance DIA_Addon_Saturas_FreedMissingPeople(C_Info)
 
 func int DIA_Addon_Saturas_FreedMissingPeople_Condition()
 {
-	if(MissingPeopleReturnedHome == TRUE)
+	if(Sklaven_Flucht == TRUE)
 	{
 		return TRUE;
 	};
@@ -1045,12 +1045,12 @@ func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 func void DIA_Addon_Saturas_ADW_PreTeachCircle_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_00");	//Ты можешь обучить меня кругам магии?
-	AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_01");	//Ты - маг огня. Что скажет Пирокар, если узнает, что я обучал тебя?
+	AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_01");	//Ты - маг Огня. Что скажет Пирокар, если узнает, что я обучал тебя?
 	AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_02");	//Он не узнает.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_03");	//(вздыхает) Вижу, ты серьезно настроен учиться. Что ж, я выполню твою просьбу.
 	if(RavenIsDead == FALSE)
 	{
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_04");	//Однако если я узнаю, что ты передаешь наши знания в чужие руки, ты больше не сможешь рассчитывать на мою помощь.
+		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_04");	//Однако, если я узнаю, что ты передаешь наши знания в чужие руки, ты больше не сможешь рассчитывать на мою помощь.
 		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_05");	//Не разочаруй меня.
 	};
 	Saturas_Addon_TeachCircle = TRUE;
@@ -1074,8 +1074,13 @@ var int DIA_Addon_Saturas_ADW_CIRCLE_NoPerm;
 
 func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 {
+	var int circle;
+	var int kosten;
+	circle = Npc_GetTalentSkill(other,NPC_TALENT_MAGE) + 1;
+	kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
 	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
 	{
+		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Я хочу перейти на следующий уровень магии.",kosten);
 		return TRUE;
 	};
 };
@@ -1119,7 +1124,7 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
 	{
 		AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_10");	//Это не в моих силах.
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_11");	//Чтобы вступить в последний, шестой круг магии, ты должен отправиться в монастырь магов огня.
+		AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_11");	//Чтобы вступить в последний, шестой круг магии, ты должен отправиться в монастырь магов Огня.
 		DIA_Addon_Saturas_ADW_CIRCLE_NoPerm = TRUE;
 	}
 	else

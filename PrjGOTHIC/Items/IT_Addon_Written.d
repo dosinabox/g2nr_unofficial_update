@@ -10,7 +10,7 @@ instance ITWr_Addon_Hinweis_02(C_Item)
 	on_state[0] = Use_Hinweis_02;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "С таверны в бандитском лагере";
+	text[0] = "из таверны в бандитском лагере.";
 };
 
 
@@ -61,7 +61,7 @@ func void Use_Heilrezept_04()
 	var int nDocID;
 	if(Npc_IsPlayer(self))
 	{
-		if(PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE)
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_04] == FALSE))
 		{
 			PLAYER_TALENT_ALCHEMY[POTION_Health_04] = TRUE;
 			Snd_Play("LevelUP");
@@ -113,7 +113,7 @@ func void Use_Manarezept_04()
 	var int nDocID;
 	if(Npc_IsPlayer(self))
 	{
-		if(PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE)
+		if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_04] == FALSE))
 		{
 			PLAYER_TALENT_ALCHEMY[POTION_Mana_04] = TRUE;
 			Snd_Play("LevelUP");
@@ -153,7 +153,7 @@ instance ITWr_Addon_Hinweis_01(C_Item)
 	on_state[0] = Use_Hinweis_01;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "прикрепленное к хижине в болотах";
+	text[0] = "прикрепленное к хижине в болотах.";
 };
 
 
@@ -207,7 +207,7 @@ func void Use_William_01()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Вильям, ");
+	Doc_PrintLine(nDocID,0,"Вильям,");
 	Doc_PrintLines(nDocID,0,"В полнолуние я отвлеку стражу.");
 	Doc_PrintLines(nDocID,0,"Постарайся выбраться отсюда, но будь осторожен!");
 	Doc_PrintLines(nDocID,0,"Если ты пойдешь по дороге, ты сможешь выйти из болот.");
@@ -284,7 +284,7 @@ func void Use_Pirates_01()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLine(nDocID,0,"Пираты, ");
+	Doc_PrintLine(nDocID,0,"Пираты,");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
@@ -310,7 +310,7 @@ instance ITWr_Addon_Joint_01(C_Item)
 	on_state[0] = Use_Joint_Rezept_01;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "В сундуке Фортуно";
+	text[0] = "из сундука Фортуно.";
 };
 
 
@@ -339,7 +339,7 @@ func void Use_Joint_Rezept_01()
 
 instance ITWr_Addon_Lou_Rezept(C_Item)
 {
-	name = "Рецепт Молота Лу";
+	name = "Молот Лу";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 70;
@@ -348,7 +348,7 @@ instance ITWr_Addon_Lou_Rezept(C_Item)
 	on_state[0] = UseLouRezept;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Рецепт Молота Лу";
+	text[0] = "Рецепт Молота Лу.";
 };
 
 
@@ -380,7 +380,7 @@ func void UseLouRezept()
 
 instance ITWr_Addon_Lou_Rezept2(C_Item)
 {
-	name = "Рецепт двойного Молота Лу";
+	name = "Двойной Молот Лу";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 140;
@@ -389,7 +389,7 @@ instance ITWr_Addon_Lou_Rezept2(C_Item)
 	on_state[0] = UseLouRezept2;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Рецепт двойного Молота Лу";
+	text[0] = "Рецепт двойного Молота Лу.";
 };
 
 
@@ -409,7 +409,7 @@ func void UseLouRezept2()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Этот напиток способен приготовить только очень опытный винокур.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Если за это возьмется дилетант, он рискует не ослепнуть и даже лишиться жизни.");
+	Doc_PrintLines(nDocID,0,"Если за это возьмется дилетант, он рискует ослепнуть и даже лишиться жизни.");
 	Doc_Show(nDocID);
 };
 
@@ -472,7 +472,7 @@ instance Fakescroll_Addon(C_Item)
 
 instance ItWr_Addon_AxtAnleitung(C_Item)
 {
-	name = "Инструкция изготовления бандитского топора";
+	name = "Бандитский топор";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 250;
@@ -488,9 +488,10 @@ instance ItWr_Addon_AxtAnleitung(C_Item)
 func void UseAxtAnleitung()
 {
 	var int nDocID;
-	if(Npc_GetTalentSkill(hero,NPC_TALENT_SMITH) >= 1)
+	if((Npc_GetTalentSkill(hero,NPC_TALENT_SMITH) >= 1) && (Knows_Banditenaxt == FALSE))
 	{
 		Knows_Banditenaxt = TRUE;
+		B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужны 1 кусок руды, 3 зуба и 1 дополнительная заготовка.");
 	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
@@ -499,24 +500,25 @@ func void UseAxtAnleitung()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"Бандитский топор");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"Одноручный топор");
+	Doc_PrintLine(nDocID,0,"Легкий боевой топор");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Этот топор может выковать любой, знакомый с основами кузнечного дела.");
 	Doc_PrintLines(nDocID,0,"Необходимы два куска раскаленной сырой стали.");
 	Doc_PrintLines(nDocID,0,"Один кусок руды и три зуба волка, снеппера или подобного им зверя.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Перекуйте руду и зубы вместе со сталью на наковальне.");
+	Doc_PrintLine(nDocID,0,"Перекуйте на наковальне руду и зубы вместе со");
+	Doc_PrintLine(nDocID,0,"сталью.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Такой топор очень легок и наносит значительный урон.");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"Такой топор очень легок и наносит значительный");
+	Doc_PrintLines(nDocID,0,"урон.");
 	Doc_Show(nDocID);
 };
 
 
 instance ItWr_Addon_SUMMONANCIENTGHOST(C_Item)
 {
-	name = "Вызов 'Куарходрона'";
+	name = "Вызов Куарходрона";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 250;
@@ -554,7 +556,7 @@ func void UseSummonAncientGhost()
 
 instance ItWr_Map_AddonWorld(C_Item)
 {
-	name = "Забытая долина зодчих.";
+	name = "Забытая долина зодчих";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;

@@ -34,14 +34,15 @@ func void Spell_Cast_SummonGoblinSkeleton()
 	{
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_SummonGoblinSkeleton;
 	};
+	self.aivar[AIV_SelectSpell] += 1;
 	if(Npc_IsPlayer(self))
 	{
+		Wld_StopEffect("SLOW_MOTION");
 		Wld_SpawnNpcRange(self,Summoned_Gobbo_Skeleton,1,500);
 	}
 	else
 	{
 		Wld_SpawnNpcRange(self,Gobbo_Skeleton,1,500);
 	};
-	self.aivar[AIV_SelectSpell] += 1;
 };
 

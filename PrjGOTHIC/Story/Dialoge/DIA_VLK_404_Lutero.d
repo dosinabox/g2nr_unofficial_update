@@ -179,7 +179,7 @@ instance DIA_Lutero_Trade(C_Info)
 	condition = DIA_Lutero_Trade_Condition;
 	information = DIA_Lutero_Trade_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
@@ -194,8 +194,8 @@ func int DIA_Lutero_Trade_Condition()
 
 func void DIA_Lutero_Trade_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Lutero_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 };
 
 

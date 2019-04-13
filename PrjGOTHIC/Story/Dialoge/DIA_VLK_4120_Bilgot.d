@@ -59,7 +59,7 @@ func void DIA_Bilgot_HALLO_Burg()
 	AI_Output(self,other,"DIA_Bilgot_HALLO_Burg_05_01");	//Как там дела?
 	AI_Output(other,self,"DIA_Bilgot_HALLO_Burg_15_02");	//Не лучше, чем здесь. Орки все еще там, если ты это имел в виду.
 	AI_Output(self,other,"DIA_Bilgot_HALLO_Burg_05_03");	//Черт. Нигде нельзя чувствовать себя в безопасности.
-	AI_Output(self,other,"DIA_Bilgot_HALLO_Burg_05_04");	//Я скажу тебе кое-что. Если бы я не был напуган до смерти, я бы бежал отсюда.
+	AI_Output(self,other,"DIA_Bilgot_HALLO_Burg_05_04");	//Я скажу тебе кое-что. Если бы я не был напуган до смерти, я бы сбежал отсюда.
 	Info_ClearChoices(DIA_Bilgot_HALLO);
 };
 
@@ -159,7 +159,7 @@ func void DIA_Bilgot_KNOWSLEADSNAPPER_Info()
 	AI_Output(other,self,"DIA_Bilgot_KNOWSLEADSNAPPER_15_08");	//Отлично. Мне кажется, я понял. Спасибо!
 	AI_Output(self,other,"DIA_Bilgot_KNOWSLEADSNAPPER_05_09");	//Помни, ты дал мне слово!
 	Wld_InsertNpc(NewMine_LeadSnapper,"OW_ORC_LOOKOUT_2_01");
-	B_LogEntry(TOPIC_FajethKillSnapper,"Билгот рассказал мне о вожаке стаи Снепперов. Он должен быть на ступеньках старой сторожевой башни.");
+	B_LogEntry(TOPIC_FajethKillSnapper,"Билгот рассказал мне о вожаке стаи снепперов. Он должен быть на ступеньках старой сторожевой башни.");
 	Log_CreateTopic(TOPIC_BilgotEscort,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BilgotEscort,LOG_Running);
 	B_LogEntry(TOPIC_BilgotEscort,"Билгот хочет, чтобы я вывел его из долины.");
@@ -173,7 +173,7 @@ instance DIA_Bilgot_TAKEYOUWITHME(C_Info)
 	condition = DIA_Bilgot_TAKEYOUWITHME_Condition;
 	information = DIA_Bilgot_TAKEYOUWITHME_Info;
 	permanent = FALSE;
-	description = "(Сдержать обещание)";
+	description = "Время пришло, Билгот! Пакуй свои вещи, мы отправляемся в путь.";
 };
 
 
@@ -264,7 +264,7 @@ instance DIA_Bilgot_LetztePause(C_Info)
 	condition = DIA_Bilgot_LetztePause_Condition;
 	information = DIA_Bilgot_LetztePause_Info;
 	permanent = TRUE;
-	description = "Что ты делаешь здесь? Я думал, ты пошел через Проход?";
+	description = "Что ты делаешь здесь? Я думал, ты пошел через Проход!";
 };
 
 
@@ -278,7 +278,7 @@ func int DIA_Bilgot_LetztePause_Condition()
 
 func void DIA_Bilgot_LetztePause_Info()
 {
-	AI_Output(other,self,"DIA_Bilgot_LetztePause_15_00");	//Что ты делаешь здесь? Я думал, ты пошел через Проход?
+	AI_Output(other,self,"DIA_Bilgot_LetztePause_15_00");	//Что ты делаешь здесь? Я думал, ты пошел через Проход!
 	AI_Output(self,other,"DIA_Bilgot_LetztePause_05_01");	//Я просто не в силах идти. Мне нужно передохнуть немного. Я справлюсь. Не волнуйся!
 	AI_Output(other,self,"DIA_Bilgot_LetztePause_15_02");	//Как скажешь.
 	AI_Output(self,other,"DIA_Bilgot_LetztePause_05_03");	//Просто немного передохну.

@@ -110,7 +110,7 @@ func void DIA_Addon_Emilio_Gold_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10015_Emilio_Gold_15_00");	//Куда девается золото, которое вы добываете?
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Gold_10_01");	//Торус собирает его и распределяет. Никому не разрешается забирать себе то, что он нашел.
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Gold_10_02");	//Каждый получает свою долю - таким образом, не обделены даже стражники и охотники.
-	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Gold_10_03");	//Мне кажется, это хорошая система. С тех пор как ввели это правило, количество смертей уменьшилось, а рудокопы все равно получают больше, чем те, кто не работает в шахте.
+	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Gold_10_03");	//Мне кажется, это хорошая система. С тех пор, как ввели это правило, количество смертей уменьшилось, а рудокопы все равно получают больше, чем те, кто не работает в шахте.
 };
 
 
@@ -347,7 +347,7 @@ func void DIA_Addon_Emilio_GegenEsteban_Info()
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_01");	//Все, о чем эта свинья думает, - это деньги.
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_02");	//Каждые несколько дней одного из нас съедает краулер.
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_03");	//Но Эстебан даже и не думает послать в шахту несколько бойцов.
-	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_04");	//А все почему? Потому что эти ребята из личной гвардии Ворона и Эстебан до дрожи в коленках боится говорить с ними.
+	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_04");	//А все почему? Потому что эти ребята из личной гвардии Ворона и Эстебан до дрожи в коленях боится говорить с ними.
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_05");	//Ему проще дать нам всем подохнуть!
 };
 

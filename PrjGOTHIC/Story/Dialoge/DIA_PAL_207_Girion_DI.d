@@ -43,7 +43,7 @@ func int DIA_Girion_DI_Hallo_Condition()
 func void DIA_Girion_DI_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Girion_DI_Hallo_15_00");	//Все в порядке?
-	if(ORkSturmDI == TRUE)
+	if(OrkSturmDI == TRUE)
 	{
 		AI_Output(self,other,"DIA_Girion_DI_Hallo_08_01");	//У орков хватило мужества, чтобы атаковать меня.
 		AI_Output(self,other,"DIA_Girion_DI_Hallo_08_02");	//Но им стоило лучше подумать, прежде чем нападать на паладина из королевской стражи.
@@ -236,6 +236,7 @@ func void DIA_Girion_DI_OrcEliteRing_geben()
 	AI_Output(self,other,"DIA_Girion_DI_OrcEliteRing_geben_08_01");	//Спасибо. Все равно я не думаю, что оно может тебе пригодиться.
 	Info_ClearChoices(DIA_Girion_DI_OrcEliteRing);
 	B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
+	Npc_RemoveInvItem(self,ItRi_OrcEliteRing);
 	B_GivePlayerXP(XP_Ambient);
 };
 
@@ -272,7 +273,7 @@ var int DIA_Girion_DI_UndeadDragonDead_OneTime;
 func void DIA_Girion_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Girion_DI_UndeadDragonDead_15_00");	//Мы готовы к отплытию.
-	AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_01");	//Это хорошо. А то я  уже начал думать, что сгнием здесь на этом утесе.
+	AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_01");	//Это хорошо. А то я уже начал думать, что сгнием здесь на этом утесе.
 	if(DIA_Girion_DI_UndeadDragonDead_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Girion_DI_UndeadDragonDead_08_02");	//Теперь немедленно верни корабль мне.
@@ -328,4 +329,5 @@ func void DIA_Girion_DI_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Girion_DI_PICKPOCKET);
 };
+
 

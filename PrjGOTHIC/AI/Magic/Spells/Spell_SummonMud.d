@@ -35,14 +35,15 @@ func void Spell_Cast_SummonMud()
 	{
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_SummonMud;
 	};
+	self.aivar[AIV_SelectSpell] += 1;
 	if(Npc_IsPlayer(self))
 	{
+		Wld_StopEffect("SLOW_MOTION");
 		Wld_SpawnNpcRange(self,Summoned_Mud,1,1000);
 	}
 	else
 	{
 		Wld_SpawnNpcRange(self,Undead_Mud,1,1000);
 	};
-	self.aivar[AIV_SelectSpell] += 1;
 };
 

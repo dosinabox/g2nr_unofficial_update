@@ -99,7 +99,7 @@ instance DIA_Ingmar_CanTeach(C_Info)
 	condition = DIA_Ingmar_CanTeach_Condition;
 	information = DIA_Ingmar_CanTeach_Info;
 	permanent = TRUE;
-	description = "Ты можешь обучить меня?";
+	description = "Ты можешь научить меня чему-нибудь?";
 };
 
 
@@ -308,7 +308,7 @@ instance DIA_Ingmar_HAUPTQUARTIER(C_Info)
 	condition = DIA_Ingmar_HAUPTQUARTIER_Condition;
 	information = DIA_Ingmar_HAUPTQUARTIER_Info;
 	permanent = FALSE;
-	description = "Я смог найти штаб-квартиру орков.";
+	description = "Я смог найти штаб-квартиру орков. Их военачальник пал.";
 };
 
 

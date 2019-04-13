@@ -9,7 +9,7 @@ instance StandardBrief(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseStandardBrief;
 	scemeName = "MAP";
-	description = "StandardLetter";
+	description = "Стандартное письмо";
 };
 
 
@@ -21,7 +21,7 @@ func void UseStandardBrief()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLine(nDocID,0,"StandardLetter");
+	Doc_PrintLine(nDocID,0,"Стандартное письмо");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Bla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla bla");
@@ -31,14 +31,14 @@ func void UseStandardBrief()
 
 instance StandardBuch(C_Item)
 {
-	name = "StandardBook";
+	name = "Книга";
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_02_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "StandardBook";
+	description = "Стандартная книга";
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = UseStandardBuch;
@@ -55,7 +55,7 @@ func void UseStandardBuch()
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"StandardBook Page 1");
+	Doc_PrintLines(nDocID,0,"Страница 1");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Bla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla bla");
@@ -64,7 +64,7 @@ func void UseStandardBuch()
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLines(nDocID,1,"StandardBook Page 2");
+	Doc_PrintLines(nDocID,1,"Страница 2");
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Bla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla bla");
@@ -217,7 +217,7 @@ func void UseEinhandBuch()
 	Doc_PrintLines(nDocID,0,"Южное искусство обороны");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Южане меньше полагаются на грубую физическую силу, нежели северяне, и отдают предпочтение ловкости. В горячем климате своей родины они предпочитают носить легкие доспехи, позволяющие двигаться более свободно. Таким образом, южане разработали стиль боя, фундаментально   отличающийся от того, к которому привыкли мы. ");
+	Doc_PrintLines(nDocID,0,"Южане меньше полагаются на грубую физическую силу, нежели северяне, и отдают предпочтение ловкости. В горячем климате своей родины они предпочитают носить легкие доспехи, позволяющие двигаться более свободно. Таким образом, южане разработали стиль боя, фундаментально отличающийся от того, к которому привыкли мы.");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,1,"");
@@ -268,7 +268,7 @@ func void UseZweihandBuch()
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Блокировка вражеского клинка при помощи двуручного оружия - прием, используемый сильными бойцами, позволяющий остановить атаку и заставить атакующего прервать свою комбинацию. ");
+	Doc_PrintLines(nDocID,0,"Блокировка вражеского клинка при помощи двуручного оружия - прием, используемый сильными бойцами, позволяющий остановить атаку и заставить атакующего прервать свою комбинацию.");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,1,"");
@@ -276,7 +276,7 @@ func void UseZweihandBuch()
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLines(nDocID,1,"Результатом такого блока обычно является остановка противника, что дает возможность перехватить инициативу и нанести поражение врагу несколькими выверенными ударами.    ");
+	Doc_PrintLines(nDocID,1,"Результатом такого блока обычно является остановка противника, что дает возможность перехватить инициативу и нанести поражение врагу несколькими выверенными ударами.");
 	Doc_Show(nDocID);
 };
 

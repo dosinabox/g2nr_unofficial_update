@@ -46,7 +46,7 @@ instance Giant_Rat(Mst_Default_Giant_Rat)
 instance YGiant_Rat(Mst_Default_Giant_Rat)
 {
 	name[0] = "Молодая гигантская крыса";
-	level = 3;
+	level = 2;
 	attribute[ATR_STRENGTH] = 5;
 	attribute[ATR_DEXTERITY] = 5;
 	attribute[ATR_HITPOINTS_MAX] = 10;

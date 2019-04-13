@@ -93,7 +93,7 @@ instance DIA_Addon_Garaz_Hi(C_Info)
 
 func int DIA_Addon_Garaz_Hi_Condition()
 {
-	if(!Npc_IsDead(Bloodwyn) && (Minecrawler_Killed < 9))
+	if(!Npc_IsDead(Bloodwyn) && (Minecrawler_Killed <= 9))
 	{
 		return TRUE;
 	};
@@ -124,7 +124,7 @@ instance DIA_Addon_Garaz_Bloodwyn(C_Info)
 
 func int DIA_Addon_Garaz_Bloodwyn_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Garaz_Hi) && (Minecrawler_Killed < 9) && !Npc_IsDead(Bloodwyn))
+	if(Npc_KnowsInfo(other,DIA_Addon_Garaz_Hi) && (Minecrawler_Killed <= 9) && !Npc_IsDead(Bloodwyn))
 	{
 		return TRUE;
 	};
@@ -150,13 +150,13 @@ instance DIA_Addon_Garaz_Sieg(C_Info)
 	condition = DIA_Addon_Garaz_Sieg_Condition;
 	information = DIA_Addon_Garaz_Sieg_Info;
 	permanent = FALSE;
-	description = "Краулеров больше нет.";
+	description = "Ну, готово. С краулерами покончено.";
 };
 
 
 func int DIA_Addon_Garaz_Sieg_Condition()
 {
-	if((Minecrawler_Killed >= 9) && !Npc_IsDead(Bloodwyn))
+	if((Minecrawler_Killed > 9) && !Npc_IsDead(Bloodwyn))
 	{
 		return TRUE;
 	};
@@ -167,6 +167,7 @@ func void DIA_Addon_Garaz_Sieg_Info()
 	AI_Output(other,self,"DIA_Addon_Garaz_Sieg_15_00");	//Ну, готово. С краулерами покончено.
 	AI_Output(self,other,"DIA_Addon_Garaz_Sieg_08_01");	//Бладвин уже идет сюда. Ты ведь этого хотел?
 	AI_Output(self,other,"DIA_Addon_Garaz_Sieg_08_02");	//Я хочу сказать, что ты перебил краулеров, чтобы Бладвин пришел сюда, да? Тогда, что бы ты ни планировал, делай это СЕЙЧАС.
+	B_GivePlayerXP(XP_Addon_Bloodywyn);
 	B_StartOtherRoutine(Bloodwyn,"GOLD");
 };
 

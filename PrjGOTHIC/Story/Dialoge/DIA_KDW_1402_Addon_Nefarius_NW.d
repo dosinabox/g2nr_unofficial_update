@@ -133,7 +133,7 @@ func void DIA_Addon_Nefarius_SCbringOrnaments_Info()
 	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_Ornament,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Ornament,"Маги воды нашли портал, который ведет в неизвестную часть Хориниса.");
+	B_LogEntry(TOPIC_Addon_Ornament,"Маги Воды нашли портал, который ведет в неизвестную часть Хориниса.");
 	B_LogEntry(TOPIC_Addon_Ornament,"Нефариус хочет активировать портал при помощи украшенного кольца. Ему все еще не хватает трех частей этого кольца. Я должен найти их. Он дал мне карту, на которой отмечены места, где я должен искать фрагменты.");
 	B_StartOtherRoutine(BAU_4300_Addon_Cavalorn,"OrnamentSteinring");
 	AI_Output(self,other,"DIA_Addon_Nefarius_SCbringOrnaments_05_08");	//Ты должен искать части ключа именно там.
@@ -286,7 +286,7 @@ func void DIA_Addon_Nefarius_Ringritual_Info()
 	AI_Output(self,other,"DIA_Addon_Nefarius_Ringritual_05_00");	//А теперь отойди назад.
 	Npc_SetRefuseTalk(self,60);
 	RitualRingRuns = LOG_Running;
-	B_LogEntry(TOPIC_Addon_Ornament,"Я принес все части кольца Нефариусу. Теперь маги воды смогут собрать кольцо.");
+	B_LogEntry(TOPIC_Addon_Ornament,"Я принес все части кольца Нефариусу. Теперь маги Воды смогут собрать кольцо.");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Ringritual");
 	B_StartOtherRoutine(KDW_1400_Addon_Saturas_NW,"Ringritual");

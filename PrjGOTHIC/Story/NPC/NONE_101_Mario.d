@@ -9,7 +9,7 @@ instance None_101_Mario(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	EquipItem(self,ItMw_Sturmbringer);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Kirgo,BodyTex_B,ItAr_MIL_M);
 	Mdl_SetModelFatness(self,1.2);

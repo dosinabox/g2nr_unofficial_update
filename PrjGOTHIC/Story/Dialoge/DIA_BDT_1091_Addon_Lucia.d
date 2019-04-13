@@ -154,7 +154,7 @@ instance DIA_Addon_Lucia_Jetzt(C_Info)
 	condition = DIA_Addon_Lucia_Jetzt_Condition;
 	information = DIA_Addon_Lucia_Jetzt_Info;
 	permanent = FALSE;
-	description = "Что ты собираешься делать дальше?";
+	description = "Что ты собираешься делать?";
 };
 
 
@@ -197,9 +197,9 @@ func int DIA_Addon_Lucia_Paladine_Condition()
 func void DIA_Addon_Lucia_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lucia_Paladine_15_00");	//Ты не очень-то любишь паладинов, верно?
-	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_01");	//Этих фанатиков-убийц, которым платят маги огня? Нет, не люблю.
+	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_01");	//Этих фанатиков-убийц, которым платят маги Огня? Нет, не люблю.
 	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_02");	//Лорд Хаген и его громилы заняли город, и все ползают перед ними на брюхе.
-	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_03");	//А мне это не по душе. Я не собиралась ждать, пока они не закроют Красную Лампу и не посадят меня за решетку.
+	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_03");	//А мне это не по душе. Я не собиралась ждать, пока они не закроют Красную Лампу и посадят меня за решетку.
 	if((Npc_GetTrueGuild(other) != GIL_SLD) && (Npc_GetTrueGuild(other) != GIL_DJG))
 	{
 		Info_ClearChoices(DIA_Addon_Lucia_Paladine);
@@ -295,6 +295,15 @@ func int DIA_Addon_Lucia_Trade_Condition()
 
 func void DIA_Addon_Lucia_Trade_Info()
 {
+	if(Lucia_flag == 1)
+	{
+		B_ClearAlchemyInv(self);
+		if(Lucia_flasks > 0)
+		{
+			CreateInvItems(self,ItMi_Flask,Lucia_flasks);
+		};
+		Lucia_flag = 0;
+	};
 	AI_Output(other,self,"DIA_Addon_Lucia_Trade_15_00");	//Дай мне что-нибудь выпить.
 	B_GiveTradeInv(self);
 };
@@ -307,7 +316,7 @@ instance DIA_Addon_Lucia_lernen(C_Info)
 	condition = DIA_Addon_Lucia_lernen_Condition;
 	information = DIA_Addon_Lucia_lernen_Info;
 	permanent = FALSE;
-	description = "Ты можешь научить меня чему-нибудь?";
+	description = "Ты можешь меня чему-нибудь обучить?";
 };
 
 

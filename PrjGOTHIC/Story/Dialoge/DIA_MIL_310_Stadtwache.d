@@ -408,7 +408,7 @@ instance DIA_Mil_310_Stadtwache_Paladine(C_Info)
 	condition = DIA_Mil_310_Stadtwache_Paladine_Condition;
 	information = DIA_Mil_310_Stadtwache_Paladine_Info;
 	permanent = FALSE;
-	description = "Мне нужно увидеть главу паладинов!";
+	description = "Мне нужно увидеть главу паладинов! У меня важное сообщение для него!";
 };
 
 
@@ -458,7 +458,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_EvilArmy()
 func void DIA_Mil_310_Stadtwache_Paladine_AttackSoon()
 {
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_AttackSoon_15_00");	//Город скоро подвергнется нападению!
-	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_AttackSoon_07_01");	//Что? Кого? Орков? ты видел армию?
+	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_AttackSoon_07_01");	//Что? Кого? Орков? Ты видел армию?
 	Info_ClearChoices(DIA_Mil_310_Stadtwache_Paladine);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Нет, но меня послал человек, который видел их.",DIA_Mil_310_Stadtwache_Paladine_NoSomeone);
 	Info_AddChoice(DIA_Mil_310_Stadtwache_Paladine,"Нет. Но я знаю, что ее ведут драконы!",DIA_Mil_310_Stadtwache_Paladine_NoDragons);
@@ -519,7 +519,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_APaladin()
 func void DIA_Mil_310_Stadtwache_Paladine_CantTellYou()
 {
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_CantTellYou_15_00");	//Я не вправе рассказывать тебе об этом.
-	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_CantTellYou_07_01");	//Не говорит так, мой мальчик! Я состою в городской страже.
+	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_CantTellYou_07_01");	//Не говори так, мой мальчик! Я состою в городской страже.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_CantTellYou_07_02");	//Ты можешь рассказать мне ВСЕ. Итак, кто послал тебя?
 };
 
@@ -527,7 +527,7 @@ func void DIA_Mil_310_Stadtwache_Paladine_DepecheDragons()
 {
 	AI_Output(other,self,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_15_00");	//Армию зла возглавляют драконы!
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_01");	//Что? Это не может быть правдой. А я чуть не впустил тебя!
-	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_02");	//Если бы ты рассказал ЭТУ историю Лорду Хагену, он бы повесил меня за халатность.
+	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_02");	//Если бы ты рассказал ЭТУ историю лорду Хагену, он бы повесил меня за халатность.
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_Paladine_DepecheDragons_07_03");	//Проваливай!
 	Player_KnowsLordHagen = TRUE;
 	AI_StopProcessInfos(self);

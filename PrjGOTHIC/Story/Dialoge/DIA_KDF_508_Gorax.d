@@ -31,7 +31,7 @@ instance DIA_Gorax_PICKPOCKET(C_Info)
 	condition = DIA_Gorax_PICKPOCKET_Condition;
 	information = DIA_Gorax_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Ётот ключ будет украсть очень сложно)";
+	description = "(”красть его ключ будет довольно трудно)";
 };
 
 
@@ -429,8 +429,8 @@ func int DIA_Gorax_TRADE_Condition()
 
 func void DIA_Gorax_TRADE_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Gorax_TRADE_15_00");	//ћне нужно кое-что...
+	B_GiveTradeInv(self);
 };
 
 

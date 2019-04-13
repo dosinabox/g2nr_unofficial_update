@@ -79,7 +79,7 @@ func void DIA_Attila_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Attila_Hallo_09_00");	//(спокойно) Ах, наконец. Я ждал тебя, чужеземец.
 	Info_ClearChoices(DIA_Attila_Hallo);
-	Info_AddChoice(DIA_Attila_Hallo,"Что тебе нужно от меня? ",DIA_Attila_Hallo_Was);
+	Info_AddChoice(DIA_Attila_Hallo,"Что тебе нужно от меня?",DIA_Attila_Hallo_Was);
 	Info_AddChoice(DIA_Attila_Hallo,"Кто ты?",DIA_Attila_Hallo_Wer);
 	B_GivePlayerXP(XP_Attila_MetHim);
 };
@@ -117,14 +117,14 @@ func void DIA_Attila_Hallo_Theater()
 	AI_Output(other,self,"DIA_Attila_Hallo_Theater_15_00");	//К чему весь этот фарс?
 	AI_Output(self,other,"DIA_Attila_Hallo_Theater_09_01");	//Ты не должен умереть в неведении. Считай это проявлением уважения к приговоренным.
 	Info_ClearChoices(DIA_Attila_Hallo);
-	Info_AddChoice(DIA_Attila_Hallo,"Я, пожалуй, пойду. (КОНЕЦ)",DIA_Attila_Hallo_Ende);
+	Info_AddChoice(DIA_Attila_Hallo,"Я, пожалуй, пойду.",DIA_Attila_Hallo_Ende);
 	Info_AddChoice(DIA_Attila_Hallo,"Кто платит тебе за это?",DIA_Attila_Hallo_Auftrag);
 	Info_AddChoice(DIA_Attila_Hallo,"Почему ты хочешь убить меня?",DIA_Attila_Hallo_Warum);
 };
 
 func void DIA_Attila_Hallo_Ende()
 {
-	AI_Output(other,self,"DIA_Attila_Hallo_Ende_15_00");	//Я, пожалуй, пойду...
+	AI_Output(other,self,"DIA_Attila_Hallo_Ende_15_00");	//Я, пожалуй, пойду.
 	AI_Output(self,other,"DIA_Attila_Hallo_Ende_09_01");	//Боюсь... я не могу позволить тебе этого. Смирись. Пришло время умереть.
 	AI_DrawWeapon(self);
 	Info_ClearChoices(DIA_Attila_Hallo);
@@ -161,7 +161,7 @@ func void DIA_Attila_Hallo_Warum()
 		AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_04");	//Мои хозяева недовольны этим. Чтобы не дать тебе совершить еще одну ошибку, они послали меня.
 	};
 	Info_ClearChoices(DIA_Attila_Hallo);
-	Info_AddChoice(DIA_Attila_Hallo,"Я могу дать тебе золото ...",DIA_Attila_Hallo_Gold);
+	Info_AddChoice(DIA_Attila_Hallo,"Я могу дать тебе золото - много золота.",DIA_Attila_Hallo_Gold);
 	Info_AddChoice(DIA_Attila_Hallo,"Дай мне хотя бы вынуть свое оружие.",DIA_Attila_Hallo_Attacke);
 };
 
@@ -222,6 +222,8 @@ func void DIA_Attila_Willkommen_Info()
 	B_GiveInvItems(self,other,ItKe_ThiefGuildKey_MIS,1);
 	Attila_Key = TRUE;
 	AI_StopProcessInfos(self);
+	self.aivar[AIV_DropDeadAndKill] = FALSE;
+	self.aivar[AIV_ToughGuy] = TRUE;
 	Npc_ExchangeRoutine(self,"AFTER");
 };
 

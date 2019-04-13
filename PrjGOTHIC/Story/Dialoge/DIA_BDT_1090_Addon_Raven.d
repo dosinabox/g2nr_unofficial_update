@@ -87,7 +87,7 @@ func void DIA_Addon_Raven_Hi_Sure()
 	AI_Output(other,self,"DIA_Addon_Raven_Add_15_04");	//Ты не думал, что я могу быть и исполнителем воли Аданоса?
 	AI_Output(self,other,"DIA_Addon_Raven_Add_10_10");	//(смеется) Чепуха!
 	AI_Output(other,self,"DIA_Addon_Raven_Add_15_05");	//А может, я тоже служу Белиару? Или лишь самому себе?
-	AI_Output(self,other,"DIA_Addon_Raven_Add_10_11");	//(усмехается) Что ж, в таком случае ты мне даже не  противник!
+	AI_Output(self,other,"DIA_Addon_Raven_Add_10_11");	//(усмехается) Что ж, в таком случае ты мне даже не противник!
 	Info_ClearChoices(DIA_Addon_Raven_Hi);
 	Info_AddChoice(DIA_Addon_Raven_Hi,"Достаточно. Приступим к делу...",DIA_Addon_Raven_Hi_Attack);
 };

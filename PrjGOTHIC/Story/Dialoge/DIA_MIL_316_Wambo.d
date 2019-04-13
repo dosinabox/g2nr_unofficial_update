@@ -28,7 +28,7 @@ instance DIA_Wambo_PICKPOCKET(C_Info)
 	condition = DIA_Wambo_PICKPOCKET_Condition;
 	information = DIA_Wambo_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Воровать этот ключ рискованно)";
+	description = Pickpocket_60_Key;
 };
 
 
@@ -157,7 +157,7 @@ instance DIA_Wambo_Deal(C_Info)
 	condition = DIA_Wambo_Deal_Condition;
 	information = DIA_Wambo_Deal_Info;
 	permanent = TRUE;
-	description = "(Заплатить 250 золота)";
+	description = "У меня есть деньги...";
 };
 
 
@@ -184,7 +184,7 @@ func void DIA_Wambo_Deal_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Wambo_Deal_15_03");	//...но с собой  их не захватил.
+		AI_Output(other,self,"DIA_Wambo_Deal_15_03");	//...но с собой их не захватил.
 		AI_Output(self,other,"DIA_Wambo_Deal_03_04");	//Я не выношу, когда кто-нибудь пытается одурачить меня. Так что давай сюда золото.
 		AI_StopProcessInfos(self);
 	};

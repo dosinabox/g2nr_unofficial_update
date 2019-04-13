@@ -77,7 +77,7 @@ func void UseLetterForGorn()
 	Doc_PrintLines(nDocID,0,"Так что если у тебя есть где-то припрятанное золотишко, самое время сказать об этом.");
 	Doc_PrintLine(nDocID,0," ");
 	Doc_PrintLine(nDocID,0," ");
-	Doc_PrintLine(nDocID,0,"Милтен ");
+	Doc_PrintLine(nDocID,0,"Милтен");
 	Doc_Show(nDocID);
 };
 
@@ -120,9 +120,9 @@ instance ITKE_ErzBaronFlur(C_Item)
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-	description = "От первой двери.";
-	text[2] = "На нем выгравировано имя.";
-	text[3] = "Гомес";
+	description = "От первой двери";
+	text[2] = "На нем выгравировано имя:";
+	text[3] = "Гомез.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -135,9 +135,9 @@ instance ITKE_ErzBaronRaum(C_Item)
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
-	description = "От второй двери.";
-	text[2] = "На нем выгравировано имя.";
-	text[3] = "Гомес";
+	description = "От второй двери";
+	text[2] = "На нем выгравировано имя:";
+	text[3] = "Гомез.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -152,7 +152,7 @@ instance ItMi_GornsTreasure_MIS(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = UseGornsTreasure;
-	description = "Кожаный кошелек Горна.";
+	description = "Кожаный кошелек Горна";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -210,10 +210,6 @@ instance ItAt_ClawLeader(C_Item)
 	visual = "ItAt_Claw.3DS";
 	material = MAT_LEATHER;
 	description = "Когти вожака стаи";
-	text[0] = "";
-	text[1] = "";
-	text[2] = "";
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -229,11 +225,7 @@ instance ItSe_Olav(C_Item)
 	material = MAT_METAL;
 	on_state[0] = UseOlav;
 	description = "Кошелек Олава";
-	text[0] = "";
-	text[1] = "";
 	text[2] = "Внутри позванивает несколько монет.";
-	text[3] = "";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -281,7 +273,7 @@ instance ItKe_Bromor(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ от комнаты";
-	text[1] = "в барделе.";
+	text[1] = "в борделе.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -294,7 +286,7 @@ instance ITKE_RUNE_MIS(C_Item)
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
-	description = "Маленький ключик от сундука.";
+	description = "Маленький ключик от сундука";
 	text[1] = "Сундук, к которому подходит";
 	text[2] = "этот ключ, находится под мостом.";
 	text[3] = "В нем лежит рунный камень.";
@@ -331,7 +323,7 @@ func void UseBloodMIS()
 	Doc_PrintLines(nDocID,0,"Жало необходимо аккуратно разрезать острым ножом от кончика до основания.");
 	Doc_PrintLines(nDocID,0,"Верхний слой удаляется. Затем разрезается ткань вокруг желез.");
 	Doc_PrintLines(nDocID,0,"Выделяющийся при разрезе сок обладает лечебными свойствами.");
-	Doc_PrintLines(nDocID,0,"Однако, со временем человеческий становится невосприимчивым к этому лечебному зелью.");
+	Doc_PrintLines(nDocID,0,"Однако, со временем человеческий организм становится невосприимчивым к этому лечебному зелью.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Дамарок");
 	Doc_Show(nDocID);
@@ -376,7 +368,7 @@ func void UsePfandbrief()
 	Doc_PrintLines(nDocID,0,"из коллекции кровавых кубков");
 	Doc_PrintLine(nDocID,0," ");
 	Doc_PrintLine(nDocID,0,"подпись");
-	Doc_PrintLine(nDocID,0,"Лютеро, торговец  ");
+	Doc_PrintLine(nDocID,0,"Лютеро, торговец");
 	Doc_PrintLine(nDocID,0," ");
 	Doc_PrintLine(nDocID,0,"Лемар, ростовщик");
 	Doc_Show(nDocID);
@@ -394,8 +386,6 @@ instance ItWr_Map_OldWorld_Oremines_MIS(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_Map_OldWorld_Oremines;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -419,7 +409,7 @@ func void Use_Map_OldWorld_Oremines()
 
 instance ItWr_Manowar(C_Item)
 {
-	name = "Текст";
+	name = "Текст песни";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -427,7 +417,7 @@ instance ItWr_Manowar(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseManowar;
 	scemeName = "MAP";
-	description = "Текст песни.";
+	description = name;
 };
 
 
@@ -465,7 +455,7 @@ instance ItWr_KDWLetter(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseKDWLetter;
 	scemeName = "MAP";
-	description = "Сообщение.";
+	description = name;
 };
 
 
@@ -501,7 +491,7 @@ instance ItWr_GilbertLetter(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseGilbertLetter;
 	scemeName = "MAP";
-	description = "Сообщение.";
+	description = name;
 };
 
 

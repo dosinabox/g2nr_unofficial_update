@@ -33,7 +33,7 @@ instance DIA_Franco_PICKPOCKET(C_Info)
 	condition = DIA_Franco_PICKPOCKET_Condition;
 	information = DIA_Franco_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(ѕытатьс€ украсть ее амулет очень рискованно)";
+	description = "(”красть его амулет будет довольно рискованно)";
 };
 
 

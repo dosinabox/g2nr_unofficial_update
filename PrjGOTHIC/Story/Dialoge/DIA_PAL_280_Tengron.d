@@ -107,7 +107,7 @@ func void DIA_Tengron_News_Info()
 	AI_Output(self,other,"DIA_Tengron_News_07_05");	//Я хочу, чтобы ты передал ему это кольцо. Пусть он сохранит его ради меня. Скажи ему, я заберу кольцо, когда вернусь.
 	Info_ClearChoices(DIA_Tengron_News);
 	Info_AddChoice(DIA_Tengron_News,"У меня нет времени на это.",DIA_Tengron_News_No);
-	Info_AddChoice(DIA_Tengron_News,"Нет проблем ...",DIA_Tengron_News_Yes);
+	Info_AddChoice(DIA_Tengron_News,"Нет проблем. Когда я буду в замке, я передам это кольцо Удару.",DIA_Tengron_News_Yes);
 };
 
 func void DIA_Tengron_News_No()
@@ -163,7 +163,7 @@ instance DIA_Tengron_HELP(C_Info)
 	condition = DIA_Tengron_HELP_Condition;
 	information = DIA_Tengron_HELP_Info;
 	permanent = FALSE;
-	description = "Мне нужна твоя помощь ...";
+	description = "Мне нужна твоя помощь. Фаджет хочет, чтобы я перебил снепперов и...";
 };
 
 

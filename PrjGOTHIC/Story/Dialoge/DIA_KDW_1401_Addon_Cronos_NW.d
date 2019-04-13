@@ -40,7 +40,7 @@ func void DIA_Addon_Cronos_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cronos_Hallo_15_00");	//я могу теб€ побеспокоить?
 	AI_Output(self,other,"DIA_Addon_Cronos_Hallo_04_01");	//(удивлено) Ёто “џ? Ќе думал, что мне еще когда-нибудь доведетс€ увидеть твое лицо.
-	AI_Output(self,other,"DIA_Addon_Cronos_Hallo_04_02");	//“ы храбрец, если решил здесь показатьс€. Ќекоторое врем€ назад мы были готовы заживо содрать с  теб€ кожу.
+	AI_Output(self,other,"DIA_Addon_Cronos_Hallo_04_02");	//“ы храбрец, если решил здесь показатьс€. Ќекоторое врем€ назад мы были готовы заживо содрать с теб€ кожу.
 	AI_Output(self,other,"DIA_Addon_Cronos_Hallo_04_03");	//  счастью дл€ теб€, с того времени прошло уже несколько недель, так что мы немного успокоились.
 };
 
@@ -126,8 +126,8 @@ var int DIA_Addon_Cronos_NW_Trade_OneTime;
 
 func void DIA_Addon_Cronos_NW_Trade_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Addon_Cronos_NW_Trade_15_00");	//“ы можешь продать мне какие-нибудь припасы?
+	B_GiveTradeInv(self);
 	if(DIA_Addon_Cronos_NW_Trade_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Cronos_NW_Trade_04_01");	//ѕочему бы и нет? ≈сли € правильно помню, мы с тобой уже вели дела.

@@ -128,7 +128,7 @@ instance ITAR_Smith(C_Item)
 
 instance ITAR_Barkeeper(C_Item)
 {
-	name = "Одежда горожанина";
+	name = "Одежда трактирщика";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -157,7 +157,7 @@ instance ITAR_Barkeeper(C_Item)
 
 instance ITAR_Vlk_L(C_Item)
 {
-	name = "Одежда горожанина";
+	name = "Легкая одежда горожанина";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -186,7 +186,7 @@ instance ITAR_Vlk_L(C_Item)
 
 instance ITAR_Vlk_M(C_Item)
 {
-	name = "Одежда горожанина";
+	name = "Средняя одежда горожанина";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -215,7 +215,7 @@ instance ITAR_Vlk_M(C_Item)
 
 instance ITAR_Vlk_H(C_Item)
 {
-	name = "Одежда горожанина";
+	name = "Тяжелая одежда горожанина";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -244,7 +244,7 @@ instance ITAR_Vlk_H(C_Item)
 
 instance ITAR_VlkBabe_L(C_Item)
 {
-	name = "Одежда горожанки 1";
+	name = "Легкая одежда горожанки";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -273,7 +273,7 @@ instance ITAR_VlkBabe_L(C_Item)
 
 instance ITAR_VlkBabe_M(C_Item)
 {
-	name = "Одежда горожанки 2";
+	name = "Средняя одежда горожанки";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -302,7 +302,7 @@ instance ITAR_VlkBabe_M(C_Item)
 
 instance ITAR_VlkBabe_H(C_Item)
 {
-	name = "Одежда горожанки 3";
+	name = "Тяжелая одежда горожанки";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -519,7 +519,7 @@ instance ItAr_PAl_H(C_Item)
 
 instance ITAR_Bau_L(C_Item)
 {
-	name = "Одежда фермера 1";
+	name = "Легкая одежда крестьянина";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 15;
@@ -548,7 +548,7 @@ instance ITAR_Bau_L(C_Item)
 
 instance ITAR_Bau_M(C_Item)
 {
-	name = "Одежда фермера 2";
+	name = "Средняя одежда крестьянина";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 15;
@@ -577,7 +577,7 @@ instance ITAR_Bau_M(C_Item)
 
 instance ITAR_BauBabe_L(C_Item)
 {
-	name = "Женская фермерская одежда 1";
+	name = "Легкая одежда крестьянки";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -606,7 +606,7 @@ instance ITAR_BauBabe_L(C_Item)
 
 instance ITAR_BauBabe_M(C_Item)
 {
-	name = "Женская фермерская одежда 2";
+	name = "Средняя одежда крестьянки";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -982,7 +982,7 @@ instance ITAR_DJG_H(C_Item)
 
 instance ITAR_DJG_Babe(C_Item)
 {
-	name = "Женские доспехи охотника на драконов";
+	name = "Доспехи охотницы на драконов";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 60;
@@ -1076,7 +1076,7 @@ func void UnEquip_ITAR_NOV_L()
 
 instance ItAr_KDF_L(C_Item)
 {
-	name = "Мантия мага огня";
+	name = "Легкая мантия мага Огня";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 40;
@@ -1141,7 +1141,7 @@ func void UnEquip_ITAR_KDF_L()
 
 instance ItAr_KDF_H(C_Item)
 {
-	name = "Тяжелая огненная мантия";
+	name = "Тяжелая мантия мага Огня";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 100;
@@ -1331,7 +1331,7 @@ instance ItAr_BDT_H(C_Item)
 
 instance ITAR_Xardas(C_Item)
 {
-	name = "Мантия черной магии";
+	name = "Мантия черного мага";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 100;
@@ -1447,7 +1447,7 @@ instance ITAR_CorAngar(C_Item)
 
 instance ITAR_Dementor(C_Item)
 {
-	name = "Мантия тьмы";
+	name = "Мантия Ищущих";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 130;
@@ -1476,7 +1476,7 @@ instance ITAR_Dementor(C_Item)
 
 instance ITAR_KDW_H(C_Item)
 {
-	name = "Мантия мага воды";
+	name = "Тяжелая мантия мага Воды";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 100;
@@ -1505,7 +1505,7 @@ instance ITAR_KDW_H(C_Item)
 
 instance ITAR_Prisoner(C_Item)
 {
-	name = "Одежда каторжника";
+	name = "Штаны рудокопа";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 20;

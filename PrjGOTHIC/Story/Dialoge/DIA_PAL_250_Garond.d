@@ -56,7 +56,7 @@ func void DIA_Garond_PMSchulden_Info()
 		AI_Output(self,other,"DIA_Garond_PMSchulden_10_02");	//Проблем у тебя, похоже, только прибавилось.
 		if(Garond_Schulden < 1000)
 		{
-			AI_Output(self,other,"DIA_Garond_PMSchulden_10_03");	//Но я надеюсь, что  ты способен заплатить сразу за все! Учитывая все твои прегрешения, это будет...
+			AI_Output(self,other,"DIA_Garond_PMSchulden_10_03");	//Но я надеюсь, что ты способен заплатить сразу за все! Учитывая все твои прегрешения, это будет...
 		}
 		else
 		{
@@ -173,7 +173,7 @@ func void DIA_Garond_PETZMASTER_Info()
 		{
 			AI_Output(self,other,"DIA_Garond_PETZMASTER_10_04");	//Не говоря уже обо всем остальном, в чем тебя обвиняют.
 		};
-		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_05");	//Позволь мне объяснить тебе  кое-что. Мы здесь все в одной ловушке.
+		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_05");	//Позволь мне объяснить тебе кое-что. Мы здесь все в одной ловушке.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_06");	//И у меня на счету каждый человек. Включая тебя.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_07");	//Если тебе хочется убить кого-нибудь, просто выйди за ворота замка. И убивай там орков себе на здоровье.
 		AI_Output(self,other,"DIA_Garond_PETZMASTER_10_08");	//Я вынужден наложить на тебя штраф - и мне крайне неприятно применять такие меры.
@@ -893,7 +893,7 @@ instance DIA_Garond_DragonPlettBericht(C_Info)
 	condition = DIA_Garond_DragonPlettBericht_Condition;
 	information = DIA_Garond_DragonPlettBericht_Info;
 	permanent = TRUE;
-	description = "Насчет драконов ...";
+	description = "Насчет драконов...";
 };
 
 
@@ -971,7 +971,7 @@ func void DIA_Garond_DragonPlettBericht_Info()
 	}
 	else if(MIS_AllDragonsDead == FALSE)
 	{
-		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_09");	//Последнее время были еще нападения драконов?
+		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_09");	//В последнее время были еще нападения драконов?
 		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_10");	//По счастью, нет. В настоящий момент они держатся вдалеке.
 	};
 };

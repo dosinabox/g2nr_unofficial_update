@@ -43,7 +43,7 @@ func int DIA_Dragomir_Hello_Condition()
 func void DIA_Dragomir_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Dragomir_Hello_12_00");	//Путешествуешь так далеко от дома?
-	AI_Output(self,other,"DIA_Dragomir_Hello_12_01");	//Здесь тебе не помещает осторожность, особенно когда ты совсем один.
+	AI_Output(self,other,"DIA_Dragomir_Hello_12_01");	//Здесь тебе не помешает осторожность, особенно когда ты совсем один.
 };
 
 
@@ -202,7 +202,7 @@ func void DIA_Dragomir_Learn_Info()
 		AI_Output(other,self,"DIA_Dragomir_Learn_15_03");	//Сколько ты хочешь?
 		B_Say_Gold(self,other,Dragomir_TeachingCost);
 		Info_ClearChoices(DIA_Dragomir_Learn);
-		Info_AddChoice(DIA_Dragomir_Learn,"Может быть, позже.",DIA_Dragomir_Learn_Later);
+		Info_AddChoice(DIA_Dragomir_Learn,"Возможно, позже.",DIA_Dragomir_Learn_Later);
 		if(Npc_HasItems(other,ItMi_Gold) >= Dragomir_TeachingCost)
 		{
 			Info_AddChoice(DIA_Dragomir_Learn,"Вот твое золото.",DIA_Dragomir_Learn_Here);

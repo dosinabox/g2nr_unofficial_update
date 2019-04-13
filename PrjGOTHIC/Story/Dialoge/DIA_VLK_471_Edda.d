@@ -84,7 +84,7 @@ instance DIA_Edda_Kochen(C_Info)
 	condition = DIA_Edda_Kochen_Condition;
 	information = DIA_Edda_Kochen_Info;
 	permanent = FALSE;
-	description = "Ты можешь сварить для меня суп?";
+	description = "Ты можешь сварить суп для меня?";
 };
 
 
@@ -131,6 +131,7 @@ func void DIA_Edda_Suppe_Info()
 		if(B_GiveInvItems(other,self,ItFo_Fish,1))
 		{
 			AI_Output(self,other,"DIA_Edda_Suppe_17_01");	//Нет ничего проще. Вот, держи тарелку.
+			Npc_RemoveInvItems(self,ItFo_Fish,Npc_HasItems(self,ItFo_Fish));
 			B_GiveInvItems(self,other,ItFo_FishSoup,1);
 			Edda_Day = Wld_GetDay();
 		}
@@ -182,13 +183,13 @@ instance DIA_Edda_PICKPOCKET(C_Info)
 	condition = DIA_Edda_PICKPOCKET_Condition;
 	information = DIA_Edda_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть ее статую будет легче легкого)";
+	description = "(Нет ничего проще, чем украсть ее статую)";
 };
 
 
 func int DIA_Edda_PICKPOCKET_Condition()
 {
-	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItMi_EddasStatue) >= 1) && (other.attribute[ATR_DEXTERITY] >= (20 - Theftdiff)))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) == 1) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE) && (Npc_HasItems(self,ItMi_InnosStatue) >= 1) && (other.attribute[ATR_DEXTERITY] >= (20 - Theftdiff)))
 	{
 		return TRUE;
 	};
@@ -205,7 +206,7 @@ func void DIA_Edda_PICKPOCKET_DoIt()
 {
 	if(other.attribute[ATR_DEXTERITY] >= 20)
 	{
-		B_GiveInvItems(self,other,ItMi_EddasStatue,1);
+		B_GiveInvItems(self,other,ItMi_InnosStatue,1);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
 		Info_ClearChoices(DIA_Edda_PICKPOCKET);

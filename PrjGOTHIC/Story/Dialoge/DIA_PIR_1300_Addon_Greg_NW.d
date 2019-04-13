@@ -524,7 +524,7 @@ func void DIA_Addon_Greg_NW_RakeCaveThere_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_02");	//Я закопал свои вещи где-то внутри. Место отмечено крестом.
 	B_Greg_GoNow();
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCaveThere_15_04");	//А как же ты?
-	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_05");	//Кто-то же должен защищать тыл. А теперь - иди внутрь.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_05");	//Кто-то же должен защищать тыл. А теперь иди внутрь.
 	Log_CreateTopic(TOPIC_Addon_Greg_NW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Greg_NW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Greg_NW,"Этот парень хочет, чтобы я достал из пещеры его вещи. Он закопал их, а место пометил крестом. Для работы он дал мне кирку.");
@@ -571,6 +571,7 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_No()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_03");	//Тысяча чертей! Я так и знал! Меня опять опередили.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_04");	//Ну ладно. Мне нужно идти. Увидимся.
 	AI_StopProcessInfos(self);
+	MIS_Addon_Greg_RakeCave = LOG_OBSOLETE;
 	GregLocation = Greg_Bigcross;
 	Npc_ExchangeRoutine(self,"Bigcross");
 	B_StartOtherRoutine(BAU_974_Bauer,"Start");
@@ -959,9 +960,9 @@ func void DIA_Addon_Greg_NW_RavensLetter_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_04");	//Скажи, ты, случайно, не знаешь, как попасть за горный хребет на северо-востоке Хориниса?
 	if((Nefarius_NW.aivar[AIV_TalkedToPlayer] == TRUE) && (Saturas_NW.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
-		AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_05");	//Возможно, через портал, который обнаружили маги воды.
+		AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_05");	//Возможно, через портал, который обнаружили маги Воды.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
-		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_07");	//Маги воды... А мысли получше у тебя есть?
+		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_07");	//Маги Воды... А мысли получше у тебя есть?
 	};
 	AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_08");	//Нет.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_09");	//(вздыхает) Значит, я здесь застрял.
@@ -991,7 +992,7 @@ func void DIA_Addon_Greg_NW_WasWillstDu_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_WasWillstDu_15_00");	//А что тебе было нужно от Декстера?
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_01");	//Я приплыл сюда из-за северо-восточных гор. И я хочу туда вернуться.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_02");	//Я надеялся, что это ублюдок расскажет мне, как добраться туда без корабля.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_02");	//Я надеялся, что этот ублюдок расскажет мне, как добраться туда без корабля.
 	Npc_ExchangeRoutine(self,"DexterThrone");
 	Info_ClearChoices(DIA_Addon_Greg_NW_WasWillstDu);
 	Info_AddChoice(DIA_Addon_Greg_NW_WasWillstDu,"А что находится за этими горами?",DIA_Addon_Greg_NW_WasWillstDu_da);

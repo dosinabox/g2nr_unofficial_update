@@ -1,7 +1,7 @@
 
 instance Sld_807_Bullco(Npc_Default)
 {
-	name[0] = "Булко";
+	name[0] = "Буллко";
 	guild = GIL_SLD;
 	id = 807;
 	voice = 6;

@@ -406,7 +406,7 @@ instance DIA_Malak_BACKTOBENGAR(C_Info)
 	condition = DIA_Malak_BACKTOBENGAR_Condition;
 	information = DIA_Malak_BACKTOBENGAR_Info;
 	permanent = TRUE;
-	description = "Ты нужен Бенгару.";
+	description = "Ты нужен Бенгару. Он хочет, чтобы ты вернулся на его ферму.";
 };
 
 

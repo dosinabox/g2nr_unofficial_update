@@ -43,7 +43,7 @@ func void DIA_Addon_10030_Buddler_Hi_Info()
 	if(Sklaven_Flucht == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_BDT_10030_Buddler_Hi_08_01");	//–абы убирают большие глыбы с дороги.
-		AI_Output(self,other,"DIA_Addon_BDT_10030_Buddler_Hi_08_02");	//(усмехаетс€) ј после мы соберем золотые €блоки.
+		AI_Output(self,other,"DIA_Addon_BDT_10030_Buddler_Hi_08_02");	//(усмехаетс€) ј после мы собираем золотые €блоки.
 	}
 	else
 	{

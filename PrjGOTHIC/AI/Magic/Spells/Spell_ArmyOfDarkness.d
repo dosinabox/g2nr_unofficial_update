@@ -34,14 +34,15 @@ func void Spell_Cast_ArmyOfDarkness(var int spellLevel)
 	{
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_ArmyOfDarkness;
 	};
+	self.aivar[AIV_SelectSpell] += 1;
 	if(Npc_IsPlayer(self))
 	{
+		Wld_StopEffect("SLOW_MOTION");
 		Wld_SpawnNpcRange(self,Summoned_Skeleton,6,800);
 	}
 	else
 	{
 		Wld_SpawnNpcRange(self,Skeleton,6,800);
 	};
-	self.aivar[AIV_SelectSpell] += 1;
 };
 

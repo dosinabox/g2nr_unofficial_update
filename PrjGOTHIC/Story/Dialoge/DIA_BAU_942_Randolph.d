@@ -97,7 +97,7 @@ instance DIA_Randolph_Baltram(C_Info)
 	condition = DIA_Randolph_Baltram_Condition;
 	information = DIA_Randolph_Baltram_Info;
 	permanent = FALSE;
-	description = "Меня прислал Бальтрам ...";
+	description = "Меня прислал Бальтрам. Я должен забрать пакет для него.";
 };
 
 
@@ -229,8 +229,8 @@ func void DIA_Randolph_GEGENWEN_Info()
 	AI_Output(self,other,"DIA_Randolph_GEGENWEN_06_03");	//Я думаю, он держит джин в своем чертовом сундуке. Вот подлец!
 	AI_Output(self,other,"DIA_Randolph_GEGENWEN_06_04");	//Кто-нибудь должен подменить джин в его сундуке на воду. Тогда он может подливать ее в мое пиво сколько хочет.
 	AI_Output(self,other,"DIA_Randolph_GEGENWEN_06_05");	//Если бы только у меня были деньги, чтобы сразиться с ним еще раз.
-	B_LogEntry(TOPIC_Wettsaufen,"Рендольф рассказал мне о Рухаре и состязании 'кто кого перепьет'. У Рендольфа недостаточно денег, чтобы заключить пари с Рухаром еще раз.");
-	B_LogEntry(TOPIC_Wettsaufen,"Рендольф подозревает Рухара в жульничестве в состязании 'кто кого перепьет'. Рендольф хотел бы подменить бутылку джина в сундуке Рухара на бутылку с водой.");
+	B_LogEntry(TOPIC_Wettsaufen,"Рэндольф рассказал мне о Рухаре и состязании 'кто кого перепьет'. У Рэндольфа недостаточно денег, чтобы заключить пари с Рухаром еще раз.");
+	B_LogEntry(TOPIC_Wettsaufen,"Рэндольф подозревает Рухара в жульничестве в состязании 'кто кого перепьет'. Рэндольф хотел бы подменить бутылку джина в сундуке Рухара на бутылку с водой.");
 };
 
 
@@ -342,6 +342,7 @@ func void DIA_Randolph_WETTKAMPFZUENDE_Info()
 			AI_Output(self,other,"DIA_Randolph_WETTKAMPFZUENDE_06_04");	//Все, наконец, получилось. Спасибо еще раз за деньги. Вот, получи их назад.
 			CreateInvItems(self,ItMi_Gold,20);
 			B_GiveInvItems(self,other,ItMi_Gold,12);
+			B_GivePlayerXP(XP_Rukhar_WettkampfVorbei);
 			DIA_Randolph_WETTKAMPFZUENDE_OneTime = TRUE;
 		};
 		AI_Output(self,other,"DIA_Randolph_WETTKAMPFZUENDE_06_05");	//Похоже, Рухар не скоро еще оправится после этого.
@@ -400,7 +401,7 @@ func void DIA_Randolph_PERM_Info()
 			};
 			Log_CreateTopic(TOPIC_HealRandolph,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_HealRandolph,LOG_Running);
-			B_LogEntry(TOPIC_HealRandolph,"Рендольф, похоже, решил бросить пить и послал меня к Сагитте за лекарством от похмельного синдрома.");
+			B_LogEntry(TOPIC_HealRandolph,"Рэндольф, похоже, решил бросить пить и послал меня к Сагитте за лекарством от похмельного синдрома.");
 			MIS_HealRandolph = LOG_Running;
 		}
 		else
@@ -444,7 +445,7 @@ instance DIA_Randolph_SAGITTAHEAL(C_Info)
 	nr = 56;
 	condition = DIA_Randolph_SAGITTAHEAL_Condition;
 	information = DIA_Randolph_SAGITTAHEAL_Info;
-	description = "Держи. Это облегчит твое похмелье. ";
+	description = "Держи. Это облегчит твое похмелье.";
 };
 
 

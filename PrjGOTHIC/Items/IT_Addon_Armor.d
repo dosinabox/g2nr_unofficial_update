@@ -236,7 +236,7 @@ instance ITAR_Fake_RANGER(C_Item)
 
 instance ITAR_KDW_L_Addon(C_Item)
 {
-	name = "Мантия мага воды";
+	name = "Легкая мантия мага Воды";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 50;

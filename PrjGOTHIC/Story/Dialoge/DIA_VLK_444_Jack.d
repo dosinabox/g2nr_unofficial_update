@@ -382,7 +382,7 @@ func void DIA_Jack_BEMYCAPTAIN_seaman()
 	B_LogEntry(Topic_Captain,"Джек, старый морской волк из гавани, мог бы стать хорошим капитаном. Но сначала я должен найти кого-нибудь, кто посторожит его маяк.");
 	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"Забудь. Это я просто так сказал.",DIA_Jack_BEMYCAPTAIN_no);
-	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"А что если я приведу к тебе кого-нибудь ...?",DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer);
+	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"А что если я приведу к тебе кого-нибудь, кто позаботился бы о маяке в твое отсутствие?",DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer);
 };
 
 func void DIA_Jack_BEMYCAPTAIN_seaman_NewOfficer()
@@ -409,7 +409,7 @@ instance DIA_Jack_BEMYCAPTAIN2(C_Info)
 	nr = 52;
 	condition = DIA_Jack_BEMYCAPTAIN2_Condition;
 	information = DIA_Jack_BEMYCAPTAIN2_Info;
-	description = "Насчет Брайана ...";
+	description = "Насчет Брайана...";
 };
 
 
@@ -517,7 +517,7 @@ func void DIA_Jack_LOSFAHREN_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_05");	//Полегче, приятель. Я еще даже не видел это корыто. Так не пойдет.
-		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_06");	//Сначала, ты должен укомплектовать команду, не менее чем из 5 человек, получить доступ на корабль и достать морскую карту. В противном случае, забудь об этом.
+		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_06");	//Сначала ты должен укомплектовать команду не менее чем из 5 человек, получить доступ на корабль и достать морскую карту. В противном случае, забудь об этом.
 		AI_StopProcessInfos(self);
 	};
 };

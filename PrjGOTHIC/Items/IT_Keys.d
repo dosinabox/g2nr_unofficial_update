@@ -65,8 +65,6 @@ instance ItKe_City_Tower_01(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "";
-	text[3] = "";
 };
 
 instance ItKe_City_Tower_02(C_Item)
@@ -78,8 +76,6 @@ instance ItKe_City_Tower_02(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "";
-	text[3] = "";
 };
 
 instance ItKe_City_Tower_03(C_Item)
@@ -91,8 +87,6 @@ instance ItKe_City_Tower_03(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "";
-	text[3] = "";
 };
 
 instance ItKe_City_Tower_04(C_Item)
@@ -104,8 +98,6 @@ instance ItKe_City_Tower_04(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "";
-	text[3] = "";
 };
 
 instance ItKe_City_Tower_05(C_Item)
@@ -117,8 +109,6 @@ instance ItKe_City_Tower_05(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "";
-	text[3] = "";
 };
 
 instance ItKe_City_Tower_06(C_Item)
@@ -130,7 +120,5 @@ instance ItKe_City_Tower_06(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "";
-	text[3] = "";
 };
 

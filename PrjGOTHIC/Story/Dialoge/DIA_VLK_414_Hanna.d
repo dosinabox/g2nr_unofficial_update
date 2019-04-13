@@ -107,7 +107,7 @@ func void DIA_Hanna_WhyPay_Info()
 	AI_Output(other,self,"DIA_Hanna_Add_15_12");	//А почему паладины платят за все?
 	AI_Output(self,other,"DIA_Hanna_Add_17_13");	//Я не знаю точно, с чем это связано.
 	AI_Output(self,other,"DIA_Hanna_Add_17_14");	//С одной стороны я думаю, они хотят, чтобы нищие не ошивались ночью на улицах. Так безопаснее для всех.
-	AI_Output(self,other,"DIA_Hanna_Add_17_15");	//Ну а с другой - они хотят завоевать расположение странствующих торговцев.
+	AI_Output(self,other,"DIA_Hanna_Add_17_15");	//Ну а с другой стороны они хотят завоевать расположение странствующих торговцев.
 	AI_Output(self,other,"DIA_Hanna_Add_17_16");	//Сейчас, когда фермеры подняли восстание, нам остается полагаться только на торговцев в вопросах обеспечения города продовольствием.
 	AI_Output(self,other,"DIA_Hanna_Add_17_17");	//Кроме того, я думаю, они хотят поднять немного моральный дух в городе.
 	AI_Output(self,other,"DIA_Hanna_Add_17_18");	//Лорд Андрэ даже приказал раздавать бесплатное пиво на Площади Правосудия.
@@ -175,8 +175,8 @@ func void DIA_Hanna_City_Back()
 func void DIA_Hanna_City_Buy()
 {
 	AI_Output(other,self,"DIA_Hanna_City_Buy_15_00");	//Где я могу купить что-нибудь здесь?
-	AI_Output(self,other,"DIA_Hanna_City_Buy_17_01");	//Рынок находится прямо перед парадным входом  в отель. Я думаю, ты найдешь там все, что тебе нужно.
-	AI_Output(self,other,"DIA_Hanna_City_Buy_17_02");	//Также есть несколько лавок ремесленников в другой части города. Большинство из них находятся недалеко от городских ворот.
+	AI_Output(self,other,"DIA_Hanna_City_Buy_17_01");	//Рынок находится прямо перед парадным входом в отель. Я думаю, ты найдешь там все, что тебе нужно.
+	AI_Output(self,other,"DIA_Hanna_City_Buy_17_02");	//Также есть несколько лавок ремесленников в другой части города. Большинство из них находятся неподалеку от городских ворот.
 	AI_Output(self,other,"DIA_Hanna_City_Buy_17_03");	//Также в порту ты найдешь торговца рыбой. Его лавка смотрит прямо на гавань.
 };
 
@@ -243,7 +243,7 @@ func void DIA_Hanna_AnyNews_Info()
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Ты ошибаешься.",DIA_Hanna_AnyNews_Yes);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Ну, как сказать...",DIA_Hanna_AnyNews_Depends);
-	Info_AddChoice(DIA_Hanna_AnyNews,"В общем-то, нет.",DIA_Hanna_AnyNews_No);
+	Info_AddChoice(DIA_Hanna_AnyNews,"В общем, да.",DIA_Hanna_AnyNews_No);
 };
 
 func void DIA_Hanna_AnyNews_No()
@@ -276,7 +276,7 @@ func void DIA_Hanna_AnyNews_Yes()
 	B_LogEntry(TOPIC_HannaRetrieveLetter,"У Ханны пропал документ. Похоже, он пропал в гавани, там, где живет картограф Ибрагим.");
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Я тебе не мальчик на побегушках.",DIA_Hanna_AnyNews_Yes_Footboy);
-	Info_AddChoice(DIA_Hanna_AnyNews,"А что мне с этого будет?",DIA_Hanna_AnyNews_Yes_Reward);
+	Info_AddChoice(DIA_Hanna_AnyNews,"Что я за это получу?",DIA_Hanna_AnyNews_Yes_Reward);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Я попробую.",DIA_Hanna_AnyNews_Yes_WillSee);
 };
 
@@ -360,6 +360,7 @@ func void DIA_Hanna_ThisLetter_Info()
 	AI_Output(self,other,"DIA_Hanna_ThisLetter_17_03");	//Не так быстро. Вот твои деньги.
 	CreateInvItems(self,ItMi_Gold,Hanna_PriceForLetter);
 	B_GiveInvItems(self,other,ItMi_Gold,Hanna_PriceForLetter);
+	B_GiveInvItems(other,self,ItWr_ShatteredGolem_MIS,1);
 	MIS_HannaRetrieveLetter = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HannaRetrieveLetter);
 };
@@ -435,7 +436,7 @@ func void DIA_Hanna_AusKeller_Info()
 		AI_Output(other,self,"DIA_Hanna_Add_15_20");	//(смущенно) Я...
 		AI_Output(self,other,"DIA_Hanna_Add_17_21");	//(смеется) Я знаю!
 		AI_Output(self,other,"DIA_Hanna_Add_17_22");	//(заговорщицки) Не говори мне. Я все знаю.
-		AI_Output(self,other,"DIA_Hanna_Add_17_23");	//Даже и не думай, чтобы украсть что-нибудь здесь, понял?
+		AI_Output(self,other,"DIA_Hanna_Add_17_23");	//Даже и не думай украсть что-нибудь здесь, понял?
 		AI_Output(self,other,"DIA_Hanna_Add_17_24");	//Мы не можем себе позволить привлекать внимание к отелю.
 	};
 	AI_StopProcessInfos(self);
@@ -501,18 +502,54 @@ func void DIA_Hanna_GiveSchuldenbuch_Info()
 	AI_Output(self,other,"DIA_Hanna_Add_17_48");	//Это ключ от врат, ведущих к богатству.
 };
 
-func void Hanna_Blubb()
+
+instance DIA_Hanna_Blubb(C_Info)
 {
-	AI_Output(other,self,"DIA_Hanna_Add_15_37");	//В логове все в порядке?
-	AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
-	AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
-	AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
-	AI_Output(other,self,"DIA_Hanna_Add_15_25");	//Ты знала о логове воров?
-	AI_Output(self,other,"DIA_Hanna_Add_17_26");	//(глупо улыбается) Я не понимаю, о чем ты говоришь...
-	AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
-	AI_Output(self,other,"DIA_Hanna_Add_17_33");	//Мне они ничего не смогли предъявить, но Кассия и ее люди мертвы!
-	AI_Output(self,other,"DIA_Hanna_Add_17_34");	//Я уверена, что это ТЫ...
-	AI_Output(self,other,"DIA_Hanna_Add_17_35");	//Я купила это специально для тебя.
-	AI_Output(self,other,"DIA_Hanna_Add_17_36");	//Это обошлось мне в кругленькую сумму. Но для тебя ничего не жалко, свинья...
+	npc = VLK_414_Hanna;
+	nr = 1;
+	condition = DIA_Hanna_Blubb_Condition;
+	information = DIA_Hanna_Blubb_Info;
+	permanent = TRUE;
+	description = "(Спросить о логове воров)";
+};
+
+func int DIA_Hanna_Blubb_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Hanna_Blubb_Info()
+{
+	if(Andre_Diebesgilde_aufgeraeumt == FALSE)
+	{
+		if(Knows_SecretSign == TRUE)
+		{
+			AI_Output(other,self,"DIA_Hanna_Add_15_37");	//В логове все в порядке?
+			AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
+			AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
+			AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Hanna_Add_15_25");	//Ты знала о логове воров?
+			AI_Output(self,other,"DIA_Hanna_Add_17_26");	//(глупо улыбается) Я не понимаю, о чем ты говоришь...
+		};
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
+		AI_Output(self,other,"DIA_Hanna_Add_17_33");	//Мне они ничего не смогли предъявить, но Кассия и ее люди мертвы!
+		AI_Output(self,other,"DIA_Hanna_Add_17_34");	//Я уверена, что это ТЫ...
+		AI_Output(self,other,"DIA_Hanna_Add_17_35");	//Я купила это специально для тебя.
+		AI_Output(self,other,"DIA_Hanna_Add_17_36");	//Это обошлось мне в кругленькую сумму. Но для тебя ничего не жалко, свинья...
+		DIA_Hanna_Blubb.permanent = FALSE;
+		AI_StopProcessInfos(self);
+		CreateInvItem(self,ItSc_IceCube);
+		CreateInvItem(self,ItSc_Firestorm);
+		B_Attack(self,other,AR_NONE,1);
+	};
 };
 

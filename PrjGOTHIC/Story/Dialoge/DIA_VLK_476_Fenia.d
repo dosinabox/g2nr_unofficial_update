@@ -103,7 +103,7 @@ instance DIA_Fenia_HANDELN(C_Info)
 	information = DIA_Fenia_HANDELN_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 

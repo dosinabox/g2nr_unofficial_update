@@ -28,7 +28,7 @@ instance DIA_Rumbold_PrePerm(C_Info)
 	condition = DIA_Rumbold_PrePerm_Condition;
 	information = DIA_Rumbold_PrePerm_Info;
 	permanent = TRUE;
-	description = "Что ты делаешь здесь?";
+	description = "Что вы делаете здесь?";
 };
 
 

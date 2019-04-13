@@ -173,7 +173,7 @@ func void DIA_Addon_Sancho_Franco_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Sancho_Franco_15_00");	//√де € могу найти ‘ранко?
 	AI_Output(self,other,"DIA_Addon_Sancho_Franco_06_01");	//ќбычно он торчит во дворе перед лагерем.
-	AI_Output(self,other,"DIA_Addon_Sancho_Franco_06_02");	//Ѕудь с ним в хороших отношени€х  - и ты получишь какую-нибудь работу получше той, что делаю €!
+	AI_Output(self,other,"DIA_Addon_Sancho_Franco_06_02");	//Ѕудь с ним в хороших отношени€х - и ты получишь какую-нибудь работу получше той, что делаю €!
 	B_LogEntry(Topic_Addon_Franco,"‘ранко можно найти перед лагерем.");
 };
 
@@ -200,7 +200,7 @@ func int DIA_Addon_Sancho_Spitzel_Condition()
 func void DIA_Addon_Sancho_Spitzel_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Sancho_Spitzel_15_00");	//“ы должен все врем€ здесь сидеть?
-	AI_Output(self,other,"DIA_Addon_Sancho_Spitzel_06_01");	//я должен встречать всех новичков, чтобы убедитьс€, что к нам не пробрались шпионы.
+	AI_Output(self,other,"DIA_Addon_Sancho_Spitzel_06_01");	//я должен встречать этих новичков, чтобы убедитьс€, что к нам не пробрались шпионы.
 	AI_Output(self,other,"DIA_Addon_Sancho_Spitzel_06_02");	//Ќо об этом можно забыть. я хочу сказать, что мы здесь на краю света - в середине болота.
 	AI_Output(self,other,"DIA_Addon_Sancho_Spitzel_06_03");	//Ќикто не может найти нас, и никто нас не найдет. ѕотому что кому нужно посылать сюда шпионов?
 };

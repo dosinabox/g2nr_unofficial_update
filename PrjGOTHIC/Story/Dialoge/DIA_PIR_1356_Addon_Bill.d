@@ -374,7 +374,7 @@ instance DIA_Addon_Bill_LearnTalent(C_Info)
 	condition = DIA_Addon_Bill_LearnTalent_Condition;
 	information = DIA_Addon_Bill_LearnTalent_Info;
 	permanent = TRUE;
-	description = "Научи меня карманному воровству (10 LP)";
+	description = B_BuildLearnString("Обучи меня карманным кражам",B_GetLearnCostTalent(other,NPC_TALENT_PICKPOCKET,1));
 };
 
 

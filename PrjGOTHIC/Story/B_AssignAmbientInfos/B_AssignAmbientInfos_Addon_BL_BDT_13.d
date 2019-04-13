@@ -41,7 +41,7 @@ func void DIA_Addon_BL_BDT_13_Chef_Info()
 	AI_Output(other,self,"DIA_Addon_BL_BDT_13_Chef_15_00");	//Кто здесь главный?
 	if(RavenIsDead == TRUE)
 	{
-		if(Npc_IsDead(Thorus))
+		if(!Npc_IsDead(Thorus))
 		{
 			AI_Output(self,other,"DIA_Addon_BL_BDT_13_Chef_13_01");	//(торжественно) Наш славный командир Торус. Он сделает нас всех богатыми!
 		}
@@ -123,7 +123,7 @@ instance DIA_Addon_BL_BDT_13_Gold(C_Info)
 
 func int DIA_Addon_BL_BDT_13_Gold_Condition()
 {
-	if((MIS_Send_Buddler != LOG_Running) || (MIS_Send_Buddler != LOG_SUCCESS))
+	if((MIS_Send_Buddler != LOG_Running) && (MIS_Send_Buddler != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

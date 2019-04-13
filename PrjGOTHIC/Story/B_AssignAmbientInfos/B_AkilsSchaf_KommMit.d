@@ -5,7 +5,7 @@ instance DIA_AkilsSchaf_KommMit(C_Info)
 	nr = 1;
 	condition = DIA_AkilsSchaf_KommMit_Condition;
 	information = DIA_AkilsSchaf_KommMit_Info;
-	description = "Пойдем со мной!";
+	description = "Иди за мной!";
 };
 
 

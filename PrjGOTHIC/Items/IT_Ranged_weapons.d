@@ -27,7 +27,7 @@ instance ItRw_Bolt(C_Item)
 
 instance ItRw_Mil_Crossbow(C_Item)
 {
-	name = "Арбалет";
+	name = "Арбалет ополчения";
 	mainflag = ITEM_KAT_FF;
 	flags = ITEM_CROSSBOW;
 	material = MAT_WOOD;

@@ -74,7 +74,7 @@ func void DIA_None_101_Mario_YouNeedMe_Info()
 	AI_Output(self,other,"DIA_None_101_Mario_YouNeedMe_07_02");	//я готов!
 	Log_CreateTopic(Topic_Crew,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Crew,LOG_Running);
-	B_LogEntry(Topic_Crew,"ћарио бывший мор€к, заговорил со мной в портовой таверне. ќн хочет плыть на корабле.");
+	B_LogEntry(Topic_Crew,"Ѕывший мор€к ћарио заговорил со мной в портовой таверне. ќн хочет плыть на корабле.");
 };
 
 
@@ -159,7 +159,7 @@ func void DIA_None_101_Mario_Abilities_Info()
 	AI_Output(other,self,"DIA_None_101_Mario_Abilities_15_00");	//„то ты можешь делать?
 	AI_Output(self,other,"DIA_None_101_Mario_Abilities_07_01");	//я обучен абордажу и ближнему бою, к тому же € метко стрел€ю из корабельной пушки.
 	AI_Output(self,other,"DIA_None_101_Mario_Abilities_07_02");	//я уверен, что € смогу обучить теб€ чему-нибудь во врем€ путешестви€.
-	B_LogEntry(Topic_Crew,"ћарио, похоже, собаку съел в том, что касаетс€  морских боев. ¬озможно, он сможет научить мен€ кое-чему.");
+	B_LogEntry(Topic_Crew,"ћарио, похоже, собаку съел в том, что касаетс€ морских боев. ¬озможно, он сможет научить мен€ кое-чему.");
 };
 
 
@@ -290,7 +290,7 @@ instance DIA_Mario_LeaveMyShip(C_Info)
 	condition = DIA_Mario_LeaveMyShip_Condition;
 	information = DIA_Mario_LeaveMyShip_Info;
 	permanent = TRUE;
-	description = "я все-таки не могу вз€ть теб€ с собой!";
+	description = "я пон€л, что ты мне не нужен!";
 };
 
 

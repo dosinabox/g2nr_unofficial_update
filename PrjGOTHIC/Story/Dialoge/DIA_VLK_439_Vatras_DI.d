@@ -190,6 +190,7 @@ func void DIA_Vatras_DI_PEDROTOT_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_00");	//Я нашел предателя Педро.
 	B_GivePlayerXP(XP_Ambient);
+	self.flags = 0;
 	if((MIS_Gorax_KillPedro == LOG_SUCCESS) && Npc_IsDead(Pedro_DI))
 	{
 		AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_01");	//Он мертв.
@@ -278,27 +279,27 @@ func void DIA_Vatras_DI_Talente_CIRCLES()
 	Info_AddChoice(DIA_Vatras_DI_Talente,Dialog_Back,DIA_Vatras_DI_Talente_BACK);
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 1)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("1-й круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1)),DIA_Vatras_DI_Talente_Circle_1);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_1,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1)),DIA_Vatras_DI_Talente_Circle_1);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("2-й круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2)),DIA_Vatras_DI_Talente_Circle_2);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_2,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2)),DIA_Vatras_DI_Talente_Circle_2);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 2)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("3-й круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3)),DIA_Vatras_DI_Talente_Circle_3);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_3,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3)),DIA_Vatras_DI_Talente_Circle_3);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 3)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("4-й круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,4)),DIA_Vatras_DI_Talente_Circle_4);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_4,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,4)),DIA_Vatras_DI_Talente_Circle_4);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 4)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("5-й круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,5)),DIA_Vatras_DI_Talente_Circle_5);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_5,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,5)),DIA_Vatras_DI_Talente_Circle_5);
 	};
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 5)
 	{
-		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString("6-й круг магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6)),DIA_Vatras_DI_Talente_Circle_6);
+		Info_AddChoice(DIA_Vatras_DI_Talente,B_BuildLearnString(NAME_Circle_6,B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6)),DIA_Vatras_DI_Talente_Circle_6);
 	};
 };
 
@@ -459,7 +460,7 @@ instance DIA_Vatras_DI_DementorObsessionBook(C_Info)
 	condition = DIA_Vatras_DI_DementorObsessionBook_Condition;
 	information = DIA_Vatras_DI_DementorObsessionBook_Info;
 	permanent = TRUE;
-	description = "Я принес Альманах Одержимых.";
+	description = "Я принес альманах Одержимых.";
 };
 
 
@@ -476,7 +477,7 @@ var int DIA_Vatras_DI_DementorObsessionBook_OneTime;
 
 func void DIA_Vatras_DI_DementorObsessionBook_Info()
 {
-	AI_Output(other,self,"DIA_Vatras_DI_DementorObsessionBook_15_00");	//Я принес Альманах Одержимых
+	AI_Output(other,self,"DIA_Vatras_DI_DementorObsessionBook_15_00");	//Я принес альманах Одержимых.
 	if(DIA_Vatras_DI_DementorObsessionBook_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_DementorObsessionBook_05_01");	//Хм. Я думаю, будет лучше всего, если я отнесу его в монастырь к Пирокару. Если, конечно, нам удастся выбраться отсюда.

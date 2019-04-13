@@ -33,7 +33,7 @@ instance DIA_Lothar_FirstEXIT(C_Info)
 	condition = DIA_Lothar_FirstEXIT_Condition;
 	information = DIA_Lothar_FirstEXIT_Info;
 	permanent = TRUE;
-	description = "Мне нужно идти! (КОНЕЦ)";
+	description = Dialog_Ende_v1;
 };
 
 
@@ -216,7 +216,7 @@ func void DIA_Lothar_Dragons_Info()
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_01");	//Это не может быть правдой!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_02");	//Еще один сумасшедший!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_03");	//В городе и без этого полно проблем. Не хватает только еще идиота, пугающего людей баснями о драконах!
-		AI_Output(self,other,"DIA_Lothar_Dragons_01_04");	//Я немедля посадил в тюрьму последнего, кто рассказывал здесь сказки о драконах, и отправил его тюремным транспортом в Долину Рудников. Так что придержи свой язык!
+		AI_Output(self,other,"DIA_Lothar_Dragons_01_04");	//Я немедля посадил в тюрьму последнего, кто рассказывал здесь сказки о драконах, и отправил его тюремным транспортом в Долину Рудников. Так что попридержи свой язык!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_05");	//Мы не можем позволить, чтобы кто-либо здесь сеял панику среди людей!
 	}
 	else
@@ -260,7 +260,7 @@ func void DIA_Addon_Lothar_Ornament_normal()
 {
 	AI_Output(other,self,"DIA_Addon_Lothar_Ornament_normal_15_00");	//Ты думаешь, это нормально?
 	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_normal_01_01");	//Что, появление каменного монстра?
-	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_normal_01_02");	//Насколько я знаю, этим вопросом занимаются маги воды.
+	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_normal_01_02");	//Насколько я знаю, этим вопросом занимаются маги Воды.
 	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_normal_01_03");	//Мне же совершенно не до этого. У нас хватает дел в городе и Долине Рудников.
 	AI_Output(other,self,"DIA_Addon_Lothar_Ornament_normal_15_04");	//Понимаю.
 };
@@ -326,7 +326,7 @@ func void DIA_Lothar_Regeln_Info()
 	AI_Output(self,other,"DIA_Lothar_Regeln_01_01");	//Во-первых, достопочтенный паладин лорд Хаген расквартирован в верхнем квартале, вместе со своими войсками.
 	AI_Output(self,other,"DIA_Lothar_Regeln_01_02");	//Вот почему доступ в верхнюю часть города разрешен только уважаемым горожанам.
 	AI_Output(self,other,"DIA_Lothar_Add_01_04");	//Во-вторых, городская ратуша, находящаяся в верхнем квартале, в настоящее время является командным пунктом паладинов. Доступ туда имеют только сами паладины и члены ополчения.
-	AI_Output(self,other,"DIA_Lothar_Add_01_05");	//И в третьих, тот, кто обвиняется в преступлении, должен предстать перед командиром ополчения.
+	AI_Output(self,other,"DIA_Lothar_Add_01_05");	//И в-третьих, тот, кто обвиняется в преступлении, должен предстать перед командиром ополчения.
 	AI_Output(self,other,"DIA_Lothar_Regeln_01_05");	//Есть вопросы?
 	Lothar_Regeln = TRUE;
 };
@@ -418,7 +418,7 @@ func int DIA_Lothar_WoArbeit_Condition()
 func void DIA_Lothar_WoArbeit_Info()
 {
 	AI_Output(other,self,"DIA_Lothar_Add_15_14");	//Где я могу найти работу?
-	AI_Output(self,other,"DIA_Lothar_Add_01_15");	//Тебе придется стать учеником одного из мастеров  в нижней части города.
+	AI_Output(self,other,"DIA_Lothar_Add_01_15");	//Тебе придется стать учеником одного из мастеров в нижней части города.
 	AI_Output(self,other,"DIA_Lothar_Add_01_16");	//Как только мастер примет тебя на работу, ты станешь гражданином этого города.
 	AI_Output(self,other,"DIA_Lothar_Add_01_17");	//Однако другие мастера должны согласиться с этим, таковы обычаи Хориниса.
 	AI_Output(self,other,"DIA_Lothar_Add_01_18");	//Если ты думал найти работу в портовом квартале, забудь об этом!

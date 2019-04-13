@@ -43,6 +43,9 @@ func void evt_oc_maingate_func_s1()
 		B_KillNpc(VLK_4103_Waffenknecht);
 		B_KillNpc(VLK_4104_Waffenknecht);
 		B_KillNpc(VLK_4105_Waffenknecht);
+		B_StartOtherRoutine(Engor,"OrcAttack");
+		AI_Teleport(Engor,"OC_GUARD_IN_01");
+		B_ClearDeadTrader(Engor);
 		B_KillNpc(VLK_4108_Engor);
 		Garond.flags = 0;
 		Brutus.flags = NPC_FLAG_IMMORTAL;

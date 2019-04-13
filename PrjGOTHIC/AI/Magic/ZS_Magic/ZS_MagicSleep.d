@@ -41,6 +41,7 @@ func int ZS_MagicSleep_Loop()
 		B_StopMagicSleep();
 		return LOOP_END;
 	};
+	return LOOP_CONTINUE;
 };
 
 func void ZS_MagicSleep_End()

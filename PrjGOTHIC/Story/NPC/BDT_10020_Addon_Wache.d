@@ -4,7 +4,7 @@ instance BDT_10020_Addon_Wache(Npc_Default)
 	name[0] = NAME_Addon_Guard;
 	guild = GIL_BDT;
 	id = 10020;
-	voice = 6;
+	voice = 1;
 	flags = 0;
 	npcType = NPCTYPE_BL_AMBIENT;
 	B_SetAttributesToChapter(self,4);

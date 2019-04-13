@@ -239,22 +239,38 @@ func void B_GiveDeathInv(var C_Npc slf)
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == TRUE)
 	{
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
+		if (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
+		{
+			CreateInvItems(slf,ItAt_DragonScale,12);
+		};
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK)
+		{
+			CreateInvItems(slf,ItAt_DragonScale,12);
+		};
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP)
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		};
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == TRUE)
 	{
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(FireDragonIsland))
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
 		{
 			CreateInvItems(slf,ItAt_DragonBlood,2);
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(UndeadDragon))
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
+		{
+			CreateInvItems(slf,ItAt_DragonBlood,2);
+		};
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK)
+		{
+			CreateInvItems(slf,ItAt_DragonBlood,2);
+		};
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP)
 		{
 			CreateInvItems(slf,ItAt_DragonBlood,2);
 		};

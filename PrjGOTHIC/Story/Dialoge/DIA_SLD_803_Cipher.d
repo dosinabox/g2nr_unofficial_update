@@ -216,7 +216,7 @@ func void DIA_Cipher_Joints_Info()
 	else
 	{
 		Info_ClearChoices(DIA_Cipher_Joints);
-		Info_AddChoice(DIA_Cipher_Joints,"Я посмотрю, что можно сделать ...",DIA_Cipher_Joints_Running);
+		Info_AddChoice(DIA_Cipher_Joints,"Посмотрим, что можно сделать...",DIA_Cipher_Joints_Running);
 		if(Npc_HasItems(other,ItMi_Joint) > 0)
 		{
 			Info_AddChoice(DIA_Cipher_Joints,"Вот несколько косяков для тебя...",DIA_Cipher_Joints_Success);
@@ -264,7 +264,7 @@ instance DIA_Cipher_TRADE(C_Info)
 	condition = DIA_Cipher_TRADE_Condition;
 	information = DIA_Cipher_TRADE_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 

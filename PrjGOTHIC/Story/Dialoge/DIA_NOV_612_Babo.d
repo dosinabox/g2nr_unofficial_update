@@ -95,7 +95,7 @@ instance DIA_Babo_Sergio(C_Info)
 	condition = DIA_Babo_Sergio_Condition;
 	information = DIA_Babo_Sergio_Info;
 	permanent = FALSE;
-	description = "Я поговорил с Сержио.";
+	description = "Я поговорил с Сержио. Он будет тренировать тебя по два часа каждое утро, с пяти часов.";
 };
 
 
@@ -351,7 +351,7 @@ instance DIA_Babo_PlantLore(C_Info)
 	condition = DIA_Babo_PlantLore_Condition;
 	information = DIA_Babo_PlantLore_Info;
 	permanent = FALSE;
-	description = "Похоже ты хорошо разбираешься в растениях?";
+	description = "Похоже, ты хорошо разбираешься в растениях?";
 };
 
 
@@ -365,7 +365,7 @@ func int DIA_Babo_PlantLore_Condition()
 
 func void DIA_Babo_PlantLore_Info()
 {
-	AI_Output(other,self,"DIA_Babo_PlantLore_15_00");	//Похоже ты хорошо разбираешься в растениях?
+	AI_Output(other,self,"DIA_Babo_PlantLore_15_00");	//Похоже, ты хорошо разбираешься в растениях?
 	AI_Output(self,other,"DIA_Babo_PlantLore_03_01");	//У нас в семье была делянка, где мы выращивали различные травы, и я научился кое-чему у дедушки.
 	AI_Output(self,other,"DIA_Babo_PlantLore_03_02");	//Я бы так хотел опять работать в саду.
 	MIS_HelpBabo = LOG_Running;
@@ -400,7 +400,7 @@ func void DIA_Babo_Fegen_Info()
 	AI_Output(self,other,"DIA_Babo_Fegen_03_01");	//Ты взвалил на себя слишком много работы. Знаешь что - я помогу тебе. Тебе ни за что не справиться одному.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_02");	//Но мне очень нужен свиток с заклинанием 'Кулак Ветра'. Знаешь, мне повезло, и мне было позволено прочесть книгу о нем.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_03");	//И теперь, естественно, я хочу испытать это заклинание. Так что если ты принесешь мне этот свиток, я помогу тебе.
-	B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников, если я принесу ему свиток с заклинанием Кулак ветра.");
+	B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников, если я принесу ему свиток с заклинанием Кулак Ветра.");
 };
 
 
@@ -411,7 +411,7 @@ instance DIA_Babo_Windfaust(C_Info)
 	condition = DIA_Babo_Windfaust_Condition;
 	information = DIA_Babo_Windfaust_Info;
 	permanent = TRUE;
-	description = "Насчет свитка с заклинанием... (ОТДАТЬ КУЛАК ВЕТРА)";
+	description = "Насчет свитка... (отдать Кулак Ветра)";
 };
 
 
@@ -489,7 +489,7 @@ instance DIA_Babo_HowIsIt(C_Info)
 	condition = DIA_Babo_HowIsIt_Condition;
 	information = DIA_Babo_HowIsIt_Info;
 	permanent = TRUE;
-	description = "Как ты?";
+	description = "Как дела?";
 };
 
 
@@ -730,7 +730,7 @@ func void DIA_Babo_Kap3_Unhappy_CanHelpYou()
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_CanHelpYou_03_05");	//Ну, у меня не так много денег, но я мог бы дать тебе свиток с заклинанием. У меня есть лечебное заклинание.
 	Info_ClearChoices(DIA_Babo_Kap3_Unhappy);
 	Info_AddChoice(DIA_Babo_Kap3_Unhappy,"Я лучше не буду связываться с этим.",DIA_Babo_Kap3_Unhappy_No);
-	Info_AddChoice(DIA_Babo_Kap3_Unhappy,"Я попробую.",DIA_Babo_Kap3_Unhappy_Yes);
+	Info_AddChoice(DIA_Babo_Kap3_Unhappy,"Я посмотрю, что можно сделать.",DIA_Babo_Kap3_Unhappy_Yes);
 };
 
 func void DIA_Babo_Kap3_Unhappy_No()
@@ -776,7 +776,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_Info()
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_02");	//Да, да, просто успокойся.
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_03_03");	//(нервно) Это действительно мои? Ты уверен? Покажи мне.
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
-	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Я подержу их пока у себя .",DIA_Babo_Kap3_HaveYourDocs_KeepThem);
+	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Я подержу их пока у себя.",DIA_Babo_Kap3_HaveYourDocs_KeepThem);
 	if(BabosDocsOpen == TRUE)
 	{
 		Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Теперь, учитывая все обстоятельства, цена выросла.",DIA_Babo_Kap3_HaveYourDocs_IWantMore);
@@ -863,7 +863,7 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_NothingToDo()
 func void DIA_Babo_Kap3_HaveYourDocs_IWantMore()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_15_00");	//Теперь, учитывая все обстоятельства, цена выросла.
-	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_03_01");	//Ту не лучше остальных. Чего ты хочешь?
+	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_03_01");	//Ты не лучше остальных. Чего ты хочешь?
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_15_02");	//А что у тебя есть?
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_IWantMore_03_03");	//Я могу дать тебе 121 золотую монету - это все, что у меня есть.
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);

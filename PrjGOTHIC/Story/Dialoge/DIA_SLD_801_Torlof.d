@@ -128,7 +128,7 @@ instance DIA_Torlof_Respekt(C_Info)
 	condition = DIA_Torlof_Respekt_Condition;
 	information = DIA_Torlof_Respekt_Info;
 	permanent = FALSE;
-	description = "Как мне заслужить уважение других наемников? ";
+	description = "Как мне заслужить уважение других наемников?";
 };
 
 
@@ -161,7 +161,7 @@ instance DIA_Torlof_Duellregeln(C_Info)
 	condition = DIA_Torlof_Duellregeln_Condition;
 	information = DIA_Torlof_Duellregeln_Info;
 	permanent = FALSE;
-	description = "Что за правила дуэлей?";
+	description = "Каковы правила дуэли?";
 };
 
 
@@ -333,7 +333,7 @@ func void DIA_Torlof_RUF_Info()
 	}
 	else if(Bullco.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
-		AI_Output(self,other,"DIA_Torlof_RUF_01_16");	//О Сильвио и Булко даже говорить нечего. Эти два кретина всегда против всех и вся.
+		AI_Output(self,other,"DIA_Torlof_RUF_01_16");	//О Сильвио и Буллко даже говорить нечего. Эти два кретина всегда против всех и вся.
 	};
 	if(Npc_IsDead(Buster))
 	{
@@ -366,7 +366,7 @@ func void DIA_Torlof_RUF_Info()
 	};
 	if((MIS_Torlof_HolPachtVonSekob != LOG_SUCCESS) && (MIS_Torlof_BengarMilizKlatschen != LOG_SUCCESS))
 	{
-		AI_Output(self,other,"DIA_Torlof_RUF_01_23");	//Большинство из них просто ждут, пройдешь ли ты испытание.
+		AI_Output(self,other,"DIA_Torlof_RUF_01_23");	//Большинство из них просто ждет, пройдешь ли ты испытание.
 	}
 	else
 	{
@@ -456,7 +456,7 @@ func void B_Torlof_HolPachtVonSekob()
 	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_01");	//Онар хочет, чтобы тот выложил 50 золотых монет. Есть вопросы?
 	AI_Output(other,self,"B_Torlof_HolPachtvonSekob_15_02");	//Где ферма Секоба?
 	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_03");	//На севере этой долины. Если смотреть отсюда, она будет справа от большого перекрестка.
-	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_04");	//Если у тебя будут проблемы, фермеры на полях помогут тебе нейти дорогу.
+	AI_Output(self,other,"B_Torlof_HolPachtvonSekob_01_04");	//Если у тебя будут проблемы, фермеры на полях помогут тебе найти дорогу.
 	MIS_Torlof_HolPachtVonSekob = LOG_Running;
 	Sekob.flags = 0;
 	CreateInvItems(Sekob,ItMi_Gold,50);
@@ -571,7 +571,7 @@ func void DIA_Torlof_SekobSuccess_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Torlof_SekobSuccess_01_04");	//И? Ты что, промотал все деньги?  Ты должен принести их мне! И побыстрее!
+		AI_Output(self,other,"DIA_Torlof_SekobSuccess_01_04");	//И? Ты что, промотал все деньги? Ты должен принести их мне! И побыстрее!
 	};
 };
 
@@ -977,8 +977,8 @@ func void DIA_Torlof_WOISTSYLVIO_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_WOISTSYLVIO_15_00");	//Что, часть наемников ушла отсюда?
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_01");	//Сильвио забрал нескольких парней и ушел через проход.
-	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_02");	//Поговаривают, что там появились драконы. Когда он это услышал, его было не остановить.
-	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_03");	//Кто знает? Сокровища драконов наверняка можно очень дорого продать.
+	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_02");	//Поговаривают, что там появились драконы. Когда он услышал это, его было не остановить.
+	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_03");	//Кто знает? Сокровища драконов можно очень дорого продать.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_04");	//Но меня это не касается. Я моряк. Я принадлежу морю, и мне нет дела до душного логова дракона.
 };
 
@@ -1048,7 +1048,7 @@ instance DIA_Torlof_BEMYCAPTAIN2(C_Info)
 	nr = 52;
 	condition = DIA_Torlof_BEMYCAPTAIN2_Condition;
 	information = DIA_Torlof_BEMYCAPTAIN2_Info;
-	description = "Ворота замка в Долине Рудников открыты ...";
+	description = "Ворота замка в Долине Рудников открыты и их заклинило.";
 };
 
 
@@ -1210,7 +1210,7 @@ instance DIA_Torlof_PERM5_NOTCAPTAIN(C_Info)
 	condition = DIA_Torlof_PERM5_NOTCAPTAIN_Condition;
 	information = DIA_Torlof_PERM5_NOTCAPTAIN_Info;
 	permanent = TRUE;
-	description = "Я решил взять другого капитана.";
+	description = "Я решил взять другого капитана. Верни мне мои деньги.";
 };
 
 

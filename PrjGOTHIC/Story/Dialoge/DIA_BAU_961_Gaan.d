@@ -164,7 +164,7 @@ func void DIA_Addon_Gaan_AufgabeBeimRing_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Gaan_AufgabeBeimRing_15_00");	//¬ чем заключаютс€ твои об€занности в этом обществе?
 	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_01");	//я наблюдаю за проходом и сообщаю, кто приходит и кто уходит.
-	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_02");	//¬прочем, с тех пор как паладины приказали закрыть ворота прохода, людей здесь немного.
+	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_02");	//¬прочем, с тех пор, как паладины приказали закрыть ворота прохода, людей здесь немного.
 };
 
 
@@ -394,7 +394,7 @@ instance DIA_Gaan_PayTeacher(C_Info)
 	condition = DIA_Gaan_PayTeacher_Condition;
 	information = DIA_Gaan_PayTeacher_Info;
 	permanent = TRUE;
-	description = "¬от. 100 золотых монет за твой опыт по разделыванию животных. ";
+	description = "¬от. 100 золотых монет за твой опыт по разделыванию животных.";
 };
 
 
@@ -580,15 +580,18 @@ func void B_WasMachtJagd()
 func void DIA_Gaan_JAGD_Info()
 {
 	B_WasMachtJagd();
-	if(Npc_IsDead(Gaans_Snapper) == FALSE)
+	if((Npc_IsDead(Gaans_Snapper) == FALSE) && (Kapitel < 3))
 	{
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_01");	//ѕоследнее животное, которое мне удалось убить, была больша€ крыса. ƒела идут совсем плохо.
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_02");	//¬от уже несколько дней какой-то фыркающий зверь бродит здесь.
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_03");	//ќн не только убивает все, что движетс€, он мешает моей работе.
-		Log_CreateTopic(TOPIC_GaanSchnaubi,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_GaanSchnaubi,LOG_Running);
-		B_LogEntry(TOPIC_GaanSchnaubi,"Ётот фыркающий зверь доставл€ет непри€тности охотнику √аан. ≈сли € не уничтожу этого звер€, он не сможет охотитьс€.");
-		MIS_Gaan_Snapper = LOG_Running;
+		if((MIS_Gaan_Snapper != LOG_Running) && (MIS_Gaan_Snapper != LOG_SUCCESS))
+		{
+			Log_CreateTopic(TOPIC_GaanSchnaubi,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_GaanSchnaubi,LOG_Running);
+			B_LogEntry(TOPIC_GaanSchnaubi,"Ётот фыркающий зверь доставл€ет непри€тности охотнику √аану. ≈сли € не уничтожу этого звер€, он не сможет охотитьс€.");
+			MIS_Gaan_Snapper = LOG_Running;
+		};
 	}
 	else if(Kapitel >= 3)
 	{

@@ -175,7 +175,7 @@ instance DIA_Sarah_Trade(C_Info)
 	information = DIA_Sarah_Trade_Info;
 	trade = TRUE;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -189,8 +189,8 @@ func int DIA_Sarah_Trade_Condition()
 
 func void DIA_Sarah_Trade_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Sarah_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 	Sarah_WaffenGesehen = TRUE;
 };
 

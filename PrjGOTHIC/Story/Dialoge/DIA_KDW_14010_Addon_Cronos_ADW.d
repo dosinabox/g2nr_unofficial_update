@@ -84,7 +84,7 @@ instance DIA_Addon_Cronos_ADW_Trade(C_Info)
 	information = DIA_Addon_Cronos_ADW_Trade_Info;
 	trade = TRUE;
 	permanent = TRUE;
-	description = "Давай займемся делом.";
+	description = DIALOG_TRADE_v1;
 };
 
 

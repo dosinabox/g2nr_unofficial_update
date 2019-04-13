@@ -78,7 +78,7 @@ instance DIA_Isgaroth_Wolf(C_Info)
 	condition = DIA_Isgaroth_Wolf_Condition;
 	information = DIA_Isgaroth_Wolf_Info;
 	permanent = FALSE;
-	description = "Меня послал Сержио ...";
+	description = "Меня послал Сержио. Он поручил мне свои обязанности...";
 };
 
 
@@ -151,7 +151,7 @@ func int DIA_Isgaroth_Job_Condition()
 func void DIA_Isgaroth_Job_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Job_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Isgaroth_Job_01_01");	//Я Маг Огня. Жрец нашего бога Инноса.
+	AI_Output(self,other,"DIA_Isgaroth_Job_01_01");	//Я маг Огня. Жрец нашего бога Инноса.
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_02");	//Этот алтарь посвящен ЕМУ, высшему богу, создателю огня и верховному судье.
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_03");	//Ко мне приходят люди, чтобы помолиться Инносу и получить благословение.
 	AI_Output(self,other,"DIA_Isgaroth_Job_01_04");	//А за небольшое пожертвование ты можешь получить от меня много полезного.
@@ -168,7 +168,7 @@ instance DIA_Isgaroth_Trade(C_Info)
 	information = DIA_Isgaroth_Trade_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -182,8 +182,8 @@ func int DIA_Isgaroth_Trade_Condition()
 
 func void DIA_Isgaroth_Trade_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Isgaroth_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 };
 
 

@@ -103,7 +103,7 @@ instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_PermissionToWearInnosEye;
 	scemeName = "MAP";
-	description = "Письмо о подтверждение полномочий для Пирокара.";
+	description = "Письмо о подтверждение полномочий для Пирокара";
 };
 
 
@@ -177,7 +177,7 @@ instance ItWr_CorneliusTagebuch_Mis(C_Item)
 	visual = "ItWr_Book_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Дневник";
+	description = name;
 	text[0] = "Дневник Корнелиуса.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -188,8 +188,11 @@ instance ItWr_CorneliusTagebuch_Mis(C_Item)
 func void UseCorneliusTagebuch()
 {
 	var int nDocID;
-	Cornelius_IsLiar = TRUE;
-	B_LogEntry(TOPIC_RescueBennet,"Этот дневник - доказательство, необходимое для подтверждения невиновности Беннета.");
+	if(Cornelius_IsLiar == FALSE)
+	{
+		B_LogEntry(TOPIC_RescueBennet,"Этот дневник - доказательство, необходимое для подтверждения невиновности Беннета.");
+		Cornelius_IsLiar = TRUE;
+	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
 	Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
@@ -199,13 +202,13 @@ func void UseCorneliusTagebuch()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Если Лариус будет продолжать в том же духе, мне придется начать подыскивать себе другое место.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Что-то странно произошло со мной прошлой ночью. Мне нанес визит один из этих парней в черных капюшонах, о которых ходит столько слухов последнее время. Я не очень-то испугался, даже несмотря на то, что, как говорят,  они - само зло. Эти люди прямо-таки источают силу. Но голос был спокойным и располагающим к себе.");
+	Doc_PrintLines(nDocID,0,"Что-то странное произошло со мной прошлой ночью. Мне нанес визит один из этих парней в черных капюшонах, о которых ходит столько слухов последнее время. Я не очень-то испугался, даже несмотря на то, что, как говорят, они - само зло. Эти люди прямо-таки источают силу. Но голос был спокойным и располагающим к себе.");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Он предложил мне 20,000 золота за то, чтобы один из наемников был осужден. Он сказал, что я пойму, что он имел в виду, когда это произойдет.");
 	Doc_PrintLines(nDocID,1,"Конечно же, я согласился. Эти наемники все равно не заслуживают лучшей участи. Если бы не они, у меня все было бы хорошо. И это золото позволит мне спокойно встретить старость.");
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLines(nDocID,1,"Это произошло -- один из наемников был арестован. Сдержать мое слово будет просто.");
+	Doc_PrintLines(nDocID,1,"Это произошло - один из наемников был арестован. Сдержать мое слово будет просто.");
 	Doc_Show(nDocID);
 	PrintScreen("",-1,-1,FONT_Screen,0);
 };
@@ -213,7 +216,7 @@ func void UseCorneliusTagebuch()
 
 instance ITWR_DementorObsessionBook_MIS(C_Item)
 {
-	name = "Альманах одержимых";
+	name = "Альманах Одержимых";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
@@ -247,7 +250,7 @@ func void Use_DementorObsessionBook()
 		Doc_PrintLines(nDocID,0,"edef Kon dirandorix");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"in Sparady bell ");
+		Doc_PrintLine(nDocID,0,"in Sparady bell");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"el utoy");
@@ -278,7 +281,7 @@ func void Use_DementorObsessionBook()
 			Doc_PrintLine(nDocID,1,"    ЭНГРОМ");
 			Doc_PrintLine(nDocID,1,"");
 			Doc_PrintLine(nDocID,1,"");
-			Doc_PrintLine(nDocID,1,"        РЕНДОЛЬФ");
+			Doc_PrintLine(nDocID,1,"        РЭНДОЛЬФ");
 			Doc_PrintLine(nDocID,1,"");
 		};
 		if(Kapitel >= 5)
@@ -291,6 +294,11 @@ func void Use_DementorObsessionBook()
 			Doc_PrintLine(nDocID,1,"");
 			Doc_PrintLine(nDocID,1,"            БРУТУС");
 			Doc_PrintLine(nDocID,1,"");
+		};
+		if((Kapitel == 6) && (Mario_IsOnBoard == LOG_SUCCESS) && (OrkSturmDI == TRUE))
+		{
+			Doc_PrintLine(nDocID,1,"");
+			Doc_PrintLine(nDocID,1,"МАРИО");
 		};
 		Doc_Show(nDocID);
 	};
@@ -338,7 +346,7 @@ func void Use_PyrokarsObsessionList()
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"ЭНГРОМ");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"РЕНДОЛЬФ");
+		Doc_PrintLine(nDocID,0,"РЭНДОЛЬФ");
 	};
 	if(Kapitel >= 5)
 	{
@@ -346,10 +354,11 @@ func void Use_PyrokarsObsessionList()
 		Doc_PrintLine(nDocID,0,"СЕКОБ");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"БРУТУС");
+	};
+	if((Kapitel == 6) && (Mario_IsOnBoard == LOG_SUCCESS) && (OrkSturmDI == TRUE))
+	{
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"");
+		Doc_PrintLine(nDocID,0,"МАРИО");
 	};
 	Doc_Show(nDocID);
 };
@@ -408,7 +417,7 @@ instance ItMw_MalethsGehstock_MIS(C_Item)
 
 instance ItMi_MalethsBanditGold(C_Item)
 {
-	name = "Кошелек полный золота!";
+	name = "Кошелек главаря бандитов";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
@@ -417,6 +426,7 @@ instance ItMi_MalethsBanditGold(C_Item)
 	material = MAT_METAL;
 	on_state[0] = Use_MalethsBanditGold;
 	description = name;
+	text[2] = "Кошелек доверху набит золотом!";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -451,7 +461,7 @@ instance ItWr_BabosLetter_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_BabosLetter;
 	scemeName = "MAP";
-	description = "Письмо Бабо.";
+	description = name;
 };
 
 
@@ -475,7 +485,7 @@ func void Use_BabosLetter()
 
 instance ItWr_BabosPinUp_MIS(C_Item)
 {
-	name = "Изображение женщины";
+	name = "Картина";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -483,7 +493,7 @@ instance ItWr_BabosPinUp_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_BabosPinUp;
 	scemeName = "MAP";
-	description = "Изображение нагой женщины.";
+	description = "Изображение нагой женщины";
 };
 
 
@@ -550,16 +560,17 @@ instance ItWr_Astronomy_Mis(C_Item)
 };
 
 
-var int Astronomy_once;
+var int Astronomy_Once;
 
 func void Use_Astronomy()
 {
 	var int nDocID;
-	if(Astronomy_once == FALSE)
+	if(Astronomy_Once == FALSE)
 	{
 		B_RaiseAttribute(self,ATR_MANA_MAX,2);
+		Npc_ChangeAttribute(self,ATR_MANA,2);
 		Print(Print_ReadAstronomy);
-		Astronomy_once = TRUE;
+		Astronomy_Once = TRUE;
 	};
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
@@ -622,12 +633,8 @@ instance ItSe_Golemchest_Mis(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = Use_GolemChest;
-	description = "Кожаный мешочек.";
-	text[0] = "";
-	text[1] = "";
+	description = name;
 	text[2] = "Этот кошелек полон монет.";
-	text[3] = "";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -645,7 +652,7 @@ func void Use_GolemChest()
 
 instance ItWr_ShatteredGolem_MIS(C_Item)
 {
-	name = "Очень старая карта.";
+	name = "Очень старая карта";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 150;
@@ -654,8 +661,6 @@ instance ItWr_ShatteredGolem_MIS(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_ShatteredGolem_Mis;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -679,7 +684,7 @@ func void Use_ShatteredGolem_Mis()
 
 instance ItWr_DiegosLetter_MIS(C_Item)
 {
-	name = "Письмо от Диего";
+	name = "Письмо Диего";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -687,7 +692,7 @@ instance ItWr_DiegosLetter_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_DiegosLetter_Mis;
 	scemeName = "MAP";
-	description = "Письмо Диего Гербрандту.";
+	description = "Письмо Диего Гербрандту";
 };
 
 
@@ -699,12 +704,12 @@ func void Use_DiegosLetter_Mis()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLine(nDocID,0,"Гербрандт, ");
+	Doc_PrintLine(nDocID,0,"Гербрандт,");
 	Doc_PrintLines(nDocID,0,"Знаешь, тебе стоило убить меня.");
 	Doc_PrintLines(nDocID,0,"Я вернулся в город и ищу тебя. И когда я найду тебя, я покрошу тебя как капусту. Ты хорошо меня знаешь, так что не надейся, меня так легко не обвести вокруг пальца.");
 	Doc_PrintLines(nDocID,0,"Полагаю, что когда ты засунул меня за Барьер, ты и не думал, что я могу вернуться. Что ж, ты ошибался.");
 	Doc_PrintLines(nDocID,0,"Я пришел за тем, что принадлежит мне по праву.");
-	Doc_PrintLines(nDocID,0,"Твой единственный шанс остаться в живых - это уносить ноги поскорее и оставить свой бизнес мне. Тогда мы будим квиты.");
+	Doc_PrintLines(nDocID,0,"Твой единственный шанс остаться в живых - это уносить ноги поскорее и оставить свой бизнес мне. Тогда мы будем квиты.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Диего");
 	Doc_Show(nDocID);
@@ -721,7 +726,7 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = Use_DiegosTreasure;
-	description = "Старый кожаный кошелек Диего.";
+	description = "Старый кожаный кошелек Диего";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -865,7 +870,7 @@ func void Use_RichterKomproBrief()
 	Doc_PrintLines(nDocID,0,"Но не привлекай к себе внимания, или ополченцы скрутят тебя, и глазом моргнуть не успеешь.");
 	Doc_PrintLines(nDocID,0,"Кстати: если он ненароком скончается при этом, я не огорчусь.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"          Главный судья и ");
+	Doc_PrintLine(nDocID,0,"          Главный судья и");
 	Doc_PrintLine(nDocID,0,"          королевский секретарь");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
@@ -986,4 +991,5 @@ func void Use_VinosKellergeister_Mis()
 	Doc_PrintLines(nDocID,1,"... Они стали подозрительными. Мне лучше оставить это занятие, пока все не успокоится немного, я вернусь к своей работе, когда буду уверен, что никто мной больше не интересуется ...");
 	Doc_Show(nDocID);
 };
+
 

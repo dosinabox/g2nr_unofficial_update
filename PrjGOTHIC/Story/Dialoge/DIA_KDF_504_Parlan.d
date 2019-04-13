@@ -28,7 +28,7 @@ var int Parlan_Hammer;
 
 func void B_Parlan_HAMMER()
 {
-	AI_Output(self,other,"DIA_Parlan_HAMMER_05_00");	//(строго) Подожди минутку, сын мой, сын мой.
+	AI_Output(self,other,"DIA_Parlan_HAMMER_05_00");	//(строго) Подожди минутку, сын мой.
 	AI_Output(self,other,"DIA_Parlan_HAMMER_05_01");	//Ходят слухи, что ценный артефакт 'исчез' из нашего святилища.
 	AI_Output(self,other,"DIA_Parlan_HAMMER_05_02");	//Я не хочу ничего даже слышать об этом - я жду, что он вернется на свое законное место.
 	Parlan_Hammer = TRUE;
@@ -707,7 +707,7 @@ func void DIA_Parlan_KNOWSJUDGE_Info()
 	AI_Output(self,other,"DIA_Parlan_KNOWSJUDGE_05_01");	//Что?.. Хм... (удостоверяясь) Ты это действительно серьезно?
 	AI_Output(other,self,"DIA_Parlan_KNOWSJUDGE_15_02");	//Я настаиваю.
 	AI_Output(self,other,"DIA_Parlan_KNOWSJUDGE_05_03");	//Ты необычный послушник. Хорошо, если ты настаиваешь, поговори с мастером Пирокаром.
-	B_LogEntry(TOPIC_FireContest,"Если я хочу потребовать пройти Испытание огнем, я должен поговорить с Мастером Пирокаром.");
+	B_LogEntry(TOPIC_FireContest,"Если я хочу потребовать пройти Испытание Огнем, я должен поговорить с мастером Пирокаром.");
 };
 
 
@@ -732,7 +732,7 @@ func int DIA_Parlan_TEACH_MANA_Condition()
 
 func void DIA_Parlan_TEACH_MANA_Info()
 {
-	AI_Output(other,self,"DIA_Parlan_TEACH_MANA_15_00");	//Я хочу повысить мои магические способности
+	AI_Output(other,self,"DIA_Parlan_TEACH_MANA_15_00");	//Я хочу повысить мои магические способности.
 	Info_ClearChoices(DIA_Parlan_TEACH_MANA);
 	Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
 	Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Parlan_TEACH_MANA_1);
@@ -804,7 +804,7 @@ instance DIA_Parlan_CIRCLE1(C_Info)
 	condition = DIA_Parlan_CIRCLE1_Condition;
 	information = DIA_Parlan_CIRCLE1_Info;
 	permanent = TRUE;
-	description = "Научи меня первому Кругу магии.";
+	description = B_BuildLearnString("Научи меня первому Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,1));
 };
 
 
@@ -823,7 +823,7 @@ func void DIA_Parlan_CIRCLE1_Info()
 	{
 		AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE1_05_01");	//Первый Круг магии позволит тебе использовать руны, созданные тобой.
 		AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE1_05_02");	//Теперь ты достоин узнать формулы заклинаний для создания собственных рун.
-		AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE1_05_03");	//Каждый из нас специализируется на своей области магии. Так что хорошо подумай, в какой области хочешь специализироваться ты.
+		AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE1_05_03");	//Каждый из нас специализируется в своей области магии. Так что хорошо подумай, в какой области хочешь специализироваться ты.
 	};
 };
 
@@ -835,7 +835,7 @@ instance DIA_Parlan_CIRCLE2(C_Info)
 	condition = DIA_Parlan_CIRCLE2_Condition;
 	information = DIA_Parlan_CIRCLE2_Info;
 	permanent = TRUE;
-	description = "Научи меня второму Кругу магии.";
+	description = B_BuildLearnString("Научи меня второму Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,2));
 };
 
 
@@ -873,7 +873,7 @@ instance DIA_Parlan_CIRCLE3(C_Info)
 	condition = DIA_Parlan_CIRCLE3_Condition;
 	information = DIA_Parlan_CIRCLE3_Info;
 	permanent = TRUE;
-	description = "Научи меня третьему Кругу магии.";
+	description = B_BuildLearnString("Научи меня третьему Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,3));
 };
 
 
@@ -912,7 +912,7 @@ instance DIA_Parlan_TEACH(C_Info)
 	condition = DIA_Parlan_TEACH_Condition;
 	information = DIA_Parlan_TEACH_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун).";
+	description = "Обучи меня (созданию рун)";
 };
 
 
@@ -1117,7 +1117,10 @@ func void DIA_Parlan_IAmParlan_Info()
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Я буду делать то, что сочту нужным.",DIA_Parlan_IAmParlan_MyChoice);
 		Info_AddChoice(DIA_Parlan_IAmParlan,"Конечно.",DIA_Parlan_IAmParlan_OK);
 	};
-	Wld_InsertItem(ItKe_KlosterBibliothek,"NW_MONASTERY_CORRIDOR_02");
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	{
+		Wld_InsertItem(ItKe_KlosterBibliothek,"NW_MONASTERY_CORRIDOR_02");
+	};
 };
 
 func void DIA_Parlan_IAmParlan_MyChoice()

@@ -90,7 +90,7 @@ instance DIA_Tandor_Trade(C_Info)
 	information = DIA_Tandor_Trade_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -101,8 +101,9 @@ func int DIA_Tandor_Trade_Condition()
 
 func void DIA_Tandor_Trade_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Tandor_Trade_15_00");	//Покажи мне свои товары.
+	B_ClearBonusFoodInv(self);
+	B_GiveTradeInv(self);
 };
 
 

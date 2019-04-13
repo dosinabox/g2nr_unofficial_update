@@ -161,7 +161,7 @@ func void DIA_Cord_WannaJoin_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_12");	//ƒругими словами: ты зеленый новичок!
-		AI_Output(self,other,"DIA_Cord_WannaJoin_14_13");	//ћы наемники, должны быть уверены, что можем всецело положитьс€ на наших товарищей. ќт этого зависит наша жизнь.
+		AI_Output(self,other,"DIA_Cord_WannaJoin_14_13");	//ћы, наемники, должны быть уверены, что можем всецело положитьс€ на наших товарищей. ќт этого зависит наша жизнь.
 		B_Cord_BeBetter();
 		Log_CreateTopic(TOPIC_CordProve,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_CordProve,LOG_Running);
@@ -207,7 +207,7 @@ func void DIA_Addon_Cord_YouAreRanger_Info()
 	AI_Output(self,other,"DIA_Addon_Cord_Add_14_01");	//Ќу хорошо, что тебе нужно?
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_14_06");	//» хорошо подумай над тем, что ты мне скажешь. ѕотому что, если мне не понравитс€ то, что € услышу, € с теб€ кожу сдеру.
 	Info_ClearChoices(DIA_Addon_Cord_YouAreRanger);
-	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Ќа самом деле, мне ничего не нужно. я и сам справлюсь.",DIA_Addon_Cord_YouAreRanger_nix);
+	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Ќа самом деле мне ничего не нужно. я и сам справлюсь.",DIA_Addon_Cord_YouAreRanger_nix);
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"ћне нужна тво€ брон€.",DIA_Addon_Cord_YouAreRanger_ruestung);
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"ћне нужно твое оружие!",DIA_Addon_Cord_YouAreRanger_waffe);
 	if(Cord_Approved == FALSE)
@@ -216,11 +216,14 @@ func void DIA_Addon_Cord_YouAreRanger_Info()
 	};
 	if(hero.guild == GIL_NONE)
 	{
+		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"”ходи отсюда. я хочу зан€ть твое место на этой ферме.",DIA_Addon_Cord_YouAreRanger_weg);
 	};
 	if(hero.guild == GIL_NONE)
 	{
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"“ы бы мог помочь мне стать наемником.",DIA_Addon_Cord_YouAreRanger_SLDAufnahme);
 	};
+	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"«аплати мне за молчание.",DIA_Addon_Cord_YouAreRanger_Gold);
+
 };
 
 
@@ -589,7 +592,7 @@ instance DIA_Cord_ExplainWeapons(C_Info)
 	condition = DIA_Cord_ExplainWeapons_Condition;
 	information = DIA_Cord_ExplainWeapons_Info;
 	permanent = FALSE;
-	description = " аковы преимущества одноручного и двуручного оружи€?";
+	description = "Ќу, а каковы преимущества одноручного и двуручного оружи€?";
 };
 
 
@@ -603,7 +606,7 @@ func int DIA_Cord_ExplainWeapons_Condition()
 
 func void DIA_Cord_ExplainWeapons_Info()
 {
-	AI_Output(other,self,"DIA_Cord_ExplainWeapons_15_00");	// аковы преимущества одноручного и двуручного оружи€?
+	AI_Output(other,self,"DIA_Cord_ExplainWeapons_15_00");	//Ќу, а каковы преимущества одноручного и двуручного оружи€?
 	AI_Output(self,other,"DIA_Cord_ExplainWeapons_14_01");	//’ороший вопрос. я вижу, что ты размышл€л над этим вопросом.
 	AI_Output(self,other,"DIA_Cord_ExplainWeapons_14_02");	//ќдноручное оружие быстрее, но оно наносит меньший урон врагам.
 	AI_Output(self,other,"DIA_Cord_ExplainWeapons_14_03");	//ƒвуручное оружие наносит больший урон, но им не получитс€ размахивать так же быстро, как одноручным.

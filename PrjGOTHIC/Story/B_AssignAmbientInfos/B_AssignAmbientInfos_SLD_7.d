@@ -62,7 +62,7 @@ instance DIA_SLD_7_PEOPLE(C_Info)
 	condition = DIA_SLD_7_PEOPLE_Condition;
 	information = DIA_SLD_7_PEOPLE_Info;
 	permanent = TRUE;
-	description = " то командует здесь?";
+	description = " то заправл€ет здесь?";
 };
 
 
@@ -113,7 +113,7 @@ instance DIA_SLD_7_STANDARD(C_Info)
 	condition = DIA_SLD_7_STANDARD_Condition;
 	information = DIA_SLD_7_STANDARD_Info;
 	permanent = TRUE;
-	description = "„то нового?";
+	description = "„то новенького?";
 };
 
 
@@ -131,7 +131,7 @@ func void DIA_SLD_7_STANDARD_Info()
 		{
 			if(other.guild == GIL_SLD)
 			{
-				AI_Output(self,other,"DIA_SLD_7_STANDARD_07_01");	//— тех пор как ты присоединилс€ к нам, на ферме все спокойно - ополчение здесь больше не по€вл€етс€.
+				AI_Output(self,other,"DIA_SLD_7_STANDARD_07_01");	//— тех пор, как ты присоединилс€ к нам, на ферме все спокойно - ополчение здесь больше не по€вл€етс€.
 			}
 			else
 			{
@@ -141,7 +141,7 @@ func void DIA_SLD_7_STANDARD_Info()
 		else if(other.guild == GIL_SLD)
 		{
 			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_03");	//ƒраконы в ƒолине –удников! Ќе хотел бы € сейчас оказатьс€ на месте паладинов.
-			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_04");	//я думаю, король даст лорду ’агену хорошего пинка под зад,  когда тот вернетс€ с пустыми руками из-за драконов.
+			AI_Output(self,other,"DIA_SLD_7_STANDARD_07_04");	//я думаю, король даст лорду ’агену хорошего пинка под зад, когда тот вернетс€ с пустыми руками из-за драконов.
 		}
 		else
 		{

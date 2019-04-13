@@ -11,6 +11,7 @@ instance PIR_1370_Addon_Angus(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_PIR2hAxe);
 	CreateInvItems(self,ItRi_Addon_MorgansRing_Mission,1);
+	CreateInvItems(self,ItWr_Addon_Pirates_01,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart21,BodyTex_N,ITAR_PIR_M_Addon);
 	Mdl_SetModelFatness(self,1.3);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

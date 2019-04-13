@@ -327,7 +327,7 @@ instance DIA_Sentenza_AufsMaul(C_Info)
 	condition = DIA_Sentenza_AufsMaul_Condition;
 	information = DIA_Sentenza_AufsMaul_Info;
 	permanent = FALSE;
-	description = "Слушай, а что это у тебя перед головой? Лицо или задница? ";
+	description = "Слушай, а что это у тебя перед головой? Лицо или задница?";
 };
 
 
@@ -361,7 +361,7 @@ instance DIA_Sentenza_AufsMaulAgain(C_Info)
 
 func int DIA_Sentenza_AufsMaulAgain_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sentenza_AufsMaul))
+	if(Npc_KnowsInfo(other,DIA_Sentenza_AufsMaul) && (MIS_ReadyforChapter4 == FALSE))
 	{
 		if((Npc_HasItems(self,ItMi_Gold) >= 50) || Npc_KnowsInfo(other,DIA_Jarvis_MissionKO))
 		{

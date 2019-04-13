@@ -96,7 +96,7 @@ func void DIA_Addon_Saturas_Hallo_weiЯtdu()
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_00");	//Ты хоть имеешь представление о том, что ты наделал?
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_01");	//Ты настолько сильно пошатнул базовую структуру магического естества, что в Хоринисе все чуть не оглохли.
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_02");	//Скажи спасибо, что Барьера больше нет.
-	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_weiЯtdu_15_03");	//Что же ты жалуешься, старче? Все ведь сработало как надо.
+	AI_Output(other,self,"DIA_Addon_Saturas_Hallo_weiЯtdu_15_03");	//Что же ты жалуешься, старче? Все ведь сработано как надо.
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_04");	//(высокомерно) Следите за языком, юноша!
 	AI_Output(self,other,"DIA_Addon_Saturas_Hallo_weiЯtdu_14_05");	//(раздраженно) Что, во имя всех стихий, тебе здесь нужно?
 	Info_ClearChoices(DIA_Addon_Saturas_Hallo);
@@ -172,7 +172,7 @@ func void DIA_Addon_Saturas_keineAhnung_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_keineAhnung_14_02");	//(бормочет) Я разберусь с тобой позже.
 	Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_KDW,"Я нашел магов воды на месте раскопок. Мне нужно выяснить, чем они там занимаются. Сатурас пока ничего мне не говорит. Он все никак не может забыть ту историю в колонии.");
+	B_LogEntry(TOPIC_Addon_KDW,"Я нашел магов Воды на месте раскопок. Мне нужно выяснить, чем они там занимаются. Сатурас пока ничего мне не говорит. Он все никак не может забыть ту историю в колонии.");
 	AI_StopProcessInfos(self);
 };
 
@@ -312,7 +312,7 @@ func void DIA_Addon_Saturas_geheimbund_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Saturas_geheimbund_14_03");	//(совершенно разбито) Не знаю, что мне следовало бы сказать. Просто я доверяю тебе, пока ты у меня на глазах.
 	AI_Output(other,self,"DIA_Addon_Saturas_geheimbund_15_04");	//О Кольце мне сказал Ватрас.
-	AI_Output(self,other,"DIA_Addon_Saturas_geheimbund_14_05");	//(смиренно) Что? Ватрас? (саркастически) Отлично! Из всех магов воды, которые есть на острове, ты встречаешься именно с тем, который тебя НЕ ЗНАЕТ.
+	AI_Output(self,other,"DIA_Addon_Saturas_geheimbund_14_05");	//(смиренно) Что? Ватрас? (саркастически) Отлично! Из всех магов Воды, которые есть на острове, ты встречаешься именно с тем, который тебя НЕ ЗНАЕТ.
 	AI_Output(self,other,"DIA_Addon_Saturas_geheimbund_14_06");	//Предупреждаю, в этот раз не делай глупостей.
 	AI_Output(other,self,"DIA_Addon_Saturas_geheimbund_15_07");	//(сухо) Постараюсь...
 	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);

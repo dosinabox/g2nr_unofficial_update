@@ -147,7 +147,7 @@ func void DIA_Nagur_Job_Info()
 		AI_Output(self,other,"DIA_Nagur_Job_08_03");	//Это значит, что ты будешь делать, что я скажу, и будешь получать треть от навара.
 		AI_Output(self,other,"DIA_Nagur_Job_08_04");	//Если тебя это не устраивает, то у меня нет работы для тебя.
 		Info_ClearChoices(DIA_Nagur_Job);
-		Info_AddChoice(DIA_Nagur_Job,"Мы партнеры. Поэтому пятьдесят на пятьдесят. ",DIA_Nagur_Job_Halbe);
+		Info_AddChoice(DIA_Nagur_Job,"Мы партнеры. Поэтому пятьдесят на пятьдесят.",DIA_Nagur_Job_Halbe);
 		Info_AddChoice(DIA_Nagur_Job,"Хорошо, ты здесь главный.",DIA_Nagur_Job_Klar);
 	};
 };
@@ -198,7 +198,7 @@ func void DIA_Nagur_Auftrag_Info()
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_06");	//И не пытайся продать эти товары сам. Ты все понял?
 	Info_ClearChoices(DIA_Nagur_Auftrag);
-	Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились (КОНЕЦ)",DIA_Nagur_Auftrag_Okay);
+	Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились. (КОНЕЦ)",DIA_Nagur_Auftrag_Okay);
 	Info_AddChoice(DIA_Nagur_Auftrag,"Где мне найти Бальтрама?",DIA_Nagur_Auftrag_Baltram);
 	Info_AddChoice(DIA_Nagur_Auftrag,"Когда мне поговорить с Бальтрамом?",DIA_Nagur_Auftrag_Wann);
 	Info_AddChoice(DIA_Nagur_Auftrag,"Где ферма Акила?",DIA_Nagur_Auftrag_Akil);

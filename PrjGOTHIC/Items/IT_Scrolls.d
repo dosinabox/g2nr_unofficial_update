@@ -1,5 +1,5 @@
 
-const string Name_PaladinScroll = "Магия Паладинов";
+const string Name_PaladinScroll = "Магия паладинов";
 
 const int Value_Sc_PalLight = 50;
 const int Value_Sc_PalLightHeal = 100;

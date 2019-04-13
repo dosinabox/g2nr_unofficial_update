@@ -28,7 +28,7 @@ instance DIA_Fernando_PICKPOCKET(C_Info)
 	condition = DIA_Fernando_PICKPOCKET_Condition;
 	information = DIA_Fernando_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Красть его кошелек рискованно)";
+	description = Pickpocket_60;
 };
 
 
@@ -77,7 +77,7 @@ instance DIA_Fernando_Hello(C_Info)
 	condition = DIA_Fernando_Hello_Condition;
 	information = DIA_Fernando_Hello_Info;
 	permanent = FALSE;
-	description = "Как торговля?";
+	description = "Как идут дела?";
 };
 
 
@@ -232,7 +232,7 @@ func void DIA_Addon_Fernando_BanditTrader_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_10");	//(умоляюще) Я не хотел этого делать! Поверь мне!.
+		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_10");	//(умоляюще) Я не хотел этого делать! Поверь мне!
 		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_11");	//(умоляюще) Сначала я продавал им только еду. Дела у меня шли неважно, и это было для меня единственным выходом.
 		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_12");	//(умоляюще) Но потом бандиты стали агрессивными и даже угрожали убить меня, если я не продам им оружие.
 		AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_14_13");	//(умоляюще) Ты не можешь обвинять меня! Я всего лишь жертва обстоятельств.
@@ -241,7 +241,7 @@ func void DIA_Addon_Fernando_BanditTrader_Info()
 			Info_ClearChoices(DIA_Addon_Fernando_BanditTrader);
 			Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"Сколько ты мне заплатишь, если я тебя отпущу?",DIA_Addon_Fernando_BanditTrader_preis);
 			Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"С тобой разберется ополчение.",DIA_Addon_Fernando_BanditTrader_mil);
-			Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"Я весь дрожу, я весь дрожу!",DIA_Addon_Fernando_BanditTrader_Uptown);
+			Info_AddChoice(DIA_Addon_Fernando_BanditTrader,"Не пытайся взять меня на жалость...",DIA_Addon_Fernando_BanditTrader_Uptown);
 		};
 	};
 };
@@ -346,7 +346,7 @@ func void DIA_Fernando_Success_Info()
 	{
 		B_Say(self,other,"$NOTNOW");
 		Log_SetTopicStatus(TOPIC_Fernando,LOG_OBSOLETE);
-		B_LogEntry(TOPIC_Fernando,"Фернандо  больше не нуждается в информации. И денег за нее он мне не заплатит.");
+		B_LogEntry(TOPIC_Fernando,"Фернандо больше не нуждается в информации. И денег за нее он мне не заплатит.");
 	};
 };
 
@@ -382,7 +382,7 @@ instance DIA_Fernando_Heilung(C_Info)
 	condition = DIA_Fernando_Heilung_Condition;
 	information = DIA_Fernando_Heilung_Info;
 	permanent = TRUE;
-	description = "Да ты одержим!";
+	description = "Ты одержим!";
 };
 
 

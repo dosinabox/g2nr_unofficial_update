@@ -96,7 +96,7 @@ instance DIA_Dragon_Fire_HORT(C_Info)
 	nr = 5;
 	condition = DIA_Dragon_Fire_HORT_Condition;
 	information = DIA_Dragon_Fire_HORT_Info;
-	description = "Где твоя сокровищница?";
+	description = "А где твоя сокровищница?";
 };
 
 

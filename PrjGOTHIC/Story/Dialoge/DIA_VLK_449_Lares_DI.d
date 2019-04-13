@@ -43,7 +43,7 @@ func int DIA_Lares_DI_Hallo_Condition()
 func void DIA_Lares_DI_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Lares_DI_Hallo_15_00");	//Как дела?
-	if(ORkSturmDI == TRUE)
+	if(OrkSturmDI == TRUE)
 	{
 		AI_Output(self,other,"DIA_Lares_DI_Hallo_09_01");	//Поторопись. Орки, наверняка, вернутся опять.
 	}
@@ -81,7 +81,7 @@ func void DIA_Lares_DI_Training_Info()
 	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_SNEAK) == FALSE)
 	{
-		Info_AddChoice(DIA_Lares_DI_Training,"Научиться красться",DIA_Lares_DI_Training_SNEAK);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Научиться красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
 	};
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
@@ -99,7 +99,7 @@ func void DIA_Lares_DI_Training_1H_1()
 	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_SNEAK) == FALSE)
 	{
-		Info_AddChoice(DIA_Lares_DI_Training,"Научиться красться",DIA_Lares_DI_Training_SNEAK);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Научиться красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
 	};
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
@@ -117,7 +117,7 @@ func void DIA_Lares_DI_Training_1H_5()
 	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_SNEAK) == FALSE)
 	{
-		Info_AddChoice(DIA_Lares_DI_Training,"Научиться красться",DIA_Lares_DI_Training_SNEAK);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Научиться красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
 	};
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
@@ -135,7 +135,7 @@ func void DIA_Lares_DI_Training_DEX_1()
 	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_SNEAK) == FALSE)
 	{
-		Info_AddChoice(DIA_Lares_DI_Training,"Научиться красться",DIA_Lares_DI_Training_SNEAK);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Научиться красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
 	};
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
@@ -153,7 +153,7 @@ func void DIA_Lares_DI_Training_DEX_5()
 	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_SNEAK) == FALSE)
 	{
-		Info_AddChoice(DIA_Lares_DI_Training,"Научиться красться",DIA_Lares_DI_Training_SNEAK);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Научиться красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
 	};
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
@@ -171,7 +171,7 @@ func void DIA_Lares_DI_Training_SNEAK()
 	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
 	if(Npc_GetTalentSkill(hero,NPC_TALENT_SNEAK) == FALSE)
 	{
-		Info_AddChoice(DIA_Lares_DI_Training,"Научиться красться",DIA_Lares_DI_Training_SNEAK);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Научиться красться",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
 	};
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
 	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);

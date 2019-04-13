@@ -36,12 +36,15 @@ func void Rtn_WaitForDiego_403()
 	TA_Stand_WP(8,0,22,0,"NW_CITY_UPTOWN_PATH_23");
 };
 
+func void Rtn_Flee_403()
+{
+	TA_FleeToWP(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+	TA_FleeToWP(8,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+};
+
 func void Rtn_NewLife_403()
 {
 	TA_Smalltalk(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_Smalltalk(8,0,11,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_Smalltalk(11,0,15,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_Smalltalk(15,0,18,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
-	TA_Smalltalk(18,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
+	TA_Smalltalk(8,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_03");
 };
 

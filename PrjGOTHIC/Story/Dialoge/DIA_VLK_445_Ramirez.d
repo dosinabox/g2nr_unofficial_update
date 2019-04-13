@@ -113,7 +113,7 @@ func void DIA_Ramirez_Hallo_Info()
 	if(Join_Thiefs == TRUE)
 	{
 		AI_Output(self,other,"DIA_Ramirez_Hallo_14_02");	//Итак, ты с нами. Что ж, тогда я желаю тебе успеха - но будь осторожен.
-		AI_Output(self,other,"DIA_Ramirez_Hallo_14_03");	//Ох, и еще одно - меня не интересует кто ты там наверху, и  кем ты работаешь.
+		AI_Output(self,other,"DIA_Ramirez_Hallo_14_03");	//Ох, и еще одно - меня не интересует, кто ты там наверху, и кем ты работаешь.
 		AI_Output(self,other,"DIA_Ramirez_Hallo_14_04");	//Но здесь, внизу, ты один из нас. Вор. Не больше и не меньше.
 		DIA_Ramirez_Hallo_permanent = TRUE;
 	};
@@ -200,7 +200,7 @@ func void DIA_Ramirez_Bezahlen_Info()
 		AI_Output(self,other,"DIA_Ramirez_Bezahlen_14_02");	//Я могу показать тебе, как пользоваться отмычками. Это будет стоить тебе...
 		B_Say_Gold(self,other,Ramirez_Cost);
 		Info_ClearChoices(DIA_Ramirez_Bezahlen);
-		Info_AddChoice(DIA_Ramirez_Bezahlen,"Может быть, позже ...(НАЗАД)",DIA_Ramirez_Bezahlen_Spaeter);
+		Info_AddChoice(DIA_Ramirez_Bezahlen,"Может быть, позже... (НАЗАД)",DIA_Ramirez_Bezahlen_Spaeter);
 		Info_AddChoice(DIA_Ramirez_Bezahlen,"Хорошо, я готов заплатить...",DIA_Ramirez_Bezahlen_Okay);
 	};
 };
@@ -236,7 +236,7 @@ instance DIA_Ramirez_Teach(C_Info)
 	condition = DIA_Ramirez_Teach_Condition;
 	information = DIA_Ramirez_Teach_Info;
 	permanent = TRUE;
-	description = "Научи меня вскрывать замки!";
+	description = B_BuildLearnString("Научи меня пользоваться отмычками",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1));
 };
 
 
@@ -250,7 +250,7 @@ func int DIA_Ramirez_Teach_Condition()
 
 func void DIA_Ramirez_Teach_Info()
 {
-	AI_Output(other,self,"DIA_Ramirez_Teach_15_00");	//Научи меня пользоваться отмычками!
+	AI_Output(other,self,"DIA_Ramirez_Teach_15_00");	//Научи меня пользоваться отмычками.
 	if(Ramirez_Zweimal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Ramirez_Teach_14_06");	//Вскрытие замков - это высшее искусство.

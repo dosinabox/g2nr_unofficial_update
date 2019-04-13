@@ -70,7 +70,10 @@ instance DIA_Addon_10023_Wache_go(C_Info)
 
 func int DIA_Addon_10023_Wache_go_Condition()
 {
-	return TRUE;
+	if(Ready_Togo == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_10023_Wache_go_Info()
@@ -88,7 +91,7 @@ func void DIA_Addon_10023_Wache_go_Info()
 	Info_AddChoice(DIA_Addon_10023_Wache_go,Dialog_Back,DIA_Addon_10023_Wache_go_BACK);
 	if(Npc_KnowsInfo(other,DIA_Addon_Thorus_Answer))
 	{
-		Info_AddChoice(DIA_Addon_10023_Wache_go,"Я поговорил с Торусом.",DIA_Addon_10023_Wache_go_Thorus);
+		Info_AddChoice(DIA_Addon_10023_Wache_go,"Я поговорил с Торусом. Он приказал отпустить рабов.",DIA_Addon_10023_Wache_go_Thorus);
 	}
 	else if(Npc_IsDead(Bloodwyn) && (Npc_HasItems(other,ItMi_Addon_Bloodwyn_Kopf) >= 1))
 	{
@@ -124,7 +127,7 @@ func void DIA_Addon_10023_Wache_go_Blood()
 	if(Npc_KnowsInfo(other,DIA_Addon_Thorus_Answer))
 	{
 		Info_ClearChoices(DIA_Addon_10023_Wache_go);
-		Info_AddChoice(DIA_Addon_10023_Wache_go,"Я поговорил с Торусом.",DIA_Addon_10023_Wache_go_Thorus);
+		Info_AddChoice(DIA_Addon_10023_Wache_go,"Я поговорил с Торусом. Он приказал отпустить рабов.",DIA_Addon_10023_Wache_go_Thorus);
 	}
 	else
 	{

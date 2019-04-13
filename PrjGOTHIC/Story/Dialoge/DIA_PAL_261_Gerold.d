@@ -114,7 +114,7 @@ instance DIA_Gerold_Gold(C_Info)
 	condition = DIA_Gerold_Gold_Condition;
 	information = DIA_Gerold_Gold_Info;
 	permanent = FALSE;
-	description = "А что если я заплачу золотом?";
+	description = "А что, если я заплачу золотом?";
 };
 
 
@@ -128,7 +128,7 @@ func int DIA_Gerold_Gold_Condition()
 
 func void DIA_Gerold_Gold_Info()
 {
-	AI_Output(other,self,"DIA_Gerold_Gold_15_00");	//А что если я заплачу золотом?
+	AI_Output(other,self,"DIA_Gerold_Gold_15_00");	//А что, если я заплачу золотом?
 	AI_Output(self,other,"DIA_Gerold_Gold_12_01");	//... хм ...
 	AI_Output(self,other,"DIA_Gerold_Gold_12_02");	//Нет.
 };
@@ -141,7 +141,7 @@ instance DIA_Gerold_Deal(C_Info)
 	condition = DIA_Gerold_Deal_Condition;
 	information = DIA_Gerold_Deal_Info;
 	permanent = FALSE;
-	description = "У меня есть записка для одного из заключенных ...";
+	description = "У меня есть записка для одного из заключенных. Ты можешь передать ее?";
 };
 
 
@@ -156,13 +156,13 @@ func int DIA_Gerold_Deal_Condition()
 func void DIA_Gerold_Deal_Info()
 {
 	AI_Output(other,self,"DIA_Gerold_Deal_15_00");	//У меня есть записка для одного из заключенных. Ты можешь передать ее?
-	AI_Output(self,other,"DIA_Gerold_Deal_12_01");	//Хм ... в принципе, я не вижу препятствий для этого. Для кого эта записка?
+	AI_Output(self,other,"DIA_Gerold_Deal_12_01");	//Хм... в принципе, я не вижу препятствий для этого. Для кого эта записка?
 	AI_Output(other,self,"DIA_Gerold_Deal_15_02");	//Для Горна.
 	AI_Output(self,other,"DIA_Gerold_Deal_12_03");	//Это очень важный заключенный. Я не думаю, что Гаронд согласится. Но если это для тебя так важно, мы всегда можем договориться.
 	AI_Output(other,self,"DIA_Gerold_Deal_15_04");	//Что ты хочешь за это?
 	AI_Output(self,other,"DIA_Gerold_Deal_12_05");	//Наши пайки последнее время стали совсем скудные. Я хочу нормальной еды.
 	AI_Output(self,other,"DIA_Gerold_Deal_12_06");	//Принеси мне колбасы и буханку свежего хлеба - и немного сладкого меда.
-	AI_Output(self,other,"DIA_Gerold_Deal_12_07");	//Бутылку вина, чтобы запить все это ... Да этого должно хватить. Я верю, у тебя получится достать все это. Так что заходи, когда найдешь продукты.
+	AI_Output(self,other,"DIA_Gerold_Deal_12_07");	//Бутылку вина, чтобы запить все это... Да, этого должно хватить. Я верю, у тебя получится достать все это. Так что заходи, когда найдешь продукты.
 	B_LogEntry(TOPIC_RescueGorn,"Если я принесу Герольду колбасу, хлеб, вино и мед, он передаст записку Горну.");
 };
 
@@ -174,7 +174,7 @@ instance DIA_Gerold_Stuff(C_Info)
 	condition = DIA_Gerold_Stuff_Condition;
 	information = DIA_Gerold_Stuff_Info;
 	permanent = TRUE;
-	description = "Я принес тебе кое-что ...";
+	description = "Я принес тебе кое-что. Вот еда, как ты и просил.";
 };
 
 
@@ -268,7 +268,7 @@ instance DIA_Gerold_SetGornFree(C_Info)
 	condition = DIA_Gerold_SetGornFree_Condition;
 	information = DIA_Gerold_SetGornFree_Info;
 	permanent = FALSE;
-	description = "Освободи Горна.";
+	description = "Освободи Горна. Это приказ командующего Гаронда.";
 };
 
 
@@ -381,7 +381,7 @@ func void DIA_Gerold_KAP4_ALLESRUHIG_geben()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_03");	//Быстрее, пошли в храм, пока остальные не повылезли из своих нор. Я не могу ждать до завтра.
+		AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_03");	//Быстрее пошли в храм, пока остальные не повылезли из своих нор. Я не могу ждать до завтра.
 	};
 	AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_04");	//Я думаю, в это время в храме никого нет. Я буду ждать тебя там.
 	AI_Output(self,other,"DIA_Gerold_KAP4_ALLESRUHIG_geben_12_05");	//Но смотри, чтобы это не оказалась черствая корка хлеба или какой-нибудь сырой кусок мяса, ты понял?
@@ -427,7 +427,7 @@ func void DIA_Gerold_MoreFood()
 	Info_ClearChoices(DIA_Gerold_FOOD);
 	if(Gerold_FoodCounter > 8)
 	{
-		AI_Output(self,other,"DIA_Gerold_MoreFood_12_00");	//Этого достаточно. Этого достаточно! Теперь я меня некоторое время не будет мучить голод.
+		AI_Output(self,other,"DIA_Gerold_MoreFood_12_00");	//Этого достаточно. Этого достаточно! Теперь меня некоторое время не будет мучить голод.
 		AI_Output(self,other,"DIA_Gerold_MoreFood_12_01");	//Вот мое золото. Я все равно ничего не могу на него купить здесь, а тебе оно, может быть, пригодится.
 		AI_Output(self,other,"DIA_Gerold_MoreFood_12_02");	//А теперь я лучше пойду, пока никто не увидел нас.
 		AI_StopProcessInfos(self);
@@ -469,11 +469,11 @@ func void DIA_Gerold_MoreFood()
 		};
 		if(Npc_HasItems(other,ItFo_Cheese))
 		{
-			Info_AddChoice(DIA_Gerold_FOOD,"Дать сыр)",DIA_Gerold_FOOD_kaese);
+			Info_AddChoice(DIA_Gerold_FOOD,"(Дать сыр)",DIA_Gerold_FOOD_kaese);
 		};
 		if(Npc_HasItems(other,ItFo_Sausage))
 		{
-			Info_AddChoice(DIA_Gerold_FOOD,"Дать колбасу)",DIA_Gerold_FOOD_Wurst);
+			Info_AddChoice(DIA_Gerold_FOOD,"(Дать колбасу)",DIA_Gerold_FOOD_Wurst);
 		};
 		Gerold_FoodCounter = Gerold_FoodCounter + 1;
 	};

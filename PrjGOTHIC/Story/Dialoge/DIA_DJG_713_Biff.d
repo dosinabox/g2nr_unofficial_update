@@ -165,12 +165,12 @@ func void DIA_Biff_WASHIERIMTAL_Info()
 	AI_Output(self,other,"DIA_Biff_WASHIERIMTAL_07_01");	//Золото и славу. Что же еще? Когда я покончу с драконами, я буду купаться в золоте.
 	AI_Output(self,other,"DIA_Biff_WASHIERIMTAL_07_02");	//У меня будет достаточно, чтобы провести остаток своей жизни, пытаясь посетить все таверны и бордели в стране.
 	Info_AddChoice(DIA_Biff_WASHIERIMTAL,"Что ж, тогда я желаю тебе удачи.",DIA_Biff_WASHIERIMTAL_vielglueck);
-	Info_AddChoice(DIA_Biff_WASHIERIMTAL,"Ну да,  либо это, либо ты станешь трупом!",DIA_Biff_WASHIERIMTAL_ihrtot);
+	Info_AddChoice(DIA_Biff_WASHIERIMTAL,"Ну да, либо это, либо ты станешь трупом!",DIA_Biff_WASHIERIMTAL_ihrtot);
 };
 
 func void DIA_Biff_WASHIERIMTAL_ihrtot()
 {
-	AI_Output(other,self,"DIA_Biff_WASHIERIMTAL_ihrtot_15_00");	//Ну да,  либо это, либо ты станешь трупом!
+	AI_Output(other,self,"DIA_Biff_WASHIERIMTAL_ihrtot_15_00");	//Ну да, либо это, либо ты станешь трупом!
 	AI_Output(self,other,"DIA_Biff_WASHIERIMTAL_ihrtot_07_01");	//И что? Это часть игры. Если ты хочешь стать богатым, ты должен рисковать.
 	Info_ClearChoices(DIA_Biff_WASHIERIMTAL);
 };
@@ -526,7 +526,7 @@ func void DIA_Biff_MEHRGELD_ok()
 	AI_Output(other,self,"DIA_Biff_MEHRGELD_ok_15_00");	//Хорошо. Ты этого стоишь.
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
-		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_01");	//Да уж, это точно. Теперь, пошли дальше.
+		AI_Output(self,other,"DIA_Biff_MEHRGELD_ok_07_01");	//Да уж, это точно. Теперь пошли дальше.
 		AI_StopProcessInfos(self);
 		if(DJG_Biff_HalbeHalbe == TRUE)
 		{
@@ -583,57 +583,73 @@ func void DIA_Biff_HEILUNG_Info()
 	AI_Output(other,self,"DIA_Biff_HEILUNG_15_00");	//Тебе нужно лечебное зелье?
 	AI_Output(self,other,"DIA_Biff_HEILUNG_07_01");	//Конечно. Не помешает.
 	Info_ClearChoices(DIA_Biff_HEILUNG);
-	Info_AddChoice(DIA_Biff_HEILUNG,"Я дам тебе что-нибудь позже.",DIA_Biff_HEILUNG_spaeter);
-	Info_AddChoice(DIA_Biff_HEILUNG,"(самое маленькое лечебное зелье)",DIA_Biff_HEILUNG_heiltrankLow);
-	Info_AddChoice(DIA_Biff_HEILUNG,"(лучшее лечебное зелье)",DIA_Biff_HEILUNG_heiltrank);
+	Info_AddChoice(DIA_Biff_HEILUNG,"Я дам тебе что-нибудь позже.",DIA_Biff_HEILUNG_Spaeter);
+	if(Npc_HasItems(other,ItPo_Health_03) >= 1)
+	{
+		Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебный эликсир)",DIA_Biff_HEILUNG_HeilTrankHigh);
+	};
+	if(Npc_HasItems(other,ItPo_Health_02) >= 1)
+	{
+		Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебный экстракт)",DIA_Biff_HEILUNG_HeilTrankMed);
+	};
+	if(Npc_HasItems(other,ItPo_Health_01) >= 1)
+	{
+		Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебную эссенцию)",DIA_Biff_HEILUNG_HeilTrankLow);
+	};
 };
 
-func void DIA_Biff_HEILUNG_heiltrank()
+func void DIA_Biff_HEILUNG_HeilTrankHigh()
 {
 	if(B_GiveInvItems(other,self,ItPo_Health_03,1))
 	{
-		B_UseItem(self,ItPo_Health_03);
-	}
-	else if(B_GiveInvItems(other,self,ItPo_Health_02,1))
-	{
-		B_UseItem(self,ItPo_Health_02);
-	}
-	else if(B_GiveInvItems(other,self,ItPo_Health_01,1))
-	{
-		B_UseItem(self,ItPo_Health_01);
+		if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
+		{
+			B_UseItem(self,ItPo_Health_03);
+		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_heiltrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
+		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
 	};
 	AI_StopProcessInfos(self);
 };
 
-func void DIA_Biff_HEILUNG_heiltrankLow()
+func void DIA_Biff_HEILUNG_HeilTrankMed()
+{
+	if(B_GiveInvItems(other,self,ItPo_Health_02,1))
+	{
+		if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
+		{
+			B_UseItem(self,ItPo_Health_02);
+		};
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
+	};
+	AI_StopProcessInfos(self);
+};
+
+func void DIA_Biff_HEILUNG_HeilTrankLow()
 {
 	if(B_GiveInvItems(other,self,ItPo_Health_01,1))
 	{
-		B_UseItem(self,ItPo_Health_01);
-	}
-	else if(B_GiveInvItems(other,self,ItPo_Health_02,1))
-	{
-		B_UseItem(self,ItPo_Health_02);
-	}
-	else if(B_GiveInvItems(other,self,ItPo_Health_03,1))
-	{
-		B_UseItem(self,ItPo_Health_03);
+		if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
+		{
+			B_UseItem(self,ItPo_Health_01);
+		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_heiltrankLow_07_00");	//К сожалению, его у тебя нет. Вернемся к этому вопросу позже.
+		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrankLow_07_00");	//К сожалению, его у тебя нет. Вернемся к этому вопросу позже.
 	};
 	AI_StopProcessInfos(self);
 };
 
-func void DIA_Biff_HEILUNG_spaeter()
+func void DIA_Biff_HEILUNG_Spaeter()
 {
-	AI_Output(other,self,"DIA_Biff_HEILUNG_spaeter_15_00");	//Я дам тебе что-нибудь позже.
-	AI_Output(self,other,"DIA_Biff_HEILUNG_spaeter_07_01");	//Только не забудь.
+	AI_Output(other,self,"DIA_Biff_HEILUNG_Spaeter_15_00");	//Я дам тебе что-нибудь позже.
+	AI_Output(self,other,"DIA_Biff_HEILUNG_Spaeter_07_01");	//Только не забудь.
 	AI_StopProcessInfos(self);
 };
 

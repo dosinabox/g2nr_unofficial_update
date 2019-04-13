@@ -68,7 +68,7 @@ func int DIA_Lee_DI_PERM6_Condition()
 func void DIA_Lee_DI_PERM6_Info()
 {
 	AI_Output(other,self,"DIA_Lee_DI_PERM6_15_00");	//Как мой корабль?
-	if(ORkSturmDI == FALSE)
+	if(OrkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Lee_DI_PERM6_04_01");	//Не волнуйся. Я держу все под контролем.
 	}
@@ -180,7 +180,7 @@ instance DIA_Lee_DI_UndeadDragonDead(C_Info)
 	condition = DIA_Lee_DI_UndeadDragonDead_Condition;
 	information = DIA_Lee_DI_UndeadDragonDead_Info;
 	permanent = TRUE;
-	description = "Мы можем отчаливать.";
+	description = "Мы можем отчаливать. Враг мертв.";
 };
 
 
@@ -249,4 +249,5 @@ func void DIA_Lee_DI_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Lee_DI_PICKPOCKET);
 };
+
 

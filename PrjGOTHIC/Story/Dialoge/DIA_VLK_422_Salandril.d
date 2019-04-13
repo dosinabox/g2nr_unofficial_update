@@ -39,7 +39,7 @@ instance DIA_Salandril_PICKPOCKET(C_Info)
 	condition = DIA_Salandril_PICKPOCKET_Condition;
 	information = DIA_Salandril_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть этот ключ будет легко)";
+	description = Pickpocket_40_Key;
 };
 
 
@@ -154,7 +154,7 @@ instance DIA_Salandril_Trade(C_Info)
 	condition = DIA_Salandril_Trade_Condition;
 	information = DIA_Salandril_Trade_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
@@ -169,13 +169,22 @@ func int DIA_Salandril_Trade_Condition()
 
 func void DIA_Salandril_Trade_Info()
 {
+	if(Salandril_flag == 1)
+	{
+		B_ClearAlchemyInv(self);
+		if(Salandril_flasks > 0)
+		{
+			CreateInvItems(self,ItMi_Flask,Salandril_flasks);
+		};
+		Salandril_flag = 0;
+	};
 	if(Npc_HasItems(self,ItKe_Salandril) >= 1)
 	{
 		Npc_RemoveInvItem(self,ItKe_Salandril);
 		DIA_SALANDRIL_PICKPOCKET_REMOVED = TRUE;
 	};
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Salandril_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Salandril_Trade_13_01");	//С удовольствием, преподобный брат.
@@ -268,7 +277,7 @@ instance DIA_Salandril_GehinsKloster(C_Info)
 	nr = 2;
 	condition = DIA_Salandril_GehinsKloster_Condition;
 	information = DIA_Salandril_GehinsKloster_Info;
-	description = "Так ты пойдешь в монастырь, или тебя еще раз проучить?..";
+	description = "Так ты пойдешь в монастырь, или тебя еще раз проучить?";
 };
 
 
@@ -282,7 +291,7 @@ func int DIA_Salandril_GehinsKloster_Condition()
 
 func void DIA_Salandril_GehinsKloster_Info()
 {
-	AI_Output(other,self,"DIA_Salandril_GehinsKloster_15_00");	//Так ты пойдешь в монастырь, или тебя еще раз проучить?..
+	AI_Output(other,self,"DIA_Salandril_GehinsKloster_15_00");	//Так ты пойдешь в монастырь, или тебя еще раз проучить?
 	AI_Output(self,other,"DIA_Salandril_GehinsKloster_13_01");	//Ты еще пожалеешь об этом. Да, черт тебя побери, я пойду в этот монастырь, но тебе это просто так с рук не сойдет.
 	if(DIA_SALANDRIL_PICKPOCKET_REMOVED == TRUE)
 	{

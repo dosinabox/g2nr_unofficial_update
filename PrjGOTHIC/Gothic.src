@@ -66,7 +66,7 @@ Items\IT_Addon_BeliarWeapons.d
 Items\IT_Addon_Belts.d
 Items\IT_Addon_Food.d
 Items\IT_Addon_Keys.d
-Items\IT_Addon_Misk.d
+Items\IT_Addon_Misc.d
 Items\IT_Addon_Potions.d
 Items\IT_Addon_Runes.d
 Items\IT_Addon_Scrolls.d
@@ -83,7 +83,7 @@ Items\IT_FakeScroll.d
 Items\IT_Food.d
 Items\IT_Keys.d
 Items\IT_Melee_weapons.d
-Items\IT_Misk.d
+Items\IT_Misc.d
 Items\IT_Plants.d
 Items\IT_Potions.d
 Items\IT_Ranged_weapons.d
@@ -301,6 +301,7 @@ AI\Magic\ZS_Magic\ZS_MagicBurn.d
 AI\Magic\ZS_Magic\ZS_MagicBurnShort.d
 AI\Magic\ZS_Magic\ZS_MagicFlee.d
 Story\B_GiveTradeInv\B_ClearRuneInv.d
+Story\B_Story\B_ClearSmithInv.d
 AI\Magic\ZS_Magic\ZS_MagicFreeze.d
 AI\Magic\ZS_Magic\ZS_MagicShrink.d
 AI\Magic\ZS_Magic\ZS_MagicSleep.d
@@ -826,7 +827,7 @@ Story\NPC\PC_Mage_OW.d
 Story\NPC\PC_Psionic.d
 Story\NPC\PC_Psionic_DI.d
 Story\NPC\PC_Rockefeller.d
-Story\NPC\PC_ThiefOW.d
+Story\NPC\PC_Thief_OW.d
 Story\NPC\PC_Thief_DI.d
 Story\NPC\PC_Thief_NW.d
 Story\NPC\PIR_1300_Addon_Greg_NW.d
@@ -1091,7 +1092,7 @@ Story\NPC\VLK_496_Buergerin.d
 Story\NPC\VLK_497_Buergerin.d
 Story\NPC\VLK_498_Ignaz.d
 Story\NPC\VLK_499_Buerger.d
-Story\NPC\_FH.d
+Story\NPC\FH.d
 Story\NPC\Monster\MST_Addon_Alligator.d
 Story\NPC\Monster\MST_Addon_Blattcrawler.d
 Story\NPC\Monster\MST_Addon_Bloodhound.d
@@ -1261,7 +1262,7 @@ Story\B_Content\B_CaptainConditions.d
 Story\B_Content\B_CaptainCallsAllOnBoard.d
 Story\B_Content\C_Addon_Knows_Schnaps.d
 Story\B_Content\B_Addon_PiratesGoHome.d
-Story\Dialoge\DIA_AddonBAU_4300_Cabalorn.d
+Story\Dialoge\DIA_BAU_4300_Addon_Cavalorn.d
 Story\Dialoge\DIA_BDT_10004_Addon_Finn.d
 Story\Dialoge\DIA_BDT_10005_Addon_Wache_02.d
 Story\Dialoge\DIA_BDT_10008_Addon_Bandit.d
@@ -1414,7 +1415,7 @@ Story\Dialoge\DIA_DJG_709_Rethon.d
 Story\Dialoge\DIA_DJG_710_Kjorn.d
 Story\Dialoge\DIA_DJG_711_Godar.d
 Story\Dialoge\DIA_DJG_712_Hokurn.d
-Story\Dialoge\DAI_DJG_713_Biff.d
+Story\Dialoge\DIA_DJG_713_Biff.d
 Story\Dialoge\DIA_DJG_713_Biff_DI.d
 Story\Dialoge\DIA_DJG_713_Biff_NW.d
 Story\Dialoge\DIA_DJG_714_Jan.d
@@ -1506,7 +1507,7 @@ Story\Dialoge\DIA_PC_Psionic.d
 Story\Dialoge\DIA_PC_Psionic_DI.d
 Story\Dialoge\DIA_PC_Thief_DI.d
 Story\Dialoge\DIA_PC_Thief_NW.d
-Story\Dialoge\DIA_PC_ThiefOW.d
+Story\Dialoge\DIA_PC_Thief_OW.d
 Story\Dialoge\DIA_SLD_800_Lee.d
 Story\Dialoge\DIA_SLD_800_Lee_DI.d
 Story\Dialoge\DIA_SLD_801_Torlof.d

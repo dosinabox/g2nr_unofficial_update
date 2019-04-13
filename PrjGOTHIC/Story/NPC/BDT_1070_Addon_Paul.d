@@ -1,7 +1,7 @@
 
 instance BDT_1070_Addon_Paul(Npc_Default)
 {
-	name[0] = "Поль";
+	name[0] = "Пол";
 	guild = GIL_BDT;
 	id = 1070;
 	voice = 3;

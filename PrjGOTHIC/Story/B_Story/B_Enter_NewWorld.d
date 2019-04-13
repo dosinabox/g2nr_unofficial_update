@@ -173,6 +173,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		B_StartOtherRoutine(Bennet,"PRISON");
 		B_StartOtherRoutine(Sergio,"WAIT");
 		B_StartOtherRoutine(Peck,"STORAGE");
+		B_StartOtherRoutine(Vanja,"ALONE");
 		B_RemoveNpc(PAL_203_Lothar);
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
@@ -329,7 +330,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 {
 	if(EnterNW_Kapitel4 == FALSE)
 	{
-		if(Npc_GetDistToWP(Salandril,"ALTAR") < 10000)
+		if(MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(Salandril,"Start");
 		};
@@ -350,6 +351,10 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
 		Wld_InsertNpc(DragonSnapper,"NW_FARM3_BIGWOOD_04");
 		Wld_InsertNpc(Maya_Troll,"NW_TROLLAREA_RUINS_41");
+		if(MIS_HealHilda == LOG_SUCCESS)
+		{
+			B_StartOtherRoutine(Hilda,"START");
+		};
 		if(hero.guild == GIL_PAL)
 		{
 			Wld_InsertNpc(OrcElite_AntiPaladin1,"NW_FARM3_PATH_BRIDGE");
@@ -577,7 +582,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 	{
 		B_RemoveNpc(Xardas);
 		B_StartOtherRoutine(Lester,"XardasWeg");
-		if(Npc_GetDistToWP(Salandril,"ALTAR") < 10000)
+		if(MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS)
 		{
 			B_StartOtherRoutine(Salandril,"Start");
 		};

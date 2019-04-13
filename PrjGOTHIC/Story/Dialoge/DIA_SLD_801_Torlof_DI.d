@@ -43,7 +43,7 @@ func int DIA_Torlof_DI_Hallo_Condition()
 func void DIA_Torlof_DI_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_DI_Hallo_15_00");	//Все спокойно?
-	if(ORkSturmDI == FALSE)
+	if(OrkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Torlof_DI_Hallo_01_01");	//Пока да. Но все может измениться в одно мгновение. Будь осторожен.
 	}
@@ -211,4 +211,5 @@ func void DIA_Torlof_DI_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Torlof_DI_PICKPOCKET);
 };
+
 

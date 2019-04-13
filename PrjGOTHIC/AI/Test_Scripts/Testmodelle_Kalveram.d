@@ -1,7 +1,7 @@
 
 instance Itemhoshi(Npc_Default)
 {
-	name[0] = "Itemhoshi";
+	name[0] = "Мистер Вещь Хоша";
 	guild = GIL_MIL;
 	id = 1500;
 	voice = 3;
@@ -833,7 +833,7 @@ instance Itemhoshi(Npc_Default)
 
 instance Hoshi_Testmodell(Npc_Default)
 {
-	name[0] = "Hoshi";
+	name[0] = "Хош";
 	guild = GIL_MIL;
 	id = 20000;
 	voice = 6;
@@ -964,7 +964,7 @@ instance Info_TA_Testmodell_GuideStart(C_Info)
 	condition = DIA_TA_Testmodell_GuideStart_Condition;
 	information = DIA_TA_Testmodell_GuideStart_Info;
 	permanent = TRUE;
-	description = "Zeig mir den Guide_Player!";
+	description = "Покажи мне Guide_Player!";
 };
 
 
@@ -992,7 +992,7 @@ instance Info_TA_Testmodell_GuideEnd(C_Info)
 	condition = DIA_TA_Testmodell_GuideEnd_Condition;
 	information = DIA_TA_Testmodell_GuideEnd_Info;
 	permanent = TRUE;
-	description = "Beende den Guide_Player!";
+	description = "Занончить Guide_Player!";
 };
 
 
@@ -1020,7 +1020,7 @@ instance Info_TA_Testmodell_FollowStart(C_Info)
 	condition = DIA_TA_Testmodell_FollowStart_Condition;
 	information = DIA_TA_Testmodell_FollowStart_Info;
 	permanent = TRUE;
-	description = "Folge mir!";
+	description = "Иди за мной!";
 };
 
 
@@ -1048,7 +1048,7 @@ instance Info_TA_Testmodell_FollowEnd(C_Info)
 	condition = DIA_TA_Testmodell_FollowEnd_Condition;
 	information = DIA_TA_Testmodell_FollowEnd_Info;
 	permanent = TRUE;
-	description = "Hцr auf mir zu folgen!";
+	description = "Хватит ходить за мной!";
 };
 
 
@@ -1071,7 +1071,7 @@ func void DIA_TA_Testmodell_FollowEnd_Info()
 
 instance TA_Smalltalkpartner(Npc_Default)
 {
-	name[0] = "Smalltalkpartner";
+	name[0] = "Партнер для короткого разговора";
 	guild = GIL_NONE;
 	id = 1501;
 	voice = 1;
@@ -1126,7 +1126,7 @@ func void INIT_TA_Testlevel()
 
 instance gold(C_Item)
 {
-	name = "Ein Beutel voll Gold!";
+	name = "Кошелек полон монет!";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
@@ -1143,9 +1143,9 @@ instance gold(C_Item)
 func void UseGold()
 {
 	CreateInvItems(self,ItMi_Gold,1000);
-	PrintScreen("1000 Gold erhalten.",-1,45,FONT_Screen,2);
+	PrintScreen("1000 золота получено.",-1,45,FONT_Screen,2);
 	Snd_Play("Geldbeutel");
-	PrintScreen("Cheater Malus: -100 EXP",-1,55,FONT_Screen,2);
+	PrintScreen("Наказание за читерство: -100 EXP",-1,55,FONT_Screen,2);
 	if(hero.exp >= 100)
 	{
 		hero.exp = hero.exp - 100;
@@ -1159,7 +1159,7 @@ func void UseGold()
 
 instance Armor(C_Item)
 {
-	name = "Ein Beutel voller Rьstungen!";
+	name = "Мешок наполнен доспехами!";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
@@ -1229,7 +1229,7 @@ func void UseArmor()
 
 instance Runenbrief(C_Item)
 {
-	name = "Runenbrief";
+	name = "Список рун";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -1237,7 +1237,7 @@ instance Runenbrief(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseHosh1;
 	scemeName = "MAP";
-	description = "Gibt dir alle Addon-Runen";
+	description = "Получены все руны аддона";
 };
 
 
@@ -1265,7 +1265,7 @@ func void UseHosh1()
 
 instance EnterBanditCamp(C_Item)
 {
-	name = "Komm ins BanditCamp";
+	name = "Пришли в бандитский лагерь";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -1273,7 +1273,7 @@ instance EnterBanditCamp(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseHosh2;
 	scemeName = "MAP";
-	description = "Setzt Player_HasTalkedToBanditCamp";
+	description = "Задать Player_HasTalkedToBanditCamp";
 };
 
 
@@ -1285,7 +1285,7 @@ func void UseHosh2()
 
 instance PH(C_Item)
 {
-	name = "Gimme Magic";
+	name = "Дай мне магию";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -1293,7 +1293,7 @@ instance PH(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UsePatrickHelper;
 	scemeName = "MAP";
-	description = "Kleine Magietestumgebung";
+	description = "Небольшой тест магии";
 };
 
 
@@ -1387,15 +1387,15 @@ func void UsePatrickHelper()
 
 instance Hosh4(C_Item)
 {
-	name = "Greg ist Back";
+	name = "Грег вернулся";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItWr_Book_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Tagebuch";
-	text[0] = "Das Tagebuch von Hoshi";
+	description = "Дневник";
+	text[0] = "Дневник Хоша";
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = UseHoshiTagebuch;

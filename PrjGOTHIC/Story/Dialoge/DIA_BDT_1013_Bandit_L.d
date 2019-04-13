@@ -134,7 +134,7 @@ func void dia_bdt_1013_bandit_where_notrap()
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_NOTRAP_01_02");	//Либо ты сейчас идешь со мной, либо забудь о том, что я тебе говорил!
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
 	Info_AddChoice(dia_bdt_1013_bandit_where,"Может быть, позже...",dia_bdt_1013_bandit_where_later);
-	Info_AddChoice(dia_bdt_1013_bandit_where,"Кое-кто уже пытался провести меня ...",dia_bdt_1013_bandit_where_damals);
+	Info_AddChoice(dia_bdt_1013_bandit_where,"Полегче, приятель! Кое-кто уже пытался провести меня...",dia_bdt_1013_bandit_where_damals);
 	Info_AddChoice(dia_bdt_1013_bandit_where,"Хорошо! Ты идешь первым!",dia_bdt_1013_bandit_where_yes);
 };
 
@@ -143,7 +143,7 @@ func void dia_bdt_1013_bandit_where_damals()
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_15_00");	//Полегче, приятель! Кое-кто уже пытался провести меня...
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_01_01");	//Ох?
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_15_02");	//Этот парень предложил, чтобы мы вместе нашли амулет и поделили доход.
-	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_15_03");	//А когда мы достигли нашей цели, он и со своими дружками напал на меня.
+	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_15_03");	//А когда мы достигли нашей цели, он со своими дружками напал на меня.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_DAMALS_01_04");	//Похоже, ты просто связался с плохими людьми - и где это было?
 	Info_ClearChoices(dia_bdt_1013_bandit_where);
 	Info_AddChoice(dia_bdt_1013_bandit_where,"Это не так уж важно.",dia_bdt_1013_bandit_where_notimportant);

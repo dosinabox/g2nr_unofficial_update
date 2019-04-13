@@ -34,14 +34,15 @@ func void Spell_Cast_SummonDemon()
 	{
 		self.attribute[ATR_MANA] = self.attribute[ATR_MANA] - SPL_Cost_SummonDemon;
 	};
+	self.aivar[AIV_SelectSpell] += 1;
 	if(Npc_IsPlayer(self))
 	{
+		Wld_StopEffect("SLOW_MOTION");
 		Wld_SpawnNpcRange(self,Summoned_Demon,1,1000);
 	}
 	else
 	{
 		Wld_SpawnNpcRange(self,Demon,1,1000);
 	};
-	self.aivar[AIV_SelectSpell] += 1;
 };
 

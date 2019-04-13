@@ -234,7 +234,7 @@ func void DIA_Addon_Nadja_LuciaInfo_sonst()
 		Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,PRINT_Addon_NadjaWait,DIA_Addon_Nadja_WAIT);
 	};
 	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Спасибо, но мне нужно идти.",DIA_Addon_Nadja_LuciaInfo_weiter);
-	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Почему бы и нет? ...",DIA_Nadja_Poppen_Start);
+	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Почему бы и нет?",DIA_Nadja_Poppen_Start);
 };
 
 func void DIA_Addon_Nadja_LuciaInfo_weiter()
@@ -277,7 +277,7 @@ func void DIA_Nadja_Poppen_Info()
 	AI_Output(self,other,"DIA_Nadja_Poppen_16_00");	//Следующая пара часов принадлежит только нам.
 	AI_Output(self,other,"DIA_Nadja_Poppen_16_01");	//Расслабься. Ложись и получай удовольствие.
 	Info_ClearChoices(DIA_Nadja_Poppen);
-	Info_AddChoice(DIA_Nadja_Poppen,"Хорошо ...",DIA_Nadja_Poppen_Start);
+	Info_AddChoice(DIA_Nadja_Poppen,"Хорошо...",DIA_Nadja_Poppen_Start);
 };
 
 func void DIA_Nadja_Poppen_Start()

@@ -28,7 +28,7 @@ func void Rtn_Start_491()
 
 func void Rtn_Alone_491()
 {
-	TA_Sweep_FP(8,0,23,0,"NW_CITY_HABOUR_PUFF_VANJA");
-	TA_Sweep_FP(23,0,8,0,"NW_CITY_HABOUR_PUFF_VANJA");
+	TA_Stand_Sweeping(8,0,23,0,"NW_CITY_HABOUR_PUFF_VANJA");
+	TA_Stand_Sweeping(23,0,8,0,"NW_CITY_HABOUR_PUFF_VANJA");
 };
 

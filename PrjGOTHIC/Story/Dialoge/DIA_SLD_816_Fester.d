@@ -51,7 +51,7 @@ instance DIA_Fester_Auftrag(C_Info)
 	condition = DIA_Fester_Auftrag_Condition;
 	information = DIA_Fester_Auftrag_Info;
 	permanent = FALSE;
-	description = "Почему?";
+	description = "Зачем?";
 };
 
 
@@ -66,7 +66,7 @@ func int DIA_Fester_Auftrag_Condition()
 func void DIA_Fester_Auftrag_Info()
 {
 	AI_Output(other,self,"DIA_Fester_Auftrag_15_00");	//Зачем?
-	AI_Output(self,other,"DIA_Fester_Auftrag_08_01");	//Последнее время у фермеров все больше с полевыми хищниками.
+	AI_Output(self,other,"DIA_Fester_Auftrag_08_01");	//Последнее время у фермеров все больше проблем с полевыми хищниками.
 	AI_Output(self,other,"DIA_Fester_Auftrag_08_02");	//Нескольких крестьян эти твари даже съели.
 	AI_Output(self,other,"DIA_Fester_Auftrag_08_03");	//А этот жирный Онар не видит здесь никакой проблемы. Нам не платят жалование уже неделю.
 	AI_Output(self,other,"DIA_Fester_Auftrag_08_04");	//И в этом есть моя вина. Теперь Ли хочет, чтобы я лично уничтожил гнездо этих тварей.
@@ -137,7 +137,7 @@ instance DIA_Fester_Together(C_Info)
 	condition = DIA_Fester_Together_Condition;
 	information = DIA_Fester_Together_Info;
 	permanent = FALSE;
-	description = "Мы могли бы  атаковать это гнездо вместе...";
+	description = "Мы могли бы атаковать это гнездо вместе...";
 };
 
 
@@ -151,7 +151,7 @@ func int DIA_Fester_Together_Condition()
 
 func void DIA_Fester_Together_Info()
 {
-	AI_Output(other,self,"DIA_Fester_Together_15_00");	//Мы могли бы  атаковать это гнездо вместе...
+	AI_Output(other,self,"DIA_Fester_Together_15_00");	//Мы могли бы атаковать это гнездо вместе...
 	AI_Output(self,other,"DIA_Fester_Together_08_01");	//Ты хочешь помочь мне? Почему?
 	Info_ClearChoices(DIA_Fester_Together);
 	Info_AddChoice(DIA_Fester_Together,"Я хочу получить за это золото!",DIA_Fester_Together_Gold);
@@ -343,7 +343,7 @@ instance DIA_Fester_PERMPruegel(C_Info)
 
 func int DIA_Fester_PERMPruegel_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Fester_WasMitAbmachung) || Npc_KnowsInfo(other,DIA_Jarvis_MissionKO) || (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))
+	if((Npc_KnowsInfo(other,DIA_Fester_WasMitAbmachung) || Npc_KnowsInfo(other,DIA_Jarvis_MissionKO) || (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE)) && (MIS_ReadyforChapter4 == FALSE))
 	{
 		return TRUE;
 	};

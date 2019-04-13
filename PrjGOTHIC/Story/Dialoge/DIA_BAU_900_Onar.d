@@ -180,7 +180,7 @@ instance DIA_Onar_WegenPepe(C_Info)
 	condition = DIA_Onar_WegenPepe_Condition;
 	information = DIA_Onar_WegenPepe_Info;
 	permanent = FALSE;
-	description = "Можешь благодарить Булко, у тебя стало на несколько овец меньше.";
+	description = "Можешь благодарить Буллко, у тебя стало на несколько овец меньше.";
 };
 
 
@@ -194,8 +194,8 @@ func int DIA_Onar_WegenPepe_Condition()
 
 func void DIA_Onar_WegenPepe_Info()
 {
-	AI_Output(other,self,"DIA_Onar_WegenPepe_15_00");	//Можешь благодарить Булко, у тебя стало на несколько овец меньше.
-	AI_Output(self,other,"DIA_Onar_WegenPepe_14_01");	//О чем это ты говоришь? Кто такой Булко?
+	AI_Output(other,self,"DIA_Onar_WegenPepe_15_00");	//Можешь благодарить Буллко, у тебя стало на несколько овец меньше.
+	AI_Output(self,other,"DIA_Onar_WegenPepe_14_01");	//О чем это ты говоришь? Кто такой Буллко?
 	AI_Output(other,self,"DIA_Onar_WegenPepe_15_02");	//Один из наемников.
 	AI_Output(self,other,"DIA_Onar_WegenPepe_14_03");	//Какое мне до этого дело? Если он притронулся к моим овцам, он будет отвечать перед Ли.
 	AI_Output(self,other,"DIA_Onar_WegenPepe_14_04");	//Зачем ты отвлекаешь меня по таким пустякам?

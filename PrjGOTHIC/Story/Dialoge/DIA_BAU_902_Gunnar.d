@@ -30,7 +30,7 @@ instance DIA_Gunnar_Hallo(C_Info)
 	condition = DIA_Gunnar_Hallo_Condition;
 	information = DIA_Gunnar_Hallo_Info;
 	permanent = TRUE;
-	description = "Что новенького?";
+	description = "Как дела?";
 };
 
 
@@ -115,7 +115,7 @@ func void DIA_Gunnar_South_Info()
 {
 	AI_Output(other,self,"DIA_Gunnar_South_15_00");	//Что ты знаешь о наемниках с юга?
 	AI_Output(self,other,"DIA_Gunnar_South_10_01");	//Немногое. Насколько мне известно, они охотились там на орков.
-	AI_Output(self,other,"DIA_Gunnar_South_10_02");	//Их босс - Сильвио. Булко, Сентенза, Рауль и еще несколько парней работают на него...
+	AI_Output(self,other,"DIA_Gunnar_South_10_02");	//Их босс - Сильвио. Буллко, Сентенза, Рауль и еще несколько парней работают на него...
 };
 
 

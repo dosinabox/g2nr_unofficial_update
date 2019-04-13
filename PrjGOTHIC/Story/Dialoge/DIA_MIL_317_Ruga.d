@@ -28,7 +28,7 @@ instance DIA_Ruga_PICKPOCKET(C_Info)
 	condition = DIA_Ruga_PICKPOCKET_Condition;
 	information = DIA_Ruga_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(Украсть этот ключ будет легко)";
+	description = Pickpocket_40_Key;
 };
 
 
@@ -105,7 +105,7 @@ instance DIA_Ruga_Train(C_Info)
 	condition = DIA_Ruga_Train_Condition;
 	information = DIA_Ruga_Train_Info;
 	permanent = TRUE;
-	description = "Ты не мог бы потренировать меня?";
+	description = "Ты можешь потренировать меня?";
 };
 
 

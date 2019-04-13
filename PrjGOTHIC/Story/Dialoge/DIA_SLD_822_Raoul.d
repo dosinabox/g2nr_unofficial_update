@@ -117,9 +117,9 @@ func int DIA_Raoul_PERMNone_Condition()
 
 func void DIA_Raoul_PERMNone_Info()
 {
+	AI_Output(other,self,"DIA_Raoul_PERMNone_15_00");	//Я хочу осмотреться на этой ферме!
 	if(Raoul_gesagt == FALSE)
 	{
-		AI_Output(other,self,"DIA_Raoul_PERMNone_15_00");	//Я хочу осмотреться на этой ферме!
 		AI_Output(self,other,"DIA_Raoul_PERMNone_01_01");	//Не заходи в здание слева. Там Сильвио. Он сейчас не в самом лучшем расположении духа.
 		AI_Output(self,other,"DIA_Raoul_PERMNone_01_02");	//Если он увидит слабака, не работающего на этой ферме, он может решить выместить на нем свою злобу.
 		Raoul_gesagt = TRUE;
@@ -230,7 +230,7 @@ instance DIA_Raoul_Duell(C_Info)
 
 func int DIA_Raoul_Duell_Condition()
 {
-	if((Raoul_gesagt == TRUE) || Npc_KnowsInfo(other,DIA_Raoul_AboutSylvio) || Npc_KnowsInfo(other,DIA_Jarvis_MissionKO))
+	if(((Raoul_gesagt == TRUE) || Npc_KnowsInfo(other,DIA_Raoul_AboutSylvio) || Npc_KnowsInfo(other,DIA_Jarvis_MissionKO)) && (MIS_ReadyforChapter4 == FALSE))
 	{
 		return TRUE;
 	};
@@ -271,7 +271,7 @@ func void DIA_Raoul_PERM_Info()
 	AI_Output(other,self,"DIA_Raoul_PERM_15_00");	//Все в порядке?
 	if(MIS_Raoul_KillTrollBlack == LOG_Running)
 	{
-		AI_Output(self,other,"DIA_Raoul_PERM_01_01");	//Не болтай попусту. Или и принеси шкуру черного тролля.
+		AI_Output(self,other,"DIA_Raoul_PERM_01_01");	//Не болтай попусту. Иди и принеси шкуру черного тролля.
 	}
 	else
 	{
@@ -450,7 +450,7 @@ func void DIA_Raoul_TROLLFELL_Info()
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_01_04");	//Хорошо. Я дам тебе 500 золотых монет и три сильных лечебных зелья. Что скажешь?
 	Info_ClearChoices(DIA_Raoul_TROLLFELL);
 	Info_AddChoice(DIA_Raoul_TROLLFELL,"Этого недостаточно.",DIA_Raoul_TROLLFELL_nein);
-	Info_AddChoice(DIA_Raoul_TROLLFELL,"Готово.",DIA_Raoul_TROLLFELL_ja);
+	Info_AddChoice(DIA_Raoul_TROLLFELL,"Продано.",DIA_Raoul_TROLLFELL_ja);
 	MIS_Raoul_KillTrollBlack = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Raoul_KillTrollBlack);
 };
@@ -627,7 +627,7 @@ func void DIA_Raoul_Ship_Info()
 {
 	AI_Output(other,self,"DIA_Raoul_Ship_15_00");	//Ты не отказался бы от океанского круиза?
 	AI_Output(self,other,"DIA_Raoul_Ship_01_01");	//Что ты замышляешь? Ты хочешь захватить корабль паладинов? (смеется)
-	AI_Output(other,self,"DIA_Raoul_Ship_15_02");	//А что если и так?
+	AI_Output(other,self,"DIA_Raoul_Ship_15_02");	//А что, если и так?
 	AI_Output(self,other,"DIA_Raoul_Ship_01_03");	//(серьезно) У тебя совсем крыша поехала. Нет, спасибо. Это не для меня.
 	AI_Output(self,other,"DIA_Raoul_Ship_01_04");	//Я не вижу причин покидать Хоринис. Мне все равно, где зарабатывать деньги, здесь или на материке.
 	AI_Output(self,other,"DIA_Raoul_Ship_01_05");	//Найди кого-нибудь еще.

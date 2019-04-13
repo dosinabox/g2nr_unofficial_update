@@ -202,8 +202,8 @@ func int DIA_Kardif_TRADE_Condition()
 
 func void DIA_Kardif_TRADE_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Kardif_TRADE_15_00");	//ƒай мне что-нибудь выпить.
+	B_GiveTradeInv(self);
 };
 
 
@@ -791,7 +791,7 @@ func void DIA_Kardif_Crew_Info()
 {
 	AI_Output(other,self,"DIA_Kardif_Crew_15_00");	//ћне все еще нужны матросы.
 	AI_Output(self,other,"DIA_Kardif_Crew_14_01");	//Ќастали плохие времена, дружище. “ы не найдешь матросов во всем ’оринисе. Ѕольшинство из них давно покинули город.
-	AI_Output(self,other,"DIA_Kardif_Crew_14_02");	//Ќо с хорошим капитаном будет нетрудно набрать несколько смышленных парней, и довольно быстро сделать из них неплохую команду.
+	AI_Output(self,other,"DIA_Kardif_Crew_14_02");	//Ќо с хорошим капитаном будет нетрудно набрать несколько смышленых парней и довольно быстро сделать из них неплохую команду.
 	AI_Output(other,self,"DIA_Kardif_Crew_15_03");	//√де € могу найти капитана?
 	AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//“ы обращаешьс€ не по адресу. я простой трактирщик.
 	if(Npc_IsDead(Jack) == FALSE)

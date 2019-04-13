@@ -306,7 +306,7 @@ instance DIA_Lee_Paladine(C_Info)
 	condition = DIA_Lee_Paladine_Condition;
 	information = DIA_Lee_Paladine_Info;
 	permanent = FALSE;
-	description = "Мне крайне необходимо поговорить с паладинами в городе ...";
+	description = "Мне крайне необходимо поговорить с паладинами в городе...";
 };
 
 
@@ -417,7 +417,7 @@ func void DIA_Lee_WannaJoin_Info()
 	AI_Output(other,self,"DIA_Lee_WannaJoin_15_00");	//Я хочу присоединиться к вам!
 	AI_Output(self,other,"DIA_Lee_WannaJoin_04_01");	//Я надеялся, что ты скажешь это! Нам здесь нужны каждые надежные руки.
 	AI_Output(self,other,"DIA_Lee_WannaJoin_04_02");	//От последних наемников, что я нанял, не было никакого толку, одни проблемы!
-	AI_Output(self,other,"DIA_Lee_WannaJoin_04_03");	//В принципе, ты можешь приступать прямо сейчас. Ну, правда есть парочка вопросов, которые нужно урегулировать, но, я думаю, это не будет проблемой...
+	AI_Output(self,other,"DIA_Lee_WannaJoin_04_03");	//В принципе, ты можешь приступать прямо сейчас. Но, правда, есть парочка вопросов, которые нужно урегулировать, но, я думаю, это не будет проблемой...
 };
 
 
@@ -428,7 +428,7 @@ instance DIA_Lee_ClearWhat(C_Info)
 	condition = DIA_Lee_ClearWhat_Condition;
 	information = DIA_Lee_ClearWhat_Info;
 	permanent = FALSE;
-	description = "Что нужно 'урегулировать' прежде чем я смогу присоединиться к вам?";
+	description = "Что нужно 'урегулировать', прежде чем я смогу присоединиться к вам?";
 };
 
 
@@ -442,10 +442,10 @@ func int DIA_Lee_ClearWhat_Condition()
 
 func void DIA_Lee_ClearWhat_Info()
 {
-	AI_Output(other,self,"DIA_Lee_ClearWhat_15_00");	//Что нужно 'урегулировать' прежде чем я смогу присоединиться к вам?
+	AI_Output(other,self,"DIA_Lee_ClearWhat_15_00");	//Что нужно 'урегулировать', прежде чем я смогу присоединиться к вам?
 	AI_Output(self,other,"DIA_Lee_ClearWhat_04_01");	//Нас нанимает Онар, лендлорд. Ты можешь находиться на ферме только с его одобрения.
 	AI_Output(self,other,"DIA_Lee_ClearWhat_04_02");	//Также, дело еще в наших парнях. Я смогу принять тебя, только если большинство наемников согласится, что ты можешь присоединиться к нам.
-	AI_Output(self,other,"DIA_Lee_ClearWhat_04_03");	//Но не ходи к Онару пока все не будет улажено. Он очень раздражительный тип...
+	AI_Output(self,other,"DIA_Lee_ClearWhat_04_03");	//Но не ходи к Онару, пока все не будет улажено. Он очень раздражительный тип...
 	Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BecomeSLD,LOG_Running);
 	B_LogEntry(TOPIC_BecomeSLD,"Чтобы быть принятым в ряды наемников, я должен получить одобрение Онара, после того, как заручусь одобрением наемников.");
@@ -505,8 +505,8 @@ func void DIA_Addon_Lee_Ranger_Info()
 	AI_Output(other,self,"DIA_Addon_Lee_Ranger_15_00");	//Что ты знаешь о Кольце Воды?
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_01");	//(смеется) Я так и знал! Тебе просто необходимо всюду сунуть свой нос!
 	AI_Output(other,self,"DIA_Addon_Lee_Ranger_15_02");	//Ну давай, говори.
-	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_03");	//Сказать я могу немного. Я знаю, что это тайное общество существует и что управляют им маги воды.
-	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_04");	//Я больше не связан соглашением с магами воды, которое мы заключили с ними в те времена, когда еще стоял Барьер.
+	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_03");	//Сказать я могу немного. Я знаю, что это тайное общество существует и что управляют им маги Воды.
+	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_04");	//Я больше не связан соглашением с магами Воды, которое мы заключили с ними в те времена, когда еще стоял Барьер.
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_05");	//Конечно, если я могу чем-то им помочь, я это делаю. Но большую часть времени я занят своими делами. Ни на что другое времени не остается.
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_06");	//Если ты хочешь узнать об этом обществе больше, поговори с Кордом. Насколько я знаю, он один из них.
 	RangerHelp_gildeSLD = TRUE;
@@ -573,7 +573,7 @@ func void DIA_Lee_JoinNOW_Info()
 		if(Onar_Approved == FALSE)
 		{
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_09");	//Хорошо, тогда иди прямо к Онару. Я уже переговорил с ним.
-			AI_Output(self,other,"DIA_Lee_JoinNOW_04_10");	//Но ты должен договориться  о своем жаловании сам.
+			AI_Output(self,other,"DIA_Lee_JoinNOW_04_10");	//Но ты должен договориться о своем жаловании сам.
 			Lee_SendToOnar = TRUE;
 			B_LogEntry(TOPIC_BecomeSLD,"Все, что мне нужно теперь - это одобрение Онара.");
 		}
@@ -734,7 +734,7 @@ func void DIA_Lee_Background_Info()
 	AI_Output(self,other,"DIA_Lee_Add_04_14");	//У меня было много свободного времени, чтобы все обдумать.
 	AI_Output(self,other,"DIA_Lee_Add_04_15");	//Я должен отомстить.
 	AI_Output(other,self,"DIA_Lee_Add_15_16");	//(изумленно) Королю?
-	AI_Output(self,other,"DIA_Lee_Add_04_17");	//(решительно) Королю! И его прихвостням. Они все горько пожалеют  о том, что сделали со мной...
+	AI_Output(self,other,"DIA_Lee_Add_04_17");	//(решительно) Королю! И его прихвостням. Они все горько пожалеют о том, что сделали со мной...
 };
 
 
@@ -846,7 +846,7 @@ instance DIA_Lee_WegenBullco(C_Info)
 	condition = DIA_Lee_WegenBullco_Condition;
 	information = DIA_Lee_WegenBullco_Info;
 	permanent = FALSE;
-	description = "У Онара теперь на несколько овец меньше благодаря Булко...";
+	description = "У Онара теперь на несколько овец меньше благодаря Буллко...";
 };
 
 
@@ -860,11 +860,11 @@ func int DIA_Lee_WegenBullco_Condition()
 
 func void DIA_Lee_WegenBullco_Info()
 {
-	AI_Output(other,self,"DIA_Lee_Add_15_00");	//У Онара теперь на несколько овец меньше благодаря Булко...
+	AI_Output(other,self,"DIA_Lee_Add_15_00");	//У Онара теперь на несколько овец меньше благодаря Буллко...
 	AI_Output(self,other,"DIA_Lee_Add_04_01");	//Ох, не приставай ко мне с такой чепухой! У меня и без этого проблем хватает.
 	if((Bullco_scharf == TRUE) && !Npc_IsDead(Bullco))
 	{
-		AI_Output(other,self,"DIA_Lee_Add_15_02");	//У меня тоже. Булко, похоже, видит проблему во мне. Он хочет, чтобы я покинул ферму...
+		AI_Output(other,self,"DIA_Lee_Add_15_02");	//У меня тоже. Буллко, похоже, видит проблему во мне. Он хочет, чтобы я покинул ферму...
 		AI_Output(self,other,"DIA_Lee_Add_04_03");	//Да, и что? Постой за себя.
 		AI_Output(self,other,"DIA_Lee_Add_04_04");	//Ты можешь сказать ему, что он должен вести себя сдержаннее, или я вычту пропавших овец из его жалования...
 	};
@@ -878,7 +878,7 @@ instance DIA_Lee_Report(C_Info)
 	condition = DIA_Lee_Report_Condition;
 	information = DIA_Lee_Report_Info;
 	permanent = TRUE;
-	description = "Я пришел из Долины Рудников ...";
+	description = "Я пришел из Долины Рудников. Замок, находящийся там, был атакован драконами!";
 };
 
 
@@ -962,7 +962,7 @@ instance DIA_Lee_BuyArmorM(C_Info)
 
 func int DIA_Lee_BuyArmorM_Condition()
 {
-	if((Lee_Give_Sld_M == TRUE) && (Lee_SldMGiven == FALSE))
+	if((Lee_Give_Sld_M == TRUE) && (Lee_SldMGiven == FALSE) && (other.guild == GIL_SLD))
 	{
 		return TRUE;
 	};
@@ -1048,7 +1048,7 @@ instance DIA_Lee_ArmorH(C_Info)
 
 func int DIA_Lee_ArmorH_Condition()
 {
-	if((Kapitel == 3) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+	if((Kapitel == 3) && (other.guild == GIL_SLD))
 	{
 		return TRUE;
 	};
@@ -1076,7 +1076,7 @@ instance DIA_Lee_BuyArmorH(C_Info)
 
 func int DIA_Lee_BuyArmorH_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lee_ArmorH) && (Lee_SldHGiven == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lee_ArmorH) && (Lee_SldHGiven == FALSE) && (other.guild == GIL_SLD))
 	{
 		return TRUE;
 	};
@@ -1124,7 +1124,7 @@ func void DIA_Lee_Richter_Info()
 	AI_Output(self,other,"DIA_Lee_Richter_04_01");	//Тебе все мало, да? По-моему, у тебя и без того проблем хватает. Чего же еще тебе нужно?
 	AI_Output(other,self,"DIA_Lee_Richter_15_02");	//Еще задание. Я же наемник, помнишь?
 	AI_Output(self,other,"DIA_Lee_Richter_04_03");	//Хорошо. У меня есть кое-что. Как раз для тебя.
-	AI_Output(self,other,"DIA_Lee_Richter_04_04");	//Я должен поквитаться с судьей в городе.  Я бы, конечно, предпочел сделать это сам.
+	AI_Output(self,other,"DIA_Lee_Richter_04_04");	//Я должен поквитаться с судьей в городе. Я бы, конечно, предпочел сделать это сам.
 	AI_Output(self,other,"DIA_Lee_Richter_04_05");	//Но паладины и на пушечный выстрел не подпустят меня к его дому.
 	AI_Output(self,other,"DIA_Lee_Richter_04_06");	//Это дело очень деликатное. Так что слушай внимательно. Ты пойдешь к судье и предложишь ему свои услуги.
 	AI_Output(self,other,"DIA_Lee_Richter_04_07");	//Ты должен попытаться завоевать его доверие и выполнять всякую грязную работу, пока не найдешь что-нибудь, дискредитирующее его.
@@ -1137,7 +1137,7 @@ func void DIA_Lee_Richter_Info()
 	B_LogEntry(TOPIC_RichterLakai,"Ли хочет, чтобы я нашел доказательства, обвиняющие судью Хориниса. Для этого, я должен предложить свои услуги судье и должен держать ушки на макушке.");
 	MIS_Lee_JudgeRichter = LOG_Running;
 	Info_ClearChoices(DIA_Lee_Richter);
-	Info_AddChoice(DIA_Lee_Richter,"Я не буду заниматься этим.",DIA_Lee_Richter_nein);
+	Info_AddChoice(DIA_Lee_Richter,"Я не буду заниматься этим. Я не хочу прислуживать этой свинье.",DIA_Lee_Richter_nein);
 	Info_AddChoice(DIA_Lee_Richter,"Нет проблем. Сколько?",DIA_Lee_Richter_wieviel);
 };
 
@@ -1701,7 +1701,7 @@ instance DIA_Lee_GotRichtersPermissionForShip(C_Info)
 	nr = 4;
 	condition = DIA_Lee_GotRichtersPermissionForShip_Condition;
 	information = DIA_Lee_GotRichtersPermissionForShip_Info;
-	description = "Письмо сработало.";
+	description = "Письмо сработало. Корабль теперь мой. Судья оказался очень кстати.";
 };
 
 

@@ -70,7 +70,7 @@ instance DIA_Addon_Scatty_Hi(C_Info)
 	condition = DIA_Addon_Scatty_Hi_Condition;
 	information = DIA_Addon_Scatty_Hi_Info;
 	permanent = FALSE;
-	description = "Как торговля?";
+	description = "Как идут дела?";
 };
 
 
@@ -82,7 +82,7 @@ func int DIA_Addon_Scatty_Hi_Condition()
 func void DIA_Addon_Scatty_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Scatty_Hi_15_00");	//Как идут дела?
-	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_01");	//С тех пор как гробница была открыта, покупателей не так много.
+	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_01");	//С тех пор, как гробница была открыта, покупателей не так много.
 	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_02");	//Ворону больше не нужны рабы, поэтому они теперь добывают золото. По приказу Бладвина.
 	AI_Output(self,other,"DIA_Addon_Scatty_Hi_01_03");	//Рудокопы не слишком усердствуют. (бормочет) А рудокопам, которые не усердствуют, не так много и нужно.
 	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
@@ -114,7 +114,7 @@ func void DIA_Addon_Scatty_last_Info()
 	AI_Output(other,self,"DIA_Addon_Scatty_last_15_00");	//Бладвин? Он сейчас командует?
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_01");	//Он старший по шахте. Но сам он почти никогда не спускается. Большинство времени он проводит в храме с Вороном.
 	AI_Output(other,self,"DIA_Addon_Scatty_last_15_02");	//'Почти никогда' - это как часто, если быть точным?
-	AI_Output(self,other,"DIA_Addon_Scatty_last_01_03");	//Последний раз я видел его, когда он выходил из гробницы...
+	AI_Output(self,other,"DIA_Addon_Scatty_last_01_03");	//Последний раз я его видел, когда он выходил из гробницы...
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_04");	//(быстро) ...Хотя нет, подожди! Последний раз был, когда он посылал рабов добывать золото.
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_05");	//В отличие от Ворона, его ОЧЕНЬ интересует золото.
 };
@@ -219,7 +219,7 @@ instance DIA_Addon_Scatty_Bier(C_Info)
 	condition = DIA_Addon_Scatty_Bier_Condition;
 	information = DIA_Addon_Scatty_Bier_Info;
 	permanent = FALSE;
-	description = "За твое здоровье. (дать пиво)";
+	description = "Вот, пожалуйста. (дать пиво)";
 };
 
 
@@ -278,7 +278,7 @@ instance DIA_Addon_Scatty_teach(C_Info)
 	condition = DIA_Addon_Scatty_teach_Condition;
 	information = DIA_Addon_Scatty_teach_Info;
 	permanent = TRUE;
-	description = "Научиться добывать золото (2 LP/10 процентов)";
+	description = "Расскажи мне еще что-нибудь о том, как копать золото. (1 LP/10 процентов)";
 };
 
 
@@ -298,7 +298,7 @@ func void DIA_Addon_Scatty_teach_Info()
 		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_01");	//В первую очередь ты должен знать, что золото - это не руда. Оно мягкое, как масло. Если ты ударишь слишком сильно, все разлетится.
 		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_02");	//У каждого рудокопа есть свои приемы, позволяющие ему отделить самородки от породы.
 		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_03");	//В конечном итоге, эти приемы и отличают просто рудокопа от хорошего рудокопа.
-		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_04");	//Кроме этого, повторенье - мать ученья. Только работая ты станешь хорошим рудокопом.
+		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_04");	//Кроме этого, повторенье - мать ученья. Только работая, ты станешь хорошим рудокопом.
 		other.lp = other.lp - 1;
 		B_Upgrade_Hero_HackChance(10);
 		Scatty_teach_perm = TRUE;
@@ -344,7 +344,7 @@ instance DIA_Addon_Scatty_trade(C_Info)
 	information = DIA_Addon_Scatty_trade_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = DIALOG_TRADE;
+	description = DIALOG_TRADE_v1;
 };
 
 
@@ -358,7 +358,7 @@ func int DIA_Addon_Scatty_trade_Condition()
 
 func void DIA_Addon_Scatty_trade_Info()
 {
-	B_GiveTradeInv(self);
 	B_Say(other,self,"$TRADE_1");
+	B_GiveTradeInv(self);
 };
 

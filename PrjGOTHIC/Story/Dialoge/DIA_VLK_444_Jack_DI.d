@@ -45,7 +45,7 @@ var int DIA_Jack_DI_GREET_OneTime;
 
 func void DIA_Jack_DI_GREET_Info()
 {
-	if(ORkSturmDI == FALSE)
+	if(OrkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Jack_DI_GREET_14_00");	//Надеюсь, ты знаешь, что делаешь, приятель.
 		AI_Output(other,self,"DIA_Jack_DI_GREET_15_01");	//На это не уйдет много времени.
@@ -110,4 +110,5 @@ func void DIA_Jack_DI_UndeadDragonDead_over()
 	AI_StopProcessInfos(self);
 	B_Extro_Avi();
 };
+
 

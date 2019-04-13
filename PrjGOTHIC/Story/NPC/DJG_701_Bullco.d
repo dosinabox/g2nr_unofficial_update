@@ -1,7 +1,7 @@
 
 instance DJG_701_Bullco(Npc_Default)
 {
-	name[0] = "Булко";
+	name[0] = "Буллко";
 	guild = GIL_DJG;
 	id = 701;
 	voice = 6;

@@ -69,8 +69,8 @@ func int DIA_Kjorn_TRADE_Condition()
 
 func void DIA_Kjorn_TRADE_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Kjorn_TRADE_15_00");	//Что ты можешь предложить мне?
+	B_GiveTradeInv(self);
 };
 
 
@@ -126,7 +126,7 @@ func void DIA_Kjorn_BuyInfos_Info()
 	Info_AddChoice(DIA_Kjorn_BuyInfos,"Это слишком дорого для меня.",DIA_Kjorn_BuyInfos_HoldMoney);
 	if(Npc_HasItems(other,ItMi_Gold) >= 50)
 	{
-		Info_AddChoice(DIA_Kjorn_BuyInfos,"Да, держи.",DIA_Kjorn_BuyInfos_GiveMoney);
+		Info_AddChoice(DIA_Kjorn_BuyInfos,"Вот, держи.",DIA_Kjorn_BuyInfos_GiveMoney);
 	};
 };
 
@@ -145,7 +145,7 @@ func void DIA_Kjorn_BuyInfos_GiveMoney()
 	Info_AddChoice(DIA_Kjorn_BuyInfos,Dialog_Back,DIA_Kjorn_BuyInfos_Back);
 	if(KjornToldDragon == 0)
 	{
-		Info_AddChoice(DIA_Kjorn_BuyInfos,"... насчет драконов.",DIA_Kjorn_BuyInfos_Dragon1);
+		Info_AddChoice(DIA_Kjorn_BuyInfos,"... о драконах.",DIA_Kjorn_BuyInfos_Dragon1);
 	}
 	else if(KjornToldDragon == 1)
 	{

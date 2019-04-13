@@ -41,7 +41,7 @@ instance DIA_Canthar_EXIT(C_Info)
 	condition = DIA_Canthar_EXIT_Condition;
 	information = DIA_Canthar_EXIT_Info;
 	permanent = TRUE;
-	description = "Мне нужно идти!";
+	description = Dialog_Ende_v2;
 };
 
 
@@ -52,7 +52,7 @@ func int DIA_Canthar_EXIT_Condition()
 
 func void DIA_Canthar_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_Canthar_EXIT_15_00");	//Мне нужно идти!
+	AI_Output(other,self,"DIA_Canthar_EXIT_15_00");	//Мне нужно идти.
 	AI_Output(self,other,"DIA_Canthar_EXIT_09_01");	//Как знаешь.
 	AI_StopProcessInfos(self);
 };
@@ -272,7 +272,7 @@ func void DIA_Canthar_WhatOffer_No()
 {
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_No_15_00");	//Нет! Оставь эту бумагу себе!
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_No_09_01");	//Хм. Похоже, я недооценил тебя, а?
-	AI_Output(self,other,"DIA_Canthar_WhatOffer_No_09_02");	//Ладно. Тебе нужно что-нибудь еще? Может тебе показать мои товары?
+	AI_Output(self,other,"DIA_Canthar_WhatOffer_No_09_02");	//Ладно. Тебе нужно что-нибудь еще? Может, тебе показать мои товары?
 	Info_ClearChoices(DIA_Canthar_WhatOffer);
 };
 
@@ -284,7 +284,7 @@ instance DIA_Canthar_TRADE(C_Info)
 	condition = DIA_Canthar_TRADE_Condition;
 	information = DIA_Canthar_TRADE_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары!";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
@@ -299,7 +299,7 @@ func int DIA_Canthar_TRADE_Condition()
 
 func void DIA_Canthar_TRADE_Info()
 {
-	AI_Output(other,self,"DIA_Canthar_TRADE_15_00");	//Покажи мне свои товары!
+	AI_Output(other,self,"DIA_Canthar_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Canthar_TRADE_09_01");	//Выбирай.
 };
@@ -390,7 +390,7 @@ func void DIA_Canthar_PAYPRICEINCITY_Ok()
 	{
 		B_LogEntry(TOPIC_Canthar,"Кантар пообещал дать мне оружие, взамен на оказанную ему услугу.");
 	};
-	B_LogEntry(TOPIC_Canthar,"Я должен подложить письмо  торговке Саре, которое даст повод подозревать ее в том, что она продает оружие Онару. Затем я должен пойти к лорду Андре и настучать на нее.");
+	B_LogEntry(TOPIC_Canthar,"Я должен подложить письмо торговке Саре, которое даст повод подозревать ее в том, что она продает оружие Онару. Затем я должен пойти к лорду Андре и настучать на нее.");
 	Info_ClearChoices(DIA_Canthar_PAYPRICEINCITY);
 };
 
@@ -402,7 +402,7 @@ instance DIA_Canthar_SARAHERLEDIGT(C_Info)
 	condition = DIA_Canthar_SARAHERLEDIGT_Condition;
 	information = DIA_Canthar_SARAHERLEDIGT_Info;
 	permanent = TRUE;
-	description = "Насчет Сары ...";
+	description = "Насчет Сары...";
 };
 
 
@@ -448,7 +448,7 @@ instance DIA_Canthar_Success(C_Info)
 	condition = DIA_Canthar_Success_Condition;
 	information = DIA_Canthar_Success_Info;
 	permanent = FALSE;
-	description = "Насчет Сары ...";
+	description = "Насчет Сары...";
 };
 
 
@@ -558,7 +558,7 @@ func void DIA_Canthar_Pay_Info()
 	Info_ClearChoices(DIA_Canthar_Pay);
 	if(Npc_HasItems(other,ItMi_Gold) >= Canthar_Gold)
 	{
-		Info_AddChoice(DIA_Canthar_Pay,"Хорошо, я заплачу ...",DIA_Canthar_Pay_Ja);
+		Info_AddChoice(DIA_Canthar_Pay,"Хорошо, я заплачу, ты не оставляешь мне выбора.",DIA_Canthar_Pay_Ja);
 	};
 	Info_AddChoice(DIA_Canthar_Pay,"У меня нет с собой столько денег...",DIA_Canthar_Pay_Nein);
 	Info_AddChoice(DIA_Canthar_Pay,"Сколько там нужно?",DIA_Canthar_Pay_Wieviel);

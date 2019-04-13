@@ -37,10 +37,12 @@ func void Spell_Cast_SummonSkeleton()
 	self.aivar[AIV_SelectSpell] += 1;
 	if(Npc_IsPlayer(self))
 	{
+		Wld_StopEffect("SLOW_MOTION");
 		Wld_SpawnNpcRange(self,Summoned_Skeleton,1,500);
 	}
 	else
 	{
+		self.lp += 1; 
 		Wld_SpawnNpcRange(self,Skeleton,1,500);
 	};
 };

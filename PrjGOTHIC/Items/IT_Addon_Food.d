@@ -25,11 +25,10 @@ instance ItFo_Addon_Shellflesh(C_Item)
 	scemeName = "FOODHUGE";
 	on_state[0] = Use_Shellflesh;
 	description = name;
-	text[0] = "Сочное мясо моллюска";
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Shellflesh;
-	text[2] = "Можно есть сырым";
-	text[3] = "";
+	text[2] = "Сочное мясо моллюска.";
+	text[3] = "Можно есть сырым.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -101,8 +100,8 @@ instance ItFo_Addon_LousHammer(C_Item)
 	material = MAT_GLAS;
 	on_state[0] = UseLouHammer;
 	scemeName = "POTIONFAST";
-	description = "Молот Лу";
-	text[1] = "Эффект          ???";
+	description = name;
+	text[1] = "Эффект неизвестен.";
 	text[5] = NAME_Value;
 	count[5] = Value_LousHammer;
 };
@@ -113,6 +112,7 @@ func void UseLouHammer()
 	if(Hammer_Once == FALSE)
 	{
 		B_RaiseAttribute(self,ATR_MANA_MAX,Mana_LousHammer);
+		Npc_ChangeAttribute(self,ATR_MANA,Mana_LousHammer);
 		Hammer_Once = TRUE;
 	};
 };
@@ -120,7 +120,7 @@ func void UseLouHammer()
 
 instance ItFo_Addon_SchlafHammer(C_Item)
 {
-	name = "Двойной молот";
+	name = "Двойной Молот Лу";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
 	value = Value_SchlafHammer;
@@ -128,8 +128,8 @@ instance ItFo_Addon_SchlafHammer(C_Item)
 	material = MAT_GLAS;
 	on_state[0] = UseSchlafHammer;
 	scemeName = "POTIONFAST";
-	description = "Двойной молот";
-	text[1] = "Способно свалить с ног любого...";
+	description = name;
+	text[1] = "Это пойло способно свалить с ног любого...";
 	text[5] = NAME_Value;
 	count[5] = Value_SchlafHammer;
 };
@@ -154,9 +154,10 @@ instance ItFo_Addon_SchnellerHering(C_Item)
 	material = MAT_GLAS;
 	on_state[0] = UseSchnellerHering;
 	scemeName = "POTIONFAST";
-	description = "Выглядит подозрительно!";
-	text[1] = "Эффект неизвестен.";
-	text[2] = "Возможны побочные эффекты";
+	description = name;
+	text[1] = "Выглядит подозрительно!";
+	text[2] = "Эффект неизвестен.";
+	text[3] = "Возможны побочные эффекты.";
 	text[5] = NAME_Value;
 	count[5] = Value_SchnellerHering;
 };
@@ -183,11 +184,8 @@ instance ItFo_Addon_Pfeffer_01(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_LEATHER;
 	description = "Красный жгучий перец";
-	text[0] = "с южных островов";
-	text[1] = "";
-	text[2] = "";
+	text[1] = "с южных островов.";
 	text[3] = "ОСТОРОЖНО, ЖГУЧИЙ!";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -212,9 +210,12 @@ instance ItFo_Addon_FireStew(C_Item)
 
 func void Use_FireStew()
 {
+	var string concatText;
 	B_RaiseAttribute(self,ATR_STRENGTH,STR_FireStew);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS_MAX,HP_FireStew);
-	PrintScreen("Повышение силы и здоровья!",-1,34,FONT_ScreenSmall,2);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_FireStew);
+	concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(HP_FireStew));
+	PrintScreen(concatText,55,-1,FONT_Screen,2);
 };
 
 
@@ -238,9 +239,6 @@ instance ItFo_Addon_Meatsoup(C_Item)
 
 func void Use_MeatSoup()
 {
-	var string concatText;
-	concatText = ConcatStrings(NAME_Bonus_Str,IntToString(STR_MeatSoup));
 	B_RaiseAttribute(self,ATR_STRENGTH,STR_MeatSoup);
-	PrintScreen(concatText,-1,34,FONT_ScreenSmall,2);
 };
 

@@ -78,7 +78,7 @@ func void DIA_Ulf_Wirte_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Wirte_15_00");	//Кто эти трое трактирщиков?
 	AI_Output(self,other,"DIA_Ulf_Wirte_03_01");	//Один из них - вот этот добрый человек за прилавком.
-	AI_Output(self,other,"DIA_Ulf_Wirte_03_02");	//Также еще Карагон - хозяин таверны на храмовой площади, и Кардиф - владелец бара в портовом районе.
+	AI_Output(self,other,"DIA_Ulf_Wirte_03_02");	//Также еще Корагон - хозяин таверны на храмовой площади, и Кардиф - владелец бара в портовом районе.
 };
 
 
@@ -250,7 +250,7 @@ func void DIA_Ulf_Suche_Info()
 	AI_Output(self,other,"DIA_Ulf_Suche_03_02");	//Точно. Я как раз хотел посидеть, попить холодного пива, когда из-за угла вышел Дарон и сказал мне, что я был избран.
 	AI_Output(self,other,"DIA_Ulf_Suche_03_03");	//Кто бы мог подумать? Воля Инноса непостижима. А что привело тебя сюда?
 	AI_Output(other,self,"DIA_Ulf_Suche_15_04");	//Я потребовал прохождения Испытания Огнем.
-	AI_Output(self,other,"DIA_Ulf_Suche_03_05");	//Это невозможно?! Похоже мужества у тебя на десятерых хватит. Это значит, что ты тоже будешь искать 'то, что верующий находит в конце пути'?
+	AI_Output(self,other,"DIA_Ulf_Suche_03_05");	//Это невозможно! Похоже, мужества у тебя на десятерых хватит. Это значит, что ты тоже будешь искать 'то, что верующий находит в конце пути'?
 	AI_Output(other,self,"DIA_Ulf_Suche_15_06");	//Похоже на это.
 };
 
@@ -382,7 +382,7 @@ func void DIA_Ulf_Abrechnung_Lass()
 
 func void DIA_Ulf_Abrechnung_Schnell()
 {
-	AI_Output(other,self,"DIA_Ulf_Abrechnung_Schnell_15_00");	//Ты, возможно, что-то не понимаешь... Мне нужно вернуться в монастырь.
+	AI_Output(other,self,"DIA_Ulf_Abrechnung_Schnell_15_00");	//Ты, возможно, что-то не понимаешь - мне нужно вернуться в монастырь.
 	AI_Output(self,other,"DIA_Ulf_Abrechnung_Schnell_03_01");	//Тебе больше никуда не нужно идти!
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,0);

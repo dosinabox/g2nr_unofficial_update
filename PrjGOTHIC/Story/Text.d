@@ -31,7 +31,7 @@ const string MOBNAME_ORCDRUM = "";
 const string MOBNAME_STOVE = "Плита";
 const string MOBNAME_INNOS = "Статуя Инноса";
 const string MOBNAME_RUNEMAKER = "Рунный стол";
-const string MOBNAME_SAW = "Пила";
+const string MOBNAME_SAW = "Бревно";
 const string MOBNAME_ARMCHAIR = "Кресло";
 const string MOBNAME_LIBRARYLEVER = "Лампа";
 const string MOBNAME_SECRETSWITCH = "";
@@ -62,13 +62,13 @@ const string MOBNAME_SMITH_01 = "Горячая наковальня";
 const string MOBNAME_BAR_01 = "Таверна 'Деревянная нога'";
 const string MOBNAME_BAR_02 = "Таверна 'Жирный теленок'";
 const string MOBNAME_Hotel_01 = "Трактир 'Спящий толстосум'";
-const string MOBNAME_Hotel_02 = "Красная лампа";
+const string MOBNAME_Hotel_02 = "Красный Фонарь";
 const string MOBNAME_TAVERN_01 = "Мертвая Гарпия";
 const string MOBNAME_SALANDRIL = "Зелья Саландрила";
 const string MOBNAME_GRAVETEAM_01 = "Сноэльк - 'Смотри-ка, выключатель'";
 const string MOBNAME_GRAVETEAM_02 = "Оэльк - 'НЕЕЕЕЕТ'";
 const string MOBNAME_GRAVETEAM_03 = "Ходжес - 'Все будет хорошо'";
-const string MOBNAME_GRAVETEAM_04 = "Хош - 'Что за черт'";
+const string MOBNAME_GRAVETEAM_04 = "Хош - 'Хуже уже не будет'";
 const string MOBNAME_GRAVETEAM_05 = "Чейз - 'Зачем все это?'";
 const string MOBNAME_GRAVETEAM_06 = "Бьорн - 'Мы выступаем!'";
 const string MOBNAME_GRAVETEAM_07 = "Михаэль - 'Вот немного посплю...'";
@@ -78,17 +78,17 @@ const string MOBNAME_GRAVETEAM_10 = "НикоДЕ - 'Привет, мир!'";
 const string MOBNAME_GRAVETEAM_11 = "Саша - 'Игрок не знает, зачем он идет туда...'";
 const string MOBNAME_GRAVETEAM_12 = "Андрэ - 'Эти паруса обвисают быстро или медленно?'";
 const string MOBNAME_GRAVETEAM_13 = "Михай - 'Да, я покажу тебе кое-что...'";
-const string MOBNAME_GRAVETEAM_14 = "Уве - 'Какой у тебя уровень?'";
-const string MOBNAME_GRAVE_01 = "Барон Генрих фон Стал 551 - 589 'Пришел, увидел, упал в обморок'";
+const string MOBNAME_GRAVETEAM_14 = "Уве - 'Какой уровень у твоего паладина?'";
+const string MOBNAME_GRAVE_01 = "Барон Генрих фон Стал 551 - 589 'Пришел, увидел и упал замертво'";
 const string MOBNAME_GRAVE_02 = "Бертран 465 - 480 'Я всегда любил есть поганки'";
 const string MOBNAME_GRAVE_03 = "Изольда 525 - 550";
 const string MOBNAME_GRAVE_04 = "Неизвестный";
-const string MOBNAME_GRAVE_05 = "Декс Кантионис 325 - 431 'Я уже неделю ничего не ел'";
+const string MOBNAME_GRAVE_05 = "Декс Кантионис 325 - 431 'Я уже несколько дней ничего не ел'";
 const string MOBNAME_GRAVE_06 = "Утар Лайтбрингер 205 - 532";
 const string MOBNAME_GRAVE_07 = "Жасмин 510 - 546";
 const string MOBNAME_GRAVE_08 = "Онурб 634 - 579 - 'Этлемеркегму красный'";
 const string MOBNAME_GRAVE_09 = "Неизвестный солдат";
-const string MOBNAME_GRAVE_10 = "Грозный карлик 2894-3787 - 'Все это чушь! Верь мне...'";
+const string MOBNAME_GRAVE_10 = "Могущественный карлик 2894-3787 - 'Все это чушь! Поверь мне...'";
 const string MOBNAME_GRAVE_11 = "Теодор 220 - 310 - 'Спи спокойно'";
 const string MOBNAME_GRAVE_12 = "Вераним Садеа 390 - 'Преисподняя была вся в его распоряжении'";
 const string MOBNAME_GRAVE_13 = "Серано Укара 234 - 298 'Страж башни'";
@@ -100,17 +100,17 @@ const string MOBNAME_GRAVE_18 = "Иотар 721 - 762";
 const string MOBNAME_GRAVE_19 = "Мидос 757 - 759";
 const string MOBNAME_GRAVE_20 = "Оскар Сорн 703 - 736";
 const string MOBNAME_GRAVE_21 = "Марта Укара 732 - 771";
-const string MOBNAME_GRAVE_22 = "Вилфилд  Укара 722 - 764";
+const string MOBNAME_GRAVE_22 = "Вилфид Укара 722 - 764";
 const string MOBNAME_GRAVE_23 = "Викторус Стал 741 - 755";
 const string MOBNAME_GRAVE_24 = "Себ 725 - 773";
 const string MOBNAME_GRAVE_25 = "Неизвестный";
 const string MOBNAME_GRAVE_26 = "Март Мулго 721 - 779";
-const string MOBNAME_GRAVE_27 = "Захра 713 - 752";
-const string MOBNAME_GRAVE_28 = "Барон Симбус Карский 120 - 212";
-const string MOBNAME_GRAVE_29 = "Граф Аниеб Валдфридский 117 - 212";
-const string MOBNAME_GRAVE_30 = "Граф Лазарь Сьегбургский 156 - 212";
+const string MOBNAME_GRAVE_27 = "Цахра 713 - 752";
+const string MOBNAME_GRAVE_28 = "Барон Симбус фон Кар 120 - 212";
+const string MOBNAME_GRAVE_29 = "Граф Аниб цу Валдфрид 117 - 212";
+const string MOBNAME_GRAVE_30 = "Граф Лазарь фон Зигбург 156 - 212";
 const string MOBNAME_GRAVE_31 = "Мечник Асуб Укара 145 - 212";
-const string MOBNAME_GRAVE_32 = "Мечник Дьетмар Укара 112 - 212";
+const string MOBNAME_GRAVE_32 = "Мечник Дитмар Укара 112 - 212";
 const string MOBNAME_GRAVE_33 = "Почетный страж Утар Серанис 178 - 212";
 const string MOBNAME_ADDON_SOCKEL = "Пьедестал";
 const string MOBNAME_ADDON_FORTUNO = "Сундук Фортуно";
@@ -132,9 +132,9 @@ const string TXT_GUILDS[66] =
 {
 	"Нет гильдии",
 	"Паладин",
-	"Ополчение",
+	"Ополченец",
 	"Гражданин",
-	"Маг огня",
+	"Маг Огня",
 	"Послушник",
 	"Охотник на драконов",
 	"Наемник",
@@ -144,7 +144,7 @@ const string TXT_GUILDS[66] =
 	"Ищущий",
 	"Бродяга",
 	"Пират",
-	"Маг воды",
+	"Маг Воды",
 	"D",
 	"",
 	"Мясной жук",
@@ -222,7 +222,7 @@ const string TXT_SPELLS[100] =
 	"Огненная стрела",
 	"Ледяная стрела",
 	"Лечение легких ранений",
-	"Скелет гоблина",
+	"Вызов скелета гоблина",
 	"Огненный шар",
 	"Малая молния",
 	"Вызов волка",
@@ -231,22 +231,22 @@ const string TXT_SPELLS[100] =
 	"Лечение средних ранений",
 	"Молния",
 	"Большой огненный шар",
-	"Скелет",
+	"Вызов скелета",
 	"Страх",
 	"Ледяной блок",
 	"Шаровая молния",
-	"Создание голема",
+	"Вызов голема",
 	"Уничтожение нежити",
 	"Большая огненная буря",
 	"Малая огненная буря",
 	"Ледяная волна",
-	"Демон",
+	"Вызов демона",
 	"Полное исцеление",
 	"Огненный дождь",
 	"Дыхание смерти",
 	"Волна смерти",
 	"Армия тьмы",
-	"Сморщивание",
+	"Уменьшение монстра",
 	"Овца",
 	"Падальщик",
 	"Гигантская крыса",
@@ -323,7 +323,7 @@ const string NAME_SPL_LIGHT = "Свет";
 const string NAME_SPL_Firebolt = "Огненная стрела";
 const string NAME_SPL_Icebolt = "Ледяная стрела";
 const string NAME_SPL_LightHeal = "Лечение легких ранений";
-const string NAME_SPL_SummonGoblinSkeleton = "Создание скелета гоблина";
+const string NAME_SPL_SummonGoblinSkeleton = "Вызов скелета гоблина";
 const string NAME_SPL_InstantFireball = "Огненный шар";
 const string NAME_SPL_Zap = "Малая молния";
 const string NAME_SPL_SummonWolf = "Вызов волка";
@@ -331,12 +331,12 @@ const string NAME_SPL_WINDFIST = "Кулак ветра";
 const string NAME_SPL_Sleep = "Сон";
 const string NAME_SPL_MediumHeal = "Лечение средних ранений";
 const string NAME_SPL_Firestorm = "Малая огненная буря";
-const string NAME_SPL_SummonSkeleton = "Создание скелета";
+const string NAME_SPL_SummonSkeleton = "Вызов скелета";
 const string NAME_SPL_Fear = "Страх";
 const string NAME_SPL_IceCube = "Ледяной блок";
 const string NAME_SPL_ChargeZap = "Шаровая молния";
 const string NAME_SPL_LightningFlash = "Молния";
-const string NAME_SPL_SummonGolem = "Пробуждение голема";
+const string NAME_SPL_SummonGolem = "Вызов голема";
 const string NAME_SPL_DestroyUndead = "Уничтожение нежити";
 const string NAME_SPL_ChargeFireball = "Большой огненный шар";
 const string NAME_SPL_Pyrokinesis = "Большая огненная буря";
@@ -347,7 +347,7 @@ const string NAME_SPL_Firerain = "Огненный дождь";
 const string NAME_SPL_BreathOfDeath = "Дыхание смерти";
 const string NAME_SPL_MassDeath = "Волна смерти";
 const string NAME_SPL_ArmyOfDarkness = "Армия тьмы";
-const string NAME_SPL_Shrink = "Сморщивание монстра";
+const string NAME_SPL_Shrink = "Уменьшение монстра";
 const string NAME_SPL_TrfSheep = "Превращение в овцу";
 const string NAME_SPL_TrfScavenger = "Превращение в падальщика";
 const string NAME_SPL_TrfGiantRat = "Превращение в гигантскую крысу";
@@ -412,17 +412,17 @@ const string TXT_TALENTS[22] =
 	"Отмычки",
 	"",
 	"Магия",
-	"Красться",
+	"Подкрадывание",
 	"",
 	"",
 	"Акробатика",
-	"Карманник",
+	"Карман. кража",
 	"Ковка оружия",
 	"Создание рун",
 	"Алхимия",
 	"Снятие шкур",
-	"Иностранные языки",
-	"Способности блуждающего огонька",
+	"Языки зодчих",
+	"Способности огонька",
 	"",
 	"",
 	""
@@ -435,23 +435,23 @@ const string TXT_TALENTS_SKILLS[22] =
 	"Новичок|Боец|Мастер",
 	"Новичок|Стрелок|Мастер",
 	"Новичок|Стрелок|Мастер",
-	"-|Изучено|-",
+	"Не обучен|Обучен|-",
 	"0|1|2",
-	"0|1|2|3|4|5|6",
-	"-|Изучено",
+	"Не обучен|Круг 1|Круг 2|Круг 3|Круг 4|Круг 5|Круг 6",
+	"Не обучен|Обучен",
 	"-|-",
 	"-|-",
-	"-|Изучено",
-	"-|Изучено",
-	"-|Изучено",
-	"-|Изучено",
-	"-|Изучено",
-	"-|Изучено",
-	"-|Изучено",
-	"-|Изучено",
-	"-|Изучено",
-	"-|Изучено",
-	"-|Изучено"
+	"Не обучен|Обучен",
+	"Не обучен|Обучен",
+	"Не обучен|Обучен",
+	"Не обучен|Обучен",
+	"Не обучен|Обучен",
+	"Не обучен|Обучен",
+	"Не обучен|Язык крестьян|Язык воинов|Язык жрецов",
+	"Не обучен|Обучен",
+	"Не обучен|Обучен",
+	"Не обучен|Обучен",
+	"Не обучен|Обучен"
 };
 
 const string TXT_INV_CAT[9] =
@@ -487,7 +487,7 @@ const string NAME_Baeuerin = "Крестьянка";
 const string NAME_Bandit = "Бандит";
 const string NAME_Halsabschneider = "Головорез";
 const string NAME_Straefling = "Каторжник";
-const string NAME_Waffenknecht = "Воин";
+const string NAME_Waffenknecht = "Оруженосец";
 const string NAME_Dementor = "Ищущий";
 const string NAME_ToterNovize = "Мертвый послушник";
 const string NAME_Antipaldin = "Предводитель орков";
@@ -505,8 +505,15 @@ const string NAME_ADDON_BELIARSWEAPON = "Коготь Белиара";
 const string NAME_Addon_Undead_Mud = "Мад-нежить";
 const string NAME_Addon_Summoned_Mud = "Вызванный Мад";
 const string Dialog_Ende = "КОНЕЦ";
+const string Dialog_Ende_v1 = "Я должен идти!";
+const string Dialog_Ende_v2 = "Мне нужно идти.";
+const string Dialog_Ende_v3 = "Еще увидимся.";
 const string Dialog_Back = "НАЗАД";
 const string DIALOG_TRADE = "(Торговать)";
+const string DIALOG_TRADE_v1 = "Давай займемся делом.";
+const string DIALOG_TRADE_v2 = "Покажи мне товары.";
+const string DIALOG_TRADE_v3 = "Покажи мне, что у тебя есть.";
+const string DIALOG_TRADE_v4 = "Покажи мне свои товары.";
 const string DIALOG_PICKPOCKET = "(Обокрасть)";
 const string NAME_Ring = "Кольцо";
 const string NAME_Amulett = "Амулет";
@@ -519,7 +526,7 @@ const string NAME_Addon_BeltMage = "Кушак";
 const string NAME_Addon_BeArSLD = "Вместе с доспехами наемника +";
 const string NAME_Addon_BeArMIL = "Вместе с доспехами ополчения +";
 const string NAME_Addon_BeArKDF = "Вместе с мантией мага +";
-const string NAME_Addon_BeArNOV = "Вместе с  робой послушника +";
+const string NAME_Addon_BeArNOV = "Вместе с робой послушника +";
 const string NAME_Addon_BeArMC = "Вместе с доспехами из брони краулеров +";
 const string NAME_Addon_BeArLeather = "Вместе с кожаными доспехами +";
 const string PRINT_Addon_BDTArmor = "Тот, кто носит эти доспехи, принадлежит к бандитам.";
@@ -587,8 +594,8 @@ const string NAME_ADDON_UPGRATEBELIARSWEAPON = "Улучшить 'Коготь Белиара'";
 const string NAME_ADDON_BETEN = "Помолиться";
 const string NAME_ADDON_PRAYIDOL_GIVENOTHING = "Я хочу помолиться и ничего не пожертвовать.";
 const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT1 = "Я хочу помолиться и пожертвовать 1 единицу здоровья.";
-const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT2 = "Я хочу помолиться и пожертвовать 2 единицы здоровья.";
-const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT3 = "Я хочу помолиться и пожертвовать 3 единицы здоровья.";
+const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT2 = "Я хочу помолиться и пожертвовать 5 единиц здоровья.";
+const string NAME_ADDON_PRAYIDOL_GIVEHITPOINT3 = "Я хочу помолиться и пожертвовать 10 единиц здоровья.";
 const string NAME_ADDON_PRAYIDOL_GIVEMANA = "Я хочу помолиться и пожертвовать 1 единицу маны.";
 const string NAME_ItMw_1H_Common_01 = "Меч";
 const string NAME_ItMw_1H_Special_01 = "Длинный рудный меч";
@@ -603,6 +610,7 @@ const string NAME_Addon_Harad_01 = "Изысканный меч";
 const string NAME_Addon_Harad_02 = "Изысканный длинный меч";
 const string NAME_Addon_Harad_03 = "Рубиновый клинок";
 const string NAME_Addon_Harad_04 = "Эль-бастардо";
+const string NAME_ItMw_Streitaxt1 = "Легкий боевой топор";
 const string PRINT_Addon_gegeben = " отдано";
 const string PRINT_GoldGegeben = " золота отдано";
 const string PRINT_ItemGegeben = " предмет отдан";
@@ -641,6 +649,7 @@ const string PRINT_LearnAcrobat = "Изучено: Акробатика";
 const string PRINT_Addon_AcrobatBonus = "Улучшение акробатики!";
 const string PRINT_LearnPickpocket = "Изучено: Искусство карманного воровства";
 const string PRINT_Beliarshitpoints_MAX = "Здоровье -";
+const string PRINT_Beliarsmana_MAX = "Мана -";
 const string PRINT_LearnSmith = "Изучено: Искусство изготовления оружия";
 const string PRINT_LearnRunes = "Изучено: Искусство создания рун";
 const string PRINT_LearnAlchemy = "Изучено: Искусство приготовления зелий";
@@ -704,16 +713,16 @@ const string Pray_Paladin1 = "... Иннос, распростри свою длань над слугами своим
 const string Pray_Paladin2 = "... благослови их своим огнем и даруй им силу ...";
 const string Pray_Paladin3 = "... чтобы они мужественно сражались с твоим именем на устах ...";
 const string Pray_Paladin4 = "... до победы или смерти, согласно воле твоей.";
-const string DIALOG_ADDON_ATTENTAT_DESCRIPTION = "Что ты знаешь о попытке покушения на Эстебана?";
-const string DIALOG_ADDON_ATTENTAT_PRO = "Я хочу убить этих предателей.";
-const string DIALOG_ADDON_ATTENTAT_CONTRA = "Я ищу этих парней, чтобы выступить против Эстебана.";
+const string DIALOG_ADDON_ATTENTAT_DESCRIPTION = "Что ты знаешь о покушении на Эстебана?";
+const string DIALOG_ADDON_ATTENTAT_PRO = "Я убью этих предателей.";
+const string DIALOG_ADDON_ATTENTAT_CONTRA = "Я ищу этих ребят, чтобы выступить против Эстебана.";
 const string DIALOG_ADDON_MINE_DESCRIPTION = "Ты нужен в шахте. (Дать красный камень)";
-const string DIALOG_ADDON_GOLD_DESCRIPTION = "Что мне нужно знать о добыче золота?";
+const string DIALOG_ADDON_GOLD_DESCRIPTION = "Что мне следует знать о добыче золота?";
 const string PRINT_ADDON_KNOWSBF = "Изучено - яд из жала";
 const string PRINT_ADDON_HACKCHANCE = "Улучшен навык рудокопа! (+";
 const string PRINT_Addon_StuntBonus = "Бонус акробатики";
 const string PRINT_Addon_ExploitBonus = "Минус за безрассудство";
-const string PRINT_ADDON_ENOUGHTALK = "Хватит болтать. Давай сражаться.";
+const string PRINT_ADDON_ENOUGHTALK = "Хватит трепаться. Дерись.";
 const string PRINT_FullyHealed = "Полностью исцелен.";
 const string PRINT_Eat1 = "Вы чувствуете себя освеженным.";
 const string PRINT_Eat2 = "Сочная и свежая пища.";
@@ -734,7 +743,7 @@ const string PRINT_SCIsObsessed = "Вы чувствуете удушье!";
 const string PRINT_ClearSCObsession = "Вы чувствуете себя освобожденным!";
 const string PRINT_NumberLeft = " осталось";
 const string PRINT_NovizenLeft = " послушников осталось";
-const string PRINT_Addon_CanyonRazorsLeft = "  бритвозубов осталось";
+const string PRINT_Addon_CanyonRazorsLeft = " бритвозубов осталось";
 const string PRINT_DragKillCount = "Враг повержен. На этот раз я не буду гнить под камнями. Пришло время возвращаться на корабль.";
 const string PRINT_Smith_1H_Special_01 = " (1 кусок руды)";
 const string PRINT_Smith_2H_Special_01 = " (2 куска руды)";
@@ -744,6 +753,7 @@ const string PRINT_Smith_1H_Special_03 = " (3 куска руды)";
 const string PRINT_Smith_2H_Special_03 = " (4 куска руды)";
 const string PRINT_Smith_1H_Special_04 = " (4 куска руды, 5 ед. драконьей крови)";
 const string PRINT_Smith_2H_Special_04 = " (5 кусков руды, 5 ед. драконьей крови)";
+const string PRINT_Smith_Streitaxt1 = " (1 кусок руды, 3 зуба, 1 доп. заготовка)";
 const string NAME_MageScroll = "Свиток";
 const string PRINT_FoundRing = "Найдено кольцо";
 const string PRINT_FoundAmulett = "Найден амулет";
@@ -757,7 +767,7 @@ const string PRINT_FoundGold100 = "Найдено 100 золота";
 const string PRINT_FoundRuneBlank = "Найдена руна";
 const string PRINT_FoundOreNugget = "Найден кусок руды";
 const string PRINT_FoundLockpick = "Найдена отмычка";
-const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек ...";
+const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек...";
 const string PRINT_GotPlants = "Найдены травы";
 const string PRINT_NoSweeping = "Чтобы подмести все эти комнаты потребуется вечность!";
 const string PRINT_Mandibles = "Этот секрет не дает никакого эффекта.";
@@ -772,23 +782,25 @@ const string PRINT_NewLogEntry = "Новая запись в дневнике";
 const string PRINT_TeleportTooFarAway = "Слишком далеко";
 const string PRINT_BiffsAnteil = "Доля Биффа: ";
 const string PRINT_BiffGold = " золота";
-const string PRINT_Addon_SCIsWearingRangerRing = "Теперь вы носите знак 'Кольца Воды'";
+const string PRINT_Addon_SCIsWearingRangerRing = "Теперь вы носите знак 'Кольца Воды'.";
 var string TEXT_Innoseye_Setting;
 const string TEXT_Innoseye_Setting_Broken = "Оправа этого амулета повреждена.";
 const string TEXT_Innoseye_Setting_Repaired = "Оправа этого амулета в целости и сохранности.";
 const string TEXT_Innoseye_Gem = "Драгоценный камень тускл и безжизнен.";
-const string Pickpocket_20 = "(Нет ничего проще, чем украсть его кошелек.)";
-const string Pickpocket_40 = "(Украсть его кошелек будет довольно просто.)";
-const string Pickpocket_60 = "(Пытаться украсть его кошелек довольно рискованно.)";
-const string Pickpocket_80 = "(Украсть его кошелек будет довольно трудно.)";
-const string Pickpocket_100 = "(Украсть его кошелек будет чертовски трудно.)";
-const string Pickpocket_120 = "(Украсть его кошелек практически невозможно.)";
-const string Pickpocket_20_Female = "(Нет ничего проще, чем украсть ее кошелек.)";
-const string Pickpocket_40_Female = "(Украсть ее кошелек будет довольно просто.)";
-const string Pickpocket_60_Female = "(Пытаться украсть ее кошелек довольно рискованно.)";
-const string Pickpocket_80_Female = "(Украсть ее кошелек будет довольно трудно.)";
-const string Pickpocket_100_Female = "(Украсть ее кошелек будет чертовски трудно.)";
-const string Pickpocket_120_Female = "(Украсть ее кошелек практически невозможно.)";
+const string Pickpocket_20 = "(Нет ничего проще, чем украсть его кошелек)";
+const string Pickpocket_40 = "(Украсть его кошелек будет довольно просто)";
+const string Pickpocket_60 = "(Украсть его кошелек будет довольно рискованно)";
+const string Pickpocket_80 = "(Украсть его кошелек будет довольно трудно)";
+const string Pickpocket_100 = "(Украсть его кошелек будет чертовски трудно)";
+const string Pickpocket_120 = "(Украсть его кошелек практически невозможно)";
+const string Pickpocket_20_Female = "(Нет ничего проще, чем украсть ее кошелек)";
+const string Pickpocket_40_Female = "(Украсть ее кошелек будет довольно просто)";
+const string Pickpocket_60_Female = "(Украсть ее кошелек будет довольно рискованно)";
+const string Pickpocket_80_Female = "(Украсть ее кошелек будет довольно трудно)";
+const string Pickpocket_100_Female = "(Украсть ее кошелек будет чертовски трудно)";
+const string Pickpocket_120_Female = "(Украсть ее кошелек практически невозможно)";
+const string Pickpocket_40_Key = "(Украсть его ключ будет довольно просто)";
+const string Pickpocket_60_Key = "(Украсть его ключ будет довольно рискованно)";
 
 const int YPOS_GoldGiven = 34;
 const int YPOS_GoldTaken = 34;
@@ -800,16 +812,16 @@ const int YPOS_XPGained = 55;
 
 const string PRINT_PICKLOCK_SUCCESS = "Похоже, я на верном пути.";
 const string PRINT_PICKLOCK_UNLOCK = "Замок открыт.";
-const string PRINT_PICKLOCK_FAILURE = "Черт ... Попробуем еще раз.";
+const string PRINT_PICKLOCK_FAILURE = "Черт... Попробуем еще раз.";
 const string PRINT_PICKLOCK_BROKEN = "Отмычка сломалась.";
-const string PRINT_HITPOINTS_MISSING = "Недостаточно здоровья.";
-const string PRINT_HITPOINTS_MAX_MISSING = "максимум здоровья маловат...";
-const string PRINT_MANA_MISSING = "Недостаточно маны.";
-const string PRINT_MANA_MAX_MISSING = "Максимум маны маловат...";
-const string PRINT_STRENGTH_MISSING = "Недостаточно силы.";
-const string PRINT_DEXTERITY_MISSING = "Недостаточно ловкости.";
-const string PRINT_MAGCIRCLES_MISSING = "Слишком низкий магический круг для использования этой руны.";
-const string PRINT_ADDON_BELIARSCOURSE_MISSING = "Это оружие нельзя использовать";
+const string PRINT_HITPOINTS_MISSING = "Недостаточно здоровья:";
+const string PRINT_HITPOINTS_MAX_MISSING = "Максимум здоровья маловат:";
+const string PRINT_MANA_MISSING = "Недостаточно маны:";
+const string PRINT_MANA_MAX_MISSING = "Максимум маны маловат:";
+const string PRINT_STRENGTH_MISSING = "Недостаточно силы:";
+const string PRINT_DEXTERITY_MISSING = "Недостаточно ловкости:";
+const string PRINT_MAGCIRCLES_MISSING = "Слишком низкий магический круг для использования этой руны:";
+const string PRINT_ADDON_BELIARSCOURSE_MISSING = "Это оружие нельзя использовать!";
 const string _STR_MESSAGE_INTERACT_NO_KEY = "Нет отмычки или подходящего ключа.";
 const string _STR_MESSAGE_TRADE_FAILURE = "Ваши товары недостаточно ценные.";
 const string STR_INFO_TRADE_ACCEPT = "Принять";
@@ -817,15 +829,23 @@ const string STR_INFO_TRADE_RESET = "Отклонить";
 const string STR_INFO_TRADE_EXIT = "НАЗАД";
 const string MENU_TEXT_NEEDS_APPLY = "Нажмите ENTER для активации!";
 const string MENU_TEXT_NEEDS_RESTART = "Некоторые настройки вступят в силу только после рестарта.";
-const string KapWechsel_1 = "Часть 1";
+const string KapWechsel_1 = "Глава 1";
 const string KapWechsel_1_Text = "Угроза";
-const string KapWechsel_2 = "Часть 2";
+const string KapWechsel_2 = "Глава 2";
 const string KapWechsel_2_Text = "Возвращение в колонию";
-const string KapWechsel_3 = "Часть 3";
+const string KapWechsel_3 = "Глава 3";
 const string KapWechsel_3_Text = "Глаз Инноса";
-const string KapWechsel_4 = "Часть 4";
+const string KapWechsel_4 = "Глава 4";
 const string KapWechsel_4_Text = "Охота на драконов";
-const string KapWechsel_5 = "Часть 5";
+const string KapWechsel_5 = "Глава 5";
 const string KapWechsel_5_Text = "Отплытие";
-const string KapWechsel_6 = "Часть 6";
+const string KapWechsel_6 = "Глава 6";
 const string KapWechsel_6_Text = "Чертоги Ирдората";
+const string KapAnfang = "НАЧАЛО ГЛАВЫ";
+
+const string NAME_Circle_1 = "1-й Круг магии";
+const string NAME_Circle_2 = "2-й Круг магии";
+const string NAME_Circle_3 = "3-й Круг магии";
+const string NAME_Circle_4 = "4-й Круг магии";
+const string NAME_Circle_5 = "5-й Круг магии";
+const string NAME_Circle_6 = "6-й Круг магии";

@@ -204,7 +204,7 @@ instance DIA_Brutus_Gold(C_Info)
 	condition = DIA_Brutus_Gold_Condition;
 	information = DIA_Brutus_Gold_Info;
 	permanent = TRUE;
-	description = "У меня есть кое-что для тебя. (дать 200 монет).";
+	description = "У меня есть кое-что для тебя. (дать 200 монет)";
 };
 
 
@@ -221,7 +221,7 @@ func void DIA_Brutus_Gold_Info()
 	AI_Output(other,self,"DIA_Brutus_Gold_15_00");	//У меня есть кое-что для тебя.
 	if(B_GiveInvItems(other,self,ItMi_Gold,200))
 	{
-		AI_Output(self,other,"DIA_Brutus_Gold_06_01");	//Превосходно. Теперь я могу потренировать тебе, если хочешь.
+		AI_Output(self,other,"DIA_Brutus_Gold_06_01");	//Превосходно. Теперь я могу потренировать тебя, если хочешь.
 		Brutus_TeachSTR = TRUE;
 		Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
 		B_LogEntry(TOPIC_Teacher_OC,"Брутус может помочь мне стать сильнее.");

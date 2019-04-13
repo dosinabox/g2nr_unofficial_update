@@ -79,7 +79,7 @@ func void DIA_Addon_Thorus_Raven_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Raven_15_00");	//Это очень важно, мне нужно попасть к Ворону...
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_01");	//Правда? Ты действительно думаешь, что сможешь пройти к нему?
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_02");	//Его охранники твердо выполняют приказ не пускать НИКОГО. Ты умрешь даже раньше, чем сможешь его увидеть.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_03");	//Так что лучше  выкинь эту идею из своей головы.
+	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raven_12_03");	//Так что лучше выкинь эту идею из своей головы.
 	Log_CreateTopic(TOPIC_Addon_RavenKDW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RavenKDW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_RavenKDW,"Ворон - предводитель бандитов. Чтобы добраться до него, мне придется убить тех, кто встанет у меня на пути.");
@@ -311,7 +311,7 @@ func void DIA_Addon_Thorus_Gefangene_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_03");	//...Бладвин пошлет стражников за ними. Но я сильно сомневаюсь, что они настолько глупы, чтобы бежать.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_04");	//Если только...
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_05");	//Если только - что?
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_06");	//...кто-нибудь не подобьет их на это. Но я не знаю никого, кто был бы достаточно глуп для этого... по крайней мере пока Бладвин здесь.
+	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_06");	//...кто-нибудь не подобьет их на это. Но я не знаю никого, кто был бы достаточно глуп для этого... по крайней мере, пока Бладвин здесь.
 	B_Say(other,self,"$VERSTEHE");
 };
 
@@ -426,5 +426,6 @@ func void DIA_Addon_Thorus_Raventot_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Raventot_15_05");	//Кто знает, может, наши пути еще пересекутся.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Raventot_12_06");	//Кто знает. У тебя на пути будет много ворот и много переходов. И на одном из них ты можешь встретить меня...
 	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"START");
 };
 

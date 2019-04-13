@@ -62,7 +62,7 @@ instance DIA_SLD_6_PEOPLE(C_Info)
 	condition = DIA_SLD_6_PEOPLE_Condition;
 	information = DIA_SLD_6_PEOPLE_Info;
 	permanent = TRUE;
-	description = "Кто командует здесь?";
+	description = "Кто заправляет здесь?";
 };
 
 
@@ -115,7 +115,7 @@ instance DIA_SLD_6_STANDARD(C_Info)
 	condition = DIA_SLD_6_STANDARD_Condition;
 	information = DIA_SLD_6_STANDARD_Info;
 	permanent = TRUE;
-	description = "Что новенького?";
+	description = "В чем дело?";
 };
 
 
@@ -159,7 +159,7 @@ func void DIA_SLD_6_STANDARD_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_08");	//Если Беннета не выпустят из тюрьмы,  мы сами пойдем туда и освободим его.
+			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_08");	//Если Беннета не выпустят из тюрьмы, мы сами пойдем туда и освободим его.
 		};
 	};
 	if(Kapitel == 4)
@@ -167,7 +167,7 @@ func void DIA_SLD_6_STANDARD_Info()
 		if(hero.guild == GIL_DJG)
 		{
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_09");	//Что ты все ошиваешься здесь? Разве ты не отправился в долину вместе с остальными?
-			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_10");	//Чтоб вы там все и остались.
+			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_10");	//Чтобы вы там все и остались.
 		}
 		else
 		{

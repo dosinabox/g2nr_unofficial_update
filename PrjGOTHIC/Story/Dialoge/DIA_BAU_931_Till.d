@@ -92,7 +92,7 @@ func int DIA_Till_FELDARBEITER_Condition()
 func void DIA_Till_FELDARBEITER_Info()
 {
 	AI_Output(other,self,"DIA_Till_FELDARBEITER_15_00");	//Вы так всегда обращаетесь со своими работниками?
-	AI_Output(self,other,"DIA_Till_FELDARBEITER_03_01");	//Конечно  - иначе нельзя. Если не поддерживать дисциплину, никто не будет - это известное правило.
+	AI_Output(self,other,"DIA_Till_FELDARBEITER_03_01");	//Конечно - иначе нельзя. Если не поддерживать дисциплину, никто не будет - это известное правило.
 };
 
 
@@ -341,7 +341,7 @@ func void DIA_Till_BRONKOWIEDERANARBEIT_Info()
 {
 	AI_Output(other,self,"DIA_Till_BRONKOWIEDERANARBEIT_15_00");	//Бронко вернулся к работе.
 	AI_Output(self,other,"DIA_Till_BRONKOWIEDERANARBEIT_03_01");	//Правда? Это превосходно.
-	AI_Output(other,self,"DIA_Till_BRONKOWIEDERANARBEIT_15_02");	//Да. И тепрь я хочу получить мои деньги.
+	AI_Output(other,self,"DIA_Till_BRONKOWIEDERANARBEIT_15_02");	//Да. И теперь я хочу получить мои деньги.
 	IntToFloat(Till_Angebot);
 	if(Till_Angebot <= 50)
 	{
@@ -366,7 +366,7 @@ instance DIA_Till_PERMKAP1(C_Info)
 	condition = DIA_Till_PERMKAP1_Condition;
 	information = DIA_Till_PERMKAP1_Info;
 	permanent = TRUE;
-	description = "(подразнить Тилла)";
+	description = "(Подразнить Тилла)";
 };
 
 
@@ -399,7 +399,7 @@ func void DIA_Till_PERMKAP1_Info()
 	}
 	else if(Till_HatSeinGeldBehalten == TRUE)
 	{
-		AI_Output(other,self,"DIA_Till_PERMKAP1_15_06");	//Ах ты жалкий маленький...
+		AI_Output(other,self,"DIA_Till_PERMKAP1_15_06");	//Ах ты, жалкий маленький...
 		AI_Output(self,other,"DIA_Till_PERMKAP1_03_07");	//Уходи.
 		AI_StopProcessInfos(self);
 	}

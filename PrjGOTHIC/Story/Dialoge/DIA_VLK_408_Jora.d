@@ -6,7 +6,7 @@ instance DIA_Jora_EXIT(C_Info)
 	condition = DIA_Jora_EXIT_Condition;
 	information = DIA_Jora_EXIT_Info;
 	permanent = TRUE;
-	description = "Мне нужно идти!";
+	description = Dialog_Ende_v2;
 };
 
 
@@ -17,6 +17,7 @@ func int DIA_Jora_EXIT_Condition()
 
 func void DIA_Jora_EXIT_Info()
 {
+	AI_Output(other,self,"DIA_JAN_Dragons_ShitHappen_15_00");	//Мне нужно идти.
 	if(((Jora_Dieb == LOG_FAILED) || (Jora_Dieb == LOG_SUCCESS)) && (Jora_Gold == LOG_Running))
 	{
 		AI_Output(self,other,"DIA_Jora_EXIT_08_00");	//Эй! Как насчет моих денег?
@@ -59,7 +60,7 @@ instance DIA_Jora_WAREZ(C_Info)
 	information = DIA_Jora_WAREZ_Info;
 	permanent = TRUE;
 	trade = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 };
 
 
@@ -187,7 +188,7 @@ func void DIA_Jora_HolDeinGold_GHDG()
 	AI_Output(self,other,"DIA_Jora_Add_08_03");	//Тут я мог бы помочь тебе.
 	B_Jora_GoldForClue();
 	Info_ClearChoices(DIA_Jora_HolDeinGold);
-	Info_AddChoice(DIA_Jora_HolDeinGold,"Я попробую.",DIA_Jora_HolDeinGold_DoIt);
+	Info_AddChoice(DIA_Jora_HolDeinGold,"Я посмотрю, что можно сделать.",DIA_Jora_HolDeinGold_DoIt);
 	Info_AddChoice(DIA_Jora_HolDeinGold,"Сколько золота было в этом кошельке?",DIA_Jora_HolDeinGold_HowMuch);
 	Info_AddChoice(DIA_Jora_HolDeinGold,"Почему ты не позвал стражу?",DIA_Jora_HolDeinGold_Wache);
 };
@@ -197,7 +198,7 @@ func void DIA_Jora_HolDeinGold_WillBelohnung()
 	AI_Output(other,self,"DIA_Jora_HolDeinGold_WillBelohnung_15_00");	//Я хочу получить часть золота в качестве вознаграждения!
 	AI_Output(self,other,"DIA_Jora_HolDeinGold_WillBelohnung_08_01");	//Сначала верни мне мой кошелек. А там уж поговорим о твоем вознаграждении!
 	Info_ClearChoices(DIA_Jora_HolDeinGold);
-	Info_AddChoice(DIA_Jora_HolDeinGold,"Я попробую.",DIA_Jora_HolDeinGold_DoIt);
+	Info_AddChoice(DIA_Jora_HolDeinGold,"Я посмотрю, что можно сделать.",DIA_Jora_HolDeinGold_DoIt);
 	Info_AddChoice(DIA_Jora_HolDeinGold,"Сколько золота было в этом кошельке?",DIA_Jora_HolDeinGold_HowMuch);
 	Info_AddChoice(DIA_Jora_HolDeinGold,"Почему ты не позвал стражу?",DIA_Jora_HolDeinGold_Wache);
 };
@@ -265,7 +266,7 @@ func void DIA_Jora_WegenDieb_Info()
 	}
 	else if(Rengaru_InKnast == TRUE)
 	{
-		Info_AddChoice(DIA_Jora_WegenDieb,"Да, я поймал его.",DIA_Jora_WegenDieb_ImKnast);
+		Info_AddChoice(DIA_Jora_WegenDieb,"Да, я поймал его. Пусть немного посидит за решеткой, подумает...",DIA_Jora_WegenDieb_ImKnast);
 	}
 	else if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB))
 	{
@@ -413,7 +414,7 @@ func void DIA_Jora_Belohnung_Info()
 		AI_Output(self,other,"DIA_Jora_Add_08_12");	//Но я уже дал тебе ценный совет.
 		AI_Output(self,other,"DIA_Jora_Add_08_13");	//Этого должно хватить в качестве вознаграждения.
 	};
-	AI_Output(self,other,"DIA_Jora_Add_08_14");	//А сели тебе нужно золото, то выслеживай воров и получай награду за их голову у лорда Андрэ.
+	AI_Output(self,other,"DIA_Jora_Add_08_14");	//А если тебе нужно золото, то выслеживай воров и получай награду за их голову у лорда Андрэ.
 	if(Npc_GetDistToWP(self,"NW_CITY_MERCHANT_PATH_38") <= 500)
 	{
 		AI_Output(self,other,"DIA_Jora_Belohnung_08_03");	//А теперь извини, меня ждут клиенты...

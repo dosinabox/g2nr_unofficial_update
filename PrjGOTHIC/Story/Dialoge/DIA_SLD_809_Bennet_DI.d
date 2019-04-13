@@ -43,7 +43,7 @@ func int DIA_Bennet_DI_Hello_Condition()
 func void DIA_Bennet_DI_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_DI_Hello_15_00");	//У тебя все в порядке?
-	if(ORkSturmDI == FALSE)
+	if(OrkSturmDI == FALSE)
 	{
 		AI_Output(self,other,"DIA_Bennet_DI_Hello_06_01");	//Кузница на корабле немного проржавела. Морская соль разъедает ее. Здесь будет непросто выковать что-нибудь приличное. Ну, а кроме этого...
 	}
@@ -76,6 +76,15 @@ func int DIA_Bennet_DI_TRADE_Condition()
 
 func void DIA_Bennet_DI_TRADE_Info()
 {
+	if(Bennet_DI_flag == 1)
+	{
+		B_ClearSmithInv(self);
+		if(Bennet_DI_swordraws > 0)
+		{
+			CreateInvItems(self,ItMiSwordraw,Bennet_DI_swordraws);
+		};
+		Bennet_DI_flag = 0;
+	};
 	AI_Output(other,self,"DIA_Bennet_DI_TRADE_15_00");	//Какое оружие ты можешь продать мне?
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Bennet_DI_TRADE_06_01");	//Только лучшее. Ты же знаешь.
@@ -150,7 +159,7 @@ func void DIA_Bennet_DI_Smith_Info()
 
 func void DIA_Bennet_DI_Smith_BACK()
 {
-	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
+	Info_ClearChoices(DIA_Bennet_DI_Smith);
 };
 
 func void DIA_Bennet_DI_Smith_Common()
@@ -334,4 +343,5 @@ func void DIA_Bennet_DI_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Bennet_DI_PICKPOCKET);
 };
+
 

@@ -19,7 +19,7 @@ func void Use_BookstandAnimals1_S1()
 		Doc_PrintLine(nDocID,0,"Охота и трофеи");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи,  преумножающие славу и благосостояние опытного охотника.");
+		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи, преумножающие славу и благосостояние опытного охотника.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Опытный охотник знает все о трофеях жертвы и как получить их.");
 		Doc_PrintLine(nDocID,0,"");
@@ -60,7 +60,7 @@ func void Use_BookstandAnimals2_S1()
 		Doc_PrintLine(nDocID,0,"Охота и трофеи");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи,  преумножающие славу и благосостояние опытного охотника.");
+		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи, преумножающие славу и благосостояние опытного охотника.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Кровавые мухи");
 		Doc_PrintLine(nDocID,0,"");
@@ -101,7 +101,7 @@ func void Use_BookstandAnimals3_S1()
 		Doc_PrintLine(nDocID,0,"Охота и трофеи");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи,  преумножающие славу и благосостояние опытного охотника.");
+		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи, преумножающие славу и благосостояние опытного охотника.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Огненный ящер");
 		Doc_PrintLines(nDocID,0,"Этот зверь - ящер, изрыгающий огонь, который может убить любого в пределах нескольких шагов от этой твари.");

@@ -72,10 +72,10 @@ func int DIA_Hyglas_Hallo_Condition()
 
 func void DIA_Hyglas_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Hyglas_Hallo_14_00");	//Я Мастер Хиглас, Страж Огня и Хранитель Знаний.
+	AI_Output(self,other,"DIA_Hyglas_Hallo_14_00");	//Я мастер Хиглас, Страж Огня и Хранитель Знаний.
 	if(other.guild == GIL_NOV)
 	{
-		AI_Output(self,other,"DIA_Hyglas_Hallo_14_01");	//Итак, Мастер Парлан дал тебе разрешение изучать священные книги.
+		AI_Output(self,other,"DIA_Hyglas_Hallo_14_01");	//Итак, мастер Парлан дал тебе разрешение изучать священные книги.
 		AI_Output(self,other,"DIA_Hyglas_Hallo_14_02");	//Тогда бери их и изучай. Может быть, ты найдешь просвещение в этих писаниях.
 	};
 };
@@ -105,7 +105,7 @@ func void DIA_Hyglas_JOB_Info()
 	if(other.guild == GIL_NOV)
 	{
 		AI_Output(other,self,"DIA_Hyglas_JOB_15_03");	//Как это интересно! А не мог бы ты научить и меня этому?
-		AI_Output(self,other,"DIA_Hyglas_JOB_14_04");	//Магию дарует Иннос. И только его слугам, Магам Огня, дано познать, как пользоваться этой силой.
+		AI_Output(self,other,"DIA_Hyglas_JOB_14_04");	//Магию дарует Иннос. И только его слугам, магам Огня, дано познать, как пользоваться этой силой.
 	};
 };
 
@@ -258,7 +258,7 @@ instance DIA_Hyglas_TEACH(C_Info)
 	condition = DIA_Hyglas_TEACH_Condition;
 	information = DIA_Hyglas_TEACH_Info;
 	permanent = TRUE;
-	description = "Обучи меня.";
+	description = "Обучи меня (созданию рун)";
 };
 
 

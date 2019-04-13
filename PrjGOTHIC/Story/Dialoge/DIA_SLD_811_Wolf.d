@@ -106,7 +106,7 @@ func void DIA_Wolf_WannaBuy_Info()
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_02");	//Ѕеннет, один из новых парней, теперь заведует оружием и доспехами.
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_03");	//¬ колонии € отвечал за весь арсенал Ћи, и вот пришел хороший кузнец и - пфф - € осталс€ без работы.
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_04");	//ћне очень нужна нова€ работа, даже если это будет охрана местных ферм.
-	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_05");	//ћен€ это не волнует, лишь бы только не быть баклуши здесь.
+	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_05");	//ћен€ это не волнует, лишь бы только не бить баклуши здесь.
 };
 
 

@@ -74,7 +74,7 @@ instance DIA_VLK_16_LOCATION(C_Info)
 	condition = DIA_VLK_16_LOCATION_Condition;
 	information = DIA_VLK_16_LOCATION_Info;
 	permanent = TRUE;
-	description = "Что здесь интересного?";
+	description = "Что интересного можно найти здесь?";
 };
 
 
@@ -96,7 +96,7 @@ instance DIA_VLK_16_STANDARD(C_Info)
 	condition = DIA_VLK_16_STANDARD_Condition;
 	information = DIA_VLK_16_STANDARD_Info;
 	permanent = TRUE;
-	description = "Что нового?";
+	description = "Что новенького?";
 };
 
 

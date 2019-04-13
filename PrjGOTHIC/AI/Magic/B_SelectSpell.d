@@ -203,7 +203,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
 			return TRUE;
 		}
-		else if(slf.aivar[AIV_SelectSpell] == 1)
+		else if((slf.aivar[AIV_SelectSpell] == 1) && (slf.lp < 5))
 		{
 			B_ReadySpell(slf,SPL_SummonSkeleton,SPL_Cost_SummonSkeleton);
 			return TRUE;
@@ -336,6 +336,23 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_MELEE)
 		{
 			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+			return TRUE;
+		}
+		else
+		{
+			return FALSE;
+		};
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(VLK_414_Hanna))
+	{
+		if(!Npc_IsInState(oth,ZS_MagicFreeze) && (Npc_HasItems(slf,ItSc_IceCube) > 0))
+		{
+			B_ReadySpell(slf,SPL_IceCube,SPL_Cost_Scroll);
+			return TRUE;
+		}
+		else if(Npc_HasItems(slf,ItSc_Firestorm) > 0)
+		{
+			B_ReadySpell(slf,SPL_Firestorm,SPL_Cost_Scroll);
 			return TRUE;
 		}
 		else

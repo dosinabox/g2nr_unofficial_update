@@ -373,7 +373,7 @@ func void DIA_Addon_Snaf_People_Info()
 	};
 	Info_ClearChoices(DIA_Addon_Snaf_People);
 	Info_AddChoice(DIA_Addon_Snaf_People,Dialog_Back,DIA_Addon_Snaf_People_BACK);
-	Info_AddChoice(DIA_Addon_Snaf_People,"Поль",DIA_Addon_Snaf_People_Paul);
+	Info_AddChoice(DIA_Addon_Snaf_People,"Пол",DIA_Addon_Snaf_People_Paul);
 	Info_AddChoice(DIA_Addon_Snaf_People,"Хуно",DIA_Addon_Snaf_People_Huno);
 	Info_AddChoice(DIA_Addon_Snaf_People,"Фиск",DIA_Addon_Snaf_People_Fisk);
 	Info_AddChoice(DIA_Addon_Snaf_People,"Эмилио",DIA_Addon_Snaf_People_Emilio);
@@ -397,7 +397,7 @@ func void DIA_Addon_Snaf_People_BACK()
 
 func void DIA_Addon_Snaf_People_Paul()
 {
-	AI_Output(other,self,"DIA_Addon_Snaf_People_Paul_15_00");	//А что Поль?
+	AI_Output(other,self,"DIA_Addon_Snaf_People_Paul_15_00");	//А что Пол?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
 	{
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Paul_01_01");	//Не думаю, что он без ума от Эстебана. Из-за того, что он работает на Хуно, в шахту ему никогда не попасть.
@@ -412,7 +412,10 @@ func void DIA_Addon_Snaf_People_Huno()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_People_Huno_15_00");	//Что Хуно думает об Эстебане?
 	AI_Output(self,other,"DIA_Addon_Snaf_People_Huno_01_01");	//А, Хуно! Я про него почти ничего не знаю.
-	AI_Output(self,other,"DIA_Addon_Snaf_People_Huno_01_02");	//(ухмыляется) Конечно, денег я за это с тебя не возьму.
+	if(MIS_SnafHammer != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Addon_Snaf_People_Huno_01_02");	//(ухмыляется) Конечно, денег я за это с тебя не возьму.
+	};
 };
 
 func void DIA_Addon_Snaf_People_Fisk()
@@ -420,7 +423,7 @@ func void DIA_Addon_Snaf_People_Fisk()
 	AI_Output(other,self,"DIA_Addon_Snaf_People_Fisk_15_00");	//А Фиск?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Snaf_Tip_Kosten))
 	{
-		AI_Output(self,other,"DIA_Addon_Snaf_People_Fisk_01_01");	//Фиск есть Фиск. От платит долю Эстебану и перепродает добро, которое он, в основном, получает от пиратов.
+		AI_Output(self,other,"DIA_Addon_Snaf_People_Fisk_01_01");	//Фиск есть Фиск. Он платит долю Эстебану и перепродает добро, которое он, в основном, получает от пиратов.
 		AI_Output(self,other,"DIA_Addon_Snaf_People_Fisk_01_02");	//По мне, так он вряд ли питает добрые чувства к Эстебану.
 	}
 	else

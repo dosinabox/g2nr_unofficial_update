@@ -93,7 +93,7 @@ func void DIA_MiltenNW_KAP3_Hello_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_15");	//Я рад, конечно, и судя по тому, как ты выглядишь, все орки должны бояться тебя.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_16");	//Дело не только в орках.
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_17");	//Я знаю, но, тем не менее, они доставляют проблемы. А ты важная птица.
-		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_18");	//Ты победил Спящего. Нам всем однажды может понадобиться твоя помощь.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_18");	//Ты победил Спящего. Нам всем может понадобиться твоя помощь однажды.
 		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_19");	//Ох, ладно.
 	};
 };
@@ -268,7 +268,7 @@ func int DIA_MiltenNW_KAP3_NovizenChase_Condition()
 func void DIA_MiltenNW_KAP3_NovizenChase_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KAP3_NovizenChase_15_00");	//Ты знаешь, где Педро?
-	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_01");	//Ты думаешь, я стоял бы здесь если бы я знал, где скрывается этот предатель?
+	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_01");	//Ты думаешь, я стоял бы здесь, если бы я знал, где скрывается этот предатель?
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_02");	//Он должен заплатить за то, что сделал. Я надеюсь, нам удастся вернуть Глаз.
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_NovizenChase_03_03");	//Ты должен помочь нам. Найди его и принеси назад Глаз Инноса.
 };
@@ -419,10 +419,10 @@ func int DIA_MiltenNW_AllDragonsDead_Condition()
 func void DIA_MiltenNW_AllDragonsDead_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_AllDragonsDead_15_00");	//Я убил всех драконов.
-	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_01");	//Правда? Значит, есть еще проблеск надежды на горизонте. Теперь все, что нам остается, - это отрубить голову Злу.
-	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_02");	//Если ты действительно сделал это, мы обязательно победим в этой войне.
-	AI_Output(other,self,"DIA_MiltenNW_AllDragonsDead_15_03");	//Кому, мне?
-	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_04");	//Тебе, конечно же. Кому же еще?
+	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_01");	//Правда? Значит, есть еще проблеск надежды на горизонте. Теперь все, что нам остается - это отрубить голову Злу.
+	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_02");	//Если ты действительно сделаешь это, мы обязательно победим в этой войне.
+	AI_Output(other,self,"DIA_MiltenNW_AllDragonsDead_15_03");	//Я?
+	AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_04");	//Конечно, ты. Кто же еще?
 	if(MiltenNW_IsOnBoard == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_AllDragonsDead_03_05");	//Мы должны выступать как можно скорее, иначе может стать слишком поздно.
@@ -461,7 +461,7 @@ instance DIA_MiltenNW_KnowWhereEnemy(C_Info)
 	condition = DIA_MiltenNW_KnowWhereEnemy_Condition;
 	information = DIA_MiltenNW_KnowWhereEnemy_Info;
 	permanent = TRUE;
-	description = "Я знаю, где скрывается враг.";
+	description = "Я знаю, где скрывается враг. На небольшом острове, недалеко отсюда.";
 };
 
 
@@ -648,7 +648,7 @@ instance DIA_MiltenNW_Teach(C_Info)
 	condition = DIA_MiltenNW_Teach_Condition;
 	information = DIA_MiltenNW_Teach_Info;
 	permanent = TRUE;
-	description = "Я хочу изучить новые заклинания.";
+	description = "Я хочу изучить кое-какие заклинания.";
 };
 
 
@@ -714,7 +714,7 @@ instance DIA_MiltenNW_Mana(C_Info)
 	condition = DIA_MiltenNW_Mana_Condition;
 	information = DIA_MiltenNW_Mana_Info;
 	permanent = TRUE;
-	description = "Я хочу повысить мои магические способности.";
+	description = "Я хочу повысить свои магические способности.";
 };
 
 

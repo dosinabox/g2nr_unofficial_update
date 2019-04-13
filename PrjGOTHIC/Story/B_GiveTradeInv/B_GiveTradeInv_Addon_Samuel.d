@@ -32,6 +32,7 @@ func void B_GiveTradeInv_Addon_Samuel(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Flask,4);
 		CreateInvItems(slf,ItPl_SwampHerb,4);
 		CreateInvItems(slf,ItMi_Joint,1);
+		CreateInvItems(slf,ItWr_Addon_Piratentod,1);
 		Samuel_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Samuel_ItemsGiven_Chapter_3 == FALSE))

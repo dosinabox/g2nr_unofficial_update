@@ -28,7 +28,7 @@ instance DIA_Rangar_PICKPOCKET(C_Info)
 	condition = DIA_Rangar_PICKPOCKET_Condition;
 	information = DIA_Rangar_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(”красть этот ключ будет легко)";
+	description = Pickpocket_40_Key;
 };
 
 
@@ -77,7 +77,7 @@ instance DIA_Rangar_Hallo(C_Info)
 	condition = DIA_Rangar_Hallo_Condition;
 	information = DIA_Rangar_Hallo_Info;
 	permanent = FALSE;
-	description = "Ёй, ты что делаешь тут?";
+	description = "Ёй, как дела?";
 };
 
 

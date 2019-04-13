@@ -1,7 +1,7 @@
 
 instance BDT_1064_Bandit_L(Npc_Default)
 {
-	name[0] = "Стражник";
+	name[0] = NAME_Wache;
 	guild = GIL_BDT;
 	id = 1064;
 	voice = 4;
@@ -26,5 +26,11 @@ func void Rtn_Start_1064()
 {
 	TA_Guard_Passage(0,0,12,0,"NW_CASTLEMINE_TOWER_BEYOND");
 	TA_Guard_Passage(12,0,0,0,"NW_CASTLEMINE_TOWER_BEYOND");
+};
+
+func void Rtn_Attack_1064()
+{
+	TA_Stand_Guarding(0,0,12,0,"NW_CASTLEMINE_HUT_BENCH_CAVE");
+	TA_Stand_Guarding(12,0,0,0,"NW_CASTLEMINE_HUT_BENCH_CAVE");
 };
 

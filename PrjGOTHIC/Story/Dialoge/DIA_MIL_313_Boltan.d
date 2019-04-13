@@ -6,7 +6,7 @@ instance DIA_Boltan_EXIT(C_Info)
 	condition = DIA_Boltan_EXIT_Condition;
 	information = DIA_Boltan_EXIT_Info;
 	permanent = TRUE;
-	description = "Мне нужно идти.";
+	description = Dialog_Ende_v2;
 };
 
 
@@ -17,6 +17,7 @@ func int DIA_Boltan_EXIT_Condition()
 
 func void DIA_Boltan_EXIT_Info()
 {
+	AI_Output(other,self,"DIA_Landstreicher_HALLO_Weg_15_00");	//Мне нужно идти.
 	AI_StopProcessInfos(self);
 };
 
@@ -143,6 +144,6 @@ func void DIA_Boltan_HalloCanthar_Info()
 	AI_Output(self,other,"DIA_Boltan_Add_05_11");	//Эй, ты тот парень, что написал жалобу на Кантара, тогровца.
 	AI_Output(self,other,"DIA_Boltan_Add_05_12");	//Много людей приходило, чтобы похлопотать за него. Уважаемых людей.
 	AI_Output(self,other,"DIA_Boltan_Add_05_13");	//Должно быть, произошло какое-то недоразумение. Такое бывает.
-	AI_Output(self,other,"DIA_Boltan_Add_05_14");	//В будущем тебе стоит быть тщательнее выбирать, кого ты хочешь упечь в тюрьму.
+	AI_Output(self,other,"DIA_Boltan_Add_05_14");	//В будущем тебе стоит тщательнее выбирать, кого ты хочешь упечь в тюрьму.
 };
 

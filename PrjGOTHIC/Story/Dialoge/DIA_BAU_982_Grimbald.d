@@ -128,7 +128,7 @@ func void DIA_Grimbald_Jagd_Info()
 		B_Say_Gold(self,other,200);
 		Info_ClearChoices(DIA_Grimbald_Jagd);
 		Info_AddChoice(DIA_Grimbald_Jagd,"Я подумаю над этим.",DIA_Grimbald_Jagd_zuviel);
-		Info_AddChoice(DIA_Grimbald_Jagd,"Хорошо.",DIA_Grimbald_Jagd_ja);
+		Info_AddChoice(DIA_Grimbald_Jagd,"Хорошо, вот деньги.",DIA_Grimbald_Jagd_ja);
 	};
 };
 

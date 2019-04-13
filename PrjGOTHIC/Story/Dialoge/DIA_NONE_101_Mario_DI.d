@@ -34,7 +34,7 @@ instance DIA_NONE_101_MARIO_DI_Job(C_Info)
 
 func int DIA_NONE_101_MARIO_DI_Job_Condition()
 {
-	if((Npc_IsDead(UndeadDragon) == FALSE) && (ORkSturmDI == FALSE))
+	if((Npc_IsDead(UndeadDragon) == FALSE) && (OrkSturmDI == FALSE))
 	{
 		return TRUE;
 	};
@@ -61,7 +61,7 @@ instance DIA_NONE_101_MARIO_DI_ambush(C_Info)
 
 func int DIA_NONE_101_MARIO_DI_ambush_Condition()
 {
-	if(ORkSturmDI == TRUE)
+	if(OrkSturmDI == TRUE)
 	{
 		return TRUE;
 	};
@@ -123,4 +123,5 @@ func void dia_mario_di_pickpocket_back()
 {
 	Info_ClearChoices(dia_mario_di_pickpocket);
 };
+
 

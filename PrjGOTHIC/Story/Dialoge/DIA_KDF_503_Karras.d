@@ -114,7 +114,7 @@ func int DIA_Karras_Aufgabe_Condition()
 func void DIA_Karras_Aufgabe_Info()
 {
 	AI_Output(other,self,"DIA_Karras_Aufgabe_15_00");	//У тебя есть поручение для меня?
-	AI_Output(self,other,"DIA_Karras_Aufgabe_10_01");	//Да. Это касается безумного Игнаца. Он живет в  Хоринисе и экспериментирует с различными зельями и лечебными настойками. Но также он занимается магическими заклинаниями.
+	AI_Output(self,other,"DIA_Karras_Aufgabe_10_01");	//Да. Это касается безумного Игнаца. Он живет в Хоринисе и экспериментирует с различными зельями и лечебными настойками. Но также он занимается магическими заклинаниями.
 	AI_Output(self,other,"DIA_Karras_Aufgabe_10_02");	//И это очень беспокоит меня. Я задаю себе вопрос - а угодна ли эта магия Инносу?
 	AI_Output(self,other,"DIA_Karras_Aufgabe_10_03");	//Чтобы проверить это, мне хотелось бы заполучить некоторые из его свитков.
 	AI_Output(self,other,"DIA_Karras_Aufgabe_10_04");	//Я хочу, чтобы ты отправился в город и купил у него три свитка для меня.
@@ -168,7 +168,7 @@ instance DIA_Karras_Trade(C_Info)
 	condition = DIA_Karras_Trade_Condition;
 	information = DIA_Karras_Trade_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 
@@ -183,8 +183,8 @@ func int DIA_Karras_Trade_Condition()
 
 func void DIA_Karras_Trade_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Karras_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 };
 
 
@@ -217,7 +217,7 @@ func void DIA_Karras_JOB_Info()
 		AI_Output(self,other,"DIA_Karras_JOB_10_06");	//Но я могу продать их только членам нашего Ордена.
 	};
 	Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-	B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом огня.");
+	B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
 };
 
 
@@ -228,7 +228,7 @@ instance DIA_Karras_TEACH(C_Info)
 	condition = DIA_Karras_TEACH_Condition;
 	information = DIA_Karras_TEACH_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун).";
+	description = "Обучи меня (созданию рун)";
 };
 
 
@@ -246,6 +246,7 @@ func void DIA_Karras_TEACH_Info()
 	abletolearn = 0;
 	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
 	Info_ClearChoices(DIA_Karras_TEACH);
+	Info_AddChoice(DIA_Karras_TEACH,Dialog_Back,DIA_Karras_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == FALSE))
 	{
 		Info_AddChoice(DIA_Karras_TEACH,B_BuildLearnString(NAME_SPL_SummonGoblinSkeleton,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_SummonGoblinSkeleton)),DIA_Karras_TEACH_SUMGOBL);
@@ -279,10 +280,7 @@ func void DIA_Karras_TEACH_Info()
 	if(abletolearn < 1)
 	{
 		AI_Output(self,other,"DIA_Karras_TEACH_10_01");	//В настоящий момент мне нечему учить тебя.
-	}
-	else
-	{
-		Info_AddChoice(DIA_Karras_TEACH,Dialog_Back,DIA_Karras_TEACH_BACK);
+		Info_ClearChoices(DIA_Karras_TEACH);
 	};
 };
 
@@ -329,7 +327,7 @@ instance DIA_Karras_CIRCLE4(C_Info)
 	condition = DIA_Karras_CIRCLE4_Condition;
 	information = DIA_Karras_CIRCLE4_Info;
 	permanent = TRUE;
-	description = "Я хочу изучить четвертый Круг Магии.";
+	description = B_BuildLearnString("Я хочу изучить четвертый Круг Магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,4));
 };
 
 
@@ -366,7 +364,7 @@ instance DIA_Karras_CIRCLE5(C_Info)
 	condition = DIA_Karras_CIRCLE5_Condition;
 	information = DIA_Karras_CIRCLE5_Info;
 	permanent = TRUE;
-	description = "Я хочу изучить пятый Круг Магии.";
+	description = B_BuildLearnString("Я хочу изучить пятый Круг Магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,5));
 };
 
 
@@ -652,7 +650,7 @@ instance DIA_Karras_HaveBook(C_Info)
 	condition = DIA_Karras_HaveBook_Condition;
 	information = DIA_Karras_HaveBook_Info;
 	permanent = FALSE;
-	description = "Я принес Альманах Одержимых.";
+	description = "Я принес альманах Одержимых. Может быть, он чем-нибудь тебе поможет.";
 };
 
 
@@ -669,7 +667,7 @@ var int KarrasGotResearchDMTBook_Day;
 
 func void DIA_Karras_HaveBook_Info()
 {
-	AI_Output(other,self,"DIA_Karras_HaveBook_15_00");	//Я принес Альманах Одержимых. Может быть, он чем-нибудь тебе поможет.
+	AI_Output(other,self,"DIA_Karras_HaveBook_15_00");	//Я принес альманах Одержимых. Может быть, он чем-нибудь тебе поможет.
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_01");	//Покажи.
 	Npc_RemoveInvItems(other,ITWR_DementorObsessionBook_MIS,1);
 	AI_PrintScreen(PRINT_ItemGegeben,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
@@ -680,7 +678,7 @@ func void DIA_Karras_HaveBook_Info()
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_06");	//Однако я пока не могу сказать, имеем ли мы дело с типичной спиритуальной одержимостью или с чистой физической мутацией.
 	AI_Output(self,other,"DIA_Karras_HaveBook_10_07");	//Заходи попозже. Тогда я определенно смогу сказать больше.
 	MIS_KarrasResearchDMT = LOG_SUCCESS;
-	B_LogEntry(TOPIC_DEMENTOREN,"Каррас смог использовать Альманах одержимых для продолжения своих исследований. Я должен вернуться к нему позже.");
+	B_LogEntry(TOPIC_DEMENTOREN,"Каррас смог использовать альманах Одержимых для продолжения своих исследований. Я должен вернуться к нему позже.");
 	KarrasGotResearchDMTBook_Day = Wld_GetDay();
 	B_GivePlayerXP(XP_KarrasResearchDMT);
 };

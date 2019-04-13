@@ -76,7 +76,7 @@ func void DIA_NOV_3_Fegen_Info()
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_09");	//Я прошу всего 50 золотых монет, мне нужно заплатить их Парлану.
 			B_LogEntry(Topic_ParlanFegen,"Послушник у церкви поможет мне, если я дам ему 50 золотых монет.");
 			Info_ClearChoices(DIA_NOV_3_Fegen);
-			Info_AddChoice(DIA_NOV_3_Fegen,"Может быть, позже...",DIA_NOV_3_Fegen_Nein);
+			Info_AddChoice(DIA_NOV_3_Fegen,"Возможно позже, сейчас я не могу позволить себе такие расходы.",DIA_NOV_3_Fegen_Nein);
 			if(Npc_HasItems(other,ItMi_Gold) >= 50)
 			{
 				Info_AddChoice(DIA_NOV_3_Fegen,"Хорошо, я заплачу.",DIA_NOV_3_Fegen_Ja);
@@ -136,7 +136,7 @@ func void DIA_NOV_3_Wurst_Info()
 {
 	var string NovizeText;
 	var string NovizeLeft;
-	AI_Output(other,self,"DIA_NOV_3_Wurst_15_00");	//Ты не хочешь колбасы?
+	AI_Output(other,self,"DIA_NOV_3_Wurst_15_00");	//Хочешь колбасы?
 	AI_Output(self,other,"DIA_NOV_3_Wurst_03_01");	//Конечно, давай ее сюда. Кто же откажется от такой колбасы.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben = Wurst_Gegeben + 1;
@@ -228,7 +228,7 @@ instance DIA_NOV_3_STANDARD(C_Info)
 	condition = DIA_NOV_3_STANDARD_Condition;
 	information = DIA_NOV_3_STANDARD_Info;
 	permanent = TRUE;
-	description = "Что нового?";
+	description = "Что новенького?";
 };
 
 
