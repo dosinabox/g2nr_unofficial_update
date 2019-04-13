@@ -90,7 +90,7 @@ func void DIA_Addon_Xardas_Hello_Man()
 	PlayVideo("Intro_ADDON.BIK");
 	/////восстановление
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_01");	//(пренебрежительно) Ћюди слабы.
-	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ... люди?
+	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ...люди?
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_02");	//(пренебрежительно) ќни слишком легко поддаютс€ соблазнам «ла.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_03");	//“аким образом они вовлекаютс€ в дела, которые не могут пон€ть и уж тем более не могут контролировать.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_04");	//“вердые в своей вере уже начали сражение с врагом.

@@ -219,8 +219,11 @@ func void DIA_Raoul_Stimme_Info()
 {
 	AI_Output(other,self,"DIA_Raoul_Stimme_15_00");	//Я бы хотел стать наемником. Ты не возражаешь?
 	AI_Output(self,other,"DIA_Raoul_Stimme_01_01");	//Ааа, делай, что хочешь...
-	Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+	if(Torlof_GenugStimmen == FALSE)
+	{
+		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+	};
 	B_LogEntry(TOPIC_SLDRespekt,"Рауль не возражает против моего вступления в ряды наемников.");
 };
 

@@ -35,6 +35,7 @@ func void B_GiveTradeInv_Coragon(var C_Npc slf)
 		CreateInvItems(slf,ItFo_Wine,4);
 		CreateInvItems(slf,ItFo_Booze,5);
 		CreateInvItems(slf,ItFo_Beer,6);
+		CreateInvItems(slf,ItFo_Apple,2);
 		CreateInvItems(slf,ItFo_Bacon,5);
 		CreateInvItems(slf,ItFo_Sausage,5);
 		CreateInvItems(slf,ItFo_Honey,5);

@@ -99,7 +99,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		{
 			return COLL_DONOTHING;
 		};
-		return COLL_DOEVERYTHING;
+		return COLL_DOEVERYTHING | COLL_DONTKILL;
 	};
 	if(spellType == SPL_GreenTentacle)
 	{

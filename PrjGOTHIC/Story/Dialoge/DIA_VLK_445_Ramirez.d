@@ -342,15 +342,14 @@ instance DIA_Ramirez_Viertel(C_Info)
 	nr = 8;
 	condition = DIA_Ramirez_Viertel_Condition;
 	information = DIA_Ramirez_Viertel_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "√де ты порекомендуешь мне попробовать свои силы?";
 };
 
 
 func int DIA_Ramirez_Viertel_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Ramirez_Zeichen))
-	if(Join_Thiefs == TRUE)
+	if((Join_Thiefs == TRUE) && (RamirezToldAboutWambo == FALSE))
 	{
 		return TRUE;
 	};
@@ -360,9 +359,17 @@ func void DIA_Ramirez_Viertel_Info()
 {
 	AI_Output(other,self,"DIA_Ramirez_Viertel_15_00");	//√де ты порекомендуешь мне попробовать свои силы?
 	AI_Output(self,other,"DIA_Ramirez_Viertel_14_01");	//¬ верхней части города, конечно же.
-	AI_Output(self,other,"DIA_Ramirez_Viertel_14_02");	//Ќо если ты хочешь пробратьс€ в какой-то дом, лучше дождатьс€ ночи, ночью все сп€т - за исключением городской стражи.
-	AI_Output(self,other,"DIA_Ramirez_Viertel_14_03");	//ќни патрулируют город всю ночь. я знаю одного из них - ¬амбо. ≈го интересует только золото.
-	AI_Output(self,other,"DIA_Ramirez_Viertel_14_04");	//≈го услуги сто€т недешево, но если ты ему заплатишь, тебе больше ни о чем не нужно будет волноватьс€.
+	if(Npc_KnowsInfo(other,DIA_Ramirez_Zeichen))
+	{
+		AI_Output(self,other,"DIA_Ramirez_Viertel_14_02");	//Ќо если ты хочешь пробратьс€ в какой-то дом, лучше дождатьс€ ночи, ночью все сп€т - за исключением городской стражи.
+		AI_Output(self,other,"DIA_Ramirez_Viertel_14_03");	//ќни патрулируют город всю ночь. я знаю одного из них - ¬амбо. ≈го интересует только золото.
+		AI_Output(self,other,"DIA_Ramirez_Viertel_14_04");	//≈го услуги сто€т недешево, но если ты ему заплатишь, тебе больше ни о чем не нужно будет волноватьс€.
+		RamirezToldAboutWambo = TRUE;
+	}
+	else
+	{
+		AI_StopProcessInfos(self);
+	};	
 };
 
 

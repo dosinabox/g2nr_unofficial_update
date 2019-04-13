@@ -155,6 +155,11 @@ func void DIA_Cord_WannaJoin_Info()
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_11");	//≈сли тебе еще что-то нужно знать, ты можешь спросить у мен€.
 		Cord_Approved = TRUE;
 		B_GivePlayerXP(XP_Cord_Approved);
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		B_LogEntry(TOPIC_SLDRespekt,"√олос  орда у мен€ в кармане.");
 		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
 		B_LogEntry(Topic_SoldierTeacher," орд может обучить мен€ владению одноручным и двуручным оружием.");

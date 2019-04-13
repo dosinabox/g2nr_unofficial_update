@@ -476,9 +476,11 @@ func int DIA_Vatras_DI_DementorObsessionBook_Condition()
 
 
 var int DIA_Vatras_DI_DementorObsessionBook_OneTime;
+var int VatrasBookCount;
 
 func void DIA_Vatras_DI_DementorObsessionBook_Info()
 {
+	VatrasBookCount = Npc_HasItems(other,ITWR_DementorObsessionBook_MIS);
 	AI_Output(other,self,"DIA_Vatras_DI_DementorObsessionBook_15_00");	//Я принес альманах Одержимых.
 	if(DIA_Vatras_DI_DementorObsessionBook_OneTime == FALSE)
 	{
@@ -489,9 +491,13 @@ func void DIA_Vatras_DI_DementorObsessionBook_Info()
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_DementorObsessionBook_05_02");	//У тебя есть еще? Принеси мне все, что найдешь.
 	};
-	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,1);
-	Npc_RemoveInvItems(self,ITWR_DementorObsessionBook_MIS,1);
-	B_GivePlayerXP(XP_Ambient);
+	if(VatrasBookCount > 1)
+	{
+		AI_Output(other,self,"DIA_Pyrokar_AlmanachBringen_15_03");	//Я нашел еще несколько книг Ищущих.
+	};
+	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,VatrasBookCount);
+	Npc_RemoveInvItems(self,ITWR_DementorObsessionBook_MIS,VatrasBookCount);
+	B_GivePlayerXP(XP_Ambient * VatrasBookCount);
 };
 
 
@@ -524,13 +530,10 @@ func void DIA_Vatras_DI_UndeadDragonDead_Info()
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_01");	//Я знаю, я чувствую это.
 		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_02");	//Ты нанес удар Белиару, от которого он не скоро оправится.
+		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_04");	//Помни, что это был всего лишь эпизод в вечной битве Добра со Злом.
 		if(hero.guild == GIL_DJG)
 		{
 			AI_Output(other,self,"DIA_Vatras_DI_UndeadDragonDead_15_03");	//Могу я теперь успокоиться, или у вас, у магов, есть еще один скелет в шкафу, которого нужно изгнать из этого мира?
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_04");	//Помни, что это был всего лишь эпизод в вечной битве Добра со Злом.
 		};
 		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_05");	//Зло всегда находит способ проникнуть в этот мир. Эта война никогда не кончится.
 		if(hero.guild == GIL_PAL)

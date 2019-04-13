@@ -134,16 +134,20 @@ func void DIA_Bronko_KEINBAUER_Info()
 	AI_Output(other,self,"DIA_Bronko_KEINBAUER_15_00");	//Ты?! Фермер?! Не смеши меня. Да ты вообще никто.
 	AI_Output(self,other,"DIA_Bronko_KEINBAUER_06_01");	//Чтоооо? Хочешь получить по морде?
 	Info_ClearChoices(DIA_Bronko_KEINBAUER);
-	if(hero.guild == GIL_NONE)
+	if(Babera_BronkoKeinBauer == TRUE)
 	{
-		if(Babera_BronkoKeinBauer == TRUE)
+		if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+		{
+			Info_AddChoice(DIA_Bronko_KEINBAUER,"Я могу сказать наемникам, где ты живешь.",DIA_Bronko_KEINBAUER_SLD);
+		}
+		else
 		{
 			Info_AddChoice(DIA_Bronko_KEINBAUER,"(пригрозить Бронко наемниками)",DIA_Bronko_KEINBAUER_SLD);
 		};
-		if(MIS_Sekob_Bronko_eingeschuechtert == LOG_Running)
-		{
-			Info_AddChoice(DIA_Bronko_KEINBAUER,"Фермер здесь - Секоб, а ты просто мелкий жулик.",DIA_Bronko_KEINBAUER_sekobderbauer);
-		};
+	};
+	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_Running)
+	{
+		Info_AddChoice(DIA_Bronko_KEINBAUER,"Фермер здесь - Секоб, а ты просто мелкий жулик.",DIA_Bronko_KEINBAUER_sekobderbauer);
 	};
 	Info_AddChoice(DIA_Bronko_KEINBAUER,"Ну... Давай посмотрим, что ты можешь.",DIA_Bronko_KEINBAUER_attack);
 	Info_AddChoice(DIA_Bronko_KEINBAUER,"Забудь!",DIA_Bronko_KEINBAUER_schongut);
@@ -174,6 +178,11 @@ func void DIA_Bronko_KEINBAUER_schongut()
 
 func void DIA_Bronko_KEINBAUER_SLD()
 {
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	{
+		AI_Output(other,self,"DIA_Cornelius_DontBelieveYou_KnowYourHome_15_00");	//Я могу сказать наемникам, где ты живешь.
+		AI_Output(self,other,"DIA_Bronko_KEINBAUER_schongut_06_01");	//Проваливай!
+	};
 	AI_Output(other,self,"DIA_Bronko_KEINBAUER_SLD_15_00");	//Хорошо, тогда, пожалуй, мне придется сказать Онару, что здесь есть наглый фермер, который отказывается платить ренту.
 	AI_Output(self,other,"DIA_Bronko_KEINBAUER_SLD_06_01");	//Черт. Подожди минутку. Онар пошлет сюда наемников.
 	AI_Output(other,self,"DIA_Bronko_KEINBAUER_SLD_15_02");	//И что?
@@ -185,6 +194,10 @@ func void DIA_Bronko_KEINBAUER_SLD()
 	if(Wld_IsTime(8,0,22,0))
 	{
 		AI_Output(self,other,"DIA_Bronko_KEINBAUER_SLD_06_05");	//И я вернусь в поле и буду работать. Все, что угодно, только не надо наемников.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_05");	//Я даже вернусь к работе, хорошо?
 	};
 	AI_StopProcessInfos(self);
 	DIA_Bronko_KEINBAUER_noPerm = TRUE;
@@ -227,7 +240,7 @@ func void DIA_Bronko_FLEISSIG_Info()
 	{
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_02");	//Ты наемник, да? Я мог бы догадаться.
 	}
-	else if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
+	else if(DIA_Bronko_KEINBAUER_noPerm == TRUE)
 	{
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_03");	//(в страхе) Ты ведь не приведешь сюда этих наемников, да?
 	};

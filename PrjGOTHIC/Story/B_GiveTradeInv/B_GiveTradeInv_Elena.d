@@ -30,6 +30,7 @@ func void B_GiveTradeInv_Elena(var C_Npc slf)
 	if((Kapitel >= 3) && (Elena_ItemsGiven_Chapter_3 == FALSE))
 	{
 		CreateInvItems(slf,ItMi_Gold,100);
+		CreateInvItems(slf,ItFo_Apple,2);
 		CreateInvItems(slf,ItFo_Cheese,2);
 		CreateInvItems(slf,ItFo_Bacon,2);
 		CreateInvItems(slf,ItFoMutton,3);

@@ -330,7 +330,7 @@ func void Use_Pirates_01()
 	Doc_PrintLines(nDocID,0,"До встречи.");
 	Doc_PrintLine(nDocID,0,"Том");
 	Doc_Show(nDocID);
-	Read_JuansText = TRUE;
+//	Read_JuansText = TRUE;
 };
 
 

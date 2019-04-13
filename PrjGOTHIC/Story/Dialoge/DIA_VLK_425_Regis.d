@@ -201,7 +201,6 @@ func void DIA_Regis_ValDefeat_Info()
 	{
 		AI_Output(self,other,"DIA_Regis_Add_13_19");	//Вот - я нашел это кольцо в его кармане, когда наша стычка закончилась.
 		B_GiveInvItems(self,other,ItRi_ValentinosRing,1);
-		Regis_Ring = TRUE;
 		AI_Output(self,other,"DIA_Regis_Add_13_20");	//(ухмыляется) Ты можешь передать его следующему, кто надает ему тумаков...
 	};
 };

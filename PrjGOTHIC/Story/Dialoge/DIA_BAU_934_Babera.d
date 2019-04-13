@@ -114,7 +114,7 @@ func void DIA_Babera_BRONKO_Info()
 	AI_Output(other,self,"DIA_Babera_BRONKO_15_00");	//Скажи, вон тот тип, что стоит там...
 	AI_Output(self,other,"DIA_Babera_BRONKO_16_01");	//Это Бронко. Зачем он тебе?
 	AI_Output(other,self,"DIA_Babera_BRONKO_15_02");	//Это ваш фермер?
-	AI_Output(self,other,"DIA_Babera_BRONKO_16_03");	//(смеется) Это он сказал тебе? Наш фермер Секоб. А Бронко просто болтун и бездельник. Но сильный как бык.
+	AI_Output(self,other,"DIA_Babera_BRONKO_16_03");	//(смеется) Это он сказал тебе? Наш фермер - Секоб. А Бронко просто болтун и бездельник. Но сильный как бык.
 	AI_Output(self,other,"DIA_Babera_BRONKO_16_04");	//Вот почему никто не протестует против того, что он не работает.
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
@@ -150,6 +150,8 @@ func void DIA_Babera_Rosi_Info()
 {
 	AI_Output(other,self,"DIA_Babera_Rosi_15_00");	//А где Рози?
 	AI_Output(self,other,"DIA_Babera_Rosi_16_01");	//Она больше не могла выносить такую жизнь и ушла на север, в лес.
+	Log_CreateTopic(TOPIC_RosisFlucht,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_Running);
 	B_LogEntry(TOPIC_RosisFlucht,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
 	B_LogEntry(TOPIC_bringRosiBackToSekob,"Рози сбежала с фермы Секоба. Бабера говорит, что она направилась на север, в лес.");
 };

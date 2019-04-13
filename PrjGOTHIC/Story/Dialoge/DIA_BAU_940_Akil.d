@@ -56,9 +56,9 @@ func int DIA_Akil_Hallo_Condition()
 func void DIA_Akil_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Hallo_15_00");	//У тебя какие-то проблемы?
-	AI_Output(self,other,"DIA_Akil_Hallo_13_01");	//(в поту) ...Э-э... нет, нет... все в порядке. (нервно) Это... тебе лучше уйти сейчас.
+	AI_Output(self,other,"DIA_Akil_Hallo_13_01");	//(в поту) ...Э-э... нет, нет... все в порядке. (нервно) Э-э... тебе лучше уйти сейчас.
 	AI_Output(other,self,"DIA_Akil_Hallo_15_02");	//Ты в этом уверен?
-	AI_Output(self,other,"DIA_Akil_Hallo_13_03");	//Э-э... да, да... все в порядке. Ты... э-э... я... я сейчас не могу говорить с тобой.
+	AI_Output(self,other,"DIA_Akil_Hallo_13_03");	//Э-э... да, да, да... все в порядке. Ты... э-э... я... я сейчас не могу говорить с тобой.
 	if(Akils_SLDStillthere == FALSE)
 	{
 		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
@@ -131,7 +131,7 @@ func void DIA_Akil_NachKampf_Info()
 		AI_Output(self,other,"DIA_Akil_NachKampf_13_04");	//Это наемники с фермы Онара. Эти ублюдки только и знают, что грабить и убивать.
 	};
 	AI_Output(self,other,"DIA_Akil_NachKampf_13_05");	//Я боялся худшего...
-	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает) ... слава Инносу, до этого не дошло. Скажи мне, что я могу сделать для тебя?
+	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает) ...слава Инносу, до этого не дошло. Скажи мне, что я могу сделать для тебя?
 	Info_ClearChoices(DIA_Akil_NachKampf);
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);

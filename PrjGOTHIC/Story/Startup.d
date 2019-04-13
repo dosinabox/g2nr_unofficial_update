@@ -2966,8 +2966,8 @@ func void STARTUP_NewWorld_Part_Forest_01()
 	Wld_InsertNpc(Molerat,"FP_ROAM_CITY_TO_FOREST_42");
 	Wld_InsertNpc(Molerat,"FP_ROAM_CITY_TO_FOREST_41");
 	Wld_InsertNpc(Shadowbeast,"FP_ROAM_CITYFOREST_KAP3_04");
-	Wld_InsertNpc(Gobbo_Black,"FP_ROAM_CITYFOREST_KAP3_07");
 	Wld_InsertNpc(Gobbo_Black,"FP_ROAM_CITYFOREST_KAP3_06");
+	Wld_InsertNpc(Gobbo_Black,"FP_ROAM_CITYFOREST_KAP3_07");
 	Wld_InsertNpc(Gobbo_Black,"FP_ROAM_CITYFOREST_KAP3_08");
 	Wld_InsertNpc(Warg,"FP_ROAM_CITYFOREST_KAP3_09");
 	Wld_InsertNpc(Warg,"FP_ROAM_CITYFOREST_KAP3_10");

@@ -163,11 +163,18 @@ func void DIA_Gritta_WantsMoney_WhereMoney()
 func void DIA_Gritta_WantsMoney_EnoughStuff()
 {
 	AI_Output(other,self,"DIA_Gritta_WantsMoney_EnoughStuff_15_00");	//Ну, тогда мы просто продадим некоторые из твоих тряпок. Я уверен, что в твоем сундуке их целая груда...
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_EnoughStuff_16_01");	//Как ты смеешь, деревенщина! Ладно, вот, возьми золото.
-	B_GiveInvItems(self,other,ItMi_Gold,100);
-	AI_Output(other,self,"DIA_Gritta_WantsMoney_EnoughStuff_15_02");	//(ухмыляется) Видишь, это было не так уж сложно.
-	AI_Output(self,other,"DIA_Gritta_WantsMoney_EnoughStuff_16_03");	//(раздраженно) А теперь, пожалуйста, покинь мой дом.
-	Gritta_GoldGiven = TRUE;
+	if(Npc_HasItems(self,ItMi_Gold) < 80)
+	{
+		AI_Output(self,other,"DIA_Gritta_PERM_16_03");	//Что еще тебе нужно? Ты получил мое золото! Убирайся!
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Gritta_WantsMoney_EnoughStuff_16_01");	//Как ты смеешь, деревенщина! Ладно, вот, возьми золото.
+		B_GiveInvItems(self,other,ItMi_Gold,100);
+		AI_Output(other,self,"DIA_Gritta_WantsMoney_EnoughStuff_15_02");	//(ухмыляется) Видишь, это было не так уж сложно.
+		AI_Output(self,other,"DIA_Gritta_WantsMoney_EnoughStuff_16_03");	//(раздраженно) А теперь, пожалуйста, покинь мой дом.
+		Gritta_GoldGiven = TRUE;
+	};	
 	AI_StopProcessInfos(self);
 };
 

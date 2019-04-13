@@ -207,6 +207,11 @@ func void DIA_Rod_WannaJoin_Info()
 			AI_Output(self,other,"DIA_Rod_WannaJoin_06_05");	//ќх, да, у теб€ неплохой меч. ќстальному ты научишьс€.
 		};
 		AI_Output(self,other,"DIA_Rod_WannaJoin_06_06");	//≈сли тебе интересно мое мнение, то € не против.
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		B_LogEntry(TOPIC_SLDRespekt,"я получу голос –ода, если € захочу присоединитьс€ к наемникам.");
 		DIA_Rod_WannaJoin.permanent = FALSE;
 	}

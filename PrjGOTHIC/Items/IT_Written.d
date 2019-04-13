@@ -1,7 +1,7 @@
 
 instance StandardBrief(C_Item)
 {
-	name = "Письмо";
+	name = "Стандартное письмо";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -9,7 +9,7 @@ instance StandardBrief(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseStandardBrief;
 	scemeName = "MAP";
-	description = "Стандартное письмо";
+	description = name;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -34,14 +34,14 @@ func void UseStandardBrief()
 
 instance StandardBuch(C_Item)
 {
-	name = "Книга";
+	name = "Стандартная книга";
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_02_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Стандартная книга";
+	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = UseStandardBuch;

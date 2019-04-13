@@ -1163,7 +1163,7 @@ instance DIA_Lares_GuildOfThieves(C_Info)
 
 func int DIA_Lares_GuildOfThieves_Condition()
 {
-	if(MIS_Andre_GuildOfThieves == LOG_Running)
+	if(((MIS_Andre_GuildOfThieves == LOG_Running) || Npc_KnowsInfo(other,DIA_Lares_GotKey)) && (DG_gefunden == FALSE))
 	{
 		return TRUE;
 	};
@@ -1203,7 +1203,10 @@ func void DIA_Lares_WhereGuildOfThieves_Info()
 	AI_Output(self,other,"DIA_Lares_WhereGuildOfThieves_09_01");	//(смеется) Не обижайся, но даже если бы знал, не сказал бы.
 	AI_Output(self,other,"DIA_Lares_WhereGuildOfThieves_09_02");	//Эти люди обычно ОЧЕНЬ жестко реагируют на такие вещи.
 	AI_Output(self,other,"DIA_Lares_WhereGuildOfThieves_09_03");	//Если ты собираешься связаться с ними, тебе нужно быть поосторожнее.
-	AI_Output(self,other,"DIA_Lares_WegZumHof_09_02");	//Ополчение в гавани бывает редко, но все же не стоит рисковать и вызывать их подозрения...
+	if((other.guild == GIL_NONE) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	{
+		AI_Output(self,other,"DIA_Lares_WegZumHof_09_02");	//Ополчение в гавани бывает редко, но все же не стоит рисковать и вызывать их подозрения...
+	};
 };
 
 
@@ -1220,7 +1223,7 @@ instance DIA_Lares_GotKey(C_Info)
 
 func int DIA_Lares_GotKey_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lares_WhereGuildOfThieves) && Npc_HasItems(other,ItKe_ThiefGuildKey_MIS) && (DG_gefunden == FALSE))
+	if(Npc_HasItems(other,ItKe_ThiefGuildKey_MIS) && (DG_gefunden == FALSE))
 	{
 		return TRUE;
 	};

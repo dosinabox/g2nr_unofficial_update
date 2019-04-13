@@ -76,6 +76,11 @@ func void DIA_Wolf_WannaJoin_Info()
 	AI_Output(self,other,"DIA_Wolf_WannaJoin_08_04");	//Я сам-то еле узнал тебя, ты выглядишь ужасно изможденным.
 	AI_Output(other,self,"DIA_Wolf_WannaJoin_15_05");	//Когда Барьер пал, мне чудом удалось остаться в живых.
 	AI_Output(self,other,"DIA_Wolf_WannaJoin_08_06");	//Но, похоже, тебе все же повезло.
+	if(Torlof_GenugStimmen == FALSE)
+	{
+		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+	};
 	B_LogEntry(TOPIC_SLDRespekt,"Вольф не возражает против моего вступления в ряды наемников.");
 };
 

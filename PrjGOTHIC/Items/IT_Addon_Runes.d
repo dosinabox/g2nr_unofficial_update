@@ -179,6 +179,7 @@ instance ItRu_SuckEnergy(C_Item)
 	count[2] = SPL_SuckEnergy_Damage;
 	text[3] = NAME_Sec_Duration;
 	count[3] = 8;
+	text[4] = NAME_Addon_SpellDontKill;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

@@ -902,14 +902,17 @@ func void DIA_Kardif_Crew_Info()
 	AI_Output(other,self,"DIA_Kardif_Crew_15_00");	//Мне все еще нужны матросы.
 	AI_Output(self,other,"DIA_Kardif_Crew_14_01");	//Настали плохие времена, дружище. Ты не найдешь матросов во всем Хоринисе. Большинство из них давно покинули город.
 	AI_Output(self,other,"DIA_Kardif_Crew_14_02");	//Но с хорошим капитаном будет нетрудно набрать несколько смышленых парней и довольно быстро сделать из них неплохую команду.
-	AI_Output(other,self,"DIA_Kardif_Crew_15_03");	//Где я могу найти капитана?
-	AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
-	if(!Npc_IsDead(Jack) && (SCGotCaptain == FALSE))
+	if(SCGotCaptain == FALSE)
 	{
-		AI_Output(self,other,"DIA_Kardif_Crew_14_05");	//Иди, поговори со старым Джеком. Он ошивается в этом порту, сколько я себя помню. В том, что касается морского дела, это тот человек, что тебе нужен.
-		Log_CreateTopic(Topic_Captain,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Captain,LOG_Running);
-		B_LogEntry(Topic_Captain,"Кардиф отправил меня к старому Джеку. Возможно, он сможет помочь мне.");
+		AI_Output(other,self,"DIA_Kardif_Crew_15_03");	//Где я могу найти капитана?
+		AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
+		if(!Npc_IsDead(Jack))
+		{
+			AI_Output(self,other,"DIA_Kardif_Crew_14_05");	//Иди, поговори со старым Джеком. Он ошивается в этом порту, сколько я себя помню. В том, что касается морского дела, это тот человек, что тебе нужен.
+			Log_CreateTopic(Topic_Captain,LOG_MISSION);
+			Log_SetTopicStatus(Topic_Captain,LOG_Running);
+			B_LogEntry(Topic_Captain,"Кардиф отправил меня к старому Джеку. Возможно, он сможет помочь мне.");
+		};
 	};
 };
 

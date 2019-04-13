@@ -193,7 +193,7 @@ instance DIA_Pepe_Bullco(C_Info)
 
 func int DIA_Pepe_Bullco_Condition()
 {
-	if((MIS_Pepe_KillWolves == LOG_SUCCESS) && !Npc_IsDead(Bullco) && (Kapitel <= 3))
+	if((MIS_Pepe_KillWolves == LOG_SUCCESS) && !Npc_IsDead(Bullco) && (MIS_ReadyforChapter4 == FALSE))
 	{
 		return TRUE;
 	};

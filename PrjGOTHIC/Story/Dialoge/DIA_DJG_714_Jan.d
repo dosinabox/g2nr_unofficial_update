@@ -563,11 +563,11 @@ instance DIA_Jan_DragonPlettBericht(C_Info)
 };
 
 
-var int DIA_Jan_DragonPlettBericht_NoPerm;
+//var int DIA_Jan_DragonPlettBericht_NoPerm;
 
 func int DIA_Jan_DragonPlettBericht_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_JAN_Dragons) && (DIA_Jan_DragonPlettBericht_NoPerm == FALSE) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons != 0))
+	if((Kapitel >= 4) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons != 0))
 	{
 		return TRUE;
 	};
@@ -591,12 +591,12 @@ func void DIA_Jan_DragonPlettBericht_Info()
 	{
 		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_03");	//» что? “ы ведь охотник на драконов, разве нет?
 		AI_Output(other,self,"DIA_Jan_DragonPlettBericht_15_04");	//ј ты разве нет?
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_05");	//ƒа, конечно, но если честно, то мне это не интересно.
 	};
-	AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_06");	//я уже говорил тебе, мне больше нравитс€ делать оружие, чем убивать драконов.
+	AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_05");	//ƒа, конечно, но если честно, то мне это не интересно.
+	if(Npc_KnowsInfo(other,DIA_JAN_Dragons))
+	{
+		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_06");	//я уже говорил тебе, мне больше нравитс€ делать оружие, чем убивать драконов.
+	};
 	if((hero.guild != GIL_DJG) && (hero.guild != GIL_SLD))
 	{
 		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_07");	//¬прочем, есть кое-что, что может заинтересовать мен€.

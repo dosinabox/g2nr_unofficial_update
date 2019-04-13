@@ -416,6 +416,11 @@ func void DIA_Jarvis_HowManyLeft_Info()
 			if(other.guild == GIL_NONE)
 			{
 				AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_17");	//Я поражен - если Ли спросит мое мнение, я проголосую за тебя без колебаний.
+				if(Torlof_GenugStimmen == FALSE)
+				{
+					Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+					Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+				};
 				B_LogEntry(TOPIC_SLDRespekt,"Джарвис проголосует за меня, если я решу присоединиться к наемникам.");
 			};
 			MIS_Jarvis_SldKO = LOG_SUCCESS;

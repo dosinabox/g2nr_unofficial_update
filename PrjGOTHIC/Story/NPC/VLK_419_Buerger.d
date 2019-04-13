@@ -12,7 +12,7 @@ instance VLK_419_Buerger(Npc_Default)
 	EquipItem(self,ItMw_1h_Vlk_Mace);
 	B_CreateAmbientInv(self);
 //	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald.",Face_N_NormalBart_Graham,BodyTex_N,ITAR_Vlk_H);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Graham,BodyTex_N,ITAR_Vlk_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Graham,BodyTex_N,ITAR_Vlk_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

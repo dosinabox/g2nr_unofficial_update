@@ -275,8 +275,11 @@ func void DIA_Buster_WannaJoin_Info()
 	AI_Output(other,self,"DIA_Buster_WannaJoin_15_00");	//Я хочу присоединиться к наемникам!
 	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 	{
-		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 		{
 			AI_Output(self,other,"DIA_Buster_WannaJoin_13_01");	//У парня с таким ударом, как у тебя, не должно возникнуть с этим особых проблем.

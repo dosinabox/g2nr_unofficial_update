@@ -105,7 +105,7 @@ func int DIA_Bosper_SeekWork_Condition()
 func void DIA_Bosper_SeekWork_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_SeekWork_15_00");	//Я ищу работу!
-	AI_Output(self,other,"DIA_Bosper_SeekWork_11_01");	//Ммм - мне не помешал бы новый ученик.
+	AI_Output(self,other,"DIA_Bosper_SeekWork_11_01");	//Ммм... Мне не помешал бы новый ученик.
 	AI_Output(self,other,"DIA_Bosper_SeekWork_11_02");	//Последний, что у меня был, бросил свою работу пару дней назад.
 	AI_Output(self,other,"DIA_Bosper_SeekWork_11_03");	//Ты что-нибудь знаешь об охоте, а?
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)

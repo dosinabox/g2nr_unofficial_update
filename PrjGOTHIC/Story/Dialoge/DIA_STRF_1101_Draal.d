@@ -1,5 +1,5 @@
 
-instance DIA_Draal_EXIT(C_Info)
+/*instance DIA_Draal_EXIT(C_Info)
 {
 	npc = STRF_1101_Draal;
 	nr = 999;
@@ -18,8 +18,9 @@ func int DIA_Draal_EXIT_Condition()
 func void DIA_Draal_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 
+var int DraalToldAboutAttack;
 
 instance DIA_Draal_DRAGON(C_Info)
 {
@@ -42,8 +43,13 @@ func int DIA_Draal_DRAGON_Condition()
 
 func void DIA_Draal_DRAGON_Info()
 {
-	AI_Output(self,other,"DIA_Draal_DRAGON_03_00");	//Я был снаружи, когда напал дракон.
-	AI_Output(self,other,"DIA_Draal_DRAGON_03_01");	//Я видел его, он больше, чем 10 людей - его огненное дыхание уничтожило хижины в мгновение ока!
+	if(DraalToldAboutAttack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Draal_DRAGON_03_00");	//Я был снаружи, когда напал дракон.
+		AI_Output(self,other,"DIA_Draal_DRAGON_03_01");	//Я видел его, он больше, чем 10 людей - его огненное дыхание уничтожило хижины в мгновение ока!
+		DraalToldAboutAttack = TRUE;
+	};
 	AI_Output(self,other,"DIA_Draal_DRAGON_03_02");	//Дракон! Я лучше останусь здесь. Ничто не сдвинет меня с места. Но я не безумен!
+	AI_StopProcessInfos(self);
 };
 

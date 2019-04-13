@@ -53,7 +53,7 @@ func void B_Video()
 	AI_Output(other,self,"OUTRO_Schiff_15_09");	//Но я не вижу шторма...
 	AI_Output(self,other,"OUTRO_Schiff_12_10");	//ПОКА нет...
 	AI_Output(other,self,"OUTRO_Schiff_15_11");	//Расслабься! Все будет в порядке!
-	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ... люди?
+	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ...люди?
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_01");	//(пренебрежительно) Люди слабы.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_02");	//(пренебрежительно) Они слишком легко поддаются соблазнам Зла.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_03");	//Таким образом они вовлекаются в дела, которые не могут понять и уж тем более не могут контролировать.

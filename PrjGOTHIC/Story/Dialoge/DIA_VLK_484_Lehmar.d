@@ -257,12 +257,11 @@ func int DIA_Lehmar_GELDZURUECK_Condition()
 func void DIA_Lehmar_GELDZURUECK_Info()
 {
 	AI_Output(other,self,"DIA_Lehmar_GELDZURUECK_15_00");	//Вот твои деньги!
-	if((RangerHelp_LehmarKohle == TRUE) && (Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)))
+	if(RangerHelp_LehmarKohle == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Lehmar_GELDZURUECK_09_00");	//Оставь их. Ларес уже обо всем позаботился.
 		AI_Output(self,other,"DIA_Addon_Lehmar_GELDZURUECK_09_01");	//Похоже, вы с этим мошенником приятели, а? Ладно, ладно, это не мое дело. Удачи.
 		Lehmar_GeldGeliehen = 0;
-		AI_StopProcessInfos(self);
 	}
 	else
 	{
@@ -284,14 +283,13 @@ func void DIA_Lehmar_GELDZURUECK_Info()
 			B_GiveInvItems(other,self,ItMi_Gold,Lehmar_GeldGeliehen_MitZinsen);
 			AI_Output(self,other,"DIA_Lehmar_GELDZURUECK_09_01");	//Превосходно! Приятно иметь с тобой дело.
 			Lehmar_GeldGeliehen = 0;
-			AI_StopProcessInfos(self);
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_Lehmar_GELDZURUECK_09_02");	//Здесь недостаточно! Возвращайся, когда у тебя будет вся сумма. У тебя еще есть время. Помни, 20 процентов!
-			AI_StopProcessInfos(self);
 		};
 	};
+	AI_StopProcessInfos(self);
 };
 
 
@@ -317,7 +315,7 @@ func int DIA_Lehmar_NOCHMALGELD_Condition()
 func void DIA_Lehmar_NOCHMALGELD_Info()
 {
 	AI_Output(other,self,"DIA_Lehmar_NOCHMALGELD_15_00");	//Могу я занять у тебя денег?
-	if(Npc_KnowsInfo(other,DIA_Lehmar_GELDEINTREIBEN) || Npc_KnowsInfo(other,DIA_Lehmar_BuchWeg))
+	if(Npc_KnowsInfo(other,DIA_Lehmar_GELDEINTREIBEN) || Npc_KnowsInfo(other,DIA_Lehmar_BuchWeg) || (self.aivar[AIV_DefeatedByPlayer] == TRUE))
 	{
 		AI_Output(self,other,"DIA_Lehmar_NOCHMALGELD_09_01");	//Ты думаешь, я идиот? Проваливай!
 		AI_StopProcessInfos(self);
@@ -377,6 +375,8 @@ func void DIA_Lehmar_PICKPOCKET_BACK()
 };
 
 
+var int LehmarToldAboutBook;
+
 instance DIA_Lehmar_BuchWeg(C_Info)
 {
 	npc = VLK_484_Lehmar;
@@ -390,7 +390,7 @@ instance DIA_Lehmar_BuchWeg(C_Info)
 
 func int DIA_Lehmar_BuchWeg_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE) && (Lehmar_StealBook_Day < Wld_GetDay()))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE) && (Lehmar_StealBook_Day < Wld_GetDay()) && (Lehmar_vorbei == FALSE))
 	{
 		return TRUE;
 	};
@@ -402,6 +402,7 @@ func void DIA_Lehmar_BuchWeg_Info()
 	AI_Output(self,other,"DIA_Lehmar_Add_09_01");	//Ты случайно не имеешь к этому отношения, нет?
 	AI_Output(other,self,"DIA_Addon_Lehmar_Add_15_02");	//(усмехается) Я? Нет.
 	AI_Output(self,other,"DIA_Lehmar_Add_09_03");	//Да-да, хорошо. Уходи отсюда...
+	LehmarToldAboutBook = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -419,18 +420,22 @@ instance DIA_Lehmar_verhauen(C_Info)
 
 func int DIA_Lehmar_verhauen_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Lehmar_vorbei == TRUE))
 	{
-		if((self.aivar[AIV_DefeatedByPlayer] == TRUE) || Npc_KnowsInfo(other,DIA_Lehmar_BuchWeg) || (Lehmar_vorbei == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Lehmar_verhauen_Info()
 {
-	B_Say(self,other,"$NOTNOW");
-	AI_StopProcessInfos(self);
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE) && (Lehmar_StealBook_Day < Wld_GetDay()) && (LehmarToldAboutBook == FALSE))
+	{
+		DIA_Lehmar_BuchWeg_Info();
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	};
 };
 

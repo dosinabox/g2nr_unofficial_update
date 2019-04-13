@@ -21,6 +21,15 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			Npc_RemoveInvItems(slf,ItMw_1h_Bau_Mace,Npc_HasItems(slf,ItMw_1h_Bau_Mace));
 		};
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(VLK_404_Lutero))
+		{
+			Npc_RemoveInvItems(slf,ItAt_CrawlerMandibles,Npc_HasItems(slf,ItAt_CrawlerMandibles));
+			Npc_RemoveInvItems(slf,ItAt_Sting,Npc_HasItems(slf,ItAt_Sting));
+		};
+		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Cronos_ADW)))
+		{
+			Npc_RemoveInvItems(slf,ItAt_WaranFiretongue,Npc_HasItems(slf,ItAt_WaranFiretongue));
+		};
 		Npc_RemoveInvItems(slf,ItAt_Meatbugflesh,Npc_HasItems(slf,ItAt_Meatbugflesh));
 		Npc_RemoveInvItems(slf,ItAt_SheepFur,Npc_HasItems(slf,ItAt_SheepFur));
 		Npc_RemoveInvItems(slf,ItAt_WolfFur,Npc_HasItems(slf,ItAt_WolfFur));
@@ -28,11 +37,6 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_Claw,Npc_HasItems(slf,ItAt_Claw));
 		Npc_RemoveInvItems(slf,ItAt_LurkerClaw,Npc_HasItems(slf,ItAt_LurkerClaw));
 		Npc_RemoveInvItems(slf,ItAt_Teeth,Npc_HasItems(slf,ItAt_Teeth));
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(VLK_404_Lutero))
-		{
-			Npc_RemoveInvItems(slf,ItAt_CrawlerMandibles,Npc_HasItems(slf,ItAt_CrawlerMandibles));
-			Npc_RemoveInvItems(slf,ItAt_Sting,Npc_HasItems(slf,ItAt_Sting));
-		};
 		Npc_RemoveInvItems(slf,ItAt_Wing,Npc_HasItems(slf,ItAt_Wing));
 		Npc_RemoveInvItems(slf,ItAt_LurkerSkin,Npc_HasItems(slf,ItAt_LurkerSkin));
 		Npc_RemoveInvItems(slf,ItAt_WargFur,Npc_HasItems(slf,ItAt_WargFur));
@@ -41,10 +45,6 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_ShadowFur,Npc_HasItems(slf,ItAt_ShadowFur));
 		Npc_RemoveInvItems(slf,ItAt_SharkSkin,Npc_HasItems(slf,ItAt_SharkSkin));
 		Npc_RemoveInvItems(slf,ItAt_TrollFur,Npc_HasItems(slf,ItAt_TrollFur));
-		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Cronos_ADW)))
-		{
-			Npc_RemoveInvItems(slf,ItAt_WaranFiretongue,Npc_HasItems(slf,ItAt_WaranFiretongue));
-		};
 		Npc_RemoveInvItems(slf,ItAt_Addon_KeilerFur,Npc_HasItems(slf,ItAt_Addon_KeilerFur));
 		Npc_RemoveInvItems(slf,ItAt_IceWolfFur,Npc_HasItems(slf,ItAt_IceWolfFur));
 		Npc_RemoveInvItems(slf,ItAt_Addon_BCKopf,Npc_HasItems(slf,ItAt_Addon_BCKopf));
@@ -65,7 +65,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItFo_Water,Npc_HasItems(slf,ItFo_Water));
 		Npc_RemoveInvItems(slf,ItFo_Beer,Npc_HasItems(slf,ItFo_Beer));
 		Npc_RemoveInvItems(slf,ItFo_Booze,Npc_HasItems(slf,ItFo_Booze));
-		Npc_RemoveInvItems(slf,ItFo_Wine,Npc_HasItems(slf,ItFo_Wine));
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax))
+		{
+			Npc_RemoveInvItems(slf,ItFo_Wine,Npc_HasItems(slf,ItFo_Wine));
+		};
 		Npc_RemoveInvItems(slf,ItFo_DarkWine,Npc_HasItems(slf,ItFo_DarkWine));
 		Npc_RemoveInvItems(slf,ItFo_Milk,Npc_HasItems(slf,ItFo_Milk));
 		Npc_RemoveInvItems(slf,ItFo_Addon_Shellflesh,Npc_HasItems(slf,ItFo_Addon_Shellflesh));
@@ -94,6 +97,29 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItPl_Forestberry,Npc_HasItems(slf,ItPl_Forestberry));
 		Npc_RemoveInvItems(slf,ItPl_Planeberry,Npc_HasItems(slf,ItPl_Planeberry));
 		Npc_RemoveInvItems(slf,ItLsTorchburned,Npc_HasItems(slf,ItLsTorchburned));
+		Npc_RemoveInvItems(slf,ItWr_Poster_MIS,Npc_HasItems(slf,ItWr_Poster_MIS));
+		Npc_RemoveInvItem(slf,ITWr_Addon_Hinweis_01);
+		Npc_RemoveInvItem(slf,ITWr_Addon_Hinweis_02);
+		Npc_RemoveInvItem(slf,ITWr_Addon_William_01);
+		Npc_RemoveInvItem(slf,ITWr_Addon_Pirates_01);
+		Npc_RemoveInvItem(slf,ItWr_Kraeuterliste);
+		Npc_RemoveInvItem(slf,ItWr_BanditLetter_MIS);
+		if(SC_SummonedAncientGhost == TRUE)
+		{
+			Npc_RemoveInvItem(slf,ItWr_Addon_SUMMONANCIENTGHOST);
+		};
+		if(Kapitel > 1)
+		{
+			Npc_RemoveInvItem(slf,ItWr_Martin_MilizEmpfehlung_Addon);
+		};
+		if(MIS_LuciasLetter == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItem(slf,ItWr_LuciasLoveLetter_Addon);
+		};
+		if((MIS_Vatras_FindTheBanditTrader == LOG_SUCCESS) || (MIS_Vatras_FindTheBanditTrader == LOG_FAILED) || (MIS_Martin_FindTheBanditTrader == LOG_SUCCESS) || (MIS_Martin_FindTheBanditTrader == LOG_FAILED))
+		{
+			Npc_RemoveInvItem(slf,ItWr_Addon_BanditTrader);
+		};
 	};
 };
 

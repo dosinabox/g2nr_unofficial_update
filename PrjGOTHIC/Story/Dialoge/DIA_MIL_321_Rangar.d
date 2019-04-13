@@ -116,7 +116,10 @@ func void DIA_Rangar_Ork_Info()
 {
 	AI_Output(other,self,"DIA_Rangar_Ork_15_00");	//А как ситуация с орками?
 	AI_Output(self,other,"DIA_Rangar_Ork_07_01");	//Нет причин для беспокойства - городская стража и паладины держат ситуацию под контролем.
-	AI_Output(self,other,"DIA_Rangar_Ork_07_02");	//Иди спокойно домой и оставь нашу работу нам. Мы отвечаем за город и его граждан. -ИК-
+	if((other.guild != GIL_MIL) && (other.guild != GIL_PAL))
+	{
+		AI_Output(self,other,"DIA_Rangar_Ork_07_02");	//Иди спокойно домой и оставь нашу работу нам. Мы отвечаем за город и его граждан. Ик!
+	};	
 };
 
 

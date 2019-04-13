@@ -61,6 +61,14 @@ func int B_AssessEnemy()
 		B_Flee();
 		return FALSE;
 	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1031_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1032_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
+	{
+		return FALSE;
+	};
 	if(((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE)) && (other.guild == GIL_ORC) && (CurrentLevel == NEWWORLD_ZEN))
 	{
 		if(C_NpcIsAfraidOfOrcs(self))

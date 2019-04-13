@@ -157,6 +157,11 @@ func void B_CipherHappyForWeedPaket()
 	if((other.guild == GIL_NONE) && (GotCipherVote == FALSE))
 	{
 		AI_Output(self,other,"DIA_Cipher_Joints_07_02");	//Я обязательно проголосую за тебя...
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
 		GotCipherVote = TRUE;
 	};
@@ -257,6 +262,11 @@ func void DIA_Cipher_Joints_Success()
 		if((other.guild == GIL_NONE) && (GotCipherVote == FALSE))
 		{
 			AI_Output(self,other,"DIA_Cipher_Joints_Success_07_05");	//Ладно, ты получишь мой голос.
+			if(Torlof_GenugStimmen == FALSE)
+			{
+				Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			};
 			B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
 			GotCipherVote = TRUE;
 		};
@@ -433,6 +443,11 @@ func void DIA_Cipher_KrautPaket_Info()
 	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Cipher_WannaJoin) && (GotCipherVote == FALSE))
 	{
 		AI_Output(self,other,"DIA_Cipher_Joints_Success_07_02");	//Ты получишь мой голос.
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
 		GotCipherVote = TRUE;
 	};

@@ -227,6 +227,11 @@ func void DIA_Sentenza_Vote_Info()
 	{
 		AI_Output(self,other,"DIA_Sentenza_Vote_09_02");	//’от€, почему бы и нет? 50 золотых - это разумна€ плата за мой голос, тебе так не кажетс€?
 		Sentenza_Stimme = TRUE;
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		B_LogEntry(TOPIC_SLDRespekt,"—ентенза не возражает против моего вступлени€ в р€ды наемников.");
 	}
 	else if((Sentenza_Stimme == TRUE) && (Npc_HasItems(self,ItMi_Gold) < 50))

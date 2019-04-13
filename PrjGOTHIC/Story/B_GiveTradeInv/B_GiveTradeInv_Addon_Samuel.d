@@ -15,6 +15,7 @@ func void B_GiveTradeInv_Addon_Samuel(var C_Npc slf)
 		CreateInvItems(slf,ItFo_Beer,6);
 		CreateInvItems(slf,ItFo_Wine,2);
 		CreateInvItems(slf,ItFo_Bacon,2);
+		CreateInvItems(slf,ItFo_Apple,5);
 		CreateInvItems(slf,ItMi_Flask,4);
 		CreateInvItems(slf,ItPl_SwampHerb,4);
 		CreateInvItems(slf,ItMi_Joint,1);

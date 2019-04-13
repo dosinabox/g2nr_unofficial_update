@@ -128,7 +128,7 @@ instance DIA_Wambo_Ramirez(C_Info)
 
 func int DIA_Wambo_Ramirez_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Ramirez_Viertel))
+	if(RamirezToldAboutWambo == TRUE)
 	{
 		return TRUE;
 	};

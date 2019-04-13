@@ -12,10 +12,7 @@ instance DIA_Salandril_EXIT(C_Info)
 
 func int DIA_Salandril_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Salandril_EXIT_Info()
@@ -63,6 +60,13 @@ func void DIA_Salandril_PICKPOCKET_BACK()
 };
 
 
+func void B_SalandrilTradeInfo()
+{
+	AI_Output(self,other,"DIA_Salandril_PERM_13_01");	//У меня большой выбор и умеренные цены. Мои зелья лучше, чем та отрава, что продает Зурис.
+	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_CityTrader,"Саландрил торгует зельями. Его лавка находится в верхнем квартале.");
+};
+
 instance DIA_Salandril_Hallo(C_Info)
 {
 	npc = VLK_422_Salandril;
@@ -85,9 +89,7 @@ func int DIA_Salandril_Hallo_Condition()
 func void DIA_Salandril_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Salandril_PERM_13_00");	//Добро пожаловать, путник. Ищешь хорошее зелье?
-	AI_Output(self,other,"DIA_Salandril_PERM_13_01");	//У меня большой выбор и умеренные цены. Мои зелья лучше, чем та отрава, что продает Зурис.
-	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"Саландрил торгует зельями. Его лавка находится в верхнем квартале.");
+	B_SalandrilTradeInfo();
 };
 
 
@@ -115,6 +117,10 @@ func void DIA_Salandril_Trank_Info()
 	AI_Output(self,other,"DIA_Salandril_Trank_13_00");	//Я слышал, ты был с паладинами в Долине Рудников. Я восхищен.
 	AI_Output(self,other,"DIA_Salandril_Trank_13_01");	//Тебе стоит задержаться и взглянуть на мои товары. Вот, например, сейчас у меня есть совершенно особенное зелье. Только для тебя.
 	CreateInvItems(self,ItPo_Perm_DEX,1);
+	if(!Npc_KnowsInfo(other,DIA_Salandril_Hallo))
+	{
+		B_SalandrilTradeInfo();
+	};
 };
 
 
@@ -167,7 +173,7 @@ func void DIA_Salandril_Trade_Info()
 	Trade_IsActive = TRUE;
 };
 
-
+/*
 instance DIA_Salandril_KAP3_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;
@@ -192,7 +198,7 @@ func void DIA_Salandril_KAP3_EXIT_Info()
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Salandril_Minenanteil(C_Info)
 {
@@ -215,7 +221,7 @@ func int DIA_Salandril_Minenanteil_Condition()
 func void DIA_Salandril_Minenanteil_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_Minenanteil_15_00");	//Ты продаешь поддельные акции!
-	AI_Output(self,other,"SVM_13_NOTNOW");	//Оставь меня в покое!
+	B_Say(self,other,"$NOTNOW");
 	AI_StopProcessInfos(self);
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -317,7 +323,7 @@ func void DIA_Salandril_Verschwinde_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Salandril_KAP4_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;
@@ -369,7 +375,7 @@ func void DIA_Salandril_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
+
 instance DIA_Salandril_KAP6_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;

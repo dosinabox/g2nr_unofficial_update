@@ -292,6 +292,7 @@ func void DIA_Gorax_Aufgabe2_Info()
 	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_01");	//Да. Как ты знаешь, мы делаем здесь превосходное вино, и часть его продаем.
 	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_02");	//Орлан, хозяин трактира 'Мертвая гарпия' заказал солидную партию. Мы договорились на сумму в 240 золотых монет.
 	AI_Output(self,other,"DIA_Gorax_Aufgabe2_14_03");	//Отнеси ему эти бутылки - но смотри, чтобы он не обсчитал тебя.
+	CreateInvItems(self,ItFo_Wine,12);
 	B_GiveInvItems(self,other,ItFo_Wine,12);
 	MIS_GoraxWein = LOG_Running;
 	Log_CreateTopic(Topic_GoraxWein,LOG_MISSION);

@@ -36,7 +36,10 @@ func int DIA_Meldor_Hallo_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
-		return TRUE;
+		if((Lehmar_GeldGeliehen_Day > (Wld_GetDay() - 2)) || (Lehmar_GeldGeliehen == 0) || (RangerHelp_LehmarKohle == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -144,7 +147,10 @@ instance DIA_Meldor_InsOV(C_Info)
 
 func int DIA_Meldor_InsOV_Condition()
 {
-	return TRUE;
+	if(other.guild == GIL_NONE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Meldor_InsOV_Info()
@@ -168,7 +174,7 @@ instance DIA_Meldor_Citizen(C_Info)
 
 func int DIA_Meldor_Citizen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Meldor_InsOV))
+	if(Npc_KnowsInfo(other,DIA_Meldor_InsOV) || (other.guild != GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -278,7 +284,7 @@ instance DIA_Meldor_VonLehmar(C_Info)
 
 func int DIA_Meldor_VonLehmar_Condition()
 {
-	if((Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)) && (Lehmar_GeldGeliehen != 0) && (RangerHelp_LehmarKohle == FALSE) && (Lehmar.aivar[AIV_DefeatedByPlayer] == FALSE))
+	if((Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)) && (Lehmar_GeldGeliehen != 0) && (RangerHelp_LehmarKohle == FALSE))
 	{
 		return TRUE;
 	};
