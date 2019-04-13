@@ -463,7 +463,8 @@ instance DIA_Karras_ChasePedro(C_Info)
 
 func int DIA_Karras_ChasePedro_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 3) && (MIS_NovizenChase == LOG_Running))
+//	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 3) && (MIS_NovizenChase == LOG_Running))
+	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running))
 	{
 		return TRUE;
 	};

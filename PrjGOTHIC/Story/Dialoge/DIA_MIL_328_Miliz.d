@@ -62,7 +62,7 @@ instance DIA_328_Miliz_Kill(C_Info)
 
 func int DIA_328_Miliz_Kill_Condition()
 {
-	if(!Npc_RefuseTalk(self))
+	if(!Npc_RefuseTalk(self) && Npc_KnowsInfo(other,DIA_328_Miliz_Hi))
 	{
 		return TRUE;
 	};

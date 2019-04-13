@@ -69,8 +69,8 @@ instance ItMW_Addon_Stab02(C_Item)
 	visual = "ItMW_MageStaff_Good_2H_02.3DS";
 	effect = "SPELLFX_MAGESTAFF2";
 	description = name;
-	text[0] = NAME_Damage;
-	count[0] = damageTotal;
+	text[1] = NAME_Damage;
+	count[1] = damageTotal;
 	text[2] = NAME_Bonus_Mana;
 	count[2] = 20;
 	text[3] = NAME_Mana_needed;
@@ -93,7 +93,7 @@ func void Equip_Zauberstab()
 
 func void UnEquip_Zauberstab()
 {
-	if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
+	if(Npc_IsPlayer(self) && ((MELEEWEAPONCHANGEDHERO == TRUE) || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
 	{
 		b_meleeweaponundochange();
 		Npc_ChangeAttribute(self,ATR_MANA_MAX,-20);
@@ -152,7 +152,8 @@ instance ItMW_Addon_Stab04(C_Item)
 	cond_value[2] = Condition_Stab04;
 	visual = "ItMW_MageStaff_Good_2H_02.3DS";
 	effect = "SPELLFX_MAGESTAFF4";
-	description = "Ультар наделил этот посох магической силой";
+	description = name;
+	text[1] = "Ультар наделил этот посох магической силой";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -580,7 +581,7 @@ instance ItRw_Addon_MagicBow(C_Item)
 	cond_value[2] = Condition_MagicBow;
 	visual = "ItRw_Bow_H_04.mms";
 	description = name;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = damageTotal;
 	text[3] = NAME_Dex_needed;
 	count[3] = cond_value[2];
@@ -596,7 +597,7 @@ instance ItRw_Addon_FireBow(C_Item)
 	material = MAT_WOOD;
 	value = Value_FireBow;
 	damageTotal = Damage_FireBow;
-	damagetype = DAM_MAGIC;
+	damagetype = DAM_FIRE;
 	munition = ItRw_Addon_FireArrow;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_FIREBOW";
@@ -604,7 +605,7 @@ instance ItRw_Addon_FireBow(C_Item)
 	cond_value[2] = Condition_FireBow;
 	visual = "ItRw_Bow_H_04.mms";
 	description = name;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Fire;
 	count[2] = damageTotal;
 	text[3] = NAME_Dex_needed;
 	count[3] = cond_value[2];
@@ -643,7 +644,7 @@ instance ItRw_Addon_MagicCrossbow(C_Item)
 	cond_value[2] = Condition_MagicCrossbow;
 	visual = "ItRw_Crossbow_H_01.mms";
 	description = name;
-	text[2] = NAME_Damage;
+	text[2] = NAME_Dam_Magic;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
 	count[3] = cond_value[2];

@@ -120,7 +120,7 @@ func void DIA_Dragomir_Dangerous_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Dangerous_15_00");	//А разве здесь не опасно?
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_01");	//Ну... Не очень, если ты можешь постоять за себя. Мой арбалет уже неоднократно спасал меня.
-	AI_Output(other,self,"DIA_Dragomir_Dangerous_15_02");	//Хм. Он не такой уж большой.
+	AI_Output(other,self,"DIA_Dragomir_Dangerous_15_02");	//Хм. Он не такой уж и большой.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_03");	//Но смертоносный, если ты знаешь, как обращаться с ним. Да, у меня был арбалет побольше. Но, к сожалению, я потерял его.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_04");	//Я забрел слишком далеко на север, в горы. Там находится большой каменный круг с жертвенным алтарем.
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_05");	//Пока я охотился там на падальщиков, из леса выбежали эти чертовы скелеты и напали на меня.
@@ -128,7 +128,7 @@ func void DIA_Dragomir_Dangerous_Info()
 	AI_Output(self,other,"DIA_Dragomir_Dangerous_12_07");	//А когда я бежал, арбалет выскользнул из моей руки. Я думаю, он все еще лежит там, у этого странного круга на севере.
 	Log_CreateTopic(TOPIC_DragomirsArmbrust,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DragomirsArmbrust,LOG_Running);
-	B_LogEntry(TOPIC_DragomirsArmbrust,"Драгомир потерял свой арбалет в странном каменном круге, находящемся высоко в северных горах.");
+	B_LogEntry(TOPIC_DragomirsArmbrust,"Драгомир потерял свой арбалет в странном каменном круге, находящемся далеко в северных горах.");
 	MIS_DragomirsArmbrust = LOG_Running;
 };
 
@@ -164,6 +164,7 @@ func void DIA_Dragomir_Armbrust_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	MIS_DragomirsArmbrust = LOG_SUCCESS;
 	B_GivePlayerXP(XP_DragomirsArmbrust);
+	AI_EquipBestRangedWeapon(self);
 };
 
 
@@ -223,6 +224,8 @@ func void DIA_Dragomir_Learn_Here()
 	AI_Output(self,other,"DIA_Dragomir_Learn_Here_12_01");	//Хорошо, мы можем начать хоть сейчас.
 	Dragomir_TeachPlayer = TRUE;
 	Info_ClearChoices(DIA_Dragomir_Learn);
+	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
+	B_LogEntry(TOPIC_Teacher,"Драгомир может научить меня пользоваться арбалетом.");
 };
 
 
@@ -250,15 +253,24 @@ func int DIA_Dragomir_Teach_Condition()
 func void DIA_Dragomir_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Teach_15_00");	//Научи меня чему-нибудь.
-	Info_ClearChoices(DIA_Dragomir_Teach);
-	Info_AddChoice(DIA_Dragomir_Teach,Dialog_Back,DIA_Dragomir_Teach_Back);
-	Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Dragomir_Teach_1H_1);
-	Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1) * 5),DIA_Dragomir_Teach_1H_5);
+	if(other.aivar[REAL_TALENT_CROSSBOW] >= 75)
+	{
+		AI_Output(self,other,"DIA_Dragomir_Teach_12_00");	//Я больше ничему не могу научить тебя. Тебе стоит поискать другого учителя.
+		DIA_Dragomir_Teach_permanent = TRUE;
+	}
+	else
+	{
+		Info_ClearChoices(DIA_Dragomir_Teach);
+		Info_AddChoice(DIA_Dragomir_Teach,Dialog_Back,DIA_Dragomir_Teach_Back);
+		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Dragomir_Teach_1H_1);
+		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1) * 5),DIA_Dragomir_Teach_1H_5);
+	};
 };
 
 func void DIA_Dragomir_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 75)
+//	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 75)
+	if(other.aivar[REAL_TALENT_CROSSBOW] >= 75)
 	{
 		AI_Output(self,other,"DIA_Dragomir_Teach_12_00");	//Я больше ничему не могу научить тебя. Тебе стоит поискать другого учителя.
 		DIA_Dragomir_Teach_permanent = TRUE;

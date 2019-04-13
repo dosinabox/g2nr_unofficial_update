@@ -29,6 +29,6 @@ func void Rtn_Start_605()
 func void Rtn_Favour_605()
 {
 	TA_Read_Bookstand(8,0,23,0,"NW_MONASTERY_RUNEMAKER_07");
-	TA_Read_Bookstand(23,0,8,0,"NW_MONASTERY_RUNEMAKER_07");
+	TA_Sleep(23,0,8,0,"NW_MONASTERY_NOVICE01_05");
 };
 

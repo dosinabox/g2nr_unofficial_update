@@ -176,7 +176,7 @@ func void DIA_Attila_Hallo_Gold()
 func void DIA_Attila_Hallo_Attacke()
 {
 	AI_Output(other,self,"DIA_Attila_Hallo_Attacke_15_00");	//ƒай мне хот€ бы вынуть свое оружие.
-	if(Npc_HasEquippedWeapon(other) == TRUE)
+	if(Npc_HasEquippedWeapon(other) || Npc_HasReadiedWeapon(other))
 	{
 		AI_Output(self,other,"DIA_Attila_Hallo_Attacke_09_01");	//’орошо, приготовьс€ к своей последней битве.
 		AI_StopProcessInfos(self);

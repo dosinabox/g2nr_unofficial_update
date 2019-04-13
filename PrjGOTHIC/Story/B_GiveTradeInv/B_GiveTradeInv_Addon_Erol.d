@@ -16,11 +16,11 @@ func void B_GiveTradeInv_Addon_Erol(var C_Npc slf)
 		CreateInvItems(slf,ItPl_Health_Herb_02,2);
 		CreateInvItems(slf,ItPl_Temp_Herb,1);
 		CreateInvItems(slf,ItPo_Perm_Health,1);
-		CreateInvItems(slf,ItMw_Streitaxt2,1);
-		CreateInvItems(slf,ItMw_Schwert5,2);
-		CreateInvItems(slf,ItMw_Kriegshammer2,1);
+//		CreateInvItems(slf,ItMw_Streitaxt2,1);
+//		CreateInvItems(slf,ItMw_Schwert5,2);
+//		CreateInvItems(slf,ItMw_Kriegshammer2,1);
 		CreateInvItems(slf,ItMw_ShortSword5,1);
-		CreateInvItems(slf,ItMw_Zweihaender1,1);
+//		CreateInvItems(slf,ItMw_Zweihaender1,1);
 		CreateInvItems(slf,ItRi_Prot_Edge_01,1);
 		CreateInvItems(slf,ItAm_Strg_01,1);
 		Erol_ItemsGiven_Chapter_1 = TRUE;
@@ -33,6 +33,7 @@ func void B_GiveTradeInv_Addon_Erol(var C_Npc slf)
 		CreateInvItems(slf,ItPl_Mana_Herb_02,3);
 		CreateInvItems(slf,ItPl_Health_Herb_02,3);
 		CreateInvItems(slf,ItPl_Temp_Herb,2);
+		CreateInvItems(slf,ItMw_Zweihaender1,1);
 		Erol_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Erol_ItemsGiven_Chapter_3 == FALSE))
@@ -43,6 +44,9 @@ func void B_GiveTradeInv_Addon_Erol(var C_Npc slf)
 		CreateInvItems(slf,ItPl_Health_Herb_02,3);
 		CreateInvItems(slf,ItPl_Temp_Herb,2);
 		CreateInvItems(slf,ItMiSwordraw,5);
+		CreateInvItems(slf,ItMw_Streitaxt2,1);
+		CreateInvItems(slf,ItMw_Schwert5,2);
+		CreateInvItems(slf,ItMw_Kriegshammer2,1);
 		Erol_ItemsGiven_Chapter_3 = TRUE;
 	};
 	if((Kapitel >= 4) && (Erol_ItemsGiven_Chapter_4 == FALSE))

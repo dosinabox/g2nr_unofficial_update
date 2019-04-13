@@ -205,7 +205,8 @@ func int DIA_Addon_Owen_MalcomStunt_Condition()
 
 func void DIA_Addon_Owen_MalcomStunt_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Owen_MalcomStunt_15_00");	//Как дела?
+//	AI_Output(other,self,"DIA_Addon_Owen_MalcomStunt_15_00");	//Как дела?
+	AI_Output(other,self,"DIA_Addon_Tom_Juan_15_00");		//Что случилось?
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_01");	//Мой приятель Мальком пропал.
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_02");	//На нас напал один из этих луркеров.
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_03");	//Мы убежали в эту пещеру.

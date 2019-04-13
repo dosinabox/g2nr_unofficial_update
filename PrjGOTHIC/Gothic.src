@@ -56,6 +56,7 @@ Story\B_Content\B_RemoveQuarhodron.d
 Story\B_Content\B_PlayerFindItem.d
 Story\B_Story\b_meleeweaponchange.d
 Story\B_Story\B_NpcSetDrunk.d
+Story\B_Story\B_InspectMeleeWeapon.d
 Items\Tuning_Addon_BeliarsWeapons.d
 Items\Tuning_Melee_Weapons.d
 Items\Tuning_Ranged_Weapons.d
@@ -107,6 +108,8 @@ Story\B_Content\B_BeliarsWeaponSpecialDamage.d
 AI\Monster\B_Monster\B_MM_WispDetect.d
 AI\Monster\B_Monster\B_MM_DeSynchronize.d
 AI\Human\C_Human\C_NpcIsGateGuard.d
+AI\Human\C_Human\C_PlayerIsFakeBandit.d
+AI\Human\B_Human\B_SetFaceExpression.d
 AI\AI_Intern\Perception.d
 Story\B_Content\B_GhostSpecialDamage.d
 AI\AI_Intern\B_RefreshAtInsert.d
@@ -119,7 +122,6 @@ AI\Human\C_Human\C_IsUsedMobMyPossession.d
 AI\Human\C_Human\C_IsTakenItemMyPossession.d
 AI\Human\C_Human\C_NpcIsDown.d
 AI\Human\C_Human\C_NpcIsToughGuy.d
-AI\Human\C_Human\C_PlayerIsFakeBandit.d
 AI\Human\C_Human\C_PlayerIsFakePirate.d
 AI\Human\C_Human\C_PlayerHasFakeGuild.d
 AI\Human\C_Human\C_BanditHelpsStoryBandit.d
@@ -163,6 +165,7 @@ AI\Human\B_Human\B_DeletePetzCrime.d
 AI\Human\B_Human\B_AddPetzCrime.d
 AI\Human\B_Human\B_MemorizePlayerCrime.d
 AI\Human\B_Human\B_Attack.d
+AI\Human\B_Human\B_Flee.d
 AI\Human\B_Human\B_CallGuards.d
 AI\Human\B_Human\B_CreateAmmo.d
 AI\Human\C_Human\C_NpcHasAmbientNews.d
@@ -1182,6 +1185,7 @@ Story\B_GiveTradeInv\B_GiveTradeInv_Bosper.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Brahim.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Brian.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Canthar.d
+Story\B_GiveTradeInv\B_GiveTradeInv_Cipher.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Constantino.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Coragon.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Diego_DI.d
@@ -1193,6 +1197,7 @@ Story\B_GiveTradeInv\B_GiveTradeInv_Gorax.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Hakon.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Halvor.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Harad.d
+Story\B_GiveTradeInv\B_GiveTradeInv_Hodges.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Ignaz.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Isgaroth.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Jora.d
@@ -1212,6 +1217,7 @@ Story\B_GiveTradeInv\B_GiveTradeInv_Salandril.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Sarah.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Sengrath.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Tandor.d
+Story\B_GiveTradeInv\B_GiveTradeInv_Thorben.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Vatras_DI.d
 Story\B_GiveTradeInv\B_GiveTradeInv_Zuris.d
 Story\B_GiveTradeInv\B_GiveTradeInv.d
@@ -1639,6 +1645,7 @@ AI\Monster\B_Monster\B_MM_AssessEnemy.d
 AI\Monster\B_Monster\B_MM_AssessOthersDamage.d
 AI\Monster\B_Monster\B_MM_AssessPlayer.d
 AI\Monster\B_Monster\B_MM_AssessWarn.d
+AI\Monster\B_Monster\B_MM_Flee.d
 AI\Monster\RTN_Monster\ZS_MM_Rtn_DragonRest.d
 AI\Monster\RTN_Monster\ZS_MM_Rtn_EatGround.d
 AI\Monster\RTN_Monster\ZS_MM_Rtn_Follow_Sheep.d

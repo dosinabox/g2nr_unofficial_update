@@ -9,6 +9,7 @@ func void ZS_MM_Rtn_Rest()
 		AI_GotoWP(self,self.wp);
 	};
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
+	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
 };
 
 func int ZS_MM_Rtn_Rest_Loop()
@@ -18,7 +19,7 @@ func int ZS_MM_Rtn_Rest_Loop()
 	{
 		B_KillNpc(self);
 	};
-	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],0) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_RestStart],0,self.aivar[AIV_MM_RestEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_RestStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 		return LOOP_END;

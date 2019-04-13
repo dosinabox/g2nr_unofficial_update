@@ -142,8 +142,8 @@ instance ItWr_XardasBookForPyrokar_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	on_state[0] = Use_XardasBookForPyrokar;
 };
 
@@ -165,7 +165,7 @@ instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "от сундука на ферма Секоба.";
+	text[0] = "от сундука на ферме Секоба.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -181,8 +181,8 @@ instance ItWr_CorneliusTagebuch_Mis(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Дневник Корнелиуса.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	on_state[0] = UseCorneliusTagebuch;
 };
 
@@ -226,8 +226,8 @@ instance ITWR_DementorObsessionBook_MIS(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	on_state[0] = Use_DementorObsessionBook;
 };
 
@@ -422,7 +422,7 @@ instance ItMi_MalethsBanditGold(C_Item)
 	name = "Кошелек главаря бандитов";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
-	value = 0;
+	value = 300;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
@@ -444,13 +444,13 @@ instance ItMi_Moleratlubric_MIS(C_Item)
 {
 	name = "Жир крысокрота";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI;
+	flags = ITEM_MISSION | ITEM_MULTI;
 	value = Value_Pitch;
 	visual = "ItMi_Moleratlubric.3ds";
 	material = MAT_WOOD;
 	description = name;
-	text[4] = NAME_Value;
-	count[4] = value;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItWr_BabosLetter_MIS(C_Item)
@@ -544,6 +544,8 @@ instance ItKe_IgarazChest_Mis(C_Item)
 	description = name;
 	text[2] = "Это ключ от сундука,";
 	text[3] = "принадлежащего Игарацу.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItWr_Astronomy_Mis(C_Item)
@@ -580,8 +582,8 @@ func void Use_Astronomy()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Что может произойти вследствие этого, известно нам из истории войн древних времен, когда связь между мирами была еще сильна. Эти отродья Зла несли смерть и разрушения нашему миру, и благодаря Избранному и Инносу мир был избавлен от этого Зла.");
 	Doc_PrintLines(nDocID,1,"Если такая угроза когда-либо возникнет опять, то да поможет нам Иннос, ибо мир не видел Избранного Инноса уже многие сотни лет.");
-	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLines(nDocID,1,"");
+//	Doc_PrintLine(nDocID,1,"");
+//	Doc_PrintLines(nDocID,1,"");
 	Doc_Show(nDocID);
 	if(Astronomy_Once == FALSE)
 	{
@@ -637,8 +639,8 @@ instance ItSe_Golemchest_Mis(C_Item)
 	on_state[0] = Use_GolemChest;
 	description = name;
 	text[2] = "Этот кошелек полон монет.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -723,12 +725,12 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 	name = "Полный кожаный кошелек";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = 0;
+	value = DiegosTreasure;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = Use_DiegosTreasure;
-	description = "Старый кожаный кошелек Диего";
+	description = "Старый кожаный кошелек Диего.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -819,7 +821,7 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-	text[2] = "";
+//	text[2] = "";
 	text[3] = "Защита от сглаза";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -854,10 +856,8 @@ instance ItMi_KarrasBlessedStone_Mis(C_Item)
 	visual_skin = 0;
 	material = MAT_STONE;
 	description = name;
-	text[2] = "";
-	text[3] = "";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItWr_RichterKomproBrief_MIS(C_Item)
@@ -891,7 +891,7 @@ func void Use_RichterKomproBrief()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"          Главный судья и");
 	Doc_PrintLine(nDocID,0,"          королевский секретарь");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 	if(SCKnowsRichterKomproBrief == FALSE)
 	{
@@ -932,7 +932,7 @@ func void Use_MorgahardTip()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"                           М.");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -948,8 +948,6 @@ instance ItWr_Map_Shrine_MIS(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_Map_NewWorld_Shrine_MIS;
 	description = name;
-	text[0] = "";
-	text[1] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

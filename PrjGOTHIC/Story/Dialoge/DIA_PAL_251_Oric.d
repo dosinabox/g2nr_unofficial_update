@@ -224,7 +224,7 @@ func void DIA_Oric_IAmBack_Info()
 	}
 	else if(hero.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Oric_IAmBack_11_03");	//Я вижу, ты стал магом. Мое почтение.
+		AI_Output(self,other,"DIA_Oric_IAmBack_11_03");	//Я вижу, ты стал высшим магом. Мое почтение.
 	};
 	AI_Output(self,other,"DIA_Oric_IAmBack_11_04");	//Возможно, твое появление - добрый знак.
 };
@@ -627,7 +627,15 @@ instance DIA_Oric_PICKPOCKET(C_Info)
 
 func int DIA_Oric_PICKPOCKET_Condition()
 {
-	return C_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
+//	return C_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
+	if(Npc_HasItems(self,ItSc_PalRepelEvil))
+	{
+		return C_StealItem(85,Hlp_GetInstanceID(ItSc_PalRepelEvil));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Oric_PICKPOCKET_Info()
@@ -639,7 +647,8 @@ func void DIA_Oric_PICKPOCKET_Info()
 
 func void DIA_Oric_PICKPOCKET_DoIt()
 {
-	B_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
+//	B_StealItems(85,Hlp_GetInstanceID(ItSc_PalRepelEvil),1);
+	B_StealItem(85,Hlp_GetInstanceID(ItSc_PalRepelEvil));
 	Info_ClearChoices(DIA_Oric_PICKPOCKET);
 };
 

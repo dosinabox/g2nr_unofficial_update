@@ -27,7 +27,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItBE_Addon_KDF_01,1);
 		CreateInvItems(slf,ItMW_Addon_Stab01,1);
 		CreateInvItems(slf,ItMW_Addon_Stab02,1);
-		CreateInvItems(slf,ItMW_Addon_Stab04,1);
+//		CreateInvItems(slf,ItMW_Addon_Stab04,1);
 		CreateInvItems(slf,ItRi_Mana_01,1);
 		Gorax_ItemsGiven_Chapter_1 = TRUE;
 	};
@@ -51,6 +51,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItWr_Map_Shrine_MIS,1);
 		};
+		CreateInvItems(slf,ItMW_Addon_Stab04,1);
 		Gorax_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Gorax_ItemsGiven_Chapter_3 == FALSE))

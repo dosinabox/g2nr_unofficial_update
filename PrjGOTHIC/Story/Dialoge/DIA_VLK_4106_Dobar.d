@@ -236,7 +236,15 @@ instance DIA_Dobar_PICKPOCKET(C_Info)
 
 func int DIA_Dobar_PICKPOCKET_Condition()
 {
-	return C_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
+//	return C_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
+	if(Npc_HasItems(self,ItMi_Nugget))
+	{
+		return C_StealItem(79,Hlp_GetInstanceID(ItMi_Nugget));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Dobar_PICKPOCKET_Info()
@@ -248,7 +256,8 @@ func void DIA_Dobar_PICKPOCKET_Info()
 
 func void DIA_Dobar_PICKPOCKET_DoIt()
 {
-	B_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
+//	B_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
+	B_StealItem(79,Hlp_GetInstanceID(ItMi_Nugget));
 	Info_ClearChoices(DIA_Dobar_PICKPOCKET);
 };
 

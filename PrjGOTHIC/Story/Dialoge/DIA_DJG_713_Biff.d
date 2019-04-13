@@ -352,7 +352,7 @@ instance DIA_Biff_ICHBLEIBHIER(C_Info)
 
 func int DIA_Biff_ICHBLEIBHIER_Condition()
 {
-	if((Npc_GetBodyState(hero) != BS_INVENTORY) && (Npc_GetBodyState(hero) != BS_MOBINTERACT_INTERRUPT) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE) && (((((Npc_GetDistToWP(self,"OW_SWAMPDRAGON_01") < 4000) && (Npc_IsDead(SwampDragon) == FALSE) && (SwampDragon.flags != 0)) || ((Npc_GetDistToWP(self,"LOCATION_19_03_PATH_RUIN8") < 2000) && (Npc_IsDead(RockDragon) == FALSE) && (RockDragon.flags != 0)) || ((Npc_GetDistToWP(self,"CASTLE_36") < 4000) && (Npc_IsDead(FireDragon) == FALSE) && (FireDragon.flags != 0)) || ((Npc_GetDistToWP(self,"OW_ICEDRAGON_01") < 4000) && (Npc_IsDead(IceDragon) == FALSE) && (IceDragon.flags != 0))) && (Npc_HasItems(hero,ItMi_InnosEye_MIS) >= 1)) || (Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < 4500)))
+	if((Npc_GetBodyState(hero) != BS_INVENTORY) && (Npc_GetBodyState(hero) != BS_MOBINTERACT_INTERRUPT) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE) && (((((Npc_GetDistToWP(self,"OW_SWAMPDRAGON_01") < 4000) && !Npc_IsDead(SwampDragon) && (SwampDragon.flags != 0)) || ((Npc_GetDistToWP(self,"LOCATION_19_03_PATH_RUIN8") < 2000) && (Npc_IsDead(RockDragon) == FALSE) && (RockDragon.flags != 0)) || ((Npc_GetDistToWP(self,"CASTLE_36") < 4000) && !Npc_IsDead(FireDragon) && (FireDragon.flags != 0)) || ((Npc_GetDistToWP(self,"OW_ICEDRAGON_01") < 4000) && !Npc_IsDead(IceDragon) && (IceDragon.flags != 0))) && Npc_HasItems(hero,ItMi_InnosEye_MIS)) || (Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < 4500)))
 	{
 		return TRUE;
 	};
@@ -584,6 +584,10 @@ func void DIA_Biff_HEILUNG_Info()
 	AI_Output(self,other,"DIA_Biff_HEILUNG_07_01");	//Конечно. Не помешает.
 	Info_ClearChoices(DIA_Biff_HEILUNG);
 	Info_AddChoice(DIA_Biff_HEILUNG,"Я дам тебе что-нибудь позже.",DIA_Biff_HEILUNG_Spaeter);
+	if(Npc_HasItems(other,ItPo_Health_Addon_04))
+	{
+		Info_AddChoice(DIA_Biff_HEILUNG,"(дать чистое здоровье)",DIA_Biff_HEILUNG_HeilTrankMax);
+	};
 	if(Npc_HasItems(other,ItPo_Health_03))
 	{
 		Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебный эликсир)",DIA_Biff_HEILUNG_HeilTrankHigh);
@@ -596,6 +600,22 @@ func void DIA_Biff_HEILUNG_Info()
 	{
 		Info_AddChoice(DIA_Biff_HEILUNG,"(дать лечебную эссенцию)",DIA_Biff_HEILUNG_HeilTrankLow);
 	};
+};
+
+func void DIA_Biff_HEILUNG_HeilTrankMax()
+{
+	if(B_GiveInvItems(other,self,ItPo_Health_Addon_04,1))
+	{
+		if(self.attribute[ATR_HITPOINTS] < self.attribute[ATR_HITPOINTS_MAX])
+		{
+			B_UseItem(self,ItPo_Health_Addon_04);
+		};
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
+	};
+	AI_StopProcessInfos(self);
 };
 
 func void DIA_Biff_HEILUNG_HeilTrankHigh()
@@ -696,7 +716,8 @@ instance DIA_Biff_KnowWhereEnemy(C_Info)
 
 func int DIA_Biff_KnowWhereEnemy_Condition()
 {
-	if((MIS_SCKnowsWayToIrdorath == TRUE) && (Biff_IsOnBoard == FALSE))
+//	if((MIS_SCKnowsWayToIrdorath == TRUE) && (Biff_IsOnBoard == FALSE))
+	if((MIS_SCKnowsWayToIrdorath == TRUE) && ((Biff_IsOnBoard == FALSE) || (Biff_IsOnBoard == LOG_OBSOLETE)))
 	{
 		return TRUE;
 	};

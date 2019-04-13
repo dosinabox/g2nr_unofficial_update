@@ -265,7 +265,7 @@ instance ITAR_KDW_L_Addon(C_Item)
 
 instance ITAR_Bloodwyn_Addon(C_Item)
 {
-	name = "Доспехи Бладвина";
+	name = "Средние доспехи стражника";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 70;

@@ -23,11 +23,11 @@ func void B_Video()
 	AI_Output(other,self,"OUTRO_Xardas_15_01");	//Ксардас! Что именно произошло в Храме Ирдората?
 	AI_Output(self,other,"OUTRO_Xardas_14_02");	//С помощью Инноса ты уничтожил воплощение Зла.
 	AI_Output(self,other,"OUTRO_Xardas_14_03");	//И я впитал его силу...
-	AI_Output(self,other,"OUTRO_Xardas_14_04");	//С тех пор как Я покинул Круг Огня, это было единственной моей целью.
+	AI_Output(self,other,"OUTRO_Xardas_14_04");	//С тех пор, как я покинул Круг Огня, это было единственной моей целью.
 	AI_Output(self,other,"OUTRO_Xardas_14_05");	//Чтобы достичь ее, я помог тебе выполнить твое предназначение.
 	AI_Output(self,other,"OUTRO_Xardas_14_06");	//То, что мне не удалось в Храме Спящего, наконец, свершилось.
 	AI_Output(self,other,"OUTRO_Xardas_14_07");	//Белиар выбрал меня.
-	AI_Output(other,self,"OUTRO_Xardas_15_08");	//Так ты теперь повинуешься богу тьмы?
+	AI_Output(other,self,"OUTRO_Xardas_15_08");	//Так ты теперь повинуешься богу Тьмы?
 	AI_Output(self,other,"OUTRO_Xardas_14_09");	//Нет. Я повинуюсь Белиару не больше, чем ты повинуешься Инносу!
 	AI_Output(self,other,"OUTRO_Xardas_14_10");	//Даже боги не знают, какая судьба нас ждет...
 	AI_Output(self,other,"OUTRO_Xardas_14_11");	//И я только начинаю осознавать возможности, которые открываются предо мной...

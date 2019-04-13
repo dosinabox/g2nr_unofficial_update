@@ -20,7 +20,7 @@ instance ItWr_PaladinLetter_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UsePaladinLetter;
 	scemeName = "MAP";
-	description = "Письмо лорду Хагену";
+	description = "Письмо Гаронда лорду Хагену";
 };
 
 
@@ -91,10 +91,9 @@ instance ItKe_PrisonKey_MIS(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от темницы";
-	text[3] = "в замке.";
-	text[5] = NAME_Value;
-	count[5] = value;
+	text[2] = "Это ключ от темницы в замке.";
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItKe_OC_Store(C_Item)
@@ -106,10 +105,9 @@ instance ItKe_OC_Store(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от склада";
-	text[3] = "в замке.";
-	text[5] = NAME_Value;
-	count[5] = value;
+	text[2] = "Это ключ от склада в замке.";
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ITKE_ErzBaronFlur(C_Item)
@@ -123,8 +121,8 @@ instance ITKE_ErzBaronFlur(C_Item)
 	description = "От первой двери.";
 	text[2] = "На нем выгравировано имя:";
 	text[3] = "Гомез.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ITKE_ErzBaronRaum(C_Item)
@@ -138,8 +136,8 @@ instance ITKE_ErzBaronRaum(C_Item)
 	description = "От второй двери.";
 	text[2] = "На нем выгравировано имя:";
 	text[3] = "Гомез.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItMi_GornsTreasure_MIS(C_Item)
@@ -152,7 +150,7 @@ instance ItMi_GornsTreasure_MIS(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = UseGornsTreasure;
-	description = "Кожаный кошелек Горна";
+	description = "Кожаный кошелек Горна.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -260,8 +258,8 @@ instance ItKe_Pass_MIS(C_Item)
 	material = MAT_METAL;
 	description = "Маленький ключик";
 	text[1] = "Открывает ворота Прохода.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItKe_Bromor(C_Item)
@@ -274,8 +272,8 @@ instance ItKe_Bromor(C_Item)
 	material = MAT_METAL;
 	description = "Ключ от комнаты";
 	text[1] = "в борделе.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItKe_Rune_MIS(C_Item)
@@ -290,8 +288,8 @@ instance ItKe_Rune_MIS(C_Item)
 	text[1] = "Сундук, к которому подходит";
 	text[2] = "этот ключ, находится под мостом.";
 	text[3] = "В нем лежит рунный камень.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItWr_Bloody_MIS(C_Item)
@@ -329,9 +327,9 @@ func void UseBloodMIS()
 	Doc_Show(nDocID);
 	if(Knows_Bloodfly == FALSE)
 	{
-		Knows_Bloodfly = TRUE;
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 		B_LogEntry(Topic_Bonus,"Теперь я знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.");
+		Knows_Bloodfly = TRUE;
 		B_GivePlayerXP(XP_Ambient);
 	};
 };
@@ -475,8 +473,6 @@ func void UseKDWLetter()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Да пребудет с нами Аданос.");
 	Doc_PrintLine(nDocID,0,"Сатурас");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -512,8 +508,6 @@ func void UseGilbertLetter()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Гильберт");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 

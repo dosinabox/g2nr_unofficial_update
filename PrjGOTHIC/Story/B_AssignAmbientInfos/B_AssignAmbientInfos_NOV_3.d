@@ -32,6 +32,7 @@ instance DIA_NOV_3_Fegen(C_Info)
 
 var int Feger1_Permanent;
 var int Feger2_Permanent;
+var int Feger2_Once;
 
 func int DIA_NOV_3_Fegen_Condition()
 {
@@ -74,7 +75,11 @@ func void DIA_NOV_3_Fegen_Info()
 		{
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_08");	//Конечно, я помогу. Мы, послушники, должны поддерживать друг друга. Сегодня ты - мне, завтра я - тебе.
 			AI_Output(self,other,"DIA_NOV_3_Fegen_03_09");	//Я прошу всего 50 золотых монет, мне нужно заплатить их Парлану.
-			B_LogEntry(Topic_ParlanFegen,"Послушник у церкви поможет мне, если я дам ему 50 золотых монет.");
+			if(Feger2_Once == FALSE)
+			{
+				B_LogEntry(Topic_ParlanFegen,"Послушник у церкви поможет мне, если я дам ему 50 золотых монет.");
+				Feger2_Once = TRUE;
+			};
 			Info_ClearChoices(DIA_NOV_3_Fegen);
 			Info_AddChoice(DIA_NOV_3_Fegen,"Возможно позже, сейчас я не могу позволить себе такие расходы.",DIA_NOV_3_Fegen_Nein);
 			if(Npc_HasItems(other,ItMi_Gold) >= 50)

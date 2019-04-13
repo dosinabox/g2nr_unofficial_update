@@ -33,6 +33,7 @@ func void player_mob_never_open()
 {
 	Print(PRINT_NeverOpen);
 	AI_PlayAni(self,"T_DONTKNOW");
+	B_Say_Overlay(self,self,"$NEVEROPEN");
 };
 
 func void player_mob_missing_item()

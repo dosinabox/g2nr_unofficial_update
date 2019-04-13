@@ -239,6 +239,10 @@ func void DIA_Regis_PERM_Info()
 	}
 	else if((MIS_Bosper_Bogen == LOG_SUCCESS) && (Regis_Bogendieb != 2))
 	{
+		AI_Output(self,other,"DIA_Regis_PERM_13_01");	//ћожно сказать и так.
+		AI_Output(self,other,"DIA_Regis_PERM_13_02");	//√овор€т, Ѕоспер, мастер-лучник, был ограблен. ѕричем самым наглым образом!
+		AI_Output(self,other,"DIA_Regis_PERM_13_03");	//¬ор вломилс€ в его лавку средь бела дн€ и схватил лук.
+		AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Ѕоспер побежал за ним, воп€ 'ƒержи вора!'. Ќо вор оказалс€ очень проворным.
 		AI_Output(self,other,"DIA_Regis_PERM_13_05");	//ј потом какой-то честный человек нашел этот лук и вернул Ѕосперу.
 		AI_Output(self,other,"DIA_Regis_PERM_13_06");	//Ёто странно - в наше врем€ обычно никому нет дела до других, но этот парень сам зашел к нему и вернул лук.
 		Regis_Bogendieb = 2;

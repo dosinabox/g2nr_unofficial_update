@@ -256,14 +256,17 @@ func void DIA_Wulfgar_Teach_Info()
 			AI_Output(self,other,"DIA_Wulfgar_Add_04_01");	// онечно, уважаемый.
 		};
 		B_Wulfgar_Teach();
-		Wulfgar_Merke_1h = other.HitChance[NPC_TALENT_1H];
-		Wulfgar_Merke_2h = other.HitChance[NPC_TALENT_2H];
+//		Wulfgar_Merke_1h = other.HitChance[NPC_TALENT_1H];
+//		Wulfgar_Merke_2h = other.HitChance[NPC_TALENT_2H];
+		Wulfgar_Merke_1h = other.aivar[REAL_TALENT_1H];
+		Wulfgar_Merke_2h = other.aivar[REAL_TALENT_2H];
 	};
 };
 
 func void DIA_Wulfgar_Teach_Back()
 {
-	if((Wulfgar_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Wulfgar_Merke_2h < other.HitChance[NPC_TALENT_2H]))
+//	if((Wulfgar_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Wulfgar_Merke_2h < other.HitChance[NPC_TALENT_2H]))
+	if((Wulfgar_Merke_1h < other.aivar[REAL_TALENT_1H]) || (Wulfgar_Merke_2h < other.aivar[REAL_TALENT_2H]))
 	{
 		AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_04");	//я еще сделаю из теб€ отличного воина!
 	};
@@ -357,7 +360,7 @@ func void DIA_Wulfgar_Bonus_Info()
 	AI_Output(self,other,"DIA_Wulfgar_Bonus_04_01");	//Ѕудь внимательным. “ы можешь обмануть некоторых противников, если уклонишьс€ от удара, а затем атакуешь в правильный момент.
 	AI_Output(self,other,"DIA_Wulfgar_Bonus_04_02");	//ѕомни об этом в своем следующем бою!
 	B_RaiseFightTalent(other,NPC_TALENT_1H,2);
-	PrintScreen(PRINT_Learn1H,-1,-1,FONT_ScreenSmall,2);
+	PrintScreen(PRINT_Learn1H,-1,-1,FONT_Screen,2);
 };
 
 

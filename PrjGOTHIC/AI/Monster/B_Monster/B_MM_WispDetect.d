@@ -21,10 +21,11 @@ func void B_GetWispDetectedItem()
 func int B_WispDetectedItem()
 {
 	var int WispSearchFlags;
-	if(WispSearching == WispSearch_Follow)
-	{
-	}
-	else
+//	if(WispSearching == WispSearch_Follow)
+//	{
+//	}
+//	else
+	if(WispSearching != WispSearch_Follow)
 	{
 		WispSearchFlags = 0;
 		if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NF] == TRUE) && ((WispSearching == WispSearch_ALL) || (WispSearching == WispSearch_NF)))
@@ -64,7 +65,7 @@ func int B_WispDetectedItem()
 		};
 		return WispSearchFlags;
 	};
-	return 0;
+	return FALSE;
 };
 
 func int B_MM_WispDetect()

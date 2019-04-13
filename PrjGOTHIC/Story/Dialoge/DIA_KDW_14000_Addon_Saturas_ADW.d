@@ -778,6 +778,7 @@ func void DIA_Addon_Saturas_TalkedToGhost_kammern()
 	Log_SetTopicStatus(TOPIC_Addon_Relicts,LOG_Running);
 	Log_AddEntry(TOPIC_Addon_Relicts,LogText_Addon_Relicts);
 	Saturas_KnowsHow2GetInTempel = TRUE;
+	B_CheckLog();
 };
 
 
@@ -801,6 +802,7 @@ func int DIA_Addon_Saturas_RelictsBack_Condition()
 
 func void DIA_Addon_Saturas_RelictsBack_Info()
 {
+	var string concatText;
 	AI_Output(other,self,"DIA_Addon_Saturas_RelictsBack_15_00");	//Как именно реликвии помогут мне в храме?
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_03");	//Мы слишком мало знаем, чтобы я мог сказать тебе это. Надеюсь, что, оказавшись в храме, ты поймешь все сам.
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_05");	//Извини, но больше я ничего сказать не могу. Теперь все зависит от тебя.
@@ -810,7 +812,8 @@ func void DIA_Addon_Saturas_RelictsBack_Info()
 	CreateInvItems(hero,ItMi_Addon_Stone_03,1);
 	CreateInvItems(hero,ItMi_Addon_Stone_04,1);
 	CreateInvItems(hero,ItMi_Addon_Stone_05,1);
-	AI_PrintScreen(PRINT_ItemsErhalten,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	concatText = ConcatStrings(IntToString(5),PRINT_ItemsErhalten);
+	AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	B_LogEntry(TOPIC_Addon_Kammern,"Сатурас послал меня в храм, вручив мне пять реликвий зодчих. Я должен пройти через залы храма и остановить Ворона.");
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_07");	//Да защитит нас милость Аданоса!
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_08");	//Возможно, еще не слишком поздно.
@@ -903,7 +906,7 @@ func int DIA_Addon_Saturas_BeliarsWeapon_Condition()
 
 func void DIA_Addon_Saturas_BeliarsWeapon_Info()
 {
-	AI_UnequipWeapons(hero);
+//	AI_UnequipWeapons(hero);
 	AI_Output(other,self,"DIA_Addon_Saturas_BeliarsWeapon_15_00");	//Я забрал Коготь Белиара.
 	if(Npc_HasItems(hero,ItMw_BeliarWeapon_Raven) && (SC_FailedToEquipBeliarsWeapon == TRUE))
 	{

@@ -367,7 +367,7 @@ instance DIA_Addon_Elvrich_WasNun(C_Info)
 
 func int DIA_Addon_Elvrich_WasNun_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhereIsLucia))
+	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhereIsLucia) || (MIS_LuciasLetter == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -385,8 +385,9 @@ func void DIA_Addon_Elvrich_WasNun_Info()
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Элврих вернулся к мастеру Торбену.");
 	Elvrich_GoesBack2Thorben = TRUE;
+	AI_EquipBestMeleeWeapon(self);
 	Npc_ExchangeRoutine(self,"BACKINTHECITY");
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	AI_StopProcessInfos(self);
 };
 
 
@@ -397,7 +398,8 @@ instance DIA_Addon_Elvrich_PERM(C_Info)
 	condition = DIA_Addon_Elvrich_PERM_Condition;
 	information = DIA_Addon_Elvrich_PERM_Info;
 	permanent = TRUE;
-	important = TRUE;
+//	important = TRUE;
+	description = "Все в порядке?";
 };
 
 
@@ -411,6 +413,8 @@ func int DIA_Addon_Elvrich_PERM_Condition()
 
 func void DIA_Addon_Elvrich_PERM_Info()
 {
+	AI_Output(other,self,"DIA_Joe_Perm_15_00");	//Все в порядке?
 	AI_Output(self,other,"DIA_Addon_Elvrich_PERM_04_00");	//Спасибо, что спас меня!
+	AI_StopProcessInfos(self);
 };
 

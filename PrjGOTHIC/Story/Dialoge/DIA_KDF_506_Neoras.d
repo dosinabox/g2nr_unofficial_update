@@ -45,9 +45,17 @@ func int DIA_Neoras_Hallo_Condition()
 
 func void DIA_Neoras_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Neoras_Hallo_01_00");	//Что... что-то случилось? Зачем ты беспокоишь меня? Разве ты не видишь - я провожу очень сложный эксперимент?
-	AI_Output(other,self,"DIA_Neoras_Hallo_15_01");	//Я не хотел побеспокоить тебя.
-	AI_Output(self,other,"DIA_Neoras_Hallo_01_02");	//Ты уже побеспокоил. (вздыхает) Ладно, говори, чего ты хочешь?
+	if(Npc_GetDistToWP(self,"NW_MONASTERY_ALCHEMY_01") <= 500)
+	{
+		AI_Output(self,other,"DIA_Neoras_Hallo_01_00");	//Что... что-то случилось? Зачем ты беспокоишь меня? Разве ты не видишь - я провожу очень сложный эксперимент?
+		AI_Output(other,self,"DIA_Neoras_Hallo_15_01");	//Я не хотел побеспокоить тебя.
+		AI_Output(self,other,"DIA_Neoras_Hallo_01_02");	//Ты уже побеспокоил. (вздыхает) Ладно, говори, чего ты хочешь?
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -513,7 +521,7 @@ instance DIA_Neoras_DRACHENEIER(C_Info)
 
 func int DIA_Neoras_DRACHENEIER_Condition()
 {
-	if((Kapitel >= 4) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)) && (MIS_Neoras_DragonEgg == FALSE))
+	if((Kapitel >= 4) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)) && (MIS_Neoras_DragonEgg == FALSE) && (Npc_GetDistToWP(self,"NW_MONASTERY_ALCHEMY_01") <= 500))
 	{
 		return TRUE;
 	};

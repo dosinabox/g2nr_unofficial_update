@@ -46,7 +46,7 @@ func int DIA_Sekob_HALLO_Condition()
 func void DIA_Sekob_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Sekob_HALLO_01_00");	//Что ты делаешь на моей земле? Здесь нечего украсть. Проваливай.
-	AI_Output(other,self,"DIA_Sekob_HALLO_15_01");	//Неужели в этой проклятой стране нет ни клочка земли, который никому не принадлежит?
+	AI_Output(other,self,"DIA_Sekob_HALLO_15_01");	//Неужели в этой проклятой стране нет ни кусочка земли, который никому не принадлежит?
 	AI_Output(self,other,"DIA_Sekob_HALLO_01_02");	//А ты займись делом, тогда, возможно, когда-нибудь и ты сможешь назвать кусок земли своей собственностью. Но до той поры, будь добр, бей баклуши где-нибудь в другом месте.
 };
 
@@ -366,7 +366,7 @@ func void DIA_Sekob_DMT_Info()
 	{
 		AI_Output(self,other,"DIA_Sekob_DMT_01_04");	//Ты должен помочь мне, о, великий маг.
 	};
-	AI_Output(self,other,"DIA_Sekob_DMT_01_05");	//Эти люди говорят, что кого-то ищут. Но почему в моем доме?!
+	AI_Output(self,other,"DIA_Sekob_DMT_01_05");	//Эти люди говорят, что кого-то ищут. Но почему-то в моем доме?!
 	AI_Output(self,other,"DIA_Sekob_DMT_01_06");	//Пожалуйста, помоги мне. Заставь их убраться.
 	Log_CreateTopic(TOPIC_SekobDMT,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_SekobDMT,LOG_Running);
@@ -409,6 +409,7 @@ func void DIA_Sekob_DMTWEG_Info()
 	};
 	TOPIC_END_SekobDMT = TRUE;
 	B_GivePlayerXP(XP_SekobDMTWEG);
+	AI_StopProcessInfos(self);
 	if(Kapitel < 5)
 	{
 		Npc_ExchangeRoutine(self,"Start");
@@ -500,13 +501,13 @@ func int DIA_Sekob_PERM_Condition()
 
 func void DIA_Sekob_PERM_Info()
 {
+	AI_Output(other,self,"DIA_Sekob_PERM_15_00");	//Что-нибудь произошло интересного?
 	if((hero.guild == GIL_KDF) && (Kapitel >= 5))
 	{
 		B_NpcObsessedByDMT(self);
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Sekob_PERM_15_00");	//Что-нибудь произошло интересного?
 		if(MIS_bringRosiBackToSekob == LOG_FAILED)
 		{
 			AI_Output(self,other,"DIA_Sekob_PERM_01_01");	//Проваливай.

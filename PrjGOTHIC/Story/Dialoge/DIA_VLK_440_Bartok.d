@@ -34,7 +34,8 @@ instance DIA_Bartok_PICKPOCKET(C_Info)
 
 func int DIA_Bartok_PICKPOCKET_Condition()
 {
-	return C_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),0);
+//	return C_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),0);
+	return C_StealItem(30,Hlp_GetInstanceID(ItRw_Arrow));
 };
 
 func void DIA_Bartok_PICKPOCKET_Info()
@@ -47,7 +48,21 @@ func void DIA_Bartok_PICKPOCKET_Info()
 func void DIA_Bartok_PICKPOCKET_DoIt()
 {
 	CreateInvItems(self,ItRw_Arrow,40);
-	B_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),40);
+//	B_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),40);
+	if(other.attribute[ATR_DEXTERITY] >= 30)
+	{
+		B_GiveInvItems(self,other,ItRw_Arrow,40);
+		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
+		B_GiveThiefXP();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
+	}
+	else
+	{
+		B_ResetThiefLevel();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_Theft,1);
+	};
 	Info_ClearChoices(DIA_Bartok_PICKPOCKET);
 };
 
@@ -255,7 +270,7 @@ func void DIA_Bartok_TeachSneak_Info()
 	{
 		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_01");	//’орошо - сначала ты должен научитьс€ правильно распредел€ть свой вес.
 		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_02");	//ƒл€ этого согни ноги в колен€х и старайс€ всегда опускать ногу на п€тку.
-		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_03");	//¬се нагрузка должна приходитьс€ на опорную ногу, пока друга€ нога не будет твердо сто€ть на земле.
+		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_03");	//¬с€ нагрузка должна приходитьс€ на опорную ногу, пока друга€ нога не будет твердо сто€ть на земле.
 		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_04");	//  большинству зверей невозможно подкрастьс€, если только они не сп€т. ќни просто учуют теб€.
 		AI_Output(self,other,"DIA_Bartok_TeachSneak_04_05");	//“ак что будь внимателен при охоте.
 	};
@@ -287,7 +302,8 @@ func void DIA_Bartok_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Bartok_TeachBow_15_00");	//я хочу научитьс€ лучше стрел€ть из лука!
 	AI_Output(self,other,"DIA_Bartok_TeachBow_04_01");	//’орошо, посмотрим, чему € могу теб€ научить...
-	Bosper_MerkeBow = other.HitChance[NPC_TALENT_BOW];
+//	Bosper_MerkeBow = other.HitChance[NPC_TALENT_BOW];
+	Bosper_MerkeBow = other.aivar[REAL_TALENT_BOW];
 	Info_ClearChoices(DIA_Bartok_Teach);
 	Info_AddChoice(DIA_Bartok_Teach,Dialog_Back,DIA_Bartok_Teach_Back);
 	Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Bartok_Teach_BOW_1);
@@ -296,11 +312,13 @@ func void DIA_Bartok_Teach_Info()
 
 func void DIA_Bartok_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_BOW] >= 60)
+//	if(other.HitChance[NPC_TALENT_BOW] >= 60)
+	if(other.aivar[REAL_TALENT_BOW] >= 60)
 	{
 		AI_Output(self,other,"DIA_Bartok_TeachBow_BACK_04_00");	//“ебе лучше поискать кого-нибудь, кто знает больше, чем €.
 	}
-	else if(Bosper_MerkeBow < other.HitChance[NPC_TALENT_BOW])
+//	else if(Bosper_MerkeBow < other.HitChance[NPC_TALENT_BOW])
+	else if(Bosper_MerkeBow < other.aivar[REAL_TALENT_BOW])
 	{
 		AI_Output(self,other,"DIA_Bartok_TeachBow_BACK_04_01");	//’орошо, ты стал стрел€ть значительно лучше.
 	};

@@ -43,7 +43,7 @@ func int DIA_Addon_10023_Wache_Hi_Condition()
 func void DIA_Addon_10023_Wache_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_10023_Wache_Hi_11_00");	//Ёй, куда ты идешь? “ы хочешь попасть в тот проход?
-	AI_Output(other,self,"DIA_Addon_10023_Wache_Hi_15_01");	//Ќу да, а почему бы нет?
+	AI_Output(other,self,"DIA_Addon_10023_Wache_Hi_15_01");	//Ќу да, а почему бы и нет?
 	AI_Output(self,other,"DIA_Addon_10023_Wache_Hi_11_02");	//“ам еще группа рабов. я не возражаю, чтобы ты туда шел, но не надо их избивать до такого состо€ни€, чтобы они не могли работать.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_Hi_11_03");	//¬ конце концов, мы не хотим, чтобы они просто так сидели. ќни должны добывать золото.
 	AI_Output(other,self,"DIA_Addon_10023_Wache_Hi_15_04");	//ясно. ј кто это приказал?

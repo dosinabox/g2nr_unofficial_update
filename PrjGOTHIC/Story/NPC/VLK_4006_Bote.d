@@ -24,13 +24,19 @@ instance VLK_4006_Bote(Npc_Default)
 
 func void Rtn_Start_4006()
 {
-	TA_Stand_Guarding(8,0,22,0,"NW_PATH_TO_MONASTERY_AREA_01");
-	TA_Stand_Guarding(22,0,8,0,"NW_PATH_TO_MONASTERY_AREA_01");
+//	TA_Stand_Guarding(8,0,22,0,"NW_PATH_TO_MONASTERY_AREA_01");
+//	TA_Stand_Guarding(22,0,8,0,"NW_PATH_TO_MONASTERY_AREA_01");
+	TA_Stand_ArmsCrossed(8,0,18,0,"NW_CITY_MERCHANT_SHOP03_FRONT_02");
+	TA_Sit_Chair(18,0,20,0,"TAVERN02_B");
+	TA_Sit_Chair(20,0,22,0,"NW_CITY_HABOUR_TAVERN01_05");
+	TA_Sleep(22,0,8,0,"NW_CITY_HOTEL_BED_07");
 };
 
 func void Rtn_Rest_4006()
 {
-	TA_Stand_Drinking(8,0,22,0,"TAVERNE");
-	TA_Stand_Drinking(22,0,8,0,"TAVERNE");
+//	TA_Stand_Drinking(8,0,22,0,"TAVERNE");
+//	TA_Stand_Drinking(22,0,8,0,"TAVERNE");
+	TA_Sleep(8,0,22,0,"NW_CITY_HABOUR_KASERN_05_01");
+	TA_Sleep(22,0,8,0,"NW_CITY_HABOUR_KASERN_05_01");
 };
 

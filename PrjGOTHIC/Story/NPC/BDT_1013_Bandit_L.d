@@ -9,7 +9,7 @@ instance BDT_1013_Bandit_L(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_EnemyOverride] = TRUE;
 	B_SetAttributesToChapter(self,0);
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItWr_Poster_MIS,1);
@@ -44,5 +44,11 @@ func void rtn_away2_1013()
 {
 	TA_FleeToWp(0,0,12,0,"NW_XARDAS_MONSTER_INSERT_01");
 	TA_FleeToWp(12,0,0,0,"NW_XARDAS_MONSTER_INSERT_01");
+};
+
+func void rtn_away3_1013()
+{
+	TA_FleeToWp(0,0,12,0,"NW_XARDAS_MONSTER_INSERT_02");
+	TA_FleeToWp(12,0,0,0,"NW_XARDAS_MONSTER_INSERT_02");
 };
 

@@ -119,6 +119,8 @@ func void DIA_Hodges_AboutSld_Info()
 };
 
 
+var int Hodges_Trader;
+
 instance DIA_Hodges_TRADE(C_Info)
 {
 	npc = BAU_908_Hodges;
@@ -141,6 +143,13 @@ func void DIA_Hodges_TRADE_Info()
 	AI_Output(other,self,"DIA_Hodges_TRADE_15_00");	//Могу я купить оружие у тебя?
 	AI_Output(self,other,"DIA_Hodges_TRADE_03_01");	//У меня мало что есть. Мы относим почти все мечи и топоры в дом Онара.
 	Npc_RemoveInvItems(self,ItMiSwordblade,Npc_HasItems(self,ItMiSwordblade));
+	B_GiveTradeInv(self);
+	if(Hodges_Trader == FALSE)
+	{
+		Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
+		B_LogEntry(Topic_SoldierTrader,"Ходжес может продать мне немного оружия.");
+		Hodges_Trader = TRUE;
+	};
 };
 
 
@@ -247,7 +256,7 @@ func void DIA_Hodges_WhatHappened_Info()
 {
 	AI_Output(other,self,"DIA_Hodges_WhatHappened_15_00");	//Что случилось?
 	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_01");	//Ну, мы были в городе за покупками, когда неожиданно услышали крик. Кто-то кричал: 'Вот они, держите их!'
-	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_02");	//Ох, как я испугался! Я бросился бежать. Я бежал так, как будто за мной гнались демоны.
+	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_02");	//Ох, как я напугался! Я бросился бежать. Я бежал так, как будто за мной гнались демоны.
 	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_03");	//Беннет бежал за мной. Я не знаю, что произошло, но когда я выбрался из города, его со мной уже не было.
 	AI_Output(self,other,"DIA_Hodges_WhatHappened_03_04");	//Должно быть, он отстал где-то в городе.
 };

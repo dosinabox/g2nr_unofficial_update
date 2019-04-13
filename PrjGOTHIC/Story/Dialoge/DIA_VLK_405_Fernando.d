@@ -34,9 +34,15 @@ instance DIA_Fernando_PICKPOCKET(C_Info)
 
 func int DIA_Fernando_PICKPOCKET_Condition()
 {
-	if(C_StealItems(50,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (NpcObsessedByDMT_Fernando == FALSE))
+//	if(C_StealItems(50,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (NpcObsessedByDMT_Fernando == FALSE))
+	if(Npc_HasItems(self,ItSe_GoldPocket100) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
-		return TRUE;
+//		return TRUE;
+		return C_StealItem(50,Hlp_GetInstanceID(ItSe_GoldPocket100));
+	}
+	else
+	{
+		return FALSE;
 	};
 };
 
@@ -49,7 +55,8 @@ func void DIA_Fernando_PICKPOCKET_Info()
 
 func void DIA_Fernando_PICKPOCKET_DoIt()
 {
-	B_StealItems(50,Hlp_GetInstanceID(ItSe_GoldPocket100),1);
+//	B_StealItems(50,Hlp_GetInstanceID(ItSe_GoldPocket100),1);
+	B_StealItem(50,Hlp_GetInstanceID(ItSe_GoldPocket100));
 	Info_ClearChoices(DIA_Fernando_PICKPOCKET);
 };
 
@@ -367,6 +374,7 @@ func int DIA_Fernando_Obsession_Condition()
 
 func void DIA_Fernando_Obsession_Info()
 {
+	AI_Output(other,self,"DIA_Joe_Perm_15_00");	//Все в порядке?
 	B_NpcObsessedByDMT(self);
 };
 

@@ -148,6 +148,8 @@ func void UseSchlafHammer()
 };
 
 
+const int Time_SchnellerHering = 120000;
+
 instance ItFo_Addon_SchnellerHering(C_Item)
 {
 	name = "Быстрая селедка";
@@ -159,9 +161,12 @@ instance ItFo_Addon_SchnellerHering(C_Item)
 	on_state[0] = UseSchnellerHering;
 	scemeName = "POTIONFAST";
 	description = name;
-	text[1] = "Выглядит подозрительно!";
-	text[2] = "Эффект неизвестен.";
-	text[3] = "Возможны побочные эффекты.";
+//	text[1] = "Выглядит подозрительно!";
+//	text[2] = "Эффект неизвестен.";
+//	text[3] = "Возможны побочные эффекты.";
+	text[1] = "Временно повышает скорость.";
+	text[3] = NAME_Duration;
+	count[3] = Time_SchnellerHering / 60000;
 	text[5] = NAME_Value;
 	count[5] = Value_SchnellerHering;
 };
@@ -173,7 +178,7 @@ func void UseSchnellerHering()
 	her = Hlp_GetNpc(PC_Hero);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
 	{
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",120000);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_SchnellerHering);
 	};
 	Player_KnowsSchnellerHering = TRUE;
 };
@@ -207,6 +212,8 @@ instance ItFo_Addon_FireStew(C_Item)
 	description = name;
 	text[1] = NAME_Bonus_Str;
 	count[1] = STR_FireStew;
+	text[2] = NAME_Bonus_HP;
+	count[2] = HP_FireStew;
 	text[5] = NAME_Value;
 	count[5] = Value_FireStew;
 };

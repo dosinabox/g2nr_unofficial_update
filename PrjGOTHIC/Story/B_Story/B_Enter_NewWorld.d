@@ -105,9 +105,17 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			Wld_InsertItem(ItAm_Hp_Mana_01,"FP_ROAM_XARDAS_SECRET_26");
 		};
-		if(hero.guild == GIL_KDF)
+/*		if(hero.guild == GIL_KDF))
 		{
 			B_StartOtherRoutine(Agon,"StillAlive");
+		}; */
+		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
+		{
+			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
+		};
+		if(!Npc_IsDead(Ambusher_1013))
+		{
+			B_StartOtherRoutine(Ambusher_1013,"AWAY");
 		};
 		EnterNW_Kapitel2 = TRUE;
 	};
@@ -192,6 +200,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Wolf,"NW_PATH_TO_MONASTER_AREA_10");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
+		if(!Npc_IsDead(Ambusher_1013))
+		{
+			B_KillNpc(Ambusher_1013);
+		};
 		Wld_InsertNpc(Zombie02,"NW_FARM4_WOOD_MONSTER_MORE_02");
 		Wld_InsertNpc(Zombie01,"NW_FARM4_WOOD_MONSTER_MORE_02");
 		Wld_InsertNpc(Zombie02,"NW_BIGFARM_LAKE_03_MOVEMENT5");
@@ -220,7 +232,8 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_ROAM_CITY_TO_FOREST_15");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_07");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_08");
-		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_09");
+//		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_09");
+		Wld_InsertNpc(DMT_DementorAmbientMalak,"FP_STAND_DEMENTOR_09");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_10");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_11");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_12");
@@ -281,6 +294,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			if(!Npc_IsDead(Vino))
 			{
 				B_StartOtherRoutine(Vino,"OBESESSIONRITUAL");
+				Vino.aivar[AIV_NoFightParker] = TRUE;
 //				CreateInvItems(Vino,ITWR_DementorObsessionBook_MIS,1);
 				Vino_isAlive_Kap3 = TRUE;
 				if(!Npc_IsDead(Lobart))
@@ -575,10 +589,26 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(DMT_DementorAmbientWalker10,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker8,"CITY1");
 			Wld_InsertNpc(DMT_DementorAmbientWalker7,"CITY1");
-			if(!Npc_IsDead(Randolph))
+/*			if(!Npc_IsDead(Randolph))
 			{
-//				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
+				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
 				B_StartOtherRoutine(Randolph,"Obsessed");
+			}; */
+		};
+		//возвращение на ферму Онара Альвареса и Энгардо
+		if(TOPIC_END_AkilsSLDStillthere == FALSE)
+		{
+			if(!Npc_IsDead(Alvares))
+			{
+				Alvares.guild = GIL_SLD;
+				Npc_SetTrueGuild(Alvares,GIL_SLD);
+				B_StartOtherRoutine(Alvares,"Bigfarm");
+			};
+			if(!Npc_IsDead(Engardo))
+			{
+				Engardo.guild = GIL_SLD;
+				Npc_SetTrueGuild(Engardo,GIL_SLD);
+				B_StartOtherRoutine(Engardo,"Bigfarm");
 			};
 		};
 		EnterNW_Kapitel4 = TRUE;

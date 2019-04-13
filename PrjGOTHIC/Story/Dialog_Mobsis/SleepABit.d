@@ -83,7 +83,7 @@ instance PC_SleepTime_Morning(C_Info)
 	information = PC_SleepTime_Morning_Info;
 	important = 0;
 	permanent = 1;
-	description = "Спать до следующего утра";
+	description = "Спать до утра";
 };
 
 
@@ -133,7 +133,7 @@ instance PC_SleepTime_Evening(C_Info)
 	information = PC_SleepTime_Evening_Info;
 	important = 0;
 	permanent = 1;
-	description = "Спать до следующего вечера";
+	description = "Спать до вечера";
 };
 
 

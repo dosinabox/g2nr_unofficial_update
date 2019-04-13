@@ -57,7 +57,7 @@ func void DIA_Rega_HALLO_Info()
 	};
 	AI_Output(self,other,"DIA_Rega_HALLO_17_05");	//На твоем месте, я бы убиралась отсюда побыстрее.
 	AI_Output(other,self,"DIA_Rega_HALLO_15_06");	//Почему?
-	AI_Output(self,other,"DIA_Rega_HALLO_17_07");	//Это место и раньше-то не было раем, но хотя бы мы жили в мире и спокойствии, пока работали на Секоба.
+	AI_Output(self,other,"DIA_Rega_HALLO_17_07");	//Это место и раньше-то не было раем, но мы хотя бы жили в мире и спокойствии, пока работали на Секоба.
 	AI_Output(self,other,"DIA_Rega_HALLO_17_08");	//Но последнее время жить здесь стало просто невыносимо.
 	if(Kapitel < 3)
 	{
@@ -113,7 +113,7 @@ func int DIA_Rega_SLD_Condition()
 func void DIA_Rega_SLD_Info()
 {
 	AI_Output(other,self,"DIA_Rega_SLD_15_00");	//Разве наемники не должны уничтожать полевых хищников?
-	AI_Output(self,other,"DIA_Rega_SLD_17_01");	//Я не знаю, за что им там платят, но уж точно не за то, чтобы они помогали простым людям.
+	AI_Output(self,other,"DIA_Rega_SLD_17_01");	//Я не знаю, за что там платят, но уж точно не за то, чтобы они помогали простым людям.
 	AI_Output(self,other,"DIA_Rega_SLD_17_02");	//А проблему с полевыми хищниками мелким фермерам, арендующим у него землю, приходится решать самим.
 };
 

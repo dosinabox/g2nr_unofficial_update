@@ -84,6 +84,7 @@ func void DIA_Grimbald_HALLO_Was_ja()
 	AI_Output(other,self,"DIA_Grimbald_HALLO_Was_ja_15_00");	//Хорошо, я помогу тебе. Но ты пойдешь впереди.
 	AI_Output(self,other,"DIA_Grimbald_HALLO_Was_ja_07_01");	//Конечно. Только не приближайся слишком близко к черному троллю. Он разорвет тебя на куски, понял?
 	AI_Output(self,other,"DIA_Grimbald_HALLO_Was_ja_07_02");	//И я не прощу тебе, если ты решишь выйти из игры.
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	B_StartOtherRoutine(self,"Jagd");
 	AI_StopProcessInfos(self);
 };
@@ -114,12 +115,18 @@ func int DIA_Grimbald_Jagd_Condition()
 	};
 };
 
+const string Grimbald_IsTeacher = "Охотник Гримбальд, стоящий неподалеку от пещеры черного тролля, может обучить меня охотничьим навыкам.";
+
 func void DIA_Grimbald_Jagd_Info()
 {
 	AI_Output(other,self,"DIA_Grimbald_Jagd_15_00");	//Ты можешь научить меня охотиться?
 	if((Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3)) || (Grimbald_PissOff == FALSE))
 	{
 		AI_Output(self,other,"DIA_Grimbald_Jagd_07_01");	//Ммм. Хорошо. Ты не особенно-то помог мне, но не стоит быть слишком строгим.
+		self.aivar[AIV_PARTYMEMBER] = FALSE;
+		B_StartOtherRoutine(self,"JagdOver");
+		Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Teacher,Grimbald_IsTeacher);
 		Grimbald_TeachAnimalTrophy = TRUE;
 	}
 	else
@@ -138,6 +145,8 @@ func void DIA_Grimbald_Jagd_ja()
 	if(B_GiveInvItems(other,self,ItMi_Gold,200))
 	{
 		AI_Output(self,other,"DIA_Grimbald_Jagd_ja_07_01");	//Отлично. Скажешь, когда захочешь научиться чему-нибудь.
+		Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Teacher,Grimbald_IsTeacher);
 		Grimbald_TeachAnimalTrophy = TRUE;
 	}
 	else
@@ -175,16 +184,9 @@ func int DIA_Grimbald_TEACHHUNTING_Condition()
 };
 
 
-var int DIA_Grimbald_TEACHHUNTING_OneTime;
-
 func void DIA_Grimbald_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Grimbald_TEACHHUNTING_15_00");	//Научи меня охотиться.
-	if(DIA_Grimbald_TEACHHUNTING_OneTime == FALSE)
-	{
-		B_StartOtherRoutine(self,"JagdOver");
-		DIA_Grimbald_TEACHHUNTING_OneTime = TRUE;
-	};
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE))
 	{
 		AI_Output(self,other,"DIA_Grimbald_TEACHHUNTING_07_01");	//Что именно ты хочешь узнать?
@@ -207,7 +209,7 @@ func void DIA_Grimbald_TEACHHUNTING_Info()
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE)
 		{
-			Info_AddChoice(DIA_Grimbald_TEACHHUNTING,B_BuildLearnString("Удаление панцирей краулеров",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate)),DIA_Grimbald_TEACHHUNTING_CrawlerPlate);
+			Info_AddChoice(DIA_Grimbald_TEACHHUNTING,B_BuildLearnString("Снятие панцирей c краулеров",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate)),DIA_Grimbald_TEACHHUNTING_CrawlerPlate);
 		};
 	}
 	else

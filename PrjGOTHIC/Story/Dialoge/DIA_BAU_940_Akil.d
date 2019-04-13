@@ -46,7 +46,7 @@ instance DIA_Akil_Hallo(C_Info)
 
 func int DIA_Akil_Hallo_Condition()
 {
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo))
+	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -58,14 +58,14 @@ func void DIA_Akil_Hallo_Info()
 	AI_Output(self,other,"DIA_Akil_Hallo_13_01");	//(в поту) ...Э-э... нет, нет... все в порядке. (нервно) Это... тебе лучше уйти сейчас.
 	AI_Output(other,self,"DIA_Akil_Hallo_15_02");	//Ты в этом уверен?
 	AI_Output(self,other,"DIA_Akil_Hallo_13_03");	//Э-э... да, да... все в порядке. Ты... э-э... я... я сейчас не могу говорить с тобой.
-	Akils_SLDStillthere = TRUE;
-	if(Hilfe == FALSE)
+	if(Akils_SLDStillthere == FALSE)
 	{
 		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
-		Hilfe = TRUE;
+		Akils_SLDStillthere = TRUE;
 	};
+	SC_KnowsAkilsHof = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -134,17 +134,19 @@ func void DIA_Akil_NachKampf_Info()
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
 	Npc_ExchangeRoutine(self,"Start");
-	self.flags = 0;
+//	self.flags = 0;
 	if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
 	{
-		Npc_ExchangeRoutine(Kati,"Start");
+/*		Npc_ExchangeRoutine(Kati,"Start");
 		AI_ContinueRoutine(Kati);
-		Kati.flags = 0;
+		Kati.flags = 0; */
+		B_StartOtherRoutine(Kati,"Start");
 	};
 	if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
 	{
-		Npc_ExchangeRoutine(Randolph,"Start");
-		AI_ContinueRoutine(Randolph);
+/*		Npc_ExchangeRoutine(Randolph,"Start");
+		AI_ContinueRoutine(Randolph); */
+		B_StartOtherRoutine(Randolph,"Start");
 		Randolph.flags = 0;
 	};
 	TOPIC_END_AkilsSLDStillthere = TRUE;
@@ -225,11 +227,11 @@ func int DIA_Addon_Akil_MissingPeople_Condition()
 func void DIA_Addon_Akil_MissingPeople_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Akil_MissingPeople_15_00");	//Ты слышал что-нибудь о пропавших горожанах?
-	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_01");	//Слышал? Не смеши меня. У меня самого пропало несколько людей.
+	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_01");	//Слышал? Не смеши меня. У меня у самого пропало несколько людей.
 	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_02");	//У меня на полях работали Тонак и Телбор. Но три дня назад они пропали.
-	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_03");	//Я точно знаю, что они не стали бы просто так уходить с фермы, не сказав об этом мне.
+	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_03");	//Я точно знаю, что они не стали бы просто так уходить с фермы, не сказав мне об этом.
 	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_04");	//Однако они исчезли, и никто не знает, где они сейчас.
-	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_05");	//Если ты узнаешь что-нибудь об их судьбе, обязательно дай мне знать
+	AI_Output(self,other,"DIA_Addon_Akil_MissingPeople_13_05");	//Если ты узнаешь что-нибудь об их судьбе, обязательно дай мне знать.
 	B_GivePlayerXP(XP_Ambient);
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
@@ -615,6 +617,7 @@ func void DIA_Akil_AkilsSchaf_Info()
 	CreateInvItems(self,ItMi_Gold,150);
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	Follow_Sheep_AKIL.aivar[AIV_PARTYMEMBER] = FALSE;
+	Follow_Sheep_AKIL.aivar[AIV_TAPOSITION] = NOTINPOS;
 	Follow_Sheep_AKIL.wp = "NW_FARM2_OUT_02";
 	Follow_Sheep_AKIL.start_aistate = ZS_MM_AllScheduler;
 	B_GivePlayerXP(XP_AkilsSchaf);

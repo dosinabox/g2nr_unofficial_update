@@ -57,7 +57,7 @@ instance DIA_Liesel_KommMit(C_Info)
 
 func int DIA_Liesel_KommMit_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && Npc_KnowsInfo(other,DIA_Liesel_Hallo) && (self.aivar[AIV_TAPOSITION] == FALSE))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && Npc_KnowsInfo(other,DIA_Liesel_Hallo) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
 		return TRUE;
 	};
@@ -85,7 +85,7 @@ instance DIA_Liesel_WarteHier(C_Info)
 
 func int DIA_Liesel_WarteHier_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && Npc_KnowsInfo(other,DIA_Liesel_Hallo) && (self.aivar[AIV_TAPOSITION] == FALSE))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && Npc_KnowsInfo(other,DIA_Liesel_Hallo) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
 		return TRUE;
 	};

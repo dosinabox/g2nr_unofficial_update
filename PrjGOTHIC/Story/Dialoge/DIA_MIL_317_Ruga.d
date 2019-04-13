@@ -34,7 +34,15 @@ instance DIA_Ruga_PICKPOCKET(C_Info)
 
 func int DIA_Ruga_PICKPOCKET_Condition()
 {
-	return C_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
+//	return C_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
+	if(Npc_HasItems(self,ItKe_City_Tower_03))
+	{
+		return C_StealItem(40,Hlp_GetInstanceID(ItKe_City_Tower_03));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Ruga_PICKPOCKET_Info()
@@ -46,7 +54,8 @@ func void DIA_Ruga_PICKPOCKET_Info()
 
 func void DIA_Ruga_PICKPOCKET_DoIt()
 {
-	B_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
+//	B_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
+	B_StealItem(40,Hlp_GetInstanceID(ItKe_City_Tower_03));
 	Info_ClearChoices(DIA_Ruga_PICKPOCKET);
 };
 
@@ -159,7 +168,8 @@ func void DIA_Ruga_Teach_Info()
 
 func void DIA_Ruga_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 90)
+//	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 90)
+	if(other.aivar[REAL_TALENT_CROSSBOW] >= 90)
 	{
 		AI_Output(self,other,"DIA_Ruga_Teach_11_00");	//Мне больше нечему учить тебя. Тебе лучше поискать другого учителя.
 		DIA_Ruga_Teach_permanent = TRUE;
@@ -218,7 +228,8 @@ func void DIA_Ruga_TEACHDEX_Info()
 
 func void DIA_Ruga_TEACHDEX_BACK()
 {
-	if(other.attribute[ATR_DEXTERITY] >= T_LOW)
+//	if(other.attribute[ATR_DEXTERITY] >= T_LOW)
+	if(other.aivar[REAL_DEXTERITY] >= T_LOW)
 	{
 		AI_Output(self,other,"DIA_Ruga_TEACHDEX_11_00");	//Это все, чему я мог обучить тебя. Если ты хочешь стать еще более ловким, тебе лучше поискать другого учителя.
 		DIA_Ruga_TEACHDEX_permanent = TRUE;

@@ -104,7 +104,7 @@ func void DIA_Wolf_WannaBuy_Info()
 	AI_Output(other,self,"DIA_Wolf_WannaBuy_15_00");	//Ты можешь что-нибудь продать?
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_01");	//Ох, лучше не спрашивай.
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_02");	//Беннет, один из новых парней, теперь заведует оружием и доспехами.
-	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_03");	//В колонии я отвечал за весь арсенал Ли, и вот пришел хороший кузнец и - пфф - я остался без работы.
+	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_03");	//В колонии я отвечал за весь арсенал Ли, и вот пришел хороший кузнец и - пфу - я остался без работы.
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_04");	//Мне очень нужна новая работа, даже если это будет охрана местных ферм.
 	AI_Output(self,other,"DIA_Wolf_WannaBuy_08_05");	//Меня это не волнует, лишь бы только не бить баклуши здесь.
 };
@@ -164,7 +164,8 @@ func void DIA_Wolf_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Wolf_TEACH_15_00");	//Я хочу научиться стрельбе из лука.
 	AI_Output(self,other,"DIA_Wolf_TEACH_08_01");	//Чему обучить тебя?
-	Wolf_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
+//	Wolf_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
+	Wolf_Merke_Bow = other.aivar[REAL_TALENT_BOW];
 	Info_ClearChoices(DIA_Wolf_TEACH);
 	Info_AddChoice(DIA_Wolf_TEACH,Dialog_Back,DIA_Wolf_Teach_Back);
 	Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_Teach_Bow_1);
@@ -173,7 +174,8 @@ func void DIA_Wolf_TEACH_Info()
 
 func void DIA_Wolf_Teach_Back()
 {
-	if(Wolf_Merke_Bow < other.HitChance[NPC_TALENT_BOW])
+//	if(Wolf_Merke_Bow < other.HitChance[NPC_TALENT_BOW])
+	if(Wolf_Merke_Bow < other.aivar[REAL_TALENT_BOW])
 	{
 		AI_Output(self,other,"DIA_Wolf_Teach_BACK_08_00");	//Вот так. Твоя меткость значительно выросла.
 	};
@@ -212,7 +214,7 @@ instance DIA_Wolf_PERM(C_Info)
 
 func int DIA_Wolf_PERM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wolf_WannaBuy) && (MIS_BengarsHelpingSLD == 0) && (Wolf_IsOnBoard != LOG_FAILED))
+	if(Npc_KnowsInfo(other,DIA_Wolf_WannaBuy) && (MIS_BengarsHelpingSLD == FALSE) && (Wolf_IsOnBoard != LOG_FAILED))
 	{
 		return TRUE;
 	};
@@ -238,7 +240,7 @@ instance DIA_Wolf_Stadt(C_Info)
 
 func int DIA_Wolf_Stadt_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wolf_WannaBuy) && (MIS_BengarsHelpingSLD == 0) && (Wolf_IsOnBoard != LOG_FAILED))
+	if(Npc_KnowsInfo(other,DIA_Wolf_WannaBuy) && (MIS_BengarsHelpingSLD == FALSE) && (Wolf_IsOnBoard != LOG_FAILED))
 	{
 		return TRUE;
 	};
@@ -470,7 +472,7 @@ func void DIA_Wolf_BENGAR_Info()
 	};
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
-		AI_Output(self,other,"DIA_Wolf_BENGAR_08_05");	//Я согласен. А так как ты один из нас, я не возьму много за эту работу. Дай мне 300 золотых, и я сразу же отправляюсь туда.
+		AI_Output(self,other,"DIA_Wolf_BENGAR_08_05");	//Я согласен. А так как ты один из нас, я не возьму много за эту работу. Дай мне 300 золотых, и я сразу же отправлюсь туда.
 		Wolf_BENGAR_geld = 300;
 	}
 	else

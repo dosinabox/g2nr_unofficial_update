@@ -142,7 +142,7 @@ instance DIA_Brahim_BUY(C_Info)
 
 func int DIA_Brahim_BUY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET) && (Brahim_attacked_day <= Wld_GetDay()))
+	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET) && (Brahim_Attacked_Day <= Wld_GetDay()))
 	{
 		return TRUE;
 	};
@@ -158,7 +158,7 @@ func void DIA_Brahim_BUY_Info()
 	};
 	if(hero.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Brahim_BUY_07_02");	//Хорошая карта - это очень важно, особенно для людей, прибывших с материка, мистер Паладин.
+		AI_Output(self,other,"DIA_Brahim_BUY_07_02");	//Хорошая карта - это очень важно, особенно для людей, прибывших с материка, мистер паладин.
 	};
 	Brahim_ShowedMaps = TRUE;
 };

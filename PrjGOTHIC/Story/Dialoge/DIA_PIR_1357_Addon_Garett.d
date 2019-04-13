@@ -380,7 +380,7 @@ instance DIA_Addon_Garett_Trade(C_Info)
 
 func int DIA_Addon_Garett_Trade_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Garett_Hello))
 	{
 		return TRUE;
 	};
@@ -389,8 +389,6 @@ func int DIA_Addon_Garett_Trade_Condition()
 func void DIA_Addon_Garett_Trade_Info()
 {
 	var int Garett_Random;
-	var int McBolzenAmount;
-	var int McArrowAmount;
 	Garett_Random = Hlp_Random(3);
 	if(Garett_Random == 0)
 	{
@@ -405,11 +403,17 @@ func void DIA_Addon_Garett_Trade_Info()
 		B_Say(other,self,"$TRADE_3");
 	};
 	B_GiveTradeInv(self);
-	Npc_RemoveInvItems(self,ItRw_Bolt,Npc_HasItems(self,ItRw_Bolt));
-	McBolzenAmount = Kapitel * 25;
-	CreateInvItems(self,ItRw_Bolt,McBolzenAmount);
-	Npc_RemoveInvItems(self,ItRw_Arrow,Npc_HasItems(self,ItRw_Arrow));
-	McArrowAmount = Kapitel * 25;
-	CreateInvItems(self,ItRw_Arrow,McArrowAmount);
+	if(TradersHaveLimitedAmmo == TRUE)
+	{
+		if(Garett_Ammo_Day <= Wld_GetDay())
+		{
+			B_RefreshAmmo(self,25);
+			Garett_Ammo_Day = Wld_GetDay() + 1;
+		};
+	}
+	else
+	{
+		B_RefreshAmmo(self,25);
+	};
 };
 

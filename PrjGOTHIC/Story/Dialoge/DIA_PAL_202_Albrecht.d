@@ -253,7 +253,8 @@ func void DIA_Albrecht_Teach_Info()
 
 func void DIA_Albrecht_Teach_BACK()
 {
-	if(other.attribute[ATR_MANA_MAX] >= T_MED)
+//	if(other.attribute[ATR_MANA_MAX] >= T_MED)
+	if(other.aivar[REAL_MANA_MAX] >= T_MED)
 	{
 		AI_Output(self,other,"DIA_Albrecht_Teach_03_00");	//Если ты хочешь повысить свои магические способности еще больше, тебе придется поискать другого учителя.
 	};

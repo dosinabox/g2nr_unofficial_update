@@ -289,7 +289,7 @@ func void DIA_Torlof_RUF_Info()
 	{
 		Points_Sld += 1;
 	}
-	else if(Npc_HasItems(Rod,ItMw_2h_Rod) == 0)
+	else if(!Npc_HasItems(Rod,ItMw_2h_Rod))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_10");	//Род просто хочет получить свой меч назад.
 	}
@@ -603,7 +603,8 @@ instance DIA_Torlof_BengarSuccess(C_Info)
 
 func int DIA_Torlof_BengarSuccess_Condition()
 {
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_IsDead(Rumbold) && Npc_IsDead(Rick))
+//	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_IsDead(Rumbold) && Npc_IsDead(Rick))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && ((Npc_IsDead(Rumbold) && Npc_IsDead(Rick)) || (Miliz_Flucht == TRUE)))
 	{
 		return TRUE;
 	};
@@ -788,8 +789,10 @@ func void DIA_Torlof_Teach_Info()
 	AI_Output(other,self,"DIA_Torlof_Teach_15_00");	//Я хочу улучшить свои способности!
 	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (other.guild == GIL_NONE))
 	{
-		Torlof_Merke_STR = other.attribute[ATR_STRENGTH];
-		Torlof_Merke_DEX = other.attribute[ATR_DEXTERITY];
+//		Torlof_Merke_STR = other.attribute[ATR_STRENGTH];
+//		Torlof_Merke_DEX = other.attribute[ATR_DEXTERITY];
+		Torlof_Merke_STR = other.aivar[REAL_STRENGTH];
+		Torlof_Merke_DEX = other.aivar[REAL_DEXTERITY];
 		Info_ClearChoices(DIA_Torlof_Teach);
 		Info_AddChoice(DIA_Torlof_Teach,Dialog_Back,DIA_Torlof_Teach_Back);
 		Info_AddChoice(DIA_Torlof_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Torlof_Teach_DEX_1);
@@ -806,7 +809,8 @@ func void DIA_Torlof_Teach_Info()
 
 func void DIA_Torlof_Teach_Back()
 {
-	if((Torlof_Merke_STR < other.attribute[ATR_STRENGTH]) || (Torlof_Merke_DEX < other.attribute[ATR_DEXTERITY]))
+//	if((Torlof_Merke_STR < other.attribute[ATR_STRENGTH]) || (Torlof_Merke_DEX < other.attribute[ATR_DEXTERITY]))
+	if((Torlof_Merke_STR < other.aivar[REAL_STRENGTH]) || (Torlof_Merke_DEX < other.aivar[REAL_DEXTERITY]))
 	{
 		AI_Output(self,other,"DIA_Torlof_Teach_Back_01_00");	//Хорошо! Теперь ты можешь более эффективно использовать свои способности!
 	};

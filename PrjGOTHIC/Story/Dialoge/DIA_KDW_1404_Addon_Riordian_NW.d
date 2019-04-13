@@ -209,7 +209,7 @@ instance DIA_Addon_Riordian_Teach(C_Info)
 	condition = DIA_Addon_Riordian_Teach_Condition;
 	information = DIA_Addon_Riordian_Teach_Info;
 	permanent = TRUE;
-	description = "Покажи мне, как тренировать этот блуждающий огонек.";
+	description = "Покажи мне, как тренировать моего блуждающего огонька.";
 };
 
 

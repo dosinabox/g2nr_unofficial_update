@@ -130,7 +130,7 @@ func int DIA_Addon_Paul_Attentat_Condition()
 func void DIA_Addon_Paul_Attentat_Info()
 {
 	B_Say(other,self,"$ATTENTAT_ADDON_DESCRIPTION");
-	AI_Output(self,other,"DIA_Addon_Paul_Attentat_03_00");	//Ничем, приятель. И тут уж ничего не поделаешь! Что ты хочешь от меня?
+	AI_Output(self,other,"DIA_Addon_Paul_Attentat_03_00");	//Ничего, приятель. И тут уж ничего не поделаешь! Что ты хочешь от меня?
 };
 
 

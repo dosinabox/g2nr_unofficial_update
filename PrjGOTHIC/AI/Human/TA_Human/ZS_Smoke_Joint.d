@@ -15,7 +15,7 @@ func void ZS_Smoke_Joint()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Smoke_Joint_loop()
+func int ZS_Smoke_Joint_Loop()
 {
 	if(Npc_IsOnFP(self,"STAND"))
 	{
@@ -53,7 +53,7 @@ func int ZS_Smoke_Joint_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Smoke_Joint_end()
+func void ZS_Smoke_Joint_End()
 {
 	AI_UseItemToState(self,ItMi_Joint,-1);
 };

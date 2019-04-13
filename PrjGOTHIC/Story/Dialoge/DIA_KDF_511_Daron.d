@@ -114,8 +114,8 @@ func void DIA_Daron_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Daron_Paladine_15_00");	//Мне нужно поговорить с паладинами. Ты можешь помочь мне в этом?
 	AI_Output(self,other,"DIA_Daron_Paladine_10_01");	//Ну, для этого ты должен иметь доступ в верхний квартал города. Однако входить туда позволено только гражданам и городской страже.
-	AI_Output(self,other,"DIA_Daron_Paladine_10_02");	//Ну и, конечно же, нам, Магам Огня.
-	AI_Output(other,self,"DIA_Daron_Paladine_15_03");	//Как я могу стать Магом Огня?
+	AI_Output(self,other,"DIA_Daron_Paladine_10_02");	//Ну и, конечно же, нам, магам Огня.
+	AI_Output(other,self,"DIA_Daron_Paladine_15_03");	//Как я могу стать магом Огня?
 	AI_Output(self,other,"DIA_Daron_Paladine_10_04");	//Ты должен вступить в наш орден в качестве послушника. А по прошествии некоторого времени, возможно, ты будешь принят в ряды магов.
 	AI_Output(self,other,"DIA_Daron_Paladine_10_05");	//Однако, этот путь долог, полон тяжелой работы и утомительного обучения.
 };
@@ -299,7 +299,7 @@ func int DIA_Daron_Kloster_Condition()
 func void DIA_Daron_Kloster_Info()
 {
 	AI_Output(other,self,"DIA_Daron_Kloster_15_00");	//Расскажи мне подробнее о монастыре.
-	AI_Output(self,other,"DIA_Daron_Kloster_10_01");	//Мы обучаем наших студентов всем формам магии. Но сила Магов Огня не ограничивается только магией.
+	AI_Output(self,other,"DIA_Daron_Kloster_10_01");	//Мы обучаем наших студентов всем формам магии. Но сила магов Огня не ограничивается только магией.
 	AI_Output(self,other,"DIA_Daron_Kloster_10_02");	//Мы также хорошо разбираемся в искусстве алхимии и создании рун.
 	AI_Output(self,other,"DIA_Daron_Kloster_10_03");	//Еще мы делаем превосходное вино.
 };

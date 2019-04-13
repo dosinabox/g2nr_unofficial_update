@@ -140,19 +140,22 @@ instance VOB_WINDMILL(C_SFX_DEF)
 instance PISS_START(C_SFX_DEF)
 {
 	file = "piss_start.wav";
-	vol = 10;
+//	vol = 10;
+	vol = 80;
 };
 
 instance PISS_LOOP(C_SFX_DEF)
 {
 	file = "piss_loop.wav";
-	vol = 10;
+//	vol = 10;
+	vol = 80;
 };
 
 instance PISS_END(C_SFX_DEF)
 {
 	file = "piss_end.wav";
-	vol = 10;
+//	vol = 10;
+	vol = 80;
 };
 
 instance TEST1(C_SFX_DEF)
@@ -10075,5 +10078,54 @@ instance SVM_19_DEAD(C_SFX_DEF)
 {
 	file = "svm_19_dead.wav";
 	vol = 120;
+};
+
+// Звуки луков и арбалетов.
+instance BOW_DRAWSOUND(C_SFX_DEF)
+{
+	file = "Bow_Draw.wav";
+	vol = 100;
+};
+
+instance BOW_UNDRAWSOUND(C_SFX_DEF)
+{
+	file = "Bow_Undraw.wav";
+	vol = 100;
+};
+
+instance BOW_CHARGE(C_SFX_DEF)
+{
+	file = "Bow_Charge.wav";
+	vol = 80;
+};
+
+instance BOW_REFUSE(C_SFX_DEF)
+{
+	file = "Bow_Refuse.wav";
+	vol = 80;
+};
+
+instance CROSSBOW_DRAWSOUND(C_SFX_DEF)
+{
+	file = "Crossbow_Draw.wav";
+	vol = 100;
+};
+
+instance CROSSBOW_UNDRAWSOUND(C_SFX_DEF)
+{
+	file = "Crossbow_Undraw.wav";
+	vol = 100;
+};
+
+instance CROSSBOW_CHARGE(C_SFX_DEF)
+{
+	file = "Crossbow_Charge.wav";
+	vol = 80;
+};
+
+instance CROSSBOW_REFUSE(C_SFX_DEF)
+{
+	file = "Crossbow_Refuse.wav";
+	vol = 80;
 };
 

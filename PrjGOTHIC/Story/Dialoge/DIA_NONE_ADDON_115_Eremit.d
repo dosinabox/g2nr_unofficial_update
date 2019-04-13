@@ -63,13 +63,19 @@ instance DIA_Addon_Eremit_SeekTafeln(C_Info)
 
 func int DIA_Addon_Eremit_SeekTafeln_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Addon_Eremit_Hello))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Eremit_SeekTafeln_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Eremit_Add_15_02");	//Я ищу каменные таблички. Тебе они не попадались?
-	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_06");	//Да, у меня есть пара табличек. Но я тебе их не отдам!
+	if(MIS_Eremit_Klamotten != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Addon_Eremit_Add_04_06");	//Да, у меня есть пара табличек. Но я тебе их не отдам!
+	};
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_07");	//Это единственное, что у меня есть почитать.
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_08");	//Конечно, полностью написанное на них я не понимаю, но некоторые тексты уже расшифровал.
 };
@@ -211,7 +217,7 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	};
 	if(Npc_HasItems(other,ITAR_Governor))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать дублет губернатора",DIA_Addon_Eremit_Klamotten_Governor);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать изысканный дублет",DIA_Addon_Eremit_Klamotten_Governor);
 	};
 	if(Npc_HasItems(other,ITAR_Judge))
 	{
@@ -227,27 +233,27 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	}; */
 	if(Npc_HasItems(other,ITAR_Vlk_L))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать легкую одежду горожанина",DIA_Addon_Eremit_Klamotten_VLK_L);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать простой городской костюм",DIA_Addon_Eremit_Klamotten_VLK_L);
 	};
 	if(Npc_HasItems(other,ITAR_Vlk_M))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать среднюю одежду горожанина",DIA_Addon_Eremit_Klamotten_VLK_M);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать хороший городской костюм",DIA_Addon_Eremit_Klamotten_VLK_M);
 	};
 	if(Npc_HasItems(other,ITAR_Vlk_H))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать тяжелую одежду горожанина",DIA_Addon_Eremit_Klamotten_VLK_H);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать добротный городской костюм",DIA_Addon_Eremit_Klamotten_VLK_H);
 	};
 /*	if(Npc_HasItems(other,ITAR_VlkBabe_L))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать легкую одежду горожанки",DIA_Addon_Eremit_Klamotten_VlkBabe_L);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать простое городское платье",DIA_Addon_Eremit_Klamotten_VlkBabe_L);
 	};
 	if(Npc_HasItems(other,ITAR_VlkBabe_M))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать среднюю одежду горожанки",DIA_Addon_Eremit_Klamotten_VlkBabe_M);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать хорошее городское платье",DIA_Addon_Eremit_Klamotten_VlkBabe_M);
 	};
 	if(Npc_HasItems(other,ITAR_VlkBabe_H))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать тяжелую одежду горожанки",DIA_Addon_Eremit_Klamotten_VlkBabe_H);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать добротное городское платье",DIA_Addon_Eremit_Klamotten_VlkBabe_H);
 	};
 	if(Npc_HasItems(other,ITAR_PAL_SKEL))
 	{
@@ -255,19 +261,19 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	}; */
 	if(Npc_HasItems(other,ITAR_Bau_L))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать легкую одежду крестьянина",DIA_Addon_Eremit_Klamotten_BAU_L);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать рабочую одежду",DIA_Addon_Eremit_Klamotten_BAU_L);
 	};
 	if(Npc_HasItems(other,ITAR_Bau_M))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать среднюю одежду крестьянина",DIA_Addon_Eremit_Klamotten_BAU_M);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать крестьянский костюм",DIA_Addon_Eremit_Klamotten_BAU_M);
 	};
 /*	if(Npc_HasItems(other,ITAR_BauBabe_L))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать легкую одежду крестьянки",DIA_Addon_Eremit_Klamotten_BauBabe_L);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать простое крестьянское платье",DIA_Addon_Eremit_Klamotten_BauBabe_L);
 	};
 	if(Npc_HasItems(other,ITAR_BauBabe_M))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать среднюю одежду крестьянки",DIA_Addon_Eremit_Klamotten_BauBabe_M);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать хорошее крестьянское платье",DIA_Addon_Eremit_Klamotten_BauBabe_M);
 	}; */
 	if(Npc_HasItems(other,ITAR_DJG_Crawler))
 	{
@@ -625,7 +631,10 @@ instance DIA_Addon_Eremit_PERM(C_Info)
 
 func int DIA_Addon_Eremit_PERM_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Addon_Eremit_Hello))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Eremit_PERM_Info()
@@ -647,7 +656,7 @@ func void DIA_Addon_Eremit_PERM_Info()
 		AI_Output(self,other,"DIA_Addon_Eremit_Add_04_15");	//Пока я справляюсь...
 		if(MIS_Eremit_Klamotten == LOG_SUCCESS)
 		{
-			AI_Output(self,other,"DIA_Addon_Eremit_Add_04_18");	//Но зиму пережить без одежды мне будет довольно сложно...
+//			AI_Output(self,other,"DIA_Addon_Eremit_Add_04_18");	//Но зиму пережить без одежды мне будет довольно сложно...
 		}
 		else
 		{

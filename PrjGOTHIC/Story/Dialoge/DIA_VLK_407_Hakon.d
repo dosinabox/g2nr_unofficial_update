@@ -187,7 +187,7 @@ func void DIA_Hakon_Paladine_Info()
 	AI_Output(self,other,"DIA_Hakon_Add_12_08");	//Да! Они разорили меня!
 	AI_Output(self,other,"DIA_Hakon_Add_12_09");	//Теперь все, что можно купить в этом городе - это короткий меч, и то в лучшем случае.
 	AI_Output(self,other,"DIA_Hakon_Add_12_10");	//Они забрали себе все, что длиннее фута с половиной.
-	AI_Output(self,other,"DIA_Hakon_Add_12_11");	//(с сарказмом) А взамен, теперь я могу бесплатно жить в отеле - ха!
+	AI_Output(self,other,"DIA_Hakon_Add_12_11");	//(с сарказмом) А взамен, теперь я могу бесплатно жить в отеле - ха-ха!
 };
 
 
@@ -251,7 +251,7 @@ func void DIA_Hakon_HaradBandits_Info()
 	AI_Output(other,self,"DIA_Hakon_Add_15_18");	//Гарад рассказал мне о нападении бандитов...
 	AI_Output(self,other,"DIA_Hakon_Add_12_19");	//Ох? И?
 	AI_Output(other,self,"DIA_Hakon_Add_15_20");	//Он проголосует за меня при поступлении в ученики, если я уничтожу этих бандитов.
-	AI_Output(self,other,"DIA_Hakon_Add_12_21");	//(смеется) Старый добрый Гарад. Возможно, он так хочет сказать мне 'извини' за то, что не может сейчас делать оружие для меня.
+	AI_Output(self,other,"DIA_Hakon_Add_12_21");	//(смеется) Старый добрый Гарад. Возможно, он так хочет сказать мне 'извини' за то, что он не может сейчас делать оружие для меня.
 };
 
 
@@ -349,8 +349,11 @@ func void DIA_Hakon_Miliz_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Miliz_15_00");	//Ты не знаешь, кто в ополчении занимался их поиском?
 	AI_Output(self,other,"DIA_Hakon_Miliz_12_01");	//Парень по имени Пабло. Он и еще несколько парней ходили на поиски этих бандитов. Но они не нашли их.
-	AI_Output(other,self,"DIA_Hakon_Miliz_15_02");	//Ты знаешь, где мне найти Пабло?
-	AI_Output(self,other,"DIA_Hakon_Miliz_12_03");	//Он патрулирует город. Ты найдешь его либо на рыночной площади, либо в нижней части города.
+	if(Pablo.aivar[AIV_TalkedToPlayer] == FALSE)
+	{
+		AI_Output(other,self,"DIA_Hakon_Miliz_15_02");	//Ты знаешь, где мне найти Пабло?
+		AI_Output(self,other,"DIA_Hakon_Miliz_12_03");	//Он патрулирует город. Ты найдешь его либо на рыночной площади, либо в нижней части города.
+	};
 	B_LogEntry(TOPIC_HakonBanditen,"Пабло, городской стражник, занимался бесплодными поисками бандитов.");
 };
 

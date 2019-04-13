@@ -75,7 +75,7 @@ func void DIA_BDT_1088_Addon_Torwache_FirstWarn_Info()
 	}
 	else if(MIS_Send_Buddler == LOG_Running)
 	{
-		AI_Output(self,other,"DIA_Addon_BDT_1088_Addon_Torwache_FirstWarn_06_06");	//Эй, пока Торус не выдаст тебе пропуск, ты не пройдешь здесь.
+		AI_Output(self,other,"DIA_Addon_BDT_1088_Addon_Torwache_FirstWarn_06_06");	//Эй, пока Торус не выдал тебе пропуск, ты не пройдешь здесь.
 	};
 	AI_StopProcessInfos(self);
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,BDT_1088_Checkpoint);

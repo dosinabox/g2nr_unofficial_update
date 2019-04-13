@@ -448,8 +448,8 @@ func void DIA_Pyrokar_OATH_Info()
 	Snd_Play("LEVELUP");
 	Npc_ExchangeRoutine(Lothar,"START");
 	KDF_Aufnahme = LOG_SUCCESS;
-	SLD_Aufnahme = LOG_OBSOLETE;
-	MIL_Aufnahme = LOG_OBSOLETE;
+//	SLD_Aufnahme = LOG_OBSOLETE;
+//	MIL_Aufnahme = LOG_OBSOLETE;
 	B_GivePlayerXP(XP_BecomeMage);
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_08");	//Теперь, когда ты был принят в наши ряды, ты можешь поговорить с лордом Хагеном, главнокомандующим паладинов.
 	AI_Output(self,other,"DIA_Pyrokar_OATH_11_09");	//Нам также очень интересно знать, как он оценивает ситуацию. Так что ты теперь можешь отправляться в Хоринис.
@@ -536,9 +536,9 @@ func void DIA_Pyrokar_Wunsch_Info()
 
 func void DIA_Pyrokar_Wunsch_Nothing()
 {
-	AI_Teleport(Dyrian,"TAVERNE");
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Nothing_15_00");	//Никаким.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Nothing_11_01");	//(изумленно) Да будет так. Новый маг отказывается от первого шага.
+	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	if(MIS_HelpDyrian == LOG_Running)
 	{
@@ -578,12 +578,12 @@ func void DIA_Pyrokar_Wunsch_Dyrian()
 
 func void DIA_Pyrokar_Wunsch_Babo()
 {
-	AI_Teleport(Dyrian,"TAVERNE");
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Babo_15_00");	//Позволь послушнику Бабо возглавить монастырский сад.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_01");	//Да будет так.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Babo_11_02");	//С сего момента послушник Бабо будет отвечать за монастырский сад.
 	B_GivePlayerXP(XP_HelpBabo);
 	B_StartOtherRoutine(Babo,"FAVOUR");
+	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	MIS_HelpBabo = LOG_SUCCESS;
 	if(MIS_HelpDyrian == LOG_Running)
@@ -600,12 +600,12 @@ func void DIA_Pyrokar_Wunsch_Babo()
 
 func void DIA_Pyrokar_Wunsch_Opolos()
 {
-	AI_Teleport(Dyrian,"TAVERNE");
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Opolos_15_00");	//Позволь послушнику Ополосу получить доступ в библиотеку.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Opolos_11_01");	//Да будет так.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Opolos_11_02");	//С сего момента послушнику Ополосу будет позволено изучать писания Инноса.
 	B_GivePlayerXP(XP_HelpOpolos);
 	B_StartOtherRoutine(Opolos,"FAVOUR");
+	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	MIS_HelpOpolos = LOG_SUCCESS;
 	if(MIS_HelpDyrian == LOG_Running)
@@ -669,7 +669,7 @@ instance DIA_Pyrokar_TEACH(C_Info)
 	condition = DIA_Pyrokar_TEACH_Condition;
 	information = DIA_Pyrokar_TEACH_Info;
 	permanent = TRUE;
-	description = B_BuildLearnString("Обучи меня последнему Кругу Магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6));
+	description = B_BuildLearnString("Обучи меня последнему Кругу магии",B_GetLearnCostTalent(other,NPC_TALENT_MAGE,6));
 };
 
 
@@ -683,7 +683,7 @@ func int DIA_Pyrokar_TEACH_Condition()
 
 func void DIA_Pyrokar_TEACH_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_TEACH_15_00");	//Обучи меня последнему Кругу Магии.
+	AI_Output(other,self,"DIA_Pyrokar_TEACH_15_00");	//Обучи меня последнему Кругу магии.
 	if(MIS_SCKnowsWayToIrdorath == TRUE)
 	{
 		if(B_TeachMagicCircle(self,other,6))
@@ -842,7 +842,8 @@ func void DIA_Pyrokar_TEACH_MANA_Info()
 
 func void DIA_Pyrokar_TEACH_MANA_BACK()
 {
-	if(other.attribute[ATR_MANA_MAX] >= 250)
+//	if(other.attribute[ATR_MANA_MAX] >= 250)
+	if(other.aivar[REAL_MANA_MAX] >= 250)
 	{
 		AI_Output(self,other,"DIA_Pyrokar_TEACH_MANA_11_00");	//Я чувствую, как магическая энергия течет через тебя, не зная преград. Даже я не могу показать тебе, как повысить ее еще больше.
 	};
@@ -1338,9 +1339,9 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_06");	//Для этого тебе понадобится эссенция из сердца дракона, которую нужно объединить с Глазом на алхимическом столе.
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_07");	//Только тогда ты сможешь приблизиться к очередному дракону.
 	AI_Output(other,self,"DIA_Pyrokar_KAP3_READY_15_08");	//Спасибо. Я запомню это.
-	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_09");	//Теперь у тебя есть все необходимое. Иди же. У тебя не так много времени.
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
+	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_09");	//Теперь у тебя есть все необходимое. Иди же. У тебя не так много времени.
 	TOPIC_END_INNOSEYE = TRUE;
 	B_GivePlayerXP(XP_Ambient);
 	if(!Npc_IsDead(Gorax))

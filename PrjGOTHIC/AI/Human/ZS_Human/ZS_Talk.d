@@ -8,6 +8,7 @@ func void ZS_Talk()
 	{
 		return;
 	};
+	B_SetFaceExpression(self,other);
 	self.aivar[AIV_INVINCIBLE] = TRUE;
 	other.aivar[AIV_INVINCIBLE] = TRUE;
 	if(self.guild < GIL_SEPERATOR_HUM)
@@ -40,13 +41,13 @@ func void ZS_Talk()
 	};
 	if(self.guild < GIL_SEPERATOR_HUM)
 	{
-		if((Npc_GetAttitude(self,other) == ATT_ANGRY) || (Npc_GetAttitude(self,other) == ATT_HOSTILE))
+/*		if((Npc_GetAttitude(self,other) == ATT_ANGRY) || (Npc_GetAttitude(self,other) == ATT_HOSTILE))
 		{
 			if(!C_PlayerIsFakeBandit(self,other) || (self.guild != GIL_BDT))
 			{
 				Mdl_StartFaceAni(self,"S_ANGRY",1,-1);
 			};
-		};
+		}; */
 		if((self.npcType == NPCTYPE_AMBIENT) || (self.npcType == NPCTYPE_OCAMBIENT) || (self.npcType == NPCTYPE_BL_AMBIENT) || (self.npcType == NPCTYPE_TAL_AMBIENT))
 		{
 			B_AssignAmbientInfos(self);
@@ -87,7 +88,7 @@ func int ZS_Talk_Loop()
 		if(self.guild < GIL_SEPERATOR_HUM)
 		{
 			B_StopLookAt(self);
-			Mdl_StartFaceAni(self,"S_NEUTRAL",1,-1);
+			B_ResetFaceExpression(self);
 		};
 		if(self.guild == GIL_DRAGON)
 		{

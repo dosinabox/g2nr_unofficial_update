@@ -18,7 +18,7 @@ func void UseLPBook(var int constanze)
 	{
 		B_Say_Overlay(self,self,"$VERSTEHE");
 		Snd_Play("Levelup");
-		self.lp = self.lp + constanze;
+		self.lp += constanze;
 		concatText = ConcatStrings(PRINT_LearnLP,IntToString(constanze));
 		Print(concatText);
 	};
@@ -33,7 +33,7 @@ func void UseXPBook(var int constanze)
 	{
 		B_Say_Overlay(self,self,"$VERSTEHE");
 		Snd_Play("Levelup");
-		self.exp = self.exp + constanze;
+		self.exp += constanze;
 		concatText = ConcatStrings(PRINT_XPGained,IntToString(constanze));
 		Print(concatText);
 	};

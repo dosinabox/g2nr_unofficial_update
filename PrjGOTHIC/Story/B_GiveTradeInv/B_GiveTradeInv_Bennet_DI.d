@@ -15,6 +15,9 @@ func void B_GiveTradeInv_Bennet_DI(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
 		CreateInvItems(slf,ItMw_Berserkeraxt,1);
 		CreateInvItems(slf,ItMi_Nugget,4);
+		CreateInvItems(slf,ItRw_Addon_FireArrow,50);
+		CreateInvItems(slf,ItRw_Addon_MagicArrow,40);
+		CreateInvItems(slf,ItRw_Addon_MagicBolt,30);
 		Bennet_DI_ItemsGiven = TRUE;
 	};
 };

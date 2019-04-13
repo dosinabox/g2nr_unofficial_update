@@ -319,6 +319,7 @@ func void DIA_1013_BANDIT_PIC_Info()
 	AI_Output(other,self,"DIA_1013_BANDIT_PIC_15_00");	//Могу я взять эту картинку?
 	AI_Output(self,other,"DIA_1013_BANDIT_PIC_01_01");	//Конечно (ухмыляется) - ведь на ней ТВОЯ рожа.
 	B_GiveInvItems(self,other,ItWr_Poster_MIS,1);
+	B_UseFakeScroll_Hero();
 };
 
 
@@ -358,7 +359,14 @@ func void DIA_1013_BANDIT_FromMaleth_Info()
 	};
 	Bdt_1013_Away = TRUE;
 	B_GivePlayerXP(XP_BanditWeg);
-	Npc_ExchangeRoutine(self,"AWAY");
+	if(MIS_Addon_Nefarius_BringMissingOrnaments == FALSE)
+	{
+		Npc_ExchangeRoutine(self,"AWAY3");
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"AWAY");
+	};
 	AI_StopProcessInfos(self);
 };
 

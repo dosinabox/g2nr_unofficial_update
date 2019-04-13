@@ -13,8 +13,8 @@ instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 	text[1] = "Похоже, что в этом мешочке";
 	text[2] = "находятся твердый объект";
 	text[3] = "и документ.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -91,17 +91,15 @@ func void Use_Krypta_Garon()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Все пошло прахом. Я тщетно пытался удержать Инубиса на пути добра.");
-	Doc_PrintLines(nDocID,0,"Сначала, мне показалось, что я уже мертв. Но кое-какая сила все еще осталась в старых костях Ивана.");
+	Doc_PrintLines(nDocID,0,"Сначала мне показалось, что я уже мертв. Но кое-какая сила все еще осталась в старых костях Ивана.");
 	Doc_PrintLines(nDocID,0,"Инубис восстал из мертвых. Изгнанный древним орденом паладинов, теперь он ищет отмщения за свое проклятие.");
-	Doc_PrintLines(nDocID,0,"Вместе с ним многие из его последователей. Я не могу понять, как такой предводитель как Инубис мог стать таким Злом.");
-	Doc_PrintLines(nDocID,0,"Я нашел его могилу в этом склепе. Но я не уверен, удастся ли мне сообщить о своей находке. Поэтому, я пишу эти строки и надеюсь, что кто-нибудь найдет их.");
+	Doc_PrintLines(nDocID,0,"Вместе с ним многие из его последователей. Я не могу понять, как такой предводитель, как Инубис, мог стать таким Злом.");
+	Doc_PrintLines(nDocID,0,"Я нашел его могилу в этом склепе. Но я не уверен, удастся ли мне сообщить о своей находке. Поэтому я пишу эти строки и надеюсь, что кто-нибудь найдет их.");
 	Doc_PrintLines(nDocID,0,"Знайте. Грозный враг пытается дотянуться до праведных душ. Инубис будет не последним.");
 	Doc_PrintLine(nDocID,0," ");
 	Doc_PrintLine(nDocID,0,"Да спасет Иннос ваши души.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"                                 Иван");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
@@ -130,6 +128,8 @@ instance ItKe_EVT_UNDEAD_01(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[2] = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_EVT_UNDEAD_02(C_Item)
@@ -188,8 +188,6 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Глаз Силы освещает твой путь.");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 	if(Read_LastDoorToUndeadDrgDI_MIS == FALSE)
@@ -215,7 +213,7 @@ instance ItKe_ChestMasterDementor_MIS(C_Item)
 
 instance ItWr_Rezept_MegaDrink_MIS(C_Item)
 {
-	name = "Рецепт";
+	name = NAME_MegaDrink;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -224,6 +222,7 @@ instance ItWr_Rezept_MegaDrink_MIS(C_Item)
 	on_state[0] = Use_RezeptFuerMegaTrank;
 	scemeName = "MAP";
 	description = name;
+	text[2] = PRINT_RequiresAlchemyTalent;
 };
 
 
@@ -246,10 +245,13 @@ func void Use_RezeptFuerMegaTrank()
 	Doc_PrintLines(nDocID,0,"Эту смесь нужно довести до кипения, постоянно помешивая, и пропустить через дистиллятор.");
 	Doc_PrintLines(nDocID,0,"Получившийся эликсир нужно использовать с осторожностью. Он обладает сильными побочными эффектами и может отрицательно повлиять на ману.");
 	Doc_Show(nDocID);
-	if(PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE)
+	if(Npc_IsPlayer(self))
 	{
-		PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
-		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'Эмбарла фиргасто': 10 драконьих яиц, 1 черный жемчуг и 1 сера.");
+		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE))
+		{
+			PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
+			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'Эмбарла фиргасто': 10 драконьих яиц, 1 черный жемчуг и 1 сера.");
+		};
 	};
 };
 
@@ -258,7 +260,7 @@ instance ItWr_Diary_BlackNovice_MIS(C_Item)
 {
 	name = "Дневник";
 	mainflag = ITEM_KAT_DOCS;
-	flags = 0;
+	flags = ITEM_MISSION;
 	value = 100;
 	visual = "ItWr_Book_02_04.3ds";
 	material = MAT_LEATHER;
@@ -345,13 +347,14 @@ instance ItMi_PowerEye(C_Item)
 	name = "Глаз Силы";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
+	value = 0;
 	visual = "ItMi_DarkPearl.3ds";
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
 };
 

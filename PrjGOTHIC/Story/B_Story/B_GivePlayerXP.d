@@ -1,4 +1,6 @@
 
+var int LevelUpsDuringTransform;
+
 func void B_GivePlayerXP(var int add_xp)
 {
 	var string concatText;
@@ -13,6 +15,10 @@ func void B_GivePlayerXP(var int add_xp)
 	if(hero.exp >= hero.exp_next)
 	{
 		hero.level += 1;
+		if(PlayerIsTransformed == TRUE)
+		{
+			LevelUpsDuringTransform += 1;
+		};
 		hero.exp_next += (hero.level + 1) * 500;
 		hero.attribute[ATR_HITPOINTS_MAX] += HP_PER_LEVEL;
 		hero.attribute[ATR_HITPOINTS] += HP_PER_LEVEL;
@@ -23,3 +29,11 @@ func void B_GivePlayerXP(var int add_xp)
 	B_CheckLog();
 };
 
+func void B_GiveDeathXP(var C_Npc Killer, var C_Npc Victim)
+{
+	if((Npc_IsPlayer(Killer) || ((Killer.aivar[AIV_PARTYMEMBER] == TRUE) && !Npc_IsPlayer(Victim))) && (Victim.aivar[AIV_VictoryXPGiven] == FALSE) && (Victim.level != 0))
+	{
+		B_GivePlayerXP(Victim.level * XP_PER_VICTORY);
+		Victim.aivar[AIV_VictoryXPGiven] = TRUE;
+	}; 
+};

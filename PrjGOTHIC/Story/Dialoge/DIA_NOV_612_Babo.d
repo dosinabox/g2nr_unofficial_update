@@ -146,7 +146,8 @@ var int babo_merk2h;
 
 func void DIA_Babo_Teach_Info()
 {
-	babo_merk2h = other.HitChance[NPC_TALENT_2H];
+//	babo_merk2h = other.HitChance[NPC_TALENT_2H];
+	babo_merk2h = other.aivar[REAL_TALENT_2H];
 	AI_Output(other,self,"DIA_Babo_Teach_15_00");	//Я готов к обучению.
 	Info_ClearChoices(DIA_Babo_Teach);
 	Info_AddChoice(DIA_Babo_Teach,Dialog_Back,DIA_Babo_Teach_Back);
@@ -156,7 +157,8 @@ func void DIA_Babo_Teach_Info()
 
 func void DIA_Babo_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_2H] >= 75)
+//	if(other.HitChance[NPC_TALENT_2H] >= 75)
+	if(other.aivar[REAL_TALENT_2H] >= 75)
 	{
 		AI_Output(self,other,"DIA_DIA_Babo_Teach_Back_03_00");	//Ты знаешь больше о двуручном оружии, чем я мог бы научить тебя.
 		DIA_Babo_Teach_permanent = TRUE;
@@ -167,7 +169,8 @@ func void DIA_Babo_Teach_Back()
 func void DIA_Babo_Teach_2H_1()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,75);
-	if(other.HitChance[NPC_TALENT_2H] > babo_merk2h)
+//	if(other.HitChance[NPC_TALENT_2H] > babo_merk2h)
+	if(other.aivar[REAL_TALENT_2H] > babo_merk2h)
 	{
 		if(Babo_Labercount == 0)
 		{
@@ -200,7 +203,8 @@ func void DIA_Babo_Teach_2H_1()
 func void DIA_Babo_Teach_2H_5()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,75);
-	if(other.HitChance[NPC_TALENT_2H] > babo_merk2h)
+//	if(other.HitChance[NPC_TALENT_2H] > babo_merk2h)
+	if(other.aivar[REAL_TALENT_2H] > babo_merk2h)
 	{
 		if(Babo_Labercount == 0)
 		{

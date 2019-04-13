@@ -22,7 +22,7 @@ instance VLK_461_Carl(Npc_Default)
 
 func void Rtn_Start_461()
 {
-	TA_Smalltalk(20,0,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_06");
+	TA_Smalltalk(20,5,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_06");
 	TA_Stand_Drinking(22,0,1,0,"NW_CITY_HABOUR_POOR_AREA_PATH_06");
 	TA_Sleep(1,0,5,0,"NW_CITY_HABOUR_HUT_03_BED_02");
 	TA_Sit_Bench(5,0,6,0,"NW_CITY_HABOUR_POOR_AREA_HUT_03_B");
@@ -110,5 +110,6 @@ func void Rtn_Start_461()
 	TA_Smith_Anvil(19,30,19,40,"NW_CITY_POOR_SMITH_01");
 	TA_Smith_Cool(19,40,19,50,"NW_CITY_POOR_SMITH_03");
 	TA_Smith_Anvil(19,50,20,0,"NW_CITY_POOR_SMITH_01");
+	TA_Pee(20,0,20,5,"NW_CITY_HABOUR_POOR_AREA_PATH_16");
 };
 

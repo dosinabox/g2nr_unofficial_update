@@ -157,7 +157,7 @@ func void DIA_Addon_BDT_1084_Senyan_Hi_bad()
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_03");	//И если они найдут тебя, они убьют тебя.
 	AI_Output(other,self,"DIA_Addon_BDT_1084_Senyan_Hi_bad_15_04");	//Многие уже пытались.
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_05");	//Значит, ты дерешься не хуже, чем плетешь интриги. Придти в лагерь в таких доспехах, это...
-	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_06");	//... все равно что придти к волкам, будучи овцой. Твоя жизнь висит на волоске, сын риска.
+	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_bad_12_06");	//...все равно что прийти к волкам, будучи овцой. Твоя жизнь висит на волоске, сын риска.
 	Senyan_Bad = TRUE;
 	Info_ClearChoices(DIA_Addon_BDT_1084_Senyan_Hi);
 	if(Senyan_Good == TRUE)
@@ -245,8 +245,8 @@ func void DIA_Addon_Senyan_Attentat_Info()
 func void DIA_Addon_Senyan_Attentat_NO()
 {
 	AI_Output(other,self,"DIA_Addon_Senyan_Attentat_NO_15_00");	//Забудь об этом!
-	B_Senyan_Attack();
 	Info_ClearChoices(DIA_Addon_Senyan_Attentat);
+	B_Senyan_Attack();
 };
 
 func void DIA_Addon_Senyan_Attentat_JA()
@@ -283,7 +283,6 @@ func void DIA_Addon_Senyan_ChangePlan_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Senyan_ChangePlan_15_00");	//Я передумал. Мы больше не работаем вместе!
 	B_Senyan_Attack();
-	AI_StopProcessInfos(self);
 };
 
 

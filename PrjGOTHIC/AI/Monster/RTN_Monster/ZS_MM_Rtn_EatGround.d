@@ -17,11 +17,12 @@ func void ZS_MM_Rtn_EatGround()
 	Mdl_ApplyRandomAni(self,"S_EAT","R_ROAM2");
 	Mdl_ApplyRandomAni(self,"S_EAT","R_ROAM3");
 	Mdl_ApplyRandomAniFreq(self,"S_EAT",8);
+	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
 };
 
 func int ZS_MM_Rtn_EatGround_Loop()
 {
-	if(!Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],0) && (self.aivar[AIV_MM_EatGroundStart] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_EatGroundStart],0,self.aivar[AIV_MM_EatGroundEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_EatGroundStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 		return LOOP_END;

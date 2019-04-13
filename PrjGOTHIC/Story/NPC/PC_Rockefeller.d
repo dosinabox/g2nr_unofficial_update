@@ -352,7 +352,7 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItem(self,ItKe_Key_01);
 	CreateInvItem(self,ItKe_Key_02);
 	CreateInvItem(self,ItKe_Key_03);
-	CreateInvItem(self,ItKE_lockpick);
+	CreateInvItem(self,ItKe_Lockpick);
 	CreateInvItems(self,ItLsTorch,50);
 	CreateInvItem(self,ItMi_Pan);
 	CreateInvItem(self,ItMi_Saw);
@@ -502,4 +502,5 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItem(self,ItAt_FireGolemHeart);
 	CreateInvItem(self,ItAt_IceGolemHeart);
 };
+
 

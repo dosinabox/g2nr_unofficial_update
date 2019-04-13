@@ -265,7 +265,8 @@ func void DIA_Opolos_TEACH_STR_Info()
 
 func void DIA_Opolos_TEACH_STR_BACK()
 {
-	if(other.attribute[ATR_STRENGTH] >= T_MED)
+//	if(other.attribute[ATR_STRENGTH] >= T_MED)
+	if(other.aivar[REAL_STRENGTH] >= T_MED)
 	{
 		AI_Output(self,other,"DIA_Opolos_TEACH_STR_12_00");	//Ты стал очень сильным. Мне больше нечему учить тебя.
 	};
@@ -347,7 +348,7 @@ func void DIA_Opolos_LIESEL_Info()
 	if(Wld_DetectNpc(self,Follow_Sheep,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 800))
 	{
 		other.aivar[AIV_PARTYMEMBER] = FALSE;
-		other.aivar[AIV_TAPOSITION] = TRUE;
+		other.aivar[AIV_TAPOSITION] = NOTINPOS;
 		other.wp = "FP_ROAM_MONASTERY_04";
 		other.start_aistate = ZS_MM_AllScheduler;
 		Liesel_Giveaway = TRUE;
@@ -529,6 +530,11 @@ func int DIA_Opolos_Kap3_PERM_Condition()
 	};
 };
 
+
+var int Opolos_Dragons;
+var int Opolos_DMT;
+var int Opolos_Pedro;
+
 func void DIA_Opolos_Kap3_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_15_00");	//Как твои овцы?
@@ -536,9 +542,15 @@ func void DIA_Opolos_Kap3_PERM_Info()
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_12_02");	//Хотел бы я знать, что происходит снаружи. Маги, похоже, очень нервничают.
 	Info_ClearChoices(DIA_Opolos_Kap3_PERM);
 	Info_AddChoice(DIA_Opolos_Kap3_PERM,Dialog_Back,DIA_Opolos_Kap3_PERM_BACK);
-	Info_AddChoice(DIA_Opolos_Kap3_PERM,"В Долине Рудников появились драконы. Вместе с армией орков они осаждают королевские войска.",DIA_Opolos_Kap3_PERM_DRAGONS);
-	Info_AddChoice(DIA_Opolos_Kap3_PERM,"Неизвестные в черных рясах стоят на каждом перекрестке.",DIA_Opolos_Kap3_PERM_DMT);
-	if(MIS_NovizenChase == LOG_Running)
+	if(Opolos_Dragons == FALSE)
+	{
+		Info_AddChoice(DIA_Opolos_Kap3_PERM,"В Долине Рудников появились драконы. Вместе с армией орков они осаждают королевские войска.",DIA_Opolos_Kap3_PERM_DRAGONS);
+	};
+	if(Opolos_DMT == FALSE)
+	{
+		Info_AddChoice(DIA_Opolos_Kap3_PERM,"Неизвестные в черных рясах стоят на каждом перекрестке.",DIA_Opolos_Kap3_PERM_DMT);
+	};
+	if((MIS_NovizenChase == LOG_Running) && (Opolos_Pedro == FALSE))
 	{
 		Info_AddChoice(DIA_Opolos_Kap3_PERM,"Педро предал нас.",DIA_Opolos_Kap3_PERM_PEDRO);
 	};
@@ -550,8 +562,6 @@ func void DIA_Opolos_Kap3_PERM_BACK()
 };
 
 
-var int Opolos_Dragons;
-
 func void DIA_Opolos_Kap3_PERM_DRAGONS()
 {
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_DRAGONS_15_00");	//В Долине Рудников появились драконы. Вместе с армией орков они осаждают королевские войска.
@@ -559,15 +569,10 @@ func void DIA_Opolos_Kap3_PERM_DRAGONS()
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_DRAGONS_15_02");	//Они здесь, поверь мне.
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_DRAGONS_12_03");	//Но королевские паладины разберутся с ними, разве нет?
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_DRAGONS_15_04");	//Посмотрим.
-	if(Opolos_Dragons == FALSE)
-	{
-		B_GivePlayerXP(XP_Ambient);
-		Opolos_Dragons = TRUE;
-	};
+	B_GivePlayerXP(XP_Ambient);
+	Opolos_Dragons = TRUE;
 };
 
-
-var int Opolos_DMT;
 
 func void DIA_Opolos_Kap3_PERM_DMT()
 {
@@ -576,15 +581,10 @@ func void DIA_Opolos_Kap3_PERM_DMT()
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_DMT_15_02");	//Никто не знает, откуда они взялись. Они носят длинные черные рясы и скрывают свои лица.
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_DMT_15_03");	//Похоже, это какие-то маги. По крайней мере, они владеют магией.
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_DMT_12_04");	//Это все очень тревожно, но я уверен, что Высший Совет решит эту проблему.
-	if(Opolos_DMT == FALSE)
-	{
-		B_GivePlayerXP(XP_Ambient);
-		Opolos_DMT = TRUE;
-	};
+	B_GivePlayerXP(XP_Ambient);
+	Opolos_DMT = TRUE;
 };
 
-
-var int Opolos_Pedro;
 
 func void DIA_Opolos_Kap3_PERM_PEDRO()
 {
@@ -592,11 +592,8 @@ func void DIA_Opolos_Kap3_PERM_PEDRO()
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_PEDRO_12_01");	//Я слышал об этом, но я думал, что и тебе об этом известно. Вот почему я ничего не сказал.
 	AI_Output(self,other,"DIA_Opolos_Kap3_PERM_PEDRO_12_02");	//Неужели враг сильнее нас - ну, я хочу сказать, сможем ли мы победить его?
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_PEDRO_15_03");	//Мы еще не мертвы.
-	if(Opolos_Pedro == FALSE)
-	{
-		B_GivePlayerXP(XP_Ambient);
-		Opolos_Pedro = TRUE;
-	};
+	B_GivePlayerXP(XP_Ambient);
+	Opolos_Pedro = TRUE;
 };
 
 

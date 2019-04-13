@@ -390,7 +390,7 @@ func int DIA_Coragon_News_Condition()
 
 func void DIA_Coragon_News_Info()
 {
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_33");	//Прошлой ночью он не смог расплатиться по счету.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_33");	//Прошлой ночью Валентино не смог расплатиться по счету.
 	if(Valentino.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
 		AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_34");	//Он болтал что-то о том, что его обокрали и что он заплатит мне потом. Как же!
@@ -428,6 +428,7 @@ func void DIA_Coragon_Ring_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_39");	//Вот - возьми это кольцо.
 	B_GiveInvItems(other,self,ItRi_ValentinosRing,1);
+	Npc_RemoveInvItems(self,ItRi_ValentinosRing,1);
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_40");	//Что? Не понимаю...
 	AI_Output(other,self,"DIA_Coragon_Add_15_41");	//Оно принадлежало Валентино.
 	AI_Output(other,self,"DIA_Coragon_Add_15_42");	//Ты можешь передать его следующему, кто отдубасит его...

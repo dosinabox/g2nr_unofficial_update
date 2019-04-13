@@ -23,25 +23,26 @@ func void B_NpcClearObsessionByDMT(var C_Npc medium)
 		AI_EquipBestArmor(medium);
 		NpcObsessedByDMT = FALSE;
 		medium.flags = 0;
+		Npc_SetTempAttitude(medium,ATT_ANGRY);
 		B_Attack(medium,other,AR_NONE,1);
 		Wld_StopEffect("DEMENTOR_FX");
 		Snd_Play("MFX_FEAR_CAST");
 		B_SCIsObsessed(medium);
 		if(Hlp_GetInstanceID(medium) == Hlp_GetInstanceID(Malak))
 		{
-			Npc_SetTarget(BAU_962_Bauer,other);
+			Npc_SetTarget(BAU_962_Bauer,medium);
 			AI_StartState(BAU_962_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_964_Bauer,other);
+			Npc_SetTarget(BAU_964_Bauer,medium);
 			AI_StartState(BAU_964_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_965_Bauer,other);
+			Npc_SetTarget(BAU_965_Bauer,medium);
 			AI_StartState(BAU_965_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_966_Bauer,other);
+			Npc_SetTarget(BAU_966_Bauer,medium);
 			AI_StartState(BAU_966_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_967_Bauer,other);
+			Npc_SetTarget(BAU_967_Bauer,medium);
 			AI_StartState(BAU_967_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_968_Bauer,other);
+			Npc_SetTarget(BAU_968_Bauer,medium);
 			AI_StartState(BAU_968_Bauer,ZS_Flee,0,"");
-			Npc_SetTarget(BAU_969_Bauer,other);
+			Npc_SetTarget(BAU_969_Bauer,medium);
 			AI_StartState(BAU_969_Bauer,ZS_Flee,0,"");
 		};
 	};

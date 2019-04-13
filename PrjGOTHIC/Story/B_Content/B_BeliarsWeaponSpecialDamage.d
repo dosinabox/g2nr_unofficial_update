@@ -5,6 +5,7 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 {
 	var int RavenRandy;
 	var int DamageRandy;
+	var C_Item otherweap;
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Raven))
 	{
 		Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",slf,slf,0,0,0,FALSE);
@@ -47,6 +48,47 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 		if(C_ScHasReadiedBeliarsWeapon() && (DamageRandy <= 50))
 		{
 			Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",hero,hero,0,0,0,FALSE);
+		};
+	};
+	otherweap = Npc_GetReadiedWeapon(oth);
+	if(Hlp_IsItem(otherweap,ItMw_BeliarWeapon_Fire))
+	{
+		Wld_PlayEffect("VOB_MAGICBURN",slf,slf,0,0,0,FALSE);
+	};
+	if(Hlp_IsItem(otherweap,ItRw_Addon_FireBow))
+	{
+		Wld_PlayEffect("spellFX_FIREBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
+		if(slf.flags != NPC_FLAG_IMMORTAL)
+		{
+			Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);
+		};
+		if(Npc_IsDead(slf))
+		{
+			B_GiveDeathXP(oth,slf);
+		};
+	};
+	if(Hlp_IsItem(otherweap,ItRw_Addon_MagicBow))
+	{
+		Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
+		if(slf.flags != NPC_FLAG_IMMORTAL)
+		{
+			Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);
+		};
+		if(Npc_IsDead(slf))
+		{
+			B_GiveDeathXP(oth,slf);
+		};
+	};
+	if(Hlp_IsItem(otherweap,ItRw_Addon_MagicCrossbow))
+	{
+		Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",slf,slf,0,0,0,FALSE);
+		if(slf.flags != NPC_FLAG_IMMORTAL)
+		{
+			Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);
+		};
+		if(Npc_IsDead(slf))
+		{
+			B_GiveDeathXP(oth,slf);
 		};
 	};
 };

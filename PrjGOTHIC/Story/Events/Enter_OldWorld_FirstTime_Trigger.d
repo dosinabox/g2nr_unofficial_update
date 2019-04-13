@@ -23,6 +23,9 @@ func void enter_oldworld_firsttime_trigger()
 		B_KillNpc(PAL_Leiche4);
 		B_KillNpc(PAL_Leiche5);
 		B_KillNpc(Olav);
+		Wld_InsertNpc(OC_Sheep1,"FP_SLEEP_OC_SHEEP_01");
+		Wld_InsertNpc(OC_Sheep2,"FP_SLEEP_OC_SHEEP_02");
+		Wld_InsertNpc(OC_Sheep3,"FP_SLEEP_OC_SHEEP_03");
 		PlayVideo("DRAGONATTACK.BIK");
 		enter_oldworld_firsttime_trigger_onetime = TRUE;
 	};

@@ -305,7 +305,7 @@ instance DIA_Lee_Paladine(C_Info)
 	condition = DIA_Lee_Paladine_Condition;
 	information = DIA_Lee_Paladine_Info;
 	permanent = FALSE;
-	description = "ћне крайне необходимо поговорить с паладинами в городе...";
+	description = "ћне крайне необходимо поговорить с паладинами в городе. “ы не мог бы помочь мне добратьс€ до них?";
 };
 
 
@@ -1426,7 +1426,8 @@ func void DIA_Lee_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Lee_CanTeach_15_00");	//“ы можешь обучить мен€?
 	AI_Output(self,other,"DIA_Lee_CanTeach_04_01");	//я могу показать тебе, как сражатьс€ двуручным оружием.
-	if(other.HitChance[NPC_TALENT_2H] < 75)
+//	if(other.HitChance[NPC_TALENT_2H] < 75)
+	if(other.aivar[REAL_TALENT_2H] < 75)
 	{
 		AI_Output(self,other,"DIA_Lee_CanTeach_04_02");	//Ќо у мен€ нет времени на то, чтобы учить теб€ основам.
 		AI_Output(self,other,"DIA_Lee_CanTeach_04_03");	// ак только ты достигнешь определенного уровн€, € в твоем распор€жении. ј пока поищи другого учител€.
@@ -1510,7 +1511,8 @@ func void DIA_Lee_Teach_Back()
 func void DIA_Lee_Teach_2H_1()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100);
-	if(other.HitChance[NPC_TALENT_2H] >= 100)
+//	if(other.HitChance[NPC_TALENT_2H] >= 100)
+	if(other.aivar[REAL_TALENT_2H] >= 100)
 	{
 		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_00");	//“еперь ты насто€щий мастер бо€ двуручным оружием.
 		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_01");	//“ы больше не нуждаешьс€ в учител€х.
@@ -1524,7 +1526,8 @@ func void DIA_Lee_Teach_2H_1()
 func void DIA_Lee_Teach_2H_5()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100);
-	if(other.HitChance[NPC_TALENT_2H] >= 100)
+//	if(other.HitChance[NPC_TALENT_2H] >= 100)
+	if(other.aivar[REAL_TALENT_2H] >= 100)
 	{
 		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_00");	//“еперь ты насто€щий мастер бо€ двуручным оружием.
 		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_01");	//“ы больше не нуждаешьс€ в учител€х.

@@ -135,7 +135,7 @@ func void DIA_Addon_Nefarius_SCbringOrnaments_Info()
 	Log_SetTopicStatus(TOPIC_Addon_Ornament,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Ornament,"Маги Воды нашли портал, который ведет в неизвестную часть Хориниса.");
 	B_LogEntry(TOPIC_Addon_Ornament,"Нефариус хочет активировать портал при помощи украшенного кольца. Ему все еще не хватает трех частей этого кольца. Я должен найти их. Он дал мне карту, на которой отмечены места, где я должен искать фрагменты.");
-	B_StartOtherRoutine(BAU_4300_Addon_Cavalorn,"OrnamentSteinring");
+	B_StartOtherRoutine(Cavalorn,"OrnamentSteinring");
 	AI_Output(self,other,"DIA_Addon_Nefarius_SCbringOrnaments_05_08");	//Ты должен искать части ключа именно там.
 	AI_Output(self,other,"DIA_Addon_Nefarius_SCbringOrnaments_05_09");	//Обращай внимание на древние постройки. Они могут быть полуразрушенными, но все же легко узнаваемыми.
 	AI_Output(self,other,"DIA_Addon_Nefarius_SCbringOrnaments_05_10");	//Это может быть что угодно: валун, круг камней, мавзолей или что-нибудь подобное.

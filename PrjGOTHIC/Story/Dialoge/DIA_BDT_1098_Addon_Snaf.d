@@ -118,7 +118,7 @@ func void DIA_Addon_Snaf_Cook_HAMMER()
 	AI_Output(other,self,"DIA_Addon_Snaf_Cook_HAMMER_15_00");	//А что за соус такой - 'Плавленые зубы'?
 	AI_Output(self,other,"DIA_Addon_Snaf_Cook_HAMMER_01_01");	//Соус, приготовленный из такого крепкого пойла, что зубы плавятся. Достал рецепт у парнишки по имени Лу.
 	AI_Output(self,other,"DIA_Addon_Snaf_Cook_HAMMER_01_02");	//Ты достаешь нужные ингредиенты, гонишь горилку на алхимических инструментах, и я тебе делаю соус. Ну как?
-	Info_AddChoice(DIA_Addon_Snaf_Cook,"У меня нет времени на это.",DIA_Addon_Snaf_Cook_NO);
+	Info_AddChoice(DIA_Addon_Snaf_Cook,"Все, конечно, хорошо, но мне не до этого.",DIA_Addon_Snaf_Cook_NO);
 	Info_AddChoice(DIA_Addon_Snaf_Cook,"Собственно, почему бы и нет?",DIA_Addon_Snaf_Cook_YES);
 };
 

@@ -112,7 +112,7 @@ instance PC_L40(Npc_Default)
 	CreateInvItems(self,ItRw_Bolt,100);
 	EquipItem(self,ItMw_1H_Blessed_02);
 	EquipItem(self,ItRw_Crossbow_M_02);
-	CreateInvItems(self,ItKE_lockpick,10);
+	CreateInvItems(self,ItKe_Lockpick,10);
 	CreateInvItems(self,ItMi_Flask,2);
 	CreateInvItems(self,ItPo_Health_02,10);
 	CreateInvItems(self,ItPo_Speed,5);
@@ -438,4 +438,5 @@ instance PC_Bandit(Npc_Default)
 	CreateInvItems(self,ItAt_SharkTeeth,10);
 	CreateInvItems(self,ItFo_Addon_Rum,20);
 };
+
 

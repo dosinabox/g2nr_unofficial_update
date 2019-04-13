@@ -119,7 +119,7 @@ instance DIA_Tandor_Equipment(C_Info)
 
 func int DIA_Tandor_Equipment_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Garond_Equipment) && (other.guild == GIL_MIL) && (Kapitel == 2))
+	if(Npc_KnowsInfo(other,DIA_Garond_Equipment) && (other.guild == GIL_MIL) && (Kapitel == 2))
 	{
 		return TRUE;
 	};

@@ -79,6 +79,29 @@ instance ItMw_2h_Rod(C_Item)
 	count[5] = value;
 };
 
+instance ItMw_2h_Rod_Fake(C_Item)
+{
+	name = "Двуручный меч Рода";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_2HD_SWD;
+	material = MAT_METAL;
+	value = Value_Sld2hSchwert;
+	damageTotal = Damage_Berserkeraxt;
+	damagetype = DAM_EDGE;
+	range = Range_Sld2hSchwert;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = Condition_Rod;
+	visual = "ItMw_035_2h_sld_sword_01.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_TwoHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItMi_CoragonsSilber(C_Item)
 {
 	name = "Серебро Корагона";
@@ -88,8 +111,6 @@ instance ItMi_CoragonsSilber(C_Item)
 	visual = "ItMi_SilverCup.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[3] = "";
-	text[4] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -105,8 +126,8 @@ instance ItMi_TheklasPaket(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_TheklasPacket;
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -183,6 +204,8 @@ instance ItKe_Dexter(C_Item)
 	description = name;
 	text[2] = "Ключ от сундука,";
 	text[3] = "принадлежащего Декстеру.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItWr_Kraeuterliste(C_Item)
@@ -241,6 +264,8 @@ instance ItWr_ManaRezept(C_Item)
 	on_state[0] = Use_ManaRezept;
 	scemeName = "MAP";
 	description = "Рецепт магической эссенции";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -282,6 +307,8 @@ instance ItWr_Passierschein(C_Item)
 	description = name;
 	text[3] = "Эти бумаги позволят мне";
 	text[4] = "пройти мимо стражников у ворот.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -340,8 +367,9 @@ instance ItKe_Storage(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Ключ от портового";
-	text[3] = "склада.";
+	text[2] = "Ключ от портового склада.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -474,7 +502,7 @@ func void UnEquip_AlriksSword()
 	{
 		B_AddFightSkill(self,NPC_TALENT_1H,-10);
 	};
-	if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
+	if(Npc_IsPlayer(self) && ((MELEEWEAPONCHANGEDHERO == TRUE) || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
 	{
 		B_AddFightSkill(self,NPC_TALENT_1H,-10);
 		b_meleeweaponundochange();
@@ -493,8 +521,7 @@ instance ItWr_VatrasMessage(C_Item)
 	on_state[0] = UseVatrasMessage;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[2] = "Послание Ватраса";
-	text[3] = "магам Огня.";
+	text[2] = "Послание Ватраса магам Огня.";
 };
 
 
@@ -530,9 +557,8 @@ instance ItWr_VatrasMessage_Open(C_Item)
 	on_state[0] = UseVatrasMessageOpen;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Послание Ватраса";
-	text[3] = "магам Огня.";
-	text[4] = "Печать сломана.";
+	text[2] = "Послание Ватраса магам Огня.";
+	text[3] = "Печать сломана.";
 };
 
 
@@ -565,8 +591,7 @@ instance ItKe_Hotel(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от комнаты";
-	text[3] = "отеля.";
+	text[2] = "Это ключ от комнаты отеля.";
 };
 
 instance ItKe_ThiefGuildKey_MIS(C_Item)
@@ -578,7 +603,8 @@ instance ItKe_ThiefGuildKey_MIS(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Этот ключ изъеден соленой морской водой.";
+	text[2] = "Этот ключ изъеден";
+	text[3] = "соленой морской водой.";
 };
 
 instance ItKe_ThiefGuildKey_Hotel_MIS(C_Item)
@@ -615,8 +641,9 @@ instance ItKe_KlosterSchatz(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от монастырской";
-	text[3] = "сокровищницы.";
+	text[2] = "Это ключ от монастырской сокровищницы.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_KlosterStore(C_Item)
@@ -628,8 +655,9 @@ instance ItKe_KlosterStore(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от монастырской";
-	text[3] = "кладовой.";
+	text[2] = "Это ключ от монастырской кладовой.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_KDFPlayer(C_Item)
@@ -641,8 +669,9 @@ instance ItKe_KDFPlayer(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от монастырской";
-	text[3] = "кельи.";
+	text[2] = "Это ключ от монастырской кельи.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_KlosterBibliothek(C_Item)
@@ -654,8 +683,9 @@ instance ItKe_KlosterBibliothek(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от монастырской";
-	text[3] = "библиотеки.";
+	text[2] = "Это ключ от монастырской библиотеки.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItFo_Schafswurst(C_Item)
@@ -795,8 +825,6 @@ instance ItWr_BanditLetter_MIS(C_Item)
 	on_state[0] = UseBanditLetter;
 	scemeName = "MAP";
 	description = name;
-	text[3] = "";
-	text[4] = "";
 };
 
 
@@ -828,7 +856,7 @@ func void UseBanditLetter()
 	Doc_PrintLine(nDocID,0,"    около поместья землевладельца.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Д.");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
@@ -846,7 +874,6 @@ instance ItWr_Poster_MIS(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[3] = "Мое изображение!";
-	text[4] = "";
 };
 
 
@@ -869,8 +896,9 @@ instance ItKe_Bandit(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Этот ключ принадлежал";
-	text[3] = "бандиту.";
+	text[2] = "Этот ключ принадлежал бандиту.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItRw_Bow_L_03_MIS(C_Item)
@@ -957,6 +985,8 @@ instance ItKe_EVT_CRYPT_01(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[2] = "Это ключ скелета в комнате 1.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_EVT_CRYPT_02(C_Item)
@@ -969,6 +999,8 @@ instance ItKe_EVT_CRYPT_02(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[2] = "Это ключ скелета в комнате 2.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_EVT_CRYPT_03(C_Item)
@@ -981,6 +1013,8 @@ instance ItKe_EVT_CRYPT_03(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[2] = "Это ключ скелета в комнате 3.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -1026,6 +1060,8 @@ instance ItKe_Valentino(C_Item)
 	description = name;
 	text[2] = "Это ключ от сундука,";
 	text[3] = "принадлежащего Валентино.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_Buerger(C_Item)
@@ -1038,7 +1074,8 @@ instance ItKe_Buerger(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[2] = "Он лежал на подоконнике.";
-	text[3] = "";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_Richter(C_Item)
@@ -1052,6 +1089,8 @@ instance ItKe_Richter(C_Item)
 	description = name;
 	text[2] = "Это ключ от сундука,";
 	text[3] = "принадлежащего судье.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_Salandril(C_Item)
@@ -1065,6 +1104,8 @@ instance ItKe_Salandril(C_Item)
 	description = name;
 	text[2] = "Ключ от сундука, принадлежащего";
 	text[3] = "алхимику Саландрилу.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_PaladinTruhe(C_Item)
@@ -1077,7 +1118,9 @@ instance ItKe_PaladinTruhe(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[2] = "Маленький латунный ключик";
-	text[3] = "от дома паладинов.";
+	text[3] = "из дома паладинов.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_ThiefTreasure(C_Item)
@@ -1090,6 +1133,8 @@ instance ItKe_ThiefTreasure(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[2] = "Маленький ключик.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_Fingers(C_Item)
@@ -1103,6 +1148,8 @@ instance ItKe_Fingers(C_Item)
 	description = name;
 	text[2] = "Ржавый ключ от двери";
 	text[3] = "в канализации.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItWr_Schuldenbuch(C_Item)
@@ -1114,7 +1161,8 @@ instance ItWr_Schuldenbuch(C_Item)
 	visual = "ItWr_Book_02_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Долговая книга Лемара";
+	description = name;
+	text[0] = "Принадлежит ростовщику Лемару.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = UseSchuldBuch;
@@ -1162,7 +1210,8 @@ instance ItPl_Sagitta_Herb_MIS(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
 	value = Value_Strength_Herb_01;
-	visual = "ItPl_Strength_Herb_01.3DS";
+//	visual = "ItPl_Strength_Herb_01.3DS";
+	visual = "ItPl_Strength_Herb_02.3DS";
 	material = MAT_WOOD;
 	scemeName = "FOOD";
 	description = name;
@@ -1180,7 +1229,8 @@ instance ITKE_ORLAN_HOTELZIMMER(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[2] = "в таверне 'Мертвая Гарпия'.";
-	text[3] = "";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItRw_DragomirsArmbrust_MIS(C_Item)
@@ -1195,7 +1245,8 @@ instance ItRw_DragomirsArmbrust_MIS(C_Item)
 	munition = ItRw_Bolt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_LeichteArmbrust;
-	visual = "ItRw_Crossbow_L_02.mms";
+//	visual = "ItRw_Crossbow_L_02.mms";
+	visual = "ITRW_CROSSBOW_MISSION.MMS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

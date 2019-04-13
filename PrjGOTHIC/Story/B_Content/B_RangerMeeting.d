@@ -39,7 +39,7 @@ func void B_MakeRangerReadyToLeaveMeetingALL()
 
 func void B_Addon_Orlan_RangersReadyForComing()
 {
-	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != 0)
+	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 	{
 		B_StartOtherRoutine(Cavalorn,"PreRangerMeeting");
 	};
@@ -51,7 +51,7 @@ func void B_Addon_Orlan_RangersReadyForComing()
 
 func void B_Addon_Orlan_ComingRanger()
 {
-	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != 0)
+	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 	{
 		B_StartOtherRoutine(Cavalorn,"RangerMeeting");
 	};
@@ -65,7 +65,7 @@ func void B_Addon_Orlan_ComingRanger()
 
 func void B_RangerMeetingParking()
 {
-	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != 0)
+	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 	{
 		B_StartOtherRoutine(Cavalorn,"Stadt");
 	};
@@ -81,7 +81,7 @@ func void B_RangerMeetingParking()
 	{
 		B_StartOtherRoutine(Gaan,"Parking");
 	};
-	if(MIS_Addon_Martin_GetRangar == 0)
+	if(MIS_Addon_Martin_GetRangar == FALSE)
 	{
 		B_StartOtherRoutine(Martin,"Parking");
 	}
@@ -93,7 +93,7 @@ func void B_RangerMeetingParking()
 
 func void B_SchlussMitRangerMeeting()
 {
-	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != 0)
+	if(MIS_Addon_Cavalorn_GetOrnamentFromPAL != FALSE)
 	{
 		B_StartOtherRoutine(Cavalorn,"Stadt");
 	};
@@ -107,7 +107,7 @@ func void B_SchlussMitRangerMeeting()
 	{
 		B_StartOtherRoutine(Gaan,"Start");
 	};
-	if(MIS_Addon_Martin_GetRangar == 0)
+	if(MIS_Addon_Martin_GetRangar == FALSE)
 	{
 		B_StartOtherRoutine(Martin,"PreStart");
 	}

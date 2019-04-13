@@ -89,7 +89,7 @@ instance DIA_Pepe_WhyNotSLD(C_Info)
 
 func int DIA_Pepe_WhyNotSLD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pepe_Danger) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)))
+	if(Npc_KnowsInfo(other,DIA_Pepe_Danger) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -272,7 +272,7 @@ func void DIA_Pepe_PERM_Info()
 	};
 	if(Kapitel == 2)
 	{
-		AI_Output(self,other,"DIA_Pepe_PERM_03_02");	//Хорошо. Но могут придти другие волки. И, возможно, в большем количестве!
+		AI_Output(self,other,"DIA_Pepe_PERM_03_02");	//Хорошо. Но могут прийти другие волки. И, возможно, в большем количестве!
 	};
 	if(Kapitel == 3)
 	{
@@ -298,7 +298,7 @@ instance DIA_Pepe_Liesel(C_Info)
 
 func int DIA_Pepe_Liesel_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pepe_Hallo))
+	if(Npc_KnowsInfo(hero,DIA_Pepe_Hallo) && (SC_KnowsKlosterTribut == TRUE))
 	{
 		return TRUE;
 	};
@@ -327,7 +327,7 @@ instance DIA_Pepe_BuyLiesel(C_Info)
 
 func int DIA_Pepe_BuyLiesel_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pepe_Liesel))
+	if(Npc_KnowsInfo(other,DIA_Pepe_Liesel) && (Liesel_Giveaway == FALSE))
 	{
 		return TRUE;
 	};
@@ -355,6 +355,7 @@ func void DIA_Pepe_BuyLiesel_Info()
 				AI_Output(self,other,"DIA_Pepe_BuyLiesel_03_08");	//Брюс.
 			};
 		};
+		Npc_RemoveInvItems(self,ItMi_Gold,100);
 		Pepe_SchafGekauft += 1;
 		Wld_InsertNpc(Follow_Sheep,"NW_BIGFARM_SHEEP2_02");
 		AI_StopProcessInfos(self);

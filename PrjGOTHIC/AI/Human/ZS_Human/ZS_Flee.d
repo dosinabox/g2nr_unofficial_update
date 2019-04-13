@@ -5,7 +5,7 @@ func void ZS_Flee()
 	B_ValidateOther();
 	if(self.aivar[AIV_LOADGAME] == FALSE)
 	{
-		B_Say_Overlay(self,other,"$RUNAWAY");
+		B_Say_FleeReason();
 	};
 	AI_RemoveWeapon(self);
 	AI_SetWalkMode(self,NPC_RUN);

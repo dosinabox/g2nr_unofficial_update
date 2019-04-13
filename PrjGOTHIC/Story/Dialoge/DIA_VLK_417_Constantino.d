@@ -163,7 +163,7 @@ instance DIA_Addon_Constantino_LestersKraeuter(C_Info)
 
 func int DIA_Addon_Constantino_LestersKraeuter_Condition()
 {
-	if((MIS_Constantino_BringHerbs == 0) && (MIS_Addon_Lester_PickForConstantino != 0))
+	if((MIS_Constantino_BringHerbs == FALSE) && (MIS_Addon_Lester_PickForConstantino != FALSE))
 	{
 		return TRUE;
 	};
@@ -384,6 +384,7 @@ func void DIA_Constantino_HerbsRunning_Success()
 	AI_Output(self,other,"DIA_Constantino_HerbsRunning_Success_10_03");	// то знает, может, когда-нибудь из теб€ действительно получитс€ приличный алхимик.
 	MIS_Constantino_BringHerbs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Constantino_Herbs);
+	B_CheckLog();
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
 	B_LogEntry(TOPIC_Lehrling," онстантино примет мен€ в ученики, если другие мастера будут не против.");

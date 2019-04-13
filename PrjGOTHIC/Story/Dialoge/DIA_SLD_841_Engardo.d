@@ -40,6 +40,11 @@ func int DIA_Engardo_HALLO_Condition()
 	};
 };
 
+func void DIA_Engardo_HALLO_End()
+{
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_SuddenEnemyInferno,1);
+};
 
 var int Chance;
 
@@ -50,20 +55,20 @@ func void DIA_Engardo_HALLO_Info()
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_00");	//Ёй, мужик, ты что, заблудилс€? ¬озвращайс€ на свое поле и дергай репу.
 		Chance = 1;
-		AI_StopProcessInfos(self);
+//		AI_StopProcessInfos(self);
 	}
 	else if(Chance == 1)
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_01");	//“ы оказалс€ не в том месте не в то врем€...
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_02");	//... так что, если хочешь жить, лучше топай отсюда. ѕон€л?
 		Chance = 2;
-		AI_StopProcessInfos(self);
+//		AI_StopProcessInfos(self);
 	}
 	else if(Chance == 2)
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_03");	//” теб€ что, со слухом не все в пор€дке, или тебе очень хочетс€ умереть? (грубо) Ћадно - все равно уже слишком поздно.
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_SuddenEnemyInferno,1);
+		Info_ClearChoices(DIA_Engardo_HALLO);
+		Info_AddChoice(DIA_Engardo_HALLO,Dialog_Ende,DIA_Engardo_HALLO_End);
 	};
 };
 

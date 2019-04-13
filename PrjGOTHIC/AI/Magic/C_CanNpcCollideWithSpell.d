@@ -221,9 +221,16 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	};
 	if(spellType == SPL_DestroyUndead)
 	{
-		if(C_NpcIsUndead(self) && (self.attribute[ATR_HITPOINTS_MAX] <= SPL_Damage_DESTROYUNDEAD))
+		if(C_NpcIsUndead(self))
 		{
-			return COLL_DOEVERYTHING;
+			if(self.attribute[ATR_HITPOINTS_MAX] <= SPL_Damage_DESTROYUNDEAD)
+			{
+				return COLL_DOEVERYTHING;
+			}
+			else
+			{
+				return COLL_APPLYHALVEDAMAGE;
+			};
 		};
 		return COLL_DONOTHING;
 	};
@@ -231,7 +238,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 	{
 		if((Npc_GetDistToNpc(other,self) < 1000) && !C_NpcIsUndead(self))
 		{
-			if((self.guild == GIL_DRAGON) || (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(hero)))
+			if((self.guild == GIL_DRAGON) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero)))
 			{
 				return COLL_APPLYHALVEDAMAGE;
 			};

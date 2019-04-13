@@ -252,7 +252,7 @@ instance DIA_Bengar_REBELLIEREN(C_Info)
 
 func int DIA_Bengar_REBELLIEREN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Bengar_WOVONLEBTIHR))
 	{
 		return TRUE;
 	};
@@ -319,7 +319,10 @@ func void DIA_Bengar_PASS_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_PASS_15_00");	//У Прохода?
 	AI_Output(self,other,"DIA_Bengar_PASS_10_01");	//Да. Проход в старую Долину Рудников находится у водопада в другом конце этого плоскогорья.
-	AI_Output(self,other,"DIA_Bengar_PASS_10_02");	//Спроси Малака о нем. Он там бывает пару раз в неделю.
+	if(!Npc_KnowsInfo(other,DIA_Malak_WOPASS))
+	{
+		AI_Output(self,other,"DIA_Bengar_PASS_10_02");	//Спроси Малака о нем. Он там бывает пару раз в неделю.
+	};
 };
 
 
@@ -423,13 +426,15 @@ func void DIA_Bengar_MILIZKLATSCHEN_Info()
 	Npc_ExchangeRoutine(self,"MilComing");
 	if(Hlp_IsValidNpc(Rick) && !Npc_IsDead(Rick))
 	{
-		Npc_ExchangeRoutine(Rick,"MilComing");
-		AI_ContinueRoutine(Rick);
+//		Npc_ExchangeRoutine(Rick,"MilComing");
+//		AI_ContinueRoutine(Rick);
+		B_StartOtherRoutine(Rick,"MilComing");
 	};
 	if(Hlp_IsValidNpc(Rumbold) && !Npc_IsDead(Rumbold))
 	{
-		Npc_ExchangeRoutine(Rumbold,"MilComing");
-		AI_ContinueRoutine(Rumbold);
+//		Npc_ExchangeRoutine(Rumbold,"MilComing");
+//		AI_ContinueRoutine(Rumbold);
+		B_StartOtherRoutine(Rumbold,"MilComing");
 	};
 };
 
@@ -461,7 +466,7 @@ func int DIA_Bengar_MILIZWEG_Condition()
 func void DIA_Bengar_MILIZWEG_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_MILIZWEG_15_00");	//Твои проблемы с ополчением уже в прошлом.
-	if((Rumbold_Bezahlt == TRUE) && !Npc_IsDead(Rumbold))
+	if(!Npc_IsDead(Rumbold) && (Miliz_Flucht == FALSE))
 	{
 		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_01");	//Ты с ума сошел? Да ты знаешь, что они сделают со мной, когда ты уйдешь?
 		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_02");	//Они все еще стоят вон там. Скажи им, чтобы они исчезли СОВСЕМ!

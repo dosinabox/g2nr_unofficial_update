@@ -665,6 +665,7 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 		AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_01");	//Что это значит?
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_02");	//Он мертв. Можешь оставить эти рога себе. Теперь я все равно не знаю, что с ними делать.
 		MIS_Buster_KillShadowbeasts_DJG = LOG_SUCCESS;
+		B_CheckLog();
 		B_GivePlayerXP(XP_Ambient);
 	}
 	else if(Npc_HasItems(other,ItAt_ShadowHorn))

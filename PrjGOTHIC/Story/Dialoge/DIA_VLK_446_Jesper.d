@@ -81,7 +81,7 @@ func void DIA_Jesper_Hallo_Info()
 	Info_AddChoice(DIA_Jesper_Hallo,"Я просто прогуливаюсь здесь.",DIA_Jesper_Hallo_NurSo);
 	if(Attila_Key == TRUE)
 	{
-		Info_AddChoice(DIA_Jesper_Hallo,"Аттила дал мне ключ. Вот почему я здесь...",DIA_Jesper_Hallo_Willkommen);
+		Info_AddChoice(DIA_Jesper_Hallo,"Аттила дал мне ключ. Вот почему я здесь. Так что вам нужно от меня?",DIA_Jesper_Hallo_Willkommen);
 	}
 	else
 	{

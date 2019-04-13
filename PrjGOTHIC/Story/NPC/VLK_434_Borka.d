@@ -24,8 +24,9 @@ instance VLK_434_Borka(Npc_Default)
 
 func void Rtn_Start_434()
 {
-	TA_Stand_ArmsCrossed(8,0,22,0,"NW_CITY_HABOUR_PUFF_ENTRANCE");
-	TA_Stand_ArmsCrossed(22,0,8,0,"NW_CITY_HABOUR_PUFF_ENTRANCE");
+	TA_Stand_ArmsCrossed(5,0,22,0,"NW_CITY_HABOUR_PUFF_ENTRANCE");
+	TA_Stand_ArmsCrossed(22,0,4,50,"NW_CITY_HABOUR_PUFF_ENTRANCE");
+	TA_Pee(4,50,5,0,"NW_CITY_HABOUR_PUFF_02_01");
 };
 
 func void Rtn_Prison_434()

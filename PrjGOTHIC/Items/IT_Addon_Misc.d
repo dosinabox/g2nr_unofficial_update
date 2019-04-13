@@ -76,6 +76,7 @@ instance ItMi_BaltramPaket(C_Item)
 	text[2] = "“€желый пакет с";
 	text[3] = "различными товарами";
 	text[4] = "с фермы јкила.";
+	text[5] = NAME_Value;
 	count[5] = value;
 };
 
@@ -91,6 +92,7 @@ instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 	text[2] = "“€желый пакет";
 	text[3] = "с различными товарами";
 	text[4] = "дл€ пирата —кипа.";
+	text[5] = NAME_Value;
 	count[5] = value;
 };
 
@@ -149,6 +151,8 @@ instance ItMi_Skull(C_Item)
 	visual = "DT_SKELETON_V01_HEAD.3ds";
 	material = MAT_LEATHER;
 	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItMi_IECello(C_Item)
@@ -320,7 +324,7 @@ instance ItMi_Addon_Lennar_Paket(C_Item)
 
 func void Use_LennarPaket()
 {
-	B_PlayerFindItem(ItKE_lockpick,Lennar_picklock_amount);
+	B_PlayerFindItem(ItKe_Lockpick,Lennar_picklock_amount);
 	Snd_Play("Geldbeutel");
 	LennarPaket_Open = TRUE;
 };
@@ -353,4 +357,5 @@ func void Use_Zeitspalt_Addon()
 		Wld_PlayEffect("SLOW_MOTION",self,self,0,0,0,FALSE);
 	};
 };
+
 

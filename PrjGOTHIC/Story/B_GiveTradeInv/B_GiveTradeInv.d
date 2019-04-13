@@ -17,7 +17,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	var C_Npc Trd_Matteo;
 	var C_Npc Trd_Halvor;
 	var C_Npc Trd_Bosper;
-	var C_Npc Trd_Harad;
+//	var C_Npc Trd_Harad;
 	var C_Npc Trd_Brian;
 	var C_Npc Trd_Brahim;
 	var C_Npc Trd_Constantino;
@@ -52,6 +52,10 @@ func void B_GiveTradeInv(var C_Npc slf)
 	var C_Npc Trd_Gaertner;
 	var C_Npc Trd_Lutero;
 	var C_Npc Trd_Rupert;
+	var C_Npc Trd_Thorben;
+	var C_Npc Trd_Cipher;
+	var C_Npc Trd_Hodges;
+	var C_Item EquipWeap;
 	Trd_Cronos_NW = Hlp_GetNpc(KDW_1401_Addon_Cronos_NW);
 	Trd_Cronos_ADW = Hlp_GetNpc(KDW_14010_Addon_Cronos_ADW);
 	Trd_Martin = Hlp_GetNpc(MIL_350_Addon_Martin);
@@ -68,7 +72,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	Trd_Matteo = Hlp_GetNpc(VLK_416_Matteo);
 	Trd_Halvor = Hlp_GetNpc(VLK_469_Halvor);
 	Trd_Bosper = Hlp_GetNpc(VLK_413_Bosper);
-	Trd_Harad = Hlp_GetNpc(VLK_412_Harad);
+//	Trd_Harad = Hlp_GetNpc(VLK_412_Harad);
 	Trd_Brian = Hlp_GetNpc(VLK_457_Brian);
 	Trd_Brahim = Hlp_GetNpc(VLK_437_Brahim);
 	Trd_Constantino = Hlp_GetNpc(VLK_417_Constantino);
@@ -103,6 +107,17 @@ func void B_GiveTradeInv(var C_Npc slf)
 	Trd_Gaertner = Hlp_GetNpc(VLK_411_Gaertner);
 	Trd_Lutero = Hlp_GetNpc(VLK_404_Lutero);
 	Trd_Rupert = Hlp_GetNpc(VLK_458_Rupert);
+	Trd_Thorben = Hlp_GetNpc(VLK_462_Thorben);
+	Trd_Cipher = Hlp_GetNpc(SLD_803_Cipher);
+	Trd_Hodges = Hlp_GetNpc(BAU_908_Hodges);
+//	разоружение перед началом торговли с ГГ
+//	AI_UnequipWeapons(slf);
+	EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
+	Npc_RemoveInvItem(slf,Hlp_GetInstanceID(EquipWeap));
+	CreateInvItem(slf,Hlp_GetInstanceID(EquipWeap));
+	EquipWeap = Npc_GetEquippedRangedWeapon(slf);
+	Npc_RemoveInvItem(slf,Hlp_GetInstanceID(EquipWeap));
+	CreateInvItem(slf,Hlp_GetInstanceID(EquipWeap));
 	B_ClearRuneInv(slf);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 	{
@@ -186,11 +201,11 @@ func void B_GiveTradeInv(var C_Npc slf)
 			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Bosper(slf);
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Harad))
+/*		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Harad))
 		{
 			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Harad(slf);
-		};
+		}; */
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Brian))
 		{
 			B_ClearJunkTradeInv(slf);
@@ -361,6 +376,21 @@ func void B_GiveTradeInv(var C_Npc slf)
 			B_ClearJunkTradeInv(slf);
 			B_GiveTradeInv_Rupert(slf);
 		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Thorben))
+		{
+			B_ClearJunkTradeInv(slf);
+			B_GiveTradeInv_Thorben(slf);
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cipher))
+		{
+			B_ClearJunkTradeInv(slf);
+			B_GiveTradeInv_Cipher(slf);
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Hodges))
+		{
+			B_ClearJunkTradeInv(slf);
+			B_GiveTradeInv_Hodges(slf);
+		};
 		slf.aivar[AIV_ChapterInv] = Kapitel + 1;
 	};
 	if(Npc_IsInState(slf,ZS_Dead) || Npc_IsInState(slf,ZS_Unconscious))
@@ -429,10 +459,10 @@ func void B_GiveTradeInv(var C_Npc slf)
 		{
 			B_ClearDeadTrader(slf);
 		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Harad))
+/*		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Harad))
 		{
 			B_ClearDeadTrader(slf);
-		};
+		}; */
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Brian))
 		{
 			B_ClearDeadTrader(slf);
@@ -569,6 +599,17 @@ func void B_GiveTradeInv(var C_Npc slf)
 		{
 			B_ClearDeadTrader(slf);
 		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Thorben))
+		{
+			B_ClearDeadTrader(slf);
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cipher))
+		{
+			B_ClearDeadTrader(slf);
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Hodges))
+		{
+			B_ClearDeadTrader(slf);
+		};
 	};
 };
-

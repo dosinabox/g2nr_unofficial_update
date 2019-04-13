@@ -173,7 +173,7 @@ func void DIA_Fester_Together_Join()
 func void DIA_Fester_Together_Gold()
 {
 	AI_Output(other,self,"DIA_Fester_Together_Gold_15_00");	//Я хочу получить за это золото!
-	AI_Output(self,other,"DIA_Fester_Together_Gold_08_01");	//(смеется) Ах ты шельмец! Ты хочешь воспользоваться моим положением, ха?
+	AI_Output(self,other,"DIA_Fester_Together_Gold_08_01");	//(смеется) Ах ты шельмец! Ты хочешь воспользоваться моим положением, а?
 	AI_Output(self,other,"DIA_Fester_Together_Gold_08_02");	//То есть, либо я заплачу тебе, либо отправлюсь к праотцам?
 	AI_Output(self,other,"DIA_Fester_Together_Gold_08_03");	//Хорошо. Я могу заплатить тебе 50 золотых - это все, что у меня есть.
 	Fester_Choice = FC_Gold;

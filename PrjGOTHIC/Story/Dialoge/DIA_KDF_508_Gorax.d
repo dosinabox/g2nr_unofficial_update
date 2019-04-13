@@ -37,7 +37,8 @@ instance DIA_Gorax_PICKPOCKET(C_Info)
 
 func int DIA_Gorax_PICKPOCKET_Condition()
 {
-	return C_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),0);
+//	return C_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),0);
+	return C_StealItem(80,Hlp_GetInstanceID(ItKe_KlosterSchatz));
 };
 
 func void DIA_Gorax_PICKPOCKET_Info()
@@ -49,8 +50,9 @@ func void DIA_Gorax_PICKPOCKET_Info()
 
 func void DIA_Gorax_PICKPOCKET_DoIt()
 {
-	CreateInvItems(self,ItKe_KlosterSchatz,1);
-	B_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),1);
+	CreateInvItem(self,ItKe_KlosterSchatz);
+//	B_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),1);
+	B_StealItem(80,Hlp_GetInstanceID(ItKe_KlosterSchatz));
 	Info_ClearChoices(DIA_Gorax_PICKPOCKET);
 };
 
@@ -338,10 +340,11 @@ func void DIA_Gorax_Orlan_Info()
 func void DIA_Gorax_Orlan_100()
 {
 	AI_Output(other,self,"DIA_Gorax_Orlan_100_15_00");	//Он надул меня!
+	B_GiveInvItems(other,self,ItMi_Gold,100);
 	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_01");	//Ты продал ему вино дешевле? Ох, нет! И почему только я послал ТЕБЯ?!
 	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
-	B_GiveInvItems(other,self,ItMi_Gold,100);
 	MIS_GoraxWein = LOG_FAILED;
+	Goraxday = Wld_GetDay() + 1;
 	Info_ClearChoices(DIA_Gorax_Orlan);
 	AI_StopProcessInfos(self);
 };
@@ -354,14 +357,44 @@ func void DIA_Gorax_Orlan_240()
 		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_01");	//Превосходно. Ты проявляешь некоторые способности. Вот, возьми в качестве вознаграждения свиток исцеления. А теперь иди и займись каким-нибудь делом.
 		MIS_GoraxWein = LOG_SUCCESS;
 		B_GivePlayerXP(XP_GoraxWein);
+		B_GiveInvItems(self,other,ItSc_MediumHeal,1);
 	}
 	else
 	{
+		B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
 		AI_Output(self,other,"DIA_Gorax_Orlan_240_14_02");	//Но ты уже потратил часть этих денег, да? Ты ничтожество - пошел прочь!
 		MIS_GoraxWein = LOG_FAILED;
-		B_GiveInvItems(other,self,ItMi_Gold,Npc_HasItems(other,ItMi_Gold));
+		Goraxday = Wld_GetDay() + 1;
 	};
 	Info_ClearChoices(DIA_Gorax_Orlan);
+};
+
+
+instance DIA_Gorax_Orlan_TooLate(C_Info)
+{
+	npc = KDF_508_Gorax;
+	nr = 3;
+	condition = DIA_Gorax_Orlan_TooLate_Condition;
+	information = DIA_Gorax_Orlan_TooLate_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Gorax_Orlan_TooLate_Condition()
+{
+	if((other.guild == GIL_NOV) && (MIS_GoraxWein == LOG_OBSOLETE))
+	{
+		return TRUE;
+	};
+
+};
+
+func void DIA_Gorax_Orlan_TooLate_Info()
+{
+	AI_Output(self,other,"DIA_Gorax_Orlan_100_14_02");	//Ты совершенно ни на что не способен! Убирайся с глаз моих!
+	Goraxday = Wld_GetDay() + 1;
+	AI_StopProcessInfos(self);
 };
 
 
@@ -406,7 +439,7 @@ instance DIA_Gorax_TRADE(C_Info)
 
 func int DIA_Gorax_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Gorax_JOB))
+	if(Npc_KnowsInfo(other,DIA_Gorax_JOB) && (Goraxday <= Wld_GetDay()))
 	{
 		return TRUE;
 	};

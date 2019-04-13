@@ -34,6 +34,9 @@ func void B_GiveTradeInv_Bennet(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Gold,700);
 		CreateInvItems(slf,ItMiSwordraw,3);
 		CreateInvItems(slf,ItMi_Nugget,2);
+		CreateInvItems(slf,ItRw_Addon_FireArrow,30);
+		CreateInvItems(slf,ItRw_Addon_MagicArrow,20);
+		CreateInvItems(slf,ItRw_Addon_MagicBolt,10);
 		Bennet_ItemsGiven_Chapter_4 = TRUE;
 	};
 	if((Kapitel >= 5) && (Bennet_ItemsGiven_Chapter_5 == FALSE))
@@ -41,6 +44,9 @@ func void B_GiveTradeInv_Bennet(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Gold,1100);
 		CreateInvItems(slf,ItMiSwordraw,3);
 		CreateInvItems(slf,ItMi_Nugget,2);
+		CreateInvItems(slf,ItRw_Addon_FireArrow,40);
+		CreateInvItems(slf,ItRw_Addon_MagicArrow,30);
+		CreateInvItems(slf,ItRw_Addon_MagicBolt,20);
 		Bennet_ItemsGiven_Chapter_5 = TRUE;
 	};
 };

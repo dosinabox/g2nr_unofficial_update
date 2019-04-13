@@ -148,6 +148,10 @@ func void DIA_Lothar_MESSAGE_Info()
 	AI_Output(other,self,"DIA_Lothar_MESSAGE_15_00");	//У меня важное сообщение для предводителя паладинов!
 	AI_Output(self,other,"DIA_Lothar_MESSAGE_01_01");	//Достопочтенный лорд Хаген никого не принимает.
 	AI_Output(self,other,"DIA_Lothar_MESSAGE_01_02");	//За все вопросы, касающиеся простого народа, отвечает лорд Андрэ, командир городской стражи.
+	AI_Output(other,self,"DIA_Lothar_Add_15_00");	//Но я ДОЛЖЕН увидеться с лордом Хагеном!
+	AI_Output(self,other,"DIA_Lothar_Add_01_01");	//Ты должен повиноваться законам, как и все остальные!
+	AI_Output(self,other,"DIA_Lothar_Add_01_02");	//Лорд Хаген не принимает.
+	AI_Output(self,other,"DIA_Lothar_Add_01_03");	//Если у тебя действительно есть что-то ВАЖНОЕ, иди к лорду Андрэ. Он поможет тебе!
 };
 
 
@@ -427,6 +431,8 @@ func void DIA_Lothar_WoArbeit_Info()
 	AI_Output(self,other,"DIA_Lothar_Add_01_17");	//Однако другие мастера должны согласиться с этим, таковы обычаи Хориниса.
 	AI_Output(self,other,"DIA_Lothar_Add_01_18");	//Если ты думал найти работу в портовом квартале, забудь об этом!
 	AI_Output(self,other,"DIA_Lothar_Add_01_19");	//Там живут отбросы общества. Даже не суй туда свой нос, ты пожалеешь об этом!
+	AI_Output(other,self,"DIA_Lothar_Add_15_20");	//Сколько мастеров работает в городе?
+	AI_Output(self,other,"DIA_Lothar_Add_01_21");	//Насколько я знаю, всего их пять.
 };
 
 
@@ -607,30 +613,30 @@ func void DIA_Lothar_PermB4OV_Info()
 /*
 func void B_Lothar_Blubb()
 {
-	AI_Output(other,self,"DIA_Lothar_Add_15_00");	//Но я ДОЛЖЕН увидеться с лордом Хагеном!
-	AI_Output(self,other,"DIA_Lothar_Add_01_45");	//Как я понимаю, он принял тебя в ряды ополчения.
-	AI_Output(self,other,"DIA_Lothar_Add_01_46");	//Хмм... Надеюсь, он знает, что делает.
-	AI_Output(other,self,"DIA_Lothar_Add_15_20");	//Сколько мастеров работает в городе?
-	AI_Output(self,other,"DIA_Lothar_Add_01_21");	//Насколько я знаю, всего их пять.
-	AI_Output(self,other,"DIA_Lothar_Add_01_62");	//Скажи мне, разве я говорил недостаточно внятно? Хватит разговоров о драконах!
-	AI_Output(other,self,"DIA_Lothar_Add_15_63");	//Откуда тебе знать?..
-	AI_Output(self,other,"DIA_Lothar_Add_01_64");	//Это НЕ ТВОЕ дело!
-	AI_Output(self,other,"DIA_Lothar_Add_01_65");	//Это было последний раз, понятно?!
+//	AI_Output(other,self,"DIA_Lothar_Add_15_00");	//Но я ДОЛЖЕН увидеться с лордом Хагеном!
+//	AI_Output(other,self,"DIA_Lothar_Add_15_20");	//Сколько мастеров работает в городе?
+//	AI_Output(self,other,"DIA_Lothar_Add_01_21");	//Насколько я знаю, всего их пять.
+//	AI_Output(self,other,"DIA_Lothar_Add_01_62");	//Скажи мне, разве я говорил недостаточно внятно? Хватит разговоров о драконах!
+//	AI_Output(other,self,"DIA_Lothar_Add_15_63");	//Откуда тебе знать?..
+//	AI_Output(self,other,"DIA_Lothar_Add_01_64");	//Это НЕ ТВОЕ дело!
+//	AI_Output(self,other,"DIA_Lothar_Add_01_65");	//Это было последний раз, понятно?!
 	AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
-	AI_Output(other,self,"DIA_Lothar_Add_15_08");	//Теперь я ученик одного из мастеров!
+//	AI_Output(other,self,"DIA_Lothar_Add_15_08");	//Теперь я ученик одного из мастеров!
+//	AI_Output(self,other,"DIA_Lothar_Add_01_43");	//Как я слышал, ты разговаривал с лордом Андрэ?
+//	AI_Output(self,other,"DIA_Lothar_Add_01_44");	//Я говорил тебе, что ты можешь присоединиться к ополчению, только если станешь гражданином города.
+//	AI_Output(self,other,"DIA_Lothar_Add_01_45");	//Как я понимаю, он принял тебя в ряды ополчения.
+//	AI_Output(self,other,"DIA_Lothar_Add_01_46");	//Хмм... Надеюсь, он знает, что делает.
 	AI_Output(self,other,"DIA_Lothar_Add_01_47");	//Опять ты.
-	AI_Output(self,other,"DIA_Lothar_Add_01_43");	//Как я слышал, ты разговаривал с лордом Андрэ?
-	AI_Output(self,other,"DIA_Lothar_Add_01_44");	//Я говорил тебе, что ты можешь присоединиться к ополчению, только если станешь гражданином города.
-	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
-	AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
-	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
-	AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
-	AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
+//	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
+//	AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
+//	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
+//	AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
+//	AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
 	AI_Output(self,other,"DIA_Lothar_Add_01_12");	//Я слышал, ты уже получил одобрение некоторых мастеров.
-	AI_Output(self,other,"DIA_Lothar_Add_01_13");	//Похоже, ты полон решимости добиться своего, да?
-	AI_Output(self,other,"DIA_Lothar_Add_01_01");	//Ты должен повиноваться законам, как и все остальные!
-	AI_Output(self,other,"DIA_Lothar_Add_01_02");	//Лорд Хаген не принимает.
-	AI_Output(self,other,"DIA_Lothar_Add_01_03");	//Если у тебя действительно есть что-то ВАЖНОЕ, иди к лорду Андрэ. Он поможет тебе!
+//	AI_Output(self,other,"DIA_Lothar_Add_01_13");	//Похоже, ты полон решимости добиться своего, да?
+//	AI_Output(self,other,"DIA_Lothar_Add_01_01");	//Ты должен повиноваться законам, как и все остальные!
+//	AI_Output(self,other,"DIA_Lothar_Add_01_02");	//Лорд Хаген не принимает.
+//	AI_Output(self,other,"DIA_Lothar_Add_01_03");	//Если у тебя действительно есть что-то ВАЖНОЕ, иди к лорду Андрэ. Он поможет тебе!
 };
 */
 
@@ -656,7 +662,19 @@ func int DIA_Lothar_HelloAgain_Condition()
 func void DIA_Lothar_HelloAgain_Info()
 {
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_00");	//Ах! Опять ты!
+	if((Player_TalkedAboutDragons == TRUE) && (Player_TalkedAboutDragonsToAndre == TRUE))
+	{
+		AI_Output(self,other,"DIA_Lothar_Add_01_62");	//Скажи мне, разве я говорил недостаточно внятно? Хватит разговоров о драконах!
+		AI_Output(other,self,"DIA_Lothar_Add_15_63");	//Откуда тебе знать?..
+		AI_Output(self,other,"DIA_Lothar_Add_01_64");	//Это НЕ ТВОЕ дело!
+		AI_Output(self,other,"DIA_Lothar_Add_01_65");	//Это было последний раз, понятно?!
+	};
+	if(Player_IsApprentice > APP_NONE)
+	{
+		AI_Output(other,self,"DIA_Lothar_Add_15_08");	//Теперь я ученик одного из мастеров!
+	};
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_01");	//Так тебе все же удалось получить доступ в верхний квартал!
+	AI_Output(self,other,"DIA_Lothar_Add_01_13");	//Похоже, ты полон решимости добиться своего, да?
 	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_36");	//Где ты взял эту мантию?
@@ -669,6 +687,13 @@ func void DIA_Lothar_HelloAgain_Info()
 		AI_Output(self,other,"DIA_Lothar_Add_01_40");	//Как ты попал сюда?
 		AI_Output(other,self,"DIA_Lothar_Add_15_41");	//Я принес предложение мира от Ли...
 		AI_Output(self,other,"DIA_Lothar_Add_01_42");	//Ха! Лорд Хаген никогда не согласится на это.
+	};
+	if((other.guild == GIL_MIL) && (Player_IsApprentice == APP_NONE))
+	{
+		AI_Output(self,other,"DIA_Lothar_Add_01_43");	//Как я слышал, ты разговаривал с лордом Андрэ?
+		AI_Output(self,other,"DIA_Lothar_Add_01_44");	//Я говорил тебе, что ты можешь присоединиться к ополчению, только если станешь гражданином города.
+		AI_Output(self,other,"DIA_Lothar_Add_01_45");	//Как я понимаю, он принял тебя в ряды ополчения.
+		AI_Output(self,other,"DIA_Lothar_Add_01_46");	//Хмм... Надеюсь, он знает, что делает.
 	};
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_02");	//Есть вещи, о которых ты всегда должен помнить. В противном случае ты будешь вышвырнут отсюда так же быстро, как попал сюда.
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_03");	//Тебе можно входить только в дома торговцев. Ты узнаешь их по вывескам над дверьми - тут тяжело ошибиться.
@@ -712,6 +737,11 @@ func void DIA_Lothar_Hagen_Info()
 	AI_Output(other,self,"DIA_Lothar_Hagen_15_00");	//Где я могу найти лорда Хагена?
 	AI_Output(self,other,"DIA_Lothar_Hagen_01_01");	//Он в ратуше, в конце верхнего квартала.
 	AI_Output(self,other,"DIA_Lothar_Hagen_01_02");	//Но тебя не примут там без веской на то причины.
+	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
+	AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
+	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
+	AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
+	AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
 };
 
 
@@ -728,7 +758,7 @@ instance DIA_Lothar_OWRunning(C_Info)
 
 func int DIA_Lothar_OWRunning_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && (Npc_HasItems(hero,ItWr_PaladinLetter_MIS) == 0))
+	if((MIS_OLDWORLD == LOG_Running) && !Npc_HasItems(hero,ItWr_PaladinLetter_MIS))
 	{
 		return TRUE;
 	};
@@ -759,7 +789,7 @@ instance DIA_Lothar_OWRunningBrief(C_Info)
 
 func int DIA_Lothar_OWRunningBrief_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && (Npc_HasItems(hero,ItWr_PaladinLetter_MIS) > 0))
+	if((MIS_OLDWORLD == LOG_Running) && Npc_HasItems(hero,ItWr_PaladinLetter_MIS))
 	{
 		return TRUE;
 	};

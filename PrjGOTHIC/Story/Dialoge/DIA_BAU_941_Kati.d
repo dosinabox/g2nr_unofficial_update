@@ -45,18 +45,17 @@ func int DIA_Kati_SLDNOCHDA_Condition()
 
 func void DIA_Kati_SLDNOCHDA_Info()
 {
-	if(Hilfe == FALSE)
+	if(Akils_SLDStillthere == FALSE)
 	{
 		AI_Output(self,other,"DIA_Kati_SLDNOCHDA_16_00");	//Эти головорезы угрожают моему мужу! Мы простые граждане Хориниса, преданные королю, а эти наемники хотят ограбить нас!
 	};
 	AI_Output(self,other,"DIA_Kati_SLDNOCHDA_16_01");	//Ну не стой же здесь. Сделай что-нибудь! Помоги нам!
-	Akils_SLDStillthere = TRUE;
-	if(Hilfe == FALSE)
+	if(Akils_SLDStillthere == FALSE)
 	{
 		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
-		Hilfe = TRUE;
+		Akils_SLDStillthere = TRUE;
 	};
 	AI_StopProcessInfos(self);
 };
@@ -87,13 +86,23 @@ func void DIA_Kati_HALLO_Info()
 	if(Npc_IsDead(Akil))
 	{
 		AI_Output(self,other,"DIA_Kati_HALLO_16_01");	//(рыдает) Мой любимый муж мертв! Ох, Иннос, за что ты меня так наказываешь?!
-		Npc_ExchangeRoutine(self,"Start");
-		B_StartOtherRoutine(Randolph,"Start");
 		B_GivePlayerXP(XP_Akil_Tot);
+		TOPIC_END_AkilsSLDStillthere = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Kati_HALLO_16_02");	//Да, я в порядке, спасибо.
+	};
+	Npc_ExchangeRoutine(self,"Start");
+//	self.flags = 0;
+	if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
+	{
+		B_StartOtherRoutine(Akil,"Start");
+	};
+	if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
+	{
+		B_StartOtherRoutine(Randolph,"Start");
+		Randolph.flags = 0;
 	};
 };
 
@@ -111,7 +120,7 @@ instance DIA_Kati_ESSEN(C_Info)
 
 func int DIA_Kati_ESSEN_Condition()
 {
-	if((Kati_Mahlzeit == TRUE) && !Npc_IsDead(Akil))
+	if(Npc_KnowsInfo(other,DIA_Kati_HALLO) && (Kati_Mahlzeit == TRUE) && !Npc_IsDead(Akil))
 	{
 		return TRUE;
 	};
@@ -121,7 +130,7 @@ func void DIA_Kati_ESSEN_Info()
 {
 	var string concatText;
 	AI_Output(other,self,"DIA_Kati_ESSEN_15_00");	//Акил говорит, что ты можешь накормить меня.
-	AI_Output(self,other,"DIA_Kati_ESSEN_16_01");	//С тех пор как рухнул Барьер, для нас настали тяжелые времена. Жить здесь стало небезопасно.
+	AI_Output(self,other,"DIA_Kati_ESSEN_16_01");	//С тех пор, как рухнул Барьер, для нас настали тяжелые времена. Жить здесь стало небезопасно.
 	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба, немного мяса и бутылку воды. Извини, но это все, чем мы можем поделиться.
 	Npc_RemoveInvItem(self,ItFo_Bread);
 	CreateInvItem(other,ItFo_Bread);
@@ -147,7 +156,7 @@ instance DIA_Kati_Baltram(C_Info)
 
 func int DIA_Kati_Baltram_Condition()
 {
-	if(Npc_IsDead(Akil) && (MIS_Baltram_ScoutAkil == LOG_Running) && (Lieferung_Geholt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Kati_HALLO) && Npc_IsDead(Akil) && (MIS_Baltram_ScoutAkil == LOG_Running) && (Lieferung_Geholt == FALSE))
 	{
 		return TRUE;
 	};
@@ -160,6 +169,8 @@ func void DIA_Kati_Baltram_Info()
 	CreateInvItems(self,ItMi_BaltramPaket,1);
 	B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
 	Lieferung_Geholt = TRUE;
+	B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу доставить ее Бальтраму...");
+	B_LogEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
 };
 
 

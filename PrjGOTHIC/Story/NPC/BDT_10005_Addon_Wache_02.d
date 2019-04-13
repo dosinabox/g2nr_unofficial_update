@@ -31,7 +31,15 @@ func void Rtn_Start_10005()
 
 func void Rtn_Ambush_10005()
 {
-	TA_Stand_Guarding(9,0,21,0,"BL_INN_OUTSIDE_02");
-	TA_Stand_Guarding(21,0,9,0,"BL_INN_OUTSIDE_02");
+//	TA_Stand_Guarding(9,0,21,0,"BL_INN_OUTSIDE_02");
+//	TA_Stand_Guarding(21,0,9,0,"BL_INN_OUTSIDE_02");
+	TA_RunToWP(0,0,0,0,"BL_INN_OUTSIDE_02");
+	TA_RunToWP(0,0,0,0,"BL_INN_OUTSIDE_02");
+};
+
+func void Rtn_Tot_10005()
+{
+	TA_Sleep(0,0,0,0,"BL_INN_OUTSIDE_02");
+	TA_Sleep(0,0,0,0,"BL_INN_OUTSIDE_02");
 };
 

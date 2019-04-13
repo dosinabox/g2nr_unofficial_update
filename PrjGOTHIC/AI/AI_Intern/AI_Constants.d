@@ -517,4 +517,5 @@ const int DRINK_Wine = 1;
 const int DRINK_Beer = 2;
 const int DRINK_Booze = 3;
 const int DRINK_Rum = 4;
+const int REAL_LEVEL = 90;
 

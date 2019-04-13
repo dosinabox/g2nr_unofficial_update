@@ -240,7 +240,8 @@ instance DIA_Bilgot_BEIBRUECKEANGEKOMMEN(C_Info)
 
 func int DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Condition()
 {
-	if(Npc_GetDistToWP(self,"START") < 8000)
+//	if(Npc_GetDistToWP(self,"START") < 8000)
+	if(Npc_GetDistToWP(self,"START") < 2000)
 	{
 		return TRUE;
 	};

@@ -282,7 +282,7 @@ instance DIA_Addon_Scatty_teach(C_Info)
 
 func int DIA_Addon_Scatty_teach_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Gold) && (Scatty_teach_perm == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Gold))
 	{
 		return TRUE;
 	};
@@ -291,19 +291,26 @@ func int DIA_Addon_Scatty_teach_Condition()
 func void DIA_Addon_Scatty_teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Scatty_teach_15_00");	//–асскажи мне еще что-нибудь о том, как копать золото.
-	if(other.lp >= 1)
+	if(Hero_HackChance < 100)
 	{
-		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_01");	//¬ первую очередь ты должен знать, что золото - это не руда. ќно м€гкое, как масло. ≈сли ты ударишь слишком сильно, все разлетитс€.
-		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_02");	//” каждого рудокопа есть свои приемы, позвол€ющие ему отделить самородки от породы.
-		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_03");	//¬ конечном итоге, эти приемы и отличают просто рудокопа от хорошего рудокопа.
-		AI_Output(self,other,"DIA_Addon_Scatty_teach_01_04");	// роме этого, повторенье - мать учень€. “олько работа€, ты станешь хорошим рудокопом.
-		other.lp -= 1;
-		B_Upgrade_Hero_HackChance(10);
-		Scatty_teach_perm = TRUE;
+		if(other.lp >= 1)
+		{
+			AI_Output(self,other,"DIA_Addon_Scatty_teach_01_01");	//¬ первую очередь ты должен знать, что золото - это не руда. ќно м€гкое, как масло. ≈сли ты ударишь слишком сильно, все разлетитс€.
+			AI_Output(self,other,"DIA_Addon_Scatty_teach_01_02");	//” каждого рудокопа есть свои приемы, позвол€ющие ему отделить самородки от породы.
+			AI_Output(self,other,"DIA_Addon_Scatty_teach_01_03");	//¬ конечном итоге, эти приемы и отличают просто рудокопа от хорошего рудокопа.
+			AI_Output(self,other,"DIA_Addon_Scatty_teach_01_04");	// роме этого, повторенье - мать учень€. “олько работа€, ты станешь хорошим рудокопом.
+			other.lp -= 1;
+			B_Upgrade_Hero_HackChance(10);
+//			Scatty_teach_perm = TRUE;
+		}
+		else
+		{
+			B_Say(self,other,"$NoLearnNoPoints");
+		};
 	}
 	else
 	{
-		B_Say(self,other,"$NOLEARNNOPOINTS");
+		B_Say(self,other,"$NoLearnYoureBetter");
 	};
 };
 

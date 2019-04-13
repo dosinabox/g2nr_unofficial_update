@@ -27,6 +27,6 @@ func void Rtn_Start_477()
 	TA_Stand_Eating(14,5,15,55,"NW_CITY_PATH_HABOUR_03");
 	TA_Stand_Eating(15,55,19,5,"NW_CITY_WAY_TO_SHIP_01");
 	TA_Cook_Stove(19,5,21,5,"NW_CITY_BED_BRAHIM");
-	TA_Sleep(21,5,5,5,"NW_CITY_BED_BRAHIM");
+	TA_Sleep(21,5,5,5,"NW_CITY_BED_BRAHIM_WEIB");
 };
 

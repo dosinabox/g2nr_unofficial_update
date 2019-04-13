@@ -206,7 +206,7 @@ func void DIA_Jora_HolDeinGold_WillBelohnung()
 func void DIA_Jora_HolDeinGold_Wache()
 {
 	AI_Output(other,self,"DIA_Jora_HolDeinGold_Wache_15_00");	//Почему ты не позвал стражу?
-	AI_Output(self,other,"DIA_Jora_HolDeinGold_Wache_08_01");	//Стража реагирует, только если вор пойман с поличным.
+	AI_Output(self,other,"DIA_Jora_HolDeinGold_Wache_08_01");	//Стража реагирует, если только вор пойман с поличным.
 	AI_Output(self,other,"DIA_Jora_HolDeinGold_Wache_08_02");	//А когда я заметил, что мой кошелек пропал, его и след простыл!
 };
 

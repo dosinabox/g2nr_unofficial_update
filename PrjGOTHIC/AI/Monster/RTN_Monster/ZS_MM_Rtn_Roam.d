@@ -9,13 +9,14 @@ func void ZS_MM_Rtn_Roam()
 		AI_GotoWP(self,self.wp);
 	};
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
+	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
 };
 
-func int ZS_MM_Rtn_Roam_loop()
+func int ZS_MM_Rtn_Roam_Loop()
 {
 	var int wanderTime;
 	var int randomMove;
-	if(!Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],0) && (self.aivar[AIV_MM_RoamStart] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_RoamStart],0,self.aivar[AIV_MM_RoamEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_RoamStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 		return LOOP_END;
@@ -53,7 +54,7 @@ func int ZS_MM_Rtn_Roam_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_MM_Rtn_Roam_end()
+func void ZS_MM_Rtn_Roam_End()
 {
 };
 

@@ -22,8 +22,8 @@ func void DIA_Addon_AlligatorJack_Exit_Info()
 {
 	if((MIS_KrokoJagd == LOG_SUCCESS) && (DIA_Addon_AlligatorJack_Exit_Info_OneTime == FALSE))
 	{
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_00");	//Если я тебе понадоблюсь, ты сможешь найти меня у моего лагеря рядом с частоколом.
-		if(PIR_1354_Addon_Henry.aivar[AIV_TalkedToPlayer] == FALSE)
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_00");	//Если я тебе понадоблюсь, ты можешь найти меня у моего лагеря рядом с частоколом.
+		if(Henry.aivar[AIV_TalkedToPlayer] == FALSE)
 		{
 			AI_Output(other,self,"DIA_Addon_AlligatorJack_Exit_15_01");	//Частоколом?
 			AI_Output(self,other,"DIA_Addon_AlligatorJack_Exit_12_02");	//Продолжай идти на запад, и ты увидишь, о чем я говорю.
@@ -168,7 +168,7 @@ func void B_AlligatorJack_Besser()
 func void DIA_Addon_AlligatorJack_Vorschlag_tot()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_Vorschlag_tot_15_00");	//Я должен убить Ворона.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_01");	//(смеется) Что? Ты? И как же ты собираешься это сделать?
+	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_01");	//(смеется) Что? Ты? И как ты собираешься это сделать?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_02");	//Разве он тебе по силам?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_03");	//Ты к нему и близко не подойдешь. Его бандиты с тебя живьем шкуру сдерут.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Vorschlag_tot_12_04");	//Ты даже через первый их пост не пройдешь.
@@ -285,7 +285,7 @@ func void DIA_Addon_AlligatorJack_PIRLager_Info()
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_PIRLager_15_00");	//Где находится ваш лагерь?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_01");	//Видишь этот проход? Иди через него и направляйся на запад. Рано или поздно ты дойдешь до нашего берега.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_02");	//Там и стоят наши дома.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_03");	//Я мог бы тебя проводить, но ты должен оказать мне одну услугу.
+	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_03");	//Я бы мог тебя проводить, но ты должен оказать мне одну услугу.
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_PIRLager_15_04");	//Какую же?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_05");	//Прежде чем возвращаться в лагерь, я должен добыть ребятам еды.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PIRLager_12_06");	//Судя по виду, ты сильный человек.
@@ -565,7 +565,7 @@ func void DIA_Addon_AlligatorJack_HuntEnd_Info()
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_07");	//Отнеси это мясо болотных крыс старому лентяю Моргану.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_08");	//Ты найдешь его в нашем лагере.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_09");	//Он наверняка нежится на солнышке. Отдай ему мясо, он ждет.
-	if(PIR_1354_Addon_Henry.aivar[AIV_PASSGATE] == FALSE)
+	if(Henry.aivar[AIV_PASSGATE] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_10");	//Вход в лагерь обычно охраняет Генри. Его задача - не пропускать бандитов.
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_11");	//Если он откажется тебя впустить, скажи, что послал тебя я.
@@ -645,7 +645,7 @@ func void DIA_Addon_AlligatorJack_Lake_Info()
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_04");	//Озеро в большой низине.
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_05");	//Иди от лагеря на восток. Не заметить низину невозможно.
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_06");	//Там еще множество небольших водопадов.
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_07");	//Будь внимателен - если у тебя под ногами нет ничего, кроме песка, значит, ты пропустил поворот и угодил в каньон.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Lake_12_07");	//Будь внимателен - если у тебя под ногами ничего нет, кроме песка, значит, ты пропустил поворот и угодил в каньон.
 	};
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"Пещера должна быть в низине на востоке от лагеря, рядом с озером.");
 };

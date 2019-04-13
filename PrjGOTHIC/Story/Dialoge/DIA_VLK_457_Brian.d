@@ -108,7 +108,7 @@ func void DIA_Brian_AboutLehrling_Info()
 	AI_Output(other,self,"DIA_Brian_AboutLehrling_15_00");	//Каково это, быть учеником кузнеца?
 	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_01");	//Почему ты спрашиваешь? Ты хочешь стать моим преемником?
 	AI_Output(other,self,"DIA_Brian_AboutLehrling_15_02");	//Может быть.
-	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_03");	//Почему бы и нет... Я почти закончил свое обучение и собираюсь вскоре покинуть город.
+	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_03");	//Почему бы и нет? Я почти закончил свое обучение и собираюсь вскоре покинуть город.
 	AI_Output(self,other,"DIA_Brian_AboutLehrling_04_04");	//Но не из-за Гарада. Он хороший мастер, я многому научился у него.
 };
 

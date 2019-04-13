@@ -128,16 +128,20 @@ func int DIA_Diego_DI_TRADE_Condition()
 
 func void DIA_Diego_DI_TRADE_Info()
 {
-	var int McBolzenAmount;
-	var int McArrowAmount;
 	AI_Output(other,self,"DIA_Diego_DI_TRADE_15_00");	//Мне нужна амуниция.
 	B_GiveTradeInv(self);
-	Npc_RemoveInvItems(self,ItRw_Bolt,Npc_HasItems(self,ItRw_Bolt));
-	McBolzenAmount = Kapitel * 50;
-	CreateInvItems(self,ItRw_Bolt,McBolzenAmount);
-	Npc_RemoveInvItems(self,ItRw_Arrow,Npc_HasItems(self,ItRw_Arrow));
-	McArrowAmount = Kapitel * 50;
-	CreateInvItems(self,ItRw_Arrow,McArrowAmount);
+	if(TradersHaveLimitedAmmo == TRUE)
+	{
+		if(Diego_DI_Ammo_Day <= Wld_GetDay())
+		{
+			B_RefreshAmmo(self,50);
+			Diego_DI_Ammo_Day = Wld_GetDay() + 1;
+		};
+	}
+	else
+	{
+		B_RefreshAmmo(self,50);
+	};
 	AI_Output(self,other,"DIA_Diego_DI_TRADE_11_01");	//Возможно, я смогу помочь тебе.
 };
 

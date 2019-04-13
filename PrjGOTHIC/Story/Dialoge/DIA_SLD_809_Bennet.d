@@ -82,16 +82,20 @@ func void DIA_Bennet_TRADE_Info()
 		};
 		Bennet_flag = FALSE;
 	};
-	var int McBolzenAmount;
-	var int McArrowAmount;
 	AI_Output(other,self,"DIA_Bennet_TRADE_15_00");	//ј как насчет кузнечного инструмента?
 	B_GiveTradeInv(self);
-	Npc_RemoveInvItems(self,ItRw_Bolt,Npc_HasItems(self,ItRw_Bolt));
-	McBolzenAmount = Kapitel * 50;
-	CreateInvItems(self,ItRw_Bolt,McBolzenAmount);
-	Npc_RemoveInvItems(self,ItRw_Arrow,Npc_HasItems(self,ItRw_Arrow));
-	McArrowAmount = Kapitel * 50;
-	CreateInvItems(self,ItRw_Arrow,McArrowAmount);
+	if(TradersHaveLimitedAmmo == TRUE)
+	{
+		if(Bennet_Ammo_Day <= Wld_GetDay())
+		{
+			B_RefreshAmmo(self,50);
+	 		Bennet_Ammo_Day = Wld_GetDay() + 1;
+		};
+	}
+	else
+	{
+		B_RefreshAmmo(self,50);
+	};
 	AI_Output(self,other,"DIA_Bennet_TRADE_06_01");	//„то тебе нужно?
 	if(BennetLOG == FALSE)
 	{
@@ -446,7 +450,8 @@ func void DIA_Bennet_TeachSmith_Info()
 	}
 	else if((MIS_ReadyforChapter4 == TRUE) && (Kapitel < 5) && (Bennet_Kap4Smith == FALSE))
 	{
-		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03");	//ѕолагаю, что € превзошел самого себ€. я разработал два боевых клинка. Ёто лучшее из того, что € когда-либо видел.
+//		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03");	//ѕолагаю, что € превзошел самого себ€. я разработал два боевых клинка. Ёто лучшее из того, что € когда-либо видел.
+		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03");	//Ёто лучшее, что € умею ковать сейчас.
 		Bennet_Kap4Smith = TRUE;
 	}
 	else if((Kapitel >= 5) && (Bennet_Kap5Smith == FALSE))
@@ -1048,7 +1053,7 @@ instance DIA_Bennet_GiveInnosEye(C_Info)
 
 func int DIA_Bennet_GiveInnosEye_Condition()
 {
-	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) && (MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) && (MIS_SCKnowsInnosEyeIsBroken == TRUE) && (MIS_RescueBennet == LOG_SUCCESS) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
 	{
 		return TRUE;
 	};

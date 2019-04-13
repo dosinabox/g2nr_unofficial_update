@@ -221,8 +221,8 @@ func void DIA_Sentenza_Vote_Info()
 	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 	{
 		AI_Output(self,other,"DIA_Sentenza_Vote_09_01");	//“олько потому, что ты побил мен€? (смеетс€) Ќет.
-	}
-	else if((Npc_HasItems(self,ItMi_Gold) >= 50) && ((Sentenza_GoldTaken == TRUE) || (Sentenza_GoldGiven == TRUE)))
+	};
+	if((Npc_HasItems(self,ItMi_Gold) >= 50) && ((Sentenza_GoldTaken == TRUE) || (Sentenza_GoldGiven == TRUE)))
 	{
 		AI_Output(self,other,"DIA_Sentenza_Vote_09_02");	//’от€, почему бы и нет? 50 золотых - это разумна€ плата за мой голос, тебе так не кажетс€?
 		Sentenza_Stimme = TRUE;

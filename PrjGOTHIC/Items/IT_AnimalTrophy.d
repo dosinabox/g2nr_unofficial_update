@@ -210,8 +210,7 @@ instance ItAt_Sting(C_Item)
 	visual = "ItAt_Sting.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[1] = "Это жало";
-	text[2] = "содержит яд.";
+	text[1] = "Это жало содержит яд.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

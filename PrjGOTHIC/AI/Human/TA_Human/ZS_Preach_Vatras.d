@@ -9,7 +9,7 @@ func void ZS_Preach_Vatras()
 	AI_AlignToWP(self);
 };
 
-func int ZS_Preach_Vatras_loop()
+func int ZS_Preach_Vatras_Loop()
 {
 	if(Npc_GetStateTime(self) >= 13)
 	{
@@ -24,7 +24,7 @@ func int ZS_Preach_Vatras_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Preach_Vatras_end()
+func void ZS_Preach_Vatras_End()
 {
 };
 

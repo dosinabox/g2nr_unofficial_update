@@ -77,7 +77,7 @@ func int DIA_Abuyin_Hallo_Condition()
 
 func void DIA_Abuyin_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_00");	//(задумчиво) ...Как странно... Мне кажется, что мы с тобой уже встречались, путник...
+	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_00");	//(задумчиво) ...Как странно... Мне кажется, мы с тобой уже встречались, путник...
 	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_01");	//Что ж... велики загадки нашего мира... О, прошу простить мою грубость, Сын Терпения, я даже не поприветствовал тебя.
 	AI_Output(self,other,"DIA_Addon_Abuyin_Hallo_13_02");	//Добро пожаловать, друг мой, присядь на мой скромный ковер и выкури трубку, наслаждаясь покоем.
 };
@@ -341,7 +341,7 @@ func void DIA_Abuyin_Herb_Info()
 	AI_Output(self,other,"DIA_Abuyin_Herb_13_01");	//Тюк трав - это не болотная трава, нет? Ох, убери ее, о, Сын Недальновидности.
 	AI_Output(self,other,"DIA_Abuyin_Herb_13_02");	//Если городская стража увидит ее у меня, они бросят меня в тюрьму - а тебя будет ждать не лучшая судьба!
 	AI_Output(self,other,"DIA_Abuyin_Herb_13_03");	//Если тебе так хочется продать эту траву, послушай моего совета - покинь этот город.
-	AI_Output(self,other,"DIA_Abuyin_Herb_13_04");	//Попробуй избавиться от нее где-нибудь за пределами городских стен. А здесь тебя ждет с ней одна головная боль.
+	AI_Output(self,other,"DIA_Abuyin_Herb_13_04");	//Попробуй избавиться от нее где-нибудь за пределами городских стен. А здесь... тебя здесь ждет с ней одна головная боль.
 };
 
 
@@ -400,7 +400,7 @@ func void DIA_Abuyin_Zukunft_Info()
 	AI_Output(other,self,"DIA_Abuyin_Zukunft_15_00");	//Расскажи мне о будущем.
 	if(B_GiveInvItems(other,self,ItMi_Gold,25))
 	{
-		AI_Output(self,other,"DIA_Abuyin_Zukunft_13_01");	//Хорошо, о, Жаждущий Знаний. Я сейчас войду в состояние транса. Ты готов?
+		AI_Output(self,other,"DIA_Abuyin_Zukunft_13_01");	//Хорошо, о, Сын Мужества. Я сейчас войду в состояние транса. Ты готов?
 		Info_ClearChoices(DIA_Abuyin_Zukunft);
 		Info_AddChoice(DIA_Abuyin_Zukunft,"Я готов!",DIA_Abuyin_Zukunft_Trance);
 	}
@@ -724,7 +724,7 @@ func int DIA_Abuyin_Weissagung5_Condition()
 func void DIA_Abuyin_Weissagung5_Info()
 {
 	B_Abuyin_Weissagung();
-	AI_Output(self,other,"DIA_Abuyin_Weissagung5_13_00");	//За какую-то 1000 монет я рискну заглянуть для тебя в будущее.
+	AI_Output(self,other,"DIA_Abuyin_Weissagung5_13_00");	//За какие-то 1000 монет я рискну заглянуть для тебя в будущее.
 };
 
 

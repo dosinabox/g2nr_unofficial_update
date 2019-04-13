@@ -93,7 +93,7 @@ func int DIA_Addon_Balthasar_Rangerbandits_Condition()
 func void DIA_Addon_Balthasar_Rangerbandits_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Balthasar_Rangerbandits_15_00");	//Ты не видел проходящих здесь бандитов?
-	AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_01");	//Видел. Они прошли краем поля у фермы Секоба и отправились в лес на севере.
+	AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_01");	//Видел. Они прошли краем поля у фермы Секоба и отправились в лес на север.
 	if(MIS_Vatras_FindTheBanditTrader == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Addon_Balthasar_Rangerbandits_05_02");	//С собой у них было огромное количество оружия. Выглядели они так, как будто собираются выиграть войну с орками.
@@ -130,7 +130,7 @@ func void DIA_Balthasar_AERGERMITNACHBARN_Info()
 {
 	AI_Output(other,self,"DIA_Balthasar_AERGERMITNACHBARN_15_00");	//А что за проблемы с соседями?
 	AI_Output(self,other,"DIA_Balthasar_AERGERMITNACHBARN_05_01");	//Трава в этой части большого поля чахлая и пожухлая. Поэтому я часто пасу овец на больших пастбищах других ферм.
-	AI_Output(self,other,"DIA_Balthasar_AERGERMITNACHBARN_05_02");	//Лендлорд не возражает, но Бенгар, фермер, владеющий высокогорными пастбищами, каждый раз орет как резаный, когда видит моих овец там.
+	AI_Output(self,other,"DIA_Balthasar_AERGERMITNACHBARN_05_02");	//Онар не возражает, но Бенгар, фермер, владеющий высокогорными пастбищами, каждый раз орет как резаный, когда видит моих овец там.
 	AI_Output(self,other,"DIA_Balthasar_AERGERMITNACHBARN_05_03");	//Он говорит, что Секоб должен платить, если хочет пасти овец на его пастбищах.
 	AI_Output(self,other,"DIA_Balthasar_AERGERMITNACHBARN_05_04");	//Но Секоб скорее удавится, чем потратит хоть цент на это, поэтому я больше не хожу на плато.
 };
@@ -148,7 +148,7 @@ instance DIA_Balthasar_WOBENGAR(C_Info)
 
 func int DIA_Balthasar_WOBENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN) && (Bengar.aivar[AIV_TalkedToPlayer] == FALSE) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};
@@ -276,7 +276,10 @@ func void DIA_Balthasar_PERMKAP1_Info()
 			AI_Output(self,hero,"DIA_Balthasar_PERMKAP1_05_03");	//Я думаю, лучше пойти к Секобу и признаться.
 		};
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"Start");
+		if((Kapitel < 3) || (TOPIC_END_SekobDMT == TRUE))
+		{
+			Npc_ExchangeRoutine(self,"Start");
+		};
 	};
 };
 

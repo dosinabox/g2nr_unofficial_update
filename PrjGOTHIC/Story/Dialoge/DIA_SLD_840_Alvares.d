@@ -42,12 +42,15 @@ func int DIA_Alvares_HAUAB_Condition()
 
 func void DIA_Alvares_HAUAB_Info()
 {
-	Akils_SLDStillthere = TRUE;
 	AI_Output(self,other,"DIA_Alvares_HAUAB_11_00");	//Что бы ни привело тебя сюда - тебе лучше забыть об этом и убраться подальше.
-	Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
-	B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
-	AI_StopProcessInfos(self);
+	if(Akils_SLDStillthere == FALSE)
+	{
+		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+		Akils_SLDStillthere = TRUE;
+	};
+//	AI_StopProcessInfos(self);
 };
 
 
@@ -87,6 +90,12 @@ func void DIA_Alvares_ATTACK_Info()
 	};
 };
 
+func void DIA_Alvares_ATTACK_End()
+{
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_SuddenEnemyInferno,1);
+};
+
 func void DIA_Alvares_ATTACK_Witz()
 {
 	AI_Output(other,self,"DIA_Alvares_ATTACK_Witz_15_00");	//Вы, парни, сейчас исчезнете отсюда. Все понятно?
@@ -94,8 +103,8 @@ func void DIA_Alvares_ATTACK_Witz()
 	AI_Output(self,other,"DIA_Alvares_ATTACK_Witz_11_02");	//Ты знаешь, о чем я думаю?
 	AI_Output(other,self,"DIA_Alvares_ATTACK_Witz_15_03");	//Да кому какое дело, о чем ты думаешь?
 	AI_Output(self,other,"DIA_Alvares_ATTACK_Witz_11_04");	//Я думаю, что хороший герой - это мертвый герой. Так что сделай мне одолжение - умри поскорее!
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_SuddenEnemyInferno,1);
+	Info_ClearChoices(DIA_Alvares_ATTACK);
+	Info_AddChoice(DIA_Alvares_ATTACK,Dialog_Ende,DIA_Alvares_ATTACK_End);
 };
 
 func void DIA_Alvares_ATTACK_Kerle()
@@ -103,8 +112,8 @@ func void DIA_Alvares_ATTACK_Kerle()
 	AI_Output(other,self,"DIA_Alvares_ATTACK_Kerle_15_00");	//Кто вы такие, парни - пара клоунов?
 	AI_Output(self,other,"DIA_Alvares_ATTACK_Kerle_11_01");	//Ты правильно понял. И я буду продолжать смеяться, когда твой труп будет лежать в дорожной пыли.
 	AI_Output(self,other,"DIA_Alvares_ATTACK_Kerle_11_02");	//(зовет) Энгардо, давай начинать! Ты берешь на себя фермера - а я разберусь с этим клоуном!
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_SuddenEnemyInferno,1);
+	Info_ClearChoices(DIA_Alvares_ATTACK);
+	Info_AddChoice(DIA_Alvares_ATTACK,Dialog_Ende,DIA_Alvares_ATTACK_End);
 };
 
 func void DIA_Alvares_ATTACK_Aerger()
@@ -153,8 +162,8 @@ func void DIA_Alvares_Schluss_Info()
 {
 	AI_Output(self,other,"DIA_Alvares_Schluss_11_00");	//Я дал тебе шанс. Но, похоже, ты не прислушиваешься к здравому смыслу.
 	AI_Output(self,other,"DIA_Alvares_Schluss_11_01");	//Хорошо - значит, мне придется убить тебя. (зовет) Энгардо, давай, прикончим их!
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_SuddenEnemyInferno,1);
+	Info_ClearChoices(DIA_Alvares_Schluss);
+	Info_AddChoice(DIA_Alvares_Schluss,Dialog_Ende,DIA_Alvares_ATTACK_End);
 };
 
 

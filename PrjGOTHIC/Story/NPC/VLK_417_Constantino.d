@@ -21,7 +21,8 @@ instance VLK_417_Constantino(Npc_Default)
 
 func void Rtn_Start_417()
 {
-	TA_Potion_Alchemy(8,0,22,0,"NW_CITY_ALCHEMY_VELAX");
+	TA_Potion_Alchemy(10,0,22,0,"NW_CITY_ALCHEMY_VELAX");
 	TA_Sleep(22,0,8,0,"NW_CITY_BED_VELAX");
+	TA_Read_Bookstand(8,0,10,0,"NW_CITY_BOOK_VELAX");
 };
 

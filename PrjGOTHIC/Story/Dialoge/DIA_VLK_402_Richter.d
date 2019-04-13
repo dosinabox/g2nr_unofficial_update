@@ -174,6 +174,7 @@ func void DIA_Richter_KillMorgahard_Info()
 {
 	AI_Output(other,self,"DIA_Richter_KillMorgahard_15_00");	//Вот священный молот магов.
 	B_GiveInvItems(other,self,Holy_Hammer_MIS,1);
+	Npc_RemoveInvItem(self,Holy_Hammer_MIS);
 	AI_Output(self,other,"DIA_Richter_KillMorgahard_10_01");	//Я поражен. Похоже, у тебя действительно серьезные намерения. Вот твое вознаграждение.
 	CreateInvItems(self,ItMi_Gold,300);
 	B_GiveInvItems(self,other,ItMi_Gold,300);
@@ -328,7 +329,15 @@ instance DIA_Richter_PICKPOCKET(C_Info)
 
 func int DIA_Richter_PICKPOCKET_Condition()
 {
-	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Richter),1);
+//	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Richter),1);
+	if(Npc_HasItems(self,ItKe_Richter))
+	{
+		return C_StealItem(30,Hlp_GetInstanceID(ItKe_Richter));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Richter_PICKPOCKET_Info()
@@ -340,7 +349,8 @@ func void DIA_Richter_PICKPOCKET_Info()
 
 func void DIA_Richter_PICKPOCKET_DoIt()
 {
-	B_StealItems(30,Hlp_GetInstanceID(ItKe_Richter),1);
+//	B_StealItems(30,Hlp_GetInstanceID(ItKe_Richter),1);
+	B_StealItem(30,Hlp_GetInstanceID(ItKe_Richter));
 	Info_ClearChoices(DIA_Richter_PICKPOCKET);
 };
 

@@ -289,7 +289,7 @@ instance DIA_Jarvis_HowMany(C_Info)
 	condition = DIA_Jarvis_HowMany_Condition;
 	information = DIA_Jarvis_HowMany_Info;
 	permanent = FALSE;
-	description = "Сколько людей Сильвио я должен победить?";
+	description = "И сколько людей Сильвио я должен победить?";
 };
 
 
@@ -306,7 +306,7 @@ func void DIA_Jarvis_HowMany_Info()
 	AI_Output(other,self,"DIA_Jarvis_HowMany_15_00");	//И сколько людей Сильвио я должен победить?
 	AI_Output(self,other,"DIA_Jarvis_HowMany_04_01");	//Если ты вырубишь троих из них, ты докажешь, на чьей ты стороне.
 	AI_Output(self,other,"DIA_Jarvis_HowMany_04_02");	//Кого ты выберешь - это твое дело.
-	AI_Output(self,other,"DIA_Jarvis_HowMany_04_03");	//Дам одну подсказку: Не стоит пытаться проявить мужество. Не выступай против самого Сильвио - он сделает из тебя котлету.
+	AI_Output(self,other,"DIA_Jarvis_HowMany_04_03");	//Дам одну подсказку: не стоит пытаться проявить мужество. Не выступай против самого Сильвио - он сделает из тебя котлету.
 	B_LogEntry(TOPIC_JarvisSLDKo,"Вполне достаточно, если я вырублю троих людей Сильвио. Впрочем, с самим Сильвио мне лучше пока не связываться.");
 };
 
@@ -399,9 +399,9 @@ func void DIA_Jarvis_HowManyLeft_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_15");	//Этого достаточно, вполне достаточно.
-		if(victories == 6)
+		if(victories >= 5)
 		{
-			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_16");	//Ты им всем начистил физиономию, Да?
+			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_16");	//Ты им всем начистил физиономию, да?
 		};
 		AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_17");	//Я поражен - если Ли спросит мое мнение, я проголосую за тебя без колебаний.
 		MIS_Jarvis_SldKO = LOG_SUCCESS;

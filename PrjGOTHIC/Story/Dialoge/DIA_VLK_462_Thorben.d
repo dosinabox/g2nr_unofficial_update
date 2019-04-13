@@ -175,16 +175,16 @@ func void DIA_Thorben_OtherMasters_Info()
 
 func void B_Thorben_GetBlessings()
 {
-	AI_Output(self,other,"B_Thorben_GetBlessings_06_00");	//Тогда иди к Ватрасу, жрецу Аданоса, пусть он даст тебе благословение.
+	AI_Output(self,other,"B_Thorben_GetBlessings_06_00");	//Тогда иди к Ватрасу, жрецу Аданоса, пусть он тебе даст благословение.
 	if((other.guild != GIL_KDF) && (other.guild != GIL_NOV) && (other.guild != GIL_PAL))
 	{
 		AI_Output(self,other,"B_Thorben_GetBlessings_06_01");	//Он также подскажет тебе, где найти жреца Инноса. Ты должен получить и его благословение.
 	};
-	AI_Output(self,other,"B_Thorben_GetBlessings_06_02");	//А когда ты получишь благословение богов, Я проголосую за тебя.
+	AI_Output(self,other,"B_Thorben_GetBlessings_06_02");	//А когда ты получишь благословение богов, я проголосую за тебя.
 	MIS_Thorben_GetBlessings = LOG_Running;
 	Log_CreateTopic(TOPIC_Thorben,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Thorben,LOG_Running);
-	B_LogEntry(TOPIC_Thorben,"Торбен даст мне свое одобрение, если жрец Аданоса и жрец Инноса дадут мне свое благословение.");
+	B_LogEntry(TOPIC_Thorben,"Торбен даст мне свое одобрение, если жрецы Аданоса и Инноса дадут мне свое благословение.");
 };
 
 func void DIA_Thorben_OtherMasters_Devoutly()
@@ -473,9 +473,9 @@ func void DIA_Thorben_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Thorben_TRADE_06_02");	//Хорошо. Но они ничем не помогут тебе, пока ты не научишься пользоваться ими.
 	};
-	if(!Npc_HasItems(self,ItKE_lockpick) && (Kapitel > Dietrichgeben))
+	if(!Npc_HasItems(self,ItKe_Lockpick) && (Kapitel > Dietrichgeben))
 	{
-		CreateInvItems(self,ItKE_lockpick,5);
+		CreateInvItems(self,ItKe_Lockpick,5);
 		Dietrichgeben += 1;
 	};
 	if(THORBEN_TRADELOG == FALSE)
@@ -703,7 +703,7 @@ func void DIA_Thorben_GrittaHatteGold_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_GrittaHatteGold_15_00");	//У твоей племянницы было 100 золотых монет.
 	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_06_01");	//ЧТО? Ах она змея - это было МОЕ золото! Она взяла его из моего сундука.
-	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_06_02");	//Отдай его мне! Я должен сначала заплатить Лемару. Маттео может подождать!
+	AI_Output(self,other,"DIA_Thorben_GrittaHatteGold_06_02");	//Отдай мне его! Я должен сначала заплатить Лемару. Маттео может подождать!
 	Info_ClearChoices(DIA_Thorben_GrittaHatteGold);
 	if(MIS_Matteo_Gold == LOG_SUCCESS)
 	{
@@ -756,4 +756,5 @@ func void DIA_Thorben_GrittaHatteGold_HereItIs()
 	Thorben_GotGold = TRUE;
 	Info_ClearChoices(DIA_Thorben_GrittaHatteGold);
 };
+
 

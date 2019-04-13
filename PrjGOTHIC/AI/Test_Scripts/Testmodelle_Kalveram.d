@@ -419,7 +419,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItKe_Key_01,1);
 	CreateInvItems(self,ItKe_Key_02,1);
 	CreateInvItems(self,ItKe_Key_03,1);
-	CreateInvItems(self,ItKE_lockpick,10);
+	CreateInvItems(self,ItKe_Lockpick,10);
 	CreateInvItems(self,ItKe_City_Tower_01,1);
 	CreateInvItems(self,ItKe_City_Tower_02,1);
 	CreateInvItems(self,ItKe_City_Tower_03,1);
@@ -974,7 +974,7 @@ func int DIA_TA_Testmodell_GuideStart_Condition()
 	Testmodell = Hlp_GetNpc(TA_Testmodell);
 	if(!Npc_IsInRoutine(self,ZS_Guide_Player))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -992,7 +992,7 @@ instance Info_TA_Testmodell_GuideEnd(C_Info)
 	condition = DIA_TA_Testmodell_GuideEnd_Condition;
 	information = DIA_TA_Testmodell_GuideEnd_Info;
 	permanent = TRUE;
-	description = "Занончить Guide_Player!";
+	description = "Закончить Guide_Player!";
 };
 
 
@@ -1002,7 +1002,7 @@ func int DIA_TA_Testmodell_GuideEnd_Condition()
 	Testmodell = Hlp_GetNpc(TA_Testmodell);
 	if(Npc_IsInRoutine(self,ZS_Guide_Player))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -1030,7 +1030,7 @@ func int DIA_TA_Testmodell_FollowStart_Condition()
 	Testmodell = Hlp_GetNpc(TA_Testmodell);
 	if(!Npc_IsInRoutine(self,ZS_Follow_Player))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -1058,7 +1058,7 @@ func int DIA_TA_Testmodell_FollowEnd_Condition()
 	Testmodell = Hlp_GetNpc(TA_Testmodell);
 	if(Npc_IsInRoutine(self,ZS_Follow_Player))
 	{
-		return 1;
+		return TRUE;
 	};
 };
 
@@ -1124,7 +1124,7 @@ func void INIT_TA_Testlevel()
 };
 
 
-instance gold(C_Item)
+instance Gold(C_Item)
 {
 	name = "Кошелек полон монет!";
 	mainflag = ITEM_KAT_NONE;
@@ -1406,4 +1406,5 @@ func void UseHoshiTagebuch()
 {
 	GregIsBack_S1();
 };
+
 

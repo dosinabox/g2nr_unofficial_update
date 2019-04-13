@@ -24,12 +24,12 @@ func void B_Say_AttackReason()
 		};
 		if(other.guild < GIL_SEPERATOR_HUM)
 		{
-			if(C_PlayerIsFakeBandit(self,other) == TRUE)
+			if(C_PlayerIsFakeBandit(self,other))
 			{
 				B_Say_Overlay(self,other,"$ADDON_DIEBANDIT");
 				Npc_SendPassivePerc(self,PERC_ASSESSFIGHTSOUND,self,other);
 			}
-			else if(C_PlayerIsFakePirate(self,other) == TRUE)
+			else if(C_PlayerIsFakePirate(self,other))
 			{
 				B_Say_Overlay(self,other,"$ADDON_DIRTYPIRATE");
 				Npc_SendPassivePerc(self,PERC_ASSESSFIGHTSOUND,self,other);

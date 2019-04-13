@@ -5,12 +5,12 @@ instance BAU_940_Akil(Npc_Default)
 	guild = GIL_OUT;
 	id = 940;
 	voice = 13;
-	flags = NPC_FLAG_IMMORTAL;
+//	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
 	attribute[ATR_HITPOINTS] = 300;
 	attribute[ATR_HITPOINTS_MAX] = 300;
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Grim,BodyTex_N,ITAR_Bau_M);

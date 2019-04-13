@@ -127,6 +127,8 @@ func void DIA_Grom_PayTeacher_Info()
 	AI_Output(self,other,"DIA_Grom_PayTeacher_08_01");	//Фантастика. И что теперь?
 	Grom_TeachAnimalTrophy = TRUE;
 	B_GivePlayerXP(XP_Ambient);
+	Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
+	B_LogEntry(TOPIC_Teacher,"Гром может обучить меня добывать трофеи животных.");
 };
 
 
@@ -192,7 +194,7 @@ func void DIA_Grom_TEACHHUNTING_Fur()
 {
 	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Fur))
 	{
-		AI_Output(self,other,"DIA_Grom_TEACHHUNTING_Fur_08_00");	//Сделай разрез вдоль ног животного, чтобы ты мог снять с него шкуру. Снимай ее с зада наперед, а не наоборот.
+		AI_Output(self,other,"DIA_Grom_TEACHHUNTING_Fur_08_00");	//Сделай разрез вдоль ноги животного, чтобы ты мог снять с него шкуру. Снимай ее с зада наперед, а не наоборот.
 	};
 	Info_ClearChoices(DIA_Grom_TEACHHUNTING);
 };

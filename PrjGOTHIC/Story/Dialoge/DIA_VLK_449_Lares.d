@@ -179,7 +179,7 @@ func void DIA_Lares_HALLO_LEE()
 func void DIA_Lares_HALLO_NOIDEA()
 {
 	AI_Output(other,self,"DIA_Lares_HALLO_NOIDEA_15_00");	//Ли?
-	AI_Output(self,other,"DIA_Lares_HALLO_NOIDEA_09_01");	//Тебе, похоже, многое пришлось пережить. Ли был предводителем наемником в Новом Лагере.
+	AI_Output(self,other,"DIA_Lares_HALLO_NOIDEA_09_01");	//Тебе, похоже, многое пришлось пережить. Ли был предводителем наемников в Новом Лагере.
 	B_Lares_AboutLee();
 	Info_ClearChoices(DIA_Lares_HALLO);
 };
@@ -869,6 +869,10 @@ func void DIA_Addon_Lares_RangerHelp_ruestung()
 	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_ruestung_09_05");	//Отправляйся на рынок и купи у Зуриса заклинание сна. Оно позволит тебе усыпить охранника.
 	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_ruestung_09_06");	//Уверен, что среди вещей Маттео ты найдешь себе достойную броню...
 	DIA_Addon_Lares_RangerHelp_gilde_OneTime_ruestung = TRUE;
+	if(!Npc_HasItems(other,ItSc_Sleep) && !Npc_HasItems(Zuris,ItSc_Sleep))
+	{
+		CreateInvItem(Zuris,ItSc_Sleep);
+	};
 };
 
 func void DIA_Addon_Lares_RangerHelp_waffe()
@@ -885,7 +889,7 @@ func void DIA_Addon_Lares_RangerHelp_geld()
 	AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_geld_09_02");	//Отправляйся к нему и одолжи столько, сколько тебе нужно. Об остальном я позабочусь. Дом Лемара находится на границе порта и нижнего квартала города.
 	DIA_Addon_Lares_RangerHelp_gilde_OneTime_geld = TRUE;
 	RangerHelp_LehmarKohle = TRUE;
-	Info_ClearChoices(DIA_Addon_Lares_RangerHelp);
+//	Info_ClearChoices(DIA_Addon_Lares_RangerHelp);
 };
 
 func void DIA_Addon_Lares_RangerHelp_nix()
@@ -897,7 +901,7 @@ func void DIA_Addon_Lares_RangerHelp_Moe()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_Moe_15_00");	//Этот парень мне надоедает...
 	AI_Output(self,other,"DIA_Addon_Lares_Moe_09_01");	//Ничего, это пройдет...
-	Info_ClearChoices(DIA_Addon_Lares_RangerHelp);
+//	Info_ClearChoices(DIA_Addon_Lares_RangerHelp);
 	AI_StopProcessInfos(self);
 	other.aivar[AIV_INVINCIBLE] = FALSE;
 	B_Attack(self,Moe,AR_GuardStopsFight,0);
@@ -1343,7 +1347,7 @@ func void DIA_Lares_GoNow_GoingConditions()
 	AI_StopProcessInfos(self);
 	Lares_Guide = Wld_GetDay();
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	if(Npc_KnowsInfo(other,DIA_Moe_Hallo) == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Moe_Hallo))
 	{
 		Npc_SetRefuseTalk(Moe,30);
 	};
@@ -1922,8 +1926,10 @@ func int DIA_Lares_TEACH_Condition()
 func void DIA_Lares_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_Teach_15_00");	//Тренируй меня.
-	Lares_MerkeDEX = other.attribute[ATR_DEXTERITY];
-	Lares_MerkeSTR = other.attribute[ATR_STRENGTH];
+//	Lares_MerkeDEX = other.attribute[ATR_DEXTERITY];
+//	Lares_MerkeSTR = other.attribute[ATR_STRENGTH];
+	Lares_MerkeDEX = other.aivar[REAL_DEXTERITY];
+	Lares_MerkeSTR = other.aivar[REAL_STRENGTH];
 	Info_ClearChoices(DIA_Lares_TEACH);
 	Info_AddChoice(DIA_Lares_TEACH,Dialog_Back,DIA_Lares_TEACH_BACK);
 	Info_AddChoice(DIA_Lares_TEACH,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_TEACH_1);
@@ -1934,11 +1940,13 @@ func void DIA_Lares_TEACH_Info()
 
 func void DIA_Lares_TEACH_BACK()
 {
-	if(other.attribute[ATR_DEXTERITY] > Lares_MerkeDEX)
+//	if(other.attribute[ATR_DEXTERITY] > Lares_MerkeDEX)
+	if(other.aivar[REAL_DEXTERITY] > Lares_MerkeDEX)
 	{
 		AI_Output(self,other,"DIA_Lares_TEACH_BACK_09_00");	//Ты уже стал более ловким.
 	};
-	if(other.attribute[ATR_STRENGTH] > Lares_MerkeSTR)
+//	if(other.attribute[ATR_STRENGTH] > Lares_MerkeSTR)
+	if(other.aivar[REAL_STRENGTH] > Lares_MerkeSTR)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_TEACH_BACK_Add_09_00");	//(оценивающе) Очень хорошо. Ты стал сильнее.
 	};
@@ -2081,7 +2089,10 @@ func void DIA_Lares_AnyNews_Info()
 			AI_Output(self,other,"DIA_Lares_AnyNews_09_07");	//Беннет пришел в город за покупками. Но вернуться ему было не суждено.
 			AI_Output(self,other,"DIA_Lares_AnyNews_09_08");	//Если хочешь узнать больше, расспроси Ходжеса, он был в городе вместе с Беннетом.
 			MIS_RescueBennet = LOG_Running;
-		};
+			Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+			B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет был арестован паладинами. Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
+ 		};
 	};
 };
 

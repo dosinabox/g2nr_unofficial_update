@@ -221,8 +221,10 @@ func int DIA_Addon_Brandon_TeachPlayer_Condition()
 func void DIA_Addon_Brandon_TeachPlayer_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Francis_TeachPlayer_15_00");	//Я готов учиться!
-	Brandon_Merke_Str = other.attribute[ATR_STRENGTH];
-	Brandon_Merke_Dex = other.attribute[ATR_DEXTERITY];
+//	Brandon_Merke_Str = other.attribute[ATR_STRENGTH];
+//	Brandon_Merke_Dex = other.attribute[ATR_DEXTERITY];
+	Brandon_Merke_Str = other.aivar[REAL_STRENGTH];
+	Brandon_Merke_Dex = other.aivar[REAL_DEXTERITY];
 	if(MIS_Brandon_BringHering == LOG_SUCCESS)
 	{
 		Info_ClearChoices(DIA_Addon_Brandon_TeachPlayer);
@@ -240,11 +242,13 @@ func void DIA_Addon_Brandon_TeachPlayer_Info()
 
 func void DIA_Addon_Brandon_TeachPlayer_Back()
 {
-	if(other.attribute[ATR_STRENGTH] > Brandon_Merke_Str)
+//	if(other.attribute[ATR_STRENGTH] > Brandon_Merke_Str)
+	if(other.aivar[REAL_STRENGTH] > Brandon_Merke_Str)
 	{
 		AI_Output(self,other,"DIA_Addon_Brandon_TeachPlayer_Back_04_00");	//Прекрасно, сынок! Ты уже стал сильнее.
 	};
-	if(other.attribute[ATR_DEXTERITY] > Brandon_Merke_Dex)
+//	if(other.attribute[ATR_DEXTERITY] > Brandon_Merke_Dex)
+	if(other.aivar[REAL_DEXTERITY] > Brandon_Merke_Dex)
 	{
 		AI_Output(self,other,"DIA_Addon_Brandon_TeachPlayer_Back_04_01");	//Чем выше твоя ловкость, тем чаще ты будешь попадать по врагу.
 	};

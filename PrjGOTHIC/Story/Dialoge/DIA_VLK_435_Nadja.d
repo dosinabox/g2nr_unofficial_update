@@ -69,7 +69,7 @@ instance DIA_Nadja_STANDARD(C_Info)
 
 func int DIA_Nadja_STANDARD_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Bromor_Pay == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (Bromor_Pay == 0))
 	{
 		return TRUE;
 	};
@@ -113,7 +113,7 @@ instance DIA_Nadja_Danach(C_Info)
 
 func int DIA_Nadja_Danach_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Bromor_Pay == FALSE) && (Nadja_Nacht == TRUE))
+	if(Npc_IsInState(self,ZS_Talk) && (Bromor_Pay == 0) && (Nadja_Nacht == TRUE))
 	{
 		return TRUE;
 	};
@@ -241,7 +241,7 @@ func void DIA_Addon_Nadja_LuciaInfo_weiter()
 {
 	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_weiter_15_00");	//Спасибо, но мне нужно идти.
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_weiter_16_01");	//Очень жаль. Ну что ж, тогда в другой раз.
-	Bromor_Pay = FALSE;
+	Bromor_Pay = 0;
 	Nadja_Nacht += 1;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
@@ -282,7 +282,7 @@ func void DIA_Nadja_Poppen_Info()
 
 func void DIA_Nadja_Poppen_Start()
 {
-	Bromor_Pay = FALSE;
+	Bromor_Pay = 0;
 	Nadja_Nacht += 1;
 	PlayVideo("LOVESCENE.BIK");
 	AI_StopProcessInfos(self);
@@ -321,7 +321,7 @@ func void DIA_Nadja_BUYHERB_Info()
 	AI_Output(other,self,"DIA_Nadja_BUYHERB_15_00");	//Могу я здесь купить травки?
 	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 500)
 	{
-		if(Hlp_IsItem(heroArmor,ITAR_MIL_L))
+		if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
 		{
 			AI_Output(self,other,"DIA_Nadja_BUYHERB_16_01");	//Откуда мне знать? Да и если бы знала, все равно не сказала бы городскому стражнику.
 			Undercover_Failed = TRUE;

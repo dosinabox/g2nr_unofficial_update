@@ -63,7 +63,7 @@ instance Summoned_Wolf(Mst_Default_Wolf)
 	start_aistate = ZS_MM_Rtn_Summoned;
 	B_SetVisuals_Wolf();
 	Npc_SetToFistMode(self);
-	CreateInvItems(self,ItFoMuttonRaw,1);
+//	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance YWolf(Mst_Default_Wolf)

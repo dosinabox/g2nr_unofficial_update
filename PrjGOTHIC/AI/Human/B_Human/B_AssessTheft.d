@@ -11,10 +11,7 @@ func void B_AssessTheft()
 	};
 	if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_FRIENDLY)
 	{
-		if(Hlp_IsValidItem(item) && Npc_OwnedByNpc(item,self))
-		{
-		}
-		else
+		if(!Hlp_IsValidItem(item) || !Npc_OwnedByNpc(item,self))
 		{
 			return;
 		};
@@ -25,10 +22,7 @@ func void B_AssessTheft()
 	};
 	if(!Npc_CanSeeNpc(self,other))
 	{
-		if(Npc_IsInPlayersRoom(self) && (Npc_IsInState(self,ZS_ObservePlayer) || Npc_IsInState(self,ZS_ClearRoom)))
-		{
-		}
-		else
+		if(!(Npc_IsInPlayersRoom(self) && (Npc_IsInState(self,ZS_ObservePlayer) || Npc_IsInState(self,ZS_ClearRoom))))
 		{
 			return;
 		};

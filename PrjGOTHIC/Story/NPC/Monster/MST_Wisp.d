@@ -1,7 +1,7 @@
 
 prototype Mst_Default_Wisp(C_Npc)
 {
-	name[0] = "Призрачный свет";
+	name[0] = "Блуждающий огонек";
 	guild = GIL_BLOODFLY;
 	aivar[AIV_MM_REAL_ID] = ID_WISP;
 	level = 4;

@@ -43,22 +43,25 @@ func void DIA_Till_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Till_HALLO_15_00");	//Привет.
 	AI_Output(self,other,"DIA_Till_HALLO_03_01");	//Я не разговариваю с рабочими. Сколько тебе это повторять?
-	B_StartOtherRoutine(Till,"Start");
 	Info_ClearChoices(DIA_Till_HALLO);
-	if(Kapitel < 5)
-	{
+//	if(Kapitel < 5)
+//	{
 		Info_AddChoice(DIA_Till_HALLO,"Я не рабочий.",DIA_Till_HALLO_keinervoneuch);
 		if(!Npc_IsDead(Sekob))
 		{
 			Info_AddChoice(DIA_Till_HALLO,"Ты командуешь здесь?",DIA_Till_HALLO_selber);
 		};
+//	};
+	if((Kapitel < 3) || (TOPIC_END_SekobDMT == TRUE))
+	{
+		B_StartOtherRoutine(self,"Start");
 	};
 };
 
 func void DIA_Till_HALLO_selber()
 {
 	AI_Output(other,self,"DIA_Till_HALLO_selber_15_00");	//Ты командуешь здесь?
-	AI_Output(self,other,"DIA_Till_HALLO_selber_03_01");	//Э-э. Нет, я всего лишь сын Секоба. Но когда старика больше не будет с нами, все земля, что ты видишь вокруг, перейдет ко мне.
+	AI_Output(self,other,"DIA_Till_HALLO_selber_03_01");	//Э-э. Нет, я всего лишь сын Секоба. Но когда старика больше не будет с нами, вся земля, что ты видишь вокруг, перейдет ко мне.
 	AI_Output(other,self,"DIA_Till_HALLO_selber_15_02");	//Потрясающе!
 	Info_ClearChoices(DIA_Till_HALLO);
 };
@@ -77,7 +80,7 @@ instance DIA_Till_FELDARBEITER(C_Info)
 	nr = 4;
 	condition = DIA_Till_FELDARBEITER_Condition;
 	information = DIA_Till_FELDARBEITER_Info;
-	description = "Вы так всегда обращаетесь со своими работниками?";
+	description = "Вы всегда так обращаетесь со своими работниками?";
 };
 
 
@@ -91,8 +94,8 @@ func int DIA_Till_FELDARBEITER_Condition()
 
 func void DIA_Till_FELDARBEITER_Info()
 {
-	AI_Output(other,self,"DIA_Till_FELDARBEITER_15_00");	//Вы так всегда обращаетесь со своими работниками?
-	AI_Output(self,other,"DIA_Till_FELDARBEITER_03_01");	//Конечно - иначе нельзя. Если не поддерживать дисциплину, никто не будет - это известное правило.
+	AI_Output(other,self,"DIA_Till_FELDARBEITER_15_00");	//Вы всегда так обращаетесь со своими работниками?
+	AI_Output(self,other,"DIA_Till_FELDARBEITER_03_01");	//Конечно - иначе нельзя. Если не поддерживать дисциплину, никто не будет работать - это известное правило.
 };
 
 
@@ -121,7 +124,7 @@ func void DIA_Till_SEKOB_Info()
 	AI_Output(other,self,"DIA_Till_SEKOB_15_02");	//Поможешь, если отведешь к своему отцу.
 	AI_Output(self,other,"DIA_Till_SEKOB_03_03");	//Ты считаешь себя крепким парнем и хорошим бойцом, да?
 	AI_Output(other,self,"DIA_Till_SEKOB_15_04");	//Лучшим.
-	AI_Output(self,other,"DIA_Till_SEKOB_03_05");	//Возможно, тогда стоит позвать его.
+	AI_Output(self,other,"DIA_Till_SEKOB_03_05");	//Ну, возможно, тогда стоит позвать его.
 	AI_Output(other,self,"DIA_Till_SEKOB_15_06");	//Не беспокойся, мальчик. Я найду его сам.
 	AI_Output(self,other,"DIA_Till_SEKOB_03_07");	//Как скажешь.
 	AI_StopProcessInfos(self);
@@ -134,7 +137,7 @@ instance DIA_Till_WASMACHSTDU(C_Info)
 	nr = 10;
 	condition = DIA_Till_WASMACHSTDU_Condition;
 	information = DIA_Till_WASMACHSTDU_Info;
-	description = "Чем ты занимаешься?";
+	description = "А что ты делаешь, когда не играешь в хозяина этой фермы?";
 };
 
 
@@ -178,7 +181,7 @@ func int DIA_Till_WARUMNICHTSLD_Condition()
 func void DIA_Till_WARUMNICHTSLD_Info()
 {
 	AI_Output(other,self,"DIA_Till_WARUMNICHTSLD_15_00");	//А разве наемники не помогают вам защищаться от ополчения?
-	AI_Output(self,other,"DIA_Till_WARUMNICHTSLD_03_01");	//Да пока наемники почешутся, я уже успеваю прогнать всех воров.
+	AI_Output(self,other,"DIA_Till_WARUMNICHTSLD_03_01");	//Да пока наемники почешутся, я уже успею прогнать всех воров.
 };
 
 

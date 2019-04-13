@@ -34,7 +34,15 @@ instance DIA_Peck_PICKPOCKET(C_Info)
 
 func int DIA_Peck_PICKPOCKET_Condition()
 {
-	return C_StealItems(60,Hlp_GetInstanceID(ItKe_City_Tower_05),1);
+//	return C_StealItems(60,Hlp_GetInstanceID(ItKe_City_Tower_05),1);
+	if(Npc_HasItems(self,ItKe_City_Tower_05))
+	{
+		return C_StealItem(60,Hlp_GetInstanceID(ItKe_City_Tower_05));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Peck_PICKPOCKET_Info()
@@ -46,7 +54,8 @@ func void DIA_Peck_PICKPOCKET_Info()
 
 func void DIA_Peck_PICKPOCKET_DoIt()
 {
-	B_StealItems(60,Hlp_GetInstanceID(ItKe_City_Tower_05),1);
+//	B_StealItems(60,Hlp_GetInstanceID(ItKe_City_Tower_05),1);
+	B_StealItem(60,Hlp_GetInstanceID(ItKe_City_Tower_05));
 	Info_ClearChoices(DIA_Peck_PICKPOCKET);
 };
 

@@ -52,15 +52,15 @@ instance StoryHelper_Exit(C_Info)
 	nr = 999;
 	condition = StoryHelper_Exit_Condition;
 	information = StoryHelper_Exit_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
 func int StoryHelper_Exit_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void StoryHelper_Exit_Info()
@@ -74,8 +74,8 @@ instance StoryHelper_INFO1(C_Info)
 	npc = sh;
 	condition = StoryHelper_INFO1_Condition;
 	information = StoryHelper_INFO1_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_1;
 };
 
@@ -119,8 +119,8 @@ instance StoryHelper_INFO2(C_Info)
 	npc = sh;
 	condition = StoryHelper_INFO2_Condition;
 	information = StoryHelper_INFO2_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_2;
 };
 
@@ -155,8 +155,8 @@ instance StoryHelper_INFO3(C_Info)
 	npc = sh;
 	condition = StoryHelper_INFO3_Condition;
 	information = StoryHelper_INFO3_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_3;
 };
 
@@ -197,8 +197,8 @@ instance StoryHelper_INFO4(C_Info)
 	npc = sh;
 	condition = StoryHelper_INFO4_Condition;
 	information = StoryHelper_INFO4_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_4;
 };
 
@@ -245,8 +245,8 @@ instance StoryHelper_INFO5(C_Info)
 	npc = sh;
 	condition = StoryHelper_INFO5_Condition;
 	information = StoryHelper_INFO5_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_5;
 };
 
@@ -296,8 +296,8 @@ instance StoryHelper_INFO6(C_Info)
 	npc = sh;
 	condition = StoryHelper_INFO6_Condition;
 	information = StoryHelper_INFO6_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_6;
 };
 

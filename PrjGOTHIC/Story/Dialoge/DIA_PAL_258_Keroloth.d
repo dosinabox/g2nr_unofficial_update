@@ -129,7 +129,8 @@ func void B_Keroloth_TeachNoMore2()
 func void DIA_Keroloth_Teacher_1H_1()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,60);
-	if(other.HitChance[NPC_TALENT_1H] >= 60)
+//	if(other.HitChance[NPC_TALENT_1H] >= 60)
+	if(other.aivar[REAL_TALENT_1H] >= 60)
 	{
 		B_Keroloth_TeachNoMore1();
 		if(Npc_GetTalentSkill(other,NPC_TALENT_1H) == 2)
@@ -143,7 +144,8 @@ func void DIA_Keroloth_Teacher_1H_1()
 func void DIA_Keroloth_Teacher_1H_5()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,60);
-	if(other.HitChance[NPC_TALENT_1H] >= 60)
+//	if(other.HitChance[NPC_TALENT_1H] >= 60)
+	if(other.aivar[REAL_TALENT_1H] >= 60)
 	{
 		B_Keroloth_TeachNoMore1();
 		if(Npc_GetTalentSkill(other,NPC_TALENT_1H) == 2)
@@ -187,7 +189,8 @@ func void DIA_Keroloth_Teach_Info()
 
 func void DIA_Keroloth_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_2H] >= 60)
+//	if(other.HitChance[NPC_TALENT_2H] >= 60)
+	if(other.aivar[REAL_TALENT_2H] >= 60)
 	{
 		B_Keroloth_TeachNoMore1();
 		DIA_Keroloth_Teach_permanent = TRUE;
@@ -397,8 +400,8 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_Info()
 	{
 		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_07_01");	//Кошелек пуст. Какая свинья сделала это?
 		Keroloths_BeutelLeer = TRUE;
-	};
-	if(B_GiveInvItems(other,self,ItMi_KerolothsGeldbeutel_MIS,1))
+	}
+	else if(B_GiveInvItems(other,self,ItMi_KerolothsGeldbeutel_MIS,1))
 	{
 		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_07_02");	//Что? Где? Какой ублюдок сделал это?
 	};

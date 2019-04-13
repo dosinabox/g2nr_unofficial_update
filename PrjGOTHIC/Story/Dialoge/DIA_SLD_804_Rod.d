@@ -122,7 +122,8 @@ func int DIA_Rod_Teach_Condition()
 func void DIA_Rod_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Rod_Teach_15_00");	//Я хочу научиться лучше владеть двуручным оружием!
-	Rod_Merke_2h = other.HitChance[NPC_TALENT_2H];
+//	Rod_Merke_2h = other.HitChance[NPC_TALENT_2H];
+	Rod_Merke_2h = other.aivar[REAL_TALENT_2H];
 	Info_ClearChoices(DIA_Rod_Teach);
 	Info_AddChoice(DIA_Rod_Teach,Dialog_Back,DIA_Rod_Teach_Back);
 	Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Rod_Teach_2H_1);
@@ -131,7 +132,8 @@ func void DIA_Rod_Teach_Info()
 
 func void DIA_Rod_Teach_Back()
 {
-	if(Rod_Merke_2h < other.HitChance[NPC_TALENT_2H])
+//	if(Rod_Merke_2h < other.HitChance[NPC_TALENT_2H])
+	if(Rod_Merke_2h < other.aivar[REAL_TALENT_2H])
 	{
 		AI_Output(self,other,"DIA_Rod_Teach_BACK_06_00");	//Ты уже владеешь им лучше.
 	};
@@ -303,6 +305,7 @@ func void DIA_Rod_BINStarkGenug_Info()
 
 var int Rod_WetteGewonnen;
 var int Rod_WetteAngenommen;
+var int Rod_Gold;
 
 instance DIA_Rod_Wette(C_Info)
 {
@@ -331,7 +334,11 @@ func void DIA_Rod_Wette_Info()
 	Info_ClearChoices(DIA_Rod_Wette);
 	Info_AddChoice(DIA_Rod_Wette,"Нет.",DIA_Rod_Wette_No);
 	Info_AddChoice(DIA_Rod_Wette,"Конечно.",DIA_Rod_Wette_Yes);
-	B_LogEntry(Topic_RodWette,"Род ставит 30 золотых монет на то, что я не смогу удержать его меч.");
+	if(Rod_Gold == FALSE)
+	{
+		B_LogEntry(Topic_RodWette,"Род ставит 30 золотых монет на то, что я не смогу удержать его меч.");
+		Rod_Gold = TRUE;
+	};
 };
 
 func void DIA_Rod_Wette_No()
@@ -351,18 +358,16 @@ func void DIA_Rod_Wette_Yes()
 		AI_Output(other,self,"DIA_Rod_Wette_Yes_15_02");	//Вот!
 		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_03");	//(злорадно) Хорошо, давай посмотрим, насколько ты силен...
 		B_GiveInvItems(self,other,ItMw_2h_Rod,1);
-		if(other.attribute[ATR_STRENGTH] >= 30)
+		if(other.attribute[ATR_STRENGTH] >= Condition_Rod)
 		{
-			AI_UnequipWeapons(other);
-			AI_EquipBestMeleeWeapon(other);
-			AI_ReadyMeleeWeapon(other);
-			AI_Wait(other,2);
-			AI_RemoveWeapon(other);
+			CreateInvItem(other,ItMw_2h_Rod_Fake);
+			B_InspectMeleeWeapon(other);
 			AI_Output(other,self,"DIA_Rod_Wette_Yes_15_04");	//Так достаточно?!
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_05");	//(сбитый с толку) Похоже, ты побил меня.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_06");	//Я никак не ожидал от тебя такого. Ты не похож на человека, обладающего такой силой.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_07");	//Ну, похоже, я только что потерял 30 золотых монет. Держи.
 			B_GiveInvItems(self,other,ItMi_Gold,60);
+			B_LogEntry(Topic_RodWette,"Я смог удержать меч Рода.");
 			Rod_WetteGewonnen = TRUE;
 			B_GivePlayerXP(XP_Rod);
 		}
@@ -370,6 +375,7 @@ func void DIA_Rod_Wette_Yes()
 		{
 			AI_Output(other,self,"DIA_Rod_Wette_Yes_15_08");	//Я не могу поднять это оружие.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_09");	//(смеется) Что я и говорил!
+			B_LogEntry(Topic_RodWette,"Я не смог удержать меч Рода.");
 		};
 		AI_Output(self,other,"DIA_Rod_Wette_Yes_06_10");	//А теперь отдай мне мое оружие назад.
 		Info_ClearChoices(DIA_Rod_Wette);
@@ -384,9 +390,22 @@ func void DIA_Rod_Wette_Yes()
 	};
 };
 
+func void B_RemoveFakeWeapon(var C_Npc oth)
+{
+	if(Rod_WetteGewonnen == TRUE)
+	{
+		Npc_RemoveInvItem(oth,ItMw_2h_Rod_Fake);
+		AI_UnequipWeapons(oth);
+		//bugfix: отменить экипировку арбалетом в дополнение к луку
+		AI_UnequipWeapons(oth);
+		AI_EquipBestMeleeWeapon(oth);
+		AI_EquipBestRangedWeapon(oth);
+	};
+};
+
 func void DIA_Rod_Wette_GiveBack()
 {
-	AI_RemoveWeapon(other);
+	B_RemoveFakeWeapon(other);
 	AI_Output(other,self,"DIA_Rod_Wette_GiveBack_15_00");	//Вот, держи.
 	Info_ClearChoices(DIA_Rod_Wette);
 	Info_AddChoice(DIA_Rod_Wette,"(Отдать ему оружие)",DIA_Rod_Wette_GiveBack2);
@@ -409,6 +428,7 @@ func void DIA_Rod_Wette_KeepIt()
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_02");	//Лучше я подержу его у себя немного.
 	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_03");	//Ну, подожди, ублюдок!
 	Info_ClearChoices(DIA_Rod_Wette);
+	B_RemoveFakeWeapon(other);
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

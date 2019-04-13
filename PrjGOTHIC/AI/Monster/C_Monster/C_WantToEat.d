@@ -253,7 +253,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	};
-	if(slf.guild == GIL_ZOMBIE)
+/*	if(slf.guild == GIL_ZOMBIE)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)
 		{
@@ -263,7 +263,7 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	};
+	}; */
 	if(slf.guild == GIL_SNAPPER)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)

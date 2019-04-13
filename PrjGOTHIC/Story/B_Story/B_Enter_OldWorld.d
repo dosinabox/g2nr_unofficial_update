@@ -86,6 +86,7 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		{
 			B_RemoveNpc(Bilgot);
 		};
+		B_RemoveNpc(OC_Sheep1);
 		EnterOW_Kapitel3 = TRUE;
 	};
 };
@@ -413,6 +414,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Warg,"SPAWN_OW_SHADOWBEAST_NEAR_SHADOW4");
 		Wld_InsertNpc(Warg,"SPAWN_OW_SHADOWBEAST_NEAR_SHADOW4");
 		Wld_InsertItem(ItMi_KerolothsGeldbeutel_MIS,"FP_OC_KEROLOTHS_GELDBEUTEL");
+		B_RemoveNpc(OC_Sheep2);
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_Running);
 		B_LogEntry(TOPIC_Dragonhunter,"Началась масштабная охота на драконов. Она привлекла многих искателей приключений в Долину Рудников. Мне остается только надеяться, что они не будут мешаться у меня под ногами.");
@@ -439,12 +441,12 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 {
 	if(EnterOW_Kapitel5 == FALSE)
 	{
-		VLK_4143_HaupttorWache.flags = 0;
-		if(!Npc_HasItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS))
+		HaupttorWache_4143.flags = 0;
+/*		if(!Npc_HasItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS))
 		{
 			CreateInvItems(HaupttorWache_4143,ItKe_OC_MainGate_MIS,1);
 		};
-/*		if(!Npc_IsDead(Brutus))
+		if(!Npc_IsDead(Brutus))
 		{
 			CreateInvItems(VLK_4100_Brutus,ITWR_DementorObsessionBook_MIS,1);
 		}; */
@@ -452,6 +454,7 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		{
 			B_RemoveNpc(Bilgot);
 		};
+		B_RemoveNpc(OC_Sheep3);
 		EnterOW_Kapitel5 = TRUE;
 	};
 	if(Biff_FollowsThroughPass == LOG_SUCCESS)

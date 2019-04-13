@@ -9,7 +9,7 @@ func void ZS_Stand_WP()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Stand_WP_loop()
+func int ZS_Stand_WP_Loop()
 {
 	var int random;
 	if(self.aivar[AIV_TAPOSITION] == NOTINPOS)
@@ -37,7 +37,7 @@ func int ZS_Stand_WP_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Stand_WP_end()
+func void ZS_Stand_WP_End()
 {
 	AI_PlayAni(self,"T_LGUARD_2_STAND");
 };

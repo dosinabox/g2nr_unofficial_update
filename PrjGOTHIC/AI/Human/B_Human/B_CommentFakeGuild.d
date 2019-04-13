@@ -16,7 +16,7 @@ func void ZS_CommentFakeGuild()
 			AI_Dodge(other);
 		};
 	};
-	if(Npc_HasEquippedArmor(other) == TRUE)
+	if(Npc_HasEquippedArmor(other))
 	{
 		itm = Npc_GetEquippedArmor(other);
 		if((self.guild == GIL_MIL) || (self.guild == GIL_PAL))

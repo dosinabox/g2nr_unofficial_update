@@ -37,7 +37,8 @@ instance DIA_Salandril_PICKPOCKET(C_Info)
 
 func int DIA_Salandril_PICKPOCKET_Condition()
 {
-	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),0);
+//	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),0);
+	return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
 };
 
 func void DIA_Salandril_PICKPOCKET_Info()
@@ -49,8 +50,9 @@ func void DIA_Salandril_PICKPOCKET_Info()
 
 func void DIA_Salandril_PICKPOCKET_DoIt()
 {
-	CreateInvItems(self,ItKe_Salandril,1);
-	B_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),1);
+	CreateInvItem(self,ItKe_Salandril);
+//	B_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),1);
+	B_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
 	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
 };
 
@@ -248,7 +250,10 @@ func void DIA_Salandril_GehinsKloster_Info()
 	AI_Output(self,other,"DIA_Salandril_GehinsKloster_13_01");	//“ы еще пожалеешь об этом. ƒа, черт теб€ побери, € пойду в этот монастырь, но тебе это просто так с рук не сойдет.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KlosterUrteil");
-	MIS_Serpentes_BringSalandril_SLD = LOG_SUCCESS;
+	if(MIS_Serpentes_BringSalandril_SLD == LOG_Running)
+	{
+		MIS_Serpentes_BringSalandril_SLD = LOG_SUCCESS;
+	};
 };
 
 

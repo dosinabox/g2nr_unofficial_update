@@ -11,7 +11,7 @@ instance VLK_4302_Addon_Elvrich(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Axe);
+	CreateInvItem(self,ItMw_1h_Vlk_Axe);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_B_Normal01,BodyTex_B,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,0);

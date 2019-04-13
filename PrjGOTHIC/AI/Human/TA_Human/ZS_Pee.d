@@ -11,7 +11,7 @@ func void ZS_Pee()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Pee_loop()
+func int ZS_Pee_Loop()
 {
 	if(Npc_IsOnFP(self,"PEE"))
 	{
@@ -46,7 +46,7 @@ func int ZS_Pee_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Pee_end()
+func void ZS_Pee_End()
 {
 	AI_PlayAni(self,"T_PEE_2_STAND");
 };

@@ -27,10 +27,10 @@ const int Value_HolyWater = 20;
 const int Value_Coal = 15;
 const int Value_DarkPearl = 1000;
 const int VALUE_ItMi_ApfelTabak = 10;
-const int VALUE_ItMi_PilzTabak = 10;
-const int VALUE_ItMi_SumpfTabak = 10;
-const int VALUE_ItMi_DoppelTabak = 10;
-const int VALUE_ItMi_HonigTabak = 10;
+const int VALUE_ItMi_PilzTabak = 25;
+const int VALUE_ItMi_SumpfTabak = 25;
+const int VALUE_ItMi_DoppelTabak = 20;
+const int VALUE_ItMi_HonigTabak = 45;
 const int Value_SilverRing = 120;
 const int Value_SilverNecklace = 200;
 const int Value_SilverCandleHolder = 50;
@@ -253,16 +253,18 @@ instance ItMi_Lute(C_Item)
 	visual = "ItMi_Lute.3DS";
 	material = MAT_WOOD;
 	scemeName = "LUTE";
-	on_state[0] = Use_Lute;
+//	on_state[0] = Use_Lute;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 
+/*
 func void Use_Lute()
 {
 };
+*/
 
 
 instance ItMi_Brush(C_Item)
@@ -274,16 +276,18 @@ instance ItMi_Brush(C_Item)
 	visual = "ItMi_Brush.3ds";
 	material = MAT_WOOD;
 	scemeName = "BRUSH";
-	on_state[0] = Use_Brush;
+//	on_state[0] = Use_Brush;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 
+/*
 func void Use_Brush()
 {
 };
+*/
 
 
 instance ItMi_Joint(C_Item)
@@ -322,21 +326,23 @@ instance ItMi_Packet(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
+/*
 func void UsePacket()
 {
 };
+*/
 
 
 instance ItMi_Pocket(C_Item)
 {
 	name = "Кожаный кошелек";
-	mainflag = ITEM_KAT_NONE | ITEM_MULTI;
-	flags = 0;
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
 	value = 10;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
@@ -381,7 +387,7 @@ instance ItMi_Gold(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_Gold;
 	visual = "ItMi_Gold.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -580,7 +586,7 @@ instance ItMi_GoldChest(C_Item)
 
 instance ItMi_InnosStatue(C_Item)
 {
-	name = "Статуя Инноса";
+	name = "Статуэтка Инноса";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_InnosStatue;

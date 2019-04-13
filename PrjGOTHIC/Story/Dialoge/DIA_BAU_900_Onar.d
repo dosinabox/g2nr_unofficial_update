@@ -490,7 +490,7 @@ instance DIA_Onar_WannaSheep(C_Info)
 
 func int DIA_Onar_WannaSheep_Condition()
 {
-	if(Onar_SellSheep == FALSE)
+	if((Onar_SellSheep == FALSE) && (SC_KnowsKlosterTribut == TRUE))
 	{
 		return TRUE;
 	};
@@ -525,7 +525,7 @@ instance DIA_Onar_BuyLiesel(C_Info)
 
 func int DIA_Onar_BuyLiesel_Condition()
 {
-	if(Onar_SellSheep == TRUE)
+	if((Onar_SellSheep == TRUE) && (Liesel_Giveaway == FALSE))
 	{
 		return TRUE;
 	};

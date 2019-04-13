@@ -8,11 +8,12 @@ func void ZS_MM_Rtn_Wusel()
 		AI_GotoWP(self,self.wp);
 	};
 	AI_GotoFP(self,"FP_ROAM");
+	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
 };
 
-func int ZS_MM_Rtn_Wusel_loop()
+func int ZS_MM_Rtn_Wusel_Loop()
 {
-	if(!Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_MM_WuselEnd],0) && (self.aivar[AIV_MM_WuselStart] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_WuselStart],0,self.aivar[AIV_MM_WuselEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_WuselStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 		return LOOP_END;
@@ -37,7 +38,7 @@ func int ZS_MM_Rtn_Wusel_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_MM_Rtn_Wusel_end()
+func void ZS_MM_Rtn_Wusel_End()
 {
 };
 

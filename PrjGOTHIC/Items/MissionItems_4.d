@@ -72,7 +72,7 @@ instance ItMi_KerolothsGeldbeutel_MIS(C_Item)
 	name = "Кожаный кошелек Керолота";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = 0;
+	value = 300;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
@@ -103,8 +103,8 @@ instance ItMi_KerolothsGeldbeutelLeer_MIS(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[2] = "Сейчас этот кошелек пуст.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItRw_SengrathsArmbrust_MIS(C_Item)
@@ -119,7 +119,8 @@ instance ItRw_SengrathsArmbrust_MIS(C_Item)
 	munition = ItRw_Bolt;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_MilArmbrust;
-	visual = "ItRw_Mil_Crossbow.mms";
+//	visual = "ItRw_Mil_Crossbow.mms";
+	visual = "ITRW_CROSSBOW_MISSION.MMS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -184,13 +185,22 @@ instance ItRi_OrcEliteRing(C_Item)
 
 func void Equip_OrcEliteRing()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,-20);
-	Print(PRINT_OrcEliteRingEquip);
+	if(self.attribute[ATR_STRENGTH] >= 20)
+	{
+		Npc_ChangeAttribute(self,ATR_STRENGTH,-20);
+		Print(PRINT_OrcEliteRingEquip);
+		OrcEliteRing_Equipped = TRUE;
+	};
 };
 
 func void UnEquip_OrcEliteRing()
 {
-	Npc_ChangeAttribute(self,ATR_STRENGTH,20);
+	if(OrcEliteRing_Equipped == TRUE)
+	{
+		Npc_ChangeAttribute(self,ATR_STRENGTH,20);
+		Print(PRINT_Eat3);
+		OrcEliteRing_Equipped = FALSE;
+	};
 };
 
 

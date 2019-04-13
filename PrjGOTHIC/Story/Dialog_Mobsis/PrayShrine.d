@@ -263,7 +263,7 @@ func void PC_PrayShrine_Pray_NoPay()
 {
 	var int zufall;
 	zufall = Hlp_Random(100);
-	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && (PrayDayOne_0 == TRUE)))
+	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
 	{
 		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
 	}
@@ -286,7 +286,7 @@ func void PC_PrayShrine_Pray_NoPay()
 func void PC_PrayShrine_Pray_SmallPay()
 {
 	Npc_RemoveInvItems(hero,ItMi_Gold,10);
-	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && (PrayDayOne_10 == TRUE)))
+	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
 	{
 		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
 	}
@@ -305,7 +305,7 @@ func void PC_PrayShrine_Pray_SmallPay()
 func void PC_PrayShrine_Pray_MediumPay()
 {
 	Npc_RemoveInvItems(hero,ItMi_Gold,50);
-	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && (PrayDayOne_50 == TRUE)))
+	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
 	{
 		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
 	}
@@ -326,7 +326,7 @@ func void PC_PrayShrine_Pray_BigPay()
 	var int zufall;
 	zufall = Hlp_Random(100);
 	Npc_RemoveInvItems(hero,ItMi_Gold,100);
-	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && (PrayDayOne_100 == TRUE)))
+	if(((PrayDay == Wld_GetDay()) && (PrayDay != 0)) || ((Wld_GetDay() == 0) && ((PrayDayOne_0 == TRUE) || (PrayDayOne_10 == TRUE) || (PrayDayOne_50 == TRUE) || (PrayDayOne_100 == TRUE))))
 	{
 		PrintScreen(Print_BlessNone,-1,-1,FONT_Screen,2);
 	}
@@ -371,7 +371,7 @@ instance PC_PrayShrine_BlessSword(C_Info)
 
 func int PC_PrayShrine_BlessSword_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && ((Npc_HasItems(hero,ItMw_1H_Blessed_01) >= 1) || (Npc_HasItems(hero,ItMw_2H_Blessed_01) >= 1)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && (Npc_HasItems(hero,ItMw_1H_Blessed_01) || Npc_HasItems(hero,ItMw_2H_Blessed_01)))
 	{
 		return TRUE;
 	};
@@ -427,7 +427,7 @@ instance PC_PrayShrine_BlessSword_Final(C_Info)
 
 func int PC_PrayShrine_BlessSword_Final_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && (PAL_KnowsAbout_FINAL_BLESSING == TRUE) && ((Npc_HasItems(hero,ItMw_1H_Blessed_02) >= 1) || (Npc_HasItems(hero,ItMw_2H_Blessed_02) >= 1)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && (PAL_KnowsAbout_FINAL_BLESSING == TRUE) && (Npc_HasItems(hero,ItMw_1H_Blessed_02) || Npc_HasItems(hero,ItMw_2H_Blessed_02)))
 	{
 		return TRUE;
 	};

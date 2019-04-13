@@ -46,13 +46,12 @@ func void DIA_Randolph_SchwereLuft_Info()
 	AI_Output(self,other,"DIA_Randolph_SchwereLuft_06_01");	//Хммм... Как только кто-нибудь здесь скажет неверное слово, начнется танец смерти... так что будь осторожнее - или резни не миновать.
 	AI_Output(other,self,"DIA_Randolph_SchwereLuft_15_02");	//Ты будешь участвовать в схватке?
 	AI_Output(self,other,"DIA_Randolph_SchwereLuft_06_03");	//Я не останусь в стороне, когда начнется драка. Но я также не собираюсь провоцировать ее.
-	Akils_SLDStillthere = TRUE;
-	if(Hilfe == FALSE)
+	if(Akils_SLDStillthere == FALSE)
 	{
 		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
-		Hilfe = TRUE;
+		Akils_SLDStillthere = TRUE;
 	};
 	B_NpcClearObsessionByDMT(self);
 };
@@ -83,14 +82,23 @@ func void DIA_Randolph_HALLO_Info()
 	if(Npc_IsDead(Akil) && Npc_IsDead(Kati))
 	{
 		AI_Output(self,other,"DIA_Randolph_HALLO_06_01");	//Теперь, когда Кати и Акил отправились в царство Инноса, я буду управлять этой фермой.
-		Npc_ExchangeRoutine(self,"START");
-		AI_ContinueRoutine(self);
+		TOPIC_END_AkilsSLDStillthere = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Randolph_HALLO_06_02");	//Да, я в порядке. Этот Альварес становился все наглее и наглее с каждым днем. Хорошо, что все кончилось.
 	};
 	AI_Output(self,other,"DIA_Randolph_HALLO_06_03");	//От чего я не отказался бы сейчас - так это от стаканчика хорошего вина в таверне.
+	Npc_ExchangeRoutine(self,"Start");
+	self.flags = 0;
+	if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
+	{
+		B_StartOtherRoutine(Akil,"Start");
+	};
+	if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
+	{
+		B_StartOtherRoutine(Kati,"Start");
+	};
 };
 
 
@@ -120,6 +128,8 @@ func void DIA_Randolph_Baltram_Info()
 	CreateInvItems(self,ItMi_BaltramPaket,1);
 	B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
 	Lieferung_Geholt = TRUE;
+	B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу доставить ее Бальтраму...");
+	B_LogEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
 };
 
 
@@ -380,13 +390,13 @@ var int DIA_Randolph_PERM_OneTime;
 
 func void DIA_Randolph_PERM_Info()
 {
+	AI_Output(other,self,"DIA_Randolph_PERM_15_00");	//Ты в порядке?
 	if(hero.guild == GIL_KDF)
 	{
 		B_NpcObsessedByDMT(self);
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Randolph_PERM_15_00");	//Ты в порядке?
 		if(((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL)) && (MIS_HealRandolph != LOG_SUCCESS))
 		{
 			if((DIA_Sagitta_HEALRANDOLPH_GotOne == FALSE) && (DIA_Sagitta_HEALRANDOLPH_KnowsPrice == TRUE) && (DIA_Randolph_PERM_GotMoney == FALSE))

@@ -85,6 +85,7 @@ func void DIA_Addon_Henry_PICKPOCKET_BACK()
 
 
 const string PIR_1354_Checkpoint = "ADW_PIRATECAMP_WAY_02";
+var int Henry_FriendOrFoe;
 
 instance DIA_Addon_Henry_Hello(C_Info)
 {
@@ -113,10 +114,14 @@ func int DIA_Addon_Henry_Hello_Condition()
 func void DIA_Addon_Henry_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Henry_Hello_04_00");	//Стой!
-	AI_Output(self,other,"DIA_Addon_Henry_Hello_04_01");	//Ты друг или враг?
-	Info_ClearChoices(DIA_Addon_Henry_Hello);
-	Info_AddChoice(DIA_Addon_Henry_Hello,"Враг!",DIA_Addon_Henry_Hello_Feind);
-	Info_AddChoice(DIA_Addon_Henry_Hello,"Друг!",DIA_Addon_Henry_Hello_Freund);
+	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (Henry_FriendOrFoe == FALSE))
+	{
+		AI_Output(self,other,"DIA_Addon_Henry_Hello_04_01");	//Ты друг или враг?
+		Info_ClearChoices(DIA_Addon_Henry_Hello);
+		Info_AddChoice(DIA_Addon_Henry_Hello,"Враг!",DIA_Addon_Henry_Hello_Feind);
+		Info_AddChoice(DIA_Addon_Henry_Hello,"Друг!",DIA_Addon_Henry_Hello_Freund);
+		Henry_FriendOrFoe = TRUE;
+	};
 };
 
 
@@ -235,7 +240,8 @@ func void DIA_Addon_Henry_WantEnter_Info()
 		Henry_Zoll_WhatFor = TRUE;
 	};
 	itm = Npc_GetEquippedArmor(other);
-	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_H))
+//	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_H))
+	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_S) || Hlp_IsItem(itm,ITAR_SLD_H))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
@@ -925,7 +931,8 @@ func int DIA_Addon_Henry_Teach_Condition()
 func void DIA_Addon_Henry_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Teach_15_00");	//Учи меня!
-	Henry_merke2h = other.HitChance[NPC_TALENT_2H];
+//	Henry_merke2h = other.HitChance[NPC_TALENT_2H];
+	Henry_merke2h = other.aivar[REAL_TALENT_2H];
 	Info_ClearChoices(DIA_Addon_Henry_Teach);
 	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
 	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
@@ -936,11 +943,13 @@ func void DIA_Addon_Henry_Teach_Info()
 
 func void DIA_Addon_Henry_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_2H] > Henry_merke2h)
+//	if(other.HitChance[NPC_TALENT_2H] > Henry_merke2h)
+	if(other.aivar[REAL_TALENT_2H] > Henry_merke2h)
 	{
 		B_Henry_CommentFightSkill();
 	}
-	else if(other.HitChance[NPC_TALENT_2H] >= 90)
+//	else if(other.HitChance[NPC_TALENT_2H] >= 90)
+	else if(other.aivar[REAL_TALENT_2H] >= 90)
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Teach_Back_04_00");	//Твое умение растет.
 	};
@@ -1016,7 +1025,7 @@ func void DIA_Addon_Henry_Palisade_Train_Info()
 	AI_Output(other,self,"DIA_Addon_Henry_Palisade_Train_15_00");	//Грег - ваш командир?
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_01");	//Да. Но для тебя он - КАПИТАН Грег. Это понятно?
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_02");	//Он - великий человек. Когда ты с ним встретишься, тебе лучше не быть на стороне его врагов. Ты даже не успеешь об этом пожалеть.
-	if(PIR_1300_Addon_Greg_NW.aivar[AIV_TalkedToPlayer] == TRUE)
+	if(Greg_NW.aivar[AIV_TalkedToPlayer] == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Henry_Palisade_Train_15_03");	//Я с ним уже встречался.
 		AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_04");	//Очень хорошо. Значит, ты понимаешь, о чем я говорю.
@@ -1040,7 +1049,7 @@ instance DIA_Addon_Henry_YourOwnTrupp(C_Info)
 
 func int DIA_Addon_Henry_YourOwnTrupp_Condition()
 {
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if((MIS_Addon_Greg_ClearCanyon == LOG_Running) && ((AlligatorJack.aivar[AIV_PARTYMEMBER] == TRUE) || (Brandon.aivar[AIV_PARTYMEMBER] == TRUE) || (Matt.aivar[AIV_PARTYMEMBER] == TRUE) || (Skip.aivar[AIV_PARTYMEMBER] == TRUE) || (BenchPirate.aivar[AIV_PARTYMEMBER] == TRUE) || (RoastPirate.aivar[AIV_PARTYMEMBER] == TRUE)))
 	{
 		return TRUE;
 	};

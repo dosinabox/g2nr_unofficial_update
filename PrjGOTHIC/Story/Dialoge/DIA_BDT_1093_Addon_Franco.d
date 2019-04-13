@@ -39,7 +39,15 @@ instance DIA_Franco_PICKPOCKET(C_Info)
 
 func int DIA_Franco_PICKPOCKET_Condition()
 {
-	return C_StealItems(60,Hlp_GetInstanceID(ItAm_Addon_Franco),1);
+//	return C_StealItems(60,Hlp_GetInstanceID(ItAm_Addon_Franco),1);
+	if(Npc_HasItems(self,ItAm_Addon_Franco))
+	{
+		return C_StealItem(60,Hlp_GetInstanceID(ItAm_Addon_Franco));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Franco_PICKPOCKET_Info()
@@ -51,7 +59,8 @@ func void DIA_Franco_PICKPOCKET_Info()
 
 func void DIA_Franco_PICKPOCKET_DoIt()
 {
-	B_StealItems(60,Hlp_GetInstanceID(ItAm_Addon_Franco),1);
+//	B_StealItems(60,Hlp_GetInstanceID(ItAm_Addon_Franco),1);
+	B_StealItem(60,Hlp_GetInstanceID(ItAm_Addon_Franco));
 	Info_ClearChoices(DIA_Franco_PICKPOCKET);
 };
 

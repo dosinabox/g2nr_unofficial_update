@@ -227,7 +227,7 @@ func void DIA_Urshak_HOSHPAKDEAD_Info()
 	AI_Output(other,self,"DIA_Urshak_HOSHPAKDEAD_15_03");	//Я понимаю. Хош-Пак был твоим учителем.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_04");	//Ур-Шак теперь должен носить ношу горя, должен дать Хош-Пак последний обряд. Ур-Шак надо идти.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_05");	//Друг лучше уходить проход. Слишком опасно здесь.
-	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_06");	//Ур-Шак печалиться если человек тоже умирать.
+	AI_Output(self,other,"DIA_Urshak_HOSHPAKDEAD_18_06");	//Ур-Шак печалиться, если человек тоже умирать.
 	B_LogEntry(TOPIC_Urshak,"Хош-Пак мертв. Мой друг орк направляется в палатку Хош-Пака. Он скорбит по своему наставнику. Я должен отпустить его.");
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,20);
@@ -242,7 +242,7 @@ instance DIA_Urshak_GEH(C_Info)
 	npc = NONE_110_Urshak;
 	condition = DIA_Urshak_GEH_Condition;
 	information = DIA_Urshak_GEH_Info;
-	important = TRUE;
+//	important = TRUE;
 	permanent = TRUE;
 };
 

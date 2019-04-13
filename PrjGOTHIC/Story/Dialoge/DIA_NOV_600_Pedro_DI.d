@@ -174,6 +174,7 @@ func void DIA_Pedro_DI_ArrivedAtShip_Innere()
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_Innere_09_04");	//М-м-м. Мне кажется, он сначала поворачивал левый факел, а затем правый, но я точно не помню.
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_Innere_09_05");	//И тогда внезапно открывался секретный проход, ведущий глубоко в горы.
 	AI_Output(self,other,"DIA_Pedro_DI_ArrivedAtShip_Innere_09_06");	//Где кончается этот проход, я не знаю.
+	B_LogEntry(TOPIC_HallenVonIrdorath,"Педро рассказал мне о том, чтобы открыть секретный проход внутрь острова, нужно повернуть два факела в тронном зале полковника орков.");
 };
 
 func void DIA_Pedro_DI_ArrivedAtShip_OberstTot()

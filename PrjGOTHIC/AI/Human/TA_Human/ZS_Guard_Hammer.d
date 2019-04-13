@@ -11,7 +11,7 @@ func void ZS_Guard_Hammer()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Guard_Hammer_loop()
+func int ZS_Guard_Hammer_Loop()
 {
 	var int random;
 	if(Npc_IsOnFP(self,"STAND"))
@@ -42,7 +42,7 @@ func int ZS_Guard_Hammer_loop()
 		AI_PlayAni(self,"T_STAND_2_HGUARD");
 		self.aivar[AIV_TAPOSITION] = ISINPOS;
 	};
-	if((Npc_HasItems(self,Holy_Hammer_MIS) == 1) && (Npc_GetDistToWP(self,"NW_MONASTERY_SANCTUM_01") <= 500))
+	if(Npc_HasItems(self,Holy_Hammer_MIS) && (Npc_GetDistToWP(self,"NW_MONASTERY_SANCTUM_01") <= 500))
 	{
 		Npc_RemoveInvItems(self,Holy_Hammer_MIS,1);
 		Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
@@ -59,7 +59,7 @@ func int ZS_Guard_Hammer_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Guard_Hammer_end()
+func void ZS_Guard_Hammer_End()
 {
 	AI_PlayAni(self,"T_HGUARD_2_STAND");
 };

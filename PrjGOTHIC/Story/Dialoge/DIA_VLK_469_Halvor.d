@@ -208,7 +208,7 @@ instance DIA_Halvor_MESSAGE(C_Info)
 
 func int DIA_Halvor_MESSAGE_Condition()
 {
-	if(Knows_Halvor == TRUE)
+	if(Npc_HasItems(other,ItWr_HalvorMessage) && (Knows_Halvor == TRUE))
 	{
 		return TRUE;
 	};
@@ -295,7 +295,7 @@ func void DIA_Halvor_Zeichen_Info()
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_00");	//Понимаю. Ты пришел не просто купить рыбу.
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_01");	//(тихо) Я готов сделать тебе предложение. Если у тебя есть серебряные тарелки или кубки, я возьму их по хорошей цене.
-	CreateInvItems(self,ItKE_lockpick,20);
+	CreateInvItems(self,ItKe_Lockpick,20);
 	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
 	B_LogEntry(Topic_Diebesgilde,"Халвор купит серебряные тарелки и кубки по очень хорошей цене.");
 };
@@ -449,4 +449,5 @@ func void DIA_Halvor_Crew_BACK()
 {
 	Info_ClearChoices(DIA_Halvor_Crew);
 };
+
 

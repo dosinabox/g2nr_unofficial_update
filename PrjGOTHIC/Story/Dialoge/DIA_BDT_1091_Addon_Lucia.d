@@ -135,12 +135,12 @@ func void DIA_Addon_Lucia_Khorinis_Info()
 	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_01");	//Ох, не напоминай. Жизнь у меня там была незавидная.
 	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_02");	//Пока в город приходили корабли с заключенными, там еще можно было как-то прожить.
 	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_03");	//Но потом... (смеется) Нет, спасибо. Может быть, это из-за того, что мы на острове... Ладно, в любом случае, с той жизнью покончено.
-	if((MIS_LuciasLetter != 0) || (SC_KnowsLuciaCaughtByBandits != 0) || (Nadja_GaveLuciaInfo != 0))
+	if((MIS_LuciasLetter != FALSE) || (SC_KnowsLuciaCaughtByBandits != FALSE) || (Nadja_GaveLuciaInfo != FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_06");	//С Элврихом я порвала!
 		AI_Output(other,self,"DIA_Addon_Lucia_Khorinis_15_04");	//Почему?
 		AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_05");	//Он трус! Когда бандиты утащили меня, он даже не попытался мне помочь.
-		TOPIC_END_Lucia = TRUE;
+//		TOPIC_END_Lucia = TRUE;
 		B_GivePlayerXP(XP_Ambient);
 	};
 	TOPIC_END_Lucia = TRUE;
@@ -199,7 +199,7 @@ func void DIA_Addon_Lucia_Paladine_Info()
 	AI_Output(other,self,"DIA_Addon_Lucia_Paladine_15_00");	//Ты не очень-то любишь паладинов, верно?
 	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_01");	//Этих фанатиков-убийц, которым платят маги Огня? Нет, не люблю.
 	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_02");	//Лорд Хаген и его громилы заняли город, и все ползают перед ними на брюхе.
-	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_03");	//А мне это не по душе. Я не собиралась ждать, пока они не закроют Красную Лампу и посадят меня за решетку.
+	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_03");	//А мне это не по душе. Я не собиралась ждать, пока они закроют Красную Лампу и посадят меня за решетку.
 	if((Npc_GetTrueGuild(other) != GIL_SLD) && (Npc_GetTrueGuild(other) != GIL_DJG))
 	{
 		Info_ClearChoices(DIA_Addon_Lucia_Paladine);

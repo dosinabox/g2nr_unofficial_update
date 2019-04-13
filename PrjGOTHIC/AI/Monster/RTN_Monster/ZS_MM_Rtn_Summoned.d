@@ -40,11 +40,15 @@ func int ZS_MM_Rtn_Summoned_Loop()
 			AI_TurnToNPC(self,hero);
 		};
 		self.aivar[AIV_SummonTime] += Npc_GetStateTime(self);
-		if(self.aivar[AIV_SummonTime] >= MONSTER_SUMMON_TIME)
+		if(((self.aivar[AIV_SummonTime] >= MONSTER_SUMMON_TIME) && (self.guild != GIL_WOLF)) || (hero.attribute[ATR_HITPOINTS] <= 0) || (Npc_GetDistToNpc(self,hero) > 3000))
 		{
 			Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);
 		};
 		Npc_SetStateTime(self,0);
+	};
+	if((hero.guild != GIL_WOLF) && Npc_IsPlayer(hero) && (self.guild == GIL_WOLF) && (self.aivar[AIV_MM_REAL_ID] != ID_Keiler))
+	{
+		return LOOP_END;
 	};
 	self.wp = Npc_GetNearestWP(self);
 	return LOOP_CONTINUE;
@@ -52,5 +56,10 @@ func int ZS_MM_Rtn_Summoned_Loop()
 
 func void ZS_MM_Rtn_Summoned_End()
 {
+	Npc_ClearAIQueue(self);
+	B_ClearPerceptions(self);
+	self.aivar[AIV_PARTYMEMBER] = FALSE;
+	B_SetAttitude(self,ATT_HOSTILE);
+	AI_StartState(self,ZS_MM_AllScheduler,0,"");
 };
 

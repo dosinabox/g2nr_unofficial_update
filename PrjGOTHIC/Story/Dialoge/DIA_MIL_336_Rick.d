@@ -40,7 +40,14 @@ func int DIA_Rick_HALLO_Condition()
 func void DIA_Rick_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Rick_HALLO_15_00");	//Как дела?
-	AI_Output(self,other,"DIA_Rick_HALLO_10_01");	//Если тебе хочется поговорить, говори с Румболдом. Я здесь просто на случай, если кто-нибудь вздумает бунтовать.
+	if(Hlp_IsValidNpc(Rumbold) && !Npc_IsDead(Rumbold))
+	{
+		AI_Output(self,other,"DIA_Rick_HALLO_10_01");	//Если тебе хочется поговорить, говори с Румболдом. Я здесь просто на случай, если кто-нибудь вздумает бунтовать.
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+	};
 	AI_StopProcessInfos(self);
 };
 

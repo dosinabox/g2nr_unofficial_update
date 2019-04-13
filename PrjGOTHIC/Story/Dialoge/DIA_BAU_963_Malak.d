@@ -104,7 +104,7 @@ func void DIA_Malak_PASS_Info()
 {
 	AI_Output(other,self,"DIA_Malak_PASS_15_00");	//Что ты знаешь о Проходе?
 	AI_Output(self,other,"DIA_Malak_PASS_08_01");	//Не много. Только то, что он ведет в старую Долину Рудников, которая была окружена Барьером еще несколько недель назад.
-	AI_Output(self,other,"DIA_Malak_PASS_08_02");	//Тогда единственное, чего нужно было опасаться нам, фермерам, это ежемесячного каравана, доставлявшего различные грузы в Долину Рудников.
+	AI_Output(self,other,"DIA_Malak_PASS_08_02");	//Тогда единственное, чего нужно было опасаться нам, фермерам, это ежемесячного каравана, доставляющего различные грузы в Долину Рудников.
 	AI_Output(self,other,"DIA_Malak_PASS_08_03");	//Эти головорезы сильно усложняли нам жизнь.
 };
 
@@ -193,7 +193,7 @@ instance DIA_Malak_PALADINE(C_Info)
 	nr = 9;
 	condition = DIA_Malak_PALADINE_Condition;
 	information = DIA_Malak_PALADINE_Info;
-	description = "Расскажи мне о паладинах.";
+	description = "Расскажи мне об этих паладинах. Как давно они стоят здесь?";
 };
 
 
@@ -310,13 +310,13 @@ func int DIA_Malak_FLEEFROMPASS_Condition()
 
 func void DIA_Malak_FLEEFROMPASS_Info()
 {
+	AI_Output(other,self,"DIA_Malak_FLEEFROMPASS_15_00");	//Что ты делаешь здесь?
 	if((NpcObsessedByDMT_Malak == FALSE) && (hero.guild == GIL_KDF))
 	{
 		B_NpcObsessedByDMT(self);
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Malak_FLEEFROMPASS_15_00");	//Что ты делаешь здесь?
 		AI_Output(self,other,"DIA_Malak_FLEEFROMPASS_08_01");	//Я сбежал с фермы Бенгара. Я не хочу, чтобы меня сожрали все эти твари, что толпами валят из Прохода.
 		AI_Output(self,other,"DIA_Malak_FLEEFROMPASS_08_02");	//Ты представить себе не можешь, какие ужасы повылазили оттуда за последние несколько дней.
 		AI_Output(other,self,"DIA_Malak_FLEEFROMPASS_15_03");	//Могу.
@@ -346,6 +346,20 @@ func int DIA_Malak_Heilung_Condition()
 };
 
 
+func void B_Malak_BackToBengar()
+{
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"Start");
+	B_StartOtherRoutine(BAU_962_Bauer,"Start");
+	B_StartOtherRoutine(BAU_964_Bauer,"Start");
+	B_StartOtherRoutine(BAU_965_Bauer,"Start");
+	B_StartOtherRoutine(BAU_966_Bauer,"Start");
+	B_StartOtherRoutine(BAU_967_Bauer,"Start");
+	B_StartOtherRoutine(BAU_968_Bauer,"Start");
+	B_StartOtherRoutine(BAU_969_Bauer,"Start");
+};
+
+
 var int DIA_Malak_Heilung_oneTime;
 
 func void DIA_Malak_Heilung_Info()
@@ -353,17 +367,17 @@ func void DIA_Malak_Heilung_Info()
 	AI_Output(other,self,"DIA_Malak_Heilung_15_00");	//Тебе нужна помощь.
 	if(DIA_Malak_Heilung_oneTime == FALSE)
 	{
-		AI_Output(self,other,"DIA_Malak_Heilung_08_01");	//(плаксиво) Я просто хочу вернуться домой. Я вернусь к Бенгару. Надеюсь, он еще жив.
-		B_NpcClearObsessionByDMT(self);
-		Npc_ExchangeRoutine(self,"Start");
-		B_StartOtherRoutine(BAU_962_Bauer,"Start");
-		B_StartOtherRoutine(BAU_964_Bauer,"Start");
-		B_StartOtherRoutine(BAU_965_Bauer,"Start");
-		B_StartOtherRoutine(BAU_966_Bauer,"Start");
-		B_StartOtherRoutine(BAU_967_Bauer,"Start");
-		B_StartOtherRoutine(BAU_968_Bauer,"Start");
-		B_StartOtherRoutine(BAU_969_Bauer,"Start");
-		DIA_Malak_Heilung_oneTime = TRUE;
+		if(!Npc_IsDead(DMT_DementorAmbientMalak))
+		{
+			AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_01");	//Я не сумасшедший. Пока ферма беззащитна, я ни на шаг отсюда не сойду!
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Malak_Heilung_08_01");	//(плаксиво) Я просто хочу вернуться домой. Я вернусь к Бенгару. Надеюсь, он еще жив.
+			B_NpcClearObsessionByDMT(self);
+			B_Malak_BackToBengar();
+			DIA_Malak_Heilung_oneTime = TRUE;
+		};
 	}
 	else
 	{
@@ -429,7 +443,7 @@ func void DIA_Malak_BACKTOBENGAR_Info()
 		B_LogEntry(TOPIC_BengarALLEIN,"Малак не вернется на ферму Бенгара, пока она не будет хорошо защищена.");
 		DIA_Malak_BACKTOBENGAR_Once = TRUE;
 	};
-	if(MIS_BengarsHelpingSLD == LOG_SUCCESS)
+	if((MIS_BengarsHelpingSLD == LOG_SUCCESS) && Npc_IsDead(DMT_DementorAmbientMalak))
 	{
 		AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_02");	//Я нанял наемника. Он присмотрит за вашей фермой.
 		AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_03");	//Ну, это другое дело, конечно же. Но подожди минутку. А кто будет платить этому парню?
@@ -446,14 +460,7 @@ func void DIA_Malak_BACKTOBENGAR_los()
 	MIS_GetMalakBack = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Malak_BACKTOBENGAR);
 	B_NpcClearObsessionByDMT(self);
-	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(BAU_962_Bauer,"Start");
-	B_StartOtherRoutine(BAU_964_Bauer,"Start");
-	B_StartOtherRoutine(BAU_965_Bauer,"Start");
-	B_StartOtherRoutine(BAU_966_Bauer,"Start");
-	B_StartOtherRoutine(BAU_967_Bauer,"Start");
-	B_StartOtherRoutine(BAU_968_Bauer,"Start");
-	B_StartOtherRoutine(BAU_969_Bauer,"Start");
+	B_Malak_BackToBengar();
 };
 
 

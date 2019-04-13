@@ -2,11 +2,12 @@
 instance PAL_217_Marcos(Npc_Default)
 {
 	name[0] = "Маркос";
-	guild = GIL_OUT;
+	guild = GIL_PAL;
 	id = 217;
 	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_OCMAIN;
+	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Pal_Sword);

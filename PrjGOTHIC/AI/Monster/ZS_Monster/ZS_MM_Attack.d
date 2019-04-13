@@ -4,13 +4,22 @@ func void B_MM_AssessSurprise()
 	Npc_SetTarget(self,other);
 };
 
-func void B_MM_Flee()
+func void B_MM_RemoveWeapon()
 {
-	Npc_ClearAIQueue(self);
-	B_ClearPerceptions(self);
-	Npc_SetTarget(self,other);
-	AI_StartState(self,ZS_MM_Flee,0,"");
+	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON))
+	{
+		B_ClearPerceptions(self);
+		self.aivar[AIV_INVINCIBLE] = TRUE;
+		Npc_SetTrueGuild(self,GIL_NONE);
+		AI_StopLookAt(self);
+		AI_RemoveWeapon(self);
+		if(Npc_HasReadiedWeapon(self))
+		{
+			AI_RemoveWeapon(self);
+		};
+	};
 };
+
 
 func void ZS_MM_Attack()
 {
@@ -58,7 +67,7 @@ func int ZS_MM_Attack_Loop()
 	};
 	if(CurrentLevel == OldWorld_Zen)
 	{
-		if(Npc_GetDistToWP(self,"OC_RAMP_07") <= 500)
+		if(Npc_GetDistToWP(self,"OC_RAMP_06") <= 100)
 		{
 			Npc_ClearAIQueue(self);
 			AI_Standup(self);
@@ -72,6 +81,7 @@ func int ZS_MM_Attack_Loop()
 		Npc_ClearAIQueue(self);
 		AI_Standup(self);
 		self.aivar[AIV_PursuitEnd] = TRUE;
+		B_MM_RemoveWeapon();
 		return LOOP_END;
 	};
 	if((Npc_GetStateTime(self) > self.aivar[AIV_MM_FollowTime]) && (self.aivar[AIV_PursuitEnd] == FALSE))
@@ -87,6 +97,7 @@ func int ZS_MM_Attack_Loop()
 	{
 		if(Npc_GetDistToNpc(self,other) > self.senses_range)
 		{
+			B_MM_RemoveWeapon();
 			return LOOP_END;
 		};
 		if(Npc_GetStateTime(self) > self.aivar[AIV_StateTime])
@@ -110,6 +121,7 @@ func int ZS_MM_Attack_Loop()
 	{
 		Npc_ClearAIQueue(self);
 		AI_Standup(self);
+		B_MM_RemoveWeapon();
 		return LOOP_END;
 	};
 	if(self.aivar[AIV_WaitBeforeAttack] == 1)
@@ -124,7 +136,7 @@ func int ZS_MM_Attack_Loop()
 			self.aivar[AIV_SummonTime] += 1;
 			self.aivar[AIV_StateTime] = Npc_GetStateTime(self);
 		};
-		if(self.aivar[AIV_SummonTime] >= MONSTER_SUMMON_TIME)
+		if((self.aivar[AIV_SummonTime] >= MONSTER_SUMMON_TIME) || (hero.attribute[ATR_HITPOINTS] <= 0) || (Npc_GetDistToNpc(self,hero) > 3000))
 		{
 			Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);
 		};
@@ -145,7 +157,7 @@ func int ZS_MM_Attack_Loop()
 			self.fight_tactic = self.aivar[AIV_OriginalFightTactic];
 		};
 	};
-	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
+	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
 	{
 		B_CreateAmmo(self);
 		Npc_ChangeAttribute(self,ATR_MANA,ATR_MANA_MAX);
@@ -183,6 +195,7 @@ func int ZS_MM_Attack_Loop()
 		{
 			Npc_ClearAIQueue(self);
 			AI_Standup(self);
+			B_MM_RemoveWeapon();
 			return LOOP_END;
 		};
 	};
@@ -191,9 +204,26 @@ func int ZS_MM_Attack_Loop()
 func void ZS_MM_Attack_End()
 {
 	other = Hlp_GetNpc(self.aivar[AIV_LASTTARGET]);
-	if(C_NpcIsMonsterMage(self) || (self.guild == GIL_SKELETON) || (self.guild == GIL_SUMMONED_SKELETON) || (self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON) || (self.guild > GIL_SEPERATOR_ORC))
+	if(self.guild > GIL_SEPERATOR_ORC)
 	{
 		AI_RemoveWeapon(self);
+		if(Npc_HasReadiedWeapon(self))
+		{
+			AI_RemoveWeapon(self);
+		};
+	}
+	else
+	{
+		B_MM_RemoveWeapon();
+	};
+	if(self.aivar[AIV_INVINCIBLE] == TRUE)
+	{
+		Npc_SetTrueGuild(self,self.guild);
+		Npc_ClearAIQueue(self);
+		B_ClearPerceptions(self);
+		AI_Standup(self);
+		AI_Wait(self,0.5);
+		self.aivar[AIV_INVINCIBLE] = FALSE;
 	};
 	if(C_WantToFlee(self,other))
 	{

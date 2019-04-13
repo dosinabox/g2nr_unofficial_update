@@ -64,8 +64,8 @@ func int DIA_Babera_WIESIEHTSAUS_Condition()
 func void DIA_Babera_WIESIEHTSAUS_Info()
 {
 	AI_Output(other,self,"DIA_Babera_WIESIEHTSAUS_15_00");	//Как идет работа в поле?
-	AI_Output(self,other,"DIA_Babera_WIESIEHTSAUS_16_01");	//Посмотри на эти огромные поля, которые нм нужно обработать, и ты сам все поймешь.
-	AI_Output(self,other,"DIA_Babera_WIESIEHTSAUS_16_02");	//Ты хочешь поработать на поле?
+	AI_Output(self,other,"DIA_Babera_WIESIEHTSAUS_16_01");	//Посмотри на эти огромные поля, которые нам нужно обработать, и ты сам все поймешь.
+	AI_Output(self,other,"DIA_Babera_WIESIEHTSAUS_16_02");	//Ты хочешь работать на поле?
 	Info_ClearChoices(DIA_Babera_WIESIEHTSAUS);
 	if(hero.guild == GIL_NONE)
 	{
@@ -162,7 +162,7 @@ instance DIA_Babera_DUSTOERST(C_Info)
 	condition = DIA_Babera_DUSTOERST_Condition;
 	information = DIA_Babera_DUSTOERST_Info;
 	permanent = TRUE;
-	description = "А кроме этого?";
+	description = "Есть что-нибудь еще?";
 };
 
 

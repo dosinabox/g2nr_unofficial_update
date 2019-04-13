@@ -128,7 +128,7 @@ func void DIA_Mortis_Redlight_Info()
 	AI_Output(self,other,"DIA_Mortis_Redlight_13_02");	//Если ты хочешь разузнать что-либо там, тебе лучше... нет, ты ДОЛЖЕН снять свои доспехи.
 	AI_Output(other,self,"DIA_Mortis_Redlight_15_03");	//Хорошо, а что дальше?
 	AI_Output(self,other,"DIA_Mortis_Redlight_13_04");	//Кабак и бордель - вероятно, самые лучшие места для поисков. Если тебе вообще удастся что-либо узнать, то ты узнаешь это там.
-	B_LogEntry(TOPIC_Redlight,"Мортис полагает, что если я хочу купить болотную траву в портовом квартале, мне лучше снять все доспехи. Лучше всего попытать счасться в таверне или борделе.");
+	B_LogEntry(TOPIC_Redlight,"Мортис полагает, что если я хочу купить болотную траву в портовом квартале, мне лучше снять доспехи ополчения. Лучше всего попытать счастья в таверне или борделе.");
 };
 
 
@@ -168,7 +168,7 @@ func void DIA_Mortis_CanTeach_Info()
 	if(Mortis_CanTeach_Info_Once == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Мортис, городской гвардеец, может помочь мне повысить мою силу.");
+		B_LogEntry(TOPIC_CityTeacher,"Мортис, городской стражник, может помочь мне повысить мою силу.");
 		Mortis_CanTeach_Info_Once = TRUE;
 	};
 };
@@ -204,7 +204,8 @@ func void DIA_Mortis_Teach_Info()
 
 func void DIA_Mortis_Teach_BACK()
 {
-	if(other.attribute[ATR_STRENGTH] >= T_LOW)
+//	if(other.attribute[ATR_STRENGTH] >= T_LOW)
+	if(other.aivar[REAL_STRENGTH] >= T_LOW)
 	{
 		AI_Output(self,other,"DIA_Mortis_Teach_13_00");	//Ты и так достаточно силен. Если же ты стремишься к большему, найди себе другого учителя.
 	};

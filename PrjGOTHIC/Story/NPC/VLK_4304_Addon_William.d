@@ -11,7 +11,7 @@ instance VLK_4304_Addon_William(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ITWr_Addon_William_01,1);
-	CreateInvItems(self,ItKE_lockpick,2);
+	CreateInvItems(self,ItKe_Lockpick,2);
 	CreateInvItems(self,ItFo_Apple,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_Homer,BodyTex_N,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,0.9);
@@ -27,4 +27,5 @@ func void Rtn_Start_4304()
 	TA_Smalltalk(5,0,20,0,"ADW_ENTRANCE_RUIN2_02");
 	TA_Smalltalk(20,0,5,0,"ADW_ENTRANCE_RUIN2_02");
 };
+
 

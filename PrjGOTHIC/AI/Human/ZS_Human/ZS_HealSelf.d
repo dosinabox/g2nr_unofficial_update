@@ -31,7 +31,12 @@ func int ZS_HealSelf_Loop()
 			Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_PalFullHeal);
 			return LOOP_CONTINUE;
 		};
-	}	
+	}
+	else if(Npc_HasItems(self,ItPo_Health_Addon_04))
+	{
+		AI_UseItem(self,ItPo_Health_Addon_04);
+		return LOOP_END;
+	}
 	else if(Npc_HasItems(self,ItPo_Health_03))
 	{
 		AI_UseItem(self,ItPo_Health_03);

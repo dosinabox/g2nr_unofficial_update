@@ -65,7 +65,7 @@ func int DIA_Thekla_Lecker_Condition()
 func void DIA_Thekla_Lecker_Info()
 {
 	AI_Output(other,self,"DIA_Thekla_Lecker_15_00");	//Как у тебя здесь вкусно пахнет!
-	AI_Output(self,other,"DIA_Thekla_Lecker_17_01");	//Не подлизывайся! Я знаю таких, как ты, как облупленных! Вон их сколько вокруг бродит!
+	AI_Output(self,other,"DIA_Thekla_Lecker_17_01");	//Не подлизывайся! Знаю я таких, как ты, как облупленных! Вон их сколько вокруг бродит!
 	AI_Output(self,other,"DIA_Thekla_Lecker_17_02");	//Сначала вы пытаетесь подхалимничать, а затем, когда от вас что-то нужно, то никого не найдешь!
 };
 
@@ -78,7 +78,7 @@ instance DIA_Thekla_Hunger(C_Info)
 	nr = 3;
 	condition = DIA_Thekla_Hunger_Condition;
 	information = DIA_Thekla_Hunger_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Я голоден!";
 };
 
@@ -109,7 +109,7 @@ func void DIA_Thekla_Hunger_Info()
 	{
 		AI_Output(self,other,"DIA_Thekla_Hunger_17_04");	//Мы не обслуживаем здесь ополчение.
 	}
-	else
+	else	//GIL_NOV, GIL_KDF, GIL_PAL
 	{
 		AI_Output(self,other,"DIA_Thekla_Hunger_17_05");	//Как я могу отказать служителю Инноса?
 		B_GiveInvItems(self,other,ItFo_XPStew,1);
@@ -167,8 +167,8 @@ func int DIA_Thekla_WannaJoin_Condition()
 func void DIA_Thekla_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Thekla_WannaJoin_15_00");	//Вообще-то я планировал присоединиться к наемникам...
-	AI_Output(self,other,"DIA_Thekla_WannaJoin_17_01");	//Так ты тоже преступник из колонии?
-	AI_Output(self,other,"DIA_Thekla_WannaJoin_17_02");	//Я могла бы догадаться! Оставь меня в покое! Здесь вашего брата уже и так хватает!
+	AI_Output(self,other,"DIA_Thekla_WannaJoin_17_01");	//Так ты еще и преступник из колонии?
+	AI_Output(self,other,"DIA_Thekla_WannaJoin_17_02");	//Могла бы догадаться! Оставь меня в покое! Здесь вашего брата уже и так хватает!
 };
 
 
@@ -220,7 +220,7 @@ func int DIA_Thekla_Problem_Condition()
 func void DIA_Thekla_Problem_Info()
 {
 	AI_Output(other,self,"DIA_Thekla_Problem_15_00");	//Почему ты не любишь наемников?
-	AI_Output(self,other,"DIA_Thekla_Problem_17_01");	//Ах, эти кретины действуют мне на нервы! Особенно Сильвио и его жирный приятель Буллко.
+	AI_Output(self,other,"DIA_Thekla_Problem_17_01");	//Эти кретины действуют мне на нервы! Особенно Сильвио и его жирный приятель Буллко.
 	AI_Output(self,other,"DIA_Thekla_Problem_17_02");	//Эти двое сидят вон там, в углу, целыми днями напролет и отравляют мне жизнь.
 	AI_Output(self,other,"DIA_Thekla_Problem_17_03");	//То суп им слишком горячий, то мясо слишком жесткое, ну и все тому подобное...
 	if(other.guild == GIL_NONE)
@@ -288,7 +288,10 @@ func void DIA_Thekla_AfterFight_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Thekla_AfterFight_17_02");	//Ну что, получил по полной программе?
-		AI_Output(self,other,"DIA_Thekla_AfterFight_17_03");	//Я же тебя предупреждала! Теперь ты понимаешь, что я имела в виду?
+		if(Npc_KnowsInfo(other,DIA_Thekla_Manieren))
+		{
+			AI_Output(self,other,"DIA_Thekla_AfterFight_17_03");	//Я же тебя предупреждала! Теперь ты понимаешь, что я имела в виду?
+		};
 		AI_Output(other,self,"DIA_Thekla_AfterFight_15_04");	//Я рад, что доставил этим тебе удовольствие.
 		AI_Output(self,other,"DIA_Thekla_AfterFight_17_05");	//Не расстраивайся так. Ты далеко не первый, кто пострадал от этой сволочи.
 	};

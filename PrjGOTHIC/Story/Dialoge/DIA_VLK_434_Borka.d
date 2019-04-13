@@ -163,7 +163,7 @@ func void DIA_Borka_BUYHERB_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Borka_BUYHERB_15_00");	//Я слышал, ты продаешь травку.
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L))
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
 	{
 		AI_Output(self,other,"DIA_Borka_BUYHERB_11_01");	//Извините, мистер стражник, сэр. Это, должно быть, какая-то ошибка. Я ничего не знаю ни о какой травке.
 	}

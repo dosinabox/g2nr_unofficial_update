@@ -20,7 +20,7 @@ func void B_AddCityGuideChoices()
 	};
 	if(!C_IsQuarterNearest(self,Q_GALGEN))
 	{
-		Info_AddChoice(dia_cityguide,"На площадь правосудия.",dia_cityguide_galgen);
+		Info_AddChoice(dia_cityguide,"На площадь Правосудия.",dia_cityguide_galgen);
 	};
 	if(!C_IsQuarterNearest(self,Q_KASERNE))
 	{

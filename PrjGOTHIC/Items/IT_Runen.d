@@ -436,7 +436,8 @@ instance ItRu_FireBolt(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Firebolt;
-	text[2] = NAME_Dam_Magic;
+//	text[2] = NAME_Dam_Magic;
+	text[2] = NAME_Dam_Fire;
 	count[2] = SPL_Damage_Firebolt;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -526,7 +527,8 @@ instance ItRu_InstantFireball(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_COST_InstantFireball;
-	text[2] = NAME_Dam_Magic;
+//	text[2] = NAME_Dam_Magic;
+	text[2] = NAME_Dam_Fire;
 	count[2] = SPL_DAMAGE_InstantFireball;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -885,7 +887,8 @@ instance ItRu_Firestorm(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_InstantFireStorm;
-	text[2] = NAME_Dam_Magic;
+//	text[2] = NAME_Dam_Magic;
+	text[2] = NAME_Dam_Fire;
 	count[2] = SPL_Damage_InstantFireStorm;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -979,7 +982,8 @@ instance ItRu_Firerain(C_Item)
 	count[0] = mag_circle;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Firerain;
-	text[2] = NAME_Dam_Magic;
+//	text[2] = NAME_Dam_Magic;
+	text[2] = NAME_Dam_Fire;
 	count[2] = SPL_Damage_FireRain;
 	text[5] = NAME_Value;
 	count[5] = value;

@@ -87,7 +87,7 @@ func void DIA_Mika_WOHIN_stadt()
 func void DIA_Mika_WOHIN_Bauern()
 {
 	AI_Output(other,self,"DIA_Mika_WOHIN_Bauern_15_00");	//С одной из ферм.
-	AI_Output(self,other,"DIA_Mika_WOHIN_Bauern_12_01");	//Ты фермер, да? Хмм. Тогда тебе не стоит бродить по этим опасным тропам совсем одному. Кто знает, кто там может поджидать тебя.
+	AI_Output(self,other,"DIA_Mika_WOHIN_Bauern_12_01");	//Ты фермер, да? Хмм. Тогда тебе не стоит бродить по этим опасным тропам совсем одному. Кто знает, что там может поджидать тебя.
 	Info_ClearChoices(DIA_Mika_WOHIN);
 };
 
@@ -149,7 +149,7 @@ func int DIA_Mika_WASKOSTETHILFE_Condition()
 func void DIA_Mika_WASKOSTETHILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_WASKOSTETHILFE_15_00");	//Ну, предположим, я обращусь к тебе за помощью. Сколько это будет мне стоить?
-	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_01");	//Я всего лишь скромный слуга короля и мне не к лицу обдирать беззащитных граждан нашего королевства.
+	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_01");	//Я всего лишь скромный слуга короля и мне не к лицу обирать беззащитных граждан нашего королевства.
 	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_02");	//Но, знаешь, если уж ты так ставишь вопрос, то я бы не отказался от небольшой финансовой помощи. Это укрепит наши будущие деловые отношения.
 	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_03");	//10 золотых будет достаточно для начала. Что скажешь?
 	Info_ClearChoices(DIA_Mika_WASKOSTETHILFE);
@@ -238,14 +238,20 @@ func int DIA_Mika_HILFE_Condition()
 func void DIA_Mika_HILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_HILFE_15_00");	//Мне нужна твоя помощь.
-	AI_Output(self,other,"DIA_Mika_HILFE_12_01");	//Если это так необходимо... Что случилось?
+	AI_Output(self,other,"DIA_Mika_HILFE_12_01");	//Ну, если это так необходимо... Что случилось?
 	Info_ClearChoices(DIA_Mika_HILFE);
+	Info_AddChoice(DIA_Mika_HILFE,Dialog_Back,DIA_Mika_HILFE_BACK);
 	Info_AddChoice(DIA_Mika_HILFE,"Меня преследуют бандиты.",DIA_Mika_HILFE_schongut);
 	Info_AddChoice(DIA_Mika_HILFE,"На меня напали монстры.",DIA_Mika_HILFE_monster);
 	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && ((Akils_SLDStillthere == TRUE) || Npc_KnowsInfo(other,DIA_Sarah_Bauern)))
 	{
 		Info_AddChoice(DIA_Mika_HILFE,"На фермера Акила напали наемники.",DIA_Mika_HILFE_Akil);
 	};
+};
+
+func void DIA_Mika_HILFE_BACK()
+{
+	Info_ClearChoices(DIA_Mika_HILFE);
 };
 
 func void DIA_Mika_HILFE_Akil()

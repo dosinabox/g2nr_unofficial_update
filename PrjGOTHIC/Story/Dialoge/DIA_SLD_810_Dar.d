@@ -270,7 +270,7 @@ instance DIA_Dar_Pilztabak(C_Info)
 
 func int DIA_Dar_Pilztabak_Condition()
 {
-	if(Npc_HasItems(other,ItMi_PilzTabak))
+	if(Npc_HasItems(other,ItMi_PilzTabak) && Npc_KnowsInfo(other,DIA_Dar_Hallo))
 	{
 		return TRUE;
 	};
@@ -281,6 +281,7 @@ func void DIA_Dar_Pilztabak_Info()
 	AI_Output(other,self,"DIA_Dar_Pilztabak_15_00");	//Ты когда-нибудь пробовал грибной табак?
 	AI_Output(self,other,"DIA_Dar_Pilztabak_03_01");	//Звучит интересно. Дай его сюда.
 	B_GiveInvItems(other,self,ItMi_PilzTabak,1);
+	Npc_RemoveInvItem(self,ItMi_PilzTabak);
 	AI_Output(self,other,"DIA_Dar_Pilztabak_03_02");	//Так, попробуем...
 	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);
@@ -533,7 +534,7 @@ func void DIA_Dar_BRINGORCELITERING_geld_ok()
 {
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_geld_ok_15_00");	//Договорились. Держи кольцо.
 	B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
-	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_ok_03_01");	//Спасибо. Не терпится услышать, что другие скажут об этом.
+	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_ok_03_01");	//Спасибо. Не терпится услышать, что скажут другие об этом.
 	CreateInvItems(self,ItMi_Gold,1200);
 	B_GiveInvItems(self,other,ItMi_Gold,1200);
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);

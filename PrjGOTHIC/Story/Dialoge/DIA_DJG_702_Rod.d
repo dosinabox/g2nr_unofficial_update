@@ -120,7 +120,7 @@ func int DIA_RodDJG_WARTEMAL_Condition()
 func void DIA_RodDJG_WARTEMAL_Info()
 {
 	AI_Output(other,self,"DIA_RodDJG_WARTEMAL_15_00");	//Что с тобой?
-	if(((DJG_SwampParty == TRUE) || (Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT2_02") < 1000)) && Npc_IsDead(DJG_Cipher))
+	if(((DJG_SwampParty == TRUE) || (Npc_GetDistToWP(self,"OW_DJG_SWAMP_WAIT2_02") < 1000)) && (Npc_IsDead(DJG_Cipher) || (DJG_Cipher.aivar[AIV_PARTYMEMBER] == FALSE)))
 	{
 		AI_Output(self,other,"DIA_RodDJG_WARTEMAL_06_01");	//Послушай, парень. Я думаю, эта тварь немного нам не по зубам. Я, пожалуй, попробую тихонько смыться.
 		DJG_SwampParty = FALSE;

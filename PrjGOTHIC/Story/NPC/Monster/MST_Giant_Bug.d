@@ -44,7 +44,8 @@ instance Giant_Bug(Mst_Default_Giant_Bug)
 instance YGiant_Bug(Mst_Default_Giant_Bug)
 {
 	name[0] = NAME_YGiant_Bug;
-	level = 2;
+//	level = 2;
+	level = 4;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
 	attribute[ATR_HITPOINTS_MAX] = 20;

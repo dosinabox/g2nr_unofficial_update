@@ -60,7 +60,10 @@ func void B_Andre_Steckbrief()
 	AI_Output(self,other,"DIA_Andre_Add_08_02");	//Так что все это значит?
 	AI_Output(other,self,"DIA_Andre_Add_15_03");	//Я не знаю, почему они ищут меня...
 	AI_Output(self,other,"DIA_Andre_Add_08_04");	//Надеюсь, ради твоего же блага, что ты говоришь мне правду.
-	AI_Output(self,other,"DIA_Andre_Add_08_05");	//Мне не нужны в ополчении люди с запятнанной репутацией.
+	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
+	{
+		AI_Output(self,other,"DIA_Andre_Add_08_05");	//Мне не нужны в ополчении люди с запятнанной репутацией.
+	};
 	AI_Output(self,other,"DIA_Andre_Add_08_06");	//Большинство из этих бандитов - бывшие каторжники из колонии.
 	AI_Output(self,other,"DIA_Andre_Add_08_07");	//Я надеюсь, что ты никак не связан с этими головорезами!
 	Andre_Steckbrief = TRUE;
@@ -224,7 +227,7 @@ func void DIA_Andre_PMSchulden_Info()
 		Info_ClearChoices(DIA_Andre_PMSchulden);
 		Info_ClearChoices(DIA_Andre_PETZMASTER);
 		Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
-		Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там нужно?",DIA_Andre_PMSchulden_HowMuchAgain);
+		Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
 		if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
 		{
 			Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
@@ -444,6 +447,7 @@ func void DIA_Andre_Message_Dragons()
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_03");	//Он оторвет тебе голову, если ты будешь попусту тратить его время, отвлекая его такими историями.
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_04");	//Я уверен, что ты достаточно умен и понимаешь это сам.
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_05");	//Так все-таки, зачем тебе нужно увидеть его?
+	Player_TalkedAboutDragonsToAndre = TRUE;
 };
 
 func void DIA_Andre_Message_Personal()
@@ -545,7 +549,7 @@ func void DIA_Andre_AskToJoin_Info()
 	if(Npc_KnowsInfo(other,DIA_Andre_Message))
 	{
 		AI_Output(self,other,"DIA_Andre_AskToJoin_08_01");	//Хорошо. Нам нужны люди. И меня не интересует, почему ты решил присоединиться к нам.
-		AI_Output(self,other,"DIA_Andre_AskToJoin_08_02");	//Если ты поступишь на службы к паладинам, я помогу тебе добиться аудиенции у лорда Хагена.
+		AI_Output(self,other,"DIA_Andre_AskToJoin_08_02");	//Если ты поступишь на службу к паладинам, я помогу тебе добиться аудиенции у лорда Хагена.
 	}
 	else
 	{
@@ -903,7 +907,7 @@ func void DIA_Andre_DGRunning_Info()
 		AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
 		AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
 		MIS_Andre_GuildOfThieves = LOG_OBSOLETE;
-		if (MIS_CassiaRing == LOG_Running)
+		if(MIS_CassiaRing == LOG_Running)
 		{
 			MIS_CassiaRing = LOG_OBSOLETE;
 		};
@@ -963,7 +967,7 @@ func void DIA_Andre_DGRunning_Success()
 	DG_gefunden = TRUE;
 	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
 	B_GivePlayerXP(XP_GuildOfThievesPlatt);
-	if (MIS_CassiaRing == LOG_Running)
+	if(MIS_CassiaRing == LOG_Running)
 	{
 		MIS_CassiaRing = LOG_OBSOLETE;
 	};
@@ -1053,7 +1057,7 @@ func void DIA_Andre_JOIN_Info()
 		return;
 	};
 	AI_Output(self,other,"DIA_Andre_JOIN_08_16");	//Ты можешь вступить в наши ряды, если хочешь. Но твое решение должно быть окончательным.
-	AI_Output(self,other,"DIA_Andre_JOIN_08_17");	//После того, как ты наденешь доспехи ополчения, ты уже не сможешь просто так снять его и выйти из наших рядов.
+	AI_Output(self,other,"DIA_Andre_JOIN_08_17");	//После того, как ты наденешь доспехи ополчения, ты уже не сможешь просто так снять их и выйти из наших рядов.
 	AI_Output(self,other,"DIA_Andre_JOIN_08_18");	//Ты готов сражаться вместе с нами за Инноса и короля?
 	Info_ClearChoices(DIA_Andre_JOIN);
 	Info_AddChoice(DIA_Andre_JOIN,"Я пока не уверен...",DIA_Andre_JOIN_No);
@@ -1313,7 +1317,7 @@ instance DIA_Andre_FIND_DEALER(C_Info)
 
 func int DIA_Andre_FIND_DEALER_Condition()
 {
-	if((MIS_Andre_WAREHOUSE == LOG_SUCCESS) && (Npc_IsDead(Borka) == FALSE))
+	if((MIS_Andre_WAREHOUSE == LOG_SUCCESS) && !Npc_IsDead(Borka))
 	{
 		return TRUE;
 	};
@@ -1790,7 +1794,7 @@ func int DIA_Andre_BerichtTorAuf_Condition()
 func void DIA_Andre_BerichtTorAuf_Info()
 {
 	AI_Output(other,self,"DIA_Andre_Add_15_16");	//Замок в Долине Рудников штурмовали орки!
-	AI_Output(self,other,"DIA_Andre_Add_08_09");	//Нет! Лорд Хаген должен услышать об этом.
+	AI_Output(self,other,"DIA_Andre_Add_08_09");	//Лорд Хаген должен услышать об этом.
 	B_Andre_GotoLordHagen();
 };
 

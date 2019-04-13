@@ -132,16 +132,30 @@ func void DIA_Rumbold_HALLO_geld_ok()
 	AI_Output(self,other,"DIA_Rumbold_HALLO_geld_ok_10_01");	//Меня не волнует, кто платит за Бенгара. Удачи. (себе под нос) Кретин!
 	AI_StopProcessInfos(self);
 	Rumbold_Bezahlt = TRUE;
-	Npc_ExchangeRoutine(self,"Start");
-	if(Hlp_IsValidNpc(Rick) && !Npc_IsDead(Rick))
+	if((other.guild == GIL_NONE) && C_AmIStronger(self,other))
 	{
-		Npc_ExchangeRoutine(Rick,"Start");
-		AI_ContinueRoutine(Rick);
+		Npc_ExchangeRoutine(self,"Start");
+		if(Hlp_IsValidNpc(Rick) && !Npc_IsDead(Rick))
+		{
+//			Npc_ExchangeRoutine(Rick,"Start");
+//			AI_ContinueRoutine(Rick);
+			B_StartOtherRoutine(Rick,"Start");
+		};
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"Flucht3");
+		if(Hlp_IsValidNpc(Rick) && !Npc_IsDead(Rick))
+		{
+			B_StartOtherRoutine(Rick,"Flucht3");
+		};
+		Miliz_Flucht = TRUE;
 	};
 	if(Hlp_IsValidNpc(Bengar) && !Npc_IsDead(Bengar))
 	{
-		Npc_ExchangeRoutine(Bengar,"Start");
-		AI_ContinueRoutine(Bengar);
+//		Npc_ExchangeRoutine(Bengar,"Start");
+//		AI_ContinueRoutine(Bengar);
+		B_StartOtherRoutine(Bengar,"Start");
 	};
 };
 

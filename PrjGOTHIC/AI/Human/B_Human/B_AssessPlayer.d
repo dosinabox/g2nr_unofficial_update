@@ -25,7 +25,7 @@ func void B_AssessPlayer()
 		}
 		else if(Wld_GetGuildAttitude(self.guild,other.guild) == ATT_HOSTILE)
 		{
-			if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (self.npcType != NPCTYPE_FRIEND))
+			if(((self.aivar[AIV_PARTYMEMBER] == FALSE) && (self.npcType != NPCTYPE_FRIEND)) || ((Npc_IsPlayer(other) && (self.npcType == NPCTYPE_FRIEND) && (PlayerIsTransformed == TRUE))))
 			{
 				B_Attack(self,other,AR_GuildEnemy,0);
 				return;
@@ -39,6 +39,7 @@ func void B_AssessPlayer()
 	if(C_PlayerIsFakeBandit(self,other) && (self.guild != GIL_BDT))
 	{
 		B_Attack(self,other,AR_GuildEnemy,0);
+		return;
 	};
 	if((B_GetPlayerCrime(self) == CRIME_MURDER) && C_WantToAttackMurder(self,other) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_INTERMEDIAT))
 	{

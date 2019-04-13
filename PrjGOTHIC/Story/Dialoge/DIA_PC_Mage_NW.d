@@ -237,10 +237,10 @@ func void DIA_MiltenNW_KAP3_Entry_Permit()
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_01");	//Покажи.
 	B_GiveInvItems(other,self,ItWr_PermissionToWearInnosEye_MIS,1);
 	B_UseFakeScroll();
+	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_02");	//(колеблясь) Хорошо. Вот ключ от монастыря. Ты найдешь Пирокара в церкви.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
-	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
 	MiltenNW_GivesMonasteryKey = TRUE;
 	Info_ClearChoices(DIA_MiltenNW_KAP3_Entry);
 };
@@ -686,7 +686,7 @@ func void DIA_MiltenNW_Teach_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_MiltenNW_Teach_03_01");	//Ты все еще не достиг второго круга магии. Я ничему не могу научить тебя.
+		AI_Output(self,other,"DIA_MiltenNW_Teach_03_01");	//Ты все еще не достиг второго Круга магии. Я ничему не могу научить тебя.
 	};
 };
 
@@ -741,7 +741,8 @@ func void DIA_MiltenNW_Mana_Info()
 
 func void DIA_MiltenNW_Mana_BACK()
 {
-	if(other.attribute[ATR_MANA_MAX] >= T_MED)
+//	if(other.attribute[ATR_MANA_MAX] >= T_MED)
+	if(other.aivar[REAL_MANA_MAX] >= T_MED)
 	{
 		AI_Output(self,other,"DIA_MiltenNW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
 	};

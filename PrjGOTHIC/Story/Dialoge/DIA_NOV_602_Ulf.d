@@ -43,15 +43,15 @@ func int DIA_Ulf_Hallo_Condition()
 func void DIA_Ulf_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Hallo_15_00");	//Что ты делаешь здесь?
-	if(hero.guild == GIL_KDF)
+	if(hero.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Ulf_Hallo_03_01");	//Если тебе интересно это знать, я выполняю задание монастыря.
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Ulf_Hallo_03_02");	//Я послушник в монастыре. Я выполняю задания магов, а также паладинов.
-		AI_Output(self,other,"DIA_Ulf_Hallo_03_03");	//Я доставил трем трактирщикам города вино из монастыря.
 	};
+	AI_Output(self,other,"DIA_Ulf_Hallo_03_03");	//Я доставил трем трактирщикам города вино из монастыря.
 };
 
 
@@ -105,7 +105,7 @@ func void DIA_Ulf_Kloster_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Kloster_15_00");	//Что ты можешь рассказать мне о монастыре?
 	AI_Output(self,other,"DIA_Ulf_Kloster_03_01");	//Мы, послушники, ищем просвещение в молитвах Инносу и изучении принципов веры под руководством магов.
-	AI_Output(self,other,"DIA_Ulf_Kloster_03_02");	//Мы служим им так же, как мы служим Инносу, и готовим себя к единению с огнем.
+	AI_Output(self,other,"DIA_Ulf_Kloster_03_02");	//Мы служим им так же, как мы служим Инносу, и готовим себя к единению с Огнем.
 };
 
 
@@ -146,7 +146,7 @@ instance DIA_Ulf_Aufnahme(C_Info)
 	condition = DIA_Ulf_Aufnahme_Condition;
 	information = DIA_Ulf_Aufnahme_Info;
 	permanent = FALSE;
-	description = "Как мне стать послушником?";
+	description = "А как мне стать послушником?";
 };
 
 
@@ -160,11 +160,12 @@ func int DIA_Ulf_Aufnahme_Condition()
 
 func void DIA_Ulf_Aufnahme_Info()
 {
-	AI_Output(other,self,"DIA_Ulf_Aufnahme_15_00");	//Как мне стать послушником?
+	AI_Output(other,self,"DIA_Ulf_Aufnahme_15_00");	//А как мне стать послушником?
 	AI_Output(self,other,"DIA_Ulf_Aufnahme_03_01");	//Если человек чувствует глубокое желание...
 	AI_Output(other,self,"DIA_Ulf_Aufnahme_15_02");	//Эй! Просто скажи мне, каковы условия.
 	AI_Output(self,other,"DIA_Ulf_Aufnahme_03_03");	//Ты должен принести дары. Овцу и...
 	B_Say_Gold(self,other,Summe_Kloster);
+	SC_KnowsKlosterTribut = TRUE;
 	Log_CreateTopic(Topic_Kloster,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Kloster,LOG_Running);
 	B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
@@ -193,7 +194,7 @@ func int DIA_Ulf_Gold_Condition()
 func void DIA_Ulf_Gold_Info()
 {
 	AI_Output(other,self,"DIA_Ulf_Gold_15_00");	//Как мне раздобыть такую огромную сумму?
-	AI_Output(self,other,"DIA_Ulf_Gold_03_01");	//Так как очевидно, что ты не знаешь никого, кто мог бы заплатить за тебя, тебе просто нужно заработать ее.
+	AI_Output(self,other,"DIA_Ulf_Gold_03_01");	//Так как очевидно, что ты не знаешь никого, кто бы мог заплатить за тебя, тебе просто нужно заработать ее.
 };
 
 
@@ -204,7 +205,7 @@ instance DIA_Ulf_Schaf(C_Info)
 	condition = DIA_Ulf_Schaf_Condition;
 	information = DIA_Ulf_Schaf_Info;
 	permanent = FALSE;
-	description = "Где я могу найти овцу?";
+	description = "А где я могу найти овцу?";
 };
 
 
@@ -218,7 +219,7 @@ func int DIA_Ulf_Schaf_Condition()
 
 func void DIA_Ulf_Schaf_Info()
 {
-	AI_Output(other,self,"DIA_Ulf_Schaf_15_00");	//Где я могу найти овцу?
+	AI_Output(other,self,"DIA_Ulf_Schaf_15_00");	//А где я могу найти овцу?
 	AI_Output(self,other,"DIA_Ulf_Schaf_03_01");	//У фермеров, конечно же. Но ты не получишь ее даром.
 	B_LogEntry(Topic_Kloster,"Я могу раздобыть овцу у фермеров.");
 };
@@ -392,9 +393,9 @@ func void DIA_Ulf_Abrechnung_Rauch()
 {
 	AI_Output(other,self,"DIA_Ulf_Abrechnung_Rauch_15_00");	//У тебя нет ничего покурить?
 	AI_Output(self,other,"DIA_Ulf_Abrechnung_Rauch_03_01");	//Тебе повезло. Как раз у меня кое-что есть.
+	AI_Output(self,other,"DIA_Ulf_Abrechnung_Rauch_03_02");	//Давай, закурим.
 	B_GiveInvItems(self,other,ItMi_Joint,1);
 	B_UseItem(other,ItMi_Joint);
-	AI_Output(self,other,"DIA_Ulf_Abrechnung_Rauch_03_02");	//Давай, закурим.
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,0);
 };

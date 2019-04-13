@@ -533,7 +533,7 @@ func void Equip_ItRi_Hp_01()
 func void UnEquip_ItRi_Hp_01()
 {
 	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp;
-	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 1))
+	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 2))
 	{
 		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
 	}
@@ -577,7 +577,7 @@ func void Equip_ItRi_Hp_02()
 func void UnEquip_ItRi_Hp_02()
 {
 	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp02;
-	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp02 + 1))
+	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp02 + 2))
 	{
 		self.attribute[ATR_HITPOINTS] -= Ri_Hp02;
 	}
@@ -691,7 +691,7 @@ func void Equip_ItRi_Mana_01()
 func void UnEquip_ItRi_Mana_01()
 {
 	self.attribute[ATR_MANA_MAX] -= Ri_Mana;
-	if(self.attribute[ATR_MANA] >= Ri_Mana)
+	if(self.attribute[ATR_MANA] > Ri_Mana)
 	{
 		self.attribute[ATR_MANA] -= Ri_Mana;
 	}
@@ -735,7 +735,7 @@ func void Equip_ItRi_Mana_02()
 func void UnEquip_ItRi_Mana_02()
 {
 	self.attribute[ATR_MANA_MAX] -= Ri_Mana02;
-	if(self.attribute[ATR_MANA] >= Ri_Mana02)
+	if(self.attribute[ATR_MANA] > Ri_Mana02)
 	{
 		self.attribute[ATR_MANA] -= Ri_Mana02;
 	}
@@ -784,7 +784,7 @@ func void UnEquip_ItRi_Hp_Mana_01()
 {
 	self.attribute[ATR_MANA_MAX] -= Ri_HpMana_Mana;
 	self.attribute[ATR_HITPOINTS_MAX] -= Ri_HpMana_Hp;
-	if(self.attribute[ATR_HITPOINTS] > (Ri_HpMana_Hp + 1))
+	if(self.attribute[ATR_HITPOINTS] > (Ri_HpMana_Hp + 2))
 	{
 		self.attribute[ATR_HITPOINTS] -= Ri_HpMana_Hp;
 	}
@@ -792,7 +792,7 @@ func void UnEquip_ItRi_Hp_Mana_01()
 	{
 		self.attribute[ATR_HITPOINTS] = 2;
 	};
-	if(self.attribute[ATR_MANA] >= Ri_HpMana_Mana)
+	if(self.attribute[ATR_MANA] > Ri_HpMana_Mana)
 	{
 		self.attribute[ATR_MANA] -= Ri_HpMana_Mana;
 	}

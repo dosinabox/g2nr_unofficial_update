@@ -364,7 +364,8 @@ func void B_Hokurn_TeachedEnough()
 func void DIA_Hokurn_Teach_2H_1()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100);
-	if(other.HitChance[NPC_TALENT_2H] >= 100)
+//	if(other.HitChance[NPC_TALENT_2H] >= 100)
+	if(other.aivar[REAL_TALENT_2H] >= 100)
 	{
 		B_Hokurn_TeachedEnough();
 	};
@@ -374,7 +375,8 @@ func void DIA_Hokurn_Teach_2H_1()
 func void DIA_Hokurn_Teach_2H_5()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100);
-	if(other.HitChance[NPC_TALENT_2H] >= 100)
+//	if(other.HitChance[NPC_TALENT_2H] >= 100)
+	if(other.aivar[REAL_TALENT_2H] >= 100)
 	{
 		B_Hokurn_TeachedEnough();
 	};
@@ -384,7 +386,8 @@ func void DIA_Hokurn_Teach_2H_5()
 func void DIA_Hokurn_Teach_1H_1()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,100);
-	if(other.HitChance[NPC_TALENT_1H] >= 100)
+//	if(other.HitChance[NPC_TALENT_1H] >= 100)
+	if(other.aivar[REAL_TALENT_1H] >= 100)
 	{
 		B_Hokurn_TeachedEnough();
 	};
@@ -394,7 +397,8 @@ func void DIA_Hokurn_Teach_1H_1()
 func void DIA_Hokurn_Teach_1H_5()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,100);
-	if(other.HitChance[NPC_TALENT_1H] >= 100)
+//	if(other.HitChance[NPC_TALENT_1H] >= 100)
+	if(other.aivar[REAL_TALENT_1H] >= 100)
 	{
 		B_Hokurn_TeachedEnough();
 	};

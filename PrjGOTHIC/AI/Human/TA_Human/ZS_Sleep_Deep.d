@@ -39,7 +39,7 @@ func int ZS_Sleep_Deep_Loop()
 
 func void ZS_Sleep_Deep_End()
 {
-	Mdl_StartFaceAni(self,"S_NEUTRAL",1,-1);
+	B_ResetFaceExpression(self);
 	if(!Npc_IsInPlayersRoom(self))
 	{
 		B_Say(self,self,"$AWAKE");

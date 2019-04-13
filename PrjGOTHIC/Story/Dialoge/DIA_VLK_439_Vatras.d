@@ -360,9 +360,9 @@ func void DIA_Addon_Vatras_TellMe_Philo()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_Philo_15_00");	//Чем именно вы занимаетесь?
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_01");	//Мы стоим на пути порядка Инноса и хаоса Белиара.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_02");	//Если одна из сторон одержит верх, то это будет означать либо полный хаос либо окончательную потерю свободы.
+	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_02");	//Если одна из сторон одержит верх, то это будет означать либо полный хаос, либо окончательную потерю свободы.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_03");	//Поэтому мы поддерживаем баланс двух сил. Благодаря нам существует все живое.
-	if(MIS_Vatras_FindTheBanditTrader == 0)
+	if(MIS_Vatras_FindTheBanditTrader == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Vatras_TellMe,"И что это значит для меня?",DIA_Addon_Vatras_TellMe_Konkret);
 	};
@@ -372,7 +372,7 @@ func void DIA_Addon_Vatras_TellMe_Konkret()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_Konkret_15_00");	//(хмуро) И что это значит для меня?
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_01");	//Падение Барьера стало причиной возникновения многих опасностей.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_02");	//Бандиты, наверное, самая очевидная их них.
+	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_02");	//Бандиты, наверное, самая очевидная из них.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_03");	//И дело не только в том, что теперь нельзя путешествовать в безопасности...
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_04");	//В городе есть кто-то, кто помогает бандитам!
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Add_05_00");	//Мы узнали, что бандиты получают регулярные поставки от торговца оружием в Хоринисе.
@@ -889,7 +889,7 @@ func void DIA_Addon_Vatras_MissingPeople_Report()
 	var int XP_Vatras_MissingPeopleReports;
 	Vatras_MissingPeopleReports = 0;
 	AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_00");	//Позволь рассказать тебе то, что я знаю...
-	if(((MIS_Akil_BringMissPeopleBack != 0) || (MIS_Bengar_BringMissPeopleBack != 0)) && (MISSINGPEOPLEINFO[1] == FALSE))
+	if(((MIS_Akil_BringMissPeopleBack != FALSE) || (MIS_Bengar_BringMissPeopleBack != FALSE)) && (MISSINGPEOPLEINFO[1] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_01");	//Фермеры тоже потеряли своих близких.
 		Vatras_MissingPeopleReports += 1;
@@ -925,7 +925,7 @@ func void DIA_Addon_Vatras_MissingPeople_Report()
 		Vatras_MissingPeopleReports += 1;
 		MISSINGPEOPLEINFO[6] = TRUE;
 	};
-	if((Npc_HasItems(other,ItWr_LuciasLoveLetter_Addon) || (MIS_LuciasLetter == LOG_SUCCESS)) && (MISSINGPEOPLEINFO[7] == FALSE))
+	if(((MIS_LuciasLetter == LOG_Running) || (MIS_LuciasLetter == LOG_SUCCESS)) && (MISSINGPEOPLEINFO[7] == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_07");	//Люсия, девушка, похищенная бандитами, решила присоединиться к ним.
 		if(MIS_LuciasLetter == LOG_SUCCESS)
@@ -1143,7 +1143,7 @@ instance DIA_Addon_Vatras_WISP(C_Info)
 
 func int DIA_Addon_Vatras_WISP_Condition()
 {
-	if(MIS_Vatras_FindTheBanditTrader != 0)
+	if(MIS_Vatras_FindTheBanditTrader != FALSE)
 	{
 		return TRUE;
 	};
@@ -1269,11 +1269,8 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	if(anzahl == 1)
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
-	}
-	else
-	{
 	};
-	if ((flag != TRUE) && (anzahl2 > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running))
+	if((flag == FALSE) && (anzahl2 > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running))
 	{
 		MIS_Addon_Erol_BanditStuff = LOG_FAILED;
 		B_CheckLog();
@@ -1561,7 +1558,8 @@ func void DIA_Vatras_Teach_Info()
 
 func void DIA_Vatras_Teach_BACK()
 {
-	if(other.attribute[ATR_MANA_MAX] >= T_HIGH)
+//	if(other.attribute[ATR_MANA_MAX] >= T_HIGH)
+	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Vatras_Teach_05_00");	//Твоя магическая энергия стала слишком велика, чтобы я мог еще повысить ее.
 	};
@@ -1994,6 +1992,10 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut()
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_15_00");	//Где мне найти болотную траву?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_01");	//Я слышал о старой шаманке Сагитте, живущей в лесу. Предположительно, она продает такие травы.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_02");	//Но также ты можешь попытать счастья в местной гавани.
+	if(Npc_HasItems(Sagitta,ItPl_SwampHerb) < 3)
+	{
+		CreateInvItems(Sagitta,ItPl_SwampHerb,3);
+	};
 };
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer()

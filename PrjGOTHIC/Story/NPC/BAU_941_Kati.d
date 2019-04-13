@@ -5,7 +5,7 @@ instance BAU_941_Kati(Npc_Default)
 	guild = GIL_OUT;
 	id = 941;
 	voice = 16;
-	flags = NPC_FLAG_IMMORTAL;
+//	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;

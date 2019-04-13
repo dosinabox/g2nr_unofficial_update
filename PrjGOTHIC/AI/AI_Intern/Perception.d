@@ -55,6 +55,10 @@ func void Perception_Set_Normal()
 	Npc_PercEnable(self,PERC_ASSESSWARN,B_AssessWarn);
 	Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 	Npc_PercEnable(self,PERC_MOVEMOB,B_MoveMob);
+	if(!Npc_IsInState(self,ZS_Sleep) && !Npc_IsInState(self,ZS_Sleep_Deep))
+	{
+		B_ResetFaceExpression(self);
+	};
 };
 
 func void Perception_Set_Minimal()
@@ -67,6 +71,10 @@ func void Perception_Set_Minimal()
 	Npc_PercEnable(self,PERC_ASSESSTHEFT,B_AssessTheft);
 	Npc_PercEnable(self,PERC_ASSESSUSEMOB,B_AssessUseMob);
 	Npc_PercEnable(self,PERC_ASSESSENTERROOM,B_AssessPortalCollision);
+	if(!Npc_IsInState(self,ZS_Sleep) && !Npc_IsInState(self,ZS_Sleep_Deep))
+	{
+		B_ResetFaceExpression(self);
+	};
 };
 
 func void B_ClearPerceptions(var C_Npc slf)
@@ -90,6 +98,10 @@ func void B_ClearPerceptions(var C_Npc slf)
 	Npc_PercDisable(slf,PERC_ASSESSOTHERSDAMAGE);
 	Npc_PercDisable(slf,PERC_ASSESSSTOPMAGIC);
 	Npc_PercDisable(slf,PERC_ASSESSSURPRISE);
+	if(slf.guild < GIL_SEPERATOR_HUM)
+	{
+		B_ResetFaceExpression(slf);
+	};
 };
 
 func void Perception_Set_Monster_Rtn()

@@ -549,6 +549,8 @@ func void DIA_Garond_Marcos_Info()
 	AI_Output(self,other,"DIA_Garond_Marcos_10_05");	//И ему нужны еще люди?.. Что ж, ладно, я пошлю к нему двух человек.
 	Marcos_Guard1.flags = 0;
 	Marcos_Guard2.flags = 0;
+	Marcos_Guard1.aivar[AIV_ToughGuy] = TRUE;
+	Marcos_Guard2.aivar[AIV_ToughGuy] = TRUE;
 	B_StartOtherRoutine(Marcos_Guard1,"MARCOS");
 	B_StartOtherRoutine(Marcos_Guard2,"MARCOS");
 	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");

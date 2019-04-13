@@ -27,11 +27,12 @@ func void ZS_MM_Rtn_Sleep()
 	};
 	AI_PlayAni(self,"T_PERCEPTION");
 	AI_PlayAniBS(self,"T_STAND_2_SLEEP",BS_LIE);
+	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
 };
 
-func int ZS_MM_Rtn_Sleep_loop()
+func int ZS_MM_Rtn_Sleep_Loop()
 {
-	if(!Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],0) && (self.aivar[AIV_MM_SleepStart] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_SleepStart],0,self.aivar[AIV_MM_SleepEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_SleepStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 		return LOOP_END;
@@ -39,7 +40,7 @@ func int ZS_MM_Rtn_Sleep_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_MM_Rtn_Sleep_end()
+func void ZS_MM_Rtn_Sleep_End()
 {
 	AI_PlayAniBS(self,"T_SLEEP_2_STAND",BS_STAND);
 };

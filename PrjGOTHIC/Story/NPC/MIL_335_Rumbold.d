@@ -33,11 +33,11 @@ func void Rtn_MilComing_335()
 	TA_Smalltalk(22,0,8,0,"NW_FARM3_BENGAR");
 };
 
-func void Rtn_Flucht2_335()
+/* func void Rtn_Flucht2_335()
 {
 	TA_Smalltalk(8,0,22,0,"NW_RUMBOLD_FLUCHT2");
 	TA_Smalltalk(22,0,8,0,"NW_RUMBOLD_FLUCHT2");
-};
+}; */
 
 func void Rtn_Flucht3_335()
 {

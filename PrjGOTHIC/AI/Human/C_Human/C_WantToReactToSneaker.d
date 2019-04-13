@@ -17,7 +17,7 @@ func int C_WantToReactToSneaker(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if(C_NpcIsGateGuard(self))
+	if(C_NpcIsGateGuard(slf))
 	{
 		return FALSE;
 	};

@@ -301,7 +301,8 @@ func void DIA_Addon_Merdarion_ADW_TEACH_MANA_Info()
 
 func void DIA_Addon_Merdarion_ADW_TEACH_MANA_BACK()
 {
-	if(other.attribute[ATR_MANA_MAX] >= T_HIGH)
+//	if(other.attribute[ATR_MANA_MAX] >= T_HIGH)
+	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_00");	//То, что ты просишь, выходит за рамки моих способностей.
 		AI_Output(self,other,"DIA_Addon_Merdarion_ADW_TEACH_MANA_06_01");	//Ты уже знаешь все, чему бы я тебя мог научить.

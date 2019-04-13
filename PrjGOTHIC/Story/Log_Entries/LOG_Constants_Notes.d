@@ -18,3 +18,5 @@ const string TOPIC_WispDetector = "Ищущий блуждающий огонек";
 const string TOPIC_Language = "Язык зодчих";
 const string Topic_Bonus = "Особое";
 const string Topic_Diebesgilde = "Гильдия воров";
+
+const string Topic_PickPocket = "Карманное воровство";

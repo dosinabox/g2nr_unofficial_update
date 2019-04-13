@@ -193,7 +193,7 @@ func void DIA_Brutus_Den_Info()
 	AI_Output(self,other,"DIA_Brutus_Den_06_01");	//Как можно дальше отсюда, как я понимаю. Я думаю, он мог попытаться пробраться через Проход.
 	AI_Output(other,self,"DIA_Brutus_Den_15_02");	//Спасибо. Исчерпывающая информация.
 	AI_Output(self,other,"DIA_Brutus_Den_06_03");	//А что я еще могу сказать? Я понятия не имею, куда он направился.
-	B_LogEntry(TopicBrutusKasse,"Ден попробовал перейти мне дорогу.");
+	B_LogEntry(TopicBrutusKasse,"Ден мог попытаться пробраться через Проход.");
 };
 
 
@@ -449,13 +449,13 @@ func int DIA_Brutus_PERM4_Condition()
 
 func void DIA_Brutus_PERM4_Info()
 {
+	AI_Output(other,self,"DIA_Brutus_PERM4_15_00");	//Все в порядке?
 	if((MIS_OCGateOpen == TRUE) || ((hero.guild == GIL_KDF) && (Kapitel >= 5)))
 	{
 		B_NpcObsessedByDMT(self);
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Brutus_PERM4_15_00");	//Все в порядке?
 		AI_Output(self,other,"DIA_Brutus_PERM4_06_01");	//(нерешительно) Ты уверен, что со всеми мясными жуками покончено?
 		AI_Output(other,self,"DIA_Brutus_PERM4_15_02");	//Ах... смотри, вон один сзади тебя.
 		AI_Output(self,other,"DIA_Brutus_PERM4_06_03");	//(ревет) Чтооо?

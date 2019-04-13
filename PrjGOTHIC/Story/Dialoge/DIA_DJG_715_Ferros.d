@@ -152,7 +152,7 @@ func void DIA_DJG_715_Ferros_OldCamp_Price()
 {
 	AI_Output(other,self,"DIA_DJG_715_Ferros_OldCamp_Price_15_00");	//„то ты дашь мне, если € найду твой меч?
 	AI_Output(self,other,"DIA_DJG_715_Ferros_OldCamp_Price_01_01");	//Ѕоже, € ничего не могу дать. я потратил все свои деньги на этот меч.
-	Info_ClearChoices(DIA_DJG_715_Ferros_OldCamp);
+//	Info_ClearChoices(DIA_DJG_715_Ferros_OldCamp);
 };
 
 func void DIA_DJG_715_Ferros_OldCamp_Yes()
@@ -249,6 +249,7 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_Yes()
 {
 	B_Ferros_FerrosAnySword_Yes1();
 	B_GiveInvItems(other,self,ItMw_1H_Special_01,1);
+	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
 	MIS_FerrosSword = LOG_SUCCESS;
@@ -265,6 +266,7 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_Yes()
 {
 	B_Ferros_FerrosAnySword_Yes1();
 	B_GiveInvItems(other,self,ItMw_1H_Special_02,1);
+	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 	Info_ClearChoices(DIA_DJG_715_Ferros_FerrosAnySword);
 	MIS_FerrosSword = LOG_SUCCESS;
@@ -301,6 +303,7 @@ func void DIA_DJG_715_Ferros_FerrosHisSword_Info()
 {
 	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosHisSword_15_00");	//я нашел твой меч.
 	B_GiveInvItems(other,self,ItMW_1H_FerrosSword_Mis,1);
+	B_InspectMeleeWeapon(self);
 	B_Ferros_FerrosAnySword_Yes2();
 	MIS_FerrosSword = LOG_SUCCESS;
 	B_GivePlayerXP(XP_FerrosSword);

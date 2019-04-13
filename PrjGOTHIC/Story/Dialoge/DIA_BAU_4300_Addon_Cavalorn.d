@@ -43,7 +43,8 @@ instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
 
 func int DIA_Addon_Cavalorn_PICKPOCKET_Condition()
 {
-	return C_StealItems(25,Hlp_GetInstanceID(ItRw_Arrow),0);
+//	return C_StealItems(25,Hlp_GetInstanceID(ItRw_Arrow),0);
+	return C_StealItem(25,Hlp_GetInstanceID(ItRw_Arrow));
 };
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
@@ -62,13 +63,15 @@ func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
 		B_GiveInvItems(self,other,ItRw_Arrow,44);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
 	}
 	else
 	{
 		B_ResetThiefLevel();
+		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
-	}; 
+	};
 	Info_ClearChoices(DIA_Addon_Cavalorn_PICKPOCKET);
 };
 
@@ -256,7 +259,8 @@ func void DIA_Addon_Cavalorn_Beutel_jaerz()
 func void DIA_Addon_Cavalorn_Beutel_ja()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_ja_15_00");	//Конечно.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_ja_08_01");	//Ужасно.
+//	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_ja_08_01");	//Ужасно.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_OBack_08_01");	//Отлично.
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"А почему ты вообще оттуда ушел?",DIA_Addon_Cavalorn_Beutel_why);
@@ -369,7 +373,7 @@ func void DIA_Addon_Cavalorn_Banditen_Info()
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Э-э...
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_03");	//Я говорю обо всем этом сброде из исправительной колонии, которые чувствуют себя здесь как дома, грабят и убивают всех, кого могут.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_04");	//(вздыхает) Думаю, мне повезло, что они меня не убили. Я отвлекся буквально на секунду - и меня уже оглушили ударом сзади дубинкой по голове.
-	if(C_BragoBanditsDead() == FALSE)
+	if(!C_BragoBanditsDead())
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_Banditen_08_05");	//Даже не знаю, как теперь получить свои вещи обратно.
 	};
@@ -436,7 +440,6 @@ func void DIA_Addon_Cavalorn_HELFEN_Info()
 	Log_CreateTopic(TOPIC_Addon_KillBrago,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_KillBrago,LOG_Running);
 	B_LogEntry(TOPIC_Addon_KillBrago,"Бандиты украли у Кавалорна что-то ценное. Он хочет, чтобы я помог ему расправиться с ними.");
-	self.aivar[AIV_PARTYMEMBER] = TRUE;
 };
 
 
@@ -500,6 +503,7 @@ func void DIA_Addon_Cavalorn_LETSKILLBANDITS_Info()
 	AI_Output(other,self,"DIA_Addon_Cavalorn_LETSKILLBANDITS_15_00");	//Пойдем, разберемся с этими ребятами.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_LETSKILLBANDITS_08_01");	//Конечно. Следи, чтобы ко мне не подходили сзади, ладно?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_LETSKILLBANDITS_08_02");	//Теперь их ждет неприятный сюрприз.
+	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"KillBandits");
 	if(Bdt_1013_Away == FALSE)
@@ -532,7 +536,7 @@ func void B_Addon_Cavalorn_VatrasBrief()
 	};
 	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
 	{
-		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_11");	//А, да, и еще одно. Для начала купи приличную одежду у какого-нибудь фермера.
+		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_11");	//А, да, и еще одно. Сначала купи приличную одежду у какого-нибудь фермера.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_12");	//Иначе тебя могут принять за бандита. Вот пара монет.
 		CreateInvItems(self,ItMi_Gold,50);
 		B_GiveInvItems(self,other,ItMi_Gold,50);
@@ -542,12 +546,12 @@ func void B_Addon_Cavalorn_VatrasBrief()
 	{
 		MIS_Addon_Cavalorn_Letter2Vatras = LOG_Running;
 	};
+	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"Start");
 	B_GivePlayerXP(XP_Addon_Cavalorn_KillBrago);
 	Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_KDW,"Кавалорн хочет, чтобы я доставил украденное бандитами письмо магу Воды Ватрасу, которого можно найти в городе, в храме Аданоса.");
-	self.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 
 
@@ -588,7 +592,7 @@ instance DIA_Addon_Cavalorn_PCKilledBrago(C_Info)
 
 func int DIA_Addon_Cavalorn_PCKilledBrago_Condition()
 {
-	if((MIS_Addon_Cavalorn_KillBrago == FALSE) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && C_BragoBanditsDead())
+	if(((MIS_Addon_Cavalorn_KillBrago == FALSE) || ((Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 500) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))) && Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Banditen) && C_BragoBanditsDead())
 	{
 		return TRUE;
 	};
@@ -852,7 +856,7 @@ func void DIA_Addon_Cavalorn_Triggered_Pal()
 	Npc_RemoveInvItems(self,ITAR_Fake_RANGER,Npc_HasItems(self,ITAR_Fake_RANGER));
 	AI_EquipBestArmor(self);
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_Pal_15_00");	//Кому-то из нас придется подняться в верхнюю часть города.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Pal_08_01");	//У меня нет на это время. Это придется сделать тебе.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_Pal_08_01");	//У меня нет на это времени. Это придется сделать тебе.
 	B_Cavalorn_Triggered_Wohin();
 };
 
@@ -954,8 +958,10 @@ func void DIA_Addon_Cavalorn_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_TEACH_15_00");	//Я хочу обучиться тому, что ты умеешь.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_TEACH_08_01");	//Хорошо. Что именно тебя интересует?
-	Addon_Cavalorn_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
-	Addon_Cavalorn_Merke_1h = other.HitChance[NPC_TALENT_1H];
+//	Addon_Cavalorn_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
+//	Addon_Cavalorn_Merke_1h = other.HitChance[NPC_TALENT_1H];
+	Addon_Cavalorn_Merke_Bow = other.aivar[REAL_TALENT_BOW];
+	Addon_Cavalorn_Merke_1h = other.aivar[REAL_TALENT_1H];
 	DIA_Addon_Cavalorn_TEACH_Choices();
 };
 
@@ -994,7 +1000,7 @@ func void DIA_Addon_Cavalorn_Teach_1H_5()
 
 func void DIA_Addon_Cavalorn_Teach_Back()
 {
-	if((Addon_Cavalorn_Merke_Bow < other.HitChance[NPC_TALENT_BOW]) || (Addon_Cavalorn_Merke_1h < other.HitChance[NPC_TALENT_1H]))
+	if((Addon_Cavalorn_Merke_Bow < other.aivar[REAL_TALENT_BOW]) || (Addon_Cavalorn_Merke_1h < other.aivar[REAL_TALENT_1H]))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_Teach_BACK_08_00");	//Уже лучше. Ты многое позабыл, но мы быстро вернем твои умения.
 	};

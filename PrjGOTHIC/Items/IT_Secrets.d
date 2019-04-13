@@ -11,6 +11,8 @@ instance ItSe_ErzFisch(C_Item)
 	on_state[0] = Use_ErzFisch;
 	description = name;
 	text[2] = "В этой рыбе что-то спрятано.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -32,6 +34,8 @@ instance ItSe_GoldFisch(C_Item)
 	on_state[0] = Use_GoldFisch;
 	description = name;
 	text[2] = "В этой рыбе что-то спрятано.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -53,6 +57,8 @@ instance ItSe_Ringfisch(C_Item)
 	on_state[0] = Use_Ringfisch;
 	description = name;
 	text[2] = "В этой рыбе что-то спрятано.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -74,12 +80,14 @@ instance ItSe_LockpickFisch(C_Item)
 	on_state[0] = Use_LockpickFisch;
 	description = name;
 	text[2] = "В этой рыбе что-то спрятано.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
 func void Use_LockpickFisch()
 {
-	B_PlayerFindItem(ItKE_lockpick,3);
+	B_PlayerFindItem(ItKe_Lockpick,3);
 };
 
 
@@ -172,8 +180,9 @@ instance ItSe_HannasBeutel(C_Item)
 
 func void HannasBeutel()
 {
-	CreateInvItems(hero,ItKE_lockpick,10);
+	CreateInvItems(hero,ItKe_Lockpick,10);
 	CreateInvItems(hero,ItKe_ThiefTreasure,1);
 	Print(PRINT_HannasBeutel);
 };
+
 

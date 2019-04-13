@@ -60,7 +60,7 @@ func void DIA_Lester_Hello_Lester()
 {
 	Info_ClearChoices(DIA_Lester_Hello);
 	AI_Output(other,self,"DIA_Lester_Hello_Lester_15_00");	//Лестер! Как ты оказался здесь?
-	AI_Output(self,other,"DIA_Lester_Hello_Lester_13_01");	//Это был безумный побег. После того, как барьер рухнул, я бродил там некоторое время в полном смятении.
+	AI_Output(self,other,"DIA_Lester_Hello_Lester_13_01");	//Это был безумный побег. После того, как Барьер рухнул, я бродил там некоторое время в полном смятении.
 	AI_Output(self,other,"DIA_Lester_Hello_Lester_13_02");	//Потом я потратил несколько дней, пробираясь через все эти леса, пока, наконец, не оказался в этой долине.
 	AI_Output(self,other,"DIA_Lester_Hello_Lester_13_03");	//Диего, Милтен и Горн все еще в Долине Рудников. По крайней мере, я так думаю.
 };
@@ -80,7 +80,7 @@ func void DIA_Lester_Hello_KnowFourFriends()
 {
 	Info_ClearChoices(DIA_Lester_Hello);
 	AI_Output(other,self,"DIA_Lester_Hello_KnowFourFriends_15_00");	//Конечно. Как они?
-	AI_Output(self,other,"DIA_Lester_Hello_KnowFourFriends_13_01");	//Насколько я знаю, они выжили при разрушении барьера.
+	AI_Output(self,other,"DIA_Lester_Hello_KnowFourFriends_13_01");	//Насколько я знаю, они выжили при разрушении Барьера.
 	AI_Output(self,other,"DIA_Lester_Hello_KnowFourFriends_13_02");	//Но я понятия не имею, где они сейчас - эта троица, вероятно, все еще ошивается в Долине Рудников.
 	AI_Output(self,other,"DIA_Lester_Hello_KnowFourFriends_13_03");	//Если ты наткнешься на них, дай мне знать.
 };

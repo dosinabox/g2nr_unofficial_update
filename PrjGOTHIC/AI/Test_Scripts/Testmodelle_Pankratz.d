@@ -278,15 +278,15 @@ instance SH_Oldworld_Exit(C_Info)
 	nr = 999;
 	condition = SH_Oldworld_Exit_Condition;
 	information = SH_Oldworld_Exit_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
 
 func int SH_Oldworld_Exit_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void SH_Oldworld_Exit_Info()
@@ -300,8 +300,8 @@ instance SH_Oldworld_INFO1(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO1_Condition;
 	information = SH_Oldworld_INFO1_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_1;
 };
 
@@ -335,8 +335,8 @@ instance SH_Oldworld_INFO2(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO2_Condition;
 	information = SH_Oldworld_INFO2_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_2;
 };
 
@@ -371,8 +371,8 @@ instance SH_Oldworld_INFO3(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO3_Condition;
 	information = SH_Oldworld_INFO3_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_3;
 };
 
@@ -413,8 +413,8 @@ instance SH_Oldworld_INFO4(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO4_Condition;
 	information = SH_Oldworld_INFO4_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_4;
 };
 
@@ -461,8 +461,8 @@ instance SH_Oldworld_INFO5(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO5_Condition;
 	information = SH_Oldworld_INFO5_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_5;
 };
 
@@ -513,8 +513,8 @@ instance SH_Oldworld_INFO6(C_Info)
 	npc = SH_Oldworld;
 	condition = SH_Oldworld_INFO6_Condition;
 	information = SH_Oldworld_INFO6_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = KapWechsel_6;
 };
 
@@ -590,7 +590,7 @@ instance DIA_Dragon_Testmodell_Hello(C_Info)
 
 func int DIA_Dragon_Testmodell_Hello_Condition()
 {
-	return 1;
+	return TRUE;
 };
 
 func void DIA_Dragon_Testmodell_Hello_Info()

@@ -308,7 +308,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 		};
 	}
-	else if(C_ScHasMagicStonePlate() == TRUE)
+	else if(C_ScHasMagicStonePlate())
 	{
 		AI_Output(other,self,"DIA_Addon_Erol_Stoneplates_15_10");	//Эта табличка подойдет?
 		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_11");	//Нет. Она обладает магической силой.

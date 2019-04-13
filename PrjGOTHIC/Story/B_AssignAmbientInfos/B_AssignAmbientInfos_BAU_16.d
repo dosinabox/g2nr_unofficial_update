@@ -74,7 +74,7 @@ instance DIA_BAU_16_LOCATION(C_Info)
 	condition = DIA_BAU_16_LOCATION_Condition;
 	information = DIA_BAU_16_LOCATION_Info;
 	permanent = TRUE;
-	description = "„то ты можешь рассказать мне об этом квартале?";
+	description = "„то ты можешь рассказать интересного об этой местности?";
 };
 
 

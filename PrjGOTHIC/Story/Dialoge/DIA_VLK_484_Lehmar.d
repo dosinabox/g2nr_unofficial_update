@@ -249,7 +249,7 @@ func void DIA_Lehmar_GELDZURUECK_Info()
 	if((RangerHelp_LehmarKohle == TRUE) && (Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)))
 	{
 		AI_Output(self,other,"DIA_Addon_Lehmar_GELDZURUECK_09_00");	//Оставь их. Ларес уже обо всем позаботился.
-		AI_Output(self,other,"DIA_Addon_Lehmar_GELDZURUECK_09_01");	//Похоже, вы с этим мошенником приятели, а? Ладно, это не мое дело. Удачи.
+		AI_Output(self,other,"DIA_Addon_Lehmar_GELDZURUECK_09_01");	//Похоже, вы с этим мошенником приятели, а? Ладно, ладно, это не мое дело. Удачи.
 		Lehmar_GeldGeliehen = 0;
 		AI_StopProcessInfos(self);
 	}
@@ -318,6 +318,8 @@ func void DIA_Lehmar_NOCHMALGELD_Info()
 };
 
 
+var int Lehmar_StealBook_Day;
+
 instance DIA_Lehmar_PICKPOCKET(C_Info)
 {
 	npc = VLK_484_Lehmar;
@@ -331,7 +333,15 @@ instance DIA_Lehmar_PICKPOCKET(C_Info)
 
 func int DIA_Lehmar_PICKPOCKET_Condition()
 {
-	return C_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
+//	return C_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
+	if(Npc_HasItems(self,ItWr_Schuldenbuch))
+	{
+		return C_StealItem(20,Hlp_GetInstanceID(ItWr_Schuldenbuch));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Lehmar_PICKPOCKET_Info()
@@ -343,13 +353,15 @@ func void DIA_Lehmar_PICKPOCKET_Info()
 
 func void DIA_Lehmar_PICKPOCKET_DoIt()
 {
-	B_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
+//	B_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
+	B_StealItem(20,Hlp_GetInstanceID(ItWr_Schuldenbuch));
 	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
+	Lehmar_StealBook_Day = Wld_GetDay();
 };
 
 func void DIA_Lehmar_PICKPOCKET_BACK()
 {
-	Info_ClearChoices(DIA_Canthar_PICKPOCKET);
+	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
 };
 
 
@@ -366,7 +378,7 @@ instance DIA_Lehmar_BuchWeg(C_Info)
 
 func int DIA_Lehmar_BuchWeg_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	if((self.aivar[AIV_DefeatedByPlayer] == FALSE) && (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE) && (Lehmar_StealBook_Day < Wld_GetDay()))
 	{
 		return TRUE;
 	};

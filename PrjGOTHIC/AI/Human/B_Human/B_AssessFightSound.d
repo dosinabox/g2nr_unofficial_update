@@ -213,10 +213,7 @@ func void B_AssessFightSound()
 	};
 	if((Npc_GetAttitude(self,other) == ATT_HOSTILE) || (Npc_GetAttitude(self,victim) == ATT_HOSTILE))
 	{
-		if(self.guild == GIL_BDT)
-		{
-		}
-		else
+		if(self.guild != GIL_BDT)
 		{
 			return;
 		};

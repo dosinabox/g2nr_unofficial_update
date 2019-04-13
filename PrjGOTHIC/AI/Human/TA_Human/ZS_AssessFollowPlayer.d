@@ -3,17 +3,17 @@ func void B_AssessFollowPlayer()
 {
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DiegoOW))
 	{
-		if((Npc_GetDistToNpc(self,hero) < self.aivar[AIV_FollowDist]) && (self.aivar[AIV_TAPOSITION] == FALSE))
+		if((Npc_GetDistToNpc(self,hero) < self.aivar[AIV_FollowDist]) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 		{
 			Npc_ClearAIQueue(self);
 			AI_Standup(self);
-			self.aivar[AIV_TAPOSITION] = TRUE;
+			self.aivar[AIV_TAPOSITION] = NOTINPOS;
 		}
-		else if(C_DiegoTooFar(0) && (self.aivar[AIV_TAPOSITION] == FALSE))
+		else if(C_DiegoTooFar(0) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 		{
 			Npc_ClearAIQueue(self);
 			AI_Standup(self);
-			self.aivar[AIV_TAPOSITION] = TRUE;
+			self.aivar[AIV_TAPOSITION] = NOTINPOS;
 			if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 			{
 				B_Say(self,other,"$SC_HEYWAITASECOND");
@@ -25,11 +25,11 @@ func void B_AssessFollowPlayer()
 		};
 		return;
 	};
-	if((Npc_GetDistToNpc(self,hero) < self.aivar[AIV_FollowDist]) && (self.aivar[AIV_TAPOSITION] == FALSE))
+	if((Npc_GetDistToNpc(self,hero) < self.aivar[AIV_FollowDist]) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
 	{
 		Npc_ClearAIQueue(self);
 		AI_Standup(self);
-		self.aivar[AIV_TAPOSITION] = TRUE;
+		self.aivar[AIV_TAPOSITION] = NOTINPOS;
 	}
 	else
 	{
@@ -90,7 +90,7 @@ func int ZS_Follow_Player_Loop()
 			AI_SetWalkMode(self,NPC_RUN);
 		};
 		AI_GotoNpc(self,hero);
-		self.aivar[AIV_TAPOSITION] = FALSE;
+		self.aivar[AIV_TAPOSITION] = ISINPOS;
 	}
 	else if(Npc_GetStateTime(self) > 1)
 	{

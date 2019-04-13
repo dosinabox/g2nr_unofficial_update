@@ -196,6 +196,7 @@ func void DIA_Alwin_FellanSuccess_Info()
 		B_Say(self,other,"$YouMurderer");
 		B_Say(self,other,"$GetOutOfHere");
 		MIS_AttackFellan = LOG_FAILED;
+		B_MemorizePlayerCrime(self,other,CRIME_MURDER);
 		B_CheckLog();
 	};
 };
@@ -223,7 +224,7 @@ func int DIA_Alwin_Endlos_Condition()
 func void DIA_Alwin_Endlos_Info()
 {
 	AI_Output(other,self,"DIA_Alwin_Endlos_15_00");	//Как твои овцы?
-	if((MIS_AttackFellan != LOG_SUCCESS) && (Npc_IsDead(Fellan) == FALSE))
+	if((MIS_AttackFellan != LOG_SUCCESS) && !Npc_IsDead(Fellan))
 	{
 		AI_Output(self,other,"DIA_Alwin_Endlos_12_01");	//Стук этого Феллана сведет их с ума. Однажды они все разбегутся.
 	}

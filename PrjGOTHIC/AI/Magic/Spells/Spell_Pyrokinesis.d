@@ -8,7 +8,7 @@ instance Spell_Pyrokinesis(C_Spell_Proto)
 {
 	time_per_mana = 30;
 	damage_per_level = SPL_Damage_Firestorm;
-	damagetype = DAM_MAGIC;
+	damagetype = DAM_FIRE;	//DAM_MAGIC;
 	canTurnDuringInvest = TRUE;
 };
 

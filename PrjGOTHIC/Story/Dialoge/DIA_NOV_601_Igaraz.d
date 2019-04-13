@@ -621,9 +621,15 @@ instance DIA_Igaraz_PICKPOCKET(C_Info)
 
 func int DIA_Igaraz_PICKPOCKET_Condition()
 {
-	if(C_StealItems(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis),1) && (MIS_BabosDocs == LOG_Running))
+//	if(C_StealItems(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis),1) && (MIS_BabosDocs == LOG_Running))
+	if(Npc_HasItems(self,ItKe_IgarazChest_Mis) && (MIS_BabosDocs == LOG_Running))
 	{
-		return TRUE;
+//		return TRUE;
+		return C_StealItem(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis));
+	}
+	else
+	{
+		return FALSE;
 	};
 };
 
@@ -636,7 +642,8 @@ func void DIA_Igaraz_PICKPOCKET_Info()
 
 func void DIA_Igaraz_PICKPOCKET_DoIt()
 {
-	B_StealItems(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis),1);
+//	B_StealItems(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis),1);
+	B_StealItem(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis));
 	Info_ClearChoices(DIA_Igaraz_PICKPOCKET);
 };
 

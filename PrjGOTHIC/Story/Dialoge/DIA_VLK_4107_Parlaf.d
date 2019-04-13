@@ -39,7 +39,7 @@ func int DIA_Parlaf_HALLO_Condition()
 func void DIA_Parlaf_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Parlaf_HALLO_15_00");	//Привет, как дела?
-	AI_Output(self,other,"DIA_Parlaf_HALLO_03_01");	//А как, по-твоему? Я провел целый день за точильным кругом, затачивая клинки.
+	AI_Output(self,other,"DIA_Parlaf_HALLO_03_01");	//Ну, а как, по-твоему? Я провел целый день за точильным кругом, затачивая клинки.
 	if(!Npc_IsDead(Engor))
 	{
 		AI_Output(self,other,"DIA_Parlaf_HALLO_03_02");	//А вчера Энгор опять урезал наш паек. Если он будет продолжать в том же духе, мы все помрем с голода.
@@ -70,7 +70,7 @@ func void DIA_Parlaf_ENGOR_Info()
 {
 	AI_Output(other,self,"DIA_Parlaf_ENGOR_15_00");	//Кто такой Энгор?
 	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_01");	//Энгор заведует провизией и выдает пайки. А они становятся все меньше с каждой неделей.
-	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_02");	//Конечно, с ним можно договориться, но только за золото и весьма недешево.
+	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_02");	//Конечно, с ним можно договориться, но вот только за золото и весьма недешево.
 	AI_Output(other,self,"DIA_Parlaf_ENGOR_15_03");	//А ты не можешь позволить себе это?
 	AI_Output(self,other,"DIA_Parlaf_ENGOR_03_04");	//За те гроши, что нам платят, я могу купить только пару реп!
 	Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);

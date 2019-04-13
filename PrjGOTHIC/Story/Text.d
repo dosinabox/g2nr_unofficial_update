@@ -25,7 +25,7 @@ const string MOBNAME_PAN = "Сковорода";
 const string MOBNAME_REPAIR = "";
 const string MOBNAME_WATERPIPE = "Кальян";
 const string MOBNAME_SWITCH = "Выключатель";
-const string MOBNAME_ORE = "Кусок руды";
+const string MOBNAME_ORE = "Рудная жила";
 const string MOBNAME_WINEMAKER = "";
 const string MOBNAME_ORCDRUM = "";
 const string MOBNAME_STOVE = "Плита";
@@ -55,15 +55,15 @@ const string MOBNAME_INCITY02 = "Рыночная площадь";
 const string MOBNAME_INCITY03 = "Верхний квартал";
 const string MOBNAME_INCITY04 = "Торговый район";
 const string MOBNAME_INCITY05 = "Храмовая площадь";
-const string MOBNAME_BOW_01 = "Смертоносная стрела";
-const string MOBNAME_MIX_01 = "Магазин Маттео";
-const string MOBNAME_MIX_02 = "Скользкий скат";
-const string MOBNAME_SMITH_01 = "Горячая наковальня";
-const string MOBNAME_BAR_01 = "Таверна 'Деревянная нога'";
-const string MOBNAME_BAR_02 = "Таверна 'Жирный теленок'";
-const string MOBNAME_Hotel_01 = "Трактир 'Спящий толстосум'";
+const string MOBNAME_BOW_01 = "Лавка 'У смертоносной стрелы'";
+const string MOBNAME_MIX_01 = "Всякая всячина Маттео";
+const string MOBNAME_MIX_02 = "Рыбная лавка Хальвора 'Скользкая форель'";
+const string MOBNAME_SMITH_01 = "У горячей наковальни";
+const string MOBNAME_BAR_01 = "Таверна 'У одноногого разбойника'";
+const string MOBNAME_BAR_02 = "Таверна 'У веселого поросенка'";
+const string MOBNAME_Hotel_01 = "Постоялый двор 'У спящего толстосума'";
 const string MOBNAME_Hotel_02 = "Красный Фонарь";
-const string MOBNAME_TAVERN_01 = "Мертвая Гарпия";
+const string MOBNAME_TAVERN_01 = "У мертвой гарпии";
 const string MOBNAME_SALANDRIL = "Зелья Саландрила";
 const string MOBNAME_GRAVETEAM_01 = "Сноэльк - 'Смотри-ка, выключатель'";
 const string MOBNAME_GRAVETEAM_02 = "Оэльк - 'НЕЕЕЕЕТ'";
@@ -115,7 +115,7 @@ const string MOBNAME_GRAVE_33 = "Почетный страж Утар Серанис 178 - 212";
 const string MOBNAME_ADDON_SOCKEL = "Пьедестал";
 const string MOBNAME_ADDON_FORTUNO = "Сундук Фортуно";
 const string MOBNAME_ADDON_IDOL = "Статуя Белиара";
-const string MOBNAME_ADDON_GOLD = "Золотой самородок";
+const string MOBNAME_ADDON_GOLD = "Золотая жила";
 const string MOBNAME_ADDON_STONEBOOK = "Пюпитр";
 const string MOBNAME_ADDON_ORNAMENT = "Устройство в форме кольца";
 const string MOBNAME_ADDON_ORNAMENTSWITCH = "Переключатель";
@@ -133,7 +133,7 @@ const string TXT_GUILDS[66] =
 	"Нет гильдии",
 	"Паладин",
 	"Ополченец",
-	"Гражданин",
+	"Горожанин",
 	"Маг Огня",
 	"Послушник",
 	"Охотник на драконов",
@@ -241,7 +241,7 @@ const string TXT_SPELLS[100] =
 	"Малая огненная буря",
 	"Ледяная волна",
 	"Вызов демона",
-	"Полное исцеление",
+	"Лечение тяжелых ранений",
 	"Огненный дождь",
 	"Дыхание смерти",
 	"Волна смерти",
@@ -474,8 +474,8 @@ const string NAME_Stadtwache = "Городской стражник";
 const string NAME_Arbeiter = "Рабочий";
 const string NAME_Ritter = "Рыцарь";
 const string NAME_Wache = "Стражник";
-const string NAME_Buerger = "Гражданин";
-const string NAME_Buergerin = "Гражданка";
+const string NAME_Buerger = "Горожанин";
+const string NAME_Buergerin = "Горожанка";
 const string NAME_Magd = "Служанка";
 const string NAME_Magier = "Маг";
 const string NAME_Novize = "Послушник";
@@ -603,8 +603,8 @@ const string NAME_ItMw_1H_Special_01 = "Длинный рудный меч";
 const string NAME_ItMw_2H_Special_01 = "Двуручный рудный меч";
 const string NAME_ItMw_1H_Special_02 = "Полуторный рудный меч";
 const string NAME_ItMw_2H_Special_02 = "Тяжелый двуручный рудный меч";
-const string NAME_ItMw_1H_Special_03 = "Боевой клинок орков";
-const string NAME_ItMw_2H_Special_03 = "Тяжелый рудный боевой клинок орков";
+const string NAME_ItMw_1H_Special_03 = "Рудный боевой клинок";
+const string NAME_ItMw_2H_Special_03 = "Тяжелый рудный боевой клинок";
 const string NAME_ItMw_1H_Special_04 = "Рудный клинок 'Убийца драконов'";
 const string NAME_ItMw_2H_Special_04 = "Большой рудный клинок 'Убийца драконов'";
 const string NAME_Addon_Harad_01 = "Изысканный меч";
@@ -689,7 +689,7 @@ const string PRINT_Addon_GuildNeeded = "Вы не состоите в гильдии.";
 const string PRINT_Addon_GuildNeeded_NOV = "Вы пока еще не маг.";
 const string PRINT_KeyMissing = "Мне никогда не открыть это без правильного ключа!";
 const string PRINT_PicklockMissing = "Здесь бы пригодилась отмычка!";
-const string PRINT_Picklock_or_KeyMissing = "Хм... у меня нет отмычки или ключа";
+const string PRINT_Picklock_or_KeyMissing = "Хм... у меня нет отмычки или ключа.";
 const string PRINT_NeverOpen = "Я никогда не смогу открыть этот замок!";
 const string PRINT_Toofar_Away = "Слишком далеко.";
 const string PRINT_WrongSide = "Не с той стороны.";
@@ -801,7 +801,7 @@ const string Pickpocket_60_Female = "(Украсть ее кошелек будет довольно рискован
 const string Pickpocket_80_Female = "(Украсть ее кошелек будет довольно трудно)";
 const string Pickpocket_100_Female = "(Украсть ее кошелек будет чертовски трудно)";
 const string Pickpocket_120_Female = "(Украсть ее кошелек практически невозможно)";
-const string Pickpocket_20_Key = "(Нет ничего проще, чем украсть его его ключ)";
+const string Pickpocket_20_Key = "(Нет ничего проще, чем украсть его ключ)";
 const string Pickpocket_40_Key = "(Украсть его ключ будет довольно просто)";
 const string Pickpocket_60_Key = "(Украсть его ключ будет довольно рискованно)";
 const string DIALOG_SecretSign = "(Показать сигнал воров)";
@@ -874,3 +874,7 @@ const string NAME_ManaMax_Elixier = "Эликсир духа";
 const string NAME_Speed_Elixier = "Зелье ускорения";
 const string NAME_MegaDrink = "Эмбарла фиргасто";
 
+const string PRINT_PickPocketFailed = " - карманная кража не удалась!";
+const string PRINT_PickPocketSuccess = " - карманная кража удалась!";
+
+const string PRINT_RequiresAlchemyTalent = "Для его приготовления нужно знание основ алхимии.";

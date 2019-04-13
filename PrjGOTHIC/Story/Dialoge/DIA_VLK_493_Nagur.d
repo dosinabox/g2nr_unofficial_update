@@ -132,12 +132,12 @@ func void DIA_Nagur_Job_Info()
 	AI_Output(other,self,"DIA_Nagur_Job_15_00");	//Кардиф говорит, что у тебя может быть работа для меня.
 	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 	{
-		AI_Output(self,other,"DIA_Nagur_Add_08_00");	//Здесь, в гавани НЕТ работы для людей из монастыря! (смеется)
+		AI_Output(self,other,"DIA_Nagur_Add_08_00");	//Здесь, в гавани, НЕТ работы для людей из монастыря! (смеется)
 		B_Nagur_Abfertigen();
 	}
 	else if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
-		AI_Output(self,other,"DIA_Nagur_Add_08_01");	//Здесь, в гавани НЕТ работы для королевских солдат.
+		AI_Output(self,other,"DIA_Nagur_Add_08_01");	//Здесь, в гавани, НЕТ работы для королевских солдат.
 		B_Nagur_Abfertigen();
 	}
 	else
@@ -193,10 +193,17 @@ func void DIA_Nagur_Auftrag_Info()
 	AI_Output(other,self,"DIA_Nagur_Auftrag_15_00");	//Договорились. Так какой у тебя план?
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_01");	//Ты знаешь торговца Бальтрама, нет? Если нет, пришло время поговорить с ним.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_02");	//У этого Бальтрама есть посыльный, доставлявший ему товары с фермы Акила.
-	AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
+	AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее, у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_08_06");	//И не пытайся продать эти товары сам. Ты все понял?
+	//смерть мальчика на побегушках
+	if(!Npc_IsDead(Bote))
+	{
+		AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
+		B_StartOtherRoutine(Bote,"Rest");
+		B_KillNpc(Bote);
+	};
 	Info_ClearChoices(DIA_Nagur_Auftrag);
 	Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились.",DIA_Nagur_Auftrag_Okay);
 	if(Baltram.aivar[AIV_TalkedToPlayer] == FALSE)
@@ -204,19 +211,20 @@ func void DIA_Nagur_Auftrag_Info()
 		Info_AddChoice(DIA_Nagur_Auftrag,"Где мне найти Бальтрама?",DIA_Nagur_Auftrag_Baltram);
 	};
 	Info_AddChoice(DIA_Nagur_Auftrag,"Когда мне поговорить с Бальтрамом?",DIA_Nagur_Auftrag_Wann);
-	if(Akil.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(SC_KnowsAkilsHof == FALSE)
 	{
-		Info_AddChoice(DIA_Nagur_Auftrag,"Где ферма Акила?",DIA_Nagur_Auftrag_Akil);
+		Info_AddChoice(DIA_Nagur_Auftrag,"А где ферма Акила?",DIA_Nagur_Auftrag_Akil);
 	};
 	Info_AddChoice(DIA_Nagur_Auftrag,"Какой ожидается навар?",DIA_Nagur_Auftrag_Gewinn);
 };
 
 func void DIA_Nagur_Auftrag_Akil()
 {
-	AI_Output(other,self,"DIA_Nagur_Auftrag_Akil_15_00");	//Где ферма Акила?
+	AI_Output(other,self,"DIA_Nagur_Auftrag_Akil_15_00");	//А где ферма Акила?
 	AI_Output(self,other,"DIA_Nagur_Auftrag_Akil_08_01");	//Выйдешь из города через восточные ворота, что находятся на рыночной площади.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_Akil_08_02");	//Если ты пойдешь по дороге направо, вскоре увидишь лестницу, вырезанную в скале.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_Akil_08_03");	//Поднимись по ней и окажешься на ферме Акила.
+	SC_KnowsAkilsHof = TRUE;
 };
 
 func void DIA_Nagur_Auftrag_Gewinn()

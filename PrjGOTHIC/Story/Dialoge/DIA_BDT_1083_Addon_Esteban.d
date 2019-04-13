@@ -388,13 +388,13 @@ instance DIA_Addon_Esteban_fight(C_Info)
 	condition = DIA_Addon_Esteban_fight_Condition;
 	information = DIA_Addon_Esteban_fight_Info;
 	permanent = FALSE;
-	description = "Ты хочешь одурачить меня?";
+	description = "Ты хочешь одурачить меня? И речи не было о том, чтобы я на тебя работал.";
 };
 
 
 func int DIA_Addon_Esteban_fight_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Stone))
+	if(Npc_KnowsInfo(other,DIA_Addon_Esteban_Stone) && (Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 500) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 500))
 	{
 		return TRUE;
 	};
@@ -403,13 +403,15 @@ func int DIA_Addon_Esteban_fight_Condition()
 func void DIA_Addon_Esteban_fight_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_00");	//Ты хочешь одурачить меня? И речи не было о том, чтобы я на тебя работал.
-	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_01");	//Не каждый получает такое предложение. Но если тебе оно не нравится, ты можешь свободно покинуть лагерь...
+	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_01");	//Не каждый получает такое предложение. Но если оно тебе не нравится, ты можешь свободно покинуть лагерь...
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_02");	//А может быть, ты сдержишь слово и дашь мне красный камень?
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_03");	//Эй! Еще одно слово - и моим охранникам придется применить силу.
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_05");	//Что?.. А, понятно, ты хочешь обвести меня... Ну, погоди...
 	Bodyguard_Killer = FALSE;
+	B_StartOtherRoutine(Wache_01,"TOT");
 	B_KillNpc(Wache_01);
+	B_StartOtherRoutine(Wache_02,"TOT");
 	B_KillNpc(Wache_02);
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);

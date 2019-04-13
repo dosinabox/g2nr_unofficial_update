@@ -153,7 +153,7 @@ instance DIA_Gaertner_Krautabak(C_Info)
 
 func int DIA_Gaertner_Krautabak_Condition()
 {
-	if(Npc_HasItems(other,ItMi_SumpfTabak) && Wld_IsTime(6,45,21,45))
+	if(Npc_HasItems(other,ItMi_SumpfTabak) && Wld_IsTime(6,45,21,45) && Npc_KnowsInfo(other,DIA_Gaertner_Job))
 	{
 		return TRUE;
 	};

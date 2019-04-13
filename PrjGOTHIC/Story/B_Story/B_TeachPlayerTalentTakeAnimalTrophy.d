@@ -30,7 +30,7 @@ func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int
 	if(trophy == TROPHY_ReptileSkin)
 	{
 		PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] = TRUE;
-		B_LogEntry(TOPIC_TalentAnimalTrophy,"...снимать шкуры с рептилий.");
+		B_LogEntry(TOPIC_TalentAnimalTrophy,"...снимать кожу с рептилий.");
 	};
 	if(trophy == TROPHY_Heart)
 	{
@@ -40,7 +40,7 @@ func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int
 	if(trophy == TROPHY_ShadowHorn)
 	{
 		PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] = TRUE;
-		B_LogEntry(TOPIC_TalentAnimalTrophy,"...вырезать рог у мертвых мракорисов.");
+		B_LogEntry(TOPIC_TalentAnimalTrophy,"...вырезать рога у мертвых мракорисов.");
 	};
 	if(trophy == TROPHY_FireTongue)
 	{
@@ -60,7 +60,7 @@ func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int
 	if(trophy == TROPHY_Mandibles)
 	{
 		PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] = TRUE;
-		B_LogEntry(TOPIC_TalentAnimalTrophy,"...вырезать мандибулы у мертвых животных.");
+		B_LogEntry(TOPIC_TalentAnimalTrophy,"...вырезать мандибулы у мертвых краулеров и полевых хищников.");
 	};
 	if(trophy == TROPHY_CrawlerPlate)
 	{
@@ -70,7 +70,7 @@ func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int
 	if(trophy == TROPHY_DrgSnapperHorn)
 	{
 		PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] = TRUE;
-		B_LogEntry(TOPIC_TalentAnimalTrophy,"...вырезать рога у мертвых драконих снепперов.");
+		B_LogEntry(TOPIC_TalentAnimalTrophy,"...вырезать рога у мертвых драконьих снепперов.");
 	};
 	if(trophy == TROPHY_DragonScale)
 	{

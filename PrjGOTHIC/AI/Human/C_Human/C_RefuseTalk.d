@@ -12,7 +12,11 @@ func int C_RefuseTalk(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	};
-	if(C_PlayerHasFakeGuild(slf,oth) && (self.flags != NPC_FLAG_IMMORTAL))
+	if(C_PlayerHasFakeGuild(slf,oth) && (slf.flags != NPC_FLAG_IMMORTAL))
+	{
+		return TRUE;
+	};
+	if((oth.guild > GIL_SEPERATOR_HUM) && (oth.guild < GIL_SEPERATOR_ORC))
 	{
 		return TRUE;
 	};

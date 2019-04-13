@@ -159,6 +159,34 @@ func void DIA_Mil_325_Miliz_Pass_No()
 };
 
 
+instance DIA_Mil_325_Miliz_PassAsMage(C_Info)
+{
+	npc = MIL_325_Miliz;
+	nr = 5;
+	condition = DIA_Mil_325_Miliz_PassAsMage_Condition;
+	information = DIA_Mil_325_Miliz_PassAsMage_Info;
+	permanent = FALSE;
+	description = "Я маг Огня.";
+};
+
+
+func int DIA_Mil_325_Miliz_PassAsMage_Condition()
+{
+	if((self.aivar[AIV_PASSGATE] == FALSE) && (other.guild == GIL_KDF))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Mil_325_Miliz_PassAsMage_Info()
+{
+	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMage_15_00");	//Я маг Огня.
+	AI_Output(self,other,"DIA_Mil_325_Miliz_Pass_Yes_12_01");	//Хорошо, ты можешь войти!
+	self.aivar[AIV_PASSGATE] = TRUE;
+	AI_StopProcessInfos(self);
+};
+
+
 instance DIA_Mil_325_Miliz_PERM(C_Info)
 {
 	npc = MIL_325_Miliz;
@@ -172,7 +200,10 @@ instance DIA_Mil_325_Miliz_PERM(C_Info)
 
 func int DIA_Mil_325_Miliz_PERM_Condition()
 {
-	return TRUE;
+	if(self.aivar[AIV_PASSGATE] == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Mil_325_Miliz_PERM_Info()

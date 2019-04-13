@@ -71,8 +71,8 @@ instance ItWr_HallsofIrdorath_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	on_state[0] = Use_HallsofIrdorath;
 };
 
@@ -112,8 +112,8 @@ instance ItWr_HallsofIrdorath_Open_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	on_state[0] = Use_HallsofIrdorath_Open;
 };
 
@@ -162,8 +162,8 @@ instance ItWr_XardasSeamapBook_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	on_state[0] = Use_XardasSeamapBook_Mis;
 };
 
@@ -224,6 +224,8 @@ instance ItWr_UseLampIdiot_Mis(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "из книги 'Чертоги Ирдората'.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -243,6 +245,7 @@ func void UseItWr_UseLampIdiot_Mis()
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"               Лампа несет свет");
 	Doc_PrintLine(nDocID,0,"               нижним уровням.");
+/*	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
@@ -251,8 +254,7 @@ func void UseItWr_UseLampIdiot_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");	*/
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
@@ -291,8 +293,8 @@ func void Use_Seamap_Irdorath()
 		Log_SetTopicStatus(Topic_Ship,LOG_Running);
 		B_LogEntry(Topic_Ship,"Похоже, я должен добраться до этого странного вражеского острова. Но для этого мне нужен корабль, команда и капитан.");
 		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
+		MIS_SCKnowsWayToIrdorath = TRUE;
 	};
-	MIS_SCKnowsWayToIrdorath = TRUE;
 };
 
 
@@ -309,6 +311,8 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 	description = name;
 	text[3] = "Письмо о подтверждении полномочий";
 	text[4] = "на распоряжение кораблем паладинов.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -335,9 +339,6 @@ func void UseITWr_ForgedShipLetter_MIS()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"            Королевская печать");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };

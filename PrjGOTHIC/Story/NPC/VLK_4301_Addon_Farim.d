@@ -31,3 +31,10 @@ func void Rtn_Start_4301()
 	TA_Sleep(1,30,8,0,"NW_CITY_WAY_TO_SHIP_FISCHER_04");
 };
 
+func void Rtn_Rest_4301()
+{
+	TA_Stand_Guarding(8,0,16,0,"NW_CITY_WAY_TO_SHIP_FISCHER_06");
+	TA_Repair_Hut(16,0,20,0,"NW_CITY_WAY_TO_SHIP_FISCHER_05");
+	TA_Stand_Drinking(20,0,1,30,"NW_CITY_HABOUR_TAVERN01_03");
+	TA_Sleep(1,30,8,0,"NW_CITY_WAY_TO_SHIP_FISCHER_04");
+};

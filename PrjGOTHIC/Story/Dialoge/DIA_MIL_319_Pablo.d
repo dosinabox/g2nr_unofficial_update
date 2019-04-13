@@ -34,7 +34,15 @@ instance DIA_Pablo_PICKPOCKET(C_Info)
 
 func int DIA_Pablo_PICKPOCKET_Condition()
 {
-	return C_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_01),1);
+//	return C_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_01),1);
+	if(Npc_HasItems(self,ItKe_City_Tower_01))
+	{
+		return C_StealItem(20,Hlp_GetInstanceID(ItKe_City_Tower_01));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Pablo_PICKPOCKET_Info()
@@ -46,7 +54,8 @@ func void DIA_Pablo_PICKPOCKET_Info()
 
 func void DIA_Pablo_PICKPOCKET_DoIt()
 {
-	B_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_01),1);
+//	B_StealItems(20,Hlp_GetInstanceID(ItKe_City_Tower_01),1);
+	B_StealItem(20,Hlp_GetInstanceID(ItKe_City_Tower_01));
 	Info_ClearChoices(DIA_Pablo_PICKPOCKET);
 };
 
@@ -84,6 +93,7 @@ func void DIA_Pablo_WANTED_Info()
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_03");	//¬от - мы нашли этот листок у одного из бандитов, на которых наткнулись несколько дней назад - рисунок очень похож на теб€.
 	B_GiveInvItems(self,other,ItWr_Poster_MIS,1);
+	B_UseFakeScroll_Hero();
 	AI_Output(self,other,"DIA_Pablo_WANTED_12_04");	//ѕо-видимому, эти парни искали теб€.
 	Info_ClearChoices(DIA_Pablo_WANTED);
 	Info_AddChoice(DIA_Pablo_WANTED,"Ќет, боюсь, что ты ошибаешьс€. —о мной все в пор€дке...",DIA_Pablo_WANTED_NOTHING);

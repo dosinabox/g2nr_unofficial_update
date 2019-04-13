@@ -28,7 +28,7 @@ func void ZS_ReactToWeapon()
 		Player_DrawWeaponComment = TRUE;
 	};
 	Npc_SendPassivePerc(self,PERC_ASSESSWARN,self,other);
-	self.aivar[AIV_TAPOSITION] = FALSE;
+	self.aivar[AIV_TAPOSITION] = ISINPOS;
 	self.aivar[AIV_StateTime] = 0;
 };
 
@@ -57,7 +57,7 @@ func int ZS_ReactToWeapon_Loop()
 		};
 		self.aivar[AIV_StateTime] += 1;
 	};
-	if((self.aivar[AIV_TAPOSITION] == FALSE) && (Npc_GetStateTime(self) > 5))
+	if((self.aivar[AIV_TAPOSITION] == ISINPOS) && (Npc_GetStateTime(self) > 5))
 	{
 		if(Npc_IsInFightMode(other,FMODE_MAGIC))
 		{
@@ -67,7 +67,7 @@ func int ZS_ReactToWeapon_Loop()
 		{
 			B_Say(self,other,"$ISAIDWEAPONDOWN");
 		};
-		self.aivar[AIV_TAPOSITION] = TRUE;
+		self.aivar[AIV_TAPOSITION] = NOTINPOS;
 	};
 	if(Npc_GetStateTime(self) > 10)
 	{

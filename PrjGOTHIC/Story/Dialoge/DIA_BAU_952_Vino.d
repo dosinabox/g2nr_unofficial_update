@@ -141,6 +141,7 @@ func void DIA_Vino_BringWine_Info()
 	};
 	MIS_Vino_Wein = LOG_SUCCESS;
 	B_GivePlayerXP(XP_VinoWein);
+	B_UseItem(self,ItFo_Wine);
 };
 
 
@@ -303,13 +304,14 @@ func int DIA_Vino_Obesessed_Condition()
 
 func void DIA_Vino_Obesessed_Info()
 {
+	AI_Output(other,self,"DIA_Vino_Obesessed_15_00");	//Что с тобой?
 	if(Npc_IsDead(DMT_Vino1) && Npc_IsDead(DMT_Vino2) && Npc_IsDead(DMT_Vino3) && Npc_IsDead(DMT_Vino4))
 	{
+		self.aivar[AIV_NoFightParker] = FALSE;
 		B_NpcObsessedByDMT(self);
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Vino_Obesessed_15_00");	//Что с тобой?
 		AI_Output(self,other,"DIA_Vino_Obesessed_05_01");	//(рычит) Черт, убей их. Иначе они убьют меня.
 		AI_StopProcessInfos(self);
 		DMT_Vino1.aivar[AIV_EnemyOverride] = FALSE;

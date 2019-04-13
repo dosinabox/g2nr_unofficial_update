@@ -70,7 +70,15 @@ func int B_AssessEnemy()
 			return FALSE;
 		};
 	};
-	B_Attack(self,other,AR_GuildEnemy,0);
+	if((self.fight_tactic == FAI_HUMAN_COWARD) && C_AmIWeaker(self,other))
+	{
+		B_CallGuards();
+		B_Flee();
+	}
+	else
+	{
+		B_Attack(self,other,AR_GuildEnemy,0);
+	};
 	return TRUE;
 };
 

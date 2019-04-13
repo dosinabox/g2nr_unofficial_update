@@ -189,7 +189,15 @@ instance DIA_Edda_PICKPOCKET(C_Info)
 
 func int DIA_Edda_PICKPOCKET_Condition()
 {
-	return C_StealItems(20,Hlp_GetInstanceID(ItMi_InnosStatue),1);
+//	return C_StealItems(20,Hlp_GetInstanceID(ItMi_InnosStatue),1);
+	if(Npc_HasItems(self,ItMi_InnosStatue))
+	{
+		return C_StealItem(20,Hlp_GetInstanceID(ItMi_InnosStatue));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Edda_PICKPOCKET_Info()
@@ -201,7 +209,8 @@ func void DIA_Edda_PICKPOCKET_Info()
 
 func void DIA_Edda_PICKPOCKET_DoIt()
 {
-	B_StealItems(20,Hlp_GetInstanceID(ItMi_InnosStatue),1);
+//	B_StealItems(20,Hlp_GetInstanceID(ItMi_InnosStatue),1);
+	B_StealItem(20,Hlp_GetInstanceID(ItMi_InnosStatue));
 	Info_ClearChoices(DIA_Edda_PICKPOCKET);
 };
 

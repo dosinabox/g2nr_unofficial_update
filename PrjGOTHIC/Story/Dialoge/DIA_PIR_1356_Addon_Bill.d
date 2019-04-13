@@ -80,7 +80,7 @@ func void DIA_Addon_Bill_Hello_Info()
 	AI_Output(other,self,"DIA_Addon_Bill_Hello_15_00");	// ак у теб€ дела?
 	AI_Output(self,other,"DIA_Addon_Bill_Hello_03_01");	//“еб€ прислал сюда √енри?
 	AI_Output(self,other,"DIA_Addon_Bill_Hello_03_02");	//—кажи ему, что он получит свое дерево, как только € закончу.
-	AI_Output(self,other,"DIA_Addon_Bill_Hello_03_03");	//ј если он не хочет ждать, может придти сюда и помочь мне пилить.
+	AI_Output(self,other,"DIA_Addon_Bill_Hello_03_03");	//ј если он не хочет ждать, может прийти сюда и помочь мне пилить.
 	Npc_ExchangeRoutine(self,"START");
 };
 
@@ -364,6 +364,8 @@ func void DIA_Addon_Bill_TeachPlayer_Info()
 	AI_Output(self,other,"DIA_Addon_Bill_TeachPlayer_03_01");	//Ќу, € бы мог показать тебе, как незамеченным воровать чужие кошельки.
 	AI_Output(self,other,"DIA_Addon_Bill_TeachPlayer_03_02");	//Ќо ты должен быть достаточно ловким, иначе ничего не получитс€.
 	Bill_Addon_TeachPickPocket = TRUE;
+	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
+	B_LogEntry(Topic_Addon_PIR_Teacher,"Ѕилл может обучить мен€ карманным кражам.");
 };
 
 

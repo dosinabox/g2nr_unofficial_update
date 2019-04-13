@@ -315,6 +315,7 @@ var C_Npc Garwig;
 var C_Npc Lucia;
 var C_Npc Huno;
 var C_Npc Baltram;
+var C_Npc Zuris;
 
 func void B_InitNpcGlobals()
 {
@@ -638,5 +639,6 @@ func void B_InitNpcGlobals()
 	Lucia = Hlp_GetNpc(BDT_1091_Addon_Lucia);
 	Huno = Hlp_GetNpc(BDT_1099_Addon_Huno);
 	Baltram = Hlp_GetNpc(VLK_410_Baltram);
+	Zuris = Hlp_GetNpc(VLK_409_Zuris);
 };
 

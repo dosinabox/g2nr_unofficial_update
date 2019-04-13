@@ -10,7 +10,7 @@ instance ItLsTorch(C_Item)
 	visual = "ItLs_Torch_01.3ds";
 	material = MAT_WOOD;
 	description = name;
-	text[3] = "Факел.";
+	text[3] = "Обычный факел.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

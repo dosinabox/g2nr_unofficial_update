@@ -243,7 +243,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		};
-		if (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
 		{
 			CreateInvItems(slf,ItAt_DragonScale,12);
 		};

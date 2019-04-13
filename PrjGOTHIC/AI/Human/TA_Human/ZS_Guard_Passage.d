@@ -15,13 +15,22 @@ func void ZS_Guard_Passage()
 
 func int ZS_Guard_Passage_Loop()
 {
+	var int random;
 	if(Npc_GetStateTime(self) >= 3)
 	{
 		if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 		{
-			AI_AlignToWP(self);
-			Npc_SetStateTime(self,0);
+			random = Hlp_Random(10);
+			if(random == 0)
+			{
+				AI_PlayAni(self,"T_HGUARD_LOOKAROUND");
+			}
+			else
+			{
+				AI_AlignToWP(self);
+			};
 		};
+		Npc_SetStateTime(self,0);
 	};
 	return LOOP_CONTINUE;
 };

@@ -171,7 +171,7 @@ func void B_SetHeroEquipment()
 	CreateInvItems(hero,ItMi_Gold,500);
 	CreateInvItems(hero,ItPo_Health_03,5);
 	CreateInvItems(hero,ItPo_Mana_03,5);
-	CreateInvItems(hero,ItKE_lockpick,30);
+	CreateInvItems(hero,ItKe_Lockpick,30);
 };
 
 func void B_SetKDFRunes()
@@ -374,13 +374,13 @@ func void CH_RESET_Info()
 	Npc_SetTalentSkill(hero,NPC_TALENT_RUNES,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_MAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_BOW,0);
-	other.HitChance[NPC_TALENT_BOW] = 10;
+	hero.HitChance[NPC_TALENT_BOW] = 10;
 	Npc_SetTalentSkill(hero,NPC_TALENT_CROSSBOW,0);
-	other.HitChance[NPC_TALENT_CROSSBOW] = 10;
+	hero.HitChance[NPC_TALENT_CROSSBOW] = 10;
 	Npc_SetTalentSkill(hero,NPC_TALENT_1H,0);
-	other.HitChance[NPC_TALENT_1H] = 10;
+	hero.HitChance[NPC_TALENT_1H] = 10;
 	Npc_SetTalentSkill(hero,NPC_TALENT_2H,0);
-	other.HitChance[NPC_TALENT_2H] = 10;
+	hero.HitChance[NPC_TALENT_2H] = 10;
 	Npc_SetTalentSkill(hero,NPC_TALENT_SNEAK,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKLOCK,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKPOCKET,0);
@@ -442,8 +442,8 @@ func void CH_FakeBandit()
 func void ch_nov()
 {
 	Info_ClearChoices(CH_Guild);
-	other.guild = GIL_NOV;
-	Npc_SetTrueGuild(other,GIL_NOV);
+	hero.guild = GIL_NOV;
+	Npc_SetTrueGuild(hero,GIL_NOV);
 	CreateInvItem(hero,ITAR_NOV_L);
 	AI_EquipArmor(hero,ITAR_NOV_L);
 };
@@ -451,8 +451,8 @@ func void ch_nov()
 func void ch_kdf()
 {
 	Info_ClearChoices(CH_Guild);
-	other.guild = GIL_KDF;
-	Npc_SetTrueGuild(other,GIL_KDF);
+	hero.guild = GIL_KDF;
+	Npc_SetTrueGuild(hero,GIL_KDF);
 	CreateInvItem(hero,ITAR_KDF_L);
 	AI_EquipArmor(hero,ITAR_KDF_L);
 };
@@ -460,8 +460,8 @@ func void ch_kdf()
 func void ch_sld()
 {
 	Info_ClearChoices(CH_Guild);
-	other.guild = GIL_SLD;
-	Npc_SetTrueGuild(other,GIL_SLD);
+	hero.guild = GIL_SLD;
+	Npc_SetTrueGuild(hero,GIL_SLD);
 	CreateInvItem(hero,ITAR_SLD_M);
 	AI_EquipArmor(hero,ITAR_SLD_M);
 };
@@ -469,8 +469,8 @@ func void ch_sld()
 func void ch_djg()
 {
 	Info_ClearChoices(CH_Guild);
-	other.guild = GIL_DJG;
-	Npc_SetTrueGuild(other,GIL_DJG);
+	hero.guild = GIL_DJG;
+	Npc_SetTrueGuild(hero,GIL_DJG);
 	CreateInvItem(hero,ITAR_DJG_M);
 	AI_EquipArmor(hero,ITAR_DJG_M);
 };
@@ -478,8 +478,8 @@ func void ch_djg()
 func void ch_mil()
 {
 	Info_ClearChoices(CH_Guild);
-	other.guild = GIL_MIL;
-	Npc_SetTrueGuild(other,GIL_MIL);
+	hero.guild = GIL_MIL;
+	Npc_SetTrueGuild(hero,GIL_MIL);
 	CreateInvItem(hero,ITAR_MIL_L);
 	AI_EquipArmor(hero,ITAR_MIL_L);
 };
@@ -487,8 +487,8 @@ func void ch_mil()
 func void ch_pal()
 {
 	Info_ClearChoices(CH_Guild);
-	other.guild = GIL_PAL;
-	Npc_SetTrueGuild(other,GIL_PAL);
+	hero.guild = GIL_PAL;
+	Npc_SetTrueGuild(hero,GIL_PAL);
 	CreateInvItem(hero,ITAR_PAL_M);
 	AI_EquipArmor(hero,ITAR_PAL_M);
 	B_SetPaladinEquipment();
@@ -497,8 +497,8 @@ func void ch_pal()
 func void ch_none()
 {
 	Info_ClearChoices(CH_Guild);
-	other.guild = GIL_NONE;
-	Npc_SetTrueGuild(other,GIL_NONE);
+	hero.guild = GIL_NONE;
+	Npc_SetTrueGuild(hero,GIL_NONE);
 	AI_UnequipArmor(hero);
 };
 
@@ -592,7 +592,7 @@ func void CH_Lernpunkte_BACK()
 func void CH_Lernpunkte_50()
 {
 	Info_ClearChoices(CH_Lernpunkte);
-	hero.lp = hero.lp + 50;
+	hero.lp += 50;
 	PrintScreen("+ 50 LP",-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };
@@ -600,7 +600,7 @@ func void CH_Lernpunkte_50()
 func void CH_Lernpunkte_25()
 {
 	Info_ClearChoices(CH_Lernpunkte);
-	hero.lp = hero.lp + 25;
+	hero.lp += 25;
 	PrintScreen("+ 25 LP",-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };
@@ -608,7 +608,7 @@ func void CH_Lernpunkte_25()
 func void CH_Lernpunkte_10()
 {
 	Info_ClearChoices(CH_Lernpunkte);
-	hero.lp = hero.lp + 10;
+	hero.lp += 10;
 	PrintScreen("+ 10 LP",-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };
@@ -616,7 +616,7 @@ func void CH_Lernpunkte_10()
 func void CH_Lernpunkte_5()
 {
 	Info_ClearChoices(CH_Lernpunkte);
-	hero.lp = hero.lp + 5;
+	hero.lp += 5;
 	PrintScreen("+ 5 LP",-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };
@@ -3116,7 +3116,7 @@ instance DIA_CH_Misc_Animal_allg(C_Info)
 	condition = DIA_CH_Misc_Animal_allg_Condition;
 	information = DIA_CH_Misc_Animal_allg_Info;
 	permanent = TRUE;
-	description = "Зубы, шкура, когти, сердце";
+	description = "Зубы, шкура, кожа, когти, сердце";
 };
 
 
@@ -3144,6 +3144,10 @@ func void DIA_CH_Misc_Animal_allg_Info()
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Снятие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),CH_Training_TROPHYS_Fur);
 	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Кожа рептилий",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ReptileSkin)),CH_Training_TROPHYS_ReptileSkin);
+	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Удаление сердца",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Heart)),CH_Training_TROPHYS_Heart);
@@ -3168,6 +3172,11 @@ func void CH_Training_TROPHYS_Claws()
 func void CH_Training_TROPHYS_Fur()
 {
 	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Fur);
+};
+
+func void CH_Training_TROPHYS_ReptileSkin()
+{
+	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_ReptileSkin);
 };
 
 func void CH_Training_TROPHYS_Heart()
@@ -3199,6 +3208,10 @@ func void DIA_CH_Misc_Animal_Speziell_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Animal_Speziell);
 	Info_AddChoice(DIA_CH_Misc_Animal_Speziell,Dialog_Back,DIA_CH_Misc_Animal_Speziell_BACK);
+	if(Knows_Bloodfly == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,"Секрет из жала. Цена:1 LP",CH_Training_TROPHYS_BFGift);
+	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Жало кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFSting)),CH_Training_TROPHYS_BFSting);
@@ -3207,13 +3220,13 @@ func void DIA_CH_Misc_Animal_Speziell_Info()
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Крылья кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFWing)),CH_Training_TROPHYS_BFWing);
 	};
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Удаление панцирей краулеров",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate)),CH_Training_TROPHYS_CrawlerPlate);
-	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Удаление мандибул",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Mandibles)),CH_Training_TROPHYS_Mandibles);
+	};
+	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Снятие панцирей c краулеров",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate)),CH_Training_TROPHYS_CrawlerPlate);
 	};
 };
 
@@ -3222,14 +3235,30 @@ func void DIA_CH_Misc_Animal_Speziell_BACK()
 	Info_ClearChoices(DIA_CH_Misc_Animal_Speziell);
 };
 
+func void CH_Training_TROPHYS_BFGift()
+{
+	if(other.lp >= 1)
+	{
+		other.lp -= 1;
+		Knows_Bloodfly = TRUE;
+		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
+		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
+		B_LogEntry(Topic_Bonus,"Теперь я знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.");
+	}
+	else
+	{
+		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_ScreenSmall,2);
+	};
+};
+
 func void CH_Training_TROPHYS_BFSting()
 {
-	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_BFWing);
+	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_BFSting);
 };
 
 func void CH_Training_TROPHYS_BFWing()
 {
-	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_BFSting);
+	B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_BFWing);
 };
 
 func void CH_Training_TROPHYS_CrawlerPlate()

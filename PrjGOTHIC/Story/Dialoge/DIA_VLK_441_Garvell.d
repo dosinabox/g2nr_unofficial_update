@@ -34,7 +34,15 @@ instance DIA_Garvell_PICKPOCKET(C_Info)
 
 func int DIA_Garvell_PICKPOCKET_Condition()
 {
-	return C_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
+//	return C_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
+	if(Npc_HasItems(self,ItSe_GoldPocket25))
+	{
+		return C_StealItem(10,Hlp_GetInstanceID(ItSe_GoldPocket25));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Garvell_PICKPOCKET_Info()
@@ -46,7 +54,8 @@ func void DIA_Garvell_PICKPOCKET_Info()
 
 func void DIA_Garvell_PICKPOCKET_DoIt()
 {
-	B_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
+//	B_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
+	B_StealItem(10,Hlp_GetInstanceID(ItSe_GoldPocket25));
 	Info_ClearChoices(DIA_Garvell_PICKPOCKET);
 };
 
@@ -208,7 +217,7 @@ func void DIA_Addon_Garvell_MissingPeople_Farim()
 func void DIA_Addon_Garvell_MissingPeople_wo()
 {
 	AI_Output(other,self,"DIA_Addon_Garvell_MissingPeople_wo_15_00");	// огда в последний раз ты видел ћонти?
-	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_wo_04_01");	//(сердито) ѕервый раз он не потрудилс€ придти на работу два дн€ назад.
+	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_wo_04_01");	//(сердито) ѕервый раз он не потрудилс€ прийти на работу два дн€ назад.
 };
 
 

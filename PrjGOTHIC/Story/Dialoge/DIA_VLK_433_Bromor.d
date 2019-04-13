@@ -306,6 +306,7 @@ var int DIA_Bromor_Obsession_GotMoney;
 
 func void DIA_Bromor_Obsession_Info()
 {
+	AI_Output(other,self,"DIA_Bartok_PERM_15_00");	//Все в порядке?
 	B_NpcObsessedByDMT(self);
 };
 
@@ -350,7 +351,15 @@ instance DIA_Bromor_PICKPOCKET(C_Info)
 
 func int DIA_Bromor_PICKPOCKET_Condition()
 {
-	return C_StealItems(50,Hlp_GetInstanceID(ItKe_Bromor),1);
+//	return C_StealItems(50,Hlp_GetInstanceID(ItKe_Bromor),1);
+	if(Npc_HasItems(self,ItKe_Bromor) && (NpcObsessedByDMT_Bromor == FALSE))
+	{
+		return C_StealItem(50,Hlp_GetInstanceID(ItKe_Bromor));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Bromor_PICKPOCKET_Info()
@@ -362,7 +371,8 @@ func void DIA_Bromor_PICKPOCKET_Info()
 
 func void DIA_Bromor_PICKPOCKET_DoIt()
 {
-	B_StealItems(50,Hlp_GetInstanceID(ItKe_Bromor),1);
+//	B_StealItems(50,Hlp_GetInstanceID(ItKe_Bromor),1);
+	B_StealItem(50,Hlp_GetInstanceID(ItKe_Bromor));
 	Info_ClearChoices(DIA_Bromor_PICKPOCKET);
 };
 

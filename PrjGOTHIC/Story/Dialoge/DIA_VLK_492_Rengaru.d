@@ -138,14 +138,14 @@ func void DIA_Rengaru_GOTYOU_Info()
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_15_02");	//Ты украл кошелек у Джоры средь бела дня, и он даже видел, как ты сделал это.
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_15_03");	//Поэтому я пришел сказать тебе, что ты грязный вор и что...
 	Info_ClearChoices(DIA_Rengaru_GOTYOU);
-	Info_AddChoice(DIA_Rengaru_GOTYOU,"...я заслуживаю долю от награбленного.",DIA_Rengaru_GOTYOU_Anteil);
-	Info_AddChoice(DIA_Rengaru_GOTYOU,"...тебе лучше вернуть золото Джоры. И немедленно.",DIA_Rengaru_GOTYOU_YouThief);
-	Info_AddChoice(DIA_Rengaru_GOTYOU,"...и теперь ты расскажешь мне, кто ты такой.",DIA_Rengaru_GOTYOU_WhoAreYou);
+	Info_AddChoice(DIA_Rengaru_GOTYOU,"... я заслуживаю долю от награбленного.",DIA_Rengaru_GOTYOU_Anteil);
+	Info_AddChoice(DIA_Rengaru_GOTYOU,"... тебе лучше вернуть золото Джоры. И немедленно.",DIA_Rengaru_GOTYOU_YouThief);
+	Info_AddChoice(DIA_Rengaru_GOTYOU,"... и теперь ты расскажешь мне, кто ты такой.",DIA_Rengaru_GOTYOU_WhoAreYou);
 };
 
 func void DIA_Rengaru_GOTYOU_YouThief()
 {
-	AI_Output(other,self,"DIA_Rengaru_GOTYOU_YouThief_15_00");	//...тебе лучше вернуть золото Джоры. И немедленно.
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_YouThief_15_00");	//... тебе лучше вернуть золото Джоры. И немедленно.
 	if(Npc_HasItems(self,ItMi_Gold))
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим.
@@ -164,7 +164,7 @@ func void DIA_Rengaru_GOTYOU_YouThief()
 
 func void DIA_Rengaru_GOTYOU_Anteil()
 {
-	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_15_00");	//...я заслуживаю долю от награбленного.
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_15_00");	//... я заслуживаю долю от награбленного.
 	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && !Npc_HasItems(self,ItMi_Gold))
 	{
 		AI_Output(self,other,"DIA_Rengaru_GOTYOU_Anteil_07_01");	//Ты уже забрал все, что у меня было, после того, как вырубил меня! Пусти!
@@ -212,10 +212,10 @@ func void DIA_Rengaru_GOTYOU_Anteil_GehtKlar()
 
 func void DIA_Rengaru_GOTYOU_WhoAreYou()
 {
-	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_00");	//...и теперь ты расскажешь мне, кто ты такой.
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_00");	//... и теперь ты расскажешь мне, кто ты такой.
 	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_01");	//Я просто бедный человек, пытающийся свести концы с концами.
 	AI_Output(self,other,"DIA_Rengaru_GOTYOU_WhoAreYou_07_02");	//Что мне еще делать? Я не могу найти работу в городе...
-	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_03");	//...хорошо, я понимаю. Хватит хныкать.
+	AI_Output(other,self,"DIA_Rengaru_GOTYOU_WhoAreYou_15_03");	//... хорошо, я понимаю. Хватит хныкать.
 };
 
 

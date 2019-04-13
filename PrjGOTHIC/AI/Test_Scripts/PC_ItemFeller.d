@@ -359,7 +359,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItKe_Key_01,1);
 	CreateInvItems(self,ItKe_Key_02,1);
 	CreateInvItems(self,ItKe_Key_03,1);
-	CreateInvItems(self,ItKE_lockpick,1);
+	CreateInvItems(self,ItKe_Lockpick,1);
 	CreateInvItems(self,ItKe_City_Tower_01,1);
 	CreateInvItems(self,ItKe_City_Tower_02,1);
 	CreateInvItems(self,ItKe_City_Tower_03,1);
@@ -681,4 +681,5 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItWr_ZugBruecke_MIS,1);
 	CreateInvItems(self,ItMi_PowerEye,1);
 };
+
 

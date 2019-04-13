@@ -186,7 +186,7 @@ func void DIA_Dyrian_Scroll_Info()
 {
 	AI_Output(self,other,"DIA_Dyrian_Scroll_13_00");	//Эй, ты действительно потребовал Испытания Огнем?
 	AI_Output(other,self,"DIA_Dyrian_Scroll_15_01");	//Да. И я намерен пройти его.
-	AI_Output(self,other,"DIA_Dyrian_Scroll_13_02");	//Хорошо - возможно, я могу помочь тебе в этом. Я могу дать тебе свиток с очень сильным заклинанием. Заклинанием СОН. Ну, как?
+	AI_Output(self,other,"DIA_Dyrian_Scroll_13_02");	//Хорошо - возможно, я могу помочь тебе в этом. Я могу дать тебе свиток с очень сильным заклинанием. Заклинанием 'Сон'. Ну, как?
 	Info_ClearChoices(DIA_Dyrian_Scroll);
 	Info_AddChoice(DIA_Dyrian_Scroll,"Нет, мне не нужна твоя помощь.",DIA_Dyrian_Scroll_No);
 	Info_AddChoice(DIA_Dyrian_Scroll,"Что ты хочешь за него?",DIA_Dyrian_Scroll_How);
@@ -197,7 +197,7 @@ func void DIA_Dyrian_Scroll_What()
 {
 	AI_Output(other,self,"DIA_Dyrian_Scroll_What_15_00");	//И что мне делать с ним?
 	AI_Output(self,other,"DIA_Dyrian_Scroll_What_13_01");	//При помощи этого заклинания ты можешь погружать людей в магический сон на короткое время. Но только если их воля слабее твоей.
-	AI_Output(self,other,"DIA_Dyrian_Scroll_What_13_02");	//Это моет быть очень полезным, если кто-то стоит у тебя на пути...
+	AI_Output(self,other,"DIA_Dyrian_Scroll_What_13_02");	//Это может быть очень полезным, если кто-то стоит у тебя на пути...
 	AI_Output(other,self,"DIA_Dyrian_Scroll_What_15_03");	//А как я узнаю, чья воля сильнее?
 	AI_Output(self,other,"DIA_Dyrian_Scroll_What_13_04");	//Не стоит даже и пытаться испытывать это заклинание на магах. Но большинство послушников погрузить в сон тебе удастся.
 };
@@ -255,8 +255,12 @@ func void DIA_Dyrian_Doch_Info()
 {
 	AI_Output(other,self,"DIA_Dyrian_Doch_15_00");	//Я передумал. Давай мне это заклинание сна.
 	AI_Output(self,other,"DIA_Dyrian_Doch_13_01");	//Хорошо, если ты пройдешь испытание, то замолвишь за меня словечко, и меня оставят в монастыре.
+	CreateInvItems(self,ItSc_Sleep,1);
 	B_GiveInvItems(self,other,ItSc_Sleep,1);
 	MIS_HelpDyrian = LOG_Running;
+	Log_CreateTopic(Topic_DyrianDrin,LOG_MISSION);
+	Log_SetTopicStatus(Topic_DyrianDrin,LOG_Running);
+	B_LogEntry(Topic_DyrianDrin,"Дуриан дал мне свиток с заклинанием 'Сон'. Взамен, он хочет, чтобы если я стану магом, я замолвил за него словечко и он остался в монастыре.");
 };
 
 
@@ -412,7 +416,7 @@ instance DIA_Dyrian_nachher(C_Info)
 	condition = DIA_Dyrian_nachher_Condition;
 	information = DIA_Dyrian_nachher_Info;
 	permanent = TRUE;
-	description = "Что новенького?";
+	description = "Что с тобой?";
 };
 
 

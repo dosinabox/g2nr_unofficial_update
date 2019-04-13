@@ -181,12 +181,12 @@ func void DIA_Ehnim_STREIT5_Info()
 	AI_Output(self,other,"DIA_Ehnim_STREIT5_12_02");	//Я ему пасть порву. Скажи ему это.
 	Info_ClearChoices(DIA_Ehnim_STREIT5);
 	Info_AddChoice(DIA_Ehnim_STREIT5,"Делай, что хочешь. А я ухожу.",DIA_Ehnim_STREIT5_gehen);
-	Info_AddChoice(DIA_Ehnim_STREIT5,"Почему ты не скажешь это ему сам?",DIA_Ehnim_STREIT5_Attack);
+	Info_AddChoice(DIA_Ehnim_STREIT5,"Почему ты не скажешь ему это сам?",DIA_Ehnim_STREIT5_Attack);
 };
 
 func void DIA_Ehnim_STREIT5_Attack()
 {
-	AI_Output(other,self,"DIA_Ehnim_STREIT5_Attack_15_00");	//Почему ты не скажешь это ему сам?
+	AI_Output(other,self,"DIA_Ehnim_STREIT5_Attack_15_00");	//Почему ты не скажешь ему это сам?
 	AI_Output(self,other,"DIA_Ehnim_STREIT5_Attack_12_01");	//Сейчас пойду и сделаю это.
 	AI_StopProcessInfos(self);
 	DIA_Ehnim_STREIT5_noPerm = TRUE;

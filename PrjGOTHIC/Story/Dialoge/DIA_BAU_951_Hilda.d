@@ -232,6 +232,7 @@ func void DIA_Hilda_PfanneGeholt_Info()
 	AI_Output(self,other,"DIA_Hilda_PfanneGeholt_17_01");	//Отлично. Посмотрим, хорошая ли она...
 	MIS_Hilda_PfanneKaufen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HildaHolPfanne);
+	AI_StopProcessInfos(self);
 };
 
 

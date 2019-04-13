@@ -11,7 +11,7 @@ func void ZS_Stand_ArmsCrossed()
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
 };
 
-func int ZS_Stand_ArmsCrossed_loop()
+func int ZS_Stand_ArmsCrossed_Loop()
 {
 	var int random;
 	var int Eventrandy;
@@ -69,7 +69,7 @@ func int ZS_Stand_ArmsCrossed_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Stand_ArmsCrossed_end()
+func void ZS_Stand_ArmsCrossed_End()
 {
 	AI_PlayAni(self,"T_LGUARD_2_STAND");
 };

@@ -256,7 +256,7 @@ instance DIA_MiltenOW_Mehr(C_Info)
 
 func int DIA_MiltenOW_Mehr_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2) && (Npc_HasItems(other,ItMi_Gold) < 1000) && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
+	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2) /* && (Npc_HasItems(other,ItMi_Gold) < 1000) */ && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
 	{
 		return TRUE;
 	};
@@ -397,7 +397,7 @@ instance DIA_MiltenOW_TeachCircle2(C_Info)
 
 func int DIA_MiltenOW_TeachCircle2_Condition()
 {
-	if((other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_MiltenOW_Lehren) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) < 2))
+	if((other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_MiltenOW_Lehren) && (Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 1))
 	{
 		return TRUE;
 	};
@@ -411,7 +411,7 @@ func void DIA_MiltenOW_TeachCircle2_Info()
 	if(B_TeachMagicCircle(self,other,2))
 	{
 		AI_Output(self,other,"DIA_Milten_Add_03_03");	//я не уверен, что помню все эти официальные и торжественные слова...
-		AI_Output(self,other,"DIA_Milten_Add_03_04");	//¬ойди во второй круг. Ё-э... он покажет тебе направление, но твои дела формируют путь...
+		AI_Output(self,other,"DIA_Milten_Add_03_04");	//¬ойди во второй  руг. Ё-э... он покажет тебе направление, но твои дела формируют путь...
 		AI_Output(self,other,"DIA_Milten_Add_03_05");	//я думаю, ты понимаешь, о чем все это...
 	};
 };
@@ -458,7 +458,7 @@ func void DIA_MiltenOW_Teach_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_MiltenOW_Teach_03_01");	//“ы все еще не достиг второго круга магии. я ничему не могу научить теб€.
+		AI_Output(self,other,"DIA_MiltenOW_Teach_03_01");	//“ы все еще не достиг второго  руга магии. я ничему не могу научить теб€.
 	};
 };
 
@@ -513,7 +513,8 @@ func void DIA_MiltenOW_Mana_Info()
 
 func void DIA_MiltenOW_Mana_BACK()
 {
-	if(other.attribute[ATR_MANA_MAX] >= T_MED)
+//	if(other.attribute[ATR_MANA_MAX] >= T_MED)
+	if(other.aivar[REAL_MANA_MAX] >= T_MED)
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Mana_03_00");	//“во€ магическа€ энерги€ велика. —лишком велика, чтобы € мог увеличить ее.
 	};
@@ -609,7 +610,15 @@ instance DIA_MiltenOW_PICKPOCKET(C_Info)
 
 func int DIA_MiltenOW_PICKPOCKET_Condition()
 {
-	return C_StealItems(80,Hlp_GetInstanceID(ItPo_Perm_Mana),1);
+//	return C_StealItems(80,Hlp_GetInstanceID(ItPo_Perm_Mana),1);
+	if(Npc_HasItems(self,ItPo_Perm_Mana))
+	{
+		return C_StealItem(80,Hlp_GetInstanceID(ItPo_Perm_Mana));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_MiltenOW_PICKPOCKET_Info()
@@ -621,7 +630,8 @@ func void DIA_MiltenOW_PICKPOCKET_Info()
 
 func void DIA_MiltenOW_PICKPOCKET_DoIt()
 {
-	B_StealItems(80,Hlp_GetInstanceID(ItPo_Perm_Mana),1);
+//	B_StealItems(80,Hlp_GetInstanceID(ItPo_Perm_Mana),1);
+	B_StealItem(80,Hlp_GetInstanceID(ItPo_Perm_Mana));
 	Info_ClearChoices(DIA_MiltenOW_PICKPOCKET);
 };
 

@@ -2,11 +2,12 @@
 instance PAL_218_Ritter(Npc_Default)
 {
 	name[0] = NAME_Ritter;
-	guild = GIL_OUT;
+	guild = GIL_PAL;
 	id = 218;
 	voice = 4;
 	flags = 0;
 	npcType = NPCTYPE_OCAMBIENT;
+	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);

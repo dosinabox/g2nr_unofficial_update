@@ -15,6 +15,7 @@ func void B_AssessSleepTalk()
 {
 	if(C_BodyStateContains(self,BS_LIE))
 	{
+		B_ResetFaceExpression(self);
 		AI_UseMob(self,"BEDHIGH",-1);
 	};
 	AI_StartState(self,ZS_ObservePlayer,0,"");
@@ -49,7 +50,7 @@ func int ZS_Sleep_Loop()
 
 func void ZS_Sleep_End()
 {
-	Mdl_StartFaceAni(self,"S_NEUTRAL",1,-1);
+	B_ResetFaceExpression(self);
 	if(!Npc_IsInPlayersRoom(self))
 	{
 		B_Say(self,self,"$AWAKE");

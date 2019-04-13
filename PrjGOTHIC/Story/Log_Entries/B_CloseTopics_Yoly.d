@@ -44,7 +44,8 @@ func void B_CloseTopics_Yoly()
 	{
 		Log_SetTopicStatus(TOPIC_BalthasarsSchafe,LOG_OBSOLETE);
 	};
-	B_CloseTopic(TOPIC_AkilsSLDStillthere,0,TOPIC_END_AkilsSLDStillthere,6);
+//	B_CloseTopic(TOPIC_AkilsSLDStillthere,0,TOPIC_END_AkilsSLDStillthere,6);
+	B_CloseTopic(TOPIC_AkilsSLDStillthere,0,TOPIC_END_AkilsSLDStillthere,4);
 	B_CloseTopic(TOPIC_Wettsaufen,MIS_Rukhar_Wettkampf,0,6);
 	B_CloseTopic(TOPIC_GaanSchnaubi,MIS_Gaan_Snapper,0,6);
 	B_CloseTopic(TOPIC_GromAskTeacher,0,Grom_TeachAnimalTrophy,6);

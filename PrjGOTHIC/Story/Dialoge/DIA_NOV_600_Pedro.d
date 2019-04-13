@@ -346,6 +346,8 @@ func void DIA_Pedro_AUFNAHME_YES()
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.
 	DIA_Pedro_AUFNAHME_NOPERM = TRUE;
 	NOV_Aufnahme = TRUE;
+	SLD_Aufnahme = LOG_OBSOLETE;
+	MIL_Aufnahme = LOG_OBSOLETE;
 	B_GivePlayerXP(XP_AufnahmeNovize);
 	if(Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette))
 	{

@@ -34,7 +34,15 @@ instance DIA_Rangar_PICKPOCKET(C_Info)
 
 func int DIA_Rangar_PICKPOCKET_Condition()
 {
-	return C_StealItems(30,Hlp_GetInstanceID(ItKe_City_Tower_02),1);
+//	return C_StealItems(30,Hlp_GetInstanceID(ItKe_City_Tower_02),1);
+	if(Npc_HasItems(self,ItKe_City_Tower_02))
+	{
+		return C_StealItem(30,Hlp_GetInstanceID(ItKe_City_Tower_02));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Rangar_PICKPOCKET_Info()
@@ -46,7 +54,8 @@ func void DIA_Rangar_PICKPOCKET_Info()
 
 func void DIA_Rangar_PICKPOCKET_DoIt()
 {
-	B_StealItems(30,Hlp_GetInstanceID(ItKe_City_Tower_02),1);
+//	B_StealItems(30,Hlp_GetInstanceID(ItKe_City_Tower_02),1);
+	B_StealItem(30,Hlp_GetInstanceID(ItKe_City_Tower_02));
 	Info_ClearChoices(DIA_Rangar_PICKPOCKET);
 };
 
@@ -124,7 +133,7 @@ instance DIA_Rangar_Bier(C_Info)
 
 func int DIA_Rangar_Bier_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rangar_Hallo) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
+	if(Npc_KnowsInfo(other,DIA_Rangar_Hallo) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500) && (MIS_Garvell_Infos == LOG_Running))
 	{
 		return TRUE;
 	};

@@ -12,15 +12,18 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 	};
 	if(attrib == ATR_STRENGTH)
 	{
-		realAttribute = oth.attribute[ATR_STRENGTH];
+//		realAttribute = oth.attribute[ATR_STRENGTH];
+		realAttribute = oth.aivar[REAL_STRENGTH];
 	}
 	else if(attrib == ATR_DEXTERITY)
 	{
-		realAttribute = oth.attribute[ATR_DEXTERITY];
+//		realAttribute = oth.attribute[ATR_DEXTERITY];
+		realAttribute = oth.aivar[REAL_DEXTERITY];
 	}
 	else if(attrib == ATR_MANA_MAX)
 	{
-		realAttribute = oth.attribute[ATR_MANA_MAX];
+//		realAttribute = oth.attribute[ATR_MANA_MAX];
+		realAttribute = oth.aivar[REAL_MANA_MAX];
 	};
 	if(realAttribute >= teacherMAX)
 	{

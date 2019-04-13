@@ -1436,3 +1436,9 @@ func void Rtn_Start_1243()
 	TA_Stand_Dementor(5,55,6,5,"DI_UNDEADDRAGONTEMPEL_05");
 };
 
+
+instance DMT_DementorAmbientMalak(Default_AmbientDementor)
+{
+	start_aistate = ZS_Stand_Dementor;
+};
+

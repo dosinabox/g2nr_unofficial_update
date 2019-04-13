@@ -243,7 +243,7 @@ func void DIA_Addon_Logan_Lager_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Logan_Lager_15_00");	//А что в лагере?
 	AI_Output(self,other,"DIA_Addon_Logan_Lager_10_01");	//(ворчливо) Вопрос в том, чего НЕТ в лагере. Там нет болотных акул, там нет болотных кочек... Вообще НЕТ болота.
-	AI_Output(self,other,"DIA_Addon_Logan_Lager_10_02");	//Зато там есть выпивка и золото. И насколько я знаю, там даже есть женщина. Понял?
+	AI_Output(self,other,"DIA_Addon_Logan_Lager_10_02");	//Зато там есть и выпивка, и золото. И насколько я знаю, там даже есть женщина. Понял?
 };
 
 

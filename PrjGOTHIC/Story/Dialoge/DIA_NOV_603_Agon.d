@@ -325,6 +325,7 @@ func void DIA_Agon_Perm_Info()
 	{
 		AI_Output(self,other,"DIA_Agon_Perm_07_02");	//(надменно) Ты всего лишь гость здесь, в монастыре Инноса. Поэтому ты должен вести себя соответствующе и не отрывать меня от работы. Прощай.
 	};
+	AI_StopProcessInfos(self);
 };
 
 

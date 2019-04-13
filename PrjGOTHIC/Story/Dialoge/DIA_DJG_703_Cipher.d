@@ -89,7 +89,7 @@ func void DIA_CipherDJG_HELLOAGAIN_GoAlone()
 func void DIA_CipherDJG_HELLOAGAIN_GoTogether()
 {
 	AI_Output(other,self,"DIA_CipherDJG_HELLOAGAIN_GoTogether_15_00");	//Почему бы и нет. Помощь мне не помешает.
-	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_GoTogether_07_01");	//Это хорошо. Тогда я, наконец, смогу выбраться отсюда. Эта вонь невыносима. Просто дай мне слово!
+	AI_Output(self,other,"DIA_CipherDJG_HELLOAGAIN_GoTogether_07_01");	//Это хорошо. Тогда я, наконец, смогу выбраться отсюда. Эта вонь невыносима. Скажи, когда пойдем!
 	DJG_SwampParty = TRUE;
 	Info_ClearChoices(DIA_CipherDJG_HELLOAGAIN);
 };
@@ -115,7 +115,7 @@ func int DIA_CipherDJG_GOTOGETHERAGAIN_Condition()
 func void DIA_CipherDJG_GOTOGETHERAGAIN_Info()
 {
 	AI_Output(other,self,"DIA_CipherDJG_GOTOGETHERAGAIN_15_00");	//Я передумал! Пойдем вместе!
-	AI_Output(self,other,"DIA_CipherDJG_GOTOGETHERAGAIN_07_01");	//Просто дай мне слово!
+	AI_Output(self,other,"DIA_CipherDJG_GOTOGETHERAGAIN_07_01");	//Скажи, когда пойдем!
 	DJG_SwampParty = TRUE;
 };
 

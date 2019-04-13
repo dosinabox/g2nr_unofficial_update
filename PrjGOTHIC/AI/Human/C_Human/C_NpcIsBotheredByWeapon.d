@@ -5,7 +5,7 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if((slf.npcType == NPCTYPE_FRIEND) && Npc_IsPlayer(other))
+	if((slf.npcType == NPCTYPE_FRIEND) && Npc_IsPlayer(oth))
 	{
 		return FALSE;
 	};

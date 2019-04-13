@@ -137,6 +137,22 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			CreateInvItems(slf,ItRu_FullHeal,1);
 		};
+		if(!Npc_HasItems(slf,ItRu_LightningFlash))
+		{
+			CreateInvItems(slf,ItRu_LightningFlash,1);
+		};
+		if(!Npc_HasItems(slf,ItRu_Firestorm))
+		{
+			CreateInvItems(slf,ItRu_Firestorm,1);
+		};
+		if(!Npc_HasItems(slf,ItRu_ThunderBall))
+		{
+			CreateInvItems(slf,ItRu_ThunderBall,1);
+		};
+		if(!Npc_HasItems(slf,ItRu_HarmUndead))
+		{
+			CreateInvItems(slf,ItRu_HarmUndead,1);
+		};
 		if(slf.attribute[ATR_HITPOINTS] < 100)
 		{
 			B_ReadySpell(slf,SPL_FullHeal,SPL_Cost_FullHeal);
@@ -148,9 +164,31 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			{
 				B_ReadySpell(slf,SPL_Deathball,SPL_COST_Deathball);
 			}
+			else if(C_NpcIsUndead(oth))
+			{
+				B_ReadySpell(slf,SPL_DestroyUndead,SPL_Cost_DESTROYUNDEAD);
+			}
+			else if((slf.guild == GIL_KDW) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY)))
+			{
+				if(oth.protection[PROT_MAGIC] > SPL_Damage_ChargeZap)
+				{
+					B_ReadySpell(slf,SPL_LightningFlash,SPL_Cost_LightningFlash);
+				}
+				else
+				{
+					B_ReadySpell(slf,SPL_ChargeZap,SPL_COST_ChargeZap);
+				};
+			}
 			else
 			{
-				B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+				if(oth.protection[PROT_FIRE] > SPL_DAMAGE_InstantFireball)
+				{
+					B_ReadySpell(slf,SPL_Firestorm,SPL_Cost_FireStorm);
+				}
+				else
+				{
+					B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+				};
 			};
 			return TRUE;
 		}
@@ -170,6 +208,10 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			CreateInvItems(slf,ItRu_PalHolyBolt,1);
 		};
+		if(!Npc_HasItems(slf,ItRu_PalRepelEvil))
+		{
+			CreateInvItems(slf,ItRu_PalRepelEvil,1);
+		};
 		if(!Npc_HasItems(slf,ItRu_PalFullHeal))
 		{
 			CreateInvItems(slf,ItRu_PalFullHeal,1);
@@ -181,7 +223,14 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		};
 		if((Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_MELEE) && C_NpcIsEvil(oth))
 		{
-			B_ReadySpell(slf,SPL_PalHolyBolt,SPL_Cost_PalHolyBolt);
+			if(oth.protection[PROT_MAGIC] > SPL_Damage_PalHolyBolt)
+			{
+				B_ReadySpell(slf,SPL_PalRepelEvil,SPL_Cost_PalRepelEvil);
+			}
+			else
+			{
+				B_ReadySpell(slf,SPL_PalHolyBolt,SPL_Cost_PalHolyBolt);
+			};
 			return TRUE;
 		}
 		else
@@ -255,7 +304,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			return FALSE;
 		};
 	};
-	if((slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE))
+	if((slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_SWAMP) || (slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ROCK))
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))
 		{
@@ -286,16 +335,18 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			return FALSE;
 		};
-	};
+	}; */
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))
 		{
-			CreateInvItems(slf,ItRu_InstantFireball,1);
+//			CreateInvItems(slf,ItRu_InstantFireball,1);
+			CreateInvItems(slf,ItRu_Firestorm,1);
 		};
 		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
 		{
-			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+//			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+			B_ReadySpell(slf,SPL_FireStorm,SPL_Cost_InstantFireStorm);
 			return TRUE;
 		}
 		else
@@ -307,18 +358,20 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))
 		{
-			CreateInvItems(slf,ItRu_InstantFireball,1);
+//			CreateInvItems(slf,ItRu_InstantFireball,1);
+			CreateInvItems(slf,ItRu_ThunderBall,1);
 		};
 		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
 		{
-			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+//			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
+			B_ReadySpell(slf,SPL_ChargeZap,SPL_COST_ChargeZap);
 			return TRUE;
 		}
 		else
 		{
 			return FALSE;
 		};
-	}; */
+	};
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
 	{
 		Npc_ClearAIQueue(self);

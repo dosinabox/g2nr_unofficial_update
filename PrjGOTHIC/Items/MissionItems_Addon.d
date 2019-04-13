@@ -90,7 +90,7 @@ instance ItMi_Ornament_Addon(C_Item)
 	visual = "ItMi_PortalRing_05.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Фрагмент большого, богато украшенного кольца";
+	text[0] = "Фрагмент большого, богато украшенного кольца.";
 	inv_zbias = INVCAM_ENTF_MISC5_STANDARD;
 };
 
@@ -672,7 +672,7 @@ instance ItFo_Addon_Krokofleisch_Mission(C_Item)
 	description = name;
 	text[1] = "Это мясо пахнет рыбой!";
 	text[5] = NAME_Value;
-	count[5] = Value_Rawmeat;
+	count[5] = value;
 };
 
 instance ItRi_Addon_MorgansRing_Mission(C_Item)
@@ -782,9 +782,10 @@ func void Use_StonePlateCommon()
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,1);
 		Doc_SetPage(nDocID,0,"Maya_Stoneplate_02.TGA",0);
+		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -825,9 +826,10 @@ func void Use_Addon_Stone_01()
 	else
 	{
 		Doc_PrintLines(nDocID,0,"Erfjkemvfj Hwoqmnyhan ckh. Fjewheege Egdgsmkd Ygc slje asdkjhnead Gkjsdhad Uhndter rygilliambwe ewzbfujbwe Iuhdfb. Revfnbrebuiwe ewohjfribwe wef. Sebnejbuwd Weinfiwjf Ihwqpjrnn.");
+		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -868,9 +870,10 @@ func void Use_Addon_Stone_05()
 	else
 	{
 		Doc_PrintLines(nDocID,0,"Fjewheege Egdgsmkd Ygc slje asdkjhnead Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe Iuhdfb. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh.");
+		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -911,11 +914,12 @@ func void Use_Addon_Stone_03()
 	else
 	{
 		Doc_PrintLines(nDocID,0,"KHARDIMON Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh. Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe.");
+		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLines(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -956,9 +960,10 @@ func void Use_Addon_Stone_04()
 	else
 	{
 		Doc_PrintLines(nDocID,0,"Esfjwedbwe ewzbfujbwe. Fjewheege QUARHODRON Ygc slje asdkjhnead. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Gkjsdhad Uhnd.");
+		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -1007,9 +1012,10 @@ func void Use_Addon_Stone_02()
 		Doc_PrintLines(nDocID,0,"Revfnbrebuiwe ewohjfribwe wef. Sebnejbuwd Weinfiwjf Ihwqpjrnn.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Erfjkemvfj RHADEMES Fjewheege Egdgsmkd!");
+		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -1023,6 +1029,7 @@ instance ItMI_Addon_Kompass_Mis(C_Item)
 	visual = "ItMi_Compass_01.3DS";
 	material = MAT_STONE;
 	description = name;
+	text[5] = NAME_Value;
 	count[5] = value;
 };
 
@@ -1060,7 +1067,7 @@ instance ITWR_Addon_FrancisAbrechnung_Mis(C_Item)
 {
 	name = "Книга платежей";
 	mainflag = ITEM_KAT_DOCS;
-	flags = 0;
+	flags = ITEM_MISSION;
 	value = 100;
 	visual = "ItWr_Book_02_05.3ds";
 	material = MAT_LEATHER;
@@ -1145,7 +1152,7 @@ instance ITWR_Addon_GregsLogbuch_Mis(C_Item)
 {
 	name = "Дневник";
 	mainflag = ITEM_KAT_DOCS;
-	flags = 0;
+	flags = ITEM_MISSION;
 	value = 100;
 	visual = "ItWr_Book_01.3ds";
 	material = MAT_LEATHER;
@@ -1249,7 +1256,7 @@ instance ItMi_Addon_Bloodwyn_Kopf(C_Item)
 	visual = "ItMi_Head_Bloodwyn_01.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[5] = NAME_Value;
+//	text[5] = NAME_Value;
 //	count[5] = value;
 };
 

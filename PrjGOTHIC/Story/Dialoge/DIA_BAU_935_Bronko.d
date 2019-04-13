@@ -56,6 +56,7 @@ func void DIA_Bronko_HALLO_deinland()
 	AI_Output(other,self,"DIA_Bronko_HALLO_deinland_15_00");	//Твоей земле? Ты что, местный фермер?
 	AI_Output(self,other,"DIA_Bronko_HALLO_deinland_06_01");	//Естественно. А почему еще ты должен платить мне пошлину?
 	AI_Output(self,other,"DIA_Bronko_HALLO_deinland_06_02");	//Я не возражаю, если ты поспрашиваешь остальных обо мне. Хе-хе!
+	AI_StopProcessInfos(self);
 };
 
 func void DIA_Bronko_HALLO_hiergeld()
@@ -181,7 +182,10 @@ func void DIA_Bronko_KEINBAUER_SLD()
 	{
 		AI_Output(self,other,"DIA_Bronko_KEINBAUER_SLD_06_04");	//Вот, я даже отдам тебе все мое золото.
 	};
-	AI_Output(self,other,"DIA_Bronko_KEINBAUER_SLD_06_05");	//И я вернусь в поле и буду работать. Все, что угодно, только не надо наемников.
+	if(Wld_IsTime(8,0,22,0))
+	{
+		AI_Output(self,other,"DIA_Bronko_KEINBAUER_SLD_06_05");	//И я вернусь в поле и буду работать. Все, что угодно, только не надо наемников.
+	};
 	AI_StopProcessInfos(self);
 	DIA_Bronko_KEINBAUER_noPerm = TRUE;
 	Npc_ExchangeRoutine(self,"Start");
@@ -203,7 +207,7 @@ instance DIA_Bronko_FLEISSIG(C_Info)
 
 func int DIA_Bronko_FLEISSIG_Condition()
 {
-	if((MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	if(((MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)) && Wld_IsTime(8,0,22,0))
 	{
 		return TRUE;
 	};

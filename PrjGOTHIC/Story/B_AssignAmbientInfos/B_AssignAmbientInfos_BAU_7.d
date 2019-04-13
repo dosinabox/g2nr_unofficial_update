@@ -74,7 +74,7 @@ instance DIA_BAU_7_LOCATION(C_Info)
 	condition = DIA_BAU_7_LOCATION_Condition;
 	information = DIA_BAU_7_LOCATION_Info;
 	permanent = TRUE;
-	description = "Расскажи мне подробнее здешних местах.";
+	description = "Расскажи мне подробнее о здешних местах.";
 };
 
 
@@ -85,7 +85,7 @@ func int DIA_BAU_7_LOCATION_Condition()
 
 func void DIA_BAU_7_LOCATION_Info()
 {
-	AI_Output(other,self,"DIA_BAU_7_LOCATION_15_00");	//Расскажи мне подробнее здешних местах.
+	AI_Output(other,self,"DIA_BAU_7_LOCATION_15_00");	//Расскажи мне подробнее о здешних местах.
 	AI_Output(self,other,"DIA_BAU_7_LOCATION_07_01");	//Эта большая ферма на востоке долины принадлежит Онару. Ферма Секоба находится к северу.
 	AI_Output(self,other,"DIA_BAU_7_LOCATION_07_02");	//А ферма Бенгара - на высокогорье к юго-западу. Ты можешь попасть туда из долины. К ней ведет большая каменная лестница.
 };

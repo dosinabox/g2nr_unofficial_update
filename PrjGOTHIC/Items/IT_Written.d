@@ -197,7 +197,7 @@ func void UseEinhandBuch()
 	if(Lerne_Einhand == FALSE)
 	{
 		B_RaiseFightTalent(self,NPC_TALENT_1H,5);
-		Print(PRINT_Learn1H);
+		PrintScreen(PRINT_Learn1H,-1,-1,FONT_Screen,2);
 		Lerne_Einhand = TRUE;
 		Snd_Play("Levelup");
 	};
@@ -246,7 +246,7 @@ func void UseZweihandBuch()
 	if(Lerne_Zweihand == FALSE)
 	{
 		B_RaiseFightTalent(self,NPC_TALENT_2H,5);
-		Print(PRINT_Learn2H);
+		PrintScreen(PRINT_Learn2H,-1,-1,FONT_Screen,2);
 		Lerne_Zweihand = TRUE;
 		Snd_Play("Levelup");
 	};

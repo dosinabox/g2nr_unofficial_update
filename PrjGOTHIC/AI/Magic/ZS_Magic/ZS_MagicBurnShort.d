@@ -56,7 +56,14 @@ func int ZS_MagicBurnShort_Loop()
 	if(Npc_GetStateTime(self) == 1)
 	{
 		Npc_SetStateTime(self,0);
-		B_MagicHurtNpc(other,self,SPL_MAGICBURNSHORT_DAMAGE_PER_SEC);
+		if((Npc_GetLastHitSpellID(self) == SPL_ChargeFireball) || (Npc_GetLastHitSpellID(self) == SPL_Firestorm))
+		{
+			B_FireHurtNpc(other,self,SPL_MAGICBURNSHORT_DAMAGE_PER_SEC);
+		}
+		else
+		{
+			B_MagicHurtNpc(other,self,SPL_MAGICBURNSHORT_DAMAGE_PER_SEC);
+		};
 		Npc_ClearAIQueue(self);
 		AI_Standup(self);
 		return LOOP_END;

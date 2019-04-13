@@ -239,19 +239,19 @@ func void B_WhreAreHousesOfRulers()
 	if(B_WhreAreHousesOfRulersOneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_04");	//Если эти дворцы еще сохранились, ты узнаешь их по особой манере постройки.
-		B_WhreAreHousesOfRulersOneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_05");	//Все дворцы строились на возвышениях. К украшенному колоннами входу в каждый из них вела крутая лестница.
 	if(B_WhreAreHousesOfRulersOneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_06");	//Надеюсь, тебе это поможет.
+		Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
+		B_LogEntry(TOPIC_Addon_HousesOfRulers,"Замок ученых - это огромная библиотека. Она находится где-то на севере.");
+		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замок воинов - это окруженная скалами крепость на востоке.");
+		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замки жрецов и стражей мертвых находятся недалеко друг от друга. Я смогу найти их на юго-западе.");
+		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Дворец-госпиталь целителей находится на юго-востоке.");
+		B_WhreAreHousesOfRulersOneTime = TRUE;
 	};
-	Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
-	B_LogEntry(TOPIC_Addon_HousesOfRulers,"Замок ученых - это огромная библиотека. Она находится где-то на севере.");
-	Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замок воинов - это окруженная скалами крепость на востоке.");
-	Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замки жрецов и стражей мертвых находятся недалеко друг от друга. Я смогу найти их на юго-западе.");
-	Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Дворец-госпиталь целителей находится на юго-востоке.");
 };
 
 func void DIA_Addon_Riordian_WhereAreHouses_Info()

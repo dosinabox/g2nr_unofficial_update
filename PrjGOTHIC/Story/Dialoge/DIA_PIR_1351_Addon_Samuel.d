@@ -328,7 +328,10 @@ func void DIA_Addon_Samuel_Stronger_Info()
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
 	};
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	if(Player_KnowsSchnellerHering == TRUE)
+	{
+		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	};
 };
 
 func void B_Addon_Samuel_NoGold()
@@ -363,7 +366,10 @@ func void DIA_Addon_Samuel_Stronger_SchnellerHering()
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
 	};
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	if(Player_KnowsSchnellerHering == TRUE)
+	{
+		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	};
 };
 
 func void DIA_Addon_Samuel_Stronger_LousHammer()
@@ -388,7 +394,10 @@ func void DIA_Addon_Samuel_Stronger_LousHammer()
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
 	};
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	if(Player_KnowsSchnellerHering == TRUE)
+	{
+		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	};
 };
 
 func void DIA_Addon_Samuel_Stronger_LousDoubleHammer()
@@ -420,7 +429,10 @@ func void DIA_Addon_Samuel_Stronger_LousDoubleHammer()
 	{
 		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Молот Лу (30 золотых)",DIA_Addon_Samuel_Stronger_LousHammer);
 	};
-	Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	if(Player_KnowsSchnellerHering == TRUE)
+	{
+		Info_AddChoice(DIA_Addon_Samuel_Stronger,"Быстрая селедка (30 золотых)",DIA_Addon_Samuel_Stronger_SchnellerHering);
+	};
 };
 
 
@@ -459,6 +471,10 @@ func void DIA_Addon_Samuel_Trade_Info()
 	B_GiveTradeInv(self);
 	Npc_RemoveInvItems(self,ItFo_Addon_Grog,Npc_HasItems(self,ItFo_Addon_Grog));
 	CreateInvItems(self,ItFo_Addon_Grog,15);
+	if(Player_KnowsSchnellerHering == TRUE)
+	{
+		CreateInvItem(self,ITWr_Addon_Piratentod);
+	};
 	AI_Output(self,other,"DIA_Addon_Samuel_Trade_14_01");	//Я могу продать тебе все, что нужно пирату для жизни.
 };
 
@@ -503,7 +519,7 @@ func void DIA_Addon_Samuel_News_Info()
 	{
 		if(!Npc_IsDead(Morgan))
 		{
-			AI_Output(self,other,"DIA_Addon_Samuel_News_14_04");	//С тех пор как Грег уехал, ничего интересного не происходило. Морган и большинство парней целыми днями пьянствуют.
+			AI_Output(self,other,"DIA_Addon_Samuel_News_14_04");	//С тех пор, как Грег уехал, ничего интересного не происходило. Морган и большинство парней целыми днями пьянствуют.
 		};
 		if(!Npc_IsDead(Henry))
 		{

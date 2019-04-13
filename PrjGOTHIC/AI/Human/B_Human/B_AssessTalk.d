@@ -62,7 +62,7 @@ func void B_AssessTalk()
 			B_Attack(self,other,AR_HumanMurderedHuman,0);
 			return;
 		};
-		if((C_PlayerIsFakeBandit(self,other) == TRUE) && (self.guild != GIL_BDT))
+		if(C_PlayerIsFakeBandit(self,other) && (self.guild != GIL_BDT))
 		{
 			B_Attack(self,other,AR_GuildEnemy,0);
 			return;

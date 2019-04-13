@@ -6,7 +6,7 @@ instance PAL_263_Wache(Npc_Default)
 	id = 263;
 	voice = 4;
 	flags = 0;
-	npcType = npctype_main;
+	npcType = NPCTYPE_OCMAIN;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Pal_Sword);

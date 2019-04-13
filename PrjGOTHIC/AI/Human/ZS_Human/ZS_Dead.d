@@ -5,11 +5,7 @@ func void ZS_Dead()
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	B_StopLookAt(self);
 	AI_StopPointAt(self);
-	if((Npc_IsPlayer(other) || (other.aivar[AIV_PARTYMEMBER] == TRUE)) && (self.aivar[AIV_VictoryXPGiven] == FALSE))
-	{
-		B_GivePlayerXP(self.level * XP_PER_VICTORY);
-		self.aivar[AIV_VictoryXPGiven] = TRUE;
-	};
+	B_GiveDeathXP(other,self);
 	if(C_IAmCanyonRazor(self))
 	{
 		CanyonRazorBodyCount += 1;
@@ -22,12 +18,27 @@ func void ZS_Dead()
 	{
 		if(Npc_GetDistToNpc(self,other) < 300)
 		{
-			other.attribute[ATR_HITPOINTS] -= 50;
+//			other.attribute[ATR_HITPOINTS] -= 50;
+			B_MagicHurtNpc(self,other,50);
 		};
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DiegoOW))
 	{
 		Diego_IsDead = TRUE;
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skip))
+	{
+		if(MIS_ADDON_SkipsGrog == LOG_Running)
+		{
+			MIS_ADDON_SkipsGrog = LOG_OBSOLETE;
+		};
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Brandon))
+	{
+		if(MIS_Brandon_BringHering == LOG_Running)
+		{
+			MIS_Brandon_BringHering = LOG_OBSOLETE;
+		};
 	};
 	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON))
 	{
@@ -86,18 +97,19 @@ func void ZS_Dead()
 	B_ClearSmithInv(self);
 	B_ClearAlchemyInv(self);
 	B_ClearBonusFoodInv(self);
+	B_ClearJunkInv(self);
 	B_DeletePetzCrime(self);
 	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 	AI_UnequipWeapons(self);
-	self.aivar[AIV_TAPOSITION] = FALSE;
+	self.aivar[AIV_TAPOSITION] = ISINPOS;
 };
 
 func int ZS_Dead_Loop()
 {
-	if(self.aivar[AIV_TAPOSITION] == FALSE)
+	if(self.aivar[AIV_TAPOSITION] == ISINPOS)
 	{
 		B_DragonKillCounter(self);
-		self.aivar[AIV_TAPOSITION] = TRUE;
+		self.aivar[AIV_TAPOSITION] = NOTINPOS;
 	};
 	return LOOP_CONTINUE;
 };

@@ -228,7 +228,6 @@ instance ItMw_BeliarWeapon_Raven(BeliarWeaponPrototype_2H)
 	damageTotal = Damage_BeliarW_Raven;
 	cond_atr[2] = ATR_MANA_MAX;
 	cond_value[2] = 666666;
-	text[3] = "";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -417,8 +416,11 @@ instance ItMw_BeliarWeapon_Fire(BeliarWeaponPrototype_2H)
 {
 	value = Value_BeliarW_2H_20;
 	damageTotal = Damage_BeliarW_2H_20;
+	damagetype = DAM_FIRE;
 	count[5] = value;
+	text[3] = NAME_Dam_Fire;
 	count[3] = damageTotal;
+	text[4] = "";
 	effect = "SPELLFX_FIRESWORD";
 };
 

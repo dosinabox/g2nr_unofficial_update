@@ -89,7 +89,7 @@ func void DIA_Sergio_Isgaroth_XP()
 	AI_Output(other,self,"DIA_Sergio_Isgaroth_XP_15_00");	//“ы не мог бы поделитьс€ своим боевым опытом?
 	AI_Output(self,other,"DIA_Sergio_Isgaroth_XP_04_01");	// огда ты сражаешьс€, постарайс€, чтобы никто не мог атаковать теб€ сзади.
 	B_RaiseFightTalent(other,NPC_TALENT_2H,2);
-	PrintScreen(PRINT_Learn2H,-1,-1,FONT_ScreenSmall,2);
+	PrintScreen(PRINT_Learn2H,-1,-1,FONT_Screen,2);
 	Info_ClearChoices(DIA_Sergio_Isgaroth);
 };
 

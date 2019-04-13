@@ -39,6 +39,20 @@ const int CrsBowStonePlate = 9;
 const string StPl_MagicAuraText = "Эта каменная табличка излучает магическую ауру.";
 const string StPl_StandardText = "";
 
+func void B_CannotUse_Addon()
+{
+	var int rnd;
+	rnd = Hlp_Random(100);
+		if(rnd <= 20)
+		{
+			B_Say(self,self,"$COUGH");
+		}
+		else if(rnd >= 80)
+		{
+			B_Say(self,self,"$HUI");
+		};
+};
+
 func int C_SCHasStPlSkill()
 {
 	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE)
@@ -73,7 +87,9 @@ func void Use_StonePlate()
 	var string concatText;
 	if(!C_SCHasStPlSkill())
 	{
+		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
+		AI_Waitms(self,500);
 	}
 	else
 	{
@@ -84,19 +100,19 @@ func void Use_StonePlate()
 			{
 				B_RaiseAttribute(self,ATR_STRENGTH,STR_StPlLevel1);
 				concatText = ConcatStrings(concatText,IntToString(STR_StPlLevel1));
-				B_Say(self,self,"STONEPLATE_1");
+//				B_Say(self,self,"STONEPLATE_1");
 			}
 			else if(StoneplateLevel == 2)
 			{
 				B_RaiseAttribute(self,ATR_STRENGTH,STR_StPlLevel2);
 				concatText = ConcatStrings(concatText,IntToString(STR_StPlLevel2));
-				B_Say(self,self,"STONEPLATE_2");
+//				B_Say(self,self,"STONEPLATE_2");
 			}
 			else if(StoneplateLevel == 3)
 			{
 				B_RaiseAttribute(self,ATR_STRENGTH,STR_StPlLevel3);
 				concatText = ConcatStrings(concatText,IntToString(STR_StPlLevel3));
-				B_Say(self,self,"STONEPLATE_3");
+//				B_Say(self,self,"STONEPLATE_3");
 			};
 		}
 		else if(StoneplateItem == DexStonePlate)
@@ -106,19 +122,19 @@ func void Use_StonePlate()
 			{
 				B_RaiseAttribute(self,ATR_DEXTERITY,DEX_StPlLevel1);
 				concatText = ConcatStrings(concatText,IntToString(DEX_StPlLevel1));
-				B_Say(self,self,"STONEPLATE_1");
+//				B_Say(self,self,"STONEPLATE_1");
 			}
 			else if(StoneplateLevel == 2)
 			{
 				B_RaiseAttribute(self,ATR_DEXTERITY,DEX_StPlLevel2);
 				concatText = ConcatStrings(concatText,IntToString(DEX_StPlLevel2));
-				B_Say(self,self,"STONEPLATE_2");
+//				B_Say(self,self,"STONEPLATE_2");
 			}
 			else if(StoneplateLevel == 3)
 			{
 				B_RaiseAttribute(self,ATR_DEXTERITY,DEX_StPlLevel3);
 				concatText = ConcatStrings(concatText,IntToString(DEX_StPlLevel3));
-				B_Say(self,self,"STONEPLATE_3");
+//				B_Say(self,self,"STONEPLATE_3");
 			};
 		}
 		else if(StoneplateItem == HitPointStonePlate)
@@ -129,21 +145,21 @@ func void Use_StonePlate()
 				B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HPMax_StPlLevel1);
 				Npc_ChangeAttribute(self,ATR_HITPOINTS,HPMax_StPlLevel1);
 				concatText = ConcatStrings(concatText,IntToString(HPMax_StPlLevel1));
-				B_Say(self,self,"STONEPLATE_1");
+//				B_Say(self,self,"STONEPLATE_1");
 			}
 			else if(StoneplateLevel == 2)
 			{
 				B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HPMax_StPlLevel2);
 				Npc_ChangeAttribute(self,ATR_HITPOINTS,HPMax_StPlLevel2);
 				concatText = ConcatStrings(concatText,IntToString(HPMax_StPlLevel2));
-				B_Say(self,self,"STONEPLATE_2");
+//				B_Say(self,self,"STONEPLATE_2");
 			}
 			else if(StoneplateLevel == 3)
 			{
 				B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HPMax_StPlLevel3);
 				Npc_ChangeAttribute(self,ATR_HITPOINTS,HPMax_StPlLevel3);
 				concatText = ConcatStrings(concatText,IntToString(HPMax_StPlLevel3));
-				B_Say(self,self,"STONEPLATE_3");
+//				B_Say(self,self,"STONEPLATE_3");
 			};
 		}
 		else if(StoneplateItem == ManaStonePlate)
@@ -154,21 +170,21 @@ func void Use_StonePlate()
 				B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_StPlLevel1);
 				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel1);
 				concatText = ConcatStrings(concatText,IntToString(ManaMax_StPlLevel1));
-				B_Say(self,self,"STONEPLATE_1");
+//				B_Say(self,self,"STONEPLATE_1");
 			}
 			else if(StoneplateLevel == 2)
 			{
 				B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_StPlLevel2);
 				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel2);
 				concatText = ConcatStrings(concatText,IntToString(ManaMax_StPlLevel2));
-				B_Say(self,self,"STONEPLATE_2");
+//				B_Say(self,self,"STONEPLATE_2");
 			}
 			else if(StoneplateLevel == 3)
 			{
 				B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_StPlLevel3);
 				Npc_ChangeAttribute(self,ATR_MANA,ManaMax_StPlLevel3);
 				concatText = ConcatStrings(concatText,IntToString(ManaMax_StPlLevel3));
-				B_Say(self,self,"STONEPLATE_3");
+//				B_Say(self,self,"STONEPLATE_3");
 			};
 		}
 		else if(StoneplateItem == OneHStonePlate)
@@ -179,21 +195,21 @@ func void Use_StonePlate()
 				B_RaiseFightTalent(self,NPC_TALENT_1H,OneH_StPlLevel1);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(OneH_StPlLevel1));
-				B_Say(self,self,"STONEPLATE_1");
+//				B_Say(self,self,"STONEPLATE_1");
 			}
 			else if(StoneplateLevel == 2)
 			{
 				B_RaiseFightTalent(self,NPC_TALENT_1H,OneH_StPlLevel2);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(OneH_StPlLevel2));
-				B_Say(self,self,"STONEPLATE_2");
+//				B_Say(self,self,"STONEPLATE_2");
 			}
 			else if(StoneplateLevel == 3)
 			{
 				B_RaiseFightTalent(self,NPC_TALENT_1H,OneH_StPlLevel3);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(OneH_StPlLevel3));
-				B_Say(self,self,"STONEPLATE_3");
+//				B_Say(self,self,"STONEPLATE_3");
 			};
 		}
 		else if(StoneplateItem == TwoHStonePlate)
@@ -204,21 +220,21 @@ func void Use_StonePlate()
 				B_RaiseFightTalent(self,NPC_TALENT_2H,TwoH_StPlLevel1);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(TwoH_StPlLevel1));
-				B_Say(self,self,"STONEPLATE_1");
+//				B_Say(self,self,"STONEPLATE_1");
 			}
 			else if(StoneplateLevel == 2)
 			{
 				B_RaiseFightTalent(self,NPC_TALENT_2H,TwoH_StPlLevel2);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(TwoH_StPlLevel2));
-				B_Say(self,self,"STONEPLATE_2");
+//				B_Say(self,self,"STONEPLATE_2");
 			}
 			else if(StoneplateLevel == 3)
 			{
 				B_RaiseFightTalent(self,NPC_TALENT_2H,TwoH_StPlLevel3);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(TwoH_StPlLevel3));
-				B_Say(self,self,"STONEPLATE_3");
+//				B_Say(self,self,"STONEPLATE_3");
 			};
 		}
 		else if(StoneplateItem == BowStonePlate)
@@ -229,21 +245,21 @@ func void Use_StonePlate()
 				B_RaiseFightTalent(self,NPC_TALENT_BOW,Bow_StPlLevel1);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(Bow_StPlLevel1));
-				B_Say(self,self,"STONEPLATE_1");
+//				B_Say(self,self,"STONEPLATE_1");
 			}
 			else if(StoneplateLevel == 2)
 			{
 				B_RaiseFightTalent(self,NPC_TALENT_BOW,Bow_StPlLevel2);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(Bow_StPlLevel2));
-				B_Say(self,self,"STONEPLATE_2");
+//				B_Say(self,self,"STONEPLATE_2");
 			}
 			else if(StoneplateLevel == 3)
 			{
 				B_RaiseFightTalent(self,NPC_TALENT_BOW,Bow_StPlLevel3);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(Bow_StPlLevel3));
-				B_Say(self,self,"STONEPLATE_3");
+//				B_Say(self,self,"STONEPLATE_3");
 			};
 		}
 		else if(StoneplateItem == CrsBowStonePlate)
@@ -254,21 +270,21 @@ func void Use_StonePlate()
 				B_RaiseFightTalent(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel1);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(CrsBow_StPlLevel1));
-				B_Say(self,self,"STONEPLATE_1");
+//				B_Say(self,self,"STONEPLATE_1");
 			}
 			else if(StoneplateLevel == 2)
 			{
 				B_RaiseFightTalent(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel2);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(CrsBow_StPlLevel2));
-				B_Say(self,self,"STONEPLATE_2");
+//				B_Say(self,self,"STONEPLATE_2");
 			}
 			else if(StoneplateLevel == 3)
 			{
 				B_RaiseFightTalent(self,NPC_TALENT_CROSSBOW,CrsBow_StPlLevel3);
 				concatText = ConcatStrings(concatText," + ");
 				concatText = ConcatStrings(concatText,IntToString(CrsBow_StPlLevel3));
-				B_Say(self,self,"STONEPLATE_3");
+//				B_Say(self,self,"STONEPLATE_3");
 			};
 		};
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
@@ -313,7 +329,8 @@ func void Use_StrStonePlate1()
 	StoneplateLevel = 1;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_StrStonePlate1_Addon);
+//		CreateInvItem(hero,ItWr_StrStonePlate1_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -333,7 +350,8 @@ func void Use_StrStonePlate2()
 	StoneplateLevel = 2;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_StrStonePlate2_Addon);
+//		CreateInvItem(hero,ItWr_StrStonePlate2_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -353,7 +371,8 @@ func void Use_StrStonePlate3()
 	StoneplateLevel = 3;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_StrStonePlate3_Addon);
+//		CreateInvItem(hero,ItWr_StrStonePlate3_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -373,7 +392,8 @@ func void Use_DexStonePlate1()
 	StoneplateLevel = 1;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_DexStonePlate1_Addon);
+//		CreateInvItem(hero,ItWr_DexStonePlate1_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -393,7 +413,8 @@ func void Use_DexStonePlate2()
 	StoneplateLevel = 2;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_DexStonePlate2_Addon);
+//		CreateInvItem(hero,ItWr_DexStonePlate2_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -413,7 +434,8 @@ func void Use_DexStonePlate3()
 	StoneplateLevel = 3;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_DexStonePlate3_Addon);
+//		CreateInvItem(hero,ItWr_DexStonePlate3_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -433,7 +455,8 @@ func void Use_HitPointStonePlate1()
 	StoneplateLevel = 1;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_HitPointStonePlate1_Addon);
+//		CreateInvItem(hero,ItWr_HitPointStonePlate1_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -453,7 +476,8 @@ func void Use_HitPointStonePlate2()
 	StoneplateLevel = 2;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_HitPointStonePlate2_Addon);
+//		CreateInvItem(hero,ItWr_HitPointStonePlate2_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -473,7 +497,8 @@ func void Use_HitPointStonePlate3()
 	StoneplateLevel = 3;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_HitPointStonePlate3_Addon);
+//		CreateInvItem(hero,ItWr_HitPointStonePlate3_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -493,7 +518,8 @@ func void Use_ManaStonePlate1()
 	StoneplateLevel = 1;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_ManaStonePlate1_Addon);
+//		CreateInvItem(hero,ItWr_ManaStonePlate1_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -513,7 +539,8 @@ func void Use_ManaStonePlate2()
 	StoneplateLevel = 2;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_ManaStonePlate2_Addon);
+//		CreateInvItem(hero,ItWr_ManaStonePlate2_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -533,7 +560,8 @@ func void Use_ManaStonePlate3()
 	StoneplateLevel = 3;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_ManaStonePlate3_Addon);
+//		CreateInvItem(hero,ItWr_ManaStonePlate3_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -553,7 +581,8 @@ func void Use_OneHStonePlate1()
 	StoneplateLevel = 1;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_OneHStonePlate1_Addon);
+//		CreateInvItem(hero,ItWr_OneHStonePlate1_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -573,7 +602,8 @@ func void Use_OneHStonePlate2()
 	StoneplateLevel = 2;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_OneHStonePlate2_Addon);
+//		CreateInvItem(hero,ItWr_OneHStonePlate2_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -593,7 +623,8 @@ func void Use_OneHStonePlate3()
 	StoneplateLevel = 3;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_OneHStonePlate3_Addon);
+//		CreateInvItem(hero,ItWr_OneHStonePlate3_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -613,7 +644,8 @@ func void Use_TwoHStonePlate1()
 	StoneplateLevel = 1;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_TwoHStonePlate1_Addon);
+//		CreateInvItem(hero,ItWr_TwoHStonePlate1_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -633,7 +665,8 @@ func void Use_TwoHStonePlate2()
 	StoneplateLevel = 2;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_TwoHStonePlate2_Addon);
+//		CreateInvItem(hero,ItWr_TwoHStonePlate2_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -653,7 +686,8 @@ func void Use_TwoHStonePlate3()
 	StoneplateLevel = 3;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_TwoHStonePlate3_Addon);
+//		CreateInvItem(hero,ItWr_TwoHStonePlate3_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -673,7 +707,8 @@ func void Use_BowStonePlate1()
 	StoneplateLevel = 1;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_BowStonePlate1_Addon);
+//		CreateInvItem(hero,ItWr_BowStonePlate1_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -693,7 +728,8 @@ func void Use_BowStonePlate2()
 	StoneplateLevel = 2;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_BowStonePlate2_Addon);
+//		CreateInvItem(hero,ItWr_BowStonePlate2_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -713,7 +749,8 @@ func void Use_BowStonePlate3()
 	StoneplateLevel = 3;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_BowStonePlate3_Addon);
+//		CreateInvItem(hero,ItWr_BowStonePlate3_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -733,7 +770,8 @@ func void Use_CrsBowStonePlate1()
 	StoneplateLevel = 1;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_CrsBowStonePlate1_Addon);
+//		CreateInvItem(hero,ItWr_CrsBowStonePlate1_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -753,7 +791,8 @@ func void Use_CrsBowStonePlate2()
 	StoneplateLevel = 2;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_CrsBowStonePlate2_Addon);
+//		CreateInvItem(hero,ItWr_CrsBowStonePlate2_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };
@@ -773,7 +812,8 @@ func void Use_CrsBowStonePlate3()
 	StoneplateLevel = 3;
 	if(!C_SCHasStPlSkill())
 	{
-		CreateInvItem(hero,ItWr_CrsBowStonePlate3_Addon);
+//		CreateInvItem(hero,ItWr_CrsBowStonePlate3_Addon);
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 	};
 	Use_StonePlate();
 };

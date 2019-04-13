@@ -11,7 +11,7 @@ instance DIA_DragonTalk_Main_1(C_Info)
 
 func int DIA_DragonTalk_Main_1_Condition()
 {
-	if(MIS_KilledDragons == 0)
+	if((MIS_KilledDragons == 0) && (SC_IsWearingInnosEye == TRUE))
 	{
 		return TRUE;
 	};
@@ -68,7 +68,7 @@ instance DIA_DragonTalk_Main_2(C_Info)
 
 func int DIA_DragonTalk_Main_2_Condition()
 {
-	if(MIS_KilledDragons == 1)
+	if((MIS_KilledDragons == 1) && (SC_IsWearingInnosEye == TRUE))
 	{
 		return TRUE;
 	};
@@ -99,7 +99,7 @@ instance DIA_DragonTalk_Main_3(C_Info)
 
 func int DIA_DragonTalk_Main_3_Condition()
 {
-	if(MIS_KilledDragons == 2)
+	if((MIS_KilledDragons == 2) && (SC_IsWearingInnosEye == TRUE))
 	{
 		return TRUE;
 	};
@@ -144,7 +144,7 @@ instance DIA_DragonTalk_Main_4(C_Info)
 
 func int DIA_DragonTalk_Main_4_Condition()
 {
-	if(MIS_KilledDragons == 3)
+	if((MIS_KilledDragons == 3) && (SC_IsWearingInnosEye == TRUE))
 	{
 		return TRUE;
 	};
@@ -156,7 +156,7 @@ func void DIA_DragonTalk_Main_4_Info()
 	AI_Output(self,other,"DIA_DragonTalk_Main_4_20_01");	//ќн находитс€ в своих поко€х в сплошной скале „ертогов »рдората и ожидает там свою судьбу.
 	AI_Output(self,other,"DIA_DragonTalk_Main_4_20_02");	//ѕока он не сможет установить в этом мире пор€док, которого он заслуживает, он будет ждать там в глубокой медитации и ...
 	AI_Output(other,self,"DIA_DragonTalk_Main_4_15_03");	//ƒавай опустим детали. ѕросто скажи мне, где наход€тс€ эти св€щенные чертоги »рдората.
-	AI_Output(self,other,"DIA_DragonTalk_Main_4_20_04");	//’а-ха-ха. “ы разочаровал мен€, жалкий человечишка. “ы вынес все опасности, и одолел большинство из нас, а теперь ты не можешь даже использовать полученные тобой знани€.
+	AI_Output(self,other,"DIA_DragonTalk_Main_4_20_04");	//’а-ха-ха. “ы разочаровал мен€, жалкий человечишка. “ы вынес все опасности и одолел большинство из нас, а теперь ты не можешь даже использовать полученные тобой знани€.
 	AI_Output(self,other,"DIA_DragonTalk_Main_4_20_05");	//≈сли слово »рдорат ничего не значит дл€ теб€, то тебе лучше отправитьс€ к своим магам и попросить их, чтобы тебе позволили заниматьс€ их мирскими делами.
 	AI_Output(self,other,"DIA_DragonTalk_Main_4_20_06");	//“ак как, очевидно, ты еще не готов взвалить на себ€ ношу их высшего знани€.
 	Log_CreateTopic(TOPIC_BuchHallenVonIrdorath,LOG_MISSION);

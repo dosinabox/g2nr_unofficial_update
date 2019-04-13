@@ -3,9 +3,9 @@ const int VALUE_ITAR_Governor = 1100;
 const int VALUE_ITAR_Judge = 0;
 const int VALUE_ITAR_Smith = 0;
 const int VALUE_ITAR_Barkeeper = 0;
-const int VALUE_ITAR_Vlk_L = 120;
+const int VALUE_ITAR_Vlk_L = 100;	//120
 const int VALUE_ITAR_Vlk_M = 120;
-const int VALUE_ITAR_Vlk_H = 120;
+const int VALUE_ITAR_Vlk_H = 150;	//120
 const int VALUE_ITAR_VlkBabe_L = 0;
 const int VALUE_ITAR_VlkBabe_M = 0;
 const int VALUE_ITAR_VlkBabe_H = 0;
@@ -20,6 +20,7 @@ const int VALUE_ITAR_BauBabe_M = 0;
 const int VALUE_ITAR_SLD_L = 500;
 const int VALUE_ITAR_SLD_M = 1000;
 const int VALUE_ITAR_DJG_Crawler = 1500;
+const int VALUE_ITAR_SLD_S = 2000;	//Цена новой брони наемника
 const int VALUE_ITAR_SLD_H = 2500;
 const int VALUE_ITAR_NOV_L = 280;
 const int VALUE_ITAR_KDF_L = 500;
@@ -41,7 +42,7 @@ const int VALUE_ITAR_Prisoner = 10;
 
 instance ITAR_Governor(C_Item)
 {
-	name = "Дублет губернатора";
+	name = "Изысканный дублет";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 40;
@@ -157,7 +158,7 @@ instance ITAR_Barkeeper(C_Item)
 
 instance ITAR_Vlk_L(C_Item)
 {
-	name = "Легкая одежда горожанина";
+	name = "Простой городской костюм";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -186,11 +187,11 @@ instance ITAR_Vlk_L(C_Item)
 
 instance ITAR_Vlk_M(C_Item)
 {
-	name = "Средняя одежда горожанина";
+	name = "Хороший городской костюм";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 10;
-	protection[PROT_BLUNT] = 10;
+	protection[PROT_EDGE] = 15;
+	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
@@ -215,12 +216,12 @@ instance ITAR_Vlk_M(C_Item)
 
 instance ITAR_Vlk_H(C_Item)
 {
-	name = "Тяжелая одежда горожанина";
+	name = "Добротный городской костюм";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 10;
-	protection[PROT_BLUNT] = 10;
-	protection[PROT_POINT] = 10;
+	protection[PROT_EDGE] = 15;
+	protection[PROT_BLUNT] = 15;
+	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Vlk_H;
@@ -244,7 +245,7 @@ instance ITAR_Vlk_H(C_Item)
 
 instance ITAR_VlkBabe_L(C_Item)
 {
-	name = "Легкая одежда горожанки";
+	name = "Простое городское платье";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 10;
@@ -273,11 +274,11 @@ instance ITAR_VlkBabe_L(C_Item)
 
 instance ITAR_VlkBabe_M(C_Item)
 {
-	name = "Средняя одежда горожанки";
+	name = "Хорошее городское платье";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 10;
-	protection[PROT_BLUNT] = 10;
+	protection[PROT_EDGE] = 15;
+	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
@@ -302,12 +303,12 @@ instance ITAR_VlkBabe_M(C_Item)
 
 instance ITAR_VlkBabe_H(C_Item)
 {
-	name = "Тяжелая одежда горожанки";
+	name = "Добротное городское платье";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 10;
-	protection[PROT_BLUNT] = 10;
-	protection[PROT_POINT] = 10;
+	protection[PROT_EDGE] = 15;
+	protection[PROT_BLUNT] = 15;
+	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_VlkBabe_H;
@@ -519,12 +520,12 @@ instance ITAR_PAL_H(C_Item)
 
 instance ITAR_Bau_L(C_Item)
 {
-	name = "Легкая одежда крестьянина";
+	name = "Рабочая одежда";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
-	protection[PROT_POINT] = 15;
+	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Bau_L;
@@ -548,7 +549,7 @@ instance ITAR_Bau_L(C_Item)
 
 instance ITAR_Bau_M(C_Item)
 {
-	name = "Средняя одежда крестьянина";
+	name = "Крестьянский костюм";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 15;
@@ -577,11 +578,11 @@ instance ITAR_Bau_M(C_Item)
 
 instance ITAR_BauBabe_L(C_Item)
 {
-	name = "Легкая одежда крестьянки";
+	name = "Простое крестьянское платье";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 10;
-	protection[PROT_BLUNT] = 10;
+	protection[PROT_EDGE] = 15;
+	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
@@ -606,12 +607,12 @@ instance ITAR_BauBabe_L(C_Item)
 
 instance ITAR_BauBabe_M(C_Item)
 {
-	name = "Средняя одежда крестьянки";
+	name = "Хорошее крестьянское платье";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
-	protection[PROT_EDGE] = 10;
-	protection[PROT_BLUNT] = 10;
-	protection[PROT_POINT] = 10;
+	protection[PROT_EDGE] = 15;
+	protection[PROT_BLUNT] = 15;
+	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 0;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_BauBabe_M;
@@ -825,6 +826,38 @@ func void UnEquip_ITAR_SLD_H()
 			self.protection[PROT_FIRE] -= BA_Bonus01;
 		};
 	};
+};
+
+// Спасибо Zorres за новую броню наемника!
+instance ITAR_SLD_S(C_Item)
+{
+	name = "Старые доспехи наемника";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 65;
+	protection[PROT_BLUNT] = 65;
+	protection[PROT_POINT] = 65;
+	protection[PROT_FIRE] = 5;
+	protection[PROT_MAGIC] = 5;
+	value = VALUE_ITAR_SLD_S;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Sld_S.3ds";
+	visual_change = "Armor_Sld_S.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_SLD_H;
+	on_unequip = UnEquip_ITAR_SLD_H;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
@@ -1360,7 +1393,7 @@ instance ITAR_Xardas(C_Item)
 
 instance ITAR_Lester(C_Item)
 {
-	name = "Роба Лестера";
+	name = "Тяжелая роба послушника";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 25;
@@ -1389,7 +1422,7 @@ instance ITAR_Lester(C_Item)
 
 instance ITAR_Diego(C_Item)
 {
-	name = "Доспехи Диего";
+	name = "Тяжелые доспехи призрака";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 30;
@@ -1418,7 +1451,7 @@ instance ITAR_Diego(C_Item)
 
 instance ITAR_CorAngar(C_Item)
 {
-	name = "Доспехи Ангара";
+	name = "Тяжелые доспехи храмовника";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 100;

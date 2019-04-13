@@ -29,7 +29,7 @@ func void Rtn_Start_337()
 
 func void Rtn_Akil_337()
 {
-	TA_RunToWP(6,0,18,0,"NW_FARM2_PATH_03");
-	TA_RunToWP(18,0,6,0,"NW_FARM2_PATH_03");
+	TA_Guide_Player(6,0,18,0,"NW_FARM2_PATH_03");
+	TA_Guide_Player(18,0,6,0,"NW_FARM2_PATH_03");
 };
 

@@ -106,9 +106,15 @@ instance DIA_Haupttorwache_PICKPOCKET(C_Info)
 
 func int DIA_Haupttorwache_PICKPOCKET_Condition()
 {
-	if(C_StealItems(20,Hlp_GetInstanceID(ItKe_OC_MainGate_MIS),1) && (Kapitel >= 5))
+//	if(C_StealItems(20,Hlp_GetInstanceID(ItKe_OC_MainGate_MIS),1) && Npc_KnowsInfo(other,DIA_Torlof_BEMYCAPTAIN))
+	if(Npc_HasItems(self,ItKe_OC_MainGate_MIS) && Npc_KnowsInfo(other,DIA_Torlof_BEMYCAPTAIN))
 	{
-		return TRUE;
+//		return TRUE;
+		return C_StealItem(20,Hlp_GetInstanceID(ItKe_OC_MainGate_MIS));
+	}
+	else
+	{
+		return FALSE;
 	};
 };
 
@@ -121,7 +127,8 @@ func void DIA_Haupttorwache_PICKPOCKET_Info()
 
 func void DIA_Haupttorwache_PICKPOCKET_DoIt()
 {
-	B_StealItems(20,Hlp_GetInstanceID(ITKE_OC_MAINGATE_MIS),1);
+//	B_StealItems(20,Hlp_GetInstanceID(ItKe_OC_MainGate_MIS),1);
+	B_StealItem(20,Hlp_GetInstanceID(ItKe_OC_MainGate_MIS));
 	Info_ClearChoices(DIA_Haupttorwache_PICKPOCKET);
 };
 

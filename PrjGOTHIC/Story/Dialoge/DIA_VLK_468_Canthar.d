@@ -340,7 +340,7 @@ func void DIA_Canthar_PAYPRICEINCITY_Info()
 	AI_Output(other,self,"DIA_Canthar_PAYPRICEINCITY_15_05");	//А моя роль в этом какая?
 	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_06");	//Я дам тебе письмо, которое ты должен подложить в ее карман.
 	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_07");	//Затем ты пойдешь к Андрэ и скажешь ему, что Сара продает оружие Онару.
-	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_08");	//Ее посадят в тюрьму, ты получишь награду, а я свой прилавок.
+	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_08");	//Ее посадят в тюрьму, ты получишь награду, а я - свой прилавок.
 	AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_09");	//У тебя есть два дня на выполнение этого.
 	if(Canthar_Gefallen == FALSE)
 	{
@@ -349,7 +349,7 @@ func void DIA_Canthar_PAYPRICEINCITY_Info()
 	};
 	Info_ClearChoices(DIA_Canthar_PAYPRICEINCITY);
 	Info_AddChoice(DIA_Canthar_PAYPRICEINCITY,"Нет, я не буду участвовать в этом.",DIA_Canthar_PAYPRICEINCITY_Nein);
-	Info_AddChoice(DIA_Canthar_PAYPRICEINCITY,"Хорошо, я сделаю это.",DIA_Canthar_PAYPRICEINCITY_Ok);
+	Info_AddChoice(DIA_Canthar_PAYPRICEINCITY,"Хорошо, похоже, у меня нет выбора.",DIA_Canthar_PAYPRICEINCITY_Ok);
 	Info_AddChoice(DIA_Canthar_PAYPRICEINCITY,"А что будет, если я откажусь?",DIA_Canthar_PAYPRICEINCITY_If);
 };
 

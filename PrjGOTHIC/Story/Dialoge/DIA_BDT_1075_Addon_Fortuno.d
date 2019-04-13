@@ -85,7 +85,7 @@ func void DIA_Addon_Fortuno_Hi_Info()
 		Fortuno_Einmal = TRUE;
 		Log_CreateTopic(Topic_Addon_Fortuno,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_Running);
-		B_LogEntry(Topic_Addon_Fortuno,"Фортуно сошел с ума. Ему нужен 'зеленый послушник'.");
+		B_LogEntry(Topic_Addon_Fortuno,"Фортуно сошел с ума. Ему нужен 'Зеленый послушник'.");
 	};
 	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_13_03");	//Зеленый... зеленый послушник... Я не могу найти...
 	Info_ClearChoices(DIA_Addon_Fortuno_Hi);
@@ -132,7 +132,7 @@ func void DIA_Addon_Fortuno_Hi_GREEN()
 	Info_ClearChoices(DIA_Addon_Fortuno_Hi);
 	Fortuno_Geheilt_01 = TRUE;
 	B_GivePlayerXP(XP_Addon_Fortuno_01);
-	B_LogEntry(Topic_Addon_Fortuno,"'Зеленый послушник' помог Фортуно придти в себя.");
+	B_LogEntry(Topic_Addon_Fortuno,"'Зеленый послушник' помог Фортуно прийти в себя.");
 };
 
 
@@ -159,7 +159,7 @@ func void DIA_Addon_Fortuno_wer_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_wer_15_00");	//Да, скажи мне, что с тобой случилось.
 	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_01");	//Когда-то я принадлежал к Братству Спящего. Тогда все было в порядке.
-	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_02");	//Да, все мы - осужденные преступники, но для нас, послушников, жизнь была беззаботной...
+	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_02");	//Да, мы все - осужденные преступники, но для нас, послушников, жизнь была беззаботной...
 	AI_Output(other,self,"DIA_Addon_Fortuno_wer_15_03");	//Эй, я тоже был заключенным в Долине Рудников. Расскажи что-нибудь новенькое.
 	AI_Output(self,other,"DIA_Addon_Fortuno_wer_13_04");	//Я... я ничего не помню. Тьма покрывает мою память...
 	AI_Output(other,self,"DIA_Addon_Fortuno_wer_15_05");	//Ну же, сосредоточься. Что случилось? Когда ты пришел в себя?

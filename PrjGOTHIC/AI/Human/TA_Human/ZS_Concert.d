@@ -42,10 +42,10 @@ func int ZS_Concert_Loop()
 		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(PIR_1396_Addon_InExtremo_Flex))
 		{
 			AI_UseItemToState(self,ItMi_IEDudelBlau,1);
-		}
-		else
-		{
 		};
+/*		else
+		{
+		}; */
 		self.aivar[AIV_TAPOSITION] = ISINPOS;
 	};
 	return LOOP_CONTINUE;
@@ -76,9 +76,9 @@ func void ZS_Concert_End()
 	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(PIR_1395_Addon_InExtremo_Lutter))
 	{
 		AI_UseItemToState(self,ItMi_IEDrumScheit,-1);
-	}
-	else
-	{
 	};
+/*	else
+	{
+	}; */
 };
 

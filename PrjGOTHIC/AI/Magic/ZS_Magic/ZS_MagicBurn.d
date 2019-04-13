@@ -52,7 +52,14 @@ func int ZS_MagicBurn_Loop()
 	if(Npc_GetStateTime(self) == 1)
 	{
 		Npc_SetStateTime(self,0);
-		B_MagicHurtNpc(other,self,SPL_MAGICBURN_DAMAGE_PER_SEC);
+		if((Npc_GetLastHitSpellID(self) == SPL_Firerain) || (Npc_GetLastHitSpellID(self) == SPL_ChargeFireball) || (Npc_GetLastHitSpellID(self) == SPL_InstantFireball) || (Npc_GetLastHitSpellID(self) == SPL_Firebolt))
+		{
+			B_FireHurtNpc(other,self,SPL_MAGICBURN_DAMAGE_PER_SEC);
+		}
+		else
+		{
+			B_MagicHurtNpc(other,self,SPL_MAGICBURN_DAMAGE_PER_SEC);
+		};
 	};
 	if(self.attribute[ATR_HITPOINTS] <= 0)
 	{

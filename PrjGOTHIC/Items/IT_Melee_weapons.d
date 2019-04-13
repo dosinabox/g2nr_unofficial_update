@@ -1963,8 +1963,8 @@ instance ItMw_2H_Special_03(C_Item)
 	cond_value[2] = Condition_Special_2H_3;
 	visual = "ItMw_090_2h_sword_smith_04.3DS";
 	description = name;
-	text[0] = NAME_Damage;
-	count[0] = damageTotal;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
 	count[3] = cond_value[2];
 	text[4] = NAME_ADDON_BONUS_2H;

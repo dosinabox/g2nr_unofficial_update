@@ -546,18 +546,22 @@ func int DIA_Bosper_Trade_Condition()
 
 func void DIA_Bosper_Trade_Info()
 {
-	var int McBolzenAmount;
-	var int McArrowAmount;
 	AI_Output(other,self,"DIA_Bosper_Trade_15_00");	//Покажи мне свои товары.
 	if(DIA_Bosper_Trade.trade == TRUE)
 	{
 		B_GiveTradeInv(self);
-		Npc_RemoveInvItems(self,ItRw_Bolt,Npc_HasItems(self,ItRw_Bolt));
-		McBolzenAmount = Kapitel * 50;
-		CreateInvItems(self,ItRw_Bolt,McBolzenAmount);
-		Npc_RemoveInvItems(self,ItRw_Arrow,Npc_HasItems(self,ItRw_Arrow));
-		McArrowAmount = Kapitel * 50;
-		CreateInvItems(self,ItRw_Arrow,McArrowAmount);
+		if(TradersHaveLimitedAmmo == TRUE)
+		{
+			if(Bosper_Ammo_Day <= Wld_GetDay())
+			{
+				B_RefreshAmmo(self,50);
+				Bosper_Ammo_Day = Wld_GetDay() + 1;
+			};
+		}
+		else
+		{
+			B_RefreshAmmo(self,50);
+		};
 	}
 	else
 	{
@@ -616,7 +620,7 @@ instance DIA_Bosper_BogenSuccess(C_Info)
 
 func int DIA_Bosper_BogenSuccess_Condition()
 {
-	if(Npc_HasItems(other,ItRw_Bow_L_03_MIS) >= 1)
+	if(Npc_HasItems(other,ItRw_Bow_L_03_MIS))
 	{
 		return TRUE;
 	};
@@ -795,7 +799,8 @@ func void DIA_Bosper_SellFur_Info()
 	{
 		if(Npc_HasItems(other,ItAt_Addon_KeilerFur))
 		{
-			B_Say(self,other,"$ABS_GOOD");
+//			B_Say(self,other,"$ABS_GOOD");
+			AI_Output(other,self,"DIA_Bosper_SellFur_11_15B");	//Шкура кабана? Неплохо для начала...
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_Addon_KeilerFur) * Value_Keilerfur);
 			B_GiveInvItems(other,self,ItAt_Addon_KeilerFur,Npc_HasItems(other,ItAt_Addon_KeilerFur));
 		};

@@ -56,7 +56,7 @@ func void DIA_Raoul_NoSentenza_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_05");	//Где же он? А, ладно, не важно, тебе повезло...
+		AI_Output(self,other,"DIA_Raoul_NoSentenza_01_05");	//Где же он? А, ладно, неважно, тебе повезло...
 	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");

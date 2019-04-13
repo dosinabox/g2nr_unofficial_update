@@ -13,7 +13,7 @@ func void ZS_Sit_Campfire()
 	};
 };
 
-func int ZS_Sit_Campfire_loop()
+func int ZS_Sit_Campfire_Loop()
 {
 	if(Npc_IsOnFP(self,"CAMPFIRE") && !C_BodyStateContains(self,BS_SIT))
 	{
@@ -29,7 +29,7 @@ func int ZS_Sit_Campfire_loop()
 	return LOOP_CONTINUE;
 };
 
-func void ZS_Sit_Campfire_end()
+func void ZS_Sit_Campfire_End()
 {
 	AI_PlayAniBS(self,"T_SIT_2_STAND",BS_STAND);
 };

@@ -44,7 +44,7 @@ func void DIA_Dexter_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Dexter_Hallo_09_00");	//ѕосмотрите, кто пришел. ¬еликий освободитель. „то ж, герой, что ты делаешь здесь?
 	AI_Output(other,self,"DIA_Dexter_Hallo_15_01");	//я хочу получить ответы на несколько вопросов.
-	if(Ranger_SCKnowsDexter == TRUE)
+	if(Ranger_SCKnowsDexter == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Dexter_Hallo_09_00");	//Ќе ожидал €, что ты придешь сюда добровольно.
 		AI_Output(other,self,"DIA_Addon_Dexter_Hallo_15_01");	//„то ты имеешь в виду?

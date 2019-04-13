@@ -774,9 +774,6 @@ func void Startup_Oldcamp()
 	Wld_InsertNpc(PAL_266_Ritter,"OC1");
 	Wld_InsertNpc(PC_Mage_OW,"OC1");
 	Wld_InsertNpc(PAL_260_Tandor,"OC1");
-/*	Wld_InsertNpc(Sheep,"FP_SLEEP_OC_SHEEP_01");
-	Wld_InsertNpc(Sheep,"FP_SLEEP_OC_SHEEP_02");
-	Wld_InsertNpc(Sheep,"FP_SLEEP_OC_SHEEP_03"); */
 	Wld_InsertNpc(PAL_269_Ritter,"OC1");
 	Wld_InsertNpc(PAL_270_Ritter,"OC1");
 	Wld_InsertNpc(PAL_271_Ritter,"OC1");
@@ -1785,6 +1782,7 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(MIL_316_Wambo,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_321_Rangar,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_326_Miliz,"NW_CITY_ENTRANCE_01");
+	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");	//мальчик на побегушках
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_05");
@@ -1793,7 +1791,8 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_09");
 	Wld_InsertItem(ItWr_BowStonePlate2_Addon,"FP_ROAM_INSEL_10");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_11");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_13");
+//	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_13");
+	Wld_InsertNpc(Waran,"FP_SHELLSPAWN_CITY_16");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_01");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"FP_SHELLSPAWN_CITY_02");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_02");
@@ -3032,6 +3031,8 @@ func void STARTUP_NewWorld()
 	PlayVideo("INTRO.BIK");
 	PlayVideo("Addon_Title.BIK");
 	Hero_HackChance = 10;
+	NpcWantToFlee = FALSE;
+	TradersHaveLimitedAmmo = FALSE;
 };
 
 func void INIT_NewWorld()

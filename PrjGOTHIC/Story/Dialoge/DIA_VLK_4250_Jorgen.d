@@ -121,8 +121,9 @@ func void DIA_Jorgen_Novice_Info()
 	AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//ћимо теб€ не проходил послушник?
 	AI_Output(self,other,"DIA_Jorgen_Novice_07_01");	//ƒа, конечно, он побежал туда.
 	AI_PointAt(self,"NW_TROLLAREA_NOVCHASE_01");
-	AI_Output(self,other,"DIA_Jorgen_Novice_07_02");	//ќн прыгнул в воду с моста и поплыл так, как будто за ним гналась акула.
+	AI_Wait(self,1);
 	AI_StopPointAt(self);
+	AI_Output(self,other,"DIA_Jorgen_Novice_07_02");	//ќн прыгнул в воду с моста и поплыл так, как будто за ним гналась акула.
 };
 
 
@@ -177,7 +178,7 @@ func void DIA_Jorgen_Home_Info()
 	AI_Output(other,self,"DIA_Jorgen_Home_15_00");	//ќткуда ты?
 	AI_Output(self,other,"DIA_Jorgen_Home_07_01");	//я был капитаном большого китобойного судна, парень. ћой дом - море.
 	AI_Output(self,other,"DIA_Jorgen_Home_07_02");	//ћой корабль, 'ћагдалена', был потоплен пиратами несколько мес€цев назад, и вот теперь € на мели здесь.
-	AI_Output(self,other,"DIA_Jorgen_Home_07_03");	//я очень хотел поскорее оп€ть выйти в море, но с тех пор как € прибыл сюда, ни одной шхуны не зашло в этот прокл€тый порт.
+	AI_Output(self,other,"DIA_Jorgen_Home_07_03");	//я очень хотел поскорее оп€ть выйти в море, но с тех пор, как € прибыл сюда, ни одной шхуны не зашло в этот прокл€тый порт.
 	AI_Output(self,other,"DIA_Jorgen_Home_07_04");	//≈динственный корабль, пришвартовавшийс€ в ’оринисе - это чертова военна€ галера корол€, а они никого не берут.
 	AI_Output(self,other,"DIA_Jorgen_Home_07_05");	//» что мне теперь делать? ¬ городе дл€ мен€ нет работы. я пробовал уже все.
 };

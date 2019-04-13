@@ -92,6 +92,7 @@ func void DIA_Cord_Hallo_Info()
 
 
 var int Cord_SchonmalGefragt;
+var int DIA_Cord_WannaJoin_Once;
 
 instance DIA_Cord_WannaJoin(C_Info)
 {
@@ -163,9 +164,13 @@ func void DIA_Cord_WannaJoin_Info()
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_12");	//ƒругими словами: ты зеленый новичок!
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_13");	//ћы, наемники, должны быть уверены, что можем всецело положитьс€ на наших товарищей. ќт этого зависит наша жизнь.
 		B_Cord_BeBetter();
-		Log_CreateTopic(TOPIC_CordProve,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_CordProve,LOG_Running);
-		B_LogEntry(TOPIC_CordProve," орд проголосует за мен€, когда € научусь сражатьс€ лучше.");
+		if(DIA_Cord_WannaJoin_Once == FALSE)
+		{
+			Log_CreateTopic(TOPIC_CordProve,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_CordProve,LOG_Running);
+			B_LogEntry(TOPIC_CordProve," орд проголосует за мен€, когда € научусь сражатьс€ лучше.");
+			DIA_Cord_WannaJoin_Once = TRUE;
+		};
 	};
 };
 
@@ -478,7 +483,7 @@ instance DIA_Addon_Cord_TalkedToDexter(C_Info)
 
 func int DIA_Addon_Cord_TalkedToDexter_Condition()
 {
-	if(((BDT_1060_Dexter.aivar[AIV_TalkedToPlayer] == TRUE) || Npc_IsDead(BDT_1060_Dexter)) && (MIS_Addon_Cord_Look4Patrick == LOG_Running))
+	if(((Dexter.aivar[AIV_TalkedToPlayer] == TRUE) || Npc_IsDead(Dexter)) && (MIS_Addon_Cord_Look4Patrick == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -576,7 +581,7 @@ func void DIA_Cord_ExplainSkills_Info()
 {
 	AI_Output(other,self,"DIA_Cord_ExplainSkills_15_00");	//„то € должен изучить сначала, обращение с одноручным или двуручным оружием?
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_01");	//Ёти два вида оружи€ весьма похожи друг на друга.
-	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_02");	// огда ты достигаешь следующего уровн€ в одном из них, ты автоматически повышаешь и уровень владени€ другим.
+	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_02");	// огда ты достигнешь следующего уровн€ в одном из них, ты автоматически повышаешь и уровень владени€ другим.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_03");	//≈сли, например, ты хорошо владеешь одноручным мечом, но все еще новичок в том, что касаетс€ двуручного...
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_04");	//... навык владени€ двуручным оружием также повыситс€, когда ты будешь тренировать одноручное.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_05");	//≈сли ты тренируешьс€ только с одним типом оружи€, ты найдешь процесс обучени€ более изматывающим.
@@ -685,8 +690,10 @@ func void DIA_Cord_Teach_Info()
 		if(Cord_Approved == TRUE)
 		{
 			B_Cord_Teach();
-			Cord_Merke_1h = other.HitChance[NPC_TALENT_1H];
-			Cord_Merke_2h = other.HitChance[NPC_TALENT_2H];
+//			Cord_Merke_1h = other.HitChance[NPC_TALENT_1H];
+//			Cord_Merke_2h = other.HitChance[NPC_TALENT_2H];
+			Cord_Merke_1h = other.aivar[REAL_TALENT_1H];
+			Cord_Merke_2h = other.aivar[REAL_TALENT_2H];
 		};
 	}
 	else
@@ -697,7 +704,8 @@ func void DIA_Cord_Teach_Info()
 
 func void DIA_Cord_Teach_Back()
 {
-	if((Cord_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Cord_Merke_2h < other.HitChance[NPC_TALENT_2H]))
+//	if((Cord_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Cord_Merke_2h < other.HitChance[NPC_TALENT_2H]))
+	if((Cord_Merke_1h < other.aivar[REAL_TALENT_1H]) || (Cord_Merke_2h < other.aivar[REAL_TALENT_2H]))
 	{
 		AI_Output(self,other,"DIA_Cord_Teach_BACK_14_00");	//“ы стал значительно лучше - так держать!
 	};

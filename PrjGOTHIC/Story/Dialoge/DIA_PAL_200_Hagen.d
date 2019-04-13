@@ -255,7 +255,7 @@ instance DIA_Lord_Hagen_Hallo(C_Info)
 
 func int DIA_Lord_Hagen_Hallo_Condition()
 {
-	if((hero.guild != GIL_NONE) && (hero.guild != GIL_SHEEP) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (Kapitel < 3))
+	if((hero.guild != GIL_NONE) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -635,7 +635,8 @@ func void DIA_Hagen_Teach_Info()
 
 func void DIA_Hagen_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_2H] >= 100)
+//	if(other.HitChance[NPC_TALENT_2H] >= 100)
+	if(other.aivar[REAL_TALENT_2H] >= 100)
 	{
 		AI_Output(self,other,"DIA_Hagen_Teach_04_00");	//Ты стал великолепным мечником. Мне больше нечему учить тебя.
 		AI_Output(self,other,"DIA_Hagen_Teach_04_01");	//Да ведет твою руку в будущих свершениях мудрость мастера-мечника.
@@ -1051,6 +1052,7 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_00");	//Корнелиус солгал.
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_01");	//Откуда тебе это известно?
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_02");	//Вот, у меня его дневник. Все в нем.
+	B_GiveInvItems(other,self,ItWr_CorneliusTagebuch_Mis,1);
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_03");	//(в ярости) Ах, гнусная мразь!
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_04");	//Перед лицом новых доказательств мне не остается ничего другого.
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_05");	//Властью, данной мне королем и церковью, я провозглашаю...

@@ -39,6 +39,7 @@ instance Lurker(Mst_Default_Lurker)
 {
 	B_SetVisuals_Lurker();
 	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance Kervo_Lurker1(Mst_Default_Lurker)
@@ -47,6 +48,7 @@ instance Kervo_Lurker1(Mst_Default_Lurker)
 	Npc_SetToFistMode(self);
 	aivar[AIV_MaxDistToWp] = 500;
 	aivar[AIV_OriginalFightTactic] = FAI_LURKER;
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance Kervo_Lurker2(Mst_Default_Lurker)
@@ -55,6 +57,7 @@ instance Kervo_Lurker2(Mst_Default_Lurker)
 	Npc_SetToFistMode(self);
 	aivar[AIV_MaxDistToWp] = 500;
 	aivar[AIV_OriginalFightTactic] = FAI_LURKER;
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance Kervo_Lurker3(Mst_Default_Lurker)
@@ -63,6 +66,7 @@ instance Kervo_Lurker3(Mst_Default_Lurker)
 	Npc_SetToFistMode(self);
 	aivar[AIV_MaxDistToWp] = 500;
 	aivar[AIV_OriginalFightTactic] = FAI_LURKER;
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance Kervo_Lurker4(Mst_Default_Lurker)
@@ -71,6 +75,7 @@ instance Kervo_Lurker4(Mst_Default_Lurker)
 	Npc_SetToFistMode(self);
 	aivar[AIV_MaxDistToWp] = 500;
 	aivar[AIV_OriginalFightTactic] = FAI_LURKER;
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance Kervo_Lurker5(Mst_Default_Lurker)
@@ -79,6 +84,7 @@ instance Kervo_Lurker5(Mst_Default_Lurker)
 	Npc_SetToFistMode(self);
 	aivar[AIV_MaxDistToWp] = 500;
 	aivar[AIV_OriginalFightTactic] = FAI_LURKER;
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance Kervo_Lurker6(Mst_Default_Lurker)
@@ -87,24 +93,28 @@ instance Kervo_Lurker6(Mst_Default_Lurker)
 	Npc_SetToFistMode(self);
 	aivar[AIV_MaxDistToWp] = 500;
 	aivar[AIV_OriginalFightTactic] = FAI_LURKER;
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance BeachLurker1(Mst_Default_Lurker)
 {
 	B_SetVisuals_Lurker();
 	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance BeachLurker2(Mst_Default_Lurker)
 {
 	B_SetVisuals_Lurker();
 	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance BeachLurker3(Mst_Default_Lurker)
 {
 	B_SetVisuals_Lurker();
 	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 
 instance LURKERTRANSFORM(Mst_Default_Lurker)
@@ -112,5 +122,6 @@ instance LURKERTRANSFORM(Mst_Default_Lurker)
 	Npc_PercEnable(self,PERC_ASSESSSURPRISE,b_stopmagictransform);
 	B_SetVisuals_Lurker();
 	Npc_SetToFistMode(self);
+	CreateInvItems(self,ItFoMuttonRaw,1);
 };
 

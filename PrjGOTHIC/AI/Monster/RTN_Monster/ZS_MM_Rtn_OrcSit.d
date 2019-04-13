@@ -9,11 +9,12 @@ func void ZS_MM_Rtn_OrcSit()
 		AI_GotoWP(self,self.wp);
 	};
 	self.aivar[AIV_TAPOSITION] = NOTINPOS;
+	self.aivar[AIV_StateTime] = Hlp_Random(100) % 8 + 1;
 };
 
-func int ZS_MM_Rtn_OrcSit_loop()
+func int ZS_MM_Rtn_OrcSit_Loop()
 {
-	if(!Wld_IsTime(self.aivar[AIV_MM_OrcSitStart],0,self.aivar[AIV_MM_OrcSitEnd],0) && (self.aivar[AIV_MM_OrcSitStart] != OnlyRoutine))
+	if(!Wld_IsTime(self.aivar[AIV_MM_OrcSitStart],0,self.aivar[AIV_MM_OrcSitEnd],self.aivar[AIV_StateTime]) && (self.aivar[AIV_MM_OrcSitStart] != OnlyRoutine))
 	{
 		AI_StartState(self,ZS_MM_AllScheduler,1,"");
 		return LOOP_END;
@@ -29,14 +30,14 @@ func int ZS_MM_Rtn_OrcSit_loop()
 			AI_PlayAniBS(self,"T_STAND_2_GUARDSLEEP",BS_SIT);
 			self.aivar[AIV_TAPOSITION] = ISINPOS;
 		};
-	}
-	else
-	{
 	};
+/*	else
+	{
+	}; */
 	return LOOP_CONTINUE;
 };
 
-func void ZS_MM_Rtn_OrcSit_end()
+func void ZS_MM_Rtn_OrcSit_End()
 {
 	AI_PlayAniBS(self,"T_GUARDSLEEP_2_STAND",BS_STAND);
 };

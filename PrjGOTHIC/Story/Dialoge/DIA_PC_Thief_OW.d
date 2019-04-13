@@ -239,8 +239,10 @@ func void DIA_DiegoOw_Teach_Info()
 {
 	AI_Output(other,self,"DIA_DiegoOw_Teach_15_00");	//Ты можешь научить меня чему-нибудь?
 	AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_01");	//Конечно. Что ты хочешь знать?
-	Diego_MerkeDEX = other.attribute[ATR_DEXTERITY];
-	Diego_MerkeSTR = other.attribute[ATR_STRENGTH];
+//	Diego_MerkeDEX = other.attribute[ATR_DEXTERITY];
+//	Diego_MerkeSTR = other.attribute[ATR_STRENGTH];
+	Diego_MerkeDEX = other.aivar[REAL_DEXTERITY];
+	Diego_MerkeSTR = other.aivar[REAL_STRENGTH];
 	Info_ClearChoices(DIA_DiegoOw_Teach);
 	Info_AddChoice(DIA_DiegoOw_Teach,Dialog_Back,DIA_DiegoOw_TEACH_BACK);
 	Info_AddChoice(DIA_DiegoOw_Teach,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_DiegoOw_TEACHDEX_1);
@@ -251,11 +253,13 @@ func void DIA_DiegoOw_Teach_Info()
 
 func void DIA_DiegoOw_TEACH_BACK()
 {
-	if(other.attribute[ATR_DEXTERITY] > Diego_MerkeDEX)
+//	if(other.attribute[ATR_DEXTERITY] > Diego_MerkeDEX)
+	if(other.aivar[REAL_DEXTERITY] > Diego_MerkeDEX)
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_02");	//Ты уже стал более ловким.
 	};
-	if(other.attribute[ATR_STRENGTH] > Diego_MerkeSTR)
+//	if(other.attribute[ATR_STRENGTH] > Diego_MerkeSTR)
+	if(other.aivar[REAL_STRENGTH] > Diego_MerkeSTR)
 	{
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Teach_11_03");	//(оценивающе) Очень хорошо. Твоя сила увеличилась.
 	};
@@ -565,7 +569,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 	}
 	else if(C_DiegoTooFar(1000) == LOC_LAKE)
 	{
-		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_12");	//Эта дорога никуда нас не приведет.
+		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_12");	//Эта дорога нас никуда не приведет.
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_13");	//Чтобы попасть к проходу, мы должны идти в другом направлении!
 	}
 	else if(C_DiegoTooFar(1000) == LOC_XARDAS)

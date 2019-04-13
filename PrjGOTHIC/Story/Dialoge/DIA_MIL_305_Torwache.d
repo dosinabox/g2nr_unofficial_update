@@ -292,9 +292,9 @@ func int DIA_Mil_305_Torwache_PassAsMage_Condition()
 func void DIA_Mil_305_Torwache_PassAsMage_Info()
 {
 	AI_Output(other,self,"DIA_Mil_305_Torwache_PassAsMage_15_00");	//Ты смеешь стоять на пути представителя Инноса?
-	AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMage_03_01");	//Ээээ... нет! Конечно, нет! Для избранных Инноса вход открыт!
+	AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMage_03_01");	//Ээээ... нет! Конечно, нет! Для Избранных Инноса вход открыт!
 	AI_Output(other,self,"DIA_Mil_305_Torwache_PassAsMage_15_02");	//Молись, чтобы Иннос простил тебе это кощунство!
-	AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMage_03_03");	//Да, о, избранный!
+	AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsMage_03_03");	//Да, о, Избранный!
 	self.aivar[AIV_PASSGATE] = TRUE;
 	Mil_305_schonmalreingelassen = TRUE;
 	B_CheckLog();
@@ -362,7 +362,7 @@ func void DIA_Mil_305_Torwache_PERM_Info()
 	}
 	else if(other.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Mil_305_Torwache_PERM_03_02");	//Мы просто выполняем свою работу. Спасибо, что обратил на меня свое внимание, о, избранный!
+		AI_Output(self,other,"DIA_Mil_305_Torwache_PERM_03_02");	//Мы просто выполняем свою работу. Спасибо, что обратил на меня свое внимание, о, Избранный!
 	}
 	else if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{

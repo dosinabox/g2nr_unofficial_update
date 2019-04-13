@@ -17,7 +17,7 @@ func int C_WantToAttackSheepKiller(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if((other.guild < GIL_SEPERATOR_HUM) && (other.aivar[AIV_ATTACKREASON] != AR_NONE))
+	if((oth.guild < GIL_SEPERATOR_HUM) && (oth.aivar[AIV_ATTACKREASON] != AR_NONE))
 	{
 		return FALSE;
 	};
