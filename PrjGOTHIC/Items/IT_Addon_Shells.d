@@ -1,6 +1,6 @@
 
 const int Value_Shell_01 = 30;
-const int Value_Shell_02 = 60;
+const int Value_Shell_02 = 40;
 var int Shell_Opener;
 
 func void B_OpenShell()

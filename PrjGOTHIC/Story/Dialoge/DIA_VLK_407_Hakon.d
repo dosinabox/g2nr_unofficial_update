@@ -1,4 +1,6 @@
 
+var int HakonTalkedToPlayerChapter;
+
 instance DIA_Hakon_EXIT(C_Info)
 {
 	npc = VLK_407_Hakon;
@@ -71,6 +73,7 @@ func void DIA_Hakon_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Hakon_Add_12_00");	//Я Хакон, торговец оружием.
 	AI_Output(self,other,"DIA_Hakon_Add_12_01");	//В наши дни каждый должен носить оружие. Особенно, когда выходишь за городские стены.
+	HakonTalkedToPlayerChapter = Kapitel;
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Хакон торгует оружием на рыночной площади.");
 };
@@ -360,12 +363,33 @@ func void DIA_Hakon_Miliz_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Miliz_15_00");	//Ты не знаешь, кто в ополчении занимался их поиском?
 	AI_Output(self,other,"DIA_Hakon_Miliz_12_01");	//Парень по имени Пабло. Он и еще несколько парней ходили на поиски этих бандитов. Но они не нашли их.
-	if(Pablo.aivar[AIV_TalkedToPlayer] == FALSE)
-	{
-		AI_Output(other,self,"DIA_Hakon_Miliz_15_02");	//Ты знаешь, где мне найти Пабло?
-		AI_Output(self,other,"DIA_Hakon_Miliz_12_03");	//Он патрулирует город. Ты найдешь его либо на рыночной площади, либо в нижней части города.
-	};
 	B_LogEntry(TOPIC_HakonBanditen,"Пабло, городской стражник, занимался бесплодными поисками бандитов.");
+};
+
+
+instance DIA_Hakon_Pablo(C_Info)
+{
+	npc = VLK_407_Hakon;
+	nr = 4;
+	condition = DIA_Hakon_Pablo_Condition;
+	information = DIA_Hakon_Pablo_Info;
+	permanent = FALSE;
+	description = "Ты знаешь, где мне найти Пабло?";
+};
+
+
+func int DIA_Hakon_Pablo_Condition()
+{
+	if((MIS_HakonBandits == LOG_Running) && Npc_KnowsInfo(other,DIA_Hakon_Miliz))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Hakon_Pablo_Info()
+{
+	AI_Output(other,self,"DIA_Hakon_Miliz_15_02");	//Ты знаешь, где мне найти Пабло?
+	AI_Output(self,other,"DIA_Hakon_Miliz_12_03");	//Он патрулирует город. Ты найдешь его либо на рыночной площади, либо в нижней части города.
 };
 
 
@@ -512,7 +536,7 @@ instance DIA_Hakon_Kapitel2(C_Info)
 
 func int DIA_Hakon_Kapitel2_Condition()
 {
-	if((Kapitel >= 2) && (Canthar_Sperre == FALSE) && (self.aivar[AIV_TalkedToPlayer] == TRUE))
+	if((Kapitel > HakonTalkedToPlayerChapter) && (Canthar_Sperre == FALSE))
 	{
 		return TRUE;
 	};

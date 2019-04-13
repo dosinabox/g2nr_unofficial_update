@@ -115,7 +115,7 @@ instance DIA_Randolph_Baltram(C_Info)
 
 func int DIA_Randolph_Baltram_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Randolph_HALLO) && (MIS_Baltram_ScoutAkil == LOG_Running) && Npc_IsDead(Akil) && Npc_IsDead(Kati) && (Lieferung_Geholt == FALSE) && (Kapitel < 4))
+	if(Npc_KnowsInfo(other,DIA_Randolph_HALLO) && (MIS_Baltram_ScoutAkil == LOG_Running) && Npc_IsDead(Akil) && Npc_IsDead(Kati) && (Lieferung_Geholt == FALSE))
 	{
 		return TRUE;
 	};
@@ -124,12 +124,19 @@ func int DIA_Randolph_Baltram_Condition()
 func void DIA_Randolph_Baltram_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_Baltram_15_00");	//Меня прислал Бальтрам. Я должен забрать пакет для него.
-	AI_Output(self,other,"DIA_Randolph_Baltram_06_01");	//Хорошо. Я уже все приготовил. Вот твой пакет.
 	CreateInvItems(self,ItMi_BaltramPaket,1);
-	B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
+	if((Kapitel >= 4) && (hero.guild == GIL_KDF) && (NpcObsessedByDMT_Randolph == FALSE))
+	{
+		B_NpcObsessedByDMT(self);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Randolph_Baltram_06_01");	//Хорошо. Я уже все приготовил. Вот твой пакет.
+		B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
+		B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
+		B_LogEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
+	};
 	Lieferung_Geholt = TRUE;
-	B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу доставить ее Бальтраму...");
-	B_LogEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
 };
 
 
@@ -301,7 +308,7 @@ func void DIA_Randolph_ICHGEBEDIRGELD_Info()
 	{
 		AI_Output(self,other,"DIA_Randolph_ICHGEBEDIRGELD_06_01");	//(восторженно) Правда? Огромное спасибо. Я скоро верну их тебе.
 		AI_Output(self,other,"DIA_Randolph_ICHGEBEDIRGELD_06_02");	//Если я смогу победить, я даже верну тебе их с процентами. Еще увидимся.
-		B_LogEntry(TOPIC_Wettsaufen,"Пари заключено. Я должен наблюдать за ним.");
+		B_LogEntry(TOPIC_Wettsaufen,"Пари заключено. Состязание пройдет в таверне 'Мертвая гарпия'.");
 		B_GivePlayerXP(XP_Randolph_WettkampfStart);
 		DIA_Randolph_ICHGEBEDIRGELD_noPerm = TRUE;
 		B_NpcClearObsessionByDMT(self);
@@ -385,7 +392,6 @@ func int DIA_Randolph_PERM_Condition()
 };
 
 
-var int DIA_Randolph_PERM_GotMoney;
 var int DIA_Randolph_PERM_OneTime;
 
 func void DIA_Randolph_PERM_Info()
@@ -395,70 +401,59 @@ func void DIA_Randolph_PERM_Info()
 	{
 		B_NpcObsessedByDMT(self);
 	}
-	else
+	else if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
-		if(((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL)) && (MIS_HealRandolph != LOG_SUCCESS))
+		if(MIS_HealRandolph == LOG_SUCCESS)
 		{
-			if((DIA_Sagitta_HEALRANDOLPH_GotOne == FALSE) && (DIA_Sagitta_HEALRANDOLPH_KnowsPrice == TRUE) && (DIA_Randolph_PERM_GotMoney == FALSE))
-			{
-				AI_Output(other,self,"DIA_Randolph_PERM_15_01");	//Ты послал меня, не дав денег, и не предупредил, что это лекарство такое дорогое?!
-				AI_Output(other,self,"DIA_Randolph_PERM_15_02");	//Сагитта хочет 300 золотых за него.
-				AI_Output(self,other,"DIA_Randolph_PERM_06_03");	//Я могу дать тебе только 150 золотых. Пожалуйста. Ты должен помочь мне. Пожалуйста.
-				CreateInvItems(self,ItMi_Gold,150);
-				B_GiveInvItems(self,other,ItMi_Gold,150);
-				DIA_Randolph_PERM_GotMoney = TRUE;
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_Randolph_PERM_06_04");	//Мне плохо. Каждый раз, когда я перестаю пить, это похмелье убивает меня. Мне очень нужна помощь.
-				AI_Output(self,other,"DIA_Randolph_PERM_06_05");	//Но есть лекарство, которое может помочь.
-				AI_Output(self,other,"DIA_Randolph_PERM_06_06");	//Сагитта, ведьма-целительница, уже готовила его для меня. Но я не думаю, что теперь смогу добраться до нее сам. Там повсюду орки.
-			};
-			if(DIA_Randolph_PERM_OneTime == FALSE)
-			{
-				Log_CreateTopic(TOPIC_HealRandolph,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_HealRandolph,LOG_Running);
-				B_LogEntry(TOPIC_HealRandolph,"Рэндольф, похоже, решил бросить пить и послал меня к Сагитте за лекарством от похмельного синдрома.");
-				DIA_Randolph_PERM_OneTime = TRUE;
-			};
-			MIS_HealRandolph = LOG_Running;
+			AI_Output(self,other,"DIA_Randolph_PERM_06_07");	//Я все еще чувствую слабость в ногах, но мне уже стало лучше.
+		}
+		else if (MIS_HealRandolph == LOG_RUNNING)
+		{
+			AI_Output(self,other,"DIA_Randolph_PERM_06_04");	//Мне плохо. Каждый раз, когда я перестаю пить, это похмелье убивает меня. Мне очень нужна помощь.
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Randolph_PERM_06_07");	//Я все еще чувствую слабость в ногах, но мне уже стало лучше.
+			AI_Output(self,other,"DIA_Randolph_PERM_06_04");	//Мне плохо. Каждый раз, когда я перестаю пить, это похмелье убивает меня. Мне очень нужна помощь.
+			AI_Output(self,other,"DIA_Randolph_PERM_06_05");	//Но есть лекарство, которое может помочь.
+			AI_Output(self,other,"DIA_Randolph_PERM_06_06");	//Сагитта, ведьма-целительница, уже готовила его для меня. Но я не думаю, что теперь смогу добраться до нее сам. Там повсюду орки.
+			MIS_HealRandolph = LOG_Running;
+			Log_CreateTopic(TOPIC_HealRandolph,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_HealRandolph,LOG_Running);
+			B_LogEntry(TOPIC_HealRandolph,"Рэндольф, похоже, решил бросить пить и послал меня к Сагитте за лекарством от похмельного синдрома.");
 		};
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только не в этой жизни. Ты можешь мне поверить, парень.
 	};
 };
 
 
-instance DIA_Randolph_Heilung(C_Info)
+instance DIA_Randolph_PAYME(C_Info)
 {
 	npc = BAU_942_Randolph;
-	nr = 55;
-	condition = DIA_Randolph_Heilung_Condition;
-	information = DIA_Randolph_Heilung_Info;
-	permanent = TRUE;
-	description = "Спиртное ударило тебе в голову, ха?";
+	nr = 56;
+	condition = DIA_Randolph_PAYME_Condition;
+	information = DIA_Randolph_PAYME_Info;
+	description = "Ты послал меня, не дав денег...";
 };
 
 
-func int DIA_Randolph_Heilung_Condition()
+func int DIA_Randolph_PAYME_Condition()
 {
-	if((NpcObsessedByDMT_Randolph == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF))
+	if((MIS_HealRandolph == LOG_Running) && (DIA_Sagitta_HEALRANDOLPH_KnowsPrice == TRUE))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Randolph_Heilung_Info()
+func void DIA_Randolph_PAYME_Info()
 {
-	AI_Output(other,self,"DIA_Randolph_Heilung_15_00");	//Спиртное ударило тебе в голову, ха?
-	AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только не в этой жизни. Ты можешь мне поверить, парень.
-	B_NpcClearObsessionByDMT(self);
-	if(Rukhar_Won_Wettkampf == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"Start");
-	};
+	AI_Output(other,self,"DIA_Randolph_PERM_15_01");	//Ты послал меня, не дав денег, и не предупредил, что это лекарство такое дорогое?!
+	AI_Output(other,self,"DIA_Randolph_PERM_15_02");	//Сагитта хочет 300 золотых за него.
+	AI_Output(self,other,"DIA_Randolph_PERM_06_03");	//Я могу дать тебе только 150 золотых. Пожалуйста. Ты должен помочь мне. Пожалуйста.
+	CreateInvItems(self,ItMi_Gold,150);
+	B_GiveInvItems(self,other,ItMi_Gold,150);
 };
 
 
@@ -486,20 +481,56 @@ func void DIA_Randolph_SAGITTAHEAL_Info()
 	B_GiveInvItems(other,self,ItPo_HealRandolph_MIS,1);
 	B_UseItem(self,ItPo_HealRandolph_MIS);
 	AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_01");	//Ох! Спасибо, друг. Теперь я смогу хотя бы поспать.
-	AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_02");	//Чем я могу отплатить тебе за это?
-	if(DIA_Randolph_PERM_GotMoney == FALSE)
+	MIS_HealRandolph = LOG_SUCCESS;
+	if(!Npc_KnowsInfo(other,DIA_Randolph_PAYME))
 	{
 		AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_03");	//Я думаю, эти несколько монет могут только помочь мне спасти лицо. Но боюсь, это все, что у меня есть.
 		CreateInvItems(self,ItMi_Gold,150);
 		B_GiveInvItems(self,other,ItMi_Gold,150);
+		B_GivePlayerXP(XP_HealRandolph);
 	}
 	else
 	{
+		AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_02");	//Чем я могу отплатить тебе за это?
 		AI_Output(other,self,"DIA_Randolph_SAGITTAHEAL_15_04");	//Я заплатил за тебя кучу денег. Твои жалкие несколько монет никак не могут компенсировать мои затраты.
-		AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_05");	//Ну, в таком случае мне повезло, что я встретил такого великодушного паладина, тебе так не кажется?
+		if(hero.guild == GIL_PAL)
+		{
+			AI_Output(self,other,"DIA_Randolph_SAGITTAHEAL_06_05");	//Ну, в таком случае мне повезло, что я встретил такого великодушного паладина, тебе так не кажется?
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Thorben_Schuldenbuch_06_05");	//У меня нет денег. Но ты можешь рассчитывать на мою сердечную благодарность.
+		};
+		B_GivePlayerXP(XP_HealRandolph / 2);
 	};
-	MIS_HealRandolph = LOG_SUCCESS;
-	B_GivePlayerXP(XP_HealRandolph);
+	B_NpcClearObsessionByDMT(self);
+	Npc_ExchangeRoutine(self,"Start");
+};
+
+
+instance DIA_Randolph_Heilung(C_Info)
+{
+	npc = BAU_942_Randolph;
+	nr = 55;
+	condition = DIA_Randolph_Heilung_Condition;
+	information = DIA_Randolph_Heilung_Info;
+	permanent = TRUE;
+	description = "Спиртное ударило тебе в голову, ха?";
+};
+
+
+func int DIA_Randolph_Heilung_Condition()
+{
+	if((NpcObsessedByDMT_Randolph == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Randolph_Heilung_Info()
+{
+	AI_Output(other,self,"DIA_Randolph_Heilung_15_00");	//Спиртное ударило тебе в голову, ха?
+	AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только не в этой жизни. Ты можешь мне поверить, парень.
 	B_NpcClearObsessionByDMT(self);
 	Npc_ExchangeRoutine(self,"Start");
 };

@@ -34,7 +34,7 @@ instance DIA_Alvares_HAUAB(C_Info)
 
 func int DIA_Alvares_HAUAB_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -50,7 +50,10 @@ func void DIA_Alvares_HAUAB_Info()
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 		Akils_SLDStillthere = TRUE;
 	};
-//	AI_StopProcessInfos(self);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -67,7 +70,7 @@ instance DIA_Alvares_ATTACK(C_Info)
 
 func int DIA_Alvares_ATTACK_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Alvares_HAUAB) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_KnowsInfo(other,DIA_Alvares_HAUAB) && Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -152,7 +155,7 @@ instance DIA_Alvares_Schluss(C_Info)
 
 func int DIA_Alvares_Schluss_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Alvares_ATTACK))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Alvares_ATTACK) && (Kapitel < 4))
 	{
 		return TRUE;
 	};

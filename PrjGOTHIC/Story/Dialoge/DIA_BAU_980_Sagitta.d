@@ -28,7 +28,7 @@ func void DIA_Sagitta_EXIT_Info()
 instance DIA_Sagitta_HALLO(C_Info)
 {
 	npc = BAU_980_Sagitta;
-	nr = 4;
+	nr = 1;
 	condition = DIA_Sagitta_HALLO_Condition;
 	information = DIA_Sagitta_HALLO_Info;
 	description = "Ты здесь совсем одна?";
@@ -44,14 +44,14 @@ func void DIA_Sagitta_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Sagitta_HALLO_15_00");	//Ты здесь совсем одна?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_17_01");	//Говори, что тебе нужно от меня, и уходи. Я занята.
-	Info_ClearChoices(DIA_Sagitta_HALLO);
-	Info_AddChoice(DIA_Sagitta_HALLO,Dialog_Back,DIA_Sagitta_HALLO_ende);
-	Info_AddChoice(DIA_Sagitta_HALLO,"Ты можешь вылечить меня?",DIA_Sagitta_HALLO_Heil);
-	Info_AddChoice(DIA_Sagitta_HALLO,"Что ты делаешь здесь?",DIA_Sagitta_HALLO_was);
-	Info_AddChoice(DIA_Sagitta_HALLO,"Кто ты?",DIA_Sagitta_HALLO_wer);
+//	Info_ClearChoices(DIA_Sagitta_HALLO);
+//	Info_AddChoice(DIA_Sagitta_HALLO,Dialog_Back,DIA_Sagitta_HALLO_ende);
+//	Info_AddChoice(DIA_Sagitta_HALLO,"Ты можешь вылечить меня?",DIA_Sagitta_HALLO_Heil);
+//	Info_AddChoice(DIA_Sagitta_HALLO,"Что ты делаешь здесь?",DIA_Sagitta_HALLO_was);
+//	Info_AddChoice(DIA_Sagitta_HALLO,"Кто ты?",DIA_Sagitta_HALLO_wer);
 };
 
-func void DIA_Sagitta_HALLO_wer()
+/*func void DIA_Sagitta_HALLO_wer()
 {
 	AI_Output(other,self,"DIA_Sagitta_HALLO_wer_15_00");	//Кто ты?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_01");	//Ты что, никогда не слышал обо мне?
@@ -70,13 +70,92 @@ func void DIA_Sagitta_HALLO_Heil()
 {
 	AI_Output(other,self,"DIA_Sagitta_HALLO_Heil_15_00");	//Ты можешь вылечить меня?
 	AI_Output(self,other,"DIA_Sagitta_HALLO_Heil_17_01");	//Ты за этим пришел, да? Дай мне знать, если с тобой будет что-то не в порядке.
-	Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTrader,"У Сагитты, живущей за фермой Секоба, можно купить различные товары.");
 };
 
 func void DIA_Sagitta_HALLO_ende()
 {
 	Info_ClearChoices(DIA_Sagitta_HALLO);
+};
+*/
+instance DIA_Sagitta_Pre_Who(C_Info)
+{
+	npc = BAU_980_Sagitta;
+	nr = 1;
+	condition = DIA_Sagitta_Pre_Who_Condition;
+	information = DIA_Sagitta_Pre_Who_Info;
+	description = "Кто ты?";
+};
+
+
+func int DIA_Sagitta_Pre_Who_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Sagitta_Pre_Who_Info()
+{
+	AI_Output(other,self,"DIA_Sagitta_HALLO_wer_15_00");	//Кто ты?
+	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_01");	//Ты что, никогда не слышал обо мне?
+	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_02");	//Меня называют ведьмой-целительницей. А еще шаманкой.
+	AI_Output(self,other,"DIA_Sagitta_HALLO_wer_17_03");	//Но когда им плохо, они неожиданно вспоминают старую добрую Сагитту и ее целебные травы.
+};
+
+
+instance DIA_Sagitta_Pre_Trade(C_Info)
+{
+	npc = BAU_980_Sagitta;
+	nr = 1;
+	condition = DIA_Sagitta_Pre_Trade_Condition;
+	information = DIA_Sagitta_Pre_Trade_Info;
+	description = "Что ты делаешь здесь?";
+};
+
+
+func int DIA_Sagitta_Pre_Trade_Condition()
+{
+//	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Sagitta_Pre_Who))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Sagitta_Pre_Trade_Info()
+{
+	AI_Output(other,self,"DIA_Sagitta_HALLO_was_15_00");	//Что ты делаешь здесь?
+	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_01");	//Я живу здесь столько, сколько себя помню, и занимаюсь травами.
+	AI_Output(self,other,"DIA_Sagitta_HALLO_was_17_02");	//Лес - мой друг. Он дает мне то, что мне нужно.
+	Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
+	B_LogEntry(Topic_SoldierTrader,"У Сагитты, живущей за фермой Секоба, можно купить различные товары.");
+};
+
+
+instance DIA_Sagitta_Pre_Heal(C_Info)
+{
+	npc = BAU_980_Sagitta;
+	nr = 99;
+	condition = DIA_Sagitta_Pre_Heal_Condition;
+	information = DIA_Sagitta_Pre_Heal_Info;
+	description = "Ты можешь вылечить меня?";
+};
+
+
+func int DIA_Sagitta_Pre_Heal_Condition()
+{
+//	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Sagitta_Pre_Trade))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Sagitta_Pre_Heal_Info()
+{
+	AI_Output(other,self,"DIA_Sagitta_HALLO_Heil_15_00");	//Ты можешь вылечить меня?
+	AI_Output(self,other,"DIA_Sagitta_HALLO_Heil_17_01");	//Ты за этим пришел, да? Дай мне знать, если с тобой будет что-то не в порядке.
 };
 
 
@@ -93,7 +172,8 @@ instance DIA_Sagitta_TeachAlchemyRequest(C_Info)
 
 func int DIA_Sagitta_TeachAlchemyRequest_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO) && (MIS_Sagitta_Herb == FALSE))
+//	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO) && (MIS_Sagitta_Herb == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sagitta_Pre_Trade) && (MIS_Sagitta_Herb == FALSE))
 	{
 		return TRUE;
 	};
@@ -160,7 +240,7 @@ func void DIA_Sagitta_TeachAlchemyRequest_nein()
 instance DIA_Sagitta_Sagitta_Herb(C_Info)
 {
 	npc = BAU_980_Sagitta;
-	nr = 3;
+	nr = 6;
 	condition = DIA_Sagitta_Sagitta_Herb_Condition;
 	information = DIA_Sagitta_Sagitta_Herb_Info;
 	description = "Я нашел солнечное алоэ.";
@@ -169,7 +249,7 @@ instance DIA_Sagitta_Sagitta_Herb(C_Info)
 
 func int DIA_Sagitta_Sagitta_Herb_Condition()
 {
-	if(Npc_HasItems(other,ItPl_Sagitta_Herb_MIS) && (MIS_Sagitta_Herb == LOG_Running) && Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if(Npc_HasItems(other,ItPl_Sagitta_Herb_MIS) && (MIS_Sagitta_Herb == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -184,13 +264,15 @@ func void DIA_Sagitta_Sagitta_Herb_Info()
 	Sagitta_TeachAlchemy = TRUE;
 	MIS_Sagitta_Herb = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Sagitta_Sonnenaloe);
+	Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
+	B_LogEntry(Topic_SoldierTeacher,"Целительница Сагитта за фермой Секоба может рассказать мне о способах приготовления различных зелий.");
 };
 
 
 instance DIA_Sagitta_Teach(C_Info)
 {
 	npc = BAU_980_Sagitta;
-	nr = 2;
+	nr = 6;
 	condition = DIA_Sagitta_Teach_Condition;
 	information = DIA_Sagitta_Teach_Info;
 	permanent = TRUE;
@@ -202,7 +284,8 @@ var int DIA_Sagitta_Teach_permanent;
 
 func int DIA_Sagitta_Teach_Condition()
 {
-	if((DIA_Sagitta_Teach_permanent == FALSE) && (Sagitta_TeachAlchemy == TRUE) && Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+//	if((DIA_Sagitta_Teach_permanent == FALSE) && (Sagitta_TeachAlchemy == TRUE) && Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if((DIA_Sagitta_Teach_permanent == FALSE) && (Sagitta_TeachAlchemy == TRUE))
 	{
 		return TRUE;
 	};
@@ -336,7 +419,8 @@ instance DIA_Sagitta_HEAL(C_Info)
 
 func int DIA_Sagitta_HEAL_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+//	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Sagitta_Pre_Heal))
 	{
 		return TRUE;
 	};
@@ -361,6 +445,7 @@ func void DIA_Sagitta_HEAL_Info()
 instance DIA_Sagitta_TRADE(C_Info)
 {
 	npc = BAU_980_Sagitta;
+	nr = 1;
 	condition = DIA_Sagitta_TRADE_Condition;
 	information = DIA_Sagitta_TRADE_Info;
 	permanent = TRUE;
@@ -371,7 +456,8 @@ instance DIA_Sagitta_TRADE(C_Info)
 
 func int DIA_Sagitta_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+//	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Sagitta_Pre_Trade))
 	{
 		return TRUE;
 	};
@@ -424,7 +510,7 @@ func void DIA_Sagitta_KAP3_EXIT_Info()
 instance DIA_Sagitta_OBSESSION(C_Info)
 {
 	npc = BAU_980_Sagitta;
-	nr = 30;
+	nr = 40;
 	condition = DIA_Sagitta_OBSESSION_Condition;
 	information = DIA_Sagitta_OBSESSION_Info;
 	description = "Я ощущаю какую-то сильную внутреннюю тревогу. Мне нужна помощь.";
@@ -450,7 +536,7 @@ func void DIA_Sagitta_OBSESSION_Info()
 instance DIA_Sagitta_Thekla(C_Info)
 {
 	npc = BAU_980_Sagitta;
-	nr = 3;
+	nr = 30;
 	condition = DIA_Sagitta_Thekla_Condition;
 	information = DIA_Sagitta_Thekla_Info;
 	description = "Текла послала меня к тебе за травами.";
@@ -505,7 +591,7 @@ func void DIA_Sagitta_KAP4_EXIT_Info()
 instance DIA_Sagitta_HEALRANDOLPH(C_Info)
 {
 	npc = BAU_980_Sagitta;
-	nr = 30;
+	nr = 20;
 	condition = DIA_Sagitta_HEALRANDOLPH_Condition;
 	information = DIA_Sagitta_HEALRANDOLPH_Info;
 	permanent = TRUE;

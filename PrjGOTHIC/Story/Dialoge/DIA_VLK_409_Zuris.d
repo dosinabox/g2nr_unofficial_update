@@ -99,7 +99,7 @@ instance DIA_Zuris_GREET(C_Info)
 
 func int DIA_Zuris_GREET_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Canthar_Sperre == FALSE) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (Canthar_Sperre == FALSE))
 	{
 		return TRUE;
 	};
@@ -163,10 +163,7 @@ instance DIA_Zuris_Potions(C_Info)
 
 func int DIA_Zuris_POTIONS_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Zuris_GREET))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Zuris_POTIONS_Info()
@@ -260,7 +257,7 @@ instance DIA_Zuris_WHERE(C_Info)
 
 func int DIA_Zuris_WHERE_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Zuris_Potions) && (Constantino.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Zuris_Potions))
 	{
 		return TRUE;
 	};

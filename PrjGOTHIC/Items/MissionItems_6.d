@@ -1,22 +1,20 @@
 
 instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 {
-	name = NAME_Beutel;
+	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Bag.3ds";
 	scemeName = "MAPSEALED";
-//	material = MAT_METAL;
 	material = MAT_LEATHER;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
 	on_state[0] = Use_XardasNotfallBeutel;
 	description = name;
-	text[0] = "Очень странный кожаный кошелек.";
-	text[1] = "Похоже, что в этом мешочке";
-	text[2] = "находятся твердый предмет";
-	text[3] = "и документ.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	text[0] = "Очень странный мешок.";
+	text[1] = "Похоже, что в нем находятся";
+	text[2] = "твердый предмет и документ.";
 };
 
 
@@ -116,8 +114,6 @@ instance ItKe_OrkKnastDI_MIS(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = "Ключ полковника орков";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItKe_EVT_UNDEAD_01(C_Item)
@@ -125,12 +121,10 @@ instance ItKe_EVT_UNDEAD_01(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = Value_Key_03;
+	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = "Ключ Архола";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItKe_EVT_UNDEAD_02(C_Item)
@@ -138,12 +132,10 @@ instance ItKe_EVT_UNDEAD_02(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = Value_Key_03;
+	value = Value_Key_01;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ ключника";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
@@ -151,12 +143,10 @@ instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = Value_Key_03;
+	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = "Ключ черного мага";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItWr_LastDoorToUndeadDrgDI_MIS(C_Item)
@@ -204,12 +194,10 @@ instance ItKe_ChestMasterDementor_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = Value_Key_03;
+	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = "Ключ от сундука черного мага";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItWr_Rezept_MegaDrink_MIS(C_Item)
@@ -254,7 +242,7 @@ func void Use_RezeptFuerMegaTrank()
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE))
 		{
 			PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭМБАРЛА ФИРГАСТО': 10 драконьих яиц, 1 черный жемчуг и 1 сера.");
+			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭМБАРЛА ФИРГАСТО': 10 драконьих яиц, 1 черная жемчужина и 1 сера.");
 		};
 	};
 };
@@ -265,15 +253,13 @@ instance ItWr_Diary_BlackNovice_MIS(C_Item)
 	name = "Дневник";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 100;
+	value = 0;
 //	visual = "ItWr_Book_02_04.3ds";
 	visual = "ItWr_Book_03_04.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Дневник послушника черного мага.";
-	text[5] = NAME_Value;
-	count[5] = value;
 	on_state[0] = Use_Diary_BlackNovice;
 };
 
@@ -362,8 +348,5 @@ instance ItMi_PowerEye(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
-//	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
 };
 

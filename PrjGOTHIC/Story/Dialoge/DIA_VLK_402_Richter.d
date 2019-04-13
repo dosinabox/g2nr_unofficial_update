@@ -56,6 +56,7 @@ func void DIA_Richter_Hello_DontThinkSo()
 	AI_Output(other,self,"DIA_Richter_Hello_DontThinkSo_15_00");	//Я такого не помню.
 	AI_Output(self,other,"DIA_Richter_Hello_DontThinkSo_10_01");	//Забавно. Готов поклясться, что где-то видел тебя раньше.
 	AI_Output(self,other,"DIA_Richter_Hello_DontThinkSo_10_02");	//Ладно, все вы, отбросы общества, похожи друг на друга.
+	AI_StopProcessInfos(self);
 };
 
 func void DIA_Richter_Hello_MayBe()
@@ -183,12 +184,12 @@ func void DIA_Richter_KillMorgahard_Info()
 	AI_Output(self,other,"DIA_Richter_KillMorgahard_10_04");	//Эти сукины дети отправились в горы. Скорее всего, по направлению к новой башне Ксардаса.
 	AI_Output(self,other,"DIA_Richter_KillMorgahard_10_05");	//Их главаря зовут Моргахард. Я хочу, чтобы ты убил его.
 	AI_Output(self,other,"DIA_Richter_KillMorgahard_10_06");	//Поторопись, пока они не исчезли куда-нибудь еще.
-	Wld_InsertNpc(BDT_1030_Morgahard,"REICH");
-	Wld_InsertNpc(BDT_1031_Fluechtling,"REICH");
-	Wld_InsertNpc(BDT_1032_Fluechtling,"REICH");
-	Wld_InsertNpc(BDT_1033_Fluechtling,"REICH");
-	Wld_InsertNpc(BDT_1034_Fluechtling,"REICH");
-	Wld_InsertNpc(BDT_1035_Fluechtling,"REICH");
+	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
+	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
+	Wld_InsertNpc(BDT_1033_Fluechtling,"NW_TAVERNE_IN_06");
+	Wld_InsertNpc(BDT_1034_Fluechtling,"NW_TAVERNE_IN_06");
+	Wld_InsertNpc(BDT_1035_Fluechtling,"NW_BIGFARM_HOUSE_OUT_05");
+	Wld_InsertNpc(BDT_1030_Morgahard,"NW_BIGFARM_HOUSE_OUT_05");
 	if(!Npc_IsDead(Garwig))
 	{
 		Garwig.guild = GIL_NONE;

@@ -252,13 +252,20 @@ func void DIA_Addon_AlligatorJack_Greg_Info()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_Greg_15_00");	//Вашего капитана зовут Грег?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_01");	//Да. И это самый величайший пират, когда-либо бороздивший море.
-	AI_Output(other,self,"DIA_Addon_AlligatorJack_Greg_15_02");	//Думаю, я знаю вашего капитана. Я встречал его в Хоринисе.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_03");	//(смеется) Грега? В Хоринисе? Чепуха!
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_04");	//Грег с частью команды отправился в море за добычей.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_05");	//В Хоринис он может попасть только на королевской тюремной галере.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_06");	//Это же один из самых известных преступников в стране.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_07");	//Он ни за что не зайдет в город по своей воле. Первый же стражник задержит его и бросит в тюрьму.
-	AI_Output(other,self,"DIA_Addon_AlligatorJack_Greg_15_08");	//Ну, если ты так говоришь...
+	if((SC_SawGregInTaverne == TRUE) || (PlayerTalkedToGregNW == TRUE))
+	{
+		AI_Output(other,self,"DIA_Addon_AlligatorJack_Greg_15_02");	//Думаю, я знаю вашего капитана. Я встречал его в Хоринисе.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_03");	//(смеется) Грега? В Хоринисе? Чепуха!
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_04");	//Грег с частью команды отправился в море за добычей.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_05");	//В Хоринис он может попасть только на королевской тюремной галере.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_06");	//Это же один из самых известных преступников в стране.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_07");	//Он ни за что не зайдет в город по своей воле. Первый же стражник задержит его и бросит в тюрьму.
+		AI_Output(other,self,"DIA_Addon_AlligatorJack_Greg_15_08");	//Ну, если ты так говоришь...
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Greg_12_04");	//Грег с частью команды отправился в море за добычей.
+	};
 };
 
 

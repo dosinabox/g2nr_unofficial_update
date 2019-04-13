@@ -219,7 +219,7 @@ func void Use_Bookstand_Kreise_03_S1()
 		Doc_PrintLine(nDocID,0,"- кость скелета");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Страх:");
-		Doc_PrintLine(nDocID,0,"- черный жемчуг");
+		Doc_PrintLine(nDocID,0,"- черная жемчужина");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Ледяной блок:");
 		Doc_PrintLine(nDocID,0,"- ледяной кварц");
@@ -365,15 +365,15 @@ func void Use_Bookstand_Kreise_06_S1()
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Дыхание смерти:");
 		Doc_PrintLine(nDocID,0,"- уголь");
-		Doc_PrintLine(nDocID,0,"- черный жемчуг");
+		Doc_PrintLine(nDocID,0,"- черная жемчужина");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Волна смерти:");
 		Doc_PrintLine(nDocID,0,"- кость скелета");
-		Doc_PrintLine(nDocID,0,"- черный жемчуг");
+		Doc_PrintLine(nDocID,0,"- черная жемчужина");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Армия Тьмы:");
 		Doc_PrintLine(nDocID,0,"- кость скелета");
-		Doc_PrintLine(nDocID,0,"- черный жемчуг");
+		Doc_PrintLine(nDocID,0,"- черная жемчужина");
 		Doc_PrintLine(nDocID,0,"- сердце каменного голема");
 		Doc_PrintLine(nDocID,0,"- сердце демона");
 		Doc_PrintLine(nDocID,0,"");

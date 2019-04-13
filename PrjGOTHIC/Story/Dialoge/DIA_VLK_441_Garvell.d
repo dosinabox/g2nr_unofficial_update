@@ -199,10 +199,7 @@ func void DIA_Addon_Garvell_MissingPeople_more()
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 	Log_AddEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
 	Info_AddChoice(DIA_Addon_Garvell_MissingPeople,Dialog_Back,DIA_Addon_Garvell_MissingPeople_BACK);
-	if(Farim.aivar[AIV_TalkedToPlayer] == FALSE)
-	{
-		Info_AddChoice(DIA_Addon_Garvell_MissingPeople,"Где мне найти этого Фарима?",DIA_Addon_Garvell_MissingPeople_Farim);
-	};
+	Info_AddChoice(DIA_Addon_Garvell_MissingPeople,"Где мне найти этого Фарима?",DIA_Addon_Garvell_MissingPeople_Farim);
 };
 
 func void DIA_Addon_Garvell_MissingPeople_BACK()

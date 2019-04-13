@@ -285,15 +285,38 @@ instance ItMw_Sense(C_Item)
 {
 	name = "Малая коса";
 	mainflag = ITEM_KAT_NF;
-	flags = ITEM_SWD;
-	material = MAT_METAL;
+	flags = ITEM_AXE;
+	material = MAT_WOOD;
+	value = 10;
+	damageTotal = 11;
+	damagetype = DAM_EDGE;
+	range = Range_Sense;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = 5;
+	visual = "ItMw_012_1h_Scythe_01.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_OneHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMw_BattleSense(C_Item)
+{
+	name = "Боевая коса";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_AXE;
+	material = MAT_WOOD;
 	value = Value_Sense;
 	damageTotal = Damage_Sense;
 	damagetype = DAM_EDGE;
 	range = Range_Sense;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Sense;
-	visual = "ItMw_012_1h_Scythe_01.3DS";
+	visual = "ItMw_012_1h_Scythe_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

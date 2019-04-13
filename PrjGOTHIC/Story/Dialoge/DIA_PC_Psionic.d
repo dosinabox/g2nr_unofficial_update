@@ -12,10 +12,7 @@ instance DIA_Lester_EXIT(C_Info)
 
 func int DIA_Lester_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Lester_EXIT_Info()
@@ -336,7 +333,7 @@ func void DIA_Lester_Sleep_Info()
 };
 
 
-instance DIA_Lester_KAP3_EXIT(C_Info)
+/*instance DIA_Lester_KAP3_EXIT(C_Info)
 {
 	npc = PC_Psionic;
 	nr = 999;
@@ -349,7 +346,7 @@ instance DIA_Lester_KAP3_EXIT(C_Info)
 
 func int DIA_Lester_KAP3_EXIT_Condition()
 {
-	if(Kapitel == 3)
+	if(Kapitel >= 3)
 	{
 		return TRUE;
 	};
@@ -358,7 +355,7 @@ func int DIA_Lester_KAP3_EXIT_Condition()
 func void DIA_Lester_KAP3_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_Lester_BACKINTOWN(C_Info)
@@ -373,7 +370,7 @@ instance DIA_Lester_BACKINTOWN(C_Info)
 
 func int DIA_Lester_BACKINTOWN_Condition()
 {
-	if((Npc_GetDistToWP(self,"LEVELCHANGE") <= 500) && (Kapitel == 3))
+	if((Npc_GetDistToWP(self,"LEVELCHANGE") <= 2000) && (Kapitel > 2) && (Kapitel < 5))
 	{
 		return TRUE;
 	};
@@ -465,7 +462,7 @@ func void DIA_Lester_PERM3_Info()
 };
 
 
-instance DIA_Lester_KAP4_EXIT(C_Info)
+/*instance DIA_Lester_KAP4_EXIT(C_Info)
 {
 	npc = PC_Psionic;
 	nr = 999;
@@ -512,7 +509,7 @@ func int DIA_Lester_KAP5_EXIT_Condition()
 func void DIA_Lester_KAP5_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_Lester_XARDASWEG(C_Info)

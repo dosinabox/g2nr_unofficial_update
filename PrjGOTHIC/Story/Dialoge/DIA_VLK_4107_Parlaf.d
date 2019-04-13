@@ -94,7 +94,7 @@ instance DIA_Parlaf_Wo(C_Info)
 
 func int DIA_Parlaf_Wo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Parlaf_ENGOR) && !Npc_IsDead(Engor) && (Engor.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Parlaf_ENGOR) && !Npc_IsDead(Engor))
 	{
 		return TRUE;
 	};

@@ -230,7 +230,7 @@ func void DIA_Addon_Fernando_BanditTrader_Info()
 		if(FernandoMajorEvidenceCount < 2)
 		{
 			AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
-			AI_Output(other,self,"DIA_Dar_Pilztabak_15_04");	//Ну...
+			AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Э-э...
 			if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 			{
 				B_Say(self,other,"$SpareMe");
@@ -323,6 +323,7 @@ func void DIA_Addon_Fernando_BanditTrader_ja()
 		MIS_Martin_FindTheBanditTrader = LOG_FAILED;
 		MIS_Vatras_FindTheBanditTrader = LOG_FAILED;
 		B_LogEntry(TOPIC_Addon_Bandittrader,"Я решил не отправлять Фернандо в тюрьму и отдал ему все улики.");
+		B_CheckLog();
 	};
 	Info_ClearChoices(DIA_Addon_Fernando_BanditTrader);
 };

@@ -463,9 +463,15 @@ func void DIA_Jorgen_LOSFAHREN_Info()
 	if(B_CaptainConditions(self))
 	{
 		AI_Output(self,other,"DIA_Jorgen_LOSFAHREN_07_01");	//Конечно. Дай мне карту.
+		B_GiveInvItems(other,self,ItWr_Seamap_Irdorath,1);
 		AI_Output(self,other,"DIA_Jorgen_LOSFAHREN_07_02");	//Отлично. Поднять паруса! Мы отчаливаем!
 		AI_Output(self,other,"DIA_Jorgen_LOSFAHREN_07_03");	//Тебе лучше сначала проверить свое снаряжение. Когда мы выйдем в море, пути назад уже не будет.
 		AI_Output(self,other,"DIA_Jorgen_LOSFAHREN_07_04");	//А когда ты закончишь с делами, ты должен поспать. В капитанской каюте для тебя приготовлена кровать. Спокойной ночи.
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_Standup(self);
+			B_TurnToNpc(self,other);
+		};
 		AI_StopProcessInfos(self);
 		B_CaptainCallsAllOnBoard(self);
 	}

@@ -103,6 +103,8 @@ func void DIA_Addon_Xardas_Hello_Dragons()
 {
 	AI_Output(other,self,"DIA_Xardas_Hello_15_03");	//Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий...
 	AI_Output(self,other,"DIA_Xardas_Hello_14_04");	//... был изгнан. Ты победил его, да, это так - но не в наших силах остановить войну, которая разгорается сейчас.
+	AI_Output(other,self,"DIA_Xardas_Hello_15_05");	//Ты говоришь об орках?
+	AI_Output(self,other,"DIA_Xardas_Hello_14_06");	//Я говорю о гораздо более ужасных созданиях.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_07");	//Своим последним, яростным воплем, Спящий привел в движение армии Тьмы.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_08");	//Это был приказ всем созданиям Тьмы. Слово силы, которому они все обязаны повиноваться.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_09");	//Его последним приказом было: ИДИТЕ! И они пошли. Все. Даже драконы.

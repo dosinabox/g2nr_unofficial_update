@@ -465,7 +465,7 @@ func void DIA_Gerold_MoreFood()
 		{
 			Info_AddChoice(DIA_Gerold_FOOD,"(дать похлебку)",DIA_Gerold_FOOD_Stew);
 		};
-		if(Npc_HasItems(other,ItFoMutton))
+		if(Npc_HasItems(other,ItFoMutton) || Npc_HasItems(other,ItFo_NiclasBacon))
 		{
 			Info_AddChoice(DIA_Gerold_FOOD,"(дать жареное мясо)",DIA_Gerold_FOOD_fleisch);
 		};
@@ -553,7 +553,14 @@ func void DIA_Gerold_FOOD_schinken()
 func void DIA_Gerold_FOOD_fleisch()
 {
 	AI_Output(other,self,"DIA_Gerold_FOOD_fleisch_15_00");	//Кусок мяса?
-	B_GiveInvItems(other,self,ItFoMutton,1);
+	if(Npc_HasItems(other,ItFoMutton))
+	{
+		B_GiveInvItems(other,self,ItFoMutton,1);
+	}
+	else
+	{
+		B_GiveInvItems(other,self,ItFo_NiclasBacon,1);
+	};
 	DIA_Gerold_MoreFood();
 };
 

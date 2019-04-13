@@ -235,7 +235,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		{
 			CreateInvItems(ScrollTrader,ItSc_Fear,1);
 		};
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Страх': 1 черный жемчуг.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Страх': 1 черная жемчужина.");
 	};
 	if(spell == SPL_IceCube)
 	{
@@ -334,7 +334,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		{
 			CreateInvItems(ScrollTrader,ItSc_BreathOfDeath,1);
 		};
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Дыхание смерти': 1 уголь и 1 черный жемчуг.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Дыхание смерти': 1 уголь и 1 черная жемчужина.");
 	};
 	if(spell == SPL_MassDeath)
 	{
@@ -343,7 +343,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		{
 			CreateInvItems(ScrollTrader,ItSc_MassDeath,1);
 		};
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Волна смерти': 1 кость скелета и 1 черный жемчуг.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Волна смерти': 1 кость скелета и 1 черная жемчужина.");
 	};
 	if(spell == SPL_ArmyOfDarkness)
 	{
@@ -352,7 +352,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		{
 			CreateInvItems(ScrollTrader,ItSc_ArmyOfDarkness,1);
 		};
-		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Армия Тьмы': 1 кость скелета, 1 черный жемчуг, 1 сердце каменного голема и 1 cердце демона.");
+		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Армия Тьмы': 1 кость скелета, 1 черная жемчужина, 1 сердце каменного голема и 1 cердце демона.");
 	};
 	if(spell == SPL_Shrink)
 	{
@@ -360,6 +360,10 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		if(!Npc_HasItems(ScrollTrader,ItSc_Shrink))
 		{
 			CreateInvItems(ScrollTrader,ItSc_Shrink,1);
+		};
+		if(!Npc_IsDead(Constantino) && !Npc_HasItems(Constantino,ItAt_GoblinBone))
+		{
+			CreateInvItems(Constantino,ItAt_GoblinBone,1);
 		};
 		B_LogEntry(TOPIC_TalentRunes,"Ингредиенты для руны 'Уменьшение монстра': 1 кость гоблина и 1 клык тролля.");
 	};

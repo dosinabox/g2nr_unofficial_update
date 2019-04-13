@@ -183,7 +183,7 @@ func void DIA_Lee_PETZMASTER_Info()
 	Lee_Schulden = 0;
 	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
-		AI_Output(self,other,"DIA_Lee_PETZMASTER_04_00");	//Какого дьявола ТЕБЯ позволили пустить сюда? (удивленно) Это ТЫ новичок, от которого одни проблемы?
+		AI_Output(self,other,"DIA_Lee_PETZMASTER_04_00");	//Какого дьявола тебя позволили пустить сюда? (удивленно) Это ТЫ новичок, от которого одни проблемы?
 		AI_Output(self,other,"DIA_Lee_PETZMASTER_04_01");	//Я слышал от Горна, что ты все еще жив. Но что ты придешь сюда... А, ладно...
 	};
 	if(B_GetGreatestPetzCrime(self) == CRIME_MURDER)
@@ -290,7 +290,7 @@ func int DIA_Lee_Hallo_Condition()
 
 func void DIA_Lee_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Lee_Hallo_04_00");	//Какого дьявола ТЕБЯ позволили пустить сюда? (удивленно) Что ты делаешь здесь? Я думал, ты мертв!
+	AI_Output(self,other,"DIA_Lee_Hallo_04_00");	//Какого дьявола тебя позволили пустить сюда? (удивленно) Что ты делаешь здесь? Я думал, ты мертв!
 	AI_Output(other,self,"DIA_Lee_Hallo_15_01");	//С чего ты так думал?
 	AI_Output(self,other,"DIA_Lee_Hallo_04_02");	//Горн сказал мне, что это ты разрушил Барьер.
 	AI_Output(other,self,"DIA_Lee_Hallo_15_03");	//Да, это действительно был я.
@@ -600,7 +600,10 @@ func void DIA_Lee_JoinNOW_Info()
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_15");	//Я рад, что ты с нами.
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_16");	//У меня уже есть первое поручение для тебя.
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_17");	//Оно имеет отношение к паладинам. Пришло время тебе увидеться с ними.
-			AI_Output(self,other,"DIA_Lee_JoinNOW_04_18");	//Ты все равно хотел туда идти.
+			if(Npc_KnowsInfo(other,DIA_Lee_Paladine))
+			{
+				AI_Output(self,other,"DIA_Lee_JoinNOW_04_18");	//Ты все равно хотел туда идти.
+			};
 		};
 	};
 };
@@ -798,6 +801,14 @@ func void DIA_Lee_Success_Info()
 };
 
 
+func void B_Lee_AboutGorn()
+{
+	AI_Output(self,other,"DIA_Lee_AboutGorn_Yes_04_01");	//Его поймали паладины и отправили назад, в Долину Рудников, с конвоем каторжников.
+	AI_Output(self,other,"DIA_Lee_AboutGorn_Yes_04_02");	//Если бы дорога в Долину Рудников не кишела паладинами и орками, я бы уже отправил пару своих парней, чтобы освободить его.
+	AI_Output(self,other,"DIA_Lee_AboutGorn_Yes_04_03");	//Но сейчас это абсолютно неосуществимо. Бедняга.
+	KnowsAboutGorn = TRUE;
+};
+
 instance DIA_Lee_AboutGorn(C_Info)
 {
 	npc = SLD_800_Lee;
@@ -811,7 +822,7 @@ instance DIA_Lee_AboutGorn(C_Info)
 
 func int DIA_Lee_AboutGorn_Condition()
 {
-	if((Kapitel < 3) && (Npc_KnowsInfo(other,DIA_Lee_RescueGorn) == FALSE))
+	if((Kapitel < 3) && !Npc_KnowsInfo(other,DIA_Lee_RescueGorn))
 	{
 		return TRUE;
 	};
@@ -829,9 +840,7 @@ func void DIA_Lee_AboutGorn_Info()
 func void DIA_Lee_AboutGorn_Yes()
 {
 	AI_Output(other,self,"DIA_Lee_AboutGorn_Yes_15_00");	//Конечно.
-	AI_Output(self,other,"DIA_Lee_AboutGorn_Yes_04_01");	//Его поймали паладины и отправили назад, в Долину Рудников с конвоем каторжников.
-	AI_Output(self,other,"DIA_Lee_AboutGorn_Yes_04_02");	//Если бы дорога в Долину Рудников не кишела паладинами и орками, я бы уже отправил пару своих парней, чтобы освободить его.
-	AI_Output(self,other,"DIA_Lee_AboutGorn_Yes_04_03");	//Но сейчас это абсолютно неосуществимо. Бедняга.
+	B_Lee_AboutGorn();
 	Info_ClearChoices(DIA_Lee_AboutGorn);
 };
 
@@ -839,6 +848,9 @@ func void DIA_Lee_AboutGorn_Who()
 {
 	AI_Output(other,self,"DIA_Lee_AboutGorn_Who_15_00");	//Дай попытаюсь вспомнить...
 	AI_Output(self,other,"DIA_Lee_AboutGorn_Who_04_01");	//Большой, черноволосый, плохой парень с большим топором, он отбил нашу шахту с твоей помощью. Это было в колонии.
+	AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_06");	//Ну да.
+	B_Lee_AboutGorn();
+	Info_ClearChoices(DIA_Lee_AboutGorn);
 };
 
 
@@ -1662,7 +1674,7 @@ func void DIA_Lee_GetShip_Info()
 	{
 		AI_Output(self,other,"DIA_Lee_GetShip_04_04");	//Ты же знаешь, у нас судья под каблуком. Ты должен пойти к нему и вытянуть из него официальное письмо, которое позволит нам попасть на корабль.
 		MIS_RichtersPermissionForShip = LOG_Running;
-		B_LogEntry(Topic_Ship,"Ли полагает, что лучший способ попасть на корабль паладинов - получить письмо о соответствующих полномочиях от судьи. Но ряд ли он даст такое письмо по своей доброй воле.");
+		B_LogEntry(Topic_Ship,"Ли полагает, что лучший способ попасть на корабль паладинов - получить письмо о соответствующих полномочиях от судьи. Но вряд ли он даст такое письмо по своей доброй воле.");
 	}
 	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
@@ -1688,6 +1700,7 @@ func void DIA_Lee_GetShip_torlof()
 {
 	AI_Output(other,self,"DIA_Lee_GetShip_torlof_15_00");	//Ты знаешь кого-нибудь, кто мог бы управлять кораблем?
 	AI_Output(self,other,"DIA_Lee_GetShip_torlof_04_01");	//Насколько я знаю, Торлоф ходил в море. Он разбирается в морском деле.
+	TorlofIsSailor = TRUE;
 	B_LogEntry(Topic_Captain,"Торлоф - старый морской волк. Возможно, он захочет стать моим капитаном.");
 };
 
@@ -1744,7 +1757,7 @@ instance DIA_Lee_StealShip(C_Info)
 
 func int DIA_Lee_StealShip_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lee_GetShip) && (hero.guild == GIL_DJG) && (MIS_RichtersPermissionForShip == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lee_GetShip) && (MIS_RichtersPermissionForShip == FALSE) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};

@@ -17,7 +17,8 @@ prototype Mst_Default_Gobbo_Black(C_Npc)
 	protection[PROT_FIRE] = 17;	//40;
 	protection[PROT_FLY] = 40;
 	protection[PROT_MAGIC] = 0;
-	damagetype = DAM_EDGE;
+//	damagetype = DAM_EDGE;
+	damagetype = DAM_BLUNT;
 	fight_tactic = FAI_GOBBO;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
@@ -46,6 +47,18 @@ instance Gobbo_DaronsStatuenKlauer(Mst_Default_Gobbo_Black)
 {
 	B_SetVisuals_Gobbo_Black();
 	CreateInvItems(self,ItMi_LostInnosStatue_Daron,1);
+	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+};
+
+instance Gobbo_Black_Crossbow_Guard_01(Mst_Default_Gobbo_Black)
+{
+	B_SetVisuals_Gobbo_Black();
+	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
+};
+
+instance Gobbo_Black_Crossbow_Guard_02(Mst_Default_Gobbo_Black)
+{
+	B_SetVisuals_Gobbo_Black();
 	Npc_SetToFightMode(self,ItMw_1h_Bau_Mace);
 };
 

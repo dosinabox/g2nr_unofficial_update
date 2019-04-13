@@ -219,7 +219,7 @@ func int DIA_Borka_SECOND_CHANCE_Condition()
 {
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
-	if((Borka_Deal == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 50) && !Hlp_IsItem(heroArmor,ITAR_MIL_L))
+	if((Borka_Deal == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 50) && !Hlp_IsItem(heroArmor,ITAR_MIL_L) && !Hlp_IsItem(heroArmor,ITAR_MIL_M))
 	{
 		return TRUE;
 	};

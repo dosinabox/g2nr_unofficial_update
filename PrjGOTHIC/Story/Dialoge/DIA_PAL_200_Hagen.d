@@ -1068,6 +1068,7 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_01");	//Откуда тебе это известно?
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_02");	//Вот, у меня его дневник. Все в нем.
 	B_GiveInvItems(other,self,ItWr_CorneliusTagebuch_Mis,1);
+	B_UseOpenBook1();
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_03");	//(в ярости) Ах, гнусная мразь!
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_04");	//Перед лицом новых доказательств мне не остается ничего другого.
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_05");	//Властью, данной мне королем и церковью, я провозглашаю...
@@ -1422,6 +1423,10 @@ func void DIA_Lord_Hagen_GateOpen_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_30");	//О, Иннос! Что именно там произошло?
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_31");	//Почему-то ворота оказались открытыми...
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_32");	//Почему-то?! Но как это возможно... В замке наверняка есть предатель!
+	B_StartOtherRoutine(PAL_212_Schiffswache,"ShipFree");
+	B_StartOtherRoutine(PAL_213_Schiffswache,"ShipFree");
+	B_StartOtherRoutine(Girion,"WaitForShip");
+	MIS_ShipIsFree = TRUE;
 };
 
 
@@ -1447,7 +1452,7 @@ func int DIA_Lord_Hagen_Perm5_Condition()
 func void DIA_Lord_Hagen_Perm5_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_33");	//Чего ты ждешь?
-	if(MIS_OCGateOpen == FALSE)
+	if(MIS_ShipIsFree == FALSE)
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_26");	//Мы все еще ждем груз со снаряжением и провизией. Как только он будет у нас, мы сразу же тронемся в путь!
 	}

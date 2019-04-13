@@ -1,10 +1,12 @@
 
 const int Value_Apple = 8;
 const int HP_Apple = 3;
-const int Value_Cheese = 30;
+const int Value_Cheese = 20;
 const int HP_Cheese = 15;
-const int Value_Bacon = 50;
+const int Value_Bacon = 25;
 const int HP_Bacon = 20;
+const int Value_NiclasBacon = 10;
+const int HP_NiclasBacon = 25;
 const int Value_Bread = 20;
 const int HP_Bread = 10;
 const int Value_Fish = 15;
@@ -13,15 +15,14 @@ const int Value_Rawmeat = 3;
 const int HP_RawMeat = 6;
 const int Value_Meat = 6;
 const int HP_Meat = 12;
-const int Value_Stew = 8;
+//const int Value_Stew = 8;
 const int HP_Stew = 20;
-const int Value_FishSoup = 20;
+//const int Value_FishSoup = 20;
 const int HP_FishSoup = 10;
-const int Value_EddasFishSoup = 40;
 const int HP_EddasFishSoup = 20;
-const int Value_Sausage = 30;
+const int Value_Sausage = 25;
 const int HP_Sausage = 12;
-const int Value_Honey = 30;
+const int Value_Honey = 20;
 const int HP_Honey = 12;
 const int Value_Water = 10;
 const int HP_Water = 8;
@@ -53,7 +54,7 @@ instance ItFo_Apple(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Apple;
 	text[5] = NAME_Value;
-	count[5] = Value_Apple;
+	count[5] = value;
 };
 
 
@@ -96,7 +97,7 @@ instance ItFo_Cheese(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Cheese;
 	text[5] = NAME_Value;
-	count[5] = Value_Cheese;
+	count[5] = value;
 };
 
 
@@ -120,13 +121,37 @@ instance ItFo_Bacon(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Bacon;
 	text[5] = NAME_Value;
-	count[5] = Value_Bacon;
+	count[5] = value;
 };
 
 
 func void Use_Bacon()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Bacon);
+};
+
+
+instance ItFo_NiclasBacon(C_Item)
+{
+	name = "Нога крысокрота";
+	mainflag = ITEM_KAT_FOOD;
+	flags = ITEM_MULTI;
+	value = Value_NiclasBacon;
+	visual = "ItFo_NiclasBacon.3ds";
+	material = MAT_LEATHER;
+	scemeName = "FOODHUGE";
+	on_state[0] = Use_NiclasBacon;
+	description = name;
+	text[1] = NAME_Bonus_HP;
+	count[1] = HP_NiclasBacon;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void Use_NiclasBacon()
+{
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_NiclasBacon);
 };
 
 
@@ -144,7 +169,7 @@ instance ItFo_Bread(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Bread;
 	text[5] = NAME_Value;
-	count[5] = Value_Bread;
+	count[5] = value;
 };
 
 
@@ -168,7 +193,7 @@ instance ItFo_Fish(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Fish;
 	text[5] = NAME_Value;
-	count[5] = Value_Fish;
+	count[5] = value;
 };
 
 
@@ -192,7 +217,7 @@ instance ItFoMuttonRaw(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_RawMeat;
 	text[5] = NAME_Value;
-	count[5] = Value_Rawmeat;
+	count[5] = value;
 };
 
 
@@ -216,7 +241,7 @@ instance ItFoMutton(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Meat;
 	text[5] = NAME_Value;
-	count[5] = Value_Meat;
+	count[5] = value;
 };
 
 
@@ -231,7 +256,7 @@ instance ItFo_Stew(C_Item)
 	name = "Похлебка";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Stew;
+	value = 20;
 	visual = "ItFo_Stew.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -240,7 +265,7 @@ instance ItFo_Stew(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Stew;
 	text[5] = NAME_Value;
-	count[5] = Value_Stew;
+	count[5] = value;
 };
 
 
@@ -255,7 +280,7 @@ instance ItFo_XPStew(C_Item)
 	name = "Похлебка Теклы";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Stew;
+	value = Value_BonusFood;
 //	visual = "ItFo_Stew.3ds";
 	visual = "ItFo_XPStew.3ds";
 	material = MAT_WOOD;
@@ -267,7 +292,7 @@ instance ItFo_XPStew(C_Item)
 	text[2] = NAME_Bonus_Str;
 	count[2] = 1;
 	text[5] = NAME_Value;
-	count[5] = Value_Stew;
+	count[5] = value;
 };
 
 
@@ -297,7 +322,7 @@ instance ItFo_CoragonsBeer(C_Item)
 	text[2] = NAME_Bonus_ManaMax;
 	count[2] = Mana_Beer;
 	text[5] = NAME_Value;
-	count[5] = Value_Beer;
+	count[5] = value;
 };
 
 
@@ -319,7 +344,7 @@ instance ItFo_FishSoup(C_Item)
 	name = "Уха";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_FishSoup;
+	value = 15;
 	visual = "ItFo_FishSoup.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -328,7 +353,7 @@ instance ItFo_FishSoup(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_FishSoup;
 	text[5] = NAME_Value;
-	count[5] = Value_FishSoup;
+	count[5] = value;
 };
 
 
@@ -343,7 +368,7 @@ instance ItFo_EddasFishSoup(C_Item)
 	name = "Уха Эдды";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_EddasFishSoup;
+	value = 20;
 	visual = "ItFo_EddasFishSoup.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -352,7 +377,7 @@ instance ItFo_EddasFishSoup(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_EddasFishSoup;
 	text[5] = NAME_Value;
-	count[5] = Value_EddasFishSoup;
+	count[5] = value;
 };
 
 
@@ -376,7 +401,7 @@ instance ItFo_Sausage(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Sausage;
 	text[5] = NAME_Value;
-	count[5] = Value_Sausage;
+	count[5] = value;
 };
 
 
@@ -394,13 +419,13 @@ instance ItFo_Honey(C_Item)
 	value = Value_Honey;
 	visual = "ItFo_Honey.3DS";
 	material = MAT_STONE;
-	scemeName = "FOODHUGE";
+	scemeName = "RICE";
 	on_state[0] = Use_Honey;
 	description = name;
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Honey;
 	text[5] = NAME_Value;
-	count[5] = Value_Honey;
+	count[5] = value;
 };
 
 
@@ -424,7 +449,7 @@ instance ItFo_Water(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Water;
 	text[5] = NAME_Value;
-	count[5] = Value_Water;
+	count[5] = value;
 };
 
 
@@ -451,7 +476,7 @@ instance ItFo_Beer(C_Item)
 	text[2] = NAME_Bonus_Mana;
 	count[2] = Mana_Beer * 3;
 	text[5] = NAME_Value;
-	count[5] = Value_Beer;
+	count[5] = value;
 };
 
 
@@ -494,7 +519,7 @@ instance ItFo_Booze(C_Item)
 	text[2] = NAME_Bonus_Mana;
 	count[2] = Mana_Booze * 3;
 	text[5] = NAME_Value;
-	count[5] = Value_Booze;
+	count[5] = value;
 };
 
 
@@ -522,7 +547,7 @@ instance ItFo_Wine(C_Item)
 	text[2] = NAME_Bonus_Mana;
 	count[2] = Mana_Wine * 3;
 	text[5] = NAME_Value;
-	count[5] = Value_Wine;
+	count[5] = value;
 };
 
 
@@ -550,7 +575,7 @@ instance ItFo_Milk(C_Item)
 	text[2] = NAME_Bonus_Mana;
 	count[2] = Mana_Milk;
 	text[5] = NAME_Value;
-	count[5] = Value_Milk;
+	count[5] = value;
 };
 
 

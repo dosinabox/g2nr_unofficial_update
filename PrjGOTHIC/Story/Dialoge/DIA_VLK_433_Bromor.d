@@ -234,7 +234,7 @@ func int DIA_Bromor_Pay_Condition()
 };
 
 
-var int DIA_Bromor_Pay_OneTime;
+//var int DIA_Bromor_Pay_OneTime;
 
 func void DIA_Bromor_Pay_Info()
 {
@@ -244,10 +244,10 @@ func void DIA_Bromor_Pay_Info()
 	{
 		AI_Output(self,other,"DIA_Bromor_Pay_07_01");	//Отлично. (ухмыляется) Ты долго не забудешь следующие несколько часов твоей жизни.
 		AI_Output(self,other,"DIA_Bromor_Pay_07_02");	//Иди наверх с Надей. Удачи.
-		if(DIA_Bromor_Pay_OneTime == FALSE)
-		{
-			DIA_Bromor_Pay_OneTime = TRUE;
-		};
+//		if(DIA_Bromor_Pay_OneTime == FALSE)
+//		{
+//			DIA_Bromor_Pay_OneTime = TRUE;
+//		};
 		Bromor_Pay = 1;
 	}
 	else

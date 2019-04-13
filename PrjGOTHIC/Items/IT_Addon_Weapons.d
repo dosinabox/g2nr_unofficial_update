@@ -634,7 +634,7 @@ instance ItRw_Addon_FireBow(C_Item)
 	description = name;
 	text[1] = NAME_Damage;
 	count[1] = damageTotal;
-	text[2] = NAME_Dam_Fire;
+	text[2] = "Урон огнем:";
 	count[2] = 40;
 	text[3] = NAME_Dex_needed;
 	count[3] = cond_value[2];

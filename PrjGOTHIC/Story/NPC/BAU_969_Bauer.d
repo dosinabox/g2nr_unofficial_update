@@ -20,10 +20,17 @@ instance BAU_969_Bauer(Npc_Default)
 };
 
 
+/*вернуть после правки зена
 func void Rtn_Start_969()
 {
 	TA_Pick_FP(8,0,22,0,"NW_FARM3_FIELD_01");
 	TA_Sit_Campfire(22,0,8,0,"NW_FARM3_STABLE_REST_02");
+};*/
+
+func void Rtn_Start_969()
+{
+	TA_Pick_FP(8,0,22,0,"NW_FARM3_FIELD_01");
+	TA_Sit_Chair(22,0,8,0,"NW_FARM3_HOUSE_IN_NAVI_2");
 };
 
 func void Rtn_FleeFromPass_969()

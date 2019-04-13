@@ -231,7 +231,8 @@ func void DIA_Addon_Nadja_LuciaInfo_sonst()
 	Info_ClearChoices(DIA_Addon_Nadja_LuciaInfo);
 	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
 	{
-		Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,PRINT_Addon_NadjaWait,DIA_Addon_Nadja_WAIT);
+		//Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,PRINT_Addon_NadjaWait,DIA_Addon_Nadja_WAIT);
+		Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Могу я здесь купить травки?",DIA_Addon_Nadja_WAIT);
 	};
 	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Спасибо, но мне нужно идти.",DIA_Addon_Nadja_LuciaInfo_weiter);
 	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Почему бы и нет?",DIA_Nadja_Poppen_Start);
@@ -249,7 +250,24 @@ func void DIA_Addon_Nadja_LuciaInfo_weiter()
 
 func void DIA_Addon_Nadja_WAIT()
 {
-	Info_ClearChoices(DIA_Addon_Nadja_LuciaInfo);
+	//Info_ClearChoices(DIA_Addon_Nadja_LuciaInfo);
+	var C_Item heroArmor;
+	heroArmor = Npc_GetEquippedArmor(other);
+	AI_Output(other,self,"DIA_Nadja_BUYHERB_15_00");	//Могу я здесь купить травки?
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
+	{
+		AI_Output(self,other,"DIA_Nadja_BUYHERB_16_01");	//Откуда мне знать? Да и если бы знала, все равно не сказала бы городскому стражнику.
+		Undercover_Failed = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Nadja_BUYHERB_16_02");	//Заплати несколько золотых, и я скажу, где ее достать.
+		AI_Output(other,self,"DIA_Nadja_BUYHERB_15_03");	//Сколько ты хочешь?
+		AI_Output(self,other,"DIA_Nadja_BUYHERB_16_04");	//50 золотых будет достаточно.
+		Nadja_Money = TRUE;
+	};
+	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_sonst_16_05");	//Ну а теперь что будем делать, дорогуша? В конце концов, ты же деньги заплатил.
+	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_sonst_16_06");	//Не хочешь позабавиться перед тем, как уедешь?
 };
 
 
@@ -366,7 +384,7 @@ func void DIA_Nadja_WANT_HERB_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Nadja_WANT_HERB_15_00");	//А теперь скажи мне, где можно купить травки.
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L))
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
 	{
 		AI_Output(self,other,"DIA_Nadja_WANT_HERB_16_01");	//Извини, я забыла.
 	}

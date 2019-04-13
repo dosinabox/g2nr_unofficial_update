@@ -228,9 +228,22 @@ func void B_AssessFightSound()
 	};
 	if((self.guild != GIL_DMT) && ((victim.guild == GIL_DMT) || (other.guild == GIL_DMT)))
 	{
-		Npc_SetTarget(self,other);
-		AI_StartState(self,ZS_Flee,0,"");
-		return;
+		if(!C_IsBestFriend(self))
+		{
+			Npc_SetTarget(self,other);
+			AI_StartState(self,ZS_Flee,0,"");
+			return;
+		}
+		else if(victim.guild == GIL_DMT)
+		{
+			B_Attack(self,victim,AR_NONE,0);
+			return;
+		}
+		else if(other.guild == GIL_DMT)
+		{
+			B_Attack(self,other,AR_NONE,0);
+			return;
+		};
 	};
 	Npc_ClearAIQueue(self);
 	B_ClearPerceptions(self);

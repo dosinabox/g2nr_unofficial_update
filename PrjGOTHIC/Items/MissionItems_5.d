@@ -53,14 +53,12 @@ instance ItKe_MonastarySecretLibrary_Mis(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = Value_Key_02;
+	value = Value_Key_01;
 //	visual = "ItKe_Key_02.3ds";
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "из книги 'Чертоги Ирдората'.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	inv_zbias = 190;
 };
 
@@ -75,8 +73,6 @@ instance ItWr_HallsofIrdorath_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	on_state[0] = Use_HallsofIrdorath;
 };
 
@@ -117,8 +113,6 @@ instance ItWr_HallsofIrdorath_Open_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	on_state[0] = Use_HallsofIrdorath_Open;
 };
 
@@ -167,8 +161,9 @@ instance ItWr_XardasSeamapBook_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 	on_state[0] = Use_XardasSeamapBook_Mis;
 };
 
@@ -253,16 +248,6 @@ func void UseItWr_UseLampIdiot_Mis()
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"               Лампа несет свет");
 	Doc_PrintLine(nDocID,0,"               нижним уровням.");
-/*	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");	*/
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
@@ -363,8 +348,6 @@ instance ItKe_OC_MainGate_MIS(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от башни главных ворот.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItKe_Ship_Levelchange_MIS(C_Item)
@@ -372,13 +355,11 @@ instance ItKe_Ship_Levelchange_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = Value_Key_03;
+	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от капитанской каюты.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItPo_PotionOfDeath_01_Mis(C_Item)

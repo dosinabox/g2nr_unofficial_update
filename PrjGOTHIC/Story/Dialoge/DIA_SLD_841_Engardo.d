@@ -34,7 +34,7 @@ instance DIA_Engardo_HALLO(C_Info)
 
 func int DIA_Engardo_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -55,14 +55,20 @@ func void DIA_Engardo_HALLO_Info()
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_00");	//Эй, мужик, ты что, заблудился? Возвращайся на свое поле и дергай репу.
 		Chance = 1;
-//		AI_StopProcessInfos(self);
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+		{
+			AI_StopProcessInfos(self);
+		};
 	}
 	else if(Chance == 1)
 	{
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_01");	//Ты оказался не в том месте не в то время...
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_02");	//... так что, если хочешь жить, лучше топай отсюда. Понял?
 		Chance = 2;
-//		AI_StopProcessInfos(self);
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+		{
+			AI_StopProcessInfos(self);
+		};
 	}
 	else if(Chance == 2)
 	{

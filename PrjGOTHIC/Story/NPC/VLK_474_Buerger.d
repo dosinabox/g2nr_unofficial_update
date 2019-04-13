@@ -1,5 +1,5 @@
 
-instance VLK_474_Buerger(Npc_Default)
+/*instance VLK_474_Buerger(Npc_Default)
 {
 	name[0] = NAME_Buerger;
 	guild = GIL_VLK;
@@ -24,5 +24,5 @@ func void Rtn_Start_474()
 {
 	TA_Sit_Bench(8,0,22,0,"NW_CITY_HABOUR_BENCH_02");
 	TA_Sit_Bench(22,0,8,0,"NW_CITY_HABOUR_BENCH_02");
-};
+};*/
 

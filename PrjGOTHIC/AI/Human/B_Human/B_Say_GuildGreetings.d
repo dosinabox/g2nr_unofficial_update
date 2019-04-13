@@ -32,7 +32,17 @@ func void B_Say_GuildGreetings(var C_Npc slf,var C_Npc oth)
 	zufall = Hlp_Random(100);
 	if((zufall <= 80) && Wld_IsRaining())
 	{
-		B_Say_Overlay(slf,oth,"$WEATHER");
+		if(slf.guild == GIL_KDW)
+		{
+			if(CurrentLevel != NEWWORLD_ZEN)
+			{
+				B_Say_Overlay(slf,oth,"$WEATHER");
+			};
+		}
+		else
+		{
+			B_Say_Overlay(slf,oth,"$WEATHER");
+		};
 		return;
 	};
 };

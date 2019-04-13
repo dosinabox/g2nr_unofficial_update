@@ -326,17 +326,20 @@ func void DIA_Buster_OtherSld_Info()
 {
 	AI_Output(other,self,"DIA_Buster_OtherSld_15_00");	//Я хочу узнать больше о наемниках и этой местности.
 	AI_Output(self,other,"DIA_Buster_OtherSld_13_01");	//О местности я мало что могу сказать. Тебе лучше поспрашивать фермеров.
-	AI_Output(self,other,"DIA_Buster_OtherSld_13_02");	//А что касается наемников - то правила у нас просты: если можешь постоять за себя - добро пожаловать к нам.
+	if(hero.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Buster_OtherSld_13_02");	//А что касается наемников - то правила у нас просты: если можешь постоять за себя - добро пожаловать к нам.
+	};
 	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 	{
-		AI_Output(self,other,"DIA_Buster_OtherSld_13_03");	//Я думаю, ты достоин стать одним из нас.
-		AI_Output(self,other,"DIA_Buster_OtherSld_13_04");	//Но не стоит обольщаться. Тебе просто повезло во время нашего последнего боя.
+		if(hero.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Buster_OtherSld_13_03");	//Я думаю, ты достоин стать одним из нас.
+			AI_Output(self,other,"DIA_Buster_OtherSld_13_04");	//Но не стоит обольщаться. Тебе просто повезло во время нашего последнего боя.
+		};
 		AI_Output(self,other,"DIA_Buster_OtherSld_13_05");	//На этой ферме полно парней, которые будут получше меня...
 		AI_Output(self,other,"DIA_Buster_OtherSld_13_06");	//Сентенза, например. Он охраняет вход на ферму. Тебе лучше не связываться с ним.
 		Buster_SentenzaTip = TRUE;
-	}
-	else if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON)
-	{
 	}
 	else
 	{

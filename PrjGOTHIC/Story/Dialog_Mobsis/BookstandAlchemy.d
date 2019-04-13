@@ -111,7 +111,7 @@ func void Use_BookstandALCHEMY3_S1()
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"Зелья, дающие перманентные изменения");
+		Doc_PrintLines(nDocID,0,"Зелья перманентного действия");
 		Doc_PrintLine(nDocID,0,"и ингредиенты");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,NAME_DEX_Elixier);
@@ -132,7 +132,7 @@ func void Use_BookstandALCHEMY3_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Применение этих рецептов - высшее алхимическое искусство. Все они требуют царского щавеля.");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Зелье скорости варить значительно легче, частично потому, что для него не требуется царского щавеля.");
+		Doc_PrintLines(nDocID,1,"Зелье скорости варить значительно легче, частично потому, что для него не требуется царский щавель.");
 		Doc_Show(nDocID);
 		if(ALchemy_3_permanent == FALSE)
 		{

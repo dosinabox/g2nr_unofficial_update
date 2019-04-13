@@ -471,9 +471,9 @@ func void DIA_Bosper_BringFur_Info()
 	{
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_01");	//Ты уже стал учеником другого мастера. Я буду покупать у тебя шкуры по обычной цене.
 		MIS_Bosper_WolfFurs = LOG_OBSOLETE;
-		return;
-	};
-	if(B_GiveInvItems(other,self,ItAt_WolfFur,6))
+		//return;
+	}
+	else if(B_GiveInvItems(other,self,ItAt_WolfFur,6))
 	{
 		AI_Output(other,self,"DIA_Bosper_BringFur_15_02");	//Я принес их - вот.
 		AI_Output(self,other,"DIA_Bosper_BringFur_11_03");	//Отлично! Я знал, что ты подходишь для этой работы.
@@ -802,7 +802,7 @@ func int DIA_Bosper_SellFur_Condition()
 func void DIA_Bosper_SellFur_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_SellFur_15_00");	//Я принес несколько шкур для тебя...
-	if(Npc_HasItems(other,ItAt_SheepFur) || Npc_HasItems(other,ItAt_WolfFur) || Npc_HasItems(other,ItAt_WargFur) || Npc_HasItems(other,ItAt_ShadowFur) || Npc_HasItems(other,ItAt_TrollFur) || Npc_HasItems(other,ItAt_TrollBlackFur) || Npc_HasItems(other,ItAt_Addon_KeilerFur))
+	if(Npc_HasItems(other,ItAt_SheepFur) || Npc_HasItems(other,ItAt_WolfFur) || Npc_HasItems(other,ItAt_IceWolfFur) || Npc_HasItems(other,ItAt_WargFur) || Npc_HasItems(other,ItAt_ShadowFur) || Npc_HasItems(other,ItAt_TrollFur) || Npc_HasItems(other,ItAt_TrollBlackFur) || Npc_HasItems(other,ItAt_Addon_KeilerFur))
 	{
 		if(Npc_HasItems(other,ItAt_Addon_KeilerFur))
 		{
@@ -820,9 +820,9 @@ func void DIA_Bosper_SellFur_Info()
 		};
 		if(Npc_HasItems(other,ItAt_WolfFur) || Npc_HasItems(other,ItAt_IceWolfFur))
 		{
-			AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры - это хорошо...
 			if(Npc_HasItems(other,ItAt_WolfFur))
 			{
+				AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры - это хорошо...
 				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur);
 				B_GiveInvItems(other,self,ItAt_WolfFur,Npc_HasItems(other,ItAt_WolfFur));
 			};

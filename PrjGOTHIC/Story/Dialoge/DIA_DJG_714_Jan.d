@@ -670,10 +670,10 @@ func void DIA_Jan_DragonBlood_1()
 			Info_AddChoice(DIA_Jan_DragonBlood,"(отдать все пробирки)",DIA_Jan_DragonBlood_all);
 		};
 		Info_AddChoice(DIA_Jan_DragonBlood,"(отдать одну пробирку)",DIA_Jan_DragonBlood_1);
+		BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
+		BloodText = ConcatStrings(PRINT_BloodLeft,BloodLeft);
+		AI_PrintScreen(BloodText,-1,-1,FONT_ScreenSmall,2);
 	};
-	BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
-	BloodText = ConcatStrings(PRINT_BloodLeft,BloodLeft);
-	AI_PrintScreen(BloodText,-1,-1,FONT_ScreenSmall,2);
 };
 
 func void DIA_Jan_DragonBlood_all()

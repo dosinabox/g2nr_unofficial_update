@@ -139,7 +139,7 @@ func void DIA_Addon_Merdarion_FokusGeben_Info()
 	B_GiveInvItems(self,other,ItMi_Focus,1);
 	Log_CreateTopic(TOPIC_Addon_TeleportsADW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_TeleportsADW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_TeleportsADW,"Маг Воды Мердарион дал мне один из старых камней фокусировки, которые использовались для создания Барьера вокруг Долины Рудников. С его помощью я могу попробовать активировать какой-нибудь телепорт.");
+	B_LogEntry(TOPIC_Addon_TeleportsADW,"Маг Воды Мердарион дал мне один из старых фокусирующих камней, которые использовались для создания Барьера вокруг Долины Рудников. С его помощью я могу попробовать активировать какой-нибудь телепорт.");
 };
 
 
@@ -178,7 +178,7 @@ func void DIA_Addon_Merdarion_FirstFocus_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_FirstFocus_06_06");	//Активируй их все, если сумеешь.
 	AI_Output(other,self,"DIA_Addon_Merdarion_FirstFocus_15_07");	//Я постараюсь.
 	B_GivePlayerXP(XP_Addon_ActivatedTeleportStone);
-	B_LogEntry(TOPIC_Addon_TeleportsADW,"Мердарион дал мне еще один камень фокусировки. Я должен постараться активировать все телепорты. Мердарион будет снабжать меня новыми камнями по мере включения телепортов.");
+	B_LogEntry(TOPIC_Addon_TeleportsADW,"Мердарион дал мне еще один фокусирующий камень. Я должен постараться активировать все телепорты. Мердарион будет снабжать меня новыми камнями по мере включения телепортов.");
 };
 
 

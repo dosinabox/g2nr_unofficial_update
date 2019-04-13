@@ -36,8 +36,8 @@ func void Rtn_Start_1118()
 
 func void Rtn_Flucht_1118()
 {
-	TA_RunToWP(8,0,23,0,"ADW_BL_HOEHLE_04");
-	TA_RunToWP(23,0,8,0,"ADW_BL_HOEHLE_04");
+	TA_RunToWP(8,0,23,0,"ADW_BL_HOEHLE_05");
+	TA_RunToWP(23,0,8,0,"ADW_BL_HOEHLE_05");
 };
 
 func void rtn_tot_1118()

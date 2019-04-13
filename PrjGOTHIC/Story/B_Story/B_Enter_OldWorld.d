@@ -312,13 +312,14 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Lurker,"OW_PATH_OW_PATH_WARAN05_SPAWN01");
 		Wld_InsertNpc(Lurker,"OW_PATH_OW_PATH_WARAN05_SPAWN01");
 		Wld_InsertNpc(Lurker,"OW_PATH_OW_PATH_WARAN05_SPAWN01");
-		Wld_InsertNpc(Shadowbeast,"FP_ROAM_OW_SCAVENGER_LONE_WALD_OC3");
+//		Wld_InsertNpc(Shadowbeast,"FP_ROAM_OW_SCAVENGER_LONE_WALD_OC3");
 		Wld_InsertNpc(Warg,"SPAWN_OW_WOLF2_WALD_OC3");
 		Wld_InsertNpc(Warg,"SPAWN_OW_WOLF2_WALD_OC3");
 		Wld_InsertNpc(OrcWarrior_Roam,"SPAWN_WALD_OC_BLOODFLY01");
 		Wld_InsertNpc(OrcWarrior_Roam,"SPAWN_WALD_OC_BLOODFLY01");
 		Wld_InsertNpc(OrcWarrior_Roam,"SPAWN_WALD_OC_BLOODFLY01");
-		Wld_InsertNpc(Shadowbeast,"SPAWN_OW_MOLERAT2_WALD_OC1");
+//		Wld_InsertNpc(Shadowbeast,"SPAWN_OW_MOLERAT2_WALD_OC1");
+		Wld_InsertNpc(Shadowbeast,"LOCATION_24_IN");
 		Wld_InsertNpc(OrcWarrior_Roam,"PATH_WALD_OC_WOLFSPAWN2");
 		Wld_InsertNpc(OrcWarrior_Roam,"PATH_WALD_OC_WOLFSPAWN2");
 		Wld_InsertNpc(Warg,"PATH_WALD_OC_WOLFSPAWN2");
@@ -387,6 +388,10 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_SCAVENGER13_SPAWN01");
 		Wld_InsertItem(ItRw_Bow_H_02,"FP_ROAM_ITEM_SPECIAL_01");
+		if(Npc_IsDead(DragonSnapper_NC_Cave))
+		{
+			Wld_InsertNpc(Shadowbeast,"OW_PATH_07_15_CAVE3");
+		};
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_07_19");
 		Wld_InsertNpc(DragonSnapper,"OW_PATH_146");
 		Wld_InsertNpc(FireWaran,"OW_PATH_182");

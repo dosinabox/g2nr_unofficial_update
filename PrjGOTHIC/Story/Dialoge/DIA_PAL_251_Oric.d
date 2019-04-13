@@ -62,9 +62,16 @@ instance DIA_Oric_Bruder(C_Info)
 
 func int DIA_Oric_Bruder_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jergan_Burg) && Npc_KnowsInfo(other,DIA_Oric_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Oric_HALLO))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Jergan_Burg))
+		{
+			return TRUE;
+		}
+		else if(Npc_KnowsInfo(other,DIA_Jergan_Mine))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -224,7 +231,8 @@ func void DIA_Oric_IAmBack_Info()
 	}
 	else if(hero.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Oric_IAmBack_11_03");	//я вижу, ты стал высшим магом. ћое почтение.
+//		AI_Output(self,other,"DIA_Oric_IAmBack_11_03");	//я вижу, ты стал высшим магом. ћое почтение.
+		AI_Output(self,other,"DIA_Oric_IAmBack_11_03");	//я вижу, ты стал магом. ћое почтение.
 	};
 	AI_Output(self,other,"DIA_Oric_IAmBack_11_04");	//¬озможно, твое по€вление - добрый знак.
 };
@@ -625,7 +633,7 @@ instance DIA_Oric_PICKPOCKET(C_Info)
 	condition = DIA_Oric_PICKPOCKET_Condition;
 	information = DIA_Oric_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(украсть этот свиток будет чертовски сложно)";
+	description = "(украсть его свиток будет чертовски трудно)";
 };
 
 

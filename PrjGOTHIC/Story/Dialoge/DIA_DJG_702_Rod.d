@@ -80,6 +80,11 @@ func void DIA_RodDJG_HALLO_warten_zusammen()
 {
 	AI_Output(other,self,"DIA_RodDJG_HALLO_warten_zusammen_15_00");	//Пойдем вместе.
 	AI_Output(self,other,"DIA_RodDJG_HALLO_warten_zusammen_06_01");	//Хорошо. Тогда иди за мной.
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
 	Npc_ExchangeRoutine(self,"SwampWait2");

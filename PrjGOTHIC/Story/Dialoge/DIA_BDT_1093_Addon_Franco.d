@@ -304,7 +304,7 @@ instance DIA_Addon_Franco_WOEDGOR(C_Info)
 
 func int DIA_Addon_Franco_WOEDGOR_Condition()
 {
-	if((MIS_HlpEdgor == LOG_Running) && !Npc_HasItems(other,ItMi_Addon_Stone_04) && !Npc_KnowsInfo(other,DIA_Addon_Edgor_Hi))
+	if((MIS_HlpEdgor == LOG_Running) && !Npc_HasItems(other,ItMi_Addon_Stone_04))
 	{
 		return TRUE;
 	};

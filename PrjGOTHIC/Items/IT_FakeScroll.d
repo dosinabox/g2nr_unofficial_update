@@ -50,3 +50,15 @@ instance Fakemap(C_Item)
 	inv_roty = 180;
 };
 
+instance Openbook1(C_Item)
+{
+	name = "Открытая книга 1";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItWr_Book_01_Open.3DS";
+	material = MAT_LEATHER;
+	scemeName = "MAPSEALED";
+	description = name;
+};
+

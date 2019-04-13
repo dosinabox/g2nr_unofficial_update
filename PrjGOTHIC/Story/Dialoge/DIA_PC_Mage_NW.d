@@ -1,5 +1,5 @@
 
-instance DIA_MiltenNW_EXIT(C_Info)
+/*instance DIA_MiltenNW_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
@@ -21,7 +21,7 @@ func int DIA_MiltenNW_EXIT_Condition()
 func void DIA_MiltenNW_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_MiltenNW_KAP3_EXIT(C_Info)
@@ -37,7 +37,7 @@ instance DIA_MiltenNW_KAP3_EXIT(C_Info)
 
 func int DIA_MiltenNW_KAP3_EXIT_Condition()
 {
-	if(Kapitel == 3)
+	if(Kapitel >= 3)
 	{
 		return TRUE;
 	};
@@ -48,6 +48,100 @@ func void DIA_MiltenNW_KAP3_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
+
+instance DIA_MiltenNW_KAP3_Hello_FirstMeet(C_Info)
+{
+	npc = PC_Mage_NW;
+	nr = 31;
+	condition = DIA_MiltenNW_KAP3_Hello_FirstMeet_Condition;
+	information = DIA_MiltenNW_KAP3_Hello_FirstMeet_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_MiltenNW_KAP3_Hello_FirstMeet_Condition()
+{
+	if((Kapitel == 3) && !Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_MiltenNW_KAP3_Hello_FirstMeet_Info()
+{
+	AI_Output(self,other,"DIA_MiltenOW_Hello_03_00");	//Посмотрите, кто вернулся! Наш герой из-за Барьера!
+	if(hero.guild == GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_00");	//(не веря) Я не могу поверить в это. Ты действительно стал паладином?
+		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_01");	//Похоже на то.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_02");	//(в эйфории) Если такие, как ты, становятся паладинами, то прихвостням Белиара нужно держать ухо востро.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_03");	//Какая-то горстка орков для тебя не проблема.
+	}
+	else if(hero.guild == GIL_DJG)
+	{
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_10");	//Я вижу, что слухи оказались правдой.
+		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_11");	//Какие слухи?
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_12");	//Что ты присоединился к охотникам за драконами.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_13");	//Ну, ты никогда не был человеком церкви. Тем не менее, ты сражаешься за наше общее дело, и только это имеет значение.
+		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_14");	//Это все?
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_15");	//Я рад, конечно, и судя по тому, как ты выглядишь, все орки должны бояться тебя.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_MiltenOW_Hello_NO_03_01");	//Ты через многое прошел, да?
+	};
+	Info_ClearChoices(DIA_MiltenNW_KAP3_Hello_FirstMeet);
+	if((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG))
+	{
+		Info_AddChoice(DIA_MiltenNW_KAP3_Hello_FirstMeet,"Проблема не только в орках.",DIA_MiltenNW_KAP3_Hello_FirstMeet_YES);
+	}
+	else
+	{
+		Info_AddChoice(DIA_MiltenNW_KAP3_Hello_FirstMeet,"Все будет в порядке.",DIA_MiltenNW_KAP3_Hello_FirstMeet_YES);
+	};
+	Info_AddChoice(DIA_MiltenNW_KAP3_Hello_FirstMeet,"Я должен знать тебя?",DIA_MiltenNW_KAP3_Hello_FirstMeet_NO);
+};
+
+
+func void DIA_MiltenNW_KAP3_Hello_FirstMeet_YES()
+{
+	if(hero.guild == GIL_PAL)
+	{
+		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_05");	//Я знаю, но все равно хорошо, что ты на нашей стороне.
+		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_06");	//Ну да.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_07");	//Что ты делаешь здесь, в монастыре? Дай я угадаю. Ты хочешь быть посвященным в искусство магии.
+		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_08");	//Возможно.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_09");	//Я знал это - лучше всего тебе поговорить с Мардуком, он отвечает за вас, паладинов. Ты найдешь его перед часовней.
+	}
+	else if(hero.guild == GIL_DJG)
+	{
+		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_04");	//Проблема не только в орках.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_17");	//Я знаю, но, тем не менее, они доставляют проблемы. А ты важная птица.
+		
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Bengar_PERM_15_00");	//Все будет в порядке.
+		AI_Output(self,other,"DIA_MiltenNW_KAP3_Hello_03_18");	//Ты победил Спящего. Нам всем может понадобиться твоя помощь однажды.
+		AI_Output(other,self,"DIA_MiltenNW_KAP3_Hello_15_19");	//Ох, ладно.
+		Knows_Milten = TRUE;
+	};
+	Info_ClearChoices(DIA_MiltenNW_KAP3_Hello_FirstMeet);
+};
+
+
+func void DIA_MiltenNW_KAP3_Hello_FirstMeet_NO()
+{
+	AI_Output(other,self,"DIA_MiltenOW_Hello_NO_15_00");	//Я должен знать тебя?
+	AI_Output(self,other,"DIA_MiltenOW_Hello_Forget_03_01");	//Ты многое забыл, да? Что ж, оставим прошлое в покое и посвятим себя делам нынешних дней.
+	AI_Output(self,other,"DIA_MiltenOW_Hello_Forget_03_02");	//Хотя у меня и нет приятных новостей.
+	Info_ClearChoices(DIA_MiltenNW_KAP3_Hello_FirstMeet);
+};
+
+
+//////////////////////////////////////////////////////////////////
 
 instance DIA_MiltenNW_KAP3_Hello(C_Info)
 {
@@ -62,7 +156,7 @@ instance DIA_MiltenNW_KAP3_Hello(C_Info)
 
 func int DIA_MiltenNW_KAP3_Hello_Condition()
 {
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG))
+	if(((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
 	{
 		return TRUE;
 	};
@@ -112,7 +206,7 @@ instance DIA_MiltenNW_Monastery(C_Info)
 
 func int DIA_MiltenNW_Monastery_Condition()
 {
-	if(Kapitel == 3)
+	if((Kapitel == 3) && Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
 	{
 		return TRUE;
 	};
@@ -139,7 +233,7 @@ instance DIA_MiltenNW_FourFriends(C_Info)
 
 func int DIA_MiltenNW_FourFriends_Condition()
 {
-	if(Kapitel == 3)
+	if((Kapitel == 3) && ((Knows_Milten == TRUE) || (Knows_Diego == TRUE)))
 	{
 		return TRUE;
 	};
@@ -180,6 +274,15 @@ func void DIA_MiltenNW_FourFriends_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_10");	//Диего выкупил Горна - похоже, что Барьер изменил и его.
+	};
+	if(!Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
+	{
+		AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_02");	//Лестер исчез, впрочем - и я понятия не имею, где он сейчас ошивается.
+		if(Npc_KnowsInfo(other,DIA_Lester_Hello) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN) || Npc_KnowsInfo(other,DIA_Lester_XARDASWEG))
+		{
+			AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03");	//Я встретил Лестера - он теперь с Ксардасом.
+			AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_04");	//Ну, хоть какие-то хорошие новости.
+		};
 	};
 };
 
@@ -310,7 +413,7 @@ func void DIA_MiltenNW_KAP3_Perm_Info()
 };
 
 
-instance DIA_MiltenNW_KAP4_EXIT(C_Info)
+/*instance DIA_MiltenNW_KAP4_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
@@ -332,7 +435,7 @@ func int DIA_MiltenNW_KAP4_EXIT_Condition()
 func void DIA_MiltenNW_KAP4_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_MiltenNW_KAP4_PERM(C_Info)
@@ -381,7 +484,7 @@ func void DIA_MiltenNW_KAP4_PERM_Info()
 };
 
 
-instance DIA_MiltenNW_KAP5_EXIT(C_Info)
+/*instance DIA_MiltenNW_KAP5_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
 	nr = 999;
@@ -403,7 +506,7 @@ func int DIA_MiltenNW_KAP5_EXIT_Condition()
 func void DIA_MiltenNW_KAP5_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_MiltenNW_AllDragonsDead(C_Info)

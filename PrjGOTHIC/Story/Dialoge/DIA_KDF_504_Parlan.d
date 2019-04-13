@@ -794,7 +794,9 @@ func void DIA_Parlan_MAGE_Info()
 	AI_Output(self,other,"DIA_Parlan_MAGE_05_00");	//Ты принес клятву, брат. Добро пожаловать в наши ряды.
 	AI_Output(self,other,"DIA_Parlan_MAGE_05_01");	//Я научу тебя первому Кругу магии, когда у тебя будет достаточно опыта.
 	AI_Output(self,other,"DIA_Parlan_MAGE_05_02");	//Возьми этот рунный камень в качестве символа силы, которая теперь находится в твоих руках.
-	B_GiveInvItems(self,other,ItMi_RuneBlank,1);
+//	B_GiveInvItems(self,other,ItMi_RuneBlank,1);
+	CreateInvItem(other,ItMi_RuneBlank);
+	AI_PrintScreen("Рунный камень получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 };
 
 

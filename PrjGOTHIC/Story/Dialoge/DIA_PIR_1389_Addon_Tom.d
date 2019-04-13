@@ -1,5 +1,5 @@
 
-instance DIA_Addon_PIR_1389_Tom_EXIT(C_Info)
+/*instance DIA_Addon_PIR_1389_Tom_EXIT(C_Info)
 {
 	npc = PIR_1389_Addon_Tom;
 	nr = 999;
@@ -19,4 +19,4 @@ func void DIA_Addon_PIR_Tom_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/

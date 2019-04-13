@@ -12,7 +12,7 @@ instance VLK_482_Buergerin(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_BabeHair",FaceBabe_N_HairAndCloth,BodyTex_N,ITAR_VlkBabe_L);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe2",FaceBabe_N_HairAndCloth,BodyTex_N,ITAR_VlkBabe_L);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,15);
@@ -22,6 +22,8 @@ instance VLK_482_Buergerin(Npc_Default)
 
 func void Rtn_Start_482()
 {
+	TA_Sit_Chair(5,0,7,0,"NW_CITY_HABOUR_HUT_06_IN");
+	TA_Stomp_Herb(7,0,12,0,"NW_CITY_HABOUR_STOMPER_01");
 	TA_Smalltalk(12,0,16,0,"NW_CITY_HABOUR_STOMPER_01");
 	TA_Stomp_Herb(16,0,20,0,"NW_CITY_HABOUR_STOMPER_01");
 	TA_Smalltalk(20,0,0,0,"NW_CITY_HABOUR_SMALLTALK_02");

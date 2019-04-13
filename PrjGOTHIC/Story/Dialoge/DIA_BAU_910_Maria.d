@@ -213,7 +213,7 @@ func void DIA_Maria_Belohnung_Info()
 			}
 			else if(SOLD == 30)
 			{
-				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_30");	//30 золотых
+				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_30");	//30 золотых.
 			}
 			else if(SOLD == 20)
 			{
@@ -267,7 +267,10 @@ func void DIA_Maria_Belohnung_SOLD()
 {
 	AI_Output(other,self,"DIA_Maria_Belohnung_SOLD_15_00");	//Да.
 	AI_Output(self,other,"DIA_Maria_Belohnung_SOLD_17_01");	//Хорошо, если ты будешь работать здесь, я прослежу, чтобы ты получал хорошее жалование.
-	AI_Output(self,other,"DIA_Maria_Belohnung_SOLD_17_02");	//Зайди ко мне, когда обсудишь размер жалования с моим мужем.
+	if(!Npc_KnowsInfo(other,DIA_Onar_HowMuch))
+	{
+		AI_Output(self,other,"DIA_Maria_Belohnung_SOLD_17_02");	//Зайди ко мне, когда обсудишь размер жалования с моим мужем.
+	};
 	Info_ClearChoices(DIA_Maria_Belohnung);
 };
 

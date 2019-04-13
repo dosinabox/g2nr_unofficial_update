@@ -34,8 +34,8 @@ func void Rtn_Xardas_4()
 
 func void Rtn_XardasWeg_4()
 {
-	TA_Stand_Guarding(8,0,23,0,"NW_XARDAS_TOWER_02");
-	TA_Smoke_Joint(23,0,8,0,"NW_XARDAS_TOWER_02");
+	TA_Stand_Guarding(8,0,23,0,"NW_XARDAS_TOWER_03");
+	TA_Smoke_Joint(23,0,8,0,"NW_XARDAS_TOWER_03");
 };
 
 func void Rtn_WaitForPlayer_4()
@@ -52,8 +52,8 @@ func void Rtn_WaitForShip_4()
 
 func void Rtn_ShipOff_4()
 {
-	TA_Stand_Guarding(8,0,23,0,"NW_XARDAS_TOWER_02");
-	TA_Stand_Guarding(23,0,8,0,"NW_XARDAS_TOWER_02");
+	TA_Stand_Guarding(8,0,23,0,"NW_XARDAS_TOWER_03");
+	TA_Stand_Guarding(23,0,8,0,"NW_XARDAS_TOWER_03");
 };
 
 func void Rtn_Ship_4()

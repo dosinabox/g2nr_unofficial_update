@@ -35,21 +35,22 @@ func void UseMobsiBrief()
 
 instance ItSe_Addon_Sack(C_Item)
 {
-	name = "Мешок наполнен новым оружием!";
+	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = 25;
-	visual = "ItFo_Fish.3DS";
+	value = 0;
+	visual = "ItMi_Bag.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_Sack;
 	description = name;
-	text[2] = "Много разного оружия";
+	text[0] = "Мешок наполнен новым оружием!";
 };
 
 
 func void Use_Sack()
 {
+	Snd_Play("Geldbeutel");
 	Print("Найдено много разного нового оружия!");
 	CreateInvItems(self,ItMW_Addon_Knife01,1);
 	CreateInvItems(self,ItMW_Addon_Stab01,1);

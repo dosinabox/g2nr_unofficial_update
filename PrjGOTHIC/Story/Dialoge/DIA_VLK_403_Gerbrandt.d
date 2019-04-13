@@ -79,6 +79,30 @@ func void DIA_Gerbrandt_PICKPOCKET_BACK()
 };
 
 
+instance DIA_Gerbrandt_PreHello(C_Info)
+{
+	npc = VLK_403_Gerbrandt;
+	nr = 2;
+	condition = DIA_Gerbrandt_PreHello_Condition;
+	information = DIA_Gerbrandt_PreHello_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Gerbrandt_PreHello_Condition()
+{
+	if(Npc_IsInState(self,ZS_Talk) && (hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Gerbrandt_PreHello_Info()
+{
+	AI_Output(self,other,"DIA_Constantino_Hallo_10_00");	//Что тебе нужно? Бесплатного здесь ничего нет, и продавать тебе я тоже ничего не собираюсь. 
+};
+
 instance DIA_Gerbrandt_Hello(C_Info)
 {
 	npc = VLK_403_Gerbrandt;
@@ -163,10 +187,7 @@ func void B_Gerbrandt_PissOff()
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_00");	//Что это все значит - ты издеваешься надо мной?
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_01");	//Ты и твой приятель Диего уже и так дел натворили.
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_02");	//Оставь меня в покое!
-/*	if(DIEGO_COMING == TRUE)
-	{
-		AI_StopProcessInfos(self);
-	}; */
+	AI_StopProcessInfos(self);
 };
 
 

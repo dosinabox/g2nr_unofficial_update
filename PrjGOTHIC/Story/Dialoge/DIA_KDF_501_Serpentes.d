@@ -389,7 +389,7 @@ func void DIA_Serpentes_MinenAnteile_Info()
 	{
 		AI_Output(self,other,"DIA_Serpentes_MinenAnteile_10_05");	//Наемник вроде тебя мог бы очень помочь нам в этом вопросе.
 		Info_ClearChoices(DIA_Serpentes_MinenAnteile);
-		Info_AddChoice(DIA_Serpentes_MinenAnteile,"У меня и так уже много заданий. Найди кого-нибудь еще.",DIA_Serpentes_MinenAnteile_nein);
+		Info_AddChoice(DIA_Serpentes_MinenAnteile,"Найди себе другого мальчика на побегушках, старик!",DIA_Serpentes_MinenAnteile_nein_sld);
 		Info_AddChoice(DIA_Serpentes_MinenAnteile,"Кого я должен убить?",DIA_Serpentes_MinenAnteile_KillSLD);
 	};
 };
@@ -403,15 +403,15 @@ func void DIA_Serpentes_MinenAnteile_miliz()
 func void DIA_Serpentes_MinenAnteile_nein()
 {
 	AI_Output(other,self,"DIA_Serpentes_MinenAnteile_nein_15_00");	//У меня и так уже много заданий. Найди кого-нибудь еще.
-	if(hero.guild == GIL_KDF)
-	{
-		AI_Output(self,other,"DIA_Serpentes_MinenAnteile_nein_10_01");	//(сердито) Это возмутительно. Тебе никогда не достичь высших кругов магии, если ты не желаешь выполнять работу для Братства.
-		AI_Output(self,other,"DIA_Serpentes_MinenAnteile_nein_10_02");	//Я объявляю тебе выговор. Надеюсь, больше этого не повторится - иначе ты плохо кончишь.
-	}
-	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
-	{
-		B_Say(self,other,"$YesGoOutOfHere");
-	};
+	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_nein_10_01");	//(сердито) Это возмутительно. Тебе никогда не достичь высших кругов магии, если ты не желаешь выполнять работу для Братства.
+	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_nein_10_02");	//Я объявляю тебе выговор. Надеюсь, больше этого не повторится - иначе ты плохо кончишь.
+	AI_StopProcessInfos(self);
+};
+
+func void DIA_Serpentes_MinenAnteile_nein_sld()
+{
+	AI_Output(other,self,"DIA_Vatras_Mission_No_15_00");	//Найди себе другого мальчика на побегушках, старик!
+	B_Say(self,other,"$YesGoOutOfHere");
 	AI_StopProcessInfos(self);
 };
 

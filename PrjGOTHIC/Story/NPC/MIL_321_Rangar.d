@@ -1,7 +1,7 @@
 
 instance MIL_321_Rangar(Npc_Default)
 {
-	name[0] = "Рангар";
+	name[0] = "Рагнар";
 	guild = GIL_MIL;
 	id = 321;
 	voice = 7;

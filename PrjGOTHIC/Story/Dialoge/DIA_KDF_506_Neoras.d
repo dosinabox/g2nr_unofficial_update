@@ -545,7 +545,7 @@ instance DIA_Neoras_DRACHENEIER(C_Info)
 
 func int DIA_Neoras_DRACHENEIER_Condition()
 {
-	if((Kapitel >= 4) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)) && (MIS_Neoras_DragonEgg == FALSE) && (Npc_GetDistToWP(self,"NW_MONASTERY_ALCHEMY_01") <= 500))
+	if((Kapitel >= 4) && ((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF)) && (MIS_Neoras_DragonEgg == FALSE) && (Npc_GetDistToWP(self,"NW_MONASTERY_ALCHEMY_01") <= 1000))
 	{
 		return TRUE;
 	};

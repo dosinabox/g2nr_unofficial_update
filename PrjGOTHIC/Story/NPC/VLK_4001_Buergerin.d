@@ -10,7 +10,7 @@ instance VLK_4001_Buergerin(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_BabeHair",FaceBabe_N_HairAndCloth,BodyTex_N,ITAR_VlkBabe_M);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe2",FaceBabe_N_HairAndCloth,BodyTex_N,ITAR_VlkBabe_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);

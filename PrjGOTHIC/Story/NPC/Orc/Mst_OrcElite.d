@@ -61,11 +61,16 @@ instance OrcElite_Rest(Mst_Default_OrcElite)
 instance OrkElite_AntiPaladinOrkOberst(Mst_Default_OrcElite)
 {
 	name[0] = NAME_OrkOberst;
+//	attribute[ATR_STRENGTH] = 140;
+//	attribute[ATR_DEXTERITY] = 120;
+//	attribute[ATR_HITPOINTS_MAX] = 400;
+//	attribute[ATR_HITPOINTS] = 400;
 	attribute[ATR_STRENGTH] = 140;
-	attribute[ATR_DEXTERITY] = 120;
-	attribute[ATR_HITPOINTS_MAX] = 400;
-	attribute[ATR_HITPOINTS] = 400;
-//	B_SetVisuals_OrcElite();
+	attribute[ATR_HITPOINTS_MAX] = 550;
+	attribute[ATR_HITPOINTS] = 550;
+	protection[PROT_BLUNT] = 170;
+	protection[PROT_EDGE] = 170;
+	protection[PROT_POINT] = 170;
 	B_SetVisuals_OrcCommander();
 	EquipItem(self,ItMw_Schlachtaxt);
 	CreateInvItems(self,ItRi_OrcEliteRing,1);
@@ -78,7 +83,12 @@ instance OrkElite_AntiPaladinOrkOberst(Mst_Default_OrcElite)
 instance OrcElite_AntiPaladin(Mst_Default_OrcElite)
 {
 	name[0] = NAME_Antipaldin;
-//	B_SetVisuals_OrcElite();
+	attribute[ATR_STRENGTH] = 140;
+	attribute[ATR_HITPOINTS_MAX] = 550;
+	attribute[ATR_HITPOINTS] = 550;
+	protection[PROT_BLUNT] = 170;
+	protection[PROT_EDGE] = 170;
+	protection[PROT_POINT] = 170;
 	B_SetVisuals_OrcCommander();
 	EquipItem(self,ItMw_2H_OrcAxe_04);
 	CreateInvItems(self,ItRi_OrcEliteRing,1);
@@ -91,11 +101,15 @@ instance OrcElite_AntiPaladin1(Mst_Default_OrcElite)
 	name[0] = NAME_Antipaldin;
 	guild = GIL_ORC;
 	id = 111;
-//	voice = 18;
 	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_EnemyOverride] = TRUE;
-//	B_SetVisuals_OrcElite();
+	attribute[ATR_STRENGTH] = 140;
+	attribute[ATR_HITPOINTS_MAX] = 550;
+	attribute[ATR_HITPOINTS] = 550;
+	protection[PROT_BLUNT] = 170;
+	protection[PROT_EDGE] = 170;
+	protection[PROT_POINT] = 170;
 	B_SetVisuals_OrcCommander();
 	EquipItem(self,ItMw_2H_OrcAxe_04);
 	CreateInvItems(self,ItRi_OrcEliteRing,1);
@@ -109,7 +123,12 @@ instance OrcElite_AntiPaladin2(Mst_Default_OrcElite)
 	id = 112;
 	guild = GIL_ORC;
 	aivar[AIV_EnemyOverride] = TRUE;
-//	B_SetVisuals_OrcElite();
+	attribute[ATR_STRENGTH] = 140;
+	attribute[ATR_HITPOINTS_MAX] = 550;
+	attribute[ATR_HITPOINTS] = 550;
+	protection[PROT_BLUNT] = 170;
+	protection[PROT_EDGE] = 170;
+	protection[PROT_POINT] = 170;
 	B_SetVisuals_OrcCommander();
 	EquipItem(self,ItMw_2H_OrcAxe_04);
 	CreateInvItems(self,ItRi_OrcEliteRing,1);
@@ -123,7 +142,12 @@ instance OrcElite_AntiPaladin3(Mst_Default_OrcElite)
 	id = 113;
 	guild = GIL_ORC;
 	aivar[AIV_EnemyOverride] = TRUE;
-//	B_SetVisuals_OrcElite();
+	attribute[ATR_STRENGTH] = 140;
+	attribute[ATR_HITPOINTS_MAX] = 550;
+	attribute[ATR_HITPOINTS] = 550;
+	protection[PROT_BLUNT] = 170;
+	protection[PROT_EDGE] = 170;
+	protection[PROT_POINT] = 170;
 	B_SetVisuals_OrcCommander();
 	EquipItem(self,ItMw_2H_OrcAxe_04);
 	CreateInvItems(self,ItRi_OrcEliteRing,1);
@@ -135,10 +159,11 @@ instance OrkElite_AntiPaladinOrkOberst_DI(Mst_Default_OrcElite)
 {
 	name[0] = NAME_OrkOberst;
 	attribute[ATR_STRENGTH] = 150;
-	attribute[ATR_DEXTERITY] = 150;
-	attribute[ATR_HITPOINTS_MAX] = 450;
-	attribute[ATR_HITPOINTS] = 450;
-//	B_SetVisuals_OrcElite();
+	attribute[ATR_HITPOINTS_MAX] = 550;
+	attribute[ATR_HITPOINTS] = 550;
+	protection[PROT_BLUNT] = 170;
+	protection[PROT_EDGE] = 170;
+	protection[PROT_POINT] = 170;
 	B_SetVisuals_OrcCommander();
 	aivar[AIV_EnemyOverride] = TRUE;
 	EquipItem(self,ItMw_2H_OrcAxe_04);

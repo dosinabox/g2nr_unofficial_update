@@ -63,15 +63,15 @@ instance ITAR_Governor(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ITAR_Larius(C_Item)
 {
-	name = "Одежда Лариуса";
+	name = "Одежда губернатора";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 50;
@@ -92,8 +92,8 @@ instance ITAR_Larius(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -121,10 +121,8 @@ instance ITAR_Judge(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_Smith(C_Item)
@@ -150,10 +148,8 @@ instance ITAR_Smith(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_Barkeeper(C_Item)
@@ -179,10 +175,8 @@ instance ITAR_Barkeeper(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_Vlk_L(C_Item)
@@ -208,8 +202,8 @@ instance ITAR_Vlk_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -237,8 +231,8 @@ instance ITAR_Vlk_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -266,8 +260,8 @@ instance ITAR_Vlk_H(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -295,10 +289,8 @@ instance ITAR_VlkBabe_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_VlkBabe_M(C_Item)
@@ -324,10 +316,8 @@ instance ITAR_VlkBabe_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_VlkBabe_H(C_Item)
@@ -353,10 +343,8 @@ instance ITAR_VlkBabe_H(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_MIL_L(C_Item)
@@ -574,8 +562,8 @@ instance ITAR_Bau_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -603,8 +591,8 @@ instance ITAR_Bau_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -632,10 +620,8 @@ instance ITAR_BauBabe_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_BauBabe_M(C_Item)
@@ -661,10 +647,8 @@ instance ITAR_BauBabe_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_SLD_L(C_Item)
@@ -692,8 +676,8 @@ instance ITAR_SLD_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -951,8 +935,8 @@ instance ITAR_DJG_Crawler(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1101,10 +1085,8 @@ instance ITAR_DJG_Babe(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_NOV_L(C_Item)
@@ -1329,8 +1311,8 @@ instance ITAR_Leather_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1393,8 +1375,8 @@ instance ITAR_BDT_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1423,8 +1405,8 @@ instance ITAR_BDT_H(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1481,8 +1463,8 @@ instance ITAR_Lester(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1510,8 +1492,8 @@ instance ITAR_Diego(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1626,8 +1608,8 @@ instance ITAR_Prisoner(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1684,8 +1666,8 @@ instance ITAR_Slave(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };

@@ -103,6 +103,7 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItems(self,ItMw_1H_Sword_L_03,1);
 	CreateInvItems(self,ItMw_ShortSword2,1);
 	CreateInvItems(self,ItMw_Sense,1);
+	CreateInvItems(self,ItMw_BattleSense,1);
 	CreateInvItems(self,ItMw_1h_Vlk_Sword,1);
 	CreateInvItems(self,ItMw_1h_Nov_Mace,1);
 	CreateInvItems(self,ItMw_2h_Bau_Axe,1);

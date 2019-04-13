@@ -20,6 +20,10 @@ func int DIA_Lobart_EXIT_Condition()
 
 func void DIA_Lobart_EXIT_Info()
 {
+	if(!Npc_HasEquippedArmor(other))
+	{
+		PlayerVisitedLobartFarmArmorless = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -70,6 +74,7 @@ func void DIA_Lobart_STOLENCLOTHS_Info()
 	else
 	{
 		Info_AddChoice(DIA_Lobart_STOLENCLOTHS,"У меня ее нет.",DIA_Lobart_STOLENCLOTHS_DontHaveIt);
+		Info_AddChoice(DIA_Lobart_STOLENCLOTHS,"Сколько стоит эта рабочая одежда?",DIA_Lobart_STOLENCLOTHS_HowMuch);
 	};
 };
 
@@ -98,6 +103,27 @@ func void DIA_Lobart_STOLENCLOTHS_ForgetIt()
 	Lobart_Kleidung_gestohlen = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_Theft,1);
+};
+
+func void DIA_Lobart_STOLENCLOTHS_HowMuch()
+{
+	AI_Output(other,self,"DIA_Lobart_BuyClothes_15_00");	//Сколько стоит эта рабочая одежда?
+	B_Say_Gold(self,other,80);
+	AI_Output(self,other,"DIA_Lobart_GOLD_05_06");	//И дешевле я ее не отдам.
+	if(Npc_HasItems(other,ItMi_Gold) >= 80)
+	{
+		Info_AddChoice(DIA_Lobart_STOLENCLOTHS,"Хорошо, я заплачу, ты не оставляешь мне выбора.",DIA_Lobart_STOLENCLOTHS_GiveGold);
+	};
+};
+
+func void DIA_Lobart_STOLENCLOTHS_GiveGold()
+{
+	AI_Output(other,self,"DIA_Canthar_Pay_Ja_15_00");	//Хорошо, я заплачу, ты не оставляешь мне выбора.
+	B_GiveInvItems(other,self,ItMi_Gold,80);
+	AI_Output(self,other,"DIA_Lobart_DMT_05_01");	//Это все невыносимо.
+	Lobart_Kleidung_Verkauft = TRUE;
+	LobartGotGoldForStolenClothes = TRUE;
+	AI_StopProcessInfos(self);
 };
 
 
@@ -226,6 +252,11 @@ func void DIA_Lobart_BuyClothes_Info()
 	Wert_LobartsRuestung = 80;
 	AI_Output(other,self,"DIA_Lobart_BuyClothes_15_00");	//Сколько стоит эта рабочая одежда?
 	AI_Output(self,other,"DIA_Lobart_BuyClothes_05_01");	//Так. Посмотрим...
+	if(Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS))
+	{
+		AI_Output(self,other,"DIA_Lobart_STOLENCLOTHS_05_02");	//Когда ты тут был последний раз, из моего сундука пропали вещи!
+		Wert_LobartsRuestung += 20;
+	};
 	if(Lobart_AgainstKing == TRUE)
 	{
 		Wert_LobartsRuestung -= 10;
@@ -264,7 +295,15 @@ func void DIA_Lobart_BuyClothes_Info()
 	Info_ClearChoices(DIA_Lobart_BuyClothes);
 	Info_AddChoice(DIA_Lobart_BuyClothes,"Это все еще слишком дорого для меня.",DIA_Lobart_BuyClothes_NotYet);
 //	Info_AddChoice(DIA_Lobart_BuyClothes,"Давай тогда сюда эту рабочую одежду. (Защита: оружие 15, стрелы 15)",DIA_Lobart_BuyClothes_BUY);
-	if(Wert_LobartsRuestung == 80)
+	if(Wert_LobartsRuestung == 100)
+	{
+		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/15/0. (100 золотых)",DIA_Lobart_BuyClothes_BUY);
+	}
+	else if(Wert_LobartsRuestung == 90)
+	{
+		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/15/0. (90 золотых)",DIA_Lobart_BuyClothes_BUY);
+	}
+	else if(Wert_LobartsRuestung == 80)
 	{
 		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/15/0. (80 золотых)",DIA_Lobart_BuyClothes_BUY);
 	}
@@ -480,7 +519,7 @@ func void DIA_Lobart_WorkNOW_Info()
 	AI_Output(other,self,"DIA_Lobart_WorkNOW_15_00");	//Я ищу работу.
 	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_01");	//Мне не нужен еще один постоянный работник. Но я могу предложить тебе поденную работу.
 	AI_Output(self,other,"DIA_Lobart_WorkNOW_05_02");	//Я хочу сказать, ты можешь помочь на поле. Также здесь еще наверняка найдется кое-какая работенка для тебя.
-	if(hero.guild == GIL_NONE)
+	if((hero.guild == GIL_NONE) && (LobartGotGoldForStolenClothes == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_05_03");	//Я могу заплатить тебе золотом. Или дать приличную одежду.
 		if(Lobart_Kleidung_Verkauft == FALSE)
@@ -824,10 +863,13 @@ func void DIA_Lobart_DMT_FrauHeilen()
 {
 	AI_Output(other,self,"DIA_Lobart_DMT_FrauHeilen_15_00");	//Почему ты не отведешь жену к лекарю?
 	AI_Output(self,other,"DIA_Lobart_DMT_FrauHeilen_05_01");	//Мы должны сходить в город к Ватрасу, но я с места не сойду, пока на моей ферме царит такой хаос.
-	Log_CreateTopic(TOPIC_HealHilda,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HealHilda,LOG_Running);
-	B_LogEntry(TOPIC_HealHilda,"Жена Лобарта Хильда больна, но у Ватраса есть лекарство, которое может вылечить ее.");
-	MIS_HealHilda = LOG_Running;
+	if(MIS_HealHilda == FALSE)
+	{
+		Log_CreateTopic(TOPIC_HealHilda,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_HealHilda,LOG_Running);
+		B_LogEntry(TOPIC_HealHilda,"Жена Лобарта Хильда больна, но у Ватраса есть лекарство, которое может вылечить ее.");
+		MIS_HealHilda = LOG_Running;
+	};
 };
 
 func void DIA_Lobart_DMT_BACK()

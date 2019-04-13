@@ -266,7 +266,7 @@ instance DIA_Rengaru_INKNAST(C_Info)
 
 func int DIA_Rengaru_INKNAST_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+	if(Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU) && !Npc_KnowsInfo(other,DIA_Rengaru_SPARE))
 	{
 		return TRUE;
 	};
@@ -308,6 +308,35 @@ func void DIA_Rengaru_INKNAST_keinKnast()
 };
 
 
+instance DIA_Rengaru_SPARE(C_Info)
+{
+	npc = VLK_492_Rengaru;
+	nr = 5;
+	condition = DIA_Rengaru_SPARE_Condition;
+	information = DIA_Rengaru_SPARE_Info;
+	permanent = FALSE;
+	description = "Проваливай! И чтоб больше я тебя здесь не видел!";
+};
+
+
+func int DIA_Rengaru_SPARE_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Rengaru_SPARE_Info()
+{
+	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтоб больше я тебя здесь не видел!
+	AI_Output(self,other,"DIA_Rengaru_INKNAST_HauAb_07_01");	//Ты не пожалеешь об этом! Спасибо, парень!
+	Npc_ExchangeRoutine(self,"Start");
+	AI_StopProcessInfos(self);
+	Diebesgilde_Okay += 1;
+};
+
+
 instance DIA_Rengaru_LastInfoKap1(C_Info)
 {
 	npc = VLK_492_Rengaru;
@@ -321,7 +350,7 @@ instance DIA_Rengaru_LastInfoKap1(C_Info)
 
 func int DIA_Rengaru_LastInfoKap1_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rengaru_INKNAST))
+	if(Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) || Npc_KnowsInfo(other,DIA_Rengaru_SPARE))
 	{
 		return TRUE;
 	};

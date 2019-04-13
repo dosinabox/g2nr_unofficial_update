@@ -721,9 +721,9 @@ instance ItRu_ChargeFireball(C_Item)
 	count[1] = STEP_ChargeFireball;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_ChargeFireball;
-	text[3] = "Урон огнем (мин.):";
+	text[3] = NAME_Dam_FireMin;
 	count[3] = SPL_Damage_ChargeFireball;
-	text[4] = "Урон огнем (макс.):";
+	text[4] = NAME_Dam_FireMax;
 	count[4] = SPL_Damage_ChargeFireball * 4;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -890,9 +890,9 @@ instance ItRu_Pyrokinesis(C_Item)
 	count[1] = STEP_Firestorm;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_Firestorm;
-	text[3] = "Урон огнем (мин.):";
+	text[3] = NAME_Dam_FireMin;
 	count[3] = SPL_Damage_Firestorm;
-	text[4] = "Урон огнем (макс.):";
+	text[4] = NAME_Dam_FireMax;
 	count[4] = SPL_Damage_Firestorm * 4;
 	text[5] = NAME_Value;
 	count[5] = value;

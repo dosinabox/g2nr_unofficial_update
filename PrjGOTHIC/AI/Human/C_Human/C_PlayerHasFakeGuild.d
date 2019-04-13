@@ -5,6 +5,17 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	var int NSC_CommentRangerArmor;
 	itm = Npc_GetEquippedArmor(oth);
 	NSC_CommentRangerArmor = TRUE;
+	if(Hlp_IsItem(itm,ITAR_RANGER_Addon))
+	{
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares)) && (Npc_GetDistToWP(slf,"NW_CITY_HABOUR_02_B") < 5000))
+		{
+			return TRUE;
+		};
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras)) && (Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000))
+		{
+			return TRUE;
+		};
+	};
 	if(slf.aivar[AIV_IgnoresArmor] == TRUE)
 	{
 		return FALSE;
@@ -30,6 +41,35 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	};
 	if(!Npc_HasEquippedArmor(oth))
 	{
+		if((slf.guild == GIL_SLD) || (slf.guild == GIL_DJG))
+		{
+			if((oth.guild == GIL_SLD) || (oth.guild == GIL_DJG))
+			{
+				return TRUE;
+			};
+		}
+		else if(slf.guild == GIL_PAL)
+		{
+			if((oth.guild == GIL_MIL) || (oth.guild == GIL_PAL))
+			{
+				return TRUE;
+			};
+		}
+		else if((slf.guild == GIL_MIL) && (oth.guild == GIL_MIL))
+		{
+			return TRUE;
+		}
+		else if(slf.guild == GIL_KDF)
+		{
+			if((oth.guild == GIL_NOV) || (oth.guild == GIL_KDF))
+			{
+				return TRUE;
+			};
+		}
+		else if((slf.guild == GIL_NOV) && (oth.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 		return FALSE;
 	}
 	else if(slf.guild == oth.guild)

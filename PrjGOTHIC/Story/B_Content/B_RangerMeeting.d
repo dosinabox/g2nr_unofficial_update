@@ -1,9 +1,22 @@
 
+var int LaresRangerArmorEquipped;
+
 func void B_MakeRangerReadyForMeeting(var C_Npc Ranger)
 {
-	CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
-//	AI_UnequipArmor(Ranger);
-	AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
+	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Lares))
+	{
+		if(LaresRangerArmorEquipped == FALSE)
+		{
+			CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
+			AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
+			LaresRangerArmorEquipped = TRUE;
+		};
+	}
+	else
+	{
+		CreateInvItems(Ranger,ITAR_Fake_RANGER,1);
+		AI_EquipArmor(Ranger,ITAR_Fake_RANGER);
+	};
 	Ranger.npcType = NPCTYPE_FRIEND;
 };
 
@@ -15,11 +28,15 @@ func void B_MakeRangerReadyToLeaveMeeting(var C_Npc Ranger)
 	AI_EquipBestArmor(Ranger);*/
 	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Martin))
 	{
-		AI_EquipArmor(Ranger,ITAR_MIL_M);
+		AI_EquipArmor(Ranger,ITAR_MIL_L);
 	};
 	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Lares))
 	{
-		AI_EquipArmor(Ranger,ITAR_Vlk_L);
+		if(LaresRangerArmorEquipped == TRUE)
+		{
+			AI_EquipArmor(Ranger,ITAR_Vlk_L);
+			LaresRangerArmorEquipped = FALSE;
+		};
 	};
 	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Cord))
 	{

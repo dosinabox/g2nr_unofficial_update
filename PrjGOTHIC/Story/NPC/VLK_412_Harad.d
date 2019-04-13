@@ -9,7 +9,8 @@ instance VLK_412_Harad(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1H_Mace_L_04);
+//	EquipItem(self,ItMw_1H_Mace_L_04);
+	EquipItem(self,ItMw_ShortSword1);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart20,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,2);

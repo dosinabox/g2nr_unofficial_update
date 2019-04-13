@@ -17,7 +17,8 @@ prototype Mst_Default_Gobbo_Skeleton(C_Npc)
 	protection[PROT_FIRE] = 16;	//75;
 	protection[PROT_FLY] = 75;
 	protection[PROT_MAGIC] = 0;
-	damagetype = DAM_EDGE;
+//	damagetype = DAM_EDGE;
+	damagetype = DAM_BLUNT;
 	fight_tactic = FAI_GOBBO;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;

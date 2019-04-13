@@ -369,6 +369,13 @@ func void DIA_Engor_BRINGMEAT_Info()
 		AI_PrintScreen(ConcatSchafswurst,-1,info_ypos,FONT_ScreenSmall,3);
 		info_ypos += 3;
 	};
+	if(Npc_HasItems(other,ItFo_NiclasBacon) && (Meat_Counter < Meat_Amount))
+	{
+		Meat_Counter += 1;
+		Npc_RemoveInvItems(other,ItFo_NiclasBacon,1);
+		AI_PrintScreen("1 нога крысокрота отдано",-1,info_ypos,FONT_ScreenSmall,3);
+		info_ypos += 3;
+	};
 	if(Meat_Amount > Meat_Counter)
 	{
 		AI_Output(self,other,"DIA_Engor_BRINGMEAT_13_01");	//Для начала и это неплохо, но мне нужно больше.

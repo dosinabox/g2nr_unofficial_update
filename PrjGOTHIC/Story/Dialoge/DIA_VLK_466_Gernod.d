@@ -1,5 +1,5 @@
 
-instance DIA_Gernod_EXIT(C_Info)
+/*instance DIA_Gernod_EXIT(C_Info)
 {
 	npc = VLK_466_Gernod;
 	nr = 999;
@@ -18,5 +18,5 @@ func int DIA_Gernod_EXIT_Condition()
 func void DIA_Gernod_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 

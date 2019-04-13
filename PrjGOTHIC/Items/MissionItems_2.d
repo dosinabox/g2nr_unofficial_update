@@ -6,7 +6,8 @@ instance ItMi_StoneOfKnowlegde_MIS(C_Item)
 	flags = ITEM_MULTI;
 	value = 0;
 	visual = "ItMi_StoneOfKnowlegde_MIS.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
+	scemeName = "SDW";
 	description = name;
 };
 
@@ -95,8 +96,6 @@ instance ItKe_PrisonKey_MIS(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от темницы в замке.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItKe_OC_Store(C_Item)
@@ -109,52 +108,45 @@ instance ItKe_OC_Store(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от склада в замке.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ITKE_ErzBaronFlur(C_Item)
 {
-	name = NAME_Key;
+	name = "Ключ от первой двери";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-	description = "Ключ от первой двери";
+	description = name;
 	text[0] = "На нем выгравировано имя:";
 	text[1] = "Гомез.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ITKE_ErzBaronRaum(C_Item)
 {
-	name = NAME_Key;
+	name = "Ключ от второй двери";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
-	description = "Ключ от второй двери";
+	description = name;
 	text[0] = "На нем выгравировано имя:";
 	text[1] = "Гомез.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItMi_GornsTreasure_MIS(C_Item)
 {
-	name = NAME_Beutel;
+	name = "Кошелек Горна";
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 250;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-//	material = MAT_METAL;
 	material = MAT_LEATHER;
 	on_state[0] = UseGornsTreasure;
-	description = "Кошелек Горна";
+	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -208,15 +200,12 @@ func void UseItwr_Silvestro()
 
 instance ItAt_ClawLeader(C_Item)
 {
-//	name = "Когти снеппера";
 	name = "Когти";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 100;
-//	visual = "ItAt_Claw.3DS";
 	visual = "ItAt_ClawLeader.3DS";
 	material = MAT_LEATHER;
-//	description = "Когти вожака стаи";
 	description = name;
 	text[0] = "Когти вожака стаи снепперов.";
 	text[5] = NAME_Value;
@@ -225,16 +214,15 @@ instance ItAt_ClawLeader(C_Item)
 
 instance ItSe_Olav(C_Item)
 {
-	name = NAME_Beutel;
+	name = "Кошелек Олава";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 25;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-//	material = MAT_METAL;
 	material = MAT_LEATHER;
 	on_state[0] = UseOlav;
-	description = "Кошелек Олава";
+	description = name;
 	text[0] = "Внутри позванивает несколько монет.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -266,15 +254,11 @@ instance ItKe_Pass_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItKe_Key_02.3ds";
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
-//	description = "Маленький ключик";
 	description = name;
 	text[0] = "Этот маленький ключик";
 	text[1] = "открывает ворота Прохода.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	inv_zbias = 190;
 };
 
@@ -286,12 +270,9 @@ instance ItKe_Bromor(C_Item)
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-//	description = "Ключ от комнаты";
 	description = name;
 	text[0] = "Ключ от комнаты";
 	text[1] = "в борделе.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItKe_Rune_MIS(C_Item)
@@ -306,8 +287,6 @@ instance ItKe_Rune_MIS(C_Item)
 	text[0] = "Сундук, к которому подходит";
 	text[1] = "этот ключ, находится под мостом.";
 	text[2] = "В нем лежит рунный камень.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItWr_Bloody_MIS(C_Item)
@@ -346,6 +325,7 @@ func void UseBloodMIS()
 	Doc_Show(nDocID);
 	if(Knows_Bloodfly == FALSE)
 	{
+		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
 		Knows_Bloodfly = TRUE;
@@ -383,7 +363,6 @@ func void UsePfandbrief()
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Подписали:");
 	Doc_PrintLine(nDocID,0,"Лютеро, торговец");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Лемар, ростовщик");
 	Doc_Show(nDocID);
 };
@@ -395,7 +374,6 @@ instance ItWr_Map_OldWorld_Oremines_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 50;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_OW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -529,7 +507,7 @@ func void UseGilbertLetter()
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Гильберт");
+	Doc_PrintLine(nDocID,0,"Гилберт");
 	Doc_Show(nDocID);
 };
 
@@ -548,7 +526,7 @@ instance ItRi_Tengron(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 //	description = NAME_ADDON_TengronsRing;
-	description = "Кольцо жизни";
+	description = NAME_ADDON_CASSIASBELOHNUNGSRING;
 	text[0] = "Это кольцо принадлежит Тенгрону.";
 	text[2] = NAME_Bonus_HpMax;
 	count[2] = Ri_Hp;

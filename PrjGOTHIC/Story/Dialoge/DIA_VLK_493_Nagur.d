@@ -114,14 +114,15 @@ instance DIA_Nagur_Job(C_Info)
 	nr = 3;
 	condition = DIA_Nagur_Job_Condition;
 	information = DIA_Nagur_Job_Info;
-	permanent = FALSE;
+//	permanent = FALSE;
+	permanent = TRUE;
 	description = "Кардиф говорит, что у тебя может быть работа для меня.";
 };
 
 
 func int DIA_Nagur_Job_Condition()
 {
-	if(DIA_Kardif_Diebeswerk_permanent == TRUE)
+	if((DIA_Kardif_Diebeswerk_permanent == TRUE) && (Nagur_Job_Dia1_Passed == FALSE) && (MIS_Nagur_Bote != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -142,13 +143,28 @@ func void DIA_Nagur_Job_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Nagur_Job_08_01");	//(оценивающе) Так, так... Ты ищешь особенную работу. Ладно. Но будем играть по моим правилам, понятно?
-		AI_Output(other,self,"DIA_Nagur_Job_15_02");	//Что это значит?
-		AI_Output(self,other,"DIA_Nagur_Job_08_03");	//Это значит, что ты будешь делать, что я скажу, и будешь получать треть от навара.
-		AI_Output(self,other,"DIA_Nagur_Job_08_04");	//Если тебя это не устраивает, то у меня нет работы для тебя.
-		Info_ClearChoices(DIA_Nagur_Job);
-		Info_AddChoice(DIA_Nagur_Job,"Мы партнеры. Поэтому пятьдесят на пятьдесят.",DIA_Nagur_Job_Halbe);
-		Info_AddChoice(DIA_Nagur_Job,"Хорошо, ты здесь главный.",DIA_Nagur_Job_Klar);
+		if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700)
+		{
+			if(!C_BodyStateContains(self,BS_SIT))
+			{
+				AI_WaitTillEnd(self,other);
+				AI_PlayAni(self,"T_SEARCH");
+			};
+			AI_Output(self,other,"DIA_Nagur_Hallo_08_01");	//Послушай, оставь меня в покое, хорошо?
+			AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+			AI_StopProcessInfos(self);
+		}
+		else
+		{
+			Nagur_Job_Dia1_Passed = TRUE;
+			AI_Output(self,other,"DIA_Nagur_Job_08_01");	//(оценивающе) Так, так... Ты ищешь особенную работу. Ладно. Но будем играть по моим правилам, понятно?
+			AI_Output(other,self,"DIA_Nagur_Job_15_02");	//Что это значит?
+			AI_Output(self,other,"DIA_Nagur_Job_08_03");	//Это значит, что ты будешь делать, что я скажу, и будешь получать треть от навара.
+			AI_Output(self,other,"DIA_Nagur_Job_08_04");	//Если тебя это не устраивает, то у меня нет работы для тебя.
+			Info_ClearChoices(DIA_Nagur_Job);
+			Info_AddChoice(DIA_Nagur_Job,"Мы партнеры. Поэтому пятьдесят на пятьдесят.",DIA_Nagur_Job_Halbe);
+			Info_AddChoice(DIA_Nagur_Job,"Хорошо, ты здесь главный.",DIA_Nagur_Job_Klar);
+		};
 	};
 };
 
@@ -175,14 +191,16 @@ instance DIA_Nagur_Auftrag(C_Info)
 	nr = 4;
 	condition = DIA_Nagur_Auftrag_Condition;
 	information = DIA_Nagur_Auftrag_Info;
-	permanent = FALSE;
+//	permanent = FALSE;
+	permanent = TRUE;
 	description = "Договорились. Так какой у тебя план?";
 };
 
 
 func int DIA_Nagur_Auftrag_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Nagur_Job) && (MIS_Nagur_Bote != LOG_SUCCESS))
+//	if(Npc_KnowsInfo(other,DIA_Nagur_Job) && (MIS_Nagur_Bote != LOG_SUCCESS) && (Nagur_Job_Dia2_Passed == FALSE))
+	if((Nagur_Job_Dia1_Passed == TRUE) && (MIS_Nagur_Bote != LOG_SUCCESS) && (Nagur_Job_Dia2_Passed == FALSE))
 	{
 		return TRUE;
 	};
@@ -191,36 +209,49 @@ func int DIA_Nagur_Auftrag_Condition()
 func void DIA_Nagur_Auftrag_Info()
 {
 	AI_Output(other,self,"DIA_Nagur_Auftrag_15_00");	//Договорились. Так какой у тебя план?
-	AI_Output(self,other,"DIA_Nagur_Auftrag_08_01");	//Ты знаешь торговца Бальтрама, нет? Если нет, пришло время поговорить с ним.
-	AI_Output(self,other,"DIA_Nagur_Auftrag_08_02");	//У этого Бальтрама есть посыльный, доставлявший ему товары с фермы Акила.
-	AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее, у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
-	AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
-	AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
-	AI_Output(self,other,"DIA_Nagur_Auftrag_08_06");	//И не пытайся продать эти товары сам. Ты все понял?
-//	смерть мальчика на побегушках
-	if(!Npc_IsDead(Bote))
+	if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700)
 	{
-		AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
-		B_StartOtherRoutine(Bote,"Rest");
-		B_KillNpc(Bote);
-	};
-//	Ренгару уходит с места преступления
-	if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && (Rengaru_Ausgeliefert == FALSE))
+		if(!C_BodyStateContains(self,BS_SIT))
+		{
+			AI_WaitTillEnd(self,other);
+			AI_PlayAni(self,"T_SEARCH");
+		};
+		AI_Output(self,other,"DIA_Nagur_Hallo_08_01");	//Послушай, оставь меня в покое, хорошо?
+		AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+		AI_StopProcessInfos(self);
+	}
+	else
 	{
-		B_StartOtherRoutine(Rengaru,"Hide");
-	};
-	Info_ClearChoices(DIA_Nagur_Auftrag);
-	Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились.",DIA_Nagur_Auftrag_Okay);
-	if(Baltram.aivar[AIV_TalkedToPlayer] == FALSE)
-	{
+		Nagur_Job_Dia2_Passed = TRUE;
+		AI_Output(self,other,"DIA_Nagur_Auftrag_08_01");	//Ты знаешь торговца Бальтрама, нет? Если нет, пришло время поговорить с ним.
+		if(!Npc_IsDead(Bote))
+		{
+			AI_Output(self,other,"DIA_Nagur_Auftrag_08_02");	//У этого Бальтрама есть посыльный, доставлявший ему товары с фермы Акила.
+			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее, у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
+			Bote_Killed = TRUE;
+		};
+		AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
+		AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
+		AI_Output(self,other,"DIA_Nagur_Auftrag_08_06");	//И не пытайся продать эти товары сам. Ты все понял?
+	//	смерть мальчика на побегушках
+		if(!Npc_IsDead(Bote))
+		{
+			AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
+			B_StartOtherRoutine(Bote,"Rest");
+			B_KillNpc(Bote);
+		};
+	//	Ренгару уходит с места преступления
+		if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && !Npc_KnowsInfo(other,DIA_Rengaru_SPARE) && (Rengaru_Ausgeliefert == FALSE))
+		{
+			B_StartOtherRoutine(Rengaru,"Hide");
+		};
+		Info_ClearChoices(DIA_Nagur_Auftrag);
+		Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились.",DIA_Nagur_Auftrag_Okay);
 		Info_AddChoice(DIA_Nagur_Auftrag,"Где мне найти Бальтрама?",DIA_Nagur_Auftrag_Baltram);
-	};
-	Info_AddChoice(DIA_Nagur_Auftrag,"Когда мне поговорить с Бальтрамом?",DIA_Nagur_Auftrag_Wann);
-	if(SC_KnowsAkilsHof == FALSE)
-	{
+		Info_AddChoice(DIA_Nagur_Auftrag,"Когда мне поговорить с Бальтрамом?",DIA_Nagur_Auftrag_Wann);
 		Info_AddChoice(DIA_Nagur_Auftrag,"А где ферма Акила?",DIA_Nagur_Auftrag_Akil);
+		Info_AddChoice(DIA_Nagur_Auftrag,"Какой ожидается навар?",DIA_Nagur_Auftrag_Gewinn);
 	};
-	Info_AddChoice(DIA_Nagur_Auftrag,"Какой ожидается навар?",DIA_Nagur_Auftrag_Gewinn);
 };
 
 func void DIA_Nagur_Auftrag_Akil()
@@ -229,7 +260,6 @@ func void DIA_Nagur_Auftrag_Akil()
 	AI_Output(self,other,"DIA_Nagur_Auftrag_Akil_08_01");	//Выйдешь из города через восточные ворота, что находятся на рыночной площади.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_Akil_08_02");	//Если ты пойдешь по дороге направо, вскоре увидишь лестницу, вырезанную в скале.
 	AI_Output(self,other,"DIA_Nagur_Auftrag_Akil_08_03");	//Поднимись по ней и окажешься на ферме Акила.
-	SC_KnowsAkilsHof = TRUE;
 };
 
 func void DIA_Nagur_Auftrag_Gewinn()
@@ -247,13 +277,27 @@ func void DIA_Nagur_Auftrag_Baltram()
 func void DIA_Nagur_Auftrag_Wann()
 {
 	AI_Output(other,self,"DIA_Nagur_Auftrag_Wann_15_00");	//Когда мне поговорить с Бальтрамом?
-	AI_Output(self,other,"DIA_Nagur_Auftrag_Wann_08_01");	//Ты можешь сделать это прямо сейчас. Он уже должен понять, что его посыльный никогда уже не появится. (грязный смех)
+	if(Bote_Killed == TRUE)
+	{
+		AI_Output(self,other,"DIA_Nagur_Auftrag_Wann_08_01");	//Ты можешь сделать это прямо сейчас. Он уже должен понять, что его посыльный никогда уже не появится. (грязный смех)
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Andre_Add_08_11");	//Тебе лучше отправиться прямо к нему.
+	};
 };
 
 func void DIA_Nagur_Auftrag_Okay()
 {
 	AI_Output(other,self,"DIA_Nagur_Auftrag_Okay_15_00");	//Хорошо, договорились.
-	AI_Output(self,other,"DIA_Nagur_Auftrag_Okay_08_01");	//Отлично. Тогда за дело - но если ты попытаешься обмануть меня, тебя будет ждать та же судьба, что и этого посыльного! Не забывай об этом!
+	if(Bote_Killed == TRUE)
+	{
+		AI_Output(self,other,"DIA_Nagur_Auftrag_Okay_08_01");	//Отлично. Тогда за дело - но если ты попытаешься обмануть меня, тебя будет ждать та же судьба, что и этого посыльного! Не забывай об этом!
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Andre_PERM_08_02");	//Выполняй свои задания.
+	};
 	MIS_Nagur_Bote = LOG_Running;
 	Log_CreateTopic(TOPIC_Nagur,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Nagur,LOG_Running);

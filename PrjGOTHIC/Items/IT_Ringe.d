@@ -601,7 +601,7 @@ instance ItRi_HP_01(C_Item)
 	on_unequip = UnEquip_ItRi_Hp_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо жизни";
+	description = NAME_ADDON_CASSIASBELOHNUNGSRING;
 	text[2] = NAME_Bonus_HpMax;
 	count[2] = Ri_Hp;
 	text[5] = NAME_Value;

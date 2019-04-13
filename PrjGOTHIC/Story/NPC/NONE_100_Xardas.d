@@ -52,7 +52,7 @@ func void Rtn_RitualInnosEye_100()
 
 func void Rtn_Tot_100()
 {
-	TA_Circle(8,0,23,0,"TOT");
-	TA_Circle(23,0,8,0,"TOT");
+	TA_Stand_ArmsCrossed(8,0,23,0,"TOT");
+	TA_Stand_ArmsCrossed(23,0,8,0,"TOT");
 };
 

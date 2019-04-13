@@ -43,14 +43,14 @@ func void B_CannotUse_Addon()
 {
 	var int rnd;
 	rnd = Hlp_Random(100);
-		if(rnd <= 20)
-		{
-			B_Say(self,self,"$COUGH");
-		}
-		else if(rnd >= 80)
-		{
-			B_Say(self,self,"$HUI");
-		};
+	if(rnd <= 20)
+	{
+		B_Say(self,self,"$COUGH");
+	}
+	else if(rnd >= 80)
+	{
+		B_Say(self,self,"$HUI");
+	};
 };
 
 func int C_SCHasStPlSkill()

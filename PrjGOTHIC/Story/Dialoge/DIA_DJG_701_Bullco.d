@@ -81,6 +81,11 @@ func void DIA_BullcoDJG_WARTEMAL_Info()
 	AI_StopProcessInfos(self);
 	if(Npc_GetDistToWP(self,"OW_MOVEMENT_BGOBBO1") <= 1000)
 	{
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_Standup(self);
+			B_TurnToNpc(self,other);
+		};
 		Npc_ExchangeRoutine(self,"DJGVorposten");
 	};
 };
@@ -177,6 +182,11 @@ func void DIA_Bullco_WASNUN_woandere_zuihnen_Geld()
 	{
 		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_Geld_06_01");	//Хорошо. Давай их сюда.
 		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_Geld_06_02");	//Иди за мной. Я отведу тебя туда, где я последний раз видел других охотников на драконов.
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_Standup(self);
+			B_TurnToNpc(self,other);
+		};
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"Guide");
 	}

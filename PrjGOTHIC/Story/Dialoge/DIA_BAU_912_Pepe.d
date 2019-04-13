@@ -226,12 +226,9 @@ instance DIA_Pepe_BullcoDefeated(C_Info)
 
 func int DIA_Pepe_BullcoDefeated_Condition()
 {
-	if(MIS_Pepe_KickBullco == LOG_Running)
+	if((MIS_Pepe_KickBullco == LOG_Running) && (DJG_or_SLD_Bullco_Defeated == TRUE))
 	{
-		if((Bullco.aivar[AIV_DefeatedByPlayer] == TRUE) || (DJG_Bullco.aivar[AIV_DefeatedByPlayer] == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 

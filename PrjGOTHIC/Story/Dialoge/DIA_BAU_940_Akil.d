@@ -21,7 +21,7 @@ func int DIA_Akil_EXIT_Condition()
 func void DIA_Akil_EXIT_Info()
 {
 	AI_Output(other,self,"DIA_Akil_EXIT_15_00");	//Я должен идти!
-	if(Akil_Sauer == TRUE)
+	if(!Npc_KnowsInfo(other,DIA_Akil_NachKampf))
 	{
 		AI_Output(self,other,"DIA_Akil_EXIT_13_01");	//Не буду задерживать тебя.
 	}
@@ -46,7 +46,8 @@ instance DIA_Akil_Hallo(C_Info)
 
 func int DIA_Akil_Hallo_Condition()
 {
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk))
+//	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk))
+	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -65,7 +66,6 @@ func void DIA_Akil_Hallo_Info()
 		B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
 		Akils_SLDStillthere = TRUE;
 	};
-	SC_KnowsAkilsHof = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -83,7 +83,8 @@ instance DIA_Akil_Nichtjetzt(C_Info)
 
 func int DIA_Akil_Nichtjetzt_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_KnowsInfo(other,DIA_Akil_Hallo))
+//	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_KnowsInfo(other,DIA_Akil_Hallo))
+	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_KnowsInfo(other,DIA_Akil_Hallo) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -109,7 +110,8 @@ instance DIA_Akil_NachKampf(C_Info)
 
 func int DIA_Akil_NachKampf_Condition()
 {
-	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
+//	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
+	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -305,7 +307,7 @@ func void DIA_Akil_Lieferung_Info()
 	CreateInvItems(self,ItMi_BaltramPaket,1);
 	B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
 	Lieferung_Geholt = TRUE;
-	B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу доставить ее Бальтраму...");
+	B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
 	B_LogEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
 };
 
@@ -486,7 +488,7 @@ instance DIA_Akil_KAP3_EXIT(C_Info)
 
 func int DIA_Akil_KAP3_EXIT_Condition()
 {
-	if(Kapitel == 3)
+	if(Kapitel >= 3)
 	{
 		return TRUE;
 	};
@@ -627,7 +629,7 @@ func void DIA_Akil_AkilsSchaf_Info()
 	B_GivePlayerXP(XP_AkilsSchaf);
 };
 
-
+/*
 instance DIA_Akil_KAP4_EXIT(C_Info)
 {
 	npc = BAU_940_Akil;
@@ -677,7 +679,7 @@ func void DIA_Akil_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
+
 instance DIA_Akil_KAP6_EXIT(C_Info)
 {
 	npc = BAU_940_Akil;

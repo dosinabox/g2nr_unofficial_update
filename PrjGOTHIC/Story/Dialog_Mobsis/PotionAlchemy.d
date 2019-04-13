@@ -972,7 +972,7 @@ instance PC_ItPo_MegaDrink(C_Info)
 	condition = PC_ItPo_MegaDrink_Condition;
 	information = PC_ItPo_MegaDrink_Info;
 	permanent = TRUE;
-	description = ConcatStrings(NAME_MegaDrink," (10 драконьих €иц, 1 черный жемчуг, 1 сера)");
+	description = ConcatStrings(NAME_MegaDrink," (10 драконьих €иц, 1 черна€ жемчужина, 1 сера)");
 };
 
 

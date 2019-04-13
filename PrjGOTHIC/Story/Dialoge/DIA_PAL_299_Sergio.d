@@ -338,7 +338,7 @@ instance DIA_Sergio_Perm(C_Info)
 
 func int DIA_Sergio_Perm_Condition()
 {
-	if((Kapitel >= 3) && (other.guild != GIL_KDF))
+	if((Kapitel >= 3) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -346,7 +346,7 @@ func int DIA_Sergio_Perm_Condition()
 
 func void DIA_Sergio_Perm_Info()
 {
-	if((other.guild == GIL_PAL) || (other.guild == GIL_MIL))
+	if(other.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Sergio_Perm_04_00");	//Хвала Инносу, брат. Если ты пришел узнать что-нибудь об Освящении Меча, поговори с Мардуком.
 	}

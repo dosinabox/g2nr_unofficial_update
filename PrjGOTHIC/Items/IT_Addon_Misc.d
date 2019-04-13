@@ -132,7 +132,7 @@ instance ItSe_ADDON_CavalornsBeutel(C_Item)
 	description = name;
 	text[0] = "На мешочке прикреплен ярлык";
 	text[1] = "с именем 'Кавалорн'.";
-	text[2] = "Внутри находится 1 кусок руды.";
+	text[2] = "Внутри находится кусок руды.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -156,7 +156,7 @@ instance ItMi_Skull(C_Item)
 	flags = ITEM_MISSION;
 	value = 10;
 	visual = "DT_SKELETON_V01_HEAD.3ds";
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

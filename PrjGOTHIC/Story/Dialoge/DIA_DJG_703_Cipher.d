@@ -144,6 +144,15 @@ func void DIA_CipherDJG_GO_Info()
 {
 	AI_Output(other,self,"DIA_CipherDJG_GO_15_00");	//Сейчас самый подходящий момент, чтобы идти туда!
 	AI_Output(self,other,"DIA_CipherDJG_GO_07_01");	//Тогда пойдем!
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
+	if(!Npc_IsDead(DJG_Rod) && C_BodyStateContains(DJG_Rod,BS_SIT))
+	{
+		AI_Standup(DJG_Rod);
+	};
 	AI_StopProcessInfos(self);
 	DJG_SwampParty_GoGoGo = TRUE;
 	self.aivar[AIV_PARTYMEMBER] = TRUE;

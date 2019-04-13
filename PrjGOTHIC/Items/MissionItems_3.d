@@ -157,8 +157,6 @@ instance ItWr_XardasBookForPyrokar_Mis(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	on_state[0] = Use_XardasBookForPyrokar;
 };
 
@@ -176,27 +174,23 @@ instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
-	value = Value_Key_02;
+	value = Value_Key_01;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от сундука на ферме Секоба.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItWr_CorneliusTagebuch_Mis(C_Item)
 {
-	name = "Дневник";
+	name = "Дневник Корнелиуса";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItWr_Book_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Дневник Корнелиуса";
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	description = name;
 	on_state[0] = UseCorneliusTagebuch;
 };
 
@@ -241,8 +235,6 @@ instance ITWR_DementorObsessionBook_MIS(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	on_state[0] = Use_DementorObsessionBook;
 };
 
@@ -404,6 +396,11 @@ instance ItPo_HealHilda_MIS(C_Item)
 func void Use_HealHilda()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Essenz);
+	if(MIS_HealHilda == LOG_RUNNING)
+	{
+		MIS_HealHilda = LOG_FAILED;
+		B_CheckLog();
+	};
 };
 
 
@@ -433,17 +430,17 @@ instance ItMw_MalethsGehstock_MIS(C_Item)
 
 instance ItMi_MalethsBanditGold(C_Item)
 {
-	name = "Кошелек главаря бандитов";
+	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
+//	mainflag = ITEM_MULTI;
 	flags = 0;
 	value = 300;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Bag.3ds";
 	scemeName = "MAPSEALED";
-//	material = MAT_METAL;
 	material = MAT_LEATHER;
 	on_state[0] = Use_MalethsBanditGold;
 	description = name;
-	text[0] = "Этот кошелек доверху набит золотом!";
+	text[0] = "Этот мешок доверху набит монетами!";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -460,9 +457,9 @@ instance ItMi_Moleratlubric_MIS(C_Item)
 	name = "Жир крысокрота";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = Value_Pitch;
+	value = Value_Pitch * 3;
 	visual = "ItMi_Moleratlubric.3ds";
-	material = MAT_WOOD;
+	material = MAT_STONE;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -568,8 +565,6 @@ instance ItKe_IgarazChest_Mis(C_Item)
 	description = name;
 	text[0] = "Это ключ от сундука,";
 	text[1] = "принадлежащего Игарацу.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItWr_Astronomy_Mis(C_Item)
@@ -644,10 +639,14 @@ instance ItPo_HealObsession_MIS(C_Item)
 func void Use_HealObsession()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Essenz);
-	SC_ObsessionTimes += 1;
-	B_ClearSCObsession(self);
-	Wld_PlayEffect("spellFX_LIGHTSTAR_VIOLET",hero,hero,0,0,0,FALSE);
-	Snd_Play("SFX_HealObsession");
+	if(SC_IsObsessed == TRUE)
+	{
+		SC_ObsessionTimes += 1;
+		B_ClearSCObsession(self);
+		Wld_PlayEffect("spellFX_LIGHTSTAR_VIOLET",hero,hero,0,0,0,FALSE);
+//		Wld_PlayEffect("spellFX_LIGHTSTAR_GREEN",hero,hero,0,0,0,FALSE);
+		Snd_Play("SFX_HealObsession");
+	};
 };
 
 
@@ -656,26 +655,26 @@ instance ItSe_Golemchest_Mis(C_Item)
 	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
-	value = 0;
+	value = 50;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-//	material = MAT_METAL;
 	material = MAT_LEATHER;
 	on_state[0] = Use_GolemChest;
 	description = name;
 	text[0] = "Этот кошелек полон монет.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	text[1] = "Кажется, внутри позванивает что-то еще.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 
 func void Use_GolemChest()
 {
 	CreateInvItems(hero,ItMi_Gold,50);
-	Print(PRINT_FoundGold50);
-	Print(PRINT_FoundRing);
 	CreateInvItems(hero,ItRi_Prot_Total_02,1);
 	Snd_Play("Geldbeutel");
+	Print(PRINT_FoundGold50);
+	Print(PRINT_FoundRing);
 };
 
 
@@ -760,7 +759,6 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 	value = DiegosTreasure;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-//	material = MAT_METAL;
 	material = MAT_LEATHER;
 	on_state[0] = Use_DiegosTreasure;
 	description = "Старый кошелек Диего";
@@ -894,8 +892,6 @@ instance ItMi_KarrasBlessedStone_Mis(C_Item)
 	visual_skin = 0;
 	material = MAT_STONE;
 	description = "Камень из благословенной земли";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	inv_zbias = 190;
 };
 
@@ -1021,13 +1017,11 @@ instance ItWr_VinosKellergeister_Mis(C_Item)
 	name = "Дух вина";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 50;
+	value = 0;
 	visual = "ItWr_Book_02_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
 	on_state[0] = Use_VinosKellergeister_Mis;
 };
 

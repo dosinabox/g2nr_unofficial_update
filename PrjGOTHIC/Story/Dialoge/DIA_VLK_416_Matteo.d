@@ -442,7 +442,7 @@ instance DIA_Matteo_WoGritta(C_Info)
 
 func int DIA_Matteo_WoGritta_Condition()
 {
-	if((MIS_Matteo_Gold == LOG_Running) && (Gritta.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(MIS_Matteo_Gold == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -578,7 +578,7 @@ func void DIA_MAtteo_HowCanYouHelp_Info()
 	};
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
-	B_LogEntry(TOPIC_Lehrling,"Маттео может помочь мне стать учеником одного из мастеровых.");
+	B_LogEntry(TOPIC_Lehrling,"Маттео может помочь мне стать учеником одного из мастеров.");
 };
 
 

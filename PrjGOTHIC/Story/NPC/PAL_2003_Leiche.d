@@ -2,7 +2,8 @@
 instance PAL_2003_Leiche(Npc_Default)
 {
 	name[0] = NAME_Paladin;
-	guild = GIL_NONE;
+//	guild = GIL_NONE;
+	guild = GIL_PAL;
 	id = 2003;
 	voice = 4;
 	flags = 0;

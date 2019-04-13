@@ -193,6 +193,40 @@ func void DIA_Addon_Cavalorn_HALLO_keinZiel()
 };
 
 
+//////////////////////////////////////////////////////////////////////////////
+
+instance DIA_Addon_Cavalorn_ImGoingToMineValley(C_Info)
+{
+	npc = BAU_4300_Addon_Cavalorn;
+	nr = 5;
+	condition = DIA_Addon_Cavalorn_ImGoingToMineValley_Condition;
+	information = DIA_Addon_Cavalorn_ImGoingToMineValley_Info;
+	description = "Я собираюсь отправиться в Долину Рудников.";
+};
+
+
+func int DIA_Addon_Cavalorn_ImGoingToMineValley_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_HALLO) && (Hagen_BringProof == TRUE) && (Kapitel < 3) && (MIS_Addon_Cavalorn_TheHut == FALSE) && !Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) && (SC_OpenedCavalornsBeutel == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Cavalorn_ImGoingToMineValley_Info()
+{
+	AI_Output(other,self,"DIA_Lee_RescueGorn_15_00");	//Я собираюсь отправиться в Долину Рудников.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_01");	//(пораженно) Правда? Хм-м. Я бы хотел пойти с тобой, но у меня здесь есть дела, которые я должен закончить.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_02");	//Будешь в Долине Рудников, посмотри, пожалуйста, стоит ли еще моя старая хижина. Я бы хотел туда вернуться когда-нибудь.
+	MIS_Addon_Cavalorn_TheHut = LOG_Running;
+	Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
+	B_LogEntry(TOPIC_Addon_CavalornTheHut,"Кавалорн хочет, чтобы я проверил, цела ли еще его старая хижина в Долине Рудников. Насколько я помню, она находится среди холмов на западе, там, где был Старый Лагерь. Думаю, он там что-то оставил.");
+};
+
+
+////////////////////////////////////////////////////////////
+
 instance DIA_Addon_Cavalorn_Beutel(C_Info)
 {
 	npc = BAU_4300_Addon_Cavalorn;
@@ -534,7 +568,8 @@ func void B_Addon_Cavalorn_VatrasBrief()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_10");	//А если он спросит, где я, просто скажи ему, что я уже на пути к месту встречи, ладно?
 		B_LogEntry(TOPIC_Addon_KDW,"В городе Хоринисе живет маг Воды Ватрас. Он читает проповеди в храме Аданоса.");
 	};
-	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+//	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE) && (Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_11");	//А, да, и еще одно. Сначала купи приличную одежду у какого-нибудь фермера.
 		AI_Output(self,other,"DIA_Addon_Cavalorn_VatrasBrief_08_12");	//Иначе тебя могут принять за бандита. Вот пара монет.
@@ -814,6 +849,7 @@ func int DIA_Addon_Cavalorn_Triggered_Condition()
 func void DIA_Addon_Cavalorn_Triggered_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Triggered_15_00");	//Я пробовал. Но он не работает, ничего не делает.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_ja_08_01");	//Ужасно.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_08_01");	//Значит, фермеры Лобарта были правы.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_08_02");	//Они сказали, что один из них уже крутился здесь, возле камней.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_08_03");	//Каменный страж появился из ниоткуда и напал на него.

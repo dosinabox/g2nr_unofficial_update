@@ -1,5 +1,5 @@
 
-instance VLK_483_Buergerin(Npc_Default)
+/*instance VLK_483_Buergerin(Npc_Default)
 {
 	name[0] = NAME_Buergerin;
 	guild = GIL_VLK;
@@ -23,5 +23,5 @@ func void Rtn_Start_483()
 {
 	TA_Smalltalk(8,0,18,0,"NW_CITY_HABOUR_09");
 	TA_Sleep(18,0,8,0,"NW_CITY_HABOUR_HUT_06_BED_01");
-};
+};*/
 

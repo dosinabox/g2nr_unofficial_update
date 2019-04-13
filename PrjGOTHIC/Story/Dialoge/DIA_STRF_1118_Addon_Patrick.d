@@ -119,18 +119,25 @@ func void DIA_Addon_Patrick_ready_END()
 	B_StartOtherRoutine(Tonak,"FLUCHT");
 	B_StartOtherRoutine(Pardos,"FLUCHT");
 	B_StartOtherRoutine(Monty,"FLUCHT");
+	B_StartOtherRoutine(STRF_1128_Addon_Sklave,"FLUCHT");
+	B_StartOtherRoutine(STRF_1129_Addon_Sklave,"FLUCHT");
+	B_StartOtherRoutine(STRF_1130_Addon_Sklave,"FLUCHT");
+	B_StartOtherRoutine(STRF_1137_Addon_Sklave,"FLUCHT");
+	B_StartOtherRoutine(STRF_1138_Addon_Sklave,"FLUCHT");
+	B_StartOtherRoutine(STRF_1139_Addon_Sklave,"FLUCHT");
+	B_StartOtherRoutine(STRF_1140_Addon_Sklave,"FLUCHT");
 	B_StartOtherRoutine(Buddler_1,"WORK");
 	B_StartOtherRoutine(Buddler_2,"WORK");
 	B_StartOtherRoutine(Buddler_3,"WORK");
 	B_StartOtherRoutine(Buddler_4,"WORK");
-	B_RemoveNpc(STRF_1128_Addon_Sklave);
+/*	B_RemoveNpc(STRF_1128_Addon_Sklave);
 	B_RemoveNpc(STRF_1129_Addon_Sklave);
 	B_RemoveNpc(STRF_1130_Addon_Sklave);
 //	B_RemoveNpc(STRF_1136_Addon_Sklave);
 	B_RemoveNpc(STRF_1137_Addon_Sklave);
 	B_RemoveNpc(STRF_1138_Addon_Sklave);
 	B_RemoveNpc(STRF_1139_Addon_Sklave);
-	B_RemoveNpc(STRF_1140_Addon_Sklave);
+	B_RemoveNpc(STRF_1140_Addon_Sklave);*/
 };
 
 
@@ -173,7 +180,7 @@ instance DIA_Addon_Patrick_Hoehle(C_Info)
 
 func int DIA_Addon_Patrick_Hoehle_Condition()
 {
-	if(Npc_GetDistToWP(self,"ADW_BL_HOEHLE_04") <= 1000)
+	if(Npc_GetDistToWP(self,"ADW_BL_HOEHLE_05") <= 1000)
 	{
 		return TRUE;
 	};

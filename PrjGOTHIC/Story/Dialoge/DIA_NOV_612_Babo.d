@@ -50,7 +50,7 @@ func void DIA_Babo_Hello_Info()
 	AI_Output(self,other,"DIA_Babo_Hello_03_02");	//Четыре недели. Тебе уже выдали боевой посох?
 	AI_Output(other,self,"DIA_Babo_Hello_15_03");	//Пока нет.
 	AI_Output(self,other,"DIA_Babo_Hello_03_04");	//Тогда возьми вот этот. Мы, послушники, всегда ходим с посохом, чтобы показать, что мы способны защитить себя. Ты умеешь сражаться?
-	CreateInvItems(other,ItMw_1h_Nov_Mace,1);
+	CreateInvItem(other,ItMw_1h_Nov_Mace);
 	AI_PrintScreen("Боевой посох получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	AI_Output(other,self,"DIA_Babo_Hello_15_05");	//Ну, мне случалось пользоваться оружием...
 	AI_Output(self,other,"DIA_Babo_Hello_03_06");	//Если хочешь, я могу обучить тебя кое-чему. Но у меня есть просьба...

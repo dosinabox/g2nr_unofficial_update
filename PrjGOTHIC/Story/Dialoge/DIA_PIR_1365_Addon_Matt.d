@@ -102,7 +102,7 @@ func void DIA_Addon_Matt_PERM_Info()
 	AI_Output(other,self,"DIA_Addon_Matt_Alright_15_01");	//Как дела?
 	if(self.aivar[AIV_PARTYMEMBER] == TRUE)
 	{
-		if(self.attribute[ATR_HITPOINTS] < 100)
+		if(self.attribute[ATR_HITPOINTS] <= 200)
 		{
 			AI_Output(self,other,"DIA_Addon_Matt_Alright_10_02");	//Какую часть фразы 'ЛЕЧЕБНОЕ ЗЕЛЬЕ' ты не понял?
 		}
@@ -351,7 +351,7 @@ instance DIA_Addon_Matt_Healing(C_Info)
 
 func int DIA_Addon_Matt_Healing_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (self.attribute[ATR_HITPOINTS] < (self.attribute[ATR_HITPOINTS_MAX] - 100)))
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (self.attribute[ATR_HITPOINTS] <= 200))
 	{
 		return TRUE;
 	};

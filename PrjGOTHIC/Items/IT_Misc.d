@@ -24,7 +24,7 @@ const int Value_Pitch = 10;
 const int Value_Rockcrystal = 30;
 const int Value_Aquamarine = 100;
 const int Value_HolyWater = 20;
-const int Value_Coal = 15;
+//const int Value_Coal = 15;
 const int Value_DarkPearl = 1000;
 const int VALUE_ItMi_ApfelTabak = 10;
 const int VALUE_ItMi_PilzTabak = 25;
@@ -290,30 +290,6 @@ func void Use_Brush()
 };
 */
 
-/*instance ItMi_Pipe(C_Item)
-{
-	name = "Трубка";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI;
-	value = 20;
-//	visual = "ItMi_Joint_US.3ds";
-	visual = "ItMi_Pipe.3ds";
-	material = MAT_LEATHER;
-	scemeName = "JOINT";
-	on_state[0] = Use_Pipe;
-	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
-//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
-//	inv_zbias = 200;
-};
-
-
-func void Use_Pipe()
-{
-	CreateInvItem(self,ItMi_Pipe);
-};*/
-
 instance ItMi_Joint(C_Item)
 {
 	name = "Косяк из болотной травы";
@@ -375,8 +351,7 @@ instance ItMi_Pocket(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UsePocket;
 	description = name;
-	text[0] = "Небольшой мешочек,";
-	text[1] = "не очень тяжелый.";
+	text[0] = "Легкий мешочек.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -429,8 +404,6 @@ instance ItMi_OldCoin(C_Item)
 	visual = "ItMi_OldCoin.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
 	inv_zbias = INVCAM_ENTF_MISC2_STANDARD;
 };
 
@@ -672,7 +645,7 @@ instance ItMi_Sulfur(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_Sulfur;
 	visual = "ItMi_Sulfur.3DS";
-	material = MAT_WOOD;
+	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -751,9 +724,9 @@ instance ItMi_Coal(C_Item)
 	name = "Уголь";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = Value_Coal;
+	value = 1;
 	visual = "ItMi_Coal.3ds";
-	material = MAT_STONE;
+	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -762,7 +735,7 @@ instance ItMi_Coal(C_Item)
 
 instance ItMi_DarkPearl(C_Item)
 {
-	name = "Черный жемчуг";
+	name = "Черная жемчужина";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_DarkPearl;

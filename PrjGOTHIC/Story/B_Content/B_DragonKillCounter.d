@@ -45,12 +45,9 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 		if((Hlp_GetInstanceID(current_dragon) == Hlp_GetInstanceID(IcDragn)) && (IcDragnIsDead == FALSE))
 		{
 			MIS_KilledDragons += 1;
-			if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2))
+			if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && !Npc_IsDead(DJG_Sylvio))
 			{
-				if(!Npc_IsDead(DJG_Sylvio))
-				{
-					B_StartOtherRoutine(DJG_Sylvio,"IceDragon");
-				};
+				B_StartOtherRoutine(DJG_Sylvio,"IceDragon");
 				if(!Npc_IsDead(DJG_Bullco))
 				{
 					B_StartOtherRoutine(DJG_Bullco,"IceDragon");

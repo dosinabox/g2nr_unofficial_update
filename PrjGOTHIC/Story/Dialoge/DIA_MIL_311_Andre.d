@@ -83,7 +83,11 @@ func void B_Andre_CantharFalle()
 			AI_Output(self,other,"DIA_Andre_Add_08_05");	//Мне не нужны в ополчении люди с запятнанной репутацией.
 		};
 	};
-	B_RemoveSarahWeapons();
+	if(SarahWeaponsRemoved == FALSE)
+	{
+		B_GiveTradeInv_Sarah(Sarah);
+		B_RemoveSarahWeapons();
+	};
 	B_RemoveNpc(Sarah);
 	if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
 	{
@@ -800,11 +804,18 @@ func void DIA_Andre_Auslieferung_Info()
 	};
 	if(((MIS_Nagur_Bote == LOG_Running) || (MIS_Nagur_Bote == LOG_FAILED)) && (Nagur_Ausgeliefert == FALSE))
 	{
-		Info_AddChoice(DIA_Andre_Auslieferung,"Нагур убил посыльного Бальтрама.",DIA_Andre_Auslieferung_Nagur);
+		if(Bote_Killed == TRUE)
+		{
+			Info_AddChoice(DIA_Andre_Auslieferung,"Нагур убил посыльного Бальтрама.",DIA_Andre_Auslieferung_Nagur);
+		}
+		else
+		{
+			Info_AddChoice(DIA_Andre_Auslieferung,"Нагур пытался украсть товар с фермы Акила.",DIA_Andre_Auslieferung_Nagur);
+		};
 	};
 	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)))
 	{
-		Info_AddChoice(DIA_Andre_Auslieferung,"Кантар пытается избавиться от Сары!",DIA_Andre_Auslieferung_Canthar);
+		Info_AddChoice(DIA_Andre_Auslieferung,"Торговец Кантар пытается избавиться от Сары!",DIA_Andre_Auslieferung_Canthar);
 	};
 	if((MIS_Canthars_KomproBrief == LOG_Running) && Npc_HasItems(Sarah,ItWr_Canthars_KomproBrief_MIS) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)))
 	{
@@ -837,9 +848,9 @@ func void DIA_Andre_Auslieferung_Halvor()
 {
 	AI_Teleport(Halvor,"NW_CITY_HABOUR_KASERN_HALVOR");
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Halvor_15_00");	//Халвор торгует краденым. Он продает товары, украденные бандитами у торговцев.
-	AI_WaitTillEnd(self,other);
 	if(Npc_HasItems(other,ItWr_HalvorMessage))
 	{
+		AI_WaitTillEnd(self,other);
 		B_GiveInvItems(other,self,ItWr_HalvorMessage,1);
 		B_UseFakeScroll();
 	};
@@ -857,7 +868,14 @@ func void DIA_Andre_Auslieferung_Halvor()
 func void DIA_Andre_Auslieferung_Nagur()
 {
 	AI_Teleport(Nagur,"NW_CITY_HABOUR_KASERN_NAGUR");
-	AI_Output(other,self,"DIA_Andre_Auslieferung_Nagur_15_00");	//Нагур убил посыльного Бальтрама. Он пытался использовать меня в качестве нового посыльного, чтобы перехватить товар с фермы Акила.
+	if(Bote_Killed == TRUE)
+	{
+		AI_Output(other,self,"DIA_Andre_Auslieferung_Nagur_15_00");	//Нагур убил посыльного Бальтрама. Он пытался использовать меня в качестве нового посыльного, чтобы перехватить товар с фермы Акила.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Andre_Auslieferung_Nagur_15_00_add");	//Нагур пытался использовать меня в качестве подставного посыльного, чтобы украсть товар с фермы Акила.
+	};
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_01");	//Он понесет заслуженное наказание. Я немедленно прикажу посадить его за решетку.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
@@ -900,7 +918,11 @@ func void DIA_Andre_Auslieferung_Sarah()
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Sarah_15_02");	//В ее кармане письмо с деталями поставки оружия ему.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Sarah_08_03");	//Она поплатится за это. Я прикажу арестовать ее.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
-	B_RemoveSarahWeapons();
+	if(SarahWeaponsRemoved == FALSE)
+	{
+		B_GiveTradeInv_Sarah(Sarah);
+		B_RemoveSarahWeapons();
+	};
 	B_NpcSetJailed(Sarah);
 	B_StartOtherRoutine(Sarah,"KNAST");
 	B_StartOtherRoutine(Canthar,"MARKTSTAND");
@@ -1366,7 +1388,10 @@ func void DIA_Andre_FIND_DEALER_Info()
 	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_06");	//Найди торговца и заставь его продать тебе этой травы. Это будет непросто, но иначе мы не сможем арестовать его.
 	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_07");	//Поговори с Мортисом. Он хорошо знает портовый квартал. Возможно, он сможет помочь тебе.
 	MIS_Andre_REDLIGHT = LOG_Running;
-	B_StartOtherRoutine(Nadja,"SMOKE");
+	if(Bromor_Pay != 2)
+	{
+		B_StartOtherRoutine(Nadja,"SMOKE");
+	};
 	Log_CreateTopic(TOPIC_Redlight,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Redlight,LOG_Running);
 	B_LogEntry(TOPIC_Redlight,"Я должен найти человека, продающего болотную траву в портовом квартале. Я должен заставить его продать мне немного травы. Мортис может помочь мне в этом.");

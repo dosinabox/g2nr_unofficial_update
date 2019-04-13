@@ -821,7 +821,7 @@ instance DIA_Addon_Greg_NW_DexterFound(C_Info)
 func int DIA_Addon_Greg_NW_DexterFound_Condition()
 {
 //	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) && (GregLocation == Greg_Bigcross) && ((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE)))
-	if((SC_KnowsGregsSearchsDexter == TRUE) && ((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE)))
+	if((SC_KnowsGregsSearchsDexter == TRUE) && ((Bdt13_Dexter_verraten == TRUE) || (Ranger_SCKnowsDexter == TRUE)) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_CaughtDexter2))
 	{
 		return TRUE;
 	};
@@ -830,11 +830,18 @@ func int DIA_Addon_Greg_NW_DexterFound_Condition()
 func void DIA_Addon_Greg_NW_DexterFound_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_15_00");	//Я думаю, что тебе нужен человек по имени Декстер.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_01_01");	//Черт возьми, откуда мне знать его имя?!
-	Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
-	Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я просто предположил.",DIA_Addon_Greg_NW_DexterFound_weg);
-	Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Давай пойдем вместе.",DIA_Addon_Greg_NW_DexterFound_together);
-	Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я могу помочь тебе его найти.",DIA_Addon_Greg_NW_DexterFound_wo);
+	if(GregLocation == Greg_Dexter)
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_01_01");	//Черт возьми, откуда мне знать его имя?!
+		Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
+		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я просто предположил.",DIA_Addon_Greg_NW_DexterFound_weg);
+		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Давай пойдем вместе.",DIA_Addon_Greg_NW_DexterFound_together);
+		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я могу помочь тебе его найти.",DIA_Addon_Greg_NW_DexterFound_wo);
+	};
 };
 
 func void DIA_Addon_Greg_NW_DexterFound_weg()
@@ -852,7 +859,6 @@ func void DIA_Addon_Greg_NW_DexterFound_together()
 
 func void DIA_Addon_Greg_NW_DexterFound_wo()
 {
-//	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_00");	//Думаю, я могу помочь тебе его найти.
 	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_together_15_00");	//Я могу помочь тебе его найти.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_wo_01_01");	//Действительно? И где же он сейчас?
 	if(GregLocation == Greg_Bigcross)
@@ -900,6 +906,7 @@ func void DIA_Addon_Greg_NW_CaughtDexter_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter_01_00");	//(громко) Ну и где эта свинья?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_CaughtDexter_15_01");	//Кто, главарь? Прямо здесь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter_01_02");	//Тогда прочь с моей дороги!
+	PlayerTalkedToGregNW = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"DexterHouseRun");
 };
@@ -928,6 +935,7 @@ func void DIA_Addon_Greg_NW_WodennNu_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WodennNu_01_00");	//И куда же он делся?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_WodennNu_15_01");	//Был здесь.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WodennNu_01_02");	//Ну так пойди и отыщи его!
+	PlayerTalkedToGregNW = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -955,6 +963,7 @@ func void DIA_Addon_Greg_NW_CaughtDexter2_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter2_01_00");	//Ага. Значит, Декстер свое получил?
 	AI_Output(other,self,"DIA_Addon_Greg_NW_CaughtDexter2_15_01");	//Похоже, он мертв.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_CaughtDexter2_01_02");	//Не могу сказать, что мне его жалко. Проверь, что у него было с собой.
+	PlayerTalkedToGregNW = TRUE;
 	Npc_ExchangeRoutine(self,"DexterHouseWalk");
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -1049,6 +1058,28 @@ func void DIA_Addon_Greg_NW_WasWillstDu_Skip()
 };
 
 
+func void B_GiveGregItems()
+{
+	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_00");	//Вот твои вещи.
+	if(B_GiveInvItems(other,self,ItSe_GoldPocket100,1))
+	{
+		AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_01");	//Кошелек со ста золотыми.
+	}
+	else if(B_GiveInvItems(other,self,ItMi_Gold,100))
+	{
+		AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_02");	//100 золотых.
+	};
+	B_GiveInvItems(other,self,ItMi_GoldChalice,1);
+	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_03");	//Золотая чаша.
+	B_GiveInvItems(other,self,ItMi_GregsSilverPlate,1);
+	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_04");	//Серебряное блюдо.
+	B_GiveInvItems(other,self,ItAm_Prot_Point_01,1);
+	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_05");	//И амулет.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_ja_01_06");	//Очень хорошо. Вижу, тебе хватило ума не присваивать себе мои вещи.
+	MIS_Addon_Greg_RakeCave = LOG_SUCCESS;
+};
+
+
 instance DIA_Addon_Greg_NW_FoundTreasure(C_Info)
 {
 	npc = PIR_1300_Addon_Greg_NW;
@@ -1082,26 +1113,10 @@ func void DIA_Addon_Greg_NW_FoundTreasure_Info()
 
 func void DIA_Addon_Greg_NW_FoundTreasure_ja()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_00");	//Вот твои вещи.
-	if(B_GiveInvItems(other,self,ItSe_GoldPocket100,1))
-	{
-		AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_01");	//Кошелек со ста золотыми.
-	}
-	else if(B_GiveInvItems(other,self,ItMi_Gold,100))
-	{
-		AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_02");	//100 золотых.
-	};
-	B_GiveInvItems(other,self,ItMi_GoldChalice,1);
-	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_03");	//Золотая чаша.
-	B_GiveInvItems(other,self,ItMi_GregsSilverPlate,1);
-	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_04");	//Серебряное блюдо.
-	B_GiveInvItems(other,self,ItAm_Prot_Point_01,1);
-	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_ja_15_05");	//И амулет.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_ja_01_06");	//Очень хорошо. Вижу, тебе хватило ума не присваивать себе мои вещи.
+	B_GiveGregItems();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_ja_01_07");	//Вот твоя доля.
 	B_GiveInvItems(self,other,ItMi_Gold,30);
 	Info_ClearChoices(DIA_Addon_Greg_NW_FoundTreasure);
-	MIS_Addon_Greg_RakeCave = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Greg_RakeCave);
 };
 

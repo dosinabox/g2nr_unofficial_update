@@ -29,8 +29,8 @@ func void Rtn_Start_1129()
 
 func void Rtn_Flucht_1129()
 {
-	TA_RunToWP(8,0,23,0,"ADW_BL_HOEHLE_02");
-	TA_RunToWP(23,0,8,0,"ADW_BL_HOEHLE_02");
+	TA_RunToWP(8,0,23,0,"SOME_WAYPOINT_15");
+	TA_RunToWP(23,0,8,0,"SOME_WAYPOINT_15");
 };
 
 func void rtn_tot_1129()

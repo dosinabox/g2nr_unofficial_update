@@ -658,7 +658,8 @@ instance ItBe_Addon_Prot_EdgPoi(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MISSION | ITEM_MULTI;
+//	flags = ITEM_BELT | ITEM_MISSION | ITEM_MULTI;
+	flags = ITEM_BELT | ITEM_MULTI;
 	value = Value_ItBE_Addon_Prot_EdgPoi;
 //	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_15.3ds";
@@ -667,10 +668,10 @@ instance ItBe_Addon_Prot_EdgPoi(C_Item)
 	on_equip = Equip_ItBe_Addon_Prot_EdgPoi;
 	on_unequip = UnEquip_ItBe_Addon_Prot_EdgPoi;
 	description = "Пояс защиты";
-	text[2] = NAME_Prot_Edge;
+	text[1] = NAME_Prot_Edge;
+	count[1] = BeltBonus_ProtEdgPoi;
+	text[2] = NAME_Prot_Point;
 	count[2] = BeltBonus_ProtEdgPoi;
-	text[3] = NAME_Prot_Point;
-	count[3] = BeltBonus_ProtEdgPoi;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;

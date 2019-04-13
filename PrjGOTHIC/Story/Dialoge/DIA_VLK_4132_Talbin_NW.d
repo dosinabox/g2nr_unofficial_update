@@ -69,7 +69,6 @@ func int DIA_Talbin_NW_Condition()
 
 func void DIA_Talbin_NW_Info()
 {
-	AI_Output(other,self,"DIA_Talbin_NW_15_00");	//Этот Проход был не таким уж и страшным, правда?
 	AI_Output(self,other,"DIA_Talbin_NW_07_01");	//Спасибо, что спас меня. Вот...
 	AI_Output(self,other,"DIA_Talbin_NW_07_02");	//... я нашел этот камень в Проходе. Я думаю, он пригодится тебе.
 	if(hero.guild == GIL_KDF)
@@ -84,6 +83,7 @@ func void DIA_Talbin_NW_Info()
 		CreateInvItems(self,ItMi_Nugget,1);
 		B_GiveInvItems(self,other,ItMi_Nugget,1);
 	};
+	AI_Output(other,self,"DIA_Talbin_NW_15_00");	//Этот Проход был не таким уж и страшным, правда?
 	AI_Output(self,other,"DIA_Talbin_NW_07_05");	//Да защитит тебя Иннос.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Farm");

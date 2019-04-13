@@ -447,7 +447,7 @@ func void DIA_Addon_Finn_Again_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Finn_Again_07_01");	//Я тебе уже сказал все, что я знаю.
 		Info_ClearChoices(DIA_Addon_Finn_Again);
-		Info_AddChoice(DIA_Addon_Finn_Again,"Ладно... (назад)",DIA_Addon_Finn_Again_Exit);
+		Info_AddChoice(DIA_Addon_Finn_Again,"Ладно...",DIA_Addon_Finn_Again_Exit);
 		Info_AddChoice(DIA_Addon_Finn_Again,"Тогда расскажи мне еще раз!",DIA_Addon_Finn_Again_Nochmal);
 	}
 	else

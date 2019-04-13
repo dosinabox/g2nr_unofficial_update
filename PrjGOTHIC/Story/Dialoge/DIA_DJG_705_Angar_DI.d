@@ -34,10 +34,7 @@ instance DIA_Angar_DI_HALLO(C_Info)
 
 func int DIA_Angar_DI_HALLO_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Angar_DI_HALLO_Info()
@@ -101,26 +98,7 @@ func void DIA_Angar_DI_ORKS_no()
 };
 
 
-instance DIA_Angar_DI_FOLLOW(C_Info)
-{
-	npc = DJG_705_Angar_DI;
-	nr = 5;
-	condition = DIA_Angar_DI_FOLLOW_Condition;
-	information = DIA_Angar_DI_FOLLOW_Info;
-	permanent = TRUE;
-	description = "Оставайся на месте.";
-};
-
-
-func int DIA_Angar_DI_FOLLOW_Condition()
-{
-	if(Angar_DI_Party == LOG_Running)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Angar_DI_FOLLOW_Info()
+func void B_AngarStays()
 {
 	AI_Output(other,self,"DIA_Angar_DI_FOLLOW_15_00");	//Оставайся на месте.
 	if(Npc_GetDistToWP(self,"SKELETTE") < 4000)
@@ -128,7 +106,7 @@ func void DIA_Angar_DI_FOLLOW_Info()
 		AI_Output(other,self,"DIA_Angar_DI_FOLLOW_15_01");	//Об остальном я сам позабочусь.
 		AI_Output(self,other,"DIA_Angar_DI_FOLLOW_04_02");	//Удачи.
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"FireDragonIsland");
 		if(Angar_DI_Party != LOG_SUCCESS)
 		{
 			Angar_DI_Party = LOG_SUCCESS;
@@ -159,8 +137,33 @@ func void DIA_Angar_DI_FOLLOW_Info()
 		{
 			Npc_ExchangeRoutine(self,"Start");
 		};
+		Angar_DI_Party = LOG_OBSOLETE;
 	};
-	Angar_DI_Party = LOG_OBSOLETE;
+};
+
+
+instance DIA_Angar_DI_FOLLOW(C_Info)
+{
+	npc = DJG_705_Angar_DI;
+	nr = 5;
+	condition = DIA_Angar_DI_FOLLOW_Condition;
+	information = DIA_Angar_DI_FOLLOW_Info;
+	permanent = TRUE;
+	description = "Оставайся на месте.";
+};
+
+
+func int DIA_Angar_DI_FOLLOW_Condition()
+{
+	if(Angar_DI_Party == LOG_Running)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Angar_DI_FOLLOW_Info()
+{
+	B_AngarStays();
 };
 
 
@@ -214,7 +217,8 @@ func int DIA_Angar_DI_FOLLOWSTOP_Condition()
 
 func void DIA_Angar_DI_FOLLOWSTOP_Info()
 {
-	AI_Output(self,other,"DIA_Angar_DI_FOLLOWSTOP_04_00");	//Аааа! Это головная боль сведет меня с ума!
+	AI_Output(self,other,"DIA_Angar_DI_FOLLOWSTOP_04_00");	//Аааа! Эта головная боль сведет меня с ума!
+	B_AngarStays();
 };
 
 
@@ -242,7 +246,8 @@ func void DIA_Angar_DI_UNDEADDRGDEAD_Info()
 	AI_Output(self,other,"DIA_Angar_DI_UNDEADDRGDEAD_04_01");	//Можем мы, наконец, выбираться отсюда?
 	AI_Output(other,self,"DIA_Angar_DI_UNDEADDRGDEAD_15_02");	//Да. Враг повержен.
 	AI_Output(self,other,"DIA_Angar_DI_UNDEADDRGDEAD_04_03");	//Тогда не будем терять времени. Иди к капитану и скажи ему, чтобы он поднимал якорь.
-	if(SC_KnowsMadPsi == TRUE)
+//	if(SC_KnowsMadPsi == TRUE)
+	if(Angar_KnowsMadPsi == TRUE)
 	{
 		AI_Output(other,self,"DIA_Angar_DI_UNDEADDRGDEAD_15_04");	//Надеюсь, больше никого из членов твоей секты не осталось в живых.
 		AI_Output(self,other,"DIA_Angar_DI_UNDEADDRGDEAD_04_05");	//Все может быть. Ищущие были очень сильны. Они даже меня чуть не поработили. Кто знает?
@@ -312,4 +317,28 @@ func void DIA_Angar_DI_FOUNDAMULETT_Info()
 	B_AngarsAmulettAbgeben();
 };
 
+
+instance DIA_Angar_SCTellsAngarAboutMadPsi2_DI(C_Info)
+{
+	npc = DJG_705_Angar_DI;
+	nr = 8;
+	condition = DIA_Angar_SCTellsAngarAboutMadPsi2_DI_Condition;
+	information = DIA_Angar_SCTellsAngarAboutMadPsi2_DI_Info;
+	description = "Братство Спящего было порабощено Злом.";
+};
+
+
+func int DIA_Angar_SCTellsAngarAboutMadPsi2_DI_Condition()
+{
+	if((SC_KnowsMadPsi == TRUE) && (Angar_KnowsMadPsi == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Angar_SCTellsAngarAboutMadPsi2_DI_Info()
+{
+	B_SCTellsAngarAboutMadPsi();
+	B_SCTellsAngarAboutMadPsi2();
+};
 

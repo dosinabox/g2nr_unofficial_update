@@ -85,7 +85,7 @@ instance DIA_NOV_8_Wurst(C_Info)
 
 func int DIA_NOV_8_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItPl_Mushroom_02) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
 		return TRUE;
 	};
@@ -99,7 +99,7 @@ func void DIA_NOV_8_Wurst_Info()
 	AI_Output(self,other,"DIA_NOV_8_Wurst_08_01");	//Не надейся, не откажусь. Спасибо - это именно то, что мне было нужно.
 	B_GiveInvItems(other,self,ItFo_Schafswurst,1);
 	Wurst_Gegeben += 1;
-//	CreateInvItems(self,ItFo_Schafswurst,1);
+	CreateInvItems(self,ItPl_Mushroom_02,1);
 	B_UseItem(self,ItFo_Schafswurst);
 	if(Wurst_Gegeben >= 13)
 	{

@@ -82,11 +82,10 @@ instance ItMi_KerolothsGeldbeutel_MIS(C_Item)
 	value = 300;
 	visual = "ItMi_Pocket.3ds";
 	scemeName = "MAPSEALED";
-//	material = MAT_METAL;
 	material = MAT_LEATHER;
 	on_state[0] = UseKerolothsGeldbeutel;
 	description = "Кошелек Керолота";
-	text[0] = "Этот кошелек полон золотых монет.";
+	text[0] = "Этот кошелек полон монет.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -107,13 +106,10 @@ instance ItMi_KerolothsGeldbeutelLeer_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItMi_Pocket.3ds";
-//	material = MAT_METAL;
+	visual = "ItMi_Pocket_Empty.3ds";
 	material = MAT_LEATHER;
 	description = "Кошелек Керолота";
 	text[0] = "Сейчас этот кошелек пуст.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItRw_SengrathsArmbrust_MIS(C_Item)
@@ -141,7 +137,7 @@ instance ItRw_SengrathsArmbrust_MIS(C_Item)
 
 instance ItAt_TalbinsLurkerSkin(C_Item)
 {
-	name = "Шкура луркера";
+	name = "Кожа луркера";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_ReptileSkin;
@@ -297,7 +293,7 @@ func void Use_Map_NewWorld_Orcelite_MIS()
 	Doc_Show(Document);
 	if((Use_Map_NewWorld_Orcelite_MIS_OneTime == FALSE) && (MIS_KillOrkOberst != FALSE))
 	{
-		B_LogEntry(TOPIC_OrcElite,"Я нашел странную карту у полковника орков. Она похожа на стратегическую военную карту орков.");
+		B_LogEntry(TOPIC_OrcElite,"Я нашел необычную карту у полковника орков. Похоже на стратегические военные планы.");
 		Use_Map_NewWorld_Orcelite_MIS_OneTime = TRUE;
 	};
 };

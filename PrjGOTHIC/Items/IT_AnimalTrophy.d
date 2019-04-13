@@ -1,6 +1,6 @@
 
 const int Value_BCKopf = 50;
-const int Value_Meatbugflesh = 10;
+const int Value_Meatbugflesh = 6;
 const int Value_SheepFur = 10;
 const int Value_WolfFur = 10;
 const int Value_BugMandibles = 15;
@@ -10,7 +10,7 @@ const int Value_Teeth = 15;
 const int Value_CrawlerMandibles = 15;
 const int Value_Wing = 20;
 const int Value_Sting = 25;
-const int Value_ReptileSkin = 25;
+const int Value_ReptileSkin = 20;
 const int Value_WargFur = 25;
 const int Value_DrgSnapperHorn = 100;
 const int Value_CrawlerPlate = 50;
@@ -252,10 +252,88 @@ func void Use_Sting()
 
 instance ItAt_LurkerSkin(C_Item)
 {
-	name = "Кожа рептилии";
+	name = "Кожа луркера";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_ReptileSkin;
+	visual = "ItAt_TalbinsLurkerSkin.3DS";
+	material = MAT_LEATHER;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItAt_SnapperSkin(C_Item)
+{
+	name = "Кожа снеппера";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_ReptileSkin;
+	visual = "ItAt_SnapperSkin.3DS";
+	material = MAT_LEATHER;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItAt_RazorSkin(C_Item)
+{
+	name = "Кожа бритвозуба";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 40;
+	visual = "ItAt_RazorSkin.3DS";
+	material = MAT_LEATHER;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItAt_DragonSnapperSkin(C_Item)
+{
+	name = "Кожа драконьего снеппера";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 100;
+	visual = "ItAt_DragonSnapperSkin.3DS";
+	material = MAT_LEATHER;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItAt_WaranSkin(C_Item)
+{
+	name = "Кожа ящера";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_ReptileSkin;
+	visual = "ItAt_WaranSkin.3DS";
+	material = MAT_LEATHER;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItAt_FireWaranSkin(C_Item)
+{
+	name = "Кожа огненного ящера";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 60;
+	visual = "ItAt_FireWaranSkin.3DS";
+	material = MAT_LEATHER;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItAt_AlligatorSkin(C_Item)
+{
+	name = "Кожа аллигатора";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 200;
 	visual = "ItAt_LurkerSkin.3DS";
 	material = MAT_LEATHER;
 	description = name;
@@ -282,7 +360,7 @@ instance ItAt_Addon_KeilerFur(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Keilerfur;
-	visual = "ItAt_WargFur.3DS";
+	visual = "ItAt_KeilerFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;

@@ -1,5 +1,5 @@
 
-instance VLK_4200_Buergerin(Npc_Default)
+/*instance VLK_4200_Buergerin(Npc_Default)
 {
 	name[0] = NAME_Buergerin;
 	guild = GIL_VLK;
@@ -23,5 +23,5 @@ func void Rtn_Start_4200()
 {
 	TA_Smalltalk(8,0,22,0,"NW_CITY_MAINSTREET_05_B");
 	TA_Sleep(22,0,8,0,"NW_CITY_UPTOWN_PATH_08");
-};
+};*/
 

@@ -50,6 +50,31 @@ func void DIA_PAL_263_PERM_Info()
 };
 
 
+instance DIA_PAL_263_PERM_CIV(C_Info)
+{
+	npc = PAL_263_Wache;
+	nr = 2;
+	condition = DIA_PAL_263_PERM_CIV_Condition;
+	information = DIA_PAL_263_PERM_CIV_Info;
+	permanent = TRUE;
+	description = "Как обстановка?";
+};
+
+
+func int DIA_PAL_263_PERM_CIV_Condition()
+{
+	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (hero.guild == GIL_NONE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_PAL_263_PERM_CIV_Info()
+{
+	AI_Output(other,self,"DIA_PAL_263_PERM_OTH_15_00");	//Как обстановка?
+	AI_Output(self,other,"DIA_PAL_263_PERM_OTH_04_01");	//Мы держим ситуацию под контролем. Тебе не о чем беспокоиться, гражданский. Все будет хорошо.
+};
+
 instance DIA_PAL_263_PERM_OTH(C_Info)
 {
 	npc = PAL_263_Wache;
@@ -57,13 +82,13 @@ instance DIA_PAL_263_PERM_OTH(C_Info)
 	condition = DIA_PAL_263_PERM_OTH_Condition;
 	information = DIA_PAL_263_PERM_OTH_Info;
 	permanent = TRUE;
-	description = "Как обстановка?";
+	description = "Кто командует здесь?";
 };
 
 
 func int DIA_PAL_263_PERM_OTH_Condition()
 {
-	if((hero.guild != GIL_MIL) || (hero.guild != GIL_PAL))
+	if((hero.guild == GIL_MIL) || (hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -71,7 +96,8 @@ func int DIA_PAL_263_PERM_OTH_Condition()
 
 func void DIA_PAL_263_PERM_OTH_Info()
 {
-	AI_Output(other,self,"DIA_PAL_263_PERM_OTH_15_00");	//Как обстановка?
-	AI_Output(self,other,"DIA_PAL_263_PERM_OTH_04_01");	//Мы держим ситуацию под контролем. Тебе не о чем беспокоиться, гражданский. Все будет хорошо.
+	AI_Output(other,self,"DIA_WACHE_PERM_15_00");	//Кто командует здесь?
+	AI_Output(self,other,"DIA_WACHE_PERM_10_01");	//Наш командующий Гаронд и два его советника, паладины Орик и Парсиваль.
+	AI_Output(self,other,"DIA_WACHE_PERM_10_02");	//Днем ты можешь застать их в тронном зале на первом этаже.
 };
 

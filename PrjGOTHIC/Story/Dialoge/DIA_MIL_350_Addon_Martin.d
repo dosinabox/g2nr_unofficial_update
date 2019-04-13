@@ -173,6 +173,8 @@ func void DIA_Addon_Martin_PreTrade_Info()
 	AI_Output(other,self,"DIA_Addon_Martin_PreTrade_15_02");	//И часто случаются пропажи вещей?
 	AI_Output(self,other,"DIA_Addon_Martin_PreTrade_07_03");	//Нет, пока интендант говорит, что все в порядке.
 	AI_Output(other,self,"DIA_Addon_Martin_PreTrade_15_04");	//Понимаю.
+	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_CityTrader,LogText_Addon_MartinTrade);
 };
 
 
@@ -231,16 +233,8 @@ func int DIA_Addon_Martin_Trade_Condition()
 };
 
 
-var int DIA_Addon_Martin_Trade_OneTime;
-
 func void DIA_Addon_Martin_Trade_Info()
 {
-	if(DIA_Addon_Martin_Trade_OneTime == FALSE)
-	{
-		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTrader,LogText_Addon_MartinTrade);
-		DIA_Addon_Martin_Trade_OneTime = TRUE;
-	};
 	AI_Output(other,self,"DIA_Addon_Martin_Trade_15_00");	//Что ты можешь предложить?
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Addon_Martin_Trade_07_01");	//Что ж, смотри внимательно.
@@ -594,7 +588,7 @@ func int DIA_Addon_Martin_GotRangar_Condition()
 func void DIA_Addon_Martin_GotRangar_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Martin_GotRangar_15_00");	//Я узнал, кто ворует вещи.
-	AI_Output(other,self,"DIA_Addon_Martin_GotRangar_15_01");	//В твоих ящиках копался Рангар.
+	AI_Output(other,self,"DIA_Addon_Martin_GotRangar_15_01");	//В твоих ящиках копался Рагнар.
 	AI_Output(self,other,"DIA_Addon_Martin_GotRangar_07_02");	//Ну наконец-то. Теперь я, по крайней мере, буду знать, за кем мне присматривать. Вот сволочь! Ну, если я его поймаю...
 	AI_Output(self,other,"DIA_Addon_Martin_GotRangar_07_03");	//А я-то всегда удивлялся, почему паладины ничего не замечают.
 	AI_Output(other,self,"DIA_Addon_Martin_GotRangar_15_04");	//И? Почему?

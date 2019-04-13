@@ -149,7 +149,7 @@ func void DIA_Addon_Pyrokar_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Pyrokar_MissingPeople_11_05");	//Никаких 'но'! Мы будем поступать так, как считаем нужным, и я надеюсь, что ты это поймешь.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Маги Огня огорчены исчезновениями горожан. Однако, они говорят, что это этим должны заниматься маги Воды. В монастыре мне не удастся найти помощи по этому вопросу.");
+	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Маги Огня огорчены исчезновениями горожан. Однако, они говорят, что этим должны заниматься маги Воды. В монастыре мне не удастся найти помощи по этому вопросу.");
 	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == FALSE))
 	{
 		AI_StopProcessInfos(self);
@@ -944,36 +944,8 @@ func void DIA_Pyrokar_TEACH_MANA_5()
 	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
 };
 
-
-instance DIA_Pyrokar_PERM(C_Info)
+func void B_Pyrokar_BLESSING()
 {
-	npc = KDF_500_Pyrokar;
-	nr = 900;
-	condition = DIA_Pyrokar_PERM_Condition;
-	information = DIA_Pyrokar_PERM_Info;
-	permanent = TRUE;
-	description = "(благословение)";
-};
-
-
-func int DIA_Pyrokar_PERM_Condition()
-{
-	if(Kapitel >= 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Pyrokar_PERM_Info()
-{
-	if(hero.guild == GIL_KDF)
-	{
-		AI_Output(other,self,"DIA_Pyrokar_PERM_15_00");	//Благослови меня, Мастер.
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Pyrokar_PERM_15_01");	//Как насчет благословения? Мне оно не помешало бы.
-	};
 	if((Kapitel == 5) && (MIS_PyrokarClearDemonTower == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Pyrokar_PERM_11_02");	//Да увенчается успехом твоя последняя битва против нашего заклятого врага. Да пребудет с тобой Иннос.
@@ -983,6 +955,57 @@ func void DIA_Pyrokar_PERM_Info()
 		AI_Output(self,other,"DIA_Pyrokar_PERM_11_03");	//Да встанет Иннос между тобой и болью на всех нечестивых путях, по которым тебе суждено пройти.
 	};
 	other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
+};
+
+instance DIA_Pyrokar_PERM(C_Info)
+{
+	npc = KDF_500_Pyrokar;
+	nr = 900;
+	condition = DIA_Pyrokar_PERM_Condition;
+	information = DIA_Pyrokar_PERM_Info;
+	permanent = TRUE;
+	description = "Благослови меня, Мастер.";
+};
+
+
+func int DIA_Pyrokar_PERM_Condition()
+{
+	if((Kapitel >= 2) && (hero.guild == GIL_KDF))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Pyrokar_PERM_Info()
+{
+	AI_Output(other,self,"DIA_Pyrokar_PERM_15_00");	//Благослови меня, Мастер.
+	B_Pyrokar_BLESSING();
+};
+
+
+instance DIA_Pyrokar_PERM_nonKDF(C_Info)
+{
+	npc = KDF_500_Pyrokar;
+	nr = 900;
+	condition = DIA_Pyrokar_PERM_nonKDF_Condition;
+	information = DIA_Pyrokar_PERM_nonKDF_Info;
+	permanent = TRUE;
+	description = "Как насчет благословения? Мне оно не помешало бы.";
+};
+
+
+func int DIA_Pyrokar_PERM_nonKDF_Condition()
+{
+	if((Kapitel >= 2) && (hero.guild != GIL_KDF))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Pyrokar_PERM_nonKDF_Info()
+{
+	AI_Output(other,self,"DIA_Pyrokar_PERM_15_01");	//Как насчет благословения? Мне оно не помешало бы.
+	B_Pyrokar_BLESSING();
 };
 
 
@@ -1114,7 +1137,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_06");	//Враг овладел им, нанеся тем самым ужасное поражение всем нам.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_07");	//Педро пробил себе дорогу мечом в наши самые священные покои и украл Глаз.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_08");	//Я боюсь, что он просто слишком много времени проводил наедине, за воротами и защитными стенами монастыря, открытый для опасностей всякого рода.
-	Pedro.flags = 0;
+//	Pedro.flags = 0;
 	Pedro_Traitor = TRUE;
 	B_LogEntry(TOPIC_INNOSEYE,"Невероятно. Хотя я ожидал чего-то подобного. Я опоздал, эти тупицы из монастыря позволили какому-то послушнику украсть Глаз, и теперь мне придется гнаться за предателем Педро и надеяться, что он еще не продал Глаз кому-нибудь.");
 	Log_CreateTopic(TOPIC_TraitorPedro,LOG_MISSION);
@@ -1501,6 +1524,48 @@ func void DIA_Pyrokar_BUCHDERBESSENEN_Info()
 };
 
 
+instance DIA_Pyrokar_SCOBSESSED_KDF(C_Info)
+{
+	npc = KDF_500_Pyrokar;
+	nr = 70;
+	condition = DIA_Pyrokar_SCOBSESSED_KDF_Condition;
+	information = DIA_Pyrokar_SCOBSESSED_KDF_Info;
+	permanent = TRUE;
+	description = "Исцели меня, Мастер, ибо я одержим.";
+};
+
+
+func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
+{
+	if((SC_IsObsessed == TRUE) && (hero.guild == GIL_KDF))
+	{
+		return TRUE;
+	};
+};
+
+
+func void DIA_Pyrokar_SCOBSESSED_KDF_Info()
+{
+	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_00");	//Исцели меня, Мастер, ибо я одержим.
+	if(((Got_HealObsession_Day <= (Wld_GetDay() - 2)) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
+	{
+		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_01");	//Да будет так! Возьми это зелье. Оно избавит тебя от ночных кошмаров.
+		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_02");	//Да избавит тебя Иннос от этой напасти.
+		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_03");	//Действуй от его имени и остерегайся черного взгляда врага.
+		if(SC_ObsessionTimes > 3)
+		{
+			AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_04");	//Но я предостерегаю тебя - если ты будешь попадать в их сети слишком часто, может статься так, что возврата уже не будет. Всегда помни об этом.
+		};
+		CreateInvItems(self,ItPo_HealObsession_MIS,2);
+		B_GiveInvItems(self,other,ItPo_HealObsession_MIS,2);
+		Got_HealObsession_Day = Wld_GetDay();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_07");	//Но ты только что получил исцеляющее зелье. Обратись ко мне, только если тебе действительно понадобится помощь.
+	};
+};
+
 instance DIA_Pyrokar_SCOBSESSED(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -1508,47 +1573,28 @@ instance DIA_Pyrokar_SCOBSESSED(C_Info)
 	condition = DIA_Pyrokar_SCOBSESSED_Condition;
 	information = DIA_Pyrokar_SCOBSESSED_Info;
 	permanent = TRUE;
-	description = "(вылечить одержимость)";
+	description = "Я думаю, я одержим. Ты можешь исцелить меня?";
 };
 
 
 func int DIA_Pyrokar_SCOBSESSED_Condition()
 {
-	if(SC_IsObsessed == TRUE)
+	if((SC_IsObsessed == TRUE) && (hero.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
 };
 
 
-var int Got_HealObsession_Day;
-
 func void DIA_Pyrokar_SCOBSESSED_Info()
 {
+	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_05");	//Я думаю, я одержим. Ты можешь исцелить меня?
 	if(((Got_HealObsession_Day <= (Wld_GetDay() - 2)) || (Got_HealObsession_Day == 0)) && !Npc_HasItems(other,ItPo_HealObsession_MIS))
 	{
-		if(hero.guild == GIL_KDF)
-		{
-			AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_00");	//Исцели меня, Мастер, ибо я одержим.
-			AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_01");	//Да будет так! Возьми это зелье. Оно избавит тебя от ночных кошмаров.
-			AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_02");	//Да избавит тебя Иннос от этой напасти.
-			AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_03");	//Действуй от его имени и остерегайся черного взгляда врага.
-			if(SC_ObsessionTimes > 3)
-			{
-				AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_04");	//Но я предостерегаю тебя - если ты будешь попадать в их сети слишком часто, может статься так, что возврата уже не будет. Всегда помни об этом.
-			};
-			CreateInvItems(self,ItPo_HealObsession_MIS,2);
-			B_GiveInvItems(self,other,ItPo_HealObsession_MIS,2);
-			Got_HealObsession_Day = Wld_GetDay();
-		}
-		else
-		{
-			AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_15_05");	//Я думаю, я одержим. Ты можешь исцелить меня?
-			AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_06");	//При условии проявления твоего уважения к этому монастырю, сын мой. 300 золотых.
-			Info_ClearChoices(DIA_Pyrokar_SCOBSESSED);
-			Info_AddChoice(DIA_Pyrokar_SCOBSESSED,"Это слишком много.",DIA_Pyrokar_SCOBSESSED_nein);
-			Info_AddChoice(DIA_Pyrokar_SCOBSESSED,"Отлично. Вот деньги.",DIA_Pyrokar_SCOBSESSED_ok);
-		};
+		AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_06");	//При условии проявления твоего уважения к этому монастырю, сын мой. 300 золотых.
+		Info_ClearChoices(DIA_Pyrokar_SCOBSESSED);
+		Info_AddChoice(DIA_Pyrokar_SCOBSESSED,"Это слишком много.",DIA_Pyrokar_SCOBSESSED_nein);
+		Info_AddChoice(DIA_Pyrokar_SCOBSESSED,"Отлично. Вот деньги.",DIA_Pyrokar_SCOBSESSED_ok);
 	}
 	else
 	{
@@ -1576,6 +1622,7 @@ func void DIA_Pyrokar_SCOBSESSED_ok()
 func void DIA_Pyrokar_SCOBSESSED_nein()
 {
 	AI_Output(other,self,"DIA_Pyrokar_SCOBSESSED_nein_15_00");	//Это слишком много.
+	AI_Output(self,other,"DIA_Pyrokar_SCOBSESSED_11_04");	//Но я предостерегаю тебя - если ты будешь попадать в их сети слишком часто, может статься так, что возврата уже не будет. Всегда помни об этом.
 	Info_ClearChoices(DIA_Pyrokar_SCOBSESSED);
 };
 

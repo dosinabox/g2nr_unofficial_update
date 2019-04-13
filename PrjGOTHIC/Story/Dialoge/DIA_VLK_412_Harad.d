@@ -558,17 +558,17 @@ instance DIA_Harad_Waffen(C_Info)
 
 func int DIA_Harad_Waffen_Condition()
 {
-	if(Kapitel == 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Harad_Waffen_Info()
 {
 	AI_Output(other,self,"DIA_Harad_Waffen_15_00");	//Ты продаешь оружие?
 	AI_Output(self,other,"DIA_Harad_Waffen_12_01");	//Забудь об этом. Все, что я делаю, уходит паладинам или ополчению.
-	AI_Output(self,other,"DIA_Harad_Add_12_00");	//У меня заказ на 100 мечей от лорда Хагена. Он хочет вооружить городскую стражу.
+	if(Kapitel == 1)
+	{
+		AI_Output(self,other,"DIA_Harad_Add_12_00");	//У меня заказ на 100 мечей от лорда Хагена. Он хочет вооружить городскую стражу.
+	};
 };
 
 

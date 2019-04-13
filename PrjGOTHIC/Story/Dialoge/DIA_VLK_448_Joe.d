@@ -90,11 +90,8 @@ func void DIA_Joe_Hallo_Info()
 	AI_Output(self,other,"DIA_Joe_Hallo_10_03");	//Я попал в дурацкое положение - и был бы очень благодарен, если бы все это осталось между нами.
 	AI_Output(other,self,"DIA_Joe_Hallo_15_04");	//Понимаю. Да уж, тут действительно нечем гордиться.
 	AI_Output(self,other,"DIA_Joe_Hallo_10_05");	//Я сейчас был бы не прочь что-нибудь выпить.
-//	AI_GotoWP(self,"NW_CITY_MERCHANT_PATH_07");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
-	Npc_SetTarget(self,hero);
-	AI_StartState(self,ZS_Flee,0,"");
 };
 
 
@@ -111,7 +108,7 @@ instance DIA_Joe_Perm(C_Info)
 
 func int DIA_Joe_Perm_Condition()
 {
-	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_TAVERN01_08") <= 500)
+	if(Npc_KnowsInfo(other,DIA_Joe_Hallo))
 	{
 		return TRUE;
 	};
@@ -138,7 +135,7 @@ instance DIA_Joe_Sign(C_Info)
 
 func int DIA_Joe_Sign_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_CITY_HABOUR_TAVERN01_08") <= 500) && (Knows_SecretSign == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Joe_Hallo) && (Knows_SecretSign == TRUE))
 	{
 		return TRUE;
 	};

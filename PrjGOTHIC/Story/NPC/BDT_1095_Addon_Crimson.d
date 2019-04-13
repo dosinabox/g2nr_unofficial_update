@@ -9,7 +9,7 @@ instance BDT_1095_Addon_Crimson(Npc_Default)
 	npcType = NPCTYPE_BL_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_Sense);
+	EquipItem(self,ItMw_BattleSense);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_N_NormalBart10,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,-2);

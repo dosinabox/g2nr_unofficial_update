@@ -1,14 +1,16 @@
 
 const int SPL_Cost_Firebolt = 5;
-//const int SPL_Damage_Firebolt = 25;
-const int SPL_Damage_Firebolt = 35;
+const int SPL_Damage_Firebolt = 25;
+//const int SPL_Damage_Firebolt = 35;
 
 instance Spell_Firebolt(C_Spell_Proto)
 {
 	time_per_mana = 0;
 	damage_per_level = SPL_Damage_Firebolt;
-	//изменить тип если нужно	
-	damagetype = DAM_FIRE;	//DAM_MAGIC;
+//	изменить тип если нужно
+//	дамаг тоже не забыть			
+	damagetype = DAM_MAGIC;
+//	damagetype = DAM_FIRE;
 };
 
 

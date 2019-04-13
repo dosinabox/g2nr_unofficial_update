@@ -12,6 +12,13 @@ func void B_ENTER_ADDONWORLD_Kapitel_1()
 		B_RemoveNpc(Tonak);
 		B_RemoveNpc(Telbor);
 		B_RemoveNpc(Pardos);
+		B_RemoveNpc(STRF_1128_Addon_Sklave);
+		B_RemoveNpc(STRF_1129_Addon_Sklave);
+		B_RemoveNpc(STRF_1130_Addon_Sklave);
+		B_RemoveNpc(STRF_1137_Addon_Sklave);
+		B_RemoveNpc(STRF_1138_Addon_Sklave);
+		B_RemoveNpc(STRF_1139_Addon_Sklave);
+		B_RemoveNpc(STRF_1140_Addon_Sklave);
 		RemoveSklaven = TRUE;
 	};
 };

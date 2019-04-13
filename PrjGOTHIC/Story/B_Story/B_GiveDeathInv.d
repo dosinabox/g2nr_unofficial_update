@@ -138,23 +138,23 @@ func void B_GiveDeathInv(var C_Npc slf)
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SNAPPER)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_SnapperSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_Razor)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_RazorSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGONSNAPPER)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_DragonSnapperSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARAN)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_WaranSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_FIREWARAN)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_FireWaranSkin,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_SWAMPSHARK)
 		{
@@ -162,7 +162,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_ALLIGATOR)
 		{
-			CreateInvItems(slf,ItAt_LurkerSkin,1);
+			CreateInvItems(slf,ItAt_AlligatorSkin,1);
 		};
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == TRUE)

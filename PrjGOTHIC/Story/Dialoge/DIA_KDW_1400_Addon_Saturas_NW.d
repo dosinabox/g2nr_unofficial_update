@@ -321,7 +321,7 @@ func void DIA_Addon_Saturas_geheimbund_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_geheimbund_15_07");	//(сухо) Постараюсь...
 	Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Сатурас не готов принять меня в Кольцо Воды. Он сказал, что принять это решение должен Ватрас.");
+	B_LogEntry(TOPIC_Addon_RingOfWater,"Сатурас не готов принять меня в Кольцо Воды. Он сказал, что это должен решить Ватрас.");
 };
 
 

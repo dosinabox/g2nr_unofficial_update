@@ -1,7 +1,7 @@
 
 func void B_CaptainCallsAllOnBoard(var C_Npc Captain)
 {
-	B_GiveInvItems(hero,Captain,ItWr_Seamap_Irdorath,1);
+//	B_GiveInvItems(hero,Captain,ItWr_Seamap_Irdorath,1);
 	CreateInvItems(Captain,ItKe_Ship_Levelchange_MIS,1);
 	B_GiveInvItems(Captain,other,ItKe_Ship_Levelchange_MIS,1);
 	B_StartOtherRoutine(Captain,"AllOnBoard");

@@ -204,7 +204,7 @@ instance DIA_Brutus_Gold(C_Info)
 	condition = DIA_Brutus_Gold_Condition;
 	information = DIA_Brutus_Gold_Info;
 	permanent = TRUE;
-	description = "” мен€ есть кое-что дл€ теб€. (дать 200 монет)";
+	description = "” мен€ есть кое-что дл€ теб€. (вернуть 200 золотых)";
 };
 
 

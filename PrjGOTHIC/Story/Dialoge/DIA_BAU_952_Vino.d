@@ -20,6 +20,10 @@ func int DIA_Vino_EXIT_Condition()
 
 func void DIA_Vino_EXIT_Info()
 {
+	if(!Npc_HasEquippedArmor(other))
+	{
+		PlayerVisitedLobartFarmArmorless = TRUE;
+	};
 	B_NpcClearObsessionByDMT(self);
 };
 
@@ -213,6 +217,12 @@ func void DIA_Vino_PERM_Info()
 		AI_Output(self,other,"DIA_Vino_PERM_05_05");	//Ты бы видел, как я улепетывал. С тех пор я не могу спать спокойно.
 		Vino_Gossip_Bugs = TRUE;
 	}
+	else if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (hero.guild != GIL_MIL) && (hero.guild != GIL_KDF))
+	{
+		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_04");	//К сожалению, ополчение нашло мой винокуренный заводик. Надеюсь, что они хотя бы меня не поймают.
+		B_GivePlayerXP(150);
+		Vino_Complain = TRUE;
+	}
 	else
 	{
 		AI_Output(self,other,"DIA_Vino_PERM_05_06");	//Кроме того, что я уже сказал тебе? Нет.
@@ -265,17 +275,15 @@ func int DIA_Vino_DMTAMSTART_Condition()
 };
 
 
-var int DIA_Vino_DMTAMSTART_OneTime;
-
 func void DIA_Vino_DMTAMSTART_Info()
 {
 	AI_Output(other,self,"DIA_Vino_DMTAMSTART_15_00");	//А как у тебя дела?
-	if((FoundVinosKellerei == TRUE) && (DIA_Vino_DMTAMSTART_OneTime == FALSE) && (hero.guild != GIL_MIL))
+	if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (hero.guild != GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Vino_DMTAMSTART_05_01");	//Дерьмово. Ополчение нашло мой тайный винокуренный заводик.
 		AI_Output(self,other,"DIA_Vino_DMTAMSTART_05_02");	//Остается надеяться, что они никогда не узнают, что он принадлежал мне.
-		B_GivePlayerXP(XP_AmbientKap3);
-		DIA_Vino_DMTAMSTART_OneTime = TRUE;
+		B_GivePlayerXP(150);
+		Vino_Complain = TRUE;
 	}
 	else
 	{
@@ -447,7 +455,13 @@ func int DIA_Vino_PERM45UND6_Condition()
 func void DIA_Vino_PERM45UND6_Info()
 {
 	AI_Output(other,self,"DIA_Vino_PERM45UND6_15_00");	//Есть новости?
-	if(hero.guild == GIL_PAL)
+	if((FoundVinosKellerei == TRUE) && (Vino_Complain == FALSE) && (hero.guild != GIL_MIL))
+	{
+		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_04");	//К сожалению, ополчение нашло мой винокуренный заводик. Надеюсь, что они хотя бы меня не поймают.
+		B_GivePlayerXP(150);
+		Vino_Complain = TRUE;
+	}
+	else if(hero.guild == GIL_PAL)
 	{
 		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_01");	//Здесь все просто кишит орками.
 		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_02");	//Вы, паладины, ведь прикончите их, да?
@@ -455,10 +469,6 @@ func void DIA_Vino_PERM45UND6_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_03");	//Боюсь, что скоро нам придется покинуть нашу ферму и присоединиться к наемникам на ферме Онара.
-	};
-	if((FoundVinosKellerei == TRUE) && (hero.guild != GIL_MIL))
-	{
-		AI_Output(self,other,"DIA_Vino_PERM45UND6_05_04");	//К сожалению, ополчение нашло мой винокуренный заводик. Надеюсь, что они хотя бы меня не поймают.
 	};
 };
 

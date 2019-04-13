@@ -21,6 +21,32 @@ func void DIA_Cornelius_Exit_Info()
 };
 
 
+instance DIA_Cornelius_Hello(C_Info)
+{
+	npc = VLK_401_Cornelius;
+	nr = 2;
+	condition = DIA_Cornelius_Hello_Condition;
+	information = DIA_Cornelius_Hello_Info;
+	permanent = TRUE;
+	important = TRUE;
+};
+
+
+func int DIA_Cornelius_Hello_Condition()
+{
+	if((RecueBennet_KnowsCornelius == FALSE) && Npc_IsInState(self,ZS_Talk))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Cornelius_Hello_Info()
+{
+	AI_Output(self,other,"DIA_Cornelius_WhatYouSee_13_01");	//(возбужденно) Послушай, у меня нет времени на болтовню с тобой.
+	AI_StopProcessInfos(self);
+};
+
+
 instance DIA_Cornelius_SeeMurder(C_Info)
 {
 	npc = VLK_401_Cornelius;
@@ -45,6 +71,7 @@ func void DIA_Cornelius_SeeMurder_Info()
 	AI_Output(other,self,"DIA_Cornelius_SeeMurder_15_00");	//Ты видел, как убили Лотара, да?
 	AI_Output(self,other,"DIA_Cornelius_SeeMurder_13_01");	//(нервно) Я не обязан отвечать на такие вопросы.
 	AI_Output(self,other,"DIA_Cornelius_SeeMurder_13_02");	//Лорд Хаген уже допрашивал меня.
+	AI_StopProcessInfos(self);
 };
 
 

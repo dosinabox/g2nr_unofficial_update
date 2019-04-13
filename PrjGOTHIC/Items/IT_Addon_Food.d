@@ -1,17 +1,17 @@
 
-const int Value_Rum = 30;
+const int Value_Rum = 20;
 const int Mana_Rum = 10;
 const int Value_Grog = 10;
 const int HP_Grog = 1;
 const int Value_SchnellerHering = 30;
 const int Value_LousHammer = 30;
 const int Mana_LousHammer = 1;
-const int Value_SchlafHammer = 60;
-const int Value_FireStew = 180;
+const int Value_SchlafHammer = 40;
+const int Value_BonusFood = 40;
 const int STR_FireStew = 1;
 const int HP_FireStew = 5;
 const int STR_MeatSoup = 1;
-const int Value_Shellflesh = 60;
+//const int Value_Shellflesh = 60;
 const int HP_Shellflesh = 20;
 
 instance ItFo_Addon_Shellflesh(C_Item)
@@ -19,7 +19,7 @@ instance ItFo_Addon_Shellflesh(C_Item)
 	name = "Мясо моллюска";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Shellflesh;
+	value = Value_Meatbugflesh;
 	visual = "ItAt_Shellflesh.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOODHUGE";
@@ -62,7 +62,7 @@ instance ItFo_Addon_Rum(C_Item)
 	text[1] = NAME_Bonus_Mana;
 	count[1] = Mana_Rum;
 	text[5] = NAME_Value;
-	count[5] = Value_Rum;
+	count[5] = value;
 };
 
 
@@ -90,7 +90,7 @@ instance ItFo_Addon_Grog(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Grog * 10;
 	text[5] = NAME_Value;
-	count[5] = Value_Grog;
+	count[5] = value;
 };
 
 
@@ -119,7 +119,7 @@ instance ItFo_Addon_LousHammer(C_Item)
 //	text[0] = PRINT_UnknownEffect;
 	text[1] = TEXT_LousHammer_Setting;
 	text[5] = NAME_Value;
-	count[5] = Value_LousHammer;
+	count[5] = value;
 };
 
 
@@ -155,7 +155,7 @@ instance ItFo_Addon_SchlafHammer(C_Item)
 	description = name;
 	text[0] = "Это пойло способно свалить с ног любого...";
 	text[5] = NAME_Value;
-	count[5] = Value_SchlafHammer;
+	count[5] = value;
 };
 
 
@@ -179,7 +179,6 @@ instance ItFo_Addon_SchnellerHering(C_Item)
 	value = Value_SchnellerHering;
 //	visual = "ItMi_Rum_01.3ds";
 	visual = "ItMi_Rum_03.3ds";
-//	material = MAT_GLAS;
 	material = MAT_STONE;
 	on_state[0] = UseSchnellerHering;
 	scemeName = "POTIONFAST";
@@ -190,11 +189,8 @@ instance ItFo_Addon_SchnellerHering(C_Item)
 	text[0] = "Временно повышает скорость.";
 	text[1] = NAME_Duration;
 	count[1] = Time_SchnellerHering / 60000;
-//	text[0] = TEXT_SchnellerHering_Setting;
-//	text[1] = TEXT_SchnellerHering_Setting2;
-//	count[1] = COUNT_SchnellerHering_Setting;\
 	text[5] = NAME_Value;
-	count[5] = Value_SchnellerHering;
+	count[5] = value;
 };
 
 
@@ -206,9 +202,6 @@ func void UseSchnellerHering()
 	{
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_SchnellerHering);
 	};
-//	TEXT_SchnellerHering_Setting = "Временно повышает скорость.";
-//	TEXT_SchnellerHering_Setting2 = NAME_Duration;
-//	COUNT_SchnellerHering_Setting = Time_SchnellerHering / 60000;
 	Player_KnowsSchnellerHering = TRUE;
 };
 
@@ -236,7 +229,7 @@ instance ItFo_Addon_FireStew(C_Item)
 	name = "Пламенная нарезка";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_FireStew;
+	value = Value_BonusFood;
 //	visual = "ItFo_Stew.3ds";
 	visual = "ItFo_FireStew.3ds";
 	material = MAT_WOOD;
@@ -248,7 +241,7 @@ instance ItFo_Addon_FireStew(C_Item)
 	text[2] = NAME_Bonus_HpMax;
 	count[2] = HP_FireStew;
 	text[5] = NAME_Value;
-	count[5] = Value_FireStew;
+	count[5] = value;
 };
 
 
@@ -268,7 +261,7 @@ instance ItFo_Addon_Meatsoup(C_Item)
 	name = "Мясная похлебка";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_FishSoup;
+	value = Value_BonusFood;
 //	visual = "ItFo_FishSoup.3ds";
 	visual = "ItFo_MeatSoup.3ds";
 	material = MAT_WOOD;
@@ -280,7 +273,7 @@ instance ItFo_Addon_Meatsoup(C_Item)
 	text[1] = NAME_Bonus_Str;
 	count[1] = STR_MeatSoup;
 	text[5] = NAME_Value;
-	count[5] = Value_FishSoup;
+	count[5] = value;
 };
 
 

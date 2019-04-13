@@ -99,7 +99,7 @@ func void DIA_Addon_Greg_ImNew_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_07");	//А ТЫ? Что ТЫ сделал?
 	Info_ClearChoices(DIA_Addon_Greg_ImNew);
 	Info_AddChoice(DIA_Addon_Greg_ImNew,"Пока не так много.",DIA_Addon_Greg_ImNew_nich);
-	if((Npc_IsDead(BeachLurker1) && Npc_IsDead(BeachLurker2) && Npc_IsDead(BeachLurker3) && Npc_IsDead(BeachWaran1) && Npc_IsDead(BeachWaran2) && Npc_IsDead(BeachShadowbeast1) && Npc_IsDead(BeachShadowbeast1) && (MIS_Addon_MorganLurker != FALSE)) || C_TowerBanditsDead())
+	if((Npc_IsDead(BeachLurker1) && Npc_IsDead(BeachLurker2) && Npc_IsDead(BeachLurker3) && Npc_IsDead(BeachWaran1) && Npc_IsDead(BeachWaran2) && Npc_IsDead(BeachShadowbeast1) && (MIS_Addon_MorganLurker != FALSE)) || C_TowerBanditsDead())
 	{
 		Info_AddChoice(DIA_Addon_Greg_ImNew,"Я работал.",DIA_Addon_Greg_ImNew_turm);
 	};
@@ -110,6 +110,11 @@ func void B_UseRakeBilanz()
 	if(((MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE)) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_00");	//И не думай, что я забыл, что ты мой должник.
+		if((MIS_Addon_Greg_BringMeToTheCity == LOG_Running) || (MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED))
+		{
+			AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_02");	//Второй раз ты отказываешься выполнить мою просьбу.
+			Greg_NoHelpInNW = TRUE;
+		};
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_01");	//В различных местах Хориниса я зарыл несколько сотен золотых монет.
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_02");	//Ты их прикарманил, не так ли?
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_03");	//Я заставлю тебя отработать все до последнего медяка.
@@ -556,7 +561,7 @@ instance DIA_Addon_Greg_NiceToSeeYou(C_Info)
 
 func int DIA_Addon_Greg_NiceToSeeYou_Condition()
 {
-	if((PlayerTalkedToGregNW == TRUE) && (MIS_Greg_ScoutBandits == FALSE))
+	if(PlayerTalkedToGregNW == TRUE)
 	{
 		return TRUE;
 	};
@@ -668,5 +673,32 @@ func void DIA_Addon_Greg_RavenDead_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_03");	//А ты смелый. Продолжай в том же духе.
 	B_GivePlayerXP(XP_ADDON_GregRavenLohn);
+};
+
+instance DIA_Addon_Greg_ItemsInADW(C_Info)
+{
+	npc = PIR_1320_Addon_Greg;
+	nr = 800;
+	condition = DIA_Addon_Greg_ItemsInADW_Condition;
+	information = DIA_Addon_Greg_ItemsInADW_Info;
+	description = "Вот твои вещи.";
+};
+
+
+func int DIA_Addon_Greg_ItemsInADW_Condition()
+{
+	if((RAKEPLACE[1] == TRUE) && (RAKEPLACE[2] == TRUE) && (RAKEPLACE[3] == TRUE) && (RAKEPLACE[4] == TRUE) && (RAKEPLACE[5] == TRUE) && (MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE))
+	{
+		if((Npc_HasItems(other,ItSe_GoldPocket100) || (Npc_HasItems(other,ItMi_Gold) >= 100)) && Npc_HasItems(other,ItMi_GoldChalice) && Npc_HasItems(other,ItMi_GregsSilverPlate) && Npc_HasItems(other,ItAm_Prot_Point_01))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Addon_Greg_ItemsInADW_Info()
+{
+	B_GiveGregItems();
+	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 2);
 };
 

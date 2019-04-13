@@ -153,7 +153,7 @@ instance DIA_Sarah_AkilsHof(C_Info)
 
 func int DIA_Sarah_AkilsHof_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sarah_Bauern) && (SC_KnowsAkilsHof == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sarah_Bauern))
 	{
 		return TRUE;
 	};
@@ -165,7 +165,6 @@ func void DIA_Sarah_AkilsHof_Info()
 	AI_Output(self,other,"DIA_Sarah_Add_16_04");	//≈сли выйдешь из восточных ворот и пойдешь по дороге направо, скоро ты увидишь каменную лестницу.
 	AI_Output(self,other,"DIA_Sarah_Add_16_05");	//ќна ведет пр€мо к ферме јкила.
 	AI_Output(self,other,"DIA_Sarah_Add_16_06");	//Ќо € бы сейчас туда не совалась - эти наемники наверн€ка все еще там.
-	SC_KnowsAkilsHof = TRUE;
 };
 
 

@@ -15,7 +15,7 @@ const string TOPIC_TalentAlchemy = "«ель€";
 const string TOPIC_TalentAnimalTrophy = "ќхотничьи трофеи";
 const string TOPIC_TalentMagicCircle = " руги магии";
 const string TOPIC_WispDetector = "»щущий блуждающий огонек";
-const string TOPIC_Language = "язык зодчих";
+const string TOPIC_Language = "языки зодчих";
 const string Topic_Bonus = "ќсобое";
 const string Topic_Diebesgilde = "√ильди€ воров";
 

@@ -96,7 +96,7 @@ instance DIA_Sylvio_DEINELEUTE(C_Info)
 
 func int DIA_Sylvio_DEINELEUTE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_DJG_Sylvio_KillIceGolem == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_DJG_Sylvio_KillIceGolem != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

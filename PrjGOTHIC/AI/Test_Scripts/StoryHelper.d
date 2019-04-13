@@ -68,6 +68,52 @@ func void StoryHelper_Exit_Info()
 	AI_StopProcessInfos(self);
 };
 
+func void b_build_settings_diag()
+{
+	Info_ClearChoices(StoryHelper_PatchSettings);
+	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	if(TradersHaveLimitedAmmo == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
+	};
+	if(Dont_Fix_Unlim == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить бесконечную сталь и мензурки у торговцев",StoryHelper_Unlimfix);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить бесконечную сталь и мензурки у торговцев",StoryHelper_Unlimfix);
+	};
+	if(NpcWantToFlee == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить режим трусости у ИИ",StoryHelper_Flee);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить режим трусости у ИИ",StoryHelper_Flee);
+	};
+	if(IgnoreBonuses == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
+	};
+/*	if(HonestStatCalculation == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
+	};*/
+};
+	
 instance StoryHelper_PatchSettings(C_Info)
 {
 	npc = sh;
@@ -86,11 +132,7 @@ func int StoryHelper_PatchSettings_Condition()
 
 func void StoryHelper_PatchSettings_Info()
 {
-	Info_ClearChoices(StoryHelper_PatchSettings);
-	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
-	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
-	Info_AddChoice(StoryHelper_PatchSettings,"Бесконечная сталь и мензурки у торговцев",StoryHelper_Unlimfix);
-	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
+	b_build_settings_diag();
 };
 
 func void StoryHelper_Limit()
@@ -105,11 +147,7 @@ func void StoryHelper_Limit()
 		TradersHaveLimitedAmmo = TRUE;
 		PrintScreen("Лимит включен",-1,-1,FONT_Screen,2);
 	};
-	Info_ClearChoices(StoryHelper_PatchSettings);
-	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
-	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
-	Info_AddChoice(StoryHelper_PatchSettings,"Бесконечная сталь и мензурки у торговцев",StoryHelper_Unlimfix);
-	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
+	b_build_settings_diag();
 };
 
 func void StoryHelper_Flee()
@@ -124,11 +162,7 @@ func void StoryHelper_Flee()
 		NpcWantToFlee = TRUE;
 		PrintScreen("Режим трусости включен",-1,-1,FONT_Screen,2);
 	};
-	Info_ClearChoices(StoryHelper_PatchSettings);
-	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
-	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
-	Info_AddChoice(StoryHelper_PatchSettings,"Бесконечная сталь и мензурки у торговцев",StoryHelper_Unlimfix);
-	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
+	b_build_settings_diag();
 };
 
 func void StoryHelper_Unlimfix()
@@ -143,12 +177,38 @@ func void StoryHelper_Unlimfix()
 		Dont_Fix_Unlim = TRUE;
 		PrintScreen("Сталь и мензурки бесконечны",-1,-1,FONT_Screen,2);
 	};
-	Info_ClearChoices(StoryHelper_PatchSettings);
-	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
-	Info_AddChoice(StoryHelper_PatchSettings,"Лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
-	Info_AddChoice(StoryHelper_PatchSettings,"Бесконечная сталь и мензурки у торговцев",StoryHelper_Unlimfix);
-	Info_AddChoice(StoryHelper_PatchSettings,"Режим трусости у ИИ",StoryHelper_Flee);
+	b_build_settings_diag();
 };
+
+func void StoryHelper_Bonuses()
+{
+	if(IgnoreBonuses == TRUE)
+	{
+		IgnoreBonuses = FALSE;
+		PrintScreen("Оригинал: бонусы нужно копить",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		IgnoreBonuses = TRUE;
+		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+/*func void StoryHelper_HonestStatCalculation()
+{
+	if(HonestStatCalculation == TRUE)
+	{
+		HonestStatCalculation = FALSE;
+		PrintScreen("Расчет стоимости обучения как в оригинале",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		HonestStatCalculation = TRUE;
+		PrintScreen("Честный расчет стоимости обучения включен",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};*/
 
 func void StoryHelper_PatchSettings_BACK()
 {

@@ -5,6 +5,10 @@ func void B_AssessGuidePlayer()
 	{
 		if(Npc_GetDistToWP(self,self.wp) < Npc_GetDistToWP(hero,self.wp))
 		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
+			{
+				Lares_Distracted = TRUE;
+			};
 			Npc_ClearAIQueue(self);
 			AI_Standup(self);
 			B_TurnToNpc(self,hero);
@@ -58,6 +62,10 @@ func int ZS_Guide_Player_Loop()
 	}
 	else
 	{
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
+		{
+			Lares_Distracted = TRUE;
+		};
 		B_TurnToNpc(self,hero);
 	};
 	return LOOP_CONTINUE;

@@ -12,8 +12,8 @@ func void Use_Runemaking_KDW_CIRC1_S1()
 		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
-//		Doc_PrintLine(nDocID,0,"Круги Воды");
-//		Doc_PrintLine(nDocID,0,"");
+		Doc_PrintLine(nDocID,0,"МАГИЯ ВОДЫ");
+		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Руны Воды и ингредиенты для их создания.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");

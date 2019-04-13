@@ -4,7 +4,14 @@ func void ZS_Stand_Drinking()
 	var int random;
 	Perception_Set_Normal();
 	B_ResetAll(self);
-	AI_SetWalkMode(self,NPC_WALK);
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(VLK_448_Joe))
+	{
+		AI_SetWalkMode(self,NPC_RUN);
+	}
+	else
+	{
+		AI_SetWalkMode(self,NPC_WALK);
+	};
 	if(Npc_GetDistToWP(self,self.wp) > TA_DIST_SELFWP_MAX)
 	{
 		AI_GotoWP(self,self.wp);

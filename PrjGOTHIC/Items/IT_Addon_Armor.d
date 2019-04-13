@@ -32,8 +32,8 @@ instance ITAR_PIR_L_Addon(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -61,8 +61,8 @@ instance ITAR_PIR_M_Addon(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -90,8 +90,8 @@ instance ITAR_PIR_H_Addon(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -122,8 +122,8 @@ instance ITAR_Thorus_Addon(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -165,7 +165,7 @@ instance ITAR_OreBaron_Addon(C_Item)
 	protection[PROT_EDGE] = 70;
 	protection[PROT_BLUNT] = 70;
 	protection[PROT_POINT] = 70;
-	protection[PROT_FIRE] = 0;
+	protection[PROT_FIRE] = 20;	//0
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_Itar_OreBaron_Addon;
 	wear = WEAR_TORSO;
@@ -180,8 +180,8 @@ instance ITAR_OreBaron_Addon(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -288,8 +288,8 @@ instance ITAR_Bloodwyn_Addon(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
+//	text[4] = NAME_Prot_Magic;
+//	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };

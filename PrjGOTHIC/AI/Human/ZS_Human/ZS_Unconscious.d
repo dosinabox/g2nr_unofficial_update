@@ -27,6 +27,10 @@ func void ZS_Unconscious()
 		{
 			self.aivar[AIV_ArenaFight] = AF_AFTER;
 		};
+		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Bullco)))
+		{
+			DJG_or_SLD_Bullco_Defeated = TRUE;
+		};
 	};
 	if(C_NpcIsHero(self))
 	{

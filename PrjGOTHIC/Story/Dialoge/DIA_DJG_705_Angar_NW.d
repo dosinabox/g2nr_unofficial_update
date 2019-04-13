@@ -246,3 +246,28 @@ func void DIA_Angar_NW_FOUNDAMULETT_Info()
 	B_AngarsAmulettAbgeben();
 };
 
+
+instance DIA_Angar_SCTellsAngarAboutMadPsi2_NW(C_Info)
+{
+	npc = DJG_705_Angar_NW;
+	nr = 8;
+	condition = DIA_Angar_SCTellsAngarAboutMadPsi2_NW_Condition;
+	information = DIA_Angar_SCTellsAngarAboutMadPsi2_NW_Info;
+	description = "Братство Спящего было порабощено Злом.";
+};
+
+
+func int DIA_Angar_SCTellsAngarAboutMadPsi2_NW_Condition()
+{
+	if((SC_KnowsMadPsi == TRUE) && (Angar_KnowsMadPsi == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Angar_SCTellsAngarAboutMadPsi2_NW_Info()
+{
+	B_SCTellsAngarAboutMadPsi();
+	B_SCTellsAngarAboutMadPsi2();
+};
+

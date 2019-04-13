@@ -540,7 +540,7 @@ func void UnEquip_AlriksSword()
 
 instance ItWr_VatrasMessage(C_Item)
 {
-	name = "Запечатанное послание";
+	name = "Запечатанное письмо";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -549,7 +549,7 @@ instance ItWr_VatrasMessage(C_Item)
 	on_state[0] = UseVatrasMessage;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[0] = "Послание Ватраса магам Огня.";
+	text[0] = "Письмо Ватраса магам Огня.";
 };
 
 
@@ -577,7 +577,7 @@ func void UseVatrasMessage()
 
 instance ItWr_VatrasMessage_Open(C_Item)
 {
-	name = "Послание";
+	name = "Письмо";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -586,7 +586,7 @@ instance ItWr_VatrasMessage_Open(C_Item)
 	on_state[0] = UseVatrasMessageOpen;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Послание Ватраса магам Огня.";
+	text[0] = "Письмо Ватраса магам Огня.";
 	text[1] = "Печать сломана.";
 	inv_rotz = 180;
 	inv_rotx = 90;
@@ -736,7 +736,7 @@ instance ItFo_Schafswurst(C_Item)
 	text[1] = NAME_Bonus_HP;
 	count[1] = HP_Sausage;
 	text[5] = NAME_Value;
-	count[5] = Value_Sausage;
+	count[5] = value;
 };
 
 
@@ -793,10 +793,12 @@ instance Holy_Hammer_MIS(C_Item)
 //	text[3] = "Необходима сила:          ??";
 //	text[4] = "Двуручное оружие";
 //	text[5] = "Цена:  невозможно определить";
-	text[2] = NAME_Damage;
-	count[2] = damageTotal;
-	text[3] = NAME_Str_needed;
-	count[3] = cond_value[2];
+//	text[2] = NAME_Damage;
+//	count[2] = damageTotal;
+//	text[3] = NAME_Str_needed;
+//	count[3] = cond_value[2];
+	text[2] = "Урон неизвестен";
+	text[3] = "Требование к силе неизвестно";
 	text[4] = NAME_TwoHanded;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -1129,7 +1131,7 @@ instance ItKe_Buerger(C_Item)
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Он лежал на подоконнике.";
+	text[0] = "Он лежал на камине.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 	inv_zbias = 190;
@@ -1218,8 +1220,8 @@ instance ItWr_Schuldenbuch(C_Item)
 {
 	name = "Долговая книга";
 	mainflag = ITEM_KAT_DOCS;
-	flags = 0;
-	value = 100;
+	flags = ITEM_MISSION;
+	value = 200;
 	visual = "ItWr_Book_02_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -1280,7 +1282,7 @@ instance ItPl_Sagitta_Herb_MIS(C_Item)
 	scemeName = "FOOD";
 	description = name;
 	text[5] = NAME_Value;
-	count[5] = Value_Strength_Herb_01;
+	count[5] = value;
 };
 
 instance ItKe_Orlan_HotelZimmer(C_Item)

@@ -54,21 +54,20 @@ func void DIA_Maleth_Hallo_Info()
 	AI_Output(self,other,"DIA_Maleth_Hallo_08_00");	//Привет, чужеземец!
 	if(hero.guild == GIL_NONE)
 	{
-		if(Npc_GetDistToWP(self,"NW_FARM1_PATH_CITY_SHEEP_09") < 500)
-		{
-			AI_Output(self,other,"DIA_Maleth_Hallo_08_01");	//Я видел, как ты спустился с гор.
-		};
+		AI_Output(self,other,"DIA_Maleth_Hallo_08_01");	//Я видел, как ты спустился с гор.
 		AI_Output(self,other,"DIA_Maleth_Hallo_08_02");	//Тебе повезло, что ты не пришел три недели назад.
 		AI_Output(self,other,"DIA_Maleth_Hallo_08_03");	//Мы бы приняли тебя за беглого каторжника. А с ними у нас разговор короткий!
-		if(!Npc_HasEquippedArmor(other))
-		{
-			AI_Output(self,other,"DIA_Maleth_Hallo_08_04");	//Ты выглядишь абсолютно измотанным.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Maleth_Hallo_08_05");	//Ты выглядел абсолютно измотанным, когда первый раз появился здесь.
-			AI_Output(self,other,"DIA_Maleth_Hallo_08_06");	//Ну а теперь ты похож на человека!
-		};
+	};
+	if(!Npc_HasEquippedArmor(other))
+	{
+		AI_Output(self,other,"DIA_Maleth_Hallo_08_04");	//Ты выглядишь абсолютно измотанным.
+		PlayerVisitedLobartFarmArmorless = TRUE;
+	}
+	else if(PlayerVisitedLobartFarmArmorless == TRUE)
+	{
+		AI_Output(self,other,"DIA_Maleth_Hallo_08_05");	//Ты выглядел абсолютно измотанным, когда первый раз появился здесь.
+		AI_Output(self,other,"DIA_Maleth_Hallo_08_06");	//Ну а теперь ты похож на человека!
+		MalethArmorComment = TRUE;
 	};
 	AI_Output(self,other,"DIA_Maleth_Hallo_08_07");	//(недоверчиво) Что тебе нужно здесь?
 };
@@ -254,7 +253,7 @@ instance DIA_Maleth_LOBART(C_Info)
 
 func int DIA_Maleth_LOBART_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && !Npc_IsDead(Lobart) && (Lobart.aivar[AIV_TalkedToPlayer] == FALSE) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Equipment) && !Npc_IsDead(Lobart) && (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -281,7 +280,7 @@ instance DIA_Maleth_KAP3_EXIT(C_Info)
 
 func int DIA_Maleth_KAP3_EXIT_Condition()
 {
-	if(Kapitel == 3)
+	if(Kapitel >= 3)
 	{
 		return TRUE;
 	};
@@ -289,6 +288,17 @@ func int DIA_Maleth_KAP3_EXIT_Condition()
 
 func void DIA_Maleth_KAP3_EXIT_Info()
 {
+	if((PlayerVisitedLobartFarmArmorless == TRUE) && (MalethArmorComment == FALSE))
+	{
+		AI_Output(self,other,"DIA_Maleth_Hallo_08_05");	//Ты выглядел абсолютно измотанным, когда первый раз появился здесь.
+		AI_Output(self,other,"DIA_Maleth_Hallo_08_06");	//Ну а теперь ты похож на человека!
+		MalethArmorComment = TRUE;
+	};
+	if(Maleth_ersterWolf == FALSE)
+	{
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_SHEEP_06");
+		Maleth_ersterWolf = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -368,7 +378,7 @@ func void DIA_Maleth_PROBLEME_schafe_probleme_geldher_auftrag()
 	AI_Output(self,other,"DIA_Maleth_PROBLEME_schafe_probleme_geldher_auftrag_08_04");	//Тебе легко говорить, это же не твой посох пропал.
 	Log_CreateTopic(TOPIC_MalethsGehstock,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_MalethsGehstock,LOG_Running);
-	B_LogEntry(TOPIC_MalethsGehstock,"Малет напился в стельку и потерял свой посох. Насколько я знаю его, он никогда не уходил далеко от фермы Лобарта. Возможно, я найду ее где-нибудь неподалеку.");
+	B_LogEntry(TOPIC_MalethsGehstock,"Малет напился в стельку и потерял свой посох. Насколько я знаю его, он никогда не уходил далеко от фермы Лобарта. Возможно, я найду этот посох где-нибудь неподалеку.");
 	Info_ClearChoices(DIA_Maleth_PROBLEME);
 };
 
@@ -424,8 +434,16 @@ func void DIA_Maleth_GEHSTOCK_ok()
 	B_GiveInvItems(other,self,ItMw_MalethsGehstock_MIS,1);
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_01");	//Ладно. Просто иди на запад, вон к тому лесу. Там ты увидишь ущелье.
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_02");	//В пещере внизу ты наверняка найдешь что-нибудь.
-	B_LogEntry(TOPIC_MalethsGehstock,"Малет рассказал мне, что в лесу, к западу от фермы Лобарта, находится большой лагерь бандитов.");
-	CreateInvItems(BDT_1024_MalethsBandit,ItMi_MalethsBanditGold,1);
+	if(!Npc_IsDead(BDT_1024_MalethsBandit))
+	{
+		B_LogEntry(TOPIC_MalethsGehstock,"Малет рассказал мне, что в пещере к западу от фермы Лобарта находится убежище бандитов.");
+		CreateInvItems(BDT_1024_MalethsBandit,ItMi_MalethsBanditGold,1);
+	}
+	else
+	{
+		B_LogEntry(TOPIC_MalethsGehstock,"Малет рассказал мне, что в пещере к западу от фермы Лобарта находится убежище бандитов. Нужно внимательно обыскать его.");
+		Wld_InsertItem(ItMi_MalethsBanditGold,"FP_ITEM_FARM1_02");
+	};
 	Info_ClearChoices(DIA_Maleth_GEHSTOCK);
 	AI_StopProcessInfos(self);
 };
@@ -467,7 +485,7 @@ func void DIA_Maleth_PERM3_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Maleth_KAP4_EXIT(C_Info)
 {
 	npc = BAU_954_Maleth;
@@ -517,7 +535,7 @@ func void DIA_Maleth_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
+
 instance DIA_Maleth_KAP6_EXIT(C_Info)
 {
 	npc = BAU_954_Maleth;

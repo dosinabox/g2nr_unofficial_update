@@ -122,7 +122,7 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_amulett()
 	else
 	{
 		AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_02");	//Он должен быть где-то там.
-		B_LogEntry(TOPIC_AngarsAmulett,"Амулет находится около гробницы в скале на юге Долины Рудников.");
+		B_LogEntry(TOPIC_AngarsAmulett,"Амулет находится около склепа на юге Долины Рудников.");
 	};
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_amulett_04_03");	//Я подозреваю, что он был украден. Мне крайне необходимо вернуть его себе.
 };
@@ -365,7 +365,7 @@ func void DIA_AngarDJG_WHATSINTHERE_Info()
 {
 	AI_Output(other,self,"DIA_AngarDJG_WHATSINTHERE_15_00");	//Что скрывается в этой пещере в скалах?
 	AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_01");	//Что-то, что не позволяет мне приблизиться к входу!
-	if(!Npc_IsDead(Shadowbeast_Skeleton_Angar))
+	if(!Npc_IsDead(Shadowbeast_Skeleton_Angar) || !Npc_IsDead(SkeletonMage_Angar))
 	{
 		AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_02");	//Его охраняет магическое существо. Я видел его ночью, он тут рыскал. Отвратительное создание.
 		AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_03");	//Он шнырял между деревьями, и у меня было впечатление, что он высасывает всю жизнь вокруг и впитывает ее, как губка.
@@ -488,7 +488,8 @@ func void DIA_Angar_WASISTLOS_Info()
 	AI_Output(self,other,"DIA_Angar_WASISTLOS_04_02");	//Что-то подсказывает мне, что мне не выбраться отсюда живым.
 	AI_Output(self,other,"DIA_Angar_WASISTLOS_04_03");	//Я не могу объяснить это, но...
 	AI_PlayAni(self,"T_SEARCH");
-	if(SC_KnowsMadPsi == TRUE)
+//	if(SC_KnowsMadPsi == TRUE)
+	if(Angar_KnowsMadPsi == TRUE)
 	{
 		AI_Output(self,other,"DIA_Angar_WASISTLOS_04_04");	//Я должен уходить из этой проклятой земли как можно быстрее, иначе меня ждет та же судьба, что и моих братьев.
 	}
@@ -515,7 +516,7 @@ instance DIA_Angar_WHYAREYOUHERE(C_Info)
 
 func int DIA_Angar_WHYAREYOUHERE_Condition()
 {
-	if(Npc_GetDistToWP(self,"OW_CAVALORN_01") < 1000)
+	if(Npc_GetDistToWP(self,"OW_CAVALORN_01") < 3000)
 	{
 		return TRUE;
 	};

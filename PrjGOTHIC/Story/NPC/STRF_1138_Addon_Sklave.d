@@ -27,6 +27,12 @@ func void Rtn_Start_1138()
 	TA_Pick_Ore(23,0,8,0,"ADW_MINE_PICK_03");
 };
 
+func void Rtn_Flucht_1138()
+{
+	TA_RunToWP(8,0,23,0,"SOME_WAYPOINT_18");
+	TA_RunToWP(23,0,8,0,"SOME_WAYPOINT_18");
+};
+
 func void rtn_tot_1138()
 {
 	TA_Sleep(8,0,23,0,"TOT");

@@ -457,11 +457,11 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG()
 	AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG_07_01");	//(зло) я знал это.
 	if(hero.guild == GIL_DJG)
 	{
-		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG_07_02");	//(рычит) »х вообще не стоило пускать в замок.
+		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG_07_03");	//Ќу, подожди, € покажу этой свинье...
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG_07_03");	//Ќу, подожди, € покажу этой свинье...
+		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG_07_02");	//(рычит) »х вообще не стоило пускать в замок.
 	};
 	AI_StopProcessInfos(self);
 	other.aivar[AIV_INVINCIBLE] = FALSE;

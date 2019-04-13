@@ -322,7 +322,7 @@ func void DIA_Raoul_TROLL_Info()
 	{
 		AI_Output(self,other,"DIA_Raoul_TROLL_01_03");	//Не думай, что я стану уважать тебя только за то, что ты стал одним из нас.
 	};
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Raoul_TROLL_01_04");	//Разыгрываешь из себя великого мага, ха?
 	};
@@ -643,6 +643,7 @@ func void DIA_Raoul_Ship_Info()
 	if(!Npc_IsDead(Torlof))
 	{
 		AI_Output(self,other,"DIA_Raoul_Ship_01_06");	//Спроси Торлофа. Он ходил по морям, насколько я знаю.
+		TorlofIsSailor = TRUE;
 	};
 };
 

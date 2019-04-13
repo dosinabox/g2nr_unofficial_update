@@ -366,9 +366,28 @@ instance DIA_Biff_ICHBLEIBHIER(C_Info)
 
 func int DIA_Biff_ICHBLEIBHIER_Condition()
 {
-	if((Npc_GetBodyState(hero) != BS_INVENTORY) && (Npc_GetBodyState(hero) != BS_MOBINTERACT_INTERRUPT) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE) && (((((Npc_GetDistToWP(self,"OW_SWAMPDRAGON_01") < 4000) && !Npc_IsDead(SwampDragon) && (SwampDragon.flags != 0)) || ((Npc_GetDistToWP(self,"LOCATION_19_03_PATH_RUIN8") < 2000) && (Npc_IsDead(RockDragon) == FALSE) && (RockDragon.flags != 0)) || ((Npc_GetDistToWP(self,"CASTLE_36") < 4000) && !Npc_IsDead(FireDragon) && (FireDragon.flags != 0)) || ((Npc_GetDistToWP(self,"OW_ICEDRAGON_01") < 4000) && !Npc_IsDead(IceDragon) && (IceDragon.flags != 0))) && Npc_HasItems(hero,ItMi_InnosEye_MIS)) || (Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < 4500)))
+	if((Npc_GetBodyState(hero) != BS_INVENTORY) && (Npc_GetBodyState(hero) != BS_MOBINTERACT_INTERRUPT) && (DJG_BiffParty == TRUE) && (DJG_Biff_Stay == FALSE))
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"OW_SWAMPDRAGON_01") < 4000) && !Npc_IsDead(SwampDragon) && (SwampDragon.flags != 0))
+		{
+			return TRUE;
+		}
+		else if((Npc_GetDistToWP(self,"LOCATION_19_03_PATH_RUIN8") < 2000) && !Npc_IsDead(RockDragon) && (RockDragon.flags != 0))
+		{
+			return TRUE;
+		}
+		else if((Npc_GetDistToWP(self,"CASTLE_36") < 4000) && !Npc_IsDead(FireDragon) && (FireDragon.flags != 0))
+		{
+			return TRUE;
+		}
+		else if((Npc_GetDistToWP(self,"OW_ICEDRAGON_01") < 4000) && !Npc_IsDead(IceDragon) && (IceDragon.flags != 0))
+		{
+			return TRUE;
+		}
+		else if(Npc_GetDistToWP(self,"OC_CENTER_GUARD_02") < 4500)
+		{	
+			return TRUE;
+		};
 	};
 };
 

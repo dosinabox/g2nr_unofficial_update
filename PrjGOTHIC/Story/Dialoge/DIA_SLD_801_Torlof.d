@@ -911,12 +911,13 @@ func void DIA_Torlof_DEMENTOREN_Info()
 	AI_Output(other,self,"DIA_Torlof_DEMENTOREN_15_00");	//У тебя есть какая-нибудь работа для меня?
 	AI_Output(self,other,"DIA_Torlof_DEMENTOREN_01_01");	//Ты видел этих парней, одетых в черные рясы, которые ошиваются здесь? Меня от них в дрожь бросает, если честно.
 	AI_Output(self,other,"DIA_Torlof_DEMENTOREN_01_02");	//Когда я ходил по морю, я видел много странных вещей, но эти парни по-настоящему испугали меня.
+	TorlofIsSailor = TRUE;
 	AI_Output(self,other,"DIA_Torlof_DEMENTOREN_01_03");	//Они пришли со стороны лагеря бандитов, который находится в горах, в южной части этой долины.
 	AI_Output(self,other,"DIA_Torlof_DEMENTOREN_01_04");	//Возможно, тебе стоит сходить туда и разобраться с этими парнями!
 	Wld_InsertNpc(CastlemineDMT,"FP_STAND_DEMENTOR_KDF_12");
 	Log_CreateTopic(TOPIC_Torlof_Dmt,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Torlof_Dmt,LOG_Running);
-	B_LogEntry(TOPIC_Torlof_Dmt,"В южной части долины, в горах, в бандитском лагере, похоже, появились эти люди в черных рясах. От них у Торлофа изжога. Я должен решить эту проблему для него.");
+	B_LogEntry(TOPIC_Torlof_Dmt,"В южной части долины, в горах, в бандитском лагере, похоже, появились эти люди в черных рясах. Они очень беспокоят Торлофа. Я должен решить эту проблему для него.");
 	MIS_Torlof_Dmt = LOG_Running;
 };
 
@@ -986,7 +987,8 @@ instance DIA_Torlof_WOISTSYLVIO(C_Info)
 
 func int DIA_Torlof_WOISTSYLVIO_Condition()
 {
-	if((MIS_ReadyforChapter4 == TRUE) || (Kapitel == 4))
+//	if((MIS_ReadyforChapter4 == TRUE) || (Kapitel == 4))
+	if(MIS_ReadyforChapter4 == TRUE)
 	{
 		return TRUE;
 	};
@@ -999,6 +1001,7 @@ func void DIA_Torlof_WOISTSYLVIO_Info()
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_02");	//Поговаривают, что там появились драконы. Когда он услышал это, его было не остановить.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_03");	//Кто знает? Сокровища драконов можно очень дорого продать.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_04");	//Но меня это не касается. Я моряк. Я принадлежу морю, и мне нет дела до душного логова дракона.
+	TorlofIsSailor = TRUE;
 };
 
 
@@ -1039,7 +1042,7 @@ instance DIA_Torlof_BEMYCAPTAIN(C_Info)
 
 func int DIA_Torlof_BEMYCAPTAIN_Condition()
 {
-	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE))
+	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE) && (TorlofIsSailor == TRUE))
 	{
 		return TRUE;
 	};
@@ -1207,9 +1210,15 @@ func void DIA_Torlof_LOSFAHREN_Info()
 	if(B_CaptainConditions(self))
 	{
 		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_01");	//Хорошо. Дай мне морскую карту, и мы поднимаем паруса.
+		B_GiveInvItems(other,self,ItWr_Seamap_Irdorath,1);
 		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_02");	//(кричит) Поднять паруса!
 		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_03");	//Проверь, успел ли ты взять все необходимое. Возврата не будет.
 		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_04");	//Если ты во всем уверен, иди, вздремни в капитанской каюте. Это путешествие будет долгим.
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_Standup(self);
+			B_TurnToNpc(self,other);
+		};
 		AI_StopProcessInfos(self);
 		B_CaptainCallsAllOnBoard(self);
 	}

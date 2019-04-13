@@ -96,18 +96,9 @@ instance NewMine_LeadSnapper(Mst_Default_Snapper)
 	Npc_SetToFistMode(self);
 	Mdl_SetModelScale(self,1.1,1.1,1.1);
 	name[0] = "Вожак стаи";
-//	attribute[ATR_STRENGTH] = 60;
-//	attribute[ATR_DEXTERITY] = 60;
 	attribute[ATR_HITPOINTS_MAX] = 160;
 	attribute[ATR_HITPOINTS] = 160;
-//	attribute[ATR_MANA_MAX] = 0;
-//	attribute[ATR_MANA] = 0;
-//	protection[PROT_BLUNT] = 30;
-//	protection[PROT_EDGE] = 30;
-//	protection[PROT_POINT] = 20;
-	protection[PROT_FIRE] = 17;	//0;
-//	protection[PROT_FLY] = 30;
-//	protection[PROT_MAGIC] = 0;
+	protection[PROT_FIRE] = 17;
 	CreateInvItems(self,ItAt_ClawLeader,1);
 };
 

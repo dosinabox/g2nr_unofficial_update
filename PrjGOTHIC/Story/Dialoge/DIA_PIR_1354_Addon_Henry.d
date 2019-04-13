@@ -103,7 +103,10 @@ func int DIA_Addon_Henry_Hello_Condition()
 //	if((Npc_GetDistToWP(other,PIR_1354_Checkpoint) <= 700) && (self.aivar[AIV_PASSGATE] == FALSE))
 	if(Npc_GetDistToWP(other,PIR_1354_Checkpoint) <= 700)
 	{
-		Npc_SetRefuseTalk(self,5);
+		if(self.aivar[AIV_PASSGATE] == FALSE)
+		{
+			Npc_SetRefuseTalk(self,5);
+		};
 		return FALSE;
 	};
 	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && !Npc_RefuseTalk(self))
@@ -115,7 +118,9 @@ func int DIA_Addon_Henry_Hello_Condition()
 func void DIA_Addon_Henry_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Henry_Hello_04_00");	//Стой!
-	if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (Henry_FriendOrFoe == FALSE))
+	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,PIR_1354_Checkpoint);
+	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
+	if(Henry_FriendOrFoe == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Hello_04_01");	//Ты друг или враг?
 		Info_ClearChoices(DIA_Addon_Henry_Hello);
@@ -126,16 +131,14 @@ func void DIA_Addon_Henry_Hello_Info()
 };
 
 
-var int Henry_SC_Frech;
+//var int Henry_SC_Frech;
 
 func void DIA_Addon_Henry_Hello_Feind()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Hello_Feind_15_00");	//Враг!
 	AI_Output(self,other,"DIA_Addon_Henry_Hello_Feind_04_01");	//Ищешь приключений на свою задницу, клоун?
 	AI_Output(self,other,"DIA_Addon_Henry_Hello_Feind_04_02");	//Говори, что тебе надо, или убирайся, да поскорее.
-	Henry_SC_Frech = TRUE;
-	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,PIR_1354_Checkpoint);
-	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
+//	Henry_SC_Frech = TRUE;
 	Info_ClearChoices(DIA_Addon_Henry_Hello);
 };
 
@@ -143,8 +146,6 @@ func void DIA_Addon_Henry_Hello_Freund()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Hello_Freund_15_00");	//Друг!
 	AI_Output(self,other,"DIA_Addon_Henry_Hello_Freund_04_01");	//Так может сказать любой! Я тебя не знаю. Что тебе здесь надо?
-	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,PIR_1354_Checkpoint);
-	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
 	Info_ClearChoices(DIA_Addon_Henry_Hello);
 };
 
@@ -289,7 +290,10 @@ func void DIA_Addon_Henry_Einigen2_Info()
 	AI_Output(other,self,"DIA_Addon_Henry_Einigen2_15_00");	//Вот твои 500 золотых.
 	B_GiveInvItems(other,self,ItMi_Gold,500);
 	AI_Output(self,other,"DIA_Addon_Henry_Einigen2_04_01");	//Прекрасно. Добро пожаловать в лагерь!
-	B_Henry_NoJoin();
+	if(GregIsBack == FALSE)
+	{
+		B_Henry_NoJoin();
+	};
 	self.aivar[AIV_PASSGATE] = TRUE;
 };
 
@@ -473,7 +477,10 @@ func void DIA_Addon_Henry_Tribut_ja()
 	AI_Output(other,self,"DIA_Addon_Henry_Tribut_ja_15_00");	//Хорошо. Вот золото.
 	B_GiveInvItems(other,self,ItMi_Gold,Henry_Amount);
 	AI_Output(self,other,"DIA_Addon_Henry_Tribut_ja_04_01");	//Благодарю. Добро пожаловать в лагерь!
-	B_Henry_NoJoin();
+	if(GregIsBack == FALSE)
+	{
+		B_Henry_NoJoin();
+	};
 	Info_ClearChoices(DIA_Addon_Henry_Tribut);
 	self.aivar[AIV_PASSGATE] = TRUE;
 };
@@ -596,10 +603,16 @@ func void DIA_Addon_Henry_Turmbanditen_WhatFor_Info()
 			AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_03");	//Ты разобрался с ними в одиночку? Позволь выразить тебе свое уважение!
 			AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_04");	//Может быть, когда-нибудь ты даже станешь настоящим пиратом!
 		};
-		SawPirate.aivar[AIV_PARTYMEMBER] = FALSE;
-		Npc_ExchangeRoutine(SawPirate,"START");
-		HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
-		Npc_ExchangeRoutine(HammerPirate,"START");
+		if(!Npc_IsDead(SawPirate))
+		{
+			SawPirate.aivar[AIV_PARTYMEMBER] = FALSE;
+			Npc_ExchangeRoutine(SawPirate,"START");
+		};
+		if(!Npc_IsDead(HammerPirate))
+		{
+			HammerPirate.aivar[AIV_PARTYMEMBER] = FALSE;
+			Npc_ExchangeRoutine(HammerPirate,"START");
+		};
 		MIS_Henry_FreeBDTTower = LOG_SUCCESS;
 		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни убиты.");
 		B_GivePlayerXP(XP_Addon_Henry_FreeBDTTower);
@@ -613,8 +626,8 @@ func void DIA_Addon_Henry_Turmbanditen_WhatFor_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_05");	//Если ты планируешь справиться с ними самостоятельно, забудь об этом!
 		AI_Output(self,other,"DIA_Addon_Henry_Turmbanditen_04_06");	//Скоро я пошлю туда двоих человек из моего отряда. Они позаботятся о бандитах.
-		Knows_HenrysEntertrupp = TRUE;
 	};
+	Knows_HenrysEntertrupp = TRUE;
 };
 
 
@@ -650,7 +663,7 @@ func void DIA_Addon_Henry_Palisade_Bandits_Info()
 	if(self.aivar[AIV_PASSGATE] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Palisade_Bandits_04_11");	//(издевательски) Жаль только, что тебе с ним поговорить не удастся. За вход-то ты не заплатил...
-		Henry_Zoll_WhatFor = TRUE;
+//		Henry_Zoll_WhatFor = TRUE;
 	};
 };
 
@@ -683,7 +696,7 @@ func void DIA_Addon_Henry_Entercrew_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_00");	//(смеется) Нет, так дело не пойдет, приятель!
 		AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_01");	//Сначала тебе надо попасть в лагерь!
-		Henry_Zoll_WhatFor = TRUE;
+//		Henry_Zoll_WhatFor = TRUE;
 	}
 	else
 	{
@@ -696,10 +709,10 @@ func void DIA_Addon_Henry_Entercrew_Info()
 		}
 		else
 		{
+			AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_05");	//Ты должен избавиться от бандитов, обосновавшихся в башне!
 			if(Npc_IsDead(SawPirate) && Npc_IsDead(HammerPirate))
 			{
 				AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_04");	//Оба моих воина мертвы, так что тебе придется заняться этим в одиночку.
-				AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_05");	//Ты должен избавиться от бандитов, обосновавшихся в башне!
 				B_LogEntry(TOPIC_Addon_BanditsTower,"Генри хочет, чтобы я разобрался с занявшими башню бандитами. Помочь он мне ничем не может.");
 			}
 			else
@@ -787,7 +800,7 @@ func int DIA_Addon_Henry_Owen2_Condition()
 func void DIA_Addon_Henry_Owen2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Owen2_15_00");	//Насчет Оуэна, лесоруба...
-	if(Npc_IsDead(PIR_1367_Addon_Owen) == TRUE)
+	if(Npc_IsDead(PIR_1367_Addon_Owen))
 	{
 		AI_Output(other,self,"DIA_Addon_Henry_Owen2_15_01");	//Он мертв.
 		AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_02");	//Черт возьми! Видимо, мне придется отправить туда нового человека.
@@ -878,7 +891,7 @@ func void DIA_Addon_Henry_WhatTeach_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WhatTeach_Add_04_01");	//(смеется) Сначала заплати за проход в лагерь, а потом уже мы об этом поговорим.
 		AI_Output(self,other,"DIA_Addon_Henry_WhatTeach_Add_04_02");	//Цена обучения включена в плату за вход.
-		Henry_Zoll_WhatFor = TRUE;
+//		Henry_Zoll_WhatFor = TRUE;
 	}
 	else
 	{
@@ -1034,7 +1047,7 @@ func void DIA_Addon_Henry_Palisade_Train_Info()
 	AI_Output(other,self,"DIA_Addon_Henry_Palisade_Train_15_00");	//Грег - ваш командир?
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_01");	//Да. Но для тебя он - КАПИТАН Грег. Это понятно?
 	AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_02");	//Он - великий человек. Когда ты с ним встретишься, тебе лучше не быть на стороне его врагов. Ты даже не успеешь об этом пожалеть.
-	if(Greg_NW.aivar[AIV_TalkedToPlayer] == TRUE)
+	if((SC_SawGregInTaverne == TRUE) || (PlayerTalkedToGregNW == TRUE))
 	{
 		AI_Output(other,self,"DIA_Addon_Henry_Palisade_Train_15_03");	//Я с ним уже встречался.
 		AI_Output(self,other,"DIA_Addon_Henry_Palisade_Train_04_04");	//Очень хорошо. Значит, ты понимаешь, о чем я говорю.

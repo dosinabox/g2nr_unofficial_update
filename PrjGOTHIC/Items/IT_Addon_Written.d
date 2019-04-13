@@ -47,7 +47,8 @@ instance ITWr_Addon_Health_04(C_Item)
 {
 	name = "Рецепт зелья чистого здоровья";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 1000;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
@@ -99,7 +100,8 @@ instance ITWr_Addon_Mana_04(C_Item)
 {
 	name = "Рецепт зелья чистой маны";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 1500;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
@@ -385,7 +387,8 @@ instance ITWr_Addon_Lou_Rezept(C_Item)
 {
 	name = "Рецепт 'Молота Лу'";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 70;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
@@ -438,7 +441,8 @@ instance ITWr_Addon_Lou_Rezept2(C_Item)
 {
 	name = "Рецепт двойного 'Молота Лу'";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 140;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
@@ -486,7 +490,8 @@ instance ITWr_Addon_Piratentod(C_Item)
 {
 	name = "Рецепт 'Быстрой селедки'";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 250;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
@@ -557,9 +562,11 @@ instance ItWr_Addon_AxtAnleitung(C_Item)
 {
 	name = "Схема бандитского топора";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 250;
-	visual = "ItWr_Scroll_01.3DS";
+//	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseAxtAnleitung;
 	scemeName = "MAP";
@@ -568,9 +575,6 @@ instance ItWr_Addon_AxtAnleitung(C_Item)
 	text[1] = "знание основ кузнечного дела.";
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 

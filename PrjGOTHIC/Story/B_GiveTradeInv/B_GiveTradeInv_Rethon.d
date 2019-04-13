@@ -14,7 +14,7 @@ func void B_GiveTradeInv_Rethon(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Kriegshammer2,1);
 		CreateInvItems(slf,ItMw_Orkschlaechter,1);
 		CreateInvItems(slf,ItMw_Folteraxt,1);
-		CreateInvItems(slf,ItMw_Krummschwert,1);
+//		CreateInvItems(slf,ItMw_Krummschwert,1);
 //		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
 //		CreateInvItems(slf,ItMw_Berserkeraxt,1);
 		Rethon_ItemsGiven_Chapter_4 = TRUE;

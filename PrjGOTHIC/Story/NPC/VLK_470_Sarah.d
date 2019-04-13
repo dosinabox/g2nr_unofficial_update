@@ -34,6 +34,6 @@ func void Rtn_Knast_470()
 func void Rtn_Tot_470()
 {
 	TA_Stand_ArmsCrossed(5,15,20,15,"TOT");
-	TA_Sleep(20,15,5,15,"TOT");
+	TA_Stand_ArmsCrossed(20,15,5,15,"TOT");
 };
 

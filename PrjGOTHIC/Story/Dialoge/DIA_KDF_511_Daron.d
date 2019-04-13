@@ -281,7 +281,7 @@ func void DIA_Daron_Innos_Info()
 instance DIA_Daron_Kloster(C_Info)
 {
 	npc = KDF_511_Daron;
-	nr = 9;
+	nr = 10;
 	condition = DIA_Daron_Kloster_Condition;
 	information = DIA_Daron_Kloster_Info;
 	permanent = FALSE;
@@ -336,7 +336,7 @@ func void DIA_Daron_Stadt_Info()
 instance DIA_Addon_Daron_GuildHelp(C_Info)
 {
 	npc = KDF_511_Daron;
-	nr = 2;
+	nr = 5;
 	condition = DIA_Addon_Daron_GuildHelp_Condition;
 	information = DIA_Addon_Daron_GuildHelp_Info;
 	description = "Я слышал, у вас пропала ценная статуэтка.";
@@ -390,10 +390,7 @@ func void DIA_Addon_Daron_GuildHelp_wo()
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_wo_15_00");	//Где именно ты потерял статуэтку?
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_wo_10_01");	//На пути в монастырь, неподалеку от таверны Орлана.
 	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Я услышал достаточно. Я найду статуэтку.",DIA_Addon_Daron_GuildHelp_auftrag);
-	if(Orlan.aivar[AIV_TalkedToPlayer] == FALSE)
-	{
-		Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Таверна Орлана? Где она находится?",DIA_Addon_Daron_GuildHelp_woTaverne);
-	};
+	Info_AddChoice(DIA_Addon_Daron_GuildHelp,"Таверна Орлана? Где она находится?",DIA_Addon_Daron_GuildHelp_woTaverne);
 };
 
 func void DIA_Addon_Daron_GuildHelp_woTaverne()
@@ -417,7 +414,7 @@ func void DIA_Addon_Daron_GuildHelp_auftrag()
 instance DIA_Addon_Daron_FoundStatue(C_Info)
 {
 	npc = KDF_511_Daron;
-	nr = 2;
+	nr = 5;
 	condition = DIA_Addon_Daron_FoundStatue_Condition;
 	information = DIA_Addon_Daron_FoundStatue_Info;
 	description = "Я нашел статуэтку.";
@@ -509,7 +506,7 @@ func void DIA_Daron_arm_Info()
 instance DIA_Daron_Spende(C_Info)
 {
 	npc = KDF_511_Daron;
-	nr = 990;
+	nr = 800;
 	condition = DIA_Daron_Spende_Condition;
 	information = DIA_Daron_Spende_Info;
 	permanent = TRUE;

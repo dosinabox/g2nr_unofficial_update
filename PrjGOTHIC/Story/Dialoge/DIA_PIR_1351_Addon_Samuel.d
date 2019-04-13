@@ -164,6 +164,7 @@ func void DIA_Addon_Samuel_Recipe_Back()
 func void DIA_Addon_Samuel_Recipe_LousHammer()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_LousHammer_15_00");	//Это от Снафа.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ITWr_Addon_Lou_Rezept,1);
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_LousHammer_14_04");	//Но это же ужасно! Я должен немедленно попробовать...
@@ -174,6 +175,7 @@ func void DIA_Addon_Samuel_Recipe_LousHammer()
 func void DIA_Addon_Samuel_Recipe_LousDoubleHammer()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Recipe_LousDoubleHammer_15_00");	//Будь осторожен. Это опасная штука!
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ITWr_Addon_Lou_Rezept2,1);
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Addon_Samuel_Recipe_LousDoubleHammer_14_04");	//Ты меня пугаешь. Но я все равно попробую.

@@ -27,7 +27,7 @@ func int C_PrisonIsEmpty()
 	{
 		return FALSE;
 	}
-	else if(Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000)
+	else if(Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 600)
 	{
 		return FALSE;
 	}

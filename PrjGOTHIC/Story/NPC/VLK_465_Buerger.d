@@ -1,5 +1,5 @@
 
-instance VLK_465_Buerger(Npc_Default)
+/*instance VLK_465_Buerger(Npc_Default)
 {
 	name[0] = NAME_Buerger;
 	guild = GIL_VLK;
@@ -25,5 +25,5 @@ func void Rtn_Start_465()
 {
 	TA_Stand_Eating(8,0,22,0,"NW_CITY_HABOUR_FIREPLACE_01");
 	TA_Sleep(22,0,8,0,"NW_CITY_HABOUR_POOR_AREA_HUT_05_BED_01");
-};
+};*/
 

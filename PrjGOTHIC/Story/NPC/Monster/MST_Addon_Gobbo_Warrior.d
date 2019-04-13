@@ -45,7 +45,7 @@ func void B_SetVisuals_Gobbo_Warrior_Visir()
 instance Gobbo_Warrior(Mst_Default_Gobbo_Warrior)
 {
 	B_SetVisuals_Gobbo_Warrior();
-	Npc_SetToFightMode(self,ItMw_1h_MISC_Sword);
+	Npc_SetToFightMode(self,ItMw_1h_Misc_Sword);
 	Mdl_SetModelScale(self,1.15,1.15,1.15);
 };
 

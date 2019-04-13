@@ -79,17 +79,26 @@ instance DIA_Karras_Mission(C_Info)
 
 func int DIA_Karras_Mission_Condition()
 {
-	if(other.guild == GIL_NOV)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Karras_Mission_Info()
 {
 	AI_Output(other,self,"DIA_Karras_Mission_15_00");	//Я пришел почитать писания.
-	AI_Output(self,other,"DIA_Karras_Mission_10_01");	//Понимаю. Если тебе удастся выкроить время при изучении писаний, обратись ко мне.
-	AI_Output(self,other,"DIA_Karras_Mission_10_02");	//Есть один вопрос, в котором мне не помешала бы помощь здравомыслящего послушника.
+	if(other.guild == GIL_NOV)
+	{
+		AI_Output(self,other,"DIA_Karras_Mission_10_01");	//Понимаю. Если тебе удастся выкроить время при изучении писаний, обратись ко мне.
+		AI_Output(self,other,"DIA_Karras_Mission_10_02");	//Есть один вопрос, в котором мне не помешала бы помощь здравомыслящего послушника.
+	}
+	else if((other.guild == GIL_PAL) || (other.guild == GIL_KDF) || Npc_KnowsInfo(other,DIA_Karras_InnosEyeRetrieved))
+	{
+		AI_Output(self,other,"DIA_Karras_Success_10_01");	//Отлично, мой юный друг.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Richter_Hello_MayBe_10_02");	//По крайней мере, ты мог бы обращаться ко мне более почтительно.
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -106,7 +115,7 @@ instance DIA_Karras_Aufgabe(C_Info)
 
 func int DIA_Karras_Aufgabe_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Karras_Mission))
+	if(Npc_KnowsInfo(other,DIA_Karras_Mission) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -189,13 +198,19 @@ func void DIA_Karras_JOB_Info()
 	AI_Output(other,self,"DIA_Karras_JOB_15_02");	//Что это означает?
 	AI_Output(self,other,"DIA_Karras_JOB_10_03");	//Ну, я обучаю их вызову существ из других измерений или сфер.
 	AI_Output(self,other,"DIA_Karras_JOB_10_04");	//Это обычно называется просто вызовом, хотя это определение недостаточно полно отражает суть искусства вызова слуг.
-	AI_Output(self,other,"DIA_Karras_JOB_10_05");	//Кроме того, у меня есть очень интересные свитки, которых нет даже у Горакса.
 	if(other.guild == GIL_NOV)
 	{
+		AI_Output(self,other,"DIA_Karras_JOB_10_05");	//Кроме того, у меня есть очень интересные свитки, которых нет даже у Горакса.
 		AI_Output(self,other,"DIA_Karras_JOB_10_06");	//Но я могу продать их только членам нашего Ордена.
+		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
+	}
+	else if(other.guild == GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_Karras_JOB_10_05");	//Кроме того, у меня есть очень интересные свитки, которых нет даже у Горакса.
+		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями.");
 	};
-	Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-	B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
 };
 
 
@@ -213,7 +228,7 @@ instance DIA_Karras_Trade(C_Info)
 
 func int DIA_Karras_Trade_Condition()
 {
-	if((hero.guild != GIL_NOV) && Npc_KnowsInfo(other,DIA_Karras_JOB))
+	if(Npc_KnowsInfo(other,DIA_Karras_JOB) && (Npc_KnowsInfo(other,DIA_Karras_InnosEyeRetrieved) || (hero.guild == GIL_KDF)))
 	{
 		return TRUE;
 	};
@@ -562,6 +577,13 @@ func void DIA_Karras_InnosEyeRetrieved_Info()
 {
 	AI_Output(other,self,"DIA_Karras_InnosEyeRetrieved_15_00");	//Я принес назад Глаз Инноса.
 	AI_Output(self,other,"DIA_Karras_InnosEyeRetrieved_10_01");	//Я так рад, что тебе удалось вырвать Глаз из лап врага.
+	if(other.guild != GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_Karras_Success_10_02");	//Теперь ты можешь полностью посвятить себя обучению в библиотеке.
+		AI_Output(self,other,"DIA_Karras_JOB_10_05");	//Кроме того, у меня есть очень интересные свитки, которых нет даже у Горакса.
+		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями.");
+	};
 	AI_Output(self,other,"DIA_Karras_InnosEyeRetrieved_10_02");	//Но опасность все еще нависает над нами. Враг разрабатывает новые планы и претворяет их в жизнь с необычайной агрессивностью.
 	AI_Output(other,self,"DIA_Karras_InnosEyeRetrieved_15_03");	//Я уже почувствовал это на своей шкуре.
 	AI_Output(self,other,"DIA_Karras_InnosEyeRetrieved_10_04");	//Сейчас не время для шуток. Ситуация серьезна. Очень серьезна. Теперь мы даже не знаем, кому можно доверять, а кому нет.
@@ -859,6 +881,7 @@ func void DIA_Karras_ItAm_Prot_BlackEye_Mis_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Karras_ItAm_Prot_BlackEye_Mis_10_04");	//Спокойствие. Я все еще работаю над ним.
+		AI_Output(self,other,"DIA_Karras_CIRCLE4_10_03");	//Он еще далеко не закончен.
 	};
 };
 

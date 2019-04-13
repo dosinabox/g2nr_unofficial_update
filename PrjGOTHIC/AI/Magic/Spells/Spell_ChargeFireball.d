@@ -7,8 +7,9 @@ instance Spell_ChargeFireball(C_Spell_Proto)
 {
 	time_per_mana = 30;
 	damage_per_level = SPL_Damage_ChargeFireball;
-	//изменить тип если нужно		
-	damagetype = DAM_FIRE;	//DAM_MAGIC;
+//	изменить тип если нужно		
+	damagetype = DAM_MAGIC;
+//	damagetype = DAM_FIRE;
 	canTurnDuringInvest = TRUE;
 };
 

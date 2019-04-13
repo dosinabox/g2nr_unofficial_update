@@ -8,9 +8,10 @@ instance Spell_Thunderstorm(C_Spell_Proto)
 	damage_per_level = SPL_DAMAGE_Thunderstorm;
 	damagetype = DAM_MAGIC;
 	targetCollectAlgo = TARGET_COLLECT_NONE;
-	targetCollectRange = 0;
-	targetCollectAzi = 0;
-	targetCollectElev = 0;
+	targetCollectRange = 1000;
+//	targetCollectRange = 0;
+//	targetCollectAzi = 0;
+//	targetCollectElev = 0;
 };
 
 

@@ -180,11 +180,8 @@ func void DIA_Addon_Farim_MartinHelps_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_00");	//Я знаю, как решить твои проблемы с ополчением.
 	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_01");	//И как же?
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
-	{
-		AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_02");	//Я бываю здесь слишком редко, чтобы постоянно присматривать за твоей рыбой.
-		AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_03");	//Но я знаю кое-кого, кто может тебе помочь.
-	};
+	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_02");	//Я бываю здесь слишком редко, чтобы постоянно присматривать за твоей рыбой.
+	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_03");	//Но я знаю кое-кого, кто может тебе помочь.
 	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_04");	//Мартин, интендант паладинов, хочет выслушать твою историю об ополчении и рыбе.
 	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_05");	//Думаешь, он сможет сделать так, чтобы люди из ополчения оставили меня в покое?
 	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_06");	//Он так сказал.

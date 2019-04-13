@@ -1,13 +1,13 @@
 
 const string Name_PaladinScroll = "Магия паладинов";
 
-const int Value_Sc_PalLight = 50;
-const int Value_Sc_PalLightHeal = 100;
-const int Value_Sc_PalHolyBolt = 200;
-const int Value_Sc_PalMediumHeal = 200;
-const int Value_Sc_PalRepelEvil = 600;
-const int Value_Sc_PalFullHeal = 400;
-const int Value_Sc_PalDestroyEvil = 1000;
+const int Value_Sc_PalLight = 10;
+const int Value_Sc_PalLightHeal = 25;
+const int Value_Sc_PalHolyBolt = 100;
+const int Value_Sc_PalMediumHeal = 60;
+const int Value_Sc_PalRepelEvil = 250;
+const int Value_Sc_PalFullHeal = 200;
+const int Value_Sc_PalDestroyEvil = 400;
 const int Value_Sc_Light = 10;
 const int Value_Sc_Firebolt = 25;
 const int Value_Sc_Charm = 100;
@@ -27,7 +27,7 @@ const int Value_Sc_Fear = 75;
 const int Value_Sc_IceCube = 100;
 const int Value_Sc_ThunderBall = 75;
 const int Value_Sc_SumGol = 150;
-const int Value_Sc_HarmUndead = 75;
+const int Value_Sc_HarmUndead = 150;
 const int Value_Sc_Pyrokinesis = 150;
 const int Value_Sc_Firestorm = 100;
 const int Value_Sc_IceWave = 200;
@@ -532,9 +532,9 @@ instance ItSc_ChargeFireBall(C_Item)
 	count[1] = STEP_ChargeFireball;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_ChargeFireball;
-	text[3] = "Урон огнем (мин.):";
+	text[3] = NAME_Dam_FireMin;
 	count[3] = SPL_Damage_ChargeFireball;
-	text[4] = "Урон огнем (макс.):";
+	text[4] = NAME_Dam_FireMax;
 	count[4] = SPL_Damage_ChargeFireball * 4;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -701,9 +701,9 @@ instance ItSc_Pyrokinesis(C_Item)
 	count[1] = STEP_Firestorm;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_Firestorm;
-	text[3] = "Урон огнем (мин.):";
+	text[3] = NAME_Dam_FireMin;
 	count[3] = SPL_Damage_Firestorm;
-	text[4] = "Урон огнем (макс.):";
+	text[4] = NAME_Dam_FireMax;
 	count[4] = SPL_Damage_Firestorm * 4;
 	text[5] = NAME_Value;
 	count[5] = value;

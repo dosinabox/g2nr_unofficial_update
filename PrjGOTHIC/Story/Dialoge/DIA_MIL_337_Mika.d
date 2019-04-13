@@ -82,7 +82,10 @@ func void DIA_Mika_WOHIN_Info()
 	AI_Output(self,other,"DIA_Mika_WOHIN_12_00");	//Эй, эй! Не так быстро. Прогуливаться здесь одному довольно опасно. Откуда ты идешь?
 	Info_ClearChoices(DIA_Mika_WOHIN);
 	Info_AddChoice(DIA_Mika_WOHIN,"Это не твое дело.",DIA_Mika_WOHIN_weg);
-	Info_AddChoice(DIA_Mika_WOHIN,"С одной из ферм.",DIA_Mika_WOHIN_Bauern);
+	if(other.guild == GIL_NONE)
+	{
+		Info_AddChoice(DIA_Mika_WOHIN,"С одной из ферм.",DIA_Mika_WOHIN_Bauern);
+	};
 	Info_AddChoice(DIA_Mika_WOHIN,"Из города!",DIA_Mika_WOHIN_stadt);
 };
 
@@ -130,17 +133,14 @@ func void DIA_Mika_WASGEFAEHRLICH_Info()
 	AI_Output(other,self,"DIA_Mika_WASGEFAEHRLICH_15_00");	//А что такого опасного здесь?
 	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_01");	//Много чего.
 	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_02");	//Ну, например, бандиты. Они только и ждут, когда к ним в лапы попадет кто-нибудь вроде тебя.
-	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_03");	//А если тебя не поймают бандиты, то дикие животные из леса или наемники, которые шляются вокруг, позаботятся о тебе.
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	{
+		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_03");	//А если тебя не поймают бандиты, то дикие животные из леса или наемники, которые шляются вокруг, позаботятся о тебе.
+	};
 	if(!Npc_HasEquippedArmor(other) || Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M) || Hlp_IsItem(itm,ITAR_Vlk_L) || Hlp_IsItem(itm,ITAR_Vlk_M) || Hlp_IsItem(itm,ITAR_Vlk_H))
 	{
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_04");	//Так что постарайся сначала хотя бы добыть приличные доспехи. Без них тут нечего делать.
 	};
-	/*if(other.protection[PROT_EDGE] < ITAR_Leather_L.protection[PROT_EDGE])
-	{
-		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_02");	//Ну, например, бандиты. Они только и ждут, когда к ним в лапы попадет кто-нибудь вроде тебя.
-		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_03");	//А если тебя не поймают бандиты, то дикие животные из леса или наемники, которые шляются вокруг, позаботятся о тебе.
-		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_04");	//Так что постарайся сначала хотя бы добыть приличные доспехи. Без них тут нечего делать.
-	};*/
 	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_05");	//Я уверен, что ты прибежишь за помощью ко мне, не успев даже дойти до следующего поворота этой дороги.
 };
 
@@ -166,12 +166,20 @@ func int DIA_Mika_WASKOSTETHILFE_Condition()
 func void DIA_Mika_WASKOSTETHILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_WASKOSTETHILFE_15_00");	//Ну, предположим, я обращусь к тебе за помощью. Сколько это будет мне стоить?
-	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_01");	//Я всего лишь скромный слуга короля и мне не к лицу обирать беззащитных граждан нашего королевства.
-	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_02");	//Но, знаешь, если уж ты так ставишь вопрос, то я бы не отказался от небольшой финансовой помощи. Это укрепит наши будущие деловые отношения.
-	AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_03");	//10 золотых будет достаточно для начала. Что скажешь?
-	Info_ClearChoices(DIA_Mika_WASKOSTETHILFE);
-	Info_AddChoice(DIA_Mika_WASKOSTETHILFE,"Я подумаю над этим.",DIA_Mika_WASKOSTETHILFE_nochnicht);
-	Info_AddChoice(DIA_Mika_WASKOSTETHILFE,"Почему бы и нет? Вот твои 10 монет.",DIA_Mika_WASKOSTETHILFE_ja);
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
+	{
+		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_ja_12_01");	//Потрясающе. Если тебе понадобится моя помощь, ты знаешь, где найти меня.
+		Mika_Helps = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_01");	//Я всего лишь скромный слуга короля и мне не к лицу обирать беззащитных граждан нашего королевства.
+		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_02");	//Но, знаешь, если уж ты так ставишь вопрос, то я бы не отказался от небольшой финансовой помощи. Это укрепит наши будущие деловые отношения.
+		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_12_03");	//10 золотых будет достаточно для начала. Что скажешь?
+		Info_ClearChoices(DIA_Mika_WASKOSTETHILFE);
+		Info_AddChoice(DIA_Mika_WASKOSTETHILFE,"Я подумаю над этим.",DIA_Mika_WASKOSTETHILFE_nochnicht);
+		Info_AddChoice(DIA_Mika_WASKOSTETHILFE,"Почему бы и нет? Вот твои 10 монет.",DIA_Mika_WASKOSTETHILFE_ja);
+	};
 };
 
 func void DIA_Mika_WASKOSTETHILFE_ja()

@@ -37,7 +37,11 @@ func void B_RaiseRealFightTalentPercent(var C_Npc oth,var int talent,var int per
 
 func void B_RaiseFightTalent(var C_Npc oth,var int talent,var int percent)
 {
-	B_RaiseRealFightTalentPercent(oth,talent,percent);
+	//	эксперимент: игнорирование зелий, еды и табличек при прокачке
+	if(IgnoreBonuses == FALSE)
+	{
+		B_RaiseRealFightTalentPercent(oth,talent,percent);
+	};
 	B_AddFightSkill(oth,talent,percent);
 };
 

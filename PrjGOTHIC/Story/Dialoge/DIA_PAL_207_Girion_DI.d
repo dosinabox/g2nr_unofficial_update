@@ -66,7 +66,7 @@ instance DIA_Girion_DI_Teach(C_Info)
 	condition = DIA_Girion_DI_Teach_Condition;
 	information = DIA_Girion_DI_Teach_Info;
 	permanent = TRUE;
-	description = "Обучи меня, тогда мы сможем убраться отсюда быстрее!";
+	description = "Обучи меня, тогда мы сможем быстрее убраться с этого острова.";
 };
 
 

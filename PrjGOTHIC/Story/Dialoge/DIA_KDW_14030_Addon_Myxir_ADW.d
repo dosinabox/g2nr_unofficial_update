@@ -179,13 +179,14 @@ instance DIA_Addon_Myxir_GeistPerm(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Myxir_GeistPerm_Condition;
 	information = DIA_Addon_Myxir_GeistPerm_Info;
+	permanent = TRUE;
 	description = "Расскажи мне еще раз о том, как вызвать дух Куарходрона.";
 };
 
 
 func int DIA_Addon_Myxir_GeistPerm_Condition()
 {
-	if(MIS_ADDON_Myxir_GeistBeschwoeren == LOG_Running)
+	if((MIS_ADDON_Myxir_GeistBeschwoeren == LOG_Running) && (SC_TalkedToGhost == FALSE))
 	{
 		return TRUE;
 	};
@@ -195,6 +196,7 @@ func void DIA_Addon_Myxir_GeistPerm_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Myxir_GeistPerm_15_00");	//Расскажи мне еще раз о том, как вызвать дух Куарходрона.
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistPerm_12_01");	//Найди его гробницу и прочитай в ней заклинание стражей мертвых.
+	AI_Output(other,self,"DIA_Canthar_PersonalCRIMES_15_03");	//А что именно ты имел в виду?
 	AI_Output(self,other,"DIA_Addon_Myxir_GeistPerm_12_02");	//Я записал слова. Ты должен просто прочитать их вслух.
 };
 

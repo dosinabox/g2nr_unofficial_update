@@ -11,9 +11,10 @@ instance BAU_936_Rosi(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Axe);
 //	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe8",FaceBabe_N_Hure,BodyTexBabe_N,ITAR_BauBabe_M);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe7",FaceBabe_N_Hure,BodyTexBabe_N,ITAR_BauBabe_M);
 	Mdl_SetModelFatness(self,0);
-	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
+//	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
+	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,15);
 	daily_routine = Rtn_Start_936;

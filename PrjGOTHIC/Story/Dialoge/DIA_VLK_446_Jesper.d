@@ -172,7 +172,7 @@ func void DIA_Jesper_Bezahlen_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Jesper_Bezahlen_09_02");	//“ы хочешь узнать, как двигатьс€, не издава€ ни единого звука? Ёто обойдетс€ тебе в 100 золотых монет.
-		B_Say_Gold(self,other,Jesper_Cost);
+//		B_Say_Gold(self,other,Jesper_Cost);
 		Info_ClearChoices(DIA_Jesper_Bezahlen);
 		Info_AddChoice(DIA_Jesper_Bezahlen,"ћожет быть, позже...",DIA_Jesper_Bezahlen_Spaeter);
 		Info_AddChoice(DIA_Jesper_Bezahlen,"’орошо, € хочу научитьс€ крастьс€. (заплатить 100 золотых)",DIA_Jesper_Bezahlen_Okay);

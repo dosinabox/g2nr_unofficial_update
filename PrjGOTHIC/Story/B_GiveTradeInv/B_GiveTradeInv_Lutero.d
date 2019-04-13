@@ -75,6 +75,7 @@ func void B_GiveTradeInv_Lutero(var C_Npc slf)
 		CreateInvItems(slf,ItPl_Perm_Herb,1);
 		CreateInvItems(slf,ItMi_RuneBlank,1);
 		CreateInvItems(slf,ItPo_Speed,1);
+		CreateInvItems(slf,ItAt_TrollTooth,1);
 		Lutero_ItemsGiven_Chapter_5 = TRUE;
 	};
 };

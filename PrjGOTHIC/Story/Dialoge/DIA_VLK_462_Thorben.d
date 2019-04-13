@@ -96,7 +96,7 @@ instance DIA_Thorben_Hallo(C_Info)
 
 func int DIA_Thorben_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE) && !Npc_IsDead(Gritta))
 	{
 		return TRUE;
 	};
@@ -405,7 +405,10 @@ func void DIA_Thorben_PleaseTeach_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_11");	//Хмм... я не знаю, можно ли тебе доверять.
-		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_12");	//Боюсь, ты можешь оказаться одним из этих бездельников, которые приходят в город, только чтобы очистить сундуки честных людей.
+		if((other.guild != GIL_KDF) && (other.guild != GIL_PAL))
+		{
+			AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_12");	//Боюсь, ты можешь оказаться одним из этих бездельников, которые приходят в город, только чтобы очистить сундуки честных людей.
+		};
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_13");	//Я ничему не буду учить тебя, пока не буду уверен, что ты честный человек.
 	};
 };

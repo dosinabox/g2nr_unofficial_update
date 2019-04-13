@@ -3,7 +3,8 @@ instance ITWR_Addon_Runemaking_KDW_CIRC1(C_Item)
 {
 	name = "Книга рун магов Воды";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_Runemaking_KDW.3ds";
 	material = MAT_LEATHER;
@@ -96,7 +97,8 @@ instance ITWR_Addon_Runemaking_KDF_CIRC1(C_Item)
 {
 	name = "Книга рун Огня I";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_Runemaking_KDF.3ds";
 	material = MAT_LEATHER;
@@ -114,7 +116,8 @@ instance ITWR_Addon_Runemaking_KDF_CIRC2(C_Item)
 {
 	name = "Книга рун Огня II";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_Runemaking_KDF.3ds";
 	material = MAT_LEATHER;
@@ -132,7 +135,8 @@ instance ITWR_Addon_Runemaking_KDF_CIRC3(C_Item)
 {
 	name = "Книга рун Огня III";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_Runemaking_KDF.3ds";
 	material = MAT_LEATHER;
@@ -150,7 +154,8 @@ instance ITWR_Addon_Runemaking_KDF_CIRC4(C_Item)
 {
 	name = "Книга рун Огня IV";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_Runemaking_KDF.3ds";
 	material = MAT_LEATHER;
@@ -168,7 +173,8 @@ instance ITWR_Addon_Runemaking_KDF_CIRC5(C_Item)
 {
 	name = "Книга рун Огня V";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_Runemaking_KDF.3ds";
 	material = MAT_LEATHER;
@@ -186,7 +192,8 @@ instance ITWR_Addon_Runemaking_KDF_CIRC6(C_Item)
 {
 	name = "Книга рун Огня VI";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+//	flags = ITEM_MISSION;
+	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_Runemaking_KDF.3ds";
 	material = MAT_LEATHER;

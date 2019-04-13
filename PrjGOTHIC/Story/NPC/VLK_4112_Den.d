@@ -14,7 +14,7 @@ instance VLK_4112_Den(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 1;
 	attribute[ATR_HITPOINTS] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Dagger);
+	CreateInvItem(self,ItMw_1h_Vlk_Dagger);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_Gold,200);
 	CreateInvItems(self,ItMi_SilverRing,1);

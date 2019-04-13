@@ -20,6 +20,10 @@ func int DIA_Hilda_EXIT_Condition()
 
 func void DIA_Hilda_EXIT_Info()
 {
+	if(!Npc_HasEquippedArmor(other))
+	{
+		PlayerVisitedLobartFarmArmorless = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -196,6 +200,10 @@ func void DIA_Hilda_Einkaufen_Info()
 	if(hero.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Hilda_Einkaufen_17_01");	//А тебе можно доверять? Только попробуй потратить эти деньги на выпивку, слышишь?!
+	}
+	else
+	{
+		B_Say_Gold(self,other,20);
 	};
 	B_GiveInvItems(self,other,ItMi_Gold,20);
 	MIS_Hilda_PfanneKaufen = LOG_Running;
@@ -229,7 +237,15 @@ func void DIA_Hilda_PfanneGeholt_Info()
 {
 	AI_Output(other,self,"DIA_Hilda_PfanneGeholt_15_00");	//Вот твоя сковородка.
 	B_GiveInvItems(other,self,ItMi_Pan,1);
-	AI_Output(self,other,"DIA_Hilda_PfanneGeholt_17_01");	//Отлично. Посмотрим, хорошая ли она...
+//	if(Npc_GetDistToWP(self,"NW_FARM1_INHOUSE_02") < 500)
+	if(Wld_IsTime(8,0,22,0))
+	{
+		AI_Output(self,other,"DIA_Hilda_PfanneGeholt_17_01");	//Отлично. Посмотрим, хорошая ли она...
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hanna_Add_17_46");	//Спасибо.
+	};
 	MIS_Hilda_PfanneKaufen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_HildaHolPfanne);
 	AI_StopProcessInfos(self);
@@ -249,7 +265,7 @@ instance DIA_Hilda_PfanneTooLate(C_Info)
 
 func int DIA_Hilda_PfanneTooLate_Condition()
 {
-	if((MIS_Hilda_PfanneKaufen == LOG_Running) && (MIS_Hilda_PfanneKaufen_Day <= (Wld_GetDay() - 1)) && (Kapitel < 3))
+	if((MIS_Hilda_PfanneKaufen == LOG_Running) && (MIS_Hilda_PfanneKaufen_Day <= (Wld_GetDay() - 2)) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -308,7 +324,7 @@ instance DIA_Hilda_KAP3_EXIT(C_Info)
 
 func int DIA_Hilda_KAP3_EXIT_Condition()
 {
-	if(Kapitel == 3)
+	if(Kapitel >= 3)
 	{
 		return TRUE;
 	};
@@ -354,7 +370,7 @@ func void DIA_Hilda_KRANK_Info()
 		Info_AddChoice(DIA_Hilda_KRANK,"Могу я чем-нибудь помочь?",DIA_Hilda_KRANK_helfen);
 		DIA_Hilda_KRANK_OnTime = TRUE;
 	};
-	MIS_HealHilda = LOG_Running;
+//	MIS_HealHilda = LOG_Running;
 };
 
 func void DIA_Hilda_KRANK_besserung()
@@ -369,9 +385,13 @@ func void DIA_Hilda_KRANK_helfen()
 	AI_Output(other,self,"DIA_Hilda_KRANK_helfen_15_00");	//Могу я чем-нибудь помочь?
 	AI_Output(self,other,"DIA_Hilda_KRANK_helfen_17_01");	//Было бы великолепно, если бы ты мог сходить к Ватрасу и принести мне лекарство от него.
 	AI_Output(self,other,"DIA_Hilda_KRANK_helfen_17_02");	//Он знает, что мне нужно! Самой мне не дойти.
-	Log_CreateTopic(TOPIC_HealHilda,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_HealHilda,LOG_Running);
-	B_LogEntry(TOPIC_HealHilda,"Жена Лобарта Хильда больна, но у Ватраса есть лекарство, которое может вылечить ее.");
+	if(MIS_HealHilda == FALSE)
+	{
+		Log_CreateTopic(TOPIC_HealHilda,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_HealHilda,LOG_Running);
+		B_LogEntry(TOPIC_HealHilda,"Жена Лобарта Хильда больна, но у Ватраса есть лекарство, которое может вылечить ее.");
+		MIS_HealHilda = LOG_Running;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -422,7 +442,8 @@ instance DIA_Hilda_DISTURB(C_Info)
 
 func int DIA_Hilda_DISTURB_Condition()
 {
-	if((MIS_HealHilda == LOG_SUCCESS) || (((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (Kapitel > 3)))
+//	if((MIS_HealHilda == LOG_SUCCESS) || (((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (Kapitel > 3)))
+	if(((MIS_HealHilda == LOG_SUCCESS) || (MIS_HealHilda == LOG_RUNNING)) && (DIA_Hilda_KRANK_OnTime == TRUE))
 	{
 		return TRUE;
 	};
@@ -430,9 +451,9 @@ func int DIA_Hilda_DISTURB_Condition()
 
 func void DIA_Hilda_DISTURB_Info()
 {
+	AI_Output(other,self,"DIA_Hilda_DISTURB_15_00");	//Как твое здоровье?
 	if(MIS_HealHilda == LOG_SUCCESS)
 	{
-		AI_Output(other,self,"DIA_Hilda_DISTURB_15_00");	//Как твое здоровье?
 		AI_Output(self,other,"DIA_Hilda_DISTURB_17_01");	//Уже лучше, спасибо тебе.
 	}
 	else
@@ -441,7 +462,7 @@ func void DIA_Hilda_DISTURB_Info()
 	};
 };
 
-
+/*
 instance DIA_Hilda_KAP4_EXIT(C_Info)
 {
 	npc = BAU_951_Hilda;
@@ -491,7 +512,7 @@ func void DIA_Hilda_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
+
 instance DIA_Hilda_KAP6_EXIT(C_Info)
 {
 	npc = BAU_951_Hilda;

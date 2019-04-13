@@ -34,7 +34,10 @@ instance DIA_Jergan_Hallo(C_Info)
 
 func int DIA_Jergan_Hallo_Condition()
 {
-	return TRUE;
+	if(!Npc_KnowsInfo(other,DIA_Garond_NeedProof))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Jergan_Hallo_Info()
@@ -57,7 +60,7 @@ instance DIA_Jergan_Vermisste(C_Info)
 
 func int DIA_Jergan_Vermisste_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jergan_Hallo))
+	if(Npc_KnowsInfo(other,DIA_Jergan_Hallo) || Npc_KnowsInfo(other,DIA_Jergan_Mine))
 	{
 		return TRUE;
 	};
@@ -84,7 +87,7 @@ instance DIA_Jergan_Burg(C_Info)
 
 func int DIA_Jergan_Burg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jergan_Hallo) && (Npc_GetDistToWP(self,"OW_STAND_JERGAN") <= 1000))
+	if(Npc_KnowsInfo(other,DIA_Jergan_Hallo) && !Npc_KnowsInfo(other,DIA_Garond_Hello))
 	{
 		return TRUE;
 	};
@@ -95,9 +98,12 @@ func void DIA_Jergan_Burg_Info()
 	AI_Output(other,self,"DIA_Jergan_Burg_15_00");	//Ты можешь помочь мне пробраться в замок?
 	AI_Output(self,other,"DIA_Jergan_Burg_13_01");	//Конечно, но ты должен оказать мне услугу.
 	AI_Output(self,other,"DIA_Jergan_Burg_13_02");	//Если тебе удастся добраться до замка, поговори с паладином Ориком. Скажи ему, что его брат погиб здесь, у Прохода.
-	Log_CreateTopic(Topic_OricBruder,LOG_MISSION);
-	Log_SetTopicStatus(Topic_OricBruder,LOG_Running);
-	B_LogEntry(Topic_OricBruder,"Когда я буду в замке, я должен сказать Орику, что его брат погиб в Проходе.");
+	if(!Npc_IsDead(Oric))
+	{
+		Log_CreateTopic(Topic_OricBruder,LOG_MISSION);
+		Log_SetTopicStatus(Topic_OricBruder,LOG_Running);
+		B_LogEntry(Topic_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");
+	};
 };
 
 
@@ -114,7 +120,7 @@ instance DIA_Jergan_Gegend(C_Info)
 
 func int DIA_Jergan_Gegend_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jergan_Hallo))
+	if(Npc_KnowsInfo(other,DIA_Jergan_Hallo) || Npc_KnowsInfo(other,DIA_Jergan_Mine))
 	{
 		return TRUE;
 	};
@@ -149,7 +155,7 @@ instance DIA_Jergan_Hilfe(C_Info)
 
 func int DIA_Jergan_Hilfe_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jergan_Burg) && (Npc_GetDistToWP(self,"OW_STAND_JERGAN") <= 1000))
+	if(Npc_KnowsInfo(other,DIA_Jergan_Burg) && !Npc_KnowsInfo(other,DIA_Garond_Hello))
 	{
 		return TRUE;
 	};
@@ -178,7 +184,7 @@ instance DIA_Jergan_Mine(C_Info)
 
 func int DIA_Jergan_Mine_Condition()
 {
-	if(Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000)
+	if(Npc_KnowsInfo(other,DIA_Garond_NeedProof))
 	{
 		return TRUE;
 	};
@@ -187,6 +193,20 @@ func int DIA_Jergan_Mine_Condition()
 func void DIA_Jergan_Mine_Info()
 {
 	AI_Output(other,self,"DIA_Jergan_Mine_15_00");	//Что ты делаешь здесь?
+	if(!Npc_KnowsInfo(other,DIA_Jergan_Hallo))
+	{
+		AI_Output(self,other,"DIA_Jergan_Hallo_13_01");	//Я пришел из замка. Меня послали поискать пропавших и разведать эту местность.
+	};
+	if(!Npc_KnowsInfo(other,DIA_Jergan_Burg))
+	{
+		AI_Output(self,other,"DIA_Jergan_Burg_13_02");	//Если тебе удастся добраться до замка, поговори с паладином Ориком. Скажи ему, что его брат погиб здесь, у Прохода.
+		if(!Npc_IsDead(Oric))
+		{
+			Log_CreateTopic(Topic_OricBruder,LOG_MISSION);
+			Log_SetTopicStatus(Topic_OricBruder,LOG_Running);
+			B_LogEntry(Topic_OricBruder,"Когда я окажусь в замке, то должен буду сказать Орику, что его брат погиб у Прохода.");
+		};
+	};
 	AI_Output(self,other,"DIA_Jergan_Mine_13_01");	//Я разведчик. Моя работа - следить за врагом. Но все эти снепперы совсем не облегчают мне жизнь.
 	AI_Output(self,other,"DIA_Jergan_Mine_13_02");	//Хотя сейчас самое время насобирать трофеев - если, конечно, ты знаешь, что делаешь.
 };
@@ -205,7 +225,7 @@ instance DIA_Jergan_Claw(C_Info)
 
 func int DIA_Jergan_Claw_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_KnowsInfo(other,DIA_Jergan_Mine) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Jergan_Mine) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE))
 	{
 		return TRUE;
 	};
@@ -215,6 +235,8 @@ func void DIA_Jergan_Claw_Info()
 {
 	AI_Output(other,self,"DIA_Jergan_Claw_15_00");	//Ты можешь научить меня этому?
 	AI_Output(self,other,"DIA_Jergan_Claw_13_01");	//Я могу показать тебе, как отделять когти этих тварей.
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,"Разведчик Джерган может показать мне, как правильно вырезать когти у мертвых животных.");
 };
 
 
@@ -232,7 +254,7 @@ instance DIA_Jergan_Teach(C_Info)
 
 func int DIA_Jergan_Teach_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_KnowsInfo(other,DIA_Jergan_Claw) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Jergan_Claw) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE))
 	{
 		return TRUE;
 	};
@@ -262,7 +284,7 @@ instance DIA_Jergan_Diego(C_Info)
 
 func int DIA_Jergan_Diego_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && !Npc_KnowsInfo(other,DIA_DiegoOw_Hallo) && Npc_KnowsInfo(other,DIA_Parcival_Diego))
+	if(!Npc_KnowsInfo(other,DIA_DiegoOw_Hallo) && Npc_KnowsInfo(other,DIA_Parcival_Diego))
 	{
 		return TRUE;
 	};
@@ -291,7 +313,7 @@ instance DIA_Jergan_Leader(C_Info)
 
 func int DIA_Jergan_Leader_Condition()
 {
-	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_IsDead(NewMine_LeadSnapper) && Npc_KnowsInfo(other,DIA_Bilgot_KNOWSLEADSNAPPER))
+	if((Npc_GetDistToWP(self,"OW_NEWMINE_04") < 1000) && Npc_IsDead(NewMine_LeadSnapper) && (NewMine_LeadSnapper_Spawned == TRUE))
 	{
 		return TRUE;
 	};

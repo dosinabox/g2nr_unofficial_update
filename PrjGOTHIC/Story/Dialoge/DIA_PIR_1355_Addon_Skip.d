@@ -17,6 +17,10 @@ func int DIA_Addon_Skip_EXIT_Condition()
 
 func void DIA_Addon_Skip_EXIT_Info()
 {
+	if((MIS_ADDON_SkipsGrog == LOG_RUNNING) && (Npc_GetDistToWP(self,"ADW_PIRATECAMP_HUT3_01") < 2000))
+	{
+		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_03");	//Мне бы свой грог назад получить...
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -245,6 +249,10 @@ func void DIA_Addon_Skip_Bandits_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_10");	//Но это еще не все. Они убили Ангуса и Хэнка - двоих наших лучших людей.
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_11");	//Мой тебе совет, парень: держись от этого болота подальше.
 	AI_Output(self,other,"DIA_Addon_Skip_Bandits_08_12");	//Бандиты нападают на каждого, кто выглядит побогаче, чем они.
+	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
 };
 
 
@@ -464,15 +472,14 @@ func int DIA_Addon_Skip_AngusHankMurder_Condition()
 func void DIA_Addon_Skip_AngusHankMurder_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_JuanMurder_15_00");	//Я знаю, кто убил Хэнка и Ангуса.
-	if(MIS_ADDON_SkipsGrog == LOG_SUCCESS)
+	if(MIS_ADDON_SkipsGrog == LOG_RUNNING)
 	{
-		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_01");	//Хорошо. Но они оба мертвы. Какая теперь разница?
-		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_02");	//Месть еще не сделала богатым ни одного пирата.
-		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_03");	//Я хотя бы получил назад свой грог.
+		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_04");	//Меня не интересует, кто их убил. Что с моим грогом?!
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_04");	//Меня не интересует, кто их убил. Что с моим грогом?!
+		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_01");	//Хорошо. Но они оба мертвы. Какая теперь разница?
+		AI_Output(self,other,"DIA_Addon_Skip_AngusHankMurder_08_02");	//Месть еще не сделала богатым ни одного пирата.
 	};
 };
 

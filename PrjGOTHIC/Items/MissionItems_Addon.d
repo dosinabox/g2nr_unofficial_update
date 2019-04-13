@@ -118,7 +118,7 @@ instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
 	name = "Карта Нефариуса";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = 250;
+	value = 200;
 //	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
@@ -154,10 +154,10 @@ func void Use_Map_NewWorld_Ornaments()
 
 instance ItWr_Map_NewWorld_Dexter(C_Item)
 {
-	name = "Карта Хориниса";
+	name = "Карта земель Хориниса";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
-	value = 210;
+	value = 200;
 //	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
@@ -470,7 +470,7 @@ prototype EffectItemPrototype_Addon(C_Item)
 	name = "Камень";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = Value_Coal;
+	value = 15;
 	visual = "ItMi_Coal.3ds";
 	material = MAT_STONE;
 	description = name;
@@ -522,7 +522,7 @@ instance ItRi_Addon_BanditTrader(C_Item)
 	name = "Кольцо гильдии";
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
-	value = 5;
+	value = 150;
 //	visual = "ItRi_Prot_Point_02.3ds";
 	visual = "ItRi_Addon_BanditTrader.3ds";
 	visual_skin = 0;
@@ -685,27 +685,6 @@ func void Equip_WispDetector()
 	AI_Teleport(DetWsp,"TOT");
 	Wld_SpawnNpcRange(self,Wisp_Detector,1,500);
 	Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector,Wisp_Detector,0,0,0,FALSE);
-	/*if(WISPSKILL_LEVEL == 1)
-	{
-		DetWsp = Hlp_GetNpc(Wisp_Detector);
-		AI_Teleport(DetWsp,"TOT");
-		Wld_SpawnNpcRange(self,Wisp_Detector,1,500);
-		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector,Wisp_Detector,0,0,0,FALSE);
-	}
-	else if(WISPSKILL_LEVEL == 2)
-	{
-		DetWsp = Hlp_GetNpc(Wisp_Detector2);
-		AI_Teleport(DetWsp,"TOT");
-		Wld_SpawnNpcRange(self,Wisp_Detector2,1,500);
-		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector2,Wisp_Detector2,0,0,0,FALSE);
-	}
-	else
-	{
-		DetWsp = Hlp_GetNpc(Wisp_Detector3);
-		AI_Teleport(DetWsp,"TOT");
-		Wld_SpawnNpcRange(self,Wisp_Detector3,1,500);
-		Wld_PlayEffect("spellFX_LIGHTSTAR_WHITE",Wisp_Detector3,Wisp_Detector3,0,0,0,FALSE);
-	};*/
 	Snd_Play("MFX_Transform_Cast");
 };
 
@@ -720,42 +699,6 @@ func void UnEquip_WispDetector()
 	AI_Teleport(DetWsp,"TOT");
 	B_RemoveNpc(DetWsp);
 	AI_Teleport(DetWsp,"TOT");
-	/*if(WISPSKILL_LEVEL == 1)
-	{
-		var C_Npc DetWsp;
-		DetWsp = Hlp_GetNpc(Wisp_Detector);
-		if(!Npc_IsDead(DetWsp))
-		{
-			Snd_Play("WSP_Dead_A1");
-		};
-		AI_Teleport(DetWsp,"TOT");
-		B_RemoveNpc(DetWsp);
-		AI_Teleport(DetWsp,"TOT");
-	}
-	else if(WISPSKILL_LEVEL == 2)
-	{
-		var C_Npc DetWsp2;
-		DetWsp2 = Hlp_GetNpc(Wisp_Detector2);
-		if(!Npc_IsDead(DetWsp2))
-		{
-			Snd_Play("WSP_Dead_A1");
-		};
-		AI_Teleport(DetWsp2,"TOT");
-		B_RemoveNpc(DetWsp2);
-		AI_Teleport(DetWsp2,"TOT");
-	}
-	else
-	{
-		var C_Npc DetWsp3;
-		DetWsp3 = Hlp_GetNpc(Wisp_Detector3);
-		if(!Npc_IsDead(DetWsp3))
-		{
-			Snd_Play("WSP_Dead_A1");
-		};
-		AI_Teleport(DetWsp3,"TOT");
-		B_RemoveNpc(DetWsp3);
-		AI_Teleport(DetWsp3,"TOT");
-	};*/
 };
 
 
@@ -1184,13 +1127,13 @@ instance ITWR_Addon_FrancisAbrechnung_Mis(C_Item)
 	name = "Книга платежей";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 100;
+	value = 0;
 	visual = "ItWr_Book_02_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	on_state[0] = UseFrancisAbrechnung_Mis;
 };
 
@@ -1272,13 +1215,13 @@ instance ITWR_Addon_GregsLogbuch_Mis(C_Item)
 	name = "Дневник";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 100;
+	value = 0;
 	visual = "ItWr_Book_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = "Дневник Грега";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 	on_state[0] = UseGregsLogbuch;
 };
 
@@ -1317,8 +1260,6 @@ instance ITKE_Addon_Bloodwyn_01(C_Item)
 	material = MAT_METAL;
 	description = "Ключ Бладвина";
 	text[0] = "Открывает его сундук в храме.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ITKE_Addon_Heiler(C_Item)
@@ -1332,8 +1273,6 @@ instance ITKE_Addon_Heiler(C_Item)
 	description = "Ключ каменного стража";
 	text[0] = "Ключ от сундука в странном";
 	text[1] = "древнем строении на болоте.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItMi_TempelTorKey(C_Item)
@@ -1375,8 +1314,6 @@ instance ItMi_Addon_Bloodwyn_Kopf(C_Item)
 	visual = "ItMi_Head_Bloodwyn_01.3ds";
 	material = MAT_LEATHER;
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
 
 instance ItMi_FakeBloodwynHead(C_Item)

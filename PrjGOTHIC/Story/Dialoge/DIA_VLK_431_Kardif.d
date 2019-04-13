@@ -1,4 +1,17 @@
 
+func void B_KardifArmorCheck()
+{
+	var C_Item heroArmor;
+	heroArmor = Npc_GetEquippedArmor(hero);
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || Hlp_IsItem(heroArmor,ITAR_PAL_M) || Hlp_IsItem(heroArmor,ITAR_PAL_H) || Hlp_IsItem(heroArmor,ITAR_NOV_L) || Hlp_IsItem(heroArmor,ITAR_KDF_L) || Hlp_IsItem(heroArmor,ITAR_KDF_H))
+	{
+		if(!Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
+		{
+			Kardif_Busted = TRUE;
+		};
+	};
+};
+
 instance DIA_Kardif_EXIT(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -20,6 +33,7 @@ func int DIA_Kardif_EXIT_Condition()
 
 func void DIA_Kardif_EXIT_Info()
 {
+	B_KardifArmorCheck();
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
@@ -270,6 +284,7 @@ func int DIA_Kardif_TradeInfo_Condition()
 
 func void DIA_Kardif_TradeInfo_Info()
 {
+	B_KardifArmorCheck();
 	AI_Output(other,self,"DIA_Kardif_TradeInfo_15_00");	//Мне нужна информация.
 	Kardif_OneQuestion = TRUE;
 };
@@ -303,9 +318,9 @@ func int DIA_Kardif_Buerger_Condition()
 
 func void DIA_Kardif_Buerger_Info()
 {
+	AI_Output(other,self,"DIA_Kardif_Buerger_15_00");	//Кого считают влиятельными людьми в этом городе?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Kardif_Buerger_15_00");	//Кого считают влиятельными людьми в этом городе?
 		AI_Output(self,other,"DIA_Kardif_Buerger_14_01");	//Здесь, в порту, ты никого из них не найдешь. Единственный влиятельный человек здесь - это Лемар.
 		AI_Output(self,other,"DIA_Kardif_Buerger_14_02");	//Этот ростовщик не очень популярен, но у него есть золото, и другие влиятельные горожане должны ему деньги.
 		AI_Output(self,other,"DIA_Kardif_Buerger_14_03");	//Торговцы и мастера тоже очень влиятельные люди - и даже слишком, если тебе интересно мое мнение.
@@ -341,9 +356,9 @@ func int DIA_Kardif_Lehmar_Condition()
 
 func void DIA_Kardif_Lehmar_Info()
 {
+	AI_Output(other,self,"DIA_Kardif_Add_15_00");	//Кто должен Лемару?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Kardif_Add_15_00");	//Кто должен Лемару?
 		AI_Output(self,other,"DIA_Kardif_Add_14_01");	//(смеется) Если ты хочешь узнать это, тебе стоит заглянуть в его гроссбух.
 		AI_Output(self,other,"DIA_Kardif_Add_14_02");	//Только это будет очень непросто сделать незаметно.
 		AI_Output(self,other,"DIA_Kardif_Add_14_03");	//Насколько мне известно, он всегда носит его с собой...
@@ -379,9 +394,9 @@ func int DIA_Kardif_Arbeit_Condition()
 
 func void DIA_Kardif_Arbeit_Info()
 {
+	AI_Output(other,self,"DIA_Kardif_Arbeit_15_00");	//Где я могу найти работу?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Kardif_Arbeit_15_00");	//Где я могу найти работу?
 		AI_Output(self,other,"DIA_Kardif_Arbeit_14_01");	//Ты вряд ли найдешь работу здесь, в порту. Тебе нужно обратиться к мастерам в нижней части города.
 		AI_Output(self,other,"DIA_Kardif_Arbeit_14_02");	//Но если у тебя есть приличный меч, ты можешь вызвать Альрика на поединок. Ты найдешь его за складом, он сражается за золото.
 		DIA_Kardif_Arbeit_permanent = TRUE;
@@ -416,9 +431,9 @@ func int DIA_Addon_Kardif_MissingPeople_Condition()
 
 func void DIA_Addon_Kardif_MissingPeople_Info()
 {
+	AI_Output(other,self,"DIA_Addon_Kardif_MissingPeople_15_00");	//Что ты знаешь о пропавших горожанах?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Addon_Kardif_MissingPeople_15_00");	//Что ты знаешь о пропавших горожанах?
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_01");	//Все, что я знаю - это то, что за последние дни исчезли несколько людей.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_02");	//Говорят, что больше всего пропавших здесь, в порту. Думаю, тебе стоит расспросить местных.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_03");	//В нижней части города тоже исчезли люди.
@@ -467,9 +482,9 @@ func int DIA_Kardif_Lernen_Condition()
 
 func void DIA_Kardif_Lernen_Info()
 {
+	AI_Output(other,self,"DIA_Kardif_Lernen_15_00");	//А у кого здесь можно поучиться чему-нибудь?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Kardif_Lernen_15_00");	//А у кого здесь можно поучиться чему-нибудь?
 		AI_Output(self,other,"DIA_Kardif_Lernen_14_01");	//Здесь, в портовом районе, есть несколько знающих людей.
 		AI_Output(self,other,"DIA_Kardif_Lernen_14_02");	//Карл, кузнец - крепкий парень. Ручаюсь, он сможет помочь тебе стать сильнее.
 		AI_Output(self,other,"DIA_Kardif_Lernen_14_03");	//Альрик опытен в боевых искусствах. А Ларес - мошенник, каких свет не видывал. Он тоже заходит иногда в порт.
@@ -516,7 +531,7 @@ instance DIA_Kardif_Diebeswerk(C_Info)
 	condition = DIA_Kardif_Diebeswerk_Condition;
 	information = DIA_Kardif_Diebeswerk_Info;
 	permanent = TRUE;
-	description = "А нет ли здесь какой-нибудь 'особой' работы, мне бы хотелось побыстрее заработать денег?";
+	description = "А нет ли здесь какой-нибудь 'особой' работы?";
 };
 
 
@@ -532,10 +547,10 @@ func int DIA_Kardif_Diebeswerk_Condition()
 
 func void DIA_Kardif_Diebeswerk_Info()
 {
+	AI_Output(other,self,"DIA_Kardif_Diebeswerk_15_00");	//А нет ли здесь какой-нибудь 'особой' работы? Мне бы хотелось побыстрее заработать денег.
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Kardif_Diebeswerk_15_00");	//А нет ли здесь какой-нибудь 'особой' работы, мне бы хотелось побыстрее заработать денег?
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk_14_01");	//Чего-нибудь особого, говоришь? Хмм...
+		AI_Output(self,other,"DIA_Kardif_Diebeswerk_14_01");	//Что-нибудь особого, говоришь? Хмм...
 		AI_PlayAni(self,"T_SEARCH");
 		AI_Output(self,other,"DIA_Kardif_Diebeswerk_14_02");	//... попробуй поговорить с Нагуром. Возможно, он сможет помочь тебе.
 		DIA_Kardif_Diebeswerk_permanent = TRUE;
@@ -562,7 +577,8 @@ var int DIA_Kardif_Diebeswerk2_permanent;
 
 func int DIA_Kardif_Diebeswerk2_Condition()
 {
-	if((DIA_Kardif_Diebeswerk2_permanent == FALSE) && (DIA_Kardif_Diebeswerk_permanent == TRUE) && (DIA_Kardif_Arbeit_permanent == TRUE) && (Kardif_OneQuestion == TRUE) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
+//	if((DIA_Kardif_Diebeswerk2_permanent == FALSE) && (DIA_Kardif_Diebeswerk_permanent == TRUE) && (DIA_Kardif_Arbeit_permanent == TRUE) && (Kardif_OneQuestion == TRUE) && (other.guild != GIL_KDF) && (other.guild != GIL_NOV) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
+	if((DIA_Kardif_Diebeswerk2_permanent == FALSE) && (DIA_Kardif_Diebeswerk_permanent == TRUE) && (DIA_Kardif_Arbeit_permanent == TRUE) && (Kardif_OneQuestion == TRUE))
 	{
 		return TRUE;
 	};
@@ -570,11 +586,24 @@ func int DIA_Kardif_Diebeswerk2_Condition()
 
 func void DIA_Kardif_Diebeswerk2_Info()
 {
-	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
+	AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_00");	//Есть что-нибудь 'особенное' для меня?
+	if(Kardif_Busted == TRUE)
 	{
-		AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_00");	//Есть что-нибудь 'особенное' для меня?
-		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_01");	//Да, есть кое-что - но это заинтересует тебя, только если ты блещешь разносторонними талантами.
-		AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_02");	//Выкладывай, что там у тебя?
+		AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
+	}
+	else if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700)
+	{
+		AI_WaitTillEnd(self,other);
+		AI_PlayAni(self,"T_SEARCH");
+		AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
+	}
+	else if(Npc_KnowsInfo(other,DIA_Kardif_Zeichen) || B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
+	{
+		if(!Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
+		{
+			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_01");	//Да, есть кое-что - но это заинтересует тебя, только если ты блещешь разносторонними талантами.
+			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_02");	//Выкладывай, что там у тебя?
+		};
 		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.
 		AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_04");	//И?
 		AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном, плотником.
@@ -637,19 +666,21 @@ func int DIA_Kardif_DOPE_Condition()
 
 func void DIA_Kardif_DOPE_Info()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Kardif_DOPE_15_01");	//Где мне здесь купить травки?
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
+	if(Kardif_Busted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Kardif_DOPE_14_00");	//Только не здесь - я не имею дела с подобными вещами.
 	}
-	else
+	else if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
 		AI_Output(self,other,"DIA_Kardif_DOPE_14_02");	//Только не здесь.
 		AI_Output(other,self,"DIA_Kardif_DOPE_15_03");	//Ладно, тогда где?
 		AI_Output(self,other,"DIA_Kardif_DOPE_14_04");	//Я бы на твоем месте поговорил с Мелдором - он дымит тут днями напролет.
 		DIA_Kardif_DOPE_perm = TRUE;
+	}
+	else
+	{
+		B_SayKardifZuwenigGold();
 	};
 };
 
@@ -677,10 +708,10 @@ func int DIA_Kardif_Paket_Condition()
 
 func void DIA_Kardif_Paket_Info()
 {
+	AI_Output(other,self,"DIA_Kardif_Paket_15_00");	//Ты что-нибудь слышал о тюке болотной травы?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Kardif_Paket_15_00");	//Ты что-нибудь слышал о тюке болотной травы?
-		AI_Output(self,other,"DIA_Kardif_Paket_14_01");	//Тот, кто владеет этим тюком - богатый человек. И, возможно, весьма расслабленный также!
+		AI_Output(self,other,"DIA_Kardif_Paket_14_01");	//Тот, кто владеет этим тюком - богатый человек. И, возможно, весьма расслабленный тоже!
 		AI_Output(other,self,"DIA_Kardif_Paket_15_02");	//Не пытайся провести меня. Ты что-то знаешь. Давай, выкладывай!
 		AI_Output(self,other,"DIA_Kardif_Paket_14_03");	//Хорошо, хорошо - этот парень недавно заходил в мой трактир. Он из наемников.
 		AI_Output(self,other,"DIA_Kardif_Paket_14_04");	//Он сказал, что продал тюк болотной травы в гавани, но, конечно же, он был обкуренный в хлам. Это все, что я знаю.
@@ -831,7 +862,19 @@ func void DIA_Kardif_Zeichen_Info()
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Kardif_Zeichen_14_00");	//Ах, ты имеешь дела с бандой. Хорошо. В таком случае, у меня кое-что есть для тебя.
 	AI_Output(self,other,"DIA_Kardif_Zeichen_14_01");	//(вкрадчиво) Если тебе понадобятся отмычки, намекни. Я припас несколько на всякий случай. Просто попроси меня налить тебе выпивки.
+	if(DIA_Kardif_Diebeswerk2_permanent == FALSE)
+	{
+		if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") >= 700)
+		{
+			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_00");	//Есть что-нибудь 'особенное' для меня?
+			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.
+			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_05");	//При нем есть новый сундучок, сделанный специально для него Торбеном, плотником.
+			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_06");	//Говорят, что этот Дарон носит с собой несметные сокровища. Но ты ничего не слышал от меня, понятно?
+			DIA_Kardif_Diebeswerk2_permanent = TRUE;
+		};
+	};
 	CreateInvItems(self,ItKe_Lockpick,20);
+	Kardif_Busted = FALSE;
 };
 
 

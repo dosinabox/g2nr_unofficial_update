@@ -234,6 +234,11 @@ func void DIA_Jack_BANDITENWEG_Info()
 	AI_Output(other,self,"DIA_Jack_BANDITENWEG_15_00");	//Бандитов, которые захватили твой маяк, больше нет.
 	AI_Output(self,other,"DIA_Jack_BANDITENWEG_14_01");	//Это правда? Наконец-то я смогу опять вернуться к своей работе.
 	AI_Output(self,other,"DIA_Jack_BANDITENWEG_14_02");	//Пойдем со мной к маяку. Оттуда ты сможешь насладиться потрясающим видом на море.
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Lighthouse");
 	MIS_Jack_KillLighthouseBandits = LOG_SUCCESS;
@@ -474,6 +479,11 @@ func void DIA_Jack_BEMYCAPTAIN3_Info()
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN3_14_04");	//А теперь, покажи мне мой корабль и твою команду. А ты, вообще, знаешь, куда направляешься? Я имею в виду, у тебя есть морская карта?
 	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN3_15_05");	//Подожди меня в порту. А об остальном не волнуйся.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN3_14_06");	//Ну, как скажешь.
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	AI_StopProcessInfos(self);
 	SCGotCaptain = TRUE;
 	JackIsCaptain = TRUE;
@@ -508,15 +518,24 @@ func void DIA_Jack_LOSFAHREN_Info()
 	if(B_CaptainConditions(self))
 	{
 		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_01");	//Все в полном порядке. А теперь покажи мне свою морскую карту.
+		B_GiveInvItems(other,self,ItWr_Seamap_Irdorath,1);
 		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_02");	//Это будет нелегкое плавание. Но я все же надеюсь, что мы доберемся туда целыми и невредимыми.
 		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_03");	//У тебя действительно есть все, что тебе нужно? Мы не станем возвращаться назад только потому, что ты что-то забыл.
 		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_04");	//Если ты уверен, что у тебя есть все необходимое, иди в капитанскую каюту и вздремни немного. Силы тебе скоро понадобятся.
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_Standup(self);
+			B_TurnToNpc(self,other);
+		};
 		AI_StopProcessInfos(self);
 		B_CaptainCallsAllOnBoard(self);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_05");	//Полегче, приятель. Я еще даже не видел это корыто. Так не пойдет.
+		if(Npc_GetDistToWP(self,"NW_WAITFOR_SHIP_CAPTAIN") > 3000)
+		{
+			AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_05");	//Полегче, приятель. Я еще даже не видел это корыто. Так не пойдет.
+		};
 		AI_Output(self,other,"DIA_Jack_LOSFAHREN_14_06");	//Сначала ты должен укомплектовать команду не менее чем из 5 человек, получить доступ на корабль и достать морскую карту. В противном случае, забудь об этом.
 		AI_StopProcessInfos(self);
 	};

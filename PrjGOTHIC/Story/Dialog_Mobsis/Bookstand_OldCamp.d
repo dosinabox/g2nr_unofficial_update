@@ -13,7 +13,6 @@ func void Bookstand_Milten_03_S1()
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Поздно.");
 		Doc_PrintLines(nDocID,0,"Обрушение старой шахты вызвало сильное недовольство рудных баронов.");
 		Doc_PrintLines(nDocID,0,"Гомез похож на пороховую бочку, которая вот-вот взорвется.");
@@ -48,7 +47,6 @@ func void Bookstand_Milten_02_S1()
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Я позволил себе устроиться здесь немного комфортнее. Кто бы мог подумать, что однажды я останусь единственным магом в лагере?");
 		Doc_PrintLines(nDocID,0,"Ну, не могу сказать, что я рад возвращению. На самом деле мне очень хочется убраться отсюда.");
 		Doc_PrintLines(nDocID,0,"Этой экспедиции не суждено увенчаться успехом.");
@@ -56,14 +54,16 @@ func void Bookstand_Milten_02_S1()
 		Doc_PrintLines(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Старатели ушли вчера. Они взяли с собой Диего - не удивлюсь, если он сбежит.");
 		Doc_PrintLines(nDocID,1,"Не думаю, что ему понравится махать киркой.");
 		Doc_PrintLines(nDocID,1,"Ну, а я использую свободное время для более углубленного изучения алхимии.");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"Милтен");
 		Doc_Show(nDocID);
+		if(Knows_Diego == TRUE)
+		{
+			SearchForDiego = LOG_Running;
+		};
 	};
 };
 

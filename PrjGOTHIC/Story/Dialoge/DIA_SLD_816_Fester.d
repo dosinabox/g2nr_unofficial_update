@@ -318,7 +318,9 @@ func void DIA_Fester_WasMitAbmachung_Info()
 		AI_Output(self,other,"DIA_Fester_WasMitAbmachung_08_07");	//Эй - ты хотел воспользоваться моим положением. А теперь я воспользуюсь твоим.
 		AI_Output(self,other,"DIA_Fester_WasMitAbmachung_08_08");	//Попробуй взглянуть на это дело с оптимизмом: ты получил опыт. А это что-то да значит, разве нет?
 	};
-	MIS_Fester_KillBugs = LOG_OBSOLETE;
+//	MIS_Fester_KillBugs = LOG_OBSOLETE;
+	MIS_Fester_KillBugs = LOG_SUCCESS;
+	B_CheckLog();
 	Wld_InsertNpc(Giant_Bug,"NW_BIGFARM01_RIGHTFIELD_02_MONSTER");
 	Wld_InsertNpc(Giant_Bug,"NW_BIGFARM01_RIGHTFIELD_02_MONSTER");
 	Wld_InsertNpc(Giant_Bug,"NW_BIGFARM01_RIGHTFIELD_02_MONSTER");

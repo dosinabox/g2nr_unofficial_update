@@ -1,5 +1,5 @@
 
-instance VLK_490_Buergerin(Npc_Default)
+/*instance VLK_490_Buergerin(Npc_Default)
 {
 	name[0] = NAME_Buergerin;
 	guild = GIL_VLK;
@@ -23,5 +23,5 @@ func void Rtn_Start_490()
 {
 	TA_Stand_Guarding(8,0,22,0,"NW_CITY_HABOUR_04");
 	TA_Stand_Guarding(22,0,8,0,"NW_CITY_MERCHANT_SHOP01_IN_01");
-};
+};*/
 

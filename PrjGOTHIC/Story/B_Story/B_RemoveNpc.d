@@ -16,7 +16,7 @@ func void B_RemoveNpc(var int npcInstance)
 
 func void B_RemoveSarahWeapons()
 {
-	if(!Npc_IsDead(Sarah))
+	if(!Npc_IsDead(Sarah) && !Npc_IsDead(Canthar))
 	{
 		if(Npc_HasItems(Sarah,ItRw_Arrow))
 		{
@@ -113,6 +113,7 @@ func void B_RemoveSarahWeapons()
 			CreateInvItems(Canthar,ItMw_Krummschwert,Npc_HasItems(Sarah,ItMw_Krummschwert));
 			Npc_RemoveInvItems(Sarah,ItMw_Krummschwert,Npc_HasItems(Sarah,ItMw_Krummschwert));
 		};
+		SarahWeaponsRemoved = TRUE;
 	};
 };
 
@@ -124,7 +125,7 @@ func void B_PlayerEnteredCity()
 		{
 			Npc_ExchangeRoutine(Canthar,"START");
 		};
-		if(Npc_KnowsInfo(hero,DIA_Lester_SEND_XARDAS))
+		if(Npc_KnowsInfo(hero,DIA_Lester_SEND_XARDAS) && (Kapitel < 3))
 		{
 			B_StartOtherRoutine(Lester,"XARDAS");
 		};

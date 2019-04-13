@@ -10,7 +10,8 @@ instance VLK_461_Carl(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1H_Mace_L_04);
+//	EquipItem(self,ItMw_1H_Mace_L_04);
+	EquipItem(self,ItMw_Nagelknueppel);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_NormalBart01,BodyTex_L,ITAR_Smith);
 	Mdl_SetModelFatness(self,0);

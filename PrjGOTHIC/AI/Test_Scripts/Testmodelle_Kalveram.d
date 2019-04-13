@@ -23,6 +23,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_1H_Sword_L_03,1);
 	CreateInvItems(self,ItMw_ShortSword2,1);
 	CreateInvItems(self,ItMw_Sense,1);
+	CreateInvItems(self,ItMw_BattleSense,1);
 	CreateInvItems(self,ItMw_1h_Vlk_Sword,1);
 	CreateInvItems(self,ItMw_1h_Nov_Mace,1);
 	CreateInvItems(self,ItMw_2h_Bau_Axe,1);
@@ -317,9 +318,9 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItSe_GoldPocket50,1);
 	CreateInvItems(self,ItSe_GoldPocket100,1);
 	CreateInvItems(self,ItSe_HannasBeutel,1);
-	CreateInvItems(self,Fakescroll,1);
-	CreateInvItems(self,StandardBrief,1);
-	CreateInvItems(self,StandardBuch,1);
+//	CreateInvItems(self,Fakescroll,1);
+//	CreateInvItems(self,StandardBrief,1);
+//	CreateInvItems(self,StandardBuch,1);
 	CreateInvItems(self,ItWr_Map_NewWorld,1);
 	CreateInvItems(self,ItWr_Map_NewWorld_City,1);
 	CreateInvItems(self,ItWr_Map_OldWorld,1);
@@ -387,6 +388,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItFo_Apple,10);
 	CreateInvItems(self,ItFo_Cheese,10);
 	CreateInvItems(self,ItFo_Bacon,10);
+	CreateInvItems(self,ItFo_NiclasBacon,10);
 	CreateInvItems(self,ItFo_Bread,10);
 	CreateInvItems(self,ItFo_Fish,10);
 	CreateInvItems(self,ItFoMuttonRaw,10);
@@ -431,9 +433,9 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItPl_Perm_Herb,10);
 	CreateInvItems(self,ItPl_Weed,10);
 	CreateInvItems(self,ItPl_Beet,10);
-	CreateInvItems(self,ItKe_Key_01,1);
-	CreateInvItems(self,ItKe_Key_02,1);
-	CreateInvItems(self,ItKe_Key_03,1);
+//	CreateInvItems(self,ItKe_Key_01,1);
+//	CreateInvItems(self,ItKe_Key_02,1);
+//	CreateInvItems(self,ItKe_Key_03,1);
 	CreateInvItems(self,ItKe_Lockpick,10);
 	CreateInvItems(self,ItKe_City_Tower_01,1);
 	CreateInvItems(self,ItKe_City_Tower_02,1);
@@ -632,6 +634,12 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItAt_Wing,10);
 	CreateInvItems(self,ItAt_Sting,10);
 	CreateInvItems(self,ItAt_LurkerSkin,10);
+	CreateInvItems(self,ItAt_SnapperSkin,10);
+	CreateInvItems(self,ItAt_RazorSkin,10);
+	CreateInvItems(self,ItAt_DragonSnapperSkin,10);
+	CreateInvItems(self,ItAt_WaranSkin,10);
+	CreateInvItems(self,ItAt_FireWaranSkin,10);
+	CreateInvItems(self,ItAt_AlligatorSkin,10);
 	CreateInvItems(self,ItAt_WargFur,10);
 	CreateInvItems(self,ItAt_DrgSnapperHorn,10);
 	CreateInvItems(self,ItAt_CrawlerPlate,10);
@@ -782,7 +790,6 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_XardasSeamapBook_Mis,1);
 	CreateInvItems(self,ItWr_UseLampIdiot_Mis,1);
 	CreateInvItems(self,ItWr_Seamap_Irdorath,1);
-	CreateInvItems(self,ItMi_KerolothsGeldbeutel_MIS,1);
 	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
 	CreateInvItems(self,ITKE_OC_MAINGATE_MIS,1);
 	CreateInvItems(self,ItKe_Ship_Levelchange_MIS,1);
@@ -859,6 +866,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_IEDudelBlau,1);
 	CreateInvItems(self,ItMi_IEDudelGelb,1);
 	CreateInvItems(self,ItMi_IEHarfe,1);
+	CreateInvItems(self,ItMi_IELaute,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,0);
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,70);
@@ -1159,35 +1167,24 @@ func void INIT_TA_Testlevel()
 
 instance Gold(C_Item)
 {
-	name = "Кошелек полон монет!";
+	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Bag.3ds";
 	scemeName = "MAPSEALED";
-//	material = MAT_METAL;
 	material = MAT_LEATHER;
 	on_state[0] = UseGold;
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	text[0] = "Мешок полон монет!";
 };
 
 
 func void UseGold()
 {
 	CreateInvItems(self,ItMi_Gold,1000);
-	PrintScreen("1000 золотых получено.",-1,45,FONT_Screen,2);
+	PrintScreen("1000 золотых получено",-1,45,FONT_Screen,2);
 	Snd_Play("Geldbeutel");
-/*	PrintScreen("Наказание за читерство: -100 EXP",-1,55,FONT_Screen,2);
-	if(hero.exp >= 100)
-	{
-		hero.exp -= 100;
-	}
-	else
-	{
-		hero.exp = 0;
-	}; */
 	PrintScreen("Наказание за читерство",-1,50,FONT_Screen,2);
 	B_GivePlayerXP(XP_EXPLOITBONUS);
 };
@@ -1195,24 +1192,23 @@ func void UseGold()
 
 instance Armor(C_Item)
 {
-	name = "Мешок наполнен доспехами!";
+	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Bag.3ds";
 	scemeName = "MAPSEALED";
-//	material = MAT_METAL;
 	material = MAT_LEATHER;
 	on_state[0] = UseArmor;
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	text[0] = "Мешок наполнен доспехами!";
 };
 
 
 func void UseArmor()
 {
 	Snd_Play("Geldbeutel");
+	Print("Найдено много разных доспехов!");
 	CreateInvItem(self,ITAR_Governor);
 	CreateInvItem(self,ITAR_Smith);
 	CreateInvItem(self,ITAR_Barkeeper);
@@ -1261,20 +1257,24 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_RANGER_Addon);
 	CreateInvItem(self,ITAR_KDW_L_Addon);
 	CreateInvItem(self,ITAR_Bloodwyn_Addon);
+	CreateInvItem(self,ITAR_Slave);
+	CreateInvItem(self,ITAR_Dementor_Boss);
+	CreateInvItem(self,ITAR_Larius);
 };
 
 
 instance Runenbrief(C_Item)
 {
-	name = "Список рун";
+	name = "Новые руны";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
-	material = MAT_LEATHER;
+	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	material = MAT_STONE;
 	on_state[0] = UseHosh1;
 	scemeName = "MAP";
-	description = "Получены все руны аддона";
+	description = name;
+	text[0] = "Все руны аддона!";
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -1309,11 +1309,12 @@ instance EnterBanditCamp(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
-	material = MAT_LEATHER;
+	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	material = MAT_STONE;
 	on_state[0] = UseHosh2;
 	scemeName = "MAP";
-	description = "Задать Player_HasTalkedToBanditCamp";
+	description = name;
+	text[0] = "Задать Player_HasTalkedToBanditCamp!";
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -1332,11 +1333,12 @@ instance PH(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
-	material = MAT_LEATHER;
+	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	material = MAT_STONE;
 	on_state[0] = UsePatrickHelper;
 	scemeName = "MAP";
-	description = "Небольшой тест магии";
+	description = name;
+	text[0] = "Небольшой тест магии!";
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -1437,14 +1439,15 @@ instance Hosh4(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_01.3ds";
-	material = MAT_LEATHER;
+	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	material = MAT_STONE;
 	scemeName = "MAP";
-	description = "Дневник";
-	text[0] = "Дневник Хоша";
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	description = name;
+	text[0] = "Вернуть Грега в лагерь пиратов.";
 	on_state[0] = UseHoshiTagebuch;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -1454,50 +1457,55 @@ func void UseHoshiTagebuch()
 };
 
 
-instance D36TestBook(C_Item)
+instance D36TestRune(C_Item)
 {
-	name = "Великая книга тестов";
+	name = "Великая руна тестов";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_02_02.3ds";
-	material = MAT_LEATHER;
+	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;
-	on_state[0] = UseD36TestBook;
+	on_state[0] = UseD36TestRune;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
-func void UseD36TestBook()
+func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	/*Ranger_SCKnowsDexter = TRUE;
-	Greg_Rejected = TRUE;
-	Greg_NoHelpInNW = TRUE;
-	SC_IsRanger = TRUE;
-	Knows_SecretSign = TRUE;
-	B_StartOtherRoutine(Ulf,"BackToMonastery");
-	B_StartOtherRoutine(Igaraz,"Start");
-	B_StartOtherRoutine(Agon,"Start");
-	Bartok_OrkGesagt = TRUE;
-	MIS_Balthasar_BengarsWeide = LOG_SUCCESS;
-	Andre_Diebesgilde_aufgeraeumt = TRUE;
-	B_CheckLog();
-	Garwig.guild = GIL_NONE;
-	Npc_SetTrueGuild(Garwig,GIL_NONE);
-	B_StartOtherRoutine(Garwig,"Exile");
-	MIS_Richter_BringHolyHammer = LOG_SUCCESS;
-	MIS_HelpDyrian = LOG_Success;
-	Player_IsApprentice = APP_Harad;
-	Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
-	Wld_SendTrigger("VALLEY_SHOWCASE_MOVER_01");
-	Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Naked0",1,0,"Hum_Head_Bald",163,0,ITAR_Thorus_Addon);
-	BloodwynIsHeadless = TRUE;
-	Wld_InsertItem(ItMw_MalethsGehstock_MIS,"FP_ITEM_FARM1_01");
-	Npc_SetTalentSkill(hero,NPC_TALENT_C,1);
-	Npc_SetTalentSkill(hero,NPC_TALENT_REGENERATE,1);
-	Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,1);
-	Wolf_ProduceCrawlerArmor = TRUE;*/
+	B_StartOtherRoutine(PAL_212_Schiffswache,"ShipFree");
+	B_StartOtherRoutine(PAL_213_Schiffswache,"ShipFree");
+	B_StartOtherRoutine(Girion,"WaitForShip");
+	MIS_ShipIsFree = TRUE;
+};
+
+instance WastelandRune(C_Item)
+{
+	name = "Руна Wasteland";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	material = MAT_STONE;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Заселить мир мода Wasteland.";
+	on_state[0] = UseWastelandRune;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
+func void UseWastelandRune()
+{
+	PrintScreen("Заселяем...",-1,-1,FONT_Screen,1);
+	b_seed_wasteland_world_main();
+	b_seed_wasteland_world_psicamp();
+	b_seed_wasteland_world_freeminecamp();
+	
+};

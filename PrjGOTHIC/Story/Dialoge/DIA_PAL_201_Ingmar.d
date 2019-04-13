@@ -269,7 +269,7 @@ func void DIA_Ingmar_ORKELITE_Info()
 	Info_AddChoice(DIA_Ingmar_ORKELITE,"Что это значит?",DIA_Ingmar_ORKELITE_wieso);
 	Log_CreateTopic(TOPIC_OrcElite,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_OrcElite,LOG_Running);
-	B_LogEntry(TOPIC_OrcElite,"Ингмар был очень заинтересован историей об элитных воинах орков.");
+	B_LogEntry(TOPIC_OrcElite,"Ингмар был очень заинтересован историей о вторжении орков.");
 	MIS_KillOrkOberst = LOG_Running;
 };
 
@@ -287,7 +287,7 @@ func void DIA_Ingmar_ORKELITE_wieso()
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wieso_06_02");	//Обычно каждую орду орков возглавляет один предводитель. Крайне редко можно встретить двоих или больше вместе.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wieso_06_03");	//На это есть причина. Их лидеры - ядро их атакующей стратегии, и обычно окружены простыми воинами-орками.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wieso_06_04");	//Поэтому очень трудно подобраться к кому-нибудь из них, не пробившись через орду не менее чем из 30 воинов.
-	B_LogEntry(TOPIC_OrcElite,"Ингмар сказал, что-то о главе предводителей орков.");
+	B_LogEntry(TOPIC_OrcElite,"Ингмар сказал, что к предводителям орков очень тяжело подобраться. Мне следует быть предельно осторожным.");
 };
 
 func void DIA_Ingmar_ORKELITE_wasTun()
@@ -296,9 +296,10 @@ func void DIA_Ingmar_ORKELITE_wasTun()
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_01");	//Когда они встречаются в таком количестве, это обычно диверсионная группа, возглавляемая старшим по званию.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_02");	//Этот высокопоставленный предводитель устраивает себе штаб-квартиру в одной из пещер, откуда направляет свои войска в бой.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_03");	//Если бы мы смогли добраться до этого военачальника орков, мы получили бы решающее преимущество.
+	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_wo_15_00");	//Думаю, я могу помочь тебе его найти.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_04");	//Военачальник орков обычно предпочитает находиться в непосредственной близости от своих врагов. Я бы посоветовал поискать его пещеру где-нибудь неподалеку от города.
 	AI_Output(self,other,"DIA_Ingmar_ORKELITE_wasTun_06_05");	//Несколько орков было замечено у фермы Лобарта. Может быть, тебе попробовать начать поиски именно оттуда?
-	B_LogEntry(TOPIC_OrcElite,"Согласно Ингмару, я должен найти полковника орков в пещере где-то неподалеку от фермы Лобарта. Ингмар хочет, чтобы я нашел и убил его.");
+	B_LogEntry(TOPIC_OrcElite,"Согласно Ингмару, я должен найти полковника орков в пещере где-то неподалеку от фермы Лобарта. Ингмар хочет, чтобы я убил его.");
 	Info_ClearChoices(DIA_Ingmar_ORKELITE);
 };
 
@@ -392,7 +393,7 @@ instance DIA_Ingmar_PICKPOCKET(C_Info)
 	condition = DIA_Ingmar_PICKPOCKET_Condition;
 	information = DIA_Ingmar_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(украсть этот свиток практически невозможно)";
+	description = "(украсть его свиток практически невозможно)";
 };
 
 

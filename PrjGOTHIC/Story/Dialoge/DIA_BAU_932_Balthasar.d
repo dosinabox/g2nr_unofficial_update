@@ -148,7 +148,7 @@ instance DIA_Balthasar_WOBENGAR(C_Info)
 
 func int DIA_Balthasar_WOBENGAR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN) && (Bengar.aivar[AIV_TalkedToPlayer] == FALSE) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_AERGERMITNACHBARN) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
 		return TRUE;
 	};

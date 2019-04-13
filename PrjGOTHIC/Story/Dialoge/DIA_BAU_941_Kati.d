@@ -37,7 +37,7 @@ instance DIA_Kati_SLDNOCHDA(C_Info)
 
 func int DIA_Kati_SLDNOCHDA_Condition()
 {
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk))
+	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -128,18 +128,23 @@ func int DIA_Kati_ESSEN_Condition()
 
 func void DIA_Kati_ESSEN_Info()
 {
-	var string concatText;
+//	var string concatText;
 	AI_Output(other,self,"DIA_Kati_ESSEN_15_00");	//Акил говорит, что ты можешь накормить меня.
 	AI_Output(self,other,"DIA_Kati_ESSEN_16_01");	//С тех пор, как рухнул Барьер, для нас настали тяжелые времена. Жить здесь стало небезопасно.
-	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба, немного мяса и бутылку воды. Извини, но это все, чем мы можем поделиться.
+//	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба, немного мяса и бутылку воды. Извини, но это все, чем мы можем поделиться.
+	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба и немного молока и бутылку воды. Извини, но это все, чем мы можем поделиться.
 	Npc_RemoveInvItem(self,ItFo_Bread);
 	CreateInvItem(other,ItFo_Bread);
+	Npc_RemoveInvItem(self,ItFo_Milk);
+	CreateInvItem(other,ItFo_Milk);
 	Npc_RemoveInvItem(self,ItFo_Water);
 	CreateInvItem(other,ItFo_Water);
-	Npc_RemoveInvItem(self,ItFoMutton);
-	CreateInvItem(other,ItFoMutton);
-	concatText = ConcatStrings(IntToString(3),PRINT_ItemsErhalten);
-	AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+//	Npc_RemoveInvItem(self,ItFoMutton);
+//	CreateInvItem(other,ItFoMutton);
+//	concatText = ConcatStrings(IntToString(3),PRINT_ItemsErhalten);
+	AI_PrintScreen("Хлеб получено",-1,40,FONT_ScreenSmall,2);
+	AI_PrintScreen("Молоко получено",-1,43,FONT_ScreenSmall,2);
+	AI_PrintScreen("Вода получено",-1,46,FONT_ScreenSmall,2);
 };
 
 
@@ -169,7 +174,7 @@ func void DIA_Kati_Baltram_Info()
 	CreateInvItems(self,ItMi_BaltramPaket,1);
 	B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
 	Lieferung_Geholt = TRUE;
-	B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу доставить ее Бальтраму...");
+	B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
 	B_LogEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
 };
 
@@ -214,7 +219,7 @@ instance DIA_Kati_ANDEREHOEFE(C_Info)
 
 func int DIA_Kati_ANDEREHOEFE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Kati_BAUERNAUFSTAND) && (Bengar.aivar[AIV_TalkedToPlayer] == FALSE) && (Sekob.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Kati_BAUERNAUFSTAND))
 	{
 		return TRUE;
 	};
