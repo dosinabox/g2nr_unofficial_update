@@ -25,7 +25,7 @@ instance PC_Mage_DI(Npc_Default)
 func void Rtn_Start_22()
 {
 	TA_Smalltalk(8,0,23,0,"SHIP_CREW_19");
-	TA_Smalltalk(23,0,8,0,"SHIP_CREW_19");
+	TA_Sit_Bench(23,0,8,0,"SHIP_DECK_29");
 };
 
 func void Rtn_UNDEADDRAGONDEAD_22()
@@ -36,7 +36,7 @@ func void Rtn_UNDEADDRAGONDEAD_22()
 
 func void Rtn_SittingShipDI_22()
 {
-	TA_Sit_Bench(8,0,23,0,"SHIP_CREW_19");
-	TA_Sit_Bench(23,0,8,0,"SHIP_CREW_19");
+	TA_Sit_Bench(8,0,23,0,"SHIP_DECK_29");
+	TA_Sit_Bench(23,0,8,0,"SHIP_DECK_29");
 };
 

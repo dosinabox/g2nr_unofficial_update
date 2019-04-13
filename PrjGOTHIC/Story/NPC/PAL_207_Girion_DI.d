@@ -26,6 +26,6 @@ instance Pal_207_Girion_DI(Npc_Default)
 func void Rtn_Start_2070()
 {
 	TA_Sit_Bench(8,0,23,0,"SHIP_DECK_18");
-	TA_Sit_Bench(23,0,8,0,"SHIP_DECK_18");
+	TA_Sleep(23,0,8,0,"SHIP_IN_04");
 };
 

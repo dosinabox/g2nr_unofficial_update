@@ -23,7 +23,7 @@ instance BDT_1086_Addon_Scatty(Npc_Default)
 
 func void Rtn_Start_1086()
 {
-	TA_Stand_Guarding(19,0,20,0,"BL_MINELAGER_06");
-	TA_Stand_Guarding(20,0,9,0,"BL_MINELAGER_06");
+	TA_Stand_Guarding(9,0,20,0,"BL_MINELAGER_06");
+	TA_Stand_Drinking(20,0,9,0,"BL_MINELAGER_06");
 };
 

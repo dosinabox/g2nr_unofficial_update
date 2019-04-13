@@ -23,6 +23,6 @@ instance BDT_10007_Addon_Bandit(Npc_Default)
 func void Rtn_Start_10007()
 {
 	TA_Stand_Drinking(9,0,21,0,"BL_ENTRANCE_SIDE_03");
-	TA_Stand_Drinking(21,0,9,0,"BL_ENTRANCE_SIDE_03");
+	TA_Sit_Campfire(21,0,9,0,"BL_ENTRANCE_SIDE_03");
 };
 

@@ -24,7 +24,7 @@ instance SLD_814_Sentenza(Npc_Default)
 func void Rtn_Start_814()
 {
 	TA_Stand_Eating(8,0,22,0,"NW_BIGFARM_ALLEE_01");
-	TA_Stand_Eating(22,0,8,0,"NW_BIGFARM_ALLEE_01");
+	TA_Stand_Drinking(22,0,8,0,"NW_BIGFARM_VORPOSTEN1_02");
 };
 
 func void Rtn_Follow_814()

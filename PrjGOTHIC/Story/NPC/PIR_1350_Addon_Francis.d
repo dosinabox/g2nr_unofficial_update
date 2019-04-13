@@ -30,6 +30,6 @@ func void Rtn_Start_1350()
 func void Rtn_GregIsBack_1350()
 {
 	TA_Saw(5,0,20,0,"ADW_PIRATECAMP_BEACH_19");
-	TA_Saw(20,0,5,0,"ADW_PIRATECAMP_BEACH_19");
+	TA_Sit_Campfire(20,0,5,0,"WP_PIR_05");
 };
 

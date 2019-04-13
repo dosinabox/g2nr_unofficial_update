@@ -24,7 +24,7 @@ instance BAU_982_Grimbald(Npc_Default)
 func void Rtn_Start_982()
 {
 	TA_Stand_Guarding(8,0,23,0,"NW_TROLLAREA_PATH_79");
-	TA_Stand_Guarding(23,0,8,0,"NW_TROLLAREA_PATH_79");
+	TA_Stand_Eating(23,0,8,0,"NW_TROLLAREA_PATH_79");
 };
 
 func void Rtn_Jagd_982()
@@ -36,6 +36,6 @@ func void Rtn_Jagd_982()
 func void Rtn_JagdOver_982()
 {
 	TA_Stand_Guarding(8,0,23,0,"NW_TROLLAREA_PATH_79");
-	TA_Stand_Guarding(23,0,8,0,"NW_TROLLAREA_PATH_79");
+	TA_Stand_Drinking(23,0,8,0,"NW_TROLLAREA_PATH_79");
 };
 

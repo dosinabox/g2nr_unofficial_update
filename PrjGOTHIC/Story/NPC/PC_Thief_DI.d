@@ -38,6 +38,6 @@ func void Rtn_UNDEADDRAGONDEAD_31()
 func void Rtn_SittingShipDI_31()
 {
 	TA_Sit_Bench(8,0,23,0,"SHIP_CREW_04");
-	TA_Sit_Bench(23,0,8,0,"SHIP_CREW_04");
+	TA_Smoke_Joint(23,0,8,0,"SHIP_CREW_06");
 };
 

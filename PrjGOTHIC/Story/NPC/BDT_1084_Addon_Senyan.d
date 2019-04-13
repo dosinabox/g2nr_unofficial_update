@@ -24,7 +24,7 @@ instance BDT_1084_Addon_Senyan(Npc_Default)
 
 func void Rtn_Start_1084()
 {
-	TA_Stand_Guarding(10,0,12,0,"BL_DOWN_CENTER_03");
-	TA_Stand_Guarding(12,0,10,0,"BL_DOWN_CENTER_03");
+	TA_Stand_Guarding(10,0,22,0,"BL_DOWN_CENTER_03");
+	TA_Sit_Chair(22,0,8,0,"BL_INN_CORNER_02");
 };
 

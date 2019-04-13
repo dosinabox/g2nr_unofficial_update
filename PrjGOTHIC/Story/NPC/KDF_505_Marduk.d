@@ -22,6 +22,7 @@ instance KDF_505_Marduk(Npc_Default)
 func void Rtn_Start_505()
 {
 	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_CORRIDOR_03");
-	TA_Sleep(23,0,8,0,"NW_MONASTERY_MAGE01_BED_01");
+	TA_Sleep(23,0,7,0,"NW_MONASTERY_MAGE01_BED_01");
+	TA_Practice_Magic(7,0,8,0,"NW_MONASTERY_CORRIDOR_03");
 };
 

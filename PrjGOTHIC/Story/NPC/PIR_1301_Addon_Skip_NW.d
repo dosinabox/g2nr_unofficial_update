@@ -23,7 +23,7 @@ instance PIR_1301_Addon_Skip_NW(Npc_Default)
 
 func void Rtn_Start_1301()
 {
-	TA_Sit_Campfire(5,0,20,0,"NW_CITY_PIRATESCAMP_04");
+	TA_Stand_Guarding(5,0,20,0,"NW_CITY_PIRATESCAMP_01");
 	TA_Sit_Campfire(20,0,5,0,"NW_CITY_PIRATESCAMP_04");
 };
 

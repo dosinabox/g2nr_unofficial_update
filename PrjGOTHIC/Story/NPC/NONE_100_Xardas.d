@@ -34,7 +34,7 @@ func void Rtn_PreStart_100()
 func void Rtn_Start_100()
 {
 	TA_Read_Bookstand(8,0,23,0,"NW_XARDAS_TOWER_IN1_28");
-	TA_Read_Bookstand(23,0,8,0,"NW_XARDAS_TOWER_IN1_28");
+	TA_Sit_Throne(23,0,8,0,"NW_XARDAS_TOWER_IN1_32");
 };
 
 func void Rtn_RitualInnosEyeRepair_100()

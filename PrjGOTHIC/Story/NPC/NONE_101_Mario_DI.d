@@ -27,7 +27,7 @@ instance None_101_Mario_DI(Npc_Default)
 func void Rtn_Start_1010()
 {
 	TA_Sit_Bench(8,0,23,0,"SHIP_DECK_25");
-	TA_Sit_Bench(23,0,8,0,"SHIP_DECK_25");
+	TA_Practice_Sword(23,0,8,0,"SHIP_DECK_24");
 };
 
 func void Rtn_OrkSturmDI_1010()

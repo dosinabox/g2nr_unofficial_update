@@ -22,7 +22,7 @@ instance VLK_436_Sonja(Npc_Default)
 
 func void Rtn_Start_436()
 {
-	TA_Sit_Throne(8,0,23,0,"NW_CITY_PUFF_THRONE");
-	TA_Sit_Throne(23,0,8,0,"NW_CITY_PUFF_THRONE");
+	TA_Sleep(5,30,8,0,"NW_CITY_SONJA_BED");
+	TA_Sit_Throne(8,0,5,30,"NW_CITY_PUFF_THRONE");
 };
 

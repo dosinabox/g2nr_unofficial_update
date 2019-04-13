@@ -27,7 +27,7 @@ instance VLK_438_Alrik(Npc_Default)
 
 func void Rtn_Start_438()
 {
-	TA_Stand_Guarding(10,55,19,15,"NW_CITY_PATH_HABOUR_16_01");
+	TA_Practice_Sword(10,55,19,15,"NW_CITY_PATH_HABOUR_16_01");
 	TA_Stand_Drinking(19,15,3,30,"NW_CITY_HABOUR_TAVERN01_01");
 	TA_Sit_Bench(3,30,10,55,"NW_CITY_PATH_HABOUR_16_01");
 };

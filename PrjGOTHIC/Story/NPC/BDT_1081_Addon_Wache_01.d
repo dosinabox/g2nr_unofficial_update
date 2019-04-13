@@ -25,8 +25,8 @@ instance BDT_1081_Addon_Wache_01(Npc_Default)
 
 func void Rtn_Start_1081()
 {
-	TA_Stand_Guarding(0,0,0,0,"BL_MID_07_B");
-	TA_Stand_Guarding(0,0,0,0,"BL_MID_07_B");
+	TA_Stand_Guarding(9,0,21,0,"BL_MID_07_B");
+	TA_Sleep(21,0,9,0,"BL_BEDS_SLEEP_01");
 };
 
 func void Rtn_Ambush_1081()

@@ -22,6 +22,7 @@ instance KDF_503_Karras(Npc_Default)
 func void Rtn_Start_503()
 {
 	TA_Read_Bookstand(8,0,23,0,"NW_MONASTERY_RUNEMAKER_02");
-	TA_Read_Bookstand(8,0,23,0,"NW_MONASTERY_RUNEMAKER_02");
+	TA_Read_Bookstand(23,0,4,0,"NW_MONASTERY_RUNEMAKER_03");
+	TA_Read_Bookstand(4,0,8,0,"NW_MONASTERY_RUNEMAKER_04");
 };
 

@@ -35,13 +35,13 @@ func void Rtn_Xardas_4()
 func void Rtn_XardasWeg_4()
 {
 	TA_Stand_Guarding(8,0,23,0,"NW_XARDAS_TOWER_02");
-	TA_Stand_Guarding(23,0,8,0,"NW_XARDAS_TOWER_02");
+	TA_Smoke_Joint(23,0,8,0,"NW_XARDAS_TOWER_02");
 };
 
 func void Rtn_WaitForPlayer_4()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"LEVELCHANGE");
-	TA_Stand_ArmsCrossed(23,0,8,0,"LEVELCHANGE");
+	TA_Smoke_Joint(23,0,8,0,"LEVELCHANGE");
 };
 
 func void Rtn_WaitForShip_4()

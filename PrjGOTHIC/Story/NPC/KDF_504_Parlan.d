@@ -27,6 +27,7 @@ instance KDF_504_Parlan(Npc_Default)
 func void Rtn_Start_504()
 {
 	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_PLACE_03");
-	TA_Stand_Guarding(23,0,8,0,"NW_MONASTERY_PLACE_03");
+	TA_Practice_Magic(23,0,0,0,"NW_MONASTERY_PLACE_03");
+	TA_Sleep(0,0,8,0,"NW_MONASTERY_MAGE03_BED");
 };
 

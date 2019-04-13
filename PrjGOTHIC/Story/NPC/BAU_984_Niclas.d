@@ -23,7 +23,8 @@ instance BAU_984_Niclas(Npc_Default)
 
 func void Rtn_Start_984()
 {
-	TA_Sit_Bench(8,0,23,0,"NW_CITY_JAEGER_SIT");
+	TA_Stand_Guarding(8,0,16,0,"NW_CITY_JAEGER_05");
+	TA_Stand_Guarding(16,0,23,0,"NW_CITY_JAEGER_09");
 	TA_Sit_Bench(23,0,8,0,"NW_CITY_JAEGER_SIT");
 };
 

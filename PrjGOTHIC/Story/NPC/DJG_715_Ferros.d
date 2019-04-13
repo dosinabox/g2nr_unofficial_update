@@ -27,3 +27,9 @@ func void Rtn_Start_715()
 	TA_Stand_Eating(23,0,8,0,"OC_JAN");
 };
 
+func void Rtn_Train_715()
+{
+	TA_Sit_Bench(8,0,23,0,"OC_JAN");
+	TA_Practice_Sword(23,0,8,0,"OC_TRAIN_03");
+};
+

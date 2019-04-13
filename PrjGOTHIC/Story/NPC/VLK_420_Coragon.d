@@ -10,7 +10,7 @@ instance VLK_420_Coragon(Npc_Default)
 	B_SetFightSkills(self,40);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald.",Face_N_Normal_Blade,BodyTex_N,ITAR_Smith);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Normal_Blade,BodyTex_N,ITAR_Smith);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_SetAttributesToChapter(self,3);
@@ -21,7 +21,7 @@ instance VLK_420_Coragon(Npc_Default)
 
 func void Rtn_Start_420()
 {
-	TA_Stand_ArmsCrossed(8,0,22,0,"NW_CITY_TAVERN_IN_03");
-	TA_Stand_ArmsCrossed(22,0,8,0,"NW_CITY_TAVERN_IN_03");
+	TA_Sit_Chair(8,0,12,0,"TAVERN02_B");
+	TA_Stand_ArmsCrossed(12,0,8,0,"NW_CITY_TAVERN_IN_03");
 };
 

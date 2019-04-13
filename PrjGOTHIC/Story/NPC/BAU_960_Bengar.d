@@ -24,7 +24,7 @@ instance BAU_960_Bengar(Npc_Default)
 func void Rtn_Start_960()
 {
 	TA_Stand_Guarding(8,0,22,0,"NW_FARM3_BENGAR");
-	TA_Stand_Guarding(22,0,8,0,"NW_FARM3_BENGAR");
+	TA_Sleep(22,0,8,0,"NW_FARM3_HOUSE_IN_BED");
 };
 
 func void Rtn_MilComing_960()

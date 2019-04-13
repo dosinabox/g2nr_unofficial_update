@@ -23,12 +23,12 @@ instance BAU_963_Malak(Npc_Default)
 func void Rtn_Start_963()
 {
 	TA_Stand_Eating(8,0,22,0,"NW_FARM3_MALAK");
-	TA_Stand_Eating(22,0,8,0,"NW_FARM3_MALAK");
+	TA_Sit_Chair(22,0,8,0,"NW_FARM3_HOUSE_IN_3");
 };
 
 func void Rtn_FleeFromPass_963()
 {
 	TA_Stand_Eating(8,0,22,0,"NW_BIGMILL_MALAKSVERSTECK_MALAK");
-	TA_Stand_Eating(22,0,8,0,"NW_BIGMILL_MALAKSVERSTECK_MALAK");
+	TA_Stand_ArmsCrossed(22,0,8,0,"NW_BIGMILL_MALAKSVERSTECK_MALAK");
 };
 

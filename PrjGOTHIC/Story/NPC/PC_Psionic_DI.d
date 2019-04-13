@@ -26,7 +26,7 @@ instance PC_Psionic_DI(Npc_Default)
 func void Rtn_Start_24()
 {
 	TA_Smalltalk(8,0,23,0,"SHIP_CREW_19");
-	TA_Smalltalk(23,0,8,0,"SHIP_CREW_19");
+	TA_Smoke_Joint(23,0,8,0,"SHIP_CREW_19");
 };
 
 func void Rtn_UNDEADDRAGONDEAD_24()

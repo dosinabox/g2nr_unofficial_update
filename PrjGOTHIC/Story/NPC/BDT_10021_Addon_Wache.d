@@ -23,6 +23,7 @@ instance BDT_10021_Addon_Wache(Npc_Default)
 func void Rtn_Start_10021()
 {
 	TA_Stand_Guarding(0,0,12,0,"BL_RAVEN_GUARD_04");
-	TA_Stand_Guarding(12,0,0,0,"BL_RAVEN_GUARD_04");
+	TA_Stand_Guarding(12,0,18,0,"BL_RAVEN_STAIRS_UP");
+	TA_Stand_Guarding(18,0,0,0,"BL_RAVEN_STAIRS_DOWN");
 };
 

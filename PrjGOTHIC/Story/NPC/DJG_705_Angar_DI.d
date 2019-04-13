@@ -28,7 +28,7 @@ instance DJG_705_Angar_DI(Npc_Default)
 func void Rtn_Start_70500()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"SHIP_CREW_03");
-	TA_Stand_ArmsCrossed(23,0,8,0,"SHIP_CREW_03");
+	TA_Sit_Chair(23,0,8,0,"SHIP_IN_02");
 };
 
 func void Rtn_FollowDI_70500()

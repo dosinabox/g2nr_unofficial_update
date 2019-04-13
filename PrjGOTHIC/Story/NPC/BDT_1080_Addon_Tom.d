@@ -23,12 +23,12 @@ instance BDT_1080_Addon_Tom(Npc_Default)
 func void Rtn_Start_1080()
 {
 	TA_Sit_Campfire(9,0,21,0,"ADW_BL_HOEHLE_04");
-	TA_Sit_Campfire(21,0,9,0,"ADW_BL_HOEHLE_04");
+	TA_Sleep(21,0,9,0,"ADW_BL_HOEHLE_SLEEP");
 };
 
 func void Rtn_LAGER_1080()
 {
 	TA_Stand_Drinking(9,0,21,0,"BL_INN_03_C");
-	TA_Stand_Drinking(21,0,9,0,"BL_INN_03_C");
+	TA_Sleep(21,0,9,0,"BL_INN_UPSIDE_SLEEP_04");
 };
 

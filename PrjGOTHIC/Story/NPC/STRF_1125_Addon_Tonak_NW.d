@@ -23,7 +23,7 @@ instance STRF_1125_Addon_Tonak_NW(Npc_Default)
 
 func void Rtn_Start_1125()
 {
-	TA_Rake_FP(0,0,12,0,"NW_FARM2_FIELD_TANOK");
-	TA_Rake_FP(12,0,0,0,"NW_FARM2_FIELD_TANOK");
+	TA_Rake_FP(5,0,21,0,"NW_FARM2_FIELD_TANOK");
+	TA_Stand_Eating(21,0,5,0,"NW_FARM2_OUT_03");
 };
 

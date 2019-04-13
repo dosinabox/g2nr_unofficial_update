@@ -22,7 +22,8 @@ instance BDT_10010_Addon_Bandit(Npc_Default)
 
 func void Rtn_Start_10010()
 {
-	TA_Sit_Bench(10,0,12,0,"BL_MID_09");
-	TA_Sit_Bench(12,0,10,0,"BL_MID_09");
+	TA_Cook_Pan(10,0,12,0,"BL_MID_10_D");
+	TA_Sit_Bench(12,0,20,0,"BL_MID_09");
+	TA_Stand_Eating(20,0,10,0,"BL_UP_RING_01");
 };
 

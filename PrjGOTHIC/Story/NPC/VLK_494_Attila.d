@@ -31,6 +31,6 @@ func void Rtn_Start_494()
 func void Rtn_After_494()
 {
 	TA_Stand_Guarding(4,0,22,0,"NW_CITY_HABOUR_POOR_AREA_CAULDRON");
-	TA_Stand_Guarding(22,0,4,0,"NW_CITY_HABOUR_POOR_AREA_CAULDRON");
+	TA_Smoke_Joint(22,0,4,0,"NW_CITY_HABOUR_POOR_AREA_CAULDRON");
 };
 

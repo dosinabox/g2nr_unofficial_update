@@ -24,7 +24,7 @@ instance STRF_1124_Addon_Monty_NW(Npc_Default)
 
 func void Rtn_Start_1124()
 {
-	TA_Read_Bookstand(0,0,12,0,"NW_CITY_HABOUR_WERFT_IN_01");
-	TA_Read_Bookstand(12,0,0,0,"NW_CITY_HABOUR_WERFT_IN_01");
+	TA_Read_Bookstand(6,0,22,0,"NW_CITY_HABOUR_WERFT_IN_01");
+	TA_Sit_Chair(22,0,6,0,"NW_CITY_HABOUR_TAVERN01_05");
 };
 

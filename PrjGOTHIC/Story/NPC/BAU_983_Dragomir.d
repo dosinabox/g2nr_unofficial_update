@@ -23,7 +23,7 @@ instance BAU_983_Dragomir(Npc_Default)
 
 func void Rtn_Start_983()
 {
-	TA_Sit_Bench(8,0,23,0,"NW_TAVERNE_TROLLAREA_MONSTER_02_01");
+	TA_Stand_ArmsCrossed(8,0,23,0,"NW_TAVERNE_TROLLAREA_MONSTER_02_01");
 	TA_Sit_Bench(23,0,8,0,"NW_TAVERNE_TROLLAREA_MONSTER_02_01");
 };
 

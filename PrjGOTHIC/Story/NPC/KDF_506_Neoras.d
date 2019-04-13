@@ -22,6 +22,6 @@ instance KDF_506_Neoras(Npc_Default)
 func void Rtn_Start_506()
 {
 	TA_Potion_Alchemy(8,0,23,0,"NW_MONASTERY_ALCHEMY_01");
-	TA_Potion_Alchemy(23,0,8,0,"NW_MONASTERY_ALCHEMY_01");
+	TA_Sleep(23,0,8,0,"NW_MONASTERY_MAGE02_BED_02");
 };
 

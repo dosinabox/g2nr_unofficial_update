@@ -23,19 +23,19 @@ instance BAU_932_Balthasar(Npc_Default)
 func void Rtn_Start_932()
 {
 	TA_Stand_Eating(8,0,22,0,"NW_FARM4_BALTHASAR");
-	TA_Stand_Eating(22,0,8,0,"NW_FARM4_BALTHASAR");
+	TA_Stand_Drinking(22,0,8,0,"NW_FARM4_03");
 };
 
 func void Rtn_FleeDMT_932()
 {
 	TA_Stand_Eating(8,0,22,0,"NW_FLEEDMT_KAP3");
-	TA_Stand_Eating(22,0,8,0,"NW_FLEEDMT_KAP3");
+	TA_Stand_ArmsCrossed(22,0,8,0,"NW_FLEEDMT_KAP3");
 };
 
 func void Rtn_BengarsWeide_932()
 {
 	TA_Stand_Eating(8,0,22,0,"NW_BIGMILL_FARM3_BALTHASAR");
-	TA_Stand_Eating(22,0,8,0,"NW_BIGMILL_FARM3_BALTHASAR");
+	TA_Stand_Drinking(22,0,8,0,"NW_BIGMILL_FARM3_07");
 };
 
 func void Rtn_Test_932()

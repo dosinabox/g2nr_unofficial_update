@@ -22,6 +22,7 @@ instance KDF_510_Hyglas(Npc_Default)
 func void Rtn_Start_510()
 {
 	TA_Read_Bookstand(8,0,23,0,"NW_MONASTERY_RUNEMAKER_08");
-	TA_Read_Bookstand(23,0,8,0,"NW_MONASTERY_RUNEMAKER_08");
+	TA_Read_Bookstand(23,0,4,0,"NW_MONASTERY_RUNEMAKER_06");
+	TA_Read_Bookstand(4,0,8,0,"NW_MONASTERY_RUNEMAKER_05");
 };
 

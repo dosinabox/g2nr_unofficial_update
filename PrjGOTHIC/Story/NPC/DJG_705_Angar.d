@@ -25,13 +25,13 @@ instance DJG_705_Angar(Npc_Default)
 func void Rtn_PreStart_705()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"OC_TO_MAGE");
-	TA_Stand_ArmsCrossed(23,0,8,0,"OC_TO_MAGE");
+	TA_Practice_Sword(23,0,8,0,"OC_CENTER_04");
 };
 
 func void Rtn_Start_705()
 {
 	TA_Stand_ArmsCrossed(8,0,23,0,"OW_DJG_WATCH_STONEHENGE_01");
-	TA_Stand_ArmsCrossed(23,0,8,0,"OW_DJG_WATCH_STONEHENGE_01");
+	TA_Sit_Campfire(23,0,8,0,"OW_DJG_WATCH_STONEHENGE_01");
 };
 
 func void Rtn_Zwischenstop_705()
@@ -49,7 +49,7 @@ func void Rtn_GotoStonehendgeEntrance_705()
 func void Rtn_LeavingOW_705()
 {
 	TA_Sit_Campfire(8,0,23,0,"OW_CAVALORN_01");
-	TA_Sit_Campfire(23,0,8,0,"OW_CAVALORN_01");
+	TA_Stand_ArmsCrossed(23,0,8,0,"OW_SAWHUT_SLEEP_01");
 };
 
 func void Rtn_Angriff_705()

@@ -24,7 +24,9 @@ instance BAU_970_Orlan(Npc_Default)
 func void Rtn_Start_970()
 {
 	TA_Stand_WP(8,0,22,0,"NW_TAVERNE_IN_04");
-	TA_Stand_WP(22,0,8,0,"NW_TAVERNE_IN_04");
+	TA_Stand_Sweeping(22,0,23,0,"NW_TAVERNE_IN_01");
+	TA_Sit_Chair(23,0,7,0,"NW_TAVERNE_IN_RANGERMEETING_LARES");
+	TA_Stand_Sweeping(7,0,8,0,"NW_TAVERNE_IN_01");
 };
 
 func void Rtn_Wettkampf_970()

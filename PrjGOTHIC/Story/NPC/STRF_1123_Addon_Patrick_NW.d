@@ -23,7 +23,7 @@ instance STRF_1123_Addon_Patrick_NW(Npc_Default)
 
 func void Rtn_Start_1123()
 {
-	TA_Stand_Drinking(0,0,12,0,"NW_BIGFARM_PATRICK");
-	TA_Stand_Drinking(12,0,0,0,"NW_BIGFARM_PATRICK");
+	TA_Practice_Sword(8,0,22,0,"NW_BIGFARM_PATRICK");
+	TA_Sit_Chair(22,0,8,0,"NW_BIGFARM_STABLE_04");
 };
 

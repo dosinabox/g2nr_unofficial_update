@@ -28,8 +28,9 @@ func void Rtn_Start_21()
 
 func void Rtn_Gerbrandt_21()
 {
-	TA_Stand_WP(8,0,23,0,"NW_CITY_UPTOWN_PATH_23");
-	TA_Stand_WP(23,0,8,0,"NW_CITY_UPTOWN_PATH_23");
+	TA_Stand_ArmsCrossed(8,0,20,0,"NW_CITY_UPTOWN_PATH_23");
+	TA_Sit_Chair(20,0,23,0,"NW_CITY_TAVERN_IN_08");
+	TA_Sleep(23,0,8,0,"NW_CITY_GERBRANDT_BED_01");
 };
 
 func void Rtn_WAITFORSHIP_21()

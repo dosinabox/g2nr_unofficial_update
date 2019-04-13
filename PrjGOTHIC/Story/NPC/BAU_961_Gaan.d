@@ -31,7 +31,7 @@ func void Rtn_PreStart_961()
 func void Rtn_Start_961()
 {
 	TA_Stand_ArmsCrossed(8,0,22,0,"NW_FARM3_GAAN");
-	TA_Stand_ArmsCrossed(22,0,8,0,"NW_FARM3_STABLE_REST_01");
+	TA_Sit_Campfire(22,0,8,0,"NW_FARM3_STABLE_REST_01");
 };
 
 func void Rtn_PreRangerMeeting_961()

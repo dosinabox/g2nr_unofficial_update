@@ -23,7 +23,9 @@ instance BDT_10001_Addon_Bandit_L(Npc_Default)
 
 func void Rtn_Start_10001()
 {
-	TA_Smalltalk(10,0,12,0,"BL_UP_RING_02");
-	TA_Smalltalk(12,0,10,0,"BL_UP_RING_02");
+	TA_Stand_Drinking(10,0,10,10,"BL_UP_RING_04");
+	TA_Smalltalk(10,10,12,0,"BL_UP_RING_04");
+	TA_Pee(12,0,12,10,"BL_UP_PEE");
+	TA_Smalltalk(12,10,10,0,"BL_UP_RING_02");
 };
 

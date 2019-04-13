@@ -22,7 +22,7 @@ instance BDT_10031_Addon_Wache(Npc_Default)
 
 func void Rtn_Start_10031()
 {
-	TA_Stand_Eating(6,0,12,0,"BL_MINELAGER_03");
+	TA_Stand_Drinking(6,0,12,0,"BL_MINELAGER_03");
 	TA_Stand_Eating(12,0,6,0,"BL_MINELAGER_03");
 };
 

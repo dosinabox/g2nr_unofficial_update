@@ -23,7 +23,7 @@ instance BDT_1074_Addon_Edgor(Npc_Default)
 
 func void Rtn_Start_1074()
 {
-	TA_Sit_Campfire(9,0,12,0,"ADW_BANDIT_VP1_09");
+	TA_Stand_ArmsCrossed(9,0,12,0,"ADW_BANDIT_VP1_08");
 	TA_Sit_Campfire(12,0,9,0,"ADW_BANDIT_VP1_09");
 };
 

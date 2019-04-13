@@ -24,12 +24,12 @@ instance VLK_4132_Talbin_NW(Npc_Default)
 func void Rtn_PreStart_4132()
 {
 	TA_Stand_Eating(8,0,23,0,"LEVELCHANGE");
-	TA_Stand_Eating(23,0,8,0,"LEVELCHANGE");
+	TA_Stand_Drinking(23,0,8,0,"LEVELCHANGE");
 };
 
 func void Rtn_Farm_4132()
 {
-	TA_Stand_Eating(8,0,23,0,"NW_FARM2_OUT_07");
-	TA_Stand_Eating(23,0,8,0,"NW_FARM2_OUT_07");
+	TA_Stand_Eating(8,0,0,0,"NW_FARM2_OUT_07");
+	TA_Sit_Bench(0,0,8,0,"NW_FARM2_OUT_06");
 };
 

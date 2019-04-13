@@ -24,8 +24,9 @@ instance BDT_1072_Addon_Logan(Npc_Default)
 
 func void Rtn_Start_1072()
 {
-	TA_Stand_Guarding(9,0,21,0,"ADW_BANDIT_VP3_03");
-	TA_Stand_Guarding(21,0,9,0,"ADW_BANDIT_VP3_03");
+	TA_Stand_Guarding(9,0,15,0,"ADW_BANDIT_VP3_03");
+	TA_Stand_Guarding(15,0,21,0,"ADW_BANDIT_VP3_02");
+	TA_Stand_Guarding(21,0,9,0,"ADW_BL_HOEHLE_01");
 };
 
 func void Rtn_Jagd_1072()
@@ -36,8 +37,8 @@ func void Rtn_Jagd_1072()
 
 func void Rtn_Lager_1072()
 {
-	TA_Stand_Drinking(9,0,21,0,"BL_INN_03_C");
-	TA_Stand_Drinking(21,0,9,0,"BL_INN_03_C");
+	TA_Stand_Drinking(9,0,21,0,"BL_INN_03_B");
+	TA_Sleep(21,0,9,0,"BL_INN_UPSIDE_SLEEP_03");
 };
 
 func void Rtn_Mine_1072()

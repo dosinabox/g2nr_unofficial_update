@@ -29,7 +29,8 @@ func void Rtn_PreStart_1097()
 func void Rtn_Start_1097()
 {
 	TA_Stand_Guarding(8,0,20,0,"BL_MERCHANT_01");
-	TA_Stand_Guarding(20,0,8,0,"BL_MERCHANT_01");
+	TA_Sleep(20,0,6,0,"BL_MERCHANT_03_SLEEP");
+	TA_Read_Bookstand(6,0,8,0,"BL_MERCHANT_03_BOOK");
 };
 
 func void Rtn_Meeting_1097()

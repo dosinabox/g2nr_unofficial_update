@@ -22,7 +22,9 @@ instance Bau_912_Pepe(Npc_Default)
 
 func void Rtn_Start_912()
 {
-	TA_Stand_Eating(8,0,22,0,"NW_BIGFARM_SHEEP2_02");
-	TA_Stand_Eating(22,0,8,0,"NW_BIGFARM_SHEEP2_02");
+	TA_Stand_Eating(10,0,16,0,"NW_BIGFARM_SHEEP2_02");
+	TA_Stand_Drinking(16,0,22,0,"NW_BIGFARM_SHEEP2_03");
+	TA_Stand_ArmsCrossed(22,0,4,0,"NW_BIGFARM_SHEEP2_04");
+	TA_Stand_ArmsCrossed(4,0,10,0,"NW_BIGFARM_SHEEP2_01");
 };
 

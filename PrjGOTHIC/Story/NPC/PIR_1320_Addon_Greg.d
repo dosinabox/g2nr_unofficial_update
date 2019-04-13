@@ -32,7 +32,9 @@ func void Rtn_Start_1320()
 
 func void Rtn_HOME_1320()
 {
-	TA_Sit_Bench(22,0,12,0,"ADW_PIRATECAMP_HUT4_01");
-	TA_Sit_Bench(12,0,22,0,"ADW_PIRATECAMP_HUT4_01");
+	TA_Sleep(23,0,7,0,"ADW_PIRATECAMP_HUT4_BED");
+	TA_Stand_Eating(7,0,8,0,"WP_BLA_PIR_01");
+	TA_Sit_Bench(8,0,22,0,"ADW_PIRATECAMP_HUT4_01");
+	TA_Stand_Drinking(22,0,23,0,"WP_BLA_PIR_01");
 };
 

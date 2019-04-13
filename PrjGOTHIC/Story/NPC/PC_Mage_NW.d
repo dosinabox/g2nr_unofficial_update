@@ -22,7 +22,7 @@ instance PC_Mage_NW(Npc_Default)
 func void Rtn_Start_12()
 {
 	TA_Stand_Guarding(8,0,23,0,"NW_MONASTERY_MILTEN");
-	TA_Stand_Guarding(23,0,8,0,"NW_MONASTERY_MILTEN");
+	TA_Stand_ArmsCrossed(23,0,8,0,"NW_MONASTERY_ENTRY_01");
 };
 
 func void Rtn_WaitForShip_12()

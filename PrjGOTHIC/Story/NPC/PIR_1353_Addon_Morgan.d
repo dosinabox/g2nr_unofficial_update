@@ -28,7 +28,7 @@ func void Rtn_START_1353()
 
 func void Rtn_GregIsBack_1353()
 {
-	TA_Saw(23,0,9,0,"ADW_PIRATECAMP_SAW_01");
+	TA_Sleep(23,0,9,0,"ADW_PIRATECAMP_CAVE_BED");
 	TA_Saw(9,0,23,0,"ADW_PIRATECAMP_SAW_01");
 };
 

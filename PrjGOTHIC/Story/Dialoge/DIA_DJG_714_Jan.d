@@ -232,6 +232,7 @@ func void DIA_Jan_JanIsSmith_Info()
 	AI_Output(self,other,"DIA_Jan_JanIsSmith_10_03");	//Не волнуйся. Я так рад, что опять могу работать.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"SMITH");
+	B_StartOtherRoutine(Ferros,"TRAIN");
 };
 
 

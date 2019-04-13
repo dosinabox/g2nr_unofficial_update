@@ -22,7 +22,8 @@ instance BDT_10019_Addon_Wache(Npc_Default)
 
 func void Rtn_Start_10019()
 {
-	TA_Stand_WP(0,0,12,0,"BL_UP_PLACE_04 ");
-	TA_Stand_WP(12,0,0,0,"BL_UP_PLACE_04");
+	TA_Stand_WP(0,0,6,0,"BL_UP_PLACE_04_SIDE_01");
+	TA_Stand_WP(6,0,18,0,"BL_UP_PLACE_04");
+	TA_Stand_WP(18,0,0,0,"BL_UP_PLACE_06_SIDE_01");
 };
 

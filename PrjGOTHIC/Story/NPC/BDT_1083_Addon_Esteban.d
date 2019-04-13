@@ -27,7 +27,7 @@ instance BDT_1083_Addon_Esteban(Npc_Default)
 
 func void Rtn_Start_1083()
 {
-	TA_Stand_ArmsCrossed(9,0,10,0,"BL_MID_07");
-	TA_Stand_ArmsCrossed(10,0,9,0,"BL_MID_07");
+	TA_Stand_ArmsCrossed(9,0,20,0,"BL_MID_07");
+	TA_Sleep(20,0,9,0,"BL_BEDS_SLEEP_02");
 };
 
