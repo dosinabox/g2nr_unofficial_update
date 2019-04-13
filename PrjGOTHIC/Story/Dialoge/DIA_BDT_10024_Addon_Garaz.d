@@ -34,7 +34,7 @@ instance DIA_Addon_Garaz_PICKPOCKET(C_Info)
 
 func int DIA_Addon_Garaz_PICKPOCKET_Condition()
 {
-	return C_Beklauen(66,80);
+	return C_Beklauen(80,80);
 };
 
 func void DIA_Addon_Garaz_PICKPOCKET_Info()

@@ -12,10 +12,7 @@ instance DIA_Neoras_Kap1_EXIT(C_Info)
 
 func int DIA_Neoras_Kap1_EXIT_Condition()
 {
-	if(Kapitel <= 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Neoras_Kap1_EXIT_Info()
@@ -288,56 +285,6 @@ func void DIA_Neoras_TEACH_Perm_Mana()
 };
 
 
-instance DIA_Neoras_Kap2_EXIT(C_Info)
-{
-	npc = KDF_506_Neoras;
-	nr = 999;
-	condition = DIA_Neoras_Kap2_EXIT_Condition;
-	information = DIA_Neoras_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Neoras_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Neoras_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Neoras_Kap3_EXIT(C_Info)
-{
-	npc = KDF_506_Neoras;
-	nr = 999;
-	condition = DIA_Neoras_Kap3_EXIT_Condition;
-	information = DIA_Neoras_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Neoras_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Neoras_Kap3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Neoras_BrewPotion(C_Info)
 {
 	npc = KDF_506_Neoras;
@@ -507,31 +454,6 @@ func void DIA_Neoras_BrewForMe_Health()
 };
 
 
-instance DIA_Neoras_Kap4_EXIT(C_Info)
-{
-	npc = KDF_506_Neoras;
-	nr = 999;
-	condition = DIA_Neoras_Kap4_EXIT_Condition;
-	information = DIA_Neoras_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Neoras_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Neoras_Kap4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Neoras_DRACHENEIER(C_Info)
 {
 	npc = KDF_506_Neoras;
@@ -629,7 +551,9 @@ func void DIA_Neoras_FOUNDDRAGONEGG_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_15_00");	//Вот, я нашел для тебя яйцо дракона.
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_01");	//Ты что, издеваешься надо мной?
-	B_GiveInvItems(other,self,ItAt_DragonEgg_MIS,1);
+//	B_GiveInvItems(other,self,ItAt_DragonEgg_MIS,1);
+	AI_PrintScreen("Драконье яйцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	Npc_RemoveInvItem(other,ItAt_DragonEgg_MIS);
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_02");	//Оно настоящее! Я даже не думал, что это возможно. Где ты нашел его?
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_15_03");	//Тебе этого лучше не знать.
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_01_04");	//Превосходно. Что ты хочешь за него?
@@ -681,12 +605,13 @@ instance DIA_Neoras_DRAGONEGGDRINK(C_Info)
 	condition = DIA_Neoras_DRAGONEGGDRINK_Condition;
 	information = DIA_Neoras_DRAGONEGGDRINK_Info;
 	description = "Я пришел получить это загадочное зелье из яйца дракона.";
+	permanent = TRUE;
 };
 
 
 func int DIA_Neoras_DRAGONEGGDRINK_Condition()
 {
-	if((Neoras_DragonEggDrink_Day <= (Wld_GetDay() - 2)) && (Neoras_SCWantsDragonEggDrink == TRUE))
+	if((Neoras_SCWantsDragonEggDrink == TRUE) && (Neoras_DragonEggDrinkGiven == FALSE))
 	{
 		return TRUE;
 	};
@@ -695,11 +620,20 @@ func int DIA_Neoras_DRAGONEGGDRINK_Condition()
 func void DIA_Neoras_DRAGONEGGDRINK_Info()
 {
 	AI_Output(other,self,"DIA_Neoras_DRAGONEGGDRINK_15_00");	//Я пришел получить это загадочное зелье из яйца дракона.
-	AI_Output(self,other,"DIA_Neoras_DRAGONEGGDRINK_01_01");	//Да. Я только что закончил его. Я еще не испытывал его и не несу никакой ответственности за его действие. Ты слышишь?
-	AI_Output(other,self,"DIA_Neoras_DRAGONEGGDRINK_15_02");	//Давай его сюда.
-	AI_Output(self,other,"DIA_Neoras_DRAGONEGGDRINK_01_03");	//Хорошо. Надеюсь, это пойло не заставит твою голову взорваться.
-	CreateInvItems(self,ItPo_DragonEggDrinkNeoras_MIS,1);
-	B_GiveInvItems(self,other,ItPo_DragonEggDrinkNeoras_MIS,1);
+	if(Neoras_DragonEggDrink_Day <= (Wld_GetDay() - 2))
+	{
+		AI_Output(self,other,"DIA_Neoras_DRAGONEGGDRINK_01_01");	//Да. Я только что закончил его. Я еще не испытывал его и не несу никакой ответственности за его действие. Ты слышишь?
+		AI_Output(other,self,"DIA_Neoras_DRAGONEGGDRINK_15_02");	//Давай его сюда.
+		AI_Output(self,other,"DIA_Neoras_DRAGONEGGDRINK_01_03");	//Хорошо. Надеюсь, это пойло не заставит твою голову взорваться.
+		CreateInvItems(self,ItPo_DragonEggDrinkNeoras_MIS,1);
+		B_GiveInvItems(self,other,ItPo_DragonEggDrinkNeoras_MIS,1);
+		Neoras_DragonEggDrinkGiven = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Neoras_Hallo_01_00");	//Что... что-то случилось? Зачем ты беспокоишь меня? Разве ты не видишь - я провожу очень сложный эксперимент?
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -727,31 +661,6 @@ func void DIA_Neoras_USEDDRAGONEGGDRINK_Info()
 	AI_Output(self,other,"DIA_Neoras_USEDDRAGONEGGDRINK_01_01");	//Ммм. Очень интересно. Я должен продолжать свои исследования.
 	AI_Output(other,self,"DIA_Neoras_USEDDRAGONEGGDRINK_15_02");	//Ты не мог бы сделать мне еще?
 	AI_Output(self,other,"DIA_Neoras_USEDDRAGONEGGDRINK_01_03");	//Будет лучше, если мы повторим это через несколько недель. Иначе, боюсь, у тебя могут вырасти рога.
-};
-
-
-instance DIA_Neoras_Kap5_EXIT(C_Info)
-{
-	npc = KDF_506_Neoras;
-	nr = 999;
-	condition = DIA_Neoras_Kap5_EXIT_Condition;
-	information = DIA_Neoras_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Neoras_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Neoras_Kap5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

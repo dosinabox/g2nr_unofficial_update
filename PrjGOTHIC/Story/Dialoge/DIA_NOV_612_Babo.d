@@ -922,6 +922,8 @@ func void DIA_Babo_Kap3_HaveYourDocs2_Info()
 	AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_15_00");	//Вот, держи.
 	B_GiveBaboDocs();
 	AI_Output(self,other,"DIA_Babo_Kap3_HaveYourDocs_HereTheyAre_03_05");	//Теперь я надеюсь, что смогу опять спать спокойно.
+	CreateInvItems(self,ItSc_MediumHeal,1);
+	B_GiveInvItems(self,other,ItSc_MediumHeal,1);
 };
 
 

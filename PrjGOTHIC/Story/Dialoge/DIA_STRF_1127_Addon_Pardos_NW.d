@@ -52,7 +52,7 @@ instance DIA_Addon_Pardos_NW_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Pardos_NW_PICKPOCKET_Condition;
 	information = DIA_Addon_Pardos_NW_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_80;
+	description = Pickpocket_100;
 };
 
 

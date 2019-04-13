@@ -388,7 +388,7 @@ func void B_CreateAmbientInv_PAL(var int InventorySet)
 		CreateInvItems(self,ItFo_Bacon,1);
 		CreateInvItems(self,ItPl_Mana_Herb_01,2);
 		CreateInvItems(self,ItMi_Sulfur,1);
-//		CreateInvItems(self,ItPl_Dex_Herb_01,1);
+		CreateInvItems(self,ItPl_Dex_Herb_01,1);
 		CreateInvItems(self,ItMi_Gold,23);
 	}
 	else if(InventorySet == 4)

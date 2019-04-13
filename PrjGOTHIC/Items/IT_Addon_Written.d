@@ -250,8 +250,8 @@ instance ITWr_Addon_MCELIXIER_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Это зелье помогает восстановить память.";
-	text[1] = "Для его создания нужны знания основ алхимии";
-	text[2] = "и экстрагирования секрета из жал кровавых мух.";
+//	text[1] = "Для его создания нужны знания основ алхимии";
+//	text[2] = "и экстрагирования секрета из жал кровавых мух.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_rotz = 180;
@@ -282,10 +282,11 @@ func void Use_MCELIXIER_01()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_MCELIXIER == FALSE))
 		{
-			Knows_MCELIXIER = TRUE;
+			//Knows_MCELIXIER = TRUE;
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для эликсира изменения сознания: 2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция и 1 красный жгучий перец.");
 		};
 	};
+	Knows_MCELIXIER = TRUE;
 };
 
 

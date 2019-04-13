@@ -135,7 +135,7 @@ func void UseLouHammer()
 //	B_NpcSetDrunk(60);
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_DRUNKEN.MDS",70000);
+		Mdl_ApplyOverlayMdsTimed(self,"Humans_Drunken.mds",70000);
 	};
 };
 

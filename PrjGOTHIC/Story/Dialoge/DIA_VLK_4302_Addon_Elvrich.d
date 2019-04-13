@@ -28,7 +28,7 @@ instance DIA_Addon_Elvrich_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Elvrich_PICKPOCKET_Condition;
 	information = DIA_Addon_Elvrich_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_60;
+	description = Pickpocket_80;
 };
 
 

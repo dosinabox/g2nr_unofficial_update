@@ -197,7 +197,8 @@ instance DIA_Addon_Saturas_Piraten(C_Info)
 
 func int DIA_Addon_Saturas_Piraten_Condition()
 {
-	if((AlligatorJack.aivar[AIV_TalkedToPlayer] == FALSE) && (Greg.aivar[AIV_TalkedToPlayer] == FALSE))
+//	if((AlligatorJack.aivar[AIV_TalkedToPlayer] == FALSE) && (Greg.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(!Npc_HasItems(other,ITAR_Thorus_Addon) && !Npc_HasItems(other,ITAR_BDT_M) && !Npc_HasItems(other,ITAR_BDT_H) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};

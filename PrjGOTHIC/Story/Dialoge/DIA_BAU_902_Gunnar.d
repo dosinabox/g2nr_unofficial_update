@@ -182,7 +182,7 @@ instance DIA_Gunnar_PICKPOCKET(C_Info)
 	condition = DIA_Gunnar_PICKPOCKET_Condition;
 	information = DIA_Gunnar_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_40;
+	description = Pickpocket_60;
 };
 
 

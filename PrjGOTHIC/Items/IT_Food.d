@@ -559,6 +559,35 @@ func void Use_Wine()
 };
 
 
+instance ItFo_DarkWine(C_Item)
+{
+	name = "Темное вино";
+	mainflag = ITEM_KAT_FOOD;
+	flags = ITEM_MULTI;
+	value = Value_Wine * 3;
+	visual = "ItFo_DarkWine.3DS";
+	material = MAT_GLAS;
+	scemeName = "POTION";
+	on_state[0] = Use_DarkWine;
+	description = name;
+	text[1] = NAME_Bonus_HP;
+	count[1] = 10;
+	text[2] = NAME_Bonus_Mana;
+	count[2] = 10;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void Use_DarkWine()
+{
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,10);
+	Npc_ChangeAttribute(self,ATR_MANA,10);
+	B_NpcSetDrunk(40);
+	Mdl_ApplyOverlayMdsTimed(self,"HUMANS_ACROBATIC.MDS",10000);
+};
+
+
 instance ItFo_Milk(C_Item)
 {
 	name = "Молоко";

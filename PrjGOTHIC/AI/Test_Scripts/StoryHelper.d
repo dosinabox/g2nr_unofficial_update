@@ -104,6 +104,14 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
 	};
+	If(RandomGoblinBerries == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
+	};
 /*	if(HonestStatCalculation == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
@@ -191,6 +199,21 @@ func void StoryHelper_Bonuses()
 	{
 		IgnoreBonuses = TRUE;
 		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_GoblinBerries()
+{
+	if(RandomGoblinBerries == TRUE)
+	{
+		RandomGoblinBerries = FALSE;
+		PrintScreen("Фиксированное количество ягод у продавцов",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		RandomGoblinBerries = TRUE;
+		PrintScreen("Рандомное количество ягод у паладинов",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

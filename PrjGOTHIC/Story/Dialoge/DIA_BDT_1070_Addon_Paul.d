@@ -28,7 +28,7 @@ instance DIA_Addon_Paul_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Paul_PICKPOCKET_Condition;
 	information = DIA_Addon_Paul_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_20;
+	description = Pickpocket_40;
 };
 
 

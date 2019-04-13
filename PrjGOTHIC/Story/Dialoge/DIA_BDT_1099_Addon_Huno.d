@@ -29,7 +29,7 @@ instance DIA_Addon_Huno_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Huno_PICKPOCKET_Condition;
 	information = DIA_Addon_Huno_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_80;
+	description = Pickpocket_100;
 };
 
 

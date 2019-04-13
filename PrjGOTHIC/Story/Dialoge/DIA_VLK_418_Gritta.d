@@ -213,10 +213,10 @@ func void DIA_Gritta_WINE_Info()
 {
 	AI_Output(self,other,"DIA_Gritta_WINE_16_00");	//Это было очень благородно с твоей стороны заплатить за меня. Я хочу отблагодарить тебя.
 	AI_Output(self,other,"DIA_Gritta_WINE_16_01");	//Вот бутылка вина, которую мой муж, да упокоит Иннос его душу, привез с южных островов.
+	B_GiveInvItems(self,other,ItFo_DarkWine,1);
 	AI_Output(self,other,"DIA_Gritta_WINE_16_02");	//Также я расскажу о тебе всем! Наконец-то в городе появился человек, чья добродетель...
 	AI_Output(other,self,"DIA_Gritta_WINE_15_03");	//Да-да-да, не стоит благодарностей.
 	B_GivePlayerXP(XP_PayForGritta);
-	B_GiveInvItems(self,other,ItFo_Wine,1);
 	AI_StopProcessInfos(self);
 };
 

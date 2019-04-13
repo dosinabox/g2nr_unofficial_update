@@ -857,15 +857,15 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-	text[0] = "Защита от сглаза.";
+	text[2] = "Защита от сглаза.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
-	on_equip = Equip_Prot_BlackEye;
-	on_unequip = UnEquip_Prot_BlackEye;
+//	on_equip = Equip_Prot_BlackEye;
+//	on_unequip = UnEquip_Prot_BlackEye;
 };
 
-func void Equip_Prot_BlackEye()
+/*func void Equip_Prot_BlackEye()
 {
 	if(Npc_IsPlayer(self))
 	{
@@ -879,7 +879,7 @@ func void UnEquip_Prot_BlackEye()
 	{
 		SC_IsBlackEyeProtected = FALSE;
 	};
-};
+};*/
 
 instance ItMi_KarrasBlessedStone_Mis(C_Item)
 {

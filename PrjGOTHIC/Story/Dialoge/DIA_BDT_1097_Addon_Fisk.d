@@ -449,12 +449,15 @@ func void DIA_Addon_Fisk_Meeting_now()
 	if(!Npc_IsDead(Esteban))
 	{
 		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_01");	//Мы уберем Эстебана с нашего пути. А это значит, ты его убьешь и займешь его место.
-		AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_02");	//Пока с ним его охранники, он для меня недосягаем.
-		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_03");	//Тогда мы их выманим. Правдой.
-		AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_04");	//Правдой?
-		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_05");	//Ты ведь выполнил свою работу. Ты узнал, что за нападением стоял я.
-		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_06");	//Скажи так Эстебану, и он отправит своих ребят сюда, чтобы покончить со мной. Тут-то я их и буду ждать.
-		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_07");	//Когда они уйдут, ты займешься ублюдком, а я - охранниками.
+		if(!Npc_IsDead(Wache_01) || !Npc_IsDead(Wache_02))
+		{
+			AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_02");	//Пока с ним его охранники, он для меня недосягаем.
+			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_03");	//Тогда мы их выманим. Правдой.
+			AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_04");	//Правдой?
+			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_05");	//Ты ведь выполнил свою работу. Ты узнал, что за нападением стоял я.
+			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_06");	//Скажи так Эстебану, и он отправит своих ребят сюда, чтобы покончить со мной. Тут-то я их и буду ждать.
+			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_07");	//Когда они уйдут, ты займешься ублюдком, а я - охранниками.
+		};
 	}
 	else
 	{

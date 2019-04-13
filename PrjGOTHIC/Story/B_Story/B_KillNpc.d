@@ -34,7 +34,7 @@ func void b_check_version()
 	{
 		concatText2 = ConcatStrings("Версия обновления в сохранении: ",IntToString(fix_version_save));
 	};*/
-	if(fix_version_save != fix_version_start)
+	if(fix_version_save < least_supported)
 	{
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,10);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,10);
@@ -63,11 +63,6 @@ func void b_cycle_function()
 	};
 	if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if((MayaScrollRemoved == FALSE) && (Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) == 1) && Npc_HasItems(Stoneguardian_NailedValleyShowcase_01,ItSc_Teleport_Maya))
-		{
-			Npc_RemoveInvItem(Stoneguardian_NailedValleyShowcase_01,ItSc_Teleport_Maya);
-			MayaScrollRemoved = TRUE;
-		};
 		if((BloodwynIsHeadless == FALSE) && Npc_HasItems(hero,ItMi_Addon_Bloodwyn_Kopf))
 		{
 			Snd_Play("CS_IAM_ME_FL_A3");
@@ -76,7 +71,7 @@ func void b_cycle_function()
 			BloodwynIsHeadless = TRUE;
 		};
 	};
-	if(fix_version_save != fix_version_start)
+	if(fix_version_save < least_supported)
 	{
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,3);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,3);

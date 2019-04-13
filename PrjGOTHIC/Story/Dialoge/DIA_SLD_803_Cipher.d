@@ -455,7 +455,7 @@ instance DIA_CipherSLD_PICKPOCKET(C_Info)
 	condition = DIA_CipherSLD_PICKPOCKET_Condition;
 	information = DIA_CipherSLD_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_60;
+	description = Pickpocket_80;
 };
 
 

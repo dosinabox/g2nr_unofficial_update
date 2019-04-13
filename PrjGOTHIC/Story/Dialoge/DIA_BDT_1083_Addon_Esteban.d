@@ -31,7 +31,7 @@ instance DIA_Addon_Esteban_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Esteban_PICKPOCKET_Condition;
 	information = DIA_Addon_Esteban_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_100;
+	description = Pickpocket_120;
 };
 
 
@@ -422,7 +422,7 @@ func void DIA_Addon_Esteban_fight_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_01");	//Не каждый получает такое предложение. Но если оно тебе не нравится, ты можешь свободно покинуть лагерь...
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_02");	//А может быть, ты сдержишь слово и дашь мне красный камень?
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_03");	//Эй! Еще одно слово - и моим охранникам придется применить силу.
-	if((Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1500) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1500))
+	if(((Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1500) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1500)) || (Npc_IsDead(Wache_01) && Npc_IsDead(Wache_02)))
 	{
 		AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?
 		AI_Output(self,other,"DIA_Addon_Esteban_fight_07_05");	//Что?.. А, понятно, ты хочешь обвести меня... Ну, погоди...

@@ -1116,7 +1116,8 @@ instance DIA_Lord_Hagen_AugeAmStart(C_Info)
 
 func int DIA_Lord_Hagen_AugeAmStart_Condition()
 {
-	if((Kapitel <= 4) && (MIS_ReadyforChapter4 == TRUE) && (SC_IsWearingInnosEye == TRUE))
+//	if((Kapitel <= 4) && (MIS_ReadyforChapter4 == TRUE) && (SC_IsWearingInnosEye == TRUE))
+	if(SC_IsWearingInnosEye == TRUE)
 	{
 		return TRUE;
 	};
@@ -1131,7 +1132,10 @@ func void DIA_Lord_Hagen_AugeAmStart_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_12");	//И ты восстановил его!
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_13");	//Значит, ты Избранный Инноса!
-	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_14");	//Я должен отправляться в путь и убить всех драконов в Долине Рудников!
+	if(MIS_AllDragonsDead == FALSE)
+	{
+		AI_Output(other,self,"DIA_Lord_Hagen_Add_15_14");	//Я должен отправляться в путь и убить всех драконов в Долине Рудников!
+	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_15");	//Иди с Инносом и уничтожь Зло с его помощью!
 };
 

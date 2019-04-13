@@ -7,8 +7,9 @@ instance KDF_507_Talamon(Npc_Default)
 	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,6);
-	fight_tactic = FAI_HUMAN_COWARD;
+	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Saturas,BodyTex_B,ITAR_KDF_H);
 	Mdl_SetModelFatness(self,0);

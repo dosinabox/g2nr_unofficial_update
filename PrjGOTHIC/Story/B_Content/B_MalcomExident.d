@@ -12,12 +12,16 @@ func void B_MalcomExident()
 			AI_Teleport(Malcom,"ADW_PIRATECAMP_SECRETCAVE_02");
 			Wld_InsertNpc(Lurker_SecretCave1,"ADW_PIRATECAMP_SECRETCAVE_01");
 			Wld_InsertNpc(Lurker_SecretCave2,"ADW_PIRATECAMP_SECRETCAVE_01");
-			Malcom_Accident = TRUE;
 			if(!Npc_IsDead(Owen))
 			{
 				B_StartOtherRoutine(Owen,"Start");
 			};
+		}
+		else
+		{
+			Wld_InsertItem(ItWr_TwoHStonePlate3_Addon,"ADW_PIRATECAMP_SECRETCAVE_01");
 		};
+		Malcom_Accident = TRUE;
 	};
 };
 

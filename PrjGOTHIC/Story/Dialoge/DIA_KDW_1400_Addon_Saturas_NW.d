@@ -76,7 +76,7 @@ func void DIA_Addon_Saturas_Nefarius_Info()
 		};
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_08");	//Не то, чтобы я о тебе волнуюсь, но монстры могут съесть орнамент вместе с тобой.
 		AI_Output(self,other,"DIA_ADDON_Saturas_Nefarius_14_09");	//Вот твоя карта...
-		AI_PrintScreen("Карта Нефариуса получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen("Карта Нефариуса получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	};
 };
 

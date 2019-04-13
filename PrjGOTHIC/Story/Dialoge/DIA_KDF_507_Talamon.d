@@ -210,6 +210,7 @@ func void DIA_Talamon_KAP5_Stop_Info()
 	AI_Output(other,self,"DIA_Talamon_KAP5_Stop_15_01");	//Пирокар сказал, что мне можно взять книгу Ксардаса.
 	AI_Output(self,other,"DIA_Talamon_KAP5_Stop_04_02");	//Ну, если он это сказал... Хорошо, ты можешь войти. Книга, которую ты ищешь, находится вон там, на алхимическом столе.
 	self.aivar[AIV_PASSGATE] = TRUE;
+	self.aivar[AIV_NewsOverride] = FALSE;
 	Npc_ExchangeRoutine(self,"PassGranted");
 	B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Таламон держал книгу Ксардаса на алхимическом столе в подвале.");
 };

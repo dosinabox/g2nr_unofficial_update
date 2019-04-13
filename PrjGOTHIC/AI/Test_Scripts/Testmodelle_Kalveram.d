@@ -404,6 +404,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItFo_CoragonsBeer,10);
 	CreateInvItems(self,ItFo_Booze,10);
 	CreateInvItems(self,ItFo_Wine,10);
+	CreateInvItems(self,ItFo_DarkWine,10);
 	CreateInvItems(self,ItFo_Milk,10);
 	CreateInvItems(self,ItFo_Addon_Shellflesh,10);
 	CreateInvItems(self,ItFo_Addon_Rum,10);
@@ -1479,10 +1480,6 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	B_StartOtherRoutine(PAL_212_Schiffswache,"ShipFree");
-	B_StartOtherRoutine(PAL_213_Schiffswache,"ShipFree");
-	B_StartOtherRoutine(Girion,"WaitForShip");
-	MIS_ShipIsFree = TRUE;
 };
 
 instance WastelandRune(C_Item)

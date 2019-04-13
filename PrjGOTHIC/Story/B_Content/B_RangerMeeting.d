@@ -92,6 +92,7 @@ func void B_Addon_Orlan_RangersReadyForComing()
 	B_StartOtherRoutine(Lares,"PreRangerMeeting");
 	B_StartOtherRoutine(Cord,"PreRangerMeeting");
 	B_StartOtherRoutine(Gaan,"PreRangerMeeting");
+	Lares.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 
 func void B_Addon_Orlan_ComingRanger()

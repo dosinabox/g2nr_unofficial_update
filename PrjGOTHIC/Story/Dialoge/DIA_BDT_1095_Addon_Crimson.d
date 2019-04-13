@@ -29,7 +29,7 @@ instance DIA_Addon_Crimson_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Crimson_PICKPOCKET_Condition;
 	information = DIA_Addon_Crimson_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_60;
+	description = Pickpocket_80;
 };
 
 

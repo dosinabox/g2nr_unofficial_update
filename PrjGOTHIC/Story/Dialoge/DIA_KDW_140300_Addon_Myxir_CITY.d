@@ -44,7 +44,7 @@ func void DIA_Addon_Myxir_CITY_HelloCITY_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Myxir_CITY_HelloCITY_15_00");	//Ты останешься в городе?
 	AI_Output(self,other,"DIA_Addon_Myxir_CITY_HelloCITY_12_01");	//Кто-то из нас должен оставаться здесь, когда Ватраса в городе нет.
-	VatrasAbloeseIstDa = TRUE;
+//	VatrasAbloeseIstDa = TRUE;
 	if((RavenIsDead == TRUE) && (DIA_Addon_Myxir_CITY_HelloCITY_OneTime == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Myxir_CITY_HelloCITY_12_02");	//Я хотел тебе сказать еще одну вещь.
@@ -151,5 +151,35 @@ func void DIA_Addon_Myxir_CITY_Teach_LANGUAGE_3()
 		DIA_Addon_Myxir_CITY_Teach_LANGUAGE_X();
 	};
 	Info_ClearChoices(DIA_Addon_Myxir_CITY_Teach);
+};
+
+instance DIA_Addon_Myxir_CITY_TalkedToGhost(C_Info)
+{
+	npc = KDW_140300_Addon_Myxir_CITY;
+	nr = 4;
+	condition = DIA_Addon_Myxir_CITY_TalkedToGhost_Condition;
+	information = DIA_Addon_Myxir_CITY_TalkedToGhost_Info;
+	description = "Я говорил с Куарходроном.";
+};
+
+
+func int DIA_Addon_Myxir_CITY_TalkedToGhost_Condition()
+{
+	if((MIS_ADDON_Myxir_GeistBeschwoeren == LOG_Running) && (SC_TalkedToGhost == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Myxir_CITY_TalkedToGhost_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Myxir_TalkedToGhost_15_00");	//Я говорил с Куарходроном.
+	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_01");	//(восхищенно) Тебе действительно удалось пробудить его от смертного сна?
+	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_04");	//И что же сказал дух?
+	AI_Output(other,self,"DIA_Addon_Myxir_TalkedToGhost_15_05");	//Он рассказал мне о том, как попасть в храм Аданоса.
+	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_02");	//Невероятно! Меня все больше и больше восхищают эти зодчие.
+	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_03");	//Кто знает, чего бы они могли добиться, если бы их цивилизация не погибла...
+	MIS_ADDON_Myxir_GeistBeschwoeren = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Addon_Myxir_GeistBeschwoeren);
 };
 

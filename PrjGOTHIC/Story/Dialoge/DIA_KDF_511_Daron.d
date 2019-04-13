@@ -518,7 +518,8 @@ var int DIA_Daron_Spende_permanent;
 
 func int DIA_Daron_Spende_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (DIA_Daron_Spende_permanent == FALSE) && Npc_KnowsInfo(other,DIA_Daron_Spenden) && (hero.guild != GIL_KDF))
+//	if(Npc_IsInState(self,ZS_Talk) && (DIA_Daron_Spende_permanent == FALSE) && Npc_KnowsInfo(other,DIA_Daron_Spenden) && (hero.guild != GIL_KDF))
+	if((DIA_Daron_Spende_permanent == FALSE) && Npc_KnowsInfo(other,DIA_Daron_Spenden) && (hero.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -530,7 +531,8 @@ func void DIA_Daron_Spende_Info()
 	Info_ClearChoices(DIA_Daron_Spende);
 	if(Daron_Spende < 1000)
 	{
-		Info_AddChoice(DIA_Daron_Spende,"Но у меня недостаточно золота... (НАЗАД)",DIA_Daron_Spende_BACK);
+		Info_AddChoice(DIA_Daron_Spende,Dialog_Back,DIA_Daron_Spende_BACK);
+		Info_AddChoice(DIA_Daron_Spende,"Но у меня недостаточно золота...",DIA_Daron_Spende_NoGold);
 		Info_AddChoice(DIA_Daron_Spende,"(50 золотых)",DIA_Daron_Spende_50);
 		Info_AddChoice(DIA_Daron_Spende,"(100 золотых)",DIA_Daron_Spende_100);
 		Info_AddChoice(DIA_Daron_Spende,"(200 золотых)",DIA_Daron_Spende_200);
@@ -544,10 +546,14 @@ func void DIA_Daron_Spende_Info()
 	};
 };
 
-func void DIA_Daron_Spende_BACK()
+func void DIA_Daron_Spende_NoGold()
 {
 	AI_Output(other,self,"DIA_Daron_Spende_BACK_15_00");	//Но у меня недостаточно золота...
 	AI_Output(self,other,"DIA_Daron_Spende_BACK_10_01");	//Это не имеет значения, сын мой. Ты можешь принести пожертвование позже.
+};
+
+func void DIA_Daron_Spende_BACK()
+{
 	Info_ClearChoices(DIA_Daron_Spende);
 };
 

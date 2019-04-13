@@ -468,7 +468,8 @@ func void Use_LuciasLoveLetter_Addon()
 prototype EffectItemPrototype_Addon(C_Item)
 {
 	name = "Камень";
-	mainflag = ITEM_KAT_NONE;
+//	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_LIGHT;
 	flags = ITEM_MULTI;
 	value = 15;
 	visual = "ItMi_Coal.3ds";
@@ -1098,14 +1099,19 @@ instance ItSE_Addon_FrancisChest(C_Item)
 func void FrancisChest()
 {
 //	CreateInvItems(hero,ItMi_GoldChest,1);
+	AI_PrintScreen("Книга платежей получено",-1,40,FONT_ScreenSmall,4);
+	AI_PrintScreen("Хороший кинжал получено",-1,43,FONT_ScreenSmall,4);
+	AI_PrintScreen("Золотой кубок получено",-1,46,FONT_ScreenSmall,4);
+	AI_PrintScreen("Серебряное ожерелье получено",-1,49,FONT_ScreenSmall,4);
+	AI_PrintScreen("153 золотых получено",-1,52,FONT_ScreenSmall,4);
+	Snd_Play("Geldbeutel");
 	CreateInvItems(hero,ItSE_Addon_EmptyFrancisChest,1);
 	CreateInvItems(hero,ItMw_FrancisDagger_Mis,1);
 	CreateInvItems(hero,ItMi_Gold,153);
 	CreateInvItems(hero,ItMi_GoldCup,1);
 	CreateInvItems(hero,ItMi_SilverNecklace,1);
 	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
-	Snd_Play("Geldbeutel");
-	Print("Вы нашли несколько предметов!");
+//	Print("Вы нашли несколько предметов!");
 };
 
 
@@ -1113,7 +1119,7 @@ instance ItSE_Addon_EmptyFrancisChest(C_Item)
 {
 	name = "Пустой сундук";
 	mainflag = ITEM_KAT_NONE;
-	value = 750;
+	value = 200;
 	visual = "ItSE_Addon_FrancisChest.3ds";
 	material = MAT_METAL;
 	description = name;

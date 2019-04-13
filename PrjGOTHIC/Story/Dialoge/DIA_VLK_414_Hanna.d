@@ -385,7 +385,7 @@ instance DIA_Hanna_PICKPOCKET(C_Info)
 	condition = DIA_Hanna_PICKPOCKET_Condition;
 	information = DIA_Hanna_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_40_Female;
+	description = Pickpocket_60_Female;
 };
 
 
@@ -604,7 +604,7 @@ instance DIA_Hanna_PICKPOCKET_Book(C_Info)
 	condition = DIA_Hanna_PICKPOCKET_Book_Condition;
 	information = DIA_Hanna_PICKPOCKET_Book_Info;
 	permanent = TRUE;
-	description = "(украсть долговую книгу будет довольно просто)";
+	description = "(украсть долговую книгу будет довольно рискованно)";
 };
 
 

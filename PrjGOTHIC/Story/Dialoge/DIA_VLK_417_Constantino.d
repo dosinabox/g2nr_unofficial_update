@@ -95,7 +95,10 @@ instance DIA_Constantino_AboutLehrling(C_Info)
 
 func int DIA_Constantino_AboutLehrling_Condition()
 {
-	return TRUE;
+	if(Player_IsApprentice == APP_NONE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Constantino_AboutLehrling_Info()
@@ -192,7 +195,10 @@ instance DIA_Constantino_Trade(C_Info)
 
 func int DIA_Constantino_Trade_Condition()
 {
-	return TRUE;
+	if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Constantino_Trade_Info()
@@ -215,6 +221,33 @@ func void DIA_Constantino_Trade_Info()
 		Constantino_Logpatch1 = TRUE;
 	};
 	Trade_IsActive = TRUE;
+};
+
+
+instance DIA_Constantino_NoTrade(C_Info)
+{
+	npc = VLK_417_Constantino;
+	nr = 700;
+	condition = DIA_Constantino_NoTrade_Condition;
+	information = DIA_Constantino_NoTrade_Info;
+	permanent = TRUE;
+	description = DIALOG_TRADE_v4;
+};
+
+
+func int DIA_Constantino_NoTrade_Condition()
+{
+	if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Constantino_NoTrade_Info()
+{
+	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
+	AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+	AI_StopProcessInfos(self);
 };
 
 
@@ -773,20 +806,27 @@ func void DIA_Constantino_MushroomsRunning_Later()
 };
 
 
+func void B_Constantino_TeachAlchemy()
+{
+	Constantino_TeachAlchemy = TRUE;
+	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_CityTeacher,"Константино может обучить меня искусству алхимии.");
+};
+
 instance DIA_Constantino_Alchemy(C_Info)
 {
 	npc = VLK_417_Constantino;
 	nr = 2;
 	condition = DIA_Constantino_Alchemy_Condition;
 	information = DIA_Constantino_Alchemy_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Обучи меня искусству алхимии!";
 };
 
 
 func int DIA_Constantino_Alchemy_Condition()
 {
-	if(Player_IsApprentice == APP_Constantino)
+	if((Player_IsApprentice == APP_Constantino) && (Constantino_TeachAlchemy == FALSE))
 	{
 		return TRUE;
 	};
@@ -795,17 +835,23 @@ func int DIA_Constantino_Alchemy_Condition()
 func void DIA_Constantino_Alchemy_Info()
 {
 	AI_Output(other,self,"DIA_Constantino_Alchemy_15_00");	//Обучи меня искусству алхимии!
-	AI_Output(self,other,"DIA_Constantino_Alchemy_10_01");	//Хорошо. Сначала основы.
-	AI_Output(self,other,"DIA_Constantino_Alchemy_10_02");	//Все зелья делаются из растений - они обладают различной силой.
-	AI_Output(self,other,"DIA_Constantino_Alchemy_10_03");	//Но растения пускают всю свою силу в рост - а алхимия занимается изменением этой силы и направлением ее в нужное русло.
-	AI_Output(self,other,"DIA_Constantino_Alchemy_10_04");	//Чтобы приготовить зелье на алхимическом столе, тебе понадобится лабораторная пробирка.
-	AI_Output(self,other,"DIA_Constantino_Alchemy_10_05");	//Ты должен знать правильную формулу и иметь соответствующие ингредиенты.
-	AI_Output(self,other,"DIA_Constantino_Alchemy_10_06");	//Я могу научить тебя многим таким формулам.
-	AI_Output(self,other,"DIA_Constantino_Alchemy_10_07");	//Готовить зелья, восстанавливающие твою потерянную силу, и даже зелья, которые воздействуют на твою силу перманентно.
-	AI_Output(self,other,"DIA_Constantino_Alchemy_10_08");	//Но нельзя выучить все сразу.
-	Constantino_TeachAlchemy = TRUE;
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Константино может обучить меня искусству алхимии.");
+	if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+	{
+		AI_Output(self,other,"DIA_Constantino_Alchemy_10_01");	//Хорошо. Сначала основы.
+		AI_Output(self,other,"DIA_Constantino_Alchemy_10_02");	//Все зелья делаются из растений - они обладают различной силой.
+		AI_Output(self,other,"DIA_Constantino_Alchemy_10_03");	//Но растения пускают всю свою силу в рост - а алхимия занимается изменением этой силы и направлением ее в нужное русло.
+		AI_Output(self,other,"DIA_Constantino_Alchemy_10_04");	//Чтобы приготовить зелье на алхимическом столе, тебе понадобится лабораторная пробирка.
+		AI_Output(self,other,"DIA_Constantino_Alchemy_10_05");	//Ты должен знать правильную формулу и иметь соответствующие ингредиенты.
+		AI_Output(self,other,"DIA_Constantino_Alchemy_10_06");	//Я могу научить тебя многим таким формулам.
+		AI_Output(self,other,"DIA_Constantino_Alchemy_10_07");	//Готовить зелья, восстанавливающие твою потерянную силу, и даже зелья, которые воздействуют на твою силу перманентно.
+		AI_Output(self,other,"DIA_Constantino_Alchemy_10_08");	//Но нельзя выучить все сразу.
+		B_Constantino_TeachAlchemy();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -815,14 +861,14 @@ instance DIA_Constantino_NewRecipes(C_Info)
 	nr = 2;
 	condition = DIA_Constantino_NewRecipes_Condition;
 	information = DIA_Constantino_NewRecipes_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Я хочу узнать новые рецепты зелий.";
 };
 
 
 func int DIA_Constantino_NewRecipes_Condition()
 {
-	if((Player_IsApprentice != APP_Constantino) && (Player_IsApprentice > APP_NONE) && Npc_GetTalentSkill(other,NPC_TALENT_ALCHEMY))
+	if((Player_IsApprentice != APP_Constantino) && (Constantino_TeachAlchemy == FALSE))
 	{
 		return TRUE;
 	};
@@ -831,13 +877,43 @@ func int DIA_Constantino_NewRecipes_Condition()
 func void DIA_Constantino_NewRecipes_Info()
 {
 	AI_Output(other,self,"DIA_Constantino_NewRecipes_15_00");	//Я хочу узнать новые рецепты зелий.
-	AI_Output(self,other,"DIA_Constantino_NewRecipes_10_01");	//У тебя есть какой-нибудь опыт в алхимии?
-	AI_Output(other,self,"DIA_Constantino_NewRecipes_15_02");	//Да, есть.
-	AI_Output(self,other,"DIA_Constantino_NewRecipes_10_03");	//И ты все еще жив... это неплохой знак.
-	AI_Output(self,other,"DIA_Constantino_NewRecipes_10_04");	//Я думаю, что могу показать тебе несколько рецептов. Но это зависит, конечно же, от того, что ты хочешь узнать.
-	Constantino_TeachAlchemy = TRUE;
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Константино может обучить меня искусству алхимии.");
+	if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
+	{
+		if(Player_IsApprentice > APP_NONE)
+		{
+			AI_Output(self,other,"DIA_Constantino_NewRecipes_10_01");	//У тебя есть какой-нибудь опыт в алхимии?
+			if(Npc_GetTalentSkill(other,NPC_TALENT_ALCHEMY))
+			{
+				AI_Output(other,self,"DIA_Constantino_NewRecipes_15_02");	//Да, есть.
+				AI_Output(self,other,"DIA_Constantino_NewRecipes_10_03");	//И ты все еще жив... это неплохой знак.
+				AI_Output(self,other,"DIA_Constantino_NewRecipes_10_04");	//Я думаю, что могу показать тебе несколько рецептов. Но это зависит, конечно же, от того, что ты хочешь узнать.
+				B_Constantino_TeachAlchemy();
+			}
+			else
+			{
+				AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_06");	//Нет. Еще нет...
+				AI_Output(self,other,"DIA_Constantino_BringHerbs_10_01");	//(вздыхает) Я не вынесу, если ЕЩЕ ОДИН дилетант окажется на моей совести.
+				AI_StopProcessInfos(self);
+			};
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Lothar_Add_01_15");	//Тебе придется стать учеником одного из мастеров в нижней части города.
+			AI_StopProcessInfos(self);
+			/*AI_Output(other,self,"DIA_Addon_Henry_Einigen_15_00");	//Мы можем как-нибудь договориться?
+			B_Say_Gold(self,other,300);
+			Info_ClearChoices(DIA_Constantino_NewRecipes);
+			if(Npc_HasItems(other,ItMi_Gold) >= 300)
+			{
+				Info_AddChoice(DIA_Constantino_NewRecipes,"Вот, держи...",DIA_Constantino_NewRecipes_Ok);
+			};
+			Info_AddChoice(DIA_Constantino_NewRecipes,"Это слишком дорого для меня.",DIA_Constantino_NewRecipes_No);*/
+		};
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+	};
 };
 
 
@@ -863,44 +939,52 @@ func int DIA_Constantino_TEACH_Condition()
 func void DIA_Constantino_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Constantino_TEACH_15_00");	//Каким рецептам ты можешь обучить меня?
-	if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == TRUE))
+	if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 	{
-		AI_Output(self,other,"DIA_Constantino_TEACH_10_01");	//Извини. Я больше ничему не могу научить тебя.
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == TRUE))
+		{
+			AI_Output(self,other,"DIA_Constantino_TEACH_10_01");	//Извини. Я больше ничему не могу научить тебя.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Constantino_TEACH_10_02");	//Есть несколько - выбирай.
+			Info_ClearChoices(DIA_Constantino_TEACH);
+			Info_AddChoice(DIA_Constantino_TEACH,Dialog_Back,DIA_Constantino_Teach_BACK);
+			if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
+			{
+				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Constantino_TEACH_Health01);
+			};
+			if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE))
+			{
+				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Constantino_TEACH_Health02);
+			};
+			if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE))
+			{
+				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Constantino_TEACH_Health03);
+			};
+			if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE))
+			{
+				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Constantino_TEACH_PermHealth);
+			};
+			if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
+			{
+				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Constantino_TEACH_Mana01);
+			};
+			if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
+			{
+				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Constantino_TEACH_Mana02);
+			};
+			if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE)
+			{
+				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_STR_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Constantino_TEACH_PermSTR);
+			};
+		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Constantino_TEACH_10_02");	//Есть несколько - выбирай.
-		Info_ClearChoices(DIA_Constantino_TEACH);
-		Info_AddChoice(DIA_Constantino_TEACH,Dialog_Back,DIA_Constantino_Teach_BACK);
-	};
-	if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
-	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Constantino_TEACH_Health01);
-	};
-	if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE))
-	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Constantino_TEACH_Health02);
-	};
-	if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE))
-	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Constantino_TEACH_Health03);
-	};
-	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE))
-	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Constantino_TEACH_PermHealth);
-	};
-	if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
-	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Constantino_TEACH_Mana01);
-	};
-	if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
-	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Constantino_TEACH_Mana02);
-	};
-	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE)
-	{
-		Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_STR_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Constantino_TEACH_PermSTR);
-	};
+		AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+		AI_StopProcessInfos(self);
+	};	
 };
 
 func void DIA_Constantino_Teach_BACK()

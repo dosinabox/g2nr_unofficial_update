@@ -101,8 +101,8 @@ func void DIA_Addon_Cronos_ADW_Trade_Info()
 {
 	if(CronosTraded == FALSE)
 	{
-		Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
-		B_LogEntry(Topic_OutTrader,LogText_Addon_CronosTrade);
+		Log_CreateTopic(TOPIC_Addon_KDWTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_KDWTrader,LogText_Addon_CronosTrade);
 		CronosTraded = TRUE;
 	};
 	B_GiveTradeInv(self);

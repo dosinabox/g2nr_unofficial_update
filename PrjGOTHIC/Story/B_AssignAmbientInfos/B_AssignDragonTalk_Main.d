@@ -11,7 +11,7 @@ instance DIA_DragonTalk_Main_1(C_Info)
 
 func int DIA_DragonTalk_Main_1_Condition()
 {
-	if((MIS_KilledDragons == 0) && (SC_IsWearingInnosEye == TRUE))
+	if((MIS_KilledDragons == 0) && Npc_HasItems(other,ItMi_InnosEye_MIS))
 	{
 		return TRUE;
 	};
@@ -71,7 +71,7 @@ instance DIA_DragonTalk_Main_2(C_Info)
 
 func int DIA_DragonTalk_Main_2_Condition()
 {
-	if((MIS_KilledDragons == 1) && (SC_IsWearingInnosEye == TRUE))
+	if((MIS_KilledDragons == 1) && Npc_HasItems(other,ItMi_InnosEye_MIS))
 	{
 		return TRUE;
 	};
@@ -102,7 +102,7 @@ instance DIA_DragonTalk_Main_3(C_Info)
 
 func int DIA_DragonTalk_Main_3_Condition()
 {
-	if((MIS_KilledDragons == 2) && (SC_IsWearingInnosEye == TRUE))
+	if((MIS_KilledDragons == 2) && Npc_HasItems(other,ItMi_InnosEye_MIS))
 	{
 		return TRUE;
 	};
@@ -150,7 +150,7 @@ instance DIA_DragonTalk_Main_4(C_Info)
 
 func int DIA_DragonTalk_Main_4_Condition()
 {
-	if((MIS_KilledDragons == 3) && (SC_IsWearingInnosEye == TRUE))
+	if((MIS_KilledDragons == 3) && Npc_HasItems(other,ItMi_InnosEye_MIS))
 	{
 		return TRUE;
 	};

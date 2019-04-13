@@ -33,7 +33,7 @@ instance DIA_Addon_Senyan_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Senyan_PICKPOCKET_Condition;
 	information = DIA_Addon_Senyan_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_40;
+	description = Pickpocket_60;
 };
 
 

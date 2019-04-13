@@ -89,7 +89,7 @@ func void Use_TestTrigger()
 
 instance CH(Npc_Default)
 {
-	name[0] = "Помощник по характеристикам";
+	name[0] = "Помощник по персонажу";
 	guild = GIL_NONE;
 	id = 0;
 	voice = 15;
@@ -3597,5 +3597,89 @@ func void CH_Language_Warrior()
 func void CH_Language_Priest()
 {
 	B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_3);
+};
+
+instance CH_Overlay(C_Info)
+{
+	npc = ch;
+	nr = 36;
+	condition = CH_Overlay_Condition;
+	information = CH_Overlay_Info;
+	permanent = TRUE;
+	description = "Изменить походку";
+};
+
+
+func int CH_Overlay_Condition()
+{
+	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Overlay_Info()
+{
+	Info_ClearChoices(CH_Overlay);
+	Info_AddChoice(CH_Overlay,Dialog_Back,CH_Overlay_BACK);
+	Info_AddChoice(CH_Overlay,"Женщина",CH_Overlay_Babe);
+	Info_AddChoice(CH_Overlay,"Маг",CH_Overlay_Mage);
+	Info_AddChoice(CH_Overlay,"Солдат",CH_Overlay_Militia);
+	Info_AddChoice(CH_Overlay,"Крутой",CH_Overlay_Arrogance);
+	Info_AddChoice(CH_Overlay,"Спокойный",CH_Overlay_Relaxed);
+	Info_AddChoice(CH_Overlay,"Уставший",CH_Overlay_Tired);	
+	Info_AddChoice(CH_Overlay,"Стандарт",CH_Overlay_Clear);	
+};
+
+func void CH_Overlay_BACK()
+{
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Babe()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Babe.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Mage()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Mage.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Militia()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Militia.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Arrogance()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Arrogance.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Relaxed()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Relaxed.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Tired()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Tired.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Clear()
+{
+	Mdl_RemoveOverlayMDS(other,"Humans_Arrogance.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Babe.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Mage.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Militia.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Relaxed.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Tired.mds");
+	Info_ClearChoices(CH_Overlay);
 };
 
