@@ -12,7 +12,7 @@ instance ItPo_Addon_Geist_01(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "«елье изменени€ сознани€";
+	description = NAME_Geist;
 	text[0] = "ѕримен€ть с осторожностью!";
 	text[1] = "—ильно воздействует на сознание и";
 	text[2] = "может оказать летальное действие.";
@@ -40,7 +40,7 @@ instance ItPo_Addon_Geist_02(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "«елье изменени€ сознани€";
+	description = NAME_Geist;
 	text[0] = "ѕримен€ть с осторожностью!";
 	text[1] = "—ильно воздействует на сознание и";
 	text[2] = "может оказать летальное действие.";

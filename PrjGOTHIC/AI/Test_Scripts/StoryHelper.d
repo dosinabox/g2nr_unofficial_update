@@ -10,7 +10,8 @@ instance ItPo_Story(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Власть, которую дает показ Raven Video I";
+	description = name;
+	text[0] = "Показ Raven Video I";
 };
 
 
@@ -132,12 +133,14 @@ func void b_build_settings_diag()
 	
 instance StoryHelper_PatchSettings(C_Info)
 {
-	npc = sh;
+//	npc = sh;
+	npc = NONE_100_Xardas;
+	nr = 900;
 	condition = StoryHelper_PatchSettings_Condition;
 	information = StoryHelper_PatchSettings_Info;
 	important = FALSE;
 	permanent = TRUE;
-	description = "Настройки неофициального обновления";
+	description = "(настройки неофициального обновления)";
 };
 
 

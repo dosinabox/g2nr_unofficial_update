@@ -270,7 +270,7 @@ func void Use_MCELIXIER_01()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"Эликсир изменения сознания");
+	Doc_PrintLine(nDocID,0,NAME_Geist);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Для создания этого эликсира необходим секрет из жал двух кровавых мух.");
 	Doc_PrintLines(nDocID,0,"К нему нужно добавить один экстракт маны и одну лечебную эссенцию.");

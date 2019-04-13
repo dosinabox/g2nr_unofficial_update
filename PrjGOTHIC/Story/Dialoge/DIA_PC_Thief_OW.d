@@ -79,14 +79,6 @@ func void DIA_DiegoOw_Beweise_Info()
 	if(MIS_ScoutMine == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_14");	//Хорошо, я помогу тебе, чем смогу. Но я не буду рисковать своей шкурой неизвестно из-за чего.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_12");	//Хорошо, если такова твоя задача - иди, поговори с командующим Гарондом.
-		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_13");	//Если уж кто и знает что-нибудь о нападении драконов, то это парни из замка.
-	};
-	if(MIS_ScoutMine == LOG_Running)
-	{
 		AI_Output(other,self,"DIA_DiegoOw_Garond_15_00");	//Я здесь по поручению Гаронда. Он хочет знать, сколько руды было добыто к этому времени.
 		AI_Output(self,other,"DIA_DiegoOw_Garond_11_01");	//И тогда он даст тебе доказательства?
 		AI_Output(other,self,"DIA_DiegoOw_Garond_15_02");	//Именно. Поэтому - ты можешь сказать что-нибудь на этот счет?
@@ -99,6 +91,8 @@ func void DIA_DiegoOw_Beweise_Info()
 	}
 	else
 	{
+		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_12");	//Хорошо, если такова твоя задача - иди, поговори с командующим Гарондом.
+		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_13");	//Если уж кто и знает что-нибудь о нападении драконов, то это парни из замка.
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Garond_11_01");	//Когда ты будешь в замке, можешь сказать Гаронду кое-что, что его очень заинтересует:
 	};
 	if(Npc_GetDistToWP(self,"LOCATION_02_05") <= 1000)

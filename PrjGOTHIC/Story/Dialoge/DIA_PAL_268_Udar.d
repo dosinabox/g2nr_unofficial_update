@@ -90,7 +90,7 @@ instance DIA_Udar_TeachMe(C_Info)
 
 func int DIA_Udar_TeachMe_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Udar_YouAreBest) && (Udar_TeachPlayer != TRUE))
+	if(Npc_KnowsInfo(other,DIA_Udar_YouAreBest) && (Udar_TeachPlayer == FALSE))
 	{
 		return TRUE;
 	};

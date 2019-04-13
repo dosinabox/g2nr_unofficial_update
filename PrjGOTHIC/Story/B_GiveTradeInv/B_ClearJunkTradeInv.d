@@ -104,6 +104,13 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItem(slf,ITWr_Addon_Pirates_01);
 		Npc_RemoveInvItem(slf,ItWr_Kraeuterliste);
 		Npc_RemoveInvItem(slf,ItWr_BanditLetter_MIS);
+		Npc_RemoveInvItem(slf,ItWr_KDWLetter);
+		Npc_RemoveInvItem(slf,ItWr_GilbertLetter);
+		Npc_RemoveInvItem(slf,ItWr_Manowar);
+		Npc_RemoveInvItem(slf,ItWr_Pfandbrief_MIS);
+		Npc_RemoveInvItem(slf,ItWr_Silvestro_MIS);
+		Npc_RemoveInvItem(slf,ItWr_UseLampIdiot_Mis);
+		Npc_RemoveInvItem(slf,ItWr_Krypta_Garon);
 		if(SC_SummonedAncientGhost == TRUE)
 		{
 			Npc_RemoveInvItem(slf,ItWr_Addon_SUMMONANCIENTGHOST);

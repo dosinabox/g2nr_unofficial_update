@@ -298,7 +298,7 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 	name = " орабельное свидетельство";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 50;
+	value = 0;
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseITWr_ForgedShipLetter_MIS;
@@ -306,8 +306,6 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 	description = name;
 	text[0] = "ѕисьмо о подтверждении полномочий";
 	text[1] = "на распор€жение кораблем паладинов.";
-	text[5] = NAME_Value;
-	count[5] = value;
 };
 
 

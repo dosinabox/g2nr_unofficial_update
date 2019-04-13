@@ -903,6 +903,7 @@ const string NAME_HPMax_Elixier = "Эликсир жизни";
 const string NAME_ManaMax_Elixier = "Эликсир духа";
 const string NAME_Speed_Elixier = "Зелье ускорения";
 const string NAME_MegaDrink = "Эмбарла фиргасто";
+const string NAME_Geist = "Эликсир изменения сознания";
 
 const string PRINT_PickPocketFailed = " - карманная кража не удалась!";
 const string PRINT_PickPocketSuccess = " - карманная кража удалась!";
@@ -916,6 +917,21 @@ const string NAME_TowerKey = "Ключ от башни";
 const string NAME_Beutel = "Кожаный кошелек";
 const string NAME_Bag = "Мешок";
 const string NAME_Fackel = "Факел";
+
+const string NAME_TROPHY_Teeth = "Удаление зубов";
+const string NAME_TROPHY_Claws = "Удаление когтей";
+const string NAME_TROPHY_Fur = "Снятие шкур";
+const string NAME_TROPHY_BFSting = "Жало кровавой мухи";
+const string NAME_TROPHY_BFWing = "Крылья кровавой мухи";
+const string NAME_TROPHY_DrgSnapperHorn = "Рог драконьего снеппера";
+const string NAME_TROPHY_Heart = "Удаление сердца";
+const string NAME_TROPHY_ShadowHorn = "Рог мракориса";
+const string NAME_TROPHY_ReptileSkin = "Кожа рептилий";
+const string NAME_TROPHY_Mandibles = "Удаление мандибул";
+const string NAME_TROPHY_DragonScale = "Удаление чешуи дракона";
+const string NAME_TROPHY_DragonBlood = "Сбор крови дракона";
+const string NAME_TROPHY_CrawlerPlate = "Снятие панцирей c краулеров";
+const string NAME_TROPHY_FireTongue = "Огненный язык";
 
 const string PRINT_HiddenInFish = "В этой рыбе что-то спрятано.";
 const string PRINT_UnknownEffect = "Эффект неизвестен.";

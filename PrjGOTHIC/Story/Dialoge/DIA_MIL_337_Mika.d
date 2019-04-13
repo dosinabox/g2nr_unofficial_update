@@ -12,10 +12,7 @@ instance DIA_Mika_EXIT(C_Info)
 
 func int DIA_Mika_EXIT_Condition()
 {
-	if(Kapitel <= 2)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Mika_EXIT_Info()
@@ -69,9 +66,11 @@ instance DIA_Mika_WOHIN(C_Info)
 };
 
 
+var int Mika_FirstContactChapter;
+
 func int DIA_Mika_WOHIN_Condition()
 {
-	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) && (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_03") >= 3000))
+	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) && (Npc_GetDistToWP(self,"NW_CITY_TO_FOREST_01") < 700))
 	{
 		return TRUE;
 	};
@@ -80,6 +79,7 @@ func int DIA_Mika_WOHIN_Condition()
 func void DIA_Mika_WOHIN_Info()
 {
 	AI_Output(self,other,"DIA_Mika_WOHIN_12_00");	//Эй, эй! Не так быстро. Прогуливаться здесь одному довольно опасно. Откуда ты идешь?
+	Mika_FirstContactChapter = Kapitel;
 	Info_ClearChoices(DIA_Mika_WOHIN);
 	Info_AddChoice(DIA_Mika_WOHIN,"Это не твое дело.",DIA_Mika_WOHIN_weg);
 	if(other.guild == GIL_NONE)
@@ -157,7 +157,7 @@ instance DIA_Mika_WASKOSTETHILFE(C_Info)
 
 func int DIA_Mika_WASKOSTETHILFE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WASGEFAEHRLICH))
+	if(Npc_KnowsInfo(other,DIA_Mika_WASGEFAEHRLICH) && (Mika_Helps == FALSE))
 	{
 		return TRUE;
 	};
@@ -219,7 +219,7 @@ instance DIA_Mika_UEBERLEGT(C_Info)
 
 func int DIA_Mika_UEBERLEGT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -254,9 +254,20 @@ instance DIA_Mika_HILFE(C_Info)
 
 func int DIA_Mika_HILFE_Condition()
 {
-	if((Mika_Helps == TRUE) && (self.aivar[AIV_PARTYMEMBER] == FALSE))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE))
 	{
-		return TRUE;
+		if(Mika_Helps == TRUE)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_PAL)
+		{
+			return TRUE;
+		};
+		if(other.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -264,11 +275,12 @@ func void DIA_Mika_HILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_HILFE_15_00");	//Мне нужна твоя помощь.
 	AI_Output(self,other,"DIA_Mika_HILFE_12_01");	//Ну, если это так необходимо... Что случилось?
+	Mika_Helps = TRUE;
 	Info_ClearChoices(DIA_Mika_HILFE);
 	Info_AddChoice(DIA_Mika_HILFE,Dialog_Back,DIA_Mika_HILFE_BACK);
 	Info_AddChoice(DIA_Mika_HILFE,"Меня преследуют бандиты.",DIA_Mika_HILFE_schongut);
 	Info_AddChoice(DIA_Mika_HILFE,"На меня напали монстры.",DIA_Mika_HILFE_monster);
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && ((Akils_SLDStillthere == TRUE) || Npc_KnowsInfo(other,DIA_Sarah_Bauern)))
+	if((!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo)) && ((Akils_SLDStillthere == TRUE) || Npc_KnowsInfo(other,DIA_Sarah_Bauern)))
 	{
 		Info_AddChoice(DIA_Mika_HILFE,"На фермера Акила напали наемники.",DIA_Mika_HILFE_Akil);
 	};
@@ -371,31 +383,6 @@ func void DIA_Mika_WIEDERNACHHAUSE_Info()
 };
 
 
-instance DIA_Mika_Kap3_EXIT(C_Info)
-{
-	npc = MIL_337_Mika;
-	nr = 999;
-	condition = DIA_Mika_Kap3_EXIT_Condition;
-	information = DIA_Mika_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Mika_Kap3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Mika_Kap3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Mika_Kap3u4u5_PERM(C_Info)
 {
 	npc = MIL_337_Mika;
@@ -410,7 +397,12 @@ instance DIA_Mika_Kap3u4u5_PERM(C_Info)
 func int DIA_Mika_Kap3u4u5_PERM_Condition()
 {
 //	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Mika_WOHIN) && Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
-	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Mika_WOHIN) && ((Npc_IsDead(Alvares) && Npc_IsDead(Engardo)) || (TOPIC_END_AkilsSLDStillthere == FALSE)))
+//	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Mika_WOHIN) && ((Npc_IsDead(Alvares) && Npc_IsDead(Engardo)) || (TOPIC_END_AkilsSLDStillthere == FALSE)))
+	if(Kapitel > Mika_FirstContactChapter)
+	{
+		return TRUE;
+	};
+	if(Npc_KnowsInfo(other,DIA_Mika_Zack) && Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
 	{
 		return TRUE;
 	};

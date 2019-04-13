@@ -68,15 +68,18 @@ func void DIA_Addon_Merdarion_Aufgabe_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_Aufgabe_15_00");	//Что ты хочешь здесь сделать?
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_01");	//Я пытаюсь выяснить, куда ведет этот круглый портал.
-	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_02");	//И еще я помогаю Нефариусу искать потерянный орнамент.
+	if(MIS_Addon_Nefarius_BringMissingOrnaments != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_02");	//И еще я помогаю Нефариусу искать потерянный орнамент.
+		if(!Npc_KnowsInfo(other,DIA_Addon_Nefarius_SCbringOrnaments))
+		{
+			B_LogEntry(TOPIC_Addon_KDW,"Нефариус ищет пропавший орнамент.");
+		};
+	};
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_03");	//Можно сказать с уверенностью, что этот портал ведет в ту часть острова, которая доселе нам была неизвестна.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_04");	//(задумываясь) Я даже, пожалуй, никогда не слышал и не читал про нее...
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(Cronos_NW,"START");
-	if(!Npc_KnowsInfo(other,DIA_Addon_Nefarius_SCbringOrnaments))
-	{
-		B_LogEntry(TOPIC_Addon_KDW,"Нефариус ищет пропавший орнамент.");
-	};
 };
 
 

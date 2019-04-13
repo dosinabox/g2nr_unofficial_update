@@ -276,13 +276,20 @@ func int DIA_DiegoNW_HaveYourGold_Condition()
 	};
 };
 
-func void b_diegonw_diegosrevenge()
+func void B_DiegoNW_DiegosRevenge()
 {
-	AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_05");	//Очень хорошо. Пусть Гербрандт теперь дрожит от страха.
+	if(!Npc_IsDead(Gerbrandt))
+	{
+		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_05");	//Очень хорошо. Пусть Гербрандт теперь дрожит от страха.
+	}
+	else
+	{
+		B_Say(self,other,"$ABS_GOOD");
+	};
+	MIS_HelpDiegoNW = LOG_SUCCESS;
+	B_GivePlayerXP(XP_HelpDiegoNW);
 };
 
-
-var int DiegosRevenge;
 
 func void DIA_DiegoNW_HaveYourGold_Info()
 {
@@ -291,8 +298,7 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 	if(Npc_HasItems(other,ItSe_DiegosTreasure_Mis))
 	{
 		B_GiveInvItems(other,self,ItSe_DiegosTreasure_Mis,1);
-		b_diegonw_diegosrevenge();
-		DiegosRevenge = TRUE;
+		B_DiegoNW_DiegosRevenge();
 	}
 	else if(Npc_HasItems(other,ItMi_Gold) < DiegosTreasure)
 	{
@@ -303,10 +309,9 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 	else
 	{
 		B_GiveInvItems(other,self,ItMi_Gold,DiegosTreasure);
-		b_diegonw_diegosrevenge();
-		DiegosRevenge = TRUE;
+		B_DiegoNW_DiegosRevenge();
 	};
-	if(!Npc_IsDead(Gerbrandt) && (DiegosRevenge == TRUE))
+	if(!Npc_IsDead(Gerbrandt) && (MIS_HelpDiegoNW == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_06");	//Послушай, я все еще не договорился со стражей.
 		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_07");	//Я хочу, чтобы ты отнес это письмо Гербрандту. Это один из торговцев в верхнем квартале.
@@ -314,9 +319,7 @@ func void DIA_DiegoNW_HaveYourGold_Info()
 		CreateInvItems(self,ItWr_DiegosLetter_MIS,1);
 		B_GiveInvItems(self,other,ItWr_DiegosLetter_MIS,1);
 		B_StartOtherRoutine(Gerbrandt,"WaitForDiego");
-		MIS_HelpDiegoNW = LOG_SUCCESS;
 		MIS_DiegosResidence = LOG_Running;
-		B_GivePlayerXP(XP_HelpDiegoNW);
 		Log_CreateTopic(TOPIC_DiegosResidence,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_DiegosResidence,LOG_Running);
 		B_LogEntry(TOPIC_DiegosResidence,"Диего дал мне письмо для торговца Гербрандта.");

@@ -49,7 +49,7 @@ instance DIA_Gerbrandt_PICKPOCKET(C_Info)
 func int DIA_Gerbrandt_PICKPOCKET_Condition()
 {
 //	if(C_StealItems(30,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (DIEGO_COMING != TRUE))
-	if(Npc_HasItems(self,ItSe_GoldPocket100) && (DIEGO_COMING != TRUE))
+	if(Npc_HasItems(self,ItSe_GoldPocket100) && (DIEGO_COMING == FALSE))
 	{
 //		return TRUE;
 		return C_StealItem(30,Hlp_GetInstanceID(ItSe_GoldPocket100));

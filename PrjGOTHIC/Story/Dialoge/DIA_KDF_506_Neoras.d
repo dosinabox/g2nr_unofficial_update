@@ -159,7 +159,7 @@ func void DIA_Neoras_Flieder_Info()
 	AI_Output(other,self,"DIA_Neoras_Flieder_15_00");	//Я принес тебе огненную крапиву.
 	if(B_GiveInvItems(other,self,ItPl_Mana_Herb_01,7))
 	{
-		AI_Output(self,other,"DIA_Neoras_Flieder_01_01");	//Превосходно, теперь я могу работать. Возьми этот свиток с заклинанием 'Кулак Ветра', надеюсь, он тебе пригодится.
+		AI_Output(self,other,"DIA_Neoras_Flieder_01_01");	//Превосходно, теперь я могу работать. Возьми этот свиток с заклинанием 'Кулак ветра', надеюсь, он тебе пригодится.
 		MIS_NeorasPflanzen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_NeorasPflanzen);
 		B_GiveInvItems(self,other,ItSc_Windfist,1);

@@ -39,10 +39,7 @@ instance DIA_Lares_Kap1_EXIT(C_Info)
 
 func int DIA_Lares_Kap1_EXIT_Condition()
 {
-	if(Kapitel == 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Lares_Kap1_EXIT_Info()
@@ -1315,6 +1312,7 @@ func void DIA_Lares_OtherGuild_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_OtherGuild_09_00");	//Я слышал, тебя приняли в ряды наемников Ли?
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_10");	//Поздравляю.
 	};
+	AI_StopProcessInfos(self);
 };
 
 
@@ -2125,56 +2123,6 @@ func void DIA_Lares_TEACHSTR_5()
 };
 
 
-instance DIA_Lares_Kap2_EXIT(C_Info)
-{
-	npc = VLK_449_Lares;
-	nr = 999;
-	condition = DIA_Lares_Kap2_EXIT_Condition;
-	information = DIA_Lares_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lares_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lares_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Lares_Kap3_EXIT(C_Info)
-{
-	npc = VLK_449_Lares;
-	nr = 999;
-	condition = DIA_Lares_Kap3_EXIT_Condition;
-	information = DIA_Lares_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lares_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lares_Kap3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Lares_AnyNews(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -2253,31 +2201,6 @@ func void DIA_Lares_NewsAboutBennet_Info()
 };
 
 
-instance DIA_Lares_Kap4_EXIT(C_Info)
-{
-	npc = VLK_449_Lares;
-	nr = 999;
-	condition = DIA_Lares_Kap4_EXIT_Condition;
-	information = DIA_Lares_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lares_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lares_Kap4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Lares_Kap4_PERM(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -2302,31 +2225,6 @@ func void DIA_Lares_Kap4_PERM_Info()
 	AI_Output(other,self,"DIA_Lares_Kap4_PERM_15_00");	//Почему ты не охотишься на драконов?
 	AI_Output(self,other,"DIA_Lares_Kap4_PERM_09_01");	//Это не по мне. Пусть этим занимаются другие.
 	AI_Output(self,other,"DIA_Lares_Kap4_PERM_09_02");	//Нет уж, спасибо. Чистый морской воздух - это все, что мне сейчас нужно.
-};
-
-
-instance DIA_Lares_Kap5_EXIT(C_Info)
-{
-	npc = VLK_449_Lares;
-	nr = 999;
-	condition = DIA_Lares_Kap5_EXIT_Condition;
-	information = DIA_Lares_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lares_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lares_Kap5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

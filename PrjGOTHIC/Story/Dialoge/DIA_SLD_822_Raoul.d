@@ -410,7 +410,7 @@ instance DIA_Raoul_TrophyFur(C_Info)
 	information = DIA_Raoul_TrophyFur_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Сначала скажи мне, как снять шкуру с черного тролля.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
-	description = B_BuildLearnString("Снятие шкуры черного тролля.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
+	description = B_BuildLearnString("Снятие шкуры черного тролля",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
 };
 
 

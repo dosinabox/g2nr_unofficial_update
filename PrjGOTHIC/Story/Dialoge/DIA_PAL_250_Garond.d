@@ -12,10 +12,7 @@ instance DIA_garond_EXIT(C_Info)
 
 func int DIA_Garond_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Garond_EXIT_Info()
@@ -319,7 +316,7 @@ func void DIA_Garond_NeedProof_Info()
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
 	B_LogEntry(TOPIC_ScoutMine,"Командующий Гаронд дал мне поручение. Он отправил три группы старателей добывать магическую руду. И до сих пор они не вернулись.");
 	B_LogEntry(TOPIC_ScoutMine,"Я должен найти эти три группы старателей и выяснить, сколько руды удалось им добыть.");
-	if(Silvestro_Ore == TRUE)
+	if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
 	{
 		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 	};
@@ -504,9 +501,16 @@ instance DIA_Garond_Silvestro(C_Info)
 
 func int DIA_Garond_Silvestro_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && ((Silvestro_Ore == TRUE) || Npc_IsDead(PC_ThiefOW)))
+	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
+		{
+			return TRUE;
+		}
+		else if(Npc_IsDead(DiegoOW) && (Silvestro_Ore == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -517,6 +521,7 @@ func void DIA_Garond_Silvestro_Info()
 	if(!Npc_HasItems(PAL_Leiche1,ItWr_Silvestro_MIS) || Npc_KnowsInfo(other,DIA_DiegoOw_Mine))
 	{
 		AI_Output(other,self,"DIA_Garond_Silvestro_15_02");	//Все, кто находился в шахте, мертвы. Растерзаны краулерами.
+		AI_Output(self,other,"DIA_Garond_Silvestro_10_05");	//Черт! Это были хорошие люди - да проявит Иннос милосердие к их душам.
 	}
 	else
 	{
@@ -524,7 +529,6 @@ func void DIA_Garond_Silvestro_Info()
 	};
 	AI_Output(self,other,"DIA_Garond_Silvestro_10_03");	//А что насчет руды? Ты знаешь, сколько они добыли?
 	AI_Output(other,self,"DIA_Garond_Silvestro_15_04");	//Им удалось спрятать несколько ящиков. Они в пещере - по пути от замка к шахте.
-	AI_Output(self,other,"DIA_Garond_Silvestro_10_05");	//Черт! Это были хорошие люди - да проявит Иннос милосердие к их душам.
 	Ore_Counter += 1;
 	B_GivePlayerXP(XP_Silvestro_Ore);
 	if(Ore_Counter >= 3)
@@ -772,31 +776,6 @@ func void DIA_Garond_Perm2_Info()
 };
 
 
-instance DIA_Garond_KAP3_EXIT(C_Info)
-{
-	npc = PAL_250_Garond;
-	nr = 999;
-	condition = DIA_Garond_KAP3_EXIT_Condition;
-	information = DIA_Garond_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Garond_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Garond_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Garond_WASGIBTSNEUES(C_Info)
 {
 	npc = PAL_250_Garond;
@@ -821,31 +800,6 @@ func void DIA_Garond_WASGIBTSNEUES_Info()
 	AI_Output(other,self,"DIA_Garond_WASGIBTSNEUES_15_00");	//Что нового?
 	AI_Output(self,other,"DIA_Garond_WASGIBTSNEUES_10_01");	//Черт. Что ты тут ошиваешься? Мне нужно подкрепление!
 	AI_Output(self,other,"DIA_Garond_WASGIBTSNEUES_10_02");	//Даже Милтен покинул замок. Но мне не нужно несколько человек - мне нужно БОЛЬШОЕ подкрепление!
-};
-
-
-instance DIA_Garond_KAP4_EXIT(C_Info)
-{
-	npc = PAL_250_Garond;
-	nr = 999;
-	condition = DIA_Garond_KAP4_EXIT_Condition;
-	information = DIA_Garond_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Garond_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Garond_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -1095,31 +1049,6 @@ func void DIA_Garond_JanBecomeSmith_Yes()
 };
 
 
-instance DIA_Garond_KAP5_EXIT(C_Info)
-{
-	npc = PAL_250_Garond;
-	nr = 999;
-	condition = DIA_Garond_KAP5_EXIT_Condition;
-	information = DIA_Garond_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Garond_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Garond_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Garond_PERM5(C_Info)
 {
 	npc = PAL_250_Garond;
@@ -1152,29 +1081,3 @@ func void DIA_Garond_PERM5_Info()
 		AI_Output(self,other,"DIA_Garond_PERM5_10_03");	//Мы все здесь помрем как мухи, если Хаген не прибудет как можно скорее.
 	};
 };
-
-/*
-instance DIA_Garond_KAP6_EXIT(C_Info)
-{
-	npc = PAL_250_Garond;
-	nr = 999;
-	condition = DIA_Garond_KAP6_EXIT_Condition;
-	information = DIA_Garond_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Garond_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Garond_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/

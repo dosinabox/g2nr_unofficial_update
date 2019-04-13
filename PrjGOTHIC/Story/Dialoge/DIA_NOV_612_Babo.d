@@ -415,9 +415,9 @@ func void DIA_Babo_Fegen_Info()
 {
 	AI_Output(other,self,"DIA_Babo_Fegen_15_00");	//Я должен подметать кельи послушников.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_01");	//Ты взвалил на себя слишком много работы. Знаешь что - я помогу тебе. Тебе ни за что не справиться одному.
-	AI_Output(self,other,"DIA_Babo_Fegen_03_02");	//Но мне очень нужен свиток с заклинанием 'Кулак Ветра'. Знаешь, мне повезло, и мне было позволено прочесть книгу о нем.
+	AI_Output(self,other,"DIA_Babo_Fegen_03_02");	//Но мне очень нужен свиток с заклинанием 'Кулак ветра'. Знаешь, мне повезло, и мне было позволено прочесть книгу о нем.
 	AI_Output(self,other,"DIA_Babo_Fegen_03_03");	//И теперь, естественно, я хочу испытать это заклинание. Так что если ты мне принесешь этот свиток, я помогу тебе.
-	B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников, если я принесу ему свиток с заклинанием 'Кулак Ветра'.");
+	B_LogEntry(Topic_ParlanFegen,"Бабо поможет мне подмести кельи послушников, если я принесу ему свиток с заклинанием 'Кулак ветра'.");
 };
 
 
@@ -445,7 +445,7 @@ func int DIA_Babo_Windfaust_Condition()
 func void DIA_Babo_Windfaust_Info()
 {
 	AI_Output(other,self,"DIA_Babo_Windfaust_15_00");	//Насчет свитка...
-	AI_Output(self,other,"DIA_Babo_Windfaust_03_01");	//У тебя есть свиток 'Кулак Ветра' для меня?
+	AI_Output(self,other,"DIA_Babo_Windfaust_03_01");	//У тебя есть свиток 'Кулак ветра' для меня?
 	if(B_GiveInvItems(other,self,ItSc_Windfist,1))
 	{
 		AI_Output(other,self,"DIA_Babo_Windfaust_15_02");	//Вот свиток, который ты хотел получить.

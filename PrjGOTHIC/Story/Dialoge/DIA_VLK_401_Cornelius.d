@@ -148,7 +148,7 @@ instance DIA_Cornelius_DontBelieveYou(C_Info)
 
 func int DIA_Cornelius_DontBelieveYou_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cornelius_Enough) && (Cornelius_TellTruth != TRUE))
+	if(Npc_KnowsInfo(other,DIA_Cornelius_Enough) && (Cornelius_TellTruth == FALSE))
 	{
 		return TRUE;
 	};

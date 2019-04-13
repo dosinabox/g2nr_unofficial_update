@@ -113,7 +113,7 @@ func void DIA_Sentenza_Hello_HandsOff()
 	AI_Output(other,self,"DIA_Sentenza_Hello_HandsOff_15_00");	//Не распускай руки!
 	AI_Output(self,other,"DIA_Sentenza_Hello_HandsOff_09_01");	//(угрожающе) А то что?
 	Info_ClearChoices(DIA_Sentenza_Hello);
-	Info_AddChoice(DIA_Sentenza_Hello,"Или ничего. Обыщи меня!",DIA_Sentenza_Hello_SearchMe);
+	Info_AddChoice(DIA_Sentenza_Hello,"Как хочешь. Можешь обыскать меня!",DIA_Sentenza_Hello_SearchMe);
 	Info_AddChoice(DIA_Sentenza_Hello,"А то ты долго не сможешь никого обыскивать!",DIA_Sentenza_Hello_OrElse);
 };
 
@@ -226,17 +226,21 @@ func void DIA_Sentenza_Vote_Info()
 	if((Npc_HasItems(self,ItMi_Gold) >= 50) && ((Sentenza_GoldTaken == TRUE) || (Sentenza_GoldGiven == TRUE)))
 	{
 		AI_Output(self,other,"DIA_Sentenza_Vote_09_02");	//Хотя, почему бы и нет? 50 золотых - это разумная плата за мой голос, тебе так не кажется?
-		Sentenza_Stimme = TRUE;
-		if(Torlof_GenugStimmen == FALSE)
+		if(Sentenza_Stimme == FALSE)
 		{
-			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			if(Torlof_GenugStimmen == FALSE)
+			{
+				Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			};
+			B_LogEntry(TOPIC_SLDRespekt,"Сентенза не возражает против моего вступления в ряды наемников.");
 		};
-		B_LogEntry(TOPIC_SLDRespekt,"Сентенза не возражает против моего вступления в ряды наемников.");
+		Sentenza_Stimme = TRUE;
 	}
 	else if((Sentenza_Stimme == TRUE) && (Npc_HasItems(self,ItMi_Gold) < 50))
 	{
 		AI_Output(self,other,"DIA_Sentenza_Vote_09_03");	//После того, как ты забрал мое золото? Вряд ли, мой мальчик.
+		Sentenza_Wants50 = TRUE;
 	}
 	else
 	{
@@ -284,7 +288,7 @@ func void DIA_Sentenza_Pay50_Info()
 };
 
 
-var int Sentenza_Einmal;
+//var int Sentenza_Einmal;
 
 instance DIA_Sentenza_GoldBack(C_Info)
 {
@@ -301,21 +305,23 @@ func int DIA_Sentenza_GoldBack_Condition()
 {
 	if(Npc_HasItems(self,ItMi_Gold) >= 50)
 	{
-		if((Sentenza_GoldGiven == FALSE) || (other.guild == GIL_SLD))
+		/*if((Sentenza_GoldGiven == FALSE) || (other.guild == GIL_SLD))
 		{
 			return TRUE;
-		};
+		};*/
+		return TRUE;
 	};
 };
 
 func void DIA_Sentenza_GoldBack_Info()
 {
 	AI_Output(other,self,"DIA_Sentenza_GoldBack_15_00");	//Верни мне мое золото!
-	if((other.guild == GIL_SLD) && (Torlof_SentenzaCounted == TRUE) && (Sentenza_Einmal == FALSE))
+//	if((other.guild == GIL_SLD) && (Torlof_SentenzaCounted == TRUE) && (Sentenza_Einmal == FALSE))
+	if(Torlof_SentenzaCounted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Sentenza_GoldBack_09_01");	//После того, как я проголосовал за тебя?
 		AI_Output(self,other,"DIA_Sentenza_GoldBack_09_02");	//Ах ты, мерзкий попрошайка!
-		Sentenza_Einmal = TRUE;
+//		Sentenza_Einmal = TRUE;
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);
 	}
@@ -419,13 +425,21 @@ instance DIA_Sentenza_PICKPOCKET(C_Info)
 	condition = DIA_Sentenza_PICKPOCKET_Condition;
 	information = DIA_Sentenza_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_60;
+	description = "(украсть его кольцо будет довольно рискованно)";
 };
 
 
 func int DIA_Sentenza_PICKPOCKET_Condition()
 {
-	return C_Beklauen(56,65);
+//	return C_Beklauen(56,65);
+	if(Npc_HasItems(self,ItMi_GoldRing))
+	{
+		return C_StealItem(56,Hlp_GetInstanceID(ItMi_GoldRing));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Sentenza_PICKPOCKET_Info()
@@ -437,7 +451,8 @@ func void DIA_Sentenza_PICKPOCKET_Info()
 
 func void DIA_Sentenza_PICKPOCKET_DoIt()
 {
-	B_Beklauen();
+//	B_Beklauen();
+	B_StealItem(56,Hlp_GetInstanceID(ItMi_GoldRing));
 	Info_ClearChoices(DIA_Sentenza_PICKPOCKET);
 };
 

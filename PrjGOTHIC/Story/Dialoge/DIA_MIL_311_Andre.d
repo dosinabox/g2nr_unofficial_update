@@ -1570,7 +1570,7 @@ instance DIA_Addon_Andre_MissingPeople(C_Info)
 
 func int DIA_Addon_Andre_MissingPeople_Condition()
 {
-	if((SC_HearedAboutMissingPeople == TRUE) && (other.guild == GIL_MIL))
+	if((SC_HearedAboutMissingPeople == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL)))
 	{
 		return TRUE;
 	};
@@ -1584,7 +1584,10 @@ func void DIA_Addon_Andre_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Andre_MissingPeople_08_03");	//Лорд Хаген поручил мне защиту города и близлежащих ферм.
 	AI_Output(self,other,"DIA_Addon_Andre_MissingPeople_08_04");	//Это значит, что мы заботимся о тех людях, которые все еще ЗДЕСЬ.
 	AI_Output(self,other,"DIA_Addon_Andre_MissingPeople_08_05");	//Солдаты ополчения патрулируют по ночам улицы. Это все, что я могу сделать.
-	AI_Output(self,other,"DIA_Addon_Andre_MissingPeople_08_06");	//А ТЫ будешь заниматься тем, чем я тебе прикажу. Понимаешь меня?
+	if(other.guild == GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Addon_Andre_MissingPeople_08_06");	//А ТЫ будешь заниматься тем, чем я тебе прикажу. Понимаешь меня?
+	};
 	MIS_Addon_Andre_MissingPeople = LOG_Running;
 };
 
@@ -1601,7 +1604,7 @@ instance DIA_Addon_Andre_MissingPeople2(C_Info)
 
 func int DIA_Addon_Andre_MissingPeople2_Condition()
 {
-	if((SC_HearedAboutMissingPeople == TRUE) && (other.guild != GIL_MIL))
+	if((SC_HearedAboutMissingPeople == TRUE) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -1731,7 +1734,7 @@ instance DIA_Andre_Cornelius_Liar(C_Info)
 
 func int DIA_Andre_Cornelius_Liar_Condition()
 {
-	if((Cornelius_ThreatenByMilSC == TRUE) && (CorneliusFlee != TRUE) && (MIS_RescueBennet != LOG_SUCCESS))
+	if((Cornelius_ThreatenByMilSC == TRUE) && (CorneliusFlee == FALSE) && (MIS_RescueBennet != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

@@ -181,7 +181,7 @@ instance DIA_Addon_Gaan_MissingPeople(C_Info)
 
 func int DIA_Addon_Gaan_MissingPeople_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Gaan_AufgabeBeimRing) && (SC_HearedAboutMissingPeople == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Gaan_AufgabeBeimRing) && (SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};
@@ -299,11 +299,22 @@ func int DIA_Gaan_WASZAHLSTDU_Condition()
 	};
 };
 
+var int Gaan_Deal;
+
 func void DIA_Gaan_WASZAHLSTDU_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_WASZAHLSTDU_15_00");	//Сколько ты заплатишь, если я убью этого зверя для тебя?
 	AI_Output(self,other,"DIA_Gaan_WASZAHLSTDU_03_01");	//Я бы отдал тому, кто убьет этого зверя, все, что у меня есть.
-	B_Say_Gold(self,other,30);
+	if((Gaan_TeachPlayer == TRUE) && (Npc_HasItems(self,ItMi_Gold) >= 100))
+	{
+		Gaan_Deal = 150;
+		B_Say_Gold(self,other,Gaan_Deal);
+	}
+	else
+	{
+		Gaan_Deal = 50;
+		B_Say_Gold(self,other,Gaan_Deal);
+	};
 	MIS_Gaan_Deal = LOG_Running;
 };
 
@@ -360,8 +371,8 @@ func void DIA_Gaan_MONSTERTOT_Info()
 	if(MIS_Gaan_Deal == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_02");	//Вот деньги, что я обещал тебе.
-		CreateInvItems(self,ItMi_Gold,30);
-		B_GiveInvItems(self,other,ItMi_Gold,30);
+		CreateInvItems(self,ItMi_Gold,50);
+		B_GiveInvItems(self,other,ItMi_Gold,Gaan_Deal);
 	};
 	MIS_Gaan_Snapper = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Gaan_WaldSnapper);
@@ -390,7 +401,10 @@ func int DIA_Gaan_AskTeacher_Condition()
 func void DIA_Gaan_AskTeacher_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_AskTeacher_15_00");	//Ты можешь научить меня охотиться?
-	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_01");	//Нет проблем. За 100 золотых монет я могу показать тебе, как выпотрошить животных, которых ты убьешь.
+	if(SC_IsRanger == FALSE)
+	{
+		AI_Output(self,other,"DIA_Gaan_AskTeacher_03_01");	//Нет проблем. За 100 золотых монет я могу показать тебе, как выпотрошить животных, которых ты убьешь.
+	};
 	AI_Output(self,other,"DIA_Gaan_AskTeacher_03_02");	//Шкуры и другие трофеи можно выгодно продать на рынке.
 	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
 	B_LogEntry(TOPIC_OutTeacher,"Гаан может обучить меня добывать трофеи животных.");
@@ -451,38 +465,42 @@ func int DIA_Gaan_TEACHHUNTING_Condition()
 	{
 		return TRUE;
 	};
+	if((SC_IsRanger == TRUE) && Npc_KnowsInfo(other,DIA_Gaan_AskTeacher))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Gaan_TEACHHUNTING_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
-	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_SUCCESS)))
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_SUCCESS)))
 	{
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_03_01");	//Это зависит от того, что ты уже знаешь.
 		Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 		{
-			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Удаление зубов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Gaan_TEACHHUNTING_Teeth);
+			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_Teeth,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Gaan_TEACHHUNTING_Teeth);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
 		{
-			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Удаление когтей",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),DIA_Gaan_TEACHHUNTING_Claws);
+			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_Claws,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),DIA_Gaan_TEACHHUNTING_Claws);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 		{
-			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Снятие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Gaan_TEACHHUNTING_Fur);
+			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Gaan_TEACHHUNTING_Fur);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 		{
-			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Жало кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFSting)),DIA_Gaan_TEACHHUNTING_BFSting);
+			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_BFSting,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFSting)),DIA_Gaan_TEACHHUNTING_BFSting);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
 		{
-			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Крылья кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFWing)),DIA_Gaan_TEACHHUNTING_BFWing);
+			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_BFWing,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFWing)),DIA_Gaan_TEACHHUNTING_BFWing);
 		};
 		if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_SUCCESS))
 		{
-			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString("Рог драконьего снеппера",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DrgSnapperHorn)),DIA_Gaan_TEACHHUNTING_DrgSnapperHorn);
+			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_DrgSnapperHorn,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DrgSnapperHorn)),DIA_Gaan_TEACHHUNTING_DrgSnapperHorn);
 		};
 	}
 	else

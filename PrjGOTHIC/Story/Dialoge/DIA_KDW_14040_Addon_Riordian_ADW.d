@@ -668,17 +668,14 @@ func void DIA_Riordian_ADW_TeachAlchemy_Info()
 	};
 	if(talente > 0)
 	{
-		if(Alchemy_Explain != TRUE)
+		if(Alchemy_Explain == FALSE)
 		{
 			AI_Output(self,other,"DIA_Addon_Riordian_ADW_TeachAlchemy_10_01");	//Магические зелья изготавливаются на алхимическом столе. Мы установили такой стол в одном из зданий наверху.
 			AI_Output(self,other,"DIA_Addon_Riordian_ADW_TeachAlchemy_10_02");	//Тебе понадобится пустая колба, ингредиенты и, конечно, знание рецепта зелья.
 			AI_Output(self,other,"DIA_Addon_Riordian_ADW_TeachAlchemy_10_03");	//Рецептам ты можешь научиться у меня. Все остальное тебе придется добыть самому.
 			Alchemy_Explain = TRUE;
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Addon_Riordian_ADW_TeachAlchemy_10_04");	//Какой рецепт ты хочешь выучить?
 		};
+		AI_Output(self,other,"DIA_Addon_Riordian_ADW_TeachAlchemy_10_04");	//Какой рецепт ты хочешь выучить?
 	}
 	else
 	{

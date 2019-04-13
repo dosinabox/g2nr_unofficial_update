@@ -2064,7 +2064,7 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(MIL_316_Wambo,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_321_Rangar,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(MIL_326_Miliz,"NW_CITY_ENTRANCE_01");
-	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");	//мальчик на побегушках
+	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");
 	Wld_InsertItem(ItWr_OneHStonePlate2_Addon,"FP_ROAM_INSEL_07");
 	Wld_InsertItem(ItWr_BowStonePlate2_Addon,"FP_ROAM_INSEL_10");
 	/*Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
@@ -3353,7 +3353,7 @@ func void INIT_NewWorld()
 	B_InitNpcGlobals();
 	b_enter_newworld();
 	b_cycle_function();
-	if((Diebesgilde_Verraten == TRUE) && (Andre_Diebesgilde_aufgeraeumt != TRUE))
+	if((Diebesgilde_Verraten == TRUE) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
 	{
 		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
 		{
