@@ -617,10 +617,13 @@ func void DIA_Bennet_WhyPrison_Info()
 	AI_Output(other,self,"DIA_Bennet_WhyPrison_15_03");	//Зачем бы им это?
 	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_04");	//Откуда мне знать? Ты должен вытащить меня отсюда.
 	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_05");	//Поговори с лордом Хагеном, проломи стену... ну, я не знаю... сделай же что-нибудь!
-	MIS_RescueBennet = LOG_Running;
-	Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
-	B_LogEntry(TOPIC_RescueBennet,"У Беннета серьезные проблемы. Он на все готов, чтобы только вырваться из тюрьмы.");
+	if(MIS_RescueBennet != LOG_Running)
+	{
+		MIS_RescueBennet = LOG_Running;
+		Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+		B_LogEntry(TOPIC_RescueBennet,"У Беннета серьезные проблемы. Он на все готов, чтобы только вырваться из тюрьмы.");
+	};
 };
 
 

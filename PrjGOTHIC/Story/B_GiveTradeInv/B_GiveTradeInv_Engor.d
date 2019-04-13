@@ -28,7 +28,10 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Pyrokinesis,1);
 		CreateInvItems(slf,ItSc_SumDemon,1);
 		CreateInvItems(slf,ItRw_Mil_Crossbow,1);
-		CreateInvItems(slf,ItPl_Dex_Herb_01,1);
+		if(RandomGoblinBerries == FALSE)
+		{
+			CreateInvItems(slf,ItPl_Dex_Herb_01,1);
+		};
 		Engor_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (Engor_ItemsGiven_Chapter_2 == FALSE))

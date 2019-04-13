@@ -1513,12 +1513,11 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
+	//AI_Teleport(Cornelius,"NW_CITY_HABOUR_KASERN_BORKA");
+	//B_NpcSetJailed(Cornelius);
+	//B_StartOtherRoutine(Cornelius,"PRISON");
 	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
-	Wld_InsertNpc(BDT_1033_Fluechtling,"NW_TAVERNE_IN_06");
-	Wld_InsertNpc(BDT_1034_Fluechtling,"NW_TAVERNE_IN_06");
-	Wld_InsertNpc(BDT_1035_Fluechtling,"NW_BIGFARM_HOUSE_OUT_05");
-	Wld_InsertNpc(BDT_1030_Morgahard,"NW_BIGFARM_HOUSE_OUT_05");
 };
 
 instance WastelandRune(C_Item)

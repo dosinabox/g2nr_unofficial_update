@@ -56,19 +56,6 @@ func int B_AssessEnemy()
 		B_Flee();
 		return FALSE;
 	};
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius)) && (Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000) && !Npc_IsPlayer(other))
-	{
-		B_Flee();
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1031_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
-	{
-		return FALSE;
-	};
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1032_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
-	{
-		return FALSE;
-	};
 	if(((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE)) && (other.guild == GIL_ORC) && (CurrentLevel == NEWWORLD_ZEN))
 	{
 		if(C_NpcIsAfraidOfOrcs(self))
@@ -115,6 +102,18 @@ func int B_AssessEnemy()
 		return FALSE;
 	};
 	if(((self.aivar[AIV_EnemyOverride] == TRUE) || (other.aivar[AIV_EnemyOverride] == TRUE)) && (other.guild < GIL_SEPERATOR_HUM))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius)) && (Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000) && !Npc_IsPlayer(other))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1031_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1032_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
 	{
 		return FALSE;
 	};

@@ -1148,7 +1148,7 @@ instance ItKe_ThiefTreasure(C_Item)
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Маленький ключик.";
+	text[0] = "Маленький ключик от Ханны.";
 	inv_zbias = 190;
 };
 

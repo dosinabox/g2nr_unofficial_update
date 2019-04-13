@@ -278,6 +278,7 @@ func void DIA_Pyrokar_TEST_Info()
 	Ulf.aivar[AIV_NewsOverride] = TRUE;
 	Ulf.aivar[AIV_IgnoresArmor] = TRUE;
 	Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
+	Ulf.guild = GIL_NOV;
 	MIS_SCHNITZELJAGD = LOG_Running;
 	AI_StopProcessInfos(self);
 };

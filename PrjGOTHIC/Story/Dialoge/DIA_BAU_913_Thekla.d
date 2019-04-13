@@ -408,6 +408,13 @@ func void DIA_Thekla_PERM_Info()
 			{
 				AI_Output(self,other,"DIA_Thekla_PERM_17_14");	//Эти ублюдки из ополчения бросили Беннета за решетку.
 				AI_Output(self,other,"DIA_Thekla_PERM_17_15");	//Окажи мне услугу, вызволи его оттуда, хорошо? А тем временем я сварю для тебя очень вкусную похлебку.
+				if(MIS_RescueBennet != LOG_Running)
+				{
+					MIS_RescueBennet = LOG_Running;
+					Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+					Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+					B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
+				};
 			}
 			else
 			{

@@ -292,6 +292,8 @@ func void DIA_Cornelius_RealStory_Info()
 	};
 	B_LogEntry(TOPIC_RescueBennet,"Корнелиус солгал. Ему заплатили, чтобы упечь Беннета в тюрьму. Но он не говорит мне, кто подкупил его. Он весь дрожит от страха.");
 	CorneliusFlee = TRUE;
+	self.aivar[AIV_EnemyOverride] = TRUE;
+	self.guild = GIL_BDT;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FLEE");
 };

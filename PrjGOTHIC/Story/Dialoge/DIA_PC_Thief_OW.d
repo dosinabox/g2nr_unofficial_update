@@ -85,7 +85,7 @@ func void DIA_DiegoOw_Beweise_Info()
 		if(Npc_KnowsInfo(other,DIA_Parcival_Diego))
 		{
 			AI_Output(self,other,"DIA_DiegoOw_Garond_11_03");	//Конечно, что ты хочешь знать?
-			AI_Output(self,other,"DIA_DiegoOw_Silvestro_15_00");	//Что ты знаешь о руде Сильвестро?
+			AI_Output(other,self,"DIA_DiegoOw_Silvestro_15_00");	//Что ты знаешь о руде Сильвестро?
 		};
 		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 	}

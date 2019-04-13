@@ -978,6 +978,8 @@ func void DIA_Lares_WhyPalHere_Info()
 };
 
 
+var int Lares_WayToOnar;
+
 instance DIA_Addon_Lares_Gilde(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -1027,6 +1029,11 @@ func void DIA_Addon_Lares_Gilde_SLD()
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_SLD_09_02");	//Отправляйся на ферму Онара и поговори с Кордом.
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_SLD_Add_09_02");	//Он поможет тебе.
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_SLD_09_03");	//Скажи ему, что ты 'под моим крылом'. Он тебя поймет.
+	if(Lares_WayToOnar == FALSE)
+	{
+		AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//Я могу отвести тебя туда, если хочешь. Я все равно уже слишком долго здесь ошиваюсь.
+		Lares_WayToOnar = TRUE;
+	};
 	RangerHelp_gildeSLD = TRUE;
 	Log_CreateTopic(TOPIC_Addon_RangerHelpSLD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RangerHelpSLD,LOG_Running);
@@ -1064,7 +1071,6 @@ func void DIA_Addon_Lares_Gilde_KDF()
 
 
 var int Lares_WorkForLee;
-var int Lares_WayToOnar;
 
 instance DIA_Lares_AboutSld(C_Info)
 {
@@ -1129,16 +1135,22 @@ func void DIA_Lares_AboutSld_Schiff()
 	AI_Output(self,other,"DIA_Lares_Schiff_09_02");	//Но это может занять некоторое время...
 	AI_Output(other,self,"DIA_Lares_Schiff_15_03");	//Почему?
 	AI_Output(self,other,"DIA_Lares_Schiff_09_04");	//Тебе лучше спросить об этом Ли, если встретишь его... У него есть план.
-	AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_01");	//Если хочешь, я могу тебя проводить.
-	Lares_WayToOnar = TRUE;
+	if(Lares_WayToOnar == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_01");	//Если хочешь, я могу тебя проводить.
+		Lares_WayToOnar = TRUE;
+	};
 };
 
 func void DIA_Lares_AboutSld_WayToOnar()
 {
 	AI_Output(other,self,"DIA_Lares_WegZumHof_15_00");	//Как мне найти ферму лендлорда?
 	AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_00");	//Это довольно просто. Ты выходишь из города через восточные ворота, а затем следуешь по дороге на восток.
-	AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//Я могу отвести тебя туда, если хочешь. Я все равно уже слишком долго здесь ошиваюсь.
-	Lares_WayToOnar = TRUE;
+	if(Lares_WayToOnar == FALSE)
+	{
+		AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//Я могу отвести тебя туда, если хочешь. Я все равно уже слишком долго здесь ошиваюсь.
+		Lares_WayToOnar = TRUE;
+	};
 };
 
 func void DIA_Lares_AboutSld_Gorn()
@@ -2174,10 +2186,17 @@ func void DIA_Lares_AnyNews_Info()
 			AI_Output(other,self,"DIA_Lares_AnyNews_15_06");	//Как это случилось?
 			AI_Output(self,other,"DIA_Lares_AnyNews_09_07");	//Беннет пришел в город за покупками. Но вернуться ему было не суждено.
 			AI_Output(self,other,"DIA_Lares_AnyNews_09_08");	//Если хочешь узнать больше, расспроси Ходжеса, он был в городе вместе с Беннетом.
-			MIS_RescueBennet = LOG_Running;
-			Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
-			B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет был арестован паладинами. Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
+			if(MIS_RescueBennet != LOG_Running)
+			{
+				MIS_RescueBennet = LOG_Running;
+				Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+				B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
+			};
+			if(!Npc_KnowsInfo(other,DIA_Hodges_WhatHappened) || !Npc_KnowsInfo(other,DIA_Hodges_BennetsCrime))
+			{
+				B_LogEntry(TOPIC_RescueBennet,"Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
+			};
  		};
 	};
 };

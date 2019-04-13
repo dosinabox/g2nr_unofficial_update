@@ -734,7 +734,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_06");	//Я произвожу тебя в воины Инноса.
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_07");	//Я даю тебе оружие и доспехи рыцаря. Носи их с гордостью, рыцарь!
 	hero.guild = GIL_PAL;
-	Npc_SetTrueGuild(other,GIL_PAL);
+	Npc_SetTrueGuild(hero,GIL_PAL);
 	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
 	if(Helms_Enabled == TRUE)
 	{
@@ -1075,7 +1075,7 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	{
 		AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_10");	//Он сбежал.
 		AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_11");	//Рано или поздно, он объявится. И тогда мы арестуем его.
-		B_StartOtherRoutine(Cornelius,"FLED");
+		//B_StartOtherRoutine(Cornelius,"FLED");
 	}
 	else
 	{

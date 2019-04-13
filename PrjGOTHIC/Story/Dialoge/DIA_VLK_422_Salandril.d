@@ -1,4 +1,24 @@
 
+var int SalandrilKeyRemoved;
+
+func void B_RemoveSalandrilKey()
+{
+	if(Npc_HasItems(self,ItKe_Salandril) && (SalandrilKeyRemoved == FALSE))
+	{
+		Npc_RemoveInvItems(self,ItKe_Salandril,Npc_HasItems(self,ItKe_Salandril));
+		SalandrilKeyRemoved = TRUE;
+	};
+};
+
+func void B_GiveSalandrilKey()
+{
+	if(!Npc_HasItems(self,ItKe_Salandril) && (SalandrilKeyRemoved == TRUE) && (self.aivar[AIV_PlayerHasPickedMyPocket] == FALSE))
+	{
+		CreateInvItem(self,ItKe_Salandril);
+		SalandrilKeyRemoved = FALSE;
+	};
+};
+
 instance DIA_Salandril_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;
@@ -18,6 +38,7 @@ func int DIA_Salandril_EXIT_Condition()
 func void DIA_Salandril_EXIT_Info()
 {
 	B_EquipTrader(self);
+	B_GiveSalandrilKey();
 	AI_StopProcessInfos(self);
 };
 
@@ -36,7 +57,15 @@ instance DIA_Salandril_PICKPOCKET(C_Info)
 func int DIA_Salandril_PICKPOCKET_Condition()
 {
 //	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),0);
-	return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
+//	return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
+	if(Npc_HasItems(self,ItKe_Salandril) || (SalandrilKeyRemoved == TRUE))
+	{
+		return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Salandril_PICKPOCKET_Info()
@@ -48,7 +77,7 @@ func void DIA_Salandril_PICKPOCKET_Info()
 
 func void DIA_Salandril_PICKPOCKET_DoIt()
 {
-	CreateInvItem(self,ItKe_Salandril);
+	B_GiveSalandrilKey();
 //	B_StealItems(30,Hlp_GetInstanceID(ItKe_Salandril),1);
 	B_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
 	Info_ClearChoices(DIA_Salandril_PICKPOCKET);
@@ -146,6 +175,7 @@ func int DIA_Salandril_Trade_Condition()
 
 func void DIA_Salandril_Trade_Info()
 {
+	B_RemoveSalandrilKey();
 	if(Salandril_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
@@ -173,32 +203,6 @@ func void DIA_Salandril_Trade_Info()
 	Trade_IsActive = TRUE;
 };
 
-/*
-instance DIA_Salandril_KAP3_EXIT(C_Info)
-{
-	npc = VLK_422_Salandril;
-	nr = 999;
-	condition = DIA_Salandril_KAP3_EXIT_Condition;
-	information = DIA_Salandril_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Salandril_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Salandril_KAP3_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Salandril_Minenanteil(C_Info)
 {
@@ -222,6 +226,7 @@ func void DIA_Salandril_Minenanteil_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_Minenanteil_15_00");	//Ты продаешь поддельные акции!
 	B_Say(self,other,"$NOTNOW");
+	B_GiveSalandrilKey();
 	AI_StopProcessInfos(self);
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -257,6 +262,7 @@ func void DIA_Salandril_KLOSTER_Info()
 		AI_Output(other,self,"DIA_Salandril_KLOSTER_15_03");	//У меня есть приказ, и я выполню его. Так что, либо ты пойдешь сам, либо мне придется заставить тебя.
 	};
 	AI_Output(self,other,"DIA_Salandril_KLOSTER_13_04");	//Что? Да я протащу тебя через весь город за шиворот, как паршивого щенка, и вышвырну за ворота.
+	B_GiveSalandrilKey();
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -323,80 +329,3 @@ func void DIA_Salandril_Verschwinde_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
-instance DIA_Salandril_KAP4_EXIT(C_Info)
-{
-	npc = VLK_422_Salandril;
-	nr = 999;
-	condition = DIA_Salandril_KAP4_EXIT_Condition;
-	information = DIA_Salandril_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Salandril_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Salandril_KAP4_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Salandril_KAP5_EXIT(C_Info)
-{
-	npc = VLK_422_Salandril;
-	nr = 999;
-	condition = DIA_Salandril_KAP5_EXIT_Condition;
-	information = DIA_Salandril_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Salandril_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Salandril_KAP5_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Salandril_KAP6_EXIT(C_Info)
-{
-	npc = VLK_422_Salandril;
-	nr = 999;
-	condition = DIA_Salandril_KAP6_EXIT_Condition;
-	information = DIA_Salandril_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Salandril_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Salandril_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/

@@ -1,6 +1,21 @@
 
 var int DIEGO_COMING;
 
+func void B_StartNewLife()
+{
+	if(DIEGO_COMING == 1)
+	{
+		if(Diego_IsOnBoard == FALSE)
+		{
+			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
+		};
+		Npc_ExchangeRoutine(self,"FLEE");
+		B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
+		B_StartOtherRoutine(VLK_419_Buerger,"NEWPLACE");
+		DIEGO_COMING = 2;
+	};
+};
+
 instance DIA_Gerbrandt_EXIT(C_Info)
 {
 	npc = VLK_403_Gerbrandt;
@@ -19,18 +34,7 @@ func int DIA_Gerbrandt_EXIT_Condition()
 
 func void DIA_Gerbrandt_EXIT_Info()
 {
-	if(DIEGO_COMING == TRUE)
-	{
-//		DiegoNW = Hlp_GetNpc(PC_Thief_NW);
-		if(Diego_IsOnBoard == FALSE)
-		{
-			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
-		};
-		Npc_ExchangeRoutine(self,"FLEE");
-		B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
-		B_StartOtherRoutine(VLK_419_Buerger,"NEWPLACE");
-		DIEGO_COMING = 2;
-	};
+	B_StartNewLife();
 	AI_StopProcessInfos(self);
 };
 
@@ -188,6 +192,7 @@ func void B_Gerbrandt_PissOff()
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_00");	//Что это все значит - ты издеваешься надо мной?
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_01");	//Ты и твой приятель Диего уже и так дел натворили.
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_02");	//Оставь меня в покое!
+	B_StartNewLife();
 	AI_StopProcessInfos(self);
 };
 
@@ -277,6 +282,6 @@ func void DIA_Gerbrandt_GreetingsFromDiego_Info()
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_09");	//У меня нет времени, мне нужно уходить отсюда. Быстро. Если он найдет меня здесь, мне конец!
 	MIS_DiegosResidence = LOG_SUCCESS;
 	B_GivePlayerXP(XP_DiegosResidence);
-	DIEGO_COMING = TRUE;
+	DIEGO_COMING = 1;
 };
 
