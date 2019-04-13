@@ -12,7 +12,9 @@ func void B_MM_AssessDamage()
 		OthWeap = Npc_GetReadiedWeapon(other);
 		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(MagGol)) && (Hlp_GetInstanceID(OthWeap) == Hlp_GetInstanceID(item)))
 		{
-			Npc_ChangeAttribute(self,ATR_HITPOINTS,-1000);
+//			Npc_ChangeAttribute(self,ATR_HITPOINTS,-1000);
+			Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);
+			B_GiveDeathXP(other,self);
 			return;
 		};
 	};

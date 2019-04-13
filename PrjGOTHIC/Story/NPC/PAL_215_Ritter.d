@@ -24,6 +24,7 @@ func void Rtn_Start_215()
 {
 	TA_Practice_Sword(7,8,19,1,"NW_CITY_TRAIN_01");
 	TA_Smalltalk(19,1,23,7,"NW_CITY_UPTOWN_HUT_03_01");
-	TA_Sleep(23,7,7,8,"NW_CITY_LEOMAR_BED_03");
+//	TA_Sleep(23,7,7,8,"NW_CITY_LEOMAR_BED_03");
+	TA_Sit_Throne(23,7,7,8,"NW_CITY_UPTOWN_HUT_03_SIT");
 };
 

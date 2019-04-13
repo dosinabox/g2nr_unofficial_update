@@ -2711,7 +2711,7 @@ instance SVM_15(C_SVM)
 	Awake = "SVM_15_Awake";	//(просыпается)
 	irdoraththereyouare = "SVM_15_IRDORATHTHEREYOUARE";	//Ммм. Так вот ты где скрываешься. Чертовски далеко. Ммм. Чтобы добраться туда, мне понадобится корабль.
 	healshrine = "SVM_15_HEALSHRINE";	//Иннос, даруй мне свою помощь и очисти этот алтарь.
-	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и все такое... Вот так. Надеюсь, это было последний раз.
+	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и все такое... Вот так. Надеюсь, это было в последний раз.
 	scopensirdorathbook = "SVM_15_SCOPENSIRDORATHBOOK";	//ХАРАК БЕНДАРО! Ох. Книга открылась. Там внутри лежит письмо и ключ.
 	scopenslastdoor = "SVM_15_SCOPENSLASTDOOR";	//КАДОШ ЭМЕМ КАДАР! Откройся!
 	trade_1 = "SVM_15_Addon_TRADE_1";	//Давай займемся делом.

@@ -247,10 +247,10 @@ func void init_dragonisland()
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	CurrentLevel = DRAGONISLAND_ZEN;
-	if(Npc_HasItems(hero,ItKe_Ship_Levelchange_MIS))
+/*	if(Npc_HasItems(hero,ItKe_Ship_Levelchange_MIS))
 	{
 		Npc_RemoveInvItems(hero,ItKe_Ship_Levelchange_MIS,1);
-	};
+	}; */
 	B_InitNpcGlobals();
 };
 

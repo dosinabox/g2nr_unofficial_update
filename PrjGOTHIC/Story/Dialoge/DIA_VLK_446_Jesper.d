@@ -181,6 +181,7 @@ func void DIA_Jesper_Bezahlen_Info()
 
 func void DIA_Jesper_Bezahlen_Spaeter()
 {
+	AI_Output(other,self,"DIA_Thorben_PleaseTeach_Later_15_00");	//Может быть, позже...
 	Info_ClearChoices(DIA_Jesper_Bezahlen);
 };
 

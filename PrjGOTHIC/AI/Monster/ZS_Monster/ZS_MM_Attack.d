@@ -60,7 +60,20 @@ func int ZS_MM_Attack_Loop()
 			self.attribute[ATR_HITPOINTS] += 1;
 			self.aivar[AIV_TAPOSITION] = 0;
 		};
+//костыли для перехода из режима ближнего боя к магии: begin
+		if(Npc_IsInFightMode(self,FMODE_FIST) && (Npc_GetDistToNpc(self,other) > FIGHT_DIST_DRAGON_MAGIC))
+		{
+			AI_RemoveWeapon(self);
+		};
 	};
+	if((self.aivar[AIV_MM_REAL_ID] == ID_FIREGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_ICEGOLEM) || (self.aivar[AIV_MM_REAL_ID] == ID_SKELETON_MAGE) || (self.aivar[AIV_MM_REAL_ID] == ID_ORCSHAMAN))
+	{
+		if((Npc_IsInFightMode(self,FMODE_FIST) || Npc_IsInFightMode(self,FMODE_MELEE)) && (Npc_GetDistToNpc(self,other) > FIGHT_DIST_MELEE))
+		{
+			AI_RemoveWeapon(self);
+		};
+	};
+//костыли для перехода из режима ближнего боя к магии: end
 	if((RavenIsDead == TRUE) && (self.guild == GIL_Stoneguardian))
 	{
 		B_KillNpc(self);

@@ -85,7 +85,8 @@ func void DIA_Grimbald_HALLO_Was_ja()
 	AI_Output(self,other,"DIA_Grimbald_HALLO_Was_ja_07_01");	//Конечно. Только не приближайся слишком близко к черному троллю. Он разорвет тебя на куски, понял?
 	AI_Output(self,other,"DIA_Grimbald_HALLO_Was_ja_07_02");	//И я не прощу тебе, если ты решишь выйти из игры.
 	self.aivar[AIV_PARTYMEMBER] = TRUE;
-	B_StartOtherRoutine(self,"Jagd");
+//	B_StartOtherRoutine(self,"Jagd");
+	Npc_ExchangeRoutine(self,"Jagd");
 	AI_StopProcessInfos(self);
 };
 
@@ -115,7 +116,7 @@ func int DIA_Grimbald_Jagd_Condition()
 	};
 };
 
-const string Grimbald_IsTeacher = "Охотник Гримбальд, стоящий неподалеку от пещеры черного тролля, может обучить меня охотничьим навыкам.";
+const string Grimbald_IsTeacher = "Охотник Гримбальд, стоящий неподалеку от пещеры черного тролля, может обучить меня разделке животных.";
 
 func void DIA_Grimbald_Jagd_Info()
 {
@@ -124,7 +125,8 @@ func void DIA_Grimbald_Jagd_Info()
 	{
 		AI_Output(self,other,"DIA_Grimbald_Jagd_07_01");	//Ммм. Хорошо. Ты не особенно-то помог мне, но не стоит быть слишком строгим.
 		self.aivar[AIV_PARTYMEMBER] = FALSE;
-		B_StartOtherRoutine(self,"JagdOver");
+//		B_StartOtherRoutine(self,"JagdOver");
+		Npc_ExchangeRoutine(self,"JagdOver");
 		Log_CreateTopic(TOPIC_Teacher,LOG_NOTE);
 		B_LogEntry(TOPIC_Teacher,Grimbald_IsTeacher);
 		Grimbald_TeachAnimalTrophy = TRUE;

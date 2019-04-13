@@ -37,7 +37,8 @@ instance DIA_Mika_Refuse(C_Info)
 
 func int DIA_Mika_Refuse_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Lares.aivar[AIV_PARTYMEMBER] == TRUE))
+//	if(Npc_IsInState(self,ZS_Talk) && (Lares.aivar[AIV_PARTYMEMBER] == TRUE))
+	if(Npc_IsInState(self,ZS_Talk) && ((Lares.aivar[AIV_PARTYMEMBER] == TRUE) || (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_02") < 1000)))
 	{
 		return TRUE;
 	};
@@ -62,7 +63,7 @@ instance DIA_Mika_WOHIN(C_Info)
 
 func int DIA_Mika_WOHIN_Condition()
 {
-	if(Lares.aivar[AIV_PARTYMEMBER] == FALSE)
+	if((Lares.aivar[AIV_PARTYMEMBER] == FALSE) || (Npc_GetDistToWP(self,"NW_CITY_KASERN_BARRACK02_02") >= 1000))
 	{
 		return TRUE;
 	};
@@ -384,7 +385,8 @@ instance DIA_Mika_Kap3u4u5_PERM(C_Info)
 
 func int DIA_Mika_Kap3u4u5_PERM_Condition()
 {
-	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Mika_WOHIN) && Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
+//	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Mika_WOHIN) && Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
+	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Mika_WOHIN) && ((Npc_IsDead(Alvares) && Npc_IsDead(Engardo)) || (TOPIC_END_AkilsSLDStillthere == FALSE)))
 	{
 		return TRUE;
 	};

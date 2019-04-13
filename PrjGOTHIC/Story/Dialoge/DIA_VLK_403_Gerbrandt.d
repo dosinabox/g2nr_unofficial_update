@@ -21,7 +21,7 @@ func void DIA_Gerbrandt_EXIT_Info()
 {
 	if(DIEGO_COMING == TRUE)
 	{
-		DiegoNW = Hlp_GetNpc(PC_Thief_NW);
+//		DiegoNW = Hlp_GetNpc(PC_Thief_NW);
 		if(Diego_IsOnBoard == FALSE)
 		{
 			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
@@ -163,10 +163,10 @@ func void B_Gerbrandt_PissOff()
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_00");	//Что это все значит - ты издеваешься надо мной?
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_01");	//Ты и твой приятель Диего уже и так дел натворили.
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_02");	//Оставь меня в покое!
-	if(DIEGO_COMING != TRUE)
+/*	if(DIEGO_COMING == TRUE)
 	{
 		AI_StopProcessInfos(self);
-	};
+	}; */
 };
 
 

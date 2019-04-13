@@ -1740,7 +1740,7 @@ func void DIA_Andre_PERM_Info()
 	};
 	if(other.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Andre_PERM_08_03");	//С этого времени ты должен докладывать непосредственно Лорду Хагену. Иди, поговори с ним.
+		AI_Output(self,other,"DIA_Andre_PERM_08_03");	//С этого времени ты должен докладывать непосредственно лорду Хагену. Иди, поговори с ним.
 	};
 };
 

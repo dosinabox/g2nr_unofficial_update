@@ -137,8 +137,22 @@ func void DIA_Addon_Juan_AufsMaul_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Juan_AufsMaul_15_00");	//Я пришел не от Эстебана!
 	AI_Output(self,other,"DIA_Addon_Juan_AufsMaul_13_01");	//Да? Ну тогда... э-э... Секундочку! Замри! У тебя на плече какая-то мошка.
+	Info_ClearChoices(DIA_Addon_Juan_AufsMaul);
+	Info_AddChoice(DIA_Addon_Juan_AufsMaul,Dialog_Ende,DIA_Addon_Juan_AufsMaul_ENDAttack);
+};
+
+func void DIA_Addon_Juan_AufsMaul_ENDAttack()
+{
 	AI_StopProcessInfos(self);
+	if(!Npc_HasEquippedWeapon(self))
+	{
+		B_RefreshMeleeWeapon(self);
+	};
 	B_Attack(self,other,AR_NONE,1);
+	if(!Npc_IsDead(Freund) && Hlp_IsValidNpc(Freund))
+	{
+		B_Attack(Freund,other,AR_NONE,1);
+	};
 };
 
 

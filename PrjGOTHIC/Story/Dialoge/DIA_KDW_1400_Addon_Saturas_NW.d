@@ -252,6 +252,7 @@ func void DIA_Addon_Saturas_Ornament_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_Ornament_15_00");	//Вот то, что вам нужно. Орнамент.
 	B_GiveInvItems(other,self,ItMi_Ornament_Addon_Vatras,1);
+	Npc_RemoveInvItem(self,ItMi_Ornament_Addon_Vatras);
 	AI_Output(self,other,"DIA_Addon_Saturas_Ornament_ADD_14_00");	//Во имя сути всего сущего, что это все должно значить?
 	if(Lares_Angekommen == TRUE)
 	{

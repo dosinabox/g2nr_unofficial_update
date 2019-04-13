@@ -27,7 +27,7 @@ instance ItMW_Addon_Knife01(C_Item)
 
 instance ItMW_Addon_Stab01(C_Item)
 {
-	name = "Посох мага";
+	name = "Посох Огня";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;

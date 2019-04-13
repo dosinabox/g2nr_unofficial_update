@@ -175,10 +175,10 @@ instance ItAm_Prot_Total_01(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет рудной кожи";
-	text[1] = NAME_Prot_Fire;
-	count[1] = Am_TProtFire;
-	text[2] = NAME_Prot_Magic;
-	count[2] = Am_TProtMage;
+	text[1] = NAME_Prot_Magic;
+	count[1] = Am_TProtMage;
+	text[2] = NAME_Prot_Fire;
+	count[2] = Am_TProtFire;
 	text[3] = NAME_Prot_Point;
 	count[3] = Am_TProtPoint;
 	text[4] = NAME_Prot_Edge;

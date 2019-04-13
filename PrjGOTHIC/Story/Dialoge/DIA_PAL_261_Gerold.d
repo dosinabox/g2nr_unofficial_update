@@ -193,13 +193,13 @@ func void DIA_Gerold_Stuff_Info()
 	AI_Output(other,self,"DIA_Gerold_Stuff_15_00");	//Я принес тебе кое-что. Вот еда, как ты и просил.
 	if(Npc_HasItems(other,ItFo_Honey) && Npc_HasItems(other,ItFo_Bread) && Npc_HasItems(other,ItFo_Wine) && Npc_HasItems(other,ItFo_Sausage))
 	{
-		Npc_RemoveInvItems(other,ItFo_Honey,1);
+		Npc_RemoveInvItem(other,ItFo_Honey);
 		AI_PrintScreen("Мед отдан",-1,34,FONT_ScreenSmall,2);
-		Npc_RemoveInvItems(other,ItFo_Bread,1);
+		Npc_RemoveInvItem(other,ItFo_Bread);
 		AI_PrintScreen("Хлеб отдан",-1,37,FONT_ScreenSmall,2);
-		Npc_RemoveInvItems(other,ItFo_Wine,1);
+		Npc_RemoveInvItem(other,ItFo_Wine);
 		AI_PrintScreen("Вино отдано",-1,40,FONT_ScreenSmall,2);
-		Npc_RemoveInvItems(other,ItFo_Sausage,1);
+		Npc_RemoveInvItem(other,ItFo_Sausage);
 		AI_PrintScreen("Колбаса отдана",-1,43,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Gerold_Stuff_12_01");	//Хорошо, дай посмотрю. Записка у тебя с собой?
 		AI_Output(other,self,"DIA_Gerold_Stuff_15_02");	//Да, вот. Не забудь, она для Горна.
@@ -242,6 +242,7 @@ func void DIA_Gerold_Antwort_Info()
 	AI_Output(other,self,"DIA_Gerold_Antwort_15_00");	//Горн получил записку?
 	if(DayContactGorn < Wld_GetDay())
 	{
+		Npc_RemoveInvItem(self,ItWr_LetterForGorn_MIS);
 		AI_Output(self,other,"DIA_Gerold_Antwort_12_01");	//Да, и я должен передать тебе его слова:
 		AI_Output(other,self,"DIA_Gerold_Antwort_15_02");	//И?
 		AI_Output(self,other,"DIA_Gerold_Antwort_12_03");	//Это находится у южных ворот.

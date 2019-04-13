@@ -156,8 +156,6 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(Lares,"START");
 		};
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_PASS_GATE_02");
-		B_ClearRuneInv(PAL_297_Ritter);
-		B_ClearRuneInv(PAL_298_Ritter);
 		B_KillNpc(PAL_297_Ritter);
 		B_KillNpc(PAL_298_Ritter);
 		Wld_InsertNpc(Giant_Bug,"FP_ROAM_MEDIUMFOREST_KAP2_01");
@@ -173,6 +171,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(BAU_934_Babera,"FleeDMT");
 			B_StartOtherRoutine(BAU_937_Bauer,"FleeDMT");
 			B_StartOtherRoutine(BAU_938_Bauer,"FleeDMT");
+			B_StartOtherRoutine(Bronko,"FleeDMT");
 			Wld_InsertNpc(DMT_DementorAmbientSekob1,"NW_FARM4_IN_06");
 			Wld_InsertNpc(DMT_DementorAmbientSekob2,"NW_FARM4_IN_02");
 			Wld_InsertNpc(DMT_DementorAmbientSekob3,"NW_FARM4_IN_03");

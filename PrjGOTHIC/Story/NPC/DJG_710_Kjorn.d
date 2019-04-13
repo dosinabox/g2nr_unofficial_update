@@ -29,6 +29,7 @@ func void Rtn_PreStart_710()
 func void Rtn_Start_710()
 {
 	TA_Sit_Bench(8,0,23,0,"OW_DJG_VORPOSTEN_01");
-	TA_Sit_Bench(23,0,8,0,"OW_DJG_VORPOSTEN_01");
+//	TA_Sit_Bench(23,0,8,0,"OW_DJG_VORPOSTEN_01");
+	TA_Roast_Scavenger(23,0,8,0,"OW_DJG_VORPOSTEN_01");
 };
 

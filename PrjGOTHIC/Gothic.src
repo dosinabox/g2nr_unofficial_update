@@ -50,6 +50,7 @@ Story\Log_Entries\B_CloseTopics_Yoly.d
 Story\Log_Entries\B_CheckLog.d
 Story\B_Story\B_GivePlayerXP.d
 Story\B_Content\B_ScUsesRake.d
+Story\B_GiveTradeInv\B_ClearRuneInv.d
 Story\B_Story\B_KillNpc.d
 Story\B_Story\B_RemoveNpc.d
 Story\B_Content\B_RemoveQuarhodron.d
@@ -306,7 +307,6 @@ AI\Magic\ZS_Magic\ZS_Inflate.d
 AI\Magic\ZS_Magic\ZS_MagicBurn.d
 AI\Magic\ZS_Magic\ZS_MagicBurnShort.d
 AI\Magic\ZS_Magic\ZS_MagicFlee.d
-Story\B_GiveTradeInv\B_ClearRuneInv.d
 Story\B_Story\B_ClearSmithInv.d
 AI\Magic\ZS_Magic\ZS_MagicFreeze.d
 AI\Magic\ZS_Magic\ZS_MagicShrink.d

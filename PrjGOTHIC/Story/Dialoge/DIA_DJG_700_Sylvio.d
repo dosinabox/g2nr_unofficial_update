@@ -385,9 +385,14 @@ func void DIA_SylvioDJG_WHATNEXT_ATTACK()
 	Npc_SetRefuseTalk(self,60);
 	Npc_ExchangeRoutine(self,"Start");
 	B_StartOtherRoutine(DJG_Bullco,"Start");
-	B_LogEntry(TOPIC_Dragonhunter,"Эта грязная свинья Сильвио собирался присвоить себе мою победу над ледяными драконами. Мы немного повздорили.");
-	B_Attack(self,other,AR_NONE,1);
+	B_LogEntry(TOPIC_Dragonhunter,"Эта грязная свинья Сильвио собирался присвоить себе мою победу над ледяным драконом. Мы немного повздорили.");
+	B_Attack(self,other,AR_KILL,1);
 	B_Attack(DJG_Bullco,other,AR_NONE,1);
+	if(Biff.aivar[AIV_PARTYMEMBER] == TRUE)
+	{
+//		B_Attack(Biff,DJG_Sylvio,AR_KILL,1);
+		B_Attack(Biff,DJG_Bullco,AR_GuardStopsFight,1);
+	};
 };
 
 
@@ -415,8 +420,13 @@ func void DIA_SylvioDJG_BUTNOW_Info()
 	AI_Output(self,other,"DIA_SylvioDJG_BUTNOW_09_00");	//Пришло время расплаты.
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,60);
-	B_Attack(self,other,AR_NONE,1);
+	B_Attack(self,other,AR_KILL,1);
 	B_Attack(DJG_Bullco,other,AR_NONE,1);
+	if(Biff.aivar[AIV_PARTYMEMBER] == TRUE)
+	{
+//		B_Attack(Biff,DJG_Sylvio,AR_KILL,1);
+		B_Attack(Biff,DJG_Bullco,AR_GuardStopsFight,1);
+	};
 };
 
 

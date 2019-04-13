@@ -35,3 +35,9 @@ func void Rtn_Start_935()
 	TA_Sit_Campfire(22,0,8,0,"NW_FARM4_REST_02");
 };
 
+func void Rtn_FleeDMT_935()
+{
+	TA_Pick_FP(8,0,22,0,"NW_FARM4_FIELD_01");
+	TA_Pick_FP(22,0,8,0,"NW_FARM4_FIELD_01");
+};
+

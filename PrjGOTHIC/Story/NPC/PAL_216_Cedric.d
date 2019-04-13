@@ -23,6 +23,8 @@ instance PAL_216_Cedric(Npc_Default)
 func void Rtn_Start_216()
 {
 	TA_Practice_Sword(7,0,19,0,"NW_CITY_TRAIN_01");
-	TA_Sleep(19,0,7,0,"NW_CITY_LEOMAR_BED_03");
+	TA_Read_Bookstand(19,0,23,0,"NW_CITY_LEOMAR_READ");
+//	TA_Sleep(19,0,7,0,"NW_CITY_LEOMAR_BED_03");
+	TA_Sleep(23,0,7,0,"NW_CITY_LEOMAR_BED_03");
 };
 

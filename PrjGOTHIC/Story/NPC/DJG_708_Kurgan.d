@@ -30,6 +30,7 @@ func void Rtn_PreStart_708()
 func void Rtn_Start_708()
 {
 	TA_Stand_Guarding(8,0,23,0,"OW_MOVEMENT_LURKER_NEARBGOBBO03");
-	TA_Stand_Guarding(23,0,8,0,"OW_MOVEMENT_LURKER_NEARBGOBBO03");
+//	TA_Stand_Guarding(23,0,8,0,"OW_MOVEMENT_LURKER_NEARBGOBBO03");
+	TA_Stand_Eating(23,0,8,0,"VORPOSTEN");
 };
 

@@ -23,7 +23,8 @@ instance MIL_315_Kasernenwache(Npc_Default)
 func void Rtn_Start_315()
 {
 	TA_Smith_Sharp(7,5,20,59,"NW_CITY_KASERN_ARMORY_SHARP");
-	TA_Sit_Campfire(20,59,0,3,"NW_CITY_BARRACK02_SMALLTALK_01");
+//	TA_Sit_Campfire(20,59,0,3,"NW_CITY_BARRACK02_SMALLTALK_01");
+	TA_Sit_Chair(20,59,0,3,"NW_CITY_KASERN_BARRACK02_03");
 	TA_Sleep(0,3,7,5,"NW_CITY_BARRACK01_BED_RUGA");
 };
 

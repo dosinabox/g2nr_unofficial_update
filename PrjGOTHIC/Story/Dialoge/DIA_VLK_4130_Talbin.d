@@ -413,7 +413,8 @@ instance DIA_Talbin_KAP4_WASNEUES(C_Info)
 
 func int DIA_Talbin_KAP4_WASNEUES_Condition()
 {
-	if((Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
+//	if((Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE))
+	if((Kapitel >= 4) && (Talbin_FollowsThroughPass == FALSE) && (Talbin_Runs == FALSE) && Npc_KnowsInfo(other,DIA_Garond_BACKINKAP4))
 	{
 		return TRUE;
 	};

@@ -83,7 +83,7 @@ instance DIA_Addon_Pardos_trank(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Pardos_trank_Condition;
 	information = DIA_Addon_Pardos_trank_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Вот, выпей. (дать зелье)";
 };
 
@@ -102,21 +102,25 @@ func void DIA_Addon_Pardos_trank_Info()
 	AI_StandupQuick(self);
 	Info_ClearChoices(DIA_Addon_Pardos_trank);
 	Info_AddChoice(DIA_Addon_Pardos_trank,Dialog_Back,DIA_Addon_Pardos_trank_BACK);
-	if(Npc_HasItems(other,ItPo_Health_01))
+	if(Npc_HasItems(other,ItFo_Addon_Meatsoup))
 	{
-		Info_AddChoice(DIA_Addon_Pardos_trank,"Дать лечебную эссенцию",DIA_Addon_Pardos_trank_01);
+		Info_AddChoice(DIA_Addon_Pardos_trank,"(дать мясную похлебку)",DIA_Addon_Pardos_trank_Soup);
 	};
-	if(Npc_HasItems(other,ItPo_Health_02))
+	if(Npc_HasItems(other,ItPo_Health_Addon_04))
 	{
-		Info_AddChoice(DIA_Addon_Pardos_trank,"Дать лечебный экстракт",DIA_Addon_Pardos_trank_02);
+		Info_AddChoice(DIA_Addon_Pardos_trank,"(дать чистое здоровье)",DIA_Addon_Pardos_trank_04);
 	};
 	if(Npc_HasItems(other,ItPo_Health_03))
 	{
-		Info_AddChoice(DIA_Addon_Pardos_trank,"Дать лечебный эликсир",DIA_Addon_Pardos_trank_03);
+		Info_AddChoice(DIA_Addon_Pardos_trank,"(дать лечебный эликсир)",DIA_Addon_Pardos_trank_03);
 	};
-	if(Npc_HasItems(other,ItFo_Addon_Meatsoup))
+	if(Npc_HasItems(other,ItPo_Health_02))
 	{
-		Info_AddChoice(DIA_Addon_Pardos_trank,"Дать мясную похлебку",DIA_Addon_Pardos_trank_Soup);
+		Info_AddChoice(DIA_Addon_Pardos_trank,"(дать лечебный экстракт)",DIA_Addon_Pardos_trank_02);
+	};
+	if(Npc_HasItems(other,ItPo_Health_01))
+	{
+		Info_AddChoice(DIA_Addon_Pardos_trank,"(дать лечебную эссенцию)",DIA_Addon_Pardos_trank_01);
 	};
 };
 
@@ -160,6 +164,16 @@ func void DIA_Addon_Pardos_trank_03()
 	B_GivePlayerXP(XP_Ambient * 3);
 };
 
+func void DIA_Addon_Pardos_trank_04()
+{
+	B_GiveInvItems(other,self,ItPo_Health_Addon_04,1);
+	B_UseItem(self,ItPo_Health_Addon_04);
+	Info_ClearChoices(DIA_Addon_Pardos_trank);
+	Pardos_Geheilt = TRUE;
+	B_SayPardosThanks();
+	B_GivePlayerXP(XP_Ambient * 4);
+};
+
 func void DIA_Addon_Pardos_trank_Soup()
 {
 	AI_Output(other,self,"DIA_Addon_Pardos_trank_soup_15_00");	//Вот, поешь мяса.
@@ -169,7 +183,7 @@ func void DIA_Addon_Pardos_trank_Soup()
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	Pardos_Geheilt = TRUE;
 	AI_Output(self,other,"DIA_Addon_Pardos_trank_03_01");	//Спасибо. Я уже не так слаб.
-	B_GivePlayerXP(XP_Ambient * 3);
+	B_GivePlayerXP(XP_Ambient * 4);
 };
 
 

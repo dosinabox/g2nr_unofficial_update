@@ -40,7 +40,7 @@ func void ZS_Dead()
 			MIS_Brandon_BringHering = LOG_OBSOLETE;
 		};
 	};
-	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON))
+	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
 	{
 		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));
 		Npc_RemoveInvItems(self,ItMw_1h_MISC_Sword,Npc_HasItems(self,ItMw_1h_MISC_Sword));

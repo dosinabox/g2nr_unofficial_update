@@ -6,6 +6,7 @@ func void B_KillNpc(var int npcInstance)
 	if(Hlp_IsValidNpc(npc) && !Npc_IsDead(npc))
 	{
 		npc.flags = 0;
+		B_ClearRuneInv(npc);
 		CreateInvItem(npc,ItMi_OldCoin);
 		Npc_ChangeAttribute(npc,ATR_HITPOINTS,-npc.attribute[ATR_HITPOINTS_MAX]);
 	};

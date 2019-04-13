@@ -19,6 +19,14 @@ instance ItMi_InnosEye_MIS(C_Item)
 	on_unequip = UnEquip_InnosEye;
 	text[0] = "Глаз пульсирует энергией.";
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
+	text[1] = NAME_Prot_Magic;
+	count[1] = AM_EyeProtMage;
+	text[2] = NAME_Prot_Fire;
+	count[2] = AM_EyeProtFire;
+	text[3] = NAME_Prot_Point;
+	count[3] = AM_EyeProtPoint;
+	text[4] = NAME_Prot_Edge;
+	count[4] = AM_EyeProtEdge;
 };
 
 
@@ -56,7 +64,8 @@ instance ItMi_InnosEye_Discharged_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
-	visual = "ItMi_InnosEye_MIS.3DS";
+//	visual = "ItMi_InnosEye_MIS.3DS";
+	visual = "ItMi_InnosEye_Discharged_MIS.3DS";
 	material = MAT_STONE;
 	description = name;
 	on_equip = Equip_ItMi_InnosEye_Discharged_Mis;
@@ -78,7 +87,8 @@ instance ItMi_InnosEye_Broken_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
-	visual = "ItMi_InnosEye_MIS.3DS";
+//	visual = "ItMi_InnosEye_MIS.3DS";
+	visual = "ItMi_InnosEye_Broken_MIS.3DS";
 	material = MAT_STONE;
 	description = name;
 	on_equip = Equip_ItMi_InnosEye_Broken_Mis;
@@ -730,7 +740,7 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = Use_DiegosTreasure;
-	description = "Старый кожаный кошелек Диего.";
+	description = "Старый кожаный кошелек Диего";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

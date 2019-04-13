@@ -23,7 +23,7 @@ func void ZS_Attack()
 	{
 		B_Say_AttackReason();
 	};
-	if((Npc_IsInFightMode(self,FMODE_NONE)) && (self.guild != GIL_STRF))
+	if(Npc_IsInFightMode(self,FMODE_NONE) && (self.guild != GIL_STRF))
 	{
 		AI_EquipBestRangedWeapon(self);
 		AI_EquipBestMeleeWeapon(self);

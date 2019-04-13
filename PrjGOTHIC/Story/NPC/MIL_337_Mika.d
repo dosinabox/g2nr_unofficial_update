@@ -24,7 +24,9 @@ instance MIL_337_Mika(Npc_Default)
 func void Rtn_Start_337()
 {
 	TA_Stand_Guarding(8,0,22,0,"NW_CITY_TO_FOREST_01");
-	TA_Stand_Guarding(22,0,8,0,"NW_CITY_TO_FOREST_01");
+//	TA_Stand_Guarding(22,0,8,0,"NW_CITY_TO_FOREST_01");
+	TA_Sit_Campfire(22,0,0,10,"NW_CITY_BARRACK02_SMALLTALK_01");
+	TA_Sit_Throne(0,10,8,0,"NW_CITY_KASERN_BARRACK02_02");
 };
 
 func void Rtn_Akil_337()

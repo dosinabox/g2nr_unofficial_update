@@ -20,7 +20,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_CrawlerMandibles,Npc_HasItems(slf,ItAt_CrawlerMandibles));
 		Npc_RemoveInvItems(slf,ItAt_Wing,Npc_HasItems(slf,ItAt_Wing));
 		Npc_RemoveInvItems(slf,ItAt_Sting,Npc_HasItems(slf,ItAt_Sting));
-		Npc_RemoveInvItems(slf,ItAt_LurkerSkin,Npc_HasItems(slf,itat_LurkerSkin));
+		Npc_RemoveInvItems(slf,ItAt_LurkerSkin,Npc_HasItems(slf,ItAt_LurkerSkin));
 		Npc_RemoveInvItems(slf,ItAt_WargFur,Npc_HasItems(slf,ItAt_WargFur));
 		Npc_RemoveInvItems(slf,ItAt_DrgSnapperHorn,Npc_HasItems(slf,ItAt_DrgSnapperHorn));
 		Npc_RemoveInvItems(slf,ItAt_CrawlerPlate,Npc_HasItems(slf,ItAt_CrawlerPlate));
@@ -29,6 +29,8 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_TrollFur,Npc_HasItems(slf,ItAt_TrollFur));
 		Npc_RemoveInvItems(slf,ItAt_WaranFiretongue,Npc_HasItems(slf,ItAt_WaranFiretongue));
 		Npc_RemoveInvItems(slf,ItAt_Addon_KeilerFur,Npc_HasItems(slf,ItAt_Addon_KeilerFur));
+		Npc_RemoveInvItems(slf,ItAt_IceWolfFur,Npc_HasItems(slf,ItAt_IceWolfFur));
+		Npc_RemoveInvItems(slf,ItAt_Addon_BCKopf,Npc_HasItems(slf,ItAt_Addon_BCKopf));
 		Npc_RemoveInvItems(slf,ItFo_Apple,Npc_HasItems(slf,ItFo_Apple));
 		Npc_RemoveInvItems(slf,ItFo_Cheese,Npc_HasItems(slf,ItFo_Cheese));
 		Npc_RemoveInvItems(slf,ItFo_Bacon,Npc_HasItems(slf,ItFo_Bacon));
@@ -63,7 +65,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItMi_SilverCup,Npc_HasItems(slf,ItMi_SilverCup));
 		Npc_RemoveInvItems(slf,ItMi_SilverChalice,Npc_HasItems(slf,ItMi_SilverChalice));
 		Npc_RemoveInvItems(slf,ItMi_GoldRing,Npc_HasItems(slf,ItMi_GoldRing));
-		Npc_RemoveInvItems(slf,ItMi_GoldNecklace,Npc_HasItems(slf,ItMi_GoldNecklace));
+//		Npc_RemoveInvItems(slf,ItMi_GoldNecklace,Npc_HasItems(slf,ItMi_GoldNecklace));
 		Npc_RemoveInvItems(slf,ItMi_GoldCandleHolder,Npc_HasItems(slf,ItMi_GoldCandleHolder));
 		Npc_RemoveInvItems(slf,ItMi_GoldCup,Npc_HasItems(slf,ItMi_GoldCup));
 		Npc_RemoveInvItems(slf,ItMi_GoldChest,Npc_HasItems(slf,ItMi_GoldChest));

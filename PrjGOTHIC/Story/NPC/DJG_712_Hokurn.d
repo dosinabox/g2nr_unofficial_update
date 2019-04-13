@@ -29,7 +29,8 @@ func void Rtn_PreStart_712()
 
 func void Rtn_Start_712()
 {
-	TA_Smalltalk(8,0,23,0,"SPAWN_OW_BLACKGOBBO_A1");
+//	TA_Smalltalk(8,0,23,0,"SPAWN_OW_BLACKGOBBO_A1");
+	TA_Stand_Drinking(8,0,23,0,"SPAWN_OW_BLACKGOBBO_A1");
 	TA_Smalltalk(23,0,8,0,"SPAWN_OW_BLACKGOBBO_A1");
 };
 

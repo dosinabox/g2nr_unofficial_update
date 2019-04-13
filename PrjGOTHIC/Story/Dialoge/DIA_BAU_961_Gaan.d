@@ -206,7 +206,10 @@ instance DIA_Gaan_WALD(C_Info)
 
 func int DIA_Gaan_WALD_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Gaan_WALD_Info()
@@ -374,7 +377,10 @@ instance DIA_Gaan_AskTeacher(C_Info)
 
 func int DIA_Gaan_AskTeacher_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Gaan_AskTeacher_Info()
@@ -542,9 +548,9 @@ func void DIA_Gaan_TEACHHUNTING_DrgSnapperHorn()
 	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_DrgSnapperHorn))
 	{
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_00");	//“еперь, когда этот огромный снеппер мертв, € могу показать тебе, как вырезать его рог.
-		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_01");	//Ќужно засунуть нож глубоко в лоб этого животного и осторожно выковырнуть рог.
+		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_01");	//Ќужно засунуть нож глубоко в лоб этого животного и осторожно выковыривать рог.
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_02");	//≈сли он не отделитс€ от черепа, нужно поддеть его вторым ножом с другой стороны.
-		CreateInvItems(Gaans_Snapper,ItAt_DrgSnapperHorn,1);
+		CreateInvItems(Gaans_Snapper,ItAt_DrgSnapperHorn,2);
 	};
 	Info_ClearChoices(DIA_Gaan_TEACHHUNTING);
 };
@@ -563,7 +569,10 @@ instance DIA_Gaan_JAGD(C_Info)
 
 func int DIA_Gaan_JAGD_Condition()
 {
-	return TRUE;
+	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU))
+	{
+		return TRUE;
+	};
 };
 
 func void B_WasMachtJagd()

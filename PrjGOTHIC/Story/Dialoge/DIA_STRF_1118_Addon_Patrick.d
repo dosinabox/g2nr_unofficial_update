@@ -107,6 +107,12 @@ func void DIA_Addon_Patrick_ready_Info()
 	AI_Output(other,self,"DIA_Addon_Patrick_ready_15_05");	//Не за что.
 	Sklaven_Flucht = TRUE;
 	B_GivePlayerXP(XP_Addon_Flucht);
+	Info_ClearChoices(DIA_Addon_Patrick_ready);
+	Info_AddChoice(DIA_Addon_Patrick_ready,Dialog_Ende,DIA_Addon_Patrick_ready_END);
+};
+
+func void DIA_Addon_Patrick_ready_END()
+{
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FLUCHT");
 	B_StartOtherRoutine(Telbor,"FLUCHT");

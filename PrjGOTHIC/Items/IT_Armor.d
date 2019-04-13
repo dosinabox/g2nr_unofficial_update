@@ -1364,7 +1364,7 @@ instance ITAR_BDT_H(C_Item)
 
 instance ITAR_Xardas(C_Item)
 {
-	name = "Мантия черного мага";
+	name = "Мантия некроманта";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 100;
@@ -1480,7 +1480,7 @@ instance ITAR_CorAngar(C_Item)
 
 instance ITAR_Dementor(C_Item)
 {
-	name = "Мантия Ищущих";
+	name = "Мантия ищущих";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 130;
@@ -1550,6 +1550,35 @@ instance ITAR_Prisoner(C_Item)
 	wear = WEAR_TORSO;
 	visual = "ItAr_Prisoner.3ds";
 	visual_change = "Armor_Prisoner.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_Dementor_Boss(C_Item)
+{
+	name = "Мантия черного мага";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 100;
+	protection[PROT_BLUNT] = 100;
+	protection[PROT_POINT] = 100;
+	protection[PROT_FIRE] = 50;
+	protection[PROT_MAGIC] = 50;
+	value = VALUE_ITAR_Xardas;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Xardas.3ds";
+	visual_change = "Armor_Dementor_Boss.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	description = name;

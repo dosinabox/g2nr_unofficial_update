@@ -34,7 +34,8 @@ instance DIA_PAL_263_PERM(C_Info)
 
 func int DIA_PAL_263_PERM_Condition()
 {
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+//	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	if(hero.guild == GIL_PAL)
 	{
 		return TRUE;
 	};

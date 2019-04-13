@@ -54,7 +54,7 @@ instance DIA_Ehnim_FELDARBEIT(C_Info)
 	nr = 4;
 	condition = DIA_Ehnim_FELDARBEIT_Condition;
 	information = DIA_Ehnim_FELDARBEIT_Info;
-	description = " ак идет работа в поле?";
+	description = " ак идет работа?";
 };
 
 
@@ -272,7 +272,7 @@ func void DIA_Ehnim_MoleRatFett_was()
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_was_15_00");	//¬инокурн€?  ака€ винокурн€?
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_01");	//ќх. ћне, наверное, не стоило говорить об этом. ¬ино всегда так трепетно относилс€ к этому своему маленькому секрету.
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_02");	//Ќу ладно, все равно уже € проболталс€. ¬ лесу, неподалеку от фермы, ¬ино устроил секретную винокурню.
-	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_03");	//Ќесколько дней назад, он попросил мен€ дать ему что-нибудь, чтобы смазать механизм решетки, установленной там.
+	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_03");	//Ќесколько дней назад он попросил мен€ дать ему что-нибудь, чтобы смазать механизм решетки, установленной там.
 	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_12_04");	//ѕоследнее врем€ шли дожди, и она заржавела. Ћебедку заклинило, и он не может подн€ть решетку.
 	Log_CreateTopic(TOPIC_FoundVinosKellerei,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_FoundVinosKellerei,LOG_Running);
@@ -339,7 +339,7 @@ func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_ja()
 func void DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel()
 {
 	AI_Output(other,self,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_15_00");	//Ёто слишком много.
-	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_12_01");	//’орошо, хорошо. 70 золотых. Ќо это мое последн€€ цена.
+	AI_Output(self,other,"DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_12_01");	//’орошо, хорошо. 70 золотых. Ќо это мо€ последн€€ цена.
 	Ehnim_MoleRatFettOffer = 70;
 	Info_ClearChoices(DIA_Ehnim_MoleRatFett);
 	Info_AddChoice(DIA_Ehnim_MoleRatFett,"Ёто все равно слишком много.",DIA_Ehnim_MoleRatFett_was_Fett_habenwill_zuviel_immernoch);

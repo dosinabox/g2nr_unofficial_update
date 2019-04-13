@@ -348,7 +348,8 @@ var int DIA_Orlan_RUESTUNG_noPerm;
 
 func int DIA_Orlan_RUESTUNG_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (DIA_Orlan_RUESTUNG_noPerm == FALSE) && (hero.guild == GIL_NONE))
+//	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (DIA_Orlan_RUESTUNG_noPerm == FALSE) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (DIA_Orlan_RUESTUNG_noPerm == FALSE) && (Kapitel < 4))
 	{
 		return TRUE;
 	};

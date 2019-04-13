@@ -34,3 +34,9 @@ func void Rtn_Start_1079()
 	TA_Stand_Drinking(3,0,6,0,"BANDIT_FIGHT");
 };
 
+func void Rtn_Guard_1079()
+{
+	TA_Stand_Guarding(9,0,21,0,"BL_ENTRANCE_04");
+	TA_Stand_Guarding(21,0,9,0,"BL_ENTRANCE_04");
+};
+

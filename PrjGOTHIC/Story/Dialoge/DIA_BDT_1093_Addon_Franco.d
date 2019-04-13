@@ -425,7 +425,10 @@ instance DIA_Addon_Franco_Fight(C_Info)
 
 func int DIA_Addon_Franco_Fight_Condition()
 {
-	return TRUE;
+	if(!Npc_IsDead(Ramon))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Franco_Fight_Info()
@@ -468,7 +471,7 @@ instance DIA_Addon_Franco_Pig(C_Info)
 
 func int DIA_Addon_Franco_Pig_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Franco_JemandAnderen))
+	if(Npc_KnowsInfo(other,DIA_Addon_Franco_JemandAnderen) && !Npc_IsDead(Ramon))
 	{
 		return TRUE;
 	};

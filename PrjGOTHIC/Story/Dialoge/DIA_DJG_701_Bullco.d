@@ -79,6 +79,10 @@ func void DIA_BullcoDJG_WARTEMAL_Info()
 		AI_Output(self,other,"DIA_BullcoDJG_WARTEMAL_06_02");	//Только не сейчас! Я замерзаю! Я хочу выбраться отсюда как можно быстрее.
 	};
 	AI_StopProcessInfos(self);
+	if(Npc_GetDistToWP(self,"OW_MOVEMENT_BGOBBO1") <= 1000)
+	{
+		Npc_ExchangeRoutine(self,"DJGVorposten");
+	};
 };
 
 
@@ -137,8 +141,16 @@ func void DIA_Bullco_WASNUN_Info()
 func void DIA_Bullco_WASNUN_woandere()
 {
 	AI_Output(other,self,"DIA_Bullco_WASNUN_woandere_15_00");	//Ты знаешь, где остальные?
-	AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_06_01");	//Думаю, да. По крайней мере, я видел одного из них у реки вон там.
-	Info_AddChoice(DIA_Bullco_WASNUN,"Отведи меня к другим охотникам на драконов.",DIA_Bullco_WASNUN_woandere_zuihnen);
+	if(Npc_KnowsInfo(other,DIA_Garond_BACKINKAP4))
+	{
+		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_06_01");	//Думаю, да. По крайней мере, я видел одного из них у реки вон там.
+		Info_AddChoice(DIA_Bullco_WASNUN,"Отведи меня к другим охотникам на драконов.",DIA_Bullco_WASNUN_woandere_zuihnen);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_lebenlassen_06_01");	//Отстань от меня!
+		AI_StopProcessInfos(self);
+	};
 };
 
 func void DIA_Bullco_WASNUN_woandere_zuihnen()
@@ -146,7 +158,7 @@ func void DIA_Bullco_WASNUN_woandere_zuihnen()
 	AI_Output(other,self,"DIA_Bullco_WASNUN_woandere_zuihnen_15_00");	//Отведи меня к другим охотникам на драконов.
 	AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_06_01");	//Эй, я не твой лакей.
 	Info_ClearChoices(DIA_Bullco_WASNUN);
-	Info_AddChoice(DIA_Bullco_WASNUN,"Как знаешь.",DIA_Bullco_WASNUN_woandere_zuihnen_alleine);
+	Info_AddChoice(DIA_Bullco_WASNUN,"Как знаешь. Я сам их найду.",DIA_Bullco_WASNUN_woandere_zuihnen_alleine);
 	Info_AddChoice(DIA_Bullco_WASNUN,"Радуйся, если я оставлю тебя в живых.",DIA_Bullco_WASNUN_woandere_zuihnen_lebenlassen);
 	Info_AddChoice(DIA_Bullco_WASNUN,"Я заплачу тебе 50 золотых за это.",DIA_Bullco_WASNUN_woandere_zuihnen_Geld);
 };
@@ -166,7 +178,7 @@ func void DIA_Bullco_WASNUN_woandere_zuihnen_Geld()
 		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_Geld_06_01");	//Хорошо. Давай их сюда.
 		AI_Output(self,other,"DIA_Bullco_WASNUN_woandere_zuihnen_Geld_06_02");	//Иди за мной. Я отведу тебя туда, где я последний раз видел других охотников на драконов.
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"DJGVorposten");
+		Npc_ExchangeRoutine(self,"Guide");
 	}
 	else
 	{

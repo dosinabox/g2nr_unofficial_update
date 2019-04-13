@@ -17,7 +17,7 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 		}
 		else if(RavenBlitz >= 3)
 		{
-			RavenRandy = Hlp_Random(3);
+			RavenRandy = Hlp_Random(100);
 			if(RavenRandy <= 50)
 			{
 				RavenBlitz = 0;

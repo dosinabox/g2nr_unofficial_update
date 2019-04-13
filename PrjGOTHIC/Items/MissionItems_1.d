@@ -10,6 +10,8 @@ instance ItKe_Xardas(C_Item)
 	description = name;
 	text[2] = "Ключ от сундука,";
 	text[3] = "принадлежащего Ксардасу.";
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItWr_Canthars_KomproBrief_MIS(C_Item)
@@ -58,7 +60,7 @@ func void Use_Canthars_KomproBrief()
 
 instance ItMw_2h_Rod(C_Item)
 {
-	name = "Двуручный меч Рода";
+	name = NAME_2h_Rod;
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
@@ -81,7 +83,7 @@ instance ItMw_2h_Rod(C_Item)
 
 instance ItMw_2h_Rod_Fake(C_Item)
 {
-	name = "Двуручный меч Рода";
+	name = NAME_2h_Rod;
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
@@ -754,10 +756,17 @@ instance Holy_Hammer_MIS(C_Item)
 	cond_value[2] = Condition_HolyHammer;
 	visual = "ItMw_030_2h_kdf_hammer_01.3DS";
 	description = name;
-	text[2] = "Урон:                     ??";
-	text[3] = "Необходима сила:          ??";
-	text[4] = "Двуручное оружие";
-	text[5] = "Цена:  невозможно определить";
+//	text[2] = "Урон:                     ??";
+//	text[3] = "Необходима сила:          ??";
+//	text[4] = "Двуручное оружие";
+//	text[5] = "Цена:  невозможно определить";
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_TwoHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItKe_MagicChest(C_Item)

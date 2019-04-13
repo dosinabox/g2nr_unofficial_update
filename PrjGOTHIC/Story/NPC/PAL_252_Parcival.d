@@ -23,6 +23,7 @@ instance PAL_252_Parcival(Npc_Default)
 func void Rtn_Start_252()
 {
 	TA_Smalltalk(8,0,21,0,"OC_EBR_HALL_CENTER");
-	TA_Sleep(21,0,8,0,"OC_EBR_ROOM_01_SLEEP");
+	TA_Sit_Chair(21,0,23,0,"OC_EBR_ROOM_01_SIT");
+	TA_Sleep(23,0,8,0,"OC_EBR_ROOM_01_SLEEP");
 };
 

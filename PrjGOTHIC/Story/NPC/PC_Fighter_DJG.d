@@ -31,14 +31,17 @@ func void Rtn_PreStart_704()
 
 func void Rtn_Start_704()
 {
-	TA_Sit_Campfire(8,0,23,0,"OW_DJG_ROCKCAMP_01");
+//	TA_Sit_Campfire(8,0,23,0,"OW_DJG_ROCKCAMP_01");
+	TA_Stand_Guarding(8,0,23,0,"ROCKCAMP");
 	TA_Sit_Campfire(23,0,8,0,"OW_DJG_ROCKCAMP_01");
 };
 
 func void Rtn_RunToRockRuinBridge_704()
 {
-	TA_RunToWP(8,0,23,0,"LOCATION_19_01");
-	TA_RunToWP(23,0,8,0,"LOCATION_19_01");
+//	TA_RunToWP(8,0,23,0,"LOCATION_19_01");
+//	TA_RunToWP(23,0,8,0,"LOCATION_19_01");
+	TA_Guide_Player(8,0,23,0,"LOCATION_19_01");
+	TA_Guide_Player(23,0,8,0,"LOCATION_19_01");
 };
 
 func void Rtn_Tot_704()

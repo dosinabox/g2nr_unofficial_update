@@ -120,7 +120,7 @@ const string MOBNAME_ADDON_STONEBOOK = "Пюпитр";
 const string MOBNAME_ADDON_ORNAMENT = "Устройство в форме кольца";
 const string MOBNAME_ADDON_ORNAMENTSWITCH = "Переключатель";
 const string MOBNAME_ADDON_WACKELBAUM = "Шатающееся дерево";
-const string NAME_ADDON_TengronsRing = "Кольцо Тенгрона.";
+const string NAME_ADDON_TengronsRing = "Кольцо Тенгрона";
 const string NAME_ADDON_CASSIASBELOHNUNGSRING = "Кольцо жизненной силы";
 const string MOBNAME_ADDON_TELEPORT_01 = "К порталу храма";
 const string MOBNAME_ADDON_TELEPORT_02 = "В лагерь бандитов";
@@ -878,3 +878,8 @@ const string PRINT_PickPocketFailed = " - карманная кража не удалась!";
 const string PRINT_PickPocketSuccess = " - карманная кража удалась!";
 
 const string PRINT_RequiresAlchemyTalent = "Для его приготовления нужно знание основ алхимии.";
+
+const string PRINT_KnowsBloodfly = "Теперь я знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.";
+
+const string NAME_2h_Rod = "Двуручный меч Рода";
+

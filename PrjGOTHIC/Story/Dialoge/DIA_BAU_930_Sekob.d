@@ -409,6 +409,12 @@ func void DIA_Sekob_DMTWEG_Info()
 	};
 	TOPIC_END_SekobDMT = TRUE;
 	B_GivePlayerXP(XP_SekobDMTWEG);
+	Info_ClearChoices(DIA_Sekob_DMTWEG);
+	Info_AddChoice(DIA_Sekob_DMTWEG,Dialog_Ende,DIA_Sekob_DMTWEG_END);
+};
+
+func void DIA_Sekob_DMTWEG_END()
+{
 	AI_StopProcessInfos(self);
 	if(Kapitel < 5)
 	{
@@ -428,6 +434,7 @@ func void DIA_Sekob_DMTWEG_Info()
 	B_StartOtherRoutine(BAU_934_Babera,"Start");
 	B_StartOtherRoutine(BAU_937_Bauer,"Start");
 	B_StartOtherRoutine(BAU_938_Bauer,"Start");
+	B_StartOtherRoutine(Bronko,"Start");
 };
 
 

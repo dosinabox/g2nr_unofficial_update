@@ -267,7 +267,7 @@ instance DIA_CipherDJG_WHATNEXT(C_Info)
 	condition = DIA_CipherDJG_WHATNEXT_Condition;
 	information = DIA_CipherDJG_WHATNEXT_Info;
 	permanent = TRUE;
-	description = "Болотный дракон мертв!";
+	description = "Болотный дракон мертв! Что ты будешь делать дальше?";
 };
 
 

@@ -36,6 +36,7 @@ const int Value_RockdragonHeart = 400;
 const int Value_DragonBlood = 200;
 const int Value_DragonScale = 200;
 const int Value_Keilerfur = 15;
+const int Value_IceWolfFur = 20;
 
 instance ItAt_Addon_BCKopf(C_Item)
 {
@@ -352,7 +353,8 @@ instance ItAt_TrollBlackFur(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_TrollBlackFur;
-	visual = "ItAt_TrollFur.3DS";
+//	visual = "ItAt_TrollFur.3DS";
+	visual = "ItAt_TrollBlackFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
@@ -578,6 +580,19 @@ instance ItAt_DragonScale(C_Item)
 	value = Value_DragonScale;
 	visual = "ItAt_DragonScale.3DS";
 	material = MAT_STONE;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItAt_IceWolfFur(C_Item)
+{
+	name = "Ўкура лед€ного волка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = Value_IceWolfFur;
+	visual = "ItAt_IceWolfFur.3DS";
+	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

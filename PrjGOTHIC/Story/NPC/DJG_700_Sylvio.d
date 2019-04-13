@@ -34,6 +34,7 @@ func void Rtn_IceWait1_700()
 	TA_Stand_Guarding(23,0,24,0,"OW_ICEREGION_ENTRANCE");
 };
 
+/*
 func void Rtn_IceWait2_700()
 {
 	TA_Stand_Guarding(0,0,23,0,"OW_DJG_ICEREGION_WAIT2_01");
@@ -45,4 +46,5 @@ func void Rtn_IceDragon_700()
 	TA_Stand_Guarding(0,0,23,0,"OW_ICEDRAGON_01");
 	TA_Stand_Guarding(23,0,24,0,"OW_ICEDRAGON_01");
 };
+*/
 

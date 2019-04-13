@@ -113,6 +113,11 @@ func void ZS_Unconscious_End()
 	};
 	AI_EquipBestMeleeWeapon(self);
 	AI_EquipBestRangedWeapon(self);
+	if(!Npc_HasEquippedWeapon(self))
+	{
+		B_RefreshMeleeWeapon(self);
+		AI_EquipBestMeleeWeapon(self);
+	};
 	AI_StartState(self,ZS_HealSelf,0,"");
 };
 

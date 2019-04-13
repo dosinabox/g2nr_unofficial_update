@@ -347,7 +347,7 @@ func void DIA_Addon_Edgor_TrainStart_GIFT()
 			Knows_Bloodfly = TRUE;
 			PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
 			Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-			B_LogEntry(Topic_Bonus,"“еперь € знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.");
+			B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
 		}
 		else
 		{

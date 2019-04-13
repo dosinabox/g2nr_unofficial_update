@@ -207,6 +207,7 @@ func void DIA_Ramirez_Bezahlen_Info()
 
 func void DIA_Ramirez_Bezahlen_Spaeter()
 {
+	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_LATER_15_00");	//Может быть, позже...
 	Info_ClearChoices(DIA_Ramirez_Bezahlen);
 };
 

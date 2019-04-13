@@ -172,7 +172,8 @@ var int DIA_Keroloth_Teach_permanent;
 
 func int DIA_Keroloth_Teach_Condition()
 {
-	if((Keroloth_TeachPlayer == TRUE) && (Keroloths_BeutelLeer == FALSE) && (DIA_Keroloth_Teach_permanent == FALSE) && (other.HitChance[NPC_TALENT_2H] < 60))
+//	if((Keroloth_TeachPlayer == TRUE) && (Keroloths_BeutelLeer == FALSE) && (DIA_Keroloth_Teach_permanent == FALSE) && (other.HitChance[NPC_TALENT_2H] < 60))
+	if((Keroloth_TeachPlayer == TRUE) && (Keroloths_BeutelLeer == FALSE) && (DIA_Keroloth_Teach_permanent == FALSE) && (other.aivar[REAL_TALENT_2H] < 60))
 	{
 		return TRUE;
 	};
@@ -320,16 +321,19 @@ func void DIA_Keroloth_KAP4_HELLO_Info()
 	AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_15_00");	//У тебя такой расстроенный вид.
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_07_01");	//(возбужденно) Будь они прокляты. Мой тебе совет: глаз не спускай со своих вещей.
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_07_02");	//Чуть отвернешься, и все - вещички уже увели. Вот подонки!
-	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,Dialog_Back,DIA_Keroloth_KAP4_HELLO_ende);
+//	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,Dialog_Back,DIA_Keroloth_KAP4_HELLO_ende);
+	Info_ClearChoices(DIA_Keroloth_KAP4_HELLO);
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"Успокойся! Паладин не должен так просто выходить из себя.",DIA_Keroloth_KAP4_HELLO_ruhig);
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"У тебя что-то украли?",DIA_Keroloth_KAP4_HELLO_bestohlen);
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"Что за подонки?",DIA_Keroloth_KAP4_HELLO_pack);
 };
 
+/*
 func void DIA_Keroloth_KAP4_HELLO_ende()
 {
 	Info_ClearChoices(DIA_Keroloth_KAP4_HELLO);
 };
+*/
 
 func void DIA_Keroloth_KAP4_HELLO_bestohlen()
 {

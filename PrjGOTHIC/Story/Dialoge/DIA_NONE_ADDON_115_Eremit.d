@@ -193,15 +193,15 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	Info_AddChoice(DIA_Addon_Eremit_Klamotten,Dialog_Back,DIA_Addon_Eremit_Klamotten_BACK);
 /*	if(Npc_HasItems(other,ITAR_PIR_L_Addon))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать легкие доспехи пирата",DIA_Addon_Eremit_Klamotten_PIR_L);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать одежду пирата",DIA_Addon_Eremit_Klamotten_PIR_L);
 	}; */
 	if(Npc_HasItems(other,ITAR_PIR_M_Addon))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать средние доспехи пирата",DIA_Addon_Eremit_Klamotten_PIR_M);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать доспехи пирата",DIA_Addon_Eremit_Klamotten_PIR_M);
 	};
 /*	if(Npc_HasItems(other,ITAR_PIR_H_Addon))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать доспехи капитана пиратов",DIA_Addon_Eremit_Klamotten_PIR_H);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать доспехи капитана",DIA_Addon_Eremit_Klamotten_PIR_H);
 	}; */
 	if(Npc_HasItems(other,ITAR_RANGER_Addon))
 	{
@@ -285,19 +285,19 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	};
 /*	if(Npc_HasItems(other,ITAR_Xardas))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать мантию черного мага",DIA_Addon_Eremit_Klamotten_Xardas);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать мантию некроманта",DIA_Addon_Eremit_Klamotten_Xardas);
 	};
 	if(Npc_HasItems(other,ITAR_Lester))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать робу Лестера",DIA_Addon_Eremit_Klamotten_Lester);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать тяжелую робу послушника",DIA_Addon_Eremit_Klamotten_Lester);
 	};
 	if(Npc_HasItems(other,ITAR_Diego))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать доспехи Диего",DIA_Addon_Eremit_Klamotten_Diego);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать тяжелые доспехи призрака",DIA_Addon_Eremit_Klamotten_Diego);
 	};
 	if(Npc_HasItems(other,ITAR_CorAngar))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать доспехи Ангара",DIA_Addon_Eremit_Klamotten_CorAngar);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать тяжелые доспехи храмовника",DIA_Addon_Eremit_Klamotten_CorAngar);
 	};
 	if(Npc_HasItems(other,ITAR_Prisoner))
 	{
@@ -305,19 +305,28 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	};
 	if(Npc_HasItems(other,ITAR_Dementor))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать мантию Ищущих",DIA_Addon_Eremit_Klamotten_Dementor);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать мантию ищущих",DIA_Addon_Eremit_Klamotten_Dementor);
+	};
+	if(Npc_HasItems(other,ITAR_Dementor_Boss))
+	{
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"Дать мантию черного мага",DIA_Addon_Eremit_Klamotten_Dementor_Boss);
 	}; */
 };
 
 func void B_Eremit_Tatsache()
 {
+	var string concatText;
 	AI_EquipBestArmor(self);
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_20");	//Подходит!
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_21");	//Так-так, чем же мне тебе заплатить? Все золото я отдал пиратам за то, что они меня сюда привезли.
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_22");	//Все, что я могу тебе отдать, это эти старые каменные таблички.
 	AI_Output(self,other,"DIA_Addon_Eremit_Add_04_23");	//Забирай. Я поищу себе новые.
-	B_GiveInvItems(self,other,ItWr_DexStonePlate3_Addon,1);
-	B_GiveInvItems(self,other,ItWr_StonePlateCommon_Addon,1);
+//	B_GiveInvItems(self,other,ItWr_DexStonePlate3_Addon,1);
+//	B_GiveInvItems(self,other,ItWr_StonePlateCommon_Addon,1);
+	CreateInvItem(other,ItWr_DexStonePlate3_Addon);
+	CreateInvItem(other,ItWr_StonePlateCommon_Addon);
+	concatText = ConcatStrings(IntToString(2),PRINT_ItemsErhalten);
+	AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2); 
 	MIS_Eremit_Klamotten = LOG_SUCCESS;
 	B_GivePlayerXP(200);
 	Info_ClearChoices(DIA_Addon_Eremit_Klamotten);
@@ -614,6 +623,12 @@ func void DIA_Addon_Eremit_Klamotten_Prisoner()
 func void DIA_Addon_Eremit_Klamotten_Dementor()
 {
 	B_GiveInvItems(other,self,ITAR_Dementor,1);
+	B_Eremit_Tatsache();
+};
+
+func void DIA_Addon_Eremit_Klamotten_Dementor_Boss()
+{
+	B_GiveInvItems(other,self,ITAR_Dementor_Boss,1);
 	B_Eremit_Tatsache();
 }; */
 

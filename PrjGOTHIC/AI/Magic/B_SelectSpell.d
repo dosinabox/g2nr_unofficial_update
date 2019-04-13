@@ -338,7 +338,8 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 	}; */
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
 	{
-		if(!Npc_HasItems(slf,ItRu_InstantFireball))
+//		if(!Npc_HasItems(slf,ItRu_InstantFireball))
+		if(!Npc_HasItems(slf,ItRu_Firestorm))
 		{
 //			CreateInvItems(slf,ItRu_InstantFireball,1);
 			CreateInvItems(slf,ItRu_Firestorm,1);
@@ -356,7 +357,8 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 	};
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_ICE)
 	{
-		if(!Npc_HasItems(slf,ItRu_InstantFireball))
+//		if(!Npc_HasItems(slf,ItRu_InstantFireball))
+		if(!Npc_HasItems(slf,ItRu_ThunderBall))
 		{
 //			CreateInvItems(slf,ItRu_InstantFireball,1);
 			CreateInvItems(slf,ItRu_ThunderBall,1);

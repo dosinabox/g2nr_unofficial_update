@@ -118,7 +118,7 @@ instance ITKE_ErzBaronFlur(C_Item)
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-	description = "От первой двери.";
+	description = "От первой двери";
 	text[2] = "На нем выгравировано имя:";
 	text[3] = "Гомез.";
 //	text[5] = NAME_Value;
@@ -133,7 +133,7 @@ instance ITKE_ErzBaronRaum(C_Item)
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
-	description = "От второй двери.";
+	description = "От второй двери";
 	text[2] = "На нем выгравировано имя:";
 	text[3] = "Гомез.";
 //	text[5] = NAME_Value;
@@ -150,7 +150,7 @@ instance ItMi_GornsTreasure_MIS(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = UseGornsTreasure;
-	description = "Кожаный кошелек Горна.";
+	description = "Кожаный кошелек Горна";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -328,7 +328,7 @@ func void UseBloodMIS()
 	if(Knows_Bloodfly == FALSE)
 	{
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-		B_LogEntry(Topic_Bonus,"Теперь я знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.");
+		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
 		Knows_Bloodfly = TRUE;
 		B_GivePlayerXP(XP_Ambient);
 	};

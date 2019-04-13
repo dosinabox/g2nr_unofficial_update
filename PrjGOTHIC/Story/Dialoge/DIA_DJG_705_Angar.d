@@ -365,8 +365,11 @@ func void DIA_AngarDJG_WHATSINTHERE_Info()
 {
 	AI_Output(other,self,"DIA_AngarDJG_WHATSINTHERE_15_00");	//„то скрываетс€ в этой пещере в скалах?
 	AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_01");	//„то-то, что не позвол€ет мне приблизитьс€ к входу!
-	AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_02");	//≈го охран€ет магическое существо. я видел его ночью, он тут рыскал. ќтвратительное создание.
-	AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_03");	//ќн шныр€л между деревь€ми, и у мен€ было впечатление, что он высасывает всю жизнь вокруг и впитывает ее, как губка.
+	if(!Npc_IsDead(Shadowbeast_Skeleton_Angar))
+	{
+		AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_02");	//≈го охран€ет магическое существо. я видел его ночью, он тут рыскал. ќтвратительное создание.
+		AI_Output(self,other,"DIA_AngarDJG_WHATSINTHERE_04_03");	//ќн шныр€л между деревь€ми, и у мен€ было впечатление, что он высасывает всю жизнь вокруг и впитывает ее, как губка.
+	};
 	B_LogEntry(TOPIC_Dragonhunter,"я нашел јнгара в ƒолине –удников.");
 };
 

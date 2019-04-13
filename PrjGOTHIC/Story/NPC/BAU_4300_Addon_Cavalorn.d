@@ -31,8 +31,10 @@ func void Rtn_Start_4300()
 
 func void Rtn_KillBandits_4300()
 {
-	TA_RunToWP(5,0,20,0,"NW_XARDAS_BANDITS_LEFT");
-	TA_RunToWP(20,0,5,0,"NW_XARDAS_BANDITS_LEFT");
+//	TA_RunToWP(5,0,20,0,"NW_XARDAS_BANDITS_LEFT");
+//	TA_RunToWP(20,0,5,0,"NW_XARDAS_BANDITS_LEFT");
+	TA_Guide_Player(5,0,20,0,"NW_XARDAS_BANDITS_LEFT");
+	TA_Guide_Player(20,0,5,0,"NW_XARDAS_BANDITS_LEFT");
 };
 
 func void Rtn_OrnamentSteinring_4300()

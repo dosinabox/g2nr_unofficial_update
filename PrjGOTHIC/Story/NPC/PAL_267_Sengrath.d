@@ -24,7 +24,8 @@ instance PAL_267_Sengrath(Npc_Default)
 func void Rtn_Start_267()
 {
 	TA_Stand_Guarding(8,0,23,0,"OC_CENTER_GUARD_01");
-	TA_Stand_Guarding(23,0,8,0,"OC_CENTER_GUARD_01");
+//	TA_Stand_Guarding(23,0,8,0,"OC_CENTER_GUARD_01");
+	TA_Stand_Guarding(23,0,8,0,"OC_RAMP_16");
 };
 
 func void Rtn_OrcBarrier_267()

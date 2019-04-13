@@ -125,9 +125,9 @@ func int ZS_WatchFight_Loop()
 			return LOOP_END;
 		};
 	};
-	if(C_NpcIsToughGuy(self))
+/*	if(C_NpcIsToughGuy(self))
 	{
-	};
+	}; */
 	if((Npc_GetDistToNpc(self,other) <= WATCHFIGHT_DIST_MIN) || (Npc_GetDistToNpc(self,victim) <= WATCHFIGHT_DIST_MIN))
 	{
 		Npc_ClearAIQueue(self);

@@ -87,6 +87,7 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 			B_RemoveNpc(Bilgot);
 		};
 		B_RemoveNpc(OC_Sheep1);
+		B_StartOtherRoutine(Garond,"START");
 		EnterOW_Kapitel3 = TRUE;
 	};
 };
@@ -101,6 +102,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		if(!Npc_IsDead(Engrom))
 		{
 			B_StartOtherRoutine(Engrom,"Obsessed");
+			AI_Teleport(Engrom,"OW_SAWHUT_MOLERAT_MOVEMENT");
 			CreateInvItems(Engrom,ItAt_TalbinsLurkerSkin,1);
 			if(hero.guild != GIL_KDF)
 /*			{
@@ -119,6 +121,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		if(!Npc_IsDead(Sengrath))
 		{
 			B_StartOtherRoutine(Sengrath,"OrcBarrier");
+			AI_Teleport(Sengrath,"OW_ORCBARRIER_12");
 			B_ClearDeadTrader(Sengrath);
 			if(Npc_HasItems(Sengrath,ItRw_Mil_Crossbow))
 			{
@@ -156,7 +159,8 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		B_KillNpc(DJG_740_ToterDrachenjaeger);
 		if(!Npc_IsDead(Brutus))
 		{
-			Npc_ExchangeRoutine(Brutus,"Meatbugs");
+//			Npc_ExchangeRoutine(Brutus,"Meatbugs");
+			B_StartOtherRoutine(Brutus,"Meatbugs");
 		};
 		Wld_InsertNpc(Meatbug_Brutus1,"OC_FOLTER_SHARP");
 		Wld_InsertNpc(Meatbug_Brutus2,"OC_FOLTER_SHARP");
@@ -415,6 +419,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		Wld_InsertNpc(Warg,"SPAWN_OW_SHADOWBEAST_NEAR_SHADOW4");
 		Wld_InsertItem(ItMi_KerolothsGeldbeutel_MIS,"FP_OC_KEROLOTHS_GELDBEUTEL");
 		B_RemoveNpc(OC_Sheep2);
+		B_StartOtherRoutine(Garond,"START");
 		Log_CreateTopic(TOPIC_Dragonhunter,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Dragonhunter,LOG_Running);
 		B_LogEntry(TOPIC_Dragonhunter,"Началась масштабная охота на драконов. Она привлекла многих искателей приключений в Долину Рудников. Мне остается только надеяться, что они не будут мешаться у меня под ногами.");

@@ -549,7 +549,7 @@ func void DIA_Cord_ReturnPatrick_Info()
 	AI_Output(other,self,"DIA_Addon_Cord_ReturnPatrick_15_02");	//У меня есть одна просьба.
 	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_03");	//Да?
 	AI_Output(other,self,"DIA_Addon_Cord_ReturnPatrick_15_04");	//Давай обойдемся без благодарностей.
-	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_05");	//Но я и не собирался тебя благодарить.
+	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_05");	//Но я не собирался тебя благодарить.
 	AI_Output(other,self,"DIA_Addon_Cord_ReturnPatrick_15_06");	//Что?..
 	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_07");	//(усмехается) Я собирался сказать тебе, что ты нахальный и скользкий малый.
 	AI_Output(self,other,"DIA_Addon_Cord_ReturnPatrick_14_09");	//(усмехается) Продолжай в том же духе!

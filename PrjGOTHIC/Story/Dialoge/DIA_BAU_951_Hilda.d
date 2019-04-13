@@ -345,7 +345,7 @@ var int DIA_Hilda_KRANK_OnTime;
 func void DIA_Hilda_KRANK_Info()
 {
 	AI_Output(other,self,"DIA_Hilda_KRANK_15_00");	//Как ты себя чувствуешь?
-	AI_Output(self,other,"DIA_Hilda_KRANK_17_01");	//Отвратительно. У меня опять эта ужасная лихорадка.
+	AI_Output(self,other,"DIA_Hilda_KRANK_17_01");	//Отвратительно. У меня опять эта жуткая лихорадка.
 	AI_Output(self,other,"DIA_Hilda_KRANK_17_02");	//Мне бы нужно сходить к городскому лекарю, но я слишком слаба для этого.
 	if(DIA_Hilda_KRANK_OnTime == FALSE)
 	{

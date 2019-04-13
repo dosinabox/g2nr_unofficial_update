@@ -75,7 +75,7 @@ func void DIA_Jan_Dragons_Info()
 	AI_Output(self,other,"DIA_Jan_Dragons_10_04");	//Паладины не подпускают меня к кузнице. Если я подойду к ней, меня бросят за решетку.
 	if(hero.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Jan_Dragons_10_05");	//Ты ведь один из них. Может, замолвишь за меня словечко?
+		AI_Output(self,other,"DIA_Jan_Dragons_10_05");	//Ты ведь один из них. Можешь замолвить за меня словечко?
 	};
 	Info_ClearChoices(DIA_JAN_Dragons);
 	Info_AddChoice(DIA_JAN_Dragons,Dialog_Ende_v2,DIA_JAN_Dragons_ShitHappen);

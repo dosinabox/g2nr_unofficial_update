@@ -3,11 +3,13 @@ func void B_ClearRuneInv(var C_Npc slf)
 {
 	var C_Npc her;
 	var C_Npc orc;
+	var C_Npc bro;
 	her = Hlp_GetNpc(PC_Hero);
 	orc = Hlp_GetNpc(OrkElite_AntiPaladinOrkOberst);
+	bro = Hlp_GetNpc(PAL_2004_Bruder);
 	if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(her))
 	{
-		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Archol)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(orc)))
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Archol)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(orc)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(bro)))
 		{
 			return;
 		};

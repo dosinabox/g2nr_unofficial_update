@@ -99,7 +99,8 @@ func void B_GiveDeathInv(var C_Npc slf)
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_Icewolf)
 		{
-			CreateInvItems(slf,ItAt_WolfFur,1);
+//			CreateInvItems(slf,ItAt_WolfFur,1);
+			CreateInvItems(slf,ItAt_IceWolfFur,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARG)
 		{

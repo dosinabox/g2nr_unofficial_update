@@ -19,7 +19,8 @@ func int ZS_Practice_Sword_Loop()
 	{
 		if(!Npc_HasEquippedMeleeWeapon(self))
 		{
-			CreateInvItems(self,ItMw_1h_Bau_Mace,1);
+//			CreateInvItems(self,ItMw_1h_Bau_Mace,1);
+			B_RefreshMeleeWeapon(self);
 			AI_EquipBestMeleeWeapon(self);
 		};
 		AI_ReadyMeleeWeapon(self);
