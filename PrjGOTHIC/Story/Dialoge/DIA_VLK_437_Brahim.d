@@ -32,6 +32,7 @@ func int DIA_Brahim_EXIT_Condition()
 func void DIA_Brahim_EXIT_Info()
 {
 	B_BrahimNewMaps();
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -161,6 +162,7 @@ func void DIA_Brahim_BUY_Info()
 		AI_Output(self,other,"DIA_Brahim_BUY_07_02");	//Хорошая карта - это очень важно, особенно для людей, прибывших с материка, мистер паладин.
 	};
 	Brahim_ShowedMaps = TRUE;
+	Trade_IsActive = TRUE;
 };
 
 
@@ -189,6 +191,7 @@ func void DIA_Brahim_Kap3_EXIT_Info()
 	{
 		B_BrahimNewMaps();
 	};
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 

@@ -958,7 +958,7 @@ instance DIA_Lee_BuyArmorM(C_Info)
 	condition = DIA_Lee_BuyArmorM_Condition;
 	information = DIA_Lee_BuyArmorM_Info;
 	permanent = TRUE;
-	description = "Купить средние доспехи наемника. Защита: оружие 50, стрелы 50, магия 5. (1000 золота)";
+	description = "Купить средние доспехи наемника. Защита: 50/50/0/5. (1000 золота)";
 };
 
 
@@ -1072,7 +1072,7 @@ instance DIA_Lee_BuyArmorH(C_Info)
 	condition = DIA_Lee_BuyArmorH_Condition;
 	information = DIA_Lee_BuyArmorH_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи наемника. Защита: оружие 80, стрелы 80, огонь 5, магия 10. (2500 золота)";
+	description = "Купить тяжелые доспехи наемника. Защита: 80/80/5/10. (2500 золота)";
 };
 
 
@@ -1907,7 +1907,7 @@ func void DIA_Lee_StillNeedYou_Info()
 	B_CheckLog();
 };
 
-
+/*
 instance DIA_Lee_KAP6_EXIT(C_Info)
 {
 	npc = SLD_800_Lee;
@@ -1931,4 +1931,4 @@ func void DIA_Lee_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/

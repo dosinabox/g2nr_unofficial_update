@@ -17,6 +17,7 @@ func int DIA_Orlan_EXIT_Condition()
 
 func void DIA_Orlan_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -361,7 +362,7 @@ func void DIA_Orlan_RUESTUNG_Info()
 	AI_Output(self,other,"DIA_Orlan_RUESTUNG_05_01");	//У меня есть очень хороший экземпляр, я уверен, это заинтересует тебя.
 	Info_ClearChoices(DIA_Orlan_RUESTUNG);
 	Info_AddChoice(DIA_Orlan_RUESTUNG,Dialog_Back,DIA_Orlan_RUESTUNG_BACK);
-	Info_AddChoice(DIA_Orlan_RUESTUNG,"Кожаные доспехи. Защита: оружие 25, стрелы 20, огонь 5. (250 золота)",DIA_Orlan_RUESTUNG_Buy);
+	Info_AddChoice(DIA_Orlan_RUESTUNG,"Кожаные доспехи. Защита: 25/20/5/0. (250 золота)",DIA_Orlan_RUESTUNG_Buy);
 };
 
 func void DIA_Orlan_RUESTUNG_Buy()
@@ -430,6 +431,7 @@ func void DIA_Orlan_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Orlan_TRADE_05_03");	//Если ты сможешь заплатить.
 	};
+	Trade_IsActive = TRUE;
 };
 
 
@@ -475,8 +477,8 @@ func void DIA_Orlan_HotelZimmer_Info()
 			AI_Output(self,other,"DIA_Orlan_HotelZimmer_05_02");	//Я бы никогда не посмел взять деньги за свои услуги с представителя Инноса на земле.
 		};
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_05_03");	//Вот ключ от верхних комнат. Выбирай, которая больше понравится.
-		CreateInvItems(self,itke_orlan_hotelzimmer,1);
-		B_GiveInvItems(self,other,itke_orlan_hotelzimmer,1);
+		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
+		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
 		Orlan_SCGotHotelZimmer = TRUE;
 		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
 	}
@@ -495,8 +497,8 @@ func void DIA_Orlan_HotelZimmer_ja()
 	{
 		AI_Output(other,self,"DIA_Orlan_HotelZimmer_ja_15_00");	//Хорошо. Вот золото.
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_01");	//А вот ключ. Комнаты находятся вверх по лестнице. Но не загадь ее и не забывай платить ренту вовремя, понятно?
-		CreateInvItems(self,itke_orlan_hotelzimmer,1);
-		B_GiveInvItems(self,other,itke_orlan_hotelzimmer,1);
+		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
+		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
 		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
 		Orlan_SCGotHotelZimmer = TRUE;
 	}

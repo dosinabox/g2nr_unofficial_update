@@ -656,7 +656,7 @@ func void DIA_Talbin_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Talbin_KAP6_EXIT(C_Info)
 {
 	npc = VLK_4130_Talbin;
@@ -680,7 +680,7 @@ func void DIA_Talbin_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Talbin_PICKPOCKET(C_Info)
 {

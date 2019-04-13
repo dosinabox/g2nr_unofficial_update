@@ -54,6 +54,7 @@ func void DIA_Canthar_EXIT_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_EXIT_15_00");	//Мне нужно идти.
 	AI_Output(self,other,"DIA_Canthar_EXIT_09_01");	//Как знаешь.
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -302,6 +303,7 @@ func void DIA_Canthar_TRADE_Info()
 	AI_Output(other,self,"DIA_Canthar_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Canthar_TRADE_09_01");	//Выбирай.
+	Trade_IsActive = TRUE;
 };
 
 

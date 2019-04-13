@@ -8,6 +8,10 @@ func void B_AddFightSkill(var C_Npc slf,var int talent,var int percent)
 		{
 			slf.HitChance[NPC_TALENT_1H] = 100;
 		};
+		if(slf.HitChance[NPC_TALENT_1H] < 0)
+		{
+			slf.HitChance[NPC_TALENT_1H] = 0;
+		};
 		if(slf.HitChance[NPC_TALENT_1H] >= 60)
 		{
 			Npc_SetTalentSkill(slf,NPC_TALENT_1H,2);
@@ -31,6 +35,10 @@ func void B_AddFightSkill(var C_Npc slf,var int talent,var int percent)
 		if(slf.HitChance[NPC_TALENT_2H] > 100)
 		{
 			slf.HitChance[NPC_TALENT_2H] = 100;
+		};
+		if(slf.HitChance[NPC_TALENT_2H] < 0)
+		{
+			slf.HitChance[NPC_TALENT_2H] = 0;
 		};
 		if(slf.HitChance[NPC_TALENT_2H] >= 60)
 		{

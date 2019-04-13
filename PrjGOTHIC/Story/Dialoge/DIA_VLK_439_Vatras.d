@@ -1391,6 +1391,16 @@ func int DIA_Vatras_INFLUENCE_Condition()
 	};
 };
 
+func void B_Vatras_Segen()
+{
+	Vatras_Segen += 1;
+	if((MadKillerCount > 0) && (VatrasMadKillerCount == 0) && (Vatras_Segen > 9))
+	{
+		MadKillerCount -= 1;
+		Vatras_Segen = 0;
+	};
+};
+
 func void DIA_Vatras_INFLUENCE_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_INFLUENCE_15_00");	//Я прошу твоего благословения.
@@ -1399,7 +1409,8 @@ func void DIA_Vatras_INFLUENCE_Info()
 	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_11");	//Ступай с благословением Аданоса, сын мой!
 	Snd_Play("LevelUp");
 	B_GivePlayerXP(XP_VatrasTruth);
-	Vatras_Segen = TRUE;
+//	Vatras_Segen = TRUE;
+	B_Vatras_Segen();
 	B_LogEntry(TOPIC_Thorben,"Маг Воды Ватрас благословил меня.");
 };
 
@@ -1417,7 +1428,7 @@ instance DIA_Vatras_WoKdF(C_Info)
 
 func int DIA_Vatras_WoKdF_Condition()
 {
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen == TRUE) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo) && (Vatras_MORE == TRUE))
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen > 0) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo) && (Vatras_MORE == TRUE))
 	{
 		return TRUE;
 	};
@@ -1443,7 +1454,8 @@ instance DIA_Vatras_Spende(C_Info)
 
 func int DIA_Vatras_Spende_Condition()
 {
-	if(Vatras_MORE == TRUE)
+//	if(Vatras_MORE == TRUE)
+	if((Vatras_MORE == TRUE) && (Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
 	{
 		return TRUE;
 	};
@@ -1488,7 +1500,8 @@ func void DIA_Vatras_Spende_100()
 	Snd_Play("LevelUp");
 	AI_Output(self,other,"DIA_Vatras_Spende_100_05_02");	//Да будет путь, по которому ты идешь, благословлен Аданосом!
 	B_GiveInvItems(other,self,ItMi_Gold,100);
-	Vatras_Segen = TRUE;
+//	Vatras_Segen = TRUE;
+	B_Vatras_Segen();
 	Info_ClearChoices(DIA_Vatras_Spende);
 	if(MIS_Thorben_GetBlessings == LOG_Running)
 	{

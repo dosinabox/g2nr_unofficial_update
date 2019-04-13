@@ -14,7 +14,7 @@ prototype Mst_Default_Scavenger(C_Npc)
 	protection[PROT_BLUNT] = 35;
 	protection[PROT_EDGE] = 35;
 	protection[PROT_POINT] = 0;
-	protection[PROT_FIRE] = 35;
+	protection[PROT_FIRE] = 0;	//35;
 	protection[PROT_FLY] = 35;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

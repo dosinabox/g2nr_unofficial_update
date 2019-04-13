@@ -17,6 +17,7 @@ func int DIA_Milten_DI_EXIT_Condition()
 
 func void DIA_Milten_DI_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -77,6 +78,7 @@ func void DIA_Milten_DI_TRADE_Info()
 	Npc_RemoveInvItems(self,ItPo_Mana_02,Npc_HasItems(self,ItPo_Mana_02));
 	CreateInvItems(self,ItPo_Mana_02,15);
 	AI_Output(self,other,"DIA_Milten_DI_TRADE_03_01");	//Пока есть запас.
+	Trade_IsActive = TRUE;
 };
 
 

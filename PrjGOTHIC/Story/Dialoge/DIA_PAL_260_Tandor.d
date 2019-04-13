@@ -20,6 +20,7 @@ func int DIA_Tandor_EXIT_Condition()
 
 func void DIA_Tandor_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -104,6 +105,7 @@ func void DIA_Tandor_Trade_Info()
 	AI_Output(other,self,"DIA_Tandor_Trade_15_00");	//Покажи мне свои товары.
 	B_ClearBonusFoodInv(self);
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 
@@ -208,6 +210,7 @@ func int DIA_Tandor_KAP3_EXIT_Condition()
 
 func void DIA_Tandor_KAP3_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -233,6 +236,7 @@ func int DIA_Tandor_KAP4_EXIT_Condition()
 
 func void DIA_Tandor_KAP4_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -292,6 +296,7 @@ func int DIA_Tandor_KAP5_EXIT_Condition()
 
 func void DIA_Tandor_KAP5_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -328,7 +333,7 @@ func void DIA_Tandor_WASISTLOS_Info()
 	};
 };
 
-
+/*
 instance DIA_Tandor_KAP6_EXIT(C_Info)
 {
 	npc = PAL_260_Tandor;
@@ -352,7 +357,7 @@ func void DIA_Tandor_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Tandor_PICKPOCKET(C_Info)
 {

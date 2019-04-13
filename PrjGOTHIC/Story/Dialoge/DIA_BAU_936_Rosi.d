@@ -20,6 +20,7 @@ func int DIA_Rosi_EXIT_Condition()
 
 func void DIA_Rosi_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -108,9 +109,10 @@ func int DIA_Rosi_WAREZ_Condition()
 
 func void DIA_Rosi_WAREZ_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Rosi_WAREZ_15_00");	//Что ты можешь предложить мне?
+	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Rosi_WAREZ_17_01");	//Выбирай.
+	Trade_IsActive = TRUE;
 };
 
 
@@ -301,6 +303,7 @@ func int DIA_Rosi_KAP3_EXIT_Condition()
 
 func void DIA_Rosi_KAP3_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -326,6 +329,7 @@ func int DIA_Rosi_KAP4_EXIT_Condition()
 
 func void DIA_Rosi_KAP4_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -351,6 +355,7 @@ func int DIA_Rosi_KAP5_EXIT_Condition()
 
 func void DIA_Rosi_KAP5_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -565,7 +570,7 @@ func void DIA_Rosi_MinenAnteil_Info()
 	B_GivePlayerXP(XP_Ambient);
 };
 
-
+/*
 instance DIA_Rosi_KAP6_EXIT(C_Info)
 {
 	npc = BAU_936_Rosi;
@@ -589,7 +594,7 @@ func void DIA_Rosi_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Rosi_PICKPOCKET(C_Info)
 {

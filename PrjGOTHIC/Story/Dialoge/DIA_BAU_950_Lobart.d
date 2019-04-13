@@ -990,7 +990,7 @@ func void DIA_Lobart_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Lobart_KAP6_EXIT(C_Info)
 {
 	npc = BAU_950_Lobart;
@@ -1014,7 +1014,7 @@ func void DIA_Lobart_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Lobart_PICKPOCKET(C_Info)
 {

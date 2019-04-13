@@ -17,6 +17,7 @@ func int DIA_Bennet_DI_EXIT_Condition()
 
 func void DIA_Bennet_DI_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -88,6 +89,7 @@ func void DIA_Bennet_DI_TRADE_Info()
 	AI_Output(other,self,"DIA_Bennet_DI_TRADE_15_00");	//Какое оружие ты можешь продать мне?
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Bennet_DI_TRADE_06_01");	//Только лучшее. Ты же знаешь.
+	Trade_IsActive = TRUE;
 };
 
 

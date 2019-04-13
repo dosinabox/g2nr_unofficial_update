@@ -25,6 +25,7 @@ func void DIA_Fenia_EXIT_Info()
 	{
 		AI_Output(self,other,"DIA_Fenia_EXIT_17_01");	//Удачной тебе дороги, о, достопочтенный маг.
 	};
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -117,8 +118,9 @@ func int DIA_Fenia_HANDELN_Condition()
 
 func void DIA_Fenia_HANDELN_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Fenia_HANDELN_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 

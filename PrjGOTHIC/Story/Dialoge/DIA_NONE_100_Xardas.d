@@ -1092,7 +1092,7 @@ func void DIA_Xardas_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Xardas_KAP6_EXIT(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -1116,4 +1116,4 @@ func void DIA_Xardas_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/

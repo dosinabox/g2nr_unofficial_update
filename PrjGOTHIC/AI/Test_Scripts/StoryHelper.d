@@ -90,7 +90,8 @@ func void StoryHelper_INFO1_Info()
 	Info_ClearChoices(StoryHelper_INFO1);
 	Info_AddChoice(StoryHelper_INFO1,Dialog_Back,StoryHelper_BACK1);
 	Info_AddChoice(StoryHelper_INFO1,KapAnfang,StoryHelper_KAPITEL1ANFANG);
-	Info_AddChoice(StoryHelper_INFO1,"АДДОН: Готов к первой встрече с Сатурасом (забыть Лареса)",StoryHelper_SATURAS);
+	Info_AddChoice(StoryHelper_INFO1,"АДДОН Готов к первой встрече с Сатурасом (забыть о Ларесе)",StoryHelper_SATURAS);
+	Info_AddChoice(StoryHelper_INFO1,"АДДОН Баг с Кавалорном",StoryHelper_Cavalorn);
 };
 
 func void StoryHelper_SATURAS()
@@ -99,6 +100,26 @@ func void StoryHelper_SATURAS()
 	CreateInvItems(other,ItMi_Ornament_Addon,1);
 	SC_KnowsRanger = TRUE;
 	B_Kapitelwechsel(1,NEWWORLD_ZEN);
+	AI_StopProcessInfos(self);
+};
+
+func void StoryHelper_Cavalorn()
+{
+	B_Kapitelwechsel(1,NEWWORLD_ZEN);
+	//Получено письмо для Ватраса
+	MIS_Addon_Cavalorn_Letter2Vatras = LOG_SUCCESS;
+	//Найден торговец, продававший оружие бандитам
+	MIS_Vatras_FindTheBanditTrader = LOG_SUCCESS;
+	//Где же пропавшие люди?
+	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
+	//Кольцо колец :)
+	CreateInvItems(hero,ItRi_Ranger_Addon,1);	
+	//Найти каменные круги
+	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_RUNNING;
+	//...и Кавалорн отправился в один из них
+	B_StartotherRoutine(BAU_4300_Addon_Cavalorn,"OrnamentSteinring");
+	//Игрок получил карту кругов
+	CreateInvItems(hero,ItWr_Map_NewWorld_Ornaments_Addon,1);	
 	AI_StopProcessInfos(self);
 };
 
@@ -283,7 +304,7 @@ func void StoryHelper_KAPITEL5ANFANG()
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	B_Kapitelwechsel(4,NEWWORLD_ZEN);
-	CreateInvItems(hero,ItAt_IcedragonHeart,1);
+	CreateInvItems(hero,ItAt_IcedragonHeart,1);	//чтобы оно было у вас на Ирдорате!
 	MIS_AllDragonsDead = TRUE;
 	B_Kapitelwechsel(5,NEWWORLD_ZEN);
 	Info_ClearChoices(StoryHelper_INFO5);

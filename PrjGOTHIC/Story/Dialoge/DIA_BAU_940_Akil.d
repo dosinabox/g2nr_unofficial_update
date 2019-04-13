@@ -673,7 +673,7 @@ func void DIA_Akil_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Akil_KAP6_EXIT(C_Info)
 {
 	npc = BAU_940_Akil;
@@ -697,7 +697,7 @@ func void DIA_Akil_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Akil_PICKPOCKET(C_Info)
 {

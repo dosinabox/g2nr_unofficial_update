@@ -73,9 +73,9 @@ instance ItMi_BaltramPaket(C_Item)
 	visual = "ItMi_Packet.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Тяжелый пакет с";
-	text[3] = "различными товарами";
-	text[4] = "с фермы Акила.";
+	text[0] = "Тяжелый пакет с";
+	text[1] = "различными товарами";
+	text[2] = "с фермы Акила.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -89,9 +89,9 @@ instance ItMi_Packet_Baltram4Skip_Addon(C_Item)
 	visual = "ItMi_Packet.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Тяжелый пакет";
-	text[3] = "с различными товарами";
-	text[4] = "для пирата Скипа.";
+	text[0] = "Тяжелый пакет";
+	text[1] = "с различными товарами";
+	text[2] = "для пирата Скипа.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -105,16 +105,17 @@ instance ItMi_BromorsGeld_Addon(C_Item)
 	visual = "ItMi_GoldChalice.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "На дне этой чаши";
-	text[3] = "острым предметом нацарапано";
-	text[4] = "имя 'Бромор'.";
+	text[0] = "На дне этой чаши";
+	text[1] = "острым предметом нацарапано";
+	text[2] = "имя 'Бромор'.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItSe_ADDON_CavalornsBeutel(C_Item)
 {
-	name = "Кожаный мешочек Кавалорна";
+//	name = "Кожаный мешочек Кавалорна";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_Nugget;
@@ -123,9 +124,9 @@ instance ItSe_ADDON_CavalornsBeutel(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_CavalornsBeutel;
 	description = name;
-	text[1] = "На мешочке прикреплен ярлык";
-	text[2] = "с именем 'Кавалорн'.";
-	text[3] = "Внутри находится 1 кусок руды.";
+	text[0] = "На мешочке прикреплен ярлык";
+	text[1] = "с именем 'Кавалорн'.";
+	text[2] = "Внутри находится 1 кусок руды.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -315,8 +316,8 @@ instance ItMi_Addon_Lennar_Paket(C_Item)
 	on_state[0] = Use_LennarPaket;
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Внутри находятся отмычки.";
-	text[3] = "Много отмычек.";
+	text[0] = "Внутри находятся отмычки.";
+	text[1] = "Много отмычек.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -343,7 +344,7 @@ instance ItMi_Zeitspalt_Addon(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[3] = "Эффект неизвестен.";
+	text[0] = PRINT_UnknownEffect;
 	inv_zbias = INVCAM_ENTF_MISC_STANDARD;
 };
 

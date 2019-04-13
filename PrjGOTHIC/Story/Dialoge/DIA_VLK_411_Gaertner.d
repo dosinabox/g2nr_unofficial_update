@@ -17,6 +17,7 @@ func int DIA_Gaertner_EXIT_Condition()
 
 func void DIA_Gaertner_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -135,8 +136,9 @@ func int DIA_Gaertner_Trade_Condition()
 
 func void DIA_Gaertner_Trade_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Gaertner_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 

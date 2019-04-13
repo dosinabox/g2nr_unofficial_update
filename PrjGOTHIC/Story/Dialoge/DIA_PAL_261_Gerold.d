@@ -634,7 +634,7 @@ func void DIA_Gerold_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Gerold_KAP6_EXIT(C_Info)
 {
 	npc = PAL_261_Gerold;
@@ -658,7 +658,7 @@ func void DIA_Gerold_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Gerold_PICKPOCKET(C_Info)
 {

@@ -595,7 +595,7 @@ func void DIA_Dar_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Dar_KAP6_EXIT(C_Info)
 {
 	npc = SLD_810_Dar;
@@ -619,7 +619,7 @@ func void DIA_Dar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Dar_PICKPOCKET(C_Info)
 {

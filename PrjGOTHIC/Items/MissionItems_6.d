@@ -1,7 +1,7 @@
 
 instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 {
-	name = "Очень странный кожаный кошелек";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
@@ -10,6 +10,7 @@ instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 	material = MAT_METAL;
 	on_state[0] = Use_XardasNotfallBeutel;
 	description = name;
+	text[0] = "Очень странный кожаный кошелек.";
 	text[1] = "Похоже, что в этом мешочке";
 	text[2] = "находятся твердый объект";
 	text[3] = "и документ.";
@@ -77,7 +78,7 @@ instance ItWr_Krypta_Garon(C_Item)
 	on_state[0] = Use_Krypta_Garon;
 	scemeName = "MAP";
 	description = name;
-	text[3] = "написанное трясущейся рукой.";
+	text[0] = "написанное трясущейся рукой.";
 };
 
 
@@ -107,53 +108,52 @@ func void Use_Krypta_Garon()
 
 instance ItKe_OrkKnastDI_MIS(C_Item)
 {
-	name = "Ключ полковника орков";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
-	description = name;
+	description = "Ключ полковника орков";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_EVT_UNDEAD_01(C_Item)
 {
-	name = "Ключ Архола";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_03;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
-	description = name;
-	text[2] = name;
+	description = "Ключ Архола";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_EVT_UNDEAD_02(C_Item)
 {
-	name = "Ключ ключника";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_03;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-	description = name;
+	description = "Ключ ключника";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
 {
-	name = "Ключ от комнаты черного мага";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_03;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
-	description = name;
+	description = "Ключ черного мага";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -180,14 +180,14 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"КАДОШ");
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"ЭМЕМ КАДАР");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"ЭМЕМ КАДАР");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Глаз Силы освещает твой путь.");
+	Doc_PrintLines(nDocID,0,"Глаз Силы освещает твой путь.");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 	if(Read_LastDoorToUndeadDrgDI_MIS == FALSE)
@@ -200,13 +200,13 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 
 instance ItKe_ChestMasterDementor_MIS(C_Item)
 {
-	name = "Ключ от сундука черного мага";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_03;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
-	description = name;
+	description = "Ключ от сундука черного мага";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -222,7 +222,7 @@ instance ItWr_Rezept_MegaDrink_MIS(C_Item)
 	on_state[0] = Use_RezeptFuerMegaTrank;
 	scemeName = "MAP";
 	description = name;
-	text[2] = PRINT_RequiresAlchemyTalent;
+	text[0] = PRINT_RequiresAlchemyTalent;
 };
 
 

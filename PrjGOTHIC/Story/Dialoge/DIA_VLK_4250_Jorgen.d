@@ -522,7 +522,7 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 	};
 };
 
-
+/*
 instance DIA_Jorgen_KAP6_EXIT(C_Info)
 {
 	npc = VLK_4250_Jorgen;
@@ -546,4 +546,4 @@ func void DIA_Jorgen_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/

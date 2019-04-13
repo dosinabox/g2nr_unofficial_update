@@ -67,16 +67,16 @@ func void UseLetterForGorn()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLine(nDocID,0," ");
-	Doc_PrintLine(nDocID,0," ");
-	Doc_PrintLine(nDocID,0," ");
-	Doc_PrintLine(nDocID,0," ");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Горн!");
-	Doc_PrintLine(nDocID,0," ");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Гаронд согласился освободить тебя - за 1000 золотых.");
 	Doc_PrintLines(nDocID,0,"Так что если у тебя есть где-то припрятанное золотишко, самое время сказать об этом.");
-	Doc_PrintLine(nDocID,0," ");
-	Doc_PrintLine(nDocID,0," ");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Милтен");
 	Doc_Show(nDocID);
 };
@@ -84,65 +84,65 @@ func void UseLetterForGorn()
 
 instance ItKe_PrisonKey_MIS(C_Item)
 {
-	name = "Ключ от темницы";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от темницы в замке.";
+	text[0] = "Это ключ от темницы в замке.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 };
 
 instance ItKe_OC_Store(C_Item)
 {
-	name = "Ключ от склада";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от склада в замке.";
+	text[0] = "Это ключ от склада в замке.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 };
 
 instance ITKE_ErzBaronFlur(C_Item)
 {
-	name = "Ключ от двери";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-	description = "От первой двери";
-	text[2] = "На нем выгравировано имя:";
-	text[3] = "Гомез.";
+	description = "Ключ от первой двери";
+	text[0] = "На нем выгравировано имя:";
+	text[1] = "Гомез.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 };
 
 instance ITKE_ErzBaronRaum(C_Item)
 {
-	name = "Ключ от двери";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
-	description = "От второй двери";
-	text[2] = "На нем выгравировано имя:";
-	text[3] = "Гомез.";
+	description = "Ключ от второй двери";
+	text[0] = "На нем выгравировано имя:";
+	text[1] = "Гомез.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 };
 
 instance ItMi_GornsTreasure_MIS(C_Item)
 {
-	name = "Кожаный кошелек";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = 0;
 	value = 250;
@@ -150,7 +150,7 @@ instance ItMi_GornsTreasure_MIS(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = UseGornsTreasure;
-	description = "Кожаный кошелек Горна";
+	description = "Кошелек Горна";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -201,20 +201,23 @@ func void UseItwr_Silvestro()
 
 instance ItAt_ClawLeader(C_Item)
 {
-	name = "Когти снеппера";
+//	name = "Когти снеппера";
+	name = "Когти";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 100;
 	visual = "ItAt_Claw.3DS";
 	material = MAT_LEATHER;
-	description = "Когти вожака стаи";
+//	description = "Когти вожака стаи";
+//	description = name;
+	text[0] = "Когти вожака стаи снепперов.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItSe_Olav(C_Item)
 {
-	name = "Кожаный кошелек";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 25;
@@ -223,7 +226,7 @@ instance ItSe_Olav(C_Item)
 	material = MAT_METAL;
 	on_state[0] = UseOlav;
 	description = "Кошелек Олава";
-	text[2] = "Внутри позванивает несколько монет.";
+	text[0] = "Внутри позванивает несколько монет.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -250,27 +253,31 @@ instance ItMi_GoldPlate_MIS(C_Item)
 
 instance ItKe_Pass_MIS(C_Item)
 {
-	name = "Ключ от Прохода";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-	description = "Маленький ключик";
-	text[1] = "Открывает ворота Прохода.";
+//	description = "Маленький ключик";
+	description = name;
+	text[0] = "Этот маленький ключик";
+	text[1] = "открывает ворота Прохода.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 };
 
 instance ItKe_Bromor(C_Item)
 {
-	name = "Ключ Бромора";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
-	description = "Ключ от комнаты";
+//	description = "Ключ от комнаты";
+	description = name;
+	text[0] = "Ключ от комнаты";
 	text[1] = "в борделе.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
@@ -278,16 +285,16 @@ instance ItKe_Bromor(C_Item)
 
 instance ItKe_Rune_MIS(C_Item)
 {
-	name = "Ключ";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
-	description = "Маленький ключик от сундука";
-	text[1] = "Сундук, к которому подходит";
-	text[2] = "этот ключ, находится под мостом.";
-	text[3] = "В нем лежит рунный камень.";
+	description = name;
+	text[0] = "Сундук, к которому подходит";
+	text[1] = "этот ключ, находится под мостом.";
+	text[2] = "В нем лежит рунный камень.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 };
@@ -357,17 +364,14 @@ func void UsePfandbrief()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLine(nDocID,0," ");
-	Doc_PrintLine(nDocID,0,"В качестве гарантии погашения долга");
-	Doc_PrintLine(nDocID,0,"принимается залог, стоимость которого");
-	Doc_PrintLine(nDocID,0,"равна сумме долга.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Залог: Орнаментированный золотой кубок");
-	Doc_PrintLines(nDocID,0,"из коллекции кровавых кубков");
-	Doc_PrintLine(nDocID,0," ");
-	Doc_PrintLine(nDocID,0,"подпись");
+	Doc_PrintLines(nDocID,0,"В качестве гарантии погашения долга принимается залог, стоимость которого равна сумме долга.");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"Залог: Орнаментированный золотой кубок из коллекции кровавых кубков.");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"Подписали:");
 	Doc_PrintLine(nDocID,0,"Лютеро, торговец");
-	Doc_PrintLine(nDocID,0," ");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Лемар, ростовщик");
 	Doc_Show(nDocID);
 };
@@ -468,8 +472,8 @@ func void UseKDWLetter()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Мы покинули лагерь. Теперь, когда Барьер пал, мы отправимся на поиски центра разрушения. Возможно, там мы найдем ответы на вопросы, которые мы задавали столько долгих лет. Одному Аданосу ведомо, куда приведет нас наш путь.");
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Да пребудет с нами Аданос.");
 	Doc_PrintLine(nDocID,0,"Сатурас");

@@ -20,6 +20,7 @@ func int DIA_Bennet_EXIT_Condition()
 
 func void DIA_Bennet_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -103,6 +104,7 @@ func void DIA_Bennet_TRADE_Info()
 		B_LogEntry(Topic_SoldierTrader,"Беннет продает кузнечное снаряжение.");
 		BennetLOG = TRUE;
 	};
+	Trade_IsActive = TRUE;
 };
 
 
@@ -567,6 +569,7 @@ func int DIA_Bennet_KAP3_EXIT_Condition()
 
 func void DIA_Bennet_KAP3_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -865,7 +868,7 @@ instance DIA_Bennet_DJG_ARMOR_M(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_M_Condition;
 	information = DIA_Bennet_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов. Защита: оружие 120, стрелы 120, огонь 75, магия 35. (12000 золота)";
+	description = "Средние доспехи охотника на драконов. Защита: 120/120/75/35. (12000 золота)";
 };
 
 
@@ -937,7 +940,7 @@ instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "Тяжелые доспехи охотника на драконов. Защита: оружие 150, стрелы 150, огонь 100, магия 50. (20000 золота)";
+	description = "Тяжелые доспехи охотника на драконов. Защита: 150/150/100/50. (20000 золота)";
 };
 
 
@@ -1134,6 +1137,7 @@ func int DIA_Bennet_KAP4_EXIT_Condition()
 
 func void DIA_Bennet_KAP4_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -1337,6 +1341,7 @@ func int DIA_Bennet_KAP5_EXIT_Condition()
 
 func void DIA_Bennet_KAP5_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 

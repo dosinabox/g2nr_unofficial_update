@@ -301,9 +301,9 @@ instance ItPo_Speed(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = NAME_Speed_Elixier;
-	text[1] = "¬ременно повышает скорость.";
-	text[3] = NAME_Duration;
-	count[3] = Time_Speed / 60000;
+	text[0] = "¬ременно повышает скорость.";
+	text[1] = NAME_Duration;
+	count[1] = Time_Speed / 60000;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -328,7 +328,7 @@ instance ItPo_MegaDrink(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-	text[3] = "Ёффект неизвестен.";
+	text[0] = PRINT_UnknownEffect;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

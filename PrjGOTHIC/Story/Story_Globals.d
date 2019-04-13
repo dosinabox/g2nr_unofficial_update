@@ -1072,4 +1072,5 @@ var int SC_KnowsAkilsHof;
 var int Miliz_Flucht;
 var int EngorTraderLog;
 var int TandorTraderLog;
+var int Trade_IsActive;
 

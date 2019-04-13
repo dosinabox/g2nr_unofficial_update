@@ -17,6 +17,7 @@ func int DIA_Baltram_EXIT_Condition()
 
 func void DIA_Baltram_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -176,8 +177,8 @@ func int DIA_Baltram_WAREZ_Condition()
 
 func void DIA_Baltram_WAREZ_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Baltram_WAREZ_15_00");	//ѕокажи мне свои товары.
+	B_GiveTradeInv(self);
 	if(Baltram_TradeLOG == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
@@ -189,6 +190,7 @@ func void DIA_Baltram_WAREZ_Info()
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_01");	//»м не стоило допускать, чтобы все зашло так далеко. “еперь вот один из наемников убил паладина.
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_02");	//„то-то подобное об€зательно должно было случитьс€!
 	};
+	Trade_IsActive = TRUE;
 	if((MIS_BaltramTrade != LOG_SUCCESS) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_03");	//“акие, как ты, ничего от мен€ не получат.
@@ -196,6 +198,7 @@ func void DIA_Baltram_WAREZ_Info()
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_05");	//—начала ты сбиваешь фермеров с пути истинного, а затем ведешь себ€ так, как будто ничего не произошло.
 		AI_Output(self,other,"DIA_Baltram_WAREZ_01_06");	//“еперь проваливай, ты распугаешь всех моих клиентов.
 		MIS_BaltramTrade = LOG_FAILED;
+		Trade_IsActive = FALSE;
 		AI_StopProcessInfos(self);
 	};
 };

@@ -17,6 +17,7 @@ func int DIA_Rupert_EXIT_Condition()
 
 func void DIA_Rupert_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -287,6 +288,7 @@ func void DIA_Rupert_Trade_Info()
 	{
 		AI_Output(self,other,"DIA_Rupert_Trade_03_01");	//Я приношу извинения за скудный выбор. Человек вашего положения наверняка привык к лучшему.
 	};
+	Trade_IsActive = TRUE;
 };
 
 

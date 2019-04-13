@@ -11,7 +11,7 @@ prototype Mst_Default_Addon_SwampGolem(C_Npc)
 	attribute[ATR_HITPOINTS] = 250;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-	protection[PROT_BLUNT] = 125;
+	protection[PROT_BLUNT] = 65;	//125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = 250;
 	protection[PROT_FIRE] = 125;

@@ -1138,7 +1138,7 @@ func void DIA_Garond_PERM5_Info()
 	};
 };
 
-
+/*
 instance DIA_Garond_KAP6_EXIT(C_Info)
 {
 	npc = PAL_250_Garond;
@@ -1162,4 +1162,4 @@ func void DIA_Garond_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/

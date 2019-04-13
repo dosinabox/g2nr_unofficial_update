@@ -14,7 +14,7 @@ prototype Mst_Default_Icewolf(C_Npc)
 	protection[PROT_BLUNT] = 150;
 	protection[PROT_EDGE] = 150;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 150;
+	protection[PROT_FIRE] = 50;	//150;
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

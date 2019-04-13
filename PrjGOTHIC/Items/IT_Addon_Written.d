@@ -4,15 +4,16 @@ instance ITWr_Addon_Hinweis_02(C_Item)
 	name = "Важное сообщение";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 250;
+//	value = 250;
+	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_Hinweis_02;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "из таверны в бандитском лагере.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -50,8 +51,8 @@ instance ITWr_Addon_Health_04(C_Item)
 	on_state[0] = Use_Heilrezept_04;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Для создания этого сильного зелья";
-	text[3] = "необходимо знание рецепта лечебного эликсира.";
+	text[0] = "Для создания этого сильного зелья";
+	text[1] = "необходимо знание рецепта лечебного эликсира.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -99,8 +100,8 @@ instance ITWr_Addon_Mana_04(C_Item)
 	on_state[0] = Use_Manarezept_04;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Для создания этого сильного зелья";
-	text[3] = "необходимо знание рецепта эликсира маны.";
+	text[0] = "Для создания этого сильного зелья";
+	text[1] = "необходимо знание рецепта эликсира маны.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -142,15 +143,16 @@ instance ITWr_Addon_Hinweis_01(C_Item)
 	name = "Важное сообщение";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 250;
+//	value = 250;
+	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_Hinweis_01;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "прикрепленное к хижине в болотах.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -182,15 +184,16 @@ instance ITWr_Addon_William_01(C_Item)
 	name = "Записка";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 250;
+//	value = 250;
+	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_William_01;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Найдена на теле рыбака Вильяма.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -230,8 +233,8 @@ instance ITWr_Addon_MCELIXIER_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Это зелье помогает восстановить память.";
-	text[2] = "Для его создания нужны знания основ алхимии";
-	text[3] = "и экстрагирования секрета из жал кровавых мух.";
+	text[1] = "Для его создания нужны знания основ алхимии";
+	text[2] = "и экстрагирования секрета из жал кровавых мух.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -271,15 +274,16 @@ instance ITWr_Addon_Pirates_01(C_Item)
 	name = "Сальная записка";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 250;
+//	value = 250;
+	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_Pirates_01;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Найдена в кармане Ангуса.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -318,7 +322,7 @@ instance ITWr_Addon_Joint_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "из сундука Фортуно.";
-	text[2] = PRINT_RequiresAlchemyTalent;
+	text[1] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -363,7 +367,7 @@ instance ITWr_Addon_Lou_Rezept(C_Item)
 	on_state[0] = UseLouRezept;
 	scemeName = "MAP";
 	description = name;
-	text[2] = PRINT_RequiresAlchemyTalent;
+	text[0] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -413,7 +417,7 @@ instance ITWr_Addon_Lou_Rezept2(C_Item)
 	on_state[0] = UseLouRezept2;
 	scemeName = "MAP";
 	description = name;
-	text[2] = PRINT_RequiresAlchemyTalent;
+	text[0] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -458,7 +462,7 @@ instance ITWr_Addon_Piratentod(C_Item)
 	on_state[0] = UseRezeptPiratentod;
 	scemeName = "MAP";
 	description = name;
-	text[2] = PRINT_RequiresAlchemyTalent;
+	text[0] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -522,7 +526,7 @@ instance ItWr_Addon_AxtAnleitung(C_Item)
 	on_state[0] = UseAxtAnleitung;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Для его изготовления нужно знание основ кузнечного дела.";
+	text[0] = "Для его изготовления нужно знание основ кузнечного дела.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -565,7 +569,8 @@ instance ItWr_Addon_SUMMONANCIENTGHOST(C_Item)
 	name = "Вызов Куарходрона";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 250;
+//	value = 250;
+	value = 0;
 //	visual = "ItWr_Scroll_01.3DS";
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
@@ -573,8 +578,8 @@ instance ItWr_Addon_SUMMONANCIENTGHOST(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "С помощью этого свитка можно вызвать Куарходрона.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 

@@ -20,6 +20,7 @@ func int DIA_Brian_EXIT_Condition()
 
 func void DIA_Brian_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -271,6 +272,7 @@ func void DIA_Brian_WASKAUFEN_Info()
 		Brian_Trade_einmal = TRUE;
 	};
 	Npc_RemoveInvItems(self,ItMiSwordblade,Npc_HasItems(self,ItMiSwordblade));
+	Trade_IsActive = TRUE;
 };
 
 

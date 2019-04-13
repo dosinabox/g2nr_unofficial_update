@@ -21,22 +21,20 @@ func void Use_XardasLetterToOpenBook()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Я полагал, что один из драконов в Долине Рудников являлся источником Зла.");
 	Doc_PrintLines(nDocID,0,"Я ошибался.");
-	Doc_PrintLines(nDocID,0,"Если все прошло так, как я предполагаю,");
-	Doc_PrintLines(nDocID,0,"ты сейчас должен искать Чертоги Ирдората.");
+	Doc_PrintLines(nDocID,0,"Если все прошло так, как я предполагаю, ты сейчас должен искать Чертоги Ирдората.");
 	Doc_PrintLines(nDocID,0,"В книге, что ты отдал Пирокару, содержатся все необходимые тебе ключи.");
-	Doc_PrintLines(nDocID,0,"Я должен был догадаться, почему");
-	Doc_PrintLines(nDocID,0,"Ищущие так хотели заполучить ее.");
+	Doc_PrintLines(nDocID,0,"Я должен был догадаться, почему Ищущие так хотели заполучить ее.");
 	Doc_PrintLines(nDocID,0,"Ты должен вернуть ее себе!");
 	Doc_PrintLines(nDocID,0,"Эту книгу открывают слова 'ХАРАК БЕНДАРДО'. Никому не говори об этом!");
 	Doc_PrintLines(nDocID,0,"А меня сейчас ждут более важные дела.");
 	Doc_PrintLines(nDocID,0,"Я не смогу помочь тебе в твоей последней задаче. Только ты можешь уничтожить источник Зла.");
 	Doc_PrintLines(nDocID,0,"Мы еще встретимся!");
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"                             Ксардас");
 	Doc_Show(nDocID);
 	if(MIS_Xardas_SCCanOpenIrdorathBook == FALSE)
@@ -49,7 +47,7 @@ func void Use_XardasLetterToOpenBook()
 
 instance ItKe_MonastarySecretLibrary_Mis(C_Item)
 {
-	name = "Ключ";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_02;
@@ -309,8 +307,8 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 	on_state[0] = UseITWr_ForgedShipLetter_MIS;
 	scemeName = "MAP";
 	description = name;
-	text[3] = "Письмо о подтверждении полномочий";
-	text[4] = "на распоряжение кораблем паладинов.";
+	text[0] = "Письмо о подтверждении полномочий";
+	text[1] = "на распоряжение кораблем паладинов.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -330,10 +328,7 @@ func void UseITWr_ForgedShipLetter_MIS()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"Этот документ наделяет предъявителя");
-	Doc_PrintLine(nDocID,0,"правом свободно распоряжаться");
-	Doc_PrintLine(nDocID,0,"королевской военной галерой лорда Хагена");
-	Doc_PrintLine(nDocID,0,"в течение неограниченного периода времени.");
+	Doc_PrintLines(nDocID,0,"Этот документ наделяет предъявителя правом свободно распоряжаться королевской военной галерой лорда Хагена в течение неограниченного периода времени.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
@@ -346,26 +341,28 @@ func void UseITWr_ForgedShipLetter_MIS()
 
 instance ItKe_OC_MainGate_MIS(C_Item)
 {
-	name = "Ключ от башни главных ворот";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
+	text[0] = "Ключ от башни главных ворот.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_Ship_Levelchange_MIS(C_Item)
 {
-	name = "Ключ от капитанской каюты";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_03;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
+	text[0] = "Ключ от капитанской каюты.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -383,8 +380,9 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Слезы Инноса";
-	text[1] = "???";
-	count[1] = Mana_Essenz;
+	text[0] = PRINT_UnknownEffect;
+//	text[1] = "???";
+//	count[1] = Mana_Essenz;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -433,8 +431,8 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Слезы Инноса";
-	text[1] = "Это зелье наделяет магов Огня особыми способностями.";
-	text[2] = "Любой другой принявший его, найдет свою смерть.";
+	text[0] = "Это зелье наделяет магов Огня особыми способностями.";
+	text[1] = "Любой другой принявший его, найдет свою смерть.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -456,13 +454,13 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 //	text[2] = "Этот амулет защищает владельца";
 //	text[3] = "от всех форм урона.";
 	text[0] = "Этот амулет защищает владельца от всех форм урона.";
-	text[1] = NAME_Prot_Magic;
+	text[1] = NAME_Prot_Edge;
 	count[1] = 30;
-	text[2] = NAME_Prot_Fire;
+	text[2] = NAME_Prot_Point;
 	count[2] = 30;
-	text[3] = NAME_Prot_Point;
+	text[3] = NAME_Prot_Fire;
 	count[3] = 30;
-	text[4] = NAME_Prot_Edge;
+	text[4] = NAME_Prot_Magic;
 	count[4] = 30;
 	text[5] = NAME_Value;
 	count[5] = value;

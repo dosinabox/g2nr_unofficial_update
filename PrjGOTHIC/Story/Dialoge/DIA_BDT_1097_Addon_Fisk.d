@@ -17,6 +17,7 @@ func int DIA_Addon_Fisk_EXIT_Condition()
 
 func void DIA_Addon_Fisk_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -118,6 +119,7 @@ func void DIA_Addon_Fisk_Trade_Info()
 	{
 		CreateInvItems(self,ItRw_Arrow,50 - Npc_HasItems(self,ItRw_Arrow));
 	};
+	Trade_IsActive = TRUE;
 };
 
 

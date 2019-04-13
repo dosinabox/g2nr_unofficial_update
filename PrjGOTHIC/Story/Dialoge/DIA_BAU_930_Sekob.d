@@ -698,7 +698,7 @@ func void DIA_Sekob_ROSINEVERBACK_Info()
 	B_GivePlayerXP(XP_Ambient);
 };
 
-
+/*
 instance DIA_Sekob_KAP6_EXIT(C_Info)
 {
 	npc = BAU_930_Sekob;
@@ -723,7 +723,7 @@ func void DIA_Sekob_KAP6_EXIT_Info()
 	self.flags = 0;
 	B_NpcClearObsessionByDMT(self);
 };
-
+*/
 
 instance DIA_Sekob_PICKPOCKET(C_Info)
 {

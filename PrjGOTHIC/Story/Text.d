@@ -79,7 +79,7 @@ const string MOBNAME_GRAVETEAM_11 = "Саша - 'Игрок не знает, зачем он идет туда.
 const string MOBNAME_GRAVETEAM_12 = "Андрэ - 'Эти паруса обвисают быстро или медленно?'";
 const string MOBNAME_GRAVETEAM_13 = "Михай - 'Да, я покажу тебе кое-что...'";
 const string MOBNAME_GRAVETEAM_14 = "Уве - 'Какой уровень у твоего паладина?'";
-const string MOBNAME_GRAVE_01 = "Барон Генрих фон Стал 551 - 589 'Пришел, увидел и упал замертво'";
+const string MOBNAME_GRAVE_01 = "Барон Генрих фон Сталь 551 - 589 'Пришел, увидел и упал замертво'";
 const string MOBNAME_GRAVE_02 = "Бертран 465 - 480 'Я всегда любил есть поганки'";
 const string MOBNAME_GRAVE_03 = "Изольда 525 - 550";
 const string MOBNAME_GRAVE_04 = "Неизвестный";
@@ -101,13 +101,13 @@ const string MOBNAME_GRAVE_19 = "Мидос 757 - 759";
 const string MOBNAME_GRAVE_20 = "Оскар Сорн 703 - 736";
 const string MOBNAME_GRAVE_21 = "Марта Укара 732 - 771";
 const string MOBNAME_GRAVE_22 = "Вилфид Укара 722 - 764";
-const string MOBNAME_GRAVE_23 = "Викторус Стал 741 - 755";
+const string MOBNAME_GRAVE_23 = "Викторус Сталь 741 - 755";
 const string MOBNAME_GRAVE_24 = "Себ 725 - 773";
 const string MOBNAME_GRAVE_25 = "Неизвестный";
-const string MOBNAME_GRAVE_26 = "Март Мулго 721 - 779";
+const string MOBNAME_GRAVE_26 = "Март Мульго 721 - 779";
 const string MOBNAME_GRAVE_27 = "Цахра 713 - 752";
 const string MOBNAME_GRAVE_28 = "Барон Симбус фон Кар 120 - 212";
-const string MOBNAME_GRAVE_29 = "Граф Аниб цу Валдфрид 117 - 212";
+const string MOBNAME_GRAVE_29 = "Граф Аниб цу Вальдфрид 117 - 212";
 const string MOBNAME_GRAVE_30 = "Граф Лазарь фон Зигбург 156 - 212";
 const string MOBNAME_GRAVE_31 = "Мечник Асуб Укара 145 - 212";
 const string MOBNAME_GRAVE_32 = "Мечник Дитмар Укара 112 - 212";
@@ -539,11 +539,11 @@ const string PRINT_Trade_Not_Enough_Gold = "У вас недостаточно золота для покупк
 const string NAME_Value = "Цена:";
 const string NAME_Mag_Circle = "Круг:";
 const string NAME_Manakosten = "Расход маны:";
-const string NAME_MinManakosten = "Расход маны (мин):";
-const string NAME_ManakostenMax = "Расход маны (макс):";
+const string NAME_MinManakosten = "Расход маны (мин.):";
+const string NAME_ManakostenMax = "Расход маны (макс.):";
 const string NAME_ManaPerSec = "Маны в секунду";
-const string NAME_Duration = "Длительность (мин)";
-const string NAME_Sec_Duration = "Длительность (сек)";
+const string NAME_Duration = "Длительность (минуты)";
+const string NAME_Sec_Duration = "Длительность (секунды)";
 const string NAME_Mana_needed = "Необходимо маны:";
 const string NAME_Str_needed = "Необходима сила:";
 const string NAME_Dex_needed = "Необходима ловкость:";
@@ -879,8 +879,14 @@ const string PRINT_PickPocketFailed = " - карманная кража не удалась!";
 const string PRINT_PickPocketSuccess = " - карманная кража удалась!";
 
 const string PRINT_RequiresAlchemyTalent = "Для его создания нужно знание основ алхимии.";
-
 const string PRINT_KnowsBloodfly = "Теперь я знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.";
 
 const string NAME_2h_Rod = "Двуручный меч Рода";
+const string NAME_InnosEye = "Глаз Инноса";
+const string NAME_TowerKey = "Ключ от башни";
+const string NAME_Beutel = "Кожаный кошелек";
+const string NAME_Fackel = "Факел";
+
+const string PRINT_HiddenInFish = "В этой рыбе что-то спрятано.";
+const string PRINT_UnknownEffect = "Эффект неизвестен.";
 

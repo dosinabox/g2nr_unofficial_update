@@ -12,7 +12,7 @@ instance DIA_Karras_KAP1_EXIT(C_Info)
 
 func int DIA_Karras_KAP1_EXIT_Condition()
 {
-	if(Kapitel <= 1)
+	if(Kapitel == 1)
 	{
 		return TRUE;
 	};
@@ -20,6 +20,7 @@ func int DIA_Karras_KAP1_EXIT_Condition()
 
 func void DIA_Karras_KAP1_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -189,6 +190,7 @@ func void DIA_Karras_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Karras_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 
@@ -421,6 +423,7 @@ func int DIA_Karras_KAP2_EXIT_Condition()
 
 func void DIA_Karras_KAP2_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -446,6 +449,7 @@ func int DIA_Karras_KAP3_EXIT_Condition()
 
 func void DIA_Karras_KAP3_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -877,6 +881,7 @@ func int DIA_Karras_KAP4_EXIT_Condition()
 
 func void DIA_Karras_KAP4_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -902,6 +907,7 @@ func int DIA_Karras_KAP5_EXIT_Condition()
 
 func void DIA_Karras_KAP5_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 

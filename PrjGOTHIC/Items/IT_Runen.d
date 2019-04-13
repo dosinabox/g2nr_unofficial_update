@@ -366,7 +366,8 @@ instance ItRu_TeleportTaverne(C_Item)
 	mainflag = ITEM_KAT_RUNE;
 	flags = 0;
 	value = Value_Ru_TeleportTaverne;
-	visual = "ItRu_Teleport_2.3ds";
+//	visual = "ItRu_Teleport_2.3ds";
+	visual = "ItRu_Teleport_3.3ds";
 	material = MAT_STONE;
 	spell = SPL_TeleportTaverne;
 	wear = WEAR_EFFECT;

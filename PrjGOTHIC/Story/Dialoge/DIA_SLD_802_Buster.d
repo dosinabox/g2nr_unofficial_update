@@ -808,7 +808,7 @@ func void DIA_Buster_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Buster_KAP6_EXIT(C_Info)
 {
 	npc = SLD_802_Buster;
@@ -832,7 +832,7 @@ func void DIA_Buster_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Buster_PICKPOCKET(C_Info)
 {

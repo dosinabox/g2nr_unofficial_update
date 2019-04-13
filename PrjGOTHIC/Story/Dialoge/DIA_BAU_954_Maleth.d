@@ -517,7 +517,7 @@ func void DIA_Maleth_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Maleth_KAP6_EXIT(C_Info)
 {
 	npc = BAU_954_Maleth;
@@ -541,7 +541,7 @@ func void DIA_Maleth_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Maleth_PICKPOCKET(C_Info)
 {

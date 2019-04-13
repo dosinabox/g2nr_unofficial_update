@@ -14,7 +14,7 @@ prototype Mst_Default_SwampZombie(C_Npc)
 	protection[PROT_BLUNT] = 75;
 	protection[PROT_EDGE] = 75;
 	protection[PROT_POINT] = 75;
-	protection[PROT_FIRE] = 75;
+	protection[PROT_FIRE] = 25;	//75;
 	protection[PROT_FLY] = 75;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

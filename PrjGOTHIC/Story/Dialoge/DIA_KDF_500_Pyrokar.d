@@ -2077,7 +2077,7 @@ func void DIA_Pyrokar_PotionofDeath_Weapon()
 	CreateInvItems(hero,ItPo_PotionOfDeath_02_Mis,1);
 };
 
-
+/*
 instance DIA_Pyrokar_KAP6_EXIT(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -2101,7 +2101,7 @@ func void DIA_Pyrokar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Pyrokar_PICKPOCKET(C_Info)
 {

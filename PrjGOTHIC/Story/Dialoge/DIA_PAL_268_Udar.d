@@ -443,7 +443,7 @@ func void DIA_Udar_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Udar_KAP6_EXIT(C_Info)
 {
 	npc = PAL_268_Udar;
@@ -467,7 +467,7 @@ func void DIA_Udar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Udar_PICKPOCKET(C_Info)
 {

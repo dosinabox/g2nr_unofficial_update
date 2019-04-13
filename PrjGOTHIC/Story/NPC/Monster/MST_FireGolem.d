@@ -16,7 +16,7 @@ prototype Mst_Default_FireGolem(C_Npc)
 	protection[PROT_POINT] = 200;
 	protection[PROT_FIRE] = 150;
 	protection[PROT_FLY] = 150;
-	protection[PROT_MAGIC] = 150;
+	protection[PROT_MAGIC] = 75;	//150;
 	damagetype = DAM_FLY;
 	fight_tactic = FAI_STONEGOLEM;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;

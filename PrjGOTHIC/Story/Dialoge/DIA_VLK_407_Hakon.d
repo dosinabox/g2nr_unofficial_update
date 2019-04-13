@@ -17,6 +17,7 @@ func int DIA_Hakon_EXIT_Condition()
 
 func void DIA_Hakon_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -94,12 +95,13 @@ func int DIA_Hakon_Trade_Condition()
 
 func void DIA_Hakon_Trade_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Hakon_Trade_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Hakon_Trade_12_01");	//Для меня большая честь, что представитель святой церкви проявил интерес к моим товарам.
 	};
+	Trade_IsActive = TRUE;
 };
 
 

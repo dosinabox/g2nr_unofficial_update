@@ -17,6 +17,7 @@ func int DIA_Kjorn_EXIT_Condition()
 
 func void DIA_Kjorn_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -71,6 +72,7 @@ func void DIA_Kjorn_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Kjorn_TRADE_15_00");	//Что ты можешь предложить мне?
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 

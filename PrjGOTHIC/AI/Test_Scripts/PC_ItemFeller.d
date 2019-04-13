@@ -588,7 +588,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItKe_Fingers,1);
 	CreateInvItems(self,ItWr_Schuldenbuch,1);
 	CreateInvItems(self,ItPl_Sagitta_Herb_MIS,1);
-	CreateInvItems(self,itke_orlan_hotelzimmer,1);
+	CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
 	CreateInvItems(self,ItRw_DragomirsArmbrust_MIS,1);
 	CreateInvItems(self,ItMi_StoneOfKnowlegde_MIS,1);
 	CreateInvItems(self,ItRu_TeleportOWDemonTower,1);

@@ -20,6 +20,7 @@ func int DIA_Gorax_Kap1_EXIT_Condition()
 
 func void DIA_Gorax_Kap1_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -449,6 +450,7 @@ func void DIA_Gorax_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Gorax_TRADE_15_00");	//ћне нужно кое-что...
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 
@@ -501,6 +503,7 @@ func int DIA_Gorax_Kap2_EXIT_Condition()
 
 func void DIA_Gorax_Kap2_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -526,6 +529,7 @@ func int DIA_Gorax_Kap3_EXIT_Condition()
 
 func void DIA_Gorax_Kap3_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -603,6 +607,7 @@ func int DIA_Gorax_Kap4_EXIT_Condition()
 
 func void DIA_Gorax_Kap4_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -628,6 +633,7 @@ func int DIA_Gorax_Kap5_EXIT_Condition()
 
 func void DIA_Gorax_Kap5_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 

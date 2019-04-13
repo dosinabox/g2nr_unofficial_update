@@ -20,6 +20,7 @@ func int DIA_Salandril_EXIT_Condition()
 
 func void DIA_Salandril_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -162,6 +163,7 @@ func void DIA_Salandril_Trade_Info()
 	{
 		AI_Output(self,other,"DIA_Salandril_Trade_13_02");	//С удовольствием, о, благородный воин.
 	};
+	Trade_IsActive = TRUE;
 };
 
 
@@ -186,6 +188,7 @@ func int DIA_Salandril_KAP3_EXIT_Condition()
 
 func void DIA_Salandril_KAP3_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -304,6 +307,7 @@ func int DIA_Salandril_KAP4_EXIT_Condition()
 
 func void DIA_Salandril_KAP4_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -329,10 +333,11 @@ func int DIA_Salandril_KAP5_EXIT_Condition()
 
 func void DIA_Salandril_KAP5_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Salandril_KAP6_EXIT(C_Info)
 {
 	npc = VLK_422_Salandril;
@@ -356,4 +361,4 @@ func void DIA_Salandril_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/

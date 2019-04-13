@@ -17,6 +17,7 @@ func int DIA_Cipher_EXIT_Condition()
 
 func void DIA_Cipher_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -292,6 +293,7 @@ func void DIA_Cipher_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Cipher_TRADE_07_02");	//У меня сейчас нет болотной травы. Ты хочешь что-нибудь еще?
 	};
+	Trade_IsActive = TRUE;
 };
 
 

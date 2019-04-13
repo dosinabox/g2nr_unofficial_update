@@ -17,6 +17,7 @@ func int DIA_Addon_Cronos_EXIT_Condition()
 
 func void DIA_Addon_Cronos_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -136,5 +137,6 @@ func void DIA_Addon_Cronos_NW_Trade_Info()
 		B_LogEntry(Topic_OutTrader,LogText_Addon_CronosTrade);
 	};
 	AI_Output(self,other,"DIA_Addon_Cronos_NW_Trade_04_02");	//»так, что тебе нужно?
+	Trade_IsActive = TRUE;
 };
 

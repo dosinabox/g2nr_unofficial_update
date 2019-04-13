@@ -17,6 +17,7 @@ func int DIA_Sengrath_EXIT_Condition()
 
 func void DIA_Sengrath_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -128,8 +129,9 @@ func int DIA_Sengrath_Scrolls_Condition()
 
 func void DIA_Sengrath_Scrolls_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Sengrath_Scrolls_15_00");	//Покажи мне свои свитки.
+	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 

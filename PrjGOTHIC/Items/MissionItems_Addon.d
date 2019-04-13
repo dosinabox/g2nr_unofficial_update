@@ -10,7 +10,7 @@ instance ItWr_SaturasFirstMessage_Addon_Sealed(C_Item)
 	on_state[0] = Use_SaturasFirstMessage_Sealed;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[2] = "Это письмо было тщательно запечатано.";
+	text[0] = "Это письмо было тщательно запечатано.";
 };
 
 
@@ -78,7 +78,7 @@ instance ItWr_SaturasFirstMessage_Addon(C_Item)
 	on_state[0] = Use_SaturasFirstMessage;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Письмо Сатураса Ватрасу.";
+	text[0] = "Письмо Сатураса Ватрасу.";
 };
 
 instance ItMi_Ornament_Addon(C_Item)
@@ -188,7 +188,9 @@ prototype Rangerring_Prototype(C_Item)
 	material = MAT_METAL;
 	on_equip = Equip_ItRi_Ranger_Addon;
 	on_unequip = UnEquip_ItRi_Ranger_Addon;
-	description = "Опознавательный знак членов Кольца Воды";
+//	description = "Опознавательный знак членов Кольца Воды";
+	description = name;
+	text[0] = "Опознавательный знак членов Кольца Воды.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
@@ -263,9 +265,10 @@ instance ItWr_Martin_MilizEmpfehlung_Addon(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_MartinMilizEmpfehlung_Addon;
 	scemeName = "MAP";
-	description = "Рекомендательное письмо для лорда Андрэ";
-	text[2] = "Это письмо поможет мне";
-	text[3] = "присоединиться к ополчению.";
+//	description = "Рекомендательное письмо для лорда Андрэ";
+	description = name;
+	text[0] = "Это письмо поможет мне";
+	text[1] = "присоединиться к ополчению.";
 };
 
 
@@ -280,7 +283,7 @@ func void Use_MartinMilizEmpfehlung_Addon()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Уважаемый лорд Андрэ!");
+	Doc_PrintLine(nDocID,0,"Уважаемый лорд Андрэ!");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"С этим письмом я отправляю вам нового рекрута для ополчения.");
 	Doc_PrintLines(nDocID,0,"Он уже помог мне в одном важном и непростом деле.");
@@ -303,8 +306,8 @@ instance ItWr_RavensKidnapperMission_Addon(C_Item)
 	on_state[0] = Use_RavensKidnapperMission_Addon;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Я забрал это письмо";
-	text[3] = "у предводителя бандитов Декстера.";
+	text[0] = "Я забрал это письмо";
+	text[1] = "у предводителя бандитов Декстера.";
 };
 
 
@@ -318,7 +321,7 @@ func void Use_RavensKidnapperMission_Addon()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLines(nDocID,0,"Декстер, ублюдок!");
+	Doc_PrintLine(nDocID,0,"Декстер, ублюдок!");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Когда я еще был рудным бароном, ты не был настолько ненадежен.");
 	Doc_PrintLines(nDocID,0,"Если ты в ближайшее время не пришлешь мне новую партию похищенных людей, то у нас начнутся серьезные проблемы с ребятами.");
@@ -351,9 +354,9 @@ instance ItWr_Vatras_KDFEmpfehlung_Addon(C_Item)
 	on_state[0] = Use_VatrasKDFEmpfehlung_Addon;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Это письмо поможет мне";
-	text[3] = "попасть в монастырь магов Огня,";
-	text[4] = "не заплатив за вход.";
+	text[0] = "Это письмо поможет мне";
+	text[1] = "попасть в монастырь магов Огня,";
+	text[2] = "не заплатив за вход.";
 };
 
 
@@ -495,8 +498,10 @@ instance ItRi_Addon_BanditTrader(C_Item)
 	visual = "ItRi_Prot_Point_02.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	description = "Гравированное кольцо";
-	text[2] = "гильдии торговцев Араксоса.";
+//	description = "Гравированное кольцо";
+	description = name;
+	text[0] = "Гравированное кольцо";
+	text[1] = "гильдии торговцев Араксоса.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
@@ -515,8 +520,8 @@ instance ItWr_Addon_BanditTrader(C_Item)
 	on_state[0] = Use_ItWr_Addon_BanditTrader;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Я нашел это письмо у бандитов";
-	text[3] = "за фермой Секоба.";
+	text[0] = "Я нашел это письмо у бандитов";
+	text[1] = "за фермой Секоба.";
 };
 
 
@@ -562,7 +567,7 @@ instance ItWr_Vatras2Saturas_FindRaven(C_Item)
 	on_state[0] = Use_Vatras2Saturas_FindRaven_Sealed;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[2] = "Письмо Ватраса Сатурасу.";
+	text[0] = "Письмо Ватраса Сатурасу.";
 };
 
 
@@ -605,7 +610,7 @@ instance ItWr_Vatras2Saturas_FindRaven_opened(C_Item)
 	on_state[0] = Use_Vatras2Saturas_FindRaven;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Письмо Ватраса Сатурасу.";
+	text[0] = "Письмо Ватраса Сатурасу.";
 };
 
 instance ItAm_Addon_WispDetector(C_Item)
@@ -621,7 +626,9 @@ instance ItAm_Addon_WispDetector(C_Item)
 	material = MAT_METAL;
 	on_equip = Equip_WispDetector;
 	on_unequip = UnEquip_WispDetector;
-	description = "Рудный амулет блуждающего огонька";
+//	description = "Рудный амулет блуждающего огонька";
+	description = name;
+	text[0] = "Рудный амулет блуждающего огонька.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
@@ -670,7 +677,7 @@ instance ItFo_Addon_Krokofleisch_Mission(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "MEAT";
 	description = name;
-	text[1] = "Это мясо пахнет рыбой!";
+	text[0] = "Это мясо пахнет рыбой!";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -688,9 +695,9 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-	text[1] = "Кольцо украшено множеством рун.";
-	text[2] = NAME_ADDON_BONUS_1H;
-	count[2] = 10;
+	text[0] = "Кольцо украшено множеством рун.";
+	text[1] = NAME_ADDON_BONUS_1H;
+	count[1] = 10;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
@@ -698,7 +705,7 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	inv_rotx = INVCAM_X_RING_STANDARD;
 };
 
-
+/*
 func void Equip_MorgansRing()
 {
 	B_AddFightSkill(self,NPC_TALENT_1H,10);
@@ -707,6 +714,34 @@ func void Equip_MorgansRing()
 func void UnEquip_MorgansRing()
 {
 	B_AddFightSkill(self,NPC_TALENT_1H,-10);
+};
+*/
+
+var int Morgan_Bonus;
+
+func void Equip_MorgansRing()
+{
+	Morgan_Bonus = 100 - self.HitChance[NPC_TALENT_1H];  
+	if(self.HitChance[NPC_TALENT_1H] > 90)
+	{
+		B_AddFightSkill(self,NPC_TALENT_1H,Morgan_Bonus);
+	}
+	else
+	{
+		B_AddFightSkill(self,NPC_TALENT_1H,10);
+	};
+};
+
+func void UnEquip_MorgansRing()
+{
+	if(Morgan_Bonus < 10)
+	{
+		B_AddFightSkill(self,NPC_TALENT_1H,-Morgan_Bonus);
+	}
+	else
+	{
+		B_AddFightSkill(self,NPC_TALENT_1H,-10);
+	};
 };
 
 
@@ -732,8 +767,8 @@ instance ItMi_Addon_Steel_Paket(C_Item)
 	visual = "ItMi_Packet.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Пакет очень тяжелый.";
-	text[3] = "В нем находится большой слиток стали.";
+	text[0] = "Пакет очень тяжелый.";
+	text[1] = "В нем находится большой слиток стали.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -752,7 +787,7 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-	text[2] = "Серая каменная табличка.";
+	text[0] = "Серая каменная табличка.";
 	text[5] = NAME_Value;
 	count[5] = value_StonePlateCommon;
 };
@@ -806,7 +841,7 @@ instance ItMi_Addon_Stone_01(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-	text[2] = "Красная каменная табличка.";
+	text[0] = "Красная каменная табличка.";
 };
 
 
@@ -850,7 +885,7 @@ instance ItMi_Addon_Stone_05(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-	text[2] = "Желтая каменная табличка.";
+	text[0] = "Желтая каменная табличка.";
 };
 
 
@@ -894,7 +929,7 @@ instance ItMi_Addon_Stone_03(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[2] = "Синяя каменная табличка.";
+	text[0] = "Синяя каменная табличка.";
 };
 
 
@@ -940,7 +975,7 @@ instance ItMi_Addon_Stone_04(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[2] = "Зеленая каменная табличка.";
+	text[0] = "Зеленая каменная табличка.";
 };
 
 
@@ -984,7 +1019,7 @@ instance ItMi_Addon_Stone_02(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[2] = "Фиолетовая каменная табличка.";
+	text[0] = "Фиолетовая каменная табличка.";
 };
 
 
@@ -1091,7 +1126,7 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Торг. корабль 'Русалка'");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Общая добыча: 14560 зол.");
+	Doc_PrintLine(nDocID,0,"Общая добыча: 15560 зол.");
 	Doc_PrintLine(nDocID,0,"-----------------------");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Команда: 9840");
@@ -1101,11 +1136,11 @@ func void UseFrancisAbrechnung_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Личная доля: 2220");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Торг. корабль 'Мириам'");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Общая добыча: 4890 зол.");
+	Doc_PrintLine(nDocID,0,"Общая добыча: 4390 зол.");
 	Doc_PrintLine(nDocID,0,"-----------------------");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Команда: 2390");
@@ -1197,7 +1232,7 @@ instance ITKE_Addon_Bloodwyn_01(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ Бладвина";
-	text[2] = "Открывает его сундук в храме.";
+	text[0] = "Открывает его сундук в храме.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1211,8 +1246,8 @@ instance ITKE_Addon_Heiler(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ каменного стража";
-	text[2] = "Ключ от сундука";
-	text[3] = "в странном древнем строении на болоте.";
+	text[0] = "Ключ от сундука";
+	text[1] = "в странном древнем строении на болоте.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1227,7 +1262,7 @@ instance ItMi_TempelTorKey(C_Item)
 	material = MAT_STONE;
 	scemeName = "MAP";
 	on_state[0] = Use_TempelTorKey;
-	text[2] = "Ключ от храма Аданоса.";
+	text[0] = "Ключ от храма Аданоса.";
 };
 
 
@@ -1271,7 +1306,7 @@ instance ItWR_Addon_TreasureMap(C_Item)
 	scemeName = "MAP";
 	on_state[0] = Use_TreasureMap;
 	description = name;
-	text[1] = "На карте отмечено несколько мест.";
+	text[0] = "На карте отмечено несколько мест.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1304,7 +1339,7 @@ instance ItMi_Addon_GregsTreasureBottle_MIS(C_Item)
 	on_state[0] = Use_GregsBottle;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[2] = "В бутылке находится листок бумаги.";
+	text[0] = "В бутылке находится листок бумаги.";
 };
 
 

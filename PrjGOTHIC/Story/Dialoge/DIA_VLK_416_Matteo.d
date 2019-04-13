@@ -17,6 +17,7 @@ func int DIA_Matteo_EXIT_Condition()
 
 func void DIA_MAtteo_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -151,6 +152,7 @@ func void DIA_Matteo_TRADE_Info()
 		AI_Output(self,other,"DIA_Matteo_TRADE_09_04");	//Это хорошо, что ты опять пополняешь свои запасы, кто знает, будет ли еще существовать этот город на следующей неделе.
 		Matteo_TradeNewsPermanent = 2;
 	};
+	Trade_IsActive = TRUE;
 };
 
 
@@ -163,7 +165,7 @@ instance DIA_Matteo_LEATHER(C_Info)
 	condition = DIA_Matteo_LEATHER_Condition;
 	information = DIA_Matteo_LEATHER_Info;
 	permanent = TRUE;
-	description = "Купить кожаные доспехи. Защита: оружие 25, стрелы 20, огонь 5. (250 золота)";
+	description = "Купить кожаные доспехи. Защита: 25/20/5/0. (250 золота)";
 };
 
 

@@ -485,3 +485,33 @@ instance NCI_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "dlc_dayfgt.sgt";
 };
 
+instance GRO_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance GRO_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+
+instance TMP_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance TMP_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+
+instance END_DAY_STD(C_MUSICTHEME_STANDARD)
+{
+	file = "dlc_daystd.sgt";
+};
+
+instance END_DAY_FGT(C_MUSICTHEME_FIGHT)
+{
+	file = "dlc_dayfgt.sgt";
+};
+

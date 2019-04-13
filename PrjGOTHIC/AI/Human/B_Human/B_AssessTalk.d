@@ -108,6 +108,7 @@ func void B_AssessTalk()
 				B_Say(other,self,"$SC_HEYTURNAROUND04");
 			};
 		};
+		B_TurnToNpc(other,self);
 	};
 	Npc_ClearAIQueue(self);
 	B_ClearPerceptions(self);

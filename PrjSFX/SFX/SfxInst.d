@@ -2095,19 +2095,22 @@ instance OW_WINDCAVE3(C_SFX_DEF)
 instance OW_RIVER(C_SFX_DEF)
 {
 	file = "river01stereo.wav";
-	vol = 20;
+//	vol = 20;
+	vol = 50;
 };
 
 instance OW_RIVER2(C_SFX_DEF)
 {
 	file = "river02stereo.wav";
-	vol = 30;
+//	vol = 30;
+	vol = 50;
 };
 
 instance OW_RIVERBRIDGE(C_SFX_DEF)
 {
 	file = "river_underbridge.wav";
-	vol = 50;
+//	vol = 50;
+	vol = 80;
 };
 
 instance OW_COASTLIGHT(C_SFX_DEF)
@@ -2149,7 +2152,8 @@ instance WOOD_DAY2(C_SFX_DEF)
 instance WOOD_NIGHT1(C_SFX_DEF)
 {
 	file = "night_wood.wav";
-	vol = 70;
+//	vol = 70;
+	vol = 20;
 };
 
 instance WOOD_NEARWATER1(C_SFX_DEF)
@@ -10127,5 +10131,17 @@ instance CROSSBOW_REFUSE(C_SFX_DEF)
 {
 	file = "Crossbow_Refuse.wav";
 	vol = 80;
+};
+
+instance OW_River3(C_SFX_DEF)
+{
+	file = "river03stereo.wav";
+	vol = 85;
+};
+
+instance OW_River3V2(C_SFX_DEF)
+{
+	file = "river03stereov2.wav";
+	vol = 85;
 };
 

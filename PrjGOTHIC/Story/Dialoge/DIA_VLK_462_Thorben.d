@@ -17,6 +17,7 @@ func int DIA_Thorben_EXIT_Condition()
 
 func void DIA_Thorben_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -228,7 +229,7 @@ func void DIA_Thorben_ZUSTIMMUNG_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_00");	//Как насчет одобрения, мастер?
 	AI_Output(self,other,"DIA_Thorben_ZUSTIMMUNG_06_01");	//Ватрас дал тебе благословение?
-	if(Vatras_Segen == TRUE)
+	if(Vatras_Segen > 0)
 	{
 		AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_02");	//Да.
 		AI_Output(self,other,"DIA_Thorben_ZUSTIMMUNG_06_03");	//А благословение жреца Инноса ты получил?
@@ -440,7 +441,7 @@ func void DIA_Thorben_Teach_Info()
 };
 
 
-var int thorben_tradelog;
+var int Thorben_TradeLog;
 
 instance DIA_Thorben_TRADE(C_Info)
 {
@@ -478,12 +479,13 @@ func void DIA_Thorben_TRADE_Info()
 		CreateInvItems(self,ItKe_Lockpick,5);
 		Dietrichgeben += 1;
 	};
-	if(THORBEN_TRADELOG == FALSE)
+	if(Thorben_TradeLog == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTrader,"Плотник Торбен продает отмычки.");
-		THORBEN_TRADELOG = TRUE;
+		Thorben_TradeLog = TRUE;
 	};
+	Trade_IsActive = TRUE;
 };
 
 

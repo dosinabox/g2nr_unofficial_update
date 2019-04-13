@@ -339,15 +339,15 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 	if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_FIRE)
 	{
 //		if(!Npc_HasItems(slf,ItRu_InstantFireball))
-		if(!Npc_HasItems(slf,ItRu_Firestorm))
+		if(!Npc_HasItems(slf,ItRu_ChargeFireball))
 		{
 //			CreateInvItems(slf,ItRu_InstantFireball,1);
-			CreateInvItems(slf,ItRu_Firestorm,1);
+			CreateInvItems(slf,ItRu_ChargeFireball,1);
 		};
 		if(Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_DRAGON_MAGIC)
 		{
 //			B_ReadySpell(slf,SPL_InstantFireball,SPL_COST_InstantFireball);
-			B_ReadySpell(slf,SPL_FireStorm,SPL_Cost_InstantFireStorm);
+			B_ReadySpell(slf,SPL_ChargeFireball,SPL_Cost_ChargeFireball);
 			return TRUE;
 		}
 		else

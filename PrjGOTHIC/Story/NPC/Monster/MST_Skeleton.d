@@ -14,7 +14,7 @@ prototype Mst_Default_Skeleton(C_Npc)
 	protection[PROT_BLUNT] = 125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = 175;
-	protection[PROT_FIRE] = 125;
+	protection[PROT_FIRE] = 65;	//125;
 	protection[PROT_FLY] = 125;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -62,7 +62,7 @@ instance Summoned_Skeleton(Mst_Default_Skeleton)
 	guild = GIL_SUMMONED_SKELETON;
 	aivar[AIV_MM_REAL_ID] = ID_SUMMONED_SKELETON;
 	level = 0;
-	attribute[ATR_STRENGTH] = 100;
+/*	attribute[ATR_STRENGTH] = 100;
 	attribute[ATR_DEXTERITY] = 150;
 	attribute[ATR_HITPOINTS_MAX] = 150;
 	attribute[ATR_HITPOINTS] = 150;
@@ -71,8 +71,8 @@ instance Summoned_Skeleton(Mst_Default_Skeleton)
 	protection[PROT_BLUNT] = 125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = 175;
-	protection[PROT_FIRE] = 125;
-	protection[PROT_FLY] = 125;
+	protection[PROT_FIRE] = 65;	//125;
+	protection[PROT_FLY] = 125;	*/
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_SetVisuals_Lesser_Skeleton();
 	aivar[AIV_PARTYMEMBER] = TRUE;
@@ -95,7 +95,7 @@ instance Lesser_Skeleton(Mst_Default_Skeleton)
 	protection[PROT_BLUNT] = 80;
 	protection[PROT_EDGE] = 80;
 	protection[PROT_POINT] = 130;
-	protection[PROT_FIRE] = 80;
+	protection[PROT_FIRE] = 25;	//80;
 	protection[PROT_FLY] = 80;
 	fight_tactic = FAI_HUMAN_NORMAL;
 	B_SetVisuals_Lesser_Skeleton();

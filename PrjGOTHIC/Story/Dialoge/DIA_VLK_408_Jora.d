@@ -22,6 +22,7 @@ func void DIA_Jora_EXIT_Info()
 	{
 		AI_Output(self,other,"DIA_Jora_EXIT_08_00");	//Эй! Как насчет моих денег?
 	};
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -71,8 +72,9 @@ func int DIA_Jora_WAREZ_Condition()
 
 func void DIA_Jora_WAREZ_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Jora_WAREZ_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 

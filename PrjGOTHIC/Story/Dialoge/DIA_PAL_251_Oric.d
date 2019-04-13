@@ -588,7 +588,7 @@ func void DIA_Oric_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Oric_KAP6_EXIT(C_Info)
 {
 	npc = PAL_251_Oric;
@@ -612,7 +612,7 @@ func void DIA_Oric_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Oric_PICKPOCKET(C_Info)
 {

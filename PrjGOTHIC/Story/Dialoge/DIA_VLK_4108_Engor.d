@@ -17,6 +17,7 @@ func int DIA_Engor_EXIT_Condition()
 
 func void DIA_Engor_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -83,6 +84,7 @@ func void DIA_Engor_HANDELN_Info()
 	Npc_RemoveInvItems(self,ItRw_Arrow,Npc_HasItems(self,ItRw_Arrow));
 	McArrowAmount = Kapitel * 50;
 	CreateInvItems(self,ItRw_Arrow,McArrowAmount);
+	Trade_IsActive = TRUE;
 };
 
 
@@ -146,7 +148,7 @@ instance DIA_Engor_RSkaufen(C_Info)
 	condition = DIA_Engor_RSkaufen_Condition;
 	information = DIA_Engor_RSkaufen_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи ополчения. Защита: оружие 70, стрелы 70, огонь 10, магия 10. (2500 золота)";
+	description = "Купить тяжелые доспехи ополчения. Защита: 70/70/10/10. (2500 золота)";
 };
 
 

@@ -27,7 +27,7 @@ instance ItMW_Addon_Knife01(C_Item)
 
 instance ItMW_Addon_Stab01(C_Item)
 {
-	name = "Посох Огня";
+	name = "Посох мага Огня";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
@@ -39,9 +39,11 @@ instance ItMW_Addon_Stab01(C_Item)
 	on_unequip = UnEquip_2H_03;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Stab01;
-	visual = "ItMW_MageStaff_Good_2H_01.3DS";
+//	visual = "ItMW_MageStaff_Good_2H_01.3DS";
+	visual = "ItMW_MageStaff_Good_2H_03.3DS";
 	effect = "SPELLFX_MAGESTAFF1";
-	description = "Посох мага Огня";
+//	description = "Посох мага Огня";
+	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -66,7 +68,8 @@ instance ItMW_Addon_Stab02(C_Item)
 	on_unequip = UnEquip_Zauberstab;
 	cond_atr[2] = ATR_MANA_MAX;
 	cond_value[2] = Condition_Stab02;
-	visual = "ItMW_MageStaff_Good_2H_02.3DS";
+//	visual = "ItMW_MageStaff_Good_2H_02.3DS";
+	visual = "ItMW_MageStaff_Normal_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF2";
 	description = name;
 	text[1] = NAME_Damage;
@@ -111,7 +114,7 @@ func void UnEquip_Zauberstab()
 
 instance ItMW_Addon_Stab03(C_Item)
 {
-	name = "Посох Воды";
+	name = "Посох мага Воды";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
@@ -123,9 +126,11 @@ instance ItMW_Addon_Stab03(C_Item)
 	on_unequip = UnEquip_2H_04;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Stab03;
-	visual = "ItMW_MageStaff_Blades_2H_01.3DS";
+//	visual = "ItMW_MageStaff_Blades_2H_01.3DS";
+	visual = "ItMW_MageStaff_Good_2H_02.3DS";
 	effect = "SPELLFX_MAGESTAFF3";
-	description = "Посох мага Воды";
+//	description = "Посох мага Воды";
+	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -150,10 +155,11 @@ instance ItMW_Addon_Stab04(C_Item)
 	on_unequip = UnEquip_2H_04;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Stab04;
-	visual = "ItMW_MageStaff_Good_2H_02.3DS";
+//	visual = "ItMW_MageStaff_Good_2H_02.3DS";
+	visual = "ItMW_MageStaff_Ball_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF4";
 	description = name;
-	text[1] = "Ультар наделил этот посох магической силой";
+	text[0] = "Ультар наделил этот посох магической силой";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Str_needed;
@@ -305,8 +311,10 @@ instance ItMW_Addon_Keule_1h_01(C_Item)
 	damageTotal = Damage_Windknecht;
 	damagetype = DAM_BLUNT;
 	range = Range_Windknecht;
-	on_equip = UnEquip_1H_10;
-	on_unequip = Equip_1H_10;
+//	on_equip = UnEquip_1H_10;
+//	on_unequip = Equip_1H_10;
+	on_equip = Equip_1H_Keule;
+	on_unequip = UnEquip_1H_Keule;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Windknecht;
 	visual = "ItMW_Club_1H_01.3DS";
@@ -321,6 +329,26 @@ instance ItMW_Addon_Keule_1h_01(C_Item)
 	count[5] = value;
 };
 
+
+func void Equip_1H_Keule()
+{
+    if(Npc_IsPlayer(self))
+    {
+            B_AddFightSkill(self,NPC_TALENT_1H,-10);
+            b_meleeweaponchange(-10,0,0);
+    };
+};
+
+func void UnEquip_1H_Keule()
+{
+    if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
+    {
+            B_AddFightSkill(self,NPC_TALENT_1H,10);
+            b_meleeweaponundochange();
+    };
+};
+
+
 instance ItMW_Addon_Keule_2h_01(C_Item)
 {
 	name = "Дубинка бури";
@@ -331,8 +359,10 @@ instance ItMW_Addon_Keule_2h_01(C_Item)
 	damageTotal = Damage_Sturmknecht;
 	damagetype = DAM_BLUNT;
 	range = Range_Sturmknecht;
-	on_equip = UnEquip_2H_10;
-	on_unequip = Equip_2H_10;
+//	on_equip = UnEquip_2H_10;
+//	on_unequip = Equip_2H_10;
+	on_equip = Equip_2H_Keule;
+	on_unequip = UnEquip_2H_Keule;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Sturmknecht;
 	visual = "ItMW_Club_2H_01.3DS";
@@ -346,6 +376,26 @@ instance ItMW_Addon_Keule_2h_01(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 };
+
+
+func void Equip_2H_Keule()
+{
+	if(Npc_IsPlayer(self))
+	{
+		B_AddFightSkill(self,NPC_TALENT_2H,-10);
+		b_meleeweaponchange(0,-10,0);
+	};
+};
+
+func void UnEquip_2H_Keule()
+{
+	if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
+	{
+		B_AddFightSkill(self,NPC_TALENT_2H,10);
+	b_meleeweaponundochange();
+	};
+};
+
 
 instance ItMw_FrancisDagger_Mis(C_Item)
 {
@@ -503,7 +553,7 @@ instance ItMw_Addon_BanditTrader(C_Item)
 	cond_value[2] = Condition_VLKSchwert;
 	visual = "ItMw_018_1h_SwordCane_01.3ds";
 	description = name;
-	text[1] = "На рукоятке нацарапана буква 'Ф.'";
+	text[0] = "На рукоятке нацарапана буква 'Ф.'";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Dex_needed;
@@ -543,8 +593,10 @@ instance ItRw_Addon_MagicArrow(C_Item)
 	flags = ITEM_BOW | ITEM_MULTI;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ARROW";
-	value = Value_Pfeil;
-	visual = "ItRw_Arrow.3ds";
+//	value = Value_Pfeil;
+	value = Damage_MagicBow / 2;
+//	visual = "ItRw_Arrow.3ds";
+	visual = "ItRw_MagicArrow.3ds";
 	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
@@ -558,8 +610,10 @@ instance ItRw_Addon_FireArrow(C_Item)
 	flags = ITEM_BOW | ITEM_MULTI;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_FIREARROW";
-	value = Value_Pfeil;
-	visual = "ItRw_Arrow.3ds";
+//	value = Value_Pfeil;
+	value = Damage_FireBow / 2;
+//	visual = "ItRw_Arrow.3ds";
+	visual = "ItRw_FireArrow.3ds";
 	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
@@ -619,10 +673,12 @@ instance ItRw_Addon_MagicBolt(C_Item)
 	name = "Магический болт";
 	mainflag = ITEM_KAT_MUN;
 	flags = ITEM_CROSSBOW | ITEM_MULTI;
-	value = Value_Bolzen;
+//	value = Value_Bolzen;
+	value = Damage_MagicCrossbow / 2;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_BOLT";
-	visual = "ItRw_Bolt.3ds";
+//	visual = "ItRw_Bolt.3ds";
+	visual = "ItRw_MagicBolt.3ds";
 	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;

@@ -262,10 +262,19 @@ func void DIA_Till_BRONKOZURARBEIT_ok()
 	AI_Output(other,self,"DIA_Till_BRONKOZURARBEIT_ok_15_00");	//Хорошо. Я посмотрю, что можно сделать.
 	AI_Output(self,other,"DIA_Till_BRONKOZURARBEIT_ok_03_01");	//Но поторопись с этим.
 	DIA_Till_BRONKOZURARBEIT_noPerm = TRUE;
-	MIS_Sekob_Bronko_eingeschuechtert = LOG_Running;
-	Log_CreateTopic(TOPIC_Bronkoeingeschuechtert,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Bronkoeingeschuechtert,LOG_Running);
-	B_LogEntry(TOPIC_Bronkoeingeschuechtert,"Тилл не может заставить Бронко работать. Тилл хочет, чтобы это попробовал сделать я.");
+	if(MIS_Sekob_Bronko_eingeschuechtert != LOG_SUCCESS)
+	{
+		MIS_Sekob_Bronko_eingeschuechtert = LOG_Running;
+		Log_CreateTopic(TOPIC_Bronkoeingeschuechtert,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Bronkoeingeschuechtert,LOG_Running);
+		B_LogEntry(TOPIC_Bronkoeingeschuechtert,"Тилл не может заставить Бронко работать. Тилл хочет, чтобы это попробовал сделать я.");
+	}
+	else
+	{
+		Log_CreateTopic(TOPIC_Bronkoeingeschuechtert,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Bronkoeingeschuechtert,LOG_SUCCESS);
+		B_LogEntry(TOPIC_Bronkoeingeschuechtert,"Тилл немного опоздал со своим заданием, потому что Бронко уже работает на поле.");
+	};
 	AI_StopProcessInfos(self);
 };
 

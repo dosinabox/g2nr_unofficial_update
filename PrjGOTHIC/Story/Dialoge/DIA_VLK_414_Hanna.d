@@ -417,7 +417,7 @@ instance DIA_Hanna_AusKeller(C_Info)
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if(Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS))
+	if(Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE))
 	{
 		return TRUE;
 	};

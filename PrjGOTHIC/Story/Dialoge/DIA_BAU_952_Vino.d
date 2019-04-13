@@ -483,7 +483,7 @@ func void DIA_Vino_KAP5_EXIT_Info()
 	B_NpcClearObsessionByDMT(self);
 };
 
-
+/*
 instance DIA_Vino_KAP6_EXIT(C_Info)
 {
 	npc = BAU_952_Vino;
@@ -507,7 +507,7 @@ func void DIA_Vino_KAP6_EXIT_Info()
 {
 	B_NpcClearObsessionByDMT(self);
 };
-
+*/
 
 instance DIA_Vino_PICKPOCKET(C_Info)
 {

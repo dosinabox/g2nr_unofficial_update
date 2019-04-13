@@ -540,7 +540,7 @@ func void DIA_Malak_KAP5_EXIT_Info()
 	B_NpcClearObsessionByDMT(self);
 };
 
-
+/*
 instance DIA_Malak_KAP6_EXIT(C_Info)
 {
 	npc = BAU_963_Malak;
@@ -564,7 +564,7 @@ func void DIA_Malak_KAP6_EXIT_Info()
 {
 	B_NpcClearObsessionByDMT(self);
 };
-
+*/
 
 instance DIA_Malak_PICKPOCKET(C_Info)
 {

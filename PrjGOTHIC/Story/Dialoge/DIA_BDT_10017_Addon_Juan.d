@@ -17,6 +17,7 @@ func int DIA_Addon_Juan_EXIT_Condition()
 
 func void DIA_Addon_Juan_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -180,5 +181,6 @@ func void DIA_Addon_Juan_Trade_Info()
 {
 	B_Say(other,self,"$TRADE_3");
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 

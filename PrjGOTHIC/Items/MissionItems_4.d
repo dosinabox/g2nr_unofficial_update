@@ -69,7 +69,7 @@ instance ItMW_1H_FerrosSword_Mis(C_Item)
 
 instance ItMi_KerolothsGeldbeutel_MIS(C_Item)
 {
-	name = "Кожаный кошелек Керолота";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 300;
@@ -77,8 +77,8 @@ instance ItMi_KerolothsGeldbeutel_MIS(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = UseKerolothsGeldbeutel;
-	description = name;
-	text[2] = "Этот кошелек полон золотых монет.";
+	description = "Кошелек Керолота";
+	text[0] = "Этот кошелек полон золотых монет.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -95,14 +95,14 @@ func void UseKerolothsGeldbeutel()
 
 instance ItMi_KerolothsGeldbeutelLeer_MIS(C_Item)
 {
-	name = "Кожаный кошелек Керолота";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_METAL;
-	description = name;
-	text[2] = "Сейчас этот кошелек пуст.";
+	description = "Кошелек Керолота";
+	text[0] = "Сейчас этот кошелек пуст.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 };
@@ -185,11 +185,19 @@ instance ItRi_OrcEliteRing(C_Item)
 
 func void Equip_OrcEliteRing()
 {
+	var string strMessage;
 	if(self.attribute[ATR_STRENGTH] >= 20)
 	{
 		Npc_ChangeAttribute(self,ATR_STRENGTH,-20);
 		Print(PRINT_OrcEliteRingEquip);
 		OrcEliteRing_Equipped = TRUE;
+	}
+	else
+	{
+		strMessage = ConcatStrings(PRINT_STRENGTH_MISSING," ");
+		strMessage = ConcatStrings(strMessage,IntToString(20 - self.attribute[ATR_STRENGTH]));
+		Print(strMessage);
+		OrcEliteRing_Equipped = FALSE;
 	};
 };
 
@@ -218,8 +226,8 @@ instance ItPo_DragonEggDrinkNeoras_MIS(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Зелье из секрета драконьего яйца";
-	text[3] = "Эффект неизвестен.";
+	description = "Зелье из драконьего яйца";
+	text[0] = PRINT_UnknownEffect;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

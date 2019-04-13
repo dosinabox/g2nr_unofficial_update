@@ -17,6 +17,7 @@ func int DIA_Elena_EXIT_Condition()
 
 func void DIA_Elena_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -196,6 +197,7 @@ func void DIA_Elena_TRADE_Info()
 	AI_Output(other,self,"DIA_Elena_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Elena_TRADE_16_01");	//Выбирай.
+	Trade_IsActive = TRUE;
 };
 
 

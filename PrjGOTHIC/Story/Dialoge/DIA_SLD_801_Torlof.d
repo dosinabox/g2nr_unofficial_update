@@ -1247,7 +1247,7 @@ func void DIA_Torlof_PERM5_NOTCAPTAIN_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Torlof_KAP6_EXIT(C_Info)
 {
 	npc = SLD_801_Torlof;
@@ -1271,7 +1271,7 @@ func void DIA_Torlof_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Torlof_PICKPOCKET(C_Info)
 {

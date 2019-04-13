@@ -600,7 +600,7 @@ func void DIA_Keroloth_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Keroloth_KAP6_EXIT(C_Info)
 {
 	npc = PAL_258_Keroloth;
@@ -624,7 +624,7 @@ func void DIA_Keroloth_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Keroloth_PICKPOCKET(C_Info)
 {

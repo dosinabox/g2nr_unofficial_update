@@ -20,6 +20,7 @@ func int DIA_Hodges_Kap1_EXIT_Condition()
 
 func void DIA_Hodges_Kap1_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -150,6 +151,7 @@ func void DIA_Hodges_TRADE_Info()
 		B_LogEntry(Topic_SoldierTrader,"Ходжес может продать мне немного оружия.");
 		Hodges_Trader = TRUE;
 	};
+	Trade_IsActive = TRUE;
 };
 
 
@@ -174,6 +176,7 @@ func int DIA_Hodges_Kap2_EXIT_Condition()
 
 func void DIA_Hodges_Kap2_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -199,6 +202,7 @@ func int DIA_Hodges_Kap3_EXIT_Condition()
 
 func void DIA_Hodges_Kap3_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -343,6 +347,7 @@ func int DIA_Hodges_Kap4_EXIT_Condition()
 
 func void DIA_Hodges_Kap4_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -368,6 +373,7 @@ func int DIA_Hodges_Kap5_EXIT_Condition()
 
 func void DIA_Hodges_Kap5_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 

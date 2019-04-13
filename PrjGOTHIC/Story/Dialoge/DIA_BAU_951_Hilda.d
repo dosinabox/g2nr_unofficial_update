@@ -491,7 +491,7 @@ func void DIA_Hilda_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Hilda_KAP6_EXIT(C_Info)
 {
 	npc = BAU_951_Hilda;
@@ -515,7 +515,7 @@ func void DIA_Hilda_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Hilda_PICKPOCKET(C_Info)
 {

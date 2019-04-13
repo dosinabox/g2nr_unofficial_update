@@ -428,7 +428,7 @@ func void DIA_Ulthar_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Ulthar_KAP6_EXIT(C_Info)
 {
 	npc = KDF_502_Ulthar;
@@ -452,7 +452,7 @@ func void DIA_Ulthar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Ulthar_PICKPOCKET(C_Info)
 {

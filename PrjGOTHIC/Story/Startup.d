@@ -3041,7 +3041,7 @@ func void INIT_NewWorld()
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	b_enter_newworld();
-	if(Diebesgilde_Verraten && (Andre_Diebesgilde_aufgeraeumt != TRUE))
+	if((Diebesgilde_Verraten == TRUE) && (Andre_Diebesgilde_aufgeraeumt != TRUE))
 	{
 		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
 		{

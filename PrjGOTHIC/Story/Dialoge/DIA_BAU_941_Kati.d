@@ -409,7 +409,7 @@ func void DIA_Kati_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Kati_KAP6_EXIT(C_Info)
 {
 	npc = BAU_941_Kati;
@@ -433,7 +433,7 @@ func void DIA_Kati_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Kati_PICKPOCKET(C_Info)
 {

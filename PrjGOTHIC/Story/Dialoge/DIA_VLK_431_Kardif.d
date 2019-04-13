@@ -20,6 +20,7 @@ func int DIA_Kardif_EXIT_Condition()
 
 func void DIA_Kardif_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -207,6 +208,7 @@ func void DIA_Kardif_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Kardif_TRADE_15_00");	//Дай мне что-нибудь выпить.
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 
 

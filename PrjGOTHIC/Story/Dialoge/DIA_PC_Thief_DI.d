@@ -17,6 +17,7 @@ func int DIA_PC_Thief_DI_EXIT_Condition()
 
 func void DIA_PC_Thief_DI_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -143,6 +144,7 @@ func void DIA_Diego_DI_TRADE_Info()
 		B_RefreshAmmo(self,50);
 	};
 	AI_Output(self,other,"DIA_Diego_DI_TRADE_11_01");	//Возможно, я смогу помочь тебе.
+	Trade_IsActive = TRUE;
 };
 
 
@@ -370,5 +372,4 @@ func void DIA_Thief_DI_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Thief_DI_PICKPOCKET);
 };
-
 

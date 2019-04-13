@@ -17,6 +17,7 @@ func int DIA_Zuris_EXIT_Condition()
 
 func void DIA_Zuris_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -134,13 +135,14 @@ func int DIA_Zuris_WAREZ_Condition()
 
 func void DIA_Zuris_WAREZ_Info()
 {
-	B_GiveTradeInv(self);
 	AI_Output(other,self,"DIA_Zuris_WAREZ_15_00");	//Покажи мне свои товары.
+	B_GiveTradeInv(self);
 	if((Zuris_einmal == FALSE) && !Npc_KnowsInfo(other,DIA_Zuris_Potions))
 	{
 		AI_Output(self,other,"DIA_Zuris_GREET_14_02");	//Я только что получил несколько новых зелий. Мой гость, мастер Дарон, маг Огня, принес мне их из монастыря.
 		Zuris_einmal = TRUE;
 	};
+	Trade_IsActive = TRUE;
 };
 
 

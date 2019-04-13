@@ -103,7 +103,7 @@ instance ItMi_Flask(C_Item)
 
 instance ItMi_Hammer(C_Item)
 {
-	name = "Молот";
+	name = "Молоток";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Hammer;
@@ -340,7 +340,7 @@ func void UsePacket()
 
 instance ItMi_Pocket(C_Item)
 {
-	name = "Кожаный кошелек";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 10;
@@ -349,8 +349,8 @@ instance ItMi_Pocket(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UsePocket;
 	description = name;
-	text[2] = "Небольшой мешочек,";
-	text[3] = "не очень тяжелый.";
+	text[0] = "Небольшой мешочек,";
+	text[1] = "не очень тяжелый.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -432,7 +432,7 @@ instance ItMi_GoldNecklace(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 };
 
 instance ItMi_SilverRing(C_Item)
@@ -509,7 +509,8 @@ instance ItMi_BloodCup_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_BloodCup;
-	visual = "ItMi_GoldCup.3DS";
+//	visual = "ItMi_GoldCup.3DS";
+	visual = "ItMi_BloodCup.3DS";
 	material = MAT_METAL;
 	description = "Кровавый кубок";
 	text[5] = NAME_Value;
@@ -754,7 +755,7 @@ instance ItMi_ApfelTabak(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Кисет с яблочным табаком.";
+	text[0] = "Кисет с яблочным табаком.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -768,7 +769,7 @@ instance ItMi_PilzTabak(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Темный яблочно-грибной табак.";
+	text[0] = "Темный яблочно-грибной табак.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -782,7 +783,7 @@ instance ItMi_DoppelTabak(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "На вкус похоже на яблоко...";
+	text[0] = "На вкус похоже на яблоко...";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -796,7 +797,7 @@ instance ItMi_Honigtabak(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Сладкий яблочный табак.";
+	text[0] = "Сладкий яблочный табак.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -810,7 +811,7 @@ instance ItMi_SumpfTabak(C_Item)
 	visual = "ItMi_Pocket.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Смесь из болотной травы.";
+	text[0] = "Смесь из болотной травы.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

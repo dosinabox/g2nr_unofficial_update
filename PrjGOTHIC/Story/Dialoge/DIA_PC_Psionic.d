@@ -692,7 +692,7 @@ func void DIA_Lester_StillNeedYou_Info()
 	B_CheckLog();
 };
 
-
+/*
 instance DIA_Lester_KAP6_EXIT(C_Info)
 {
 	npc = PC_Psionic;
@@ -716,7 +716,7 @@ func void DIA_Lester_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_PC_Psionic_PICKPOCKET(C_Info)
 {

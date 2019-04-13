@@ -17,6 +17,7 @@ func int DIA_Constantino_EXIT_Condition()
 
 func void DIA_Constantino_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -213,6 +214,7 @@ func void DIA_Constantino_Trade_Info()
 		B_LogEntry(TOPIC_CityTrader,"Константино продает алхимические товары.");
 		Constantino_Logpatch1 = TRUE;
 	};
+	Trade_IsActive = TRUE;
 };
 
 

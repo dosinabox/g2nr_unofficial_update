@@ -535,7 +535,7 @@ func void DIA_Parcival_VERRAETER_Info()
 	B_Attack(self,other,AR_KILL,1);
 };
 
-
+/*
 instance DIA_Parcival_KAP6_EXIT(C_Info)
 {
 	npc = PAL_252_Parcival;
@@ -559,7 +559,7 @@ func void DIA_Parcival_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Parcival_PICKPOCKET(C_Info)
 {

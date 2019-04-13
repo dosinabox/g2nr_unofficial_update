@@ -1,14 +1,14 @@
 
 instance ITWR_Addon_Runemaking_KDW_CIRC1(C_Item)
 {
-	name = "Круги Воды";
+	name = "Книга рун Воды I";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 100;
 	visual = "ItWr_Book_02_04.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Книга рун магов Воды";
+	description = "Книга рун магов Воды (1-й круг)";
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = Use_Runemaking_KDW_CIRC1_S1;

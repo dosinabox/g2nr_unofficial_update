@@ -14,7 +14,7 @@ prototype Mst_Default_Wolf(C_Npc)
 	protection[PROT_BLUNT] = 30;
 	protection[PROT_EDGE] = 30;
 	protection[PROT_POINT] = 0;
-	protection[PROT_FIRE] = 30;
+	protection[PROT_FIRE] = 0;	//30;
 	protection[PROT_FLY] = 30;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -56,7 +56,7 @@ instance Summoned_Wolf(Mst_Default_Wolf)
 	protection[PROT_BLUNT] = 75;
 	protection[PROT_EDGE] = 75;
 	protection[PROT_POINT] = 25;
-	protection[PROT_FIRE] = 75;
+	protection[PROT_FIRE] = 25;	//75;
 	protection[PROT_FLY] = 75;
 	aivar[AIV_PARTYMEMBER] = TRUE;
 	B_SetAttitude(self,ATT_FRIENDLY);

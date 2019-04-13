@@ -773,7 +773,7 @@ func void DIA_Wolf_SHIPOFF_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
-
+/*
 instance DIA_Wolf_KAP6_EXIT(C_Info)
 {
 	npc = SLD_811_Wolf;
@@ -797,7 +797,7 @@ func void DIA_Wolf_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Wolf_PICKPOCKET(C_Info)
 {

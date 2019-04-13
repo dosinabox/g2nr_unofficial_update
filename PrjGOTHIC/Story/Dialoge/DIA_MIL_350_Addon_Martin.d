@@ -17,6 +17,7 @@ func int DIA_Addon_Martin_EXIT_Condition()
 
 func void DIA_Addon_Martin_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -243,6 +244,7 @@ func void DIA_Addon_Martin_Trade_Info()
 	AI_Output(other,self,"DIA_Addon_Martin_Trade_15_00");	//Что ты можешь предложить?
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Addon_Martin_Trade_07_01");	//Что ж, смотри внимательно.
+	Trade_IsActive = TRUE;
 };
 
 

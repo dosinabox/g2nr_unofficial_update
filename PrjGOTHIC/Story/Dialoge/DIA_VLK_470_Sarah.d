@@ -17,6 +17,7 @@ func int DIA_Sarah_EXIT_Condition()
 
 func void DIA_Sarah_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -193,6 +194,7 @@ func void DIA_Sarah_Trade_Info()
 	AI_Output(other,self,"DIA_Sarah_Trade_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	Sarah_WaffenGesehen = TRUE;
+	Trade_IsActive = TRUE;
 };
 
 

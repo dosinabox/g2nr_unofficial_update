@@ -6,7 +6,7 @@ const int AM_EyeProtFire = 30;
 
 instance ItMi_InnosEye_MIS(C_Item)
 {
-	name = "Глаз Инноса";
+	name = NAME_InnosEye;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
@@ -17,16 +17,16 @@ instance ItMi_InnosEye_MIS(C_Item)
 	description = name;
 	on_equip = Equip_InnosEye;
 	on_unequip = UnEquip_InnosEye;
-	text[0] = "Глаз пульсирует энергией.";
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
-	text[1] = NAME_Prot_Magic;
-	count[1] = AM_EyeProtMage;
-	text[2] = NAME_Prot_Fire;
-	count[2] = AM_EyeProtFire;
-	text[3] = NAME_Prot_Point;
-	count[3] = AM_EyeProtPoint;
-	text[4] = NAME_Prot_Edge;
-	count[4] = AM_EyeProtEdge;
+	text[0] = "Глаз пульсирует энергией.";
+	text[1] = NAME_Prot_Edge;
+	count[1] = AM_EyeProtEdge;
+	text[2] = NAME_Prot_Point;
+	count[2] = AM_EyeProtPoint;
+	text[3] = NAME_Prot_Fire;
+	count[3] = AM_EyeProtFire;
+	text[4] = NAME_Prot_Magic;
+	count[4] = AM_EyeProtMage;
 };
 
 
@@ -60,7 +60,7 @@ func void UnEquip_InnosEye()
 
 instance ItMi_InnosEye_Discharged_Mis(C_Item)
 {
-	name = "Глаз Инноса";
+	name = NAME_InnosEye;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
@@ -83,7 +83,7 @@ func void Equip_ItMi_InnosEye_Discharged_Mis()
 
 instance ItMi_InnosEye_Broken_Mis(C_Item)
 {
-	name = "Глаз Инноса";
+	name = NAME_InnosEye;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
@@ -107,7 +107,7 @@ func void Equip_ItMi_InnosEye_Broken_Mis()
 
 instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 {
-	name = "Письмо о подтверждение полномочий";
+	name = "Письмо о подтверждении полномочий";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -115,7 +115,8 @@ instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_PermissionToWearInnosEye;
 	scemeName = "MAP";
-	description = "Письмо о подтверждение полномочий для Пирокара";
+//	description = "Письмо о подтверждение полномочий для Пирокара";
+	description = name;
 };
 
 
@@ -168,14 +169,14 @@ func void Use_XardasBookForPyrokar()
 
 instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 {
-	name = "Ключ Ксардаса";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_02;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "от сундука на ферме Секоба.";
+	text[0] = "Ключ от сундука на ферме Секоба.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -189,8 +190,7 @@ instance ItWr_CorneliusTagebuch_Mis(C_Item)
 	visual = "ItWr_Book_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = name;
-	text[0] = "Дневник Корнелиуса.";
+	description = "Дневник Корнелиуса";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 	on_state[0] = UseCorneliusTagebuch;
@@ -438,7 +438,7 @@ instance ItMi_MalethsBanditGold(C_Item)
 	material = MAT_METAL;
 	on_state[0] = Use_MalethsBanditGold;
 	description = name;
-	text[2] = "Этот кошелек доверху набит золотом!";
+	text[0] = "Этот кошелек доверху набит золотом!";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -490,7 +490,7 @@ func void Use_BabosLetter()
 	Doc_PrintLines(nDocID,0,"Ты, наверняка, задаешься вопросом, как мы смогли написать тебе это письмо. Мы отнесли все наши сбережения мастеру Марласу и попросили его написать эти строчки. Мы желаем тебе всего наилучшего и посылаем тебе картину в качестве прощального дара, чтобы ты всегда помнил о нас во время долгих ночей в монастыре.");
 	Doc_PrintLines(nDocID,0,"Удачи. Надеемся, тебе понравится эта картина.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Фехт и Бонка");
+	Doc_PrintLine(nDocID,0,"Фехт и Бонка");
 	Doc_Show(nDocID);
 };
 
@@ -530,8 +530,8 @@ instance ItWr_BabosDocs_MIS(C_Item)
 	on_state[0] = Use_BabosDocs;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[2] = "Несколько документов,";
-	text[3] = "скрученных вместе.";
+	text[0] = "Несколько документов,";
+	text[1] = "скрученных вместе.";
 };
 
 
@@ -545,15 +545,15 @@ func void Use_BabosDocs()
 
 instance ItKe_IgarazChest_Mis(C_Item)
 {
-	name = "Ключ от сундука";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от сундука,";
-	text[3] = "принадлежащего Игарацу.";
+	text[0] = "Это ключ от сундука,";
+	text[1] = "принадлежащего Игарацу.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -639,7 +639,7 @@ func void Use_HealObsession()
 
 instance ItSe_Golemchest_Mis(C_Item)
 {
-	name = "Кожаный кошелек";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
@@ -648,7 +648,7 @@ instance ItSe_Golemchest_Mis(C_Item)
 	material = MAT_METAL;
 	on_state[0] = Use_GolemChest;
 	description = name;
-	text[2] = "Этот кошелек полон монет.";
+	text[0] = "Этот кошелек полон монет.";
 //	text[5] = NAME_Value;
 //	count[5] = value;
 };
@@ -732,7 +732,7 @@ func void Use_DiegosLetter_Mis()
 
 instance ItSe_DiegosTreasure_Mis(C_Item)
 {
-	name = "Полный кожаный кошелек";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = DiegosTreasure;
@@ -740,7 +740,7 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
 	on_state[0] = Use_DiegosTreasure;
-	description = "Старый кожаный кошелек Диего";
+	description = "Старый кошелек Диего";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -831,8 +831,7 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-//	text[2] = "";
-	text[3] = "Защита от сглаза";
+	text[0] = "Защита от сглаза.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
@@ -934,8 +933,8 @@ func void Use_MorgahardTip()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Я ухожу. Надеюсь, мы встретимся опять, когда все немного успокоится.");
 	Doc_PrintLines(nDocID,0,"Не волнуйтесь, парни. В крайнем случае, я попрошу Онара помочь.");
 	Doc_PrintLines(nDocID,0,"Все будет хорошо.");
@@ -1005,7 +1004,7 @@ func void Use_VinosKellergeister_Mis()
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Сила винограда");
+	Doc_PrintLine(nDocID,0,"Сила винограда");
 	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
@@ -1013,7 +1012,7 @@ func void Use_VinosKellergeister_Mis()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"... сок этого винограда несравним с тем, что можно найти в этой части страны ...");
-	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_BookHeadline);
 	Doc_SetFont(nDocID,1,FONT_Book);

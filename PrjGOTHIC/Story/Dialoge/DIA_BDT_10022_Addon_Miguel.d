@@ -17,6 +17,7 @@ func int DIA_Addon_Miguel_EXIT_Condition()
 
 func void DIA_Addon_Miguel_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -288,5 +289,6 @@ func void DIA_Addon_Miguel_trade_Info()
 {
 	B_Say(other,self,"$TRADE_1");
 	B_GiveTradeInv(self);
+	Trade_IsActive = TRUE;
 };
 

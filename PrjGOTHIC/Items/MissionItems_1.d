@@ -8,8 +8,8 @@ instance ItKe_Xardas(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Ключ от сундука,";
-	text[3] = "принадлежащего Ксардасу.";
+	text[0] = "Ключ от сундука,";
+	text[1] = "принадлежащего Ксардасу.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -41,18 +41,17 @@ func void Use_Canthars_KomproBrief()
 	Doc_PrintLine(nDocID,0,"     Последнее предупреждение");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"        Я уже несколько раз напоминал тебе,");
-	Doc_PrintLine(nDocID,0,"        стараясь быть вежливым,");
-	Doc_PrintLine(nDocID,0,"        что мне срочно необходимо оружие,");
-	Doc_PrintLine(nDocID,0,"        заказанное у тебя неделю");
-	Doc_PrintLine(nDocID,0,"        назад.");
-	Doc_PrintLine(nDocID,0,"        Если я вскоре не получу от тебя никаких");
-	Doc_PrintLine(nDocID,0,"        вестей, Сара, я буду вынужден изменить");
-	Doc_PrintLine(nDocID,0,"        свое отношение к тебе. Надеюсь,");
-	Doc_PrintLine(nDocID,0,"        мы понимаем друг друга!!!!!!!!!!!!");
+	Doc_PrintLines(nDocID,0,"        Я уже несколько раз напоминал тебе,");
+	Doc_PrintLines(nDocID,0,"        стараясь быть вежливым,");
+	Doc_PrintLines(nDocID,0,"        что мне срочно необходимо оружие,");
+	Doc_PrintLines(nDocID,0,"        заказанное у тебя неделю назад.");
+	Doc_PrintLines(nDocID,0,"        Если я вскоре не получу от тебя никаких");
+	Doc_PrintLines(nDocID,0,"        вестей, Сара, я буду вынужден изменить");
+	Doc_PrintLines(nDocID,0,"        свое отношение к тебе. Надеюсь,");
+	Doc_PrintLines(nDocID,0,"        мы понимаем друг друга!!!!!!!!!!!!");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"            Онар");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
@@ -152,8 +151,8 @@ instance ItMi_MariasGoldPlate(C_Item)
 	visual = "ItMi_GoldPlate.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "На этом блюде выгравированы";
-	text[3] = "имена: Онар и Мария.";
+	text[0] = "На этом блюде выгравированы";
+	text[1] = "имена: Онар и Мария.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -204,8 +203,8 @@ instance ItKe_Dexter(C_Item)
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Ключ от сундука,";
-	text[3] = "принадлежащего Декстеру.";
+	text[0] = "Ключ от сундука,";
+	text[1] = "принадлежащего Декстеру.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -307,8 +306,8 @@ instance ItWr_Passierschein(C_Item)
 	on_state[0] = UsePassierschein;
 	scemeName = "MAP";
 	description = name;
-	text[3] = "Эти бумаги позволят мне";
-	text[4] = "пройти мимо стражников у ворот.";
+	text[0] = "Эти бумаги позволят мне";
+	text[1] = "пройти мимо стражников у ворот.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -328,18 +327,18 @@ func void UsePassierschein()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"        Этот документ дает право");
-	Doc_PrintLine(nDocID,0,"        свободного прохода по всему нижнему");
-	Doc_PrintLine(nDocID,0,"        Хоринису на неограниченный период времени.");
+	Doc_PrintLines(nDocID,0,"        Этот документ дает право");
+	Doc_PrintLines(nDocID,0,"        свободного прохода по всему нижнему");
+	Doc_PrintLines(nDocID,0,"        Хоринису на неограниченный период времени.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"            Лариус");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"            королевский губернатор");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
 };
@@ -354,22 +353,22 @@ instance ItMi_HerbPaket(C_Item)
 	visual = "ItMi_Packet.3ds";
 	material = MAT_LEATHER;
 	description = name;
-	text[2] = "Тяжелый, липкий тюк,";
-	text[3] = "пахнущий болотной травой.";
+	text[0] = "Тяжелый, липкий тюк,";
+	text[1] = "пахнущий болотной травой.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_Storage(C_Item)
 {
-	name = "Ключ от склада";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Ключ от портового склада.";
+	text[0] = "Ключ от портового склада.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -412,8 +411,8 @@ instance ItFo_HalvorFish_MIS(C_Item)
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_HalvorFish;
 	description = "Странно выглядящая рыба";
-	text[2] = "Что-то с этой рыбой не так.";
-	text[3] = "Похоже, она была зашита...";
+	text[0] = "Что-то с этой рыбой не так.";
+	text[1] = "Похоже, она была зашита...";
 };
 
 
@@ -435,7 +434,7 @@ instance ItWr_HalvorMessage(C_Item)
 	on_state[0] = UseHalvorMessage;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Эта записка была спрятана в рыбе.";
+	text[0] = "Эта записка была спрятана в рыбе.";
 };
 
 
@@ -453,10 +452,10 @@ func void UseHalvorMessage()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"    Не высовывайтесь, парни!");
-	Doc_PrintLine(nDocID,0,"    Ополчение становится подозрительным.");
-	Doc_PrintLine(nDocID,0,"    Не предпринимайте ничего,");
-	Doc_PrintLine(nDocID,0,"    пока я не дам знать о себе!");
+	Doc_PrintLines(nDocID,0,"    Не высовывайтесь, парни!");
+	Doc_PrintLines(nDocID,0,"    Ополчение становится подозрительным.");
+	Doc_PrintLines(nDocID,0,"    Не предпринимайте ничего,");
+	Doc_PrintLines(nDocID,0,"    пока я не дам знать о себе!");
 	Doc_PrintLine(nDocID,0,"    Халвор");
 	Doc_Show(nDocID);
 };
@@ -523,7 +522,7 @@ instance ItWr_VatrasMessage(C_Item)
 	on_state[0] = UseVatrasMessage;
 	scemeName = "MAPSEALED";
 	description = name;
-	text[2] = "Послание Ватраса магам Огня.";
+	text[0] = "Послание Ватраса магам Огня.";
 };
 
 
@@ -559,8 +558,8 @@ instance ItWr_VatrasMessage_Open(C_Item)
 	on_state[0] = UseVatrasMessageOpen;
 	scemeName = "MAP";
 	description = name;
-	text[2] = "Послание Ватраса магам Огня.";
-	text[3] = "Печать сломана.";
+	text[0] = "Послание Ватраса магам Огня.";
+	text[1] = "Печать сломана.";
 };
 
 
@@ -586,39 +585,39 @@ func void UseVatrasMessageOpen()
 
 instance ItKe_Hotel(C_Item)
 {
-	name = "Ключ от комнаты";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от комнаты отеля.";
+	text[0] = "Это ключ от комнаты отеля.";
 };
 
 instance ItKe_ThiefGuildKey_MIS(C_Item)
 {
-	name = "Ржавый ключ";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Этот ключ изъеден";
-	text[3] = "соленой морской водой.";
+	text[0] = "Этот ключ изъеден";
+	text[1] = "соленой морской водой.";
 };
 
 instance ItKe_ThiefGuildKey_Hotel_MIS(C_Item)
 {
-	name = "Ржавый ключ";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от погреба отеля.";
+	text[0] = "Это ключ от погреба отеля.";
 };
 
 instance ItKe_Innos_MIS(C_Item)
@@ -630,8 +629,8 @@ instance ItKe_Innos_MIS(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от входа";
-	text[3] = "в монастырь Инноса.";
+	text[0] = "Это ключ от входа";
+	text[1] = "в монастырь Инноса.";
 };
 
 instance ItKe_KlosterSchatz(C_Item)
@@ -643,7 +642,7 @@ instance ItKe_KlosterSchatz(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от монастырской сокровищницы.";
+	text[0] = "Это ключ от монастырской сокровищницы.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -657,7 +656,7 @@ instance ItKe_KlosterStore(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от монастырской кладовой.";
+	text[0] = "Это ключ от монастырской кладовой.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -671,7 +670,7 @@ instance ItKe_KDFPlayer(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от монастырской кельи.";
+	text[0] = "Это ключ от монастырской кельи.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -685,7 +684,7 @@ instance ItKe_KlosterBibliothek(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от монастырской библиотеки.";
+	text[0] = "Это ключ от монастырской библиотеки.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -696,9 +695,11 @@ instance ItFo_Schafswurst(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
 	value = Value_Sausage;
-	visual = "ItFo_Sausage.3DS";
+//	visual = "ItFo_Sausage.3DS";
+	visual = "ItFo_Schafswurst.3DS";
 	material = MAT_LEATHER;
-	scemeName = "FOOD";
+//	scemeName = "FOOD";
+	scemeName = "FOODHUGE";
 	on_state[0] = Use_Schafswurst;
 	description = name;
 	text[1] = NAME_Bonus_HP;
@@ -771,16 +772,16 @@ instance Holy_Hammer_MIS(C_Item)
 
 instance ItKe_MagicChest(C_Item)
 {
-	name = "Старый ключ";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Старый железный ключ.";
-	text[3] = "Возможно, это ключ";
-	text[4] = "от висячего замка.";
+	text[0] = "Старый железный ключ.";
+	text[1] = "Возможно, это ключ";
+	text[2] = "от висячего замка.";
 };
 
 instance ItWr_Passage_MIS(C_Item)
@@ -794,8 +795,8 @@ instance ItWr_Passage_MIS(C_Item)
 	on_state[0] = UsePassage;
 	scemeName = "MAP";
 	description = name;
-	text[3] = "Эта записка должна помочь мне";
-	text[4] = "встретиться с лордом Хагеном.";
+	text[0] = "Эта записка должна помочь мне";
+	text[1] = "встретиться с лордом Хагеном.";
 };
 
 
@@ -812,7 +813,7 @@ func void UsePassage()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Мы оба прекрасно знаем, в какой ситуации вы находитесь. И, учитывая обстоятельства, я предлагаю следующее соглашение:");
 	Doc_PrintLines(nDocID,0,"Вы даруете моим людям полное отпущение грехов перед Инносом и королем.");
-	Doc_PrintLines(nDocID,0,"Взамен, мы предлагаем вам свою помощь в обороне города и прилегающих земель.");
+	Doc_PrintLines(nDocID,0,"Взамен мы предлагаем вам свою помощь в обороне города и прилегающих земель.");
 	Doc_PrintLines(nDocID,0,"Кроме того, я лично прослежу за тем, чтобы мои люди держались подальше от местных ферм - за исключением, естественно, фермы Онара, где мы расквартированы.");
 	Doc_PrintLines(nDocID,0,"Я знаю, что на корабле, на котором вы собираетесь отправиться на материк, вполне достаточно места, как для меня, так и для моих избранных людей. Когда вы поднимете паруса, я хочу тоже быть на борту.");
 	Doc_PrintLines(nDocID,0,"Я умоляю вас: примите решение со всей присущей вам мудростью.");
@@ -847,22 +848,22 @@ func void UseBanditLetter()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"Задерживайте всех, спустившихся с гор.");
-	Doc_PrintLine(nDocID,0,"Вполне вероятно, что через проход");
-	Doc_PrintLine(nDocID,0," попытается пройти старик.");
-	Doc_PrintLine(nDocID,0,"Не дайте ему обмануть вас -");
-	Doc_PrintLine(nDocID,0,"    это очень опасный колдун.");
-	Doc_PrintLine(nDocID,0,"Присматривайте за ним.");
+	Doc_PrintLines(nDocID,0,"Задерживайте всех, спустившихся с гор.");
+	Doc_PrintLines(nDocID,0,"Вполне вероятно, что через проход");
+	Doc_PrintLines(nDocID,0," попытается пройти старик.");
+	Doc_PrintLines(nDocID,0,"Не дайте ему обмануть вас -");
+	Doc_PrintLines(nDocID,0,"    это очень опасный колдун.");
+	Doc_PrintLines(nDocID,0,"Присматривайте за ним.");
 	Doc_PrintLine(nDocID,0," ");
-	Doc_PrintLine(nDocID,0,"Возможно, человек, которого мы ищем,");
-	Doc_PrintLine(nDocID,0,"    выйдет с ним на связь.");
-	Doc_PrintLine(nDocID,0,"С этим письмом я посылаю вам");
-	Doc_PrintLine(nDocID,0,"    тридцать золотых монет.");
-	Doc_PrintLine(nDocID,0,"Я дам еще тридцать монет любому,");
-	Doc_PrintLine(nDocID,0,"    кто убьет этого человека.");
+	Doc_PrintLines(nDocID,0,"Возможно, человек, которого мы ищем,");
+	Doc_PrintLines(nDocID,0,"    выйдет с ним на связь.");
+	Doc_PrintLines(nDocID,0,"С этим письмом я посылаю вам");
+	Doc_PrintLines(nDocID,0,"    тридцать золотых монет.");
+	Doc_PrintLines(nDocID,0,"Я дам еще тридцать монет любому,");
+	Doc_PrintLines(nDocID,0,"    кто убьет этого человека.");
 	Doc_PrintLine(nDocID,0," ");
-	Doc_PrintLine(nDocID,0,"Принесите его голову к старой шахте");
-	Doc_PrintLine(nDocID,0,"    около поместья землевладельца.");
+	Doc_PrintLines(nDocID,0,"Принесите его голову к старой шахте");
+	Doc_PrintLines(nDocID,0,"    около поместья землевладельца.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Д.");
 //	Doc_PrintLine(nDocID,0,"");
@@ -882,7 +883,7 @@ instance ItWr_Poster_MIS(C_Item)
 	on_state[0] = UsePoster;
 	scemeName = "MAP";
 	description = name;
-	text[3] = "Мое изображение!";
+	text[0] = "Мое изображение!";
 };
 
 
@@ -898,14 +899,14 @@ func void UsePoster()
 
 instance ItKe_Bandit(C_Item)
 {
-	name = "Ключ от сундука";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Этот ключ принадлежал бандиту.";
+	text[0] = "Этот ключ принадлежал бандиту.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -924,18 +925,19 @@ instance ItRw_Bow_L_03_MIS(C_Item)
 	cond_value[2] = Condition_Jagdbogen;
 	visual = "ItRw_Bow_L_03.mms";
 	description = name;
+	text[0] = "Охотничий лук Боспера.";
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Dex_needed;
 	count[3] = cond_value[2];
-	text[4] = "Охотничий лук Боспера.";
+//	text[4] = "Охотничий лук Боспера.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItRi_Prot_Point_01_MIS(C_Item)
 {
-	name = "Кольцо Константино";
+	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING | ITEM_MISSION;
 	value = Value_Ri_ProtPoint;
@@ -946,7 +948,8 @@ instance ItRi_Prot_Point_01_MIS(C_Item)
 	on_unequip = UnEquip_ItRi_Prot_Point_01_MIS;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Деревянная защита";
+	description = "Кольцо деревянной кожи";
+	text[0] = "Это кольцо принадлежит Константино.";
 	text[2] = NAME_Prot_Point;
 	count[2] = Ri_ProtPoint;
 	text[5] = NAME_Value;
@@ -977,51 +980,51 @@ instance ItMi_EddasStatue(C_Item)
 	visual = "ItMi_InnosStatue.3DS";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Иннос, бог правосудия";
-	text[3] = "благослови и сохрани меня,";
-	text[4] = "и защити меня от боли.";
+	text[0] = "Иннос, бог правосудия,";
+	text[1] = "благослови и сохрани меня,";
+	text[2] = "и защити меня от боли.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_EVT_CRYPT_01(C_Item)
 {
-	name = "Старый латунный ключ";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ скелета в комнате 1.";
+	text[0] = "Это ключ скелета в комнате 1.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_EVT_CRYPT_02(C_Item)
 {
-	name = "Старый латунный ключ";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ скелета в комнате 2.";
+	text[0] = "Это ключ скелета в комнате 2.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_EVT_CRYPT_03(C_Item)
 {
-	name = "Старый латунный ключ";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ скелета в комнате 3.";
+	text[0] = "Это ключ скелета в комнате 3.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1060,74 +1063,74 @@ instance ITAR_PAL_SKEL(C_Item)
 
 instance ItKe_Valentino(C_Item)
 {
-	name = "Ключ от сундука";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от сундука,";
-	text[3] = "принадлежащего Валентино.";
+	text[0] = "Это ключ от сундука,";
+	text[1] = "принадлежащего Валентино.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_Buerger(C_Item)
 {
-	name = "Ключ от сундука";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Он лежал на подоконнике.";
+	text[0] = "Он лежал на подоконнике.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_Richter(C_Item)
 {
-	name = "Ключ от сундука";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Это ключ от сундука,";
-	text[3] = "принадлежащего судье.";
+	text[0] = "Это ключ от сундука,";
+	text[1] = "принадлежащего судье.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_Salandril(C_Item)
 {
-	name = "Ключ от сундука";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Ключ от сундука, принадлежащего";
-	text[3] = "алхимику Саландрилу.";
+	text[0] = "Ключ от сундука, принадлежащего";
+	text[1] = "алхимику Саландрилу.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
 
 instance ItKe_PaladinTruhe(C_Item)
 {
-	name = "Ключ от сундука";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Маленький латунный ключик";
-	text[3] = "из дома паладинов.";
+	text[0] = "Маленький латунный ключик";
+	text[1] = "из дома паладинов.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1141,7 +1144,7 @@ instance ItKe_ThiefTreasure(C_Item)
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Маленький ключик.";
+	text[0] = "Маленький ключик.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1155,8 +1158,8 @@ instance ItKe_Fingers(C_Item)
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "Ржавый ключ от двери";
-	text[3] = "в канализации.";
+	text[0] = "Ржавый ключ от двери";
+	text[1] = "в канализации.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1199,7 +1202,7 @@ func void UseSchuldBuch()
 	Doc_PrintLines(nDocID,0,"Я, Корагон, трактирщик Хориниса, должен глубокоуважаемому Лемару 150 золотых монет.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"             Корагон");
-	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_SetFont(nDocID,1,FONT_Book);
 	Doc_PrintLine(nDocID,1,"");
@@ -1208,7 +1211,7 @@ func void UseSchuldBuch()
 	Doc_PrintLines(nDocID,1,"Я, Ханна, владелица отеля Хориниса, должна глубокоуважаемому Лемару 250 золотых монет.");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"               Ханна");
-	Doc_PrintLines(nDocID,1,"");
+//	Doc_PrintLines(nDocID,1,"");
 	Doc_Show(nDocID);
 };
 
@@ -1228,16 +1231,17 @@ instance ItPl_Sagitta_Herb_MIS(C_Item)
 	count[5] = Value_Strength_Herb_01;
 };
 
-instance ITKE_ORLAN_HOTELZIMMER(C_Item)
+instance ItKe_Orlan_HotelZimmer(C_Item)
 {
-	name = "Ключ от комнаты";
+	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[2] = "в таверне 'Мертвая Гарпия'.";
+	text[0] = "Ключ от комнаты";
+	text[1] = "в таверне 'Мертвая Гарпия'.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

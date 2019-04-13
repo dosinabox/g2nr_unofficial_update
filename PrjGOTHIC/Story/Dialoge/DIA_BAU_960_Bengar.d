@@ -529,7 +529,8 @@ instance DIA_Bengar_BALTHASARDARFAUFWEIDE(C_Info)
 
 func int DIA_Bengar_BALTHASARDARFAUFWEIDE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR) && (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS) && (Bengar_MilSuccess == TRUE))
+//	if(Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR) && (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS) && (Bengar_MilSuccess == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Bengar_BALTHASAR) && (Bengar_MilSuccess == TRUE))
 	{
 		return TRUE;
 	};
@@ -818,7 +819,7 @@ func void DIA_Bengar_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Bengar_KAP6_EXIT(C_Info)
 {
 	npc = BAU_960_Bengar;
@@ -842,7 +843,7 @@ func void DIA_Bengar_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Bengar_PICKPOCKET(C_Info)
 {

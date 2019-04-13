@@ -40,13 +40,15 @@ const int Value_IceWolfFur = 20;
 
 instance ItAt_Addon_BCKopf(C_Item)
 {
-	name = "Голова";
+//	name = "Голова";
+	name = "Голова богомола";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_BCKopf;
 	visual = "ItAt_Blattcrawler_01.3DS";
 	material = MAT_LEATHER;
-	description = "Голова богомола";
+//	description = "Голова богомола";
+	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -211,7 +213,7 @@ instance ItAt_Sting(C_Item)
 	visual = "ItAt_Sting.3DS";
 	material = MAT_LEATHER;
 	description = name;
-	text[1] = "Это жало содержит яд.";
+	text[0] = "Это жало содержит яд.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

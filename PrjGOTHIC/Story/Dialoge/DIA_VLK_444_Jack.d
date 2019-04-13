@@ -549,7 +549,7 @@ func void DIA_Jack_PERM5_NOTCAPTAIN_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Jack_KAP6_EXIT(C_Info)
 {
 	npc = VLK_444_Jack;
@@ -573,4 +573,4 @@ func void DIA_Jack_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/

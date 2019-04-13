@@ -4,7 +4,7 @@ instance FH(Npc_Default)
 	name[0] = "Помощник по лицам";
 	npcType = NPCTYPE_FRIEND;
 	guild = GIL_NONE;
-	level = 999;
+	level = 999;			//реальный 15, но задан 999, чтобы он не убегал от мостового голема!
 	voice = 5;
 	id = 1311;
 	flags = 0;

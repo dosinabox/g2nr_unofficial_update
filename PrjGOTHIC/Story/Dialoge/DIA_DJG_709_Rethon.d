@@ -17,6 +17,7 @@ func int DIA_Rethon_EXIT_Condition()
 
 func void DIA_Rethon_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -288,6 +289,7 @@ func void DIA_Rethon_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Rethon_TRADE_12_03");	//Думаю, у меня есть именно то, что тебе нужно, приятель.
 	};
+	Trade_IsActive = TRUE;
 };
 
 

@@ -14,7 +14,7 @@ prototype Mst_Default_Skeleton_Mage(C_Npc)
 	protection[PROT_BLUNT] = 125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = 175;
-	protection[PROT_FIRE] = 125;
+	protection[PROT_FIRE] = 65;	//125;
 	protection[PROT_FLY] = 125;
 	protection[PROT_MAGIC] = 50;
 	damagetype = DAM_EDGE;

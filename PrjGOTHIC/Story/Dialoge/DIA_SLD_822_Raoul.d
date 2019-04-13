@@ -642,7 +642,7 @@ func void DIA_Raoul_Ship_Info()
 	};
 };
 
-
+/*
 instance DIA_Raoul_KAP6_EXIT(C_Info)
 {
 	npc = SLD_822_Raoul;
@@ -666,7 +666,7 @@ func void DIA_Raoul_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Raoul_PICKPOCKET(C_Info)
 {

@@ -20,6 +20,7 @@ func int DIA_Sagitta_EXIT_Condition()
 
 func void DIA_Sagitta_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -390,6 +391,7 @@ func void DIA_Sagitta_TRADE_Info()
 	AI_Output(other,self,"DIA_Sagitta_TRADE_15_00");	//Какие товары ты можешь предложить мне?
 	B_GiveTradeInv(self);
 	AI_Output(self,other,"DIA_Sagitta_TRADE_17_01");	//Выбирай.
+	Trade_IsActive = TRUE;
 };
 
 
@@ -414,6 +416,7 @@ func int DIA_Sagitta_KAP3_EXIT_Condition()
 
 func void DIA_Sagitta_KAP3_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -494,6 +497,7 @@ func int DIA_Sagitta_KAP4_EXIT_Condition()
 
 func void DIA_Sagitta_KAP4_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
@@ -594,10 +598,11 @@ func int DIA_Sagitta_KAP5_EXIT_Condition()
 
 func void DIA_Sagitta_KAP5_EXIT_Info()
 {
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Sagitta_KAP6_EXIT(C_Info)
 {
 	npc = BAU_980_Sagitta;
@@ -621,7 +626,7 @@ func void DIA_Sagitta_KAP6_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Sagitta_PICKPOCKET(C_Info)
 {

@@ -316,6 +316,9 @@ var C_Npc Lucia;
 var C_Npc Huno;
 var C_Npc Baltram;
 var C_Npc Zuris;
+var C_Npc Jora;
+var C_Npc Tandor;
+var C_Npc Khaled;
 
 func void B_InitNpcGlobals()
 {
@@ -640,5 +643,8 @@ func void B_InitNpcGlobals()
 	Huno = Hlp_GetNpc(BDT_1099_Addon_Huno);
 	Baltram = Hlp_GetNpc(VLK_410_Baltram);
 	Zuris = Hlp_GetNpc(VLK_409_Zuris);
+	Jora = Hlp_GetNpc(VLK_408_Jora);
+	Tandor = Hlp_GetNpc(PAL_260_Tandor);
+	Khaled = Hlp_GetNpc(SLD_823_Khaled);
 };
 

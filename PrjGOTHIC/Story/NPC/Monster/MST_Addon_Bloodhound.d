@@ -1,7 +1,8 @@
 
 prototype Mst_Default_Bloodhound(C_Npc)
 {
-	name[0] = "Кровавая гончая";
+//	name[0] = "Кровавая гончая";
+	name[0] = "Ищейка";
 	guild = GIL_SHADOWBEAST;
 	aivar[AIV_MM_REAL_ID] = ID_Bloodhound;
 	level = 22;
@@ -14,7 +15,7 @@ prototype Mst_Default_Bloodhound(C_Npc)
 	protection[PROT_BLUNT] = 90;
 	protection[PROT_EDGE] = 90;
 	protection[PROT_POINT] = 40;
-	protection[PROT_FIRE] = 90;
+	protection[PROT_FIRE] = 45;	//90;
 	protection[PROT_FLY] = 90;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
