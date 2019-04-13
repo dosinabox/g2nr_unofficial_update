@@ -159,6 +159,10 @@ func int DIA_Rengaru_GOTYOU_Condition()
 		{
 			return TRUE;
 		};
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_POOR_AREA_PATH_01_03") <= 1000)
+		{
+			return TRUE;
+		};
 	};
 };
 

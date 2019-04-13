@@ -248,6 +248,7 @@ func void DIA_Talbin_PayTeacher_Info()
 	Talbin_TeachAnimalTrophy = TRUE;
 	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
 	B_LogEntry(TOPIC_OutTeacher,"Талбин может обучить меня добывать трофеи животных.");
+	B_CheckLog();
 };
 
 instance DIA_Talbin_PayTeacher_NoCheese(C_Info)

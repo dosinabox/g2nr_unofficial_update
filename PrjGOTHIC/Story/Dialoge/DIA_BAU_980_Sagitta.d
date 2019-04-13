@@ -555,7 +555,7 @@ func void DIA_Sagitta_Thekla_Info()
 	AI_Output(self,other,"DIA_Sagitta_Thekla_17_02");	//Вот, держи пакет. И поосторожнее с ним!
 	CreateInvItems(self,ItMi_TheklasPaket,1);
 	B_GiveInvItems(self,other,ItMi_TheklasPaket,1);
-	B_GivePlayerXP(XP_AmbientKap3);
+	B_GivePlayerXP(150);
 };
 
 

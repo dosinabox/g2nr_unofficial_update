@@ -198,7 +198,6 @@ instance ITWr_Addon_William_01(C_Item)
 	name = "Записка";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-//	value = 250;
 	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
@@ -206,8 +205,6 @@ instance ITWr_Addon_William_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Найдена на теле рыбака Вильяма.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -235,6 +232,13 @@ func void Use_William_01()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Желаю удачи.");
 	Doc_Show(nDocID);
+	if(FoundDeadWilliam == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
+		FoundDeadWilliam = TRUE;
+	};
 };
 
 
@@ -660,7 +664,6 @@ instance ItWr_Map_AddonWorld(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_AW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";

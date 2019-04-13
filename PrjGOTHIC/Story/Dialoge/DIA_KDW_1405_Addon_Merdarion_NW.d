@@ -202,7 +202,8 @@ instance DIA_Addon_Merdarion_Teleportstein(C_Info)
 
 func int DIA_Addon_Merdarion_Teleportstein_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) && (MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS))
+//	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) && (MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe))
 	{
 		return TRUE;
 	};

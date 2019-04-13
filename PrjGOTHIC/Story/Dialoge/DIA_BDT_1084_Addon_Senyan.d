@@ -109,7 +109,6 @@ var int Senyan_Good;
 func void DIA_Addon_Senyan_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_12_00");	//А! Кто это у нас здесь?
-//	B_UseFakeScroll();
 	B_UseFakeHeroFace();
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_12_01");	//Ну-ка, ну-ка. Вот ты где. У меня для тебя есть хорошие новости и плохие новости.
 	Info_ClearChoices(DIA_Addon_BDT_1084_Senyan_Hi);

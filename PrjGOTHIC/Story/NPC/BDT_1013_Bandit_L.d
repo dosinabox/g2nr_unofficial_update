@@ -12,7 +12,7 @@ instance BDT_1013_Bandit_L(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,ItWr_Poster_MIS,1);
+	CreateInvItem(self,ItWr_Poster_MIS);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Homer,BodyTex_N,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

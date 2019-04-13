@@ -172,7 +172,7 @@ instance DIA_Addon_Orlan_Ranger(C_Info)
 
 func int DIA_Addon_Orlan_Ranger_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (SCIsWearingRangerRing == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && AnyRangerRingEquipped())
 	{
 		return TRUE;
 	};
@@ -222,9 +222,12 @@ instance DIA_Addon_Orlan_Teleportstein(C_Info)
 
 func int DIA_Addon_Orlan_Teleportstein_Condition()
 {
-	if((Orlan_KnowsSCAsRanger == TRUE) && (SCUsed_TELEPORTER == TRUE))
+	if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 	{
-		return TRUE;
+		if(SCUsed_TELEPORTER == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -269,7 +272,7 @@ instance DIA_Addon_Orlan_NoMeeting(C_Info)
 
 func int DIA_Addon_Orlan_NoMeeting_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && !Npc_KnowsInfo(other,DIA_Addon_Orlan_Ranger) && (SCIsWearingRangerRing == FALSE) && (MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && !Npc_KnowsInfo(other,DIA_Addon_Orlan_Ranger) && !AnyRangerRingEquipped() && (MIS_Addon_Lares_ComeToRangerMeeting == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -422,10 +425,9 @@ func void DIA_Orlan_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Orlan_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
-	if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE) || (SCIsWearingRangerRing == TRUE))
+	if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Orlan_TRADE_05_00");	//Конечно, брат по Кольцу.
-		Orlan_KnowsSCAsRanger = TRUE;
 	}
 	else if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 	{
@@ -472,13 +474,12 @@ func int DIA_Orlan_HotelZimmer_Condition()
 func void DIA_Orlan_HotelZimmer_Info()
 {
 	AI_Output(other,self,"DIA_Orlan_HotelZimmer_15_00");	//Сколько ты берешь за комнату?
-	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF) || (SC_IsRanger == TRUE) || (SCIsWearingRangerRing == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
+	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF) || (SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 	{
-		if((SC_IsRanger == TRUE) || (SCIsWearingRangerRing == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
+		if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 		{
 			AI_Output(self,other,"DIA_Addon_Orlan_HotelZimmer_05_00");	//Братья по Кольцу живут у меня бесплатно.
 			Orlan_RangerHelpZimmer = TRUE;
-			Orlan_KnowsSCAsRanger = TRUE;
 		}
 		else if(hero.guild == GIL_PAL)
 		{

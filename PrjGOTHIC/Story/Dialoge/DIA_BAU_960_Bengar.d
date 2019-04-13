@@ -481,7 +481,7 @@ func void DIA_Bengar_MILIZWEG_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_03");	//Неплохо. Может, хотя бы этот месяц я буду не в убытке. Спасибо.
+		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_03");	//Неплохо. Может быть, хотя бы этот месяц я буду не в убытке. Спасибо.
 		if(Rumbold_Bezahlt == TRUE)
 		{
 			AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_04");	//Ты даже готов был заплатить за меня. Это очень благородно с твоей стороны.

@@ -34,7 +34,7 @@ instance DIA_Mortis_Hallo(C_Info)
 
 func int DIA_Mortis_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3) && (other.guild == GIL_MIL))
+	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
 	{
 		return TRUE;
 	};

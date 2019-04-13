@@ -80,6 +80,7 @@ func void DIA_PAL_205_Torwache_FirstWarn_Info()
 	{
 		AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_05");	//Только люди, состоящие на службе у короля, могут войти в ратушу.
 	};
+	B_PlayerEnteredCity();
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,PAL_205_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
 	PrintScreen("",-1,-1,FONT_Screen,0);
@@ -157,7 +158,10 @@ func int DIA_PAL_205_Torwache_Hagen_Condition()
 {
 	if(PAL_205_schonmalreingelassen == FALSE)
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 

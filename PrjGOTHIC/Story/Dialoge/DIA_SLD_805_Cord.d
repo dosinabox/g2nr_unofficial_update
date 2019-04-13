@@ -49,11 +49,8 @@ func void DIA_Addon_Cord_MeetingIsRunning_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_14_00");	//Добро пожаловать в Кольцо Воды, брат.
 		DIA_Addon_Cord_MeetingIsRunning_OneTime = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_14_01");	//Ты должен поговорить с Ватрасом...
 	};
+	AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_14_01");	//Ты должен поговорить с Ватрасом...
 	AI_StopProcessInfos(self);
 };
 
@@ -511,8 +508,11 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	MIS_Addon_Cord_Look4Patrick = LOG_SUCCESS;
 	TOPIC_End_RangerHelpSLD = TRUE;
 	B_GivePlayerXP(XP_Addon_Cord_Look4Patrick);
-	AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_09");	//Что насчет задания Торлофа?
-	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_10");	//Не беспокойся, я обо всем позаботился. Твое задание выполнено, и ты прошел испытание. Можешь поговорить с Торлофом.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_09");	//Что насчет задания Торлофа?
+		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_10");	//Не беспокойся, я обо всем позаботился. Твое задание выполнено, и ты прошел испытание. Можешь поговорить с Торлофом.
+	};
 	Cord_RangerHelp_TorlofsProbe = TRUE;
 	if(Torlof_Probe == Probe_Sekob)
 	{

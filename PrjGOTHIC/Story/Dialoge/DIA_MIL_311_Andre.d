@@ -20,6 +20,7 @@ func int DIA_Andre_EXIT_Condition()
 
 func void DIA_Andre_EXIT_Info()
 {
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -169,6 +170,7 @@ func int DIA_Andre_PMSchulden_Condition()
 func void DIA_Andre_PMSchulden_Info()
 {
 	var int diff;
+	B_PlayerEnteredCity();
 	AI_Output(self,other,"DIA_Andre_PMSchulden_08_00");	//Ты пришел заплатить штраф?
 	if((Pablo_AndreMelden == TRUE) && !Npc_IsDead(Pablo) && (Andre_Steckbrief == FALSE))
 	{
@@ -287,6 +289,7 @@ func int DIA_Andre_PETZMASTER_Condition()
 func void DIA_Andre_PETZMASTER_Info()
 {
 	Andre_Schulden = 0;
+	B_PlayerEnteredCity();
 	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Andre_PETZMASTER_08_00");	//Ты тот новичок, что баламутит город.
@@ -405,6 +408,20 @@ func int DIA_Andre_Hallo_Condition()
 func void DIA_Andre_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Andre_Hallo_08_00");	//Да пребудет с тобой Иннос, чужеземец! Что привело тебя ко мне?
+	B_PlayerEnteredCity();
+};
+
+
+func void B_Andre_GotoLordHagen()
+{
+	AI_Output(self,other,"DIA_Andre_Add_08_11");	//Тебе лучше отправиться прямо к нему.
+};
+
+
+func void B_Andre_LordHagenNichtZuSprechen()
+{
+	AI_Output(self,other,"B_Andre_LordHagenNichtZuSprechen_08_00");	//Лорд Хаген принимает только паладинов и тех, кто служит паладинам.
+	AI_Output(self,other,"B_Andre_LordHagenNichtZuSprechen_08_01");	//Он считает ниже своего достоинства тратить время на простых людей.
 };
 
 
@@ -421,7 +438,7 @@ instance DIA_Andre_Message(C_Info)
 
 func int DIA_Andre_Message_Condition()
 {
-	if((Kapitel < 3) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)))
+	if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		return TRUE;
 	};
@@ -433,14 +450,8 @@ func void DIA_Andre_Message_Info()
 	AI_Output(self,other,"DIA_Andre_Message_08_01");	//Ну, ты стоишь перед его представителем. Так что там такое?
 	Info_ClearChoices(DIA_Andre_Message);
 	Info_AddChoice(DIA_Andre_Message,"Это я могу сказать только лорду Хагену.",DIA_Andre_Message_Personal);
-	Info_AddChoice(DIA_Andre_Message,"Армия орков, возглавляемая ДРАКОНАМИ!",DIA_Andre_Message_Dragons);
+	Info_AddChoice(DIA_Andre_Message,"Армия орков, возглавляемая драконами, готовится к атаке!",DIA_Andre_Message_Dragons);
 	Info_AddChoice(DIA_Andre_Message,"Это насчет священного артефакта - Глаза Инноса.",DIA_Andre_Message_EyeInnos);
-};
-
-func void B_Andre_LordHagenNichtZuSprechen()
-{
-	AI_Output(self,other,"B_Andre_LordHagenNichtZuSprechen_08_00");	//Лорд Хаген принимает только паладинов и тех, кто служит паладинам.
-	AI_Output(self,other,"B_Andre_LordHagenNichtZuSprechen_08_01");	//Он считает ниже своего достоинства тратить время на простых людей.
 };
 
 func void DIA_Andre_Message_EyeInnos()
@@ -450,25 +461,43 @@ func void DIA_Andre_Message_EyeInnos()
 	AI_Output(self,other,"DIA_Andre_Message_EyeInnos_08_02");	//Если действительно существует артефакт, носящий Его имя, только самые высокопоставленные члены нашего ордена могут знать о нем.
 	AI_Output(other,self,"DIA_Andre_Message_EyeInnos_15_03");	//Вот почему мне нужно поговорить именно с лордом Хагеном.
 	Andre_EyeInnos = TRUE;
-	B_Andre_LordHagenNichtZuSprechen();
+	if((other.guild != GIL_KDF) && (other.guild != GIL_PAL))
+	{
+		B_Andre_LordHagenNichtZuSprechen();
+	}
+	else
+	{
+		B_Andre_GotoLordHagen();
+	};
 	Info_ClearChoices(DIA_Andre_Message);
 };
 
 func void DIA_Andre_Message_Dragons()
 {
-	AI_Output(other,self,"DIA_Andre_Message_Dragons_15_00");	//Армия орков, возглавляемая ДРА...
+	AI_Output(other,self,"DIA_Andre_Message_Dragons_15_00");	//Армия орков, возглавляемая дра...
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_01");	//(прерывает) Я ЗНАЮ, что армия орков становится все сильнее.
-	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_02");	//Ты же не хочешь мне сказать, что ты ТОЛЬКО это хочешь доложить лорду Хагену.
-	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_03");	//Он оторвет тебе голову, если ты будешь попусту тратить его время, отвлекая его такими историями.
-	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_04");	//Я уверен, что ты достаточно умен и понимаешь это сам.
+	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_02");	//Ты же не хочешь мне сказать, что ты только ЭТО хочешь доложить лорду Хагену.
+	if((other.guild != GIL_KDF) && (other.guild != GIL_PAL))
+	{
+		AI_Output(self,other,"DIA_Andre_Message_Dragons_08_03");	//Он оторвет тебе голову, если ты будешь попусту тратить его время, отвлекая его такими историями.
+		AI_Output(self,other,"DIA_Andre_Message_Dragons_08_04");	//Я уверен, что ты достаточно умен и понимаешь это сам.
+	};
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_05");	//Так все-таки, зачем тебе нужно увидеть его?
-	Player_TalkedAboutDragonsToAndre = TRUE;
+	Player_TalkedAboutDragonsToSomeone = TRUE;
 };
 
 func void DIA_Andre_Message_Personal()
 {
 	AI_Output(other,self,"DIA_Andre_Message_Personal_15_00");	//Это я могу сказать только лорду Хагену.
-	AI_Output(self,other,"DIA_Andre_Message_Personal_08_01");	//Как знаешь. Но ты должен понять одно:
+	if((other.guild != GIL_KDF) && (other.guild != GIL_PAL))
+	{
+		AI_Output(self,other,"DIA_Andre_Message_Personal_08_01");	//Как знаешь. Но ты должен понять одно:
+		B_Andre_LordHagenNichtZuSprechen();
+	}
+	else
+	{
+		B_Andre_GotoLordHagen();
+	};
 	B_Andre_LordHagenNichtZuSprechen();
 	Info_ClearChoices(DIA_Andre_Message);
 };
@@ -1570,7 +1599,7 @@ instance DIA_Addon_Andre_MissingPeople(C_Info)
 
 func int DIA_Addon_Andre_MissingPeople_Condition()
 {
-	if((SC_HearedAboutMissingPeople == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL)))
+	if((SC_HearedAboutMissingPeople == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL)) && (MIS_Addon_Andre_MissingPeople != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -1604,7 +1633,7 @@ instance DIA_Addon_Andre_MissingPeople2(C_Info)
 
 func int DIA_Addon_Andre_MissingPeople2_Condition()
 {
-	if((SC_HearedAboutMissingPeople == TRUE) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
+	if((SC_HearedAboutMissingPeople == TRUE) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL) && (MIS_Addon_Andre_MissingPeople != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -1657,12 +1686,6 @@ func void DIA_Addon_Andre_ReturnedMissingPeople_Info()
 	MIS_Addon_Andre_MissingPeople = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Andre_MissingPeople);
 };
-
-func void B_Andre_GotoLordHagen()
-{
-	AI_Output(self,other,"DIA_Andre_Add_08_11");	//Тебе лучше отправиться прямо к нему.
-};
-
 
 instance DIA_Andre_BerichtDrachen(C_Info)
 {

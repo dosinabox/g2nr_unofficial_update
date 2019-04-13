@@ -185,7 +185,7 @@ instance DIA_Larius_Dragons(C_Info)
 
 func int DIA_Larius_Dragons_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Larius_WhoAreYou) || Npc_KnowsInfo(other,DIA_Gaertner_Job))
+	if((Npc_KnowsInfo(other,DIA_Larius_WhoAreYou) || Npc_KnowsInfo(other,DIA_Gaertner_Job)) && (Kapitel < 5))
 	{
 		return TRUE;
 	};
@@ -196,6 +196,7 @@ func void DIA_Larius_Dragons_Info()
 	AI_Output(other,self,"DIA_Lothar_Dragons_15_00");	//ѕослушай - этому городу угрожают драконы!
 	AI_Output(self,other,"DIA_Larius_Richterueberfall_01_01");	//Ќе пори чепухи, или ты хочешь, чтобы € заковал теб€ в кандалы?
 	B_Say(self,other,"$GETUPANDBEGONE");
+	Player_TalkedAboutDragonsToSomeone = TRUE;
 	AI_StopProcessInfos(self);
 };
 

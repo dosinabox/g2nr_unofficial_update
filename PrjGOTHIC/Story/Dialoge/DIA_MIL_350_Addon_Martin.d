@@ -85,11 +85,8 @@ func void DIA_Addon_Martin_MeetingIsRunning_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_07_00");	//Итак, ты новенький? Добро пожаловать в Братство, брат по Кольцу.
 		DIA_Addon_Martin_MeetingIsRunning_OneTime = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_07_01");	//Сначала ты должен сходить к Ватрасу. Возможно, потом у меня найдется для тебя время.
 	};
+	AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_07_01");	//Сначала ты должен сходить к Ватрасу. Возможно, потом у меня найдется для тебя время.
 	AI_StopProcessInfos(self);
 };
 

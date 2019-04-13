@@ -3,7 +3,7 @@ func void B_BaltramRangerCheck()
 {
 	var C_Item EqArm;
 	EqArm = Npc_GetEquippedArmor(other);
-	if((SC_KnowsBaltramAsRanger == FALSE) && ((SCIsWearingRangerRing == TRUE) || (Hlp_IsItem(EqArm,ITAR_RANGER_Addon))))
+	if(AnyRangerRingEquipped() || Hlp_IsItem(EqArm,ITAR_RANGER_Addon))
 	{
 		SC_KnowsBaltramAsRanger = TRUE;
 	};
@@ -50,7 +50,7 @@ func int DIA_Baltram_Sperre_Condition()
 	B_BaltramRangerCheck();
 	if((Canthar_Sperre == TRUE) && Npc_IsInState(self,ZS_Talk))
 	{
-		if((SCIsWearingRangerRing == TRUE) && (MIS_Lares_BringRangerToMe == LOG_Running))
+		if(AnyRangerRingEquipped() && (MIS_Lares_BringRangerToMe == LOG_Running))
 		{
 			return FALSE;
 		}
@@ -91,7 +91,7 @@ func int DIA_Baltram_Hallo_Condition()
 	{
 		if(Canthar_Sperre == TRUE)
 		{
-			if((SCIsWearingRangerRing == TRUE) && (MIS_Lares_BringRangerToMe == LOG_Running))
+			if(AnyRangerRingEquipped() && (MIS_Lares_BringRangerToMe == LOG_Running))
 			{
 				return TRUE;
 			};
@@ -130,7 +130,7 @@ instance DIA_Addon_Baltram_LaresAbloese(C_Info)
 
 func int DIA_Addon_Baltram_LaresAbloese_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (SCIsWearingRangerRing == TRUE) && (MIS_Lares_BringRangerToMe == LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk)&& (MIS_Lares_BringRangerToMe == LOG_Running) && AnyRangerRingEquipped())
 	{
 		return TRUE;
 	};

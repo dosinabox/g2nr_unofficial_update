@@ -905,6 +905,9 @@ const string NAME_Speed_Elixier = "«елье ускорени€";
 const string NAME_MegaDrink = "Ёмбарла фиргасто";
 const string NAME_Geist = "Ёликсир изменени€ сознани€";
 
+const string NAME_Letter = "ѕисьмо";
+const string NAME_LetterSealed = "«апечатанное письмо";
+
 const string PRINT_PickPocketFailed = " - карманна€ кража не удалась!";
 const string PRINT_PickPocketSuccess = " - карманна€ кража удалась!";
 

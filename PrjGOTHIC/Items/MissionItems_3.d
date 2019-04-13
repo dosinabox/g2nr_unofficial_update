@@ -111,7 +111,7 @@ instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_PermissionToWearInnosEye;
 	scemeName = "MAP";
@@ -152,7 +152,6 @@ instance ItWr_XardasBookForPyrokar_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Book_02_05.3ds";
 	visual = "ItWr_Book_03_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -230,7 +229,6 @@ instance ITWR_DementorObsessionBook_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Book_02_05.3ds";
 	visual = "ItWr_Book_03_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -684,7 +682,6 @@ instance ItWr_ShatteredGolem_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 150;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_02.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -938,7 +935,7 @@ func void Use_RichterKomproBrief()
 
 instance ItWr_MorgahardTip(C_Item)
 {
-	name = "Письмо";
+	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -982,7 +979,6 @@ instance ItWr_Map_Shrine_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 200;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";

@@ -12,14 +12,12 @@ instance DIA_Hagen_EXIT(C_Info)
 
 func int DIA_Hagen_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Hagen_EXIT_Info()
 {
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -49,6 +47,7 @@ func int DIA_Hagen_PMSchulden_Condition()
 func void DIA_Hagen_PMSchulden_Info()
 {
 	var int diff;
+	B_PlayerEnteredCity();
 	AI_Output(self,other,"DIA_Hagen_PMSchulden_04_00");	//Хорошо, что ты пришел. Ты можешь заплатить штраф прямо сейчас.
 	if(B_GetTotalPetzCounter(self) > Hagen_LastPetzCounter)
 	{
@@ -159,6 +158,7 @@ func int DIA_Hagen_PETZMASTER_Condition()
 func void DIA_Hagen_PETZMASTER_Info()
 {
 	Hagen_Schulden = 0;
+	B_PlayerEnteredCity();
 	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_00");	//Твоя слава опережает тебя. Ты нарушил законы города.
@@ -264,14 +264,18 @@ func int DIA_Lord_Hagen_Hallo_Condition()
 func void DIA_Lord_Hagen_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_00");	//Я уже слышал о тебе.
-	if(Npc_KnowsInfo(other,DIA_Lothar_EyeInnos) || (Andre_EyeInnos == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_03");	//Лотар докладывал, что ты хочешь поговорить со мной.
+	};
+	if(Npc_KnowsInfo(other,DIA_Lothar_EyeInnos) || (Andre_EyeInnos == TRUE))
+	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_01");	//Ты чужеземец, который требует Глаз Инноса.
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_02");	//Я лорд Хаген.
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_03");	//Паладин короля, воин нашего владыки Инноса и главнокомандующий Хориниса.
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_04");	//Я очень занятой человек. Поэтому не трать мое время попусту. А теперь скажи, зачем ты здесь.
+	B_PlayerEnteredCity();
 };
 
 
@@ -464,6 +468,7 @@ func void DIA_Lord_Hagen_Pass_Info()
 	{
 		B_StartOtherRoutine(Fernando,"WAIT");
 	};
+	B_PlayerEnteredCity();
 //	Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
 };
 
@@ -494,7 +499,7 @@ func void DIA_Addon_Lord_Hagen_Ornament_Info()
 	CreateInvItems(self,ItMi_Ornament_Addon,1);
 	B_GiveInvItems(self,other,ItMi_Ornament_Addon,1);
 	Lord_Hagen_GotOrnament = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -789,31 +794,6 @@ func void DIA_Lord_Hagen_WhatProof_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_WhatProof_04_06");	//Паладин идет в бой с именем Инноса на устах, и многие из нас положили свою жизнь на алтарь вечной борьбы Добра со Злом.
 	AI_Output(self,other,"DIA_Lord_Hagen_WhatProof_04_07");	//Все мы как один посвятили себя этой борьбе. Если мы потерпим поражение, мы оскверним память наших павших товарищей.
 	AI_Output(self,other,"DIA_Lord_Hagen_WhatProof_04_08");	//Только тот, кто сердцем понимает это, достоин быть паладином.
-};
-
-
-instance DIA_Lord_Hagen_KAP3_EXIT(C_Info)
-{
-	npc = PAL_200_Hagen;
-	nr = 999;
-	condition = DIA_Lord_Hagen_KAP3_EXIT_Condition;
-	information = DIA_Lord_Hagen_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lord_Hagen_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lord_Hagen_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -1140,31 +1120,6 @@ func void DIA_Lord_Hagen_AugeAmStart_Info()
 };
 
 
-instance DIA_Lord_Hagen_KAP4_EXIT(C_Info)
-{
-	npc = PAL_200_Hagen;
-	nr = 999;
-	condition = DIA_Lord_Hagen_KAP4_EXIT_Condition;
-	information = DIA_Lord_Hagen_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lord_Hagen_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lord_Hagen_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Lord_Hagen_ANTIPALADINE(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -1318,31 +1273,6 @@ func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 	OrcRingGeld = Ringcount * HagensRingOffer;
 	CreateInvItems(self,ItMi_Gold,OrcRingGeld);
 	B_GiveInvItems(self,other,ItMi_Gold,OrcRingGeld);
-};
-
-
-instance DIA_Lord_Hagen_KAP5_EXIT(C_Info)
-{
-	npc = PAL_200_Hagen;
-	nr = 999;
-	condition = DIA_Lord_Hagen_KAP5_EXIT_Condition;
-	information = DIA_Lord_Hagen_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lord_Hagen_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lord_Hagen_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

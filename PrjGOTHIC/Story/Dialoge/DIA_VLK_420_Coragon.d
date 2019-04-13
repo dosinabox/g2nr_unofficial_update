@@ -160,7 +160,7 @@ instance DIA_Addon_Coragon_MissingPeople(C_Info)
 
 func int DIA_Addon_Coragon_MissingPeople_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Coragon_HALLO) && (SC_HearedAboutMissingPeople == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Coragon_HALLO) && (SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};

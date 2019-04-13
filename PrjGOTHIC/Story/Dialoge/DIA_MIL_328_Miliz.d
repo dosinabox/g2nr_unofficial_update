@@ -44,6 +44,7 @@ func void DIA_328_Miliz_Hi_Info()
 	AI_Output(self,other,"DIA_328_Miliz_Hi_08_02");	//Это не твое дело! Здесь я главный. Понял?
 	AI_Output(other,self,"DIA_328_Miliz_Hi_15_03");	//Главный? Над чем? Над этими сундуками?
 	AI_Output(self,other,"DIA_328_Miliz_Hi_08_04");	//Эй, этот склад находится в моем ведении, понял? Так что проваливай, или я раскрою твой череп.
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,30);
 };
@@ -72,6 +73,7 @@ func void DIA_328_Miliz_Kill_Info()
 {
 	AI_Output(self,other,"DIA_328_Miliz_Kill_08_00");	//Эй, ты все еще здесь! Разве я не сказал тебе, чтобы ты проваливал?
 	AI_Output(self,other,"DIA_328_Miliz_Kill_08_01");	//Ну, держись! Сейчас я покажу тебе, кто здесь главный!
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,20);
 	B_Attack(self,other,AR_KILL,1);

@@ -83,7 +83,6 @@ instance ItWr_Map_NewWorld(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -119,7 +118,6 @@ instance ItWr_Map_NewWorld_City(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 50;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_City.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -155,7 +153,6 @@ instance ItWr_Map_OldWorld(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 350;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_OW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -195,7 +192,7 @@ instance ItWr_EinhandBuch(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 5000;
-	visual = "ItWr_Book_02_04.3ds";
+	visual = "ItWr_EinhandBuch.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -204,6 +201,9 @@ instance ItWr_EinhandBuch(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = UseEinhandBuch;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -245,7 +245,7 @@ instance ItWr_ZweihandBuch(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 5000;
-	visual = "ItWr_Book_02_03.3ds";
+	visual = "ItWr_ZweihandBuch.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -254,6 +254,9 @@ instance ItWr_ZweihandBuch(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = UseZweihandBuch;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 

@@ -182,10 +182,18 @@ func void DIA_Lester_SEND_XARDAS_Info()
 	AI_Output(other,self,"DIA_Lester_SEND_XARDAS_15_02");	//... дракон. Да.
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_03");	//Ты опять лезешь в самое пекло. Я прав?
 	AI_Output(other,self,"DIA_Lester_SEND_XARDAS_15_04");	//Ну, не сказал бы, что в самое... пока...
-	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_05");	//(вздыхает) Хорошо, если это так важно, то я зайду к нему - но не сейчас.
-	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_06");	//Сейчас я собираюсь отдохнуть. Я все еще измотан после этого бегства из колонии.
+	if(Kapitel == 1)
+	{
+		AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_05");	//(вздыхает) Хорошо, если это так важно, то я зайду к нему - но не сейчас.
+		AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_06");	//Сейчас я собираюсь отдохнуть. Я все еще измотан после этого бегства из колонии.
+	};
 	AI_Output(self,other,"DIA_Lester_SEND_XARDAS_13_07");	//Мне кажется, у тебя большие планы. Увидимся позже у Ксардаса.
 	AI_StopProcessInfos(self);
+	if(Kapitel == 2)
+	{
+		Npc_ExchangeRoutine(self,"XARDAS");
+		LesterMovedToXardas = TRUE;
+	};
 };
 
 
@@ -389,6 +397,7 @@ func void DIA_Lester_BACKINTOWN_Info()
 	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
 	{
 		Npc_ExchangeRoutine(self,"XARDAS");
+		LesterMovedToXardas = TRUE;
 	}
 	else
 	{

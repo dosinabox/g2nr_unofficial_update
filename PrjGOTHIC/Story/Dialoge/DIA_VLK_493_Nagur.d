@@ -143,7 +143,7 @@ func void DIA_Nagur_Job_Info()
 	}
 	else
 	{
-		if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700)
+		if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700) && !Npc_IsDead(Martin))
 		{
 			if(!C_BodyStateContains(self,BS_SIT))
 			{
@@ -209,7 +209,7 @@ func int DIA_Nagur_Auftrag_Condition()
 func void DIA_Nagur_Auftrag_Info()
 {
 	AI_Output(other,self,"DIA_Nagur_Auftrag_15_00");	//Договорились. Так какой у тебя план?
-	if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700)
+	if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700) && !Npc_IsDead(Martin))
 	{
 		if(!C_BodyStateContains(self,BS_SIT))
 		{
@@ -509,6 +509,9 @@ func int DIA_Nagur_Perm_Condition()
 func void DIA_Nagur_Perm_Info()
 {
 	AI_Output(self,other,"DIA_Nagur_Perm_08_00");	//Поищи кого-нибудь еще, здесь бродит много народа. А у меня больше ничего нет для тебя.
-	AI_StopProcessInfos(self);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 65) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 

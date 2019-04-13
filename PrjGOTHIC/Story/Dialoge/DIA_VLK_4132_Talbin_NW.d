@@ -148,6 +148,7 @@ func void DIA_Talbin_TEACHHUNTING_NW_Info()
 			Talbin_TeachAnimalTrophy = TRUE;
 			Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
 			B_LogEntry(TOPIC_OutTeacher,"Талбин может обучить меня добывать трофеи животных.");
+			B_CheckLog();
 		};
 		Info_AddChoice(DIA_Talbin_TEACHHUNTING_NW,Dialog_Back,DIA_Talbin_TEACHHUNTING_NW_BACK);
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)

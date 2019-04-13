@@ -632,9 +632,9 @@ func void DIA_Torlof_BengarSuccess_Info()
 	AI_Output(other,self,"DIA_Torlof_BengarSuccess_15_00");	//я решил проблемы Ѕенгара с ополчением.
 	AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_01");	//“ы позаботилс€, чтобы они не по€вл€лись у него на пороге завтра утром?
 	AI_Output(other,self,"DIA_Torlof_BengarSuccess_15_02");	//„тобы сделать это, им придетс€ очень хорошо постаратьс€...
-	AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_03");	//ќтлично!
 	if(Torlof_Probe == Probe_Bengar)
 	{
+		AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_03");	//ќтлично!
 		AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_04");	//“ы прошел испытание. “ы смог разобратьс€ с ополчением, этого достаточно, чтобы заслужить уважение большинства.
 	}
 	else

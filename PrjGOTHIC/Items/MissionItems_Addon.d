@@ -1,7 +1,7 @@
 
 instance ItWr_SaturasFirstMessage_Addon_Sealed(C_Item)
 {
-	name = "Запечатанное письмо";
+	name = NAME_LetterSealed;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -11,7 +11,6 @@ instance ItWr_SaturasFirstMessage_Addon_Sealed(C_Item)
 	scemeName = "MAPSEALED";
 	description = name;
 	text[0] = "Письмо Сатураса Ватрасу.";
-//	text[1] = "Тщательно запечатано.";
 };
 
 
@@ -71,7 +70,7 @@ func void Use_SaturasFirstMessage_Sealed()
 
 instance ItWr_SaturasFirstMessage_Addon(C_Item)
 {
-	name = "Письмо";
+	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -119,7 +118,6 @@ instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 200;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -158,7 +156,6 @@ instance ItWr_Map_NewWorld_Dexter(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 200;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -200,9 +197,8 @@ prototype Rangerring_Prototype(C_Item)
 	visual = "ItRi_Rangerring.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ItRi_Ranger_Addon;
-	on_unequip = UnEquip_ItRi_Ranger_Addon;
-//	description = "Опознавательный знак членов Кольца Воды";
+//	on_equip = Equip_ItRi_Ranger_Addon;
+//	on_unequip = UnEquip_ItRi_Ranger_Addon;
 	description = name;
 	text[0] = "Опознавательный знак членов Кольца Воды.";
 	text[5] = NAME_Value;
@@ -212,47 +208,75 @@ prototype Rangerring_Prototype(C_Item)
 	inv_rotx = INVCAM_X_RING_STANDARD;
 };
 
-func void Equip_ItRi_Ranger_Addon()
+func void Equip_ItRi_Ranger_Lares()
 {
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
 	{
-		if(ENTERED_ADDONWORLD == FALSE)
-		{
-			if(!Npc_HasItems(hero,ItRi_Ranger_Addon))
-			{
-				RangerRingIsLaresRing = TRUE;
-			};
-		};
-		SCIsWearingRangerRing = TRUE;
+		RangerRingIsLaresRing = TRUE;
 		Print(PRINT_Addon_SCIsWearingRangerRing);
 	};
 };
 
-func void UnEquip_ItRi_Ranger_Addon()
+func void UnEquip_ItRi_Ranger_Lares()
 {
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
 	{
-		if(SC_IsRanger == FALSE)
-		{
-			SCIsWearingRangerRing = FALSE;
-		};
 		RangerRingIsLaresRing = FALSE;
 	};
 };
 
+func void Equip_ItRi_Ranger_My()
+{
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	{
+		RangerRingIsMyRing = TRUE;
+		Print(PRINT_Addon_SCIsWearingRangerRing);
+	};
+};
+
+func void UnEquip_ItRi_Ranger_My()
+{
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	{
+		RangerRingIsMyRing = FALSE;
+	};
+};
+
+func void Equip_ItRi_Ranger_Lance()
+{
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	{
+		RangerRingIsLanceRing = TRUE;
+		Print(PRINT_Addon_SCIsWearingRangerRing);
+	};
+};
+
+func void UnEquip_ItRi_Ranger_Lance()
+{
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	{
+		RangerRingIsLanceRing = FALSE;
+	};
+};
 
 instance ItRi_Ranger_Lares_Addon(Rangerring_Prototype)
 {
+	on_equip = Equip_ItRi_Ranger_Lares;
+	on_unequip = UnEquip_ItRi_Ranger_Lares;
 	text[1] = "Это кольцо принадлежит Ларесу.";
 };
 
 instance ItRi_Ranger_Addon(Rangerring_Prototype)
 {
+	on_equip = Equip_ItRi_Ranger_My;
+	on_unequip = UnEquip_ItRi_Ranger_My;
 	text[1] = "Это кольцо принадлежит мне.";
 };
 
 instance ItRi_LanceRing(Rangerring_Prototype)
 {
+	on_equip = Equip_ItRi_Ranger_Lance;
+	on_unequip = UnEquip_ItRi_Ranger_Lance;
 	text[1] = "Это кольцо принадлежит Лансу.";
 };
 
@@ -279,7 +303,6 @@ instance ItWr_Martin_MilizEmpfehlung_Addon(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_MartinMilizEmpfehlung_Addon;
 	scemeName = "MAP";
-//	description = "Рекомендательное письмо для лорда Андрэ";
 	description = name;
 	text[0] = "Это письмо поможет мне";
 	text[1] = "присоединиться к ополчению.";
@@ -524,11 +547,9 @@ instance ItRi_Addon_BanditTrader(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = 150;
-//	visual = "ItRi_Prot_Point_02.3ds";
 	visual = "ItRi_Addon_BanditTrader.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-//	description = "Гравированное кольцо";
 	description = name;
 	text[0] = "Гравированное кольцо";
 	text[1] = "гильдии торговцев Араксоса.";
@@ -588,7 +609,7 @@ func void Use_ItWr_Addon_BanditTrader()
 
 instance ItWr_Vatras2Saturas_FindRaven(C_Item)
 {
-	name = "Запечатанное письмо";
+	name = NAME_LetterSealed;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -632,7 +653,7 @@ func void Use_Vatras2Saturas_FindRaven_Sealed()
 
 instance ItWr_Vatras2Saturas_FindRaven_opened(C_Item)
 {
-	name = "Письмо";
+	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -654,7 +675,6 @@ instance ItAm_Addon_WispDetector(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_Am_DexStrg;
-//	visual = "ItAm_Mana_01.3ds";
 	visual = "ItAm_Addon_WispDetector.3ds";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER_BLUE";
@@ -662,7 +682,6 @@ instance ItAm_Addon_WispDetector(C_Item)
 	material = MAT_METAL;
 	on_equip = Equip_WispDetector;
 	on_unequip = UnEquip_WispDetector;
-//	description = "Рудный амулет блуждающего огонька";
 	description = name;
 	text[0] = "Рудный амулет блуждающего огонька.";
 	text[5] = NAME_Value;
@@ -724,7 +743,6 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING | ITEM_MISSION;
 	value = 500;
-//	visual = "ItRi_Prot_Total_02.3DS";
 	visual = "ItRi_Addon_MorgansRing.3DS";
 	material = MAT_METAL;
 	on_equip = Equip_MorgansRing;
@@ -1084,7 +1102,6 @@ instance ItSE_Addon_FrancisChest(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 750;
-//	visual = "ItMi_GoldChest.3ds";
 	visual = "ItSE_Addon_FrancisChest.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
@@ -1098,7 +1115,6 @@ instance ItSE_Addon_FrancisChest(C_Item)
 
 func void FrancisChest()
 {
-//	CreateInvItems(hero,ItMi_GoldChest,1);
 	AI_PrintScreen("Книга платежей получено",-1,40,FONT_ScreenSmall,4);
 	AI_PrintScreen("Хороший кинжал получено",-1,43,FONT_ScreenSmall,4);
 	AI_PrintScreen("Золотой кубок получено",-1,46,FONT_ScreenSmall,4);
@@ -1111,7 +1127,6 @@ func void FrancisChest()
 	CreateInvItems(hero,ItMi_GoldCup,1);
 	CreateInvItems(hero,ItMi_SilverNecklace,1);
 	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
-//	Print("Вы нашли несколько предметов!");
 };
 
 
@@ -1134,12 +1149,10 @@ instance ITWR_Addon_FrancisAbrechnung_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_02_05.3ds";
+	visual = "ItWr_Book_02_04.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	on_state[0] = UseFrancisAbrechnung_Mis;
 };
 
@@ -1218,16 +1231,14 @@ func void UseFrancisAbrechnung_Mis()
 
 instance ITWR_Addon_GregsLogbuch_Mis(C_Item)
 {
-	name = "Дневник";
+	name = "Дневник Грега";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItWr_Book_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Дневник Грега";
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	description = name;
 	on_state[0] = UseGregsLogbuch;
 };
 
@@ -1339,7 +1350,6 @@ instance ItWR_Addon_TreasureMap(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_AW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -1372,12 +1382,10 @@ func void Use_TreasureMap()
 
 instance ItMi_Addon_GregsTreasureBottle_MIS(C_Item)
 {
-//	name = "Послание в бутылке";
 	name = "Бутылка";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItFo_Water.3DS";
 	visual = "ItMi_Addon_GregsTreasureBottle_MIS.3DS";
 	material = MAT_GLAS;
 	on_state[0] = Use_GregsBottle;
@@ -1400,7 +1408,6 @@ instance ItMi_ErolsKelch(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 125;
-//	visual = "ItMi_SilverChalice.3DS";
 	visual = "ItMi_ErolsKelch.3DS";
 	material = MAT_METAL;
 	description = name;

@@ -5,6 +5,14 @@ func int C_WantToEat(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
+	if(Npc_IsInState(slf,ZS_MM_ThreatenEnemy) || Npc_IsInState(slf,ZS_MM_Attack) || Npc_IsInState(slf,ZS_MM_Flee))
+	{
+		return FALSE;
+	};
+	if(Npc_GetDistToNpc(slf,hero) <= FIGHT_DIST_MONSTER_ATTACKRANGE)
+	{
+		return FALSE;
+	};
 	if(slf.guild == GIL_SCAVENGER)
 	{
 		if(oth.guild < GIL_SEPERATOR_HUM)

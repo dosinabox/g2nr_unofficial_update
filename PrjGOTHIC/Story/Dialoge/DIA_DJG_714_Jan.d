@@ -655,7 +655,7 @@ func void DIA_Jan_DragonBlood_1()
 	var string BloodLeft;
 	DragonBloodCount = 1;
 	B_GiveInvItems(other,self,ItAt_DragonBlood,DragonBloodCount);
-	XP_DJG_BringDragonBloods = DragonBloodCount * XP_AmbientKap4;
+	XP_DJG_BringDragonBloods = DragonBloodCount * 200;
 	B_GivePlayerXP(XP_DJG_BringDragonBloods);
 	DragonBloodGeld = DragonBloodCount * Value_DragonBlood;
 	CreateInvItems(self,ItMi_Gold,DragonBloodGeld);
@@ -685,7 +685,7 @@ func void DIA_Jan_DragonBlood_all()
 //	var string BloodLeft;
 	DragonBloodCount = Npc_HasItems(other,ItAt_DragonBlood);
 	B_GiveInvItems(other,self,ItAt_DragonBlood,DragonBloodCount);
-	XP_DJG_BringDragonBloods = DragonBloodCount * XP_AmbientKap4;
+	XP_DJG_BringDragonBloods = DragonBloodCount * 200;
 	B_GivePlayerXP(XP_DJG_BringDragonBloods);
 	DragonBloodGeld = DragonBloodCount * Value_DragonBlood;
 	CreateInvItems(self,ItMi_Gold,DragonBloodGeld);

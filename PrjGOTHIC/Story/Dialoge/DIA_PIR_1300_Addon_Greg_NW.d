@@ -1044,22 +1044,52 @@ func void DIA_Addon_Greg_NW_WasWillstDu_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_01_02");	//я наде€лс€, что этот ублюдок расскажет мне, как добратьс€ туда без корабл€.
 	B_GregTalksAboutPortal();
 	Npc_ExchangeRoutine(self,"DexterThrone");
-	Info_ClearChoices(DIA_Addon_Greg_NW_WasWillstDu);
-	Info_AddChoice(DIA_Addon_Greg_NW_WasWillstDu,"ј что находитс€ за этими горами?",DIA_Addon_Greg_NW_WasWillstDu_da);
-	if(Skip_NW.aivar[AIV_TalkedToPlayer] == TRUE)
+};
+
+instance DIA_Addon_Greg_NW_Loc(C_Info)
+{
+	npc = PIR_1300_Addon_Greg_NW;
+	nr = 5;
+	condition = DIA_Addon_Greg_NW_Loc_Condition;
+	information = DIA_Addon_Greg_NW_Loc_Info;
+	description = "ј что находитс€ за этими горами?";
+};
+
+
+func int DIA_Addon_Greg_NW_Loc_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WasWillstDu))
 	{
-		Info_AddChoice(DIA_Addon_Greg_NW_WasWillstDu,"Ќедалеко от города € встретил пирата по имени —кип.",DIA_Addon_Greg_NW_WasWillstDu_Skip);
+		return TRUE;
 	};
 };
 
-func void DIA_Addon_Greg_NW_WasWillstDu_da()
+func void DIA_Addon_Greg_NW_Loc_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_WasWillstDu_da_15_00");	//ј что находитс€ за этими горами?
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_da_01_01");	//Ё-э, тебе даже не стоит пытатьс€ туда попасть.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_da_01_02");	//«емли там суровые. “акому человеку, как ты, долго там не прот€нуть.
 };
 
-func void DIA_Addon_Greg_NW_WasWillstDu_Skip()
+instance DIA_Addon_Greg_NW_Skip(C_Info)
+{
+	npc = PIR_1300_Addon_Greg_NW;
+	nr = 6;
+	condition = DIA_Addon_Greg_NW_Skip_Condition;
+	information = DIA_Addon_Greg_NW_Skip_Info;
+	description = "Ќедалеко от города € встретил пирата по имени —кип.";
+};
+
+
+func int DIA_Addon_Greg_NW_Skip_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WasWillstDu) && (PlayerTalkedToSkipNW == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Greg_NW_Skip_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_WasWillstDu_Skip_15_00");	//Ќедалеко от города € встретил пирата по имени —кип.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_Skip_01_01");	//ј, этот идиот. я ждал его три дн€, почему он не по€вилс€ раньше?
@@ -1067,7 +1097,6 @@ func void DIA_Addon_Greg_NW_WasWillstDu_Skip()
 	SC_KnowsConnectionSkipGreg = TRUE;
 	B_GivePlayerXP(XP_Ambient);
 };
-
 
 func void B_GiveGregItems()
 {

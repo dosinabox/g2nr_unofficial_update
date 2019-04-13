@@ -72,7 +72,7 @@ instance DIA_Addon_Skip_Hello(C_Info)
 
 func int DIA_Addon_Skip_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (PlayerTalkedToSkipNW == TRUE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -82,12 +82,14 @@ func void DIA_Addon_Skip_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_00");	//Так-так, кто же это повстречался старому Скипу?
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_01");	//Я тебя знаю!
-	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_02");	//Помнишь бухту рядом с городом?
-	AI_Output(other,self,"DIA_Addon_Skip_Hello_15_03");	//Скип, верно?
-	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_04");	//(гордо) Вижу, я произвел на тебя впечатление.
-	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_05");	//Но мне кажется, что я где-то еще видел твою рожу...
-	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_06");	//Ну конечно!
-//	B_UseFakeScroll();
+	if(PlayerTalkedToSkipNW == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_02");	//Помнишь бухту рядом с городом?
+		AI_Output(other,self,"DIA_Addon_Skip_Hello_15_03");	//Скип, верно?
+		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_04");	//(гордо) Вижу, я произвел на тебя впечатление.
+		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_05");	//Но мне кажется, что я где-то еще видел твою рожу...
+		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_06");	//Ну конечно!
+	};
 	B_UseFakeHeroFace();
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_07");	//Не полное сходство, конечно, но это точно ты.
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_08");	//Но не расстраивайся, приятель. Мое лицо на объявлении о розыске выглядит не лучше.
@@ -201,13 +203,16 @@ func int DIA_Addon_Skip_Transport_Condition()
 func void DIA_Addon_Skip_Transport_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Transport_15_00");	//Ты можешь отвезти меня в Хоринис?
-	if(GregIsBack == FALSE)
+	if(MIS_ADDON_SkipsGrog != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_Transport_08_01");	//Нет, приятель. Сейчас я никуда не поплыву. Сначала мне нужно достать себе грога.
 	}
-	else if(Skip_Transport_Variation == 0)
+	else if(GregIsBack == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_Transport_08_02");	//Ты рехнулся? Мы потеряли корабль, приятель!
+	}
+	else if(Skip_Transport_Variation == 0)
+	{
 		AI_Output(self,other,"DIA_Addon_Skip_Transport_08_03");	//Я не собираюсь рисковать нашей последней шлюпкой только потому, что тебе лень самостоятельно дотащить свою задницу до Хориниса!
 		Skip_Transport_Variation = 1;
 	}

@@ -13,6 +13,7 @@ instance PIR_1355_Addon_Skip(Npc_Default)
 	EquipItem(self,ItMw_ShortSword2);
 	EquipItem(self,ItRw_Sld_Bow);
 	CreateInvItems(self,ItPo_Health_03,2);
+	CreateInvItem(self,ItWr_Poster_MIS);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Pirat01,BodyTex_N,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,1);

@@ -127,32 +127,24 @@ func int DIA_MIL_7_STANDARD_Condition()
 
 func void DIA_MIL_7_STANDARD_Info()
 {
-	var int randy;
 	AI_Output(other,self,"DIA_MIL_7_STANDARD_15_00");	//Что новенького?
-	if(Kapitel == 1)
+	if((SC_HearedAboutMissingPeople == FALSE) && (MissingPeopleReturnedHome == FALSE))
 	{
-		randy = Hlp_Random(2);
-		if(randy == 0)
-		{
-			AI_Output(self,other,"DIA_Addon_MIL_7_STANDARD_07_00");	//Горожане исчезают один за одним. Пока что нам не удалось выяснить, в чем дело. Может быть, виноваты орки?
-			if(SC_HearedAboutMissingPeople == FALSE)
-			{
-				Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-				B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
-				SC_HearedAboutMissingPeople = TRUE;
-			};
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_MIL_7_STANDARD_07_01");	//Говорят, что фермеры взбунтовались. Только этого нам еще не хватало. Как раз в самый разгар войны с орками!
-		};
-	};
-	if(Kapitel == 2)
+		AI_Output(self,other,"DIA_Addon_MIL_7_STANDARD_07_00");	//Горожане исчезают один за одним. Пока что нам не удалось выяснить, в чем дело. Может быть, виноваты орки?
+		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
+		SC_HearedAboutMissingPeople = TRUE;
+	}
+	else if(Kapitel == 1)
+	{
+		AI_Output(self,other,"DIA_MIL_7_STANDARD_07_01");	//Говорят, что фермеры взбунтовались. Только этого нам еще не хватало. Как раз в самый разгар войны с орками!
+	}
+	else if(Kapitel == 2)
 	{
 		AI_Output(self,other,"DIA_MIL_7_STANDARD_07_02");	//Паладины должны подавить восстание фермеров. Тот, кто нарушает закон, должен быть наказан. Особенно сейчас, когда идет война.
-	};
-	if(Kapitel == 3)
+	}
+	else if(Kapitel == 3)
 	{
 		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
@@ -162,12 +154,12 @@ func void DIA_MIL_7_STANDARD_Info()
 		{
 			AI_Output(self,other,"DIA_MIL_7_STANDARD_07_04");	//Один из наемников Онара убил благородного паладина Лотара. Но этого ублюдка удалось схватить и бросить за решетку.
 		};
-	};
-	if(Kapitel == 4)
+	}
+	else if(Kapitel == 4)
 	{
 		AI_Output(self,other,"DIA_MIL_7_STANDARD_07_05");	//Часть наемников уже покинула ферму Онара. Некоторые проблемы решаются сами собой.
-	};
-	if(Kapitel >= 5)
+	}
+	else if(Kapitel >= 5)
 	{
 		AI_Output(self,other,"DIA_MIL_7_STANDARD_07_06");	//С драконами покончено, но это еще не все. Следующие на очереди орки. Их мы тоже скоро уничтожим!
 	};

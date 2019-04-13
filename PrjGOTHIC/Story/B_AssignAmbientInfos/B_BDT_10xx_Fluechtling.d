@@ -53,7 +53,7 @@ func int DIA_BDT_1031_Fluechtling_Tip1_Condition()
 func void DIA_BDT_1031_Fluechtling_Tip1_Info()
 {
 	AI_Output(self,other,"DIA_BDT_1031_Fluechtling_Tip1_07_00");	//Тебе лучше держаться от меня подальше, если не хочешь попасть в тюрьму.
-	B_GivePlayerXP(XP_AmbientKap3);
+	B_GivePlayerXP(150);
 	if(SCFoundMorgahard == FALSE)
 	{
 		Info_ClearChoices(DIA_BDT_1031_Fluechtling_Tip1);
@@ -216,7 +216,7 @@ func int DIA_BDT_1033_Fluechtling_Tip2_Condition()
 func void DIA_BDT_1033_Fluechtling_Tip2_Info()
 {
 	AI_Output(self,other,"DIA_BDT_1033_Fluechtling_Tip2_07_00");	//(испуганно) Что тебе нужно от меня?
-	B_GivePlayerXP(XP_AmbientKap3);
+	B_GivePlayerXP(150);
 	if(SCFoundMorgahard == FALSE)
 	{
 		Info_ClearChoices(DIA_BDT_1033_Fluechtling_Tip2);

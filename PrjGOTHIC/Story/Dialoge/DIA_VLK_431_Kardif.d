@@ -591,7 +591,7 @@ func void DIA_Kardif_Diebeswerk2_Info()
 	{
 		AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
 	}
-	else if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700)
+	else if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700) && !Npc_IsDead(Martin))
 	{
 		AI_WaitTillEnd(self,other);
 		AI_PlayAni(self,"T_SEARCH");
@@ -864,7 +864,7 @@ func void DIA_Kardif_Zeichen_Info()
 	AI_Output(self,other,"DIA_Kardif_Zeichen_14_01");	//(вкрадчиво) Если тебе понадобятся отмычки, намекни. Я припас несколько на всякий случай. Просто попроси меня налить тебе выпивки.
 	if(DIA_Kardif_Diebeswerk2_permanent == FALSE)
 	{
-		if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") >= 700)
+		if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") >= 700) && !Npc_IsDead(Martin))
 		{
 			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_00");	//Есть что-нибудь 'особенное' для меня?
 			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.

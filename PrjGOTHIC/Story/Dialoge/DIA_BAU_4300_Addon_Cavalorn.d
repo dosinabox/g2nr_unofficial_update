@@ -96,9 +96,24 @@ var int DIA_Addon_Cavalorn_MeetingIsRunning_OneTime;
 
 func int DIA_Addon_Cavalorn_MeetingIsRunning_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_Running) && (Npc_GetDistToWP(self,"NW_LITTLESTONEHENDGE") > 2000))
+	if(Npc_IsInState(self,ZS_Talk) && (RangerMeetingRunning == LOG_Running))
 	{
-		return TRUE;
+		if(Npc_GetDistToWP(self,"NW_LITTLESTONEHENDGE") < 2000)
+		{
+			return FALSE;
+		}
+		else if(Npc_GetDistToWP(self,"NW_XARDAS_GOBBO_01") < 2000)
+		{
+			return FALSE;
+		}
+		else if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 2000)
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -108,14 +123,21 @@ func void DIA_Addon_Cavalorn_MeetingIsRunning_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_MeetingIsRunning_08_00");	//Добро пожаловать в 'Кольцо', мой друг.
 		DIA_Addon_Cavalorn_MeetingIsRunning_OneTime = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Addon_Gaan_MeetingIsRunning_08_01");	//Ватрас даст тебе следующее задание.
 	};
+	AI_Output(self,other,"DIA_Addon_Gaan_MeetingIsRunning_08_01");	//Ватрас даст тебе следующее задание.
 	AI_StopProcessInfos(self);
 };
 
+
+func void B_CavalornAboutHut()
+{
+	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_01");	//(пораженно) Правда? Хм-м. Я бы хотел пойти с тобой, но у меня здесь есть дела, которые я должен закончить.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_02");	//Будешь в Долине Рудников, посмотри, пожалуйста, стоит ли еще моя старая хижина. Я бы хотел туда вернуться когда-нибудь.
+	MIS_Addon_Cavalorn_TheHut = LOG_Running;
+	Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
+	B_LogEntry(TOPIC_Addon_CavalornTheHut,"Кавалорн хочет, чтобы я проверил, цела ли еще его старая хижина в Долине Рудников. Насколько я помню, она находится среди холмов на западе, там, где был Старый Лагерь. Думаю, он там что-то оставил.");
+};
 
 instance DIA_Addon_Cavalorn_HALLO(C_Info)
 {
@@ -176,12 +198,7 @@ func void DIA_Addon_Cavalorn_HALLO_Stadt()
 func void DIA_Addon_Cavalorn_HALLO_Bauern()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_Bauern_15_00");	//Назад в Долину Рудников.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_01");	//(пораженно) Правда? Хм-м. Я бы хотел пойти с тобой, но у меня здесь есть дела, которые я должен закончить.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_02");	//Будешь в Долине Рудников, посмотри, пожалуйста, стоит ли еще моя старая хижина. Я бы хотел туда вернуться когда-нибудь.
-	MIS_Addon_Cavalorn_TheHut = LOG_Running;
-	Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
-	B_LogEntry(TOPIC_Addon_CavalornTheHut,"Кавалорн хочет, чтобы я проверил, цела ли еще его старая хижина в Долине Рудников. Насколько я помню, она находится среди холмов на западе, там, где был Старый Лагерь. Думаю, он там что-то оставил.");
+	B_CavalornAboutHut();
 	Info_ClearChoices(DIA_Addon_Cavalorn_HALLO);
 };
 
@@ -216,12 +233,7 @@ func int DIA_Addon_Cavalorn_ImGoingToMineValley_Condition()
 func void DIA_Addon_Cavalorn_ImGoingToMineValley_Info()
 {
 	AI_Output(other,self,"DIA_Lee_RescueGorn_15_00");	//Я собираюсь отправиться в Долину Рудников.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_01");	//(пораженно) Правда? Хм-м. Я бы хотел пойти с тобой, но у меня здесь есть дела, которые я должен закончить.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Bauern_08_02");	//Будешь в Долине Рудников, посмотри, пожалуйста, стоит ли еще моя старая хижина. Я бы хотел туда вернуться когда-нибудь.
-	MIS_Addon_Cavalorn_TheHut = LOG_Running;
-	Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
-	B_LogEntry(TOPIC_Addon_CavalornTheHut,"Кавалорн хочет, чтобы я проверил, цела ли еще его старая хижина в Долине Рудников. Насколько я помню, она находится среди холмов на западе, там, где был Старый Лагерь. Думаю, он там что-то оставил.");
+	B_CavalornAboutHut();
 };
 
 

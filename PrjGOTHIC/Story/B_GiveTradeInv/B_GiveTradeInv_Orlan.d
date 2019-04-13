@@ -58,7 +58,7 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Orlan_RuneGiven == FALSE))
 	{
-		if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE) || (SCIsWearingRangerRing == TRUE))
+		if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
 		{
 			CreateInvItems(slf,ItRu_TeleportTaverne,1);
 			Orlan_RuneGiven = TRUE;

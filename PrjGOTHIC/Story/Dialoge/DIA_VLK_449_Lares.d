@@ -44,6 +44,7 @@ func int DIA_Lares_Kap1_EXIT_Condition()
 
 func void DIA_Lares_Kap1_EXIT_Info()
 {
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 };
 

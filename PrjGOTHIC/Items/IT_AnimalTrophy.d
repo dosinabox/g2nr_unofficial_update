@@ -41,14 +41,12 @@ const int Value_IceWolfFur = 20;
 
 instance ItAt_Addon_BCKopf(C_Item)
 {
-//	name = "Голова";
 	name = "Голова богомола";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_BCKopf;
 	visual = "ItAt_Blattcrawler_01.3DS";
 	material = MAT_LEATHER;
-//	description = "Голова богомола";
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -438,7 +436,6 @@ instance ItAt_TrollBlackFur(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_TrollBlackFur;
-//	visual = "ItAt_TrollFur.3DS";
 	visual = "ItAt_TrollBlackFur.3DS";
 	material = MAT_LEATHER;
 	description = name;

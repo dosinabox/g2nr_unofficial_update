@@ -31,7 +31,6 @@ instance ItAm_Addon_Franco(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_Franco;
-//	visual = "ItAm_Hp_01.3ds";
 	visual = "ItAm_Addon_Franco.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -125,7 +124,6 @@ instance ItAm_Addon_Health(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_Health;
-//	visual = "ItAm_Hp_01.3ds";
 	visual = "ItAm_Addon_Health.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -181,7 +179,6 @@ instance ItRi_Addon_Health_01(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Health_01;
-//	visual = "ItRi_Prot_Total_01.3ds";
 	visual = "ItRi_Addon_Health.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -239,7 +236,6 @@ instance ItRi_Addon_Health_02(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Health_01;
-//	visual = "ItRi_Prot_Total_01.3ds";
 	visual = "ItRi_Addon_Health.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -297,7 +293,6 @@ instance ItAm_Addon_MANA(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_Mana;
-//	visual = "ItAm_Hp_01.3ds";
 	visual = "ItAm_Addon_Mana.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -354,7 +349,6 @@ instance ItRi_Addon_MANA_01(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Mana_01;
-//	visual = "ItRi_Prot_Total_01.3ds";
 	visual = "ItRi_Addon_Mana.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -413,7 +407,6 @@ instance ItRi_Addon_MANA_02(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Mana_01;
-//	visual = "ItRi_Prot_Total_01.3ds";
 	visual = "ItRi_Addon_Mana.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -472,7 +465,6 @@ instance ItAm_Addon_STR(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_STR;
-//	visual = "ItAm_Hp_01.3ds";
 	visual = "ItAm_Addon_Str.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -521,7 +513,6 @@ instance ItRi_Addon_STR_01(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_STR_01;
-//	visual = "ItRi_Prot_Total_02.3ds";
 	visual = "ItRi_Addon_Str.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -572,7 +563,6 @@ instance ItRi_Addon_STR_02(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_STR_01;
-//	visual = "ItRi_Prot_Total_02.3ds";
 	visual = "ItRi_Addon_Str.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -628,7 +618,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 3 марта 2019г.";
+	text[1] = "Скомпилировано 10 марта 2019г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = fix_version_start;
 	text[3] = "Версия обновления в сохраненке:";

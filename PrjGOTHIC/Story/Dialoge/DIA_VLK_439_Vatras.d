@@ -140,6 +140,7 @@ func void DIA_Vatras_EXIT_Info()
 		B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
 		Vatras_LaresExit = TRUE;
 	};
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 //	Vatras_MORE = FALSE;
 	if(Vatras_SchickeLeuteWeg == TRUE)
@@ -365,30 +366,7 @@ func void DIA_Addon_Vatras_TellMe_Philo()
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_02");	//Если одна из сторон одержит верх, то это будет означать либо полный хаос, либо окончательную потерю свободы.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_03");	//Поэтому мы поддерживаем баланс двух сил. Благодаря нам существует все живое.
 	Vatras_ToldAboutDuty = TRUE;
-	/*if(MIS_Vatras_FindTheBanditTrader == FALSE)
-	{
-		Info_AddChoice(DIA_Addon_Vatras_TellMe,"И что это значит для меня?",DIA_Addon_Vatras_TellMe_Konkret);
-	};*/
 };
-
-/*func void DIA_Addon_Vatras_TellMe_Konkret()
-{
-	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_Konkret_15_00");	//(хмуро) И что это значит для меня?
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_01");	//Падение Барьера стало причиной возникновения многих опасностей.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_02");	//Бандиты, наверное, самая очевидная из них.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_03");	//И дело не только в том, что теперь нельзя путешествовать в безопасности...
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_04");	//В городе есть кто-то, кто помогает бандитам!
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Add_05_00");	//Мы узнали, что бандиты получают регулярные поставки от торговца оружием в Хоринисе.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_05");	//Сейчас мы пытаемся всеми силами помешать этому.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_06");	//Если что-нибудь узнаешь об этом, дай мне знать.
-	MIS_Vatras_FindTheBanditTrader = LOG_Running;
-//	Vatras_ToMartin = TRUE;
-	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
-//	B_LogEntry(TOPIC_Addon_Bandittrader,"Интендант паладинов Мартин также занимается поставкой оружия. Я могу найти его в гавани, где паладины хранят свои запасы.");
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
-};*/
 
 func void DIA_Addon_Vatras_TellMe_OtherKdW()
 {
@@ -2431,7 +2409,7 @@ func void DIA_Vatras_BEGINN_Info()
 	AI_Output(other,self,"DIA_Vatras_BEGINN_15_00");	//Я сделал все, как ты сказал мне. Вот починенный Глаз.
 	if(Npc_HasItems(other,ItPl_SwampHerb) >= 3)
 	{
-		B_GivePlayerXP(XP_RitualInnosEyeRuns + XP_Ambient);
+		B_GivePlayerXP(XP_RitualInnosEyeRuns + XP_AmbientKap3);
 	}
 	else
 	{
@@ -2446,7 +2424,6 @@ func void DIA_Vatras_BEGINN_Info()
 	{
 		AI_Output(other,self,"DIA_Vatras_BEGINN_15_04");	//Гм. Да. Вот три растения.
 		AI_Output(self,other,"DIA_Vatras_BEGINN_05_05");	//Превосходно.
-//		B_GivePlayerXP(XP_Ambient);
 	}
 	else
 	{

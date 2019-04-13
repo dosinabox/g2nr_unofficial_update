@@ -56,11 +56,8 @@ func void DIA_Addon_Gaan_MeetingIsRunning_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Gaan_MeetingIsRunning_03_00");	//Приятно видеть среди нас новое лицо. Добро пожаловать в 'Кольцо Воды'.
 		DIA_Addon_Gaan_MeetingIsRunning_One_time = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Addon_Gaan_MeetingIsRunning_03_01");	//Тебя хочет видеть Ватрас. Отправляйся к нему.
 	};
+	AI_Output(self,other,"DIA_Addon_Gaan_MeetingIsRunning_03_01");	//Тебя хочет видеть Ватрас. Отправляйся к нему.
 	AI_StopProcessInfos(self);
 };
 
@@ -127,7 +124,7 @@ instance DIA_Addon_Gaan_Ranger(C_Info)
 
 func int DIA_Addon_Gaan_Ranger_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && (SCIsWearingRangerRing == TRUE) && (RangerMeetingRunning == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Gaan_HALLO) && AnyRangerRingEquipped() && (RangerMeetingRunning == FALSE))
 	{
 		return TRUE;
 	};
@@ -401,7 +398,11 @@ func int DIA_Gaan_AskTeacher_Condition()
 func void DIA_Gaan_AskTeacher_Info()
 {
 	AI_Output(other,self,"DIA_Gaan_AskTeacher_15_00");	//Ты можешь научить меня охотиться?
-	if(SC_IsRanger == FALSE)
+	if((SC_IsRanger == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Gaan_Ranger))
+	{
+		Gaan_TeachPlayer = TRUE;
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Gaan_AskTeacher_03_01");	//Нет проблем. За 100 золотых монет я могу показать тебе, как выпотрошить животных, которых ты убьешь.
 	};
@@ -422,8 +423,6 @@ instance DIA_Gaan_PayTeacher(C_Info)
 };
 
 
-//var int DIA_Gaan_PayTeacher_noPerm;
-
 func int DIA_Gaan_PayTeacher_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Gaan_AskTeacher) && (Gaan_TeachPlayer == FALSE))
@@ -439,7 +438,6 @@ func void DIA_Gaan_PayTeacher_Info()
 	{
 		AI_Output(self,other,"DIA_Gaan_PayTeacher_03_01");	//Спасибо. Теперь говори, что ты хочешь.
 		Gaan_TeachPlayer = TRUE;
-//		DIA_Gaan_PayTeacher_noPerm = TRUE;
 	}
 	else
 	{
@@ -447,6 +445,7 @@ func void DIA_Gaan_PayTeacher_Info()
 	};
 };
 
+var int GaanTeachHornOneTime;
 
 instance DIA_Gaan_TEACHHUNTING(C_Info)
 {
@@ -465,10 +464,6 @@ func int DIA_Gaan_TEACHHUNTING_Condition()
 	{
 		return TRUE;
 	};
-	if((SC_IsRanger == TRUE) && Npc_KnowsInfo(other,DIA_Gaan_AskTeacher))
-	{
-		return TRUE;
-	};
 };
 
 func void DIA_Gaan_TEACHHUNTING_Info()
@@ -476,7 +471,15 @@ func void DIA_Gaan_TEACHHUNTING_Info()
 	AI_Output(other,self,"DIA_Gaan_TEACHHUNTING_15_00");	//Чему ты можешь обучить меня?
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE) || ((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE) && (MIS_Gaan_Snapper == LOG_SUCCESS)))
 	{
-		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_03_01");	//Это зависит от того, что ты уже знаешь.
+		if((MIS_Gaan_Snapper == LOG_SUCCESS) && (GaanTeachHornOneTime == FALSE))
+		{
+			AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_00");	//Теперь, когда этот огромный снеппер мертв, я могу показать тебе, как вырезать его рог.
+			GaanTeachHornOneTime = TRUE;
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_03_01");	//Это зависит от того, что ты уже знаешь.
+		};
 		Info_AddChoice(DIA_Gaan_TEACHHUNTING,Dialog_Back,DIA_Gaan_TEACHHUNTING_BACK);
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 		{
@@ -569,10 +572,6 @@ func void DIA_Gaan_TEACHHUNTING_DrgSnapperHorn()
 {
 	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_DrgSnapperHorn))
 	{
-		if(MIS_Gaan_Snapper == LOG_SUCCESS)
-		{
-			AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_00");	//Теперь, когда этот огромный снеппер мертв, я могу показать тебе, как вырезать его рог.
-		};
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_01");	//Нужно засунуть нож глубоко в лоб этого животного и осторожно выковыривать рог.
 		AI_Output(self,other,"DIA_Gaan_TEACHHUNTING_DrgSnapperHorn_03_02");	//Если он не отделится от черепа, нужно поддеть его вторым ножом с другой стороны.
 		CreateInvItems(Gaans_Snapper,ItAt_DrgSnapperHorn,2);

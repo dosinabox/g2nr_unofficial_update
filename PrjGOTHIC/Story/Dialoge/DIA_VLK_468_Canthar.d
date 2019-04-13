@@ -142,7 +142,7 @@ func void DIA_Canthar_Hallo_Info()
 	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_00");	//Посмотрите, кто у нас здесь!
-		if(Canthar_InStadt == FALSE)
+		if(PlayerEnteredCity == FALSE)
 		{
 			AI_Output(self,other,"DIA_Canthar_Hallo_09_01");	//Ты ведь идешь в город - я не прав?
 			AI_Output(other,self,"DIA_Canthar_Hallo_15_02");	//Может быть.
@@ -204,7 +204,7 @@ func int DIA_Canthar_WhatOffer_Condition()
 func void DIA_Canthar_WhatOffer_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_15_00");	//Что ты можешь предложить мне?
-	if((Canthar_GotMe == TRUE) && (Canthar_InStadt == FALSE))
+	if((Canthar_GotMe == TRUE) && (PlayerEnteredCity == FALSE))
 	{
 		if(!Npc_HasEquippedArmor(other))
 		{
@@ -328,7 +328,7 @@ instance DIA_Canthar_PAYPRICEINCITY(C_Info)
 
 func int DIA_Canthar_PAYPRICEINCITY_Condition()
 {
-	if((Canthar_InStadt == TRUE) && !Npc_IsDead(Sarah) && (Canthar_GotMe == TRUE))
+	if((PlayerEnteredCity == TRUE) && !Npc_IsDead(Sarah) && (Canthar_GotMe == TRUE))
 	{
 		return TRUE;
 	};

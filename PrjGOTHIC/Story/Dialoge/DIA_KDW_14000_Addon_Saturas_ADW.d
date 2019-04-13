@@ -96,16 +96,25 @@ func void DIA_Addon_Saturas_ADWStart_missingPeople()
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
-	if(Npc_HasItems(other,ITWr_Addon_William_01))
+	if(!Npc_HasItems(VLK_4304_Addon_William,ITWr_Addon_William_01))
 	{
 		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
 		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.
-	};
-	Saturas_AboutWilliam = TRUE;
-	if(!Npc_KnowsInfo(other,DIA_Addon_Riordian_WhatToFind))
+		if(FoundDeadWilliam == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
+		};
+		FoundDeadWilliam = TRUE;
+	}
+	else if(!Npc_KnowsInfo(other,DIA_Addon_Riordian_WhatToFind))
 	{
+		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
 	};
+	Saturas_AboutWilliam = TRUE;
 };
 
 func void DIA_Addon_Saturas_ADWStart_wastun()

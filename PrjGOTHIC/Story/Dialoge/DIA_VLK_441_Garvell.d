@@ -209,9 +209,12 @@ func void DIA_Addon_Garvell_MissingPeopleMore_Info()
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Похоже, рыбак Фарим что-то знает об исчезновении своего друга Вильяма.");
-	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Farim_William))
+	{
+		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
+	};
 	Info_ClearChoices(DIA_Addon_Garvell_MissingPeopleMore);
 	Info_AddChoice(DIA_Addon_Garvell_MissingPeopleMore,Dialog_Back,DIA_Addon_Garvell_MissingPeopleMore_BACK);
 	Info_AddChoice(DIA_Addon_Garvell_MissingPeopleMore,"Где мне найти этого Фарима?",DIA_Addon_Garvell_MissingPeopleMore_Farim);

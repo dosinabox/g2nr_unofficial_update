@@ -68,7 +68,6 @@ instance ItWr_HallsofIrdorath_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Book_02_05.3ds";
 	visual = "ItWr_Book_03_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
@@ -108,7 +107,6 @@ instance ItWr_HallsofIrdorath_Open_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Book_02_05.3ds";
 	visual = "ItWr_Book_03_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -173,8 +171,8 @@ func void Use_XardasSeamapBook_Mis()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_BROWN_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_BROWN_R.tga",0);
+	Doc_SetPage(nDocID,0,"BOOK_WOOD_L.tga",0);
+	Doc_SetPage(nDocID,1,"BOOK_WOOD_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);
@@ -190,7 +188,7 @@ func void Use_XardasSeamapBook_Mis()
 	};
 	if(hero.guild == GIL_KDF)
 	{
-		Doc_PrintLines(nDocID,0,"... В значении этих знамений невозможно ошибиться! Когда Избранный придет, ему понадобится вся помощь, которую мы сможем предоставить. Белиар уже очень силен. Мне удалось раздобыть несколько ценных артефактов, которые я схороню здесь, на всякий случай.");
+		Doc_PrintLines(nDocID,0,"... В значении этих знамений невозможно ошибиться! Когда Избранный придет, ему понадобится вся помощь, которую мы сможем дать. Белиар уже очень силен. Мне удалось раздобыть несколько ценных артефактов, которые я схороню здесь, на всякий случай.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_SetFont(nDocID,1,FONT_BookHeadline);
 		Doc_SetFont(nDocID,1,FONT_Book);
@@ -257,7 +255,6 @@ instance ItWr_Seamap_Irdorath(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 50;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_DI.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
