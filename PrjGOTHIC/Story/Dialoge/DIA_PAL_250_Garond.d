@@ -110,7 +110,7 @@ func void DIA_Garond_PMSchulden_Info()
 		Info_ClearChoices(DIA_Garond_PMSchulden);
 		Info_ClearChoices(DIA_Garond_PETZMASTER);
 		Info_AddChoice(DIA_Garond_PMSchulden,"У меня нет столько золота!",DIA_Garond_PETZMASTER_PayLater);
-		Info_AddChoice(DIA_Garond_PMSchulden,"Сколько там нужно?",DIA_Garond_PMSchulden_HowMuchAgain);
+		Info_AddChoice(DIA_Garond_PMSchulden,"Сколько там было?",DIA_Garond_PMSchulden_HowMuchAgain);
 		if(Npc_HasItems(other,ItMi_Gold) >= Garond_Schulden)
 		{
 			Info_AddChoice(DIA_Garond_PMSchulden,"Я хочу заплатить штраф!",DIA_Garond_PETZMASTER_PayNow);
@@ -125,7 +125,7 @@ func void DIA_Garond_PMSchulden_HowMuchAgain()
 	Info_ClearChoices(DIA_Garond_PMSchulden);
 	Info_ClearChoices(DIA_Garond_PETZMASTER);
 	Info_AddChoice(DIA_Garond_PMSchulden,"У меня нет столько золота!",DIA_Garond_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Garond_PMSchulden,"Сколько там нужно?",DIA_Garond_PMSchulden_HowMuchAgain);
+	Info_AddChoice(DIA_Garond_PMSchulden,"Сколько там было?",DIA_Garond_PMSchulden_HowMuchAgain);
 	if(Npc_HasItems(other,ItMi_Gold) >= Garond_Schulden)
 	{
 		Info_AddChoice(DIA_Garond_PMSchulden,"Я хочу заплатить штраф!",DIA_Garond_PETZMASTER_PayNow);

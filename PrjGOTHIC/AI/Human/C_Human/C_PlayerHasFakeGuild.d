@@ -32,6 +32,10 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
+	if(slf.guild == GIL_DMT)
+	{
+		return FALSE;
+	};
 	if(C_NpcIsGateGuard(slf))
 	{
 		return FALSE;

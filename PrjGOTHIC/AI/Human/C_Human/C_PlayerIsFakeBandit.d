@@ -14,6 +14,14 @@ func int C_PlayerIsFakeBandit(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
+	if(slf.guild == GIL_DMT)
+	{
+		return FALSE;
+	};
+	if(slf.guild > GIL_SEPERATOR_HUM)
+	{
+		return FALSE;
+	};
 	if(Npc_HasEquippedArmor(oth))
 	{
 		itm = Npc_GetEquippedArmor(oth);

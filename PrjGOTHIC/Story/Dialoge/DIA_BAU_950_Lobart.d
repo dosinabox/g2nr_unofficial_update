@@ -239,9 +239,12 @@ instance DIA_Lobart_BuyClothes(C_Info)
 
 func int DIA_Lobart_BuyClothes_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG) && (Lobart_Kleidung_Verkauft == FALSE)) || (Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS) && (Lobart_Kleidung_gestohlen == FALSE) && (Lobart_Kleidung_Verkauft == FALSE) && (hero.guild == GIL_NONE)))
+	if(Npc_KnowsInfo(other,DIA_Lobart_KLEIDUNG) || (Npc_KnowsInfo(other,DIA_Lobart_STOLENCLOTHS) && (Lobart_Kleidung_gestohlen == FALSE)))
 	{
-		return TRUE;
+		if((Lobart_Kleidung_Verkauft == FALSE) && (other.guild == GIL_NONE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -261,7 +264,6 @@ func void DIA_Lobart_BuyClothes_Info()
 	{
 		Wert_LobartsRuestung -= 10;
 	};
-//	if(MIS_Lobart_Rueben == LOG_SUCCESS)
 	if(LobartClothesDiscount == TRUE)
 	{
 		AI_Output(self,other,"DIA_Lobart_BuyClothes_05_02");	//Ты работал для меня на поле.
@@ -294,7 +296,6 @@ func void DIA_Lobart_BuyClothes_Info()
 	};
 	Info_ClearChoices(DIA_Lobart_BuyClothes);
 	Info_AddChoice(DIA_Lobart_BuyClothes,"Это все еще слишком дорого для меня.",DIA_Lobart_BuyClothes_NotYet);
-//	Info_AddChoice(DIA_Lobart_BuyClothes,"Давай тогда сюда эту рабочую одежду. (Защита: оружие 15, стрелы 15)",DIA_Lobart_BuyClothes_BUY);
 	if(Wert_LobartsRuestung == 100)
 	{
 		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/0/0. (100 золотых)",DIA_Lobart_BuyClothes_BUY);
@@ -446,7 +447,7 @@ instance DIA_Lobart_SldInfo(C_Info)
 
 func int DIA_Lobart_SldInfo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lobart_OnarStory) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Lobart_OnarStory) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -456,7 +457,10 @@ func void DIA_Lobart_SldInfo_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_SldInfo_15_00");	//А кто эти наемники, которых нанял Онар?
 	AI_Output(self,other,"DIA_Lobart_SldInfo_05_01");	//Я мало что знаю об этих парнях. Предположительно, большинство из них - бывшие каторжники из колонии.
-	AI_Output(self,other,"DIA_Lobart_SldInfo_05_02");	//(презрительно) И чего, спрашивается, от них можно ожидать...
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	{
+		AI_Output(self,other,"DIA_Lobart_SldInfo_05_02");	//(презрительно) И чего, спрашивается, от них можно ожидать...
+	};
 };
 
 
@@ -736,7 +740,7 @@ func void DIA_Lobart_ANDREHELPLOBART_Info()
 	AI_Output(other,self,"DIA_Lobart_ANDREHELPLOBART_15_00");	//Меня направил к тебе Андрэ. Я могу чем-нибудь помочь тебе?
 	AI_Output(self,other,"DIA_Lobart_ANDREHELPLOBART_05_01");	//Да, конечно. Меня уже тошнит от этих проклятых полевых хищников.
 	AI_Output(self,other,"DIA_Lobart_ANDREHELPLOBART_05_02");	//Прикончи их всех. Меня не волнует, как!
-	Log_AddEntry(TOPIC_BecomeMIL,"Поля Лобарта наводнены полевыми хищниками. Он хочет, чтобы я прогнал их.");
+	Log_AddEntry(TOPIC_Feldraeuber,"Поля Лобарта наводнены полевыми хищниками. Он хочет, чтобы я прогнал их.");
 	MIS_LobartKillBugs = LOG_Running;
 	AI_StopProcessInfos(self);
 };
@@ -752,38 +756,58 @@ instance DIA_Lobart_BUGDEAD(C_Info)
 };
 
 
-var int DIA_Lobart_BUGDEAD_noPerm;
-
 func int DIA_Lobart_BUGDEAD_Condition()
 {
-	if((MIS_LobartKillBugs == LOG_Running) && (DIA_Lobart_BUGDEAD_noPerm == FALSE))
+	if(MIS_LobartKillBugs == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(Lobarts_Giant_Bug1) && Npc_IsDead(Lobarts_Giant_Bug2) && Npc_IsDead(Lobarts_Giant_Bug3) && Npc_IsDead(Lobarts_Giant_Bug4) && Npc_IsDead(Lobarts_Giant_Bug5) && Npc_IsDead(Lobarts_Giant_Bug6) && Npc_IsDead(Lobarts_Giant_Bug7))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Lobart_BUGDEAD_Info()
 {
-	if(Npc_IsDead(Lobarts_Giant_Bug1) && Npc_IsDead(Lobarts_Giant_Bug2) && Npc_IsDead(Lobarts_Giant_Bug3) && Npc_IsDead(Lobarts_Giant_Bug4) && Npc_IsDead(Lobarts_Giant_Bug5) && Npc_IsDead(Lobarts_Giant_Bug6) && Npc_IsDead(Lobarts_Giant_Bug7))
+	AI_Output(other,self,"DIA_Lobart_BUGDEAD_15_00");	//Я разделался с этими тварями!
+	AI_Output(self,other,"DIA_Lobart_BUGDEAD_05_01");	//Отлично. Ты не такой уж плохой ликвидатор. Я порекомендую тебя соседям. Вот, держи заработанное.
+	B_StartOtherRoutine(Vino,"Start");
+	B_StartOtherRoutine(LobartsBauer1,"Start");
+	B_StartOtherRoutine(LobartsBauer2,"Start");
+	CreateInvItems(self,ItMi_Gold,20);
+	B_GiveInvItems(self,other,ItMi_Gold,20);
+	MIS_LobartKillBugs = LOG_SUCCESS;
+	MIS_AndreHelpLobart = LOG_SUCCESS;
+	Log_AddEntry(TOPIC_Feldraeuber,"Поля Лобарта очищены от полевых хищников. Я уничтожил их всех.");
+};
+
+
+instance DIA_Lobart_BUGALIVE(C_Info)
+{
+	npc = BAU_950_Lobart;
+	condition = DIA_Lobart_BUGALIVE_Condition;
+	information = DIA_Lobart_BUGALIVE_Info;
+	permanent = TRUE;
+	description = "Я думаю, я разделался со всеми тварями!";
+};
+
+
+func int DIA_Lobart_BUGALIVE_Condition()
+{
+	if(MIS_LobartKillBugs == LOG_Running)
 	{
-		AI_Output(other,self,"DIA_Lobart_BUGDEAD_15_00");	//Я разделался с этими тварями!
-		AI_Output(self,other,"DIA_Lobart_BUGDEAD_05_01");	//Отлично. Ты не такой уж плохой ликвидатор. Я порекомендую тебя соседям. Вот, держи заработанное.
-		B_StartOtherRoutine(Vino,"Start");
-		B_StartOtherRoutine(LobartsBauer1,"Start");
-		B_StartOtherRoutine(LobartsBauer2,"Start");
-		CreateInvItems(self,ItMi_Gold,20);
-		B_GiveInvItems(self,other,ItMi_Gold,20);
-		MIS_LobartKillBugs = LOG_SUCCESS;
-		MIS_AndreHelpLobart = LOG_SUCCESS;
-		Log_AddEntry(TOPIC_BecomeMIL,"Поля Лобарта очищены от полевых хищников. Я уничтожил их всех.");
-		DIA_Lobart_BUGDEAD_noPerm = TRUE;
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Lobart_BUGDEAD_15_02");	//Я думаю, я разделался со всеми тварями!
-		AI_Output(self,other,"DIA_Lobart_BUGDEAD_05_03");	//Не пытайся надуть меня. Я все еще вижу их. Либо ты убьешь этих тварей, либо можешь забыть о деньгах.
-		AI_StopProcessInfos(self);
+		if(!Npc_IsDead(Lobarts_Giant_Bug1) || !Npc_IsDead(Lobarts_Giant_Bug2) || !Npc_IsDead(Lobarts_Giant_Bug3) || !Npc_IsDead(Lobarts_Giant_Bug4) || !Npc_IsDead(Lobarts_Giant_Bug5) || !Npc_IsDead(Lobarts_Giant_Bug6) || !Npc_IsDead(Lobarts_Giant_Bug7))
+		{
+			return TRUE;
+		};
 	};
+};
+
+func void DIA_Lobart_BUGALIVE_Info()
+{
+	AI_Output(other,self,"DIA_Lobart_BUGDEAD_15_02");	//Я думаю, я разделался со всеми тварями!
+	AI_Output(self,other,"DIA_Lobart_BUGDEAD_05_03");	//Не пытайся надуть меня. Я все еще вижу их. Либо ты убьешь этих тварей, либо можешь забыть о деньгах.
+	AI_StopProcessInfos(self);
 };
 
 

@@ -1170,3 +1170,4 @@ var int RamirezToldAboutWambo;
 var int Lee_SldMGiven;
 var int Lee_SldHGiven;
 var int SylvioIceGolemsKilledBefore4Chapter;
+var int Knows_Taverne;
