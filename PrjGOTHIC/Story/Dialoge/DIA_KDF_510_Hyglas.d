@@ -580,7 +580,7 @@ func void DIA_Hyglas_Kap4_PERM_Info()
 		AI_Output(other,self,"DIA_Hyglas_Kap4_PERM_15_02");	//Какого рода опасности?
 		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_03");	//Ну, материя между мирами, похоже, очень слаба. Нужна только небольшая часть силы, которая потребовалась бы в обычное время, чтобы прорвать брешь в этой материи.
 		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_04");	//Демоны могут использовать эти порталы, чтобы войти в наш мир, не встретив сопротивления.
-		Hyglas_SendsToKarras = TRUE;
+//		Hyglas_SendsToKarras = TRUE;
 	}
 	else if(MIS_HyglasBringBook == LOG_Running)
 	{

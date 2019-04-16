@@ -714,7 +714,7 @@ func void DIA_Bennet_Evidence_Info()
 	AI_Output(other,self,"DIA_Bennet_Evidence_15_02");	//“ы знаешь, кто этот свидетель?
 	AI_Output(self,other,"DIA_Bennet_Evidence_06_03");	//Ќет. я знаю только, что он лжет.
 	B_LogEntry(TOPIC_RescueBennet,"≈сть свидетель, утверждающий, что видел, как это сделал Ѕеннет. я должен найти этого свидетел€, если € хочу вы€снить правду.");
-	RescueBennet_KnowsWitness = TRUE;
+//	RescueBennet_KnowsWitness = TRUE;
 };
 
 

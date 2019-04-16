@@ -5,7 +5,7 @@ instance J1(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseJOLY_Storyhelpletter;
 	scemeName = "MAP";
@@ -168,7 +168,7 @@ instance J2(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseJOLY2_Storyhelpletter;
 	scemeName = "MAP";
@@ -183,6 +183,12 @@ func void UseJOLY2_Storyhelpletter()
 {
 	B_StartOtherRoutine(PIR_1300_Addon_Greg_NW,"Taverne");
 	GregLocation = Greg_Taverne;
+	if(GregWolfs == FALSE)
+	{
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+		GregWolfs = TRUE;
+	};
 };
 
 
@@ -192,7 +198,7 @@ instance J3(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseJ3;
 	scemeName = "MAP";
@@ -214,7 +220,7 @@ instance J4(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseJ4;
 	scemeName = "MAP";
@@ -232,11 +238,11 @@ func void UseJ4()
 
 instance DJG_inserten(C_Item)
 {
-	name = "JOLY Письмо помощника по сюжету";
+	name = "JOLY Руна помощника по сюжету";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseDJG_inserten;
 	scemeName = "MAP";

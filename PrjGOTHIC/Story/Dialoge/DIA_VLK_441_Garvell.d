@@ -244,7 +244,7 @@ instance DIA_Garvell_ReturnMonty(C_Info)
 
 func int DIA_Garvell_ReturnMonty_Condition()
 {
-	if(MissingPeopleReturnedHome == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Garvell_Schiff) && (MissingPeopleReturnedHome == TRUE))
 	{
 		return TRUE;
 	};
@@ -253,11 +253,19 @@ func int DIA_Garvell_ReturnMonty_Condition()
 func void DIA_Garvell_ReturnMonty_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Garvell_ReturnMonty_15_00");	//Как продвигаются дела?
-	if(!Npc_IsDead(Monty_NW) && Npc_KnowsInfo(other,DIA_Garvell_Schiff))
+	if(!Npc_IsDead(Monty_NW))
 	{
 		AI_Output(self,other,"DIA_Addon_Garvell_ReturnMonty_04_01");	//Монти вернулся! Сейчас он изучает чертежи.
 		AI_Output(self,other,"DIA_Addon_Garvell_ReturnMonty_04_02");	//Может быть, теперь нам и удастся построить корабль...
 		B_GivePlayerXP(XP_Ambient);
+	}
+	else if(MIS_Garvell_Infos == LOG_Running)
+	{
+		AI_Output(self,other,"DIA_Garvell_Add_04_00");	//Я должен знать, сколько у меня осталось времени на постройку судна.	
+	}
+	else if(MIS_Garvell_Infos == LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Garvell_Success_04_00");	//Спасибо за информацию. Судя по всему, у нас сколько угодно времени на постройку судна.
 	}
 	else
 	{
@@ -300,6 +308,26 @@ func void DIA_Garvell_MISSION_Info()
 	B_LogEntry(TOPIC_Garvell,"Гарвелл хочет получить информацию об орках и о цели прибытия паладинов.");
 };
 
+func void B_GarvellGivePlayerXP()
+{
+	if(Kapitel == 1)
+	{
+		B_GivePlayerXP(100);
+	}
+	else if(Kapitel == 2)
+	{
+		B_GivePlayerXP(75);
+	}
+	else if(Kapitel == 3)
+	{
+		B_GivePlayerXP(50);
+	}
+	else
+	{
+		B_GivePlayerXP(25);
+	};
+};
+
 func void B_GarvellWeiter()
 {
 	AI_Output(self,other,"DIA_Garvell_Weiter_04_00");	//Хорошо. Если еще что-нибудь выяснишь, дай мне знать.
@@ -309,7 +337,7 @@ func void B_GarvellSuccess()
 {
 	AI_Output(self,other,"DIA_Garvell_Success_04_00");	//Спасибо за информацию. Судя по всему, у нас сколько угодно времени на постройку судна.
 	MIS_Garvell_Infos = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
+	B_CheckLog();
 };
 
 
@@ -339,7 +367,7 @@ func void DIA_Garvell_Orks_Info()
 	AI_Output(other,self,"DIA_Garvell_Orks_15_02");	//Они застряли в Долине Рудников, и, похоже, они собираются остаться там.
 	AI_Output(other,self,"DIA_Garvell_Orks_15_03");	//Чтобы здесь было безопасно, паладины охраняют Проход.
 	Tell_Garvell += 1;
-	B_GivePlayerXP(XP_Ambient);
+	B_GarvellGivePlayerXP();
 	if(Tell_Garvell >= 3)
 	{
 		B_GarvellSuccess();
@@ -377,7 +405,7 @@ func void DIA_Garvell_Paladine_Info()
 	AI_Output(other,self,"DIA_Garvell_Paladine_15_02");	//Паладины здесь, чтобы добывать магическую руду в Долине Рудников, а не потому, что они ожидают нападения орков на город.
 	AI_Output(other,self,"DIA_Garvell_Paladine_15_03");	//Как только они добудут руду, они вернутся на материк.
 	Tell_Garvell += 1;
-	B_GivePlayerXP(XP_Ambient);
+	B_GarvellGivePlayerXP();
 	if(Tell_Garvell >= 3)
 	{
 		B_GarvellSuccess();
@@ -421,7 +449,7 @@ func void DIA_Garvell_City_Info()
 		AI_Output(other,self,"DIA_Garvell_City_15_02");	//Не волнуйся насчет него. Городская стража позаботится о нем.
 	};
 	Tell_Garvell += 1;
-	B_GivePlayerXP(XP_Ambient);
+	B_GarvellGivePlayerXP();
 	if(Tell_Garvell >= 3)
 	{
 		B_GarvellSuccess();

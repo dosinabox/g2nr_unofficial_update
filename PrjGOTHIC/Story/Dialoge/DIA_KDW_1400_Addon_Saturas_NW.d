@@ -419,7 +419,8 @@ instance DIA_Addon_Saturas_WhatsOrnament(C_Info)
 
 func int DIA_Addon_Saturas_WhatsOrnament_Condition()
 {
-	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SC_KnowsOrnament == FALSE) && (RitualRingRuns == 0))
+//	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (SC_KnowsOrnament == FALSE) && (RitualRingRuns == 0))
+	if((MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS) && (RitualRingRuns == 0))
 	{
 		return TRUE;
 	};

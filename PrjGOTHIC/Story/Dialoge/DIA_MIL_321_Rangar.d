@@ -159,7 +159,7 @@ func void DIA_Rangar_Bier_Info()
 			RangarToldAboutPaladins = TRUE;
 			Info_ClearChoices(DIA_Rangar_Bier);
 		}
-		else if((RangarToldAboutPaladins == TRUE) && (Knows_Ork == TRUE))
+		else if((RangarToldAboutPaladins == TRUE) && (Knows_Ork == TRUE) && !Npc_IsDead(CityOrc))
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_06");	//Я бы не отказался еще от одной пинты.
 			CreateInvItems(self,ItFo_Beer,1);

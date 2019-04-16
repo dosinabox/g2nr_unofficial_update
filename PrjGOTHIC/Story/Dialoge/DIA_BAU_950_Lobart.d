@@ -778,6 +778,7 @@ func void DIA_Lobart_BUGDEAD_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,20);
 	MIS_LobartKillBugs = LOG_SUCCESS;
 	MIS_AndreHelpLobart = LOG_SUCCESS;
+	B_CheckLog();
 	Log_AddEntry(TOPIC_Feldraeuber,"Поля Лобарта очищены от полевых хищников. Я уничтожил их всех.");
 };
 

@@ -1,29 +1,4 @@
 
-/*instance DIA_MiltenNW_EXIT(C_Info)
-{
-	npc = PC_Mage_NW;
-	nr = 999;
-	condition = DIA_MiltenNW_EXIT_Condition;
-	information = DIA_MiltenNW_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_MiltenNW_EXIT_Condition()
-{
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_MiltenNW_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};*/
-
-
 instance DIA_MiltenNW_KAP3_EXIT(C_Info)
 {
 	npc = PC_Mage_NW;
@@ -37,10 +12,7 @@ instance DIA_MiltenNW_KAP3_EXIT(C_Info)
 
 func int DIA_MiltenNW_KAP3_EXIT_Condition()
 {
-	if(Kapitel >= 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_MiltenNW_KAP3_EXIT_Info()
@@ -413,31 +385,6 @@ func void DIA_MiltenNW_KAP3_Perm_Info()
 };
 
 
-/*instance DIA_MiltenNW_KAP4_EXIT(C_Info)
-{
-	npc = PC_Mage_NW;
-	nr = 999;
-	condition = DIA_MiltenNW_KAP4_EXIT_Condition;
-	information = DIA_MiltenNW_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_MiltenNW_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_MiltenNW_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};*/
-
-
 instance DIA_MiltenNW_KAP4_PERM(C_Info)
 {
 	npc = PC_Mage_NW;
@@ -451,7 +398,7 @@ instance DIA_MiltenNW_KAP4_PERM(C_Info)
 
 func int DIA_MiltenNW_KAP4_PERM_Condition()
 {
-	if(Kapitel == 4)
+	if(Kapitel >= 4)
 	{
 		return TRUE;
 	};
@@ -460,53 +407,31 @@ func int DIA_MiltenNW_KAP4_PERM_Condition()
 func void DIA_MiltenNW_KAP4_PERM_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KAP4_PERM_15_00");	//Есть новости?
-	AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_01");	//Это я должен тебя спрашивать. Мы все здесь очень обеспокоены.
-	AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_02");	//Высший Совет пытается предугадать следующий ход врага.
-	AI_Output(other,self,"DIA_MiltenNW_KAP4_PERM_15_03");	//Что-нибудь еще?
-	if(hero.guild == GIL_PAL)
+	if(Kapitel == 4)
 	{
-		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_04");	//Последнее время все больше сообщений о нападении орков, даже за пределами Долины Рудников.
-		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_05");	//Мне это все не нравится - я не думаю, что у нас осталось много времени.
-	}
-	else if(hero.guild == GIL_DJG)
-	{
-		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_06");	//Фермер сообщил о появлении чешуйчатых существ у его фермы.
-		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_07");	//Я не знаю, что все это значит, но я думаю, что враг что-то задумал.
-	}
-	else if(MIS_FindTheObesessed == LOG_Running)
-	{
-		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_08");	//Мы получаем все больше сообщений об одержимых людях. Враг стал силен, значительно сильнее, чем я ожидал.
+		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_01");	//Это я должен тебя спрашивать. Мы все здесь очень обеспокоены.
+		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_02");	//Высший Совет пытается предугадать следующий ход врага.
+		AI_Output(other,self,"DIA_MiltenNW_KAP4_PERM_15_03");	//Что-нибудь еще?
+		if(hero.guild == GIL_PAL)
+		{
+			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_04");	//Последнее время все больше сообщений о нападении орков, даже за пределами Долины Рудников.
+			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_05");	//Мне это все не нравится - я не думаю, что у нас осталось много времени.
+		}
+		else if(hero.guild == GIL_DJG)
+		{
+			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_06");	//Фермер сообщил о появлении чешуйчатых существ у его фермы.
+			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_07");	//Я не знаю, что все это значит, но я думаю, что враг что-то задумал.
+		}
+		else if(hero.guild == GIL_KDF)
+		{
+			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_08");	//Мы получаем все больше сообщений об одержимых людях. Враг стал силен, значительно сильнее, чем я ожидал.
+		};
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_09");	//Нет, ситуация все еще очень серьезная. Все, что нам остается - это верить в Инноса.
 	};
 };
-
-
-/*instance DIA_MiltenNW_KAP5_EXIT(C_Info)
-{
-	npc = PC_Mage_NW;
-	nr = 999;
-	condition = DIA_MiltenNW_KAP5_EXIT_Condition;
-	information = DIA_MiltenNW_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_MiltenNW_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_MiltenNW_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};*/
 
 
 instance DIA_MiltenNW_AllDragonsDead(C_Info)

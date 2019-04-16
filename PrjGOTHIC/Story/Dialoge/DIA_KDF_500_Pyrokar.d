@@ -1399,7 +1399,7 @@ func void DIA_Pyrokar_AUGEGEHEILT_Info()
 		CreateInvItem(hero,ITAR_KDF_H);
 		AI_PrintScreen("Тяжелая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 //		AI_EquipArmor(hero,ITAR_KDF_H);
-		heroGIL_KDF2 = TRUE;
+//		heroGIL_KDF2 = TRUE;
 	};
 };
 

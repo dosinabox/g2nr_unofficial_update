@@ -913,7 +913,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_00");	//И еще одно, прежде чем ты уйдешь...
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_01");	//Возьми эту руну в знак моей благодарности. Она вернет тебя в город, когда ты этого захочешь.
 	B_GiveInvItems(self,other,ItRu_TeleportSeaport,1);
-	MIS_InnosEyeStolen = TRUE;
+//	MIS_InnosEyeStolen = TRUE;
 	MIS_OLDWORLD = LOG_SUCCESS;
 	B_CheckLog();
 	Wld_InsertNpc(VLK_4250_Jorgen,"NW_MONASTERY_BRIDGE_01");

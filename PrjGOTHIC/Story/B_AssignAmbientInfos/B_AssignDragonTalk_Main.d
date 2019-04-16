@@ -22,13 +22,13 @@ func void DIA_DragonTalk_Main_1_Info()
 	AI_Output(other,self,"DIA_DragonTalk_Main_1_15_00");	//—луга «ла. „то заставило теб€ по€витьс€ здесь? “ы пришел только за тем, чтобы се€ть ужас и панику?
 	AI_Output(self,other,"DIA_DragonTalk_Main_1_20_01");	//Ќаша высша€ цель в этом мире, жалкий человечишка, останетс€ скрытой от теб€.
 	Info_AddChoice(DIA_DragonTalk_Main_1," ак мне заставить говорить других драконов?",DIA_DragonTalk_Main_1_reden);
-	Info_AddChoice(DIA_DragonTalk_Main_1,"„то, во им€ »нноса должен € сделать, чтобы изгнать вас из царства людей?",DIA_DragonTalk_Main_1_verbannen);
+	Info_AddChoice(DIA_DragonTalk_Main_1,"„то, во им€ »нноса, должен € сделать, чтобы изгнать вас из царства людей?",DIA_DragonTalk_Main_1_verbannen);
 	DragonTalk_Exit_Free = TRUE;
 };
 
 func void DIA_DragonTalk_Main_1_verbannen()
 {
-	AI_Output(other,self,"DIA_DragonTalk_MAIN_1_verbannen_15_00");	//„то, во им€ »нноса должен € сделать, чтобы изгнать вас из царства людей?
+	AI_Output(other,self,"DIA_DragonTalk_MAIN_1_verbannen_15_00");	//„то, во им€ »нноса, должен € сделать, чтобы изгнать вас из царства людей?
 	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_01");	//(смеетс€) ѕрежде чем ты сможешь действовать, ты сначала должен пон€ть смысл нашего по€влени€ здесь.
 	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_02");	//ќднако никто не раскроет тебе эту тайну по своей собственной воле.
 	AI_Output(self,other,"DIA_DragonTalk_MAIN_1_verbannen_20_03");	//“олько √лаз может разв€зать нам €зык и раскрыть тебе наши истинные цели.

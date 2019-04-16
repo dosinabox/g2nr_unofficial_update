@@ -1306,7 +1306,7 @@ instance Runenbrief(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	on_state[0] = UseHosh1;
 	scemeName = "MAP";
@@ -1346,7 +1346,7 @@ instance EnterBanditCamp(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	on_state[0] = UseHosh2;
 	scemeName = "MAP";
@@ -1370,7 +1370,7 @@ instance PH(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	on_state[0] = UsePatrickHelper;
 	scemeName = "MAP";
@@ -1476,7 +1476,7 @@ instance Hosh4(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;
@@ -1500,7 +1500,7 @@ instance D36TestRune(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;
@@ -1514,9 +1514,6 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	//AI_Teleport(Cornelius,"NW_CITY_HABOUR_KASERN_BORKA");
-	//B_NpcSetJailed(Cornelius);
-	//B_StartOtherRoutine(Cornelius,"PRISON");
 	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 };
@@ -1527,7 +1524,7 @@ instance WastelandRune(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;

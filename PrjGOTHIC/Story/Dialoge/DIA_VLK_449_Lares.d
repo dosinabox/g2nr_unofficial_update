@@ -254,6 +254,12 @@ func void DIA_Addon_Lares_Vatras_Info()
 		B_StartOtherRoutine(BAU_974_Bauer,"GregInTaverne");
 		GregLocation = Greg_Taverne;
 		B_StartOtherRoutine(Greg_NW,"Taverne");
+		if(GregWolfs == FALSE)
+		{
+			Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+			Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+			GregWolfs = TRUE;
+		};
 	};
 };
 
