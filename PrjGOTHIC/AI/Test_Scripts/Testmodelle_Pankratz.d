@@ -6,7 +6,7 @@ instance J1(C_Item)
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItRu_TeleportOWDemonTower.3DS";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	on_state[0] = UseJOLY_Storyhelpletter;
 	scemeName = "MAP";
 	description = name;
@@ -169,7 +169,7 @@ instance J2(C_Item)
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItRu_TeleportOWDemonTower.3DS";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	on_state[0] = UseJOLY2_Storyhelpletter;
 	scemeName = "MAP";
 	description = name;
@@ -199,7 +199,7 @@ instance J3(C_Item)
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItRu_TeleportOWDemonTower.3DS";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	on_state[0] = UseJ3;
 	scemeName = "MAP";
 	description = name;
@@ -221,7 +221,7 @@ instance J4(C_Item)
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItRu_TeleportOWDemonTower.3DS";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	on_state[0] = UseJ4;
 	scemeName = "MAP";
 	description = name;
@@ -243,7 +243,7 @@ instance DJG_inserten(C_Item)
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItRu_TeleportOWDemonTower.3DS";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	on_state[0] = UseDJG_inserten;
 	scemeName = "MAP";
 	description = name;

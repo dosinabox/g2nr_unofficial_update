@@ -14,7 +14,7 @@ prototype Mst_Default_OrcBiter(C_Npc)
 	protection[PROT_BLUNT] = 60;
 	protection[PROT_EDGE] = 60;
 	protection[PROT_POINT] = 60;
-	protection[PROT_FIRE] = 16;	//60;
+	protection[PROT_FIRE] = 60;	//16;
 	protection[PROT_FLY] = 60;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
