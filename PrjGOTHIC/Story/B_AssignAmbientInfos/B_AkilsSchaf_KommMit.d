@@ -49,10 +49,17 @@ func void DIA_AkilsSchaf_KommMit_Info()
 	if(!Npc_IsDead(BDT_1025_Bandit_H))
 	{
 		BDT_1025_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
+		BDT_1025_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
 	};
 	if(!Npc_IsDead(BDT_1026_Bandit_H))
 	{
 		BDT_1026_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
+		BDT_1026_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
+	};
+	if(!Npc_IsDead(BDT_1027_Bandit_H))
+	{
+		BDT_1027_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
+		BDT_1027_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
 	};
 	AI_StopProcessInfos(self);
 };

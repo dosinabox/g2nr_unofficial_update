@@ -718,7 +718,7 @@ func void DIA_Addon_Henry_Entercrew_Info()
 			else
 			{
 				AI_Output(self,other,"DIA_Addon_Henry_Entercrew_Add_04_06");	//¬озьми одного из моих реб€т, и разберись с этими бандитами.
-				Henry_GetPartyMember = TRUE;
+//				Henry_GetPartyMember = TRUE;
 				B_LogEntry(TOPIC_Addon_BanditsTower,"√енри хочет, чтобы € разобралс€ с зан€вшими башню бандитами. я могу вз€ть с собой одного из его парней.");
 			};
 			B_Henry_WhereIsTower();

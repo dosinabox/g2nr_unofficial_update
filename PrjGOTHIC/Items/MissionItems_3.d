@@ -2,7 +2,7 @@
 const int AM_EyeProtEdge = 10;
 const int AM_EyeProtPoint = 10;
 const int AM_EyeProtMage = 20;
-const int AM_EyeProtFire = 20;
+const int AM_EyeProtFire = 30; //20
 
 instance ItMi_InnosEye_MIS(C_Item)
 {

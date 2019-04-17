@@ -14,7 +14,7 @@ prototype Mst_Default_UndeadOrcWarrior(C_Npc)
 	protection[PROT_BLUNT] = 150;
 	protection[PROT_EDGE] = 150;
 	protection[PROT_POINT] = 150;
-	protection[PROT_FIRE] = 17;	//150;
+	protection[PROT_FIRE] = 150;	//17;
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 0;
 	HitChance[NPC_TALENT_1H] = 80;

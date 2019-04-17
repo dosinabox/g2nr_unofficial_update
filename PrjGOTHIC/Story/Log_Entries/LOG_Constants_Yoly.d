@@ -143,7 +143,7 @@ const string TOPIC_LobartsOrKProblem = "Проблемы Лобарта с орками";
 
 var int TOPIC_END_LobartsOrKProblem;
 
-const string TOPIC_SylvioKillIceGolem = "Два ледяных гиганта для Сильвио";
+const string TOPIC_SylvioKillIceGolem = "Ледяные гиганты и Сильвио";
 
 var int TOPIC_END_SylvioKillIceGolem;
 

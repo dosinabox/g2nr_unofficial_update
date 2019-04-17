@@ -47,7 +47,7 @@ func void DIA_Lester_Hello_Info()
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
 	};
-	AI_Output(self,other,"DIA_Lester_Hello_13_00");	//Это ТЫ? - Точно! Ох, как я рад видеть тебя!
+	AI_Output(self,other,"DIA_Lester_Hello_13_00");	//Это ТЫ? Точно! Ох, как я рад видеть тебя!
 	Info_ClearChoices(DIA_Lester_Hello);
 	Info_AddChoice(DIA_Lester_Hello,"Я что, знаю тебя?",DIA_Lester_Hello_YouKnowMe);
 	Info_AddChoice(DIA_Lester_Hello,"Лестер! Как ты оказался здесь?",DIA_Lester_Hello_Lester);

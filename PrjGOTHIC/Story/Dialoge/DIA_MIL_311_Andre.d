@@ -461,7 +461,7 @@ func void DIA_Andre_Message_EyeInnos()
 	AI_Output(self,other,"DIA_Andre_Message_EyeInnos_08_02");	//Если действительно существует артефакт, носящий Его имя, только самые высокопоставленные члены нашего ордена могут знать о нем.
 	AI_Output(other,self,"DIA_Andre_Message_EyeInnos_15_03");	//Вот почему мне нужно поговорить именно с лордом Хагеном.
 	Andre_EyeInnos = TRUE;
-	if((other.guild != GIL_KDF) && (other.guild != GIL_PAL))
+	if((other.guild != GIL_KDF) && (other.guild != GIL_PAL) && (other.guild != GIL_MIL))
 	{
 		B_Andre_LordHagenNichtZuSprechen();
 	}
@@ -489,7 +489,7 @@ func void DIA_Andre_Message_Dragons()
 func void DIA_Andre_Message_Personal()
 {
 	AI_Output(other,self,"DIA_Andre_Message_Personal_15_00");	//Это я могу сказать только лорду Хагену.
-	if((other.guild != GIL_KDF) && (other.guild != GIL_PAL))
+	if((other.guild != GIL_KDF) && (other.guild != GIL_PAL) && (other.guild != GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Andre_Message_Personal_08_01");	//Как знаешь. Но ты должен понять одно:
 		B_Andre_LordHagenNichtZuSprechen();
@@ -526,10 +526,20 @@ func void DIA_Andre_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Andre_Paladine_15_00");	//Почему паладины прибыли в город?
 	AI_Output(self,other,"DIA_Andre_Paladine_08_01");	//Цели нашей операции являются тайной.
-	AI_Output(self,other,"DIA_Andre_Paladine_08_02");	//Я могу сказать тебе только, что гражданам города не грозит никакая опасность.
-	AI_Output(self,other,"DIA_Andre_Paladine_08_03");	//Тебе не о чем волноваться.
+	if(other.guild != GIL_SLD)
+	{
+		AI_Output(self,other,"DIA_Andre_Paladine_08_02");	//Я могу сказать тебе только, что гражданам города не грозит никакая опасность.
+		AI_Output(self,other,"DIA_Andre_Paladine_08_03");	//Тебе не о чем волноваться.
+	};
 };
 
+
+func void B_Andre_PaladinsReason()
+{
+	AI_Output(self,other,"DIA_Andre_PaladineAgain_08_04");	//Мы прибыли по поручению короля Робара. С разрушением Барьера поставки руды прекратились.
+	AI_Output(self,other,"DIA_Andre_PaladineAgain_08_05");	//Поэтому теперь мы добываем руду и доставляем ее на материк. При помощи этой руды мы выкуем новое оружие и победим орков.
+	KnowsPaladins_Ore = TRUE;
+};
 
 instance DIA_Andre_PaladineAgain(C_Info)
 {
@@ -538,13 +548,13 @@ instance DIA_Andre_PaladineAgain(C_Info)
 	condition = DIA_Andre_PaladineAgain_Condition;
 	information = DIA_Andre_PaladineAgain_Info;
 	permanent = FALSE;
-	description = "Что паладины делают в городе?";
+	description = "Так ты скажешь мне, зачем паладины прибыли в Хоринис?";
 };
 
 
 func int DIA_Andre_PaladineAgain_Condition()
 {
-	if((other.guild == GIL_MIL) && (Kapitel < 3))
+	if((other.guild == GIL_MIL) && (Kapitel < 3) && Npc_KnowsInfo(other,DIA_Andre_Paladine))
 	{
 		return TRUE;
 	};
@@ -552,19 +562,36 @@ func int DIA_Andre_PaladineAgain_Condition()
 
 func void DIA_Andre_PaladineAgain_Info()
 {
-	if(Npc_KnowsInfo(other,DIA_Andre_Paladine))
-	{
-		AI_Output(other,self,"DIA_Andre_PaladineAgain_15_00");	//Так ты скажешь мне, зачем паладины прибыли в Хоринис?
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Andre_PaladineAgain_15_01");	//Что паладины делают в городе?
-	};
+	AI_Output(other,self,"DIA_Andre_PaladineAgain_15_00");	//Так ты скажешь мне, зачем паладины прибыли в Хоринис?
 	AI_Output(self,other,"DIA_Andre_PaladineAgain_08_02");	//Теперь, когда ты вступил в городскую стражу, ты подчиняешься паладинам.
 	AI_Output(self,other,"DIA_Andre_PaladineAgain_08_03");	//И теперь я могу доверять тебе.
-	AI_Output(self,other,"DIA_Andre_PaladineAgain_08_04");	//Мы прибыли по поручению короля Робара. С разрушением Барьера поставки руды прекратились.
-	AI_Output(self,other,"DIA_Andre_PaladineAgain_08_05");	//Поэтому теперь мы добываем руду и доставляем ее на материк. При помощи этой руды мы выкуем новое оружие и победим орков.
-	KnowsPaladins_Ore = TRUE;
+	B_Andre_PaladinsReason();
+};
+
+
+instance DIA_Andre_PaladineAgain2(C_Info)
+{
+	npc = MIL_311_Andre;
+	nr = 3;
+	condition = DIA_Andre_PaladineAgain2_Condition;
+	information = DIA_Andre_PaladineAgain2_Info;
+	permanent = FALSE;
+	description = "Что паладины делают в городе?";
+};
+
+
+func int DIA_Andre_PaladineAgain2_Condition()
+{
+	if((other.guild == GIL_MIL) && (Kapitel < 3) && !Npc_KnowsInfo(other,DIA_Andre_Paladine))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Andre_PaladineAgain2_Info()
+{
+	AI_Output(other,self,"DIA_Andre_PaladineAgain_15_01");	//Что паладины делают в городе?
+	B_Andre_PaladinsReason();
 };
 
 
@@ -798,6 +825,11 @@ func void DIA_Andre_WhatToDo_Info()
 	B_LogEntry(TOPIC_BecomeMIL,"Если я поймаю какую-нибудь мелкую рыбешку гильдии воров, я должен привести его прямо к лорду Андрэ. А чтобы ликвидировать гильдию воров, я должен найти их логово.");
 };
 
+func void B_AndreSold()
+{
+	AI_Output(self,other,"DIA_Andre_Sold_08_00");	//Вот твое жалование.
+	B_GiveInvItems(self,other,ItMi_Gold,Andre_Sold);
+};
 
 instance DIA_Andre_Auslieferung(C_Info)
 {
@@ -812,7 +844,7 @@ instance DIA_Andre_Auslieferung(C_Info)
 
 func int DIA_Andre_Auslieferung_Condition()
 {
-	if((Rengaru_Ausgeliefert == FALSE) || (Halvor_Ausgeliefert == FALSE) || (Nagur_Ausgeliefert == FALSE) || (MIS_Canthars_KomproBrief == LOG_Running))
+	if((Rengaru_Ausgeliefert == FALSE) || (Halvor_Ausgeliefert == FALSE) || (Nagur_Ausgeliefert == FALSE) || (MIS_Canthars_KomproBrief == LOG_Running) || (Fernando_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -849,6 +881,10 @@ func void DIA_Andre_Auslieferung_Info()
 	if((MIS_Canthars_KomproBrief == LOG_Running) && Npc_HasItems(Sarah,ItWr_Canthars_KomproBrief_MIS) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Сара продает оружие Онару.",DIA_Andre_Auslieferung_Sarah);
+	};
+	if((Fernando_ImKnast == TRUE) && (Fernando_Ausgeliefert == FALSE))
+	{
+		Info_AddChoice(DIA_Andre_Auslieferung,"Я знаю торговца, который продает оружие бандитам!",DIA_Andre_Auslieferung_Fernando);
 	};
 };
 
@@ -958,6 +994,25 @@ func void DIA_Andre_Auslieferung_Sarah()
 	B_StartOtherRoutine(Canthar,"MARKTSTAND");
 	Sarah_Ausgeliefert = TRUE;
 	MIS_Canthars_KomproBrief = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Andre_Auslieferung);
+	Info_ClearChoices(DIA_Andre_Auslieferung);
+};
+
+func void DIA_Andre_Auslieferung_Fernando()
+{
+	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_00");	//Я знаю торговца, который продает оружие бандитам!
+	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_01");	//Его зовут Фернандо.
+	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
+	if(other.guild == GIL_MIL)
+	{
+		B_AndreSold();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
+		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
+	};
+	Fernando_Ausgeliefert = TRUE;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
@@ -1312,12 +1367,6 @@ func void DIA_Andre_FOUND_PECK_REDLIGHT()
 	B_GivePlayerXP(XP_FoundPeck * 2);
 	MIS_Andre_Peck = LOG_SUCCESS;
 	Info_ClearChoices(DIA_Andre_FOUND_PECK);
-};
-
-func void B_AndreSold()
-{
-	AI_Output(self,other,"DIA_Andre_Sold_08_00");	//Вот твое жалование.
-	B_GiveInvItems(self,other,ItMi_Gold,Andre_Sold);
 };
 
 

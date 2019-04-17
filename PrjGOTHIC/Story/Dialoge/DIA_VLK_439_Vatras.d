@@ -1186,7 +1186,10 @@ func int DIA_Addon_Vatras_WISP_Condition()
 func void DIA_Addon_Vatras_WISP_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_WISP_15_00");	//Ты можешь помочь мне в моих поисках?
-	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_01");	//Ты очень настойчивый юноша. Но я действительно могу кое-что тебе дать, чтобы облегчить тебе задачу.
+	if((MIS_Vatras_FindTheBanditTrader == LOG_Running) || (MIS_Vatras_FindTheBanditTrader == LOG_FAILED))
+	{
+		AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_01");	//Ты очень настойчивый юноша. Но я действительно могу кое-что тебе дать, чтобы облегчить тебе задачу.
+	};
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_02");	//Я дам тебе этот амулет. Тебе он пригодится.
 	CreateInvItems(self,ItAm_Addon_WispDetector,1);
 	B_GiveInvItems(self,other,ItAm_Addon_WispDetector,1);
@@ -1200,7 +1203,7 @@ func void DIA_Addon_Vatras_WISP_Info()
 	B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned);
 	B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_NF);
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_08");	//Ищущий огонек поможет тебе искать оружие.
-	if(MIS_Vatras_FindTheBanditTrader == LOG_Running)
+	if((MIS_Vatras_FindTheBanditTrader == LOG_Running) || (MIS_Vatras_FindTheBanditTrader == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_09");	//С его помощью ты сможешь узнать, какими путями оружие попадает к бандитам.
 	};

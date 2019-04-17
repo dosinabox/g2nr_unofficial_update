@@ -325,14 +325,12 @@ instance DIA_Akil_Gegend(C_Info)
 
 func int DIA_Akil_Gegend_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner))
 	{
 		return TRUE;
 	};
 };
 
-
-var int Knows_Taverne;
 
 func void DIA_Akil_Gegend_Info()
 {
@@ -382,7 +380,7 @@ instance DIA_Akil_Taverne(C_Info)
 
 func int DIA_Akil_Taverne_Condition()
 {
-	if(Knows_Taverne == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Akil_Gegend) && (Knows_Taverne == TRUE))
 	{
 		return TRUE;
 	};
@@ -418,7 +416,10 @@ func void DIA_Akil_Wald_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Gegend_Wald_15_00");	//А что там, в лесу за твоей фермой?
 	AI_Output(self,other,"DIA_Akil_Gegend_Wald_13_01");	//Там бродят монстры. И волки еще самые безобидные из них.
-	AI_Output(self,other,"DIA_Akil_Gegend_Wald_13_02");	//Также говорят, что там устроили себе логово бандиты. Ну - хотя бы они не трогают мою ферму.
+	if(Kapitel < 3)
+	{
+		AI_Output(self,other,"DIA_Akil_Gegend_Wald_13_02");	//Также говорят, что там устроили себе логово бандиты. Ну - хотя бы они не трогают мою ферму.
+	};
 };
 
 
@@ -436,6 +437,10 @@ instance DIA_Akil_Perm(C_Info)
 func int DIA_Akil_Perm_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner) && (Kapitel >= 3))
+	{
+		return TRUE;
+	};
+	if(Kapitel >= 4)
 	{
 		return TRUE;
 	};
@@ -512,7 +517,11 @@ instance DIA_Akil_SCHAFDIEB(C_Info)
 
 func int DIA_Akil_SCHAFDIEB_Condition()
 {
-	if(Kapitel >= 3)
+	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner) && (Kapitel >= 3))
+	{
+		return TRUE;
+	};
+	if(Kapitel >= 4)
 	{
 		return TRUE;
 	};

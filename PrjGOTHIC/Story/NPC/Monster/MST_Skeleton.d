@@ -14,7 +14,7 @@ prototype Mst_Default_Skeleton(C_Npc)
 	protection[PROT_BLUNT] = 125;
 	protection[PROT_EDGE] = 125;
 	protection[PROT_POINT] = 175;
-	protection[PROT_FIRE] = 16;	//125;
+	protection[PROT_FIRE] = 125;	//16;
 	protection[PROT_FLY] = 125;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

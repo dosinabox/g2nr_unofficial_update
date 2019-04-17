@@ -76,7 +76,7 @@ instance MENUITEM_GAME_FIGHTFOCUS_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "нет|рамка|подсветка|оба";
+	text[0] = "откл|рамка|подсветка|оба";
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
 	posy = (MENU_START_Y - (MENU_SOUND_DY * 2)) + MENU_CHOICE_YPLUS;

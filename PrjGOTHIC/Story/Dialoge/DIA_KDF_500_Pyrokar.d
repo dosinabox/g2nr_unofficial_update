@@ -12,10 +12,7 @@ instance DIA_Pyrokar_EXIT(C_Info)
 
 func int DIA_Pyrokar_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Pyrokar_EXIT_Info()
@@ -1011,31 +1008,6 @@ func void DIA_Pyrokar_PERM_nonKDF_Info()
 };
 
 
-instance DIA_Pyrokar_KAP3_EXIT(C_Info)
-{
-	npc = KDF_500_Pyrokar;
-	nr = 999;
-	condition = DIA_Pyrokar_KAP3_EXIT_Condition;
-	information = DIA_Pyrokar_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Pyrokar_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Pyrokar_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Pyrokar_BACKFROMOW(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -1427,7 +1399,7 @@ func void DIA_Pyrokar_AUGEGEHEILT_Info()
 		CreateInvItem(hero,ITAR_KDF_H);
 		AI_PrintScreen("Тяжелая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 //		AI_EquipArmor(hero,ITAR_KDF_H);
-		heroGIL_KDF2 = TRUE;
+//		heroGIL_KDF2 = TRUE;
 	};
 };
 
@@ -1471,6 +1443,7 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,1);
+		CreateInvItems(Gorax,ItRu_TeleportRitual,1);
 	};
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_Running);
@@ -1714,56 +1687,6 @@ func void DIA_Pyrokar_AlmanachBringen_Info()
 	AlmanachGeld = AlmanachCount * PyrokarsAlmanachOffer;
 	CreateInvItems(self,ItMi_Gold,AlmanachGeld);
 	B_GiveInvItems(self,other,ItMi_Gold,AlmanachGeld);
-};
-
-
-instance DIA_Pyrokar_KAP4_EXIT(C_Info)
-{
-	npc = KDF_500_Pyrokar;
-	nr = 999;
-	condition = DIA_Pyrokar_KAP4_EXIT_Condition;
-	information = DIA_Pyrokar_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Pyrokar_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Pyrokar_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Pyrokar_KAP5_EXIT(C_Info)
-{
-	npc = KDF_500_Pyrokar;
-	nr = 999;
-	condition = DIA_Pyrokar_KAP5_EXIT_Condition;
-	information = DIA_Pyrokar_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Pyrokar_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Pyrokar_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

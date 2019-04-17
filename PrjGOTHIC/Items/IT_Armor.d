@@ -48,7 +48,7 @@ instance ITAR_Governor(C_Item)
 	protection[PROT_EDGE] = 40;
 	protection[PROT_BLUNT] = 40;
 	protection[PROT_POINT] = 40;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Governor;
 	wear = WEAR_TORSO;
@@ -63,8 +63,8 @@ instance ITAR_Governor(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -77,7 +77,7 @@ instance ITAR_Larius(C_Item)
 	protection[PROT_EDGE] = 50;
 	protection[PROT_BLUNT] = 50;
 	protection[PROT_POINT] = 50;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Governor;
 	wear = WEAR_TORSO;
@@ -92,8 +92,8 @@ instance ITAR_Larius(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -106,7 +106,7 @@ instance ITAR_Judge(C_Item)
 	protection[PROT_EDGE] = 10;
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Judge;
 	wear = WEAR_TORSO;
@@ -121,8 +121,8 @@ instance ITAR_Judge(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_Smith(C_Item)
@@ -133,7 +133,7 @@ instance ITAR_Smith(C_Item)
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 15;
-	protection[PROT_FIRE] = 15;	//5;
+	protection[PROT_FIRE] = 5;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Smith;
 	wear = WEAR_TORSO;
@@ -148,8 +148,8 @@ instance ITAR_Smith(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_Barkeeper(C_Item)
@@ -160,7 +160,7 @@ instance ITAR_Barkeeper(C_Item)
 	protection[PROT_EDGE] = 10;
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Barkeeper;
 	wear = WEAR_TORSO;
@@ -175,8 +175,8 @@ instance ITAR_Barkeeper(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_Vlk_L(C_Item)
@@ -187,7 +187,7 @@ instance ITAR_Vlk_L(C_Item)
 	protection[PROT_EDGE] = 10;
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Vlk_L;
 	wear = WEAR_TORSO;
@@ -202,8 +202,8 @@ instance ITAR_Vlk_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -216,7 +216,7 @@ instance ITAR_Vlk_M(C_Item)
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Vlk_M;
 	wear = WEAR_TORSO;
@@ -231,8 +231,8 @@ instance ITAR_Vlk_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -245,7 +245,7 @@ instance ITAR_Vlk_H(C_Item)
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 15;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Vlk_H;
 	wear = WEAR_TORSO;
@@ -260,8 +260,8 @@ instance ITAR_Vlk_H(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -274,7 +274,7 @@ instance ITAR_VlkBabe_L(C_Item)
 	protection[PROT_EDGE] = 10;
 	protection[PROT_BLUNT] = 10;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_VlkBabe_L;
 	wear = WEAR_TORSO;
@@ -289,8 +289,8 @@ instance ITAR_VlkBabe_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_VlkBabe_M(C_Item)
@@ -301,7 +301,7 @@ instance ITAR_VlkBabe_M(C_Item)
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_VlkBabe_M;
 	wear = WEAR_TORSO;
@@ -316,8 +316,8 @@ instance ITAR_VlkBabe_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_VlkBabe_H(C_Item)
@@ -328,7 +328,7 @@ instance ITAR_VlkBabe_H(C_Item)
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 15;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_VlkBabe_H;
 	wear = WEAR_TORSO;
@@ -343,8 +343,8 @@ instance ITAR_VlkBabe_H(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_MIL_L(C_Item)
@@ -355,8 +355,8 @@ instance ITAR_MIL_L(C_Item)
 	protection[PROT_EDGE] = 40;
 	protection[PROT_BLUNT] = 40;
 	protection[PROT_POINT] = 40;
-	protection[PROT_FIRE] = 15;	//0;
-	protection[PROT_MAGIC] = 5;	//0;
+	protection[PROT_FIRE] = 0;	//15;
+	protection[PROT_MAGIC] = 5;
 	value = VALUE_ITAR_MIL_L;
 	wear = WEAR_TORSO;
 	visual = "ItAr_MIL_L.3DS";
@@ -422,7 +422,7 @@ instance ITAR_MIL_M(C_Item)
 	protection[PROT_EDGE] = 70;
 	protection[PROT_BLUNT] = 70;
 	protection[PROT_POINT] = 70;
-	protection[PROT_FIRE] = 20;	//10;
+	protection[PROT_FIRE] = 10;	//20;
 	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_MIL_M;
 	wear = WEAR_TORSO;
@@ -489,7 +489,7 @@ instance ITAR_PAL_M(C_Item)
 	protection[PROT_EDGE] = 100;
 	protection[PROT_BLUNT] = 100;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 25;	//50;
+	protection[PROT_FIRE] = 50;	//25;
 	protection[PROT_MAGIC] = 25;
 	value = VALUE_ITAR_PAL_M;
 	wear = WEAR_TORSO;
@@ -518,7 +518,7 @@ instance ITAR_PAL_H(C_Item)
 	protection[PROT_EDGE] = 150;
 	protection[PROT_BLUNT] = 150;
 	protection[PROT_POINT] = 150;
-	protection[PROT_FIRE] = 50;	//100;
+	protection[PROT_FIRE] = 100;	//50;
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_PAL_H;
 	wear = WEAR_TORSO;
@@ -547,7 +547,7 @@ instance ITAR_Bau_L(C_Item)
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Bau_L;
 	wear = WEAR_TORSO;
@@ -562,8 +562,8 @@ instance ITAR_Bau_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -576,7 +576,7 @@ instance ITAR_Bau_M(C_Item)
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 15;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Bau_M;
 	wear = WEAR_TORSO;
@@ -591,8 +591,8 @@ instance ITAR_Bau_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -605,7 +605,7 @@ instance ITAR_BauBabe_L(C_Item)
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 10;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_BauBabe_L;
 	wear = WEAR_TORSO;
@@ -620,8 +620,8 @@ instance ITAR_BauBabe_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_BauBabe_M(C_Item)
@@ -632,7 +632,7 @@ instance ITAR_BauBabe_M(C_Item)
 	protection[PROT_EDGE] = 15;
 	protection[PROT_BLUNT] = 15;
 	protection[PROT_POINT] = 15;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_BauBabe_M;
 	wear = WEAR_TORSO;
@@ -647,8 +647,8 @@ instance ITAR_BauBabe_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_SLD_L(C_Item)
@@ -659,7 +659,7 @@ instance ITAR_SLD_L(C_Item)
 	protection[PROT_EDGE] = 30;
 	protection[PROT_BLUNT] = 30;
 	protection[PROT_POINT] = 30;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_SLD_L;
 	wear = WEAR_TORSO;
@@ -676,8 +676,8 @@ instance ITAR_SLD_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -724,7 +724,7 @@ instance ITAR_SLD_M2(C_Item)
 	protection[PROT_EDGE] = 50;
 	protection[PROT_BLUNT] = 50;
 	protection[PROT_POINT] = 50;
-	protection[PROT_FIRE] = 20;	//0;
+	protection[PROT_FIRE] = 0;	//20;
 	protection[PROT_MAGIC] = 5;
 	value = VALUE_ITAR_SLD_M;
 	wear = WEAR_TORSO;
@@ -756,7 +756,7 @@ instance ITAR_SLD_M(C_Item)
 	protection[PROT_EDGE] = 50;
 	protection[PROT_BLUNT] = 50;
 	protection[PROT_POINT] = 50;
-	protection[PROT_FIRE] = 20;	//0;
+	protection[PROT_FIRE] = 0;	//20;
 	protection[PROT_MAGIC] = 5;
 	value = VALUE_ITAR_SLD_M;
 	wear = WEAR_TORSO;
@@ -821,7 +821,7 @@ instance ITAR_SLD_H(C_Item)
 	protection[PROT_EDGE] = 80;
 	protection[PROT_BLUNT] = 80;
 	protection[PROT_POINT] = 80;
-	protection[PROT_FIRE] = 20;	//5;
+	protection[PROT_FIRE] = 5;	//20;
 	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_SLD_H;
 	wear = WEAR_TORSO;
@@ -886,7 +886,7 @@ instance ITAR_SLD_S(C_Item)
 	protection[PROT_EDGE] = 65;
 	protection[PROT_BLUNT] = 65;
 	protection[PROT_POINT] = 65;
-	protection[PROT_FIRE] = 15;	//5;
+	protection[PROT_FIRE] = 5;	//15;
 	protection[PROT_MAGIC] = 5;
 	value = VALUE_ITAR_SLD_S;
 	wear = WEAR_TORSO;
@@ -935,8 +935,8 @@ instance ITAR_DJG_Crawler(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -983,7 +983,7 @@ instance ITAR_DJG_L(C_Item)
 	protection[PROT_EDGE] = 100;
 	protection[PROT_BLUNT] = 100;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 25;	//50;
+	protection[PROT_FIRE] = 50;	//25;
 	protection[PROT_MAGIC] = 25;
 	value = VALUE_ITAR_DJG_L;
 	wear = WEAR_TORSO;
@@ -1012,7 +1012,7 @@ instance ITAR_DJG_M(C_Item)
 	protection[PROT_EDGE] = 120;
 	protection[PROT_BLUNT] = 120;
 	protection[PROT_POINT] = 120;
-	protection[PROT_FIRE] = 35;	//75;
+	protection[PROT_FIRE] = 75;	//35;
 	protection[PROT_MAGIC] = 35;
 	value = VALUE_ITAR_DJG_M;
 	wear = WEAR_TORSO;
@@ -1041,7 +1041,7 @@ instance ITAR_DJG_H(C_Item)
 	protection[PROT_EDGE] = 150;
 	protection[PROT_BLUNT] = 150;
 	protection[PROT_POINT] = 150;
-	protection[PROT_FIRE] = 50;	//100;
+	protection[PROT_FIRE] = 100;	//50;
 	protection[PROT_MAGIC] = 50;
 	value = VALUE_ITAR_DJG_H;
 	wear = WEAR_TORSO;
@@ -1085,8 +1085,8 @@ instance ITAR_DJG_Babe(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 };
 
 instance ITAR_NOV_L(C_Item)
@@ -1097,7 +1097,7 @@ instance ITAR_NOV_L(C_Item)
 	protection[PROT_EDGE] = 25;
 	protection[PROT_BLUNT] = 25;
 	protection[PROT_POINT] = 25;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 10;
 	value = VALUE_ITAR_NOV_L;
 	wear = WEAR_TORSO;
@@ -1294,7 +1294,7 @@ instance ITAR_Leather_L(C_Item)
 	protection[PROT_EDGE] = 25;
 	protection[PROT_BLUNT] = 25;
 	protection[PROT_POINT] = 20;
-	protection[PROT_FIRE] = 15;	//5;
+	protection[PROT_FIRE] = 5;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Leather_L;
 	wear = WEAR_TORSO;
@@ -1311,8 +1311,8 @@ instance ITAR_Leather_L(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1359,7 +1359,7 @@ instance ITAR_BDT_M(C_Item)
 	protection[PROT_EDGE] = 35;
 	protection[PROT_BLUNT] = 35;
 	protection[PROT_POINT] = 35;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_BDT_M;
 	wear = WEAR_TORSO;
@@ -1375,8 +1375,8 @@ instance ITAR_BDT_M(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1389,7 +1389,7 @@ instance ITAR_BDT_H(C_Item)
 	protection[PROT_EDGE] = 50;
 	protection[PROT_BLUNT] = 50;
 	protection[PROT_POINT] = 50;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_BDT_H;
 	wear = WEAR_TORSO;
@@ -1405,8 +1405,8 @@ instance ITAR_BDT_H(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1448,7 +1448,7 @@ instance ITAR_Lester(C_Item)
 	protection[PROT_EDGE] = 25;
 	protection[PROT_BLUNT] = 25;
 	protection[PROT_POINT] = 25;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Lester;
 	wear = WEAR_TORSO;
@@ -1463,8 +1463,8 @@ instance ITAR_Lester(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1477,7 +1477,7 @@ instance ITAR_Diego(C_Item)
 	protection[PROT_EDGE] = 30;
 	protection[PROT_BLUNT] = 30;
 	protection[PROT_POINT] = 30;
-	protection[PROT_FIRE] = 15;	//0;
+	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Diego;
 	wear = WEAR_TORSO;
@@ -1492,8 +1492,8 @@ instance ITAR_Diego(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1506,7 +1506,7 @@ instance ITAR_CorAngar(C_Item)
 	protection[PROT_EDGE] = 100;
 	protection[PROT_BLUNT] = 100;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 25;	//50;
+	protection[PROT_FIRE] = 50;	//25;
 	protection[PROT_MAGIC] = 25;
 	value = VALUE_ITAR_CorAngar;
 	wear = WEAR_TORSO;
@@ -1593,7 +1593,7 @@ instance ITAR_Prisoner(C_Item)
 	protection[PROT_EDGE] = 20;
 	protection[PROT_BLUNT] = 20;
 	protection[PROT_POINT] = 5; //20
-	protection[PROT_FIRE] = 10;	//0;
+	protection[PROT_FIRE] = 0;	//10;
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Prisoner;
 	wear = WEAR_TORSO;
@@ -1608,8 +1608,8 @@ instance ITAR_Prisoner(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1651,7 +1651,7 @@ instance ITAR_Slave(C_Item)
 	protection[PROT_EDGE] = 20;
 	protection[PROT_BLUNT] = 20;
 	protection[PROT_POINT] = 5; //20
-	protection[PROT_FIRE] = 10;	//0;
+	protection[PROT_FIRE] = 0;	//10;
 	protection[PROT_MAGIC] = 0;
 	value = 5;
 	wear = WEAR_TORSO;
@@ -1666,8 +1666,8 @@ instance ITAR_Slave(C_Item)
 	count[2] = protection[PROT_POINT];
 	text[3] = NAME_Prot_Fire;
 	count[3] = protection[PROT_FIRE];
-//	text[4] = NAME_Prot_Magic;
-//	count[4] = protection[PROT_MAGIC];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -1730,7 +1730,7 @@ instance ITAR_DJGN_M(C_Item)
 	protection[PROT_EDGE] = 120 - 5;
 	protection[PROT_BLUNT] = 120 - 5;
 	protection[PROT_POINT] = 120 - 5;
-	protection[PROT_FIRE] = 35 - 5;	//75;
+	protection[PROT_FIRE] = 75 - 5;	//35;
 	protection[PROT_MAGIC] = 35 - 5;
 	value = VALUE_ITAR_DJG_M - 1000;
 	wear = WEAR_TORSO;
@@ -1759,7 +1759,7 @@ instance ITAR_DJGN_H(C_Item)
 	protection[PROT_EDGE] = 150 - 10;
 	protection[PROT_BLUNT] = 150 - 10;
 	protection[PROT_POINT] = 150 - 10;
-	protection[PROT_FIRE] = 50 - 10;	//100;
+	protection[PROT_FIRE] = 100 - 10;	//50;
 	protection[PROT_MAGIC] = 50 - 10;
 	value = VALUE_ITAR_DJG_H - 2000;
 	wear = WEAR_TORSO;
@@ -1788,7 +1788,7 @@ instance ITAR_PALN_M(C_Item)
 	protection[PROT_EDGE] = 100 - 5;
 	protection[PROT_BLUNT] = 100 - 5;
 	protection[PROT_POINT] = 100 - 5;
-	protection[PROT_FIRE] = 25 - 5;	//50;
+	protection[PROT_FIRE] = 50 - 5;	//25;
 	protection[PROT_MAGIC] = 25 - 5;
 	value = VALUE_ITAR_PAL_M - 1000;
 	wear = WEAR_TORSO;
@@ -1817,7 +1817,7 @@ instance ITAR_PALN_H(C_Item)
 	protection[PROT_EDGE] = 150 - 10;
 	protection[PROT_BLUNT] = 150 - 10;
 	protection[PROT_POINT] = 150 - 10;
-	protection[PROT_FIRE] = 50 - 10;	//100;
+	protection[PROT_FIRE] = 100 - 10;	//50;
 	protection[PROT_MAGIC] = 50 - 10;
 	value = VALUE_ITAR_PAL_H - 2000;
 	wear = WEAR_TORSO;

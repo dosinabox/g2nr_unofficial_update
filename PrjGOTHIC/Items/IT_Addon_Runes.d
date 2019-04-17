@@ -305,7 +305,7 @@ instance ItRu_Inflate(C_Item)
 	mainflag = ITEM_KAT_RUNE;
 	flags = 0;
 	value = 0;
-	visual = "ItRu_Beliar11.3DS";
+	visual = "ItRu_Inflate.3DS";
 	material = MAT_STONE;
 	spell = SPL_Inflate;
 	mag_circle = 3;

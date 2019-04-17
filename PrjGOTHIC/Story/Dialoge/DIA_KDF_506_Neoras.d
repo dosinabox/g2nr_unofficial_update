@@ -193,6 +193,12 @@ func void DIA_Neoras_TEACH_Info()
 	if((other.guild == GIL_KDF) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Neoras_TEACH_01_01");	//я могу обучить теб€ секретам алхимии.
+		if(Neoras_TeachAlchemy == FALSE)
+		{
+			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+			B_LogEntry(Topic_KlosterTeacher,"Ќеорас может обучить мен€ варить зель€.");
+			Neoras_TeachAlchemy = TRUE;
+		};
 		Info_ClearChoices(DIA_Neoras_TEACH);
 		Info_AddChoice(DIA_Neoras_TEACH,Dialog_Back,DIA_Neoras_TEACH_BACK);
 		if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)

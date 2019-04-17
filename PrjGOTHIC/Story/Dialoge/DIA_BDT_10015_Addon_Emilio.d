@@ -221,7 +221,7 @@ func void DIA_Addon_Emilio_Senyan_Info()
 	AI_Output(other,self,"DIA_Addon_BDT_10015_Emilio_Senyan_15_03");	//А что? Какие-то проблемы?
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Senyan_10_04");	//(быстро) Нет, приятель, у меня к тебе по этому поводу никаких претензий.
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Senyan_10_05");	//Даже наоборот. (фальшиво) Этот ублюдок работал на Эстебана.
-	Senyan_CONTRA = LOG_SUCCESS;
+//	Senyan_CONTRA = LOG_SUCCESS;
 	B_LogEntry(Topic_Addon_Esteban,"Эмилио не на стороне Эстебана.");
 };
 

@@ -132,7 +132,7 @@ func void DIA_Fajeth_Hallo_Tun()
 	MIS_Fajeth_Kill_Snapper = LOG_Running;
 	Log_CreateTopic(TOPIC_FajethKillSnapper,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_FajethKillSnapper,LOG_Running);
-	B_LogEntry(TOPIC_FajethKillSnapper,"Фаджет дал мне задание поохотиться на снепперов, которые бродят толпами вокруг замка.");
+	B_LogEntry(TOPIC_FajethKillSnapper,"Фаджет дал мне задание поохотиться на снепперов, которые бродят толпами вокруг шахты.");
 	Info_ClearChoices(DIA_Fajeth_Hallo);
 	PrintScreen("",-1,-1,FONT_Screen,0);
 };

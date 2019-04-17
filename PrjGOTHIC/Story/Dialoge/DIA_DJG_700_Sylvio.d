@@ -80,7 +80,16 @@ func int DIA_Sylvio_VERSAGER_Condition()
 func void DIA_Sylvio_VERSAGER_Info()
 {
 	AI_Output(other,self,"DIA_Sylvio_VERSAGER_15_00");	//А что, если я не исчезну?
-	AI_Output(self,other,"DIA_Sylvio_VERSAGER_09_01");	//Не строй из себя крутого, выскочка, иначе тебя ждет такой же конец, как вот тех неудачников, лежащих в снегу.
+	if(SylvioIceGolemsKilledBefore4Chapter == FALSE)
+	{
+		AI_Output(self,other,"DIA_Sylvio_VERSAGER_09_01");	//Не строй из себя крутого, выскочка, иначе тебя ждет такой же конец, как вот тех неудачников, лежащих в снегу.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Sylvio_WASISTPASSIERT_keinInteresse_09_02");	//Там, за этими утесами, находится ледяная долина. Ты такой никогда раньше не видел.
+		AI_Output(self,other,"DIA_Sylvio_WASISTPASSIERT_keinInteresse_09_03");	//Там скрывается ледяной дракон вместе со своей ордой.
+		AI_Output(self,other,"DIA_Sylvio_WASISTPASSIERT_09_02");	//Если ты такой крутой, может, ты попробуешь?
+	};
 };
 
 
@@ -96,7 +105,7 @@ instance DIA_Sylvio_DEINELEUTE(C_Info)
 
 func int DIA_Sylvio_DEINELEUTE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_DJG_Sylvio_KillIceGolem != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE) && (MIS_DJG_Sylvio_KillIceGolem != LOG_SUCCESS) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
 	{
 		return TRUE;
 	};
@@ -121,7 +130,7 @@ instance DIA_Sylvio_WASISTPASSIERT(C_Info)
 
 func int DIA_Sylvio_WASISTPASSIERT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE) && (SylvioIceGolemsKilledBefore4Chapter == FALSE))
 	{
 		return TRUE;
 	};
@@ -138,7 +147,7 @@ func void DIA_Sylvio_WASISTPASSIERT_Info()
 	Info_AddChoice(DIA_Sylvio_WASISTPASSIERT,"Почему ты не расправишься с ними сам?",DIA_Sylvio_WASISTPASSIERT_selbst);
 	Log_CreateTopic(TOPIC_SylvioKillIceGolem,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_SylvioKillIceGolem,LOG_Running);
-	B_LogEntry(TOPIC_SylvioKillIceGolem,"Сильвио испугался двух ледяных големов у входа в заснеженный район Долины Рудников.");
+	B_LogEntry(TOPIC_SylvioKillIceGolem,"Сильвио испугался ледяных големов у входа в заснеженный район Долины Рудников.");
 	MIS_DJG_Sylvio_KillIceGolem = LOG_Running;
 //	IceGolem_Sylvio1.flags = 0;
 //	IceGolem_Sylvio2.flags = 0;
@@ -253,9 +262,16 @@ instance DIA_Sylvio_WASJETZT(C_Info)
 
 func int DIA_Sylvio_WASJETZT_Condition()
 {
-	if((MIS_DJG_Sylvio_KillIceGolem == LOG_SUCCESS) && (IceDragon.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(IceDragon.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
-		return TRUE;
+		if(MIS_DJG_Sylvio_KillIceGolem == LOG_SUCCESS)
+		{
+			return TRUE;
+		}
+		else if((SylvioIceGolemsKilledBefore4Chapter == TRUE) && Npc_KnowsInfo(other,DIA_Sylvio_VERSAGER))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -264,7 +280,6 @@ func void DIA_Sylvio_WASJETZT_Info()
 	AI_Output(other,self,"DIA_Sylvio_WASJETZT_15_00");	//Что еще?
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_09_01");	//Ну. Мне что-то обстановка там не очень нравится.
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_09_02");	//Будет лучше всего, если ты пойдешь вперед, а я пойду за тобой.
-//	Info_AddChoice(DIA_Sylvio_WASJETZT,"Хорошо, пошли.",DIA_Sylvio_WASJETZT_ok);
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Я, пожалуй, пойду.",DIA_Sylvio_WASJETZT_ok);
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Ты боишься?",DIA_Sylvio_WASJETZT_trennen);
 	Info_AddChoice(DIA_Sylvio_WASJETZT,"Я не собираюсь делать всю грязную работу за тебя.",DIA_Sylvio_WASJETZT_nein);
@@ -282,7 +297,6 @@ func void DIA_Sylvio_WASJETZT_trennen()
 
 func void DIA_Sylvio_WASJETZT_ok()
 {
-//	AI_Output(other,self,"DIA_Sylvio_WASJETZT_ok_15_00");	//Хорошо, пошли.
 	AI_Output(other,self,"DIA_Attila_Hallo_Ende_15_00");	//Я, пожалуй, пойду.
 	AI_Output(self,other,"DIA_Sylvio_WASJETZT_ok_09_01");	//Давай, быстрее!
 	AI_StopProcessInfos(self);
@@ -388,7 +402,7 @@ func void DIA_SylvioDJG_WHATNEXT_Info()
 	AI_Output(self,other,"DIA_SylvioDJG_WHATNEXT_09_02");	//Это я получу всю славу за убийство ледяного дракона.
 	AI_Output(self,other,"DIA_SylvioDJG_WHATNEXT_09_03");	//А твоя маленькая роль в этом деле окончена!
 	TOPIC_END_SylvioKillIceGolem = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap4);
 	Info_ClearChoices(DIA_SylvioDJG_WHATNEXT);
 	Info_AddChoice(DIA_SylvioDJG_WHATNEXT,Dialog_Ende,DIA_SylvioDJG_WHATNEXT_ATTACK);
 };

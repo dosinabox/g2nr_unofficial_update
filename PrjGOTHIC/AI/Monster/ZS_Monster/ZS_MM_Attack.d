@@ -60,7 +60,7 @@ func int ZS_MM_Attack_Loop()
 			self.attribute[ATR_HITPOINTS] += 1;
 			self.aivar[AIV_TAPOSITION] = 0;
 		};
-//костыли для перехода из режима ближнего боя к магии: begin
+//костыли для перехода из режима ближнего боя к магии: начало
 		if(Npc_IsInFightMode(self,FMODE_FIST) && (Npc_GetDistToNpc(self,other) > FIGHT_DIST_DRAGON_MAGIC))
 		{
 			AI_RemoveWeapon(self);
@@ -73,7 +73,7 @@ func int ZS_MM_Attack_Loop()
 			AI_RemoveWeapon(self);
 		};
 	};
-//костыли для перехода из режима ближнего боя к магии: end
+//костыли для перехода из режима ближнего боя к магии: конец
 	if((RavenIsDead == TRUE) && (self.guild == GIL_Stoneguardian))
 	{
 		B_KillNpc(self);

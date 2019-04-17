@@ -16,7 +16,6 @@ func void B_GiveTradeInv_Engor(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_03,5);
 		CreateInvItems(slf,ItFo_Stew,5);
 		CreateInvItems(slf,ItFo_Water,4);
-//		CreateInvItems(slf,ItWr_Map_OldWorld,1);
 		CreateInvItems(slf,ItRi_Prot_Total_01,1);
 		CreateInvItems(slf,ItAm_Prot_Fire_01,1);
 		CreateInvItems(slf,ItSc_Firebolt,3);

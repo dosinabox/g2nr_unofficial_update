@@ -24,15 +24,17 @@ instance MENU_OPT_GRAPHICS(C_MENU_DEF)
 	items[19] = "MENUITEM_EXT_VIDS_CHOICE";
 	items[20] = "MENUITEM_WEAPONTRAILS";
 	items[21] = "MENUITEM_WEAPONTRAILS_CHOICE";
-	items[22] = "MENUITEM_GRA_BACK";
+	items[22] = "MENUITEM_SKYDOME";
+	items[23] = "MENUITEM_SKYDOME_CHOICE";
+	items[24] = "MENUITEM_GRA_BACK";
 	flags = flags | MENU_SHOW_INFO;
 };
 
 instance MENUITEM_GRA_SKY_EFFECTS(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Эффекты неба";
-	text[1] = "Погодные эффекты (дождь и гроза) вкл/откл";
+	text[0] = "Эффекты погоды";
+	text[1] = "Дождь, гроза и снег вкл/откл";
 	posx = 1000;
 	posy = MENU_START_Y - (MENU_SOUND_DY * 3);
 	dimx = 4000;
@@ -61,7 +63,7 @@ instance MENUITEM_GRA_ITEMS_EFFECTS(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Эфф. предметов";
-	text[1] = "Эффекты предметов (зелья и оружие) вкл/откл";
+	text[1] = "Эффекты вокруг предметов вкл/откл";
 	posx = 1000;
 	posy = MENU_START_Y - (MENU_SOUND_DY * 2);
 	dimx = 4000;
@@ -90,7 +92,7 @@ instance MENUITEM_EXT_FFT(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Волны на воде";
-	text[1] = "Волны на воде вкл/откл";
+	text[1] = "Движение воды на ветру вкл/откл";
 	posx = 1000;
 	posy = MENU_START_Y - (MENU_SOUND_DY * 1);
 	dimx = 4000;
@@ -118,8 +120,8 @@ instance MENUITEM_EXT_FFT_CHOICE(C_MENU_ITEM_DEF)
 instance MENUITEM_EXT_WATERFADE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Сглаживание воды";
-	text[1] = "Сглаживание воды вкл/откл";
+	text[0] = "Плавный горизонт";
+	text[1] = "Туман на горизонте вкл/откл";
 	posx = 1000;
 	posy = MENU_START_Y - (MENU_SOUND_DY * 0);
 	dimx = 4000;
@@ -235,7 +237,7 @@ instance MENUITEM_EXT_ENVMAP(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Отражения";
-	text[1] = "Отражения вкл/откл";
+	text[1] = "Отражения на стекле и металле вкл/откл";
 	posx = 1000;
 	posy = MENU_START_Y + (MENU_SOUND_DY * 4);
 	dimx = 4000;
@@ -264,7 +266,7 @@ instance MENUITEM_EXT_RADIALFOG(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
 	text[0] = "Радиальный туман";
-	text[1] = "Радиальный туман вкл/откл";
+	text[1] = "Туман высокого качества вкл/откл";
 	posx = 1000;
 	posy = MENU_START_Y + (MENU_SOUND_DY * 5);
 	dimx = 4000;
@@ -343,6 +345,35 @@ instance MENUITEM_WEAPONTRAILS_CHOICE(C_MENU_ITEM_DEF)
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zShowWeaponTrails";
 	onchgsetoptionsection = "GAME";
+	flags = flags & ~IT_SELECTABLE;
+	flags = flags | IT_TXT_CENTER;
+};
+
+instance MENUITEM_SKYDOME(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_ITEM_BACK_PIC;
+	text[0] = "Трехмерное небо";
+	text[1] = NEEDS_RESTART;
+	posx = 1000;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 8);
+	dimx = 4000;
+	dimy = 750;
+	onselaction[0] = SEL_ACTION_UNDEF;
+	flags = flags | IT_EFFECTS_NEXT;
+};
+
+instance MENUITEM_SKYDOME_CHOICE(C_MENU_ITEM_DEF)
+{
+	backpic = MENU_CHOICE_BACK_PIC;
+	type = MENU_ITEM_CHOICEBOX;
+	text[0] = "откл|вкл";
+	fontname = MENU_FONT_SMALL;
+	posx = MENU_BUTTONS;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 8) + MENU_CHOICE_YPLUS;
+	dimx = MENU_SLIDER_DX;
+	dimy = MENU_CHOICE_DY;
+	onchgsetoption = "zSkyDome";
+	onchgsetoptionsection = "SKY_OUTDOOR";
 	flags = flags & ~IT_SELECTABLE;
 	flags = flags | IT_TXT_CENTER;
 };

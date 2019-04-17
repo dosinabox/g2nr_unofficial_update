@@ -22,7 +22,42 @@ func void DIA_Addon_Lares_Patch_Info()
 	AI_Output(other,self,"DIA_Addon_Lares_OrnamentBringJob_15_00");	//Я могу отнести орнамент!
 	AI_Output(self,other,"DIA_Addon_Lares_OrnamentBringJob_09_02");	//Но сейчас я не могу уйти. Я должен наблюдать за гаванью.
 	AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_06");	//Но ты можешь мне помочь.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_01");	//Орнамент, который ты мне отдал, нужно отнести Сатурасу. Ты же помнишь Сатураса, не так ли?
+	Info_ClearChoices(DIA_Addon_Lares_Patch);
+	Info_AddChoice(DIA_Addon_Lares_Patch,"Конечно.",DIA_Addon_Lares_Patch_ja);
+	Info_AddChoice(DIA_Addon_Lares_Patch,"Сатурас? Кто это такой?",DIA_Addon_Lares_Patch_wer);
+};
+
+
+func void DIA_Addon_Lares_Patch_WhereTo()
+{
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_00");	//Мы, ребята из бывшего Нового Лагеря, сохранили хорошие отношения с магами Воды.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_01");	//Даже Ли готов защищать магов Воды от любой опасности, если только это будет в его силах.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_02");	//Чтобы поддерживать связь с магами, я практически постоянно нахожусь в городе, работая вместе с Ватрасом.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_00");	//Маги Воды полностью погружены в работу. Они уже несколько недель раскапывают какие-то руины на северо-востоке. Никто не знает, что они пытаются там найти.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_01");	//Все началось с землетрясений, таких, какие бывали в худшие дни Барьера.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_02");	//Из-под земли появились ужасные каменные создания, убивающие каждого, кто подходил к ним ближе, чем на тридцать метров.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_03");	//Маги Воды взяли ситуацию в свои руки и уничтожили монстров. А теперь они проводят раскопки, пытаясь найти объяснение этим странным событиям.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_04");	//Да, и еще одно. Не стоит бродить по округе с этим орнаментом. Сразу же отправляйся к Сатурасу.
 	B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
+	Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+	B_LogEntry(TOPIC_Addon_KDW,"Ларес рассказал мне о раскопках магов Воды. Маги занимаются расследованием необычных событий, происходящих в последнее время - странных землетрясений и появления из-под земли загадочных каменных существ.");
+	Info_ClearChoices(DIA_Addon_Lares_Patch);
+};
+
+func void DIA_Addon_Lares_Patch_wer()
+{
+	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_wer_15_00");	//Сатурас? Кто это такой?
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_01");	//Он был главным у магов Воды в Новом Лагере в Долине Рудников, когда Барьер еще не был разрушен.
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_wer_09_02");	//Мы с Ли тогда заключили с магами Воды союз.
+	DIA_Addon_Lares_Patch_WhereTo();
+};
+
+func void DIA_Addon_Lares_Patch_ja()
+{
+	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_ja_15_00");	//Конечно. Он был предводителем магов Воды в Новом Лагере.
+	DIA_Addon_Lares_Patch_WhereTo();
 };
 
 
@@ -219,6 +254,12 @@ func void DIA_Addon_Lares_Vatras_Info()
 		B_StartOtherRoutine(BAU_974_Bauer,"GregInTaverne");
 		GregLocation = Greg_Taverne;
 		B_StartOtherRoutine(Greg_NW,"Taverne");
+		if(GregWolfs == FALSE)
+		{
+			Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+			Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_05_B");
+			GregWolfs = TRUE;
+		};
 	};
 };
 
@@ -1502,6 +1543,7 @@ func void DIA_Lares_GUIDE_Info()
 		AI_Output(self,other,"DIA_Lares_Alternative_09_01");	//На твоем месте я бы пошел на ферму Онара и поговорил с Ли.
 		AI_Output(self,other,"DIA_Lares_Alternative_09_02");	//Я уверен, он найдет способ попасть в верхний квартал.
 	};
+	Knows_Taverne = TRUE;
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");

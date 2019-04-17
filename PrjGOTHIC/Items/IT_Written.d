@@ -192,7 +192,7 @@ instance ItWr_EinhandBuch(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 5000;
-	visual = "ItWr_EinhandBuch.3ds";
+	visual = "ItWr_Book_1H.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -245,7 +245,7 @@ instance ItWr_ZweihandBuch(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 5000;
-	visual = "ItWr_ZweihandBuch.3ds";
+	visual = "ItWr_Book_2H.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;

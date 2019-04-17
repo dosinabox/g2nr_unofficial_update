@@ -188,7 +188,10 @@ func void DIA_Rethon_ANGST_Info()
 	{
 		Info_AddChoice(DIA_Rethon_ANGST,Dialog_Back,DIA_Rethon_ANGST_weiter);
 		Info_AddChoice(DIA_Rethon_ANGST,"Похоже, ты не особенно-то любишь его.",DIA_Rethon_ANGST_sylviomoegen);
-		Info_AddChoice(DIA_Rethon_ANGST,"И где сейчас Сильвио?",DIA_Rethon_ANGST_woSylvio);
+		if(!Npc_KnowsInfo(other,DIA_SylvioDJG_HelloAgain) && !Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
+		{
+			Info_AddChoice(DIA_Rethon_ANGST,"И где сейчас Сильвио?",DIA_Rethon_ANGST_woSylvio);
+		};
 		Info_AddChoice(DIA_Rethon_ANGST,"Сильвио был здесь?",DIA_Rethon_ANGST_sylviohier);
 	};
 };

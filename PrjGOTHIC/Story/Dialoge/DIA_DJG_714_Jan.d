@@ -521,7 +521,7 @@ instance DIA_Jan_DJG_ARMOR_M(C_Info)
 	condition = DIA_Jan_DJG_ARMOR_M_Condition;
 	information = DIA_Jan_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "—редние доспехи охотника на драконов (120/120/35/35, 12000 золотых)";
+	description = "—редние доспехи охотника на драконов (120/120/75/35, 12000 золотых)";
 };
 
 
