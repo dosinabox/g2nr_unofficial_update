@@ -383,6 +383,7 @@ func void Use_Joint_Rezept_01()
 		{
 			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЕНОГО ПОСЛУШНИКА': 2 болотных травы и 1 луговой горец.");
+			EnteredBanditsCamp = TRUE;
 			Green_Extrem = TRUE;
 		};
 	};
