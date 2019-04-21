@@ -152,7 +152,8 @@ func void DIA_Gorn_DI_UndeadDragonDead_Info()
 		};
 		DIA_Gorn_DI_UndeadDragonDead_OneTime = TRUE;
 	};
-	if(Npc_KnowsInfo(other,DIA_Biff_DI_plunder))
+	AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_10");	//Здесь нам больше нечего делать. Скажи капитану, чтобы поднимал якорь.
+	if(Npc_KnowsInfo(other,DIA_Biff_DI_UNDEADDRGDEAD))
 	{
 		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_08");	//Кто-то должен сказать об этом Биффу, иначе он сгниет на этом острове.
 		if(!Npc_IsDead(Biff_DI))
@@ -160,7 +161,6 @@ func void DIA_Gorn_DI_UndeadDragonDead_Info()
 			AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_09");	//Он будет здесь вовремя.
 		};
 	};
-	AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_10");	//Здесь нам больше нечего делать. Скажи капитану, чтобы поднимал якорь.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 };

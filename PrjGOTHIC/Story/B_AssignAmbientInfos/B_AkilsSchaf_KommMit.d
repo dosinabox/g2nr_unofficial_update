@@ -34,7 +34,7 @@ instance DIA_AkilsSchaf_KommMit(C_Info)
 
 func int DIA_AkilsSchaf_KommMit_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (self.aivar[AIV_TAPOSITION] == ISINPOS) && !Npc_KnowsInfo(other,DIA_Akil_AkilsSchaf))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (self.aivar[AIV_TAPOSITION] == ISINPOS) && !Npc_KnowsInfo(other,DIA_Akil_AkilsSchaf) && (MIS_Akil_SchafDiebe != FALSE))
 	{
 		return TRUE;
 	};

@@ -1196,7 +1196,7 @@ func void DIA_Andre_JOIN_Info()
 		return;
 	};
 	AI_Output(self,other,"DIA_Andre_JOIN_08_16");	//“ы можешь вступить в наши р€ды, если хочешь. Ќо твое решение должно быть окончательным.
-	AI_Output(self,other,"DIA_Andre_JOIN_08_17");	//ѕосле того, как ты наденешь доспехи ополчени€, ты уже не сможешь просто так сн€ть их и выйти из наших р€дов.
+	AI_Output(self,other,"DIA_Andre_JOIN_08_17");	//ѕосле того, как ты наденешь доспех ополчени€, ты уже не сможешь просто так сн€ть его и выйти из наших р€дов.
 	AI_Output(self,other,"DIA_Andre_JOIN_08_18");	//“ы готов сражатьс€ вместе с нами за »нноса и корол€?
 	Info_ClearChoices(DIA_Andre_JOIN);
 	Info_AddChoice(DIA_Andre_JOIN,"я пока не уверен...",DIA_Andre_JOIN_No);

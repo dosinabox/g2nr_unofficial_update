@@ -99,6 +99,7 @@ func void DIA_Addon_Fortuno_Hi_Info()
 	{
 		Info_AddChoice(DIA_Addon_Fortuno_Hi,"Вот, возьми этот 'Зеленый послушник'.",DIA_Addon_Fortuno_Hi_GREEN);
 	};
+	EnteredBanditsCamp = TRUE;
 };
 
 func void DIA_Addon_Fortuno_Hi_BACK()

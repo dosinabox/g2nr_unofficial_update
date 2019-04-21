@@ -74,10 +74,6 @@ func int DIA_Xardas_Hello_Condition()
 
 func void DIA_Xardas_Hello_Info()
 {
-	if(Mob_HasItems("KVI_SECRET_DEV_CHEST",ItPl_Mushroom_01))
-	{
-		CreateInvItem(other,TestAmulet);
-	};
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_00");	//Наконец-то! (улыбается) Я и не думал, что нам с тобой доведется встретиться снова.
 	AI_Output(other,self,"DIA_Addon_Xardas_Hello_15_01");	//Я чувствую себя так, будто три недели пролежал под кучей камней.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_02");	//Так оно и было. Ты выжил только благодаря магии твоих доспехов.
@@ -99,6 +95,8 @@ func void DIA_Addon_Xardas_Hello_Man()
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_03");	//Таким образом они вовлекаются в дела, которые не могут понять и уж тем более не могут контролировать.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_04");	//Твердые в своей вере уже начали сражение с врагом.
 	/////
+	//AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_03");	//Именно это и произошло.
+	//AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_06");	//Приспешники Белиара оскверняют древнейшие алтари богов.
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_10");	//Ты должен стать их союзником! Это единственный способ остановить Белиара.
 	Addon_zuerst = TRUE;
 };
@@ -276,6 +274,14 @@ func void DIA_Addon_Xardas_PortalAgain_Info()
 };
 
 
+func void B_Xardas_ClawIsLost()
+{
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_14");	//Это оружие могло бы сослужить нам огромную службу!
+	AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_15");	//Я думаю, что я сделал правильный выбор.
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_16");	//(вздыхает) Пути богов неисповедимы...
+};
+
 instance DIA_Addon_Xardas_AddonSuccess(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -314,12 +320,38 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 		if(Saturas_KlaueInsMeer == TRUE)
 		{
 			AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_12");	//Я отдал его магам Воды, чтобы они утопили его в море...
+			XardasKnowsAboutDestroyedClaw = TRUE;
 		};
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_14");	//Это оружие могло бы сослужить нам огромную службу!
-		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_15");	//Я думаю, что я сделал правильный выбор.
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_16");	//(вздыхает) Пути богов неисповедимы...
+		B_Xardas_ClawIsLost();
 	};
+};
+
+
+instance DIA_Xardas_WhereIsClaw(C_Info)
+{
+	npc = NONE_100_Xardas;
+	nr = 77;
+	condition = DIA_Xardas_WhereIsClaw_Condition;
+	information = DIA_Xardas_WhereIsClaw_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Xardas_WhereIsClaw_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_AddonSuccess) && (XardasKnowsAboutDestroyedClaw == FALSE) && (Saturas_KlaueInsMeer == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Xardas_WhereIsClaw_Info()
+{
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_06");	//Коготь Белиара?! Где он сейчас? Он у тебя с собой?
+	AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_12");	//Я отдал его магам Воды, чтобы они утопили его в море...
+	XardasKnowsAboutDestroyedClaw = TRUE;
+	B_Xardas_ClawIsLost();
 };
 
 
@@ -518,10 +550,10 @@ func void DIA_Xardas_ABOUTLESTER_Info()
 	AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_00");	//Ты уже поговорил с Лестером?
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_01");	//Да, я просто засыпал его вопросами. Он многое смог рассказать мне, но он полностью вымотан.
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_02");	//Это почти чудо, что ему удалось выжить. Я отправил его в постель.
+	AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_03");	//Что он рассказал тебе?
+	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_04");	//Боюсь, что ничего хорошего. Он видел не только дракона, но еще и людей в черных плащах с капюшонами.
 	if(Kapitel < 3)
 	{
-		AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_03");	//Что он рассказал тебе?
-		AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_04");	//Боюсь, что ничего хорошего. Он видел не только дракона, но еще и людей в черных плащах с капюшонами.
 		AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_05");	//И?
 		AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_06");	//Если эти люди существуют, то их присутствие несет определенную угрозу.
 		AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_07");	//И мне это не нравится. Вот, возьми кольцо. Оно защитит тебя от магии.

@@ -9,7 +9,7 @@ func void ZS_CommentFakeGuild()
 	};
 	if(!C_BodyStateContains(other,BS_SIT))
 	{
-		B_TurnToNpc(other,self);
+//		B_TurnToNpc(other,self);
 		if(Npc_GetDistToNpc(other,self) < 80)
 		{
 			AI_Dodge(other);

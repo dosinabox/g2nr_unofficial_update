@@ -310,7 +310,7 @@ func void DIA_Garvell_MISSION_Info()
 
 func void B_GarvellGivePlayerXP()
 {
-	if(Kapitel == 1)
+	if(EnterOW_Kapitel2 == FALSE)
 	{
 		B_GivePlayerXP(100);
 	}
@@ -322,7 +322,7 @@ func void B_GarvellGivePlayerXP()
 	{
 		B_GivePlayerXP(50);
 	}
-	else
+	else if(Kapitel > 3)
 	{
 		B_GivePlayerXP(25);
 	};

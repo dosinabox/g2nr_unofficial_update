@@ -34,7 +34,7 @@ instance DIA_Cornelius_Hello(C_Info)
 
 func int DIA_Cornelius_Hello_Condition()
 {
-	if((RecueBennet_KnowsCornelius == FALSE) && Npc_IsInState(self,ZS_Talk))
+	if((RescueBennet_KnowsCornelius == FALSE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -60,7 +60,7 @@ instance DIA_Cornelius_SeeMurder(C_Info)
 
 func int DIA_Cornelius_SeeMurder_Condition()
 {
-	if(RecueBennet_KnowsCornelius == TRUE)
+	if(RescueBennet_KnowsCornelius == TRUE)
 	{
 		return TRUE;
 	};
@@ -338,8 +338,8 @@ instance DIA_Cornelius_PICKPOCKET(C_Info)
 
 func int DIA_Cornelius_PICKPOCKET_Condition()
 {
-//	if(C_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1) && (RecueBennet_KnowsCornelius == TRUE))
-	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis) && (RecueBennet_KnowsCornelius == TRUE))
+//	if(C_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1) && (RescueBennet_KnowsCornelius == TRUE))
+	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis) && (RescueBennet_KnowsCornelius == TRUE))
 	{
 //		return TRUE;
 		return C_StealItem(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis));

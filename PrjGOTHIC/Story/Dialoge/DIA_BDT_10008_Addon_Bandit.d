@@ -83,6 +83,7 @@ func void DIA_Addon_10008_Bandit_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_Hi_01_02");	//≈сли ты не хочешь создавать себе проблем, не св€зывайс€ со —киннером.
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_Hi_01_03");	//Ёто парень непредсказуем. ѕрошлый раз, когда один парень разбудил —киннера, тот его убил.
 	AI_Output(self,other,"DIA_Addon_10008_Bandit_Hi_01_04");	//ѕусть он спит, дл€ общего блага.
+	EnteredBanditsCamp = TRUE;
 };
 
 

@@ -89,9 +89,9 @@ func void DIA_Addon_Esteban_Hi_Info()
 	else
 	{
 		B_StartOtherRoutine(Carlos,"GUARD");
-
 	};
 	AI_Output(self,other,"DIA_Addon_Esteban_Hi_07_03");	//Просто чтобы сразу прояснить ситуацию - если ты затеешь то же со мной, я убью тебя.
+	EnteredBanditsCamp = TRUE;
 };
 
 

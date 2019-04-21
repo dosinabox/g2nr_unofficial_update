@@ -543,7 +543,7 @@ instance DIA_Lord_Hagen_Minental(C_Info)
 
 func int DIA_Lord_Hagen_Minental_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_Khorinis) && (KnowsPaladins_Ore == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_Khorinis))
 	{
 		return TRUE;
 	};
@@ -569,7 +569,7 @@ func void DIA_Lord_Hagen_Minental_Info()
 		};
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_04");	//ѕричиной всему - магическа€ руда. ќна может решить исход этой войны.
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_05");	//Ѕез достаточного количества оружи€ из магической руды у королевской армии нет ни единого шанса против элитных воинов орков.
-		if(other.guild != GIL_SLD)
+		if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 		{
 			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_06");	//ј шахты с магической рудой, наход€щиес€ на острове - последние, к которым у нас еще есть доступ.
 		};
@@ -1015,10 +1015,10 @@ func void DIA_Lord_Hagen_RescueBennet_WhySure()
 	AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_Witness_04_01");	// орнелиус, секретарь губернатора, видел, как произошло убийство.
 	AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_Witness_04_02");	//≈го описание подходит к Ѕеннету, в этом нет никаких сомнений. ѕо моему мнению, это достаточное доказательство.
 	AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_Witness_04_03");	//Ётот наемник будет повешен за измену.
-	if(RecueBennet_KnowsCornelius == FALSE)
+	if(RescueBennet_KnowsCornelius == FALSE)
 	{
 		B_LogEntry(TOPIC_RescueBennet," орнелиус, секретарь губернатора, €вл€етс€ свидетелем. ќн утверждает, что был свидетелем убийства.");
-		RecueBennet_KnowsCornelius = TRUE;
+		RescueBennet_KnowsCornelius = TRUE;
 	};
 	Cornelius.guild = GIL_NONE;
 };

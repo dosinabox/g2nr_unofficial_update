@@ -155,8 +155,8 @@ func void b_build_settings_diag()
 	
 instance StoryHelper_PatchSettings(C_Info)
 {
-//	npc = sh;
-	npc = NONE_100_Xardas;
+	npc = sh;
+//	npc = NONE_100_Xardas;
 	nr = 995;
 	condition = StoryHelper_PatchSettings_Condition;
 	information = StoryHelper_PatchSettings_Info;

@@ -40,6 +40,7 @@ func int DIA_Addon_10019_Wache_Hi_Condition()
 func void DIA_Addon_10019_Wache_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_BDT_10019_Wache_Hi_06_00");	//Направляешься в шахту?
+	EnteredBanditsCamp = TRUE;
 	Info_ClearChoices(DIA_Addon_BDT_10019_Wache_Hi);
 	Info_AddChoice(DIA_Addon_BDT_10019_Wache_Hi,"Вообще-то я хотел увидеть Ворона.",DIA_Addon_BDT_10019_Wache_Hi_Raven);
 	Info_AddChoice(DIA_Addon_BDT_10019_Wache_Hi,"Да.",DIA_Addon_BDT_10019_Wache_Hi_Ja);

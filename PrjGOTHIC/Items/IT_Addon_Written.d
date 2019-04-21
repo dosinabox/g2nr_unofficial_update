@@ -40,6 +40,7 @@ func void Use_Hinweis_02()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Снаф");
 	Doc_Show(nDocID);
+	EnteredBanditsCamp = TRUE;
 };
 
 
@@ -284,13 +285,13 @@ func void Use_MCELIXIER_01()
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_MCELIXIER == FALSE))
+		if(Knows_MCELIXIER == FALSE)
 		{
-			//Knows_MCELIXIER = TRUE;
+			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для эликсира изменения сознания: 2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция и 1 красный жгучий перец.");
+			Knows_MCELIXIER = TRUE;
 		};
 	};
-	Knows_MCELIXIER = TRUE;
 };
 
 
@@ -378,13 +379,13 @@ func void Use_Joint_Rezept_01()
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Green_Extrem == FALSE))
+		if(Green_Extrem == FALSE)
 		{
-			//Green_Extrem = TRUE;
+			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЕНОГО ПОСЛУШНИКА': 2 болотных травы и 1 луговой горец.");
+			Green_Extrem = TRUE;
 		};
 	};
-	Green_Extrem = TRUE;
 };
 
 

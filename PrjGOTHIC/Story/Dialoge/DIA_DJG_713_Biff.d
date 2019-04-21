@@ -4,7 +4,7 @@ func void B_KommMit()
 	AI_Output(other,self,"DIA_AkilsSchaf_KommMit_15_00");	//»ди за мной!
 };
 
-func void b_biff_verarschen()
+func void B_Biff_Verarschen()
 {
 	AI_Output(self,other,"DIA_Biff_ARBEITEN_lebenlassen_07_01");	//я не хочу, чтобы ты делал из мен€ дурака.
 };
@@ -237,7 +237,7 @@ func void DIA_Biff_ARBEITEN_100()
 	}
 	else
 	{
-		b_biff_verarschen();
+		B_Biff_Verarschen();
 		AI_StopProcessInfos(self);
 		DJG_BiffParty_nomore += 1;
 	};
@@ -268,7 +268,7 @@ func void DIA_Biff_ARBEITEN_HalbeHalbe()
 func void DIA_Biff_ARBEITEN_lebenlassen()
 {
 	AI_Output(other,self,"DIA_Biff_ARBEITEN_lebenlassen_15_00");	//—читай, что тебе повезло, если € оставлю теб€ в живых.
-	b_biff_verarschen();
+	B_Biff_Verarschen();
 	AI_StopProcessInfos(self);
 	DJG_BiffParty_nomore += 1;
 };

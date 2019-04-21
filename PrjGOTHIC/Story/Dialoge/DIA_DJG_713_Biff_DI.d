@@ -145,13 +145,14 @@ instance DIA_Biff_DI_plunder(C_Info)
 	nr = 5;
 	condition = DIA_Biff_DI_plunder_Condition;
 	information = DIA_Biff_DI_plunder_Info;
+	permanent = TRUE;
 	important = TRUE;
 };
 
 
 func int DIA_Biff_DI_plunder_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Biff_DI_plunder) && Npc_IsDead(UndeadDragon))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Biff_DI_UNDEADDRGDEAD))
 	{
 		return TRUE;
 	};
