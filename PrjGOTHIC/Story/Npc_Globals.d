@@ -321,6 +321,7 @@ var C_Npc Jora;
 var C_Npc Tandor;
 var C_Npc Khaled;
 var C_Npc Meldor;
+var C_Npc Daron;
 
 func void B_InitNpcGlobals()
 {
@@ -650,5 +651,6 @@ func void B_InitNpcGlobals()
 	Tandor = Hlp_GetNpc(PAL_260_Tandor);
 	Khaled = Hlp_GetNpc(SLD_823_Khaled);
 	Meldor = Hlp_GetNpc(VLK_415_Meldor);
+	Daron = Hlp_GetNpc(KDF_511_Daron);
 };
 

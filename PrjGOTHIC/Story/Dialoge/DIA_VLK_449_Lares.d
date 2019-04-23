@@ -1254,7 +1254,7 @@ func void DIA_Lares_WhereGuildOfThieves_Info()
 	AI_Output(self,other,"DIA_Lares_WhereGuildOfThieves_09_01");	//(смеется) Не обижайся, но даже если бы знал, не сказал бы.
 	AI_Output(self,other,"DIA_Lares_WhereGuildOfThieves_09_02");	//Эти люди обычно ОЧЕНЬ жестко реагируют на такие вещи.
 	AI_Output(self,other,"DIA_Lares_WhereGuildOfThieves_09_03");	//Если ты собираешься связаться с ними, тебе нужно быть поосторожнее.
-	if((other.guild == GIL_NONE) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Lares_WegZumHof_09_02");	//Ополчение в гавани бывает редко, но все же не стоит рисковать и вызывать их подозрения...
 	};

@@ -451,6 +451,10 @@ func void DIA_Hanna_AusKeller_Info()
 		AI_Output(self,other,"DIA_Hanna_Add_17_23");	//Даже и не думай украсть что-нибудь здесь, понял?
 		AI_Output(self,other,"DIA_Hanna_Add_17_24");	//Мы не можем себе позволить привлекать внимание к отелю.
 	};
+	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
+	{
+		Hanna_ThievesIsDead_Day = Wld_GetDay();
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -539,6 +543,10 @@ func void DIA_Hanna_Blubb_Info()
 	AI_Output(self,other,"DIA_Hanna_Add_17_39");	//Я давно уже не видела их.
 	AI_Output(self,other,"DIA_Hanna_Add_17_40");	//Я, пожалуй, схожу туда, когда у меня будет время и проверю, как у них дела.
 	AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
+	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
+	{
+		Hanna_ThievesIsDead_Day = Wld_GetDay();
+	};
 };
 
 instance DIA_Hanna_Blubb2(C_Info)
@@ -563,6 +571,10 @@ func void DIA_Hanna_Blubb2_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_25");	//Ты знала о логове воров?
 	AI_Output(self,other,"DIA_Hanna_Add_17_26");	//(глупо улыбается) Я не понимаю, о чем ты говоришь...
+	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
+	{
+		Hanna_ThievesIsDead_Day = Wld_GetDay();
+	};
 };
 
 instance DIA_Hanna_Blubb3(C_Info)
@@ -577,6 +589,10 @@ instance DIA_Hanna_Blubb3(C_Info)
 func int DIA_Hanna_Blubb3_Condition()
 {
 	if(Andre_Diebesgilde_aufgeraeumt == TRUE)
+	{
+		return TRUE;
+	};
+	if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
 	{
 		return TRUE;
 	};

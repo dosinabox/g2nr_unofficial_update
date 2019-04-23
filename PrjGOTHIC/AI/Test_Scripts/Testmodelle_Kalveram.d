@@ -9,7 +9,6 @@ instance Itemhoshi(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Bau_Mace);
 	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
 	CreateInvItems(self,ItMw_1H_Mace_L_01,1);
 	CreateInvItems(self,ItMw_1h_Bau_Axe,1);
@@ -136,7 +135,6 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_Addon_BanditTrader,1);
 	CreateInvItems(self,ItMw_Addon_Betty,1);
 	CreateInvItem(self,ITAR_Governor);
-	CreateInvItem(self,ITAR_Larius);
 	CreateInvItem(self,ITAR_Smith);
 	CreateInvItem(self,ITAR_Barkeeper);
 	CreateInvItem(self,ITAR_Judge);
@@ -177,20 +175,22 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_Dementor);
 	CreateInvItem(self,ITAR_Dementor_Boss);
 	CreateInvItem(self,ITAR_Prisoner);
+	CreateInvItem(self,ITAR_Larius);
 	CreateInvItem(self,ITAR_Slave);
 	CreateInvItem(self,ITAR_Beggar);
-	CreateInvItems(self,ITAR_PIR_L_Addon,1);
-	CreateInvItems(self,ITAR_PIR_M_Addon,1);
-	CreateInvItems(self,ITAR_PIR_H_Addon,1);
-	CreateInvItems(self,ITAR_Thorus_Addon,1);
-	CreateInvItems(self,ITAR_Raven_Addon,1);
-	CreateInvItems(self,ITAR_OreBaron_Addon,1);
-	CreateInvItems(self,ITAR_RANGER_Addon,1);
-	CreateInvItems(self,ITAR_Fake_RANGER,1);
-	CreateInvItems(self,ITAR_KDW_L_Addon,1);
-	CreateInvItems(self,ITAR_Bloodwyn_Addon,1);
-	CreateInvItems(self,ITAR_MayaZombie_Addon,1);
-	CreateInvItems(self,ItAr_FireArmor_Addon,1);
+	CreateInvItem(self,ITAR_Onar);
+	CreateInvItem(self,ITAR_PIR_L_Addon);
+	CreateInvItem(self,ITAR_PIR_M_Addon);
+	CreateInvItem(self,ITAR_PIR_H_Addon);
+	CreateInvItem(self,ITAR_Thorus_Addon);
+	CreateInvItem(self,ITAR_Raven_Addon);
+	CreateInvItem(self,ITAR_OreBaron_Addon);
+	CreateInvItem(self,ITAR_RANGER_Addon);
+	CreateInvItem(self,ITAR_Fake_RANGER);
+	CreateInvItem(self,ITAR_KDW_L_Addon);
+	CreateInvItem(self,ITAR_Bloodwyn_Addon);
+	CreateInvItem(self,ITAR_MayaZombie_Addon);
+	CreateInvItem(self,ITAR_FireArmor_Addon);
 	CreateInvItems(self,ItRu_PalLight,1);
 	CreateInvItems(self,ItRu_PalLightHeal,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
@@ -370,7 +370,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ITWr_Addon_Lou_Rezept,1);
 	CreateInvItems(self,ITWr_Addon_Lou_Rezept2,1);
 	CreateInvItems(self,ITWr_Addon_Piratentod,1);
-	CreateInvItems(self,Fakescroll_Addon,1);
+//	CreateInvItems(self,Fakescroll_Addon,1);
 	CreateInvItems(self,ItWr_Addon_AxtAnleitung,1);
 	CreateInvItems(self,ItWr_Addon_SUMMONANCIENTGHOST,1);
 	CreateInvItems(self,ItWr_Map_AddonWorld,1);
@@ -685,7 +685,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Passierschein,1);
 	CreateInvItems(self,ItMi_HerbPaket,1);
 	CreateInvItems(self,ItKe_Storage,1);
-	CreateInvItems(self,ItFo_SmellyFish,1);
+	CreateInvItems(self,ItFo_SmellyFish,10);
 	CreateInvItems(self,ItFo_HalvorFish_MIS,1);
 	CreateInvItems(self,ItWr_HalvorMessage,1);
 	CreateInvItems(self,ItMw_AlriksSword_Mis,1);
@@ -699,7 +699,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItKe_KlosterStore,1);
 	CreateInvItems(self,ItKe_KDFPlayer,1);
 	CreateInvItems(self,ItKe_KlosterBibliothek,1);
-	CreateInvItems(self,ItFo_Schafswurst,1);
+	CreateInvItems(self,ItFo_Schafswurst,10);
 	CreateInvItems(self,ItPo_Perm_LittleMana,1);
 	CreateInvItems(self,Holy_Hammer_MIS,1);
 	CreateInvItems(self,ItKe_MagicChest,1);
@@ -1263,9 +1263,11 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_RANGER_Addon);
 	CreateInvItem(self,ITAR_KDW_L_Addon);
 	CreateInvItem(self,ITAR_Bloodwyn_Addon);
-	CreateInvItem(self,ITAR_Slave);
 	CreateInvItem(self,ITAR_Dementor_Boss);
 	CreateInvItem(self,ITAR_Larius);
+	CreateInvItem(self,ITAR_Slave);
+	CreateInvItem(self,ITAR_Beggar);
+	CreateInvItem(self,ITAR_Onar);
 };
 
 

@@ -323,7 +323,7 @@ instance ITAR_MayaZombie_Addon(C_Item)
 //	count[5] = value;
 };
 
-instance ItAr_FireArmor_Addon(C_Item)
+instance ITAR_FireArmor_Addon(C_Item)
 {
 	name = "Магические доспехи";
 	mainflag = ITEM_KAT_ARMOR;

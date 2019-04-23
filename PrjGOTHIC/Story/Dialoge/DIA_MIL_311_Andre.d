@@ -1018,6 +1018,14 @@ func void DIA_Andre_Auslieferung_Fernando()
 };
 
 
+func void B_AndreAskAboutSewer()
+{
+	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_01");	//Где?
+	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_02");	//В канализации под городом.
+	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_03");	//Что? Мы запечатали канализацию...
+	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_04");	//Похоже, это не помешало им проникнуть туда.
+};
+
 instance DIA_Andre_DGRunning(C_Info)
 {
 	npc = MIL_311_Andre;
@@ -1040,25 +1048,32 @@ func int DIA_Andre_DGRunning_Condition()
 func void DIA_Andre_DGRunning_Info()
 {
 	AI_Output(other,self,"DIA_Andre_DGRunning_15_00");	//Насчет гильдии воров...
-	if(Andre_Diebesgilde_aufgeraeumt == TRUE)
+	if((Andre_Diebesgilde_aufgeraeumt == TRUE) || (Andre_FoundThieves_Day <= (Wld_GetDay() - 2)))
 	{
-		AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
-		AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
-		MIS_Andre_GuildOfThieves = LOG_OBSOLETE;
-		if(MIS_CassiaRing == LOG_Running)
+		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
 		{
-			MIS_CassiaRing = LOG_OBSOLETE;
+			AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
+			AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
+			MIS_Andre_GuildOfThieves = LOG_OBSOLETE;
+			Andre_Diebesgilde_aufgeraeumt = TRUE;
+			B_KillNpc(VLK_447_Cassia);
+			B_KillNpc(VLK_446_Jesper);
+			B_KillNpc(VLK_445_Ramirez);
+			if(MIS_CassiaRing == LOG_Running)
+			{
+				MIS_CassiaRing = LOG_FAILED;
+			};
+			if(MIS_CassiaKelche == LOG_Running)
+			{
+				MIS_CassiaKelche = LOG_FAILED;
+			};
+			if(MIS_RamirezSextant == LOG_Running)
+			{
+				MIS_RamirezSextant = LOG_FAILED;
+			};
+			B_CheckLog();
+			return;
 		};
-		if(MIS_CassiaKelche == LOG_Running)
-		{
-			MIS_CassiaKelche = LOG_OBSOLETE;
-		};
-		if(MIS_RamirezSextant == LOG_Running)
-		{
-			MIS_RamirezSextant = LOG_OBSOLETE;
-		};
-		B_CheckLog();
-		return;
 	};
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_03");	//Да?
 	Info_ClearChoices(DIA_Andre_DGRunning);
@@ -1090,11 +1105,9 @@ func void DIA_Andre_DGRunning_BACK()
 func void DIA_Andre_DGRunning_Verrat()
 {
 	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_00");	//Я нашел логово гильдии воров!
-	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_01");	//Где?
-	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_02");	//В канализации под городом.
-	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_03");	//Что? Мы запечатали канализацию...
-	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_04");	//Похоже, это не помешало им проникнуть туда.
+	B_AndreAskAboutSewer();
 	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_05");	//Ты ликвидировал этих преступников?
+	Andre_FoundThieves_Day = Wld_GetDay();
 	Diebesgilde_Verraten = TRUE;
 	DG_gefunden = TRUE;
 };
@@ -1102,22 +1115,26 @@ func void DIA_Andre_DGRunning_Verrat()
 func void DIA_Andre_DGRunning_Success()
 {
 	AI_Output(other,self,"DIA_Andre_DGRunning_Success_15_00");	//Я всех их ликвидировал!
+	if(Diebesgilde_Verraten == FALSE)
+	{
+		B_AndreAskAboutSewer();
+	};
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
 	DG_gefunden = TRUE;
 	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
-	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(MIS_CassiaRing == LOG_Running)
 	{
-		MIS_CassiaRing = LOG_OBSOLETE;
+		MIS_CassiaRing = LOG_FAILED;
 	};
 	if(MIS_CassiaKelche == LOG_Running)
 	{
-		MIS_CassiaKelche = LOG_OBSOLETE;
+		MIS_CassiaKelche = LOG_FAILED;
 	};
 	if(MIS_RamirezSextant == LOG_Running)
 	{
-		MIS_RamirezSextant = LOG_OBSOLETE;
+		MIS_RamirezSextant = LOG_FAILED;
 	};
+	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_02");	//Если ты все еще хочешь вступить в ополчение, дай мне знать.

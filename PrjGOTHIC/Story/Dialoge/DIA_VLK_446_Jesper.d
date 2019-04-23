@@ -284,6 +284,7 @@ func void DIA_Jesper_Killer_Info()
 		AI_Output(self,other,"DIA_Jesper_Killer_09_03");	//я давно работаю с –амирезом и добыл дл€ него больше золота, чем ты можешь себе представить.
 		AI_Output(self,other,"DIA_Jesper_Killer_09_04");	//ј ты вз€л и убил его, гр€зный пес! Ќо сейчас пришло врем€ расплаты!
 	};
+	DG_gefunden = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -367,9 +368,28 @@ instance DIA_Jesper_Truhe(C_Info)
 
 func int DIA_Jesper_Truhe_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Jesper_Tuer) && ((Mob_HasItems("MOB_FINGERS",ItMi_Gold) < 300) || (Mob_HasItems("MOB_FINGERS",ItMi_SilverCup) < 5) || !Mob_HasItems("MOB_FINGERS",ItMi_GoldCup) || !Mob_HasItems("MOB_FINGERS",ItAm_Strg_01) || !Mob_HasItems("MOB_FINGERS",ItPo_Perm_DEX)))
+	if(Npc_KnowsInfo(other,DIA_Jesper_Tuer))
 	{
-		return TRUE;
+		if(Mob_HasItems("MOB_FINGERS",ItMi_Gold) < 300)
+		{
+			return TRUE;
+		};
+		if(Mob_HasItems("MOB_FINGERS",ItMi_SilverCup) < 5)
+		{
+			return TRUE;
+		};
+		if(!Mob_HasItems("MOB_FINGERS",ItMi_GoldCup))
+		{
+			return TRUE;
+		};
+		if(!Mob_HasItems("MOB_FINGERS",ItAm_Strg_01))
+		{
+			return TRUE;
+		};
+		if(!Mob_HasItems("MOB_FINGERS",ItPo_Perm_DEX))
+		{
+			return TRUE;
+		};
 	};
 };
 

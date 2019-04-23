@@ -1173,3 +1173,5 @@ var int SylvioIceGolemsKilledBefore4Chapter;
 var int Knows_Taverne;
 var int EnteredBanditsCamp;
 var int XardasKnowsAboutDestroyedClaw;
+var int Andre_FoundThieves_Day;
+var int Hanna_ThievesIsDead_Day;

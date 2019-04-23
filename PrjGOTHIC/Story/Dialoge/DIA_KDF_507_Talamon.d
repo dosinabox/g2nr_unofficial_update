@@ -12,10 +12,7 @@ instance DIA_Talamon_KAP1_EXIT(C_Info)
 
 func int DIA_Talamon_KAP1_EXIT_Condition()
 {
-	if(Kapitel == 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Talamon_KAP1_EXIT_Info()
@@ -110,81 +107,6 @@ func void DIA_KDF_507_Talamon_Attack_Info()
 };
 
 
-instance DIA_Talamon_KAP2_EXIT(C_Info)
-{
-	npc = KDF_507_Talamon;
-	nr = 999;
-	condition = DIA_Talamon_KAP2_EXIT_Condition;
-	information = DIA_Talamon_KAP2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Talamon_KAP2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Talamon_KAP2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Talamon_KAP3_EXIT(C_Info)
-{
-	npc = KDF_507_Talamon;
-	nr = 999;
-	condition = DIA_Talamon_KAP3_EXIT_Condition;
-	information = DIA_Talamon_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Talamon_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Talamon_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Talamon_KAP4_EXIT(C_Info)
-{
-	npc = KDF_507_Talamon;
-	nr = 999;
-	condition = DIA_Talamon_KAP4_EXIT_Condition;
-	information = DIA_Talamon_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Talamon_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Talamon_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Talamon_KAP5_Stop(C_Info)
 {
 	npc = KDF_507_Talamon;
@@ -211,6 +133,7 @@ func void DIA_Talamon_KAP5_Stop_Info()
 	AI_Output(self,other,"DIA_Talamon_KAP5_Stop_04_02");	//Ну, если он это сказал... Хорошо, ты можешь войти. Книга, которую ты ищешь, находится вон там, на алхимическом столе.
 	self.aivar[AIV_PASSGATE] = TRUE;
 	self.aivar[AIV_NewsOverride] = FALSE;
+	self.flags = 0;
 	Npc_ExchangeRoutine(self,"PassGranted");
 	B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Таламон держал книгу Ксардаса на алхимическом столе в подвале.");
 };
@@ -284,31 +207,6 @@ func void DIA_Talamon_ScoutSecretLibrary_Info()
 		AI_Output(other,self,"DIA_Talamon_ScoutSecretLibrary_15_05");	//Там, внизу, толпы монстров.
 		AI_Output(self,other,"DIA_Talamon_ScoutSecretLibrary_04_06");	//Там должно что-то быть, продолжай искать. И уничтожай этих монстров безо всякой жалости.
 	};
-};
-
-
-instance DIA_Talamon_KAP5_EXIT(C_Info)
-{
-	npc = KDF_507_Talamon;
-	nr = 999;
-	condition = DIA_Talamon_KAP5_EXIT_Condition;
-	information = DIA_Talamon_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Talamon_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Talamon_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

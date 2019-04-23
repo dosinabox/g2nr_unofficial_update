@@ -98,6 +98,35 @@ instance ITAR_Larius(C_Item)
 	count[5] = value;
 };
 
+instance ITAR_Onar(C_Item)
+{
+	name = "Одежда лендлорда";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 15;
+	protection[PROT_BLUNT] = 15;
+	protection[PROT_POINT] = 15;
+	protection[PROT_FIRE] = 0;	//15;
+	protection[PROT_MAGIC] = 0;
+	value = VALUE_ITAR_Vlk_H;
+	wear = WEAR_TORSO;
+	visual = "ItAr_VLK_H.3DS";
+	visual_change = "Armor_Onar.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ITAR_Judge(C_Item)
 {
 	name = "Мантия судьи";

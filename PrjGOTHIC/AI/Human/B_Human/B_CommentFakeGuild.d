@@ -38,6 +38,10 @@ func void ZS_CommentFakeGuild()
 			B_Say(self,other,"$ADDON_NOARMOR_BDT");
 		};
 	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Daron)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ulf)))
+	{
+		B_Say(self,other,"$ADDON_WRONGARMOR_KDF");
+	}
 	else
 	{
 		B_Say(self,other,"$ADDON_WRONGARMOR");

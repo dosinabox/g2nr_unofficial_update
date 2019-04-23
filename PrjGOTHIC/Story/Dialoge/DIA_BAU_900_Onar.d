@@ -69,6 +69,7 @@ func void DIA_Onar_PERM_Info()
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_01");	//Я не понимаю, какое тебе до этого может быть дело. Ты не работаешь здесь!
+		AI_StopProcessInfos(self);
 	};
 	if(other.guild == GIL_SLD)
 	{
@@ -82,10 +83,12 @@ func void DIA_Onar_PERM_Info()
 	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_05");	//Вам, лицемерным ублюдкам из монастыря, сюда вход закрыт!
+		AI_StopProcessInfos(self);
 	};
 	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_06");	//Наше гостеприимство не распространяется на войска короля.
+		AI_StopProcessInfos(self);
 	};
 };
 
@@ -115,6 +118,7 @@ func void DIA_Onar_Work_Info()
 	AI_Output(self,other,"DIA_Onar_Work_14_01");	//Мне сейчас не нужны рабочие.
 	AI_Output(self,other,"DIA_Onar_Work_14_02");	//Мои люди прекрасно со всем справляются.
 	AI_Output(self,other,"DIA_Onar_Work_14_03");	//Тебе нечего делать в моем доме, убирайся!
+	AI_StopProcessInfos(self);
 };
 
 
@@ -143,6 +147,7 @@ func void DIA_Onar_WorkAsSld_Info()
 	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_01");	//Ты? Наемника? Не смеши меня! Если бы из тебя мог получиться хороший наемник, Ли наверняка бы рассказал мне о тебе.
 	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_02");	//А теперь убирайся отсюда, и поживее!
 	Onar_WegenSldWerden = TRUE;
+	AI_StopProcessInfos(self);
 };
 
 

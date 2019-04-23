@@ -1,6 +1,6 @@
 
 const int Value_BCKopf = 50;
-const int Value_Meatbugflesh = 6;
+const int Value_Meatbugflesh = 5;
 const int Value_SheepFur = 10;
 const int Value_WolfFur = 10;
 const int Value_BugMandibles = 15;

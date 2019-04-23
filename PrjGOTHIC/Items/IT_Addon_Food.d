@@ -18,7 +18,7 @@ instance ItFo_Addon_Shellflesh(C_Item)
 	name = "Мясо моллюска";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Meatbugflesh;
+	value = Value_Meatbugflesh * 2;
 	visual = "ItAt_Shellflesh.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOODHUGE";
@@ -174,7 +174,7 @@ instance ItFo_Addon_SchnellerHering(C_Item)
 //	text[1] = "Выглядит подозрительно!";
 //	text[2] = "Эффект неизвестен.";
 //	text[3] = "Возможны побочные эффекты.";
-	text[0] = "Временно повышает скорость.";
+	text[0] = PRINT_Speed;
 	text[1] = NAME_Duration;
 	count[1] = Time_SchnellerHering / 60000;
 	text[5] = NAME_Value;
