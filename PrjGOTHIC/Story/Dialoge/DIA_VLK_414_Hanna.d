@@ -37,7 +37,7 @@ instance DIA_Hanna_Hello(C_Info)
 
 func int DIA_Hanna_Hello_Condition()
 {
-	if(Andre_Diebesgilde_aufgeraeumt == FALSE)
+	if(Andre_FoundThieves_KilledByMilitia == FALSE)
 	{
 		return TRUE;
 	};
@@ -62,7 +62,7 @@ instance DIA_Hanna_Room(C_Info)
 
 func int DIA_Hanna_Room_Condition()
 {
-	if(Andre_Diebesgilde_aufgeraeumt == FALSE)
+	if(Andre_FoundThieves_KilledByMilitia == FALSE)
 	{
 		return TRUE;
 	};
@@ -102,7 +102,7 @@ instance DIA_Hanna_WhyPay(C_Info)
 
 func int DIA_Hanna_WhyPay_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_Room) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hanna_Room) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -133,7 +133,7 @@ instance DIA_Hanna_WerHier(C_Info)
 
 func int DIA_Hanna_WerHier_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_Room) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hanna_Room) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -161,7 +161,7 @@ instance DIA_Hanna_City(C_Info)
 
 func int DIA_Hanna_City_Condition()
 {
-	if(Andre_Diebesgilde_aufgeraeumt == FALSE)
+	if(Andre_FoundThieves_KilledByMilitia == FALSE)
 	{
 		return TRUE;
 	};
@@ -239,7 +239,7 @@ instance DIA_Hanna_AnyNews(C_Info)
 
 func int DIA_Hanna_AnyNews_Condition()
 {
-	if((Kapitel >= 3) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if((Kapitel >= 3) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -358,7 +358,7 @@ instance DIA_Hanna_ThisLetter(C_Info)
 
 func int DIA_Hanna_ThisLetter_Condition()
 {
-	if((MIS_HannaRetrieveLetter == LOG_Running) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if((MIS_HannaRetrieveLetter == LOG_Running) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -426,7 +426,7 @@ instance DIA_Hanna_AusKeller(C_Info)
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if((Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE)) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if((Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE)) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -434,7 +434,7 @@ func int DIA_Hanna_AusKeller_Condition()
 
 func void DIA_Hanna_AusKeller_Info()
 {
-	if(((Cassia.aivar[AIV_KilledByPlayer] == TRUE) || (Jesper.aivar[AIV_KilledByPlayer] == TRUE) || (Ramirez.aivar[AIV_KilledByPlayer] == TRUE)) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if((Cassia.aivar[AIV_KilledByPlayer] == TRUE) || (Jesper.aivar[AIV_KilledByPlayer] == TRUE) || (Ramirez.aivar[AIV_KilledByPlayer] == TRUE))
 	{
 		AI_Output(self,other,"DIA_Hanna_Add_17_27");	//Откуда... ты пришел?
 		AI_Output(other,self,"DIA_Hanna_Add_15_28");	//Я нашел кое-что интересное в твоем подвале...
@@ -472,7 +472,7 @@ instance DIA_Hanna_Schuldenbuch(C_Info)
 
 func int DIA_Hanna_Schuldenbuch_Condition()
 {
-	if(Npc_HasItems(other,ItWr_Schuldenbuch) && (SchuldBuchNamesKnown == TRUE) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if(Npc_HasItems(other,ItWr_Schuldenbuch) && (SchuldBuchNamesKnown == TRUE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -500,7 +500,7 @@ instance DIA_Hanna_GiveSchuldenbuch(C_Info)
 
 func int DIA_Hanna_GiveSchuldenbuch_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hanna_Schuldenbuch) && Npc_HasItems(other,ItWr_Schuldenbuch) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -531,7 +531,7 @@ instance DIA_Hanna_Blubb(C_Info)
 
 func int DIA_Hanna_Blubb_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) && (Knows_SecretSign == TRUE) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) && (Knows_SecretSign == TRUE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -561,7 +561,7 @@ instance DIA_Hanna_Blubb2(C_Info)
 
 func int DIA_Hanna_Blubb2_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) && (Knows_SecretSign == FALSE) && (Andre_Diebesgilde_aufgeraeumt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) && (Knows_SecretSign == FALSE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
 	{
 		return TRUE;
 	};
@@ -588,18 +588,29 @@ instance DIA_Hanna_Blubb3(C_Info)
 
 func int DIA_Hanna_Blubb3_Condition()
 {
-	if(Andre_Diebesgilde_aufgeraeumt == TRUE)
+	if(Andre_FoundThieves_KilledByMilitia == TRUE)
 	{
 		return TRUE;
 	};
+	if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+	{
+		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+		{
+			return TRUE;
+		};
+	};
 	if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) || Npc_KnowsInfo(other,DIA_Hanna_Blubb) || Npc_KnowsInfo(other,DIA_Hanna_Blubb2))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Hanna_Blubb3_Info()
 {
+	B_KillThievesGuild();
 	CreateInvItem(self,ItSc_IceCube);
 	CreateInvItem(self,ItSc_Firestorm);
 	AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
@@ -676,7 +687,7 @@ instance DIA_Hanna_Blubb4(C_Info)
 
 func int DIA_Hanna_Blubb4_Condition()
 {
-	if((Andre_Diebesgilde_aufgeraeumt == TRUE) && Npc_KnowsInfo(other,DIA_Hanna_Blubb3) && Npc_IsInState(self,ZS_Talk))
+	if((Andre_FoundThieves_KilledByMilitia == TRUE) && Npc_KnowsInfo(other,DIA_Hanna_Blubb3) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

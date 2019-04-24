@@ -249,14 +249,14 @@ func int DIA_Meldor_PERM_Condition()
 func void DIA_Meldor_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Meldor_PERM_15_00");	//Ничего интересного не было в последнее время?
-	if((Andre_Diebesgilde_aufgeraeumt == FALSE) && (Meldor_ThievesNews1 == FALSE))
+	if((Andre_FoundThieves_KilledByMilitia == FALSE) && (Meldor_ThievesNews1 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Meldor_PERM_07_01");	//Недавно городская стража перевернула вверх дном весь портовый квартал.
 		AI_Output(self,other,"DIA_Meldor_PERM_07_02");	//Они искали украденное. В последнее время развелось уж больно много воров. Особенно в зажиточных кварталах.
 		AI_Output(self,other,"DIA_Meldor_PERM_07_03");	//Они пытались во всем обвинить бедняков из портового квартала.
 		Meldor_ThievesNews1 = TRUE;
 	}
-	else if((Andre_Diebesgilde_aufgeraeumt == TRUE) && (Meldor_ThievesNews2 == FALSE))
+	else if((Andre_FoundThieves_KilledByMilitia == TRUE) && (Meldor_ThievesNews2 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Meldor_PERM_07_04");	//Я слышал, в канализации поймали банду воров. Все воры были убиты.
 		Meldor_ThievesNews2 = TRUE;

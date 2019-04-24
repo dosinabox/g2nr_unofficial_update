@@ -1103,6 +1103,10 @@ instance DIA_Xardas_PERM4(C_Info)
 
 func int DIA_Xardas_PERM4_Condition()
 {
+	if((Kapitel == 3) && Npc_KnowsInfo(other,DIA_Xardas_DMTSINDDA))
+	{
+		return TRUE;
+	};
 	if(Kapitel == 4)
 	{
 		return TRUE;
@@ -1112,7 +1116,22 @@ func int DIA_Xardas_PERM4_Condition()
 func void DIA_Xardas_PERM4_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_PERM4_15_00");	//Что нового?
-	AI_Output(self,other,"DIA_Xardas_PERM4_14_01");	//Ищущие еще не ушли. Они не остановятся, пока не прикончат тебя.
-	AI_Output(self,other,"DIA_Xardas_PERM4_14_02");	//Убей драконов в Долине Рудников и выясни, кто стоит за этими нападениями. В противном случае, их сила только вырастет еще больше.
+	if(Kapitel == 3)
+	{
+		if(MIS_Ulthar_HeileSchreine_PAL == LOG_SUCCESS)
+		{
+			AI_Output(self,other,"OUTRO_Xardas_14_10");	//Даже боги не знают, какая судьба нас ждет...
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_06");	//Приспешники Белиара оскверняют древнейшие алтари богов.
+			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_03");	//Именно это и произошло.
+		};
+	}
+	else if(Kapitel == 4)
+	{
+		AI_Output(self,other,"DIA_Xardas_PERM4_14_01");	//Ищущие еще не ушли. Они не остановятся, пока не прикончат тебя.
+		AI_Output(self,other,"DIA_Xardas_PERM4_14_02");	//Убей драконов в Долине Рудников и выясни, кто стоит за этими нападениями. В противном случае, их сила только вырастет еще больше.
+	};
 };
 

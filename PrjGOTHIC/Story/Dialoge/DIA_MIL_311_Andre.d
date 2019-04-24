@@ -746,6 +746,10 @@ func int DIA_Andre_GuildOfThieves_Condition()
 	{
 		return TRUE;
 	};
+	if((other.guild == GIL_PAL) && (MIS_Andre_GuildOfThieves == FALSE))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Andre_GuildOfThieves_Info()
@@ -777,7 +781,7 @@ instance DIA_Andre_WhereThieves(C_Info)
 
 func int DIA_Andre_WhereThieves_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Andre_GuildOfThieves) && (MIS_Andre_GuildOfThieves == LOG_Running))
+	if(MIS_Andre_GuildOfThieves == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -791,7 +795,10 @@ func void DIA_Andre_WhereThieves_Info()
 	AI_Output(self,other,"DIA_Andre_WhereThieves_08_03");	//Люди, живущие там, не склонны к сотрудничеству, особенно, если на тебе доспехи паладина.
 	AI_Output(self,other,"DIA_Andre_WhereThieves_08_04");	//Но ты нездешний. Возможно, тебе они будут больше доверять.
 	AI_Output(self,other,"DIA_Andre_WhereThieves_08_05");	//Ты можешь поспрашивать в портовом квартале. Но будь осторожен. Если люди поймут, что ты работаешь на паладинов, ты не узнаешь НИЧЕГО!
-	B_LogEntry(TOPIC_BecomeMIL,"Если я хочу найти гильдию воров, мне лучше начать прислушиваться к тому, что говорят в портовом квартале.");
+	if(other.guild == GIL_NONE)
+	{
+		B_LogEntry(TOPIC_BecomeMIL,"Если я хочу найти гильдию воров, мне лучше начать прислушиваться к тому, что говорят в портовом квартале.");
+	};
 };
 
 
@@ -808,7 +815,7 @@ instance DIA_Andre_WhatToDo(C_Info)
 
 func int DIA_Andre_WhatToDo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Andre_GuildOfThieves) && (MIS_Andre_GuildOfThieves == LOG_Running))
+	if(MIS_Andre_GuildOfThieves == LOG_Running)
 	{
 		return TRUE;
 	};
@@ -819,10 +826,13 @@ func void DIA_Andre_WhatToDo_Info()
 	AI_Output(other,self,"DIA_Andre_WhatToDo_15_00");	//Что мне делать, когда я найду этих воров?
 	AI_Output(self,other,"DIA_Andre_WhatToDo_08_01");	//Если дело касается мелкой рыбешки - рядового вора или наводчика, лучше всего избежать схватки.
 	AI_Output(self,other,"DIA_Andre_WhatToDo_08_02");	//Просто приди ко мне и доложи. А я позабочусь, чтобы эта мразь оказалась за решеткой.
-	AI_Output(self,other,"DIA_Andre_WhatToDo_08_03");	//Городская стража может вмешаться в драку и у тебя не будет возможности объяснить им, что происходит.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Andre_WhatToDo_08_03");	//Городская стража может вмешаться в драку и у тебя не будет возможности объяснить им, что происходит.
+		B_LogEntry(TOPIC_BecomeMIL,"Если я поймаю какую-нибудь мелкую рыбешку гильдии воров, я должен привести его прямо к лорду Андрэ. А чтобы ликвидировать гильдию воров, я должен найти их логово.");
+	};
 	AI_Output(self,other,"DIA_Andre_WhatToDo_08_04");	//Кроме того, за каждого преступника, который с твоей помощью будет засажен за решетку, тебе полагается награда.
 	AI_Output(self,other,"DIA_Andre_WhatToDo_08_05");	//Однако, если ты найдешь логово главарей - ну, тогда тебе, вероятно, не удастся избежать боя.
-	B_LogEntry(TOPIC_BecomeMIL,"Если я поймаю какую-нибудь мелкую рыбешку гильдии воров, я должен привести его прямо к лорду Андрэ. А чтобы ликвидировать гильдию воров, я должен найти их логово.");
 };
 
 func void B_AndreSold()
@@ -1048,33 +1058,6 @@ func int DIA_Andre_DGRunning_Condition()
 func void DIA_Andre_DGRunning_Info()
 {
 	AI_Output(other,self,"DIA_Andre_DGRunning_15_00");	//Насчет гильдии воров...
-	if((Andre_Diebesgilde_aufgeraeumt == TRUE) || (Andre_FoundThieves_Day <= (Wld_GetDay() - 2)))
-	{
-		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
-		{
-			AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
-			AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
-			MIS_Andre_GuildOfThieves = LOG_OBSOLETE;
-			Andre_Diebesgilde_aufgeraeumt = TRUE;
-			B_KillNpc(VLK_447_Cassia);
-			B_KillNpc(VLK_446_Jesper);
-			B_KillNpc(VLK_445_Ramirez);
-			if(MIS_CassiaRing == LOG_Running)
-			{
-				MIS_CassiaRing = LOG_FAILED;
-			};
-			if(MIS_CassiaKelche == LOG_Running)
-			{
-				MIS_CassiaKelche = LOG_FAILED;
-			};
-			if(MIS_RamirezSextant == LOG_Running)
-			{
-				MIS_RamirezSextant = LOG_FAILED;
-			};
-			B_CheckLog();
-			return;
-		};
-	};
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_03");	//Да?
 	Info_ClearChoices(DIA_Andre_DGRunning);
 	Info_AddChoice(DIA_Andre_DGRunning,"Я работаю над этим...",DIA_Andre_DGRunning_BACK);
@@ -1082,7 +1065,7 @@ func void DIA_Andre_DGRunning_Info()
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я всех их ликвидировал!",DIA_Andre_DGRunning_Success);
 	};
-	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE)) && (Diebesgilde_Verraten == FALSE))
+	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE)) && (Andre_FoundThieves_Reported == FALSE))
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я нашел логово гильдии воров!",DIA_Andre_DGRunning_Verrat);
 	};
@@ -1091,7 +1074,7 @@ func void DIA_Andre_DGRunning_Info()
 func void DIA_Andre_DGRunning_BACK()
 {
 	AI_Output(other,self,"DIA_Andre_DGRunning_BACK_15_00");	//Я работаю над этим...
-	if(Diebesgilde_Verraten == TRUE)
+	if(Andre_FoundThieves_Reported == TRUE)
 	{
 		AI_Output(self,other,"DIA_Andre_DGRunning_BACK_08_01");	//Хорошо. Я дам тебе еще немного времени на выполнение этого задания.
 	}
@@ -1107,15 +1090,15 @@ func void DIA_Andre_DGRunning_Verrat()
 	AI_Output(other,self,"DIA_Andre_DGRunning_Verrat_15_00");	//Я нашел логово гильдии воров!
 	B_AndreAskAboutSewer();
 	AI_Output(self,other,"DIA_Andre_DGRunning_Verrat_08_05");	//Ты ликвидировал этих преступников?
-	Andre_FoundThieves_Day = Wld_GetDay();
-	Diebesgilde_Verraten = TRUE;
+	Andre_FoundThieves_Reported_Day = Wld_GetDay();
+	Andre_FoundThieves_Reported = TRUE;
 	DG_gefunden = TRUE;
 };
 
 func void DIA_Andre_DGRunning_Success()
 {
 	AI_Output(other,self,"DIA_Andre_DGRunning_Success_15_00");	//Я всех их ликвидировал!
-	if(Diebesgilde_Verraten == FALSE)
+	if(Andre_FoundThieves_Reported == FALSE)
 	{
 		B_AndreAskAboutSewer();
 	};
@@ -1146,6 +1129,41 @@ func void DIA_Andre_DGRunning_Success()
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_04");	//Тебе полагается награда за этих бандитов. Вот, возьми.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld * 3);
 	Info_ClearChoices(DIA_Andre_DGRunning);
+};
+
+
+instance DIA_Andre_FoundThieves_KilledByMilitia(C_Info)
+{
+	npc = MIL_311_Andre;
+	nr = 9;
+	condition = DIA_Andre_FoundThieves_KilledByMilitia_Condition;
+	information = DIA_Andre_FoundThieves_KilledByMilitia_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Andre_FoundThieves_KilledByMilitia_Condition()
+{
+	if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+	{
+		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Andre_FoundThieves_KilledByMilitia_Info()
+{
+	AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
+	AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
+	if(other.guild == GIL_MIL)
+	{
+		AI_WaitTillEnd(other,self);
+		B_AndreSold();
+	};
+	B_KillThievesGuild();
 };
 
 
@@ -1650,6 +1668,40 @@ func void DIA_Andre_LOBART_SUCCESS_Info()
 	AI_Output(self,other,"DIA_Andre_LOBART_SUCCESS_08_01");	//Превосходно. Если Лобарт будет счастлив, он продолжит продавать репу городу.
 	B_GivePlayerXP(XP_LobartBugs);
 	B_AndreSold();
+};
+
+
+instance DIA_Andre_ThievesGuildQuestForMIL(C_Info)
+{
+	npc = MIL_311_Andre;
+	condition = DIA_Andre_ThievesGuildQuestForMIL_Condition;
+	information = DIA_Andre_ThievesGuildQuestForMIL_Info;
+	description = "У тебя есть еще задания для меня?";
+};
+
+
+func int DIA_Andre_ThievesGuildQuestForMIL_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Andre_LOBART_SUCCESS))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Andre_ThievesGuildQuestForMIL_Info()
+{
+	AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
+	if(MIS_Andre_GuildOfThieves == FALSE)
+	{
+		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
+		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
+		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
+		MIS_Andre_GuildOfThieves = LOG_Running;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Andre_PERM_08_01");	//Все под контролем.
+	};
 };
 
 
