@@ -498,7 +498,6 @@ func void DIA_Andre_Message_Personal()
 	{
 		B_Andre_GotoLordHagen();
 	};
-	B_Andre_LordHagenNichtZuSprechen();
 	Info_ClearChoices(DIA_Andre_Message);
 };
 
@@ -1164,6 +1163,20 @@ func void DIA_Andre_FoundThieves_KilledByMilitia_Info()
 		B_AndreSold();
 	};
 	B_KillThievesGuild();
+	MIS_Andre_GuildOfThieves = LOG_FAILED;
+	if(MIS_CassiaRing == LOG_Running)
+	{
+		MIS_CassiaRing = LOG_FAILED;
+	};
+	if(MIS_CassiaKelche == LOG_Running)
+	{
+		MIS_CassiaKelche = LOG_FAILED;
+	};
+	if(MIS_RamirezSextant == LOG_Running)
+	{
+		MIS_RamirezSextant = LOG_FAILED;
+	};
+	B_CheckLog();
 };
 
 

@@ -610,15 +610,31 @@ func int DIA_Hanna_Blubb3_Condition()
 
 func void DIA_Hanna_Blubb3_Info()
 {
-	B_KillThievesGuild();
 	CreateInvItem(self,ItSc_IceCube);
 	CreateInvItem(self,ItSc_Firestorm);
 	AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
-	AI_Output(self,other,"DIA_Hanna_Add_17_33");	//Мне они ничего не смогли предъявить, но Кассия и ее люди мертвы!
+	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
+	{
+		AI_Output(self,other,"DIA_Hanna_Add_17_33");	//Мне они ничего не смогли предъявить, но Кассия и ее люди мертвы!
+	};
 	AI_Output(self,other,"DIA_Hanna_Add_17_34");	//Я уверена, что это ТЫ...
 	B_SelectSpell(self,other);
 	AI_Output(self,other,"DIA_Hanna_Add_17_35");	//Я купила это специально для тебя.
 	AI_Output(self,other,"DIA_Hanna_Add_17_36");	//Это обошлось мне в кругленькую сумму. Но для тебя ничего не жалко, свинья...
+	B_KillThievesGuild();
+	if(MIS_CassiaRing == LOG_Running)
+	{
+		MIS_CassiaRing = LOG_FAILED;
+	};
+	if(MIS_CassiaKelche == LOG_Running)
+	{
+		MIS_CassiaKelche = LOG_FAILED;
+	};
+	if(MIS_RamirezSextant == LOG_Running)
+	{
+		MIS_RamirezSextant = LOG_FAILED;
+	};
+	B_CheckLog();
 	self.aivar[AIV_DropDeadAndKill] = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);

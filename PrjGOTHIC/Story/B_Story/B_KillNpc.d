@@ -583,20 +583,6 @@ func void B_KillThievesGuild()
 			B_KillNpc(VLK_447_Cassia);
 			B_KillNpc(VLK_446_Jesper);
 			B_KillNpc(VLK_445_Ramirez);
-			MIS_Andre_GuildOfThieves = LOG_FAILED;
-			if(MIS_CassiaRing == LOG_Running)
-			{
-				MIS_CassiaRing = LOG_FAILED;
-			};
-			if(MIS_CassiaKelche == LOG_Running)
-			{
-				MIS_CassiaKelche = LOG_FAILED;
-			};
-			if(MIS_RamirezSextant == LOG_Running)
-			{
-				MIS_RamirezSextant = LOG_FAILED;
-			};
-			B_CheckLog();
 			Andre_FoundThieves_KilledByMilitia = TRUE;
 		};
 	};

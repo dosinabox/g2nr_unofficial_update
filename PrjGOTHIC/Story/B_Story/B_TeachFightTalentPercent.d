@@ -82,7 +82,7 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 		return FALSE;
 	};
 	oth.lp -= kosten;
-	//	эксперимент: игнорирование зелий, еды и табличек при прокачке
+//	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == TRUE)
 	{
 		if(talent == NPC_TALENT_1H)
