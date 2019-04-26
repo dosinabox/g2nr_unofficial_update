@@ -524,7 +524,7 @@ instance DIA_Biff_MEHRGELD(C_Info)
 
 func int DIA_Biff_MEHRGELD_Condition()
 {
-	if((DJG_BiffParty == TRUE) && !Npc_RefuseTalk(self) && (DJG_Biff_Stay == FALSE))
+	if((DJG_BiffParty == TRUE) && !Npc_RefuseTalk(self) && (DJG_Biff_Stay == FALSE) && (Biff_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

@@ -612,6 +612,7 @@ func void DIA_Hanna_Blubb3_Info()
 {
 	CreateInvItem(self,ItSc_IceCube);
 	CreateInvItem(self,ItSc_Firestorm);
+	CreateInvItem(self,ItKe_ThiefGuildKey_Hotel_MIS);
 	AI_Output(self,other,"DIA_Hanna_Add_17_32");	//Здесь было ополчение... Кто-то предал наше убежище!
 	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
 	{

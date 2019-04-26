@@ -658,7 +658,7 @@ var int DIA_Kardif_DOPE_perm;
 
 func int DIA_Kardif_DOPE_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_DOPE_perm == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_DOPE_perm == FALSE))
 	{
 		return TRUE;
 	};

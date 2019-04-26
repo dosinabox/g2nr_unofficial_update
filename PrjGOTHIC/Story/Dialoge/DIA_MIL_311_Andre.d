@@ -422,6 +422,7 @@ func void B_Andre_LordHagenNichtZuSprechen()
 {
 	AI_Output(self,other,"B_Andre_LordHagenNichtZuSprechen_08_00");	//Лорд Хаген принимает только паладинов и тех, кто служит паладинам.
 	AI_Output(self,other,"B_Andre_LordHagenNichtZuSprechen_08_01");	//Он считает ниже своего достоинства тратить время на простых людей.
+	Andre_LordHagenNichtZuSprechen = TRUE;
 };
 
 
@@ -836,7 +837,14 @@ func void DIA_Andre_WhatToDo_Info()
 
 func void B_AndreSold()
 {
-	AI_Output(self,other,"DIA_Andre_Sold_08_00");	//Вот твое жалование.
+	if(other.guild == GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Andre_Sold_08_00");	//Вот твое жалование.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
+	};
 	B_GiveInvItems(self,other,ItMi_Gold,Andre_Sold);
 };
 
@@ -1292,7 +1300,7 @@ instance DIA_Andre_LORDHAGEN(C_Info)
 
 func int DIA_Andre_LORDHAGEN_Condition()
 {
-	if((other.guild == GIL_MIL) && (Kapitel < 3) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((other.guild == GIL_MIL) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Andre_LordHagenNichtZuSprechen == TRUE))
 	{
 		return TRUE;
 	};
@@ -1301,7 +1309,7 @@ func int DIA_Andre_LORDHAGEN_Condition()
 func void DIA_Andre_LORDHAGEN_Info()
 {
 	AI_Output(other,self,"DIA_Andre_LORDHAGEN_15_00");	//Могу я теперь увидеть лорда Хагена?
-	AI_Output(self,other,"DIA_Andre_LORDHAGEN_08_01");	//Теперь ты состоишь нас службе у паладинов. Они пропустят тебя. Но твое сообщение должно быть действительно важным.
+	AI_Output(self,other,"DIA_Andre_LORDHAGEN_08_01");	//Теперь ты состоишь на службе у паладинов. Они пропустят тебя. Но твое сообщение должно быть действительно важным.
 	AI_Output(other,self,"DIA_Andre_LORDHAGEN_15_02");	//Не волнуйся, это так и есть...
 	AI_Output(self,other,"DIA_Andre_LORDHAGEN_08_03");	//Помни, что ты встречаешься с главой паладинов. Веди себя соответствующе. Теперь ты представляешь не только себя, но все ополчение.
 };
@@ -1418,6 +1426,11 @@ func void DIA_Andre_FOUND_PECK_REDLIGHT()
 };
 
 
+func void B_ReportToHagenNow()
+{
+	AI_Output(self,other,"DIA_Andre_PERM_08_03");	//С этого времени ты должен докладывать непосредственно лорду Хагену. Иди, поговори с ним.
+};
+
 instance DIA_Andre_FIRSTMISSION(C_Info)
 {
 	npc = MIL_311_Andre;
@@ -1431,7 +1444,7 @@ instance DIA_Andre_FIRSTMISSION(C_Info)
 
 func int DIA_Andre_FIRSTMISSION_Condition()
 {
-	if(other.guild == GIL_MIL)
+	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -1440,18 +1453,25 @@ func int DIA_Andre_FIRSTMISSION_Condition()
 func void DIA_Andre_FIRSTMISSION_Info()
 {
 	AI_Output(other,self,"DIA_Andre_FIRSTMISSION_15_00");	//У тебя есть задание для меня?
-	AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_01");	//Последнее время в городе появилось очень много болотной травы.
-	AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_02");	//Мы не можем позволить, чтобы эта зараза расползлась по городу.
-	AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_03");	//В противном случае, все будут только курить травку и не смогут работать, не говоря уже о том, чтобы держать оружие.
-	AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_04");	//Это недопустимо. Особенно сейчас, когда так велика опасность нападения орков или наемников.
-	AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_05");	//Я подозреваю, что к этому имеют отношение наемники. Ручаюсь, это они принесли траву в город.
-	AI_Output(other,self,"DIA_Andre_FIRSTMISSION_15_06");	//Что я могу сделать?
-	AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_07");	//Мортис, один из наших людей, слышал в портовом кабаке, что где-то в порту находится целый тюк этой травы.
-	AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_08");	//Поищи там и принеси этот тюк мне.
-	MIS_Andre_WAREHOUSE = LOG_Running;
-	Log_CreateTopic(TOPIC_Warehouse,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Warehouse,LOG_Running);
-	B_LogEntry(TOPIC_Warehouse,"Тюк болотной травы прибыл в гавань. Мортис прослышал об этом в местном пабе. Я должен найти этот тюк и принести его лорду Андрэ.");
+	if(other.guild == GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_01");	//Последнее время в городе появилось очень много болотной травы.
+		AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_02");	//Мы не можем позволить, чтобы эта зараза расползлась по городу.
+		AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_03");	//В противном случае, все будут только курить травку и не смогут работать, не говоря уже о том, чтобы держать оружие.
+		AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_04");	//Это недопустимо. Особенно сейчас, когда так велика опасность нападения орков или наемников.
+		AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_05");	//Я подозреваю, что к этому имеют отношение наемники. Ручаюсь, это они принесли траву в город.
+		AI_Output(other,self,"DIA_Andre_FIRSTMISSION_15_06");	//Что я могу сделать?
+		AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_07");	//Мортис, один из наших людей, слышал в портовом кабаке, что где-то в порту находится целый тюк этой травы.
+		AI_Output(self,other,"DIA_Andre_FIRSTMISSION_08_08");	//Поищи там и принеси этот тюк мне.
+		MIS_Andre_WAREHOUSE = LOG_Running;
+		Log_CreateTopic(TOPIC_Warehouse,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Warehouse,LOG_Running);
+		B_LogEntry(TOPIC_Warehouse,"Тюк болотной травы прибыл в гавань. Мортис прослышал об этом в местном пабе. Я должен найти этот тюк и принести его лорду Андрэ.");
+	}
+	else
+	{
+		B_ReportToHagenNow();
+	};
 };
 
 
@@ -1493,66 +1513,73 @@ func void DIA_Andre_FOUND_STUFF_Info()
 	};
 };
 
+func void B_AndreStartFindDealerQuest()
+{
+	B_AndreSold();
+	MIS_Andre_WAREHOUSE = LOG_SUCCESS;
+	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_01");	//Ты вывел болотную траву из оборота - это хорошо.
+	if(other.guild == GIL_MIL)
+	{
+		if(!Npc_IsDead(Borka) && !Npc_IsDead(Nadja))
+		{
+			AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_02");	//Но я хочу знать, кто распространяет ее среди горожан.
+			AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_03");	//Это, должно быть, кто-то в портовом квартале.
+			AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_04");	//Если бы этот человек часто приходил в город, он давно бы был пойман.
+			AI_Output(other,self,"DIA_Andre_FIND_DEALER_15_05");	//Что именно мне нужно сделать?
+			AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_06");	//Найди торговца и заставь его продать тебе этой травы. Это будет непросто, но иначе мы не сможем арестовать его.
+			AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_07");	//Поговори с Мортисом. Он хорошо знает портовый квартал. Возможно, он сможет помочь тебе.
+			MIS_Andre_REDLIGHT = LOG_Running;
+			if(MIS_Cipher_Paket == LOG_FAILED)
+			{
+				B_GivePlayerXP(XP_Warehouse_Super * 2);
+			}
+			else
+			{
+				B_GivePlayerXP(XP_Warehouse_Super);
+			};
+			if(Bromor_Pay != 2)
+			{
+				B_StartOtherRoutine(Nadja,"SMOKE");
+			};
+			Log_CreateTopic(TOPIC_Redlight,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Redlight,LOG_Running);
+			B_LogEntry(TOPIC_Redlight,"Я должен найти человека, продающего болотную траву в портовом квартале. Я должен заставить его продать мне немного травы. Мортис может помочь мне в этом.");
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_01");	//Я не думаю, что мы теперь сможем что-то узнать в портовом квартале.
+			if(Npc_IsDead(Borka))
+			{
+				AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_02");	//Только не теперь, когда этот вышибала мертв.
+			};
+			if(Npc_IsDead(Nadja))
+			{
+				AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_03");	//Эта девочка из Красного Фонаря, Надя, мертва. Возможно, это просто случайное совпадение.
+			};
+		};
+	}
+	else if(other.guild == GIL_PAL)
+	{
+		AI_Output(other,self,"DIA_Andre_FIND_DEALER_15_00");	//У тебя есть еще работа для меня?
+		B_ReportToHagenNow();
+	};
+	Info_ClearChoices(DIA_Andre_FOUND_STUFF);
+};
+
 func void DIA_Andre_FOUND_STUFF_Ja()
 {
 	AI_Output(other,self,"DIA_Andre_FOUND_STUFF_Ja_15_00");	//Да, вот он.
 	B_GiveInvItems(other,self,ItMi_HerbPaket,1);
 	AI_Output(self,other,"DIA_Andre_FOUND_STUFF_Ja_08_01");	//Отлично. Мы будем охранять эту траву.
-	B_AndreSold();
-	MIS_Andre_WAREHOUSE = LOG_SUCCESS;
 	MIS_Cipher_Paket = LOG_FAILED;
-	B_GivePlayerXP(XP_Warehouse_Super * 2);
-	Info_ClearChoices(DIA_Andre_FOUND_STUFF);
+	B_AndreStartFindDealerQuest();
 };
 
 func void DIA_Andre_FOUND_STUFF_Becken()
 {
 	AI_Output(other,self,"DIA_Andre_FOUND_STUFF_Becken_15_00");	//Я выбросил ее в море.
-	AI_Output(self,other,"DIA_Andre_FOUND_STUFF_Becken_08_01");	//Да? Ну, главное, что она теперь не сможет попасть в плохие руки.
-	B_AndreSold();
-	MIS_Andre_WAREHOUSE = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Warehouse_Super);
-	Info_ClearChoices(DIA_Andre_FOUND_STUFF);
-};
-
-
-instance DIA_Andre_FIND_DEALER(C_Info)
-{
-	npc = MIL_311_Andre;
-	nr = 2;
-	condition = DIA_Andre_FIND_DEALER_Condition;
-	information = DIA_Andre_FIND_DEALER_Info;
-	permanent = FALSE;
-	description = "У тебя есть еще работа для меня?";
-};
-
-
-func int DIA_Andre_FIND_DEALER_Condition()
-{
-	if((MIS_Andre_WAREHOUSE == LOG_SUCCESS) && !Npc_IsDead(Borka))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Andre_FIND_DEALER_Info()
-{
-	AI_Output(other,self,"DIA_Andre_FIND_DEALER_15_00");	//У тебя есть еще работа для меня?
-	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_01");	//Ты вывел болотную траву из оборота - это хорошо.
-	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_02");	//Но я хочу знать, кто распространяет ее среди горожан.
-	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_03");	//Это, должно быть, кто-то в портовом квартале.
-	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_04");	//Если бы этот человек часто приходил в город, он давно бы был пойман.
-	AI_Output(other,self,"DIA_Andre_FIND_DEALER_15_05");	//Что именно мне нужно сделать?
-	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_06");	//Найди торговца и заставь его продать тебе этой травы. Это будет непросто, но иначе мы не сможем арестовать его.
-	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_07");	//Поговори с Мортисом. Он хорошо знает портовый квартал. Возможно, он сможет помочь тебе.
-	MIS_Andre_REDLIGHT = LOG_Running;
-	if(Bromor_Pay != 2)
-	{
-		B_StartOtherRoutine(Nadja,"SMOKE");
-	};
-	Log_CreateTopic(TOPIC_Redlight,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Redlight,LOG_Running);
-	B_LogEntry(TOPIC_Redlight,"Я должен найти человека, продающего болотную траву в портовом квартале. Я должен заставить его продать мне немного травы. Мортис может помочь мне в этом.");
+	AI_Output(self,other,"DIA_Andre_FOUND_STUFF_Becken_08_01");	//Да? Ну, главное, что она теперь не может попасть в плохие руки.
+	B_AndreStartFindDealerQuest();
 };
 
 
@@ -1578,14 +1605,14 @@ func int DIA_Andre_REDLIGHT_SUCCESS_Condition()
 func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 {
 	AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_00");	//Насчет травы...
-	if((Npc_IsDead(Borka) == TRUE) || (Undercover_Failed == TRUE))
+	if(Npc_IsDead(Borka) || (Undercover_Failed == TRUE) || (Npc_IsDead(Nadja) && (Knows_Borka_Dealer == FALSE)))
 	{
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_01");	//Я не думаю, что мы теперь сможем что-то узнать в портовом квартале.
-		if(Npc_IsDead(Borka) == TRUE)
+		if(Npc_IsDead(Borka))
 		{
 			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_02");	//Только не теперь, когда этот вышибала мертв.
 		};
-		if(Nadja_Victim == TRUE)
+		if((Nadja_Victim == TRUE) || (Npc_IsDead(Nadja) && (Knows_Borka_Dealer == FALSE)))
 		{
 			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_03");	//Эта девочка из Красного Фонаря, Надя, мертва. Возможно, это просто случайное совпадение.
 			B_RemoveNpc(Nadja);
@@ -1637,23 +1664,30 @@ func int DIA_Andre_HILFBAUERLOBART_Condition()
 
 func void DIA_Andre_HILFBAUERLOBART_Info()
 {
-	AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
-	AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_01");	//У фермера Лобарта какие-то проблемы на его полях.
-	AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_02");	//Если мы поможем ему, это укрепит его отношения с городом. Так что отправляйся туда и посмотри, что там не так.
-	Log_CreateTopic(TOPIC_Feldraeuber,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Feldraeuber,LOG_Running);
-	B_LogEntry(TOPIC_Feldraeuber,"Андрэ отправил меня на ферму Лобарта. Я опять должен помочь Лобарту восстановить порядок на ферме.");
-	MIS_AndreHelpLobart = LOG_Running;
-	Wld_InsertNpc(Lobarts_Giant_Bug1,"NW_FARM1_FIELD_06");
-	Wld_InsertNpc(Lobarts_Giant_Bug2,"NW_FARM1_FIELD_06");
-	Wld_InsertNpc(Lobarts_Giant_Bug3,"NW_FARM1_FIELD_05");
-	Wld_InsertNpc(Lobarts_Giant_Bug4,"NW_FARM1_FIELD_05");
-	Wld_InsertNpc(Lobarts_Giant_Bug5,"NW_FARM1_FIELD_04");
-	Wld_InsertNpc(Lobarts_Giant_Bug6,"NW_FARM1_FIELD_04");
-	Wld_InsertNpc(Lobarts_Giant_Bug7,"NW_FARM1_FIELD_03");
-	B_StartOtherRoutine(Vino,"BUGSTHERE");
-	B_StartOtherRoutine(LobartsBauer1,"BUGSTHERE");
-	B_StartOtherRoutine(LobartsBauer2,"BUGSTHERE");
+	if(other.guild == GIL_MIL)
+	{
+		AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
+		AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_01");	//У фермера Лобарта какие-то проблемы на его полях.
+		AI_Output(self,other,"DIA_Andre_HILFBAUERLOBART_08_02");	//Если мы поможем ему, это укрепит его отношения с городом. Так что отправляйся туда и посмотри, что там не так.
+		Log_CreateTopic(TOPIC_Feldraeuber,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Feldraeuber,LOG_Running);
+		B_LogEntry(TOPIC_Feldraeuber,"Андрэ отправил меня на ферму Лобарта. Я опять должен помочь Лобарту восстановить порядок на ферме.");
+		MIS_AndreHelpLobart = LOG_Running;
+		Wld_InsertNpc(Lobarts_Giant_Bug1,"NW_FARM1_FIELD_06");
+		Wld_InsertNpc(Lobarts_Giant_Bug2,"NW_FARM1_FIELD_06");
+		Wld_InsertNpc(Lobarts_Giant_Bug3,"NW_FARM1_FIELD_05");
+		Wld_InsertNpc(Lobarts_Giant_Bug4,"NW_FARM1_FIELD_05");
+		Wld_InsertNpc(Lobarts_Giant_Bug5,"NW_FARM1_FIELD_04");
+		Wld_InsertNpc(Lobarts_Giant_Bug6,"NW_FARM1_FIELD_04");
+		Wld_InsertNpc(Lobarts_Giant_Bug7,"NW_FARM1_FIELD_03");
+		B_StartOtherRoutine(Vino,"BUGSTHERE");
+		B_StartOtherRoutine(LobartsBauer1,"BUGSTHERE");
+		B_StartOtherRoutine(LobartsBauer2,"BUGSTHERE");
+	}
+	else if(other.guild == GIL_PAL)
+	{
+		B_ReportToHagenNow();
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -1986,7 +2020,7 @@ func void DIA_Andre_PERM_Info()
 	};
 	if(other.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Andre_PERM_08_03");	//С этого времени ты должен докладывать непосредственно лорду Хагену. Иди, поговори с ним.
+		B_ReportToHagenNow();
 	};
 };
 

@@ -452,7 +452,8 @@ instance DIA_Buster_WhatHappened(C_Info)
 
 func int DIA_Buster_WhatHappened_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Buster_LeeLeader) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)))
+//	if(Npc_KnowsInfo(other,DIA_Buster_LeeLeader) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)))
+	if(Npc_KnowsInfo(other,DIA_Buster_LeeLeader))
 	{
 		return TRUE;
 	};

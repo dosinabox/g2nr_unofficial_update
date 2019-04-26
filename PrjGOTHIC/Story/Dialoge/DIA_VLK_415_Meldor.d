@@ -203,7 +203,7 @@ instance DIA_Meldor_Smoke(C_Info)
 
 func int DIA_Meldor_Smoke_Condition()
 {
-	if(MIS_Andre_REDLIGHT == LOG_Running)
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
 	{
 		return TRUE;
 	};
@@ -214,9 +214,10 @@ func void DIA_Meldor_Smoke_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
 	{
 		AI_Output(self,other,"DIA_Meldor_Smoke_07_01");	//(оценивающе) Нет, понятия не имею.
+		Undercover_Failed = TRUE;
 	}
 	else
 	{

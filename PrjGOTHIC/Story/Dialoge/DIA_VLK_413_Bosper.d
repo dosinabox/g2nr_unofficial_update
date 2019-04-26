@@ -606,7 +606,10 @@ func void DIA_Bosper_BogenRunning_Info()
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_03");	//Я отлучился из своей лавки всего на минуту. А когда вернулся, я увидел только, как он выходил - с моим луком на плече.
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_04");	//Я тут же позвал стражу, но этот подонок побежал к гавани. И они потеряли его там!
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_05");	//Я спустил на них всех собак за это, и стражники обыскали весь портовый квартал. Но ничего не нашли.
-	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_06");	//Бестолочи!
+	if(other.guild != GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Bosper_BogenRunning_11_06");	//Бестолочи!
+	};
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_07");	//Готов поклясться, что мой лук все еще находится где-то в городе. Я поговорил со стражей у обоих городских ворот, но они не видели, чтобы кто-нибудь выходил из города с луком.
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_08");	//Когда я доберусь до этого ублюдка...
 	Log_CreateTopic(TOPIC_BosperBogen,LOG_MISSION);
