@@ -845,6 +845,7 @@ func void B_AndreSold()
 	{
 		AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
 	};
+	AI_WaitTillEnd(other,self);
 	B_GiveInvItems(self,other,ItMi_Gold,Andre_Sold);
 };
 
@@ -1165,11 +1166,7 @@ func void DIA_Andre_FoundThieves_KilledByMilitia_Info()
 {
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
-	if(other.guild == GIL_MIL)
-	{
-		AI_WaitTillEnd(other,self);
-		B_AndreSold();
-	};
+	B_AndreSold();
 	B_KillThievesGuild();
 	MIS_Andre_GuildOfThieves = LOG_FAILED;
 	if(MIS_CassiaRing == LOG_Running)
@@ -1517,6 +1514,14 @@ func void B_AndreStartFindDealerQuest()
 {
 	B_AndreSold();
 	MIS_Andre_WAREHOUSE = LOG_SUCCESS;
+	if(MIS_Cipher_Paket == LOG_FAILED)
+	{
+		B_GivePlayerXP(XP_Warehouse_Super * 2);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_Warehouse_Super);
+	};
 	AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_01");	//Ты вывел болотную траву из оборота - это хорошо.
 	if(other.guild == GIL_MIL)
 	{
@@ -1529,14 +1534,6 @@ func void B_AndreStartFindDealerQuest()
 			AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_06");	//Найди торговца и заставь его продать тебе этой травы. Это будет непросто, но иначе мы не сможем арестовать его.
 			AI_Output(self,other,"DIA_Andre_FIND_DEALER_08_07");	//Поговори с Мортисом. Он хорошо знает портовый квартал. Возможно, он сможет помочь тебе.
 			MIS_Andre_REDLIGHT = LOG_Running;
-			if(MIS_Cipher_Paket == LOG_FAILED)
-			{
-				B_GivePlayerXP(XP_Warehouse_Super * 2);
-			}
-			else
-			{
-				B_GivePlayerXP(XP_Warehouse_Super);
-			};
 			if(Bromor_Pay != 2)
 			{
 				B_StartOtherRoutine(Nadja,"SMOKE");
@@ -1557,11 +1554,6 @@ func void B_AndreStartFindDealerQuest()
 				AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_03");	//Эта девочка из Красного Фонаря, Надя, мертва. Возможно, это просто случайное совпадение.
 			};
 		};
-	}
-	else if(other.guild == GIL_PAL)
-	{
-		AI_Output(other,self,"DIA_Andre_FIND_DEALER_15_00");	//У тебя есть еще работа для меня?
-		B_ReportToHagenNow();
 	};
 	Info_ClearChoices(DIA_Andre_FOUND_STUFF);
 };
@@ -1630,11 +1622,11 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_07");	//Он продал мне болотной травы.
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_08");	//Отлично, этого достаточно для нас. Я прикажу немедленно арестовать его.
+		B_AndreSold();
 		B_NpcSetJailed(Borka);
 		B_StartOtherRoutine(Borka,"PRISON");
 		MIS_Andre_REDLIGHT = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Redlight);
-		B_AndreSold();
 	}
 	else
 	{
@@ -1713,8 +1705,8 @@ func void DIA_Andre_LOBART_SUCCESS_Info()
 {
 	AI_Output(other,self,"DIA_Andre_LOBART_SUCCESS_15_00");	//Я помог Лобарту.
 	AI_Output(self,other,"DIA_Andre_LOBART_SUCCESS_08_01");	//Превосходно. Если Лобарт будет счастлив, он продолжит продавать репу городу.
-	B_GivePlayerXP(XP_LobartBugs);
 	B_AndreSold();
+	B_GivePlayerXP(XP_LobartBugs);
 };
 
 
