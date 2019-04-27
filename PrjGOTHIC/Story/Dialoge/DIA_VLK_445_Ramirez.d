@@ -88,16 +88,14 @@ instance DIA_Ramirez_Hallo(C_Info)
 	nr = 2;
 	condition = DIA_Ramirez_Hallo_Condition;
 	information = DIA_Ramirez_Hallo_Info;
-	permanent = TRUE;
+	permanent = FALSE;
 	important = TRUE;
 };
 
 
-var int DIA_Ramirez_Hallo_permanent;
-
 func int DIA_Ramirez_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (DIA_Ramirez_Hallo_permanent == FALSE))
+	if(Join_Thiefs == FALSE)
 	{
 		return TRUE;
 	};
@@ -105,18 +103,37 @@ func int DIA_Ramirez_Hallo_Condition()
 
 func void DIA_Ramirez_Hallo_Info()
 {
-	if((self.aivar[AIV_TalkedToPlayer] == FALSE) && (Join_Thiefs == FALSE))
-	{
-		AI_Output(self,other,"DIA_Ramirez_Hallo_14_00");	//Ты что, заблудился? По-моему, это не самое подходящее место для тебя.
-		AI_Output(self,other,"DIA_Ramirez_Hallo_14_01");	//Если здесь с тобой что-нибудь случится, тебе никто не придет на помощь. Так что будь осторожен. (широкая ухмылка)
-	};
+	AI_Output(self,other,"DIA_Ramirez_Hallo_14_00");	//Ты что, заблудился? По-моему, это не самое подходящее место для тебя.
+	AI_Output(self,other,"DIA_Ramirez_Hallo_14_01");	//Если здесь с тобой что-нибудь случится, тебе никто не придет на помощь. Так что будь осторожен. (широкая ухмылка)
+	AI_StopProcessInfos(self);
+	DG_gefunden = TRUE;
+};
+
+
+instance DIA_Ramirez_Hallo_Joined(C_Info)
+{
+	npc = VLK_445_Ramirez;
+	nr = 2;
+	condition = DIA_Ramirez_Hallo_Joined_Condition;
+	information = DIA_Ramirez_Hallo_Joined_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Ramirez_Hallo_Joined_Condition()
+{
 	if(Join_Thiefs == TRUE)
 	{
-		AI_Output(self,other,"DIA_Ramirez_Hallo_14_02");	//Итак, ты с нами. Что ж, тогда я желаю тебе успеха - но будь осторожен.
-		AI_Output(self,other,"DIA_Ramirez_Hallo_14_03");	//Ох, и еще одно - меня не интересует, кто ты там наверху, и кем ты работаешь.
-		AI_Output(self,other,"DIA_Ramirez_Hallo_14_04");	//Но здесь, внизу, ты один из нас. Вор. Не больше и не меньше.
-		DIA_Ramirez_Hallo_permanent = TRUE;
+		return TRUE;
 	};
+};
+
+func void DIA_Ramirez_Hallo_Joined_Info()
+{
+	AI_Output(self,other,"DIA_Ramirez_Hallo_14_02");	//Итак, ты с нами. Что ж, тогда я желаю тебе успеха - но будь осторожен.
+	AI_Output(self,other,"DIA_Ramirez_Hallo_14_03");	//Ох, и еще одно - меня не интересует, кто ты там наверху, и кем ты работаешь.
+	AI_Output(self,other,"DIA_Ramirez_Hallo_14_04");	//Но здесь, внизу, ты один из нас. Вор. Не больше и не меньше.
 	DG_gefunden = TRUE;
 };
 
@@ -134,22 +151,73 @@ instance DIA_Ramirez_Beute(C_Info)
 
 func int DIA_Ramirez_Beute_Condition()
 {
-	if((Mob_HasItems("THIEF_CHEST_01",ItMi_Gold) < 50) || (Mob_HasItems("THIEF_CHEST_02",ItMi_Gold) < 100) || !Mob_HasItems("THIEF_CHEST_02",ItMi_SilverCup) || (Mob_HasItems("THIEF_CHEST_03",ItMi_Gold) < 75))
+	if(Npc_GetDistToWP(self,"NW_CITY_KANAL_ROOM_04_01") < 1000)
 	{
-		return TRUE;
+		if(Mob_HasItems("THIEF_CHEST_01",ItMi_Gold) < 50)
+		{
+			return TRUE;
+		};
+		if(Mob_HasItems("THIEF_CHEST_02",ItMi_Gold) < 100)
+		{
+			return TRUE;
+		};
+		if(!Mob_HasItems("THIEF_CHEST_02",ItMi_SilverCup))
+		{
+			return TRUE;
+		};
+		if(Mob_HasItems("THIEF_CHEST_03",ItMi_Gold) < 75)
+		{
+			return TRUE;
+		};
+		if(Mob_HasItems("THIEF_CHEST_03",ItRw_Bolt) < 25)
+		{
+			return TRUE;
+		};
+		if(Mob_HasItems("THIEF_CHEST_03",ItRw_Arrow) < 25)
+		{
+			return TRUE;
+		};
+	}
+	else if(Npc_GetDistToWP(self,"NW_CITY_KANAL_ROOM_05_02") < 1000)
+	{
+		if(Mob_HasItems("THIEF_CHEST_04",ItMi_Gold) < 100)
+		{
+			return TRUE;
+		};
+		if(Mob_HasItems("THIEF_CHEST_04",ItSc_InstantFireball) < 2)
+		{
+			return TRUE;
+		};
+		if(!Mob_HasItems("THIEF_CHEST_04",ItSc_LightHeal))
+		{
+			return TRUE;
+		};
+		if(!Mob_HasItems("THIEF_CHEST_04",ItSc_ChargeFireball))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Ramirez_Beute_Info()
 {
 	AI_Output(self,other,"DIA_Ramirez_Beute_14_00");	//Послушай, ты что, пытаешься так пошутить? Ты набиваешь карманы нашим золотом... ты что, пытаешься красть у нас?
-	AI_Output(other,self,"DIA_Ramirez_Beute_15_01");	//Не стоит расстраиваться так из-за пары монет.
-	AI_Output(other,self,"DIA_Ramirez_Beute_15_02");	//Я хочу сказать, эта мелочь, что есть здесь - это ВСЕ, что вам удалось награбить? Это все, что гильдия воров Хориниса может предложить?
-	AI_Output(self,other,"DIA_Ramirez_Beute_14_03");	//Кто сказал, что наши сокровища хранятся здесь?
-	AI_Output(other,self,"DIA_Ramirez_Beute_15_04");	//Да, я тоже не могу в это поверить. А где вы прячете ваши сокровища?
-	AI_Output(self,other,"DIA_Ramirez_Beute_14_05");	//В очень надежном месте.
-	AI_Output(other,self,"DIA_Ramirez_Beute_15_06");	//Понимаю.
-	AI_Output(self,other,"DIA_Ramirez_Beute_14_07");	//Хорошо, ты можешь оставить себе это золото. Но я буду присматривать за тобой. Так что не пытайся повторить этот трюк.
+	if(Join_Thiefs == TRUE)
+	{
+		AI_Output(other,self,"DIA_Ramirez_Beute_15_01");	//Не стоит расстраиваться так из-за пары монет.
+		AI_Output(other,self,"DIA_Ramirez_Beute_15_02");	//Я хочу сказать, эта мелочь, что есть здесь - это ВСЕ, что вам удалось награбить? Это все, что гильдия воров Хориниса может предложить?
+		AI_Output(self,other,"DIA_Ramirez_Beute_14_03");	//Кто сказал, что наши сокровища хранятся здесь?
+		AI_Output(other,self,"DIA_Ramirez_Beute_15_04");	//Да, я тоже не могу в это поверить. А где вы прячете ваши сокровища?
+		AI_Output(self,other,"DIA_Ramirez_Beute_14_05");	//В очень надежном месте.
+		AI_Output(other,self,"DIA_Ramirez_Beute_15_06");	//Понимаю.
+		AI_Output(self,other,"DIA_Ramirez_Beute_14_07");	//Хорошо, ты можешь оставить себе это золото. Но я буду присматривать за тобой. Так что не пытайся повторить этот трюк.
+	}
+	else
+	{
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_NONE,1);
+	};
+	DG_gefunden = TRUE;
 };
 
 
@@ -275,14 +343,14 @@ instance DIA_Ramirez_Viertel(C_Info)
 	nr = 8;
 	condition = DIA_Ramirez_Viertel_Condition;
 	information = DIA_Ramirez_Viertel_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Где ты порекомендуешь мне попробовать свои силы?";
 };
 
 
 func int DIA_Ramirez_Viertel_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Ramirez_Zeichen))
+	if((Join_Thiefs == TRUE) && (RamirezToldAboutWambo == FALSE))
 	{
 		return TRUE;
 	};
@@ -292,9 +360,17 @@ func void DIA_Ramirez_Viertel_Info()
 {
 	AI_Output(other,self,"DIA_Ramirez_Viertel_15_00");	//Где ты порекомендуешь мне попробовать свои силы?
 	AI_Output(self,other,"DIA_Ramirez_Viertel_14_01");	//В верхней части города, конечно же.
-	AI_Output(self,other,"DIA_Ramirez_Viertel_14_02");	//Но если ты хочешь пробраться в какой-то дом, лучше дождаться ночи, ночью все спят - за исключением городской стражи.
-	AI_Output(self,other,"DIA_Ramirez_Viertel_14_03");	//Они патрулируют город всю ночь. Я знаю одного из них - Вамбо. Его интересует только золото.
-	AI_Output(self,other,"DIA_Ramirez_Viertel_14_04");	//Его услуги стоят недешево, но если ты ему заплатишь, тебе больше ни о чем не нужно будет волноваться.
+	if(Npc_KnowsInfo(other,DIA_Ramirez_Zeichen))
+	{
+		AI_Output(self,other,"DIA_Ramirez_Viertel_14_02");	//Но если ты хочешь пробраться в какой-то дом, лучше дождаться ночи, ночью все спят - за исключением городской стражи.
+		AI_Output(self,other,"DIA_Ramirez_Viertel_14_03");	//Они патрулируют город всю ночь. Я знаю одного из них - Вамбо. Его интересует только золото.
+		AI_Output(self,other,"DIA_Ramirez_Viertel_14_04");	//Его услуги стоят недешево, но если ты ему заплатишь, тебе больше ни о чем не нужно будет волноваться.
+		RamirezToldAboutWambo = TRUE;
+	}
+	else
+	{
+		AI_StopProcessInfos(self);
+	};	
 };
 
 
@@ -311,7 +387,8 @@ instance DIA_Ramirez_Sextant(C_Info)
 
 func int DIA_Ramirez_Sextant_Condition()
 {
-	if((MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 2) && Npc_KnowsInfo(other,DIA_Ramirez_Zeichen))
+//	if((MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 2) && Npc_KnowsInfo(other,DIA_Ramirez_Zeichen))
+	if(Join_Thiefs == TRUE)
 	{
 		return TRUE;
 	};

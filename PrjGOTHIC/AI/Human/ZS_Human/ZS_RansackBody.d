@@ -56,13 +56,9 @@ func void ZS_RansackBody_End()
 	{
 		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) < 500))
 		{
-			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garwig))
+			AI_TakeItem(self,item);
+			if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig))
 			{
-				AI_TakeItem(self,item);
-			}
-			else if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Garwig))
-			{
-				AI_TakeItem(self,item);
 				B_Say(self,self,"$ITAKEYOURWEAPON");
 				AI_EquipBestMeleeWeapon(self);
 			};

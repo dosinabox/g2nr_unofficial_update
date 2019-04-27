@@ -56,9 +56,9 @@ func int DIA_Akil_Hallo_Condition()
 func void DIA_Akil_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Hallo_15_00");	//У тебя какие-то проблемы?
-	AI_Output(self,other,"DIA_Akil_Hallo_13_01");	//(в поту) ...Э-э... нет, нет... все в порядке. (нервно) Это... тебе лучше уйти сейчас.
+	AI_Output(self,other,"DIA_Akil_Hallo_13_01");	//(в поту) ...Э-э... нет, нет... все в порядке. (нервно) Э-э... тебе лучше уйти сейчас.
 	AI_Output(other,self,"DIA_Akil_Hallo_15_02");	//Ты в этом уверен?
-	AI_Output(self,other,"DIA_Akil_Hallo_13_03");	//Э-э... да, да... все в порядке. Ты... э-э... я... я сейчас не могу говорить с тобой.
+	AI_Output(self,other,"DIA_Akil_Hallo_13_03");	//Э-э... да, да, да... все в порядке. Ты... э-э... я... я сейчас не могу говорить с тобой.
 	if(Akils_SLDStillthere == FALSE)
 	{
 		Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
@@ -131,7 +131,7 @@ func void DIA_Akil_NachKampf_Info()
 		AI_Output(self,other,"DIA_Akil_NachKampf_13_04");	//Это наемники с фермы Онара. Эти ублюдки только и знают, что грабить и убивать.
 	};
 	AI_Output(self,other,"DIA_Akil_NachKampf_13_05");	//Я боялся худшего...
-	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает) ... слава Инносу, до этого не дошло. Скажи мне, что я могу сделать для тебя?
+	AI_Output(self,other,"DIA_Akil_NachKampf_13_06");	//(глубоко вздыхает) ...слава Инносу, до этого не дошло. Скажи мне, что я могу сделать для тебя?
 	Info_ClearChoices(DIA_Akil_NachKampf);
 	Info_AddChoice(DIA_Akil_NachKampf,"Ничего. Я просто рад, что у тебя теперь все в порядке.",DIA_Akil_NachKampf_Ehre);
 	Info_AddChoice(DIA_Akil_NachKampf,"Как насчет нескольких золотых?",DIA_Akil_NachKampf_Gold);
@@ -325,14 +325,12 @@ instance DIA_Akil_Gegend(C_Info)
 
 func int DIA_Akil_Gegend_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner))
 	{
 		return TRUE;
 	};
 };
 
-
-var int Knows_Taverne;
 
 func void DIA_Akil_Gegend_Info()
 {
@@ -382,7 +380,7 @@ instance DIA_Akil_Taverne(C_Info)
 
 func int DIA_Akil_Taverne_Condition()
 {
-	if(Knows_Taverne == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Akil_Gegend) && (Knows_Taverne == TRUE))
 	{
 		return TRUE;
 	};
@@ -418,7 +416,10 @@ func void DIA_Akil_Wald_Info()
 {
 	AI_Output(other,self,"DIA_Akil_Gegend_Wald_15_00");	//А что там, в лесу за твоей фермой?
 	AI_Output(self,other,"DIA_Akil_Gegend_Wald_13_01");	//Там бродят монстры. И волки еще самые безобидные из них.
-	AI_Output(self,other,"DIA_Akil_Gegend_Wald_13_02");	//Также говорят, что там устроили себе логово бандиты. Ну - хотя бы они не трогают мою ферму.
+	if(Kapitel < 3)
+	{
+		AI_Output(self,other,"DIA_Akil_Gegend_Wald_13_02");	//Также говорят, что там устроили себе логово бандиты. Ну - хотя бы они не трогают мою ферму.
+	};
 };
 
 
@@ -436,6 +437,10 @@ instance DIA_Akil_Perm(C_Info)
 func int DIA_Akil_Perm_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner) && (Kapitel >= 3))
+	{
+		return TRUE;
+	};
+	if(Kapitel >= 4)
 	{
 		return TRUE;
 	};
@@ -512,7 +517,11 @@ instance DIA_Akil_SCHAFDIEB(C_Info)
 
 func int DIA_Akil_SCHAFDIEB_Condition()
 {
-	if(Kapitel >= 3)
+	if(Npc_KnowsInfo(other,DIA_Akil_Soeldner) && (Kapitel >= 3))
+	{
+		return TRUE;
+	};
+	if(Kapitel >= 4)
 	{
 		return TRUE;
 	};
@@ -526,10 +535,6 @@ func void DIA_Akil_SCHAFDIEB_Info()
 	Info_AddChoice(DIA_Akil_SCHAFDIEB,"Это не мои проблемы.",DIA_Akil_SCHAFDIEB_nein);
 	Info_AddChoice(DIA_Akil_SCHAFDIEB,"Сколько овец у тебя пропало?",DIA_Akil_SCHAFDIEB_wieviel);
 	Info_AddChoice(DIA_Akil_SCHAFDIEB,"Кто может делать это?",DIA_Akil_SCHAFDIEB_wer);
-	MIS_Akil_SchafDiebe = LOG_Running;
-	Log_CreateTopic(TOPIC_AkilSchafDiebe,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_AkilSchafDiebe,LOG_Running);
-	B_LogEntry(TOPIC_AkilSchafDiebe,"Овцы Акила продолжают пропадать. Он подозревает, что к этому причастны бандиты, живущие в пещере в соседнем лесу.");
 };
 
 func void DIA_Akil_SCHAFDIEB_wer()
@@ -538,6 +543,10 @@ func void DIA_Akil_SCHAFDIEB_wer()
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEB_wer_13_01");	//У меня есть подозрения.
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEB_wer_13_02");	//Какие-то темные личности обосновались в пещере вон в том лесу.
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEB_wer_13_03");	//Мне трудно поверить, что они питаются только ягодами. Я почти уверен, что именно они виновны в исчезновении моих овец.
+	MIS_Akil_SchafDiebe = LOG_Running;
+	Log_CreateTopic(TOPIC_AkilSchafDiebe,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_AkilSchafDiebe,LOG_Running);
+	B_LogEntry(TOPIC_AkilSchafDiebe,"Овцы Акила продолжают пропадать. Он подозревает, что к этому причастны бандиты, живущие в пещере в соседнем лесу.");
 	Info_ClearChoices(DIA_Akil_SCHAFDIEB);
 };
 

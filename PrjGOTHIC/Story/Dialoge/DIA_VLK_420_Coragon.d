@@ -139,6 +139,12 @@ func void DIA_Coragon_WhatsUp_Info()
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_05");	//Взять хотя бы Валентино. Я его просто не переношу.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_06");	//Но клиентов мне выбирать не приходится. Сейчас мне дорога каждая монетка.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_07");	//Все, что мне удалось скопить, у меня украли вместе с моим серебром.
+	AI_Output(other,self,"DIA_MiltenNW_KAP4_PERM_15_03");	//Что-нибудь еще?
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_33");	//Прошлой ночью Валентино не смог расплатиться по счету.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_35");	//Только что он разорялся о том, как много у него денег.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_36");	//И тут он запускает руку в карман, делает глупое лицо и говорит, что его обокрали...
+	AI_Output(other,self,"DIA_Coragon_Add_15_37");	//И? Что ты сделал?
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_38");	//Я? Задал ему хорошую трепку, что же еще?
 };
 
 
@@ -154,7 +160,7 @@ instance DIA_Addon_Coragon_MissingPeople(C_Info)
 
 func int DIA_Addon_Coragon_MissingPeople_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Coragon_HALLO) && (SC_HearedAboutMissingPeople == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Coragon_HALLO) && (SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};
@@ -303,9 +309,15 @@ func int DIA_Coragon_GiveBook_Condition()
 func void DIA_Coragon_GiveBook_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
-//	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
-	AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
+	if(ClassicLehmarBook == FALSE)
+	{
+		AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
+	}
+	else
+	{
+		B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
+	};
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_19");	//Спасибо! Ты спас меня. Лемар может быть очень неприятным человеком.
 	B_GivePlayerXP(XP_Schuldenbuch);
 	B_Coragon_Bier();
@@ -370,45 +382,6 @@ func void DIA_Coragon_Valentino_Info()
 };
 
 
-instance DIA_Coragon_News(C_Info)
-{
-	npc = VLK_420_Coragon;
-	nr = 1;
-	condition = DIA_Coragon_News_Condition;
-	information = DIA_Coragon_News_Info;
-	permanent = FALSE;
-	important = TRUE;
-};
-
-
-func int DIA_Coragon_News_Condition()
-{
-	if(Valentino.aivar[AIV_DefeatedByPlayer] == TRUE)
-	{
-		if(Regis_Ring == TRUE)
-		{
-			return TRUE;
-		};
-	};
-};
-
-func void DIA_Coragon_News_Info()
-{
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_33");	//Прошлой ночью Валентино не смог расплатиться по счету.
-	if(Valentino.aivar[AIV_DefeatedByPlayer] == TRUE)
-	{
-		AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_34");	//Он болтал что-то о том, что его обокрали и что он заплатит мне потом. Как же!
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_35");	//Только что он разорялся о том, как много у него денег.
-		AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_36");	//И тут он запускает руку в карман, делает глупое лицо и говорит, что его обокрали...
-	};
-	AI_Output(other,self,"DIA_Coragon_Add_15_37");	//И? Что ты сделал?
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_38");	//Я? Задал ему хорошую трепку, что же еще?
-};
-
-
 instance DIA_Coragon_Ring(C_Info)
 {
 	npc = VLK_420_Coragon;
@@ -422,7 +395,7 @@ instance DIA_Coragon_Ring(C_Info)
 
 func int DIA_Coragon_Ring_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Coragon_News) && Npc_HasItems(other,ItRi_ValentinosRing))
+	if(Npc_KnowsInfo(other,DIA_Coragon_Valentino) && Npc_HasItems(other,ItRi_ValentinosRing))
 	{
 		return TRUE;
 	};
@@ -436,8 +409,8 @@ func void DIA_Coragon_Ring_Info()
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_40");	//Что? Не понимаю...
 	AI_Output(other,self,"DIA_Coragon_Add_15_41");	//Оно принадлежало Валентино.
 	AI_Output(other,self,"DIA_Coragon_Add_15_42");	//Ты можешь передать его следующему, кто отдубасит его...
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_34");	//Он болтал что-то о том, что его обокрали и что он заплатит мне потом. Ха, как же!
 	B_GivePlayerXP(300);
-	AI_StopProcessInfos(self);
 };
 
 instance DIA_Coragon_PICKPOCKET_Book(C_Info)
@@ -453,7 +426,7 @@ instance DIA_Coragon_PICKPOCKET_Book(C_Info)
 
 func int DIA_Coragon_PICKPOCKET_Book_Condition()
 {
-	if((SchuldBuch_Stolen_Coragon == FALSE) && Npc_KnowsInfo(other,DIA_Coragon_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 30))
+	if((ClassicLehmarBook == FALSE) && (SchuldBuch_Stolen_Coragon == FALSE) && Npc_KnowsInfo(other,DIA_Coragon_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 30))
 	{
 		return TRUE;
 	};

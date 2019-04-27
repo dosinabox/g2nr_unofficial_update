@@ -84,7 +84,7 @@ func void DIA_Buster_Hello_NotYourBusiness()
 func void DIA_Buster_Hello_GoingToFarm()
 {
 	AI_Output(other,self,"DIA_Buster_Hello_GoingToFarm_15_00");	//Как скажешь. Я хочу увидеть лендлорда.
-	AI_Output(self,other,"DIA_Buster_Hello_GoingToFarm_13_01");	//Да?.. Хм - ты не кажешься мне таким уж опасным.
+	AI_Output(self,other,"DIA_Buster_Hello_GoingToFarm_13_01");	//Да?.. Хм, ты не кажешься мне таким уж опасным.
 	Info_ClearChoices(DIA_Buster_Hello);
 	Info_AddChoice(DIA_Buster_Hello,"Хочешь проверить?",DIA_Buster_Hello_WannaTestIt);
 	Info_AddChoice(DIA_Buster_Hello,"Я тоже убил парочку-другую тварей.",DIA_Buster_Hello_SlewBeasts);
@@ -275,8 +275,11 @@ func void DIA_Buster_WannaJoin_Info()
 	AI_Output(other,self,"DIA_Buster_WannaJoin_15_00");	//Я хочу присоединиться к наемникам!
 	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_WON) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 	{
-		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 		{
 			AI_Output(self,other,"DIA_Buster_WannaJoin_13_01");	//У парня с таким ударом, как у тебя, не должно возникнуть с этим особых проблем.
@@ -449,7 +452,8 @@ instance DIA_Buster_WhatHappened(C_Info)
 
 func int DIA_Buster_WhatHappened_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Buster_LeeLeader) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)))
+//	if(Npc_KnowsInfo(other,DIA_Buster_LeeLeader) && ((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG)))
+	if(Npc_KnowsInfo(other,DIA_Buster_LeeLeader))
 	{
 		return TRUE;
 	};
@@ -670,7 +674,7 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_02");	//Он мертв. Можешь оставить эти рога себе. Теперь я все равно не знаю, что с ними делать.
 		MIS_Buster_KillShadowbeasts_DJG = LOG_SUCCESS;
 		B_CheckLog();
-		B_GivePlayerXP(XP_Ambient);
+		B_GivePlayerXP(XP_AmbientKap5);
 	}
 	else if(Npc_HasItems(other,ItAt_ShadowHorn))
 	{

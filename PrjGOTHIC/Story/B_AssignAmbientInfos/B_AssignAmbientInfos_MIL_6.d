@@ -42,8 +42,9 @@ func void DIA_MIL_6_JOIN_Info()
 {
 	AI_Output(other,self,"DIA_MIL_6_JOIN_15_00");	//Что мне нужно сделать, чтобы вступить в ополчение?
 	AI_Output(self,other,"DIA_MIL_6_JOIN_06_01");	//Иди к лорду Андрэ и поговори с ним. С тех пор, как паладины пришли в город, он командует всем ополчением.
-	if(C_NpcIsInQuarter(self) != Q_KASERNE)
+	if((C_NpcIsInQuarter(self) != Q_KASERNE) && (Andre.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
+		AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
 		AI_Output(self,other,"DIA_MIL_6_JOIN_06_02");	//Ты найдешь его в казармах. Он практически всегда там.
 	};
 };
@@ -61,7 +62,7 @@ instance DIA_Addon_MIL_6_MissingPeople(C_Info)
 
 func int DIA_Addon_MIL_6_MissingPeople_Condition()
 {
-	if((Kapitel == 1) && (SC_HearedAboutMissingPeople == TRUE))
+	if((SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};

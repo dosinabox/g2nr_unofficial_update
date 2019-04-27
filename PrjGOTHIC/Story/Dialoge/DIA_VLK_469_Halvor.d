@@ -326,7 +326,7 @@ func void DIA_Halvor_MESSAGE_Okay()
 	AI_Output(self,other,"DIA_Halvor_MESSAGE_Okay_06_01");	//Спасибо. Заходи, когда опять будешь неподалеку. Я приготовлю очень интересные вещички для тебя.
 	B_GiveInvItems(other,self,ItWr_HalvorMessage,1);
 	Npc_RemoveInvItems(self,ItWr_HalvorMessage,1);
-	Halvor_Deal = TRUE;
+//	Halvor_Deal = TRUE;
 	Diebesgilde_Okay += 1;
 	CreateInvItems(self,ItSe_ErzFisch,1);
 	CreateInvItems(self,ItSe_GoldFisch,1);
@@ -361,7 +361,6 @@ func void DIA_Halvor_Zeichen_Info()
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_00");	//Понимаю. Ты пришел не просто купить рыбу.
 	AI_Output(self,other,"DIA_Halvor_Zeichen_06_01");	//(тихо) Я готов сделать тебе предложение. Если у тебя есть серебряные тарелки или кубки, я возьму их по хорошей цене.
 	CreateInvItems(self,ItKe_Lockpick,20);
-	Log_CreateTopic(Topic_Diebesgilde,LOG_NOTE);
 	B_LogEntry(Topic_Diebesgilde,"Халвор купит серебряные тарелки и кубки по очень хорошей цене.");
 };
 

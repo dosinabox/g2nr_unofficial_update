@@ -1131,7 +1131,7 @@ func void PC_ItMi_Addon_Joint_01_Info()
 
 instance PC_ItMi_Tabak(C_Info)
 {
-	nr = 10;
+	nr = 12;
 	npc = PC_Hero;
 	condition = PC_ItMi_Tabak_Condition;
 	information = PC_ItMi_Tabak_Info;

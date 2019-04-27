@@ -228,6 +228,7 @@ prototype BeliarWeaponPrototype_2H(C_Item)
 
 instance ItMw_BeliarWeapon_Raven(BeliarWeaponPrototype_2H)
 {
+	flags = ITEM_2HD_SWD | ITEM_MISSION;
 	value = Value_BeliarW_Raven;
 	damageTotal = Damage_BeliarW_Raven;
 	cond_atr[2] = ATR_MANA_MAX;

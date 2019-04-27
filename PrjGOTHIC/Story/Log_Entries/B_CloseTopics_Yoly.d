@@ -2,10 +2,10 @@
 func void B_CloseTopics_Yoly()
 {
 	B_CloseTopic(TOPIC_Addon_PickForConstantino,0,Mil_310_schonmalreingelassen,3);
-	B_CloseTopic(TOPIC_Addon_Greg_NW,MIS_Addon_Greg_RakeCave,ENTERED_ADDONWORLD,3);
-	B_CloseTopic(TOPIC_Addon_Ornament,0,ENTERED_ADDONWORLD,3);
+	B_CloseTopic(TOPIC_Addon_Greg_NW,MIS_Addon_Greg_RakeCave,ENTERED_ADDONWORLD,6);
+	B_CloseTopic(TOPIC_Addon_Ornament,0,ENTERED_ADDONWORLD,6);
 	B_CloseTopic(TOPIC_Addon_RingOfWater,RangerMeetingRunning,0,3);
-	B_CloseTopic(TOPIC_Addon_HolRiordian,MIS_Addon_Saturas_BringRiordian2Me,0,3);
+	B_CloseTopic(TOPIC_Addon_HolRiordian,MIS_Addon_Saturas_BringRiordian2Me,0,4);
 	B_CloseTopic(TOPIC_Addon_CavalornTheHut,0,TOPIC_End_CavalornTheHut,6);
 	B_CloseTopic(TOPIC_Addon_KillBrago,MIS_Addon_Cavalorn_KillBrago,0,3);
 	B_CloseTopic(TOPIC_Addon_Bandittrader,MIS_Vatras_FindTheBanditTrader,0,6);
@@ -29,7 +29,8 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_RavenKDW,0,RavenIsDead,4);
 	B_CloseTopic(TOPIC_Addon_Relicts,0,Saturas_SCBroughtAllToken,4);
 	B_CloseTopic(TOPIC_Addon_Lance,0,TOPIC_End_Lance,6);
-	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,RavenIsDead,6);
+//	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,RavenIsDead,6);
+	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,0,6);
 	B_CloseTopic(TOPIC_Addon_CanyonOrcs,0,TOPIC_END_CanyonOrcs,6);
 	B_CloseTopic(TOPIC_Addon_BDTRuestung,0,MIS_Greg_ScoutBandits,6);
 	B_CloseTopic(TOPIC_Addon_Quarhodron,0,Saturas_KnowsHow2GetInTempel,4);
@@ -40,7 +41,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_VatrasAbloesung,0,VatrasCanLeaveTown_Kap3,4);
 	B_CloseTopic(TOPIC_Bronkoeingeschuechtert,MIS_Sekob_Bronko_eingeschuechtert,0,6);
 	B_CloseTopic(TOPIC_BalthasarsSchafe,MIS_Balthasar_BengarsWeide,0,6);
-	if((hero.guild != GIL_NONE) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
+	if((hero.guild != GIL_NONE) && (hero.guild != GIL_SLD) && (hero.guild != GIL_DJG) && (MIS_Balthasar_BengarsWeide == LOG_Running))
 	{
 		Log_SetTopicStatus(TOPIC_BalthasarsSchafe,LOG_OBSOLETE);
 	};

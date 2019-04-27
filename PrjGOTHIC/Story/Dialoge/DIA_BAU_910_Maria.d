@@ -41,7 +41,7 @@ func void DIA_Maria_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Maria_Hallo_15_00");	//Кто ты?
 	AI_Output(self,other,"DIA_Maria_Hallo_17_01");	//Я жена Онара, Мария.
-	AI_Output(self,other,"DIA_Maria_Hallo_17_02");	//Что тебе нужно здесь?
+	AI_Output(self,other,"DIA_Maria_Hallo_17_02");	//Что тебе здесь нужно?
 };
 
 

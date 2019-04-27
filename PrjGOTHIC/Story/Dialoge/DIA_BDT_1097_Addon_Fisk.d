@@ -82,6 +82,7 @@ func void DIA_Addon_Fisk_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_Fisk_Hi_12_01");	//Моя лавка находится за домом Эстебана. Если тебе что-нибудь понадобится, заходи.
 	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
 	B_LogEntry(Topic_Addon_BDT_Trader,"Фиск продает самые разные товары.");
+	EnteredBanditsCamp = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 };
@@ -266,7 +267,7 @@ func void DIA_Addon_Fisk_GivePaket_Info()
 	MIS_Lennar_Lockpick = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_LennarPaket);
 	Npc_RemoveInvItems(self,ItMi_Addon_Lennar_Paket,1);
-	CreateInvItems(self,ItKe_Lockpick,12);
+	CreateInvItems(self,ItKe_Lockpick,Lennar_picklock_amount);
 	AI_Output(self,other,"DIA_Addon_Fisk_GivePaket_12_01");	//Замечательно! (подозрительно) А что с Хуаном?
 	B_Addon_Fisk_AboutJuan();
 	B_Addon_Fisk_Belohnung();
@@ -315,7 +316,7 @@ instance DIA_Addon_Fisk_GivePicks(C_Info)
 
 func int DIA_Addon_Fisk_GivePicks_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Fisk_PaketOpen) && (MIS_Lennar_Lockpick == LOG_Running))
+	if((MIS_Lennar_Lockpick == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Fisk_PaketOpen))
 	{
 		return TRUE;
 	};
@@ -324,7 +325,7 @@ func int DIA_Addon_Fisk_GivePicks_Condition()
 func void DIA_Addon_Fisk_GivePicks_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Fisk_GivePicks_15_00");	//Вот твоя дюжина отмычек...
-	if(B_GiveInvItems(other,self,ItKe_Lockpick,12))
+	if(B_GiveInvItems(other,self,ItKe_Lockpick,Lennar_picklock_amount))
 	{
 		AI_Output(self,other,"DIA_Addon_Fisk_GivePicks_12_01");	//Очень хорошо! Покупатели их уже заждались.
 		B_Addon_Fisk_Belohnung();
@@ -449,12 +450,15 @@ func void DIA_Addon_Fisk_Meeting_now()
 	if(!Npc_IsDead(Esteban))
 	{
 		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_01");	//Мы уберем Эстебана с нашего пути. А это значит, ты его убьешь и займешь его место.
-		AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_02");	//Пока с ним его охранники, он для меня недосягаем.
-		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_03");	//Тогда мы их выманим. Правдой.
-		AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_04");	//Правдой?
-		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_05");	//Ты ведь выполнил свою работу. Ты узнал, что за нападением стоял я.
-		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_06");	//Скажи так Эстебану, и он отправит своих ребят сюда, чтобы покончить со мной. Тут-то я их и буду ждать.
-		AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_07");	//Когда они уйдут, ты займешься ублюдком, а я - охранниками.
+		if(!Npc_IsDead(Wache_01) || !Npc_IsDead(Wache_02))
+		{
+			AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_02");	//Пока с ним его охранники, он для меня недосягаем.
+			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_03");	//Тогда мы их выманим. Правдой.
+			AI_Output(other,self,"DIA_Addon_Fisk_Meeting_now_15_04");	//Правдой?
+			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_05");	//Ты ведь выполнил свою работу. Ты узнал, что за нападением стоял я.
+			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_06");	//Скажи так Эстебану, и он отправит своих ребят сюда, чтобы покончить со мной. Тут-то я их и буду ждать.
+			AI_Output(self,other,"DIA_Addon_Fisk_Meeting_now_12_07");	//Когда они уйдут, ты займешься ублюдком, а я - охранниками.
+		};
 	}
 	else
 	{

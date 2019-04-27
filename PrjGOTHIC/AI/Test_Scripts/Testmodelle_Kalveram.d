@@ -9,7 +9,6 @@ instance Itemhoshi(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Bau_Mace);
 	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
 	CreateInvItems(self,ItMw_1H_Mace_L_01,1);
 	CreateInvItems(self,ItMw_1h_Bau_Axe,1);
@@ -136,7 +135,6 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_Addon_BanditTrader,1);
 	CreateInvItems(self,ItMw_Addon_Betty,1);
 	CreateInvItem(self,ITAR_Governor);
-	CreateInvItem(self,ITAR_Larius);
 	CreateInvItem(self,ITAR_Smith);
 	CreateInvItem(self,ITAR_Barkeeper);
 	CreateInvItem(self,ITAR_Judge);
@@ -177,19 +175,22 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_Dementor);
 	CreateInvItem(self,ITAR_Dementor_Boss);
 	CreateInvItem(self,ITAR_Prisoner);
+	CreateInvItem(self,ITAR_Larius);
 	CreateInvItem(self,ITAR_Slave);
-	CreateInvItems(self,ITAR_PIR_L_Addon,1);
-	CreateInvItems(self,ITAR_PIR_M_Addon,1);
-	CreateInvItems(self,ITAR_PIR_H_Addon,1);
-	CreateInvItems(self,ITAR_Thorus_Addon,1);
-	CreateInvItems(self,ITAR_Raven_Addon,1);
-	CreateInvItems(self,ITAR_OreBaron_Addon,1);
-	CreateInvItems(self,ITAR_RANGER_Addon,1);
-	CreateInvItems(self,ITAR_Fake_RANGER,1);
-	CreateInvItems(self,ITAR_KDW_L_Addon,1);
-	CreateInvItems(self,ITAR_Bloodwyn_Addon,1);
-	CreateInvItems(self,ITAR_MayaZombie_Addon,1);
-	CreateInvItems(self,ItAr_FireArmor_Addon,1);
+	CreateInvItem(self,ITAR_Beggar);
+	CreateInvItem(self,ITAR_Onar);
+	CreateInvItem(self,ITAR_PIR_L_Addon);
+	CreateInvItem(self,ITAR_PIR_M_Addon);
+	CreateInvItem(self,ITAR_PIR_H_Addon);
+	CreateInvItem(self,ITAR_Thorus_Addon);
+	CreateInvItem(self,ITAR_Raven_Addon);
+	CreateInvItem(self,ITAR_OreBaron_Addon);
+	CreateInvItem(self,ITAR_RANGER_Addon);
+	CreateInvItem(self,ITAR_Fake_RANGER);
+	CreateInvItem(self,ITAR_KDW_L_Addon);
+	CreateInvItem(self,ITAR_Bloodwyn_Addon);
+	CreateInvItem(self,ITAR_MayaZombie_Addon);
+	CreateInvItem(self,ITAR_FireArmor_Addon);
 	CreateInvItems(self,ItRu_PalLight,1);
 	CreateInvItems(self,ItRu_PalLightHeal,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
@@ -207,7 +208,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItRu_TeleportOC,1);
 	CreateInvItems(self,ItRu_TeleportOWDemonTower,1);
 	CreateInvItems(self,ItRu_TeleportTaverne,1);
-	CreateInvItems(self,ItRu_Teleport_3,1);
+	CreateInvItems(self,ItRu_TeleportRitual,1);
 	CreateInvItems(self,ItRu_Light,1);
 	CreateInvItems(self,ItRu_FireBolt,1);
 	CreateInvItems(self,ItRu_Zap,1);
@@ -369,7 +370,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ITWr_Addon_Lou_Rezept,1);
 	CreateInvItems(self,ITWr_Addon_Lou_Rezept2,1);
 	CreateInvItems(self,ITWr_Addon_Piratentod,1);
-	CreateInvItems(self,Fakescroll_Addon,1);
+//	CreateInvItems(self,Fakescroll_Addon,1);
 	CreateInvItems(self,ItWr_Addon_AxtAnleitung,1);
 	CreateInvItems(self,ItWr_Addon_SUMMONANCIENTGHOST,1);
 	CreateInvItems(self,ItWr_Map_AddonWorld,1);
@@ -385,6 +386,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDF_CIRC4,1);
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDF_CIRC5,1);
 	CreateInvItems(self,ITWR_Addon_Runemaking_KDF_CIRC6,1);
+	CreateInvItems(self,Openbook1,1);
 	CreateInvItems(self,ItFo_Apple,10);
 	CreateInvItems(self,ItFo_Cheese,10);
 	CreateInvItems(self,ItFo_Bacon,10);
@@ -404,6 +406,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItFo_CoragonsBeer,10);
 	CreateInvItems(self,ItFo_Booze,10);
 	CreateInvItems(self,ItFo_Wine,10);
+	CreateInvItems(self,ItFo_DarkWine,10);
 	CreateInvItems(self,ItFo_Milk,10);
 	CreateInvItems(self,ItFo_Addon_Shellflesh,10);
 	CreateInvItems(self,ItFo_Addon_Rum,10);
@@ -501,7 +504,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_SilverNecklace,1);
 	CreateInvItems(self,ItMi_SilverCandleHolder,1);
 	CreateInvItems(self,ItMi_Sextant,1);
-	CreateInvItems(self,ItMi_Packet,1);
+//	CreateInvItems(self,ItMi_Packet,1);
 	CreateInvItems(self,ItMi_Pocket,1);
 	CreateInvItems(self,ItMi_BloodCup_MIS,1);
 	CreateInvItems(self,ItMi_ApfelTabak,1);
@@ -519,6 +522,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_Skull,1);
 	CreateInvItems(self,ItMi_Addon_Shell_01,10);
 	CreateInvItems(self,ItMi_Addon_Shell_02,10);
+	CreateInvItems(self,ItMi_Grog_Crate,5);
 	CreateInvItems(self,ItRw_Bow_L_01,1);
 	CreateInvItems(self,ItRw_Bow_L_02,1);
 	CreateInvItems(self,ItRw_Bow_L_03,1);
@@ -575,6 +579,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItAm_Prot_Point_01);
 	CreateInvItem(self,ItAm_Prot_Total_01);
 	CreateInvItem(self,ItAm_Addon_Franco);
+	CreateInvItem(self,ItAm_Addon_Greg);
 	CreateInvItem(self,ItAm_Addon_Health);
 	CreateInvItem(self,ItAm_Addon_MANA);
 	CreateInvItem(self,ItAm_Addon_STR);
@@ -680,7 +685,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Passierschein,1);
 	CreateInvItems(self,ItMi_HerbPaket,1);
 	CreateInvItems(self,ItKe_Storage,1);
-	CreateInvItems(self,ItFo_SmellyFish,1);
+	CreateInvItems(self,ItFo_SmellyFish,10);
 	CreateInvItems(self,ItFo_HalvorFish_MIS,1);
 	CreateInvItems(self,ItWr_HalvorMessage,1);
 	CreateInvItems(self,ItMw_AlriksSword_Mis,1);
@@ -694,7 +699,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItKe_KlosterStore,1);
 	CreateInvItems(self,ItKe_KDFPlayer,1);
 	CreateInvItems(self,ItKe_KlosterBibliothek,1);
-	CreateInvItems(self,ItFo_Schafswurst,1);
+	CreateInvItems(self,ItFo_Schafswurst,10);
 	CreateInvItems(self,ItPo_Perm_LittleMana,1);
 	CreateInvItems(self,Holy_Hammer_MIS,1);
 	CreateInvItems(self,ItKe_MagicChest,1);
@@ -737,6 +742,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Bloody_MIS,1);
 	CreateInvItems(self,ItWr_Pfandbrief_MIS,1);
 	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_MIS,1);
+	CreateInvItems(self,ItWr_Map_OldWorld_Oremines_Small_MIS,1);
 	CreateInvItems(self,ItWr_Manowar,1);
 	CreateInvItems(self,ItWr_KDWLetter,1);
 	CreateInvItems(self,ItWr_GilbertLetter,1);
@@ -874,7 +880,7 @@ instance Itemhoshi(Npc_Default)
 
 instance Hoshi_Testmodell(Npc_Default)
 {
-	name[0] = "Хош";
+	name[0] = "Хоша";
 	guild = GIL_MIL;
 	id = 20000;
 	voice = 6;
@@ -888,7 +894,7 @@ instance Hoshi_Testmodell(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,80);
-	daily_routine = Rtn_Start_302;
+	daily_routine = Rtn_Start_20000;
 };
 
 
@@ -1257,11 +1263,44 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_RANGER_Addon);
 	CreateInvItem(self,ITAR_KDW_L_Addon);
 	CreateInvItem(self,ITAR_Bloodwyn_Addon);
-	CreateInvItem(self,ITAR_Slave);
 	CreateInvItem(self,ITAR_Dementor_Boss);
 	CreateInvItem(self,ITAR_Larius);
+	CreateInvItem(self,ITAR_Slave);
+	CreateInvItem(self,ITAR_Beggar);
+	CreateInvItem(self,ITAR_Onar);
 };
 
+
+instance Helmets(C_Item)
+{
+	name = NAME_Bag;
+	mainflag = ITEM_KAT_NONE;
+	flags = 0;
+	value = 0;
+	visual = "ItMi_Bag.3ds";
+	scemeName = "MAPSEALED";
+	material = MAT_LEATHER;
+	on_state[0] = UseHelmets;
+	description = name;
+	text[0] = "Мешок наполнен экспериментальными";
+	text[1] = "доспехами и шлемами!";
+};
+
+func void UseHelmets()
+{
+	Snd_Play("Geldbeutel");
+	Print("Найдено много разных доспехов и шлемов!");
+	CreateInvItem(self,ITAR_OHT);
+	CreateInvItem(self,ITAR_DJGN_M);
+	CreateInvItem(self,ITAR_DJGN_H);
+	CreateInvItem(self,ITAR_PALN_M);
+	CreateInvItem(self,ITAR_PALN_H);
+	CreateInvItem(self,ITHE_OHT);
+	CreateInvItem(self,ITHE_DJG_M);
+	CreateInvItem(self,ITHE_DJG_H);
+	CreateInvItem(self,ITHE_PAL_M);
+	CreateInvItem(self,ITHE_PAL_H);
+};
 
 instance Runenbrief(C_Item)
 {
@@ -1269,7 +1308,7 @@ instance Runenbrief(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	on_state[0] = UseHosh1;
 	scemeName = "MAP";
@@ -1309,7 +1348,7 @@ instance EnterBanditCamp(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	on_state[0] = UseHosh2;
 	scemeName = "MAP";
@@ -1333,7 +1372,7 @@ instance PH(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	on_state[0] = UsePatrickHelper;
 	scemeName = "MAP";
@@ -1439,7 +1478,7 @@ instance Hosh4(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;
@@ -1457,13 +1496,13 @@ func void UseHoshiTagebuch()
 };
 
 
-instance D36TestRune(C_Item)
+/*instance D36TestRune(C_Item)
 {
 	name = "Великая руна тестов";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;
@@ -1477,11 +1516,9 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	B_StartOtherRoutine(PAL_212_Schiffswache,"ShipFree");
-	B_StartOtherRoutine(PAL_213_Schiffswache,"ShipFree");
-	B_StartOtherRoutine(Girion,"WaitForShip");
-	MIS_ShipIsFree = TRUE;
-};
+	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
+	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
+};*/
 
 instance WastelandRune(C_Item)
 {
@@ -1489,7 +1526,7 @@ instance WastelandRune(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ITRU_TELEPORTOWDEMONTOWER.3DS";
+	visual = "ItRu_TeleportOWDemonTower.3DS";
 	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;

@@ -515,16 +515,6 @@ instance END_DAY_FGT(C_MUSICTHEME_FIGHT)
 	file = "dlc_dayfgt.sgt";
 };
 
-/*instance TAV_DAY_STD(C_MUSICTHEME_STANDARD)
-{
-	file = "lob_daystd.sgt";
-};
-
-instance TAV_DAY_FGT(C_MUSICTHEME_FIGHT)
-{
-	file = "kh_dayfgt.sgt";
-};*/
-
 instance BOR_DAY_STD(C_MUSICTHEME_STANDARD)
 {
 	file = "kh_daystd.sgt";

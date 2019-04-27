@@ -17,6 +17,10 @@ func int C_NpcCanEquipWeapons(var C_Npc slf)
 	{
 		return FALSE;
 	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rhademes))
+	{
+		return FALSE;
+	};
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Xardas))
 	{
 		return FALSE;

@@ -80,6 +80,7 @@ func void DIA_Addon_Bloodwyn_Dead_Info()
 	AI_Output(self,other,"DIA_Addon_Bloodwyn_Dead_04_00");	//Эй, как ты сюда попал?
 	AI_Output(other,self,"DIA_Addon_Bloodwyn_Dead_15_01");	//Через вход.
 	AI_Output(self,other,"DIA_Addon_Bloodwyn_Dead_04_02");	//Смешно... НЕНАВИЖУ шутки.
+	EnteredBanditsCamp = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -136,6 +137,7 @@ func void DIA_Addon_Bloodwyn_Wait_Info()
 	AI_Output(other,self,"DIA_Addon_Bloodwyn_Wait_15_01");	//Подожди минутку.
 	AI_Output(self,other,"DIA_Addon_Bloodwyn_Wait_04_02");	//Ты еще здесь?
 	AI_Output(other,self,"DIA_Addon_Bloodwyn_Wait_15_03");	//Нам нужно кое-что выяснить.
+	EnteredBanditsCamp = TRUE;
 	Info_ClearChoices(DIA_Addon_Bloodwyn_Wait);
 	Info_AddChoice(DIA_Addon_Bloodwyn_Wait,PRINT_ADDON_ENOUGHTALK,DIA_Addon_Bloodwyn_Wait_FIGHT);
 	Info_AddChoice(DIA_Addon_Bloodwyn_Wait,"Я ищу Ворона.",DIA_Addon_Bloodwyn_Wait_Raven);

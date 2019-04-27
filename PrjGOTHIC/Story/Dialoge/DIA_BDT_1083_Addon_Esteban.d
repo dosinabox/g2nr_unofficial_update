@@ -31,7 +31,7 @@ instance DIA_Addon_Esteban_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Esteban_PICKPOCKET_Condition;
 	information = DIA_Addon_Esteban_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_100;
+	description = Pickpocket_120;
 };
 
 
@@ -89,9 +89,9 @@ func void DIA_Addon_Esteban_Hi_Info()
 	else
 	{
 		B_StartOtherRoutine(Carlos,"GUARD");
-
 	};
 	AI_Output(self,other,"DIA_Addon_Esteban_Hi_07_03");	//Просто чтобы сразу прояснить ситуацию - если ты затеешь то же со мной, я убью тебя.
+	EnteredBanditsCamp = TRUE;
 };
 
 
@@ -422,7 +422,7 @@ func void DIA_Addon_Esteban_fight_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_01");	//Не каждый получает такое предложение. Но если оно тебе не нравится, ты можешь свободно покинуть лагерь...
 	AI_Output(other,self,"DIA_Addon_Esteban_fight_15_02");	//А может быть, ты сдержишь слово и дашь мне красный камень?
 	AI_Output(self,other,"DIA_Addon_Esteban_fight_07_03");	//Эй! Еще одно слово - и моим охранникам придется применить силу.
-	if((Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1500) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1500))
+	if(((Npc_GetDistToWP(Wache_01,"BL_INN_OUTSIDE_01") <= 1500) && (Npc_GetDistToWP(Wache_02,"BL_INN_OUTSIDE_02") <= 1500)) || (Npc_IsDead(Wache_01) && Npc_IsDead(Wache_02)))
 	{
 		AI_Output(other,self,"DIA_Addon_Esteban_fight_15_04");	//(ухмыляясь) Каким охранникам?
 		AI_Output(self,other,"DIA_Addon_Esteban_fight_07_05");	//Что?.. А, понятно, ты хочешь обвести меня... Ну, погоди...
@@ -467,5 +467,13 @@ func void DIA_Addon_Esteban_Duell_Info()
 	AI_Output(self,other,"DIA_Addon_Esteban_Duell_07_01");	//О, у тебя есть последнее желание. Как мило. Я сделаю тебе одолжение и избавлю тебя от твоей тупости!
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
+	if(Hlp_IsValidNpc(Wache_01) && !C_NpcIsDown(Wache_01) && (Npc_GetDistToNpc(Wache_01,other) <= 1500))
+	{
+		B_Attack(Wache_01,other,AR_NONE,1);
+	};
+	if(Hlp_IsValidNpc(Wache_02) && !C_NpcIsDown(Wache_02) && (Npc_GetDistToNpc(Wache_02,other) <= 1500))
+	{
+		B_Attack(Wache_02,other,AR_NONE,1);
+	};
 };
 

@@ -68,15 +68,18 @@ func void DIA_Addon_Merdarion_Aufgabe_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_Aufgabe_15_00");	//Что ты хочешь здесь сделать?
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_01");	//Я пытаюсь выяснить, куда ведет этот круглый портал.
-	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_02");	//И еще я помогаю Нефариусу искать потерянный орнамент.
+	if(MIS_Addon_Nefarius_BringMissingOrnaments != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_02");	//И еще я помогаю Нефариусу искать потерянный орнамент.
+		if(!Npc_KnowsInfo(other,DIA_Addon_Nefarius_SCbringOrnaments))
+		{
+			B_LogEntry(TOPIC_Addon_KDW,"Нефариус ищет пропавший орнамент.");
+		};
+	};
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_03");	//Можно сказать с уверенностью, что этот портал ведет в ту часть острова, которая доселе нам была неизвестна.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_04");	//(задумываясь) Я даже, пожалуй, никогда не слышал и не читал про нее...
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(Cronos_NW,"START");
-	if(Nefarius_NW.aivar[AIV_TalkedToPlayer] == FALSE)
-	{
-		B_LogEntry(TOPIC_Addon_KDW,"Нефариус ищет пропавший орнамент.");
-	};
 };
 
 
@@ -199,7 +202,8 @@ instance DIA_Addon_Merdarion_Teleportstein(C_Info)
 
 func int DIA_Addon_Merdarion_Teleportstein_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) && (MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS))
+//	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) && (MIS_Addon_Lares_Ornament2Saturas == LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe))
 	{
 		return TRUE;
 	};
@@ -214,7 +218,7 @@ func void DIA_Addon_Merdarion_Teleportstein_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_04");	//Ладно. Строители этих залов передвигались своим способом.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_05");	//Насколько мы можем судить, они умели телепортироваться.
 	AI_Output(other,self,"DIA_Addon_Merdarion_Teleportstein_15_06");	//В этом нет ничего необычного.
-	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_07");	//Телепортационные камни, которые мы нашли в Хоринисе, на самом деле, весьма необычны.
+	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_07");	//Телепортационные камни, которые мы нашли в Хоринисе, в самом деле, весьма необычны.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_08");	//Кажется, что телепортационный камень в этих залах может вести в город.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_09");	//Но ни у кого из нас не хватило смелости это проверить.
 	Info_ClearChoices(DIA_Addon_Merdarion_Teleportstein);

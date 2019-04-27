@@ -78,7 +78,6 @@ func void DIA_BDT_1013_BANDIT_WHERE_Mountain()
 {
 	AI_Output(other,self,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_15_00");	//Я спустился с гор.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_01");	//Точно. Ты спустился с гор. И это плохо для тебя.
-//	B_UseFakeScroll();
 	B_UseFakeHeroFace();
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_02");	//Очень плохо.
 	AI_Output(self,other,"DIA_BDT_1013_BANDIT_WHERE_MOUNTAIN_01_03");	//Тебя ищут - целая куча плохих парней.
@@ -362,11 +361,13 @@ func void DIA_1013_BANDIT_FromMaleth_Info()
 	B_GivePlayerXP(XP_BanditWeg);
 	if(MIS_Addon_Nefarius_BringMissingOrnaments == FALSE)
 	{
-		Npc_ExchangeRoutine(self,"AWAY3");
+		Npc_ExchangeRoutine(self,"AWAY2");
+		Bdt_1013_FromCavalorn = TRUE;
 	}
 	else
 	{
 		Npc_ExchangeRoutine(self,"AWAY");
+		Bdt_1013_ToCavalorn = TRUE;
 	};
 	AI_StopProcessInfos(self);
 };
@@ -385,7 +386,7 @@ instance DIA_1013_BANDIT_FromCavalorn(C_Info)
 
 func int DIA_1013_BANDIT_FromCavalorn_Condition()
 {
-	if((Bdt13_Friend == TRUE) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running))
+	if((Bdt13_Friend == TRUE) && (MIS_Addon_Cavalorn_KillBrago == LOG_Running) && !Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Ornament))
 	{
 		return TRUE;
 	};
@@ -399,7 +400,16 @@ func void DIA_1013_BANDIT_FromCavalorn_Info()
 	AI_Output(self,other,"DIA_ADDON_1013_BANDIT_FromCavalorn_01_03");	//Проклятье! Он все еще жив? Я сматываюсь отсюда...
 	Bdt_1013_Away = TRUE;
 	B_GivePlayerXP(XP_BanditWeg);
-	Npc_ExchangeRoutine(self,"AWAY2");
+	if(MIS_Addon_Nefarius_BringMissingOrnaments == FALSE)
+	{
+		Npc_ExchangeRoutine(self,"AWAY2");
+		Bdt_1013_FromCavalorn = TRUE;
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"AWAY");
+		Bdt_1013_ToCavalorn = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 

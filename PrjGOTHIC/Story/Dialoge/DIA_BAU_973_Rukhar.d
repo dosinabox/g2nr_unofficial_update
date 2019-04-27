@@ -160,7 +160,7 @@ func void DIA_Rukhar_RANDOLPHWILL_Info()
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_15_02");	//Рэндольф.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_03");	//Хо-хо-хо. Рэндольф хвастун? Ну хорошо. Почему бы и нет.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_04");	//Пришли этого слизняка ко мне, и сделай ставку.
-	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_05");	//Ты можешь выставить его еще раз не раньше чем через 2 дня. Кто знает? Может, тебе повезет, и он успеет протрезветь.
+	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_05");	//Ты можешь выставить его еще раз не раньше чем через два дня. Кто знает? Может, тебе повезет, и он успеет протрезветь.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_06");	//Какова твоя ставка?
 	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"Ноль.",DIA_Rukhar_RANDOLPHWILL_nix);

@@ -90,7 +90,7 @@ instance DIA_Udar_TeachMe(C_Info)
 
 func int DIA_Udar_TeachMe_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Udar_YouAreBest) && (Udar_TeachPlayer != TRUE))
+	if(Npc_KnowsInfo(other,DIA_Udar_YouAreBest) && (Udar_TeachPlayer == FALSE))
 	{
 		return TRUE;
 	};
@@ -348,7 +348,7 @@ func void DIA_Udar_Sengrath_Info()
 	AI_Output(self,other,"DIA_Udar_Sengrath_09_05");	//Да пребудет с нами Иннос!
 	Log_CreateTopic(TOPIC_Sengrath_Missing,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Sengrath_Missing,LOG_Running);
-	B_LogEntry(TOPIC_Sengrath_Missing,"Удар, гвардеец замка, скучает по своему приятелю Сенграту. Последний раз он видел его как-то поздно ночью, тот направлялся к забору орков, чтобы вернуть свой арбалет.");
+	B_LogEntry(TOPIC_Sengrath_Missing,"Удар, рыцарь из замка, скучает по своему приятелю Сенграту. Последний раз он видел его как-то поздно ночью, тот направлялся к забору орков, чтобы вернуть свой арбалет.");
 };
 
 

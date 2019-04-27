@@ -149,13 +149,14 @@ instance DIA_Addon_Nefarius_PreTeach(C_Info)
 	nr = 99;
 	condition = DIA_Addon_Nefarius_PreTeach_Condition;
 	information = DIA_Addon_Nefarius_PreTeach_Info;
+	permanent = TRUE;
 	description = "Ты можешь поделиться со мной своим знанием магии?";
 };
 
 
 func int DIA_Addon_Nefarius_PreTeach_Condition()
 {
-	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1))
+	if((hero.guild == GIL_KDF) && (Nefarius_Addon_TeachRunes == FALSE))
 	{
 		return TRUE;
 	};
@@ -164,11 +165,18 @@ func int DIA_Addon_Nefarius_PreTeach_Condition()
 func void DIA_Addon_Nefarius_PreTeach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Nefarius_PreTeach_15_00");	//Ты можешь поделиться со мной своим знанием магии?
-	AI_Output(self,other,"DIA_Addon_Nefarius_PreTeach_05_01");	//Я могу научить тебя делать магические руны, а Кронос продаст тебе их формулы.
-	AI_Output(self,other,"DIA_Addon_Nefarius_PreTeach_05_02");	//У него всегда с собой его книги рун.
-	Nefarius_Addon_TeachRunes = TRUE;
-	Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_NefariusTeach);
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1)
+	{
+		AI_Output(self,other,"DIA_Addon_Nefarius_PreTeach_05_01");	//Я могу научить тебя делать магические руны, а Кронос продаст тебе их формулы.
+		AI_Output(self,other,"DIA_Addon_Nefarius_PreTeach_05_02");	//У него всегда с собой его книги рун.
+		Nefarius_Addon_TeachRunes = TRUE;
+		Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_NefariusTeach);
+	}
+	else
+	{
+		B_Say(self,other,"$NOLEARNNOPOINTS");
+	};
 };
 
 
@@ -179,7 +187,7 @@ instance DIA_Addon_Nefarius_ADW_Runen(C_Info)
 	condition = DIA_Addon_Nefarius_ADW_Runen_Condition;
 	information = DIA_Addon_Nefarius_ADW_Runen_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун)";
+	description = "Я хочу изучить новые заклинания.";
 };
 
 
@@ -193,6 +201,7 @@ func int DIA_Addon_Nefarius_ADW_Runen_Condition()
 
 func void DIA_Addon_Nefarius_ADW_Runen_Info()
 {
+	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Addon_Nefarius_ADW_Runen);
 	Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,Dialog_Back,DIA_Addon_Nefarius_ADW_Runen_BACK);
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 6)

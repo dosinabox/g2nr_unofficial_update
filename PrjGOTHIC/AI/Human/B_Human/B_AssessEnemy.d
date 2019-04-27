@@ -5,7 +5,7 @@ func int C_NpcIsAfraidOfOrcs(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(KDF_511_Daron))
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Daron))
 	{
 		return FALSE;
 	};
@@ -53,7 +53,6 @@ func int B_AssessEnemy()
 	pcl = Hlp_GetNpc(PC_Levelinspektor);
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && (Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000) && !Npc_IsPlayer(other))
 	{
-//		AI_StartState(self,ZS_FleeToWP,0,"NW_TAVERNE_RUKHAR");
 		B_Flee();
 		return FALSE;
 	};
@@ -103,6 +102,18 @@ func int B_AssessEnemy()
 		return FALSE;
 	};
 	if(((self.aivar[AIV_EnemyOverride] == TRUE) || (other.aivar[AIV_EnemyOverride] == TRUE)) && (other.guild < GIL_SEPERATOR_HUM))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius)) && (Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000) && !Npc_IsPlayer(other))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1031_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1032_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
 	{
 		return FALSE;
 	};

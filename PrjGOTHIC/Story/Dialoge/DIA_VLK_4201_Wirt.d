@@ -55,7 +55,7 @@ func void DIA_Wirt_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Wirt_PICKPOCKET);
 };
 
-func void B_GiveBeer(var int DailyQuantity)
+/*func void B_GiveBeer(var int DailyQuantity)
 {
 	var int Wirt_GiveBeer_Day;
 	var int Beer_Count;
@@ -85,8 +85,10 @@ func void B_GiveBeer(var int DailyQuantity)
 			Beer_Count = 0;
 		};
 	};
-};
+};*/
 
+var int Wirt_GiveBeer_Day;
+var int Wirt_GiveBeer_Day_Zero_OneTime;
 
 instance DIA_Wirt_Hallo(C_Info)
 {
@@ -110,27 +112,43 @@ func int DIA_Wirt_Hallo_Condition()
 func void DIA_Wirt_Hallo_Info()
 {
 	var int randy;
-	randy = Hlp_Random(3);
-	AI_Output(self,other,"DIA_Wirt_Hallo_14_00");	//Эй, не стесняйся, подходи. Отведай холодного пива.
-	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(other.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Wirt_Hallo_14_01");	//Лорд Андрэ расщедрился на несколько бочек бесплатного пива.
-		AI_StopProcessInfos(self);
+		randy = Hlp_Random(3);
 	}
-	else if(randy == 0)
+	else
+	{
+		randy = Hlp_Random(4);
+	};
+	if(((Wld_GetDay() == 0) && (Wirt_GiveBeer_Day_Zero_OneTime == FALSE)) || (Wirt_GiveBeer_Day < Wld_GetDay()))
+	{
+		AI_Output(self,other,"DIA_Wirt_Hallo_14_00");	//Эй, не стесняйся, подходи. Отведай холодного пива.
+		B_GiveInvItems(self,other,ItFo_Beer,1);
+		Wirt_GiveBeer_Day = B_GetDayPlus();
+		Wirt_GiveBeer_Day_Zero_OneTime = TRUE;
+	};
+	if(randy == 0)
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_02");	//Нет ничего лучше, чем кружка холодного пива после работы.
-		AI_StopProcessInfos(self);
 	}
 	else if(randy == 1)
 	{
-		AI_Output(self,other,"DIA_Wirt_Hallo_14_03");	//Паладины со всем разберутся сами. А ты можешь потягивать здесь пиво и наслаждаться жизнью.
-		B_GiveBeer(5);
-		AI_StopProcessInfos(self);
+		AI_Output(self,other,"DIA_Wirt_Hallo_14_01");	//Лорд Андрэ расщедрился на несколько бочек бесплатного пива.
 	}
 	else if(randy == 2)
 	{
 		AI_Output(self,other,"DIA_Wirt_Hallo_14_04");	//Можно говорить о Хоринисе что угодно, но наше 'Темное паладинское' бесспорно самое лучшее пиво во всей Миртане.
+	}
+	else if(randy == 3)
+	{
+		AI_Output(self,other,"DIA_Wirt_Hallo_14_03");	//Паладины со всем разберутся сами. А ты можешь потягивать здесь пиво и наслаждаться жизнью.
+	};
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		AI_StopProcessInfos(self);
+	}
+	else if(Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] < 50))
+	{
 		AI_StopProcessInfos(self);
 	};
 };

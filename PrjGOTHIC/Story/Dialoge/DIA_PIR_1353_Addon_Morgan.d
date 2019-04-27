@@ -103,7 +103,7 @@ func int DIA_Addon_Morgan_Anheuern_Condition()
 func void DIA_Addon_Morgan_Anheuern_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Morgan_Anheuern_07_00");	//Замечательно! Теперь Грег заставит меня пилить доски!
-	if(MIS_Addon_Greg_ClearCanyon == LOG_Running)
+	if((MIS_Addon_Greg_ClearCanyon == LOG_Running) || (MIS_Addon_MorganLurker == LOG_Running))
 	{
 		AI_Output(self,other,"DIA_Addon_Morgan_Anheuern_07_01");	//(с сарказмом) Удачи в потрошении монстров!
 	};
@@ -260,7 +260,7 @@ instance DIA_Addon_Morgan_JoinMorgan(C_Info)
 
 func int DIA_Addon_Morgan_JoinMorgan_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Morgan_Sleep) && (GregIsBack == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Morgan_Sleep))
 	{
 		return TRUE;
 	};
@@ -270,11 +270,17 @@ func void DIA_Addon_Morgan_JoinMorgan_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_JoinMorgan_15_00");	//Я хочу вступить в твой отряд.
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_01");	//(смеется) Мой отряд? Мой отряд сейчас валяется на пляже.
-	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_03");	//Они палец о палец не ударят до тех пор, пока капитан не вернется. Это я тебе точно говорю.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_03");	//Они палец о палец не ударят до тех пор, пока капитан не вернется. Это я тебе точно говорю.
+	};
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_04");	//Но если ты хочешь показать всем остальным, из чего ты сделан, то ступай на северный пляж.
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_05");	//Там полно луркеров... и черт знает, чего еще.
-	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//Разберись с ними, и ты заработаешь уважение (зевает) людей...
-	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_07");	//Добро пожаловать в мой отряд. Хе-хе. А я (зевает) еще посплю...
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//Разберись с ними, и ты заработаешь уважение (зевает) людей...
+		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_07");	//Добро пожаловать в мой отряд. Хе-хе. А я (зевает) еще посплю...
+	};
 	Log_CreateTopic(TOPIC_Addon_MorganBeach,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MorganBeach,LOG_Running);
 	B_LogEntry(TOPIC_Addon_MorganBeach,"Я присоединился к боевой группе Моргана. Он хочет, чтобы я очистил северный пляж от монстров.");

@@ -102,7 +102,7 @@ func void DIA_Dobar_Schmiede_Info()
 instance DIA_Dobar_beibringen(C_Info)
 {
 	npc = VLK_4106_Dobar;
-	nr = 2;
+	nr = 4;
 	condition = DIA_Dobar_beibringen_Condition;
 	information = DIA_Dobar_beibringen_Info;
 	permanent = FALSE;
@@ -132,7 +132,7 @@ func void DIA_Dobar_beibringen_Info()
 instance DIA_Dobar_Teach(C_Info)
 {
 	npc = VLK_4106_Dobar;
-	nr = 3;
+	nr = 5;
 	condition = DIA_Dobar_Teach_Condition;
 	information = DIA_Dobar_Teach_Info;
 	description = B_BuildLearnString("Покажи мне, как выковать хороший меч",B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_01));
@@ -163,7 +163,7 @@ func void DIA_Dobar_Teach_Info()
 instance DIA_Dobar_Waffe(C_Info)
 {
 	npc = VLK_4106_Dobar;
-	nr = 80;
+	nr = 6;
 	condition = DIA_Dobar_Waffe_Condition;
 	information = DIA_Dobar_Waffe_Info;
 	permanent = FALSE;
@@ -191,7 +191,7 @@ func void DIA_Dobar_Waffe_Info()
 instance DIA_Dobar_NEWS(C_Info)
 {
 	npc = VLK_4106_Dobar;
-	nr = 900;
+	nr = 7;
 	condition = DIA_Dobar_NEWS_Condition;
 	information = DIA_Dobar_NEWS_Info;
 	permanent = TRUE;
@@ -267,5 +267,34 @@ func void DIA_Dobar_PICKPOCKET_DoIt()
 func void DIA_Dobar_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Dobar_PICKPOCKET);
+};
+
+instance DIA_Dobar_RepairNecklace(C_Info)
+{
+	npc = VLK_4106_Dobar;
+	nr = 8;
+	condition = DIA_Dobar_RepairNecklace_Condition;
+	information = DIA_Dobar_RepairNecklace_Info;
+	permanent = FALSE;
+	description = "Ты можешь чинить драгоценности?";
+};
+
+
+func int DIA_Dobar_RepairNecklace_Condition()
+{
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	{
+		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Dobar_RepairNecklace_Info()
+{
+	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	AI_Output(self,other,"DIA_Dobar_NEWS_08_01");	//Я кую оружие для рыцарей замка. С тех пор, как мы прибыли сюда, я не отхожу от кузницы.
+	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 };
 

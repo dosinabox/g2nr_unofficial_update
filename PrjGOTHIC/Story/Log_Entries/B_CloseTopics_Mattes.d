@@ -72,7 +72,8 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_SLDRespekt,0,Torlof_GenugStimmen,2);
 	B_CloseTopic(TOPIC_TorlofPacht,MIS_Torlof_HolPachtVonSekob,0,3);
 	B_CloseTopic(TOPIC_TorlofMiliz,MIS_Torlof_BengarMilizKlatschen,0,3);
-	B_CloseTopic(TOPIC_JarvisSLDKo,MIS_Jarvis_SldKO,0,2);
+//	B_CloseTopic(TOPIC_JarvisSLDKo,MIS_Jarvis_SldKO,0,2);
+	B_CloseTopic(TOPIC_JarvisSLDKo,MIS_Jarvis_SldKO,0,4);
 	B_CloseTopic(TOPIC_CordProve,0,Cord_Approved,2);
 	B_CloseTopic(Topic_CipherHerb,MIS_Cipher_BringWeed,0,2);
 	B_CloseTopic(Topic_CipherPaket,MIS_Cipher_Paket,0,6);
@@ -81,9 +82,10 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_TheklaEintopf,MIS_Thekla_Paket,0,6);
 	B_CloseTopic(TOPIC_SagittaHerb,MIS_Sagitta_Herb,0,6);
 	B_CloseTopic(TOPIC_PepeWolves,MIS_Pepe_KillWolves,0,6);
-	B_CloseTopic(TOPIC_KickBullco,MIS_Pepe_KickBullco,0,4);
+	B_CloseTopic(TOPIC_KickBullco,MIS_Pepe_KickBullco,0,6);
 	B_CloseTopic(TOPIC_Frieden,MIS_Lee_Friedensangebot,0,6);
-	B_CloseTopic(Topic_MISOLDWORLD,MIS_OLDWORLD,0,3);
+//	B_CloseTopic(Topic_MISOLDWORLD,MIS_OLDWORLD,0,3);
+	B_CloseTopic(Topic_MISOLDWORLD,MIS_OLDWORLD,0,4);
 	B_CloseTopic(TOPIC_ScoutMine,MIS_ScoutMine,0,3);
 	B_CloseTopic(TOPIC_RescueGorn,MIS_RescueGorn,0,3);
 	B_CloseTopic(TOPIC_FajethKillSnapper,MIS_Fajeth_Kill_Snapper,0,3);

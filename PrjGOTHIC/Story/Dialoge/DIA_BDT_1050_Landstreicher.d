@@ -50,7 +50,7 @@ func void DIA_Landstreicher_HALLO_Info()
 func void DIA_Landstreicher_HALLO_wo()
 {
 	AI_Output(other,self,"DIA_Landstreicher_HALLO_wo_15_00");	//А куда первый побежал?
-	AI_Output(self,other,"DIA_Landstreicher_HALLO_wo_09_01");	//Вон туда. Бежал, это еще мягко сказано.
+	AI_Output(self,other,"DIA_Landstreicher_HALLO_wo_09_01");	//Вон туда. Бежал - это еще мягко сказано.
 };
 
 func void DIA_Landstreicher_HALLO_wer()

@@ -339,9 +339,15 @@ func int DIA_Thorben_GiveBook_Condition()
 func void DIA_Thorben_GiveBook_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
-//	B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
-	AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
+	if(ClassicLehmarBook == FALSE)
+	{
+		AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		Npc_RemoveInvItem(other,ItWr_Schuldenbuch);
+	}
+	else
+	{
+		B_GiveInvItems(other,self,ItWr_Schuldenbuch,1);
+	};
 	if(Thorben_TeachPlayer == TRUE)
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_01");	//Если бы не ты, я бы платил Лемару до конца своих дней.
@@ -375,11 +381,15 @@ func int DIA_Thorben_PleaseTeach_Condition()
 func void DIA_Thorben_PleaseTeach_Info()
 {
 	AI_Output(other,self,"DIA_Thorben_PleaseTeach_15_00");	//Ты можешь научить меня вскрывать замки отмычками?
-//	if(Npc_KnowsInfo(other,DIA_Thorben_Schuldenbuch))
-	if(Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
+	if(Npc_KnowsInfo(other,DIA_Thorben_GiveBook) || Npc_KnowsInfo(other,DIA_Addon_Thorben_ElvrichIsBack))
 	{
-		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_01");	//Если бы не ты, я бы платил Лемару до конца своих дней.
+		if(Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
+		{
+			AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_01");	//Если бы не ты, я бы платил Лемару до конца своих дней.
+		};
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_02");	//Я обучу тебя тому, что ты хочешь знать.
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Торбен может обучить меня пользоваться отмычками.");
 		Thorben_TeachPlayer = TRUE;
 	}
 	else if(Thorben_GotGold == TRUE)
@@ -419,6 +429,8 @@ func void DIA_Thorben_PleaseTeach_Pay200()
 	if(B_GiveInvItems(other,self,ItMi_Gold,200))
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_Pay200_06_01");	//Эти деньги очень помогут мне. Мы приступим, как только ты будешь готов.
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Торбен может обучить меня пользоваться отмычками.");
 		Thorben_TeachPlayer = TRUE;
 	}
 	else
@@ -434,6 +446,8 @@ func void DIA_Thorben_PleaseTeach_Pay100()
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_Pay100_06_01");	//В таком случае, мы можем начать, когда ты будешь готов.
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Торбен может обучить меня пользоваться отмычками.");
 		Thorben_TeachPlayer = TRUE;
 	}
 	else
@@ -830,7 +844,7 @@ instance DIA_Thorben_PICKPOCKET_Book(C_Info)
 
 func int DIA_Thorben_PICKPOCKET_Book_Condition()
 {
-	if((SchuldBuch_Stolen_Thorben == FALSE) && Npc_KnowsInfo(other,DIA_Thorben_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 20))
+	if((ClassicLehmarBook == FALSE) && (SchuldBuch_Stolen_Thorben == FALSE) && Npc_KnowsInfo(other,DIA_Thorben_GiveBook) && Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) && (other.attribute[ATR_DEXTERITY] >= 20))
 	{
 		return TRUE;
 	};

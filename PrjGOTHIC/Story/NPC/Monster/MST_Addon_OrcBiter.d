@@ -14,7 +14,7 @@ prototype Mst_Default_OrcBiter(C_Npc)
 	protection[PROT_BLUNT] = 60;
 	protection[PROT_EDGE] = 60;
 	protection[PROT_POINT] = 60;
-	protection[PROT_FIRE] = 16;	//60;
+	protection[PROT_FIRE] = 60;	//16;
 	protection[PROT_FLY] = 60;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
@@ -53,9 +53,9 @@ instance OrcBiter(Mst_Default_OrcBiter)
 instance Zerk(Mst_Default_OrcBiter)
 {
 	name[0] = "Болотный кусач";
-	fight_tactic = FAI_MOLERAT;
-	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
-	aivar[AIV_MM_FollowTime] = FOLLOWTIME_SHORT;
+//	fight_tactic = FAI_MOLERAT;
+//	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
+//	aivar[AIV_MM_FollowTime] = FOLLOWTIME_SHORT;
 	Set_Zerk_Visuals();
 	Npc_SetToFistMode(self);
 	CreateInvItems(self,ItFoMuttonRaw,2);

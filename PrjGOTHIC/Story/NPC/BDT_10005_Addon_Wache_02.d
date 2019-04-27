@@ -14,6 +14,7 @@ instance BDT_10005_Addon_Wache_02(Npc_Default)
 	EquipItem(self,ItMw_2h_Sld_Axe);
 	EquipItem(self,ItRw_Mil_Crossbow);
 	B_CreateAmbientInv(self);
+	CreateInvItem(self,ItWr_Poster_MIS);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_B_Normal_Orik,BodyTex_B,ITAR_Bloodwyn_Addon);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

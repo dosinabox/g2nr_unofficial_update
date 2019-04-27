@@ -88,8 +88,18 @@ func void DIA_Ruga_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Ruga_Hallo_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Ruga_Hallo_11_01");	//Я обучаю парней стрельбе из арбалета и помогаю им стать более ловкими.
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Руга, городской гвардеец, может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом. Но для этого я должен служить королю.");
+	if(!Npc_KnowsInfo(other,DIA_Wulfgar_AlsMil))
+	{
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+		{
+			B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом. Но для этого я должен числиться в городском ополчении.");
+		};
+	};
 };
 
 
@@ -125,7 +135,7 @@ func void DIA_Ruga_Train_Info()
 	}
 	else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
-		AI_Output(self,other,"DIA_Ruga_Train_11_04");	//Убирайся с глаз моих, (презрительно) наемник.
+		AI_Output(self,other,"DIA_Ruga_Train_11_04");	//(презрительно) Убирайся с глаз моих, наемник.
 		AI_StopProcessInfos(self);
 	}
 	else

@@ -118,6 +118,25 @@ func void DIA_Bullco_PleaseLeave_Info()
 };
 
 
+func void B_AboutPepe()
+{
+	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_00");	//Тебе имя Пепе говорит о чем-нибудь?
+	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_01");	//Я абсолютно не понимаю, о чем ты говоришь, но твой тон мне не нравится!
+	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_02");	//Ты должен был охранять овец.
+	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_03");	//Какое мне дело до овец?
+	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_04");	//До них есть дело Ли.
+	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_05");	//На что ты намекаешь?
+	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_06");	//Если ты продолжишь действовать мне на нервы, я позабочусь, чтобы тебе пришлось заплатить за овец.
+	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_07");	//Так что если тебя волнует твое жалование, оставь меня в покое!
+	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_08");	//(в ярости) Ты, ты...
+	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_09");	//(спокойно) Да?
+	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_10");	//(себе под нос) Мерзкий коварный ублюдок...
+	Bullco_scharf = FALSE;
+	B_GivePlayerXP(XP_Ambient);
+	AI_StopProcessInfos(self);
+};
+
+
 var int Bullco_HitCounter;
 
 instance DIA_Bullco_DailyCheck(C_Info)
@@ -126,7 +145,8 @@ instance DIA_Bullco_DailyCheck(C_Info)
 	nr = 4;
 	condition = DIA_Bullco_DailyCheck_Condition;
 	information = DIA_Bullco_DailyCheck_Info;
-	permanent = FALSE;
+//	permanent = FALSE;
+	permanent = TRUE;
 	important = TRUE;
 };
 
@@ -151,10 +171,17 @@ func void DIA_Bullco_DailyCheck_Info()
 	{
 		AI_Output(self,other,"DIA_Bullco_DailyCheck_06_03");	//Глазам своим не верю! Этот урод все еще здесь!
 	};
-	Bullco_HitCounter += 1;
-	Bullco_Leave_Day = B_GetDayPlus();
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe) || Npc_KnowsInfo(other,DIA_Lee_WegenBullco))
+	{
+		B_AboutPepe();
+	}
+	else
+	{
+		Bullco_HitCounter += 1;
+		Bullco_Leave_Day = B_GetDayPlus();
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_NONE,1);
+	};
 };
 
 
@@ -208,7 +235,7 @@ instance DIA_Bullco_PepesSchafe(C_Info)
 
 func int DIA_Bullco_PepesSchafe_Condition()
 {
-	if((MIS_Pepe_KillWolves == LOG_SUCCESS) && (Bullco_scharf == TRUE) && (Onar_WegenPepe == TRUE))
+	if((Npc_KnowsInfo(other,DIA_Onar_WegenPepe) || Npc_KnowsInfo(other,DIA_Lee_WegenBullco)) && (Bullco_scharf == TRUE))
 	{
 		return TRUE;
 	};
@@ -216,20 +243,7 @@ func int DIA_Bullco_PepesSchafe_Condition()
 
 func void DIA_Bullco_PepesSchafe_Info()
 {
-	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_00");	//Тебе имя Пепе говорит о чем-нибудь?
-	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_01");	//Я абсолютно не понимаю, о чем ты говоришь, но твой тон мне не нравится!
-	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_02");	//Ты должен был охранять овец.
-	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_03");	//Какое мне дело до овец?
-	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_04");	//До них есть дело Ли.
-	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_05");	//На что ты намекаешь?
-	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_06");	//Если ты продолжишь действовать мне на нервы, я позабочусь, чтобы тебе пришлось заплатить за овец.
-	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_07");	//Так что если тебя волнует твое жалование, оставь меня в покое!
-	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_08");	//(в ярости) Ты, ты...
-	AI_Output(other,self,"DIA_Bullco_PepesSchafe_15_09");	//(спокойно) Да?
-	AI_Output(self,other,"DIA_Bullco_PepesSchafe_06_10");	//(себе под нос) Мерзкий коварный ублюдок...
-	Bullco_scharf = FALSE;
-	B_GivePlayerXP(XP_Ambient);
-	AI_StopProcessInfos(self);
+	B_AboutPepe();
 };
 
 

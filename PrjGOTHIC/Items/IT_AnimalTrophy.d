@@ -1,6 +1,6 @@
 
 const int Value_BCKopf = 50;
-const int Value_Meatbugflesh = 6;
+const int Value_Meatbugflesh = 5;
 const int Value_SheepFur = 10;
 const int Value_WolfFur = 10;
 const int Value_BugMandibles = 15;
@@ -41,14 +41,12 @@ const int Value_IceWolfFur = 20;
 
 instance ItAt_Addon_BCKopf(C_Item)
 {
-//	name = "Голова";
 	name = "Голова богомола";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_BCKopf;
 	visual = "ItAt_Blattcrawler_01.3DS";
 	material = MAT_LEATHER;
-//	description = "Голова богомола";
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -374,7 +372,7 @@ instance ItAt_DrgSnapperHorn(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_DrgSnapperHorn;
 	visual = "ItAt_DrgSnapperHorn.3DS";
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -387,7 +385,7 @@ instance ItAt_CrawlerPlate(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_CrawlerPlate;
 	visual = "ItAt_CrawlerPlate.3DS";
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -438,7 +436,6 @@ instance ItAt_TrollBlackFur(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_TrollBlackFur;
-//	visual = "ItAt_TrollFur.3DS";
 	visual = "ItAt_TrollBlackFur.3DS";
 	material = MAT_LEATHER;
 	description = name;
@@ -466,7 +463,7 @@ instance ItAt_ShadowHorn(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_ShadowHorn;
 	visual = "ItAt_ShadowHorn.3DS";
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -492,7 +489,7 @@ instance ItAt_TrollTooth(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_TrollTooth;
 	visual = "ItAt_TrollTooth.3DS";
-	material = MAT_LEATHER;
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

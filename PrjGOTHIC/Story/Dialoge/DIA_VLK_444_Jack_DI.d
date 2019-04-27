@@ -57,7 +57,7 @@ func void DIA_Jack_DI_GREET_Info()
 		if(DIA_Jack_DI_GREET_OneTime == FALSE)
 		{
 			AI_Output(other,self,"DIA_Jack_DI_GREET_15_03");	//Что ты здесь делаешь?
-			B_GivePlayerXP(XP_Ambient);
+			B_GivePlayerXP(XP_AmbientKap6);
 			DIA_Jack_DI_GREET_OneTime = TRUE;
 		};
 		AI_Output(self,other,"DIA_Jack_DI_GREET_14_04");	//Если на нас опять обрушится этот ад, я уведу корабль отсюда. С тобой или без тебя! Ты слышал?

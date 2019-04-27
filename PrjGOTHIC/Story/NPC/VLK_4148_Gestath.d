@@ -7,6 +7,8 @@ instance VLK_4148_Gestath(Npc_Default)
 	voice = 9;
 	flags = 0;
 	npcType = npctype_main;
+	aivar[AIV_IgnoresFakeGuild] = TRUE;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Sword);

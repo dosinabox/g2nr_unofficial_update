@@ -34,7 +34,7 @@ instance DIA_Cornelius_Hello(C_Info)
 
 func int DIA_Cornelius_Hello_Condition()
 {
-	if((RecueBennet_KnowsCornelius == FALSE) && Npc_IsInState(self,ZS_Talk))
+	if((RescueBennet_KnowsCornelius == FALSE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -60,7 +60,7 @@ instance DIA_Cornelius_SeeMurder(C_Info)
 
 func int DIA_Cornelius_SeeMurder_Condition()
 {
-	if(RecueBennet_KnowsCornelius == TRUE)
+	if(RescueBennet_KnowsCornelius == TRUE)
 	{
 		return TRUE;
 	};
@@ -148,7 +148,7 @@ instance DIA_Cornelius_DontBelieveYou(C_Info)
 
 func int DIA_Cornelius_DontBelieveYou_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cornelius_Enough) && (Cornelius_TellTruth != TRUE))
+	if(Npc_KnowsInfo(other,DIA_Cornelius_Enough) && (Cornelius_TellTruth == FALSE))
 	{
 		return TRUE;
 	};
@@ -292,6 +292,8 @@ func void DIA_Cornelius_RealStory_Info()
 	};
 	B_LogEntry(TOPIC_RescueBennet,"Корнелиус солгал. Ему заплатили, чтобы упечь Беннета в тюрьму. Но он не говорит мне, кто подкупил его. Он весь дрожит от страха.");
 	CorneliusFlee = TRUE;
+	self.aivar[AIV_EnemyOverride] = TRUE;
+	self.guild = GIL_BDT;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"FLEE");
 };
@@ -336,8 +338,8 @@ instance DIA_Cornelius_PICKPOCKET(C_Info)
 
 func int DIA_Cornelius_PICKPOCKET_Condition()
 {
-//	if(C_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1) && (RecueBennet_KnowsCornelius == TRUE))
-	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis) && (RecueBennet_KnowsCornelius == TRUE))
+//	if(C_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1) && (RescueBennet_KnowsCornelius == TRUE))
+	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis) && (RescueBennet_KnowsCornelius == TRUE))
 	{
 //		return TRUE;
 		return C_StealItem(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis));

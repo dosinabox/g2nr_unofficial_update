@@ -49,11 +49,8 @@ func void DIA_Addon_Cord_MeetingIsRunning_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_14_00");	//Добро пожаловать в Кольцо Воды, брат.
 		DIA_Addon_Cord_MeetingIsRunning_OneTime = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_14_01");	//Ты должен поговорить с Ватрасом...
 	};
+	AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_14_01");	//Ты должен поговорить с Ватрасом...
 	AI_StopProcessInfos(self);
 };
 
@@ -155,6 +152,11 @@ func void DIA_Cord_WannaJoin_Info()
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_11");	//Если тебе еще что-то нужно знать, ты можешь спросить у меня.
 		Cord_Approved = TRUE;
 		B_GivePlayerXP(XP_Cord_Approved);
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		B_LogEntry(TOPIC_SLDRespekt,"Голос Корда у меня в кармане.");
 		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
 		B_LogEntry(Topic_SoldierTeacher,"Корд может обучить меня владению одноручным и двуручным оружием.");
@@ -506,8 +508,11 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	MIS_Addon_Cord_Look4Patrick = LOG_SUCCESS;
 	TOPIC_End_RangerHelpSLD = TRUE;
 	B_GivePlayerXP(XP_Addon_Cord_Look4Patrick);
-	AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_09");	//Что насчет задания Торлофа?
-	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_10");	//Не беспокойся, я обо всем позаботился. Твое задание выполнено, и ты прошел испытание. Можешь поговорить с Торлофом.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_09");	//Что насчет задания Торлофа?
+		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_10");	//Не беспокойся, я обо всем позаботился. Твое задание выполнено, и ты прошел испытание. Можешь поговорить с Торлофом.
+	};
 	Cord_RangerHelp_TorlofsProbe = TRUE;
 	if(Torlof_Probe == Probe_Sekob)
 	{
@@ -562,7 +567,7 @@ instance DIA_Cord_ExplainSkills(C_Info)
 	condition = DIA_Cord_ExplainSkills_Condition;
 	information = DIA_Cord_ExplainSkills_Info;
 	permanent = FALSE;
-	description = "Что я должен изучить сначала, обращение с одноручным или двуручным оружием?";
+	description = "Что я должен изучить сначала: обращение с одноручным или двуручным оружием?";
 };
 
 
@@ -576,7 +581,7 @@ func int DIA_Cord_ExplainSkills_Condition()
 
 func void DIA_Cord_ExplainSkills_Info()
 {
-	AI_Output(other,self,"DIA_Cord_ExplainSkills_15_00");	//Что я должен изучить сначала, обращение с одноручным или двуручным оружием?
+	AI_Output(other,self,"DIA_Cord_ExplainSkills_15_00");	//Что я должен изучить сначала: обращение с одноручным или двуручным оружием?
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_01");	//Эти два вида оружия весьма похожи друг на друга.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_02");	//Когда ты достигнешь следующего уровня в одном из них, ты автоматически повышаешь и уровень владения другим.
 	AI_Output(self,other,"DIA_Cord_ExplainSkills_14_03");	//Если, например, ты хорошо владеешь одноручным мечом, но все еще новичок в том, что касается двуручного...

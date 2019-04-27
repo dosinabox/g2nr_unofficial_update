@@ -68,7 +68,6 @@ instance ItWr_HallsofIrdorath_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Book_02_05.3ds";
 	visual = "ItWr_Book_03_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
@@ -108,7 +107,6 @@ instance ItWr_HallsofIrdorath_Open_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Book_02_05.3ds";
 	visual = "ItWr_Book_03_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -173,8 +171,8 @@ func void Use_XardasSeamapBook_Mis()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_BROWN_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_BROWN_R.tga",0);
+	Doc_SetPage(nDocID,0,"BOOK_WOOD_L.tga",0);
+	Doc_SetPage(nDocID,1,"BOOK_WOOD_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);
@@ -190,7 +188,7 @@ func void Use_XardasSeamapBook_Mis()
 	};
 	if(hero.guild == GIL_KDF)
 	{
-		Doc_PrintLines(nDocID,0,"... В значении этих знамений невозможно ошибиться! Когда Избранный придет, ему понадобится вся помощь, которую мы сможем предоставить. Белиар уже очень силен. Мне удалось раздобыть несколько ценных артефактов, которые я схороню здесь, на всякий случай.");
+		Doc_PrintLines(nDocID,0,"... В значении этих знамений невозможно ошибиться! Когда Избранный придет, ему понадобится вся помощь, которую мы сможем дать. Белиар уже очень силен. Мне удалось раздобыть несколько ценных артефактов, которые я схороню здесь, на всякий случай.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_SetFont(nDocID,1,FONT_BookHeadline);
 		Doc_SetFont(nDocID,1,FONT_Book);
@@ -217,15 +215,13 @@ instance ItWr_UseLampIdiot_Mis(C_Item)
 	name = "Помятая записка";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 50;
+	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseItWr_UseLampIdiot_Mis;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "из книги 'Чертоги Ирдората'.";
-	text[5] = NAME_Value;
-	count[5] = value;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -259,7 +255,6 @@ instance ItWr_Seamap_Irdorath(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 50;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_DI.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -300,7 +295,7 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 	name = "Корабельное свидетельство";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-	value = 50;
+	value = 0;
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseITWr_ForgedShipLetter_MIS;
@@ -308,8 +303,6 @@ instance ITWr_ForgedShipLetter_MIS(C_Item)
 	description = name;
 	text[0] = "Письмо о подтверждении полномочий";
 	text[1] = "на распоряжение кораблем паладинов.";
-	text[5] = NAME_Value;
-	count[5] = value;
 };
 
 
@@ -367,7 +360,7 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
-	value = 10;
+	value = 0;
 //	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
@@ -379,8 +372,8 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	text[1] = PRINT_UnknownEffect;
 //	text[1] = "???";
 //	count[1] = Mana_Essenz;
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 
@@ -419,7 +412,7 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	name = NAME_Trank;
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
-	value = 10;
+	value = 0;
 //	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
@@ -430,8 +423,8 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	description = "Слезы Инноса";
 	text[0] = "Это зелье наделяет магов Огня особыми способностями.";
 	text[1] = "Любой другой принявший его, найдет свою смерть.";
-	text[5] = NAME_Value;
-	count[5] = value;
+//	text[5] = NAME_Value;
+//	count[5] = value;
 };
 
 instance ItAm_AmulettOfDeath_Mis(C_Item)

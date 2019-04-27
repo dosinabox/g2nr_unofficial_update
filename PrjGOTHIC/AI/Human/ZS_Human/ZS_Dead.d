@@ -64,6 +64,14 @@ func void ZS_Dead()
 			MIS_Kervo_KillLurker = LOG_FAILED;
 		};
 	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
+	{
+		if((MayaScrollGiven == FALSE) && (Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) == 0))
+		{
+			CreateInvItems(self,ItSc_Teleport_Maya,1);
+			MayaScrollGiven = TRUE;
+		};
+	};
 	if((self.guild == GIL_GOBBO) || (self.guild == GIL_GOBBO_SKELETON) || (self.guild == GIL_SUMMONED_GOBBO_SKELETON))
 	{
 		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));

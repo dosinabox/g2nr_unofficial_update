@@ -98,7 +98,7 @@ instance MENU_ITEM_KEY_LEFT(C_MENU_ITEM_DEF)
 	text[0] = "Поворот влево";
 	text[1] = MENU_TEXT_KEYS_HINT;
 	posx = CTRL_SP1_1;
-	posy = CTRL_Y_START + (CTRL_Y_STEP * 0) + CTRL_GROUP1 - CTRL_Y_STEP;
+	posy = (CTRL_Y_START + (CTRL_Y_STEP * 0) + CTRL_GROUP1) - CTRL_Y_STEP;
 	onselaction[0] = SEL_ACTION_EXECCOMMANDS;
 	onselaction_s[0] = "RUN MENU_ITEM_INP_LEFT";
 	fontname = MENU_FONT_SMALL;
@@ -398,7 +398,7 @@ instance MENU_ITEM_INP_LEFT(C_MENU_ITEM_DEF)
 	type = MENU_ITEM_INPUT;
 	text[1] = PRESSNOW;
 	posx = CTRL_SP1_2;
-	posy = CTRL_Y_START + (CTRL_Y_STEP * 0) + CTRL_GROUP1 - CTRL_Y_STEP;
+	posy = (CTRL_Y_START + (CTRL_Y_STEP * 0) + CTRL_GROUP1) - CTRL_Y_STEP;
 	dimx = CTRL_DIMX;
 	dimy = 300;
 	fontname = MENU_FONT_SMALL;

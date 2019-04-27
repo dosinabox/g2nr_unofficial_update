@@ -278,7 +278,7 @@ func void DIA_Alrik_WannaFight_Info()
 	else if((Kapitel >= 3) && (Kapitel <= 4) && (Alrik_ArenaKampfVerloren > 6))
 	{
 		B_Alrik_Enough();
-		B_Alrik_ComeBackLater();
+		AI_Output(self,other,"DIA_Lehmar_NOCHMALGELD_09_03");	//Заходи через несколько дней!
 	}
 	else if((Kapitel >= 5) && (Alrik_ArenaKampfVerloren > 9))
 	{

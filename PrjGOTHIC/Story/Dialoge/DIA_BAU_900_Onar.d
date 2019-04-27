@@ -69,6 +69,7 @@ func void DIA_Onar_PERM_Info()
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_01");	//Я не понимаю, какое тебе до этого может быть дело. Ты не работаешь здесь!
+		AI_StopProcessInfos(self);
 	};
 	if(other.guild == GIL_SLD)
 	{
@@ -82,10 +83,12 @@ func void DIA_Onar_PERM_Info()
 	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_05");	//Вам, лицемерным ублюдкам из монастыря, сюда вход закрыт!
+		AI_StopProcessInfos(self);
 	};
 	if((other.guild == GIL_MIL) || (other.guild == GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Onar_PERM_14_06");	//Наше гостеприимство не распространяется на войска короля.
+		AI_StopProcessInfos(self);
 	};
 };
 
@@ -103,7 +106,7 @@ instance DIA_Onar_Work(C_Info)
 
 func int DIA_Onar_Work_Condition()
 {
-	if(Lee_SendToOnar == FALSE)
+	if((Lee_SendToOnar == FALSE) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -115,6 +118,7 @@ func void DIA_Onar_Work_Info()
 	AI_Output(self,other,"DIA_Onar_Work_14_01");	//Мне сейчас не нужны рабочие.
 	AI_Output(self,other,"DIA_Onar_Work_14_02");	//Мои люди прекрасно со всем справляются.
 	AI_Output(self,other,"DIA_Onar_Work_14_03");	//Тебе нечего делать в моем доме, убирайся!
+	AI_StopProcessInfos(self);
 };
 
 
@@ -143,6 +147,7 @@ func void DIA_Onar_WorkAsSld_Info()
 	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_01");	//Ты? Наемника? Не смеши меня! Если бы из тебя мог получиться хороший наемник, Ли наверняка бы рассказал мне о тебе.
 	AI_Output(self,other,"DIA_Onar_WorkAsSld_14_02");	//А теперь убирайся отсюда, и поживее!
 	Onar_WegenSldWerden = TRUE;
+	AI_StopProcessInfos(self);
 };
 
 
@@ -199,7 +204,7 @@ func void DIA_Onar_WegenPepe_Info()
 	AI_Output(other,self,"DIA_Onar_WegenPepe_15_02");	//Один из наемников.
 	AI_Output(self,other,"DIA_Onar_WegenPepe_14_03");	//Какое мне до этого дело? Если он притронулся к моим овцам, он будет отвечать перед Ли.
 	AI_Output(self,other,"DIA_Onar_WegenPepe_14_04");	//Зачем ты отвлекаешь меня по таким пустякам?
-	Onar_WegenPepe = TRUE;
+//	Onar_WegenPepe = TRUE;
 };
 
 
@@ -322,7 +327,7 @@ func void DIA_Onar_HowMuch_Info()
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_04");	//Ты уже неоднократно создавал проблемы здесь, на ферме.
 		SOLD -= 10;
 	};
-	if((Onar_WegenPepe == TRUE) && ((Onar_WegenSekob == TRUE) || (Onar_WegenSldWerden == TRUE)))
+	if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe) && ((Onar_WegenSekob == TRUE) || (Onar_WegenSldWerden == TRUE)))
 	{
 		AI_Output(self,other,"DIA_Onar_HowMuch_14_05");	//И ты постоянно допекаешь меня всяким вздором.
 		SOLD -= 10;
@@ -342,8 +347,6 @@ func void DIA_Onar_HowMuch_PerDay()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_PerDay_15_00");	//В день?
 	AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_01");	//Кем ты себя возомнил? В неделю! Да и это для тебя много.
-	AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_02");	//Давай, подойди сюда и забери свои деньги.
-	AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_03");	//Я не собираюсь подносить их тебе.
 };
 
 func void DIA_Onar_HowMuch_More()
@@ -428,6 +431,8 @@ func void DIA_Onar_CollectGold_Info()
 		if(other.exp > (Onar_SOLD_XP + 200))
 		{
 			AI_Output(self,other,"DIA_Onar_CollectGold_14_13");	//(сокрушенно) Ох, ладно. Вот твое жалование.
+			AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_02");	//Давай, подойди сюда и забери свои деньги.
+			AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_03");	//Я не собираюсь подносить их тебе.
 			B_GiveInvItems(self,other,ItMi_Gold,SOLD);
 			B_Say_Gold(self,other,SOLD);
 		}

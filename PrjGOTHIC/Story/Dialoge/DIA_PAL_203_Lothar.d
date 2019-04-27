@@ -70,11 +70,7 @@ func void DIA_Lothar_FirstEXIT_Info()
 		Lothar_ImOV = TRUE;
 		Npc_ExchangeRoutine(self,"START");
 	};
-	/*if(Canthar_InStadt == FALSE)
-	{
-		Npc_ExchangeRoutine(Canthar,"START");
-		Canthar_InStadt = TRUE;
-	};*/
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -108,19 +104,11 @@ func void DIA_Lothar_Hallo_Info()
 		AI_Output(self,other,"DIA_Lothar_Hallo_01_03");	//А стража у других ворот получила приказ не пропускать неизвестных лиц в город.
 		AI_Output(other,self,"DIA_Lothar_Hallo_15_04");	//Нуууу...
 		AI_Output(self,other,"DIA_Lothar_Hallo_01_05");	//Придется серьезно поговорить с ними обоими!
-		AI_Output(self,other,"DIA_Lothar_Hallo_01_06");	//Теперь, что касается нас:
+		AI_Output(self,other,"DIA_Lothar_Hallo_01_06");	//Теперь, что касается нас...
 	};
 	AI_Output(self,other,"DIA_Lothar_Hallo_01_07");	//Я Лотар. Паладин короля и преданный слуга Инноса.
 	AI_Output(self,other,"DIA_Lothar_Hallo_01_08");	//Наш командующий, лорд Хаген, вверил мне задачу объяснять всем новоприбывшим новые законы, которым должны подчиняться все жители этого города.
 	AI_Output(self,other,"DIA_Addon_Lothar_Hallo_01_00");	//Недавно в городе начали пропадать люди, так что горожанам нужно быть осторожнее, чтобы не разделить эту судьбу.
-	/*if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
-	{
-		B_StartOtherRoutine(Lester,"XARDAS");
-	};
-	if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
-	{
-		Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
-	};*/
 	B_PlayerEnteredCity();
 };
 
@@ -213,7 +201,7 @@ instance DIA_Lothar_Dragons(C_Info)
 func int DIA_Lothar_Dragons_Condition()
 {
 //	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
-	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || (other.guild == GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -632,13 +620,13 @@ func void B_Lothar_Blubb()
 //	AI_Output(other,self,"DIA_Lothar_Add_15_63");	//Откуда тебе знать?..
 //	AI_Output(self,other,"DIA_Lothar_Add_01_64");	//Это НЕ ТВОЕ дело!
 //	AI_Output(self,other,"DIA_Lothar_Add_01_65");	//Это было последний раз, понятно?!
-	AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
+//	AI_Output(other,self,"DIA_Lothar_Add_15_66");	//Где мне найти командира ополчения?
 //	AI_Output(other,self,"DIA_Lothar_Add_15_08");	//Теперь я ученик одного из мастеров!
 //	AI_Output(self,other,"DIA_Lothar_Add_01_43");	//Как я слышал, ты разговаривал с лордом Андрэ?
 //	AI_Output(self,other,"DIA_Lothar_Add_01_44");	//Я говорил тебе, что ты можешь присоединиться к ополчению, только если станешь гражданином города.
 //	AI_Output(self,other,"DIA_Lothar_Add_01_45");	//Как я понимаю, он принял тебя в ряды ополчения.
 //	AI_Output(self,other,"DIA_Lothar_Add_01_46");	//Хмм... Надеюсь, он знает, что делает.
-	AI_Output(self,other,"DIA_Lothar_Add_01_47");	//Опять ты.
+//	AI_Output(self,other,"DIA_Lothar_Add_01_47");	//Опять ты.
 //	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
 //	AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
 //	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
@@ -674,7 +662,7 @@ func int DIA_Lothar_HelloAgain_Condition()
 func void DIA_Lothar_HelloAgain_Info()
 {
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_00");	//Ах! Опять ты!
-	if((Player_TalkedAboutDragons == TRUE) && (Player_TalkedAboutDragonsToAndre == TRUE))
+	if((Player_TalkedAboutDragons == TRUE) && (Player_TalkedAboutDragonsToSomeone == TRUE))
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_62");	//Скажи мне, разве я говорил недостаточно внятно? Хватит разговоров о драконах!
 		AI_Output(other,self,"DIA_Lothar_Add_15_63");	//Откуда тебе знать?..
@@ -749,11 +737,17 @@ func void DIA_Lothar_Hagen_Info()
 	AI_Output(other,self,"DIA_Lothar_Hagen_15_00");	//Где я могу найти лорда Хагена?
 	AI_Output(self,other,"DIA_Lothar_Hagen_01_01");	//Он в ратуше, в конце верхнего квартала.
 	AI_Output(self,other,"DIA_Lothar_Hagen_01_02");	//Но тебя не примут там без веской на то причины.
-	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
-	AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
-	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
-	AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
-	AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
+	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
+	{
+		AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
+		AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
+		AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
+	};
+	if(Player_TalkedAboutDragons == TRUE)
+	{
+		AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
+		AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
+	};
 };
 
 
@@ -812,10 +806,15 @@ func void DIA_Lothar_OWRunningBrief_Info()
 	AI_Output(other,self,"DIA_Lothar_Add_15_59");	//У меня есть доказательство! Вот письмо от командующего Гаронда!
 	AI_PrintScreen("Письмо Гаронда лорду Хагену отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Lothar_Add_01_60");	//Так драконы действительно существуют?
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		//AI_UseMob(self,"THRONE",-1);
+		AI_StandUp(self);
+		B_TurnToNpc(self,other);
+	};
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Lothar_Add_01_61");	//Я был несправедлив к тебе. Я буду молить Инноса о прощении за мое поведение.
 	AI_PrintScreen("Письмо Гаронда лорду Хагену получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	AI_StopProcessInfos(self);
 };
 
 

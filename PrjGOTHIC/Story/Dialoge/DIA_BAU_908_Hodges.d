@@ -12,10 +12,7 @@ instance DIA_Hodges_Kap1_EXIT(C_Info)
 
 func int DIA_Hodges_Kap1_EXIT_Condition()
 {
-	if(Kapitel <= 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Hodges_Kap1_EXIT_Info()
@@ -162,58 +159,6 @@ func void DIA_Hodges_TRADE_Info()
 };
 
 
-instance DIA_Hodges_Kap2_EXIT(C_Info)
-{
-	npc = BAU_908_Hodges;
-	nr = 999;
-	condition = DIA_Hodges_Kap2_EXIT_Condition;
-	information = DIA_Hodges_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hodges_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hodges_Kap2_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Hodges_Kap3_EXIT(C_Info)
-{
-	npc = BAU_908_Hodges;
-	nr = 999;
-	condition = DIA_Hodges_Kap3_EXIT_Condition;
-	information = DIA_Hodges_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hodges_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hodges_Kap3_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Hodges_DontWork(C_Info)
 {
 	npc = BAU_908_Hodges;
@@ -237,10 +182,13 @@ func void DIA_Hodges_DontWork_Info()
 {
 	AI_Output(other,self,"DIA_Hodges_DontWork_15_00");	//Почему ты не работаешь?
 	AI_Output(self,other,"DIA_Hodges_DontWork_03_01");	//Ты еще ничего не слышал? Паладины арестовали Беннета.
-	MIS_RescueBennet = LOG_Running;
-	Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
-	B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
+	if(MIS_RescueBennet != LOG_Running)
+	{
+		MIS_RescueBennet = LOG_Running;
+		Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+		B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
+	};
 };
 
 
@@ -331,58 +279,6 @@ func void DIA_Hodges_BennetAndSLD_Info()
 	AI_Output(other,self,"DIA_Hodges_BennetAndSLD_15_02");	//Это понятно.
 	AI_Output(self,other,"DIA_Hodges_BennetAndSLD_03_03");	//Если бы у них было право решать, они бы атаковали город уже сегодня, чтобы освободить Беннета.
 	AI_Output(self,other,"DIA_Hodges_BennetAndSLD_03_04");	//Поговори с Ли, может быть, ты чем-нибудь сможешь помочь.
-};
-
-
-instance DIA_Hodges_Kap4_EXIT(C_Info)
-{
-	npc = BAU_908_Hodges;
-	nr = 999;
-	condition = DIA_Hodges_Kap4_EXIT_Condition;
-	information = DIA_Hodges_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hodges_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hodges_Kap4_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Hodges_Kap5_EXIT(C_Info)
-{
-	npc = BAU_908_Hodges;
-	nr = 999;
-	condition = DIA_Hodges_Kap5_EXIT_Condition;
-	information = DIA_Hodges_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hodges_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hodges_Kap5_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 

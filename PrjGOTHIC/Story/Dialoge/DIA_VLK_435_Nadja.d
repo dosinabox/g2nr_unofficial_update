@@ -254,7 +254,7 @@ func void DIA_Addon_Nadja_WAIT()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Nadja_BUYHERB_15_00");	//Могу я здесь купить травки?
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
 	{
 		AI_Output(self,other,"DIA_Nadja_BUYHERB_16_01");	//Откуда мне знать? Да и если бы знала, все равно не сказала бы городскому стражнику.
 		Undercover_Failed = TRUE;
@@ -327,7 +327,7 @@ instance DIA_Nadja_BUYHERB(C_Info)
 
 func int DIA_Nadja_BUYHERB_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && !Npc_KnowsInfo(other,DIA_Nadja_WANT_HERB) && (Nadja_Money == FALSE) && (Undercover_Failed == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Nadja_Money == FALSE) && (Nadja_BuyHerb_Failed == FALSE))
 	{
 		return TRUE;
 	};
@@ -340,10 +340,11 @@ func void DIA_Nadja_BUYHERB_Info()
 	AI_Output(other,self,"DIA_Nadja_BUYHERB_15_00");	//Могу я здесь купить травки?
 	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 500)
 	{
-		if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
+		if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
 		{
 			AI_Output(self,other,"DIA_Nadja_BUYHERB_16_01");	//Откуда мне знать? Да и если бы знала, все равно не сказала бы городскому стражнику.
 			Undercover_Failed = TRUE;
+			Nadja_BuyHerb_Failed = TRUE;
 		}
 		else
 		{
@@ -384,9 +385,10 @@ func void DIA_Nadja_WANT_HERB_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Nadja_WANT_HERB_15_00");	//А теперь скажи мне, где можно купить травки.
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
 	{
 		AI_Output(self,other,"DIA_Nadja_WANT_HERB_16_01");	//Извини, я забыла.
+		Undercover_Failed = TRUE;
 	}
 	else
 	{

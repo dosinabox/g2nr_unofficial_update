@@ -186,7 +186,8 @@ instance DIA_Addon_Fernando_BanditTrader(C_Info)
 
 func int DIA_Addon_Fernando_BanditTrader_Condition()
 {
-	if((FernandoBlame_noPerm == FALSE) && (Vatras_ToMartin == TRUE) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && (Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))))
+//	if((FernandoBlame_noPerm == FALSE) && (Vatras_ToMartin == TRUE) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && (Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))))
+	if((FernandoBlame_noPerm == FALSE) && (MIS_Vatras_FindTheBanditTrader == LOG_Running) && Npc_KnowsInfo(other,DIA_Fernando_Hello) && (NpcObsessedByDMT_Fernando == FALSE) && (Npc_HasItems(other,ItMw_Addon_BanditTrader) || Npc_HasItems(other,ItRi_Addon_BanditTrader) || (Npc_HasItems(other,ItWr_Addon_BanditTrader) && (BanditTrader_Lieferung_Gelesen == TRUE))))
 	{
 		return TRUE;
 	};
@@ -349,7 +350,7 @@ instance DIA_Fernando_Success(C_Info)
 
 func int DIA_Fernando_Success_Condition()
 {
-	if((NpcObsessedByDMT_Fernando == FALSE) && (Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Fernando_Minental))
+	if((Kapitel >= 3) && Npc_KnowsInfo(other,DIA_Fernando_Minental))
 	{
 		return TRUE;
 	};
@@ -358,16 +359,16 @@ func int DIA_Fernando_Success_Condition()
 func void DIA_Fernando_Success_Info()
 {
 	AI_Output(other,self,"DIA_Fernando_Success_15_00");	//Я был в Долине Рудников.
-	if(Fernando_ImKnast == FALSE)
+	if((Fernando_ImKnast == FALSE) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
 		Fernando_Erz = TRUE;
 		B_GivePlayerXP(XP_Ambient);
 		AI_Output(self,other,"DIA_Fernando_Success_14_01");	//И? Как там обстоят дела?
 		AI_Output(other,self,"DIA_Fernando_Success_15_02");	//Шахты истощены, там можно добыть всего каких-нибудь несколько ящиков руды. Вряд ли эта овчинка стоит выделки.
 		AI_Output(self,other,"DIA_Fernando_Success_14_03");	//Этого не может быть! Это означает, что я разорен...
-		if(Fernando_HatsZugegeben == FALSE)
+		AI_Output(other,self,"DIA_Fernando_Success_15_04");	//Что насчет нашей сделки?
+		if((Fernando_HatsZugegeben == FALSE) || (MIS_Vatras_FindTheBanditTrader == LOG_FAILED))
 		{
-			AI_Output(other,self,"DIA_Fernando_Success_15_04");	//Что насчет нашей сделки?
 			AI_Output(self,other,"DIA_Fernando_Success_14_05");	//Ах, да, твое вознаграждение...
 			if(other.guild == GIL_KDF)
 			{
@@ -379,12 +380,18 @@ func void DIA_Fernando_Success_Info()
 				AI_Output(self,other,"DIA_Fernando_Minental_14_07");	//Вот твое кольцо.
 				B_GiveInvItems(self,other,ItRi_Hp_02,1);
 			};
+		}
+		else
+		{
+			B_Say(self,other,"$NOTNOW");
+			AI_StopProcessInfos(self);
 		};
 	}
 	else
 	{
 		B_Say(self,other,"$NOTNOW");
-		Log_SetTopicStatus(TOPIC_Fernando,LOG_OBSOLETE);
+//		Log_SetTopicStatus(TOPIC_Fernando,LOG_OBSOLETE);
+		Log_SetTopicStatus(TOPIC_Fernando,LOG_FAILED);
 		B_LogEntry(TOPIC_Fernando,"Фернандо больше не нуждается в информации. И денег за нее он мне не заплатит.");
 	};
 };

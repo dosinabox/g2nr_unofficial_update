@@ -918,7 +918,7 @@ instance DIA_Parlan_TEACH(C_Info)
 	condition = DIA_Parlan_TEACH_Condition;
 	information = DIA_Parlan_TEACH_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун)";
+	description = "Я хочу изучить новые заклинания.";
 };
 
 
@@ -934,7 +934,8 @@ func void DIA_Parlan_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	AI_Output(other,self,"DIA_Parlan_TEACH_15_00");	//Обучи меня!
+//	AI_Output(other,self,"DIA_Parlan_TEACH_15_00");	//Обучи меня!
+	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Parlan_TEACH);
 	Info_AddChoice(DIA_Parlan_TEACH,Dialog_Back,DIA_Parlan_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE))
@@ -1207,7 +1208,7 @@ instance DIA_Parlan_DontDisturb(C_Info)
 func int DIA_Parlan_DontDisturb_Condition()
 {
 //	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && ((other.guild != GIL_PAL) || (other.guild != GIL_NOV) || (other.guild != GIL_KDF)))
-	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
+	if((Parlan_DontTalkToNovice == LOG_SUCCESS) && (B_GetGreatestPetzCrime(self) == CRIME_NONE) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};

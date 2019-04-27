@@ -12,8 +12,8 @@ func void Use_BookstandAnimals1_S1()
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
-		Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
-		Doc_SetPage(nDocID,1,"Book_Brown_R.tga",0);
+		Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
+		Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"Охота и трофеи");
@@ -52,12 +52,11 @@ func void Use_BookstandAnimals2_S1()
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
-		Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
-		Doc_SetPage(nDocID,1,"Book_Brown_R.tga",0);
+		Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
+		Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"Охота и трофеи");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"С каждого зверя или животного можно получить трофеи, преумножающие славу и богатство опытного охотника.");
 		Doc_PrintLine(nDocID,0,"");
@@ -65,6 +64,7 @@ func void Use_BookstandAnimals2_S1()
 		Doc_PrintLines(nDocID,0,"Чтобы выпотрошить этих летающих дьяволов, необходимо обладать двумя навыками: у них можно вырезать крылья и жала.");
 		Doc_PrintLines(nDocID,0,"Оба этих навыка используются опытными охотниками для добывания трофеев.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Полевые хищники и краулеры атакуют при помощи мандибул. Мандибулы краулеров особенно ценятся, так как они содержат железы, повышающие магическую силу.");
 		Doc_PrintLines(nDocID,1,"Однако, их следует использовать аккуратно, так как человеческий организм постепенно становится невосприимчив к ним.");
@@ -87,8 +87,8 @@ func void Use_BookstandAnimals3_S1()
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
-		Doc_SetPage(nDocID,0,"Book_Brown_L.tga",0);
-		Doc_SetPage(nDocID,1,"Book_Brown_R.tga",0);
+		Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
+		Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"Охота и трофеи");
@@ -99,6 +99,7 @@ func void Use_BookstandAnimals3_S1()
 		Doc_PrintLines(nDocID,0,"Этот зверь - ящер, изрыгающий огонь, который может убить любого в пределах нескольких шагов от этой твари.");
 		Doc_PrintLines(nDocID,0,"Только те, кто обладает защитой от огня, могут охотиться на этих созданий и добывать их ценные языки.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"Мракорис");
 		Doc_PrintLines(nDocID,1,"Мракорис - это древний зверь, предпочитающий уединение и живущий под покровом леса.");

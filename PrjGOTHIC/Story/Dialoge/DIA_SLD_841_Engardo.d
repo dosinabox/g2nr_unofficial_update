@@ -53,9 +53,16 @@ func void DIA_Engardo_HALLO_Info()
 	Akils_SLDStillthere = TRUE;
 	if(Chance == FALSE)
 	{
-		AI_Output(self,other,"DIA_Engardo_HALLO_13_00");	//Ёй, мужик, ты что, заблудилс€? ¬озвращайс€ на свое поле и дергай репу.
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Engardo_HALLO_13_00");	//Ёй, мужик, ты что, заблудилс€? ¬озвращайс€ на свое поле и дергай репу.
+		}
+		else
+		{
+			B_Say(self,other,"$GETUPANDBEGONE");
+		};
 		Chance = 1;
-		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 24) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
 		{
 			AI_StopProcessInfos(self);
 		};
@@ -65,7 +72,7 @@ func void DIA_Engardo_HALLO_Info()
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_01");	//“ы оказалс€ не в том месте не в то врем€...
 		AI_Output(self,other,"DIA_Engardo_HALLO_13_02");	//... так что, если хочешь жить, лучше топай отсюда. ѕон€л?
 		Chance = 2;
-		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET))
+		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 24) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
 		{
 			AI_StopProcessInfos(self);
 		};

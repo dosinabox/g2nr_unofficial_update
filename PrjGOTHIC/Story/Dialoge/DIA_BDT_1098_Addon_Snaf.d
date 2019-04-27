@@ -28,7 +28,7 @@ instance DIA_Addon_Snaf_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Snaf_PICKPOCKET_Condition;
 	information = DIA_Addon_Snaf_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_40;
+	description = Pickpocket_60;
 };
 
 
@@ -78,6 +78,7 @@ func int DIA_Addon_Snaf_Hi_Condition()
 func void DIA_Addon_Snaf_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Snaf_Hi_01_00");	//Хочешь жрать или болтать?
+	EnteredBanditsCamp = TRUE;
 };
 
 

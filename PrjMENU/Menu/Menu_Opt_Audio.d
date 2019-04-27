@@ -165,7 +165,7 @@ instance MENUITEM_AUDIO_SUB_TITLES_CHOICE(C_MENU_ITEM_DEF)
 	text[0] = "откл|вкл";
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = (MENU_START_Y + (MENU_SOUND_DY * 1)) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 1) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "subTitles";
@@ -194,7 +194,7 @@ instance MENUITEM_AUDIO_SUB_TITLES2_CHOICE(C_MENU_ITEM_DEF)
 	text[0] = "откл|вкл";
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = (MENU_START_Y + (MENU_SOUND_DY * 2)) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_SOUND_DY * 2) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "subTitlesNoise";
@@ -337,7 +337,7 @@ instance MENUITEM_AUDIO_REVERB_SPEECH_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "нет|средне|полная";
+	text[0] = "откл|средне|полная";
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
 	posy = MENU_START_Y + (MENU_SOUND_DY * 7) + MENU_CHOICE_YPLUS;

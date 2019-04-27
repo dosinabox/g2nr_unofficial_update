@@ -108,14 +108,14 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 /*		if(hero.guild == GIL_KDF))
 		{
 			B_StartOtherRoutine(Agon,"StillAlive");
-		}; */
-		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
-		{
-			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
 		if(!Npc_IsDead(Ambusher_1013))
 		{
 			B_StartOtherRoutine(Ambusher_1013,"AWAY");
+		}; */
+		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
+		{
+			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
 		Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
 		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
@@ -133,7 +133,8 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 			//CreateInvItem(Dyrian,ITAR_Bau_L);
 			//AI_EquipArmor(Dyrian,ITAR_Bau_L);
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
-		};	
+		};
+		B_KillThievesGuild();
 		EnterNW_Kapitel2 = TRUE;
 	};
 };
@@ -183,7 +184,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(Sekob,"FleeDMT");
 			B_StartOtherRoutine(Rosi,"FleeDMT");
 			B_StartOtherRoutine(Till,"FleeDMT");
-			B_StartOtherRoutine(Balthasar,"FleeDMT");
+			if(BalthasarMovedToBengar == FALSE)
+			{
+				B_StartOtherRoutine(Balthasar,"FleeDMT");
+			};
 			B_StartOtherRoutine(BAU_933_Rega,"FleeDMT");
 			B_StartOtherRoutine(BAU_934_Babera,"FleeDMT");
 			B_StartOtherRoutine(BAU_937_Bauer,"FleeDMT");
@@ -216,7 +220,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(Wolf,"NW_PATH_TO_MONASTER_AREA_10");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
 		Wld_InsertNpc(Warg,"NW_XARDAS_GOBBO_01");
-		if(!Npc_IsDead(Ambusher_1013))
+		if(!Npc_IsDead(Ambusher_1013) && (Bdt_1013_ToCavalorn == TRUE))
 		{
 			B_KillNpc(Ambusher_1013);
 		};
@@ -375,6 +379,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_SLD.tga","chapter_01.wav",6000);
 		};
+		B_KillThievesGuild();
 		EnterNW_Kapitel3 = TRUE;
 	};
 };
@@ -534,8 +539,10 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			Wld_InsertNpc(Draconian,"FP_ROAM_NW_CITY_SMFOREST_05_04");
 			Wld_InsertNpc(Draconian,"FP_ROAM_NW_CITY_SMFOREST_05_02");
 			Wld_InsertNpc(Draconian,"FP_ROAM_NW_CITY_SMFOREST_05_01");
-			Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_ROAM_CITYFOREST_KAP3_07");
-			Wld_InsertNpc(Draconian,"FP_ROAM_CITYFOREST_KAP3_06");
+//			Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_ROAM_CITYFOREST_KAP3_07");
+			Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_ROAM_CITYFOREST_KAP3_06");
+//			Wld_InsertNpc(Draconian,"FP_ROAM_CITYFOREST_KAP3_06");
+			Wld_InsertNpc(Draconian,"FP_ROAM_CITYFOREST_KAP3_19");
 			Wld_InsertNpc(Draconian,"FP_ROAM_CITYFOREST_KAP3_08");
 			Wld_InsertNpc(Draconian,"FP_ROAM_CITYFOREST_KAP3_05");
 			Wld_InsertItem(ItAt_DragonEgg_MIS,"FP_ROAM_CITYFOREST_KAP3_07");
@@ -654,6 +661,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				B_StartOtherRoutine(Randolph,"Start");
 			};
 		};
+		B_KillThievesGuild();
 		EnterNW_Kapitel4 = TRUE;
 	};
 	if(Talbin_FollowsThroughPass == LOG_Running)
@@ -714,7 +722,15 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		};
 		if(hero.guild == GIL_PAL)
 		{
-			Wld_InsertItem(ITAR_PAL_H,"FP_ITEM_PALFINALARMOR");
+			if(Helms_Enabled == TRUE)
+			{
+				Wld_InsertItem(ITAR_PALN_H,"FP_ITEM_PALFINALARMOR");
+				Wld_InsertItem(ITHE_PAL_H,"FP_ITEM_PALFINALWEAPON");
+			}
+			else
+			{
+				Wld_InsertItem(ITAR_PAL_H,"FP_ITEM_PALFINALARMOR");
+			};
 			Wld_InsertItem(ItMi_RuneBlank,"FP_NW_ITEM_LIBRARY_SEAMAP");
 		};
 		if(hero.guild == GIL_KDF)
@@ -796,6 +812,11 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		{
 			IntroduceChapter(KapWechsel_5,KapWechsel_5_Text,"chapter5_DJG.tga","chapter_01.wav",6000);
 		};
+		if(MIS_ShipIsFree == TRUE)
+		{
+			B_StartOtherRoutine(Girion,"WaitForShip");
+		};
+		B_KillThievesGuild();
 		EnterNW_Kapitel5 = TRUE;
 	};
 //	if(MIS_OCGateOpen == TRUE)

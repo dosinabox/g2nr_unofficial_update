@@ -44,7 +44,7 @@ instance DIA_Dragon_Undead_Hello(C_Info)
 
 func int DIA_Dragon_Undead_Hello_Condition()
 {
-	if(SC_IsWearingInnosEye == TRUE)
+	if(Npc_HasItems(other,ItMi_InnosEye_MIS))
 	{
 		return TRUE;
 	};

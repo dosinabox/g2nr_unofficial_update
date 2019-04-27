@@ -151,7 +151,7 @@ instance DIA_Engor_RSkaufen(C_Info)
 	condition = DIA_Engor_RSkaufen_Condition;
 	information = DIA_Engor_RSkaufen_Info;
 	permanent = TRUE;
-	description = "Купить тяжелые доспехи ополчения. Защита: 70/70/20/10. (2500 золотых)";
+	description = "Купить тяжелые доспехи ополчения. Защита: 70/70/10/10. (2500 золотых)";
 };
 
 
@@ -173,7 +173,7 @@ func void DIA_Engor_RSkaufen_Info()
 		AI_Output(self,other,"DIA_Engor_RSkaufen_13_01");	//Вот, держи, они надежно защитят тебя - это чертовски хорошие доспехи.
 		CreateInvItem(hero,ITAR_MIL_M);
 		AI_PrintScreen("Тяжелые доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_MIL_M);
+//		AI_EquipArmor(hero,ITAR_MIL_M);
 		DIA_Engor_RSkaufen_perm = TRUE;
 	}
 	else
@@ -442,7 +442,15 @@ instance DIA_Engor_PICKPOCKET(C_Info)
 func int DIA_Engor_PICKPOCKET_Condition()
 {
 //	return C_StealItems(40,Hlp_GetInstanceID(ItWr_Map_OldWorld),0);
-	return C_StealItem(40,Hlp_GetInstanceID(ItWr_Map_OldWorld));
+//	return C_StealItem(40,Hlp_GetInstanceID(ItWr_Map_OldWorld));
+	if(Npc_HasItems(self,ItWr_Map_OldWorld))
+	{
+		return C_StealItem(40,Hlp_GetInstanceID(ItWr_Map_OldWorld));
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 
 func void DIA_Engor_PICKPOCKET_Info()
@@ -454,7 +462,7 @@ func void DIA_Engor_PICKPOCKET_Info()
 
 func void DIA_Engor_PICKPOCKET_DoIt()
 {
-	CreateInvItem(self,ItWr_Map_OldWorld);
+//	CreateInvItem(self,ItWr_Map_OldWorld);
 //	B_StealItems(40,Hlp_GetInstanceID(ItWr_Map_OldWorld),1);
 	B_StealItem(40,Hlp_GetInstanceID(ItWr_Map_OldWorld));
 	Info_ClearChoices(DIA_Engor_PICKPOCKET);

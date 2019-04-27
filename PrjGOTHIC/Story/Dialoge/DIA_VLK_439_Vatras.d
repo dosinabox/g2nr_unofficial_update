@@ -140,6 +140,7 @@ func void DIA_Vatras_EXIT_Info()
 		B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
 		Vatras_LaresExit = TRUE;
 	};
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 //	Vatras_MORE = FALSE;
 	if(Vatras_SchickeLeuteWeg == TRUE)
@@ -365,30 +366,7 @@ func void DIA_Addon_Vatras_TellMe_Philo()
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_02");	//Если одна из сторон одержит верх, то это будет означать либо полный хаос, либо окончательную потерю свободы.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Philo_05_03");	//Поэтому мы поддерживаем баланс двух сил. Благодаря нам существует все живое.
 	Vatras_ToldAboutDuty = TRUE;
-	/*if(MIS_Vatras_FindTheBanditTrader == FALSE)
-	{
-		Info_AddChoice(DIA_Addon_Vatras_TellMe,"И что это значит для меня?",DIA_Addon_Vatras_TellMe_Konkret);
-	};*/
 };
-
-/*func void DIA_Addon_Vatras_TellMe_Konkret()
-{
-	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_Konkret_15_00");	//(хмуро) И что это значит для меня?
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_01");	//Падение Барьера стало причиной возникновения многих опасностей.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_02");	//Бандиты, наверное, самая очевидная из них.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_03");	//И дело не только в том, что теперь нельзя путешествовать в безопасности...
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_04");	//В городе есть кто-то, кто помогает бандитам!
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Add_05_00");	//Мы узнали, что бандиты получают регулярные поставки от торговца оружием в Хоринисе.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_05");	//Сейчас мы пытаемся всеми силами помешать этому.
-	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Konkret_05_06");	//Если что-нибудь узнаешь об этом, дай мне знать.
-	MIS_Vatras_FindTheBanditTrader = LOG_Running;
-//	Vatras_ToMartin = TRUE;
-	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
-//	B_LogEntry(TOPIC_Addon_Bandittrader,"Интендант паладинов Мартин также занимается поставкой оружия. Я могу найти его в гавани, где паладины хранят свои запасы.");
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
-};*/
 
 func void DIA_Addon_Vatras_TellMe_OtherKdW()
 {
@@ -860,7 +838,7 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_03");	//Ты должен выследить бывшего рудного барона Ворона и узнать, с какой целью он похищает жителей города.
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_04");	//А мы останемся здесь и попытаемся разобраться с бандитами.
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_05");	//Передай это письмо Сатурасу. Отныне он будет давать тебе задания.
-	if(MIS_Addon_Lares_Ornament2Saturas != LOG_SUCCESS)
+	if((MIS_Addon_Lares_Ornament2Saturas != LOG_SUCCESS) && (Kapitel < 3))
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_08");	//Ларес отведет тебя к нему, если он еще не получил орнамент.
 	};
@@ -873,7 +851,7 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	B_LogEntry(TOPIC_Addon_Sklaven,"Я должен узнать, с какой целью Ворон похищает жителей Хориниса.");
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -908,15 +886,12 @@ func void DIA_Addon_Vatras_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_05_01");	//Да?
 	Info_ClearChoices(DIA_Addon_Vatras_MissingPeople);
 	Info_AddChoice(DIA_Addon_Vatras_MissingPeople,Dialog_Back,DIA_Addon_Vatras_MissingPeople_BACK);
+	Info_AddChoice(DIA_Addon_Vatras_MissingPeople,"Позволь рассказать тебе то, что я знаю...",DIA_Addon_Vatras_MissingPeople_Report);
 	if(SCKnowsMissingPeopleAreInAddonWorld == TRUE)
 	{
 		Info_AddChoice(DIA_Addon_Vatras_MissingPeople,"Я знаю, где находятся пропавшие люди.",DIA_Addon_Vatras_MissingPeople_Success);
-	}
-	else
-	{
-		Info_AddChoice(DIA_Addon_Vatras_MissingPeople,"Позволь рассказать тебе то, что я знаю...",DIA_Addon_Vatras_MissingPeople_Report);
 	};
-	if(DIA_Addon_Vatras_MissingPeople_Wo_NoPerm == FALSE)
+	if((DIA_Addon_Vatras_MissingPeople_Wo_NoPerm == FALSE) && (SCKnowsMissingPeopleAreInAddonWorld == FALSE))
 	{
 		Info_AddChoice(DIA_Addon_Vatras_MissingPeople,"Где мне их искать?",DIA_Addon_Vatras_MissingPeople_Wo);
 	};
@@ -1211,7 +1186,10 @@ func int DIA_Addon_Vatras_WISP_Condition()
 func void DIA_Addon_Vatras_WISP_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_WISP_15_00");	//Ты можешь помочь мне в моих поисках?
-	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_01");	//Ты очень настойчивый юноша. Но я действительно могу кое-что тебе дать, чтобы облегчить тебе задачу.
+	if((MIS_Vatras_FindTheBanditTrader == LOG_Running) || (MIS_Vatras_FindTheBanditTrader == LOG_FAILED))
+	{
+		AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_01");	//Ты очень настойчивый юноша. Но я действительно могу кое-что тебе дать, чтобы облегчить тебе задачу.
+	};
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_02");	//Я дам тебе этот амулет. Тебе он пригодится.
 	CreateInvItems(self,ItAm_Addon_WispDetector,1);
 	B_GiveInvItems(self,other,ItAm_Addon_WispDetector,1);
@@ -1225,7 +1203,7 @@ func void DIA_Addon_Vatras_WISP_Info()
 	B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned);
 	B_LogEntry(TOPIC_WispDetector,LogText_Addon_WispLearned_NF);
 	AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_08");	//Ищущий огонек поможет тебе искать оружие.
-	if(MIS_Vatras_FindTheBanditTrader == LOG_Running)
+	if((MIS_Vatras_FindTheBanditTrader == LOG_Running) || (MIS_Vatras_FindTheBanditTrader == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_Waffen_WISP_05_09");	//С его помощью ты сможешь узнать, какими путями оружие попадает к бандитам.
 	};
@@ -2178,7 +2156,7 @@ func void DIA_Addon_Vatras_AddonSolved_Info()
 		AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_05");	//Кажется, дело касается Глаза Инноса, не так ли?
 	};
 	VatrasCanLeaveTown_Kap3 = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -2202,6 +2180,7 @@ func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Info()
 {
+	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
 	if(MIS_Pyrokar_GoToVatrasInnoseye == LOG_Running)
 	{
 		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_00");	//Меня прислал Пирокар.
@@ -2211,14 +2190,13 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Info()
 		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_01");	//Меня прислал Ксардас.
 	};
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
-	B_GivePlayerXP(XP_Ambient);
-	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+	B_GivePlayerXP(XP_AmbientKap3);
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_05_03");	//Я знаю. Я уже узнал об этом от одного очень огорченного послушника.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_05_04");	//Ищущие использовали Круг Солнца магов Огня, чтобы уничтожить Глаз.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_05_05");	//Я бы назвал это вынужденным шагом врага.
 	Info_ClearChoices(DIA_Vatras_INNOSEYEKAPUTT);
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"В этом городе новости распространяются быстро.",DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten);
-	if((hero.guild == GIL_KDF) && (MIS_Pyrokar_GoToVatrasInnoseye == LOG_Running))
+	if(MIS_Pyrokar_GoToVatrasInnoseye == LOG_Running)
 	{
 		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Почему Пирокар послал меня именно к тебе?",DIA_Vatras_INNOSEYEKAPUTT_warumdu);
 	};
@@ -2229,10 +2207,16 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge()
 {
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_15_00");	//Что теперь будет с Глазом?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_01");	//Мы должны восстановить его. Но это, боюсь, будет непростой задачей.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_02");	//Оправа разбита на две части. Искусный кузнец должен быть способен починить ее.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_03");	//Но проблема не в этом. Меня больше волнует драгоценный камень.
+	if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_02");	//Оправа разбита на две части. Искусный кузнец должен быть способен починить ее.
+		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_03");	//Но проблема не в этом. Меня больше волнует драгоценный камень.
+	};
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_04");	//Он тускл и безжизненен. Враг, похоже, хорошо знал, как ослабить его.
-	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти кузнеца, способного починить оправу Глаза?",DIA_Vatras_INNOSEYEKAPUTT_Auge_schmied);
+	if(!Npc_KnowsInfo(other,DIA_Bennet_GiveInnosEye))
+	{
+		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти кузнеца, способного починить оправу Глаза?",DIA_Vatras_INNOSEYEKAPUTT_Auge_schmied);
+	};
 	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Как можно восстановить силу камня?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein);
 };
 
@@ -2252,7 +2236,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut()
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_15_00");	//Где мне найти болотную траву?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_01");	//Я слышал о старой шаманке Сагитте, живущей в лесу. Предположительно, она продает такие травы.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Kraut_05_02");	//Но также ты можешь попытать счастья в местной гавани.
-	if(Npc_HasItems(Sagitta,ItPl_SwampHerb) < 3)
+	if(!Npc_IsDead(Sagitta) && (Npc_HasItems(Sagitta,ItPl_SwampHerb) < 3))
 	{
 		CreateInvItems(Sagitta,ItPl_SwampHerb,3);
 	};
@@ -2295,7 +2279,7 @@ func void DIA_Vatras_INNOSEYEKAPUTT_warumdu()
 func void DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten()
 {
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten_15_00");	//В этом городе новости распространяются быстро.
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten_05_01");	//Это конечно хорошо, но враг тоже не будет спать.
+	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_schnelleNachrichten_05_01");	//Это, конечно, хорошо, но враг тоже не будет спать.
 };
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
@@ -2407,7 +2391,10 @@ func void DIA_Vatras_RitualInnosEyeRepair_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_RitualInnosEyeRepair_15_00");	//Как обстоят дела с Глазом Инноса?
 	AI_Output(self,other,"DIA_Vatras_RitualInnosEyeRepair_05_01");	//Помни: только ритуал обращения в Круге Солнца вместе с Ксардасом и Пирокаром восстановит Глаз.
-	AI_Output(self,other,"DIA_Vatras_RitualInnosEyeRepair_05_02");	//И не забудь принести Глаз с отремонтированной оправой.
+	if(RitualInnosEyeRuns != LOG_Running)
+	{
+		AI_Output(self,other,"DIA_Vatras_RitualInnosEyeRepair_05_02");	//И не забудь принести Глаз с отремонтированной оправой.
+	};
 };
 
 
@@ -2434,7 +2421,7 @@ func void DIA_Vatras_BEGINN_Info()
 	AI_Output(other,self,"DIA_Vatras_BEGINN_15_00");	//Я сделал все, как ты сказал мне. Вот починенный Глаз.
 	if(Npc_HasItems(other,ItPl_SwampHerb) >= 3)
 	{
-		B_GivePlayerXP(XP_RitualInnosEyeRuns + XP_Ambient);
+		B_GivePlayerXP(XP_RitualInnosEyeRuns + XP_AmbientKap3);
 	}
 	else
 	{
@@ -2449,7 +2436,6 @@ func void DIA_Vatras_BEGINN_Info()
 	{
 		AI_Output(other,self,"DIA_Vatras_BEGINN_15_04");	//Гм. Да. Вот три растения.
 		AI_Output(self,other,"DIA_Vatras_BEGINN_05_05");	//Превосходно.
-//		B_GivePlayerXP(XP_Ambient);
 	}
 	else
 	{

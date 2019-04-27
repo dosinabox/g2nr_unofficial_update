@@ -3,7 +3,7 @@ func void B_BaltramRangerCheck()
 {
 	var C_Item EqArm;
 	EqArm = Npc_GetEquippedArmor(other);
-	if((SC_KnowsBaltramAsRanger == FALSE) && ((SCIsWearingRangerRing == TRUE) || (Hlp_IsItem(EqArm,ITAR_RANGER_Addon))))
+	if(AnyRangerRingEquipped() || Hlp_IsItem(EqArm,ITAR_RANGER_Addon))
 	{
 		SC_KnowsBaltramAsRanger = TRUE;
 	};
@@ -50,7 +50,7 @@ func int DIA_Baltram_Sperre_Condition()
 	B_BaltramRangerCheck();
 	if((Canthar_Sperre == TRUE) && Npc_IsInState(self,ZS_Talk))
 	{
-		if((SCIsWearingRangerRing == TRUE) && (MIS_Lares_BringRangerToMe == LOG_Running))
+		if(AnyRangerRingEquipped() && (MIS_Lares_BringRangerToMe == LOG_Running))
 		{
 			return FALSE;
 		}
@@ -91,7 +91,7 @@ func int DIA_Baltram_Hallo_Condition()
 	{
 		if(Canthar_Sperre == TRUE)
 		{
-			if((SCIsWearingRangerRing == TRUE) && (MIS_Lares_BringRangerToMe == LOG_Running))
+			if(AnyRangerRingEquipped() && (MIS_Lares_BringRangerToMe == LOG_Running))
 			{
 				return TRUE;
 			};
@@ -130,7 +130,7 @@ instance DIA_Addon_Baltram_LaresAbloese(C_Info)
 
 func int DIA_Addon_Baltram_LaresAbloese_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (SCIsWearingRangerRing == TRUE) && (MIS_Lares_BringRangerToMe == LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk)&& (MIS_Lares_BringRangerToMe == LOG_Running) && AnyRangerRingEquipped())
 	{
 		return TRUE;
 	};
@@ -444,11 +444,6 @@ func void DIA_Baltram_Lieferung_Info()
 	MIS_Baltram_ScoutAkil = LOG_SUCCESS;
 	MIS_Nagur_Bote = LOG_FAILED;
 	B_GivePlayerXP(XP_Baltram_ScoutAkil);
-	CreateInvItems(self,ItFo_Cheese,5);
-	CreateInvItems(self,ItFo_Apple,10);
-	CreateInvItems(self,ItFo_Beer,5);
-	CreateInvItems(self,ItFo_Bacon,5);
-	CreateInvItems(self,ItFo_Sausage,5);
 };
 
 
@@ -545,9 +540,7 @@ func void DIA_Baltram_HaveYourWarez_Info()
 	{
 		AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_04");	//’ммм, товар не самого лучшего качества, но в наше врем€ не приходитс€ привередничать.
 		Npc_RemoveInvItems(other,ItFo_Bacon,10);
-		CreateInvItems(self,ItFo_Bacon,10);
 		Npc_RemoveInvItems(other,ItFo_Wine,10);
-		CreateInvItems(self,ItFo_Wine,10);
 		concatText = ConcatStrings(IntToString(20),PRINT_ItemsGegeben);
 		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		MIS_BaltramTrade = LOG_SUCCESS;

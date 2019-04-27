@@ -50,6 +50,7 @@ func void DIA_Addon_10023_Wache_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_10023_Wache_Hi_11_05");	//Это прямой приказ Бладвина.
 	AI_Output(other,self,"DIA_Addon_10023_Wache_Hi_15_06");	//А я думал, здесь командует Ворон.
 	AI_Output(self,other,"DIA_Addon_10023_Wache_Hi_11_07");	//Верно - но рабы ему больше не нужны, он отдал их Бладвину.
+	EnteredBanditsCamp = TRUE;
 	Pardos.attribute[ATR_HITPOINTS] = 70;
 	B_LogEntry(TOPIC_Addon_Sklaven,"Ворону больше не нужны рабы. Теперь они принадлежат Бладвину.");
 };

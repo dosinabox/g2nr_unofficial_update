@@ -37,7 +37,7 @@ func void ZS_SuckEnergy()
 
 func int ZS_SuckEnergy_Loop()
 {
-/*	if((Npc_GetStateTime(self) > SPL_TIME_SuckEnergy) || (Temp_SuckEnergy_DistToPlayer >= (Npc_GetDistToPlayer(self) + 100)))
+	if((Npc_GetStateTime(self) > SPL_TIME_SuckEnergy) || (Temp_SuckEnergy_DistToPlayer >= (Npc_GetDistToPlayer(self) + 100)))
 	{
 		B_StopSuckEnergy();
 		return LOOP_END;
@@ -52,6 +52,22 @@ func int ZS_SuckEnergy_Loop()
 			};
 			Wld_PlayEffect("spellFX_SuckEnergy_BloodFly",self,hero,0,0,0,FALSE);
 		};
+		if(Npc_GetStateTime(self) == 2)
+		{
+			B_Say(self,other,"$Aargh_2");
+		}
+		else if(Npc_GetStateTime(self) == 3)
+		{
+			B_Say(self,other,"$Help");
+		}
+		else if(Npc_GetStateTime(self) == 5)
+		{
+			B_Say(self,other,"$Aargh_1");
+		}
+		else if(Npc_GetStateTime(self) == 6)
+		{
+			B_Say(self,other,"$Aargh_3");
+		};
 		self.aivar[AIV_SuckEnergyStateTime] = Npc_GetStateTime(self);
 		if(self.attribute[ATR_HITPOINTS] > SPL_SuckEnergy_Damage)
 		{
@@ -63,8 +79,8 @@ func int ZS_SuckEnergy_Loop()
 			B_MagicHurtNpc(other,self,self.attribute - 1);
 		};
 	};
-	return LOOP_CONTINUE;*/
-	if(self.attribute[ATR_HITPOINTS] <= 0)
+	return LOOP_CONTINUE;
+	/*if(self.attribute[ATR_HITPOINTS] <= 0)
 	{
 		self.attribute[ATR_HITPOINTS] = 0;
 		Npc_StopAni(self,"S_SUCKENERGY_VICTIM");
@@ -108,7 +124,7 @@ func int ZS_SuckEnergy_Loop()
 			Npc_ChangeAttribute(other,ATR_HITPOINTS,SPL_SuckEnergy_Damage);
 		};
 		B_MagicHurtNpc(other,self,SPL_SuckEnergy_Damage);
-	};
+	};*/
 };
 
 func void ZS_SuckEnergy_End()

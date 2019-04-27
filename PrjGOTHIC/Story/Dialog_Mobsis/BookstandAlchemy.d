@@ -111,14 +111,10 @@ func void Use_BookstandALCHEMY3_S1()
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLines(nDocID,0,"Зелья перманентного действия");
-		Doc_PrintLine(nDocID,0,"и ингредиенты");
+		Doc_PrintLines(nDocID,0,"Зелья перманентного действия и ингредиенты");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,NAME_DEX_Elixier);
 		Doc_PrintLine(nDocID,0,"1 гоблинская ягода");
-		Doc_PrintLine(nDocID,0,"");
-		Doc_PrintLine(nDocID,0,NAME_Speed_Elixier);
-		Doc_PrintLines(nDocID,0,"1 снеппер-трава - для этого зелья необходим не царский щавель, а луговой горец.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,NAME_STR_Elixier);
 		Doc_PrintLine(nDocID,0,"1 драконий корень");
@@ -128,11 +124,14 @@ func void Use_BookstandALCHEMY3_S1()
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,NAME_ManaMax_Elixier);
 		Doc_PrintLine(nDocID,0,"1 огненный корень");
+		Doc_PrintLine(nDocID,0,"");
+		Doc_PrintLines(nDocID,0,"Применение этих рецептов - высшее алхимическое искусство. Все они требуют царского щавеля.");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Применение этих рецептов - высшее алхимическое искусство. Все они требуют царского щавеля.");
+		Doc_PrintLine(nDocID,1,NAME_Speed_Elixier);
+		Doc_PrintLines(nDocID,1,"1 снеппер-трава - для этого зелья необходим не царский щавель, а луговой горец.");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Зелье скорости варить значительно легче, частично потому, что для него не требуется царский щавель.");
+		Doc_PrintLines(nDocID,1,"Варить это зелье значительно легче, частично потому, что для него не нужен царский щавель.");
 		Doc_Show(nDocID);
 		if(ALchemy_3_permanent == FALSE)
 		{

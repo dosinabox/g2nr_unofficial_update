@@ -46,6 +46,7 @@ func void DIA_Bosper_HALLO_Info()
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_00");	//ƒобро пожаловать в мою лавку, чужеземец!
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_01");	//я Ѕоспер. я делаю луки и торгую шкурами.
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_02");	//„то привело теб€ в ’оринис?
+	B_PlayerEnteredCity();
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Ѕоспер делает луки и торгует шкурами. ≈го лавка находитс€ у восточных ворот, в нижней части города.");
 };
@@ -105,7 +106,7 @@ func int DIA_Bosper_SeekWork_Condition()
 func void DIA_Bosper_SeekWork_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_SeekWork_15_00");	//я ищу работу!
-	AI_Output(self,other,"DIA_Bosper_SeekWork_11_01");	//ћмм - мне не помешал бы новый ученик.
+	AI_Output(self,other,"DIA_Bosper_SeekWork_11_01");	//ћмм... ћне не помешал бы новый ученик.
 	AI_Output(self,other,"DIA_Bosper_SeekWork_11_02");	//ѕоследний, что у мен€ был, бросил свою работу пару дней назад.
 	AI_Output(self,other,"DIA_Bosper_SeekWork_11_03");	//“ы что-нибудь знаешь об охоте, а?
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
@@ -498,7 +499,7 @@ instance DIA_Bosper_TeachFUR(C_Info)
 	information = DIA_Bosper_TeachFUR_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("Ќаучи мен€ снимать шкуры с животных!",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
-	description = B_BuildLearnString("—н€тие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
+	description = B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
 };
 
 
@@ -605,7 +606,10 @@ func void DIA_Bosper_BogenRunning_Info()
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_03");	//я отлучилс€ из своей лавки всего на минуту. ј когда вернулс€, € увидел только, как он выходил - с моим луком на плече.
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_04");	//я тут же позвал стражу, но этот подонок побежал к гавани. » они потер€ли его там!
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_05");	//я спустил на них всех собак за это, и стражники обыскали весь портовый квартал. Ќо ничего не нашли.
-	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_06");	//Ѕестолочи!
+	if(other.guild != GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Bosper_BogenRunning_11_06");	//Ѕестолочи!
+	};
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_07");	//√отов покл€стьс€, что мой лук все еще находитс€ где-то в городе. я поговорил со стражей у обоих городских ворот, но они не видели, чтобы кто-нибудь выходил из города с луком.
 	AI_Output(self,other,"DIA_Bosper_BogenRunning_11_08");	// огда € доберусь до этого ублюдка...
 	Log_CreateTopic(TOPIC_BosperBogen,LOG_MISSION);
@@ -641,7 +645,7 @@ func void DIA_Bosper_BogenSuccess_Info()
 	AI_Output(other,self,"DIA_Bosper_BogenSuccess_15_02");	//¬ темной дыре, полной крыс.
 	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_03");	//Ќадеюсь, у теб€ не возникло проблем из-за этого...
 	AI_Output(other,self,"DIA_Bosper_BogenSuccess_15_04");	//Ќет - мне приходилось делать такое и раньше.
-	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_05");	//’м - но все же спасибо. я твой должник!
+	AI_Output(self,other,"DIA_Bosper_BogenSuccess_11_05");	//’м, но все же спасибо. я твой должник!
 	MIS_Bosper_Bogen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Bosper_Bogen);
 	Npc_RemoveInvItems(self,ItRw_Bow_L_03_MIS,1);

@@ -10,7 +10,8 @@ instance ItPo_Story(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Власть, которую дает показ Raven Video I";
+	description = name;
+	text[0] = "Показ Raven Video I";
 };
 
 
@@ -72,6 +73,36 @@ func void b_build_settings_diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	/*требуются только дополнительные модели: https://worldofplayers.ru/threads/41303
+	if(Helms_Enabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Отделить шлемы от доспехов",StoryHelper_Helms);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helms);
+	};
+	*/
+	/*не сделано
+	if(HonestStatCalculation == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
+	};*/
+	if(!Npc_KnowsInfo(other,DIA_Coragon_GiveBook) && !Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
+	{
+		if(ClassicLehmarBook == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить выкуп гроссбуха у Торбена и Корагона",StoryHelper_LehmarBook);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить выкуп гроссбуха у Торбена и Корагона",StoryHelper_LehmarBook);
+		};
+	};
 	if(TradersHaveLimitedAmmo == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить лимит запаса стрел и болтов у торговцев",StoryHelper_Limit);
@@ -104,24 +135,34 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
 	};
-/*	if(HonestStatCalculation == FALSE)
+	If(RandomGoblinBerries == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
-	};*/
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
+	};
+	If(InfiniteApples == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить бесконечные яблоки",StoryHelper_Apples);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить бесконечные яблоки",StoryHelper_Apples);
+	};
 };
 	
 instance StoryHelper_PatchSettings(C_Info)
 {
 	npc = sh;
+//	npc = NONE_100_Xardas;
+	nr = 995;
 	condition = StoryHelper_PatchSettings_Condition;
 	information = StoryHelper_PatchSettings_Info;
 	important = FALSE;
 	permanent = TRUE;
-	description = "Настройки неофициального обновления";
+	description = "(настройки неофициального обновления)";
 };
 
 
@@ -191,6 +232,90 @@ func void StoryHelper_Bonuses()
 	{
 		IgnoreBonuses = TRUE;
 		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_GoblinBerries()
+{
+	if(RandomGoblinBerries == TRUE)
+	{
+		RandomGoblinBerries = FALSE;
+		PrintScreen("Фиксированное количество ягод у продавцов",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		RandomGoblinBerries = TRUE;
+		PrintScreen("Рандомное количество ягод у паладинов",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Apples()
+{
+	if(InfiniteApples == TRUE)
+	{
+		InfiniteApples = FALSE;
+		PrintScreen("Бесконечные яблоки исправлены",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		InfiniteApples = TRUE;
+		PrintScreen("Яблоки бесконечны",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Helms()
+{
+	if(Helms_Enabled == TRUE)
+	{
+		Helms_Enabled = FALSE;
+		PrintScreen("Шлемы и доспехи одной моделью (оригинал)",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		Helms_Enabled = TRUE;
+		PrintScreen("Шлемы и доспехи разделены",-1,-1,FONT_Screen,3);
+		if(Npc_HasItems(hero,ITAR_PAL_M))
+		{
+			Npc_RemoveInvItem(hero,ITAR_PAL_M);
+			CreateInvItems(hero,ITAR_PALN_M,1);
+			CreateInvItems(hero,ITHE_PAL_M,1);
+		};
+		if(Npc_HasItems(hero,ITAR_PAL_H))
+		{
+			Npc_RemoveInvItem(hero,ITAR_PAL_H);
+			CreateInvItems(hero,ITAR_PALN_H,1);
+			CreateInvItems(hero,ITHE_PAL_H,1);
+		};
+		if(Npc_HasItems(hero,ITAR_DJG_M))
+		{
+			Npc_RemoveInvItem(hero,ITAR_DJG_M);
+			CreateInvItems(hero,ITAR_DJGN_M,1);
+			CreateInvItems(hero,ITHE_DJG_M,1);
+		};
+		if(Npc_HasItems(hero,ITAR_DJG_H))
+		{
+			Npc_RemoveInvItem(hero,ITAR_DJG_H);
+			CreateInvItems(hero,ITAR_DJGN_H,1);
+			CreateInvItems(hero,ITHE_DJG_H,1);
+		};
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_LehmarBook()
+{
+	if(ClassicLehmarBook == TRUE)
+	{
+		ClassicLehmarBook = FALSE;
+		PrintScreen("Выкуп гроссбуха отключен",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		ClassicLehmarBook = TRUE;
+		PrintScreen("Выкуп гроссбуха как в оригинале",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

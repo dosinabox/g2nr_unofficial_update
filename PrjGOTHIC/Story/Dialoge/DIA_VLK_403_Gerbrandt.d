@@ -1,6 +1,21 @@
 
 var int DIEGO_COMING;
 
+func void B_StartNewLife()
+{
+	if(DIEGO_COMING == 1)
+	{
+		if(Diego_IsOnBoard == FALSE)
+		{
+			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
+		};
+		Npc_ExchangeRoutine(self,"FLEE");
+		B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
+		B_StartOtherRoutine(VLK_419_Buerger,"NEWPLACE");
+		DIEGO_COMING = 2;
+	};
+};
+
 instance DIA_Gerbrandt_EXIT(C_Info)
 {
 	npc = VLK_403_Gerbrandt;
@@ -19,17 +34,7 @@ func int DIA_Gerbrandt_EXIT_Condition()
 
 func void DIA_Gerbrandt_EXIT_Info()
 {
-	if(DIEGO_COMING == TRUE)
-	{
-//		DiegoNW = Hlp_GetNpc(PC_Thief_NW);
-		if(Diego_IsOnBoard == FALSE)
-		{
-			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
-		};
-		Npc_ExchangeRoutine(self,"FLEE");
-		B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
-		DIEGO_COMING = 2;
-	};
+	B_StartNewLife();
 	AI_StopProcessInfos(self);
 };
 
@@ -48,7 +53,7 @@ instance DIA_Gerbrandt_PICKPOCKET(C_Info)
 func int DIA_Gerbrandt_PICKPOCKET_Condition()
 {
 //	if(C_StealItems(30,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (DIEGO_COMING != TRUE))
-	if(Npc_HasItems(self,ItSe_GoldPocket100) && (DIEGO_COMING != TRUE))
+	if(Npc_HasItems(self,ItSe_GoldPocket100) && (DIEGO_COMING == FALSE))
 	{
 //		return TRUE;
 		return C_StealItem(30,Hlp_GetInstanceID(ItSe_GoldPocket100));
@@ -187,6 +192,7 @@ func void B_Gerbrandt_PissOff()
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_00");	//„то это все значит - ты издеваешьс€ надо мной?
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_01");	//“ы и твой при€тель ƒиего уже и так дел натворили.
 	AI_Output(self,other,"B_Gerbrandt_PissOff_10_02");	//ќставь мен€ в покое!
+	B_StartNewLife();
 	AI_StopProcessInfos(self);
 };
 
@@ -213,36 +219,30 @@ func int DIA_Gerbrandt_Perm_Condition()
 func void DIA_Gerbrandt_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Gerbrandt_Perm_15_00");	//≈сть новости?
-	if(Kapitel <= 2)
+	if(MIS_DiegosResidence != LOG_SUCCESS)
 	{
-		if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
+		if(hero.guild == GIL_PAL)
+		{
+			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_03");	//ћне не на что жаловатьс€, о, благородный рыцарь.
+		}
+		else if(hero.guild == GIL_KDF)
+		{
+			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_06");	//Ёто никого не касаетс€, кроме мен€. я зан€т!
+		}
+		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+		{
+			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_04");	//ћного € видал таких людей как ты - вы просто не знаете своего места.
+			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_05");	//ћне стоит поговорить с губернатором об усилении мер безопасности в верхнем квартале.
+		}
+		else
 		{
 			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_01");	//Ћюд€м вроде теб€ нечего делать здесь. «десь живут пор€дочные члены общества, а не какие-нибудь брод€ги и проходимцы.
 			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_02");	//≈сли тебе когда-нибудь удастс€ стать богатым и уважаемым, возможно, тебе будут более рады здесь.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_03");	//ћне не на что жаловатьс€, о, благородный рыцарь.
 		};
 	}
-	else if(Kapitel >= 3)
+	else
 	{
-		if(MIS_DiegosResidence != LOG_SUCCESS)
-		{
-			if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
-			{
-				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_04");	//ћного € видал таких людей как ты - вы просто не знаете своего места.
-				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_05");	//ћне стоит поговорить с губернатором об усилении мер безопасности в верхнем квартале.
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_Gerbrandt_Perm_10_06");	//Ёто никого не касаетс€, кроме мен€. я зан€т!
-			};
-		}
-		else
-		{
-			B_Gerbrandt_PissOff();
-		};
+		B_Gerbrandt_PissOff();
 	};
 };
 
@@ -282,6 +282,6 @@ func void DIA_Gerbrandt_GreetingsFromDiego_Info()
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_09");	//” мен€ нет времени, мне нужно уходить отсюда. Ѕыстро. ≈сли он найдет мен€ здесь, мне конец!
 	MIS_DiegosResidence = LOG_SUCCESS;
 	B_GivePlayerXP(XP_DiegosResidence);
-	DIEGO_COMING = TRUE;
+	DIEGO_COMING = 1;
 };
 

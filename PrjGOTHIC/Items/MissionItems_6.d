@@ -254,7 +254,6 @@ instance ItWr_Diary_BlackNovice_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Book_02_04.3ds";
 	visual = "ItWr_Book_03_04.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -271,8 +270,8 @@ func void Use_Diary_BlackNovice()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_RED_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_RED_R.tga",0);
+	Doc_SetPage(nDocID,0,"BOOK_WOOD_L.tga",0);
+	Doc_SetPage(nDocID,1,"BOOK_WOOD_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);

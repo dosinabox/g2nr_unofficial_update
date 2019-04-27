@@ -206,7 +206,7 @@ instance DIA_Addon_Farim_Landstreicher(C_Info)
 
 func int DIA_Addon_Farim_Landstreicher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Farim_Hallo) && (MIS_Addon_Vatras_WhereAreMissingPeople == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Farim_Hallo) && (SC_HearedAboutMissingPeople == TRUE))
 	{
 		return TRUE;
 	};
@@ -244,9 +244,12 @@ func void DIA_Addon_Farim_William_Info()
 	AI_Output(other,self,"DIA_Addon_Farim_William_15_00");	//Пропал твой приятель Вильям?
 	AI_Output(self,other,"DIA_Addon_Farim_William_11_01");	//Именно так. Он был рыбаком, но на мой взгляд он слишком зазнался.
 	AI_Output(self,other,"DIA_Addon_Farim_William_11_02");	//Ему следовало держаться подальше от этой шайки.
-	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Garvell_MissingPeopleMore))
+	{
+		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
+	};
 	Info_ClearChoices(DIA_Addon_Farim_William);
 	Info_AddChoice(DIA_Addon_Farim_William,"Но что это были за люди?",DIA_Addon_Farim_William_typen);
 	Info_AddChoice(DIA_Addon_Farim_William,"Думаю, он еще появится.",DIA_Addon_Farim_William_auftauchen);
@@ -358,7 +361,7 @@ func int DIA_Addon_Farim_WilliamReport_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William))
 	{
-		if(Npc_HasItems(other,ITWr_Addon_William_01) || (Saturas_AboutWilliam == TRUE))
+		if(Npc_HasItems(other,ITWr_Addon_William_01) || (FoundDeadWilliam == TRUE))
 		{
 			return TRUE;
 		};

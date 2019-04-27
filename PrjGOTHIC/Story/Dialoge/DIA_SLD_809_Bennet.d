@@ -47,8 +47,11 @@ func int DIA_Bennet_HALLO_Condition()
 func void DIA_Bennet_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Bennet_HALLO_06_00");	//Я не продаю оружие. Халед продает. Он находится в доме Онара.
-	Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTrader,"Халед - торговец оружием.");
+	if(Khaled_weiter == FALSE)
+	{
+		Log_CreateTopic(Topic_SoldierTrader,LOG_NOTE);
+		B_LogEntry(Topic_SoldierTrader,"Халед - торговец оружием.");
+	};
 };
 
 
@@ -614,10 +617,13 @@ func void DIA_Bennet_WhyPrison_Info()
 	AI_Output(other,self,"DIA_Bennet_WhyPrison_15_03");	//Зачем бы им это?
 	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_04");	//Откуда мне знать? Ты должен вытащить меня отсюда.
 	AI_Output(self,other,"DIA_Bennet_WhyPrison_06_05");	//Поговори с лордом Хагеном, проломи стену... ну, я не знаю... сделай же что-нибудь!
-	MIS_RescueBennet = LOG_Running;
-	Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
-	B_LogEntry(TOPIC_RescueBennet,"У Беннета серьезные проблемы. Он на все готов, чтобы только вырваться из тюрьмы.");
+	if(MIS_RescueBennet != LOG_Running)
+	{
+		MIS_RescueBennet = LOG_Running;
+		Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+		B_LogEntry(TOPIC_RescueBennet,"У Беннета серьезные проблемы. Он на все готов, чтобы только вырваться из тюрьмы.");
+	};
 };
 
 
@@ -708,7 +714,7 @@ func void DIA_Bennet_Evidence_Info()
 	AI_Output(other,self,"DIA_Bennet_Evidence_15_02");	//Ты знаешь, кто этот свидетель?
 	AI_Output(self,other,"DIA_Bennet_Evidence_06_03");	//Нет. Я знаю только, что он лжет.
 	B_LogEntry(TOPIC_RescueBennet,"Есть свидетель, утверждающий, что видел, как это сделал Беннет. Я должен найти этого свидетеля, если я хочу выяснить правду.");
-	RescueBennet_KnowsWitness = TRUE;
+//	RescueBennet_KnowsWitness = TRUE;
 };
 
 
@@ -815,7 +821,7 @@ func void DIA_Bennet_Present_Info()
 		AI_Output(self,other,"DIA_Bennet_Present_06_09");	//Так как ты спас меня, я хочу, чтобы ты получил первый экземпляр. Это подарок!
 		CreateInvItem(hero,ITAR_DJG_L);
 		AI_PrintScreen("Легкие доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_DJG_L);
+//		AI_EquipArmor(hero,ITAR_DJG_L);
 		AI_Output(self,other,"DIA_Bennet_Present_06_10");	//Я подумал, что, возможно, тебе тоже захочется позабавиться там. Тебе понадобится хорошее снаряжение, когда ты отправишься в эту долину.
 		AI_Output(self,other,"DIA_Bennet_Present_06_11");	//Также мне интересны драконьи чешуйки. Настоящие драконьи чешуйки. Я хорошо заплачу тебе за них.
 		AI_Output(other,self,"DIA_Bennet_Present_15_12");	//Сколько я получу за чешуйку?
@@ -884,7 +890,7 @@ instance DIA_Bennet_DJG_ARMOR_M(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_M_Condition;
 	information = DIA_Bennet_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "Средние доспехи охотника на драконов (120/120/35/35, 12000 золотых)";
+	description = "Средние доспехи охотника на драконов (120/120/75/35, 12000 золотых)";
 };
 
 
@@ -907,7 +913,7 @@ func void DIA_Bennet_DJG_ARMOR_M_Info()
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		CreateInvItem(hero,ITAR_DJG_M);
 		AI_PrintScreen("Средние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_DJG_M);
+//		AI_EquipArmor(hero,ITAR_DJG_M);
 		Bennet_DIA_Bennet_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else
@@ -957,7 +963,7 @@ instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "Тяжелые доспехи охотника на драконов (150/150/50/50, 20000 золотых)";
+	description = "Тяжелые доспехи охотника на драконов (150/150/100/50, 20000 золотых)";
 };
 
 
@@ -977,9 +983,17 @@ func void DIA_Bennet_DJG_ARMOR_H_Info()
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_01");	//Это лучшие доспехи из того, что я когда-либо делал.
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_02");	//Настоящее произведение искусства.
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_H);
-		CreateInvItem(hero,ITAR_DJG_H);
+		if(Helms_Enabled == TRUE)
+		{
+			CreateInvItem(hero,ITAR_DJGN_H);
+			CreateInvItem(hero,ITHE_DJG_H);
+		}
+		else
+		{
+			CreateInvItem(hero,ITAR_DJG_H);
+		};
 		AI_PrintScreen("Тяжелые доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_DJG_H);
+//		AI_EquipArmor(hero,ITAR_DJG_H);
 		Bennet_DIA_Bennet_DJG_ARMOR_H_permanent = TRUE;
 	}
 	else
@@ -1044,6 +1058,7 @@ func void DIA_Bennet_ShowInnosEye_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_ShowInnosEye_15_00");	//Ты можешь взглянуть на этот амулет?
 	AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_01");	//Конечно, давай посмотрим.
+	AI_PrintScreen(Print_InnoseyeGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_02");	//Хммм, превосходная работа. Оправа сломана. Но, думаю, я смогу починить ее, впрочем.
 	AI_Output(other,self,"DIA_Bennet_ShowInnosEye_15_03");	//Сколько это займет времени?
 	if(MIS_RescueBennet != LOG_SUCCESS)
@@ -1056,6 +1071,7 @@ func void DIA_Bennet_ShowInnosEye_Info()
 		AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_06");	//Если ты оставишь его мне, к завтрашнему утру он будет как новенький.
 		AI_Output(self,other,"DIA_Bennet_ShowInnosEye_06_07");	//И я даже не возьму с тебя денег за эту работу. Ведь это ты вытащил меня из тюрьмы.
 	};
+	AI_PrintScreen(Print_InnosEyeGet,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	B_LogEntry(TOPIC_INNOSEYE,"Беннет - кузнец, который нужен мне, чтобы починить амулет.");
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 };
@@ -1088,6 +1104,8 @@ func void DIA_Bennet_GiveInnosEye_Info()
 	Npc_RemoveInvItems(other,ItMi_InnosEye_Broken_Mis,1);
 	AI_PrintScreen(Print_InnoseyeGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Bennet_RepairDay = Wld_GetDay();
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"WORK");
 };
 
 
@@ -1113,17 +1131,19 @@ func int DIA_Bennet_GetInnosEye_Condition()
 func void DIA_Bennet_GetInnosEye_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_GetInnosEye_15_00");	//Амулет готов?
-	if(Bennet_RepairDay < Wld_GetDay())
+	if(((Bennet_RepairDay < Wld_GetDay()) && Wld_IsTime(5,0,23,59)) || (Bennet_RepairDay + 1 < Wld_GetDay()))
 	{
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_01");	//Да, держи.
 		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Repaired;
 		CreateInvItems(other,ItMi_InnosEye_Broken_Mis,1);
-		AI_PrintScreen(Print_InnosEyeGet,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(Print_InnosEyeGet,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_02");	//Мне пришлось сделать новую оправу для камня.
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_03");	//Я работал всю ночь, и теперь он как новенький.
 		B_LogEntry(TOPIC_INNOSEYE,"Амулет опять как новенький. Беннет проделал отличную работу.");
 		MIS_Bennet_InnosEyeRepairedSetting = LOG_SUCCESS;
 		B_GivePlayerXP(XP_InnosEyeIsRepaired);
+		AI_StopProcessInfos(self);
+		Npc_ExchangeRoutine(self,"START");
 	}
 	else
 	{

@@ -118,6 +118,11 @@ func void DIA_GornDJG_WHATSUP_Lester()
 {
 	AI_Output(other,self,"DIA_GornDJG_WHATSUP_Lester_15_00");	//Может, это Лестер, который вернулся в свои старые руины на скале?
 	AI_Output(self,other,"DIA_GornDJG_WHATSUP_Lester_12_01");	//Может. Но, насколько я знаю, Лестер больше не живет там.
+	if(!Npc_KnowsInfo(other,DIA_Lester_Hello) && !Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
+	{
+		AI_Output(other,self,"Extro_Tempel_15_04");	//Хм, где же он?
+		AI_Output(self,other,"INTRO_DiegoGorn_12_00");	//(вздыхает) Конечно же, он еще жив. А ты как думал?
+	};
 };
 
 func void DIA_GornDJG_WHATSUP_A_Dragon()
@@ -290,6 +295,7 @@ func int DIA_GornDJG_DRAGONDEAD_Condition()
 func void DIA_GornDJG_DRAGONDEAD_Info()
 {
 	AI_Output(other,self,"DIA_GornDJG_DRAGONDEAD_15_00");	//Каменный дракон мертв!
+	AI_Output(self,other,"INTRO_DiegoGorn_12_02");	//Ох! Ты чувствуешь это?
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_01");	//Я больше не слышу воплей! Ты был в этой крепости в скалах?
 	AI_Output(other,self,"DIA_GornDJG_DRAGONDEAD_15_02");	//Да!
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_03");	//Ха-ха! Я так и думал. Где бы ты ни появился, там камня на камне не остается.

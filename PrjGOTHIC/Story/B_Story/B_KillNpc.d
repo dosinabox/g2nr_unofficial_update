@@ -9,6 +9,10 @@ func void B_KillNpc(var int npcInstance)
 		B_ClearRuneInv(npc);
 		CreateInvItem(npc,ItMi_OldCoin);
 		Npc_ChangeAttribute(npc,ATR_HITPOINTS,-npc.attribute[ATR_HITPOINTS_MAX]);
+		if((npc.guild == GIL_PAL) && (RandomGoblinBerries == FALSE))
+		{
+			Npc_RemoveInvItems(npc,ItPl_Dex_Herb_01,Npc_HasItems(npc,ItPl_Dex_Herb_01));
+		};
 	};
 };
 
@@ -34,7 +38,7 @@ func void b_check_version()
 	{
 		concatText2 = ConcatStrings("Версия обновления в сохранении: ",IntToString(fix_version_save));
 	};*/
-	if(fix_version_save != fix_version_start)
+	if(fix_version_save < least_supported)
 	{
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,10);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,10);
@@ -63,11 +67,6 @@ func void b_cycle_function()
 	};
 	if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if((MayaScrollRemoved == FALSE) && (Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) == 1) && Npc_HasItems(Stoneguardian_NailedValleyShowcase_01,ItSc_Teleport_Maya))
-		{
-			Npc_RemoveInvItem(Stoneguardian_NailedValleyShowcase_01,ItSc_Teleport_Maya);
-			MayaScrollRemoved = TRUE;
-		};
 		if((BloodwynIsHeadless == FALSE) && Npc_HasItems(hero,ItMi_Addon_Bloodwyn_Kopf))
 		{
 			Snd_Play("CS_IAM_ME_FL_A3");
@@ -76,7 +75,7 @@ func void b_cycle_function()
 			BloodwynIsHeadless = TRUE;
 		};
 	};
-	if(fix_version_save != fix_version_start)
+	if(fix_version_save < least_supported)
 	{
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,3);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,3);
@@ -574,3 +573,18 @@ func void b_seed_wasteland_world_freeminecamp()
 	Wld_InsertNpc(OrcWarrior_Roam,"FMC_PATH29");
 	Wld_InsertNpc(Warg,"FMC_PATH29");
 };
+
+func void B_KillThievesGuild()
+{
+	if((Andre_FoundThieves_KilledByMilitia == FALSE) && (Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2)))
+	{
+		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+		{
+			B_KillNpc(VLK_447_Cassia);
+			B_KillNpc(VLK_446_Jesper);
+			B_KillNpc(VLK_445_Ramirez);
+			Andre_FoundThieves_KilledByMilitia = TRUE;
+		};
+	};
+};
+

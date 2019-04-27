@@ -69,7 +69,7 @@ instance DIA_Moe_Hallo(C_Info)
 
 func int DIA_Moe_Hallo_Condition()
 {
-	if(((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk)) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF) && (hero.guild != GIL_MIL) && (hero.guild != GIL_NOV) && !Npc_RefuseTalk(self))
+	if(((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk)) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF) && (hero.guild != GIL_MIL) && !Npc_RefuseTalk(self))
 	{
 		return TRUE;
 	};
@@ -78,6 +78,7 @@ func int DIA_Moe_Hallo_Condition()
 func void DIA_Moe_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Moe_Hallo_01_00");	//Ёй, € не знаю теб€. „его тебе здесь нужно? “ы идешь в кабак?
+	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Moe_Hallo);
 	Info_AddChoice(DIA_Moe_Hallo,"Ќет, € не иду в кабак...",DIA_Moe_Hallo_Gehen);
 	Info_AddChoice(DIA_Moe_Hallo,"ќх, так это портовый трактир. ј €-то прин€л его за дворец губернатора.",DIA_Moe_Hallo_Witz);
@@ -283,6 +284,11 @@ func void DIA_Moe_Harbor_Rumors()
 	{
 		if(MIS_RescueBennet == LOG_SUCCESS)
 		{
+			AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_13");	//— тех пор, как вы€снилось, что наемники не имели отношени€ к этому паладину, ополчение не осмеливаетс€ даже загл€дывать сюда.
+			AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_14");	//я думаю, они бо€тс€ уйти отсюда с расквашенным носом. ј по мне, так даже лучше.
+		}
+		else
+		{
 			if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 			{
 				AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_08");	//  этому делу мы не имеем никакого отношени€.
@@ -294,11 +300,6 @@ func void DIA_Moe_Harbor_Rumors()
 				AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_11");	//я знаю, что ты не имеешь к этому никакого отношени€, но убийство паладина сильно напугало этих вельмож.
 				AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_12");	//’очешь дружеский совет? “ебе лучше убиратьс€ из города. ѕо крайней мере, на некоторое врем€.
 			};
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_13");	//— тех пор, как вы€снилось, что наемники не имели отношени€ к этому паладину, ополчение не осмеливаетс€ даже загл€дывать сюда.
-			AI_Output(self,other,"DIA_Moe_Harbor_Rumors_01_14");	//я думаю, они бо€тс€ уйти отсюда с расквашенным носом. ј по мне, так даже лучше.
 		};
 	}
 	else if(Kapitel == 4)
@@ -325,7 +326,7 @@ instance DIA_Moe_LEHMARGELDEINTREIBEN(C_Info)
 
 func int DIA_Moe_LEHMARGELDEINTREIBEN_Condition()
 {
-	if((Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)) && (Lehmar_GeldGeliehen != 0) && (RangerHelp_LehmarKohle == FALSE) && (Lehmar.aivar[AIV_DefeatedByPlayer] == FALSE))
+	if((Lehmar_GeldGeliehen_Day <= (Wld_GetDay() - 2)) && (Lehmar_GeldGeliehen != 0) && (RangerHelp_LehmarKohle == FALSE))
 	{
 		return TRUE;
 	};
@@ -334,6 +335,7 @@ func int DIA_Moe_LEHMARGELDEINTREIBEN_Condition()
 func void DIA_Moe_LEHMARGELDEINTREIBEN_Info()
 {
 	AI_Output(self,other,"DIA_Moe_LEHMARGELDEINTREIBEN_01_00");	//Ёй, ты! Ћемар передает тебе привет.
+	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

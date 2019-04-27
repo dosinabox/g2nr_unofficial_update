@@ -125,7 +125,7 @@ instance DIA_Elena_Regeln(C_Info)
 
 func int DIA_Elena_Regeln_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Elena_HALLO) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Elena_HALLO) && ((other.guild == GIL_NONE) || (other.guild == GIL_SLD)))
 	{
 		return TRUE;
 	};

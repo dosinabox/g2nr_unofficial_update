@@ -1,7 +1,7 @@
 
 instance StandardBrief(C_Item)
 {
-	name = "Письмо";
+	name = "Стандартное письмо";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -9,7 +9,7 @@ instance StandardBrief(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = UseStandardBrief;
 	scemeName = "MAP";
-	description = "Стандартное письмо";
+	description = name;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -34,14 +34,14 @@ func void UseStandardBrief()
 
 instance StandardBuch(C_Item)
 {
-	name = "Книга";
+	name = "Стандартная книга";
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 100;
 	visual = "ItWr_Book_02_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Стандартная книга";
+	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = UseStandardBuch;
@@ -83,7 +83,6 @@ instance ItWr_Map_NewWorld(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -119,7 +118,6 @@ instance ItWr_Map_NewWorld_City(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 50;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_City.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -155,7 +153,6 @@ instance ItWr_Map_OldWorld(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 350;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_OW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -195,7 +192,7 @@ instance ItWr_EinhandBuch(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 5000;
-	visual = "ItWr_Book_02_04.3ds";
+	visual = "ItWr_Book_1H.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -204,6 +201,9 @@ instance ItWr_EinhandBuch(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = UseEinhandBuch;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 
@@ -245,7 +245,7 @@ instance ItWr_ZweihandBuch(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
 	value = 5000;
-	visual = "ItWr_Book_02_03.3ds";
+	visual = "ItWr_Book_2H.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -254,6 +254,9 @@ instance ItWr_ZweihandBuch(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	on_state[0] = UseZweihandBuch;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
 };
 
 

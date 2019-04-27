@@ -101,7 +101,7 @@ func void DIA_Fajeth_Hallo_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Fajeth_Hallo_12_10");	//Послушай - я не знаю, зачем Гаронд прислал мне наемника - но, должно быть, у него были на то причины.
+		AI_Output(self,other,"DIA_Fajeth_Hallo_12_10");	//Послушай - я не знаю, зачем Гаронд прислал мне наемника, но, должно быть, у него были на то причины.
 		AI_Output(self,other,"DIA_Fajeth_Hallo_12_11");	//Но прежде чем я отправлю тебя назад, ты должен выполнить одно задание для меня.
 		Info_AddChoice(DIA_Fajeth_Hallo,"У всего есть своя цена. Если ты заплатишь мне, возможно, я и соглашусь.",DIA_Fajeth_Hallo_SLDJa);
 		Info_AddChoice(DIA_Fajeth_Hallo,"Нет, у меня нет времени на то, чтобы решать твои проблемы.",DIA_Fajeth_Hallo_SLDNein);
@@ -132,7 +132,7 @@ func void DIA_Fajeth_Hallo_Tun()
 	MIS_Fajeth_Kill_Snapper = LOG_Running;
 	Log_CreateTopic(TOPIC_FajethKillSnapper,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_FajethKillSnapper,LOG_Running);
-	B_LogEntry(TOPIC_FajethKillSnapper,"Фаджет дал мне задание поохотиться на снепперов, которые бродят толпами вокруг замка.");
+	B_LogEntry(TOPIC_FajethKillSnapper,"Фаджет дал мне задание поохотиться на снепперов, которые бродят толпами вокруг шахты.");
 	Info_ClearChoices(DIA_Fajeth_Hallo);
 	PrintScreen("",-1,-1,FONT_Screen,0);
 };

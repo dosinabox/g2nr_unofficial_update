@@ -167,7 +167,7 @@ func void DIA_Jora_HolDeinGold_Info()
 	AI_Output(self,other,"DIA_Jora_HolDeinGold_08_01");	//(недоверчиво) Да? А зачем тебе это?
 	Info_ClearChoices(DIA_Jora_HolDeinGold);
 	Info_AddChoice(DIA_Jora_HolDeinGold,"Я хочу получить часть золота в качестве вознаграждения!",DIA_Jora_HolDeinGold_WillBelohnung);
-	if(MIS_Andre_GuildOfThieves == LOG_Running)
+	if(((MIS_Andre_GuildOfThieves == LOG_Running) || Npc_HasItems(other,ItKe_ThiefGuildKey_MIS)) && (DG_gefunden == FALSE))
 	{
 		Info_AddChoice(DIA_Jora_HolDeinGold,"Я ищу подходы к гильдии воров!",DIA_Jora_HolDeinGold_GHDG);
 	};
@@ -226,14 +226,13 @@ func void DIA_Jora_HolDeinGold_DoIt()
 	AI_Output(self,other,"DIA_Jora_HolDeinGold_DoIt_08_03");	//Так что придумай что-нибудь...
 	AI_Output(other,self,"DIA_Jora_HolDeinGold_DoIt_15_04");	//Попробую.
 	Jora_Dieb = LOG_Running;
-	Jora_Gold = LOG_Running;
 	Log_CreateTopic(TOPIC_JoraDieb,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_JoraDieb,LOG_Running);
+	B_LogEntry(TOPIC_JoraDieb,"Ренгару ограбил торговца Джору. Если я поймаю его, мне за это полагается награда.");
+	Jora_Gold = LOG_Running;
 	Log_CreateTopic(TOPIC_Jora,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Jora,LOG_Running);
-	B_LogEntry(TOPIC_Jora,"Парень по имени Ренгару ограбил торговца Джору. Он весь день околачивается на рынке.");
-	B_LogEntry(TOPIC_Jora,"Я должен вернуть украденное золото Джоры.");
-	B_LogEntry(TOPIC_JoraDieb,"Ренгару ограбил торговца Джору. Если я поймаю его, мне за это полагается награда.");
+	B_LogEntry(TOPIC_Jora,"Парень по имени Ренгару ограбил торговца Джору. Он весь день околачивается на рынке. Я должен вернуть украденное золото Джоры.");
 	Info_ClearChoices(DIA_Jora_HolDeinGold);
 };
 
@@ -363,9 +362,12 @@ instance DIA_Jora_GHDgInfo(C_Info)
 
 func int DIA_Jora_GHDgInfo_Condition()
 {
-	if((MIS_Andre_GuildOfThieves == LOG_Running) && Npc_KnowsInfo(other,DIA_Jora_Bestohlen) && (Jora_GhdgHinweis == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Jora_Bestohlen) && (Jora_GhdgHinweis == FALSE))
 	{
-		return TRUE;
+		if(((MIS_Andre_GuildOfThieves == LOG_Running) || Npc_HasItems(other,ItKe_ThiefGuildKey_MIS)) && (DG_gefunden == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -447,6 +449,15 @@ func int DIA_Jora_AlriksSchwert_Condition()
 func void DIA_Jora_AlriksSchwert_Info()
 {
 	AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_00");	//Альрик говорит, что у тебя его меч...
+	if(Jora_Gold == LOG_SUCCESS)
+	{
+		B_Say(self,other,"$AWAKE");
+	}
+	else
+	{
+		B_Say(self,other,"$WHYAREYOUINHERE");
+	};
+	AI_Output(other,self,"DIA_Jora_BUYAlriksSchwert_15_02");	//Минутку! Я хотел купить меч.
 	AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_01");	//Ты имеешь в виду этого оборванца, что продал мне свое оружие за несколько факелов и кусок мяса?
 	AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_02");	//Да, это он.
 	if(Npc_HasItems(self,ItMw_AlriksSword_Mis))

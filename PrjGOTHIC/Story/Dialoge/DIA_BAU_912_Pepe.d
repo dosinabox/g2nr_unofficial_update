@@ -193,7 +193,7 @@ instance DIA_Pepe_Bullco(C_Info)
 
 func int DIA_Pepe_Bullco_Condition()
 {
-	if((MIS_Pepe_KillWolves == LOG_SUCCESS) && !Npc_IsDead(Bullco) && (Kapitel <= 3))
+	if((MIS_Pepe_KillWolves == LOG_SUCCESS) && !Npc_IsDead(Bullco) && (MIS_ReadyforChapter4 == FALSE))
 	{
 		return TRUE;
 	};
@@ -202,7 +202,7 @@ func int DIA_Pepe_Bullco_Condition()
 func void DIA_Pepe_Bullco_Info()
 {
 	AI_Output(other,self,"DIA_Pepe_Bullco_15_00");	//Что ты сказал насчет Буллко?
-	AI_Output(self,other,"DIA_Pepe_Bullco_03_01");	//Это один из наемников. Это его работа охранять пастбище.
+	AI_Output(self,other,"DIA_Pepe_Bullco_03_01");	//Это один из наемников. Это его работа - охранять пастбище.
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_02");	//Но вместо этого он и его приятель Сильвио день напролет ошиваются в кухне у Теклы.
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_03");	//Это этот ублюдок будет виноват, если мне не заплатят за многие недели работы из-за потери овец.
 	AI_Output(self,other,"DIA_Pepe_Bullco_03_04");	//Как я хотел бы набить ему морду. Но никому это не по силам. Этот парень - убийца.

@@ -49,7 +49,7 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 		concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(points));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 	};
-//	эксперимент: игнорирование зелий, еды и табличек при прокачке
+//	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == FALSE)
 	{
 		B_RaiseRealAttributeLearnCounter(oth,attrib,points);

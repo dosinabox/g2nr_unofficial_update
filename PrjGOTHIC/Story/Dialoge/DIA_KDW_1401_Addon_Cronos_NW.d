@@ -136,8 +136,8 @@ func void DIA_Addon_Cronos_NW_Trade_Info()
 	if(CronosTraded == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Cronos_NW_Trade_04_01");	//Почему бы и нет? Если я правильно помню, мы с тобой уже вели дела.
-		Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
-		B_LogEntry(Topic_OutTrader,LogText_Addon_CronosTrade);
+		Log_CreateTopic(TOPIC_Addon_KDWTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_KDWTrader,LogText_Addon_CronosTrade);
 		CronosTraded = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Cronos_NW_Trade_04_02");	//Итак, что тебе нужно?

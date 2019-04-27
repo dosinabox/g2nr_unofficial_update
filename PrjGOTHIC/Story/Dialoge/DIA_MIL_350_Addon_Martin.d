@@ -29,7 +29,7 @@ instance DIA_Addon_Martin_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Martin_PICKPOCKET_Condition;
 	information = DIA_Addon_Martin_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_60;
+	description = Pickpocket_80;
 };
 
 
@@ -85,11 +85,8 @@ func void DIA_Addon_Martin_MeetingIsRunning_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_07_00");	//Итак, ты новенький? Добро пожаловать в Братство, брат по Кольцу.
 		DIA_Addon_Martin_MeetingIsRunning_OneTime = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_07_01");	//Сначала ты должен сходить к Ватрасу. Возможно, потом у меня найдется для тебя время.
 	};
+	AI_Output(self,other,"DIA_Addon_Cord_MeetingIsRunning_07_01");	//Сначала ты должен сходить к Ватрасу. Возможно, потом у меня найдется для тебя время.
 	AI_StopProcessInfos(self);
 };
 
@@ -341,7 +338,7 @@ instance DIA_Addon_Martin_FromVatras(C_Info)
 
 func int DIA_Addon_Martin_FromVatras_Condition()
 {
-	if((Vatras_ToMartin == TRUE) && (MIs_Martin_FindTheBanditTrader != LOG_Failed))
+	if((Vatras_ToMartin == TRUE) && (MIS_Martin_FindTheBanditTrader != LOG_FAILED))
 	{
 		return TRUE;
 	};
@@ -370,7 +367,7 @@ instance DIA_Addon_Martin_TellAll(C_Info)
 
 func int DIA_Addon_Martin_TellAll_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Martin_FromVatras) && (MIs_Martin_FindTheBanditTrader != LOG_Failed))
+	if(Npc_KnowsInfo(other,DIA_Addon_Martin_FromVatras) && (MIS_Martin_FindTheBanditTrader != LOG_FAILED))
 	{
 		return TRUE;
 	};
@@ -399,7 +396,7 @@ instance DIA_Addon_Martin_AboutBandits(C_Info)
 
 func int DIA_Addon_Martin_AboutBandits_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Martin_TellAll) && (MIs_Martin_FindTheBanditTrader != LOG_Failed))
+	if(Npc_KnowsInfo(other,DIA_Addon_Martin_TellAll) && (MIS_Martin_FindTheBanditTrader != LOG_FAILED))
 	{
 		return TRUE;
 	};
@@ -411,7 +408,7 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_01");	//Мы знаем, что они устраивают засады на дорогах, соединяющих город с фермами.
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_02");	//Еще нам известно, что несколько дней назад они получили крупную партию оружия.
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_03");	//Думаю, сейчас самое время для поиска улик, указывающих на личность сотрудничающего с ними торговца.
-	MIs_Martin_FindTheBanditTrader = LOG_Running;
+	MIS_Martin_FindTheBanditTrader = LOG_Running;
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Бандиты устраивают засады на дорогах между городом и фермами. Возможно, там я найду улики, указывающие на поставщика оружия.");
 };
 
@@ -429,7 +426,7 @@ instance DIA_Addon_Martin_Fernando(C_Info)
 
 func int DIA_Addon_Martin_Fernando_Condition()
 {
-	if(MIs_Martin_FindTheBanditTrader == LOG_Running)
+	if(MIS_Martin_FindTheBanditTrader == LOG_Running)
 	{
 		return TRUE;
 	};

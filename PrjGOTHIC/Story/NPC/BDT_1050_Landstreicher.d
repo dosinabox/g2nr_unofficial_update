@@ -1,7 +1,7 @@
 
 instance BDT_1050_Landstreicher(Npc_Default)
 {
-	name[0] = "Ѕрод€га";
+	name[0] = NAME_Out;
 	guild = GIL_NONE;
 	id = 1050;
 	voice = 9;

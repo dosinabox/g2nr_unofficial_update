@@ -249,7 +249,7 @@ instance DIA_Karras_TEACH(C_Info)
 	condition = DIA_Karras_TEACH_Condition;
 	information = DIA_Karras_TEACH_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун)";
+	description = "Я хочу изучить новые заклинания.";
 };
 
 
@@ -265,7 +265,8 @@ func void DIA_Karras_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
+//	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
+	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Karras_TEACH);
 	Info_AddChoice(DIA_Karras_TEACH,Dialog_Back,DIA_Karras_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == FALSE))
@@ -410,7 +411,7 @@ func void DIA_Karras_CIRCLE5_Info()
 			AI_Output(self,other,"DIA_Karras_CIRCLE5_10_01");	//Войди же в пятый круг магии. Тебе станет подвластна могущественная магия, несравнимая с тем, чем ты владел ранее.
 			AI_Output(self,other,"DIA_Karras_CIRCLE5_10_02");	//Используй эту силу во благо, брат - тьма еще сильна, и сильны твои враги.
 			AI_Output(self,other,"DIA_Karras_CIRCLE5_10_03");	//Я не могу сопроводить тебя по пути к шестому и наивысшему Кругу Магии. Сам Пирокар введет тебя в него, когда придет время.
-			B_LogEntry(Topic_KlosterTeacher,"Мастер Пирокар посвятит меня в 6-й круг магии.");
+			B_LogEntry(Topic_KlosterTeacher,"Мастер Пирокар посвятит меня в шестой круг магии.");
 		};
 	}
 	else
@@ -567,7 +568,8 @@ instance DIA_Karras_InnosEyeRetrieved(C_Info)
 
 func int DIA_Karras_InnosEyeRetrieved_Condition()
 {
-	if((Kapitel == 3) && (MIS_NovizenChase == LOG_SUCCESS))
+//	if((Kapitel == 3) && (MIS_NovizenChase == LOG_SUCCESS))
+	if(MIS_NovizenChase == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -588,7 +590,7 @@ func void DIA_Karras_InnosEyeRetrieved_Info()
 	AI_Output(other,self,"DIA_Karras_InnosEyeRetrieved_15_03");	//Я уже почувствовал это на своей шкуре.
 	AI_Output(self,other,"DIA_Karras_InnosEyeRetrieved_10_04");	//Сейчас не время для шуток. Ситуация серьезна. Очень серьезна. Теперь мы даже не знаем, кому можно доверять, а кому нет.
 	AI_Output(self,other,"DIA_Karras_InnosEyeRetrieved_10_05");	//Враг уже преуспел в искушении послушника Педро. Он может преуспеть в этом и со многими другими.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 

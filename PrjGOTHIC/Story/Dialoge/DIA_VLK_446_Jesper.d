@@ -69,7 +69,10 @@ instance DIA_Jesper_Hallo(C_Info)
 
 func int DIA_Jesper_Hallo_Condition()
 {
-	return TRUE;
+	if(!Npc_IsDead(Cassia) && !Npc_IsDead(Ramirez))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Jesper_Hallo_Info()
@@ -154,7 +157,7 @@ instance DIA_Jesper_Bezahlen(C_Info)
 
 func int DIA_Jesper_Bezahlen_Condition()
 {
-	if((Join_Thiefs == TRUE) && (Jesper_TeachSneak == FALSE) && Npc_KnowsInfo(other,DIA_Cassia_Lernen) && !Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
+	if((Join_Thiefs == TRUE) && (Jesper_TeachSneak == FALSE) && Npc_KnowsInfo(other,DIA_Cassia_Lernen))
 	{
 		return TRUE;
 	};
@@ -163,19 +166,27 @@ func int DIA_Jesper_Bezahlen_Condition()
 func void DIA_Jesper_Bezahlen_Info()
 {
 	AI_Output(other,self,"DIA_Jesper_Bezahlen_15_00");	//“ы можешь научить мен€ чему-нибудь?
-	if(MIS_ThiefGuild_sucked == FALSE)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
 	{
-		AI_Output(self,other,"DIA_Jesper_Bezahlen_09_01");	// онечно, € покажу, как нужно крастьс€ - дл€ теб€ бесплатно.
-		Jesper_TeachSneak = TRUE;
-		Info_ClearChoices(DIA_Jesper_Bezahlen);
+		if(MIS_ThiefGuild_sucked == FALSE)
+		{
+			AI_Output(self,other,"DIA_Jesper_Bezahlen_09_01");	// онечно, € покажу, как нужно крастьс€ - дл€ теб€ бесплатно.
+			Jesper_TeachSneak = TRUE;
+			Info_ClearChoices(DIA_Jesper_Bezahlen);
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Jesper_Bezahlen_09_02");	//“ы хочешь узнать, как двигатьс€, не издава€ ни единого звука? Ёто обойдетс€ тебе в 100 золотых монет.
+	//		B_Say_Gold(self,other,Jesper_Cost);
+			Info_ClearChoices(DIA_Jesper_Bezahlen);
+			Info_AddChoice(DIA_Jesper_Bezahlen,"ћожет быть, позже...",DIA_Jesper_Bezahlen_Spaeter);
+			Info_AddChoice(DIA_Jesper_Bezahlen,"’орошо, € хочу научитьс€ крастьс€. (заплатить 100 золотых)",DIA_Jesper_Bezahlen_Okay);
+		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Jesper_Bezahlen_09_02");	//“ы хочешь узнать, как двигатьс€, не издава€ ни единого звука? Ёто обойдетс€ тебе в 100 золотых монет.
-//		B_Say_Gold(self,other,Jesper_Cost);
-		Info_ClearChoices(DIA_Jesper_Bezahlen);
-		Info_AddChoice(DIA_Jesper_Bezahlen,"ћожет быть, позже...",DIA_Jesper_Bezahlen_Spaeter);
-		Info_AddChoice(DIA_Jesper_Bezahlen,"’орошо, € хочу научитьс€ крастьс€. (заплатить 100 золотых)",DIA_Jesper_Bezahlen_Okay);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		Jesper_TeachSneak = TRUE;
 	};
 };
 
@@ -273,6 +284,7 @@ func void DIA_Jesper_Killer_Info()
 		AI_Output(self,other,"DIA_Jesper_Killer_09_03");	//я давно работаю с –амирезом и добыл дл€ него больше золота, чем ты можешь себе представить.
 		AI_Output(self,other,"DIA_Jesper_Killer_09_04");	//ј ты вз€л и убил его, гр€зный пес! Ќо сейчас пришло врем€ расплаты!
 	};
+	DG_gefunden = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };
@@ -322,7 +334,8 @@ instance DIA_Jesper_Tuer(C_Info)
 
 func int DIA_Jesper_Tuer_Condition()
 {
-	if((MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 3))
+//	if((MIS_CassiaRing == LOG_SUCCESS) && (Kapitel >= 3))
+	if(Join_Thiefs == TRUE)
 	{
 		return TRUE;
 	};
@@ -334,8 +347,11 @@ func void DIA_Jesper_Tuer_Info()
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_01");	//(ухмыл€етс€) «а ней находитс€ сундук - сундук мастера-медвежатника ‘ингерcа.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_02");	//ќн поставил такой неверо€тно сложный замок на него, что до сих пор никому не удалось открыть его.
 	AI_Output(self,other,"DIA_Jesper_Tuer_09_03");	//  сожалению, он как-то попалс€ - и его засунули за Ѕарьер, где он, веро€тно, и умер.
-	AI_Output(self,other,"DIA_Jesper_Tuer_09_04");	//Ќо если ты хочешь попытатьс€ открыть его сундук, вот ключ от этой комнаты.
-	B_GiveInvItems(self,other,ItKe_Fingers,1);
+	if(Npc_HasItems(self,ItKe_Fingers))
+	{
+		AI_Output(self,other,"DIA_Jesper_Tuer_09_04");	//Ќо если ты хочешь попытатьс€ открыть его сундук, вот ключ от этой комнаты.
+		B_GiveInvItems(self,other,ItKe_Fingers,1);
+	};
 };
 
 
@@ -352,9 +368,28 @@ instance DIA_Jesper_Truhe(C_Info)
 
 func int DIA_Jesper_Truhe_Condition()
 {
-	if((Mob_HasItems("MOB_FINGERS",ItMi_Gold) < 300) || (Mob_HasItems("MOB_FINGERS",ItMi_SilverCup) < 5) || !Mob_HasItems("MOB_FINGERS",ItMi_GoldCup) || !Mob_HasItems("MOB_FINGERS",ItAm_Strg_01) || !Mob_HasItems("MOB_FINGERS",ItPo_Perm_DEX))
+	if(Npc_KnowsInfo(other,DIA_Jesper_Tuer))
 	{
-		return TRUE;
+		if(Mob_HasItems("MOB_FINGERS",ItMi_Gold) < 300)
+		{
+			return TRUE;
+		};
+		if(Mob_HasItems("MOB_FINGERS",ItMi_SilverCup) < 5)
+		{
+			return TRUE;
+		};
+		if(!Mob_HasItems("MOB_FINGERS",ItMi_GoldCup))
+		{
+			return TRUE;
+		};
+		if(!Mob_HasItems("MOB_FINGERS",ItAm_Strg_01))
+		{
+			return TRUE;
+		};
+		if(!Mob_HasItems("MOB_FINGERS",ItPo_Perm_DEX))
+		{
+			return TRUE;
+		};
 	};
 };
 

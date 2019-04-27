@@ -19,3 +19,11 @@ func string B_BuildLearnString(var string text,var int kosten)
 	return concatText;
 };
 
+func string B_BuildPriceString(var string text,var int price)
+{
+	var string concatText;
+	concatText = ConcatStrings(text," (");
+	concatText = ConcatStrings(concatText,IntToString(price));
+	concatText = ConcatStrings(concatText," золотых)");
+	return concatText;
+};

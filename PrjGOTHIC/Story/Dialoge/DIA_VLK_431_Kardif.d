@@ -591,7 +591,7 @@ func void DIA_Kardif_Diebeswerk2_Info()
 	{
 		AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
 	}
-	else if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700)
+	else if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700) && !Npc_IsDead(Martin))
 	{
 		AI_WaitTillEnd(self,other);
 		AI_PlayAni(self,"T_SEARCH");
@@ -658,7 +658,7 @@ var int DIA_Kardif_DOPE_perm;
 
 func int DIA_Kardif_DOPE_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_DOPE_perm == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_DOPE_perm == FALSE))
 	{
 		return TRUE;
 	};
@@ -864,7 +864,7 @@ func void DIA_Kardif_Zeichen_Info()
 	AI_Output(self,other,"DIA_Kardif_Zeichen_14_01");	//(вкрадчиво) Если тебе понадобятся отмычки, намекни. Я припас несколько на всякий случай. Просто попроси меня налить тебе выпивки.
 	if(DIA_Kardif_Diebeswerk2_permanent == FALSE)
 	{
-		if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") >= 700)
+		if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") >= 700) && !Npc_IsDead(Martin))
 		{
 			AI_Output(other,self,"DIA_Kardif_Diebeswerk2_15_00");	//Есть что-нибудь 'особенное' для меня?
 			AI_Output(self,other,"DIA_Kardif_Diebeswerk2_14_03");	//Ну, у Зуриса, торговца зельями на рынке, сейчас гостит Дарон, маг Огня.
@@ -902,14 +902,17 @@ func void DIA_Kardif_Crew_Info()
 	AI_Output(other,self,"DIA_Kardif_Crew_15_00");	//Мне все еще нужны матросы.
 	AI_Output(self,other,"DIA_Kardif_Crew_14_01");	//Настали плохие времена, дружище. Ты не найдешь матросов во всем Хоринисе. Большинство из них давно покинули город.
 	AI_Output(self,other,"DIA_Kardif_Crew_14_02");	//Но с хорошим капитаном будет нетрудно набрать несколько смышленых парней и довольно быстро сделать из них неплохую команду.
-	AI_Output(other,self,"DIA_Kardif_Crew_15_03");	//Где я могу найти капитана?
-	AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
-	if(!Npc_IsDead(Jack) && (SCGotCaptain == FALSE))
+	if(SCGotCaptain == FALSE)
 	{
-		AI_Output(self,other,"DIA_Kardif_Crew_14_05");	//Иди, поговори со старым Джеком. Он ошивается в этом порту, сколько я себя помню. В том, что касается морского дела, это тот человек, что тебе нужен.
-		Log_CreateTopic(Topic_Captain,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Captain,LOG_Running);
-		B_LogEntry(Topic_Captain,"Кардиф отправил меня к старому Джеку. Возможно, он сможет помочь мне.");
+		AI_Output(other,self,"DIA_Kardif_Crew_15_03");	//Где я могу найти капитана?
+		AI_Output(self,other,"DIA_Kardif_Crew_14_04");	//Ты обращаешься не по адресу. Я простой трактирщик.
+		if(!Npc_IsDead(Jack))
+		{
+			AI_Output(self,other,"DIA_Kardif_Crew_14_05");	//Иди, поговори со старым Джеком. Он ошивается в этом порту, сколько я себя помню. В том, что касается морского дела, это тот человек, что тебе нужен.
+			Log_CreateTopic(Topic_Captain,LOG_MISSION);
+			Log_SetTopicStatus(Topic_Captain,LOG_Running);
+			B_LogEntry(Topic_Captain,"Кардиф отправил меня к старому Джеку. Возможно, он сможет помочь мне.");
+		};
 	};
 };
 

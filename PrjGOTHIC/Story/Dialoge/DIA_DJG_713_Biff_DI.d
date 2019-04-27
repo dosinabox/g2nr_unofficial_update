@@ -103,7 +103,7 @@ func void DIA_Biff_DI_ORKS_Info()
 	AI_Output(self,other,"DIA_Biff_DI_ORKS_07_00");	//Эти мерзкие твари!
 	AI_Output(other,self,"DIA_Biff_DI_ORKS_15_01");	//Черт, что ты делаешь здесь? Ты должен был охранять корабль.
 	AI_Output(self,other,"DIA_Biff_DI_ORKS_07_02");	//Да никуда он не денется.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 };
@@ -145,13 +145,14 @@ instance DIA_Biff_DI_plunder(C_Info)
 	nr = 5;
 	condition = DIA_Biff_DI_plunder_Condition;
 	information = DIA_Biff_DI_plunder_Info;
+	permanent = TRUE;
 	important = TRUE;
 };
 
 
 func int DIA_Biff_DI_plunder_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Biff_DI_plunder) && Npc_IsDead(UndeadDragon))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Biff_DI_UNDEADDRGDEAD))
 	{
 		return TRUE;
 	};

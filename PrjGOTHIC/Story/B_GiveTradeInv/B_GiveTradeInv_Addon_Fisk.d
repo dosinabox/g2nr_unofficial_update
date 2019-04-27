@@ -9,6 +9,8 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Fisk_ItemsGiven_Chapter_1 == FALSE))
 	{
+		CreateInvItems(slf,ItRw_Arrow,50);
+		CreateInvItems(slf,ItRw_Bolt,50);
 		CreateInvItems(slf,ItMi_GoldNugget_Addon,2);
 		CreateInvItems(slf,ItFo_Booze,5);
 		CreateInvItems(slf,ItFo_Apple,5);
@@ -28,8 +30,6 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_Addon_04,1);
 		CreateInvItems(slf,ItPo_Health_Addon_04,1);
 		CreateInvItems(slf,ItAt_Sting,5);
-		CreateInvItems(slf,ItRw_Arrow,100);
-		CreateInvItems(slf,ItRw_Bolt,100);
 		CreateInvItems(slf,ItMW_Addon_Keule_1h_01,1);
 //		CreateInvItems(slf,ItMW_Addon_Keule_2h_01,1);
 		CreateInvItems(slf,ItRi_Prot_Edge_02,1);
@@ -37,6 +37,8 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Fisk_ItemsGiven_Chapter_2 == FALSE))
 	{
+		CreateInvItems(slf,ItRw_Arrow,50);
+		CreateInvItems(slf,ItRw_Bolt,50);
 		CreateInvItems(slf,ItFo_Booze,5);
 		CreateInvItems(slf,ItFo_Apple,5);
 		CreateInvItems(slf,ItFo_Bread,5);
@@ -55,12 +57,12 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_Addon_04,1);
 		CreateInvItems(slf,ItPo_Health_Addon_04,1);
 		CreateInvItems(slf,ItAt_Sting,5);
-		CreateInvItems(slf,ItRw_Arrow,100);
-		CreateInvItems(slf,ItRw_Bolt,100);
 		Fisk_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Fisk_ItemsGiven_Chapter_3 == FALSE))
 	{
+		CreateInvItems(slf,ItRw_Arrow,100);
+		CreateInvItems(slf,ItRw_Bolt,100);
 		CreateInvItems(slf,ItFo_Booze,5);
 		CreateInvItems(slf,ItFo_Apple,5);
 		CreateInvItems(slf,ItFo_Bread,5);
@@ -79,13 +81,13 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_Addon_04,1);
 		CreateInvItems(slf,ItPo_Health_Addon_04,1);
 		CreateInvItems(slf,ItAt_Sting,5);
-		CreateInvItems(slf,ItRw_Arrow,100);
-		CreateInvItems(slf,ItRw_Bolt,100);
 		CreateInvItems(slf,ItMW_Addon_Keule_2h_01,1);
 		Fisk_ItemsGiven_Chapter_3 = TRUE;
 	};
 	if((Kapitel >= 4) && (Fisk_ItemsGiven_Chapter_4 == FALSE))
 	{
+		CreateInvItems(slf,ItRw_Arrow,100);
+		CreateInvItems(slf,ItRw_Bolt,100);
 		CreateInvItems(slf,ItFo_Booze,5);
 		CreateInvItems(slf,ItFo_Apple,5);
 		CreateInvItems(slf,ItFo_Bread,5);
@@ -102,15 +104,12 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_03,3);
 		CreateInvItems(slf,ItPo_Mana_Addon_04,1);
 		CreateInvItems(slf,ItPo_Health_Addon_04,1);
-		CreateInvItems(slf,ItRw_Arrow,100);
-		CreateInvItems(slf,ItRw_Bolt,100);
-//		CreateInvItems(slf,ItRw_Addon_FireArrow,20);
-//		CreateInvItems(slf,ItRw_Addon_MagicArrow,20);
-//		CreateInvItems(slf,ItRw_Addon_MagicBolt,10);
 		Fisk_ItemsGiven_Chapter_4 = TRUE;
 	};
 	if((Kapitel >= 5) && (Fisk_ItemsGiven_Chapter_5 == FALSE))
 	{
+		CreateInvItems(slf,ItRw_Arrow,100);
+		CreateInvItems(slf,ItRw_Bolt,100);
 		CreateInvItems(slf,ItFo_Booze,5);
 		CreateInvItems(slf,ItFo_Apple,5);
 		CreateInvItems(slf,ItFo_Bread,5);
@@ -127,11 +126,6 @@ func void B_GiveTradeInv_Addon_Fisk(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_03,3);
 		CreateInvItems(slf,ItPo_Mana_Addon_04,1);
 		CreateInvItems(slf,ItPo_Health_Addon_04,1);
-		CreateInvItems(slf,ItRw_Arrow,100);
-		CreateInvItems(slf,ItRw_Bolt,100);
-//		CreateInvItems(slf,ItRw_Addon_FireArrow,20);
-//		CreateInvItems(slf,ItRw_Addon_MagicArrow,20);
-//		CreateInvItems(slf,ItRw_Addon_MagicBolt,10);
 		Fisk_ItemsGiven_Chapter_5 = TRUE;
 	};
 };

@@ -14,13 +14,14 @@ prototype Mst_Default_Molerat(C_Npc)
 	protection[PROT_BLUNT] = 25;
 	protection[PROT_EDGE] = 25;
 	protection[PROT_POINT] = 25;
-	protection[PROT_FIRE] = 16;	//25;
+	protection[PROT_FIRE] = 25;	//16;
 	protection[PROT_FLY] = 25;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;
 	fight_tactic = FAI_MOLERAT;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;
+	aivar[AIV_MM_ThreatenBeforeAttack] = TRUE;
 	aivar[AIV_MM_FollowTime] = FOLLOWTIME_SHORT;
 	aivar[AIV_MM_FollowInWater] = TRUE;
 	start_aistate = ZS_MM_AllScheduler;

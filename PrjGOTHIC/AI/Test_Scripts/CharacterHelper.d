@@ -1,7 +1,7 @@
 
 instance MobsiBrief(C_Item)
 {
-	name = "Письмо";
+	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -89,7 +89,7 @@ func void Use_TestTrigger()
 
 instance CH(Npc_Default)
 {
-	name[0] = "Помощник по характеристикам";
+	name[0] = "Помощник по персонажу";
 	guild = GIL_NONE;
 	id = 0;
 	voice = 15;
@@ -121,10 +121,11 @@ func void B_SetHeroExp()
 	hero.lp = hero.level * LP_PER_LEVEL;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40 + (10 * hero.level);
 	hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
-	Attributes = "Повышение уровня! Очки обучения:";
+	Attributes = "Повышение уровня! Очки обучения: ";
 	Attributes = ConcatStrings(Attributes,IntToString(hero.lp));
-	Attributes = ConcatStrings(Attributes,"  Здоровье:");
+	Attributes = ConcatStrings(Attributes,". Здоровье: ");
 	Attributes = ConcatStrings(Attributes,IntToString(hero.attribute[ATR_HITPOINTS_MAX]));
+	Attributes = ConcatStrings(Attributes,".");
 	PrintScreen(Attributes,-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };
@@ -3149,23 +3150,23 @@ func void DIA_CH_Misc_Animal_allg_Info()
 	Info_AddChoice(DIA_CH_Misc_Animal_allg,Dialog_Back,DIA_CH_Misc_Animal_allg_BACK);
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Удаление зубов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),CH_Training_TROPHYS_Teeth);
+		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString(NAME_TROPHY_Teeth,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),CH_Training_TROPHYS_Teeth);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Удаление когтей",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),CH_Training_TROPHYS_Claws);
+		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString(NAME_TROPHY_Claws,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Claws)),CH_Training_TROPHYS_Claws);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Снятие шкур",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),CH_Training_TROPHYS_Fur);
+		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),CH_Training_TROPHYS_Fur);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Кожа рептилий",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ReptileSkin)),CH_Training_TROPHYS_ReptileSkin);
+		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString(NAME_TROPHY_ReptileSkin,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ReptileSkin)),CH_Training_TROPHYS_ReptileSkin);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString("Удаление сердца",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Heart)),CH_Training_TROPHYS_Heart);
+		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString(NAME_TROPHY_Heart,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Heart)),CH_Training_TROPHYS_Heart);
 	};
 };
 
@@ -3230,19 +3231,19 @@ func void DIA_CH_Misc_Animal_Speziell_Info()
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Жало кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFSting)),CH_Training_TROPHYS_BFSting);
+		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString(NAME_TROPHY_BFSting,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFSting)),CH_Training_TROPHYS_BFSting);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Крылья кровавой мухи",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFWing)),CH_Training_TROPHYS_BFWing);
+		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString(NAME_TROPHY_BFWing,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFWing)),CH_Training_TROPHYS_BFWing);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Удаление мандибул",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Mandibles)),CH_Training_TROPHYS_Mandibles);
+		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString(NAME_TROPHY_Mandibles,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Mandibles)),CH_Training_TROPHYS_Mandibles);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString("Снятие панцирей c краулеров",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate)),CH_Training_TROPHYS_CrawlerPlate);
+		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString(NAME_TROPHY_CrawlerPlate,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_CrawlerPlate)),CH_Training_TROPHYS_CrawlerPlate);
 	};
 };
 
@@ -3259,7 +3260,7 @@ func void CH_Training_TROPHYS_BFGift()
 		Knows_Bloodfly = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-		B_LogEntry(Topic_Bonus,"Теперь я знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.");
+		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
 	}
 	else
 	{
@@ -3313,23 +3314,23 @@ func void DIA_CH_Misc_Animal_other_Info()
 	Info_AddChoice(DIA_CH_Misc_Animal_other,Dialog_Back,DIA_CH_Misc_Animal_other_BACK);
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Рог мракориса",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ShadowHorn)),CH_Training_TROPHYS_ShadowHorn);
+		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString(NAME_TROPHY_ShadowHorn,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ShadowHorn)),CH_Training_TROPHYS_ShadowHorn);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_FireTongue] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Огненный язык",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_FireTongue)),CH_Training_TROPHYS_FireTongue);
+		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString(NAME_TROPHY_FireTongue,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_FireTongue)),CH_Training_TROPHYS_FireTongue);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Рог драконьего снеппера",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DrgSnapperHorn)),CH_Training_TROPHYS_DrgSnapperHorn);
+		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString(NAME_TROPHY_DrgSnapperHorn,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DrgSnapperHorn)),CH_Training_TROPHYS_DrgSnapperHorn);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Удаление чешуи драконов",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonScale)),CH_Training_TROPHYS_DragonScale);
+		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString(NAME_TROPHY_DragonScale,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonScale)),CH_Training_TROPHYS_DragonScale);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString("Сбор крови дракона",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonBlood)),CH_Training_TROPHYS_DragonBlood);
+		Info_AddChoice(DIA_CH_Misc_Animal_other,B_BuildLearnString(NAME_TROPHY_DragonBlood,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_DragonBlood)),CH_Training_TROPHYS_DragonBlood);
 	};
 };
 
@@ -3597,5 +3598,89 @@ func void CH_Language_Warrior()
 func void CH_Language_Priest()
 {
 	B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_3);
+};
+
+instance CH_Overlay(C_Info)
+{
+	npc = ch;
+	nr = 36;
+	condition = CH_Overlay_Condition;
+	information = CH_Overlay_Info;
+	permanent = TRUE;
+	description = "Изменить походку";
+};
+
+
+func int CH_Overlay_Condition()
+{
+	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Overlay_Info()
+{
+	Info_ClearChoices(CH_Overlay);
+	Info_AddChoice(CH_Overlay,Dialog_Back,CH_Overlay_BACK);
+	Info_AddChoice(CH_Overlay,"Женщина",CH_Overlay_Babe);
+	Info_AddChoice(CH_Overlay,"Маг",CH_Overlay_Mage);
+	Info_AddChoice(CH_Overlay,"Солдат",CH_Overlay_Militia);
+	Info_AddChoice(CH_Overlay,"Крутой",CH_Overlay_Arrogance);
+	Info_AddChoice(CH_Overlay,"Спокойный",CH_Overlay_Relaxed);
+	Info_AddChoice(CH_Overlay,"Уставший",CH_Overlay_Tired);	
+	Info_AddChoice(CH_Overlay,"Стандарт",CH_Overlay_Clear);	
+};
+
+func void CH_Overlay_BACK()
+{
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Babe()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Babe.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Mage()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Mage.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Militia()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Militia.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Arrogance()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Arrogance.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Relaxed()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Relaxed.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Tired()
+{
+	Mdl_ApplyOverlayMds(other,"Humans_Tired.mds");
+	Info_ClearChoices(CH_Overlay);
+};
+
+func void CH_Overlay_Clear()
+{
+	Mdl_RemoveOverlayMDS(other,"Humans_Arrogance.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Babe.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Mage.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Militia.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Relaxed.mds");
+	Mdl_RemoveOverlayMDS(other,"Humans_Tired.mds");
+	Info_ClearChoices(CH_Overlay);
 };
 

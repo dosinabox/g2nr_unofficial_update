@@ -14,7 +14,7 @@ func void B_CheckDynamicText()
 	}
 	else
 	{
-		TEXT_LousHammer_Setting = "Больше не дает никакого эффекта, кроме опьянения.";
+		TEXT_LousHammer_Setting = PRINT_LousHammerNoEffect;
 	};
 	if(Zeitspalt_Used == FALSE)
 	{
@@ -22,7 +22,7 @@ func void B_CheckDynamicText()
 	}
 	else
 	{
-		TEXT_Zeitspalt_Setting = "Замедление времени.";
+		TEXT_Zeitspalt_Setting = PRINT_SlowTime;
 	};
 	if(MegaDrink_Used == FALSE)
 	{
@@ -46,17 +46,13 @@ func void B_CheckDynamicText()
 		TEXT_DragonEggDrinkNeoras_Setting = NAME_Bonus_Str;
 		COUNT_DragonEggDrinkNeoras_Setting = 3;
 	};
-	/*if(Player_KnowsSchnellerHering == FALSE)
+	if(MIS_Bennet_InnosEyeRepairedSetting == LOG_SUCCESS)
 	{
-		TEXT_SchnellerHering_Setting = "Выглядит подозрительно!";
-		TEXT_SchnellerHering_Setting2 = "Эффект неизвестен, возможны побочные эффекты.";
-		COUNT_SchnellerHering_Setting = 0;
+		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Repaired;
 	}
 	else
 	{
-		TEXT_SchnellerHering_Setting = "Временно повышает скорость.";
-		TEXT_SchnellerHering_Setting2 = NAME_Duration;
-		COUNT_SchnellerHering_Setting = Time_SchnellerHering / 60000;
-	};*/
+		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Broken;
+	};
 };
 

@@ -180,7 +180,12 @@ func void DIA_Torlof_Duellregeln_Info()
 	AI_Output(self,other,"DIA_Torlof_Duellregeln_01_02");	//Нельзя просто так взять и напасть на кого-нибудь без предупреждения.
 	AI_Output(self,other,"DIA_Torlof_Duellregeln_01_03");	//Обязательно должен иметь место устный вызов. Оскорбление, например, или еще какая-нибудь причина для сражения.
 	AI_Output(self,other,"DIA_Torlof_Duellregeln_01_04");	//Никто из наблюдателей не имеет права вмешиваться в дуэль. Если только один из дуэлянтов не будет убит.
-	B_LogEntry(TOPIC_SLDRespekt,"Правила дуэли: Дуэль должна начаться с вызова, тогда в нее никто не имеет права вмешаться. Противника в дуэли нельзя убивать.");
+	if(other.guild == GIL_NONE)
+	{
+		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		B_LogEntry(TOPIC_SLDRespekt,"Правила дуэли: Дуэль должна начаться с вызова, тогда в нее никто не имеет права вмешаться. Противника в дуэли нельзя убивать.");
+	};
 };
 
 
@@ -276,7 +281,7 @@ func void DIA_Torlof_RUF_Info()
 	{
 		Points_Sld += 1;
 	}
-	else if((MIS_Cipher_Paket == LOG_SUCCESS) || (MIS_Cipher_BringWeed == LOG_SUCCESS))
+	else if(GotCipherVote == TRUE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_08");	//Сифер говорит, что ему абсолютно ясно, что ты достоин присоединиться к нам. Похоже, что-то сделало его безгранично счастливым.
 		Points_Sld += 1;
@@ -387,6 +392,13 @@ func void DIA_Torlof_RUF_Info()
 			Points_Sld += 5;
 		};
 		AI_Output(self,other,"DIA_Torlof_RUF_01_26");	//В любом случае, ты можешь рассчитывать на мой голос.
+		if(GotTorlofVote == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			B_LogEntry(TOPIC_SLDRespekt,"Торлоф считает, что я могу выполнять обязанности наемника.");
+			GotTorlofVote = TRUE;
+		};
 		Points_Sld += 1;
 	};
 	if(Sld_Duelle_gewonnen >= 3)
@@ -402,17 +414,21 @@ func void DIA_Torlof_RUF_Info()
 			AI_Output(self,other,"DIA_Torlof_RUF_01_29");	//Как бы то ни было, ты уже победил в нескольких честных дуэлях.
 		};
 	};
-	if(Points_Sld >= 9)
+	if((Points_Sld >= 9) && ((MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS) || (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS)))
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_30");	//Большинство наемников за тебя, и мы считаем, что ты можешь присоединиться к нам в любое время.
 		AI_Output(self,other,"DIA_Torlof_RUF_01_31");	//Иди, поговори с Ли. Он объяснит тебе детали.
+		B_LogEntry(TOPIC_BecomeSLD,"Я заслужил уважение наемников. Теперь я должен переговорить с Ли.");
 		Torlof_GenugStimmen = TRUE;
-		B_LogEntry(TOPIC_BecomeSLD,"Я заслужил уважение наемников. Теперь, я должен переговорить с Ли.");
+		B_CheckLog();
 	}
 	else if(Points_Sld >= 7)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_32");	//Это довольно много, но пока еще не достаточно.
-		AI_Output(self,other,"DIA_Torlof_RUF_01_33");	//Тебе нужно еще сразиться с несколькими парнями.
+		if(Sld_Duelle_gewonnen < 3)
+		{
+			AI_Output(self,other,"DIA_Torlof_RUF_01_33");	//Тебе нужно еще сразиться с несколькими парнями.
+		};
 	}
 	else
 	{
@@ -616,10 +632,10 @@ func void DIA_Torlof_BengarSuccess_Info()
 	AI_Output(other,self,"DIA_Torlof_BengarSuccess_15_00");	//Я решил проблемы Бенгара с ополчением.
 	AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_01");	//Ты позаботился, чтобы они не появлялись у него на пороге завтра утром?
 	AI_Output(other,self,"DIA_Torlof_BengarSuccess_15_02");	//Чтобы сделать это, им придется очень хорошо постараться...
-	AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_03");	//Отлично!
 	if(Torlof_Probe == Probe_Bengar)
 	{
-		AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_04");	//Ты прошел испытание. Ты смог разобраться с ополчением, этого достаточно, чтобы заслужить уважение большинства.
+		AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_03");	//Отлично!
+		AI_Output(self,other,"DIA_Torlof_BengarSuccess_01_04");	//Ты прошел испытание. Ты смог разобраться с ополчением - этого достаточно, чтобы заслужить уважение большинства.
 	}
 	else
 	{
@@ -645,7 +661,7 @@ instance DIA_Torlof_Welcome(C_Info)
 
 func int DIA_Torlof_Welcome_Condition()
 {
-	if((other.guild == GIL_SLD) && (Kapitel <= 1))
+	if((other.guild == GIL_SLD) && (Kapitel == 1))
 	{
 		return TRUE;
 	};
@@ -692,7 +708,7 @@ func int DIA_Torlof_TheOtherMission_Condition()
 
 func void DIA_Torlof_TheOtherMission_Info()
 {
-	if((Torlof_KnowsDragons == FALSE) && (ENTER_OLDWORLD_FIRSTTIME_TRIGGER_ONETIME == TRUE))
+	if((Torlof_KnowsDragons == FALSE) && (Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE))
 	{
 		B_Torlof_Dragons();
 	};
@@ -724,7 +740,7 @@ instance DIA_Torlof_Dragons(C_Info)
 
 func int DIA_Torlof_Dragons_Condition()
 {
-	if((ENTER_OLDWORLD_FIRSTTIME_TRIGGER_ONETIME == TRUE) && (Kapitel <= 3) && (other.guild == GIL_SLD) && (Torlof_KnowsDragons == FALSE))
+	if((Enter_OldWorld_FirstTime_Trigger_OneTime == TRUE) && (Kapitel <= 3) && (other.guild == GIL_SLD) && (Torlof_KnowsDragons == FALSE))
 	{
 		return TRUE;
 	};
@@ -758,13 +774,12 @@ func void DIA_Torlof_WhatCanYouTeach_Info()
 	AI_Output(self,other,"DIA_Torlof_WhatCanYouTeach_01_01");	//Я мог бы показать тебе, как лучше использовать силу в ближнем бою.
 	AI_Output(self,other,"DIA_Torlof_WhatCanYouTeach_01_02");	//Многие бойцы проигрывают из-за того, что не умеют правильно применять свою силу.
 	AI_Output(self,other,"DIA_Torlof_WhatCanYouTeach_01_03");	//То же самое касается ловкости и дальнобойного оружия.
-	Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-	B_LogEntry(Topic_SoldierTeacher,"Торлоф может повысить мою ловкость и силу.");
 };
 
 
 var int Torlof_Merke_STR;
 var int Torlof_Merke_DEX;
+var int Log_TorlofTeach;
 
 instance DIA_Torlof_Teach(C_Info)
 {
@@ -788,10 +803,14 @@ func int DIA_Torlof_Teach_Condition()
 func void DIA_Torlof_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_Teach_15_00");	//Я хочу улучшить свои способности!
-	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (other.guild == GIL_NONE))
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG) || (TorlofIsCaptain == TRUE) || ((other.guild == GIL_NONE) && (Torlof_Go == TRUE)))
 	{
-//		Torlof_Merke_STR = other.attribute[ATR_STRENGTH];
-//		Torlof_Merke_DEX = other.attribute[ATR_DEXTERITY];
+		if(Log_TorlofTeach == FALSE)
+		{
+			Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
+			B_LogEntry(Topic_SoldierTeacher,"Торлоф может повысить мою ловкость и силу.");
+			Log_TorlofTeach = TRUE;
+		};
 		Torlof_Merke_STR = other.aivar[REAL_STRENGTH];
 		Torlof_Merke_DEX = other.aivar[REAL_DEXTERITY];
 		Info_ClearChoices(DIA_Torlof_Teach);
@@ -804,13 +823,21 @@ func void DIA_Torlof_Teach_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Torlof_Teach_01_01");	//Я сказал, что я МОГ БЫ помочь тебе, но это не значит, что я БУДУ помогать.
-		AI_Output(self,other,"DIA_Torlof_Teach_01_02");	//Пока ты не станешь одним из нас, тебе лучше поискать другого учителя!
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Torlof_Teach_01_02");	//Пока ты не станешь одним из нас, тебе лучше поискать другого учителя!
+			if(Log_TorlofTeach == FALSE)
+			{
+				Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
+				B_LogEntry(Topic_SoldierTeacher,"Торлоф может повысить мою ловкость и силу, если я решу присоединиться к наемникам.");
+				Log_TorlofTeach = TRUE;
+			};
+		};
 	};
 };
 
 func void DIA_Torlof_Teach_Back()
 {
-//	if((Torlof_Merke_STR < other.attribute[ATR_STRENGTH]) || (Torlof_Merke_DEX < other.attribute[ATR_DEXTERITY]))
 	if((Torlof_Merke_STR < other.aivar[REAL_STRENGTH]) || (Torlof_Merke_DEX < other.aivar[REAL_DEXTERITY]))
 	{
 		AI_Output(self,other,"DIA_Torlof_Teach_Back_01_00");	//Хорошо! Теперь ты можешь более эффективно использовать свои способности!

@@ -24,7 +24,6 @@ const int Value_Pitch = 10;
 const int Value_Rockcrystal = 30;
 const int Value_Aquamarine = 100;
 const int Value_HolyWater = 20;
-//const int Value_Coal = 15;
 const int Value_DarkPearl = 1000;
 const int VALUE_ItMi_ApfelTabak = 10;
 const int VALUE_ItMi_PilzTabak = 25;
@@ -80,7 +79,6 @@ instance ItMi_Pliers(C_Item)
 	name = "Ùèïöû";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-//	value = Value_RuneBlank;
 	value = Value_Hammer;
 	visual = "ItMi_Pliers.3DS";
 	material = MAT_METAL;
@@ -254,19 +252,10 @@ instance ItMi_Lute(C_Item)
 	visual = "ItMi_Lute.3DS";
 	material = MAT_WOOD;
 	scemeName = "LUTE";
-//	on_state[0] = Use_Lute;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-/*
-func void Use_Lute()
-{
-};
-*/
-
 
 instance ItMi_Brush(C_Item)
 {
@@ -277,18 +266,10 @@ instance ItMi_Brush(C_Item)
 	visual = "ItMi_Brush.3ds";
 	material = MAT_WOOD;
 	scemeName = "BRUSH";
-//	on_state[0] = Use_Brush;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
-
-
-/*
-func void Use_Brush()
-{
-};
-*/
 
 instance ItMi_Joint(C_Item)
 {
@@ -296,7 +277,6 @@ instance ItMi_Joint(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Joint;
-//	visual = "ItMi_Joint_US.3ds";
 	visual = "ItMi_Joint.3ds";
 	material = MAT_LEATHER;
 	scemeName = "JOINT";
@@ -304,7 +284,6 @@ instance ItMi_Joint(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 	inv_zbias = 200;
 };
 
@@ -328,17 +307,7 @@ instance ItMi_Packet(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 };
-
-
-/*
-func void UsePacket()
-{
-};
-*/
-
 
 instance ItMi_Pocket(C_Item)
 {
@@ -432,7 +401,6 @@ instance ItMi_GoldNecklace(C_Item)
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = 190;
-//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 };
 
 instance ItMi_SilverRing(C_Item)
@@ -509,7 +477,6 @@ instance ItMi_BloodCup_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_BloodCup;
-//	visual = "ItMi_GoldCup.3DS";
 	visual = "ItMi_BloodCup.3DS";
 	material = MAT_METAL;
 	description = name;
@@ -659,7 +626,7 @@ instance ItMi_Quartz(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_Quartz;
 	visual = "ItMi_Quartz.3ds";
-	material = MAT_STONE;
+	material = MAT_GLAS;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -686,7 +653,7 @@ instance ItMi_Rockcrystal(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_Rockcrystal;
 	visual = "ItMi_Rockcrystal.3ds";
-	material = MAT_STONE;
+	material = MAT_GLAS;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

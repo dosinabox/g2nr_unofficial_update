@@ -154,40 +154,40 @@ const string TXT_GUILDS[66] =
 	"Овца",
 	"Гоблин",
 	"Скелет гоблина",
-	"Малый скелет гоблина",
+	"Скелет гоблина",
 	"Падальщик",
 	"Гигантская крыса",
 	"Полевой хищник",
 	"Кровавая муха",
 	"Ящер",
 	"Волк",
-	"Молодой волк",
+	"Волк",
 	"Краулер",
 	"Луркер",
-	"Скелет-воин",
+	"Скелет",
 	"Скелет",
 	"Скелет-маг",
 	"Зомби",
 	"Снеппер",
 	"Мракорис",
-	"Скелет-монстр",
+	"Скелет мракориса",
 	"Гарпия",
 	"Каменный голем",
 	"Огненный голем",
 	"Ледяной голем",
-	"Малый голем",
+	"Каменный голем",
 	"Демон",
-	"Малый демон",
+	"Демон",
 	"Тролль",
 	"Болотная акула",
 	"Дракон",
 	"Крысокрот",
 	"Аллигатор",
 	"Болотный голем",
-	"Стражник",
+	"Каменный страж",
 	"Пантера",
-	"A",
-	"Стражник",
+	"Блуждающий огонек",
+	"Каменный страж",
 	"Зомби",
 	"",
 	"",
@@ -195,7 +195,7 @@ const string TXT_GUILDS[66] =
 	"Орк",
 	"Орк",
 	"Орк-нежить",
-	"Дракониан",
+	"Человек-ящер",
 	"X",
 	"Y",
 	"Z"
@@ -321,7 +321,7 @@ const string NAME_SPL_TeleportPassOW = "Телепорт к проходу Долины Рудников";
 const string NAME_SPL_TeleportOC = "Телепорт в замок";
 const string NAME_SPL_TeleportOWDemonTower = "Телепорт в древнюю демоническую башню";
 const string NAME_SPL_TeleportTaverne = "Телепорт к таверне";
-const string NAME_SPL_Teleport_3 = "Телепорт к Кругу Солнца";
+const string NAME_SPL_TeleportRitual = "Телепорт к Кругу Солнца";
 const string NAME_SPL_LIGHT = "Свет";
 const string NAME_SPL_Firebolt = "Огненная стрела";
 const string NAME_SPL_Icebolt = "Ледяная стрела";
@@ -471,7 +471,7 @@ const string TXT_INV_CAT[9] =
 };
 const string NAME_Paladin = "Паладин";
 const string NAME_Miliz = "Ополченец";
-const string NAME_Torwache = "Стражник у ворот";
+const string NAME_Torwache = "Стражник у прохода";
 const string NAME_Tuerwache = "Стражник у двери";
 const string NAME_Stadtwache = "Городской стражник";
 const string NAME_Arbeiter = "Рабочий";
@@ -489,6 +489,7 @@ const string NAME_Bauer = "Крестьянин";
 const string NAME_Baeuerin = "Крестьянка";
 const string NAME_Bandit = "Бандит";
 const string NAME_Halsabschneider = "Головорез";
+const string NAME_Out = "Бродяга";
 const string NAME_Straefling = "Каторжник";
 const string NAME_Waffenknecht = "Оруженосец";
 const string NAME_Dementor = "Ищущий";
@@ -700,9 +701,9 @@ const string PRINT_ProdItemsMissing = "Недостаточно ингредиентов!";
 const string PRINT_TabakSuccess = "Создан новый табак!";
 const string PRINT_JointSuccess = "Косяк из болотной травы готов!";
 const string PRINT_Addon_Joint_01_Success = "'Зеленый послушник' готов!";
-const string PRINT_NoInnosTears = "Вам не хватает 'Слез Инноса'.";
-const string PRINT_Addon_GuildNeeded = "Вы не состоите в гильдии.";
-const string PRINT_Addon_GuildNeeded_NOV = "Вы пока еще не маг.";
+const string PRINT_NoInnosTears = "Вам не хватает 'Слез Инноса'!";
+const string PRINT_Addon_GuildNeeded = "Вы не состоите в гильдии!";
+const string PRINT_Addon_GuildNeeded_NOV = "Вы пока еще не маг!";
 const string PRINT_KeyMissing = "Мне никогда не открыть это без правильного ключа!";
 const string PRINT_PicklockMissing = "Здесь бы пригодилась отмычка!";
 const string PRINT_Picklock_or_KeyMissing = "Хм... у меня нет отмычки или ключа.";
@@ -903,6 +904,10 @@ const string NAME_HPMax_Elixier = "Эликсир жизни";
 const string NAME_ManaMax_Elixier = "Эликсир духа";
 const string NAME_Speed_Elixier = "Зелье ускорения";
 const string NAME_MegaDrink = "Эмбарла фиргасто";
+const string NAME_Geist = "Эликсир изменения сознания";
+
+const string NAME_Letter = "Письмо";
+const string NAME_LetterSealed = "Запечатанное письмо";
 
 const string PRINT_PickPocketFailed = " - карманная кража не удалась!";
 const string PRINT_PickPocketSuccess = " - карманная кража удалась!";
@@ -917,6 +922,25 @@ const string NAME_Beutel = "Кожаный кошелек";
 const string NAME_Bag = "Мешок";
 const string NAME_Fackel = "Факел";
 
+const string NAME_TROPHY_Teeth = "Удаление зубов";
+const string NAME_TROPHY_Claws = "Удаление когтей";
+const string NAME_TROPHY_Fur = "Снятие шкур";
+const string NAME_TROPHY_BFSting = "Жало кровавой мухи";
+const string NAME_TROPHY_BFWing = "Крылья кровавой мухи";
+const string NAME_TROPHY_DrgSnapperHorn = "Рог драконьего снеппера";
+const string NAME_TROPHY_Heart = "Удаление сердца";
+const string NAME_TROPHY_ShadowHorn = "Рог мракориса";
+const string NAME_TROPHY_ReptileSkin = "Кожа рептилий";
+const string NAME_TROPHY_Mandibles = "Удаление мандибул";
+const string NAME_TROPHY_DragonScale = "Удаление чешуи дракона";
+const string NAME_TROPHY_DragonBlood = "Сбор крови дракона";
+const string NAME_TROPHY_CrawlerPlate = "Снятие панцирей c краулеров";
+const string NAME_TROPHY_FireTongue = "Огненный язык";
+
 const string PRINT_HiddenInFish = "В этой рыбе что-то спрятано.";
 const string PRINT_UnknownEffect = "Эффект неизвестен.";
+const string PRINT_LousHammerNoEffect = "Больше не дает никакого эффекта, кроме опьянения.";
+const string PRINT_SlowTime = "Замедление времени.";
+const string PRINT_Speed = "Временно повышает скорость.";
+const string PRINT_NothingToPick = "Здесь больше нечего делать.";
 

@@ -1,7 +1,7 @@
 
 func void B_Video()
 {
-	AI_Output(self,other,"INTRO_Xardas_Speech_14_00");	//Один заключенный изменил судьбу сотен.
+	/*AI_Output(self,other,"INTRO_Xardas_Speech_14_00");	//Один заключенный изменил судьбу сотен.
 	AI_Output(self,other,"INTRO_Xardas_Speech_14_01");	//Но он заплатил за это высокую цену...
 	AI_Output(self,other,"INTRO_Xardas_Speech_14_02");	//Он победил Спящего и уничтожил Барьер...
 	AI_Output(self,other,"INTRO_Xardas_Speech_14_03");	//...но, когда остальные заключенные вырвались на свободу, он остался лежать под грудой камней...
@@ -10,15 +10,15 @@ func void B_Video()
 	AI_Output(self,other,"INTRO_Xardas_Speech_14_06");	//Он слаб, и многое забыл.
 	AI_Output(self,other,"INTRO_Xardas_Speech_14_07");	//Но он жив...
 	AI_Output(self,other,"INTRO_Xardas_Speech_14_08");	//Он вернулся!
-	AI_Output(self,other,"INTRO_DiegoGorn_12_00");	//(у костра) Конечно же, он еще жив. А ты как думал?
+	AI_Output(self,other,"INTRO_DiegoGorn_12_00");	//(вздыхает) Конечно же, он еще жив. А ты как думал?
 	AI_Output(self,other,"INTRO_DiegoGorn_11_01");	//Будем надеяться...
-	AI_Output(self,other,"INTRO_DiegoGorn_12_02");	//(трясется земля) Ты чувствуешь это?
+	AI_Output(self,other,"INTRO_DiegoGorn_12_02");	//Ох! Ты чувствуешь это?
 	AI_Output(self,other,"INTRO_DiegoGorn_11_03");	//Что?
 	AI_Output(self,other,"INTRO_DiegoGorn_12_04");	//Земля...
 	AI_Output(other,self,"Extro_Tempel_15_01");	//(в изумлении) Ксардас! Что...
 	AI_Output(other,self,"Extro_Tempel_14_02");	//(недовольно) Не сейчас...
 	AI_Output(other,self,"Extro_Tempel_14_03");	//(фанатично) Я готов... выбери меня! Да...
-	AI_Output(other,self,"Extro_Tempel_15_04");	//(себе под нос) Где же он?
+	AI_Output(other,self,"Extro_Tempel_15_04");	//Хм, где же он?
 	AI_Output(self,other,"OUTRO_Xardas_14_00");	//(цитирует) И человек убил зверя и вошел в царство Белиара...
 	AI_Output(other,self,"OUTRO_Xardas_15_01");	//Ксардас! Что именно произошло в Храме Ирдората?
 	AI_Output(self,other,"OUTRO_Xardas_14_02");	//С помощью Инноса ты уничтожил воплощение Зла.
@@ -53,7 +53,7 @@ func void B_Video()
 	AI_Output(other,self,"OUTRO_Schiff_15_09");	//Но я не вижу шторма...
 	AI_Output(self,other,"OUTRO_Schiff_12_10");	//ПОКА нет...
 	AI_Output(other,self,"OUTRO_Schiff_15_11");	//Расслабься! Все будет в порядке!
-	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ... люди?
+	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ...люди?
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_01");	//(пренебрежительно) Люди слабы.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_02");	//(пренебрежительно) Они слишком легко поддаются соблазнам Зла.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_03");	//Таким образом они вовлекаются в дела, которые не могут понять и уж тем более не могут контролировать.
@@ -67,6 +67,6 @@ func void B_Video()
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_06");	//Приспешники Белиара оскверняют древнейшие алтари богов.
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_07");	//Хранители этих священных реликвий пробудились. И их гнев сотрясает землю!
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_08");	//Каждый сильный маг на этом острове способен ощутить их гнев.
-	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_09");	//И некоторые из них определенно начали готовиться к встрече с угрозой.
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_09");	//И некоторые из них определенно начали готовиться к встрече с угрозой.*/
 };
 

@@ -15,10 +15,11 @@ func void B_GiveTradeInv_Addon_Martin(var C_Npc slf)
 		CreateInvItems(slf,ItSc_PalLight,10);
 		CreateInvItems(slf,ItMi_Moleratlubric_MIS,1);
 		CreateInvItems(slf,ItMw_ShortSword1,3);
+		CreateInvItems(slf,ItMw_1h_Mil_Sword,1);
 		CreateInvItems(slf,ItMw_Schwert2,2);
 		CreateInvItems(slf,ItMW_Addon_Hacker_1h_01,1);
 		CreateInvItems(slf,ItMW_Addon_Hacker_2h_01,1);
-		CreateInvItems(slf,ItMw_Meisterdegen,1);
+//		CreateInvItems(slf,ItMw_Meisterdegen,1);
 		CreateInvItems(slf,ItMw_ShortSword5,1);
 		CreateInvItems(slf,ItMw_Schwert4,1);
 		CreateInvItems(slf,ItMw_Runenschwert,1);

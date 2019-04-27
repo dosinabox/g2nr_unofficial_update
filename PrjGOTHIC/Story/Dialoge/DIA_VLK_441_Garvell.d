@@ -37,7 +37,7 @@ func int DIA_Garvell_PICKPOCKET_Condition()
 //	return C_StealItems(10,Hlp_GetInstanceID(ItSe_GoldPocket25),1);
 	if(Npc_HasItems(self,ItSe_GoldPocket25))
 	{
-		return C_StealItem(10,Hlp_GetInstanceID(ItSe_GoldPocket25));
+		return C_StealItem(10,Hlp_GetInstanceID(ItMi_Pocket));
 	}
 	else
 	{
@@ -77,7 +77,7 @@ instance DIA_Garvell_GREET(C_Info)
 
 func int DIA_Garvell_GREET_Condition()
 {
-	if(Wld_IsTime(5,0,19,0))
+	if(Wld_IsTime(5,0,19,10))
 	{
 		return TRUE;
 	};
@@ -163,7 +163,7 @@ instance DIA_Addon_Garvell_MissingPeople(C_Info)
 
 func int DIA_Addon_Garvell_MissingPeople_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Garvell_Schiff) && (SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Garvell_Schiff) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};
@@ -174,18 +174,32 @@ func void DIA_Addon_Garvell_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_Garvell_MissingPeople_15_00");	//У тебя пропал рабочий?
 	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_04_01");	//Да. Его звали Монти. Он как будто растворился в воздухе.
 	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_04_02");	//Эта ленивая свинья, наверное, прохлаждается сейчас на какой-нибудь ферме. Не надо было платить ему аванс.
+	AI_Output(other,self,"DIA_Addon_Garvell_MissingPeople_wo_15_00");	//Когда в последний раз ты видел Монти?
+	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_wo_04_01");	//(сердито) Первый раз он не потрудился прийти на работу два дня назад.
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Гарвелл жалуется на своего работника Монти, который не вышел на работу несколько дней назад. Гарвелл думает, что Монти сбежал к фермерам.");
-	Info_ClearChoices(DIA_Addon_Garvell_MissingPeople);
-	Info_AddChoice(DIA_Addon_Garvell_MissingPeople,"Я слышал, что пропадали и другие люди.",DIA_Addon_Garvell_MissingPeople_more);
-	if(SCKnowsFarimAsWilliamsFriend == FALSE)
+};
+
+instance DIA_Addon_Garvell_MissingPeopleMore(C_Info)
+{
+	npc = VLK_441_Garvell;
+	nr = 5;
+	condition = DIA_Addon_Garvell_MissingPeopleMore_Condition;
+	information = DIA_Addon_Garvell_MissingPeopleMore_Info;
+	description = "Я слышал, что пропадали и другие люди.";
+};
+
+
+func int DIA_Addon_Garvell_MissingPeopleMore_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Addon_Garvell_MissingPeople) && (MissingPeopleReturnedHome == FALSE) && (SC_HearedAboutMissingPeople == TRUE))
 	{
-		Info_AddChoice(DIA_Addon_Garvell_MissingPeople,"Когда в последний раз ты видел Монти?",DIA_Addon_Garvell_MissingPeople_wo);
+		return TRUE;
 	};
 };
 
-func void DIA_Addon_Garvell_MissingPeople_more()
+func void DIA_Addon_Garvell_MissingPeopleMore_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Garvell_MissingPeople_more_15_00");	//Я слышал, что пропадали и другие люди.
 	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_more_04_01");	//О чем я и говорю! Плохие времена настали...
@@ -194,32 +208,29 @@ func void DIA_Addon_Garvell_MissingPeople_more()
 	SCKnowsFarimAsWilliamsFriend = TRUE;
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Рыбак Фарим похоже что-то знает об исчезновении своего друга Вильяма.");
-	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
-	Info_AddChoice(DIA_Addon_Garvell_MissingPeople,Dialog_Back,DIA_Addon_Garvell_MissingPeople_BACK);
-	Info_AddChoice(DIA_Addon_Garvell_MissingPeople,"Где мне найти этого Фарима?",DIA_Addon_Garvell_MissingPeople_Farim);
+	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Похоже, рыбак Фарим что-то знает об исчезновении своего друга Вильяма.");
+	if(!Npc_KnowsInfo(other,DIA_Addon_Farim_William))
+	{
+		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
+	};
+	Info_ClearChoices(DIA_Addon_Garvell_MissingPeopleMore);
+	Info_AddChoice(DIA_Addon_Garvell_MissingPeopleMore,Dialog_Back,DIA_Addon_Garvell_MissingPeopleMore_BACK);
+	Info_AddChoice(DIA_Addon_Garvell_MissingPeopleMore,"Где мне найти этого Фарима?",DIA_Addon_Garvell_MissingPeopleMore_Farim);
 };
 
-func void DIA_Addon_Garvell_MissingPeople_BACK()
+func void DIA_Addon_Garvell_MissingPeopleMore_BACK()
 {
-	Info_ClearChoices(DIA_Addon_Garvell_MissingPeople);
+	Info_ClearChoices(DIA_Addon_Garvell_MissingPeopleMore);
 };
 
-func void DIA_Addon_Garvell_MissingPeople_Farim()
+func void DIA_Addon_Garvell_MissingPeopleMore_Farim()
 {
 	AI_Output(other,self,"DIA_Addon_Garvell_MissingPeople_Farim_15_00");	//Где мне найти этого Фарима?
 	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_Farim_04_01");	//Он рыбак. Думаю, ты найдешь его рядом со складом запасов паладинов. Но я не уверен.
 	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Хижина Фарима находится неподалеку от склада запасов паладинов.");
 };
-
-func void DIA_Addon_Garvell_MissingPeople_wo()
-{
-	AI_Output(other,self,"DIA_Addon_Garvell_MissingPeople_wo_15_00");	//Когда в последний раз ты видел Монти?
-	AI_Output(self,other,"DIA_Addon_Garvell_MissingPeople_wo_04_01");	//(сердито) Первый раз он не потрудился прийти на работу два дня назад.
-};
-
 
 instance DIA_Garvell_ReturnMonty(C_Info)
 {
@@ -233,7 +244,7 @@ instance DIA_Garvell_ReturnMonty(C_Info)
 
 func int DIA_Garvell_ReturnMonty_Condition()
 {
-	if((Npc_GetDistToWP(Monty_NW,"NW_CITY_HABOUR_WERFT_IN_01") <= 1000) && (MissingPeopleReturnedHome == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Garvell_Schiff) && (MissingPeopleReturnedHome == TRUE))
 	{
 		return TRUE;
 	};
@@ -246,12 +257,20 @@ func void DIA_Garvell_ReturnMonty_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Garvell_ReturnMonty_04_01");	//Монти вернулся! Сейчас он изучает чертежи.
 		AI_Output(self,other,"DIA_Addon_Garvell_ReturnMonty_04_02");	//Может быть, теперь нам и удастся построить корабль...
+		B_GivePlayerXP(XP_Ambient);
+	}
+	else if(MIS_Garvell_Infos == LOG_Running)
+	{
+		AI_Output(self,other,"DIA_Garvell_Add_04_00");	//Я должен знать, сколько у меня осталось времени на постройку судна.	
+	}
+	else if(MIS_Garvell_Infos == LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Garvell_Success_04_00");	//Спасибо за информацию. Судя по всему, у нас сколько угодно времени на постройку судна.
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Garvell_Schiff_04_01");	//Ох, у нас тысячи проблем. Остов пока еще не очень стабилен и не хватает досок на обшивку.
 	};
-	B_GivePlayerXP(XP_Ambient);
 };
 
 
@@ -286,7 +305,27 @@ func void DIA_Garvell_MISSION_Info()
 	Knows_Ork = TRUE;
 	Log_CreateTopic(TOPIC_Garvell,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Garvell,LOG_Running);
-	B_LogEntry(TOPIC_Garvell,"Гарвелл хочет получить информацию об орках, и хочет знать, зачем паладины в городе.");
+	B_LogEntry(TOPIC_Garvell,"Гарвелл хочет получить информацию об орках и о цели прибытия паладинов.");
+};
+
+func void B_GarvellGivePlayerXP()
+{
+	if(EnterOW_Kapitel2 == FALSE)
+	{
+		B_GivePlayerXP(100);
+	}
+	else if(Kapitel == 2)
+	{
+		B_GivePlayerXP(75);
+	}
+	else if(Kapitel == 3)
+	{
+		B_GivePlayerXP(50);
+	}
+	else if(Kapitel > 3)
+	{
+		B_GivePlayerXP(25);
+	};
 };
 
 func void B_GarvellWeiter()
@@ -298,7 +337,7 @@ func void B_GarvellSuccess()
 {
 	AI_Output(self,other,"DIA_Garvell_Success_04_00");	//Спасибо за информацию. Судя по всему, у нас сколько угодно времени на постройку судна.
 	MIS_Garvell_Infos = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
+	B_CheckLog();
 };
 
 
@@ -315,7 +354,7 @@ instance DIA_Garvell_Orks(C_Info)
 
 func int DIA_Garvell_Orks_Condition()
 {
-	if((MIS_Garvell_Infos == LOG_Running) && (Knows_Paladins >= 1))
+	if((MIS_Garvell_Infos == LOG_Running) && ((RangarToldAboutPaladins == TRUE) || Npc_KnowsInfo(other,DIA_Garond_NeedProof)))
 	{
 		return TRUE;
 	};
@@ -328,7 +367,7 @@ func void DIA_Garvell_Orks_Info()
 	AI_Output(other,self,"DIA_Garvell_Orks_15_02");	//Они застряли в Долине Рудников, и, похоже, они собираются остаться там.
 	AI_Output(other,self,"DIA_Garvell_Orks_15_03");	//Чтобы здесь было безопасно, паладины охраняют Проход.
 	Tell_Garvell += 1;
-	B_GivePlayerXP(XP_Ambient);
+	B_GarvellGivePlayerXP();
 	if(Tell_Garvell >= 3)
 	{
 		B_GarvellSuccess();
@@ -366,7 +405,7 @@ func void DIA_Garvell_Paladine_Info()
 	AI_Output(other,self,"DIA_Garvell_Paladine_15_02");	//Паладины здесь, чтобы добывать магическую руду в Долине Рудников, а не потому, что они ожидают нападения орков на город.
 	AI_Output(other,self,"DIA_Garvell_Paladine_15_03");	//Как только они добудут руду, они вернутся на материк.
 	Tell_Garvell += 1;
-	B_GivePlayerXP(XP_Ambient);
+	B_GarvellGivePlayerXP();
 	if(Tell_Garvell >= 3)
 	{
 		B_GarvellSuccess();
@@ -391,7 +430,7 @@ instance DIA_Garvell_City(C_Info)
 
 func int DIA_Garvell_City_Condition()
 {
-	if((MIS_Garvell_Infos == LOG_Running) && (Knows_Paladins >= 2))
+	if((MIS_Garvell_Infos == LOG_Running) && ((RangarToldAboutOrc == TRUE) || Npc_IsDead(CityOrc)))
 	{
 		return TRUE;
 	};
@@ -410,7 +449,7 @@ func void DIA_Garvell_City_Info()
 		AI_Output(other,self,"DIA_Garvell_City_15_02");	//Не волнуйся насчет него. Городская стража позаботится о нем.
 	};
 	Tell_Garvell += 1;
-	B_GivePlayerXP(XP_Ambient);
+	B_GarvellGivePlayerXP();
 	if(Tell_Garvell >= 3)
 	{
 		B_GarvellSuccess();

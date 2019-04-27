@@ -85,7 +85,7 @@ func void DIA_Angar_DI_ORKS_follow()
 	AI_Output(other,self,"DIA_Angar_DI_ORKS_follow_15_00");	//Так помоги мне и прекрати скулить.
 	AI_Output(self,other,"DIA_Angar_DI_ORKS_follow_04_01");	//Хорошо. Но ты пойдешь первым. Вперед!
 	AI_StopProcessInfos(self);
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 	Npc_ExchangeRoutine(self,"FollowDI");
 	Angar_DI_Party = LOG_Running;
 };
@@ -110,7 +110,7 @@ func void B_AngarStays()
 		if(Angar_DI_Party != LOG_SUCCESS)
 		{
 			Angar_DI_Party = LOG_SUCCESS;
-			B_GivePlayerXP(XP_Ambient);
+			B_GivePlayerXP(XP_AmbientKap6);
 		};
 	}
 	else

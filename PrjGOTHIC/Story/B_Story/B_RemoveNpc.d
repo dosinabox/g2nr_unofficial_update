@@ -119,21 +119,25 @@ func void B_RemoveSarahWeapons()
 
 func void B_PlayerEnteredCity()
 {
-	if(Canthar_InStadt == FALSE)
+	if(PlayerEnteredCity == FALSE)
 	{
 		if(!Npc_IsDead(Canthar))
 		{
 			Npc_ExchangeRoutine(Canthar,"START");
 		};
-		if(Npc_KnowsInfo(hero,DIA_Lester_SEND_XARDAS) && (Kapitel < 3))
-		{
-			B_StartOtherRoutine(Lester,"XARDAS");
-		};
 		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
-		Canthar_InStadt = TRUE;
+		PlayerEnteredCity = TRUE;
+	};
+	if(LesterMovedToXardas == FALSE)
+	{
+		if(Npc_KnowsInfo(hero,DIA_Lester_SEND_XARDAS) && (Kapitel < 3))
+		{
+			B_StartOtherRoutine(Lester,"XARDAS");
+			LesterMovedToXardas = TRUE;
+		};
 	};
 };
 

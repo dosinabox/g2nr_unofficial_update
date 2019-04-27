@@ -338,16 +338,13 @@ func void DIA_Ignaz_Teach_Info()
 	};
 	if(talente > 0)
 	{
-		if(Alchemy_Explain != TRUE)
+		if(Alchemy_Explain == FALSE)
 		{
 			AI_Output(self,other,"DIA_Ignaz_Teach_14_01");	//Чтобы приготовить зелье на алхимическом столе, тебе понадобится лабораторная пробирка.
 			AI_Output(self,other,"DIA_Ignaz_Teach_14_02");	//Также тебе понадобятся различные растения и другие ингредиенты.
 			Alchemy_Explain = TRUE;
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Ignaz_Teach_14_04");	//Что ты хочешь узнать?
 		};
+		AI_Output(self,other,"DIA_Ignaz_Teach_14_04");	//Что ты хочешь узнать?
 	}
 	else
 	{

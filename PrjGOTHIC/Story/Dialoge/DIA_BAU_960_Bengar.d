@@ -12,10 +12,7 @@ instance DIA_Bengar_EXIT(C_Info)
 
 func int DIA_Bengar_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Bengar_EXIT_Info()
@@ -36,10 +33,7 @@ instance DIA_Bengar_HALLO(C_Info)
 
 func int DIA_Bengar_HALLO_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Bengar_HALLO_Info()
@@ -62,7 +56,7 @@ instance DIA_Bengar_WOVONLEBTIHR(C_Info)
 
 func int DIA_Bengar_WOVONLEBTIHR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_HALLO) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Bengar_HALLO))
 	{
 		return TRUE;
 	};
@@ -88,7 +82,7 @@ instance DIA_Bengar_TAGELOEHNER(C_Info)
 
 func int DIA_Bengar_TAGELOEHNER_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_WOVONLEBTIHR) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Bengar_WOVONLEBTIHR))
 	{
 		return TRUE;
 	};
@@ -289,7 +283,7 @@ instance DIA_Bengar_PALADINE(C_Info)
 
 func int DIA_Bengar_PALADINE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_REBELLIEREN) && ((hero.guild != GIL_MIL) && (hero.guild != GIL_PAL)))
+	if(Npc_KnowsInfo(other,DIA_Bengar_REBELLIEREN) && (hero.guild != GIL_PAL))
 	{
 		return TRUE;
 	};
@@ -299,9 +293,15 @@ func void DIA_Bengar_PALADINE_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_PALADINE_15_00");	//А что ты имеешь против королевских войск?
 	AI_Output(self,other,"DIA_Bengar_PALADINE_10_01");	//Это очевидно. С тех пор, как паладины прибыли в город, не видно никаких улучшений. Скорее наоборот.
-	AI_Output(self,other,"DIA_Bengar_PALADINE_10_02");	//Теперь это чертово ополчение стало появляться у нас даже чаще. Они воруют все, что только могут, а паладины ничего не делают с этим.
+	if(hero.guild != GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Bengar_PALADINE_10_02");	//Теперь это чертово ополчение стало появляться у нас даже чаще. Они воруют все, что только могут, а паладины ничего не делают с этим.
+	};
 	AI_Output(self,other,"DIA_Bengar_PALADINE_10_03");	//Единственные паладины, что я вообще когда-либо видел, это вон те два стражника у Прохода.
-	AI_Output(self,other,"DIA_Bengar_PALADINE_10_04");	//Они не пошевелятся, даже если ополчение вырежет нас всех.
+	if(hero.guild != GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Bengar_PALADINE_10_04");	//Они не пошевелятся, даже если ополчение вырежет нас всех.
+	};
 };
 
 
@@ -481,7 +481,7 @@ func void DIA_Bengar_MILIZWEG_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_03");	//Неплохо. Может, хотя бы этот месяц я буду не в убытке. Спасибо.
+		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_03");	//Неплохо. Может быть, хотя бы этот месяц я буду не в убытке. Спасибо.
 		if(Rumbold_Bezahlt == TRUE)
 		{
 			AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_04");	//Ты даже готов был заплатить за меня. Это очень благородно с твоей стороны.
@@ -579,31 +579,6 @@ func void DIA_Bengar_PERMKAP1_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_PERMKAP1_15_00");	//Береги себя.
 	AI_Output(self,other,"DIA_Bengar_PERMKAP1_10_01");	//Ты тоже.
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Bengar_KAP3_EXIT(C_Info)
-{
-	npc = BAU_960_Bengar;
-	nr = 999;
-	condition = DIA_Bengar_KAP3_EXIT_Condition;
-	information = DIA_Bengar_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Bengar_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Bengar_KAP3_EXIT_Info()
-{
 	AI_StopProcessInfos(self);
 };
 
@@ -743,7 +718,7 @@ instance DIA_Bengar_PERM(C_Info)
 
 func int DIA_Bengar_PERM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_ALLEIN) && (Kapitel >= 3))
+	if(Npc_KnowsInfo(other,DIA_Bengar_ALLEIN))
 	{
 		return TRUE;
 	};
@@ -777,81 +752,6 @@ func void DIA_Bengar_PERM_Info()
 	};
 };
 
-
-instance DIA_Bengar_KAP4_EXIT(C_Info)
-{
-	npc = BAU_960_Bengar;
-	nr = 999;
-	condition = DIA_Bengar_KAP4_EXIT_Condition;
-	information = DIA_Bengar_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Bengar_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Bengar_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Bengar_KAP5_EXIT(C_Info)
-{
-	npc = BAU_960_Bengar;
-	nr = 999;
-	condition = DIA_Bengar_KAP5_EXIT_Condition;
-	information = DIA_Bengar_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Bengar_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Bengar_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Bengar_KAP6_EXIT(C_Info)
-{
-	npc = BAU_960_Bengar;
-	nr = 999;
-	condition = DIA_Bengar_KAP6_EXIT_Condition;
-	information = DIA_Bengar_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Bengar_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Bengar_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Bengar_PICKPOCKET(C_Info)
 {

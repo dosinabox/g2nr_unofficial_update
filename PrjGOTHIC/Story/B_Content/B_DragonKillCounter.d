@@ -18,7 +18,9 @@ func void B_DragonKillCounter(var C_Npc current_dragon)
 		{
 			PlayVideoEx("EXTRO_RAVEN.BIK",TRUE,FALSE);
 			RavenIsDead = TRUE;
+			Saturas_KnowsHow2GetInTempel = TRUE;
 			B_RemoveNpc(Myxir_ADW);
+			B_CheckLog();
 		};
 	};
 	if(current_dragon.guild == GIL_DRAGON)

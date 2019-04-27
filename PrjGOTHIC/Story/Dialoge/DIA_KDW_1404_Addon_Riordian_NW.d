@@ -122,14 +122,22 @@ func int DIA_Addon_Riordian_SaturasWantYou_Condition()
 func void DIA_Addon_Riordian_SaturasWantYou_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_SaturasWantYou_15_00");	//Сатурас хочет тебя видеть.
-	AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_01");	//Ему удалось добиться прогресса в исследованиях? В таком случае я отправляюсь к нему немедленно.
-	if(Nefarius_NW.aivar[AIV_TalkedToPlayer] == FALSE)
+	if(MIS_Addon_Nefarius_BringMissingOrnaments == LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_02");	//Если ты хочешь узнать об этих строениях больше, поговори с Нефариусом.
-		AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_03");	//Ты найдешь его в дальней части залов.
+		AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_01");	//Ему удалось добиться прогресса в исследованиях? В таком случае я отправляюсь к нему немедленно.
+		if(Nefarius_NW.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_02");	//Если ты хочешь узнать об этих строениях больше, поговори с Нефариусом.
+			AI_Output(self,other,"DIA_Addon_Riordian_SaturasWantYou_10_03");	//Ты найдешь его в дальней части залов.
+		};
+		AI_StopProcessInfos(self);
+		Npc_ExchangeRoutine(self,"Saturas");
 	};
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Saturas");
 	MIS_Addon_Saturas_BringRiordian2Me = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };

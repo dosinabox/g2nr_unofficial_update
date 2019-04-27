@@ -13,10 +13,10 @@ instance Spell_SuckEnergy(C_Spell_Proto)
 
 func int Spell_Logic_SuckEnergy(var int manaInvested)
 {
-	if(manaInvested == 0)
+	/*if(manaInvested == 0)
 	{
 		return SPL_RECEIVEINVEST;
-	};
+	};*/
 	if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
 	{
 		return SPL_SENDCAST;

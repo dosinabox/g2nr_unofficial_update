@@ -239,6 +239,7 @@ func int DIA_Addon_Scatty_Bier_Condition()
 func void DIA_Addon_Scatty_Bier_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Scatty_Bier_15_00");	//Вот, пожалуйста.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItFo_Beer,1);
 	AI_UseItem(self,ItFo_Beer);
 	AI_Output(self,other,"DIA_Addon_Scatty_Bier_01_01");	//О, спасибо, это вкусно. Спасибо. Ты - мой герой.
@@ -249,7 +250,7 @@ func void DIA_Addon_Scatty_Bier_Info()
 instance DIA_Addon_Scatty_Gold(C_Info)
 {
 	npc = BDT_1086_Addon_Scatty;
-	nr = 2;
+	nr = 800;
 	condition = DIA_Addon_Scatty_Gold_Condition;
 	information = DIA_Addon_Scatty_Gold_Info;
 	permanent = FALSE;
@@ -272,12 +273,12 @@ func void DIA_Addon_Scatty_Gold_Info()
 };
 
 
-var int Scatty_teach_perm;
+//var int Scatty_teach_perm;
 
 instance DIA_Addon_Scatty_teach(C_Info)
 {
 	npc = BDT_1086_Addon_Scatty;
-	nr = 2;
+	nr = 800;
 	condition = DIA_Addon_Scatty_teach_Condition;
 	information = DIA_Addon_Scatty_teach_Info;
 	permanent = TRUE;

@@ -1,7 +1,7 @@
 
 instance ItWr_SaturasFirstMessage_Addon_Sealed(C_Item)
 {
-	name = "Запечатанное письмо";
+	name = NAME_LetterSealed;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -11,7 +11,6 @@ instance ItWr_SaturasFirstMessage_Addon_Sealed(C_Item)
 	scemeName = "MAPSEALED";
 	description = name;
 	text[0] = "Письмо Сатураса Ватрасу.";
-//	text[1] = "Тщательно запечатано.";
 };
 
 
@@ -71,7 +70,7 @@ func void Use_SaturasFirstMessage_Sealed()
 
 instance ItWr_SaturasFirstMessage_Addon(C_Item)
 {
-	name = "Письмо";
+	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -119,7 +118,6 @@ instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 200;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -158,7 +156,6 @@ instance ItWr_Map_NewWorld_Dexter(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 200;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -200,9 +197,8 @@ prototype Rangerring_Prototype(C_Item)
 	visual = "ItRi_Rangerring.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ItRi_Ranger_Addon;
-	on_unequip = UnEquip_ItRi_Ranger_Addon;
-//	description = "Опознавательный знак членов Кольца Воды";
+//	on_equip = Equip_ItRi_Ranger_Addon;
+//	on_unequip = UnEquip_ItRi_Ranger_Addon;
 	description = name;
 	text[0] = "Опознавательный знак членов Кольца Воды.";
 	text[5] = NAME_Value;
@@ -212,47 +208,75 @@ prototype Rangerring_Prototype(C_Item)
 	inv_rotx = INVCAM_X_RING_STANDARD;
 };
 
-func void Equip_ItRi_Ranger_Addon()
+func void Equip_ItRi_Ranger_Lares()
 {
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
 	{
-		if(ENTERED_ADDONWORLD == FALSE)
-		{
-			if(!Npc_HasItems(hero,ItRi_Ranger_Addon))
-			{
-				RangerRingIsLaresRing = TRUE;
-			};
-		};
-		SCIsWearingRangerRing = TRUE;
+		RangerRingIsLaresRing = TRUE;
 		Print(PRINT_Addon_SCIsWearingRangerRing);
 	};
 };
 
-func void UnEquip_ItRi_Ranger_Addon()
+func void UnEquip_ItRi_Ranger_Lares()
 {
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
 	{
-		if(SC_IsRanger == FALSE)
-		{
-			SCIsWearingRangerRing = FALSE;
-		};
 		RangerRingIsLaresRing = FALSE;
 	};
 };
 
+func void Equip_ItRi_Ranger_My()
+{
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	{
+		RangerRingIsMyRing = TRUE;
+		Print(PRINT_Addon_SCIsWearingRangerRing);
+	};
+};
+
+func void UnEquip_ItRi_Ranger_My()
+{
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	{
+		RangerRingIsMyRing = FALSE;
+	};
+};
+
+func void Equip_ItRi_Ranger_Lance()
+{
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	{
+		RangerRingIsLanceRing = TRUE;
+		Print(PRINT_Addon_SCIsWearingRangerRing);
+	};
+};
+
+func void UnEquip_ItRi_Ranger_Lance()
+{
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
+	{
+		RangerRingIsLanceRing = FALSE;
+	};
+};
 
 instance ItRi_Ranger_Lares_Addon(Rangerring_Prototype)
 {
+	on_equip = Equip_ItRi_Ranger_Lares;
+	on_unequip = UnEquip_ItRi_Ranger_Lares;
 	text[1] = "Это кольцо принадлежит Ларесу.";
 };
 
 instance ItRi_Ranger_Addon(Rangerring_Prototype)
 {
+	on_equip = Equip_ItRi_Ranger_My;
+	on_unequip = UnEquip_ItRi_Ranger_My;
 	text[1] = "Это кольцо принадлежит мне.";
 };
 
 instance ItRi_LanceRing(Rangerring_Prototype)
 {
+	on_equip = Equip_ItRi_Ranger_Lance;
+	on_unequip = UnEquip_ItRi_Ranger_Lance;
 	text[1] = "Это кольцо принадлежит Лансу.";
 };
 
@@ -279,7 +303,6 @@ instance ItWr_Martin_MilizEmpfehlung_Addon(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_MartinMilizEmpfehlung_Addon;
 	scemeName = "MAP";
-//	description = "Рекомендательное письмо для лорда Андрэ";
 	description = name;
 	text[0] = "Это письмо поможет мне";
 	text[1] = "присоединиться к ополчению.";
@@ -468,7 +491,8 @@ func void Use_LuciasLoveLetter_Addon()
 prototype EffectItemPrototype_Addon(C_Item)
 {
 	name = "Камень";
-	mainflag = ITEM_KAT_NONE;
+//	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_LIGHT;
 	flags = ITEM_MULTI;
 	value = 15;
 	visual = "ItMi_Coal.3ds";
@@ -523,11 +547,9 @@ instance ItRi_Addon_BanditTrader(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = 150;
-//	visual = "ItRi_Prot_Point_02.3ds";
 	visual = "ItRi_Addon_BanditTrader.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-//	description = "Гравированное кольцо";
 	description = name;
 	text[0] = "Гравированное кольцо";
 	text[1] = "гильдии торговцев Араксоса.";
@@ -587,7 +609,7 @@ func void Use_ItWr_Addon_BanditTrader()
 
 instance ItWr_Vatras2Saturas_FindRaven(C_Item)
 {
-	name = "Запечатанное письмо";
+	name = NAME_LetterSealed;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -631,7 +653,7 @@ func void Use_Vatras2Saturas_FindRaven_Sealed()
 
 instance ItWr_Vatras2Saturas_FindRaven_opened(C_Item)
 {
-	name = "Письмо";
+	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -653,7 +675,6 @@ instance ItAm_Addon_WispDetector(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_Am_DexStrg;
-//	visual = "ItAm_Mana_01.3ds";
 	visual = "ItAm_Addon_WispDetector.3ds";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER_BLUE";
@@ -661,7 +682,6 @@ instance ItAm_Addon_WispDetector(C_Item)
 	material = MAT_METAL;
 	on_equip = Equip_WispDetector;
 	on_unequip = UnEquip_WispDetector;
-//	description = "Рудный амулет блуждающего огонька";
 	description = name;
 	text[0] = "Рудный амулет блуждающего огонька.";
 	text[5] = NAME_Value;
@@ -723,7 +743,6 @@ instance ItRi_Addon_MorgansRing_Mission(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING | ITEM_MISSION;
 	value = 500;
-//	visual = "ItRi_Prot_Total_02.3DS";
 	visual = "ItRi_Addon_MorgansRing.3DS";
 	material = MAT_METAL;
 	on_equip = Equip_MorgansRing;
@@ -773,7 +792,7 @@ instance ItMi_Addon_Steel_Paket(C_Item)
 	flags = ITEM_MISSION;
 	value = 300;
 	visual = "ItMi_Packet.3ds";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	description = name;
 	text[0] = "Пакет очень тяжелый.";
 	text[1] = "В нем находится большой слиток стали.";
@@ -788,7 +807,7 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = value_StonePlateCommon;
 	visual = "ItMi_StonePlate_Read_06.3ds";
-	material = MAT_LEATHER;
+	material = MAT_STONE;
 	on_state[0] = Use_StonePlateCommon;
 	scemeName = "MAP";
 	inv_rotx = -90;
@@ -832,7 +851,6 @@ func void Use_StonePlateCommon()
 	Doc_Show(nDocID);
 };
 
-
 instance ItMi_Addon_Stone_01(C_Item)
 {
 	name = "Красная каменная табличка";
@@ -849,9 +867,8 @@ instance ItMi_Addon_Stone_01(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-	text[0] = "Красная каменная табличка.";
+//	text[0] = "Красная каменная табличка.";
 };
-
 
 func void Use_Addon_Stone_01()
 {
@@ -877,141 +894,6 @@ func void Use_Addon_Stone_01()
 	Doc_Show(nDocID);
 };
 
-
-instance ItMi_Addon_Stone_05(C_Item)
-{
-	name = "Желтая каменная табличка";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_StonePlate_Read_04.3ds";
-	material = MAT_STONE;
-	on_state[0] = Use_Addon_Stone_05;
-	scemeName = "MAP";
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_WEAKGLIMMER";
-	inv_rotx = -90;
-	inv_roty = 0;
-	inv_rotz = 0;
-	description = name;
-	text[0] = "Желтая каменная табличка.";
-};
-
-
-func void Use_Addon_Stone_05()
-{
-	var int nDocID;
-	nDocID = Doc_Create();
-	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_01.TGA",0);
-	Doc_SetFont(nDocID,-1,FONT_Book);
-	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
-	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
-	{
-		Doc_PrintLines(nDocID,0,"Я, тот, кто был против решения Совета Трех, создал первую ловушку. Лишь я знаю правильную дверь.");
-	}
-	else
-	{
-		Doc_PrintLines(nDocID,0,"Fjewheege Egdgsmkd Ygc slje asdkjhnead Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe Iuhdfb. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh.");
-		B_CannotUse_Addon();
-		B_Say(self,self,"$CANTREADTHIS");
-	};
-//	Doc_PrintLine(nDocID,0,"");
-	Doc_Show(nDocID);
-};
-
-
-instance ItMi_Addon_Stone_03(C_Item)
-{
-	name = "Синяя каменная табличка";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_StonePlate_Read_05.3ds";
-	material = MAT_STONE;
-	on_state[0] = Use_Addon_Stone_03;
-	scemeName = "MAP";
-	inv_rotx = -90;
-	inv_roty = 0;
-	inv_rotz = 0;
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_WEAKGLIMMER";
-	description = name;
-	text[0] = "Синяя каменная табличка.";
-};
-
-
-func void Use_Addon_Stone_03()
-{
-	var int nDocID;
-	nDocID = Doc_Create();
-	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_03.TGA",0);
-	Doc_SetFont(nDocID,-1,FONT_Book);
-	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
-	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
-	{
-		Doc_PrintLines(nDocID,0,"КАРДИМОН создал вторую ловушку. Лишь тот, кто следует по пути света до самого конца, достигнет третьего зала.");
-	}
-	else
-	{
-		Doc_PrintLines(nDocID,0,"KHARDIMON Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh. Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe.");
-		B_CannotUse_Addon();
-		B_Say(self,self,"$CANTREADTHIS");
-	};
-//	Doc_PrintLine(nDocID,0,"");
-//	Doc_PrintLines(nDocID,0,"");
-//	Doc_PrintLine(nDocID,0,"");
-	Doc_Show(nDocID);
-};
-
-
-instance ItMi_Addon_Stone_04(C_Item)
-{
-	name = "Зеленая каменная табличка";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_StonePlate_Read_01.3ds";
-	material = MAT_STONE;
-	on_state[0] = Use_Addon_Stone_04;
-	scemeName = "MAP";
-	inv_rotx = -90;
-	inv_roty = 0;
-	inv_rotz = 0;
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_WEAKGLIMMER";
-	description = name;
-	text[0] = "Зеленая каменная табличка.";
-};
-
-
-func void Use_Addon_Stone_04()
-{
-	var int nDocID;
-	nDocID = Doc_Create();
-	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_04.TGA",0);
-	Doc_SetFont(nDocID,-1,FONT_Book);
-	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
-	Doc_PrintLine(nDocID,0,"");
-	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
-	{
-		Doc_PrintLines(nDocID,0,"Третью ловушку создал КУАРХОДРОН. Лишь он знает, как открыть вход.");
-	}
-	else
-	{
-		Doc_PrintLines(nDocID,0,"Esfjwedbwe ewzbfujbwe. Fjewheege QUARHODRON Ygc slje asdkjhnead. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Gkjsdhad Uhnd.");
-		B_CannotUse_Addon();
-		B_Say(self,self,"$CANTREADTHIS");
-	};
-//	Doc_PrintLine(nDocID,0,"");
-	Doc_Show(nDocID);
-};
-
-
 instance ItMi_Addon_Stone_02(C_Item)
 {
 	name = "Фиолетовая каменная табличка";
@@ -1028,9 +910,8 @@ instance ItMi_Addon_Stone_02(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-	text[0] = "Фиолетовая каменная табличка.";
+//	text[0] = "Фиолетовая каменная табличка.";
 };
-
 
 func void Use_Addon_Stone_02()
 {
@@ -1063,6 +944,133 @@ func void Use_Addon_Stone_02()
 	Doc_Show(nDocID);
 };
 
+instance ItMi_Addon_Stone_03(C_Item)
+{
+	name = "Синяя каменная табличка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI | ITEM_MISSION;
+	value = 0;
+	visual = "ItMi_StonePlate_Read_05.3ds";
+	material = MAT_STONE;
+	on_state[0] = Use_Addon_Stone_03;
+	scemeName = "MAP";
+	inv_rotx = -90;
+	inv_roty = 0;
+	inv_rotz = 0;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_WEAKGLIMMER";
+	description = name;
+//	text[0] = "Синяя каменная табличка.";
+};
+
+func void Use_Addon_Stone_03()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_03.TGA",0);
+	Doc_SetFont(nDocID,-1,FONT_Book);
+	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
+	Doc_PrintLine(nDocID,0,"");
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	{
+		Doc_PrintLines(nDocID,0,"КАРДИМОН создал вторую ловушку. Лишь тот, кто следует по пути света до самого конца, достигнет третьего зала.");
+	}
+	else
+	{
+		Doc_PrintLines(nDocID,0,"KHARDIMON Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh. Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe.");
+		B_CannotUse_Addon();
+		B_Say(self,self,"$CANTREADTHIS");
+	};
+//	Doc_PrintLine(nDocID,0,"");
+//	Doc_PrintLines(nDocID,0,"");
+//	Doc_PrintLine(nDocID,0,"");
+	Doc_Show(nDocID);
+};
+
+instance ItMi_Addon_Stone_04(C_Item)
+{
+	name = "Зеленая каменная табличка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI | ITEM_MISSION;
+	value = 0;
+	visual = "ItMi_StonePlate_Read_01.3ds";
+	material = MAT_STONE;
+	on_state[0] = Use_Addon_Stone_04;
+	scemeName = "MAP";
+	inv_rotx = -90;
+	inv_roty = 0;
+	inv_rotz = 0;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_WEAKGLIMMER";
+	description = name;
+//	text[0] = "Зеленая каменная табличка.";
+};
+
+func void Use_Addon_Stone_04()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_04.TGA",0);
+	Doc_SetFont(nDocID,-1,FONT_Book);
+	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
+	Doc_PrintLine(nDocID,0,"");
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	{
+		Doc_PrintLines(nDocID,0,"Третью ловушку создал КУАРХОДРОН. Лишь он знает, как открыть вход.");
+	}
+	else
+	{
+		Doc_PrintLines(nDocID,0,"Esfjwedbwe ewzbfujbwe. Fjewheege QUARHODRON Ygc slje asdkjhnead. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Gkjsdhad Uhnd.");
+		B_CannotUse_Addon();
+		B_Say(self,self,"$CANTREADTHIS");
+	};
+//	Doc_PrintLine(nDocID,0,"");
+	Doc_Show(nDocID);
+};
+
+instance ItMi_Addon_Stone_05(C_Item)
+{
+	name = "Желтая каменная табличка";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI | ITEM_MISSION;
+	value = 0;
+	visual = "ItMi_StonePlate_Read_04.3ds";
+	material = MAT_STONE;
+	on_state[0] = Use_Addon_Stone_05;
+	scemeName = "MAP";
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_WEAKGLIMMER";
+	inv_rotx = -90;
+	inv_roty = 0;
+	inv_rotz = 0;
+	description = name;
+//	text[0] = "Желтая каменная табличка.";
+};
+
+func void Use_Addon_Stone_05()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"Adanos_Stoneplate_01.TGA",0);
+	Doc_SetFont(nDocID,-1,FONT_Book);
+	Doc_SetMargins(nDocID,-1,70,50,90,50,1);
+	Doc_PrintLine(nDocID,0,"");
+	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
+	{
+		Doc_PrintLines(nDocID,0,"Я, тот, кто был против решения Совета Трех, создал первую ловушку. Лишь я знаю правильную дверь.");
+	}
+	else
+	{
+		Doc_PrintLines(nDocID,0,"Fjewheege Egdgsmkd Ygc slje asdkjhnead Gkjsdhad Uhnd Esfjwedbwe ewzbfujbwe Iuhdfb. Sebnejbuwd Weinfiwjf Ihwqpjrnn. Erfjkemvfj Hwoqmnyhan ckh.");
+		B_CannotUse_Addon();
+		B_Say(self,self,"$CANTREADTHIS");
+	};
+//	Doc_PrintLine(nDocID,0,"");
+	Doc_Show(nDocID);
+};
 
 instance ItMI_Addon_Kompass_Mis(C_Item)
 {
@@ -1071,7 +1079,7 @@ instance ItMI_Addon_Kompass_Mis(C_Item)
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 500;
 	visual = "ItMi_Compass_01.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -1083,7 +1091,6 @@ instance ItSE_Addon_FrancisChest(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 750;
-//	visual = "ItMi_GoldChest.3ds";
 	visual = "ItSE_Addon_FrancisChest.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_METAL;
@@ -1097,15 +1104,18 @@ instance ItSE_Addon_FrancisChest(C_Item)
 
 func void FrancisChest()
 {
-//	CreateInvItems(hero,ItMi_GoldChest,1);
+	AI_PrintScreen("Книга платежей получено",-1,40,FONT_ScreenSmall,4);
+	AI_PrintScreen("Хороший кинжал получено",-1,43,FONT_ScreenSmall,4);
+	AI_PrintScreen("Золотой кубок получено",-1,46,FONT_ScreenSmall,4);
+	AI_PrintScreen("Серебряное ожерелье получено",-1,49,FONT_ScreenSmall,4);
+	AI_PrintScreen("153 золотых получено",-1,52,FONT_ScreenSmall,4);
+	Snd_Play("Geldbeutel");
 	CreateInvItems(hero,ItSE_Addon_EmptyFrancisChest,1);
 	CreateInvItems(hero,ItMw_FrancisDagger_Mis,1);
 	CreateInvItems(hero,ItMi_Gold,153);
 	CreateInvItems(hero,ItMi_GoldCup,1);
 	CreateInvItems(hero,ItMi_SilverNecklace,1);
 	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
-	Snd_Play("Geldbeutel");
-	Print("Вы нашли несколько предметов!");
 };
 
 
@@ -1113,7 +1123,7 @@ instance ItSE_Addon_EmptyFrancisChest(C_Item)
 {
 	name = "Пустой сундук";
 	mainflag = ITEM_KAT_NONE;
-	value = 750;
+	value = 200;
 	visual = "ItSE_Addon_FrancisChest.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -1128,12 +1138,10 @@ instance ITWR_Addon_FrancisAbrechnung_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_02_05.3ds";
+	visual = "ItWr_Book_02_04.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	on_state[0] = UseFrancisAbrechnung_Mis;
 };
 
@@ -1212,16 +1220,14 @@ func void UseFrancisAbrechnung_Mis()
 
 instance ITWR_Addon_GregsLogbuch_Mis(C_Item)
 {
-	name = "Дневник";
+	name = "Дневник Грега";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItWr_Book_01.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
-	description = "Дневник Грега";
-//	text[5] = NAME_Value;
-//	count[5] = value;
+	description = name;
 	on_state[0] = UseGregsLogbuch;
 };
 
@@ -1333,7 +1339,6 @@ instance ItWR_Addon_TreasureMap(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_AW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -1366,12 +1371,10 @@ func void Use_TreasureMap()
 
 instance ItMi_Addon_GregsTreasureBottle_MIS(C_Item)
 {
-//	name = "Послание в бутылке";
 	name = "Бутылка";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItFo_Water.3DS";
 	visual = "ItMi_Addon_GregsTreasureBottle_MIS.3DS";
 	material = MAT_GLAS;
 	on_state[0] = Use_GregsBottle;
@@ -1394,7 +1397,6 @@ instance ItMi_ErolsKelch(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 125;
-//	visual = "ItMi_SilverChalice.3DS";
 	visual = "ItMi_ErolsKelch.3DS";
 	material = MAT_METAL;
 	description = name;

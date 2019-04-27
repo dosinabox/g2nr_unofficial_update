@@ -2,7 +2,7 @@
 const int AM_EyeProtEdge = 10;
 const int AM_EyeProtPoint = 10;
 const int AM_EyeProtMage = 20;
-const int AM_EyeProtFire = 20;
+const int AM_EyeProtFire = 30; //20
 
 instance ItMi_InnosEye_MIS(C_Item)
 {
@@ -11,7 +11,7 @@ instance ItMi_InnosEye_MIS(C_Item)
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
 	visual = "ItMi_InnosEye_MIS.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
@@ -64,9 +64,8 @@ instance ItMi_InnosEye_Discharged_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
-//	visual = "ItMi_InnosEye_MIS.3DS";
 	visual = "ItMi_InnosEye_Discharged_MIS.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
 	description = name;
 	on_equip = Equip_ItMi_InnosEye_Discharged_Mis;
 	text[0] = "Глаз потух и не сияет.";
@@ -87,9 +86,8 @@ instance ItMi_InnosEye_Broken_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
-//	visual = "ItMi_InnosEye_MIS.3DS";
 	visual = "ItMi_InnosEye_Broken_MIS.3DS";
-	material = MAT_STONE;
+	material = MAT_METAL;
 	description = name;
 	on_equip = Equip_ItMi_InnosEye_Broken_Mis;
 	text[0] = TEXT_Innoseye_Setting;
@@ -111,15 +109,12 @@ instance ItWr_PermissionToWearInnosEye_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_PermissionToWearInnosEye;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "О подтверждении полномочий.";
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -152,7 +147,6 @@ instance ItWr_XardasBookForPyrokar_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Book_02_05.3ds";
 	visual = "ItWr_Book_03_03.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -230,7 +224,6 @@ instance ITWR_DementorObsessionBook_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
-//	visual = "ItWr_Book_02_05.3ds";
 	visual = "ItWr_Book_03_05.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -684,7 +677,6 @@ instance ItWr_ShatteredGolem_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 150;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_02.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
@@ -857,15 +849,15 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-	text[0] = "Защита от сглаза.";
+	text[2] = "Защита от сглаза.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
-	on_equip = Equip_Prot_BlackEye;
-	on_unequip = UnEquip_Prot_BlackEye;
+//	on_equip = Equip_Prot_BlackEye;
+//	on_unequip = UnEquip_Prot_BlackEye;
 };
 
-func void Equip_Prot_BlackEye()
+/*func void Equip_Prot_BlackEye()
 {
 	if(Npc_IsPlayer(self))
 	{
@@ -879,7 +871,7 @@ func void UnEquip_Prot_BlackEye()
 	{
 		SC_IsBlackEyeProtected = FALSE;
 	};
-};
+};*/
 
 instance ItMi_KarrasBlessedStone_Mis(C_Item)
 {
@@ -938,9 +930,9 @@ func void Use_RichterKomproBrief()
 
 instance ItWr_MorgahardTip(C_Item)
 {
-	name = "Письмо";
+	name = NAME_Letter;
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+	flags = ITEM_MULTI | ITEM_MISSION;
 	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
@@ -982,7 +974,6 @@ instance ItWr_Map_Shrine_MIS(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 200;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";

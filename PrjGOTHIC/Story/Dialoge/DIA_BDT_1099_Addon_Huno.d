@@ -18,6 +18,7 @@ func int DIA_Addon_Huno_EXIT_Condition()
 func void DIA_Addon_Huno_EXIT_Info()
 {
 	B_EquipTrader(self);
+	EnteredBanditsCamp = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -29,7 +30,7 @@ instance DIA_Addon_Huno_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Huno_PICKPOCKET_Condition;
 	information = DIA_Addon_Huno_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_80;
+	description = Pickpocket_100;
 };
 
 
@@ -70,13 +71,16 @@ instance DIA_Addon_Huno_Abwimmeln(C_Info)
 
 func int DIA_Addon_Huno_Abwimmeln_Condition()
 {
-	if(Huno_MEGA_Angepisst == TRUE)
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
-	};
-	if((Huno_zuSnaf == TRUE) && !Npc_KnowsInfo(other,DIA_Addon_Fisk_Meeting) && Npc_IsInState(self,ZS_Talk))
-	{
-		return TRUE;
+		if(Huno_MEGA_Angepisst == TRUE)
+		{
+			return TRUE;
+		};
+		if((Huno_zuSnaf == TRUE) && !Npc_KnowsInfo(other,DIA_Addon_Fisk_Meeting))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -209,7 +213,7 @@ func void DIA_Addon_Huno_Armor_Info()
 		};
 		BDT_Armor_H_Value = 2100;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/15/0. (2100 золотых)",DIA_Addon_Huno_Armor_BUY);
+		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/0/0. (2100 золотых)",DIA_Addon_Huno_Armor_BUY);
 	}
 	else
 	{
@@ -217,7 +221,7 @@ func void DIA_Addon_Huno_Armor_Info()
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_04");	//Фиск, говоришь? Хм, ну, я ему и в самом деле должен. Ладно, будет тебе скидка.
 		BDT_Armor_H_Value = 1000;
 		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/15/0. (1000 золотых)",DIA_Addon_Huno_Armor_BUY);
+		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/0/0. (1000 золотых)",DIA_Addon_Huno_Armor_BUY);
 	};
 };
 
@@ -234,7 +238,7 @@ func void DIA_Addon_Huno_Armor_BUY()
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_Buy_06_01");	//Отлично.
 		AI_PrintScreen("Тяжелые доспехи бандита получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		CreateInvItem(hero,ITAR_BDT_H);
-		AI_EquipArmor(hero,ITAR_BDT_H);
+//		AI_EquipArmor(hero,ITAR_BDT_H);
 		Huno_ArmorPerm = TRUE;
 	}
 	else
@@ -498,5 +502,35 @@ func void DIA_Addon_Huno_Trade_Info()
 	B_Say(other,self,"$TRADE_3");
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
+};
+
+instance DIA_Huno_RepairNecklace(C_Info)
+{
+	npc = BDT_1099_Addon_Huno;
+	nr = 600;
+	condition = DIA_Huno_RepairNecklace_Condition;
+	information = DIA_Huno_RepairNecklace_Info;
+	permanent = FALSE;
+	description = "Ты можешь чинить драгоценности?";
+};
+
+
+func int DIA_Huno_RepairNecklace_Condition()
+{
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	{
+		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Huno_RepairNecklace_Info()
+{
+	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	AI_Output(self,other,"DIA_Addon_Huno_Attentat_06_04");	//Я ничего об этом не знаю и знать не хочу!
+	MIS_SCKnowsInnosEyeIsBroken = TRUE;
+	AI_StopProcessInfos(self);
 };
 

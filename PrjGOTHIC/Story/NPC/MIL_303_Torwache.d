@@ -1,7 +1,8 @@
 
 instance MIL_303_Torwache(Npc_Default)
 {
-	name[0] = "Стражник у двери";
+	//удалить в 22 версии
+	name[0] = NAME_Tuerwache;
 	guild = GIL_MIL;
 	id = 303;
 	voice = 7;

@@ -40,7 +40,7 @@ func void DIA_DiegoOw_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_00");	//Эй, я думал, ты мертв.
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_01");	//Да... так было.
-	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Но теперь я вернулся, и ищу доказательства появления драконов.
+	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Но теперь я вернулся и ищу доказательства появления драконов.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_03");	//Для кого ты это делаешь?
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_04");	//Я работаю на лорда Хагена. С помощью паладинов драконов можно остановить.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, я отправился в Хоринис.
@@ -79,26 +79,20 @@ func void DIA_DiegoOw_Beweise_Info()
 	if(MIS_ScoutMine == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_14");	//Хорошо, я помогу тебе, чем смогу. Но я не буду рисковать своей шкурой неизвестно из-за чего.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_12");	//Хорошо, если такова твоя задача - иди, поговори с командующим Гарондом.
-		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_13");	//Если уж кто и знает что-нибудь о нападении драконов, то это парни из замка.
-	};
-	if(MIS_ScoutMine == LOG_Running)
-	{
 		AI_Output(other,self,"DIA_DiegoOw_Garond_15_00");	//Я здесь по поручению Гаронда. Он хочет знать, сколько руды было добыто к этому времени.
 		AI_Output(self,other,"DIA_DiegoOw_Garond_11_01");	//И тогда он даст тебе доказательства?
 		AI_Output(other,self,"DIA_DiegoOw_Garond_15_02");	//Именно. Поэтому - ты можешь сказать что-нибудь на этот счет?
 		if(Npc_KnowsInfo(other,DIA_Parcival_Diego))
 		{
 			AI_Output(self,other,"DIA_DiegoOw_Garond_11_03");	//Конечно, что ты хочешь знать?
-			AI_Output(self,other,"DIA_DiegoOw_Silvestro_15_00");	//Что ты знаешь о руде Сильвестро?
+			AI_Output(other,self,"DIA_DiegoOw_Silvestro_15_00");	//Что ты знаешь о руде Сильвестро?
 		};
 		B_LogEntry(TOPIC_ScoutMine,"Диего переправил в безопасное место ЧЕТЫРЕ ящика руды, добытых старателями Сильвестро.");
 	}
 	else
 	{
+		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_12");	//Хорошо, если такова твоя задача - иди, поговори с командующим Гарондом.
+		AI_Output(self,other,"DIA_DiegoOw_Hallo_11_13");	//Если уж кто и знает что-нибудь о нападении драконов, то это парни из замка.
 		AI_Output(self,other,"DIA_Addon_DiegoOw_Garond_11_01");	//Когда ты будешь в замке, можешь сказать Гаронду кое-что, что его очень заинтересует:
 	};
 	if(Npc_GetDistToWP(self,"LOCATION_02_05") <= 1000)

@@ -35,13 +35,13 @@ func void ZS_Stand_Eating()
 		};
 		self.aivar[AIV_Food] = FOOD_Bacon;
 	}
-	else if(random == FOOD_Bread)
+	else if(random == FOOD_Mutton)
 	{
 		if(!Npc_HasItems(self,ItFoMutton))
 		{
 			CreateInvItem(self,ItFoMutton);
 		};
-		self.aivar[AIV_Food] = FOOD_Bread;
+		self.aivar[AIV_Food] = FOOD_Mutton;
 	};
 };
 
@@ -85,7 +85,7 @@ func int ZS_Stand_Eating_Loop()
 		{
 			AI_UseItemToState(self,ItFo_Bacon,0);
 		};
-		if(self.aivar[AIV_Food] == FOOD_Bread)
+		if(self.aivar[AIV_Food] == FOOD_Mutton)
 		{
 			AI_UseItemToState(self,ItFoMutton,0);
 		};
@@ -97,7 +97,7 @@ func int ZS_Stand_Eating_Loop()
 		{
 			AI_PlayAniBS(self,"T_FOOD_RANDOM_1",BS_ITEMINTERACT);
 		}
-		else if((self.aivar[AIV_Food] == FOOD_Bacon) || (self.aivar[AIV_Food] == FOOD_Bread))
+		else if((self.aivar[AIV_Food] == FOOD_Bacon) || (self.aivar[AIV_Food] == FOOD_Mutton))
 		{
 			AI_PlayAniBS(self,"T_MEAT_RANDOM_1",BS_ITEMINTERACT);
 		}
@@ -129,7 +129,7 @@ func void ZS_Stand_Eating_End()
 	{
 		AI_UseItemToState(self,ItFo_Bacon,-1);
 	};
-	if(self.aivar[AIV_Food] == FOOD_Bread)
+	if(self.aivar[AIV_Food] == FOOD_Mutton)
 	{
 		AI_UseItemToState(self,ItFoMutton,-1);
 	};

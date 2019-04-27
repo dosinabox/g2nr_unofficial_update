@@ -180,7 +180,7 @@ instance DIA_Matteo_LEATHER(C_Info)
 	condition = DIA_Matteo_LEATHER_Condition;
 	information = DIA_Matteo_LEATHER_Info;
 	permanent = TRUE;
-	description = "Купить кожаные доспехи. Защита: 25/20/15/0. (250 золотых)";
+	description = "Купить кожаные доспехи. Защита: 25/20/5/0. (250 золотых)";
 };
 
 
@@ -200,7 +200,7 @@ func void DIA_Matteo_LEATHER_Info()
 		AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
 		CreateInvItem(hero,ITAR_Leather_L);
 		AI_PrintScreen("Кожаные доспехи получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_Leather_L);
+//		AI_EquipArmor(hero,ITAR_Leather_L);
 		Matteo_LeatherBought = TRUE;
 	}
 	else
@@ -496,7 +496,7 @@ func void DIA_MAtteo_GoldRunning_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Matteo_GoldRunning_09_06");	//Ты хочешь заплатить за нее? Хм - я бы предпочел, чтобы ты выколотил эти деньги из нее!
+			AI_Output(self,other,"DIA_Matteo_GoldRunning_09_06");	//Ты хочешь заплатить за нее? Хм, я бы предпочел, чтобы ты выколотил эти деньги из нее!
 			AI_Output(self,other,"DIA_Matteo_GoldRunning_09_07");	//Но все же - 100 золотых есть 100 золотых.
 			AI_Output(self,other,"DIA_Matteo_GoldRunning_09_08");	//Ты выполнил свою часть сделки.
 		};

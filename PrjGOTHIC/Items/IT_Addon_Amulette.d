@@ -31,7 +31,6 @@ instance ItAm_Addon_Franco(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_Franco;
-//	visual = "ItAm_Hp_01.3ds";
 	visual = "ItAm_Addon_Franco.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -80,13 +79,51 @@ func void UnEquip_ItAm_Addon_Franco()
 };
 
 
+instance ItAm_Addon_Greg(C_Item)
+{
+	name = NAME_Amulett;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_AMULET | ITEM_MISSION;
+	value = 900;
+	visual = "ItAm_Addon_Greg.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	on_equip = Equip_ItAm_Addon_Greg;
+	on_unequip = UnEquip_ItAm_Addon_Greg;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Амулет капитана";
+	text[2] = NAME_Prot_Edge;
+	count[2] = 5;
+	text[3] = NAME_Prot_Point;
+	count[3] = 5;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
+};
+
+
+func void Equip_ItAm_Addon_Greg()
+{
+	self.protection[PROT_EDGE] += 5;
+	self.protection[PROT_BLUNT] += 5;
+	self.protection[PROT_POINT] += 5;
+};
+
+func void UnEquip_ItAm_Addon_Greg()
+{
+	self.protection[PROT_EDGE] -= 5;
+	self.protection[PROT_BLUNT] -= 5;
+	self.protection[PROT_POINT] -= 5;
+};
+
+
 instance ItAm_Addon_Health(C_Item)
 {
 	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_Health;
-//	visual = "ItAm_Hp_01.3ds";
 	visual = "ItAm_Addon_Health.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -142,7 +179,6 @@ instance ItRi_Addon_Health_01(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Health_01;
-//	visual = "ItRi_Prot_Total_01.3ds";
 	visual = "ItRi_Addon_Health.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -200,7 +236,6 @@ instance ItRi_Addon_Health_02(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Health_01;
-//	visual = "ItRi_Prot_Total_01.3ds";
 	visual = "ItRi_Addon_Health.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -258,7 +293,6 @@ instance ItAm_Addon_MANA(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_Mana;
-//	visual = "ItAm_Hp_01.3ds";
 	visual = "ItAm_Addon_Mana.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -315,7 +349,6 @@ instance ItRi_Addon_MANA_01(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Mana_01;
-//	visual = "ItRi_Prot_Total_01.3ds";
 	visual = "ItRi_Addon_Mana.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -374,7 +407,6 @@ instance ItRi_Addon_MANA_02(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_Mana_01;
-//	visual = "ItRi_Prot_Total_01.3ds";
 	visual = "ItRi_Addon_Mana.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -433,7 +465,6 @@ instance ItAm_Addon_STR(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_ItAm_Addon_STR;
-//	visual = "ItAm_Hp_01.3ds";
 	visual = "ItAm_Addon_Str.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -482,7 +513,6 @@ instance ItRi_Addon_STR_01(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_STR_01;
-//	visual = "ItRi_Prot_Total_02.3ds";
 	visual = "ItRi_Addon_Str.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -533,7 +563,6 @@ instance ItRi_Addon_STR_02(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_RING;
 	value = Value_ItRi_Addon_STR_01;
-//	visual = "ItRi_Prot_Total_02.3ds";
 	visual = "ItRi_Addon_Str.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -575,5 +604,25 @@ func void UnEquip_ItRi_Addon_STR_02()
 	self.protection[PROT_EDGE] += NewValue - OldValue;
 	self.protection[PROT_BLUNT] += NewValue - OldValue;
 	STR_Artefakt_Effekt = FALSE;
+};
+
+instance TestAmulet(C_Item)
+{
+	name = NAME_Amulett;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_AMULET | ITEM_MISSION;
+	value = 0;
+	visual = "ItAm_Addon_Greg.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Амулет тестировщика";
+	text[1] = "Скомпилировано 27 апреля 2019г.";
+	text[2] = "Установленная версия обновления:";
+	count[2] = fix_version_start;
+	text[3] = "Версия обновления в сохраненке:";
+	count[3] = fix_version_save;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 

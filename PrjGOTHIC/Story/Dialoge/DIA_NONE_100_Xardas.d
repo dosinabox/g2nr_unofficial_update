@@ -2,7 +2,7 @@
 instance DIA_Xardas_FirstEXIT(C_Info)
 {
 	npc = NONE_100_Xardas;
-	nr = 999;
+	nr = 990;
 	condition = DIA_Xardas_FirstEXIT_Condition;
 	information = DIA_Xardas_FirstEXIT_Info;
 	permanent = FALSE;
@@ -42,7 +42,7 @@ instance DIA_Xardas_EXIT(C_Info)
 
 func int DIA_Xardas_EXIT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT))
 	{
 		return TRUE;
 	};
@@ -90,11 +90,13 @@ func void DIA_Addon_Xardas_Hello_Man()
 	PlayVideo("Intro_ADDON.BIK");
 	/////восстановление
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_01");	//(пренебрежительно) Люди слабы.
-	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ... люди?
+	AI_Output(other,self,"DIA_Addon_AddonIntro_15_00");	//(ошеломлен) ...люди?
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_02");	//(пренебрежительно) Они слишком легко поддаются соблазнам Зла.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_03");	//Таким образом они вовлекаются в дела, которые не могут понять и уж тем более не могут контролировать.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_04");	//Твердые в своей вере уже начали сражение с врагом.
 	/////
+	//AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_03");	//Именно это и произошло.
+	//AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_06");	//Приспешники Белиара оскверняют древнейшие алтари богов.
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_10");	//Ты должен стать их союзником! Это единственный способ остановить Белиара.
 	Addon_zuerst = TRUE;
 };
@@ -105,10 +107,10 @@ func void DIA_Addon_Xardas_Hello_Dragons()
 	AI_Output(self,other,"DIA_Xardas_Hello_14_04");	//... был изгнан. Ты победил его, да, это так - но не в наших силах остановить войну, которая разгорается сейчас.
 	AI_Output(other,self,"DIA_Xardas_Hello_15_05");	//Ты говоришь об орках?
 	AI_Output(self,other,"DIA_Xardas_Hello_14_06");	//Я говорю о гораздо более ужасных созданиях.
-	AI_Output(self,other,"DIA_Xardas_Hello_14_07");	//Своим последним, яростным воплем, Спящий привел в движение армии Тьмы.
+	AI_Output(self,other,"DIA_Xardas_Hello_14_07");	//Своим последним яростным воплем Спящий привел в движение армии Тьмы.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_08");	//Это был приказ всем созданиям Тьмы. Слово силы, которому они все обязаны повиноваться.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_09");	//Его последним приказом было: ИДИТЕ! И они пошли. Все. Даже драконы.
-	AI_Output(other,self,"DIA_Xardas_Hello_15_10");	//(изумленно) Драконы!
+	AI_Output(other,self,"DIA_Xardas_Hello_15_10");	//(изумленно) Драконы?
 	AI_Output(self,other,"DIA_Xardas_Hello_14_11");	//Это творения древней силы. Я чувствую их присутствие - даже здесь.
 	AI_Output(self,other,"DIA_Xardas_Hello_14_12");	//И они собрали вокруг себя целую армию из низших существ.
 	AI_Output(other,self,"DIA_Xardas_Hello_15_13");	//И где эта армия сейчас?
@@ -272,6 +274,14 @@ func void DIA_Addon_Xardas_PortalAgain_Info()
 };
 
 
+func void B_Xardas_ClawIsLost()
+{
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_14");	//Это оружие могло бы сослужить нам огромную службу!
+	AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_15");	//Я думаю, что я сделал правильный выбор.
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_16");	//(вздыхает) Пути богов неисповедимы...
+};
+
 instance DIA_Addon_Xardas_AddonSuccess(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -284,7 +294,7 @@ instance DIA_Addon_Xardas_AddonSuccess(C_Info)
 
 func int DIA_Addon_Xardas_AddonSuccess_Condition()
 {
-	if(C_ScHasBeliarsWeapon() || (Saturas_KlaueInsMeer == TRUE) || (RavenIsDead == TRUE))
+	if(RavenIsDead == TRUE)
 	{
 		return TRUE;
 	};
@@ -310,12 +320,38 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 		if(Saturas_KlaueInsMeer == TRUE)
 		{
 			AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_12");	//Я отдал его магам Воды, чтобы они утопили его в море...
+			XardasKnowsAboutDestroyedClaw = TRUE;
 		};
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_14");	//Это оружие могло бы сослужить нам огромную службу!
-		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_15");	//Я думаю, что я сделал правильный выбор.
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_16");	//(вздыхает) Пути богов неисповедимы...
+		B_Xardas_ClawIsLost();
 	};
+};
+
+
+instance DIA_Xardas_WhereIsClaw(C_Info)
+{
+	npc = NONE_100_Xardas;
+	nr = 77;
+	condition = DIA_Xardas_WhereIsClaw_Condition;
+	information = DIA_Xardas_WhereIsClaw_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Xardas_WhereIsClaw_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_AddonSuccess) && (XardasKnowsAboutDestroyedClaw == FALSE) && (Saturas_KlaueInsMeer == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Xardas_WhereIsClaw_Info()
+{
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_06");	//Коготь Белиара?! Где он сейчас? Он у тебя с собой?
+	AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_12");	//Я отдал его магам Воды, чтобы они утопили его в море...
+	XardasKnowsAboutDestroyedClaw = TRUE;
+	B_Xardas_ClawIsLost();
 };
 
 
@@ -418,7 +454,7 @@ instance DIA_Xardas_Khorinis(C_Info)
 
 func int DIA_Xardas_Khorinis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (Lothar.aivar[AIV_TalkedToPlayer] == FALSE) && (Kapitel < 3))
+	if(Npc_KnowsInfo(other,DIA_Xardas_TODO) && (PlayerEnteredCity == FALSE) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -516,12 +552,14 @@ func void DIA_Xardas_ABOUTLESTER_Info()
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_02");	//Это почти чудо, что ему удалось выжить. Я отправил его в постель.
 	AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_03");	//Что он рассказал тебе?
 	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_04");	//Боюсь, что ничего хорошего. Он видел не только дракона, но еще и людей в черных плащах с капюшонами.
-	AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_05");	//И?
-	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_06");	//Если эти люди существуют, то их присутствие несет определенную угрозу.
-	AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_07");	//И мне это не нравится. Вот, возьми кольцо. Оно защитит тебя от магии.
-//	B_GiveInvItems(self,other,ItRi_Prot_Mage_01,1);
-	B_GiveInvItems(self,other,ItRi_Prot_Mage_03,1);
-	B_GivePlayerXP(XP_Ambient);
+	if(Kapitel < 3)
+	{
+		AI_Output(other,self,"DIA_Xardas_ABOUTLESTER_15_05");	//И?
+		AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_06");	//Если эти люди существуют, то их присутствие несет определенную угрозу.
+		AI_Output(self,other,"DIA_Xardas_ABOUTLESTER_14_07");	//И мне это не нравится. Вот, возьми кольцо. Оно защитит тебя от магии.
+		B_GiveInvItems(self,other,ItRi_Prot_Mage_03,1);
+	};
+	B_GivePlayerXP(XP_AmbientKap2);
 };
 
 
@@ -531,14 +569,15 @@ instance DIA_Xardas_FirstPal(C_Info)
 	nr = 10;
 	condition = DIA_Xardas_FirstPal_Condition;
 	information = DIA_Xardas_FirstPal_Info;
-	permanent = FALSE;
+//	permanent = FALSE;
+	permanent = TRUE;
 	description = "Я был в городе...";
 };
 
 
 func int DIA_Xardas_FirstPal_Condition()
 {
-	if((Lothar.aivar[AIV_TalkedToPlayer] == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE))
+	if((PlayerEnteredCity == TRUE) && (Kapitel < 3) && (XardasKnowsAboutProof == FALSE))
 	{
 		return TRUE;
 	};
@@ -548,11 +587,45 @@ func void DIA_Xardas_FirstPal_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_FirstPal_15_00");	//Я был в городе...
 	AI_Output(self,other,"DIA_Xardas_FirstPal_14_01");	//И? Ты смог поговорить с предводителем паладинов?
-	AI_Output(other,self,"DIA_Xardas_FirstPal_15_02");	//Меня к нему не пропустят...
-	AI_Output(self,other,"DIA_Xardas_FirstPal_14_03");	//Чушь! Должен быть способ увидеться с ним.
-	AI_Output(self,other,"DIA_Xardas_FirstPal_14_04");	//Если все остальное не получится, вступи в монастырь.
-	AI_Output(self,other,"DIA_Xardas_FirstPal_14_05");	//Это, возможно, сомнительная затея с точки зрения морали, но это даст тебе то, что тебе нужно.
-	AI_Output(self,other,"DIA_Xardas_FirstPal_14_06");	//Если ты будешь магом, ему придется встретиться с тобой.
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		AI_Output(other,self,"DIA_Xardas_FirstPal_15_02");	//Меня к нему не пропустят...
+		AI_Output(self,other,"DIA_Xardas_FirstPal_14_03");	//Чушь! Должен быть способ увидеться с ним.
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Xardas_FirstPal_14_04");	//Если все остальное не получится, вступи в монастырь.
+			AI_Output(self,other,"DIA_Xardas_FirstPal_14_05");	//Это, возможно, сомнительная затея с точки зрения морали, но это даст тебе то, что тебе нужно.
+		};
+		AI_Output(self,other,"DIA_Xardas_FirstPal_14_06");	//Если ты будешь магом, ему придется встретиться с тобой.
+	}
+	else if(LordHagen.aivar[AIV_TalkedToPlayer] == TRUE)
+	{
+		AI_Output(other,self,"DIA_Addon_Lares_GOFORESTPRE_ja_15_00");	//Да.
+		if(Kapitel == 2)
+		{
+			AI_Output(other,self,"DIA_Addon_Vatras_NowRanger_15_03");	//Но он отправил меня в Долину Рудников, чтобы я добыл ему доказательства своих слов!
+			AI_Output(self,other,"DIA_Xardas_DMTSINDDA_Beweis_14_01");	//Что еще за доказательство?
+			AI_Output(other,self,"DIA_Marcos_Hagen_15_00");	//Я должен доставить лорду Хагену доказательства существования драконов.
+			AI_Output(self,other,"DIA_Xardas_Weiter_14_01");	//Мы должны действовать согласно нашему плану. Другого пути нет.
+			XardasKnowsAboutProof = TRUE;
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_01");	//Хорошо. Что он сказал?
+			AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+			AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+		};
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_06");	//Нет. Еще нет...
+		AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+	};
+	if((LesterMovedToXardas == FALSE) && Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+	{
+		B_StartOtherRoutine(Lester,"XARDAS");
+		LesterMovedToXardas = TRUE;
+	};
 };
 
 
@@ -578,7 +651,10 @@ func int DIA_Xardas_Weiter_Condition()
 func void DIA_Xardas_Weiter_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_Weiter_15_00");	//И что нам делать дальше?
-	AI_Output(self,other,"DIA_Xardas_Weiter_14_01");	//Мы должны действовать согласно нашему плану. Другого пути нет.
+	if(XardasKnowsAboutProof == FALSE)
+	{
+		AI_Output(self,other,"DIA_Xardas_Weiter_14_01");	//Мы должны действовать согласно нашему плану. Другого пути нет.
+	};
 	AI_Output(self,other,"DIA_Xardas_Weiter_14_02");	//Ты должен добыть Глаз Инноса, а я буду продолжать искать ответы.
 };
 
@@ -613,31 +689,6 @@ func void DIA_Xardas_KdfSecret_Info()
 };
 
 
-instance DIA_Xardas_KAP3_EXIT(C_Info)
-{
-	npc = NONE_100_Xardas;
-	nr = 999;
-	condition = DIA_Xardas_KAP3_EXIT_Condition;
-	information = DIA_Xardas_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Xardas_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Xardas_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Xardas_BACKFROMOW(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -663,7 +714,7 @@ func void DIA_Xardas_BACKFROMOW_Info()
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_02");	//Ты был прав. Там все кишит врагами, даже яблоку упасть негде.
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_03");	//Орки осаждают замок, а драконы опустошают все вокруг.
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_04");	//Осталось недолго, прежде чем они нападут на Хоринис, если я не ошибаюсь.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(150);
 };
 
 
@@ -698,6 +749,10 @@ func void DIA_Xardas_DMTSINDDA_Info()
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_04");	//Игра в прятки окончена. Вчера еще никто не знал, какова будет атака врага. Но теперь это становится слишком очевидно.
 	B_LogEntry(TOPIC_INNOSEYE,"Врагу теперь известно, что я ищу Глаз Инноса. Мне нужно побыстрее найти его, пока еще не слишком поздно.");
 	Info_ClearChoices(DIA_Xardas_DMTSINDDA);
+	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) && !Npc_KnowsInfo(other,DIA_Xardas_ABOUTLESTER))
+	{
+		Info_AddChoice(DIA_Xardas_DMTSINDDA,"Ты уже поговорил с Лестером?",DIA_Xardas_ABOUTLESTER_Info);
+	};
 	Info_AddChoice(DIA_Xardas_DMTSINDDA,"Меня атаковали маги в черных мантиях.",DIA_Xardas_DMTSINDDA_DMT);
 	Info_AddChoice(DIA_Xardas_DMTSINDDA,"Я, наконец, добыл доказательство, которое требовал от меня лорд Хаген.",DIA_Xardas_DMTSINDDA_Beweis);
 };
@@ -719,11 +774,15 @@ func void DIA_Xardas_DMTSINDDA_DMT()
 func void DIA_Xardas_DMTSINDDA_Beweis()
 {
 	AI_Output(other,self,"DIA_Xardas_DMTSINDDA_Beweis_15_00");	//Я, наконец, добыл доказательство, которое требовал от меня лорд Хаген.
-	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_Beweis_14_01");	//Что еще за доказательство?
+	if(XardasKnowsAboutProof == FALSE)
+	{
+		AI_Output(self,other,"DIA_Xardas_DMTSINDDA_Beweis_14_01");	//Что еще за доказательство?
+	};
 	AI_Output(other,self,"DIA_Xardas_DMTSINDDA_Beweis_15_02");	//Я получил письмо от Гаронда, предводителя паладинов в Долине Рудников. В нем он просит о подкреплении.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_Beweis_14_03");	//Этого должно быть достаточно, чтобы убедить воинственного ветерана. Отлично.
 	Info_AddChoice(DIA_Xardas_DMTSINDDA,"И каков будет наш следующий шаг?",DIA_Xardas_DMTSINDDA_DMT_WhatToDo);
-	B_GivePlayerXP(XP_Ambient);
+	XardasKnowsAboutProof = TRUE;
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 func void DIA_Xardas_DMTSINDDA_DMT_WhatToDo()
@@ -762,7 +821,7 @@ func void DIA_Xardas_INNOSEYEBROKEN_Info()
 	AI_Output(other,self,"DIA_Xardas_INNOSEYEBROKEN_15_02");	//Я нашел его в северных лесах - к сожалению, мне удалось найти только фрагменты.
 	AI_Output(self,other,"DIA_Xardas_INNOSEYEBROKEN_14_03");	//Это был наш единственный шанс противостоять этим драконам. И мы провалили его!
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 	Info_ClearChoices(DIA_Xardas_INNOSEYEBROKEN);
 	Info_AddChoice(DIA_Xardas_INNOSEYEBROKEN,"И что теперь?",DIA_Xardas_INNOSEYEBROKEN_wasnun);
 };
@@ -807,15 +866,15 @@ func void DIA_Xardas_RITUALREQUEST_Info()
 		AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_05");	//Не стоит заставлять Ватраса ждать. Я отправляюсь немедленно. А ты должен выполнить свою задачу, а затем присоединиться ко мне опять.
 		AI_StopProcessInfos(self);
 		B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
-		B_GivePlayerXP(XP_Ambient);
+		B_GivePlayerXP(XP_AmbientKap3 * 2);
 		Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
 		Xardas_GoesToRitualInnosEye = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_06");	//Я буду помогать в этом ритуале только когда буду уверен, что ты готов к встрече с драконами.
+		B_GivePlayerXP(XP_AmbientKap3);
 	};
-	B_GivePlayerXP(XP_Ambient);
 };
 
 
@@ -876,7 +935,7 @@ instance DIA_Xardas_BEREIT(C_Info)
 
 func int DIA_Xardas_BEREIT_Condition()
 {
-	if((Xardas_GoesToRitualInnosEye == FALSE) && Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && ((hero.guild == GIL_DJG) || (hero.guild == GIL_PAL)))
+	if(Npc_KnowsInfo(other,DIA_Xardas_RITUALREQUEST) && (Xardas_GoesToRitualInnosEye == FALSE) && ((hero.guild == GIL_DJG) || (hero.guild == GIL_PAL)))
 	{
 		return TRUE;
 	};
@@ -888,7 +947,7 @@ func void DIA_Xardas_BEREIT_Info()
 	AI_Output(self,other,"DIA_Xardas_BEREIT_14_01");	//Тогда не будем терять времени. Я немедленно отправлюсь к Кругу Солнца. А ты выполни свои задачи. Я встречу тебя там.
 	AI_StopProcessInfos(self);
 	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
 	Xardas_GoesToRitualInnosEye = TRUE;
 };
@@ -1031,31 +1090,6 @@ func void DIA_Xardas_WASNUN_Info()
 };
 
 
-instance DIA_Xardas_KAP4_EXIT(C_Info)
-{
-	npc = NONE_100_Xardas;
-	nr = 999;
-	condition = DIA_Xardas_KAP4_EXIT_Condition;
-	information = DIA_Xardas_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Xardas_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Xardas_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Xardas_PERM4(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -1069,6 +1103,10 @@ instance DIA_Xardas_PERM4(C_Info)
 
 func int DIA_Xardas_PERM4_Condition()
 {
+	if((Kapitel == 3) && Npc_KnowsInfo(other,DIA_Xardas_DMTSINDDA))
+	{
+		return TRUE;
+	};
 	if(Kapitel == 4)
 	{
 		return TRUE;
@@ -1078,57 +1116,22 @@ func int DIA_Xardas_PERM4_Condition()
 func void DIA_Xardas_PERM4_Info()
 {
 	AI_Output(other,self,"DIA_Xardas_PERM4_15_00");	//Что нового?
-	AI_Output(self,other,"DIA_Xardas_PERM4_14_01");	//Ищущие еще не ушли. Они не остановятся, пока не прикончат тебя.
-	AI_Output(self,other,"DIA_Xardas_PERM4_14_02");	//Убей драконов в Долине Рудников и выясни, кто стоит за этими нападениями. В противном случае, их сила только вырастет еще больше.
-};
-
-
-instance DIA_Xardas_KAP5_EXIT(C_Info)
-{
-	npc = NONE_100_Xardas;
-	nr = 999;
-	condition = DIA_Xardas_KAP5_EXIT_Condition;
-	information = DIA_Xardas_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Xardas_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
+	if(Kapitel == 3)
 	{
-		return TRUE;
+		if(MIS_Ulthar_HeileSchreine_PAL == LOG_SUCCESS)
+		{
+			AI_Output(self,other,"OUTRO_Xardas_14_10");	//Даже боги не знают, какая судьба нас ждет...
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_06");	//Приспешники Белиара оскверняют древнейшие алтари богов.
+			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_03");	//Именно это и произошло.
+		};
+	}
+	else if(Kapitel == 4)
+	{
+		AI_Output(self,other,"DIA_Xardas_PERM4_14_01");	//Ищущие еще не ушли. Они не остановятся, пока не прикончат тебя.
+		AI_Output(self,other,"DIA_Xardas_PERM4_14_02");	//Убей драконов в Долине Рудников и выясни, кто стоит за этими нападениями. В противном случае, их сила только вырастет еще больше.
 	};
 };
 
-func void DIA_Xardas_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Xardas_KAP6_EXIT(C_Info)
-{
-	npc = NONE_100_Xardas;
-	nr = 999;
-	condition = DIA_Xardas_KAP6_EXIT_Condition;
-	information = DIA_Xardas_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Xardas_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Xardas_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/

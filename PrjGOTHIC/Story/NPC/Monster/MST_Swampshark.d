@@ -14,7 +14,7 @@ prototype Mst_Default_Swampshark(C_Npc)
 	protection[PROT_BLUNT] = 100;
 	protection[PROT_EDGE] = 100;
 	protection[PROT_POINT] = 100;
-	protection[PROT_FIRE] = 17;	//100;
+	protection[PROT_FIRE] = 100;	//17;
 	protection[PROT_FLY] = 100;
 	protection[PROT_MAGIC] = 0;
 	damagetype = DAM_EDGE;

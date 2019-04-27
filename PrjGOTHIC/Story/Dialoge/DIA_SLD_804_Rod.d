@@ -207,6 +207,11 @@ func void DIA_Rod_WannaJoin_Info()
 			AI_Output(self,other,"DIA_Rod_WannaJoin_06_05");	//Ох, да, у тебя неплохой меч. Остальному ты научишься.
 		};
 		AI_Output(self,other,"DIA_Rod_WannaJoin_06_06");	//Если тебе интересно мое мнение, то я не против.
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		B_LogEntry(TOPIC_SLDRespekt,"Я получу голос Рода, если я захочу присоединиться к наемникам.");
 		DIA_Rod_WannaJoin.permanent = FALSE;
 	}
@@ -442,8 +447,6 @@ func void DIA_Rod_Wette_KeepIt()
 };
 
 
-var int Rod_SchwertXPGiven;
-
 instance DIA_Rod_GiveItBack(C_Info)
 {
 	npc = SLD_804_Rod;
@@ -465,14 +468,7 @@ func int DIA_Rod_GiveItBack_Condition()
 
 func void DIA_Rod_GiveItBack_Info()
 {
-	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
-	AI_Output(other,self,"DIA_Rod_GiveItBack_15_00");	//Вот, держи свой меч!
-	AI_Output(self,other,"DIA_Rod_GiveItBack_06_01");	//Вовремя!
-	if(Rod_SchwertXPGiven == FALSE)
-	{
-		B_GivePlayerXP(XP_Ambient);
-		Rod_SchwertXPGiven = TRUE;
-	};
+	B_GiveRodSword();
 };
 
 

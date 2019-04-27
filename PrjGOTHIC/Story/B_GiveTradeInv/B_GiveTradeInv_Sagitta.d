@@ -61,7 +61,10 @@ func void B_GiveTradeInv_Sagitta(var C_Npc slf)
 		CreateInvItems(slf,ItPl_Mana_Herb_02,4);
 		CreateInvItems(slf,ItPl_Speed_Herb_01,3);
 		CreateInvItems(slf,ItPl_Strength_Herb_01,1);
-		CreateInvItems(slf,ItPl_Dex_Herb_01,1);
+		if(RandomGoblinBerries == FALSE)
+		{
+			CreateInvItems(slf,ItPl_Dex_Herb_01,1);
+		};
 		CreateInvItems(slf,ItPo_Health_Addon_04,3);
 		CreateInvItems(slf,ItPo_Mana_Addon_04,3);
 		CreateInvItems(slf,ItPo_Health_02,3);

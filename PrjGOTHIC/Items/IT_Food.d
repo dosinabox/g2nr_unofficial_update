@@ -281,7 +281,6 @@ instance ItFo_XPStew(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
 	value = Value_BonusFood;
-//	visual = "ItFo_Stew.3ds";
 	visual = "ItFo_XPStew.3ds";
 	material = MAT_WOOD;
 	scemeName = "RICE";
@@ -310,7 +309,6 @@ instance ItFo_CoragonsBeer(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
 	value = Value_Beer;
-//	visual = "ItFo_Beer.3DS";
 	visual = "ItFo_CoragonsBeer.3DS";
 	material = MAT_WOOD;
 	scemeName = "POTIONFAST";
@@ -556,6 +554,38 @@ func void Use_Wine()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wine * 3);
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Wine * 3);
 	B_NpcSetDrunk(30);
+};
+
+
+instance ItFo_DarkWine(C_Item)
+{
+	name = "Темное вино";
+	mainflag = ITEM_KAT_FOOD;
+	flags = ITEM_MULTI;
+	value = Value_Wine * 3;
+	visual = "ItFo_DarkWine.3DS";
+	material = MAT_GLAS;
+	scemeName = "POTION";
+	on_state[0] = Use_DarkWine;
+	description = name;
+	text[1] = NAME_Bonus_HP;
+	count[1] = 10;
+	text[2] = NAME_Bonus_Mana;
+	count[2] = 10;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void Use_DarkWine()
+{
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,10);
+	Npc_ChangeAttribute(self,ATR_MANA,10);
+	B_NpcSetDrunk(40);
+	if(Npc_IsPlayer(self))
+	{
+		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_ACROBATIC.MDS",10000);
+	};
 };
 
 

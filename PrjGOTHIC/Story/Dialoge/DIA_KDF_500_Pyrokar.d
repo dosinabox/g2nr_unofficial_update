@@ -12,10 +12,7 @@ instance DIA_Pyrokar_EXIT(C_Info)
 
 func int DIA_Pyrokar_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Pyrokar_EXIT_Info()
@@ -278,6 +275,7 @@ func void DIA_Pyrokar_TEST_Info()
 	Ulf.aivar[AIV_NewsOverride] = TRUE;
 	Ulf.aivar[AIV_IgnoresArmor] = TRUE;
 	Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
+	Ulf.guild = GIL_NOV;
 	MIS_SCHNITZELJAGD = LOG_Running;
 	AI_StopProcessInfos(self);
 };
@@ -481,7 +479,7 @@ func void DIA_Pyrokar_OATH_Info()
 	Npc_SetTrueGuild(hero,GIL_KDF);
 	CreateInvItem(hero,ITAR_KDF_L);
 	AI_PrintScreen("Легкая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-	AI_EquipArmor(hero,ITAR_KDF_L);
+//	AI_EquipArmor(hero,ITAR_KDF_L);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
 	Npc_ExchangeRoutine(Lothar,"START");
@@ -791,7 +789,7 @@ instance DIA_Pyrokar_SPELLS(C_Info)
 	condition = DIA_Pyrokar_SPELLS_Condition;
 	information = DIA_Pyrokar_SPELLS_Info;
 	permanent = TRUE;
-	description = "Обучи меня (созданию рун)";
+	description = "Я хочу изучить новые заклинания.";
 };
 
 
@@ -807,7 +805,8 @@ func void DIA_Pyrokar_SPELLS_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
+//	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
+	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Pyrokar_SPELLS);
 	Info_AddChoice(DIA_Pyrokar_SPELLS,Dialog_Back,DIA_Pyrokar_SPELLS_BACK);
 	if(PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE)
@@ -1009,31 +1008,6 @@ func void DIA_Pyrokar_PERM_nonKDF_Info()
 };
 
 
-instance DIA_Pyrokar_KAP3_EXIT(C_Info)
-{
-	npc = KDF_500_Pyrokar;
-	nr = 999;
-	condition = DIA_Pyrokar_KAP3_EXIT_Condition;
-	information = DIA_Pyrokar_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Pyrokar_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Pyrokar_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Pyrokar_BACKFROMOW(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -1102,7 +1076,22 @@ func int DIA_Pyrokar_GIVEINNOSEYE_Condition()
 func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_GIVEINNOSEYE_15_00");	//Я пришел, чтобы забрать Глаз Инноса.
+	if((other.guild == GIL_KDF) || (other.guild == GIL_PAL))
+	{
+		AI_Output(self,other,"DIA_Pyrokar_AmulettofDeath_CanHaveIt_11_01");	//Что? Что ты с ним собираешься делать?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Pyrokar_Auge_11_01");	//Любой, кто полагает, что он может не только найти этот священный амулет, но также и носить его - идиот.
+	};
+	AI_Output(other,self,"DIA_Addon_Vatras_Cavalorn_15_00");	//У меня для тебя письмо.
 	B_GiveInvItems(other,self,ItWr_PermissionToWearInnosEye_MIS,1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"THRONE",-1);
+		B_TurnToNpc(self,hero);
+	};
+	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_01");	//Я вижу, ты получил позволение лично от лорда Хагена носить Глаз Инноса.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_02");	//Но боюсь, мне придется разочаровать тебя. Мы стали жертвами вероломного плана врага.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_11_03");	//Глаз Инноса был нагло украден из этих священных стен.
@@ -1131,7 +1120,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_wer()
 		AI_Output(other,self,"DIA_Pyrokar_GIVEINNOSEYE_wer_15_01");	//Кто сделал это?
 	};
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_02");	//Зло коварно, и обычно действует тайно. Крайне редко можно видеть, как оно выползает на свет божий, чтобы открыто проводить в жизнь свои махинации.
-	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_03");	//Но в эти дни все стало по-другому. Враг теперь действует в открытую на каждой улице, в каждом доме и на каждой площади.
+	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_03");	//Но в эти дни все стало по-другому. Враг теперь действует в открытую: на каждой улице, в каждом доме и на каждой площади.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_04");	//Это может означать только, что он больше не боится своего противника, и не собирается отступать ни перед чем.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_05");	//Один из наших самых верных последователей, кандидат на священную робу Мага Огня, неожиданно изменил свою веру и сделал это в вызывающе дьявольской манере. Это Педро.
 	AI_Output(self,other,"DIA_Pyrokar_GIVEINNOSEYE_wer_11_06");	//Враг овладел им, нанеся тем самым ужасное поражение всем нам.
@@ -1202,7 +1191,7 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_05");	//Даже в своих худших кошмарах не мог я представить, что они обладают такой силой.
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 	MIS_NovizenChase = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 	Info_ClearChoices(DIA_Pyrokar_FOUNDINNOSEYE);
 	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,"Что мы теперь можем сделать?",DIA_Pyrokar_FOUNDINNOSEYE_was);
 };
@@ -1215,10 +1204,7 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_was()
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_03");	//Я даже представить себе не могу, что теперь ждет всех нас. Без защиты Глаза, мы беспомощны и находимся полностью в руках врага.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_11_04");	//Иди в город, к Ватрасу, магу Воды. В этой ужасной ситуации, только он знает, что нужно делать. Отнеси Глаз ему, и поторопись.
 	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,Dialog_Back,DIA_Pyrokar_FOUNDINNOSEYE_weiter);
-	if(hero.guild == GIL_KDF)
-	{
-		Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,"Почему Ватрас?",DIA_Pyrokar_FOUNDINNOSEYE_was_vatras);
-	};
+	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,"Почему Ватрас?",DIA_Pyrokar_FOUNDINNOSEYE_was_vatras);
 	Info_AddChoice(DIA_Pyrokar_FOUNDINNOSEYE,"Что такое Круг Солнца?",DIA_Pyrokar_FOUNDINNOSEYE_sonnenkreis);
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокар хочет, чтобы я спросил у мага Воды Ватраса, находящегося в городе, совета о том, что можно сделать с поврежденным Глазом.");
 	MIS_Pyrokar_GoToVatrasInnoseye = LOG_Running;
@@ -1227,7 +1213,10 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_was()
 func void DIA_Pyrokar_FOUNDINNOSEYE_was_vatras()
 {
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_15_00");	//Почему Ватрас?
-	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_11_01");	//Привилегия ношения робы мага не дает тебе права обсуждать мои приказы, брат.
+	if(other.guild == GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_11_01");	//Привилегия ношения робы мага не дает тебе права обсуждать мои приказы, брат.
+	};
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_11_02");	//Ватрас - слуга Аданоса. Только знания магов Воды могут принести нам прояснение в этот мрачный час.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_was_vatras_11_03");	//Это все, что тебе нужно знать.
 };
@@ -1277,7 +1266,7 @@ func void DIA_Pyrokar_SPOKETOVATRAS_Info()
 	AI_Output(self,other,"DIA_Pyrokar_SPOKETOVATRAS_11_08");	//Откуда мне знать, что этот Ксардас не в союзе с нашим врагом?
 	AI_Output(self,other,"DIA_Pyrokar_SPOKETOVATRAS_11_09");	//Я не могу доверять Ксардасу. И не важно, что мы так нуждаемся в нем.
 	AI_Output(self,other,"DIA_Pyrokar_SPOKETOVATRAS_11_10");	//Извини, но я не могу помочь Ватрасу при таких условиях.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -1409,8 +1398,8 @@ func void DIA_Pyrokar_AUGEGEHEILT_Info()
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_05");	//Носи эту священную робу с достоинством и неси в мир порядок, честь и славу, брат мой.
 		CreateInvItem(hero,ITAR_KDF_H);
 		AI_PrintScreen("Тяжелая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_KDF_H);
-		heroGIL_KDF2 = TRUE;
+//		AI_EquipArmor(hero,ITAR_KDF_H);
+//		heroGIL_KDF2 = TRUE;
 	};
 };
 
@@ -1450,10 +1439,11 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	AI_Output(self,other,"DIA_Pyrokar_KAP3_READY_11_09");	//Теперь у тебя есть все необходимое. Иди же. У тебя не так много времени.
 	TOPIC_END_INNOSEYE = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,1);
+		CreateInvItems(Gorax,ItRu_TeleportRitual,1);
 	};
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_Running);
@@ -1700,56 +1690,6 @@ func void DIA_Pyrokar_AlmanachBringen_Info()
 };
 
 
-instance DIA_Pyrokar_KAP4_EXIT(C_Info)
-{
-	npc = KDF_500_Pyrokar;
-	nr = 999;
-	condition = DIA_Pyrokar_KAP4_EXIT_Condition;
-	information = DIA_Pyrokar_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Pyrokar_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Pyrokar_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Pyrokar_KAP5_EXIT(C_Info)
-{
-	npc = KDF_500_Pyrokar;
-	nr = 999;
-	condition = DIA_Pyrokar_KAP5_EXIT_Condition;
-	information = DIA_Pyrokar_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Pyrokar_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Pyrokar_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Pyrokar_DRACHENTOT(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -1905,7 +1845,7 @@ func void DIA_Pyrokar_IRDORATHBOOKOPEN_glueck()
 	AI_Output(self,other,"DIA_Pyrokar_IRDORATHBOOKOPEN_glueck_11_02");	//Если даже я не смог открыть эту книгу, а затем приходит кто-то вроде тебя и играючи открывает ее...
 	AI_Output(self,other,"DIA_Pyrokar_IRDORATHBOOKOPEN_glueck_11_03");	//... это наводит меня на грустные размышления...
 	AI_Output(self,other,"DIA_Pyrokar_IRDORATHBOOKOPEN_glueck_11_04");	//Ладно. Так как ты, очевидно, единственный, кто смог открыть эту книгу, то я, пожалуй, позволю тебе держать ее у себя. По крайней мере, пока мы не разрешили этот кризис.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 	Info_ClearChoices(DIA_Pyrokar_IRDORATHBOOKOPEN);
 };
 
@@ -1914,7 +1854,7 @@ func void DIA_Pyrokar_IRDORATHBOOKOPEN_Xardas()
 	AI_Output(other,self,"DIA_Pyrokar_IRDORATHBOOKOPEN_Xardas_15_00");	//Ксардас рассказал мне секрет.
 	AI_Output(self,other,"DIA_Pyrokar_IRDORATHBOOKOPEN_Xardas_11_01");	//Ах, вот оно что. Как интересно. Мне остается только надеяться, что пагубное влияние Ксардаса не отравит твою душу.
 	AI_Output(self,other,"DIA_Pyrokar_IRDORATHBOOKOPEN_Xardas_11_02");	//Я предостерегаю тебя. Не поддавайся на уловки этого старого дьявола. Ты можешь пожалеть об этом.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 	Info_ClearChoices(DIA_Pyrokar_IRDORATHBOOKOPEN);
 };
 

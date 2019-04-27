@@ -55,7 +55,7 @@ func void DIA_Wolf_DI_HALLO_Info()
 	else if(DIA_Wolf_DI_HALLO_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Wolf_DI_HALLO_08_04");	//Эта кузница не в самом лучшем состоянии, но я думаю, у меня что-нибудь получится.
-		B_GivePlayerXP(XP_Ambient);
+		B_GivePlayerXP(XP_AmbientKap6);
 		DIA_Wolf_DI_HALLO_OneTime = TRUE;
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"SmithDI");

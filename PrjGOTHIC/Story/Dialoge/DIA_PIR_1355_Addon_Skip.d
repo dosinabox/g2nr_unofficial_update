@@ -72,7 +72,7 @@ instance DIA_Addon_Skip_Hello(C_Info)
 
 func int DIA_Addon_Skip_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (PlayerTalkedToSkipNW == TRUE))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -82,12 +82,14 @@ func void DIA_Addon_Skip_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_00");	//Так-так, кто же это повстречался старому Скипу?
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_01");	//Я тебя знаю!
-	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_02");	//Помнишь бухту рядом с городом?
-	AI_Output(other,self,"DIA_Addon_Skip_Hello_15_03");	//Скип, верно?
-	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_04");	//(гордо) Вижу, я произвел на тебя впечатление.
-	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_05");	//Но мне кажется, что я где-то еще видел твою рожу...
-	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_06");	//Ну конечно!
-//	B_UseFakeScroll();
+	if(PlayerTalkedToSkipNW == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_02");	//Помнишь бухту рядом с городом?
+		AI_Output(other,self,"DIA_Addon_Skip_Hello_15_03");	//Скип, верно?
+		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_04");	//(гордо) Вижу, я произвел на тебя впечатление.
+		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_05");	//Но мне кажется, что я где-то еще видел твою рожу...
+		AI_Output(self,other,"DIA_Addon_Skip_Hello_08_06");	//Ну конечно!
+	};
 	B_UseFakeHeroFace();
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_07");	//Не полное сходство, конечно, но это точно ты.
 	AI_Output(self,other,"DIA_Addon_Skip_Hello_08_08");	//Но не расстраивайся, приятель. Мое лицо на объявлении о розыске выглядит не лучше.
@@ -201,13 +203,16 @@ func int DIA_Addon_Skip_Transport_Condition()
 func void DIA_Addon_Skip_Transport_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Transport_15_00");	//Ты можешь отвезти меня в Хоринис?
-	if(GregIsBack == FALSE)
+	if(MIS_ADDON_SkipsGrog != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_Transport_08_01");	//Нет, приятель. Сейчас я никуда не поплыву. Сначала мне нужно достать себе грога.
 	}
-	else if(Skip_Transport_Variation == 0)
+	else if(GregIsBack == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Skip_Transport_08_02");	//Ты рехнулся? Мы потеряли корабль, приятель!
+	}
+	else if(Skip_Transport_Variation == 0)
+	{
 		AI_Output(self,other,"DIA_Addon_Skip_Transport_08_03");	//Я не собираюсь рисковать нашей последней шлюпкой только потому, что тебе лень самостоятельно дотащить свою задницу до Хориниса!
 		Skip_Transport_Variation = 1;
 	}
@@ -484,6 +489,35 @@ func void DIA_Addon_Skip_AngusHankMurder_Info()
 };
 
 
+func int C_SCHasSkipsGrog()
+{
+	if(Npc_HasItems(hero,ItMi_Grog_Crate) >= 5)
+	{
+		return TRUE;
+	}
+	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 4) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 4))
+	{
+		return TRUE;
+	}
+	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 3) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 8))
+	{
+		return TRUE;
+	}
+	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 2) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 12))
+	{
+		return TRUE;
+	}
+	else if((Npc_HasItems(hero,ItMi_Grog_Crate) == 1) && (Npc_HasItems(hero,ItFo_Addon_Grog) >= 16))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItFo_Addon_Grog) >= 20)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Addon_Skip_Grog(C_Info)
 {
 	npc = PIR_1355_Addon_Skip;
@@ -506,7 +540,7 @@ func int DIA_Addon_Skip_Grog_Condition()
 func void DIA_Addon_Skip_Grog_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Grog_15_00");	//По поводу грога...
-	if(Npc_HasItems(other,ItFo_Addon_Grog) >= 20)
+	if(C_SCHasSkipsGrog())
 	{
 		Info_ClearChoices(DIA_Addon_Skip_Grog);
 		Info_AddChoice(DIA_Addon_Skip_Grog,Dialog_Back,DIA_Addon_Skip_Grog_back);
@@ -527,7 +561,42 @@ func void DIA_Addon_Skip_Grog_back()
 func void DIA_Addon_Skip_Grog_geben()
 {
 	AI_Output(other,self,"DIA_Addon_Skip_Grog_geben_15_00");	//Вот тебе 20 бутылок.
-	B_GiveInvItems(other,self,ItFo_Addon_Grog,20);
+	if(Npc_HasItems(other,ItMi_Grog_Crate) >= 5)
+	{
+		B_GiveInvItems(other,self,ItMi_Grog_Crate,5);
+	}
+	else if((Npc_HasItems(other,ItMi_Grog_Crate) == 4) && (Npc_HasItems(other,ItFo_Addon_Grog) >= 4))
+	{
+		B_GiveInvItems(other,self,ItMi_Grog_Crate,4);
+		Npc_RemoveInvItems(other,ItFo_Addon_Grog,4);
+		CreateInvItems(self,ItFo_Addon_Grog,4);
+		AI_PrintScreen("4 предметов отдано (Грог)",-1,40,FONT_ScreenSmall,2);
+	}
+	else if((Npc_HasItems(other,ItMi_Grog_Crate) == 3) && (Npc_HasItems(other,ItFo_Addon_Grog) >= 8))
+	{
+		B_GiveInvItems(other,self,ItMi_Grog_Crate,3);
+		Npc_RemoveInvItems(other,ItFo_Addon_Grog,8);
+		CreateInvItems(self,ItFo_Addon_Grog,8);
+		AI_PrintScreen("8 предметов отдано (Грог)",-1,40,FONT_ScreenSmall,2);
+	}
+	else if((Npc_HasItems(other,ItMi_Grog_Crate) == 2) && (Npc_HasItems(other,ItFo_Addon_Grog) >= 12))
+	{
+		B_GiveInvItems(other,self,ItMi_Grog_Crate,2);
+		Npc_RemoveInvItems(other,ItFo_Addon_Grog,12);
+		CreateInvItems(self,ItFo_Addon_Grog,12);
+		AI_PrintScreen("12 предметов отдано (Грог)",-1,40,FONT_ScreenSmall,2);
+	}
+	else if((Npc_HasItems(other,ItMi_Grog_Crate) == 1) && (Npc_HasItems(other,ItFo_Addon_Grog) >= 16))
+	{
+		B_GiveInvItems(other,self,ItMi_Grog_Crate,1);
+		Npc_RemoveInvItems(other,ItFo_Addon_Grog,16);
+		CreateInvItems(self,ItFo_Addon_Grog,16);
+		AI_PrintScreen("16 предметов отдано (Грог)",-1,40,FONT_ScreenSmall,2);
+	}
+	else if(Npc_HasItems(other,ItFo_Addon_Grog) >= 20)
+	{
+		B_GiveInvItems(other,self,ItFo_Addon_Grog,20);
+	};
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"Скип получил назад свои 20 бутылок грога и теперь очень счастлив.");
 	MIS_ADDON_SkipsGrog = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_SkipsGrog);

@@ -281,7 +281,7 @@ func void DIA_Bennet_DI_DragonEgg_Info()
 	AI_Output(self,other,"DIA_Bennet_DI_DragonEgg_06_01");	//И?
 	AI_Output(other,self,"DIA_Bennet_DI_DragonEgg_15_02");	//Ну. Я подумал...
 	AI_Output(self,other,"DIA_Bennet_DI_DragonEgg_06_03");	//Я знаю, о чем ты думаешь. Забудь об этом и оставь яйцо себе. Мне оно не нужно.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 };
 
 
@@ -385,7 +385,7 @@ instance DIA_Bennet_DI_DJG_ARMOR_H(C_Info)
 	condition = DIA_Bennet_DI_DJG_ARMOR_H_Condition;
 	information = DIA_Bennet_DI_DJG_ARMOR_H_Info;
 	permanent = TRUE;
-	description = "Тяжелые доспехи охотника на драконов (150/150/50/50, 20000 золотых)";
+	description = "Тяжелые доспехи охотника на драконов (150/150/100/50, 20000 золотых)";
 };
 
 
@@ -405,9 +405,17 @@ func void DIA_Bennet_DI_DJG_ARMOR_H_Info()
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_01");	//Это лучшие доспехи из того, что я когда-либо делал.
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_02");	//Настоящее произведение искусства.
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_H);
-		CreateInvItem(hero,ITAR_DJG_H);
+		if(Helms_Enabled == TRUE)
+		{
+			CreateInvItem(hero,ITAR_DJGN_H);
+			CreateInvItem(hero,ITHE_DJG_H);
+		}
+		else
+		{
+			CreateInvItem(hero,ITAR_DJG_H);
+		};
 		AI_PrintScreen("Тяжелые доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_DJG_H);
+//		AI_EquipArmor(hero,ITAR_DJG_H);
 		Bennet_DIA_Bennet_DJG_ARMOR_H_permanent = TRUE;
 	}
 	else

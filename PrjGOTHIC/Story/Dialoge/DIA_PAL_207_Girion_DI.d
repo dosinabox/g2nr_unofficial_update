@@ -215,6 +215,7 @@ func int DIA_Girion_DI_OrcEliteRing_Condition()
 
 
 var int DIA_Girion_DI_OrcEliteRing_OneTime;
+var int GirionRingCount;
 
 func void DIA_Girion_DI_OrcEliteRing_Info()
 {
@@ -232,12 +233,17 @@ func void DIA_Girion_DI_OrcEliteRing_Info()
 
 func void DIA_Girion_DI_OrcEliteRing_geben()
 {
+	GirionRingCount = Npc_HasItems(other,ItRi_OrcEliteRing);
 	AI_Output(other,self,"DIA_Girion_DI_OrcEliteRing_geben_15_00");	//Вот, возьми.
 	AI_Output(self,other,"DIA_Girion_DI_OrcEliteRing_geben_08_01");	//Спасибо. Все равно я не думаю, что оно может тебе пригодиться.
+	if(GirionRingCount > 1)
+	{
+		AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_03");	//Я могу дать тебе еще несколько колец орков.
+	};
+	B_GiveInvItems(other,self,ItRi_OrcEliteRing,GirionRingCount);
+	Npc_RemoveInvItems(self,ItRi_OrcEliteRing,GirionRingCount);
+	B_GivePlayerXP(XP_Ambient * GirionRingCount);
 	Info_ClearChoices(DIA_Girion_DI_OrcEliteRing);
-	B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
-	Npc_RemoveInvItem(self,ItRi_OrcEliteRing);
-	B_GivePlayerXP(XP_Ambient);
 };
 
 func void DIA_Girion_DI_OrcEliteRing_behalten()

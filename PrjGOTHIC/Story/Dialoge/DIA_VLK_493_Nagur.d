@@ -143,7 +143,7 @@ func void DIA_Nagur_Job_Info()
 	}
 	else
 	{
-		if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700)
+		if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700) && !Npc_IsDead(Martin))
 		{
 			if(!C_BodyStateContains(self,BS_SIT))
 			{
@@ -209,7 +209,7 @@ func int DIA_Nagur_Auftrag_Condition()
 func void DIA_Nagur_Auftrag_Info()
 {
 	AI_Output(other,self,"DIA_Nagur_Auftrag_15_00");	//Договорились. Так какой у тебя план?
-	if(Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700)
+	if((Npc_GetDistToWP(Martin,"NW_CITY_HABOUR_TAVERN01_04") < 700) && !Npc_IsDead(Martin))
 	{
 		if(!C_BodyStateContains(self,BS_SIT))
 		{
@@ -228,23 +228,18 @@ func void DIA_Nagur_Auftrag_Info()
 		{
 			AI_Output(self,other,"DIA_Nagur_Auftrag_08_02");	//У этого Бальтрама есть посыльный, доставлявший ему товары с фермы Акила.
 			AI_Output(self,other,"DIA_Nagur_Auftrag_08_03");	//Вернее, у него БЫЛ посыльный, пока я не перерезал ему глотку. И теперь Бальтраму придется искать нового мальчика на побегушках. И им будешь ты.
+			AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
+			B_StartOtherRoutine(Bote,"Dead");
+			B_KillNpc(Bote);
 			Bote_Killed = TRUE;
+			if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && !Npc_KnowsInfo(other,DIA_Rengaru_SPARE) && (Rengaru_Ausgeliefert == FALSE))
+			{
+				B_StartOtherRoutine(Rengaru,"Hide");
+			};
 		};
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_04");	//Ты должен поступить на работу к Бальтраму и взять посылку у Акила.
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_05");	//Затем ты принесешь ее мне, а я продам ее заинтересованному покупателю. Он даст неплохую цену за нее.
 		AI_Output(self,other,"DIA_Nagur_Auftrag_08_06");	//И не пытайся продать эти товары сам. Ты все понял?
-	//	смерть мальчика на побегушках
-		if(!Npc_IsDead(Bote))
-		{
-			AI_Teleport(Bote,"NW_CITY_HABOUR_KASERN_05_01");
-			B_StartOtherRoutine(Bote,"Rest");
-			B_KillNpc(Bote);
-		};
-	//	Ренгару уходит с места преступления
-		if(Npc_KnowsInfo(other,DIA_Rengaru_HALLODIEB) && !Npc_KnowsInfo(other,DIA_Rengaru_INKNAST) && !Npc_KnowsInfo(other,DIA_Rengaru_SPARE) && (Rengaru_Ausgeliefert == FALSE))
-		{
-			B_StartOtherRoutine(Rengaru,"Hide");
-		};
 		Info_ClearChoices(DIA_Nagur_Auftrag);
 		Info_AddChoice(DIA_Nagur_Auftrag,"Хорошо, договорились.",DIA_Nagur_Auftrag_Okay);
 		Info_AddChoice(DIA_Nagur_Auftrag,"Где мне найти Бальтрама?",DIA_Nagur_Auftrag_Baltram);
@@ -371,14 +366,6 @@ func void DIA_Nagur_Deal_Info()
 		B_GiveInvItems(self,other,ItMi_Gold,Nagur_Deal);
 		AI_Output(self,other,"DIA_Nagur_Deal_08_05");	//Ты хорошо поработал. Я сообщил об этом моим хозяевам.
 		AI_Output(self,other,"DIA_Nagur_Deal_08_06");	//Что из этого выйдет - не знаю.
-		if(!Npc_IsDead(VLK_476_Fenia))
-		{
-			CreateInvItems(VLK_476_Fenia,ItFo_Cheese,5);
-			CreateInvItems(VLK_476_Fenia,ItFo_Apple,10);
-			CreateInvItems(VLK_476_Fenia,ItFo_Beer,5);
-			CreateInvItems(VLK_476_Fenia,ItFo_Bacon,5);
-			CreateInvItems(VLK_476_Fenia,ItFo_Sausage,5);
-		};
 		MIS_Nagur_Bote = LOG_SUCCESS;
 		MIS_Baltram_ScoutAkil = LOG_FAILED;
 		B_GivePlayerXP(XP_Nagur_Bote);
@@ -522,6 +509,9 @@ func int DIA_Nagur_Perm_Condition()
 func void DIA_Nagur_Perm_Info()
 {
 	AI_Output(self,other,"DIA_Nagur_Perm_08_00");	//Поищи кого-нибудь еще, здесь бродит много народа. А у меня больше ничего нет для тебя.
-	AI_StopProcessInfos(self);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 65) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 

@@ -283,7 +283,7 @@ func void DIA_Addon_Bones_GiveArmor_Info()
 	B_GiveInvItems(self,other,ITAR_BDT_M,1);
 	AI_Output(self,other,"DIA_Addon_Bones_GiveArmor_01_06");	//Будь осторожнее. С этими бандитами шутки плохи.
 	self.flags = 0;
-	PIR_1320_Addon_Greg.flags = 0;
+	Greg.flags = 0;
 	B_LogEntry(TOPIC_Addon_BDTRuestung,"Приказ Грега возымел свое действие. Доспехи у меня!");
 	B_GivePlayerXP(XP_Bones_GetBDTArmor);
 };

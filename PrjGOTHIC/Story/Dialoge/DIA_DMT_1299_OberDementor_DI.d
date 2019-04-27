@@ -57,7 +57,7 @@ func void DIA_Schwarzmagier_HELLO_schlaefer()
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_schlaefer_09_01");	//Ёто было в далеком прошлом. ѕовелитель открыл нам глаза. “еперь никто не остановит нас.
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_schlaefer_09_02");	//ѕовелитель показал нам единственно возможный путь борьбы с вами, неверующими.
 	TOPIC_END_DEMENTOREN = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap6);
 };
 
 func void DIA_Schwarzmagier_HELLO_dmt()
@@ -78,7 +78,8 @@ func void DIA_Schwarzmagier_HELLO_meister()
 	AI_PlayAni(self,"T_PRACTICEMAGIC5");
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_00");	//(угрожающе) ’ватит болтовни! я уничтожу теб€.
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_meister_09_01");	//“вой взор потухнет, и твой дух растает во тьме.
-	if(SC_IsBlackEyeProtected == TRUE)
+//	if(SC_IsBlackEyeProtected == TRUE)
+	if(Npc_HasItems(other,ItAm_Prot_BlackEye_Mis))
 	{
 		AI_Output(other,self,"DIA_Schwarzmagier_HELLO_meister_15_02");	//(себе под нос) Ѕез этого амулета вызова душ у мен€ бы были большие проблемы сейчас.
 	}

@@ -152,7 +152,7 @@ func void DIA_Addon_Bartok_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Bartok_MissingPeople_04_02");	//Несколько дней назад мы выпивали в таверне Корагона и разговаривали об охоте.
 	AI_Output(self,other,"DIA_Addon_Bartok_MissingPeople_04_03");	//Не спрашивай меня, что было дальше. К тому времени я уже изрядно накачался.
 	AI_Output(self,other,"DIA_Addon_Bartok_MissingPeople_04_04");	//Я помню, как Трокар говорил что-то о том, что собирается добыть несколько косяков из болотной травы. С тех пор я его не видел.
-	MIS_Bartok_MissingTrokar = LOG_Running;
+//	MIS_Bartok_MissingTrokar = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Bartok_MissingPeople);
 	Info_AddChoice(DIA_Addon_Bartok_MissingPeople,"А ты не искал его?",DIA_Addon_Bartok_MissingPeople_such);
 	Info_AddChoice(DIA_Addon_Bartok_MissingPeople,"А где можно найти косяк из болотной травы?",DIA_Addon_Bartok_MissingPeople_wo);
@@ -554,6 +554,7 @@ func void DIA_Bartok_Angekommen_Info()
 	{
 		B_Bartok_ShitAnOrc();
 		Bartok_OrkGesagt = TRUE;
+		Knows_Ork = TRUE;
 	};
 	AI_Output(self,other,"DIA_Bartok_Angekommen_04_03");	//Еще увидимся!
 	AI_Output(self,other,"DIA_Bartok_Angekommen_04_04");	//Ты можешь продать шкуры Босперу.

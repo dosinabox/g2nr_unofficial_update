@@ -40,6 +40,7 @@ func void Use_Hinweis_02()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Снаф");
 	Doc_Show(nDocID);
+	EnteredBanditsCamp = TRUE;
 };
 
 
@@ -198,7 +199,6 @@ instance ITWr_Addon_William_01(C_Item)
 	name = "Записка";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
-//	value = 250;
 	value = 0;
 	visual = "ItWr_Scroll_01.3DS";
 	material = MAT_LEATHER;
@@ -206,8 +206,6 @@ instance ITWr_Addon_William_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Найдена на теле рыбака Вильяма.";
-//	text[5] = NAME_Value;
-//	count[5] = value;
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -235,6 +233,13 @@ func void Use_William_01()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Желаю удачи.");
 	Doc_Show(nDocID);
+	if(FoundDeadWilliam == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
+		FoundDeadWilliam = TRUE;
+	};
 };
 
 
@@ -250,8 +255,8 @@ instance ITWr_Addon_MCELIXIER_01(C_Item)
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Это зелье помогает восстановить память.";
-	text[1] = "Для его создания нужны знания основ алхимии";
-	text[2] = "и экстрагирования секрета из жал кровавых мух.";
+//	text[1] = "Для его создания нужны знания основ алхимии";
+//	text[2] = "и экстрагирования секрета из жал кровавых мух.";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_rotz = 180;
@@ -270,7 +275,7 @@ func void Use_MCELIXIER_01()
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"Эликсир изменения сознания");
+	Doc_PrintLine(nDocID,0,NAME_Geist);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Для создания этого эликсира необходим секрет из жал двух кровавых мух.");
 	Doc_PrintLines(nDocID,0,"К нему нужно добавить один экстракт маны и одну лечебную эссенцию.");
@@ -280,10 +285,11 @@ func void Use_MCELIXIER_01()
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_MCELIXIER == FALSE))
+		if(Knows_MCELIXIER == FALSE)
 		{
-			Knows_MCELIXIER = TRUE;
+			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для эликсира изменения сознания: 2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция и 1 красный жгучий перец.");
+			Knows_MCELIXIER = TRUE;
 		};
 	};
 };
@@ -329,7 +335,7 @@ func void Use_Pirates_01()
 	Doc_PrintLines(nDocID,0,"До встречи.");
 	Doc_PrintLine(nDocID,0,"Том");
 	Doc_Show(nDocID);
-	Read_JuansText = TRUE;
+//	Read_JuansText = TRUE;
 };
 
 
@@ -373,13 +379,14 @@ func void Use_Joint_Rezept_01()
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Green_Extrem == FALSE))
+		if(Green_Extrem == FALSE)
 		{
-			//Green_Extrem = TRUE;
+			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЗЕЛЕНОГО ПОСЛУШНИКА': 2 болотных травы и 1 луговой горец.");
+			EnteredBanditsCamp = TRUE;
+			Green_Extrem = TRUE;
 		};
 	};
-	Green_Extrem = TRUE;
 };
 
 
@@ -659,7 +666,6 @@ instance ItWr_Map_AddonWorld(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 250;
-//	visual = "ItWr_Map_01.3DS";
 	visual = "ItWr_Map_AW.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAP";

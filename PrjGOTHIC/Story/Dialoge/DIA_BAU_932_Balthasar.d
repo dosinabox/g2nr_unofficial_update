@@ -204,7 +204,8 @@ instance DIA_Balthasar_BENGARUEBERREDET(C_Info)
 
 func int DIA_Balthasar_BENGARUEBERREDET_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Balthasar_TALKTOBENGAR) && (MIS_Balthasar_BengarsWeide == LOG_SUCCESS) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
+//	if(Npc_KnowsInfo(other,DIA_Balthasar_TALKTOBENGAR) && (MIS_Balthasar_BengarsWeide == LOG_SUCCESS) && ((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
+	if(Npc_KnowsInfo(other,DIA_Balthasar_TALKTOBENGAR) && (MIS_Balthasar_BengarsWeide == LOG_SUCCESS) && (!Npc_IsDead(BalthasarSheep1) || !Npc_IsDead(BalthasarSheep2) || !Npc_IsDead(BalthasarSheep3)))
 	{
 		return TRUE;
 	};
@@ -246,6 +247,7 @@ func void DIA_Balthasar_BENGARUEBERREDET_Info()
 		BalthasarSheep3.start_aistate = ZS_MM_AllScheduler;
 		B_StartOtherRoutine(BalthasarSheep3,"NewFarm");
 	};
+	BalthasarMovedToBengar = TRUE;
 };
 
 
@@ -288,6 +290,7 @@ func void DIA_Balthasar_PERMKAP1_Info()
 		AI_StopProcessInfos(self);
 		if((Kapitel < 3) || (TOPIC_END_SekobDMT == TRUE))
 		{
+			BalthasarMovedToBengar = FALSE;
 			Npc_ExchangeRoutine(self,"Start");
 		};
 	};

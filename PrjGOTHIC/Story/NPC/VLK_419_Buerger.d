@@ -11,7 +11,8 @@ instance VLK_419_Buerger(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Mace);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald.",Face_N_NormalBart_Graham,BodyTex_N,ITAR_Vlk_H);
+//	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald.",Face_N_NormalBart_Graham,BodyTex_N,ITAR_Vlk_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_NormalBart_Graham,BodyTex_N,ITAR_Vlk_M);
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);
@@ -26,6 +27,15 @@ func void Rtn_Start_419()
 	TA_Stand_Drinking(11,0,12,30,"NW_CITY_UPTOWN_HUT_02_ENTRY");
 	TA_Stand_Eating(12,30,15,0,"NW_CITY_UPTOWN_PATH_17");
 	TA_Sit_Bench(15,0,18,0,"NW_CITY_UPTOWN_PATH_23");
+	TA_Stand_Drinking(18,0,20,0,"NW_CITY_UPTOWN_PATH_17");
+	TA_Sit_Chair(20,0,23,0,"NW_CITY_UPTOWN_HUT_03_IN");
+	TA_Sleep(23,0,7,0,"NW_CITY_UPTOWN_HUT_03_BED");
+};
+
+func void Rtn_NewPlace_419()
+{
+	TA_Stand_Drinking(7,0,12,30,"NW_CITY_UPTOWN_HUT_02_ENTRY");
+	TA_Stand_Eating(12,30,18,0,"NW_CITY_UPTOWN_PATH_17");
 	TA_Stand_Drinking(18,0,20,0,"NW_CITY_UPTOWN_PATH_17");
 	TA_Sit_Chair(20,0,23,0,"NW_CITY_UPTOWN_HUT_03_IN");
 	TA_Sleep(23,0,7,0,"NW_CITY_UPTOWN_HUT_03_BED");

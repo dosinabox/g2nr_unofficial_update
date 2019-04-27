@@ -521,7 +521,7 @@ instance DIA_Jan_DJG_ARMOR_M(C_Info)
 	condition = DIA_Jan_DJG_ARMOR_M_Condition;
 	information = DIA_Jan_DJG_ARMOR_M_Info;
 	permanent = TRUE;
-	description = "—редние доспехи охотника на драконов (120/120/35/35, 12000 золотых)";
+	description = "—редние доспехи охотника на драконов (120/120/75/35, 12000 золотых)";
 };
 
 
@@ -541,9 +541,17 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 		AI_Output(self,other,"DIA_Jan_DJG_ARMOR_M_10_01");	//“ы увидишь, они сто€т своих денег.
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		Npc_RemoveInvItems(self,ItMi_Gold,VALUE_ITAR_DJG_M);
-		CreateInvItem(hero,ITAR_DJG_M);
+		if(Helms_Enabled == TRUE)
+		{
+			CreateInvItem(hero,ITAR_DJGN_M);
+			CreateInvItem(hero,ITHE_DJG_M);
+		}
+		else
+		{
+			CreateInvItem(hero,ITAR_DJG_M);
+		};
 		AI_PrintScreen("—редние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		AI_EquipArmor(hero,ITAR_DJG_M);
+//		AI_EquipArmor(hero,ITAR_DJG_M);
 		Jan_DIA_Jan_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else
@@ -563,11 +571,11 @@ instance DIA_Jan_DragonPlettBericht(C_Info)
 };
 
 
-var int DIA_Jan_DragonPlettBericht_NoPerm;
+//var int DIA_Jan_DragonPlettBericht_NoPerm;
 
 func int DIA_Jan_DragonPlettBericht_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_JAN_Dragons) && (DIA_Jan_DragonPlettBericht_NoPerm == FALSE) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons != 0))
+	if((Kapitel >= 4) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons != 0))
 	{
 		return TRUE;
 	};
@@ -591,12 +599,12 @@ func void DIA_Jan_DragonPlettBericht_Info()
 	{
 		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_03");	//» что? “ы ведь охотник на драконов, разве нет?
 		AI_Output(other,self,"DIA_Jan_DragonPlettBericht_15_04");	//ј ты разве нет?
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_05");	//ƒа, конечно, но если честно, то мне это не интересно.
 	};
-	AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_06");	//я уже говорил тебе, мне больше нравитс€ делать оружие, чем убивать драконов.
+	AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_05");	//ƒа, конечно, но если честно, то мне это не интересно.
+	if(Npc_KnowsInfo(other,DIA_JAN_Dragons))
+	{
+		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_06");	//я уже говорил тебе, мне больше нравитс€ делать оружие, чем убивать драконов.
+	};
 	if((hero.guild != GIL_DJG) && (hero.guild != GIL_SLD))
 	{
 		AI_Output(self,other,"DIA_Jan_DragonPlettBericht_10_07");	//¬прочем, есть кое-что, что может заинтересовать мен€.
@@ -655,7 +663,7 @@ func void DIA_Jan_DragonBlood_1()
 	var string BloodLeft;
 	DragonBloodCount = 1;
 	B_GiveInvItems(other,self,ItAt_DragonBlood,DragonBloodCount);
-	XP_DJG_BringDragonBloods = DragonBloodCount * XP_AmbientKap4;
+	XP_DJG_BringDragonBloods = DragonBloodCount * 200;
 	B_GivePlayerXP(XP_DJG_BringDragonBloods);
 	DragonBloodGeld = DragonBloodCount * Value_DragonBlood;
 	CreateInvItems(self,ItMi_Gold,DragonBloodGeld);
@@ -685,7 +693,7 @@ func void DIA_Jan_DragonBlood_all()
 //	var string BloodLeft;
 	DragonBloodCount = Npc_HasItems(other,ItAt_DragonBlood);
 	B_GiveInvItems(other,self,ItAt_DragonBlood,DragonBloodCount);
-	XP_DJG_BringDragonBloods = DragonBloodCount * XP_AmbientKap4;
+	XP_DJG_BringDragonBloods = DragonBloodCount * 200;
 	B_GivePlayerXP(XP_DJG_BringDragonBloods);
 	DragonBloodGeld = DragonBloodCount * Value_DragonBlood;
 	CreateInvItems(self,ItMi_Gold,DragonBloodGeld);

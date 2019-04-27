@@ -64,6 +64,7 @@ func void adw_adanostempel_stonegrd_trigg_func_02()
 	{
 		b_awake_stoneguardian(Stoneguardian_RHADEMES_14A);
 		b_awake_stoneguardian(Stoneguardian_RHADEMES_14B);
+		b_awake_stoneguardian(Stoneguardian_RHADEMES_14C);
 		b_awake_stoneguardian(Stoneguardian_RHADEMES_14D);
 		b_awake_stoneguardian(Stoneguardian_RHADEMES_14E);
 		b_awake_stoneguardian(Stoneguardian_RHADEMES_14F);

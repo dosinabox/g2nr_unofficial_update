@@ -17,6 +17,7 @@ func int DIA_Addon_Thorus_EXIT_Condition()
 
 func void DIA_Addon_Thorus_EXIT_Info()
 {
+	EnteredBanditsCamp = TRUE;
 	AI_StopProcessInfos(self);
 };
 
@@ -50,6 +51,7 @@ func void DIA_Addon_Thorus_Hi_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Hi_12_04");	//Если тебе это не нравится, можешь поговорить с Эстебаном. Он ответственный за лагерь.
 	};
+	EnteredBanditsCamp = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 };
@@ -344,6 +346,8 @@ func void DIA_Addon_Thorus_Attack_Info()
 	{
 		MIS_Send_Buddler = LOG_OBSOLETE;
 	};
+	B_CheckLog();
+	EnteredBanditsCamp = TRUE;
 	B_Say(self,other,"$ALARM");
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_GuardStopsIntruder,0); 

@@ -38,7 +38,8 @@ func int B_WispDetectedItem()
 		};
 		if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NONE] == TRUE) && ((WispSearching == WispSearch_ALL) || (WispSearching == WispSearch_NONE)))
 		{
-			WispSearchFlags = WispSearchFlags | ITEM_KAT_NONE | ITEM_KAT_KEYS | ITEM_KAT_LIGHT | ITEM_KAT_ARMOR;
+//			WispSearchFlags = WispSearchFlags | ITEM_KAT_NONE | ITEM_KAT_KEYS | ITEM_KAT_LIGHT | ITEM_KAT_ARMOR;
+			WispSearchFlags = WispSearchFlags | ITEM_KAT_NONE | ITEM_KAT_KEYS | ITEM_KAT_ARMOR;
 		};
 		if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_RUNE] == TRUE) && ((WispSearching == WispSearch_ALL) || (WispSearching == WispSearch_RUNE)))
 		{

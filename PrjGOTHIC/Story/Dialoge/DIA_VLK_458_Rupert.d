@@ -124,7 +124,7 @@ instance DIA_Rupert_HelpMeIntoOV(C_Info)
 
 func int DIA_Rupert_HelpMeIntoOV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rupert_ZuPal) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Rupert_ZuPal) && (hero.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
 	{
 		return TRUE;
 	};

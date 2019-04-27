@@ -151,6 +151,23 @@ func void DIA_Cipher_WannaJoin_Info()
 };
 
 
+func void B_CipherHappyForWeedPaket()
+{
+	AI_Output(self,other,"DIA_Cipher_Joints_07_01");	//Ты принес назад мой тюк! Теперь все будет отлично!
+	if((other.guild == GIL_NONE) && (GotCipherVote == FALSE))
+	{
+		AI_Output(self,other,"DIA_Cipher_Joints_07_02");	//Я обязательно проголосую за тебя...
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
+		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
+		GotCipherVote = TRUE;
+	};
+	B_GivePlayerXP(XP_CipherWeed);
+};
+
 instance DIA_Cipher_YesJoin(C_Info)
 {
 	npc = SLD_803_Cipher;
@@ -173,14 +190,22 @@ func int DIA_Cipher_YesJoin_Condition()
 func void DIA_Cipher_YesJoin_Info()
 {
 	AI_Output(other,self,"DIA_Cipher_YesJoin_15_00");	//Я все равно хочу стать одним из вас!
-	AI_Output(self,other,"DIA_Cipher_YesJoin_07_01");	//Ты уже знаешь, что мы голосуем за каждого новобранца?
-	AI_Output(other,self,"DIA_Cipher_YesJoin_15_02");	//На что ты намекаешь?
-	AI_Output(self,other,"DIA_Cipher_YesJoin_07_03");	//Ну, я уже давно ничего не курил. Принеси мне несколько косяков из болотной травы, и ты получишь мой голос.
-	AI_Output(self,other,"DIA_Cipher_YesJoin_07_04");	//Я уверен, тебе удастся что-нибудь найти.
-	MIS_Cipher_BringWeed = LOG_Running;
-	Log_CreateTopic(Topic_CipherHerb,LOG_MISSION);
-	Log_SetTopicStatus(Topic_CipherHerb,LOG_Running);
-	B_LogEntry(Topic_CipherHerb,"Сифер проголосует за меня, если я принесу ему несколько косяков болотной травы болотной травы.");
+	if(MIS_Cipher_Paket == LOG_SUCCESS)
+	{
+		B_CipherHappyForWeedPaket();
+		B_GivePlayerXP(XP_CipherWeed);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Cipher_YesJoin_07_01");	//Ты уже знаешь, что мы голосуем за каждого новобранца?
+		AI_Output(other,self,"DIA_Cipher_YesJoin_15_02");	//На что ты намекаешь?
+		AI_Output(self,other,"DIA_Cipher_YesJoin_07_03");	//Ну, я уже давно ничего не курил. Принеси мне несколько косяков из болотной травы, и ты получишь мой голос.
+		AI_Output(self,other,"DIA_Cipher_YesJoin_07_04");	//Я уверен, тебе удастся что-нибудь найти.
+		MIS_Cipher_BringWeed = LOG_Running;
+		Log_CreateTopic(Topic_CipherHerb,LOG_MISSION);
+		Log_SetTopicStatus(Topic_CipherHerb,LOG_Running);
+		B_LogEntry(Topic_CipherHerb,"Сифер проголосует за меня, если я принесу ему несколько косяков болотной травы.");
+	};
 };
 
 
@@ -208,16 +233,8 @@ func void DIA_Cipher_Joints_Info()
 	AI_Output(other,self,"DIA_Cipher_Joints_15_00");	//Насчет болотной травы...
 	if(MIS_Cipher_Paket == LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_Cipher_Joints_07_01");	//Ты принес назад мой тюк! Теперь все будет отлично!
-		if(other.guild == GIL_NONE)
-		{
-			AI_Output(self,other,"DIA_Cipher_Joints_07_02");	//Я обязательно проголосую за тебя...
-			B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
-		};
-		if(MIS_Cipher_BringWeed == LOG_Running)
-		{
-			MIS_Cipher_BringWeed = LOG_OBSOLETE;
-		};
+		B_CipherHappyForWeedPaket();
+		MIS_Cipher_BringWeed = LOG_SUCCESS;
 	}
 	else
 	{
@@ -241,23 +258,25 @@ func void DIA_Cipher_Joints_Success()
 	AI_Output(other,self,"DIA_Cipher_Joints_Success_15_00");	//Вот несколько косяков для тебя...
 	if(B_GiveInvItems(other,self,ItMi_Joint,10))
 	{
-		AI_Output(self,other,"DIA_Cipher_Joints_Success_07_01");	//Ах! Ты наш человек!
-		if(other.guild == GIL_NONE)
+		AI_Output(self,other,"DIA_Cipher_Joints_Success_07_01");	//Ах! А ты наш человек!
+		if((other.guild == GIL_NONE) && (GotCipherVote == FALSE))
 		{
-			AI_Output(self,other,"DIA_Cipher_Joints_Success_07_02");	//Ты получишь мой голос.
+			AI_Output(self,other,"DIA_Cipher_Joints_Success_07_05");	//Ладно, ты получишь мой голос.
+			if(Torlof_GenugStimmen == FALSE)
+			{
+				Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			};
+			B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
+			GotCipherVote = TRUE;
 		};
 		MIS_Cipher_BringWeed = LOG_SUCCESS;
-		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
 		B_GivePlayerXP(XP_CipherWeed);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Cipher_Joints_Success_07_03");	//Это все? Да я выкурю это за один присест!
 		AI_Output(self,other,"DIA_Cipher_Joints_Success_07_04");	//Мне нужно хотя бы 10 косяков.
-		if(other.guild == GIL_NONE)
-		{
-			AI_Output(self,other,"DIA_Cipher_Joints_Success_07_05");	//Ладно, ты получишь мой голос.
-		};
 	};
 	Info_ClearChoices(DIA_Cipher_Joints);
 };
@@ -421,6 +440,17 @@ func void DIA_Cipher_KrautPaket_Info()
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_01");	//Да, мой! Где ты нашел его?
 	AI_Output(other,self,"DIA_Cipher_KrautPaket_15_02");	//Это долгая история...
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_03");	//Ладно, это не важно, но теперь я знаю, что ты наш человек.
+	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Cipher_WannaJoin) && (GotCipherVote == FALSE))
+	{
+		AI_Output(self,other,"DIA_Cipher_Joints_Success_07_02");	//Ты получишь мой голос.
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
+		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
+		GotCipherVote = TRUE;
+	};
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_04");	//Эй, возьми это в награду.
 	B_GiveInvItems(self,other,ItMi_Gold,200);
 	B_GiveInvItems(self,other,ItMi_Joint,10);
@@ -440,7 +470,7 @@ instance DIA_CipherSLD_PICKPOCKET(C_Info)
 	condition = DIA_CipherSLD_PICKPOCKET_Condition;
 	information = DIA_CipherSLD_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_60;
+	description = Pickpocket_80;
 };
 
 

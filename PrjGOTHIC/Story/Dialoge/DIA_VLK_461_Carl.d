@@ -286,3 +286,32 @@ func void DIA_Carl_Teach_STR_5()
 	Info_AddChoice(DIA_Carl_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Carl_Teach_STR_5);
 };
 
+instance DIA_Carl_RepairNecklace(C_Info)
+{
+	npc = VLK_461_Carl;
+	nr = 8;
+	condition = DIA_Carl_RepairNecklace_Condition;
+	information = DIA_Carl_RepairNecklace_Info;
+	permanent = FALSE;
+	description = "Ты можешь чинить драгоценности?";
+};
+
+
+func int DIA_Carl_RepairNecklace_Condition()
+{
+	if((MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
+	{
+		if(!Npc_KnowsInfo(other,DIA_Bennet_ShowInnosEye))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Carl_RepairNecklace_Info()
+{
+	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	AI_Output(self,other,"DIA_Carl_Lernen_05_01");	//Ох, я всего лишь кую скобяные изделия и гвозди и чиню различные железяки.
+	MIS_SCKnowsInnosEyeIsBroken = TRUE;
+};
+

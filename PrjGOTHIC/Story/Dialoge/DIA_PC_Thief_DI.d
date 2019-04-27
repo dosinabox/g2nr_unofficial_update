@@ -100,7 +100,7 @@ func void DIA_PC_Thief_DI_RAT_Info()
 		if((OrkSturmDI == TRUE) && (DIA_PC_Thief_DI_RAT_OneTime2 == FALSE))
 		{
 			AI_Output(self,other,"DIA_PC_Thief_DI_RAT_11_09");	//Еще одно. Я бы предпочел, чтобы ты не приводил всех этих тварей, что бродят здесь, к кораблю. Я надеюсь, этот рейд орков был последней атакой, которую нам пришлось отражать здесь!
-			B_GivePlayerXP(XP_Ambient);
+			B_GivePlayerXP(XP_AmbientKap6);
 			DIA_PC_Thief_DI_RAT_OneTime2 = TRUE;
 		};
 	};
@@ -170,7 +170,14 @@ func int DIA_PC_Thief_DI_Training_Talente_Condition()
 func void DIA_PC_Thief_DI_Training_Talente_Info()
 {
 	AI_Output(other,self,"DIA_PC_Thief_DI_Training_15_00");	//Обучи меня.
-	AI_Output(self,other,"DIA_PC_Thief_DI_Training_11_01");	//Что тебе нужно?
+	if(Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
+	{
+		AI_Output(self,other,"DIA_DiegoNW_Teach_11_01");	//Я могу научить тебя, как стать более ловким.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_PC_Thief_DI_Training_11_01");	//Что тебе нужно?
+	};
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
 	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
@@ -318,10 +325,17 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 	if(DIA_PC_Thief_DI_UndeadDragonDead_OneTime == FALSE)
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_UndeadDragonDead_15_06");	//Что ты собираешься делать дальше?
-		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_07");	//Хороший вопрос. Я думаю, сначала нужно вернуться в Хоринис.
-		if((Diebesgilde_Verraten == TRUE) || (MIS_Andre_GuildOfThieves == LOG_SUCCESS))
+		if(MIS_HelpDiegoNW != LOG_SUCCESS)
 		{
-			AI_Output(self,other,"DIA_DiegoDI_Add_11_00");	//Там больше нет гильдии воров. Это открывает новые интересные возможности.
+			AI_Output(self,other,"DIA_DIEGONW_NEEDHELP_PROBLEM_WILLHELPYOU_11_01");	//Я спрятал небольшое состояние в Долине Рудников...
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_07");	//Хороший вопрос. Я думаю, сначала нужно вернуться в Хоринис.
+			if((Andre_FoundThieves_Reported == TRUE) || (MIS_Andre_GuildOfThieves == LOG_SUCCESS))
+			{
+				AI_Output(self,other,"DIA_DiegoDI_Add_11_00");	//Там больше нет гильдии воров. Это открывает новые интересные возможности.
+			};
 		};
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_09");	//Ммм. Ну, или, может быть, я просто продолжу бизнес Бромора. Это очень неплохие деньги. Честные деньги.
 		DIA_PC_Thief_DI_UndeadDragonDead_OneTime = TRUE;

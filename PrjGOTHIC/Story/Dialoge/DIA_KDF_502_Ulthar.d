@@ -12,10 +12,7 @@ instance DIA_Ulthar_EXIT(C_Info)
 
 func int DIA_Ulthar_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Ulthar_EXIT_Info()
@@ -205,31 +202,6 @@ func void DIA_Ulthar_SUCCESS_Info()
 };
 
 
-instance DIA_Ulthar_KAP3_EXIT(C_Info)
-{
-	npc = KDF_502_Ulthar;
-	nr = 999;
-	condition = DIA_Ulthar_KAP3_EXIT_Condition;
-	information = DIA_Ulthar_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ulthar_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ulthar_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Ulthar_PermAbKap3(C_Info)
 {
 	npc = KDF_502_Ulthar;
@@ -276,7 +248,7 @@ instance DIA_Ulthar_SCHREINEVERGIFTET(C_Info)
 
 func int DIA_Ulthar_SCHREINEVERGIFTET_Condition()
 {
-	if(Pedro_Traitor == TRUE)
+	if((Pedro_Traitor == TRUE) && (hero.guild == GIL_PAL) && (Kapitel == 3))
 	{
 		return TRUE;
 	};
@@ -284,46 +256,63 @@ func int DIA_Ulthar_SCHREINEVERGIFTET_Condition()
 
 func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 {
-	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_00");	//Еще одно. Некоторые придорожные алтари, посвященные Инносу, были осквернены врагом. Они потеряли свои магические свойства.
+	AI_Output(other,self,"DIA_Ulthar_SCHREINEVERGIFTET_15_01");	//Понимаю, и что теперь?
+	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_02");	//Ты должен очистить эти алтари, чтобы ситуация не усугубилась.
+	CreateInvItems(self,ItMi_UltharsHolyWater_Mis,1);
+	B_GiveInvItems(self,other,ItMi_UltharsHolyWater_Mis,1);
+	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_03");	//Возьми эту святую воду и окропи ей основание алтаря.
+	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_04");	//Со святыми словами очищения к алтарю вернется его былая сила.
+	if(!Npc_HasItems(other,ItWr_Map_Shrine_MIS))
 	{
-		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_00");	//Еще одно. Некоторые придорожные алтари, посвященные Инносу, были осквернены врагом. Они потеряли свои магические свойства.
-		AI_Output(other,self,"DIA_Ulthar_SCHREINEVERGIFTET_15_01");	//Понимаю, и что теперь?
-		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_02");	//Ты должен очистить эти алтари, чтобы ситуация не усугубилась.
-		CreateInvItems(self,ItMi_UltharsHolyWater_Mis,1);
-		B_GiveInvItems(self,other,ItMi_UltharsHolyWater_Mis,1);
-		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_03");	//Возьми эту святую воду и окропи ей основание алтаря.
-		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_04");	//Со святыми словами очищения к алтарю вернется его былая сила.
-		if(!Npc_HasItems(other,ItWr_Map_Shrine_MIS))
+		if(!Npc_IsDead(Gorax))
 		{
-			if(!Npc_IsDead(Gorax))
+			AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_05");	//Горакс может продать тебе карту, на которой помечены наши алтари.
+			if(!Npc_HasItems(Gorax,ItWr_Map_Shrine_MIS))
 			{
-				AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_05");	//Горакс может продать тебе карту, на которой помечены наши алтари.
-				if(!Npc_HasItems(Gorax,ItWr_Map_Shrine_MIS))
-				{
-					CreateInvItems(Gorax,ItWr_Map_Shrine_MIS,1);
-				};
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_06");	//Вот карта. На ней отмечены алтари, построенные нами.
-				CreateInvItems(self,ItWr_Map_Shrine_MIS,1);
-				B_GiveInvItems(self,other,ItWr_Map_Shrine_MIS,1);
+				CreateInvItems(Gorax,ItWr_Map_Shrine_MIS,1);
 			};
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_06");	//Вот карта. На ней отмечены алтари, построенные нами.
+			CreateInvItems(self,ItWr_Map_Shrine_MIS,1);
+			B_GiveInvItems(self,other,ItWr_Map_Shrine_MIS,1);
 		};
-		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_07");	//Теперь иди и выполняй свои поручения.
-		MIS_Ulthar_HeileSchreine_PAL = LOG_Running;
-		Log_CreateTopic(TOPIC_Ulthar_HeileSchreine_PAL,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Ulthar_HeileSchreine_PAL,LOG_Running);
-		B_LogEntry(TOPIC_Ulthar_HeileSchreine_PAL,"Ультар дал мне задание очистить при помощи святой воды все алтари, оскверненные врагом.");
-		AI_StopProcessInfos(self);
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_08");	//Еще одно. Держись подальше от придорожных алтарей. Мы слышали, что некоторые из них были осквернены.
-		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_09");	//Никто не знает, как теперь они действуют.
-		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_10");	//Тебя не должна волновать эта проблема. О ней позаботятся паладины.
-		AI_StopProcessInfos(self);
 	};
+	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_07");	//Теперь иди и выполняй свои поручения.
+	MIS_Ulthar_HeileSchreine_PAL = LOG_Running;
+	Log_CreateTopic(TOPIC_Ulthar_HeileSchreine_PAL,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Ulthar_HeileSchreine_PAL,LOG_Running);
+	B_LogEntry(TOPIC_Ulthar_HeileSchreine_PAL,"Ультар дал мне задание очистить при помощи святой воды все алтари, оскверненные врагом.");
+	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Ulthar_WARN(C_Info)
+{
+	npc = KDF_502_Ulthar;
+	nr = 30;
+	condition = DIA_Ulthar_WARN_Condition;
+	information = DIA_Ulthar_WARN_Info;
+	important = TRUE;
+};
+
+
+func int DIA_Ulthar_WARN_Condition()
+{
+	if((Pedro_Traitor == TRUE) && (hero.guild != GIL_PAL) && (Kapitel == 3))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Ulthar_WARN_Info()
+{
+	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_08");	//Еще одно. Держись подальше от придорожных алтарей. Мы слышали, что некоторые из них были осквернены.
+	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_09");	//Никто не знает, как теперь они действуют.
+	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_10");	//Тебя не должна волновать эта проблема. О ней позаботятся паладины.
+	AI_StopProcessInfos(self);
 };
 
 
@@ -357,31 +346,6 @@ func void DIA_Ulthar_SchreineGeheilt_Info()
 };
 
 
-instance DIA_Ulthar_KAP4_EXIT(C_Info)
-{
-	npc = KDF_502_Ulthar;
-	nr = 999;
-	condition = DIA_Ulthar_KAP4_EXIT_Condition;
-	information = DIA_Ulthar_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ulthar_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ulthar_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Ulthar_SchreineGeheiltNoPAL(C_Info)
 {
 	npc = KDF_502_Ulthar;
@@ -407,56 +371,6 @@ func void DIA_Ulthar_SchreineGeheiltNoPAL_Info()
 	AI_StopProcessInfos(self);
 };
 
-
-instance DIA_Ulthar_KAP5_EXIT(C_Info)
-{
-	npc = KDF_502_Ulthar;
-	nr = 999;
-	condition = DIA_Ulthar_KAP5_EXIT_Condition;
-	information = DIA_Ulthar_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ulthar_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ulthar_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Ulthar_KAP6_EXIT(C_Info)
-{
-	npc = KDF_502_Ulthar;
-	nr = 999;
-	condition = DIA_Ulthar_KAP6_EXIT_Condition;
-	information = DIA_Ulthar_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ulthar_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ulthar_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Ulthar_PICKPOCKET(C_Info)
 {

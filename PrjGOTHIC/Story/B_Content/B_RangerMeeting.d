@@ -92,6 +92,7 @@ func void B_Addon_Orlan_RangersReadyForComing()
 	B_StartOtherRoutine(Lares,"PreRangerMeeting");
 	B_StartOtherRoutine(Cord,"PreRangerMeeting");
 	B_StartOtherRoutine(Gaan,"PreRangerMeeting");
+	Lares.aivar[AIV_PARTYMEMBER] = FALSE;
 };
 
 func void B_Addon_Orlan_ComingRanger()
@@ -144,6 +145,18 @@ func void B_SchlussMitRangerMeeting()
 	{
 		B_StartOtherRoutine(Cavalorn,"Stadt");
 	};
+	if(LaresGuide_ZuOnar != LOG_SUCCESS)
+	{
+		LaresGuide_ZuOnar = FALSE;
+	};
+	if(LaresGuide_ZumPortal != 8)
+	{
+		LaresGuide_ZumPortal = 0;
+	};
+	if(LaresGuide_OrnamentForest != 3)
+	{
+		LaresGuide_OrnamentForest = 0;
+	};
 	B_StartOtherRoutine(Lares,"Start");
 	B_StartOtherRoutine(Cord,"Start");
 	if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)
@@ -164,5 +177,17 @@ func void B_SchlussMitRangerMeeting()
 	};
 	B_StartOtherRoutine(Orlan,"Start");
 	Lares_HaltsMaul = LOG_OBSOLETE;
+};
+
+func int AnyRangerRingEquipped()
+{
+	if((RangerRingIsLaresRing == TRUE) || (RangerRingIsMyRing == TRUE) || (RangerRingIsLanceRing == TRUE))
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	};
 };
 

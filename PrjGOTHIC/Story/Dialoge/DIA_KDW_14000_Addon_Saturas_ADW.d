@@ -96,16 +96,25 @@ func void DIA_Addon_Saturas_ADWStart_missingPeople()
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
-	if(Npc_HasItems(other,ITWr_Addon_William_01))
+	if(!Npc_HasItems(VLK_4304_Addon_William,ITWr_Addon_William_01))
 	{
 		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
 		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.
-	};
-	Saturas_AboutWilliam = TRUE;
-	if(!Npc_KnowsInfo(other,DIA_Addon_Riordian_WhatToFind))
+		if(FoundDeadWilliam == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
+		};
+		FoundDeadWilliam = TRUE;
+	}
+	else if(!Npc_KnowsInfo(other,DIA_Addon_Riordian_WhatToFind))
 	{
+		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
 	};
+	Saturas_AboutWilliam = TRUE;
 };
 
 func void DIA_Addon_Saturas_ADWStart_wastun()
@@ -197,7 +206,8 @@ instance DIA_Addon_Saturas_Piraten(C_Info)
 
 func int DIA_Addon_Saturas_Piraten_Condition()
 {
-	if((AlligatorJack.aivar[AIV_TalkedToPlayer] == FALSE) && (Greg.aivar[AIV_TalkedToPlayer] == FALSE))
+//	if((AlligatorJack.aivar[AIV_TalkedToPlayer] == FALSE) && (Greg.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(!Npc_HasItems(other,ITAR_Thorus_Addon) && !Npc_HasItems(other,ITAR_BDT_M) && !Npc_HasItems(other,ITAR_BDT_H) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -456,7 +466,7 @@ func void DIA_Addon_Saturas_StonePlateHint_wo()
 func void DIA_Addon_Saturas_StonePlateHint_unter()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_StonePlateHint_unter_15_00");	//А что, если от них ничего не осталось?
-	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_unter_14_01");	//Если ты не найдешь их, то скорее всего они утонули вместе с городом.
+	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_unter_14_01");	//Если ты не найдешь их, то, скорее всего, они утонули вместе с городом.
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_unter_14_02");	//Однако если они существуют, то их важность для наших исследований невозможно переоценить.
 };
 
@@ -580,10 +590,13 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 	var int XP_RavenNeuigkeit;
 	AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_00");	//Насчет Ворона...
 	RavenNeuigkeit = 0;
-	if((Thorus.aivar[AIV_TalkedToPlayer] == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE) && (RavenIsInTempel == FALSE))
+	if(((EnteredBanditsCamp == TRUE) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(Wache_01) || Npc_IsDead(Wache_02) || Npc_IsDead(Bloodwyn)) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_01");	//Я побывал в лагере бандитов к востоку отсюда. Ворон - их предводитель.
-		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_02");	//Но прежде чем оказаться рядом с Вороном, я был вынужден убрать с дороги нескольких бандитов.
+		if(Npc_IsDead(Franco) || Npc_IsDead(Ramon) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(Wache_01) || Npc_IsDead(Wache_02) || Npc_IsDead(Bloodwyn))
+		{
+			AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_02");	//Но прежде чем оказаться рядом с Вороном, я был вынужден убрать с дороги нескольких бандитов.
+		};
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_03");	//Отлично. Удачи. Но не забывай, что тебе нужно действовать быстро.
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_04");	//Ворон ни при каких обстоятельствах не должен достигнуть цели.
 		DIA_Addon_Saturas_RavenInfos_OneTime1 = TRUE;
@@ -1054,7 +1067,8 @@ instance DIA_Addon_Saturas_ADW_PreTeachCircle(C_Info)
 
 func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 {
-	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1))
+//	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1))
+	if(hero.guild == GIL_KDF)
 	{
 		return TRUE;
 	};
@@ -1096,7 +1110,8 @@ func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 	var int kosten;
 	circle = Npc_GetTalentSkill(other,NPC_TALENT_MAGE) + 1;
 	kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
-	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
+//	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
+	if((Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
 	{
 //		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Я хочу перейти на следующий уровень магии",kosten);
 		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Следующий Круг магии",kosten);

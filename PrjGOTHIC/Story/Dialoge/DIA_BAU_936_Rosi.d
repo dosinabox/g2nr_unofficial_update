@@ -132,7 +132,7 @@ instance DIA_Rosi_BARRIERE(C_Info)
 
 func int DIA_Rosi_BARRIERE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU) && !Npc_IsDead(Sekob))
+	if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU))
 	{
 		return TRUE;
 	};
@@ -454,9 +454,12 @@ func void DIA_Rosi_HILFE_Info()
 		Npc_ExchangeRoutine(self,"FollowKloster");
 		B_StartOtherRoutine(Till,"FollowKloster");
 	};
-	Log_CreateTopic(TOPIC_RosisFlucht,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_Running);
-	B_LogEntry(TOPIC_RosisFlucht,"–ози больше не могла выносить жизнь на ферме —екоба, и сбежала в лес, но заблудилась и теперь не знает, куда идти. я выведу ее из лесной глуши.");
+	if(!Npc_KnowsInfo(other,DIA_Babera_Rosi))
+	{
+		Log_CreateTopic(TOPIC_RosisFlucht,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_RosisFlucht,LOG_Running);
+		B_LogEntry(TOPIC_RosisFlucht,"–ози больше не могла выносить жизнь на ферме —екоба, и сбежала в лес, но заблудилась и теперь не знает, куда идти. я выведу ее из лесной глуши.");
+	};
 	MIS_RosisFlucht = LOG_Running;
 };
 

@@ -48,7 +48,7 @@ const int Value_Ru_TeleportPassOW = 500;
 const int Value_Ru_TeleportOC = 500;
 const int Value_Ru_TeleportOWDemonTower = 500;
 const int Value_Ru_TeleportTaverne = 500;
-const int Value_Ru_Teleport_3 = 500;
+const int Value_Ru_TeleportRitual = 500;
 
 instance ItRu_PalLight(C_Item)
 {
@@ -370,7 +370,7 @@ instance ItRu_TeleportOWDemonTower(C_Item)
 	mainflag = ITEM_KAT_RUNE;
 	flags = 0;
 	value = Value_Ru_TeleportOWDemonTower;
-	visual = "ItRu_Teleport_2.3ds";
+	visual = "ItRu_TeleportDemonTower.3ds";
 	material = MAT_STONE;
 	spell = SPL_TeleportOWDemonTower;
 	wear = WEAR_EFFECT;
@@ -388,8 +388,7 @@ instance ItRu_TeleportTaverne(C_Item)
 	mainflag = ITEM_KAT_RUNE;
 	flags = 0;
 	value = Value_Ru_TeleportTaverne;
-//	visual = "ItRu_Teleport_2.3ds";
-	visual = "ItRu_Teleport_3.3ds";
+	visual = "ItRu_TeleportTaverne.3ds";
 	material = MAT_STONE;
 	spell = SPL_TeleportTaverne;
 	wear = WEAR_EFFECT;
@@ -401,18 +400,18 @@ instance ItRu_TeleportTaverne(C_Item)
 	count[5] = value;
 };
 
-instance ItRu_Teleport_3(C_Item)
+instance ItRu_TeleportRitual(C_Item)
 {
 	name = NAME_Rune;
 	mainflag = ITEM_KAT_RUNE;
 	flags = 0;
-	value = Value_Ru_Teleport_3;
-	visual = "ItRu_Teleport_3.3ds";
+	value = Value_Ru_TeleportRitual;
+	visual = "ItRu_TeleportRitual.3ds";
 	material = MAT_STONE;
-	spell = SPL_Teleport_3;
+	spell = SPL_TeleportRitual;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
-	description = NAME_SPL_Teleport_3;
+	description = NAME_SPL_TeleportRitual;
 	text[1] = NAME_Manakosten;
 	count[1] = SPL_Cost_Teleport;
 	text[5] = NAME_Value;
@@ -1134,13 +1133,11 @@ instance ItRu_Deathbolt(C_Item)
 	mainflag = ITEM_KAT_RUNE;
 	flags = 0;
 	value = 0;
-//	visual = "ItRu_PalRepelEvil.3DS";
-	visual = "ItRu_Beliar09.3DS";
+	visual = "ItRu_Deathbolt.3DS";
 	material = MAT_STONE;
 	spell = SPL_Deathbolt;
 	mag_circle = 6;
 	wear = WEAR_EFFECT;
-//	effect = "SPELLFX_WEAKGLIMMER";
 	effect = "SPELLFX_WEAKGLIMMER_YELLOW";
 	description = NAME_SPL_Deathbolt;
 	text[0] = NAME_Mag_Circle;
@@ -1159,13 +1156,11 @@ instance ItRu_Deathball(C_Item)
 	mainflag = ITEM_KAT_RUNE;
 	flags = 0;
 	value = 0;
-//	visual = "ItRu_PalRepelEvil.3DS";
-	visual = "ItRu_Beliar10.3DS";
+	visual = "ItRu_Deathball.3DS";
 	material = MAT_STONE;
 	spell = SPL_Deathball;
 	mag_circle = 6;
 	wear = WEAR_EFFECT;
-//	effect = "SPELLFX_WEAKGLIMMER";
 	effect = "SPELLFX_WEAKGLIMMER_YELLOW";
 	description = NAME_SPL_Deathball;
 	text[0] = NAME_Mag_Circle;
@@ -1184,8 +1179,7 @@ instance ItRu_Concussionbolt(C_Item)
 	mainflag = ITEM_KAT_RUNE;
 	flags = 0;
 	value = 0;
-//	visual = "ItRu_PalRepelEvil.3DS";
-	visual = "ItRu_Beliar08.3DS";
+	visual = "ItRu_Concussionbolt.3DS";
 	material = MAT_STONE;
 	spell = SPL_ConcussionBolt;
 	mag_circle = 6;

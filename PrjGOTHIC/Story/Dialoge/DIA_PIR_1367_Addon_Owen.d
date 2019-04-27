@@ -209,18 +209,21 @@ func void DIA_Addon_Owen_MalcomStunt_Info()
 //	AI_Output(other,self,"DIA_Addon_Owen_MalcomStunt_15_00");	//Как дела?
 	AI_Output(other,self,"DIA_Addon_Tom_Juan_15_00");		//Что случилось?
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_01");	//Мой приятель Мальком пропал.
-	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_02");	//На нас напал один из этих луркеров.
-	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_03");	//Мы убежали в эту пещеру.
-	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_04");	//Но луркер последовал за нами.
-	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_05");	//Мальком начал с ним сражаться, а потом они оба упали в ту яму.
-	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_06");	//Похоже, там на дне вода.
-	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_07");	//Я слышал, как внизу Мальком дерется с луркером. А потом все стихло.
-	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_08");	//Не знаю, жив ли еще Мальком.
-	Log_CreateTopic(TOPIC_Addon_MalcomsStunt,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MalcomsStunt,LOG_Running);
-	B_LogEntry(TOPIC_Addon_MalcomsStunt,"Оуэн хочет узнать, что случилось с его другом Малькомом, который упал в глубокую яму после того, как схватился с луркером.");
-	Log_AddEntry(TOPIC_Addon_MalcomsStunt,"Оуэн сказал мне, что на дне ямы вода, и сначала упавший туда Мальком был жив. Но через некоторое время шум в яме стих.");
-	MIS_Owen_FindMalcom = LOG_Running;
+	if(Malcom_Accident_Deadly == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_02");	//На нас напал один из этих луркеров.
+		AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_03");	//Мы убежали в эту пещеру.
+		AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_04");	//Но луркер последовал за нами.
+		AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_05");	//Мальком начал с ним сражаться, а потом они оба упали в ту яму.
+		AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_06");	//Похоже, там на дне вода.
+		AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_07");	//Я слышал, как внизу Мальком дерется с луркером. А потом все стихло.
+		AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_08");	//Не знаю, жив ли еще Мальком.
+		Log_CreateTopic(TOPIC_Addon_MalcomsStunt,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MalcomsStunt,LOG_Running);
+		B_LogEntry(TOPIC_Addon_MalcomsStunt,"Оуэн хочет узнать, что случилось с его другом Малькомом, который упал в глубокую яму после того, как схватился с луркером.");
+		Log_AddEntry(TOPIC_Addon_MalcomsStunt,"Оуэн сказал мне, что на дне ямы вода, и сначала упавший туда Мальком был жив. Но через некоторое время шум в яме стих.");
+		MIS_Owen_FindMalcom = LOG_Running;
+	};
 };
 
 

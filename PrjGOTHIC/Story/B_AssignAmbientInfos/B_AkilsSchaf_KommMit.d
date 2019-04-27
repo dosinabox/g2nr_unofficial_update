@@ -34,7 +34,7 @@ instance DIA_AkilsSchaf_KommMit(C_Info)
 
 func int DIA_AkilsSchaf_KommMit_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (self.aivar[AIV_TAPOSITION] == ISINPOS) && !Npc_KnowsInfo(other,DIA_Akil_AkilsSchaf))
+	if((self.aivar[AIV_PARTYMEMBER] == FALSE) && (self.aivar[AIV_TAPOSITION] == ISINPOS) && !Npc_KnowsInfo(other,DIA_Akil_AkilsSchaf) && (MIS_Akil_SchafDiebe != FALSE))
 	{
 		return TRUE;
 	};
@@ -49,10 +49,17 @@ func void DIA_AkilsSchaf_KommMit_Info()
 	if(!Npc_IsDead(BDT_1025_Bandit_H))
 	{
 		BDT_1025_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
+		BDT_1025_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
 	};
 	if(!Npc_IsDead(BDT_1026_Bandit_H))
 	{
 		BDT_1026_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
+		BDT_1026_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
+	};
+	if(!Npc_IsDead(BDT_1027_Bandit_H))
+	{
+		BDT_1027_Bandit_H.aivar[AIV_EnemyOverride] = FALSE;
+		BDT_1027_Bandit_H.aivar[AIV_IgnoresArmor] = TRUE;
 	};
 	AI_StopProcessInfos(self);
 };
