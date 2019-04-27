@@ -3,23 +3,26 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 {
 	var C_Item itm;
 	itm = Npc_GetEquippedArmor(oth);
-	if(Npc_HasEquippedArmor(oth) && Hlp_IsItem(itm,ITAR_RANGER_Addon))
+	if(Npc_HasEquippedArmor(oth))
 	{
-		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares)) && (Npc_GetDistToWP(slf,"NW_CITY_HABOUR_02_B") < 5000))
+		if(Hlp_IsItem(itm,ITAR_RANGER_Addon))
 		{
-			return TRUE;
-		};
-		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras)) && (Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000))
-		{
-			return TRUE;
-		};
-		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY)) && (Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000))
-		{
-			return TRUE;
-		};
-		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin)) && ((Npc_GetDistToWP(slf,"NW_CITY_PALCAMP_15") < 5000) || (Npc_GetDistToWP(slf,"NW_CITY_HABOUR_TAVERN01_04") < 5000)))
-		{
-			return TRUE;
+			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares)) && (Npc_GetDistToWP(slf,"NW_CITY_HABOUR_02_B") < 5000))
+			{
+				return TRUE;
+			};
+			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras)) && (Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000))
+			{
+				return TRUE;
+			};
+			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY)) && (Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_TEMPLE_FRONT") < 5000))
+			{
+				return TRUE;
+			};
+			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Martin)) && ((Npc_GetDistToWP(slf,"NW_CITY_PALCAMP_15") < 5000) || (Npc_GetDistToWP(slf,"NW_CITY_HABOUR_TAVERN01_04") < 5000)))
+			{
+				return TRUE;
+			};
 		};
 	};
 	if(slf.aivar[AIV_IgnoresArmor] == TRUE)
