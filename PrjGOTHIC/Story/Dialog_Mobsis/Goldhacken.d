@@ -238,7 +238,7 @@ func void PC_Goldhacken_Addon_Hour_Info()
 	}
 	else
 	{
-		PrintScreen("Здесь больше нечего делать.",-1,53,FONT_ScreenSmall,2);
+		PrintScreen(PRINT_NothingToPick,-1,53,FONT_ScreenSmall,2);
 		b_endproductiondialog();
 	};
 };

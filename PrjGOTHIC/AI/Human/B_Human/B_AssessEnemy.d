@@ -5,7 +5,7 @@ func int C_NpcIsAfraidOfOrcs(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(KDF_511_Daron))
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Daron))
 	{
 		return FALSE;
 	};

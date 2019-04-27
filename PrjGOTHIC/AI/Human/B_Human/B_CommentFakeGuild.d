@@ -9,7 +9,7 @@ func void ZS_CommentFakeGuild()
 	};
 	if(!C_BodyStateContains(other,BS_SIT))
 	{
-		B_TurnToNpc(other,self);
+//		B_TurnToNpc(other,self);
 		if(Npc_GetDistToNpc(other,self) < 80)
 		{
 			AI_Dodge(other);
@@ -37,6 +37,10 @@ func void ZS_CommentFakeGuild()
 		{
 			B_Say(self,other,"$ADDON_NOARMOR_BDT");
 		};
+	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Daron)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ulf)))
+	{
+		B_Say(self,other,"$ADDON_WRONGARMOR_KDF");
 	}
 	else
 	{

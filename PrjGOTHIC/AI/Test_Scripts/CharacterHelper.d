@@ -121,10 +121,11 @@ func void B_SetHeroExp()
 	hero.lp = hero.level * LP_PER_LEVEL;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40 + (10 * hero.level);
 	hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
-	Attributes = "Повышение уровня! Очки обучения:";
+	Attributes = "Повышение уровня! Очки обучения: ";
 	Attributes = ConcatStrings(Attributes,IntToString(hero.lp));
-	Attributes = ConcatStrings(Attributes,"  Здоровье:");
+	Attributes = ConcatStrings(Attributes,". Здоровье: ");
 	Attributes = ConcatStrings(Attributes,IntToString(hero.attribute[ATR_HITPOINTS_MAX]));
+	Attributes = ConcatStrings(Attributes,".");
 	PrintScreen(Attributes,-1,-1,FONT_Screen,3);
 	Snd_Play("LEVELUP");
 };

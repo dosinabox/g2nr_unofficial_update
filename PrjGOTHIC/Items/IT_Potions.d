@@ -301,7 +301,7 @@ instance ItPo_Speed(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = NAME_Speed_Elixier;
-	text[0] = "Временно повышает скорость.";
+	text[0] = PRINT_Speed;
 	text[1] = NAME_Duration;
 	count[1] = Time_Speed / 60000;
 	text[5] = NAME_Value;

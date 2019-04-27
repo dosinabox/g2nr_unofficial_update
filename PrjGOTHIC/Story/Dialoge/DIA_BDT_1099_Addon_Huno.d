@@ -18,6 +18,7 @@ func int DIA_Addon_Huno_EXIT_Condition()
 func void DIA_Addon_Huno_EXIT_Info()
 {
 	B_EquipTrader(self);
+	EnteredBanditsCamp = TRUE;
 	AI_StopProcessInfos(self);
 };
 

@@ -590,11 +590,13 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 	var int XP_RavenNeuigkeit;
 	AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_00");	//Насчет Ворона...
 	RavenNeuigkeit = 0;
-//	if((Thorus.aivar[AIV_TalkedToPlayer] == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE) && (RavenIsInTempel == FALSE))
-	if((Thorus.aivar[AIV_TalkedToPlayer] == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE))
+	if(((EnteredBanditsCamp == TRUE) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(Wache_01) || Npc_IsDead(Wache_02) || Npc_IsDead(Bloodwyn)) && (DIA_Addon_Saturas_RavenInfos_OneTime1 == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_01");	//Я побывал в лагере бандитов к востоку отсюда. Ворон - их предводитель.
-		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_02");	//Но прежде чем оказаться рядом с Вороном, я был вынужден убрать с дороги нескольких бандитов.
+		if(Npc_IsDead(Franco) || Npc_IsDead(Ramon) || Npc_IsDead(Senyan) || Npc_IsDead(Esteban) || Npc_IsDead(Wache_01) || Npc_IsDead(Wache_02) || Npc_IsDead(Bloodwyn))
+		{
+			AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_02");	//Но прежде чем оказаться рядом с Вороном, я был вынужден убрать с дороги нескольких бандитов.
+		};
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_03");	//Отлично. Удачи. Но не забывай, что тебе нужно действовать быстро.
 		AI_Output(self,other,"DIA_Addon_Saturas_RavenInfos_14_04");	//Ворон ни при каких обстоятельствах не должен достигнуть цели.
 		DIA_Addon_Saturas_RavenInfos_OneTime1 = TRUE;

@@ -335,6 +335,7 @@ const int MOBSI_PrayShrine = 5;
 const int MOBSI_GOLDHACKEN = 6;
 const int MOBSI_PRAYIDOL = 7;
 const int MOBSI_PAN = 8;
+const int MOBSI_ORE = 9;
 var int player_mobsi_production;
 const int BodyTex_P = 0;
 const int BodyTex_N = 1;

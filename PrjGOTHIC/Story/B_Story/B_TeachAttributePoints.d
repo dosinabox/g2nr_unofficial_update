@@ -47,7 +47,7 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 	};
 	oth.lp -= kosten;
 	B_RaiseAttribute(oth,attrib,points);
-//	эксперимент: игнорирование зелий, еды и табличек при прокачке
+//	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == TRUE)
 	{
 		B_RaiseRealAttributeLearnCounter(oth,attrib,points);

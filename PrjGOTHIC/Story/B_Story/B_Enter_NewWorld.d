@@ -133,7 +133,8 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 			//CreateInvItem(Dyrian,ITAR_Bau_L);
 			//AI_EquipArmor(Dyrian,ITAR_Bau_L);
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
-		};	
+		};
+		B_KillThievesGuild();
 		EnterNW_Kapitel2 = TRUE;
 	};
 };
@@ -378,6 +379,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_SLD.tga","chapter_01.wav",6000);
 		};
+		B_KillThievesGuild();
 		EnterNW_Kapitel3 = TRUE;
 	};
 };
@@ -659,6 +661,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				B_StartOtherRoutine(Randolph,"Start");
 			};
 		};
+		B_KillThievesGuild();
 		EnterNW_Kapitel4 = TRUE;
 	};
 	if(Talbin_FollowsThroughPass == LOG_Running)
@@ -813,6 +816,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		{
 			B_StartOtherRoutine(Girion,"WaitForShip");
 		};
+		B_KillThievesGuild();
 		EnterNW_Kapitel5 = TRUE;
 	};
 //	if(MIS_OCGateOpen == TRUE)

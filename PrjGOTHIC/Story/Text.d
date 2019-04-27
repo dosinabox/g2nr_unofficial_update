@@ -941,4 +941,6 @@ const string PRINT_HiddenInFish = "В этой рыбе что-то спрятано.";
 const string PRINT_UnknownEffect = "Эффект неизвестен.";
 const string PRINT_LousHammerNoEffect = "Больше не дает никакого эффекта, кроме опьянения.";
 const string PRINT_SlowTime = "Замедление времени.";
+const string PRINT_Speed = "Временно повышает скорость.";
+const string PRINT_NothingToPick = "Здесь больше нечего делать.";
 

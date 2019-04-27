@@ -517,6 +517,8 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KnowWhereEnemy_15_00");	//Я знаю, где скрывается враг. На небольшом острове, недалеко отсюда.
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_01");	//Это наш шанс. Мы должны отправляться туда немедленно и уничтожить Зло раз и навсегда.
+	Log_CreateTopic(Topic_Crew,LOG_MISSION);
+	Log_SetTopicStatus(Topic_Crew,LOG_Running);
 	if(!Npc_IsDead(DiegoNW))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_02");	//Ты говорил с Диего? Я думаю, он согласится присоединиться к тебе.

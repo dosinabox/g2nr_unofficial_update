@@ -217,6 +217,7 @@ func void DIA_Ramirez_Beute_Info()
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);
 	};
+	DG_gefunden = TRUE;
 };
 
 

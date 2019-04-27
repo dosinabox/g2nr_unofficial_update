@@ -81,6 +81,7 @@ func void DIA_Addon_BDT_10018_Torwache_FirstWarn_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_FirstWarn_04_03");	//Снова ты? Ты начинаешь меня доставать!
 	};
+	EnteredBanditsCamp = TRUE;
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,BDT_10018_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
 };
@@ -302,7 +303,6 @@ func void DIA_Addon_10018_Torwache_kopf_Info()
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_01");	//Это что... это... Бладвин?.. (тошнит) Это...
 	AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_kopf_04_02");	//Н-нет... Я хочу сказать... Да, проходи...
-	
 	MIS_BloodwynRaus = LOG_SUCCESS;
 	self.aivar[AIV_PASSGATE] = TRUE;
 	AI_StopProcessInfos(self);

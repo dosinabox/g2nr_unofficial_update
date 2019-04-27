@@ -366,6 +366,11 @@ func void DIA_Pedro_AUFNAHME_YES()
 		Pedro_NOV_Aufnahme_LostInnosStatue_Daron = TRUE;
 		Liesel_Giveaway = LOG_OBSOLETE;
 	};
+	if(!Npc_IsDead(Isgaroth))
+	{
+		Isgaroth.aivar[AIV_ToughGuy] = FALSE;
+		Isgaroth.aivar[AIV_ToughGuyNewsOverride] = FALSE;
+	};
 	Wld_AssignRoomToGuild("Kloster02",GIL_KDF);
 	AI_StopProcessInfos(self);
 };

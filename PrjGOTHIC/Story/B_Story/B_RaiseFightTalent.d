@@ -37,7 +37,7 @@ func void B_RaiseRealFightTalentPercent(var C_Npc oth,var int talent,var int per
 
 func void B_RaiseFightTalent(var C_Npc oth,var int talent,var int percent)
 {
-	//	эксперимент: игнорирование зелий, еды и табличек при прокачке
+//	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == FALSE)
 	{
 		B_RaiseRealFightTalentPercent(oth,talent,percent);

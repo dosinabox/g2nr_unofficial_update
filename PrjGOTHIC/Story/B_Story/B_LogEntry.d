@@ -54,17 +54,5 @@ func void B_CheckDynamicText()
 	{
 		TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Broken;
 	};
-	/*if(Player_KnowsSchnellerHering == FALSE)
-	{
-		TEXT_SchnellerHering_Setting = "Выглядит подозрительно!";
-		TEXT_SchnellerHering_Setting2 = "Эффект неизвестен, возможны побочные эффекты.";
-		COUNT_SchnellerHering_Setting = 0;
-	}
-	else
-	{
-		TEXT_SchnellerHering_Setting = "Временно повышает скорость.";
-		TEXT_SchnellerHering_Setting2 = NAME_Duration;
-		COUNT_SchnellerHering_Setting = Time_SchnellerHering / 60000;
-	};*/
 };
 

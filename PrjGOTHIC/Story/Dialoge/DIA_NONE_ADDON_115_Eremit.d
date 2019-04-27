@@ -309,7 +309,11 @@ func void DIA_Addon_Eremit_Klamotten_Info()
 	};
 	if(Npc_HasItems(other,ITAR_Larius))
 	{
-		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать одежду Лариуса)",DIA_Addon_Eremit_Klamotten_Larius);
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать одежду губернатора)",DIA_Addon_Eremit_Klamotten_Larius);
+	};
+	if(Npc_HasItems(other,ITAR_Onar))
+	{
+		Info_AddChoice(DIA_Addon_Eremit_Klamotten,"(дать одежду лендлорда)",DIA_Addon_Eremit_Klamotten_Onar);
 	};
 	if(Npc_HasItems(other,ITAR_Dementor))
 	{

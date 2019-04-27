@@ -17,7 +17,7 @@ func int C_WantToRansack(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(KDF_511_Daron)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras)))
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Daron)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vatras)))
 	{
 		return FALSE;
 	};

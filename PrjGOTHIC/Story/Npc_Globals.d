@@ -73,6 +73,7 @@ var C_Npc Saturas_NW;
 var C_Npc Myxir_ADW;
 var C_Npc Myxir_CITY;
 var C_Npc Quarhodron;
+var C_Npc Rhademes;
 var C_Npc Dexter;
 var C_Npc Sumpfi_01;
 var C_Npc Sumpfi_02;
@@ -320,6 +321,7 @@ var C_Npc Jora;
 var C_Npc Tandor;
 var C_Npc Khaled;
 var C_Npc Meldor;
+var C_Npc Daron;
 
 func void B_InitNpcGlobals()
 {
@@ -401,6 +403,7 @@ func void B_InitNpcGlobals()
 	Riordian_NW = Hlp_GetNpc(KDW_1404_Addon_Riordian_NW);
 	Merdarion_NW = Hlp_GetNpc(KDW_1405_Addon_Merdarion_NW);
 	Quarhodron = Hlp_GetNpc(NONE_ADDON_111_Quarhodron);
+	Rhademes = Hlp_GetNpc(NONE_ADDON_112_Rhademes);
 	Dexter = Hlp_GetNpc(BDT_1060_Dexter);
 	Sumpfi_01 = Hlp_GetNpc(MIS_Addon_Swampshark_01);
 	Sumpfi_02 = Hlp_GetNpc(MIS_Addon_Swampshark_02);
@@ -648,5 +651,6 @@ func void B_InitNpcGlobals()
 	Tandor = Hlp_GetNpc(PAL_260_Tandor);
 	Khaled = Hlp_GetNpc(SLD_823_Khaled);
 	Meldor = Hlp_GetNpc(VLK_415_Meldor);
+	Daron = Hlp_GetNpc(KDF_511_Daron);
 };
 

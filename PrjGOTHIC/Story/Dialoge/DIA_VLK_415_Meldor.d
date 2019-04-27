@@ -203,7 +203,7 @@ instance DIA_Meldor_Smoke(C_Info)
 
 func int DIA_Meldor_Smoke_Condition()
 {
-	if(MIS_Andre_REDLIGHT == LOG_Running)
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
 	{
 		return TRUE;
 	};
@@ -214,9 +214,10 @@ func void DIA_Meldor_Smoke_Info()
 	var C_Item heroArmor;
 	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Meldor_Smoke_15_00");	//Ты не знаешь, где мне купить травки?
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
 	{
 		AI_Output(self,other,"DIA_Meldor_Smoke_07_01");	//(оценивающе) Нет, понятия не имею.
+		Undercover_Failed = TRUE;
 	}
 	else
 	{
@@ -225,7 +226,10 @@ func void DIA_Meldor_Smoke_Info()
 };
 
 
-var int Meldor_DGNews;
+var int Meldor_ThievesNews1;
+var int Meldor_ThievesNews2;
+var int Meldor_DragonsNews1;
+var int Meldor_DragonsNews2;
 
 instance DIA_Meldor_PERM(C_Info)
 {
@@ -246,24 +250,27 @@ func int DIA_Meldor_PERM_Condition()
 func void DIA_Meldor_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Meldor_PERM_15_00");	//Ничего интересного не было в последнее время?
-	if(Kapitel <= 1)
+	if((Andre_FoundThieves_KilledByMilitia == FALSE) && (Meldor_ThievesNews1 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Meldor_PERM_07_01");	//Недавно городская стража перевернула вверх дном весь портовый квартал.
 		AI_Output(self,other,"DIA_Meldor_PERM_07_02");	//Они искали украденное. В последнее время развелось уж больно много воров. Особенно в зажиточных кварталах.
 		AI_Output(self,other,"DIA_Meldor_PERM_07_03");	//Они пытались во всем обвинить бедняков из портового квартала.
+		Meldor_ThievesNews1 = TRUE;
 	}
-	else if((Andre_Diebesgilde_aufgeraeumt == TRUE) && (Meldor_DGNews == FALSE))
+	else if((Andre_FoundThieves_KilledByMilitia == TRUE) && (Meldor_ThievesNews2 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Meldor_PERM_07_04");	//Я слышал, в канализации поймали банду воров. Все воры были убиты.
-		Meldor_DGNews = TRUE;
+		Meldor_ThievesNews2 = TRUE;
 	}
-	else if(Kapitel == 3)
+	else if(((Kapitel == 3) || (Kapitel == 4)) && (Meldor_DragonsNews1 == FALSE))
 	{
-		AI_Output(self,other,"DIA_Meldor_PERM_07_05");	//Говорят, что в Долине Рудников появились драконы. Интересно, когда паладины уйдут отсюда, чтобы сражаться с драконами.
+		AI_Output(self,other,"DIA_Meldor_PERM_07_05");	//Говорят, что в Долине Рудников появились драконы. Интересно, когда паладины уйдут отсюда, чтобы сражаться с драконами?
+		Meldor_DragonsNews1 = TRUE;
 	}
-	else if(Kapitel == 5)
+	else if((Kapitel == 5) && (Meldor_DragonsNews2 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Meldor_PERM_07_06");	//Предположительно, все драконы мертвы. Кто-то вымел их железной метлой.
+		Meldor_DragonsNews2 = TRUE;
 	}
 	else
 	{

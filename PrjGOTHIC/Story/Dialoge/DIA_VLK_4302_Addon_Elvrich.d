@@ -397,6 +397,7 @@ func void DIA_Addon_Elvrich_WasNun_Info()
 	AI_Output(other,self,"DIA_Addon_Elvrich_WasNun_15_03");	//Думаю, что да...
 	AI_Output(self,other,"DIA_Addon_Elvrich_WasNun_04_04");	//Если найдешь Люсию, отведи ее в город, хорошо?
 	AI_Output(other,self,"DIA_Addon_Elvrich_WasNun_15_05");	//Я посмотрю, что смогу сделать.
+	AI_Output(self,other,"OUTRO_Xardas_04_00");	//До встречи!
 	CreateInvItem(self,ItMw_1h_Vlk_Axe);
 	AI_EquipBestMeleeWeapon(self);
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);

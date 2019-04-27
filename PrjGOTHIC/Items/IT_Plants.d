@@ -307,7 +307,7 @@ instance ItPl_Speed_Herb_01(C_Item)
 	on_state[0] = Use_Speed_Herb_01;
 	scemeName = "FOOD";
 	description = name;
-	text[0] = "Временно повышает скорость.";
+	text[0] = PRINT_Speed;
 	text[1] = NAME_Sec_Duration;
 	count[1] = Speed_Boost / 1000;
 	text[5] = NAME_Value;

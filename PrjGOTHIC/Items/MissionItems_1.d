@@ -637,7 +637,7 @@ instance ItKe_ThiefGuildKey_Hotel_MIS(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Это ключ от погреба отеля.";
+	text[0] = "Это ключ от подвала отеля.";
 };
 
 instance ItKe_Innos_MIS(C_Item)

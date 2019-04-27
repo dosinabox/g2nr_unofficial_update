@@ -102,8 +102,17 @@ func int DIA_Vanja_DOPE_Condition()
 
 func void DIA_Vanja_DOPE_Info()
 {
+	var C_Item heroArmor;
+	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Vanja_DOPE_15_00");	//Где здесь можно купить травки?
 	AI_Output(self,other,"DIA_Vanja_DOPE_17_01");	//Понятия не имею. Лучше не связывайся с этой дрянью.
-	AI_Output(self,other,"DIA_Vanja_DOPE_17_02");	//К тому же, если ты будешь продолжать расспрашивать о ней, у тебя могут быть большие проблемы...
+	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
+	{
+		Undercover_Failed = TRUE;
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Vanja_DOPE_17_02");	//К тому же, если ты будешь продолжать расспрашивать о ней, у тебя могут быть большие проблемы...
+	};
 };
 

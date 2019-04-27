@@ -535,10 +535,6 @@ func void DIA_Akil_SCHAFDIEB_Info()
 	Info_AddChoice(DIA_Akil_SCHAFDIEB,"Это не мои проблемы.",DIA_Akil_SCHAFDIEB_nein);
 	Info_AddChoice(DIA_Akil_SCHAFDIEB,"Сколько овец у тебя пропало?",DIA_Akil_SCHAFDIEB_wieviel);
 	Info_AddChoice(DIA_Akil_SCHAFDIEB,"Кто может делать это?",DIA_Akil_SCHAFDIEB_wer);
-	MIS_Akil_SchafDiebe = LOG_Running;
-	Log_CreateTopic(TOPIC_AkilSchafDiebe,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_AkilSchafDiebe,LOG_Running);
-	B_LogEntry(TOPIC_AkilSchafDiebe,"Овцы Акила продолжают пропадать. Он подозревает, что к этому причастны бандиты, живущие в пещере в соседнем лесу.");
 };
 
 func void DIA_Akil_SCHAFDIEB_wer()
@@ -547,6 +543,10 @@ func void DIA_Akil_SCHAFDIEB_wer()
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEB_wer_13_01");	//У меня есть подозрения.
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEB_wer_13_02");	//Какие-то темные личности обосновались в пещере вон в том лесу.
 	AI_Output(self,other,"DIA_Akil_SCHAFDIEB_wer_13_03");	//Мне трудно поверить, что они питаются только ягодами. Я почти уверен, что именно они виновны в исчезновении моих овец.
+	MIS_Akil_SchafDiebe = LOG_Running;
+	Log_CreateTopic(TOPIC_AkilSchafDiebe,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_AkilSchafDiebe,LOG_Running);
+	B_LogEntry(TOPIC_AkilSchafDiebe,"Овцы Акила продолжают пропадать. Он подозревает, что к этому причастны бандиты, живущие в пещере в соседнем лесу.");
 	Info_ClearChoices(DIA_Akil_SCHAFDIEB);
 };
 

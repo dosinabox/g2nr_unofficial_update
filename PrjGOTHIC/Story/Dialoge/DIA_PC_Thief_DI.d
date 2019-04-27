@@ -325,10 +325,17 @@ func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 	if(DIA_PC_Thief_DI_UndeadDragonDead_OneTime == FALSE)
 	{
 		AI_Output(other,self,"DIA_PC_Thief_DI_UndeadDragonDead_15_06");	//Что ты собираешься делать дальше?
-		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_07");	//Хороший вопрос. Я думаю, сначала нужно вернуться в Хоринис.
-		if((Diebesgilde_Verraten == TRUE) || (MIS_Andre_GuildOfThieves == LOG_SUCCESS))
+		if(MIS_HelpDiegoNW != LOG_SUCCESS)
 		{
-			AI_Output(self,other,"DIA_DiegoDI_Add_11_00");	//Там больше нет гильдии воров. Это открывает новые интересные возможности.
+			AI_Output(self,other,"DIA_DIEGONW_NEEDHELP_PROBLEM_WILLHELPYOU_11_01");	//Я спрятал небольшое состояние в Долине Рудников...
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_07");	//Хороший вопрос. Я думаю, сначала нужно вернуться в Хоринис.
+			if((Andre_FoundThieves_Reported == TRUE) || (MIS_Andre_GuildOfThieves == LOG_SUCCESS))
+			{
+				AI_Output(self,other,"DIA_DiegoDI_Add_11_00");	//Там больше нет гильдии воров. Это открывает новые интересные возможности.
+			};
 		};
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_09");	//Ммм. Ну, или, может быть, я просто продолжу бизнес Бромора. Это очень неплохие деньги. Честные деньги.
 		DIA_PC_Thief_DI_UndeadDragonDead_OneTime = TRUE;

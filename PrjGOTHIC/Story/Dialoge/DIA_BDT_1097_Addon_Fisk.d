@@ -82,6 +82,7 @@ func void DIA_Addon_Fisk_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_Fisk_Hi_12_01");	//Моя лавка находится за домом Эстебана. Если тебе что-нибудь понадобится, заходи.
 	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
 	B_LogEntry(Topic_Addon_BDT_Trader,"Фиск продает самые разные товары.");
+	EnteredBanditsCamp = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");
 };
