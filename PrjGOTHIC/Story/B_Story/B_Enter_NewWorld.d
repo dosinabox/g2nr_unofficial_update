@@ -203,8 +203,17 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		B_NpcSetJailed(Bennet);
 		B_StartOtherRoutine(Bennet,"PRISON");
 		B_StartOtherRoutine(Sergio,"WAIT");
-		B_StartOtherRoutine(Peck,"STORAGE");
 		B_StartOtherRoutine(Vanja,"ALONE");
+		if(!Npc_IsDead(Peck))
+		{
+			B_StartOtherRoutine(Peck,"STORAGE");
+			Peck.aivar[AIV_IgnoresFakeGuild] = FALSE;
+			Peck.aivar[AIV_ToughGuy] = FALSE;
+			Peck.aivar[AIV_ToughGuyNewsOverride] = FALSE;
+			Peck.aivar[AIV_IGNORE_Murder] = FALSE;
+			Peck.aivar[AIV_IGNORE_Theft] = FALSE;
+			Peck.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
+		};
 		B_RemoveNpc(Lothar);
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");

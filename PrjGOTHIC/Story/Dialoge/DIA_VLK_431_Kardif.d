@@ -670,6 +670,7 @@ func void DIA_Kardif_DOPE_Info()
 	if(Kardif_Busted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Kardif_DOPE_14_00");	//Только не здесь - я не имею дела с подобными вещами.
+		Undercover_Failed = TRUE;
 	}
 	else if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{

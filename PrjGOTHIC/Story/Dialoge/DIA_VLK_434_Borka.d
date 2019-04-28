@@ -133,11 +133,9 @@ func int DIA_Borka_Smoke_Condition()
 
 func void DIA_Borka_Smoke_Info()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Borka_Smoke_15_00");	//Ты не знаешь, где можно купить травки?
 	AI_Output(self,other,"DIA_Borka_Smoke_11_01");	//Нет, проваливай!
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M))
+	if(C_RedlightUndercoverCheckFailed(other))
 	{
 		Undercover_Failed = TRUE;
 	};
@@ -158,7 +156,7 @@ instance DIA_Borka_BUYHERB(C_Info)
 
 func int DIA_Borka_BUYHERB_Condition()
 {
-	if((Knows_Borka_Dealer == TRUE) && (MIS_Andre_REDLIGHT == LOG_Running) && (Borka_Deal == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == TRUE) && (Borka_Deal == FALSE))
 	{
 		return TRUE;
 	};
@@ -166,10 +164,8 @@ func int DIA_Borka_BUYHERB_Condition()
 
 func void DIA_Borka_BUYHERB_Info()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Borka_BUYHERB_15_00");	//Я слышал, ты продаешь травку.
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
+	if(C_RedlightUndercoverCheckFailed(other))
 	{
 		AI_Output(self,other,"DIA_Borka_BUYHERB_11_01");	//Извините, мистер стражник, сэр. Это, должно быть, какая-то ошибка. Я ничего не знаю ни о какой травке.
 		Undercover_Failed = TRUE;
@@ -232,10 +228,8 @@ func int DIA_Borka_SECOND_CHANCE_Condition()
 
 func void DIA_Borka_SECOND_CHANCE_Info()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Borka_SECOND_CHANCE_15_00");	//Договорились. Вот твое золото.
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
+	if(C_RedlightUndercoverCheckFailed(other))
 	{
 		AI_Output(self,other,"DIA_Borka_BUYHERB_11_01");	//Извините, мистер стражник, сэр. Это, должно быть, какая-то ошибка. Я ничего не знаю ни о какой травке.
 		Undercover_Failed = TRUE;

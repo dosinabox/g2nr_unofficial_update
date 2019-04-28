@@ -271,7 +271,7 @@ instance DIA_Bromor_DOPE(C_Info)
 
 func int DIA_Bromor_DOPE_Condition()
 {
-	if((MIS_Andre_REDLIGHT == LOG_Running) && (NpcObsessedByDMT_Bromor == FALSE) && (Bromor_Hausverbot == FALSE))
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE) && (NpcObsessedByDMT_Bromor == FALSE) && (Bromor_Hausverbot == FALSE) && Npc_KnowsInfo(other,DIA_Bromor_GIRLS))
 	{
 		return TRUE;
 	};

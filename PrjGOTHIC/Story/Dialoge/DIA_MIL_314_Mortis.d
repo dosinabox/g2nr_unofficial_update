@@ -115,7 +115,7 @@ instance DIA_Mortis_Redlight(C_Info)
 
 func int DIA_Mortis_Redlight_Condition()
 {
-	if(MIS_Andre_REDLIGHT == LOG_Running)
+	if((MIS_Andre_REDLIGHT == LOG_Running) && (Knows_Borka_Dealer == FALSE))
 	{
 		return TRUE;
 	};
@@ -124,11 +124,14 @@ func int DIA_Mortis_Redlight_Condition()
 func void DIA_Mortis_Redlight_Info()
 {
 	AI_Output(other,self,"DIA_Mortis_Redlight_15_00");	//Ты хорошо знаешь портовый квартал? Я хочу найти того, кто продает болотную траву.
-	AI_Output(self,other,"DIA_Mortis_Redlight_13_01");	//Ну-у... Народ там не особенно разговорчивый, и они уж точно ничего не скажут городскому стражнику.
+	if(other.guild == GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Mortis_Redlight_13_01");	//Ну-у... Народ там не особенно разговорчивый, и они уж точно ничего не скажут городскому стражнику.
+	};
 	AI_Output(self,other,"DIA_Mortis_Redlight_13_02");	//Если ты хочешь разузнать что-либо там, тебе лучше... нет, ты ДОЛЖЕН снять свои доспехи.
 	AI_Output(other,self,"DIA_Mortis_Redlight_15_03");	//Хорошо, а что дальше?
 	AI_Output(self,other,"DIA_Mortis_Redlight_13_04");	//Кабак и бордель - вероятно, самые лучшие места для поисков. Если тебе вообще удастся что-либо узнать, то ты узнаешь это там.
-	B_LogEntry(TOPIC_Redlight,"Мортис полагает, что если я хочу купить болотную траву в портовом квартале, мне лучше снять доспехи ополчения. Лучше всего попытать счастья в таверне или борделе.");
+	B_LogEntry(TOPIC_Redlight,"Мортис полагает, что если я хочу купить болотную траву в портовом квартале, мне лучше снять свои доспехи. Лучше всего попытать счастья в таверне или борделе.");
 };
 
 

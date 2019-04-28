@@ -251,10 +251,8 @@ func void DIA_Addon_Nadja_LuciaInfo_weiter()
 func void DIA_Addon_Nadja_WAIT()
 {
 	//Info_ClearChoices(DIA_Addon_Nadja_LuciaInfo);
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Nadja_BUYHERB_15_00");	//Могу я здесь купить травки?
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
+	if(C_RedlightUndercoverCheckFailed(other))
 	{
 		AI_Output(self,other,"DIA_Nadja_BUYHERB_16_01");	//Откуда мне знать? Да и если бы знала, все равно не сказала бы городскому стражнику.
 		Undercover_Failed = TRUE;
@@ -335,12 +333,10 @@ func int DIA_Nadja_BUYHERB_Condition()
 
 func void DIA_Nadja_BUYHERB_Info()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Nadja_BUYHERB_15_00");	//Могу я здесь купить травки?
 	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 500)
 	{
-		if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
+		if(C_RedlightUndercoverCheckFailed(other))
 		{
 			AI_Output(self,other,"DIA_Nadja_BUYHERB_16_01");	//Откуда мне знать? Да и если бы знала, все равно не сказала бы городскому стражнику.
 			Undercover_Failed = TRUE;
@@ -382,10 +378,8 @@ func int DIA_Nadja_WANT_HERB_Condition()
 
 func void DIA_Nadja_WANT_HERB_Info()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Nadja_WANT_HERB_15_00");	//А теперь скажи мне, где можно купить травки.
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
+	if(C_RedlightUndercoverCheckFailed(other))
 	{
 		AI_Output(self,other,"DIA_Nadja_WANT_HERB_16_01");	//Извини, я забыла.
 		Undercover_Failed = TRUE;
