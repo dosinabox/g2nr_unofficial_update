@@ -68,7 +68,7 @@ instance DIA_Vanja_STANDARD(C_Info)
 
 func int DIA_Vanja_STANDARD_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Andre_REDLIGHT != LOG_Running))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -77,7 +77,17 @@ func int DIA_Vanja_STANDARD_Condition()
 func void DIA_Vanja_STANDARD_Info()
 {
 	AI_Output(self,other,"DIA_Vanja_STANDARD_17_00");	//Я занята.
-	AI_StopProcessInfos(self);
+	if((MIS_Andre_REDLIGHT == LOG_Running) && C_RedlightUndercoverCheckFailed(other))
+	{
+		Undercover_Failed = TRUE;
+	};
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		if((MIS_Andre_REDLIGHT != LOG_Running) || (Knows_Borka_Dealer == TRUE))
+		{
+			AI_StopProcessInfos(self);
+		};
+	};
 };
 
 
@@ -102,11 +112,9 @@ func int DIA_Vanja_DOPE_Condition()
 
 func void DIA_Vanja_DOPE_Info()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Vanja_DOPE_15_00");	//Где здесь можно купить травки?
 	AI_Output(self,other,"DIA_Vanja_DOPE_17_01");	//Понятия не имею. Лучше не связывайся с этой дрянью.
-	if(Hlp_IsItem(heroArmor,ITAR_MIL_L) || Hlp_IsItem(heroArmor,ITAR_MIL_M) || (Undercover_Failed == TRUE))
+	if(C_RedlightUndercoverCheckFailed(other))
 	{
 		Undercover_Failed = TRUE;
 	}

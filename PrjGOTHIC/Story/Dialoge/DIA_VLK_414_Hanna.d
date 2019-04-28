@@ -453,6 +453,7 @@ func void DIA_Hanna_AusKeller_Info()
 	};
 	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
 	{
+		Hanna_ThievesIsDead = TRUE;
 		Hanna_ThievesIsDead_Day = Wld_GetDay();
 	};
 	AI_StopProcessInfos(self);
@@ -545,6 +546,7 @@ func void DIA_Hanna_Blubb_Info()
 	AI_Output(self,other,"DIA_Hanna_Add_17_38");	//Да. Но тебе лучше не говорить об этом...
 	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
 	{
+		Hanna_ThievesIsDead = TRUE;
 		Hanna_ThievesIsDead_Day = Wld_GetDay();
 	};
 };
@@ -573,6 +575,7 @@ func void DIA_Hanna_Blubb2_Info()
 	AI_Output(self,other,"DIA_Hanna_Add_17_26");	//(глупо улыбается) Я не понимаю, о чем ты говоришь...
 	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
 	{
+		Hanna_ThievesIsDead = TRUE;
 		Hanna_ThievesIsDead_Day = Wld_GetDay();
 	};
 };
@@ -592,18 +595,24 @@ func int DIA_Hanna_Blubb3_Condition()
 	{
 		return TRUE;
 	};
-	if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+	if(Andre_FoundThieves_Reported == TRUE)
 	{
-		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
 		{
-			return TRUE;
+			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+			{
+				return TRUE;
+			};
 		};
 	};
-	if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
+	if(Hanna_ThievesIsDead == TRUE)
 	{
-		if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) || Npc_KnowsInfo(other,DIA_Hanna_Blubb) || Npc_KnowsInfo(other,DIA_Hanna_Blubb2))
+		if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
 		{
-			return TRUE;
+			if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) || Npc_KnowsInfo(other,DIA_Hanna_Blubb) || Npc_KnowsInfo(other,DIA_Hanna_Blubb2))
+			{
+				return TRUE;
+			};
 		};
 	};
 };

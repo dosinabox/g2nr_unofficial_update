@@ -1174,6 +1174,7 @@ var int Knows_Taverne;
 var int EnteredBanditsCamp;
 var int XardasKnowsAboutDestroyedClaw;
 var int Andre_FoundThieves_Reported_Day;
+var int Hanna_ThievesIsDead;
 var int Hanna_ThievesIsDead_Day;
 var int Andre_LordHagenNichtZuSprechen;
 var int Borka_Second_Chance_Failed;
