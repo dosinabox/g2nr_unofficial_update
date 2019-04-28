@@ -61,6 +61,16 @@ func void B_AssessTalk()
 			};
 		};
 	};
+	if(MIS_Andre_REDLIGHT == LOG_Running)
+	{
+		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Meldor)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Borka)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nadja)))
+		{
+			if(C_RedlightUndercoverCheckFailed(other))
+			{
+				Undercover_Failed = TRUE;
+			};
+		};
+	};
 	if(self.guild < GIL_SEPERATOR_HUM)
 	{
 		if(B_AssessEnemy())

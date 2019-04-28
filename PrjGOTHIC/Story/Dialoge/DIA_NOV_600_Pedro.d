@@ -370,6 +370,9 @@ func void DIA_Pedro_AUFNAHME_YES()
 	{
 		Isgaroth.aivar[AIV_ToughGuy] = FALSE;
 		Isgaroth.aivar[AIV_ToughGuyNewsOverride] = FALSE;
+		Isgaroth.aivar[AIV_IGNORE_Murder] = FALSE;
+		Isgaroth.aivar[AIV_IGNORE_Theft] = FALSE;
+		Isgaroth.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 	};
 	Wld_AssignRoomToGuild("Kloster02",GIL_KDF);
 	AI_StopProcessInfos(self);

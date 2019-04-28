@@ -22,6 +22,7 @@ Story\SVM.d
 Story\Text.d
 Story\B_Story\C_NpcIsInQuarter.d
 Story\B_Story\C_DiegoTooFar.d
+Story\B_Story\B_ArmorChecks.d
 Story\B_Story\B_AddFightSkill.d
 Story\B_Story\B_RaiseFightTalent.d
 Story\NPC_Scripts\B_SetFightSkills.d

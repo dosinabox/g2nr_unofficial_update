@@ -119,6 +119,12 @@ func void DIA_Peck_FOUND_PECK_Info()
 	AI_Output(self,other,"DIA_Peck_FOUND_PECK_12_03");	//Черт, твое оружие может подождать.
 	AI_Output(other,self,"DIA_Peck_FOUND_PECK_15_04");	//Пошли, Андрэ уже тоже ищет тебя.
 	AI_Output(self,other,"DIA_Peck_FOUND_PECK_12_05");	//Хм-м-м... черт. Ладно, я уже иду - но когда будешь докладывать Андрэ, не говори ему, что я был здесь.
+	self.aivar[AIV_IgnoresFakeGuild] = FALSE;
+	self.aivar[AIV_ToughGuy] = FALSE;
+	self.aivar[AIV_ToughGuyNewsOverride] = FALSE;
+	self.aivar[AIV_IGNORE_Murder] = FALSE;
+	self.aivar[AIV_IGNORE_Theft] = FALSE;
+	self.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"STORAGE");
 	Npc_ExchangeRoutine(Vanja,"ALONE");

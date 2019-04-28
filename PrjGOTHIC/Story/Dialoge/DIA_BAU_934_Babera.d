@@ -65,10 +65,10 @@ func void DIA_Babera_WIESIEHTSAUS_Info()
 {
 	AI_Output(other,self,"DIA_Babera_WIESIEHTSAUS_15_00");	//Как идет работа в поле?
 	AI_Output(self,other,"DIA_Babera_WIESIEHTSAUS_16_01");	//Посмотри на эти огромные поля, которые нам нужно обработать, и ты сам все поймешь.
-	AI_Output(self,other,"DIA_Babera_WIESIEHTSAUS_16_02");	//Ты хочешь работать на поле?
 	Info_ClearChoices(DIA_Babera_WIESIEHTSAUS);
 	if(hero.guild == GIL_NONE)
 	{
+		AI_Output(self,other,"DIA_Babera_WIESIEHTSAUS_16_02");	//Ты хочешь работать на поле?
 		Info_AddChoice(DIA_Babera_WIESIEHTSAUS,"Вообще-то нет. Я хочу стать наемником.",DIA_Babera_WIESIEHTSAUS_Nein);
 		Info_AddChoice(DIA_Babera_WIESIEHTSAUS,"Может быть.",DIA_Babera_WIESIEHTSAUS_Vielleicht);
 	};
