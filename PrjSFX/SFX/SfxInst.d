@@ -3952,7 +3952,7 @@ instance RAT_EAT_A1(C_SFX_DEF)
 instance RAT_EATWARN(C_SFX_DEF)
 {
 	file = "RAT_EatWarn_01.wav";
-	vol = 60;
+	vol = 90;
 };
 
 instance RAT_EATWARN_A1(C_SFX_DEF)
@@ -3965,6 +3965,12 @@ instance RAT_EATWARN_A2(C_SFX_DEF)
 {
 	file = "nosound.wav";
 	vol = 0;
+};
+
+instance RAT_WARN(C_SFX_DEF)
+{
+	file = "RAT_EatWarn_01.wav";
+	vol = 127;
 };
 
 instance GOB_AMBIENT(C_SFX_DEF)

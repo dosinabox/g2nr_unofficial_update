@@ -120,7 +120,6 @@ func void UseLouHammer()
 		TEXT_LousHammer_Setting = PRINT_LousHammerNoEffect;
 		Hammer_Once = TRUE;
 	};
-//	B_NpcSetDrunk(60);
 	if(Npc_IsPlayer(self))
 	{
 		Mdl_ApplyOverlayMdsTimed(self,"Humans_Drunken.mds",70000);

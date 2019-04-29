@@ -1153,11 +1153,14 @@ instance DIA_Andre_FoundThieves_KilledByMilitia(C_Info)
 
 func int DIA_Andre_FoundThieves_KilledByMilitia_Condition()
 {
-	if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+	if(Andre_FoundThieves_Reported == TRUE)
 	{
-		if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
 		{
-			return TRUE;
+			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+			{
+				return TRUE;
+			};
 		};
 	};
 };
