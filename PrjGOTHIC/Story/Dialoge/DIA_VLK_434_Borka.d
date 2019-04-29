@@ -68,7 +68,7 @@ instance DIA_Borka_PISSOFF(C_Info)
 
 func int DIA_Borka_PISSOFF_Condition()
 {
-	if((Knows_Borka_Dealer == FALSE) && ((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk)))
+	if((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -81,7 +81,17 @@ func void DIA_Borka_PISSOFF_Info()
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_02");	//ћор€ки из самых дальних уголков света приплывают сюда, чтобы провести несколько незабываемых ночей в ' расном ‘онаре'.
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_03");	//ј теперь и у теб€ по€вилс€ такой шанс - нет, честь - провести ночь с Ќадей, самым страстным цветком богов!
 	AI_Output(self,other,"DIA_Borka_PISSOFF_11_04");	//«аходи же, и ты познаешь наслаждение, о котором другие не могут даже и мечтать!
-	AI_StopProcessInfos(self);
+	if((MIS_Andre_REDLIGHT == LOG_Running) && C_RedlightUndercoverCheckFailed(other))
+	{
+		Undercover_Failed = TRUE;
+	};
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 70) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		if(MIS_Andre_REDLIGHT != LOG_Running)
+		{
+			AI_StopProcessInfos(self);
+		};
+	};
 };
 
 
@@ -98,7 +108,7 @@ instance DIA_Borka_TROUBLE(C_Info)
 
 func int DIA_Borka_TROUBLE_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_Andre_REDLIGHT != LOG_Running) && !Npc_IsDead(Nadja) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_ENTRANCE") <= 500))
+	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Nadja) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_ENTRANCE") <= 500))
 	{
 		return TRUE;
 	};
@@ -108,7 +118,17 @@ func void DIA_Borka_TROUBLE_Info()
 {
 	AI_Output(self,other,"DIA_Borka_TROUBLE_11_00");	//„то ты стоишь здесь и колеблешьс€? «аходи внутрь, познакомьс€ с нашей любвеобильной Ќадей.
 	AI_Output(self,other,"DIA_Borka_TROUBLE_11_01");	//Ёто страстное создание ночи придаст твоей жизни новый смысл!
-	AI_StopProcessInfos(self);
+	if((MIS_Andre_REDLIGHT == LOG_Running) && C_RedlightUndercoverCheckFailed(other))
+	{
+		Undercover_Failed = TRUE;
+	};
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 70) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		if(MIS_Andre_REDLIGHT != LOG_Running)
+		{
+			AI_StopProcessInfos(self);
+		};
+	};
 };
 
 

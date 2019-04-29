@@ -59,7 +59,7 @@ func void DIA_Joe_PICKPOCKET_BACK()
 instance DIA_Joe_Hallo(C_Info)
 {
 	npc = VLK_448_Joe;
-	nr = 2;
+	nr = 1;
 	condition = DIA_Joe_Hallo_Condition;
 	information = DIA_Joe_Hallo_Info;
 	permanent = FALSE;
@@ -125,7 +125,7 @@ func void DIA_Joe_Perm_Info()
 instance DIA_Joe_Sign(C_Info)
 {
 	npc = VLK_448_Joe;
-	nr = 2;
+	nr = 3;
 	condition = DIA_Joe_Sign_Condition;
 	information = DIA_Joe_Sign_Info;
 	permanent = FALSE;

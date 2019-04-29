@@ -69,9 +69,12 @@ instance DIA_Moe_Hallo(C_Info)
 
 func int DIA_Moe_Hallo_Condition()
 {
-	if(((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk)) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF) && (hero.guild != GIL_MIL) && !Npc_RefuseTalk(self))
+	if((Npc_GetDistToNpc(self,other) <= ZivilAnquatschDist) || Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((other.guild != GIL_PAL) && (other.guild != GIL_KDF) && (other.guild != GIL_MIL))
+		{
+			return TRUE;
+		};
 	};
 };
 

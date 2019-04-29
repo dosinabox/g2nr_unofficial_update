@@ -815,8 +815,6 @@ var string TEXT_Zeitspalt_Setting;
 var string TEXT_MegaDrink_Setting;
 var string TEXT_MegaDrink_Setting2;
 var string TEXT_DragonEggDrinkNeoras_Setting;
-//var string TEXT_SchnellerHering_Setting;
-//var string TEXT_SchnellerHering_Setting2;
 const string Pickpocket_20 = "(нет ничего проще, чем украсть его кошелек)";
 const string Pickpocket_40 = "(украсть его кошелек будет довольно просто)";
 const string Pickpocket_60 = "(украсть его кошелек будет довольно рискованно)";
