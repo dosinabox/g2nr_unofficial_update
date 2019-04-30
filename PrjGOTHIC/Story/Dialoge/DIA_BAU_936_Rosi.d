@@ -44,10 +44,13 @@ func void DIA_Rosi_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Rosi_HALLO_15_00");	//У тебя все в порядке?
 	AI_Output(self,other,"DIA_Rosi_HALLO_17_01");	//Ну, более-менее. Моя спина болит от постоянной тяжелой работы. А что ты делаешь здесь? У нас нечасто бывают гости.
-	if(hero.guild != GIL_MIL)
+	if(other.guild != GIL_MIL)
 	{
 		AI_Output(self,other,"DIA_Rosi_HALLO_17_02");	//Обычно приходят либо головорезы с гор, либо эти ужасные солдаты ополчения из города.
-		AI_Output(self,other,"DIA_Rosi_HALLO_17_03");	//Последнее время они наведываются на нашу ферму очень часто. Но ты не похож ни на одного из них.
+		if(other.guild != GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Rosi_HALLO_17_03");	//Последнее время они наведываются на нашу ферму очень часто. Но ты не похож ни на одного из них.
+		};
 	};
 };
 

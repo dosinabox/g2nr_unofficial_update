@@ -117,7 +117,7 @@ func void DIA_Addon_SawPirate_ComeOn_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_SawPirate_ComeOn_09_03");	//Есть!..
+		AI_Output(self,other,"DIA_Addon_SawPirate_ComeOn_09_03");	//Есть!
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"FOLLOW");
 		self.aivar[AIV_PARTYMEMBER] = TRUE;

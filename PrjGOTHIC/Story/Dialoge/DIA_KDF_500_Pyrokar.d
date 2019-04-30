@@ -294,9 +294,13 @@ instance DIA_Pyrokar_RUNNING(C_Info)
 
 func int DIA_Pyrokar_RUNNING_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+//	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -333,9 +337,13 @@ instance DIA_Pyrokar_SUCCESS(C_Info)
 
 func int DIA_Pyrokar_SUCCESS_Condition()
 {
-	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
+//	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
+	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
+		{
+			return TRUE;
+		};
 	};
 };
 

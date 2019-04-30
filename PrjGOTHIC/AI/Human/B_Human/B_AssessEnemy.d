@@ -51,10 +51,13 @@ func int B_AssessEnemy()
 	var C_Npc mgo;
 	var C_Npc lar;
 	pcl = Hlp_GetNpc(PC_Levelinspektor);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && (Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000) && !Npc_IsPlayer(other))
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && !Npc_IsPlayer(other))
 	{
-		B_Flee();
-		return FALSE;
+		if(Npc_GetDistToWP(self,"NW_FARM2_TO_TAVERN_06") <= 5000)
+		{
+			B_Flee();
+			return FALSE;
+		};
 	};
 	if(((self.guild == GIL_BAU) || (self.guild == GIL_VLK) || (self.guild == GIL_OUT) || (self.guild == GIL_NONE)) && (other.guild == GIL_ORC) && (CurrentLevel == NEWWORLD_ZEN))
 	{
@@ -105,9 +108,12 @@ func int B_AssessEnemy()
 	{
 		return FALSE;
 	};
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius)) && (Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000) && !Npc_IsPlayer(other))
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Cornelius)) && !Npc_IsPlayer(other))
 	{
-		return FALSE;
+		if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") <= 1000)
+		{
+			return FALSE;
+		};
 	};
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDT_1031_Fluechtling)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Cornelius)))
 	{

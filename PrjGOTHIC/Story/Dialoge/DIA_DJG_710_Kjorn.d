@@ -35,7 +35,7 @@ instance DIA_Kjorn_Hello(C_Info)
 
 func int DIA_Kjorn_Hello_Condition()
 {
-	if(Npc_GetDistToNpc(self,hero) < 300)
+	if((Npc_GetDistToNpc(self,hero) < 300) || Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};

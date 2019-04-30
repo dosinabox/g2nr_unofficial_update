@@ -27,9 +27,12 @@ func void B_MM_AssessEnemy()
 	{
 		return;
 	};
-	if(Npc_GetDistToWP(self,"OC_RAMP_07") <= 500)
+	if(CurrentLevel == OldWorld_Zen)
 	{
-		return;
+		if(Npc_GetDistToWP(self,"OC_RAMP_07") <= 500)
+		{
+			return;
+		};
 	};
 	if(other.aivar[AIV_INVINCIBLE] == TRUE)
 	{

@@ -773,9 +773,9 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_07",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_07",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_07",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_08",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_08",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_08",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_08",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_08",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_09",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_09",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_09",0);
@@ -788,7 +788,7 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_12",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_12",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_12",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_13",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_13",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_13",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_13",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_14",1);
@@ -799,19 +799,19 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_15",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_16",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_16",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_16",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_16",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_17",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_17",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_17",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_18",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_18",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_18",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_19",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_19",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_19",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_19",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_20",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_20",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_20",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_20",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_21",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_21",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_21",0);
@@ -824,19 +824,19 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_24",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_24",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_24",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_25",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_25",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_25",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_25",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_25",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_26",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_26",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_26",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_27",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_27",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_27",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_27",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_27",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_28",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_28",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_28",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_29",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_29",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_29",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_29",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_30",1);
@@ -844,67 +844,67 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_30",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_31",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_31",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_31",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_31",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_32",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_32",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_32",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_33",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_33",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_33",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_34",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_34",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_34",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_34",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_34",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_35",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_35",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_35",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_36",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_36",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_36",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_36",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_36",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_37",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_37",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_37",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_38",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_38",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_38",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_38",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_38",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_39",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_39",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_39",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_40",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_40",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_40",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_40",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_40",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_41",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_41",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_41",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_42",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_42",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_42",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_42",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_42",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_43",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_43",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_43",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_44",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_44",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_44",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_45",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_45",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_45",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_45",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_45",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_46",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_46",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_46",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_47",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_47",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_47",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_48",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_48",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_48",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_48",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_48",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_49",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_49",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_49",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_50",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_50",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_50",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_50",0);
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_51",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_51",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_51",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_51",0);*/
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_52",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_52",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_52",0);
@@ -914,9 +914,9 @@ func void init_sub_psicamp()
 	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_54",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_54",1);
 	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_54",0);
-	Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_55",1);
+	/*Wld_SetObjectRoutine(0,0,"PC_CRYSTALLIGHT_55",1);
 	Wld_SetObjectRoutine(20,0,"PC_CRYSTALLIGHT_55",1);
-	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_55",0);
+	Wld_SetObjectRoutine(5,0,"PC_CRYSTALLIGHT_55",0);*/
 };
 
 func void startup_psicamp()

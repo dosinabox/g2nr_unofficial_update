@@ -78,6 +78,6 @@ func int ZS_Study_WP_Loop()
 
 func void ZS_Study_WP_End()
 {
-	Npc_RemoveInvItems(self,Fakescroll_Addon,Npc_HasItems(other,Fakescroll_Addon));
+	Npc_RemoveInvItems(self,Fakescroll_Addon,Npc_HasItems(self,Fakescroll_Addon));
 };
 

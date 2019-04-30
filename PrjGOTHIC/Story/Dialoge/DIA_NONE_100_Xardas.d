@@ -689,6 +689,31 @@ func void DIA_Xardas_KdfSecret_Info()
 };
 
 
+instance DIA_Xardas_HelloKap3(C_Info)
+{
+	npc = NONE_100_Xardas;
+	nr = 1;
+	condition = DIA_Xardas_HelloKap3_Condition;
+	information = DIA_Xardas_HelloKap3_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Xardas_HelloKap3_Condition()
+{
+	if(Kapitel == 3)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Xardas_HelloKap3_Info()
+{
+	AI_Output(self,other,"DIA_Xardas_Hello_14_00");	//Наконец-то! Я много дней пытался вызвать тебя сюда.
+};
+
+
 instance DIA_Xardas_BACKFROMOW(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -714,7 +739,7 @@ func void DIA_Xardas_BACKFROMOW_Info()
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_02");	//Ты был прав. Там все кишит врагами, даже яблоку упасть негде.
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_03");	//Орки осаждают замок, а драконы опустошают все вокруг.
 	AI_Output(other,self,"DIA_Xardas_BACKFROMOW_15_04");	//Осталось недолго, прежде чем они нападут на Хоринис, если я не ошибаюсь.
-	B_GivePlayerXP(150);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -743,7 +768,6 @@ func void DIA_Xardas_DMTSINDDA_Info()
 	{
 		AI_Output(other,self,"DIA_Xardas_DMTSINDDA_15_00");	//Лестер сказал, что ты хотел видеть меня как можно быстрее.
 	};
-	AI_Output(self,other,"DIA_Xardas_Hello_14_00");	//Наконец-то! Я много дней пытался вызвать тебя сюда.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_02");	//Враг узнал, кем ты являешься на самом деле, и планирует завладеть Глазом Инноса.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_03");	//Он распознал эту угрозу. Это заставило его выйти из тени и решиться на открытую атаку.
 	AI_Output(self,other,"DIA_Xardas_DMTSINDDA_14_04");	//Игра в прятки окончена. Вчера еще никто не знал, какова будет атака врага. Но теперь это становится слишком очевидно.
