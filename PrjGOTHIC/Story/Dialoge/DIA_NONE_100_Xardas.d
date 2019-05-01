@@ -1142,14 +1142,14 @@ func void DIA_Xardas_PERM4_Info()
 	AI_Output(other,self,"DIA_Xardas_PERM4_15_00");	//Что нового?
 	if(Kapitel == 3)
 	{
-		if(MIS_Ulthar_HeileSchreine_PAL == LOG_SUCCESS)
-		{
-			AI_Output(self,other,"OUTRO_Xardas_14_10");	//Даже боги не знают, какая судьба нас ждет...
-		}
-		else
+		if(MIS_Ulthar_HeileSchreine_PAL == LOG_Running)
 		{
 			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_06");	//Приспешники Белиара оскверняют древнейшие алтари богов.
 			AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_03");	//Именно это и произошло.
+		}
+		else
+		{
+			AI_Output(self,other,"OUTRO_Xardas_14_10");	//Даже боги не знают, какая судьба нас ждет...
 		};
 	}
 	else if(Kapitel == 4)
