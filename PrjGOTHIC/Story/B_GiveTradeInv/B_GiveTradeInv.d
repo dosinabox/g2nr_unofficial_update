@@ -98,10 +98,10 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Kjorn))
+	/*else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Kjorn))
 	{
 		return TRUE;
-	}
+	}*/
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
 	{
 		return TRUE;

@@ -395,18 +395,15 @@ func void PC_PrayShrine_BlessSword_Info()
 		{
 			Npc_RemoveInvItems(hero,ItMw_2H_Blessed_01,1);
 			CreateInvItems(hero,ItMw_2H_Blessed_02,1);
-			Wld_PlayEffect("spellFX_PalHeal_ORIGIN",hero,hero,0,0,0,FALSE);
-			Snd_Play("MFX_Heal_Cast");
-			B_GivePlayerXP(XP_SwordBlessed);
 		}
 		else
 		{
 			Npc_RemoveInvItems(hero,ItMw_1H_Blessed_01,1);
 			CreateInvItems(hero,ItMw_1H_Blessed_02,1);
-			Wld_PlayEffect("spellFX_PalHeal_ORIGIN",hero,hero,0,0,0,FALSE);
-			Snd_Play("MFX_Heal_Cast");
-			B_GivePlayerXP(XP_SwordBlessed);
 		};
+		Wld_PlayEffect("spellFX_PalHeal_ORIGIN",hero,hero,0,0,0,FALSE);
+		Snd_Play("MFX_Heal_Cast");
+		B_GivePlayerXP(XP_SwordBlessed);
 	}
 	else
 	{
@@ -450,18 +447,15 @@ func void PC_PrayShrine_BlessSword_Final_Info()
 		{
 			Npc_RemoveInvItems(hero,ItMw_2H_Blessed_02,1);
 			CreateInvItems(hero,ItMw_2H_Blessed_03,1);
-			Wld_PlayEffect("spellFX_PalHeal_ORIGIN",hero,hero,0,0,0,FALSE);
-			Snd_Play("MFX_Heal_Cast");
-			B_GivePlayerXP(XP_SwordBlessed2);
 		}
 		else
 		{
 			Npc_RemoveInvItems(hero,ItMw_1H_Blessed_02,1);
 			CreateInvItems(hero,ItMw_1H_Blessed_03,1);
-			Wld_PlayEffect("spellFX_PalHeal_ORIGIN",hero,hero,0,0,0,FALSE);
-			Snd_Play("MFX_Heal_Cast");
-			B_GivePlayerXP(XP_SwordBlessed2);
 		};
+		Wld_PlayEffect("spellFX_PalHeal_ORIGIN",hero,hero,0,0,0,FALSE);
+		Snd_Play("MFX_Heal_Cast");
+		B_GivePlayerXP(XP_SwordBlessed2);
 	}
 	else
 	{
