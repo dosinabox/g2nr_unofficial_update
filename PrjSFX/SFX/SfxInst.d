@@ -2613,25 +2613,25 @@ instance BCR_AMBIENT(C_SFX_DEF)
 
 instance BCR_AMBIENT_A1(C_SFX_DEF)
 {
-	file = "BCR_ambient02.wav";
+	file = "BCR_ambient2.wav";
 	vol = 30;
 };
 
 instance BCR_AMBIENT_A2(C_SFX_DEF)
 {
-	file = "BCR_ambient03.wav";
+	file = "BCR_ambient3.wav";
 	vol = 30;
 };
 
 instance BCR_AMBIENT_A3(C_SFX_DEF)
 {
-	file = "BCR_ambient04.wav";
+	file = "BCR_ambient4.wav";
 	vol = 30;
 };
 
 instance BCR_AMBIENT_A4(C_SFX_DEF)
 {
-	file = "BCR_ambient05.wav";
+	file = "BCR_ambient5.wav";
 	vol = 30;
 };
 
@@ -8982,7 +8982,7 @@ instance CS_IHI_WO_CL(C_SFX_DEF)
 
 instance CS_IHI_WO_LE(C_SFX_DEF)
 {
-	file = "CS_IHL_WO_LE.wav";
+	file = "CS_IHL_WO_EA.wav";
 	vol = 60;
 };
 
@@ -10147,5 +10147,11 @@ instance OW_RIVER3V2(C_SFX_DEF)
 {
 	file = "river03stereo.wav";
 	vol = 85;
+};
+
+instance MFX_PALHOLYBOLT_CAST(C_SFX_DEF)
+{
+	file = "MFX_BeliarWeap_02.wav";
+	vol = 80;
 };
 

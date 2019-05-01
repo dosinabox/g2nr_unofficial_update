@@ -83,6 +83,7 @@ func void PC_NoSleep_Info()
 instance PC_SleepTime_Morning(C_Info)
 {
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_SleepTime_Morning_Condition;
 	information = PC_SleepTime_Morning_Info;
 	important = 0;
@@ -108,6 +109,7 @@ func void PC_SleepTime_Morning_Info()
 instance PC_SleepTime_Noon(C_Info)
 {
 	npc = PC_Hero;
+	nr = 2;
 	condition = PC_SleepTime_Noon_Condition;
 	information = PC_SleepTime_Noon_Info;
 	important = 0;
@@ -133,6 +135,7 @@ func void PC_SleepTime_Noon_Info()
 instance PC_SleepTime_Evening(C_Info)
 {
 	npc = PC_Hero;
+	nr = 3;
 	condition = PC_SleepTime_Evening_Condition;
 	information = PC_SleepTime_Evening_Info;
 	important = 0;
@@ -158,6 +161,7 @@ func void PC_SleepTime_Evening_Info()
 instance PC_SleepTime_Midnight(C_Info)
 {
 	npc = PC_Hero;
+	nr = 4;
 	condition = PC_SleepTime_Midnight_Condition;
 	information = PC_SleepTime_Midnight_Info;
 	important = 0;

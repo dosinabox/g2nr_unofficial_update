@@ -688,7 +688,7 @@ func void DIA_Addon_Andre_MartinEmpfehlung_Info()
 	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_01");	//(недоверчиво) Что? А ну-ка, покажи.
 	B_GiveInvItems(other,self,ItWr_Martin_MilizEmpfehlung_Addon,1);
 	B_UseFakeScroll();
-	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_02");	//(удивленно) Ну надо же!.. Тебе, должно быть, пришлось потрудиться! Не так-то просто получить нечто подобное от Мартина.
+	AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_02");	//(удивленно) Ну надо же! Тебе, должно быть, пришлось потрудиться! Не так-то просто получить нечто подобное от Мартина.
 	if(hero.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Addon_Andre_MartinEmpfehlung_08_03");	//Ладно, я убежден. Если Мартин за тебя ручается, я согласен тебя принять. Скажи мне, когда ты будешь готов.
