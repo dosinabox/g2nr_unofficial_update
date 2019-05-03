@@ -243,7 +243,7 @@ instance DIA_Addon_Matt_ComeOn(C_Info)
 	condition = DIA_Addon_Matt_ComeOn_Condition;
 	information = DIA_Addon_Matt_ComeOn_Info;
 	permanent = TRUE;
-	description = "Пойдем со мной.";
+	description = "Идем со мной.";
 };
 
 

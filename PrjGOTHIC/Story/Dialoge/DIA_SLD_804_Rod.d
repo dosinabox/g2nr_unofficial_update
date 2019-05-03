@@ -86,15 +86,17 @@ func void DIA_Rod_WannaLearn_Info()
 	AI_Output(other,self,"DIA_Rod_WannaLearn_15_00");	//Ты можешь обучить меня владению двуручным оружием?
 	if((Rod_WetteGewonnen == TRUE) || (self.aivar[AIV_DefeatedByPlayer] == TRUE))
 	{
-		AI_Output(self,other,"DIA_Rod_WannaLearn_06_01");	//Я неплохой боец, но это не означает, что я хороший учитель.
-		AI_Output(self,other,"DIA_Rod_WannaLearn_06_02");	//И все же я думаю, я могу показать тебе основы боя двуручным оружием.
 		if(!Npc_HasItems(self,ItMw_2h_Rod))
 		{
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_03");	//Да, если ты отдашь мне назад мой меч.
 		}
 		else
 		{
+			AI_Output(self,other,"DIA_Rod_WannaLearn_06_01");	//Я неплохой боец, но это не означает, что я хороший учитель.
+			AI_Output(self,other,"DIA_Rod_WannaLearn_06_02");	//И все же я думаю, я могу показать тебе основы боя двуручным оружием.
 			Rod_Teach2H = TRUE;
+			Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
+            B_LogEntry(Topic_SoldierTeacher,"Род может показать мне, как лучше владеть двуручным оружием.");
 		};
 	}
 	else

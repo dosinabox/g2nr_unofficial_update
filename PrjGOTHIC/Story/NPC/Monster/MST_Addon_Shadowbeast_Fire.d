@@ -17,7 +17,7 @@ prototype Mst_Default_Shadowbeast_Addon_Fire(C_Npc)
 	protection[PROT_FIRE] = 150;
 	protection[PROT_FLY] = 150;
 	protection[PROT_MAGIC] = 75;
-	damagetype = DAM_FIRE;	//DAM_EDGE;
+	damagetype = DAM_EDGE;	//DAM_FIRE;
 	fight_tactic = FAI_Gargoyle;
 	senses = SENSE_HEAR | SENSE_SEE | SENSE_SMELL;
 	senses_range = PERC_DIST_MONSTER_ACTIVE_MAX;

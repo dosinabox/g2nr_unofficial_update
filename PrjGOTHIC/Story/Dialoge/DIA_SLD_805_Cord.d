@@ -492,7 +492,7 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_00");	//Я встретился с Декстером.
 	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
-	if(Npc_IsDead(BDT_1060_Dexter))
+	if(Npc_IsDead(Dexter))
 	{
 		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_02");	//Он мертв.
 	};
