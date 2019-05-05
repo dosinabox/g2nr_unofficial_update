@@ -349,7 +349,10 @@ func int DIA_Lee_PaladineHOW_Condition()
 {
 	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Lee_Paladine))
 	{
-		return TRUE;
+		if(GuildlessMode == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -672,6 +675,10 @@ instance DIA_Lee_ToHagen(C_Info)
 func int DIA_Lee_ToHagen_Condition()
 {
 	if(other.guild == GIL_SLD)
+	{
+		return TRUE;
+	};
+	if((GuildlessMode == TRUE) && Npc_KnowsInfo(other,DIA_Lee_Paladine))
 	{
 		return TRUE;
 	};

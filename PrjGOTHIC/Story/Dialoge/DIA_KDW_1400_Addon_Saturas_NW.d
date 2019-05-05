@@ -430,7 +430,14 @@ func void DIA_Addon_Saturas_WhatsOrnament_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_WhatsOrnament_15_00");	//Почему для тебя так важен этот орнамент?
 	AI_Output(self,other,"DIA_Addon_Saturas_WhatsOrnament_14_01");	//(раздраженно) Это ключ к порталу.
-	AI_Output(self,other,"DIA_Addon_Saturas_WhatsOrnament_14_02");	//Больше я ничего тебе не скажу.
+	if(SaturasKnows_SC_IsRanger == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_09");	//Если Нефариус прав, портал откроется, как только в него вставят кольцо.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_WhatsOrnament_14_02");	//Больше я ничего тебе не скажу.
+	};
 };
 
 

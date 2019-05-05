@@ -318,6 +318,7 @@ func void DIA_Addon_Martin_Auftrag_Info()
 
 func void DIA_Addon_Martin_Auftrag_weiter()
 {
+	B_EquipTrader(self);
 	MIS_Addon_Martin_GetRangar = LOG_Running;
 	MIS_Addon_Martin_GetRangar_Day = Wld_GetDay();
 	AI_StopProcessInfos(self);

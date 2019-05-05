@@ -92,6 +92,14 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
 	};*/
+	if(GuildlessMode == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без гильдии",StoryHelper_Guildless);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить возможность прохождения без гильдии",StoryHelper_Guildless);
+	};
 	if(!Npc_KnowsInfo(other,DIA_Coragon_GiveBook) && !Npc_KnowsInfo(other,DIA_Thorben_GiveBook))
 	{
 		if(ClassicLehmarBook == FALSE)
@@ -316,6 +324,21 @@ func void StoryHelper_LehmarBook()
 	{
 		ClassicLehmarBook = TRUE;
 		PrintScreen("Выкуп гроссбуха как в оригинале",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Guildless()
+{
+	if(GuildlessMode == TRUE)
+	{
+		GuildlessMode = FALSE;
+		PrintScreen("Прохождение без гильдии отключено",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		GuildlessMode = TRUE;
+		PrintScreen("Прохождение без гильдии включено",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

@@ -109,6 +109,7 @@ instance ItMi_Ornament_Addon_Vatras(C_Item)
 	material = MAT_STONE;
 	description = name;
 	text[0] = "Фрагмент большого, богато украшенного кольца.";
+	text[1] = "Его дал мне Ватрас.";
 	inv_zbias = 270;
 };
 

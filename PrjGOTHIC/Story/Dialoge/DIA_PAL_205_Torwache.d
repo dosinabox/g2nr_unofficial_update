@@ -244,9 +244,12 @@ instance DIA_PAL_205_Torwache_PassAsSld(C_Info)
 
 func int DIA_PAL_205_Torwache_PassAsSld_Condition()
 {
-	if((Npc_GetTrueGuild(other) == GIL_SLD) && (PAL_205_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((MIS_Lee_Friedensangebot == LOG_Running) && (PAL_205_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Passage_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 

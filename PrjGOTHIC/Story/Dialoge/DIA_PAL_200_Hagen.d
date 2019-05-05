@@ -377,7 +377,7 @@ func int DIA_Lord_Hagen_Proof_Condition()
 func void DIA_Lord_Hagen_Proof_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Proof_15_00");	//То есть ты хочешь, чтобы я принес тебе доказательство?
-	if((hero.guild != GIL_NONE) && (hero.guild != GIL_NOV))
+	if(((hero.guild != GIL_NONE) && (hero.guild != GIL_NOV)) || (GuildlessMode == TRUE))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_01");	//Именно. Пройди через Проход в Долину Рудников. Когда ты будешь там, найди нашу экспедицию, а когда ты найдешь их, поговори с командующим Гарондом.
 		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_02");	//Вряд ли кто-то лучше его знает ситуацию там.

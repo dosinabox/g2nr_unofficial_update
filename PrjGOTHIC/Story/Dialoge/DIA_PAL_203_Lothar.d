@@ -109,6 +109,7 @@ func void DIA_Lothar_Hallo_Info()
 	AI_Output(self,other,"DIA_Lothar_Hallo_01_07");	//Я Лотар. Паладин короля и преданный слуга Инноса.
 	AI_Output(self,other,"DIA_Lothar_Hallo_01_08");	//Наш командующий, лорд Хаген, вверил мне задачу объяснять всем новоприбывшим новые законы, которым должны подчиняться все жители этого города.
 	AI_Output(self,other,"DIA_Addon_Lothar_Hallo_01_00");	//Недавно в городе начали пропадать люди, так что горожанам нужно быть осторожнее, чтобы не разделить эту судьбу.
+	Player_KnowsLordHagen = TRUE;
 	B_PlayerEnteredCity();
 };
 
@@ -141,6 +142,7 @@ func void DIA_Lothar_MESSAGE_Info()
 	AI_Output(self,other,"DIA_Lothar_Add_01_01");	//Ты должен повиноваться законам, как и все остальные!
 	AI_Output(self,other,"DIA_Lothar_Add_01_02");	//Лорд Хаген не принимает.
 	AI_Output(self,other,"DIA_Lothar_Add_01_03");	//Если у тебя действительно есть что-то ВАЖНОЕ, иди к лорду Андрэ. Он поможет тебе!
+	Player_KnowsLordHagen = TRUE;
 };
 
 
@@ -170,6 +172,7 @@ func void DIA_Lothar_EyeInnos_Info()
 	if((hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Lothar_EyeInnos_01_01");	//Вопрос о Глазе должен решать лорд Хаген. Поговори с ним об этом.
+		Player_KnowsLordHagen = TRUE;
 	}
 	else
 	{
@@ -274,6 +277,7 @@ func void DIA_Addon_Lothar_Ornament_suche()
 	AI_Output(other,self,"DIA_Addon_Lothar_Ornament_suche_15_01");	//Она должна была быть неподалеку от фермы Лобарта, в круге камней.
 	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_suche_01_02");	//Да, я помню этот предмет. Мы нашли его у каменного монстра. Я подумал, что это магическая руна.
 	AI_Output(self,other,"DIA_Addon_Lothar_Ornament_suche_01_03");	//Вернувшись в город, я отдал ее лорду Хагену. Возможно, она до сих пор у него.
+	Player_KnowsLordHagen = TRUE;
 };
 
 
@@ -332,6 +336,7 @@ func void DIA_Lothar_Regeln_Info()
 	AI_Output(self,other,"DIA_Lothar_Add_01_04");	//Во-вторых, городская ратуша, находящаяся в верхнем квартале, в настоящее время является командным пунктом паладинов. Доступ туда имеют только сами паладины и члены ополчения.
 	AI_Output(self,other,"DIA_Lothar_Add_01_05");	//И в-третьих, тот, кто обвиняется в преступлении, должен предстать перед командиром ополчения.
 	AI_Output(self,other,"DIA_Lothar_Regeln_01_05");	//Есть вопросы?
+	Player_KnowsLordHagen = TRUE;
 	Lothar_Regeln = TRUE;
 };
 
@@ -397,6 +402,7 @@ func void DIA_Lothar_HowCitizen_Info()
 	AI_Output(self,other,"DIA_Lothar_Add_01_09");	//Но не думай, что ты сможешь предстать перед лордом Хагеном только потому, что ты являешься гражданином!
 	AI_Output(self,other,"DIA_Lothar_Add_01_10");	//Как гражданин, ты получишь доступ в верхнюю часть города - и не более того!
 	AI_Output(self,other,"DIA_Lothar_Add_01_11");	//Только будучи членом ополчения, ты сможешь получить доступ в ратушу!
+	Player_KnowsLordHagen = TRUE;
 };
 
 
@@ -486,6 +492,7 @@ func void DIA_Lothar_ToMiliz_Info()
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_27");	//По прямому указанию лорда Хагена, на службу в ополчение принимаются только граждане города.
 		AI_Output(other,self,"DIA_Lothar_Add_15_28");	//Понимаю.
+		Player_KnowsLordHagen = TRUE;
 	};
 	if((MIS_Harad_Orc == LOG_SUCCESS) || (MIS_HakonBandits == LOG_SUCCESS) || (MIS_Thorben_GetBlessings == LOG_SUCCESS) || (MIS_Matteo_Gold == LOG_SUCCESS) || (MIS_Bosper_WolfFurs == LOG_SUCCESS) || (MIS_Bosper_Bogen == LOG_SUCCESS))
 	{
@@ -687,6 +694,7 @@ func void DIA_Lothar_HelloAgain_Info()
 		AI_Output(self,other,"DIA_Lothar_Add_01_40");	//Как ты попал сюда?
 		AI_Output(other,self,"DIA_Lothar_Add_15_41");	//Я принес предложение мира от Ли...
 		AI_Output(self,other,"DIA_Lothar_Add_01_42");	//Ха! Лорд Хаген никогда не согласится на это.
+		Player_KnowsLordHagen = TRUE;
 	};
 	if((other.guild == GIL_MIL) && (Player_IsApprentice == APP_NONE))
 	{
@@ -726,9 +734,12 @@ instance DIA_Lothar_Hagen(C_Info)
 
 func int DIA_Lothar_Hagen_Condition()
 {
-	if((Mil_305_schonmalreingelassen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Mil_305_schonmalreingelassen == TRUE) || (Player_KnowsLordHagen == TRUE))
 	{
-		return TRUE;
+		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
