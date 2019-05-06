@@ -12,10 +12,7 @@ instance DIA_Kati_EXIT(C_Info)
 
 func int DIA_Kati_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Kati_EXIT_Info()
@@ -313,31 +310,6 @@ func void DIA_Kati_PERMKAP1_Info()
 };
 
 
-instance DIA_Kati_KAP3_EXIT(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 999;
-	condition = DIA_Kati_KAP3_EXIT_Condition;
-	information = DIA_Kati_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Kati_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kati_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Kati_PERM(C_Info)
 {
 	npc = BAU_941_Kati;
@@ -364,81 +336,6 @@ func void DIA_Kati_PERM_Info()
 	AI_Output(self,other,"DIA_Kati_PERM_16_02");	//Я так долго не вынесу. Они шныряют вокруг дома и везде суют свой нос.
 };
 
-
-instance DIA_Kati_KAP4_EXIT(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 999;
-	condition = DIA_Kati_KAP4_EXIT_Condition;
-	information = DIA_Kati_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Kati_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kati_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Kati_KAP5_EXIT(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 999;
-	condition = DIA_Kati_KAP5_EXIT_Condition;
-	information = DIA_Kati_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Kati_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kati_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Kati_KAP6_EXIT(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 999;
-	condition = DIA_Kati_KAP6_EXIT_Condition;
-	information = DIA_Kati_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Kati_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kati_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Kati_PICKPOCKET(C_Info)
 {

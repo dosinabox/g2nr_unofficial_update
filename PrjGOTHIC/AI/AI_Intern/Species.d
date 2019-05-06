@@ -515,8 +515,8 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_FIREGOLEM] = fight_range_base[GIL_STONEGOLEM];
 	fight_range_fist[GIL_FIREGOLEM] = fight_range_fist[GIL_STONEGOLEM];
 	fight_range_g[GIL_FIREGOLEM] = fight_range_g[GIL_STONEGOLEM];
-	blood_emitter[GIL_FIREGOLEM] = "BFX_Golem";
-	blood_texture[GIL_FIREGOLEM] = "BQM_Golem.tga";
+	blood_emitter[GIL_FIREGOLEM] = "BFX_Demon";
+	blood_texture[GIL_FIREGOLEM] = "BQM_FireGolem.tga";
 	blood_flow[GIL_FIREGOLEM] = blood_flow[GIL_STONEGOLEM];
 	blood_amount[GIL_FIREGOLEM] = blood_amount[GIL_STONEGOLEM];
 	blood_max_distance[GIL_FIREGOLEM] = blood_max_distance[GIL_STONEGOLEM];
@@ -533,8 +533,8 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_ICEGOLEM] = fight_range_base[GIL_STONEGOLEM];
 	fight_range_fist[GIL_ICEGOLEM] = fight_range_fist[GIL_STONEGOLEM];
 	fight_range_g[GIL_ICEGOLEM] = fight_range_g[GIL_STONEGOLEM];
-	blood_emitter[GIL_ICEGOLEM] = "BFX_Golem";
-	blood_texture[GIL_ICEGOLEM] = "BQM_Golem.tga";
+	blood_emitter[GIL_ICEGOLEM] = "BFX_IceGolem";
+	blood_texture[GIL_ICEGOLEM] = "MFX_FREEZE_ICEQUADMARK.tga";
 	blood_flow[GIL_ICEGOLEM] = blood_flow[GIL_STONEGOLEM];
 	blood_amount[GIL_ICEGOLEM] = blood_amount[GIL_STONEGOLEM];
 	blood_max_distance[GIL_ICEGOLEM] = blood_max_distance[GIL_STONEGOLEM];

@@ -204,12 +204,19 @@ func void DIA_Karras_JOB_Info()
 		AI_Output(self,other,"DIA_Karras_JOB_10_06");	//Но я могу продать их только членам нашего Ордена.
 		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
 		B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Мастер Каррас обучает формулам вызова. Но для этого я должен быть магом Огня.");
 	}
 	else if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Karras_JOB_10_05");	//Кроме того, у меня есть очень интересные свитки, которых нет даже у Горакса.
 		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями.");
+		B_LogEntry(Topic_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
+		if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
+		{
+			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+			B_LogEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
+		};
 	};
 };
 
@@ -265,7 +272,6 @@ func void DIA_Karras_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-//	AI_Output(other,self,"DIA_Karras_TEACH_15_00");	//Обучи меня.
 	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Karras_TEACH);
 	Info_AddChoice(DIA_Karras_TEACH,Dialog_Back,DIA_Karras_TEACH_BACK);
@@ -302,6 +308,10 @@ func void DIA_Karras_TEACH_Info()
 	if(abletolearn < 1)
 	{
 		AI_Output(self,other,"DIA_Karras_TEACH_10_01");	//В настоящий момент мне нечему учить тебя.
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
+		{
+			PrintScreen(PRINT_MAGCIRCLES_NEEDFIRST,-1,-1,FONT_ScreenSmall,2);
+		};
 		Info_ClearChoices(DIA_Karras_TEACH);
 	};
 };

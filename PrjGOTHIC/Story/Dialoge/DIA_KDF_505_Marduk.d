@@ -191,6 +191,16 @@ func void DIA_Marduk_BEFORETEACH_Info()
 	if(other.guild != GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Marduk_BEFORETEACH_05_02");	//Однако я обучаю только магов.
+		if(other.guild == GIL_NOV)
+		{
+			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+			B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома. Но для этого я должен быть магом Огня.");
+		};
+	}
+	else if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
 	};
 };
 
@@ -218,7 +228,6 @@ func void DIA_Marduk_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-//	AI_Output(other,self,"DIA_Marduk_TEACH_15_00");	//Обучи меня.
 	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
 	Info_ClearChoices(DIA_Marduk_TEACH);
 	Info_AddChoice(DIA_Marduk_TEACH,Dialog_Back,DIA_Marduk_TEACH_BACK);
@@ -255,6 +264,10 @@ func void DIA_Marduk_TEACH_Info()
 	if(abletolearn < 1)
 	{
 		AI_Output(self,other,"DIA_Marduk_TEACH_05_01");	//Сейчас я не могу обучить тебя.
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
+		{
+			PrintScreen(PRINT_MAGCIRCLES_NEEDFIRST,-1,-1,FONT_ScreenSmall,2);
+		};
 		Info_ClearChoices(DIA_Marduk_TEACH);
 	};
 };
@@ -308,7 +321,7 @@ instance DIA_Marduk_Kap3_Hello(C_Info)
 
 func int DIA_Marduk_Kap3_Hello_Condition()
 {
-	if((Kapitel >= 3) && ((other.guild == GIL_PAL) || (other.guild == GIL_DJG) || (other.guild == GIL_SLD)))
+	if((Kapitel >= 3) && ((other.guild == GIL_PAL) || (other.guild == GIL_DJG) || (other.guild == GIL_SLD) || (other.guild == GIL_NONE)))
 	{
 		return TRUE;
 	};
@@ -321,7 +334,7 @@ func void DIA_Marduk_Kap3_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Info_05_01");	//С каких это пор ты стал паладином?
 	};
-	if((other.guild == GIL_DJG) || (other.guild == GIL_SLD))
+	if((other.guild == GIL_DJG) || (other.guild == GIL_SLD) || (other.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Marduk_Kap3_Hello_Info_05_02");	//Откуда ты пришел?
 	};

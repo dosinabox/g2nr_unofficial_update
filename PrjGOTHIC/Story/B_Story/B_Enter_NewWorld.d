@@ -130,8 +130,6 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			Dyrian.guild = GIL_NONE;
 			Npc_SetTrueGuild(Dyrian,GIL_NONE);
-			//CreateInvItem(Dyrian,ITAR_Bau_L);
-			//AI_EquipArmor(Dyrian,ITAR_Bau_L);
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
 		B_KillThievesGuild();

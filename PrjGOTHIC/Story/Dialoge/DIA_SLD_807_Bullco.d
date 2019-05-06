@@ -136,6 +136,22 @@ func void B_AboutPepe()
 	AI_StopProcessInfos(self);
 };
 
+func void B_WontLeave()
+{
+	AI_Output(other,self,"DIA_Bullco_WontLeave_15_00");	//Я НЕ СОБИРАЮСЬ уходить отсюда!
+	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
+	{
+		AI_Output(self,other,"DIA_Bullco_WontLeave_06_01");	//(вздыхает) Похоже, нам придется обсудить этот вопрос опять.
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_NONE,1);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Bullco_WontLeave_06_02");	//(ворчливо) Да, да, иди, расскажи это кому-нибудь, кому это интересно.
+		Bullco_scharf = FALSE;
+		AI_StopProcessInfos(self);
+	};
+};
 
 var int Bullco_HitCounter;
 
@@ -173,7 +189,9 @@ func void DIA_Bullco_DailyCheck_Info()
 	};
 	if(Npc_KnowsInfo(other,DIA_Onar_WegenPepe) || Npc_KnowsInfo(other,DIA_Lee_WegenBullco))
 	{
-		B_AboutPepe();
+		Info_ClearChoices(DIA_Bullco_DailyCheck);
+		Info_AddChoice(DIA_Bullco_DailyCheck,"Тебе имя Пепе говорит о чем-нибудь?",DIA_Bullco_DailyCheck_AboutPepe);
+		Info_AddChoice(DIA_Bullco_DailyCheck,"Я НЕ СОБИРАЮСЬ уходить отсюда!",DIA_Bullco_DailyCheck_WontLeave);
 	}
 	else
 	{
@@ -184,6 +202,18 @@ func void DIA_Bullco_DailyCheck_Info()
 	};
 };
 
+
+func void DIA_Bullco_DailyCheck_AboutPepe()
+{
+	B_AboutPepe();
+};
+
+func void DIA_Bullco_DailyCheck_WontLeave()
+{
+	Bullco_HitCounter += 1;
+	Bullco_Leave_Day = B_GetDayPlus();
+	B_WontLeave();
+};
 
 instance DIA_Bullco_WontLeave(C_Info)
 {
@@ -206,19 +236,7 @@ func int DIA_Bullco_WontLeave_Condition()
 
 func void DIA_Bullco_WontLeave_Info()
 {
-	AI_Output(other,self,"DIA_Bullco_WontLeave_15_00");	//Я НЕ СОБИРАЮСЬ уходить отсюда!
-	if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
-	{
-		AI_Output(self,other,"DIA_Bullco_WontLeave_06_01");	//(вздыхает) Похоже, нам придется обсудить этот вопрос опять.
-		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_NONE,1);
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Bullco_WontLeave_06_02");	//(ворчливо) Да, да, иди, расскажи это кому-нибудь, кому это интересно.
-		Bullco_scharf = FALSE;
-		AI_StopProcessInfos(self);
-	};
+	B_WontLeave();
 };
 
 

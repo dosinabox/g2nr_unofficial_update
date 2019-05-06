@@ -215,7 +215,7 @@ instance PC_PrayShrine_Pray(C_Info)
 	condition = PC_PrayShrine_Pray_Condition;
 	information = PC_PrayShrine_Pray_Info;
 	permanent = TRUE;
-	description = "Помолиться";
+	description = NAME_ADDON_BETEN;
 };
 
 

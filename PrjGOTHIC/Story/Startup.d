@@ -3353,19 +3353,6 @@ func void INIT_NewWorld()
 	B_InitNpcGlobals();
 	b_enter_newworld();
 	b_cycle_function();
-	/*if((Andre_FoundThieves_Reported == TRUE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
-	{
-		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
-		{
-			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
-			{
-				B_KillNpc(VLK_447_Cassia);
-				B_KillNpc(VLK_446_Jesper);
-				B_KillNpc(VLK_445_Ramirez);
-				Andre_FoundThieves_KilledByMilitia = TRUE;
-			};
-		};
-	};*/
 	INIT_SUB_NewWorld_Part_City_01();
 	INIT_SUB_NewWorld_Part_Farm_01();
 	INIT_SUB_NewWorld_Part_Xardas_01();

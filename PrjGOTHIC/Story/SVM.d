@@ -189,6 +189,7 @@ class C_SVM
 	var string addon_noarmor_bdt;
 	var string addon_diebandit;
 	var string addon_dirtypirate;
+	var string ILikeIt;
 	var string SC_HeyTurnAround;
 	var string SC_HeyTurnAround02;
 	var string SC_HeyTurnAround03;
@@ -1743,6 +1744,7 @@ instance SVM_9(C_SVM)
 	addon_noarmor_bdt = "SVM_9_ADDON_ADDON_NOARMOR_BDT";	//У тебя даже нет доспехов. Отвали!
 	addon_diebandit = "SVM_9_ADDON_DIEBANDIT";	//Теперь твоя очередь, разбойник!
 	addon_dirtypirate = "SVM_9_ADDON_DIRTYPIRATE";	//Тебе не следовало показываться здесь, пират!
+	ILikeIt = "SVM_9_MonsterKilled";	//Мне это даже нравится!
 };
 
 instance SVM_10(C_SVM)

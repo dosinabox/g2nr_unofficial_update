@@ -305,7 +305,6 @@ func void DIA_Addon_Cavalorn_Beutel_jaerz()
 func void DIA_Addon_Cavalorn_Beutel_ja()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_ja_15_00");	//Конечно.
-//	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_ja_08_01");	//Ужасно.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_OBack_08_01");	//Отлично.
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);

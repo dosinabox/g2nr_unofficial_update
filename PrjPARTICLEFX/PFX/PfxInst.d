@@ -1831,6 +1831,47 @@ instance BFX_GOLEM(C_PARTICLEFX)
 	mrktexture_s = "0";
 };
 
+instance BFX_ICEGOLEM(C_PARTICLEFX)
+{
+	ppsvalue = 150;
+	ppsscalekeys_s = "1";
+	ppsissmooth = 1;
+	ppsfps = 20;
+	shptype_s = "POINT";
+	shpfor_s = "object";
+	shpoffsetvec_s = "0 0 0";
+	shpdistribtype_s = "RAND";
+	shpdim_s = "10";
+	shpscalekeys_s = "1";
+	shpscaleislooping = 1;
+	shpscaleissmooth = 1;
+	shpscalefps = 2;
+	dirmode_s = "RAND";
+	dirfor_s = "object";
+	diranglehead = 90;
+	dirangleheadvar = 45;
+	dirangleelev = 90;
+	dirangleelevvar = 45;
+	velavg = 0.3;
+	velvar = 0.05;
+	lsppartavg = 1500;
+	lsppartvar = 300;
+	flygravity_s = "0 -0.0008 0";
+	flycolldet_b = 1;
+	visname_s = "WASHSELF.TGA";
+	visorientation_s = "VELO";
+	vistexisquadpoly = 1;
+	vistexaniislooping = 1;
+	vistexcolorstart_s = "180 180 180";
+	vistexcolorend_s = "150 150 150";
+	vissizestart_s = "10 10";
+	vissizeendscale = 1;
+	visalphafunc_s = "BLEND";
+	visalphastart = 255;
+	visalphaend = 255;
+	mrktexture_s = "0";
+};
+
 instance BFX_STONEGUARDIAN(C_PARTICLEFX)
 {
 	ppsvalue = 150;

@@ -175,6 +175,10 @@ func void B_Say_AttackEnd()
 		{
 			B_Say(self,other,"$THEREISNOFIGHTINGHERE");
 		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
+		{
+			B_Say(self,other,"$ILIKEIT");
+		};
 		return;
 	};
 	if(self.aivar[AIV_ATTACKREASON] == AR_GuardCalledToThief)
