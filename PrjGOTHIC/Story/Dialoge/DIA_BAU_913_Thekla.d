@@ -297,6 +297,7 @@ func void DIA_Thekla_AfterFight_Info()
 		AI_Output(self,other,"DIA_Thekla_AfterFight_17_05");	//Ќе расстраивайс€ так. “ы далеко не первый, кто пострадал от этой сволочи.
 	};
 	AI_Output(self,other,"DIA_Thekla_AfterFight_17_06");	//¬от, поешь немного. Ёто восстановит твои силы.
+	AI_WaitTillEnd(other,self);
 	B_GiveInvItems(self,other,ItFo_XPStew,1);
 	Thekla_GaveStew = TRUE;
 };

@@ -242,7 +242,7 @@ func void DIA_Girion_DI_OrcEliteRing_geben()
 	};
 	B_GiveInvItems(other,self,ItRi_OrcEliteRing,GirionRingCount);
 	Npc_RemoveInvItems(self,ItRi_OrcEliteRing,GirionRingCount);
-	B_GivePlayerXP(XP_Ambient * GirionRingCount);
+	B_GivePlayerXP(XP_AmbientKap6 * GirionRingCount);
 	Info_ClearChoices(DIA_Girion_DI_OrcEliteRing);
 };
 

@@ -275,7 +275,7 @@ instance DIA_Addon_BDT_10014_Thorus_Armor(C_Info)
 
 func int DIA_Addon_Thorus_Armor_Condition()
 {
-	if(RavenIsDead == FALSE)
+	if((RavenIsDead == FALSE) && !Npc_HasItems(other,ITAR_Thorus_Addon))
 	{
 		return TRUE;
 	};

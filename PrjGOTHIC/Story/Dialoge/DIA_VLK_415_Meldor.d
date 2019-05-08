@@ -105,7 +105,7 @@ func void DIA_Meldor_Lehmar_Info()
 	AI_Output(other,self,"DIA_Meldor_Lehmar_15_00");	//А ты даешь их?
 	AI_Output(self,other,"DIA_Meldor_Lehmar_07_01");	//(скучая) Нет. Но прямо через улицу находится дом Лемара, ростовщика.
 	AI_Output(self,other,"DIA_Meldor_Lehmar_07_02");	//Я уверен, что он сможет одолжить тебе несколько золотых.
-	Npc_ExchangeRoutine(self,"START");
+//	Npc_ExchangeRoutine(self,"START");
 };
 
 

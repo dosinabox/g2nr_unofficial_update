@@ -452,12 +452,15 @@ func void DIA_Cipher_KrautPaket_Info()
 		GotCipherVote = TRUE;
 	};
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_04");	//Ёй, возьми это в награду.
-	B_GiveInvItems(self,other,ItMi_Gold,200);
-	B_GiveInvItems(self,other,ItMi_Joint,10);
-	B_GivePlayerXP(XP_Cipher_KrautPaket);
+	Npc_RemoveInvItems(self,ItMi_Joint,10);
+	CreateInvItems(other,ItMi_Joint,10);
+	CreateInvItems(other,ItMi_Gold,200);
+	AI_PrintScreen("10 кос€ков получено",-1,43,FONT_ScreenSmall,4);
+	AI_PrintScreen("200 золотых получено",-1,40,FONT_ScreenSmall,4);
+//	B_GivePlayerXP(XP_Cipher_KrautPaket);
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_05");	//—ейчас € скручу пару кос€чков...
-	CreateInvItems(self,ItMi_Joint,40);
 	Npc_RemoveInvItems(self,ItMi_HerbPaket,1);
+	CreateInvItems(self,ItMi_Joint,40);
 	MIS_Cipher_Paket = LOG_SUCCESS;
 	B_GivePlayerXP(XP_CipherPaket);
 };

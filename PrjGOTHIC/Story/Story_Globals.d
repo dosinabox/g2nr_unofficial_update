@@ -1087,6 +1087,7 @@ var int InfiniteApples;
 var int Helms_Enabled;
 var int ClassicLehmarBook;
 var int GuildlessMode;
+var int XP_Static;
 //var int HonestStatCalculation;
 var int Bennet_Ammo_Day;
 var int Bosper_Ammo_Day;

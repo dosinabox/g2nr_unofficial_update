@@ -83,3 +83,35 @@ func int C_KardifArmorCheckFailed(var C_Npc oth)
 	return FALSE;
 };
 
+func int AnyRangerRingEquipped()
+{
+	if((RangerRingIsLaresRing == TRUE) || (RangerRingIsMyRing == TRUE) || (RangerRingIsLanceRing == TRUE))
+	{
+		return TRUE;
+	}
+	else
+	{
+		return FALSE;
+	};
+};
+
+func void B_BaltramRangerCheck(var C_Npc oth)
+{
+	var C_Item armor;
+	armor = Npc_GetEquippedArmor(oth);
+	if(SC_KnowsBaltramAsRanger == FALSE)
+	{
+		if(Npc_HasEquippedArmor(oth))
+		{
+			if(Hlp_IsItem(armor,ITAR_RANGER_Addon))
+			{
+				SC_KnowsBaltramAsRanger = TRUE;
+			};
+		};
+		if(AnyRangerRingEquipped())
+		{
+			SC_KnowsBaltramAsRanger = TRUE;
+		};
+	};
+};
+

@@ -1941,7 +1941,7 @@ instance DIA_Vatras_MISSION(C_Info)
 
 func int DIA_Vatras_MISSION_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 2))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 2) && !Npc_IsDead(Isgaroth) && Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin))
 	{
 		return TRUE;
 	};
