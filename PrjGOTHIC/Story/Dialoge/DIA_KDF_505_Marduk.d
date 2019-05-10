@@ -228,7 +228,7 @@ func void DIA_Marduk_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
+	B_Say_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Marduk_TEACH);
 	Info_AddChoice(DIA_Marduk_TEACH,Dialog_Back,DIA_Marduk_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_Zap] == FALSE))

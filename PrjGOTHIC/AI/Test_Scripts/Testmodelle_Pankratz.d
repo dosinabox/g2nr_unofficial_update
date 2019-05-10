@@ -255,7 +255,7 @@ instance DJG_inserten(C_Item)
 
 func void UseDJG_inserten()
 {
-	B_Kapitelwechsel(4,OldWorld_Zen);
+	B_Kapitelwechsel(4,OLDWORLD_ZEN);
 	B_InitNpcGlobals();
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
@@ -346,7 +346,7 @@ func void SH_Oldworld_BACK1()
 
 func void SH_Oldworld_KAPITEL1ANFANG()
 {
-	B_Kapitelwechsel(1,OldWorld_Zen);
+	B_Kapitelwechsel(1,OLDWORLD_ZEN);
 	AI_StopProcessInfos(self);
 };
 
@@ -385,7 +385,7 @@ func void SH_Oldworld_KAPITEL2ANFANG()
 	Mil_305_schonmalreingelassen = TRUE;
 	CreateInvItems(hero,ItKe_Pass_MIS,1);
 	MIS_OLDWORLD = LOG_Running;
-	B_Kapitelwechsel(2,OldWorld_Zen);
+	B_Kapitelwechsel(2,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO2);
 	AI_StopProcessInfos(self);
 };
@@ -426,8 +426,8 @@ func void SH_Oldworld_KAPITEL3ANFANG()
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(3,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(3,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO3);
 	AI_StopProcessInfos(self);
 };
@@ -468,14 +468,14 @@ func void SH_Oldworld_KAPITEL4ANFANG()
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(3,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(3,OLDWORLD_ZEN);
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	CreateInvItems(self,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(4,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(4,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO4);
 	AI_StopProcessInfos(self);
 };
@@ -516,18 +516,18 @@ func void SH_Oldworld_KAPITEL5ANFANG()
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(3,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(3,OLDWORLD_ZEN);
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(4,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(4,OLDWORLD_ZEN);
 	CreateInvItems(hero,ItAt_IcedragonHeart,1);	//чтобы оно было у вас на »рдорате!
 	MIS_AllDragonsDead = TRUE;
 	EnterNW_Kapitel5 = TRUE;
-	B_Kapitelwechsel(5,OldWorld_Zen);
+	B_Kapitelwechsel(5,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO5);
 	AI_StopProcessInfos(self);
 };
@@ -563,7 +563,7 @@ func void SH_Oldworld_BACK6()
 
 func void SH_Oldworld_KAPITEL6ANFANG()
 {
-	B_Kapitelwechsel(6,OldWorld_Zen);
+	B_Kapitelwechsel(6,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO6);
 	AI_StopProcessInfos(self);
 };

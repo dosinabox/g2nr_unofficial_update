@@ -1054,6 +1054,10 @@ func int DIA_Lord_Hagen_Cornelius_Condition()
 
 func void DIA_Lord_Hagen_Cornelius_Info()
 {
+	if(!Npc_IsDead(Cornelius) && (CorneliusFlee == FALSE))
+	{
+		AI_Teleport(Cornelius,"NW_CITY_HABOUR_KASERN_BORKA");
+	};
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_00");	//Корнелиус солгал.
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_01");	//Откуда тебе это известно?
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_02");	//Вот, у меня его дневник. Все в нем.

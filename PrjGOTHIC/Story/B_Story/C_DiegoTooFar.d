@@ -15,7 +15,11 @@ const int LOC_ROCK = 13;
 
 func int C_DiegoTooFar(var int tolerance)
 {
-	if(Npc_GetDistToWP(hero,"SPAWN_OW_SHADOWBEAST_10_01") < (4000 + tolerance))
+	if(CurrentLevel != OLDWORLD_ZEN)
+	{
+		return FALSE;
+	}
+	else if(Npc_GetDistToWP(hero,"SPAWN_OW_SHADOWBEAST_10_01") < (4000 + tolerance))
 	{
 		return LOC_ANGAR;
 	}

@@ -477,7 +477,7 @@ func int DIA_MiltenOW_Teach_Condition()
 
 func void DIA_MiltenOW_Teach_Info()
 {
-	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//я хочу изучить новые заклинани€.
+	B_Say_WantToLearnNewRunes();
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Teach_03_01");	//“ы все еще не достиг второго  руга магии. я ничему не могу научить теб€.

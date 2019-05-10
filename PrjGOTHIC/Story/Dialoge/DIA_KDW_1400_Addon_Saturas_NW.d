@@ -605,13 +605,27 @@ func void DIA_Addon_Saturas_OpenPortal_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_10");	//Пока Ватрас не дал мне знать, что тебе можно доверять полностью, кольцо побудет у меня.
-		if(Saturas_WillVertrauensBeweis == FALSE)
+		if(VatrasLetterGivenToSaturas == TRUE)
 		{
-			B_LogEntry(TOPIC_Addon_Ornament,"Сатурас не даст мне кольцо, пока он не получит от Ватраса знак, свидетельствующий о том, что мне можно доверять.");
-			Saturas_WillVertrauensBeweis = TRUE;
+			AI_Output(self,other,"DIA_Addon_Saturas_ScRanger_14_07");	//А как я могу сказать, что теперь ты один из нас?
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_10");	//Пока Ватрас не дал мне знать, что тебе можно доверять полностью, кольцо побудет у меня.
+			if((RangerMeetingRunning == LOG_SUCCESS) && (Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven) || Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened)))
+			{
+				B_GiveVatrasLetterToSaturas();
+			}
+			else
+			{
+				if(Saturas_WillVertrauensBeweis == FALSE)
+				{
+					B_LogEntry(TOPIC_Addon_Ornament,"Сатурас не даст мне кольцо, пока он не получит от Ватраса знак, свидетельствующий о том, что мне можно доверять.");
+					Saturas_WillVertrauensBeweis = TRUE;
+				};
+				AI_StopProcessInfos(self);
+			};
 		};
-		AI_StopProcessInfos(self);
 	};
 };
 

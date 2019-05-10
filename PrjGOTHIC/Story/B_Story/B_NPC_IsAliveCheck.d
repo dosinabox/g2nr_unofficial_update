@@ -91,7 +91,7 @@ func void B_NPC_IsAliveCheck(var int Zen)
 		{
 		};
 	};
-	if(Zen == OldWorld_Zen)
+	if(Zen == OLDWORLD_ZEN)
 	{
 		if(Kapitel >= 2)
 		{

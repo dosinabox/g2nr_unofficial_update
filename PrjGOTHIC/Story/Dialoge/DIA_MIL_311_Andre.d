@@ -1621,6 +1621,7 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 	}
 	else if(Borka_Deal == 2)
 	{
+		AI_Teleport(Borka,"NW_CITY_HABOUR_KASERN_BORKA");
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_05");	//Я знаю, кто распространяет траву в городе. Это Борка, вышибала в Красном Фонаре.
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_07");	//Он продал мне болотной травы.

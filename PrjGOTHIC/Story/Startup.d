@@ -1835,7 +1835,7 @@ func void init_oldworld()
 	b_cycle_function();
 	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
 	{
-		B_Kapitelwechsel(4,OldWorld_Zen);
+		B_Kapitelwechsel(4,OLDWORLD_ZEN);
 		B_Chapter4_OneTime = TRUE;
 	};
 };

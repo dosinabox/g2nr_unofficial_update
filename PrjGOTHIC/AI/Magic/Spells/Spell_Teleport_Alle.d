@@ -205,7 +205,7 @@ func int Spell_Logic_TeleportPassOW(var int manaInvested)
 
 func void Spell_Cast_TeleportPassOW()
 {
-	B_PrintTeleportTooFarAway(OldWorld_Zen);
+	B_PrintTeleportTooFarAway(OLDWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
 		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
@@ -233,7 +233,7 @@ func int Spell_Logic_TeleportOC(var int manaInvested)
 
 func void Spell_Cast_TeleportOC()
 {
-	B_PrintTeleportTooFarAway(OldWorld_Zen);
+	B_PrintTeleportTooFarAway(OLDWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
 		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;
@@ -261,7 +261,7 @@ func int Spell_Logic_TeleportOWDemonTower(var int manaInvested)
 
 func void Spell_Cast_TeleportOWDemonTower()
 {
-	B_PrintTeleportTooFarAway(OldWorld_Zen);
+	B_PrintTeleportTooFarAway(OLDWORLD_ZEN);
 	if(Npc_GetActiveSpellIsScroll(self))
 	{
 		self.attribute[ATR_MANA] -= SPL_Cost_Scroll;

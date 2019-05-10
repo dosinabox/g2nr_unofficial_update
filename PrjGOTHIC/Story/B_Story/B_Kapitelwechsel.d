@@ -28,7 +28,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 		PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	};
 	B_CheckLog();
-	if(aktuelles_Level_Zen == OldWorld_Zen)
+	if(aktuelles_Level_Zen == OLDWORLD_ZEN)
 	{
 		b_enter_oldworld();
 	};

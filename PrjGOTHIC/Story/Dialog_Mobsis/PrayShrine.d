@@ -372,9 +372,12 @@ instance PC_PrayShrine_BlessSword(C_Info)
 
 func int PC_PrayShrine_BlessSword_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && (Npc_HasItems(hero,ItMw_1H_Blessed_01) || Npc_HasItems(hero,ItMw_2H_Blessed_01)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_HasItems(hero,ItMw_1H_Blessed_01) || Npc_HasItems(hero,ItMw_2H_Blessed_01)))
 	{
-		return TRUE;
+		if((CurrentLevel == NEWWORLD_ZEN) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -425,9 +428,12 @@ instance PC_PrayShrine_BlessSword_Final(C_Info)
 
 func int PC_PrayShrine_BlessSword_Final_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500) && (PAL_KnowsAbout_FINAL_BLESSING == TRUE) && (Npc_HasItems(hero,ItMw_1H_Blessed_02) || Npc_HasItems(hero,ItMw_2H_Blessed_02)))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (hero.guild == GIL_PAL) && (PAL_KnowsAbout_FINAL_BLESSING == TRUE) && (Npc_HasItems(hero,ItMw_1H_Blessed_02) || Npc_HasItems(hero,ItMw_2H_Blessed_02)))
 	{
-		return TRUE;
+		if((CurrentLevel == NEWWORLD_ZEN) && (Npc_GetDistToWP(hero,"NW_MONASTERY_CHAPELL_02") <= 500))
+		{
+			return TRUE;
+		};
 	};
 };
 

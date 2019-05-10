@@ -616,7 +616,7 @@ func void DIA_Garond_Success_Info()
 	MIS_ScoutMine = LOG_SUCCESS;
 	B_GivePlayerXP(XP_ScoutMine);
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
 };
 
 

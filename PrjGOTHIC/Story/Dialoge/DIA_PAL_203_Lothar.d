@@ -734,12 +734,9 @@ instance DIA_Lothar_Hagen(C_Info)
 
 func int DIA_Lothar_Hagen_Condition()
 {
-	if((Mil_305_schonmalreingelassen == TRUE) || (Player_KnowsLordHagen == TRUE))
+	if((Player_KnowsLordHagen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
-		if(LordHagen.aivar[AIV_TalkedToPlayer] == FALSE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -748,16 +745,16 @@ func void DIA_Lothar_Hagen_Info()
 	AI_Output(other,self,"DIA_Lothar_Hagen_15_00");	//Где я могу найти лорда Хагена?
 	AI_Output(self,other,"DIA_Lothar_Hagen_01_01");	//Он в ратуше, в конце верхнего квартала.
 	AI_Output(self,other,"DIA_Lothar_Hagen_01_02");	//Но тебя не примут там без веской на то причины.
-	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) && (Npc_GetDistToWP(self,"NW_CITY_LOTHAR") <= 700))
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
 		AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
 		AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
-	};
-	if(Player_TalkedAboutDragons == TRUE)
-	{
-		AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
-		AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
+		if(Player_TalkedAboutDragons == TRUE)
+		{
+			AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
+			AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
+		};
 	};
 };
 
