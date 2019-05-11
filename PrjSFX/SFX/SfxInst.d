@@ -3357,13 +3357,13 @@ instance DRG_HURT_A3(C_SFX_DEF)
 
 instance DRG_DIE(C_SFX_DEF)
 {
-	file = "DRG_Rock_Die_01.wav";
+	file = "DRG_Die_01.wav";
 	vol = 127;
 };
 
 instance DRG_FALL(C_SFX_DEF)
 {
-	file = "DRG_Rock_Fall_01.wav";
+	file = "DRG_Fall_01.wav";
 	vol = 127;
 };
 
@@ -3423,13 +3423,13 @@ instance DRG_ROCK_ATTACK_A1(C_SFX_DEF)
 
 instance DRG_ROCK_DIE(C_SFX_DEF)
 {
-	file = "DRG_Rock_Die_01.wav";
+	file = "DRG_Die_01.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_FALL(C_SFX_DEF)
 {
-	file = "DRG_Rock_Fall_01.wav";
+	file = "DRG_Fall_01.wav";
 	vol = 127;
 };
 
