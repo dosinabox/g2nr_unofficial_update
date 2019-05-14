@@ -102,7 +102,7 @@ instance DIA_Addon_Owen_WasMachen(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Owen_WasMachen_Condition;
 	information = DIA_Addon_Owen_WasMachen_Info;
-	description = "Что ты делаешь здесь?";
+	description = "Что ты здесь делаешь?";
 };
 
 
@@ -191,7 +191,6 @@ instance DIA_Addon_Owen_MalcomStunt(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Owen_MalcomStunt_Condition;
 	information = DIA_Addon_Owen_MalcomStunt_Info;
-//	description = "Как дела?";
 	description = "Что случилось?";
 };
 
@@ -206,7 +205,6 @@ func int DIA_Addon_Owen_MalcomStunt_Condition()
 
 func void DIA_Addon_Owen_MalcomStunt_Info()
 {
-//	AI_Output(other,self,"DIA_Addon_Owen_MalcomStunt_15_00");	//Как дела?
 	AI_Output(other,self,"DIA_Addon_Tom_Juan_15_00");		//Что случилось?
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomStunt_13_01");	//Мой приятель Мальком пропал.
 	if(Malcom_Accident_Deadly == TRUE)
@@ -222,8 +220,8 @@ func void DIA_Addon_Owen_MalcomStunt_Info()
 		Log_SetTopicStatus(TOPIC_Addon_MalcomsStunt,LOG_Running);
 		B_LogEntry(TOPIC_Addon_MalcomsStunt,"Оуэн хочет узнать, что случилось с его другом Малькомом, который упал в глубокую яму после того, как схватился с луркером.");
 		Log_AddEntry(TOPIC_Addon_MalcomsStunt,"Оуэн сказал мне, что на дне ямы вода, и сначала упавший туда Мальком был жив. Но через некоторое время шум в яме стих.");
-		MIS_Owen_FindMalcom = LOG_Running;
 	};
+	MIS_Owen_FindMalcom = LOG_Running;
 };
 
 
@@ -274,13 +272,15 @@ func void DIA_Addon_Owen_MalcomDead_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Owen_MalcomDead_15_00");	//Твой приятель Мальком мертв.
 	AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_01");	//Я так и знал. Бедняга. Я должен был ему помочь.
-//	if(SC_MadeStunt == TRUE)
-	if(StuntBonus_Once == TRUE)
+	if(Malcom_Accident_Deadly == TRUE)
 	{
-		AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_02");	//А ты храбрец.
-		AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_03");	//Я бы ни за что не смог спуститься в эту яму.
+		if(StuntBonus_Once == TRUE)
+		{
+			AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_02");	//А ты храбрец.
+			AI_Output(self,other,"DIA_Addon_Owen_MalcomDead_13_03");	//Я бы ни за что не смог спуститься в эту яму.
+		};
+		B_LogEntry(TOPIC_Addon_MalcomsStunt,"Я рассказал Оуэну о смерти Малькома. Он воспринял новость довольно спокойно.");
 	};
-	B_LogEntry(TOPIC_Addon_MalcomsStunt,"Я рассказал Оуэну о смерти Малькома. Он воспринял новость довольно спокойно.");
 	MIS_Owen_FindMalcom = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Owen_MalcomDead);
 };

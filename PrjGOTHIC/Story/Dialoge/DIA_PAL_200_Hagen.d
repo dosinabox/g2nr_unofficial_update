@@ -530,6 +530,8 @@ func void DIA_Lord_Hagen_Khorinis_Info()
 };
 
 
+var int DIA_Lord_Hagen_Minental_noPerm;
+
 instance DIA_Lord_Hagen_Minental(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -543,7 +545,7 @@ instance DIA_Lord_Hagen_Minental(C_Info)
 
 func int DIA_Lord_Hagen_Minental_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_Khorinis))
+	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_Khorinis) && (DIA_Lord_Hagen_Minental_noPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -558,7 +560,6 @@ func void DIA_Lord_Hagen_Minental_Info()
 	}
 	else
 	{
-//		if(Garond.aivar[AIV_TalkedToPlayer] == TRUE)
 		if(Npc_KnowsInfo(other,DIA_Garond_NeedProof))
 		{
 			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_02");	//“ы был там. “ы должен знать.
@@ -574,9 +575,10 @@ func void DIA_Lord_Hagen_Minental_Info()
 			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_06");	//ј шахты с магической рудой, наход€щиес€ на острове - последние, к которым у нас еще есть доступ.
 		};
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_07");	// ак только наш корабль будет загружен рудой, мы отправимс€ назад, на материк.
-		KnowsPaladins_Ore = TRUE;
 		AI_Output(other,self,"DIA_Lord_Hagen_Minental_15_08");	//«начит, война против орков идет плохо, да?
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_09");	//я и так сказал тебе слишком много.
+		KnowsPaladins_Ore = TRUE;
+		DIA_Lord_Hagen_Minental_noPerm = TRUE;
 	};
 };
 
@@ -745,7 +747,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	{
 		CreateInvItems(other,ITAR_PAL_M,1);
 	};
-	AI_EquipArmor(other,ITAR_PAL_M);
+//	AI_EquipArmor(other,ITAR_PAL_M);
 	/*if(Npc_HasItems(other,ItRu_FakePalLight))
 	{
 		CreateInvItem(other,ItRu_PalLight);

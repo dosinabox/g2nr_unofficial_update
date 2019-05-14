@@ -742,7 +742,8 @@ instance DIA_Addon_Henry_Owen(C_Info)
 
 func int DIA_Addon_Henry_Owen_Condition()
 {
-	if((MIS_Henry_FreeBDTTower == LOG_SUCCESS) && (Henry_EnterCrewMember == TRUE) && !Npc_IsDead(Malcom))
+//	if((MIS_Henry_FreeBDTTower == LOG_SUCCESS) && (Henry_EnterCrewMember == TRUE) && !Npc_IsDead(Malcom))
+	if((MIS_Henry_FreeBDTTower == LOG_SUCCESS) && (Henry_EnterCrewMember == TRUE))
 	{
 		return TRUE;
 	};
@@ -800,7 +801,7 @@ func int DIA_Addon_Henry_Owen2_Condition()
 func void DIA_Addon_Henry_Owen2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Owen2_15_00");	//Насчет Оуэна, лесоруба...
-	if(Npc_IsDead(PIR_1367_Addon_Owen))
+	if(Npc_IsDead(Owen))
 	{
 		AI_Output(other,self,"DIA_Addon_Henry_Owen2_15_01");	//Он мертв.
 		AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_02");	//Черт возьми! Видимо, мне придется отправить туда нового человека.
@@ -817,8 +818,14 @@ func void DIA_Addon_Henry_Owen2_Info()
 		B_Addon_Henry_MalcomsDead();
 		AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_05");	//Вот твоя награда.
 		B_GiveInvItems(self,other,ItMi_Gold,200);
-		B_StartOtherRoutine(PIR_1367_Addon_Owen,"PostStart");
-		B_LogEntry(TOPIC_Addon_HolOwen,"Оуэн отнесет Генри дерево.");
+		if(Npc_KnowsInfo(other,DIA_Addon_Greg_RavenDead))
+		{
+			B_StartOtherRoutine(Owen,"PostStart");
+		}
+		else
+		{
+			B_StartOtherRoutine(Owen,"PreStart");
+		};
 		MIS_Henry_HolOwen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_Owen_ComesToHenry);
 	}

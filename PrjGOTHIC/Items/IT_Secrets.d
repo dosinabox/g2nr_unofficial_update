@@ -29,7 +29,7 @@ instance ItSe_GoldFisch(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItSe_GoldFisch.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_GoldFisch;

@@ -972,10 +972,10 @@ func void DIA_Addon_Greg_NW_CaughtDexter2_Info()
 
 func void B_GregTalksAboutPortal()
 {
-	if(GregToldAboutPortal == FALSE)
+	if(Greg_KnowsPortal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_04");	//Скажи, ты, случайно, не знаешь, как попасть за горный хребет на северо-востоке Хориниса?
-		if(Npc_KnowsInfo(other,DIA_Addon_Nefarius_keineahnung) || Npc_KnowsInfo(other,DIA_Addon_Nefarius_SCbringOrnaments) || Npc_KnowsInfo(other,DIA_Addon_Riordian_Atlantis) || Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) || Npc_KnowsInfo(other,DIA_Addon_Vatras_CloseMeeting))
+		if(SC_KnowsPortal == TRUE)
 		{
 			AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_05");	//Возможно, через портал, который обнаружили маги Воды.
 			AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
@@ -984,7 +984,7 @@ func void B_GregTalksAboutPortal()
 		AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_08");	//Нет.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_09");	//(вздыхает) Значит, я здесь застрял.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_10");	//На Декстера у меня была последняя надежда.
-		GregToldAboutPortal = TRUE;
+		Greg_KnowsPortal = TRUE;
 	};
 };
 

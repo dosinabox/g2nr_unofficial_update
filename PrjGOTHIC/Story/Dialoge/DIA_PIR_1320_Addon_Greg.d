@@ -673,6 +673,10 @@ func void DIA_Addon_Greg_RavenDead_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_03");	//А ты смелый. Продолжай в том же духе.
 	B_GivePlayerXP(XP_ADDON_GregRavenLohn);
+	if(MIS_Henry_HolOwen == LOG_SUCCESS)
+	{
+		B_StartOtherRoutine(Owen,"PostStart");
+	};
 };
 
 instance DIA_Addon_Greg_ItemsInADW(C_Info)

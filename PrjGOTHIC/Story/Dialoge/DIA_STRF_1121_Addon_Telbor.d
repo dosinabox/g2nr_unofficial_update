@@ -36,7 +36,7 @@ instance DIA_Addon_Telbor_Hi(C_Info)
 
 func int DIA_Addon_Telbor_Hi_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Patrick) && !Npc_IsDead(Pardos))
+	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Patrick))
 	{
 		return TRUE;
 	};
@@ -45,7 +45,7 @@ func int DIA_Addon_Telbor_Hi_Condition()
 func void DIA_Addon_Telbor_Hi_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Telbor_Hi_12_00");	//Ёй, € в пор€дке.
-	if(Sklaven_Flucht == FALSE)
+	if(!Npc_IsDead(Pardos) && (Sklaven_Flucht == FALSE))
 	{
 		if(Pardos_Geheilt == FALSE)
 		{

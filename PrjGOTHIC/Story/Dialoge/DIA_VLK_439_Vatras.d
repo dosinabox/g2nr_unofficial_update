@@ -852,8 +852,8 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
 	B_GivePlayerXP(XP_AmbientKap3);
+	SC_KnowsPortal = TRUE;
 };
-
 
 
 var int missingpeopleinfo[20];

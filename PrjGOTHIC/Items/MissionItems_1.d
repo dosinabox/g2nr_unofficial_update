@@ -393,7 +393,7 @@ instance ItFo_SmellyFish(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MISSION;
 	value = 20;
-	visual = "ItFo_Fish_02.3DS";
+	visual = "ItFo_SmellyFish.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOODHUGE";
 	on_state[0] = Use_SmellyFish;

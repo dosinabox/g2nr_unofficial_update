@@ -16,7 +16,8 @@ instance PIR_1367_Addon_Owen(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,30);
-	daily_routine = Rtn_PostStart_1367;
+//	daily_routine = Rtn_PostStart_1367;
+	daily_routine = Rtn_PreStart_1367;
 };
 
 

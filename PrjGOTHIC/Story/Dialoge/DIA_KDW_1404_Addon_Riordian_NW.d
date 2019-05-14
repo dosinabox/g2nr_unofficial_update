@@ -98,6 +98,7 @@ func void DIA_Addon_Riordian_Atlantis_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_04");	//За этими горами лежит долина. Там и располагается этот древний город.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_05");	//(вздыхает) Я бы очень хотел взглянуть на его старинные здания, но они наверняка давно рассыпались в прах...
 	B_LogEntry(TOPIC_Addon_KDW,"Маги Воды считают, что за порталом находится древний затерянный город.");
+	SC_KnowsPortal = TRUE;
 };
 
 

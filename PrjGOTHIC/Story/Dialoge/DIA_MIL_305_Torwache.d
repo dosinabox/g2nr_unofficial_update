@@ -328,8 +328,15 @@ func int DIA_Mil_305_Torwache_PassAsSld_Condition()
 func void DIA_Mil_305_Torwache_PassAsSld_Info()
 {
 	AI_Output(other,self,"DIA_Mil_305_Torwache_PassAsSld_15_00");	//У меня важное сообщение для лорда Хагена!
-	AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsSld_03_01");	//Ты один из этих подонков наемников! Что тебе нужно от лорда Хагена?
-	AI_Output(other,self,"DIA_Mil_305_Torwache_PassAsSld_15_02");	//Я пришел с предложением мира.
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	{
+		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsSld_03_01");	//Ты один из этих подонков наемников! Что тебе нужно от лорда Хагена?
+		AI_Output(other,self,"DIA_Mil_305_Torwache_PassAsSld_15_02");	//Я пришел с предложением мира.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsSld_15_00");	//Дай мне пройти, я несу послание от наемников.
+	};
 	AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsSld_03_03");	//Ах! Значит, наконец, до вас, подлецов, дошел голос разума. Тогда проходи к лорду Хагену, но постарайся быть милым и вежливым, или я так отделаю тебя, что мало не покажется!
 	self.aivar[AIV_PASSGATE] = TRUE;
 	Mil_305_schonmalreingelassen = TRUE;

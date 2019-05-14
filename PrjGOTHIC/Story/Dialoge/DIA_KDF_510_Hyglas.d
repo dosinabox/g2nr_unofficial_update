@@ -244,7 +244,7 @@ func int DIA_Hyglas_BLANK_RUNE_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_RUNE == LOG_Running) && !Npc_HasItems(other,ItMi_RuneBlank) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
-		if(SC_KnowsAboutBlankRuneForFirebolt == TRUE)
+		if(SC_KnowsBlankRuneForFirebolt == TRUE)
 		{
 			return TRUE;
 		};

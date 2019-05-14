@@ -142,7 +142,7 @@ func void Use_Bookstand_Kreise_01_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,"Только при выполнении этих условий он может приступить к работе за рунным столом.");
 		Doc_Show(nDocID);
-		SC_KnowsAboutBlankRuneForFirebolt = TRUE;
+		SC_KnowsBlankRuneForFirebolt = TRUE;
 	};
 };
 

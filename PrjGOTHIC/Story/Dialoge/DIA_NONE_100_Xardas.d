@@ -671,7 +671,7 @@ instance DIA_Xardas_KdfSecret(C_Info)
 
 func int DIA_Xardas_KdfSecret_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT))
+	if(Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && !Npc_KnowsInfo(other,DIA_Pyrokar_SPOKETOVATRAS))
 	{
 		return TRUE;
 	};

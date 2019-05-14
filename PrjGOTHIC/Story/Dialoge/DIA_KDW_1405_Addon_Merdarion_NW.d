@@ -80,6 +80,7 @@ func void DIA_Addon_Merdarion_Aufgabe_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_04");	//(задумываясь) Я даже, пожалуй, никогда не слышал и не читал про нее...
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(Cronos_NW,"START");
+	SC_KnowsPortal = TRUE;
 };
 
 
