@@ -315,6 +315,7 @@ func int DIA_DJG_715_Ferros_FerrosHisSword_Condition()
 func void DIA_DJG_715_Ferros_FerrosHisSword_Info()
 {
 	AI_Output(other,self,"DIA_DJG_715_Ferros_FerrosHisSword_15_00");	//Я нашел твой меч.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItMW_1H_FerrosSword_Mis,1);
 	if(C_BodyStateContains(self,BS_SIT))
 	{

@@ -741,7 +741,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	if(Helms_Enabled == TRUE)
 	{
 		CreateInvItems(other,ITAR_PALN_M,1);
-		CreateInvItems(hero,ITHE_PAL_M,1);
+		CreateInvItems(other,ITHE_PAL_M,1);
 	}
 	else
 	{
@@ -983,7 +983,7 @@ func void DIA_Lord_Hagen_RescueBennet_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_RescueBennet_15_00");	//Мне нужно поговорить с тобой о Беннете.
 	if(Hagen_einmalBennet == FALSE)
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_04_01");	//Но этот наемник убил одного их моих людей.
+		AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_04_01");	//Но этот наемник убил одного из моих людей.
 		Hagen_einmalBennet = TRUE;
 	};
 	Info_ClearChoices(DIA_Lord_Hagen_RescueBennet);

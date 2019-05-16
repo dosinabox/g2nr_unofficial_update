@@ -805,7 +805,10 @@ func void DIA_Addon_Henry_Owen2_Info()
 	{
 		AI_Output(other,self,"DIA_Addon_Henry_Owen2_15_01");	//Он мертв.
 		AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_02");	//Черт возьми! Видимо, мне придется отправить туда нового человека.
-		AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_03");	//Морган очень вовремя занялся заполонившими всю округу дикими зверями.
+		if(!Npc_IsDead(Morgan))
+		{
+			AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_03");	//Морган очень вовремя занялся заполонившими всю округу дикими зверями.
+		};
 		B_Addon_Henry_MalcomsDead();
 		MIS_Henry_HolOwen = LOG_OBSOLETE;
 		B_LogEntry(TOPIC_Addon_HolOwen,"Оуэн и Мальком мертвы.");

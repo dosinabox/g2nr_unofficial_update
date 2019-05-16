@@ -1184,3 +1184,4 @@ var int Nadja_BuyHerb_Failed;
 var int SC_KnowsBlankRuneForFirebolt;
 var int SC_KnowsPortal;
 var int SC_KnowsEdgorStoneLocation;
+var int MyxirMovedToNW;

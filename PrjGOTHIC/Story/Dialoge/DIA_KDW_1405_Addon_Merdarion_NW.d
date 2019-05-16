@@ -246,8 +246,8 @@ func void DIA_Addon_Merdarion_Teleportstein_key()
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_key_06_01");	//(неуверенно) Правда? Но я не отвечаю за последствия.
 	AI_Output(other,self,"DIA_Addon_Merdarion_Teleportstein_key_15_02");	//Давай ключ.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_key_06_03");	//Если ты так хочешь. Пожалуйста.
-	CreateInvItems(self,itke_portaltempelwalkthrough_addon,1);
-	B_GiveInvItems(self,other,itke_portaltempelwalkthrough_addon,1);
+	CreateInvItems(self,ItKe_PortalTempelWalkthrough_Addon,1);
+	B_GiveInvItems(self,other,ItKe_PortalTempelWalkthrough_Addon,1);
 	SC_GotPORTALTEMPELWALKTHROUGHKey = TRUE;
 	Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);

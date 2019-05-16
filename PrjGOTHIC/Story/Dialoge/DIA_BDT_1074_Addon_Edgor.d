@@ -170,6 +170,10 @@ instance DIA_Addon_Edgor_Weg(C_Info)
 
 func int DIA_Addon_Edgor_Weg_Condition()
 {
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Found))
+	{
+		return FALSE;
+	};
 	if((SC_KnowsEdgorStoneLocation == TRUE) && Npc_HasItems(other,ItMi_Addon_Stone_04))
 	{
 		return FALSE;

@@ -1,9 +1,10 @@
 
 func void B_ENTER_NEWWORLD_Kapitel_1()
 {
-	if((RavenIsDead == TRUE) && Npc_IsDead(Myxir_CITY))
+	if((RavenIsDead == TRUE) && (MyxirMovedToNW == FALSE))
 	{
 		Wld_InsertNpc(KDW_140300_Addon_Myxir_CITY,"CITY1");
+		MyxirMovedToNW = TRUE;
 	};
 	if(ENTERED_ADDONWORLD == TRUE)
 	{

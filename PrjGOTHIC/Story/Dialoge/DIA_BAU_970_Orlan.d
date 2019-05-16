@@ -247,8 +247,8 @@ func void DIA_Addon_Orlan_Teleportstein_sehen()
 {
 	AI_Output(other,self,"DIA_Addon_Orlan_Teleportstein_sehen_15_00");	//А я могу посмотреть на этот телепорт?
 	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_sehen_05_01");	//Смотри, если хочешь. Вот ключ - я запер вход.
-	CreateInvItems(self,itke_orlan_teleportstation,1);
-	B_GiveInvItems(self,other,itke_orlan_teleportstation,1);
+	CreateInvItems(self,ItKe_Orlan_TeleportStation,1);
+	B_GiveInvItems(self,other,ItKe_Orlan_TeleportStation,1);
 	Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_TeleportsNW,"Орлан запер телепорт в пещере к юго-западу от своей таверны.");

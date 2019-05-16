@@ -6,6 +6,7 @@ var C_Npc Ramon;
 var C_Npc BanditGuard;
 var C_Npc Lehmar;
 var C_Npc Franco;
+var C_Npc Edgor;
 var C_Npc Paul;
 var C_Npc Lennar;
 var C_Npc Esteban;
@@ -336,6 +337,7 @@ func void B_InitNpcGlobals()
 	BanditGuard = Hlp_GetNpc(BDT_1064_Bandit_L);
 	Lehmar = Hlp_GetNpc(VLK_484_Lehmar);
 	Franco = Hlp_GetNpc(BDT_1093_Addon_Franco);
+	Edgor = Hlp_GetNpc(BDT_1074_Addon_Edgor);
 	Paul = Hlp_GetNpc(BDT_1070_Addon_Paul);
 	Esteban = Hlp_GetNpc(BDT_1083_Addon_Esteban);
 	Lennar = Hlp_GetNpc(BDT_1096_Addon_Lennar);

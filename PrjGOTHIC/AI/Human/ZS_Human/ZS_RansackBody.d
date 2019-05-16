@@ -31,10 +31,10 @@ func void ZS_RansackBody_End()
 			Npc_RemoveInvItems(other,ItMw_2h_Rod,1);
 			AI_EquipBestMeleeWeapon(self);
 		};
-		if(Npc_HasItems(other,ITKE_Greg_ADDON_MIS) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Francis)))
+		if(Npc_HasItems(other,ItKe_Greg_Addon_MIS) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Francis)))
 		{
-			CreateInvItems(self,ITKE_Greg_ADDON_MIS,1);
-			Npc_RemoveInvItems(other,ITKE_Greg_ADDON_MIS,1);
+			CreateInvItems(self,ItKe_Greg_Addon_MIS,1);
+			Npc_RemoveInvItems(other,ItKe_Greg_Addon_MIS,1);
 		};
 		if(Npc_HasItems(other,ItMi_Gold))
 		{

@@ -941,7 +941,7 @@ func void DIA_Garond_DragonPlettBericht_Info()
 			DIA_Garond_DragonPlettBericht_NoPerm = TRUE;
 		};
 	};
-	if((Garond_OricExperte_OneTime == FALSE) && (Npc_IsDead(Oric) == FALSE) && (MIS_AllDragonsDead == FALSE))
+	if((Garond_OricExperte_OneTime == FALSE) && !Npc_IsDead(Oric) && (MIS_AllDragonsDead == FALSE))
 	{
 		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_07");	//Ты можешь еще что-нибудь рассказать о драконах?
 		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_08");	//Мне нужно заниматься другими делами. Пусть мой помощник-стратег Орик расскажет тебе об этом.

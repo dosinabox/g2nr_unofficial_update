@@ -310,7 +310,7 @@ func void startup_addon_part_banditscamp_01()
 	Wld_InsertItem(ItPl_Temp_Herb,"FP_BL_ITEM_SMITH_BACK_01");
 	Wld_InsertItem(ItPo_Mana_02,"FP_ITEM_BL_TRYSTAN");
 	Wld_InsertItem(ItAm_Addon_Health,"FP_ITEM_MINE_01");
-	Wld_InsertItem(ItKe_addon_buddler_01,"FP_ITEM_BL_CHEST");
+	Wld_InsertItem(ItKe_Addon_Buddler_01,"FP_ITEM_BL_CHEST");
 	Wld_InsertItem(ITWr_Addon_Hinweis_02,"FP_ITEM_BL_SNAF");
 	Wld_InsertItem(ItPo_Health_Addon_04,"FP_RAVEN_01");
 	Wld_InsertItem(ItPo_Mana_Addon_04,"FP_RAVEN_02");

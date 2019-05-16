@@ -484,10 +484,10 @@ instance DIA_Addon_Thorus_PICKPOCKET(C_Info)
 
 func int DIA_Addon_Thorus_PICKPOCKET_Condition()
 {
-//	return C_StealItems(60,Hlp_GetInstanceID(ITKE_Addon_Thorus),1);
-	if(Npc_HasItems(self,ITKE_Addon_Thorus))
+//	return C_StealItems(60,Hlp_GetInstanceID(ItKe_Addon_Thorus),1);
+	if(Npc_HasItems(self,ItKe_Addon_Thorus))
 	{
-		return C_StealItem(60,Hlp_GetInstanceID(ITKE_Addon_Thorus));
+		return C_StealItem(60,Hlp_GetInstanceID(ItKe_Addon_Thorus));
 	}
 	else
 	{
@@ -504,8 +504,8 @@ func void DIA_Addon_Thorus_PICKPOCKET_Info()
 
 func void DIA_Addon_Thorus_PICKPOCKET_DoIt()
 {
-//	B_StealItems(60,Hlp_GetInstanceID(ITKE_Addon_Thorus),1);
-	B_StealItem(60,Hlp_GetInstanceID(ITKE_Addon_Thorus));
+//	B_StealItems(60,Hlp_GetInstanceID(ItKe_Addon_Thorus),1);
+	B_StealItem(60,Hlp_GetInstanceID(ItKe_Addon_Thorus));
 	Info_ClearChoices(DIA_Addon_Thorus_PICKPOCKET);
 };
 

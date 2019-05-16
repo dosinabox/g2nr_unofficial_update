@@ -1,5 +1,5 @@
 
-instance MIL_303_Torwache(Npc_Default)
+/*instance MIL_303_Torwache(Npc_Default)
 {
 	//удалить в 22 версии
 	name[0] = NAME_Tuerwache;
@@ -25,5 +25,5 @@ func void Rtn_Start_303()
 {
 	TA_Guard_Passage(8,0,23,0,"NW_CITY_GUARDOFFICE_GUARD_02");
 	TA_Guard_Passage(23,0,8,0,"NW_CITY_GUARDOFFICE_GUARD_02");
-};
+};*/
 
