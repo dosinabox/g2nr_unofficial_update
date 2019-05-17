@@ -23,11 +23,26 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 	};
 	if((Sklaven_Flucht == TRUE) && (Sklaven_weg == FALSE))
 	{
-		Wld_InsertNpc(STRF_1123_Addon_Patrick_NW,"NW_BIGFARM_PATRICK");
-		Wld_InsertNpc(STRF_1124_Addon_Monty_NW,"NW_CITY_HABOUR_WERFT_IN_01");
-		Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TANOK");
-		Wld_InsertNpc(STRF_1126_Addon_Telbor_NW,"NW_FARM2_FIELD_TELBOR");
-		Wld_InsertNpc(STRF_1127_Addon_Pardos_NW,"NW_FARM3_BENGAR");
+		if(Patrick_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1123_Addon_Patrick_NW,"NW_BIGFARM_PATRICK");
+		};
+		if(Monty_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1124_Addon_Monty_NW,"NW_CITY_HABOUR_WERFT_IN_01");
+		};
+		if(Tonak_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TANOK");
+		};
+		if(Telbor_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1126_Addon_Telbor_NW,"NW_FARM2_FIELD_TELBOR");
+		};
+		if(Pardos_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1127_Addon_Pardos_NW,"NW_FARM3_BENGAR");
+		};
 		Sklaven_weg = TRUE;
 		MissingPeopleReturnedHome = TRUE;
 	};

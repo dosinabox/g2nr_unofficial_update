@@ -39,6 +39,29 @@ func void ZS_Dead()
 //			B_MagicHurtNpc(self,other,50);
 		};
 	};
+	if(RemoveSklaven == FALSE)
+	{
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Patrick))
+		{
+			Patrick_DiedInADW = TRUE;
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Monty))
+		{
+			Monty_DiedInADW = TRUE;
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Tonak))
+		{
+			Tonak_DiedInADW = TRUE;
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Telbor))
+		{
+			Telbor_DiedInADW = TRUE;
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Pardos))
+		{
+			Pardos_DiedInADW = TRUE;
+		};
+	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DiegoOW))
 	{
 		Diego_IsDead = TRUE;

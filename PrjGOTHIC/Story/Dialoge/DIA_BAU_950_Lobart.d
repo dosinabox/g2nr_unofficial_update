@@ -977,9 +977,12 @@ instance DIA_Lobart_PERM(C_Info)
 
 func int DIA_Lobart_PERM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lobart_DMT) && (Kapitel >= 3) && (Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6)))
+	if(Npc_KnowsInfo(other,DIA_Lobart_DMT) && (Kapitel >= 3))
 	{
-		return TRUE;
+		if(Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1027,9 +1030,12 @@ instance DIA_Lobart_ORKPROBLEM(C_Info)
 
 func int DIA_Lobart_ORKPROBLEM_Condition()
 {
-	if((!Npc_IsDead(OrcWarrior_Lobart1) || !Npc_IsDead(OrcWarrior_Lobart2) || !Npc_IsDead(OrcWarrior_Lobart3) || !Npc_IsDead(OrcWarrior_Lobart4) || !Npc_IsDead(OrcWarrior_Lobart5) || !Npc_IsDead(OrcWarrior_Lobart6)) && (Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
+	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
 	{
-		return TRUE;
+		if(!Npc_IsDead(OrcWarrior_Lobart1) || !Npc_IsDead(OrcWarrior_Lobart2) || !Npc_IsDead(OrcWarrior_Lobart3) || !Npc_IsDead(OrcWarrior_Lobart4) || !Npc_IsDead(OrcWarrior_Lobart5) || !Npc_IsDead(OrcWarrior_Lobart6))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1057,9 +1063,12 @@ instance DIA_Lobart_ORKSWEG(C_Info)
 
 func int DIA_Lobart_ORKSWEG_Condition()
 {
-	if(Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6) && (Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
+	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
 	{
-		return TRUE;
+		if(Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6))
+		{
+			return TRUE;
+		};
 	};
 };
 
