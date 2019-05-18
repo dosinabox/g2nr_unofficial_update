@@ -361,7 +361,7 @@ instance DIA_Addon_Bill_TeachPlayer(C_Info)
 	nr = 22;
 	condition = DIA_Addon_Bill_TeachPlayer_Condition;
 	information = DIA_Addon_Bill_TeachPlayer_Info;
-	description = "Ты можешь научить меня чему-нибудь?";
+	description = "Ты можешь меня чему-нибудь научить?";
 };
 
 

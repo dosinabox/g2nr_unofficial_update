@@ -12,15 +12,12 @@ instance DIA_Lobart_EXIT(C_Info)
 
 func int DIA_Lobart_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Lobart_EXIT_Info()
 {
-	if(!Npc_HasEquippedArmor(other))
+	if((Kapitel < 3) && !Npc_HasEquippedArmor(other))
 	{
 		PlayerVisitedLobartFarmArmorless = TRUE;
 	};
@@ -812,31 +809,6 @@ func void DIA_Lobart_BUGALIVE_Info()
 };
 
 
-instance DIA_Lobart_KAP3_EXIT(C_Info)
-{
-	npc = BAU_950_Lobart;
-	nr = 999;
-	condition = DIA_Lobart_KAP3_EXIT_Condition;
-	information = DIA_Lobart_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lobart_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lobart_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Lobart_DMT(C_Info)
 {
 	npc = BAU_950_Lobart;
@@ -979,7 +951,7 @@ func int DIA_Lobart_PERM_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Lobart_DMT) && (Kapitel >= 3))
 	{
-		if(Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6))
+		if(Npc_KnowsInfo(other,DIA_Lobart_ORKSWEG) || Npc_KnowsInfo(other,DIA_Lobart_VINOTOT) || (MIS_HealHilda == LOG_SUCCESS))
 		{
 			return TRUE;
 		};
@@ -990,31 +962,6 @@ func void DIA_Lobart_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_PERM_15_00");	//Береги свою ферму!
 	AI_Output(self,other,"DIA_Lobart_PERM_05_01");	//Я попытаюсь.
-};
-
-
-instance DIA_Lobart_KAP4_EXIT(C_Info)
-{
-	npc = BAU_950_Lobart;
-	nr = 999;
-	condition = DIA_Lobart_KAP4_EXIT_Condition;
-	information = DIA_Lobart_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lobart_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lobart_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -1089,56 +1036,6 @@ func void DIA_Lobart_ORKSWEG_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 };
 
-
-instance DIA_Lobart_KAP5_EXIT(C_Info)
-{
-	npc = BAU_950_Lobart;
-	nr = 999;
-	condition = DIA_Lobart_KAP5_EXIT_Condition;
-	information = DIA_Lobart_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lobart_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lobart_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Lobart_KAP6_EXIT(C_Info)
-{
-	npc = BAU_950_Lobart;
-	nr = 999;
-	condition = DIA_Lobart_KAP6_EXIT_Condition;
-	information = DIA_Lobart_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lobart_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lobart_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Lobart_PICKPOCKET(C_Info)
 {

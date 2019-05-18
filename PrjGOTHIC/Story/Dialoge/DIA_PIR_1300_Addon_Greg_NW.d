@@ -327,6 +327,17 @@ func void DIA_Addon_Greg_NW_wer_Info()
 };
 
 
+func void B_Greg_Search_Dexter()
+{
+	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_00");	//Мне нужно найти одного человека. В городе его нет, и где его искать, тоже никто не знает.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_01");	//Он тощий, волосы у него черные, и он носит доспехи красного цвета.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_02");	//Насколько мне известно, он был заключенным в колонии. А имя его вроде бы начинается с буквы 'Д'.
+	Log_CreateTopic(TOPIC_Addon_Greg_NW,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Greg_NW,LOG_Running);
+	B_LogEntry(TOPIC_Addon_Greg_NW,"Человек с повязкой на глазу ищет кого-то, чье имя начинается на букву 'Д'.");
+	SC_KnowsGregsSearchsDexter = TRUE;
+};
+
 instance DIA_Addon_Greg_NW_was(C_Info)
 {
 	npc = PIR_1300_Addon_Greg_NW;
@@ -343,17 +354,6 @@ func int DIA_Addon_Greg_NW_was_Condition()
 	{
 		return TRUE;
 	};
-};
-
-func void B_Greg_Search_Dexter()
-{
-	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_00");	//Мне нужно найти одного человека. В городе его нет, и где его искать, тоже никто не знает.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_01");	//Он тощий, волосы у него черные, и он носит доспехи красного цвета.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_02");	//Насколько мне известно, он был заключенным в колонии. А имя его вроде бы начинается с буквы 'Д'.
-	Log_CreateTopic(TOPIC_Addon_Greg_NW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Greg_NW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Greg_NW,"Человек с повязкой на глазу ищет кого-то, чье имя начинается на букву 'Д'.");
-	SC_KnowsGregsSearchsDexter = TRUE;
 };
 
 func void DIA_Addon_Greg_NW_was_Info()
@@ -756,11 +756,11 @@ func int DIA_Addon_Greg_NW_Bigcross_Condition()
 
 func void DIA_Addon_Greg_NW_Bigcross_Info()
 {
+	AI_Output(other,self,"DIA_Addon_Greg_NW_Bigcross_15_01");	//Как дела?
 	if((MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_00");	//Это же наш господин Ненадежность!
 	};
-	AI_Output(other,self,"DIA_Addon_Greg_NW_Bigcross_15_01");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_02");	//Так себе. От наемников оказалось мало пользы.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_03");	//Я ожидал, что они - храбрые ребята.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_04");	//Но на поверку оказалось, что это всего лишь болтливые хвастуны.

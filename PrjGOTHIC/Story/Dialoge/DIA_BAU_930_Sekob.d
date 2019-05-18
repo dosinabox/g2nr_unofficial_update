@@ -434,7 +434,14 @@ func void DIA_Sekob_DMTWEG_Info()
 	B_StartOtherRoutine(BAU_934_Babera,"Start");
 	B_StartOtherRoutine(BAU_937_Bauer,"Start");
 	B_StartOtherRoutine(BAU_938_Bauer,"Start");
-	B_StartOtherRoutine(Bronko,"Start");
+	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
+	{
+		B_StartOtherRoutine(Bronko,"Start");
+	}
+	else
+	{
+		B_StartOtherRoutine(Bronko,"PreStart");
+	};
 //	Info_ClearChoices(DIA_Sekob_DMTWEG);
 //	Info_AddChoice(DIA_Sekob_DMTWEG,Dialog_Ende,DIA_Sekob_DMTWEG_END);
 };

@@ -97,7 +97,7 @@ instance DIA_Babera_BRONKO(C_Info)
 	nr = 3;
 	condition = DIA_Babera_BRONKO_Condition;
 	information = DIA_Babera_BRONKO_Info;
-	description = "(спросить о Бронко)";
+	description = "Скажи, вон тот тип, что стоит там...";
 };
 
 

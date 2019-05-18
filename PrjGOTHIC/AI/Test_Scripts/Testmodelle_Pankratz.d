@@ -609,7 +609,7 @@ instance DIA_Dragon_Testmodell_Hello(C_Info)
 	condition = DIA_Dragon_Testmodell_Hello_Condition;
 	information = DIA_Dragon_Testmodell_Hello_Info;
 	permanent = TRUE;
-	description = "Полная чепуха";
+	description = "Хватит попусту сотрясать воздух. Давай перейдем к делу.";
 };
 
 
@@ -620,8 +620,8 @@ func int DIA_Dragon_Testmodell_Hello_Condition()
 
 func void DIA_Dragon_Testmodell_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Dragon_Fire_Island_Hello_20_07");	//Ты зашел слишком далеко, жалкий человечишка, но тебе не уйти отсюда живым.
 	AI_Output(other,self,"DIA_Dragon_Fire_Island_Hello_15_06");	//Хватит попусту сотрясать воздух. Давай перейдем к делу.
+	AI_Output(self,other,"DIA_Dragon_Fire_Island_Hello_20_07");	//Ты зашел слишком далеко, жалкий человечишка, но тебе не уйти отсюда живым.
 	AI_StopProcessInfos(self);
 	DragonTalk_Exit_Free = FALSE;
 	self.flags = 0;

@@ -376,7 +376,7 @@ instance DIA_Pal_213_Schiffswache_IAmPAL3(C_Info)
 	condition = DIA_Pal_213_Schiffswache_IAmPAL3_Condition;
 	information = DIA_Pal_213_Schiffswache_IAmPAL3_Info;
 	permanent = FALSE;
-	description = "Я приказываю тебе пропустить меня на этот корабль.";
+	description = "И я приказываю тебе пропустить меня на этот корабль.";
 };
 
 

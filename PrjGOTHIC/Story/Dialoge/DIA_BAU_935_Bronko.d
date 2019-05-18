@@ -201,7 +201,10 @@ func void DIA_Bronko_KEINBAUER_SLD()
 	};
 	AI_StopProcessInfos(self);
 	DIA_Bronko_KEINBAUER_noPerm = TRUE;
-	Npc_ExchangeRoutine(self,"Start");
+	if((Kapitel != 3) || (TOPIC_END_SekobDMT == TRUE))
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
 	MIS_Sekob_Bronko_eingeschuechtert = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -213,14 +216,14 @@ instance DIA_Bronko_FLEISSIG(C_Info)
 	nr = 3;
 	condition = DIA_Bronko_FLEISSIG_Condition;
 	information = DIA_Bronko_FLEISSIG_Info;
-	permanent = TRUE;
-	description = "(подразнить)";
+	permanent = FALSE;
+	description = "Как дела? Желание трепаться еще не пропало?";
 };
 
 
 func int DIA_Bronko_FLEISSIG_Condition()
 {
-	if(((MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)) && Wld_IsTime(8,0,22,0))
+	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Bronko_HALLO))
 	{
 		return TRUE;
 	};
@@ -228,14 +231,40 @@ func int DIA_Bronko_FLEISSIG_Condition()
 
 func void DIA_Bronko_FLEISSIG_Info()
 {
+	AI_Output(other,self,"DIA_Bronko_FLEISSIG_15_01");	//Как дела? Желание трепаться еще не пропало?
+	AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_04");	//Не бей меня, пожалуйста.
+	AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_05");	//Я даже вернусь к работе, хорошо?
+	MIS_Sekob_Bronko_eingeschuechtert = LOG_SUCCESS;
+	AI_StopProcessInfos(self);
+	if((Kapitel != 3) || (TOPIC_END_SekobDMT == TRUE))
+	{
+		Npc_ExchangeRoutine(self,"Start");
+	};
+};
+
+
+instance DIA_Bronko_FLEISSIG2(C_Info)
+{
+	npc = BAU_935_Bronko;
+	nr = 3;
+	condition = DIA_Bronko_FLEISSIG2_Condition;
+	information = DIA_Bronko_FLEISSIG2_Info;
+	permanent = TRUE;
+	description = "Как дела? Работаешь как пчелка, да?";
+};
+
+
+func int DIA_Bronko_FLEISSIG2_Condition()
+{
 	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
 	{
-		AI_Output(other,self,"DIA_Bronko_FLEISSIG_15_00");	//Как дела? Работаешь как пчелка, да?
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Bronko_FLEISSIG_15_01");	//Как дела? Желание трепаться еще не пропало?
+		return TRUE;
 	};
+};
+
+func void DIA_Bronko_FLEISSIG2_Info()
+{
+	AI_Output(other,self,"DIA_Bronko_FLEISSIG_15_00");	//Как дела? Работаешь как пчелка, да?
 	if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_02");	//Ты наемник, да? Я мог бы догадаться.
@@ -243,15 +272,12 @@ func void DIA_Bronko_FLEISSIG_Info()
 	else if(DIA_Bronko_KEINBAUER_noPerm == TRUE)
 	{
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_03");	//(в страхе) Ты ведь не приведешь сюда этих наемников, да?
-	};
-	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_04");	//Не бей меня, пожалуйста.
 	};
-	AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_05");	//Я даже вернусь к работе, хорошо?
-	MIS_Sekob_Bronko_eingeschuechtert = LOG_SUCCESS;
 	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Start");
 };
 
 

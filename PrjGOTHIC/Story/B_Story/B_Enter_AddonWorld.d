@@ -1,10 +1,10 @@
 
 func void B_ENTER_ADDONWORLD_Kapitel_1()
 {
-	if((RavenIsDead == TRUE) && (RemoveMyxir_ADW == FALSE))
+	if((RavenIsDead == TRUE) && (MyxirRemovedFromADW == FALSE))
 	{
 		B_RemoveNpc(Myxir_ADW);
-		RemoveMyxir_ADW = TRUE;
+		MyxirRemovedFromADW = TRUE;
 	};
 	if((Sklaven_weg == TRUE) && (RemoveSklaven == FALSE))
 	{

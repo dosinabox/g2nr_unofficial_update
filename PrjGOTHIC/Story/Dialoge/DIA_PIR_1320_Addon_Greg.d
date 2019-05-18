@@ -418,7 +418,7 @@ instance DIA_Addon_Greg_Sauber2(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Greg_Sauber2_Condition;
 	information = DIA_Addon_Greg_Sauber2_Info;
-	description = "На северном пляже теперь безопасно.";
+	description = "На северном побережье теперь безопасно.";
 };
 
 

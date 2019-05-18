@@ -257,6 +257,20 @@ func void DIA_DiegoNW_HelpYou_Info()
 };
 
 
+func void B_DiegoNW_DiegosRevenge()
+{
+	if(!Npc_IsDead(Gerbrandt))
+	{
+		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_05");	//Очень хорошо. Пусть Гербрандт теперь дрожит от страха.
+	}
+	else
+	{
+		B_Say(self,other,"$ABS_GOOD");
+	};
+	MIS_HelpDiegoNW = LOG_SUCCESS;
+	B_GivePlayerXP(XP_HelpDiegoNW);
+};
+
 instance DIA_DiegoNW_HaveYourGold(C_Info)
 {
 	npc = PC_Thief_NW;
@@ -275,21 +289,6 @@ func int DIA_DiegoNW_HaveYourGold_Condition()
 		return TRUE;
 	};
 };
-
-func void B_DiegoNW_DiegosRevenge()
-{
-	if(!Npc_IsDead(Gerbrandt))
-	{
-		AI_Output(self,other,"DIA_DiegoNW_HaveYourGold_11_05");	//Очень хорошо. Пусть Гербрандт теперь дрожит от страха.
-	}
-	else
-	{
-		B_Say(self,other,"$ABS_GOOD");
-	};
-	MIS_HelpDiegoNW = LOG_SUCCESS;
-	B_GivePlayerXP(XP_HelpDiegoNW);
-};
-
 
 func void DIA_DiegoNW_HaveYourGold_Info()
 {

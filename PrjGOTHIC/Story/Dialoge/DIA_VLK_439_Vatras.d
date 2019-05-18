@@ -1303,7 +1303,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	var int flag;
 	anzahl = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
 	anzahl2 += anzahl;
-	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички..
+	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
 	/*if(anzahl == 1)
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...

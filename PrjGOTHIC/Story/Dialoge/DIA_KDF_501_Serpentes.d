@@ -602,7 +602,7 @@ instance DIA_Serpentes_GOTSalandril(C_Info)
 	nr = 32;
 	condition = DIA_Serpentes_GOTSalandril_Condition;
 	information = DIA_Serpentes_GOTSalandril_Info;
-	description = "Я знаю, кто ввел эти акции в обращение...";
+	description = "Я знаю, кто ввел эти акции в обращение.";
 };
 
 

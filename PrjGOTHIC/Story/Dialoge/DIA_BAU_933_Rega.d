@@ -149,7 +149,7 @@ instance DIA_Rega_BRONKO(C_Info)
 	nr = 7;
 	condition = DIA_Rega_BRONKO_Condition;
 	information = DIA_Rega_BRONKO_Info;
-	description = "(спросить о Бронко)";
+	description = "А кто этот противный тип вон там?";
 };
 
 

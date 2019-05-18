@@ -131,7 +131,7 @@ instance DIA_Addon_Matt_Bandits(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Matt_Bandits_Condition;
 	information = DIA_Addon_Matt_Bandits_Info;
-	description = "Что ты знаешь об этих бандитах?";
+	description = "Что ты знаешь о бандитах?";
 };
 
 

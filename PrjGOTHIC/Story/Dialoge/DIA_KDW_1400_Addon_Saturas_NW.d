@@ -463,7 +463,7 @@ func int DIA_Addon_Saturas_ScRanger_Condition()
 func void DIA_Addon_Saturas_ScRanger_Info()
 {
 	var C_Item itm;
-	AI_Output(other,self,"DIA_Addon_Saturas_ScRanger_15_00");	//Теперь я принадлежу к Кольцу Воды.
+	AI_Output(other,self,"DIA_Addon_Saturas_ScRanger_15_00");	//Теперь я принадлежу к 'Кольцу Воды'.
 	itm = Npc_GetEquippedArmor(other);
 	if((RangerRingIsMyRing == TRUE) || Hlp_IsItem(itm,ITAR_RANGER_Addon))
 	{

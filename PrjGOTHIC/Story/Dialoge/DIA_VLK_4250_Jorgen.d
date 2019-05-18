@@ -374,7 +374,7 @@ instance DIA_Jorgen_BEMYCAPTAIN2(C_Info)
 	nr = 52;
 	condition = DIA_Jorgen_BEMYCAPTAIN2_Condition;
 	information = DIA_Jorgen_BEMYCAPTAIN2_Info;
-	description = "Я расплатился с твоими долгами.";
+	description = "Я расплатился с твоими долгами. Ты свободен.";
 };
 
 

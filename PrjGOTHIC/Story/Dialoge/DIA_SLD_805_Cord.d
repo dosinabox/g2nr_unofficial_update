@@ -88,6 +88,11 @@ func void DIA_Cord_Hallo_Info()
 };
 
 
+func void B_Cord_BeBetter()
+{
+	AI_Output(self,other,"DIA_Cord_WannaJoin_14_14");	//Пока ты едва умеешь обращаться с оружием, и тебе здесь не место!
+};
+
 var int Cord_SchonmalGefragt;
 var int DIA_Cord_WannaJoin_Once;
 
@@ -108,11 +113,6 @@ func int DIA_Cord_WannaJoin_Condition()
 	{
 		return TRUE;
 	};
-};
-
-func void B_Cord_BeBetter()
-{
-	AI_Output(self,other,"DIA_Cord_WannaJoin_14_14");	//Пока ты едва умеешь обращаться с оружием, и тебе здесь не место!
 };
 
 func void DIA_Cord_WannaJoin_Info()
@@ -349,26 +349,7 @@ func void DIA_Addon_Cord_YouAreRanger_reicht()
 };
 
 
-instance DIA_Addon_Cord_RangerHelp2GetSLD(C_Info)
-{
-	npc = SLD_805_Cord;
-	nr = 2;
-	condition = DIA_Addon_Cord_RangerHelp2GetSLD_Condition;
-	information = DIA_Addon_Cord_RangerHelp2GetSLD_Info;
-	permanent = TRUE;
-	description = "Помоги мне стать наемником.";
-};
-
-
 var int DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm;
-
-func int DIA_Addon_Cord_RangerHelp2GetSLD_Condition()
-{
-	if((Cord_RangerHelp_GetSLD == TRUE) && (hero.guild == GIL_NONE) && (DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm == FALSE))
-	{
-		return TRUE;
-	};
-};
 
 func void B_Cord_RangerHelpObsolete()
 {
@@ -427,6 +408,25 @@ func void B_Cord_IDoItForYou_Dexter()
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Наемник Корд ищет своего приятеля Патрика.");
 	MIS_Addon_Cord_Look4Patrick = LOG_Running;
 	Ranger_SCKnowsDexter = TRUE;
+};
+
+instance DIA_Addon_Cord_RangerHelp2GetSLD(C_Info)
+{
+	npc = SLD_805_Cord;
+	nr = 2;
+	condition = DIA_Addon_Cord_RangerHelp2GetSLD_Condition;
+	information = DIA_Addon_Cord_RangerHelp2GetSLD_Info;
+	permanent = TRUE;
+	description = "Помоги мне стать наемником.";
+};
+
+
+func int DIA_Addon_Cord_RangerHelp2GetSLD_Condition()
+{
+	if((Cord_RangerHelp_GetSLD == TRUE) && (hero.guild == GIL_NONE) && (DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm == FALSE))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Cord_RangerHelp2GetSLD_Info()
@@ -625,22 +625,6 @@ func void DIA_Cord_ExplainWeapons_Info()
 var int Cord_Merke_1h;
 var int Cord_Merke_2h;
 
-instance DIA_Cord_Teach(C_Info)
-{
-	npc = SLD_805_Cord;
-	nr = 3;
-	condition = DIA_Cord_Teach_Condition;
-	information = DIA_Cord_Teach_Info;
-	permanent = TRUE;
-	description = "Научи меня сражаться!";
-};
-
-
-func int DIA_Cord_Teach_Condition()
-{
-	return TRUE;
-};
-
 func void B_Cord_Zeitverschwendung()
 {
 	AI_Output(self,other,"DIA_Cord_Teach_14_03");	//Я не хочу тратить свое время на новичков.
@@ -660,6 +644,22 @@ func void B_Cord_Teach()
 		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
 		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
 	};
+};
+
+instance DIA_Cord_Teach(C_Info)
+{
+	npc = SLD_805_Cord;
+	nr = 3;
+	condition = DIA_Cord_Teach_Condition;
+	information = DIA_Cord_Teach_Info;
+	permanent = TRUE;
+	description = "Научи меня сражаться!";
+};
+
+
+func int DIA_Cord_Teach_Condition()
+{
+	return TRUE;
 };
 
 func void DIA_Cord_Teach_Info()

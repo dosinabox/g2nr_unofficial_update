@@ -109,7 +109,7 @@ instance DIA_Mortis_Redlight(C_Info)
 	condition = DIA_Mortis_Redlight_Condition;
 	information = DIA_Mortis_Redlight_Info;
 	permanent = FALSE;
-	description = "Ты хорошо знаешь портовый квартал?";
+	description = "Я хочу найти того, кто продает болотную траву.";
 };
 
 

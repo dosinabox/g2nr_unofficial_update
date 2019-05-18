@@ -1,6 +1,6 @@
 
-const int fix_version_start = 21;
-const int least_supported = 19;
+const int fix_version_start = 22;
+const int least_supported = 21;
 var int fix_version_save;
 
 func void startup_global()

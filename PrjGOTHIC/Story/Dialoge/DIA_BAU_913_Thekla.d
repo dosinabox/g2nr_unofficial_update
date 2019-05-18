@@ -139,7 +139,7 @@ func int DIA_Thekla_Arbeit_Condition()
 
 func void DIA_Thekla_Arbeit_Info()
 {
-	AI_Output(other,self,"DIA_Thekla_Arbeit_15_00");	//Я ищу работу...
+	AI_Output(other,self,"DIA_Thekla_Arbeit_15_00");	//Я ищу работу.
 	AI_Output(self,other,"DIA_Thekla_Arbeit_17_01");	//Ты хочешь работать здесь, на ферме?
 	AI_Output(self,other,"DIA_Thekla_Arbeit_17_02");	//Этот вопрос может решить только Онар. Эта ферма его, как и вся долина.
 };

@@ -191,7 +191,7 @@ instance DIA_Till_BRONKO(C_Info)
 	nr = 5;
 	condition = DIA_Till_BRONKO_Condition;
 	information = DIA_Till_BRONKO_Info;
-	description = "(спросить о Бронко)";
+	description = "Это ваш работник требует плату со всех проходящих мимо?";
 };
 
 
@@ -205,7 +205,7 @@ func int DIA_Till_BRONKO_Condition()
 
 func void DIA_Till_BRONKO_Info()
 {
-	AI_Output(other,self,"DIA_Till_BRONKO_15_00");	//Это ваш работник требует плату со всех проходящих мимо, утверждая, что ОН тут фермер!
+	AI_Output(other,self,"DIA_Till_BRONKO_15_00");	//Это ваш работник требует плату со всех проходящих мимо, утверждая, что ОН тут фермер?
 	AI_Output(self,other,"DIA_Till_BRONKO_03_01");	//(робко) Эээ. Да. Я знаю. Это Бронко. Он делает то, что хочет.
 	AI_Output(self,other,"DIA_Till_BRONKO_03_02");	//Я уже столько раз задавал ему трепку, чтобы он взялся за ум и начал работать, но все без толку...
 	AI_Output(other,self,"DIA_Till_BRONKO_15_03");	//Да?
