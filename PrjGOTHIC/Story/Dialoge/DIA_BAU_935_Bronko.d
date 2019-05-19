@@ -33,7 +33,10 @@ instance DIA_Bronko_HALLO(C_Info)
 
 func int DIA_Bronko_HALLO_Condition()
 {
-	return TRUE;
+	if(self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Bronko_HALLO_Info()
@@ -79,20 +82,17 @@ func void DIA_Bronko_HALLO_hiergeld()
 func void DIA_Bronko_HALLO_vergisses()
 {
 	AI_Output(other,self,"DIA_Bronko_HALLO_vergisses_15_00");	//Забудь об этом. Ты ничего не получишь от меня.
-	if((hero.guild == GIL_NONE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
+	if(hero.guild == GIL_KDF)
 	{
-		AI_Output(self,other,"DIA_Bronko_HALLO_vergisses_06_01");	//Тогда, боюсь, мне придется набить тебе морду.
+		AI_Output(self,other,"DIA_Bronko_HALLO_vergisses_06_03");	//Меня не волнует, что ты маг. Тебе придется заплатить. Понятно?
 	}
 	else
 	{
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
+		if(hero.guild == GIL_MIL)
 		{
 			AI_Output(self,other,"DIA_Bronko_HALLO_vergisses_06_02");	//У вас, парней из городской стражи, плохо с финансами, ха?
 		};
-		if(hero.guild == GIL_KDF)
-		{
-			AI_Output(self,other,"DIA_Bronko_HALLO_vergisses_06_03");	//Меня не волнует, что ты маг. Тебе придется заплатить. Понятно?
-		};
+		AI_Output(self,other,"DIA_Bronko_HALLO_vergisses_06_01");	//Тогда, боюсь, мне придется набить тебе морду.
 	};
 	Info_ClearChoices(DIA_Bronko_HALLO);
 	Info_AddChoice(DIA_Bronko_HALLO,"Похоже, у меня нет выбора - вот твои деньги.",DIA_Bronko_HALLO_hiergeld);
@@ -201,7 +201,11 @@ func void DIA_Bronko_KEINBAUER_SLD()
 	};
 	AI_StopProcessInfos(self);
 	DIA_Bronko_KEINBAUER_noPerm = TRUE;
-	if((Kapitel != 3) || (TOPIC_END_SekobDMT == TRUE))
+	if((Kapitel == 3) && (TOPIC_END_SekobDMT == FALSE))
+	{
+		Npc_ExchangeRoutine(self,"FleeDMT_Field");
+	}
+	else
 	{
 		Npc_ExchangeRoutine(self,"Start");
 	};
@@ -223,7 +227,7 @@ instance DIA_Bronko_FLEISSIG(C_Info)
 
 func int DIA_Bronko_FLEISSIG_Condition()
 {
-	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Bronko_HALLO))
+	if((self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (MIS_Sekob_Bronko_eingeschuechtert != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -236,7 +240,11 @@ func void DIA_Bronko_FLEISSIG_Info()
 	AI_Output(self,other,"DIA_Bronko_FLEISSIG_06_05");	//Я даже вернусь к работе, хорошо?
 	MIS_Sekob_Bronko_eingeschuechtert = LOG_SUCCESS;
 	AI_StopProcessInfos(self);
-	if((Kapitel != 3) || (TOPIC_END_SekobDMT == TRUE))
+	if((Kapitel == 3) && (TOPIC_END_SekobDMT == FALSE))
+	{
+		Npc_ExchangeRoutine(self,"FleeDMT_Field");
+	}
+	else
 	{
 		Npc_ExchangeRoutine(self,"Start");
 	};

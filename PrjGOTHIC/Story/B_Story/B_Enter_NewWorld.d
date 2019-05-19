@@ -202,11 +202,18 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			{
 				B_StartOtherRoutine(Balthasar,"FleeDMT");
 			};
-			B_StartOtherRoutine(BAU_933_Rega,"FleeDMT");
-			B_StartOtherRoutine(BAU_934_Babera,"FleeDMT");
-			B_StartOtherRoutine(BAU_937_Bauer,"FleeDMT");
-			B_StartOtherRoutine(BAU_938_Bauer,"FleeDMT");
-			B_StartOtherRoutine(Bronko,"FleeDMT");
+			B_StartOtherRoutine(Rega,"FleeDMT");
+			B_StartOtherRoutine(Babera,"FleeDMT");
+			B_StartOtherRoutine(SekobsBauer1,"FleeDMT");
+			B_StartOtherRoutine(SekobsBauer2,"FleeDMT");
+			if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
+			{
+				B_StartOtherRoutine(Bronko,"FleeDMT_Field");
+			}
+			else
+			{
+				B_StartOtherRoutine(Bronko,"FleeDMT_Road");
+			};
 			Wld_InsertNpc(DMT_DementorAmbientSekob1,"NW_FARM4_IN_06");
 			Wld_InsertNpc(DMT_DementorAmbientSekob2,"NW_FARM4_IN_02");
 			Wld_InsertNpc(DMT_DementorAmbientSekob3,"NW_FARM4_IN_03");
@@ -375,7 +382,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			B_StartOtherRoutine(Canthar,"MARKTSTAND");
 			AI_Teleport(Canthar,"NW_CITY_SARAH");
 			Canthar_Sperre = TRUE;
-			Canthar_WiederRaus = TRUE;
+//			Canthar_WiederRaus = TRUE;
 		};
 //		CreateInvItems(Lester,ItMw_1h_Bau_Axe,1);
 		if(!Npc_IsDead(Ehnim))

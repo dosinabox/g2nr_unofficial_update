@@ -156,7 +156,7 @@ instance DIA_Rega_BRONKO(C_Info)
 func int DIA_Rega_BRONKO_Condition()
 {
 //	if(Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (MIS_Sekob_Bronko_eingeschuechtert == LOG_Running))
-	if(Npc_KnowsInfo(other,DIA_Bronko_HALLO) && Npc_KnowsInfo(other,DIA_Rega_HALLO) && !Npc_KnowsInfo(other,DIA_Babera_BRONKO))
+	if(Npc_KnowsInfo(other,DIA_Bronko_HALLO) && Npc_KnowsInfo(other,DIA_Rega_HALLO) && !Npc_KnowsInfo(other,DIA_Babera_BRONKO) && !Npc_IsDead(Bronko))
 	{
 		return TRUE;
 	};

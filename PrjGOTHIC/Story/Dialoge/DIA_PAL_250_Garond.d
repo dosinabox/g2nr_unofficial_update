@@ -831,6 +831,10 @@ func void DIA_Garond_BACKINKAP4_Info()
 	AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_02");	//Лорд Хаген прибудет, как только со всем разберется. Столько всего произошло.
 	AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_03");	//Меня это не волнует. Мне нужны войска. Орки все прибывают и прибывают. Нам не продержаться долго.
 	AI_Output(self,other,"DIA_Garond_BACKINKAP4_10_04");	//Мои люди измотаны, и у нас заканчивается провизия.
+	if(!Npc_KnowsInfo(other,DIA_Garond_WASGIBTSNEUES))
+	{
+		AI_Output(self,other,"DIA_Garond_WASGIBTSNEUES_10_02");	//Даже Милтен покинул замок. Но мне не нужно несколько человек - мне нужно БОЛЬШОЕ подкрепление!
+	};
 	AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_05");	//Прибыли волонтеры.
 	if(hero.guild == GIL_DJG)
 	{
@@ -865,6 +869,13 @@ func void DIA_Garond_BACKINKAP4_Info()
 };
 
 
+var int Garond_DragonCounter;
+var int Garond_SwampdragonKilled_OneTime;
+var int Garond_RockdragonKilled_OneTime;
+var int Garond_FireDragonKilled_OneTime;
+var int Garond_IcedragonKilled_OneTime;
+var int DIA_Garond_DragonPlettBericht_NoPerm;
+
 instance DIA_Garond_DragonPlettBericht(C_Info)
 {
 	npc = PAL_250_Garond;
@@ -872,86 +883,99 @@ instance DIA_Garond_DragonPlettBericht(C_Info)
 	condition = DIA_Garond_DragonPlettBericht_Condition;
 	information = DIA_Garond_DragonPlettBericht_Info;
 	permanent = TRUE;
-	description = "Насчет драконов...";
+	description = "У меня есть новости о драконах.";
 };
 
 
-var int DIA_Garond_DragonPlettBericht_NoPerm;
-
 func int DIA_Garond_DragonPlettBericht_Condition()
 {
-	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Garond_BACKINKAP4) && (DIA_Garond_DragonPlettBericht_NoPerm == FALSE))
+	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Garond_BACKINKAP4) && (Garond_DragonCounter < MIS_KilledDragons) && (DIA_Garond_DragonPlettBericht_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
 };
-
-
-var int Garond_DragonCounter;
-var int Garond_SwampdragonKilled_OneTime;
-var int Garond_RockdragonKilled_OneTime;
-var int Garond_FireDragonKilled_OneTime;
-var int Garond_IcedragonKilled_OneTime;
-var int Garond_OricExperte_OneTime;
 
 func void DIA_Garond_DragonPlettBericht_Info()
 {
 	var int CurrentDragonCount;
 	var int Drachengeld;
 	var int XP_LocalGarond;
-//	B_LogEntry(TOPIC_DRACHENJAGD,"Гаронда по долгу службы должно интересовать, как обстоят дела с драконами, хотя мне кажется, ему на это наплевать.");
-	if(Garond_DragonCounter < MIS_KilledDragons)
+	AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_00");	//У меня есть новости о драконах.
+	AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_01");	//Докладывай.
+	CurrentDragonCount = 0;
+	if(Npc_IsDead(SwampDragon) && (Garond_SwampdragonKilled_OneTime == FALSE))
 	{
-		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_00");	//У меня есть новости о драконах.
-		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_01");	//Докладывай.
-		CurrentDragonCount = 0;
-		if(Npc_IsDead(SwampDragon) && (Garond_SwampdragonKilled_OneTime == FALSE))
-		{
-			AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_02");	//Я убил дракона в болоте к востоку отсюда.
-			Garond_SwampdragonKilled_OneTime = TRUE;
-			CurrentDragonCount += 1;
-		};
-		if(Npc_IsDead(RockDragon) && (Garond_RockdragonKilled_OneTime == FALSE))
-		{
-			AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_03");	//Дракон в каменной крепости, к югу отсюда, мертв.
-			Garond_RockdragonKilled_OneTime = TRUE;
-			CurrentDragonCount += 1;
-		};
-		if(Npc_IsDead(FireDragon) && (Garond_FireDragonKilled_OneTime == FALSE))
-		{
-			AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_04");	//Огненный дракон из вулкана на юге больше не будет беспокоить вас.
-			Garond_FireDragonKilled_OneTime = TRUE;
-			CurrentDragonCount += 1;
-		};
-		if(Npc_IsDead(IceDragon) && (Garond_IcedragonKilled_OneTime == FALSE))
-		{
-			AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_05");	//Я был в западном ледяном районе и расправился с драконом, обитавшем там.
-			Garond_IcedragonKilled_OneTime = TRUE;
-			CurrentDragonCount += 1;
-		};
-		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_06");	//Это хорошие новости. Вот. Возьми эти деньги. Надеюсь, они помогут тебе обновить твое снаряжение.
-		Drachengeld = CurrentDragonCount * Garond_KilledDragonGeld;
-		XP_LocalGarond = CurrentDragonCount * XP_Garond_KilledDragon;
-		B_GivePlayerXP(XP_LocalGarond);
-		CreateInvItems(self,ItMi_Gold,Drachengeld);
-		B_GiveInvItems(self,other,ItMi_Gold,Drachengeld);
-		Garond_DragonCounter = MIS_KilledDragons;
-		if(MIS_AllDragonsDead == TRUE)
-		{
-			DIA_Garond_DragonPlettBericht_NoPerm = TRUE;
-		};
+		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_02");	//Я убил дракона в болоте к востоку отсюда.
+		Garond_SwampdragonKilled_OneTime = TRUE;
+		CurrentDragonCount += 1;
 	};
-	if((Garond_OricExperte_OneTime == FALSE) && !Npc_IsDead(Oric) && (MIS_AllDragonsDead == FALSE))
+	if(Npc_IsDead(RockDragon) && (Garond_RockdragonKilled_OneTime == FALSE))
 	{
-		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_07");	//Ты можешь еще что-нибудь рассказать о драконах?
+		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_03");	//Дракон в каменной крепости, к югу отсюда, мертв.
+		Garond_RockdragonKilled_OneTime = TRUE;
+		CurrentDragonCount += 1;
+	};
+	if(Npc_IsDead(FireDragon) && (Garond_FireDragonKilled_OneTime == FALSE))
+	{
+		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_04");	//Огненный дракон из вулкана на юге больше не будет беспокоить вас.
+		Garond_FireDragonKilled_OneTime = TRUE;
+		CurrentDragonCount += 1;
+	};
+	if(Npc_IsDead(IceDragon) && (Garond_IcedragonKilled_OneTime == FALSE))
+	{
+		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_05");	//Я был в западном ледяном районе и расправился с драконом, обитавшем там.
+		Garond_IcedragonKilled_OneTime = TRUE;
+		CurrentDragonCount += 1;
+	};
+	AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_06");	//Это хорошие новости. Вот. Возьми эти деньги. Надеюсь, они помогут тебе обновить твое снаряжение.
+	Drachengeld = CurrentDragonCount * Garond_KilledDragonGeld;
+	XP_LocalGarond = CurrentDragonCount * XP_Garond_KilledDragon;
+	B_GivePlayerXP(XP_LocalGarond);
+	CreateInvItems(self,ItMi_Gold,Drachengeld);
+	B_GiveInvItems(self,other,ItMi_Gold,Drachengeld);
+	Garond_DragonCounter = MIS_KilledDragons;
+	if(MIS_AllDragonsDead == TRUE)
+	{
+		DIA_Garond_DragonPlettBericht_NoPerm = TRUE;
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_09");	//В последнее время были еще нападения драконов?
+		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_10");	//По счастью, нет. В настоящий момент они держатся вдалеке.
+	};
+};
+
+
+instance DIA_Garond_OricExperte(C_Info)
+{
+	npc = PAL_250_Garond;
+	nr = 12;
+	condition = DIA_Garond_OricExperte_Condition;
+	information = DIA_Garond_OricExperte_Info;
+	permanent = FALSE;
+	description = "Ты можешь еще что-нибудь рассказать о драконах?";
+};
+
+
+func int DIA_Garond_OricExperte_Condition()
+{
+	if((Kapitel >= 4) && Npc_KnowsInfo(other,DIA_Garond_BACKINKAP4) && (MIS_AllDragonsDead == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Garond_OricExperte_Info()
+{
+	AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_07");	//Ты можешь еще что-нибудь рассказать о драконах?
+	if(!Npc_IsDead(Oric))
+	{
 		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_08");	//Мне нужно заниматься другими делами. Пусть мой помощник-стратег Орик расскажет тебе об этом.
 		B_LogEntry(TOPIC_DRACHENJAGD,"Гаронда по долгу службы должно интересовать, как обстоят дела с драконами, хотя мне кажется, ему на это наплевать.");
 		B_LogEntry(TOPIC_DRACHENJAGD,"У офицера Орика, отвечающего за стратегию, возможно, есть полезная информация для меня.");
-		Garond_OricExperte_OneTime = TRUE;
 	}
-	else if(MIS_AllDragonsDead == FALSE)
+	else
 	{
-		AI_Output(other,self,"DIA_Garond_DragonPlettBericht_15_09");	//В последнее время были еще нападения драконов?
 		AI_Output(self,other,"DIA_Garond_DragonPlettBericht_10_10");	//По счастью, нет. В настоящий момент они держатся вдалеке.
 	};
 };
@@ -989,6 +1013,8 @@ func void DIA_Garond_AllDragonDead_Info()
 };
 
 
+var int DIA_Garond_JanBecomeSmith_OneTime;
+
 instance DIA_Garond_JanBecomeSmith(C_Info)
 {
 	npc = PAL_250_Garond;
@@ -1011,27 +1037,32 @@ func int DIA_Garond_JanBecomeSmith_Condition()
 func void DIA_Garond_JanBecomeSmith_Info()
 {
 	AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_00");	//Я хочу поговорить о кузнеце.
-	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_01");	//Каком кузнеце? Он исчез.
-	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_02");	//Он что, вернулся? Тогда можешь сказать ему...
-	AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_03");	//Нет, я говорю о Яне.
-	if(hero.guild == GIL_DJG)
+	if(DIA_Garond_JanBecomeSmith_OneTime == FALSE)
 	{
-		AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_04");	//Он охотник на драконов, как и я, и хороший кузнец.
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_05");	//Одном из охотников на драконов. Он кузнец.
+		AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_01");	//Каком кузнеце? Он исчез.
+		AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_02");	//Он что, вернулся? Тогда можешь сказать ему...
+		AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_03");	//Нет, я говорю о Яне.
+		if(hero.guild == GIL_DJG)
+		{
+			AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_04");	//Он охотник на драконов, как и я, и хороший кузнец.
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_05");	//Одном из охотников на драконов. Он кузнец.
+		};
+		AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_06");	//Это хорошо. Наш предыдущий кузнец слинял, трус.
+		AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_07");	//Ян хотел бы поработать в кузнице.
+		AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_08");	//Понимаю. Так ты думаешь, я могу доверять ему?
+		AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_09");	//Да.
+		AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_10");	//Если ты так уверен, то ты можешь поручиться за него.
+		DIA_Garond_JanBecomeSmith_OneTime = TRUE;
 	};
-	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_06");	//Это хорошо. Наш предыдущий кузнец слинял, трус.
-	AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_07");	//Ян хотел бы поработать в кузнице.
-	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_08");	//Понимаю. Так ты думаешь, я могу доверять ему?
-	AI_Output(other,self,"DIA_Garond_JanBecomeSmith_15_09");	//Да.
-	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_10");	//Если ты так уверен, то ты можешь поручиться за него.
 	AI_Output(self,other,"DIA_Garond_JanBecomeSmith_10_11");	//Если из-за него возникнут проблемы, за это ответишь ты. Согласен?
 	Info_ClearChoices(DIA_Garond_JanBecomeSmith);
 	Info_AddChoice(DIA_Garond_JanBecomeSmith,"Я подумаю над этим.",DIA_Garond_JanBecomeSmith_No);
 	Info_AddChoice(DIA_Garond_JanBecomeSmith,"Я ручаюсь за Яна.",DIA_Garond_JanBecomeSmith_Yes);
 };
+
 
 func void DIA_Garond_JanBecomeSmith_No()
 {
@@ -1049,7 +1080,6 @@ func void DIA_Garond_JanBecomeSmith_Yes()
 	MIS_JanBecomesSmith = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };
-
 
 instance DIA_Garond_PERM5(C_Info)
 {
@@ -1083,3 +1113,4 @@ func void DIA_Garond_PERM5_Info()
 		AI_Output(self,other,"DIA_Garond_PERM5_10_03");	//Мы все здесь помрем как мухи, если Хаген не прибудет как можно скорее.
 	};
 };
+

@@ -561,22 +561,39 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 };
 
 
+func string B_BuildJanKilledDragonsString()
+{
+	var string text;
+	if(MIS_KilledDragons == 1)
+	{
+		text = "Я убил дракона.";
+	}
+	else if((MIS_KilledDragons == 2) || (MIS_KilledDragons == 3))
+	{
+		text = "Я убил несколько драконов.";
+	}
+	else
+	{
+		text = "Я убил всех драконов.";
+	};
+	return text;
+};
+
 instance DIA_Jan_DragonPlettBericht(C_Info)
 {
 	npc = DJG_714_Jan;
 	nr = 3;
 	condition = DIA_Jan_DragonPlettBericht_Condition;
 	information = DIA_Jan_DragonPlettBericht_Info;
-	description = "Насчет драконов...";
+	description = "Я убил дракона.";
 };
 
 
-//var int DIA_Jan_DragonPlettBericht_NoPerm;
-
 func int DIA_Jan_DragonPlettBericht_Condition()
 {
-	if((Kapitel >= 4) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons != 0))
+	if((Kapitel >= 4) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons > 0))
 	{
+		DIA_Jan_DragonPlettBericht.description = B_BuildJanKilledDragonsString();
 		return TRUE;
 	};
 };

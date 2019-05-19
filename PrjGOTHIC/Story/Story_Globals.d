@@ -479,7 +479,7 @@ var int LesterMovedToXardas;
 var int XardasKnowsAboutProof;
 var int Canthar_Gefallen;
 var int Canthar_Sperre;
-var int Canthar_WiederRaus;
+//var int Canthar_WiederRaus;
 var int Canthar_Pay;
 const int Canthar_Gold = 500;
 var int Andre_EyeInnos;

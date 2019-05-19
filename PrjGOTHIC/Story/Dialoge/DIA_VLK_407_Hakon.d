@@ -73,6 +73,7 @@ func void DIA_Hakon_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Hakon_Add_12_00");	//я ’акон, торговец оружием.
 	AI_Output(self,other,"DIA_Hakon_Add_12_01");	//¬ наши дни каждый должен носить оружие. ќсобенно, когда выходишь за городские стены.
+	B_PlayerEnteredCity();
 	HakonTalkedToPlayerChapter = Kapitel;
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"’акон торгует оружием на рыночной площади.");

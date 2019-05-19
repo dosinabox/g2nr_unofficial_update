@@ -143,7 +143,7 @@ instance DIA_Till_WASMACHSTDU(C_Info)
 
 func int DIA_Till_WASMACHSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Till_HALLO) && (hero.guild != GIL_MIL) && (Kapitel < 5))
+	if(Npc_KnowsInfo(other,DIA_Till_HALLO) && (Kapitel < 5))
 	{
 		return TRUE;
 	};
@@ -153,9 +153,12 @@ func void DIA_Till_WASMACHSTDU_Info()
 {
 	AI_Output(other,self,"DIA_Till_WASMACHSTDU_15_00");	//А что ты делаешь, когда не играешь в хозяина этой фермы?
 	AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_01");	//Стою на страже.
-	AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_02");	//Грязные ополченцы из города все чаще забредают на наши земли и воруют все, что плохо лежит.
-	AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_03");	//Эти ублюдки были здесь только на прошлой неделе, они украли наших овец.
-	AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_04");	//Если бы я добрался до одного из них, ему бы не поздоровилось.
+	if(hero.guild != GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_02");	//Грязные ополченцы из города все чаще забредают на наши земли и воруют все, что плохо лежит.
+		AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_03");	//Эти ублюдки были здесь только на прошлой неделе, они украли наших овец.
+		AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_04");	//Если бы я добрался до одного из них, ему бы не поздоровилось.
+	};
 	AI_Output(other,self,"DIA_Till_WASMACHSTDU_15_05");	//Конечно!
 };
 
@@ -197,7 +200,7 @@ instance DIA_Till_BRONKO(C_Info)
 
 func int DIA_Till_BRONKO_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (Kapitel < 5))
+	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (Kapitel < 5) && !Npc_IsDead(Bronko))
 	{
 		return TRUE;
 	};

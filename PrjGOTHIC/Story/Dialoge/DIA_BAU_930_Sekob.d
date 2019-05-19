@@ -430,10 +430,10 @@ func void DIA_Sekob_DMTWEG_Info()
 	{
 		B_StartOtherRoutine(Balthasar,"Start");
 	};
-	B_StartOtherRoutine(BAU_933_Rega,"Start");
-	B_StartOtherRoutine(BAU_934_Babera,"Start");
-	B_StartOtherRoutine(BAU_937_Bauer,"Start");
-	B_StartOtherRoutine(BAU_938_Bauer,"Start");
+	B_StartOtherRoutine(Rega,"Start");
+	B_StartOtherRoutine(Babera,"Start");
+	B_StartOtherRoutine(SekobsBauer1,"Start");
+	B_StartOtherRoutine(SekobsBauer2,"Start");
 	if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
 	{
 		B_StartOtherRoutine(Bronko,"Start");
@@ -463,10 +463,10 @@ func void DIA_Sekob_DMTWEG_Info()
 		B_StartOtherRoutine(Till,"Start");
 	};
 	B_StartOtherRoutine(Balthasar,"Start");
-	B_StartOtherRoutine(BAU_933_Rega,"Start");
-	B_StartOtherRoutine(BAU_934_Babera,"Start");
-	B_StartOtherRoutine(BAU_937_Bauer,"Start");
-	B_StartOtherRoutine(BAU_938_Bauer,"Start");
+	B_StartOtherRoutine(Rega,"Start");
+	B_StartOtherRoutine(Babera,"Start");
+	B_StartOtherRoutine(SekobsBauer1,"Start");
+	B_StartOtherRoutine(SekobsBauer2,"Start");
 	B_StartOtherRoutine(Bronko,"Start");
 };*/
 

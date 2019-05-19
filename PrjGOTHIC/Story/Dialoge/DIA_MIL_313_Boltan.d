@@ -173,7 +173,11 @@ instance DIA_Boltan_HalloCanthar(C_Info)
 
 func int DIA_Boltan_HalloCanthar_Condition()
 {
-	if(((Kapitel != 3) || ((Kapitel == 3) && ((MIS_RescueBennet == LOG_SUCCESS) || (other.guild != GIL_SLD)))) && (Canthar_WiederRaus == TRUE) && (Canthar_Ausgeliefert == TRUE))
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
+	{
+		return FALSE;
+	}
+	else if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE))
 	{
 		return TRUE;
 	};

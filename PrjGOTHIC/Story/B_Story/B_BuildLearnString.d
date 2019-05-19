@@ -27,3 +27,4 @@ func string B_BuildPriceString(var string text,var int price)
 	concatText = ConcatStrings(concatText," золотых)");
 	return concatText;
 };
+
