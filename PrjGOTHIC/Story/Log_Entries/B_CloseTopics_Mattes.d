@@ -28,7 +28,7 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_BosperBogen,MIS_Bosper_Bogen,0,6);
 	B_CloseTopic(TOPIC_ConstantinoPlants,MIS_Constantino_BringHerbs,0,6);
 	B_CloseTopic(TOPIC_HaradOrk,MIS_Harad_Orc,0,6);
-	B_CloseTopic(TOPIC_Canthar,MIS_Canthars_KomproBrief,0,4);
+	B_CloseTopic(TOPIC_Canthar,MIS_Canthars_KomproBrief,0,6);
 	B_CloseTopic(TOPIC_HakonBanditen,MIS_HakonBandits,0,6);
 	B_CloseTopic(TOPIC_Jora,Jora_Gold,0,6);
 	B_CloseTopic(TOPIC_JoraDieb,Jora_Dieb,0,6);

@@ -1191,3 +1191,4 @@ var int Monty_DiedInADW;
 var int Tonak_DiedInADW;
 var int Telbor_DiedInADW;
 var int Pardos_DiedInADW;
+var int JorgenMovedFromKloster;

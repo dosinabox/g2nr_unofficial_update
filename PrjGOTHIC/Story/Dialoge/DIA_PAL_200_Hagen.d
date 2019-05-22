@@ -1341,7 +1341,7 @@ instance DIA_Lord_Hagen_NeedShip(C_Info)
 
 func int DIA_Lord_Hagen_NeedShip_Condition()
 {
-	if(ItWr_SCReadsHallsofIrdorath == TRUE)
+	if((MIS_SCKnowsWayToIrdorath == TRUE) && (MIS_ShipIsFree == FALSE))
 	{
 		return TRUE;
 	};

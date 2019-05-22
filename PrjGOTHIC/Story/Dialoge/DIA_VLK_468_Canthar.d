@@ -82,7 +82,7 @@ func void DIA_Canthar_PersonalCRIMES_Info()
 {
 	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 	{
-		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_00");	//Это было очень глупо с твоей стороны атаковать меня.
+		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_00");	//Это было очень глупо с твоей стороны - атаковать меня.
 	}
 	else
 	{

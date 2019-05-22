@@ -83,8 +83,8 @@ func void DIA_Kati_HALLO_Info()
 	if(Npc_IsDead(Akil))
 	{
 		AI_Output(self,other,"DIA_Kati_HALLO_16_01");	//(рыдает) Мой любимый муж мертв! Ох, Иннос, за что ты меня так наказываешь?!
-		B_GivePlayerXP(XP_Akil_Tot);
 		TOPIC_END_AkilsSLDStillthere = TRUE;
+		B_GivePlayerXP(XP_Akil_Tot);
 	}
 	else
 	{

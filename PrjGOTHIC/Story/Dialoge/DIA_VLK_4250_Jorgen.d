@@ -12,10 +12,7 @@ instance DIA_Jorgen_KAP3_EXIT(C_Info)
 
 func int DIA_Jorgen_KAP3_EXIT_Condition()
 {
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Jorgen_KAP3_EXIT_Info()
@@ -210,31 +207,6 @@ func void DIA_Jorgen_BeCarefull_Info()
 };
 
 
-instance DIA_Jorgen_KAP4_EXIT(C_Info)
-{
-	npc = VLK_4250_Jorgen;
-	nr = 999;
-	condition = DIA_Jorgen_KAP4_EXIT_Condition;
-	information = DIA_Jorgen_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Jorgen_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Jorgen_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Jorgen_NEUHIER(C_Info)
 {
 	npc = VLK_4250_Jorgen;
@@ -247,7 +219,7 @@ instance DIA_Jorgen_NEUHIER(C_Info)
 
 func int DIA_Jorgen_NEUHIER_Condition()
 {
-	if(Kapitel >= 4)
+	if((Kapitel >= 4) && (JorgenIsCaptain == FALSE) && (JorgenMovedFromKloster == FALSE))
 	{
 		return TRUE;
 	};
@@ -300,32 +272,7 @@ func void DIA_Jorgen_PERM4_Info()
 		AI_Output(self,other,"DIA_Jorgen_PERM4_07_01");	//“олько представь: € должен пропалывать их огород. ≈сли так будет продолжатьс€ и дальше, € сойду с ума.
 		DIA_Jorgen_PERM4_OneTime = TRUE;
 	};
-	AI_Output(self,other,"DIA_Jorgen_PERM4_07_02");	//я так хочу оп€ть почувствовать палубу под моими ногами.
-};
-
-
-instance DIA_Jorgen_KAP5_EXIT(C_Info)
-{
-	npc = VLK_4250_Jorgen;
-	nr = 999;
-	condition = DIA_Jorgen_KAP5_EXIT_Condition;
-	information = DIA_Jorgen_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Jorgen_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Jorgen_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
+	AI_Output(self,other,"DIA_Jorgen_PERM4_07_02");	//я так хочу оп€ть почувствовать палубу под моими ногами...
 };
 
 
@@ -392,15 +339,29 @@ func void DIA_Jorgen_BEMYCAPTAIN2_Info()
 	AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN2_07_01");	//ѕравда?  ак тебе удалось это?
 	AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN2_15_02");	//“ебе лучше не знать.
 	AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN2_07_03");	//ќх, ладно. ћен€ это, действительно, не очень волнует. “ыс€ча благодарностей!
-	if(SCGotCaptain == FALSE)
+	if(DIA_Jorgen_BEMYCAPTAIN_OneTime == TRUE)
 	{
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN2_07_04");	// ак теперь насчет твоего предложени€? ” теб€ еще есть место дл€ мен€?
+		if(SCGotCaptain == TRUE)
+		{
+			AI_Output(other,self,"DIA_Lee_LeaveMyShip_15_00");	//я все-таки не могу вз€ть теб€ с собой!
+			AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_03");	//ћне нужно поискать дл€ себ€ другое место. ѕосмотрим, куда еще мен€ занесет попутным ветром.
+			AI_StopProcessInfos(self);
+			Npc_ExchangeRoutine(self,"RausAusKloster");
+			JorgenMovedFromKloster = TRUE;
+		};
+	}
+	else if(SCGotCaptain == FALSE)
+	{
+		AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN_15_00");	//ћожет быть, € смогу предложить тебе работу капитана.
+		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_01");	//“ы не издеваешьс€ надо мной, парень? ≈сли ты скажешь, что это правда, € всегда готов.
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN2_07_05");	//ќтлично. “еперь € могу убратьс€ отсюда!
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"RausAusKloster");
+		JorgenMovedFromKloster = TRUE;
 	};
 };
 
@@ -524,32 +485,11 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 	{
 		AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_03");	//ћне нужно поискать дл€ себ€ другое место. ѕосмотрим, куда еще мен€ занесет попутным ветром.
 		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"RausAusKloster");
+		if(JorgenMovedFromKloster == FALSE)
+		{
+			Npc_ExchangeRoutine(self,"RausAusKloster");
+			JorgenMovedFromKloster = TRUE;
+		};
 	};
 };
 
-/*
-instance DIA_Jorgen_KAP6_EXIT(C_Info)
-{
-	npc = VLK_4250_Jorgen;
-	nr = 999;
-	condition = DIA_Jorgen_KAP6_EXIT_Condition;
-	information = DIA_Jorgen_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Jorgen_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Jorgen_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/

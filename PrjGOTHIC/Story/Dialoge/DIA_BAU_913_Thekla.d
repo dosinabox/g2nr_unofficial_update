@@ -440,7 +440,7 @@ func void DIA_Thekla_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Thekla_PERM_17_21");	//Нет трав, нет похлебки - понятно?
+		AI_Output(self,other,"DIA_Thekla_PERM_17_21");	//Нет трав - нет похлебки, понятно?
 	};
 };
 

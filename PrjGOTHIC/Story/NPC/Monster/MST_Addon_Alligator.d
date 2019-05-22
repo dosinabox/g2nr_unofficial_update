@@ -4,7 +4,7 @@ prototype Mst_Default_Addon_Alligator(C_Npc)
 	name[0] = "Аллигатор";
 	guild = GIL_ALLIGATOR;
 	aivar[AIV_MM_REAL_ID] = ID_ALLIGATOR;
-	level = 40;
+	level = 42;
 	attribute[ATR_STRENGTH] = 220;
 	attribute[ATR_DEXTERITY] = 220;
 	attribute[ATR_HITPOINTS_MAX] = 440;
