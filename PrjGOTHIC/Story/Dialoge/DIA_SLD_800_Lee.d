@@ -697,6 +697,7 @@ func void DIA_Lee_ToHagen_Info()
 	AI_Output(self,other,"DIA_Lee_ToHagen_04_04");	//Я написал ему письмо - держи.
 	B_GiveInvItems(self,other,ItWr_Passage_MIS,1);
 	AI_Output(self,other,"DIA_Lee_ToHagen_04_05");	//В любом случае, это должно тебе позволить получить аудиенцию у командующего паладинов.
+	Player_KnowsLordHagen = TRUE;
 	MIS_Lee_Friedensangebot = LOG_Running;
 	Log_CreateTopic(TOPIC_Frieden,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Frieden,LOG_Running);

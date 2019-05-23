@@ -907,7 +907,10 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_04");	//И, должен добавить, без помощи извне им всем скоро придет конец. Вот такие дела.
 	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_05");	//Я должен найти способ спасти эту экспедицию. Ты многое сделал для нас. Иннос благодарит тебя...
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_06");	//Мне не интересна его благодарность. Мне нужен его Глаз.
-	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_07");	//Да, конечно. Я держу свое слово. Возьми это письмо. Оно откроет перед тобой монастырские врата.
+	if((other.guild != GIL_PAL) && (other.guild != GIL_KDF))
+	{
+		AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_07");	//Да, конечно. Я держу свое слово. Возьми это письмо. Оно откроет перед тобой монастырские врата.
+	};
 	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_08");	//Поговори с Пирокаром, высшим магом Огня, и покажи ему это письмо с полномочиями. Он предоставит тебе доступ к Глазу Инноса.
 	CreateInvItems(self,ItWr_PermissionToWearInnosEye_MIS,1);
 	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
@@ -972,9 +975,16 @@ instance DIA_Lord_Hagen_RescueBennet(C_Info)
 
 func int DIA_Lord_Hagen_RescueBennet_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && (Cornelius_IsLiar == FALSE))
+	if(MIS_RescueBennet == LOG_Running)
 	{
-		return TRUE;
+		if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -983,7 +993,7 @@ func void DIA_Lord_Hagen_RescueBennet_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_RescueBennet_15_00");	//Мне нужно поговорить с тобой о Беннете.
 	if(Hagen_einmalBennet == FALSE)
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_04_01");	//Но этот наемник убил одного из моих людей.
+		AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_04_01");	//Но этот наемник убил одного из моих людей!
 		Hagen_einmalBennet = TRUE;
 	};
 	Info_ClearChoices(DIA_Lord_Hagen_RescueBennet);
@@ -1048,9 +1058,12 @@ instance DIA_Lord_Hagen_Cornelius(C_Info)
 
 func int DIA_Lord_Hagen_Cornelius_Condition()
 {
-	if(Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE) && (MIS_RescueBennet == LOG_Running))
+	if((MIS_RescueBennet == LOG_Running) && (RescueBennet_KnowsCornelius == TRUE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 

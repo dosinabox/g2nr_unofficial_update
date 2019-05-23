@@ -37,6 +37,7 @@ instance ItSe_GoldFisch(C_Item)
 	text[0] = PRINT_HiddenInFish;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 100;
 };
 
 
@@ -61,7 +62,7 @@ instance ItSe_Ringfisch(C_Item)
 	text[0] = PRINT_HiddenInFish;
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = 190;
+	inv_zbias = 190;
 };
 
 

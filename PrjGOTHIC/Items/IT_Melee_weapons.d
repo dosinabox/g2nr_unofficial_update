@@ -1731,7 +1731,7 @@ instance ItMw_Streitaxt2(C_Item)
 
 instance ItMw_Zweihaender3(C_Item)
 {
-	name = "Сила Рун";
+	name = "Сила рун";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;

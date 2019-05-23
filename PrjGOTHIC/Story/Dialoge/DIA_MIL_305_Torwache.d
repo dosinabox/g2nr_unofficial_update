@@ -154,7 +154,15 @@ instance DIA_Mil_305_Torwache_MESSAGE(C_Info)
 
 func int DIA_Mil_305_Torwache_MESSAGE_Condition()
 {
-	if((Player_KnowsLordHagen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Mil_305_schonmalreingelassen == TRUE)
+	{
+		return FALSE;
+	}
+	else if((MIS_Lee_Friedensangebot == LOG_Running) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK) && Npc_HasItems(other,ItWr_Passage_MIS))
+	{
+		return FALSE;
+	}
+	else if((Player_KnowsLordHagen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
