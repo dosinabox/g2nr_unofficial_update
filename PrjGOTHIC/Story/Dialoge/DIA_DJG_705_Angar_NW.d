@@ -74,8 +74,6 @@ func void DIA_Angar_NW_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_04_01");	//Чем дальше я уйду от Долины Рудников, тем лучше. Когда мы отчаливаем?
 	if(SCToldAngarHeKnowWhereEnemy == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew,"Ангар будет рад каждой миле, что разделяет его и Долину Рудников. Он предложил присоединиться ко мне и путешествовать вместе.");
 		SCToldAngarHeKnowWhereEnemy = TRUE;
 	};

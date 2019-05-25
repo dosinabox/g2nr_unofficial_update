@@ -367,24 +367,29 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				CreateInvItems(Fernando,ITWR_DementorObsessionBook_MIS,1);
 			};
 		};
-		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && !Npc_IsDead(Canthar))
+		if(!Npc_IsDead(Canthar))
 		{
-			if(SarahWeaponsRemoved == FALSE)
+			if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE))
 			{
-				B_GiveTradeInv_Sarah(Sarah);
-				B_RemoveSarahWeapons();
+				if(SarahWeaponsRemoved == FALSE)
+				{
+					B_GiveTradeInv_Sarah(Sarah);
+					B_RemoveSarahWeapons();
+				};
+				B_RemoveNpc(Sarah);
+				B_NpcSetReleased(Canthar);
+				Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
+				Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
+				Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
+				B_StartOtherRoutine(Canthar,"MARKTSTAND");
+				AI_Teleport(Canthar,"NW_CITY_SARAH");
+				Canthar_Sperre = TRUE;
 			};
-			B_RemoveNpc(Sarah);
-			B_NpcSetReleased(Canthar);
-			Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
-			B_StartOtherRoutine(Canthar,"MARKTSTAND");
-			AI_Teleport(Canthar,"NW_CITY_SARAH");
-			Canthar_Sperre = TRUE;
-//			Canthar_WiederRaus = TRUE;
+			if((Canthar.aivar[AIV_LastFightComment] == FALSE) && (Canthar.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))
+			{
+				Canthar_Sperre = TRUE;
+			};
 		};
-//		CreateInvItems(Lester,ItMw_1h_Bau_Axe,1);
 		if(!Npc_IsDead(Ehnim))
 		{
 			CreateInvItems(Ehnim,ItMi_Moleratlubric_MIS,1);

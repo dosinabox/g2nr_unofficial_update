@@ -306,8 +306,6 @@ func void DIA_Jorgen_BEMYCAPTAIN_Info()
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_01");	//“ы не издеваешьс€ надо мной, парень? ≈сли ты скажешь, что это правда, € всегда готов.
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_02");	//Ёээ... есть только одна маленька€ проблема. я съел половину кладовки послушников.
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_03");	//ќни чуть не сошли с ума от злости, когда узнали. я не думаю, что главный маг позволит мне вот так просто уйти.
-		Log_CreateTopic(Topic_Captain,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Captain,LOG_Running);
 		B_LogEntry(Topic_Captain,"…орген готов стать моим капитаном, но € сначала должен оплатить его долг перед монастырем.");
 		DIA_Jorgen_BEMYCAPTAIN_OneTime = TRUE;
 	};

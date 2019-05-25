@@ -1354,7 +1354,7 @@ instance DIA_Lord_Hagen_NeedShip(C_Info)
 
 func int DIA_Lord_Hagen_NeedShip_Condition()
 {
-	if((MIS_SCKnowsWayToIrdorath == TRUE) && (MIS_ShipIsFree == FALSE))
+	if(MIS_SCKnowsWayToIrdorath == TRUE)
 	{
 		return TRUE;
 	};
@@ -1372,6 +1372,10 @@ func void DIA_Lord_Hagen_NeedShip_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_02");	//(смеетс€) я слышу это чуть ли не каждый день, дорогой. Ќо...
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_03");	//” теб€ даже нет капитана, не говор€ уже о команде.
+	if(MIS_ReadyforChapter6 == TRUE)
+	{
+		AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//“ы ошибаешьс€.
+	};
 	AI_Output(other,self,"DIA_Lord_Hagen_NeedShip_15_04");	// ак насчет корабл€, сто€щего в гавани?
 	AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_05");	//ќн принадлежит мне, и точка. ћы должны перевозить руду на этом корабле.
 	AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_06");	// огда мы покончим с этим, ты можешь обратитьс€ ко мне оп€ть.
@@ -1407,6 +1411,7 @@ func void DIA_Lord_Hagen_GateOpen_Info()
 	B_StartOtherRoutine(PAL_213_Schiffswache,"ShipFree");
 	B_StartOtherRoutine(Girion,"WaitForShip");
 	MIS_ShipIsFree = TRUE;
+	B_CheckLog();
 };
 
 

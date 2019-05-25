@@ -283,7 +283,7 @@ instance DIA_Addon_Scatty_teach(C_Info)
 	information = DIA_Addon_Scatty_teach_Info;
 	permanent = TRUE;
 //	description = "Расскажи мне еще что-нибудь о том, как копать золото. (1 LP/10 процентов)";
-	description = "(улучшить навык добычи: +10 процентов, 1 очко обучения)";
+	description = "(улучшить навык добычи: + 10, 1 очко обучения)";
 };
 
 

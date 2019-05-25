@@ -63,7 +63,10 @@ func void B_Andre_Steckbrief()
 	AI_Output(self,other,"DIA_Andre_Add_08_04");	//Ќадеюсь, ради твоего же блага, что ты говоришь мне правду.
 	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
 	{
-		AI_Output(self,other,"DIA_Andre_Add_08_05");	//ћне не нужны в ополчении люди с зап€тнанной репутацией.
+		if(Andre_CantharFalle == FALSE)
+		{
+			AI_Output(self,other,"DIA_Andre_Add_08_05");	//ћне не нужны в ополчении люди с зап€тнанной репутацией.
+		};
 	};
 	AI_Output(self,other,"DIA_Andre_Add_08_06");	//Ѕольшинство из этих бандитов - бывшие каторжники из колонии.
 	AI_Output(self,other,"DIA_Andre_Add_08_07");	//я надеюсь, что ты никак не св€зан с этими головорезами!
@@ -128,7 +131,7 @@ func int DIA_Andre_CantharFalle_Condition()
 		{
 			return TRUE;
 		}
-		else if(Npc_KnowsInfo(other,DIA_Canthar_TooLate))
+		else if(Canthars_KomproBrief_Failed == TRUE)
 		{
 			return TRUE;
 		};
@@ -148,18 +151,18 @@ func void DIA_Andre_CantharFalle_Info()
 	{
 		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
 		{
-			B_Andre_Steckbrief();
+			B_Andre_CantharFalle();
 		}
-		else if(Npc_KnowsInfo(other,DIA_Canthar_TooLate))
+		else if(Canthars_KomproBrief_Failed == TRUE)
 		{
-			B_Andre_Steckbrief();
+			B_Andre_CantharFalle();
 		};
 	};
 	if((Andre_Steckbrief == FALSE) && !Npc_IsDead(Pablo))
 	{
 		if(Pablo_AndreMelden == TRUE)
 		{
-			B_Andre_CantharFalle();
+			B_Andre_Steckbrief();
 		};
 	};
 };

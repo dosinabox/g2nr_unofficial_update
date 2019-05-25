@@ -83,6 +83,7 @@ func void DIA_Randolph_HALLO_Info()
 	{
 		AI_Output(self,other,"DIA_Randolph_HALLO_06_01");	//Теперь, когда Кати и Акил отправились в царство Инноса, я буду управлять этой фермой.
 		TOPIC_END_AkilsSLDStillthere = TRUE;
+		B_CheckLog();
 	}
 	else
 	{

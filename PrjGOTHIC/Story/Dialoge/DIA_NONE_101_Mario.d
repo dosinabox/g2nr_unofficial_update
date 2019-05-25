@@ -72,8 +72,6 @@ func void DIA_None_101_Mario_YouNeedMe_Info()
 	AI_Output(self,other,"DIA_None_101_Mario_YouNeedMe_07_00");	//Я слышал, что ты набираешь команду на свой корабль?
 	AI_Output(other,self,"DIA_None_101_Mario_YouNeedMe_15_01");	//И?
 	AI_Output(self,other,"DIA_None_101_Mario_YouNeedMe_07_02");	//Я готов!
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
 	B_LogEntry(Topic_Crew,"Бывший моряк Марио заговорил со мной в портовой таверне. Он хочет плыть на корабле.");
 };
 

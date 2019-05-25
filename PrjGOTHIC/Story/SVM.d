@@ -2712,7 +2712,7 @@ instance SVM_15(C_SVM)
 	Aargh_3 = "SVM_15_Aargh_3";	//Аааааа!
 	Dead = "SVM_15_Dead";	//Аааааа!
 	Awake = "SVM_15_Awake";	//(просыпается)
-	irdoraththereyouare = "SVM_15_IRDORATHTHEREYOUARE";	//Ммм. Так вот ты где скрываешься. Чертовски далеко. Ммм. Чтобы добраться туда, мне понадобится корабль.
+	irdoraththereyouare = "SVM_15_IRDORATHTHEREYOUARE";	//Ммм. Так вот ты где скрываешься. Чертовски далеко. Чтобы добраться туда, мне понадобится корабль.
 	healshrine = "SVM_15_HEALSHRINE";	//Иннос, даруй мне свою помощь и очисти этот алтарь.
 //	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и все такое... Вот так. Надеюсь, это было в последний раз.
 	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и очисти этот алтарь. Вот так. Надеюсь, это был последний.

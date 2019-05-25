@@ -333,7 +333,26 @@ func void DIA_Onar_HowMuch_Info()
 		SOLD -= 10;
 	};
 	AI_Output(self,other,"DIA_Onar_HowMuch_14_06");	//Дай мне подумать...
-	B_Say_Gold(self,other,SOLD);
+	if(SOLD == 60)
+	{
+		B_Say(self,other,"$GOLD_400");
+	}
+	else if(SOLD == 50)
+	{
+		B_Say(self,other,"$GOLD_350");
+	}
+	else if(SOLD == 40)
+	{
+		B_Say(self,other,"$GOLD_300");
+	}
+	else if(SOLD == 30)
+	{
+		B_Say(self,other,"$GOLD_200");
+	}
+	else if(SOLD == 20)
+	{
+		B_Say(self,other,"$GOLD_150");
+	};
 	Onar_SOLD_Day = Wld_GetDay();
 	Onar_SOLD_XP = other.exp;
 	AI_Output(self,other,"DIA_Onar_HowMuch_14_07");	//Что скажешь?

@@ -37,4 +37,3 @@ func void newworld_fishfood_trigger()
 	ExitSession();
 };
 
-

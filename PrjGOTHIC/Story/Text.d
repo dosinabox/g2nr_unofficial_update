@@ -304,6 +304,7 @@ const string TXT_SPELLS[100] =
 	"TXT_SPL_RESERVED_98",
 	"TXT_SPL_RESERVED_99"
 };
+
 const string NAME_SPL_PalLight = "Святой свет";
 const string NAME_SPL_PalLightHeal = "Малое исцеление";
 const string NAME_SPL_PalHolyBolt = "Святая стрела";
@@ -438,12 +439,12 @@ const string TXT_TALENTS_SKILLS[22] =
 	"Новичок|Боец|Мастер",
 	"Новичок|Стрелок|Мастер",
 	"Новичок|Стрелок|Мастер",
-	"Не обучен|Обучен|-",
-	"0|1|2",
+	"Не обучен|Обучен",
+	"",
 	"Не обучен|Первый|Второй|Третий|Четвертый|Пятый|Шестой",
 	"Не обучен|Обучен",
-	"-|-",
-	"-|-",
+	"",
+	"",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
@@ -453,8 +454,8 @@ const string TXT_TALENTS_SKILLS[22] =
 	"Не обучен|Язык крестьян|Язык воинов|Язык жрецов",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
-	"Не обучен|Обучен",
-	"Не обучен|Обучен"
+	"",
+	""
 };
 
 const string TXT_INV_CAT[9] =
@@ -469,6 +470,7 @@ const string TXT_INV_CAT[9] =
 	"Документы",
 	"Разное"
 };
+
 const string NAME_Paladin = "Паладин";
 const string NAME_Miliz = "Ополченец";
 const string NAME_Torwache = "Стражник у прохода";
@@ -944,4 +946,8 @@ const string PRINT_LousHammerNoEffect = "Больше не дает никакого эффекта, кроме 
 const string PRINT_SlowTime = "Замедление времени.";
 const string PRINT_Speed = "Временно повышает скорость.";
 const string PRINT_NothingToPick = "Здесь больше нечего делать.";
+
+const string PRINT_BookstandRunes1 = "Чтобы создать руну, всегда необходим КАЖДЫЙ из вышеперечисленных ингредиентов.";
+const string PRINT_BookstandRunes2 = "Маг должен знать формулу заклинания и должен иметь чистый рунный камень и свиток желаемого заклинания.";
+const string PRINT_BookstandRunes3 = "Только при выполнении этих условий он может приступить к работе за рунным столом.";
 

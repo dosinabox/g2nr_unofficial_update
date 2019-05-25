@@ -125,10 +125,8 @@ func int DIA_Kati_ESSEN_Condition()
 
 func void DIA_Kati_ESSEN_Info()
 {
-//	var string concatText;
 	AI_Output(other,self,"DIA_Kati_ESSEN_15_00");	//Акил говорит, что ты можешь накормить меня.
 	AI_Output(self,other,"DIA_Kati_ESSEN_16_01");	//С тех пор, как рухнул Барьер, для нас настали тяжелые времена. Жить здесь стало небезопасно.
-//	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба, немного мяса и бутылку воды. Извини, но это все, чем мы можем поделиться.
 	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба и немного молока и бутылку воды. Извини, но это все, чем мы можем поделиться.
 	Npc_RemoveInvItem(self,ItFo_Bread);
 	CreateInvItem(other,ItFo_Bread);
@@ -136,9 +134,6 @@ func void DIA_Kati_ESSEN_Info()
 	CreateInvItem(other,ItFo_Milk);
 	Npc_RemoveInvItem(self,ItFo_Water);
 	CreateInvItem(other,ItFo_Water);
-//	Npc_RemoveInvItem(self,ItFoMutton);
-//	CreateInvItem(other,ItFoMutton);
-//	concatText = ConcatStrings(IntToString(3),PRINT_ItemsErhalten);
 	AI_PrintScreen("Хлеб получено",-1,40,FONT_ScreenSmall,2);
 	AI_PrintScreen("Молоко получено",-1,43,FONT_ScreenSmall,2);
 	AI_PrintScreen("Вода получено",-1,46,FONT_ScreenSmall,2);

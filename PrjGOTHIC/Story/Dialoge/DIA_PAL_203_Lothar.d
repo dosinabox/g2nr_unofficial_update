@@ -816,8 +816,7 @@ func void DIA_Lothar_OWRunningBrief_Info()
 	AI_Output(self,other,"DIA_Lothar_Add_01_60");	//“ак драконы действительно существуют?
 	if(C_BodyStateContains(self,BS_SIT))
 	{
-		//AI_UseMob(self,"THRONE",-1);
-		AI_StandUp(self);
+		AI_UseMob(self,"THRONE",-1);
 		B_TurnToNpc(self,other);
 	};
 	B_UseFakeScroll();

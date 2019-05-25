@@ -115,3 +115,51 @@ func void B_BaltramRangerCheck(var C_Npc oth)
 	};
 };
 
+func int C_MikaPeasantCheck(var C_Npc oth)
+{
+	var C_Item armor;
+	armor = Npc_GetEquippedArmor(oth);
+	if(Npc_HasEquippedArmor(oth))
+	{
+		if(Hlp_IsItem(armor,ITAR_Bau_L))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_Bau_M))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_Vlk_L))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_Vlk_M))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_Vlk_H))
+		{
+			return TRUE;
+		};
+	}
+	else
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func int C_MikaMILMCheck(var C_Npc oth)
+{
+	var C_Item armor;
+	armor = Npc_GetEquippedArmor(oth);
+	if(Npc_HasEquippedArmor(oth))
+	{
+		if(Hlp_IsItem(armor,ITAR_MIL_M))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+

@@ -371,7 +371,7 @@ func int DIA_Addon_Garett_PERM_Condition()
 func void DIA_Addon_Garett_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Garett_PERM_15_00");	//Есть новости?
-	if((GregIsBack == FALSE) || Npc_IsDead(Greg))
+	if(GregIsBack == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Garett_PERM_09_02");	//С тех пор, как Грег уехал, ничего интересного не случалось.
 	}

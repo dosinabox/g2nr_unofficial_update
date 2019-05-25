@@ -1413,8 +1413,6 @@ func void DIA_Bennet_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_06_03");	//Это лучше, чем работать на ферме Онара. Парень, даже ад ЛУЧШЕ, чем здесь. Ты можешь рассчитывать на меня.
 	if(SCToldBennetHeKnowWhereEnemy == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew,"Беннет готов отправляться немедленно. Кузнец он непревзойденный. Я уверен, что смогу многому научиться у него.");
 		SCToldBennetHeKnowWhereEnemy = TRUE;
 	};
@@ -1435,7 +1433,6 @@ func void DIA_Bennet_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_Bennet_KnowWhereEnemy_Yes_15_00");	//Будь моим кузнецом. Увидимся в гавани.
 	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_Yes_06_01");	//Хорошо. Увидимся позже.
-	self.flags = NPC_FLAG_IMMORTAL;
 	Bennet_IsOnBoard = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Crewmember_Success);
 	Crewmember_Count += 1;
@@ -1511,7 +1508,6 @@ func void DIA_Bennet_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_StillNeedYou_15_00");	//Возвращайся, я не могу найти другого кузнеца.
 	AI_Output(self,other,"DIA_Bennet_StillNeedYou_06_01");	//(сердито) Хорошо! Всякий может издеваться над простым кузнецом! Увидимся в гавани.
-	self.flags = NPC_FLAG_IMMORTAL;
 	Bennet_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count += 1;
 	AI_StopProcessInfos(self);

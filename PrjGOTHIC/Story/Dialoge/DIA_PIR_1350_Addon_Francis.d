@@ -12,10 +12,6 @@ instance DIA_Addon_Francis_EXIT(C_Info)
 
 func int DIA_Addon_Francis_EXIT_Condition()
 {
-/*	if(GregIsBack == FALSE)
-	{
-		return TRUE;
-	};*/
 	return TRUE;
 };
 
@@ -342,6 +338,13 @@ func void DIA_Francis_Ausgeschissen_Info()
 		AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_00");	//(гневно) Ѕлагодар€ тебе √рег заставил мен€ пилить дрова до тех пор, пока на острове не останетс€ ни одного дерева.
 	};
 	AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_01");	//ќставь мен€ в покое!
-	AI_StopProcessInfos(self);
+	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
+	{
+		AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_00");	//Ќе так быстро, мой друг.
+	}
+	else
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 
