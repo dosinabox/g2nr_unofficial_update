@@ -92,6 +92,14 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
 	};*/
+	if(AddonDisabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить возможность прохождения без аддона",StoryHelper_Addon);
+	};
 	if(GuildlessMode == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без гильдии",StoryHelper_Guildless);
@@ -347,6 +355,21 @@ func void StoryHelper_Guildless()
 	{
 		GuildlessMode = TRUE;
 		PrintScreen("Прохождение без гильдии включено",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Addon()
+{
+	if(AddonDisabled == TRUE)
+	{
+		AddonDisabled = FALSE;
+		PrintScreen("Прохождение без аддона отключено",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		AddonDisabled = TRUE;
+		PrintScreen("Прохождение без аддона включено",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

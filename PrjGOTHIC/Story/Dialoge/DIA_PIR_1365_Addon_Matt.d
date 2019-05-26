@@ -111,7 +111,7 @@ func void DIA_Addon_Matt_PERM_Info()
 			AI_Output(self,other,"DIA_Addon_Matt_Alright_10_01");	//Все в порядке, капитан!
 		};
 	}
-	else if((GregIsBack == TRUE) && !Npc_IsDead(Greg))
+	else if(GregIsBack == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_01");	//Шутишь? У нас больше нет корабля.
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_02");	//Остается только ждать, пока Грег решит, что делать дальше.
@@ -120,7 +120,10 @@ func void DIA_Addon_Matt_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_03");	//Сейчас в лагере все спокойно. Так что я собираюсь немного отдохнуть.
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_04");	//На твоем месте, кстати, я бы сделал то же самое.
-		AI_Output(self,other,"DIA_Addon_Matt_Job_10_05");	//Бандиты здесь, так что ситуация может измениться быстрее, чем мы предполагали.
+		if(!C_TowerBanditsDead())
+		{
+			AI_Output(self,other,"DIA_Addon_Matt_Job_10_05");	//Бандиты здесь, так что ситуация может измениться быстрее, чем мы предполагали.
+		};
 	};
 };
 

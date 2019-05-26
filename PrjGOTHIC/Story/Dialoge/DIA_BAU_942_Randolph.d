@@ -34,9 +34,12 @@ instance DIA_Randolph_SchwereLuft(C_Info)
 
 func int DIA_Randolph_SchwereLuft_Condition()
 {
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && (Kapitel < 4))
+	if(Kapitel < 4)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		{
+			return TRUE;
+		};
 	};
 };
 

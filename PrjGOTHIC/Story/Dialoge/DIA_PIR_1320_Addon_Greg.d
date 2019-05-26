@@ -441,8 +441,8 @@ func void DIA_Addon_Greg_Sauber2_Info()
 	}
 	else
 	{
-		CreateInvItems(self,ItMi_Gold,100);
-		B_GiveInvItems(self,other,ItMi_Gold,100);
+		CreateInvItems(self,ItMi_Gold,50);
+		B_GiveInvItems(self,other,ItMi_Gold,50);
 	};
 	B_LogEntry(TOPIC_Addon_MorganBeach,"Я доложил Грегу, что пляж на севере очищен от монстров.");
 	MIS_Addon_MorganLurker = LOG_SUCCESS;
@@ -480,8 +480,8 @@ func void DIA_Addon_Greg_BanditPlatt2_Info()
 	}
 	else
 	{
-		CreateInvItems(self,ItMi_Gold,100);
-		B_GiveInvItems(self,other,ItMi_Gold,100);
+		CreateInvItems(self,ItMi_Gold,50);
+		B_GiveInvItems(self,other,ItMi_Gold,50);
 		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни мертвы.");
 	};
 	MIS_Henry_FreeBDTTower = LOG_SUCCESS;
@@ -534,7 +534,8 @@ instance DIA_Addon_Greg_WhoAreYou(C_Info)
 
 func int DIA_Addon_Greg_WhoAreYou_Condition()
 {
-	if((PlayerTalkedToGregNW == FALSE) && (SC_MeetsGregTime == FALSE))
+//	if((PlayerTalkedToGregNW == FALSE) && (SC_MeetsGregTime == FALSE))
+	if(PlayerTalkedToGregNW == FALSE)
 	{
 		return TRUE;
 	};
@@ -704,5 +705,38 @@ func void DIA_Addon_Greg_ItemsInADW_Info()
 {
 	B_GiveGregItems();
 	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 2);
+};
+
+instance DIA_Addon_Greg_BeMyCap(C_Info)
+{
+	npc = PIR_1320_Addon_Greg;
+	nr = 850;
+	condition = DIA_Addon_Greg_BeMyCap_Condition;
+	information = DIA_Addon_Greg_BeMyCap_Info;
+	description = "Может быть, я смогу предложить тебе работу капитана.";
+};
+
+
+func int DIA_Addon_Greg_BeMyCap_Condition()
+{
+	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE))
+	{
+		if((PlayerTalkedToGregNW == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Greg_WhoAreYou))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Addon_Greg_BeMyCap_Info()
+{
+	AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN_15_00");	//Может быть, я смогу предложить тебе работу капитана.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
+	AI_Output(other,self,"DIA_Pyrokar_SCKNOWSWAYTOIRDORATH_15_00");	//Я знаю, где нужно искать Чертоги Ирдората.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_da_01_01");	//Э-э, тебе даже не стоит пытаться туда попасть.
+	AI_Output(other,self,"DIA_Brian_LIGHTHOUSEFREE_15_00");	//И, что скажешь?
+	AI_Output(self,other,"DIA_Addon_Greg_NW_was_SLD_01_02");	//Неплохо для сухопутной крысы.
+	B_LogEntry(Topic_Captain,"Грега не заинтересовало мое предложение.");
+	AI_StopProcessInfos(self);
 };
 

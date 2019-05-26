@@ -1372,7 +1372,7 @@ func void DIA_Lord_Hagen_NeedShip_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_02");	//(смеется) Я слышу это чуть ли не каждый день, дорогой. Но...
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_03");	//У тебя даже нет капитана, не говоря уже о команде.
-	if(MIS_ReadyforChapter6 == TRUE)
+	if((SCGotCaptain == TRUE) && (Crewmember_Count >= Min_Crew))
 	{
 		AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//Ты ошибаешься.
 	};

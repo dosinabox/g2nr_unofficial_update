@@ -1081,6 +1081,10 @@ func void DIA_Torlof_BEMYCAPTAIN_Info()
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_01");	//“ы что, только узнал об этом? ƒа, черт побери, € мор€к. ј почему ты спрашиваешь?
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN_15_02");	//я мог бы найти применение твоим талантам. ћне нужно добратьс€ до острова.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_03");	//(смеетс€) ƒо острова? ƒа у теб€ даже нет корабл€, не говор€ уже о команде.
+	if((MIS_ShipIsFree == TRUE) && (Crewmember_Count >= Min_Crew))
+	{
+		AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//“ы ошибаешьс€.
+	};
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_04");	//Ќет, мой мальчик. ≈сли ты хочешь воспользоватьс€ моими услугами в качестве капитана и учител€ силы, ты должен сначала доказать мне, что ты понимаешь, о чем говоришь.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_05");	// роме того, у мен€ хватает и других проблем. ѕаладины не ушли из города, как € ожидал.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_06");	//ƒолжно произойти что-то очень серьезное, чтобы они убрались оттуда.

@@ -47,9 +47,12 @@ instance DIA_Akil_Hallo(C_Info)
 func int DIA_Akil_Hallo_Condition()
 {
 //	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk))
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && (Kapitel < 4))
+	if(Kapitel < 4)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		{
+			return TRUE;
+		};
 	};
 };
 

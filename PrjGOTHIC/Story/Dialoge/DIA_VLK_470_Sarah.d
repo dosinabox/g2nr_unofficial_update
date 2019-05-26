@@ -140,14 +140,17 @@ func void DIA_Sarah_Bauern_Info()
 	AI_Output(self,other,"DIA_Sarah_Add_16_02");	//Они добрались даже до маленьких ферм у города, и запугивают их владельцев.
 	if(Kapitel < 4)
 	{
-		AI_Output(self,other,"DIA_Sarah_Add_16_03");	//Я видела их, когда ходила на ферму Акила. Не хотела бы я сейчас оказаться на его месте.
-		SarahToldAboutAkilsProblem = TRUE;
-		if(Akils_SLDStillthere == FALSE)
+		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
 		{
-			Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
-			B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
-			Akils_SLDStillthere = TRUE;
+			AI_Output(self,other,"DIA_Sarah_Add_16_03");	//Я видела их, когда ходила на ферму Акила. Не хотела бы я сейчас оказаться на его месте.
+			SarahToldAboutAkilsProblem = TRUE;
+			if(Akils_SLDStillthere == FALSE)
+			{
+				Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+				B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+				Akils_SLDStillthere = TRUE;
+			};
 		};
 	};
 };

@@ -2106,9 +2106,12 @@ instance DIA_Addon_Vatras_AbloesePre(C_Info)
 
 func int DIA_Addon_Vatras_AbloesePre_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE) && (RavenIsDead == FALSE))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
 	{
-		return TRUE;
+		if((RavenIsDead == FALSE) && (AddonDisabled == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2172,9 +2175,12 @@ instance DIA_Vatras_INNOSEYEKAPUTT(C_Info)
 
 func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == TRUE))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3))
 	{
-		return TRUE;
+		if((VatrasCanLeaveTown_Kap3 == TRUE) || (AddonDisabled == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 

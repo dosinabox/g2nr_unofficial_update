@@ -34,9 +34,12 @@ instance DIA_Kati_SLDNOCHDA(C_Info)
 
 func int DIA_Kati_SLDNOCHDA_Condition()
 {
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		{
+			return TRUE;
+		};
 	};
 };
 

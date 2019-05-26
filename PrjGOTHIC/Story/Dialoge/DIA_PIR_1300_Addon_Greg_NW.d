@@ -61,7 +61,7 @@ func void DIA_Addon_Greg_NW_Hallo_Info()
 		GregWolfs = TRUE;
 	};
 	PlayerTalkedToGregNW = TRUE;
-	SC_MeetsGregTime = 1;
+//	SC_MeetsGregTime = 1;
 	Info_ClearChoices(DIA_Addon_Greg_NW_Hallo);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Мне надо идти.",DIA_Addon_Greg_NW_Hallo_weg);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Довольно болтать. Говори, чего ты хочешь.",DIA_Addon_Greg_NW_Hallo_schleim);
