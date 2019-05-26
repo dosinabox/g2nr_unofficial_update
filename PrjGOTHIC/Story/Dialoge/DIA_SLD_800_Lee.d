@@ -349,7 +349,10 @@ func int DIA_Lee_PaladineHOW_Condition()
 {
 	if((other.guild == GIL_NONE) && Npc_KnowsInfo(other,DIA_Lee_Paladine))
 	{
-		return TRUE;
+		if(GuildlessMode == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -675,6 +678,10 @@ func int DIA_Lee_ToHagen_Condition()
 	{
 		return TRUE;
 	};
+	if((GuildlessMode == TRUE) && Npc_KnowsInfo(other,DIA_Lee_Paladine))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Lee_ToHagen_Info()
@@ -690,6 +697,7 @@ func void DIA_Lee_ToHagen_Info()
 	AI_Output(self,other,"DIA_Lee_ToHagen_04_04");	//Я написал ему письмо - держи.
 	B_GiveInvItems(self,other,ItWr_Passage_MIS,1);
 	AI_Output(self,other,"DIA_Lee_ToHagen_04_05");	//В любом случае, это должно тебе позволить получить аудиенцию у командующего паладинов.
+	Player_KnowsLordHagen = TRUE;
 	MIS_Lee_Friedensangebot = LOG_Running;
 	Log_CreateTopic(TOPIC_Frieden,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Frieden,LOG_Running);
@@ -1577,7 +1585,7 @@ instance DIA_Lee_GetShip(C_Info)
 
 func int DIA_Lee_GetShip_Condition()
 {
-	if(MIS_SCKnowsWayToIrdorath == TRUE)
+	if((MIS_SCKnowsWayToIrdorath == TRUE) && (MIS_ShipIsFree == FALSE))
 	{
 		return TRUE;
 	};
@@ -1586,11 +1594,9 @@ func int DIA_Lee_GetShip_Condition()
 func void DIA_Lee_GetShip_Info()
 {
 	AI_Output(other,self,"DIA_Lee_GetShip_15_00");	//Ты не знаешь, как мне захватить корабль паладинов?
-	AI_Output(self,other,"DIA_Lee_GetShip_04_01");	//Ты думаешь, я все еще сидел бы здесь, если б знал? Этот корабль охраняют сильнее, чем транспорты с рудой в старой колонии.
+	AI_Output(self,other,"DIA_Lee_GetShip_04_01");	//Ты думаешь, я все еще сидел бы здесь, если бы знал? Этот корабль охраняют сильнее, чем транспорты с рудой в старой колонии.
 	AI_Output(other,self,"DIA_Lee_GetShip_15_02");	//Должен же быть способ попасть на корабль.
 	AI_Output(self,other,"DIA_Lee_GetShip_04_03");	//Конечно. Попасть на борт просто.
-	Log_CreateTopic(Topic_Ship,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Ship,LOG_Running);
 	if((MIS_Lee_JudgeRichter == LOG_SUCCESS) && !Npc_IsDead(Richter))
 	{
 		AI_Output(self,other,"DIA_Lee_GetShip_04_04");	//Ты же знаешь, у нас судья под каблуком. Ты должен пойти к нему и вытянуть из него официальное письмо, которое позволит нам попасть на корабль.
@@ -1604,10 +1610,6 @@ func void DIA_Lee_GetShip_Info()
 	};
 	AI_Output(self,other,"DIA_Lee_GetShip_04_06");	//Но это не все. Чтобы управлять кораблем, тебе понадобится капитан, команда и много чего еще.
 	AI_Output(self,other,"DIA_Lee_GetShip_04_07");	//Нужно проделать очень большую работу.
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
-	Log_CreateTopic(Topic_Captain,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Captain,LOG_Running);
 	Info_ClearChoices(DIA_Lee_GetShip);
 	Info_AddChoice(DIA_Lee_GetShip,Dialog_Back,DIA_Lee_GetShip_back);
 	Info_AddChoice(DIA_Lee_GetShip,"А кого мне взять в команду?",DIA_Lee_GetShip_crew);
@@ -1630,7 +1632,14 @@ func void DIA_Lee_GetShip_crew()
 	AI_Output(other,self,"DIA_Lee_GetShip_crew_15_00");	//А кого мне взять в команду?
 	AI_Output(self,other,"DIA_Lee_GetShip_crew_04_01");	//Это ты должен решить сам. Но я бы взял только людей, которым доверяю. Ты много знаешь людей, которым можно доверять?
 	AI_Output(self,other,"DIA_Lee_GetShip_crew_04_02");	//Если тебе нужен кузнец в команде, попробуй уговорить Беннета. Лучше его ты вряд ли найдешь.
-	B_LogEntry(Topic_Crew,"Что касается моей команды, здесь Ли мало чем может помочь мне. Но все же он дал совет - набирать только людей, которым я могу доверять. Я, пожалуй, спрошу Беннета, может быть, ему это будет интересно.");
+	if(SCToldBennetHeKnowWhereEnemy == FALSE)
+	{
+		B_LogEntry(Topic_Crew,"Что касается моей команды, здесь Ли мало чем может помочь мне. Но все же он дал совет - набирать только людей, которым я могу доверять. Я, пожалуй, спрошу Беннета, может быть, ему это будет интересно.");
+	}
+	else
+	{
+		B_LogEntry(Topic_Crew,"Что касается моей команды, здесь Ли мало чем может помочь мне. Но все же он дал совет - набирать только людей, которым я могу доверять.");
+	};	
 };
 
 func void DIA_Lee_GetShip_back()
@@ -1661,7 +1670,7 @@ func void DIA_Lee_GotRichtersPermissionForShip_Info()
 {
 	AI_Output(other,self,"DIA_Lee_GotRichtersPermissionForShip_15_00");	//Письмо сработало. Корабль теперь мой. Судья оказался очень кстати.
 	AI_Output(self,other,"DIA_Lee_GotRichtersPermissionForShip_04_01");	//Хорошо. Значит, все твои унижения перед этим ублюдком были не напрасными.
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 };
 
 
@@ -1723,9 +1732,7 @@ func void DIA_Lee_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Lee_KnowWhereEnemy_04_02");	//Кроме того, я могу обучить тебя искусству владения одноручным и двуручным оружием. Это может оказаться очень полезным.
 	if(SCToldLeeHeKnowWhereEnemy == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
-		B_LogEntry(Topic_Crew,"Ли не терпится увидеть материк вновь. Он предложил мне свою поддержку. Мне будет сложно найти такого учителя боевых искусств где либо еще.");
+		B_LogEntry(Topic_Crew,"Ли не терпится увидеть материк вновь. Он предложил мне свою поддержку. Мне будет сложно найти такого учителя боевых искусств где-либо еще.");
 		SCToldLeeHeKnowWhereEnemy = TRUE;
 	};
 	if(Crewmember_Count >= Max_Crew)

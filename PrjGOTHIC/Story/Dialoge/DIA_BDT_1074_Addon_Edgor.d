@@ -19,10 +19,13 @@ func int DIA_Addon_Edgor_EXIT_Condition()
 
 func void DIA_Addon_Edgor_EXIT_Info()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2) && (Edgor_Exiteinmal == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Hi))
 	{
-		AI_Output(self,other,"DIA_Addon_Edgor_EXIT_06_00");	//Ѕыл рад познакомитьс€...
-		Edgor_Exiteinmal = TRUE;
+		if(Edgor_Exiteinmal == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Edgor_EXIT_06_00");	//Ѕыл рад познакомитьс€...
+			Edgor_Exiteinmal = TRUE;
+		};
 	};
 	AI_StopProcessInfos(self);
 };
@@ -160,14 +163,22 @@ instance DIA_Addon_Edgor_Weg(C_Info)
 	nr = 4;
 	condition = DIA_Addon_Edgor_Weg_Condition;
 	information = DIA_Addon_Edgor_Weg_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "ј где находитс€ это старое здание?";
 };
 
 
 func int DIA_Addon_Edgor_Weg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2))
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_Found))
+	{
+		return FALSE;
+	};
+	if((SC_KnowsEdgorStoneLocation == TRUE) && Npc_HasItems(other,ItMi_Addon_Stone_04))
+	{
+		return FALSE;
+	};
+	if(Npc_KnowsInfo(other,DIA_Addon_Edgor_MIS2) && (MIS_HlpEdgor == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -180,6 +191,7 @@ func void DIA_Addon_Edgor_Weg_Info()
 	AI_Output(self,other,"DIA_Addon_Edgor_Weg_06_02");	//≈го надо обойти слева... или справа, € уже не помню - это было слишком давно.
 	AI_Output(self,other,"DIA_Addon_Edgor_Weg_06_03");	//Ќо развалины должны быть на небольшом возвышении. » они совсем заросли растени€ми.
 	AI_Output(self,other,"DIA_Addon_Edgor_Weg_06_04");	//ћожет быть, тебе повезет и ты не найдешь их...
+	SC_KnowsEdgorStoneLocation = TRUE;
 };
 
 
@@ -196,7 +208,7 @@ instance DIA_Addon_Edgor_Found(C_Info)
 
 func int DIA_Addon_Edgor_Found_Condition()
 {
-	if(Npc_HasItems(other,ItMi_Addon_Stone_04) && !Npc_IsDead(Franco) && (MIS_HlpEdgor == LOG_Running))
+	if((SC_KnowsEdgorStoneLocation == TRUE) && Npc_HasItems(other,ItMi_Addon_Stone_04))
 	{
 		return TRUE;
 	};
@@ -206,7 +218,15 @@ func void DIA_Addon_Edgor_Found_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Edgor_Found_15_00");	//(радостно) я нашел каменную табличку!
 	AI_Output(self,other,"DIA_Addon_Edgor_Found_06_01");	//(скучно) ѕравда? “ы смелый парень.
-	AI_Output(self,other,"DIA_Addon_Edgor_Found_06_02");	//(скучно) “огда ты наверн€ка заработал себе пропуск в лагерь. (зевает)
+	if(!Npc_IsDead(Franco))
+	{
+		AI_Output(self,other,"DIA_Addon_Edgor_Found_06_02");	//(скучно) “огда ты наверн€ка заработал себе пропуск в лагерь. (зевает)
+	}
+	else
+	{
+		MIS_HlpEdgor = LOG_SUCCESS;
+		B_GivePlayerXP(XP_Addon_HlpEdgor / 2);
+	};
 };
 
 

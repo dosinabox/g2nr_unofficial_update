@@ -29,7 +29,7 @@ instance ItSe_GoldFisch(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItSe_GoldFisch.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_GoldFisch;
@@ -37,6 +37,7 @@ instance ItSe_GoldFisch(C_Item)
 	text[0] = PRINT_HiddenInFish;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 100;
 };
 
 
@@ -61,7 +62,7 @@ instance ItSe_Ringfisch(C_Item)
 	text[0] = PRINT_HiddenInFish;
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = 190;
+	inv_zbias = 190;
 };
 
 
@@ -78,7 +79,7 @@ instance ItSe_LockpickFisch(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItFo_SmellyFish.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_LockpickFisch;

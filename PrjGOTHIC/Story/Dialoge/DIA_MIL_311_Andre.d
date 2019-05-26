@@ -63,7 +63,10 @@ func void B_Andre_Steckbrief()
 	AI_Output(self,other,"DIA_Andre_Add_08_04");	//Надеюсь, ради твоего же блага, что ты говоришь мне правду.
 	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
 	{
-		AI_Output(self,other,"DIA_Andre_Add_08_05");	//Мне не нужны в ополчении люди с запятнанной репутацией.
+		if(Andre_CantharFalle == FALSE)
+		{
+			AI_Output(self,other,"DIA_Andre_Add_08_05");	//Мне не нужны в ополчении люди с запятнанной репутацией.
+		};
 	};
 	AI_Output(self,other,"DIA_Andre_Add_08_06");	//Большинство из этих бандитов - бывшие каторжники из колонии.
 	AI_Output(self,other,"DIA_Andre_Add_08_07");	//Я надеюсь, что ты никак не связан с этими головорезами!
@@ -122,25 +125,45 @@ instance DIA_Andre_CantharFalle(C_Info)
 
 func int DIA_Andre_CantharFalle_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2)) && (Andre_CantharFalle == FALSE) && !Npc_IsDead(Canthar))
+	if((Andre_CantharFalle == FALSE) && !Npc_IsDead(Canthar))
 	{
-		return TRUE;
+		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
+		{
+			return TRUE;
+		}
+		else if(Canthars_KomproBrief_Failed == TRUE)
+		{
+			return TRUE;
+		};
 	};
-	if((Pablo_AndreMelden == TRUE) && !Npc_IsDead(Pablo) && (Andre_Steckbrief == FALSE))
+	if((Andre_Steckbrief == FALSE) && !Npc_IsDead(Pablo))
 	{
-		return TRUE;
+		if(Pablo_AndreMelden == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Andre_CantharFalle_Info()
 {
-	if(Andre_Steckbrief == FALSE)
+	if((Andre_CantharFalle == FALSE) && !Npc_IsDead(Canthar))
 	{
-		B_Andre_Steckbrief();
+		if(MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2))
+		{
+			B_Andre_CantharFalle();
+		}
+		else if(Canthars_KomproBrief_Failed == TRUE)
+		{
+			B_Andre_CantharFalle();
+		};
 	};
-	if((Andre_CantharFalle == FALSE) && (MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2)))
+	if((Andre_Steckbrief == FALSE) && !Npc_IsDead(Pablo))
 	{
-		B_Andre_CantharFalle();
+		if(Pablo_AndreMelden == TRUE)
+		{
+			B_Andre_Steckbrief();
+		};
 	};
 };
 
@@ -873,15 +896,15 @@ func void DIA_Andre_Auslieferung_Info()
 	AI_Output(other,self,"DIA_Andre_Auslieferung_15_00");	//Я пришел получить награду за преступника.
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 	Info_AddChoice(DIA_Andre_Auslieferung,"Я вернусь позже...",DIA_Andre_Auslieferung_Back);
-	if((Rengaru_InKnast == TRUE) && (Rengaru_Ausgeliefert == FALSE))
+	if((Rengaru_InKnast == TRUE) && (Rengaru_Ausgeliefert == FALSE) && !Npc_IsDead(Rengaru))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Ренгару украл у торговца Джоры.",DIA_Andre_Auslieferung_Rengaru);
 	};
-	if((Betrayal_Halvor == TRUE) && (Halvor_Ausgeliefert == FALSE))
+	if((Betrayal_Halvor == TRUE) && (Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Халвор торгует краденым.",DIA_Andre_Auslieferung_Halvor);
 	};
-	if(((MIS_Nagur_Bote == LOG_Running) || (MIS_Nagur_Bote == LOG_FAILED)) && (Nagur_Ausgeliefert == FALSE))
+	if(((MIS_Nagur_Bote == LOG_Running) || (MIS_Nagur_Bote == LOG_FAILED)) && (Nagur_Ausgeliefert == FALSE) && !Npc_IsDead(Nagur))
 	{
 		if(Bote_Killed == TRUE)
 		{
@@ -892,15 +915,15 @@ func void DIA_Andre_Auslieferung_Info()
 			Info_AddChoice(DIA_Andre_Auslieferung,"Нагур пытался украсть товар с фермы Акила.",DIA_Andre_Auslieferung_Nagur);
 		};
 	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)))
+	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)) && !Npc_IsDead(Canthar))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Торговец Кантар пытается избавиться от Сары!",DIA_Andre_Auslieferung_Canthar);
 	};
-	if((MIS_Canthars_KomproBrief == LOG_Running) && Npc_HasItems(Sarah,ItWr_Canthars_KomproBrief_MIS) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)))
+	if((MIS_Canthars_KomproBrief == LOG_Running) && Npc_HasItems(Sarah,ItWr_Canthars_KomproBrief_MIS) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)) && !Npc_IsDead(Sarah))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Сара продает оружие Онару.",DIA_Andre_Auslieferung_Sarah);
 	};
-	if((Fernando_ImKnast == TRUE) && (Fernando_Ausgeliefert == FALSE))
+	if((Fernando_ImKnast == TRUE) && (Fernando_Ausgeliefert == FALSE) && !Npc_IsDead(Fernando))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Я знаю торговца, который продает оружие бандитам!",DIA_Andre_Auslieferung_Fernando);
 	};
@@ -1621,6 +1644,7 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 	}
 	else if(Borka_Deal == 2)
 	{
+		AI_Teleport(Borka,"NW_CITY_HABOUR_KASERN_BORKA");
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_05");	//Я знаю, кто распространяет траву в городе. Это Борка, вышибала в Красном Фонаре.
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_07");	//Он продал мне болотной травы.

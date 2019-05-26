@@ -377,7 +377,7 @@ func int DIA_Lord_Hagen_Proof_Condition()
 func void DIA_Lord_Hagen_Proof_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Proof_15_00");	//То есть ты хочешь, чтобы я принес тебе доказательство?
-	if((hero.guild != GIL_NONE) && (hero.guild != GIL_NOV))
+	if(((hero.guild != GIL_NONE) && (hero.guild != GIL_NOV)) || (GuildlessMode == TRUE))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_01");	//Именно. Пройди через Проход в Долину Рудников. Когда ты будешь там, найди нашу экспедицию, а когда ты найдешь их, поговори с командующим Гарондом.
 		AI_Output(self,other,"DIA_Lord_Hagen_Proof_04_02");	//Вряд ли кто-то лучше его знает ситуацию там.
@@ -530,6 +530,8 @@ func void DIA_Lord_Hagen_Khorinis_Info()
 };
 
 
+var int DIA_Lord_Hagen_Minental_noPerm;
+
 instance DIA_Lord_Hagen_Minental(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -543,7 +545,7 @@ instance DIA_Lord_Hagen_Minental(C_Info)
 
 func int DIA_Lord_Hagen_Minental_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_Khorinis))
+	if(Npc_KnowsInfo(other,DIA_Lord_Hagen_Khorinis) && (DIA_Lord_Hagen_Minental_noPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -558,7 +560,6 @@ func void DIA_Lord_Hagen_Minental_Info()
 	}
 	else
 	{
-//		if(Garond.aivar[AIV_TalkedToPlayer] == TRUE)
 		if(Npc_KnowsInfo(other,DIA_Garond_NeedProof))
 		{
 			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_02");	//Ты был там. Ты должен знать.
@@ -574,9 +575,10 @@ func void DIA_Lord_Hagen_Minental_Info()
 			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_06");	//А шахты с магической рудой, находящиеся на острове - последние, к которым у нас еще есть доступ.
 		};
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_07");	//Как только наш корабль будет загружен рудой, мы отправимся назад, на материк.
-		KnowsPaladins_Ore = TRUE;
 		AI_Output(other,self,"DIA_Lord_Hagen_Minental_15_08");	//Значит, война против орков идет плохо, да?
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_09");	//Я и так сказал тебе слишком много.
+		KnowsPaladins_Ore = TRUE;
+		DIA_Lord_Hagen_Minental_noPerm = TRUE;
 	};
 };
 
@@ -739,13 +741,13 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	if(Helms_Enabled == TRUE)
 	{
 		CreateInvItems(other,ITAR_PALN_M,1);
-		CreateInvItems(hero,ITHE_PAL_M,1);
+		CreateInvItems(other,ITHE_PAL_M,1);
 	}
 	else
 	{
 		CreateInvItems(other,ITAR_PAL_M,1);
 	};
-	AI_EquipArmor(other,ITAR_PAL_M);
+//	AI_EquipArmor(other,ITAR_PAL_M);
 	/*if(Npc_HasItems(other,ItRu_FakePalLight))
 	{
 		CreateInvItem(other,ItRu_PalLight);
@@ -905,7 +907,10 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_04");	//И, должен добавить, без помощи извне им всем скоро придет конец. Вот такие дела.
 	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_05");	//Я должен найти способ спасти эту экспедицию. Ты многое сделал для нас. Иннос благодарит тебя...
 	AI_Output(other,self,"DIA_Lord_Hagen_BACKINTOWN_15_06");	//Мне не интересна его благодарность. Мне нужен его Глаз.
-	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_07");	//Да, конечно. Я держу свое слово. Возьми это письмо. Оно откроет перед тобой монастырские врата.
+	if((other.guild != GIL_PAL) && (other.guild != GIL_KDF))
+	{
+		AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_07");	//Да, конечно. Я держу свое слово. Возьми это письмо. Оно откроет перед тобой монастырские врата.
+	};
 	AI_Output(self,other,"DIA_Lord_Hagen_BACKINTOWN_04_08");	//Поговори с Пирокаром, высшим магом Огня, и покажи ему это письмо с полномочиями. Он предоставит тебе доступ к Глазу Инноса.
 	CreateInvItems(self,ItWr_PermissionToWearInnosEye_MIS,1);
 	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
@@ -970,9 +975,16 @@ instance DIA_Lord_Hagen_RescueBennet(C_Info)
 
 func int DIA_Lord_Hagen_RescueBennet_Condition()
 {
-	if((MIS_RescueBennet == LOG_Running) && (Cornelius_IsLiar == FALSE))
+	if(MIS_RescueBennet == LOG_Running)
 	{
-		return TRUE;
+		if((RescueBennet_KnowsCornelius == TRUE) && Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
+		{
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -981,7 +993,7 @@ func void DIA_Lord_Hagen_RescueBennet_Info()
 	AI_Output(other,self,"DIA_Lord_Hagen_RescueBennet_15_00");	//Мне нужно поговорить с тобой о Беннете.
 	if(Hagen_einmalBennet == FALSE)
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_04_01");	//Но этот наемник убил одного их моих людей.
+		AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_04_01");	//Но этот наемник убил одного из моих людей!
 		Hagen_einmalBennet = TRUE;
 	};
 	Info_ClearChoices(DIA_Lord_Hagen_RescueBennet);
@@ -1046,14 +1058,21 @@ instance DIA_Lord_Hagen_Cornelius(C_Info)
 
 func int DIA_Lord_Hagen_Cornelius_Condition()
 {
-	if(Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE) && (MIS_RescueBennet == LOG_Running))
+	if((MIS_RescueBennet == LOG_Running) && (RescueBennet_KnowsCornelius == TRUE))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_CorneliusTagebuch_Mis) && (Cornelius_IsLiar == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Lord_Hagen_Cornelius_Info()
 {
+	if(!Npc_IsDead(Cornelius) && (CorneliusFlee == FALSE))
+	{
+		AI_Teleport(Cornelius,"NW_CITY_HABOUR_KASERN_BORKA");
+	};
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_00");	//Корнелиус солгал.
 	AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_01");	//Откуда тебе это известно?
 	AI_Output(other,self,"DIA_Lord_Hagen_Cornelius_15_02");	//Вот, у меня его дневник. Все в нем.
@@ -1335,7 +1354,7 @@ instance DIA_Lord_Hagen_NeedShip(C_Info)
 
 func int DIA_Lord_Hagen_NeedShip_Condition()
 {
-	if(ItWr_SCReadsHallsofIrdorath == TRUE)
+	if(MIS_SCKnowsWayToIrdorath == TRUE)
 	{
 		return TRUE;
 	};
@@ -1353,6 +1372,10 @@ func void DIA_Lord_Hagen_NeedShip_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_02");	//(смеется) Я слышу это чуть ли не каждый день, дорогой. Но...
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_03");	//У тебя даже нет капитана, не говоря уже о команде.
+	if((SCGotCaptain == TRUE) && (Crewmember_Count >= Min_Crew))
+	{
+		AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//Ты ошибаешься.
+	};
 	AI_Output(other,self,"DIA_Lord_Hagen_NeedShip_15_04");	//Как насчет корабля, стоящего в гавани?
 	AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_05");	//Он принадлежит мне, и точка. Мы должны перевозить руду на этом корабле.
 	AI_Output(self,other,"DIA_Lord_Hagen_NeedShip_04_06");	//Когда мы покончим с этим, ты можешь обратиться ко мне опять.
@@ -1388,6 +1411,7 @@ func void DIA_Lord_Hagen_GateOpen_Info()
 	B_StartOtherRoutine(PAL_213_Schiffswache,"ShipFree");
 	B_StartOtherRoutine(Girion,"WaitForShip");
 	MIS_ShipIsFree = TRUE;
+	B_CheckLog();
 };
 
 

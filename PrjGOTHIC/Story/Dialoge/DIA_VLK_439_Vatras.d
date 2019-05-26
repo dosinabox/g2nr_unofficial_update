@@ -852,8 +852,8 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
 	B_GivePlayerXP(XP_AmbientKap3);
+	SC_KnowsPortal = TRUE;
 };
-
 
 
 var int missingpeopleinfo[20];
@@ -1303,7 +1303,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	var int flag;
 	anzahl = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
 	anzahl2 += anzahl;
-	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички..
+	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
 	/*if(anzahl == 1)
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
@@ -1941,7 +1941,7 @@ instance DIA_Vatras_MISSION(C_Info)
 
 func int DIA_Vatras_MISSION_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 2))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 2) && !Npc_IsDead(Isgaroth) && Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin))
 	{
 		return TRUE;
 	};
@@ -2106,9 +2106,12 @@ instance DIA_Addon_Vatras_AbloesePre(C_Info)
 
 func int DIA_Addon_Vatras_AbloesePre_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE) && (RavenIsDead == FALSE))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
 	{
-		return TRUE;
+		if((RavenIsDead == FALSE) && (AddonDisabled == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2172,9 +2175,12 @@ instance DIA_Vatras_INNOSEYEKAPUTT(C_Info)
 
 func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == TRUE))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3))
 	{
-		return TRUE;
+		if((VatrasCanLeaveTown_Kap3 == TRUE) || (AddonDisabled == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2639,8 +2645,6 @@ func void DIA_Vatras_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Vatras_KnowWhereEnemy_05_03");	//Я много думал об этом. Да, я никогда не был так уверен в своем выборе, мой друг.
 	if(SCToldVatrasHeKnowWhereEnemy == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew,"Как это ни странно, Ватрас предложил мне сопровождать меня в моем путешествии. Человек, обладающий его навыками и опытом, может оказаться очень полезным для меня.");
 		SCToldVatrasHeKnowWhereEnemy = TRUE;
 	};

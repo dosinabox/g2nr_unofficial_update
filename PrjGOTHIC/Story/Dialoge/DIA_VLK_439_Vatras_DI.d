@@ -497,7 +497,7 @@ func void DIA_Vatras_DI_DementorObsessionBook_Info()
 	};
 	B_GiveInvItems(other,self,ITWR_DementorObsessionBook_MIS,VatrasBookCount);
 	Npc_RemoveInvItems(self,ITWR_DementorObsessionBook_MIS,VatrasBookCount);
-	B_GivePlayerXP(XP_Ambient * VatrasBookCount);
+	B_GivePlayerXP(XP_AmbientKap6 * VatrasBookCount);
 };
 
 

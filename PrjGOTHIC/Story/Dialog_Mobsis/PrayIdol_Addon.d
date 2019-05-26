@@ -47,7 +47,7 @@ func void B_BlitzInArsch()
 	var int CurrentHitpoints;
 	var int Abzug;
 	var string concatText1;
-//	var string concatText2;
+	var string concatText2;
 	CurrentHitpoints = hero.attribute[ATR_HITPOINTS];
 	BlitzInArsch_Hitpoints = (CurrentHitpoints * 4) / 5;
 	if(BlitzInArsch_Hitpoints < 2)
@@ -57,10 +57,9 @@ func void B_BlitzInArsch()
 	Abzug = hero.attribute[ATR_HITPOINTS] - BlitzInArsch_Hitpoints;
 	if(Abzug > 0)
 	{
-//		concatText1 = ConcatStrings(" ","урон");
-//		concatText2 = ConcatStrings(IntToString(Abzug),concatText1);
-		concatText1 = ConcatStrings("Урон: ",IntToString(Abzug));
-		AI_PrintScreen(concatText1,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
+		concatText1 = ConcatStrings(NAME_Damage," ");
+		concatText2 = ConcatStrings(concatText1,IntToString(Abzug));
+		AI_PrintScreen(concatText2,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
 		Wld_PlayEffect("spellFX_BELIARSRAGE",hero,hero,0,0,0,FALSE);
 	};
 	hero.attribute[ATR_HITPOINTS] = BlitzInArsch_Hitpoints;
@@ -68,17 +67,15 @@ func void B_BlitzInArsch()
 
 func void B_GetBeliarsGold(var int Kohle)
 {
-	var string concatText1;
-	var string concatText2;
+	var string concatText;
 	RecievedMoney += Kohle;
 	if(RecievedMoney > BeliarsDispo)
 	{
 		Kohle = 100;
 	};
 	CreateInvItems(hero,ItMi_Gold,Kohle);
-	concatText1 = ConcatStrings(IntToString(Kohle)," ");
-	concatText2 = ConcatStrings(concatText1,PRINT_GoldErhalten);
-	AI_PrintScreen(concatText2,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
+	concatText = ConcatStrings(IntToString(Kohle),PRINT_GoldErhalten);
+	AI_PrintScreen(concatText,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
 };
 
 func void PrayIdol_S1()

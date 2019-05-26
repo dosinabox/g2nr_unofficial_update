@@ -36,7 +36,7 @@ func int B_GetBestPlayerMap()
 			return ItWr_Map_NewWorld_City;
 		};
 	}
-	else if(CurrentLevel == OldWorld_Zen)
+	else if(CurrentLevel == OLDWORLD_ZEN)
 	{
 		if(Npc_HasItems(hero,ItWr_Map_OldWorld))
 		{
@@ -143,7 +143,7 @@ func int player_hotkey_screen_map()
 			NewInstance = 0;
 		};
 	};
-	if(CurrentLevel != OldWorld_Zen)
+	if(CurrentLevel != OLDWORLD_ZEN)
 	{
 		if((OldInstance == ItWr_Map_OldWorld) || (OldInstance == ItWr_Map_OldWorld_Oremines_MIS) || (OldInstance == ItWr_Map_OldWorld_Oremines_Small_MIS))
 		{

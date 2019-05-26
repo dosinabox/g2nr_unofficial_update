@@ -554,12 +554,26 @@ func void DIA_Pyrokar_Lernen_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_04");	//Каррас, например, мастер вызова, а Хиглас обучит тебя магии Огня.
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_05");	//Никто не знает больше о силах льда, чем Мардук. Парлан может обучить тебя другим различным заклинаниям - и он введет тебя в первые круги.
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_06");	//Но каждый из них будет учить тебя только формулам - руны ты должен будешь создавать сам.
-	Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-	B_LogEntry(Topic_KlosterTeacher,"Мастер Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
-	B_LogEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
-	B_LogEntry(Topic_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
-	B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
-//	B_LogEntry(Topic_KlosterTeacher,"Брат Парлан обучает множеству различных формул.");
+	if(!Npc_KnowsInfo(other,DIA_Parlan_MAGE))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
+	};
+	if(!Npc_KnowsInfo(other,DIA_Karras_JOB))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
+	};
+	if(!Npc_KnowsInfo(other,DIA_Hyglas_JOB))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
+	};
+	if(!Npc_KnowsInfo(other,DIA_Marduk_BEFORETEACH))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
+	};
 };
 
 
@@ -813,8 +827,7 @@ func void DIA_Pyrokar_SPELLS_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-//	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
-	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
+	B_Say_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Pyrokar_SPELLS);
 	Info_AddChoice(DIA_Pyrokar_SPELLS,Dialog_Back,DIA_Pyrokar_SPELLS_BACK);
 	if(PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE)

@@ -304,6 +304,7 @@ const string TXT_SPELLS[100] =
 	"TXT_SPL_RESERVED_98",
 	"TXT_SPL_RESERVED_99"
 };
+
 const string NAME_SPL_PalLight = "Святой свет";
 const string NAME_SPL_PalLightHeal = "Малое исцеление";
 const string NAME_SPL_PalHolyBolt = "Святая стрела";
@@ -438,12 +439,12 @@ const string TXT_TALENTS_SKILLS[22] =
 	"Новичок|Боец|Мастер",
 	"Новичок|Стрелок|Мастер",
 	"Новичок|Стрелок|Мастер",
-	"Не обучен|Обучен|-",
-	"0|1|2",
+	"Не обучен|Обучен",
+	"",
 	"Не обучен|Первый|Второй|Третий|Четвертый|Пятый|Шестой",
 	"Не обучен|Обучен",
-	"-|-",
-	"-|-",
+	"",
+	"",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
@@ -453,8 +454,8 @@ const string TXT_TALENTS_SKILLS[22] =
 	"Не обучен|Язык крестьян|Язык воинов|Язык жрецов",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
-	"Не обучен|Обучен",
-	"Не обучен|Обучен"
+	"",
+	""
 };
 
 const string TXT_INV_CAT[9] =
@@ -469,6 +470,7 @@ const string TXT_INV_CAT[9] =
 	"Документы",
 	"Разное"
 };
+
 const string NAME_Paladin = "Паладин";
 const string NAME_Miliz = "Ополченец";
 const string NAME_Torwache = "Стражник у прохода";
@@ -661,21 +663,21 @@ const string PRINT_LearnBow_and_Crossbow = "Улучшено: Меткость стрельбы из лука 
 const string PRINT_LearnCrossbow = "Улучшено: Меткость стрельбы из арбалета";
 const string PRINT_LearnCrossbow_and_Bow = "Улучшено: Меткость стрельбы из арбалета и лука";
 const string PRINT_LearnPicklock = "Изучено: Владение отмычками";
-const string PRINT_LearnSneak = "Изучено: Искусство красться";
+const string PRINT_LearnSneak = "Изучено: Искусство подкрадывания";
 const string PRINT_LearnAcrobat = "Изучено: Акробатика";
 const string PRINT_Addon_AcrobatBonus = "Получен бонус акробатики!";
 const string PRINT_LearnPickpocket = "Изучено: Искусство карманного воровства";
 const string PRINT_Beliarshitpoints_MAX = "Макс. здоровье - ";
 const string PRINT_Beliarsmana_MAX = "Макс. мана - ";
-const string PRINT_LearnSmith = "Изучено: Искусство изготовления оружия";
-const string PRINT_LearnRunes = "Изучено: Искусство создания рун";
-const string PRINT_LearnAlchemy = "Изучено: Искусство приготовления зелий";
+const string PRINT_LearnSmith = "Изучена схема нового оружия";
+const string PRINT_LearnRunes = "Изучена руна нового заклинания";
+const string PRINT_LearnAlchemy = "Изучен рецепт нового зелья";
 const string PRINT_LearnAlchemyInnosEye = "Изучено: Перезарядка Глаза Инноса";
 const string PRINT_LearnTakeAnimalTrophy = "Изучено: Снятие трофеев";
 const string PRINT_LearnTakeAnimalFur = "Изучено: Снятие шкур";
 const string PRINT_LearnForeignLanguage = "Изучено: Язык зодчих";
 const string PRINT_LearnWispDetector = "Ваш блуждающий огонек обучился новым способностям";
-const string PRINT_LearnPalTeleportSecret = "Изучено: Создание руны телепорта";
+const string PRINT_LearnPalTeleportSecret = "Изучена руна телепорта";
 const string PRINT_NotEnoughLearnPoints = "Недостаточно очков обучения!";
 const string PRINT_LearnSTR1 = "Сила + 1";
 const string PRINT_LearnSTR5 = "Сила + 5";
@@ -853,6 +855,9 @@ const string PRINT_MANA_MAX_MISSING = "Недостаточно маны:";
 const string PRINT_STRENGTH_MISSING = "Недостаточно силы:";
 const string PRINT_DEXTERITY_MISSING = "Недостаточно ловкости:";
 const string PRINT_MAGCIRCLES_MISSING = "Слишком низкий магический круг для использования этой руны:";
+const string PRINT_MAGCIRCLES_PAL = "Я не умею пользоваться магией паладинов.";
+const string PRINT_MAGCIRCLES_LOW = "Не изучен необходимый Круг магии.";
+const string PRINT_MAGCIRCLES_NEEDFIRST = "Не изучено ни одного Круга магии.";
 const string PRINT_ADDON_BELIARSCOURSE_MISSING = "Это оружие нельзя использовать!";
 const string _STR_MESSAGE_INTERACT_NO_KEY = "Нет отмычки или подходящего ключа.";
 const string _STR_MESSAGE_TRADE_FAILURE = "Ваши товары недостаточно ценные.";
@@ -941,4 +946,8 @@ const string PRINT_LousHammerNoEffect = "Больше не дает никакого эффекта, кроме 
 const string PRINT_SlowTime = "Замедление времени.";
 const string PRINT_Speed = "Временно повышает скорость.";
 const string PRINT_NothingToPick = "Здесь больше нечего делать.";
+
+const string PRINT_BookstandRunes1 = "Чтобы создать руну, всегда необходим КАЖДЫЙ из вышеперечисленных ингредиентов.";
+const string PRINT_BookstandRunes2 = "Маг должен знать формулу заклинания и должен иметь чистый рунный камень и свиток желаемого заклинания.";
+const string PRINT_BookstandRunes3 = "Только при выполнении этих условий он может приступить к работе за рунным столом.";
 

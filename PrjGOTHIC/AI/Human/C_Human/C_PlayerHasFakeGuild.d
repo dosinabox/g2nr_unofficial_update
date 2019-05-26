@@ -5,8 +5,12 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	itm = Npc_GetEquippedArmor(oth);
 	if(Npc_HasEquippedArmor(oth))
 	{
-		if(Hlp_IsItem(itm,ITAR_RANGER_Addon))
+		if(Hlp_IsItem(itm,ITAR_RANGER_Addon) && (CurrentLevel == NEWWORLD_ZEN))
 		{
+			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cavalorn)) && ((Npc_GetDistToWP(slf,"NW_CITY_MERCHANT_PATH_15") < 5000) || (Npc_GetDistToWP(slf,"NW_CITY_TAVERN_IN_07") < 5000)))
+			{
+				return TRUE;
+			};
 			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lares)) && (Npc_GetDistToWP(slf,"NW_CITY_HABOUR_02_B") < 5000))
 			{
 				return TRUE;

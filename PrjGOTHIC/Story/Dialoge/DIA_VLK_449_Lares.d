@@ -2279,7 +2279,8 @@ instance DIA_Lares_Kap4_PERM(C_Info)
 	nr = 6;
 	condition = DIA_Lares_Kap4_PERM_Condition;
 	information = DIA_Lares_Kap4_PERM_Info;
-	permanent = TRUE;
+//	permanent = TRUE;
+	permanent = FALSE;
 	description = "Почему ты не охотишься на драконов?";
 };
 

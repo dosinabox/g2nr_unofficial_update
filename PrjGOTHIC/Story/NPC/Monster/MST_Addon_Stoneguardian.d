@@ -101,7 +101,7 @@ instance Stoneguardian_Dead3(Mst_Addon_Stoneguardian)
 instance Stoneguardian_MerdarionsSchluessel(Mst_Addon_Stoneguardian)
 {
 	B_SetVisuals_Stoneguardian();
-	CreateInvItems(self,itke_portaltempelwalkthrough_addon,1);
+	CreateInvItems(self,ItKe_PortalTempelWalkthrough_Addon,1);
 };
 
 instance Stoneguardian_Ornament(Mst_Addon_Stoneguardian)

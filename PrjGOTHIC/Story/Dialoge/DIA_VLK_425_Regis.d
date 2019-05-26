@@ -200,7 +200,7 @@ func void DIA_Regis_ValDefeat_Info()
 	if(!Npc_IsDead(Valentino))
 	{
 		AI_Output(self,other,"DIA_Regis_Add_13_19");	//Вот - я нашел это кольцо в его кармане, когда наша стычка закончилась.
-		B_GiveInvItems(self,other,ItRi_ValentinosRing,1);
+		B_GiveInvItems(self,other,ItRi_Prot_Edge_01_Valentino,1);
 		AI_Output(self,other,"DIA_Regis_Add_13_20");	//(ухмыляется) Ты можешь передать его следующему, кто надает ему тумаков...
 	};
 };

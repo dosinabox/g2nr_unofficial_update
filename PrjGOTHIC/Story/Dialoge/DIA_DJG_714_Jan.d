@@ -571,12 +571,22 @@ instance DIA_Jan_DragonPlettBericht(C_Info)
 };
 
 
-//var int DIA_Jan_DragonPlettBericht_NoPerm;
-
 func int DIA_Jan_DragonPlettBericht_Condition()
 {
-	if((Kapitel >= 4) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons != 0))
+	if((Kapitel >= 4) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons > 0))
 	{
+		if(MIS_KilledDragons == 1)
+		{
+			DIA_Jan_DragonPlettBericht.description = "Я убил дракона.";
+		}
+		else if((MIS_KilledDragons == 2) || (MIS_KilledDragons == 3))
+		{
+			DIA_Jan_DragonPlettBericht.description = "Я убил несколько драконов.";
+		}
+		else
+		{
+			DIA_Jan_DragonPlettBericht.description = "Я убил всех драконов.";
+		};
 		return TRUE;
 	};
 };

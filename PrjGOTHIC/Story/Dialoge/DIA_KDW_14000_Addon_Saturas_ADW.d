@@ -236,7 +236,7 @@ instance DIA_Addon_Saturas_LanceLeiche(C_Info)
 
 func int DIA_Addon_Saturas_LanceLeiche_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(NONE_Addon_114_Lance_ADW,ItRi_LanceRing))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(NONE_Addon_114_Lance_ADW,ItRi_Ranger_Lance_Addon))
 	{
 		return TRUE;
 	};
@@ -264,7 +264,7 @@ instance DIA_Addon_Saturas_LanceRing(C_Info)
 
 func int DIA_Addon_Saturas_LanceRing_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_LanceLeiche) && Npc_HasItems(other,ItRi_LanceRing))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_LanceLeiche) && Npc_HasItems(other,ItRi_Ranger_Lance_Addon))
 	{
 		return TRUE;
 	};
@@ -274,7 +274,7 @@ func void DIA_Addon_Saturas_LanceRing_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_LanceRing_15_00");	//У меня аквамариновое кольцо Ланса.
 	AI_Output(self,other,"DIA_Addon_Saturas_LanceRing_14_01");	//Лучше отдай его мне, чтобы оно не попало в дурные руки.
-	B_GiveInvItems(other,self,ItRi_LanceRing,1);
+	B_GiveInvItems(other,self,ItRi_Ranger_Lance_Addon,1);
 	B_GivePlayerXP(XP_Addon_LanceRing);
 };
 
@@ -1055,6 +1055,12 @@ func void DIA_Addon_Saturas_BeliarWeapGeben_Info()
 };
 
 
+func void B_Saturas_ADW_CantTeach5Circle()
+{
+	AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_10");	//Это не в моих силах.
+	AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_11");	//Чтобы вступить в последний, шестой круг магии, ты должен отправиться в монастырь магов Огня.
+};
+
 instance DIA_Addon_Saturas_ADW_PreTeachCircle(C_Info)
 {
 	npc = KDW_14000_Addon_Saturas_ADW;
@@ -1068,7 +1074,7 @@ instance DIA_Addon_Saturas_ADW_PreTeachCircle(C_Info)
 func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 {
 //	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1))
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6))
 	{
 		return TRUE;
 	};
@@ -1077,17 +1083,24 @@ func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 func void DIA_Addon_Saturas_ADW_PreTeachCircle_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_00");	//Ты можешь обучить меня кругам магии?
-	AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_01");	//Ты - маг Огня. Что скажет Пирокар, если узнает, что я обучал тебя?
-	AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_02");	//Он не узнает.
-	AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_03");	//(вздыхает) Вижу, ты серьезно настроен учиться. Что ж, я выполню твою просьбу.
-	if(RavenIsDead == FALSE)
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
 	{
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_04");	//Однако, если я узнаю, что ты передаешь наши знания в чужие руки, ты больше не сможешь рассчитывать на мою помощь.
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_05");	//Не разочаруй меня.
+		B_Saturas_ADW_CantTeach5Circle();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_01");	//Ты - маг Огня. Что скажет Пирокар, если узнает, что я обучал тебя?
+		AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_02");	//Он не узнает.
+		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_03");	//(вздыхает) Вижу, ты серьезно настроен учиться. Что ж, я выполню твою просьбу.
+		if(RavenIsDead == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_04");	//Однако, если я узнаю, что ты передаешь наши знания в чужие руки, ты больше не сможешь рассчитывать на мою помощь.
+			AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_05");	//Не разочаруй меня.
+		};
+		Saturas_Addon_TeachCircle = TRUE;
+		Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_SaturasTeach);
 	};
-	Saturas_Addon_TeachCircle = TRUE;
-	Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_SaturasTeach);
 };
 
 
@@ -1111,7 +1124,7 @@ func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 	circle = Npc_GetTalentSkill(other,NPC_TALENT_MAGE) + 1;
 	kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
 //	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
-	if((Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
+	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
 	{
 //		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Я хочу перейти на следующий уровень магии",kosten);
 		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Следующий Круг магии",kosten);
@@ -1157,13 +1170,16 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
 	{
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_10");	//Это не в моих силах.
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_11");	//Чтобы вступить в последний, шестой круг магии, ты должен отправиться в монастырь магов Огня.
+		B_Saturas_ADW_CantTeach5Circle();
 		DIA_Addon_Saturas_ADW_CIRCLE_NoPerm = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_12");	//Ты еще не готов к этому. Возвращайся позже.
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
+		{
+			PrintScreen(PRINT_MAGCIRCLES_NEEDFIRST,-1,-1,FONT_ScreenSmall,2);
+		};
 	};
 };
 

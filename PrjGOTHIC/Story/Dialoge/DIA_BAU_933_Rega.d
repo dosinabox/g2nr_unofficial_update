@@ -149,14 +149,14 @@ instance DIA_Rega_BRONKO(C_Info)
 	nr = 7;
 	condition = DIA_Rega_BRONKO_Condition;
 	information = DIA_Rega_BRONKO_Info;
-	description = "(спросить о Бронко)";
+	description = "А кто этот противный тип вон там?";
 };
 
 
 func int DIA_Rega_BRONKO_Condition()
 {
 //	if(Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (MIS_Sekob_Bronko_eingeschuechtert == LOG_Running))
-	if(Npc_KnowsInfo(other,DIA_Bronko_HALLO) && Npc_KnowsInfo(other,DIA_Rega_HALLO) && !Npc_KnowsInfo(other,DIA_Babera_BRONKO))
+	if(Npc_KnowsInfo(other,DIA_Bronko_HALLO) && Npc_KnowsInfo(other,DIA_Rega_HALLO) && !Npc_KnowsInfo(other,DIA_Babera_BRONKO) && !Npc_IsDead(Bronko))
 	{
 		return TRUE;
 	};

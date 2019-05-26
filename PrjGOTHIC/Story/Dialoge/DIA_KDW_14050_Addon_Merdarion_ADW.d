@@ -41,12 +41,6 @@ func int DIA_Addon_Merdarion_ADWHello_Condition()
 	return TRUE;
 };
 
-func void DIA_Addon_Merdarion_ADWHello_Back()
-{
-	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_Back_15_00");	//я услышал достаточно.
-	Info_ClearChoices(DIA_Addon_Merdarion_ADWHello);
-};
-
 func void DIA_Addon_Merdarion_ADWHello_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_15_00");	// ак дела?
@@ -93,6 +87,12 @@ func void DIA_Addon_Merdarion_ADWHello_focusProof()
 	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_focusProof_15_00");	//“ы сказал, что тебе нужно убедитьс€, что твое подозрение верно.
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_focusProof_06_01");	//ћагический фокус может быть св€зан с этими камн€ми.
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_focusProof_06_02");	//Ќо € не знаю где.
+};
+
+func void DIA_Addon_Merdarion_ADWHello_Back()
+{
+	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_Back_15_00");	//я услышал достаточно.
+	Info_ClearChoices(DIA_Addon_Merdarion_ADWHello);
 };
 
 func void DIA_Addon_Merdarion_ADWHello_wo()
@@ -143,6 +143,8 @@ func void DIA_Addon_Merdarion_FokusGeben_Info()
 };
 
 
+var int Merdarion_GotFocusCount;
+
 instance DIA_Addon_Merdarion_FirstFocus(C_Info)
 {
 	npc = KDW_14050_Addon_Merdarion_ADW;
@@ -160,9 +162,6 @@ func int DIA_Addon_Merdarion_FirstFocus_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Merdarion_GotFocusCount;
 
 func void DIA_Addon_Merdarion_FirstFocus_Info()
 {
@@ -182,6 +181,8 @@ func void DIA_Addon_Merdarion_FirstFocus_Info()
 };
 
 
+var int DIA_Addon_Merdarion_ActivateTeleports_OneTime;
+
 instance DIA_Addon_Merdarion_ActivateTeleports(C_Info)
 {
 	npc = KDW_14050_Addon_Merdarion_ADW;
@@ -200,9 +201,6 @@ func int DIA_Addon_Merdarion_ActivateTeleports_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Merdarion_ActivateTeleports_OneTime;
 
 func void DIA_Addon_Merdarion_ActivateTeleports_Info()
 {
@@ -269,6 +267,8 @@ func void DIA_Addon_Merdarion_ADW_PreTeachMana_Info()
 };
 
 
+var int Merdarion_ADW_Empty;
+
 instance DIA_Addon_Merdarion_ADW_TEACH_MANA(C_Info)
 {
 	npc = KDW_14050_Addon_Merdarion_ADW;
@@ -279,8 +279,6 @@ instance DIA_Addon_Merdarion_ADW_TEACH_MANA(C_Info)
 	description = "я хочу увеличить мою магическую энергию.";
 };
 
-
-var int Merdarion_ADW_Empty;
 
 func int DIA_Addon_Merdarion_ADW_TEACH_MANA_Condition()
 {

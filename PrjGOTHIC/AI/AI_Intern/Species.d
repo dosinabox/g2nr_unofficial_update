@@ -515,8 +515,8 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_FIREGOLEM] = fight_range_base[GIL_STONEGOLEM];
 	fight_range_fist[GIL_FIREGOLEM] = fight_range_fist[GIL_STONEGOLEM];
 	fight_range_g[GIL_FIREGOLEM] = fight_range_g[GIL_STONEGOLEM];
-	blood_emitter[GIL_FIREGOLEM] = "BFX_Golem";
-	blood_texture[GIL_FIREGOLEM] = "BQM_Golem.tga";
+	blood_emitter[GIL_FIREGOLEM] = "BFX_Demon";
+	blood_texture[GIL_FIREGOLEM] = "BQM_FireGolem.tga";
 	blood_flow[GIL_FIREGOLEM] = blood_flow[GIL_STONEGOLEM];
 	blood_amount[GIL_FIREGOLEM] = blood_amount[GIL_STONEGOLEM];
 	blood_max_distance[GIL_FIREGOLEM] = blood_max_distance[GIL_STONEGOLEM];
@@ -533,8 +533,8 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_base[GIL_ICEGOLEM] = fight_range_base[GIL_STONEGOLEM];
 	fight_range_fist[GIL_ICEGOLEM] = fight_range_fist[GIL_STONEGOLEM];
 	fight_range_g[GIL_ICEGOLEM] = fight_range_g[GIL_STONEGOLEM];
-	blood_emitter[GIL_ICEGOLEM] = "BFX_Golem";
-	blood_texture[GIL_ICEGOLEM] = "BQM_Golem.tga";
+	blood_emitter[GIL_ICEGOLEM] = "BFX_IceGolem";
+	blood_texture[GIL_ICEGOLEM] = "MFX_FREEZE_ICEQUADMARK.tga";
 	blood_flow[GIL_ICEGOLEM] = blood_flow[GIL_STONEGOLEM];
 	blood_amount[GIL_ICEGOLEM] = blood_amount[GIL_STONEGOLEM];
 	blood_max_distance[GIL_ICEGOLEM] = blood_max_distance[GIL_STONEGOLEM];
@@ -809,9 +809,9 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_g[GIL_Stoneguardian] = fight_range_g[GIL_HUMAN];
 	blood_emitter[GIL_Stoneguardian] = "BFX_Stoneguardian";
 	blood_texture[GIL_Stoneguardian] = "BQM_Stoneguardian.tga";
-	blood_flow[GIL_Stoneguardian] = 0;
-	blood_amount[GIL_Stoneguardian] = 5;
-	blood_max_distance[GIL_Stoneguardian] = 60;
+	blood_flow[GIL_Stoneguardian] = blood_flow[GIL_STONEGOLEM];
+	blood_amount[GIL_Stoneguardian] = blood_amount[GIL_STONEGOLEM];
+	blood_max_distance[GIL_Stoneguardian] = blood_max_distance[GIL_STONEGOLEM];
 	swim_time[GIL_SummonedGuardian] = swim_time[GIL_STONEGOLEM];
 	dive_time[GIL_SummonedGuardian] = dive_time[GIL_STONEGOLEM];
 	water_depth_knee[GIL_SummonedGuardian] = water_depth_knee[GIL_STONEGOLEM];
@@ -832,8 +832,8 @@ instance Gil_Values(C_GILVALUES)
 	fight_range_g[GIL_SummonedGuardian] = fight_range_g[GIL_HUMAN];
 	blood_emitter[GIL_SummonedGuardian] = "BFX_Stoneguardian";
 	blood_texture[GIL_SummonedGuardian] = "BQM_Stoneguardian.tga";
-	blood_flow[GIL_SummonedGuardian] = 0;
-	blood_amount[GIL_SummonedGuardian] = 5;
-	blood_max_distance[GIL_SummonedGuardian] = 60;
+	blood_flow[GIL_SummonedGuardian] = blood_flow[GIL_STONEGOLEM];
+	blood_amount[GIL_SummonedGuardian] = blood_amount[GIL_STONEGOLEM];
+	blood_max_distance[GIL_SummonedGuardian] = blood_max_distance[GIL_STONEGOLEM];
 };
 

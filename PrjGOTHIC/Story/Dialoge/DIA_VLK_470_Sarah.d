@@ -109,6 +109,8 @@ func void DIA_Sarah_HALLO_Info()
 };
 
 
+var int SarahToldAboutAkilsProblem;
+
 instance DIA_Sarah_Bauern(C_Info)
 {
 	npc = VLK_470_Sarah;
@@ -136,7 +138,21 @@ func void DIA_Sarah_Bauern_Info()
 	AI_Output(self,other,"DIA_Sarah_Bauern_16_03");	//А Онар, самый крупный фермер, нанял наемников, чтобы защищать свою ферму от городской стражи. До этого они забирали у него все подчистую.
 	AI_Output(self,other,"DIA_Sarah_Add_16_01");	//Но наемники не просто охраняют ферму Онара.
 	AI_Output(self,other,"DIA_Sarah_Add_16_02");	//Они добрались даже до маленьких ферм у города, и запугивают их владельцев.
-	AI_Output(self,other,"DIA_Sarah_Add_16_03");	//Я видела их, когда ходила на ферму Акила. Не хотела бы я сейчас оказаться на его месте.
+	if(Kapitel < 4)
+	{
+		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		{
+			AI_Output(self,other,"DIA_Sarah_Add_16_03");	//Я видела их, когда ходила на ферму Акила. Не хотела бы я сейчас оказаться на его месте.
+			SarahToldAboutAkilsProblem = TRUE;
+			if(Akils_SLDStillthere == FALSE)
+			{
+				Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+				B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+				Akils_SLDStillthere = TRUE;
+			};
+		};
+	};
 };
 
 
@@ -153,7 +169,7 @@ instance DIA_Sarah_AkilsHof(C_Info)
 
 func int DIA_Sarah_AkilsHof_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Sarah_Bauern))
+	if(SarahToldAboutAkilsProblem == TRUE)
 	{
 		return TRUE;
 	};
@@ -164,7 +180,10 @@ func void DIA_Sarah_AkilsHof_Info()
 	AI_Output(other,self,"DIA_Sarah_AkilsHof_15_00");	//Где мне найти ферму Акила?
 	AI_Output(self,other,"DIA_Sarah_Add_16_04");	//Если выйдешь из восточных ворот и пойдешь по дороге направо, скоро ты увидишь каменную лестницу.
 	AI_Output(self,other,"DIA_Sarah_Add_16_05");	//Она ведет прямо к ферме Акила.
-	AI_Output(self,other,"DIA_Sarah_Add_16_06");	//Но я бы сейчас туда не совалась - эти наемники наверняка все еще там.
+	if(Kapitel < 4)
+	{
+		AI_Output(self,other,"DIA_Sarah_Add_16_06");	//Но я бы сейчас туда не совалась - эти наемники наверняка все еще там.
+	};
 };
 
 

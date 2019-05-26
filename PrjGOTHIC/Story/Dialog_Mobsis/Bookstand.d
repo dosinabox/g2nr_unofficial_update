@@ -65,7 +65,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 			if(FinalDragonEquipment_Once == FALSE)
 			{
 				PLAYER_TALENT_RUNES[SPL_MasterOfDisaster] = TRUE;
-				PrintScreen(PRINT_LearnRunes,-1,-1,FONT_Screen,2);
+				PrintScreen(PRINT_LearnRunes,-1,-1,FONT_Screen,4);
 				B_LogEntry(TOPIC_TalentRunes,"»нгредиенты дл€ руны '—в€той удар': 1 св€та€ вода. —виток не нужен.");
 			};
 		}
@@ -80,7 +80,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 			if(FinalDragonEquipment_Once == FALSE)
 			{
 				PLAYER_TALENT_RUNES[SPL_PalTeleportSecret] = TRUE;
-				PrintScreen(PRINT_LearnPalTeleportSecret,-1,-1,FONT_Screen,2);
+				PrintScreen(PRINT_LearnPalTeleportSecret,-1,-1,FONT_Screen,4);
 				Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
 				B_LogEntry(TOPIC_TalentRunes,"ƒл€ создани€ руны необходимы специфические ингредиенты. ѕри помощи этих ингредиентов и чистого рунного камн€, можно создать руну на рунном столе.");
 				B_LogEntry(TOPIC_TalentRunes,"»нгредиенты дл€ руны '—екретный телепорт': 1 св€та€ вода.");
@@ -101,7 +101,7 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 			{
 				PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = TRUE;
 				PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = TRUE;
-				PrintScreen(PRINT_LearnSmith,-1,-1,FONT_Screen,2);
+				PrintScreen(PRINT_LearnSmith,-1,-1,FONT_Screen,4);
 				Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
 				Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
 				B_LogEntry(TOPIC_TalentSmith,"„тобы выковать оружие, прежде всего мне нужна сыра€ сталь. я должен докрасна нагреть ее в огне кузнечного горна, а затем придать форму на наковальне. ќсобое оружие зачастую требует особых материалов, придающих оружию особые свойства.");

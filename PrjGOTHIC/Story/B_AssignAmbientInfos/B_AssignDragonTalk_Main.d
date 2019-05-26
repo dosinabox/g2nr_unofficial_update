@@ -168,7 +168,7 @@ func void DIA_DragonTalk_Main_4_Info()
 	Log_CreateTopic(TOPIC_BuchHallenVonIrdorath,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BuchHallenVonIrdorath,LOG_Running);
 	B_LogEntry(TOPIC_BuchHallenVonIrdorath,"Говорят, что повелитель драконов нашел прибежище в огромной скале священных Чертогов Ирдората. Ммм... Это что-то знакомое. И где я читал о них?");
-	B_NPC_IsAliveCheck(OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
 	DragonTalk_Exit_Free = TRUE;
 };
 

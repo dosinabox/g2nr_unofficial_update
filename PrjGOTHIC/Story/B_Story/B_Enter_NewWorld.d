@@ -1,9 +1,10 @@
 
 func void B_ENTER_NEWWORLD_Kapitel_1()
 {
-	if((RavenIsDead == TRUE) && Npc_IsDead(Myxir_CITY))
+	if((RavenIsDead == TRUE) && (MyxirMovedToNW == FALSE))
 	{
 		Wld_InsertNpc(KDW_140300_Addon_Myxir_CITY,"CITY1");
+		MyxirMovedToNW = TRUE;
 	};
 	if(ENTERED_ADDONWORLD == TRUE)
 	{
@@ -22,11 +23,26 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 	};
 	if((Sklaven_Flucht == TRUE) && (Sklaven_weg == FALSE))
 	{
-		Wld_InsertNpc(STRF_1123_Addon_Patrick_NW,"NW_BIGFARM_PATRICK");
-		Wld_InsertNpc(STRF_1124_Addon_Monty_NW,"NW_CITY_HABOUR_WERFT_IN_01");
-		Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TANOK");
-		Wld_InsertNpc(STRF_1126_Addon_Telbor_NW,"NW_FARM2_FIELD_TELBOR");
-		Wld_InsertNpc(STRF_1127_Addon_Pardos_NW,"NW_FARM3_BENGAR");
+		if(Patrick_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1123_Addon_Patrick_NW,"NW_BIGFARM_PATRICK");
+		};
+		if(Monty_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1124_Addon_Monty_NW,"NW_CITY_HABOUR_WERFT_IN_01");
+		};
+		if(Tonak_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TANOK");
+		};
+		if(Telbor_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1126_Addon_Telbor_NW,"NW_FARM2_FIELD_TELBOR");
+		};
+		if(Pardos_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1127_Addon_Pardos_NW,"NW_FARM3_BENGAR");
+		};
 		Sklaven_weg = TRUE;
 		MissingPeopleReturnedHome = TRUE;
 	};
@@ -130,8 +146,6 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			Dyrian.guild = GIL_NONE;
 			Npc_SetTrueGuild(Dyrian,GIL_NONE);
-			//CreateInvItem(Dyrian,ITAR_Bau_L);
-			//AI_EquipArmor(Dyrian,ITAR_Bau_L);
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
 		B_KillThievesGuild();
@@ -188,11 +202,18 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			{
 				B_StartOtherRoutine(Balthasar,"FleeDMT");
 			};
-			B_StartOtherRoutine(BAU_933_Rega,"FleeDMT");
-			B_StartOtherRoutine(BAU_934_Babera,"FleeDMT");
-			B_StartOtherRoutine(BAU_937_Bauer,"FleeDMT");
-			B_StartOtherRoutine(BAU_938_Bauer,"FleeDMT");
-			B_StartOtherRoutine(Bronko,"FleeDMT");
+			B_StartOtherRoutine(Rega,"FleeDMT");
+			B_StartOtherRoutine(Babera,"FleeDMT");
+			B_StartOtherRoutine(SekobsBauer1,"FleeDMT");
+			B_StartOtherRoutine(SekobsBauer2,"FleeDMT");
+			if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
+			{
+				B_StartOtherRoutine(Bronko,"FleeDMT_Field");
+			}
+			else
+			{
+				B_StartOtherRoutine(Bronko,"FleeDMT_Road");
+			};
 			Wld_InsertNpc(DMT_DementorAmbientSekob1,"NW_FARM4_IN_06");
 			Wld_InsertNpc(DMT_DementorAmbientSekob2,"NW_FARM4_IN_02");
 			Wld_InsertNpc(DMT_DementorAmbientSekob3,"NW_FARM4_IN_03");
@@ -346,24 +367,29 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				CreateInvItems(Fernando,ITWR_DementorObsessionBook_MIS,1);
 			};
 		};
-		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && !Npc_IsDead(Canthar))
+		if(!Npc_IsDead(Canthar))
 		{
-			if(SarahWeaponsRemoved == FALSE)
+			if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE))
 			{
-				B_GiveTradeInv_Sarah(Sarah);
-				B_RemoveSarahWeapons();
+				if(SarahWeaponsRemoved == FALSE)
+				{
+					B_GiveTradeInv_Sarah(Sarah);
+					B_RemoveSarahWeapons();
+				};
+				B_RemoveNpc(Sarah);
+				B_NpcSetReleased(Canthar);
+				Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
+				Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
+				Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
+				B_StartOtherRoutine(Canthar,"MARKTSTAND");
+				AI_Teleport(Canthar,"NW_CITY_SARAH");
+				Canthar_Sperre = TRUE;
 			};
-			B_RemoveNpc(Sarah);
-			B_NpcSetReleased(Canthar);
-			Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
-			B_StartOtherRoutine(Canthar,"MARKTSTAND");
-			AI_Teleport(Canthar,"NW_CITY_SARAH");
-			Canthar_Sperre = TRUE;
-			Canthar_WiederRaus = TRUE;
+			if((Canthar.aivar[AIV_LastFightComment] == FALSE) && (Canthar.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))
+			{
+				Canthar_Sperre = TRUE;
+			};
 		};
-//		CreateInvItems(Lester,ItMw_1h_Bau_Axe,1);
 		if(!Npc_IsDead(Ehnim))
 		{
 			CreateInvItems(Ehnim,ItMi_Moleratlubric_MIS,1);

@@ -12,10 +12,7 @@ instance DIA_Gritta_EXIT(C_Info)
 
 func int DIA_Gritta_EXIT_Condition()
 {
-	if(Kapitel <= 2)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Gritta_EXIT_Info()
@@ -265,32 +262,10 @@ func void DIA_Gritta_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Gritta_PERM_16_03");	//Что еще тебе нужно? Ты получил мое золото! Убирайся!
 	};
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Gritta_Kap3_EXIT(C_Info)
-{
-	npc = VLK_418_Gritta;
-	nr = 999;
-	condition = DIA_Gritta_Kap3_EXIT_Condition;
-	information = DIA_Gritta_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Gritta_Kap3_EXIT_Condition()
-{
-	if(Kapitel >= 3)
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
 	{
-		return TRUE;
+		AI_StopProcessInfos(self);
 	};
-};
-
-func void DIA_Gritta_Kap3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

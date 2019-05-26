@@ -544,7 +544,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItMi_CoragonsSilber,1);
 	CreateInvItems(self,ItMi_TheklasPaket,1);
 	CreateInvItems(self,ItMi_MariasGoldPlate,1);
-	CreateInvItems(self,ItRi_ValentinosRing,1);
+	CreateInvItems(self,ItRi_Prot_Edge_01_Valentino,1);
 	CreateInvItems(self,ItKe_Dexter,1);
 	CreateInvItems(self,ItWr_Kraeuterliste,1);
 	CreateInvItems(self,ItWr_ManaRezept,1);

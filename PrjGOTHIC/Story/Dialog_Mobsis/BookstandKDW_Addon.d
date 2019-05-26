@@ -37,12 +37,13 @@ func void Use_Runemaking_KDW_CIRC1_S1()
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Чтобы создать руну, всегда необходим КАЖДЫЙ из вышеперечисленных ингредиентов.");
+		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes1);
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Маг должен знать формулу заклинания и должен иметь чистый рунный камень и свиток желаемого заклинания.");
+		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes2);
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Только при выполнении этих условий он может приступить к работе за рунным столом.");
+		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes3);
 		Doc_Show(nDocID);
+		SC_KnowsBlankRuneForFirebolt = TRUE;
 	};
 };
 

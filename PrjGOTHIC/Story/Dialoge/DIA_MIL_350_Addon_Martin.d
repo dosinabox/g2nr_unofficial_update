@@ -318,6 +318,7 @@ func void DIA_Addon_Martin_Auftrag_Info()
 
 func void DIA_Addon_Martin_Auftrag_weiter()
 {
+	B_EquipTrader(self);
 	MIS_Addon_Martin_GetRangar = LOG_Running;
 	MIS_Addon_Martin_GetRangar_Day = Wld_GetDay();
 	AI_StopProcessInfos(self);
@@ -476,6 +477,10 @@ func void DIA_Addon_Martin_Fernando_Info()
 		};
 		if(((FernandoHints_ItMw == TRUE) && (FernandoHints_ItRi) && (FernandoHints_Confession)) || (FernandoHints_ItWr == TRUE))
 		{
+			if(!Npc_IsDead(Fernando))
+			{
+				AI_Teleport(Fernando,"NW_CITY_HABOUR_KASERN_RENGARU");
+			};
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_07");	//Думаю, этого достаточно. Итак, Фернандо... Что ж, он получит по заслугам.
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_08");	//А он всегда так спокойно себя вел, когда речь заходила об этом.
 			AI_Output(self,other,"DIA_Addon_Martin_Fernando_07_09");	//Ну, теперь-то ему предстоит долгое время гнить за решеткой.

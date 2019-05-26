@@ -139,7 +139,7 @@ func int DIA_Thekla_Arbeit_Condition()
 
 func void DIA_Thekla_Arbeit_Info()
 {
-	AI_Output(other,self,"DIA_Thekla_Arbeit_15_00");	//Я ищу работу...
+	AI_Output(other,self,"DIA_Thekla_Arbeit_15_00");	//Я ищу работу.
 	AI_Output(self,other,"DIA_Thekla_Arbeit_17_01");	//Ты хочешь работать здесь, на ферме?
 	AI_Output(self,other,"DIA_Thekla_Arbeit_17_02");	//Этот вопрос может решить только Онар. Эта ферма его, как и вся долина.
 };
@@ -297,6 +297,7 @@ func void DIA_Thekla_AfterFight_Info()
 		AI_Output(self,other,"DIA_Thekla_AfterFight_17_05");	//Не расстраивайся так. Ты далеко не первый, кто пострадал от этой сволочи.
 	};
 	AI_Output(self,other,"DIA_Thekla_AfterFight_17_06");	//Вот, поешь немного. Это восстановит твои силы.
+	AI_WaitTillEnd(other,self);
 	B_GiveInvItems(self,other,ItFo_XPStew,1);
 	Thekla_GaveStew = TRUE;
 };
@@ -439,7 +440,7 @@ func void DIA_Thekla_PERM_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Thekla_PERM_17_21");	//Нет трав, нет похлебки - понятно?
+		AI_Output(self,other,"DIA_Thekla_PERM_17_21");	//Нет трав - нет похлебки, понятно?
 	};
 };
 

@@ -540,7 +540,7 @@ func void b_enter_oldworld()
 	{
 		B_ENTER_OLDWORLD_Kapitel_6();
 	};
-	CurrentLevel = OldWorld_Zen;
+	CurrentLevel = OLDWORLD_ZEN;
 	B_InitNpcGlobals();
 	if((DJG_BiffParty == TRUE) && !Npc_IsDead(Biff))
 	{

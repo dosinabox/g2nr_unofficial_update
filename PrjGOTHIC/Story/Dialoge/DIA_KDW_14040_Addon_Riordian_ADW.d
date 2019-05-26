@@ -224,6 +224,29 @@ func void DIA_Addon_Riordian_HousesOfRulers_Info()
 };
 
 
+var int B_WhereAreHousesOfRulersOneTime;
+
+func void B_WhereAreHousesOfRulers()
+{
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_00");	//Дворец ученых - это огромная библиотека. Она находится далеко на севере.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_01");	//Дворец воинов расположен на востоке. Он представляет из себя крепость, окруженную скалами.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_02");	//Дворцы жрецов и стражей мертвых расположены недалеко друг от друга. Ты найдешь их на юго-западе.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_03");	//А дворец-госпиталь целителей должен быть где-то на юго-востоке.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_04");	//Если эти дворцы еще сохранились, ты узнаешь их по особой манере постройки.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_05");	//Все дворцы строились на возвышениях. К украшенному колоннами входу в каждый из них вела крутая лестница.
+	if(B_WhereAreHousesOfRulersOneTime == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_06");	//Надеюсь, тебе это поможет.
+		Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
+		B_LogEntry(TOPIC_Addon_HousesOfRulers,"Замок ученых - это огромная библиотека. Она находится где-то на севере.");
+		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замок воинов - это окруженная скалами крепость на востоке.");
+		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замки жрецов и стражей мертвых находятся недалеко друг от друга. Я смогу найти их на юго-западе.");
+		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Дворец-госпиталь целителей находится на юго-востоке.");
+		B_WhereAreHousesOfRulersOneTime = TRUE;
+	};
+};
+
 instance DIA_Addon_Riordian_WhereAreHouses(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
@@ -243,36 +266,10 @@ func int DIA_Addon_Riordian_WhereAreHouses_Condition()
 };
 
 
-var int B_WhreAreHousesOfRulersOneTime;
-
-func void B_WhreAreHousesOfRulers()
-{
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_00");	//Дворец ученых - это огромная библиотека. Она находится далеко на севере.
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_01");	//Дворец воинов расположен на востоке. Он представляет из себя крепость, окруженную скалами.
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_02");	//Дворцы жрецов и стражей мертвых расположены недалеко друг от друга. Ты найдешь их на юго-западе.
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_03");	//А дворец-госпиталь целителей должен быть где-то на юго-востоке.
-	if(B_WhreAreHousesOfRulersOneTime == FALSE)
-	{
-		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_04");	//Если эти дворцы еще сохранились, ты узнаешь их по особой манере постройки.
-	};
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_05");	//Все дворцы строились на возвышениях. К украшенному колоннами входу в каждый из них вела крутая лестница.
-	if(B_WhreAreHousesOfRulersOneTime == FALSE)
-	{
-		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_06");	//Надеюсь, тебе это поможет.
-		Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
-		B_LogEntry(TOPIC_Addon_HousesOfRulers,"Замок ученых - это огромная библиотека. Она находится где-то на севере.");
-		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замок воинов - это окруженная скалами крепость на востоке.");
-		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замки жрецов и стражей мертвых находятся недалеко друг от друга. Я смогу найти их на юго-западе.");
-		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Дворец-госпиталь целителей находится на юго-востоке.");
-		B_WhreAreHousesOfRulersOneTime = TRUE;
-	};
-};
-
 func void DIA_Addon_Riordian_WhereAreHouses_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_WhereAreHouses_15_00");	//Где находятся пять дворцов?
-	B_WhreAreHousesOfRulers();
+	B_WhereAreHousesOfRulers();
 };
 
 
@@ -368,7 +365,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_21");	//Напомни мне, где они находятся?
-		B_WhreAreHousesOfRulers();
+		B_WhereAreHousesOfRulers();
 	};
 };
 

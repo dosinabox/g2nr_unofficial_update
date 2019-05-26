@@ -12,10 +12,6 @@ instance DIA_Addon_Francis_EXIT(C_Info)
 
 func int DIA_Addon_Francis_EXIT_Condition()
 {
-/*	if(GregIsBack == FALSE)
-	{
-		return TRUE;
-	};*/
 	return TRUE;
 };
 
@@ -38,7 +34,7 @@ instance DIA_Addon_Francis_First(C_Info)
 
 func int DIA_Addon_Francis_First_Condition()
 {
-	if((Knows_GregsHut == FALSE) && (Francis_ausgeschissen == FALSE) && Npc_HasItems(self,ITKE_Greg_ADDON_MIS))
+	if((Knows_GregsHut == FALSE) && (Francis_ausgeschissen == FALSE) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
 	{
 		return TRUE;
 	};
@@ -65,7 +61,7 @@ instance DIA_Addon_Francis_LetMeIn(C_Info)
 
 func int DIA_Addon_Francis_LetMeIn_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Francis_First) || (Knows_GregsHut == TRUE)) && (Francis_ausgeschissen == FALSE) && Npc_HasItems(self,ITKE_Greg_ADDON_MIS))
+	if((Npc_KnowsInfo(other,DIA_Addon_Francis_First) || (Knows_GregsHut == TRUE)) && (Francis_ausgeschissen == FALSE) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
 	{
 		return TRUE;
 	};
@@ -129,7 +125,7 @@ instance DIA_Addon_Francis_Key(C_Info)
 
 func int DIA_Addon_Francis_Key_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Francis_LetMeIn) && Npc_HasItems(self,ITKE_Greg_ADDON_MIS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Francis_LetMeIn) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
 	{
 		return TRUE;
 	};
@@ -169,7 +165,7 @@ func void DIA_Addon_Francis_Key_2000Gold()
 		AI_Output(self,other,"DIA_Addon_Francis_Key_2000Gold_13_04");	//Вот ключ!
 		AI_Output(self,other,"DIA_Addon_Francis_Key_2000Gold_13_05");	//Быстрее, пока Грег не вернулся. И не смей никому рассказывать об этом, понял?!
 		B_GiveInvItems(other,self,ItMi_Gold,2000);
-		B_GiveInvItems(self,other,ITKE_Greg_ADDON_MIS,1);
+		B_GiveInvItems(self,other,ItKe_Greg_Addon_MIS,1);
 		Francis_bezahlt = TRUE;
 	}
 	else
@@ -193,7 +189,7 @@ instance DIA_Addon_Francis_AufsMaul(C_Info)
 
 func int DIA_Addon_Francis_AufsMaul_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Francis_LetMeIn) && Npc_HasItems(self,ITKE_Greg_ADDON_MIS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Francis_LetMeIn) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
 	{
 		return TRUE;
 	};
@@ -237,7 +233,7 @@ func void DIA_Addon_Francis_Buch_Info()
 	AI_Output(self,other,"DIA_Addon_Francis_Buch_13_03");	//Ты же не думаешь, что парни поверят ТЕБЕ, не так ли?
 	AI_Output(other,self,"DIA_Addon_Francis_Key_Business_15_01");	//Ты обманул их и лишил законной добычи.
 	AI_Output(self,other,"DIA_Addon_Francis_Buch_13_04");	//Эээ... подожди немного...
-	if(Npc_HasItems(self,ITKE_Greg_ADDON_MIS))
+	if(Npc_HasItems(self,ItKe_Greg_Addon_MIS))
 	{
 		if(Npc_KnowsInfo(other,DIA_Addon_Francis_LetMeIn))
 		{
@@ -248,7 +244,7 @@ func void DIA_Addon_Francis_Buch_Info()
 		AI_Output(self,other,"DIA_Addon_Francis_Buch_13_08");	//(нервно) Но ты должен отдать мне книгу и держать свой рот на замке, идет?
 		B_GiveInvItems(other,self,ITWR_Addon_FrancisAbrechnung_Mis,1);
 		Npc_RemoveInvItem(self,ITWR_Addon_FrancisAbrechnung_Mis);
-		B_GiveInvItems(self,other,ITKE_Greg_ADDON_MIS,1);
+		B_GiveInvItems(self,other,ItKe_Greg_Addon_MIS,1);
 	}
 	else
 	{
@@ -285,10 +281,10 @@ instance DIA_Francis_PICKPOCKET(C_Info)
 
 func int DIA_Francis_PICKPOCKET_Condition()
 {
-//	return C_StealItems(40,Hlp_GetInstanceID(ITKE_Greg_ADDON_MIS),1);
-	if(Npc_HasItems(self,ITKE_Greg_ADDON_MIS))
+//	return C_StealItems(40,Hlp_GetInstanceID(ItKe_Greg_Addon_MIS),1);
+	if(Npc_HasItems(self,ItKe_Greg_Addon_MIS))
 	{
-		return C_StealItem(40,Hlp_GetInstanceID(ITKE_Greg_ADDON_MIS));
+		return C_StealItem(40,Hlp_GetInstanceID(ItKe_Greg_Addon_MIS));
 	}
 	else
 	{
@@ -305,8 +301,8 @@ func void DIA_Francis_PICKPOCKET_Info()
 
 func void DIA_Francis_PICKPOCKET_DoIt()
 {
-//	B_StealItems(40,Hlp_GetInstanceID(ITKE_Greg_ADDON_MIS),1);
-	B_StealItem(40,Hlp_GetInstanceID(ITKE_Greg_ADDON_MIS));
+//	B_StealItems(40,Hlp_GetInstanceID(ItKe_Greg_Addon_MIS),1);
+	B_StealItem(40,Hlp_GetInstanceID(ItKe_Greg_Addon_MIS));
 	Info_ClearChoices(DIA_Francis_PICKPOCKET);
 };
 
@@ -337,11 +333,15 @@ func int DIA_Francis_Ausgeschissen_Condition()
 
 func void DIA_Francis_Ausgeschissen_Info()
 {
-	if(!Npc_IsDead(Greg))
-	{
-		AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_00");	//(гневно) Благодаря тебе Грег заставил меня пилить дрова до тех пор, пока на острове не останется ни одного дерева.
-	};
+	AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_00");	//(гневно) Благодаря тебе Грег заставил меня пилить дрова до тех пор, пока на острове не останется ни одного дерева.
 	AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_01");	//Оставь меня в покое!
-	AI_StopProcessInfos(self);
+	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
+	{
+		AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_00");	//Не так быстро, мой друг.
+	}
+	else
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 

@@ -446,15 +446,15 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItKe_City_Tower_04,1);
 	CreateInvItems(self,ItKe_City_Tower_05,1);
 	CreateInvItems(self,ItKe_City_Tower_06,1);
-	CreateInvItem(self,itke_portaltempelwalkthrough_addon);
-	CreateInvItem(self,ITKE_Greg_ADDON_MIS);
-	CreateInvItem(self,ITKE_Addon_Tavern_01);
-	CreateInvItem(self,itke_addon_esteban);
-	CreateInvItem(self,itke_orlan_teleportstation);
-	CreateInvItem(self,itke_canyonlibrary_hierarchy_books_addon);
-	CreateInvItem(self,itke_addon_buddler_01);
-	CreateInvItem(self,itke_addon_skinner);
-	CreateInvItem(self,ITKE_Addon_Thorus);
+	CreateInvItem(self,ItKe_PortalTempelWalkthrough_Addon);
+	CreateInvItem(self,ItKe_Greg_Addon_MIS);
+	CreateInvItem(self,ItKe_Addon_Tavern_01);
+	CreateInvItem(self,ItKe_Addon_Esteban);
+	CreateInvItem(self,ItKe_Orlan_TeleportStation);
+	CreateInvItem(self,ItKe_CanyonLibrary_Hierarchy_Books_Addon);
+	CreateInvItem(self,ItKe_Addon_Buddler_01);
+	CreateInvItem(self,ItKe_Addon_Skinner);
+	CreateInvItem(self,ItKe_Addon_Thorus);
 	CreateInvItems(self,ItLsTorch,50);
 	CreateInvItems(self,ItLsTorchburned,50);
 	CreateInvItems(self,ItMi_Pan,1);
@@ -678,7 +678,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_CoragonsSilber,1);
 	CreateInvItems(self,ItMi_TheklasPaket,1);
 	CreateInvItems(self,ItMi_MariasGoldPlate,1);
-	CreateInvItems(self,ItRi_ValentinosRing,1);
+	CreateInvItems(self,ItRi_Prot_Edge_01_Valentino,1);
 	CreateInvItems(self,ItKe_Dexter,1);
 	CreateInvItems(self,ItWr_Kraeuterliste,1);
 	CreateInvItems(self,ItWr_ManaRezept,1);
@@ -746,7 +746,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Manowar,1);
 	CreateInvItems(self,ItWr_KDWLetter,1);
 	CreateInvItems(self,ItWr_GilbertLetter,1);
-	CreateInvItems(self,ItRi_Tengron,1);
+	CreateInvItems(self,ItRi_HP_01_Tengron,1);
 	CreateInvItems(self,ItMi_InnosEye_MIS,1);
 	CreateInvItems(self,ItMi_InnosEye_Discharged_Mis,1);
 	CreateInvItems(self,ItMi_InnosEye_Broken_Mis,1);
@@ -824,7 +824,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Map_NewWorld_Dexter,1);
 	CreateInvItems(self,ItRi_Ranger_Lares_Addon,1);
 	CreateInvItems(self,ItRi_Ranger_Addon,1);
-	CreateInvItems(self,ItRi_LanceRing,1);
+	CreateInvItems(self,ItRi_Ranger_Lance_Addon,1);
 	CreateInvItems(self,ItMi_PortalRing_Addon,1);
 	CreateInvItems(self,ItWr_Martin_MilizEmpfehlung_Addon,1);
 	CreateInvItems(self,ItWr_RavensKidnapperMission_Addon,1);
@@ -1496,7 +1496,7 @@ func void UseHoshiTagebuch()
 };
 
 
-/*instance D36TestRune(C_Item)
+instance D36TestRune(C_Item)
 {
 	name = "Великая руна тестов";
 	mainflag = ITEM_KAT_DOCS;
@@ -1518,7 +1518,8 @@ func void UseD36TestRune()
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
 	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
-};*/
+	MIS_KilledDragons += 1;
+};
 
 instance WastelandRune(C_Item)
 {

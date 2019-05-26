@@ -39,31 +39,7 @@ func void ZS_Dead()
 //			B_MagicHurtNpc(self,other,50);
 		};
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DiegoOW))
-	{
-		Diego_IsDead = TRUE;
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skip))
-	{
-		if(MIS_ADDON_SkipsGrog == LOG_Running)
-		{
-			MIS_ADDON_SkipsGrog = LOG_OBSOLETE;
-		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Brandon))
-	{
-		if(MIS_Brandon_BringHering == LOG_Running)
-		{
-			MIS_Brandon_BringHering = LOG_OBSOLETE;
-		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Kervo))
-	{
-		if(MIS_Kervo_KillLurker == LOG_Running)
-		{
-			MIS_Kervo_KillLurker = LOG_FAILED;
-		};
-	};
+	B_CheckDeadMissionNPCs(self);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
 	{
 		if((MayaScrollGiven == FALSE) && (Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) == 0))
@@ -127,14 +103,6 @@ func void ZS_Dead()
 			Bloodwyn_Spawn = TRUE;
 		};
 	};
-	/*if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(IceDragon))
-	{
-		if(!Npc_IsDead(IceGolem_Sylvio1) || !Npc_IsDead(IceGolem_Sylvio2))
-		{
-			IceGolem_Sylvio1.flags = 0;
-			IceGolem_Sylvio2.flags = 0;
-		};
-	};*/
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);
 	B_ClearRuneInv(self);

@@ -53,6 +53,7 @@ Story\B_Story\B_GivePlayerXP.d
 Story\B_Content\B_ScUsesRake.d
 Story\B_GiveTradeInv\B_ClearRuneInv.d
 Story\B_Story\B_KillNpc.d
+Story\B_Story\B_CheckDeadMissionNPCs.d
 Story\B_Story\B_RemoveNpc.d
 Story\B_Content\B_RemoveQuarhodron.d
 Story\B_Content\B_PlayerFindItem.d

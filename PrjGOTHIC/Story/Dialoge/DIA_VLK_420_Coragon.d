@@ -395,7 +395,7 @@ instance DIA_Coragon_Ring(C_Info)
 
 func int DIA_Coragon_Ring_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Coragon_Valentino) && Npc_HasItems(other,ItRi_ValentinosRing))
+	if(Npc_KnowsInfo(other,DIA_Coragon_Valentino) && Npc_HasItems(other,ItRi_Prot_Edge_01_Valentino))
 	{
 		return TRUE;
 	};
@@ -404,8 +404,8 @@ func int DIA_Coragon_Ring_Condition()
 func void DIA_Coragon_Ring_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_39");	//Вот - возьми это кольцо.
-	B_GiveInvItems(other,self,ItRi_ValentinosRing,1);
-	Npc_RemoveInvItems(self,ItRi_ValentinosRing,1);
+	B_GiveInvItems(other,self,ItRi_Prot_Edge_01_Valentino,1);
+	Npc_RemoveInvItems(self,ItRi_Prot_Edge_01_Valentino,1);
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_40");	//Что? Не понимаю...
 	AI_Output(other,self,"DIA_Coragon_Add_15_41");	//Оно принадлежало Валентино.
 	AI_Output(other,self,"DIA_Coragon_Add_15_42");	//Ты можешь передать его следующему, кто отдубасит его...

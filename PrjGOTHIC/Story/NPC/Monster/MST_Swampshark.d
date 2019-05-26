@@ -84,6 +84,6 @@ instance MIS_Addon_Swampshark_Lou(Mst_Default_Swampshark)
 {
 	B_SetVisuals_Swampshark();
 	Npc_SetToFistMode(self);
-	CreateInvItems(self,ITKE_Addon_Tavern_01,1);
+	CreateInvItems(self,ItKe_Addon_Tavern_01,1);
 };
 

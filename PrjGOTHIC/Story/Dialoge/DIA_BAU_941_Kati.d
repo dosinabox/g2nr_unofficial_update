@@ -12,10 +12,7 @@ instance DIA_Kati_EXIT(C_Info)
 
 func int DIA_Kati_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Kati_EXIT_Info()
@@ -37,9 +34,12 @@ instance DIA_Kati_SLDNOCHDA(C_Info)
 
 func int DIA_Kati_SLDNOCHDA_Condition()
 {
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
 	{
-		return TRUE;
+		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -86,8 +86,8 @@ func void DIA_Kati_HALLO_Info()
 	if(Npc_IsDead(Akil))
 	{
 		AI_Output(self,other,"DIA_Kati_HALLO_16_01");	//(рыдает) Мой любимый муж мертв! Ох, Иннос, за что ты меня так наказываешь?!
-		B_GivePlayerXP(XP_Akil_Tot);
 		TOPIC_END_AkilsSLDStillthere = TRUE;
+		B_GivePlayerXP(XP_Akil_Tot);
 	}
 	else
 	{
@@ -128,10 +128,8 @@ func int DIA_Kati_ESSEN_Condition()
 
 func void DIA_Kati_ESSEN_Info()
 {
-//	var string concatText;
 	AI_Output(other,self,"DIA_Kati_ESSEN_15_00");	//Акил говорит, что ты можешь накормить меня.
 	AI_Output(self,other,"DIA_Kati_ESSEN_16_01");	//С тех пор, как рухнул Барьер, для нас настали тяжелые времена. Жить здесь стало небезопасно.
-//	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба, немного мяса и бутылку воды. Извини, но это все, чем мы можем поделиться.
 	AI_Output(self,other,"DIA_Kati_ESSEN_16_02");	//Вот, держи ломоть хлеба и немного молока и бутылку воды. Извини, но это все, чем мы можем поделиться.
 	Npc_RemoveInvItem(self,ItFo_Bread);
 	CreateInvItem(other,ItFo_Bread);
@@ -139,9 +137,6 @@ func void DIA_Kati_ESSEN_Info()
 	CreateInvItem(other,ItFo_Milk);
 	Npc_RemoveInvItem(self,ItFo_Water);
 	CreateInvItem(other,ItFo_Water);
-//	Npc_RemoveInvItem(self,ItFoMutton);
-//	CreateInvItem(other,ItFoMutton);
-//	concatText = ConcatStrings(IntToString(3),PRINT_ItemsErhalten);
 	AI_PrintScreen("Хлеб получено",-1,40,FONT_ScreenSmall,2);
 	AI_PrintScreen("Молоко получено",-1,43,FONT_ScreenSmall,2);
 	AI_PrintScreen("Вода получено",-1,46,FONT_ScreenSmall,2);
@@ -313,31 +308,6 @@ func void DIA_Kati_PERMKAP1_Info()
 };
 
 
-instance DIA_Kati_KAP3_EXIT(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 999;
-	condition = DIA_Kati_KAP3_EXIT_Condition;
-	information = DIA_Kati_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Kati_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kati_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Kati_PERM(C_Info)
 {
 	npc = BAU_941_Kati;
@@ -364,81 +334,6 @@ func void DIA_Kati_PERM_Info()
 	AI_Output(self,other,"DIA_Kati_PERM_16_02");	//Я так долго не вынесу. Они шныряют вокруг дома и везде суют свой нос.
 };
 
-
-instance DIA_Kati_KAP4_EXIT(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 999;
-	condition = DIA_Kati_KAP4_EXIT_Condition;
-	information = DIA_Kati_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Kati_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kati_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Kati_KAP5_EXIT(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 999;
-	condition = DIA_Kati_KAP5_EXIT_Condition;
-	information = DIA_Kati_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Kati_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kati_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Kati_KAP6_EXIT(C_Info)
-{
-	npc = BAU_941_Kati;
-	nr = 999;
-	condition = DIA_Kati_KAP6_EXIT_Condition;
-	information = DIA_Kati_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Kati_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kati_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Kati_PICKPOCKET(C_Info)
 {

@@ -50,8 +50,7 @@ var int Chance;
 
 func void DIA_Engardo_HALLO_Info()
 {
-	Akils_SLDStillthere = TRUE;
-	if(Chance == FALSE)
+	if(Chance == 0)
 	{
 		if(other.guild == GIL_NONE)
 		{
@@ -59,7 +58,14 @@ func void DIA_Engardo_HALLO_Info()
 		}
 		else
 		{
-			B_Say(self,other,"$GETUPANDBEGONE");
+			B_Say(self,other,"$GETOUTOFHERE");
+		};
+		if(Akils_SLDStillthere == FALSE)
+		{
+			Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+			B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+			Akils_SLDStillthere = TRUE;
 		};
 		Chance = 1;
 		if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (other.attribute[ATR_DEXTERITY] < 24) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))

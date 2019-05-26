@@ -47,9 +47,12 @@ instance DIA_Akil_Hallo(C_Info)
 func int DIA_Akil_Hallo_Condition()
 {
 //	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk))
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && (Kapitel < 4))
+	if(Kapitel < 4)
 	{
-		return TRUE;
+		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -638,81 +641,6 @@ func void DIA_Akil_AkilsSchaf_Info()
 	B_GivePlayerXP(XP_AkilsSchaf);
 };
 
-/*
-instance DIA_Akil_KAP4_EXIT(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 999;
-	condition = DIA_Akil_KAP4_EXIT_Condition;
-	information = DIA_Akil_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Akil_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Akil_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Akil_KAP5_EXIT(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 999;
-	condition = DIA_Akil_KAP5_EXIT_Condition;
-	information = DIA_Akil_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Akil_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Akil_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Akil_KAP6_EXIT(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 999;
-	condition = DIA_Akil_KAP6_EXIT_Condition;
-	information = DIA_Akil_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Akil_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Akil_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Akil_PICKPOCKET(C_Info)
 {

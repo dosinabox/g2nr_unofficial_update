@@ -517,8 +517,6 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KnowWhereEnemy_15_00");	//Я знаю, где скрывается враг. На небольшом острове, недалеко отсюда.
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_01");	//Это наш шанс. Мы должны отправляться туда немедленно и уничтожить Зло раз и навсегда.
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
 	if(!Npc_IsDead(DiegoNW))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_02");	//Ты говорил с Диего? Я думаю, он согласится присоединиться к тебе.
@@ -544,8 +542,6 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_05");	//Я также вижу свою роль во всем этом. Я могу повысить твою ману и помочь в создании рун. Когда мы приступим?
 	if(SCToldMiltenHeKnowWhereEnemy == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew,"Если Милтен отправится в путь со мной, он может научить меня создавать руны и повысить мою ману.");
 		SCToldMiltenHeKnowWhereEnemy = TRUE;
 	};
@@ -616,8 +612,6 @@ func void DIA_MiltenNW_WhereCaptain_Info()
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_01");	//Спроси Йоргена. Он ведь моряк. Он, должно быть, все еще в монастыре.
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_02");	//Но если он не сможет помочь, попробуй поспрашивать на фермах или в городе, может быть, найдется человек, способный управлять твоим кораблем.
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_03");	//Лучше всего поговорить с Ли или поспрашивать в гавани Хориниса. Больше ничего сейчас мне в голову не приходит.
-	Log_CreateTopic(Topic_Captain,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Captain,LOG_Running);
 	B_LogEntry(Topic_Captain,"Возможно, стоит взять с собой Йоргена в качестве капитана. Он все еще должен быть в монастыре. Хотя, кроме него есть и другие кандидаты на фермах и в городе. Возможно, мне стоит поговорить с Ли или поспрашивать в гавани.");
 };
 

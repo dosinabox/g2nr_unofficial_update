@@ -552,7 +552,7 @@ func void UseGilbertLetter()
 };
 
 
-instance ItRi_Tengron(C_Item)
+instance ItRi_HP_01_Tengron(C_Item)
 {
 	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;

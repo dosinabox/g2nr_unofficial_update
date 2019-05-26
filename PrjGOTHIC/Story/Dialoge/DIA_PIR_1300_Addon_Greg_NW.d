@@ -61,7 +61,7 @@ func void DIA_Addon_Greg_NW_Hallo_Info()
 		GregWolfs = TRUE;
 	};
 	PlayerTalkedToGregNW = TRUE;
-	SC_MeetsGregTime = 1;
+//	SC_MeetsGregTime = 1;
 	Info_ClearChoices(DIA_Addon_Greg_NW_Hallo);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Мне надо идти.",DIA_Addon_Greg_NW_Hallo_weg);
 	Info_AddChoice(DIA_Addon_Greg_NW_Hallo,"Довольно болтать. Говори, чего ты хочешь.",DIA_Addon_Greg_NW_Hallo_schleim);
@@ -327,6 +327,17 @@ func void DIA_Addon_Greg_NW_wer_Info()
 };
 
 
+func void B_Greg_Search_Dexter()
+{
+	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_00");	//Мне нужно найти одного человека. В городе его нет, и где его искать, тоже никто не знает.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_01");	//Он тощий, волосы у него черные, и он носит доспехи красного цвета.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_02");	//Насколько мне известно, он был заключенным в колонии. А имя его вроде бы начинается с буквы 'Д'.
+	Log_CreateTopic(TOPIC_Addon_Greg_NW,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Addon_Greg_NW,LOG_Running);
+	B_LogEntry(TOPIC_Addon_Greg_NW,"Человек с повязкой на глазу ищет кого-то, чье имя начинается на букву 'Д'.");
+	SC_KnowsGregsSearchsDexter = TRUE;
+};
+
 instance DIA_Addon_Greg_NW_was(C_Info)
 {
 	npc = PIR_1300_Addon_Greg_NW;
@@ -343,17 +354,6 @@ func int DIA_Addon_Greg_NW_was_Condition()
 	{
 		return TRUE;
 	};
-};
-
-func void B_Greg_Search_Dexter()
-{
-	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_00");	//Мне нужно найти одного человека. В городе его нет, и где его искать, тоже никто не знает.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_01");	//Он тощий, волосы у него черные, и он носит доспехи красного цвета.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_Search_Dexter_01_02");	//Насколько мне известно, он был заключенным в колонии. А имя его вроде бы начинается с буквы 'Д'.
-	Log_CreateTopic(TOPIC_Addon_Greg_NW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Greg_NW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Greg_NW,"Человек с повязкой на глазу ищет кого-то, чье имя начинается на букву 'Д'.");
-	SC_KnowsGregsSearchsDexter = TRUE;
 };
 
 func void DIA_Addon_Greg_NW_was_Info()
@@ -756,11 +756,11 @@ func int DIA_Addon_Greg_NW_Bigcross_Condition()
 
 func void DIA_Addon_Greg_NW_Bigcross_Info()
 {
+	AI_Output(other,self,"DIA_Addon_Greg_NW_Bigcross_15_01");	//Как дела?
 	if((MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_00");	//Это же наш господин Ненадежность!
 	};
-	AI_Output(other,self,"DIA_Addon_Greg_NW_Bigcross_15_01");	//Как дела?
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_02");	//Так себе. От наемников оказалось мало пользы.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_03");	//Я ожидал, что они - храбрые ребята.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_04");	//Но на поверку оказалось, что это всего лишь болтливые хвастуны.
@@ -972,10 +972,10 @@ func void DIA_Addon_Greg_NW_CaughtDexter2_Info()
 
 func void B_GregTalksAboutPortal()
 {
-	if(GregToldAboutPortal == FALSE)
+	if(Greg_KnowsPortal == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_04");	//Скажи, ты, случайно, не знаешь, как попасть за горный хребет на северо-востоке Хориниса?
-		if(Npc_KnowsInfo(other,DIA_Addon_Nefarius_keineahnung) || Npc_KnowsInfo(other,DIA_Addon_Nefarius_SCbringOrnaments) || Npc_KnowsInfo(other,DIA_Addon_Riordian_Atlantis) || Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) || Npc_KnowsInfo(other,DIA_Addon_Vatras_CloseMeeting))
+		if(SC_KnowsPortal == TRUE)
 		{
 			AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_05");	//Возможно, через портал, который обнаружили маги Воды.
 			AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
@@ -984,7 +984,7 @@ func void B_GregTalksAboutPortal()
 		AI_Output(other,self,"DIA_Addon_Greg_NW_RavensLetter_15_08");	//Нет.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_09");	//(вздыхает) Значит, я здесь застрял.
 		AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_10");	//На Декстера у меня была последняя надежда.
-		GregToldAboutPortal = TRUE;
+		Greg_KnowsPortal = TRUE;
 	};
 };
 

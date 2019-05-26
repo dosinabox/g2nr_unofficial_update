@@ -1701,37 +1701,37 @@ instance OW_BIRD9_A1(C_SFX_DEF)
 
 instance OW_BIRD10(C_SFX_DEF)
 {
-	file = "bird_10.wav";
+	file = "bird10.wav";
 	vol = 80;
 };
 
 instance OW_BIRD11(C_SFX_DEF)
 {
-	file = "bird_11.wav";
+	file = "bird11.wav";
 	vol = 80;
 };
 
 instance OW_BIRD11_A1(C_SFX_DEF)
 {
-	file = "bird_11b.wav";
+	file = "bird11b.wav";
 	vol = 80;
 };
 
 instance OW_BIRD11_A2(C_SFX_DEF)
 {
-	file = "bird_11c.wav";
+	file = "bird11c.wav";
 	vol = 80;
 };
 
 instance OW_BIRD12(C_SFX_DEF)
 {
-	file = "bird_12.wav";
+	file = "bird12.wav";
 	vol = 80;
 };
 
 instance OW_BIRD12_A1(C_SFX_DEF)
 {
-	file = "bird_12b.wav";
+	file = "bird12b.wav";
 	vol = 80;
 };
 
@@ -3309,7 +3309,7 @@ instance DRG_AMBIENT_A4(C_SFX_DEF)
 
 instance DRG_AMBIENT_A5(C_SFX_DEF)
 {
-	file = "DRG_Ambient_06.wav";
+	file = "DRG_Ambient_05.wav";
 	vol = 127;
 };
 
@@ -3357,13 +3357,13 @@ instance DRG_HURT_A3(C_SFX_DEF)
 
 instance DRG_DIE(C_SFX_DEF)
 {
-	file = "DRG_Rock_Die_01.wav";
+	file = "DRG_Die_01.wav";
 	vol = 127;
 };
 
 instance DRG_FALL(C_SFX_DEF)
 {
-	file = "DRG_Rock_Fall_01.wav";
+	file = "DRG_Fall_01.wav";
 	vol = 127;
 };
 
@@ -3387,49 +3387,49 @@ instance DRG_ROCK_CRUMBLE_A2(C_SFX_DEF)
 
 instance DRG_ROCK_AMBIENT(C_SFX_DEF)
 {
-	file = "DRG_Rock_Ambient_01.wav";
+	file = "DRG_Ambient_01.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_AMBIENT_A1(C_SFX_DEF)
 {
-	file = "DRG_Rock_Ambient_02.wav";
+	file = "DRG_Ambient_02.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_AMBIENT_A2(C_SFX_DEF)
 {
-	file = "nosound.wav";
+	file = "DRG_Ambient_03.wav";
 	vol = 0;
 };
 
 instance DRG_ROCK_AMBIENT_A3(C_SFX_DEF)
 {
-	file = "nosound.wav";
+	file = "DRG_Ambient_04.wav";
 	vol = 0;
 };
 
 instance DRG_ROCK_ATTACK(C_SFX_DEF)
 {
-	file = "DRG_Rock_Attack_01.wav";
+	file = "DRG_Attack_01.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_ATTACK_A1(C_SFX_DEF)
 {
-	file = "DRG_Rock_Attack_02.wav";
+	file = "DRG_Attack_02.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_DIE(C_SFX_DEF)
 {
-	file = "DRG_Rock_Die_01.wav";
+	file = "DRG_Die_01.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_FALL(C_SFX_DEF)
 {
-	file = "DRG_Rock_Fall_01.wav";
+	file = "DRG_Fall_01.wav";
 	vol = 127;
 };
 

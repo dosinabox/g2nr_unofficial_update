@@ -76,7 +76,7 @@ instance OrcShaman_Sit_CanyonLibraryKey(Mst_Default_OrcShaman)
 //	EquipItem(self,ItMw_2H_OrcAxe_01);
 	B_SetVisuals_Hosh_Pak();
 	EquipItem(self,ItMw_2H_OrcAxe_03);
-	CreateInvItems(self,itke_canyonlibrary_hierarchy_books_addon,1);
+	CreateInvItems(self,ItKe_CanyonLibrary_Hierarchy_Books_Addon,1);
 	start_aistate = ZS_MM_AllScheduler;
 	aivar[AIV_MM_OrcSitStart] = OnlyRoutine;
 };

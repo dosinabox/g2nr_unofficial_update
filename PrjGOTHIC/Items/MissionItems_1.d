@@ -161,7 +161,7 @@ instance ItMi_MariasGoldPlate(C_Item)
 	count[5] = value;
 };
 
-instance ItRi_ValentinosRing(C_Item)
+instance ItRi_Prot_Edge_01_Valentino(C_Item)
 {
 	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;
@@ -393,7 +393,7 @@ instance ItFo_SmellyFish(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MISSION;
 	value = 20;
-	visual = "ItFo_Fish_02.3DS";
+	visual = "ItFo_SmellyFish.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOODHUGE";
 	on_state[0] = Use_SmellyFish;

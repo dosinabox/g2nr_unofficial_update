@@ -179,15 +179,3 @@ func void B_SchlussMitRangerMeeting()
 	Lares_HaltsMaul = LOG_OBSOLETE;
 };
 
-func int AnyRangerRingEquipped()
-{
-	if((RangerRingIsLaresRing == TRUE) || (RangerRingIsMyRing == TRUE) || (RangerRingIsLanceRing == TRUE))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	};
-};
-

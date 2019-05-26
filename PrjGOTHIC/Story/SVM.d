@@ -189,6 +189,7 @@ class C_SVM
 	var string addon_noarmor_bdt;
 	var string addon_diebandit;
 	var string addon_dirtypirate;
+	var string ILikeIt;
 	var string SC_HeyTurnAround;
 	var string SC_HeyTurnAround02;
 	var string SC_HeyTurnAround03;
@@ -1743,6 +1744,7 @@ instance SVM_9(C_SVM)
 	addon_noarmor_bdt = "SVM_9_ADDON_ADDON_NOARMOR_BDT";	//У тебя даже нет доспехов. Отвали!
 	addon_diebandit = "SVM_9_ADDON_DIEBANDIT";	//Теперь твоя очередь, разбойник!
 	addon_dirtypirate = "SVM_9_ADDON_DIRTYPIRATE";	//Тебе не следовало показываться здесь, пират!
+	ILikeIt = "SVM_9_MonsterKilled";	//Мне это даже нравится!
 };
 
 instance SVM_10(C_SVM)
@@ -2710,7 +2712,7 @@ instance SVM_15(C_SVM)
 	Aargh_3 = "SVM_15_Aargh_3";	//Аааааа!
 	Dead = "SVM_15_Dead";	//Аааааа!
 	Awake = "SVM_15_Awake";	//(просыпается)
-	irdoraththereyouare = "SVM_15_IRDORATHTHEREYOUARE";	//Ммм. Так вот ты где скрываешься. Чертовски далеко. Ммм. Чтобы добраться туда, мне понадобится корабль.
+	irdoraththereyouare = "SVM_15_IRDORATHTHEREYOUARE";	//Ммм. Так вот где ты скрываешься. Чертовски далеко. Чтобы туда добраться, мне понадобится корабль.
 	healshrine = "SVM_15_HEALSHRINE";	//Иннос, даруй мне свою помощь и очисти этот алтарь.
 //	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и все такое... Вот так. Надеюсь, это было в последний раз.
 	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и очисти этот алтарь. Вот так. Надеюсь, это был последний.

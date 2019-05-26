@@ -37,10 +37,35 @@ instance DIA_Hanna_Hello(C_Info)
 
 func int DIA_Hanna_Hello_Condition()
 {
-	if(Andre_FoundThieves_KilledByMilitia == FALSE)
+	if(Andre_FoundThieves_KilledByMilitia == TRUE)
 	{
-		return TRUE;
+		return FALSE;
 	};
+	if(Andre_FoundThieves_Reported == TRUE)
+	{
+		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+		{
+			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+			{
+				return FALSE;
+			};
+		};
+	};
+	if(Hanna_ThievesIsDead == TRUE)
+	{
+		if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
+		{
+			if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) || Npc_KnowsInfo(other,DIA_Hanna_Blubb) || Npc_KnowsInfo(other,DIA_Hanna_Blubb2))
+			{
+				return FALSE;
+			};
+		};
+	};
+	if(Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE))
+	{
+		return FALSE;
+	};
+	return TRUE;
 };
 
 func void DIA_Hanna_Hello_Info()
@@ -426,7 +451,31 @@ instance DIA_Hanna_AusKeller(C_Info)
 
 func int DIA_Hanna_AusKeller_Condition()
 {
-	if((Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE)) && (Andre_FoundThieves_KilledByMilitia == FALSE))
+	if(Andre_FoundThieves_KilledByMilitia == TRUE)
+	{
+		return FALSE;
+	};
+	if(Andre_FoundThieves_Reported == TRUE)
+	{
+		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
+		{
+			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
+			{
+				return FALSE;
+			};
+		};
+	};
+	if(Hanna_ThievesIsDead == TRUE)
+	{
+		if(Hanna_ThievesIsDead_Day <= (Wld_GetDay() - 2))
+		{
+			if(Npc_KnowsInfo(other,DIA_Hanna_AusKeller) || Npc_KnowsInfo(other,DIA_Hanna_Blubb) || Npc_KnowsInfo(other,DIA_Hanna_Blubb2))
+			{
+				return FALSE;
+			};
+		};
+	};
+	if(Npc_HasItems(other,ItKe_ThiefGuildKey_Hotel_MIS) || (Knows_SecretSign == TRUE))
 	{
 		return TRUE;
 	};
@@ -434,15 +483,7 @@ func int DIA_Hanna_AusKeller_Condition()
 
 func void DIA_Hanna_AusKeller_Info()
 {
-	if((Cassia.aivar[AIV_KilledByPlayer] == TRUE) || (Jesper.aivar[AIV_KilledByPlayer] == TRUE) || (Ramirez.aivar[AIV_KilledByPlayer] == TRUE))
-	{
-		AI_Output(self,other,"DIA_Hanna_Add_17_27");	//Откуда... ты пришел?
-		AI_Output(other,self,"DIA_Hanna_Add_15_28");	//Я нашел кое-что интересное в твоем подвале...
-		AI_Output(self,other,"DIA_Hanna_Add_17_29");	//Что ты делал в моем подвале?!
-		AI_Output(other,self,"DIA_Hanna_Add_15_30");	//Ты прекрасно знаешь это!
-		AI_Output(self,other,"DIA_Hanna_Add_17_31");	//(холодно) Я не знаю, о чем ты говоришь...
-	}
-	else
+	if(Knows_SecretSign == TRUE)
 	{
 		AI_Output(self,other,"DIA_Hanna_Add_17_19");	//(недоверчиво) Посмотри на себя! Ты откуда такой взялся? А?
 		AI_Output(other,self,"DIA_Hanna_Add_15_20");	//(смущенно) Я...
@@ -450,6 +491,14 @@ func void DIA_Hanna_AusKeller_Info()
 		AI_Output(self,other,"DIA_Hanna_Add_17_22");	//(заговорщицки) Не говори мне. Я все знаю.
 		AI_Output(self,other,"DIA_Hanna_Add_17_23");	//Даже и не думай украсть что-нибудь здесь, понял?
 		AI_Output(self,other,"DIA_Hanna_Add_17_24");	//Мы не можем себе позволить привлекать внимание к отелю.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hanna_Add_17_27");	//Откуда... ты пришел?
+		AI_Output(other,self,"DIA_Hanna_Add_15_28");	//Я нашел кое-что интересное в твоем подвале...
+		AI_Output(self,other,"DIA_Hanna_Add_17_29");	//Что ты делал в моем подвале?!
+		AI_Output(other,self,"DIA_Hanna_Add_15_30");	//Ты прекрасно знаешь это!
+		AI_Output(self,other,"DIA_Hanna_Add_17_31");	//(холодно) Я не знаю, о чем ты говоришь...
 	};
 	if(Npc_IsDead(Cassia) && Npc_IsDead(Jesper) && Npc_IsDead(Ramirez))
 	{

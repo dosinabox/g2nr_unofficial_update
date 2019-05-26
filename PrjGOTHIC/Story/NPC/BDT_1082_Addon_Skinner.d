@@ -12,7 +12,7 @@ instance BDT_1082_Addon_Skinner(Npc_Default)
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_Betty);
 	B_CreateAmbientInv(self);
-	CreateInvItems(self,itke_addon_skinner,1);
+	CreateInvItems(self,ItKe_Addon_Skinner,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough01,BodyTex_L,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");

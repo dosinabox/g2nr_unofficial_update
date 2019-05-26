@@ -1,6 +1,6 @@
 
-const int fix_version_start = 21;
-const int least_supported = 19;
+const int fix_version_start = 22;
+const int least_supported = 21;
 var int fix_version_save;
 
 func void startup_global()
@@ -310,7 +310,7 @@ func void startup_addon_part_banditscamp_01()
 	Wld_InsertItem(ItPl_Temp_Herb,"FP_BL_ITEM_SMITH_BACK_01");
 	Wld_InsertItem(ItPo_Mana_02,"FP_ITEM_BL_TRYSTAN");
 	Wld_InsertItem(ItAm_Addon_Health,"FP_ITEM_MINE_01");
-	Wld_InsertItem(itke_addon_buddler_01,"FP_ITEM_BL_CHEST");
+	Wld_InsertItem(ItKe_Addon_Buddler_01,"FP_ITEM_BL_CHEST");
 	Wld_InsertItem(ITWr_Addon_Hinweis_02,"FP_ITEM_BL_SNAF");
 	Wld_InsertItem(ItPo_Health_Addon_04,"FP_RAVEN_01");
 	Wld_InsertItem(ItPo_Mana_Addon_04,"FP_RAVEN_02");
@@ -1835,7 +1835,7 @@ func void init_oldworld()
 	b_cycle_function();
 	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
 	{
-		B_Kapitelwechsel(4,OldWorld_Zen);
+		B_Kapitelwechsel(4,OLDWORLD_ZEN);
 		B_Chapter4_OneTime = TRUE;
 	};
 };
@@ -1973,22 +1973,22 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(PAL_227_Schiffswache,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(PAL_228_Schiffswache,"NW_CITY_ENTRANCE_01");
 	Wld_InsertItem(ItMi_Moleratlubric_MIS,"FP_ITEM_SHIP_07");
-	Wld_InsertItem(ItSe_GoldPocket25,"FP_ITEM_SHIP_01");
+	Wld_InsertItem(ItMi_Pocket,"FP_ITEM_SHIP_01");
 	Wld_InsertItem(ItRi_Prot_Point_02,"FP_ITEM_SHIP_02");
 	Wld_InsertItem(ItPo_Mana_03,"FP_ITEM_SHIP_03");
-	Wld_InsertItem(ItSe_GoldPocket25,"FP_ITEM_SHIP_04");
+	Wld_InsertItem(ItMi_Pocket,"FP_ITEM_SHIP_04");
 	Wld_InsertItem(ItPo_Speed,"FP_ITEM_SHIP_05");
 	Wld_InsertItem(ItPo_Perm_STR,"FP_ITEM_SHIP_06");
 	Wld_InsertItem(ItPo_Health_03,"FP_ITEM_SHIP_08");
 	Wld_InsertItem(ItMiSwordraw,"FP_ITEM_SHIP_09");
-	Wld_InsertItem(ItSe_GoldPocket25,"FP_ITEM_SHIP_10");
-	Wld_InsertItem(ItSe_GoldPocket50,"FP_ITEM_SHIP_11");
+	Wld_InsertItem(ItMi_Pocket,"FP_ITEM_SHIP_10");
+	Wld_InsertItem(ItSe_GoldPocket100,"FP_ITEM_SHIP_11");
 	Wld_InsertItem(ItSc_Zap,"FP_ITEM_SHIP_12");
 	Wld_InsertItem(ItSc_SumWolf,"FP_ITEM_SHIP_12");
 	Wld_InsertItem(ItSc_Sleep,"FP_ITEM_SHIP_12");
 	Wld_InsertItem(ItMi_Nugget,"FP_ITEM_SHIP_13");
 	Wld_InsertItem(ItPo_Mana_02,"FP_ITEM_SHIP_14");
-	Wld_InsertItem(ItSe_GoldPocket25,"FP_ITEM_SHIP_15");
+	Wld_InsertItem(ItMi_Pocket,"FP_ITEM_SHIP_15");
 	Wld_InsertNpc(PAL_230_Ritter,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(PAL_231_Ritter,"NW_CITY_ENTRANCE_01");
 	Wld_InsertNpc(PAL_232_Ritter,"NW_CITY_ENTRANCE_01");
@@ -3353,19 +3353,6 @@ func void INIT_NewWorld()
 	B_InitNpcGlobals();
 	b_enter_newworld();
 	b_cycle_function();
-	/*if((Andre_FoundThieves_Reported == TRUE) && (Andre_FoundThieves_KilledByMilitia == FALSE))
-	{
-		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
-		{
-			if(!Npc_IsDead(Cassia) || !Npc_IsDead(Jesper) || !Npc_IsDead(Ramirez))
-			{
-				B_KillNpc(VLK_447_Cassia);
-				B_KillNpc(VLK_446_Jesper);
-				B_KillNpc(VLK_445_Ramirez);
-				Andre_FoundThieves_KilledByMilitia = TRUE;
-			};
-		};
-	};*/
 	INIT_SUB_NewWorld_Part_City_01();
 	INIT_SUB_NewWorld_Part_Farm_01();
 	INIT_SUB_NewWorld_Part_Xardas_01();

@@ -299,7 +299,7 @@ instance DIA_Addon_Skip_GregsHut(C_Info)
 	condition = DIA_Addon_Skip_GregsHut_Condition;
 	information = DIA_Addon_Skip_GregsHut_Info;
 	permanent = FALSE;
-	description = "Ты можешь сказать, как попасть в хижину Грега?";
+	description = "Ты можешь сказать, как попасть в его хижину?";
 };
 
 
@@ -329,7 +329,7 @@ instance DIA_Addon_Skip_Francis(C_Info)
 	condition = DIA_Addon_Skip_Francis_Condition;
 	information = DIA_Addon_Skip_Francis_Info;
 	permanent = FALSE;
-	description = "Что ты мне можешь сказать о Фрэнсисе?";
+	description = "Что ты скажешь о Фрэнсисе?";
 };
 
 

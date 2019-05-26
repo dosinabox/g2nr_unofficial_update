@@ -28,7 +28,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 			ScrollTrader = Hlp_GetNpc(Orlan);
 		};
 	}
-	else if(CurrentLevel == OldWorld_Zen)
+	else if(CurrentLevel == OLDWORLD_ZEN)
 	{
 		if(!Npc_IsDead(Engor))
 		{

@@ -32,6 +32,19 @@ func int C_NpcBelongsToMonastery(var C_Npc slf)
 	return FALSE;
 };
 
+func int C_CommentMonasteryCrimes(var C_Npc slf)
+{
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Pyrokar))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Isgaroth)) && (NOV_Aufnahme == FALSE))
+	{
+		return FALSE;
+	};
+	return TRUE;
+};
+
 func int C_NpcBelongsToFarm(var C_Npc slf)
 {
 	if((slf.guild == GIL_BAU) || (slf.guild == GIL_SLD))

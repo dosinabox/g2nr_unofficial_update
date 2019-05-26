@@ -143,7 +143,7 @@ instance DIA_Till_WASMACHSTDU(C_Info)
 
 func int DIA_Till_WASMACHSTDU_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Till_HALLO) && (hero.guild != GIL_MIL) && (Kapitel < 5))
+	if(Npc_KnowsInfo(other,DIA_Till_HALLO) && (Kapitel < 5))
 	{
 		return TRUE;
 	};
@@ -153,9 +153,12 @@ func void DIA_Till_WASMACHSTDU_Info()
 {
 	AI_Output(other,self,"DIA_Till_WASMACHSTDU_15_00");	//ј что ты делаешь, когда не играешь в хоз€ина этой фермы?
 	AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_01");	//—тою на страже.
-	AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_02");	//√р€зные ополченцы из города все чаще забредают на наши земли и воруют все, что плохо лежит.
-	AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_03");	//Ёти ублюдки были здесь только на прошлой неделе, они украли наших овец.
-	AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_04");	//≈сли бы € добралс€ до одного из них, ему бы не поздоровилось.
+	if(hero.guild != GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_02");	//√р€зные ополченцы из города все чаще забредают на наши земли и воруют все, что плохо лежит.
+		AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_03");	//Ёти ублюдки были здесь только на прошлой неделе, они украли наших овец.
+		AI_Output(self,other,"DIA_Till_WASMACHSTDU_03_04");	//≈сли бы € добралс€ до одного из них, ему бы не поздоровилось.
+	};
 	AI_Output(other,self,"DIA_Till_WASMACHSTDU_15_05");	// онечно!
 };
 
@@ -191,13 +194,13 @@ instance DIA_Till_BRONKO(C_Info)
 	nr = 5;
 	condition = DIA_Till_BRONKO_Condition;
 	information = DIA_Till_BRONKO_Info;
-	description = "(спросить о Ѕронко)";
+	description = "Ёто ваш работник требует плату со всех проход€щих мимо?";
 };
 
 
 func int DIA_Till_BRONKO_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (Kapitel < 5))
+	if(Npc_KnowsInfo(other,DIA_Till_FELDARBEITER) && Npc_KnowsInfo(other,DIA_Bronko_HALLO) && (Kapitel < 5) && !Npc_IsDead(Bronko))
 	{
 		return TRUE;
 	};
@@ -205,7 +208,7 @@ func int DIA_Till_BRONKO_Condition()
 
 func void DIA_Till_BRONKO_Info()
 {
-	AI_Output(other,self,"DIA_Till_BRONKO_15_00");	//Ёто ваш работник требует плату со всех проход€щих мимо, утвержда€, что ќЌ тут фермер!
+	AI_Output(other,self,"DIA_Till_BRONKO_15_00");	//Ёто ваш работник требует плату со всех проход€щих мимо, утвержда€, что ќЌ тут фермер?
 	AI_Output(self,other,"DIA_Till_BRONKO_03_01");	//(робко) Ёээ. ƒа. я знаю. Ёто Ѕронко. ќн делает то, что хочет.
 	AI_Output(self,other,"DIA_Till_BRONKO_03_02");	//я уже столько раз задавал ему трепку, чтобы он вз€лс€ за ум и начал работать, но все без толку...
 	AI_Output(other,self,"DIA_Till_BRONKO_15_03");	//ƒа?

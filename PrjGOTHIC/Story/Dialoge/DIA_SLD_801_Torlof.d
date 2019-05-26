@@ -1081,12 +1081,14 @@ func void DIA_Torlof_BEMYCAPTAIN_Info()
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_01");	//Ты что, только узнал об этом? Да, черт побери, я моряк. А почему ты спрашиваешь?
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN_15_02");	//Я мог бы найти применение твоим талантам. Мне нужно добраться до острова.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_03");	//(смеется) До острова? Да у тебя даже нет корабля, не говоря уже о команде.
+	if((MIS_ShipIsFree == TRUE) && (Crewmember_Count >= Min_Crew))
+	{
+		AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//Ты ошибаешься.
+	};
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_04");	//Нет, мой мальчик. Если ты хочешь воспользоваться моими услугами в качестве капитана и учителя силы, ты должен сначала доказать мне, что ты понимаешь, о чем говоришь.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_05");	//Кроме того, у меня хватает и других проблем. Паладины не ушли из города, как я ожидал.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_06");	//Должно произойти что-то очень серьезное, чтобы они убрались оттуда.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_07");	//Направляйся в замок в Долине Рудников. Укради у стражника ключ от главных ворот и открой их. А орки позаботятся об остальном!
-	Log_CreateTopic(Topic_Captain,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Captain,LOG_Running);
 	B_LogEntry(Topic_Captain,"Прежде чем Торлоф согласится занять пост капитана, я должен заставить паладинов покинуть город. Он говорит, что нужно устроить инцидент в замке в Долине Рудников. Он хочет, чтобы я украл ключ от главных ворот у стражника и впустил орков в замок. Он надеется, что это заставит паладинов покинуть город, чтобы помочь своим товарищам.");
 };
 
@@ -1111,7 +1113,7 @@ func int DIA_Torlof_BEMYCAPTAIN2_Condition()
 
 func void DIA_Torlof_BEMYCAPTAIN2_Info()
 {
-	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_00");	//Ворота замка в Долине Рудников открыты, и их заклинило. Теперь ничто не сдерживает орков, и они берут этот замок приступом.
+	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_00");	//Ворота замка в Долине Рудников открыты и их заклинило. Теперь ничто не сдерживает орков, и они берут этот замок приступом.
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_01");	//Паладины в замке несут тяжелые потери.
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_02");	//И, я думаю, не пройдет много времени, когда паладины из города выступят в Долину Рудников, чтобы выручить парней, осажденных в замке.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN2_01_03");	//Это хорошие новости. Теперь ничто не мешает мне покинуть это богом проклятое место.

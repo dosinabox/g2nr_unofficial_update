@@ -17,11 +17,12 @@ instance VLK_415_Meldor(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,35);
-	daily_routine = Rtn_PreStart_415;
+//	daily_routine = Rtn_PreStart_415;
+	daily_routine = Rtn_Start_415;
 };
 
 
-func void Rtn_PreStart_415()
+/*func void Rtn_PreStart_415()
 {
 	TA_Smoke_Joint(5,5,23,55,"NW_CITY_HABOUR_POOR_AREA_PATH_20");
 	TA_Sleep(23,55,5,5,"NW_CITY_HABOUR_HUT_04_BED_02");
@@ -34,6 +35,12 @@ func void Rtn_Start_415()
 	TA_Smoke_Joint(16,5,18,5,"NW_CITY_HABOUR_POOR_AREA_PATH_20");
 	TA_Stand_Eating(18,5,19,55,"NW_CITY_PATH_HABOUR_03");
 	TA_Smoke_Joint(19,55,23,55,"NW_CITY_HABOUR_POOR_AREA_PATH_20");
+	TA_Sleep(23,55,5,5,"NW_CITY_HABOUR_HUT_04_BED_02");
+};
+*/
+func void Rtn_Start_415()
+{
+	TA_Smoke_Joint(5,5,23,55,"NW_CITY_HABOUR_POOR_AREA_PATH_20");
 	TA_Sleep(23,55,5,5,"NW_CITY_HABOUR_HUT_04_BED_02");
 };
 

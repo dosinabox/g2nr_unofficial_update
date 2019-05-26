@@ -154,7 +154,15 @@ instance DIA_Mil_305_Torwache_MESSAGE(C_Info)
 
 func int DIA_Mil_305_Torwache_MESSAGE_Condition()
 {
-	if((Player_KnowsLordHagen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Mil_305_schonmalreingelassen == TRUE)
+	{
+		return FALSE;
+	}
+	else if((MIS_Lee_Friedensangebot == LOG_Running) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK) && Npc_HasItems(other,ItWr_Passage_MIS))
+	{
+		return FALSE;
+	}
+	else if((Player_KnowsLordHagen == TRUE) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
 	{
 		return TRUE;
 	};
@@ -316,17 +324,27 @@ instance DIA_Mil_305_Torwache_PassAsSld(C_Info)
 
 func int DIA_Mil_305_Torwache_PassAsSld_Condition()
 {
-	if((other.guild == GIL_SLD) && (Mil_305_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((MIS_Lee_Friedensangebot == LOG_Running) && (Mil_305_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_Passage_MIS))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Mil_305_Torwache_PassAsSld_Info()
 {
 	AI_Output(other,self,"DIA_Mil_305_Torwache_PassAsSld_15_00");	//У меня важное сообщение для лорда Хагена!
-	AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsSld_03_01");	//Ты один из этих подонков наемников! Что тебе нужно от лорда Хагена?
-	AI_Output(other,self,"DIA_Mil_305_Torwache_PassAsSld_15_02");	//Я пришел с предложением мира.
+	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	{
+		AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsSld_03_01");	//Ты один из этих подонков наемников! Что тебе нужно от лорда Хагена?
+		AI_Output(other,self,"DIA_Mil_305_Torwache_PassAsSld_15_02");	//Я пришел с предложением мира.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsSld_15_00");	//Дай мне пройти, я несу послание от наемников.
+	};
 	AI_Output(self,other,"DIA_Mil_305_Torwache_PassAsSld_03_03");	//Ах! Значит, наконец, до вас, подлецов, дошел голос разума. Тогда проходи к лорду Хагену, но постарайся быть милым и вежливым, или я так отделаю тебя, что мало не покажется!
 	self.aivar[AIV_PASSGATE] = TRUE;
 	Mil_305_schonmalreingelassen = TRUE;
