@@ -678,7 +678,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_CoragonsSilber,1);
 	CreateInvItems(self,ItMi_TheklasPaket,1);
 	CreateInvItems(self,ItMi_MariasGoldPlate,1);
-	CreateInvItems(self,ItRi_ValentinosRing,1);
+	CreateInvItems(self,ItRi_Prot_Edge_01_Valentino,1);
 	CreateInvItems(self,ItKe_Dexter,1);
 	CreateInvItems(self,ItWr_Kraeuterliste,1);
 	CreateInvItems(self,ItWr_ManaRezept,1);
@@ -746,7 +746,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Manowar,1);
 	CreateInvItems(self,ItWr_KDWLetter,1);
 	CreateInvItems(self,ItWr_GilbertLetter,1);
-	CreateInvItems(self,ItRi_Tengron,1);
+	CreateInvItems(self,ItRi_HP_01_Tengron,1);
 	CreateInvItems(self,ItMi_InnosEye_MIS,1);
 	CreateInvItems(self,ItMi_InnosEye_Discharged_Mis,1);
 	CreateInvItems(self,ItMi_InnosEye_Broken_Mis,1);
@@ -824,7 +824,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Map_NewWorld_Dexter,1);
 	CreateInvItems(self,ItRi_Ranger_Lares_Addon,1);
 	CreateInvItems(self,ItRi_Ranger_Addon,1);
-	CreateInvItems(self,ItRi_LanceRing,1);
+	CreateInvItems(self,ItRi_Ranger_Lance_Addon,1);
 	CreateInvItems(self,ItMi_PortalRing_Addon,1);
 	CreateInvItems(self,ItWr_Martin_MilizEmpfehlung_Addon,1);
 	CreateInvItems(self,ItWr_RavensKidnapperMission_Addon,1);

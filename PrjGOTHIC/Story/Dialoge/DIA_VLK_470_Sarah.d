@@ -109,6 +109,8 @@ func void DIA_Sarah_HALLO_Info()
 };
 
 
+var int SarahToldAboutAkilsProblem;
+
 instance DIA_Sarah_Bauern(C_Info)
 {
 	npc = VLK_470_Sarah;
@@ -140,6 +142,13 @@ func void DIA_Sarah_Bauern_Info()
 	{
 		AI_Output(self,other,"DIA_Sarah_Add_16_03");	//Я видела их, когда ходила на ферму Акила. Не хотела бы я сейчас оказаться на его месте.
 		SarahToldAboutAkilsProblem = TRUE;
+		if(Akils_SLDStillthere == FALSE)
+		{
+			Log_CreateTopic(TOPIC_AkilsSLDStillthere,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_AkilsSLDStillthere,LOG_Running);
+			B_LogEntry(TOPIC_AkilsSLDStillthere,"Фермеру Акилу угрожают наемники.");
+			Akils_SLDStillthere = TRUE;
+		};
 	};
 };
 

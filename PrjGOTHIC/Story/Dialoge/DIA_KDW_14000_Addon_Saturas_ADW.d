@@ -236,7 +236,7 @@ instance DIA_Addon_Saturas_LanceLeiche(C_Info)
 
 func int DIA_Addon_Saturas_LanceLeiche_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(NONE_Addon_114_Lance_ADW,ItRi_LanceRing))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(NONE_Addon_114_Lance_ADW,ItRi_Ranger_Lance_Addon))
 	{
 		return TRUE;
 	};
@@ -264,7 +264,7 @@ instance DIA_Addon_Saturas_LanceRing(C_Info)
 
 func int DIA_Addon_Saturas_LanceRing_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_LanceLeiche) && Npc_HasItems(other,ItRi_LanceRing))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_LanceLeiche) && Npc_HasItems(other,ItRi_Ranger_Lance_Addon))
 	{
 		return TRUE;
 	};
@@ -274,7 +274,7 @@ func void DIA_Addon_Saturas_LanceRing_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_LanceRing_15_00");	//У меня аквамариновое кольцо Ланса.
 	AI_Output(self,other,"DIA_Addon_Saturas_LanceRing_14_01");	//Лучше отдай его мне, чтобы оно не попало в дурные руки.
-	B_GiveInvItems(other,self,ItRi_LanceRing,1);
+	B_GiveInvItems(other,self,ItRi_Ranger_Lance_Addon,1);
 	B_GivePlayerXP(XP_Addon_LanceRing);
 };
 

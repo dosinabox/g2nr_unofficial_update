@@ -1193,4 +1193,3 @@ var int Telbor_DiedInADW;
 var int Pardos_DiedInADW;
 var int JorgenMovedFromKloster;
 var int Canthars_KomproBrief_Failed;
-var int SarahToldAboutAkilsProblem;

@@ -788,7 +788,7 @@ instance ItWr_MinenAnteil_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = Value_HpElixier;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Scroll_02.3DS";
 //	visual = "Fakescroll.3ds";
 	material = MAT_LEATHER;
 	on_state[0] = Use_MinenAnteil_Mis;

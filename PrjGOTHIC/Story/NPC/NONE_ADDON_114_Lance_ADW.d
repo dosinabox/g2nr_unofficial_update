@@ -12,7 +12,7 @@ instance NONE_ADDON_114_Lance_ADW(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Bau_Mace);
 	EquipItem(self,ItRw_Sld_Bow);
-	CreateInvItems(self,ItRi_LanceRing,1);
+	CreateInvItems(self,ItRi_Ranger_Lance_Addon,1);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal02,BodyTex_N,ITAR_RANGER_Addon);
 	Mdl_SetModelFatness(self,1);

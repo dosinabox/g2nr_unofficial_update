@@ -121,7 +121,7 @@ func void DIA_Tengron_News_Yes()
 {
 	AI_Output(other,self,"DIA_Tengron_News_Yes_15_00");	//Нет проблем. Когда я буду в замке, я передам это кольцо Удару.
 	AI_Output(self,other,"DIA_Tengron_News_Yes_07_01");	//Хорошо. Магия этого кольца придаст Удару силу. И не забудь сказать ему, что я потом заберу его.
-	B_GiveInvItems(self,other,ItRi_Tengron,1);
+	B_GiveInvItems(self,other,ItRi_HP_01_Tengron,1);
 	Info_ClearChoices(DIA_Tengron_News);
 	Log_CreateTopic(Topic_TengronRing,LOG_MISSION);
 	Log_SetTopicStatus(Topic_TengronRing,LOG_Running);

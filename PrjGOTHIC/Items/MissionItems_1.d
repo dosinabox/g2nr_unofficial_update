@@ -161,7 +161,7 @@ instance ItMi_MariasGoldPlate(C_Item)
 	count[5] = value;
 };
 
-instance ItRi_ValentinosRing(C_Item)
+instance ItRi_Prot_Edge_01_Valentino(C_Item)
 {
 	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;

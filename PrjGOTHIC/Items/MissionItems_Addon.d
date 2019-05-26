@@ -274,7 +274,7 @@ instance ItRi_Ranger_Addon(Rangerring_Prototype)
 	text[1] = "Это кольцо принадлежит мне.";
 };
 
-instance ItRi_LanceRing(Rangerring_Prototype)
+instance ItRi_Ranger_Lance_Addon(Rangerring_Prototype)
 {
 	on_equip = Equip_ItRi_Ranger_Lance;
 	on_unequip = UnEquip_ItRi_Ranger_Lance;
