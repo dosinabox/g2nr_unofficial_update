@@ -481,7 +481,7 @@ func void DIA_Addon_Samuel_News_Info()
 			B_UseItem(other,ItFo_Addon_Rum);
 			News_Francis_GotSome = TRUE;
 		};
-		if(GregIsBack == TRUE)
+		if((GregIsBack == TRUE) && !Npc_IsDead(Greg))
 		{
 			AI_Output(self,other,"DIA_Addon_Samuel_News_14_03");	//И Грег наконец-то вернулся. Он потерял корабль, но, по крайней мере, восстановил порядок в лагере.
 		};

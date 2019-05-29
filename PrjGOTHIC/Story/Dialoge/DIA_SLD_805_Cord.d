@@ -78,13 +78,10 @@ func void DIA_Cord_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Cord_Hallo_14_00");	//Если у тебя проблемы с волками или полевыми хищниками, поговори с одним из наемников помоложе.
 	AI_Output(self,other,"DIA_Cord_Hallo_14_01");	//А ко мне ты можешь обратиться, когда появятся паладины.
-	if(SC_IsRanger == FALSE)
-	{
-		AI_Output(other,self,"DIA_Cord_Hallo_15_02");	//Что?
-		AI_Output(self,other,"DIA_Cord_Hallo_14_03");	//Когда вы, крестьяне, обращаетесь ко мне, вы всегда просите убить ни в чем не повинных зверей.
-		AI_Output(other,self,"DIA_Cord_Hallo_15_04");	//Я не крестьянин.
-		AI_Output(self,other,"DIA_Cord_Hallo_14_05");	//Ох? И чего же ты хочешь?
-	};
+	AI_Output(other,self,"DIA_Cord_Hallo_15_02");	//Что?
+	AI_Output(self,other,"DIA_Cord_Hallo_14_03");	//Когда вы, крестьяне, обращаетесь ко мне, вы всегда просите убить ни в чем не повинных зверей.
+	AI_Output(other,self,"DIA_Cord_Hallo_15_04");	//Я не крестьянин.
+	AI_Output(self,other,"DIA_Cord_Hallo_14_05");	//Ох? И чего же ты хочешь?
 };
 
 
@@ -193,12 +190,16 @@ func int DIA_Addon_Cord_YouAreRanger_Condition()
 	{
 		return TRUE;
 	};
+	if(MIS_Addon_Lares_ComeToRangerMeeting == LOG_SUCCESS)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Cord_YouAreRanger_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_15_00");	//Говорят, ты принадлежишь к Кольцу Воды?
-	if(SC_IsRanger == FALSE)
+	if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_14_01");	//Что за крыса не смогла удержать на замке свой болтливый рот?
 		if(SC_KnowsCordAsRangerFromLee == TRUE)
@@ -217,17 +218,22 @@ func void DIA_Addon_Cord_YouAreRanger_Info()
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"На самом деле мне ничего не нужно. Я и сам справлюсь.",DIA_Addon_Cord_YouAreRanger_nix);
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Мне нужна твоя броня.",DIA_Addon_Cord_YouAreRanger_ruestung);
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Мне нужно твое оружие!",DIA_Addon_Cord_YouAreRanger_waffe);
-	if(Cord_Approved == FALSE)
+	if((Cord_Approved == FALSE) && (Cord_RangerHelp_Fight == FALSE))
 	{
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Научи меня сражаться.",DIA_Addon_Cord_YouAreRanger_kampf);
 	};
 	if(hero.guild == GIL_NONE)
 	{
-		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Уходи отсюда. Я хочу занять твое место на этой ферме.",DIA_Addon_Cord_YouAreRanger_weg);
+		if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
+		{
+			Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Уходи отсюда. Я хочу занять твое место на этой ферме.",DIA_Addon_Cord_YouAreRanger_weg);
+		};
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Ты бы мог помочь мне стать наемником.",DIA_Addon_Cord_YouAreRanger_SLDAufnahme);
 	};
-	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Заплати мне за молчание.",DIA_Addon_Cord_YouAreRanger_Gold);
-
+	if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
+	{
+		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Заплати мне за молчание.",DIA_Addon_Cord_YouAreRanger_Gold);
+	};
 };
 
 
@@ -503,7 +509,10 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_05");	//Ты уверен, что Декстер не лгал?
 		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_06");	//Не уверен. Но это все, что я могу тебе сказать.
 	};
-	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_07");	//Не понимаю... Не мог же Патрик просто так взять и исчезнуть.
+	if((MissingPeopleReturnedHome == FALSE) || (Patrick_DiedInADW == TRUE))
+	{
+		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_07");	//Не понимаю... Не мог же Патрик просто так взять и исчезнуть.
+	};
 	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_08");	//Что ж, ты выполнил условия сделки...
 	MIS_Addon_Cord_Look4Patrick = LOG_SUCCESS;
 	TOPIC_End_RangerHelpSLD = TRUE;
@@ -520,8 +529,11 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	}
 	else if(Torlof_Probe == Probe_Bengar)
 	{
+		B_StartOtherRoutine(Rumbold,"Flucht3");
+		B_StartOtherRoutine(Rick,"Flucht3");
 		MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	};
+	B_CheckLog();
 };
 
 

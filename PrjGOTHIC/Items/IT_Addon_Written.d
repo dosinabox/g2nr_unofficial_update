@@ -608,10 +608,10 @@ func void UseAxtAnleitung()
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_GetTalentSkill(hero,NPC_TALENT_SMITH) && (Knows_Banditenaxt == FALSE))
+		if((Npc_GetTalentSkill(self,NPC_TALENT_SMITH) > 0) && (Knows_Banditenaxt == FALSE))
 		{
 			Knows_Banditenaxt = TRUE;
-			B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужен 1 кусок руды, 3 зуба и 1 дополнительная заготовка.");
+			B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужен 1 кусок руды, 3 зуба и 1 дополнительная стальная заготовка.");
 		};
 	};
 };

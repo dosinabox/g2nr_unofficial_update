@@ -614,11 +614,14 @@ func void DIA_Lee_JoinNOW_Info()
 			MIL_Aufnahme = LOG_OBSOLETE;
 			B_GivePlayerXP(XP_BecomeMercenary);
 			AI_Output(self,other,"DIA_Lee_JoinNOW_04_15");	//Я рад, что ты с нами.
-			AI_Output(self,other,"DIA_Lee_JoinNOW_04_16");	//У меня уже есть первое поручение для тебя.
-			AI_Output(self,other,"DIA_Lee_JoinNOW_04_17");	//Оно имеет отношение к паладинам. Пришло время тебе увидеться с ними.
-			if(Npc_KnowsInfo(other,DIA_Lee_Paladine))
+			if(MIS_Lee_Friedensangebot == FALSE)
 			{
-				AI_Output(self,other,"DIA_Lee_JoinNOW_04_18");	//Ты все равно хотел туда идти.
+				AI_Output(self,other,"DIA_Lee_JoinNOW_04_16");	//У меня уже есть первое поручение для тебя.
+				AI_Output(self,other,"DIA_Lee_JoinNOW_04_17");	//Оно имеет отношение к паладинам. Пришло время тебе увидеться с ними.
+				if(Npc_KnowsInfo(other,DIA_Lee_Paladine))
+				{
+					AI_Output(self,other,"DIA_Lee_JoinNOW_04_18");	//Ты все равно хотел туда идти.
+				};
 			};
 		};
 	};

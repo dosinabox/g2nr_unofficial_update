@@ -386,7 +386,7 @@ instance DIA_Bengar_Selber(C_Info)
 
 func int DIA_Bengar_Selber_Condition()
 {
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (Bengar_MilSuccess == FALSE) && Npc_KnowsInfo(other,DIA_Bengar_HALLO))
+	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ))
 	{
 		return TRUE;
 	};
@@ -412,7 +412,7 @@ instance DIA_Bengar_MILIZKLATSCHEN(C_Info)
 
 func int DIA_Bengar_MILIZKLATSCHEN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && !Npc_IsDead(Rick) && !Npc_IsDead(Rumbold) && (Rumbold_Bezahlt == FALSE))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && !Npc_IsDead(Rick) && !Npc_IsDead(Rumbold))
 	{
 		return TRUE;
 	};
@@ -432,18 +432,8 @@ func void DIA_Bengar_MILIZKLATSCHEN_Info()
 	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"MilComing");
-	if(Hlp_IsValidNpc(Rick) && !Npc_IsDead(Rick))
-	{
-//		Npc_ExchangeRoutine(Rick,"MilComing");
-//		AI_ContinueRoutine(Rick);
-		B_StartOtherRoutine(Rick,"MilComing");
-	};
-	if(Hlp_IsValidNpc(Rumbold) && !Npc_IsDead(Rumbold))
-	{
-//		Npc_ExchangeRoutine(Rumbold,"MilComing");
-//		AI_ContinueRoutine(Rumbold);
-		B_StartOtherRoutine(Rumbold,"MilComing");
-	};
+	B_StartOtherRoutine(Rick,"MilComing");
+	B_StartOtherRoutine(Rumbold,"MilComing");
 };
 
 
@@ -464,7 +454,7 @@ func int DIA_Bengar_MILIZWEG_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && (Bengar_MilSuccess == FALSE))
 	{
-		if((Npc_IsDead(Rick) && Npc_IsDead(Rumbold)) || (Rumbold_Bezahlt == TRUE))
+		if((Npc_IsDead(Rick) && Npc_IsDead(Rumbold)) || (Rumbold_Bezahlt == TRUE) || (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS))
 		{
 			return TRUE;
 		};
@@ -474,10 +464,11 @@ func int DIA_Bengar_MILIZWEG_Condition()
 func void DIA_Bengar_MILIZWEG_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_MILIZWEG_15_00");	//Твои проблемы с ополчением уже в прошлом.
-	if(!Npc_IsDead(Rumbold) && (Miliz_Flucht == FALSE))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && !Npc_IsDead(Rick) && !Npc_IsDead(Rumbold) && (Miliz_Flucht == FALSE))
 	{
 		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_01");	//Ты с ума сошел? Да ты знаешь, что они сделают со мной, когда ты уйдешь?
 		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_02");	//Они все еще стоят вон там. Скажи им, чтобы они исчезли СОВСЕМ!
+		AI_StopProcessInfos(self);
 	}
 	else
 	{

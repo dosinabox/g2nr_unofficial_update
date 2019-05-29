@@ -44,17 +44,24 @@ func void DIA_Addon_BenchPirate_Hello_Info()
 	randy = Hlp_Random(3);
 	if(GregIsBack == TRUE)
 	{
-		if(randy == 0)
+		if(!Npc_IsDead(Greg))
 		{
-			AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_01");	//Грег наконец-то вернулся. Самое время.
-		}
-		else if(randy == 1)
-		{
-			AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_02");	//Теперь Фрэнсису приходится пилить деревья для частокола. Надеюсь, это для него не слишком большой удар.
+			if(randy == 0)
+			{
+				AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_01");	//Грег наконец-то вернулся. Самое время.
+			}
+			else if(randy == 1)
+			{
+				AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_02");	//Теперь Фрэнсису приходится пилить деревья для частокола. Надеюсь, это для него не слишком большой удар.
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_03");	//Что ж, пусть приходят бандиты. Пока с нами Грег, они нам не страшны.
+			};
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Addon_Pir_7_Hello_07_03");	//Что ж, пусть приходят бандиты. Пока с нами Грег, они нам не страшны.
+			AI_Output(self,other,"DIA_Addon_BenchPirate_GoHome_07_02");	//Мне все это не нравится.
 		};
 	}
 	else if(randy == 0)

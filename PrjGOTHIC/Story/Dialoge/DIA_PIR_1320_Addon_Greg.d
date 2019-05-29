@@ -79,12 +79,6 @@ func void DIA_Addon_Greg_ImNew_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_Hello_01_02");	//(в ярости) Стоит уехать на несколько дней, и вот уже каждый проходимец норовит похозяйничать в моем жилище.
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_03");	//Какого черта, что здесь происходит?
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_04");	//Частокол еще не закончен! Каньон просто кишит зверьем, а все только и делают, что слоняются вокруг.
-	GregIsBack = TRUE;
-	if(MIS_KrokoJagd == LOG_Running)
-	{
-		MIS_KrokoJagd = LOG_FAILED;
-		B_CheckLog();
-	};
 	if(!Npc_IsDead(Francis))
 	{
 		AI_TurnToNPC(self,Francis);

@@ -265,6 +265,9 @@ instance ItFo_Addon_Meatsoup(C_Item)
 func void Use_MeatSoup()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Stew);
-	B_RaiseAttribute(self,ATR_STRENGTH,STR_MeatSoup);
+	if(Npc_IsPlayer(self))
+	{
+		B_RaiseAttribute(self,ATR_STRENGTH,STR_MeatSoup);
+	};
 };
 

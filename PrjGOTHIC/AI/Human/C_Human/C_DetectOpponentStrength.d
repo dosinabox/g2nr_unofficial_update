@@ -3,7 +3,7 @@ func int C_AmIStronger(var C_Npc slf,var C_Npc oth)
 {
 	if(oth.id == 0)
 	{
-		if((oth.guild > GIL_SEPERATOR_HUM) && (oth.guild < GIL_SEPERATOR_ORC) && ((2 * slf.level) > MonsterTransformLevel))
+		if((oth.guild > GIL_SEPERATOR_HUM) && (oth.guild < GIL_SEPERATOR_ORC) && ((slf.level * 2) > MonsterTransformLevel))
 		{
 			return TRUE;
 		}
@@ -12,7 +12,7 @@ func int C_AmIStronger(var C_Npc slf,var C_Npc oth)
 			return FALSE;
 		};
 	};
-	if((2 * slf.level) > oth.level)
+	if((slf.level * 2) > oth.level)
 	{
 		return TRUE;
 	};
@@ -23,7 +23,7 @@ func int C_AmIWeaker(var C_Npc slf,var C_Npc oth)
 {
 	if(oth.id == 0)
 	{
-		if((oth.guild > GIL_SEPERATOR_HUM) && (oth.guild < GIL_SEPERATOR_ORC) && ((2 * slf.level) <= MonsterTransformLevel))
+		if((oth.guild > GIL_SEPERATOR_HUM) && (oth.guild < GIL_SEPERATOR_ORC) && ((slf.level * 2) <= MonsterTransformLevel))
 		{
 			return TRUE;
 		}
@@ -32,7 +32,7 @@ func int C_AmIWeaker(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	};
-	if((2 * slf.level) <= oth.level)
+	if((slf.level * 2) <= oth.level)
 	{
 		return TRUE;
 	};

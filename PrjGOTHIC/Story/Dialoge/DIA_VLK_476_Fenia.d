@@ -110,7 +110,7 @@ instance DIA_Fenia_HANDELN(C_Info)
 
 func int DIA_Fenia_HANDELN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
 	{
 		return TRUE;
 	};
@@ -137,7 +137,7 @@ instance DIA_Fenia_NOHANDELN(C_Info)
 
 func int DIA_Fenia_NOHANDELN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 	{
 		return TRUE;
 	};
@@ -164,7 +164,7 @@ instance DIA_Fenia_Infos(C_Info)
 
 func int DIA_Fenia_Infos_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo))
 	{
 		return TRUE;
 	};

@@ -1,7 +1,7 @@
 
 func void B_KardifArmorCheck()
 {
-	if(C_KardifArmorCheckFailed(other))
+	if(C_LawArmorEquipped(other))
 	{
 		if(!Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
 		{

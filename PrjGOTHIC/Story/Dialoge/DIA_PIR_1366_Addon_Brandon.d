@@ -81,7 +81,7 @@ func void DIA_Addon_Brandon_AnyNews_Info()
 			AI_Output(self,other,"DIA_Addon_Brandon_Alright_04_03");	//Что за вопросы?! Не думаю, что во всем чертовом каньоне остался еще хоть один бритвозуб.
 		};
 	}
-	else if((GregIsBack == TRUE) && (MIS_Addon_Greg_ClearCanyon != LOG_SUCCESS))
+	else if((GregIsBack == TRUE) && !Npc_IsDead(Greg) && (MIS_Addon_Greg_ClearCanyon != LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Addon_Brandon_AnyNews_04_04");	//Грег вернулся. Теперь все должно измениться.
 	}

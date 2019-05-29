@@ -10,8 +10,12 @@ func int B_TeachPlayerTalentSmith(var C_Npc slf,var C_Npc oth,var int waffe)
 		return FALSE;
 	};
 	oth.lp -= kosten;
-	Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
-	B_LogEntry(TOPIC_TalentSmith,"Чтобы выковать оружие, прежде всего мне нужна сырая сталь. Я должен докрасна нагреть ее в огне кузнечного горна, а затем придать форму на наковальне. Особое оружие зачастую требует особых материалов, придающих оружию особые свойства.");
+	if(Npc_GetTalentSkill(oth,NPC_TALENT_SMITH) == 0)
+	{
+		Npc_SetTalentSkill(oth,NPC_TALENT_SMITH,1);
+		Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
+		B_LogEntry(TOPIC_TalentSmith,PRINT_LearnSmithLog);
+	};
 	if(waffe == WEAPON_Common)
 	{
 		PLAYER_TALENT_SMITH[WEAPON_Common] = TRUE;
@@ -78,7 +82,6 @@ func int B_TeachPlayerTalentSmith(var C_Npc slf,var C_Npc oth,var int waffe)
 		B_LogEntry(TOPIC_TalentSmith,"Гарад передал мне секрет ковки 'Эль-бастардо' - одного из лучших клинков в мире!");
 	};
 	PrintScreen(PRINT_LearnSmith,-1,-1,FONT_Screen,2);
-	Npc_SetTalentSkill(oth,NPC_TALENT_SMITH,1);
 	return TRUE;
 };
 

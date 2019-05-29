@@ -205,7 +205,10 @@ func void DIA_Addon_Orlan_Ranger_Aqua()
 func void DIA_Addon_Orlan_Ranger_Idiot()
 {
 	AI_Output(other,self,"DIA_Addon_Orlan_Ranger_Lares_15_00");	//Я стал членом Кольца Воды!
-	AI_Output(self,other,"DIA_Addon_Orlan_Ranger_Lares_05_01");	//Действительно? Не могу поверить, что такого болвана приняли в общество.
+	if(Npc_KnowsInfo(other,DIA_Addon_Orlan_NoMeeting))
+	{
+		AI_Output(self,other,"DIA_Addon_Orlan_Ranger_Lares_05_01");	//Действительно? Не могу поверить, что такого болвана приняли в общество.
+	};
 	AI_Output(self,other,"DIA_Addon_Orlan_Ranger_Lares_05_02");	//Итак, что тебе нужно?
 	Info_ClearChoices(DIA_Addon_Orlan_Ranger);
 };

@@ -177,12 +177,13 @@ func void DIA_Addon_Pardos_trank_04()
 func void DIA_Addon_Pardos_trank_Soup()
 {
 	AI_Output(other,self,"DIA_Addon_Pardos_trank_soup_15_00");	//Вот, поешь мяса.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItFo_Addon_Meatsoup,1);
 	B_UseItem(self,ItFo_Addon_Meatsoup);
-	Info_ClearChoices(DIA_Addon_Pardos_trank);
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	Pardos_Geheilt = TRUE;
 	AI_Output(self,other,"DIA_Addon_Pardos_trank_03_01");	//Спасибо. Я уже не так слаб.
+	Info_ClearChoices(DIA_Addon_Pardos_trank);
 	B_GivePlayerXP(XP_Ambient * 4);
 };
 

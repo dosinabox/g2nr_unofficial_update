@@ -597,7 +597,10 @@ func void DIA_Torlof_SekobSuccess_Info()
 		};
 		MIS_Torlof_HolPachtVonSekob = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Torlof_SekobsKohlebekommen);
-		B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+		if(hero.guild == GIL_NONE)
+		{
+			B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+		};
 		Torlof_ProbeBestanden = TRUE;
 	}
 	else
@@ -621,7 +624,7 @@ instance DIA_Torlof_BengarSuccess(C_Info)
 func int DIA_Torlof_BengarSuccess_Condition()
 {
 //	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_IsDead(Rumbold) && Npc_IsDead(Rick))
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && ((Npc_IsDead(Rumbold) && Npc_IsDead(Rick)) || (Miliz_Flucht == TRUE)))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && ((Npc_IsDead(Rumbold) && Npc_IsDead(Rick)) || (Miliz_Flucht == TRUE) || (Bengar_MilSuccess == TRUE)))
 	{
 		return TRUE;
 	};
@@ -643,7 +646,10 @@ func void DIA_Torlof_BengarSuccess_Info()
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Bengar_MILIZKLATSCHEN);
-	B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+	if(hero.guild == GIL_NONE)
+	{
+		B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+	};
 	Torlof_ProbeBestanden = TRUE;
 };
 

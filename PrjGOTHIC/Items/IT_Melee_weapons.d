@@ -1252,7 +1252,7 @@ instance ItMw_Spicker(C_Item)
 
 instance ItMw_Streitaxt1(C_Item)
 {
-	name = "Ћегкий боевой топор";
+	name = NAME_ItMw_Streitaxt1;
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;
@@ -1298,7 +1298,7 @@ instance ItMw_Banditenaxt(C_Item)
 
 instance ItMw_Schwert1(C_Item)
 {
-	name = "»зысканный меч";
+	name = NAME_Addon_Harad_01;
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
@@ -1439,7 +1439,7 @@ instance ItMw_Schwert3(C_Item)
 
 instance ItMw_Schwert4(C_Item)
 {
-	name = "»зысканный длинный меч";
+	name = NAME_Addon_Harad_02;
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
@@ -1543,7 +1543,7 @@ instance ItMw_Rapier(C_Item)
 
 instance ItMw_Rubinklinge(C_Item)
 {
-	name = "–убиновый клинок";
+	name = NAME_Addon_Harad_03;
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_SWD;
 	material = MAT_METAL;
@@ -1806,7 +1806,7 @@ instance ItMw_2H_Special_02(C_Item)
 
 instance ItMw_ElBastardo(C_Item)
 {
-	name = "Ёль-бастардо";
+	name = NAME_Addon_Harad_04;
 	mainflag = ITEM_KAT_NF;
 //	flags = ITEM_AXE;
 //	material = MAT_WOOD;

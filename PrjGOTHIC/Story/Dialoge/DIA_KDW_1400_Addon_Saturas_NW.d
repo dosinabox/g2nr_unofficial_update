@@ -438,6 +438,16 @@ func void DIA_Addon_Saturas_WhatsOrnament_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Saturas_WhatsOrnament_14_02");	//Больше я ничего тебе не скажу.
 	};
+	if(SC_KnowsPortal == FALSE)
+	{
+		if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Atlantis))
+		{
+			Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+			B_LogEntry(TOPIC_Addon_KDW,"Маги Воды считают, что за порталом находится древний затерянный город.");
+			SC_KnowsPortal = TRUE;
+		};
+	};
 };
 
 

@@ -56,10 +56,7 @@ instance DIA_STRF_1107_COOK(C_Info)
 
 func int DIA_STRF_1107_COOK_Condition()
 {
-	if(Npc_KnowsInfo(hero,dia_strf_1107_finger))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_STRF_1107_COOK_Info()
@@ -84,10 +81,7 @@ instance DIA_STRF_1107_PERM(C_Info)
 
 func int DIA_STRF_1107_PERM_Condition()
 {
-	if(Npc_KnowsInfo(hero,dia_strf_1107_finger))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_STRF_1107_PERM_Info()

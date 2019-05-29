@@ -80,7 +80,20 @@ func void DIA_Addon_Merdarion_Aufgabe_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_04");	//(задумываясь) Я даже, пожалуй, никогда не слышал и не читал про нее...
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(Cronos_NW,"START");
-	SC_KnowsPortal = TRUE;
+	if(SC_KnowsPortal == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+		if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Atlantis))
+		{
+			B_LogEntry(TOPIC_Addon_KDW,"Маги Воды считают, что за порталом находится древний затерянный город.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_Addon_KDW,"Маги Воды нашли портал, который ведет в неизвестную часть Хориниса.");
+		};
+		SC_KnowsPortal = TRUE;
+	};
 };
 
 

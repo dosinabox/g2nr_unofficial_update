@@ -22,6 +22,7 @@ func void DIA_Addon_RoastPirate_EXIT_Info()
 
 
 var int PIR_1364_Grog;
+var int RoastGrog_OneTime;
 
 instance DIA_Addon_RoastPirate_GimmeGrog(C_Info)
 {
@@ -46,9 +47,6 @@ func void DIA_Addon_RoastPirate_GimmeGrog_Info()
 {
 	AI_Output(self,other,"DIA_Addon_PIR_6_GimmeGrog_06_00");	//Жар костра вызывает у меня жажду.
 	AI_Output(self,other,"DIA_Addon_PIR_6_GimmeGrog_06_01");	//У тебя не найдется для меня грога?
-	Log_CreateTopic(TOPIC_Addon_RoastGrog,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RoastGrog,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RoastGrog,"Пирату у костра нужен грог.");
 	Info_ClearChoices(DIA_Addon_RoastPirate_GimmeGrog);
 	Info_AddChoice(DIA_Addon_RoastPirate_GimmeGrog,"Нет.",DIA_Addon_RoastPirate_GimmeGrog_DontHaveAny);
 	if(Npc_HasItems(other,ItFo_Addon_Grog))
@@ -61,6 +59,13 @@ func void DIA_Addon_RoastPirate_GimmeGrog_DontHaveAny()
 {
 	AI_Output(other,self,"DIA_Addon_PIR_6_GimmeGrog_DontHaveAny_15_00");	//Нет.
 	AI_Output(self,other,"DIA_Addon_PIR_6_GimmeGrog_DontHaveAny_06_00");	//Проклятье! Умираю от жажды...
+	if(RoastGrog_OneTime == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_RoastGrog,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_RoastGrog,LOG_Running);
+		B_LogEntry(TOPIC_Addon_RoastGrog,"Пирату у костра нужен грог.");
+		RoastGrog_OneTime = TRUE;
+	};
 	Info_ClearChoices(DIA_Addon_RoastPirate_GimmeGrog);
 	AI_StopProcessInfos(self);
 };
@@ -72,8 +77,11 @@ func void DIA_Addon_RoastPirate_GimmeGrog_HereIsGrog()
 	AI_Output(self,other,"DIA_Addon_PIR_6_GimmeGrog_HereIsGrog_06_01");	//Спасибо, приятель!
 	B_UseItem(self,ItFo_Addon_Grog);
 	PIR_1364_Grog = TRUE;
+	if(RoastGrog_OneTime == TRUE)
+	{
+		B_LogEntry(TOPIC_Addon_RoastGrog,"Грог не дал пирату умереть от жажды.");
+	};
 	Info_ClearChoices(DIA_Addon_RoastPirate_GimmeGrog);
-	B_LogEntry(TOPIC_Addon_RoastGrog,"Грог не дал пирату умереть от жажды.");
 	Npc_ExchangeRoutine(self,"START");
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -164,17 +172,24 @@ func void DIA_Addon_RoastPirate_PERM_Info()
 	randy = Hlp_Random(3);
 	if(GregIsBack == TRUE)
 	{
-		if((randy == 0) && !Npc_IsDead(Francis))
+		if(!Npc_IsDead(Greg))
 		{
-			AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_02");	//На месте Грега я бы отправил Фрэнсиса на болото.
-		}
-		else if(randy == 1)
-		{
-			AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_03");	//После возвращения Грега бандиты дважды подумают, прежде чем нападать на нас.
+			if((randy == 0) && !Npc_IsDead(Francis))
+			{
+				AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_02");	//На месте Грега я бы отправил Фрэнсиса на болото.
+			}
+			else if(randy == 1)
+			{
+				AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_03");	//После возвращения Грега бандиты дважды подумают, прежде чем нападать на нас.
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_01");	//После возвращения Грега у нас стало больше работы, но нам хотя бы платят за нее нормально.
+			};
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Addon_PIR_6_Chef_06_01");	//После возвращения Грега у нас стало больше работы, но нам хотя бы платят за нее нормально.
+			AI_Output(self,other,"DIA_Addon_PIR_6_SeichtesWasser_06_03");	//Я бы лучше побродил по берегу в поисках добычи.
 		};
 	}
 	else if((randy == 0) && !Npc_IsDead(Francis))
