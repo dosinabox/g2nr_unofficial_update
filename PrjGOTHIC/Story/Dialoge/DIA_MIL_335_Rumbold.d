@@ -34,7 +34,7 @@ instance DIA_Rumbold_PrePerm(C_Info)
 
 func int DIA_Rumbold_PrePerm_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) || (MIS_Torlof_BengarMilizKlatschen != LOG_Running))
+	if(!Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) || (MIS_Torlof_BengarMilizKlatschen != LOG_Running) || (ScaredRumbold == TRUE))
 	{
 		return TRUE;
 	};
@@ -63,7 +63,10 @@ func int DIA_Rumbold_Hallo_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
 	{
-		return TRUE;
+		if(ScaredRumbold == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -132,7 +135,7 @@ func void DIA_Rumbold_HALLO_geld_ok()
 	AI_Output(self,other,"DIA_Rumbold_HALLO_geld_ok_10_01");	//Меня не волнует, кто платит за Бенгара. Удачи. (себе под нос) Кретин!
 	AI_StopProcessInfos(self);
 	Rumbold_Bezahlt = TRUE;
-	if((other.guild == GIL_NONE) && C_AmIStronger(self,other))
+	if(other.guild == GIL_NONE)
 	{
 		Npc_ExchangeRoutine(self,"Start");
 		B_StartOtherRoutine(Rick,"Start");
@@ -189,7 +192,10 @@ func int DIA_Rumbold_FightNow_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
 	{
-		return TRUE;
+		if(ScaredRumbold == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -225,9 +231,12 @@ instance DIA_Rumbold_StillThere(C_Info)
 
 func int DIA_Rumbold_StillThere_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == TRUE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == TRUE) && (Miliz_Flucht == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
 	{
-		return TRUE;
+		if(ScaredRumbold == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 

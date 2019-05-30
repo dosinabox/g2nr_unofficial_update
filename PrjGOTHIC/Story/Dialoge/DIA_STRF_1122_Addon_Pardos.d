@@ -184,7 +184,7 @@ func void DIA_Addon_Pardos_trank_Soup()
 	Pardos_Geheilt = TRUE;
 	AI_Output(self,other,"DIA_Addon_Pardos_trank_03_01");	//Спасибо. Я уже не так слаб.
 	Info_ClearChoices(DIA_Addon_Pardos_trank);
-	B_GivePlayerXP(XP_Ambient * 4);
+	B_GivePlayerXP(XP_Ambient * 5);
 };
 
 

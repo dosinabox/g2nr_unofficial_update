@@ -428,9 +428,16 @@ var int DIA_Parlan_WORK_perm;
 
 func int DIA_Parlan_WORK_Condition()
 {
-	if((Kapitel == 1) && !Npc_KnowsInfo(other,DIA_Parlan_KNOWSJUDGE) && Npc_KnowsInfo(other,DIA_Parlan_WELCOME) && (DIA_Parlan_WORK_perm == FALSE))
+	if(!Npc_KnowsInfo(other,DIA_Parlan_KNOWSJUDGE) && Npc_KnowsInfo(other,DIA_Parlan_WELCOME) && (DIA_Parlan_WORK_perm == FALSE))
 	{
-		return TRUE;
+		if(Kapitel == 1)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -675,7 +682,8 @@ instance DIA_Parlan_LEARN(C_Info)
 
 func int DIA_Parlan_LEARN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parlan_Hagen) && (other.guild == GIL_NOV))
+//	if(Npc_KnowsInfo(hero,DIA_Parlan_Hagen) && (other.guild == GIL_NOV))
+	if(other.guild == GIL_NOV)
 	{
 		return TRUE;
 	};

@@ -38,6 +38,30 @@ func void ZS_MagicFlee()
 		AI_ContinueRoutine(self);
 		return;
 	};
+	if(Miliz_Flucht == FALSE)
+	{
+		if(ScaredRick == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rick))
+			{
+				Npc_ExchangeRoutine(self,"Flucht3");
+				ScaredRick = TRUE;
+			};
+		};
+		if(ScaredRumbold == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rumbold))
+			{
+				Npc_ExchangeRoutine(self,"Flucht3");
+				ScaredRumbold = TRUE;
+			};
+		};
+		if((ScaredRick == TRUE) && (ScaredRumbold == TRUE))
+		{
+			Rumbold_Bezahlt = TRUE;
+			Miliz_Flucht = TRUE;
+		};
+	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicFlee);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 //	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);

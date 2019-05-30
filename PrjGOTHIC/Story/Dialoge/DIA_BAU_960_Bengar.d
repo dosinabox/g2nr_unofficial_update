@@ -327,9 +327,12 @@ func void DIA_Bengar_PASS_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_PASS_15_00");	//У Прохода?
 	AI_Output(self,other,"DIA_Bengar_PASS_10_01");	//Да. Проход в старую Долину Рудников находится у водопада в другом конце этого плоскогорья.
-	if(!Npc_KnowsInfo(other,DIA_Malak_WOPASS))
+	if(!Npc_KnowsInfo(other,DIA_Malak_WOPASS) && !Npc_IsDead(Malak) && (NpcObsessedByDMT_Malak == FALSE))
 	{
-		AI_Output(self,other,"DIA_Bengar_PASS_10_02");	//Спроси Малака о нем. Он там бывает пару раз в неделю.
+		if((MIS_GetMalakBack == FALSE) || (MIS_GetMalakBack == LOG_SUCCESS))
+		{
+			AI_Output(self,other,"DIA_Bengar_PASS_10_02");	//Спроси Малака о нем. Он там бывает пару раз в неделю.
+		};
 	};
 };
 
@@ -414,7 +417,10 @@ func int DIA_Bengar_MILIZKLATSCHEN_Condition()
 {
 	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && !Npc_IsDead(Rick) && !Npc_IsDead(Rumbold))
 	{
-		return TRUE;
+		if(Miliz_Flucht == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -464,7 +470,7 @@ func int DIA_Bengar_MILIZWEG_Condition()
 func void DIA_Bengar_MILIZWEG_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_MILIZWEG_15_00");	//Твои проблемы с ополчением уже в прошлом.
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && !Npc_IsDead(Rick) && !Npc_IsDead(Rumbold) && (Miliz_Flucht == FALSE))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (!Npc_IsDead(Rick) || !Npc_IsDead(Rumbold)) && (Miliz_Flucht == FALSE))
 	{
 		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_01");	//Ты с ума сошел? Да ты знаешь, что они сделают со мной, когда ты уйдешь?
 		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_02");	//Они все еще стоят вон там. Скажи им, чтобы они исчезли СОВСЕМ!

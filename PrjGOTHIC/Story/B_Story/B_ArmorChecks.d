@@ -211,6 +211,10 @@ func int C_RobeCheck(var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if(Hlp_IsItem(armor,ITAR_NOV_L))
+		{
+			return TRUE;
+		};
 	};
 	return FALSE;
 };
