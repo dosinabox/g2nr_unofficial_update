@@ -14,7 +14,7 @@ instance MIL_311_Andre(Npc_Default)
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Mil_Sword);
+	EquipItem(self,ItMw_Schwert2);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak12,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,1);

@@ -365,7 +365,7 @@ instance DIA_Vino_Heilung(C_Info)
 
 func int DIA_Vino_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF) && !(Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") < 4000))
+	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") >= 4000))
 	{
 		return TRUE;
 	};

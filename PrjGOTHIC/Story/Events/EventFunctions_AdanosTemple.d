@@ -13,8 +13,8 @@ func void adw_adanostempel_stonegrd_trigg_func_01()
 		{
 			Snd_Play("THRILLJINGLE_02");
 		};
-		B_KillNpc(BDT_10400_Addon_DeadBandit);
-		B_KillNpc(BDT_10401_Addon_DeadBandit);
+//		B_KillNpc(BDT_10400_Addon_DeadBandit);
+//		B_KillNpc(BDT_10401_Addon_DeadBandit);
 		ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_01_OneTime = TRUE;
 	};
 };

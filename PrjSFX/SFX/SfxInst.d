@@ -227,6 +227,12 @@ instance LASTDOOREVENT(C_SFX_DEF)
 	vol = 100;
 };
 
+instance CS_PRAYER_WAVEOFINSANITY(C_SFX_DEF)
+{
+	file = "CS_Prayer_WaveInsanity.wav";
+	vol = 90;
+};
+
 instance RAVENS_EARTHQUAKE1(C_SFX_DEF)
 {
 	file = "CS_Prayer_FokusFinal.wav";
@@ -5736,7 +5742,7 @@ instance SHP_AMBIENT_A5(C_SFX_DEF)
 instance SHP_AMBIENT_A6(C_SFX_DEF)
 {
 	file = "SHP_Ambient2_02.wav";
-	vol = 50;
+	vol = 70;
 };
 
 instance SHP_AMBIENT_A7(C_SFX_DEF)
@@ -9326,6 +9332,12 @@ instance BLA23(C_SFX_DEF)
 	file = "campfire_mono.wav";
 	vol = 127;
 	loop = 1;
+};
+
+instance GATE_OPEN(C_SFX_DEF)
+{
+	file = "gate_start.wav";
+	vol = 127;
 };
 
 instance GATE_START(C_SFX_DEF)

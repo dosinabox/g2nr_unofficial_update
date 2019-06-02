@@ -92,7 +92,7 @@ func void DIA_Fajeth_Hallo_Info()
 		Info_AddChoice(DIA_Fajeth_Hallo,"Что я могу сделать для тебя?",DIA_Fajeth_Hallo_Tun);
 		Info_AddChoice(DIA_Fajeth_Hallo,"Мое задание важнее. Я не могу помочь тебе.",DIA_Fajeth_Hallo_KDFNein);
 	}
-	else if(other.guild == GIL_MIL)
+	else if((other.guild == GIL_MIL) || (other.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Fajeth_Hallo_12_08");	//Моя задача - принимать все меры, которые я сочту необходимыми для добычи руды и для ее защиты.
 		AI_Output(self,other,"DIA_Fajeth_Hallo_12_09");	//Это включает и реквизицию людей. Ты служишь Инносу - следовательно, ты обязан выполнять мои приказы.

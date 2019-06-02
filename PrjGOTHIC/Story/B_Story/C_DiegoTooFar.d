@@ -59,7 +59,7 @@ func int C_DiegoTooFar(var int tolerance)
 	{
 		return LOC_BURG;
 	}
-	else if((Npc_GetDistToWP(hero,"OC_ORCBARRIER_08") < (5000 + tolerance)) || (Npc_GetDistToWP(hero,"PATH_OC_PSI_01") < (5000 + tolerance)))
+	else if((Npc_GetDistToWP(hero,"OW_ORCBARRIER_08") < (5000 + tolerance)) || (Npc_GetDistToWP(hero,"PATH_OC_PSI_01") < (5000 + tolerance)))
 	{
 		return LOC_ORCBARRIER;
 	}

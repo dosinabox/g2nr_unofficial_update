@@ -767,6 +767,10 @@ func int DIA_MiltenNW_Mana_Condition()
 	if(other.guild == GIL_KDF)
 	{
 		return TRUE;
+	}
+	else if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
+	{
+		return TRUE;
 	};
 };
 

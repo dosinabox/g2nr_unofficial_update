@@ -30,7 +30,11 @@ func int C_ScHasReadiedBeliarsWeapon()
 {
 	var C_Item ReadyWeap;
 	ReadyWeap = Npc_GetReadiedWeapon(hero);
-	if(C_IsItemBeliarsWeapon(ReadyWeap))
+	if(!Npc_HasReadiedWeapon(hero))
+	{
+		return FALSE;
+	}
+	else if(C_IsItemBeliarsWeapon(ReadyWeap))
 	{
 		return TRUE;
 	};
@@ -41,7 +45,11 @@ func int C_ScHasEquippedBeliarsWeapon()
 {
 	var C_Item EquipWeap;
 	EquipWeap = Npc_GetEquippedMeleeWeapon(hero);
-	if(C_IsItemBeliarsWeapon(EquipWeap))
+	if(!Npc_HasEquippedMeleeWeapon(hero))
+	{
+		return FALSE;
+	}
+	else if(C_IsItemBeliarsWeapon(EquipWeap))
 	{
 		return TRUE;
 	};

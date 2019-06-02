@@ -671,13 +671,16 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	Npc_ExchangeRoutine(self,"Start");
 	if(Hlp_IsValidNpc(Randolph))
 	{
-		if(Rukhar_Won_Wettkampf == TRUE)
+		if((Kapitel < 4) || ((Kapitel >= 4) && (other.guild != GIL_KDF)))
 		{
-			B_StartOtherRoutine(Randolph,"WettkampfRandolphLost");
-		}
-		else
-		{
-			B_StartOtherRoutine(Randolph,"Start");
+			if(Rukhar_Won_Wettkampf == TRUE)
+			{
+				B_StartOtherRoutine(Randolph,"WettkampfRandolphLost");
+			}
+			else
+			{
+				B_StartOtherRoutine(Randolph,"Start");
+			};
 		};
 	};
 	if(Hlp_IsValidNpc(Rukhar))

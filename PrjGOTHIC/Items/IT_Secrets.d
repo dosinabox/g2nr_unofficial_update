@@ -5,7 +5,7 @@ instance ItSe_ErzFisch(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItSe_ErzFisch.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_ErzFisch;
@@ -48,13 +48,13 @@ func void Use_GoldFisch()
 };
 
 
-instance ItSe_Ringfisch(C_Item)
+instance ItSe_RingFisch(C_Item)
 {
 	name = "Маленькая рыбка";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItSe_RingFisch.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_Ringfisch;

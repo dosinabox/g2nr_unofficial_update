@@ -49,7 +49,7 @@ func int DIA_Akil_Hallo_Condition()
 //	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk))
 	if(Kapitel < 4)
 	{
-		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		if(!C_AkilFarmIsFree())
 		{
 			return TRUE;
 		};
@@ -87,7 +87,7 @@ instance DIA_Akil_Nichtjetzt(C_Info)
 func int DIA_Akil_Nichtjetzt_Condition()
 {
 //	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_KnowsInfo(other,DIA_Akil_Hallo))
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_KnowsInfo(other,DIA_Akil_Hallo) && (Kapitel < 4))
+	if(Npc_IsInState(self,ZS_Talk) && !C_AkilFarmIsFree() && Npc_KnowsInfo(other,DIA_Akil_Hallo) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -114,7 +114,7 @@ instance DIA_Akil_NachKampf(C_Info)
 func int DIA_Akil_NachKampf_Condition()
 {
 //	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
-	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo) && (Kapitel < 4))
+	if(C_AkilFarmIsFree() && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -142,15 +142,11 @@ func void DIA_Akil_NachKampf_Info()
 //	self.flags = 0;
 	if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
 	{
-/*		Npc_ExchangeRoutine(Kati,"Start");
-		AI_ContinueRoutine(Kati);
-		Kati.flags = 0; */
+//		Kati.flags = 0;
 		B_StartOtherRoutine(Kati,"Start");
 	};
 	if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
 	{
-/*		Npc_ExchangeRoutine(Randolph,"Start");
-		AI_ContinueRoutine(Randolph); */
 		B_StartOtherRoutine(Randolph,"Start");
 		Randolph.flags = 0;
 	};

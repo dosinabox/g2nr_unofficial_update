@@ -1,6 +1,4 @@
 
-var int Baltram_ItemsGiven_Paket;
-var int Baltram_ItemsGiven_Warez;
 var int Baltram_ItemsGiven_Chapter_1;
 var int Baltram_ItemsGiven_Chapter_2;
 var int Baltram_ItemsGiven_Chapter_3;
@@ -9,21 +7,6 @@ var int Baltram_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Baltram(var C_Npc slf)
 {
-	if((MIS_Baltram_ScoutAkil == LOG_SUCCESS) && (Baltram_ItemsGiven_Paket == FALSE))
-	{
-		CreateInvItems(slf,ItFo_Cheese,5);
-		CreateInvItems(slf,ItFo_Apple,10);
-		CreateInvItems(slf,ItFo_Beer,5);
-		CreateInvItems(slf,ItFo_Bacon,5);
-		CreateInvItems(slf,ItFo_Sausage,5);
-		Baltram_ItemsGiven_Paket = TRUE;
-	};
-	if((MIS_BaltramTrade == LOG_SUCCESS) && (Baltram_ItemsGiven_Warez == FALSE))
-	{
-		CreateInvItems(slf,ItFo_Bacon,10);
-		CreateInvItems(slf,ItFo_Wine,10);
-		Baltram_ItemsGiven_Warez = TRUE;
-	};
 	if((Kapitel >= 1) && (Baltram_ItemsGiven_Chapter_1 == FALSE))
 	{
 		CreateInvItems(slf,ItMi_Gold,100);

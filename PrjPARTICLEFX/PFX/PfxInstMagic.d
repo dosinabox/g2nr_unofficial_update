@@ -5017,7 +5017,7 @@ instance MFX_TRANSFORM_INIT(C_PARTICLEFX)
 	velvar = 0.2;
 	lsppartavg = 300;
 	flygravity_s = "0 0 0";
-	visname_s = "WAVEOFINSANITY_A0.TGA";
+	visname_s = "LIGHTNING_ORIGIN_A0.TGA";
 	visorientation_s = "VELO";
 	vistexisquadpoly = 1;
 	vistexanifps = 5;
@@ -6797,7 +6797,7 @@ instance MFX_MASSDEATH_INIT_GLOW(C_PARTICLEFX)
 	lsppartavg = 2000;
 	flygravity_s = "0 0 0";
 	flycolldet_b = 0;
-	visname_s = "MFX_Spell_Star.tga";
+	visname_s = "MFX_SLEEP_STAR.tga";
 	visorientation_s = "NONE";
 	vistexisquadpoly = 1;
 	vistexanifps = 25;
@@ -7491,7 +7491,7 @@ instance MFX_DESTROYUNDEAD_SOUL_CLOUD(C_PARTICLEFX)
 	vissizeendscale = 50;
 	visalphafunc_s = "ADD";
 	visalphastart = 255;
-	trltexture_s = "JUSTWHITE.TGA";
+	trltexture_s = "WHITE.TGA";
 };
 
 instance MFX_WINDFIST_INIT(C_PARTICLEFX)
@@ -8467,7 +8467,7 @@ instance MFX_CONTROL_TARGET(C_PARTICLEFX)
 	vissizeendscale = 1;
 	visalphafunc_s = "ADD";
 	visalphastart = 255;
-	trltexture_s = "JUSTWHITE.TGA";
+	trltexture_s = "WHITE.TGA";
 };
 
 instance MFX_FEAR_GHOST(C_PARTICLEFX)

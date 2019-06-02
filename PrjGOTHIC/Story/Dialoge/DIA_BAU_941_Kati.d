@@ -36,7 +36,7 @@ func int DIA_Kati_SLDNOCHDA_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
 	{
-		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		if(!C_AkilFarmIsFree())
 		{
 			return TRUE;
 		};
@@ -74,7 +74,7 @@ instance DIA_Kati_HALLO(C_Info)
 
 func int DIA_Kati_HALLO_Condition()
 {
-	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
+	if(C_AkilFarmIsFree())
 	{
 		return TRUE;
 	};

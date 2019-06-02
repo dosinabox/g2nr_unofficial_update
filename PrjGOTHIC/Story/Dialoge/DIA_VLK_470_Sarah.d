@@ -140,7 +140,7 @@ func void DIA_Sarah_Bauern_Info()
 	AI_Output(self,other,"DIA_Sarah_Add_16_02");	//ќни добрались даже до маленьких ферм у города, и запугивают их владельцев.
 	if(Kapitel < 4)
 	{
-		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		if(!C_AkilFarmIsFree())
 		{
 			AI_Output(self,other,"DIA_Sarah_Add_16_03");	//я видела их, когда ходила на ферму јкила. Ќе хотела бы € сейчас оказатьс€ на его месте.
 			SarahToldAboutAkilsProblem = TRUE;

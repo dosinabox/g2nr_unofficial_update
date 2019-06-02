@@ -366,7 +366,7 @@ func void DIA_Lehmar_PICKPOCKET_DoIt()
 //	B_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
 	B_StealItem(20,Hlp_GetInstanceID(ItWr_Schuldenbuch));
 	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
-	Lehmar_StealBook_Day = Wld_GetDay();
+	Lehmar_StealBook_Day = B_GetDayPlus();
 };
 
 func void DIA_Lehmar_PICKPOCKET_BACK()

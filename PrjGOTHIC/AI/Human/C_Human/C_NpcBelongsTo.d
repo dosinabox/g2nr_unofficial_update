@@ -37,6 +37,10 @@ func int C_NpcBelongsToMonastery(var C_Npc slf)
 	{
 		return TRUE;
 	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Vino)) && (DIA_Vino_Heilung_oneTime == TRUE))
+	{
+		return TRUE;
+	};
 	if((slf.guild == GIL_KDF) || (slf.guild == GIL_NOV))
 	{
 		return TRUE;

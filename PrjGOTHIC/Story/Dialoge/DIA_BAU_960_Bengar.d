@@ -601,11 +601,16 @@ func int DIA_Bengar_ALLEIN_Condition()
 func void DIA_Bengar_ALLEIN_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_ALLEIN_15_00");	//Как дела?
-	if((Malak_isAlive_Kap3 == TRUE) && !(Npc_GetDistToWP(Malak,"FARM3") < 3000))
+	MIS_BengarsHelpingSLD = LOG_Running;
+	Log_CreateTopic(TOPIC_BengarALLEIN,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_BengarALLEIN,LOG_Running);
+	B_LogEntry(TOPIC_BengarALLEIN,"Ферма Бенгара абсолютно беззащитна. Ему нужна помощь. Он говорит что-то о наемнике, которого зовут Вольф. Может быть, я знаю этого парня?!");
+	if((Malak_isAlive_Kap3 == TRUE) && (Npc_GetDistToWP(Malak,"FARM3") >= 3000))
 	{
 		AI_Output(self,other,"DIA_Bengar_ALLEIN_10_01");	//Малак ушел от меня и забрал с собой всех, кто работал на меня. Он сказал, что направляется в горы.
 		AI_Output(self,other,"DIA_Bengar_ALLEIN_10_02");	//Он больше не мог находиться здесь.
 		MIS_GetMalakBack = LOG_Running;
+		B_LogEntry(TOPIC_BengarALLEIN,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
 	}
 	else
 	{
@@ -614,11 +619,6 @@ func void DIA_Bengar_ALLEIN_Info()
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_04");	//Новые орды монстров каждый день приходят через Проход. Скоро они всех нас сожрут.
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_05");	//Если бы только меня защищали хотя бы несколько наемников...
 	AI_Output(self,other,"DIA_Bengar_ALLEIN_10_06");	//Один из них даже был готов работать на меня. Но он передумал, впрочем. Мне кажется, его звали Вольф.
-	MIS_BengarsHelpingSLD = LOG_Running;
-	Log_CreateTopic(TOPIC_BengarALLEIN,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BengarALLEIN,LOG_Running);
-	B_LogEntry(TOPIC_BengarALLEIN,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
-	B_LogEntry(TOPIC_BengarALLEIN,"Теперь его ферма абсолютно беззащитна. Ему нужна помощь. Он говорит что-то о наемнике, которого зовут Вольф. Может быть, я знаю этого парня?!");
 };
 
 

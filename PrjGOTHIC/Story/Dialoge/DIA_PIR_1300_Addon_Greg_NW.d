@@ -712,7 +712,7 @@ instance DIA_Addon_Greg_NW_PermTaverne(C_Info)
 
 func int DIA_Addon_Greg_NW_PermTaverne_Condition()
 {
-	if(((GregLocation == Greg_Bigcross) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) && (!(Npc_GetDistToWP(self,"BIGCROSS") < 1000) || (MIS_Addon_Greg_RakeCave == LOG_SUCCESS))) || ((GregLocation == Greg_Dexter) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WasWillstDu)))
+	if(((GregLocation == Greg_Bigcross) && !Npc_KnowsInfo(other,DIA_Addon_Greg_NW_Bigcross) && ((Npc_GetDistToWP(self,"BIGCROSS") >= 1000) || (MIS_Addon_Greg_RakeCave == LOG_SUCCESS))) || ((GregLocation == Greg_Dexter) && Npc_KnowsInfo(other,DIA_Addon_Greg_NW_WasWillstDu)))
 	{
 		return TRUE;
 	};

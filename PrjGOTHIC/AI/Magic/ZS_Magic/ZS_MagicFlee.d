@@ -62,6 +62,45 @@ func void ZS_MagicFlee()
 			Miliz_Flucht = TRUE;
 		};
 	};
+	if(Kapitel < 4)
+	{
+		if(ScaredAlvares == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Alvares))
+			{
+				Alvares.guild = GIL_SLD;
+				Npc_SetTrueGuild(Alvares,GIL_SLD);
+				Npc_ExchangeRoutine(self,"Bigfarm");
+				ScaredAlvares = TRUE;
+			};
+		};
+		if(ScaredEngardo == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Engardo))
+			{
+				Engardo.guild = GIL_SLD;
+				Npc_SetTrueGuild(Engardo,GIL_SLD);
+				Npc_ExchangeRoutine(self,"Bigfarm");
+				ScaredEngardo = TRUE;
+			};
+		};
+		if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE))
+		{
+			if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
+			{
+				Npc_ExchangeRoutine(Akil,"Start");
+			};
+			if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
+			{
+				Npc_ExchangeRoutine(Kati,"Start");
+			};
+			if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
+			{
+				Npc_ExchangeRoutine(Randolph,"Start");
+				Randolph.flags = 0;
+			};
+		};
+	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicFlee);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 //	self.aivar[AIV_LASTTARGET] = Hlp_GetInstanceID(other);
