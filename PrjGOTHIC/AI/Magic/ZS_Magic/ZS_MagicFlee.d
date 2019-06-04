@@ -34,8 +34,8 @@ func void ZS_MagicFlee()
 		if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Xardas))
 		{
 			B_Say(self,other,"$ISAIDSTOPMAGIC");
+			AI_ContinueRoutine(self);
 		};
-		AI_ContinueRoutine(self);
 		return;
 	};
 	if(Miliz_Flucht == FALSE)

@@ -517,12 +517,12 @@ func void DIA_Orlan_HotelZimmer_ja()
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_01");	//А вот ключ. Комнаты находятся вверх по лестнице. Но не загадь ее и не забывай платить ренту вовремя, понятно?
 		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
 		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
-		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
 		Orlan_SCGotHotelZimmer = TRUE;
+		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_02");	//У тебя нет 50-ти. Сначала деньги, потом удовольствие.
+		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_02");	//У тебя нет пятидесяти. Сначала деньги, потом удовольствие.
 	};
 	Info_ClearChoices(DIA_Orlan_HotelZimmer);
 };

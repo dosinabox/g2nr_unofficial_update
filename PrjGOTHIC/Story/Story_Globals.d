@@ -1198,3 +1198,4 @@ var int ScaredRick;
 var int ScaredRumbold;
 var int ScaredAlvares;
 var int ScaredEngardo;
+var int Lehmar_StealBook_Day;

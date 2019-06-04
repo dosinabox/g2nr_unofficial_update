@@ -2185,7 +2185,14 @@ func void INIT_SUB_NewWorld_Part_City_01()
 //	Wld_AssignRoomToGuild("rathaus02_rathaus03",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("rathaus02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("rathaus03",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("reich01",GIL_VLK);
+	if(MIS_DiegosResidence == LOG_SUCCESS)
+	{
+		Wld_AssignRoomToGuild("reich01",GIL_PUBLIC);
+	}
+	else
+	{
+		Wld_AssignRoomToGuild("reich01",GIL_VLK);
+	};
 	Wld_AssignRoomToGuild("reich02",GIL_VLK);
 	Wld_AssignRoomToGuild("reich03",GIL_VLK);
 	Wld_AssignRoomToGuild("reich04",GIL_VLK);

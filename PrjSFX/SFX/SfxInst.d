@@ -230,7 +230,7 @@ instance LASTDOOREVENT(C_SFX_DEF)
 instance CS_PRAYER_WAVEOFINSANITY(C_SFX_DEF)
 {
 	file = "CS_Prayer_WaveInsanity.wav";
-	vol = 90;
+	vol = 127;
 };
 
 instance RAVENS_EARTHQUAKE1(C_SFX_DEF)
@@ -1374,13 +1374,13 @@ instance VWHEEL_TURN(C_SFX_DEF)
 instance BBQ_SCAVENGER(C_SFX_DEF)
 {
 	file = "bbq_scavenger_01.wav";
-	vol = 15;
+	vol = 30;
 };
 
 instance BBQ_SCAVENGER_A1(C_SFX_DEF)
 {
 	file = "bbq_scavenger_02.wav";
-	vol = 20;
+	vol = 30;
 };
 
 instance BED_USE(C_SFX_DEF)

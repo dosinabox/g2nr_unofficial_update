@@ -202,7 +202,7 @@ func void DIA_Fajeth_Leader_Info()
 		AI_Output(self,other,"DIA_Fajeth_Leader_12_02");	//Вот мое золото - как договаривались.
 		B_GiveInvItems(self,other,ItMi_Gold,100);
 	};
-	Fajeth.flags = 0;
+	self.flags = 0;
 	MIS_Fajeth_Kill_Snapper = LOG_SUCCESS;
 	B_GivePlayerXP(XP_FajethKillSnapper);
 };
@@ -229,14 +229,14 @@ func int DIA_Fajeth_SNAPPER_KILLED_Condition()
 
 func void DIA_Fajeth_SNAPPER_KILLED_Info()
 {
-	AI_Output(hero,self,"DIA_Fajeth_SNAPPER_KILLED_15_00");	//Со снепперами покончено.
-	AI_Output(self,hero,"DIA_Fajeth_SNAPPER_KILLED_12_01");	//Отличная работа. А с остальными зверями мы сами разберемся.
+	AI_Output(other,self,"DIA_Fajeth_SNAPPER_KILLED_15_00");	//Со снепперами покончено.
+	AI_Output(self,other,"DIA_Fajeth_SNAPPER_KILLED_12_01");	//Отличная работа. А с остальными зверями мы сами разберемся.
 	if(Fajeth_Pay == TRUE)
 	{
-		AI_Output(self,hero,"DIA_Fajeth_SNAPPER_KILLED_12_02");	//Ты заработал свое золото - вот 100 монет, как и договаривались.
+		AI_Output(self,other,"DIA_Fajeth_SNAPPER_KILLED_12_02");	//Ты заработал свое золото - вот 100 монет, как и договаривались.
 		B_GiveInvItems(self,other,ItMi_Gold,100);
 	};
-	Fajeth.flags = 0;
+	self.flags = 0;
 	MIS_Fajeth_Kill_Snapper = LOG_SUCCESS;
 	B_GivePlayerXP(XP_FajethKillSnapper);
 };

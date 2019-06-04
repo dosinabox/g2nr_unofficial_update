@@ -72,6 +72,7 @@ func void b_cycle_function()
 			Snd_Play("CS_IAM_ME_FL_A3");
 			Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
 			AI_UnequipArmor(BDT_1085_Addon_Bloodwyn);
+			B_StartOtherRoutine(Thorus,"TALK");
 			BloodwynIsHeadless = TRUE;
 		};
 	};

@@ -224,10 +224,7 @@ func void DIA_Addon_Cord_YouAreRanger_Info()
 	};
 	if(hero.guild == GIL_NONE)
 	{
-		if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
-		{
-			Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"”ходи отсюда. я хочу зан€ть твое место на этой ферме.",DIA_Addon_Cord_YouAreRanger_weg);
-		};
+		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"”ходи отсюда. я хочу зан€ть твое место на этой ферме.",DIA_Addon_Cord_YouAreRanger_weg);
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"“ы бы мог помочь мне стать наемником.",DIA_Addon_Cord_YouAreRanger_SLDAufnahme);
 	};
 	if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)

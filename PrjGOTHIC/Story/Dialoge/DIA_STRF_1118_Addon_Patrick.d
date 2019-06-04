@@ -91,9 +91,23 @@ instance DIA_Addon_Patrick_ready(C_Info)
 
 func int DIA_Addon_Patrick_ready_Condition()
 {
-	if(((Ready_Togo == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi)) || (Npc_IsDead(PrisonGuard) && Npc_IsDead(Bloodwyn) && Npc_KnowsInfo(other,DIA_Addon_Thorus_Answer)) || (Npc_IsDead(Thorus) && Npc_IsDead(Bloodwyn) && Npc_IsDead(PrisonGuard)))
+	if(Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
 	{
-		return TRUE;
+		if(Ready_Togo == TRUE)
+		{
+			return TRUE;
+		}
+		else if(Npc_IsDead(PrisonGuard) && Npc_IsDead(Bloodwyn))
+		{
+			if(Npc_KnowsInfo(other,DIA_Addon_Thorus_Answer))
+			{
+				return TRUE;
+			}
+			else if(Npc_IsDead(Thorus))
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 

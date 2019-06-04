@@ -55,7 +55,7 @@ func void DIA_Marcos_Hallo_Info()
 		AI_Output(other,self,"DIA_Marcos_Hallo_15_05");	//Расслабься, я состою на службе у лорда Хагена.
 		AI_Output(self,other,"DIA_Marcos_Hallo_04_06");	//Ты один из его людей. Какие задачи привели тебя сюда?
 	}
-	else
+	else if(other.guild == GIL_SLD)
 	{
 		AI_Output(other,self,"DIA_Marcos_Hallo_15_07");	//Расслабься, мы работаем на одного хозяина - лорда Хагена.
 		AI_Output(self,other,"DIA_Marcos_Hallo_04_08");	//С каких это пор лорд Хаген стал нанимать наемников? Говори, что тебе нужно здесь?
