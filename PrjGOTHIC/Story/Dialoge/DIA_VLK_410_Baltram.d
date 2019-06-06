@@ -207,6 +207,8 @@ func void DIA_Baltram_Trick_Info()
 
 
 var int Baltram_TradeLOG;
+var int Baltram_ItemsGiven_Paket;
+var int Baltram_ItemsGiven_Warez;
 
 instance DIA_Baltram_WAREZ(C_Info)
 {
@@ -232,6 +234,21 @@ func void DIA_Baltram_WAREZ_Info()
 {
 	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Baltram_WAREZ_15_00");	//Покажи мне свои товары.
+	if((MIS_Baltram_ScoutAkil == LOG_SUCCESS) && (Baltram_ItemsGiven_Paket == FALSE))
+	{
+		CreateInvItems(self,ItFo_Cheese,5);
+		CreateInvItems(self,ItFo_Apple,10);
+		CreateInvItems(self,ItFo_Beer,5);
+		CreateInvItems(self,ItFo_Bacon,5);
+		CreateInvItems(self,ItFo_Sausage,5);
+		Baltram_ItemsGiven_Paket = TRUE;
+	};
+	if((MIS_BaltramTrade == LOG_SUCCESS) && (Baltram_ItemsGiven_Warez == FALSE))
+	{
+		CreateInvItems(self,ItFo_Bacon,10);
+		CreateInvItems(self,ItFo_Wine,10);
+		Baltram_ItemsGiven_Warez = TRUE;
+	};
 	B_GiveTradeInv(self);
 	if(Baltram_TradeLOG == FALSE)
 	{

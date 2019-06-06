@@ -85,7 +85,7 @@ func int DIA_Fenia_Hallo_Condition()
 
 func void DIA_Fenia_Hallo_Info()
 {
-	if(hero.guild == GIL_NONE)
+	if((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Fenia_Hallo_17_00");	//Ты выглядишь уставшим. Давно не спал, да?
 		AI_Output(other,self,"DIA_Fenia_Hallo_15_01");	//Слишком давно, я бы сказал.
@@ -95,6 +95,8 @@ func void DIA_Fenia_Hallo_Info()
 	B_LogEntry(TOPIC_CityTrader,"Феня торгует едой по пути в гавань.");
 };
 
+
+var int Fenia_ItemsGiven_Paket;
 
 instance DIA_Fenia_HANDELN(C_Info)
 {
@@ -110,7 +112,7 @@ instance DIA_Fenia_HANDELN(C_Info)
 
 func int DIA_Fenia_HANDELN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
 	{
 		return TRUE;
 	};
@@ -119,6 +121,15 @@ func int DIA_Fenia_HANDELN_Condition()
 func void DIA_Fenia_HANDELN_Info()
 {
 	AI_Output(other,self,"DIA_Fenia_HANDELN_15_00");	//Покажи мне свои товары.
+	if((MIS_Baltram_ScoutAkil == LOG_FAILED) && (Fenia_ItemsGiven_Paket == FALSE))
+	{
+		CreateInvItems(self,ItFo_Cheese,5);
+		CreateInvItems(self,ItFo_Apple,10);
+		CreateInvItems(self,ItFo_Beer,5);
+		CreateInvItems(self,ItFo_Bacon,5);
+		CreateInvItems(self,ItFo_Sausage,5);
+		Fenia_ItemsGiven_Paket = TRUE;
+	};
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
@@ -137,7 +148,7 @@ instance DIA_Fenia_NOHANDELN(C_Info)
 
 func int DIA_Fenia_NOHANDELN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
 	{
 		return TRUE;
 	};
@@ -164,7 +175,7 @@ instance DIA_Fenia_Infos(C_Info)
 
 func int DIA_Fenia_Infos_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo))
 	{
 		return TRUE;
 	};

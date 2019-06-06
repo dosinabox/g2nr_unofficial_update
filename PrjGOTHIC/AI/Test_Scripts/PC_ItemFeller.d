@@ -454,7 +454,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItWr_ZweihandBuch,1);
 	CreateInvItems(self,ItSe_ErzFisch,1);
 	CreateInvItems(self,ItSe_GoldFisch,1);
-	CreateInvItems(self,ItSe_Ringfisch,1);
+	CreateInvItems(self,ItSe_RingFisch,1);
 	CreateInvItems(self,ItSe_LockpickFisch,1);
 	CreateInvItems(self,ItSe_GoldPocket25,1);
 	CreateInvItems(self,ItSe_GoldPocket50,1);

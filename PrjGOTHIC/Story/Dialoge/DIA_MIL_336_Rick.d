@@ -40,7 +40,7 @@ func int DIA_Rick_HALLO_Condition()
 func void DIA_Rick_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Rick_HALLO_15_00");	//Как дела?
-	if(Hlp_IsValidNpc(Rumbold) && !Npc_IsDead(Rumbold))
+	if(Hlp_IsValidNpc(Rumbold) && !Npc_IsDead(Rumbold) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (ScaredRick == FALSE))
 	{
 		AI_Output(self,other,"DIA_Rick_HALLO_10_01");	//Если тебе хочется поговорить, говори с Румболдом. Я здесь просто на случай, если кто-нибудь вздумает бунтовать.
 	}

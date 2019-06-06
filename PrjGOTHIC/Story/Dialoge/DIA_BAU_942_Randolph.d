@@ -36,7 +36,7 @@ func int DIA_Randolph_SchwereLuft_Condition()
 {
 	if(Kapitel < 4)
 	{
-		if(!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo))
+		if(!C_AkilFarmIsFree())
 		{
 			return TRUE;
 		};
@@ -73,11 +73,11 @@ instance DIA_Randolph_HALLO(C_Info)
 
 func int DIA_Randolph_HALLO_Condition()
 {
-	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo) && (Kapitel < 4))
+	if(C_AkilFarmIsFree() && (Kapitel < 4))
 	{
 		return TRUE;
 	};
-	if(Kapitel >= 4)
+	if((Kapitel >= 4) && (other.guild == GIL_KDF) && (NpcObsessedByDMT_Randolph == TRUE) && Npc_IsDead(Akil) && Npc_IsDead(Kati))
 	{
 		return TRUE;
 	};
@@ -92,11 +92,14 @@ func void DIA_Randolph_HALLO_Info()
 		TOPIC_END_AkilsSLDStillthere = TRUE;
 		B_CheckLog();
 	}
-	else
+	else if(Kapitel < 4)
 	{
 		AI_Output(self,other,"DIA_Randolph_HALLO_06_02");	//ƒа, € в пор€дке. Ётот јльварес становилс€ все наглее и наглее с каждым днем. ’орошо, что все кончилось.
 	};
-	AI_Output(self,other,"DIA_Randolph_HALLO_06_03");	//ќт чего € не отказалс€ бы сейчас - так это от стаканчика хорошего вина в таверне.
+	if(Kapitel < 4)
+	{
+		AI_Output(self,other,"DIA_Randolph_HALLO_06_03");	//ќт чего € не отказалс€ бы сейчас - так это от стаканчика хорошего вина в таверне.
+	};
 	Npc_ExchangeRoutine(self,"Start");
 	self.flags = 0;
 	if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))

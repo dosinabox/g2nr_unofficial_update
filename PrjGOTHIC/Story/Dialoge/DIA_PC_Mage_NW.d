@@ -422,7 +422,7 @@ func void DIA_MiltenNW_KAP4_PERM_Info()
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_06");	//Фермер сообщил о появлении чешуйчатых существ у его фермы.
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_07");	//Я не знаю, что все это значит, но я думаю, что враг что-то задумал.
 		}
-		else if(hero.guild == GIL_KDF)
+		else
 		{
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_08");	//Мы получаем все больше сообщений об одержимых людях. Враг стал силен, значительно сильнее, чем я ожидал.
 		};
@@ -765,6 +765,10 @@ instance DIA_MiltenNW_Mana(C_Info)
 func int DIA_MiltenNW_Mana_Condition()
 {
 	if(other.guild == GIL_KDF)
+	{
+		return TRUE;
+	}
+	else if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
 	{
 		return TRUE;
 	};

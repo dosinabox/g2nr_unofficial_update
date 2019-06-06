@@ -392,6 +392,10 @@ func void DIA_Wolf_ArmorReady_Info()
 		if(Wolf_MakeArmor == FALSE)
 		{
 			Wolf_Armor_Day = Wld_GetDay() + 1;
+			if(Wld_IsTime(23,0,23,59))
+			{
+				Wolf_Armor_Day += 1;
+			};
 			Wolf_MakeArmor = TRUE;
 		};
 		if((Wolf_MakeArmor == TRUE) && (Wolf_Armor_Day > Wld_GetDay()))

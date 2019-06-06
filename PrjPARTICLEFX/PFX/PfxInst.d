@@ -1121,7 +1121,7 @@ instance IRRLICHT_DIE(C_PARTICLEFX)
 	vissizeendscale = 1;
 	visalphafunc_s = "ADD";
 	visalphastart = 255;
-	trltexture_s = "JUSTWHITE.TGA";
+	trltexture_s = "WHITE.TGA";
 };
 
 instance RUNEMAKER(C_PARTICLEFX)
@@ -1157,7 +1157,7 @@ instance RUNEMAKER(C_PARTICLEFX)
 	vissizeendscale = 1;
 	visalphafunc_s = "ADD";
 	visalphastart = 255;
-	trltexture_s = "JUSTWHITE.TGA";
+	trltexture_s = "WHITE.TGA";
 };
 
 instance DRAGON_BREATH_SMOKE(C_PARTICLEFX)
@@ -1274,7 +1274,7 @@ instance DRAGON_ICEATTACK(C_PARTICLEFX)
 	lsppartavg = 1000;
 	lsppartvar = 200;
 	flygravity_s = "0 0.0005 0";
-	visname_s = "ELECTRIC.TGA";
+	visname_s = "ELECTRIC_A0.TGA";
 	visorientation_s = "NONE";
 	vistexanifps = 8;
 	vistexaniislooping = 1;
@@ -2420,7 +2420,7 @@ instance CS_FOKUS2(C_PARTICLEFX)
 	lsppartavg = 400;
 	lsppartvar = 200;
 	flygravity_s = "0 0 0";
-	visname_s = "WAVEOFINSANITY_A0.TGA";
+	visname_s = "LIGHTNING_ORIGIN_A0.TGA";
 	visorientation_s = "VELO";
 	vistexisquadpoly = 1;
 	vistexanifps = 5;
@@ -2504,7 +2504,7 @@ instance CS_WATERSPLASH(C_PARTICLEFX)
 	lsppartavg = 1300;
 	lsppartvar = 300;
 	flygravity_s = "0 -0.0018 0";
-	visname_s = "WATER_DRIPPING.TGA";
+	visname_s = "GEYSER_DROP.TGA";
 	visorientation_s = "VELO";
 	vistexisquadpoly = 1;
 	vistexanifps = 5;
@@ -2516,7 +2516,7 @@ instance CS_WATERSPLASH(C_PARTICLEFX)
 	visalphafunc_s = "ADD";
 	visalphastart = 20;
 	trlfadespeed = 0.2;
-	trltexture_s = "WATER_BOOM_03.TGA";
+	trltexture_s = "WATER_BOOM.TGA";
 	trlwidth = 5;
 };
 
@@ -2618,7 +2618,7 @@ instance MAGICCOULDRON(C_PARTICLEFX)
 	velvar = 0.05;
 	lsppartavg = 18000;
 	flygravity_s = "0 0 0";
-	visname_s = "MAGICCOULDRON.TGA";
+	visname_s = "WHITECLOUD.TGA";
 	visorientation_s = "NONE";
 	vistexcolorstart_s = "100 200 255";
 	vistexcolorend_s = "255 0 255";
@@ -2725,7 +2725,7 @@ instance MINE_BRICKS(C_PARTICLEFX)
 	lsppartvar = 400;
 	flygravity_s = "0 -0.001 0";
 	flycolldet_b = 1;
-	visname_s = "MINE_BRICK.TGA";
+	visname_s = "BPFX_GOLEM_A0.TGA";
 	visorientation_s = "NONE";
 	vistexisquadpoly = 1;
 	vistexanifps = 5;
@@ -4689,7 +4689,7 @@ instance HUMAN_WASHSELF1(C_PARTICLEFX)
 	visalphafunc_s = "BLENND";
 	visalphastart = 255;
 	trlfadespeed = 1.5;
-	trltexture_s = "JUSTWHITE.TGA";
+	trltexture_s = "WHITE.TGA";
 	trlwidth = 0.5;
 };
 
@@ -4730,7 +4730,7 @@ instance HUMAN_WASHSELF2(C_PARTICLEFX)
 	visalphafunc_s = "BLEND";
 	visalphastart = 255;
 	trlfadespeed = 1.5;
-	trltexture_s = "JUSTWHITE.TGA";
+	trltexture_s = "WHITE.TGA";
 	trlwidth = 0.4;
 };
 
@@ -4759,7 +4759,7 @@ instance BLOODWATER(C_PARTICLEFX)
 	lsppartavg = 5000;
 	lsppartvar = 100;
 	flygravity_s = "0 0 0";
-	visname_s = "BLOODKAI.TGA";
+	visname_s = "RED.TGA";
 	visorientation_s = "VELO";
 	vistexisquadpoly = 1;
 	vistexanifps = 15;
@@ -4879,7 +4879,7 @@ instance WASTEOUTLET(C_PARTICLEFX)
 	velvar = 0.03;
 	lsppartavg = 4400;
 	flygravity_s = "0 -0.0001 0";
-	visname_s = "WATER_DRIPPING.TGA";
+	visname_s = "GEYSER_DROP.TGA";
 	visorientation_s = "NONE";
 	vistexisquadpoly = 1;
 	vistexanifps = 15;
@@ -4920,7 +4920,7 @@ instance WATEROUTLET(C_PARTICLEFX)
 	velvar = 0.03;
 	lsppartavg = 4400;
 	flygravity_s = "0 -0.0001 0";
-	visname_s = "WATER_DRIPPING.TGA";
+	visname_s = "GEYSER_DROP.TGA";
 	visorientation_s = "NONE";
 	vistexisquadpoly = 1;
 	vistexanifps = 15;
@@ -4959,7 +4959,7 @@ instance WASTEOUTLET_BOTTOM(C_PARTICLEFX)
 	velavg = 0.01;
 	lsppartavg = 500;
 	flygravity_s = "0 0 0";
-	visname_s = "WATER_DRIPPING_GROUND.TGA";
+	visname_s = "GEYSER_DROP.TGA";
 	visorientation_s = "NONE";
 	vistexisquadpoly = 1;
 	vistexanifps = 15;
@@ -5061,7 +5061,7 @@ instance FLIES(C_PARTICLEFX)
 	lsppartavg = 3000;
 	lsppartvar = 100;
 	flygravity_s = "0 0 0";
-	visname_s = "BLOODKAI.TGA";
+	visname_s = "WHITE.TGA";
 	visorientation_s = "VELO";
 	vistexisquadpoly = 1;
 	vistexanifps = 15;

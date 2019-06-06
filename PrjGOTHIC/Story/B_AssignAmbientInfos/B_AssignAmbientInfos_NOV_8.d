@@ -36,9 +36,16 @@ instance DIA_NOV_8_Fegen(C_Info)
 
 func int DIA_NOV_8_Fegen_Condition()
 {
-	if((Kapitel == 1) && (MIS_ParlanFegen == LOG_Running) && (NOV_Helfer < 4))
+	if((MIS_ParlanFegen == LOG_Running) && (NOV_Helfer < 4))
 	{
-		return TRUE;
+		if(Kapitel == 1)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -85,9 +92,16 @@ instance DIA_NOV_8_Wurst(C_Info)
 
 func int DIA_NOV_8_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItPl_Mushroom_02) && Npc_HasItems(other,ItFo_Schafswurst))
+	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItPl_Mushroom_02) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
-		return TRUE;
+		if(Kapitel == 1)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 

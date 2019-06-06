@@ -25,11 +25,23 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Salandril)) && Npc_KnowsInfo(hero,DIA_Salandril_GehinsKloster))
+	if((slf.guild == GIL_KDW) && (SC_KnowsPortal == TRUE))
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BDTWache) && !Npc_KnowsInfo(hero,DIA_1061_Wache_Hallo))
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lagerwache))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Greg))
+	{
+		return FALSE;
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Salandril)) && Npc_KnowsInfo(hero,DIA_Salandril_GehinsKloster))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(BDTWache) && !Npc_KnowsInfo(hero,DIA_1061_Wache_Hallo))
 	{
 		return FALSE;
 	};

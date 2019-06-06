@@ -139,7 +139,7 @@ instance DIA_Addon_AlligatorJack_Vorschlag(C_Info)
 
 func int DIA_Addon_AlligatorJack_Vorschlag_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_WerBistDu) && (GregIsBack == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_WerBistDu) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -158,10 +158,13 @@ func void DIA_Addon_AlligatorJack_Vorschlag_Info()
 
 func void B_AlligatorJack_Besser()
 {
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Besser_12_00");	//Ладно, у меня к тебе есть лучшее предложение.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Besser_12_01");	//Присоединяйся к нам.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Besser_12_00");	//Ладно, у меня к тебе есть лучшее предложение.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Besser_12_01");	//Присоединяйся к нам.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Besser_12_03");	//А когда ты попробуешь наш ром, у тебя поменяются взгляды на жизнь.
+	};
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Besser_12_02");	//У тебя будет время все обдумать.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Besser_12_03");	//А когда ты попробуешь наш ром, у тебя поменяются взгляды на жизнь.
 	Info_ClearChoices(DIA_Addon_AlligatorJack_Vorschlag);
 };
 
@@ -197,7 +200,7 @@ instance DIA_Addon_AlligatorJack_BDTRuestung(C_Info)
 
 func int DIA_Addon_AlligatorJack_BDTRuestung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Vorschlag) && (GregIsBack == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Vorschlag) && (MIS_Greg_ScoutBandits == FALSE))
 	{
 		return TRUE;
 	};
@@ -319,6 +322,10 @@ func int DIA_Addon_AlligatorJack_WasJagen_Condition()
 	{
 		return TRUE;
 	};
+	if((GregIsBack == TRUE) && Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_WerBistDu))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_AlligatorJack_WasJagen_Info()
@@ -330,7 +337,10 @@ func void DIA_Addon_AlligatorJack_WasJagen_Info()
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_WasJagen_15_04");	//Что?
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_WasJagen_12_05");	//Мясо большинства местных зверей либо имеет вкус старых носков, либо жесткое, как подметки.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_WasJagen_12_06");	//Более-менее съедобно только мясо этих жирных болотных крыс.
-	B_LogEntry(TOPIC_Addon_RatHunt,"Единственное животное здесь, мясо которого можно есть - это болотная крыса.");
+	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_PIRLager))
+	{
+		B_LogEntry(TOPIC_Addon_RatHunt,"Единственное животное здесь, мясо которого можно есть - это болотная крыса.");
+	};
 };
 
 
@@ -351,6 +361,10 @@ func int DIA_Addon_AlligatorJack_Pirates_Condition()
 	{
 		return TRUE;
 	};
+	if((GregIsBack == TRUE) && Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_WerBistDu))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_AlligatorJack_Pirates_Info()
@@ -359,9 +373,12 @@ func void DIA_Addon_AlligatorJack_Pirates_Info()
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Pirates_12_01");	//Мы живем здесь уже много лет. До начала войны нас знали везде, от Хориниса до континента.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Pirates_12_02");	//Один вид нашего флага вселял ужас в сердца матросов на торговых кораблях.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Pirates_12_03");	//Но те времена прошли. Уже несколько недель нам не встречались корабли с добычей.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Pirates_12_04");	//Капитан Грег с горсткой людей отправился на поиски кораблей.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Pirates_12_05");	//А остальные просто сидят в лагере и ждут, когда он вернется.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Pirates_12_06");	//Надеюсь, он привезет солидный куш.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Pirates_12_04");	//Капитан Грег с горсткой людей отправился на поиски кораблей.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Pirates_12_05");	//А остальные просто сидят в лагере и ждут, когда он вернется.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Pirates_12_06");	//Надеюсь, он привезет солидный куш.
+	};
 };
 
 
@@ -658,6 +675,34 @@ func void DIA_Addon_AlligatorJack_Lake_Info()
 };
 
 
+func void B_AlliJack_AlliKlar()
+{
+	AI_Output(self,other,"DIA_Addon_AlligatorJack_Anheuern_12_01");	//Хорошо...
+};
+
+func void B_AlligatorJack_CanLearn()
+{
+	AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_02");	//Если хочешь, я могу заняться твоим обучением.
+	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
+	B_LogEntry(Topic_Addon_PIR_Teacher,"Аллигатор Джек может обучить меня снимать кожу с рептилий и выдирать зубы. Кроме того, он может научить меня лучше стрелять из лука.");
+	AlligatorJack_Addon_TeachPlayer = TRUE;
+};
+
+func void DIA_Addon_AlligatorJack_CanLearn_Pay()
+{
+	AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCavePlundered_gold_15_02");	//Держи.
+	B_GiveInvItems(other,self,ItMi_Gold,200);
+	B_AlliJack_AlliKlar();
+	B_AlligatorJack_CanLearn();
+	Info_ClearChoices(DIA_Addon_AlligatorJack_CanLearn);
+};
+
+func void DIA_Addon_AlligatorJack_CanLearn_NoPay()
+{
+	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_back_15_00");	//Я подумаю над этим.
+	Info_ClearChoices(DIA_Addon_AlligatorJack_CanLearn);
+};
+
 instance DIA_Addon_AlligatorJack_CanLearn(C_Info)
 {
 	npc = PIR_1352_Addon_AlligatorJack;
@@ -671,25 +716,29 @@ instance DIA_Addon_AlligatorJack_CanLearn(C_Info)
 
 func int DIA_Addon_AlligatorJack_CanLearn_Condition()
 {
-	if(AlligatorJack_Addon_TeachPlayer == FALSE)
+	if((AlligatorJack_Addon_TeachPlayer == FALSE) && Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_WasJagen))
 	{
-		if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_HuntEnd) || (GregIsBack == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Addon_AlligatorJack_CanLearn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_CanLearn_15_00");	//Ты можешь меня чему-нибудь научить?
-	if(MIS_KrokoJagd > LOG_Running)
+	AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_01");	//Конечно. Я хороший охотник и могу научить тебя снимать с животных шкуры и выдирать зубы.
+	if((GregIsBack == TRUE) && (MIS_KrokoJagd == FALSE))
 	{
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_01");	//Конечно. Я хороший охотник и могу научить тебя снимать с животных шкуры и выдирать зубы.
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_02");	//Если хочешь, я могу заняться твоим обучением.
-		Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Teacher,"Аллигатор Джек может обучить меня снимать кожу с рептилий и выдирать зубы. Кроме того, он может научить меня лучше стрелять из лука.");
-		AlligatorJack_Addon_TeachPlayer = TRUE;
+		B_Say_Gold(self,other,200);
+		Info_ClearChoices(DIA_Addon_AlligatorJack_CanLearn);
+		Info_AddChoice(DIA_Addon_AlligatorJack_CanLearn,"Я подумаю над этим.",DIA_Addon_AlligatorJack_CanLearn_NoPay);
+		if(Npc_HasItems(other,ItMi_Gold) >= 200)
+		{
+			Info_AddChoice(DIA_Addon_AlligatorJack_CanLearn,"Держи.",DIA_Addon_AlligatorJack_CanLearn_Pay);
+		};
+	}
+	else if(MIS_KrokoJagd > LOG_Running)
+	{
+		B_AlligatorJack_CanLearn();
 	}
 	else
 	{
@@ -786,12 +835,6 @@ func void DIA_Addon_AlligatorJack_Teach_Teeth()
 	};
 	B_AJ_Teach();
 };
-
-func void B_AlliJack_AlliKlar()
-{
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Anheuern_12_01");	//Хорошо...
-};
-
 
 instance DIA_Addon_AlligatorJack_Anheuern(C_Info)
 {

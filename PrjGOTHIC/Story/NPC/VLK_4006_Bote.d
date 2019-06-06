@@ -25,9 +25,8 @@ instance VLK_4006_Bote(Npc_Default)
 func void Rtn_Start_4006()
 {
 	TA_Stand_ArmsCrossed(8,0,18,0,"NW_CITY_MERCHANT_SHOP03_FRONT_02");
-	TA_Sit_Chair(18,0,20,0,"TAVERN02_B");
-	TA_Sit_Chair(20,0,22,0,"NW_CITY_HABOUR_TAVERN01_05");
-	TA_Sleep(22,0,8,0,"NW_CITY_HOTEL_BED_07");
+	TA_Sit_Chair(18,0,22,0,"TAVERN02_B");
+	TA_Sit_Throne(22,0,8,0,"NW_CITY_HOTEL_UPTSAIRS_05");
 };
 
 func void Rtn_Dead_4006()

@@ -34,7 +34,7 @@ instance DIA_Engardo_HALLO(C_Info)
 
 func int DIA_Engardo_HALLO_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4) && (ScaredEngardo == FALSE))
 	{
 		return TRUE;
 	};

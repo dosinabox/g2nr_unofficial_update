@@ -275,7 +275,7 @@ instance DIA_Addon_BDT_10014_Thorus_Armor(C_Info)
 
 func int DIA_Addon_Thorus_Armor_Condition()
 {
-	if((RavenIsDead == FALSE) && !Npc_HasItems(other,ITAR_Thorus_Addon))
+	if(!Npc_HasItems(other,ITAR_Thorus_Addon))
 	{
 		return TRUE;
 	};
@@ -285,7 +285,10 @@ func void DIA_Addon_Thorus_Armor_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Armor_15_00");	//Эй, а что на тебе за доспехи? Где я могу достать такие же?
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Armor_12_01");	//Нигде. Эти доспехи сделаны специально для охранника Ворона.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Armor_12_02");	//Полагаю, что нет никакого вступительного экзамена для новых людей. Но окончательное решение принимаю не я, а Ворон.
+	if(RavenIsDead == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Armor_12_02");	//Полагаю, что нет никакого вступительного экзамена для новых людей. Но окончательное решение принимаю не я, а Ворон.
+	};
 };
 
 
@@ -302,7 +305,7 @@ instance DIA_Addon_Thorus_Gefangene(C_Info)
 
 func int DIA_Addon_Thorus_Gefangene_Condition()
 {
-	if(!Npc_IsDead(Bloodwyn) && Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
+	if(Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi) && !Npc_KnowsInfo(other,DIA_Addon_Thorus_Answer))
 	{
 		return TRUE;
 	};
@@ -312,19 +315,22 @@ func void DIA_Addon_Thorus_Gefangene_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_00");	//Как там заключенные?
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_01");	//Хм-м, они сделали свою работу. Насколько мне известно, они должны сейчас искать золото.
-	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_02");	//А что, если они убегут?
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_03");	//... Бладвин пошлет стражников за ними. Но я сильно сомневаюсь, что они настолько глупы, чтобы бежать.
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_04");	//Если только...
-	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_05");	//Если только - что?
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_06");	//... кто-нибудь не подобьет их на это. Но я не знаю никого, кто был бы достаточно глуп для этого... по крайней мере, пока Бладвин здесь.
-	B_Say(other,self,"$VERSTEHE");
+	if(!Npc_IsDead(Bloodwyn))
+	{
+		AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_02");	//А что, если они убегут?
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_03");	//... Бладвин пошлет стражников за ними. Но я сильно сомневаюсь, что они настолько глупы, чтобы бежать.
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_04");	//Если только...
+		AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Gefangene_15_05");	//Если только - что?
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Gefangene_12_06");	//... кто-нибудь не подобьет их на это. Но я не знаю никого, кто был бы достаточно глуп для этого... по крайней мере, пока Бладвин здесь.
+		B_Say(other,self,"$VERSTEHE");
+	};
 };
 
 
 instance DIA_Addon_Thorus_Attack(C_Info)
 {
 	npc = BDT_10014_Addon_Thorus;
-	nr = 99;
+	nr = 90;
 	condition = DIA_Addon_Thorus_Attack_Condition;
 	information = DIA_Addon_Thorus_Attack_Info;
 	permanent = FALSE;
@@ -357,7 +363,7 @@ func void DIA_Addon_Thorus_Attack_Info()
 instance DIA_Addon_Thorus_Speech(C_Info)
 {
 	npc = BDT_10014_Addon_Thorus;
-	nr = 99;
+	nr = 91;
 	condition = DIA_Addon_Thorus_Speech_Condition;
 	information = DIA_Addon_Thorus_Speech_Info;
 	permanent = FALSE;
@@ -376,13 +382,13 @@ func int DIA_Addon_Thorus_Speech_Condition()
 func void DIA_Addon_Thorus_Speech_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Thorus_Speech_12_00");	//Что ты затеваешь?
-	AI_Output(other,self,"DIA_Addon_Thorus_Speech_15_01");	//Что???
-	if(RavenIsDead == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Addon_Thorus_Raventot))
 	{
+		AI_Output(other,self,"DIA_Addon_Thorus_Speech_15_01");	//Что???
 		AI_Output(self,other,"DIA_Addon_Thorus_Speech_12_02");	//Теперь ты убрал с дороги и Бладвина. Я уже задаюсь вопросом, кто будет следующим. Ворон? Или, может быть, я?
-		AI_Output(other,self,"DIA_Addon_Thorus_Speech_15_03");	//Ты боишься?
-		AI_Output(self,other,"DIA_Addon_Thorus_Speech_12_04");	//Драки я не боюсь. Но я боюсь того, к чему могут привести твои действия.
 	};
+	AI_Output(other,self,"DIA_Addon_Thorus_Speech_15_03");	//Ты боишься?
+	AI_Output(self,other,"DIA_Addon_Thorus_Speech_12_04");	//Драки я не боюсь. Но я боюсь того, к чему могут привести твои действия.
 	AI_Output(self,other,"DIA_Addon_Thorus_Speech_12_05");	//Этот лагерь - все, что у нас осталось.
 	AI_Output(self,other,"DIA_Addon_Thorus_Speech_12_06");	//Может быть, он не всегда работал идеально, но он работает.
 	AI_Output(self,other,"DIA_Addon_Thorus_Speech_12_07");	//Но с каждым человеком, которого ты убиваешь, исчезает кусочек нашего общества.
@@ -391,23 +397,41 @@ func void DIA_Addon_Thorus_Speech_Info()
 	AI_Output(self,other,"DIA_Addon_Thorus_Speech_12_10");	//Для нас нет лучшего места, чем это, и нет лучшего времени, чем сейчас.
 	AI_Output(other,self,"DIA_Addon_Thorus_Speech_15_11");	//Куда ты клонишь?
 	AI_Output(self,other,"DIA_Addon_Thorus_Speech_12_12");	//Этим людям нужен лидер. Кто способен им стать? Может быть, ты? Ты, человек, который никогда долго не остается на одном месте?
+	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Answer_15_00");	//Тогда почему бы тебе не стать старшим в лагере?
+	if(!Npc_KnowsInfo(other,DIA_Addon_Thorus_Raventot))
+	{
+		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Answer_12_01");	//Допустим, а что с Вороном?
+		if(RavenIsDead == FALSE)
+		{
+			AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Answer_15_02");	//У Ворона скоро будут другие заботы. Я позабочусь об этом.
+		};
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_01");	//Давай я объясню тебе кое-что. Ты знаешь, почему я до сих пор жив?
+		AI_Output(self,other,"DIA_Addon_Thorus_Add_12_02");	//Потому что я всегда был верен своим людям.
+	};
+	if(!Npc_IsDead(Torwache2))
+	{
+		Torwache2.aivar[AIV_PASSGATE] = TRUE;
+	};
 };
 
 
 instance DIA_Addon_Thorus_Answer(C_Info)
 {
 	npc = BDT_10014_Addon_Thorus;
-	nr = 99;
+	nr = 93;
 	condition = DIA_Addon_Thorus_Answer_Condition;
 	information = DIA_Addon_Thorus_Answer_Info;
 	permanent = FALSE;
-	description = "Тогда почему бы тебе не стать старшим в лагере?";
+	description = "Ах, да. И позаботься о том, чтобы заключенные покинули лагерь спокойно.";
 };
 
 
 func int DIA_Addon_Thorus_Answer_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Thorus_Speech))
+	if(Npc_KnowsInfo(other,DIA_Addon_Thorus_Speech) && Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
 	{
 		return TRUE;
 	};
@@ -415,25 +439,16 @@ func int DIA_Addon_Thorus_Answer_Condition()
 
 func void DIA_Addon_Thorus_Answer_Info()
 {
-	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Answer_15_00");	//Тогда почему бы тебе не стать старшим в лагере?
-	if(RavenIsDead == FALSE)
+	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Answer_15_03");	//Ах, да. И позаботься о том, чтобы заключенные покинули лагерь спокойно.
+	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Answer_12_04");	//Хорошо. Я разберусь с охраной.
+	B_LogEntry(TOPIC_Addon_Sklaven,"Бладвин мертв. Теперь Торус позаботится о том, чтобы рабы смогли покинуть лагерь.");
+	if(!Npc_IsDead(PrisonGuard))
 	{
-		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Answer_12_01");	//Допустим, а что с Вороном?
-		AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Answer_15_02");	//У Ворона скоро будут другие заботы. Я позабочусь об этом.
-	};
-	if(Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
+		B_LogEntry(TOPIC_Addon_Sklaven,"Нужно снова поговорить с охранником рабов. После этого Патрик и его люди смогут уйти.");
+	}
+	else
 	{
-		AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Answer_15_03");	//Ах, да. И позаботься о том, чтобы заключенные покинули лагерь спокойно.
-		AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Answer_12_04");	//Хорошо. Я разберусь с охраной.
-		B_LogEntry(TOPIC_Addon_Sklaven,"Бладвин мертв. Теперь Торус позаботится о том, чтобы рабы смогли покинуть лагерь.");
-		if(!Npc_IsDead(PrisonGuard))
-		{
-			B_LogEntry(TOPIC_Addon_Sklaven,"Нужно снова поговорить с охранником рабов. После этого Патрик и его люди смогут уйти.");
-		}
-		else
-		{
-			B_LogEntry(TOPIC_Addon_Sklaven,"С охранником покончено. Теперь Патрик с людьми может отправляться.");
-		};
+		B_LogEntry(TOPIC_Addon_Sklaven,"С охранником покончено. Теперь Патрик с людьми может отправляться.");
 	};
 };
 
@@ -441,7 +456,7 @@ func void DIA_Addon_Thorus_Answer_Info()
 instance DIA_Addon_Thorus_Raventot(C_Info)
 {
 	npc = BDT_10014_Addon_Thorus;
-	nr = 99;
+	nr = 92;
 	condition = DIA_Addon_Thorus_Raventot_Condition;
 	information = DIA_Addon_Thorus_Raventot_Info;
 	permanent = FALSE;

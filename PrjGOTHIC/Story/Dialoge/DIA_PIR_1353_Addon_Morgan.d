@@ -94,7 +94,7 @@ instance DIA_Addon_Morgan_Anheuern(C_Info)
 
 func int DIA_Addon_Morgan_Anheuern_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (GregIsBack == TRUE))
+	if(Npc_IsInState(self,ZS_Talk) && (GregIsBack == TRUE) && !Npc_IsDead(Greg))
 	{
 		return TRUE;
 	};

@@ -34,9 +34,72 @@ func void ZS_MagicFlee()
 		if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Xardas))
 		{
 			B_Say(self,other,"$ISAIDSTOPMAGIC");
+			AI_ContinueRoutine(self);
 		};
-		AI_ContinueRoutine(self);
 		return;
+	};
+	if(Miliz_Flucht == FALSE)
+	{
+		if(ScaredRick == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rick))
+			{
+				Npc_ExchangeRoutine(self,"Flucht3");
+				ScaredRick = TRUE;
+			};
+		};
+		if(ScaredRumbold == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rumbold))
+			{
+				Npc_ExchangeRoutine(self,"Flucht3");
+				ScaredRumbold = TRUE;
+			};
+		};
+		if((ScaredRick == TRUE) && (ScaredRumbold == TRUE))
+		{
+			Rumbold_Bezahlt = TRUE;
+			Miliz_Flucht = TRUE;
+		};
+	};
+	if(Kapitel < 4)
+	{
+		if(ScaredAlvares == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Alvares))
+			{
+				Alvares.guild = GIL_SLD;
+				Npc_SetTrueGuild(Alvares,GIL_SLD);
+				Npc_ExchangeRoutine(self,"Bigfarm");
+				ScaredAlvares = TRUE;
+			};
+		};
+		if(ScaredEngardo == FALSE)
+		{
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Engardo))
+			{
+				Engardo.guild = GIL_SLD;
+				Npc_SetTrueGuild(Engardo,GIL_SLD);
+				Npc_ExchangeRoutine(self,"Bigfarm");
+				ScaredEngardo = TRUE;
+			};
+		};
+		if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE))
+		{
+			if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
+			{
+				Npc_ExchangeRoutine(Akil,"Start");
+			};
+			if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
+			{
+				Npc_ExchangeRoutine(Kati,"Start");
+			};
+			if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
+			{
+				Npc_ExchangeRoutine(Randolph,"Start");
+				Randolph.flags = 0;
+			};
+		};
 	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicFlee);
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);

@@ -30,7 +30,11 @@ func int C_ScHasReadiedBeliarsWeapon()
 {
 	var C_Item ReadyWeap;
 	ReadyWeap = Npc_GetReadiedWeapon(hero);
-	if(C_IsItemBeliarsWeapon(ReadyWeap))
+	if(!Npc_HasReadiedWeapon(hero))
+	{
+		return FALSE;
+	}
+	else if(C_IsItemBeliarsWeapon(ReadyWeap))
 	{
 		return TRUE;
 	};
@@ -41,7 +45,11 @@ func int C_ScHasEquippedBeliarsWeapon()
 {
 	var C_Item EquipWeap;
 	EquipWeap = Npc_GetEquippedMeleeWeapon(hero);
-	if(C_IsItemBeliarsWeapon(EquipWeap))
+	if(!Npc_HasEquippedMeleeWeapon(hero))
+	{
+		return FALSE;
+	}
+	else if(C_IsItemBeliarsWeapon(EquipWeap))
 	{
 		return TRUE;
 	};
@@ -467,7 +475,7 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_GreenTentacle()
 {
 	CreateInvItem(hero,ItRu_GreenTentacle);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_ScreenSmall,2);
+	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
@@ -477,7 +485,7 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SuckEnergy()
 {
 	CreateInvItem(hero,ItRu_SuckEnergy);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_ScreenSmall,2);
+	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
@@ -487,7 +495,7 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_NAME_SPL_SummonGuardian()
 {
 	CreateInvItem(hero,ItRu_SummonGuardian);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_ScreenSmall,2);
+	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
@@ -497,7 +505,7 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_BeliarsRage()
 {
 	CreateInvItem(hero,ItRu_BeliarsRage);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_ScreenSmall,2);
+	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
@@ -507,7 +515,7 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_Swarm()
 {
 	CreateInvItem(hero,ItRu_Swarm);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_ScreenSmall,2);
+	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
@@ -517,7 +525,7 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_summonZombie()
 {
 	CreateInvItem(hero,ItRu_SummonZombie);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_ScreenSmall,2);
+	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);
@@ -527,7 +535,7 @@ func void PC_PrayShrine_UPGRATEBELIARSWEAPON_SPL_Skull()
 {
 	CreateInvItem(hero,ItRu_Skull);
 	Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_ScreenSmall,2);
+	PrintScreen(PRINT_Addon_RuneGiven,-1,45,FONT_Screen,2);
 	Snd_Play("CS_Prayer_WaveOfInsanity");
 	BeliarsWeaponUpgrated = TRUE;
 	Info_ClearChoices(PC_PrayShrine_UPGRATEBELIARSWEAPON);

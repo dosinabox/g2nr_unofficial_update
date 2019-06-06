@@ -232,7 +232,7 @@ instance DIA_Addon_Xardas_Portal(C_Info)
 
 func int DIA_Addon_Xardas_Portal_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_WhatsOrnament) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if((SC_KnowsPortal == TRUE) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};

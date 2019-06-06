@@ -669,7 +669,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			};
 		};
 		//возвращение на ферму Онара Альвареса и Энгардо
-		if(TOPIC_END_AkilsSLDStillthere == FALSE)
+		if((TOPIC_END_AkilsSLDStillthere == FALSE) && !C_AkilFarmIsFree())
 		{
 			if(!Npc_IsDead(Alvares))
 			{
@@ -691,9 +691,13 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			{
 				B_StartOtherRoutine(Akil,"Start");
 			};
-			if(!Npc_IsDead(Randolph) && (hero.guild != GIL_KDF))
+			if(!Npc_IsDead(Randolph))
 			{
-				B_StartOtherRoutine(Randolph,"Start");
+				if(hero.guild != GIL_KDF)
+				{
+					B_StartOtherRoutine(Randolph,"Start");
+				};
+				Randolph.flags = 0;
 			};
 		};
 		B_KillThievesGuild();

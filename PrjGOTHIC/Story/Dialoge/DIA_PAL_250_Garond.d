@@ -428,7 +428,7 @@ instance DIA_Garond_Wo(C_Info)
 
 func int DIA_Garond_Wo_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2))
+	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Ore_Counter < 3))
 	{
 		return TRUE;
 	};

@@ -99,12 +99,15 @@ func void Use_FINALDRAGONEQUIPMENT_S1()
 			PlayergetsFinalDJGArmor = TRUE;
 			if(FinalDragonEquipment_Once == FALSE)
 			{
+				if(Npc_GetTalentSkill(self,NPC_TALENT_SMITH) == 0)
+				{
+					Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
+					Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
+					B_LogEntry(TOPIC_TalentSmith,PRINT_LearnSmithLog);
+				};
 				PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = TRUE;
 				PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = TRUE;
 				PrintScreen(PRINT_LearnSmith,-1,-1,FONT_Screen,4);
-				Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
-				Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
-				B_LogEntry(TOPIC_TalentSmith,"Чтобы выковать оружие, прежде всего мне нужна сырая сталь. Я должен докрасна нагреть ее в огне кузнечного горна, а затем придать форму на наковальне. Особое оружие зачастую требует особых материалов, придающих оружию особые свойства.");
 				B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 4 куска руды и 5 пробирок драконьей крови, то смогу выковать рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
 				B_LogEntry(TOPIC_TalentSmith,"Если я добавлю 5 кусков руды и 5 пробирок драконьей крови, то смогу выковать большой рудный клинок 'УБИЙЦА ДРАКОНОВ'.");
 			};

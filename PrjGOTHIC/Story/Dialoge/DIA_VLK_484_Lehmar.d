@@ -328,8 +328,6 @@ func void DIA_Lehmar_NOCHMALGELD_Info()
 };
 
 
-var int Lehmar_StealBook_Day;
-
 instance DIA_Lehmar_PICKPOCKET(C_Info)
 {
 	npc = VLK_484_Lehmar;
@@ -366,7 +364,6 @@ func void DIA_Lehmar_PICKPOCKET_DoIt()
 //	B_StealItems(20,Hlp_GetInstanceID(ItWr_Schuldenbuch),1);
 	B_StealItem(20,Hlp_GetInstanceID(ItWr_Schuldenbuch));
 	Info_ClearChoices(DIA_Lehmar_PICKPOCKET);
-	Lehmar_StealBook_Day = Wld_GetDay();
 };
 
 func void DIA_Lehmar_PICKPOCKET_BACK()

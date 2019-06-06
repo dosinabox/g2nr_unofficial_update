@@ -34,7 +34,7 @@ instance DIA_Alvares_HAUAB(C_Info)
 
 func int DIA_Alvares_HAUAB_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4) && (ScaredAlvares == FALSE))
 	{
 		return TRUE;
 	};
@@ -70,7 +70,7 @@ instance DIA_Alvares_ATTACK(C_Info)
 
 func int DIA_Alvares_ATTACK_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Alvares_HAUAB) && Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
+	if(Npc_KnowsInfo(other,DIA_Alvares_HAUAB) && Npc_IsInState(self,ZS_Talk) && (Kapitel < 4) && (ScaredAlvares == FALSE))
 	{
 		return TRUE;
 	};
@@ -155,7 +155,7 @@ instance DIA_Alvares_Schluss(C_Info)
 
 func int DIA_Alvares_Schluss_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Alvares_ATTACK) && (Kapitel < 4))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Alvares_ATTACK) && (Kapitel < 4) && (ScaredAlvares == FALSE))
 	{
 		return TRUE;
 	};

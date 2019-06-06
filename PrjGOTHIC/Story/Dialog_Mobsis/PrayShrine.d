@@ -193,9 +193,16 @@ instance PC_PrayShrine_Paladine(C_Info)
 
 func int PC_PrayShrine_Paladine_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (MIS_MardukBeten == LOG_Running) && (Kapitel == 1))
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PrayShrine) && (MIS_MardukBeten == LOG_Running))
 	{
-		return TRUE;
+		if(Kapitel == 1)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 

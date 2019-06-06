@@ -34,9 +34,12 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-	if((Npc_GetHeightToNpc(self,other) > 500) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_04") <= 3000))
+	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		return;
+		if((Npc_GetHeightToNpc(self,other) > 500) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_04") <= 3000))
+		{
+			return;
+		};
 	};
 	if((Hlp_GetInstanceID(victim) == Hlp_GetInstanceID(self)) || (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(self)))
 	{

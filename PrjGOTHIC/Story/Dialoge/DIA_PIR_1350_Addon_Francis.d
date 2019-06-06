@@ -333,7 +333,10 @@ func int DIA_Francis_Ausgeschissen_Condition()
 
 func void DIA_Francis_Ausgeschissen_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_00");	//(гневно) Благодаря тебе Грег заставил меня пилить дрова до тех пор, пока на острове не останется ни одного дерева.
+	if(!Npc_IsDead(Greg))
+	{
+		AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_00");	//(гневно) Благодаря тебе Грег заставил меня пилить дрова до тех пор, пока на острове не останется ни одного дерева.
+	};
 	AI_Output(self,other,"DIA_Addon_Francis_Ausgeschissen_13_01");	//Оставь меня в покое!
 	if(Npc_HasItems(other,ITWR_Addon_FrancisAbrechnung_Mis) && (Francis_HasProof == TRUE))
 	{

@@ -3,9 +3,9 @@ instance ItSe_ErzFisch(C_Item)
 {
 	name = "Круглая рыба";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItSe_ErzFisch.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_ErzFisch;
@@ -27,7 +27,7 @@ instance ItSe_GoldFisch(C_Item)
 {
 	name = "Тяжелая рыба";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 25;
 	visual = "ItSe_GoldFisch.3DS";
 	material = MAT_LEATHER;
@@ -48,13 +48,13 @@ func void Use_GoldFisch()
 };
 
 
-instance ItSe_Ringfisch(C_Item)
+instance ItSe_RingFisch(C_Item)
 {
 	name = "Маленькая рыбка";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItSe_RingFisch.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_Ringfisch;
@@ -77,7 +77,7 @@ instance ItSe_LockpickFisch(C_Item)
 {
 	name = "Легкая рыба";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 25;
 	visual = "ItFo_SmellyFish.3DS";
 	material = MAT_LEATHER;

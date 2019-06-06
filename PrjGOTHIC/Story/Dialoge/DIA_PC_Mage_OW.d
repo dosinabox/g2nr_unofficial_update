@@ -263,7 +263,7 @@ instance DIA_MiltenOW_Mehr(C_Info)
 
 func int DIA_MiltenOW_Mehr_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2) /* && (Npc_HasItems(other,ItMi_Gold) < 1000) */ && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
+	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2) && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
 	{
 		return TRUE;
 	};

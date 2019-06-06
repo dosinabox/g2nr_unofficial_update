@@ -97,8 +97,16 @@ func void DIA_Addon_Riordian_Atlantis_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_03");	//Ќо мы ошибались.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_04");	//«а этими горами лежит долина. “ам и располагаетс€ этот древний город.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_05");	//(вздыхает) я бы очень хотел взгл€нуть на его старинные здани€, но они наверн€ка давно рассыпались в прах...
-	B_LogEntry(TOPIC_Addon_KDW,"ћаги ¬оды считают, что за порталом находитс€ древний затер€нный город.");
-	SC_KnowsPortal = TRUE;
+	if(SC_KnowsPortal == FALSE)
+	{
+		if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) || Npc_KnowsInfo(other,DIA_Addon_Saturas_WhatsOrnament))
+		{
+			Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+			B_LogEntry(TOPIC_Addon_KDW,"ћаги ¬оды считают, что за порталом находитс€ древний затер€нный город.");
+			SC_KnowsPortal = TRUE;
+		};
+	};
 };
 
 

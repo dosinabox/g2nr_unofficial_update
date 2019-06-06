@@ -78,6 +78,8 @@ func void DIA_Jora_WAREZ_Info()
 };
 
 
+var int JoraToldAboutRobbery;
+
 instance DIA_Jora_GREET(C_Info)
 {
 	npc = VLK_408_Jora;
@@ -100,9 +102,13 @@ func int DIA_Jora_GREET_Condition()
 func void DIA_Jora_GREET_Info()
 {
 	AI_Output(self,other,"DIA_Jora_GREET_08_00");	//Да пребудет с тобой Иннос, чужеземец. Если тебе что-то нужно для твоих странствий, ты обратился по адресу.
-	AI_Output(self,other,"DIA_Jora_GREET_08_01");	//Но я предупреждаю тебя: если ты хочешь взять что-нибудь, не заплатив, я позову стражу!
-	AI_Output(other,self,"DIA_Jora_GREET_15_02");	//Минутку. Я что, похож на вора?
-	AI_Output(self,other,"DIA_Jora_GREET_08_03");	//(презрительно) Ха! Ты будешь не первым, кто что-нибудь спер у меня сегодня.
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+	{
+		AI_Output(self,other,"DIA_Jora_GREET_08_01");	//Но я предупреждаю тебя: если ты хочешь взять что-нибудь, не заплатив, я позову стражу!
+		AI_Output(other,self,"DIA_Jora_GREET_15_02");	//Минутку. Я что, похож на вора?
+		AI_Output(self,other,"DIA_Jora_GREET_08_03");	//(презрительно) Ха! Ты будешь не первым, кто что-нибудь спер у меня сегодня.
+		JoraToldAboutRobbery = TRUE;
+	};
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Джора торгует различным оружием на рыночной площади.");
 };
@@ -121,11 +127,20 @@ instance DIA_Jora_Bestohlen(C_Info)
 
 func int DIA_Jora_Bestohlen_Condition()
 {
+	if(JoraToldAboutRobbery == FALSE)
+	{
+		DIA_Jora_Bestohlen.description = "Как дела?";
+	};
 	return TRUE;
 };
 
 func void DIA_Jora_Bestohlen_Info()
 {
+	if(JoraToldAboutRobbery == FALSE)
+	{
+		AI_Output(other,self,"DIA_Addon_Nefarius_Hallo_15_00");	//Как дела?
+		AI_Output(self,other,"DIA_Jora_Bestohlen_08_04");	//Я отвернулся всего на мгновение, и мой кошелек пропал!
+	};
 	AI_Output(other,self,"DIA_Jora_Bestohlen_15_00");	//Кто-то обокрал тебя?
 	AI_Output(self,other,"DIA_Jora_Bestohlen_08_01");	//Я не могу доказать это. Этот парень был чертовски хитер. Представился как Ренгару - если это действительно его имя.
 	AI_Output(self,other,"DIA_Jora_Bestohlen_08_02");	//Он уже несколько дней ошивается на рыночной площади.
@@ -133,7 +148,10 @@ func void DIA_Jora_Bestohlen_Info()
 	{
 		AI_Output(self,other,"DIA_Jora_Bestohlen_08_03");	//А каждый вечер он зависает у пивной бочки вниз по улице. Готов поклясться, этот ублюдок пропивает МОИ деньги!
 	};
-	AI_Output(self,other,"DIA_Jora_Bestohlen_08_04");	//Я отвернулся всего на мгновение, и мой кошелек пропал!
+	if(JoraToldAboutRobbery == TRUE)
+	{
+		AI_Output(self,other,"DIA_Jora_Bestohlen_08_04");	//Я отвернулся всего на мгновение, и мой кошелек пропал!
+	};
 };
 
 func void B_Jora_GoldForClue()

@@ -111,7 +111,7 @@ func void DIA_Addon_Matt_PERM_Info()
 			AI_Output(self,other,"DIA_Addon_Matt_Alright_10_01");	//Все в порядке, капитан!
 		};
 	}
-	else if(GregIsBack == TRUE)
+	else if((GregIsBack == TRUE) && !Npc_IsDead(Greg))
 	{
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_01");	//Шутишь? У нас больше нет корабля.
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_02");	//Остается только ждать, пока Грег решит, что делать дальше.

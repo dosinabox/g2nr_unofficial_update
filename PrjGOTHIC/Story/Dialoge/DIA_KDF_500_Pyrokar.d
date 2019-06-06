@@ -590,9 +590,16 @@ instance DIA_Pyrokar_Wunsch(C_Info)
 
 func int DIA_Pyrokar_Wunsch_Condition()
 {
-	if((other.guild == GIL_KDF) && (Kapitel < 2))
+	if(other.guild == GIL_KDF)
 	{
-		return TRUE;
+		if(Kapitel < 2)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -611,7 +618,7 @@ func void DIA_Pyrokar_Wunsch_Info()
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Ополосу получить доступ в библиотеку.",DIA_Pyrokar_Wunsch_Opolos);
 	};
-	if(MIS_HelpDyrian == LOG_Running)
+	if((MIS_HelpDyrian == LOG_Running) && (Kapitel == 1))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Дуриану остаться в монастыре.",DIA_Pyrokar_Wunsch_Dyrian);
 	};
@@ -729,9 +736,16 @@ instance DIA_Pyrokar_Nachricht(C_Info)
 
 func int DIA_Pyrokar_Nachricht_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && (other.guild == GIL_KDF))
+	if(MIS_OLDWORLD == LOG_Running)
 	{
-		return TRUE;
+		if(other.guild == GIL_KDF)
+		{
+			return TRUE;
+		}
+		else if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -990,9 +1004,16 @@ instance DIA_Pyrokar_PERM(C_Info)
 
 func int DIA_Pyrokar_PERM_Condition()
 {
-	if((Kapitel >= 2) && (hero.guild == GIL_KDF))
+	if(Kapitel >= 2)
 	{
-		return TRUE;
+		if(hero.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
+		if(hero.guild == GIL_NOV)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1016,7 +1037,7 @@ instance DIA_Pyrokar_PERM_nonKDF(C_Info)
 
 func int DIA_Pyrokar_PERM_nonKDF_Condition()
 {
-	if((Kapitel >= 2) && (hero.guild != GIL_KDF))
+	if((Kapitel >= 2) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -1120,7 +1141,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 	{
 		B_StartOtherRoutine(Gorax,"Wait");
 	};
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV))
 	{
 		Info_AddChoice(DIA_Pyrokar_GIVEINNOSEYE,"Кто мог совершить столь дерзкий поступок, Мастер?",DIA_Pyrokar_GIVEINNOSEYE_wer);
 	}
@@ -1548,9 +1569,16 @@ instance DIA_Pyrokar_SCOBSESSED_KDF(C_Info)
 
 func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 {
-	if((SC_IsObsessed == TRUE) && (hero.guild == GIL_KDF))
+	if(SC_IsObsessed == TRUE)
 	{
-		return TRUE;
+		if(hero.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
+		if(hero.guild == GIL_NOV)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1590,7 +1618,7 @@ instance DIA_Pyrokar_SCOBSESSED(C_Info)
 
 func int DIA_Pyrokar_SCOBSESSED_Condition()
 {
-	if((SC_IsObsessed == TRUE) && (hero.guild != GIL_KDF))
+	if((SC_IsObsessed == TRUE) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
 	{
 		return TRUE;
 	};

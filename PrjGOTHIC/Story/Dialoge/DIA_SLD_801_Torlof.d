@@ -511,7 +511,7 @@ func void B_Torlof_BengarMilizKlatschen()
 	B_InitNpcGlobals();
 	Log_CreateTopic(TOPIC_TorlofMiliz,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TorlofMiliz,LOG_Running);
-	B_LogEntry(TOPIC_TorlofMiliz,"Торлоф попросил изгнать ополчение с фермы Бенгара. Она находится на плоскогорье.");
+	B_LogEntry(TOPIC_TorlofMiliz,"Торлоф попросил прогнать ополчение с фермы Бенгара. Она находится на плоскогорье.");
 };
 
 func void DIA_Torlof_Aufgaben_Pacht()
@@ -597,7 +597,10 @@ func void DIA_Torlof_SekobSuccess_Info()
 		};
 		MIS_Torlof_HolPachtVonSekob = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Torlof_SekobsKohlebekommen);
-		B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+		if(hero.guild == GIL_NONE)
+		{
+			B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+		};
 		Torlof_ProbeBestanden = TRUE;
 	}
 	else
@@ -621,7 +624,7 @@ instance DIA_Torlof_BengarSuccess(C_Info)
 func int DIA_Torlof_BengarSuccess_Condition()
 {
 //	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_IsDead(Rumbold) && Npc_IsDead(Rick))
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && ((Npc_IsDead(Rumbold) && Npc_IsDead(Rick)) || (Miliz_Flucht == TRUE)))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && ((Npc_IsDead(Rumbold) && Npc_IsDead(Rick)) || (Miliz_Flucht == TRUE) || (Bengar_MilSuccess == TRUE)))
 	{
 		return TRUE;
 	};
@@ -643,7 +646,10 @@ func void DIA_Torlof_BengarSuccess_Info()
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Bengar_MILIZKLATSCHEN);
-	B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+	if(hero.guild == GIL_NONE)
+	{
+		B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+	};
 	Torlof_ProbeBestanden = TRUE;
 };
 

@@ -33,7 +33,7 @@ func void INIT_Testlevel()
 func void startup_addon_part_adanostemple_01()
 {
 	Wld_InsertNpc(BDT_1090_Addon_Raven,"ADW_ADANOSTEMPEL_RAVEN_11");
-	Wld_InsertNpc(BDT_10400_Addon_DeadBandit,"ADW_ADANOSTEMPEL_RHADEMES_DEADBDT_01");
+	Wld_InsertNpc(BDT_10400_Addon_DeadBandit,"ADW_ADANOSTEMPEL_RHADEMES_03");
 	Wld_InsertNpc(BDT_10401_Addon_DeadBandit,"ADW_ADANOSTEMPEL_RHADEMES_DEADBDT_02");
 	Wld_InsertNpc(Stoneguardian_ADANOSTEMPELENTRANCE_01,"ADW_ADANOSTEMPEL_ENTRANCE_15");
 	Wld_InsertNpc(Stoneguardian_ADANOSTEMPELENTRANCE_02,"ADW_ADANOSTEMPEL_ENTRANCE_18");
@@ -59,7 +59,7 @@ func void startup_addon_part_adanostemple_01()
 	Wld_InsertNpc(Stoneguardian_RHADEMES_14D,"ADW_ADANOSTEMPEL_RHADEMES_14D");
 	Wld_InsertNpc(Stoneguardian_RHADEMES_14E,"ADW_ADANOSTEMPEL_RHADEMES_14E");
 	Wld_InsertNpc(Stoneguardian_RHADEMES_14F,"ADW_ADANOSTEMPEL_RHADEMES_14F");
-	Wld_InsertNpc(NONE_ADDON_112_Rhademes,"ADW_ADANOSTEMPEL_RHADEMES");
+	Wld_InsertNpc(NONE_ADDON_112_Rhademes,"ADW_ADANOSTEMPEL_RHADEMES_02");
 };
 
 func void init_sub_addon_part_adanostemple_01()
@@ -350,7 +350,7 @@ func void startup_addon_part_banditscamp_01()
 	Wld_InsertNpc(BDT_10014_Addon_Thorus,"BANDIT");
 	Wld_InsertNpc(BDT_1071_Addon_Ramon,"BANDIT");
 	Wld_InsertNpc(BDT_10004_Addon_Finn,"BANDIT");
-	Wld_InsertNpc(BDT_1088_Addon_Torwache,"BL_ENTRANCE_GUARD_02");
+	Wld_InsertNpc(BDT_1088_Addon_Torwache,"BANDIT");
 	Wld_InsertNpc(BDT_1083_Addon_Esteban,"BANDIT");
 	Wld_InsertNpc(BDT_1081_Addon_Wache_01,"BANDIT");
 	Wld_InsertNpc(BDT_10005_Addon_Wache_02,"BANDIT");
@@ -2185,7 +2185,14 @@ func void INIT_SUB_NewWorld_Part_City_01()
 //	Wld_AssignRoomToGuild("rathaus02_rathaus03",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("rathaus02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("rathaus03",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("reich01",GIL_VLK);
+	if(MIS_DiegosResidence == LOG_SUCCESS)
+	{
+		Wld_AssignRoomToGuild("reich01",GIL_PUBLIC);
+	}
+	else
+	{
+		Wld_AssignRoomToGuild("reich01",GIL_VLK);
+	};
 	Wld_AssignRoomToGuild("reich02",GIL_VLK);
 	Wld_AssignRoomToGuild("reich03",GIL_VLK);
 	Wld_AssignRoomToGuild("reich04",GIL_VLK);

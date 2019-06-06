@@ -51,45 +51,48 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 		};
 	};
 	otherweap = Npc_GetReadiedWeapon(oth);
-	if(Hlp_IsItem(otherweap,ItMw_BeliarWeapon_Fire))
+	if(Npc_HasReadiedWeapon(oth))
 	{
-		Wld_PlayEffect("VOB_MAGICBURN",slf,slf,0,0,0,FALSE);
-	};
-	if(Hlp_IsItem(otherweap,ItRw_Addon_FireBow))
-	{
-		//Wld_PlayEffect("spellFX_FIREBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
-		//что-то тут не так
-		if(slf.flags != NPC_FLAG_IMMORTAL)
+		if(Hlp_IsItem(otherweap,ItMw_BeliarWeapon_Fire))
 		{
-			Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);
+			Wld_PlayEffect("VOB_MAGICBURN",slf,slf,0,0,0,FALSE);
 		};
-		if(Npc_IsDead(slf))
+		if(Hlp_IsItem(otherweap,ItRw_Addon_FireBow))
 		{
-			B_GiveDeathXP(oth,slf);
+			//Wld_PlayEffect("spellFX_FIREBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
+			//что-то тут не так
+			if(slf.flags != NPC_FLAG_IMMORTAL)
+			{
+				Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);
+			};
+			if(Npc_IsDead(slf))
+			{
+				B_GiveDeathXP(oth,slf);
+			};
 		};
-	};
-	if(Hlp_IsItem(otherweap,ItRw_Addon_MagicBow))
-	{
-		Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
-		if(slf.flags != NPC_FLAG_IMMORTAL)
+		if(Hlp_IsItem(otherweap,ItRw_Addon_MagicBow))
 		{
-			Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);
+			Wld_PlayEffect("spellFX_ICEBOLT_COLLIDE",slf,slf,0,0,0,FALSE);
+			if(slf.flags != NPC_FLAG_IMMORTAL)
+			{
+				Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);
+			};
+			if(Npc_IsDead(slf))
+			{
+				B_GiveDeathXP(oth,slf);
+			};
 		};
-		if(Npc_IsDead(slf))
+		if(Hlp_IsItem(otherweap,ItRw_Addon_MagicCrossbow))
 		{
-			B_GiveDeathXP(oth,slf);
-		};
-	};
-	if(Hlp_IsItem(otherweap,ItRw_Addon_MagicCrossbow))
-	{
-		Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",slf,slf,0,0,0,FALSE);
-		if(slf.flags != NPC_FLAG_IMMORTAL)
-		{
-			Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);
-		};
-		if(Npc_IsDead(slf))
-		{
-			B_GiveDeathXP(oth,slf);
+			Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",slf,slf,0,0,0,FALSE);
+			if(slf.flags != NPC_FLAG_IMMORTAL)
+			{
+				Npc_ChangeAttribute(slf,ATR_HITPOINTS,-slf.protection[PROT_POINT]);
+			};
+			if(Npc_IsDead(slf))
+			{
+				B_GiveDeathXP(oth,slf);
+			};
 		};
 	};
 };

@@ -63,9 +63,16 @@ instance DIA_Opolos_Wurst(C_Info)
 
 func int DIA_Opolos_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
-		return TRUE;
+		if(Kapitel == 1)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
