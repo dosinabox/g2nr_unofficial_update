@@ -29,6 +29,10 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lagerwache))
+	{
+		return FALSE;
+	};
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Greg))
 	{
 		return FALSE;

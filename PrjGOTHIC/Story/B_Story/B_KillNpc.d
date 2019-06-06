@@ -55,6 +55,11 @@ func void b_check_armor()
 	};
 };
 
+func string b_check_dist(var C_NPC slf, var string wp)
+{
+	return IntToString(Npc_GetDistToWP(slf,wp));
+};
+
 func void b_cycle_function()
 {
 	if((CurrentLevel == NEWWORLD_ZEN) && (UNDEADSWORD == FALSE) && Npc_HasItems(hero,ItMw_Drachenschneide))
@@ -81,6 +86,7 @@ func void b_cycle_function()
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,3);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,3);
 	};
+//	Print(b_check_dist(hero,"NW_CITY_HABOUR_HUT_03_IN_06"));
 	Wld_SendTrigger("CYCLE_TRIGGER");
 };
 

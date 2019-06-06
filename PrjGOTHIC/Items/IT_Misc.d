@@ -328,9 +328,7 @@ instance ItMi_Pocket(C_Item)
 
 func void UsePocket()
 {
-	CreateInvItems(hero,ItMi_Gold,10);
-	Print(PRINT_FoundGold10);
-	Snd_Play("Geldbeutel");
+	B_PlayerFindItem(ItMi_Gold,10);
 };
 
 
