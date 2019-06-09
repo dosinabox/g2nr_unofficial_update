@@ -359,7 +359,7 @@ instance DIA_Oric_WillHelp(C_Info)
 
 func int DIA_Oric_WillHelp_Condition()
 {
-	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE))
+	if((OrikToldMissionChapter4 == TRUE) && (MIS_KillHoshPak == FALSE) && !Npc_IsDead(Hosh_Pak))
 	{
 		return TRUE;
 	};
@@ -391,9 +391,16 @@ instance DIA_Oric_HoshDead(C_Info)
 
 func int DIA_Oric_HoshDead_Condition()
 {
-	if(Npc_IsDead(Hosh_Pak) && (MIS_KillHoshPak == LOG_Running))
+	if(Npc_IsDead(Hosh_Pak))
 	{
-		return TRUE;
+		if(MIS_KillHoshPak == LOG_Running)
+		{
+			return TRUE;
+		}
+		else if(OrikToldMissionChapter4 == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 

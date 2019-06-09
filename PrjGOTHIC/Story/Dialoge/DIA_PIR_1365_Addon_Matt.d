@@ -167,12 +167,9 @@ instance DIA_Addon_Matt_Francis(C_Info)
 
 func int DIA_Addon_Matt_Francis_Condition()
 {
-	if(Francis_ausgeschissen == FALSE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
-		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 

@@ -169,6 +169,8 @@ func void DIA_Rod_Teach_2H_5()
 };
 
 
+var int DIA_Rod_WannaJoin_noPerm;
+
 instance DIA_Rod_WannaJoin(C_Info)
 {
 	npc = SLD_804_Rod;
@@ -182,7 +184,7 @@ instance DIA_Rod_WannaJoin(C_Info)
 
 func int DIA_Rod_WannaJoin_Condition()
 {
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) && (DIA_Rod_WannaJoin_noPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -214,8 +216,9 @@ func void DIA_Rod_WannaJoin_Info()
 			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 		};
+		SCKnowsSLDVotes = TRUE;
 		B_LogEntry(TOPIC_SLDRespekt,"Я получу голос Рода, если я захочу присоединиться к наемникам.");
-		DIA_Rod_WannaJoin.permanent = FALSE;
+		DIA_Rod_WannaJoin_noPerm = TRUE;
 	}
 	else
 	{

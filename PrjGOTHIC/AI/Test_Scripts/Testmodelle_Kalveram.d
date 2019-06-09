@@ -1548,3 +1548,19 @@ func void UseWastelandRune()
 	b_seed_wasteland_world_freeminecamp();
 	
 };
+
+instance ItFo_Meat(C_Item)
+{
+	name = "Луковица";
+	mainflag = ITEM_KAT_FOOD;
+	flags = ITEM_MULTI;
+	value = Value_Beet;
+	visual = "Onion.3ds";
+	material = MAT_LEATHER;
+	on_state[0] = Use_Weed;
+	scemeName = "FOOD";
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+

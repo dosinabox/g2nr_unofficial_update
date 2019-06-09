@@ -1,5 +1,4 @@
 
-var int Constantino_ItemsGiven_LittleMana;
 var int Constantino_ItemsGiven_Chapter_1;
 var int Constantino_ItemsGiven_Chapter_2;
 var int Constantino_ItemsGiven_Chapter_3;
@@ -8,11 +7,6 @@ var int Constantino_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Constantino(var C_Npc slf)
 {
-	if((Player_IsApprentice == APP_Constantino) && ((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF)) && (Constantino_ItemsGiven_LittleMana == FALSE))
-	{
-		CreateInvItems(slf,ItPo_Perm_LittleMana,1);
-		Constantino_ItemsGiven_LittleMana = TRUE;
-	};
 	if((Kapitel >= 1) && (Constantino_ItemsGiven_Chapter_1 == FALSE))
 	{
 		CreateInvItems(slf,ItMi_Gold,31);

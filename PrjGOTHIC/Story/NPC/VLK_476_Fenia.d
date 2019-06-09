@@ -9,6 +9,7 @@ instance VLK_476_Fenia(Npc_Default)
 	npcType = npctype_main;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,1);
+	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_NORMAL;
 //	B_CreateAmbientInv(self);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);

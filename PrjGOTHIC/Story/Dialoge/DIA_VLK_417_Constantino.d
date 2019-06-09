@@ -182,6 +182,8 @@ func void DIA_Addon_Constantino_LestersKraeuter_Info()
 };
 
 
+var int Constantino_ItemsGiven_LittleMana;
+
 instance DIA_Constantino_Trade(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -204,6 +206,7 @@ func int DIA_Constantino_Trade_Condition()
 
 func void DIA_Constantino_Trade_Info()
 {
+	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
 	if(Constantino_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
@@ -213,14 +216,18 @@ func void DIA_Constantino_Trade_Info()
 		};
 		Constantino_flag = FALSE;
 	};
-	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
-	B_GiveTradeInv(self);
+	if((Player_IsApprentice == APP_Constantino) && ((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF)) && (Constantino_ItemsGiven_LittleMana == FALSE))
+	{
+		CreateInvItems(self,ItPo_Perm_LittleMana,1);
+		Constantino_ItemsGiven_LittleMana = TRUE;
+	};
 	if(Constantino_Logpatch1 == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTrader,"Константино продает алхимические товары.");
 		Constantino_Logpatch1 = TRUE;
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 

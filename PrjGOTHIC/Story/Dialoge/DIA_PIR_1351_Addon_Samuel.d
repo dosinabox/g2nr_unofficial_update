@@ -64,7 +64,7 @@ instance DIA_Addon_Samuel_Francis(C_Info)
 
 func int DIA_Addon_Samuel_Francis_Condition()
 {
-	if(Francis_ausgeschissen == FALSE)
+	if(GregIsBack == FALSE)
 	{
 		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
 		{
@@ -95,7 +95,7 @@ instance DIA_Addon_Samuel_Versteck(C_Info)
 
 func int DIA_Addon_Samuel_Versteck_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (Francis_ausgeschissen == FALSE) && (GregIsBack == FALSE) && !Npc_IsDead(Francis))
+	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (GregIsBack == FALSE) && !Npc_IsDead(Francis))
 	{
 		return TRUE;
 	};

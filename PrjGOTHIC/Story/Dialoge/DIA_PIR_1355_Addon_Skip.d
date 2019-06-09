@@ -367,7 +367,7 @@ instance DIA_Addon_Skip_Raven(C_Info)
 
 func int DIA_Addon_Skip_Raven_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits))
 	{
 		return TRUE;
 	};

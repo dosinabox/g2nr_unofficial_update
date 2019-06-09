@@ -163,6 +163,7 @@ func void B_CipherHappyForWeedPaket()
 			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 		};
 		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
+		SCKnowsSLDVotes = TRUE;
 		GotCipherVote = TRUE;
 	};
 	B_GivePlayerXP(XP_CipherWeed);
@@ -201,6 +202,7 @@ func void DIA_Cipher_YesJoin_Info()
 		AI_Output(other,self,"DIA_Cipher_YesJoin_15_02");	//На что ты намекаешь?
 		AI_Output(self,other,"DIA_Cipher_YesJoin_07_03");	//Ну, я уже давно ничего не курил. Принеси мне несколько косяков из болотной травы, и ты получишь мой голос.
 		AI_Output(self,other,"DIA_Cipher_YesJoin_07_04");	//Я уверен, тебе удастся что-нибудь найти.
+		SCKnowsSLDVotes = TRUE;
 		MIS_Cipher_BringWeed = LOG_Running;
 		Log_CreateTopic(Topic_CipherHerb,LOG_MISSION);
 		Log_SetTopicStatus(Topic_CipherHerb,LOG_Running);
@@ -268,6 +270,7 @@ func void DIA_Cipher_Joints_Success()
 				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 			};
 			B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
+			SCKnowsSLDVotes = TRUE;
 			GotCipherVote = TRUE;
 		};
 		MIS_Cipher_BringWeed = LOG_SUCCESS;
@@ -449,6 +452,7 @@ func void DIA_Cipher_KrautPaket_Info()
 			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 		};
 		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
+		SCKnowsSLDVotes = TRUE;
 		GotCipherVote = TRUE;
 	};
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_04");	//Эй, возьми это в награду.

@@ -34,7 +34,7 @@ instance DIA_Addon_Francis_First(C_Info)
 
 func int DIA_Addon_Francis_First_Condition()
 {
-	if((Knows_GregsHut == FALSE) && (Francis_ausgeschissen == FALSE) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
+	if((Knows_GregsHut == FALSE) && (Francis_ausgeschissen == FALSE))
 	{
 		return TRUE;
 	};
@@ -61,7 +61,7 @@ instance DIA_Addon_Francis_LetMeIn(C_Info)
 
 func int DIA_Addon_Francis_LetMeIn_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Addon_Francis_First) || (Knows_GregsHut == TRUE)) && (Francis_ausgeschissen == FALSE) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
+	if((Knows_GregsHut == TRUE) && (GregIsBack == FALSE) && Npc_HasItems(self,ItKe_Greg_Addon_MIS))
 	{
 		return TRUE;
 	};
@@ -100,13 +100,16 @@ func void DIA_Addon_Francis_AboutGreg_Info()
 	AI_Output(other,self,"DIA_Addon_Francis_AboutGreg_15_00");	//Грег - твой начальник?
 	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_01");	//Только не пытайся мне сказать, что ты его знаешь!
 	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_02");	//Любой моряк... да что там, даже последняя сухопутная крыса знает ужасного капитана Грега!
-	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_03");	//(высокомерно) А он оставил за главного МЕНЯ!
-	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_04");	//Я должен заставлять этих лентяев исполнять его приказы!
-	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_05");	//Некоторые думают, что теперь, пока капитана нет, они могут делать все, что им заблагорассудится.
-	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_06");	//Они ОЧЕНЬ удивятся, когда Грег вернется.
-	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_07");	//Я ему все расскажу о том, что здесь происходило, понятно?
-	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_08");	//Я также расскажу ему о тех, кто пытался проникнуть в его жилище.
-	AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_09");	//Поэтому проваливай, или у тебя будут большие неприятности.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_03");	//(высокомерно) А он оставил за главного МЕНЯ!
+		AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_04");	//Я должен заставлять этих лентяев исполнять его приказы!
+		AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_05");	//Некоторые думают, что теперь, пока капитана нет, они могут делать все, что им заблагорассудится.
+		AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_06");	//Они ОЧЕНЬ удивятся, когда Грег вернется.
+		AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_07");	//Я ему все расскажу о том, что здесь происходило, понятно?
+		AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_08");	//Я также расскажу ему о тех, кто пытался проникнуть в его жилище.
+		AI_Output(self,other,"DIA_Addon_Francis_AboutGreg_13_09");	//Поэтому проваливай, или у тебя будут большие неприятности.
+	};
 };
 
 

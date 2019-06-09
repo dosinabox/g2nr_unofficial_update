@@ -253,6 +253,7 @@ func void DIA_Dar_Kameradenschwein_Info()
 	if(Npc_KnowsInfo(other,DIA_Dar_WannaJoin) && (other.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_01");	//Я ни за что не проголосую за тебя.
+		SCKnowsSLDVotes = TRUE;
 	};
 };
 

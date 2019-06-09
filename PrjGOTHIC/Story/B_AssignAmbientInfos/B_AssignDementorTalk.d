@@ -66,7 +66,10 @@ func void DIA_AmbientDementor_Info()
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino3)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DMT_Vino4)))
 	{
 		AI_Output(self,other,"DIA_VinoDementor_19_00");	//Ты пришел расстроить наш ритуал? Его душа принадлежит нам. Тебе не спасти его, маг.
-		DMT_Vino4.start_aistate = ZS_Stand_Dementor;
+		if(!Npc_IsDead(DMT_Vino4))
+		{
+			DMT_Vino4.start_aistate = ZS_Stand_Dementor;
+		};
 		B_StartOtherRoutine(Vino,"RunFromRitual");
 		AI_EquipBestMeleeWeapon(Vino);
 	}

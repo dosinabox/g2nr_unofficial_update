@@ -342,6 +342,7 @@ AI\Human\TA_Human\ZS_AssessGuidePlayer.d
 AI\Human\TA_Human\ZS_Pee.d
 AI\Human\TA_Human\ZS_Pick_FP.d
 AI\Human\TA_Human\ZS_Pick_Ore.d
+AI\Human\TA_Human\ZS_Play_Harfe.d
 AI\Human\TA_Human\ZS_Play_Lute.d
 AI\Human\TA_Human\ZS_Potion_Alchemy.d
 AI\Human\TA_Human\ZS_Practice_Magic.d

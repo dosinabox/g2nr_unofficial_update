@@ -24,7 +24,7 @@ instance VLK_433_Bromor(Npc_Default)
 
 func void Rtn_Start_433()
 {
-	TA_Sit_Throne(5,30,8,0,"NW_CITY_PUFF_THRONE");
-	TA_Stand_ArmsCrossed(8,0,5,30,"NW_CITY_PUFF_COUNTER");
+	TA_Sit_Throne(5,0,8,0,"NW_CITY_PUFF_THRONE");
+	TA_Stand_ArmsCrossed(8,0,5,0,"NW_CITY_PUFF_COUNTER");
 };
 

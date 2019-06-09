@@ -197,7 +197,7 @@ instance DIA_Addon_Bones_Francis(C_Info)
 
 func int DIA_Addon_Bones_Francis_Condition()
 {
-	if(Francis_ausgeschissen == FALSE)
+	if(GregIsBack == FALSE)
 	{
 		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
 		{

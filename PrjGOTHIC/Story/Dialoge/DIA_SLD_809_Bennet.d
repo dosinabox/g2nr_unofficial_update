@@ -202,6 +202,7 @@ func void DIA_Bennet_WannaJoin_Info()
 	{
 		AI_Output(other,self,"DIA_Bennet_WannaJoin_15_02");	//я прошел испытание.
 		AI_Output(self,other,"DIA_Bennet_WannaJoin_06_03");	//’орошо, тогда € проголосую за теб€.
+		SCKnowsSLDVotes = TRUE;
 	};
 };
 

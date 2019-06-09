@@ -162,11 +162,13 @@ instance ItMi_IECello(C_Item)
 	name = "Виолончель";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = 1;
+	value = 20;
 	visual = "Itmi_IE_Cello.3ds";
 	material = MAT_WOOD;
 	scemeName = "CELLO";
 	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItMi_IECelloBow(C_Item)
@@ -174,10 +176,12 @@ instance ItMi_IECelloBow(C_Item)
 	name = "Виолончельный смычок";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = 1;
+	value = 5;
 	visual = "Itmi_IE_CelloBow.3ds";
 	material = MAT_WOOD;
 	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItMi_IEDrum(C_Item)
@@ -185,23 +189,13 @@ instance ItMi_IEDrum(C_Item)
 	name = "Барабан";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = 1;
+	value = 20;
 	visual = "Itmi_IE_Drum.3ds";
 	material = MAT_WOOD;
 	scemeName = "PAUKE";
 	description = name;
-};
-
-instance ItMi_IEDrumScheit(C_Item)
-{
-	name = "Трумшайт";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI;
-	value = 1;
-	visual = "Itmi_IE_Drumscheit.3ds";
-	material = MAT_WOOD;
-	scemeName = "DRUMSCHEIT";
-	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItMi_IEDrumStick(C_Item)
@@ -209,10 +203,28 @@ instance ItMi_IEDrumStick(C_Item)
 	name = "Барабанная палочка";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = 1;
+	value = 5;
 	visual = "Itmi_IE_DrumStick.3ds";
 	material = MAT_WOOD;
 	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_rotz = INVCAM_Z_RING_STANDARD;
+	inv_rotx = 55;
+};
+
+instance ItMi_IEDrumScheit(C_Item)
+{
+	name = "Трумшайт";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 20;
+	visual = "Itmi_IE_Drumscheit.3ds";
+	material = MAT_WOOD;
+	scemeName = "DRUMSCHEIT";
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItMi_IEDudelBlau(C_Item)
@@ -220,11 +232,13 @@ instance ItMi_IEDudelBlau(C_Item)
 	name = "Синяя волынка";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = 1;
+	value = 20;
 	visual = "Itmi_IE_DudelBlau.3ds";
-	material = MAT_WOOD;
+	material = MAT_LEATHER;
 	scemeName = "DUDEL";
 	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItMi_IEDudelGelb(C_Item)
@@ -232,11 +246,13 @@ instance ItMi_IEDudelGelb(C_Item)
 	name = "Желтая волынка";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = 1;
+	value = 20;
 	visual = "Itmi_IE_DudelGelb.3ds";
-	material = MAT_WOOD;
+	material = MAT_LEATHER;
 	scemeName = "DUDEL";
 	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItMi_IEHarfe(C_Item)
@@ -244,23 +260,30 @@ instance ItMi_IEHarfe(C_Item)
 	name = "Арфа";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = 1;
+	value = 20;
 	visual = "Itmi_IE_Harfe.3ds";
 	material = MAT_WOOD;
 	scemeName = "HARFE";
 	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
 };
 
 instance ItMi_IELaute(C_Item)
 {
-	name = "Лютня";
+	name = "Гитара";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
-	value = 1;
+	value = 20;
 	visual = "Itmi_IE_Laute.3ds";
 	material = MAT_WOOD;
 	scemeName = "IELAUTE";
 	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+	inv_rotz = 45;
+	inv_rotx = 270;
+	inv_roty = 295;
 };
 
 instance ItMi_Addon_Lennar_Paket(C_Item)

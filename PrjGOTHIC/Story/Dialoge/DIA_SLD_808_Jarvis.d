@@ -190,6 +190,7 @@ func void DIA_Jarvis_WannaJoin_Info()
 	AI_Output(other,self,"DIA_Jarvis_WannaJoin_15_02");	//В чем проблема?
 	AI_Output(self,other,"DIA_Jarvis_WannaJoin_04_03");	//Ну, я должен голосовать либо за тебя, либо против.
 	AI_Output(self,other,"DIA_Jarvis_WannaJoin_04_04");	//А учитывая ситуацию, я проголосую за тебя, только если буду уверен, что ты на стороне Ли!
+	SCKnowsSLDVotes = TRUE;
 };
 
 
@@ -421,6 +422,7 @@ func void DIA_Jarvis_HowManyLeft_Info()
 					Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
 					Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 				};
+				SCKnowsSLDVotes = TRUE;
 				B_LogEntry(TOPIC_SLDRespekt,"Джарвис проголосует за меня, если я решу присоединиться к наемникам.");
 			};
 			MIS_Jarvis_SldKO = LOG_SUCCESS;
