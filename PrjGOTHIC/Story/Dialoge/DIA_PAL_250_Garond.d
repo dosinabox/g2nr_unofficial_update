@@ -860,7 +860,7 @@ func void DIA_Garond_BACKINKAP4_Info()
 	B_StartOtherRoutine(Kjorn,"START");
 	B_StartOtherRoutine(Godar,"START");
 	B_StartOtherRoutine(Hokurn,"START");
-	B_StartOtherRoutine(PC_Fighter_DJG,"START");
+	B_StartOtherRoutine(GornDJG,"START");
 	B_StartOtherRoutine(Kurgan,"START");
 	if(DJG_BiffParty == FALSE)
 	{

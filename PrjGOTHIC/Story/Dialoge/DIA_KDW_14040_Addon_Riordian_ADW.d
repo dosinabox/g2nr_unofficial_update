@@ -209,7 +209,7 @@ instance DIA_Addon_Riordian_HousesOfRulers(C_Info)
 
 func int DIA_Addon_Riordian_HousesOfRulers_Condition()
 {
-	if(MIS_Saturas_LookingForHousesOfRulers == LOG_Running)
+	if(SaturasSendsToRiordian == TRUE)
 	{
 		return TRUE;
 	};
@@ -259,12 +259,11 @@ instance DIA_Addon_Riordian_WhereAreHouses(C_Info)
 
 func int DIA_Addon_Riordian_WhereAreHouses_Condition()
 {
-	if((MIS_Riordian_HousesOfRulers == LOG_Running) && (Saturas_SCBroughtAllToken == FALSE))
+	if(MIS_Riordian_HousesOfRulers == LOG_Running)
 	{
 		return TRUE;
 	};
 };
-
 
 func void DIA_Addon_Riordian_WhereAreHouses_Info()
 {
@@ -286,13 +285,11 @@ instance DIA_Addon_Riordian_FoundHouse(C_Info)
 
 func int DIA_Addon_Riordian_FoundHouse_Condition()
 {
-	if((MIS_Riordian_HousesOfRulers == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Riordian_WhereAreHouses) && (RiordianHousesFoundCount < 5))
+	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_WhereAreHouses) && (RiordianHousesFoundCount < 5))
 	{
 		return TRUE;
 	};
 };
-
-
 
 var int foundhouseinfo[6];
 const int Library = 1;
@@ -419,7 +416,7 @@ instance DIA_Addon_Riordian_FoundAllHouses(C_Info)
 
 func int DIA_Addon_Riordian_FoundAllHouses_Condition()
 {
-	if((RiordianHousesFoundCount >= 5) && (MIS_Riordian_HousesOfRulers == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_WhereAreHouses) && (RiordianHousesFoundCount >= 5) && (MIS_Riordian_HousesOfRulers == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -433,6 +430,7 @@ func void DIA_Addon_Riordian_FoundAllHouses_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_03");	//Отлично! Значит, моя работа была не напрасной.
 	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
 	MIS_Riordian_HousesOfRulers = LOG_SUCCESS;
+	AllHousesOfRulersFound = TRUE;
 	B_GivePlayerXP(XP_Addon_FoundAllHouses);
 };
 

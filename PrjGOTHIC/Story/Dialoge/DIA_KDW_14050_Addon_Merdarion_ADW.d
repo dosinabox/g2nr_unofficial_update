@@ -231,7 +231,7 @@ func void DIA_Addon_Merdarion_ActivateTeleports_Info()
 	CreateInvItems(self,ItMi_Gold,150);
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	Merdarion_GotFocusCount += 1;
-	if((Merdarion_GotFocusCount >= 1) && (Saturas_SCBroughtAllToken == FALSE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE) && (MIS_Saturas_LookingForHousesOfRulers == 0))
+	if(DIA_Addon_Saturas_StonePlateHint_Condition() && (MIS_Saturas_LookingForHousesOfRulers == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_11");	//Да, и кстати, пока я не забыл - Сатурас хотел поговорить с тобой.
 		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_12");	//Ты должен найти его как можно скорее.

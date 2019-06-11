@@ -133,6 +133,7 @@ var C_Npc Bartok;
 var C_Npc CityOrc;
 var C_Npc Gritta;
 var C_Npc Richter;
+var C_Npc Larius;
 var C_Npc LordHagen;
 var C_Npc Albrecht;
 var C_Npc Ingmar;
@@ -481,6 +482,7 @@ func void B_InitNpcGlobals()
 	CityOrc = Hlp_GetNpc(OrcWarrior_Harad);
 	Gritta = Hlp_GetNpc(VLK_418_Gritta);
 	Richter = Hlp_GetNpc(VLK_402_Richter);
+	Larius = Hlp_GetNpc(VLK_400_Larius);
 	Constantino = Hlp_GetNpc(VLK_417_Constantino);
 	Thorben = Hlp_GetNpc(VLK_462_Thorben);
 	Bosper = Hlp_GetNpc(VLK_413_Bosper);

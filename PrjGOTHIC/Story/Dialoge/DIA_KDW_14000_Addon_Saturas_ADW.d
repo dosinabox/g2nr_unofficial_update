@@ -411,8 +411,8 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_26");	//Ты оказал нам огромную услугу. Благодарю тебя.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_27");	//Благодаря этому мы сделаем в наших исследованиях большой шаг вперед.
 		};
-		MIS_Saturas_LookingForHousesOfRulers = LOG_SUCCESS;
 		Saturas_SCBroughtAllToken = TRUE;
+		B_CheckLog();
 	}
 	else
 	{
@@ -434,9 +434,16 @@ instance DIA_Addon_Saturas_StonePlateHint(C_Info)
 
 func int DIA_Addon_Saturas_StonePlateHint_Condition()
 {
-	if(((Merdarion_GotFocusCount >= 2) || (RavenIsInTempel == TRUE)) && (Saturas_SCBroughtAllToken == FALSE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE) && (RavenIsDead == FALSE))
+	if((Merdarion_GotFocusCount >= 2) || (RavenIsInTempel == TRUE))
 	{
-		return TRUE;
+		if(RavenIsDead == FALSE)
+		{
+			return TRUE;
+		}
+		else if(Npc_KnowsInfo(other,DIA_Addon_Saturas_RavensDead) && (MyxirMovedToNW == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -458,6 +465,7 @@ func void DIA_Addon_Saturas_StonePlateHint_wo()
 	AI_Output(other,self,"DIA_Addon_Saturas_StonePlateHint_wo_15_00");	//Где мне искать дворцы?
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_wo_14_01");	//Риордиан изучил устройство зданий в Яркендаре.
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_wo_14_02");	//Он скажет, где тебе искать эти дворцы.
+	SaturasSendsToRiordian = TRUE;
 	Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
 	B_LogEntry(TOPIC_Addon_HousesOfRulers,"Сатурас хочет, чтобы я обыскал дворцы зодчих. Риордиан скажет мне, где найти эти строения.");
@@ -802,9 +810,10 @@ func void DIA_Addon_Saturas_TalkedToGhost_kammern()
 	Log_CreateTopic(TOPIC_Addon_Kammern,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Kammern,LogText_Addon_Relicts);
-	Log_CreateTopic(TOPIC_Addon_Relicts,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Relicts,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_Relicts,LogText_Addon_Relicts);
+	if(Saturas_SCBroughtAllToken == FALSE)
+	{
+		B_LogEntry(TOPIC_Addon_Relicts,LogText_Addon_Relicts);
+	};
 	Saturas_KnowsHow2GetInTempel = TRUE;
 	B_CheckLog();
 };
@@ -822,7 +831,7 @@ instance DIA_Addon_Saturas_RelictsBack(C_Info)
 
 func int DIA_Addon_Saturas_RelictsBack_Condition()
 {
-	if((Saturas_SCBroughtAllToken == TRUE) && (Saturas_KnowsHow2GetInTempel == TRUE) && (RavenIsDead == FALSE))
+	if((Saturas_KnowsHow2GetInTempel == TRUE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -834,15 +843,18 @@ func void DIA_Addon_Saturas_RelictsBack_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_RelictsBack_15_00");	//Как именно реликвии помогут мне в храме?
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_03");	//Мы слишком мало знаем, чтобы я мог сказать тебе это. Надеюсь, что, оказавшись в храме, ты поймешь все сам.
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_05");	//Извини, но больше я ничего сказать не могу. Теперь все зависит от тебя.
-	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_06");	//Возьми реликвии и как можно скорее отправляйся в храм.
-	CreateInvItems(hero,ItMi_Addon_Stone_01,1);
-	CreateInvItems(hero,ItMi_Addon_Stone_02,1);
-	CreateInvItems(hero,ItMi_Addon_Stone_03,1);
-	CreateInvItems(hero,ItMi_Addon_Stone_04,1);
-	CreateInvItems(hero,ItMi_Addon_Stone_05,1);
-	concatText = ConcatStrings(IntToString(5),PRINT_ItemsErhalten);
-	AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-	B_LogEntry(TOPIC_Addon_Kammern,"Сатурас послал меня в храм, вручив мне пять реликвий зодчих. Я должен пройти через залы храма и остановить Ворона.");
+	if(Saturas_SCBroughtAllToken == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_06");	//Возьми реликвии и как можно скорее отправляйся в храм.
+		CreateInvItems(hero,ItMi_Addon_Stone_01,1);
+		CreateInvItems(hero,ItMi_Addon_Stone_02,1);
+		CreateInvItems(hero,ItMi_Addon_Stone_03,1);
+		CreateInvItems(hero,ItMi_Addon_Stone_04,1);
+		CreateInvItems(hero,ItMi_Addon_Stone_05,1);
+		concatText = ConcatStrings(IntToString(5),PRINT_ItemsErhalten);
+		AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+		B_LogEntry(TOPIC_Addon_Kammern,"Сатурас послал меня в храм, вручив мне пять реликвий зодчих. Я должен пройти через залы храма и остановить Ворона.");
+	};
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_07");	//Да защитит нас милость Аданоса!
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_08");	//Возможно, еще не слишком поздно.
 };

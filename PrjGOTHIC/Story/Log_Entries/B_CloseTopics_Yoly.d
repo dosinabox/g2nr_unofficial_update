@@ -27,10 +27,10 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_TeleportsADW,0,SC_ADW_ActivatedAllTelePortStones,6);
 	B_CloseTopic(TOPIC_Addon_Sklaven,0,Sklaven_Flucht,6);
 	B_CloseTopic(TOPIC_Addon_RavenKDW,0,RavenIsDead,4);
-	B_CloseTopic(TOPIC_Addon_Relicts,0,Saturas_SCBroughtAllToken,4);
+	B_CloseTopic(TOPIC_Addon_Relicts,0,Saturas_SCBroughtAllToken,6);
 	B_CloseTopic(TOPIC_Addon_Lance,0,TOPIC_End_Lance,6);
 //	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,RavenIsDead,6);
-	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,0,6);
+	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,AllHousesOfRulersFound,6);
 	B_CloseTopic(TOPIC_Addon_CanyonOrcs,0,TOPIC_END_CanyonOrcs,6);
 	B_CloseTopic(TOPIC_Addon_BDTRuestung,0,MIS_Greg_ScoutBandits,6);
 	B_CloseTopic(TOPIC_Addon_Quarhodron,0,Saturas_KnowsHow2GetInTempel,4);

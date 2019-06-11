@@ -504,8 +504,8 @@ func void DIA_Jan_ArmorReady_Info()
 	{
 		AI_Output(self,other,"DIA_JAN_ArmorReady_10_02");	//Это настоящее произведение искусства. Ты можешь купить их, если хочешь.
 		AI_Output(self,other,"DIA_JAN_ArmorReady_10_03");	//Для тебя особая цена. 12000 золотых монет.
-		AI_Output(other,self,"DIA_JAN_ArmorReady_15_04");	//Что?! И это после всего, что я сделал для тебя?
-		AI_Output(self,other,"DIA_JAN_ArmorReady_10_05");	//Ну не надо так. Мне же тоже нужно зарабатывать на жизнь. Не хочешь, не бери.
+		AI_Output(other,self,"DIA_JAN_ArmorReady_15_04");	//Что?! И это после того, что я сделал для тебя?
+		AI_Output(self,other,"DIA_JAN_ArmorReady_10_05");	//Ну не надо так. Мне же тоже нужно зарабатывать на жизнь. Не хочешь - не бери.
 		DJG_Armor_is_offered = TRUE;
 		DIA_JAN_ArmorReady_NoPerm = TRUE;
 	};

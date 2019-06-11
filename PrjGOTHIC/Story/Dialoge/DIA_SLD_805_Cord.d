@@ -252,9 +252,17 @@ func void B_DIA_Addon_Cord_YouAreRanger_FRESSE()
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_FRESSE_14_00");	//(в ярости) Ну хватит! На этот раз ты зашел слишком далеко. Я выбью из тебя дурь.
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
+	if(Cord_Voted_Trick == TRUE)
+	{
+		Cord_Voted = FALSE;
+	};
+	if(Cord_RangerHelp_Fight_Trick == TRUE)
+	{
+		Cord_RangerHelp_Fight = FALSE;
+	};
 	Cord_RangerHelp_GetSLD = FALSE;
-	Cord_RangerHelp_Fight = FALSE;
 	TOPIC_End_RangerHelpSLD = TRUE;
+	B_CheckLog();
 };
 
 func void DIA_Addon_Cord_YouAreRanger_ruestung()
@@ -308,12 +316,14 @@ func void DIA_Addon_Cord_YouAreRanger_vote()
 	if(MIS_Addon_Lares_ComeToRangerMeeting == LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_10");	//Ну, по крайней мере, ты не зеленый новичок. Хорошо. Я проголосую за тебя.
+		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_kampf_14_01");	//Хорошо. Что еще?
 	};
 	Cord_Voted = TRUE;
+	Cord_Voted_Trick = TRUE;
 	if(Torlof_GenugStimmen == FALSE)
 	{
 		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
@@ -332,6 +342,7 @@ func void DIA_Addon_Cord_YouAreRanger_kampf()
 	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_kampf_15_00");	//Научи меня сражаться.
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_kampf_14_01");	//Хорошо. Что еще?
 	Cord_RangerHelp_Fight = TRUE;
+	Cord_RangerHelp_Fight_Trick = TRUE;
 	if(DIA_Addon_Cord_YouAreRanger_SCGotOffer == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Это все.",DIA_Addon_Cord_YouAreRanger_reicht);
@@ -370,6 +381,17 @@ func void DIA_Addon_Cord_YouAreRanger_nix()
 	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_nix_15_00");	//На самом деле мне ничего не нужно. Я и сам справлюсь.
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_nix_14_01");	//Как скажешь.
 	B_DIA_Addon_Cord_YouAreRanger_WARN();
+	if(Cord_Voted_Trick == TRUE)
+	{
+		Cord_Voted = FALSE;
+	};
+	if(Cord_RangerHelp_Fight_Trick == TRUE)
+	{
+		Cord_RangerHelp_Fight = FALSE;
+	};
+	Cord_RangerHelp_GetSLD = FALSE;
+	TOPIC_End_RangerHelpSLD = TRUE;
+	B_CheckLog();
 	Info_ClearChoices(DIA_Addon_Cord_YouAreRanger);
 };
 
@@ -394,6 +416,7 @@ func void B_Cord_RangerHelpObsolete()
 	AI_Output(self,other,"DIA_Addon_Cord_RangerHelpObsolete_14_05");	//Этим тебе придется заняться самому.
 	DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm = TRUE;
 	TOPIC_End_RangerHelpSLD = TRUE;
+	B_CheckLog();
 };
 
 func void B_Cord_ComeLaterWhenDone()

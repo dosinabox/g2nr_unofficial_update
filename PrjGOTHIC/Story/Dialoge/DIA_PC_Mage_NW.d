@@ -214,7 +214,7 @@ func int DIA_MiltenNW_FourFriends_Condition()
 func void DIA_MiltenNW_FourFriends_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_00");	//Ты знаешь, где остальные?
-	if(!Npc_IsDead(PC_Fighter_NW_vor_DJG))
+	if(!Npc_IsDead(GornNW_vor_DJG))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_01");	//Горн, похоже, ничуть не изменился после заключения в тюрьме Гаронда.
 		if(MIS_RescueGorn != LOG_SUCCESS)
@@ -238,7 +238,7 @@ func void DIA_MiltenNW_FourFriends_Info()
 	{
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_07");	//Горн не виноват.
 	};
-	if(!Npc_IsDead(PC_Thief_NW))
+	if(!Npc_IsDead(DiegoNW))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_08");	//Диего бормотал что-то о расплате. Но я понятия не имею, что он хотел сказать этим.
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_09");	//Но я подозреваю, что он сейчас в городе. Ты знаешь его - он всегда там, где можно поживиться.
