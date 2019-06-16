@@ -1516,7 +1516,8 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	SaturasSendsToRiordian = TRUE;
+//	SaturasSendsToRiordian = TRUE;
+	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
 //	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 //	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 //	MIS_KilledDragons += 1;

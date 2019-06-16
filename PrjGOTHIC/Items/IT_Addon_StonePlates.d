@@ -1050,9 +1050,125 @@ func void Use_CrsBowStonePlate3()
 	Use_StonePlate();
 };
 
+func int C_ScHasColoredStonePlate()
+{
+	if(Npc_HasItems(hero,ItMi_Addon_Stone_01))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMi_Addon_Stone_02))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMi_Addon_Stone_03))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMi_Addon_Stone_04))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMi_Addon_Stone_05))
+	{
+		return TRUE;
+	};
+};
+
 func int C_ScHasMagicStonePlate()
 {
-	if(Npc_HasItems(hero,ItWr_StrStonePlate1_Addon) || Npc_HasItems(hero,ItWr_StrStonePlate2_Addon) || Npc_HasItems(hero,ItWr_StrStonePlate3_Addon) || Npc_HasItems(hero,ItWr_DexStonePlate1_Addon) || Npc_HasItems(hero,ItWr_DexStonePlate2_Addon) || Npc_HasItems(hero,ItWr_DexStonePlate3_Addon) || Npc_HasItems(hero,ItWr_HitPointStonePlate1_Addon) || Npc_HasItems(hero,ItWr_HitPointStonePlate2_Addon) || Npc_HasItems(hero,ItWr_HitPointStonePlate3_Addon) || Npc_HasItems(hero,ItWr_ManaStonePlate1_Addon) || Npc_HasItems(hero,ItWr_ManaStonePlate2_Addon) || Npc_HasItems(hero,ItWr_ManaStonePlate3_Addon) || Npc_HasItems(hero,ItWr_OneHStonePlate1_Addon) || Npc_HasItems(hero,ItWr_OneHStonePlate2_Addon) || Npc_HasItems(hero,ItWr_OneHStonePlate3_Addon) || Npc_HasItems(hero,ItWr_TwoHStonePlate1_Addon) || Npc_HasItems(hero,ItWr_TwoHStonePlate2_Addon) || Npc_HasItems(hero,ItWr_TwoHStonePlate3_Addon) || Npc_HasItems(hero,ItWr_BowStonePlate1_Addon) || Npc_HasItems(hero,ItWr_BowStonePlate2_Addon) || Npc_HasItems(hero,ItWr_BowStonePlate3_Addon) || Npc_HasItems(hero,ItWr_CrsBowStonePlate1_Addon) || Npc_HasItems(hero,ItWr_CrsBowStonePlate2_Addon) || Npc_HasItems(hero,ItWr_CrsBowStonePlate3_Addon))
+	if(Npc_HasItems(hero,ItWr_StrStonePlate1_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_StrStonePlate2_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_StrStonePlate3_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_DexStonePlate1_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_DexStonePlate2_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_DexStonePlate3_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_HitPointStonePlate1_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_HitPointStonePlate2_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_HitPointStonePlate3_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_ManaStonePlate1_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_ManaStonePlate2_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_ManaStonePlate3_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_OneHStonePlate1_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_OneHStonePlate2_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_OneHStonePlate3_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_TwoHStonePlate1_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_TwoHStonePlate2_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_TwoHStonePlate3_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_BowStonePlate1_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_BowStonePlate2_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_BowStonePlate3_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_CrsBowStonePlate1_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_CrsBowStonePlate2_Addon))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItWr_CrsBowStonePlate3_Addon))
 	{
 		return TRUE;
 	};

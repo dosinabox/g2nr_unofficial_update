@@ -614,7 +614,6 @@ instance DIA_Wolf_KAP5_EXIT(C_Info)
 	information = DIA_Wolf_KAP5_EXIT_Info;
 	important = TRUE;
 	permanent = FALSE;
-	description = Dialog_Ende;
 };
 
 

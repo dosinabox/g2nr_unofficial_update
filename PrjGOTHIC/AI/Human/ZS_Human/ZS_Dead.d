@@ -88,10 +88,6 @@ func void ZS_Dead()
 				MIS_HlpEdgor = LOG_OBSOLETE;
 			};
 		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fortuno))
-		{
-			Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_OBSOLETE);
-		};
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
 	{

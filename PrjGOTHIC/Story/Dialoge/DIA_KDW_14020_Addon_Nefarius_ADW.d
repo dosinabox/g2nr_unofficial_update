@@ -62,10 +62,7 @@ instance DIA_Addon_Nefarius_Neues(C_Info)
 
 func int DIA_Addon_Nefarius_Neues_Condition()
 {
-	if(Ghost_SCKnowsHow2GetInAdanosTempel == FALSE)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Addon_Nefarius_Neues_Info()
@@ -116,7 +113,10 @@ func void DIA_Addon_Nefarius_Neues_auf()
 	AI_Output(other,self,"DIA_Addon_Nefarius_Neues_auf_15_00");	//А мы, глупцы, вновь открыли портал...
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_auf_05_01");	//Поверь, я этому тоже совсем не рад.
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_auf_05_02");	//Но был ли у нас выбор?
-	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_auf_05_03");	//Если мы не остановим то, что сейчас здесь происходит, весь Хоринис постигнет судьба этого древнего города.
+	if(RavenIsDead == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Nefarius_Neues_auf_05_03");	//Если мы не остановим то, что сейчас здесь происходит, весь Хоринис постигнет судьба этого древнего города.
+	};
 };
 
 

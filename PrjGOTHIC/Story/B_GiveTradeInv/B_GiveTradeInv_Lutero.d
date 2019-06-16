@@ -43,6 +43,7 @@ func void B_GiveTradeInv_Lutero(var C_Npc slf)
 	if((Kapitel >= 3) && (Lutero_ItemsGiven_Chapter_3 == FALSE))
 	{
 		CreateInvItems(slf,ItMi_Gold,100);
+		CreateInvItems(slf,ItMi_Skull,1);
 		CreateInvItems(slf,ItPo_Speed,1);
 		CreateInvItems(slf,ItMi_DarkPearl,1);
 		CreateInvItems(slf,ItPl_Temp_Herb,1);

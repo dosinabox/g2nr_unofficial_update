@@ -1,7 +1,7 @@
 
 func void B_CloseTopics_Mattes()
 {
-	B_CloseTopic(Topic_Addon_Fortuno,0,SC_KnowsFortunoInfos,6);
+	B_CloseTopic(Topic_Addon_Fortuno,MIS_Fortuno_Delusion,0,6);
 	B_CloseTopic(Topic_Addon_Hammer,MIS_SnafHammer,0,6);
 	B_CloseTopic(Topic_Addon_Buddler,MIS_Send_Buddler,0,4);
 	B_CloseTopic(Topic_Addon_Logan,MIS_HlpLogan,0,4);

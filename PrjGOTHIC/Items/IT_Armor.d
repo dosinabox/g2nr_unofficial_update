@@ -37,7 +37,7 @@ const int VALUE_ITAR_Lester = 300;
 const int VALUE_ITAR_Diego = 450;
 const int VALUE_ITAR_CorAngar = 600;
 const int VALUE_ITAR_Dementor = 500;
-const int VALUE_ITAR_KDW_H = 450;
+const int VALUE_ITAR_KDW_H = 3000;
 const int VALUE_ITAR_Prisoner = 10;
 
 instance ITAR_Governor(C_Item)

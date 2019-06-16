@@ -261,7 +261,7 @@ func void DIA_Addon_Merdarion_Teleportstein_key()
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_key_06_03");	//Если ты так хочешь. Пожалуйста.
 	CreateInvItems(self,ItKe_PortalTempelWalkthrough_Addon,1);
 	B_GiveInvItems(self,other,ItKe_PortalTempelWalkthrough_Addon,1);
-	SC_GotPORTALTEMPELWALKTHROUGHKey = TRUE;
+	SC_GotPortalTempelWalkthroughKey = TRUE;
 	Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_TeleportsNW,"Мердарион дал мне ключ от запертой двери. За ней находится телепорт, который перенесет меня обратно к городу.");

@@ -215,7 +215,7 @@ instance DIA_Addon_Miguel_Fortuno(C_Info)
 
 func int DIA_Addon_Miguel_Fortuno_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Fortuno_FREE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Fortuno_FREE) && !Npc_IsDead(Fortuno))
 	{
 		return TRUE;
 	};

@@ -796,9 +796,6 @@ instance ItWr_MinenAnteil_Mis(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 

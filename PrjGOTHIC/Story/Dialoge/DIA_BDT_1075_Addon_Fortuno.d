@@ -77,12 +77,12 @@ func int DIA_Addon_Fortuno_Hi_Condition()
 
 func void DIA_Addon_Fortuno_Hi_Info()
 {
-	if(Fortuno_Einmal == FALSE)
+	if(MIS_Fortuno_Delusion == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Fortuno_Hi_13_00");	//(тревожно) Темное облако накрыло дом... ОН приближается...
 		AI_Output(self,other,"DIA_Addon_Fortuno_Hi_13_01");	//С кровью... которая нужна, чтобы позвать его... ОН, кто видит меня... он видит меня... О, нет, уйди, уйди прочь...
 		AI_Output(other,self,"DIA_Addon_Fortuno_Hi_15_02");	//С тобой все в порядке?
-		Fortuno_Einmal = TRUE;
+		MIS_Fortuno_Delusion = LOG_Running;
 		Log_CreateTopic(Topic_Addon_Fortuno,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_Running);
 		B_LogEntry(Topic_Addon_Fortuno,"Фортуно сошел с ума. Ему нужен 'Зеленый послушник'.");
@@ -327,8 +327,6 @@ func void DIA_Addon_Fortuno_Trank_Info()
 	}
 	else if(B_GiveInvItems(other,self,ItPo_Addon_Geist_01,1))
 	{
-//		Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_OBSOLETE);
-		Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_FAILED);
 		AI_StopProcessInfos(self);
 		AI_UseItem(self,ItPo_Addon_Geist_01);
 	};
@@ -372,7 +370,7 @@ func void DIA_Addon_Fortuno_more_Info()
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_13");	//Еще я помню каменные таблички. Он считал, что они укажут ему путь.
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_14");	//И когда он сумел расшифровать то, что на них написано, я ему стал не нужен.
 	AI_Output(self,other,"DIA_Addon_Fortuno_more_13_15");	//Он использовал на мне заклинание забвения... а ты освободил меня.
-	SC_KnowsFortunoInfos = TRUE;
+	MIS_Fortuno_Delusion = LOG_SUCCESS;
 	B_LogEntry(TOPIC_Addon_RavenKDW,"Ворону нужен мощный артефакт из храма Аданоса.");
 	Log_AddEntry(TOPIC_Addon_RavenKDW,"Ворону зачем-то понадобилась гробница жреца древней религии, которую он раскопал в шахте.");
 	Log_AddEntry(TOPIC_Addon_RavenKDW,"Ворон считает, что для осуществления его планов ему необходимы каменные таблички.");

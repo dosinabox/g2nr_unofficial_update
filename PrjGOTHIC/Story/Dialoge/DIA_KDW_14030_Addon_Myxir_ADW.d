@@ -225,15 +225,26 @@ func void DIA_Addon_Myxir_TalkedToGhost_Info()
 	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_01");	//(восхищенно) Тебе действительно удалось пробудить его от смертного сна?
 	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_02");	//Невероятно! Меня все больше и больше восхищают эти зодчие.
 	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_03");	//Кто знает, чего бы они могли добиться, если бы их цивилизация не погибла...
+	AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_04");	//И что же сказал дух?
+	if(Ghost_SCKnowsHow2GetInAdanosTempel == TRUE)
+	{
+		AI_Output(other,self,"DIA_Addon_Myxir_TalkedToGhost_15_05");	//Он рассказал мне о том, как попасть в храм Аданоса.
+		if(Saturas_KnowsHow2GetInTempel == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_06");	//Тогда скорее иди к Сатурасу. Его, несомненно, заинтересует то, что ты ему расскажешь.
+			B_LogEntry(TOPIC_Addon_Quarhodron,"Я должен сказать Сатурасу, что пробудил Куарходрона.");
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Myxir_ADWHello_12_01");	//Зодчие просто поражают меня!
+		};
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+	};
 	MIS_ADDON_Myxir_GeistBeschwoeren = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Myxir_GeistBeschwoeren);
-	if((Saturas_KnowsHow2GetInTempel == FALSE) && (Ghost_SCKnowsHow2GetInAdanosTempel == TRUE))
-	{
-		AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_04");	//И что же сказал дух?
-		AI_Output(other,self,"DIA_Addon_Myxir_TalkedToGhost_15_05");	//Он рассказал мне о том, как попасть в храм Аданоса.
-		AI_Output(self,other,"DIA_Addon_Myxir_TalkedToGhost_12_06");	//Тогда скорее иди к Сатурасу. Его, несомненно, заинтересует то, что ты ему расскажешь.
-		B_LogEntry(TOPIC_Addon_Quarhodron,"Я должен сказать Сатурасу, что пробудил Куарходрона.");
-	};
 };
 
 
