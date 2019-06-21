@@ -686,7 +686,7 @@ instance DIA_Lord_Hagen_Knight(C_Info)
 
 func int DIA_Lord_Hagen_Knight_Condition()
 {
-	if(hero.guild == GIL_MIL)
+	if((hero.guild == GIL_MIL) || (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
