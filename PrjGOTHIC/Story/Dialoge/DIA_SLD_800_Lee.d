@@ -1560,7 +1560,7 @@ instance DIA_Lee_KAP4_Perm(C_Info)
 
 func int DIA_Lee_KAP4_Perm_Condition()
 {
-	if(Kapitel >= 4)
+	if((Kapitel >= 4) && (Lee_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
