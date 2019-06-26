@@ -189,7 +189,6 @@ instance MENU_ITEM_DAY(C_MENU_ITEM_DEF)
 	text[0] = "XX";
 	posx = 2270;
 	posy = 6000;
-	dimx = 300;
 	fontname = LOG_FONT_DATETIME;
 	flags = flags & ~IT_SELECTABLE;
 };
