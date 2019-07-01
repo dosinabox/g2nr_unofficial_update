@@ -59,6 +59,11 @@ func void TA_Play_Lute(var int start_h,var int start_m,var int stop_h,var int st
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Play_Lute,waypoint);
 };
 
+func void TA_Play_Harfe(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
+{
+	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Play_Harfe,waypoint);
+};
+
 func void TA_Potion_Alchemy(var int start_h,var int start_m,var int stop_h,var int stop_m,var string waypoint)
 {
 	TA_Min(self,start_h,start_m,stop_h,stop_m,ZS_Potion_Alchemy,waypoint);

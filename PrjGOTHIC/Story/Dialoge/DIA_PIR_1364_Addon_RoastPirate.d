@@ -127,20 +127,20 @@ instance DIA_Addon_RoastPirate_Francis(C_Info)
 
 func int DIA_Addon_RoastPirate_Francis_Condition()
 {
-	if(Francis_ausgeschissen == FALSE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
-		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Addon_RoastPirate_Francis_Info()
 {
 	AI_Output(other,self,"DIA_Addon_PIR_6_FRANCIS_15_00");	//Что ты мне можешь сказать о Фрэнсисе?
-	AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_01");	//О Фрэнсисе? Он ведет себя так, будто он - наш капитан. Но ничего, вот вернется Грег...
-	AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_02");	//Фрэнсис сразу же забьется в свой темный угол.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_01");	//О Фрэнсисе? Он ведет себя так, будто он - наш капитан. Но ничего, вот вернется Грег...
+		AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_02");	//Фрэнсис сразу же забьется в свой темный угол.
+	};
 	AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_04");	//Этот червяк обманывает всех и каждого. Уверен, он даже сам у себя крадет.
 	AI_Output(self,other,"DIA_Addon_PIR_6_Francis_06_05");	//Но я тебе этого не говорил. И до тех пор, пока у тебя не будет доказательств, не стоит его обвинять.
 };

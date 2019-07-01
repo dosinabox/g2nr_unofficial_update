@@ -1,26 +1,18 @@
 
 const int VALUE_ITAR_Governor = 1100;
-const int VALUE_ITAR_Judge = 0;
-const int VALUE_ITAR_Smith = 0;
-const int VALUE_ITAR_Barkeeper = 0;
 const int VALUE_ITAR_Vlk_L = 100;	//120
 const int VALUE_ITAR_Vlk_M = 120;
 const int VALUE_ITAR_Vlk_H = 150;	//120
-const int VALUE_ITAR_VlkBabe_L = 0;
-const int VALUE_ITAR_VlkBabe_M = 0;
-const int VALUE_ITAR_VlkBabe_H = 0;
 const int VALUE_ITAR_MIL_L = 600;
 const int VALUE_ITAR_MIL_M = 2500;
 const int VALUE_ITAR_PAL_M = 5000;
 const int VALUE_ITAR_PAL_H = 20000;
 const int VALUE_ITAR_Bau_L = 80;
 const int VALUE_ITAR_Bau_M = 100;
-const int VALUE_ITAR_BauBabe_L = 0;
-const int VALUE_ITAR_BauBabe_M = 0;
 const int VALUE_ITAR_SLD_L = 500;
 const int VALUE_ITAR_SLD_M = 1000;
 const int VALUE_ITAR_DJG_Crawler = 1500;
-const int VALUE_ITAR_SLD_S = 2000;	//Цена новой брони наемника
+const int VALUE_ITAR_SLD_S = 2000;
 const int VALUE_ITAR_SLD_H = 2500;
 const int VALUE_ITAR_NOV_L = 280;
 const int VALUE_ITAR_KDF_L = 500;
@@ -31,13 +23,12 @@ const int VALUE_ITAR_BDT_H = 2100;
 const int VALUE_ITAR_DJG_L = 3000;
 const int VALUE_ITAR_DJG_M = 12000;
 const int VALUE_ITAR_DJG_H = 20000;
-const int VALUE_ITAR_DJG_Babe = 0;
 const int VALUE_ITAR_Xardas = 15000;
 const int VALUE_ITAR_Lester = 300;
 const int VALUE_ITAR_Diego = 450;
 const int VALUE_ITAR_CorAngar = 600;
 const int VALUE_ITAR_Dementor = 500;
-const int VALUE_ITAR_KDW_H = 450;
+const int VALUE_ITAR_KDW_H = 3000;
 const int VALUE_ITAR_Prisoner = 10;
 
 instance ITAR_Governor(C_Item)
@@ -137,7 +128,7 @@ instance ITAR_Judge(C_Item)
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Judge;
+	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Governor.3DS";
 	visual_change = "Armor_Judge.asc";
@@ -164,7 +155,7 @@ instance ITAR_Smith(C_Item)
 	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 5;	//15;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Smith;
+	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Smith.3DS";
 	visual_change = "Armor_Smith.asc";
@@ -191,7 +182,7 @@ instance ITAR_Barkeeper(C_Item)
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_Barkeeper;
+	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Wirt.3DS";
 	visual_change = "Armor_Barkeeper.asc";
@@ -305,7 +296,7 @@ instance ITAR_VlkBabe_L(C_Item)
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_VlkBabe_L;
+	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLKBabe.3DS";
 	visual_change = "Armor_VlkBabe_L.asc";
@@ -332,7 +323,7 @@ instance ITAR_VlkBabe_M(C_Item)
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_VlkBabe_M;
+	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLKBabe.3DS";
 	visual_change = "Armor_VlkBabe_M.asc";
@@ -359,7 +350,7 @@ instance ITAR_VlkBabe_H(C_Item)
 	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_VlkBabe_H;
+	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLKBabe.3DS";
 	visual_change = "Armor_VlkBabe_H.asc";
@@ -636,7 +627,7 @@ instance ITAR_BauBabe_L(C_Item)
 	protection[PROT_POINT] = 10;
 	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_BauBabe_L;
+	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLKBabe.3DS";
 	visual_change = "Armor_BauBabe_L.asc";
@@ -663,7 +654,7 @@ instance ITAR_BauBabe_M(C_Item)
 	protection[PROT_POINT] = 15;
 	protection[PROT_FIRE] = 0;	//15;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_BauBabe_M;
+	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_VLKBabe.3DS";
 	visual_change = "Armor_BauBabe_M.asc";
@@ -1091,7 +1082,7 @@ instance ITAR_DJG_H(C_Item)
 	count[5] = value;
 };
 
-instance ITAR_DJG_Babe(C_Item)
+/*instance ITAR_DJG_Babe(C_Item)
 {
 	name = "Доспехи охотницы на драконов";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1101,7 +1092,7 @@ instance ITAR_DJG_Babe(C_Item)
 	protection[PROT_POINT] = 60;
 	protection[PROT_FIRE] = 30;
 	protection[PROT_MAGIC] = 0;
-	value = VALUE_ITAR_DJG_Babe;
+	value = 0;
 	wear = WEAR_TORSO;
 	visual = "ItAr_Djg_L.3DS";
 	visual_change = "Armor_Djg_Babe.asc";
@@ -1116,7 +1107,7 @@ instance ITAR_DJG_Babe(C_Item)
 	count[3] = protection[PROT_FIRE];
 	text[4] = NAME_Prot_Magic;
 	count[4] = protection[PROT_MAGIC];
-};
+};*/
 
 instance ITAR_NOV_L(C_Item)
 {

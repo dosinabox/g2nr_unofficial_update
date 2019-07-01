@@ -85,7 +85,7 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 		};
 		FoundDeadWilliam = TRUE;
 	}
-	else if(Saturas_AboutWilliam == FALSE)
+	else if(!Npc_KnowsInfo(other,DIA_Addon_Saturas_MissingPeople))
 	{
 		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
@@ -209,7 +209,7 @@ instance DIA_Addon_Riordian_HousesOfRulers(C_Info)
 
 func int DIA_Addon_Riordian_HousesOfRulers_Condition()
 {
-	if(MIS_Saturas_LookingForHousesOfRulers == LOG_Running)
+	if(SaturasSendsToRiordian == TRUE)
 	{
 		return TRUE;
 	};
@@ -259,12 +259,11 @@ instance DIA_Addon_Riordian_WhereAreHouses(C_Info)
 
 func int DIA_Addon_Riordian_WhereAreHouses_Condition()
 {
-	if((MIS_Riordian_HousesOfRulers == LOG_Running) && (Saturas_SCBroughtAllToken == FALSE))
+	if(MIS_Riordian_HousesOfRulers == LOG_Running)
 	{
 		return TRUE;
 	};
 };
-
 
 func void DIA_Addon_Riordian_WhereAreHouses_Info()
 {
@@ -286,13 +285,11 @@ instance DIA_Addon_Riordian_FoundHouse(C_Info)
 
 func int DIA_Addon_Riordian_FoundHouse_Condition()
 {
-	if((MIS_Riordian_HousesOfRulers == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Riordian_WhereAreHouses) && (RiordianHousesFoundCount < 5))
+	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_WhereAreHouses) && (RiordianHousesFoundCount < 5))
 	{
 		return TRUE;
 	};
 };
-
-
 
 var int foundhouseinfo[6];
 const int Library = 1;
@@ -370,6 +367,37 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 };
 
 
+instance DIA_Addon_Riordian_FoundAllHouses(C_Info)
+{
+	npc = KDW_14040_Addon_Riordian_ADW;
+	nr = 5;
+	condition = DIA_Addon_Riordian_FoundAllHouses_Condition;
+	information = DIA_Addon_Riordian_FoundAllHouses_Info;
+	description = "Я нашел все дворцы.";
+};
+
+
+func int DIA_Addon_Riordian_FoundAllHouses_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_WhereAreHouses) && (RiordianHousesFoundCount >= 5))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Riordian_FoundAllHouses_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Riordian_FoundAllHouses_15_00");	//Я нашел все дворцы.
+	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_01");	//Они все находились там, где я указал?
+	AI_Output(other,self,"DIA_Addon_Riordian_FoundAllHouses_15_02");	//Ну... более-менее.
+	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_03");	//Отлично! Значит, моя работа была не напрасной.
+	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
+	MIS_Riordian_HousesOfRulers = LOG_SUCCESS;
+	AllHousesOfRulersFound = TRUE;
+	B_GivePlayerXP(XP_Addon_FoundAllHouses);
+};
+
+
 instance DIA_Addon_Riordian_OrksWeg(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
@@ -392,7 +420,7 @@ func void DIA_Addon_Riordian_OrksWeg_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_OrksWeg_15_00");	//Скоро орки потеряют интерес к этой местности.
 	AI_Output(self,other,"DIA_Addon_Riordian_OrksWeg_10_01");	//Почему ты так считаешь?
-	if(OrcShaman_Sit_CanyonLibraryKey.aivar[AIV_KilledByPlayer] == TRUE)
+	if(OrcShaman_CanyonLibrary_KilledByPlayer == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_OrksWeg_15_02");	//Я убил их командира.
 	}
@@ -404,36 +432,6 @@ func void DIA_Addon_Riordian_OrksWeg_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_OrksWeg_10_05");	//Нам сейчас не нужны лишние заботы.
 	TOPIC_END_CanyonOrcs = TRUE;
 	B_GivePlayerXP(XP_Addon_Riordian_OrksWeg);
-};
-
-
-instance DIA_Addon_Riordian_FoundAllHouses(C_Info)
-{
-	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
-	condition = DIA_Addon_Riordian_FoundAllHouses_Condition;
-	information = DIA_Addon_Riordian_FoundAllHouses_Info;
-	description = "Я нашел все дворцы.";
-};
-
-
-func int DIA_Addon_Riordian_FoundAllHouses_Condition()
-{
-	if((RiordianHousesFoundCount >= 5) && (MIS_Riordian_HousesOfRulers == LOG_Running))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Addon_Riordian_FoundAllHouses_Info()
-{
-	AI_Output(other,self,"DIA_Addon_Riordian_FoundAllHouses_15_00");	//Я нашел все дворцы.
-	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_01");	//Они все находились там, где я указал?
-	AI_Output(other,self,"DIA_Addon_Riordian_FoundAllHouses_15_02");	//Ну... более-менее.
-	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_03");	//Отлично! Значит, моя работа была не напрасной.
-	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
-	MIS_Riordian_HousesOfRulers = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_FoundAllHouses);
 };
 
 

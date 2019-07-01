@@ -106,6 +106,7 @@ func void DIA_Torlof_Probe_Info()
 		AI_Output(self,other,"DIA_Torlof_Probe_01_03");	//(вздыхает) Хорошо. Тогда слушай. Прежде чем присоединиться к нам, ты должен сделать две вещи.
 		AI_Output(self,other,"DIA_Torlof_Probe_01_04");	//Во-первых, ты должен доказать, что способен решать задачи, которые входят в обязанности наемников. Я должен испытать тебя.
 		AI_Output(self,other,"DIA_Torlof_Probe_01_05");	//И второе: ты должен заслужить уважение других наемников.
+		SCKnowsSLDVotes = TRUE;
 		Torlof_Go = TRUE;
 		Npc_ExchangeRoutine(self,"Start");
 		Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
@@ -148,8 +149,11 @@ func void DIA_Torlof_Respekt_Info()
 	AI_Output(self,other,"DIA_Torlof_Respekt_01_03");	//Некоторые попытаются извлечь выгоду из твоего положения, а другим может не понравиться твое лицо.
 	AI_Output(self,other,"DIA_Torlof_Respekt_01_04");	//Ты должен попытаться уговорить как можно больше наших парней - но если ничего не помогает, ты всегда можешь прибегнуть к дуэли.
 	AI_Output(self,other,"DIA_Torlof_Respekt_01_05");	//Если ты победишь, ты завоюешь уважение большинства из них. Но только смотри, не убей случайно кого-нибудь. Тогда у тебя будут очень большие проблемы.
-	Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+	if(Torlof_GenugStimmen == FALSE)
+	{
+		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+	};
 	B_LogEntry(TOPIC_SLDRespekt,"Если я хочу, чтобы наемники уважали меня, я должен пройти испытание, приготовленное мне Торлофом. Также их можно убедить, победив в дуэли.");
 };
 
@@ -182,8 +186,11 @@ func void DIA_Torlof_Duellregeln_Info()
 	AI_Output(self,other,"DIA_Torlof_Duellregeln_01_04");	//Никто из наблюдателей не имеет права вмешиваться в дуэль. Если только один из дуэлянтов не будет убит.
 	if(other.guild == GIL_NONE)
 	{
-		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		B_LogEntry(TOPIC_SLDRespekt,"Правила дуэли: Дуэль должна начаться с вызова, тогда в нее никто не имеет права вмешаться. Противника в дуэли нельзя убивать.");
 	};
 };
@@ -268,7 +275,7 @@ func void DIA_Torlof_RUF_Info()
 	{
 		Points_Sld += 1;
 	}
-	else if(Cord_Approved == TRUE)
+	else if(Cord_Voted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_06");	//Корд полагает, что ты достаточно хорош, чтобы присоединиться к нам.
 		Points_Sld += 1;
@@ -394,8 +401,11 @@ func void DIA_Torlof_RUF_Info()
 		AI_Output(self,other,"DIA_Torlof_RUF_01_26");	//В любом случае, ты можешь рассчитывать на мой голос.
 		if(GotTorlofVote == FALSE)
 		{
-			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			if(Torlof_GenugStimmen == FALSE)
+			{
+				Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			};
 			B_LogEntry(TOPIC_SLDRespekt,"Торлоф считает, что я могу выполнять обязанности наемника.");
 			GotTorlofVote = TRUE;
 		};

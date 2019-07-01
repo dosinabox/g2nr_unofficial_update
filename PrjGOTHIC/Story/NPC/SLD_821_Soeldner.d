@@ -24,12 +24,12 @@ instance SLD_821_Soeldner(Npc_Default)
 func void Rtn_Start_821()
 {
 	TA_Smalltalk(7,30,23,30,"NW_BIGFARM_PATH_04_1");
-	TA_Sleep(23,30,7,30,"NW_BIGFARM_HOUSE_08");
+	TA_Sleep(23,30,7,30,"NW_BIGFARM_HOUSE_14");
 };
 
 func void Rtn_RodWeg_821()
 {
 	TA_Smalltalk(7,55,22,55,"NW_BIGFARM_PATH_02");
-	TA_Sleep(22,55,7,55,"NW_BIGFARM_HOUSE_08");
+	TA_Sleep(22,55,7,55,"NW_BIGFARM_HOUSE_14");
 };
 

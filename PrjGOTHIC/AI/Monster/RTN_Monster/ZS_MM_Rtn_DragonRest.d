@@ -3,11 +3,13 @@ func void ZS_MM_Rtn_DragonRest()
 {
 	Npc_SetPercTime(self,1);
 	self.aivar[AIV_MM_PRIORITY] = PRIO_EAT;
-	if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Dragon_Testmodell))
+	/*if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Dragon_Testmodell))
 	{
 		Perception_Set_Monster_Rtn();
 		Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);
-	};
+	};*/
+	Perception_Set_Monster_Rtn();
+	Npc_PercEnable(self,PERC_ASSESSPLAYER,B_MM_AssessPlayer);
 	Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 	AI_SetWalkMode(self,NPC_WALK);
 	B_MM_DeSynchronize();

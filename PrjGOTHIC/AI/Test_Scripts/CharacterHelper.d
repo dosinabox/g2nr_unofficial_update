@@ -259,7 +259,7 @@ func void B_SetPaladinEquipment()
 };
 
 
-instance CH_kriegen(C_Info)
+/*instance CH_kriegen(C_Info)
 {
 	npc = ch;
 	nr = 999;
@@ -309,7 +309,7 @@ func void CH_Geben_Info()
 	AI_PrintScreen("Хлеб отдан",-1,37,FONT_ScreenSmall,2);
 	AI_PrintScreen("Вино отдано",-1,40,FONT_ScreenSmall,2);
 	AI_PrintScreen("Колбаса отдана",-1,43,FONT_ScreenSmall,2);
-};
+};*/
 
 
 instance CH_Exit(C_Info)

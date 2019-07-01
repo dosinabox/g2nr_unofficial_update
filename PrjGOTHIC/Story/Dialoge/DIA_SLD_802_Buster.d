@@ -291,6 +291,7 @@ func void DIA_Buster_WannaJoin_Info()
 			B_LogEntry(TOPIC_SLDRespekt,"Бастер не имеет ничего против моего вступления в ряды наемников.");
 		};
 		AI_Output(self,other,"DIA_Buster_WannaJoin_13_03");	//Мой голос не много значит, так как здесь я не очень давно, но если Ли спросит, я проголосую за тебя.
+		SCKnowsSLDVotes = TRUE;
 		Buster_Duell = TRUE;
 	}
 	else
@@ -383,6 +384,7 @@ func void DIA_Buster_AboutSentenza_Info()
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_04");	//Я видел, как он избивал парня, который решил НЕ платить ему.
 	AI_Output(other,self,"DIA_Buster_AboutSentenza_15_05");	//Спасибо за совет.
 	AI_Output(self,other,"DIA_Buster_AboutSentenza_13_06");	//Пожалуйста. Он много для тебя значит?
+	SCKnowsSLDVotes = TRUE;
 	Info_ClearChoices(DIA_Buster_AboutSentenza);
 	Info_AddChoice(DIA_Buster_AboutSentenza,"Нет.",DIA_Buster_AboutSentenza_No);
 	if(Npc_HasItems(other,ItMi_Gold) >= 5)

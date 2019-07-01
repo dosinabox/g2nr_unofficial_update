@@ -4,7 +4,6 @@ var int Orlan_ItemsGiven_Chapter_2;
 var int Orlan_ItemsGiven_Chapter_3;
 var int Orlan_ItemsGiven_Chapter_4;
 var int Orlan_ItemsGiven_Chapter_5;
-var int Orlan_RuneGiven;
 
 func void B_GiveTradeInv_Orlan(var C_Npc slf)
 {
@@ -54,15 +53,8 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Bartaxt,1);
 		CreateInvItems(slf,ItMw_Orkschlaechter,1);
 		CreateInvItems(slf,ItBe_Addon_Prot_EdgPoi,1);
+		CreateInvItems(slf,ItRu_TeleportTaverne,1);
 		Orlan_ItemsGiven_Chapter_3 = TRUE;
-	};
-	if((Kapitel >= 3) && (Orlan_RuneGiven == FALSE))
-	{
-		if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
-		{
-			CreateInvItems(slf,ItRu_TeleportTaverne,1);
-			Orlan_RuneGiven = TRUE;
-		};
 	};
 	if((Kapitel >= 4) && (Orlan_ItemsGiven_Chapter_4 == FALSE))
 	{

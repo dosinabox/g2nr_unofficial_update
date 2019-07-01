@@ -417,7 +417,7 @@ func void DIA_Baltram_AkilsHof_Info()
 	B_BaltramRangerCheck(other);
 	AI_Output(other,self,"DIA_Baltram_AkilsHof_15_00");	//Где мне найти ферму Акила?
 	AI_Output(self,other,"DIA_Baltram_AkilsHof_01_01");	//Как только выйдешь из восточных ворот, держись дороги, ведущей на юго-восток.
-	AI_Output(self,other,"DIA_Baltram_AkilsHof_01_02");	//Вскоре ты увидишь каменную лестницу. Когда ты поднимешься по ней, то уже сможешь видеть ферму Акила.
+	AI_Output(self,other,"DIA_Baltram_AkilsHof_01_02");	//Вскоре ты увидишь каменную лестницу. Когда ты поднимешься по ней, ты уже сможешь видеть ферму Акила.
 };
 
 

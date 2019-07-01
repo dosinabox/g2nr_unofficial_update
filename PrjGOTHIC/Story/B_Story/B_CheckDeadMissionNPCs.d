@@ -56,6 +56,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			MIS_Canthars_KomproBrief = LOG_FAILED;
 		};
 	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fortuno))
+	{
+		if(MIS_Fortuno_Delusion == LOG_Running)
+		{
+			MIS_Fortuno_Delusion = LOG_FAILED;
+		};
+	};
 	B_CheckLog();
 };
 

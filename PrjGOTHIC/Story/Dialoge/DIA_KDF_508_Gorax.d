@@ -12,10 +12,7 @@ instance DIA_Gorax_Kap1_EXIT(C_Info)
 
 func int DIA_Gorax_Kap1_EXIT_Condition()
 {
-	if(Kapitel == 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Gorax_Kap1_EXIT_Info()
@@ -178,7 +175,7 @@ instance DIA_Gorax_SLEEP(C_Info)
 
 func int DIA_Gorax_SLEEP_Condition()
 {
-	if((DIA_Gorax_GOLD_perm == TRUE) && (other.guild == GIL_NOV))
+	if((DIA_Gorax_GOLD_perm == TRUE) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Gorax_JOB))
 	{
 		return TRUE;
 	};
@@ -422,8 +419,12 @@ func void DIA_Gorax_JOB_Info()
 	AI_Output(self,other,"DIA_Gorax_JOB_14_01");	//ћои об€занности многочисленны и разнообразны. я не только управл€ющий, но также и казначей.
 	AI_Output(self,other,"DIA_Gorax_JOB_14_02");	// роме того, € заведую винным погребом, а также на моих плечах лежит обеспечение монастыр€ съестными припасами.
 	AI_Output(self,other,"DIA_Gorax_JOB_14_03");	//ѕоэтому, если тебе что-нибудь нужно, ты всегда можешь обратитьс€ ко мне и получить все необходимое - за скромное пожертвование, конечно.
-	Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-	B_LogEntry(Topic_KlosterTrader,"ћастер √оракс в монастыре может предоставить мне все, что мне нужно.");
+	if(Gorax_Trade == FALSE)
+	{
+		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTrader,"ћастер √оракс в монастыре может предоставить мне все, что мне нужно.");
+		Gorax_Trade = TRUE;
+	};
 };
 
 
@@ -499,7 +500,7 @@ instance DIA_Gorax_KDF(C_Info)
 
 func int DIA_Gorax_KDF_Condition()
 {
-	if(other.guild == GIL_KDF)
+	if((other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Gorax_JOB))
 	{
 		return TRUE;
 	};
@@ -514,7 +515,7 @@ func void DIA_Gorax_KDF_Info()
 };
 
 
-instance DIA_Gorax_Kap2_EXIT(C_Info)
+/*instance DIA_Gorax_Kap2_EXIT(C_Info)
 {
 	npc = KDF_508_Gorax;
 	nr = 999;
@@ -563,7 +564,7 @@ func void DIA_Gorax_Kap3_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_Gorax_KILLPEDRO(C_Info)
@@ -619,7 +620,7 @@ func void DIA_Gorax_KILLPEDRO_ja()
 };
 
 
-instance DIA_Gorax_Kap4_EXIT(C_Info)
+/*instance DIA_Gorax_Kap4_EXIT(C_Info)
 {
 	npc = KDF_508_Gorax;
 	nr = 999;
@@ -668,5 +669,5 @@ func void DIA_Gorax_Kap5_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
-};
+};*/
 

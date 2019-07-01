@@ -46,8 +46,8 @@ func void B_BlitzInArsch()
 	var int BlitzInArsch_Hitpoints;
 	var int CurrentHitpoints;
 	var int Abzug;
-	var string concatText1;
-	var string concatText2;
+//	var string concatText1;
+//	var string concatText2;
 	CurrentHitpoints = hero.attribute[ATR_HITPOINTS];
 	BlitzInArsch_Hitpoints = (CurrentHitpoints * 4) / 5;
 	if(BlitzInArsch_Hitpoints < 2)
@@ -57,9 +57,9 @@ func void B_BlitzInArsch()
 	Abzug = hero.attribute[ATR_HITPOINTS] - BlitzInArsch_Hitpoints;
 	if(Abzug > 0)
 	{
-		concatText1 = ConcatStrings(NAME_Damage," ");
-		concatText2 = ConcatStrings(concatText1,IntToString(Abzug));
-		AI_PrintScreen(concatText2,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
+//		concatText1 = ConcatStrings(NAME_Damage," ");
+//		concatText2 = ConcatStrings(concatText1,IntToString(Abzug));
+//		AI_PrintScreen(concatText2,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
 		Wld_PlayEffect("spellFX_BELIARSRAGE",hero,hero,0,0,0,FALSE);
 	};
 	hero.attribute[ATR_HITPOINTS] = BlitzInArsch_Hitpoints;

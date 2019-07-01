@@ -166,7 +166,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_DJG_M);
 	CreateInvItem(self,ITAR_DJG_H);
 	CreateInvItem(self,ITAR_DJG_Crawler);
-	CreateInvItem(self,ITAR_DJG_Babe);
+//	CreateInvItem(self,ITAR_DJG_Babe);
 	CreateInvItem(self,ITAR_Xardas);
 	CreateInvItem(self,ITAR_Lester);
 	CreateInvItem(self,ITAR_Diego);
@@ -878,7 +878,7 @@ instance Itemhoshi(Npc_Default)
 	B_SetFightSkills(self,70);
 };
 
-instance Hoshi_Testmodell(Npc_Default)
+/*instance Hoshi_Testmodell(Npc_Default)
 {
 	name[0] = "Хоша";
 	guild = GIL_MIL;
@@ -1168,7 +1168,7 @@ func void INIT_TA_Testlevel()
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	init_sub_ta_testlevel();
-};
+};*/
 
 
 instance Gold(C_Item)
@@ -1516,6 +1516,8 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
+//	SaturasSendsToRiordian = TRUE;
+	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
 //	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 //	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 //	MIS_KilledDragons += 1;
@@ -1548,3 +1550,19 @@ func void UseWastelandRune()
 	b_seed_wasteland_world_freeminecamp();
 	
 };
+
+instance ItFo_Meat(C_Item)
+{
+	name = "Луковица";
+	mainflag = ITEM_KAT_FOOD;
+	flags = ITEM_MULTI;
+	value = Value_Beet;
+	visual = "Onion.3ds";
+	material = MAT_LEATHER;
+	on_state[0] = Use_Weed;
+	scemeName = "FOOD";
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+

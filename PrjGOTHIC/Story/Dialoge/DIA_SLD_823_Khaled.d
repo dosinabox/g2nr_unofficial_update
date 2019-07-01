@@ -122,6 +122,7 @@ func void DIA_Khaled_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Khaled_WannaJoin_15_00");	//Ты не возражаешь, если я присоединюсь к вам?
 	AI_Output(self,other,"DIA_Khaled_WannaJoin_11_01");	//Когда ты пройдешь испытание, я проголосую за тебя.
+	SCKnowsSLDVotes = TRUE;
 	if((MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS) || (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS))
 	{
 		AI_Output(other,self,"DIA_Khaled_WannaJoin_15_02");	//Я его уже прошел.

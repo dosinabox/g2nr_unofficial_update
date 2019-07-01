@@ -15,10 +15,10 @@ func void B_ENTER_NEWWORLD_Kapitel_1()
 		B_RemoveNpc(Riordian_NW);
 		B_RemoveNpc(Merdarion_NW);
 		B_RemoveNpc(Skip_NW);
-		if(SC_GotPORTALTEMPELWALKTHROUGHKey == FALSE)
+		if(SC_GotPortalTempelWalkthroughKey == FALSE)
 		{
 			Wld_InsertNpc(Stoneguardian_MerdarionsSchluessel,"NW_TROLLAREA_PORTALTEMPEL_22");
-			SC_GotPORTALTEMPELWALKTHROUGHKey = TRUE;
+			SC_GotPortalTempelWalkthroughKey = TRUE;
 		};
 	};
 	if((Sklaven_Flucht == TRUE) && (Sklaven_weg == FALSE))

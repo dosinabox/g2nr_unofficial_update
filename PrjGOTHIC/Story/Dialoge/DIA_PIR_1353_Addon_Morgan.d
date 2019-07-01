@@ -460,12 +460,9 @@ instance DIA_Addon_Morgan_Francis(C_Info)
 
 func int DIA_Addon_Morgan_Francis_Condition()
 {
-	if(Francis_ausgeschissen == FALSE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
-		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -473,9 +470,12 @@ func void DIA_Addon_Morgan_Francis_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_Francis_15_00");	//Что ты думаешь о Фрэнсисе?
 	AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_01");	//Я ничего не имею против него, (угрожающе) пока он ко мне не лезет!
-	AI_Output(other,self,"DIA_Addon_Morgan_Francis_15_02");	//Он здесь начальник?
-	AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_03");	//(смеется) Он ДУМАЕТ, что он главный.
-	AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_04");	//Но когда вернется Грег, Фрэнсис снова займется своей обычной работой - пилением досок.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(other,self,"DIA_Addon_Morgan_Francis_15_02");	//Он здесь начальник?
+		AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_03");	//(смеется) Он ДУМАЕТ, что он главный.
+		AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_04");	//Но когда вернется Грег, Фрэнсис снова займется своей обычной работой - пилением досок.
+	};
 };
 
 

@@ -451,7 +451,7 @@ func int DIA_Matteo_WoGritta_Condition()
 func void DIA_MAtteo_WoGritta_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WoGritta_15_00");	//Где мне найти эту Гритту?
-	AI_Output(self,other,"DIA_Matteo_WoGritta_09_01");	//Как я уже говорил - она племянница плотника - его дом находится ниже про улице, справа от кузницы.
+	AI_Output(self,other,"DIA_Matteo_WoGritta_09_01");	//Как я уже говорил, она племянница плотника. Его дом находится ниже по улице, справа от кузницы.
 };
 
 

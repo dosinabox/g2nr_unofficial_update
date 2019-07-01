@@ -211,7 +211,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ITAR_DJG_M,1);
 	CreateInvItems(self,ITAR_DJG_H,1);
 	CreateInvItems(self,ITAR_DJG_Crawler,1);
-	CreateInvItems(self,ITAR_DJG_Babe,1);
+//	CreateInvItems(self,ITAR_DJG_Babe,1);
 	CreateInvItems(self,ITAR_NOV_L,1);
 	CreateInvItems(self,ITAR_KDF_L,1);
 	CreateInvItems(self,ITAR_KDF_H,1);

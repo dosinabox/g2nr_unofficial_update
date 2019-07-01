@@ -24,6 +24,7 @@ instance SLD_808_Jarvis(Npc_Default)
 func void Rtn_Start_808()
 {
 	TA_Sit_Chair(7,5,0,5,"NW_BIGFARM_KITCHEN_07");
-	TA_Sleep(0,5,7,5,"NW_BIGFARM_HOUSE_08");
+	TA_Sit_Chair(0,5,7,5,"NW_BIGFARM_HOUSE_08");
+//	TA_Sleep(0,5,7,5,"NW_BIGFARM_HOUSE_15");
 };
 

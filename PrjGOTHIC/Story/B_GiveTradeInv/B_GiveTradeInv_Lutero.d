@@ -13,7 +13,6 @@ func void B_GiveTradeInv_Lutero(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Quartz,1);
 		CreateInvItems(slf,ItPl_Temp_Herb,1);
 		CreateInvItems(slf,ItFo_Addon_Rum,1);
-//		CreateInvItems(slf,ItLsTorch,10);
 		CreateInvItems(slf,ItSc_Charm,1);
 		CreateInvItems(slf,ItMi_HolyWater,1);
 		CreateInvItems(slf,ItMi_Sulfur,1);
@@ -32,22 +31,22 @@ func void B_GiveTradeInv_Lutero(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Aquamarine,1);
 		CreateInvItems(slf,ItMi_Quartz,1);
 		CreateInvItems(slf,ItPl_Temp_Herb,1);
-//		CreateInvItems(slf,ItLsTorch,10);
 		CreateInvItems(slf,ItSc_Charm,2);
 		CreateInvItems(slf,ItAt_Sting,1);
 		CreateInvItems(slf,ItPo_Speed,2);
 		CreateInvItems(slf,ItWr_ZweihandBuch,1);
 		CreateInvItems(slf,ItWr_EinhandBuch,1);
+		CreateInvItems(slf,ItMi_IEHarfe,1);
 		Lutero_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Lutero_ItemsGiven_Chapter_3 == FALSE))
 	{
 		CreateInvItems(slf,ItMi_Gold,100);
+		CreateInvItems(slf,ItMi_Skull,1);
 		CreateInvItems(slf,ItPo_Speed,1);
 		CreateInvItems(slf,ItMi_DarkPearl,1);
 		CreateInvItems(slf,ItPl_Temp_Herb,1);
 		CreateInvItems(slf,ItFo_Addon_Grog,1);
-//		CreateInvItems(slf,ItLsTorch,10);
 		CreateInvItems(slf,ItPo_Speed,3);
 		CreateInvItems(slf,ItSc_Charm,3);
 		CreateInvItems(slf,ItAt_CrawlerMandibles,1);
@@ -63,7 +62,6 @@ func void B_GiveTradeInv_Lutero(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Speed,1);
 		CreateInvItems(slf,ItPl_Temp_Herb,1);
 		CreateInvItems(slf,ItPo_Speed,4);
-//		CreateInvItems(slf,ItLsTorch,10);
 		CreateInvItems(slf,ItSc_Charm,3);
 		Lutero_ItemsGiven_Chapter_4 = TRUE;
 	};

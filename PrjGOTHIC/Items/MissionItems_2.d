@@ -138,15 +138,18 @@ instance ITKE_ErzBaronRaum(C_Item)
 
 instance ItMi_GornsTreasure_MIS(C_Item)
 {
-	name = "Кошелек Горна";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
-	flags = 0;
+	flags = ITEM_MISSION;
 	value = 250;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Pocket_Mis.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = UseGornsTreasure;
 	description = name;
+	text[0] = PRINT_Pocket_MIS;
+	text[1] = "с именем 'Горн'.";
+	text[2] = PRINT_Pocket_300;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -219,16 +222,18 @@ instance ItAt_ClawLeader(C_Item)
 
 instance ItSe_Olav(C_Item)
 {
-	name = "Кошелек Олава";
+	name = NAME_Beutel;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 25;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Pocket_Mis.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = UseOlav;
 	description = name;
-	text[0] = "Внутри позванивает несколько монет.";
+	text[0] = PRINT_Pocket_MIS;
+	text[1] = "с именем 'Олав'.";
+	text[2] = PRINT_Pocket_25;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

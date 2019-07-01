@@ -6,7 +6,7 @@ const int VALUE_ITAR_Thorus_Addon = 1300;
 const int VALUE_ITAR_Raven_Addon = 1300;
 const int VALUE_Itar_OreBaron_Addon = 1300;
 const int VALUE_ITAR_RANGER_Addon = 1300;
-const int VALUE_ITAR_KDW_L_Addon = 1300;
+const int VALUE_ITAR_KDW_L_Addon = 700;
 const int VALUE_ITAR_Bloodwyn_Addon = 1300;
 
 instance ITAR_PIR_L_Addon(C_Item)

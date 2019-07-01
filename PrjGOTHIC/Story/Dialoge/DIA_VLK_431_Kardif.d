@@ -785,7 +785,7 @@ var int DIA_Kardif_Kerl_permanent;
 
 func int DIA_Kardif_Kerl_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA) && (Attila.aivar[AIV_TalkedToPlayer] == FALSE) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Kerl_permanent == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA) && (Attila.aivar[AIV_TalkedToPlayer] == FALSE) && !Npc_IsDead(Attila) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Kerl_permanent == FALSE))
 	{
 		return TRUE;
 	};

@@ -538,7 +538,7 @@ func void DIA_Marduk_Kap3_PERM_Info()
 	Info_ClearChoices(DIA_Marduk_Kap3_PERM);
 	Info_AddChoice(DIA_Marduk_Kap3_PERM,Dialog_Back,DIA_Marduk_Kap3_PERM_BAck);
 	Info_AddChoice(DIA_Marduk_Kap3_PERM,"Что будет теперь?",DIA_Marduk_Kap3_PERM_AndNow);
-	if(MIS_RescueBennet == LOG_SUCCESS)
+	if((RescueBennet_KnowsCornelius == TRUE) && (Cornelius_IsLiar == TRUE))
 	{
 		Info_AddChoice(DIA_Marduk_Kap3_PERM,"Беннет невиновен. Свидетель солгал.",DIA_Marduk_Kap3_PERM_BennetisNotGuilty);
 	}

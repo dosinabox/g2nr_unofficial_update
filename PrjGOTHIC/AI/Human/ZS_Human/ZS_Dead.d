@@ -67,15 +67,29 @@ func void ZS_Dead()
 		};
 		if((self.guild == GIL_GIANT_BUG) && (MIS_Fester_KillBugs == LOG_Running))
 		{
-			Festers_Giant_Bug_Killed += 1;
+			if(Npc_GetDistToNpc(self,Fester) <= 1500)
+			{
+				Festers_Giant_Bug_Killed += 1;
+			};
 		};
 		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Swamprat)) && (MIS_KrokoJagd == LOG_Running))
 		{
-			AlligatorJack_KrokosKilled += 1;
+			if(Npc_GetDistToNpc(self,AlligatorJack) <= 1500)
+			{
+				AlligatorJack_KrokosKilled += 1;
+			};
 		};
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
 		{
 			Player_HasTalkedToBanditCamp = TRUE;
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcShaman_Sit_CanyonLibraryKey))
+		{
+			OrcShaman_CanyonLibrary_KilledByPlayer = TRUE;
+		};
+		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper3)))
+		{
+			Grimbald_Snappers_KilledByPlayer = TRUE;
 		};
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
 		{
@@ -87,10 +101,6 @@ func void ZS_Dead()
 			{
 				MIS_HlpEdgor = LOG_OBSOLETE;
 			};
-		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fortuno))
-		{
-			Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_OBSOLETE);
 		};
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))

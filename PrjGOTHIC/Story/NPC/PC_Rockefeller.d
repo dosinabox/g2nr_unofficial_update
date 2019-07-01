@@ -216,7 +216,7 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItem(self,ITAR_DJG_M);
 	CreateInvItem(self,ITAR_DJG_H);
 	CreateInvItem(self,ITAR_DJG_Crawler);
-	CreateInvItem(self,ITAR_DJG_Babe);
+//	CreateInvItem(self,ITAR_DJG_Babe);
 	CreateInvItem(self,ITAR_Xardas);
 	CreateInvItem(self,ITAR_Lester);
 	CreateInvItem(self,ITAR_Diego);

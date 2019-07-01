@@ -309,7 +309,7 @@ instance DIA_Lee_Paladine(C_Info)
 	condition = DIA_Lee_Paladine_Condition;
 	information = DIA_Lee_Paladine_Info;
 	permanent = FALSE;
-	description = "ћне крайне необходимо поговорить с паладинами в городе. “ы не мог бы помочь мне добратьс€ до них?";
+	description = "ћне крайне необходимо поговорить с паладинами в городе.";
 };
 
 
@@ -458,6 +458,7 @@ func void DIA_Lee_ClearWhat_Info()
 	AI_Output(self,other,"DIA_Lee_ClearWhat_04_01");	//Ќас нанимает ќнар, лендлорд. “ы можешь находитьс€ на ферме только с его одобрени€.
 	AI_Output(self,other,"DIA_Lee_ClearWhat_04_02");	//“акже, дело еще в наших парн€х. я смогу прин€ть теб€, только если большинство наемников согласитс€, что ты можешь присоединитьс€ к нам.
 	AI_Output(self,other,"DIA_Lee_ClearWhat_04_03");	//Ќо не ходи к ќнару, пока все не будет улажено. ќн очень раздражительный тип...
+	SCKnowsSLDVotes = TRUE;
 	Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BecomeSLD,LOG_Running);
 	B_LogEntry(TOPIC_BecomeSLD,"„тобы быть прин€тым в р€ды наемников, € должен получить одобрение ќнара, после того, как заручусь одобрением наемников.");
@@ -477,7 +478,7 @@ instance DIA_Lee_OtherSld(C_Info)
 
 func int DIA_Lee_OtherSld_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lee_WannaJoin) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Lee_ClearWhat) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -508,7 +509,7 @@ instance DIA_Addon_Lee_Ranger(C_Info)
 
 func int DIA_Addon_Lee_Ranger_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lee_OtherSld) && (SC_KnowsRanger == TRUE))
+	if(SC_KnowsRanger == TRUE)
 	{
 		return TRUE;
 	};
@@ -1559,7 +1560,7 @@ instance DIA_Lee_KAP4_Perm(C_Info)
 
 func int DIA_Lee_KAP4_Perm_Condition()
 {
-	if(Kapitel >= 4)
+	if((Kapitel >= 4) && (Lee_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

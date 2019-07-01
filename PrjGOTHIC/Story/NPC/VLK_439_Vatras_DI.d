@@ -13,6 +13,8 @@ instance VLK_439_Vatras_DI(Npc_Default)
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,2);
+	self.attribute[ATR_STRENGTH] = 1;
+	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_B_Saturas,BodyTex_B,ITAR_KDW_H);
 	Mdl_SetModelFatness(self,0);

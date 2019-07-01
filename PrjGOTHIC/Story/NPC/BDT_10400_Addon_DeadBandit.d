@@ -15,7 +15,7 @@ instance BDT_10400_Addon_DeadBandit(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 300;
 	attribute[ATR_HITPOINTS] = 300;
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Sld_Sword);
+	CreateInvItems(self,ItMw_1h_Sld_Sword,1);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_Gold,50);
 	CreateInvItems(self,ItWr_DexStonePlate1_Addon,1);

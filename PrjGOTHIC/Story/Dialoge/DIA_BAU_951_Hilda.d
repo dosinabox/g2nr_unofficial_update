@@ -83,9 +83,9 @@ func int DIA_Hilda_WasZuEssen_Condition()
 func void DIA_Hilda_WasZuEssen_Info()
 {
 	var int Rueben_TagNull;
+	AI_Output(other,self,"DIA_Hilda_WasZuEssen_15_00");	//Ты дашь мне что-нибудь поесть?
 	if(hero.guild == GIL_NONE)
 	{
-		AI_Output(other,self,"DIA_Hilda_WasZuEssen_15_00");	//Ты дашь мне что-нибудь поесть?
 		if(MIS_Lobart_Rueben == LOG_SUCCESS)
 		{
 			if(!Npc_KnowsInfo(other,DIA_Hilda_PfanneTooLate))

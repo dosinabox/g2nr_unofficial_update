@@ -1374,7 +1374,7 @@ instance VWHEEL_TURN(C_SFX_DEF)
 instance BBQ_SCAVENGER(C_SFX_DEF)
 {
 	file = "bbq_scavenger_01.wav";
-	vol = 30;
+	vol = 50;
 };
 
 instance BBQ_SCAVENGER_A1(C_SFX_DEF)

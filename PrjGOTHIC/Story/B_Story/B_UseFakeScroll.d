@@ -26,6 +26,56 @@ func void B_UseFakeScroll()
 	};
 };
 
+func void B_UseStoneTablet(var int tablet)
+{
+	var C_Npc target;
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,hero);
+	};
+	AI_RemoveWeapon(self);
+	target = Npc_GetLookAtTarget(self);
+	if(Hlp_IsValidNpc(target))
+	{
+		B_StopLookAt(self);
+	};
+	if(tablet == 1)
+	{
+		AI_UseItemToState(self,ItMi_Addon_Stone_01,1);
+		AI_Wait(self,2);
+		AI_UseItemToState(self,ItMi_Addon_Stone_01,-1);
+	}
+	else if(tablet == 2)
+	{
+		AI_UseItemToState(self,ItMi_Addon_Stone_02,1);
+		AI_Wait(self,2);
+		AI_UseItemToState(self,ItMi_Addon_Stone_02,-1);
+	}
+	else if(tablet == 3)
+	{
+		AI_UseItemToState(self,ItMi_Addon_Stone_03,1);
+		AI_Wait(self,2);
+		AI_UseItemToState(self,ItMi_Addon_Stone_03,-1);
+	}
+	else if(tablet == 4)
+	{
+		AI_UseItemToState(self,ItMi_Addon_Stone_04,1);
+		AI_Wait(self,2);
+		AI_UseItemToState(self,ItMi_Addon_Stone_04,-1);
+	}
+	else if(tablet == 5)
+	{
+		AI_UseItemToState(self,ItMi_Addon_Stone_05,1);
+		AI_Wait(self,2);
+		AI_UseItemToState(self,ItMi_Addon_Stone_05,-1);
+	};
+	if(Hlp_IsValidNpc(target))
+	{
+		B_LookAtNpc(self,hero);
+	};
+};
+
 func void B_UseFakeScroll_Hero()
 {
 	var C_Npc target;

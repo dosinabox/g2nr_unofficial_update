@@ -187,6 +187,7 @@ func int DIA_Addon_Brandon_SchnellerHering_Condition()
 func void DIA_Addon_Brandon_SchnellerHering_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Pir_7_HenrysCrew_GiveGrog_15_00");	//Получай.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItFo_Addon_SchnellerHering,1);
 	B_UseItem(self,ItFo_Addon_SchnellerHering);
 	AI_Output(self,other,"DIA_Addon_Brandon_GiveGrog_04_01");	//Ах-х! Словно жидкий огонь!

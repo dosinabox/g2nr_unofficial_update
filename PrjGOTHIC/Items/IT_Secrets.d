@@ -108,7 +108,7 @@ instance ItSe_GoldPocket25(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = GoldPocket25;
 	description = name;
-	text[0] = "¬нутри позванивает несколько монет.";
+	text[0] = PRINT_Pocket_25;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -131,7 +131,7 @@ instance ItSe_GoldPocket50(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = GoldPocket50;
 	description = name;
-	text[0] = "Ётот кошелек полон монет.";
+	text[0] = PRINT_Pocket_50;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -154,7 +154,7 @@ instance ItSe_GoldPocket100(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = GoldPocket100;
 	description = name;
-	text[0] = "“€желый мешочек, полный монет.";
+	text[0] = PRINT_Pocket_100;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

@@ -495,20 +495,27 @@ func void DIA_Bartok_ImWald_Info()
 	Info_AddChoice(DIA_Bartok_ImWald,"Стоит.",DIA_Bartok_ImWald_Weiter);
 };
 
-func void DIA_Bartok_ImWald_NachHause()
+var int Bartok_Ende;
+
+func void B_Bartok_BackInCity()
 {
-	AI_Output(other,self,"DIA_Bartok_ImWald_NachHause_15_00");	//Пойдем назад!
-	AI_Output(self,other,"DIA_Bartok_ImWald_NachHause_04_01");	//Я тоже так думаю. А то мы так попадем прямо в объятия орка.
+	Bartok_Ende = TRUE;
 	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
 	AI_EquipArmor(self,ITAR_Vlk_L);
 	AI_UnequipWeapons(self);
 	AI_EquipBestMeleeWeapon(self);
 	Npc_RemoveInvItem(self,ItRw_Bow_M_03);
-//	Npc_RemoveInvItem(self,ITAR_Leather_L);
-	Info_ClearChoices(DIA_Bartok_ImWald);
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
+};
+
+func void DIA_Bartok_ImWald_NachHause()
+{
+	AI_Output(other,self,"DIA_Bartok_ImWald_NachHause_15_00");	//Пойдем назад!
+	AI_Output(self,other,"DIA_Bartok_ImWald_NachHause_04_01");	//Я тоже так думаю. А то мы так попадем прямо в объятия орка.
+	Knows_Ork = TRUE;
+	B_Bartok_BackInCity();
 };
 
 func void DIA_Bartok_ImWald_Weiter()
@@ -524,8 +531,6 @@ func void DIA_Bartok_ImWald_Weiter()
 	Npc_ExchangeRoutine(self,"GUIDEENDE");
 };
 
-
-var int Bartok_Ende;
 
 instance DIA_Bartok_Angekommen(C_Info)
 {
@@ -558,17 +563,8 @@ func void DIA_Bartok_Angekommen_Info()
 	};
 	AI_Output(self,other,"DIA_Bartok_Angekommen_04_03");	//Еще увидимся!
 	AI_Output(self,other,"DIA_Bartok_Angekommen_04_04");	//Ты можешь продать шкуры Босперу.
-	self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	AI_EquipArmor(self,ITAR_Vlk_L);
-	AI_UnequipWeapons(self);
-	AI_EquipBestMeleeWeapon(self);
-	Npc_RemoveInvItem(self,ItRw_Bow_M_03);
-//	Npc_RemoveInvItem(self,ITAR_Leather_L);
-	Bartok_Ende = TRUE;
 	B_GivePlayerXP(XP_Bartok_Deal);
-	AI_StopProcessInfos(self);
-	self.aivar[AIV_PARTYMEMBER] = FALSE;
-	Npc_ExchangeRoutine(self,"START");
+	B_Bartok_BackInCity();
 };
 
 

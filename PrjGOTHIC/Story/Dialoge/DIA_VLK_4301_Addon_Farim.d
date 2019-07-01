@@ -361,7 +361,7 @@ func int DIA_Addon_Farim_WilliamReport_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William))
 	{
-		if(Npc_HasItems(other,ITWr_Addon_William_01) || (FoundDeadWilliam == TRUE))
+		if(Npc_HasItems(other,ITWr_Addon_William_01) || (FoundDeadWilliam == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
 		{
 			return TRUE;
 		};

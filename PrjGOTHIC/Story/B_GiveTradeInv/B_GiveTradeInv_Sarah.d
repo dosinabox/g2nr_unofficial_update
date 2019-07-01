@@ -14,7 +14,7 @@ func void B_GiveTradeInv_Sarah(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Arrow,50);
 		CreateInvItems(slf,ItMw_ShortSword3,1);
 		CreateInvItems(slf,ItMw_ShortSword4,1);
-		CreateInvItems(slf,ItMw_ShortSword5,1);
+//		CreateInvItems(slf,ItMw_ShortSword5,1);
 		CreateInvItems(slf,ItMw_Kriegshammer1,1);
 //		CreateInvItems(slf,ItMw_Stabkeule,1);
 //		CreateInvItems(slf,ItMw_Steinbrecher,1);

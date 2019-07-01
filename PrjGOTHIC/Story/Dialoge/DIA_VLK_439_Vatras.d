@@ -2320,56 +2320,56 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
 	B_StartOtherRoutine(dmt_1209,"AfterRitual");
 	B_StartOtherRoutine(dmt_1210,"AfterRitual");
 	B_StartOtherRoutine(dmt_1211,"AfterRitual"); */
-	if(!Npc_IsDead(dmt_1201))
+	if(!Npc_IsDead(DMT_1201))
 	{
-		dmt_1201.aivar[AIV_EnemyOverride] = TRUE;
+		DMT_1201.aivar[AIV_EnemyOverride] = TRUE;
 	};
-	if(!Npc_IsDead(dmt_1202))
+	if(!Npc_IsDead(DMT_1202))
 	{
-		dmt_1202.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1202,"AfterRitual");
+		DMT_1202.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1202,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1203))
+	if(!Npc_IsDead(DMT_1203))
 	{
-		dmt_1203.aivar[AIV_EnemyOverride] = TRUE;
+		DMT_1203.aivar[AIV_EnemyOverride] = TRUE;
 	};
-	if(!Npc_IsDead(dmt_1204))
+	if(!Npc_IsDead(DMT_1204))
 	{
-		dmt_1204.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1204,"AfterRitual");
+		DMT_1204.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1204,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1205))
+	if(!Npc_IsDead(DMT_1205))
 	{
-		dmt_1205.aivar[AIV_EnemyOverride] = TRUE;
+		DMT_1205.aivar[AIV_EnemyOverride] = TRUE;
 	};
-	if(!Npc_IsDead(dmt_1206))
+	if(!Npc_IsDead(DMT_1206))
 	{
-		dmt_1206.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1206,"AfterRitual");
+		DMT_1206.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1206,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1207))
+	if(!Npc_IsDead(DMT_1207))
 	{
-		dmt_1207.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1207,"AfterRitual");
+		DMT_1207.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1207,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1208))
+	if(!Npc_IsDead(DMT_1208))
 	{
-		dmt_1208.aivar[AIV_EnemyOverride] = TRUE;
+		DMT_1208.aivar[AIV_EnemyOverride] = TRUE;
 	};
-	if(!Npc_IsDead(dmt_1209))
+	if(!Npc_IsDead(DMT_1209))
 	{
-		dmt_1209.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1209,"AfterRitual");
+		DMT_1209.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1209,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1210))
+	if(!Npc_IsDead(DMT_1210))
 	{
-		dmt_1210.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1210,"AfterRitual");
+		DMT_1210.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1210,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1211))
+	if(!Npc_IsDead(DMT_1211))
 	{
-		dmt_1211.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1211,"AfterRitual");
+		DMT_1211.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1211,"AfterRitual");
 	};
 };
 

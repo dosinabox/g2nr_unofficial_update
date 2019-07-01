@@ -233,7 +233,7 @@ func void DIA_Girion_CATCHPLAYERSTOLENSHIP_no()
 {
 	AI_Output(other,self,"DIA_Girion_CATCHPLAYERSTOLENSHIP_no_15_00");	//я не знаю, о чем ты говоришь.
 	AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_no_08_01");	//я говорю о том, что ты сделал с корабельной стражей. Ёто дело плохо пахнет.
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_KDF) && !Npc_IsDead(Schiffswache_212) && !Npc_IsDead(Schiffswache_213))
 	{
 		AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_no_08_02");	//ƒаже несмотр€ на то, что ты маг, € не довер€ю тебе.
 	};
@@ -245,10 +245,17 @@ var int Girion_WantstoKillSC;
 func void DIA_Girion_CATCHPLAYERSTOLENSHIP_weg()
 {
 	AI_Output(other,self,"DIA_Girion_CATCHPLAYERSTOLENSHIP_weg_15_00");	//ѕрочь с моей дороги, или мне придетс€ убить теб€.
-	AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_weg_08_01");	//¬озможно, тебе удалось обмануть охрану корабл€, но со мной тебе так просто не справитьс€, мой маленький друг.
-	if(hero.guild == GIL_PAL)
+	if(!Npc_IsDead(Schiffswache_212) && !Npc_IsDead(Schiffswache_213))
 	{
-		AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_weg_08_02");	//ƒаже хот€ ты один из нас, это не дает тебе права воровать собственность корол€. ”мри, прокл€тый предатель.
+		AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_weg_08_01");	//¬озможно, тебе удалось обмануть охрану корабл€, но со мной тебе так просто не справитьс€, мой маленький друг.
+		if(hero.guild == GIL_PAL)
+		{
+			AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_weg_08_02");	//ƒаже хот€ ты один из нас, это не дает тебе права воровать собственность корол€. ”мри, прокл€тый предатель.
+		};
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Girion_Verrat_08_00");	//ѕредатель!
 	};
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_KILL,1);
