@@ -41,9 +41,28 @@ func void open_adanostempelchest_01_func_s1()
 		b_awake_stoneguardian(StoneGuardianAdanos_05A);
 		b_awake_stoneguardian(StoneGuardianAdanos_05C);
 		b_awake_stoneguardian(StoneGuardianAdanos_05E);
+		if(Kapitel > 2)
+		{
+			var C_NPC StoneGuardianAdanos_05B;
+			var C_NPC StoneGuardianAdanos_05D;
+			var C_NPC StoneGuardianAdanos_05F;
+			StoneGuardianAdanos_05B = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05B);
+			StoneGuardianAdanos_05D = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05D);
+			StoneGuardianAdanos_05F = Hlp_GetNpc(Stoneguardian_TREASUREPITS_05F);
+			b_awake_stoneguardian(StoneGuardianAdanos_05B);
+			b_awake_stoneguardian(StoneGuardianAdanos_05D);
+			b_awake_stoneguardian(StoneGuardianAdanos_05F);
+		};
 		if(!Npc_IsDead(StoneGuardianAdanos_05A) || !Npc_IsDead(StoneGuardianAdanos_05C) || !Npc_IsDead(StoneGuardianAdanos_05E))
 		{
 			Snd_Play("THRILLJINGLE_03");
+		}
+		else if(!Npc_IsDead(StoneGuardianAdanos_05B) || !Npc_IsDead(StoneGuardianAdanos_05D) || !Npc_IsDead(StoneGuardianAdanos_05F))
+		{
+			if(Kapitel > 2)
+			{
+				Snd_Play("THRILLJINGLE_03");
+			};
 		};
 		OPEN_ADANOSTEMPELCHEST_01_FUNC_OneTime = TRUE;
 	};
@@ -65,9 +84,28 @@ func void open_adanostempelchest_02_func_s1()
 		b_awake_stoneguardian(StoneGuardianAdanos_09A);
 		b_awake_stoneguardian(StoneGuardianAdanos_09C);
 		b_awake_stoneguardian(StoneGuardianAdanos_09E);
+		if(Kapitel > 2)
+		{
+			var C_NPC StoneGuardianAdanos_09B;
+			var C_NPC StoneGuardianAdanos_09D;
+			var C_NPC StoneGuardianAdanos_09F;
+			StoneGuardianAdanos_09B = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09B);
+			StoneGuardianAdanos_09D = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09D);
+			StoneGuardianAdanos_09F = Hlp_GetNpc(Stoneguardian_TREASUREPITS_09F);
+			b_awake_stoneguardian(StoneGuardianAdanos_09B);
+			b_awake_stoneguardian(StoneGuardianAdanos_09D);
+			b_awake_stoneguardian(StoneGuardianAdanos_09F);
+		};
 		if(!Npc_IsDead(StoneGuardianAdanos_09A) || !Npc_IsDead(StoneGuardianAdanos_09C) || !Npc_IsDead(StoneGuardianAdanos_09E))
 		{
 			Snd_Play("THRILLJINGLE_02");
+		}
+		else if(!Npc_IsDead(StoneGuardianAdanos_09B) || !Npc_IsDead(StoneGuardianAdanos_09D) || !Npc_IsDead(StoneGuardianAdanos_09F))
+		{
+			if(Kapitel > 2)
+			{
+				Snd_Play("THRILLJINGLE_03");
+			};
 		};
 		OPEN_ADANOSTEMPELCHEST_02_FUNC_OneTime = TRUE;
 	};
@@ -108,9 +146,14 @@ func void adw_adanostempel_stonegrd_trigg_func_02()
 };
 
 
-var int EVT_RAVEN_AWAKE_FUNC_OneTime;
-
 func void evt_raven_awake_func()
 {
+	if((Raven_Awaken == FALSE) && !Npc_IsDead(Raven))
+	{
+		AI_Standup(Raven);
+		AI_TurnToNPC(Raven,hero);
+		B_StartOtherRoutine(Raven,"WaitForPlayer");
+		Raven_Awaken = TRUE;
+	};
 };
 

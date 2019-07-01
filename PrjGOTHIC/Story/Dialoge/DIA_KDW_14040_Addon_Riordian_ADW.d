@@ -420,7 +420,7 @@ func void DIA_Addon_Riordian_OrksWeg_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_OrksWeg_15_00");	//Скоро орки потеряют интерес к этой местности.
 	AI_Output(self,other,"DIA_Addon_Riordian_OrksWeg_10_01");	//Почему ты так считаешь?
-	if(OrcShaman_Sit_CanyonLibraryKey.aivar[AIV_KilledByPlayer] == TRUE)
+	if(OrcShaman_CanyonLibrary_KilledByPlayer == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_OrksWeg_15_02");	//Я убил их командира.
 	}

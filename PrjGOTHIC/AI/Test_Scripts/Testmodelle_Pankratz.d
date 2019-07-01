@@ -1,7 +1,7 @@
 
-instance J1(C_Item)
+/*instance J1(C_Item)
 {
-	name = "Монстры наполняют мир аддона";
+	name = "Руна Яркендара";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -10,6 +10,7 @@ instance J1(C_Item)
 	on_state[0] = UseJOLY_Storyhelpletter;
 	scemeName = "MAP";
 	description = name;
+	text[0] = "Заселить мир аддона.";
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -20,6 +21,7 @@ var int UseJOLY_Storyhelpletter_OneTime;
 
 func void UseJOLY_Storyhelpletter()
 {
+	PrintScreen("Заселяем...",-1,-1,FONT_Screen,1);
 	Wld_InsertNpc(Giant_DesertRat,"ADW_CANYON_TELEPORT_PATH_03");
 	Wld_InsertNpc(Giant_DesertRat,"ADW_CANYON_TELEPORT_PATH_03");
 	Wld_InsertNpc(Giant_DesertRat,"ADW_CANYON_TELEPORT_PATH_04");
@@ -159,7 +161,7 @@ func void UseJOLY_Storyhelpletter()
 	Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_14");
 	Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_62");
 	Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_19");
-};
+};*/
 
 
 instance J2(C_Item)
@@ -192,7 +194,7 @@ func void UseJOLY2_Storyhelpletter()
 };
 
 
-instance J3(C_Item)
+/*instance J3(C_Item)
 {
 	name = "ADW_ADANOSTEMPEL_RemovedFocus";
 	mainflag = ITEM_KAT_DOCS;
@@ -233,7 +235,7 @@ instance J4(C_Item)
 
 func void UseJ4()
 {
-};
+};*/
 
 
 instance DJG_inserten(C_Item)
@@ -275,6 +277,7 @@ instance SH_Oldworld(Npc_Default)
 	voice = 15;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
@@ -569,7 +572,7 @@ func void SH_Oldworld_KAPITEL6ANFANG()
 };
 
 
-instance Dragon_Testmodell(Mst_Default_Dragon_Fire)
+/*instance Dragon_Testmodell(Mst_Default_Dragon_Fire)
 {
 	B_SetVisuals_Dragon_Fire();
 	Npc_SetToFistMode(self);
@@ -625,10 +628,10 @@ func void DIA_Dragon_Testmodell_Hello_Info()
 	AI_StopProcessInfos(self);
 	DragonTalk_Exit_Free = FALSE;
 	self.flags = 0;
-};
+};*/
 
 
-prototype JOLY_ITEM(C_Item)
+/*prototype JOLY_ITEM(C_Item)
 {
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
@@ -765,5 +768,5 @@ func void usejoly_item2()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Test Bla Glumpsch,");
 	Doc_Show(nDocID);
-};
+};*/
 

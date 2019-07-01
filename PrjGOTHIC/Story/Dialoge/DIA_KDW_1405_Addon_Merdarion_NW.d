@@ -226,7 +226,7 @@ func int DIA_Addon_Merdarion_Teleportstein_Condition()
 func void DIA_Addon_Merdarion_Teleportstein_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_Teleportstein_15_00");	//Как быстрее всего добраться в город?
-	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_01");	//Я советую тебе пойти тем же путем, что ты и пришел.
+	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_01");	//Я тебе советую пойти тем же путем, что ты и пришел.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_02");	//(прикидывая) Но ты также можешь... Нет, это слишком опасно.
 	AI_Output(other,self,"DIA_Addon_Merdarion_Teleportstein_15_03");	//Выкладывай.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_04");	//Ладно. Строители этих залов передвигались своим способом.

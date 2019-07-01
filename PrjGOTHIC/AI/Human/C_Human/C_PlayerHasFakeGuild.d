@@ -153,8 +153,12 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 			{
 				return FALSE;
 			};
-		}
-		else
+		};
+		return TRUE;
+	}
+	else if((slf.guild == GIL_KDF) && (oth.guild == GIL_NOV))
+	{
+		if(!Hlp_IsItem(itm,ITAR_NOV_L))
 		{
 			return TRUE;
 		};
@@ -172,10 +176,11 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 		{
 			return TRUE;
 		};
-	}
-	else
-	{
-		return FALSE;
+		if((oth.guild == GIL_NOV) && !Hlp_IsItem(itm,ITAR_NOV_L))
+		{
+			return TRUE;
+		};
 	};
+	return FALSE;
 };
 

@@ -425,7 +425,6 @@ instance ItMi_MalethsBanditGold(C_Item)
 {
 	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
-//	mainflag = ITEM_MULTI;
 	flags = 0;
 	value = 300;
 	visual = "ItMi_Bag.3ds";
@@ -654,7 +653,7 @@ instance ItSe_Golemchest_Mis(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_GolemChest;
 	description = name;
-	text[0] = "Этот кошелек полон монет.";
+	text[0] = PRINT_Pocket_50;
 	text[1] = "Кажется, внутри позванивает что-то еще.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -749,11 +748,14 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = DiegosTreasure;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Pocket_Mis.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = Use_DiegosTreasure;
-	description = "Старый кошелек Диего";
+	description = name;
+	text[0] = PRINT_Pocket_MIS;
+	text[1] = "с именем 'Диего'.";
+	text[2] = "Внутри целая куча золота!";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

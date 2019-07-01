@@ -121,10 +121,9 @@ const string Grimbald_IsTeacher = "Охотник Гримбальд, стоящий неподалеку от пеще
 func void DIA_Grimbald_Jagd_Info()
 {
 	AI_Output(other,self,"DIA_Grimbald_Jagd_15_00");	//Ты можешь научить меня охотиться?
-//	if((Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3)) || (Grimbald_PissOff == FALSE))
 	if(Npc_IsDead(Grimbald_Snapper1) && Npc_IsDead(Grimbald_Snapper2) && Npc_IsDead(Grimbald_Snapper3) && (Grimbald_PissOff == FALSE))
 	{
-		if(Grimbald_Snapper1.aivar[AIV_KilledByPlayer] == TRUE || Grimbald_Snapper2.aivar[AIV_KilledByPlayer] == TRUE || Grimbald_Snapper3.aivar[AIV_KilledByPlayer] == TRUE)
+		if(Grimbald_Snappers_KilledByPlayer == TRUE)
 		{
 			B_Say(self,other,"$ABS_GOOD");
 		}
@@ -351,7 +350,7 @@ func int DIA_Grimbald_Success_Condition()
 
 func void DIA_Grimbald_Success_Info()
 {
-	if(Grimbald_Snapper1.aivar[AIV_KilledByPlayer] == TRUE || Grimbald_Snapper2.aivar[AIV_KilledByPlayer] == TRUE || Grimbald_Snapper3.aivar[AIV_KilledByPlayer] == TRUE)
+	if(Grimbald_Snappers_KilledByPlayer == TRUE)
 	{
 		B_Say(self,other,"$NotBad");
 	}

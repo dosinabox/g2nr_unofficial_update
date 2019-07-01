@@ -317,6 +317,12 @@ func void DIA_Neoras_BrewPotion_Info()
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_01");	//Для новичка ты слишком нетерпелив. Иди, занимайся своими обязанностями.
 		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_02");	//Ты можешь купить все, что тебе нужно, у Горакса.
+		if(Gorax_Trade == FALSE)
+		{
+			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+			B_LogEntry(Topic_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
+			Gorax_Trade = TRUE;
+		};
 	}
 	else
 	{

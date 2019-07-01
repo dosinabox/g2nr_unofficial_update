@@ -172,7 +172,7 @@ func void DIA_Addon_Coragon_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_01");	//я слышал, что многие из них пропали в районе порта. Ќеудивительно, если учитывать, что там творитс€.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_02");	//ѕропал даже ученик плотника “орбена из нижней части города.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_03");	//’акон, один из рыночных торговцев, рассказал мне очень странную историю.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_04");	//ќн говорил, что каждый день этого он встречал одного парн€, а потом тот словно исчез с лица земли. ’акон даже обратилс€ в ополчение.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_04");	//ќн говорил, что каждый день он встречал одного парн€, а потом тот словно исчез с лица земли. ’акон даже обратилс€ в ополчение.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_05");	//√орожане начинают паниковать. Ќе понимаю, почему это происходит. ƒумаю, все это чепуха.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_06");	//∆изнь в ’оринисе непроста€, но за воротами еще опаснее.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_07");	//“е, кто не остаетс€ в городе, рано или поздно попадет в руки к бандитам или в зубы к диким животным. ¬се просто.

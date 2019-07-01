@@ -1205,3 +1205,7 @@ var int ScaredEngardo;
 var int Lehmar_StealBook_Day;
 var int AllHousesOfRulersFound;
 var int SaturasSendsToRiordian;
+var int Raven_Awaken;
+var int OrcShaman_CanyonLibrary_KilledByPlayer;
+var int Grimbald_Snappers_KilledByPlayer;
+var int Gorax_Trade;

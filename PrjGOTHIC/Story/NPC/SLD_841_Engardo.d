@@ -36,6 +36,6 @@ func void Rtn_Start_841()
 func void Rtn_Bigfarm_841()
 {
 	TA_Smalltalk(8,0,22,0,"NW_BIGFARM_HOUSE_OUT_05");
-	TA_Sit_Chair(22,0,8,0,"NW_BIGFARM_HOUSE_12");
+	TA_Sit_Chair(22,0,8,0,"NW_BIGFARM_HOUSE_19");
 };
 

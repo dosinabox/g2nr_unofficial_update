@@ -166,7 +166,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_DJG_M);
 	CreateInvItem(self,ITAR_DJG_H);
 	CreateInvItem(self,ITAR_DJG_Crawler);
-	CreateInvItem(self,ITAR_DJG_Babe);
+//	CreateInvItem(self,ITAR_DJG_Babe);
 	CreateInvItem(self,ITAR_Xardas);
 	CreateInvItem(self,ITAR_Lester);
 	CreateInvItem(self,ITAR_Diego);
@@ -878,7 +878,7 @@ instance Itemhoshi(Npc_Default)
 	B_SetFightSkills(self,70);
 };
 
-instance Hoshi_Testmodell(Npc_Default)
+/*instance Hoshi_Testmodell(Npc_Default)
 {
 	name[0] = "Хоша";
 	guild = GIL_MIL;
@@ -1168,7 +1168,7 @@ func void INIT_TA_Testlevel()
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	init_sub_ta_testlevel();
-};
+};*/
 
 
 instance Gold(C_Item)

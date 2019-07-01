@@ -1,13 +1,13 @@
 
 func int B_GhostSpecialDamage(var C_Npc oth,var C_Npc slf)
 {
-	var C_Npc Quarho;
-	var C_Npc Rhadem;
+//	var C_Npc Quarho;
+//	var C_Npc Rhadem;
 	var C_Npc her;
-	Quarho = Hlp_GetNpc(NONE_ADDON_111_Quarhodron);
-	Rhadem = Hlp_GetNpc(NONE_ADDON_112_Rhademes);
+//	Quarho = Hlp_GetNpc(NONE_ADDON_111_Quarhodron);
+//	Rhadem = Hlp_GetNpc(NONE_ADDON_112_Rhademes);
 	her = Hlp_GetNpc(PC_Hero);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Quarho)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhadem)))
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Quarhodron)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes)))
 	{
 		Wld_PlayEffect("spellFX_BELIARSRAGE",oth,oth,0,0,0,FALSE);
 		if(oth.flags != NPC_FLAG_IMMORTAL)

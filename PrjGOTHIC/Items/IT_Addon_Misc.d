@@ -120,12 +120,12 @@ instance ItSe_ADDON_CavalornsBeutel(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_Nugget;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Pocket_Mis.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = Use_CavalornsBeutel;
 	description = name;
-	text[0] = "На мешочке прикреплен ярлык";
+	text[0] = PRINT_Pocket_MIS;
 	text[1] = "с именем 'Кавалорн'.";
 	text[2] = "Внутри находится кусок руды.";
 	text[5] = NAME_Value;

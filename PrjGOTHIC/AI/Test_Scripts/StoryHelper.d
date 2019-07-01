@@ -29,6 +29,7 @@ instance SH(Npc_Default)
 	voice = 15;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;

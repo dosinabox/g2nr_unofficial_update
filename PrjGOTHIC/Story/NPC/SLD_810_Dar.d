@@ -32,6 +32,7 @@ func void Rtn_PreStart_810()
 func void Rtn_Start_810()
 {
 	TA_Smoke_Joint(8,0,22,0,"NW_BIGFARM_KITCHEN_DAR");
-	TA_Sit_Chair(22,0,8,0,"NW_BIGFARM_HOUSE_12");
+	TA_Sit_Chair(22,0,8,0,"NW_BIGFARM_HOUSE_19");
+//	TA_Sit_Chair(22,0,8,0,"NW_BIGFARM_HOUSE_12");
 };
 

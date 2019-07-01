@@ -385,13 +385,13 @@ func void DIA_Jarvis_HowManyLeft_Info()
 		{
 			if(victories == 0)
 			{
-				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_08");	//Что касается Рауля...
+				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_09");	//Я пошел поговорить с Раулем...
+				AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_10");	//И?
 			}
 			else
 			{
-				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_09");	//Я пошел поговорить с Раулем...
+				AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_08");	//Что касается Рауля...
 			};
-			AI_Output(self,other,"DIA_Jarvis_HowManyLeft_04_10");	//И?
 			AI_Output(other,self,"DIA_Jarvis_HowManyLeft_15_11");	//Оказалось, что ему крайне необходима взбучка.
 			victories += 1;
 		};
