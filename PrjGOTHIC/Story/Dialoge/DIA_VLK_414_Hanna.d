@@ -277,12 +277,12 @@ func void DIA_Hanna_AnyNews_Info()
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Ты ошибаешься.",DIA_Hanna_AnyNews_Yes);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Ну, как сказать...",DIA_Hanna_AnyNews_Depends);
-	Info_AddChoice(DIA_Hanna_AnyNews,"В общем, да.",DIA_Hanna_AnyNews_No);
+	Info_AddChoice(DIA_Hanna_AnyNews,"Ну, в общем, да.",DIA_Hanna_AnyNews_No);
 };
 
 func void DIA_Hanna_AnyNews_No()
 {
-	AI_Output(other,self,"DIA_Hanna_AnyNews_No_15_00");	//В общем, да.
+	AI_Output(other,self,"DIA_Hanna_AnyNews_No_15_00");	//Ну, в общем, да.
 	AI_Output(self,other,"DIA_Hanna_AnyNews_No_17_01");	//Ну, значит я права. Сейчас все думают только о себе. Так что тебе нужно?
 	MIS_HannaRetrieveLetter = LOG_FAILED;
 	B_CheckLog();
@@ -327,7 +327,7 @@ func void DIA_Hanna_AnyNews_Yes_Reward()
 {
 	AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_Reward_15_00");	//Что я за это получу?
 	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Reward_17_01");	//Ага, я знала - ты не лучше, чем весь этот остальной портовый сброд.
-	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Reward_17_02");	//Так что ты хочешь получить с бедной женщины?
+	AI_Output(self,other,"DIA_Hanna_AnyNews_Yes_Reward_17_02");	//Так что ты хочешь получить от бедной женщины?
 	Info_ClearChoices(DIA_Hanna_AnyNews);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Ладно, забудь.",DIA_Hanna_AnyNews_Yes_Reward_OK);
 	Info_AddChoice(DIA_Hanna_AnyNews,"Ну, ты могла бы быть немного поласковее со мной... Как женщина...",DIA_Hanna_AnyNews_Yes_Reward_BeNice);

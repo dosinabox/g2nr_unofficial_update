@@ -36,8 +36,9 @@ func void Rtn_NewPlace_419()
 {
 	TA_Stand_Drinking(7,0,12,30,"NW_CITY_UPTOWN_HUT_02_ENTRY");
 	TA_Stand_Eating(12,30,18,0,"NW_CITY_UPTOWN_PATH_17");
-	TA_Stand_Drinking(18,0,20,0,"NW_CITY_UPTOWN_PATH_17");
-	TA_Sit_Chair(20,0,23,0,"NW_CITY_UPTOWN_HUT_03_IN");
+	TA_Stand_Drinking(18,0,19,0,"NW_CITY_UPTOWN_PATH_17");
+	TA_Smalltalk(19,0,22,0,"NW_CITY_UPTOWN_PATH_08");
+	TA_Sit_Chair(22,0,23,0,"NW_CITY_UPTOWN_HUT_03_IN");
 	TA_Sleep(23,0,7,0,"NW_CITY_UPTOWN_HUT_03_BED");
 };
 

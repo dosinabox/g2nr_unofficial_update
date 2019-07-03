@@ -749,7 +749,7 @@ func void DIA_Kardif_SENDATTILA_Info()
 {
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_00");	//Эй, ты, иди сюда. У меня есть кое-что для тебя.
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01");	//Один парень очень хочет поговорить с тобой.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе сообщение.
+	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе записку.
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_03");	//Он хочет встретиться с тобой. За рыбной лавкой Халвора.
 	if(Kardif_Deal > 0)
 	{
@@ -796,10 +796,10 @@ func void DIA_Kardif_Kerl_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
 		AI_Output(other,self,"DIA_Kardif_Kerl_15_00");	//Как выглядел этот парень?
-		AI_Output(self,other,"DIA_Kardif_Kerl_14_01");	//Ну, он довольно высокий, темнокожий и сильный - но он не носит униформы. Какой-то он... зловещий.
+		AI_Output(self,other,"DIA_Kardif_Kerl_14_01");	//Ну, он довольно высокий, темнокожий и сильный. Он не носит униформы. Какой-то он... зловещий.
 		AI_Output(other,self,"DIA_Kardif_Kerl_15_02");	//А его лицо?
 		AI_Output(self,other,"DIA_Kardif_Kerl_14_03");	//Его лицо? Когда он глядел на меня, я был рад, что он пришел не за мной.
-		AI_Output(self,other,"DIA_Kardif_Kerl_14_04");	//В его глазах было что-то пугающее - ну, как бы то ни было, я думаю, ты должен пойти, повидаться с ним. Это должно быть интересно.
+		AI_Output(self,other,"DIA_Kardif_Kerl_14_04");	//В его глазах было что-то пугающее. Ну, как бы то ни было, я думаю... ты должен пойти, повидаться с ним. Это должно быть интересно.
 		AI_Output(other,self,"DIA_Kardif_Kerl_15_05");	//Да... весь вопрос в том, для кого...
 		DIA_Kardif_Kerl_permanent = TRUE;
 	}

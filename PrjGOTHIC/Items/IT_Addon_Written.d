@@ -650,6 +650,7 @@ func void UseSummonAncientGhost()
 			Snd_Play("MFX_Firestorm_Cast");
 			Snd_Play("MFX_Lightning_Origin");
 			SC_SummonedAncientGhost = TRUE;
+			B_InitNpcGlobals();
 		}
 		else
 		{

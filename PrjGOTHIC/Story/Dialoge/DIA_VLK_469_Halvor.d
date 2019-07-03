@@ -223,7 +223,7 @@ func void DIA_Addon_Halvor_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_01");	//Пропавших людях? Это порт, приятель. Такие события здесь не в диковинку.
 	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_02");	//Море жестоко. Оно нередко забирает человеческие жизни.
 	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_03");	//В крупных портах, таких как Хоринис, капитаны больших кораблей набирают матросов для пополнения команды.
-	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_04");	//А если они не находят добровольцев, людей могут затащить на корабль и против их воли. Так они и исчезают.
+	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_04");	//А если они не находят добровольцев, людей могут затащить на корабль и против их воли. Так они исчезают.
 	Info_ClearChoices(DIA_Addon_Halvor_MissingPeople);
 	Info_AddChoice(DIA_Addon_Halvor_MissingPeople,Dialog_Back,DIA_Addon_Halvor_MissingPeople_Back);
 	Info_AddChoice(DIA_Addon_Halvor_MissingPeople,"Но что это мог быть за корабль?",DIA_Addon_Halvor_MissingPeople_schiff);
