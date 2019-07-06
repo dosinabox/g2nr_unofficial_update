@@ -799,7 +799,10 @@ func void DIA_Babo_Kap3_HaveYourDocs_KeepThem()
 	Info_ClearChoices(DIA_Babo_Kap3_HaveYourDocs);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Просто шучу.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke);
 	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Это мое дело.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_MyConcern);
-	Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Игарац и я теперь партнеры.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner);
+	if(MIS_BabosDocs == LOG_Running)
+	{
+		Info_AddChoice(DIA_Babo_Kap3_HaveYourDocs,"Игарац и я теперь партнеры.",DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner);
+	};
 };
 
 func void DIA_Babo_Kap3_HaveYourDocs_KeepThem_JustJoke()

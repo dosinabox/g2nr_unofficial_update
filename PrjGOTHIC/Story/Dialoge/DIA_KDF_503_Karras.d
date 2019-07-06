@@ -244,6 +244,15 @@ func int DIA_Karras_Trade_Condition()
 func void DIA_Karras_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Karras_Trade_15_00");	//Покажи мне свои товары.
+	if(Npc_HasItems(other,Holy_Hammer_MIS))
+	{
+		AI_Output(self,other,"DIA_Karras_Success_10_01");	//Отлично, мой юный друг.
+		AI_Output(self,other,"DIA_Serpentes_SUCCESS_10_05");	//И будет лучше, если я заберу этот молот.
+		Npc_RemoveInvItems(other,Holy_Hammer_MIS,1);
+		AI_PrintScreen("Священный молот отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+		Wld_InsertItem(Holy_Hammer_MIS,"FP_HAMMER");
+		GarwigThiefOneTime = FALSE;
+	};
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
@@ -385,7 +394,6 @@ func void DIA_Karras_CIRCLE4_Info()
 	}
 	else
 	{
-//		AI_Output(self,other,"DIA_Karras_CIRCLE4_10_03");	//Он еще далеко не закончен.
 		AI_Output(self,other,"DIA_Karras_CIRCLE4_10_04");	//Время еще не пришло.
 	};
 };

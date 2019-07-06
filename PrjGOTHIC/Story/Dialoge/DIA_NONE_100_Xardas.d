@@ -214,7 +214,7 @@ func void DIA_Addon_Xardas_StonePlate_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Xardas_StonePlate_15_00");	//Что ты можешь сказать об этой каменной табличке?
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_03");	//Сначала я подозревал, что это магический артефакт, но потом пришел к выводу, что никакой ценности она не имеет.
-	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_04");	//Я не смог полностью расшифровать надписи на табличке, но похоже, они относятся к истории какой-то древней культуры.
+	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_04");	//Я не смог полностью расшифровать надписи на табличке, но, похоже, они относятся к истории какой-то древней культуры.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_05");	//Если хочешь, можешь забрать табличку себе. Мне она ни к чему.
 	B_GivePlayerXP(XP_Ambient);
 };

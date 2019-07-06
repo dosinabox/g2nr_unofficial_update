@@ -330,7 +330,7 @@ instance DIA_Lord_Hagen_Armee(C_Info)
 
 func int DIA_Lord_Hagen_Armee_Condition()
 {
-	if((!MIS_Lee_Friedensangebot == LOG_Running) || (Hagen_FriedenAbgelehnt == TRUE))
+	if((MIS_Lee_Friedensangebot == FALSE) || (Hagen_FriedenAbgelehnt == TRUE))
 	{
 		return TRUE;
 	};
@@ -554,19 +554,22 @@ func int DIA_Lord_Hagen_Minental_Condition()
 func void DIA_Lord_Hagen_Minental_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Minental_15_00");	//А что ваши люди делают в Долине Рудников?
-	if(Hagen_BringProof == FALSE)
+	if((Hagen_BringProof == FALSE) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_01");	//Я не вижу причин рассказывать тебе об этом!
 	}
 	else
 	{
-		if(Npc_KnowsInfo(other,DIA_Garond_NeedProof))
+		if(other.guild != GIL_KDF)
 		{
-			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_02");	//Ты был там. Ты должен знать.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_03");	//Хорошо, так как ты все равно идешь туда, я все же расскажу тебе.
+			if(Npc_KnowsInfo(other,DIA_Garond_NeedProof))
+			{
+				AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_02");	//Ты был там. Ты должен знать.
+			}
+			else if(Hagen_BringProof == TRUE)
+			{
+				AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_03");	//Хорошо, так как ты все равно идешь туда, я все же расскажу тебе.
+			};
 		};
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_04");	//Причиной всему - магическая руда. Она может решить исход этой войны.
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_05");	//Без достаточного количества оружия из магической руды у королевской армии нет ни единого шанса против элитных воинов орков.

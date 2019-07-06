@@ -345,6 +345,7 @@ var int MIS_ADDON_SkipsGrog;
 var int MIS_Addon_MorganLurker;
 //var int SC_MadeStunt;
 var int TowerBanditsDead;
+var int AllCanyonRazorDead;
 //var int Francis_100_Told;
 //var int Francis_500_Told;
 var int Francis_HasProof;

@@ -539,7 +539,7 @@ instance DIA_Andre_Paladine(C_Info)
 
 func int DIA_Andre_Paladine_Condition()
 {
-	if((other.guild != GIL_MIL) && (Kapitel < 3))
+	if((other.guild != GIL_MIL) && (other.guild != GIL_KDF) && (Kapitel < 3))
 	{
 		return TRUE;
 	};
@@ -577,17 +577,23 @@ instance DIA_Andre_PaladineAgain(C_Info)
 
 func int DIA_Andre_PaladineAgain_Condition()
 {
-	if((other.guild == GIL_MIL) && (Kapitel < 3) && Npc_KnowsInfo(other,DIA_Andre_Paladine))
+	if((Kapitel < 3) && Npc_KnowsInfo(other,DIA_Andre_Paladine))
 	{
-		return TRUE;
+		if((other.guild == GIL_MIL) || (other.guild == GIL_KDF))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Andre_PaladineAgain_Info()
 {
 	AI_Output(other,self,"DIA_Andre_PaladineAgain_15_00");	//Так ты скажешь мне, зачем паладины прибыли в Хоринис?
-	AI_Output(self,other,"DIA_Andre_PaladineAgain_08_02");	//Теперь, когда ты вступил в городскую стражу, ты подчиняешься паладинам.
-	AI_Output(self,other,"DIA_Andre_PaladineAgain_08_03");	//И теперь я могу доверять тебе.
+	if(other.guild == GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Andre_PaladineAgain_08_02");	//Теперь, когда ты вступил в городскую стражу, ты подчиняешься паладинам.
+		AI_Output(self,other,"DIA_Andre_PaladineAgain_08_03");	//И теперь я могу доверять тебе.
+	};
 	B_Andre_PaladinsReason();
 };
 
@@ -605,9 +611,12 @@ instance DIA_Andre_PaladineAgain2(C_Info)
 
 func int DIA_Andre_PaladineAgain2_Condition()
 {
-	if((other.guild == GIL_MIL) && (Kapitel < 3) && !Npc_KnowsInfo(other,DIA_Andre_Paladine))
+	if((Kapitel < 3) && !Npc_KnowsInfo(other,DIA_Andre_Paladine))
 	{
-		return TRUE;
+		if((other.guild == GIL_MIL) || (other.guild == GIL_KDF))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -1149,6 +1149,7 @@ instance DIA_Torlof_BEMYCAPTAIN3(C_Info)
 
 
 var int Torlof_PaidToBeCaptain;
+var int Torlof_PaidToBeCaptain_Log_OneTime;
 
 func int DIA_Torlof_BEMYCAPTAIN3_Condition()
 {
@@ -1164,6 +1165,11 @@ func void DIA_Torlof_BEMYCAPTAIN3_Info()
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_01");	//Ох, да. Ты хотел добраться до острова. Ммм. Вот мои условия.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_02");	//Ты заплатишь мне 2500 золотом, и я готов стать капитаном твоего корабля.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_03");	//А также я готов повышать твою силу и ловкость, когда ты только этого захочешь.
+	if(Torlof_PaidToBeCaptain_Log_OneTime == FALSE)
+	{
+		B_LogEntry(Topic_Captain,"Торлоф теперь готов командовать кораблем. Правда, он хочет получить за эту работу 2500 золотых монет.");
+		Torlof_PaidToBeCaptain_Log_OneTime = TRUE;
+	};
 	Info_ClearChoices(DIA_Torlof_BEMYCAPTAIN3);
 	Info_AddChoice(DIA_Torlof_BEMYCAPTAIN3,"Это чертовски большая сумма.",DIA_Torlof_BEMYCAPTAIN3_zuViel);
 	Info_AddChoice(DIA_Torlof_BEMYCAPTAIN3,"Хорошо. Вот твое золото.",DIA_Torlof_BEMYCAPTAIN3_ok);
@@ -1175,7 +1181,6 @@ func void DIA_Torlof_BEMYCAPTAIN3_zuViel()
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_zuViel_01_01");	//Да. Помощь профессионала стоит дорого. Но у тебя нет другого выбора. Тебе не найти другого капитана для своего корабля.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_zuViel_01_02");	//Так что плати денежки и не создавай проблем.
 	Info_ClearChoices(DIA_Torlof_BEMYCAPTAIN3);
-	B_LogEntry(Topic_Captain,"Торлоф теперь готов командовать кораблем. Правда, он хочет получить за эту работу 2500 золотых монет.");
 };
 
 func void DIA_Torlof_BEMYCAPTAIN3_ok()
@@ -1270,7 +1275,7 @@ func void DIA_Torlof_LOSFAHREN_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_05");	//Без корабля, команды и морской карты никакого путешествия не будет, приятель.
-		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_06");	//Мне нужно, по крайней мере, 5 человек, готовых встать под мое начало.
+		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_06");	//Мне нужно, по крайней мере, пять человек, готовых встать под мое начало.
 		AI_StopProcessInfos(self);
 	};
 };

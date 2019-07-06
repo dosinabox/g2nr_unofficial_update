@@ -9,6 +9,16 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Peck))
+	{
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_PECK") <= 500)
+		{
+			if(Npc_GetDistToWP(victim,"NW_PUFF_DANCE") > 1000)
+			{
+				return;
+			};
+		};
+	};
 	if((Npc_GetDistToNpc(self,victim) > PERC_DIST_INTERMEDIAT) && (Npc_GetDistToNpc(self,other) > PERC_DIST_INTERMEDIAT))
 	{
 		if(((self.guild == GIL_OUT) || (self.guild == GIL_BDT)) && ((victim.guild == self.guild) || (other.guild == self.guild)))
