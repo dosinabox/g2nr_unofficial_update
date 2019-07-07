@@ -7,9 +7,12 @@ func void ZS_FleeToWp()
 	{
 		Npc_PercDisable(self,PERC_ASSESSENTERROOM);
 	};
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(VLK_492_Rengaru)) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_RENGARU") < 400))
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru))
 	{
-		AI_StartState(self,ZS_Stand_ArmsCrossed,0,"");
+		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_RENGARU") < 400)
+		{
+			AI_StartState(self,ZS_Stand_ArmsCrossed,0,"");
+		};
 	};
 	AI_SetWalkMode(self,NPC_RUN);
 	Mdl_ApplyOverlayMds(self,"HUMANS_FLEE.MDS");
