@@ -25,21 +25,21 @@ instance SLD_816_Fester(Npc_Default)
 
 func void Rtn_Start_816()
 {
-	TA_Practice_Sword(5,0,6,0,"NW_BIGFARM_ALLEE_04");
+	TA_Practice_Sword(5,0,6,0,"NW_BIGFARM_ALLEE_03");
 	TA_Practice_Sword(6,0,7,0,"NW_BIGFARM_ALLEE_02");
-	TA_Practice_Sword(7,0,8,0,"NW_BIGFARM_ALLEE_04");
+	TA_Practice_Sword(7,0,8,0,"NW_BIGFARM_ALLEE_03");
 	TA_Practice_Sword(8,0,9,0,"NW_BIGFARM_ALLEE_02");
-	TA_Practice_Sword(9,0,10,0,"NW_BIGFARM_ALLEE_04");
+	TA_Practice_Sword(9,0,10,0,"NW_BIGFARM_ALLEE_03");
 	TA_Practice_Sword(10,0,11,0,"NW_BIGFARM_ALLEE_02");
-	TA_Practice_Sword(11,0,12,0,"NW_BIGFARM_ALLEE_04");
+	TA_Practice_Sword(11,0,12,0,"NW_BIGFARM_ALLEE_03");
 	TA_Practice_Sword(12,0,13,0,"NW_BIGFARM_ALLEE_02");
-	TA_Practice_Sword(13,0,14,0,"NW_BIGFARM_ALLEE_04");
+	TA_Practice_Sword(13,0,14,0,"NW_BIGFARM_ALLEE_03");
 	TA_Practice_Sword(14,0,15,0,"NW_BIGFARM_ALLEE_02");
-	TA_Practice_Sword(15,0,16,0,"NW_BIGFARM_ALLEE_04");
+	TA_Practice_Sword(15,0,16,0,"NW_BIGFARM_ALLEE_03");
 	TA_Practice_Sword(16,0,17,0,"NW_BIGFARM_ALLEE_02");
-	TA_Practice_Sword(17,0,18,0,"NW_BIGFARM_ALLEE_04");
+	TA_Practice_Sword(17,0,18,0,"NW_BIGFARM_ALLEE_03");
 	TA_Practice_Sword(18,0,19,0,"NW_BIGFARM_ALLEE_02");
-	TA_Practice_Sword(19,0,20,0,"NW_BIGFARM_ALLEE_04");
+	TA_Practice_Sword(19,0,20,0,"NW_BIGFARM_ALLEE_03");
 	TA_Sit_Campfire(20,0,6,0,"NW_BIGFARM_VORPOSTEN1_01");
 };
 
