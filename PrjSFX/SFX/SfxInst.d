@@ -10223,3 +10223,27 @@ instance MFX_PALHOLYBOLT_CAST(C_SFX_DEF)
 	vol = 80;
 };
 
+instance LOADING_SFX_NEWWORLD(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance LOADING_SFX_OLDWORLD(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance LOADING_SFX_ADDONWORLD(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance LOADING_SFX_DRAGONISLAND(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+

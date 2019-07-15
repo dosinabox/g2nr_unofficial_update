@@ -143,7 +143,7 @@ instance ITAR_Raven_Addon(C_Item)
 	visual = "ItAr_Raven_ADDON.3ds";
 	visual_change = "Armor_Raven_ADDON.asc";
 	visual_skin = 0;
-	material = MAT_LEATHER;
+	material = MAT_METAL;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -296,7 +296,7 @@ instance ITAR_Bloodwyn_Addon(C_Item)
 
 instance ITAR_MayaZombie_Addon(C_Item)
 {
-	name = "Старые доспехи";
+	name = "Доспехи древного воина";
 	mainflag = ITEM_KAT_ARMOR;
 	flags = 0;
 	protection[PROT_EDGE] = 50;
@@ -306,7 +306,7 @@ instance ITAR_MayaZombie_Addon(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Raven_ADDON.3ds";
+	visual = "ItAr_MayaZombie_ADDON.3ds";
 	visual_change = "Armor_MayaZombie_Addon.asc";
 	visual_skin = 0;
 	material = MAT_METAL;

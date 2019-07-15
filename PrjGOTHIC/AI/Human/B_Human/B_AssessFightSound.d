@@ -55,7 +55,8 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
-	if((victim.guild == GIL_SHEEP) && (victim.aivar[AIV_ToughGuy] == FALSE))
+//	if((victim.guild == GIL_SHEEP) && (victim.aivar[AIV_ToughGuy] == FALSE))
+	if(victim.guild == GIL_SHEEP)
 	{
 		if(C_WantToAttackSheepKiller(self,other))
 		{

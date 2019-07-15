@@ -866,13 +866,28 @@ func int DIA_Lord_Hagen_EyeBroken_Condition()
 {
 	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
 	{
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+		{
+			DIA_Lord_Hagen_EyeBroken.description = "Глаз у меня, но он поврежден.";
+		}
+		else
+		{
+			DIA_Lord_Hagen_EyeBroken.description = "Глаз Инноса поврежден.";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Lord_Hagen_EyeBroken_Info()
 {
-	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_07");	//Глаз у меня, но он поврежден.
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+	{
+		AI_Output(other,self,"DIA_Lord_Hagen_Add_15_07");	//Глаз у меня, но он поврежден.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_08");	//ЧТО? О, Иннос! Что ты наделал? Нам нужен этот Глаз!
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_09");	//Поговори с Пирокаром! Должен быть способ восстановить его.
 	Hagen_KnowsEyeKaputt = TRUE;

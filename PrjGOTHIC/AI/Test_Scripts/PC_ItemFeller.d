@@ -358,9 +358,9 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItPl_Planeberry,10);
 	CreateInvItems(self,ItPl_Temp_Herb,10);
 	CreateInvItems(self,ItPl_Perm_Herb,10);
-	CreateInvItems(self,ItKe_Key_01,1);
-	CreateInvItems(self,ItKe_Key_02,1);
-	CreateInvItems(self,ItKe_Key_03,1);
+//	CreateInvItems(self,ItKe_Key_01,1);
+//	CreateInvItems(self,ItKe_Key_02,1);
+//	CreateInvItems(self,ItKe_Key_03,1);
 	CreateInvItems(self,ItKe_Lockpick,1);
 	CreateInvItems(self,ItKe_City_Tower_01,1);
 	CreateInvItems(self,ItKe_City_Tower_02,1);
@@ -388,7 +388,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItMi_Lute,10);
 	CreateInvItems(self,ItMi_Brush,10);
 	CreateInvItems(self,ItMi_Joint,10);
-	CreateInvItems(self,ItMi_Packet,10);
+//	CreateInvItems(self,ItMi_Packet,10);
 	CreateInvItems(self,ItMi_Pocket,10);
 	CreateInvItems(self,ItMi_Nugget,10);
 	CreateInvItems(self,ItMi_Gold,1000);
@@ -557,7 +557,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItMw_AlriksSword_Mis,1);
 	CreateInvItems(self,ItWr_VatrasMessage,1);
 	CreateInvItems(self,ItWr_VatrasMessage_Open,1);
-	CreateInvItems(self,ItKe_Hotel,1);
+//	CreateInvItems(self,ItKe_Hotel,1);
 	CreateInvItems(self,ItKe_ThiefGuildKey_MIS,1);
 	CreateInvItems(self,ItKe_ThiefGuildKey_Hotel_MIS,1);
 	CreateInvItems(self,ItKe_Innos_MIS,1);

@@ -186,11 +186,12 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_Raven_Addon);
 	CreateInvItem(self,ITAR_OreBaron_Addon);
 	CreateInvItem(self,ITAR_RANGER_Addon);
-	CreateInvItem(self,ITAR_Fake_RANGER);
+//	CreateInvItem(self,ITAR_Fake_RANGER);
 	CreateInvItem(self,ITAR_KDW_L_Addon);
 	CreateInvItem(self,ITAR_Bloodwyn_Addon);
 	CreateInvItem(self,ITAR_MayaZombie_Addon);
 	CreateInvItem(self,ITAR_FireArmor_Addon);
+	CreateInvItem(self,ITAR_PAL_Skel);
 	CreateInvItems(self,ItRu_PalLight,1);
 	CreateInvItems(self,ItRu_PalLightHeal,1);
 	CreateInvItems(self,ItRu_PalHolyBolt,1);
@@ -691,7 +692,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_AlriksSword_Mis,1);
 	CreateInvItems(self,ItWr_VatrasMessage,1);
 	CreateInvItems(self,ItWr_VatrasMessage_Open,1);
-	CreateInvItems(self,ItKe_Hotel,1);
+//	CreateInvItems(self,ItKe_Hotel,1);
 	CreateInvItems(self,ItKe_ThiefGuildKey_MIS,1);
 	CreateInvItems(self,ItKe_ThiefGuildKey_Hotel_MIS,1);
 	CreateInvItems(self,ItKe_Innos_MIS,1);

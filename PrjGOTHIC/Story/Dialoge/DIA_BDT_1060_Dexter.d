@@ -44,7 +44,7 @@ func void DIA_Dexter_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Dexter_Hallo_09_00");	//Посмотрите, кто пришел. Великий освободитель. Что ж, герой, что ты делаешь здесь?
 	AI_Output(other,self,"DIA_Dexter_Hallo_15_01");	//Я хочу получить ответы на несколько вопросов.
-	if(Ranger_SCKnowsDexter == FALSE)
+	if(Bdt13_Dexter_verraten == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Dexter_Hallo_09_00");	//Не ожидал я, что ты придешь сюда добровольно.
 		AI_Output(other,self,"DIA_Addon_Dexter_Hallo_15_01");	//Что ты имеешь в виду?
@@ -57,7 +57,6 @@ func void DIA_Dexter_Hallo_Info()
 		AI_Output(self,other,"DIA_Dexter_Hallo_09_03");	//Кто-то слишком много болтает.
 		AI_Output(self,other,"DIA_Addon_Dexter_Hallo_09_04");	//Впрочем, ты прав. Я распространял объявления о розыске. Я искал тебя - и ты явился.
 		MIS_Steckbriefe = LOG_SUCCESS;
-		B_CheckLog();
 		B_GivePlayerXP(XP_Ambient);
 	};
 	AI_Output(other,self,"DIA_Addon_Dexter_Hallo_15_05");	//Итак, что тебе от меня надо?

@@ -603,7 +603,7 @@ func void UseVatrasMessageOpen()
 };
 
 
-instance ItKe_Hotel(C_Item)
+/*instance ItKe_Hotel(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
@@ -613,7 +613,7 @@ instance ItKe_Hotel(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от комнаты отеля.";
-};
+};*/
 
 instance ItKe_ThiefGuildKey_MIS(C_Item)
 {
@@ -1055,10 +1055,10 @@ instance ITAR_PAL_Skel(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = Value_ITAR_PAL_Skel;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Pal_H.3ds";
+	visual = "ItAr_Pal_Skel.3ds";
 	visual_change = "Armor_Pal_Skeleton.asc";
 	visual_skin = 0;
-	material = MAT_LEATHER;
+	material = MAT_METAL;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
