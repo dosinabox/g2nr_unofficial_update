@@ -115,12 +115,17 @@ func void startup_newworld_part_dragon_undead_01()
 	Wld_InsertNpc(Pal_Zombie02,"WP_UNDEAD_SPAWN_POINT_06");
 	Wld_InsertNpc(Pal_Zombie03,"WP_UNDEAD_SPAWN_POINT_07");
 	Wld_InsertNpc(Pal_Zombie04,"WP_UNDEAD_SPAWN_POINT_08");
-	Wld_InsertNpc(Skeleton,"DRAGONISLAND_UNDEAD_04_01");
-	Wld_InsertNpc(Skeleton,"DRAGONISLAND_UNDEAD_04_02");
-	Wld_InsertNpc(Skeleton,"DRAGONISLAND_UNDEAD_08_01");
-	Wld_InsertNpc(Skeleton_Lord,"DRAGONISLAND_UNDEAD_08_02");
-	Wld_InsertNpc(Skeleton_Lord,"DRAGONISLAND_UNDEAD_08_03");
-	Wld_InsertNpc(Skeleton,"DRAGONISLAND_UNDEAD_08_04");
+	Wld_InsertNpc(Skeleton,"WP_DRAGONISLAND_UNDEAD_04_01");
+	Wld_InsertNpc(Skeleton,"WP_DRAGONISLAND_UNDEAD_04_02");
+//	Wld_InsertNpc(Skeleton,"WP_DRAGONISLAND_UNDEAD_08_01");
+//	Wld_InsertNpc(Skeleton_Lord,"WP_DRAGONISLAND_UNDEAD_08_02");
+//	Wld_InsertNpc(Skeleton_Lord,"WP_DRAGONISLAND_UNDEAD_08_03");
+//	Wld_InsertNpc(Skeleton,"WP_DRAGONISLAND_UNDEAD_08_04");
+//	несуществующие точки исправлены, но они зан€ты подручными ћарио, поэтому замен€ем на другие
+	Wld_InsertNpc(Skeleton,"WP_UNDEAD_MIDDLE_03");
+	Wld_InsertNpc(Skeleton_Lord,"WP_UNDEAD_LEFT_UP_01");
+	Wld_InsertNpc(Skeleton_Lord,"WP_UNDEAD_RIGHT_UP_01");
+	Wld_InsertNpc(Skeleton,"WP_UNDEAD_MIDDLE_05");
 };
 
 func void init_newworld_part_dragon_undead_01()

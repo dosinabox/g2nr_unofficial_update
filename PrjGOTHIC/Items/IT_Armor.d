@@ -1713,7 +1713,6 @@ instance ITAR_BEGGAR(C_Item)
 	count[1] = protection[PROT_EDGE];
 	text[2] = NAME_Prot_Point;
 	count[2] = protection[PROT_POINT];
-	inv_zbias = 190;
 };
 
 instance ITAR_OHT(C_Item)

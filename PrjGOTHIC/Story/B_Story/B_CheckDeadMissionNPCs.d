@@ -63,6 +63,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			MIS_Fortuno_Delusion = LOG_FAILED;
 		};
 	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fester))
+	{
+		if(MIS_Fester_KillBugs == LOG_Running)
+		{
+			MIS_Fester_KillBugs = LOG_FAILED;
+		};
+	};
 	B_CheckLog();
 };
 
