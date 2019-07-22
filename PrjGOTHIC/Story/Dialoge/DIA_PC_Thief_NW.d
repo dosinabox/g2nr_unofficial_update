@@ -131,7 +131,6 @@ func void DIA_DiegoNW_NeedHelp_Problem()
 	AI_Output(other,self,"DIA_DiegoNW_NeedHelp_Problem_15_05");	//То есть, ты хочешь, чтобы я одолжил тебе золота?
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_11_06");	//Чушь. У меня есть золото. Я бы сказал даже целая куча золота! Но, к сожалению, оно не при мне.
 	AI_Output(self,other,"DIA_DiegoNW_NeedHelp_Problem_11_07");	//Ты должен забрать мое золото там, где оно находится.
-	Info_ClearChoices(DIA_DiegoNW_NeedHelp);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"У меня нет времени на это.",DIA_DiegoNW_NeedHelp_Problem_NoTime);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Что мне с этого будет?",DIA_DiegoNW_NeedHelp_Problem_Reward);
 	Info_AddChoice(DIA_DiegoNW_NeedHelp,"Ладно, я помогу тебе.",DIA_DiegoNW_NeedHelp_Problem_WillHelpYou);
@@ -357,6 +356,9 @@ func void DIA_DiegoNW_DeliveredLetter_Info()
 	Wld_AssignRoomToGuild("reich01",GIL_PUBLIC);
 	B_StartOtherRoutine(Gerbrandt,"NEWLIFE");
 	Info_ClearChoices(DIA_DiegoNW_DeliveredLetter);
+	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,Dialog_Back,DIA_DiegoNW_DeliveredLetter_YourTrick_BACK);
+	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Что насчет моей доли?",DIA_DiegoNW_DeliveredLetter_YourTrick_REWARD);
+	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Что насчет Гербрандта?",DIA_DiegoNW_DeliveredLetter_Gerbrandt);
 	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Как тебе удалось провернуть это?",DIA_DiegoNW_DeliveredLetter_YourTrick);
 	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Значит, это теперь твой дом?",DIA_DiegoNW_DeliveredLetter_YourHouse);
 };
@@ -388,10 +390,6 @@ func void DIA_DiegoNW_DeliveredLetter_YourTrick()
 	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_03");	//А на моей совести тогда много чего было. Гербрандт, в конце концов, решил избавиться от меня. Вероятно, он опасался, что я знаю слишком много.
 	AI_Output(other,self,"DIA_DiegoNW_TalkedToJudge_YourTrick_15_04");	//Ты никогда не говорил мне об этом.
 	AI_Output(self,other,"DIA_DiegoNW_TalkedToJudge_YourTrick_11_05");	//А ты никогда и не спрашивал.
-	Info_ClearChoices(DIA_DiegoNW_DeliveredLetter);
-	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,Dialog_Back,DIA_DiegoNW_DeliveredLetter_YourTrick_BACK);
-	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Что насчет моей доли?",DIA_DiegoNW_DeliveredLetter_YourTrick_REWARD);
-	Info_AddChoice(DIA_DiegoNW_DeliveredLetter,"Что насчет Гербрандта?",DIA_DiegoNW_DeliveredLetter_Gerbrandt);
 };
 
 func void DIA_DiegoNW_DeliveredLetter_YourTrick_REWARD()
@@ -676,11 +674,11 @@ func void DIA_DiegoNW_LeaveMyShip_Info()
 	Crewmember_Count -= 1;
 	if(MIS_DiegosResidence == LOG_SUCCESS)
 	{
-		Npc_ExchangeRoutine(self,"Gerbrandt");
+		Npc_ExchangeRoutine(self,"GERBRANDT");
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"Start");
+		Npc_ExchangeRoutine(self,"START");
 	};
 };
 

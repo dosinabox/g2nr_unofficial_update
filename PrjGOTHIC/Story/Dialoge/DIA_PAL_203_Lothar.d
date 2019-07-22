@@ -55,7 +55,7 @@ func void DIA_Lothar_FirstEXIT_Info()
 	}
 	else
 	{
-		if((Player_TalkedAboutDragons == TRUE) && ((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF)))
+		if((Player_TalkedAboutDragons == TRUE) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
 		{
 			AI_Output(self,other,"DIA_Lothar_FirstEXIT_01_03");	//Если я еще хоть раз услышу, что ты рассказываешь людям о драконах, у тебя будут большие проблемы, тебе все ясно?
 		}
@@ -96,8 +96,11 @@ func int DIA_Lothar_Hallo_Condition()
 
 func void DIA_Lothar_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Lothar_Hallo_01_00");	//Стой, чужеземец!
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && ((hero.guild != GIL_PAL) && (hero.guild != GIL_KDF)))
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Lothar_Hallo_01_00");	//Стой, чужеземец!
+	};
+	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF) && (hero.guild != GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Lothar_Hallo_01_01");	//Я не видел, чтобы ты проходил через эти ворота.
 		AI_Output(other,self,"DIA_Lothar_Hallo_15_02");	//И?
@@ -127,9 +130,12 @@ instance DIA_Lothar_MESSAGE(C_Info)
 
 func int DIA_Lothar_MESSAGE_Condition()
 {
-	if((Mil_305_schonmalreingelassen == FALSE) && (hero.guild == GIL_NONE))
+	if(Mil_305_schonmalreingelassen == FALSE)
 	{
-		return TRUE;
+		if((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -389,9 +395,12 @@ instance DIA_Lothar_HowCitizen(C_Info)
 
 func int DIA_Lothar_HowCitizen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (Player_IsApprentice == APP_NONE) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (Player_IsApprentice == APP_NONE))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -419,9 +428,12 @@ instance DIA_Lothar_WoArbeit(C_Info)
 
 func int DIA_Lothar_WoArbeit_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lothar_HowCitizen) && (Player_IsApprentice == APP_NONE) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_HowCitizen) && (Player_IsApprentice == APP_NONE))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -451,9 +463,12 @@ instance DIA_Lothar_ToOV(C_Info)
 
 func int DIA_Lothar_ToOV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Regeln) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -692,9 +707,16 @@ func void DIA_Lothar_HelloAgain_Info()
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_39");	//Ты ведь не присоединился к наемникам Онара, нет?
 		AI_Output(self,other,"DIA_Lothar_Add_01_40");	//Как ты попал сюда?
-		AI_Output(other,self,"DIA_Lothar_Add_15_41");	//Я принес предложение мира от Ли...
-		AI_Output(self,other,"DIA_Lothar_Add_01_42");	//Ха! Лорд Хаген никогда не согласится на это.
-		Player_KnowsLordHagen = TRUE;
+		if((MIS_Lee_Friedensangebot == LOG_Running) && Npc_HasItems(other,ItWr_Passage_MIS))
+		{
+			AI_Output(other,self,"DIA_Lothar_Add_15_41");	//Я принес предложение мира от Ли...
+			AI_Output(self,other,"DIA_Lothar_Add_01_42");	//Ха! Лорд Хаген никогда не согласится на это.
+			Player_KnowsLordHagen = TRUE;
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Lothar_Hallo_15_04");	//Нуууу...
+		};
 	};
 	if((other.guild == GIL_MIL) && (Player_IsApprentice == APP_NONE))
 	{

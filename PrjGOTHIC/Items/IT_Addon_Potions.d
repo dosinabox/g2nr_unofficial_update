@@ -71,7 +71,7 @@ instance ItPo_Health_Addon_04(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_HEALTHPOTION";
-	description = "Чистое здоровье";
+	description = NAME_HP_Full;
 	text[1] = "Полное восстановление здоровья.";
 	text[5] = NAME_Value;
 	count[5] = Value_HpTrunk;
@@ -97,7 +97,7 @@ instance ItPo_Mana_Addon_04(C_Item)
 	scemeName = "POTIONFAST";
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_MANAPOTION";
-	description = "Чистая мана";
+	description = NAME_Mana_Full;
 	text[1] = "Полное восстановление маны.";
 	text[5] = NAME_Value;
 	count[5] = Value_ManaTrunk;

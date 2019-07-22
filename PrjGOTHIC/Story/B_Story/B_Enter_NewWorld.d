@@ -173,20 +173,12 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			B_StartOtherRoutine(Hodges,"BENNETWEG");
 		};
-		if(Npc_IsDead(DiegoNW))
-		{
-			Wld_InsertNpc(PC_Thief_NW,"NW_CITY_ENTRANCE_01");
-			B_StartOtherRoutine(DiegoNW,"START");
-		};
-		if(Npc_IsDead(GornNW_vor_DJG))
-		{
-			Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");
-			B_StartOtherRoutine(GornNW_vor_DJG,"START");
-		};
 		if(!Npc_IsDead(Lares))
 		{
 			B_StartOtherRoutine(Lares,"START");
 		};
+		Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");
+		Wld_InsertNpc(PC_Thief_NW,"NW_CITY_ENTRANCE_01");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_PASS_GATE_02");
 		B_KillNpc(PAL_297_Ritter);
 		B_KillNpc(PAL_298_Ritter);

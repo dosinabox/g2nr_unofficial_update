@@ -46,8 +46,8 @@ func void DIA_Gestath_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Gestath_HALLO_15_00");	//Как дела?
 	AI_Output(self,other,"DIA_Gestath_HALLO_09_01");	//(сухо) Это мужественный поступок - прийти сюда. А ты не заблудился, часом?
-	Gestath_TeachAnimalTrophy = TRUE;
 	Info_ClearChoices(DIA_Gestath_HALLO);
+	Info_AddChoice(DIA_Gestath_HALLO,"У тебя хорошие доспехи.",DIA_Gestath_HALLO_plate);
 	Info_AddChoice(DIA_Gestath_HALLO,"Что здесь есть интересного?",DIA_Gestath_HALLO_waszusehen);
 	Info_AddChoice(DIA_Gestath_HALLO,"А что ты делаешь здесь?",DIA_Gestath_HALLO_was);
 };
@@ -58,7 +58,10 @@ func void DIA_Gestath_HALLO_plate()
 	AI_Output(self,other,"DIA_Gestath_HALLO_plate_09_01");	//Да. Такие нелегко найти. Они из панцирей краулеров. Парень по имени Вольф сделал их для меня.
 	AI_Output(self,other,"DIA_Gestath_HALLO_plate_09_02");	//Я был каторжником здесь, в колонии. Дал ему пару панцирей краулеров, и пару дней спустя доспехи были готовы. Этот парень - мастер.
 	Wolf_ProduceCrawlerArmor = TRUE;
-	Info_AddChoice(DIA_Gestath_HALLO,Dialog_Back,DIA_Gestath_HALLO_Back);
+	if(Gestath_TeachAnimalTrophy == TRUE)
+	{
+		Info_AddChoice(DIA_Gestath_HALLO,Dialog_Back,DIA_Gestath_HALLO_Back);
+	};
 	Info_AddChoice(DIA_Gestath_HALLO,"А где сейчас Вольф?",DIA_Gestath_HALLO_plate_woWolf);
 };
 
@@ -76,7 +79,11 @@ func void DIA_Gestath_HALLO_was()
 	AI_Output(other,self,"DIA_Gestath_HALLO_was_15_02");	//Здесь, где нет ничего?
 	AI_Output(self,other,"DIA_Gestath_HALLO_was_09_03");	//Я охотник. Специализируюсь на сложных случаях.
 	AI_Output(self,other,"DIA_Gestath_HALLO_was_09_04");	//Огненные ящеры, краулеры, драконьи снепперы... Другие не охотятся на таких зверей. Это приносит неплохие деньги.
-	Info_AddChoice(DIA_Gestath_HALLO,"У тебя хорошие доспехи.",DIA_Gestath_HALLO_plate);
+	Gestath_TeachAnimalTrophy = TRUE;
+	if(Wolf_ProduceCrawlerArmor == TRUE)
+	{
+		Info_AddChoice(DIA_Gestath_HALLO,Dialog_Back,DIA_Gestath_HALLO_Back);
+	};
 };
 
 func void DIA_Gestath_HALLO_waszusehen()
@@ -123,6 +130,8 @@ func void DIA_Gestath_Drachen_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Gestath_Drachen_09_02");	//Конечно. Почему нет?
+		Log_CreateTopic(Topic_OutTeacher,LOG_NOTE);
+		B_LogEntry(Topic_OutTeacher,"Гестат из Долины Рудников может научить меня потрошить драконов.");
 		Gestath_DragonTrophy = TRUE;
 	};
 };
@@ -157,6 +166,8 @@ func void DIA_Gestath_TEACHHUNTING_Info()
 	{
 		if(DIA_Gestath_TEACHHUNTING_OneTime == FALSE)
 		{
+			Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_OutTeacher,"Охотник в Долине Рудников по имени Гестат может обучить меня разделке огненных ящеров, краулеров и драконьих снепперов.");
 			AI_Output(self,other,"DIA_Gestath_TEACHHUNTING_09_01");	//Почему нет? У меня есть немного свободного времени.
 			DIA_Gestath_TEACHHUNTING_OneTime = TRUE;
 		}
