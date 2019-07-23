@@ -220,7 +220,7 @@ func void DIA_MiltenNW_FourFriends_Info()
 		if(MIS_RescueGorn != LOG_SUCCESS)
 		{
 			AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_02");	//Как ему удалось выбраться?
-			if(!Npc_KnowsInfo(other,DIA_DiegoOw_Gorn))
+			if(Npc_KnowsInfo(other,DIA_DiegoOw_Gorn))
 			{
 				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_03");	//Мне пришлось солгать Гаронду, так что он снял все обвинения.
 				AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_04");	//Но это только между нами, понятно?
@@ -712,26 +712,26 @@ func void DIA_MiltenNW_Teach_Info()
 		{
 			if(PLAYER_TALENT_RUNES[SPL_Light] == FALSE)
 			{
-				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Light,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_MiltenNW_Teach_Light);
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Light,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_MiltenOW_Teach_Light);
 			};
 			if(PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE)
 			{
-				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_LightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightHeal)),DIA_MiltenNW_Teach_Heal);
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_LightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightHeal)),DIA_MiltenOW_Teach_Heal);
 			};
 		};
 		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2)
 		{
 			if(PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE)
 			{
-				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_MiltenNW_Teach_Windfist);
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_MiltenOW_Teach_Windfist);
 			};
 			if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
 			{
-				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_MiltenNW_Teach_Feuerball);
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_MiltenOW_Teach_Feuerball);
 			};
 			if(PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE)
 			{
-				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_MiltenNW_Teach_Eispfeil);
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_MiltenOW_Teach_Eispfeil);
 			};
 		};
 	};
@@ -740,31 +740,6 @@ func void DIA_MiltenNW_Teach_Info()
 func void DIA_MiltenNW_Teach_BACK()
 {
 	Info_ClearChoices(DIA_MiltenNW_Teach);
-};
-
-func void DIA_MiltenNW_Teach_Windfist()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_WindFist);
-};
-
-func void DIA_MiltenNW_Teach_Feuerball()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_InstantFireball);
-};
-
-func void DIA_MiltenNW_Teach_Eispfeil()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_Icebolt);
-};
-
-func void DIA_MiltenNW_Teach_Heal()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_LightHeal);
-};
-
-func void DIA_MiltenNW_Teach_Light()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_Light);
 };
 
 instance DIA_MiltenNW_Mana(C_Info)

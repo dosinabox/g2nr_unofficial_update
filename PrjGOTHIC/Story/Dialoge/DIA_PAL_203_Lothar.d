@@ -707,7 +707,7 @@ func void DIA_Lothar_HelloAgain_Info()
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_39");	//Ты ведь не присоединился к наемникам Онара, нет?
 		AI_Output(self,other,"DIA_Lothar_Add_01_40");	//Как ты попал сюда?
-		if((MIS_Lee_Friedensangebot == LOG_Running) && Npc_HasItems(other,ItWr_Passage_MIS))
+		if((Hagen_FriedenAbgelehnt == TRUE) || Npc_HasItems(other,ItWr_Passage_MIS))
 		{
 			AI_Output(other,self,"DIA_Lothar_Add_15_41");	//Я принес предложение мира от Ли...
 			AI_Output(self,other,"DIA_Lothar_Add_01_42");	//Ха! Лорд Хаген никогда не согласится на это.
