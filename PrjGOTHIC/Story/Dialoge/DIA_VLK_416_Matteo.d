@@ -223,21 +223,24 @@ instance DIA_Matteo_Paladine(C_Info)
 
 func int DIA_Matteo_Paladine_Condition()
 {
-	if(other.guild != GIL_PAL)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_MAtteo_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_Paladine_15_00");	//Что ты знаешь о паладинах?
-	AI_Output(self,other,"DIA_Matteo_Paladine_09_01");	//С тех пор, как эти ублюдки прибыли в город, у меня от них одни проблемы.
+	if(other.guild != GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_Matteo_Paladine_09_01");	//С тех пор, как эти ублюдки прибыли в город, у меня от них одни проблемы.
+	};
 	AI_Output(self,other,"DIA_Matteo_Paladine_09_02");	//Последний раз, когда я шел в верхний квартал, стражники преградили мне дорогу и начали выяснять, что мне там нужно!
 	AI_Output(other,self,"DIA_Matteo_Paladine_15_03");	//И?
 	AI_Output(self,other,"DIA_Matteo_Paladine_09_04");	//Конечно же, они пропустили меня!
-	AI_Output(self,other,"DIA_Matteo_Paladine_09_05");	//Да у меня уже была лавка в этом городе, когда эти напыщенные болваны еще пешком под стол ходили!
-	AI_Output(self,other,"DIA_Matteo_Paladine_09_06");	//А вчера эти ублюдки пришли и конфисковали половину моих товаров!
+	if(other.guild != GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_Matteo_Paladine_09_05");	//Да у меня уже была лавка в этом городе, когда эти напыщенные болваны еще пешком под стол ходили!
+		AI_Output(self,other,"DIA_Matteo_Paladine_09_06");	//А вчера эти ублюдки пришли и конфисковали половину моих товаров!
+	};
 };
 
 
@@ -265,7 +268,10 @@ func void DIA_MAtteo_Confiscated_Info()
 	AI_Output(other,self,"DIA_Matteo_Confiscated_15_00");	//Паладины забрали твои товары?
 	AI_Output(self,other,"DIA_Matteo_Confiscated_09_01");	//Все, что у меня хранилось на заднем дворе.
 	AI_Output(self,other,"DIA_Matteo_Confiscated_09_02");	//Они просто поставили стражника перед входом во двор.
-	AI_Output(self,other,"DIA_Matteo_Confiscated_09_03");	//Мне еще повезло, что они не забрали все. Хотя бы доспехи оставили.
+	if(other.guild != GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_Matteo_Confiscated_09_03");	//Мне еще повезло, что они не забрали все. Хотя бы доспехи оставили.
+	};
 };
 
 
@@ -282,9 +288,12 @@ instance DIA_Matteo_HelpMeToOV(C_Info)
 
 func int DIA_Matteo_HelpMeToOV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Matteo_Paladine) && (Player_IsApprentice == APP_NONE) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Matteo_Paladine) && (Player_IsApprentice == APP_NONE))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -332,9 +341,12 @@ instance DIA_Matteo_HelpMeNow(C_Info)
 
 func int DIA_Matteo_HelpMeNow_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Matteo_HelpMeToOV) && (Player_IsApprentice == APP_NONE) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Matteo_HelpMeToOV) && (Player_IsApprentice == APP_NONE))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -358,9 +370,12 @@ instance DIA_Matteo_LehrlingLater(C_Info)
 
 func int DIA_Matteo_LehrlingLater_Condition()
 {
-	if((Player_IsApprentice == APP_NONE) && (other.guild != GIL_NONE))
+	if(Player_IsApprentice == APP_NONE)
 	{
-		return TRUE;
+		if((other.guild != GIL_NONE) && (other.guild != GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
