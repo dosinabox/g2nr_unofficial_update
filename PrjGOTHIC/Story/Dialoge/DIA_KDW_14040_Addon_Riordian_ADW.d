@@ -393,7 +393,6 @@ func void DIA_Addon_Riordian_FoundAllHouses_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_03");	//Отлично! Значит, моя работа была не напрасной.
 	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
 	MIS_Riordian_HousesOfRulers = LOG_SUCCESS;
-	AllHousesOfRulersFound = TRUE;
 	B_GivePlayerXP(XP_Addon_FoundAllHouses);
 };
 

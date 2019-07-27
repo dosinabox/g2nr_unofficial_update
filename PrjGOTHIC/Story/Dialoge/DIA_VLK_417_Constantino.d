@@ -535,9 +535,14 @@ func void DIA_Constantino_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_17");	//Маттео говорит, что ты что-то должен ему. Если ты хочешь получить его голос, тебе лучше решить с ним эту мелкую проблему.
 			}
+			else if(MIS_Matteo_Gold == LOG_FAILED)
+			{
+				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_19");	//Маттео говорит, что никогда не видел тебя в своей лавке.
+			}
 			else
 			{
-				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_18");	//Маттео говорит, что еще не разговаривал с тобой по этому поводу.
+//				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_18");	//Маттео говорит, что еще не разговаривал с тобой по этому поводу.
+				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_18");	//Маттео говорит, что ты понятия не имеешь, с кем имеешь дело.
 			};
 		}
 		else
@@ -921,6 +926,7 @@ func void DIA_Constantino_NewRecipes_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+		AI_StopProcessInfos(self);
 	};
 };
 

@@ -215,6 +215,10 @@ func void DIA_Bosper_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_13");	//Маттео упомянул о каких-то долгах - я не знаю, что он имеет в виду, но тебе лучше поговорить с ним.
 			}
+			else if(MIS_Matteo_Gold == LOG_FAILED)
+			{
+				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_15");	//Маттео говорит, что никогда не видел тебя.
+			}
 			else
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_14");	//Маттео говорит, что еще не говорил с тобой об этом.

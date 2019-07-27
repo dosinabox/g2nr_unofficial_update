@@ -363,6 +363,10 @@ func void DIA_Harad_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_20");	//Маттео говорит, что ты ему что-то должен. Я не знаю, что у вас там за дела, но ты должен урегулировать эту проблему.
 			}
+			else if(MIS_Matteo_Gold == LOG_FAILED)
+			{
+				AI_Output(self,other,"DIA_Harad_LEHRLING_12_22");	//Маттео говорит, что никогда не видел тебя в своей лавке.
+			}
 			else
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_21");	//Маттео говорит, что никогда не говорил об этом с тобой.

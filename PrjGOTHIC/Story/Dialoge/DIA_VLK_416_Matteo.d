@@ -4,7 +4,7 @@ instance DIA_Matteo_EXIT(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 999;
 	condition = DIA_Matteo_EXIT_Condition;
-	information = DIA_MAtteo_EXIT_Info;
+	information = DIA_Matteo_EXIT_Info;
 	permanent = TRUE;
 	description = Dialog_Ende;
 };
@@ -15,7 +15,7 @@ func int DIA_Matteo_EXIT_Condition()
 	return TRUE;
 };
 
-func void DIA_MAtteo_EXIT_Info()
+func void DIA_Matteo_EXIT_Info()
 {
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
@@ -62,7 +62,7 @@ instance DIA_Matteo_Hallo(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 1;
 	condition = DIA_Matteo_Hallo_Condition;
-	information = DIA_MAtteo_Hallo_Info;
+	information = DIA_Matteo_Hallo_Info;
 	permanent = FALSE;
 	important = TRUE;
 };
@@ -70,13 +70,13 @@ instance DIA_Matteo_Hallo(C_Info)
 
 func int DIA_Matteo_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (other.guild != GIL_PAL))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_MAtteo_Hallo_Info()
+func void DIA_Matteo_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Matteo_Hallo_09_00");	//Чем могу помочь?
 };
@@ -87,7 +87,7 @@ instance DIA_Matteo_SellWhat(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 1;
 	condition = DIA_Matteo_SellWhat_Condition;
-	information = DIA_MAtteo_SellWhat_Info;
+	information = DIA_Matteo_SellWhat_Info;
 	permanent = FALSE;
 	description = "Что ты продаешь?";
 };
@@ -98,7 +98,7 @@ func int DIA_Matteo_SellWhat_Condition()
 	return TRUE;
 };
 
-func void DIA_MAtteo_SellWhat_Info()
+func void DIA_Matteo_SellWhat_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_SellWhat_15_00");	//Что ты продаешь?
 	if(Kapitel < 4)
@@ -146,19 +146,27 @@ var int Matteo_TradeNewsPermanent;
 func void DIA_Matteo_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_TRADE_15_00");	//Покажи мне свои товары.
-	B_GiveTradeInv(self);
-	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == FALSE))
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == 0))
 	{
 		AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно более строгими.
 		AI_Output(self,other,"DIA_Matteo_TRADE_09_02");	//Я надеюсь, все успокоится, когда этого убийцу повесят.
 		Matteo_TradeNewsPermanent = 1;
 	};
-	if((Kapitel == 5) && (Matteo_TradeNewsPermanent < 2))
+	if((Kapitel == 4) && (Matteo_TradeNewsPermanent < 2))
 	{
-		AI_Output(self,other,"DIA_Matteo_TRADE_09_03");	//Похоже, паладины действительно серьезно настроены на этот раз. Они даже сократили охрану на своем корабле.
-		AI_Output(self,other,"DIA_Matteo_TRADE_09_04");	//Это хорошо, что ты опять пополняешь свои запасы, кто знает, будет ли еще существовать этот город на следующей неделе.
+		AI_Output(self,other,"DIA_Matteo_TRADE_09_04");	//Это хорошо, что ты опять пополняешь свои запасы. Кто знает, будет ли еще существовать этот город на следующей неделе.
 		Matteo_TradeNewsPermanent = 2;
 	};
+	if((Kapitel == 5) && (Matteo_TradeNewsPermanent < 3))
+	{
+		AI_Output(self,other,"DIA_Matteo_TRADE_09_03");	//Похоже, паладины действительно серьезно настроены на этот раз. Они даже сократили охрану на своем корабле.
+		if(Matteo_TradeNewsPermanent != 2)
+		{
+			AI_Output(self,other,"DIA_Matteo_TRADE_09_04");	//Это хорошо, что ты опять пополняешь свои запасы. Кто знает, будет ли еще существовать этот город на следующей неделе.
+		};
+		Matteo_TradeNewsPermanent = 3;
+	};
+	B_GiveTradeInv(self);
 	if(MIS_Serpentes_MinenAnteil_KDF == LOG_Running)
 	{
 		MatteoMinenAnteil = TRUE;
@@ -210,12 +218,14 @@ func void DIA_Matteo_LEATHER_Info()
 };
 
 
+var int Matteo_Confiscated;
+
 instance DIA_Matteo_Paladine(C_Info)
 {
 	npc = VLK_416_Matteo;
 	nr = 2;
 	condition = DIA_Matteo_Paladine_Condition;
-	information = DIA_MAtteo_Paladine_Info;
+	information = DIA_Matteo_Paladine_Info;
 	permanent = FALSE;
 	description = "Что ты знаешь о паладинах?";
 };
@@ -226,20 +236,30 @@ func int DIA_Matteo_Paladine_Condition()
 	return TRUE;
 };
 
-func void DIA_MAtteo_Paladine_Info()
+func void DIA_Matteo_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_Paladine_15_00");	//Что ты знаешь о паладинах?
-	if(other.guild != GIL_PAL)
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == 0))
+	{
+		AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно более строгими.
+		AI_Output(self,other,"DIA_Matteo_TRADE_09_02");	//Я надеюсь, все успокоится, когда этого убийцу повесят.
+		Matteo_TradeNewsPermanent = 1;
+	}
+	else if(other.guild == GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_vorsicht_09_02");	//Ничего личного. Ступай с богом. Ты занятой человек, не буду задерживать тебя.
+		B_EquipTrader(self);
+		AI_StopProcessInfos(self);
+	}
+	else
 	{
 		AI_Output(self,other,"DIA_Matteo_Paladine_09_01");	//С тех пор, как эти ублюдки прибыли в город, у меня от них одни проблемы.
-	};
-	AI_Output(self,other,"DIA_Matteo_Paladine_09_02");	//Последний раз, когда я шел в верхний квартал, стражники преградили мне дорогу и начали выяснять, что мне там нужно!
-	AI_Output(other,self,"DIA_Matteo_Paladine_15_03");	//И?
-	AI_Output(self,other,"DIA_Matteo_Paladine_09_04");	//Конечно же, они пропустили меня!
-	if(other.guild != GIL_PAL)
-	{
+		AI_Output(self,other,"DIA_Matteo_Paladine_09_02");	//Последний раз, когда я шел в верхний квартал, стражники преградили мне дорогу и начали выяснять, что мне там нужно!
+		AI_Output(other,self,"DIA_Matteo_Paladine_15_03");	//И?
+		AI_Output(self,other,"DIA_Matteo_Paladine_09_04");	//Конечно же, они пропустили меня!
 		AI_Output(self,other,"DIA_Matteo_Paladine_09_05");	//Да у меня уже была лавка в этом городе, когда эти напыщенные болваны еще пешком под стол ходили!
 		AI_Output(self,other,"DIA_Matteo_Paladine_09_06");	//А вчера эти ублюдки пришли и конфисковали половину моих товаров!
+		Matteo_Confiscated = TRUE;
 	};
 };
 
@@ -249,7 +269,7 @@ instance DIA_Matteo_Confiscated(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 2;
 	condition = DIA_Matteo_Confiscated_Condition;
-	information = DIA_MAtteo_Confiscated_Info;
+	information = DIA_Matteo_Confiscated_Info;
 	permanent = FALSE;
 	description = "Паладины забрали твои товары?";
 };
@@ -257,13 +277,13 @@ instance DIA_Matteo_Confiscated(C_Info)
 
 func int DIA_Matteo_Confiscated_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Matteo_Paladine))
+	if(Matteo_Confiscated == TRUE)
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_MAtteo_Confiscated_Info()
+func void DIA_Matteo_Confiscated_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_Confiscated_15_00");	//Паладины забрали твои товары?
 	AI_Output(self,other,"DIA_Matteo_Confiscated_09_01");	//Все, что у меня хранилось на заднем дворе.
@@ -280,7 +300,7 @@ instance DIA_Matteo_HelpMeToOV(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 3;
 	condition = DIA_Matteo_HelpMeToOV_Condition;
-	information = DIA_MAtteo_HelpMeToOV_Info;
+	information = DIA_Matteo_HelpMeToOV_Info;
 	permanent = FALSE;
 	description = "Ты можешь помочь мне попасть в верхний квартал?";
 };
@@ -297,7 +317,7 @@ func int DIA_Matteo_HelpMeToOV_Condition()
 	};
 };
 
-func void DIA_MAtteo_HelpMeToOV_Info()
+func void DIA_Matteo_HelpMeToOV_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_HelpMeToOV_15_00");	//Ты можешь помочь мне попасть в верхний квартал?
 	AI_Output(self,other,"DIA_Matteo_HelpMeToOV_09_01");	//(ошеломленно) Что? А что тебе нужно ТАМ?
@@ -333,7 +353,7 @@ instance DIA_Matteo_HelpMeNow(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 3;
 	condition = DIA_Matteo_HelpMeNow_Condition;
-	information = DIA_MAtteo_HelpMeNow_Info;
+	information = DIA_Matteo_HelpMeNow_Info;
 	permanent = FALSE;
 	description = "Так ты можешь помочь мне попасть в верхний квартал?";
 };
@@ -350,7 +370,7 @@ func int DIA_Matteo_HelpMeNow_Condition()
 	};
 };
 
-func void DIA_MAtteo_HelpMeNow_Info()
+func void DIA_Matteo_HelpMeNow_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_HelpMeNow_15_00");	//Так ты можешь помочь мне попасть в верхний квартал?
 	B_Matteo_Preis();
@@ -362,7 +382,7 @@ instance DIA_Matteo_LehrlingLater(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 3;
 	condition = DIA_Matteo_LehrlingLater_Condition;
-	information = DIA_MAtteo_LehrlingLater_Info;
+	information = DIA_Matteo_LehrlingLater_Info;
 	permanent = FALSE;
 	description = "Помоги мне стать учеником одного из мастеров.";
 };
@@ -379,7 +399,7 @@ func int DIA_Matteo_LehrlingLater_Condition()
 	};
 };
 
-func void DIA_MAtteo_LehrlingLater_Info()
+func void DIA_Matteo_LehrlingLater_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_LehrlingLater_15_00");	//Помоги мне стать учеником одного из мастеров.
 	B_Matteo_Preis();
@@ -391,7 +411,7 @@ instance DIA_Matteo_PriceOfHelp(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 3;
 	condition = DIA_Matteo_PriceOfHelp_Condition;
-	information = DIA_MAtteo_PriceOfHelp_Info;
+	information = DIA_Matteo_PriceOfHelp_Info;
 	permanent = FALSE;
 	description = "Что ты хочешь за свои услуги?";
 };
@@ -405,7 +425,7 @@ func int DIA_Matteo_PriceOfHelp_Condition()
 	};
 };
 
-func void DIA_MAtteo_PriceOfHelp_Info()
+func void DIA_Matteo_PriceOfHelp_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_PriceOfHelp_15_00");	//Что ты хочешь за свои услуги?
 	AI_Output(self,other,"DIA_Matteo_PriceOfHelp_09_01");	//100 золотых монет.
@@ -449,7 +469,7 @@ instance DIA_Matteo_WoGritta(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 2;
 	condition = DIA_Matteo_WoGritta_Condition;
-	information = DIA_MAtteo_WoGritta_Info;
+	information = DIA_Matteo_WoGritta_Info;
 	permanent = FALSE;
 	description = "Где мне найти эту Гритту?";
 };
@@ -463,7 +483,7 @@ func int DIA_Matteo_WoGritta_Condition()
 	};
 };
 
-func void DIA_MAtteo_WoGritta_Info()
+func void DIA_Matteo_WoGritta_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WoGritta_15_00");	//Где мне найти эту Гритту?
 	AI_Output(self,other,"DIA_Matteo_WoGritta_09_01");	//Как я уже говорил, она племянница плотника. Его дом находится ниже по улице, справа от кузницы.
@@ -475,7 +495,7 @@ instance DIA_Matteo_GoldRunning(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 500;
 	condition = DIA_Matteo_GoldRunning_Condition;
-	information = DIA_MAtteo_GoldRunning_Info;
+	information = DIA_Matteo_GoldRunning_Info;
 	permanent = TRUE;
 	description = "Вот твои 100 золотых!";
 };
@@ -489,7 +509,7 @@ func int DIA_Matteo_GoldRunning_Condition()
 	};
 };
 
-func void DIA_MAtteo_GoldRunning_Info()
+func void DIA_Matteo_GoldRunning_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_GoldRunning_15_00");	//Вот твои 100 золотых!
 	if(Npc_IsDead(Gritta))
@@ -498,6 +518,7 @@ func void DIA_MAtteo_GoldRunning_Info()
 		AI_Output(self,other,"DIA_Matteo_GoldRunning_09_02");	//Я не хочу иметь никакого отношения к этому делу. Ты можешь забыть о нашей сделке! Не хочу даже вспоминать об этом!
 		MIS_Matteo_Gold = LOG_FAILED;
 		B_CheckLog();
+		B_EquipTrader(self);
 		AI_StopProcessInfos(self);
 		return;
 	};
@@ -530,7 +551,7 @@ instance DIA_Matteo_Zustimmung(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 4;
 	condition = DIA_Matteo_Zustimmung_Condition;
-	information = DIA_MAtteo_Zustimmung_Info;
+	information = DIA_Matteo_Zustimmung_Info;
 	permanent = TRUE;
 	description = "Помоги мне стать учеником одного из мастеров!";
 };
@@ -546,7 +567,7 @@ func int DIA_Matteo_Zustimmung_Condition()
 	};
 };
 
-func void DIA_MAtteo_Zustimmung_Info()
+func void DIA_Matteo_Zustimmung_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_Zustimmung_15_00");	//Помоги мне стать учеником одного из мастеров!
 	if(MIS_Matteo_Gold == LOG_SUCCESS)
@@ -569,7 +590,7 @@ instance DIA_Matteo_HowCanYouHelp(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 4;
 	condition = DIA_Matteo_HowCanYouHelp_Condition;
-	information = DIA_MAtteo_HowCanYouHelp_Info;
+	information = DIA_Matteo_HowCanYouHelp_Info;
 	permanent = FALSE;
 	description = "Как ИМЕННО ты собираешься помочь мне?";
 };
@@ -583,11 +604,11 @@ func int DIA_Matteo_HowCanYouHelp_Condition()
 	};
 };
 
-func void DIA_MAtteo_HowCanYouHelp_Info()
+func void DIA_Matteo_HowCanYouHelp_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_HowCanYouHelp_15_00");	//Как ИМЕННО ты собираешься помочь мне?
 	AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_01");	//Это просто. Я использую свое влияние, чтобы убедить других здешних мастеров взять тебя в ученики.
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Matteo_HowCanYouHelp_09_02");	//Став учеником, ты автоматически станешь гражданином города и сможешь попасть в верхний квартал. Помимо этого, ты сможешь что-нибудь заработать.
 	};
@@ -602,7 +623,7 @@ instance DIA_Matteo_WoAlsLehrling(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 4;
 	condition = DIA_Matteo_WoAlsLehrling_Condition;
-	information = DIA_MAtteo_WoAlsLehrling_Info;
+	information = DIA_Matteo_WoAlsLehrling_Info;
 	permanent = FALSE;
 	description = "А к кому я могу поступить в ученики?";
 };
@@ -616,7 +637,7 @@ func int DIA_Matteo_WoAlsLehrling_Condition()
 	};
 };
 
-func void DIA_MAtteo_WoAlsLehrling_Info()
+func void DIA_Matteo_WoAlsLehrling_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WoAlsLehrling_15_00");	//А к кому я могу поступить в ученики?
 	AI_Output(self,other,"DIA_Matteo_WoAlsLehrling_09_01");	//К любому мастеру на этой улице.
@@ -635,7 +656,7 @@ instance DIA_Matteo_WieZustimmung(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 5;
 	condition = DIA_Matteo_WieZustimmung_Condition;
-	information = DIA_MAtteo_WieZustimmung_Info;
+	information = DIA_Matteo_WieZustimmung_Info;
 	permanent = FALSE;
 	description = "Как мне получить одобрение других мастеров?";
 };
@@ -649,7 +670,7 @@ func int DIA_Matteo_WieZustimmung_Condition()
 	};
 };
 
-func void DIA_MAtteo_WieZustimmung_Info()
+func void DIA_Matteo_WieZustimmung_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WieZustimmung_15_00");	//Как мне получить одобрение других мастеров?
 	AI_Output(self,other,"DIA_Matteo_WieZustimmung_09_01");	//Ты просто должен убедить их. Иди и поговори с ними.
@@ -663,7 +684,7 @@ instance DIA_Matteo_WarumNichtBeiDir(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 6;
 	condition = DIA_Matteo_WarumNichtBeiDir_Condition;
-	information = DIA_MAtteo_WarumNichtBeiDir_Info;
+	information = DIA_Matteo_WarumNichtBeiDir_Info;
 	permanent = FALSE;
 	description = "А почему ТЫ не возьмешь меня в ученики?";
 };
@@ -677,7 +698,7 @@ func int DIA_Matteo_WarumNichtBeiDir_Condition()
 	};
 };
 
-func void DIA_MAtteo_WarumNichtBeiDir_Info()
+func void DIA_Matteo_WarumNichtBeiDir_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WarumNichtBeiDir_15_00");	//А почему ТЫ не возьмешь меня в ученики?
 	AI_Output(self,other,"DIA_Matteo_WarumNichtBeiDir_09_01");	//Я бы взял - но другие мастера не согласятся.
@@ -690,7 +711,7 @@ instance DIA_Matteo_OtherWay(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 6;
 	condition = DIA_Matteo_OtherWay_Condition;
-	information = DIA_MAtteo_OtherWay_Info;
+	information = DIA_Matteo_OtherWay_Info;
 	permanent = FALSE;
 	description = "А есть другой способ попасть в верхний квартал?";
 };
@@ -698,16 +719,19 @@ instance DIA_Matteo_OtherWay(C_Info)
 
 func int DIA_Matteo_OtherWay_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
-func void DIA_MAtteo_OtherWay_Info()
+func void DIA_Matteo_OtherWay_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_OtherWay_15_00");	//А есть другой способ попасть в верхний квартал?
-	AI_Output(self,other,"DIA_Matteo_OtherWay_09_01");	//Возможно... если я что-нибудь придумаю, я дам тебе знать.
+	AI_Output(self,other,"DIA_Matteo_OtherWay_09_01");	//Возможно... Если я что-нибудь придумаю, я дам тебе знать.
 };
 
 
@@ -716,7 +740,7 @@ instance DIA_Matteo_Minenanteil(C_Info)
 	npc = VLK_416_Matteo;
 	nr = 3;
 	condition = DIA_Matteo_Minenanteil_Condition;
-	information = DIA_MAtteo_Minenanteil_Info;
+	information = DIA_Matteo_Minenanteil_Info;
 	description = "Я вижу, у тебя среди других товаров есть и акции горнодобывающей компании.";
 };
 
@@ -730,7 +754,7 @@ func int DIA_Matteo_Minenanteil_Condition()
 	};
 };
 
-func void DIA_MAtteo_Minenanteil_Info()
+func void DIA_Matteo_Minenanteil_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_Minenanteil_15_00");	//Я вижу, у тебя среди других товаров есть и акции горнодобывающей компании. Кто продал их тебе?
 	AI_Output(self,other,"DIA_Matteo_Minenanteil_09_01");	//(нервно) Акции? Ох. И откуда они взялись? Понятия не имею, где я взял их. Клянусь, ваша честь.
