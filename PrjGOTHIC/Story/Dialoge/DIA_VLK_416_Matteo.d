@@ -598,7 +598,7 @@ instance DIA_Matteo_HowCanYouHelp(C_Info)
 
 func int DIA_Matteo_HowCanYouHelp_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Matteo_HelpMeNow) || Npc_KnowsInfo(other,DIA_Matteo_LehrlingLater)) && (Player_IsApprentice == APP_NONE))
+	if((Npc_KnowsInfo(other,DIA_Matteo_HelpMeNow) || Npc_KnowsInfo(other,DIA_Matteo_LehrlingLater)) && (Player_IsApprentice == APP_NONE) && (MIS_Matteo_Gold != LOG_FAILED))
 	{
 		return TRUE;
 	};
@@ -701,8 +701,17 @@ func int DIA_Matteo_WarumNichtBeiDir_Condition()
 func void DIA_Matteo_WarumNichtBeiDir_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_WarumNichtBeiDir_15_00");	//ј почему “џ не возьмешь мен€ в ученики?
-	AI_Output(self,other,"DIA_Matteo_WarumNichtBeiDir_09_01");	//я бы вз€л - но другие мастера не соглас€тс€.
-	AI_Output(self,other,"DIA_Matteo_WarumNichtBeiDir_09_02");	//я только недавно вз€л еще одного ученика.
+	if(MIS_Matteo_Gold != LOG_FAILED)
+	{
+		AI_Output(self,other,"DIA_Matteo_WarumNichtBeiDir_09_01");	//я бы вз€л - но другие мастера не соглас€тс€.
+		AI_Output(self,other,"DIA_Matteo_WarumNichtBeiDir_09_02");	//я только недавно вз€л еще одного ученика.
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+		B_EquipTrader(self);
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -719,7 +728,7 @@ instance DIA_Matteo_OtherWay(C_Info)
 
 func int DIA_Matteo_OtherWay_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
+	if((Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE)) || (MIS_Matteo_Gold == LOG_FAILED))
 	{
 		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
@@ -731,7 +740,16 @@ func int DIA_Matteo_OtherWay_Condition()
 func void DIA_Matteo_OtherWay_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_OtherWay_15_00");	//ј есть другой способ попасть в верхний квартал?
-	AI_Output(self,other,"DIA_Matteo_OtherWay_09_01");	//¬озможно... ≈сли € что-нибудь придумаю, € дам тебе знать.
+	if(MIS_Matteo_Gold != LOG_FAILED)
+	{
+		AI_Output(self,other,"DIA_Matteo_OtherWay_09_01");	//¬озможно... ≈сли € что-нибудь придумаю, € дам тебе знать.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Matteo_GoldRunning_09_02");	//я не хочу иметь никакого отношени€ к этому делу. “ы можешь забыть о нашей сделке! Ќе хочу даже вспоминать об этом!
+		B_EquipTrader(self);
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -747,7 +765,6 @@ instance DIA_Matteo_Minenanteil(C_Info)
 
 func int DIA_Matteo_Minenanteil_Condition()
 {
-//	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Matteo_SellWhat))
 	if((other.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (MatteoMinenAnteil == TRUE))
 	{
 		return TRUE;

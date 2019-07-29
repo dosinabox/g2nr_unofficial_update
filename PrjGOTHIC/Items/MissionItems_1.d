@@ -899,7 +899,7 @@ instance ItWr_Poster_MIS(C_Item)
 	on_state[0] = UsePoster;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Мое изображение!";
+	text[0] = "Мой портрет!";
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;

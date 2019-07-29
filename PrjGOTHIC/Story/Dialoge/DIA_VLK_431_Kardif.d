@@ -748,9 +748,9 @@ func int DIA_Kardif_SENDATTILA_Condition()
 func void DIA_Kardif_SENDATTILA_Info()
 {
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_00");	//Эй, ты, иди сюда. У меня есть кое-что для тебя.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01");	//Один парень очень хочет поговорить с тобой.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе записку.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_03");	//Он хочет встретиться с тобой. За рыбной лавкой Халвора.
+	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01");	//Один парень очень хочет поговорить с тобой. За рыбной лавкой Халвора.
+//	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе записку.
+//	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_03");	//Он хочет встретиться с тобой. За рыбной лавкой Халвора.
 	if(Kardif_Deal > 0)
 	{
 		AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_04");	//Эта информация бесплатна - но это исключение! Цена на все остальное осталась прежней.
@@ -762,7 +762,7 @@ func void DIA_Kardif_SENDATTILA_Info()
 		AI_Output(self,other,"DIA_Kardif_Hallo_14_04");	//Каждая информация, которую я сообщу тебе, будет стоить 10 золотых монет.
 		Kardif_Deal = 10;
 	};
-	Wld_InsertNpc(VLK_494_Attila,"NW_CITY_ENTRANCE_01");
+	Wld_InsertNpc(VLK_494_Attila,"NW_CITY_HABOUR_POOR_AREA_BACK_ALLEY_02");
 	if((NagurHack == TRUE) || (MIS_Nagur_Bote == LOG_FAILED))
 	{
 		MIS_ThiefGuild_sucked = TRUE;
