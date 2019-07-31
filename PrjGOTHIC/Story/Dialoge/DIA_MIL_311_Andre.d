@@ -205,7 +205,7 @@ func void DIA_Andre_PMSchulden_Info()
 	};
 	if(B_GetTotalPetzCounter(self) > Andre_LastPetzCounter)
 	{
-		AI_Output(self,other,"DIA_Andre_PMSchulden_08_01");	//я даже задавалс€ вопросом, осмелишьс€ ли ты по€витьс€ здесь?!
+		AI_Output(self,other,"DIA_Andre_PMSchulden_08_01");	//я даже задавалс€ вопросом: осмелишьс€ ли ты по€витьс€ здесь?!
 		AI_Output(self,other,"DIA_Andre_PMSchulden_08_02");	//ќбвинени€ против теб€ только множатс€!
 		if(Andre_Schulden < 1000)
 		{
@@ -1380,6 +1380,11 @@ func void DIA_Andre_Waffe_Info()
 };
 
 
+func void B_ReportToHagenNow()
+{
+	AI_Output(self,other,"DIA_Andre_PERM_08_03");	//— этого времени ты должен докладывать непосредственно лорду ’агену. »ди, поговори с ним.
+};
+
 instance DIA_Andre_FOUND_PECK(C_Info)
 {
 	npc = MIL_311_Andre;
@@ -1430,8 +1435,16 @@ func void DIA_Andre_FOUND_PECK_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Andre_ReturnedMissingPeople_08_01");	//ј €-то думал, где ты был все это врем€!
-		AI_Output(self,other,"DIA_Andre_PMSchulden_08_04");	//“ы глубоко разочаровал мен€!
+		if(other.guild == GIL_MIL)
+		{
+			AI_Output(self,other,"DIA_Andre_PMSchulden_08_01");	//я даже задавалс€ вопросом: осмелишьс€ ли ты по€витьс€ здесь?!
+			AI_Output(self,other,"DIA_Andre_PMSchulden_08_04");	//“ы глубоко разочаровал мен€!
+		}
+		else if(other.guild == GIL_PAL)
+		{
+			AI_Output(self,other,"DIA_Addon_Andre_ReturnedMissingPeople_08_01");	//ј €-то думал, где ты был все это врем€!
+			B_ReportToHagenNow();
+		};
 		MIS_Andre_Peck = LOG_FAILED;
 		B_CheckLog();
 		AI_StopProcessInfos(self);
@@ -1457,11 +1470,6 @@ func void DIA_Andre_FOUND_PECK_REDLIGHT()
 	Info_ClearChoices(DIA_Andre_FOUND_PECK);
 };
 
-
-func void B_ReportToHagenNow()
-{
-	AI_Output(self,other,"DIA_Andre_PERM_08_03");	//— этого времени ты должен докладывать непосредственно лорду ’агену. »ди, поговори с ним.
-};
 
 instance DIA_Andre_FIRSTMISSION(C_Info)
 {

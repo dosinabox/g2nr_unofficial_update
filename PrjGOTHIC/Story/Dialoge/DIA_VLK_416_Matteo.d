@@ -728,7 +728,7 @@ instance DIA_Matteo_OtherWay(C_Info)
 
 func int DIA_Matteo_OtherWay_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE)) || (MIS_Matteo_Gold == LOG_FAILED))
+	if((Npc_KnowsInfo(other,DIA_Matteo_HowCanYouHelp) || (MIS_Matteo_Gold == LOG_FAILED)) && (Mil_305_schonmalreingelassen == FALSE) && (Player_IsApprentice == APP_NONE))
 	{
 		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{

@@ -412,25 +412,23 @@ func void DIA_Till_PERMKAP1_Info()
 		};
 		AI_Output(other,self,"DIA_Till_PERMKAP1_15_02");	//Ты трус, радуйся, если я оставлю тебя в живых.
 		AI_Output(self,other,"DIA_Till_PERMKAP1_03_03");	//Тогда оставь меня в покое.
-		AI_StopProcessInfos(self);
 	}
 	else if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 	{
 		AI_Output(other,self,"DIA_Till_PERMKAP1_15_04");	//Может, тебе стоит питаться получше, чтобы ты вырос большим и сильным.
 		AI_Output(self,other,"DIA_Till_PERMKAP1_03_05");	//Когда-нибудь я поквитаюсь с тобой.
-		AI_StopProcessInfos(self);
 	}
 	else if(Till_HatSeinGeldBehalten == TRUE)
 	{
 		AI_Output(other,self,"DIA_Till_PERMKAP1_15_06");	//Ах ты, жалкий маленький...
 		AI_Output(self,other,"DIA_Till_PERMKAP1_03_07");	//Уходи.
-		AI_StopProcessInfos(self);
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Till_PERMKAP1_15_08");	//Тебе сегодня никто еще не бил в морду?
 		AI_Output(self,other,"DIA_Till_PERMKAP1_03_09");	//Оставь меня в покое, ты, идиот!
 	};
+	AI_StopProcessInfos(self);
 };
 
 
