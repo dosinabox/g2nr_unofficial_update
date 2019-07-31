@@ -33,7 +33,11 @@ instance Spell_PalHeal(C_Spell_Proto)
 
 func int Spell_Logic_PalLightHeal(var int manaInvested)
 {
-	if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
+	if(self.attribute[ATR_HITPOINTS] == self.attribute[ATR_HITPOINTS_MAX])
+	{
+		return SPL_SENDSTOP;
+	}
+	else if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
 	{
 		return SPL_SENDCAST;
 	}
@@ -49,7 +53,11 @@ func int Spell_Logic_PalLightHeal(var int manaInvested)
 
 func int Spell_Logic_PalMediumHeal(var int manaInvested)
 {
-	if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
+	if(self.attribute[ATR_HITPOINTS] == self.attribute[ATR_HITPOINTS_MAX])
+	{
+		return SPL_SENDSTOP;
+	}
+	else if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
 	{
 		return SPL_SENDCAST;
 	}
@@ -65,7 +73,11 @@ func int Spell_Logic_PalMediumHeal(var int manaInvested)
 
 func int Spell_Logic_PalFullHeal(var int manaInvested)
 {
-	if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
+	if(self.attribute[ATR_HITPOINTS] == self.attribute[ATR_HITPOINTS_MAX])
+	{
+		return SPL_SENDSTOP;
+	}
+	else if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
 	{
 		return SPL_SENDCAST;
 	}
@@ -81,7 +93,11 @@ func int Spell_Logic_PalFullHeal(var int manaInvested)
 
 func int Spell_Logic_LightHeal(var int manaInvested)
 {
-	if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
+	if(self.attribute[ATR_HITPOINTS] == self.attribute[ATR_HITPOINTS_MAX])
+	{
+		return SPL_SENDSTOP;
+	}
+	else if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
 	{
 		return SPL_SENDCAST;
 	}
@@ -97,7 +113,11 @@ func int Spell_Logic_LightHeal(var int manaInvested)
 
 func int Spell_Logic_MediumHeal(var int manaInvested)
 {
-	if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
+	if(self.attribute[ATR_HITPOINTS] == self.attribute[ATR_HITPOINTS_MAX])
+	{
+		return SPL_SENDSTOP;
+	}
+	else if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
 	{
 		return SPL_SENDCAST;
 	}
@@ -113,7 +133,11 @@ func int Spell_Logic_MediumHeal(var int manaInvested)
 
 func int Spell_Logic_FullHeal(var int manaInvested)
 {
-	if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
+	if(self.attribute[ATR_HITPOINTS] == self.attribute[ATR_HITPOINTS_MAX])
+	{
+		return SPL_SENDSTOP;
+	}
+	else if(Npc_GetActiveSpellIsScroll(self) && (self.attribute[ATR_MANA] >= SPL_Cost_Scroll))
 	{
 		return SPL_SENDCAST;
 	}

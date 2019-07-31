@@ -183,7 +183,7 @@ func int DIA_Fenia_Infos_Condition()
 
 func void DIA_Fenia_Infos_Info()
 {
-	AI_Output(other,self,"DIA_Fenia_Infos_15_00");	//Ты сказала, у тебя есть все, что мне нужно. Это включает информацию?
+	AI_Output(other,self,"DIA_Fenia_Infos_15_00");	//Ты сказала, что у тебя есть все, что мне нужно. Это включает информацию?
 	AI_Output(self,other,"DIA_Fenia_Infos_17_01");	//Конечно. Что ты хочешь узнать?
 };
 
@@ -211,7 +211,7 @@ func void DIA_Fenia_MoreTraders_Info()
 {
 	AI_Output(other,self,"DIA_Fenia_Infos_haendler_15_00");	//Есть здесь, в порту, другие торговцы?
 	AI_Output(self,other,"DIA_Fenia_Infos_haendler_17_01");	//Если ты пойдешь налево вдоль причала, то увидишь Халвора, моего мужа. Он торгует рыбой.
-	AI_Output(self,other,"DIA_Fenia_Infos_haendler_17_02");	//А если пойдешь в другую сторону, там живет Ибрагим, картограф.
+	AI_Output(self,other,"DIA_Fenia_Infos_haendler_17_02");	//А если ты пойдешь в другую сторону, там живет Ибрагим, картограф.
 };
 
 

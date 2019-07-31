@@ -254,7 +254,7 @@ instance ItAt_LurkerSkin(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_ReptileSkin;
-	visual = "ItAt_TalbinsLurkerSkin.3DS";
+	visual = "ItAt_LurkerSkin.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
@@ -332,7 +332,7 @@ instance ItAt_AlligatorSkin(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = 200;
-	visual = "ItAt_LurkerSkin.3DS";
+	visual = "ItAt_AlligatorSkin.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[5] = NAME_Value;
@@ -508,7 +508,6 @@ instance ItAt_StoneGolemHeart(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = 190;
 };
 
 instance ItAt_FireGolemHeart(C_Item)
@@ -522,7 +521,6 @@ instance ItAt_FireGolemHeart(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = 190;
 };
 
 instance ItAt_IceGolemHeart(C_Item)
@@ -536,7 +534,6 @@ instance ItAt_IceGolemHeart(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = 190;
 };
 
 instance ItAt_SwampGolemHeart(C_Item)
@@ -550,7 +547,6 @@ instance ItAt_SwampGolemHeart(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = 190;
 };
 
 instance ItAt_GoblinBone(C_Item)
@@ -591,7 +587,6 @@ instance ItAt_DemonHeart(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = 190;
 };
 
 instance ItAt_UndeadDragonSoulStone(C_Item)

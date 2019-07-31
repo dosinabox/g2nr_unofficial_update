@@ -293,8 +293,8 @@ func void Use_Seamap_Irdorath()
 		Log_CreateTopic(Topic_Captain,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Captain,LOG_Running);
 		B_LogEntry(Topic_Captain,"Для управления кораблем мне нужен опытный капитан, готовый отправиться со мной в опасное путешествие.");
-		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 		MIS_SCKnowsWayToIrdorath = TRUE;
+		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 	};
 };
 

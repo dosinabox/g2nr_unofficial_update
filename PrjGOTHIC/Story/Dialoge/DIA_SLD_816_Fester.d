@@ -274,7 +274,14 @@ func void DIA_Fester_InCave_Info()
 	};
 	AI_Output(self,other,"DIA_Fester_InCave_08_02");	//ѕохоже, все эти гр€зные твари уничтожены.
 	AI_Output(self,other,"DIA_Fester_InCave_08_03");	//ѕойдем назад!
-	Npc_ExchangeRoutine(self,"START");
+	if(Kapitel < 3)
+	{
+		Npc_ExchangeRoutine(self,"START");
+	}
+	else
+	{
+		Npc_ExchangeRoutine(self,"CH3");
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -307,8 +314,11 @@ func void DIA_Fester_WasMitAbmachung_Info()
 	}
 	else if(Fester_Choice == FC_Join)
 	{
-		AI_Output(self,other,"DIA_Fester_WasMitAbmachung_08_02");	//я мог бы помочь тебе вступить в наши р€ды, но € не буду делать этого.
-		AI_Output(other,self,"DIA_Fester_WasMitAbmachung_15_03");	//ѕочему?
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Fester_WasMitAbmachung_08_02");	//я мог бы помочь тебе вступить в наши р€ды, но € не буду делать этого.
+			AI_Output(other,self,"DIA_Fester_WasMitAbmachung_15_03");	//ѕочему?
+		};
 		AI_Output(self,other,"DIA_Fester_WasMitAbmachung_08_04");	//≈сли € скажу кому-нибудь, что ты помог мне, они дадут мне новое задание.
 		AI_Output(self,other,"DIA_Fester_WasMitAbmachung_08_05");	//“ы понимаешь, что така€ перспектива мен€ не воодушевл€ет?
 		AI_Output(self,other,"DIA_Fester_WasMitAbmachung_08_06");	//“ебе не повезло, парень. Ќо € уверен, ты найдешь кого-нибудь еще, кто поможет тебе.
@@ -381,7 +391,7 @@ func void DIA_Fester_PERMPruegel_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Fester_PERMPruegel_08_07");	//“ебе что мало, да?
+		AI_Output(self,other,"DIA_Fester_PERMPruegel_08_07");	//“ебе что, мало, да?
 	};
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);

@@ -2044,9 +2044,12 @@ instance DIA_Pyrokar_DTCLEARED(C_Info)
 
 func int DIA_Pyrokar_DTCLEARED_Condition()
 {
-	if(Npc_IsDead(Xardas_DT_Demon1) && Npc_IsDead(Xardas_DT_Demon2) && Npc_IsDead(Xardas_DT_Demon3) && Npc_IsDead(Xardas_DT_Demon4) && Npc_IsDead(Xardas_DT_Demon5) && Npc_IsDead(Xardas_DT_DemonLord) && (MIS_PyrokarClearDemonTower == LOG_Running))
+	if(MIS_PyrokarClearDemonTower == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(Xardas_DT_Demon1) && Npc_IsDead(Xardas_DT_Demon2) && Npc_IsDead(Xardas_DT_Demon3) && Npc_IsDead(Xardas_DT_Demon4) && Npc_IsDead(Xardas_DT_Demon5) && Npc_IsDead(Xardas_DT_DemonLord))
+		{
+			return TRUE;
+		};
 	};
 };
 

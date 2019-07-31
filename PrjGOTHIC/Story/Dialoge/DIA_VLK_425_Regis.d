@@ -227,21 +227,28 @@ func int DIA_Regis_PERM_Condition()
 func void DIA_Regis_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Regis_PERM_15_00");	//Слышал что-нибудь интересное?
-	if((Regis_Bogendieb == FALSE) && (MIS_Bosper_Bogen != LOG_SUCCESS))
+	if((Regis_Bogendieb == 0) && (MIS_Bosper_Bogen != LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Regis_PERM_13_01");	//Можно сказать и так.
 		AI_Output(self,other,"DIA_Regis_PERM_13_02");	//Говорят, Боспер, мастер-лучник, был ограблен. Причем самым наглым образом!
 		AI_Output(self,other,"DIA_Regis_PERM_13_03");	//Вор вломился в его лавку средь бела дня и схватил лук.
 		AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!'. Но вор оказался очень проворным.
 		MIS_Bosper_Bogen = LOG_Running;
-		Regis_Bogendieb = TRUE;
+		Regis_Bogendieb = 1;
 	}
 	else if((MIS_Bosper_Bogen == LOG_SUCCESS) && (Regis_Bogendieb != 2))
 	{
-		AI_Output(self,other,"DIA_Regis_PERM_13_01");	//Можно сказать и так.
-		AI_Output(self,other,"DIA_Regis_PERM_13_02");	//Говорят, Боспер, мастер-лучник, был ограблен. Причем самым наглым образом!
-		AI_Output(self,other,"DIA_Regis_PERM_13_03");	//Вор вломился в его лавку средь бела дня и схватил лук.
-		AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!'. Но вор оказался очень проворным.
+		if(Regis_Bogendieb != 1)
+		{
+			AI_Output(self,other,"DIA_Regis_PERM_13_01");	//Можно сказать и так.
+			AI_Output(self,other,"DIA_Regis_PERM_13_02");	//Говорят, Боспер, мастер-лучник, был ограблен. Причем самым наглым образом!
+			AI_Output(self,other,"DIA_Regis_PERM_13_03");	//Вор вломился в его лавку средь бела дня и схватил лук.
+			AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!'. Но вор оказался очень проворным.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Regis_PERM_13_02");	//Говорят, Боспер, мастер-лучник, был ограблен. Причем самым наглым образом!
+		};
 		AI_Output(self,other,"DIA_Regis_PERM_13_05");	//А потом какой-то честный человек нашел этот лук и вернул Босперу.
 		AI_Output(self,other,"DIA_Regis_PERM_13_06");	//Это странно - в наше время обычно никому нет дела до других, но этот парень сам зашел к нему и вернул лук.
 		Regis_Bogendieb = 2;

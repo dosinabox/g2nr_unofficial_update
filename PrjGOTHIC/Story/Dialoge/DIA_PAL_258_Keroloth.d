@@ -436,6 +436,13 @@ func void DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung()
 		Info_AddChoice(DIA_Keroloth_KAP4_GELDGEFUNDEN,"Я подозреваю одного охотника на драконов.",DIA_Keroloth_KAP4_GELDGEFUNDEN_DJG);
 		Info_AddChoice(DIA_Keroloth_KAP4_GELDGEFUNDEN,"Поцелуй мою задницу.",DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung_kannstmich);
 	}
+	else if(other.guild == GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_CipherDJG_GOTOGETHERAGAIN_07_01");	//Просто дай мне слово!
+		AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_15_02");	//Да, да, просто успокойся.
+		AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_ruhig_07_01");	//Но я не хочу успокаиваться. Это были все мои сбережения, черт!
+		AI_StopProcessInfos(self);
+	}
 	else
 	{
 		AI_Output(self,other,"DIA_Keroloth_KAP4_GELDGEFUNDEN_keineAhnung_07_02");	//Я еще это выясню.

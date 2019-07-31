@@ -363,6 +363,10 @@ func void DIA_Harad_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_20");	//ћаттео говорит, что ты ему что-то должен. я не знаю, что у вас там за дела, но ты должен урегулировать эту проблему.
 			}
+			else if(MIS_Matteo_Gold == LOG_FAILED)
+			{
+				AI_Output(self,other,"DIA_Harad_LEHRLING_12_22");	//ћаттео говорит, что никогда не видел теб€ в своей лавке.
+			}
 			else
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_21");	//ћаттео говорит, что никогда не говорил об этом с тобой.
@@ -597,7 +601,7 @@ func void DIA_Harad_Aufgaben_Info()
 	AI_Output(other,self,"DIA_Harad_Aufgaben_15_00");	//„то должен делать ученик?
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_01");	//“ри вещи. ѕопробуй угадать.
 	AI_Output(other,self,"DIA_Harad_Aufgaben_15_02");	// овать, ковать и ковать?
-	AI_Output(self,other,"DIA_Harad_Aufgaben_12_03");	//“ы не так уж бестолков, как кажешьс€. я плачу за каждый меч. ≈сли ты не работаешь, то и денег не получаешь. Ёто просто.
+	AI_Output(self,other,"DIA_Harad_Aufgaben_12_03");	//“ы не так уж и бестолков, как кажешьс€. я плачу за каждый меч. ≈сли ты не работаешь, то и денег не получаешь. Ёто просто.
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_05");	// роме того, € научу теб€ всему, что нужно знать дл€ изготовлени€ обычных мечей.
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_06");	//»зготовление магических мечей - работа дл€ опытного кузнеца. “ебе до этого еще далеко...
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_07");	//≈сли тебе нужно место дл€ сна, ты можешь прилечь где-нибудь в моем доме. ¬се пон€тно?

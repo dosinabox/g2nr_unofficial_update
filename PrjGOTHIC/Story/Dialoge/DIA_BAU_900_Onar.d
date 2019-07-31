@@ -365,7 +365,7 @@ func void DIA_Onar_HowMuch_Info()
 func void DIA_Onar_HowMuch_PerDay()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_PerDay_15_00");	//В день?
-	AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_01");	//Кем ты себя возомнил? В неделю! Да и это для тебя много.
+	AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_01");	//Кем ты себя возомнил? В неделю! Да и этого для тебя много.
 };
 
 func void DIA_Onar_HowMuch_More()

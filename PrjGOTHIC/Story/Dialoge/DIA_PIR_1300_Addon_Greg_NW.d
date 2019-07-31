@@ -839,7 +839,7 @@ func void DIA_Addon_Greg_NW_DexterFound_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_DexterFound_01_01");	//Черт возьми, откуда мне знать его имя?!
 		Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
-		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я просто предположил.",DIA_Addon_Greg_NW_DexterFound_weg);
+		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Ну, я просто предположил.",DIA_Addon_Greg_NW_DexterFound_weg);
 		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Давай пойдем вместе.",DIA_Addon_Greg_NW_DexterFound_together);
 		Info_AddChoice(DIA_Addon_Greg_NW_DexterFound,"Я могу помочь тебе его найти.",DIA_Addon_Greg_NW_DexterFound_wo);
 	};
@@ -847,7 +847,7 @@ func void DIA_Addon_Greg_NW_DexterFound_Info()
 
 func void DIA_Addon_Greg_NW_DexterFound_weg()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_weg_15_00");	//Я просто предположил.
+	AI_Output(other,self,"DIA_Addon_Greg_NW_DexterFound_weg_15_00");	//Ну, я просто предположил.
 	Greg_Rejected = TRUE;
 	Info_ClearChoices(DIA_Addon_Greg_NW_DexterFound);
 };

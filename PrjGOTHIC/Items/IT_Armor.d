@@ -72,7 +72,7 @@ instance ITAR_Larius(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Governor;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Governor.3ds";
+	visual = "ItAr_Larius.3ds";
 	visual_change = "Armor_Larius.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -101,7 +101,7 @@ instance ITAR_Onar(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = VALUE_ITAR_Vlk_H;
 	wear = WEAR_TORSO;
-	visual = "ItAr_VLK_H.3DS";
+	visual = "ItAr_Onar.3DS";
 	visual_change = "Armor_Onar.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -130,7 +130,7 @@ instance ITAR_Judge(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Governor.3DS";
+	visual = "ItAr_Judge.3DS";
 	visual_change = "Armor_Judge.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -298,7 +298,7 @@ instance ITAR_VlkBabe_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_VLKBabe.3DS";
+	visual = "ItAr_VlkBabe_L.3DS";
 	visual_change = "Armor_VlkBabe_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -325,7 +325,7 @@ instance ITAR_VlkBabe_M(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_VLKBabe.3DS";
+	visual = "ItAr_VlkBabe_M.3DS";
 	visual_change = "Armor_VlkBabe_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -629,7 +629,7 @@ instance ITAR_BauBabe_L(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_VLKBabe.3DS";
+	visual = "ItAr_BauBabe_L.3DS";
 	visual_change = "Armor_BauBabe_L.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -656,7 +656,7 @@ instance ITAR_BauBabe_M(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_VLKBabe.3DS";
+	visual = "ItAr_BauBabe_M.3DS";
 	visual_change = "Armor_BauBabe_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -1559,7 +1559,7 @@ instance ITAR_Dementor(C_Item)
 	protection[PROT_MAGIC] = 65;
 	value = VALUE_ITAR_Dementor;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Xardas.3ds";
+	visual = "ItAr_Dementor.3ds";
 	visual_change = "Armor_Dementor.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -1646,7 +1646,7 @@ instance ITAR_Dementor_Boss(C_Item)
 	protection[PROT_MAGIC] = 65;	//50;
 	value = VALUE_ITAR_Xardas;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Xardas.3ds";
+	visual = "ItAr_Dementor.3ds";
 	visual_change = "Armor_Dementor_Boss.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -1675,7 +1675,7 @@ instance ITAR_Slave(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 5;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Prisoner.3ds";
+	visual = "ItAr_Slave.3ds";
 	visual_change = "Armor_Slave.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -1704,7 +1704,7 @@ instance ITAR_BEGGAR(C_Item)
 	protection[PROT_MAGIC] = 0;
 	value = 0;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Prisoner.3ds";
+	visual = "ItAr_Beggar.3ds";
 	visual_change = "Armor_Beggar.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;

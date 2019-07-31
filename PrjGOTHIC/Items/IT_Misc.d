@@ -297,7 +297,7 @@ func void Use_Joint()
 };
 
 
-instance ItMi_Packet(C_Item)
+/*instance ItMi_Packet(C_Item)
 {
 	name = "Пакет";
 	mainflag = ITEM_KAT_NONE;
@@ -307,7 +307,7 @@ instance ItMi_Packet(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	description = name;
-};
+};*/
 
 instance ItMi_Pocket(C_Item)
 {
@@ -628,7 +628,8 @@ instance ItMi_Quartz(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+	inv_zbias = 300;
+//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 };
 
 instance ItMi_Pitch(C_Item)

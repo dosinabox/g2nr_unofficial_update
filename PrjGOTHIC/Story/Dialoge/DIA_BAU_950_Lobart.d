@@ -548,7 +548,7 @@ func void DIA_Lobart_WorkNOW_Info()
 func void DIA_Lobart_WorkNOW_Ok()
 {
 	AI_Output(other,self,"DIA_Lobart_WorkNOW_Ok_15_00");	//Хорошо...
-	if(hero.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_Ok_05_01");	//Тогда поторопись, пока я не передумал.
 	};
@@ -570,7 +570,7 @@ func void DIA_Lobart_WorkNOW_WannaFoolMe()
 {
 	AI_Output(other,self,"DIA_Lobart_WorkNOW_WannaFoolMe_15_00");	//Я должен дергать репу? Ты, должно быть, шутишь!
 	AI_Output(self,other,"DIA_Lobart_WorkNOW_WannaFoolMe_05_01");	//Настоящая мужская работа не для 'утонченного джентльмена', да?
-	if(hero.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_WannaFoolMe_05_02");	//Топай на поле или убирайся с моей фермы!
 	}
@@ -617,7 +617,7 @@ func void DIA_Lobart_RuebenRunning_Info()
 	AI_Output(other,self,"DIA_Lobart_RuebenRunning_15_00");	//Вот твоя репа!
 	if(Npc_HasItems(other,ItPl_Beet) >= 20)
 	{
-		if(hero.guild == GIL_NONE)
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_01");	//Да, похоже, ты не такой уж бездельник, как кажешься.
 		};
@@ -652,7 +652,7 @@ func void DIA_Lobart_RuebenRunning_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_06");	//Но ты не собрал и двадцати!
-		if(hero.guild == GIL_NONE)
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_07");	//Ты что, съел остальное?! Надеюсь, мой мальчик, что все же нет, иначе тебе придется забыть о своем жаловании!
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_08");	//Возвращайся на поле и принеси больше! Работай или я покажу тебе, где раки зимуют!
@@ -697,7 +697,10 @@ func int DIA_Lobart_MoreWork_Condition()
 {
 	if(((MIS_Lobart_Rueben == LOG_Running) || (MIS_Lobart_Rueben == LOG_SUCCESS)) && (Kapitel < 3))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 

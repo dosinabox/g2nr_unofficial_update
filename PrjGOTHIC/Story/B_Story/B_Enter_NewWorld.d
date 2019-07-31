@@ -173,20 +173,12 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			B_StartOtherRoutine(Hodges,"BENNETWEG");
 		};
-		if(Npc_IsDead(DiegoNW))
-		{
-			Wld_InsertNpc(PC_Thief_NW,"NW_CITY_ENTRANCE_01");
-			B_StartOtherRoutine(DiegoNW,"START");
-		};
-		if(Npc_IsDead(GornNW_vor_DJG))
-		{
-			Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");
-			B_StartOtherRoutine(GornNW_vor_DJG,"START");
-		};
 		if(!Npc_IsDead(Lares))
 		{
 			B_StartOtherRoutine(Lares,"START");
 		};
+		Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");
+		Wld_InsertNpc(PC_Thief_NW,"NW_CITY_ENTRANCE_01");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_PASS_GATE_02");
 		B_KillNpc(PAL_297_Ritter);
 		B_KillNpc(PAL_298_Ritter);
@@ -289,7 +281,8 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_12");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_13");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_14");
-		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_15");
+//		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_15"); точка 15 не существует, замена на неиспользуемую 01
+		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_01");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_16");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_17");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_18");
@@ -302,6 +295,14 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(BDT_1026_Bandit_H,"NW_FOREST_CAVE1_03");
 		Wld_InsertNpc(BDT_1027_Bandit_H,"NW_FOREST_CAVE1_04");
 		Wld_InsertNpc(Follow_Sheep_AKIL,"NW_FOREST_CAVE1_IN_02");
+		if(!Npc_IsDead(Fester))
+		{
+			B_StartOtherRoutine(Fester,"CH3");
+			if(MIS_Fester_KillBugs == LOG_Running)
+			{
+				MIS_Fester_KillBugs = LOG_FAILED;
+			};
+		};
 		if(!Npc_IsDead(Malak))
 		{
 			B_StartOtherRoutine(Malak,"FleeFromPass");
@@ -668,7 +669,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				B_StartOtherRoutine(Randolph,"preStart");
 			};
 		};
-		//возвращение на ферму Онара Альвареса и Энгардо
+//		возвращение на ферму Онара Альвареса и Энгардо
 		if((TOPIC_END_AkilsSLDStillthere == FALSE) && !C_AkilFarmIsFree())
 		{
 			if(!Npc_IsDead(Alvares))

@@ -198,17 +198,21 @@ instance DIA_Addon_Morgan_Job(C_Info)
 
 func int DIA_Addon_Morgan_Job_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Morgan_Meat))
-	{
-		return TRUE;
-	};
+//	if(Npc_KnowsInfo(other,DIA_Addon_Morgan_Meat) || (GregIsBack == TRUE) || Npc_IsDead(AlligatorJack))
+//	{
+//		return TRUE;
+//	};
+	return TRUE;
 };
 
 func void DIA_Addon_Morgan_Job_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_Job_15_01");	//Что ты здесь делаешь?
 	AI_Output(self,other,"DIA_Addon_Morgan_Job_07_01");	//Грег назначил меня командиром одного из боевых отрядов.
-	AI_Output(self,other,"DIA_Addon_Morgan_Job_07_02");	//Я отвечаю за снабжение лагеря. Мясо мне поставляет Аллигатор Джек.
+	if(!Npc_IsDead(AlligatorJack))
+	{
+		AI_Output(self,other,"DIA_Addon_Morgan_Job_07_02");	//Я отвечаю за снабжение лагеря. Мясо мне поставляет Аллигатор Джек.
+	};
 	AI_Output(self,other,"DIA_Addon_Morgan_Job_07_03");	//Еще я слежу за тем, чтобы к лагерю не подходили дикие звери, которых тут полно.
 	AI_Output(self,other,"DIA_Addon_Morgan_Job_07_04");	//За этим следят мои парни.
 	if(GregIsBack == FALSE)

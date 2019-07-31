@@ -238,15 +238,8 @@ func void DIA_MiltenNW_FourFriends_Info()
 	{
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_07");	//Горн не виноват.
 	};
-	if(!Npc_IsDead(DiegoNW))
-	{
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_08");	//Диего бормотал что-то о расплате. Но я понятия не имею, что он хотел сказать этим.
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_09");	//Но я подозреваю, что он сейчас в городе. Ты знаешь его - он всегда там, где можно поживиться.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_10");	//Диего выкупил Горна - похоже, что Барьер изменил и его.
-	};
+	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_08");	//Диего бормотал что-то о расплате. Но я понятия не имею, что он хотел сказать этим.
+	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_09");	//Но я подозреваю, что он сейчас в городе. Ты знаешь его - он всегда там, где можно поживиться.
 	if(!Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_02");	//Лестер исчез, впрочем - и я понятия не имею, где он сейчас ошивается.
@@ -707,26 +700,40 @@ func int DIA_MiltenNW_Teach_Condition()
 func void DIA_MiltenNW_Teach_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_Teach_15_00");	//Я хочу изучить кое-какие заклинания.
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
-		Info_ClearChoices(DIA_MiltenNW_Teach);
-		Info_AddChoice(DIA_MiltenNW_Teach,Dialog_Back,DIA_MiltenNW_Teach_BACK);
-		if(PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE)
-		{
-			Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_MiltenNW_Teach_Windfist);
-		};
-		if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
-		{
-			Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_MiltenNW_Teach_Feuerball);
-		};
-		if(PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE)
-		{
-			Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_MiltenNW_Teach_Eispfeil);
-		};
+		AI_Output(self,other,"DIA_MiltenNW_Teach_03_01");	//Ты все еще не достиг второго Круга магии. Я ничему не могу научить тебя.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_MiltenNW_Teach_03_01");	//Ты все еще не достиг второго Круга магии. Я ничему не могу научить тебя.
+		Info_ClearChoices(DIA_MiltenNW_Teach);
+		Info_AddChoice(DIA_MiltenNW_Teach,Dialog_Back,DIA_MiltenNW_Teach_BACK);
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1)
+		{
+			if(PLAYER_TALENT_RUNES[SPL_Light] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Light,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_MiltenOW_Teach_Light);
+			};
+			if(PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_LightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightHeal)),DIA_MiltenOW_Teach_Heal);
+			};
+		};
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2)
+		{
+			if(PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_MiltenOW_Teach_Windfist);
+			};
+			if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_MiltenOW_Teach_Feuerball);
+			};
+			if(PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_MiltenOW_Teach_Eispfeil);
+			};
+		};
 	};
 };
 
@@ -734,22 +741,6 @@ func void DIA_MiltenNW_Teach_BACK()
 {
 	Info_ClearChoices(DIA_MiltenNW_Teach);
 };
-
-func void DIA_MiltenNW_Teach_Windfist()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_WindFist);
-};
-
-func void DIA_MiltenNW_Teach_Feuerball()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_InstantFireball);
-};
-
-func void DIA_MiltenNW_Teach_Eispfeil()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_Icebolt);
-};
-
 
 instance DIA_MiltenNW_Mana(C_Info)
 {

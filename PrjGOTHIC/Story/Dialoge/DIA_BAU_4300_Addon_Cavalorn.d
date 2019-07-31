@@ -37,7 +37,7 @@ instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Cavalorn_PICKPOCKET_Condition;
 	information = DIA_Addon_Cavalorn_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(украсть его колчан стрел будет довольно просто)";
+	description = "(украсть его колчан будет довольно просто)";
 };
 
 

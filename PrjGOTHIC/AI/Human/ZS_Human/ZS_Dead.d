@@ -42,7 +42,7 @@ func void ZS_Dead()
 	B_CheckDeadMissionNPCs(self);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
 	{
-		if((MayaScrollGiven == FALSE) && (Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) == 0))
+		if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT))
 		{
 			CreateInvItems(self,ItSc_Teleport_Maya,1);
 			MayaScrollGiven = TRUE;
@@ -124,27 +124,30 @@ func void ZS_Dead()
 	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 	AI_UnequipWeapons(self);
 	self.aivar[AIV_TAPOSITION] = ISINPOS;
-	if(readyweap.munition == ItRw_Addon_FireArrow)
+	if(Npc_HasReadiedRangedWeapon(other))
 	{
-		Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
-		Wld_PlayEffect("spellFX_Firestorm_SPREAD",self,self,0,0,0,FALSE);
-		if(Npc_GetDistToNpc(self,other) <= 600)
+		if(readyweap.munition == ItRw_Addon_FireArrow)
 		{
-			Wld_PlayEffect("VOB_MAGICBURN",other,other,0,0,0,FALSE);
-			if(other.protection[PROT_FIRE] < 40)
+			Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
+			Wld_PlayEffect("spellFX_Firestorm_SPREAD",self,self,0,0,0,FALSE);
+			if(Npc_GetDistToNpc(self,other) <= 600)
 			{
-				if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - 40) >= 0)
+				Wld_PlayEffect("VOB_MAGICBURN",other,other,0,0,0,FALSE);
+				if(other.protection[PROT_FIRE] < 40)
 				{
-					other.attribute[ATR_HITPOINTS] -= (40 - other.protection[PROT_FIRE]);
-				}
-				else
-				{
-					other.attribute[ATR_HITPOINTS] = 0;
+					if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - 40) >= 0)
+					{
+						other.attribute[ATR_HITPOINTS] -= (40 - other.protection[PROT_FIRE]);
+					}
+					else
+					{
+						other.attribute[ATR_HITPOINTS] = 0;
+					};
 				};
-			};
-			if(other.attribute[ATR_HITPOINTS] <= 0)
-			{
-				AI_PlayAni(other,"T_DEAD");
+				if(other.attribute[ATR_HITPOINTS] <= 0)
+				{
+					AI_PlayAni(other,"T_DEAD");
+				};
 			};
 		};
 	};

@@ -12,7 +12,7 @@ instance VLK_430_Buergerin(Npc_Default)
 	fight_tactic = FAI_HUMAN_COWARD;
 	B_CreateAmbientInv(self);
 	EquipItem(self,ItMw_1h_Vlk_Dagger);
-	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_Lilo,BodyTex_N,ITAR_VlkBabe_L);
+	B_SetNpcVisual(self,FEMALE,"Hum_Head_Babe1",FaceBabe_N_Lilo,BodyTex_N,ITAR_BauBabe_L);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Babe.mds");
 	B_GiveNpcTalents(self);
@@ -24,10 +24,10 @@ instance VLK_430_Buergerin(Npc_Default)
 func void Rtn_Start_430()
 {
 	TA_Smalltalk(5,7,12,7,"NW_CITY_HABOUR_POOR_AREA_PATH_07");
-	TA_Cook_Stove(12,7,16,0,"NW_CITY_HABOUR_POOR_AREA_HUT_04_BED_01");
-	TA_Smalltalk(16,7,19,7,"NW_CITY_HABOUR_POOR_AREA_PATH_07");
-	TA_Sweep_FP(19,7,22,7,"NW_CITY_HABOUR_POOR_AREA_HUT_04_IN_B");
-	TA_Smalltalk(22,7,0,7,"NW_CITY_HABOUR_POOR_AREA_PATH_07");
-	TA_Sleep(0,7,5,7,"NW_CITY_HABOUR_POOR_AREA_HUT_04_BED_01");
+	TA_Cook_Stove(12,7,16,5,"NW_CITY_HABOUR_POOR_AREA_HUT_04_BED_01");
+	TA_Smalltalk(16,5,19,5,"NW_CITY_HABOUR_POOR_AREA_PATH_07");
+	TA_Sweep_FP(19,5,22,5,"NW_CITY_HABOUR_POOR_AREA_HUT_04_IN_B");
+	TA_Smalltalk(22,5,0,5,"NW_CITY_HABOUR_POOR_AREA_PATH_07");
+	TA_Sleep(0,5,5,7,"NW_CITY_HABOUR_POOR_AREA_HUT_04_BED_01");
 };
 

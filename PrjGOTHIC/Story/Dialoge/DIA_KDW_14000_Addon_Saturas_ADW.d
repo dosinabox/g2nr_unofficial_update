@@ -409,7 +409,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_20");	//Предположительно, это табличка ученых.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_80");	//Многие найденные нами письмена ведут к главе касты ученых.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_81");	//Довольно любопытно, что он нигде не оставил своего имени...
-			Log_AddEntry(TOPIC_Addon_Relicts,"Желтая каменная табличка из Библиотеки ученых на севере.");
+			Log_AddEntry(TOPIC_Addon_Relicts,"Желтая каменная табличка из библиотеки ученых на севере.");
 		};
 		XP_BroughtTokens = XP_Addon_ForOneToken * BroughtToken;
 		B_GivePlayerXP(XP_BroughtTokens);

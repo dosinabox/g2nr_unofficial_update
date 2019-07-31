@@ -58,6 +58,10 @@ func void DIA_Landstreicher_HALLO_wer()
 	AI_Output(other,self,"DIA_Landstreicher_HALLO_wer_15_00");	//А кто это был?
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_01");	//Он был похож на одного из этих головастых послушников из монастыря.
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_02");	//Можешь говорить что угодно, но, по-моему, у этих парней не все в порядке с головой.
+	if(hero.guild == GIL_NOV)
+	{
+		Info_AddChoice(DIA_Landstreicher_HALLO,"Придержи язык.",DIA_Landstreicher_HALLO_wer_vorsicht);
+	};
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_09_03");	//Только посмотри на их дурацкое одеяние. Я бы не хотел быть пойманным на улице ночью в такой одежке. (смеется)
@@ -67,7 +71,14 @@ func void DIA_Landstreicher_HALLO_wer()
 
 func void DIA_Landstreicher_HALLO_wer_vorsicht()
 {
-	AI_Output(other,self,"DIA_Landstreicher_HALLO_wer_vorsicht_15_00");	//Попридержи язык. Я сам был послушником в монастыре.
+	if(hero.guild == GIL_NOV)
+	{
+		AI_Output(other,self,"DIA_Babo_Kap3_HaveYourDocs_KeepThem_Partner_KeepCalm_15_00");	//Придержи язык.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Landstreicher_HALLO_wer_vorsicht_15_00");	//Попридержи язык. Я сам был послушником в монастыре.
+	};
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_vorsicht_09_01");	//(смеется) Ах ты, бедняга. Это объясняет кое-что.
 	AI_Output(self,other,"DIA_Landstreicher_HALLO_wer_vorsicht_09_02");	//Ничего личного. Ступай с богом. Ты занятой человек, не буду задерживать тебя.
 	Info_AddChoice(DIA_Landstreicher_HALLO,"Кто-нибудь должен поучить тебя хорошим манерам.",DIA_Landstreicher_HALLO_wer_vorsicht_Manieren);

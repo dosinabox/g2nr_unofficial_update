@@ -545,7 +545,6 @@ func void DIA_MiltenOW_Teach_Light()
 	B_TeachPlayerTalentRunes(self,other,SPL_Light);
 };
 
-
 instance DIA_MiltenOW_Mana(C_Info)
 {
 	npc = PC_Mage_OW;

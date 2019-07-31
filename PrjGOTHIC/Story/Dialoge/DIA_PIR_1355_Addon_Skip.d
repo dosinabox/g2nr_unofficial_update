@@ -378,7 +378,7 @@ func void DIA_Addon_Skip_Raven_Info()
 	AI_Output(other,self,"DIA_Addon_Skip_Raven_15_00");	//Ты когда-нибудь видел Ворона?
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_01");	//Да, бывало. Когда мы с Генри дежурили у ворот, мы наблюдали, как Ворон размещает своих людей в башне на юге.
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_02");	//От нее до нашего лагеря камень добросить можно. (смеется) Понятно, что они будут за нами шпионить.
-	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_03");	//А еще я видел, как он расправляется с людьми, которые ему не подчиняются.
+	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_03");	//А еще я видел, как они расправляются с людьми, которые ему не подчиняются.
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_04");	//С теми, кто не выполняет его приказ до последнего слова, у него разговор короткий.
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_05");	//Запомни мои слова: не связывайся с Вороном.
 };

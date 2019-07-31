@@ -313,7 +313,7 @@ func void DIA_Cipher_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Cipher_TRADE_07_01");	//Конечно. Выбирай.
 	}
-	else
+	else if(!Npc_HasItems(self,ItPl_SwampHerb))
 	{
 		AI_Output(self,other,"DIA_Cipher_TRADE_07_02");	//У меня сейчас нет болотной травы. Ты хочешь что-нибудь еще?
 	};
@@ -380,11 +380,20 @@ func void DIA_Cipher_DarDieb_Info()
 		AI_Output(other,self,"DIA_Cipher_DarDieb_15_04");	//Даже если ты найдешь его, это тебе не поможет, у него больше нет этого тюка. Он продал его в Хоринисе.
 		AI_Output(self,other,"DIA_Cipher_DarDieb_07_05");	//ГДЕ ОН?!
 	};
-	AI_Output(other,self,"DIA_Cipher_DarDieb_15_06");	//За кухней, на углу...
-	AI_Output(self,other,"DIA_Cipher_DarDieb_07_07");	//Я ПРИКОНЧУ ЕГО!
-	AI_StopProcessInfos(self);
-	other.aivar[AIV_INVINCIBLE] = FALSE;
-	B_Attack(self,Dar,AR_NONE,0);
+	if(!Npc_IsDead(Dar))
+	{
+		AI_Output(other,self,"DIA_Cipher_DarDieb_15_06");	//За кухней, на углу...
+		AI_Output(self,other,"DIA_Cipher_DarDieb_07_07");	//Я ПРИКОНЧУ ЕГО!
+		AI_StopProcessInfos(self);
+		other.aivar[AIV_INVINCIBLE] = FALSE;
+		B_Attack(self,Dar,AR_NONE,0);
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+		AI_Output(self,other,"DIA_Cipher_DarLOST_07_03");	//Этот мерзкий воришка не должен был лазить в мой сундук!
+		AI_StopProcessInfos(self);
+	};
 };
 
 

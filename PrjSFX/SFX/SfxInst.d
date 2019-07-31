@@ -963,19 +963,19 @@ instance INST_LUTE_A6(C_SFX_DEF)
 	vol = 70;
 };
 
-instance INST_LUTE_A7(C_SFX_DEF)
+instance INST_IELUTE(C_SFX_DEF)
 {
 	file = "lute_1.wav";
 	vol = 70;
 };
 
-instance INST_LUTE_A8(C_SFX_DEF)
+instance INST_IELUTE_A1(C_SFX_DEF)
 {
 	file = "lute_2.wav";
 	vol = 70;
 };
 
-instance INST_LUTE_A9(C_SFX_DEF)
+instance INST_IELUTE_A2(C_SFX_DEF)
 {
 	file = "lute_3.wav";
 	vol = 70;
@@ -10221,5 +10221,29 @@ instance MFX_PALHOLYBOLT_CAST(C_SFX_DEF)
 {
 	file = "MFX_BeliarWeap_02.wav";
 	vol = 80;
+};
+
+instance LOADING_SFX_NEWWORLD(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance LOADING_SFX_OLDWORLD(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance LOADING_SFX_ADDONWORLD(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance LOADING_SFX_DRAGONISLAND(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
 };
 

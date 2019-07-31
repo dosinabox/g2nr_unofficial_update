@@ -303,7 +303,7 @@ instance DIA_Jesper_Bogen(C_Info)
 
 func int DIA_Jesper_Bogen_Condition()
 {
-	if(!Npc_HasItems(other,ItRw_Bow_L_03_MIS) && (MIS_Bosper_Bogen == LOG_Running) && (Join_Thiefs == TRUE))
+	if(Mob_HasItems("BOW_CHEST",ItRw_Bow_L_03_MIS) && (MIS_Bosper_Bogen == LOG_Running) && (Join_Thiefs == TRUE))
 	{
 		return TRUE;
 	};

@@ -8,33 +8,36 @@ func void B_AssessMurder()
 		return;
 	};
 	//********** огненная стрела
-	if(readyweap.munition == ItRw_Addon_FireArrow)
+	if(Npc_HasReadiedRangedWeapon(other))
 	{
-		if(Npc_GetDistToNpc(self,victim) <= 600)
+		if(readyweap.munition == ItRw_Addon_FireArrow)
 		{
-			Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
-			if(self.flags == 0)
+			if(Npc_GetDistToNpc(self,victim) <= 600)
 			{
-				if(self.protection[PROT_FIRE] < 40)
+				Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
+				if(self.flags == 0)
 				{
-					if((self.attribute[ATR_HITPOINTS] + self.protection[PROT_FIRE] - 40) >= 0)
+					if(self.protection[PROT_FIRE] < 40)
 					{
-						self.attribute[ATR_HITPOINTS] -= (40 - self.protection[PROT_FIRE]);
-					}
-					else
-					{
-						self.attribute[ATR_HITPOINTS] = 0;
+						if((self.attribute[ATR_HITPOINTS] + self.protection[PROT_FIRE] - 40) >= 0)
+						{
+							self.attribute[ATR_HITPOINTS] -= (40 - self.protection[PROT_FIRE]);
+						}
+						else
+						{
+							self.attribute[ATR_HITPOINTS] = 0;
+						};
 					};
 				};
+				if(self.attribute[ATR_HITPOINTS] <= 0)
+				{
+					AI_PlayAni(self,"T_DEAD");
+				};
 			};
-			if(self.attribute[ATR_HITPOINTS] <= 0)
+			if(Npc_IsDead(self))
 			{
-				AI_PlayAni(self,"T_DEAD");
+				B_GiveDeathXP(other,self);
 			};
-		};
-		if(Npc_IsDead(self))
-		{
-			B_GiveDeathXP(other,self);
 		};
 	};
 	//**********

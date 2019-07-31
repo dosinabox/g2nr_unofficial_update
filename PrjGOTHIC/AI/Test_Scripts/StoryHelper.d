@@ -236,7 +236,7 @@ func void StoryHelper_Unlimfix()
 	if(Dont_Fix_Unlim == TRUE)
 	{
 		Dont_Fix_Unlim = FALSE;
-		PrintScreen("Баг исправлен",-1,-1,FONT_Screen,2);
+		PrintScreen("Сталь и мензурки ограничены",-1,-1,FONT_Screen,2);
 	}
 	else
 	{

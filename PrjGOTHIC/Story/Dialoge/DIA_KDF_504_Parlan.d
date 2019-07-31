@@ -1,4 +1,14 @@
 
+var int Parlan_Hammer;
+
+func void B_Parlan_HAMMER()
+{
+	AI_Output(self,other,"DIA_Parlan_HAMMER_05_00");	//(строго) ѕодожди минутку, сын мой.
+	AI_Output(self,other,"DIA_Parlan_HAMMER_05_01");	//’од€т слухи, что ценный артефакт 'исчез' из нашего св€тилища.
+	AI_Output(self,other,"DIA_Parlan_HAMMER_05_02");	//я не хочу ничего даже слышать об этом - € жду, что он вернетс€ на свое законное место.
+	Parlan_Hammer = TRUE;
+};
+
 instance DIA_Parlan_Kap1_EXIT(C_Info)
 {
 	npc = KDF_504_Parlan;
@@ -17,7 +27,11 @@ func int DIA_Parlan_Kap1_EXIT_Condition()
 
 func void DIA_Parlan_Kap1_EXIT_Info()
 {
-	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
+	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && !Npc_IsDead(Garwig))
+	{
+		B_Parlan_HAMMER();
+	}
+	else if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 	{
 		if(Kapitel >= 3)
 		{
@@ -25,17 +39,6 @@ func void DIA_Parlan_Kap1_EXIT_Info()
 		};
 	};
 	AI_StopProcessInfos(self);
-};
-
-
-var int Parlan_Hammer;
-
-func void B_Parlan_HAMMER()
-{
-	AI_Output(self,other,"DIA_Parlan_HAMMER_05_00");	//(строго) ѕодожди минутку, сын мой.
-	AI_Output(self,other,"DIA_Parlan_HAMMER_05_01");	//’од€т слухи, что ценный артефакт 'исчез' из нашего св€тилища.
-	AI_Output(self,other,"DIA_Parlan_HAMMER_05_02");	//я не хочу ничего даже слышать об этом - € жду, что он вернетс€ на свое законное место.
-	Parlan_Hammer = TRUE;
 };
 
 
@@ -57,6 +60,13 @@ func int DIA_Parlan_PMSchulden_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (Parlan_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Parlan_LastPetzCrime))
 	{
+		if(other.guild == GIL_NOV)
+		{
+			if(!Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
+			{
+				return FALSE;
+			};
+		};
 		return TRUE;
 	};
 };
@@ -64,7 +74,7 @@ func int DIA_Parlan_PMSchulden_Condition()
 func void DIA_Parlan_PMSchulden_Info()
 {
 	var int diff;
-	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && (other.guild == GIL_NOV) && !Npc_IsDead(Garwig))
+	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && !Npc_IsDead(Garwig))
 	{
 		B_Parlan_HAMMER();
 	};
@@ -170,13 +180,20 @@ func int DIA_Parlan_PETZMASTER_Condition()
 {
 	if(B_GetGreatestPetzCrime(self) > Parlan_LastPetzCrime)
 	{
+		if(other.guild == GIL_NOV)
+		{
+			if(!Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
+			{
+				return FALSE;
+			};
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Parlan_PETZMASTER_Info()
 {
-	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && (other.guild == GIL_NOV) && !Npc_IsDead(Garwig))
+	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && !Npc_IsDead(Garwig))
 	{
 		B_Parlan_HAMMER();
 	};
@@ -264,6 +281,16 @@ func void DIA_Parlan_PETZMASTER_PayLater()
 };
 
 
+func void B_DIA_Parlan_WELCOME_GoForTribute()
+{
+	AI_Output(self,other,"DIA_Parlan_WELCOME_05_09");	// огда с этим будет покончено, мы поговорим о твоей работе здесь, в монастыре.
+};
+
+func void B_DIA_Parlan_WELCOME_BringTribute2Gorax()
+{
+	AI_Output(self,other,"DIA_Addon_Parlan_WELCOME_05_00");	//ќтнеси свое пожертвование √ораксу. ќн им распор€дитс€.
+};
+
 instance DIA_Parlan_WELCOME(C_Info)
 {
 	npc = KDF_504_Parlan;
@@ -281,16 +308,6 @@ func int DIA_Parlan_WELCOME_Condition()
 	{
 		return TRUE;
 	};
-};
-
-func void B_DIA_Parlan_WELCOME_GoForTribute()
-{
-	AI_Output(self,other,"DIA_Parlan_WELCOME_05_09");	// огда с этим будет покончено, мы поговорим о твоей работе здесь, в монастыре.
-};
-
-func void B_DIA_Parlan_WELCOME_BringTribute2Gorax()
-{
-	AI_Output(self,other,"DIA_Addon_Parlan_WELCOME_05_00");	//ќтнеси свое пожертвование √ораксу. ќн им распор€дитс€.
 };
 
 func void DIA_Parlan_WELCOME_Info()
@@ -800,7 +817,7 @@ instance DIA_Parlan_MAGE(C_Info)
 func int DIA_Parlan_MAGE_Condition()
 {
 //	if((other.guild == GIL_KDF) && Npc_IsInState(self,ZS_Talk))
-	if(other.guild == GIL_KDF)
+	if((other.guild == GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
 	{
 		return TRUE;
 	};
@@ -1085,7 +1102,7 @@ instance DIA_Parlan_IAmParlan(C_Info)
 func int DIA_Parlan_IAmParlan_Condition()
 {
 //	if((Kapitel >= 3) && Npc_IsInState(self,ZS_Talk) && ((other.guild != GIL_NOV) && (other.guild != GIL_KDF)))
-	if((Kapitel >= 3) && ((other.guild != GIL_NOV) && (other.guild != GIL_KDF)))
+	if((Kapitel >= 3) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
 	{
 		return TRUE;
 	};

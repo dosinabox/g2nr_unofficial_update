@@ -72,7 +72,7 @@ func void DIA_None_101_Mario_YouNeedMe_Info()
 	AI_Output(self,other,"DIA_None_101_Mario_YouNeedMe_07_00");	//Я слышал, что ты набираешь команду на свой корабль?
 	AI_Output(other,self,"DIA_None_101_Mario_YouNeedMe_15_01");	//И?
 	AI_Output(self,other,"DIA_None_101_Mario_YouNeedMe_07_02");	//Я готов!
-	B_LogEntry(Topic_Crew,"Бывший моряк Марио заговорил со мной в портовой таверне. Он хочет плыть на корабле.");
+	B_LogEntry(Topic_Crew,"Некто Марио заговорил со мной в портовой таверне. Он вызвался плыть на корабле.");
 };
 
 
@@ -103,6 +103,7 @@ func void DIA_None_101_Mario_WhyNeedYou_Info()
 	AI_Output(self,other,"DIA_None_101_Mario_WhyNeedYou_07_03");	//Я служил моряком на 'Короле Робаре' и 'Гордости Миртаны'.
 	AI_Output(self,other,"DIA_None_101_Mario_WhyNeedYou_07_04");	//В битве у восточного архипелага я собственноручно отправил пару десятков орков назад в царство Белиара.
 	AI_Output(self,other,"DIA_None_101_Mario_WhyNeedYou_07_05");	//К сожалению, нас осталось слишком мало, когда наш флагман затонул и нам пришлось отступить.
+	B_LogEntry(Topic_Crew,"Марио - бывший моряк королевского флота.");
 };
 
 
@@ -257,7 +258,7 @@ instance DIA_None_101_Mario_NeedGoodMen(C_Info)
 
 func int DIA_None_101_Mario_NeedGoodMen_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_None_101_Mario_YouNeedMe) && (Mario_IsOnBoard == FALSE))
+	if(Npc_KnowsInfo(other,DIA_None_101_Mario_YouNeedMe) && (Mario_IsOnBoard == FALSE) && (Crewmember_Count < Max_Crew))
 	{
 		return TRUE;
 	};

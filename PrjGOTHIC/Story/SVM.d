@@ -1808,7 +1808,7 @@ instance SVM_10(C_SVM)
 	OhMyHead = "SVM_10_OhMyHead";	//(себе под нос) Ох, моя голова...
 	TheresAFight = "SVM_10_TheresAFight";	//(страстно) А-ах, драка!
 	OhMyGodItsAFight = "SVM_10_OhMyGodItsAFight";	//(потрясенно) Ох, бог мой, драка!
-	GoodVictory = "SVM_10_GoodVictory";	//(с дьявольским смехом) Ты показал ему!
+	GoodVictory = "SVM_10_GoodVictory";	//(дьявольский смех) Ты показал ему!
 	NotBad = "SVM_10_NotBad";	//Неплохо...
 	OhMyGodHesDown = "SVM_10_OhMyGodHesDown";	//(себе под нос) Бог мой! Какая жестокость...
 	CheerFriend01 = "SVM_10_CheerFriend01";	//Да, задай ему!
@@ -3101,6 +3101,7 @@ instance SVM_19(C_SVM)
 	Aargh_1 = "SVM_19_Aargh_1";	//Аааааа!
 	Aargh_2 = "SVM_19_Aargh_2";	//Аааааа!
 	Aargh_3 = "SVM_19_Aargh_3";	//Аааааа!
+	EnemyKilled = "SVM_19_EnemyKilled";	//(демонический смех)
 };
 
 

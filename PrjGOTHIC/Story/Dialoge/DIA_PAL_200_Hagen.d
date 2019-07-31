@@ -330,7 +330,7 @@ instance DIA_Lord_Hagen_Armee(C_Info)
 
 func int DIA_Lord_Hagen_Armee_Condition()
 {
-	if((!MIS_Lee_Friedensangebot == LOG_Running) || (Hagen_FriedenAbgelehnt == TRUE))
+	if((MIS_Lee_Friedensangebot == FALSE) || (Hagen_FriedenAbgelehnt == TRUE))
 	{
 		return TRUE;
 	};
@@ -554,19 +554,22 @@ func int DIA_Lord_Hagen_Minental_Condition()
 func void DIA_Lord_Hagen_Minental_Info()
 {
 	AI_Output(other,self,"DIA_Lord_Hagen_Minental_15_00");	//А что ваши люди делают в Долине Рудников?
-	if(Hagen_BringProof == FALSE)
+	if((Hagen_BringProof == FALSE) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_01");	//Я не вижу причин рассказывать тебе об этом!
 	}
 	else
 	{
-		if(Npc_KnowsInfo(other,DIA_Garond_NeedProof))
+		if(other.guild != GIL_KDF)
 		{
-			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_02");	//Ты был там. Ты должен знать.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_03");	//Хорошо, так как ты все равно идешь туда, я все же расскажу тебе.
+			if(Npc_KnowsInfo(other,DIA_Garond_NeedProof))
+			{
+				AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_02");	//Ты был там. Ты должен знать.
+			}
+			else if(Hagen_BringProof == TRUE)
+			{
+				AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_03");	//Хорошо, так как ты все равно идешь туда, я все же расскажу тебе.
+			};
 		};
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_04");	//Причиной всему - магическая руда. Она может решить исход этой войны.
 		AI_Output(self,other,"DIA_Lord_Hagen_Minental_04_05");	//Без достаточного количества оружия из магической руды у королевской армии нет ни единого шанса против элитных воинов орков.
@@ -863,13 +866,28 @@ func int DIA_Lord_Hagen_EyeBroken_Condition()
 {
 	if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS))
 	{
+		if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+		{
+			DIA_Lord_Hagen_EyeBroken.description = "Глаз у меня, но он поврежден.";
+		}
+		else
+		{
+			DIA_Lord_Hagen_EyeBroken.description = "Глаз Инноса поврежден.";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Lord_Hagen_EyeBroken_Info()
 {
-	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_07");	//Глаз у меня, но он поврежден.
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+	{
+		AI_Output(other,self,"DIA_Lord_Hagen_Add_15_07");	//Глаз у меня, но он поврежден.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_08");	//ЧТО? О, Иннос! Что ты наделал? Нам нужен этот Глаз!
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_09");	//Поговори с Пирокаром! Должен быть способ восстановить его.
 	Hagen_KnowsEyeKaputt = TRUE;

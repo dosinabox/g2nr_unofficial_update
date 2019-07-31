@@ -233,7 +233,7 @@ func void DIA_Ignaz_Danach_Info()
 	AI_Output(other,self,"DIA_Ignaz_Danach_15_00");	//я использовал свиток.
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_01");	//ќтлично, отлично. ” теб€ все получилось?
 	AI_Output(other,self,"DIA_Ignaz_Danach_15_02");	//ƒа, заклинание сработало.
-	AI_Output(self,other,"DIA_Ignaz_Danach_14_03");	//ѕревосходно. ћожет, с точки зрени€ науки это и не очень большое достижение, но дл€ мен€ оно очень много значит!
+	AI_Output(self,other,"DIA_Ignaz_Danach_14_03");	//ѕревосходно. ћожет, с точки зрени€ науки это не очень большое достижение, но дл€ мен€ оно очень много значит!
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_04");	//“еперь € могу уделить тебе врем€ и обучить теб€ искусству алхимии.
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_05");	//я также могу продать тебе что-нибудь полезное, если ты, конечно, хочешь этого.
 	Ignaz_TeachAlchemy = TRUE;

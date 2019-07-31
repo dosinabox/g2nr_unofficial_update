@@ -127,7 +127,7 @@ func int DIA_Pepe_KillWolves_Condition()
 func void DIA_Pepe_KillWolves_Info()
 {
 	AI_Output(other,self,"DIA_Pepe_KillWolves_15_00");	//Что, если я убью этих волков?
-	AI_Output(self,other,"DIA_Pepe_KillWolves_03_01");	//(насмешливо) Ты, сам? Ха ха. Я не верю в это. Я скорее поверю, что мой баран-вожак расправится с ними.
+	AI_Output(self,other,"DIA_Pepe_KillWolves_03_01");	//Кхм... (насмешливо) Ты, сам? Ха ха. Я не верю в это. Я скорее поверю, что мой баран-вожак расправится с ними.
 	AI_Output(other,self,"DIA_Pepe_KillWolves_15_02");	//Забудь об этом. Это было всего лишь предположение. Я пойду к парням, и посмотрим, что ОНИ скажут насчет этого...
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_03");	//(испуганно) Подожди минутку. Хорошо, хорошо! Эээ... ты величайший воин, и можешь уложить сотню волков одной левой. Нет проблем!
 	AI_Output(self,other,"DIA_Pepe_KillWolves_03_04");	//Обычно они шныряют в лесу около пастбища. (как бы между прочим) Я думаю, их всего четверо...

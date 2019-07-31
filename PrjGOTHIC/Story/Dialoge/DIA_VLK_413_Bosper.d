@@ -215,6 +215,10 @@ func void DIA_Bosper_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_13");	//Маттео упомянул о каких-то долгах - я не знаю, что он имеет в виду, но тебе лучше поговорить с ним.
 			}
+			else if(MIS_Matteo_Gold == LOG_FAILED)
+			{
+				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_15");	//Маттео говорит, что никогда не видел тебя.
+			}
 			else
 			{
 				AI_Output(self,other,"DIA_Bosper_LEHRLING_11_14");	//Маттео говорит, что еще не говорил с тобой об этом.
@@ -811,7 +815,6 @@ func void DIA_Bosper_SellFur_Info()
 		if(Npc_HasItems(other,ItAt_Addon_KeilerFur))
 		{
 			B_Say(self,other,"$ABS_GOOD");
-//			AI_Output(self,other,"DIA_Bosper_SellFur_11_15B");	//Шкура кабана? Неплохо для начала...
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_Addon_KeilerFur) * Value_Keilerfur);
 			B_GiveInvItems(other,self,ItAt_Addon_KeilerFur,Npc_HasItems(other,ItAt_Addon_KeilerFur));
 		};
@@ -822,20 +825,17 @@ func void DIA_Bosper_SellFur_Info()
 			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_SheepFur) * Value_SheepFur);
 			B_GiveInvItems(other,self,ItAt_SheepFur,Npc_HasItems(other,ItAt_SheepFur));
 		};
-		if(Npc_HasItems(other,ItAt_WolfFur) || Npc_HasItems(other,ItAt_IceWolfFur))
+		if(Npc_HasItems(other,ItAt_WolfFur))
 		{
-			if(Npc_HasItems(other,ItAt_WolfFur))
-			{
-				AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры - это хорошо...
-				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur);
-				B_GiveInvItems(other,self,ItAt_WolfFur,Npc_HasItems(other,ItAt_WolfFur));
-			};
-			if(Npc_HasItems(other,ItAt_IceWolfFur))
-			{
-				B_Say(self,other,"$NOTBAD");
-				B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_IceWolfFur) * Value_IceWolfFur);
-				B_GiveInvItems(other,self,ItAt_IceWolfFur,Npc_HasItems(other,ItAt_IceWolfFur));
-			};
+			AI_Output(self,other,"DIA_Bosper_SellFur_11_03");	//Волчьи шкуры - это хорошо...
+			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur);
+			B_GiveInvItems(other,self,ItAt_WolfFur,Npc_HasItems(other,ItAt_WolfFur));
+		};
+		if(Npc_HasItems(other,ItAt_IceWolfFur))
+		{
+			B_Say(self,other,"$NOTBAD");
+			B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItAt_IceWolfFur) * Value_IceWolfFur);
+			B_GiveInvItems(other,self,ItAt_IceWolfFur,Npc_HasItems(other,ItAt_IceWolfFur));
 		};
 		if(Npc_HasItems(other,ItAt_WargFur))
 		{

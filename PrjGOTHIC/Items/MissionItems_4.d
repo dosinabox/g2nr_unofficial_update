@@ -142,8 +142,7 @@ instance ItAt_TalbinsLurkerSkin(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_ReptileSkin;
-//	visual = "ItAt_LurkerSkin.3DS";
-	visual = "ItAt_TalbinsLurkerSkin.3DS";
+	visual = "ItAt_LurkerSkin.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "На внутренней стороне клеймо - 'Талбин'.";

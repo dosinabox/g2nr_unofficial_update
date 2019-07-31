@@ -69,6 +69,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			Npc_RemoveInvItems(slf,ItFo_Wine,Npc_HasItems(slf,ItFo_Wine));
 		};
+		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Canthar)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Matteo)))
+		{
+			Npc_RemoveInvItems(slf,ItMi_Pan,Npc_HasItems(slf,ItMi_Pan));
+		};
 		Npc_RemoveInvItems(slf,ItFo_DarkWine,Npc_HasItems(slf,ItFo_DarkWine));
 		Npc_RemoveInvItems(slf,ItFo_Milk,Npc_HasItems(slf,ItFo_Milk));
 		Npc_RemoveInvItems(slf,ItFo_Addon_Shellflesh,Npc_HasItems(slf,ItFo_Addon_Shellflesh));

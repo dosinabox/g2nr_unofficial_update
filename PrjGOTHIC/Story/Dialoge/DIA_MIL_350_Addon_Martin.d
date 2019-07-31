@@ -408,7 +408,7 @@ func void DIA_Addon_Martin_AboutBandits_Info()
 	AI_Output(other,self,"DIA_Addon_Martin_AboutBandits_15_00");	// акова ситуаци€ с бандитами?
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_01");	//ћы знаем, что они устраивают засады на дорогах, соедин€ющих город с фермами.
 	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_02");	//≈ще нам известно, что несколько дней назад они получили крупную партию оружи€.
-	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_03");	//ƒумаю, сейчас самое врем€ дл€ поиска улик, указывающих на личность сотрудничающего с ними торговца.
+	AI_Output(self,other,"DIA_Addon_Martin_AboutBandits_07_03");	//ƒумаю, что сейчас самое врем€ дл€ поиска улик, указывающих на личность сотрудничающего с ними торговца.
 	MIS_Martin_FindTheBanditTrader = LOG_Running;
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Ѕандиты устраивают засады на дорогах между городом и фермами. ¬озможно, там € найду улики, указывающие на поставщика оружи€.");
 };

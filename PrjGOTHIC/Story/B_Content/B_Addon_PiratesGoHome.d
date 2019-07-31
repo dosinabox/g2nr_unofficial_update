@@ -85,7 +85,11 @@ func int C_TowerBanditsDead()
 	TowerBandit1 = Hlp_GetNpc(BDT_10100_Addon_TowerBandit);
 	TowerBandit2 = Hlp_GetNpc(BDT_10101_Addon_TowerBandit);
 	TowerBandit3 = Hlp_GetNpc(BDT_10102_Addon_TowerBandit);
-	if(Npc_IsDead(TowerBandit1) && Npc_IsDead(TowerBandit2) && Npc_IsDead(TowerBandit3))
+	if(TowerBanditsDead == TRUE)
+	{
+		return TRUE;
+	}
+	else if(Npc_IsDead(TowerBandit1) && Npc_IsDead(TowerBandit2) && Npc_IsDead(TowerBandit3))
 	{
 		TowerBanditsDead = TRUE;
 		return TRUE;

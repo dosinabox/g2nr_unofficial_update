@@ -28,6 +28,20 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 	{
 		Diego_IsDead = TRUE;
 	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(AlligatorJack))
+	{
+		if(MIS_KrokoJagd == LOG_Running)
+		{
+			MIS_KrokoJagd = LOG_FAILED;
+		};
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Morgan))
+	{
+		if(MIS_AlligatorJack_BringMeat == LOG_Running)
+		{
+			MIS_AlligatorJack_BringMeat = LOG_FAILED;
+		};
+	};
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Skip))
 	{
 		if(MIS_ADDON_SkipsGrog == LOG_Running)
@@ -61,6 +75,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		if(MIS_Fortuno_Delusion == LOG_Running)
 		{
 			MIS_Fortuno_Delusion = LOG_FAILED;
+		};
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fester))
+	{
+		if(MIS_Fester_KillBugs == LOG_Running)
+		{
+			MIS_Fester_KillBugs = LOG_FAILED;
 		};
 	};
 	B_CheckLog();
