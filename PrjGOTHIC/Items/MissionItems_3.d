@@ -43,7 +43,6 @@ func void Equip_InnosEye()
 	self.protection[PROT_POINT] += AM_EyeProtPoint;
 	self.protection[PROT_FIRE] += AM_EyeProtFire;
 	self.protection[PROT_MAGIC] += AM_EyeProtMage;
-//	PrintScreen("",-1,-1,FONT_Screen,0);
 	SC_IsWearingInnosEye = TRUE;
 };
 
@@ -209,7 +208,6 @@ func void UseCorneliusTagebuch()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Это произошло - один из наемников был арестован. Сдержать мое слово будет просто.");
 	Doc_Show(nDocID);
-	PrintScreen("",-1,-1,FONT_Screen,0);
 	if(Cornelius_IsLiar == FALSE)
 	{
 		B_LogEntry(TOPIC_RescueBennet,"Этот дневник - доказательство, необходимое для подтверждения невиновности Беннета.");

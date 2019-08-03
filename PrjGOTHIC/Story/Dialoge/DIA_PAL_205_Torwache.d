@@ -21,6 +21,23 @@ func void DIA_PAL_205_Torwache_EXIT_Info()
 };
 
 
+func void B_Mil_205_Torwache_Crimes()
+{
+	if(B_GetGreatestPetzCrime(self) == CRIME_MURDER)
+	{
+		AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_01");	//Я нарушу свой самый священный долг, если пущу сюда убийцу.
+	};
+	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
+	{
+		AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_02");	//Ты обвиняешься в воровстве. Пока не доказано обратное, ты не можешь войти сюда!
+	};
+	if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
+	{
+		AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_03");	//Говорят, ты принимал участие в драке. Я не пропущу тебя.
+	};
+	AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_04");	//Иди к лорду Андрэ и урегулируй этот вопрос!
+};
+
 const string PAL_205_Checkpoint = "NW_CITY_CITYHALL_IN";
 
 var int PAL_205_schonmalreingelassen;
@@ -62,19 +79,7 @@ func void DIA_PAL_205_Torwache_FirstWarn_Info()
 	AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_00");	//СТОЙ!
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
-		if(B_GetGreatestPetzCrime(self) == CRIME_MURDER)
-		{
-			AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_01");	//Я нарушу свой самый священный долг, если пущу сюда убийцу.
-		};
-		if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)
-		{
-			AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_02");	//Ты обвиняешься в воровстве. Пока не доказано обратное, ты не можешь войти сюда!
-		};
-		if(B_GetGreatestPetzCrime(self) == CRIME_ATTACK)
-		{
-			AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_03");	//Говорят, ты принимал участие в драке. Я не пропущу тебя.
-		};
-		AI_Output(self,other,"DIA_PAL_205_Torwache_FirstWarn_12_04");	//Иди к лорду Андрэ и урегулируй этот вопрос!
+		B_Mil_205_Torwache_Crimes();
 	}
 	else
 	{
@@ -83,7 +88,6 @@ func void DIA_PAL_205_Torwache_FirstWarn_Info()
 	B_PlayerEnteredCity();
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,PAL_205_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
-	PrintScreen("",-1,-1,FONT_Screen,0);
 };
 
 
@@ -186,7 +190,7 @@ instance DIA_PAL_205_Torwache_PassAsMil(C_Info)
 
 func int DIA_PAL_205_Torwache_PassAsMil_Condition()
 {
-	if((Npc_GetTrueGuild(other) == GIL_MIL) && (PAL_205_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((other.guild == GIL_MIL) && (PAL_205_schonmalreingelassen == FALSE))
 	{
 		return TRUE;
 	};
@@ -195,9 +199,16 @@ func int DIA_PAL_205_Torwache_PassAsMil_Condition()
 func void DIA_PAL_205_Torwache_PassAsMil_Info()
 {
 	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMil_15_00");	//Я состою в ополчении.
-	AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMil_12_01");	//Хорошо, ты можешь войти.
-	self.aivar[AIV_PASSGATE] = TRUE;
-	PAL_205_schonmalreingelassen = TRUE;
+	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
+	{
+		B_Mil_205_Torwache_Crimes();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMil_12_01");	//Хорошо, ты можешь войти.
+		self.aivar[AIV_PASSGATE] = TRUE;
+		PAL_205_schonmalreingelassen = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -215,7 +226,7 @@ instance DIA_PAL_205_Torwache_PassAsMage(C_Info)
 
 func int DIA_PAL_205_Torwache_PassAsMage_Condition()
 {
-	if((Npc_GetTrueGuild(other) == GIL_KDF) && (PAL_205_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if((other.guild == GIL_KDF) && (PAL_205_schonmalreingelassen == FALSE))
 	{
 		return TRUE;
 	};
@@ -224,9 +235,16 @@ func int DIA_PAL_205_Torwache_PassAsMage_Condition()
 func void DIA_PAL_205_Torwache_PassAsMage_Info()
 {
 	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsMage_15_00");	//Я маг Огня.
-	AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMage_12_01");	//Да, конечно. Прошу простить меня, о, Избранный, я просто выполняю свой долг.
-	self.aivar[AIV_PASSGATE] = TRUE;
-	PAL_205_schonmalreingelassen = TRUE;
+	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
+	{
+		B_Mil_205_Torwache_Crimes();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMage_12_01");	//Да, конечно. Прошу простить меня, о, Избранный, я просто выполняю свой долг.
+		self.aivar[AIV_PASSGATE] = TRUE;
+		PAL_205_schonmalreingelassen = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -244,21 +262,25 @@ instance DIA_PAL_205_Torwache_PassAsSld(C_Info)
 
 func int DIA_PAL_205_Torwache_PassAsSld_Condition()
 {
-	if((MIS_Lee_Friedensangebot == LOG_Running) && (PAL_205_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	if(Npc_HasItems(other,ItWr_Passage_MIS) && (PAL_205_schonmalreingelassen == FALSE))
 	{
-		if(Npc_HasItems(other,ItWr_Passage_MIS))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_PAL_205_Torwache_PassAsSld_Info()
 {
 	AI_Output(other,self,"DIA_PAL_205_Torwache_PassAsSld_15_00");	//Дай мне пройти, я несу послание от наемников.
-	AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsSld_12_01");	//Хорошо, но предупреждаю тебя. Если возникнут какие-нибудь проблемы, то ты не успеешь даже пожалеть об этом.
-	self.aivar[AIV_PASSGATE] = TRUE;
-	PAL_205_schonmalreingelassen = TRUE;
+	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
+	{
+		B_Mil_205_Torwache_Crimes();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsSld_12_01");	//Хорошо, но предупреждаю тебя. Если возникнут какие-нибудь проблемы, то ты не успеешь даже пожалеть об этом.
+		self.aivar[AIV_PASSGATE] = TRUE;
+		PAL_205_schonmalreingelassen = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 

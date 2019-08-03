@@ -673,6 +673,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItAt_DragonScale,10);
 	CreateInvItems(self,ItAt_Addon_BCKopf,10);
 	CreateInvItems(self,ItAt_Addon_KeilerFur,10);
+	CreateInvItems(self,ItAt_KeilerHorn,10);
 	CreateInvItems(self,ItKe_Xardas,1);
 	CreateInvItems(self,ItWr_Canthars_KomproBrief_MIS,1);
 	CreateInvItems(self,ItMw_2h_Rod,1);

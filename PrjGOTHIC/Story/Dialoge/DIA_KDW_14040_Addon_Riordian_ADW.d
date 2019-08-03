@@ -700,42 +700,35 @@ func void DIA_Riordian_ADW_TeachAlchemy_BACK()
 func void DIA_Riordian_ADW_TeachAlchemy_Health_01()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_01);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Health_02()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_02);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Mana_01()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_01);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Mana_02()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_02);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Mana_03()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_03);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Perm_Mana()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Mana);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Perm_DEX()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_DEX);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 

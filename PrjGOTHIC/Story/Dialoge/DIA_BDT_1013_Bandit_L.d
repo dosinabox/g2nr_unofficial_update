@@ -293,8 +293,8 @@ func void DIA_1013_BANDIT_DEXTER_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_1013_BANDIT_DEXTER_15_06");	//Эээ - я только что понял, что у меня не осталось даже десяти монет.
-		AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_07");	//Что?! Я... Ох - забудь об этом - я сам виноват. Не нужно было называть тебе имя, пока я не увидел золота...
+		AI_Output(other,self,"DIA_1013_BANDIT_DEXTER_15_06");	//Эээ... Я только что понял, что у меня не осталось даже десяти монет.
+		AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_07");	//Что?! Я... Ох, забудь об этом, я сам виноват. Не нужно было называть тебе имя, пока я не увидел золота...
 	};
 	AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_08");	//Только никому не говори, что это я назвал тебе его.
 	Bdt13_Dexter_verraten = TRUE;

@@ -389,7 +389,14 @@ func void DIA_Addon_Greg_NW_was_UnNun()
 	Info_AddChoice(DIA_Addon_Greg_NW_was,"Я не могу тебе помочь.",DIA_Addon_Greg_NW_was_NoHelp);
 	Info_AddChoice(DIA_Addon_Greg_NW_was,"Провизия? Ты в таверне!",DIA_Addon_Greg_NW_was_Orlan);
 	Info_AddChoice(DIA_Addon_Greg_NW_was,"Оружие? Оружие можно купить у наемников.",DIA_Addon_Greg_NW_was_SLD);
-	Info_AddChoice(DIA_Addon_Greg_NW_was,"Вот тебе 10 золотых.",DIA_Addon_Greg_NW_was_HierGold);
+	if(Npc_HasItems(other,ItMi_Gold) < 10)
+	{
+		Info_AddChoice(DIA_Addon_Greg_NW_was,"Я только что понял, что у меня не осталось даже десяти монет.",DIA_Addon_Greg_NW_was_HierGold);
+	}
+	else
+	{
+		Info_AddChoice(DIA_Addon_Greg_NW_was,"Вот тебе 10 золотых.",DIA_Addon_Greg_NW_was_HierGold);
+	};
 	Info_AddChoice(DIA_Addon_Greg_NW_was,"А ты не мог купить оружие в городе?",DIA_Addon_Greg_NW_was_Waffenhaendler);
 	Info_AddChoice(DIA_Addon_Greg_NW_was,"Золото? Всем нам нужно золото.",DIA_Addon_Greg_NW_was_Gold);
 };
@@ -433,7 +440,14 @@ func void DIA_Addon_Greg_NW_was_Waffenhaendler()
 
 func void DIA_Addon_Greg_NW_was_HierGold()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_was_HierGold_15_00");	//Вот тебе 10 золотых.
+	if(Npc_HasItems(other,ItMi_Gold) < 10)
+	{
+		AI_Output(other,self,"DIA_1013_BANDIT_DEXTER_15_06");	//Эээ... Я только что понял, что у меня не осталось даже десяти монет.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Addon_Greg_NW_was_HierGold_15_00");	//Вот тебе 10 золотых.
+	};
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_HierGold_01_01");	//(смеется) Можешь оставить себе свои жалкие сбережения. У меня есть мысль получше.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_HierGold_01_02");	//Неподалеку отсюда есть пещера. Это одно из тех мест, где я когда-то зарыл свои сокровища.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_was_HierGold_01_03");	//Пещера для меня слишком опасна. Я хочу, чтобы ты мне помог.

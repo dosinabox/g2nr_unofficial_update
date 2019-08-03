@@ -3346,8 +3346,6 @@ func void STARTUP_NewWorld()
 	PlayVideo("INTRO.BIK");
 	PlayVideo("Addon_Title.BIK");
 	Hero_HackChance = 10;
-	NpcWantToFlee = FALSE;
-	TradersHaveLimitedAmmo = FALSE;
 };
 
 func void INIT_NewWorld()

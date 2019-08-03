@@ -739,7 +739,7 @@ instance DIA_Kardif_SENDATTILA(C_Info)
 
 func int DIA_Kardif_SENDATTILA_Condition()
 {
-	if(((MIS_ThiefGuild_sucked == TRUE) || (Diebesgilde_Okay >= 3) || (MIS_Nagur_Bote == LOG_FAILED) || ((Diebesgilde_Okay == 2) && (NagurHack == TRUE))) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_ThiefGuild_sucked == TRUE) || (Diebesgilde_Okay >= 3) || (MIS_Nagur_Bote == LOG_FAILED) || ((Diebesgilde_Okay == 2) && (NagurHack == TRUE)))
 	{
 		return TRUE;
 	};

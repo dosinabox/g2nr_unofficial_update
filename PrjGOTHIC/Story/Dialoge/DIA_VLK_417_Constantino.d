@@ -1012,7 +1012,6 @@ func void DIA_Constantino_TEACH_Health01()
 	{
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health01_10_00");	//»нгредиенты дл€ лечебной эссенции - лечебные травы и луговой горец.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_Health02()
@@ -1022,7 +1021,6 @@ func void DIA_Constantino_TEACH_Health02()
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health02_10_00");	//„тобы приготовить лечебный экстракт, тебе понадоб€тс€ лечебные растени€ и луговой горец.
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health02_10_01");	// ип€тить этот экстракт нужно очень осторожно.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_Health03()
@@ -1030,9 +1028,9 @@ func void DIA_Constantino_TEACH_Health03()
 	if(B_TeachPlayerTalentAlchemy(self,other,POTION_Health_03))
 	{
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health03_10_00");	//ƒл€ создани€ лечебного эликсира требуетс€ чуть больше опыта.
+		AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Health_15_00");	// акие ингредиенты нужны дл€ лечебного эликсира?
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health03_10_01");	//“ебе понадоб€тс€ лечебные корни и луговой горец. ѕри кип€чении этого зель€ нужно быть особенно внимательным.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_PermHealth()
@@ -1042,7 +1040,6 @@ func void DIA_Constantino_TEACH_PermHealth()
 		AI_Output(self,other,"DIA_Constantino_TEACH_PermHealth_10_00");	//Ёликсир жизни! –едкое варево. Ќо не из-за сложности приготовлени€ - это зелье не так уж сложно сделать.
 		AI_Output(self,other,"DIA_Constantino_TEACH_PermHealth_10_01");	//Ќо в нем используютс€ редкие ингредиенты. “ебе понадоб€тс€ лечебные корни и царский щавель.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_Mana01()
@@ -1052,7 +1049,6 @@ func void DIA_Constantino_TEACH_Mana01()
 		AI_Output(self,other,"DIA_Constantino_TEACH_Mana01_10_00");	//Ёссенци€ маны - самое простое из магических зелий.
 		AI_Output(self,other,"DIA_Constantino_TEACH_Mana01_10_01");	//¬озьми огненную крапиву и луговой горец и вскип€ти их на медленном огне.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_Mana02()
@@ -1062,7 +1058,6 @@ func void DIA_Constantino_TEACH_Mana02()
 		AI_Output(self,other,"DIA_Constantino_TEACH_Mana02_10_00");	//“ак как ты уже умеешь готовить эссенцию маны, если немного потренируешьс€, то сможешь готовить также и экстракт.
 		AI_Output(self,other,"DIA_Constantino_TEACH_Mana02_10_01");	//≈динственно, нужно уделить особое внимание процессу выпаривани€ этого зель€. ¬ качестве ингредиентов дл€ него используютс€ огненна€ трава и луговой горец.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_PermSTR()
@@ -1072,6 +1067,5 @@ func void DIA_Constantino_TEACH_PermSTR()
 		AI_Output(self,other,"DIA_Constantino_TEACH_PermSTR_10_00");	//Ёликсир силы! ѕревосходное зелье. ƒл€ него тебе понадоб€тс€ редкий драконий корень и царский щавель.
 		AI_Output(self,other,"DIA_Constantino_TEACH_PermSTR_10_01");	//ѕри кип€чении этого зель€ следи, чтобы пузырьки не стали слишком большими, иначе теб€ будет ждать непри€тный сюрприз!
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 

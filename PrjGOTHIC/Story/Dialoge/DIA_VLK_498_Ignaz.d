@@ -356,19 +356,16 @@ func void DIA_Ignaz_Teach_Info()
 func void DIA_Ignaz_Teach_Health()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_01);
-	Info_ClearChoices(DIA_Ignaz_Teach);
 };
 
 func void DIA_Ignaz_Teach_Mana()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_01);
-	Info_ClearChoices(DIA_Ignaz_Teach);
 };
 
 func void DIA_Ignaz_Teach_Speed()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Speed);
-	Info_ClearChoices(DIA_Ignaz_Teach);
 };
 
 func void DIA_Ignaz_Teach_BACK()
