@@ -78,7 +78,7 @@ func void DIA_Addon_Samuel_Francis_Info()
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_00");	//Я хочу поговорить с тобой о Фрэнсисе.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_01");	//Не упоминай при мне эту жалкую пародию на капитана!
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_02");	//Он целыми днями сидит на своей жирной заднице с важным видом.
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_03");	//Никто из нас не может понять, о чем, черт возьми, думал капитан, когда оставлял ЕГО за главного!
+	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_03");	//И никто из нас не может понять, о чем, черт возьми, думал капитан, когда оставлял ЕГО за главного!
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_04");	//Что тебе нужно от этого идиота?
 };
 

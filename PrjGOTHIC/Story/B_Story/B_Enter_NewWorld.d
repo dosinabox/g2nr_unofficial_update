@@ -173,8 +173,20 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			B_StartOtherRoutine(Hodges,"BENNETWEG");
 		};
-		if(!Npc_IsDead(Lares))
+		if(!Npc_IsDead(Lares) && (RangerMeetingRunning != LOG_Running))
 		{
+			if(LaresGuide_ZuOnar != LOG_SUCCESS)
+			{
+				LaresGuide_ZuOnar = FALSE;
+			};
+			if(LaresGuide_ZumPortal != 8)
+			{
+				LaresGuide_ZumPortal = 0;
+			};
+			if(LaresGuide_OrnamentForest != 3)
+			{
+				LaresGuide_OrnamentForest = 0;
+			};
 			B_StartOtherRoutine(Lares,"START");
 		};
 		Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");

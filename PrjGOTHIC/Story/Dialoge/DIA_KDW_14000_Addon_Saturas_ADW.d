@@ -109,7 +109,7 @@ func void DIA_Addon_Saturas_ADWStart_wastun2()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_05");	//ћы должны узнать как можно больше об этих люд€х и их гибели.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_06");	//ћы сможем расстроить планы ¬орона, только если будем видеть их насквозь.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_07");	// роме того, ты должен найти способ освободить рабов.
-	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_wastun2_15_08");	//(цинично) » это все? я сделаю все это одной левой.
+	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_wastun2_15_08");	//’а. (цинично) » это все? я сделаю все это одной левой.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_09");	//(раздраженно) я знаю, что прошу слишком о многом. ¬оспринимай это как шанс вернуть мое доверие.
 	MIS_ADDON_Saturas_GoToRaven = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_RavenKDW,LOG_MISSION);

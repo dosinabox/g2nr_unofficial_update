@@ -2112,9 +2112,9 @@ func void STARTUP_NewWorld_Part_City_01()
 
 func void INIT_SUB_NewWorld_Part_City_01()
 {
-//	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
-//	Wld_SetMobRoutine(20,0,"FIREPLACE",1);
-//	Wld_SetMobRoutine(5,0,"FIREPLACE",0);
+	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
+	Wld_SetMobRoutine(20,0,"FIREPLACE",1);
+	Wld_SetMobRoutine(5,0,"FIREPLACE",0);
 	Wld_AssignRoomToGuild("hafen01",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen02",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen03",GIL_VLK);

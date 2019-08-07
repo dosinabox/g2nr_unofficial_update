@@ -259,6 +259,7 @@ func void DIA_Rengaru_INKNAST_HauAb()
 {
 	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтоб больше я тебя здесь не видел!
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_HauAb_07_01");	//Ты не пожалеешь об этом! Спасибо, парень!
+	self.aivar[AIV_ToughGuy] = FALSE;
 	Npc_ExchangeRoutine(self,"Start");
 	AI_StopProcessInfos(self);
 	Diebesgilde_Okay += 1;
@@ -305,6 +306,7 @@ func void DIA_Rengaru_SPARE_Info()
 {
 	AI_Output(other,self,"DIA_Rengaru_INKNAST_HauAb_15_00");	//Проваливай! И чтоб больше я тебя здесь не видел!
 	AI_Output(self,other,"DIA_Rengaru_INKNAST_HauAb_07_01");	//Ты не пожалеешь об этом! Спасибо, парень!
+	self.aivar[AIV_ToughGuy] = FALSE;
 	Npc_ExchangeRoutine(self,"Start");
 	AI_StopProcessInfos(self);
 	Diebesgilde_Okay += 1;

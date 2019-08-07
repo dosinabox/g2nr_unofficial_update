@@ -1518,13 +1518,15 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	Wld_PlayEffect("MFX_MAGICFIRE_HUMANSMOKE",self,self,0,0,0,FALSE);
+	LaresToldAboutKDW1 = TRUE;
+	LaresToldAboutKDW2 = TRUE;
+//	Wld_PlayEffect("MFX_MAGICFIRE_HUMANSMOKE",self,self,0,0,0,FALSE);
 //	SaturasSendsToRiordian = TRUE;
-	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
+//	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
 //	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 //	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
 //	MIS_KilledDragons += 1;
-	MIS_Addon_Lares_ComeToRangerMeeting = LOG_SUCCESS;
+//	MIS_Addon_Lares_ComeToRangerMeeting = LOG_SUCCESS;
 };
 
 instance WastelandRune(C_Item)

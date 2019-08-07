@@ -2778,7 +2778,7 @@ func int DIA_Addon_Vatras_PISSOFFFOREVVER_Condition()
 func void DIA_Addon_Vatras_PISSOFFFOREVVER_Info()
 {
 	B_VatrasPissedOff();
-	AI_StopProcessInfos(self);
+//	AI_StopProcessInfos(self);
 //	Vatras_MORE = FALSE;
 };
 

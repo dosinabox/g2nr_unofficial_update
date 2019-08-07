@@ -1,4 +1,32 @@
 
+var int LaresToldAboutKDW1;
+var int LaresToldAboutKDW2;
+
+func void DIA_Addon_Lares_Patch_WhereTo()
+{
+	if(LaresToldAboutKDW1 == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_00");	//Мы, ребята из бывшего Нового Лагеря, сохранили хорошие отношения с магами Воды.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_01");	//Даже Ли готов защищать магов Воды от любой опасности, если только это будет в его силах.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_02");	//Чтобы поддерживать связь с магами, я практически постоянно нахожусь в городе, работая вместе с Ватрасом.
+		LaresToldAboutKDW1 = TRUE;
+	};
+	if(LaresToldAboutKDW2 == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_00");	//Маги Воды полностью погружены в работу. Они уже несколько недель раскапывают какие-то руины на северо-востоке. Никто не знает, что они пытаются там найти.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_01");	//Все началось с землетрясений, таких, какие бывали в худшие дни Барьера.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_02");	//Из-под земли появились ужасные каменные создания, убивающие каждого, кто подходил к ним ближе, чем на тридцать метров.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_03");	//Маги Воды взяли ситуацию в свои руки и уничтожили монстров. А теперь они проводят раскопки, пытаясь найти объяснение этим странным событиям.
+		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+		B_LogEntry(TOPIC_Addon_KDW,"Ларес рассказал мне о раскопках магов Воды. Маги занимаются расследованием необычных событий, происходящих в последнее время - странных землетрясений и появления из-под земли загадочных каменных существ.");
+		LaresToldAboutKDW2 = TRUE;
+	};
+	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_04");	//Да, и еще одно. Не стоит бродить по округе с этим орнаментом. Сразу же отправляйся к Сатурасу.
+	B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
+	Info_ClearChoices(DIA_Addon_Lares_Patch);
+};
+
 instance DIA_Addon_Lares_Patch(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -23,28 +51,18 @@ func void DIA_Addon_Lares_Patch_Info()
 	AI_Output(self,other,"DIA_Addon_Lares_OrnamentBringJob_09_02");	//Но сейчас я не могу уйти. Я должен наблюдать за гаванью.
 	AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_06");	//Но ты можешь мне помочь.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_01");	//Орнамент, который ты мне отдал, нужно отнести Сатурасу. Ты же помнишь Сатураса, не так ли?
-	Info_ClearChoices(DIA_Addon_Lares_Patch);
-	Info_AddChoice(DIA_Addon_Lares_Patch,"Конечно.",DIA_Addon_Lares_Patch_ja);
-	Info_AddChoice(DIA_Addon_Lares_Patch,"Сатурас? Кто это такой?",DIA_Addon_Lares_Patch_wer);
+	if(LaresToldAboutKDW1 == FALSE)
+	{
+		Info_ClearChoices(DIA_Addon_Lares_Patch);
+		Info_AddChoice(DIA_Addon_Lares_Patch,"Конечно.",DIA_Addon_Lares_Patch_ja);
+		Info_AddChoice(DIA_Addon_Lares_Patch,"Сатурас? Кто это такой?",DIA_Addon_Lares_Patch_wer);
+	}
+	else
+	{
+		DIA_Addon_Lares_Patch_WhereTo();
+	};
 };
 
-
-func void DIA_Addon_Lares_Patch_WhereTo()
-{
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_00");	//Мы, ребята из бывшего Нового Лагеря, сохранили хорошие отношения с магами Воды.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_01");	//Даже Ли готов защищать магов Воды от любой опасности, если только это будет в его силах.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_02");	//Чтобы поддерживать связь с магами, я практически постоянно нахожусь в городе, работая вместе с Ватрасом.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_00");	//Маги Воды полностью погружены в работу. Они уже несколько недель раскапывают какие-то руины на северо-востоке. Никто не знает, что они пытаются там найти.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_01");	//Все началось с землетрясений, таких, какие бывали в худшие дни Барьера.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_02");	//Из-под земли появились ужасные каменные создания, убивающие каждого, кто подходил к ним ближе, чем на тридцать метров.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_03");	//Маги Воды взяли ситуацию в свои руки и уничтожили монстров. А теперь они проводят раскопки, пытаясь найти объяснение этим странным событиям.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_04");	//Да, и еще одно. Не стоит бродить по округе с этим орнаментом. Сразу же отправляйся к Сатурасу.
-	B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
-	Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_KDW,"Ларес рассказал мне о раскопках магов Воды. Маги занимаются расследованием необычных событий, происходящих в последнее время - странных землетрясений и появления из-под земли загадочных каменных существ.");
-	Info_ClearChoices(DIA_Addon_Lares_Patch);
-};
 
 func void DIA_Addon_Lares_Patch_wer()
 {
@@ -59,7 +77,6 @@ func void DIA_Addon_Lares_Patch_ja()
 	AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_ja_15_00");	//Конечно. Он был предводителем магов Воды в Новом Лагере.
 	DIA_Addon_Lares_Patch_WhereTo();
 };
-
 
 instance DIA_Lares_Kap1_EXIT(C_Info)
 {
@@ -1557,6 +1574,7 @@ instance DIA_Addon_Lares_ArrivedPortalInter1(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Lares_ArrivedPortalInter1_Condition;
 	information = DIA_Addon_Lares_ArrivedPortalInter1_Info;
+	permanent = TRUE;
 	important = TRUE;
 };
 
@@ -1571,11 +1589,34 @@ func int DIA_Addon_Lares_ArrivedPortalInter1_Condition()
 
 func void DIA_Addon_Lares_ArrivedPortalInter1_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_00");	//Теперь, когда мы покинули город и нас не могут подслушать, я хочу тебе кое-что рассказать.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_01");	//Орнамент, который ты мне отдал, нужно отнести Сатурасу. Ты же помнишь Сатураса, не так ли?
-	Info_ClearChoices(DIA_Addon_Lares_ArrivedPortalInter1);
-	Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Конечно.",DIA_Addon_Lares_ArrivedPortalInter1_ja);
-	Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Сатурас? Кто это такой?",DIA_Addon_Lares_ArrivedPortalInter1_wer);
+	if(LaresToldAboutKDW1 == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_00");	//Теперь, когда мы покинули город и нас не могут подслушать, я хочу тебе кое-что рассказать.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_09_01");	//Орнамент, который ты мне отдал, нужно отнести Сатурасу. Ты же помнишь Сатураса, не так ли?
+		LaresToldAboutKDW1 = TRUE;
+		Info_ClearChoices(DIA_Addon_Lares_ArrivedPortalInter1);
+		Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Конечно.",DIA_Addon_Lares_ArrivedPortalInter1_ja);
+		Info_AddChoice(DIA_Addon_Lares_ArrivedPortalInter1,"Сатурас? Кто это такой?",DIA_Addon_Lares_ArrivedPortalInter1_wer);
+	}
+	else 
+	{
+		if(Lares_Guide > (Wld_GetDay() - 2))
+		{
+			if(Lares_Distracted == TRUE)
+			{
+				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter3_09_00");	//Ты идешь дальше?
+			};
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+		};
+		B_MakeRangerReadyForMeeting(self);
+	};
 	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 2;
 };
@@ -1617,6 +1658,7 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Lares_ArrivedPortalInterWeiter_Condition;
 	information = DIA_Addon_Lares_ArrivedPortalInterWeiter_Info;
+	permanent = TRUE;
 	important = TRUE;
 };
 
@@ -1662,6 +1704,7 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter2(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Lares_ArrivedPortalInterWeiter2_Condition;
 	information = DIA_Addon_Lares_ArrivedPortalInterWeiter2_Info;
+	permanent = TRUE;
 	important = TRUE;
 };
 
@@ -1702,6 +1745,7 @@ instance DIA_Addon_Lares_ArrivedPortalInter2(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Lares_ArrivedPortalInter2_Condition;
 	information = DIA_Addon_Lares_ArrivedPortalInter2_Info;
+	permanent = TRUE;
 	important = TRUE;
 };
 
@@ -1716,13 +1760,36 @@ func int DIA_Addon_Lares_ArrivedPortalInter2_Condition()
 
 func void DIA_Addon_Lares_ArrivedPortalInter2_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_00");	//Маги Воды полностью погружены в работу. Они уже несколько недель раскапывают какие-то руины на северо-востоке. Никто не знает, что они пытаются там найти.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_01");	//Все началось с землетрясений, таких, какие бывали в худшие дни Барьера.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_02");	//Из-под земли появились ужасные каменные создания, убивающие каждого, кто подходил к ним ближе, чем на тридцать метров.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_03");	//Маги Воды взяли ситуацию в свои руки и уничтожили монстров. А теперь они проводят раскопки, пытаясь найти объяснение этим странным событиям.
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_04");	//Но ты скоро сам все увидишь.
+	if(LaresToldAboutKDW2 == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_00");	//Маги Воды полностью погружены в работу. Они уже несколько недель раскапывают какие-то руины на северо-востоке. Никто не знает, что они пытаются там найти.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_01");	//Все началось с землетрясений, таких, какие бывали в худшие дни Барьера.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_02");	//Из-под земли появились ужасные каменные создания, убивающие каждого, кто подходил к ним ближе, чем на тридцать метров.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_03");	//Маги Воды взяли ситуацию в свои руки и уничтожили монстров. А теперь они проводят раскопки, пытаясь найти объяснение этим странным событиям.
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter2_09_04");	//Но ты скоро сам все увидишь.
+		B_LogEntry(TOPIC_Addon_KDW,"Ларес рассказал мне о раскопках магов Воды. Маги занимаются расследованием необычных событий, происходящих в последнее время - странных землетрясений и появления из-под земли загадочных каменных существ.");
+		LaresToldAboutKDW2 = TRUE;
+	}
+	else
+	{
+		if(Lares_Guide > (Wld_GetDay() - 2))
+		{
+			if(Lares_Distracted == TRUE)
+			{
+				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter3_09_00");	//Ты идешь дальше?
+			};
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+		};
+	};
+	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 5;
-	B_LogEntry(TOPIC_Addon_KDW,"Ларес рассказал мне о раскопках магов Воды. Маги занимаются расследованием необычных событий, происходящих в последнее время - странных землетрясений и появления из-под земли загадочных каменных существ.");
 };
 
 
@@ -1732,6 +1799,7 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter3(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Lares_ArrivedPortalInterWeiter3_Condition;
 	information = DIA_Addon_Lares_ArrivedPortalInterWeiter3_Info;
+	permanent = TRUE;
 	important = TRUE;
 };
 
@@ -1772,6 +1840,7 @@ instance DIA_Addon_Lares_ArrivedPortalInterWeiter4(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Lares_ArrivedPortalInterWeiter4_Condition;
 	information = DIA_Addon_Lares_ArrivedPortalInterWeiter4_Info;
+	permanent = TRUE;
 	important = TRUE;
 };
 
@@ -1791,6 +1860,7 @@ func void DIA_Addon_Lares_ArrivedPortalInterWeiter4_Info()
 	{
 		B_StartOtherRoutine(BDT_1020_Bandit_L,"Intercept");
 	};
+	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 7;
 };
 
@@ -1834,6 +1904,7 @@ func void DIA_Addon_Lares_ArrivedPortal_Info()
 	AI_StopProcessInfos(self);
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	Npc_ExchangeRoutine(self,"START");
+	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 8;
 	Lares_Angekommen = TRUE;
 };
@@ -1882,6 +1953,7 @@ instance DIA_Addon_Lares_GOFORESTPRE(C_Info)
 	nr = 1;
 	condition = DIA_Addon_Lares_GOFORESTPRE_Condition;
 	information = DIA_Addon_Lares_GOFORESTPRE_Info;
+	permanent = TRUE;
 	important = TRUE;
 };
 
@@ -1915,6 +1987,10 @@ func void DIA_Addon_Lares_GOFORESTPRE_nein()
 
 func void DIA_Addon_Lares_GOFORESTPRE_Info()
 {
+	if(Lares_Guide <= (Wld_GetDay() - 2))
+	{
+		AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+	};
 	if(ORNAMENT_SWITCHED_FOREST == TRUE)
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GOFORESTPRE_09_00");	//Ты все еще хочешь пойти со мной в лес?
