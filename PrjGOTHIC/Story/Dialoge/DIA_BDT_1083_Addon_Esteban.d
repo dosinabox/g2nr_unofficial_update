@@ -156,7 +156,7 @@ func void DIA_Addon_Esteban_Rot_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Esteban_Rot_07_05");	//Кажется, ты об этом ничего не знаешь.
 	};
-	AI_Output(self,other,"DIA_Addon_Esteban_Rot_07_06");	//(фальшиво) Если я и дам тебе красный камень, то не потому, что ты такой хороший рудокоп.
+	AI_Output(self,other,"DIA_Addon_Esteban_Rot_07_06");	//(фальшиво) Если я дам тебе красный камень, то не потому, что ты такой хороший рудокоп.
 	AI_Output(self,other,"DIA_Addon_Esteban_Rot_07_07");	//Нет, у меня есть для тебя другая работа...
 };
 

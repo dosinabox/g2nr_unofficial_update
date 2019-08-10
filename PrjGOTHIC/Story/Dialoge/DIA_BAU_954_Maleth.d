@@ -432,6 +432,7 @@ func void DIA_Maleth_GEHSTOCK_ok()
 {
 	AI_Output(other,self,"DIA_Maleth_GEHSTOCK_ok_15_00");	//Хорошо.
 	B_GiveInvItems(other,self,ItMw_MalethsGehstock_MIS,1);
+	AI_EquipBestMeleeWeapon(self);
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_01");	//Ладно. Просто иди на запад, вон к тому лесу. Там ты увидишь ущелье.
 	AI_Output(self,other,"DIA_Maleth_GEHSTOCK_ok_08_02");	//В пещере внизу ты наверняка найдешь что-нибудь.
 	if(!Npc_IsDead(BDT_1024_MalethsBandit))
@@ -455,6 +456,7 @@ func void DIA_Maleth_GEHSTOCK_gold()
 	CreateInvItems(self,ItMi_Gold,35);
 	B_GiveInvItems(self,other,ItMi_Gold,35);
 	B_GiveInvItems(other,self,ItMw_MalethsGehstock_MIS,1);
+	AI_EquipBestMeleeWeapon(self);
 	Info_ClearChoices(DIA_Maleth_GEHSTOCK);
 };
 

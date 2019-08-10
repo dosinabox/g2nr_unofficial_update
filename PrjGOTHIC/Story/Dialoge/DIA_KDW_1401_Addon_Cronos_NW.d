@@ -17,10 +17,24 @@ func int DIA_Addon_Cronos_EXIT_Condition()
 
 func void DIA_Addon_Cronos_EXIT_Info()
 {
-//	B_EquipTrader(self);
 	if(Trade_IsActive == TRUE)
 	{
 		Trade_IsActive = FALSE;
+	};
+	if(Cronos_NW_ItemsGiven_Chapter_1 == TRUE)
+	{
+		Cronos_NW_ItMi_Flask_Count = Npc_HasItems(self,ItMi_Flask);
+		Cronos_NW_ItMi_Sulfur_Count = Npc_HasItems(self,ItMi_Sulfur);
+		Cronos_NW_ItMi_Pitch_Count = Npc_HasItems(self,ItMi_Pitch);
+		Cronos_NW_ItPo_Mana_01_Count = Npc_HasItems(self,ItPo_Mana_01);
+		Cronos_NW_ItPo_Health_01_Count = Npc_HasItems(self,ItPo_Health_01);
+		Cronos_NW_ItSc_Light_Count = Npc_HasItems(self,ItSc_Light);
+		Cronos_NW_ItSc_Firebolt_Count = Npc_HasItems(self,ItSc_Firebolt);
+		Cronos_NW_ItSc_Zap_Count = Npc_HasItems(self,ItSc_Zap);
+		Cronos_NW_ItSc_LightHeal_Count = Npc_HasItems(self,ItSc_LightHeal);
+		Cronos_NW_ItSc_SumGobSkel_Count = Npc_HasItems(self,ItSc_SumGobSkel);
+		Cronos_NW_ItSc_Icelance_Count = Npc_HasItems(self,ItSc_Icelance);
+		Cronos_NW_ItSc_Whirlwind_Count = Npc_HasItems(self,ItSc_Whirlwind);
 	};
 	AI_StopProcessInfos(self);
 };

@@ -596,6 +596,7 @@ func void DIA_Addon_AlligatorJack_HuntEnd_Info()
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_12");	//Возможно, это сделает его более сговорчивым.
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_13");	//Генри иногда увлекается ролью начальника...
 	};
+	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	MIS_AlligatorJack_BringMeat = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_BringMeat,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_BringMeat,LOG_Running);

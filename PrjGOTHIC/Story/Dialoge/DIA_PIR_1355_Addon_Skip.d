@@ -868,7 +868,7 @@ instance DIA_Addon_Skip_AllRazorsDead(C_Info)
 
 func int DIA_Addon_Skip_AllRazorsDead_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_AllCanyonRazorDead())
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 800) && C_AllCanyonRazorDead())
 	{
 		return TRUE;
 	};

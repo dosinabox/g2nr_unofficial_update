@@ -66,6 +66,10 @@ func void B_StealItem(var int TheftDex,var int Itm)
 				Lehmar_StealBook_Day += 1;
 			};
 		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
+		{
+			UnEquip_ItAm_Addon_Franco();
+		};
 	}
 	else
 	{

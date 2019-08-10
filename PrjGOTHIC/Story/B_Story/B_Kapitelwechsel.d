@@ -4,6 +4,18 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	Kapitel = neues_Kapitel;
 	if(neues_Kapitel == 1)
 	{
+		Cronos_NW_ItMi_Flask_Count = 5;
+		Cronos_NW_ItMi_Sulfur_Count = 2;
+		Cronos_NW_ItMi_Pitch_Count = 1;
+		Cronos_NW_ItPo_Mana_01_Count = 5;
+		Cronos_NW_ItPo_Health_01_Count = 6;
+		Cronos_NW_ItSc_Light_Count = 5;
+		Cronos_NW_ItSc_Firebolt_Count = 5;
+		Cronos_NW_ItSc_Zap_Count = 5;
+		Cronos_NW_ItSc_LightHeal_Count = 5;
+		Cronos_NW_ItSc_SumGobSkel_Count = 2;
+		Cronos_NW_ItSc_Icelance_Count = 5;
+		Cronos_NW_ItSc_Whirlwind_Count = 1;
 		IntroduceChapter(KapWechsel_1,KapWechsel_1_Text,"chapter1.tga","chapter_01.wav",6000);
 	}
 	else if(neues_Kapitel == 2)
