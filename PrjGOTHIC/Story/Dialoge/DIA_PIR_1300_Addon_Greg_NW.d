@@ -414,6 +414,7 @@ func void DIA_Addon_Greg_NW_was_NoHelp()
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_04");	//я запомню это, будь уверен.
+		Greg_NoHelpInNW_Cave = TRUE;
 	};
 	MIS_Addon_Greg_RakeCave = LOG_OBSOLETE;
 	GregLocation = Greg_Bigcross;
@@ -618,7 +619,12 @@ func void B_Greg_RakePlaceBriefing()
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakePlaceBriefing_01_04");	//¬ долине, в которую она спускаетс€, есть еще один тайник.
 	if(B_Greg_RakePlaceBriefing_OneTime == FALSE)
 	{
-		B_LogEntry(TOPIC_Addon_Greg_NW,"„еловек рассказал мне, что есть несколько мест, где он закопал свои вещи: 1) Ќа маленьком острове на озере с двум€ водопадами. 2) Ќа верхнем пастбище за фермой. 3) ” водопадов неподалеку от ворот прохода. 4) ¬ низине под лестницей, ведущей от верхних пастбищ к пол€м землевладельца. я должен найти все его закопанные вещи. ќн будет ждать мен€ у перекрестка на пол€х.");
+		B_LogEntry(TOPIC_Addon_Greg_NW,"„еловек рассказал мне, что есть несколько мест, где он закопал свои вещи:");
+		Log_AddEntry(TOPIC_Addon_Greg_NW,"1) Ќа маленьком острове на озере с двум€ водопадами.");
+		Log_AddEntry(TOPIC_Addon_Greg_NW,"2) Ќа верхнем пастбище за фермой.");
+		Log_AddEntry(TOPIC_Addon_Greg_NW,"3) ” водопадов неподалеку от ворот прохода.");
+		Log_AddEntry(TOPIC_Addon_Greg_NW,"4) ¬ низине под лестницей, ведущей от верхних пастбищ к пол€м землевладельца.");
+		Log_AddEntry(TOPIC_Addon_Greg_NW,"я должен найти все его закопанные вещи. ќн будет ждать мен€ у перекрестка на пол€х.");
 		B_Greg_RakePlaceBriefing_OneTime = TRUE;
 	};
 };
@@ -1178,7 +1184,7 @@ func void DIA_Addon_Greg_NW_FoundTreasure_ja()
 func void DIA_Addon_Greg_NW_FoundTreasure_not()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_NW_FoundTreasure_not_15_00");	//” мен€ с собой их нет.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_not_01_01");	//“огда поторопить и принеси их мне, пока € не рассердилс€.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_FoundTreasure_not_01_01");	//“огда поторопись и принеси их мне, пока € не рассердилс€.
 	AI_StopProcessInfos(self);
 };
 

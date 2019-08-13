@@ -72,10 +72,10 @@ instance ItMW_Addon_Stab02(C_Item)
 	visual = "ItMW_MageStaff_Normal_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF2";
 	description = name;
-	text[1] = NAME_Damage;
-	count[1] = damageTotal;
-	text[2] = NAME_Bonus_ManaMax;
-	count[2] = 20;
+	text[1] = NAME_Bonus_ManaMax;
+	count[1] = 20;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
 	text[3] = NAME_Mana_needed;
 	count[3] = cond_value[2];
 	text[4] = NAME_TwoHanded;

@@ -578,24 +578,24 @@ func void DIA_Addon_Lares_GetRangerArmor_Learn()
 {
 	AI_Output(other,self,"DIA_Addon_Lares_GetRangerArmor_Learn_15_00");	//Как вы можете помочь мне?
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_01");	//Я могу сделать тебя более ловким.
-	if(!Npc_IsDead(Sld_805_Cord))
+	if(!Npc_IsDead(Cord))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_02");	//Если тебе нужно улучшить свое мастерство ближнего боя, поговори с Кордом. Он мастер клинка.
 		Cord_RangerHelp_Fight = TRUE;
 	};
-	if(!Npc_IsDead(BAU_961_Gaan))
+	if(!Npc_IsDead(Gaan))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_03");	//Гаан научит тебя правильно разделывать животных.
 	};
-	if(!Npc_IsDead(MIL_350_Addon_Martin))
+	if(!Npc_IsDead(Martin))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_04");	//Мартину есть что рассказать тебе о паладинах.
 	};
-	if(!Npc_IsDead(BAU_4300_Addon_Cavalorn))
+	if(!Npc_IsDead(Cavalorn))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_05");	//Кавалорн может научить тебя красться, сражаться одноручным оружием и стрелять из лука.
 	};
-	if(!Npc_IsDead(BAU_970_Orlan))
+	if(!Npc_IsDead(Orlan))
 	{
 		AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_Learn_09_06");	//У Орлана всегда найдется для тебя теплая комната и мягкая кровать.
 	};

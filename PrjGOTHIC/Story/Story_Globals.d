@@ -1142,6 +1142,7 @@ var int BeerDay;
 var int BeerDayZeroOneTime;
 var int CronosTraded;
 var int Greg_NoHelpInNW;
+var int Greg_NoHelpInNW_Cave;
 var int Greg_Rejected;
 var int DexterBanditsBodyCount;
 var int Garett_Armor_Given;

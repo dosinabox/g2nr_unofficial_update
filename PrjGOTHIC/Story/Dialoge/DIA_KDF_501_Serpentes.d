@@ -359,7 +359,7 @@ func int DIA_Serpentes_MinenAnteile_Condition()
 	{
 		if(hero.guild == GIL_KDF)
 		{
-			if(!Npc_IsDead(Salandril) || !Npc_IsDead(VLK_416_Matteo) || !Npc_IsDead(VLK_413_Bosper) || !Npc_IsDead(VLK_409_Zuris) || !Npc_IsDead(BAU_911_Elena) || !Npc_IsDead(BAU_970_Orlan) || !Npc_IsDead(VLK_407_Hakon) || !Npc_IsDead(BAU_936_Rosi) || !Npc_IsDead(VLK_468_Canthar))
+			if(!Npc_IsDead(Salandril) || !Npc_IsDead(Matteo) || !Npc_IsDead(Bosper) || !Npc_IsDead(Zuris) || !Npc_IsDead(Elena) || !Npc_IsDead(Orlan) || !Npc_IsDead(Hakon) || !Npc_IsDead(Rosi) || !Npc_IsDead(Canthar))
 			{
 				return TRUE;
 			};
@@ -440,44 +440,44 @@ func void DIA_Serpentes_MinenAnteile_was_ja()
 		CreateInvItems(Salandril,ItWr_MinenAnteil_Mis,2);
 		SalandrilMinenAnteil_MAINCounter += 2;
 	};
-	if(!Npc_IsDead(VLK_416_Matteo))
+	if(!Npc_IsDead(Matteo))
 	{
-		CreateInvItems(VLK_416_Matteo,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Matteo,ItWr_MinenAnteil_Mis,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(!Npc_IsDead(VLK_413_Bosper))
+	if(!Npc_IsDead(Bosper))
 	{
-		CreateInvItems(VLK_413_Bosper,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Bosper,ItWr_MinenAnteil_Mis,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(!Npc_IsDead(VLK_409_Zuris))
+	if(!Npc_IsDead(Zuris))
 	{
-		CreateInvItems(VLK_409_Zuris,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Zuris,ItWr_MinenAnteil_Mis,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(!Npc_IsDead(BAU_911_Elena))
+	if(!Npc_IsDead(Elena))
 	{
-		CreateInvItems(BAU_911_Elena,ItWr_MinenAnteil_Mis,2);
+		CreateInvItems(Elena,ItWr_MinenAnteil_Mis,2);
 		SalandrilMinenAnteil_MAINCounter += 2;
 	};
-	if(!Npc_IsDead(BAU_970_Orlan))
+	if(!Npc_IsDead(Orlan))
 	{
-		CreateInvItems(BAU_970_Orlan,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Orlan,ItWr_MinenAnteil_Mis,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(!Npc_IsDead(VLK_407_Hakon))
+	if(!Npc_IsDead(Hakon))
 	{
-		CreateInvItems(VLK_407_Hakon,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Hakon,ItWr_MinenAnteil_Mis,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(!Npc_IsDead(BAU_936_Rosi))
+	if(!Npc_IsDead(Rosi))
 	{
-		CreateInvItems(BAU_936_Rosi,ItWr_MinenAnteil_Mis,1);
+		CreateInvItems(Rosi,ItWr_MinenAnteil_Mis,1);
 		SalandrilMinenAnteil_MAINCounter += 1;
 	};
-	if(!Npc_IsDead(VLK_468_Canthar))
+	if(!Npc_IsDead(Canthar))
 	{
-		CreateInvItems(VLK_468_Canthar,ItWr_MinenAnteil_Mis,3);
+		CreateInvItems(Canthar,ItWr_MinenAnteil_Mis,3);
 		SalandrilMinenAnteil_MAINCounter += 3;
 	};
 	SalandrilVerteilteMinenAnteil = SalandrilMinenAnteil_MAINCounter;

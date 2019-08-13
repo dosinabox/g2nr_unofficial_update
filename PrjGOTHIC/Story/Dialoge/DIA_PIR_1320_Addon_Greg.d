@@ -101,7 +101,7 @@ func void DIA_Addon_Greg_ImNew_Info()
 
 func void B_UseRakeBilanz()
 {
-	if(((MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE)) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
+	if((MIS_Addon_Greg_RakeCave == LOG_Running) || (MIS_Addon_Greg_RakeCave == LOG_FAILED) || (Greg_NoHelpInNW_Cave == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_00");	//И не думай, что я забыл, что ты мой должник.
 		if((MIS_Addon_Greg_BringMeToTheCity == LOG_Running) || (MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED))
@@ -109,9 +109,12 @@ func void B_UseRakeBilanz()
 			AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_02");	//Второй раз ты отказываешься выполнить мою просьбу.
 			Greg_NoHelpInNW = TRUE;
 		};
-		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_01");	//В различных местах Хориниса я зарыл несколько сотен золотых монет.
-		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_02");	//Ты их прикарманил, не так ли?
-		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_03");	//Я заставлю тебя отработать все до последнего медяка.
+		if(Greg_SuchWeiter == TRUE)
+		{
+			AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_01");	//В различных местах Хориниса я зарыл несколько сотен золотых монет.
+			AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_02");	//Ты их прикарманил, не так ли?
+			AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_03");	//Я заставлю тебя отработать все до последнего медяка.
+		};
 	}
 	else
 	{
@@ -660,7 +663,7 @@ func void DIA_Addon_Greg_RavenDead_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_RavenDead_15_00");	//С Вороном покончено...
 	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_01");	//Чтоб меня... Не ожидал я этого... Застал его врасплох, да?
-	if(Greg_NoHelpInNW == FALSE)
+	if((Greg_NoHelpInNW == FALSE) && (Greg_NoHelpInNW_Cave == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_02");	//Ну, на мой взгляд, это стоит пятиста золотых монет.
 		CreateInvItems(self,ItMi_Gold,500);

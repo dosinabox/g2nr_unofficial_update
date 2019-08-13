@@ -21,7 +21,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			Npc_RemoveInvItems(slf,ItMw_1h_Bau_Mace,Npc_HasItems(slf,ItMw_1h_Bau_Mace));
 		};
-		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(VLK_404_Lutero))
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero))
 		{
 			Npc_RemoveInvItems(slf,ItAt_CrawlerMandibles,Npc_HasItems(slf,ItAt_CrawlerMandibles));
 			Npc_RemoveInvItems(slf,ItAt_Sting,Npc_HasItems(slf,ItAt_Sting));
@@ -48,6 +48,7 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_Addon_KeilerFur,Npc_HasItems(slf,ItAt_Addon_KeilerFur));
 		Npc_RemoveInvItems(slf,ItAt_IceWolfFur,Npc_HasItems(slf,ItAt_IceWolfFur));
 		Npc_RemoveInvItems(slf,ItAt_Addon_BCKopf,Npc_HasItems(slf,ItAt_Addon_BCKopf));
+		Npc_RemoveInvItems(slf,ItAt_KeilerHorn,Npc_HasItems(slf,ItAt_KeilerHorn));
 //		Npc_RemoveInvItems(slf,ItFo_Apple,Npc_HasItems(slf,ItFo_Apple));
 		Npc_RemoveInvItems(slf,ItFo_Cheese,Npc_HasItems(slf,ItFo_Cheese));
 		Npc_RemoveInvItems(slf,ItFo_Bacon,Npc_HasItems(slf,ItFo_Bacon));
@@ -65,6 +66,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItFo_Water,Npc_HasItems(slf,ItFo_Water));
 		Npc_RemoveInvItems(slf,ItFo_Beer,Npc_HasItems(slf,ItFo_Beer));
 		Npc_RemoveInvItems(slf,ItFo_Booze,Npc_HasItems(slf,ItFo_Booze));
+		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lutero)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Sagitta)))
+		{
+			Npc_RemoveInvItems(slf,ItMi_Skull,Npc_HasItems(slf,ItMi_Skull));
+		};
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax))
 		{
 			Npc_RemoveInvItems(slf,ItFo_Wine,Npc_HasItems(slf,ItFo_Wine));

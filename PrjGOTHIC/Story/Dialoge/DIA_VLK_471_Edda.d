@@ -199,13 +199,13 @@ func void DIA_Edda_Statue_Info()
 	{
 		B_GiveInvItems(other,self,ItMi_InnosStatue,1);
 		B_GivePlayerXP(XP_Edda_Statue);
-		AI_Output(self,other,"DIA_Edda_Statue_17_01");	//Ох - огромное тебе спасибо. Да не оставит тебя свет Инноса...
+		AI_Output(self,other,"DIA_Edda_Statue_17_01");	//Ах - огромное тебе спасибо. Да не оставит тебя свет Инноса...
 	}
 	else if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
 	{
 		B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
 		B_GivePlayerXP(XP_Edda_Statue);
-		AI_Output(self,other,"DIA_Edda_Statue_17_01");	//Ох - огромное тебе спасибо. Да не оставит тебя свет Инноса...
+		AI_Output(self,other,"DIA_Edda_Statue_17_01");	//Ах - огромное тебе спасибо. Да не оставит тебя свет Инноса...
 	};
 	AI_Output(other,self,"DIA_Edda_Statue_15_02");	//Не стоит благодарностей.
 	

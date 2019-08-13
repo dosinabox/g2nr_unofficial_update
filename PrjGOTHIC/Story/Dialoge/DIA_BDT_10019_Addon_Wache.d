@@ -42,7 +42,14 @@ func void DIA_Addon_10019_Wache_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10019_Wache_Hi_06_00");	//Направляешься в шахту?
 	EnteredBanditsCamp = TRUE;
 	Info_ClearChoices(DIA_Addon_BDT_10019_Wache_Hi);
-	Info_AddChoice(DIA_Addon_BDT_10019_Wache_Hi,"Вообще-то я хотел увидеть Ворона.",DIA_Addon_BDT_10019_Wache_Hi_Raven);
+	if(RavenIsDead == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_BDT_10019_Wache_Hi,"Вообще-то я хотел увидеть Ворона.",DIA_Addon_BDT_10019_Wache_Hi_Raven);
+	}
+	else
+	{
+		Info_AddChoice(DIA_Addon_BDT_10019_Wache_Hi,"Может быть.",DIA_Addon_BDT_10019_Wache_Hi_Ja);
+	};
 	Info_AddChoice(DIA_Addon_BDT_10019_Wache_Hi,"Да.",DIA_Addon_BDT_10019_Wache_Hi_Ja);
 };
 
@@ -63,7 +70,14 @@ func void DIA_Addon_BDT_10019_Wache_Hi_Raven()
 
 func void DIA_Addon_BDT_10019_Wache_Hi_Ja()
 {
-	AI_Output(other,self,"DIA_Addon_BDT_10019_Wache_Hi_Ja_15_00");	//Да.
+	if(RavenIsDead == FALSE)
+	{
+		AI_Output(other,self,"DIA_Addon_BDT_10019_Wache_Hi_Ja_15_00");	//Да.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Brian_AboutLehrling_15_02");	//Может быть.
+	};
 	AI_Output(self,other,"DIA_Addon_BDT_10019_Wache_Hi_Ja_06_01");	//Тогда постарайся быть осторожнее, чем эти бедняги.
 	B_Say_Wache_kaputt();
 	Info_ClearChoices(DIA_Addon_BDT_10019_Wache_Hi);

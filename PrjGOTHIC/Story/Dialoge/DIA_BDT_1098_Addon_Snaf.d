@@ -172,10 +172,12 @@ func void DIA_Addon_Snaf_Booze_Info()
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_01");	//Прекрасно. Позволь мне приготовить соус.
 	AI_GotoWP(self,"BL_INN_BAR_03");
 	AI_UseMob(self,"CAULDRON",1);
-	AI_Wait(self,1);
+	AI_Wait(self,2);
 	AI_UseMob(self,"CAULDRON",-1);
 	AI_Wait(self,1);
-	AI_GotoNpc(self,other);
+//	AI_GotoNpc(self,other);
+	AI_GotoWP(self,"BL_INN_BAR_05");
+	AI_TurnToNPC(self,other);
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_02");	//Вот, готово. Можешь попробовать прямо сейчас. Силушки-то в ручонках прибавится, спору нет.
 	AI_Output(self,other,"DIA_Addon_Snaf_Booze_01_03");	//А еще, если тебе понадобится моя помощь... Теперь вся информация для тебя - бесплатно.
 	Snaf_Tip_Kosten = 0;
@@ -268,7 +270,7 @@ func void DIA_Addon_Snaf_Abrechnung_Info()
 		AI_Output(self,other,"DIA_Addon_Snaf_Abrechnung_01_03");	//Тебе нужно срочно исправить это и порвать с ним, иначе не видать тебе человека, что стоял за нападением.
 		if(Snaf_Tip_Senyan == FALSE)
 		{
-			B_LogEntry(Topic_Addon_Senyan,"Я должен порвать отношения с Сеньяном. Нападать на него напрямую было бы глупо, поэтому я должен сначала с ним поговорить.");
+			B_LogEntry(Topic_Addon_Senyan,"Я должен порвать отношения с Сеньяном. Но нападать на него напрямую было бы глупо, поэтому я должен сначала с ним поговорить.");
 			Snaf_Tip_Senyan = TRUE;
 		};
 	}

@@ -1,11 +1,6 @@
 
 func int C_AmIWeaponTrader(var C_Npc slf)
 {
-	/*if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cronos_NW))
-	{
-		return TRUE;
-	}
-	else*/
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Erol))
 	{
 		return TRUE;
@@ -26,14 +21,10 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 	{
 		return TRUE;
 	}
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(BDT_1086_Addon_Scatty))
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Scatty))
 	{
 		return TRUE;
 	}
-	/*else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet))
-	{
-		return TRUE;
-	}*/
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bennet_DI))
 	{
 		return TRUE;
@@ -46,11 +37,7 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 	{
 		return TRUE;
 	}
-	/*else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Gorax))
-	{
-		return TRUE;
-	}*/
-	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(VLK_407_Hakon))
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hakon))
 	{
 		return TRUE;
 	}
@@ -90,18 +77,10 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 	{
 		return TRUE;
 	}
-	/*else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Diego_DI))
-	{
-		return TRUE;
-	}*/
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Engor))
 	{
 		return TRUE;
 	}
-	/*else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Kjorn))
-	{
-		return TRUE;
-	}*/
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
 	{
 		return TRUE;
