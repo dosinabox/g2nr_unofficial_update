@@ -491,6 +491,7 @@ func void DIA_Pyrokar_OATH_Info()
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
 	Npc_ExchangeRoutine(Lothar,"START");
+	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	KDF_Aufnahme = LOG_SUCCESS;
 //	SLD_Aufnahme = LOG_OBSOLETE;
 //	MIL_Aufnahme = LOG_OBSOLETE;

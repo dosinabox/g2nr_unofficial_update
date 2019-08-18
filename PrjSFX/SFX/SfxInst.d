@@ -10265,6 +10265,12 @@ instance RUN_SNOW_A2(C_SFX_DEF)
 	vol = 45;
 };
 
+instance RUN_SNOW_A3(C_SFX_DEF)
+{
+	file = "Step_Snow_04.wav";
+	vol = 45;
+};
+
 instance TURN_SNOW(C_SFX_DEF)
 {
 	file = "Step_Snow_01.wav";

@@ -79,7 +79,7 @@ func void DIA_Addon_Patrick_Hi_Raven()
 func void DIA_Addon_Patrick_Hi_Kill()
 {
 	AI_Output(other,self,"DIA_Addon_Patrick_Hi_Kill_15_00");	//Мне нужно перебить всех бандитов до единого?
-	AI_Output(self,other,"DIA_Addon_Patrick_Hi_Kill_07_01");	//(испуганно) Это было бы безумием!
+	AI_Output(self,other,"DIA_Addon_Patrick_Hi_Kill_07_01");	//(испуганно) Хм. Это было бы безумием!
 	B_Say_Patrick_Plan();
 	Info_ClearChoices(DIA_Addon_Patrick_Hi);
 };
