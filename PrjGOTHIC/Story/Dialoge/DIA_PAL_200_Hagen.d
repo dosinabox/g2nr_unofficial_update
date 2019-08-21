@@ -952,7 +952,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	Wld_InsertNpc(DMT_1209_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	Wld_InsertNpc(DMT_1210_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	Wld_InsertNpc(DMT_1211_Dementor,"NW_TROLLAREA_RITUALPATH_01");
-	B_RemoveNpc(Pedro);
+	B_RemoveNpc(NOV_600_Pedro);
 /*	if(Npc_IsDead(MiltenNW))
 	{
 		Wld_InsertNpc(PC_Mage_NW,"NW_MONASTERY_ENTRY_01");

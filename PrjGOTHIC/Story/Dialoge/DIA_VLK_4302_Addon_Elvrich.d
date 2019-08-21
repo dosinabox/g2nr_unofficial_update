@@ -400,9 +400,12 @@ func void DIA_Addon_Elvrich_WasNun_Info()
 	AI_Output(self,other,"OUTRO_Xardas_04_00");	//До встречи!
 	CreateInvItem(self,ItMw_1h_Vlk_Axe);
 	AI_EquipBestMeleeWeapon(self);
-	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-	B_LogEntry(TOPIC_Addon_MissingPeople,"Элврих вернулся к мастеру Торбену.");
+	if(MissingPeopleReturnedHome == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+	};
+	B_LogEntry(TOPIC_Addon_MissingPeople,"Элврих отправился обратно к мастеру Торбену.");
 	Elvrich_GoesBack2Thorben = TRUE;
 	AI_EquipBestMeleeWeapon(self);
 	Npc_ExchangeRoutine(self,"BACKINTHECITY");

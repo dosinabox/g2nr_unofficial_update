@@ -98,7 +98,7 @@ instance DIA_Halvor_Hallo(C_Info)
 
 func int DIA_Halvor_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Wld_IsTime(5,0,20,0))
+	if(Npc_IsInState(self,ZS_Talk) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -272,7 +272,7 @@ instance DIA_Halvor_MESSAGE(C_Info)
 
 func int DIA_Halvor_MESSAGE_Condition()
 {
-	if(Npc_HasItems(other,ItWr_HalvorMessage) && (Knows_Halvor == TRUE))
+	if(Npc_HasItems(other,ItWr_HalvorMessage) && (Knows_Halvor == TRUE) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -468,10 +468,18 @@ func int DIA_Halvor_Crew_Condition()
 func void DIA_Halvor_Crew_Info()
 {
 	AI_Output(other,self,"DIA_Halvor_Crew_15_00");	//Я набираю команду.
-	AI_Output(self,other,"DIA_Halvor_Crew_06_01");	//А как ты планируешь уплыть отсюда?
-	Info_ClearChoices(DIA_Halvor_Crew);
-	Info_AddChoice(DIA_Halvor_Crew,"Это мое дело.",DIA_Halvor_Crew_MyThing);
-	Info_AddChoice(DIA_Halvor_Crew,"Здесь есть подходящий корабль.",DIA_Halvor_Crew_StealShip);
+	if(Betrayal_Halvor == FALSE)
+	{
+		AI_Output(self,other,"DIA_Halvor_Crew_06_01");	//А как ты планируешь уплыть отсюда?
+		Info_ClearChoices(DIA_Halvor_Crew);
+		Info_AddChoice(DIA_Halvor_Crew,"Это мое дело.",DIA_Halvor_Crew_MyThing);
+		Info_AddChoice(DIA_Halvor_Crew,"Здесь есть подходящий корабль.",DIA_Halvor_Crew_StealShip);
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	};
 };
 
 func void DIA_Halvor_Crew_MyThing()
@@ -492,10 +500,7 @@ func void DIA_Halvor_Crew_StealShip()
 	Info_ClearChoices(DIA_Halvor_Crew);
 	Info_AddChoice(DIA_Halvor_Crew,Dialog_Back,DIA_Halvor_Crew_BACK);
 	Info_AddChoice(DIA_Halvor_Crew,"Хочешь плыть со мной?",DIA_Halvor_Crew_JoinMe);
-	if(!Npc_IsDead(Jack))
-	{
-		Info_AddChoice(DIA_Halvor_Crew,"Ты можешь помочь мне?",DIA_Halvor_Crew_HelpMe);
-	};
+	Info_AddChoice(DIA_Halvor_Crew,"Ты можешь помочь мне?",DIA_Halvor_Crew_HelpMe);
 };
 
 func void DIA_Halvor_Crew_JoinMe()
@@ -508,12 +513,18 @@ func void DIA_Halvor_Crew_JoinMe()
 func void DIA_Halvor_Crew_HelpMe()
 {
 	AI_Output(other,self,"DIA_Halvor_Crew_HelpMe_15_00");	//Ты можешь помочь мне?
-	AI_Output(self,other,"DIA_Halvor_Crew_HelpMe_06_01");	//Я не очень подхожу для этого. Лучше поговори с Джеком, он должен ошиваться где-то здесь, в гавани. Он лучше знает, что тебе нужно для этого путешествия.
+	if(!Npc_IsDead(Jack))
+	{
+		AI_Output(self,other,"DIA_Halvor_Crew_HelpMe_06_01");	//Я не очень подхожу для этого. Лучше поговори с Джеком, он должен ошиваться где-то здесь, в гавани. Он лучше знает, что тебе нужно для этого путешествия.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Huno_Attentat_06_04");	//Я ничего об этом не знаю и знать не хочу!
+	};
 };
 
 func void DIA_Halvor_Crew_BACK()
 {
 	Info_ClearChoices(DIA_Halvor_Crew);
 };
-
 

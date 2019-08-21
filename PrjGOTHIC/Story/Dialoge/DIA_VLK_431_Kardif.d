@@ -763,6 +763,7 @@ func void DIA_Kardif_SENDATTILA_Info()
 		Kardif_Deal = 10;
 	};
 	Wld_InsertNpc(VLK_494_Attila,"NW_CITY_HABOUR_POOR_AREA_BACK_ALLEY_02");
+	B_InitNpcGlobals();
 	if((NagurHack == TRUE) || (MIS_Nagur_Bote == LOG_FAILED))
 	{
 		MIS_ThiefGuild_sucked = TRUE;

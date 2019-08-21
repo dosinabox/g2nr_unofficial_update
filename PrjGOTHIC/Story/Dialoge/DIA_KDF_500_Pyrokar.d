@@ -130,7 +130,7 @@ instance DIA_Addon_Pyrokar_MissingPeople(C_Info)
 
 func int DIA_Addon_Pyrokar_MissingPeople_Condition()
 {
-	if((SC_HearedAboutMissingPeople == TRUE) && (Sklaven_Flucht == FALSE))
+	if((SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};

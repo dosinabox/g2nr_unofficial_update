@@ -246,13 +246,19 @@ func void DIA_Addon_Farim_William_Info()
 	AI_Output(self,other,"DIA_Addon_Farim_William_11_02");	//Ему следовало держаться подальше от этой шайки.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Garvell_MissingPeopleMore))
 	{
-		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		if(MissingPeopleReturnedHome == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
 	};
 	Info_ClearChoices(DIA_Addon_Farim_William);
 	Info_AddChoice(DIA_Addon_Farim_William,"Но что это были за люди?",DIA_Addon_Farim_William_typen);
-	Info_AddChoice(DIA_Addon_Farim_William,"Думаю, он еще появится.",DIA_Addon_Farim_William_auftauchen);
+	if(FoundDeadWilliam == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Farim_William,"Думаю, он еще появится.",DIA_Addon_Farim_William_auftauchen);
+	};
 	Info_AddChoice(DIA_Addon_Farim_William,"Чем он занимался?",DIA_Addon_Farim_William_WasGemacht);
 	Info_AddChoice(DIA_Addon_Farim_William,"Когда ты видел Вильяма в последний раз?",DIA_Addon_Farim_William_WannWeg);
 };
@@ -290,7 +296,10 @@ func void DIA_Addon_Farim_William_WannWeg()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_William_WannWeg_15_00");	//Когда ты видел Вильяма в последний раз?
 	AI_Output(self,other,"DIA_Addon_Farim_William_WannWeg_11_01");	//Несколько дней назад.
-	Info_AddChoice(DIA_Addon_Farim_William,"Может быть, он просто ушел в море рыбачить?",DIA_Addon_Farim_William_Fischen);
+	if(FoundDeadWilliam == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Farim_William,"Может быть, он просто ушел в море рыбачить?",DIA_Addon_Farim_William_Fischen);
+	};
 };
 
 func void DIA_Addon_Farim_William_Fischen()
@@ -376,6 +385,7 @@ func void DIA_Addon_Farim_WilliamReport_Info()
 	AI_Output(self,other,"DIA_Addon_Farim_Add_11_03");	//(вздыхает) Так я и думал.
 	AI_Output(self,other,"DIA_Addon_Farim_Add_11_04");	//Что ж, спасибо, что рассказал.
 	AI_Output(self,other,"DIA_Addon_Farim_Add_11_05");	//(вздыхает) Пойду-ка я в кабак и пропью его долю из нашего последнего улова. Он бы хотел, чтобы я так поступил...
+	FoundDeadWilliam = TRUE;
 	Npc_ExchangeRoutine(self,"Rest");
 };
 

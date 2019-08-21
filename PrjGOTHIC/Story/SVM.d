@@ -2895,7 +2895,7 @@ instance SVM_16(C_SVM)
 	whereto = "SVM_16_WHERETO";	// уда ты хочешь попасть?
 	oberstadt_2_unterstadt = "SVM_16_OBERSTADT_2_UNTERSTADT";	//ѕройди через внутренние ворота, и ты окажешьс€ в нижней части города.
 	unterstadt_2_oberstadt = "SVM_16_UNTERSTADT_2_OBERSTADT";	//ќт южных ворот города начинаетс€ лестница, ведуща€ к внутренним городским воротам. “ам и начинаетс€ верхний квартал.
-	unterstadt_2_tempel = "SVM_16_UNTERSTADT_2_TEMPEL";	//ѕройди через проход у кузницы, и ты попадешь на храмовую площадь.
+	unterstadt_2_tempel = "SVM_16_UNTERSTADT_2_TEMPEL";	//ѕройди через проход кузницы, и ты попадешь на храмовую площадь.
 	unterstadt_2_hafen = "SVM_16_UNTERSTADT_2_HAFEN";	//»ди по дороге от кузницы вниз, и ты попадешь в порт.
 	tempel_2_unterstadt = "SVM_16_TEMPEL_2_UNTERSTADT";	//ќт храмовой площади в нижнюю часть города ведет проход.
 	tempel_2_markt = "SVM_16_TEMPEL_2_MARKT";	//¬стань лицом к храму, а затем иди влево, вдоль городской стены, и ты попадешь на рынок.
@@ -3069,7 +3069,7 @@ instance SVM_17(C_SVM)
 	whereto = "SVM_17_WHERETO";	// уда ты хочешь попасть?
 	oberstadt_2_unterstadt = "SVM_17_OBERSTADT_2_UNTERSTADT";	//ѕройди через внутренние ворота, и ты окажешьс€ в нижней части города.
 	unterstadt_2_oberstadt = "SVM_17_UNTERSTADT_2_OBERSTADT";	//ќт южных ворот города начинаетс€ лестница, ведуща€ к внутренним городским воротам. “ам и начинаетс€ верхний квартал.
-	unterstadt_2_tempel = "SVM_17_UNTERSTADT_2_TEMPEL";	//ѕройди через проход у кузницы, и ты попадешь на храмовую площадь.
+	unterstadt_2_tempel = "SVM_17_UNTERSTADT_2_TEMPEL";	//ѕройди через проход кузницы, и ты попадешь на храмовую площадь.
 	unterstadt_2_hafen = "SVM_17_UNTERSTADT_2_HAFEN";	//»ди по дороге от кузницы вниз, и ты попадешь в порт.
 	tempel_2_unterstadt = "SVM_17_TEMPEL_2_UNTERSTADT";	//ќт храмовой площади в нижнюю часть города ведет проход.
 	tempel_2_markt = "SVM_17_TEMPEL_2_MARKT";	//¬стань лицом к храму, а затем иди влево, вдоль городской стены, и ты попадешь на рынок.

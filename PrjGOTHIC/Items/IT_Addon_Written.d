@@ -235,8 +235,11 @@ func void Use_William_01()
 	Doc_Show(nDocID);
 	if(FoundDeadWilliam == FALSE)
 	{
-		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		if(Sklaven_Flucht == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,"–ыбак из ’ориниса ¬иль€м мертв. я нашел его тело в яркендаре.");
 		FoundDeadWilliam = TRUE;
 	};

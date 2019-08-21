@@ -73,22 +73,28 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 	AI_Output(other,self,"DIA_Addon_Riordian_WhatToFind_15_00");	//Что вы здесь уже обнаружили?
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_03");	//На востоке, недалеко отсюда, мы нашли тело рыбака.
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_04");	//Тебе стоит на него взглянуть.
-	if(!Npc_HasItems(VLK_4304_Addon_William,ITWr_Addon_William_01))
+	if(!Npc_HasItems(William,ITWr_Addon_William_01))
 	{
 		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
 		if(FoundDeadWilliam == FALSE)
 		{
-			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			if(Sklaven_Flucht == FALSE)
+			{
+				Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			};
 			B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
 		};
 		FoundDeadWilliam = TRUE;
 	}
 	else if(!Npc_KnowsInfo(other,DIA_Addon_Saturas_MissingPeople))
 	{
-		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		if(Sklaven_Flucht == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
 	};
 	AI_Output(self,other,"DIA_Addon_Riordian_WhatToFind_10_01");	//На востоке раскинулось огромное болото, на котором находится большая крепость.

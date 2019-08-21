@@ -92,7 +92,7 @@ func void B_Andre_CantharFalle()
 		B_GiveTradeInv_Sarah(Sarah);
 		B_RemoveSarahWeapons();
 	};
-	B_RemoveNpc(Sarah);
+	B_RemoveNpc(VLK_470_Sarah);
 	if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
 	{
 		B_NpcSetReleased(Canthar);
@@ -1650,7 +1650,7 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		if((Nadja_Victim == TRUE) || (Npc_IsDead(Nadja) && (Knows_Borka_Dealer == FALSE)))
 		{
 			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_03");	//Эта девочка из Красного Фонаря, Надя, мертва. Возможно, это просто случайное совпадение.
-			B_RemoveNpc(Nadja);
+			B_RemoveNpc(VLK_435_Nadja);
 		};
 		if(Undercover_Failed == TRUE)
 		{

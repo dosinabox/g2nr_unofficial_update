@@ -839,8 +839,11 @@ func void DIA_Addon_Lares_PeopleMissing_TellMe()
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
 		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
-		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		if(MissingPeopleReturnedHome == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
 		SC_HearedAboutMissingPeople = TRUE;
 	};

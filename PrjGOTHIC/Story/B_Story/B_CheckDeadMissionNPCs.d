@@ -1,7 +1,7 @@
 
 func void B_CheckDeadMissionNPCs(var C_Npc slf)
 {
-	if(RemoveSklaven == FALSE)
+	if(MissingPeopleReturnedHome == FALSE)
 	{
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Patrick))
 		{

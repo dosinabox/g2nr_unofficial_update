@@ -328,6 +328,9 @@ var C_Npc Tandor;
 var C_Npc Khaled;
 var C_Npc Meldor;
 var C_Npc Daron;
+var C_Npc Lance;
+var C_Npc William;
+var C_Npc Hank;
 
 func void B_InitNpcGlobals()
 {
@@ -664,5 +667,8 @@ func void B_InitNpcGlobals()
 	Khaled = Hlp_GetNpc(SLD_823_Khaled);
 	Meldor = Hlp_GetNpc(VLK_415_Meldor);
 	Daron = Hlp_GetNpc(KDF_511_Daron);
+	Lance = Hlp_GetNpc(NONE_Addon_114_Lance_ADW);
+	William = Hlp_GetNpc(VLK_4304_Addon_William);
+	Hank = Hlp_GetNpc(PIR_1371_Addon_Hank);
 };
 

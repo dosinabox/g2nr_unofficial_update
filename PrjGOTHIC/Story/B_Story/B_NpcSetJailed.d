@@ -6,13 +6,13 @@ func void B_UnequipWeapons(var C_Npc slf)
 	{
 		Weapon = Npc_GetEquippedMeleeWeapon(slf);
 		Npc_RemoveInvItem(slf,Hlp_GetInstanceID(Weapon));
-		CreateInvItem(slf,Hlp_GetInstanceID(Weapon));
+//		CreateInvItem(slf,Hlp_GetInstanceID(Weapon));
 	};
 	if(Npc_HasEquippedRangedWeapon(slf))
 	{
 		Weapon = Npc_GetEquippedRangedWeapon(slf);
 		Npc_RemoveInvItem(slf,Hlp_GetInstanceID(Weapon));
-		CreateInvItem(slf,Hlp_GetInstanceID(Weapon));
+//		CreateInvItem(slf,Hlp_GetInstanceID(Weapon));
 	};
 };
 
