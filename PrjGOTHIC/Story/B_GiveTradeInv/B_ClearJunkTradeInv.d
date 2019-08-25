@@ -48,7 +48,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_Addon_KeilerFur,Npc_HasItems(slf,ItAt_Addon_KeilerFur));
 		Npc_RemoveInvItems(slf,ItAt_IceWolfFur,Npc_HasItems(slf,ItAt_IceWolfFur));
 		Npc_RemoveInvItems(slf,ItAt_Addon_BCKopf,Npc_HasItems(slf,ItAt_Addon_BCKopf));
-		Npc_RemoveInvItems(slf,ItAt_KeilerHorn,Npc_HasItems(slf,ItAt_KeilerHorn));
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Sagitta))
+		{
+			Npc_RemoveInvItems(slf,ItAt_KeilerHorn,Npc_HasItems(slf,ItAt_KeilerHorn));
+		};
 //		Npc_RemoveInvItems(slf,ItFo_Apple,Npc_HasItems(slf,ItFo_Apple));
 		Npc_RemoveInvItems(slf,ItFo_Cheese,Npc_HasItems(slf,ItFo_Cheese));
 		Npc_RemoveInvItems(slf,ItFo_Bacon,Npc_HasItems(slf,ItFo_Bacon));
@@ -107,6 +110,8 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItPl_Planeberry,Npc_HasItems(slf,ItPl_Planeberry));
 		Npc_RemoveInvItems(slf,ItLsTorchburned,Npc_HasItems(slf,ItLsTorchburned));
 		Npc_RemoveInvItems(slf,ItWr_Poster_MIS,Npc_HasItems(slf,ItWr_Poster_MIS));
+		Npc_RemoveInvItem(slf,ItSE_Addon_EmptyFrancisChest);
+		Npc_RemoveInvItem(slf,ItMi_Addon_Bloodwyn_Kopf);
 		Npc_RemoveInvItem(slf,ITWr_Addon_Hinweis_01);
 		Npc_RemoveInvItem(slf,ITWr_Addon_Hinweis_02);
 		Npc_RemoveInvItem(slf,ITWr_Addon_William_01);

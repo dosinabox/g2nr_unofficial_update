@@ -264,7 +264,10 @@ func void DIA_Bengar_REBELLIEREN_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_REBELLIEREN_15_00");	//„то ты думаешь об ќнаре?
 	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_01");	//Ёто жадный ублюдок. »з-за него нас всех повес€т.
-	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_02");	//ќднажды придут паладины из города и застав€т нас, мелких фермеров, расплачиватьс€ за все, что он наделал.
+	if(hero.guild != GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_02");	//ќднажды придут паладины из города и застав€т нас, мелких фермеров, расплачиватьс€ за все, что он наделал.
+	};
 	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_03");	//Ќо у мен€ нет выбора. ќполчение приходит сюда только затем, чтобы собирать налоги, а не затем, чтобы защищать мою ферму.
 	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_04");	//≈сли € буду про€вл€ть ло€льность к городу, € останусь совсем один.
 	AI_Output(self,other,"DIA_Bengar_REBELLIEREN_10_05");	//ј так, ќнар хот€ бы иногда присылает наемников посмотреть, как мы тут живем.

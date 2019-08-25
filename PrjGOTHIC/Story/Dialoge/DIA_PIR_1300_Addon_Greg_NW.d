@@ -550,6 +550,7 @@ func void DIA_Addon_Greg_NW_RakeCaveThere_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_00");	//Ну что, приятель, вот и пещера.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_01");	//Вот тебе кирка.
+	AI_WaitTillEnd(other,self);
 	B_GiveInvItems(self,other,ItMw_2H_Axe_L_01,1);
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCaveThere_01_02");	//Я закопал свои вещи где-то внутри. Место отмечено крестом.
 	B_Greg_GoNow();

@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Sarah(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Sarah_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,20);
+//		CreateInvItems(slf,ItMi_Gold,20);
 		CreateInvItems(slf,ItLsTorch,20);
 		CreateInvItems(slf,ItRw_Arrow,50);
 		CreateInvItems(slf,ItMw_ShortSword3,1);
@@ -34,7 +34,7 @@ func void B_GiveTradeInv_Sarah(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Sarah_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,20);
+//		CreateInvItems(slf,ItMi_Gold,20);
 		CreateInvItems(slf,ItLsTorch,5);
 		CreateInvItems(slf,ItRw_Arrow,50);
 		CreateInvItems(slf,ItMw_Stabkeule,1);
@@ -45,7 +45,7 @@ func void B_GiveTradeInv_Sarah(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Sarah_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,25);
+//		CreateInvItems(slf,ItMi_Gold,25);
 		CreateInvItems(slf,ItRw_Arrow,50);
 		CreateInvItems(slf,ItMw_Zweihaender2,1);
 		CreateInvItems(slf,ItMw_Schwert5,1);
@@ -55,7 +55,7 @@ func void B_GiveTradeInv_Sarah(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Sarah_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,50);
 		CreateInvItems(slf,ItMw_Zweihaender4,1);
 		CreateInvItems(slf,ItMw_Krummschwert,1);
@@ -63,7 +63,7 @@ func void B_GiveTradeInv_Sarah(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Sarah_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItRw_Arrow,50);
 		Sarah_ItemsGiven_Chapter_5 = TRUE;
 	};

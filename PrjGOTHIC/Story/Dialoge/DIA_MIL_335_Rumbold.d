@@ -73,13 +73,13 @@ func int DIA_Rumbold_Hallo_Condition()
 func void DIA_Rumbold_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Rumbold_Hallo_10_00");	//Посмотрите на него! Еще один клоун! Что ты здесь делаешь, а?
-	if(other.guild == GIL_NONE)
+	if(C_SLDorDJGArmorEquipped(other))
 	{
-		AI_Output(self,other,"DIA_Rumbold_Hallo_10_01");	//Кто ты, черт тебя побери?
+		AI_Output(self,other,"DIA_Rumbold_Hallo_10_02");	//Еще один из этих грязных наемников!
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rumbold_Hallo_10_02");	//Еще один из этих грязных наемников!
+		AI_Output(self,other,"DIA_Rumbold_Hallo_10_01");	//Кто ты, черт тебя побери?
 	};
 	Info_ClearChoices(DIA_Rumbold_Hallo);
 	Info_AddChoice(DIA_Rumbold_Hallo,"Я никто.",DIA_Rumbold_HALLO_schwanzeinziehen);

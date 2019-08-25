@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Hakon_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMw_ShortSword3,1);
 		CreateInvItems(slf,ItMw_ShortSword4,1);
 		CreateInvItems(slf,ItMw_Richtstab,1);
@@ -25,7 +25,7 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Hakon_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMw_Steinbrecher,1);
 		CreateInvItems(slf,ItMw_Doppelaxt,2);
 		CreateInvItems(slf,ItMw_Streitkolben,1);
@@ -39,14 +39,14 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Streitkolben,1);
 		CreateInvItems(slf,ItMw_Schwert3,1);
 		CreateInvItems(slf,ItMw_Orkschlaechter,2);
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMiSwordraw,5);
 		CreateInvItems(slf,ItBe_Addon_Prot_Point,1);
 		Hakon_ItemsGiven_Chapter_3 = TRUE;
 	};
 	if((Kapitel >= 4) && (Hakon_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItMiSwordraw,5);
 		CreateInvItems(slf,ItMw_Schlachtaxt,1);
 		CreateInvItems(slf,ItBe_Addon_Prot_EDGE,1);
@@ -55,7 +55,7 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Hakon_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItMiSwordraw,5);
 		Hakon_ItemsGiven_Chapter_5 = TRUE;
 	};

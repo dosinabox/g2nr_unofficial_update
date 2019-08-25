@@ -31,6 +31,10 @@ func void ZS_Unconscious()
 		{
 			DJG_or_SLD_Bullco_Defeated = TRUE;
 		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Valentino))
+		{
+			Valentino_Day = B_GetDayPlus();
+		};
 	};
 	if(C_NpcIsHero(self))
 	{

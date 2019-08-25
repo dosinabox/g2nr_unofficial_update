@@ -1664,13 +1664,22 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		AI_Teleport(Borka,"NW_CITY_HABOUR_KASERN_BORKA");
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_05");	//Я знаю, кто распространяет траву в городе. Это Борка, вышибала в Красном Фонаре.
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
-		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_07");	//Он продал мне болотной травы.
-		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_08");	//Отлично, этого достаточно для нас. Я прикажу немедленно арестовать его.
-		B_AndreSold();
-		B_NpcSetJailed(Borka);
-		B_StartOtherRoutine(Borka,"PRISON");
-		MIS_Andre_REDLIGHT = LOG_SUCCESS;
-		B_GivePlayerXP(XP_Redlight);
+		if(!Npc_HasItems(other,ItMi_Joint))
+		{
+			AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_07");	//Он продал мне болотной травы.
+			B_GiveInvItems(other,self,ItMi_Joint,1);
+			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_08");	//Отлично, этого достаточно для нас. Я прикажу немедленно арестовать его.
+			B_AndreSold();
+			B_NpcSetJailed(Borka);
+			B_StartOtherRoutine(Borka,"PRISON");
+			MIS_Andre_REDLIGHT = LOG_SUCCESS;
+			B_GivePlayerXP(XP_Redlight);
+		};
 	}
 	else
 	{

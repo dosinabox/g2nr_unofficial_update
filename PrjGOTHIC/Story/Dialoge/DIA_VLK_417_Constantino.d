@@ -589,6 +589,7 @@ func void DIA_Constantino_LEHRLING_Yes()
 	Wld_AssignRoomToGuild("alchemist",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
+	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 	B_LogEntry(Topic_Bonus,"Константино принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
 	Info_ClearChoices(DIA_Constantino_LEHRLING);
 };

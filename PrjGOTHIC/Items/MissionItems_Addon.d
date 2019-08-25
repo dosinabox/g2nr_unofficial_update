@@ -117,7 +117,7 @@ instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
 {
 	name = "Карта Нефариуса";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION | ITEM_MULTI;
+	flags = ITEM_MULTI;
 	value = 200;
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
@@ -155,7 +155,7 @@ instance ItWr_Map_NewWorld_Dexter(C_Item)
 {
 	name = "Карта земель Хориниса";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION | ITEM_MULTI;
+	flags = ITEM_MULTI;
 	value = 200;
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
@@ -1314,7 +1314,7 @@ instance ItWR_Addon_TreasureMap(C_Item)
 {
 	name = "Карта сокровищ";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION | ITEM_MULTI;
+	flags = ITEM_MULTI;
 	value = 250;
 	visual = "ItWr_Map_AW.3DS";
 	material = MAT_LEATHER;

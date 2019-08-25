@@ -220,7 +220,7 @@ instance DIA_Kardif_TRADE(C_Info)
 
 func int DIA_Kardif_TRADE_Condition()
 {
-	if((Kardif_OneQuestion == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
+	if((Kardif_OneQuestion == FALSE) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
 	{
 		return TRUE;
 	};
@@ -233,34 +233,7 @@ func void DIA_Kardif_TRADE_Info()
 	Trade_IsActive = TRUE;
 };
 
-/////////////////////////////////////////////////////
-instance DIA_Kardif_NOTRADE(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 2;
-	condition = DIA_Kardif_NOTRADE_Condition;
-	information = DIA_Kardif_NOTRADE_Info;
-	permanent = TRUE;
-	description = "Дай мне что-нибудь выпить.";
-};
 
-
-func int DIA_Kardif_NOTRADE_Condition()
-{
-	if((Kardif_OneQuestion == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kardif_NOTRADE_Info()
-{
-	AI_Output(other,self,"DIA_Kardif_TRADE_15_00");	//Дай мне что-нибудь выпить.
-	AI_Output(self,other,"DIA_Kardif_Hallo_14_01");	//А тебе какое до этого дело?
-	AI_StopProcessInfos(self);
-};
-
-/////////////////////////////////////////////////////
 instance DIA_Kardif_TradeInfo(C_Info)
 {
 	npc = VLK_431_Kardif;

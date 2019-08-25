@@ -85,7 +85,7 @@ instance DIA_PAL_12_LOCATION(C_Info)
 
 func int DIA_PAL_12_LOCATION_Condition()
 {
-	if(Kapitel == 1)
+	if(KnowsPaladins_Ore == FALSE)
 	{
 		return TRUE;
 	};
@@ -94,7 +94,10 @@ func int DIA_PAL_12_LOCATION_Condition()
 func void DIA_PAL_12_LOCATION_Info()
 {
 	AI_Output(other,self,"DIA_PAL_12_LOCATION_15_00");	//Что вы, паладины, делаете здесь, в Хоринисе?
-	AI_Output(self,other,"DIA_PAL_12_LOCATION_12_01");	//Люди, задающие такие вопросы, кончают свою жизнь на виселице еще до того, как узнают это.
+	if((other.guild != GIL_PAL) && (other.guild != GIL_KDF))
+	{
+		AI_Output(self,other,"DIA_PAL_12_LOCATION_12_01");	//Люди, задающие такие вопросы, кончают свою жизнь на виселице еще до того, как узнают это.
+	};
 	AI_Output(self,other,"DIA_PAL_12_LOCATION_12_02");	//ЕДИНСТВЕННОЕ, что лорд Андрэ не может себе позволить, это допустить, чтобы информация о наших задачах попала в руки шпионов.
 	AI_Output(self,other,"DIA_PAL_12_LOCATION_12_03");	//Так что лучше следи за своими вопросами.
 };

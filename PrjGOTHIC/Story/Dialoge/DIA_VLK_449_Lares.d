@@ -1898,6 +1898,7 @@ func void DIA_Addon_Lares_ArrivedPortal_Info()
 		AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
 	};
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_01");	//Возьми орнамент. Маги Воды должны быть где-то внизу. Отнеси орнамент им.
+	AI_WaitTillEnd(other,self);
 	B_GiveInvItems(self,other,ItMi_Ornament_Addon_Vatras,1);
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_02");	//Если внизу ты встретишь каких-нибудь диких зверей, с которыми не сможешь справиться, беги к Сатурасу.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_03");	//Он с ними разберется. Ну а мне нужно возвращаться.

@@ -55,7 +55,11 @@ instance DIA_PAL_205_Torwache_FirstWarn(C_Info)
 
 func int DIA_PAL_205_Torwache_FirstWarn_Condition()
 {
-	if(Npc_GetDistToWP(other,PAL_205_Checkpoint) <= 550)
+	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	{
+		return FALSE;
+	}
+	else if(Npc_GetDistToWP(other,PAL_205_Checkpoint) <= 550)
 	{
 		Npc_SetRefuseTalk(self,5);
 		return FALSE;
@@ -104,7 +108,11 @@ instance DIA_PAL_205_Torwache_SecondWarn(C_Info)
 
 func int DIA_PAL_205_Torwache_SecondWarn_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	{
+		return FALSE;
+	}
+	else if((self.aivar[AIV_Guardpassage_Status] == GP_FirstWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -132,7 +140,11 @@ instance DIA_PAL_205_Torwache_Attack(C_Info)
 
 func int DIA_PAL_205_Torwache_Attack_Condition()
 {
-	if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
+	if((MILArmor_Equipped == TRUE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	{
+		return FALSE;
+	}
+	else if((self.aivar[AIV_Guardpassage_Status] == GP_SecondWarnGiven) && (self.aivar[AIV_PASSGATE] == FALSE) && Hlp_StrCmp(Npc_GetNearestWP(self),self.wp) && (Npc_GetDistToWP(other,PAL_205_Checkpoint) < (other.aivar[AIV_LastDistToWP] - 50)))
 	{
 		return TRUE;
 	};
@@ -173,6 +185,34 @@ func void DIA_PAL_205_Torwache_Hagen_Info()
 {
 	AI_Output(other,self,"DIA_PAL_205_Torwache_Hagen_15_00");	//Мне нужно поговорить с лордом Хагеном!
 	AI_Output(self,other,"DIA_PAL_205_Torwache_Hagen_12_01");	//Да ты знаешь, как часто я слышу это? Я не пущу тебя. А если ты все же попытаешься войти, мне придется убить тебя.
+	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_PAL_205_Torwache_PassAsArmoredMil(C_Info)
+{
+	npc = PAL_205_Torwache;
+	nr = 3;
+	condition = DIA_PAL_205_Torwache_PassAsArmoredMil_Condition;
+	information = DIA_PAL_205_Torwache_PassAsArmoredMil_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_PAL_205_Torwache_PassAsArmoredMil_Condition()
+{
+	if((MILArmor_Equipped == TRUE) && (PAL_205_schonmalreingelassen == FALSE) && (B_GetGreatestPetzCrime(self) < CRIME_ATTACK))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_PAL_205_Torwache_PassAsArmoredMil_Info()
+{
+	AI_Output(self,other,"DIA_PAL_205_Torwache_PassAsMil_12_01");	//Хорошо, ты можешь войти.
+	self.aivar[AIV_PASSGATE] = TRUE;
+	PAL_205_schonmalreingelassen = TRUE;
 	AI_StopProcessInfos(self);
 };
 

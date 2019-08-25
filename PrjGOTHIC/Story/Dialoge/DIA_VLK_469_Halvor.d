@@ -106,14 +106,7 @@ func int DIA_Halvor_Hallo_Condition()
 
 func void DIA_Halvor_Hallo_Info()
 {
-	if(self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST)
-	{
-		AI_Output(self,other,"DIA_Halvor_Hallo_06_00");	//Эй, тебе нужна рыба? У меня очень хорошая рыба - с самых глубин моря!
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_03");	//Ты пожалеешь об этом.
-	};
+	AI_Output(self,other,"DIA_Halvor_Hallo_06_00");	//Эй, тебе нужна рыба? У меня очень хорошая рыба - с самых глубин моря!
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Халвор торгует рыбой в гавани.");
 };
@@ -133,7 +126,7 @@ instance DIA_Halvor_TRADE(C_Info)
 
 func int DIA_Halvor_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Halvor_Hallo) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(hero,DIA_Halvor_Hallo) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -147,34 +140,6 @@ func void DIA_Halvor_TRADE_Info()
 };
 
 
-////////////////////////////////////////
-instance DIA_Halvor_NOTRADE(C_Info)
-{
-	npc = VLK_469_Halvor;
-	nr = 2;
-	condition = DIA_Halvor_NOTRADE_Condition;
-	information = DIA_Halvor_NOTRADE_Info;
-	permanent = TRUE;
-	description = "Покажи мне свою рыбу.";
-};
-
-
-func int DIA_Halvor_NOTRADE_Condition()
-{
-	if(Npc_KnowsInfo(hero,DIA_Halvor_Hallo) && (Halvor_Ausgeliefert == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Halvor_NOTRADE_Info()
-{
-	AI_Output(other,self,"DIA_Halvor_TRADE_15_00");	//Покажи мне свою рыбу.
-	AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_03");	//Ты пожалеешь об этом.
-	AI_StopProcessInfos(self);
-};
-
-////////////////////////////////////////
 instance DIA_Halvor_Night(C_Info)
 {
 	npc = VLK_469_Halvor;
@@ -188,7 +153,7 @@ instance DIA_Halvor_Night(C_Info)
 
 func int DIA_Halvor_Night_Condition()
 {
-	if(Wld_IsTime(20,0,0,0) && Npc_IsInState(self,ZS_Talk) && (Halvor_Ausgeliefert == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Wld_IsTime(20,0,0,0) && Npc_IsInState(self,ZS_Talk) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -378,7 +343,7 @@ instance DIA_Halvor_Hehlerei(C_Info)
 
 func int DIA_Halvor_Hehlerei_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Halvor_Zeichen) && (Betrayal_Halvor == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(other,DIA_Halvor_Zeichen) && (Betrayal_Halvor == FALSE))
 	{
 		return TRUE;
 	};

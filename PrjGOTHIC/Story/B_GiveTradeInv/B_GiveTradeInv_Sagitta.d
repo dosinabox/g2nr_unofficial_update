@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Sagitta(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Sagitta_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Skull,1);
 		CreateInvItems(slf,ItMi_Joint,3);
 		CreateInvItems(slf,ItMi_Sulfur,2);
@@ -28,7 +28,7 @@ func void B_GiveTradeInv_Sagitta(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Sagitta_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Flask,7);
 		CreateInvItems(slf,ItMi_Joint,2);
 		CreateInvItems(slf,ItMi_Sulfur,2);
@@ -49,7 +49,7 @@ func void B_GiveTradeInv_Sagitta(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Sagitta_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Joint,2);
 		CreateInvItems(slf,ItMi_Flask,5);
 		CreateInvItems(slf,ItMi_Sulfur,2);
@@ -78,7 +78,7 @@ func void B_GiveTradeInv_Sagitta(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Sagitta_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItMi_Joint,2);
 		CreateInvItems(slf,ItMi_Flask,5);
 		CreateInvItems(slf,ItMi_Sulfur,4);
@@ -107,7 +107,7 @@ func void B_GiveTradeInv_Sagitta(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Sagitta_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItMi_Joint,2);
 		CreateInvItems(slf,ItMi_Flask,5);
 		CreateInvItems(slf,ItMi_Sulfur,4);

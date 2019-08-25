@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Canthar(var C_Npc slf)
 {
 	if((Kapitel >= 0) && (Canthar_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItPl_Beet,10);
 		CreateInvItems(slf,ItFo_Wine,5);
 		CreateInvItems(slf,ItMi_Pan,1);
@@ -25,7 +25,7 @@ func void B_GiveTradeInv_Canthar(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Canthar_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMw_Piratensaebel,1);
 		CreateInvItems(slf,ItMw_Spicker,1);
 		CreateInvItems(slf,ItMw_Bartaxt,1);
@@ -34,7 +34,7 @@ func void B_GiveTradeInv_Canthar(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Canthar_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 //		CreateInvItems(slf,ItMw_Spicker,1);
 //		CreateInvItems(slf,ItMw_Bartaxt,1);
 		CreateInvItems(slf,ItMw_Zweihaender3,1);
@@ -47,13 +47,13 @@ func void B_GiveTradeInv_Canthar(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Canthar_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItMw_Krummschwert,1);
 		Canthar_ItemsGiven_Chapter_4 = TRUE;
 	};
 	if((Kapitel >= 5) && (Canthar_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItMw_Sturmbringer,1);
 		Canthar_ItemsGiven_Chapter_5 = TRUE;
 	};

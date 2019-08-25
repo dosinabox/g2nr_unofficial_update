@@ -273,7 +273,7 @@ instance ItMi_Brush(C_Item)
 
 instance ItMi_Joint(C_Item)
 {
-	name = "Косяк из болотной травы";
+	name = NAME_Joint;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Joint;
@@ -281,7 +281,7 @@ instance ItMi_Joint(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "JOINT";
 	on_state[0] = Use_Joint;
-	description = name;
+	description = "Косяк из болотной травы";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = 200;

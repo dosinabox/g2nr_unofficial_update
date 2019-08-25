@@ -143,7 +143,7 @@ instance DIA_Brahim_BUY(C_Info)
 
 func int DIA_Brahim_BUY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET))
 	{
 		return TRUE;
 	};
@@ -165,34 +165,7 @@ func void DIA_Brahim_BUY_Info()
 	Trade_IsActive = TRUE;
 };
 
-//////////////////////////////////////
-instance DIA_Brahim_NOBUY(C_Info)
-{
-	npc = VLK_437_Brahim;
-	nr = 9;
-	condition = DIA_Brahim_NOBUY_Condition;
-	information = DIA_Brahim_NOBUY_Info;
-	permanent = TRUE;
-	description = "Покажи мне свои карты.";
-};
 
-
-func int DIA_Brahim_NOBUY_Condition()
-{
-	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Brahim_NOBUY_Info()
-{
-	AI_Output(other,self,"DIA_Brahim_BUY_15_00");	//Покажи мне свои карты.
-	B_Say(self,other,"$SpareMe");
-	AI_StopProcessInfos(self);
-};
-
-//////////////////////////////////////
 instance DIA_Brahim_Kap3_EXIT(C_Info)
 {
 	npc = VLK_437_Brahim;

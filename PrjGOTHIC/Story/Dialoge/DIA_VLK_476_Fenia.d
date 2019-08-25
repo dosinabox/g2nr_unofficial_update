@@ -112,7 +112,7 @@ instance DIA_Fenia_HANDELN(C_Info)
 
 func int DIA_Fenia_HANDELN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo))
 	{
 		return TRUE;
 	};
@@ -134,34 +134,7 @@ func void DIA_Fenia_HANDELN_Info()
 	Trade_IsActive = TRUE;
 };
 
-////////////////////////////////////////
-instance DIA_Fenia_NOHANDELN(C_Info)
-{
-	npc = VLK_476_Fenia;
-	nr = 10;
-	condition = DIA_Fenia_NOHANDELN_Condition;
-	information = DIA_Fenia_NOHANDELN_Info;
-	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
-};
 
-
-func int DIA_Fenia_NOHANDELN_Condition()
-{
-	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Fenia_NOHANDELN_Info()
-{
-	AI_Output(other,self,"DIA_Fenia_HANDELN_15_00");	//Покажи мне свои товары.
-	B_Say(self,other,"$NOTNOW");
-	AI_StopProcessInfos(self);
-};
-
-////////////////////////////////////////
 instance DIA_Fenia_Infos(C_Info)
 {
 	npc = VLK_476_Fenia;
@@ -228,9 +201,12 @@ instance DIA_Fenia_OV(C_Info)
 
 func int DIA_Fenia_OV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Fenia_Infos) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Infos) && (Mil_305_schonmalreingelassen == FALSE))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -264,7 +240,10 @@ func void DIA_Fenia_Interesting_Info()
 {
 	AI_Output(other,self,"DIA_Fenia_Infos_interessantes_15_00");	//На что интересное стоит обратить внимание в порту?
 	AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_01");	//Ну... Если ты ищешь приключений, иди в кабак Кардифа у причала. Там всегда что-нибудь затевается.
-	AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_02");	//Ты вряд ли пропустишь его. Парень, стоящий перед входом туда, обязательно привлечет твое внимание к нему.
+	if(!Npc_IsDead(Moe))
+	{
+		AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_02");	//Ты вряд ли пропустишь его. Парень, стоящий перед входом туда, обязательно привлечет твое внимание к нему.
+	};
 	AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_03");	//Кроме того, в порту стоит большой корабль паладинов. Королевская военная галера. На это действительно стоит посмотреть.
 	AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_04");	//Ты увидишь ее, если пойдешь влево вдоль причала, а затем пройдешь под большой скалой.
 };
@@ -292,7 +271,10 @@ func int DIA_Fenia_Aufregend_Condition()
 func void DIA_Fenia_Aufregend_Info()
 {
 	AI_Output(other,self,"DIA_Fenia_Add_15_00");	//Ничего интересного не было?
-	AI_Output(self,other,"DIA_Fenia_Add_17_01");	//Было. И совсем недавно.
+	if(MIS_Bosper_Bogen != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Fenia_Add_17_01");	//Было. И совсем недавно.
+	};
 	AI_Output(self,other,"DIA_Fenia_Add_17_02");	//Здесь пробежал вор. Он, похоже, украл лук где-то в нижней части города.
 	AI_Output(self,other,"DIA_Fenia_Add_17_03");	//Конечно, как всегда ополчение прибыло слишком поздно.
 	AI_Output(self,other,"DIA_Fenia_Add_17_04");	//Ему удалось сбежать от них - он прыгнул в море и был таков.

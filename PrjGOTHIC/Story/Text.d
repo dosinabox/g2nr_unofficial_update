@@ -522,6 +522,7 @@ const string DIALOG_TRADE_v2 = "Покажи мне товары.";
 const string DIALOG_TRADE_v3 = "Покажи мне, что у тебя есть.";
 const string DIALOG_TRADE_v4 = "Покажи мне свои товары.";
 const string DIALOG_PICKPOCKET = "(обокрасть)";
+const string NAME_Joint = "Косяк";
 const string NAME_Ring = "Кольцо";
 const string NAME_Amulett = "Амулет";
 const string NAME_Trank = "Зелье";

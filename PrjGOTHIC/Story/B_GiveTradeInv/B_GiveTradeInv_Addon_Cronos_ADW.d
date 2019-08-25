@@ -60,7 +60,7 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Cronos_ADW_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItMi_Quartz,2);
 		CreateInvItems(slf,ItMi_Rockcrystal,2);

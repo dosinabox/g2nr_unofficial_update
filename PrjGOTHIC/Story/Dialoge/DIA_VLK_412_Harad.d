@@ -422,11 +422,12 @@ func void DIA_Harad_LEHRLING_OK()
 	Harad_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("schmied",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
-	B_LogEntry(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
-	B_LogEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 	B_GivePlayerXP(XP_Lehrling);
+	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
+	B_LogEntry(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	Log_AddEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
+	Log_AddEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
 	Info_ClearChoices(DIA_Harad_LEHRLING);
 };
 

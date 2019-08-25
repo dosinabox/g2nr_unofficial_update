@@ -85,7 +85,7 @@ instance DIA_PAL_4_LOCATION(C_Info)
 
 func int DIA_PAL_4_LOCATION_Condition()
 {
-	if(Kapitel == 1)
+	if(KnowsPaladins_Ore == FALSE)
 	{
 		return TRUE;
 	};

@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Jora(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Jora_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,30);
 		CreateInvItems(slf,ItRw_Bolt,30);
 		CreateInvItems(slf,ItSc_Light,1);
@@ -25,7 +25,7 @@ func void B_GiveTradeInv_Jora(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Jora_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,60);
 		CreateInvItems(slf,ItRw_Bolt,60);
 		CreateInvItems(slf,ItMiSwordraw,1);
@@ -39,7 +39,7 @@ func void B_GiveTradeInv_Jora(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Jora_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,60);
 		CreateInvItems(slf,ItRw_Bolt,60);
 		CreateInvItems(slf,ItFo_Wine,1);
@@ -52,7 +52,7 @@ func void B_GiveTradeInv_Jora(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Jora_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItRw_Arrow,60);
 		CreateInvItems(slf,ItRw_Bolt,60);
 		CreateInvItems(slf,ItMi_Rockcrystal,1);
@@ -63,7 +63,7 @@ func void B_GiveTradeInv_Jora(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Jora_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItRw_Arrow,160);
 		CreateInvItems(slf,ItRw_Bolt,160);
 		CreateInvItems(slf,ItMi_Coal,3);
