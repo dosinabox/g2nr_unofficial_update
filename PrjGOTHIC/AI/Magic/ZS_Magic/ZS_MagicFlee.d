@@ -29,9 +29,9 @@ func void ZS_MagicFlee()
 			return;
 		};
 	};
-	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Xardas)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Daron)))
+	if((self.guild == GIL_KDF) || (self.guild == GIL_PAL) || (self.guild == GIL_KDW) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Xardas)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Andre)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Torwache_304)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Torwache_305)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Vatras)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Myxir_CITY)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Daron)))
 	{
-		if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Xardas))
+		if(!Npc_IsInState(self,ZS_ReactToWeapon))
 		{
 			B_Say(self,other,"$ISAIDSTOPMAGIC");
 			AI_ContinueRoutine(self);

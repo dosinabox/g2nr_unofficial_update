@@ -19,6 +19,7 @@ func void B_UnequipWeapons(var C_Npc slf)
 func void B_NpcSetJailed(var C_Npc slf)
 {
 	B_UnequipWeapons(slf);
+	Npc_RemoveInvItems(slf,ItMi_Joint,Npc_HasItems(slf,ItMi_Joint));
 	slf.attribute[ATR_STRENGTH] = Condition_VLKDolch - 1;		//боец не может использовать даже кинжал
 	slf.attribute[ATR_DEXTERITY] = Condition_Kurzbogen - 1;		//стрелок не может использовать даже короткий лук
 	if((slf.guild == GIL_KDF) || (slf.guild == GIL_KDW) || (slf.guild == GIL_PAL) || (slf.aivar[AIV_MagicUser] == MAGIC_ALWAYS))

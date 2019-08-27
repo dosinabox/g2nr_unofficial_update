@@ -170,8 +170,11 @@ func void DIA_Addon_Crimson_Gold_Info()
 		Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
 		if(Npc_HasItems(other,ItMi_GoldNugget_Addon))
 		{
-			Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать все золотые самородки)",DIA_Addon_Crimson_Gold_ALLE);
-			Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать 1 золотой самородок)",DIA_Addon_Crimson_Gold_1);
+			if(Npc_HasItems(other,ItMi_GoldNugget_Addon) > 1)
+			{
+				Info_AddChoice(DIA_Addon_Crimson_Gold,DIALOG_SellGoldNuggets,DIA_Addon_Crimson_Gold_ALLE);
+			};
+			Info_AddChoice(DIA_Addon_Crimson_Gold,DIALOG_SellGoldNugget,DIA_Addon_Crimson_Gold_1);
 		}
 		else
 		{
@@ -191,25 +194,33 @@ func void DIA_Addon_Crimson_Gold_ALLE()
 	CurrentNuggets = Npc_HasItems(other,ItMi_GoldNugget_Addon);
 	B_GiveInvItems(other,self,ItMi_GoldNugget_Addon,CurrentNuggets);
 	B_GiveInvItems(self,other,ItMi_Gold,CurrentNuggets * 10);
+	Npc_RemoveInvItems(self,ItMi_GoldNugget_Addon,Npc_HasItems(self,ItMi_GoldNugget_Addon));
 	Info_ClearChoices(DIA_Addon_Crimson_Gold);
-	Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
+/*	Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
 	if(Npc_HasItems(other,ItMi_GoldNugget_Addon))
 	{
-		Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать все золотые слитки)",DIA_Addon_Crimson_Gold_ALLE);
-		Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать 1 золотой слиток)",DIA_Addon_Crimson_Gold_1);
-	};
+		if(Npc_HasItems(other,ItMi_GoldNugget_Addon) > 1)
+		{
+			Info_AddChoice(DIA_Addon_Crimson_Gold,DIALOG_SellGoldNuggets,DIA_Addon_Crimson_Gold_ALLE);
+		};
+		Info_AddChoice(DIA_Addon_Crimson_Gold,DIALOG_SellGoldNugget,DIA_Addon_Crimson_Gold_1);
+	};*/
 };
 
 func void DIA_Addon_Crimson_Gold_1()
 {
 	B_GiveInvItems(other,self,ItMi_GoldNugget_Addon,1);
 	B_GiveInvItems(self,other,ItMi_Gold,10);
+	Npc_RemoveInvItems(self,ItMi_GoldNugget_Addon,Npc_HasItems(self,ItMi_GoldNugget_Addon));
 	Info_ClearChoices(DIA_Addon_Crimson_Gold);
 	Info_AddChoice(DIA_Addon_Crimson_Gold,Dialog_Back,DIA_Addon_Crimson_Gold_BACK);
 	if(Npc_HasItems(other,ItMi_GoldNugget_Addon))
 	{
-		Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать все золотые слитки)",DIA_Addon_Crimson_Gold_ALLE);
-		Info_AddChoice(DIA_Addon_Crimson_Gold,"(продать 1 золотой слиток)",DIA_Addon_Crimson_Gold_1);
+		if(Npc_HasItems(other,ItMi_GoldNugget_Addon) > 1)
+		{
+			Info_AddChoice(DIA_Addon_Crimson_Gold,DIALOG_SellGoldNuggets,DIA_Addon_Crimson_Gold_ALLE);
+		};
+		Info_AddChoice(DIA_Addon_Crimson_Gold,DIALOG_SellGoldNugget,DIA_Addon_Crimson_Gold_1);
 	};
 };
 

@@ -433,7 +433,7 @@ func void DIA_Ramirez_Success_Info()
 	AI_Output(self,other,"DIA_Ramirez_Success_14_01");	//Невероятно. Тебе удалось найти его!
 	AI_Output(self,other,"DIA_Ramirez_Success_14_02");	//Вот, держи, ты заслужил эти деньги.
 	B_GiveInvItems(self,other,ItMi_Gold,Value_Sextant / 2);
-	Ramirez_Sextant = TRUE;
+//	Ramirez_Sextant = TRUE;
 	MIS_RamirezSextant = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RamirezSextant);
 };

@@ -630,7 +630,10 @@ func void DIA_Addon_Lares_Teleportstation_Info()
 	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_04");	//Ну что ж, если тебе не страшно ими пользоваться, попроси трактирщика Орлана впустить тебя в его пещеру.
 	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_05");	//В ней спрятан один из телепортов магов Воды. Пещера находится неподалеку от его таверны.
 	AI_Output(self,other,"DIA_Addon_Lares_Teleportstation_09_06");	//Выходи через восточные городские ворота и иди по дороге прямо. Не промахнешься.
-	B_LogEntry(TOPIC_Addon_TeleportsNW,"Ларес рассказал мне, что неподалеку от таверны Орлана спрятан телепорт.");
+	if(!Npc_KnowsInfo(other,DIA_Addon_Orlan_Teleportstein))
+	{
+		B_LogEntry(TOPIC_Addon_TeleportsNW,"Ларес рассказал мне, что неподалеку от таверны Орлана спрятан телепорт.");
+	};
 //	Orlan_Hint_Lares = TRUE;
 };
 

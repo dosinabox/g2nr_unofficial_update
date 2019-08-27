@@ -34,12 +34,12 @@ func void B_GiveTradeInv_Hakon(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Hakon_ItemsGiven_Chapter_3 == FALSE))
 	{
+//		CreateInvItems(slf,ItMi_Gold,100);
 //		CreateInvItems(slf,ItMw_Steinbrecher,1);
 //		CreateInvItems(slf,ItMw_Doppelaxt,2);
 		CreateInvItems(slf,ItMw_Streitkolben,1);
 		CreateInvItems(slf,ItMw_Schwert3,1);
 		CreateInvItems(slf,ItMw_Orkschlaechter,2);
-//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMiSwordraw,5);
 		CreateInvItems(slf,ItBe_Addon_Prot_Point,1);
 		Hakon_ItemsGiven_Chapter_3 = TRUE;

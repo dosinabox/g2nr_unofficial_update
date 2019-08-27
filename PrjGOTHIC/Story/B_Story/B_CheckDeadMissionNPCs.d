@@ -28,6 +28,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 	{
 		Diego_IsDead = TRUE;
 	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ignaz))
+	{
+		if(MIS_Ignaz_Charm == LOG_Running)
+		{
+			MIS_Ignaz_Charm = LOG_FAILED;
+		};
+	};
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(AlligatorJack))
 	{
 		if(MIS_KrokoJagd == LOG_Running)

@@ -17,11 +17,7 @@ func int DIA_Fenia_EXIT_Condition()
 
 func void DIA_Fenia_EXIT_Info()
 {
-	if(hero.guild == GIL_PAL)
-	{
-		AI_Output(self,other,"DIA_Fenia_EXIT_17_00");	//Приветствую, мистер паладин.
-	};
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Fenia_EXIT_17_01");	//Удачной тебе дороги, о, достопочтенный маг.
 	};
@@ -93,6 +89,31 @@ func void DIA_Fenia_Hallo_Info()
 	AI_Output(self,other,"DIA_Fenia_Hallo_17_02");	//Подойди поближе, не робей. У меня ты найдешь все, что тебе нужно!
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Феня торгует едой по пути в гавань.");
+};
+
+
+instance DIA_Fenia_Hallo_Pal(C_Info)
+{
+	npc = VLK_476_Fenia;
+	nr = 4;
+	condition = DIA_Fenia_Hallo_Pal_Condition;
+	information = DIA_Fenia_Hallo_Pal_Info;
+	permanent = TRUE;
+	important = TRUE;
+};
+
+
+func int DIA_Fenia_Hallo_Pal_Condition()
+{
+	if(Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_Fenia_Hallo))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Fenia_Hallo_Pal_Info()
+{
+	AI_Output(self,other,"DIA_Fenia_EXIT_17_00");	//Приветствую, мистер паладин.
 };
 
 

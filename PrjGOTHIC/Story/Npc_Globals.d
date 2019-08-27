@@ -103,6 +103,7 @@ var C_Npc Stadtwache_310;
 var C_Npc Stadtwache_333;
 var C_Npc Schiffswache_212;
 var C_Npc Schiffswache_213;
+var C_Npc Torwache_304;
 var C_Npc Torwache_305;
 var C_Npc Lagerwache;
 var C_Npc Halvor;
@@ -331,6 +332,7 @@ var C_Npc Daron;
 var C_Npc Lance;
 var C_Npc William;
 var C_Npc Hank;
+var C_Npc Serpentes;
 
 func void B_InitNpcGlobals()
 {
@@ -450,6 +452,7 @@ func void B_InitNpcGlobals()
 	Stadtwache_333 = Hlp_GetNpc(MIL_333_Stadtwache);
 	Schiffswache_212 = Hlp_GetNpc(PAL_212_Schiffswache);
 	Schiffswache_213 = Hlp_GetNpc(PAL_213_Schiffswache);
+	Torwache_304 = Hlp_GetNpc(MIL_304_Torwache);
 	Torwache_305 = Hlp_GetNpc(MIL_305_Torwache);
 	Lagerwache = Hlp_GetNpc(MIL_328_Miliz);
 	Halvor = Hlp_GetNpc(VLK_469_Halvor);
@@ -670,5 +673,6 @@ func void B_InitNpcGlobals()
 	Lance = Hlp_GetNpc(NONE_Addon_114_Lance_ADW);
 	William = Hlp_GetNpc(VLK_4304_Addon_William);
 	Hank = Hlp_GetNpc(PIR_1371_Addon_Hank);
+	Serpentes = Hlp_GetNpc(KDF_501_Serpentes);
 };
 

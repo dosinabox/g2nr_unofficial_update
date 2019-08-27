@@ -105,7 +105,10 @@ func void DIA_Bodo_Bett_Info()
 {
 	AI_Output(other,self,"DIA_Bodo_Bett_15_00");	//Могу я где-нибудь здесь отдохнуть?
 	AI_Output(self,other,"DIA_Bodo_Bett_12_01");	//Если ты ищешь, где можно поспать, иди в сарай. Но только не приляг по ошибке на кровать наемника.
-	AI_Output(self,other,"DIA_Bodo_Bett_12_02");	//Онар следит, чтобы они не трогали нас, фермеров, но это не касается чужаков, не работающих на ферме. С ними наемники могут делать все, что пожелают.
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	{
+		AI_Output(self,other,"DIA_Bodo_Bett_12_02");	//Онар следит, чтобы они не трогали нас, фермеров, но это не касается чужаков, не работающих на ферме. С ними наемники могут делать все, что пожелают.
+	};
 };
 
 
@@ -163,7 +166,7 @@ func void DIA_Bodo_WeedOrElse_Info()
 	AI_Output(other,self,"DIA_Bodo_WeedOrElse_15_00");	//Отдай мне эту траву или...
 	AI_Output(self,other,"DIA_Bodo_WeedOrElse_12_01");	//Послушай, все, что у меня есть - это один косяк из болотной травы. Возьми его и оставь меня в покое.
 	B_GiveInvItems(self,other,ItMi_Joint,1);
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV) || (other.guild == GIL_MIL))
 	{
 		AI_Output(self,other,"DIA_Bodo_WeedOrElse_12_02");	//Ты знаешь, как наемники Онара защищают нас, а?
 		AI_Output(self,other,"DIA_Bodo_WeedOrElse_12_03");	//Так что даже не пытайся сделать какую-нибудь глупость!

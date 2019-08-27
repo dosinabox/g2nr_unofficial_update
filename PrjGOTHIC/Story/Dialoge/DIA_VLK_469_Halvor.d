@@ -153,7 +153,7 @@ instance DIA_Halvor_Night(C_Info)
 
 func int DIA_Halvor_Night_Condition()
 {
-	if(Wld_IsTime(20,0,0,0) && Npc_IsInState(self,ZS_Talk) && (Halvor_Ausgeliefert == FALSE))
+	if(Wld_IsTime(20,0,5,0) && Npc_IsInState(self,ZS_Talk) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -161,7 +161,14 @@ func int DIA_Halvor_Night_Condition()
 
 func void DIA_Halvor_Night_Info()
 {
-	AI_Output(self,other,"DIA_Halvor_Night_06_00");	//Ёй, если ты хочешь купить рыбу, заходи ко мне завтра. ’орошо?
+	if(Wld_IsTime(20,0,0,0))
+	{
+		AI_Output(self,other,"DIA_Halvor_Night_06_00");	//Ёй, если ты хочешь купить рыбу, заходи ко мне завтра. ’орошо?
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+	};
 };
 
 instance DIA_Addon_Halvor_MissingPeople(C_Info)
