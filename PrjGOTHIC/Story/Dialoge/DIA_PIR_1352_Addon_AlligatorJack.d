@@ -93,10 +93,15 @@ func int DIA_Addon_AlligatorJack_Hello_Condition()
 
 func void DIA_Addon_AlligatorJack_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Hello_12_00");	//Кто, черт возьми, ты такой? Ты не похож на остальных.
-	AI_Output(other,self,"DIA_Addon_AlligatorJack_Hello_15_01");	//Каких еще остальных?
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Hello_12_02");	//Ну, магов, которые здесь обосновались.
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Hello_12_03");	//Ты ведь из их компании, так?
+	var C_Item itm;
+	itm = Npc_GetEquippedArmor(other);
+	if(!Hlp_IsItem(itm,ITAR_BDT_M) && !Hlp_IsItem(itm,ITAR_BDT_H) && !Hlp_IsItem(itm,ITAR_Thorus_Addon))
+	{
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Hello_12_00");	//Кто, черт возьми, ты такой? Ты не похож на остальных.
+		AI_Output(other,self,"DIA_Addon_AlligatorJack_Hello_15_01");	//Каких еще остальных?
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Hello_12_02");	//Ну, магов, которые здесь обосновались.
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Hello_12_03");	//Ты ведь из их компании, так?
+	};
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_Hello_12_04");	//Довольно смело с твоей стороны разгуливать здесь в одиночку.
 };
 
@@ -200,7 +205,7 @@ instance DIA_Addon_AlligatorJack_BDTRuestung(C_Info)
 
 func int DIA_Addon_AlligatorJack_BDTRuestung_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Vorschlag) && (MIS_Greg_ScoutBandits == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_AlligatorJack_Vorschlag) && (MIS_Greg_ScoutBandits == FALSE) && !Npc_HasItems(other,ITAR_BDT_M) && !Npc_HasItems(other,ITAR_BDT_H) && !Npc_HasItems(other,ITAR_Thorus_Addon))
 	{
 		return TRUE;
 	};

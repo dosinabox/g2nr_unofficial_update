@@ -1425,8 +1425,8 @@ func void DIA_Lord_Hagen_GateOpen_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_30");	//О, Иннос! Что именно там произошло?
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_31");	//Почему-то ворота оказались открытыми...
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_32");	//Почему-то?! Но как это возможно... В замке наверняка есть предатель!
-	B_StartOtherRoutine(PAL_212_Schiffswache,"ShipFree");
-	B_StartOtherRoutine(PAL_213_Schiffswache,"ShipFree");
+	B_StartOtherRoutine(Schiffswache_212,"ShipFree");
+	B_StartOtherRoutine(Schiffswache_213,"ShipFree");
 	B_StartOtherRoutine(Girion,"WaitForShip");
 	MIS_ShipIsFree = TRUE;
 	B_CheckLog();

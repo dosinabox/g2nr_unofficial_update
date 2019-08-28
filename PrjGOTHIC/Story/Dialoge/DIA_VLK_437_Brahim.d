@@ -92,8 +92,11 @@ func void DIA_Brahim_GREET_Info()
 {
 	AI_Output(other,self,"DIA_Brahim_GREET_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Brahim_GREET_07_01");	//Меня зовут Ибрагим. Я рисую карты и продаю их.
-	AI_Output(self,other,"DIA_Brahim_GREET_07_02");	//Так как ты недавно здесь, возможно, тебе пригодится карта города.
-	AI_Output(self,other,"DIA_Brahim_GREET_07_03");	//Это очень недорого и очень полезно, пока ты здесь не освоишься.
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		AI_Output(self,other,"DIA_Brahim_GREET_07_02");	//Так как ты недавно здесь, возможно, тебе пригодится карта города.
+		AI_Output(self,other,"DIA_Brahim_GREET_07_03");	//Это очень недорого и очень полезно, пока ты здесь не освоишься.
+	};
 	if(DIA_Kardif_Lernen_permanent == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
@@ -209,9 +212,12 @@ instance DIA_Brahim_Kap3_First_EXIT(C_Info)
 
 func int DIA_Brahim_Kap3_First_EXIT_Condition()
 {
-	if((Kapitel >= 3) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS))
+	if(Kapitel >= 3)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_ShatteredGolem_MIS) || (MIS_HannaRetrieveLetter == LOG_SUCCESS))
+		{
+			return TRUE;
+		};
 	};
 };
 

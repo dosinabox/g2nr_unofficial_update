@@ -289,8 +289,11 @@ func void DIA_Addon_Cavalorn_Beutel_Info()
 
 func void DIA_Addon_Cavalorn_Beutel_back()
 {
+	if(!Npc_HasItems(self,ItSe_ADDON_CavalornsBeutel) && !Npc_HasItems(self,ItMi_Nugget))
+	{
+		AI_Output(self,other,"DIA_Addon_Cavalorn_back_08_00");	//Я надеюсь, что он вернется ко мне.
+	};
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
-	AI_Output(self,other,"DIA_Addon_Cavalorn_back_08_00");	//Я надеюсь, что он вернется ко мне.
 };
 
 func void DIA_Addon_Cavalorn_Beutel_jaerz()

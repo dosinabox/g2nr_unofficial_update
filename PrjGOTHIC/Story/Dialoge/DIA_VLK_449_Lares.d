@@ -562,6 +562,10 @@ func void DIA_Addon_Lares_GetRangerArmor_end()
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_03");	//Братья! Пришло время вернуться к нашей работе.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_04");	//Нападения бандитов все еще продолжаются. Мы должны ликвидировать эту угрозу.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_end_09_05");	//Да сохранит Аданос равновесие нашего мира.
+	if(!Npc_IsDead(Orlan))
+	{
+		CreateInvItem(Orlan,ItMW_Addon_Stab03);
+	};
 	Lares_TakeFirstMissionFromVatras = TRUE;
 	Info_ClearChoices(DIA_Addon_Lares_GetRangerArmor);
 	Info_AddChoice(DIA_Addon_Lares_GetRangerArmor,Dialog_Ende,DIA_Addon_Lares_GetRangerArmor_weiter);

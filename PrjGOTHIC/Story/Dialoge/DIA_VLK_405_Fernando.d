@@ -274,6 +274,7 @@ func void DIA_Addon_Fernando_BanditTrader_mil()
 	AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_mil_14_01");	//Ты не можешь так поступить!
 	AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_mil_15_02");	//Еще как могу. Сам увидишь.
 	AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_mil_14_03");	//О, Иннос! Я пропал!
+	Fernando_Betrayal = TRUE;
 	B_NpcClearObsessionByDMT(self);
 };
 
@@ -333,6 +334,7 @@ func void DIA_Addon_Fernando_BanditTrader_nein()
 {
 	AI_Output(other,self,"DIA_Addon_Fernando_BanditTrader_nein_15_00");	//Нет, пожалуй, я оставлю их себе.
 	AI_Output(self,other,"DIA_Addon_Fernando_BanditTrader_nein_14_01");	//Как хочешь. Но предупреждаю: если ты меня выдашь, тебе не поздоровится.
+	Fernando_Betrayal = TRUE;
 	Info_ClearChoices(DIA_Addon_Fernando_BanditTrader);
 };
 
@@ -367,7 +369,7 @@ func void DIA_Fernando_Success_Info()
 		AI_Output(other,self,"DIA_Fernando_Success_15_02");	//Шахты истощены, там можно добыть всего каких-нибудь несколько ящиков руды. Вряд ли эта овчинка стоит выделки.
 		AI_Output(self,other,"DIA_Fernando_Success_14_03");	//Этого не может быть! Это означает, что я разорен...
 		AI_Output(other,self,"DIA_Fernando_Success_15_04");	//Что насчет нашей сделки?
-		if((Fernando_HatsZugegeben == FALSE) || (MIS_Vatras_FindTheBanditTrader == LOG_FAILED))
+		if(Fernando_Betrayal == FALSE)
 		{
 			AI_Output(self,other,"DIA_Fernando_Success_14_05");	//Ах, да, твое вознаграждение...
 			if(other.guild == GIL_KDF)

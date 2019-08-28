@@ -116,7 +116,7 @@ func void DIA_Addon_Scatty_last_Info()
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_01");	//Он старший по шахте. Но сам он почти никогда не спускается. Большинство времени он проводит в храме с Вороном.
 	AI_Output(other,self,"DIA_Addon_Scatty_last_15_02");	//'Почти никогда' - это как часто, если быть точным?
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_03");	//Последний раз я его видел, когда он выходил из гробницы...
-	AI_Output(self,other,"DIA_Addon_Scatty_last_01_04");	//(быстро) ... Хотя нет, подожди! Последний раз был, когда он посылал рабов добывать золото.
+	AI_Output(self,other,"DIA_Addon_Scatty_last_01_04");	//(быстро) ...Хотя нет, подожди! Последний раз был, когда он посылал рабов добывать золото.
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_05");	//В отличие от Ворона, его ОЧЕНЬ интересует золото.
 };
 

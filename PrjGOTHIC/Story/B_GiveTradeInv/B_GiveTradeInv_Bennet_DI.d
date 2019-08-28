@@ -29,6 +29,14 @@ func void B_GiveTradeInv_Bennet_DI(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItRw_Addon_MagicBolt,10);
 		};
+		if(Bennet_NW_ItMi_Swordraw_Count > 0)
+		{
+			CreateInvItems(slf,ItMiSwordraw,Bennet_NW_ItMi_Swordraw_Count);
+		};
+		if(Bennet_NW_ItMi_Nugget_Count > 0)
+		{
+			CreateInvItems(slf,ItMi_Nugget,Bennet_NW_ItMi_Nugget_Count);
+		};
 		Bennet_DI_ItemsGiven = TRUE;
 	};
 };

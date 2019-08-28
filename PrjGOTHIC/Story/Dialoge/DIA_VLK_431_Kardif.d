@@ -410,7 +410,7 @@ func void DIA_Addon_Kardif_MissingPeople_Info()
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_03");	//В нижней части города тоже исчезли люди.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_04");	//Если хочешь знать больше, поговори с Корагоном.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_05");	//У него пивная в нижней части города, и думаю, что от его уха не укрываются такие новости.
-		if(Halvor_Ausgeliefert == FALSE)
+		if((Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
 		{
 			AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_06");	//Халвор, торговец рыбой из лавки на пристани, тоже может кое-что знать - к нему заходит много людей.
 			B_LogEntry(TOPIC_Addon_WhoStolePeople,"Кардиф говорит, что мне стоит поговорить о пропавших людях с Корагоном, владельцем трактира в нижней части города, а также с Халвором, торгующим рыбой в гавани.");

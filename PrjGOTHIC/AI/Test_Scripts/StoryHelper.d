@@ -93,17 +93,6 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
 	};*/
-	if(Kapitel < 5)
-	{
-		if(ClassicMario == FALSE)
-		{
-			Info_AddChoice(StoryHelper_PatchSettings,"Включить оригинальный найм Марио в команду",StoryHelper_Mario);
-		}
-		else
-		{
-			Info_AddChoice(StoryHelper_PatchSettings,"Включить исправленный найм Марио в команду",StoryHelper_Mario);
-		};
-	};
 	if(AddonDisabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
@@ -382,21 +371,6 @@ func void StoryHelper_Addon()
 	{
 		AddonDisabled = TRUE;
 		PrintScreen("Прохождение без аддона включено",-1,-1,FONT_Screen,3);
-	};
-	b_build_settings_diag();
-};
-
-func void StoryHelper_Mario()
-{
-	if(ClassicMario == TRUE)
-	{
-		ClassicMario = FALSE;
-		PrintScreen("Марио учитывает лимит человек в команде",-1,-1,FONT_Screen,3);
-	}
-	else
-	{
-		ClassicMario = TRUE;
-		PrintScreen("Марио не учитывает лимит человек в команде",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

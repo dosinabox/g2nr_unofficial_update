@@ -1,4 +1,16 @@
 
+func void B_UpdateBennetItemsCount()
+{
+	if(Bennet_ItemsGiven_Chapter_1 == TRUE)
+	{
+		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+	};
+	if(Bennet_ItemsGiven_Chapter_3 == TRUE)
+	{
+		Bennet_NW_ItMi_Nugget_Count = Npc_HasItems(self,ItMi_Nugget);
+	};
+};
+
 instance DIA_Bennet_EXIT(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -21,6 +33,7 @@ func int DIA_Bennet_EXIT_Condition()
 func void DIA_Bennet_EXIT_Info()
 {
 	B_EquipTrader(self);
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 };
 
@@ -587,6 +600,7 @@ func int DIA_Bennet_KAP3_EXIT_Condition()
 func void DIA_Bennet_KAP3_EXIT_Info()
 {
 	B_EquipTrader(self);
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 };
 
@@ -1105,6 +1119,7 @@ func void DIA_Bennet_GiveInnosEye_Info()
 	Npc_RemoveInvItems(other,ItMi_InnosEye_Broken_Mis,1);
 	AI_PrintScreen(Print_InnoseyeGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Bennet_RepairDay = Wld_GetDay();
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"WORK");
 };
@@ -1132,6 +1147,7 @@ func int DIA_Bennet_GetInnosEye_Condition()
 func void DIA_Bennet_GetInnosEye_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_GetInnosEye_15_00");	//Амулет готов?
+	B_UpdateBennetItemsCount();
 	if(((Bennet_RepairDay < Wld_GetDay()) && Wld_IsTime(5,0,23,59)) || (Bennet_RepairDay + 1 < Wld_GetDay()))
 	{
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_01");	//Да, держи.
@@ -1177,6 +1193,7 @@ func int DIA_Bennet_KAP4_EXIT_Condition()
 func void DIA_Bennet_KAP4_EXIT_Info()
 {
 	B_EquipTrader(self);
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 };
 
@@ -1381,6 +1398,7 @@ func int DIA_Bennet_KAP5_EXIT_Condition()
 func void DIA_Bennet_KAP5_EXIT_Info()
 {
 	B_EquipTrader(self);
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 };
 
@@ -1511,6 +1529,7 @@ func void DIA_Bennet_StillNeedYou_Info()
 	AI_Output(self,other,"DIA_Bennet_StillNeedYou_06_01");	//(сердито) Хорошо! Всякий может издеваться над простым кузнецом! Увидимся в гавани.
 	Bennet_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count += 1;
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
 	{

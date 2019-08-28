@@ -989,7 +989,7 @@ func void DIA_Andre_Auslieferung_Nagur()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Andre_Auslieferung_Nagur_15_00_add");	//Нагур пытался использовать меня в качестве подставного посыльного, чтобы украсть товар с фермы Акила.
+		AI_Output(other,self,"DIA_Andre_Auslieferung_Nagur_15_00_add");	//Нагур пытался использовать меня, чтобы перехватить товар с фермы Акила.
 	};
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_01");	//Он понесет заслуженное наказание. Я немедленно прикажу посадить его за решетку.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
@@ -1967,9 +1967,16 @@ instance DIA_Andre_Cornelius_Liar(C_Info)
 
 func int DIA_Andre_Cornelius_Liar_Condition()
 {
-	if((Cornelius_ThreatenByMilSC == TRUE) && (CorneliusFlee == FALSE) && (MIS_RescueBennet != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Cornelius_WhatYouSee))
 	{
-		return TRUE;
+		if(MIS_RescueBennet == LOG_Running)
+		{
+			return TRUE;
+		}
+		else if(CorneliusFlee == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1986,7 +1993,10 @@ func void DIA_Andre_Cornelius_Liar_No()
 {
 	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
-	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_02");	//Корнелиус - влиятельный человек. Он может сделать твою жизнь адом, если захочет.
+	if(other.guild != GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_02");	//Корнелиус - влиятельный человек. Он может сделать твою жизнь адом, если захочет.
+	};
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_03");	//Пока у тебя нет доказательств, я ничем не могу помочь тебе.
 	Info_ClearChoices(DIA_Andre_Cornelius_Liar);
 };
@@ -1998,8 +2008,15 @@ func void DIA_Andre_Cornelius_Liar_Yes()
 	if(Cornelius_IsLiar == TRUE)
 	{
 		AI_Output(other,self,"DIA_Andre_Cornelius_Liar_Yes_15_02");	//Я прочел его дневник! Его подкупили. Все, что он сказал, было ложью.
-		AI_Output(self,other,"DIA_Andre_Cornelius_Liar_Yes_08_03");	//Если это действительно так, ты должен немедленно сообщить об этом лорду Хагену.
-		AI_Output(self,other,"DIA_Andre_Cornelius_Liar_Yes_08_04");	//Покажи ему этот дневник. Он разберется в этом деле.
+		if(MIS_RescueBennet != LOG_SUCCESS)
+		{
+			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_Yes_08_03");	//Если это действительно так, ты должен немедленно сообщить об этом лорду Хагену.
+			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_Yes_08_04");	//Покажи ему этот дневник. Он разберется в этом деле.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Andre_ReturnedMissingPeople_08_08");	//Ты сделал великое дело!
+		};
 	}
 	else
 	{
