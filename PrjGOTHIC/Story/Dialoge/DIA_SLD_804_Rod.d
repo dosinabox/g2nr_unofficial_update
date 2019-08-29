@@ -434,7 +434,7 @@ func void DIA_Rod_Wette_GiveBack2()
 	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
 	if(Rod_WetteGewonnen == FALSE)
 	{
-		AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01");	//Да ты просто подлец после этого!
+		AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01");	//Да ты просто слабак!
 	};
 	Info_ClearChoices(DIA_Rod_Wette);
 };
@@ -444,7 +444,8 @@ func void DIA_Rod_Wette_KeepIt()
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_00");	//Думаю, что нет...
 	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_01");	//(угрожающе) Что это значит?
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_02");	//Лучше я подержу его у себя немного.
-	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_03");	//Ну, подожди, ублюдок!
+	AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01");	//Да ты просто подлец после этого!
+	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_03");	//Ну, подожди, ублюдок...
 	Info_ClearChoices(DIA_Rod_Wette);
 	B_RemoveFakeWeapon(other);
 	AI_StopProcessInfos(self);

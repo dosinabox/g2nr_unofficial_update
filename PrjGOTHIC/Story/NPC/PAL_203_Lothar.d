@@ -9,7 +9,8 @@ instance PAL_203_Lothar(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_1h_Pal_Sword);
+//	EquipItem(self,ItMw_1h_Pal_Sword);
+	EquipItem(self,ItMw_1H_Blessed_02);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Psionic",Face_P_NormalBart_Nefarius,BodyTex_P,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,1);

@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Tandor_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,80);
+//		CreateInvItems(slf,ItMi_Gold,80);
 		CreateInvItems(slf,ItRw_Arrow,25);
 		CreateInvItems(slf,ItRw_Bolt,25);
 		CreateInvItems(slf,ItRw_Mil_Crossbow,1);
@@ -20,7 +20,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Tandor_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,100);
 		CreateInvItems(slf,ItMw_Stabkeule,1);
@@ -35,7 +35,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Tandor_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,100);
 		CreateInvItems(slf,ItMw_Morgenstern,1);
@@ -48,7 +48,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Tandor_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,100);
 		CreateInvItems(slf,ItMw_Schlachtaxt,1);
@@ -58,7 +58,7 @@ func void B_GiveTradeInv_Tandor(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Tandor_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,100);
 //		CreateInvItems(slf,ItMw_Drachenschneide,1);

@@ -220,7 +220,7 @@ instance DIA_Kardif_TRADE(C_Info)
 
 func int DIA_Kardif_TRADE_Condition()
 {
-	if((Kardif_OneQuestion == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
+	if((Kardif_OneQuestion == FALSE) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
 	{
 		return TRUE;
 	};
@@ -233,34 +233,7 @@ func void DIA_Kardif_TRADE_Info()
 	Trade_IsActive = TRUE;
 };
 
-/////////////////////////////////////////////////////
-instance DIA_Kardif_NOTRADE(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 2;
-	condition = DIA_Kardif_NOTRADE_Condition;
-	information = DIA_Kardif_NOTRADE_Info;
-	permanent = TRUE;
-	description = "Дай мне что-нибудь выпить.";
-};
 
-
-func int DIA_Kardif_NOTRADE_Condition()
-{
-	if((Kardif_OneQuestion == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kardif_NOTRADE_Info()
-{
-	AI_Output(other,self,"DIA_Kardif_TRADE_15_00");	//Дай мне что-нибудь выпить.
-	AI_Output(self,other,"DIA_Kardif_Hallo_14_01");	//А тебе какое до этого дело?
-	AI_StopProcessInfos(self);
-};
-
-/////////////////////////////////////////////////////
 instance DIA_Kardif_TradeInfo(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -437,7 +410,7 @@ func void DIA_Addon_Kardif_MissingPeople_Info()
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_03");	//В нижней части города тоже исчезли люди.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_04");	//Если хочешь знать больше, поговори с Корагоном.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_05");	//У него пивная в нижней части города, и думаю, что от его уха не укрываются такие новости.
-		if(Halvor_Ausgeliefert == FALSE)
+		if((Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
 		{
 			AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_06");	//Халвор, торговец рыбой из лавки на пристани, тоже может кое-что знать - к нему заходит много людей.
 			B_LogEntry(TOPIC_Addon_WhoStolePeople,"Кардиф говорит, что мне стоит поговорить о пропавших людях с Корагоном, владельцем трактира в нижней части города, а также с Халвором, торгующим рыбой в гавани.");
@@ -739,7 +712,7 @@ instance DIA_Kardif_SENDATTILA(C_Info)
 
 func int DIA_Kardif_SENDATTILA_Condition()
 {
-	if(((MIS_ThiefGuild_sucked == TRUE) || (Diebesgilde_Okay >= 3) || (MIS_Nagur_Bote == LOG_FAILED) || ((Diebesgilde_Okay == 2) && (NagurHack == TRUE))) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_ThiefGuild_sucked == TRUE) || (Diebesgilde_Okay >= 3) || (MIS_Nagur_Bote == LOG_FAILED) || ((Diebesgilde_Okay == 2) && (NagurHack == TRUE)))
 	{
 		return TRUE;
 	};
@@ -763,6 +736,7 @@ func void DIA_Kardif_SENDATTILA_Info()
 		Kardif_Deal = 10;
 	};
 	Wld_InsertNpc(VLK_494_Attila,"NW_CITY_HABOUR_POOR_AREA_BACK_ALLEY_02");
+	B_InitNpcGlobals();
 	if((NagurHack == TRUE) || (MIS_Nagur_Bote == LOG_FAILED))
 	{
 		MIS_ThiefGuild_sucked = TRUE;

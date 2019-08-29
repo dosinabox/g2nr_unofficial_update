@@ -35,7 +35,7 @@ func void B_GiveTradeInv_Addon_Scatty(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_02,4);
 		CreateInvItems(slf,ItPo_Health_02,4);
 		CreateInvItems(slf,ItMw_Schwert2,1);
-		CreateInvItems(slf,ItMw_Zweihaender1,1);
+//		CreateInvItems(slf,ItMw_Zweihaender1,1);
 		CreateInvItems(slf,ItRw_Crossbow_M_02,1);
 		Scatty_ItemsGiven_Chapter_2 = TRUE;
 	};

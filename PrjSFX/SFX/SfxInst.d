@@ -10247,3 +10247,63 @@ instance LOADING_SFX_DRAGONISLAND(C_SFX_DEF)
 	vol = 0;
 };
 
+instance RUN_SNOW(C_SFX_DEF)
+{
+	file = "Step_Snow_01.wav";
+	vol = 45;
+};
+
+instance RUN_SNOW_A1(C_SFX_DEF)
+{
+	file = "Step_Snow_02.wav";
+	vol = 45;
+};
+
+instance RUN_SNOW_A2(C_SFX_DEF)
+{
+	file = "Step_Snow_03.wav";
+	vol = 45;
+};
+
+instance RUN_SNOW_A3(C_SFX_DEF)
+{
+	file = "Step_Snow_04.wav";
+	vol = 45;
+};
+
+instance TURN_SNOW(C_SFX_DEF)
+{
+	file = "Step_Snow_01.wav";
+	vol = 20;
+};
+
+instance TURN_SNOW_A1(C_SFX_DEF)
+{
+	file = "Step_Snow_02.wav";
+	vol = 20;
+};
+
+instance TURN_SNOW_A2(C_SFX_DEF)
+{
+	file = "Step_Snow_03.wav";
+	vol = 20;
+};
+
+instance SNEAK_SNOW(C_SFX_DEF)
+{
+	file = "Step_Snow_01.wav";
+	vol = 15;
+};
+
+instance SNEAK_SNOW_A1(C_SFX_DEF)
+{
+	file = "Step_Snow_02.wav";
+	vol = 15;
+};
+
+instance SNEAK_SNOW_A2(C_SFX_DEF)
+{
+	file = "Step_Snow_03.wav";
+	vol = 15;
+};
+

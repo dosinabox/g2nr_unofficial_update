@@ -673,6 +673,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItAt_DragonScale,10);
 	CreateInvItems(self,ItAt_Addon_BCKopf,10);
 	CreateInvItems(self,ItAt_Addon_KeilerFur,10);
+	CreateInvItems(self,ItAt_KeilerHorn,10);
 	CreateInvItems(self,ItKe_Xardas,1);
 	CreateInvItems(self,ItWr_Canthars_KomproBrief_MIS,1);
 	CreateInvItems(self,ItMw_2h_Rod,1);
@@ -1497,7 +1498,7 @@ func void UseHoshiTagebuch()
 };
 
 
-instance D36TestRune(C_Item)
+/*instance D36TestRune(C_Item)
 {
 	name = "Великая руна тестов";
 	mainflag = ITEM_KAT_DOCS;
@@ -1517,14 +1518,7 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	Wld_PlayEffect("MFX_MAGICFIRE_HUMANSMOKE",self,self,0,0,0,FALSE);
-//	SaturasSendsToRiordian = TRUE;
-	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
-//	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
-//	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
-//	MIS_KilledDragons += 1;
-	MIS_Addon_Lares_ComeToRangerMeeting = LOG_SUCCESS;
-};
+};*/
 
 instance WastelandRune(C_Item)
 {
@@ -1550,7 +1544,6 @@ func void UseWastelandRune()
 	b_seed_wasteland_world_main();
 	b_seed_wasteland_world_psicamp();
 	b_seed_wasteland_world_freeminecamp();
-	
 };
 
 instance ItFo_Meat(C_Item)

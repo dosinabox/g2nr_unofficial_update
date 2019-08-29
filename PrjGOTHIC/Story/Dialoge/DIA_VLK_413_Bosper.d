@@ -271,6 +271,7 @@ func void DIA_Bosper_LEHRLING_OK()
 	Wld_AssignRoomToGuild("gritta",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
+	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 	B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
 	Info_ClearChoices(DIA_Bosper_LEHRLING);
 };

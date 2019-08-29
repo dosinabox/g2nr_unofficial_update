@@ -363,8 +363,11 @@ func void B_Addon_Finn_TellAll()
 	AI_Output(self,other,"DIA_Addon_Finn_TellAll_07_01");	//Но его на месте не было.
 	AI_Output(other,self,"DIA_Addon_Finn_TellAll_15_02");	//И?
 	AI_Output(self,other,"DIA_Addon_Finn_TellAll_07_03");	//А обычно он ВСЕГДА на месте. ОЧЕНЬ подозрительно - вот что я думаю.
-	Finn_TellAll = TRUE;
-	B_LogEntry(Topic_Addon_Esteban,"Финн сказал, что Хуно не присутствовал при атаке.");
+	if(Finn_TellAll == FALSE)
+	{
+		B_LogEntry(Topic_Addon_Esteban,"Финн сказал, что Хуно не присутствовал при атаке.");
+		Finn_TellAll = TRUE;
+	};
 };
 
 func void DIA_Addon_Finn_Attentat_ForTheBoss()

@@ -5,7 +5,7 @@ func int C_NpcRansacksAlways(var C_Npc slf)
 	{
 		return TRUE;
 	};
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(KDF_501_Serpentes)) && Npc_HasItems(other,Holy_Hammer_MIS) && Npc_KnowsInfo(hero,DIA_Serpentes_SUCCESS))
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Serpentes)) && Npc_HasItems(other,Holy_Hammer_MIS) && Npc_KnowsInfo(hero,DIA_Serpentes_SUCCESS))
 	{
 		return TRUE;
 	};

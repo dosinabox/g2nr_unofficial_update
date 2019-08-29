@@ -282,7 +282,7 @@ func void DIA_Addon_Morgan_JoinMorgan_Info()
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_05");	//Там полно луркеров... и черт знает, чего еще.
 	if(GregIsBack == FALSE)
 	{
-		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//Разберись с ними, и ты заработаешь уважение (зевает) людей...
+		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//Разберись с ними, и ты заработаешь... (зевает) уважение людей...
 		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_07");	//Добро пожаловать в мой отряд. Хе-хе. А я (зевает) еще посплю...
 	};
 	Log_CreateTopic(TOPIC_Addon_MorganBeach,LOG_MISSION);
@@ -365,7 +365,7 @@ func void DIA_Addon_Morgan_Auftrag2_Info()
 		AI_Output(self,other,"DIA_Addon_Morgan_Auftrag2_07_02");	//Отдохни, полежи, выпей рома!
 		CreateInvItems(self,ItFo_Addon_Rum,1);
 		B_UseItem(self,ItFo_Addon_Rum);
-		AI_Output(self,other,"DIA_Addon_Morgan_Auftrag2_07_03");	//Чертовски забористая вещь!
+		AI_Output(self,other,"DIA_Addon_Morgan_Auftrag2_07_03");	//Ух! Чертовски забористая вещь!
 	}
 	else
 	{

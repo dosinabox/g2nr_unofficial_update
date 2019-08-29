@@ -327,7 +327,6 @@ func void DIA_Addon_Orlan_WhenRangerMeeting_Today()
 	AI_Output(self,other,"DIA_Addon_Orlan_WhenRangerMeeting_Today_05_02");	//Надеюсь, мы начнем не слишком поздно.
 	B_MakeRangerReadyForMeetingALL();
 	Info_ClearChoices(DIA_Addon_Orlan_WhenRangerMeeting);
-//	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,"(еще)",DIA_Addon_Orlan_WhenRangerMeeting_Los);
 	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,Dialog_Ende,DIA_Addon_Orlan_WhenRangerMeeting_Los);
 };
 
@@ -337,7 +336,6 @@ func void DIA_Addon_Orlan_WhenRangerMeeting_theyCome()
 	AI_Output(self,other,"DIA_Addon_Orlan_WhenRangerMeeting_theyCome_05_01");	//Посмотрим...
 	B_MakeRangerReadyForMeetingALL();
 	Info_ClearChoices(DIA_Addon_Orlan_WhenRangerMeeting);
-//	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,"(еще)",DIA_Addon_Orlan_WhenRangerMeeting_Los);
 	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,Dialog_Ende,DIA_Addon_Orlan_WhenRangerMeeting_Los);
 };
 
@@ -364,7 +362,6 @@ var int DIA_Orlan_RUESTUNG_noPerm;
 
 func int DIA_Orlan_RUESTUNG_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (DIA_Orlan_RUESTUNG_noPerm == FALSE) && (hero.guild == GIL_NONE))
 	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (DIA_Orlan_RUESTUNG_noPerm == FALSE) && (Kapitel < 4))
 	{
 		return TRUE;
@@ -772,7 +769,6 @@ instance DIA_Orlan_Minenanteil(C_Info)
 
 func int DIA_Orlan_Minenanteil_Condition()
 {
-	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU))
 	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (OrlanMinenAnteil == TRUE))
 	{
 		return TRUE;

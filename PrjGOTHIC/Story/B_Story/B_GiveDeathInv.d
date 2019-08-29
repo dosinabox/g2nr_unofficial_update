@@ -55,6 +55,10 @@ func void B_GiveDeathInv(var C_Npc slf)
 		{
 			CreateInvItems(slf,ItAt_Teeth,2);
 		};
+		if(slf.aivar[AIV_MM_REAL_ID] == ID_Keiler)
+		{
+			CreateInvItems(slf,ItAt_KeilerHorn,2);
+		};
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == TRUE)
 	{
@@ -106,7 +110,6 @@ func void B_GiveDeathInv(var C_Npc slf)
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_Icewolf)
 		{
-//			CreateInvItems(slf,ItAt_WolfFur,1);
 			CreateInvItems(slf,ItAt_IceWolfFur,1);
 		};
 		if(slf.aivar[AIV_MM_REAL_ID] == ID_WARG)

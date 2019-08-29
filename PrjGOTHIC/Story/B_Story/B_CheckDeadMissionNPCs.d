@@ -1,7 +1,7 @@
 
 func void B_CheckDeadMissionNPCs(var C_Npc slf)
 {
-	if(RemoveSklaven == FALSE)
+	if(MissingPeopleReturnedHome == FALSE)
 	{
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Patrick))
 		{
@@ -27,6 +27,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DiegoOW))
 	{
 		Diego_IsDead = TRUE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ignaz))
+	{
+		if(MIS_Ignaz_Charm == LOG_Running)
+		{
+			MIS_Ignaz_Charm = LOG_FAILED;
+		};
 	};
 	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(AlligatorJack))
 	{

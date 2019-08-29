@@ -342,7 +342,7 @@ func int DIA_Addon_Henry_MeatForMorgan_Condition()
 func void DIA_Addon_Henry_MeatForMorgan_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_MeatForMorgan_15_00");	//Я должен отдать Моргану мясо.
-	AI_Output(self,other,"DIA_Addon_Henry_MeatForMorgan_04_01");	//Ага. И кто же тебя послал?
+	AI_Output(self,other,"DIA_Addon_Henry_MeatForMorgan_04_01");	//А! И кто же тебя послал?
 	AI_Output(other,self,"DIA_Addon_Henry_MeatForMorgan_15_02");	//Аллигатор Джек. Он говорит, что Морган это мясо уже ждет.
 	AI_Output(self,other,"DIA_Addon_Henry_MeatForMorgan_04_03");	//Ясно. Сам он не в настроении, верно?
 };

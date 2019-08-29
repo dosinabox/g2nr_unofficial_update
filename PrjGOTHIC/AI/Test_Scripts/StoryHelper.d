@@ -74,16 +74,15 @@ func void b_build_settings_diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
-	/*требуютс€ только дополнительные модели: https://worldofplayers.ru/threads/41303
-	if(Helms_Enabled == FALSE)
+//	требуютс€ дополнительные модели: https://worldofplayers.ru/threads/41303
+/*	if(Helms_Enabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"ќтделить шлемы от доспехов",StoryHelper_Helms);
 	}
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"—оединить шлемы и доспехи",StoryHelper_Helms);
-	};
-	*/
+	};*/
 	/*не сделано
 	if(HonestStatCalculation == FALSE)
 	{
@@ -606,6 +605,7 @@ func void StoryHelper_KAPITEL2ANFANG()
 {
 	Torwache_305.aivar[AIV_PASSGATE] = TRUE;
 	Mil_305_schonmalreingelassen = TRUE;
+	B_StartOtherRoutine(Lothar,"START");
 	CreateInvItems(hero,ItKe_Pass_MIS,1);
 	MIS_OLDWORLD = LOG_Running;
 	B_Kapitelwechsel(2,NEWWORLD_ZEN);

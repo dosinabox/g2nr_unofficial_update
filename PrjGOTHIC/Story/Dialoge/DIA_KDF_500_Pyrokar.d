@@ -130,7 +130,7 @@ instance DIA_Addon_Pyrokar_MissingPeople(C_Info)
 
 func int DIA_Addon_Pyrokar_MissingPeople_Condition()
 {
-	if((SC_HearedAboutMissingPeople == TRUE) && (Sklaven_Flucht == FALSE))
+	if((SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};
@@ -491,6 +491,7 @@ func void DIA_Pyrokar_OATH_Info()
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
 	Npc_ExchangeRoutine(Lothar,"START");
+	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	KDF_Aufnahme = LOG_SUCCESS;
 //	SLD_Aufnahme = LOG_OBSOLETE;
 //	MIL_Aufnahme = LOG_OBSOLETE;

@@ -5,7 +5,7 @@ instance PIR_1354_Addon_Henry(Npc_Default)
 	guild = GIL_PIR;
 	id = 1354;
 	voice = 4;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,5);

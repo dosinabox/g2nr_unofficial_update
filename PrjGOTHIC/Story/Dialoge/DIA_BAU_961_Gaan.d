@@ -397,7 +397,7 @@ instance DIA_Gaan_AskTeacher(C_Info)
 
 func int DIA_Gaan_AskTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU))
+	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU) || (RangerMeetingRunning == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -593,7 +593,7 @@ instance DIA_Gaan_JAGD(C_Info)
 
 func int DIA_Gaan_JAGD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU))
+	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU) || (RangerMeetingRunning == LOG_SUCCESS))
 	{
 		return TRUE;
 	};

@@ -33,7 +33,7 @@ instance ItMi_Addon_WhitePearl(C_Item)
 
 instance ItMi_Addon_Joint_01(C_Item)
 {
-	name = "Зеленый послушник";
+	name = NAME_Joint;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Addon_Joint_01;
@@ -41,7 +41,7 @@ instance ItMi_Addon_Joint_01(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "JOINT";
 	on_state[0] = Use_Addon_Joint_01;
-	description = name;
+	description = "Зеленый послушник";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = 200;
@@ -56,11 +56,11 @@ func void Use_Addon_Joint_01()
 	{
 		if(FirstJoint == FALSE)
 		{
-			FirstJoint = TRUE;
 			if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY))
 			{
 				B_GivePlayerXP(50);
 			};
+			FirstJoint = TRUE;
 		};
 		Wld_PlayEffect("SLOW_TIME",self,self,0,0,0,FALSE);
 	};
@@ -148,7 +148,7 @@ instance ItMi_Skull(C_Item)
 {
 	name = "Череп";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = 10;
 	visual = "DT_SKELETON_V01_HEAD.3ds";
 	material = MAT_WOOD;

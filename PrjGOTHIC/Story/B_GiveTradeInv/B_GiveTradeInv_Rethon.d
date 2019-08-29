@@ -3,7 +3,7 @@
 //var int Rethon_ItemsGiven_Chapter_2;
 //var int Rethon_ItemsGiven_Chapter_3;
 var int Rethon_ItemsGiven_Chapter_4;
-var int Rethon_ItemsGiven_Chapter_5;
+//var int Rethon_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Rethon(var C_Npc slf)
 {
@@ -15,16 +15,16 @@ func void B_GiveTradeInv_Rethon(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Orkschlaechter,1);
 		CreateInvItems(slf,ItMw_Folteraxt,1);
 //		CreateInvItems(slf,ItMw_Krummschwert,1);
-//		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
-//		CreateInvItems(slf,ItMw_Berserkeraxt,1);
+		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
+		CreateInvItems(slf,ItMw_Warrioraxt,1);
 		Rethon_ItemsGiven_Chapter_4 = TRUE;
 	};
-	if((Kapitel >= 5) && (Rethon_ItemsGiven_Chapter_5 == FALSE))
+/*	if((Kapitel >= 5) && (Rethon_ItemsGiven_Chapter_5 == FALSE))
 	{
 		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
 //		CreateInvItems(slf,ItMw_Berserkeraxt,1);
 		CreateInvItems(slf,ItMw_Warrioraxt,1);
 		Rethon_ItemsGiven_Chapter_5 = TRUE;
-	};
+	};*/
 };
 

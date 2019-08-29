@@ -72,10 +72,10 @@ instance ItMW_Addon_Stab02(C_Item)
 	visual = "ItMW_MageStaff_Normal_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF2";
 	description = name;
-	text[1] = NAME_Damage;
-	count[1] = damageTotal;
-	text[2] = NAME_Bonus_ManaMax;
-	count[2] = 20;
+	text[1] = NAME_Bonus_ManaMax;
+	count[1] = 20;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
 	text[3] = NAME_Mana_needed;
 	count[3] = cond_value[2];
 	text[4] = NAME_TwoHanded;
@@ -539,7 +539,7 @@ instance ItMw_Addon_Betty(C_Item)
 	name = "Бетти";
 	mainflag = ITEM_KAT_NF;
 //	flags = ITEM_AXE | ITEM_MISSION;
-	flags = ITEM_SWD | ITEM_MISSION;
+	flags = ITEM_SWD;
 	material = MAT_METAL;
 	value = Value_Betty;
 	damageTotal = Damage_Betty;

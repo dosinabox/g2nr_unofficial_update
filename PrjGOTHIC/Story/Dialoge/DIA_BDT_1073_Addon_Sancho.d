@@ -252,7 +252,7 @@ func void DIA_Addon_Sancho_Perm_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Sancho_Perm_06_05");	//Да нет ничего нового.
+		AI_Output(self,other,"DIA_Addon_Sancho_Perm_06_05");	//Да нет, ничего нового.
 	};
 };
 

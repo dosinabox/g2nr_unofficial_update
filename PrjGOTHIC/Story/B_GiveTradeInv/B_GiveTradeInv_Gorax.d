@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Gorax_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItSc_Sleep,1);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItPo_Mana_01,2);
@@ -33,7 +33,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Gorax_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItMi_Quartz,2);
 		CreateInvItems(slf,ItMi_Pitch,1);
@@ -58,7 +58,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Gorax_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItMi_Quartz,2);
 		CreateInvItems(slf,ItMi_Rockcrystal,2);
@@ -87,7 +87,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Gorax_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItMi_Sulfur,5);
 		CreateInvItems(slf,ItMi_Quartz,6);
 		CreateInvItems(slf,ItMi_Rockcrystal,3);
@@ -110,7 +110,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Gorax_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItMi_Sulfur,6);
 		CreateInvItems(slf,ItMi_Quartz,4);
 		CreateInvItems(slf,ItMi_Rockcrystal,6);

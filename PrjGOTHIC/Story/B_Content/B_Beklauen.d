@@ -28,14 +28,6 @@ func void B_Beklauen()
 		B_GiveThiefXP();
 		Snd_Play("Geldbeutel");
 		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lehmar))
-		{
-			Lehmar_StealBook_Day = Wld_GetDay();
-			if(Wld_IsTime(23,0,23,59))
-			{
-				Lehmar_StealBook_Day += 1;
-			};
-		};
 	}
 	else
 	{
@@ -66,6 +58,18 @@ func void B_StealItem(var int TheftDex,var int Itm)
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
 		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lehmar))
+		{
+			Lehmar_StealBook_Day = Wld_GetDay();
+			if(Wld_IsTime(23,0,23,59))
+			{
+				Lehmar_StealBook_Day += 1;
+			};
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
+		{
+			UnEquip_ItAm_Addon_Franco();
+		};
 	}
 	else
 	{

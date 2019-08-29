@@ -367,7 +367,7 @@ instance ItAt_Addon_KeilerFur(C_Item)
 
 instance ItAt_DrgSnapperHorn(C_Item)
 {
-	name = "Рог драконьего снеппера";
+	name = NAME_TROPHY_DrgSnapperHorn;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_DrgSnapperHorn;
@@ -458,7 +458,7 @@ instance ItAt_WaranFiretongue(C_Item)
 
 instance ItAt_ShadowHorn(C_Item)
 {
-	name = "Рог мракориса";
+	name = NAME_TROPHY_ShadowHorn;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_ShadowHorn;
@@ -690,6 +690,19 @@ instance ItAt_IceWolfFur(C_Item)
 	value = Value_IceWolfFur;
 	visual = "ItAt_IceWolfFur.3DS";
 	material = MAT_LEATHER;
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItAt_KeilerHorn(C_Item)
+{
+	name = "Клык кабана";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 10;
+	visual = "ItAt_KeilerHorn.3DS";
+	material = MAT_WOOD;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;

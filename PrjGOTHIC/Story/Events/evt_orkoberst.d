@@ -46,7 +46,6 @@ func void evt_orkoberst()
 		B_LogEntry(TOPIC_HallenVonIrdorath,"Полковник орков - крепкий орешек. Где-то в его тронном зале должен быть какой-то секрет.");
 		EVT_ORKOBERST_OneTime = TRUE;
 	};
-	PrintScreen("",-1,-1,FONT_Screen,0);
 };
 
 

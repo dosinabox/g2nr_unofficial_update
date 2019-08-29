@@ -246,7 +246,7 @@ func void PC_PrayShrine_Pray_Info()
 	{
 		Info_ClearChoices(PC_PrayShrine_Pray);
 		Info_AddChoice(PC_PrayShrine_Pray,Dialog_Back,PC_PrayShrine_Pray_Back);
-		Info_AddChoice(PC_PrayShrine_Pray,"Я хочу помолиться и ничего не пожертвовать.",PC_PrayShrine_Pray_NoPay);
+		Info_AddChoice(PC_PrayShrine_Pray,NAME_ADDON_PRAYIDOL_GIVENOTHING,PC_PrayShrine_Pray_NoPay);
 		if(Npc_HasItems(hero,ItMi_Gold) >= 10)
 		{
 			Info_AddChoice(PC_PrayShrine_Pray,"Я хочу помолиться и пожертвовать 10 золотых монет.",PC_PrayShrine_Pray_SmallPay);

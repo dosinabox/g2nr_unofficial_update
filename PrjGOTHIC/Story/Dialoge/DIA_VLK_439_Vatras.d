@@ -2139,13 +2139,28 @@ func int DIA_Addon_Vatras_AddonSolved_Condition()
 {
 	if(RavenIsDead == TRUE)
 	{
+		if(Npc_KnowsInfo(other,DIA_Addon_Vatras_AbloesePre))
+		{
+			DIA_Addon_Vatras_AddonSolved.description = "Я нашел тебе смену.";
+		}
+		else
+		{
+			DIA_Addon_Vatras_AddonSolved.description = "Я вернулся.";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Addon_Vatras_AddonSolved_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Vatras_AddonSolved_15_00");	//Я нашел тебе смену.
+	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_AbloesePre))
+	{
+		AI_Output(other,self,"DIA_Addon_Vatras_AddonSolved_15_00");	//Я нашел тебе смену.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_00");	//Я вернулся.
+	};
 	AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_01");	//Как обстоит дело с проблемой в северо-восточных горах?
 	AI_Output(other,self,"DIA_Addon_Vatras_AddonSolved_15_02");	//Нормально. Ворон мертв, угроза устранена.
 	AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_03");	//Это очень хорошая новость. Будем надеяться, что ничего страшного больше не случится.
@@ -2778,7 +2793,7 @@ func int DIA_Addon_Vatras_PISSOFFFOREVVER_Condition()
 func void DIA_Addon_Vatras_PISSOFFFOREVVER_Info()
 {
 	B_VatrasPissedOff();
-	AI_StopProcessInfos(self);
+//	AI_StopProcessInfos(self);
 //	Vatras_MORE = FALSE;
 };
 

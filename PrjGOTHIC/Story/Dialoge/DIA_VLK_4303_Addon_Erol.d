@@ -479,7 +479,7 @@ func int DIA_Addon_Erol_Trade_Condition()
 };
 
 
-var int DIA_Addon_Erol_Trade_OneTime;
+//var int DIA_Addon_Erol_Trade_OneTime;
 
 func void DIA_Addon_Erol_Trade_Info()
 {

@@ -24,6 +24,6 @@ func void Rtn_Start_826()
 {
 	TA_Smalltalk(8,0,22,0,"NW_BIGFARM_HOUSE_08");
 //	TA_Smalltalk(22,0,8,0,"NW_BIGFARM_HOUSE_08");
-	TA_Sleep(22,0,8,0,"NW_BIGFARM_STABLE_SLEEP_02");
+	TA_Sleep(22,0,8,0,"NW_BIGFARM_HOUSE_SLD_SLEEP");
 };
 

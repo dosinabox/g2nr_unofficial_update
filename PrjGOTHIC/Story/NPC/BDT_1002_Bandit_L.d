@@ -9,7 +9,7 @@ instance BDT_1002_Bandit_L(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Sword);
+	EquipItem(self,ItMw_ShortSword3);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Normal02,BodyTex_P,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,1);
@@ -29,7 +29,7 @@ instance BDT_1018_Bandit_L(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_1h_Vlk_Sword);
+	EquipItem(self,ItMw_ShortSword3);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_Normal02,BodyTex_P,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,1);

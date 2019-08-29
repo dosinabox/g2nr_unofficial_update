@@ -1,6 +1,18 @@
 
 func int C_WantToRansack(var C_Npc slf)
 {
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Andre))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Torwache_304))
+	{
+		return FALSE;
+	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Torwache_305))
+	{
+		return FALSE;
+	};
 	if((slf.npcType == NPCTYPE_FRIEND) && Npc_IsPlayer(other))
 	{
 		return FALSE;
@@ -9,7 +21,7 @@ func int C_WantToRansack(var C_Npc slf)
 	{
 		return FALSE;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(KDF_501_Serpentes) && Npc_KnowsInfo(hero,DIA_Serpentes_SUCCESS) && Npc_HasItems(other,Holy_Hammer_MIS))
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Serpentes) && Npc_KnowsInfo(hero,DIA_Serpentes_SUCCESS) && Npc_HasItems(other,Holy_Hammer_MIS))
 	{
 		return TRUE;
 	};

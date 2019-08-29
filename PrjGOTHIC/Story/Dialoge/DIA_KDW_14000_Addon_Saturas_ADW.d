@@ -109,7 +109,7 @@ func void DIA_Addon_Saturas_ADWStart_wastun2()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_05");	//Мы должны узнать как можно больше об этих людях и их гибели.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_06");	//Мы сможем расстроить планы Ворона, только если будем видеть их насквозь.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_07");	//Кроме того, ты должен найти способ освободить рабов.
-	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_wastun2_15_08");	//(цинично) И это все? Я сделаю все это одной левой.
+	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_wastun2_15_08");	//Ха. (цинично) И это все? Я сделаю все это одной левой.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_09");	//(раздраженно) Я знаю, что прошу слишком о многом. Воспринимай это как шанс вернуть мое доверие.
 	MIS_ADDON_Saturas_GoToRaven = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_RavenKDW,LOG_MISSION);
@@ -153,7 +153,7 @@ instance DIA_Addon_Saturas_MissingPeople(C_Info)
 
 func int DIA_Addon_Saturas_MissingPeople_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi) && !Npc_IsDead(Patrick))
+	if(!Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi) && (Sklaven_Flucht == FALSE))
 	{
 		return TRUE;
 	};
@@ -164,22 +164,28 @@ func void DIA_Addon_Saturas_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
-	if(!Npc_HasItems(VLK_4304_Addon_William,ITWr_Addon_William_01))
+	if(!Npc_HasItems(William,ITWr_Addon_William_01))
 	{
 		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
 		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.
 		if(FoundDeadWilliam == FALSE)
 		{
-			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			if(Sklaven_Flucht == FALSE)
+			{
+				Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			};
 			B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
 		};
 		FoundDeadWilliam = TRUE;
 	}
 	else if(!Npc_KnowsInfo(other,DIA_Addon_Riordian_WhatToFind))
 	{
-		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		if(Sklaven_Flucht == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
 	};
 };
@@ -253,7 +259,7 @@ instance DIA_Addon_Saturas_LanceLeiche(C_Info)
 
 func int DIA_Addon_Saturas_LanceLeiche_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(NONE_Addon_114_Lance_ADW,ItRi_Ranger_Lance_Addon))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(Lance,ItRi_Ranger_Lance_Addon))
 	{
 		return TRUE;
 	};
@@ -369,7 +375,7 @@ func void DIA_Addon_Saturas_Tokens_Info()
 			B_UseStoneTablet(2);
 			Saturas_SCFound_ItMi_Addon_Stone_02 = TRUE;
 			BroughtToken += 1;
-			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//A! Табличка стражей мертвых. Вот кто вызывал духов их мертвецов.
+			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//A! Табличка стражей мертвых. Вот кто вызвал духов их мертвецов.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_12");	//Зодчие поддерживали очень тесную связь с предками.
 			Log_AddEntry(TOPIC_Addon_Relicts,"Фиолетовая каменная табличка из дворца стражей мертвых на юге.");
 		};

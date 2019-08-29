@@ -42,26 +42,6 @@ func int Spell_Logic_Charm(var int manaInvested)
 		{
 			other.aivar[AIV_LastFightComment] = TRUE;
 		};
-		/*if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(VLK_431_Kardif)) && (Kardif_Beaten == TRUE))
-		{
-			Kardif_Beaten = FALSE;
-		};
-		if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Halvor)) && (Halvor_Beaten == TRUE))
-		{
-			Halvor_Beaten = FALSE;
-		};
-		if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(VLK_476_Fenia)) && (Fenia_Beaten == TRUE))
-		{
-			Fenia_Beaten = FALSE;
-		};
-		if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Brahim)) && (Brahim_Beaten == TRUE))
-		{
-			Brahim_Beaten = FALSE;
-		};
-		if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Ignaz)) && (Ignaz_Beaten == TRUE))
-		{
-			Ignaz_Beaten = FALSE;
-		};*/
 		return SPL_SENDCAST;
 	}
 	else

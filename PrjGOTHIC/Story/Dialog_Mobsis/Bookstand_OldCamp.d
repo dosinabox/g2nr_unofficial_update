@@ -28,7 +28,7 @@ func void Bookstand_Milten_03_S1()
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"Корристо");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"Возможно, нам удастся избежать катастрофы. Невыносимо думать о том, что произойдет, если у него будет свободная шахта ...");
+		Doc_PrintLines(nDocID,1,"Возможно, нам удастся избежать катастрофы. Невыносимо думать о том, что произойдет, если у него будет Свободная шахта ...");
 		Doc_Show(nDocID);
 	};
 };

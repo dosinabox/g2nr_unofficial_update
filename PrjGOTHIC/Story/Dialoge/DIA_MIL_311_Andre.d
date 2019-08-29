@@ -92,7 +92,7 @@ func void B_Andre_CantharFalle()
 		B_GiveTradeInv_Sarah(Sarah);
 		B_RemoveSarahWeapons();
 	};
-	B_RemoveNpc(Sarah);
+	B_RemoveNpc(VLK_470_Sarah);
 	if((Canthar_Ausgeliefert == TRUE) && (Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 1000))
 	{
 		B_NpcSetReleased(Canthar);
@@ -989,7 +989,7 @@ func void DIA_Andre_Auslieferung_Nagur()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Andre_Auslieferung_Nagur_15_00_add");	//Нагур пытался использовать меня в качестве подставного посыльного, чтобы украсть товар с фермы Акила.
+		AI_Output(other,self,"DIA_Andre_Auslieferung_Nagur_15_00_add");	//Нагур пытался использовать меня, чтобы перехватить товар с фермы Акила.
 	};
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_01");	//Он понесет заслуженное наказание. Я немедленно прикажу посадить его за решетку.
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Nagur_08_02");	//Вот, получи награду. Ты ее заслужил.
@@ -1650,7 +1650,7 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		if((Nadja_Victim == TRUE) || (Npc_IsDead(Nadja) && (Knows_Borka_Dealer == FALSE)))
 		{
 			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_03");	//Эта девочка из Красного Фонаря, Надя, мертва. Возможно, это просто случайное совпадение.
-			B_RemoveNpc(Nadja);
+			B_RemoveNpc(VLK_435_Nadja);
 		};
 		if(Undercover_Failed == TRUE)
 		{
@@ -1664,13 +1664,22 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		AI_Teleport(Borka,"NW_CITY_HABOUR_KASERN_BORKA");
 		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_05");	//Я знаю, кто распространяет траву в городе. Это Борка, вышибала в Красном Фонаре.
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
-		AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_07");	//Он продал мне болотной травы.
-		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_08");	//Отлично, этого достаточно для нас. Я прикажу немедленно арестовать его.
-		B_AndreSold();
-		B_NpcSetJailed(Borka);
-		B_StartOtherRoutine(Borka,"PRISON");
-		MIS_Andre_REDLIGHT = LOG_SUCCESS;
-		B_GivePlayerXP(XP_Redlight);
+		if(!Npc_HasItems(other,ItMi_Joint))
+		{
+			AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Andre_REDLIGHT_SUCCESS_15_07");	//Он продал мне болотной травы.
+			B_GiveInvItems(other,self,ItMi_Joint,1);
+			AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_08");	//Отлично, этого достаточно для нас. Я прикажу немедленно арестовать его.
+			B_AndreSold();
+			B_NpcSetJailed(Borka);
+			B_StartOtherRoutine(Borka,"PRISON");
+			MIS_Andre_REDLIGHT = LOG_SUCCESS;
+			B_GivePlayerXP(XP_Redlight);
+		};
 	}
 	else
 	{
@@ -1958,7 +1967,7 @@ instance DIA_Andre_Cornelius_Liar(C_Info)
 
 func int DIA_Andre_Cornelius_Liar_Condition()
 {
-	if((Cornelius_ThreatenByMilSC == TRUE) && (CorneliusFlee == FALSE) && (MIS_RescueBennet != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Cornelius_WhatYouSee) && Npc_KnowsInfo(other,DIA_Andre_BennetInPrison) && (MIS_RescueBennet == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -1977,7 +1986,10 @@ func void DIA_Andre_Cornelius_Liar_No()
 {
 	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
-	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_02");	//Корнелиус - влиятельный человек. Он может сделать твою жизнь адом, если захочет.
+	if(other.guild != GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_02");	//Корнелиус - влиятельный человек. Он может сделать твою жизнь адом, если захочет.
+	};
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_03");	//Пока у тебя нет доказательств, я ничем не могу помочь тебе.
 	Info_ClearChoices(DIA_Andre_Cornelius_Liar);
 };

@@ -34,15 +34,36 @@ instance DIA_Cornelius_Hello(C_Info)
 
 func int DIA_Cornelius_Hello_Condition()
 {
-	if((RescueBennet_KnowsCornelius == FALSE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk) && (CorneliusFlee == FALSE))
 	{
-		return TRUE;
+		if(RescueBennet_KnowsCornelius == FALSE)
+		{
+			return TRUE;
+		}
+		else if(MIS_RescueBennet == LOG_SUCCESS)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Cornelius_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Cornelius_WhatYouSee_13_01");	//(возбужденно) Послушай, у меня нет времени на болтовню с тобой.
+	if(MIS_RescueBennet != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Cornelius_WhatYouSee_13_01");	//(возбужденно) Послушай, у меня нет времени на болтовню с тобой.
+	}
+	else
+	{
+		if(other.guild != GIL_KDF)
+		{
+			AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_Monastery_13_03");	//Нет, пожалуйста, не нужно. Я скажу тебе все, что ты хочешь узнать.
+		}
+		else
+		{
+			B_Say(self,other,"$NOTNOW");
+		};
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -222,7 +243,7 @@ func void DIA_Cornelius_DontBelieveYou_Perjury()
 	AI_Output(other,self,"DIA_Cornelius_DontBelieveYou_Perjury_15_00");	//За лжесвидетельство тебя посадят в тюрьму - и надолго!
 	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_Perjury_13_01");	//Ты пытаешься угрожать мне? Какой-то жалкий стражник угрожает мне, секретарю губернатора?
 	AI_Output(self,other,"DIA_Cornelius_DontBelieveYou_Perjury_13_02");	//Если ты немедленно не исчезнешь, я позабочусь, чтобы тебя разжаловали.
-	Cornelius_ThreatenByMilSC = TRUE;
+//	Cornelius_ThreatenByMilSC = TRUE;
 	AI_StopProcessInfos(self);
 };
 

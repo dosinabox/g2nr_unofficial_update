@@ -952,7 +952,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	Wld_InsertNpc(DMT_1209_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	Wld_InsertNpc(DMT_1210_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	Wld_InsertNpc(DMT_1211_Dementor,"NW_TROLLAREA_RITUALPATH_01");
-	B_RemoveNpc(Pedro);
+	B_RemoveNpc(NOV_600_Pedro);
 /*	if(Npc_IsDead(MiltenNW))
 	{
 		Wld_InsertNpc(PC_Mage_NW,"NW_MONASTERY_ENTRY_01");
@@ -973,6 +973,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	B_KillNpc(NOV_655_ToterNovize);
 	Wld_InsertNpc(NOV_656_ToterNovize,"NW_TROLLAREA_RITUALPATH_01");
 	B_KillNpc(NOV_656_ToterNovize);
+	B_InitNpcGlobals();
 	TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Broken;
 	Wld_InsertItem(ItMi_InnosEye_Broken_Mis,"FP_TROLLAREA_RITUAL_ITEM");
 };
@@ -1425,8 +1426,8 @@ func void DIA_Lord_Hagen_GateOpen_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_30");	//О, Иннос! Что именно там произошло?
 	AI_Output(other,self,"DIA_Lord_Hagen_Add_15_31");	//Почему-то ворота оказались открытыми...
 	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_32");	//Почему-то?! Но как это возможно... В замке наверняка есть предатель!
-	B_StartOtherRoutine(PAL_212_Schiffswache,"ShipFree");
-	B_StartOtherRoutine(PAL_213_Schiffswache,"ShipFree");
+	B_StartOtherRoutine(Schiffswache_212,"ShipFree");
+	B_StartOtherRoutine(Schiffswache_213,"ShipFree");
 	B_StartOtherRoutine(Girion,"WaitForShip");
 	MIS_ShipIsFree = TRUE;
 	B_CheckLog();

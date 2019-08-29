@@ -77,7 +77,7 @@ func int DIA_Addon_Matt_Hello_Condition()
 
 func void DIA_Addon_Matt_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Matt_Hello_10_01");	//А, новичок? Прекрасно. Нам сейчас пригодится каждый человек.
+	AI_Output(self,other,"DIA_Addon_Matt_Hello_10_01");	//А, новичок... Прекрасно. Нам сейчас пригодится каждый человек.
 };
 
 

@@ -133,6 +133,7 @@ func void DIA_Peck_FOUND_PECK_Info()
 
 var int DIA_Peck_WEAPON_perm;
 var int DIA_Peck_WEAPON2_perm;
+var int DIA_Peck_ARMOR_perm;
 
 func void B_GetWeaponFromPeckCh3()
 {
@@ -233,6 +234,32 @@ func void DIA_Peck_WEAPON2_Info()
 	{
 		B_GetWeaponFromPeckCh3();
 	};
+};
+
+
+instance DIA_Peck_ARMOR(C_Info)
+{
+	npc = MIL_324_Peck;
+	nr = 3;
+	condition = DIA_Peck_ARMOR_Condition;
+	information = DIA_Peck_ARMOR_Info;
+	permanent = TRUE;
+	description = "А как насчет доспехов получше?";
+};
+
+
+func int DIA_Peck_ARMOR_Condition()
+{
+	/*if((other.guild == GIL_MIL) && (Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) && (DIA_Peck_ARMOR_perm == FALSE))
+	{
+		return TRUE;
+	};*/
+	return FALSE;
+};
+
+func void DIA_Peck_ARMOR_Info()
+{
+	//AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
 };
 
 

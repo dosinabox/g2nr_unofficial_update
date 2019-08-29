@@ -43,7 +43,6 @@ func void Equip_InnosEye()
 	self.protection[PROT_POINT] += AM_EyeProtPoint;
 	self.protection[PROT_FIRE] += AM_EyeProtFire;
 	self.protection[PROT_MAGIC] += AM_EyeProtMage;
-//	PrintScreen("",-1,-1,FONT_Screen,0);
 	SC_IsWearingInnosEye = TRUE;
 };
 
@@ -209,7 +208,6 @@ func void UseCorneliusTagebuch()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Ёто произошло - один из наемников был арестован. —держать мое слово будет просто.");
 	Doc_Show(nDocID);
-	PrintScreen("",-1,-1,FONT_Screen,0);
 	if(Cornelius_IsLiar == FALSE)
 	{
 		B_LogEntry(TOPIC_RescueBennet,"Ётот дневник - доказательство, необходимое дл€ подтверждени€ невиновности Ѕеннета.");
@@ -539,6 +537,7 @@ instance ItWr_BabosDocs_MIS(C_Item)
 
 func void Use_BabosDocs()
 {
+	Snd_Play("MOB_BOOK_TURNPAGE_A1");
 	BabosDocsOpen = TRUE;
 	AI_PrintScreen("ѕолучено письмо и рисунок",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	CreateInvItems(self,ItWr_BabosLetter_MIS,1);

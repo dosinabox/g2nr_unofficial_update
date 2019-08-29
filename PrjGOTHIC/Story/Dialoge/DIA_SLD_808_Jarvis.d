@@ -222,7 +222,14 @@ func void DIA_Jarvis_MissionKO_Info()
 	self.aivar[AIV_IGNORE_Murder] = TRUE;
 	Log_CreateTopic(TOPIC_JarvisSLDKo,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_JarvisSLDKo,LOG_Running);
-	B_LogEntry(TOPIC_JarvisSLDKo,"Джарвис хочет, чтобы я вырубил парочку парней Сильвио, тогда он проголосует за меня.");
+	if(other.guild == GIL_NONE)
+	{
+		B_LogEntry(TOPIC_JarvisSLDKo,"Джарвис хочет, чтобы я вырубил парочку парней Сильвио. Тогда он проголосует за меня.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_JarvisSLDKo,"Джарвис хочет, чтобы я вырубил парочку парней Сильвио.");
+	};
 };
 
 

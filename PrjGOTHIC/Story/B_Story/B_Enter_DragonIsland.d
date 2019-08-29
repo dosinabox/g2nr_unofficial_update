@@ -266,7 +266,7 @@ func void init_dragonisland()
 /*	if(Npc_HasItems(hero,ItKe_Ship_Levelchange_MIS))
 	{
 		Npc_RemoveInvItems(hero,ItKe_Ship_Levelchange_MIS,1);
-	}; */
-	B_InitNpcGlobals();
+	};
+	B_InitNpcGlobals();*/
 };
 

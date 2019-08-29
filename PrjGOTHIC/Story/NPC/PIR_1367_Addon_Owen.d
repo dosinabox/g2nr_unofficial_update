@@ -5,7 +5,7 @@ instance PIR_1367_Addon_Owen(Npc_Default)
 	guild = GIL_PIR;
 	id = 1367;
 	voice = 13;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_NORMAL;

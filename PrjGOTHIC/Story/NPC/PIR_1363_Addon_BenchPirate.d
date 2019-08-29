@@ -5,7 +5,7 @@ instance PIR_1363_Addon_Pirat(Npc_Default)
 	guild = GIL_PIR;
 	id = 1363;
 	voice = 7;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_FollowDist] = 600;
 	B_SetAttributesToChapter(self,2);

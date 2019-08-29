@@ -232,7 +232,7 @@ func void DIA_Addon_Garett_Greg_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_01");	//С этим старым морским волком лучше не шутить.
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_02");	//К тому же он жаден до невозможности.
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_03");	//Фрэнсис, его казначей, платит нам ровно столько, сколько нужно, чтобы мы не подняли бунт.
-	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_04");	//А если нам попадается что-нибудь действительно ценное, капитан тут же забирает это себе.
+	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_04");	//А если нам попадется что-нибудь действительно ценное, капитан тут же забирает это себе.
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_05");	//Однажды на королевском фрегате я нашел золотой компас.
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_06");	//Конечно же, этот ублюдок Грег отобрал его у меня.
 	AI_Output(self,other,"DIA_Addon_Garett_Greg_09_07");	//Наверняка он его где-нибудь закопал. Он так поступает со всеми своими сокровищами.
@@ -263,7 +263,7 @@ func void DIA_Addon_Garett_Tips_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_01");	//Однажды Грег сказал мне, что компас охраняет сама Смерть. А потом он расхохотался.
 	AI_Output(other,self,"DIA_Addon_Garett_Tips_15_02");	//Что-нибудь еще?
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_03");	//На юге есть бухточка, добраться до которой можно только по морю.
-	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_04");	//Грег нередко там бывает, Может быть, тебе удастся там что-нибудь найти.
+	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_04");	//Грег нередко там бывает. Может быть, тебе удастся там что-нибудь найти.
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_05");	//Однажды я сам попытался исследовать это место, но оказалось, что оно кишит монстрами.
 	AI_Output(self,other,"DIA_Addon_Garett_Tips_09_06");	//Если ты все же решишься туда отправиться, не забудь кирку.
 	MIS_ADDON_GARett_BringKompass = LOG_Running;

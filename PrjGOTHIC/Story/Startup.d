@@ -2112,9 +2112,9 @@ func void STARTUP_NewWorld_Part_City_01()
 
 func void INIT_SUB_NewWorld_Part_City_01()
 {
-//	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
-//	Wld_SetMobRoutine(20,0,"FIREPLACE",1);
-//	Wld_SetMobRoutine(5,0,"FIREPLACE",0);
+	Wld_SetMobRoutine(0,0,"FIREPLACE",1);
+	Wld_SetMobRoutine(20,0,"FIREPLACE",1);
+	Wld_SetMobRoutine(5,0,"FIREPLACE",0);
 	Wld_AssignRoomToGuild("hafen01",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen02",GIL_VLK);
 	Wld_AssignRoomToGuild("hafen03",GIL_VLK);
@@ -2144,8 +2144,15 @@ func void INIT_SUB_NewWorld_Part_City_01()
 	Wld_AssignRoomToGuild("bogner",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("matteo",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("hotel",GIL_NONE);
-	Wld_AssignRoomToGuild("stadtkneipe",GIL_NONE);
-	Wld_AssignRoomToGuild("zuris",GIL_VLK);
+	Wld_AssignRoomToGuild("stadtkneipe",GIL_NONE);	
+	if(Fire_Contest == FALSE)
+	{
+		Wld_AssignRoomToGuild("zuris",GIL_VLK);
+	}
+	else
+	{
+		Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
+	};
 	if(Player_IsApprentice == APP_Constantino)
 	{
 		Wld_AssignRoomToGuild("alchemist",GIL_NONE);
@@ -2416,17 +2423,17 @@ func void INIT_SUB_NewWorld_Part_Monastery_01()
 {
 	Wld_AssignRoomToGuild("kloster01",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("kloster02",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("kloster03",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("kloster11",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("kloster13",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("kloster04",GIL_NOV);
-	Wld_AssignRoomToGuild("kloster05",GIL_NOV);
-	Wld_AssignRoomToGuild("kloster10",GIL_NOV);
-	Wld_AssignRoomToGuild("kloster12",GIL_NOV);
+	Wld_AssignRoomToGuild("kloster03",GIL_NOV);
+	Wld_AssignRoomToGuild("kloster04",GIL_PUBLIC);
+	Wld_AssignRoomToGuild("kloster05",GIL_NOV);	
 	Wld_AssignRoomToGuild("kloster06",GIL_KDF);
 	Wld_AssignRoomToGuild("kloster07",GIL_KDF);
 	Wld_AssignRoomToGuild("kloster08",GIL_KDF);
 	Wld_AssignRoomToGuild("kloster09",GIL_KDF);
+	Wld_AssignRoomToGuild("kloster10",GIL_NOV);
+	Wld_AssignRoomToGuild("kloster11",GIL_PUBLIC);
+	Wld_AssignRoomToGuild("kloster12",GIL_NOV);
+	Wld_AssignRoomToGuild("kloster13",GIL_PUBLIC);
 };
 
 func void INIT_NewWorld_Part_Monastery_01()
@@ -3345,9 +3352,7 @@ func void STARTUP_NewWorld()
 	Kapitel = 1;
 	PlayVideo("INTRO.BIK");
 	PlayVideo("Addon_Title.BIK");
-	Hero_HackChance = 10;
-	NpcWantToFlee = FALSE;
-	TradersHaveLimitedAmmo = FALSE;
+//	InitHeroHitchance();
 };
 
 func void INIT_NewWorld()

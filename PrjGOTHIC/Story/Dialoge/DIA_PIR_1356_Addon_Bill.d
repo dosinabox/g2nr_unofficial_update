@@ -206,7 +206,7 @@ func void DIA_Addon_Bill_AngusnHank_Info()
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_03");	//Все, что я знаю - это то, что они должны были встретиться с бандитами в какой-то пещере неподалеку отсюда.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_04");	//Она должна быть где-то на востоке от лагеря.
 	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_05");	//Не знаю, где именно она находится. Сам я там ни разу не был.
-	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_06");	//Может быть, тебе стоит поговорить с Аллигатором Джеком. Он любит бродить вокруг лагеря.
+	AI_Output(self,other,"DIA_Addon_Bill_AngusnHank_03_06");	//Может, тебе стоит поговорить с Аллигатором Джеком. Он любит бродить вокруг лагеря.
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"У Ангуса и Хэнка была пещера к востоку от лагеря. О ней должен знать Аллигатор Джек.");
 };
 

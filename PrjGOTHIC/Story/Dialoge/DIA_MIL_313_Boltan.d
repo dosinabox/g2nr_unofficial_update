@@ -23,31 +23,35 @@ func void DIA_Boltan_EXIT_Info()
 
 func int C_PrisonIsEmpty()
 {
-	if(MIS_Andre_REDLIGHT == LOG_SUCCESS)
+	if((MIS_Andre_REDLIGHT == LOG_SUCCESS) && !Npc_IsDead(Borka))
 	{
 		return FALSE;
 	}
-	else if(Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 600)
+	else if((Npc_GetDistToWP(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU") <= 600) && !Npc_IsDead(Canthar))
 	{
 		return FALSE;
 	}
-	else if(Sarah_Ausgeliefert == TRUE)
+	else if((Sarah_Ausgeliefert == TRUE) && !Npc_IsDead(Sarah))
 	{
 		return FALSE;
 	}
-	else if(Rengaru_Ausgeliefert == TRUE)
+	else if((Rengaru_Ausgeliefert == TRUE) && !Npc_IsDead(Rengaru))
 	{
 		return FALSE;
 	}
-	else if(Nagur_Ausgeliefert == TRUE)
+	else if((Nagur_Ausgeliefert == TRUE) && !Npc_IsDead(Nagur))
 	{
 		return FALSE;
 	}
-	else if(Halvor_Ausgeliefert == TRUE)
+	else if((Halvor_Ausgeliefert == TRUE) && !Npc_IsDead(Halvor))
 	{
 		return FALSE;
 	}
-	else if(Fernando_ImKnast == TRUE)
+	else if((Fernando_ImKnast == TRUE) && !Npc_IsDead(Fernando))
+	{
+		return FALSE;
+	}
+	else if((MIS_RescueBennet != LOG_SUCCESS) && (Kapitel == 3))
 	{
 		return FALSE;
 	}
