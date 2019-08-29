@@ -6,8 +6,9 @@ func void enter_oldworld_firsttime_trigger()
 	if(Enter_OldWorld_FirstTime_Trigger_OneTime == FALSE)
 	{
 		B_KillNpc(Bruder);
-		B_KillNpc(VLK_Leiche3);
+		B_KillNpc(VLK_Leiche1);
 		B_KillNpc(VLK_Leiche2);
+		B_KillNpc(VLK_Leiche3);
 		B_KillNpc(STRF_Leiche1);
 		B_KillNpc(STRF_Leiche2);
 		B_KillNpc(STRF_Leiche3);
@@ -19,7 +20,6 @@ func void enter_oldworld_firsttime_trigger()
 		B_KillNpc(PAL_Leiche1);
 		B_KillNpc(PAL_Leiche2);
 		B_KillNpc(PAL_Leiche3);
-		B_KillNpc(VLK_Leiche1);
 		B_KillNpc(PAL_Leiche4);
 		B_KillNpc(PAL_Leiche5);
 		B_KillNpc(Olav);

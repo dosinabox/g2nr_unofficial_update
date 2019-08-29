@@ -5,7 +5,7 @@ instance PIR_1365_Addon_Matt(Npc_Default)
 	guild = GIL_PIR;
 	id = 1365;
 	voice = 10;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_FollowDist] = 500;
 	B_SetAttributesToChapter(self,3);

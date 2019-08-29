@@ -5,7 +5,7 @@ instance PIR_1350_Addon_Francis(Npc_Default)
 	guild = GIL_PIR;
 	id = 1350;
 	voice = 13;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

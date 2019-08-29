@@ -5,7 +5,7 @@ instance PIR_1353_Addon_Morgan(Npc_Default)
 	guild = GIL_PIR;
 	id = 1353;
 	voice = 7;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;

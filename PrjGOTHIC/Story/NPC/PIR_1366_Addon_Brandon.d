@@ -5,7 +5,7 @@ instance PIR_1366_Addon_Brandon(Npc_Default)
 	guild = GIL_PIR;
 	id = 1366;
 	voice = 4;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_FollowDist] = 400;
 	B_SetAttributesToChapter(self,4);

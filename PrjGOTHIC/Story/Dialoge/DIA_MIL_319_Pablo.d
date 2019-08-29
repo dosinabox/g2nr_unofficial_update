@@ -178,14 +178,14 @@ func void DIA_Pablo_HakonBandits_Info()
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_02");	//Как-то нам даже удалось выследить их и погнаться за ними. Но нам пришлось прервать погоню в лесу у города.
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_03");	//Там бродит слишком много всяких зверей и это слишком опасно.
 	B_LogEntry(TOPIC_HakonBanditen,"Бандиты, ограбившие Хакона, скрываются где-то в лесу неподалеку от города.");
-	if(Pablo_AndreMelden == FALSE)
+	if((Pablo_AndreMelden == FALSE) && (Halvor_Ausgeliefert == FALSE))
 	{
 		AI_Output(self,other,"DIA_Pablo_Add_12_23");	//Но есть кое-что еще...
 		AI_Output(self,other,"DIA_Pablo_Banditen_12_04");	//Часть украденных товаров всплыла в Хоринисе.
 		AI_Output(other,self,"DIA_Pablo_Banditen_15_05");	//Это означает, что они имеют возможность контрабандой доставлять товары в город и продавать их...
 		AI_Output(self,other,"DIA_Pablo_Banditen_12_06");	//Да, мы подозреваем, что у них есть свой человек в городе. Но нам пока не удалось поймать его.
 		AI_Output(self,other,"DIA_Pablo_Banditen_12_07");	//Если тебе удастся выяснить что-нибудь об этом деле, помни, что лорд Андрэ назначил награду за голову этого скупщика краденного.
-		B_LogEntry(TOPIC_HakonBanditen,"Эти бандиты, вероятно, состоят в сговоре с кем-то из городских дельцов. Лорд Андрэ назначил награду за голову этого дельца.");
+		Log_AddEntry(TOPIC_HakonBanditen,"Эти бандиты, вероятно, состоят в сговоре с кем-то из городских дельцов. Лорд Андрэ назначил награду за голову этого дельца.");
 	};
 };
 
@@ -219,8 +219,8 @@ func void DIA_Pablo_MyBandits_Info()
 		AI_Output(other,self,"DIA_Pablo_Add_15_11");	//Я не знаю - честно!
 		AI_Output(self,other,"DIA_Pablo_Add_12_12");	//Да, да. Конечно. Я хочу, чтобы ты кое-что понял. Если бы я думал, что ты был сообщником этих бандитов, ты бы уже отдыхал за решеткой.
 		AI_Output(self,other,"DIA_Pablo_Add_12_13");	//Но все же, мне лучше доложить об этом инциденте лорду Андрэ...
-		Pablo_AndreMelden = TRUE;
 		AI_Output(self,other,"DIA_Pablo_Add_12_14");	//Но - отвечая на твой вопрос...
+		Pablo_AndreMelden = TRUE;
 	};
 	AI_Output(self,other,"DIA_Pablo_Add_12_15");	//Мы нашли их неподалеку от поместья лендлорда.
 	AI_Output(self,other,"DIA_Pablo_Add_12_16");	//Но они были не похожи на людей Онара.
