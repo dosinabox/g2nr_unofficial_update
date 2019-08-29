@@ -27,7 +27,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_TeleportsADW,0,SC_ADW_ActivatedAllTelePortStones,6);
 	B_CloseTopic(TOPIC_Addon_Sklaven,0,Sklaven_Flucht,6);
 	B_CloseTopic(TOPIC_Addon_RavenKDW,0,RavenIsDead,4);
-	B_CloseTopic(TOPIC_Addon_Relicts,0,Saturas_SCBroughtAllToken,4);
+	B_CloseTopic(TOPIC_Addon_Relicts,0,Saturas_SCBroughtAllToken,6);
 	B_CloseTopic(TOPIC_Addon_Lance,0,TOPIC_End_Lance,6);
 //	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,RavenIsDead,6);
 	B_CloseTopic(TOPIC_Addon_HousesOfRulers,MIS_Riordian_HousesOfRulers,0,6);
@@ -37,7 +37,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_Kammern,0,RavenIsDead,4);
 	B_CloseTopic(TOPIC_Addon_Klaue,0,BeliarsWeaponUpgrated,4);
 	B_CloseTopic(TOPIC_Addon_Klaue,0,TOPIC_END_Klaue,4);
-	B_CloseTopic(TOPIC_Addon_Flut,0,TOPIC_END_Flut,4);
+	B_CloseTopic(TOPIC_Addon_Flut,0,TOPIC_END_Flut,6);
 	B_CloseTopic(TOPIC_Addon_VatrasAbloesung,0,VatrasCanLeaveTown_Kap3,4);
 	B_CloseTopic(TOPIC_Bronkoeingeschuechtert,MIS_Sekob_Bronko_eingeschuechtert,0,6);
 	B_CloseTopic(TOPIC_BalthasarsSchafe,MIS_Balthasar_BengarsWeide,0,6);

@@ -12,10 +12,7 @@ instance DIA_Wolf_EXIT(C_Info)
 
 func int DIA_Wolf_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Wolf_EXIT_Info()
@@ -392,6 +389,10 @@ func void DIA_Wolf_ArmorReady_Info()
 		if(Wolf_MakeArmor == FALSE)
 		{
 			Wolf_Armor_Day = Wld_GetDay() + 1;
+			if(Wld_IsTime(23,0,23,59))
+			{
+				Wolf_Armor_Day += 1;
+			};
 			Wolf_MakeArmor = TRUE;
 		};
 		if((Wolf_MakeArmor == TRUE) && (Wolf_Armor_Day > Wld_GetDay()))
@@ -421,7 +422,7 @@ func void DIA_Wolf_ArmorReady_Info()
 };
 
 
-instance DIA_Wolf_KAP3_EXIT(C_Info)
+/*instance DIA_Wolf_KAP3_EXIT(C_Info)
 {
 	npc = SLD_811_Wolf;
 	nr = 999;
@@ -443,7 +444,7 @@ func int DIA_Wolf_KAP3_EXIT_Condition()
 func void DIA_Wolf_KAP3_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_Wolf_BENGAR(C_Info)
@@ -546,28 +547,15 @@ func int DIA_Wolf_PERMKAP3_Condition()
 	};
 };
 
-
-var int DIA_Wolf_PERMKAP3_onetime;
-
 func void DIA_Wolf_PERMKAP3_Info()
 {
 	AI_Output(other,self,"DIA_Wolf_PERMKAP3_15_00");	//Все в порядке?
-	if(Npc_IsDead(Bengar) && (DIA_Wolf_PERMKAP3_onetime == FALSE))
-	{
-		AI_Output(self,other,"DIA_Wolf_PERMKAP3_08_01");	//Мой работодатель мертв. Пусть земля ему будет пухом. Кстати, я всегда хотел иметь свою собственную ферму.
-		AI_StopProcessInfos(self);
-		Npc_ExchangeRoutine(self,"BengarDead");
-		DIA_Wolf_PERMKAP3_onetime = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Wolf_PERMKAP3_08_02");	//Конечно! Все спокойно.
-	};
+	AI_Output(self,other,"DIA_Wolf_PERMKAP3_08_02");	//Конечно! Все спокойно.
 	AI_StopProcessInfos(self);
 };
 
 
-instance DIA_Wolf_KAP4_EXIT(C_Info)
+/*instance DIA_Wolf_KAP4_EXIT(C_Info)
 {
 	npc = SLD_811_Wolf;
 	nr = 999;
@@ -614,10 +602,37 @@ func int DIA_Wolf_KAP5_EXIT_Condition()
 func void DIA_Wolf_KAP5_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
+};*/
+
+var int Wolf_SaidNo;
+
+instance DIA_Wolf_KAP5_EXIT(C_Info)
+{
+	npc = SLD_811_Wolf;
+	nr = 1;
+	condition = DIA_Wolf_KAP5_EXIT_Condition;
+	information = DIA_Wolf_KAP5_EXIT_Info;
+	important = TRUE;
+	permanent = FALSE;
 };
 
 
-var int wolf_SaidNo;
+func int DIA_Wolf_KAP5_EXIT_Condition()
+{
+	if((Kapitel >= 3) && (Npc_GetDistToWP(self,"FARM3") < 3000) && (MIS_BengarsHelpingSLD == LOG_SUCCESS) && (Wolf_IsOnBoard != LOG_SUCCESS) && Npc_IsDead(Bengar))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Wolf_KAP5_EXIT_Info()
+{
+	AI_Output(self,other,"DIA_Wolf_PERMKAP3_08_01");	//Мой работодатель мертв. Пусть земля ему будет пухом. Кстати, я всегда хотел иметь свою собственную ферму.
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"BengarDead");
+	Wolf_SaidNo = FALSE;
+};
+
 
 instance DIA_Wolf_SHIP(C_Info)
 {
@@ -643,14 +658,12 @@ func void DIA_Wolf_SHIP_Info()
 	if((MIS_BengarsHelpingSLD == LOG_SUCCESS) && !Npc_IsDead(Bengar))
 	{
 		AI_Output(self,other,"DIA_Wolf_SHIP_08_01");	//Нет. Теперь не хочу. Я нашел себе работу. Может быть, в другой раз.
-		wolf_SaidNo = TRUE;
+		Wolf_SaidNo = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Wolf_SHIP_08_02");	//Да, конечно. Нужно сваливать отсюда. Ты не пожалеешь об этом. Я помогу тебе защитить корабль. Куда мы направляемся?
 		MIS_BengarsHelpingSLD = LOG_OBSOLETE;
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew,"Вольфу надоел этот остров, и он готов на все, чтобы убраться отсюда. Он хороший боец.");
 	};
 };
@@ -669,7 +682,7 @@ instance DIA_Wolf_KnowWhereEnemy(C_Info)
 
 func int DIA_Wolf_KnowWhereEnemy_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wolf_SHIP) && (wolf_SaidNo == FALSE) && (MIS_SCKnowsWayToIrdorath == TRUE) && (Wolf_IsOnBoard == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Wolf_SHIP) && (Wolf_SaidNo == FALSE) && (MIS_SCKnowsWayToIrdorath == TRUE) && (Wolf_IsOnBoard == FALSE))
 	{
 		return TRUE;
 	};

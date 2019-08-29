@@ -402,7 +402,7 @@ func void DIA_Thorben_PleaseTeach_Info()
 		Info_AddChoice(DIA_Thorben_PleaseTeach,"Может быть, позже...",DIA_Thorben_PleaseTeach_Later);
 		Info_AddChoice(DIA_Thorben_PleaseTeach,"Отлично. Вот 100 золотых.",DIA_Thorben_PleaseTeach_Pay100);
 	}
-	else if(MIS_Matteo_Gold == LOG_SUCCESS)
+	else if((MIS_Matteo_Gold == LOG_SUCCESS) && (Gritta_WantPay == TRUE) && (Npc_HasItems(Gritta,ItMi_Gold) >= 80))
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_07");	//Ты заплатил долг Гритты Маттео. Похоже, ты хороший человек. Я обучу тебя тому, что ты хочешь знать.
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_08");	//Однако я не могу сделать это бесплатно.
@@ -570,8 +570,11 @@ func void DIA_Addon_Thorben_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Thorben_MissingPeople_06_03");	//Его имя Элврих. Он мой племянник.
 	AI_Output(self,other,"DIA_Addon_Thorben_MissingPeople_06_04");	//Я был им очень доволен, но однажды он просто взял и не пришел на работу.
 	MIS_Thorben_BringElvrichBack = LOG_Running;
-	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+	if(MissingPeopleReturnedHome == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+	};
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Элврих, ученик плотника Торбена, пропал.");
 	Info_ClearChoices(DIA_Addon_Thorben_MissingPeople);
 	Info_AddChoice(DIA_Addon_Thorben_MissingPeople,Dialog_Back,DIA_Addon_Thorben_MissingPeople_Back);

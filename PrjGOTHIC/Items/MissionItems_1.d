@@ -161,7 +161,7 @@ instance ItMi_MariasGoldPlate(C_Item)
 	count[5] = value;
 };
 
-instance ItRi_ValentinosRing(C_Item)
+instance ItRi_Prot_Edge_01_Valentino(C_Item)
 {
 	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;
@@ -393,7 +393,7 @@ instance ItFo_SmellyFish(C_Item)
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MISSION;
 	value = 20;
-	visual = "ItFo_Fish_02.3DS";
+	visual = "ItFo_SmellyFish.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOODHUGE";
 	on_state[0] = Use_SmellyFish;
@@ -603,7 +603,7 @@ func void UseVatrasMessageOpen()
 };
 
 
-instance ItKe_Hotel(C_Item)
+/*instance ItKe_Hotel(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
@@ -613,7 +613,7 @@ instance ItKe_Hotel(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от комнаты отеля.";
-};
+};*/
 
 instance ItKe_ThiefGuildKey_MIS(C_Item)
 {
@@ -1055,10 +1055,10 @@ instance ITAR_PAL_Skel(C_Item)
 	protection[PROT_MAGIC] = 50;
 	value = Value_ITAR_PAL_Skel;
 	wear = WEAR_TORSO;
-	visual = "ItAr_Pal_H.3ds";
+	visual = "ItAr_Pal_Skel.3ds";
 	visual_change = "Armor_Pal_Skeleton.asc";
 	visual_skin = 0;
-	material = MAT_LEATHER;
+	material = MAT_METAL;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];

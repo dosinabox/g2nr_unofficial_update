@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Kardif(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Kardif_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,80);
+//		CreateInvItems(slf,ItMi_Gold,80);
 		CreateInvItems(slf,ItFo_FishSoup,3);
 		CreateInvItems(slf,ItFoMutton,1);
 		CreateInvItems(slf,ItFo_Fish,4);
@@ -20,7 +20,7 @@ func void B_GiveTradeInv_Kardif(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Kardif_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFo_Sausage,2);
 		CreateInvItems(slf,ItFo_Fish,4);
 		CreateInvItems(slf,ItFo_Booze,2);
@@ -34,7 +34,7 @@ func void B_GiveTradeInv_Kardif(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Kardif_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItFo_Sausage,2);
 		CreateInvItems(slf,ItFo_FishSoup,3);
 		CreateInvItems(slf,ItFoMutton,1);
@@ -48,7 +48,7 @@ func void B_GiveTradeInv_Kardif(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Kardif_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItFo_Sausage,2);
 		CreateInvItems(slf,ItFo_FishSoup,3);
 		CreateInvItems(slf,ItFoMutton,1);
@@ -64,7 +64,7 @@ func void B_GiveTradeInv_Kardif(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Kardif_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,300);
+//		CreateInvItems(slf,ItMi_Gold,300);
 		CreateInvItems(slf,ItFo_Sausage,3);
 		CreateInvItems(slf,ItFo_FishSoup,5);
 		CreateInvItems(slf,ItFoMutton,7);

@@ -40,7 +40,7 @@ func int DIA_Addon_Pardos_NW_Hi_Condition()
 func void DIA_Addon_Pardos_NW_Hi_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Pardos_NW_Hi_15_00");	//Как идут дела?
-	AI_Output(self,other,"DIA_Addon_Pardos_NW_Hi_03_01");	//(усмехается) Эй, это же мой спаситель. Спасибо. Теперь я, наконец, могу отдохнуть.
+	AI_Output(self,other,"DIA_Addon_Pardos_NW_Hi_03_01");	//(усмехается) Это же мой спаситель. Спасибо. Теперь я, наконец, могу отдохнуть.
 	AI_Output(other,self,"DIA_Addon_Pardos_NW_Hi_15_02");	//Удачи.
 };
 

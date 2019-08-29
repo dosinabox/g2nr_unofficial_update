@@ -92,13 +92,13 @@ instance NewMine_Snapper8(Mst_Default_Snapper)
 
 instance NewMine_LeadSnapper(Mst_Default_Snapper)
 {
+	name[0] = "Вожак стаи";
+	level = 13;
 	B_SetVisuals_Snapper();
 	Npc_SetToFistMode(self);
 	Mdl_SetModelScale(self,1.1,1.1,1.1);
-	name[0] = "Вожак стаи";
 	attribute[ATR_HITPOINTS_MAX] = 160;
 	attribute[ATR_HITPOINTS] = 160;
-	protection[PROT_FIRE] = 17;
 	CreateInvItems(self,ItAt_ClawLeader,1);
 };
 

@@ -3,9 +3,9 @@ instance ItSe_ErzFisch(C_Item)
 {
 	name = "Круглая рыба";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItSe_ErzFisch.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_ErzFisch;
@@ -27,9 +27,9 @@ instance ItSe_GoldFisch(C_Item)
 {
 	name = "Тяжелая рыба";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItSe_GoldFisch.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_GoldFisch;
@@ -37,6 +37,7 @@ instance ItSe_GoldFisch(C_Item)
 	text[0] = PRINT_HiddenInFish;
 	text[5] = NAME_Value;
 	count[5] = value;
+	inv_zbias = 100;
 };
 
 
@@ -47,13 +48,13 @@ func void Use_GoldFisch()
 };
 
 
-instance ItSe_Ringfisch(C_Item)
+instance ItSe_RingFisch(C_Item)
 {
 	name = "Маленькая рыбка";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItSe_RingFisch.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_Ringfisch;
@@ -61,7 +62,7 @@ instance ItSe_Ringfisch(C_Item)
 	text[0] = PRINT_HiddenInFish;
 	text[5] = NAME_Value;
 	count[5] = value;
-//	inv_zbias = 190;
+	inv_zbias = 190;
 };
 
 
@@ -76,9 +77,9 @@ instance ItSe_LockpickFisch(C_Item)
 {
 	name = "Легкая рыба";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 25;
-	visual = "ItFo_Fish.3DS";
+	visual = "ItFo_SmellyFish.3DS";
 	material = MAT_LEATHER;
 	scemeName = "MAPSEALED";
 	on_state[0] = Use_LockpickFisch;
@@ -107,7 +108,7 @@ instance ItSe_GoldPocket25(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = GoldPocket25;
 	description = name;
-	text[0] = "Внутри позванивает несколько монет.";
+	text[0] = PRINT_Pocket_25;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -130,7 +131,7 @@ instance ItSe_GoldPocket50(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = GoldPocket50;
 	description = name;
-	text[0] = "Этот кошелек полон монет.";
+	text[0] = PRINT_Pocket_50;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -153,7 +154,7 @@ instance ItSe_GoldPocket100(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = GoldPocket100;
 	description = name;
-	text[0] = "Тяжелый мешочек, полный монет.";
+	text[0] = PRINT_Pocket_100;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

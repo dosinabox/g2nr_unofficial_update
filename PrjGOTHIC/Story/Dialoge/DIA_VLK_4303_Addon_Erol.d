@@ -291,6 +291,7 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_06");	//Этого достаточно. Маг Воды получит то, что я обещал, и я смогу, наконец, вернуться домой.
 			MIS_Addon_Erol_BanditStuff = LOG_SUCCESS;
+			B_CheckLog();
 //			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 		};
 		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_07");	//Конечно же, я тебе заплачу.
@@ -309,10 +310,13 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 //			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
 		};
 	}
-	else if(C_ScHasMagicStonePlate())
+	else if(C_ScHasMagicStonePlate() || C_ScHasColoredStonePlate() || Npc_HasItems(other,ItMi_TempelTorKey))
 	{
 		AI_Output(other,self,"DIA_Addon_Erol_Stoneplates_15_10");	//Эта табличка подойдет?
-		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_11");	//Нет. Она обладает магической силой.
+		if(C_ScHasMagicStonePlate())
+		{
+			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_11");	//Нет. Она обладает магической силой.
+		};
 		AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_12");	//Такие таблички маг Воды не покупает.
 	}
 	else
@@ -475,7 +479,7 @@ func int DIA_Addon_Erol_Trade_Condition()
 };
 
 
-var int DIA_Addon_Erol_Trade_OneTime;
+//var int DIA_Addon_Erol_Trade_OneTime;
 
 func void DIA_Addon_Erol_Trade_Info()
 {

@@ -5,12 +5,12 @@ instance PIR_1350_Addon_Francis(Npc_Default)
 	guild = GIL_PIR;
 	id = 1350;
 	voice = 13;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_Schwert1);
-	CreateInvItems(self,ITKE_Greg_ADDON_MIS,1);
+	CreateInvItems(self,ItKe_Greg_Addon_MIS,1);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Cipher_neu,BodyTex_N,ITAR_PIR_M_Addon);
 	Mdl_SetModelFatness(self,1);

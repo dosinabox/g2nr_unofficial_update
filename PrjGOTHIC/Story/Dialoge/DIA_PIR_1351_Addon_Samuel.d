@@ -64,7 +64,7 @@ instance DIA_Addon_Samuel_Francis(C_Info)
 
 func int DIA_Addon_Samuel_Francis_Condition()
 {
-	if(Francis_ausgeschissen == FALSE)
+	if(GregIsBack == FALSE)
 	{
 		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
 		{
@@ -78,7 +78,7 @@ func void DIA_Addon_Samuel_Francis_Info()
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_00");	//Я хочу поговорить с тобой о Фрэнсисе.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_01");	//Не упоминай при мне эту жалкую пародию на капитана!
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_02");	//Он целыми днями сидит на своей жирной заднице с важным видом.
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_03");	//Никто из нас не может понять, о чем, черт возьми, думал капитан, когда оставлял ЕГО за главного!
+	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_03");	//И никто из нас не может понять, о чем, черт возьми, думал капитан, когда оставлял ЕГО за главного!
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_04");	//Что тебе нужно от этого идиота?
 };
 
@@ -95,7 +95,7 @@ instance DIA_Addon_Samuel_Versteck(C_Info)
 
 func int DIA_Addon_Samuel_Versteck_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (Francis_ausgeschissen == FALSE) && (GregIsBack == FALSE) && !Npc_IsDead(Francis))
+	if(Npc_KnowsInfo(other,DIA_Addon_Samuel_Francis) && (GregIsBack == FALSE) && !Npc_IsDead(Francis))
 	{
 		return TRUE;
 	};
@@ -105,7 +105,10 @@ func void DIA_Addon_Samuel_Versteck_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_02");	//Я должен попасть в хижину Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_05");	//Неужели? А зачем, интересно?
-	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_01");	//Мне нужны бандитские доспехи.
+	if(!Npc_HasItems(other,ITAR_BDT_M) && !Npc_HasItems(other,ITAR_BDT_H) && !Npc_HasItems(other,ITAR_Thorus_Addon))
+	{
+		AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_01");	//Мне нужны бандитские доспехи.
+	};
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_06");	//(смеется) Фрэнсис ни за что не пустит тебя в хижину, чтоб ты мог покопаться в вещах Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_07");	//Если только...
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_03");	//Что?
@@ -481,7 +484,7 @@ func void DIA_Addon_Samuel_News_Info()
 			B_UseItem(other,ItFo_Addon_Rum);
 			News_Francis_GotSome = TRUE;
 		};
-		if(GregIsBack == TRUE)
+		if((GregIsBack == TRUE) && !Npc_IsDead(Greg))
 		{
 			AI_Output(self,other,"DIA_Addon_Samuel_News_14_03");	//И Грег наконец-то вернулся. Он потерял корабль, но, по крайней мере, восстановил порядок в лагере.
 		};

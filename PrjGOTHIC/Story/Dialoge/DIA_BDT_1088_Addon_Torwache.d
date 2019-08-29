@@ -50,7 +50,7 @@ func int DIA_BDT_1088_Addon_Torwache_FirstWarn_Condition()
 func void DIA_BDT_1088_Addon_Torwache_FirstWarn_Info()
 {
 	AI_Output(self,other,"DIA_Addon_BDT_1088_Addon_Torwache_FirstWarn_06_00");	//СТОЙ!
-	if(MIS_Send_Buddler == LOG_SUCCESS)
+	if((MIS_Send_Buddler == LOG_SUCCESS) || Npc_HasItems(other,ITAR_Thorus_Addon))
 	{
 		AI_Output(other,self,"DIA_Addon_BDT_1088_Torwache_FirstWarn_15_01");	//Уйди с дороги, охранник.
 		AI_Output(self,other,"DIA_Addon_BDT_10018_Torwache_FirstWarn_06_02");	//А, все в порядке, можешь проходить.

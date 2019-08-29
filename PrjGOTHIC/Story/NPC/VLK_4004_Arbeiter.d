@@ -9,6 +9,7 @@ instance VLK_4004_Arbeiter(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_COWARD;
+	EquipItem(self,ItMw_1H_Mace_L_01);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Cavalorn,BodyTex_B,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,0);

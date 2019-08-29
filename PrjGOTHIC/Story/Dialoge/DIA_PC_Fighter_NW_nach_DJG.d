@@ -78,8 +78,6 @@ func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_12_03");	//(смеется) Конечно. Всегда готов. Просто скажи, что нужно делать.
 	if(SCToldGornHeKnowWhereEnemy == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew,"Горн был готов на все, когда я рассказал ему об острове. Если мне понадобится его топор, я могу взять его с собой.");
 		SCToldGornHeKnowWhereEnemy = TRUE;
 	};

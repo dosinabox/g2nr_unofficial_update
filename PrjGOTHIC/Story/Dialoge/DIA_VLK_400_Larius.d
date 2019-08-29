@@ -147,7 +147,7 @@ instance DIA_Larius_Richterueberfall(C_Info)
 	nr = 4;
 	condition = DIA_Larius_Richterueberfall_Condition;
 	information = DIA_Larius_Richterueberfall_Info;
-	description = "—удь€ нан€л бандитов, чтобы они убили теб€.";
+	description = "—удь€ нан€л бандитов, чтобы они убили теб€. я могу доказать это.";
 };
 
 

@@ -746,7 +746,7 @@ const string TEXT_FONT_Inventory = "Font_old_10_white.tga";
 const float VIEW_TIME_PER_CHAR = 550;
 
 const int NEWWORLD_ZEN = 1;
-const int OldWorld_Zen = 2;
+const int OLDWORLD_ZEN = 2;
 const int DRAGONISLAND_ZEN = 3;
 const int ADDONWORLD_ZEN = 4;
 const int INVCAM_ENTF_RING_STANDARD = 400;

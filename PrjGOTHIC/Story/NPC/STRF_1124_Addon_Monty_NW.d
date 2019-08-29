@@ -11,7 +11,8 @@ instance STRF_1124_Addon_Monty_NW(Npc_Default)
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_2H_Axe_L_01);
+//	EquipItem(self,ItMw_2H_Axe_L_01);
+	EquipItem(self,ItMw_1H_Mace_L_01);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_NormalBart04,BodyTex_N,ITAR_Bau_L);
 	Mdl_SetModelFatness(self,1);

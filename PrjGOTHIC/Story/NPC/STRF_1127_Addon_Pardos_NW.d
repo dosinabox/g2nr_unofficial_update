@@ -15,7 +15,7 @@ instance STRF_1127_Addon_Pardos_NW(Npc_Default)
 	B_CreateAmbientInv(self);
 //	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Asghan,BodyTex_N,ITAR_Prisoner);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Weak_Asghan,BodyTex_N,ITAR_Bau_L);
-	Mdl_SetModelFatness(self,0);
+	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,60);

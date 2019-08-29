@@ -161,6 +161,7 @@ func void DIA_Tandor_Equipment_Ein()
 {
 	AI_Output(other,self,"DIA_Tandor_Equipment_Ein_15_00");	//Одноручное.
 	AI_Output(self,other,"DIA_Tandor_Equipment_Ein_08_01");	//Тогда возьми этот дробитель камней. Это хорошее оружие.
+	CreateInvItems(self,ItMw_Steinbrecher,1);
 	B_GiveInvItems(self,other,ItMw_Steinbrecher,1);
 	Info_ClearChoices(DIA_Tandor_Equipment);
 };
@@ -169,6 +170,7 @@ func void DIA_Tandor_Equipment_Zwei()
 {
 	AI_Output(other,self,"DIA_Tandor_Equipment_Zwei_15_00");	//Двуручное.
 	AI_Output(self,other,"DIA_Tandor_Equipment_Zwei_08_01");	//Тебе понравится этот двуручник.
+	CreateInvItems(self,ItMw_Zweihaender1,1);
 	B_GiveInvItems(self,other,ItMw_Zweihaender1,1);
 	Info_ClearChoices(DIA_Tandor_Equipment);
 };
@@ -177,8 +179,8 @@ func void DIA_Tandor_Equipment_Bow()
 {
 	AI_Output(other,self,"DIA_Tandor_Equipment_Bow_15_00");	//Лук.
 	AI_Output(self,other,"DIA_Tandor_Equipment_Bow_08_01");	//Этот охотничий лук как нельзя лучше подойдет тебе. Я также дам тебе колчан стрел.
+	CreateInvItems(self,ItRw_Bow_L_03,1);
 	B_GiveInvItems(self,other,ItRw_Bow_L_03,1);
-//	B_GiveInvItems(self,other,ItRw_Arrow,50);
 	CreateInvItems(other,ItRw_Arrow,50);
 	AI_PrintScreen("50 предметов получено (Стрела)",-1,43,FONT_ScreenSmall,2);
 	Info_ClearChoices(DIA_Tandor_Equipment);
@@ -188,10 +190,10 @@ func void DIA_Tandor_Equipment_Crossbow()
 {
 	AI_Output(other,self,"DIA_Tandor_Equipment_Crossbow_15_00");	//Арбалет.
 	AI_Output(self,other,"DIA_Tandor_Equipment_Crossbow_08_01");	//Тогда возьми этот легкий арбалет. И болты к нему в придачу.
+	CreateInvItems(self,ItRw_Crossbow_L_02,1);
 	B_GiveInvItems(self,other,ItRw_Crossbow_L_02,1);
 	CreateInvItems(other,ItRw_Bolt,50);
 	AI_PrintScreen("50 предметов получено (Болт)",-1,43,FONT_ScreenSmall,2);
-//	B_GiveInvItems(self,other,ItRw_Bolt,50);
 	Info_ClearChoices(DIA_Tandor_Equipment);
 };
 

@@ -194,6 +194,7 @@ func void DIA_Sentenza_WannaJoin_Info()
 	AI_Output(other,self,"DIA_Sentenza_WannaJoin_15_00");	//я пришел, чтобы присоединитьс€ к вам!
 	AI_Output(self,other,"DIA_Sentenza_WannaJoin_09_01");	//ѕохвальное желание.
 	AI_Output(self,other,"DIA_Sentenza_WannaJoin_09_02");	//(вскользь) ј ты знаешь, что наемники будут голосовать - прин€ть теб€ или нет?
+	SCKnowsSLDVotes = TRUE;
 };
 
 

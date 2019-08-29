@@ -16,11 +16,11 @@ func void G_CanNotCast(var int bIsPlayer,var int nCircleNeeded,var int nCirclePo
 	{
 		if(nCircleNeeded > 6)
 		{
-			Print("Я не умею пользоваться магией паладинов.");
+			Print(PRINT_MAGCIRCLES_PAL);
 		}
 		else
 		{
-			Print("Не изучен необходимый Круг магии.");
+			Print(PRINT_MAGCIRCLES_LOW);
 		};
 	};
 };

@@ -9,8 +9,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Gorax_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
-//		CreateInvItems(slf,ItKe_Innos_MIS,1);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItSc_Sleep,1);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItPo_Mana_01,2);
@@ -34,7 +33,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Gorax_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItMi_Quartz,2);
 		CreateInvItems(slf,ItMi_Pitch,1);
@@ -47,17 +46,19 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Windfist,4);
 		CreateInvItems(slf,ItSc_Sleep,2);
 		CreateInvItems(slf,ItAm_Prot_Edge_01,1);
-		CreateInvItems(slf,ItMi_RuneBlank,2);
+		if((hero.guild != GIL_NOV) && (hero.guild != GIL_NONE))
+		{
+			CreateInvItems(slf,ItMi_RuneBlank,2);
+		};
 		if((hero.guild == GIL_PAL) || (hero.guild == GIL_MIL))
 		{
 			CreateInvItems(slf,ItWr_Map_Shrine_MIS,1);
 		};
-//		CreateInvItems(slf,ItMW_Addon_Stab04,1);
 		Gorax_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Gorax_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItMi_Quartz,2);
 		CreateInvItems(slf,ItMi_Rockcrystal,2);
@@ -73,21 +74,20 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_SumSkel,3);
 		CreateInvItems(slf,ItSc_Fear,2);
 		CreateInvItems(slf,ItSc_IceCube,3);
-		CreateInvItems(slf,ItMi_RuneBlank,1);
 		CreateInvItems(slf,ItSc_TrfGiantBug,1);
 		CreateInvItems(slf,ItSc_TrfWolf,1);
 		CreateInvItems(slf,ItSc_TrfSheep,1);
 		CreateInvItems(slf,ItSc_TrfScavenger,1);
-		/*if((hero.guild == GIL_PAL) || (hero.guild == GIL_MIL))
-		{
-			CreateInvItems(slf,ItWr_Map_Shrine_MIS,1);
-		};*/
 		CreateInvItems(slf,ItBe_Addon_Prot_MAGIC,1);
+		if((hero.guild != GIL_NOV) && (hero.guild != GIL_NONE))
+		{
+			CreateInvItems(slf,ItMi_RuneBlank,1);
+		};
 		Gorax_ItemsGiven_Chapter_3 = TRUE;
 	};
 	if((Kapitel >= 4) && (Gorax_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItMi_Sulfur,5);
 		CreateInvItems(slf,ItMi_Quartz,6);
 		CreateInvItems(slf,ItMi_Rockcrystal,3);
@@ -110,7 +110,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Gorax_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItMi_Sulfur,6);
 		CreateInvItems(slf,ItMi_Quartz,4);
 		CreateInvItems(slf,ItMi_Rockcrystal,6);
@@ -126,9 +126,12 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_IceWave,4);
 		CreateInvItems(slf,ItSc_SumDemon,2);
 		CreateInvItems(slf,ItSc_FullHeal,3);
-		CreateInvItems(slf,ItMi_RuneBlank,1);
 		CreateInvItems(slf,ItSc_TrfLurker,1);
 		CreateInvItems(slf,ItSc_TrfDragonSnapper,1);
+		if((hero.guild != GIL_NOV) && (hero.guild != GIL_NONE))
+		{
+			CreateInvItems(slf,ItMi_RuneBlank,1);
+		};
 		Gorax_ItemsGiven_Chapter_5 = TRUE;
 	};
 };

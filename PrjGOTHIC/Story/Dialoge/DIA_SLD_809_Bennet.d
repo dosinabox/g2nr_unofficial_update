@@ -1,4 +1,16 @@
 
+func void B_UpdateBennetItemsCount()
+{
+	if(Bennet_ItemsGiven_Chapter_1 == TRUE)
+	{
+		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+	};
+	if(Bennet_ItemsGiven_Chapter_3 == TRUE)
+	{
+		Bennet_NW_ItMi_Nugget_Count = Npc_HasItems(self,ItMi_Nugget);
+	};
+};
+
 instance DIA_Bennet_EXIT(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -21,6 +33,7 @@ func int DIA_Bennet_EXIT_Condition()
 func void DIA_Bennet_EXIT_Info()
 {
 	B_EquipTrader(self);
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 };
 
@@ -202,6 +215,7 @@ func void DIA_Bennet_WannaJoin_Info()
 	{
 		AI_Output(other,self,"DIA_Bennet_WannaJoin_15_02");	//Я прошел испытание.
 		AI_Output(self,other,"DIA_Bennet_WannaJoin_06_03");	//Хорошо, тогда я проголосую за тебя.
+		SCKnowsSLDVotes = TRUE;
 	};
 };
 
@@ -586,6 +600,7 @@ func int DIA_Bennet_KAP3_EXIT_Condition()
 func void DIA_Bennet_KAP3_EXIT_Info()
 {
 	B_EquipTrader(self);
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 };
 
@@ -1104,6 +1119,7 @@ func void DIA_Bennet_GiveInnosEye_Info()
 	Npc_RemoveInvItems(other,ItMi_InnosEye_Broken_Mis,1);
 	AI_PrintScreen(Print_InnoseyeGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Bennet_RepairDay = Wld_GetDay();
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"WORK");
 };
@@ -1131,6 +1147,7 @@ func int DIA_Bennet_GetInnosEye_Condition()
 func void DIA_Bennet_GetInnosEye_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_GetInnosEye_15_00");	//Амулет готов?
+	B_UpdateBennetItemsCount();
 	if(((Bennet_RepairDay < Wld_GetDay()) && Wld_IsTime(5,0,23,59)) || (Bennet_RepairDay + 1 < Wld_GetDay()))
 	{
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_01");	//Да, держи.
@@ -1176,6 +1193,7 @@ func int DIA_Bennet_KAP4_EXIT_Condition()
 func void DIA_Bennet_KAP4_EXIT_Info()
 {
 	B_EquipTrader(self);
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 };
 
@@ -1380,6 +1398,7 @@ func int DIA_Bennet_KAP5_EXIT_Condition()
 func void DIA_Bennet_KAP5_EXIT_Info()
 {
 	B_EquipTrader(self);
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 };
 
@@ -1413,8 +1432,6 @@ func void DIA_Bennet_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_06_03");	//Это лучше, чем работать на ферме Онара. Парень, даже ад ЛУЧШЕ, чем здесь. Ты можешь рассчитывать на меня.
 	if(SCToldBennetHeKnowWhereEnemy == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew,"Беннет готов отправляться немедленно. Кузнец он непревзойденный. Я уверен, что смогу многому научиться у него.");
 		SCToldBennetHeKnowWhereEnemy = TRUE;
 	};
@@ -1435,7 +1452,6 @@ func void DIA_Bennet_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_Bennet_KnowWhereEnemy_Yes_15_00");	//Будь моим кузнецом. Увидимся в гавани.
 	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_Yes_06_01");	//Хорошо. Увидимся позже.
-	self.flags = NPC_FLAG_IMMORTAL;
 	Bennet_IsOnBoard = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Crewmember_Success);
 	Crewmember_Count += 1;
@@ -1511,9 +1527,9 @@ func void DIA_Bennet_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_StillNeedYou_15_00");	//Возвращайся, я не могу найти другого кузнеца.
 	AI_Output(self,other,"DIA_Bennet_StillNeedYou_06_01");	//(сердито) Хорошо! Всякий может издеваться над простым кузнецом! Увидимся в гавани.
-	self.flags = NPC_FLAG_IMMORTAL;
 	Bennet_IsOnBoard = LOG_SUCCESS;
 	Crewmember_Count += 1;
+	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
 	{

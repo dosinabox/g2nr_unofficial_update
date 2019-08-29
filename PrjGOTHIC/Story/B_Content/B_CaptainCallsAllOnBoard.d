@@ -58,5 +58,6 @@ func void B_CaptainCallsAllOnBoard(var C_Npc Captain)
 		B_StartOtherRoutine(Girion,"Ship");
 	};
 	MIS_ReadyforChapter6 = TRUE;
+	B_CheckLog();
 };
 

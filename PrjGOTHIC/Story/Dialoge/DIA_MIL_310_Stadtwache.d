@@ -291,9 +291,15 @@ func int DIA_Mil_310_Stadtwache_ZumSchmied_Condition()
 {
 	var C_Item itm;
 	itm = Npc_GetEquippedArmor(other);
-	if((Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M)) && Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (Mil_310_schonmalreingelassen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (Mil_310_schonmalreingelassen == FALSE))
 	{
-		return TRUE;
+		if(Npc_HasEquippedArmor(other))
+		{
+			if(Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M))
+			{
+				return TRUE;
+			};
+		};
 	};
 };
 
@@ -352,7 +358,6 @@ func void DIA_Addon_Mil_310_Stadtwache_Constantino_Info()
 			Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
 			Mil_310_schonmalreingelassen = TRUE;
 			MIS_Addon_Lester_PickForConstantino = LOG_SUCCESS;
-			B_CheckLog();
 			B_GivePlayerXP(XP_Addon_PickForConstantino);
 			AI_StopProcessInfos(self);
 		}

@@ -72,9 +72,7 @@ func void DIA_None_101_Mario_YouNeedMe_Info()
 	AI_Output(self,other,"DIA_None_101_Mario_YouNeedMe_07_00");	//Я слышал, что ты набираешь команду на свой корабль?
 	AI_Output(other,self,"DIA_None_101_Mario_YouNeedMe_15_01");	//И?
 	AI_Output(self,other,"DIA_None_101_Mario_YouNeedMe_07_02");	//Я готов!
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
-	B_LogEntry(Topic_Crew,"Бывший моряк Марио заговорил со мной в портовой таверне. Он хочет плыть на корабле.");
+	B_LogEntry(Topic_Crew,"Некто Марио заговорил со мной в портовой таверне. Он вызвался плыть на корабле.");
 };
 
 
@@ -105,6 +103,7 @@ func void DIA_None_101_Mario_WhyNeedYou_Info()
 	AI_Output(self,other,"DIA_None_101_Mario_WhyNeedYou_07_03");	//Я служил моряком на 'Короле Робаре' и 'Гордости Миртаны'.
 	AI_Output(self,other,"DIA_None_101_Mario_WhyNeedYou_07_04");	//В битве у восточного архипелага я собственноручно отправил пару десятков орков назад в царство Белиара.
 	AI_Output(self,other,"DIA_None_101_Mario_WhyNeedYou_07_05");	//К сожалению, нас осталось слишком мало, когда наш флагман затонул и нам пришлось отступить.
+	B_LogEntry(Topic_Crew,"Марио - бывший моряк королевского флота.");
 };
 
 
@@ -270,6 +269,7 @@ func void DIA_None_101_Mario_NeedGoodMen_Info()
 	AI_Output(other,self,"DIA_None_101_Mario_NeedGoodMen_15_00");	//Я всегда найду место для хороших людей.
 	AI_Output(self,other,"DIA_None_101_Mario_NeedGoodMen_07_01");	//Конечно, увидимся на корабле.
 	Mario_IsOnBoard = LOG_SUCCESS;
+//	Crewmember_Count += 1;
 	B_GivePlayerXP(XP_Crewmember_Success);
 	AI_StopProcessInfos(self);
 	if(MIS_ReadyforChapter6 == TRUE)
@@ -307,6 +307,7 @@ func void DIA_Mario_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_Mario_LeaveMyShip_15_00");	//Я понял, что ты мне не нужен!
 	AI_Output(self,other,"DIA_Mario_LeaveMyShip_07_01");	//Как скажешь. Ты знаешь, где искать меня!
 	Mario_IsOnBoard = LOG_OBSOLETE;
+//	Crewmember_Count -= 1;
 	AI_StopProcessInfos(self);
 	Mario_Nerver += 1;
 	Npc_ExchangeRoutine(self,"ShipOff");
@@ -326,6 +327,7 @@ instance DIA_Mario_StillNeedYou(C_Info)
 
 func int DIA_Mario_StillNeedYou_Condition()
 {
+//	if(((Mario_IsOnBoard == LOG_OBSOLETE) || (Mario_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	if((Mario_IsOnBoard == LOG_OBSOLETE) || (Mario_IsOnBoard == LOG_FAILED))
 	{
 		return TRUE;
@@ -339,6 +341,7 @@ func void DIA_Mario_StillNeedYou_Info()
 	{
 		AI_Output(self,other,"DIA_Mario_StillNeedYou_07_01");	//Я знал! Увидимся на корабле!
 		Mario_IsOnBoard = LOG_SUCCESS;
+//		Crewmember_Count += 1;
 		AI_StopProcessInfos(self);
 		if(MIS_ReadyforChapter6 == TRUE)
 		{

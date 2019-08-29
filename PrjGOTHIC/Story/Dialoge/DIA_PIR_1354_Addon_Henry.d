@@ -230,7 +230,6 @@ func int DIA_Addon_Henry_WantEnter_Condition()
 
 func void DIA_Addon_Henry_WantEnter_Info()
 {
-	var C_Item itm;
 	AI_Output(other,self,"DIA_Addon_Henry_WantEnter_15_00");	//Я хочу попасть внутрь.
 	AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_01");	//Правда? Что ж, в таком случае, ты должен заплатить.
 	B_Henry_Gold(500);
@@ -241,13 +240,11 @@ func void DIA_Addon_Henry_WantEnter_Info()
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_04");	//В лагере полно всего того, что может тебя заинтересовать...
 		Henry_Zoll_WhatFor = TRUE;
 	};
-	itm = Npc_GetEquippedArmor(other);
-//	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_H))
-	if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_PAL_M) || Hlp_IsItem(itm,ITAR_DJG_L) || Hlp_IsItem(itm,ITAR_DJG_M) || Hlp_IsItem(itm,ITAR_RANGER_Addon) || Hlp_IsItem(itm,ITAR_MIL_L) || Hlp_IsItem(itm,ITAR_MIL_M) || Hlp_IsItem(itm,ITAR_SLD_M) || Hlp_IsItem(itm,ITAR_SLD_M2) || Hlp_IsItem(itm,ITAR_SLD_H))
+	if(C_HenryNiceArmorCheck(other))
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_07");	//А ты выглядишь человеком состоятельным.
 		AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_08");	//Так что небольшая плата за вход тебя не разорит.
-		if(!Hlp_IsItem(itm,ITAR_KDF_L) && !Hlp_IsItem(itm,ITAR_KDF_H))
+		if(!C_RobeCheck(other))
 		{
 			AI_Output(self,other,"DIA_Addon_Henry_WantEnter_04_09");	//Или свою роскошную броню ты у кого-то украл?
 		};
@@ -345,7 +342,7 @@ func int DIA_Addon_Henry_MeatForMorgan_Condition()
 func void DIA_Addon_Henry_MeatForMorgan_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_MeatForMorgan_15_00");	//Я должен отдать Моргану мясо.
-	AI_Output(self,other,"DIA_Addon_Henry_MeatForMorgan_04_01");	//Ага. И кто же тебя послал?
+	AI_Output(self,other,"DIA_Addon_Henry_MeatForMorgan_04_01");	//А! И кто же тебя послал?
 	AI_Output(other,self,"DIA_Addon_Henry_MeatForMorgan_15_02");	//Аллигатор Джек. Он говорит, что Морган это мясо уже ждет.
 	AI_Output(self,other,"DIA_Addon_Henry_MeatForMorgan_04_03");	//Ясно. Сам он не в настроении, верно?
 };
@@ -742,7 +739,8 @@ instance DIA_Addon_Henry_Owen(C_Info)
 
 func int DIA_Addon_Henry_Owen_Condition()
 {
-	if((MIS_Henry_FreeBDTTower == LOG_SUCCESS) && (Henry_EnterCrewMember == TRUE) && !Npc_IsDead(Malcom))
+//	if((MIS_Henry_FreeBDTTower == LOG_SUCCESS) && (Henry_EnterCrewMember == TRUE) && !Npc_IsDead(Malcom))
+	if((MIS_Henry_FreeBDTTower == LOG_SUCCESS) && (Henry_EnterCrewMember == TRUE))
 	{
 		return TRUE;
 	};
@@ -800,11 +798,14 @@ func int DIA_Addon_Henry_Owen2_Condition()
 func void DIA_Addon_Henry_Owen2_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Owen2_15_00");	//Насчет Оуэна, лесоруба...
-	if(Npc_IsDead(PIR_1367_Addon_Owen))
+	if(Npc_IsDead(Owen))
 	{
 		AI_Output(other,self,"DIA_Addon_Henry_Owen2_15_01");	//Он мертв.
 		AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_02");	//Черт возьми! Видимо, мне придется отправить туда нового человека.
-		AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_03");	//Морган очень вовремя занялся заполонившими всю округу дикими зверями.
+		if(!Npc_IsDead(Morgan))
+		{
+			AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_03");	//Морган очень вовремя занялся заполонившими всю округу дикими зверями.
+		};
 		B_Addon_Henry_MalcomsDead();
 		MIS_Henry_HolOwen = LOG_OBSOLETE;
 		B_LogEntry(TOPIC_Addon_HolOwen,"Оуэн и Мальком мертвы.");
@@ -817,8 +818,14 @@ func void DIA_Addon_Henry_Owen2_Info()
 		B_Addon_Henry_MalcomsDead();
 		AI_Output(self,other,"DIA_Addon_Henry_Owen2_04_05");	//Вот твоя награда.
 		B_GiveInvItems(self,other,ItMi_Gold,200);
-		B_StartOtherRoutine(PIR_1367_Addon_Owen,"PostStart");
-		B_LogEntry(TOPIC_Addon_HolOwen,"Оуэн отнесет Генри дерево.");
+		if(Npc_KnowsInfo(other,DIA_Addon_Greg_RavenDead))
+		{
+			B_StartOtherRoutine(Owen,"PostStart");
+		}
+		else
+		{
+			B_StartOtherRoutine(Owen,"PreStart");
+		};
 		MIS_Henry_HolOwen = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_Owen_ComesToHenry);
 	}

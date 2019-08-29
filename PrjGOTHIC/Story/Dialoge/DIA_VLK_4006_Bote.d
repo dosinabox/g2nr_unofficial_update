@@ -44,7 +44,7 @@ func void DIA_Bote_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_00");	//У тебя нет работы для меня?
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_00");	//Думаю, что нет...
-	B_Say(self,other,"$WhatsThisSupposedToBe");
+	AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_NotEnough_09_01");	//Тогда зачем ты попусту тратишь мое время?
 	AI_StopProcessInfos(self);
 };
 

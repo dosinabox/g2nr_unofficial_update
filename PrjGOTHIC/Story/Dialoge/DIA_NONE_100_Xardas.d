@@ -80,6 +80,7 @@ func void DIA_Xardas_Hello_Info()
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_03");	//Я уже начал опасаться, что не смогу вытащить тебя из-под развалин храма.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_04");	//Но хватит об этом. Сейчас-то ты здесь.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_05");	//И над нами нависла новая угроза.
+//	GuildlessMode = TRUE;
 	Info_ClearChoices(DIA_Xardas_Hello);
 	Info_AddChoice(DIA_Xardas_Hello,"Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий...",DIA_Addon_Xardas_Hello_Dragons);
 	Info_AddChoice(DIA_Xardas_Hello,"Что это за НОВАЯ угроза, о которой ты говоришь?",DIA_Addon_Xardas_Hello_Man);
@@ -95,8 +96,6 @@ func void DIA_Addon_Xardas_Hello_Man()
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_03");	//Таким образом они вовлекаются в дела, которые не могут понять и уж тем более не могут контролировать.
 	AI_Output(self,other,"DIA_Addon_AddonIntro_14_04");	//Твердые в своей вере уже начали сражение с врагом.
 	/////
-	//AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_03");	//Именно это и произошло.
-	//AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_06");	//Приспешники Белиара оскверняют древнейшие алтари богов.
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonIntro_Add_14_10");	//Ты должен стать их союзником! Это единственный способ остановить Белиара.
 	Addon_zuerst = TRUE;
 };
@@ -215,7 +214,7 @@ func void DIA_Addon_Xardas_StonePlate_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Xardas_StonePlate_15_00");	//Что ты можешь сказать об этой каменной табличке?
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_03");	//Сначала я подозревал, что это магический артефакт, но потом пришел к выводу, что никакой ценности она не имеет.
-	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_04");	//Я не смог полностью расшифровать надписи на табличке, но похоже, они относятся к истории какой-то древней культуры.
+	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_04");	//Я не смог полностью расшифровать надписи на табличке, но, похоже, они относятся к истории какой-то древней культуры.
 	AI_Output(self,other,"DIA_Addon_Xardas_StonePlate_14_05");	//Если хочешь, можешь забрать табличку себе. Мне она ни к чему.
 	B_GivePlayerXP(XP_Ambient);
 };
@@ -233,7 +232,7 @@ instance DIA_Addon_Xardas_Portal(C_Info)
 
 func int DIA_Addon_Xardas_Portal_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_WhatsOrnament) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if((SC_KnowsPortal == TRUE) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -672,7 +671,7 @@ instance DIA_Xardas_KdfSecret(C_Info)
 
 func int DIA_Xardas_KdfSecret_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT))
+	if(Npc_KnowsInfo(other,DIA_Xardas_FirstEXIT) && !Npc_KnowsInfo(other,DIA_Pyrokar_SPOKETOVATRAS))
 	{
 		return TRUE;
 	};
@@ -885,7 +884,7 @@ func void DIA_Xardas_RITUALREQUEST_Info()
 	AI_Output(other,self,"DIA_Xardas_RITUALREQUEST_15_02");	//Он сказал что-то о ритуале обращения в Круге Солнца.
 	AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_03");	//(смеется) Вот старый дьявол. Думаю, я знаю, что он затеял. Ты пришел, чтобы призвать меня к нему.
 	AI_Output(other,self,"DIA_Xardas_RITUALREQUEST_15_04");	//Похоже на то. Когда ты отправляешься?
-	if((hero.guild == GIL_KDF) || (hero.guild == GIL_DJG) || (hero.guild == GIL_PAL))
+	if((hero.guild == GIL_KDF) || (hero.guild == GIL_DJG) || (hero.guild == GIL_PAL) || (GuildlessMode == TRUE))
 	{
 		AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_05");	//Не стоит заставлять Ватраса ждать. Я отправляюсь немедленно. А ты должен выполнить свою задачу, а затем присоединиться ко мне опять.
 		AI_StopProcessInfos(self);

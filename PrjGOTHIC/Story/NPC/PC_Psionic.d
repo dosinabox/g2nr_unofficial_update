@@ -7,6 +7,8 @@ instance PC_Psionic(Npc_Default)
 	voice = 13;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_IgnoresFakeGuild] = TRUE;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);

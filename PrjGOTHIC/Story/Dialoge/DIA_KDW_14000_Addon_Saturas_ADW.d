@@ -60,7 +60,6 @@ func void DIA_Addon_Saturas_ADWStart_was()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_was_14_03");	//Мы можем с уверенностью сказать, что строители этих древних сооружений в свое время возвели город на этом месте.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_was_14_04");	//Однако по какой-то причине их культура пришла в упадок.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_was_14_05");	//Но пока мы можем только предполагать, почему это произошло.
-	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Есть какие-нибудь следы пропавших людей?",DIA_Addon_Saturas_ADWStart_missingPeople);
 	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Как насчет Ворона?",DIA_Addon_Saturas_ADWStart_Raven);
 };
 
@@ -91,32 +90,6 @@ func void DIA_Addon_Saturas_ADWStart_RavenOnlyBaron()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_RavenOnlyBaron_14_02");	//Так или иначе, мы ДОЛЖНЫ предотвратить зло.
 };
 
-func void DIA_Addon_Saturas_ADWStart_missingPeople()
-{
-	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
-	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
-	if(!Npc_HasItems(VLK_4304_Addon_William,ITWr_Addon_William_01))
-	{
-		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
-		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.
-		if(FoundDeadWilliam == FALSE)
-		{
-			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-			B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
-		};
-		FoundDeadWilliam = TRUE;
-	}
-	else if(!Npc_KnowsInfo(other,DIA_Addon_Riordian_WhatToFind))
-	{
-		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
-	};
-	Saturas_AboutWilliam = TRUE;
-};
-
 func void DIA_Addon_Saturas_ADWStart_wastun()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_wastun_15_00");	//Что дальше?
@@ -136,7 +109,7 @@ func void DIA_Addon_Saturas_ADWStart_wastun2()
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_05");	//Мы должны узнать как можно больше об этих людях и их гибели.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_06");	//Мы сможем расстроить планы Ворона, только если будем видеть их насквозь.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_07");	//Кроме того, ты должен найти способ освободить рабов.
-	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_wastun2_15_08");	//(цинично) И это все? Я сделаю все это одной левой.
+	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_wastun2_15_08");	//Ха. (цинично) И это все? Я сделаю все это одной левой.
 	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_wastun2_14_09");	//(раздраженно) Я знаю, что прошу слишком о многом. Воспринимай это как шанс вернуть мое доверие.
 	MIS_ADDON_Saturas_GoToRaven = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_RavenKDW,LOG_MISSION);
@@ -165,6 +138,56 @@ func void DIA_Addon_Saturas_ADWStart_back()
 	B_LogEntry(TOPIC_Addon_BDTRuestung,"Бандиты убивают всех, кто не выглядит, как они. Чтобы попасть к ним, мне нужны бандитские доспехи.");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
+};
+
+
+instance DIA_Addon_Saturas_MissingPeople(C_Info)
+{
+	npc = KDW_14000_Addon_Saturas_ADW;
+	nr = 3;
+	condition = DIA_Addon_Saturas_MissingPeople_Condition;
+	information = DIA_Addon_Saturas_MissingPeople_Info;
+	description = "Есть какие-нибудь следы пропавших людей?";
+};
+
+
+func int DIA_Addon_Saturas_MissingPeople_Condition()
+{
+	if(!Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi) && (Sklaven_Flucht == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Saturas_MissingPeople_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Saturas_ADWStart_missingPeople_15_00");	//Есть какие-нибудь следы пропавших людей?
+	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_01");	//Только вчера мы нашли тело рыбака. Оно лежало под развалинами к востоку отсюда.
+	AI_Output(self,other,"DIA_Addon_Saturas_ADWStart_missingPeople_14_02");	//Похоже, это был рыбак из Хориниса. Взгляни там.
+	if(!Npc_HasItems(William,ITWr_Addon_William_01))
+	{
+		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
+		AI_Output(self,other,"DIA_Addon_Saturas_LanceLeiche_14_01");	//Да пребудет его душа в царстве Аданоса.
+		if(FoundDeadWilliam == FALSE)
+		{
+			if(Sklaven_Flucht == FALSE)
+			{
+				Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			};
+			B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
+		};
+		FoundDeadWilliam = TRUE;
+	}
+	else if(!Npc_KnowsInfo(other,DIA_Addon_Riordian_WhatToFind))
+	{
+		if(Sklaven_Flucht == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		};
+		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
+	};
 };
 
 
@@ -236,7 +259,7 @@ instance DIA_Addon_Saturas_LanceLeiche(C_Info)
 
 func int DIA_Addon_Saturas_LanceLeiche_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(NONE_Addon_114_Lance_ADW,ItRi_LanceRing))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_PoorRanger) && !Npc_HasItems(Lance,ItRi_Ranger_Lance_Addon))
 	{
 		return TRUE;
 	};
@@ -264,7 +287,7 @@ instance DIA_Addon_Saturas_LanceRing(C_Info)
 
 func int DIA_Addon_Saturas_LanceRing_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_LanceLeiche) && Npc_HasItems(other,ItRi_LanceRing))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_LanceLeiche) && Npc_HasItems(other,ItRi_Ranger_Lance_Addon))
 	{
 		return TRUE;
 	};
@@ -274,10 +297,30 @@ func void DIA_Addon_Saturas_LanceRing_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_LanceRing_15_00");	//У меня аквамариновое кольцо Ланса.
 	AI_Output(self,other,"DIA_Addon_Saturas_LanceRing_14_01");	//Лучше отдай его мне, чтобы оно не попало в дурные руки.
-	B_GiveInvItems(other,self,ItRi_LanceRing,1);
+	B_GiveInvItems(other,self,ItRi_Ranger_Lance_Addon,1);
 	B_GivePlayerXP(XP_Addon_LanceRing);
 };
 
+
+var int DIA_Addon_Saturas_Tokens_OneTime;
+var int Saturas_SCBroughtAllToken;
+var int Saturas_BroughtTokenAmount;
+var int ScBroughtToken;
+var int Saturas_SCFound_ItMi_Addon_Stone_01;
+var int Saturas_SCFound_ItMi_Addon_Stone_02;
+var int Saturas_SCFound_ItMi_Addon_Stone_03;
+var int Saturas_SCFound_ItMi_Addon_Stone_04;
+var int Saturas_SCFound_ItMi_Addon_Stone_05;
+var int Saturas_SCFound_SayWhereOnce;
+
+func void B_Saturas_SCFound_SayWhereOnce()
+{
+	if(Saturas_SCFound_SayWhereOnce == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_05");	//Выглядит неплохо. Где ты это нашел?
+		Saturas_SCFound_SayWhereOnce = TRUE;
+	};
+};
 
 instance DIA_Addon_Saturas_Tokens(C_Info)
 {
@@ -298,43 +341,27 @@ func int DIA_Addon_Saturas_Tokens_Condition()
 	};
 };
 
-
-var int DIA_Addon_Saturas_Tokens_OneTime;
-var int Saturas_SCBroughtAllToken;
-var int Saturas_BroughtTokenAmount;
-var int ScBroughtToken;
-var int Saturas_SCFound_ItMi_Addon_Stone_01;
-var int Saturas_SCFound_ItMi_Addon_Stone_02;
-var int Saturas_SCFound_ItMi_Addon_Stone_03;
-var int Saturas_SCFound_ItMi_Addon_Stone_04;
-var int Saturas_SCFound_ItMi_Addon_Stone_05;
-
 func void DIA_Addon_Saturas_Tokens_Info()
 {
 	var int BroughtToken;
 	var int XP_BroughtTokens;
 	var int Kohle;
-	AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_00");	//Насчет реликвий...
-	if((DIA_Addon_Saturas_Tokens_OneTime == FALSE) && (C_ScHasMagicStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon)))
-	{
-		AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_01");	//У меня для тебя кое-что есть.
-		AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_02");	//Нам уже известны подобные каменные таблички. От них нам мало прока.
-		AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_03");	//Должно же быть что-то еще.
-		DIA_Addon_Saturas_Tokens_OneTime = TRUE;
-	};
 	BroughtToken = 0;
 	XP_BroughtTokens = 0;
+	Saturas_SCFound_SayWhereOnce = FALSE;
+	AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_00");	//Насчет реликвий...
 	if((Npc_HasItems(other,ItMi_Addon_Stone_01) && (Saturas_SCFound_ItMi_Addon_Stone_01 == FALSE)) || (Npc_HasItems(other,ItMi_Addon_Stone_02) && (Saturas_SCFound_ItMi_Addon_Stone_02 == FALSE)) || (Npc_HasItems(other,ItMi_Addon_Stone_03) && (Saturas_SCFound_ItMi_Addon_Stone_03 == FALSE)) || (Npc_HasItems(other,ItMi_Addon_Stone_04) && (Saturas_SCFound_ItMi_Addon_Stone_04 == FALSE)) || (Npc_HasItems(other,ItMi_Addon_Stone_05) && (Saturas_SCFound_ItMi_Addon_Stone_05 == FALSE)))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_04");	//Как насчет ЭТОГО?
-		AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_05");	//Выглядит неплохо. Где ты это нашел?
 		B_LogEntry(TOPIC_Addon_Relicts,"Я отдал Сатурасу следующие реликвии:");
 		if(Npc_HasItems(other,ItMi_Addon_Stone_01) && (Saturas_SCFound_ItMi_Addon_Stone_01 == FALSE))
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_01,1);
+			B_Saturas_SCFound_SayWhereOnce();
+			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_06");	//Бандиты используют эти таблички в качестве денег.
+			B_UseStoneTablet(1);
 			Saturas_SCFound_ItMi_Addon_Stone_01 = TRUE;
 			BroughtToken += 1;
-			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_06");	//Бандиты используют эти таблички в качестве денег.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_07");	//На табличках знак Куарходрона, великого воина.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_08");	//Это и есть тот командующий, по вине сына которого, Радемеса, погиб весь город.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_09");	//(презрительно) Бьюсь об заклад, бандиты даже не знают, что они используют вместо денег.
@@ -343,19 +370,23 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		if(Npc_HasItems(other,ItMi_Addon_Stone_02) && (Saturas_SCFound_ItMi_Addon_Stone_02 == FALSE))
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_02,1);
+			B_Saturas_SCFound_SayWhereOnce();
+			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_10");	//Я нашел эту табличку в здании к югу отсюда.
+			B_UseStoneTablet(2);
 			Saturas_SCFound_ItMi_Addon_Stone_02 = TRUE;
 			BroughtToken += 1;
-			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_10");	//Я нашел эту табличку в здании к югу отсюда.
-			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//A! Табличка стражей мертвых. Вот кто вызывал духов их мертвецов.
+			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_11");	//A! Табличка стражей мертвых. Вот кто вызвал духов их мертвецов.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_12");	//Зодчие поддерживали очень тесную связь с предками.
 			Log_AddEntry(TOPIC_Addon_Relicts,"Фиолетовая каменная табличка из дворца стражей мертвых на юге.");
 		};
 		if(Npc_HasItems(other,ItMi_Addon_Stone_03) && (Saturas_SCFound_ItMi_Addon_Stone_03 == FALSE))
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_03,1);
+			B_Saturas_SCFound_SayWhereOnce();
+			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_13");	//Я нашел эту табличку в здании к юго-западу отсюда.
+			B_UseStoneTablet(3);
 			Saturas_SCFound_ItMi_Addon_Stone_03 = TRUE;
 			BroughtToken += 1;
-			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_13");	//Я нашел эту табличку в здании к юго-западу отсюда.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_14");	//Судя по табличке, она как-то связана с дворцом городских жрецов.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_15");	//Верховного жреца звали Кардимон. О нем известно немного.
 			Log_AddEntry(TOPIC_Addon_Relicts,"Синяя каменная табличка из дворца жрецов на юго-западе.");
@@ -363,9 +394,11 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		if(Npc_HasItems(other,ItMi_Addon_Stone_04) && (Saturas_SCFound_ItMi_Addon_Stone_04 == FALSE))
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_04,1);
+			B_Saturas_SCFound_SayWhereOnce();
+			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_15");	//Это лежало у здания рядом с огромным болотом.
+			B_UseStoneTablet(4);
 			Saturas_SCFound_ItMi_Addon_Stone_04 = TRUE;
 			BroughtToken += 1;
-			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_15");	//Это лежало у здания рядом с огромным болотом.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_16");	//Скорее всего, это был дворец целителей.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_17");	//О них мы знаем немного. Похоже, они исчезли первыми.
 			Log_AddEntry(TOPIC_Addon_Relicts,"Зеленая каменная табличка из дворца целителей в южной части болота.");
@@ -373,24 +406,23 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		if(Npc_HasItems(other,ItMi_Addon_Stone_05) && (Saturas_SCFound_ItMi_Addon_Stone_05 == FALSE))
 		{
 			B_GiveInvItems(other,self,ItMi_Addon_Stone_05,1);
+			B_Saturas_SCFound_SayWhereOnce();
+			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_18");	//Эта вещь лежала в большом здании в глубоком ущелье.
+			B_UseStoneTablet(5);
 			Saturas_SCFound_ItMi_Addon_Stone_05 = TRUE;
 			BroughtToken += 1;
-			AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_18");	//Эта вещь лежала в большом здании в глубоком ущелье.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_19");	//Это библиотека древнего народа.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_20");	//Предположительно, это табличка ученых.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_80");	//Многие найденные нами письмена ведут к главе касты ученых.
 			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_81");	//Довольно любопытно, что он нигде не оставил своего имени...
-			Log_AddEntry(TOPIC_Addon_Relicts,"Желтая каменная табличка из Библиотеки ученых на севере.");
-		};
-		if(SC_Knows_WeaponInAdanosTempel == TRUE)
-		{
+			Log_AddEntry(TOPIC_Addon_Relicts,"Желтая каменная табличка из библиотеки ученых на севере.");
 		};
 		XP_BroughtTokens = XP_Addon_ForOneToken * BroughtToken;
 		B_GivePlayerXP(XP_BroughtTokens);
 		Saturas_BroughtTokenAmount += BroughtToken;
 		if(Saturas_BroughtTokenAmount < 5)
 		{
-			if(Ghost_SCKnowsHow2GetInAdanosTempel == FALSE)
+			if(Saturas_KnowsHow2GetInTempel == FALSE)
 			{
 				AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_21");	//Очень хорошо. Образ города проясняется, но мы все еще знаем недостаточно.
 			};
@@ -402,17 +434,21 @@ func void DIA_Addon_Saturas_Tokens_Info()
 		CreateInvItems(self,ItMi_Gold,Kohle);
 		B_GiveInvItems(self,other,ItMi_Gold,Kohle);
 		ScBroughtToken = TRUE;
+	}
+	else if((DIA_Addon_Saturas_Tokens_OneTime == FALSE) && (C_ScHasMagicStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon)))
+	{
+		AI_Output(other,self,"DIA_Addon_Saturas_Tokens_15_01");	//У меня для тебя кое-что есть.
+		AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_02");	//Нам уже известны подобные каменные таблички. От них нам мало прока.
+		AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_03");	//Должно же быть что-то еще.
+		DIA_Addon_Saturas_Tokens_OneTime = TRUE;
 	};
 	if(Saturas_BroughtTokenAmount == 5)
 	{
 		AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_25");	//Теперь мы собрали все необходимые реликвии.
-		if(Ghost_SCKnowsHow2GetInAdanosTempel == FALSE)
-		{
-			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_26");	//Ты оказал нам огромную услугу. Благодарю тебя.
-			AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_27");	//Благодаря этому мы сделаем в наших исследованиях большой шаг вперед.
-		};
-		MIS_Saturas_LookingForHousesOfRulers = LOG_SUCCESS;
+		AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_26");	//Ты оказал нам огромную услугу. Благодарю тебя.
+		AI_Output(self,other,"DIA_Addon_Saturas_Tokens_14_27");	//Благодаря этому мы сделаем в наших исследованиях большой шаг вперед.
 		Saturas_SCBroughtAllToken = TRUE;
+		B_CheckLog();
 	}
 	else
 	{
@@ -434,9 +470,16 @@ instance DIA_Addon_Saturas_StonePlateHint(C_Info)
 
 func int DIA_Addon_Saturas_StonePlateHint_Condition()
 {
-	if(((Merdarion_GotFocusCount >= 2) || (RavenIsInTempel == TRUE)) && (Saturas_SCBroughtAllToken == FALSE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE) && (RavenIsDead == FALSE))
+	if((Merdarion_GotFocusCount >= 2) || (RavenIsInTempel == TRUE))
 	{
-		return TRUE;
+		if(RavenIsDead == FALSE)
+		{
+			return TRUE;
+		}
+		else if(Npc_KnowsInfo(other,DIA_Addon_Saturas_RavensDead) && (MyxirMovedToNW == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -447,7 +490,7 @@ func void DIA_Addon_Saturas_StonePlateHint_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_14_02");	//Затонувший город когда-то назывался Яркендар. Его народом совместно управляли 5 властителей.
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_14_03");	//У каждого из этих властителей был дворец, в котором властитель жил и держал свое имущество.
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_14_04");	//Поэтому в поисках остатков древней культуры тебе важнее всего исследовать эти дворцы.
-	MIS_Saturas_LookingForHousesOfRulers = LOG_Running;
+	MIS_Saturas_LookingForHousesOfRulers = TRUE;
 	Info_ClearChoices(DIA_Addon_Saturas_StonePlateHint);
 	Info_AddChoice(DIA_Addon_Saturas_StonePlateHint,"А что, если от них ничего не осталось?",DIA_Addon_Saturas_StonePlateHint_unter);
 	Info_AddChoice(DIA_Addon_Saturas_StonePlateHint,"Где мне искать дворцы?",DIA_Addon_Saturas_StonePlateHint_wo);
@@ -458,6 +501,7 @@ func void DIA_Addon_Saturas_StonePlateHint_wo()
 	AI_Output(other,self,"DIA_Addon_Saturas_StonePlateHint_wo_15_00");	//Где мне искать дворцы?
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_wo_14_01");	//Риордиан изучил устройство зданий в Яркендаре.
 	AI_Output(self,other,"DIA_Addon_Saturas_StonePlateHint_wo_14_02");	//Он скажет, где тебе искать эти дворцы.
+	SaturasSendsToRiordian = TRUE;
 	Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
 	B_LogEntry(TOPIC_Addon_HousesOfRulers,"Сатурас хочет, чтобы я обыскал дворцы зодчих. Риордиан скажет мне, где найти эти строения.");
@@ -483,7 +527,7 @@ instance DIA_Addon_Saturas_SCBroughtAllToken(C_Info)
 
 func int DIA_Addon_Saturas_SCBroughtAllToken_Condition()
 {
-	if((ScBroughtToken == TRUE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE) && (RavenIsDead == FALSE))
+	if((ScBroughtToken == TRUE) && (Saturas_KnowsHow2GetInTempel == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -511,7 +555,7 @@ instance DIA_Addon_Saturas_Flut(C_Info)
 
 func int DIA_Addon_Saturas_Flut_Condition()
 {
-	if((NefariusADW_Talk2Saturas == TRUE) && (RavenIsDead == FALSE))
+	if(NefariusADW_Talk2Saturas == TRUE)
 	{
 		return TRUE;
 	};
@@ -524,7 +568,7 @@ func void DIA_Addon_Saturas_Flut_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_Flut_14_03");	//Объятый святым гневом, он приказал морю обрушиться на строителей города и таким образом стер его с лица земли.
 	AI_Output(self,other,"DIA_Addon_Saturas_Flut_14_04");	//Болото к востоку отсюда было свидетелем этих давно минувших событий.
 	TOPIC_END_Flut = TRUE;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap3);
 };
 
 
@@ -540,7 +584,7 @@ instance DIA_Addon_Saturas_AdanosZorn(C_Info)
 
 func int DIA_Addon_Saturas_AdanosZorn_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_Flut) && (RavenIsDead == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Saturas_Flut))
 	{
 		return TRUE;
 	};
@@ -554,7 +598,10 @@ func void DIA_Addon_Saturas_AdanosZorn_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_03");	//Радемес, сын командующего Куарходрона, осквернил храм.
 	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_04");	//В результате этого жители один за другим пали жертвой Зла.
 	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_05");	//Подозреваю, что Аданос не мог простить этого, и его возмездие обрушилось на весь край.
-	AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_06");	//Именно поэтому так важно остановить Ворона. Он собирается сделать то же самое...
+	if(RavenIsDead == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_AdanosZorn_14_06");	//Именно поэтому так важно остановить Ворона. Он собирается сделать то же самое...
+	};
 };
 
 
@@ -617,7 +664,7 @@ func void DIA_Addon_Saturas_RavenInfos_Info()
 		DIA_Addon_Saturas_RavenInfos_OneTime2 = TRUE;
 		RavenNeuigkeit += 1;
 	};
-	if((SC_KnowsFortunoInfos == TRUE) && (DIA_Addon_Saturas_RavenInfos_OneTime3 == FALSE))
+	if((MIS_Fortuno_Delusion == LOG_SUCCESS) && (DIA_Addon_Saturas_RavenInfos_OneTime3 == FALSE))
 	{
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_08");	//Один парень из бандитов заявляет, что знает о планах Ворона.
 		AI_Output(other,self,"DIA_Addon_Saturas_RavenInfos_15_09");	//Его зовут Фортуно. Он говорит, что Ворон хочет проникнуть в храм, чтобы завладеть могущественным артефактом.
@@ -714,7 +761,7 @@ instance DIA_Addon_Saturas_GhostQuestions(C_Info)
 
 func int DIA_Addon_Saturas_GhostQuestions_Condition()
 {
-	if(!Npc_IsDead(Quarhodron) && (SC_TalkedToGhost == TRUE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE))
+	if((SC_TalkedToGhost == TRUE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE))
 	{
 		return TRUE;
 	};
@@ -802,9 +849,11 @@ func void DIA_Addon_Saturas_TalkedToGhost_kammern()
 	Log_CreateTopic(TOPIC_Addon_Kammern,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Kammern,LogText_Addon_Relicts);
-	Log_CreateTopic(TOPIC_Addon_Relicts,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Relicts,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_Relicts,LogText_Addon_Relicts);
+	B_LogEntry(TOPIC_Addon_Kammern,"Сатурас послал меня в храм. Я должен пройти через его залы и остановить Ворона.");
+	if(Saturas_SCBroughtAllToken == FALSE)
+	{
+		B_LogEntry(TOPIC_Addon_Relicts,LogText_Addon_Relicts);
+	};
 	Saturas_KnowsHow2GetInTempel = TRUE;
 	B_CheckLog();
 };
@@ -816,13 +865,14 @@ instance DIA_Addon_Saturas_RelictsBack(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Saturas_RelictsBack_Condition;
 	information = DIA_Addon_Saturas_RelictsBack_Info;
+	permanent = TRUE;
 	description = "Как именно реликвии помогут мне в храме?";
 };
 
 
 func int DIA_Addon_Saturas_RelictsBack_Condition()
 {
-	if((Saturas_SCBroughtAllToken == TRUE) && (Saturas_KnowsHow2GetInTempel == TRUE) && (RavenIsDead == FALSE))
+	if((Saturas_KnowsHow2GetInTempel == TRUE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -830,19 +880,49 @@ func int DIA_Addon_Saturas_RelictsBack_Condition()
 
 func void DIA_Addon_Saturas_RelictsBack_Info()
 {
-	var string concatText;
+	var int info_ypos;
+	info_ypos = 35;
 	AI_Output(other,self,"DIA_Addon_Saturas_RelictsBack_15_00");	//Как именно реликвии помогут мне в храме?
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_03");	//Мы слишком мало знаем, чтобы я мог сказать тебе это. Надеюсь, что, оказавшись в храме, ты поймешь все сам.
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_05");	//Извини, но больше я ничего сказать не могу. Теперь все зависит от тебя.
-	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_06");	//Возьми реликвии и как можно скорее отправляйся в храм.
-	CreateInvItems(hero,ItMi_Addon_Stone_01,1);
-	CreateInvItems(hero,ItMi_Addon_Stone_02,1);
-	CreateInvItems(hero,ItMi_Addon_Stone_03,1);
-	CreateInvItems(hero,ItMi_Addon_Stone_04,1);
-	CreateInvItems(hero,ItMi_Addon_Stone_05,1);
-	concatText = ConcatStrings(IntToString(5),PRINT_ItemsErhalten);
-	AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-	B_LogEntry(TOPIC_Addon_Kammern,"Сатурас послал меня в храм, вручив мне пять реликвий зодчих. Я должен пройти через залы храма и остановить Ворона.");
+	if(Npc_HasItems(self,ItMi_Addon_Stone_01) || Npc_HasItems(self,ItMi_Addon_Stone_02) || Npc_HasItems(self,ItMi_Addon_Stone_03) || Npc_HasItems(self,ItMi_Addon_Stone_04) || Npc_HasItems(self,ItMi_Addon_Stone_05))
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_06");	//Возьми реликвии и как можно скорее отправляйся в храм.
+		if(Npc_HasItems(self,ItMi_Addon_Stone_01) && (Saturas_SCFound_ItMi_Addon_Stone_01 == TRUE))
+		{
+			Npc_RemoveInvItems(self,ItMi_Addon_Stone_01,1);
+			CreateInvItems(hero,ItMi_Addon_Stone_01,1);
+			AI_PrintScreen("Красная каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
+			info_ypos += 3;
+		};
+		if(Npc_HasItems(self,ItMi_Addon_Stone_02) && (Saturas_SCFound_ItMi_Addon_Stone_02 == TRUE))
+		{
+			Npc_RemoveInvItems(self,ItMi_Addon_Stone_02,1);
+			CreateInvItems(hero,ItMi_Addon_Stone_02,1);
+			AI_PrintScreen("Фиолетовая каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
+			info_ypos += 3;
+		};
+		if(Npc_HasItems(self,ItMi_Addon_Stone_03) && (Saturas_SCFound_ItMi_Addon_Stone_03 == TRUE))
+		{
+			Npc_RemoveInvItems(self,ItMi_Addon_Stone_03,1);
+			CreateInvItems(hero,ItMi_Addon_Stone_03,1);
+			AI_PrintScreen("Синяя каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
+			info_ypos += 3;
+		};
+		if(Npc_HasItems(self,ItMi_Addon_Stone_04) && (Saturas_SCFound_ItMi_Addon_Stone_04 == TRUE))
+		{
+			Npc_RemoveInvItems(self,ItMi_Addon_Stone_04,1);
+			CreateInvItems(hero,ItMi_Addon_Stone_04,1);
+			AI_PrintScreen("Зеленая каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
+			info_ypos += 3;
+		};
+		if(Npc_HasItems(self,ItMi_Addon_Stone_05) && (Saturas_SCFound_ItMi_Addon_Stone_05 == TRUE))
+		{
+			Npc_RemoveInvItems(self,ItMi_Addon_Stone_05,1);
+			CreateInvItems(hero,ItMi_Addon_Stone_05,1);
+			AI_PrintScreen("Желтая каменная табличка получено",-1,info_ypos,FONT_ScreenSmall,3);
+		};
+	};
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_07");	//Да защитит нас милость Аданоса!
 	AI_Output(self,other,"DIA_Addon_Saturas_RelictsBack_14_08");	//Возможно, еще не слишком поздно.
 };
@@ -1055,6 +1135,12 @@ func void DIA_Addon_Saturas_BeliarWeapGeben_Info()
 };
 
 
+func void B_Saturas_ADW_CantTeach5Circle()
+{
+	AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_10");	//Это не в моих силах.
+	AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_11");	//Чтобы вступить в последний, шестой круг магии, ты должен отправиться в монастырь магов Огня.
+};
+
 instance DIA_Addon_Saturas_ADW_PreTeachCircle(C_Info)
 {
 	npc = KDW_14000_Addon_Saturas_ADW;
@@ -1068,7 +1154,7 @@ instance DIA_Addon_Saturas_ADW_PreTeachCircle(C_Info)
 func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 {
 //	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1))
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_KDF) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6))
 	{
 		return TRUE;
 	};
@@ -1077,17 +1163,24 @@ func int DIA_Addon_Saturas_ADW_PreTeachCircle_Condition()
 func void DIA_Addon_Saturas_ADW_PreTeachCircle_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_00");	//Ты можешь обучить меня кругам магии?
-	AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_01");	//Ты - маг Огня. Что скажет Пирокар, если узнает, что я обучал тебя?
-	AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_02");	//Он не узнает.
-	AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_03");	//(вздыхает) Вижу, ты серьезно настроен учиться. Что ж, я выполню твою просьбу.
-	if(RavenIsDead == FALSE)
+	if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
 	{
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_04");	//Однако, если я узнаю, что ты передаешь наши знания в чужие руки, ты больше не сможешь рассчитывать на мою помощь.
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_05");	//Не разочаруй меня.
+		B_Saturas_ADW_CantTeach5Circle();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_01");	//Ты - маг Огня. Что скажет Пирокар, если узнает, что я обучал тебя?
+		AI_Output(other,self,"DIA_Addon_Saturas_ADW_PreTeachCircle_15_02");	//Он не узнает.
+		AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_03");	//(вздыхает) Вижу, ты серьезно настроен учиться. Что ж, я выполню твою просьбу.
+		if(RavenIsDead == FALSE)
+		{
+			AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_04");	//Однако, если я узнаю, что ты передаешь наши знания в чужие руки, ты больше не сможешь рассчитывать на мою помощь.
+			AI_Output(self,other,"DIA_Addon_Saturas_ADW_PreTeachCircle_14_05");	//Не разочаруй меня.
+		};
+		Saturas_Addon_TeachCircle = TRUE;
+		Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_SaturasTeach);
 	};
-	Saturas_Addon_TeachCircle = TRUE;
-	Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_SaturasTeach);
 };
 
 
@@ -1111,7 +1204,7 @@ func int DIA_Addon_Saturas_ADW_CIRCLE_Condition()
 	circle = Npc_GetTalentSkill(other,NPC_TALENT_MAGE) + 1;
 	kosten = B_GetLearnCostTalent(other,NPC_TALENT_MAGE,circle);
 //	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) >= 1) && (Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
-	if((Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
+	if((Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) < 6) && (Saturas_Addon_TeachCircle == TRUE) && (DIA_Addon_Saturas_ADW_CIRCLE_NoPerm == FALSE))
 	{
 //		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Я хочу перейти на следующий уровень магии",kosten);
 		DIA_Addon_Saturas_ADW_CIRCLE.description = B_BuildLearnString("Следующий Круг магии",kosten);
@@ -1157,13 +1250,16 @@ func void DIA_Addon_Saturas_ADW_CIRCLE_Info()
 	}
 	else if(Npc_GetTalentSkill(hero,NPC_TALENT_MAGE) == 5)
 	{
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_10");	//Это не в моих силах.
-		AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_11");	//Чтобы вступить в последний, шестой круг магии, ты должен отправиться в монастырь магов Огня.
+		B_Saturas_ADW_CantTeach5Circle();
 		DIA_Addon_Saturas_ADW_CIRCLE_NoPerm = TRUE;
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Saturas_ADW_CIRCLE_14_12");	//Ты еще не готов к этому. Возвращайся позже.
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
+		{
+			PrintScreen(PRINT_MAGCIRCLES_NEEDFIRST,-1,-1,FONT_ScreenSmall,2);
+		};
 	};
 };
 

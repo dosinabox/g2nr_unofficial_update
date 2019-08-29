@@ -56,12 +56,9 @@ func void DIA_Ambient_NEWS_Info()
 			B_Say(self,other,"$CITY_CRIME");
 		};
 	};
-	if(C_NpcBelongsToMonastery(self) && (Parlan_Schulden <= 0))
+	if(C_NpcBelongsToMonastery(self) && (Parlan_Schulden <= 0) && C_CommentMonasteryCrimes(self))
 	{
-		if(Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Pyrokar))
-		{
-			B_Say(self,other,"$MONA_CRIME");
-		};
+		B_Say(self,other,"$MONA_CRIME");
 	};
 	if(C_NpcBelongsToFarm(self) && (Lee_Schulden <= 0))
 	{

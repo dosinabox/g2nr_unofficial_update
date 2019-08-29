@@ -8,6 +8,8 @@ instance BAU_911_Elena(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
+	self.attribute[ATR_STRENGTH] = 50;
+	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Bau_Axe);
 //	B_CreateAmbientInv(self);

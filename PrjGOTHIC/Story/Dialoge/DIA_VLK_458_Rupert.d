@@ -25,7 +25,7 @@ func void DIA_Rupert_EXIT_Info()
 instance DIA_Rupert_PICKPOCKET(C_Info)
 {
 	npc = VLK_458_Rupert;
-	nr = 900;
+	nr = 998;
 	condition = DIA_Rupert_PICKPOCKET_Condition;
 	information = DIA_Rupert_PICKPOCKET_Info;
 	permanent = TRUE;

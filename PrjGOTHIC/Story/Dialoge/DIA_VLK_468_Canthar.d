@@ -59,6 +59,23 @@ func void DIA_Canthar_EXIT_Info()
 };
 
 
+func void B_GetCantharReward()
+{
+	if(Canthar_Gefallen == FALSE)
+	{
+		AI_Output(other,self,"DIA_Canthar_Success_15_02");	//Ты собирался дать мне оружие.
+		AI_Output(self,other,"DIA_Canthar_Success_09_03");	//Правильно. Вот, это оружие - произведение оружейного искусства.
+		B_GiveInvItems(self,other,ItMw_Lightsaebel,1);
+	};
+};
+
+func void B_Canthar_Fail()
+{
+	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_00");	//Я предупреждал тебя, но ты не слушал. Мы обсудим этот вопрос позже.
+	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_01");	//А теперь проваливай, я хочу отдохнуть.
+	AI_StopProcessInfos(self);
+};
+
 instance DIA_Canthar_PersonalCRIMES(C_Info)
 {
 	npc = VLK_468_Canthar;
@@ -72,7 +89,7 @@ instance DIA_Canthar_PersonalCRIMES(C_Info)
 
 func int DIA_Canthar_PersonalCRIMES_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightComment] == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightComment] == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) && (Canthar_Sperre == FALSE))
 	{
 		return TRUE;
 	};
@@ -82,27 +99,37 @@ func void DIA_Canthar_PersonalCRIMES_Info()
 {
 	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
 	{
-		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_00");	//Это было очень глупо с твоей стороны атаковать меня.
+		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_00");	//Это было очень глупо с твоей стороны - атаковать меня.
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_01");	//(насмешливо) Ты думал, что так просто сможешь справиться со мной?
 	};
-	AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_02");	//Либо ты сейчас извинишься, либо я позабочусь, чтобы ты горько пожалел о том, что сделал!
-//	AI_Output(other,self,"DIA_Canthar_PersonalCRIMES_15_03");	//А что именно ты имел в виду?
-	AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_03");	//Что ты имеешь в виду?
-	B_Say_Gold(self,other,100);
-	Info_ClearChoices(DIA_Canthar_PersonalCRIMES);
-	Info_AddChoice(DIA_Canthar_PersonalCRIMES,"У меня нет столько!",DIA_Canthar_PersonalCRIMES_NotEnough);
-	if(Npc_HasItems(other,ItMi_Gold) >= 100)
+	if((MIS_Canthars_KomproBrief == LOG_Running) && !Npc_IsDead(Sarah) && (Kapitel < 3))
 	{
-		Info_AddChoice(DIA_Canthar_PersonalCRIMES,"Вот твое золото - давай забудем об этом!",DIA_Canthar_PersonalCRIMES_Pay);
+		B_Canthar_Fail();
+		Canthars_KomproBrief_Failed = TRUE;
+		MIS_Canthars_KomproBrief = LOG_OBSOLETE;
+		B_CheckLog();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_09_02");	//Либо ты сейчас извинишься, либо я позабочусь, чтобы ты горько пожалел о том, что сделал!
+		AI_Output(other,self,"DIA_Vatras_DI_PEDROTOT_15_03");	//Что ты имеешь в виду?
+		B_Say_Gold(self,other,100);
+		Info_ClearChoices(DIA_Canthar_PersonalCRIMES);
+		Info_AddChoice(DIA_Canthar_PersonalCRIMES,"У меня нет столько!",DIA_Canthar_PersonalCRIMES_NotEnough);
+		if(Npc_HasItems(other,ItMi_Gold) >= 100)
+		{
+			Info_AddChoice(DIA_Canthar_PersonalCRIMES,"Вот твое золото - давай забудем об этом!",DIA_Canthar_PersonalCRIMES_Pay);
+		};
 	};
 };
 
 func void DIA_Canthar_PersonalCRIMES_Pay()
 {
 	AI_Output(other,self,"DIA_Canthar_PersonalCRIMES_Pay_15_00");	//Вот твое золото - давай забудем об этом!
+	B_GiveInvItems(other,self,ItMi_Gold,100);
 	AI_Output(self,other,"DIA_Canthar_PersonalCRIMES_Pay_09_01");	//Очень разумно с твоей стороны!
 	self.aivar[AIV_LastFightComment] = TRUE;
 	AI_StopProcessInfos(self);
@@ -119,7 +146,7 @@ func void DIA_Canthar_PersonalCRIMES_NotEnough()
 instance DIA_Canthar_Hallo(C_Info)
 {
 	npc = VLK_468_Canthar;
-	nr = 1;
+	nr = 2;
 	condition = DIA_Canthar_Hallo_Condition;
 	information = DIA_Canthar_Hallo_Info;
 	permanent = FALSE;
@@ -204,6 +231,9 @@ func int DIA_Canthar_WhatOffer_Condition()
 func void DIA_Canthar_WhatOffer_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_15_00");	//Что ты можешь предложить мне?
+	AI_Output(self,other,"DIA_Canthar_WhatOffer_09_07");	//Я бродячий торговец. Я торгую всем.
+	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_CityTrader,"Кантар торгует различным оружием.");
 	if((Canthar_GotMe == TRUE) && (PlayerEnteredCity == FALSE))
 	{
 		if(!Npc_HasEquippedArmor(other))
@@ -226,13 +256,7 @@ func void DIA_Canthar_WhatOffer_Info()
 		Info_AddChoice(DIA_Canthar_WhatOffer,"Что ты хочешь за этот пропуск?",DIA_Canthar_WhatOffer_Price);
 		Info_AddChoice(DIA_Canthar_WhatOffer,"А как ТЫ попадешь в город?",DIA_Canthar_WhatOffer_HowYouIn);
 		Info_AddChoice(DIA_Canthar_WhatOffer,"Это похоже на подвох...",DIA_Canthar_WhatOffer_Strings);
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Canthar_WhatOffer_09_07");	//Я бродячий торговец. Я торгую всем.
 	};
-	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"Кантар торгует различным оружием.");
 };
 
 func void DIA_Canthar_WhatOffer_Strings()
@@ -318,7 +342,7 @@ func void DIA_Canthar_TRADE_Info()
 instance DIA_Canthar_PAYPRICEINCITY(C_Info)
 {
 	npc = VLK_468_Canthar;
-	nr = 2;
+	nr = 3;
 	condition = DIA_Canthar_PAYPRICEINCITY_Condition;
 	information = DIA_Canthar_PAYPRICEINCITY_Info;
 	important = TRUE;
@@ -405,6 +429,8 @@ func void DIA_Canthar_PAYPRICEINCITY_Ok()
 };
 
 
+var int DIA_Canthar_SarahTip_Once;
+
 instance DIA_Canthar_SARAHERLEDIGT(C_Info)
 {
 	npc = VLK_468_Canthar;
@@ -412,13 +438,13 @@ instance DIA_Canthar_SARAHERLEDIGT(C_Info)
 	condition = DIA_Canthar_SARAHERLEDIGT_Condition;
 	information = DIA_Canthar_SARAHERLEDIGT_Info;
 	permanent = TRUE;
-	description = "Насчет Сары...";
+	description = "Так что нужно сделать?";
 };
 
 
 func int DIA_Canthar_SARAHERLEDIGT_Condition()
 {
-	if(MIS_Canthars_KomproBrief == LOG_Running)
+	if((MIS_Canthars_KomproBrief == LOG_Running) && !Npc_IsDead(Sarah) && (Kapitel < 3) && !Npc_KnowsInfo(other,DIA_Canthar_TooLate))
 	{
 		return TRUE;
 	};
@@ -426,28 +452,83 @@ func int DIA_Canthar_SARAHERLEDIGT_Condition()
 
 func void DIA_Canthar_SARAHERLEDIGT_Info()
 {
-	if(!Npc_IsDead(Sarah))
+	AI_Output(other,self,"DIA_Engor_HELP_15_02");	//Так что нужно сделать?
+	if(DIA_Canthar_SarahTip_Once == TRUE)
 	{
-		if(MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() + 2))
-		{
-//			AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_00");	//У тебя нет работы для меня?
-			AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_01");	//Сначала подложи письмо Саре, а затем сходи к Андрэ и обвини ее.
-			AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_02");	//Сделай же это. И не пытайся обмануть меня, ты пожалеешь об этом.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_03");	//Ты попусту тратишь свое драгоценное время. За дело!
-		};
+		AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_03");	//Ты попусту тратишь свое драгоценное время. За дело!
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Canthar_SARAHERLEDIGT_15_04");	//Сара мертва.
-		AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_05");	//Правда? Превосходно. Значит, ты выполнил свою часть нашей маленькой сделки.
-		MIS_Canthars_KomproBrief = LOG_SUCCESS;
-		B_GivePlayerXP(XP_Ambient);
-		Npc_ExchangeRoutine(self,"MARKTSTAND");
+		AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_01");	//Сначала подложи письмо Саре, а затем сходи к Андрэ и обвини ее.
+		AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_02");	//Сделай же это. И не пытайся обмануть меня, ты пожалеешь об этом.
+		if(MIS_Canthars_KomproBrief_Day == Wld_GetDay())
+		{
+			AI_Output(self,other,"DIA_Canthar_PAYPRICEINCITY_09_09");	//У тебя есть два дня на выполнение этого.
+		};
+		DIA_Canthar_SarahTip_Once = TRUE;
 	};
+	B_EquipTrader(self);
 	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Canthar_SarahIsDead(C_Info)
+{
+	npc = VLK_468_Canthar;
+	nr = 5;
+	condition = DIA_Canthar_SarahIsDead_Condition;
+	information = DIA_Canthar_SarahIsDead_Info;
+	permanent = FALSE;
+	description = "Сара мертва.";
+};
+
+
+func int DIA_Canthar_SarahIsDead_Condition()
+{
+	if((MIS_Canthars_KomproBrief == LOG_Running) && Npc_IsDead(Sarah) && (Kapitel < 3))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Canthar_SarahIsDead_Info()
+{
+	AI_Output(other,self,"DIA_Canthar_SARAHERLEDIGT_15_04");	//Сара мертва.
+	AI_Output(self,other,"DIA_Canthar_SARAHERLEDIGT_09_05");	//Правда? Превосходно. Значит, ты выполнил свою часть нашей маленькой сделки.
+	B_GetCantharReward();
+	MIS_Canthars_KomproBrief = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Canthars_KomproBrief);
+	Npc_ExchangeRoutine(self,"MARKTSTAND");
+	B_EquipTrader(self);
+	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Canthar_TooLate(C_Info)
+{
+	npc = VLK_468_Canthar;
+	nr = 5;
+	condition = DIA_Canthar_TooLate_Condition;
+	information = DIA_Canthar_TooLate_Info;
+	important = TRUE;
+	permanent = FALSE;
+};
+
+
+func int DIA_Canthar_TooLate_Condition()
+{
+	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day <= (Wld_GetDay() - 2)) && !Npc_IsDead(Sarah) && (Kapitel < 3))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Canthar_TooLate_Info()
+{
+	B_Canthar_Fail();
+	Canthars_KomproBrief_Failed = TRUE;
+	MIS_Canthars_KomproBrief = LOG_OBSOLETE;
+	B_CheckLog();
 };
 
 
@@ -457,14 +538,14 @@ instance DIA_Canthar_Success(C_Info)
 	nr = 5;
 	condition = DIA_Canthar_Success_Condition;
 	information = DIA_Canthar_Success_Info;
+	important = TRUE;
 	permanent = FALSE;
-	description = "Насчет Сары...";
 };
 
 
 func int DIA_Canthar_Success_Condition()
 {
-	if((MIS_Canthars_KomproBrief == LOG_SUCCESS) && !Npc_IsDead(Sarah))
+	if((MIS_Canthars_KomproBrief == LOG_SUCCESS) && !Npc_KnowsInfo(other,DIA_Canthar_SarahIsDead))
 	{
 		return TRUE;
 	};
@@ -474,38 +555,7 @@ func void DIA_Canthar_Success_Info()
 {
 	AI_Output(self,other,"DIA_Canthar_Success_09_00");	//Отлично. Сара отправилась туда, где ей самое место.
 	AI_Output(self,other,"DIA_Canthar_Success_09_01");	//Я забрал ее товары, так что, если тебе нужно оружие, заходи ко мне.
-	/*if(Kapitel == 1)
-	{
-		CreateInvItems(self,ItMw_ShortSword3,1);
-		CreateInvItems(self,ItMw_ShortSword4,1);
-		CreateInvItems(self,ItMw_ShortSword5,1);
-		CreateInvItems(self,ItMw_Kriegshammer1,1);
-		CreateInvItems(self,ItMw_1h_Vlk_Sword,1);
-		CreateInvItems(self,ItMw_1h_Nov_Mace,1);
-		CreateInvItems(self,ItMw_1H_Sword_L_03,1);
-	};
-	if(Kapitel == 2)
-	{
-		CreateInvItems(self,ItMw_ShortSword3,1);
-		CreateInvItems(self,ItMw_ShortSword4,1);
-		CreateInvItems(self,ItMw_ShortSword5,1);
-		CreateInvItems(self,ItMw_Kriegshammer1,1);
-		CreateInvItems(self,ItMw_1h_Vlk_Sword,1);
-		CreateInvItems(self,ItMw_1h_Nov_Mace,1);
-		CreateInvItems(self,ItMw_1H_Sword_L_03,1);
-		//////
-		CreateInvItems(self,ItMw_Stabkeule,1);
-		CreateInvItems(self,ItMw_Steinbrecher,1);
-		CreateInvItems(self,ItMw_Schwert2,1);
-		CreateInvItems(self,ItMw_Bartaxt,1);
-	};*/
-	if(Canthar_Gefallen == FALSE)
-	{
-		AI_Output(other,self,"DIA_Canthar_Success_15_02");	//Ты собирался дать мне оружие.
-		AI_Output(self,other,"DIA_Canthar_Success_09_03");	//Правильно. Вот, это оружие - произведение оружейного искусства.
-//		B_GiveInvItems(self,other,ItMw_Schiffsaxt,1);
-		B_GiveInvItems(self,other,ItMw_Lightsaebel,1);
-	};
+	B_GetCantharReward();
 	B_GivePlayerXP(XP_Canthars_KomproBrief);
 };
 
@@ -630,9 +680,7 @@ func int DIA_Canthar_CANTHARANGEPISST_Condition()
 
 func void DIA_Canthar_CANTHARANGEPISST_Info()
 {
-	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_00");	//Я предупреждал тебя, но ты не слушал. Мы обсудим этот вопрос позже.
-	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_01");	//А теперь проваливай, я хочу отдохнуть.
-	AI_StopProcessInfos(self);
+	B_Canthar_Fail();
 };
 
 

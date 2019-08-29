@@ -51,7 +51,7 @@ func void B_GiveTradeInv_Kjorn(var C_Npc slf)
 	}; */
 	if((Kapitel >= 4) && (Kjorn_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,350);
+//		CreateInvItems(slf,ItMi_Gold,350);
 		CreateInvItems(slf,ItFo_Apple,2);
 		CreateInvItems(slf,ItFo_Water,5);
 		CreateInvItems(slf,ItFo_Beer,5);
@@ -72,7 +72,7 @@ func void B_GiveTradeInv_Kjorn(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Kjorn_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,50);
+//		CreateInvItems(slf,ItMi_Gold,50);
 		CreateInvItems(slf,ItFo_Wine,2);
 		CreateInvItems(slf,ItFo_Booze,3);
 		CreateInvItems(slf,ItFo_Bacon,5);

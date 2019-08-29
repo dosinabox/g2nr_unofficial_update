@@ -132,7 +132,7 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_15_00");	//Извини, у меня нет денег.
 	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_06_01");	//Да уж, воистину тяжелые времена настали.
-	if(Npc_HasEquippedMeleeWeapon(other))
+	if(Npc_HasEquippedMeleeWeapon(other) || Npc_HasReadiedWeapon(other))
 	{
 		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_06_02");	//Тогда давай поступим так - отдай мне свое оружие. И я пропущу тебя.
 		Info_ClearChoices(DIA_BDT_1020_Wegelagerer_FirstWarn);
@@ -163,14 +163,29 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_NoWeapon()
 	B_Attack(self,other,AR_NONE,1);
 };
 
+var C_Item PlayerWeapon;
+
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 {
+	PlayerWeapon = Npc_GetEquippedMeleeWeapon(other);
+	B_GiveInvItems(other,self,Hlp_GetInstanceID(PlayerWeapon),1);
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_15_00");	//Вот, возьми мое оружие.
-	AI_DrawWeapon(other);
+	if(!Npc_HasReadiedWeapon(other))
+	{
+		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
+		AI_EquipBestMeleeWeapon(self);
+		self.aivar[AIV_PASSGATE] = TRUE;
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		B_Say(self,other,"$WeaponDown");
+		AI_DrawWeapon(self);
+		AI_Output(other,self,"DIA_Dar_ORCRING_necken_schlagen_15_00");	//Ладно. Попробуй.
+		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_GuardStopsIntruder,1);
+	};
 //	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon_06_01");	//Отойди от этого оружия. Ну подожди!
-	B_Say(self,other,"$KillEnemy");
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_GuardStopsIntruder,1);
 };
 
 
@@ -209,7 +224,7 @@ func void DIA_BDT_1020_Wegelagerer_SecondWarn_Info()
 func void DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_15_00");	//Вот твои деньги.
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ах, как мы заговорили.
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
 	B_GiveInvItems(other,self,ItMi_Gold,20);
 	self.aivar[AIV_PASSGATE] = TRUE;
 	AI_StopProcessInfos(self);

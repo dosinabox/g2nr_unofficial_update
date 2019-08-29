@@ -79,12 +79,6 @@ func void DIA_Addon_Greg_ImNew_Info()
 	AI_Output(self,other,"DIA_Addon_Greg_Hello_01_02");	//(в ярости) Стоит уехать на несколько дней, и вот уже каждый проходимец норовит похозяйничать в моем жилище.
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_03");	//Какого черта, что здесь происходит?
 	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_04");	//Частокол еще не закончен! Каньон просто кишит зверьем, а все только и делают, что слоняются вокруг.
-	GregIsBack = TRUE;
-	if(MIS_KrokoJagd == LOG_Running)
-	{
-		MIS_KrokoJagd = LOG_FAILED;
-		B_CheckLog();
-	};
 	if(!Npc_IsDead(Francis))
 	{
 		AI_TurnToNPC(self,Francis);
@@ -107,7 +101,7 @@ func void DIA_Addon_Greg_ImNew_Info()
 
 func void B_UseRakeBilanz()
 {
-	if(((MIS_Addon_Greg_RakeCave == LOG_Running) && (Greg_SuchWeiter == TRUE)) || (MIS_Addon_Greg_RakeCave == LOG_FAILED))
+	if((MIS_Addon_Greg_RakeCave == LOG_Running) || (MIS_Addon_Greg_RakeCave == LOG_FAILED) || (Greg_NoHelpInNW_Cave == TRUE))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_00");	//И не думай, что я забыл, что ты мой должник.
 		if((MIS_Addon_Greg_BringMeToTheCity == LOG_Running) || (MIS_Addon_Greg_BringMeToTheCity == LOG_FAILED))
@@ -115,9 +109,12 @@ func void B_UseRakeBilanz()
 			AI_Output(self,other,"DIA_Addon_Greg_NW_was_NoHelp_01_02");	//Второй раз ты отказываешься выполнить мою просьбу.
 			Greg_NoHelpInNW = TRUE;
 		};
-		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_01");	//В различных местах Хориниса я зарыл несколько сотен золотых монет.
-		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_02");	//Ты их прикарманил, не так ли?
-		AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_03");	//Я заставлю тебя отработать все до последнего медяка.
+		if(Greg_SuchWeiter == TRUE)
+		{
+			AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_01");	//В различных местах Хориниса я зарыл несколько сотен золотых монет.
+			AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_02");	//Ты их прикарманил, не так ли?
+			AI_Output(self,other,"DIA_Addon_Greg_UseRakeBilanz_01_03");	//Я заставлю тебя отработать все до последнего медяка.
+		};
 	}
 	else
 	{
@@ -418,7 +415,7 @@ instance DIA_Addon_Greg_Sauber2(C_Info)
 	nr = 5;
 	condition = DIA_Addon_Greg_Sauber2_Condition;
 	information = DIA_Addon_Greg_Sauber2_Info;
-	description = "На северном пляже теперь безопасно.";
+	description = "На северном побережье теперь безопасно.";
 };
 
 
@@ -441,8 +438,8 @@ func void DIA_Addon_Greg_Sauber2_Info()
 	}
 	else
 	{
-		CreateInvItems(self,ItMi_Gold,100);
-		B_GiveInvItems(self,other,ItMi_Gold,100);
+		CreateInvItems(self,ItMi_Gold,50);
+		B_GiveInvItems(self,other,ItMi_Gold,50);
 	};
 	B_LogEntry(TOPIC_Addon_MorganBeach,"Я доложил Грегу, что пляж на севере очищен от монстров.");
 	MIS_Addon_MorganLurker = LOG_SUCCESS;
@@ -480,8 +477,8 @@ func void DIA_Addon_Greg_BanditPlatt2_Info()
 	}
 	else
 	{
-		CreateInvItems(self,ItMi_Gold,100);
-		B_GiveInvItems(self,other,ItMi_Gold,100);
+		CreateInvItems(self,ItMi_Gold,50);
+		B_GiveInvItems(self,other,ItMi_Gold,50);
 		B_LogEntry(TOPIC_Addon_BanditsTower,"Бандиты из башни мертвы.");
 	};
 	MIS_Henry_FreeBDTTower = LOG_SUCCESS;
@@ -534,7 +531,8 @@ instance DIA_Addon_Greg_WhoAreYou(C_Info)
 
 func int DIA_Addon_Greg_WhoAreYou_Condition()
 {
-	if((PlayerTalkedToGregNW == FALSE) && (SC_MeetsGregTime == FALSE))
+//	if((PlayerTalkedToGregNW == FALSE) && (SC_MeetsGregTime == FALSE))
+	if(PlayerTalkedToGregNW == FALSE)
 	{
 		return TRUE;
 	};
@@ -665,7 +663,7 @@ func void DIA_Addon_Greg_RavenDead_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_RavenDead_15_00");	//С Вороном покончено...
 	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_01");	//Чтоб меня... Не ожидал я этого... Застал его врасплох, да?
-	if(Greg_NoHelpInNW == FALSE)
+	if((Greg_NoHelpInNW == FALSE) && (Greg_NoHelpInNW_Cave == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_02");	//Ну, на мой взгляд, это стоит пятиста золотых монет.
 		CreateInvItems(self,ItMi_Gold,500);
@@ -673,6 +671,10 @@ func void DIA_Addon_Greg_RavenDead_Info()
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_RavenDead_01_03");	//А ты смелый. Продолжай в том же духе.
 	B_GivePlayerXP(XP_ADDON_GregRavenLohn);
+	if(MIS_Henry_HolOwen == LOG_SUCCESS)
+	{
+		B_StartOtherRoutine(Owen,"PostStart");
+	};
 };
 
 instance DIA_Addon_Greg_ItemsInADW(C_Info)
@@ -700,5 +702,38 @@ func void DIA_Addon_Greg_ItemsInADW_Info()
 {
 	B_GiveGregItems();
 	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 2);
+};
+
+instance DIA_Addon_Greg_BeMyCap(C_Info)
+{
+	npc = PIR_1320_Addon_Greg;
+	nr = 850;
+	condition = DIA_Addon_Greg_BeMyCap_Condition;
+	information = DIA_Addon_Greg_BeMyCap_Info;
+	description = "Может быть, я смогу предложить тебе работу капитана.";
+};
+
+
+func int DIA_Addon_Greg_BeMyCap_Condition()
+{
+	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE))
+	{
+		if((PlayerTalkedToGregNW == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Greg_WhoAreYou))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Addon_Greg_BeMyCap_Info()
+{
+	AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN_15_00");	//Может быть, я смогу предложить тебе работу капитана.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
+	AI_Output(other,self,"DIA_Pyrokar_SCKNOWSWAYTOIRDORATH_15_00");	//Я знаю, где нужно искать Чертоги Ирдората.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_da_01_01");	//Э-э, тебе даже не стоит пытаться туда попасть.
+	AI_Output(other,self,"DIA_Brian_LIGHTHOUSEFREE_15_00");	//И, что скажешь?
+	AI_Output(self,other,"DIA_Addon_Greg_NW_was_SLD_01_02");	//Неплохо для сухопутной крысы.
+	B_LogEntry(Topic_Captain,"Грега не заинтересовало мое предложение.");
+	AI_StopProcessInfos(self);
 };
 

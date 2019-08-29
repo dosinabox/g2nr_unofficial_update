@@ -119,7 +119,7 @@ func void DIA_MiltenOW_Bericht_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Bericht_15_00");	//Как здесь обстоят дела?
 	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_01");	//Паладины пришли сюда, чтобы добывать магическую руду.
-	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_02");	//Но из-за всех этих нападений драконов и орков я сомневаюсь, что паладины уйдут отсюда с рудой.
+	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_02");	//Но из-за всех этих нападений драконов и орков, я сомневаюсь, что паладины уйдут отсюда с рудой.
 	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_03");	//Нет, клянусь Инносом - я чувствую присутствие чего-то темного... какого-то Зла, оно разрастается здесь. Что-то темное поднимается от этой долины.
 	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_04");	//Мы заплатили высокую цену за уничтожение Спящего. Разрушение Барьера погубило и это место.
 	AI_Output(self,other,"DIA_MiltenOW_Bericht_03_05");	//Мы можем считать себя счастливчиками, если нам удастся пережить все это.
@@ -263,7 +263,7 @@ instance DIA_MiltenOW_Mehr(C_Info)
 
 func int DIA_MiltenOW_Mehr_Condition()
 {
-	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2) /* && (Npc_HasItems(other,ItMi_Gold) < 1000) */ && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
+	if((MIS_RescueGorn == LOG_Running) && (Kapitel == 2) && Npc_KnowsInfo(other,DIA_MiltenOW_Preis))
 	{
 		return TRUE;
 	};
@@ -477,7 +477,7 @@ func int DIA_MiltenOW_Teach_Condition()
 
 func void DIA_MiltenOW_Teach_Info()
 {
-	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
+	B_Say_WantToLearnNewRunes();
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Teach_03_01");	//Ты все еще не достиг второго Круга магии. Я ничему не могу научить тебя.
@@ -544,7 +544,6 @@ func void DIA_MiltenOW_Teach_Light()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Light);
 };
-
 
 instance DIA_MiltenOW_Mana(C_Info)
 {
@@ -625,7 +624,7 @@ func int DIA_MiltenOW_Perm_Condition()
 func void DIA_MiltenOW_Perm_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Perm_15_00");	//А какие у тебя здесь обязанности?
-	AI_Output(self,other,"DIA_MiltenOW_Perm_03_01");	//Изначально я должен был проверять магическую руду. Но она здесь редко попадала мне в руки.
+	AI_Output(self,other,"DIA_MiltenOW_Perm_03_01");	//Изначально... Я должен был проверять магическую руду. Но она здесь редко попадала мне в руки.
 	AI_Output(self,other,"DIA_MiltenOW_Perm_03_02");	//И теперь я сосредоточился на изучении алхимии.
 };
 

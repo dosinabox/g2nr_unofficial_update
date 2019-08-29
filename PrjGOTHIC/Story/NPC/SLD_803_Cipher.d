@@ -31,7 +31,7 @@ instance SLD_803_Cipher(Npc_Default)
 func void Rtn_Start_803()
 {
 	TA_Smalltalk(7,35,23,35,"NW_BIGFARM_PATH_04_1");
-	TA_Sleep(23,35,7,35,"NW_BIGFARM_HOUSE_SLD_SLEEP");
+	TA_Sleep(23,35,7,35,"NW_BIGFARM_STABLE_SLEEP_02");
 };
 
 func void Rtn_Tot_803()

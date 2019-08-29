@@ -22,10 +22,6 @@ func void B_MakeRangerReadyForMeeting(var C_Npc Ranger)
 
 func void B_MakeRangerReadyToLeaveMeeting(var C_Npc Ranger)
 {
-	/*AI_UnequipArmor(Ranger);
-	Npc_RemoveInvItems(Ranger,ITAR_RANGER_Addon,Npc_HasItems(Ranger,ITAR_RANGER_Addon));
-	Npc_RemoveInvItems(Ranger,ITAR_Fake_RANGER,Npc_HasItems(Ranger,ITAR_Fake_RANGER));
-	AI_EquipBestArmor(Ranger);*/
 	if(Hlp_GetInstanceID(Ranger) == Hlp_GetInstanceID(Martin))
 	{
 		AI_EquipArmor(Ranger,ITAR_MIL_L);
@@ -77,9 +73,6 @@ func void B_MakeRangerReadyToLeaveMeetingALL()
 	B_MakeRangerReadyToLeaveMeeting(Gaan);
 	B_MakeRangerReadyToLeaveMeeting(Orlan);
 	B_MakeRangerReadyToLeaveMeeting(Cavalorn);
-	/*AI_UnequipArmor(Cavalorn);
-	Npc_RemoveInvItems(Cavalorn,ITAR_Fake_RANGER,Npc_HasItems(Cavalorn,ITAR_Fake_RANGER));
-	AI_EquipBestArmor(Cavalorn);*/
 };
 
 func void B_Addon_Orlan_RangersReadyForComing()
@@ -116,27 +109,11 @@ func void B_RangerMeetingParking()
 		B_StartOtherRoutine(Cavalorn,"Stadt");
 	};
 	B_StartOtherRoutine(Orlan,"START");
-	Lares_HaltsMaul = TRUE;
 	B_StartOtherRoutine(Lares,"Parking");
 	B_StartOtherRoutine(Cord,"Parking");
 	B_StartOtherRoutine(Gaan,"Parking");
 	B_StartOtherRoutine(Martin,"Parking");
-	/*if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)
-	{
-		B_StartOtherRoutine(Gaan,"Parking");
-	}
-	else
-	{
-		B_StartOtherRoutine(Gaan,"Parking");
-	};
-	if(MIS_Addon_Martin_GetRangar == FALSE)
-	{
-		B_StartOtherRoutine(Martin,"Parking");
-	}
-	else
-	{
-		B_StartOtherRoutine(Martin,"Parking");
-	};*/
+	Lares_HaltsMaul = TRUE;
 };
 
 func void B_SchlussMitRangerMeeting()
@@ -157,6 +134,7 @@ func void B_SchlussMitRangerMeeting()
 	{
 		LaresGuide_OrnamentForest = 0;
 	};
+	B_StartOtherRoutine(Orlan,"Start");
 	B_StartOtherRoutine(Lares,"Start");
 	B_StartOtherRoutine(Cord,"Start");
 	if(Gaan.aivar[AIV_TalkedToPlayer] == FALSE)
@@ -175,19 +153,6 @@ func void B_SchlussMitRangerMeeting()
 	{
 		B_StartOtherRoutine(Martin,"Start");
 	};
-	B_StartOtherRoutine(Orlan,"Start");
 	Lares_HaltsMaul = LOG_OBSOLETE;
-};
-
-func int AnyRangerRingEquipped()
-{
-	if((RangerRingIsLaresRing == TRUE) || (RangerRingIsMyRing == TRUE) || (RangerRingIsLanceRing == TRUE))
-	{
-		return TRUE;
-	}
-	else
-	{
-		return FALSE;
-	};
 };
 

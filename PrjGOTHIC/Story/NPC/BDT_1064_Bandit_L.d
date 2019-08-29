@@ -11,7 +11,7 @@ instance BDT_1064_Bandit_L(Npc_Default)
 	aivar[AIV_NewsOverride] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_ShortSword3);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_B_Normal_Orik,BodyTex_B,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,1);

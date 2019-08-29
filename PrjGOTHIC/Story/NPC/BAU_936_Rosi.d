@@ -8,6 +8,7 @@ instance BAU_936_Rosi(Npc_Default)
 	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
+	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMw_1h_Vlk_Axe);
 //	B_CreateAmbientInv(self);

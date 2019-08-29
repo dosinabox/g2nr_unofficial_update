@@ -1,6 +1,4 @@
 
-var int Baltram_ItemsGiven_Paket;
-var int Baltram_ItemsGiven_Warez;
 var int Baltram_ItemsGiven_Chapter_1;
 var int Baltram_ItemsGiven_Chapter_2;
 var int Baltram_ItemsGiven_Chapter_3;
@@ -9,24 +7,9 @@ var int Baltram_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Baltram(var C_Npc slf)
 {
-	if((MIS_Baltram_ScoutAkil == LOG_SUCCESS) && (Baltram_ItemsGiven_Paket == FALSE))
-	{
-		CreateInvItems(slf,ItFo_Cheese,5);
-		CreateInvItems(slf,ItFo_Apple,10);
-		CreateInvItems(slf,ItFo_Beer,5);
-		CreateInvItems(slf,ItFo_Bacon,5);
-		CreateInvItems(slf,ItFo_Sausage,5);
-		Baltram_ItemsGiven_Paket = TRUE;
-	};
-	if((MIS_BaltramTrade == LOG_SUCCESS) && (Baltram_ItemsGiven_Warez == FALSE))
-	{
-		CreateInvItems(slf,ItFo_Bacon,10);
-		CreateInvItems(slf,ItFo_Wine,10);
-		Baltram_ItemsGiven_Warez = TRUE;
-	};
 	if((Kapitel >= 1) && (Baltram_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFo_Water,5);
 		CreateInvItems(slf,ItFo_Bread,3);
 		CreateInvItems(slf,ItFo_Cheese,2);
@@ -35,7 +18,7 @@ func void B_GiveTradeInv_Baltram(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Baltram_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFo_Cheese,5);
 		CreateInvItems(slf,ItFoMutton,5);
 		CreateInvItems(slf,ItFo_Stew,5);
@@ -44,7 +27,7 @@ func void B_GiveTradeInv_Baltram(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Baltram_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFo_Cheese,2);
 		CreateInvItems(slf,ItFo_Bacon,2);
 		CreateInvItems(slf,ItFoMutton,10);
@@ -55,7 +38,7 @@ func void B_GiveTradeInv_Baltram(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Baltram_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItFo_Wine,5);
 		CreateInvItems(slf,ItFo_Milk,10);
 		CreateInvItems(slf,ItFoMutton,5);
@@ -66,7 +49,7 @@ func void B_GiveTradeInv_Baltram(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Baltram_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItFo_Wine,2);
 		CreateInvItems(slf,ItFo_Milk,5);
 		CreateInvItems(slf,ItFoMutton,5);

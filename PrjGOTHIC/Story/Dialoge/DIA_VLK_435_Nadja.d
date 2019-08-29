@@ -169,9 +169,18 @@ instance DIA_Addon_Nadja_LuciaInfo(C_Info)
 
 func int DIA_Addon_Nadja_LuciaInfo_Condition()
 {
-	if((Bromor_Pay == 2) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 200) && (Nadja_LuciaInfo == TRUE))
+	if((Bromor_Pay == 2) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300))
 	{
-		return TRUE;
+		if(Nadja_LuciaInfo == TRUE)
+		{
+			DIA_Addon_Nadja_LuciaInfo.description = "Ќу, а теперь мы можем поговорить?";
+			return TRUE;
+		}
+		else if((SC_HearedAboutMissingPeople == TRUE) && (SCKnowsMissingPeopleAreInAddonWorld == FALSE))
+		{
+			DIA_Addon_Nadja_LuciaInfo.description = "я только хотел задать тебе пару вопросов о пропавших люд€х.";
+			return TRUE;
+		};
 	};
 };
 
@@ -180,7 +189,14 @@ var int Nadja_GaveLuciaInfo;
 
 func void DIA_Addon_Nadja_LuciaInfo_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_15_00");	//Ќу, а теперь мы можем поговорить?
+	if(Nadja_LuciaInfo == TRUE)
+	{
+		AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_15_00");	//Ќу, а теперь мы можем поговорить?
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_ADDON_Nadja_STANDARD_15_01");	//я только хотел задать тебе пару вопросов о пропавших люд€х.
+	};
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_16_01");	//ƒа, здесь нас не подслушают.
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_16_02");	//Ѕромору не нравитс€, когда мы разговариваем с гост€ми во врем€ работы, если ему от этого никакой выгоды.
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_16_03");	//»так, ты хочешь узнать побольше о люд€х, которые исчезли в порту, не так ли?
@@ -334,7 +350,7 @@ func int DIA_Nadja_BUYHERB_Condition()
 func void DIA_Nadja_BUYHERB_Info()
 {
 	AI_Output(other,self,"DIA_Nadja_BUYHERB_15_00");	//ћогу € здесь купить травки?
-	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 500)
+	if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_NADJA") < 300)
 	{
 		if(C_RedlightUndercoverCheckFailed(other))
 		{

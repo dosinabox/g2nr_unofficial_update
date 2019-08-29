@@ -39,34 +39,10 @@ func void ZS_Dead()
 //			B_MagicHurtNpc(self,other,50);
 		};
 	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DiegoOW))
-	{
-		Diego_IsDead = TRUE;
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Skip))
-	{
-		if(MIS_ADDON_SkipsGrog == LOG_Running)
-		{
-			MIS_ADDON_SkipsGrog = LOG_OBSOLETE;
-		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Brandon))
-	{
-		if(MIS_Brandon_BringHering == LOG_Running)
-		{
-			MIS_Brandon_BringHering = LOG_OBSOLETE;
-		};
-	};
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Kervo))
-	{
-		if(MIS_Kervo_KillLurker == LOG_Running)
-		{
-			MIS_Kervo_KillLurker = LOG_FAILED;
-		};
-	};
+	B_CheckDeadMissionNPCs(self);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
 	{
-		if((MayaScrollGiven == FALSE) && (Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT) == 0))
+		if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT))
 		{
 			CreateInvItems(self,ItSc_Teleport_Maya,1);
 			MayaScrollGiven = TRUE;
@@ -91,15 +67,29 @@ func void ZS_Dead()
 		};
 		if((self.guild == GIL_GIANT_BUG) && (MIS_Fester_KillBugs == LOG_Running))
 		{
-			Festers_Giant_Bug_Killed += 1;
+			if(Npc_GetDistToNpc(self,Fester) <= 1500)
+			{
+				Festers_Giant_Bug_Killed += 1;
+			};
 		};
 		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Swamprat)) && (MIS_KrokoJagd == LOG_Running))
 		{
-			AlligatorJack_KrokosKilled += 1;
+			if(Npc_GetDistToNpc(self,AlligatorJack) <= 1500)
+			{
+				AlligatorJack_KrokosKilled += 1;
+			};
 		};
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Ramon))
 		{
 			Player_HasTalkedToBanditCamp = TRUE;
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcShaman_Sit_CanyonLibraryKey))
+		{
+			OrcShaman_CanyonLibrary_KilledByPlayer = TRUE;
+		};
+		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper1)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper2)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Grimbald_Snapper3)))
+		{
+			Grimbald_Snappers_KilledByPlayer = TRUE;
 		};
 		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
 		{
@@ -112,10 +102,6 @@ func void ZS_Dead()
 				MIS_HlpEdgor = LOG_OBSOLETE;
 			};
 		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Fortuno))
-		{
-			Log_SetTopicStatus(Topic_Addon_Fortuno,LOG_OBSOLETE);
-		};
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
 	{
@@ -127,14 +113,6 @@ func void ZS_Dead()
 			Bloodwyn_Spawn = TRUE;
 		};
 	};
-	/*if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(IceDragon))
-	{
-		if(!Npc_IsDead(IceGolem_Sylvio1) || !Npc_IsDead(IceGolem_Sylvio2))
-		{
-			IceGolem_Sylvio1.flags = 0;
-			IceGolem_Sylvio2.flags = 0;
-		};
-	};*/
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);
 	B_ClearRuneInv(self);
@@ -146,27 +124,30 @@ func void ZS_Dead()
 	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 	AI_UnequipWeapons(self);
 	self.aivar[AIV_TAPOSITION] = ISINPOS;
-	if(readyweap.munition == ItRw_Addon_FireArrow)
+	if(Npc_HasReadiedRangedWeapon(other))
 	{
-		Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
-		Wld_PlayEffect("spellFX_Firestorm_SPREAD",self,self,0,0,0,FALSE);
-		if(Npc_GetDistToNpc(self,other) <= 600)
+		if(readyweap.munition == ItRw_Addon_FireArrow)
 		{
-			Wld_PlayEffect("VOB_MAGICBURN",other,other,0,0,0,FALSE);
-			if(other.protection[PROT_FIRE] < 40)
+			Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
+			Wld_PlayEffect("spellFX_Firestorm_SPREAD",self,self,0,0,0,FALSE);
+			if(Npc_GetDistToNpc(self,other) <= 600)
 			{
-				if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - 40) >= 0)
+				Wld_PlayEffect("VOB_MAGICBURN",other,other,0,0,0,FALSE);
+				if(other.protection[PROT_FIRE] < 40)
 				{
-					other.attribute[ATR_HITPOINTS] -= (40 - other.protection[PROT_FIRE]);
-				}
-				else
-				{
-					other.attribute[ATR_HITPOINTS] = 0;
+					if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - 40) >= 0)
+					{
+						other.attribute[ATR_HITPOINTS] -= (40 - other.protection[PROT_FIRE]);
+					}
+					else
+					{
+						other.attribute[ATR_HITPOINTS] = 0;
+					};
 				};
-			};
-			if(other.attribute[ATR_HITPOINTS] <= 0)
-			{
-				AI_PlayAni(other,"T_DEAD");
+				if(other.attribute[ATR_HITPOINTS] <= 0)
+				{
+					AI_PlayAni(other,"T_DEAD");
+				};
 			};
 		};
 	};

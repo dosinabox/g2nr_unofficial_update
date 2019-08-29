@@ -27,7 +27,7 @@ func void B_MM_AssessEnemy()
 	{
 		return;
 	};
-	if(CurrentLevel == OldWorld_Zen)
+	if(CurrentLevel == OLDWORLD_ZEN)
 	{
 		if(Npc_GetDistToWP(self,"OC_RAMP_07") <= 500)
 		{

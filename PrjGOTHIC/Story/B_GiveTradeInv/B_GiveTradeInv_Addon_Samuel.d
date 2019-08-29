@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Addon_Samuel(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Samuel_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFo_Addon_Rum,2);
 		CreateInvItems(slf,ItFo_Booze,3);
 		CreateInvItems(slf,ItFo_Beer,6);
@@ -26,7 +26,7 @@ func void B_GiveTradeInv_Addon_Samuel(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Samuel_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFo_Addon_Rum,2);
 		CreateInvItems(slf,ItFo_Booze,3);
 		CreateInvItems(slf,ItFo_Beer,6);
@@ -40,7 +40,7 @@ func void B_GiveTradeInv_Addon_Samuel(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Samuel_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFo_Addon_Rum,2);
 		CreateInvItems(slf,ItFo_Booze,3);
 		CreateInvItems(slf,ItFo_Beer,6);
@@ -53,7 +53,7 @@ func void B_GiveTradeInv_Addon_Samuel(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Samuel_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFo_Addon_Rum,2);
 		CreateInvItems(slf,ItFo_Booze,3);
 		CreateInvItems(slf,ItFo_Beer,6);
@@ -66,7 +66,7 @@ func void B_GiveTradeInv_Addon_Samuel(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Samuel_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFo_Addon_Rum,2);
 		CreateInvItems(slf,ItFo_Booze,3);
 		CreateInvItems(slf,ItFo_Beer,6);

@@ -199,7 +199,7 @@ func int DIA_Addon_Gaan_MissingPeople_Condition()
 func void DIA_Addon_Gaan_MissingPeople_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Gaan_MissingPeople_15_00");	//Ты слышал о пропавших людях?
-	AI_Output(self,other,"DIA_Addon_Gaan_MissingPeople_03_01");	//Конечно, слышал. Именно поэтому нам всем надо быть осторожнее.
+	AI_Output(self,other,"DIA_Addon_Gaan_MissingPeople_03_01");	//Конечно, слышал. Именно поэтому нам всегда надо быть осторожнее.
 	AI_Output(self,other,"DIA_Addon_Gaan_MissingPeople_03_02");	//Но я не знаю ничего такого, что могло бы тебе помочь.
 };
 
@@ -397,7 +397,7 @@ instance DIA_Gaan_AskTeacher(C_Info)
 
 func int DIA_Gaan_AskTeacher_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU))
+	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU) || (RangerMeetingRunning == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -593,7 +593,7 @@ instance DIA_Gaan_JAGD(C_Info)
 
 func int DIA_Gaan_JAGD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU))
+	if(Npc_KnowsInfo(other,DIA_Gaan_WASMACHSTDU) || (RangerMeetingRunning == LOG_SUCCESS))
 	{
 		return TRUE;
 	};

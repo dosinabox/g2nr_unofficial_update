@@ -17,11 +17,7 @@ func int DIA_Fenia_EXIT_Condition()
 
 func void DIA_Fenia_EXIT_Info()
 {
-	if(hero.guild == GIL_PAL)
-	{
-		AI_Output(self,other,"DIA_Fenia_EXIT_17_00");	//Приветствую, мистер паладин.
-	};
-	if(hero.guild == GIL_KDF)
+	if(other.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Fenia_EXIT_17_01");	//Удачной тебе дороги, о, достопочтенный маг.
 	};
@@ -85,7 +81,7 @@ func int DIA_Fenia_Hallo_Condition()
 
 func void DIA_Fenia_Hallo_Info()
 {
-	if(hero.guild == GIL_NONE)
+	if((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Fenia_Hallo_17_00");	//Ты выглядишь уставшим. Давно не спал, да?
 		AI_Output(other,self,"DIA_Fenia_Hallo_15_01");	//Слишком давно, я бы сказал.
@@ -95,6 +91,33 @@ func void DIA_Fenia_Hallo_Info()
 	B_LogEntry(TOPIC_CityTrader,"Феня торгует едой по пути в гавань.");
 };
 
+
+instance DIA_Fenia_Hallo_Pal(C_Info)
+{
+	npc = VLK_476_Fenia;
+	nr = 4;
+	condition = DIA_Fenia_Hallo_Pal_Condition;
+	information = DIA_Fenia_Hallo_Pal_Info;
+	permanent = TRUE;
+	important = TRUE;
+};
+
+
+func int DIA_Fenia_Hallo_Pal_Condition()
+{
+	if(Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_PAL) && Npc_KnowsInfo(other,DIA_Fenia_Hallo))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Fenia_Hallo_Pal_Info()
+{
+	AI_Output(self,other,"DIA_Fenia_EXIT_17_00");	//Приветствую, мистер паладин.
+};
+
+
+var int Fenia_ItemsGiven_Paket;
 
 instance DIA_Fenia_HANDELN(C_Info)
 {
@@ -110,7 +133,7 @@ instance DIA_Fenia_HANDELN(C_Info)
 
 func int DIA_Fenia_HANDELN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo))
 	{
 		return TRUE;
 	};
@@ -119,38 +142,20 @@ func int DIA_Fenia_HANDELN_Condition()
 func void DIA_Fenia_HANDELN_Info()
 {
 	AI_Output(other,self,"DIA_Fenia_HANDELN_15_00");	//Покажи мне свои товары.
+	if((MIS_Baltram_ScoutAkil == LOG_FAILED) && (Fenia_ItemsGiven_Paket == FALSE))
+	{
+		CreateInvItems(self,ItFo_Cheese,5);
+		CreateInvItems(self,ItFo_Apple,10);
+		CreateInvItems(self,ItFo_Beer,5);
+		CreateInvItems(self,ItFo_Bacon,5);
+		CreateInvItems(self,ItFo_Sausage,5);
+		Fenia_ItemsGiven_Paket = TRUE;
+	};
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 
-////////////////////////////////////////
-instance DIA_Fenia_NOHANDELN(C_Info)
-{
-	npc = VLK_476_Fenia;
-	nr = 10;
-	condition = DIA_Fenia_NOHANDELN_Condition;
-	information = DIA_Fenia_NOHANDELN_Info;
-	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
-};
 
-
-func int DIA_Fenia_NOHANDELN_Condition()
-{
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Fenia_NOHANDELN_Info()
-{
-	AI_Output(other,self,"DIA_Fenia_HANDELN_15_00");	//Покажи мне свои товары.
-	B_Say(self,other,"$NOTNOW");
-	AI_StopProcessInfos(self);
-};
-
-////////////////////////////////////////
 instance DIA_Fenia_Infos(C_Info)
 {
 	npc = VLK_476_Fenia;
@@ -164,7 +169,7 @@ instance DIA_Fenia_Infos(C_Info)
 
 func int DIA_Fenia_Infos_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Fenia_Hallo))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Hallo))
 	{
 		return TRUE;
 	};
@@ -172,7 +177,7 @@ func int DIA_Fenia_Infos_Condition()
 
 func void DIA_Fenia_Infos_Info()
 {
-	AI_Output(other,self,"DIA_Fenia_Infos_15_00");	//Ты сказала, у тебя есть все, что мне нужно. Это включает информацию?
+	AI_Output(other,self,"DIA_Fenia_Infos_15_00");	//Ты сказала, что у тебя есть все, что мне нужно. Это включает информацию?
 	AI_Output(self,other,"DIA_Fenia_Infos_17_01");	//Конечно. Что ты хочешь узнать?
 };
 
@@ -200,7 +205,7 @@ func void DIA_Fenia_MoreTraders_Info()
 {
 	AI_Output(other,self,"DIA_Fenia_Infos_haendler_15_00");	//Есть здесь, в порту, другие торговцы?
 	AI_Output(self,other,"DIA_Fenia_Infos_haendler_17_01");	//Если ты пойдешь налево вдоль причала, то увидишь Халвора, моего мужа. Он торгует рыбой.
-	AI_Output(self,other,"DIA_Fenia_Infos_haendler_17_02");	//А если пойдешь в другую сторону, там живет Ибрагим, картограф.
+	AI_Output(self,other,"DIA_Fenia_Infos_haendler_17_02");	//А если ты пойдешь в другую сторону, там живет Ибрагим, картограф.
 };
 
 
@@ -217,9 +222,12 @@ instance DIA_Fenia_OV(C_Info)
 
 func int DIA_Fenia_OV_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Fenia_Infos) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Fenia_Infos) && (Mil_305_schonmalreingelassen == FALSE))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -253,7 +261,10 @@ func void DIA_Fenia_Interesting_Info()
 {
 	AI_Output(other,self,"DIA_Fenia_Infos_interessantes_15_00");	//На что интересное стоит обратить внимание в порту?
 	AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_01");	//Ну... Если ты ищешь приключений, иди в кабак Кардифа у причала. Там всегда что-нибудь затевается.
-	AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_02");	//Ты вряд ли пропустишь его. Парень, стоящий перед входом туда, обязательно привлечет твое внимание к нему.
+	if(!Npc_IsDead(Moe))
+	{
+		AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_02");	//Ты вряд ли пропустишь его. Парень, стоящий перед входом туда, обязательно привлечет твое внимание к нему.
+	};
 	AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_03");	//Кроме того, в порту стоит большой корабль паладинов. Королевская военная галера. На это действительно стоит посмотреть.
 	AI_Output(self,other,"DIA_Fenia_Infos_interessantes_17_04");	//Ты увидишь ее, если пойдешь влево вдоль причала, а затем пройдешь под большой скалой.
 };
@@ -281,7 +292,10 @@ func int DIA_Fenia_Aufregend_Condition()
 func void DIA_Fenia_Aufregend_Info()
 {
 	AI_Output(other,self,"DIA_Fenia_Add_15_00");	//Ничего интересного не было?
-	AI_Output(self,other,"DIA_Fenia_Add_17_01");	//Было. И совсем недавно.
+	if(MIS_Bosper_Bogen != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Fenia_Add_17_01");	//Было. И совсем недавно.
+	};
 	AI_Output(self,other,"DIA_Fenia_Add_17_02");	//Здесь пробежал вор. Он, похоже, украл лук где-то в нижней части города.
 	AI_Output(self,other,"DIA_Fenia_Add_17_03");	//Конечно, как всегда ополчение прибыло слишком поздно.
 	AI_Output(self,other,"DIA_Fenia_Add_17_04");	//Ему удалось сбежать от них - он прыгнул в море и был таков.

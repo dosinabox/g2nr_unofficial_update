@@ -22,7 +22,7 @@ instance ItSc_SummonMud(C_Item)
 	count[5] = value;
 };
 
-instance Aya_Testmodell(Npc_Default)
+/*instance Aya_Testmodell(Npc_Default)
 {
 	name[0] = "Ýéÿ";
 	guild = GIL_NONE;
@@ -164,5 +164,5 @@ func int DIA_Aya_EXIT_Condition()
 func void DIA_Aya_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 

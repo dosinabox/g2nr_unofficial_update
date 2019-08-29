@@ -156,7 +156,7 @@ func void DIA_Addon_Esteban_Rot_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Esteban_Rot_07_05");	//Кажется, ты об этом ничего не знаешь.
 	};
-	AI_Output(self,other,"DIA_Addon_Esteban_Rot_07_06");	//(фальшиво) Если я и дам тебе красный камень, то не потому, что ты такой хороший рудокоп.
+	AI_Output(self,other,"DIA_Addon_Esteban_Rot_07_06");	//(фальшиво) Если я дам тебе красный камень, то не потому, что ты такой хороший рудокоп.
 	AI_Output(self,other,"DIA_Addon_Esteban_Rot_07_07");	//Нет, у меня есть для тебя другая работа...
 };
 
@@ -465,6 +465,12 @@ func void DIA_Addon_Esteban_Duell_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Esteban_Duell_15_00");	//Давай сюда камень СЕЙЧАС ЖЕ, или я заберу его сам!
 	AI_Output(self,other,"DIA_Addon_Esteban_Duell_07_01");	//О, у тебя есть последнее желание. Как мило. Я сделаю тебе одолжение и избавлю тебя от твоей тупости!
+	Info_ClearChoices(DIA_Addon_Esteban_Duell);
+	Info_AddChoice(DIA_Addon_Esteban_Duell,Dialog_Ende,DIA_Addon_Esteban_Duell_End);
+};
+
+func void DIA_Addon_Esteban_Duell_End()
+{
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 	if(Hlp_IsValidNpc(Wache_01) && !C_NpcIsDown(Wache_01) && (Npc_GetDistToNpc(Wache_01,other) <= 1500))

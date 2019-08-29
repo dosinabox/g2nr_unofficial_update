@@ -116,7 +116,7 @@ func void DIA_Addon_Scatty_last_Info()
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_01");	//Он старший по шахте. Но сам он почти никогда не спускается. Большинство времени он проводит в храме с Вороном.
 	AI_Output(other,self,"DIA_Addon_Scatty_last_15_02");	//'Почти никогда' - это как часто, если быть точным?
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_03");	//Последний раз я его видел, когда он выходил из гробницы...
-	AI_Output(self,other,"DIA_Addon_Scatty_last_01_04");	//(быстро) ... Хотя нет, подожди! Последний раз был, когда он посылал рабов добывать золото.
+	AI_Output(self,other,"DIA_Addon_Scatty_last_01_04");	//(быстро) ...Хотя нет, подожди! Последний раз был, когда он посылал рабов добывать золото.
 	AI_Output(self,other,"DIA_Addon_Scatty_last_01_05");	//В отличие от Ворона, его ОЧЕНЬ интересует золото.
 };
 
@@ -208,7 +208,7 @@ func int DIA_Addon_Scatty_Trinken_Condition()
 func void DIA_Addon_Scatty_Trinken_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Scatty_Trinken_15_00");	//Хочешь выпить?
-	AI_Output(self,other,"DIA_Addon_Scatty_Trinken_01_01");	//Хорошо бы... пива. Но вряд ли в лагере есть пиво.
+	AI_Output(self,other,"DIA_Addon_Scatty_Trinken_01_01");	//Хорошо бы... м-кхм... пива. Но вряд ли в лагере есть пиво.
 	AI_Output(self,other,"DIA_Addon_Scatty_Trinken_01_02");	//Но, может быть, у Люсии есть бутылочка...
 	if(!Npc_HasItems(other,ItFo_Beer) && !Npc_HasItems(Lucia,ItFo_Beer))
 	{
@@ -283,7 +283,7 @@ instance DIA_Addon_Scatty_teach(C_Info)
 	information = DIA_Addon_Scatty_teach_Info;
 	permanent = TRUE;
 //	description = "Расскажи мне еще что-нибудь о том, как копать золото. (1 LP/10 процентов)";
-	description = "(улучшить навык добычи: +10 процентов, 1 очко обучения)";
+	description = "(улучшить навык добычи: + 10, 1 очко обучения)";
 };
 
 

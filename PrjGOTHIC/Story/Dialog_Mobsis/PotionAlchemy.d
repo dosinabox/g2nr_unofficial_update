@@ -441,7 +441,7 @@ instance PC_ItPo_Mana_04(C_Info)
 	condition = PC_ItPo_Mana_04_Condition;
 	information = PC_ItPo_Mana_04_Info;
 	permanent = TRUE;
-	description = "„иста€ мана (3 эссенции маны, 1 луговой горец)";
+	description = ConcatStrings(NAME_Mana_Full," (3 эссенции маны, 1 луговой горец)");
 };
 
 
@@ -645,7 +645,7 @@ instance PC_ItPo_Health_04(C_Info)
 	condition = PC_ItPo_Health_04_Condition;
 	information = PC_ItPo_Health_04_Info;
 	permanent = TRUE;
-	description = "„истое здоровье (3 лечебные эссенции, 1 луговой горец)";
+	description = ConcatStrings(NAME_HP_Full," (3 лечебные эссенции, 1 луговой горец)");
 };
 
 
@@ -735,7 +735,7 @@ instance PC_ItPo_Addon_Geist(C_Info)
 	condition = PC_ItPo_Addon_Geist_Condition;
 	information = PC_ItPo_Addon_Geist_Info;
 	permanent = TRUE;
-	description = "Ёликсир изменени€ сознани€ (2 жала кровавой мухи, 1 экстракт маны, 1 лечебна€ эссенци€ и 1 красный жгучий перец)";
+	description = ConcatStrings(NAME_Geist," (2 жала кровавой мухи, 1 экстракт маны, 1 лечебна€ эссенци€ и 1 красный жгучий перец)");
 };
 
 

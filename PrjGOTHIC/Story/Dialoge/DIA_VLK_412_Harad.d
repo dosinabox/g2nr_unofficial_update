@@ -363,6 +363,10 @@ func void DIA_Harad_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_20");	//Маттео говорит, что ты ему что-то должен. Я не знаю, что у вас там за дела, но ты должен урегулировать эту проблему.
 			}
+			else if(MIS_Matteo_Gold == LOG_FAILED)
+			{
+				AI_Output(self,other,"DIA_Harad_LEHRLING_12_22");	//Маттео говорит, что никогда не видел тебя в своей лавке.
+			}
 			else
 			{
 				AI_Output(self,other,"DIA_Harad_LEHRLING_12_21");	//Маттео говорит, что никогда не говорил об этом с тобой.
@@ -418,11 +422,12 @@ func void DIA_Harad_LEHRLING_OK()
 	Harad_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("schmied",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
-	B_LogEntry(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
-	B_LogEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 	B_GivePlayerXP(XP_Lehrling);
+	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
+	B_LogEntry(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	Log_AddEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
+	Log_AddEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
 	Info_ClearChoices(DIA_Harad_LEHRLING);
 };
 
@@ -597,7 +602,7 @@ func void DIA_Harad_Aufgaben_Info()
 	AI_Output(other,self,"DIA_Harad_Aufgaben_15_00");	//Что должен делать ученик?
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_01");	//Три вещи. Попробуй угадать.
 	AI_Output(other,self,"DIA_Harad_Aufgaben_15_02");	//Ковать, ковать и ковать?
-	AI_Output(self,other,"DIA_Harad_Aufgaben_12_03");	//Ты не так уж бестолков, как кажешься. Я плачу за каждый меч. Если ты не работаешь, то и денег не получаешь. Это просто.
+	AI_Output(self,other,"DIA_Harad_Aufgaben_12_03");	//Ты не так уж и бестолков, как кажешься. Я плачу за каждый меч. Если ты не работаешь, то и денег не получаешь. Это просто.
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_05");	//Кроме того, я научу тебя всему, что нужно знать для изготовления обычных мечей.
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_06");	//Изготовление магических мечей - работа для опытного кузнеца. Тебе до этого еще далеко...
 	AI_Output(self,other,"DIA_Harad_Aufgaben_12_07");	//Если тебе нужно место для сна, ты можешь прилечь где-нибудь в моем доме. Все понятно?

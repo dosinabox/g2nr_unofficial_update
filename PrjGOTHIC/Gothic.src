@@ -53,6 +53,7 @@ Story\B_Story\B_GivePlayerXP.d
 Story\B_Content\B_ScUsesRake.d
 Story\B_GiveTradeInv\B_ClearRuneInv.d
 Story\B_Story\B_KillNpc.d
+Story\B_Story\B_CheckDeadMissionNPCs.d
 Story\B_Story\B_RemoveNpc.d
 Story\B_Content\B_RemoveQuarhodron.d
 Story\B_Content\B_PlayerFindItem.d
@@ -341,6 +342,7 @@ AI\Human\TA_Human\ZS_AssessGuidePlayer.d
 AI\Human\TA_Human\ZS_Pee.d
 AI\Human\TA_Human\ZS_Pick_FP.d
 AI\Human\TA_Human\ZS_Pick_Ore.d
+AI\Human\TA_Human\ZS_Play_Harfe.d
 AI\Human\TA_Human\ZS_Play_Lute.d
 AI\Human\TA_Human\ZS_Potion_Alchemy.d
 AI\Human\TA_Human\ZS_Practice_Magic.d
@@ -1268,6 +1270,7 @@ Story\B_AssignAmbientInfos\B_AssignORC_AntiPaladinTalk.d
 Story\B_AssignAmbientInfos\B_NpcObsessedByDMT.d
 Story\B_Story\B_GregIsBack.d
 Story\B_Story\B_Enter_AddonWorld.d
+Story\B_Story\C_AkilFarmIsFree.d
 Story\B_Story\B_Enter_OldWorld.d
 Story\B_Story\B_Enter_NewWorld.d
 Story\B_Story\B_Kapitelwechsel.d

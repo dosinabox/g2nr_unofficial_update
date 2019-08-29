@@ -15,7 +15,11 @@ const int LOC_ROCK = 13;
 
 func int C_DiegoTooFar(var int tolerance)
 {
-	if(Npc_GetDistToWP(hero,"SPAWN_OW_SHADOWBEAST_10_01") < (4000 + tolerance))
+	if(CurrentLevel != OLDWORLD_ZEN)
+	{
+		return FALSE;
+	}
+	else if(Npc_GetDistToWP(hero,"SPAWN_OW_SHADOWBEAST_10_01") < (4000 + tolerance))
 	{
 		return LOC_ANGAR;
 	}
@@ -55,7 +59,7 @@ func int C_DiegoTooFar(var int tolerance)
 	{
 		return LOC_BURG;
 	}
-	else if((Npc_GetDistToWP(hero,"OC_ORCBARRIER_08") < (5000 + tolerance)) || (Npc_GetDistToWP(hero,"PATH_OC_PSI_01") < (5000 + tolerance)))
+	else if((Npc_GetDistToWP(hero,"OW_ORCBARRIER_08") < (5000 + tolerance)) || (Npc_GetDistToWP(hero,"PATH_OC_PSI_01") < (5000 + tolerance)))
 	{
 		return LOC_ORCBARRIER;
 	}

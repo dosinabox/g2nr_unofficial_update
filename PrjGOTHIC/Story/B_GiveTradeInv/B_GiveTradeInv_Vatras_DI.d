@@ -5,7 +5,7 @@ func void B_GiveTradeInv_Vatras_DI(var C_Npc slf)
 {
 	if(Vatras_DI_ItemsGiven == FALSE)
 	{
-		CreateInvItems(slf,ItMi_Gold,230);
+//		CreateInvItems(slf,ItMi_Gold,230);
 		CreateInvItems(slf,ItPl_Temp_Herb,4);
 		CreateInvItems(slf,ItPl_Perm_Herb,2);
 		CreateInvItems(slf,ItSc_LightHeal,2);

@@ -1,7 +1,7 @@
 
 func void B_KardifArmorCheck()
 {
-	if(C_KardifArmorCheckFailed(other))
+	if(C_LawArmorEquipped(other))
 	{
 		if(!Npc_KnowsInfo(other,DIA_Kardif_Zeichen))
 		{
@@ -220,7 +220,7 @@ instance DIA_Kardif_TRADE(C_Info)
 
 func int DIA_Kardif_TRADE_Condition()
 {
-	if((Kardif_OneQuestion == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
+	if((Kardif_OneQuestion == FALSE) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
 	{
 		return TRUE;
 	};
@@ -233,34 +233,7 @@ func void DIA_Kardif_TRADE_Info()
 	Trade_IsActive = TRUE;
 };
 
-/////////////////////////////////////////////////////
-instance DIA_Kardif_NOTRADE(C_Info)
-{
-	npc = VLK_431_Kardif;
-	nr = 2;
-	condition = DIA_Kardif_NOTRADE_Condition;
-	information = DIA_Kardif_NOTRADE_Info;
-	permanent = TRUE;
-	description = "Дай мне что-нибудь выпить.";
-};
 
-
-func int DIA_Kardif_NOTRADE_Condition()
-{
-	if((Kardif_OneQuestion == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST) && Npc_KnowsInfo(other,DIA_Kardif_Hi))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Kardif_NOTRADE_Info()
-{
-	AI_Output(other,self,"DIA_Kardif_TRADE_15_00");	//Дай мне что-нибудь выпить.
-	AI_Output(self,other,"DIA_Kardif_Hallo_14_01");	//А тебе какое до этого дело?
-	AI_StopProcessInfos(self);
-};
-
-/////////////////////////////////////////////////////
 instance DIA_Kardif_TradeInfo(C_Info)
 {
 	npc = VLK_431_Kardif;
@@ -437,7 +410,7 @@ func void DIA_Addon_Kardif_MissingPeople_Info()
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_03");	//В нижней части города тоже исчезли люди.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_04");	//Если хочешь знать больше, поговори с Корагоном.
 		AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_05");	//У него пивная в нижней части города, и думаю, что от его уха не укрываются такие новости.
-		if(Halvor_Ausgeliefert == FALSE)
+		if((Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
 		{
 			AI_Output(self,other,"DIA_Addon_Kardif_MissingPeople_14_06");	//Халвор, торговец рыбой из лавки на пристани, тоже может кое-что знать - к нему заходит много людей.
 			B_LogEntry(TOPIC_Addon_WhoStolePeople,"Кардиф говорит, что мне стоит поговорить о пропавших людях с Корагоном, владельцем трактира в нижней части города, а также с Халвором, торгующим рыбой в гавани.");
@@ -739,7 +712,7 @@ instance DIA_Kardif_SENDATTILA(C_Info)
 
 func int DIA_Kardif_SENDATTILA_Condition()
 {
-	if(((MIS_ThiefGuild_sucked == TRUE) || (Diebesgilde_Okay >= 3) || (MIS_Nagur_Bote == LOG_FAILED) || ((Diebesgilde_Okay == 2) && (NagurHack == TRUE))) && Npc_IsInState(self,ZS_Talk))
+	if((MIS_ThiefGuild_sucked == TRUE) || (Diebesgilde_Okay >= 3) || (MIS_Nagur_Bote == LOG_FAILED) || ((Diebesgilde_Okay == 2) && (NagurHack == TRUE)))
 	{
 		return TRUE;
 	};
@@ -748,9 +721,9 @@ func int DIA_Kardif_SENDATTILA_Condition()
 func void DIA_Kardif_SENDATTILA_Info()
 {
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_00");	//Эй, ты, иди сюда. У меня есть кое-что для тебя.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01");	//Один парень очень хочет поговорить с тобой.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе сообщение.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_03");	//Он хочет встретиться с тобой. За рыбной лавкой Халвора.
+	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01");	//Один парень очень хочет поговорить с тобой. За рыбной лавкой Халвора.
+//	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе записку.
+//	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_03");	//Он хочет встретиться с тобой. За рыбной лавкой Халвора.
 	if(Kardif_Deal > 0)
 	{
 		AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_04");	//Эта информация бесплатна - но это исключение! Цена на все остальное осталась прежней.
@@ -762,7 +735,8 @@ func void DIA_Kardif_SENDATTILA_Info()
 		AI_Output(self,other,"DIA_Kardif_Hallo_14_04");	//Каждая информация, которую я сообщу тебе, будет стоить 10 золотых монет.
 		Kardif_Deal = 10;
 	};
-	Wld_InsertNpc(VLK_494_Attila,"NW_CITY_ENTRANCE_01");
+	Wld_InsertNpc(VLK_494_Attila,"NW_CITY_HABOUR_POOR_AREA_BACK_ALLEY_02");
+	B_InitNpcGlobals();
 	if((NagurHack == TRUE) || (MIS_Nagur_Bote == LOG_FAILED))
 	{
 		MIS_ThiefGuild_sucked = TRUE;
@@ -785,7 +759,7 @@ var int DIA_Kardif_Kerl_permanent;
 
 func int DIA_Kardif_Kerl_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA) && (Attila.aivar[AIV_TalkedToPlayer] == FALSE) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Kerl_permanent == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Kardif_SENDATTILA) && (Attila.aivar[AIV_TalkedToPlayer] == FALSE) && !Npc_IsDead(Attila) && (Kardif_OneQuestion == TRUE) && (DIA_Kardif_Kerl_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -796,10 +770,10 @@ func void DIA_Kardif_Kerl_Info()
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
 		AI_Output(other,self,"DIA_Kardif_Kerl_15_00");	//Как выглядел этот парень?
-		AI_Output(self,other,"DIA_Kardif_Kerl_14_01");	//Ну, он довольно высокий, темнокожий и сильный - но он не носит униформы. Какой-то он... зловещий.
+		AI_Output(self,other,"DIA_Kardif_Kerl_14_01");	//Ну, он довольно высокий, темнокожий и сильный. Он не носит униформы. Какой-то он... зловещий.
 		AI_Output(other,self,"DIA_Kardif_Kerl_15_02");	//А его лицо?
 		AI_Output(self,other,"DIA_Kardif_Kerl_14_03");	//Его лицо? Когда он глядел на меня, я был рад, что он пришел не за мной.
-		AI_Output(self,other,"DIA_Kardif_Kerl_14_04");	//В его глазах было что-то пугающее - ну, как бы то ни было, я думаю, ты должен пойти, повидаться с ним. Это должно быть интересно.
+		AI_Output(self,other,"DIA_Kardif_Kerl_14_04");	//В его глазах было что-то пугающее. Ну, как бы то ни было, я думаю... ты должен пойти, повидаться с ним. Это должно быть интересно.
 		AI_Output(other,self,"DIA_Kardif_Kerl_15_05");	//Да... весь вопрос в том, для кого...
 		DIA_Kardif_Kerl_permanent = TRUE;
 	}
@@ -911,9 +885,10 @@ func void DIA_Kardif_Crew_Info()
 		if(!Npc_IsDead(Jack))
 		{
 			AI_Output(self,other,"DIA_Kardif_Crew_14_05");	//Иди, поговори со старым Джеком. Он ошивается в этом порту, сколько я себя помню. В том, что касается морского дела, это тот человек, что тебе нужен.
-			Log_CreateTopic(Topic_Captain,LOG_MISSION);
-			Log_SetTopicStatus(Topic_Captain,LOG_Running);
-			B_LogEntry(Topic_Captain,"Кардиф отправил меня к старому Джеку. Возможно, он сможет помочь мне.");
+			if(MIS_Jack_NewLighthouseOfficer == FALSE)
+			{
+				B_LogEntry(Topic_Captain,"Кардиф отправил меня к старому Джеку. Возможно, он сможет помочь мне.");
+			};
 		};
 	};
 };

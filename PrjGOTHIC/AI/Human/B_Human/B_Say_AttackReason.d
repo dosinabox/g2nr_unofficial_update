@@ -118,13 +118,16 @@ func void B_Say_AttackReason()
 		if(other.guild > GIL_SEPERATOR_HUM)
 		{
 			B_Say_Overlay(self,other,"$YOUASKEDFORIT");
-			return;
+		}
+		else if(self.guild != GIL_DMT)
+		{
+			B_Say_Overlay(self,other,"$YOUDAREHITME");
 		}
 		else
 		{
-			B_Say_Overlay(self,other,"$YOUDAREHITME");
-			return;
+			B_Say_Overlay(self,other,"$DIEENEMY");
 		};
+		return;
 	};
 	if(self.aivar[AIV_ATTACKREASON] == AR_ReactToWeapon)
 	{
@@ -138,7 +141,14 @@ func void B_Say_AttackReason()
 	};
 	if(self.aivar[AIV_ATTACKREASON] == AR_LeftPortalRoom)
 	{
-		B_Say_Overlay(self,other,"$WHATDIDYOUDOINTHERE");
+		if(self.guild != GIL_DMT)
+		{
+			B_Say_Overlay(self,other,"$WHATDIDYOUDOINTHERE");
+		}
+		else
+		{
+			B_Say_Overlay(self,other,"$DIEENEMY");
+		};
 		return;
 	};
 	if(self.aivar[AIV_ATTACKREASON] == AR_GuardStopsFight)

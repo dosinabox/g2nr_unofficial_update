@@ -121,6 +121,10 @@ func int C_IsBestFriend(var C_Npc slf)
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Xardas))
 	{
 		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Greg_NW))
+	{
+		return TRUE;
 	};
 	return FALSE;
 };

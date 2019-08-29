@@ -37,7 +37,7 @@ instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Cavalorn_PICKPOCKET_Condition;
 	information = DIA_Addon_Cavalorn_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(украсть его колчан стрел будет довольно просто)";
+	description = "(украсть его колчан будет довольно просто)";
 };
 
 
@@ -289,8 +289,11 @@ func void DIA_Addon_Cavalorn_Beutel_Info()
 
 func void DIA_Addon_Cavalorn_Beutel_back()
 {
+	if(!Npc_HasItems(self,ItSe_ADDON_CavalornsBeutel) && !Npc_HasItems(self,ItMi_Nugget))
+	{
+		AI_Output(self,other,"DIA_Addon_Cavalorn_back_08_00");	//Я надеюсь, что он вернется ко мне.
+	};
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
-	AI_Output(self,other,"DIA_Addon_Cavalorn_back_08_00");	//Я надеюсь, что он вернется ко мне.
 };
 
 func void DIA_Addon_Cavalorn_Beutel_jaerz()
@@ -300,16 +303,23 @@ func void DIA_Addon_Cavalorn_Beutel_jaerz()
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"А почему ты вообще оттуда ушел?",DIA_Addon_Cavalorn_Beutel_why);
+	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget))
+	{
+		Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Давай мне 100 золотых - и я отдам тебе твою руду.",DIA_Addon_Cavalorn_ErzGeben_Info);
+	};
 };
 
 func void DIA_Addon_Cavalorn_Beutel_ja()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_Beutel_ja_15_00");	//Конечно.
-//	AI_Output(self,other,"DIA_Addon_Cavalorn_Beutel_ja_08_01");	//Ужасно.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_Triggered_OBack_08_01");	//Отлично.
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"А почему ты вообще оттуда ушел?",DIA_Addon_Cavalorn_Beutel_why);
+	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget))
+	{
+		Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Давай мне 100 золотых - и я отдам тебе твою руду.",DIA_Addon_Cavalorn_ErzGeben_Info);
+	};
 };
 
 func void DIA_Addon_Cavalorn_Beutel_no()
@@ -320,6 +330,10 @@ func void DIA_Addon_Cavalorn_Beutel_no()
 	Info_ClearChoices(DIA_Addon_Cavalorn_Beutel);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,Dialog_Back,DIA_Addon_Cavalorn_Beutel_back);
 	Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"А почему ты вообще оттуда ушел?",DIA_Addon_Cavalorn_Beutel_why);
+	if(Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget))
+	{
+		Info_AddChoice(DIA_Addon_Cavalorn_Beutel,"Давай мне 100 золотых - и я отдам тебе твою руду.",DIA_Addon_Cavalorn_ErzGeben_Info);
+	};
 };
 
 func void DIA_Addon_Cavalorn_Beutel_why()
@@ -343,7 +357,7 @@ instance DIA_Addon_Cavalorn_ErzGeben(C_Info)
 
 func int DIA_Addon_Cavalorn_ErzGeben_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Beutel) && (Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget)))
+	if(Npc_KnowsInfo(other,DIA_Addon_Cavalorn_Beutel) && (Npc_HasItems(other,ItSe_ADDON_CavalornsBeutel) || Npc_HasItems(other,ItMi_Nugget)) && (MIS_Addon_Cavalorn_TheHut != LOG_SUCCESS))
 	{
 		return TRUE;
 	};

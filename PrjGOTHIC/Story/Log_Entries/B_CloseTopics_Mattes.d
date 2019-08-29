@@ -1,7 +1,7 @@
 
 func void B_CloseTopics_Mattes()
 {
-	B_CloseTopic(Topic_Addon_Fortuno,0,SC_KnowsFortunoInfos,6);
+	B_CloseTopic(Topic_Addon_Fortuno,MIS_Fortuno_Delusion,0,6);
 	B_CloseTopic(Topic_Addon_Hammer,MIS_SnafHammer,0,6);
 	B_CloseTopic(Topic_Addon_Buddler,MIS_Send_Buddler,0,4);
 	B_CloseTopic(Topic_Addon_Logan,MIS_HlpLogan,0,4);
@@ -28,7 +28,7 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_BosperBogen,MIS_Bosper_Bogen,0,6);
 	B_CloseTopic(TOPIC_ConstantinoPlants,MIS_Constantino_BringHerbs,0,6);
 	B_CloseTopic(TOPIC_HaradOrk,MIS_Harad_Orc,0,6);
-	B_CloseTopic(TOPIC_Canthar,MIS_Canthars_KomproBrief,0,3);
+	B_CloseTopic(TOPIC_Canthar,MIS_Canthars_KomproBrief,0,6);
 	B_CloseTopic(TOPIC_HakonBanditen,MIS_HakonBandits,0,6);
 	B_CloseTopic(TOPIC_Jora,Jora_Gold,0,6);
 	B_CloseTopic(TOPIC_JoraDieb,Jora_Dieb,0,6);
@@ -37,7 +37,8 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_Baltram,MIS_Baltram_ScoutAkil,0,6);
 	B_CloseTopic(Topic_CassiaRing,MIS_CassiaRing,0,6);
 	B_CloseTopic(Topic_CassiaKelche,MIS_CassiaKelche,0,6);
-	B_CloseTopic(Topic_RamirezSextant,MIS_RamirezSextant,Ramirez_Sextant,6);
+//	B_CloseTopic(Topic_RamirezSextant,MIS_RamirezSextant,Ramirez_Sextant,6);
+	B_CloseTopic(Topic_RamirezSextant,MIS_RamirezSextant,0,6);
 	B_CloseTopic(TOPIC_Ignaz,MIS_Ignaz_Charm,0,6);
 	B_CloseTopic(TOPIC_AlrikSchwert,MIS_Alrik_Sword,0,6);
 	B_CloseTopic(TOPIC_Alwin,MIS_AttackFellan,0,6);

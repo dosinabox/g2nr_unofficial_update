@@ -12,10 +12,7 @@ instance DIA_Dar_EXIT(C_Info)
 
 func int DIA_Dar_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Dar_EXIT_Info()
@@ -253,7 +250,9 @@ func void DIA_Dar_Kameradenschwein_Info()
 	if(Npc_KnowsInfo(other,DIA_Dar_WannaJoin) && (other.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_01");	//Я ни за что не проголосую за тебя.
+		SCKnowsSLDVotes = TRUE;
 	};
+	Npc_ExchangeRoutine(self,"Start");
 };
 
 
@@ -300,7 +299,7 @@ func void DIA_Dar_Pilztabak_Info()
 };
 
 
-instance DIA_Dar_KAP3_EXIT(C_Info)
+/*instance DIA_Dar_KAP3_EXIT(C_Info)
 {
 	npc = SLD_810_Dar;
 	nr = 999;
@@ -347,7 +346,7 @@ func int DIA_Dar_KAP4_EXIT_Condition()
 func void DIA_Dar_KAP4_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_Dar_ORCRING(C_Info)
@@ -535,6 +534,7 @@ func void DIA_Dar_BRINGORCELITERING_geld_ok()
 	AI_Output(other,self,"DIA_Dar_BRINGORCELITERING_geld_ok_15_00");	//Договорились. Держи кольцо.
 	B_GiveInvItems(other,self,ItRi_OrcEliteRing,1);
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_geld_ok_03_01");	//Спасибо. Не терпится услышать, что скажут другие об этом.
+	Npc_ExchangeRoutine(self,"Start");
 	CreateInvItems(self,ItMi_Gold,1200);
 	B_GiveInvItems(self,other,ItMi_Gold,1200);
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);
@@ -567,11 +567,12 @@ func void DIA_Dar_BRINGORCELITERING_was_am()
 	B_GiveInvItems(self,other,ItAm_Dex_01,1);
 	B_GivePlayerXP(XP_Dar_BringOrcEliteRing);
 	AI_Output(self,other,"DIA_Dar_BRINGORCELITERING_was_am_03_02");	//Теперь я счастлив.
+	Npc_ExchangeRoutine(self,"Start");
 	Info_ClearChoices(DIA_Dar_BRINGORCELITERING);
 };
 
 
-instance DIA_Dar_KAP5_EXIT(C_Info)
+/*instance DIA_Dar_KAP5_EXIT(C_Info)
 {
 	npc = SLD_810_Dar;
 	nr = 999;
@@ -595,7 +596,7 @@ func void DIA_Dar_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
+
 instance DIA_Dar_KAP6_EXIT(C_Info)
 {
 	npc = SLD_810_Dar;

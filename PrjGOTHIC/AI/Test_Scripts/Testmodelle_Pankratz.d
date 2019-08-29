@@ -1,7 +1,7 @@
 
-instance J1(C_Item)
+/*instance J1(C_Item)
 {
-	name = "Монстры наполняют мир аддона";
+	name = "Руна Яркендара";
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
@@ -10,6 +10,7 @@ instance J1(C_Item)
 	on_state[0] = UseJOLY_Storyhelpletter;
 	scemeName = "MAP";
 	description = name;
+	text[0] = "Заселить мир аддона.";
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;
@@ -20,6 +21,7 @@ var int UseJOLY_Storyhelpletter_OneTime;
 
 func void UseJOLY_Storyhelpletter()
 {
+	PrintScreen("Заселяем...",-1,-1,FONT_Screen,1);
 	Wld_InsertNpc(Giant_DesertRat,"ADW_CANYON_TELEPORT_PATH_03");
 	Wld_InsertNpc(Giant_DesertRat,"ADW_CANYON_TELEPORT_PATH_03");
 	Wld_InsertNpc(Giant_DesertRat,"ADW_CANYON_TELEPORT_PATH_04");
@@ -159,7 +161,7 @@ func void UseJOLY_Storyhelpletter()
 	Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_14");
 	Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_62");
 	Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_19");
-};
+};*/
 
 
 instance J2(C_Item)
@@ -192,7 +194,7 @@ func void UseJOLY2_Storyhelpletter()
 };
 
 
-instance J3(C_Item)
+/*instance J3(C_Item)
 {
 	name = "ADW_ADANOSTEMPEL_RemovedFocus";
 	mainflag = ITEM_KAT_DOCS;
@@ -233,7 +235,7 @@ instance J4(C_Item)
 
 func void UseJ4()
 {
-};
+};*/
 
 
 instance DJG_inserten(C_Item)
@@ -255,7 +257,7 @@ instance DJG_inserten(C_Item)
 
 func void UseDJG_inserten()
 {
-	B_Kapitelwechsel(4,OldWorld_Zen);
+	B_Kapitelwechsel(4,OLDWORLD_ZEN);
 	B_InitNpcGlobals();
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
@@ -275,6 +277,7 @@ instance SH_Oldworld(Npc_Default)
 	voice = 15;
 	flags = 0;
 	npcType = NPCTYPE_FRIEND;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,1);
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
@@ -346,7 +349,7 @@ func void SH_Oldworld_BACK1()
 
 func void SH_Oldworld_KAPITEL1ANFANG()
 {
-	B_Kapitelwechsel(1,OldWorld_Zen);
+	B_Kapitelwechsel(1,OLDWORLD_ZEN);
 	AI_StopProcessInfos(self);
 };
 
@@ -385,7 +388,7 @@ func void SH_Oldworld_KAPITEL2ANFANG()
 	Mil_305_schonmalreingelassen = TRUE;
 	CreateInvItems(hero,ItKe_Pass_MIS,1);
 	MIS_OLDWORLD = LOG_Running;
-	B_Kapitelwechsel(2,OldWorld_Zen);
+	B_Kapitelwechsel(2,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO2);
 	AI_StopProcessInfos(self);
 };
@@ -426,8 +429,8 @@ func void SH_Oldworld_KAPITEL3ANFANG()
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(3,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(3,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO3);
 	AI_StopProcessInfos(self);
 };
@@ -468,14 +471,14 @@ func void SH_Oldworld_KAPITEL4ANFANG()
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(3,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(3,OLDWORLD_ZEN);
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	CreateInvItems(self,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(4,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(4,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO4);
 	AI_StopProcessInfos(self);
 };
@@ -516,18 +519,18 @@ func void SH_Oldworld_KAPITEL5ANFANG()
 	KnowsPaladins_Ore = TRUE;
 	MIS_ScoutMine = LOG_SUCCESS;
 	MIS_ReadyForChapter3 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(3,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(3,OLDWORLD_ZEN);
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
 	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
-	B_NPC_IsAliveCheck(OldWorld_Zen);
-	B_Kapitelwechsel(4,OldWorld_Zen);
+	B_NPC_IsAliveCheck(OLDWORLD_ZEN);
+	B_Kapitelwechsel(4,OLDWORLD_ZEN);
 	CreateInvItems(hero,ItAt_IcedragonHeart,1);	//чтобы оно было у вас на Ирдорате!
 	MIS_AllDragonsDead = TRUE;
 	EnterNW_Kapitel5 = TRUE;
-	B_Kapitelwechsel(5,OldWorld_Zen);
+	B_Kapitelwechsel(5,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO5);
 	AI_StopProcessInfos(self);
 };
@@ -563,13 +566,13 @@ func void SH_Oldworld_BACK6()
 
 func void SH_Oldworld_KAPITEL6ANFANG()
 {
-	B_Kapitelwechsel(6,OldWorld_Zen);
+	B_Kapitelwechsel(6,OLDWORLD_ZEN);
 	Info_ClearChoices(SH_Oldworld_INFO6);
 	AI_StopProcessInfos(self);
 };
 
 
-instance Dragon_Testmodell(Mst_Default_Dragon_Fire)
+/*instance Dragon_Testmodell(Mst_Default_Dragon_Fire)
 {
 	B_SetVisuals_Dragon_Fire();
 	Npc_SetToFistMode(self);
@@ -609,7 +612,7 @@ instance DIA_Dragon_Testmodell_Hello(C_Info)
 	condition = DIA_Dragon_Testmodell_Hello_Condition;
 	information = DIA_Dragon_Testmodell_Hello_Info;
 	permanent = TRUE;
-	description = "Полная чепуха";
+	description = "Хватит попусту сотрясать воздух. Давай перейдем к делу.";
 };
 
 
@@ -620,15 +623,15 @@ func int DIA_Dragon_Testmodell_Hello_Condition()
 
 func void DIA_Dragon_Testmodell_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Dragon_Fire_Island_Hello_20_07");	//Ты зашел слишком далеко, жалкий человечишка, но тебе не уйти отсюда живым.
 	AI_Output(other,self,"DIA_Dragon_Fire_Island_Hello_15_06");	//Хватит попусту сотрясать воздух. Давай перейдем к делу.
+	AI_Output(self,other,"DIA_Dragon_Fire_Island_Hello_20_07");	//Ты зашел слишком далеко, жалкий человечишка, но тебе не уйти отсюда живым.
 	AI_StopProcessInfos(self);
 	DragonTalk_Exit_Free = FALSE;
 	self.flags = 0;
-};
+};*/
 
 
-prototype JOLY_ITEM(C_Item)
+/*prototype JOLY_ITEM(C_Item)
 {
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
@@ -765,5 +768,5 @@ func void usejoly_item2()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Test Bla Glumpsch,");
 	Doc_Show(nDocID);
-};
+};*/
 

@@ -205,7 +205,10 @@ func void DIA_Addon_Orlan_Ranger_Aqua()
 func void DIA_Addon_Orlan_Ranger_Idiot()
 {
 	AI_Output(other,self,"DIA_Addon_Orlan_Ranger_Lares_15_00");	//Я стал членом Кольца Воды!
-	AI_Output(self,other,"DIA_Addon_Orlan_Ranger_Lares_05_01");	//Действительно? Не могу поверить, что такого болвана приняли в общество.
+	if(Npc_KnowsInfo(other,DIA_Addon_Orlan_NoMeeting))
+	{
+		AI_Output(self,other,"DIA_Addon_Orlan_Ranger_Lares_05_01");	//Действительно? Не могу поверить, что такого болвана приняли в общество.
+	};
 	AI_Output(self,other,"DIA_Addon_Orlan_Ranger_Lares_05_02");	//Итак, что тебе нужно?
 	Info_ClearChoices(DIA_Addon_Orlan_Ranger);
 };
@@ -247,8 +250,8 @@ func void DIA_Addon_Orlan_Teleportstein_sehen()
 {
 	AI_Output(other,self,"DIA_Addon_Orlan_Teleportstein_sehen_15_00");	//А я могу посмотреть на этот телепорт?
 	AI_Output(self,other,"DIA_Addon_Orlan_Teleportstein_sehen_05_01");	//Смотри, если хочешь. Вот ключ - я запер вход.
-	CreateInvItems(self,itke_orlan_teleportstation,1);
-	B_GiveInvItems(self,other,itke_orlan_teleportstation,1);
+	CreateInvItems(self,ItKe_Orlan_TeleportStation,1);
+	B_GiveInvItems(self,other,ItKe_Orlan_TeleportStation,1);
 	Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_TeleportsNW,"Орлан запер телепорт в пещере к юго-западу от своей таверны.");
@@ -324,7 +327,6 @@ func void DIA_Addon_Orlan_WhenRangerMeeting_Today()
 	AI_Output(self,other,"DIA_Addon_Orlan_WhenRangerMeeting_Today_05_02");	//Надеюсь, мы начнем не слишком поздно.
 	B_MakeRangerReadyForMeetingALL();
 	Info_ClearChoices(DIA_Addon_Orlan_WhenRangerMeeting);
-//	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,"(еще)",DIA_Addon_Orlan_WhenRangerMeeting_Los);
 	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,Dialog_Ende,DIA_Addon_Orlan_WhenRangerMeeting_Los);
 };
 
@@ -334,7 +336,6 @@ func void DIA_Addon_Orlan_WhenRangerMeeting_theyCome()
 	AI_Output(self,other,"DIA_Addon_Orlan_WhenRangerMeeting_theyCome_05_01");	//Посмотрим...
 	B_MakeRangerReadyForMeetingALL();
 	Info_ClearChoices(DIA_Addon_Orlan_WhenRangerMeeting);
-//	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,"(еще)",DIA_Addon_Orlan_WhenRangerMeeting_Los);
 	Info_AddChoice(DIA_Addon_Orlan_WhenRangerMeeting,Dialog_Ende,DIA_Addon_Orlan_WhenRangerMeeting_Los);
 };
 
@@ -361,7 +362,6 @@ var int DIA_Orlan_RUESTUNG_noPerm;
 
 func int DIA_Orlan_RUESTUNG_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (DIA_Orlan_RUESTUNG_noPerm == FALSE) && (hero.guild == GIL_NONE))
 	if(Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU) && (DIA_Orlan_RUESTUNG_noPerm == FALSE) && (Kapitel < 4))
 	{
 		return TRUE;
@@ -514,12 +514,12 @@ func void DIA_Orlan_HotelZimmer_ja()
 		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_01");	//А вот ключ. Комнаты находятся вверх по лестнице. Но не загадь ее и не забывай платить ренту вовремя, понятно?
 		CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
 		B_GiveInvItems(self,other,ItKe_Orlan_HotelZimmer,1);
-		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
 		Orlan_SCGotHotelZimmer = TRUE;
+		Orlan_SCGotHotelZimmerDay = Wld_GetDay();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_02");	//У тебя нет 50-ти. Сначала деньги, потом удовольствие.
+		AI_Output(self,other,"DIA_Orlan_HotelZimmer_ja_05_02");	//У тебя нет пятидесяти. Сначала деньги, потом удовольствие.
 	};
 	Info_ClearChoices(DIA_Orlan_HotelZimmer);
 };
@@ -668,13 +668,16 @@ func void DIA_Orlan_WETTKAMPFLAEUFT_Info()
 	Npc_ExchangeRoutine(self,"Start");
 	if(Hlp_IsValidNpc(Randolph))
 	{
-		if(Rukhar_Won_Wettkampf == TRUE)
+		if((Kapitel < 4) || ((Kapitel >= 4) && (other.guild != GIL_KDF)))
 		{
-			B_StartOtherRoutine(Randolph,"WettkampfRandolphLost");
-		}
-		else
-		{
-			B_StartOtherRoutine(Randolph,"Start");
+			if(Rukhar_Won_Wettkampf == TRUE)
+			{
+				B_StartOtherRoutine(Randolph,"WettkampfRandolphLost");
+			}
+			else
+			{
+				B_StartOtherRoutine(Randolph,"Start");
+			};
 		};
 	};
 	if(Hlp_IsValidNpc(Rukhar))
@@ -766,7 +769,6 @@ instance DIA_Orlan_Minenanteil(C_Info)
 
 func int DIA_Orlan_Minenanteil_Condition()
 {
-	//if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_KnowsInfo(other,DIA_Orlan_WERBISTDU))
 	if((hero.guild == GIL_KDF) && (MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && (OrlanMinenAnteil == TRUE))
 	{
 		return TRUE;

@@ -74,6 +74,7 @@ func void DIA_Gerbrandt_PICKPOCKET_Info()
 func void DIA_Gerbrandt_PICKPOCKET_DoIt()
 {
 //	B_StealItems(30,Hlp_GetInstanceID(ItSe_GoldPocket100),1);
+	B_StartNewLife();
 	B_StealItem(30,Hlp_GetInstanceID(ItSe_GoldPocket100));
 	Info_ClearChoices(DIA_Gerbrandt_PICKPOCKET);
 };
@@ -121,7 +122,7 @@ instance DIA_Gerbrandt_Hello(C_Info)
 
 func int DIA_Gerbrandt_Hello_Condition()
 {
-	if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL) && (DIEGO_COMING == FALSE))
+	if(DIEGO_COMING == FALSE)
 	{
 		return TRUE;
 	};
@@ -130,11 +131,18 @@ func int DIA_Gerbrandt_Hello_Condition()
 func void DIA_Gerbrandt_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Gerbrandt_Hello_15_00");	//Что ты делаешь здесь?
-	AI_Output(self,other,"DIA_Gerbrandt_Hello_10_01");	//А ты кто такой? Похоже, ты недавно здесь и понятия не имеешь, с кем имеешь дело.
-	AI_Output(self,other,"DIA_Gerbrandt_Hello_10_02");	//Меня зовут Гербрандт. А для тебя я мистер Гербрандт. Понял?
-	Info_ClearChoices(DIA_Gerbrandt_Hello);
-	Info_AddChoice(DIA_Gerbrandt_Hello,"Я понял, Гербрандт.",DIA_Gerbrandt_Hello_No);
-	Info_AddChoice(DIA_Gerbrandt_Hello,"Я понял, мистер Гербрандт.",DIA_Gerbrandt_Hello_Yes);
+	if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
+	{
+		AI_Output(self,other,"DIA_Gerbrandt_Hello_10_01");	//А ты кто такой? Похоже, ты недавно здесь и понятия не имеешь, с кем имеешь дело.
+		AI_Output(self,other,"DIA_Gerbrandt_Hello_10_02");	//Меня зовут Гербрандт. А для тебя я мистер Гербрандт. Понял?
+		Info_ClearChoices(DIA_Gerbrandt_Hello);
+		Info_AddChoice(DIA_Gerbrandt_Hello,"Я понял, Гербрандт.",DIA_Gerbrandt_Hello_No);
+		Info_AddChoice(DIA_Gerbrandt_Hello,"Я понял, мистер Гербрандт.",DIA_Gerbrandt_Hello_Yes);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Gerbrandt_Hello_No_10_02");	//Здесь я вершу закон. Тому, кто создает проблемы, придется держать ответ передо мной. И лучше ему сразу бежать из города со всех ног, потому что после того, как я разберусь с ним, он пожалеет, что попался мне на глаза!
+	};
 };
 
 func void DIA_Gerbrandt_Hello_No()
@@ -210,7 +218,7 @@ instance DIA_Gerbrandt_Perm(C_Info)
 
 func int DIA_Gerbrandt_Perm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Gerbrandt_Hello))
+	if(Npc_KnowsInfo(other,DIA_Gerbrandt_Hello) || (DIEGO_COMING == 2))
 	{
 		return TRUE;
 	};

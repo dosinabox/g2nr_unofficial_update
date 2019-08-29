@@ -199,7 +199,7 @@ instance DIA_GornDJG_HELPKILLDRACONIANS(C_Info)
 
 func int DIA_GornDJG_HELPKILLDRACONIANS_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_GornDJG_WHATMONSTERS) && Npc_KnowsInfo(other,DIA_GornDJG_WAHTABOUTORCS) && (Npc_IsDead(RockDragon) == FALSE))
+	if(Npc_KnowsInfo(other,DIA_GornDJG_WHATMONSTERS) && Npc_KnowsInfo(other,DIA_GornDJG_WAHTABOUTORCS) && !Npc_IsDead(RockDragon))
 	{
 		return TRUE;
 	};

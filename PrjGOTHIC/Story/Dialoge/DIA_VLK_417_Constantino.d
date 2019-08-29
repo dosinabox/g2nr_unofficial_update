@@ -182,6 +182,8 @@ func void DIA_Addon_Constantino_LestersKraeuter_Info()
 };
 
 
+var int Constantino_ItemsGiven_LittleMana;
+
 instance DIA_Constantino_Trade(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -204,6 +206,7 @@ func int DIA_Constantino_Trade_Condition()
 
 func void DIA_Constantino_Trade_Info()
 {
+	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
 	if(Constantino_flag == TRUE)
 	{
 		B_ClearAlchemyInv(self);
@@ -213,14 +216,18 @@ func void DIA_Constantino_Trade_Info()
 		};
 		Constantino_flag = FALSE;
 	};
-	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
-	B_GiveTradeInv(self);
+	if((Player_IsApprentice == APP_Constantino) && ((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF)) && (Constantino_ItemsGiven_LittleMana == FALSE))
+	{
+		CreateInvItems(self,ItPo_Perm_LittleMana,1);
+		Constantino_ItemsGiven_LittleMana = TRUE;
+	};
 	if(Constantino_Logpatch1 == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTrader,"Константино продает алхимические товары.");
 		Constantino_Logpatch1 = TRUE;
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 
@@ -528,9 +535,14 @@ func void DIA_Constantino_LEHRLING_Info()
 			{
 				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_17");	//Маттео говорит, что ты что-то должен ему. Если ты хочешь получить его голос, тебе лучше решить с ним эту мелкую проблему.
 			}
+			else if(MIS_Matteo_Gold == LOG_FAILED)
+			{
+				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_19");	//Маттео говорит, что никогда не видел тебя в своей лавке.
+			}
 			else
 			{
-				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_18");	//Маттео говорит, что еще не разговаривал с тобой по этому поводу.
+//				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_18");	//Маттео говорит, что еще не разговаривал с тобой по этому поводу.
+				AI_Output(self,other,"DIA_Constantino_LEHRLING_10_18");	//Маттео говорит, что ты понятия не имеешь, с кем имеешь дело.
 			};
 		}
 		else
@@ -577,6 +589,7 @@ func void DIA_Constantino_LEHRLING_Yes()
 	Wld_AssignRoomToGuild("alchemist",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
+	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 	B_LogEntry(Topic_Bonus,"Константино принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
 	Info_ClearChoices(DIA_Constantino_LEHRLING);
 };
@@ -914,6 +927,7 @@ func void DIA_Constantino_NewRecipes_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+		AI_StopProcessInfos(self);
 	};
 };
 
@@ -999,7 +1013,6 @@ func void DIA_Constantino_TEACH_Health01()
 	{
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health01_10_00");	//Ингредиенты для лечебной эссенции - лечебные травы и луговой горец.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_Health02()
@@ -1009,7 +1022,6 @@ func void DIA_Constantino_TEACH_Health02()
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health02_10_00");	//Чтобы приготовить лечебный экстракт, тебе понадобятся лечебные растения и луговой горец.
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health02_10_01");	//Кипятить этот экстракт нужно очень осторожно.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_Health03()
@@ -1017,9 +1029,9 @@ func void DIA_Constantino_TEACH_Health03()
 	if(B_TeachPlayerTalentAlchemy(self,other,POTION_Health_03))
 	{
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health03_10_00");	//Для создания лечебного эликсира требуется чуть больше опыта.
+		AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Health_15_00");	//Какие ингредиенты нужны для лечебного эликсира?
 		AI_Output(self,other,"DIA_Constantino_TEACH_Health03_10_01");	//Тебе понадобятся лечебные корни и луговой горец. При кипячении этого зелья нужно быть особенно внимательным.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_PermHealth()
@@ -1029,7 +1041,6 @@ func void DIA_Constantino_TEACH_PermHealth()
 		AI_Output(self,other,"DIA_Constantino_TEACH_PermHealth_10_00");	//Эликсир жизни! Редкое варево. Но не из-за сложности приготовления - это зелье не так уж сложно сделать.
 		AI_Output(self,other,"DIA_Constantino_TEACH_PermHealth_10_01");	//Но в нем используются редкие ингредиенты. Тебе понадобятся лечебные корни и царский щавель.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_Mana01()
@@ -1039,7 +1050,6 @@ func void DIA_Constantino_TEACH_Mana01()
 		AI_Output(self,other,"DIA_Constantino_TEACH_Mana01_10_00");	//Эссенция маны - самое простое из магических зелий.
 		AI_Output(self,other,"DIA_Constantino_TEACH_Mana01_10_01");	//Возьми огненную крапиву и луговой горец и вскипяти их на медленном огне.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_Mana02()
@@ -1049,7 +1059,6 @@ func void DIA_Constantino_TEACH_Mana02()
 		AI_Output(self,other,"DIA_Constantino_TEACH_Mana02_10_00");	//Так как ты уже умеешь готовить эссенцию маны, если немного потренируешься, то сможешь готовить также и экстракт.
 		AI_Output(self,other,"DIA_Constantino_TEACH_Mana02_10_01");	//Единственно, нужно уделить особое внимание процессу выпаривания этого зелья. В качестве ингредиентов для него используются огненная трава и луговой горец.
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 
 func void DIA_Constantino_TEACH_PermSTR()
@@ -1059,6 +1068,5 @@ func void DIA_Constantino_TEACH_PermSTR()
 		AI_Output(self,other,"DIA_Constantino_TEACH_PermSTR_10_00");	//Эликсир силы! Превосходное зелье. Для него тебе понадобятся редкий драконий корень и царский щавель.
 		AI_Output(self,other,"DIA_Constantino_TEACH_PermSTR_10_01");	//При кипячении этого зелья следи, чтобы пузырьки не стали слишком большими, иначе тебя будет ждать неприятный сюрприз!
 	};
-	Info_ClearChoices(DIA_Constantino_TEACH);
 };
 

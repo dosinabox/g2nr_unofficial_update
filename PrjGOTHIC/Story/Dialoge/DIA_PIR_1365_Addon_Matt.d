@@ -77,7 +77,7 @@ func int DIA_Addon_Matt_Hello_Condition()
 
 func void DIA_Addon_Matt_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Matt_Hello_10_01");	//А, новичок? Прекрасно. Нам сейчас пригодится каждый человек.
+	AI_Output(self,other,"DIA_Addon_Matt_Hello_10_01");	//А, новичок... Прекрасно. Нам сейчас пригодится каждый человек.
 };
 
 
@@ -120,7 +120,10 @@ func void DIA_Addon_Matt_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_03");	//Сейчас в лагере все спокойно. Так что я собираюсь немного отдохнуть.
 		AI_Output(self,other,"DIA_Addon_Matt_Job_10_04");	//На твоем месте, кстати, я бы сделал то же самое.
-		AI_Output(self,other,"DIA_Addon_Matt_Job_10_05");	//Бандиты здесь, так что ситуация может измениться быстрее, чем мы предполагали.
+		if(!C_TowerBanditsDead())
+		{
+			AI_Output(self,other,"DIA_Addon_Matt_Job_10_05");	//Бандиты здесь, так что ситуация может измениться быстрее, чем мы предполагали.
+		};
 	};
 };
 
@@ -131,7 +134,7 @@ instance DIA_Addon_Matt_Bandits(C_Info)
 	nr = 3;
 	condition = DIA_Addon_Matt_Bandits_Condition;
 	information = DIA_Addon_Matt_Bandits_Info;
-	description = "Что ты знаешь об этих бандитах?";
+	description = "Что ты знаешь о бандитах?";
 };
 
 
@@ -164,12 +167,9 @@ instance DIA_Addon_Matt_Francis(C_Info)
 
 func int DIA_Addon_Matt_Francis_Condition()
 {
-	if(Francis_ausgeschissen == FALSE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
-		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -243,7 +243,7 @@ instance DIA_Addon_Matt_ComeOn(C_Info)
 	condition = DIA_Addon_Matt_ComeOn_Condition;
 	information = DIA_Addon_Matt_ComeOn_Info;
 	permanent = TRUE;
-	description = "Пойдем со мной.";
+	description = "Идем со мной.";
 };
 
 

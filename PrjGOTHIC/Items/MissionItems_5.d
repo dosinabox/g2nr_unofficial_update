@@ -275,17 +275,26 @@ func void Use_Seamap_Irdorath()
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"Map_NewWorld_Seamap.tga",1);
 	Doc_Show(nDocID);
-	if((MIS_ShipIsFree == FALSE) && (Kapitel < 6))
-	{
-		B_Say(self,self,"$IRDORATHTHEREYOUARE");
-	};
 	if(MIS_SCKnowsWayToIrdorath == FALSE)
 	{
-		Log_CreateTopic(Topic_Ship,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Ship,LOG_Running);
-		B_LogEntry(Topic_Ship,"Похоже, я должен добраться до этого странного вражеского острова. Но для этого мне нужен корабль, команда и капитан.");
-		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
+		if(Kapitel < 6)
+		{
+			B_Say(self,self,"$IRDORATHTHEREYOUARE");
+		};
+		if(MIS_ShipIsFree == FALSE)
+		{
+			Log_CreateTopic(Topic_Ship,LOG_MISSION);
+			Log_SetTopicStatus(Topic_Ship,LOG_Running);
+			B_LogEntry(Topic_Ship,"Похоже, я должен добраться до этого странного вражеского острова. Но для этого мне нужен корабль.");
+		};
+		Log_CreateTopic(Topic_Crew,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Crew,LOG_Running);
+		B_LogEntry(Topic_Crew,"Для путешествия на корабле и решающего сражения мне нужна команда.");
+		Log_CreateTopic(Topic_Captain,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Captain,LOG_Running);
+		B_LogEntry(Topic_Captain,"Для управления кораблем мне нужен опытный капитан, готовый отправиться со мной в опасное путешествие.");
 		MIS_SCKnowsWayToIrdorath = TRUE;
+		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 	};
 };
 

@@ -1,7 +1,7 @@
 
 instance PAL_2003_Leiche(Npc_Default)
 {
-	name[0] = NAME_Paladin;
+	name[0] = NAME_Ritter;
 //	guild = GIL_NONE;
 	guild = GIL_PAL;
 	id = 2003;
@@ -16,7 +16,7 @@ instance PAL_2003_Leiche(Npc_Default)
 	attribute[ATR_HITPOINTS] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart01,BodyTex_N,ITAR_PAL_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart01,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);

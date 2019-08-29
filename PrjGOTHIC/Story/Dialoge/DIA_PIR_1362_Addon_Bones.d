@@ -122,7 +122,7 @@ instance DIA_Addon_Bones_Train(C_Info)
 	condition = DIA_Addon_Bones_Train_Condition;
 	information = DIA_Addon_Bones_Train_Info;
 	permanent = FALSE;
-	description = "“ы можешь научить мен€ чему-нибудь?";
+	description = "“ы можешь мен€ чему-нибудь научить?";
 };
 
 
@@ -148,7 +148,7 @@ instance DIA_Addon_Bones_Teacher(C_Info)
 	condition = DIA_Addon_Bones_Teacher_Condition;
 	information = DIA_Addon_Bones_Teacher_Info;
 	permanent = FALSE;
-	description = " то здесь может научить мен€ чему-нибудь?";
+	description = " то здесь может чему-нибудь мен€ научить?";
 };
 
 
@@ -197,7 +197,7 @@ instance DIA_Addon_Bones_Francis(C_Info)
 
 func int DIA_Addon_Bones_Francis_Condition()
 {
-	if(Francis_ausgeschissen == FALSE)
+	if(GregIsBack == FALSE)
 	{
 		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
 		{

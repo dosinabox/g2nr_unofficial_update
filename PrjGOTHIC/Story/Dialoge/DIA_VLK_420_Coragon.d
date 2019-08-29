@@ -139,12 +139,6 @@ func void DIA_Coragon_WhatsUp_Info()
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_05");	//Взять хотя бы Валентино. Я его просто не переношу.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_06");	//Но клиентов мне выбирать не приходится. Сейчас мне дорога каждая монетка.
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_07");	//Все, что мне удалось скопить, у меня украли вместе с моим серебром.
-	AI_Output(other,self,"DIA_MiltenNW_KAP4_PERM_15_03");	//Что-нибудь еще?
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_33");	//Прошлой ночью Валентино не смог расплатиться по счету.
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_35");	//Только что он разорялся о том, как много у него денег.
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_36");	//И тут он запускает руку в карман, делает глупое лицо и говорит, что его обокрали...
-	AI_Output(other,self,"DIA_Coragon_Add_15_37");	//И? Что ты сделал?
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_38");	//Я? Задал ему хорошую трепку, что же еще?
 };
 
 
@@ -172,7 +166,7 @@ func void DIA_Addon_Coragon_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_01");	//Я слышал, что многие из них пропали в районе порта. Неудивительно, если учитывать, что там творится.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_02");	//Пропал даже ученик плотника Торбена из нижней части города.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_03");	//Хакон, один из рыночных торговцев, рассказал мне очень странную историю.
-	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_04");	//Он говорил, что каждый день этого он встречал одного парня, а потом тот словно исчез с лица земли. Хакон даже обратился в ополчение.
+	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_04");	//Он говорил, что каждый день он встречал одного парня, а потом тот словно исчез с лица земли. Хакон даже обратился в ополчение.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_05");	//Горожане начинают паниковать. Не понимаю, почему это происходит. Думаю, все это чепуха.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_06");	//Жизнь в Хоринисе непростая, но за воротами еще опаснее.
 	AI_Output(self,other,"DIA_Addon_Coragon_MissingPeople_09_07");	//Те, кто не остается в городе, рано или поздно попадет в руки к бандитам или в зубы к диким животным. Все просто.
@@ -382,6 +376,40 @@ func void DIA_Coragon_Valentino_Info()
 };
 
 
+instance DIA_Coragon_News(C_Info)
+{
+	npc = VLK_420_Coragon;
+	nr = 1;
+	condition = DIA_Coragon_News_Condition;
+	information = DIA_Coragon_News_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Coragon_News_Condition()
+{
+	if(!Npc_IsDead(Valentino) && (Valentino.aivar[AIV_DefeatedByPlayer] == TRUE) && Npc_KnowsInfo(other,DIA_Regis_Valentino) && (Valentino_Day < Wld_GetDay()))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Coragon_News_Info()
+{
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_33");	//Прошлой ночью Валентино не смог расплатиться по счету.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_35");	//Только что он разорялся о том, как много у него денег.
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_36");	//И тут он запускает руку в карман, делает глупое лицо и говорит, что его обокрали...
+	AI_Output(other,self,"DIA_Coragon_Add_15_37");	//И? Что ты сделал?
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_38");	//Я? Задал ему хорошую трепку, что же еще?
+	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_34");	//Он болтал что-то о том, что его обокрали и что он заплатит мне потом. Ха, как же!
+	if(Npc_HasItems(Valentino,ItMi_Gold) > 0)
+	{
+		Npc_RemoveInvItems(Valentino,ItMi_Gold,Npc_HasItems(Valentino,ItMi_Gold));
+	};
+};
+
+
 instance DIA_Coragon_Ring(C_Info)
 {
 	npc = VLK_420_Coragon;
@@ -395,7 +423,7 @@ instance DIA_Coragon_Ring(C_Info)
 
 func int DIA_Coragon_Ring_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Coragon_Valentino) && Npc_HasItems(other,ItRi_ValentinosRing))
+	if(Npc_KnowsInfo(other,DIA_Coragon_News) && Npc_HasItems(other,ItRi_Prot_Edge_01_Valentino))
 	{
 		return TRUE;
 	};
@@ -404,12 +432,11 @@ func int DIA_Coragon_Ring_Condition()
 func void DIA_Coragon_Ring_Info()
 {
 	AI_Output(other,self,"DIA_Coragon_Add_15_39");	//Вот - возьми это кольцо.
-	B_GiveInvItems(other,self,ItRi_ValentinosRing,1);
-	Npc_RemoveInvItems(self,ItRi_ValentinosRing,1);
+	B_GiveInvItems(other,self,ItRi_Prot_Edge_01_Valentino,1);
+	Npc_RemoveInvItems(self,ItRi_Prot_Edge_01_Valentino,1);
 	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_40");	//Что? Не понимаю...
 	AI_Output(other,self,"DIA_Coragon_Add_15_41");	//Оно принадлежало Валентино.
 	AI_Output(other,self,"DIA_Coragon_Add_15_42");	//Ты можешь передать его следующему, кто отдубасит его...
-	AI_Output(self,other,"DIA_ADDON_NEW_Coragon_Add_09_34");	//Он болтал что-то о том, что его обокрали и что он заплатит мне потом. Ха, как же!
 	B_GivePlayerXP(300);
 };
 

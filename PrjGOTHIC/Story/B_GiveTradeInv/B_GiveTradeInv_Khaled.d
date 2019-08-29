@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Khaled(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Khaled_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItRw_Arrow,30);
 		CreateInvItems(slf,ItRw_Bolt,20);
 		CreateInvItems(slf,ItMw_Nagelkeule2,1);
@@ -28,17 +28,16 @@ func void B_GiveTradeInv_Khaled(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Khaled_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,250);
+//		CreateInvItems(slf,ItMi_Gold,250);
 		CreateInvItems(slf,ItRw_Arrow,50);
 		CreateInvItems(slf,ItRw_Bolt,30);
 		CreateInvItems(slf,ItMw_Streitaxt1,1);
 		CreateInvItems(slf,ItMw_Schwert3,1);
-		
 		Khaled_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Khaled_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,450);
+//		CreateInvItems(slf,ItMi_Gold,450);
 		CreateInvItems(slf,ItRw_Arrow,70);
 		CreateInvItems(slf,ItRw_Bolt,50);
 		CreateInvItems(slf,ItMw_Streitkolben,1);
@@ -50,11 +49,14 @@ func void B_GiveTradeInv_Khaled(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Khaled_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,700);
+//		CreateInvItems(slf,ItMi_Gold,700);
 		CreateInvItems(slf,ItRw_Arrow,80);
 		CreateInvItems(slf,ItRw_Bolt,60);
 		CreateInvItems(slf,ItMiSwordraw,1);
 		CreateInvItems(slf,ItMw_Zweihaender4,1);
+		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
+//		CreateInvItems(slf,ItMw_Berserkeraxt,1);
+		CreateInvItems(slf,ItMw_Warrioraxt,1);
 		CreateInvItems(slf,ItBe_Addon_Prot_EDGE,1);
 		CreateInvItems(slf,ItBe_Addon_Prot_EdgPoi,1);
 		CreateInvItems(slf,ItMi_Nugget,2);
@@ -62,12 +64,9 @@ func void B_GiveTradeInv_Khaled(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Khaled_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,1100);
+//		CreateInvItems(slf,ItMi_Gold,1100);
 		CreateInvItems(slf,ItRw_Arrow,100);
 		CreateInvItems(slf,ItRw_Bolt,70);
-		CreateInvItems(slf,ItMw_Barbarenstreitaxt,1);
-//		CreateInvItems(slf,ItMw_Berserkeraxt,1);
-		CreateInvItems(slf,ItMw_Warrioraxt,1);
 		Khaled_ItemsGiven_Chapter_5 = TRUE;
 	};
 };

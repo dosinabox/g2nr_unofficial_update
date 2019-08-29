@@ -131,6 +131,12 @@ instance ENV_WATER_DUNGEONENTRANCE(C_SFX_DEF)
 	vol = 127;
 };
 
+instance ENV_NIGHT_TONSOFINSECTS(C_SFX_DEF)
+{
+	file = "ENV_Night_TonsOfInsects.wav";
+	vol = 127;
+};
+
 instance VOB_WINDMILL(C_SFX_DEF)
 {
 	file = "VOB_Windmill.wav";
@@ -221,6 +227,12 @@ instance LASTDOOREVENT(C_SFX_DEF)
 	vol = 100;
 };
 
+instance CS_PRAYER_WAVEOFINSANITY(C_SFX_DEF)
+{
+	file = "CS_Prayer_WaveInsanity.wav";
+	vol = 127;
+};
+
 instance RAVENS_EARTHQUAKE1(C_SFX_DEF)
 {
 	file = "CS_Prayer_FokusFinal.wav";
@@ -248,7 +260,7 @@ instance RAVENS_EARTHQUAKE4(C_SFX_DEF)
 instance TELEPORTSTATIONSOUND(C_SFX_DEF)
 {
 	file = "magic_deep02.wav";
-	vol = 20;
+	vol = 30;
 };
 
 instance MFX_BELIARWEAP(C_SFX_DEF)
@@ -452,8 +464,9 @@ instance MFX_FIREBALL_INVEST3(C_SFX_DEF)
 
 instance MFX_FIREBALL_INVEST4(C_SFX_DEF)
 {
-	file = "MFX_Fireball_Invest4.wav";
+	file = "MFX_Pyrokinesis_Target.wav";
 	vol = 120;
+	loop = 1;
 };
 
 instance MFX_FIRESTORM_INVEST(C_SFX_DEF)
@@ -722,26 +735,27 @@ instance MFX_THUNDERBALL_CAST(C_SFX_DEF)
 
 instance MFX_THUNDERBALL_INVEST1(C_SFX_DEF)
 {
-	file = "MFX_Thunderball_Invest.wav";
+	file = "MFX_Thunderbolt_Loop.wav";
 	vol = 60;
 };
 
 instance MFX_THUNDERBALL_INVEST2(C_SFX_DEF)
 {
-	file = "MFX_Thunderball_Invest.wav";
+	file = "MFX_Thunderball_Invest1.wav";
 	vol = 80;
 };
 
 instance MFX_THUNDERBALL_INVEST3(C_SFX_DEF)
 {
-	file = "MFX_Thunderball_Invest.wav";
+	file = "MFX_Thunderball_Invest2.wav";
 	vol = 100;
 };
 
 instance MFX_THUNDERBALL_INVEST4(C_SFX_DEF)
 {
-	file = "MFX_Thunderball_Invest.wav";
+	file = "MFX_Thunderball_Loop.wav";
 	vol = 127;
+	loop = 1;
 };
 
 instance MFX_THUNDERBALL_COLLIDE(C_SFX_DEF)
@@ -897,7 +911,7 @@ instance EAT_SOUP(C_SFX_DEF)
 
 instance INST_CONGA01(C_SFX_DEF)
 {
-	file = "Conga_01.wav";
+	file = "conga_01.wav";
 	vol = 65;
 };
 
@@ -910,43 +924,73 @@ instance INST_CONGA02(C_SFX_DEF)
 instance INST_LUTE(C_SFX_DEF)
 {
 	file = "lute_01.wav";
-	vol = 20;
+	vol = 60;
 };
 
 instance INST_LUTE_A1(C_SFX_DEF)
 {
 	file = "lute_02.wav";
-	vol = 25;
+	vol = 65;
 };
 
 instance INST_LUTE_A2(C_SFX_DEF)
 {
 	file = "lute_03.wav";
-	vol = 30;
+	vol = 70;
 };
 
 instance INST_LUTE_A3(C_SFX_DEF)
 {
 	file = "lute_04.wav";
-	vol = 25;
+	vol = 65;
 };
 
 instance INST_LUTE_A4(C_SFX_DEF)
 {
 	file = "lute_05.wav";
-	vol = 20;
+	vol = 60;
 };
 
 instance INST_LUTE_A5(C_SFX_DEF)
 {
 	file = "lute_06.wav";
-	vol = 25;
+	vol = 65;
 };
 
 instance INST_LUTE_A6(C_SFX_DEF)
 {
 	file = "lute_07.wav";
-	vol = 30;
+	vol = 70;
+};
+
+instance INST_IELUTE(C_SFX_DEF)
+{
+	file = "lute_1.wav";
+	vol = 70;
+};
+
+instance INST_IELUTE_A1(C_SFX_DEF)
+{
+	file = "lute_2.wav";
+	vol = 70;
+};
+
+instance INST_IELUTE_A2(C_SFX_DEF)
+{
+	file = "lute_3.wav";
+	vol = 70;
+};
+
+instance INST_HARP(C_SFX_DEF)
+{
+	file = "harp_01.wav";
+	vol = 70;
+};
+
+instance INST_HARP_A1(C_SFX_DEF)
+{
+	file = "harp_02.wav";
+	vol = 70;
 };
 
 instance INST_ALARM(C_SFX_DEF)
@@ -1005,13 +1049,13 @@ instance BELLOWS_OUT(C_SFX_DEF)
 
 instance BOOK_NEXTPAGE(C_SFX_DEF)
 {
-	file = "nosound.wav";
+	file = "book_turnpage1.wav";
 	vol = 50;
 };
 
 instance BOOK_PREVIOUSPAGE(C_SFX_DEF)
 {
-	file = "nosound.wav";
+	file = "book_turnpage2.wav";
 	vol = 50;
 };
 
@@ -1053,13 +1097,13 @@ instance PILLAR_CRASH(C_SFX_DEF)
 
 instance DOOR_OPEN(C_SFX_DEF)
 {
-	file = "Door_open01.wav";
+	file = "Door_open02.wav";
 	vol = 120;
 };
 
 instance DOOR_CLOSE(C_SFX_DEF)
 {
-	file = "Door_close01b.wav";
+	file = "Door_close02b.wav";
 	vol = 120;
 };
 
@@ -1329,14 +1373,14 @@ instance VWHEEL_TURN(C_SFX_DEF)
 
 instance BBQ_SCAVENGER(C_SFX_DEF)
 {
-	file = "bbq_scavenger_02.wav";
-	vol = 15;
+	file = "bbq_scavenger_01.wav";
+	vol = 50;
 };
 
 instance BBQ_SCAVENGER_A1(C_SFX_DEF)
 {
 	file = "bbq_scavenger_02.wav";
-	vol = 20;
+	vol = 30;
 };
 
 instance BED_USE(C_SFX_DEF)
@@ -1413,7 +1457,7 @@ instance PICKLOCK_FAILURE(C_SFX_DEF)
 
 instance PICKLOCK_UNLOCK(C_SFX_DEF)
 {
-	file = "picklock_unlock.wav";
+	file = "door_lock.wav";
 	vol = 80;
 };
 
@@ -1437,7 +1481,7 @@ instance MOB_BOOK_TURNPAGE_A1(C_SFX_DEF)
 
 instance MOB_BOOK_MOVEPAGE(C_SFX_DEF)
 {
-	file = "nosound.wav";
+	file = "MOB_Book_Movepage.wav";
 	vol = 60;
 };
 
@@ -1701,37 +1745,49 @@ instance OW_BIRD9_A1(C_SFX_DEF)
 
 instance OW_BIRD10(C_SFX_DEF)
 {
-	file = "bird_10.wav";
+	file = "bird10.wav";
 	vol = 80;
 };
 
 instance OW_BIRD11(C_SFX_DEF)
 {
-	file = "bird_11.wav";
+	file = "bird11.wav";
 	vol = 80;
 };
 
 instance OW_BIRD11_A1(C_SFX_DEF)
 {
-	file = "bird_11b.wav";
+	file = "bird11b.wav";
 	vol = 80;
 };
 
 instance OW_BIRD11_A2(C_SFX_DEF)
 {
-	file = "bird_11c.wav";
+	file = "bird11c.wav";
 	vol = 80;
 };
 
 instance OW_BIRD12(C_SFX_DEF)
 {
-	file = "bird_12.wav";
+	file = "bird12.wav";
 	vol = 80;
 };
 
 instance OW_BIRD12_A1(C_SFX_DEF)
 {
-	file = "bird_12b.wav";
+	file = "bird12b.wav";
+	vol = 80;
+};
+
+instance BIRD_FLAPWINGS(C_SFX_DEF)
+{
+	file = "bird_flapwings.wav";
+	vol = 80;
+};
+
+instance BIRD_RAISEFROMTREE(C_SFX_DEF)
+{
+	file = "bird_raisefromtree.wav";
 	vol = 80;
 };
 
@@ -2007,7 +2063,7 @@ instance AMBIENTTONE_03_DARK(C_SFX_DEF)
 
 instance AMBIENTSCREAM_03_DARK(C_SFX_DEF)
 {
-	file = "ambientscream_03_dark.wav";
+	file = "zombie_01.wav";
 	vol = 100;
 };
 
@@ -3309,7 +3365,7 @@ instance DRG_AMBIENT_A4(C_SFX_DEF)
 
 instance DRG_AMBIENT_A5(C_SFX_DEF)
 {
-	file = "DRG_Ambient_06.wav";
+	file = "DRG_Ambient_05.wav";
 	vol = 127;
 };
 
@@ -3357,13 +3413,13 @@ instance DRG_HURT_A3(C_SFX_DEF)
 
 instance DRG_DIE(C_SFX_DEF)
 {
-	file = "DRG_Rock_Die_01.wav";
+	file = "DRG_Die_01.wav";
 	vol = 127;
 };
 
 instance DRG_FALL(C_SFX_DEF)
 {
-	file = "DRG_Rock_Fall_01.wav";
+	file = "CS_Prayer_Bodyfall.wav";
 	vol = 127;
 };
 
@@ -3387,49 +3443,49 @@ instance DRG_ROCK_CRUMBLE_A2(C_SFX_DEF)
 
 instance DRG_ROCK_AMBIENT(C_SFX_DEF)
 {
-	file = "DRG_Rock_Ambient_01.wav";
+	file = "DRG_Ambient_01.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_AMBIENT_A1(C_SFX_DEF)
 {
-	file = "DRG_Rock_Ambient_02.wav";
+	file = "DRG_Ambient_02.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_AMBIENT_A2(C_SFX_DEF)
 {
-	file = "nosound.wav";
+	file = "DRG_Ambient_03.wav";
 	vol = 0;
 };
 
 instance DRG_ROCK_AMBIENT_A3(C_SFX_DEF)
 {
-	file = "nosound.wav";
+	file = "DRG_Ambient_04.wav";
 	vol = 0;
 };
 
 instance DRG_ROCK_ATTACK(C_SFX_DEF)
 {
-	file = "DRG_Rock_Attack_01.wav";
+	file = "DRG_Attack_01.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_ATTACK_A1(C_SFX_DEF)
 {
-	file = "DRG_Rock_Attack_02.wav";
+	file = "DRG_Attack_02.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_DIE(C_SFX_DEF)
 {
-	file = "DRG_Rock_Die_01.wav";
+	file = "DRG_Die_01.wav";
 	vol = 127;
 };
 
 instance DRG_ROCK_FALL(C_SFX_DEF)
 {
-	file = "DRG_Rock_Fall_01.wav";
+	file = "CS_Prayer_Bodyfall.wav";
 	vol = 127;
 };
 
@@ -3765,7 +3821,7 @@ instance GB_ATTACK(C_SFX_DEF)
 
 instance GB_ATTACK_A1(C_SFX_DEF)
 {
-	file = "GB_Attack_03.wav";
+	file = "GB_Attack_02.wav";
 	vol = 120;
 };
 
@@ -4179,7 +4235,7 @@ instance FGO_ATTACK(C_SFX_DEF)
 
 instance IGO_ATTACK(C_SFX_DEF)
 {
-	file = "IGO_Attack01.wav";
+	file = "FGO_Attack02.wav";
 	vol = 127;
 };
 
@@ -4809,13 +4865,13 @@ instance MOL_AMBIENT(C_SFX_DEF)
 
 instance MOL_AMBIENT_A1(C_SFX_DEF)
 {
-	file = "MOL_Ambient04.wav";
+	file = "MOL_Ambient02.wav";
 	vol = 60;
 };
 
 instance MOL_AMBIENT_A2(C_SFX_DEF)
 {
-	file = "MOL_Ambient01.wav";
+	file = "MOL_Ambient03.wav";
 	vol = 50;
 };
 
@@ -4995,7 +5051,7 @@ instance ORC_AMBIENT_A3(C_SFX_DEF)
 
 instance ORC_AMBIENT_A4(C_SFX_DEF)
 {
-	file = "nosound.wav";
+	file = "ORC_Ambient05.wav";
 	vol = 0;
 };
 
@@ -5685,8 +5741,8 @@ instance SHP_AMBIENT_A5(C_SFX_DEF)
 
 instance SHP_AMBIENT_A6(C_SFX_DEF)
 {
-	file = "nosound.wav";
-	vol = 0;
+	file = "SHP_Ambient2_02.wav";
+	vol = 70;
 };
 
 instance SHP_AMBIENT_A7(C_SFX_DEF)
@@ -6781,6 +6837,12 @@ instance TRO_HURT(C_SFX_DEF)
 	vol = 125;
 };
 
+instance TRO_HURT_A1(C_SFX_DEF)
+{
+	file = "TRO_Hurt02.wav";
+	vol = 125;
+};
+
 instance TRO_PERCEPTION(C_SFX_DEF)
 {
 	file = "TRO_Perception01.wav";
@@ -6903,7 +6965,7 @@ instance WAR_ATTACK(C_SFX_DEF)
 
 instance WAR_ATTACK_A1(C_SFX_DEF)
 {
-	file = "WAR_Attack01.wav";
+	file = "WAR_Attack02.wav";
 	vol = 100;
 };
 
@@ -6945,7 +7007,7 @@ instance FWA_ATTACK(C_SFX_DEF)
 
 instance FWA_ATTACK_A1(C_SFX_DEF)
 {
-	file = "FWA_Attack01.wav";
+	file = "FWA_Attack02.wav";
 	vol = 100;
 };
 
@@ -7143,38 +7205,38 @@ instance WOL_WARN(C_SFX_DEF)
 
 instance ZOM_AMBIENT(C_SFX_DEF)
 {
-	file = "ZOM_Ambient03.wav";
+	file = "ZOM_Ambient01.wav";
 	vol = 75;
 };
 
 instance ZOM_AMBIENT_A1(C_SFX_DEF)
 {
-	file = "ZOM_Ambient04.wav";
+	file = "ZOM_Ambient02.wav";
 	vol = 75;
 };
 
 instance ZOM_AMBIENT_A2(C_SFX_DEF)
 {
-	file = "ZOM_Ambient06.wav";
+	file = "ZOM_Ambient03.wav";
 	vol = 50;
 };
 
 instance ZOM_AMBIENT_A3(C_SFX_DEF)
 {
-	file = "ZOM_Ambient03.wav";
+	file = "ZOM_Ambient04.wav";
 	vol = 75;
 };
 
 instance ZOM_AMBIENT_A4(C_SFX_DEF)
 {
-	file = "nosound.wav";
-	vol = 0;
+	file = "ZOM_Ambient05.wav";
+	vol = 75;
 };
 
 instance ZOM_AMBIENT_A5(C_SFX_DEF)
 {
-	file = "nosound.wav";
-	vol = 0;
+	file = "ZOM_Ambient06.wav";
+	vol = 75;
 };
 
 instance ZOM_AMBIENT_A6(C_SFX_DEF)
@@ -7551,19 +7613,19 @@ instance SWIM2DIVE(C_SFX_DEF)
 
 instance SWIMWAVES(C_SFX_DEF)
 {
-	file = "Swim_Little_01.wav";
+	file = "Swim_Littlewaves_03.wav";
 	vol = 40;
 };
 
 instance SWIMWAVES_A1(C_SFX_DEF)
 {
-	file = "Swim_Little_02.wav";
+	file = "Swim_Littlewaves_04.wav";
 	vol = 40;
 };
 
 instance SWIMWAVES_A2(C_SFX_DEF)
 {
-	file = "Swim_Little_03.wav";
+	file = "Swim_Littlewaves_01.wav";
 	vol = 40;
 };
 
@@ -8875,7 +8937,7 @@ instance CS_MAM_WO_ME(C_SFX_DEF)
 instance CS_MAM_WO_WO(C_SFX_DEF)
 {
 	file = "CS_IAM_UD_FL_01.wav";
-	vol = 5600;
+	vol = 60;
 };
 
 instance CS_IHI(C_SFX_DEF)
@@ -8916,7 +8978,7 @@ instance CS_IAI_ME_ST(C_SFX_DEF)
 
 instance CS_IAI_ME_ST_A1(C_SFX_DEF)
 {
-	file = "CS_IAI_ME_ME_02.wav";
+	file = "CS_IAI_ME_ME_09.wav";
 	vol = 60;
 };
 
@@ -8934,19 +8996,19 @@ instance CS_IAI_ME_ST_A3(C_SFX_DEF)
 
 instance CS_IHI_ME_LE(C_SFX_DEF)
 {
-	file = "CS_IHL_ME_LE.wav";
+	file = "CS_IAL_UD_WO_01.wav";
 	vol = 60;
 };
 
 instance CS_IHI_ME_CL(C_SFX_DEF)
 {
-	file = "CS_IHL_ME_CL.wav";
+	file = "CS_IAL_UD_UD_01.wav";
 	vol = 60;
 };
 
 instance CS_IHI_ME_GL(C_SFX_DEF)
 {
-	file = "CS_IHL_ME_GL.wav";
+	file = "CS_IAL_UD_ME_01.wav";
 	vol = 60;
 };
 
@@ -8970,13 +9032,13 @@ instance CS_IHI_WO_ST(C_SFX_DEF)
 
 instance CS_IHI_WO_GL(C_SFX_DEF)
 {
-	file = "CS_IHL_WO_GL.wav";
+	file = "CS_IHL_WO_ME.wav";
 	vol = 60;
 };
 
 instance CS_IHI_WO_CL(C_SFX_DEF)
 {
-	file = "CS_IHL_WO_CL.wav";
+	file = "CS_IHL_WO_ST.wav";
 	vol = 60;
 };
 
@@ -9006,19 +9068,19 @@ instance CS_IHI_ST_ST(C_SFX_DEF)
 
 instance CS_IHI_ST_GL(C_SFX_DEF)
 {
-	file = "CS_IHL_ST_GL.wav";
+	file = "CS_IAL_ME_ST_01.wav";
 	vol = 60;
 };
 
 instance CS_IHI_ST_CL(C_SFX_DEF)
 {
-	file = "CS_IHL_ST_CL.wav";
+	file = "CS_IAL_UD_UD_01.wav";
 	vol = 60;
 };
 
 instance CS_IHI_ST_LE(C_SFX_DEF)
 {
-	file = "CS_IHL_ST_LE.wav";
+	file = "CS_IAL_UD_WO_01.wav";
 	vol = 60;
 };
 
@@ -9106,7 +9168,7 @@ instance CAMPFIRE_BURN(C_SFX_DEF)
 
 instance BOILING_POT(C_SFX_DEF)
 {
-	file = "boiling_pot.wav";
+	file = "Couldron.wav";
 	loop = 1;
 };
 
@@ -9189,7 +9251,7 @@ instance FB_COLLIDE(C_SFX_DEF)
 
 instance SPELL_LIGHTNING_CAST(C_SFX_DEF)
 {
-	file = "lightning_spell_cast.wav";
+	file = "MFX_Barriere_Warning.wav";
 	loop = 1;
 };
 
@@ -9219,37 +9281,37 @@ instance MENU_NET_GAME_FOUND(C_SFX_DEF)
 
 instance MENU_NET_GAME_NOTFOUND(C_SFX_DEF)
 {
-	file = "spit_short.wav";
+	file = "spit_long.wav";
 	vol = 127;
 };
 
 instance MENU_NET_INFO_REQUEST(C_SFX_DEF)
 {
-	file = "doorknob01.wav";
+	file = "Door_try.wav";
 	vol = 127;
 };
 
 instance MENU_NET_PLAYER_ENTER(C_SFX_DEF)
 {
-	file = "doorknob03.wav";
+	file = "Door_try.wav";
 	vol = 127;
 };
 
 instance MENU_NET_PLAYER_LEAVE(C_SFX_DEF)
 {
-	file = "doorclose01.wav";
+	file = "door_close01b.wav";
 	vol = 127;
 };
 
 instance MENU_NET_PLAYER_TIMEOUT(C_SFX_DEF)
 {
-	file = "pickore_1.wav";
+	file = "pickore_01.wav";
 	vol = 127;
 };
 
 instance MENU_NET_PLAYER_CRCERROR(C_SFX_DEF)
 {
-	file = "pickore_1.wav";
+	file = "pickore_01.wav";
 	vol = 127;
 };
 
@@ -9270,6 +9332,12 @@ instance BLA23(C_SFX_DEF)
 	file = "campfire_mono.wav";
 	vol = 127;
 	loop = 1;
+};
+
+instance GATE_OPEN(C_SFX_DEF)
+{
+	file = "gate_start.wav";
+	vol = 127;
 };
 
 instance GATE_START(C_SFX_DEF)
@@ -9334,7 +9402,7 @@ instance SPEAR_START(C_SFX_DEF)
 
 instance SPEAR_START_01(C_SFX_DEF)
 {
-	file = "spear_start_01.wav";
+	file = "spear_start.wav";
 	vol = 110;
 };
 
@@ -10153,5 +10221,89 @@ instance MFX_PALHOLYBOLT_CAST(C_SFX_DEF)
 {
 	file = "MFX_BeliarWeap_02.wav";
 	vol = 80;
+};
+
+instance LOADING_SFX_NEWWORLD(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance LOADING_SFX_OLDWORLD(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance LOADING_SFX_ADDONWORLD(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance LOADING_SFX_DRAGONISLAND(C_SFX_DEF)
+{
+	file = "nosound.wav";
+	vol = 0;
+};
+
+instance RUN_SNOW(C_SFX_DEF)
+{
+	file = "Step_Snow_01.wav";
+	vol = 45;
+};
+
+instance RUN_SNOW_A1(C_SFX_DEF)
+{
+	file = "Step_Snow_02.wav";
+	vol = 45;
+};
+
+instance RUN_SNOW_A2(C_SFX_DEF)
+{
+	file = "Step_Snow_03.wav";
+	vol = 45;
+};
+
+instance RUN_SNOW_A3(C_SFX_DEF)
+{
+	file = "Step_Snow_04.wav";
+	vol = 45;
+};
+
+instance TURN_SNOW(C_SFX_DEF)
+{
+	file = "Step_Snow_01.wav";
+	vol = 20;
+};
+
+instance TURN_SNOW_A1(C_SFX_DEF)
+{
+	file = "Step_Snow_02.wav";
+	vol = 20;
+};
+
+instance TURN_SNOW_A2(C_SFX_DEF)
+{
+	file = "Step_Snow_03.wav";
+	vol = 20;
+};
+
+instance SNEAK_SNOW(C_SFX_DEF)
+{
+	file = "Step_Snow_01.wav";
+	vol = 15;
+};
+
+instance SNEAK_SNOW_A1(C_SFX_DEF)
+{
+	file = "Step_Snow_02.wav";
+	vol = 15;
+};
+
+instance SNEAK_SNOW_A2(C_SFX_DEF)
+{
+	file = "Step_Snow_03.wav";
+	vol = 15;
 };
 

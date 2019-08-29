@@ -9,7 +9,7 @@ instance BDT_1086_Addon_Scatty(Npc_Default)
 	npcType = NPCTYPE_BL_MAIN;
 	B_SetAttributesToChapter(self,5);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_Schwert5);
+	EquipItem(self,ItMw_Zweihaender1);
 	CreateInvItems(self,ItMi_GoldNugget_Addon,5);
 	CreateInvItems(self,ItPo_Health_03,2);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_L_Scatty,BodyTex_L,ITAR_Diego);

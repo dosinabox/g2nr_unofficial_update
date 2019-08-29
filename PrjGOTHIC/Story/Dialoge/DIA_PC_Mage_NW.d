@@ -214,7 +214,7 @@ func int DIA_MiltenNW_FourFriends_Condition()
 func void DIA_MiltenNW_FourFriends_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_FourFriends_15_00");	//Ты знаешь, где остальные?
-	if(!Npc_IsDead(PC_Fighter_NW_vor_DJG))
+	if(!Npc_IsDead(GornNW_vor_DJG))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_01");	//Горн, похоже, ничуть не изменился после заключения в тюрьме Гаронда.
 		if(MIS_RescueGorn != LOG_SUCCESS)
@@ -238,15 +238,8 @@ func void DIA_MiltenNW_FourFriends_Info()
 	{
 		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_07");	//Горн не виноват.
 	};
-	if(!Npc_IsDead(PC_Thief_NW))
-	{
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_08");	//Диего бормотал что-то о расплате. Но я понятия не имею, что он хотел сказать этим.
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_09");	//Но я подозреваю, что он сейчас в городе. Ты знаешь его - он всегда там, где можно поживиться.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_10");	//Диего выкупил Горна - похоже, что Барьер изменил и его.
-	};
+	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_08");	//Диего бормотал что-то о расплате. Но я понятия не имею, что он хотел сказать этим.
+	AI_Output(self,other,"DIA_MiltenNW_FourFriends_03_09");	//Но я подозреваю, что он сейчас в городе. Ты знаешь его - он всегда там, где можно поживиться.
 	if(!Npc_KnowsInfo(other,DIA_MiltenOW_Hello))
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_02");	//Лестер исчез, впрочем - и я понятия не имею, где он сейчас ошивается.
@@ -422,7 +415,7 @@ func void DIA_MiltenNW_KAP4_PERM_Info()
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_06");	//Фермер сообщил о появлении чешуйчатых существ у его фермы.
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_07");	//Я не знаю, что все это значит, но я думаю, что враг что-то задумал.
 		}
-		else if(hero.guild == GIL_KDF)
+		else
 		{
 			AI_Output(self,other,"DIA_MiltenNW_KAP4_PERM_03_08");	//Мы получаем все больше сообщений об одержимых людях. Враг стал силен, значительно сильнее, чем я ожидал.
 		};
@@ -517,8 +510,6 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KnowWhereEnemy_15_00");	//Я знаю, где скрывается враг. На небольшом острове, недалеко отсюда.
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_01");	//Это наш шанс. Мы должны отправляться туда немедленно и уничтожить Зло раз и навсегда.
-	Log_CreateTopic(Topic_Crew,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Crew,LOG_Running);
 	if(!Npc_IsDead(DiegoNW))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_02");	//Ты говорил с Диего? Я думаю, он согласится присоединиться к тебе.
@@ -544,8 +535,6 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_05");	//Я также вижу свою роль во всем этом. Я могу повысить твою ману и помочь в создании рун. Когда мы приступим?
 	if(SCToldMiltenHeKnowWhereEnemy == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew,"Если Милтен отправится в путь со мной, он может научить меня создавать руны и повысить мою ману.");
 		SCToldMiltenHeKnowWhereEnemy = TRUE;
 	};
@@ -616,8 +605,6 @@ func void DIA_MiltenNW_WhereCaptain_Info()
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_01");	//Спроси Йоргена. Он ведь моряк. Он, должно быть, все еще в монастыре.
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_02");	//Но если он не сможет помочь, попробуй поспрашивать на фермах или в городе, может быть, найдется человек, способный управлять твоим кораблем.
 	AI_Output(self,other,"DIA_MiltenNW_WhereCaptain_03_03");	//Лучше всего поговорить с Ли или поспрашивать в гавани Хориниса. Больше ничего сейчас мне в голову не приходит.
-	Log_CreateTopic(Topic_Captain,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Captain,LOG_Running);
 	B_LogEntry(Topic_Captain,"Возможно, стоит взять с собой Йоргена в качестве капитана. Он все еще должен быть в монастыре. Хотя, кроме него есть и другие кандидаты на фермах и в городе. Возможно, мне стоит поговорить с Ли или поспрашивать в гавани.");
 };
 
@@ -713,26 +700,40 @@ func int DIA_MiltenNW_Teach_Condition()
 func void DIA_MiltenNW_Teach_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_Teach_15_00");	//Я хочу изучить кое-какие заклинания.
-	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2)
+	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
-		Info_ClearChoices(DIA_MiltenNW_Teach);
-		Info_AddChoice(DIA_MiltenNW_Teach,Dialog_Back,DIA_MiltenNW_Teach_BACK);
-		if(PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE)
-		{
-			Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_MiltenNW_Teach_Windfist);
-		};
-		if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
-		{
-			Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_MiltenNW_Teach_Feuerball);
-		};
-		if(PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE)
-		{
-			Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_MiltenNW_Teach_Eispfeil);
-		};
+		AI_Output(self,other,"DIA_MiltenNW_Teach_03_01");	//Ты все еще не достиг второго Круга магии. Я ничему не могу научить тебя.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_MiltenNW_Teach_03_01");	//Ты все еще не достиг второго Круга магии. Я ничему не могу научить тебя.
+		Info_ClearChoices(DIA_MiltenNW_Teach);
+		Info_AddChoice(DIA_MiltenNW_Teach,Dialog_Back,DIA_MiltenNW_Teach_BACK);
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1)
+		{
+			if(PLAYER_TALENT_RUNES[SPL_Light] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Light,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Light)),DIA_MiltenOW_Teach_Light);
+			};
+			if(PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_LightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_LightHeal)),DIA_MiltenOW_Teach_Heal);
+			};
+		};
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2)
+		{
+			if(PLAYER_TALENT_RUNES[SPL_WindFist] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_WINDFIST,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_WindFist)),DIA_MiltenOW_Teach_Windfist);
+			};
+			if(PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_InstantFireball,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_InstantFireball)),DIA_MiltenOW_Teach_Feuerball);
+			};
+			if(PLAYER_TALENT_RUNES[SPL_Icebolt] == FALSE)
+			{
+				Info_AddChoice(DIA_MiltenNW_Teach,B_BuildLearnString(NAME_SPL_Icebolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Icebolt)),DIA_MiltenOW_Teach_Eispfeil);
+			};
+		};
 	};
 };
 
@@ -740,22 +741,6 @@ func void DIA_MiltenNW_Teach_BACK()
 {
 	Info_ClearChoices(DIA_MiltenNW_Teach);
 };
-
-func void DIA_MiltenNW_Teach_Windfist()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_WindFist);
-};
-
-func void DIA_MiltenNW_Teach_Feuerball()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_InstantFireball);
-};
-
-func void DIA_MiltenNW_Teach_Eispfeil()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_Icebolt);
-};
-
 
 instance DIA_MiltenNW_Mana(C_Info)
 {
@@ -771,6 +756,10 @@ instance DIA_MiltenNW_Mana(C_Info)
 func int DIA_MiltenNW_Mana_Condition()
 {
 	if(other.guild == GIL_KDF)
+	{
+		return TRUE;
+	}
+	else if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
 	{
 		return TRUE;
 	};

@@ -163,6 +163,7 @@ func void B_CipherHappyForWeedPaket()
 			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 		};
 		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
+		SCKnowsSLDVotes = TRUE;
 		GotCipherVote = TRUE;
 	};
 	B_GivePlayerXP(XP_CipherWeed);
@@ -201,6 +202,7 @@ func void DIA_Cipher_YesJoin_Info()
 		AI_Output(other,self,"DIA_Cipher_YesJoin_15_02");	//На что ты намекаешь?
 		AI_Output(self,other,"DIA_Cipher_YesJoin_07_03");	//Ну, я уже давно ничего не курил. Принеси мне несколько косяков из болотной травы, и ты получишь мой голос.
 		AI_Output(self,other,"DIA_Cipher_YesJoin_07_04");	//Я уверен, тебе удастся что-нибудь найти.
+		SCKnowsSLDVotes = TRUE;
 		MIS_Cipher_BringWeed = LOG_Running;
 		Log_CreateTopic(Topic_CipherHerb,LOG_MISSION);
 		Log_SetTopicStatus(Topic_CipherHerb,LOG_Running);
@@ -268,6 +270,7 @@ func void DIA_Cipher_Joints_Success()
 				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 			};
 			B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
+			SCKnowsSLDVotes = TRUE;
 			GotCipherVote = TRUE;
 		};
 		MIS_Cipher_BringWeed = LOG_SUCCESS;
@@ -296,7 +299,7 @@ instance DIA_Cipher_TRADE(C_Info)
 
 func int DIA_Cipher_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat))
 	{
 		return TRUE;
 	};
@@ -310,7 +313,7 @@ func void DIA_Cipher_TRADE_Info()
 	{
 		AI_Output(self,other,"DIA_Cipher_TRADE_07_01");	//Конечно. Выбирай.
 	}
-	else
+	else if(!Npc_HasItems(self,ItPl_SwampHerb))
 	{
 		AI_Output(self,other,"DIA_Cipher_TRADE_07_02");	//У меня сейчас нет болотной травы. Ты хочешь что-нибудь еще?
 	};
@@ -318,35 +321,6 @@ func void DIA_Cipher_TRADE_Info()
 };
 
 
-///////////////////////////////////////////////////////////
-instance DIA_Cipher_NOTRADE(C_Info)
-{
-	npc = SLD_803_Cipher;
-	nr = 2;
-	condition = DIA_Cipher_NOTRADE_Condition;
-	information = DIA_Cipher_NOTRADE_Info;
-	permanent = TRUE;
-	description = DIALOG_TRADE_v4;
-	trade = TRUE;
-};
-
-
-func int DIA_Cipher_NOTRADE_Condition()
-{
-	if(Npc_KnowsInfo(other,DIA_Cipher_TradeWhat) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Cipher_NOTRADE_Info()
-{
-	AI_Output(other,self,"DIA_Cipher_TRADE_15_00");	//Покажи мне свои товары.
-	B_Say(self,other,"$SpareMe");
-	AI_StopProcessInfos(self);
-};
-
-///////////////////////////////////////////////////////////
 instance DIA_Cipher_DarDieb(C_Info)
 {
 	npc = SLD_803_Cipher;
@@ -377,11 +351,20 @@ func void DIA_Cipher_DarDieb_Info()
 		AI_Output(other,self,"DIA_Cipher_DarDieb_15_04");	//Даже если ты найдешь его, это тебе не поможет, у него больше нет этого тюка. Он продал его в Хоринисе.
 		AI_Output(self,other,"DIA_Cipher_DarDieb_07_05");	//ГДЕ ОН?!
 	};
-	AI_Output(other,self,"DIA_Cipher_DarDieb_15_06");	//За кухней, на углу...
-	AI_Output(self,other,"DIA_Cipher_DarDieb_07_07");	//Я ПРИКОНЧУ ЕГО!
-	AI_StopProcessInfos(self);
-	other.aivar[AIV_INVINCIBLE] = FALSE;
-	B_Attack(self,Dar,AR_NONE,0);
+	if(!Npc_IsDead(Dar))
+	{
+		AI_Output(other,self,"DIA_Cipher_DarDieb_15_06");	//За кухней, на углу...
+		AI_Output(self,other,"DIA_Cipher_DarDieb_07_07");	//Я ПРИКОНЧУ ЕГО!
+		AI_StopProcessInfos(self);
+		other.aivar[AIV_INVINCIBLE] = FALSE;
+		B_Attack(self,Dar,AR_NONE,0);
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+		AI_Output(self,other,"DIA_Cipher_DarLOST_07_03");	//Этот мерзкий воришка не должен был лазить в мой сундук!
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -449,15 +432,19 @@ func void DIA_Cipher_KrautPaket_Info()
 			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 		};
 		B_LogEntry(TOPIC_SLDRespekt,"Сифер проголосует за меня, когда я решу присоединиться к наемникам.");
+		SCKnowsSLDVotes = TRUE;
 		GotCipherVote = TRUE;
 	};
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_04");	//Эй, возьми это в награду.
-	B_GiveInvItems(self,other,ItMi_Gold,200);
-	B_GiveInvItems(self,other,ItMi_Joint,10);
-	B_GivePlayerXP(XP_Cipher_KrautPaket);
+	Npc_RemoveInvItems(self,ItMi_Joint,10);
+	CreateInvItems(other,ItMi_Joint,10);
+	CreateInvItems(other,ItMi_Gold,200);
+	AI_PrintScreen("10 косяков получено",-1,43,FONT_ScreenSmall,4);
+	AI_PrintScreen("200 золотых получено",-1,40,FONT_ScreenSmall,4);
+//	B_GivePlayerXP(XP_Cipher_KrautPaket);
 	AI_Output(self,other,"DIA_Cipher_KrautPaket_07_05");	//Сейчас я скручу пару косячков...
-	CreateInvItems(self,ItMi_Joint,40);
 	Npc_RemoveInvItems(self,ItMi_HerbPaket,1);
+	CreateInvItems(self,ItMi_Joint,40);
 	MIS_Cipher_Paket = LOG_SUCCESS;
 	B_GivePlayerXP(XP_CipherPaket);
 };

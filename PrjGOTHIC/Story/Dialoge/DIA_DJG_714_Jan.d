@@ -504,8 +504,8 @@ func void DIA_Jan_ArmorReady_Info()
 	{
 		AI_Output(self,other,"DIA_JAN_ArmorReady_10_02");	//Это настоящее произведение искусства. Ты можешь купить их, если хочешь.
 		AI_Output(self,other,"DIA_JAN_ArmorReady_10_03");	//Для тебя особая цена. 12000 золотых монет.
-		AI_Output(other,self,"DIA_JAN_ArmorReady_15_04");	//Что?! И это после всего, что я сделал для тебя?
-		AI_Output(self,other,"DIA_JAN_ArmorReady_10_05");	//Ну не надо так. Мне же тоже нужно зарабатывать на жизнь. Не хочешь, не бери.
+		AI_Output(other,self,"DIA_JAN_ArmorReady_15_04");	//Что?! И это после того, что я сделал для тебя?
+		AI_Output(self,other,"DIA_JAN_ArmorReady_10_05");	//Ну не надо так. Мне же тоже нужно зарабатывать на жизнь. Не хочешь - не бери.
 		DJG_Armor_is_offered = TRUE;
 		DIA_JAN_ArmorReady_NoPerm = TRUE;
 	};
@@ -571,12 +571,22 @@ instance DIA_Jan_DragonPlettBericht(C_Info)
 };
 
 
-//var int DIA_Jan_DragonPlettBericht_NoPerm;
-
 func int DIA_Jan_DragonPlettBericht_Condition()
 {
-	if((Kapitel >= 4) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons != 0))
+	if((Kapitel >= 4) && (MIS_OCGateOpen == FALSE) && (MIS_KilledDragons > 0))
 	{
+		if(MIS_KilledDragons == 1)
+		{
+			DIA_Jan_DragonPlettBericht.description = "Я убил дракона.";
+		}
+		else if((MIS_KilledDragons == 2) || (MIS_KilledDragons == 3))
+		{
+			DIA_Jan_DragonPlettBericht.description = "Я убил несколько драконов.";
+		}
+		else
+		{
+			DIA_Jan_DragonPlettBericht.description = "Я убил всех драконов.";
+		};
 		return TRUE;
 	};
 };
@@ -643,9 +653,9 @@ func void DIA_Jan_DragonBlood_Info()
 	{
 		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
 		{
-			Info_AddChoice(DIA_Jan_DragonBlood,"(отдать все пробирки)",DIA_Jan_DragonBlood_all);
+			Info_AddChoice(DIA_Jan_DragonBlood,DIALOG_GiveAllDragonBlood,DIA_Jan_DragonBlood_all);
 		};
-		Info_AddChoice(DIA_Jan_DragonBlood,"(отдать одну пробирку)",DIA_Jan_DragonBlood_1);
+		Info_AddChoice(DIA_Jan_DragonBlood,DIALOG_GiveDragonBlood,DIA_Jan_DragonBlood_1);
 	};
 };
 
@@ -675,9 +685,9 @@ func void DIA_Jan_DragonBlood_1()
 	{
 		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
 		{
-			Info_AddChoice(DIA_Jan_DragonBlood,"(отдать все пробирки)",DIA_Jan_DragonBlood_all);
+			Info_AddChoice(DIA_Jan_DragonBlood,DIALOG_GiveAllDragonBlood,DIA_Jan_DragonBlood_all);
 		};
-		Info_AddChoice(DIA_Jan_DragonBlood,"(отдать одну пробирку)",DIA_Jan_DragonBlood_1);
+		Info_AddChoice(DIA_Jan_DragonBlood,DIALOG_GiveDragonBlood,DIA_Jan_DragonBlood_1);
 		BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
 		BloodText = ConcatStrings(PRINT_BloodLeft,BloodLeft);
 		AI_PrintScreen(BloodText,-1,-1,FONT_ScreenSmall,2);
@@ -705,9 +715,9 @@ func void DIA_Jan_DragonBlood_all()
 	{
 		if(Npc_HasItems(other,ItAt_DragonBlood) > 1)
 		{
-			Info_AddChoice(DIA_Jan_DragonBlood,"(отдать все пробирки)",DIA_Jan_DragonBlood_all);
+			Info_AddChoice(DIA_Jan_DragonBlood,DIALOG_GiveAllDragonBlood,DIA_Jan_DragonBlood_all);
 		};
-		Info_AddChoice(DIA_Jan_DragonBlood,"(отдать одну пробирку)",DIA_Jan_DragonBlood_1);
+		Info_AddChoice(DIA_Jan_DragonBlood,DIALOG_GiveDragonBlood,DIA_Jan_DragonBlood_1);
 	};
 	BloodLeft = IntToString(Npc_HasItems(other,ItAt_DragonBlood));
 	BloodText = ConcatStrings(BloodLeft,PRINT_NumberLeft);

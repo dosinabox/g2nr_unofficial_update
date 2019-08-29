@@ -92,8 +92,11 @@ func void DIA_Brahim_GREET_Info()
 {
 	AI_Output(other,self,"DIA_Brahim_GREET_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Brahim_GREET_07_01");	//Меня зовут Ибрагим. Я рисую карты и продаю их.
-	AI_Output(self,other,"DIA_Brahim_GREET_07_02");	//Так как ты недавно здесь, возможно, тебе пригодится карта города.
-	AI_Output(self,other,"DIA_Brahim_GREET_07_03");	//Это очень недорого и очень полезно, пока ты здесь не освоишься.
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		AI_Output(self,other,"DIA_Brahim_GREET_07_02");	//Так как ты недавно здесь, возможно, тебе пригодится карта города.
+		AI_Output(self,other,"DIA_Brahim_GREET_07_03");	//Это очень недорого и очень полезно, пока ты здесь не освоишься.
+	};
 	if(DIA_Kardif_Lernen_permanent == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
@@ -114,7 +117,7 @@ instance DIA_Addon_Brahim_MissingPeople(C_Info)
 
 func int DIA_Addon_Brahim_MissingPeople_Condition()
 {
-	if((SC_HearedAboutMissingPeople == TRUE) && (ENTERED_ADDONWORLD == FALSE))
+	if((SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};
@@ -143,7 +146,7 @@ instance DIA_Brahim_BUY(C_Info)
 
 func int DIA_Brahim_BUY_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET))
 	{
 		return TRUE;
 	};
@@ -165,34 +168,7 @@ func void DIA_Brahim_BUY_Info()
 	Trade_IsActive = TRUE;
 };
 
-//////////////////////////////////////
-instance DIA_Brahim_NOBUY(C_Info)
-{
-	npc = VLK_437_Brahim;
-	nr = 9;
-	condition = DIA_Brahim_NOBUY_Condition;
-	information = DIA_Brahim_NOBUY_Info;
-	permanent = TRUE;
-	description = "Покажи мне свои карты.";
-};
 
-
-func int DIA_Brahim_NOBUY_Condition()
-{
-	if(Npc_KnowsInfo(hero,DIA_Brahim_GREET) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Brahim_NOBUY_Info()
-{
-	AI_Output(other,self,"DIA_Brahim_BUY_15_00");	//Покажи мне свои карты.
-	B_Say(self,other,"$SpareMe");
-	AI_StopProcessInfos(self);
-};
-
-//////////////////////////////////////
 instance DIA_Brahim_Kap3_EXIT(C_Info)
 {
 	npc = VLK_437_Brahim;
@@ -236,23 +212,36 @@ instance DIA_Brahim_Kap3_First_EXIT(C_Info)
 
 func int DIA_Brahim_Kap3_First_EXIT_Condition()
 {
-	if((Kapitel >= 3) && Npc_HasItems(other,ItWr_ShatteredGolem_MIS))
+	if(Kapitel >= 3)
 	{
-		return TRUE;
+		if(Npc_HasItems(other,ItWr_ShatteredGolem_MIS) || (MIS_HannaRetrieveLetter == LOG_SUCCESS))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Brahim_Kap3_First_EXIT_Info()
 {
-	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_00");	//Я знал, что этот клочок бумаги заинтересует тебя.
-	AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_15_01");	//Какой клочок?
-	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_02");	//Ну, та старая карта, что ты только что купил.
+	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE)
+	{
+		AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_00");	//Я знал, что этот клочок бумаги заинтересует тебя.
+		AI_Output(other,self,"DIA_Brahim_Kap3_First_EXIT_15_01");	//Какой клочок?
+		AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_02");	//Ну, та старая карта, что ты только что купил.
+	};
 	AI_Output(self,other,"DIA_Brahim_Kap3_First_EXIT_07_03");	//Я знаю таких людей, как ты. Вы используете каждый шанс, чтобы найти сокровища.
-	Info_ClearChoices(DIA_Brahim_Kap3_First_EXIT);
-	Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,Dialog_Back,DIA_Brahim_Kap3_First_EXIT_BACK);
-	Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,"Где ты взял эту карту?",DIA_Brahim_Kap3_First_EXIT_WhereGetIt);
-	Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,"Что это за карта?",DIA_Brahim_Kap3_First_EXIT_Content);
-	Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,"Почему ты не оставил ее себе?",DIA_Brahim_Kap3_First_EXIT_KeepIt);
+	if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE)
+	{
+		Info_ClearChoices(DIA_Brahim_Kap3_First_EXIT);
+		Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,Dialog_Back,DIA_Brahim_Kap3_First_EXIT_BACK);
+		Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,"Где ты взял эту карту?",DIA_Brahim_Kap3_First_EXIT_WhereGetIt);
+		Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,"Что это за карта?",DIA_Brahim_Kap3_First_EXIT_Content);
+		Info_AddChoice(DIA_Brahim_Kap3_First_EXIT,"Почему ты не оставил ее себе?",DIA_Brahim_Kap3_First_EXIT_KeepIt);
+	}
+	else
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 
 func void DIA_Brahim_Kap3_First_EXIT_BACK()

@@ -34,7 +34,7 @@ instance DIA_Rumbold_PrePerm(C_Info)
 
 func int DIA_Rumbold_PrePerm_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN))
+	if(!Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) || (MIS_Torlof_BengarMilizKlatschen != LOG_Running) || (ScaredRumbold == TRUE))
 	{
 		return TRUE;
 	};
@@ -61,22 +61,25 @@ instance DIA_Rumbold_Hallo(C_Info)
 
 func int DIA_Rumbold_Hallo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN))
+	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
 	{
-		return TRUE;
+		if(ScaredRumbold == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Rumbold_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Rumbold_Hallo_10_00");	//Посмотрите на него! Еще один клоун! Что ты здесь делаешь, а?
-	if(other.guild == GIL_NONE)
+	if(C_SLDorDJGArmorEquipped(other))
 	{
-		AI_Output(self,other,"DIA_Rumbold_Hallo_10_01");	//Кто ты, черт тебя побери?
+		AI_Output(self,other,"DIA_Rumbold_Hallo_10_02");	//Еще один из этих грязных наемников!
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rumbold_Hallo_10_02");	//Еще один из этих грязных наемников!
+		AI_Output(self,other,"DIA_Rumbold_Hallo_10_01");	//Кто ты, черт тебя побери?
 	};
 	Info_ClearChoices(DIA_Rumbold_Hallo);
 	Info_AddChoice(DIA_Rumbold_Hallo,"Я никто.",DIA_Rumbold_HALLO_schwanzeinziehen);
@@ -132,29 +135,19 @@ func void DIA_Rumbold_HALLO_geld_ok()
 	AI_Output(self,other,"DIA_Rumbold_HALLO_geld_ok_10_01");	//Меня не волнует, кто платит за Бенгара. Удачи. (себе под нос) Кретин!
 	AI_StopProcessInfos(self);
 	Rumbold_Bezahlt = TRUE;
-	if((other.guild == GIL_NONE) && C_AmIStronger(self,other))
+	if(other.guild == GIL_NONE)
 	{
 		Npc_ExchangeRoutine(self,"Start");
-		if(Hlp_IsValidNpc(Rick) && !Npc_IsDead(Rick))
-		{
-//			Npc_ExchangeRoutine(Rick,"Start");
-//			AI_ContinueRoutine(Rick);
-			B_StartOtherRoutine(Rick,"Start");
-		};
+		B_StartOtherRoutine(Rick,"Start");
 	}
 	else
 	{
 		Npc_ExchangeRoutine(self,"Flucht3");
-		if(Hlp_IsValidNpc(Rick) && !Npc_IsDead(Rick))
-		{
-			B_StartOtherRoutine(Rick,"Flucht3");
-		};
+		B_StartOtherRoutine(Rick,"Flucht3");
 		Miliz_Flucht = TRUE;
 	};
 	if(Hlp_IsValidNpc(Bengar) && !Npc_IsDead(Bengar))
 	{
-//		Npc_ExchangeRoutine(Bengar,"Start");
-//		AI_ContinueRoutine(Bengar);
 		B_StartOtherRoutine(Bengar,"Start");
 	};
 };
@@ -197,9 +190,12 @@ instance DIA_Rumbold_FightNow(C_Info)
 
 func int DIA_Rumbold_FightNow_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
 	{
-		return TRUE;
+		if(ScaredRumbold == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -235,9 +231,12 @@ instance DIA_Rumbold_StillThere(C_Info)
 
 func int DIA_Rumbold_StillThere_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == TRUE))
+	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == TRUE) && (Miliz_Flucht == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
 	{
-		return TRUE;
+		if(ScaredRumbold == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 

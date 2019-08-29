@@ -59,7 +59,7 @@ func void Rtn_Ship_439()
 
 func void Rtn_PRAY_439()
 {
-	TA_Pray_Innos_FP(5,5,20,10,"NW_CITY_MERCHANT_TEMPLE_FRONT");
+	TA_Stand_WP(5,5,20,10,"NW_CITY_MERCHANT_TEMPLE_FRONT");
 	TA_Pray_Innos_FP(20,10,5,5,"NW_CITY_MERCHANT_TEMPLE_IN");
 };
 

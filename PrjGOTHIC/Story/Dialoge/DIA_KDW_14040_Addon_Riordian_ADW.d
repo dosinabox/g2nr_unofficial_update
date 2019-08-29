@@ -73,22 +73,28 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 	AI_Output(other,self,"DIA_Addon_Riordian_WhatToFind_15_00");	//Что вы здесь уже обнаружили?
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_03");	//На востоке, недалеко отсюда, мы нашли тело рыбака.
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_west_10_04");	//Тебе стоит на него взглянуть.
-	if(!Npc_HasItems(VLK_4304_Addon_William,ITWr_Addon_William_01))
+	if(!Npc_HasItems(William,ITWr_Addon_William_01))
 	{
 		AI_Output(other,self,"DIA_Neoras_Rezept_15_01");	//Я нашел его.
 		AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
 		if(FoundDeadWilliam == FALSE)
 		{
-			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			if(Sklaven_Flucht == FALSE)
+			{
+				Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+			};
 			B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
 		};
 		FoundDeadWilliam = TRUE;
 	}
-	else if(Saturas_AboutWilliam == FALSE)
+	else if(!Npc_KnowsInfo(other,DIA_Addon_Saturas_MissingPeople))
 	{
-		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		if(Sklaven_Flucht == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamLeiche);
 	};
 	AI_Output(self,other,"DIA_Addon_Riordian_WhatToFind_10_01");	//На востоке раскинулось огромное болото, на котором находится большая крепость.
@@ -209,7 +215,7 @@ instance DIA_Addon_Riordian_HousesOfRulers(C_Info)
 
 func int DIA_Addon_Riordian_HousesOfRulers_Condition()
 {
-	if(MIS_Saturas_LookingForHousesOfRulers == LOG_Running)
+	if(SaturasSendsToRiordian == TRUE)
 	{
 		return TRUE;
 	};
@@ -224,6 +230,29 @@ func void DIA_Addon_Riordian_HousesOfRulers_Info()
 };
 
 
+var int B_WhereAreHousesOfRulersOneTime;
+
+func void B_WhereAreHousesOfRulers()
+{
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_00");	//Дворец ученых - это огромная библиотека. Она находится далеко на севере.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_01");	//Дворец воинов расположен на востоке. Он представляет из себя крепость, окруженную скалами.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_02");	//Дворцы жрецов и стражей мертвых расположены недалеко друг от друга. Ты найдешь их на юго-западе.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_03");	//А дворец-госпиталь целителей должен быть где-то на юго-востоке.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_04");	//Если эти дворцы еще сохранились, ты узнаешь их по особой манере постройки.
+	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_05");	//Все дворцы строились на возвышениях. К украшенному колоннами входу в каждый из них вела крутая лестница.
+	if(B_WhereAreHousesOfRulersOneTime == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_06");	//Надеюсь, тебе это поможет.
+		Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
+		B_LogEntry(TOPIC_Addon_HousesOfRulers,"Замок ученых - это огромная библиотека. Она находится где-то на севере.");
+		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замок воинов - это окруженная скалами крепость на востоке.");
+		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замки жрецов и стражей мертвых находятся недалеко друг от друга. Я смогу найти их на юго-западе.");
+		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Дворец-госпиталь целителей находится на юго-востоке.");
+		B_WhereAreHousesOfRulersOneTime = TRUE;
+	};
+};
+
 instance DIA_Addon_Riordian_WhereAreHouses(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
@@ -236,43 +265,16 @@ instance DIA_Addon_Riordian_WhereAreHouses(C_Info)
 
 func int DIA_Addon_Riordian_WhereAreHouses_Condition()
 {
-	if((MIS_Riordian_HousesOfRulers == LOG_Running) && (Saturas_SCBroughtAllToken == FALSE))
+	if(MIS_Riordian_HousesOfRulers == LOG_Running)
 	{
 		return TRUE;
-	};
-};
-
-
-var int B_WhreAreHousesOfRulersOneTime;
-
-func void B_WhreAreHousesOfRulers()
-{
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_00");	//Дворец ученых - это огромная библиотека. Она находится далеко на севере.
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_01");	//Дворец воинов расположен на востоке. Он представляет из себя крепость, окруженную скалами.
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_02");	//Дворцы жрецов и стражей мертвых расположены недалеко друг от друга. Ты найдешь их на юго-западе.
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_03");	//А дворец-госпиталь целителей должен быть где-то на юго-востоке.
-	if(B_WhreAreHousesOfRulersOneTime == FALSE)
-	{
-		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_04");	//Если эти дворцы еще сохранились, ты узнаешь их по особой манере постройки.
-	};
-	AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_05");	//Все дворцы строились на возвышениях. К украшенному колоннами входу в каждый из них вела крутая лестница.
-	if(B_WhreAreHousesOfRulersOneTime == FALSE)
-	{
-		AI_Output(self,other,"DIA_Addon_Riordian_WhereAreHouses_10_06");	//Надеюсь, тебе это поможет.
-		Log_CreateTopic(TOPIC_Addon_HousesOfRulers,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_HousesOfRulers,LOG_Running);
-		B_LogEntry(TOPIC_Addon_HousesOfRulers,"Замок ученых - это огромная библиотека. Она находится где-то на севере.");
-		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замок воинов - это окруженная скалами крепость на востоке.");
-		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Замки жрецов и стражей мертвых находятся недалеко друг от друга. Я смогу найти их на юго-западе.");
-		Log_AddEntry(TOPIC_Addon_HousesOfRulers,"Дворец-госпиталь целителей находится на юго-востоке.");
-		B_WhreAreHousesOfRulersOneTime = TRUE;
 	};
 };
 
 func void DIA_Addon_Riordian_WhereAreHouses_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_WhereAreHouses_15_00");	//Где находятся пять дворцов?
-	B_WhreAreHousesOfRulers();
+	B_WhereAreHousesOfRulers();
 };
 
 
@@ -289,13 +291,11 @@ instance DIA_Addon_Riordian_FoundHouse(C_Info)
 
 func int DIA_Addon_Riordian_FoundHouse_Condition()
 {
-	if((MIS_Riordian_HousesOfRulers == LOG_Running) && Npc_KnowsInfo(other,DIA_Addon_Riordian_WhereAreHouses) && (RiordianHousesFoundCount < 5))
+	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_WhereAreHouses) && (RiordianHousesFoundCount < 5))
 	{
 		return TRUE;
 	};
 };
-
-
 
 var int foundhouseinfo[6];
 const int Library = 1;
@@ -368,8 +368,38 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_FoundHouse_15_21");	//Напомни мне, где они находятся?
-		B_WhreAreHousesOfRulers();
+		B_WhereAreHousesOfRulers();
 	};
+};
+
+
+instance DIA_Addon_Riordian_FoundAllHouses(C_Info)
+{
+	npc = KDW_14040_Addon_Riordian_ADW;
+	nr = 5;
+	condition = DIA_Addon_Riordian_FoundAllHouses_Condition;
+	information = DIA_Addon_Riordian_FoundAllHouses_Info;
+	description = "Я нашел все дворцы.";
+};
+
+
+func int DIA_Addon_Riordian_FoundAllHouses_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Addon_Riordian_WhereAreHouses) && (RiordianHousesFoundCount >= 5))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Riordian_FoundAllHouses_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Riordian_FoundAllHouses_15_00");	//Я нашел все дворцы.
+	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_01");	//Они все находились там, где я указал?
+	AI_Output(other,self,"DIA_Addon_Riordian_FoundAllHouses_15_02");	//Ну... более-менее.
+	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_03");	//Отлично! Значит, моя работа была не напрасной.
+	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
+	MIS_Riordian_HousesOfRulers = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Addon_FoundAllHouses);
 };
 
 
@@ -395,7 +425,7 @@ func void DIA_Addon_Riordian_OrksWeg_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_OrksWeg_15_00");	//Скоро орки потеряют интерес к этой местности.
 	AI_Output(self,other,"DIA_Addon_Riordian_OrksWeg_10_01");	//Почему ты так считаешь?
-	if(OrcShaman_Sit_CanyonLibraryKey.aivar[AIV_KilledByPlayer] == TRUE)
+	if(OrcShaman_CanyonLibrary_KilledByPlayer == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Riordian_OrksWeg_15_02");	//Я убил их командира.
 	}
@@ -407,36 +437,6 @@ func void DIA_Addon_Riordian_OrksWeg_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_OrksWeg_10_05");	//Нам сейчас не нужны лишние заботы.
 	TOPIC_END_CanyonOrcs = TRUE;
 	B_GivePlayerXP(XP_Addon_Riordian_OrksWeg);
-};
-
-
-instance DIA_Addon_Riordian_FoundAllHouses(C_Info)
-{
-	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
-	condition = DIA_Addon_Riordian_FoundAllHouses_Condition;
-	information = DIA_Addon_Riordian_FoundAllHouses_Info;
-	description = "Я нашел все дворцы.";
-};
-
-
-func int DIA_Addon_Riordian_FoundAllHouses_Condition()
-{
-	if((RiordianHousesFoundCount >= 5) && (MIS_Riordian_HousesOfRulers == LOG_Running))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Addon_Riordian_FoundAllHouses_Info()
-{
-	AI_Output(other,self,"DIA_Addon_Riordian_FoundAllHouses_15_00");	//Я нашел все дворцы.
-	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_01");	//Они все находились там, где я указал?
-	AI_Output(other,self,"DIA_Addon_Riordian_FoundAllHouses_15_02");	//Ну... более-менее.
-	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_03");	//Отлично! Значит, моя работа была не напрасной.
-	AI_Output(self,other,"DIA_Addon_Riordian_FoundAllHouses_10_04");	//Благодарю тебя.
-	MIS_Riordian_HousesOfRulers = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_FoundAllHouses);
 };
 
 
@@ -706,42 +706,35 @@ func void DIA_Riordian_ADW_TeachAlchemy_BACK()
 func void DIA_Riordian_ADW_TeachAlchemy_Health_01()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_01);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Health_02()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_02);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Mana_01()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_01);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Mana_02()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_02);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Mana_03()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_03);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Perm_Mana()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Mana);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 
 func void DIA_Riordian_ADW_TeachAlchemy_Perm_DEX()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_DEX);
-	Info_ClearChoices(DIA_Riordian_ADW_TeachAlchemy);
 };
 

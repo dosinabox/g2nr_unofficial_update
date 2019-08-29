@@ -46,7 +46,6 @@ func int C_StealItem(var int TheftDex,var int Itm)
 	{
 		return TRUE;
 	};
-
 };
 
 //func void B_StealItems(var int TheftDex,var int Itm,var int Qty)
@@ -59,13 +58,32 @@ func void B_StealItem(var int TheftDex,var int Itm)
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
 		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lehmar))
+		{
+			Lehmar_StealBook_Day = Wld_GetDay();
+			if(Wld_IsTime(23,0,23,59))
+			{
+				Lehmar_StealBook_Day += 1;
+			};
+		};
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
+		{
+			UnEquip_ItAm_Addon_Franco();
+		};
 	}
 	else
 	{
 		B_ResetThiefLevel();
 		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
-		B_Attack(self,other,AR_Theft,1);
+		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lagerwache))
+		{
+			B_Attack(self,other,AR_KILL,1);
+		}
+		else
+		{
+			B_Attack(self,other,AR_Theft,1);
+		};
 	};
 };
 

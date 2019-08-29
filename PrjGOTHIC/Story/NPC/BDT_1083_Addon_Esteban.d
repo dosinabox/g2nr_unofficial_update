@@ -14,7 +14,7 @@ instance BDT_1083_Addon_Esteban(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Axe);
 	B_CreateAmbientInv(self);
-	CreateInvItem(self,itke_addon_esteban);
+	CreateInvItem(self,ItKe_Addon_Esteban);
 	CreateInvItems(self,ItMi_Addon_Stone_01,5);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_L_ToughBart_Quentin,BodyTex_L,ITAR_BDT_H);
 	Mdl_SetModelFatness(self,0);

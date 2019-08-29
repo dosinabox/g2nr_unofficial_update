@@ -1,7 +1,7 @@
 
 instance VLK_442_Arbeiter(Npc_Default)
 {
-	name[0] = "Работник";
+	name[0] = NAME_Arbeiter;
 	guild = GIL_VLK;
 	id = 442;
 	voice = 6;

@@ -1,6 +1,6 @@
 
 const int Value_ItBE_Addon_Leather_01 = 250;
-const int Value_ItBE_Addon_Leather_02 = 250;
+//const int Value_ItBE_Addon_Leather_02 = 250;
 const int Value_ItBE_Addon_SLD_01 = 250;
 const int Value_ItBE_Addon_NOV_01 = 250;
 const int Value_ItBE_Addon_MIL_01 = 250;
@@ -34,9 +34,9 @@ instance ItBE_Addon_Leather_01(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_Leather_01;
-	visual = "ItMI_Belt_06.3ds";
+	visual = "ItMi_Belt_06.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ItBE_Addon_Leather_01;
@@ -98,7 +98,7 @@ instance ItBE_Addon_SLD_01(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_SLD_01;
 	visual = "ItMi_Belt_05.3ds";
 	visual_skin = 0;
@@ -156,10 +156,9 @@ instance ItBE_Addon_NOV_01(C_Item)
 {
 	name = NAME_Addon_BeltMage;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_NOV_01;
-//	visual = "ItMi_Belt_02.3ds";
-	visual = "ItMi_Belt_13.3ds";
+	visual = "ItMi_Belt_02.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ItBE_Addon_NOV_01;
@@ -215,7 +214,7 @@ instance ItBE_Addon_MIL_01(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_MIL_01;
 	visual = "ItMi_Belt_03.3ds";
 	visual_skin = 0;
@@ -273,9 +272,9 @@ instance ItBE_Addon_KDF_01(C_Item)
 {
 	name = NAME_Addon_BeltMage;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_KDF_01;
-	visual = "ItMi_Belt_02.3ds";
+	visual = "ItMi_Belt_13.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ItBE_Addon_KDF_01;
@@ -331,9 +330,8 @@ instance ItBE_Addon_MC(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_MC;
-//	visual = "ItMi_Belt_08.3ds";
 	visual = "ItMi_Belt_12.3ds";
 	visual_skin = 0;
 	material = MAT_WOOD;
@@ -390,9 +388,8 @@ instance ItBe_Addon_STR_5(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_STR_5;
-//	visual = "ItMi_Belt_08.3ds";
 	visual = "ItMi_Belt_17.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -423,9 +420,8 @@ instance ItBe_Addon_STR_10(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_STR_10;
-//	visual = "ItMi_Belt_05.3ds";
 	visual = "ItMi_Belt_07.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -456,9 +452,8 @@ instance ItBe_Addon_DEX_5(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_DEX_5;
-//	visual = "ItMi_Belt_08.3ds";
 	visual = "ItMi_Belt_16.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -489,9 +484,8 @@ instance ItBe_Addon_DEX_10(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_DEX_10;
-//	visual = "ItMi_Belt_05.3ds";
 	visual = "ItMi_Belt_08.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -522,9 +516,8 @@ instance ItBe_Addon_Prot_EDGE(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_Prot_Edge;
-//	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_01.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -557,10 +550,10 @@ instance ItBe_Addon_Prot_Point(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_Prot_Point;
-//	visual = "ItMi_Belt_02.3ds";
-	visual = "ItMi_Belt_11.3ds";
+//	visual = "ItMi_Belt_11.3ds";
+	visual = "ItMi_Belt_18.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
 	on_equip = Equip_ItBe_Addon_Prot_Point;
@@ -590,9 +583,8 @@ instance ItBe_Addon_Prot_MAGIC(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_Prot_Magic;
-//	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_09.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -623,9 +615,8 @@ instance ItBe_Addon_Prot_FIRE(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_Prot_Fire;
-//	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_14.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -657,9 +648,8 @@ instance ItBe_Addon_Prot_EdgPoi(C_Item)
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
 //	flags = ITEM_BELT | ITEM_MISSION | ITEM_MULTI;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_Prot_EdgPoi;
-//	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_15.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;
@@ -696,9 +686,8 @@ instance ItBe_Addon_Prot_TOTAL(C_Item)
 {
 	name = NAME_Addon_Belt;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_BELT | ITEM_MULTI;
+	flags = ITEM_BELT;
 	value = Value_ItBE_Addon_Prot_Total;
-//	visual = "ItMi_Belt_02.3ds";
 	visual = "ItMi_Belt_10.3ds";
 	visual_skin = 0;
 	material = MAT_LEATHER;

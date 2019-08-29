@@ -128,8 +128,6 @@ func int DIA_Mika_WASGEFAEHRLICH_Condition()
 
 func void DIA_Mika_WASGEFAEHRLICH_Info()
 {
-	var C_Item itm;
-	itm = Npc_GetEquippedArmor(other);
 	AI_Output(other,self,"DIA_Mika_WASGEFAEHRLICH_15_00");	//А что такого опасного здесь?
 	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_01");	//Много чего.
 	AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_02");	//Ну, например, бандиты. Они только и ждут, когда к ним в лапы попадет кто-нибудь вроде тебя.
@@ -137,7 +135,7 @@ func void DIA_Mika_WASGEFAEHRLICH_Info()
 	{
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_03");	//А если тебя не поймают бандиты, то дикие животные из леса или наемники, которые шляются вокруг, позаботятся о тебе.
 	};
-	if(!Npc_HasEquippedArmor(other) || Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M) || Hlp_IsItem(itm,ITAR_Vlk_L) || Hlp_IsItem(itm,ITAR_Vlk_M) || Hlp_IsItem(itm,ITAR_Vlk_H))
+	if(C_MikaPeasantCheck(other))
 	{
 		AI_Output(self,other,"DIA_Mika_WASGEFAEHRLICH_12_04");	//Так что постарайся сначала хотя бы добыть приличные доспехи. Без них тут нечего делать.
 	};
@@ -166,7 +164,7 @@ func int DIA_Mika_WASKOSTETHILFE_Condition()
 func void DIA_Mika_WASKOSTETHILFE_Info()
 {
 	AI_Output(other,self,"DIA_Mika_WASKOSTETHILFE_15_00");	//Ну, предположим, я обращусь к тебе за помощью. Сколько это будет мне стоить?
-	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
+	if((other.guild == GIL_PAL) || (other.guild == GIL_KDF) || C_MikaMILMCheck(other))
 	{
 		AI_Output(self,other,"DIA_Mika_WASKOSTETHILFE_ja_12_01");	//Потрясающе. Если тебе понадобится моя помощь, ты знаешь, где найти меня.
 		Mika_Helps = TRUE;
@@ -219,7 +217,7 @@ instance DIA_Mika_UEBERLEGT(C_Info)
 
 func int DIA_Mika_UEBERLEGT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF))
+	if(Npc_KnowsInfo(other,DIA_Mika_WASKOSTETHILFE) && (Mika_Helps == FALSE) && (other.guild != GIL_PAL) && (other.guild != GIL_KDF) && !C_MikaMILMCheck(other))
 	{
 		return TRUE;
 	};
@@ -268,6 +266,10 @@ func int DIA_Mika_HILFE_Condition()
 		{
 			return TRUE;
 		};
+		if(C_MikaMILMCheck(other))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -280,7 +282,7 @@ func void DIA_Mika_HILFE_Info()
 	Info_AddChoice(DIA_Mika_HILFE,Dialog_Back,DIA_Mika_HILFE_BACK);
 	Info_AddChoice(DIA_Mika_HILFE,"Меня преследуют бандиты.",DIA_Mika_HILFE_schongut);
 	Info_AddChoice(DIA_Mika_HILFE,"На меня напали монстры.",DIA_Mika_HILFE_monster);
-	if((!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo)) && ((Akils_SLDStillthere == TRUE) || Npc_KnowsInfo(other,DIA_Sarah_Bauern)))
+	if(!C_AkilFarmIsFree() && (Akils_SLDStillthere == TRUE) && (Kapitel < 4))
 	{
 		Info_AddChoice(DIA_Mika_HILFE,"На фермера Акила напали наемники.",DIA_Mika_HILFE_Akil);
 	};
@@ -329,9 +331,12 @@ instance DIA_Mika_Zack(C_Info)
 
 func int DIA_Mika_Zack_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_FARM2_PATH_03") < 500) && (!Npc_IsDead(Alvares) || !Npc_IsDead(Engardo)))
+	if((Npc_GetDistToWP(self,"NW_FARM2_PATH_03") < 500) && (Kapitel < 4))
 	{
-		return TRUE;
+		if(!C_AkilFarmIsFree())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -367,9 +372,16 @@ instance DIA_Mika_WIEDERNACHHAUSE(C_Info)
 
 func int DIA_Mika_WIEDERNACHHAUSE_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_FARM2_PATH_03") < 10000) && Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
+	if(Npc_GetDistToWP(self,"NW_FARM2_PATH_03") < 1000)
 	{
-		return TRUE;
+		if(C_AkilFarmIsFree())
+		{
+			return TRUE;
+		};
+		if(Kapitel >= 4)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -402,7 +414,7 @@ func int DIA_Mika_Kap3u4u5_PERM_Condition()
 	{
 		return TRUE;
 	};
-	if(Npc_KnowsInfo(other,DIA_Mika_Zack) && Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
+	if(Npc_KnowsInfo(other,DIA_Mika_WIEDERNACHHAUSE))
 	{
 		return TRUE;
 	};

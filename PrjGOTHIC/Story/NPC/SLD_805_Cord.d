@@ -24,7 +24,7 @@ instance SLD_805_Cord(Npc_Default)
 func void Rtn_Start_805()
 {
 	TA_Practice_Sword(7,40,22,40,"NW_BIGFARM_CORD");
-	TA_Sleep(22,40,7,40,"NW_BIGFARM_HOUSE_08");
+	TA_Sleep(22,40,7,40,"NW_BIGFARM_HOUSE_15");
 };
 
 func void Rtn_PreRangerMeeting_805()

@@ -86,15 +86,17 @@ func void DIA_Rod_WannaLearn_Info()
 	AI_Output(other,self,"DIA_Rod_WannaLearn_15_00");	//“ы можешь обучить мен€ владению двуручным оружием?
 	if((Rod_WetteGewonnen == TRUE) || (self.aivar[AIV_DefeatedByPlayer] == TRUE))
 	{
-		AI_Output(self,other,"DIA_Rod_WannaLearn_06_01");	//я неплохой боец, но это не означает, что € хороший учитель.
-		AI_Output(self,other,"DIA_Rod_WannaLearn_06_02");	//» все же € думаю, € могу показать тебе основы бо€ двуручным оружием.
 		if(!Npc_HasItems(self,ItMw_2h_Rod))
 		{
 			AI_Output(self,other,"DIA_Rod_WannaLearn_06_03");	//ƒа, если ты отдашь мне назад мой меч.
 		}
 		else
 		{
+			AI_Output(self,other,"DIA_Rod_WannaLearn_06_01");	//я неплохой боец, но это не означает, что € хороший учитель.
+			AI_Output(self,other,"DIA_Rod_WannaLearn_06_02");	//» все же € думаю, € могу показать тебе основы бо€ двуручным оружием.
 			Rod_Teach2H = TRUE;
+			Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
+			B_LogEntry(Topic_SoldierTeacher,"–од может показать мне, как лучше владеть двуручным оружием.");
 		};
 	}
 	else
@@ -167,6 +169,8 @@ func void DIA_Rod_Teach_2H_5()
 };
 
 
+var int DIA_Rod_WannaJoin_noPerm;
+
 instance DIA_Rod_WannaJoin(C_Info)
 {
 	npc = SLD_804_Rod;
@@ -180,7 +184,7 @@ instance DIA_Rod_WannaJoin(C_Info)
 
 func int DIA_Rod_WannaJoin_Condition()
 {
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) && (DIA_Rod_WannaJoin_noPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -212,8 +216,9 @@ func void DIA_Rod_WannaJoin_Info()
 			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 		};
+		SCKnowsSLDVotes = TRUE;
 		B_LogEntry(TOPIC_SLDRespekt,"я получу голос –ода, если € захочу присоединитьс€ к наемникам.");
-		DIA_Rod_WannaJoin.permanent = FALSE;
+		DIA_Rod_WannaJoin_noPerm = TRUE;
 	}
 	else
 	{
@@ -429,7 +434,7 @@ func void DIA_Rod_Wette_GiveBack2()
 	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
 	if(Rod_WetteGewonnen == FALSE)
 	{
-		AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01");	//ƒа ты просто подлец после этого!
+		AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01");	//ƒа ты просто слабак!
 	};
 	Info_ClearChoices(DIA_Rod_Wette);
 };
@@ -439,7 +444,8 @@ func void DIA_Rod_Wette_KeepIt()
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_00");	//ƒумаю, что нет...
 	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_01");	//(угрожающе) „то это значит?
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_02");	//Ћучше € подержу его у себ€ немного.
-	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_03");	//Ќу, подожди, ублюдок!
+	AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01");	//ƒа ты просто подлец после этого!
+	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_03");	//Ќу, подожди, ублюдок...
 	Info_ClearChoices(DIA_Rod_Wette);
 	B_RemoveFakeWeapon(other);
 	AI_StopProcessInfos(self);

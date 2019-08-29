@@ -173,7 +173,14 @@ func void B_Say_AttackEnd()
 	{
 		if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 		{
-			B_Say(self,other,"$THEREISNOFIGHTINGHERE");
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares))
+			{
+				B_Say(self,other,"$ILIKEIT");
+			}
+			else
+			{
+				B_Say(self,other,"$THEREISNOFIGHTINGHERE");
+			};
 		};
 		return;
 	};

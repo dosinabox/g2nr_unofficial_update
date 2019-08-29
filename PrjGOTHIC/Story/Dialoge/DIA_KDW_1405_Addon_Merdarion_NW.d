@@ -80,6 +80,20 @@ func void DIA_Addon_Merdarion_Aufgabe_Info()
 	AI_Output(self,other,"DIA_Addon_Merdarion_Aufgabe_06_04");	//(задумываясь) Я даже, пожалуй, никогда не слышал и не читал про нее...
 	Npc_ExchangeRoutine(self,"START");
 	B_StartOtherRoutine(Cronos_NW,"START");
+	if(SC_KnowsPortal == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+		if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Atlantis))
+		{
+			B_LogEntry(TOPIC_Addon_KDW,"Маги Воды считают, что за порталом находится древний затерянный город.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_Addon_KDW,"Маги Воды нашли портал, который ведет в неизвестную часть Хориниса.");
+		};
+		SC_KnowsPortal = TRUE;
+	};
 };
 
 
@@ -212,7 +226,7 @@ func int DIA_Addon_Merdarion_Teleportstein_Condition()
 func void DIA_Addon_Merdarion_Teleportstein_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_Teleportstein_15_00");	//Как быстрее всего добраться в город?
-	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_01");	//Я советую тебе пойти тем же путем, что ты и пришел.
+	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_01");	//Я тебе советую пойти тем же путем, что ты и пришел.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_02");	//(прикидывая) Но ты также можешь... Нет, это слишком опасно.
 	AI_Output(other,self,"DIA_Addon_Merdarion_Teleportstein_15_03");	//Выкладывай.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_06_04");	//Ладно. Строители этих залов передвигались своим способом.
@@ -245,9 +259,9 @@ func void DIA_Addon_Merdarion_Teleportstein_key()
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_key_06_01");	//(неуверенно) Правда? Но я не отвечаю за последствия.
 	AI_Output(other,self,"DIA_Addon_Merdarion_Teleportstein_key_15_02");	//Давай ключ.
 	AI_Output(self,other,"DIA_Addon_Merdarion_Teleportstein_key_06_03");	//Если ты так хочешь. Пожалуйста.
-	CreateInvItems(self,itke_portaltempelwalkthrough_addon,1);
-	B_GiveInvItems(self,other,itke_portaltempelwalkthrough_addon,1);
-	SC_GotPORTALTEMPELWALKTHROUGHKey = TRUE;
+	CreateInvItems(self,ItKe_PortalTempelWalkthrough_Addon,1);
+	B_GiveInvItems(self,other,ItKe_PortalTempelWalkthrough_Addon,1);
+	SC_GotPortalTempelWalkthroughKey = TRUE;
 	Log_CreateTopic(TOPIC_Addon_TeleportsNW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_TeleportsNW,LOG_Running);
 	B_LogEntry(TOPIC_Addon_TeleportsNW,"Мердарион дал мне ключ от запертой двери. За ней находится телепорт, который перенесет меня обратно к городу.");
@@ -278,7 +292,10 @@ func void DIA_Addon_Merdarion_WHereOtherTeleports_Info()
 	AI_Output(other,self,"DIA_Addon_Merdarion_WHereOtherTeleports_15_00");	//Где остальные телепортационные камни?
 	AI_Output(self,other,"DIA_Addon_Merdarion_WHereOtherTeleports_06_01");	//Мы пока что нашли только один, где-то посередине Хориниса.
 	AI_Output(self,other,"DIA_Addon_Merdarion_WHereOtherTeleports_06_02");	//Рядом с таверной 'Мертвая гарпия'.
-	B_LogEntry(TOPIC_Addon_TeleportsNW,"Рядом с таверной 'Мертвая гарпия' должен быть еще один телепорт.");
+	if(!Npc_KnowsInfo(other,DIA_Addon_Orlan_Teleportstein))
+	{
+		B_LogEntry(TOPIC_Addon_TeleportsNW,"Рядом с таверной 'Мертвая гарпия' должен быть еще один телепорт.");
+	};
 };
 
 

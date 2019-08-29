@@ -140,7 +140,10 @@ instance DIA_Addon_Skip_Job(C_Info)
 
 func int DIA_Addon_Skip_Job_Condition()
 {
-	return TRUE;
+	if(GregIsBack == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Skip_Job_Info()
@@ -194,9 +197,12 @@ instance DIA_Addon_Skip_Transport(C_Info)
 
 func int DIA_Addon_Skip_Transport_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Job) && (self.aivar[AIV_PARTYMEMBER] == FALSE))
+	if(self.aivar[AIV_PARTYMEMBER] == FALSE)
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Addon_Skip_Job) || (GregIsBack == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -273,7 +279,7 @@ instance DIA_Addon_Skip_ArmorPrice(C_Info)
 
 func int DIA_Addon_Skip_ArmorPrice_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) && (GregIsBack == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) && (GregIsBack == FALSE) && !Npc_HasItems(other,ITAR_BDT_M) && !Npc_HasItems(other,ITAR_BDT_H) && !Npc_HasItems(other,ITAR_Thorus_Addon))
 	{
 		return TRUE;
 	};
@@ -299,7 +305,7 @@ instance DIA_Addon_Skip_GregsHut(C_Info)
 	condition = DIA_Addon_Skip_GregsHut_Condition;
 	information = DIA_Addon_Skip_GregsHut_Info;
 	permanent = FALSE;
-	description = "Ты можешь сказать, как попасть в хижину Грега?";
+	description = "Ты можешь сказать, как попасть в его хижину?";
 };
 
 
@@ -329,7 +335,7 @@ instance DIA_Addon_Skip_Francis(C_Info)
 	condition = DIA_Addon_Skip_Francis_Condition;
 	information = DIA_Addon_Skip_Francis_Info;
 	permanent = FALSE;
-	description = "Что ты мне можешь сказать о Фрэнсисе?";
+	description = "Что ты скажешь о Фрэнсисе?";
 };
 
 
@@ -347,10 +353,16 @@ func void DIA_Addon_Skip_Francis_Info()
 	AI_Output(self,other,"DIA_Addon_Skip_Francis_08_01");	//Это наш казначей.
 	AI_Output(self,other,"DIA_Addon_Skip_Francis_08_02");	//Капитан ему доверяет. Поэтому он оставил Фрэнсиса за старшего.
 	AI_Output(self,other,"DIA_Addon_Skip_Francis_08_03");	//Но никто из наших не воспринимает его всерьез.
-	AI_Output(self,other,"DIA_Addon_Skip_Francis_08_04");	//Если хочешь узнать больше, поговори с Сэмюэлем.
-	AI_Output(self,other,"DIA_Addon_Skip_Francis_08_05");	//У него лаборатория в небольшой пещере на севере отсюда.
-	AI_Output(self,other,"DIA_Addon_Skip_Francis_08_06");	//Нет в лагере такого человека, о котором Сэмюэль не знал бы всю подноготную...
-	B_LogEntry(TOPIC_Addon_BDTRuestung,"Я должен поговорить с Сэмюэлем. Возможно, он поможет мне.");
+	if(!Npc_IsDead(Samuel))
+	{
+		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_04");	//Если хочешь узнать больше, поговори с Сэмюэлем.
+		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_05");	//У него лаборатория в небольшой пещере на севере отсюда.
+		AI_Output(self,other,"DIA_Addon_Skip_Francis_08_06");	//Нет в лагере такого человека, о котором Сэмюэль не знал бы всю подноготную...
+		if(MIS_Greg_ScoutBandits == FALSE)
+		{
+			B_LogEntry(TOPIC_Addon_BDTRuestung,"Я должен поговорить с Сэмюэлем. Возможно, он поможет мне.");
+		};
+	};
 };
 
 
@@ -367,7 +379,7 @@ instance DIA_Addon_Skip_Raven(C_Info)
 
 func int DIA_Addon_Skip_Raven_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits) == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_Bandits))
 	{
 		return TRUE;
 	};
@@ -378,7 +390,7 @@ func void DIA_Addon_Skip_Raven_Info()
 	AI_Output(other,self,"DIA_Addon_Skip_Raven_15_00");	//Ты когда-нибудь видел Ворона?
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_01");	//Да, бывало. Когда мы с Генри дежурили у ворот, мы наблюдали, как Ворон размещает своих людей в башне на юге.
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_02");	//От нее до нашего лагеря камень добросить можно. (смеется) Понятно, что они будут за нами шпионить.
-	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_03");	//А еще я видел, как он расправляется с людьми, которые ему не подчиняются.
+	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_03");	//А еще я видел, как они расправляются с людьми, которые ему не подчиняются.
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_04");	//С теми, кто не выполняет его приказ до последнего слова, у него разговор короткий.
 	AI_Output(self,other,"DIA_Addon_Skip_Raven_08_05");	//Запомни мои слова: не связывайся с Вороном.
 };
@@ -868,7 +880,7 @@ instance DIA_Addon_Skip_AllRazorsDead(C_Info)
 
 func int DIA_Addon_Skip_AllRazorsDead_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_AllCanyonRazorDead())
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 800) && C_AllCanyonRazorDead())
 	{
 		return TRUE;
 	};

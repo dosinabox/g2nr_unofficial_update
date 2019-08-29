@@ -34,7 +34,14 @@ instance DIA_Mortis_Hallo(C_Info)
 
 func int DIA_Mortis_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+	if(!Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+	{
+		if(Npc_IsInState(self,ZS_Talk))
+		{
+			return TRUE;
+		};
+	}
+	else if(other.guild == GIL_MIL)
 	{
 		return TRUE;
 	};
@@ -42,7 +49,14 @@ func int DIA_Mortis_Hallo_Condition()
 
 func void DIA_Mortis_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Mortis_Hallo_13_00");	//Что тебе нужно? Пека здесь нет. А без него ты ничего не получишь. Заходи позже.
+	if(!Npc_KnowsInfo(other,DIA_Peck_FOUND_PECK) && (Kapitel < 3))
+	{
+		AI_Output(self,other,"DIA_Mortis_Hallo_13_00");	//Что тебе нужно? Пека здесь нет. А без него ты ничего не получишь. Заходи позже.
+	}
+	else if(other.guild == GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Mortis_Waffe_13_01");	//Ты только что вступил в наши ряды? Ну, тогда добро пожаловать.
+	};
 };
 
 
@@ -109,7 +123,7 @@ instance DIA_Mortis_Redlight(C_Info)
 	condition = DIA_Mortis_Redlight_Condition;
 	information = DIA_Mortis_Redlight_Info;
 	permanent = FALSE;
-	description = "Ты хорошо знаешь портовый квартал?";
+	description = "Я хочу найти того, кто продает болотную траву.";
 };
 
 

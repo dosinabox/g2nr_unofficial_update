@@ -235,8 +235,11 @@ func void Use_William_01()
 	Doc_Show(nDocID);
 	if(FoundDeadWilliam == FALSE)
 	{
-		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		if(Sklaven_Flucht == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
+		};
 		B_LogEntry(TOPIC_Addon_MissingPeople,"Рыбак из Хориниса Вильям мертв. Я нашел его тело в Яркендаре.");
 		FoundDeadWilliam = TRUE;
 	};
@@ -608,10 +611,10 @@ func void UseAxtAnleitung()
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_GetTalentSkill(hero,NPC_TALENT_SMITH) && (Knows_Banditenaxt == FALSE))
+		if((Npc_GetTalentSkill(self,NPC_TALENT_SMITH) > 0) && (Knows_Banditenaxt == FALSE))
 		{
 			Knows_Banditenaxt = TRUE;
-			B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужен 1 кусок руды, 3 зуба и 1 дополнительная заготовка.");
+			B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужен 1 кусок руды, 3 зуба и 1 дополнительная стальная заготовка.");
 		};
 	};
 };
@@ -650,6 +653,7 @@ func void UseSummonAncientGhost()
 			Snd_Play("MFX_Firestorm_Cast");
 			Snd_Play("MFX_Lightning_Origin");
 			SC_SummonedAncientGhost = TRUE;
+			B_InitNpcGlobals();
 		}
 		else
 		{

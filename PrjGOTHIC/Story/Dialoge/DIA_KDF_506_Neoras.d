@@ -317,6 +317,12 @@ func void DIA_Neoras_BrewPotion_Info()
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_01");	//Для новичка ты слишком нетерпелив. Иди, занимайся своими обязанностями.
 		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_02");	//Ты можешь купить все, что тебе нужно, у Горакса.
+		if(Gorax_Trade == FALSE)
+		{
+			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+			B_LogEntry(Topic_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
+			Gorax_Trade = TRUE;
+		};
 	}
 	else
 	{
@@ -363,6 +369,8 @@ func void DIA_Neoras_BrewForMe_Back()
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
 };
 
+var int Neoras_Ingrediences_Advise;
+
 func void DIA_Neoras_BrewForMe_Speed()
 {
 	AI_Output(other,self,"DIA_Neoras_BrewForMe_Speed_15_00");	//Свари мне зелье скорости.
@@ -370,8 +378,6 @@ func void DIA_Neoras_BrewForMe_Speed()
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Speed_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 		AI_Output(other,self,"DIA_Neoras_BrewForMe_Speed_15_02");	//Да, вот, держи.
-//		B_GiveInvItems(other,self,ItPl_Speed_Herb_01,1);
-//		B_GiveInvItems(other,self,ItPl_Temp_Herb,1);
 		Npc_RemoveInvItems(other,ItPl_Speed_Herb_01,1);
 		Npc_RemoveInvItems(other,ItPl_Temp_Herb,1);
 		AI_PrintScreen("Снеппер-трава отдано",-1,31,FONT_ScreenSmall,2);
@@ -387,6 +393,12 @@ func void DIA_Neoras_BrewForMe_Speed()
 	else
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Speed_01_04");	//У тебя нет необходимых ингредиентов. Возвращайся, когда соберешь их.
+		if(Neoras_Ingrediences_Advise == FALSE)
+		{
+			AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Speed_15_00");	//Какие ингредиенты нужны для зелья ускорения?
+			AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
+			Neoras_Ingrediences_Advise = TRUE;
+		};
 	};
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
 	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
@@ -402,8 +414,6 @@ func void DIA_Neoras_BrewForMe_Mana()
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Mana_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 		AI_Output(other,self,"DIA_Neoras_BrewForMe_Mana_15_02");	//Да, вот, держи.
-//		B_GiveInvItems(other,self,ItPl_Mana_Herb_02,2);
-//		B_GiveInvItems(other,self,ItPl_Temp_Herb,1);
 		Npc_RemoveInvItems(other,ItPl_Mana_Herb_02,2);
 		Npc_RemoveInvItems(other,ItPl_Temp_Herb,1);
 		AI_PrintScreen("2 предметов отдано (Огненная трава)",-1,31,FONT_ScreenSmall,2);
@@ -419,6 +429,12 @@ func void DIA_Neoras_BrewForMe_Mana()
 	else
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Mana_01_04");	//У тебя нет необходимых ингредиентов. Возвращайся, когда соберешь их.
+		if(Neoras_Ingrediences_Advise == FALSE)
+		{
+			AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Mana_15_00");	//Какие ингредиенты нужны для экстракта маны?
+			AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
+			Neoras_Ingrediences_Advise = TRUE;
+		};
 	};
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
 	Info_AddChoice(DIA_Neoras_BrewForMe,Dialog_Back,DIA_Neoras_BrewForMe_Back);
@@ -434,8 +450,6 @@ func void DIA_Neoras_BrewForMe_Health()
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Health_01_01");	//Хорошо, у тебя есть необходимые ингредиенты и золото?
 		AI_Output(other,self,"DIA_Neoras_BrewForMe_Health_15_02");	//Да, вот, держи.
-//		B_GiveInvItems(other,self,ItPl_Health_Herb_02,2);
-//		B_GiveInvItems(other,self,ItPl_Temp_Herb,1);
 		Npc_RemoveInvItems(other,ItPl_Health_Herb_02,2);
 		Npc_RemoveInvItems(other,ItPl_Temp_Herb,1);
 		AI_PrintScreen("2 предметов отдано (Лечебное растение)",-1,31,FONT_ScreenSmall,2);

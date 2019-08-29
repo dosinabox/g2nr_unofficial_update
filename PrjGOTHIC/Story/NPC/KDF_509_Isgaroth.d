@@ -7,12 +7,9 @@ instance KDF_509_Isgaroth(Npc_Default)
 	voice = 1;
 	flags = 0;
 	npcType = npctype_main;
-	aivar[AIV_ToughGuy] = TRUE;
-	aivar[AIV_ToughGuyNewsOverride] = TRUE;
-	aivar[AIV_IGNORE_Murder] = TRUE;
-	aivar[AIV_IGNORE_Theft] = TRUE;
-	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	B_SetAttributesToChapter(self,6);
+	self.attribute[ATR_STRENGTH] = 1;
+	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 //	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Tough_Okyl,BodyTex_N,ITAR_KDF_L);

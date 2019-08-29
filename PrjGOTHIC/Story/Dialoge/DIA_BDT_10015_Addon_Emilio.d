@@ -346,7 +346,7 @@ func void DIA_Addon_Emilio_GegenEsteban_Info()
 	AI_Output(other,self,"DIA_Addon_Emilio_GegenEsteban_15_00");	//Что ты имеешь против Эстебана?
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_01");	//Все, о чем эта свинья думает - это деньги.
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_02");	//Каждые несколько дней одного из нас съедает краулер.
-	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_03");	//Но Эстебан даже и не думает послать в шахту несколько бойцов.
+	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_03");	//Но Эстебан даже не думает послать в шахту несколько бойцов.
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_04");	//А все почему? Потому что эти ребята из личной гвардии Ворона и Эстебан до дрожи в коленях боится говорить с ними.
 	AI_Output(self,other,"DIA_Addon_Emilio_GegenEsteban_10_05");	//Ему проще дать нам всем подохнуть!
 };

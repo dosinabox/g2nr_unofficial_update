@@ -1,33 +1,48 @@
 
 func void B_ENTER_NEWWORLD_Kapitel_1()
 {
-	if((RavenIsDead == TRUE) && Npc_IsDead(Myxir_CITY))
+	if((RavenIsDead == TRUE) && (MyxirMovedToNW == FALSE))
 	{
 		Wld_InsertNpc(KDW_140300_Addon_Myxir_CITY,"CITY1");
+		MyxirMovedToNW = TRUE;
 	};
 	if(ENTERED_ADDONWORLD == TRUE)
 	{
-		B_RemoveNpc(Saturas_NW);
-		B_RemoveNpc(Cronos_NW);
-		B_RemoveNpc(Nefarius_NW);
-		B_RemoveNpc(Myxir_NW);
-		B_RemoveNpc(Riordian_NW);
-		B_RemoveNpc(Merdarion_NW);
-		B_RemoveNpc(Skip_NW);
-		if(SC_GotPORTALTEMPELWALKTHROUGHKey == FALSE)
+		B_RemoveNpc(KDW_1400_Addon_Saturas_NW);
+		B_RemoveNpc(KDW_1401_Addon_Cronos_NW);
+		B_RemoveNpc(KDW_1402_Addon_Nefarius_NW);
+		B_RemoveNpc(KDW_1403_Addon_Myxir_NW);
+		B_RemoveNpc(KDW_1404_Addon_Riordian_NW);
+		B_RemoveNpc(KDW_1405_Addon_Merdarion_NW);
+		B_RemoveNpc(PIR_1301_Addon_Skip_NW);
+		if(SC_GotPortalTempelWalkthroughKey == FALSE)
 		{
 			Wld_InsertNpc(Stoneguardian_MerdarionsSchluessel,"NW_TROLLAREA_PORTALTEMPEL_22");
-			SC_GotPORTALTEMPELWALKTHROUGHKey = TRUE;
+			SC_GotPortalTempelWalkthroughKey = TRUE;
 		};
 	};
-	if((Sklaven_Flucht == TRUE) && (Sklaven_weg == FALSE))
+	if((Sklaven_Flucht == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
-		Wld_InsertNpc(STRF_1123_Addon_Patrick_NW,"NW_BIGFARM_PATRICK");
-		Wld_InsertNpc(STRF_1124_Addon_Monty_NW,"NW_CITY_HABOUR_WERFT_IN_01");
-		Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TANOK");
-		Wld_InsertNpc(STRF_1126_Addon_Telbor_NW,"NW_FARM2_FIELD_TELBOR");
-		Wld_InsertNpc(STRF_1127_Addon_Pardos_NW,"NW_FARM3_BENGAR");
-		Sklaven_weg = TRUE;
+		if(Patrick_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1123_Addon_Patrick_NW,"NW_BIGFARM_PATRICK");
+		};
+		if(Monty_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1124_Addon_Monty_NW,"NW_CITY_HABOUR_WERFT_IN_01");
+		};
+		if(Tonak_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1125_Addon_Tonak_NW,"NW_FARM2_FIELD_TANOK");
+		};
+		if(Telbor_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1126_Addon_Telbor_NW,"NW_FARM2_FIELD_TELBOR");
+		};
+		if(Pardos_DiedInADW == FALSE)
+		{
+			Wld_InsertNpc(STRF_1127_Addon_Pardos_NW,"NW_FARM3_BENGAR");
+		};
 		MissingPeopleReturnedHome = TRUE;
 	};
 };
@@ -39,7 +54,7 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 {
 	if(GregIsBack == TRUE)
 	{
-		B_RemoveNpc(Greg_NW);
+		B_RemoveNpc(PIR_1300_Addon_Greg_NW);
 	};
 	if(EnterNW_Kapitel2 == FALSE)
 	{
@@ -130,8 +145,6 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			Dyrian.guild = GIL_NONE;
 			Npc_SetTrueGuild(Dyrian,GIL_NONE);
-			//CreateInvItem(Dyrian,ITAR_Bau_L);
-			//AI_EquipArmor(Dyrian,ITAR_Bau_L);
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
 		B_KillThievesGuild();
@@ -159,20 +172,24 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			B_StartOtherRoutine(Hodges,"BENNETWEG");
 		};
-		if(Npc_IsDead(DiegoNW))
+		if(!Npc_IsDead(Lares) && (RangerMeetingRunning != LOG_Running))
 		{
-			Wld_InsertNpc(PC_Thief_NW,"NW_CITY_ENTRANCE_01");
-			B_StartOtherRoutine(DiegoNW,"START");
-		};
-		if(Npc_IsDead(GornNW_vor_DJG))
-		{
-			Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");
-			B_StartOtherRoutine(GornNW_vor_DJG,"START");
-		};
-		if(!Npc_IsDead(Lares))
-		{
+			if(LaresGuide_ZuOnar != LOG_SUCCESS)
+			{
+				LaresGuide_ZuOnar = FALSE;
+			};
+			if(LaresGuide_ZumPortal != 8)
+			{
+				LaresGuide_ZumPortal = 0;
+			};
+			if(LaresGuide_OrnamentForest != 3)
+			{
+				LaresGuide_OrnamentForest = 0;
+			};
 			B_StartOtherRoutine(Lares,"START");
 		};
+		Wld_InsertNpc(PC_Fighter_NW_vor_DJG,"BIGFARM");
+		Wld_InsertNpc(PC_Thief_NW,"NW_CITY_ENTRANCE_01");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"NW_PASS_GATE_02");
 		B_KillNpc(PAL_297_Ritter);
 		B_KillNpc(PAL_298_Ritter);
@@ -188,11 +205,18 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			{
 				B_StartOtherRoutine(Balthasar,"FleeDMT");
 			};
-			B_StartOtherRoutine(BAU_933_Rega,"FleeDMT");
-			B_StartOtherRoutine(BAU_934_Babera,"FleeDMT");
-			B_StartOtherRoutine(BAU_937_Bauer,"FleeDMT");
-			B_StartOtherRoutine(BAU_938_Bauer,"FleeDMT");
-			B_StartOtherRoutine(Bronko,"FleeDMT");
+			B_StartOtherRoutine(Rega,"FleeDMT");
+			B_StartOtherRoutine(Babera,"FleeDMT");
+			B_StartOtherRoutine(SekobsBauer1,"FleeDMT");
+			B_StartOtherRoutine(SekobsBauer2,"FleeDMT");
+			if(MIS_Sekob_Bronko_eingeschuechtert == LOG_SUCCESS)
+			{
+				B_StartOtherRoutine(Bronko,"FleeDMT_Field");
+			}
+			else
+			{
+				B_StartOtherRoutine(Bronko,"FleeDMT_Road");
+			};
 			Wld_InsertNpc(DMT_DementorAmbientSekob1,"NW_FARM4_IN_06");
 			Wld_InsertNpc(DMT_DementorAmbientSekob2,"NW_FARM4_IN_02");
 			Wld_InsertNpc(DMT_DementorAmbientSekob3,"NW_FARM4_IN_03");
@@ -214,7 +238,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Peck.aivar[AIV_IGNORE_Theft] = FALSE;
 			Peck.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 		};
-		B_RemoveNpc(Lothar);
+		B_RemoveNpc(PAL_203_Lothar);
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Giant_Bug,"NW_FARM4_WOOD_MONSTER_N_1_MONSTER");
 		Wld_InsertNpc(Bloodfly,"NW_TROLLAREA_RIVERSIDE_09");
@@ -268,7 +292,8 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_12");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_13");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_14");
-		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_15");
+//		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_15"); точка 15 не существует, замена на неиспользуемую 01
+		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_01");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_16");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_17");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_18");
@@ -281,6 +306,14 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(BDT_1026_Bandit_H,"NW_FOREST_CAVE1_03");
 		Wld_InsertNpc(BDT_1027_Bandit_H,"NW_FOREST_CAVE1_04");
 		Wld_InsertNpc(Follow_Sheep_AKIL,"NW_FOREST_CAVE1_IN_02");
+		if(!Npc_IsDead(Fester))
+		{
+			B_StartOtherRoutine(Fester,"CH3");
+			if(MIS_Fester_KillBugs == LOG_Running)
+			{
+				MIS_Fester_KillBugs = LOG_FAILED;
+			};
+		};
 		if(!Npc_IsDead(Malak))
 		{
 			B_StartOtherRoutine(Malak,"FleeFromPass");
@@ -346,24 +379,29 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 				CreateInvItems(Fernando,ITWR_DementorObsessionBook_MIS,1);
 			};
 		};
-		if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE) && !Npc_IsDead(Canthar))
+		if(!Npc_IsDead(Canthar))
 		{
-			if(SarahWeaponsRemoved == FALSE)
+			if((MIS_Canthars_KomproBrief != LOG_SUCCESS) && (MIS_Canthars_KomproBrief != FALSE) && (Canthar_Pay == FALSE))
 			{
-				B_GiveTradeInv_Sarah(Sarah);
-				B_RemoveSarahWeapons();
+				if(SarahWeaponsRemoved == FALSE)
+				{
+					B_GiveTradeInv_Sarah(Sarah);
+					B_RemoveSarahWeapons();
+				};
+				B_RemoveNpc(VLK_470_Sarah);
+				B_NpcSetReleased(Canthar);
+				Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
+				Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
+				Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
+				B_StartOtherRoutine(Canthar,"MARKTSTAND");
+				AI_Teleport(Canthar,"NW_CITY_SARAH");
+				Canthar_Sperre = TRUE;
 			};
-			B_RemoveNpc(Sarah);
-			B_NpcSetReleased(Canthar);
-			Canthar.aivar[AIV_IGNORE_Murder] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Theft] = FALSE;
-			Canthar.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
-			B_StartOtherRoutine(Canthar,"MARKTSTAND");
-			AI_Teleport(Canthar,"NW_CITY_SARAH");
-			Canthar_Sperre = TRUE;
-			Canthar_WiederRaus = TRUE;
+			if((Canthar.aivar[AIV_LastFightComment] == FALSE) && (Canthar.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))
+			{
+				Canthar_Sperre = TRUE;
+			};
 		};
-//		CreateInvItems(Lester,ItMw_1h_Bau_Axe,1);
 		if(!Npc_IsDead(Ehnim))
 		{
 			CreateInvItems(Ehnim,ItMi_Moleratlubric_MIS,1);
@@ -642,8 +680,8 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				B_StartOtherRoutine(Randolph,"preStart");
 			};
 		};
-		//возвращение на ферму Онара Альвареса и Энгардо
-		if(TOPIC_END_AkilsSLDStillthere == FALSE)
+//		возвращение на ферму Онара Альвареса и Энгардо
+		if((TOPIC_END_AkilsSLDStillthere == FALSE) && !C_AkilFarmIsFree())
 		{
 			if(!Npc_IsDead(Alvares))
 			{
@@ -665,9 +703,13 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			{
 				B_StartOtherRoutine(Akil,"Start");
 			};
-			if(!Npc_IsDead(Randolph) && (hero.guild != GIL_KDF))
+			if(!Npc_IsDead(Randolph))
 			{
-				B_StartOtherRoutine(Randolph,"Start");
+				if(hero.guild != GIL_KDF)
+				{
+					B_StartOtherRoutine(Randolph,"Start");
+				};
+				Randolph.flags = 0;
 			};
 		};
 		B_KillThievesGuild();
@@ -688,7 +730,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 {
 	if(EnterNW_Kapitel5 == FALSE)
 	{
-		B_RemoveNpc(Xardas);
+		B_RemoveNpc(NONE_100_Xardas);
 		B_StartOtherRoutine(Lester,"XardasWeg");
 		if(!Npc_IsDead(Salandril) && (MIS_Serpentes_BringSalandril_SLD == LOG_SUCCESS))
 		{

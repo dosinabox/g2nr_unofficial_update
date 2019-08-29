@@ -28,9 +28,9 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 {
 	if(EnterOW_Kapitel3 == FALSE)
 	{
-		B_RemoveNpc(MiltenOW);
-		B_RemoveNpc(GornOW);
-		B_RemoveNpc(DiegoOW);
+		B_RemoveNpc(PC_Mage_OW);
+		B_RemoveNpc(PC_Fighter_OW);
+		B_RemoveNpc(PC_ThiefOW);
 		Wld_InsertNpc(Snapper,"SPAWN_OW_MOLERATS_WOOD_OM");
 		Wld_InsertNpc(Snapper,"SPAWN_OW_MOLERATS_WOOD_OM");
 		Wld_InsertNpc(Snapper,"SPAWN_OW_MOLERATS_WOOD_OM");
@@ -90,7 +90,7 @@ func void B_ENTER_OLDWORLD_Kapitel_3()
 		};
 		if(TschuessBilgot == TRUE)
 		{
-			B_RemoveNpc(Bilgot);
+			B_RemoveNpc(VLK_4120_Bilgot);
 		};
 		B_RemoveNpc(OC_Sheep1);
 		B_StartOtherRoutine(Garond,"START");
@@ -120,12 +120,10 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			};
 			EngromIsGone = TRUE;
 		};
-		/*B_RemoveNpc(Geppert);
-		B_RemoveNpc(Kervo);*/
 		if(MIS_Kervo_KillLurker == LOG_SUCCESS)
 		{
-			B_RemoveNpc(Geppert);
-			B_RemoveNpc(Kervo);
+			B_RemoveNpc(STRF_1115_Geppert);
+			B_RemoveNpc(STRF_1116_Kervo);
 		}
 		else
 		{
@@ -134,7 +132,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			Wld_InsertNpc(Lurker,"OW_DJG_VORPOSTEN_01");
 		};
 		B_RemoveNpc(VLK_4106_Dobar);
-		B_RemoveNpc(Parlaf);
+		B_RemoveNpc(VLK_4107_Parlaf);
 		if(!Npc_IsDead(Sengrath))
 		{
 			B_StartOtherRoutine(Sengrath,"OrcBarrier");
@@ -150,7 +148,7 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 		};
 		if(TschuessBilgot == TRUE)
 		{
-			B_RemoveNpc(Bilgot);
+			B_RemoveNpc(VLK_4120_Bilgot);
 		};
 		Wld_InsertNpc(DJG_730_ToterDrachenjaeger,"OC1");
 		B_KillNpc(DJG_730_ToterDrachenjaeger);
@@ -491,14 +489,14 @@ func void B_ENTER_OLDWORLD_Kapitel_5()
 		};
 		if(TschuessBilgot == TRUE)
 		{
-			B_RemoveNpc(Bilgot);
+			B_RemoveNpc(VLK_4120_Bilgot);
 		};
 		B_RemoveNpc(OC_Sheep3);
 		EnterOW_Kapitel5 = TRUE;
 	};
 	if(Biff_FollowsThroughPass == LOG_SUCCESS)
 	{
-		B_RemoveNpc(Biff);
+		B_RemoveNpc(DJG_713_Biff);
 	};
 };
 
@@ -540,7 +538,7 @@ func void b_enter_oldworld()
 	{
 		B_ENTER_OLDWORLD_Kapitel_6();
 	};
-	CurrentLevel = OldWorld_Zen;
+	CurrentLevel = OLDWORLD_ZEN;
 	B_InitNpcGlobals();
 	if((DJG_BiffParty == TRUE) && !Npc_IsDead(Biff))
 	{

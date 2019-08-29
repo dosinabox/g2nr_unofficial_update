@@ -15,7 +15,7 @@ instance ItKe_Lockpick(C_Item)
 	count[5] = value;
 };
 
-instance ItKe_Key_01(C_Item)
+/*instance ItKe_Key_01(C_Item)
 {
 	name = NAME_Key;
 	mainflag = ITEM_KAT_NONE;
@@ -46,7 +46,7 @@ instance ItKe_Key_03(C_Item)
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
-};
+};*/
 
 instance ItKe_City_Tower_01(C_Item)
 {

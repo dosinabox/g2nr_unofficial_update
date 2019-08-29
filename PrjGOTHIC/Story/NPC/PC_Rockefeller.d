@@ -216,7 +216,7 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItem(self,ITAR_DJG_M);
 	CreateInvItem(self,ITAR_DJG_H);
 	CreateInvItem(self,ITAR_DJG_Crawler);
-	CreateInvItem(self,ITAR_DJG_Babe);
+//	CreateInvItem(self,ITAR_DJG_Babe);
 	CreateInvItem(self,ITAR_Xardas);
 	CreateInvItem(self,ITAR_Lester);
 	CreateInvItem(self,ITAR_Diego);
@@ -351,9 +351,9 @@ instance PC_Rockefeller(Npc_Default)
 	CreateInvItem(self,ItPl_Planeberry);
 	CreateInvItem(self,ItPl_Temp_Herb);
 	CreateInvItem(self,ItPl_Perm_Herb);
-	CreateInvItem(self,ItKe_Key_01);
-	CreateInvItem(self,ItKe_Key_02);
-	CreateInvItem(self,ItKe_Key_03);
+//	CreateInvItem(self,ItKe_Key_01);
+//	CreateInvItem(self,ItKe_Key_02);
+//	CreateInvItem(self,ItKe_Key_03);
 	CreateInvItem(self,ItKe_Lockpick);
 	CreateInvItems(self,ItLsTorch,50);
 	CreateInvItem(self,ItMi_Pan);

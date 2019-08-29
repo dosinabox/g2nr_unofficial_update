@@ -83,9 +83,9 @@ func int DIA_Hilda_WasZuEssen_Condition()
 func void DIA_Hilda_WasZuEssen_Info()
 {
 	var int Rueben_TagNull;
+	AI_Output(other,self,"DIA_Hilda_WasZuEssen_15_00");	//Ты дашь мне что-нибудь поесть?
 	if(hero.guild == GIL_NONE)
 	{
-		AI_Output(other,self,"DIA_Hilda_WasZuEssen_15_00");	//Ты дашь мне что-нибудь поесть?
 		if(MIS_Lobart_Rueben == LOG_SUCCESS)
 		{
 			if(!Npc_KnowsInfo(other,DIA_Hilda_PfanneTooLate))
@@ -462,81 +462,6 @@ func void DIA_Hilda_DISTURB_Info()
 	};
 };
 
-/*
-instance DIA_Hilda_KAP4_EXIT(C_Info)
-{
-	npc = BAU_951_Hilda;
-	nr = 999;
-	condition = DIA_Hilda_KAP4_EXIT_Condition;
-	information = DIA_Hilda_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hilda_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hilda_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Hilda_KAP5_EXIT(C_Info)
-{
-	npc = BAU_951_Hilda;
-	nr = 999;
-	condition = DIA_Hilda_KAP5_EXIT_Condition;
-	information = DIA_Hilda_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hilda_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hilda_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Hilda_KAP6_EXIT(C_Info)
-{
-	npc = BAU_951_Hilda;
-	nr = 999;
-	condition = DIA_Hilda_KAP6_EXIT_Condition;
-	information = DIA_Hilda_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hilda_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hilda_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Hilda_PICKPOCKET(C_Info)
 {

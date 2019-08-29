@@ -14,12 +14,12 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItMi_Quartz,2);
 		CreateInvItems(slf,ItMi_Pitch,1);
+		CreateInvItems(slf,ItMi_Flask,15);
 		CreateInvItems(slf,ItPo_Health_01,7);
 		CreateInvItems(slf,ItPo_Health_02,2);
 		CreateInvItems(slf,ItPo_Mana_01,14);
 		CreateInvItems(slf,ItPo_Health_Addon_04,2);
 		CreateInvItems(slf,ItPo_Mana_Addon_04,5);
-		CreateInvItems(slf,ItMi_Flask,15);
 		CreateInvItems(slf,ItWr_Map_AddonWorld,1);
 		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC1,1);
 		CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC2,1);
@@ -43,11 +43,60 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Thunderstorm,2);
 		CreateInvItems(slf,ItSc_Waterfist,1);
 		CreateInvItems(slf,ItSc_SumWolf,2);
+		//перенос инвентаря из Хориниса
+		if(Cronos_NW_ItMi_Flask_Count > 0)
+		{
+			CreateInvItems(slf,ItMi_Flask,Cronos_NW_ItMi_Flask_Count);
+		};
+		if(Cronos_NW_ItMi_Sulfur_Count > 0)
+		{
+			CreateInvItems(slf,ItMi_Sulfur,Cronos_NW_ItMi_Sulfur_Count);
+		};
+		if(Cronos_NW_ItMi_Pitch_Count > 0)
+		{
+			CreateInvItems(slf,ItMi_Pitch,Cronos_NW_ItMi_Pitch_Count);
+		};
+		if(Cronos_NW_ItPo_Mana_01_Count > 0)
+		{
+			CreateInvItems(slf,ItPo_Mana_01,Cronos_NW_ItPo_Mana_01_Count);
+		};
+		if(Cronos_NW_ItPo_Health_01_Count > 0)
+		{
+			CreateInvItems(slf,ItPo_Health_01,Cronos_NW_ItPo_Health_01_Count);
+		};
+		if(Cronos_NW_ItSc_Light_Count > 0)
+		{
+			CreateInvItems(slf,ItSc_Light,Cronos_NW_ItSc_Light_Count);
+		};
+		if(Cronos_NW_ItSc_Firebolt_Count > 0)
+		{
+			CreateInvItems(slf,ItSc_Firebolt,Cronos_NW_ItSc_Firebolt_Count);
+		};
+		if(Cronos_NW_ItSc_Zap_Count > 0)
+		{
+			CreateInvItems(slf,ItSc_Zap,Cronos_NW_ItSc_Zap_Count);
+		};
+		if(Cronos_NW_ItSc_LightHeal_Count > 0)
+		{
+			CreateInvItems(slf,ItSc_LightHeal,Cronos_NW_ItSc_LightHeal_Count);
+		};
+		if(Cronos_NW_ItSc_SumGobSkel_Count > 0)
+		{
+			CreateInvItems(slf,ItSc_SumGobSkel,Cronos_NW_ItSc_SumGobSkel_Count);
+		};
+		if(Cronos_NW_ItSc_Icelance_Count > 0)
+		{
+			CreateInvItems(slf,ItSc_Icelance,Cronos_NW_ItSc_Icelance_Count);
+		};
+		if(Cronos_NW_ItSc_Whirlwind_Count > 0)
+		{
+			CreateInvItems(slf,ItSc_Whirlwind,Cronos_NW_ItSc_Whirlwind_Count);
+		};
 		Cronos_ADW_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Cronos_ADW_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItMi_Quartz,2);
 		CreateInvItems(slf,ItMi_Rockcrystal,2);

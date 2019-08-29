@@ -189,11 +189,13 @@ class C_SVM
 	var string addon_noarmor_bdt;
 	var string addon_diebandit;
 	var string addon_dirtypirate;
+	var string ILikeIt;
 	var string SC_HeyTurnAround;
 	var string SC_HeyTurnAround02;
 	var string SC_HeyTurnAround03;
 	var string SC_HeyTurnAround04;
 	var string SC_HeyWaitASecond;
+//	var string SC_CantUseItem;
 	var string DoesntWork;
 	var string PickBroke;
 	var string NeedKey;
@@ -1743,6 +1745,7 @@ instance SVM_9(C_SVM)
 	addon_noarmor_bdt = "SVM_9_ADDON_ADDON_NOARMOR_BDT";	//У тебя даже нет доспехов. Отвали!
 	addon_diebandit = "SVM_9_ADDON_DIEBANDIT";	//Теперь твоя очередь, разбойник!
 	addon_dirtypirate = "SVM_9_ADDON_DIRTYPIRATE";	//Тебе не следовало показываться здесь, пират!
+	ILikeIt = "SVM_9_MonsterKilled";	//Мне это даже нравится!
 };
 
 instance SVM_10(C_SVM)
@@ -1805,7 +1808,7 @@ instance SVM_10(C_SVM)
 	OhMyHead = "SVM_10_OhMyHead";	//(себе под нос) Ох, моя голова...
 	TheresAFight = "SVM_10_TheresAFight";	//(страстно) А-ах, драка!
 	OhMyGodItsAFight = "SVM_10_OhMyGodItsAFight";	//(потрясенно) Ох, бог мой, драка!
-	GoodVictory = "SVM_10_GoodVictory";	//(с дьявольским смехом) Ты показал ему!
+	GoodVictory = "SVM_10_GoodVictory";	//(дьявольский смех) Ты показал ему!
 	NotBad = "SVM_10_NotBad";	//Неплохо...
 	OhMyGodHesDown = "SVM_10_OhMyGodHesDown";	//(себе под нос) Бог мой! Какая жестокость...
 	CheerFriend01 = "SVM_10_CheerFriend01";	//Да, задай ему!
@@ -2702,6 +2705,7 @@ instance SVM_15(C_SVM)
 	neveropen = "SVM_15_NEVEROPEN";	//Я никогда не смогу открыть этот замок!
 	missingitem = "SVM_15_MISSINGITEM";	//И как я это сделаю?
 	dontknow = "SVM_15_DONTKNOW";	//Хм... Нет...
+//	SC_CantUseItem = "SVM_15_DONTKNOW";	//Хм... Нет...
 	nothingtoget = "SVM_15_NOTHINGTOGET";	//Из этого не выйдет ничего хорошего...
 	nothingtoget02 = "SVM_15_NOTHINGTOGET02";	//Там ничего нет...
 	nothingtoget03 = "SVM_15_NOTHINGTOGET03";	//Нечего взять...
@@ -2710,7 +2714,7 @@ instance SVM_15(C_SVM)
 	Aargh_3 = "SVM_15_Aargh_3";	//Аааааа!
 	Dead = "SVM_15_Dead";	//Аааааа!
 	Awake = "SVM_15_Awake";	//(просыпается)
-	irdoraththereyouare = "SVM_15_IRDORATHTHEREYOUARE";	//Ммм. Так вот ты где скрываешься. Чертовски далеко. Ммм. Чтобы добраться туда, мне понадобится корабль.
+	irdoraththereyouare = "SVM_15_IRDORATHTHEREYOUARE";	//Ммм. Так вот где ты скрываешься. Чертовски далеко. Чтобы туда добраться, мне понадобится корабль.
 	healshrine = "SVM_15_HEALSHRINE";	//Иннос, даруй мне свою помощь и очисти этот алтарь.
 //	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и все такое... Вот так. Надеюсь, это было в последний раз.
 	heallastshrine = "SVM_15_HEALLASTSHRINE";	//Иннос, даруй мне свою помощь и очисти этот алтарь. Вот так. Надеюсь, это был последний.
@@ -2891,7 +2895,7 @@ instance SVM_16(C_SVM)
 	whereto = "SVM_16_WHERETO";	//Куда ты хочешь попасть?
 	oberstadt_2_unterstadt = "SVM_16_OBERSTADT_2_UNTERSTADT";	//Пройди через внутренние ворота, и ты окажешься в нижней части города.
 	unterstadt_2_oberstadt = "SVM_16_UNTERSTADT_2_OBERSTADT";	//От южных ворот города начинается лестница, ведущая к внутренним городским воротам. Там и начинается верхний квартал.
-	unterstadt_2_tempel = "SVM_16_UNTERSTADT_2_TEMPEL";	//Пройди через проход у кузницы, и ты попадешь на храмовую площадь.
+	unterstadt_2_tempel = "SVM_16_UNTERSTADT_2_TEMPEL";	//Пройди через проход кузницы, и ты попадешь на храмовую площадь.
 	unterstadt_2_hafen = "SVM_16_UNTERSTADT_2_HAFEN";	//Иди по дороге от кузницы вниз, и ты попадешь в порт.
 	tempel_2_unterstadt = "SVM_16_TEMPEL_2_UNTERSTADT";	//От храмовой площади в нижнюю часть города ведет проход.
 	tempel_2_markt = "SVM_16_TEMPEL_2_MARKT";	//Встань лицом к храму, а затем иди влево, вдоль городской стены, и ты попадешь на рынок.
@@ -3065,7 +3069,7 @@ instance SVM_17(C_SVM)
 	whereto = "SVM_17_WHERETO";	//Куда ты хочешь попасть?
 	oberstadt_2_unterstadt = "SVM_17_OBERSTADT_2_UNTERSTADT";	//Пройди через внутренние ворота, и ты окажешься в нижней части города.
 	unterstadt_2_oberstadt = "SVM_17_UNTERSTADT_2_OBERSTADT";	//От южных ворот города начинается лестница, ведущая к внутренним городским воротам. Там и начинается верхний квартал.
-	unterstadt_2_tempel = "SVM_17_UNTERSTADT_2_TEMPEL";	//Пройди через проход у кузницы, и ты попадешь на храмовую площадь.
+	unterstadt_2_tempel = "SVM_17_UNTERSTADT_2_TEMPEL";	//Пройди через проход кузницы, и ты попадешь на храмовую площадь.
 	unterstadt_2_hafen = "SVM_17_UNTERSTADT_2_HAFEN";	//Иди по дороге от кузницы вниз, и ты попадешь в порт.
 	tempel_2_unterstadt = "SVM_17_TEMPEL_2_UNTERSTADT";	//От храмовой площади в нижнюю часть города ведет проход.
 	tempel_2_markt = "SVM_17_TEMPEL_2_MARKT";	//Встань лицом к храму, а затем иди влево, вдоль городской стены, и ты попадешь на рынок.
@@ -3097,6 +3101,7 @@ instance SVM_19(C_SVM)
 	Aargh_1 = "SVM_19_Aargh_1";	//Аааааа!
 	Aargh_2 = "SVM_19_Aargh_2";	//Аааааа!
 	Aargh_3 = "SVM_19_Aargh_3";	//Аааааа!
+	EnemyKilled = "SVM_19_EnemyKilled";	//(демонический смех)
 };
 
 

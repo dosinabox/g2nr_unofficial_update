@@ -273,7 +273,7 @@ instance ItMi_Brush(C_Item)
 
 instance ItMi_Joint(C_Item)
 {
-	name = "Косяк из болотной травы";
+	name = NAME_Joint;
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Joint;
@@ -281,7 +281,7 @@ instance ItMi_Joint(C_Item)
 	material = MAT_LEATHER;
 	scemeName = "JOINT";
 	on_state[0] = Use_Joint;
-	description = name;
+	description = "Косяк из болотной травы";
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = 200;
@@ -297,7 +297,7 @@ func void Use_Joint()
 };
 
 
-instance ItMi_Packet(C_Item)
+/*instance ItMi_Packet(C_Item)
 {
 	name = "Пакет";
 	mainflag = ITEM_KAT_NONE;
@@ -307,7 +307,7 @@ instance ItMi_Packet(C_Item)
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	description = name;
-};
+};*/
 
 instance ItMi_Pocket(C_Item)
 {
@@ -328,9 +328,7 @@ instance ItMi_Pocket(C_Item)
 
 func void UsePocket()
 {
-	CreateInvItems(hero,ItMi_Gold,10);
-	Print(PRINT_FoundGold10);
-	Snd_Play("Geldbeutel");
+	B_PlayerFindItem(ItMi_Gold,10);
 };
 
 
@@ -630,7 +628,8 @@ instance ItMi_Quartz(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_zbias = INVCAM_ENTF_RING_STANDARD;
+	inv_zbias = 300;
+//	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 };
 
 instance ItMi_Pitch(C_Item)

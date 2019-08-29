@@ -109,6 +109,7 @@ instance ItMi_Ornament_Addon_Vatras(C_Item)
 	material = MAT_STONE;
 	description = name;
 	text[0] = "Фрагмент большого, богато украшенного кольца.";
+	text[1] = "Его дал мне Ватрас.";
 	inv_zbias = 270;
 };
 
@@ -116,7 +117,7 @@ instance ItWr_Map_NewWorld_Ornaments_Addon(C_Item)
 {
 	name = "Карта Нефариуса";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION | ITEM_MULTI;
+	flags = ITEM_MULTI;
 	value = 200;
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
@@ -154,7 +155,7 @@ instance ItWr_Map_NewWorld_Dexter(C_Item)
 {
 	name = "Карта земель Хориниса";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION | ITEM_MULTI;
+	flags = ITEM_MULTI;
 	value = 200;
 	visual = "ItWr_Map_NW_01.3DS";
 	material = MAT_LEATHER;
@@ -273,7 +274,7 @@ instance ItRi_Ranger_Addon(Rangerring_Prototype)
 	text[1] = "Это кольцо принадлежит мне.";
 };
 
-instance ItRi_LanceRing(Rangerring_Prototype)
+instance ItRi_Ranger_Lance_Addon(Rangerring_Prototype)
 {
 	on_equip = Equip_ItRi_Ranger_Lance;
 	on_unequip = UnEquip_ItRi_Ranger_Lance;
@@ -847,7 +848,6 @@ func void Use_StonePlateCommon()
 		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -867,7 +867,6 @@ instance ItMi_Addon_Stone_01(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-//	text[0] = "Красная каменная табличка.";
 };
 
 func void Use_Addon_Stone_01()
@@ -890,7 +889,6 @@ func void Use_Addon_Stone_01()
 		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -910,7 +908,6 @@ instance ItMi_Addon_Stone_02(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-//	text[0] = "Фиолетовая каменная табличка.";
 };
 
 func void Use_Addon_Stone_02()
@@ -940,7 +937,6 @@ func void Use_Addon_Stone_02()
 		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -960,7 +956,6 @@ instance ItMi_Addon_Stone_03(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-//	text[0] = "Синяя каменная табличка.";
 };
 
 func void Use_Addon_Stone_03()
@@ -982,9 +977,6 @@ func void Use_Addon_Stone_03()
 		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-//	Doc_PrintLine(nDocID,0,"");
-//	Doc_PrintLines(nDocID,0,"");
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -1004,7 +996,6 @@ instance ItMi_Addon_Stone_04(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = name;
-//	text[0] = "Зеленая каменная табличка.";
 };
 
 func void Use_Addon_Stone_04()
@@ -1026,7 +1017,6 @@ func void Use_Addon_Stone_04()
 		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -1046,7 +1036,6 @@ instance ItMi_Addon_Stone_05(C_Item)
 	inv_roty = 0;
 	inv_rotz = 0;
 	description = name;
-//	text[0] = "Желтая каменная табличка.";
 };
 
 func void Use_Addon_Stone_05()
@@ -1068,7 +1057,6 @@ func void Use_Addon_Stone_05()
 		B_CannotUse_Addon();
 		B_Say(self,self,"$CANTREADTHIS");
 	};
-//	Doc_PrintLine(nDocID,0,"");
 	Doc_Show(nDocID);
 };
 
@@ -1322,22 +1310,11 @@ instance ItMi_Addon_Bloodwyn_Kopf(C_Item)
 	description = name;
 };
 
-instance ItMi_FakeBloodwynHead(C_Item)
-{
-	name = "Голова Бладвина";
-	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI;
-	visual = "ItMi_Head_Bloodwyn_01.3ds";
-	material = MAT_LEATHER;
-	scemeName = "MAPSEALED";
-	description = name;
-};
-
 instance ItWR_Addon_TreasureMap(C_Item)
 {
 	name = "Карта сокровищ";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION | ITEM_MULTI;
+	flags = ITEM_MULTI;
 	value = 250;
 	visual = "ItWr_Map_AW.3DS";
 	material = MAT_LEATHER;

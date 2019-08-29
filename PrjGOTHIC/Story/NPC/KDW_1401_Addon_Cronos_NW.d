@@ -11,6 +11,8 @@ instance KDW_1401_Addon_Cronos_NW(Npc_Default)
 	aivar[AIV_IgnoresFakeGuild] = TRUE;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	B_SetAttributesToChapter(self,5);
+	self.attribute[ATR_STRENGTH] = 1;
+	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_STRONG;
 //	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_P_NormalBart_Cronos,BodyTex_P,ITAR_KDW_H);

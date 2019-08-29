@@ -9,14 +9,14 @@ func void B_GiveTradeInv_Karras(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Karras_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItSc_SumGobSkel,1);
 		CreateInvItems(slf,ItRi_Prot_Total_01,1);
 		Karras_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (EnterOW_Kapitel2 == TRUE) && (Karras_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItSc_TrfSheep,1);
 		CreateInvItems(slf,ItSc_TrfScavenger,1);
 		CreateInvItems(slf,ItSc_TrfGiantRat,1);
@@ -28,7 +28,7 @@ func void B_GiveTradeInv_Karras(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Karras_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItSc_TrfSheep,3);
 		CreateInvItems(slf,ItSc_TrfScavenger,3);
 		CreateInvItems(slf,ItSc_TrfGiantRat,3);
@@ -43,7 +43,7 @@ func void B_GiveTradeInv_Karras(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Karras_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItSc_TrfSheep,4);
 		CreateInvItems(slf,ItSc_TrfScavenger,4);
 		CreateInvItems(slf,ItSc_TrfGiantRat,4);
@@ -61,7 +61,7 @@ func void B_GiveTradeInv_Karras(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Karras_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItSc_TrfSheep,4);
 		CreateInvItems(slf,ItSc_TrfScavenger,4);
 		CreateInvItems(slf,ItSc_TrfGiantRat,4);

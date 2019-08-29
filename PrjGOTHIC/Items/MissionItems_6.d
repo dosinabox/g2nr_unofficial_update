@@ -305,6 +305,7 @@ instance ItWr_ZugBruecke_MIS(C_Item)
 	on_state[0] = Use_ZugBruecke;
 	scemeName = "MAP";
 	description = name;
+	text[0] = "из большой пещеры на Ирдорате.";
 	inv_rotz = 180;
 	inv_rotx = 90;
 	inv_roty = 180;

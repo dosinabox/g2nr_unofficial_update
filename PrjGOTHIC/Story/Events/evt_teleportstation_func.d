@@ -125,10 +125,10 @@ func void evt_teleportstation_func()
 		else if(Hlp_StrCmp(Npc_GetNearestWP(hero),"ADW_ADANOSTEMPEL_RAVENTELEPORT_OUT"))
 		{
 			AI_Teleport(hero,"ADW_ADANOSTEMPEL_TELEPORTSTATION");
-			if(SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT == FALSE)
+			/*if(SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT == FALSE)
 			{
 				SCUsed_ADW_TELEPORTSTATION_RAVENTELEPORT_OUT = TRUE;
-			};
+			};*/
 		}
 		else
 		{

@@ -243,7 +243,7 @@ func void DIA_Addon_Lucia_Paladine_WEIB()
 func void DIA_Addon_Lucia_Paladine_MURDER()
 {
 	AI_Output(other,self,"DIA_Addon_Lucia_Paladine_MURDER_15_00");	//Паладины - это воины Инноса. Они не убийцы.
-	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_MURDER_16_01");	//И что с того? На их мечах кровь - так же, как на мечах бандитов и пиратов.
+	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_MURDER_16_01");	//И что с того? На их мечах кровь - так же, как и на мечах бандитов и пиратов.
 	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_MURDER_16_02");	//Единственное отличие в том, что они убивают именем Инноса, потому что хотят выжить.
 	Info_AddChoice(DIA_Addon_Lucia_Paladine,"Ты отвергаешь Инноса, падшая девица?",DIA_Addon_Lucia_Paladine_WEIB);
 };

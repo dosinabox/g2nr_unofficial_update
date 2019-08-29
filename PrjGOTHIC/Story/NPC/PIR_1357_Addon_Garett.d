@@ -5,7 +5,7 @@ instance PIR_1357_Addon_Garett(Npc_Default)
 	guild = GIL_PIR;
 	id = 1357;
 	voice = 9;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;

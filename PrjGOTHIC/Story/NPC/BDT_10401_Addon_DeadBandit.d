@@ -15,7 +15,7 @@ instance BDT_10401_Addon_DeadBandit(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 300;
 	attribute[ATR_HITPOINTS] = 300;
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_2h_Sld_Sword);
+	CreateInvItems(self,ItMw_2h_Sld_Sword,1);
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItMi_GoldChalice,1);
 	CreateInvItems(self,ItMi_SilverRing,1);
@@ -32,7 +32,7 @@ instance BDT_10401_Addon_DeadBandit(Npc_Default)
 
 func void Rtn_Start_10401()
 {
-	TA_Stand_WP(8,0,16,0,"ADW_ADANOSTEMPEL_RHADEMES_DEADBDT_01");
-	TA_Stand_WP(16,0,8,0,"ADW_ADANOSTEMPEL_RHADEMES_DEADBDT_01");
+	TA_Stand_WP(8,0,16,0,"ADW_ADANOSTEMPEL_RHADEMES_03");
+	TA_Stand_WP(16,0,8,0,"ADW_ADANOSTEMPEL_RHADEMES_03");
 };
 

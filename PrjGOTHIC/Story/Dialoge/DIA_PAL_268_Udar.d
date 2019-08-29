@@ -247,7 +247,7 @@ instance DIA_Udar_Ring(C_Info)
 
 func int DIA_Udar_Ring_Condition()
 {
-	if(Npc_HasItems(other,ItRi_Tengron))
+	if(Npc_HasItems(other,ItRi_HP_01_Tengron))
 	{
 		return TRUE;
 	};
@@ -256,7 +256,7 @@ func int DIA_Udar_Ring_Condition()
 func void DIA_Udar_Ring_Info()
 {
 	AI_Output(other,self,"DIA_Udar_Ring_15_00");	//Вот, я принес тебе кольцо Тенгрона. Оно будет защищать тебя. Тенгрон говорит, что он когда-нибудь вернется и заберет это кольцо назад.
-	B_GiveInvItems(other,self,ItRi_Tengron,1);
+	B_GiveInvItems(other,self,ItRi_HP_01_Tengron,1);
 	AI_Output(self,other,"DIA_Udar_Ring_09_01");	//Что? Да ты знаешь, что это за кольцо? Он получил эту награду за мужество, проявленное в бою.
 	AI_Output(self,other,"DIA_Udar_Ring_09_02");	//Говоришь, что он хочет забрать его назад? Если такова воля Инноса, так и будет. Если такова воля Инноса...
 	TengronRing = TRUE;

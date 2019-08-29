@@ -130,7 +130,7 @@ instance DIA_Addon_Pyrokar_MissingPeople(C_Info)
 
 func int DIA_Addon_Pyrokar_MissingPeople_Condition()
 {
-	if((SC_HearedAboutMissingPeople == TRUE) && (Sklaven_Flucht == FALSE))
+	if((SC_HearedAboutMissingPeople == TRUE) && (MissingPeopleReturnedHome == FALSE))
 	{
 		return TRUE;
 	};
@@ -491,6 +491,7 @@ func void DIA_Pyrokar_OATH_Info()
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
 	Npc_ExchangeRoutine(Lothar,"START");
+	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	KDF_Aufnahme = LOG_SUCCESS;
 //	SLD_Aufnahme = LOG_OBSOLETE;
 //	MIL_Aufnahme = LOG_OBSOLETE;
@@ -554,12 +555,26 @@ func void DIA_Pyrokar_Lernen_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_04");	//Каррас, например, мастер вызова, а Хиглас обучит тебя магии Огня.
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_05");	//Никто не знает больше о силах льда, чем Мардук. Парлан может обучить тебя другим различным заклинаниям - и он введет тебя в первые круги.
 	AI_Output(self,other,"DIA_Pyrokar_Lernen_11_06");	//Но каждый из них будет учить тебя только формулам - руны ты должен будешь создавать сам.
-	Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-	B_LogEntry(Topic_KlosterTeacher,"Мастер Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
-	B_LogEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
-	B_LogEntry(Topic_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
-	B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
-//	B_LogEntry(Topic_KlosterTeacher,"Брат Парлан обучает множеству различных формул.");
+	if(!Npc_KnowsInfo(other,DIA_Parlan_MAGE))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
+	};
+	if(!Npc_KnowsInfo(other,DIA_Karras_JOB))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
+	};
+	if(!Npc_KnowsInfo(other,DIA_Hyglas_JOB))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
+	};
+	if(!Npc_KnowsInfo(other,DIA_Marduk_BEFORETEACH))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Мардук может посвятить меня в тайны льда и грома.");
+	};
 };
 
 
@@ -576,9 +591,16 @@ instance DIA_Pyrokar_Wunsch(C_Info)
 
 func int DIA_Pyrokar_Wunsch_Condition()
 {
-	if((other.guild == GIL_KDF) && (Kapitel < 2))
+	if(other.guild == GIL_KDF)
 	{
-		return TRUE;
+		if(Kapitel < 2)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -597,7 +619,7 @@ func void DIA_Pyrokar_Wunsch_Info()
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Ополосу получить доступ в библиотеку.",DIA_Pyrokar_Wunsch_Opolos);
 	};
-	if(MIS_HelpDyrian == LOG_Running)
+	if((MIS_HelpDyrian == LOG_Running) && (Kapitel == 1))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Дуриану остаться в монастыре.",DIA_Pyrokar_Wunsch_Dyrian);
 	};
@@ -715,9 +737,16 @@ instance DIA_Pyrokar_Nachricht(C_Info)
 
 func int DIA_Pyrokar_Nachricht_Condition()
 {
-	if((MIS_OLDWORLD == LOG_Running) && (other.guild == GIL_KDF))
+	if(MIS_OLDWORLD == LOG_Running)
 	{
-		return TRUE;
+		if(other.guild == GIL_KDF)
+		{
+			return TRUE;
+		}
+		else if((other.guild == GIL_NOV) && (GuildlessMode == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -813,8 +842,7 @@ func void DIA_Pyrokar_SPELLS_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-//	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
-	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
+	B_Say_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Pyrokar_SPELLS);
 	Info_AddChoice(DIA_Pyrokar_SPELLS,Dialog_Back,DIA_Pyrokar_SPELLS_BACK);
 	if(PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE)
@@ -977,9 +1005,16 @@ instance DIA_Pyrokar_PERM(C_Info)
 
 func int DIA_Pyrokar_PERM_Condition()
 {
-	if((Kapitel >= 2) && (hero.guild == GIL_KDF))
+	if(Kapitel >= 2)
 	{
-		return TRUE;
+		if(hero.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
+		if(hero.guild == GIL_NOV)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1003,7 +1038,7 @@ instance DIA_Pyrokar_PERM_nonKDF(C_Info)
 
 func int DIA_Pyrokar_PERM_nonKDF_Condition()
 {
-	if((Kapitel >= 2) && (hero.guild != GIL_KDF))
+	if((Kapitel >= 2) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -1107,7 +1142,7 @@ func void DIA_Pyrokar_GIVEINNOSEYE_Info()
 	{
 		B_StartOtherRoutine(Gorax,"Wait");
 	};
-	if(hero.guild == GIL_KDF)
+	if((hero.guild == GIL_KDF) || (hero.guild == GIL_NOV))
 	{
 		Info_AddChoice(DIA_Pyrokar_GIVEINNOSEYE,"Кто мог совершить столь дерзкий поступок, Мастер?",DIA_Pyrokar_GIVEINNOSEYE_wer);
 	}
@@ -1535,9 +1570,16 @@ instance DIA_Pyrokar_SCOBSESSED_KDF(C_Info)
 
 func int DIA_Pyrokar_SCOBSESSED_KDF_Condition()
 {
-	if((SC_IsObsessed == TRUE) && (hero.guild == GIL_KDF))
+	if(SC_IsObsessed == TRUE)
 	{
-		return TRUE;
+		if(hero.guild == GIL_KDF)
+		{
+			return TRUE;
+		};
+		if(hero.guild == GIL_NOV)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1577,7 +1619,7 @@ instance DIA_Pyrokar_SCOBSESSED(C_Info)
 
 func int DIA_Pyrokar_SCOBSESSED_Condition()
 {
-	if((SC_IsObsessed == TRUE) && (hero.guild != GIL_KDF))
+	if((SC_IsObsessed == TRUE) && (hero.guild != GIL_KDF) && (hero.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -2003,9 +2045,12 @@ instance DIA_Pyrokar_DTCLEARED(C_Info)
 
 func int DIA_Pyrokar_DTCLEARED_Condition()
 {
-	if(Npc_IsDead(Xardas_DT_Demon1) && Npc_IsDead(Xardas_DT_Demon2) && Npc_IsDead(Xardas_DT_Demon3) && Npc_IsDead(Xardas_DT_Demon4) && Npc_IsDead(Xardas_DT_Demon5) && Npc_IsDead(Xardas_DT_DemonLord) && (MIS_PyrokarClearDemonTower == LOG_Running))
+	if(MIS_PyrokarClearDemonTower == LOG_Running)
 	{
-		return TRUE;
+		if(Npc_IsDead(Xardas_DT_Demon1) && Npc_IsDead(Xardas_DT_Demon2) && Npc_IsDead(Xardas_DT_Demon3) && Npc_IsDead(Xardas_DT_Demon4) && Npc_IsDead(Xardas_DT_Demon5) && Npc_IsDead(Xardas_DT_DemonLord))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -94,7 +94,7 @@ instance DIA_Addon_Morgan_Anheuern(C_Info)
 
 func int DIA_Addon_Morgan_Anheuern_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (GregIsBack == TRUE))
+	if(Npc_IsInState(self,ZS_Talk) && (GregIsBack == TRUE) && !Npc_IsDead(Greg))
 	{
 		return TRUE;
 	};
@@ -198,17 +198,21 @@ instance DIA_Addon_Morgan_Job(C_Info)
 
 func int DIA_Addon_Morgan_Job_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Morgan_Meat))
-	{
-		return TRUE;
-	};
+//	if(Npc_KnowsInfo(other,DIA_Addon_Morgan_Meat) || (GregIsBack == TRUE) || Npc_IsDead(AlligatorJack))
+//	{
+//		return TRUE;
+//	};
+	return TRUE;
 };
 
 func void DIA_Addon_Morgan_Job_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_Job_15_01");	//Что ты здесь делаешь?
 	AI_Output(self,other,"DIA_Addon_Morgan_Job_07_01");	//Грег назначил меня командиром одного из боевых отрядов.
-	AI_Output(self,other,"DIA_Addon_Morgan_Job_07_02");	//Я отвечаю за снабжение лагеря. Мясо мне поставляет Аллигатор Джек.
+	if(!Npc_IsDead(AlligatorJack))
+	{
+		AI_Output(self,other,"DIA_Addon_Morgan_Job_07_02");	//Я отвечаю за снабжение лагеря. Мясо мне поставляет Аллигатор Джек.
+	};
 	AI_Output(self,other,"DIA_Addon_Morgan_Job_07_03");	//Еще я слежу за тем, чтобы к лагерю не подходили дикие звери, которых тут полно.
 	AI_Output(self,other,"DIA_Addon_Morgan_Job_07_04");	//За этим следят мои парни.
 	if(GregIsBack == FALSE)
@@ -278,7 +282,7 @@ func void DIA_Addon_Morgan_JoinMorgan_Info()
 	AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_05");	//Там полно луркеров... и черт знает, чего еще.
 	if(GregIsBack == FALSE)
 	{
-		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//Разберись с ними, и ты заработаешь уважение (зевает) людей...
+		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_06");	//Разберись с ними, и ты заработаешь... (зевает) уважение людей...
 		AI_Output(self,other,"DIA_Addon_Morgan_JoinMorgan_07_07");	//Добро пожаловать в мой отряд. Хе-хе. А я (зевает) еще посплю...
 	};
 	Log_CreateTopic(TOPIC_Addon_MorganBeach,LOG_MISSION);
@@ -361,7 +365,7 @@ func void DIA_Addon_Morgan_Auftrag2_Info()
 		AI_Output(self,other,"DIA_Addon_Morgan_Auftrag2_07_02");	//Отдохни, полежи, выпей рома!
 		CreateInvItems(self,ItFo_Addon_Rum,1);
 		B_UseItem(self,ItFo_Addon_Rum);
-		AI_Output(self,other,"DIA_Addon_Morgan_Auftrag2_07_03");	//Чертовски забористая вещь!
+		AI_Output(self,other,"DIA_Addon_Morgan_Auftrag2_07_03");	//Ух! Чертовски забористая вещь!
 	}
 	else
 	{
@@ -460,12 +464,9 @@ instance DIA_Addon_Morgan_Francis(C_Info)
 
 func int DIA_Addon_Morgan_Francis_Condition()
 {
-	if(Francis_ausgeschissen == FALSE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
 	{
-		if(Npc_KnowsInfo(other,DIA_Addon_Skip_GregsHut) || (Francis.aivar[AIV_TalkedToPlayer] == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -473,9 +474,12 @@ func void DIA_Addon_Morgan_Francis_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_Francis_15_00");	//Что ты думаешь о Фрэнсисе?
 	AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_01");	//Я ничего не имею против него, (угрожающе) пока он ко мне не лезет!
-	AI_Output(other,self,"DIA_Addon_Morgan_Francis_15_02");	//Он здесь начальник?
-	AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_03");	//(смеется) Он ДУМАЕТ, что он главный.
-	AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_04");	//Но когда вернется Грег, Фрэнсис снова займется своей обычной работой - пилением досок.
+	if(GregIsBack == FALSE)
+	{
+		AI_Output(other,self,"DIA_Addon_Morgan_Francis_15_02");	//Он здесь начальник?
+		AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_03");	//(смеется) Он ДУМАЕТ, что он главный.
+		AI_Output(self,other,"DIA_Addon_Morgan_Francis_07_04");	//Но когда вернется Грег, Фрэнсис снова займется своей обычной работой - пилением досок.
+	};
 };
 
 

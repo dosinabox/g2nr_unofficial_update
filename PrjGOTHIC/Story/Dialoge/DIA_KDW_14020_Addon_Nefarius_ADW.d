@@ -62,10 +62,7 @@ instance DIA_Addon_Nefarius_Neues(C_Info)
 
 func int DIA_Addon_Nefarius_Neues_Condition()
 {
-	if(Ghost_SCKnowsHow2GetInAdanosTempel == FALSE)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Addon_Nefarius_Neues_Info()
@@ -116,7 +113,10 @@ func void DIA_Addon_Nefarius_Neues_auf()
 	AI_Output(other,self,"DIA_Addon_Nefarius_Neues_auf_15_00");	//ј мы, глупцы, вновь открыли портал...
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_auf_05_01");	//ѕоверь, € этому тоже совсем не рад.
 	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_auf_05_02");	//Ќо был ли у нас выбор?
-	AI_Output(self,other,"DIA_Addon_Nefarius_Neues_auf_05_03");	//≈сли мы не остановим то, что сейчас здесь происходит, весь ’оринис постигнет судьба этого древнего города.
+	if(RavenIsDead == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Nefarius_Neues_auf_05_03");	//≈сли мы не остановим то, что сейчас здесь происходит, весь ’оринис постигнет судьба этого древнего города.
+	};
 };
 
 
@@ -176,9 +176,15 @@ func void DIA_Addon_Nefarius_PreTeach_Info()
 	else
 	{
 		B_Say(self,other,"$NOLEARNNOPOINTS");
+		PrintScreen(PRINT_MAGCIRCLES_NEEDFIRST,-1,-1,FONT_ScreenSmall,2);
 	};
 };
 
+
+func void B_Say_WantToLearnNewRunes()
+{
+	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//я хочу изучить новые заклинани€.
+};
 
 instance DIA_Addon_Nefarius_ADW_Runen(C_Info)
 {
@@ -201,7 +207,7 @@ func int DIA_Addon_Nefarius_ADW_Runen_Condition()
 
 func void DIA_Addon_Nefarius_ADW_Runen_Info()
 {
-	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//я хочу изучить новые заклинани€.
+	B_Say_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Addon_Nefarius_ADW_Runen);
 	Info_AddChoice(DIA_Addon_Nefarius_ADW_Runen,Dialog_Back,DIA_Addon_Nefarius_ADW_Runen_BACK);
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 6)

@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Matteo(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Matteo_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItLsTorch,18);
 		CreateInvItems(slf,ItPo_Health_01,1);
 		CreateInvItems(slf,ItFo_Cheese,5);
@@ -36,7 +36,7 @@ func void B_GiveTradeInv_Matteo(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Matteo_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItLsTorch,12);
 		CreateInvItems(slf,ItPl_Forestberry,3);
 		CreateInvItems(slf,ItFo_Bread,2);
@@ -48,7 +48,7 @@ func void B_GiveTradeInv_Matteo(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Matteo_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItLsTorch,10);
 		CreateInvItems(slf,ItPl_Mana_Herb_02,2);
 		CreateInvItems(slf,ItPl_Health_Herb_02,3);
@@ -61,7 +61,7 @@ func void B_GiveTradeInv_Matteo(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Matteo_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItLsTorch,10);
 		CreateInvItems(slf,ItPl_Health_Herb_02,2);
 		CreateInvItems(slf,ItMi_Lute,1);

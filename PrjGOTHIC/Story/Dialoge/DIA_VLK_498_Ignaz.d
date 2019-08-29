@@ -180,6 +180,13 @@ func void DIA_Ignaz_teilnehmen_Info()
 };
 
 
+func void B_IgnazScrolls()
+{
+	AI_Output(self,other,"DIA_Ignaz_Running_14_02");	//≈сли тебе нужны еще свитки с этим заклинанием, ты можешь купить их у мен€.
+	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+	B_LogEntry(TOPIC_CityTrader,"»гнац продает различные свитки и алхимические принадлежности в портовом квартале.");
+};
+
 instance DIA_Ignaz_Running(C_Info)
 {
 	npc = VLK_498_Ignaz;
@@ -203,9 +210,7 @@ func void DIA_Ignaz_Running_Info()
 {
 	AI_Output(other,self,"DIA_Ignaz_Running_15_00");	//Ќасчет эксперимента...
 	AI_Output(self,other,"DIA_Ignaz_Running_14_01");	//” теб€ получилось, да? »ли ты просто попусту истратил мой свиток?
-	AI_Output(self,other,"DIA_Ignaz_Running_14_02");	//≈сли тебе нужны еще свитки с этим заклинанием, ты можешь купить их у мен€.
-	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"»гнац продает различные свитки и алхимические принадлежности в портовом квартале.");
+	B_IgnazScrolls();
 };
 
 
@@ -233,14 +238,13 @@ func void DIA_Ignaz_Danach_Info()
 	AI_Output(other,self,"DIA_Ignaz_Danach_15_00");	//я использовал свиток.
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_01");	//ќтлично, отлично. ” теб€ все получилось?
 	AI_Output(other,self,"DIA_Ignaz_Danach_15_02");	//ƒа, заклинание сработало.
-	AI_Output(self,other,"DIA_Ignaz_Danach_14_03");	//ѕревосходно. ћожет, с точки зрени€ науки это и не очень большое достижение, но дл€ мен€ оно очень много значит!
+	AI_Output(self,other,"DIA_Ignaz_Danach_14_03");	//ѕревосходно. ћожет, с точки зрени€ науки это не очень большое достижение, но дл€ мен€ оно очень много значит!
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_04");	//“еперь € могу уделить тебе врем€ и обучить теб€ искусству алхимии.
 	AI_Output(self,other,"DIA_Ignaz_Danach_14_05");	//я также могу продать тебе что-нибудь полезное, если ты, конечно, хочешь этого.
 	Ignaz_TeachAlchemy = TRUE;
 	if(!Npc_KnowsInfo(other,DIA_Ignaz_Running))
 	{
-		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTrader,"»гнац продает различные свитки и алхимические принадлежности в портовом квартале.");
+		B_IgnazScrolls();
 	};
 	if(DIA_Kardif_Lernen_permanent == FALSE)
 	{
@@ -356,19 +360,16 @@ func void DIA_Ignaz_Teach_Info()
 func void DIA_Ignaz_Teach_Health()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_01);
-	Info_ClearChoices(DIA_Ignaz_Teach);
 };
 
 func void DIA_Ignaz_Teach_Mana()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_01);
-	Info_ClearChoices(DIA_Ignaz_Teach);
 };
 
 func void DIA_Ignaz_Teach_Speed()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Speed);
-	Info_ClearChoices(DIA_Ignaz_Teach);
 };
 
 func void DIA_Ignaz_Teach_BACK()

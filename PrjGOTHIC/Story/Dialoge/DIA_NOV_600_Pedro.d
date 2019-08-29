@@ -57,9 +57,16 @@ instance DIA_Pedro_Wurst(C_Info)
 
 func int DIA_Pedro_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
-		return TRUE;
+		if(Kapitel == 1)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -365,14 +372,6 @@ func void DIA_Pedro_AUFNAHME_YES()
 	{
 		Pedro_NOV_Aufnahme_LostInnosStatue_Daron = TRUE;
 		Liesel_Giveaway = LOG_OBSOLETE;
-	};
-	if(!Npc_IsDead(Isgaroth))
-	{
-		Isgaroth.aivar[AIV_ToughGuy] = FALSE;
-		Isgaroth.aivar[AIV_ToughGuyNewsOverride] = FALSE;
-		Isgaroth.aivar[AIV_IGNORE_Murder] = FALSE;
-		Isgaroth.aivar[AIV_IGNORE_Theft] = FALSE;
-		Isgaroth.aivar[AIV_IGNORE_Sheepkiller] = FALSE;
 	};
 	Wld_AssignRoomToGuild("Kloster02",GIL_KDF);
 	AI_StopProcessInfos(self);

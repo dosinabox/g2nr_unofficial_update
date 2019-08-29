@@ -12,10 +12,7 @@ instance DIA_Jack_EXIT(C_Info)
 
 func int DIA_Jack_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Jack_EXIT_Info()
@@ -259,7 +256,7 @@ instance DIA_Jack_LIGHTHOUSEFREE(C_Info)
 
 func int DIA_Jack_LIGHTHOUSEFREE_Condition()
 {
-	if((MIS_Jack_KillLighthouseBandits == LOG_SUCCESS) && (Npc_GetDistToWP(self,"LIGHTHOUSE") < 3000) && (MIS_SCKnowsWayToIrdorath == FALSE))
+	if((MIS_Jack_KillLighthouseBandits == LOG_SUCCESS) && (Npc_GetDistToWP(self,"LIGHTHOUSE") < 3000))
 	{
 		return TRUE;
 	};
@@ -269,81 +266,6 @@ func void DIA_Jack_LIGHTHOUSEFREE_Info()
 {
 	AI_Output(other,self,"DIA_Jack_LIGHTHOUSEFREE_15_00");	//Мне нравится твой маяк.
 	AI_Output(self,other,"DIA_Jack_LIGHTHOUSEFREE_14_01");	//Спасибо. Поднимись по лестнице наверх, оттуда открывается такой потрясающий вид. Чувствуй себя здесь как дома.
-};
-
-
-instance DIA_Jack_KAP3_EXIT(C_Info)
-{
-	npc = VLK_444_Jack;
-	nr = 999;
-	condition = DIA_Jack_KAP3_EXIT_Condition;
-	information = DIA_Jack_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Jack_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Jack_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Jack_KAP4_EXIT(C_Info)
-{
-	npc = VLK_444_Jack;
-	nr = 999;
-	condition = DIA_Jack_KAP4_EXIT_Condition;
-	information = DIA_Jack_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Jack_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Jack_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Jack_KAP5_EXIT(C_Info)
-{
-	npc = VLK_444_Jack;
-	nr = 999;
-	condition = DIA_Jack_KAP5_EXIT_Condition;
-	information = DIA_Jack_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Jack_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Jack_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -382,8 +304,6 @@ func void DIA_Jack_BEMYCAPTAIN_seaman()
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_14_01");	//Черт меня побери! Что ты задумал, приятель? Ты же не собираешься захватить королевскую военную галеру, а?
 	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_15_02");	//Кто знает?
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_14_03");	//(смеется) Это будет что-то! Ох, черт. Но я не могу вот так взять и бросить свой маяк. Ммм. Что же нам с этим делать?
-	Log_CreateTopic(Topic_Captain,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Captain,LOG_Running);
 	B_LogEntry(Topic_Captain,"Джек, старый морской волк из гавани, мог бы стать хорошим капитаном. Но сначала я должен найти кого-нибудь, кто посторожит его маяк.");
 	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"Забудь. Это я просто так сказал.",DIA_Jack_BEMYCAPTAIN_no);
@@ -414,13 +334,13 @@ instance DIA_Jack_BEMYCAPTAIN2(C_Info)
 	nr = 52;
 	condition = DIA_Jack_BEMYCAPTAIN2_Condition;
 	information = DIA_Jack_BEMYCAPTAIN2_Info;
-	description = "Насчет Брайана...";
+	description = "Брайан позаботится о твоем маяке.";
 };
 
 
 func int DIA_Jack_BEMYCAPTAIN2_Condition()
 {
-	if((MIS_Jack_NewLighthouseOfficer == LOG_SUCCESS) || ((MIS_Jack_NewLighthouseOfficer == LOG_Running) && Npc_IsDead(Brian)))
+	if(MIS_Jack_NewLighthouseOfficer == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -428,27 +348,44 @@ func int DIA_Jack_BEMYCAPTAIN2_Condition()
 
 func void DIA_Jack_BEMYCAPTAIN2_Info()
 {
-	if(Npc_IsDead(Brian))
+	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN2_15_02");	//Брайан позаботится о твоем маяке.
+	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN2_14_03");	//Я надеялся, что ты скажешь это.
+	B_GivePlayerXP(XP_Jack_NewLighthouseOfficer);
+	if(SCGotCaptain == FALSE)
 	{
-		AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN2_15_00");	//Брайан мертв.
-		AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN2_14_01");	//Ох. Ужасные времена. Он был таким хорошим парнем.
-		MIS_Jack_NewLighthouseOfficer = LOG_OBSOLETE;
+		AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN2_14_04");	//Я тебе все еще нужен?
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN2_15_02");	//Брайан позаботится о твоем маяке.
-		AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN2_14_03");	//Я надеялся, что ты скажешь это.
-		B_GivePlayerXP(XP_Jack_NewLighthouseOfficer);
-		if(SCGotCaptain == FALSE)
-		{
-			AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN2_14_04");	//Я тебе все еще нужен?
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN2_14_05");	//Посмотрим, выйдет ли из этого парня толк.
-			AI_StopProcessInfos(self);
-		};
+		AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN2_14_05");	//Посмотрим, выйдет ли из этого парня толк.
+		AI_StopProcessInfos(self);
 	};
+};
+
+
+instance DIA_Jack_BrianIsDead(C_Info)
+{
+	npc = VLK_444_Jack;
+	nr = 52;
+	condition = DIA_Jack_BrianIsDead_Condition;
+	information = DIA_Jack_BrianIsDead_Info;
+	description = "Брайан мертв.";
+};
+
+
+func int DIA_Jack_BrianIsDead_Condition()
+{
+	if((MIS_Jack_NewLighthouseOfficer == LOG_Running) && Npc_IsDead(Brian))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Jack_BrianIsDead_Info()
+{
+	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN2_15_00");	//Брайан мертв.
+	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN2_14_01");	//Ох. Ужасные времена. Он был таким хорошим парнем.
+	MIS_Jack_NewLighthouseOfficer = LOG_OBSOLETE;
 };
 
 
@@ -568,28 +505,3 @@ func void DIA_Jack_PERM5_NOTCAPTAIN_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
-instance DIA_Jack_KAP6_EXIT(C_Info)
-{
-	npc = VLK_444_Jack;
-	nr = 999;
-	condition = DIA_Jack_KAP6_EXIT_Condition;
-	information = DIA_Jack_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Jack_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Jack_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/

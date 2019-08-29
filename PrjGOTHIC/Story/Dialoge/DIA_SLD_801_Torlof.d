@@ -106,6 +106,7 @@ func void DIA_Torlof_Probe_Info()
 		AI_Output(self,other,"DIA_Torlof_Probe_01_03");	//(вздыхает) Хорошо. Тогда слушай. Прежде чем присоединиться к нам, ты должен сделать две вещи.
 		AI_Output(self,other,"DIA_Torlof_Probe_01_04");	//Во-первых, ты должен доказать, что способен решать задачи, которые входят в обязанности наемников. Я должен испытать тебя.
 		AI_Output(self,other,"DIA_Torlof_Probe_01_05");	//И второе: ты должен заслужить уважение других наемников.
+		SCKnowsSLDVotes = TRUE;
 		Torlof_Go = TRUE;
 		Npc_ExchangeRoutine(self,"Start");
 		Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
@@ -148,8 +149,11 @@ func void DIA_Torlof_Respekt_Info()
 	AI_Output(self,other,"DIA_Torlof_Respekt_01_03");	//Некоторые попытаются извлечь выгоду из твоего положения, а другим может не понравиться твое лицо.
 	AI_Output(self,other,"DIA_Torlof_Respekt_01_04");	//Ты должен попытаться уговорить как можно больше наших парней - но если ничего не помогает, ты всегда можешь прибегнуть к дуэли.
 	AI_Output(self,other,"DIA_Torlof_Respekt_01_05");	//Если ты победишь, ты завоюешь уважение большинства из них. Но только смотри, не убей случайно кого-нибудь. Тогда у тебя будут очень большие проблемы.
-	Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+	if(Torlof_GenugStimmen == FALSE)
+	{
+		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+	};
 	B_LogEntry(TOPIC_SLDRespekt,"Если я хочу, чтобы наемники уважали меня, я должен пройти испытание, приготовленное мне Торлофом. Также их можно убедить, победив в дуэли.");
 };
 
@@ -182,8 +186,11 @@ func void DIA_Torlof_Duellregeln_Info()
 	AI_Output(self,other,"DIA_Torlof_Duellregeln_01_04");	//Никто из наблюдателей не имеет права вмешиваться в дуэль. Если только один из дуэлянтов не будет убит.
 	if(other.guild == GIL_NONE)
 	{
-		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
 		B_LogEntry(TOPIC_SLDRespekt,"Правила дуэли: Дуэль должна начаться с вызова, тогда в нее никто не имеет права вмешаться. Противника в дуэли нельзя убивать.");
 	};
 };
@@ -268,7 +275,7 @@ func void DIA_Torlof_RUF_Info()
 	{
 		Points_Sld += 1;
 	}
-	else if(Cord_Approved == TRUE)
+	else if(Cord_Voted == TRUE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_06");	//Корд полагает, что ты достаточно хорош, чтобы присоединиться к нам.
 		Points_Sld += 1;
@@ -394,8 +401,11 @@ func void DIA_Torlof_RUF_Info()
 		AI_Output(self,other,"DIA_Torlof_RUF_01_26");	//В любом случае, ты можешь рассчитывать на мой голос.
 		if(GotTorlofVote == FALSE)
 		{
-			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			if(Torlof_GenugStimmen == FALSE)
+			{
+				Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+			};
 			B_LogEntry(TOPIC_SLDRespekt,"Торлоф считает, что я могу выполнять обязанности наемника.");
 			GotTorlofVote = TRUE;
 		};
@@ -511,7 +521,7 @@ func void B_Torlof_BengarMilizKlatschen()
 	B_InitNpcGlobals();
 	Log_CreateTopic(TOPIC_TorlofMiliz,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_TorlofMiliz,LOG_Running);
-	B_LogEntry(TOPIC_TorlofMiliz,"Торлоф попросил изгнать ополчение с фермы Бенгара. Она находится на плоскогорье.");
+	B_LogEntry(TOPIC_TorlofMiliz,"Торлоф попросил прогнать ополчение с фермы Бенгара. Она находится на плоскогорье.");
 };
 
 func void DIA_Torlof_Aufgaben_Pacht()
@@ -597,7 +607,10 @@ func void DIA_Torlof_SekobSuccess_Info()
 		};
 		MIS_Torlof_HolPachtVonSekob = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Torlof_SekobsKohlebekommen);
-		B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+		if(hero.guild == GIL_NONE)
+		{
+			B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+		};
 		Torlof_ProbeBestanden = TRUE;
 	}
 	else
@@ -621,7 +634,7 @@ instance DIA_Torlof_BengarSuccess(C_Info)
 func int DIA_Torlof_BengarSuccess_Condition()
 {
 //	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && Npc_IsDead(Rumbold) && Npc_IsDead(Rick))
-	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && ((Npc_IsDead(Rumbold) && Npc_IsDead(Rick)) || (Miliz_Flucht == TRUE)))
+	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && ((Npc_IsDead(Rumbold) && Npc_IsDead(Rick)) || (Miliz_Flucht == TRUE) || (Bengar_MilSuccess == TRUE)))
 	{
 		return TRUE;
 	};
@@ -643,7 +656,10 @@ func void DIA_Torlof_BengarSuccess_Info()
 	};
 	MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Bengar_MILIZKLATSCHEN);
-	B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+	if(hero.guild == GIL_NONE)
+	{
+		B_LogEntry(TOPIC_BecomeSLD,"Я выполнил задачу, которую дал мне Торлоф.");
+	};
 	Torlof_ProbeBestanden = TRUE;
 };
 
@@ -1081,12 +1097,14 @@ func void DIA_Torlof_BEMYCAPTAIN_Info()
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_01");	//Ты что, только узнал об этом? Да, черт побери, я моряк. А почему ты спрашиваешь?
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN_15_02");	//Я мог бы найти применение твоим талантам. Мне нужно добраться до острова.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_03");	//(смеется) До острова? Да у тебя даже нет корабля, не говоря уже о команде.
+	if((MIS_ShipIsFree == TRUE) && (Crewmember_Count >= Min_Crew))
+	{
+		AI_Output(other,self,"DIA_Hanna_AnyNews_Yes_15_00");	//Ты ошибаешься.
+	};
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_04");	//Нет, мой мальчик. Если ты хочешь воспользоваться моими услугами в качестве капитана и учителя силы, ты должен сначала доказать мне, что ты понимаешь, о чем говоришь.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_05");	//Кроме того, у меня хватает и других проблем. Паладины не ушли из города, как я ожидал.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_06");	//Должно произойти что-то очень серьезное, чтобы они убрались оттуда.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN_01_07");	//Направляйся в замок в Долине Рудников. Укради у стражника ключ от главных ворот и открой их. А орки позаботятся об остальном!
-	Log_CreateTopic(Topic_Captain,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Captain,LOG_Running);
 	B_LogEntry(Topic_Captain,"Прежде чем Торлоф согласится занять пост капитана, я должен заставить паладинов покинуть город. Он говорит, что нужно устроить инцидент в замке в Долине Рудников. Он хочет, чтобы я украл ключ от главных ворот у стражника и впустил орков в замок. Он надеется, что это заставит паладинов покинуть город, чтобы помочь своим товарищам.");
 };
 
@@ -1111,7 +1129,7 @@ func int DIA_Torlof_BEMYCAPTAIN2_Condition()
 
 func void DIA_Torlof_BEMYCAPTAIN2_Info()
 {
-	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_00");	//Ворота замка в Долине Рудников открыты, и их заклинило. Теперь ничто не сдерживает орков, и они берут этот замок приступом.
+	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_00");	//Ворота замка в Долине Рудников открыты и их заклинило. Теперь ничто не сдерживает орков, и они берут этот замок приступом.
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_01");	//Паладины в замке несут тяжелые потери.
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN2_15_02");	//И, я думаю, не пройдет много времени, когда паладины из города выступят в Долину Рудников, чтобы выручить парней, осажденных в замке.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN2_01_03");	//Это хорошие новости. Теперь ничто не мешает мне покинуть это богом проклятое место.
@@ -1131,6 +1149,7 @@ instance DIA_Torlof_BEMYCAPTAIN3(C_Info)
 
 
 var int Torlof_PaidToBeCaptain;
+var int Torlof_PaidToBeCaptain_Log_OneTime;
 
 func int DIA_Torlof_BEMYCAPTAIN3_Condition()
 {
@@ -1146,6 +1165,11 @@ func void DIA_Torlof_BEMYCAPTAIN3_Info()
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_01");	//Ох, да. Ты хотел добраться до острова. Ммм. Вот мои условия.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_02");	//Ты заплатишь мне 2500 золотом, и я готов стать капитаном твоего корабля.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_03");	//А также я готов повышать твою силу и ловкость, когда ты только этого захочешь.
+	if(Torlof_PaidToBeCaptain_Log_OneTime == FALSE)
+	{
+		B_LogEntry(Topic_Captain,"Торлоф теперь готов командовать кораблем. Правда, он хочет получить за эту работу 2500 золотых монет.");
+		Torlof_PaidToBeCaptain_Log_OneTime = TRUE;
+	};
 	Info_ClearChoices(DIA_Torlof_BEMYCAPTAIN3);
 	Info_AddChoice(DIA_Torlof_BEMYCAPTAIN3,"Это чертовски большая сумма.",DIA_Torlof_BEMYCAPTAIN3_zuViel);
 	Info_AddChoice(DIA_Torlof_BEMYCAPTAIN3,"Хорошо. Вот твое золото.",DIA_Torlof_BEMYCAPTAIN3_ok);
@@ -1157,7 +1181,6 @@ func void DIA_Torlof_BEMYCAPTAIN3_zuViel()
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_zuViel_01_01");	//Да. Помощь профессионала стоит дорого. Но у тебя нет другого выбора. Тебе не найти другого капитана для своего корабля.
 	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_zuViel_01_02");	//Так что плати денежки и не создавай проблем.
 	Info_ClearChoices(DIA_Torlof_BEMYCAPTAIN3);
-	B_LogEntry(Topic_Captain,"Торлоф теперь готов командовать кораблем. Правда, он хочет получить за эту работу 2500 золотых монет.");
 };
 
 func void DIA_Torlof_BEMYCAPTAIN3_ok()
@@ -1252,7 +1275,7 @@ func void DIA_Torlof_LOSFAHREN_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_05");	//Без корабля, команды и морской карты никакого путешествия не будет, приятель.
-		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_06");	//Мне нужно, по крайней мере, 5 человек, готовых встать под мое начало.
+		AI_Output(self,other,"DIA_Torlof_LOSFAHREN_01_06");	//Мне нужно, по крайней мере, пять человек, готовых встать под мое начало.
 		AI_StopProcessInfos(self);
 	};
 };

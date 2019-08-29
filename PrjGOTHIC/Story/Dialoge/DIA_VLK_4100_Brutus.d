@@ -155,7 +155,7 @@ func void DIA_Brutus_Kasse_Info()
 	AI_Output(other,self,"DIA_Brutus_Kasse_15_00");	//Ты не мог бы потренировать меня?
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_01");	//Конечно. Я могу помочь тебе стать сильнее, но это будет не бесплатно.
 	AI_Output(other,self,"DIA_Brutus_Kasse_15_02");	//Сколько ты хочешь?
-	AI_Output(self,other,"DIA_Brutus_Kasse_06_03");	//Хммм... ты ведь бегаешь вокруг замка, да? Вот что я предлагаю.
+	AI_Output(self,other,"DIA_Brutus_Kasse_06_03");	//Хммм... ты ведь бегаешь вокруг замка, да? Вот что я предлагаю...
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_04");	//Мой помощник, Ден, слинял во время последней атаки орков. Вот подлец!
 	AI_Output(self,other,"DIA_Brutus_Kasse_06_05");	//Но он улизнул не с пустыми руками. Он забрал с собой содержимое нашей кассы.
 	AI_Output(other,self,"DIA_Brutus_Kasse_15_06");	//Что еще за кассы?

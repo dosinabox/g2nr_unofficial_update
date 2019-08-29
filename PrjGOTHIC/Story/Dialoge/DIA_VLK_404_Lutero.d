@@ -40,9 +40,16 @@ instance DIA_Lutero_Hallo(C_Info)
 
 func int DIA_Lutero_Hallo_Condition()
 {
-	if((other.guild != GIL_NONE) && (other.guild != GIL_NOV) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((other.guild != GIL_NONE) && (other.guild != GIL_NOV))
+		{
+			return TRUE;
+		}
+		else if((Kapitel >= 2) && (GuildlessMode == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -69,9 +76,16 @@ instance DIA_Lutero_GetLost(C_Info)
 
 func int DIA_Lutero_GetLost_Condition()
 {
-	if(((other.guild == GIL_NONE) || (other.guild == GIL_NOV)) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
-		return TRUE;
+		if((Kapitel >= 2) && (GuildlessMode == TRUE))
+		{
+			return FALSE;
+		}
+		else if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -103,6 +117,10 @@ instance DIA_Lutero_Snapper(C_Info)
 func int DIA_Lutero_Snapper_Condition()
 {
 	if((other.guild != GIL_NONE) && (other.guild != GIL_NOV))
+	{
+		return TRUE;
+	}
+	else if((Kapitel >= 2) && (GuildlessMode == TRUE))
 	{
 		return TRUE;
 	};

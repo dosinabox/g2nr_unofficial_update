@@ -43,7 +43,6 @@ func void Equip_InnosEye()
 	self.protection[PROT_POINT] += AM_EyeProtPoint;
 	self.protection[PROT_FIRE] += AM_EyeProtFire;
 	self.protection[PROT_MAGIC] += AM_EyeProtMage;
-//	PrintScreen("",-1,-1,FONT_Screen,0);
 	SC_IsWearingInnosEye = TRUE;
 };
 
@@ -209,7 +208,6 @@ func void UseCorneliusTagebuch()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Это произошло - один из наемников был арестован. Сдержать мое слово будет просто.");
 	Doc_Show(nDocID);
-	PrintScreen("",-1,-1,FONT_Screen,0);
 	if(Cornelius_IsLiar == FALSE)
 	{
 		B_LogEntry(TOPIC_RescueBennet,"Этот дневник - доказательство, необходимое для подтверждения невиновности Беннета.");
@@ -425,7 +423,6 @@ instance ItMi_MalethsBanditGold(C_Item)
 {
 	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
-//	mainflag = ITEM_MULTI;
 	flags = 0;
 	value = 300;
 	visual = "ItMi_Bag.3ds";
@@ -540,6 +537,7 @@ instance ItWr_BabosDocs_MIS(C_Item)
 
 func void Use_BabosDocs()
 {
+	Snd_Play("MOB_BOOK_TURNPAGE_A1");
 	BabosDocsOpen = TRUE;
 	AI_PrintScreen("Получено письмо и рисунок",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	CreateInvItems(self,ItWr_BabosLetter_MIS,1);
@@ -654,7 +652,7 @@ instance ItSe_Golemchest_Mis(C_Item)
 	material = MAT_LEATHER;
 	on_state[0] = Use_GolemChest;
 	description = name;
-	text[0] = "Этот кошелек полон монет.";
+	text[0] = PRINT_Pocket_50;
 	text[1] = "Кажется, внутри позванивает что-то еще.";
 	text[5] = NAME_Value;
 	count[5] = value;
@@ -749,11 +747,14 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = DiegosTreasure;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Pocket_Mis.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = Use_DiegosTreasure;
-	description = "Старый кошелек Диего";
+	description = name;
+	text[0] = PRINT_Pocket_MIS;
+	text[1] = "с именем 'Диего'.";
+	text[2] = "Внутри целая куча золота!";
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -788,7 +789,7 @@ instance ItWr_MinenAnteil_Mis(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = Value_HpElixier;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Scroll_02.3DS";
 //	visual = "Fakescroll.3ds";
 	material = MAT_LEATHER;
 	on_state[0] = Use_MinenAnteil_Mis;
@@ -796,9 +797,6 @@ instance ItWr_MinenAnteil_Mis(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 

@@ -17,6 +17,11 @@ func int DIA_Addon_Merdarion_ADW_EXIT_Condition()
 
 func void DIA_Addon_Merdarion_ADW_EXIT_Info()
 {
+	if(DIA_Addon_Saturas_StonePlateHint_Condition() && (MIS_Saturas_LookingForHousesOfRulers == FALSE))
+	{
+		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_11");	//ƒа, и кстати, пока € не забыл - —атурас хотел поговорить с тобой.
+		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_12");	//“ы должен найти его как можно скорее.
+	};
 	if((Npc_KnowsInfo(other,DIA_Addon_Merdarion_FokusGeben) || (Merdarion_GotFocusCount > 0)) && !SC_ADW_ActivatedAllTelePortStones && (TriggeredTeleporterADW <= Merdarion_GotFocusCount) && !Npc_HasItems(other,ItMi_Focus))
 	{
 		CreateInvItems(self,ItMi_Focus,1);
@@ -39,12 +44,6 @@ instance DIA_Addon_Merdarion_ADWHello(C_Info)
 func int DIA_Addon_Merdarion_ADWHello_Condition()
 {
 	return TRUE;
-};
-
-func void DIA_Addon_Merdarion_ADWHello_Back()
-{
-	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_Back_15_00");	//я услышал достаточно.
-	Info_ClearChoices(DIA_Addon_Merdarion_ADWHello);
 };
 
 func void DIA_Addon_Merdarion_ADWHello_Info()
@@ -95,6 +94,12 @@ func void DIA_Addon_Merdarion_ADWHello_focusProof()
 	AI_Output(self,other,"DIA_Addon_Merdarion_ADWHello_focusProof_06_02");	//Ќо € не знаю где.
 };
 
+func void DIA_Addon_Merdarion_ADWHello_Back()
+{
+	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_Back_15_00");	//я услышал достаточно.
+	Info_ClearChoices(DIA_Addon_Merdarion_ADWHello);
+};
+
 func void DIA_Addon_Merdarion_ADWHello_wo()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_ADWHello_wo_15_00");	//√де ты видел такие телепортационные камни раньше?
@@ -143,6 +148,8 @@ func void DIA_Addon_Merdarion_FokusGeben_Info()
 };
 
 
+var int Merdarion_GotFocusCount;
+
 instance DIA_Addon_Merdarion_FirstFocus(C_Info)
 {
 	npc = KDW_14050_Addon_Merdarion_ADW;
@@ -160,9 +167,6 @@ func int DIA_Addon_Merdarion_FirstFocus_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Merdarion_GotFocusCount;
 
 func void DIA_Addon_Merdarion_FirstFocus_Info()
 {
@@ -182,6 +186,8 @@ func void DIA_Addon_Merdarion_FirstFocus_Info()
 };
 
 
+var int DIA_Addon_Merdarion_ActivateTeleports_OneTime;
+
 instance DIA_Addon_Merdarion_ActivateTeleports(C_Info)
 {
 	npc = KDW_14050_Addon_Merdarion_ADW;
@@ -200,9 +206,6 @@ func int DIA_Addon_Merdarion_ActivateTeleports_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Addon_Merdarion_ActivateTeleports_OneTime;
 
 func void DIA_Addon_Merdarion_ActivateTeleports_Info()
 {
@@ -233,11 +236,6 @@ func void DIA_Addon_Merdarion_ActivateTeleports_Info()
 	CreateInvItems(self,ItMi_Gold,150);
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 	Merdarion_GotFocusCount += 1;
-	if((Merdarion_GotFocusCount >= 1) && (Saturas_SCBroughtAllToken == FALSE) && (Ghost_SCKnowsHow2GetInAdanosTempel == FALSE) && (MIS_Saturas_LookingForHousesOfRulers == 0))
-	{
-		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_11");	//ƒа, и кстати, пока € не забыл - —атурас хотел поговорить с тобой.
-		AI_Output(self,other,"DIA_Addon_Merdarion_ActivateTeleports_06_12");	//“ы должен найти его как можно скорее.
-	};
 };
 
 
@@ -269,6 +267,8 @@ func void DIA_Addon_Merdarion_ADW_PreTeachMana_Info()
 };
 
 
+var int Merdarion_ADW_Empty;
+
 instance DIA_Addon_Merdarion_ADW_TEACH_MANA(C_Info)
 {
 	npc = KDW_14050_Addon_Merdarion_ADW;
@@ -279,8 +279,6 @@ instance DIA_Addon_Merdarion_ADW_TEACH_MANA(C_Info)
 	description = "я хочу увеличить мою магическую энергию.";
 };
 
-
-var int Merdarion_ADW_Empty;
 
 func int DIA_Addon_Merdarion_ADW_TEACH_MANA_Condition()
 {

@@ -90,12 +90,12 @@ const string MOBNAME_GRAVE_06 = "Утар Лайтбрингер 205 - 532";
 const string MOBNAME_GRAVE_07 = "Жасмин 510 - 546";
 const string MOBNAME_GRAVE_08 = "Онурб 634 - 579 - 'Этлемеркегму красный'";
 const string MOBNAME_GRAVE_09 = "Неизвестный солдат";
-const string MOBNAME_GRAVE_10 = "Могущественный карлик 2894-3787 - 'Все это чушь! Поверь мне...'";
+const string MOBNAME_GRAVE_10 = "Могучий инопланетный гном 2894-3787 - 'Все это ложь! Поверь мне...'";
 const string MOBNAME_GRAVE_11 = "Теодор 220 - 310 - 'Спи спокойно'";
 const string MOBNAME_GRAVE_12 = "Вераним Садеа 390 - 'Преисподняя была вся в его распоряжении'";
 const string MOBNAME_GRAVE_13 = "Серано Укара 234 - 298 'Страж башни'";
 const string MOBNAME_GRAVE_14 = "Виктимо Сорн 456 - 512 'Только Феникс смог остановить его'";
-const string MOBNAME_GRAVE_15 = " +432 'Его звали Геристун, он вышел из моря'";
+const string MOBNAME_GRAVE_15 = "Неизвестный ??? - 432 'Его звали Геристун, он вышел из моря'";
 const string MOBNAME_GRAVE_16 = "Эрнесто Ортой 350 - 410 'Я всегда буду с вами'";
 const string MOBNAME_GRAVE_17 = "Артаг Амашрог 730 - 756";
 const string MOBNAME_GRAVE_18 = "Иотар 721 - 762";
@@ -304,6 +304,7 @@ const string TXT_SPELLS[100] =
 	"TXT_SPL_RESERVED_98",
 	"TXT_SPL_RESERVED_99"
 };
+
 const string NAME_SPL_PalLight = "Святой свет";
 const string NAME_SPL_PalLightHeal = "Малое исцеление";
 const string NAME_SPL_PalHolyBolt = "Святая стрела";
@@ -438,12 +439,12 @@ const string TXT_TALENTS_SKILLS[22] =
 	"Новичок|Боец|Мастер",
 	"Новичок|Стрелок|Мастер",
 	"Новичок|Стрелок|Мастер",
-	"Не обучен|Обучен|-",
-	"0|1|2",
+	"Не обучен|Обучен",
+	"",
 	"Не обучен|Первый|Второй|Третий|Четвертый|Пятый|Шестой",
 	"Не обучен|Обучен",
-	"-|-",
-	"-|-",
+	"",
+	"",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
@@ -453,8 +454,8 @@ const string TXT_TALENTS_SKILLS[22] =
 	"Не обучен|Язык крестьян|Язык воинов|Язык жрецов",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
-	"Не обучен|Обучен",
-	"Не обучен|Обучен"
+	"",
+	""
 };
 
 const string TXT_INV_CAT[9] =
@@ -469,6 +470,7 @@ const string TXT_INV_CAT[9] =
 	"Документы",
 	"Разное"
 };
+
 const string NAME_Paladin = "Паладин";
 const string NAME_Miliz = "Ополченец";
 const string NAME_Torwache = "Стражник у прохода";
@@ -520,6 +522,7 @@ const string DIALOG_TRADE_v2 = "Покажи мне товары.";
 const string DIALOG_TRADE_v3 = "Покажи мне, что у тебя есть.";
 const string DIALOG_TRADE_v4 = "Покажи мне свои товары.";
 const string DIALOG_PICKPOCKET = "(обокрасть)";
+const string NAME_Joint = "Косяк";
 const string NAME_Ring = "Кольцо";
 const string NAME_Amulett = "Амулет";
 const string NAME_Trank = "Зелье";
@@ -631,7 +634,7 @@ const string PRINT_Addon_erhalten = " получено";
 const string PRINT_GoldErhalten = " золотых получено";
 const string PRINT_ItemErhalten = " предмет получен";
 const string PRINT_ItemsErhalten = " предметов получено";
-const string PRINT_Addon_RuneGiven = "Белиар дарует вам еще одно заклинание";
+const string PRINT_Addon_RuneGiven = "Белиар дарует вам новое заклинание";
 //const string PRINT_Kosten = ". Цена: ";
 //const string PRINT_LP = " очков обучения";
 //const string PRINT_1LP = " очко обучения";
@@ -661,21 +664,22 @@ const string PRINT_LearnBow_and_Crossbow = "Улучшено: Меткость стрельбы из лука 
 const string PRINT_LearnCrossbow = "Улучшено: Меткость стрельбы из арбалета";
 const string PRINT_LearnCrossbow_and_Bow = "Улучшено: Меткость стрельбы из арбалета и лука";
 const string PRINT_LearnPicklock = "Изучено: Владение отмычками";
-const string PRINT_LearnSneak = "Изучено: Искусство красться";
+const string PRINT_LearnSneak = "Изучено: Искусство подкрадывания";
 const string PRINT_LearnAcrobat = "Изучено: Акробатика";
 const string PRINT_Addon_AcrobatBonus = "Получен бонус акробатики!";
 const string PRINT_LearnPickpocket = "Изучено: Искусство карманного воровства";
 const string PRINT_Beliarshitpoints_MAX = "Макс. здоровье - ";
 const string PRINT_Beliarsmana_MAX = "Макс. мана - ";
-const string PRINT_LearnSmith = "Изучено: Искусство изготовления оружия";
-const string PRINT_LearnRunes = "Изучено: Искусство создания рун";
-const string PRINT_LearnAlchemy = "Изучено: Искусство приготовления зелий";
+const string PRINT_LearnSmithLog = "Чтобы выковать оружие, прежде всего мне нужна сырая сталь. Я должен докрасна нагреть ее в огне кузнечного горна, а затем придать форму на наковальне. Продвинутое оружие зачастую требует редких материалов, придающих клинку особые свойства.";
+const string PRINT_LearnSmith = "Изучена схема нового оружия";
+const string PRINT_LearnRunes = "Изучена руна нового заклинания";
+const string PRINT_LearnAlchemy = "Изучен рецепт нового зелья";
 const string PRINT_LearnAlchemyInnosEye = "Изучено: Перезарядка Глаза Инноса";
 const string PRINT_LearnTakeAnimalTrophy = "Изучено: Снятие трофеев";
 const string PRINT_LearnTakeAnimalFur = "Изучено: Снятие шкур";
 const string PRINT_LearnForeignLanguage = "Изучено: Язык зодчих";
 const string PRINT_LearnWispDetector = "Ваш блуждающий огонек обучился новым способностям";
-const string PRINT_LearnPalTeleportSecret = "Изучено: Создание руны телепорта";
+const string PRINT_LearnPalTeleportSecret = "Изучена руна телепорта";
 const string PRINT_NotEnoughLearnPoints = "Недостаточно очков обучения!";
 const string PRINT_LearnSTR1 = "Сила + 1";
 const string PRINT_LearnSTR5 = "Сила + 5";
@@ -747,10 +751,10 @@ const string PRINT_Eat1 = "Вы чувствуете себя освеженным.";
 const string PRINT_Eat2 = "Сочная и свежая пища.";
 const string PRINT_Eat3 = "Вы чувствуете, как силы наполняют вас!";
 const string Print_ReadAstronomy = "Чувство божественного просвещения наполняет вас.";
-const string PRINT_GornsTreasure = "Получено 100 золотых.";
-const string PRINT_KerolothsGeldBeutel = "Получено 300 золотых.";
-const string PRINT_MalethBanditsGold = "Получено 300 золотых.";
-const string Print_DiegosTreasure = "Получено 2000 золотых.";
+//const string PRINT_GornsTreasure = "Получено 100 золотых.";
+//const string PRINT_KerolothsGeldBeutel = "Получено 300 золотых.";
+//const string PRINT_MalethBanditsGold = "Получено 300 золотых.";
+//const string Print_DiegosTreasure = "Получено 2000 золотых.";
 const string PRINT_IrdorathBookDoesntOpen = "Эту книгу невозможно открыть.";
 const string PRINT_IrdorathBookHiddenKey = "В переплете этой книги спрятан ключ!";
 const string PRINT_FishLetter = "В этой рыбе спрятана записка.";
@@ -806,6 +810,7 @@ const string PRINT_TeleportTooFarAway = "Слишком далеко";
 const string PRINT_BiffsAnteil = "Доля Биффа: ";
 const string PRINT_BiffGold = " золотых";
 const string PRINT_Addon_SCIsWearingRangerRing = "Теперь вы носите знак 'Кольца Воды'.";
+const string PRINT_Used = "Использовано: ";
 var string TEXT_Innoseye_Setting;
 const string TEXT_Innoseye_Setting_Broken = "Оправа этого амулета повреждена.";
 const string TEXT_Innoseye_Setting_Repaired = "Оправа этого амулета в целости и сохранности.";
@@ -832,6 +837,10 @@ const string Pickpocket_40_Key = "(украсть его ключ будет довольно просто)";
 const string Pickpocket_60_Key = "(украсть его ключ будет довольно рискованно)";
 const string Pickpocket_80_Key = "(украсть его ключ будет довольно трудно)";
 const string DIALOG_SecretSign = "(показать знак воров)";
+const string DIALOG_SellGoldNugget = "(продать 1 золотой самородок)";
+const string DIALOG_SellGoldNuggets = "(продать все золотые самородки)";
+const string DIALOG_GiveDragonBlood = "(отдать одну пробирку)";
+const string DIALOG_GiveAllDragonBlood = "(отдать все пробирки)";
 
 const int YPOS_GoldGiven = 34;
 const int YPOS_GoldTaken = 34;
@@ -853,6 +862,9 @@ const string PRINT_MANA_MAX_MISSING = "Недостаточно маны:";
 const string PRINT_STRENGTH_MISSING = "Недостаточно силы:";
 const string PRINT_DEXTERITY_MISSING = "Недостаточно ловкости:";
 const string PRINT_MAGCIRCLES_MISSING = "Слишком низкий магический круг для использования этой руны:";
+const string PRINT_MAGCIRCLES_PAL = "Я не умею пользоваться магией паладинов.";
+const string PRINT_MAGCIRCLES_LOW = "Не изучен необходимый Круг магии.";
+const string PRINT_MAGCIRCLES_NEEDFIRST = "Не изучено ни одного Круга магии.";
 const string PRINT_ADDON_BELIARSCOURSE_MISSING = "Это оружие нельзя использовать!";
 const string _STR_MESSAGE_INTERACT_NO_KEY = "Нет отмычки или подходящего ключа.";
 const string _STR_MESSAGE_TRADE_FAILURE = "Ваши товары недостаточно ценные.";
@@ -893,9 +905,11 @@ const string PRINT_Addon_EvidenceGiven = "Улики отданы";
 const string NAME_HP_Essenz = "Лечебная эссенция";
 const string NAME_HP_Extrakt = "Лечебный экстракт";
 const string NAME_HP_Elixier = "Лечебный эликсир";
+const string NAME_HP_Full = "Чистое здоровье";
 const string NAME_Mana_Essenz = "Эссенция маны";
 const string NAME_Mana_Extrakt = "Экстракт маны";
 const string NAME_Mana_Elixier = "Эликсир маны";
+const string NAME_Mana_Full = "Чистая мана";
 const string NAME_STR_Elixier = "Эликсир силы";
 const string NAME_DEX_Elixier = "Эликсир ловкости";
 const string NAME_HPMax_Elixier = "Эликсир жизни";
@@ -936,9 +950,18 @@ const string NAME_TROPHY_CrawlerPlate = "Снятие панцирей c краулеров";
 const string NAME_TROPHY_FireTongue = "Огненный язык";
 
 const string PRINT_HiddenInFish = "В этой рыбе что-то спрятано.";
+const string PRINT_Pocket_25 = "Внутри позванивает несколько монет.";
+const string PRINT_Pocket_50 = "Этот кошелек полон монет.";
+const string PRINT_Pocket_100 = "Тяжелый мешочек, полный монет.";
+const string PRINT_Pocket_300 = "Этот кошелек набит монетами.";
+const string PRINT_Pocket_MIS = "На мешочке прикреплен ярлык";
 const string PRINT_UnknownEffect = "Эффект неизвестен.";
 const string PRINT_LousHammerNoEffect = "Больше не дает никакого эффекта, кроме опьянения.";
 const string PRINT_SlowTime = "Замедление времени.";
 const string PRINT_Speed = "Временно повышает скорость.";
 const string PRINT_NothingToPick = "Здесь больше нечего делать.";
+
+const string PRINT_BookstandRunes1 = "Чтобы создать руну, всегда необходим КАЖДЫЙ из вышеперечисленных ингредиентов.";
+const string PRINT_BookstandRunes2 = "Маг должен знать формулу заклинания и должен иметь чистый рунный камень и свиток желаемого заклинания.";
+const string PRINT_BookstandRunes3 = "Только при выполнении этих условий он может приступить к работе за рунным столом.";
 

@@ -42,7 +42,7 @@ func void Rtn_Start_1090()
 	TA_Pray_Innos_FP(21,0,9,0,"ADW_ADANOSTEMPEL_RAVEN_11");
 };
 
-func void Rtn_WaitforPlayer_1090()
+func void Rtn_WaitForPlayer_1090()
 {
 	TA_Stand_WP(9,0,21,0,"ADW_ADANOSTEMPEL_RAVEN_11");
 	TA_Stand_WP(21,0,9,0,"ADW_ADANOSTEMPEL_RAVEN_11");

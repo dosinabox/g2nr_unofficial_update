@@ -63,9 +63,16 @@ instance DIA_Agon_Wurst(C_Info)
 
 func int DIA_Agon_Wurst_Condition()
 {
-	if((Kapitel == 1) && (MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
+	if((MIS_GoraxEssen == LOG_Running) && !Npc_HasItems(self,ItFo_Schafswurst) && Npc_HasItems(other,ItFo_Schafswurst))
 	{
-		return TRUE;
+		if(Kapitel == 1)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -190,13 +197,28 @@ func int DIA_Agon_GetHerb_Condition()
 {
 	if(MIS_SCHNITZELJAGD == FALSE)
 	{
+		if(Npc_GetDistToWP(self,"NW_MONASTERY_HERB_05") > 600)
+		{
+			DIA_Agon_GetHerb.description = "Чем вы здесь занимаетесь?";
+		}
+		else
+		{
+			DIA_Agon_GetHerb.description = "Что ты выращиваешь здесь?";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Agon_GetHerb_Info()
 {
-	AI_Output(other,self,"DIA_Agon_GetHerb_15_00");	//Что ты выращиваешь здесь?
+	if(Npc_GetDistToWP(self,"NW_MONASTERY_HERB_05") > 600)
+	{
+		AI_Output(other,self,"DIA_Addon_Nefarius_Neues_15_00");	//Чем вы здесь занимаетесь?
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Agon_GetHerb_15_00");	//Что ты выращиваешь здесь?
+	};
 	AI_Output(self,other,"DIA_Agon_GetHerb_07_01");	//Мы пытаемся вырастить лечебные травы, из которых мастер Неорас готовит зелья.
 };
 
@@ -225,7 +247,7 @@ func void DIA_Agon_GolemDead_Info()
 	AI_Output(self,other,"DIA_Agon_GolemDead_07_00");	//(торжествующе) Ты опоздал!
 	AI_Output(self,other,"DIA_Agon_GolemDead_07_01");	//Я был здесь первым! Я победил!
 	Info_ClearChoices(DIA_Agon_GolemDead);
-	Info_AddChoice(DIA_Agon_GolemDead,"(угрожающе) Только если тебе удастся выбраться отсюда живым.",DIA_Agon_GolemDead_NoWay);
+	Info_AddChoice(DIA_Agon_GolemDead,"Только если тебе удастся выбраться отсюда живым.",DIA_Agon_GolemDead_NoWay);
 	Info_AddChoice(DIA_Agon_GolemDead,"Заткнись!",DIA_Agon_GolemDead_ShutUp);
 	Info_AddChoice(DIA_Agon_GolemDead,"Поздравляю, ты действительно заслужил это.",DIA_Agon_GolemDead_Congrat);
 };

@@ -5,7 +5,7 @@ instance PIR_1355_Addon_Skip(Npc_Default)
 	guild = GIL_PIR;
 	id = 1355;
 	voice = 8;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	aivar[AIV_FollowDist] = 300;
 	B_SetAttributesToChapter(self,4);

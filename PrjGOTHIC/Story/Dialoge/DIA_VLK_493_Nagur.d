@@ -94,9 +94,7 @@ var int NagurHack;
 
 func void B_Nagur_Abfertigen()
 {
-	var C_Item heroArmor;
-	heroArmor = Npc_GetEquippedArmor(other);
-	if(!Hlp_IsItem(heroArmor,ITAR_MIL_L) && !Hlp_IsItem(heroArmor,ITAR_MIL_M) && !Hlp_IsItem(heroArmor,ITAR_PAL_M) && !Hlp_IsItem(heroArmor,ITAR_PAL_H) && !Hlp_IsItem(heroArmor,ITAR_NOV_L) && !Hlp_IsItem(heroArmor,ITAR_KDF_L) && !Hlp_IsItem(heroArmor,ITAR_KDF_H))
+	if(!C_LawArmorEquipped(other))
 	{
 		AI_Output(self,other,"DIA_Nagur_Add_08_02");	//“ы думаешь, € не узнаю теб€, раз ты надел другую одежду?!
 	};

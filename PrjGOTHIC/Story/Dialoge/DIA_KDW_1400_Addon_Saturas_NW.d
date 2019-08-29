@@ -430,7 +430,24 @@ func void DIA_Addon_Saturas_WhatsOrnament_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Saturas_WhatsOrnament_15_00");	//Почему для тебя так важен этот орнамент?
 	AI_Output(self,other,"DIA_Addon_Saturas_WhatsOrnament_14_01");	//(раздраженно) Это ключ к порталу.
-	AI_Output(self,other,"DIA_Addon_Saturas_WhatsOrnament_14_02");	//Больше я ничего тебе не скажу.
+	if(SaturasKnows_SC_IsRanger == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_09");	//Если Нефариус прав, портал откроется, как только в него вставят кольцо.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Saturas_WhatsOrnament_14_02");	//Больше я ничего тебе не скажу.
+	};
+	if(SC_KnowsPortal == FALSE)
+	{
+		if(Npc_KnowsInfo(other,DIA_Addon_Riordian_Atlantis))
+		{
+			Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+			B_LogEntry(TOPIC_Addon_KDW,"Маги Воды считают, что за порталом находится древний затерянный город.");
+			SC_KnowsPortal = TRUE;
+		};
+	};
 };
 
 
@@ -456,7 +473,7 @@ func int DIA_Addon_Saturas_ScRanger_Condition()
 func void DIA_Addon_Saturas_ScRanger_Info()
 {
 	var C_Item itm;
-	AI_Output(other,self,"DIA_Addon_Saturas_ScRanger_15_00");	//Теперь я принадлежу к Кольцу Воды.
+	AI_Output(other,self,"DIA_Addon_Saturas_ScRanger_15_00");	//Теперь я принадлежу к 'Кольцу Воды'.
 	itm = Npc_GetEquippedArmor(other);
 	if((RangerRingIsMyRing == TRUE) || Hlp_IsItem(itm,ITAR_RANGER_Addon))
 	{
@@ -598,13 +615,27 @@ func void DIA_Addon_Saturas_OpenPortal_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_10");	//Пока Ватрас не дал мне знать, что тебе можно доверять полностью, кольцо побудет у меня.
-		if(Saturas_WillVertrauensBeweis == FALSE)
+		if(VatrasLetterGivenToSaturas == TRUE)
 		{
-			B_LogEntry(TOPIC_Addon_Ornament,"Сатурас не даст мне кольцо, пока он не получит от Ватраса знак, свидетельствующий о том, что мне можно доверять.");
-			Saturas_WillVertrauensBeweis = TRUE;
+			AI_Output(self,other,"DIA_Addon_Saturas_ScRanger_14_07");	//А как я могу сказать, что теперь ты один из нас?
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Saturas_OpenPortal_14_10");	//Пока Ватрас не дал мне знать, что тебе можно доверять полностью, кольцо побудет у меня.
+			if((RangerMeetingRunning == LOG_SUCCESS) && (Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven) || Npc_HasItems(other,ItWr_Vatras2Saturas_FindRaven_opened)))
+			{
+				B_GiveVatrasLetterToSaturas();
+			}
+			else
+			{
+				if(Saturas_WillVertrauensBeweis == FALSE)
+				{
+					B_LogEntry(TOPIC_Addon_Ornament,"Сатурас не даст мне кольцо, пока он не получит от Ватраса знак, свидетельствующий о том, что мне можно доверять.");
+					Saturas_WillVertrauensBeweis = TRUE;
+				};
+				AI_StopProcessInfos(self);
+			};
 		};
-		AI_StopProcessInfos(self);
 	};
 };
 

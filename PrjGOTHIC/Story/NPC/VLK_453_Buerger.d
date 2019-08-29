@@ -1,7 +1,7 @@
 
 instance VLK_453_Buerger(Npc_Default)
 {
-	name[0] = "Работник";
+	name[0] = NAME_Arbeiter;
 	guild = GIL_VLK;
 	id = 453;
 	voice = 6;
@@ -38,8 +38,8 @@ func void Rtn_Start_453()
 	TA_Saw(17,10,18,10,"NW_CITY_POOR_SAW");
 	TA_Smith_Sharp(18,10,19,10,"NW_CITY_POOR_SMITH_SHARP");
 	TA_Saw(19,10,20,5,"NW_CITY_POOR_SAW");
-	TA_Smalltalk(20,5,22,5,"NW_CITY_HABOUR_POOR_AREA_PATH_07");
-	TA_Stand_Eating(22,5,0,55,"NW_CITY_HABOUR_POOR_AREA_HUT_03");
+	TA_Smalltalk(20,5,22,0,"NW_CITY_HABOUR_POOR_AREA_PATH_07");
+	TA_Stand_Eating(22,0,0,55,"NW_CITY_HABOUR_POOR_AREA_HUT_03");
 	TA_Sleep(0,55,5,10,"NW_CITY_HABOUR_POOR_AREA_HUT_04_BED_02");
 };
 

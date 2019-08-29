@@ -592,7 +592,10 @@ func void B_CreateAmbientInv_BDT(var int InventorySet)
 	{
 		CreateInvItems(self,ItMi_Gold,23);
 		CreateInvItems(self,ItPl_Forestberry,1);
-		CreateInvItems(self,ItMw_1h_Vlk_Sword,1);
+		if(!Npc_HasItems(self,ItMw_Addon_BanditTrader))
+		{
+			CreateInvItems(self,ItMw_Addon_BanditTrader,1);
+		};
 	}
 	else if(InventorySet == 0)
 	{

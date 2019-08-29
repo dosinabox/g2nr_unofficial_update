@@ -1,4 +1,14 @@
 
+var int Parlan_Hammer;
+
+func void B_Parlan_HAMMER()
+{
+	AI_Output(self,other,"DIA_Parlan_HAMMER_05_00");	//(строго) Подожди минутку, сын мой.
+	AI_Output(self,other,"DIA_Parlan_HAMMER_05_01");	//Ходят слухи, что ценный артефакт 'исчез' из нашего святилища.
+	AI_Output(self,other,"DIA_Parlan_HAMMER_05_02");	//Я не хочу ничего даже слышать об этом - я жду, что он вернется на свое законное место.
+	Parlan_Hammer = TRUE;
+};
+
 instance DIA_Parlan_Kap1_EXIT(C_Info)
 {
 	npc = KDF_504_Parlan;
@@ -12,26 +22,23 @@ instance DIA_Parlan_Kap1_EXIT(C_Info)
 
 func int DIA_Parlan_Kap1_EXIT_Condition()
 {
-	if(Kapitel <= 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Parlan_Kap1_EXIT_Info()
 {
+	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && !Npc_IsDead(Garwig))
+	{
+		B_Parlan_HAMMER();
+	}
+	else if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
+	{
+		if(Kapitel >= 3)
+		{
+			AI_Output(self,other,"DIA_Parlan_EXIT_05_00");	//Да защитит тебя Иннос.
+		};
+	};
 	AI_StopProcessInfos(self);
-};
-
-
-var int Parlan_Hammer;
-
-func void B_Parlan_HAMMER()
-{
-	AI_Output(self,other,"DIA_Parlan_HAMMER_05_00");	//(строго) Подожди минутку, сын мой.
-	AI_Output(self,other,"DIA_Parlan_HAMMER_05_01");	//Ходят слухи, что ценный артефакт 'исчез' из нашего святилища.
-	AI_Output(self,other,"DIA_Parlan_HAMMER_05_02");	//Я не хочу ничего даже слышать об этом - я жду, что он вернется на свое законное место.
-	Parlan_Hammer = TRUE;
 };
 
 
@@ -53,6 +60,13 @@ func int DIA_Parlan_PMSchulden_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (Parlan_Schulden > 0) && (B_GetGreatestPetzCrime(self) <= Parlan_LastPetzCrime))
 	{
+		if(other.guild == GIL_NOV)
+		{
+			if(!Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
+			{
+				return FALSE;
+			};
+		};
 		return TRUE;
 	};
 };
@@ -60,7 +74,7 @@ func int DIA_Parlan_PMSchulden_Condition()
 func void DIA_Parlan_PMSchulden_Info()
 {
 	var int diff;
-	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && (other.guild == GIL_NOV) && !Npc_IsDead(Garwig))
+	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && !Npc_IsDead(Garwig))
 	{
 		B_Parlan_HAMMER();
 	};
@@ -166,13 +180,20 @@ func int DIA_Parlan_PETZMASTER_Condition()
 {
 	if(B_GetGreatestPetzCrime(self) > Parlan_LastPetzCrime)
 	{
+		if(other.guild == GIL_NOV)
+		{
+			if(!Npc_KnowsInfo(other,DIA_Parlan_WELCOME))
+			{
+				return FALSE;
+			};
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Parlan_PETZMASTER_Info()
 {
-	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && (other.guild == GIL_NOV) && !Npc_IsDead(Garwig))
+	if((Parlan_Hammer == FALSE) && (Hammer_Taken == TRUE) && !Npc_IsDead(Garwig))
 	{
 		B_Parlan_HAMMER();
 	};
@@ -260,6 +281,16 @@ func void DIA_Parlan_PETZMASTER_PayLater()
 };
 
 
+func void B_DIA_Parlan_WELCOME_GoForTribute()
+{
+	AI_Output(self,other,"DIA_Parlan_WELCOME_05_09");	//Когда с этим будет покончено, мы поговорим о твоей работе здесь, в монастыре.
+};
+
+func void B_DIA_Parlan_WELCOME_BringTribute2Gorax()
+{
+	AI_Output(self,other,"DIA_Addon_Parlan_WELCOME_05_00");	//Отнеси свое пожертвование Гораксу. Он им распорядится.
+};
+
 instance DIA_Parlan_WELCOME(C_Info)
 {
 	npc = KDF_504_Parlan;
@@ -277,16 +308,6 @@ func int DIA_Parlan_WELCOME_Condition()
 	{
 		return TRUE;
 	};
-};
-
-func void B_DIA_Parlan_WELCOME_GoForTribute()
-{
-	AI_Output(self,other,"DIA_Parlan_WELCOME_05_09");	//Когда с этим будет покончено, мы поговорим о твоей работе здесь, в монастыре.
-};
-
-func void B_DIA_Parlan_WELCOME_BringTribute2Gorax()
-{
-	AI_Output(self,other,"DIA_Addon_Parlan_WELCOME_05_00");	//Отнеси свое пожертвование Гораксу. Он им распорядится.
 };
 
 func void DIA_Parlan_WELCOME_Info()
@@ -368,6 +389,10 @@ func int DIA_Parlan_Amulett_Condition()
 	{
 		return TRUE;
 	};
+	if(Kapitel >= 3)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Parlan_Amulett_Info()
@@ -391,7 +416,7 @@ instance DIA_Parlan_Hagen(C_Info)
 
 func int DIA_Parlan_Hagen_Condition()
 {
-	if((Kapitel <= 2) && (hero.guild == GIL_NOV))
+	if((LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -401,6 +426,7 @@ func void DIA_Parlan_Hagen_Info()
 {
 	AI_Output(other,self,"DIA_Parlan_Hagen_15_00");	//Я должен поговорить с командующим паладинами!
 	AI_Output(self,other,"DIA_Parlan_Hagen_05_01");	//Лорд Хаген не принимает послушников - только магам позволено видеть его.
+	Player_KnowsLordHagen = TRUE;
 };
 
 
@@ -419,9 +445,16 @@ var int DIA_Parlan_WORK_perm;
 
 func int DIA_Parlan_WORK_Condition()
 {
-	if((Kapitel == 1) && !Npc_KnowsInfo(other,DIA_Parlan_KNOWSJUDGE) && Npc_KnowsInfo(other,DIA_Parlan_WELCOME) && (DIA_Parlan_WORK_perm == FALSE))
+	if(!Npc_KnowsInfo(other,DIA_Parlan_KNOWSJUDGE) && Npc_KnowsInfo(other,DIA_Parlan_WELCOME) && (DIA_Parlan_WORK_perm == FALSE))
 	{
-		return TRUE;
+		if(Kapitel == 1)
+		{
+			return TRUE;
+		}
+		else if(GuildlessMode == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -666,7 +699,8 @@ instance DIA_Parlan_LEARN(C_Info)
 
 func int DIA_Parlan_LEARN_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Parlan_Hagen) && (other.guild == GIL_NOV))
+//	if(Npc_KnowsInfo(hero,DIA_Parlan_Hagen) && (other.guild == GIL_NOV))
+	if(other.guild == GIL_NOV)
 	{
 		return TRUE;
 	};
@@ -783,7 +817,7 @@ instance DIA_Parlan_MAGE(C_Info)
 func int DIA_Parlan_MAGE_Condition()
 {
 //	if((other.guild == GIL_KDF) && Npc_IsInState(self,ZS_Talk))
-	if(other.guild == GIL_KDF)
+	if((other.guild == GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
 	{
 		return TRUE;
 	};
@@ -794,9 +828,19 @@ func void DIA_Parlan_MAGE_Info()
 	AI_Output(self,other,"DIA_Parlan_MAGE_05_00");	//Ты принес клятву, брат. Добро пожаловать в наши ряды.
 	AI_Output(self,other,"DIA_Parlan_MAGE_05_01");	//Я научу тебя первому Кругу магии, когда у тебя будет достаточно опыта.
 	AI_Output(self,other,"DIA_Parlan_MAGE_05_02");	//Возьми этот рунный камень в качестве символа силы, которая теперь находится в твоих руках.
-//	B_GiveInvItems(self,other,ItMi_RuneBlank,1);
+	AI_WaitTillEnd(other,self);
 	CreateInvItem(other,ItMi_RuneBlank);
 	AI_PrintScreen("Рунный камень получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
+	if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Парлан посвятит меня в первые круги магии и обучит множеству различных формул.");
+	};
+	if(!Npc_KnowsInfo(other,DIA_Parlan_LEARN))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Парлан может помочь мне повысить мою магическую энергию.");
+	};
 };
 
 
@@ -934,8 +978,7 @@ func void DIA_Parlan_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-//	AI_Output(other,self,"DIA_Parlan_TEACH_15_00");	//Обучи меня!
-	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
+	B_Say_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Parlan_TEACH);
 	Info_AddChoice(DIA_Parlan_TEACH,Dialog_Back,DIA_Parlan_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE))
@@ -986,6 +1029,11 @@ func void DIA_Parlan_TEACH_Info()
 	if(abletolearn < 1)
 	{
 		AI_Output(self,other,"DIA_Parlan_TEACH_05_01");	//Пока я ничему не могу научить тебя.
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
+		{
+			PrintScreen(PRINT_MAGCIRCLES_NEEDFIRST,-1,-1,FONT_ScreenSmall,2);
+		};
+		Info_ClearChoices(DIA_Parlan_TEACH);
 	};
 };
 
@@ -1040,65 +1088,6 @@ func void DIA_Parlan_TEACH_Shrink()
 };
 
 
-instance DIA_Parlan_Kap2_EXIT(C_Info)
-{
-	npc = KDF_504_Parlan;
-	nr = 999;
-	condition = DIA_Parlan_Kap2_EXIT_Condition;
-	information = DIA_Parlan_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Parlan_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Parlan_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-func void B_Parlan_Exit()
-{
-	AI_Output(self,other,"DIA_Parlan_EXIT_05_00");	//Да защитит тебя Иннос.
-};
-
-
-instance DIA_Parlan_Kap3_EXIT(C_Info)
-{
-	npc = KDF_504_Parlan;
-	nr = 999;
-	condition = DIA_Parlan_Kap3_EXIT_Condition;
-	information = DIA_Parlan_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Parlan_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Parlan_Kap3_EXIT_Info()
-{
-	if((other.guild == GIL_PAL) || (other.guild == GIL_NOV) || (other.guild == GIL_KDF))
-	{
-		B_Parlan_Exit();
-	};
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Parlan_IAmParlan(C_Info)
 {
 	npc = KDF_504_Parlan;
@@ -1113,7 +1102,7 @@ instance DIA_Parlan_IAmParlan(C_Info)
 func int DIA_Parlan_IAmParlan_Condition()
 {
 //	if((Kapitel >= 3) && Npc_IsInState(self,ZS_Talk) && ((other.guild != GIL_NOV) && (other.guild != GIL_KDF)))
-	if((Kapitel >= 3) && ((other.guild != GIL_NOV) && (other.guild != GIL_KDF)))
+	if((Kapitel >= 3) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF) && (B_GetGreatestPetzCrime(self) == CRIME_NONE))
 	{
 		return TRUE;
 	};
@@ -1282,63 +1271,5 @@ func void DIA_Parlan_Kap3U4U5_PERM_Cellar()
 {
 	AI_Output(other,self,"DIA_Parlan_Kap3U4U5_PERM_Cellar_15_00");	//... подвал?
 	AI_Output(self,other,"DIA_Parlan_Add_05_04");	//Вход в подвал находится посередине колоннады справа.
-};
-
-
-instance DIA_Parlan_Kap4_EXIT(C_Info)
-{
-	npc = KDF_504_Parlan;
-	nr = 999;
-	condition = DIA_Parlan_Kap4_EXIT_Condition;
-	information = DIA_Parlan_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Parlan_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Parlan_Kap4_EXIT_Info()
-{
-	if((other.guild == GIL_PAL) || (other.guild == GIL_NOV) || (other.guild == GIL_KDF))
-	{
-		B_Parlan_Exit();
-	};
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Parlan_Kap5_EXIT(C_Info)
-{
-	npc = KDF_504_Parlan;
-	nr = 999;
-	condition = DIA_Parlan_Kap5_EXIT_Condition;
-	information = DIA_Parlan_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Parlan_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Parlan_Kap5_EXIT_Info()
-{
-	if((other.guild == GIL_PAL) || (other.guild == GIL_NOV) || (other.guild == GIL_KDF))
-	{
-		B_Parlan_Exit();
-	};
-	AI_StopProcessInfos(self);
 };
 

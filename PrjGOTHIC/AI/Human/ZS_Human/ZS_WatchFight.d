@@ -46,6 +46,22 @@ func void B_CheerFight()
 			};
 			AI_PlayAni(self,"T_WATCHFIGHT_YEAH");
 		};
+	}
+	else
+	{
+		if(C_NpcBelongsToCity(self))
+		{
+			B_Say_Overlay(self,self,"$GETOUTOFHERE");
+		};
+		if(C_NpcBelongsToMonastery(self))
+		{
+			B_Say_Overlay(self,self,"$MONA_CRIME");
+		};
+		if(C_NpcBelongsToOldCamp(self))
+		{
+			B_Say_Overlay(self,self,"$OC_CRIME");
+		};
+		AI_PlayAni(self,"T_WATCHFIGHT_OHNO");
 	};
 };
 
@@ -76,9 +92,9 @@ func void B_AssessDefeat()
 
 func void ZS_WatchFight()
 {
+	Perception_Set_Minimal();
 	Npc_PercEnable(self,PERC_ASSESSDEFEAT,B_AssessDefeat);
 	Npc_PercEnable(self,PERC_ASSESSOTHERSDAMAGE,B_CheerFight);
-	Perception_Set_Minimal();
 	AI_Standup(self);
 	B_TurnToNpc(self,victim);
 	AI_RemoveWeapon(self);

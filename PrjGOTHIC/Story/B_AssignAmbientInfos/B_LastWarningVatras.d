@@ -13,15 +13,18 @@ func void B_VatrasPissedOff()
 {
 	AI_Output(self,other,"DIA_Addon_Vatras_PissedOffPerm_Add_05_00");	//Отныне ты не можешь рассчитывать на нашу помощь.
 	AI_Output(self,other,"DIA_Addon_Vatras_PissedOffPerm_Add_05_01");	//Убирайся. Для меня ты теперь пария.
-	if(Vatras_IsOnBoard == LOG_SUCCESS)
+	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		Crewmember_Count -= 1;
+		if(Vatras_IsOnBoard == LOG_SUCCESS)
+		{
+			Crewmember_Count -= 1;
+		};
+		Vatras_IsOnBoard = LOG_FAILED;
+		B_CheckLog();
+		self.flags = 0;
+		VatrasPissedOffForever = TRUE;
+		AI_StopProcessInfos(self);
+		Npc_ExchangeRoutine(self,"PRAY");
 	};
-	Vatras_IsOnBoard = LOG_FAILED;
-	B_CheckLog();
-	self.flags = 0;
-	VatrasPissedOffForever = TRUE;
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"PRAY");
 };
 

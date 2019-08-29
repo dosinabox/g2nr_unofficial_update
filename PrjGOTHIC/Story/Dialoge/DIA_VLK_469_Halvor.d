@@ -98,7 +98,7 @@ instance DIA_Halvor_Hallo(C_Info)
 
 func int DIA_Halvor_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Wld_IsTime(5,0,20,0))
+	if(Npc_IsInState(self,ZS_Talk) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -106,14 +106,7 @@ func int DIA_Halvor_Hallo_Condition()
 
 func void DIA_Halvor_Hallo_Info()
 {
-	if(self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST)
-	{
-		AI_Output(self,other,"DIA_Halvor_Hallo_06_00");	//Эй, тебе нужна рыба? У меня очень хорошая рыба - с самых глубин моря!
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_03");	//Ты пожалеешь об этом.
-	};
+	AI_Output(self,other,"DIA_Halvor_Hallo_06_00");	//Эй, тебе нужна рыба? У меня очень хорошая рыба - с самых глубин моря!
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Халвор торгует рыбой в гавани.");
 };
@@ -133,7 +126,7 @@ instance DIA_Halvor_TRADE(C_Info)
 
 func int DIA_Halvor_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Halvor_Hallo) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(hero,DIA_Halvor_Hallo) && Wld_IsTime(5,0,20,0) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -147,34 +140,6 @@ func void DIA_Halvor_TRADE_Info()
 };
 
 
-////////////////////////////////////////
-instance DIA_Halvor_NOTRADE(C_Info)
-{
-	npc = VLK_469_Halvor;
-	nr = 2;
-	condition = DIA_Halvor_NOTRADE_Condition;
-	information = DIA_Halvor_NOTRADE_Info;
-	permanent = TRUE;
-	description = "Покажи мне свою рыбу.";
-};
-
-
-func int DIA_Halvor_NOTRADE_Condition()
-{
-	if(Npc_KnowsInfo(hero,DIA_Halvor_Hallo) && (Halvor_Ausgeliefert == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Halvor_NOTRADE_Info()
-{
-	AI_Output(other,self,"DIA_Halvor_TRADE_15_00");	//Покажи мне свою рыбу.
-	AI_Output(self,other,"DIA_Halvor_MESSAGE_PRISON_06_03");	//Ты пожалеешь об этом.
-	AI_StopProcessInfos(self);
-};
-
-////////////////////////////////////////
 instance DIA_Halvor_Night(C_Info)
 {
 	npc = VLK_469_Halvor;
@@ -188,7 +153,7 @@ instance DIA_Halvor_Night(C_Info)
 
 func int DIA_Halvor_Night_Condition()
 {
-	if(Wld_IsTime(20,0,0,0) && Npc_IsInState(self,ZS_Talk) && (Halvor_Ausgeliefert == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Wld_IsTime(20,0,5,0) && Npc_IsInState(self,ZS_Talk) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -196,7 +161,14 @@ func int DIA_Halvor_Night_Condition()
 
 func void DIA_Halvor_Night_Info()
 {
-	AI_Output(self,other,"DIA_Halvor_Night_06_00");	//Эй, если ты хочешь купить рыбу, заходи ко мне завтра. Хорошо?
+	if(Wld_IsTime(20,0,0,0))
+	{
+		AI_Output(self,other,"DIA_Halvor_Night_06_00");	//Эй, если ты хочешь купить рыбу, заходи ко мне завтра. Хорошо?
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+	};
 };
 
 instance DIA_Addon_Halvor_MissingPeople(C_Info)
@@ -223,7 +195,7 @@ func void DIA_Addon_Halvor_MissingPeople_Info()
 	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_01");	//Пропавших людях? Это порт, приятель. Такие события здесь не в диковинку.
 	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_02");	//Море жестоко. Оно нередко забирает человеческие жизни.
 	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_03");	//В крупных портах, таких как Хоринис, капитаны больших кораблей набирают матросов для пополнения команды.
-	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_04");	//А если они не находят добровольцев, людей могут затащить на корабль и против их воли. Так они и исчезают.
+	AI_Output(self,other,"DIA_Addon_Halvor_MissingPeople_06_04");	//А если они не находят добровольцев, людей могут затащить на корабль и против их воли. Так они исчезают.
 	Info_ClearChoices(DIA_Addon_Halvor_MissingPeople);
 	Info_AddChoice(DIA_Addon_Halvor_MissingPeople,Dialog_Back,DIA_Addon_Halvor_MissingPeople_Back);
 	Info_AddChoice(DIA_Addon_Halvor_MissingPeople,"Но что это мог быть за корабль?",DIA_Addon_Halvor_MissingPeople_schiff);
@@ -272,7 +244,7 @@ instance DIA_Halvor_MESSAGE(C_Info)
 
 func int DIA_Halvor_MESSAGE_Condition()
 {
-	if(Npc_HasItems(other,ItWr_HalvorMessage) && (Knows_Halvor == TRUE))
+	if(Npc_HasItems(other,ItWr_HalvorMessage) && (Knows_Halvor == TRUE) && (Halvor_Ausgeliefert == FALSE))
 	{
 		return TRUE;
 	};
@@ -330,7 +302,7 @@ func void DIA_Halvor_MESSAGE_Okay()
 	Diebesgilde_Okay += 1;
 	CreateInvItems(self,ItSe_ErzFisch,1);
 	CreateInvItems(self,ItSe_GoldFisch,1);
-	CreateInvItems(self,ItSe_Ringfisch,1);
+	CreateInvItems(self,ItSe_RingFisch,1);
 	CreateInvItems(self,ItSe_LockpickFisch,1);
 	Info_ClearChoices(DIA_Halvor_MESSAGE);
 };
@@ -378,7 +350,7 @@ instance DIA_Halvor_Hehlerei(C_Info)
 
 func int DIA_Halvor_Hehlerei_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Halvor_Zeichen) && (Betrayal_Halvor == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_LOST))
+	if(Npc_KnowsInfo(other,DIA_Halvor_Zeichen) && (Betrayal_Halvor == FALSE))
 	{
 		return TRUE;
 	};
@@ -468,10 +440,18 @@ func int DIA_Halvor_Crew_Condition()
 func void DIA_Halvor_Crew_Info()
 {
 	AI_Output(other,self,"DIA_Halvor_Crew_15_00");	//Я набираю команду.
-	AI_Output(self,other,"DIA_Halvor_Crew_06_01");	//А как ты планируешь уплыть отсюда?
-	Info_ClearChoices(DIA_Halvor_Crew);
-	Info_AddChoice(DIA_Halvor_Crew,"Это мое дело.",DIA_Halvor_Crew_MyThing);
-	Info_AddChoice(DIA_Halvor_Crew,"Здесь есть подходящий корабль.",DIA_Halvor_Crew_StealShip);
+	if(Betrayal_Halvor == FALSE)
+	{
+		AI_Output(self,other,"DIA_Halvor_Crew_06_01");	//А как ты планируешь уплыть отсюда?
+		Info_ClearChoices(DIA_Halvor_Crew);
+		Info_AddChoice(DIA_Halvor_Crew,"Это мое дело.",DIA_Halvor_Crew_MyThing);
+		Info_AddChoice(DIA_Halvor_Crew,"Здесь есть подходящий корабль.",DIA_Halvor_Crew_StealShip);
+	}
+	else
+	{
+		B_Say(self,other,"$NOTNOW");
+		AI_StopProcessInfos(self);
+	};
 };
 
 func void DIA_Halvor_Crew_MyThing()
@@ -492,10 +472,7 @@ func void DIA_Halvor_Crew_StealShip()
 	Info_ClearChoices(DIA_Halvor_Crew);
 	Info_AddChoice(DIA_Halvor_Crew,Dialog_Back,DIA_Halvor_Crew_BACK);
 	Info_AddChoice(DIA_Halvor_Crew,"Хочешь плыть со мной?",DIA_Halvor_Crew_JoinMe);
-	if(!Npc_IsDead(Jack))
-	{
-		Info_AddChoice(DIA_Halvor_Crew,"Ты можешь помочь мне?",DIA_Halvor_Crew_HelpMe);
-	};
+	Info_AddChoice(DIA_Halvor_Crew,"Ты можешь помочь мне?",DIA_Halvor_Crew_HelpMe);
 };
 
 func void DIA_Halvor_Crew_JoinMe()
@@ -508,12 +485,18 @@ func void DIA_Halvor_Crew_JoinMe()
 func void DIA_Halvor_Crew_HelpMe()
 {
 	AI_Output(other,self,"DIA_Halvor_Crew_HelpMe_15_00");	//Ты можешь помочь мне?
-	AI_Output(self,other,"DIA_Halvor_Crew_HelpMe_06_01");	//Я не очень подхожу для этого. Лучше поговори с Джеком, он должен ошиваться где-то здесь, в гавани. Он лучше знает, что тебе нужно для этого путешествия.
+	if(!Npc_IsDead(Jack))
+	{
+		AI_Output(self,other,"DIA_Halvor_Crew_HelpMe_06_01");	//Я не очень подхожу для этого. Лучше поговори с Джеком, он должен ошиваться где-то здесь, в гавани. Он лучше знает, что тебе нужно для этого путешествия.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Huno_Attentat_06_04");	//Я ничего об этом не знаю и знать не хочу!
+	};
 };
 
 func void DIA_Halvor_Crew_BACK()
 {
 	Info_ClearChoices(DIA_Halvor_Crew);
 };
-
 

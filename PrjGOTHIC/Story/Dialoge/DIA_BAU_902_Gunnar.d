@@ -88,7 +88,7 @@ func void DIA_Gunnar_Everywhere_Info()
 {
 	AI_Output(other,self,"DIA_Gunnar_Everywhere_15_00");	//Наемники приходят отовсюду?
 	AI_Output(self,other,"DIA_Gunnar_Everywhere_10_01");	//Большинство из них пришло из колонии.
-	AI_Output(self,other,"DIA_Gunnar_Everywhere_10_02");	//Еще одна группа наемников пришла с юга, там они, вероятно, охотились на орков.
+	AI_Output(self,other,"DIA_Gunnar_Everywhere_10_02");	//И еще одна группа наемников пришла с юга. Там они, вероятно, охотились на орков.
 	AI_Output(self,other,"DIA_Gunnar_Everywhere_10_03");	//И я готов поклясться, что несколько бандитов с гор тоже пришли сюда, чтобы получить бесплатную еду!
 };
 

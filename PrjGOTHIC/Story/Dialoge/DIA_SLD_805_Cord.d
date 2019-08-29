@@ -68,7 +68,7 @@ instance DIA_Cord_Hallo(C_Info)
 
 func int DIA_Cord_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE) && (RangerMeetingRunning != LOG_SUCCESS))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (other.guild == GIL_NONE) && (MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -78,15 +78,17 @@ func void DIA_Cord_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Cord_Hallo_14_00");	//Если у тебя проблемы с волками или полевыми хищниками, поговори с одним из наемников помоложе.
 	AI_Output(self,other,"DIA_Cord_Hallo_14_01");	//А ко мне ты можешь обратиться, когда появятся паладины.
-	if(SC_IsRanger == FALSE)
-	{
-		AI_Output(other,self,"DIA_Cord_Hallo_15_02");	//Что?
-		AI_Output(self,other,"DIA_Cord_Hallo_14_03");	//Когда вы, крестьяне, обращаетесь ко мне, вы всегда просите убить ни в чем не повинных зверей.
-		AI_Output(other,self,"DIA_Cord_Hallo_15_04");	//Я не крестьянин.
-		AI_Output(self,other,"DIA_Cord_Hallo_14_05");	//Ох? И чего же ты хочешь?
-	};
+	AI_Output(other,self,"DIA_Cord_Hallo_15_02");	//Что?
+	AI_Output(self,other,"DIA_Cord_Hallo_14_03");	//Когда вы, крестьяне, обращаетесь ко мне, вы всегда просите убить ни в чем не повинных зверей.
+	AI_Output(other,self,"DIA_Cord_Hallo_15_04");	//Я не крестьянин.
+	AI_Output(self,other,"DIA_Cord_Hallo_14_05");	//Ох? И чего же ты хочешь?
 };
 
+
+func void B_Cord_BeBetter()
+{
+	AI_Output(self,other,"DIA_Cord_WannaJoin_14_14");	//Пока ты едва умеешь обращаться с оружием, и тебе здесь не место!
+};
 
 var int Cord_SchonmalGefragt;
 var int DIA_Cord_WannaJoin_Once;
@@ -104,15 +106,10 @@ instance DIA_Cord_WannaJoin(C_Info)
 
 func int DIA_Cord_WannaJoin_Condition()
 {
-	if((Cord_Approved == FALSE) && (hero.guild == GIL_NONE))
+	if((Cord_Voted == FALSE) && (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
-};
-
-func void B_Cord_BeBetter()
-{
-	AI_Output(self,other,"DIA_Cord_WannaJoin_14_14");	//Пока ты едва умеешь обращаться с оружием, и тебе здесь не место!
 };
 
 func void DIA_Cord_WannaJoin_Info()
@@ -120,7 +117,10 @@ func void DIA_Cord_WannaJoin_Info()
 	AI_Output(other,self,"DIA_Cord_WannaJoin_15_00");	//Я хочу стать наемником!
 	if(Cord_SchonmalGefragt == FALSE)
 	{
-		AI_Output(self,other,"DIA_Cord_WannaJoin_14_01");	//Ты больше похож на того, кто был рожден работать на поле, парень.
+		if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
+		{
+			AI_Output(self,other,"DIA_Cord_WannaJoin_14_01");	//Ты больше похож на того, кто был рожден работать на поле, парень.
+		};
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_02");	//Ты умеешь обращаться с оружием?
 		Cord_SchonmalGefragt = TRUE;
 	}
@@ -150,21 +150,20 @@ func void DIA_Cord_WannaJoin_Info()
 	{
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_10");	//Ну, по крайней мере, ты не зеленый новичок. Хорошо. Я проголосую за тебя.
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_11");	//Если тебе еще что-то нужно знать, ты можешь спросить у меня.
-		Cord_Approved = TRUE;
-		B_GivePlayerXP(XP_Cord_Approved);
+		Cord_Voted = TRUE;
+		B_GivePlayerXP(XP_Cord_Voted);
 		if(Torlof_GenugStimmen == FALSE)
 		{
 			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
 		};
 		B_LogEntry(TOPIC_SLDRespekt,"Голос Корда у меня в кармане.");
-		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTeacher,"Корд может обучить меня владению одноручным и двуручным оружием.");
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_12");	//Другими словами: ты зеленый новичок!
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_13");	//Мы, наемники, должны быть уверены, что можем всецело положиться на наших товарищей. От этого зависит наша жизнь.
+		SCKnowsSLDVotes = TRUE;
 		B_Cord_BeBetter();
 		if(DIA_Cord_WannaJoin_Once == FALSE)
 		{
@@ -189,7 +188,11 @@ instance DIA_Addon_Cord_YouAreRanger(C_Info)
 
 func int DIA_Addon_Cord_YouAreRanger_Condition()
 {
-	if((RangerHelp_gildeSLD == TRUE) && (Cord_SchonmalGefragt == TRUE))
+	if(RangerHelp_gildeSLD == TRUE)
+	{
+		return TRUE;
+	}
+	else if(MIS_Addon_Lares_ComeToRangerMeeting == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -198,7 +201,7 @@ func int DIA_Addon_Cord_YouAreRanger_Condition()
 func void DIA_Addon_Cord_YouAreRanger_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_15_00");	//Говорят, ты принадлежишь к Кольцу Воды?
-	if(SC_IsRanger == FALSE)
+	if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_14_01");	//Что за крыса не смогла удержать на замке свой болтливый рот?
 		if(SC_KnowsCordAsRangerFromLee == TRUE)
@@ -217,17 +220,23 @@ func void DIA_Addon_Cord_YouAreRanger_Info()
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"На самом деле мне ничего не нужно. Я и сам справлюсь.",DIA_Addon_Cord_YouAreRanger_nix);
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Мне нужна твоя броня.",DIA_Addon_Cord_YouAreRanger_ruestung);
 	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Мне нужно твое оружие!",DIA_Addon_Cord_YouAreRanger_waffe);
-	if(Cord_Approved == FALSE)
+	if((Cord_Approved == FALSE) && (Cord_RangerHelp_Fight == FALSE))
 	{
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Научи меня сражаться.",DIA_Addon_Cord_YouAreRanger_kampf);
 	};
 	if(hero.guild == GIL_NONE)
 	{
+		if((SCKnowsSLDVotes == TRUE) && (Cord_Voted == FALSE))
+		{
+			Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Ты проголосуешь за меня?",DIA_Addon_Cord_YouAreRanger_vote);
+		};
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Уходи отсюда. Я хочу занять твое место на этой ферме.",DIA_Addon_Cord_YouAreRanger_weg);
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Ты бы мог помочь мне стать наемником.",DIA_Addon_Cord_YouAreRanger_SLDAufnahme);
 	};
-	Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Заплати мне за молчание.",DIA_Addon_Cord_YouAreRanger_Gold);
-
+	if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
+	{
+		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Заплати мне за молчание.",DIA_Addon_Cord_YouAreRanger_Gold);
+	};
 };
 
 
@@ -243,9 +252,17 @@ func void B_DIA_Addon_Cord_YouAreRanger_FRESSE()
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_FRESSE_14_00");	//(в ярости) Ну хватит! На этот раз ты зашел слишком далеко. Я выбью из тебя дурь.
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
+	if(Cord_Voted_Trick == TRUE)
+	{
+		Cord_Voted = FALSE;
+	};
+	if(Cord_RangerHelp_Fight_Trick == TRUE)
+	{
+		Cord_RangerHelp_Fight = FALSE;
+	};
 	Cord_RangerHelp_GetSLD = FALSE;
-	Cord_RangerHelp_Fight = FALSE;
 	TOPIC_End_RangerHelpSLD = TRUE;
+	B_CheckLog();
 };
 
 func void DIA_Addon_Cord_YouAreRanger_ruestung()
@@ -291,14 +308,41 @@ func void DIA_Addon_Cord_YouAreRanger_weg()
 	};
 };
 
-
 var int DIA_Addon_Cord_YouAreRanger_SCGotOffer;
+
+func void DIA_Addon_Cord_YouAreRanger_vote()
+{
+	AI_Output(other,self,"DIA_Sentenza_Vote_15_00");	//Ты проголосуешь за меня?
+	if(MIS_Addon_Lares_ComeToRangerMeeting == LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Cord_WannaJoin_14_10");	//Ну, по крайней мере, ты не зеленый новичок. Хорошо. Я проголосую за тебя.
+		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_kampf_14_01");	//Хорошо. Что еще?
+	};
+	Cord_Voted = TRUE;
+	Cord_Voted_Trick = TRUE;
+	if(Torlof_GenugStimmen == FALSE)
+	{
+		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+	};
+	B_LogEntry(TOPIC_SLDRespekt,"Голос Корда у меня в кармане.");
+	if(DIA_Addon_Cord_YouAreRanger_SCGotOffer == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Это все.",DIA_Addon_Cord_YouAreRanger_reicht);
+		DIA_Addon_Cord_YouAreRanger_SCGotOffer = TRUE;
+	};
+};
 
 func void DIA_Addon_Cord_YouAreRanger_kampf()
 {
 	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_kampf_15_00");	//Научи меня сражаться.
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_kampf_14_01");	//Хорошо. Что еще?
 	Cord_RangerHelp_Fight = TRUE;
+	Cord_RangerHelp_Fight_Trick = TRUE;
 	if(DIA_Addon_Cord_YouAreRanger_SCGotOffer == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Cord_YouAreRanger,"Это все.",DIA_Addon_Cord_YouAreRanger_reicht);
@@ -337,6 +381,17 @@ func void DIA_Addon_Cord_YouAreRanger_nix()
 	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_nix_15_00");	//На самом деле мне ничего не нужно. Я и сам справлюсь.
 	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_nix_14_01");	//Как скажешь.
 	B_DIA_Addon_Cord_YouAreRanger_WARN();
+	if(Cord_Voted_Trick == TRUE)
+	{
+		Cord_Voted = FALSE;
+	};
+	if(Cord_RangerHelp_Fight_Trick == TRUE)
+	{
+		Cord_RangerHelp_Fight = FALSE;
+	};
+	Cord_RangerHelp_GetSLD = FALSE;
+	TOPIC_End_RangerHelpSLD = TRUE;
+	B_CheckLog();
 	Info_ClearChoices(DIA_Addon_Cord_YouAreRanger);
 };
 
@@ -349,26 +404,7 @@ func void DIA_Addon_Cord_YouAreRanger_reicht()
 };
 
 
-instance DIA_Addon_Cord_RangerHelp2GetSLD(C_Info)
-{
-	npc = SLD_805_Cord;
-	nr = 2;
-	condition = DIA_Addon_Cord_RangerHelp2GetSLD_Condition;
-	information = DIA_Addon_Cord_RangerHelp2GetSLD_Info;
-	permanent = TRUE;
-	description = "Помоги мне стать наемником.";
-};
-
-
 var int DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm;
-
-func int DIA_Addon_Cord_RangerHelp2GetSLD_Condition()
-{
-	if((Cord_RangerHelp_GetSLD == TRUE) && (hero.guild == GIL_NONE) && (DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm == FALSE))
-	{
-		return TRUE;
-	};
-};
 
 func void B_Cord_RangerHelpObsolete()
 {
@@ -380,6 +416,7 @@ func void B_Cord_RangerHelpObsolete()
 	AI_Output(self,other,"DIA_Addon_Cord_RangerHelpObsolete_14_05");	//Этим тебе придется заняться самому.
 	DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm = TRUE;
 	TOPIC_End_RangerHelpSLD = TRUE;
+	B_CheckLog();
 };
 
 func void B_Cord_ComeLaterWhenDone()
@@ -427,6 +464,25 @@ func void B_Cord_IDoItForYou_Dexter()
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Наемник Корд ищет своего приятеля Патрика.");
 	MIS_Addon_Cord_Look4Patrick = LOG_Running;
 	Ranger_SCKnowsDexter = TRUE;
+};
+
+instance DIA_Addon_Cord_RangerHelp2GetSLD(C_Info)
+{
+	npc = SLD_805_Cord;
+	nr = 2;
+	condition = DIA_Addon_Cord_RangerHelp2GetSLD_Condition;
+	information = DIA_Addon_Cord_RangerHelp2GetSLD_Info;
+	permanent = TRUE;
+	description = "Помоги мне стать наемником.";
+};
+
+
+func int DIA_Addon_Cord_RangerHelp2GetSLD_Condition()
+{
+	if((Cord_RangerHelp_GetSLD == TRUE) && (hero.guild == GIL_NONE) && (DIA_Addon_Cord_RangerHelp2GetSLD_NoPerm == FALSE))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Addon_Cord_RangerHelp2GetSLD_Info()
@@ -492,7 +548,7 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_00");	//Я встретился с Декстером.
 	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
-	if(Npc_IsDead(BDT_1060_Dexter))
+	if(Npc_IsDead(Dexter))
 	{
 		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_02");	//Он мертв.
 	};
@@ -503,7 +559,10 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_05");	//Ты уверен, что Декстер не лгал?
 		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_06");	//Не уверен. Но это все, что я могу тебе сказать.
 	};
-	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_07");	//Не понимаю... Не мог же Патрик просто так взять и исчезнуть.
+	if((MissingPeopleReturnedHome == FALSE) || (Patrick_DiedInADW == TRUE))
+	{
+		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_07");	//Не понимаю... Не мог же Патрик просто так взять и исчезнуть.
+	};
 	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_08");	//Что ж, ты выполнил условия сделки...
 	MIS_Addon_Cord_Look4Patrick = LOG_SUCCESS;
 	TOPIC_End_RangerHelpSLD = TRUE;
@@ -520,8 +579,11 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	}
 	else if(Torlof_Probe == Probe_Bengar)
 	{
+		B_StartOtherRoutine(Rumbold,"Flucht3");
+		B_StartOtherRoutine(Rick,"Flucht3");
 		MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	};
+	B_CheckLog();
 };
 
 
@@ -573,7 +635,7 @@ instance DIA_Cord_ExplainSkills(C_Info)
 
 func int DIA_Cord_ExplainSkills_Condition()
 {
-	if(Cord_Approved == TRUE)
+	if(Cord_Teacher == TRUE)
 	{
 		return TRUE;
 	};
@@ -605,7 +667,7 @@ instance DIA_Cord_ExplainWeapons(C_Info)
 
 func int DIA_Cord_ExplainWeapons_Condition()
 {
-	if(Cord_Approved == TRUE)
+	if(Cord_Teacher == TRUE)
 	{
 		return TRUE;
 	};
@@ -625,6 +687,33 @@ func void DIA_Cord_ExplainWeapons_Info()
 var int Cord_Merke_1h;
 var int Cord_Merke_2h;
 
+func void B_Cord_Zeitverschwendung()
+{
+	AI_Output(self,other,"DIA_Cord_Teach_14_03");	//Я не хочу тратить свое время на новичков.
+};
+
+func void B_Cord_Teach()
+{
+	if(Cord_Teacher == FALSE)
+	{
+		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
+		B_LogEntry(Topic_SoldierTeacher,"Корд может обучить меня владению одноручным и двуручным оружием.");
+		Cord_Teacher = TRUE;
+	};
+	Info_ClearChoices(DIA_Cord_Teach);
+	Info_AddChoice(DIA_Cord_Teach,Dialog_Back,DIA_Cord_Teach_Back);
+	if((Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
+	{
+		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
+		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
+	};
+	if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
+	{
+		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
+		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
+	};
+};
+
 instance DIA_Cord_Teach(C_Info)
 {
 	npc = SLD_805_Cord;
@@ -641,33 +730,17 @@ func int DIA_Cord_Teach_Condition()
 	return TRUE;
 };
 
-func void B_Cord_Zeitverschwendung()
-{
-	AI_Output(self,other,"DIA_Cord_Teach_14_03");	//Я не хочу тратить свое время на новичков.
-};
-
-func void B_Cord_Teach()
-{
-	Info_ClearChoices(DIA_Cord_Teach);
-	Info_AddChoice(DIA_Cord_Teach,Dialog_Back,DIA_Cord_Teach_Back);
-	if((Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0) || (Cord_RangerHelp_Fight == TRUE))
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
-	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) || (Cord_RangerHelp_Fight == TRUE))
-	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
-	};
-};
-
 func void DIA_Cord_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Cord_Teach_15_00");	//Научи меня сражаться!
-	if((Cord_Approved == TRUE) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
+	if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) || (Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
 	{
-		if(((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) && (Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0)) || (Cord_RangerHelp_Fight == TRUE))
+		if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) && (Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0))
+		{
+			AI_Output(self,other,"DIA_Cord_Teach_14_01");	//Я могу обучить тебя владению любым оружием - с чего начнем?
+			Cord_Approved = TRUE;
+		}
+		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
 		{
 			AI_Output(self,other,"DIA_Cord_Teach_14_01");	//Я могу обучить тебя владению любым оружием - с чего начнем?
 			Cord_Approved = TRUE;
@@ -692,8 +765,6 @@ func void DIA_Cord_Teach_Info()
 		if(Cord_Approved == TRUE)
 		{
 			B_Cord_Teach();
-//			Cord_Merke_1h = other.HitChance[NPC_TALENT_1H];
-//			Cord_Merke_2h = other.HitChance[NPC_TALENT_2H];
 			Cord_Merke_1h = other.aivar[REAL_TALENT_1H];
 			Cord_Merke_2h = other.aivar[REAL_TALENT_2H];
 		};
@@ -706,7 +777,6 @@ func void DIA_Cord_Teach_Info()
 
 func void DIA_Cord_Teach_Back()
 {
-//	if((Cord_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Cord_Merke_2h < other.HitChance[NPC_TALENT_2H]))
 	if((Cord_Merke_1h < other.aivar[REAL_TALENT_1H]) || (Cord_Merke_2h < other.aivar[REAL_TALENT_2H]))
 	{
 		AI_Output(self,other,"DIA_Cord_Teach_BACK_14_00");	//Ты стал значительно лучше - так держать!

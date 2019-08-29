@@ -131,12 +131,18 @@ func void DIA_Peck_FOUND_PECK_Info()
 };
 
 
+var int DIA_Peck_WEAPON_perm;
+var int DIA_Peck_WEAPON2_perm;
+var int DIA_Peck_ARMOR_perm;
+
 func void B_GetWeaponFromPeckCh3()
 {
 	AI_Output(self,other,"DIA_Peck_Add_12_03");	//Хорошо, что ты спросил. Нам досталось несколько очень хороших клинков от наемников Онара.
 	AI_Output(self,other,"DIA_Peck_Add_12_04");	//Они им больше не понадобятся. (грязный смех)
 	AI_Output(self,other,"DIA_Peck_Add_12_05");	//Вот, возьми.
 	B_GiveInvItems(self,other,ItMw_Rubinklinge,1);
+	DIA_Peck_WEAPON_perm = TRUE;
+	DIA_Peck_WEAPON2_perm = TRUE;
 };
 
 instance DIA_Peck_WEAPON(C_Info)
@@ -150,9 +156,6 @@ instance DIA_Peck_WEAPON(C_Info)
 };
 
 
-var int DIA_Peck_WEAPON_perm;
-var int DIA_Peck_WEAPON2_perm;
-
 func int DIA_Peck_WEAPON_Condition()
 {
 	if((other.guild == GIL_MIL) && (Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) && (DIA_Peck_WEAPON_perm == FALSE))
@@ -164,36 +167,28 @@ func int DIA_Peck_WEAPON_Condition()
 func void DIA_Peck_WEAPON_Info()
 {
 	AI_Output(other,self,"DIA_Peck_WEAPON_15_00");	//Я пришел за оружием.
-	if(Npc_KnowsInfo(other,DIA_Andre_FOUND_PECK))
+	if(MIS_Andre_Peck == LOG_Running)
 	{
-		if(MIS_Andre_Peck == LOG_Running)
-		{
-			AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
-		}
-		else
-		{
-			if(MIS_Andre_Peck == LOG_OBSOLETE)
-			{
-				AI_Output(self,other,"DIA_Peck_WEAPON_12_02");	//Посмотрите, кто пришел. Наш новый друг. И ему нужен меч.
-				AI_Output(self,other,"DIA_Peck_WEAPON_12_03");	//Ты не сказал Андрэ, что я был в Красном Фонаре. Похоже, ты нормальный парень. Вот, держи твой меч.
-				AI_Output(self,other,"DIA_Peck_Add_12_00");	//Это лучшее, что у меня есть.
-				B_GiveInvItems(self,hero,ItMw_Schwert1,1);
-			}
-			else if(MIS_Andre_Peck == LOG_SUCCESS)
-			{
-				AI_Output(self,other,"DIA_Peck_WEAPON_12_04");	//Я не забуду тебе этого. Кто сказал Андрэ, что я был в Красном Фонаре, а?
-				AI_Output(self,other,"DIA_Peck_WEAPON_12_05");	//И теперь ты хочешь получить от меня меч... хорошо, ты получишь меч. Вот. А теперь пошел к черту!
-				B_GiveInvItems(self,hero,ItMw_1h_MISC_Sword,1);
-			};
-			DIA_Peck_WEAPON_perm = TRUE;
-			AI_Output(self,other,"DIA_Peck_WEAPON_12_06");	//Если тебе нужно оружие получше, иди к торговцам на рынке.
-		};
+		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
+	}
+	else if(MIS_Andre_Peck == LOG_OBSOLETE)
+	{
+		AI_Output(self,other,"DIA_Peck_WEAPON_12_02");	//Посмотрите, кто пришел. Наш новый друг. И ему нужен меч.
+		AI_Output(self,other,"DIA_Peck_WEAPON_12_03");	//Ты не сказал Андрэ, что я был в Красном Фонаре. Похоже, ты нормальный парень. Вот, держи твой меч.
+		AI_Output(self,other,"DIA_Peck_Add_12_00");	//Это лучшее, что у меня есть.
+		B_GiveInvItems(self,other,ItMw_Schwert1,1);
+		DIA_Peck_WEAPON_perm = TRUE;
+	}
+	else if(MIS_Andre_Peck == LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Peck_WEAPON_12_04");	//Я не забуду тебе этого. Кто сказал Андрэ, что я был в Красном Фонаре, а?
+		AI_Output(self,other,"DIA_Peck_WEAPON_12_05");	//И теперь ты хочешь получить от меня меч... хорошо, ты получишь меч. Вот. А теперь пошел к черту!
+		B_GiveInvItems(self,other,ItMw_1h_MISC_Sword,1);
+		DIA_Peck_WEAPON_perm = TRUE;
 	}
 	else if(Kapitel >= 3)
 	{
 		B_GetWeaponFromPeckCh3();
-		DIA_Peck_WEAPON_perm = TRUE;
-		DIA_Peck_WEAPON2_perm = TRUE;
 	};
 	AI_StopProcessInfos(self);
 };
@@ -202,7 +197,6 @@ func void B_Peck_LeckMich()
 {
 	AI_Output(self,other,"DIA_Peck_Add_12_07");	//Поцелуй мою задницу!
 };
-
 
 instance DIA_Peck_WEAPON2(C_Info)
 {
@@ -234,12 +228,38 @@ func void DIA_Peck_WEAPON2_Info()
 	else if(Kapitel < 3)
 	{
 		AI_Output(self,other,"DIA_Peck_Add_12_02");	//Пока нет...
+		AI_Output(self,other,"DIA_Peck_WEAPON_12_06");	//Если тебе нужно оружие получше, иди к торговцам на рынке.
 	}
 	else
 	{
 		B_GetWeaponFromPeckCh3();
-		DIA_Peck_WEAPON2_perm = TRUE;
 	};
+};
+
+
+instance DIA_Peck_ARMOR(C_Info)
+{
+	npc = MIL_324_Peck;
+	nr = 3;
+	condition = DIA_Peck_ARMOR_Condition;
+	information = DIA_Peck_ARMOR_Info;
+	permanent = TRUE;
+	description = "А как насчет доспехов получше?";
+};
+
+
+func int DIA_Peck_ARMOR_Condition()
+{
+	/*if((other.guild == GIL_MIL) && (Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) && (DIA_Peck_ARMOR_perm == FALSE))
+	{
+		return TRUE;
+	};*/
+	return FALSE;
+};
+
+func void DIA_Peck_ARMOR_Info()
+{
+	//AI_Output(other,self,"DIA_Lee_ArmorM_15_00");	//А как насчет доспехов получше?
 };
 
 

@@ -64,12 +64,27 @@ instance DIA_Addon_Cronos_WaechterADW(C_Info)
 
 func int DIA_Addon_Cronos_WaechterADW_Condition()
 {
+	if(!Npc_KnowsInfo(other,DIA_Addon_Cronos_Waechter))
+	{
+		DIA_Addon_Cronos_WaechterADW.description = "Расскажи мне о каменных стражах.";
+	}
+	else
+	{
+		DIA_Addon_Cronos_WaechterADW.description = "Есть какие-нибудь новые сведения о каменных стражах?";
+	};
 	return TRUE;
 };
 
 func void DIA_Addon_Cronos_WaechterADW_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Cronos_WaechterADW_15_00");	//Есть какие-нибудь новые сведения о каменных стражах?
+	if(!Npc_KnowsInfo(other,DIA_Addon_Cronos_Waechter))
+	{
+		AI_Output(other,self,"DIA_Addon_Cronos_Waechter_15_00");	//Расскажи мне о каменных стражах.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Addon_Cronos_WaechterADW_15_00");	//Есть какие-нибудь новые сведения о каменных стражах?
+	};
 	AI_Output(self,other,"DIA_Addon_Cronos_WaechterADW_04_01");	//Нам уже пришлось уничтожить несколько штук.
 	AI_Output(self,other,"DIA_Addon_Cronos_WaechterADW_04_02");	//Они стоят как статуи и не шевелятся.
 	AI_Output(self,other,"DIA_Addon_Cronos_WaechterADW_04_03");	//Но первое впечатление обманчиво. Если ты подойдешь слишком близко, они нападут на тебя!

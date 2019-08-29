@@ -36,7 +36,7 @@ func int B_GetBestPlayerMap()
 			return ItWr_Map_NewWorld_City;
 		};
 	}
-	else if(CurrentLevel == OldWorld_Zen)
+	else if(CurrentLevel == OLDWORLD_ZEN)
 	{
 		if(Npc_HasItems(hero,ItWr_Map_OldWorld))
 		{
@@ -143,7 +143,7 @@ func int player_hotkey_screen_map()
 			NewInstance = 0;
 		};
 	};
-	if(CurrentLevel != OldWorld_Zen)
+	if(CurrentLevel != OLDWORLD_ZEN)
 	{
 		if((OldInstance == ItWr_Map_OldWorld) || (OldInstance == ItWr_Map_OldWorld_Oremines_MIS) || (OldInstance == ItWr_Map_OldWorld_Oremines_Small_MIS))
 		{
@@ -193,24 +193,28 @@ func void player_hotkey_lame_potion()
 			hero.attribute[ATR_MANA] = hero.attribute[ATR_MANA_MAX];
 			Npc_RemoveInvItem(hero,ItPo_Mana_Addon_04);
 			B_LameSchlork();
+			PrintScreen(ConcatStrings(PRINT_Used,NAME_Mana_Full),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 		}
 		else if(Npc_HasItems(hero,ItPo_Mana_03) && ((hero.attribute[ATR_MANA_MAX] - hero.attribute[ATR_MANA]) >= Mana_Elixier))
 		{
 			Npc_ChangeAttribute(hero,ATR_MANA,Mana_Elixier);
 			Npc_RemoveInvItem(hero,ItPo_Mana_03);
 			B_LameSchlork();
+			PrintScreen(ConcatStrings(PRINT_Used,NAME_Mana_Elixier),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 		}
 		else if(Npc_HasItems(hero,ItPo_Mana_02) && ((hero.attribute[ATR_MANA_MAX] - hero.attribute[ATR_MANA]) >= Mana_Extrakt))
 		{
 			Npc_ChangeAttribute(hero,ATR_MANA,Mana_Extrakt);
 			Npc_RemoveInvItem(hero,ItPo_Mana_02);
 			B_LameSchlork();
+			PrintScreen(ConcatStrings(PRINT_Used,NAME_Mana_Extrakt),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 		}
 		else if(Npc_HasItems(hero,ItPo_Mana_01) && ((hero.attribute[ATR_MANA_MAX] - hero.attribute[ATR_MANA]) >= Mana_Essenz))
 		{
 			Npc_ChangeAttribute(hero,ATR_MANA,Mana_Essenz);
 			Npc_RemoveInvItem(hero,ItPo_Mana_01);
 			B_LameSchlork();
+			PrintScreen(ConcatStrings(PRINT_Used,NAME_Mana_Essenz),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 		}
 		else if(hero.attribute[ATR_MANA_MAX] != hero.attribute[ATR_MANA])
 		{
@@ -219,24 +223,28 @@ func void player_hotkey_lame_potion()
 				Npc_ChangeAttribute(hero,ATR_MANA,Mana_Essenz);
 				Npc_RemoveInvItem(hero,ItPo_Mana_01);
 				B_LameSchlork();
+				PrintScreen(ConcatStrings(PRINT_Used,NAME_Mana_Essenz),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 			}
 			else if(Npc_HasItems(hero,ItPo_Mana_02))
 			{
 				Npc_ChangeAttribute(hero,ATR_MANA,Mana_Extrakt);
 				Npc_RemoveInvItem(hero,ItPo_Mana_02);
 				B_LameSchlork();
+				PrintScreen(ConcatStrings(PRINT_Used,NAME_Mana_Extrakt),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 			}
 			else if(Npc_HasItems(hero,ItPo_Mana_03))
 			{
 				Npc_ChangeAttribute(hero,ATR_MANA,Mana_Elixier);
 				Npc_RemoveInvItem(hero,ItPo_Mana_03);
 				B_LameSchlork();
+				PrintScreen(ConcatStrings(PRINT_Used,NAME_Mana_Elixier),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 			}
 			else if(Npc_HasItems(hero,ItPo_Mana_Addon_04))
 			{
 				hero.attribute[ATR_MANA] = hero.attribute[ATR_MANA_MAX];
 				Npc_RemoveInvItem(hero,ItPo_Mana_Addon_04);
 				B_LameSchlork();
+				PrintScreen(ConcatStrings(PRINT_Used,NAME_Mana_Full),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 			}
 			else
 			{
@@ -259,24 +267,28 @@ func void player_hotkey_lame_heal()
 			hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
 			Npc_RemoveInvItem(hero,ItPo_Health_Addon_04);
 			B_LameSchlork();
+			PrintScreen(ConcatStrings(PRINT_Used,NAME_HP_Full),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 		}
 		else if(Npc_HasItems(hero,ItPo_Health_03) && ((hero.attribute[ATR_HITPOINTS_MAX] - hero.attribute[ATR_HITPOINTS]) >= HP_Elixier))
 		{
 			Npc_ChangeAttribute(hero,ATR_HITPOINTS,HP_Elixier);
 			Npc_RemoveInvItem(hero,ItPo_Health_03);
 			B_LameSchlork();
+			PrintScreen(ConcatStrings(PRINT_Used,NAME_HP_Elixier),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 		}
 		else if(Npc_HasItems(hero,ItPo_Health_02) && ((hero.attribute[ATR_HITPOINTS_MAX] - hero.attribute[ATR_HITPOINTS]) >= HP_Extrakt))
 		{
 			Npc_ChangeAttribute(hero,ATR_HITPOINTS,HP_Extrakt);
 			Npc_RemoveInvItem(hero,ItPo_Health_02);
 			B_LameSchlork();
+			PrintScreen(ConcatStrings(PRINT_Used,NAME_HP_Extrakt),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 		}
 		else if(Npc_HasItems(hero,ItPo_Health_01) && ((hero.attribute[ATR_HITPOINTS_MAX] - hero.attribute[ATR_HITPOINTS]) >= HP_Essenz))
 		{
 			Npc_ChangeAttribute(hero,ATR_HITPOINTS,HP_Essenz);
 			Npc_RemoveInvItem(hero,ItPo_Health_01);
 			B_LameSchlork();
+			PrintScreen(ConcatStrings(PRINT_Used,NAME_HP_Essenz),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 		}
 		else if(hero.attribute[ATR_HITPOINTS_MAX] != hero.attribute[ATR_HITPOINTS])
 		{
@@ -285,24 +297,28 @@ func void player_hotkey_lame_heal()
 				Npc_ChangeAttribute(hero,ATR_HITPOINTS,HP_Essenz);
 				Npc_RemoveInvItem(hero,ItPo_Health_01);
 				B_LameSchlork();
+				PrintScreen(ConcatStrings(PRINT_Used,NAME_HP_Essenz),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 			}
 			else if(Npc_HasItems(hero,ItPo_Health_02))
 			{
 				Npc_ChangeAttribute(hero,ATR_HITPOINTS,HP_Extrakt);
 				Npc_RemoveInvItem(hero,ItPo_Health_02);
 				B_LameSchlork();
+				PrintScreen(ConcatStrings(PRINT_Used,NAME_HP_Extrakt),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 			}
 			else if(Npc_HasItems(hero,ItPo_Health_03))
 			{
 				Npc_ChangeAttribute(hero,ATR_HITPOINTS,HP_Elixier);
 				Npc_RemoveInvItem(hero,ItPo_Health_03);
 				B_LameSchlork();
+				PrintScreen(ConcatStrings(PRINT_Used,NAME_HP_Elixier),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 			}
 			else if(Npc_HasItems(hero,ItPo_Health_Addon_04))
 			{
 				hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
 				Npc_RemoveInvItem(hero,ItPo_Health_Addon_04);
 				B_LameSchlork();
+				PrintScreen(ConcatStrings(PRINT_Used,NAME_HP_Full),-1,YPOS_LOGENTRY,FONT_ScreenSmall,1);
 			}
 			else
 			{

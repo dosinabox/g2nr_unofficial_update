@@ -4,13 +4,12 @@ var int Orlan_ItemsGiven_Chapter_2;
 var int Orlan_ItemsGiven_Chapter_3;
 var int Orlan_ItemsGiven_Chapter_4;
 var int Orlan_ItemsGiven_Chapter_5;
-var int Orlan_RuneGiven;
 
 func void B_GiveTradeInv_Orlan(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Orlan_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,30);
+//		CreateInvItems(slf,ItMi_Gold,30);
 		CreateInvItems(slf,ItRw_Arrow,21);
 		CreateInvItems(slf,ItRw_Bolt,5);
 		CreateInvItems(slf,ItFo_Water,4);
@@ -35,7 +34,7 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Orlan_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,50);
+//		CreateInvItems(slf,ItMi_Gold,50);
 		CreateInvItems(slf,ItLsTorch,3);
 		CreateInvItems(slf,ItRw_Arrow,40);
 		CreateInvItems(slf,ItRw_Bolt,45);
@@ -46,7 +45,7 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Orlan_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItLsTorch,3);
 		CreateInvItems(slf,ItRw_Arrow,120);
 		CreateInvItems(slf,ItRw_Bolt,115);
@@ -54,19 +53,12 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Bartaxt,1);
 		CreateInvItems(slf,ItMw_Orkschlaechter,1);
 		CreateInvItems(slf,ItBe_Addon_Prot_EdgPoi,1);
+		CreateInvItems(slf,ItRu_TeleportTaverne,1);
 		Orlan_ItemsGiven_Chapter_3 = TRUE;
-	};
-	if((Kapitel >= 3) && (Orlan_RuneGiven == FALSE))
-	{
-		if((SC_IsRanger == TRUE) || (Orlan_KnowsSCAsRanger == TRUE))
-		{
-			CreateInvItems(slf,ItRu_TeleportTaverne,1);
-			Orlan_RuneGiven = TRUE;
-		};
 	};
 	if((Kapitel >= 4) && (Orlan_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItLsTorch,3);
 //		CreateInvItems(slf,ItMw_Zweihaender1,1);
 //		CreateInvItems(slf,ItMw_Bartaxt,1);
@@ -75,7 +67,7 @@ func void B_GiveTradeInv_Orlan(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Orlan_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,300);
+//		CreateInvItems(slf,ItMi_Gold,300);
 		CreateInvItems(slf,ItLsTorch,3);
 		CreateInvItems(slf,ItRw_Arrow,120);
 		CreateInvItems(slf,ItRw_Bolt,115);

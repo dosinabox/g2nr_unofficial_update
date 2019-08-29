@@ -185,7 +185,7 @@ instance DIA_Addon_Garaz_Blood(C_Info)
 
 func int DIA_Addon_Garaz_Blood_Condition()
 {
-	if(Npc_IsDead(Bloodwyn) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_IsDead(Bloodwyn) && Npc_KnowsInfo(other,DIA_Addon_Garaz_Sieg))
 	{
 		return TRUE;
 	};
@@ -198,7 +198,6 @@ func void DIA_Addon_Garaz_Blood_Info()
 	B_GivePlayerXP(XP_Ambient);
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"GOLD");
-	B_StartOtherRoutine(Thorus,"TALK");
 };
 
 

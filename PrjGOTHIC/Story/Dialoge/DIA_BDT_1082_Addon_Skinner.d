@@ -122,7 +122,7 @@ func int DIA_Addon_Skinner_Hi_Condition()
 
 func void DIA_Addon_Skinner_Hi_Info()
 {
-	if(Wld_IsTime(12,0,20,0) && (MIS_Judas == LOG_Running))
+	if(Wld_IsTime(12,0,20,0) && (MIS_Judas == LOG_Running) && !Npc_KnowsInfo(other,DIA_Addon_Skinner_Attentat))
 	{
 		B_Say(self,self,"$AWAKE");
 	}

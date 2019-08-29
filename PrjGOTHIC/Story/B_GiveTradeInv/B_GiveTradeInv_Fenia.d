@@ -1,5 +1,4 @@
 
-var int Fenia_ItemsGiven_Paket;
 var int Fenia_ItemsGiven_Chapter_1;
 var int Fenia_ItemsGiven_Chapter_2;
 var int Fenia_ItemsGiven_Chapter_3;
@@ -8,18 +7,9 @@ var int Fenia_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Fenia(var C_Npc slf)
 {
-	if((MIS_Baltram_ScoutAkil == LOG_FAILED) && (Fenia_ItemsGiven_Paket == FALSE))
-	{
-		CreateInvItems(slf,ItFo_Cheese,5);
-		CreateInvItems(slf,ItFo_Apple,10);
-		CreateInvItems(slf,ItFo_Beer,5);
-		CreateInvItems(slf,ItFo_Bacon,5);
-		CreateInvItems(slf,ItFo_Sausage,5);
-		Fenia_ItemsGiven_Paket = TRUE;
-	};
 	if((Kapitel >= 1) && (Fenia_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,50);
+//		CreateInvItems(slf,ItMi_Gold,50);
 		CreateInvItems(slf,ItFo_Water,5);
 		CreateInvItems(slf,ItFo_Bread,3);
 		CreateInvItems(slf,ItFo_Fish,5);
@@ -27,7 +17,7 @@ func void B_GiveTradeInv_Fenia(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Fenia_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,50);
+//		CreateInvItems(slf,ItMi_Gold,50);
 		CreateInvItems(slf,ItFo_Cheese,5);
 		CreateInvItems(slf,ItFo_FishSoup,5);
 		CreateInvItems(slf,ItFo_Fish,3);
@@ -35,7 +25,7 @@ func void B_GiveTradeInv_Fenia(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Fenia_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItFoMutton,2);
 		CreateInvItems(slf,ItFo_Stew,5);
 		CreateInvItems(slf,ItFo_Fish,2);
@@ -45,7 +35,7 @@ func void B_GiveTradeInv_Fenia(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Fenia_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,150);
+//		CreateInvItems(slf,ItMi_Gold,150);
 		CreateInvItems(slf,ItFo_Wine,5);
 		CreateInvItems(slf,ItFoMutton,5);
 		CreateInvItems(slf,ItFo_Stew,5);
@@ -55,7 +45,7 @@ func void B_GiveTradeInv_Fenia(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Fenia_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItFo_Wine,2);
 		CreateInvItems(slf,ItFoMutton,2);
 		CreateInvItems(slf,ItFo_Stew,2);

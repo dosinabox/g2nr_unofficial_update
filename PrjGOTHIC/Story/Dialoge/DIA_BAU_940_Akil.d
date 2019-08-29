@@ -47,9 +47,12 @@ instance DIA_Akil_Hallo(C_Info)
 func int DIA_Akil_Hallo_Condition()
 {
 //	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_IsInState(self,ZS_Talk))
-	if(!Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && (Kapitel < 4))
+	if(Kapitel < 4)
 	{
-		return TRUE;
+		if(!C_AkilFarmIsFree())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -84,7 +87,7 @@ instance DIA_Akil_Nichtjetzt(C_Info)
 func int DIA_Akil_Nichtjetzt_Condition()
 {
 //	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_KnowsInfo(other,DIA_Akil_Hallo))
-	if(Npc_IsInState(self,ZS_Talk) && !Npc_IsDead(Alvares) && !Npc_IsDead(Engardo) && Npc_KnowsInfo(other,DIA_Akil_Hallo) && (Kapitel < 4))
+	if(Npc_IsInState(self,ZS_Talk) && !C_AkilFarmIsFree() && Npc_KnowsInfo(other,DIA_Akil_Hallo) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -111,7 +114,7 @@ instance DIA_Akil_NachKampf(C_Info)
 func int DIA_Akil_NachKampf_Condition()
 {
 //	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo))
-	if(Npc_IsDead(Alvares) && Npc_IsDead(Engardo) && (Kapitel < 4))
+	if(C_AkilFarmIsFree() && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -139,15 +142,11 @@ func void DIA_Akil_NachKampf_Info()
 //	self.flags = 0;
 	if(Hlp_IsValidNpc(Kati) && !Npc_IsDead(Kati))
 	{
-/*		Npc_ExchangeRoutine(Kati,"Start");
-		AI_ContinueRoutine(Kati);
-		Kati.flags = 0; */
+//		Kati.flags = 0;
 		B_StartOtherRoutine(Kati,"Start");
 	};
 	if(Hlp_IsValidNpc(Randolph) && !Npc_IsDead(Randolph))
 	{
-/*		Npc_ExchangeRoutine(Randolph,"Start");
-		AI_ContinueRoutine(Randolph); */
 		B_StartOtherRoutine(Randolph,"Start");
 		Randolph.flags = 0;
 	};
@@ -638,81 +637,6 @@ func void DIA_Akil_AkilsSchaf_Info()
 	B_GivePlayerXP(XP_AkilsSchaf);
 };
 
-/*
-instance DIA_Akil_KAP4_EXIT(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 999;
-	condition = DIA_Akil_KAP4_EXIT_Condition;
-	information = DIA_Akil_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Akil_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Akil_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Akil_KAP5_EXIT(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 999;
-	condition = DIA_Akil_KAP5_EXIT_Condition;
-	information = DIA_Akil_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Akil_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Akil_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Akil_KAP6_EXIT(C_Info)
-{
-	npc = BAU_940_Akil;
-	nr = 999;
-	condition = DIA_Akil_KAP6_EXIT_Condition;
-	information = DIA_Akil_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Akil_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Akil_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Akil_PICKPOCKET(C_Info)
 {

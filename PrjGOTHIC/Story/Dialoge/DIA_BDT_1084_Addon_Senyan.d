@@ -111,6 +111,7 @@ func void DIA_Addon_Senyan_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_12_00");	//А! Кто это у нас здесь?
 	B_UseFakeHeroFace();
 	AI_Output(self,other,"DIA_Addon_BDT_1084_Senyan_Hi_12_01");	//Ну-ка, ну-ка. Вот ты где. У меня для тебя есть хорошие новости и плохие новости.
+	Npc_ExchangeRoutine(self,"Bar");
 	EnteredBanditsCamp = TRUE;
 	Info_ClearChoices(DIA_Addon_BDT_1084_Senyan_Hi);
 	Info_AddChoice(DIA_Addon_BDT_1084_Senyan_Hi,"Сначала - хорошие.",DIA_Addon_BDT_1084_Senyan_Hi_good);
@@ -252,7 +253,7 @@ func void DIA_Addon_Senyan_Attentat_NO()
 
 func void DIA_Addon_Senyan_Attentat_JA()
 {
-	AI_Output(other,self,"DIA_Addon_Senyan_Attentat_JA_15_00");	//Не то чтобы у меня был выбор...
+	AI_Output(other,self,"DIA_Addon_Senyan_Attentat_JA_15_00");	//Мм-м, не то чтобы у меня был выбор...
 	AI_Output(self,other,"DIA_Addon_Senyan_Attentat_JA_12_01");	//Я знал, что мы сможем договориться.
 	AI_Output(self,other,"DIA_Addon_Senyan_Attentat_JA_12_02");	//(хитро) Когда ты выполнишь свою работу - и выполнишь ее хорошо - и выяснишь, кто виноват, мы убьем тупицу вместе. А теперь иди!
 	Senyan_Erpressung = LOG_Running;

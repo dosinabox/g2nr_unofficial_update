@@ -845,15 +845,15 @@ func void DIA_Addon_Vatras_CloseMeeting_Info()
 	CreateInvItems(self,ItWr_Vatras2Saturas_FindRaven,1);
 	B_GiveInvItems(self,other,ItWr_Vatras2Saturas_FindRaven,1);
 	AI_Output(self,other,"DIA_Addon_Vatras_CloseMeeting_05_06");	//ƒа пребудет с тобой јданос.
-	B_LogEntry(TOPIC_Addon_KDW,"¬атрас дал мне письмо дл€ —атураса. я должен присоединитьс€ к магам ¬оды и пройти через портал, чтобы найти бывшего рудного барона ¬орона.");
+	B_LogEntry(TOPIC_Addon_KDW,"¬атрас дал мне письмо дл€ —атураса. я должен присоединитьс€ к магам ¬оды и пройти через портал в неизвестную часть ’ориниса, чтобы найти бывшего рудного барона ¬орона.");
 	Log_CreateTopic(TOPIC_Addon_Sklaven,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Sklaven,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Sklaven,"я должен узнать, с какой целью ¬орон похищает жителей ’ориниса.");
 	RangerMeetingRunning = LOG_SUCCESS;
 	B_SchlussMitRangerMeeting();
 	B_GivePlayerXP(XP_AmbientKap3);
+	SC_KnowsPortal = TRUE;
 };
-
 
 
 var int missingpeopleinfo[20];
@@ -1002,11 +1002,7 @@ func void DIA_Addon_Vatras_MissingPeople_Success()
 	};
 	AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Success_05_06");	//ќтлична€ работа. я бо€лс€, что мы никогда не узнаем ответа на эту загадку.
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
-	if(MIS_Steckbriefe == LOG_Running)
-	{
-		MIS_Steckbriefe = LOG_SUCCESS;
-		B_CheckLog();
-	};
+	MIS_Steckbriefe = LOG_SUCCESS;
 	Vatras_MissingPeopleReports = 0;
 	if(((MIS_Akil_BringMissPeopleBack != FALSE) || (MIS_Bengar_BringMissPeopleBack != FALSE)) && (MISSINGPEOPLEINFO[1] == FALSE))
 	{
@@ -1303,7 +1299,7 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	var int flag;
 	anzahl = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
 	anzahl2 += anzahl;
-	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//я принес тебе еще таблички..
+	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//я принес тебе еще таблички...
 	/*if(anzahl == 1)
 	{
 		AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//я принес тебе еще таблички...
@@ -1941,7 +1937,7 @@ instance DIA_Vatras_MISSION(C_Info)
 
 func int DIA_Vatras_MISSION_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 2))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel == 2) && !Npc_IsDead(Isgaroth) && Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin))
 	{
 		return TRUE;
 	};
@@ -2106,9 +2102,12 @@ instance DIA_Addon_Vatras_AbloesePre(C_Info)
 
 func int DIA_Addon_Vatras_AbloesePre_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE) && (RavenIsDead == FALSE))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == FALSE))
 	{
-		return TRUE;
+		if((RavenIsDead == FALSE) && (AddonDisabled == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2140,13 +2139,28 @@ func int DIA_Addon_Vatras_AddonSolved_Condition()
 {
 	if(RavenIsDead == TRUE)
 	{
+		if(Npc_KnowsInfo(other,DIA_Addon_Vatras_AbloesePre))
+		{
+			DIA_Addon_Vatras_AddonSolved.description = "я нашел тебе смену.";
+		}
+		else
+		{
+			DIA_Addon_Vatras_AddonSolved.description = "я вернулс€.";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Addon_Vatras_AddonSolved_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Vatras_AddonSolved_15_00");	//я нашел тебе смену.
+	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_AbloesePre))
+	{
+		AI_Output(other,self,"DIA_Addon_Vatras_AddonSolved_15_00");	//я нашел тебе смену.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Garond_BACKINKAP4_15_00");	//я вернулс€.
+	};
 	AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_01");	// ак обстоит дело с проблемой в северо-восточных горах?
 	AI_Output(other,self,"DIA_Addon_Vatras_AddonSolved_15_02");	//Ќормально. ¬орон мертв, угроза устранена.
 	AI_Output(self,other,"DIA_Addon_Vatras_AddonSolved_05_03");	//Ёто очень хороша€ новость. Ѕудем наде€тьс€, что ничего страшного больше не случитс€.
@@ -2172,9 +2186,12 @@ instance DIA_Vatras_INNOSEYEKAPUTT(C_Info)
 
 func int DIA_Vatras_INNOSEYEKAPUTT_Condition()
 {
-	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3) && (VatrasCanLeaveTown_Kap3 == TRUE))
+	if((Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)) && (Kapitel == 3))
 	{
-		return TRUE;
+		if((VatrasCanLeaveTown_Kap3 == TRUE) || (AddonDisabled == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -2314,56 +2331,56 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
 	B_StartOtherRoutine(dmt_1209,"AfterRitual");
 	B_StartOtherRoutine(dmt_1210,"AfterRitual");
 	B_StartOtherRoutine(dmt_1211,"AfterRitual"); */
-	if(!Npc_IsDead(dmt_1201))
+	if(!Npc_IsDead(DMT_1201))
 	{
-		dmt_1201.aivar[AIV_EnemyOverride] = TRUE;
+		DMT_1201.aivar[AIV_EnemyOverride] = TRUE;
 	};
-	if(!Npc_IsDead(dmt_1202))
+	if(!Npc_IsDead(DMT_1202))
 	{
-		dmt_1202.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1202,"AfterRitual");
+		DMT_1202.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1202,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1203))
+	if(!Npc_IsDead(DMT_1203))
 	{
-		dmt_1203.aivar[AIV_EnemyOverride] = TRUE;
+		DMT_1203.aivar[AIV_EnemyOverride] = TRUE;
 	};
-	if(!Npc_IsDead(dmt_1204))
+	if(!Npc_IsDead(DMT_1204))
 	{
-		dmt_1204.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1204,"AfterRitual");
+		DMT_1204.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1204,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1205))
+	if(!Npc_IsDead(DMT_1205))
 	{
-		dmt_1205.aivar[AIV_EnemyOverride] = TRUE;
+		DMT_1205.aivar[AIV_EnemyOverride] = TRUE;
 	};
-	if(!Npc_IsDead(dmt_1206))
+	if(!Npc_IsDead(DMT_1206))
 	{
-		dmt_1206.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1206,"AfterRitual");
+		DMT_1206.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1206,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1207))
+	if(!Npc_IsDead(DMT_1207))
 	{
-		dmt_1207.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1207,"AfterRitual");
+		DMT_1207.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1207,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1208))
+	if(!Npc_IsDead(DMT_1208))
 	{
-		dmt_1208.aivar[AIV_EnemyOverride] = TRUE;
+		DMT_1208.aivar[AIV_EnemyOverride] = TRUE;
 	};
-	if(!Npc_IsDead(dmt_1209))
+	if(!Npc_IsDead(DMT_1209))
 	{
-		dmt_1209.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1209,"AfterRitual");
+		DMT_1209.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1209,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1210))
+	if(!Npc_IsDead(DMT_1210))
 	{
-		dmt_1210.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1210,"AfterRitual");
+		DMT_1210.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1210,"AfterRitual");
 	};
-	if(!Npc_IsDead(dmt_1211))
+	if(!Npc_IsDead(DMT_1211))
 	{
-		dmt_1211.aivar[AIV_EnemyOverride] = TRUE;
-		B_StartOtherRoutine(dmt_1211,"AfterRitual");
+		DMT_1211.aivar[AIV_EnemyOverride] = TRUE;
+		B_StartOtherRoutine(DMT_1211,"AfterRitual");
 	};
 };
 
@@ -2639,8 +2656,6 @@ func void DIA_Vatras_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Vatras_KnowWhereEnemy_05_03");	//я много думал об этом. ƒа, € никогда не был так уверен в своем выборе, мой друг.
 	if(SCToldVatrasHeKnowWhereEnemy == FALSE)
 	{
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew," ак это ни странно, ¬атрас предложил мне сопровождать мен€ в моем путешествии. „еловек, обладающий его навыками и опытом, может оказатьс€ очень полезным дл€ мен€.");
 		SCToldVatrasHeKnowWhereEnemy = TRUE;
 	};
@@ -2778,7 +2793,7 @@ func int DIA_Addon_Vatras_PISSOFFFOREVVER_Condition()
 func void DIA_Addon_Vatras_PISSOFFFOREVVER_Info()
 {
 	B_VatrasPissedOff();
-	AI_StopProcessInfos(self);
+//	AI_StopProcessInfos(self);
 //	Vatras_MORE = FALSE;
 };
 

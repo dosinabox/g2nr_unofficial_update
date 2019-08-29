@@ -80,12 +80,14 @@ instance ItMi_KerolothsGeldbeutel_MIS(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 300;
-	visual = "ItMi_Pocket.3ds";
+	visual = "ItMi_Pocket_Mis.3ds";
 	scemeName = "MAPSEALED";
 	material = MAT_LEATHER;
 	on_state[0] = UseKerolothsGeldbeutel;
-	description = "Кошелек Керолота";
-	text[0] = "Этот кошелек полон монет.";
+	description = name;
+	text[0] = PRINT_Pocket_MIS;
+	text[1] = "с именем 'Керолот'.";
+	text[2] = PRINT_Pocket_300;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -93,23 +95,22 @@ instance ItMi_KerolothsGeldbeutel_MIS(C_Item)
 
 func void UseKerolothsGeldbeutel()
 {
-	CreateInvItems(self,ItMi_Gold,300);
+	B_PlayerFindItem(ItMi_Gold,300);
 	CreateInvItems(self,ItMi_KerolothsGeldbeutelLeer_MIS,1);
-	Print(PRINT_KerolothsGeldBeutel);
-	Snd_Play("Geldbeutel");
 };
 
 
 instance ItMi_KerolothsGeldbeutelLeer_MIS(C_Item)
 {
-	name = NAME_Beutel;
+	name = "Кошелек Керолота";
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItMi_Pocket_Empty.3ds";
 	material = MAT_LEATHER;
-	description = "Кошелек Керолота";
-	text[0] = "Сейчас этот кошелек пуст.";
+	description = name;
+	text[0] = "Этот кошелек пуст.";
+	inv_zbias = 190;
 };
 
 instance ItRw_SengrathsArmbrust_MIS(C_Item)
@@ -141,8 +142,7 @@ instance ItAt_TalbinsLurkerSkin(C_Item)
 	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI | ITEM_MISSION;
 	value = Value_ReptileSkin;
-//	visual = "ItAt_LurkerSkin.3DS";
-	visual = "ItAt_TalbinsLurkerSkin.3DS";
+	visual = "ItAt_LurkerSkin.3DS";
 	material = MAT_LEATHER;
 	description = name;
 	text[0] = "На внутренней стороне клеймо - 'Талбин'.";

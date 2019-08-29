@@ -12,15 +12,12 @@ instance DIA_Lobart_EXIT(C_Info)
 
 func int DIA_Lobart_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Lobart_EXIT_Info()
 {
-	if(!Npc_HasEquippedArmor(other))
+	if((Kapitel < 3) && !Npc_HasEquippedArmor(other))
 	{
 		PlayerVisitedLobartFarmArmorless = TRUE;
 	};
@@ -551,7 +548,7 @@ func void DIA_Lobart_WorkNOW_Info()
 func void DIA_Lobart_WorkNOW_Ok()
 {
 	AI_Output(other,self,"DIA_Lobart_WorkNOW_Ok_15_00");	//Хорошо...
-	if(hero.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_Ok_05_01");	//Тогда поторопись, пока я не передумал.
 	};
@@ -573,7 +570,7 @@ func void DIA_Lobart_WorkNOW_WannaFoolMe()
 {
 	AI_Output(other,self,"DIA_Lobart_WorkNOW_WannaFoolMe_15_00");	//Я должен дергать репу? Ты, должно быть, шутишь!
 	AI_Output(self,other,"DIA_Lobart_WorkNOW_WannaFoolMe_05_01");	//Настоящая мужская работа не для 'утонченного джентльмена', да?
-	if(hero.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		AI_Output(self,other,"DIA_Lobart_WorkNOW_WannaFoolMe_05_02");	//Топай на поле или убирайся с моей фермы!
 	}
@@ -620,7 +617,7 @@ func void DIA_Lobart_RuebenRunning_Info()
 	AI_Output(other,self,"DIA_Lobart_RuebenRunning_15_00");	//Вот твоя репа!
 	if(Npc_HasItems(other,ItPl_Beet) >= 20)
 	{
-		if(hero.guild == GIL_NONE)
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_01");	//Да, похоже, ты не такой уж бездельник, как кажешься.
 		};
@@ -655,7 +652,7 @@ func void DIA_Lobart_RuebenRunning_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_06");	//Но ты не собрал и двадцати!
-		if(hero.guild == GIL_NONE)
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 		{
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_07");	//Ты что, съел остальное?! Надеюсь, мой мальчик, что все же нет, иначе тебе придется забыть о своем жаловании!
 			AI_Output(self,other,"DIA_Lobart_RuebenRunning_05_08");	//Возвращайся на поле и принеси больше! Работай или я покажу тебе, где раки зимуют!
@@ -700,7 +697,10 @@ func int DIA_Lobart_MoreWork_Condition()
 {
 	if(((MIS_Lobart_Rueben == LOG_Running) || (MIS_Lobart_Rueben == LOG_SUCCESS)) && (Kapitel < 3))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -808,31 +808,6 @@ func void DIA_Lobart_BUGALIVE_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_BUGDEAD_15_02");	//Я думаю, я разделался со всеми тварями!
 	AI_Output(self,other,"DIA_Lobart_BUGDEAD_05_03");	//Не пытайся надуть меня. Я все еще вижу их. Либо ты убьешь этих тварей, либо можешь забыть о деньгах.
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Lobart_KAP3_EXIT(C_Info)
-{
-	npc = BAU_950_Lobart;
-	nr = 999;
-	condition = DIA_Lobart_KAP3_EXIT_Condition;
-	information = DIA_Lobart_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lobart_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lobart_KAP3_EXIT_Info()
-{
 	AI_StopProcessInfos(self);
 };
 
@@ -977,9 +952,12 @@ instance DIA_Lobart_PERM(C_Info)
 
 func int DIA_Lobart_PERM_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Lobart_DMT) && (Kapitel >= 3) && (Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6)))
+	if(Npc_KnowsInfo(other,DIA_Lobart_DMT) && (Kapitel >= 3))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Lobart_ORKSWEG) || Npc_KnowsInfo(other,DIA_Lobart_VINOTOT) || (MIS_HealHilda == LOG_SUCCESS))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -987,31 +965,6 @@ func void DIA_Lobart_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Lobart_PERM_15_00");	//Береги свою ферму!
 	AI_Output(self,other,"DIA_Lobart_PERM_05_01");	//Я попытаюсь.
-};
-
-
-instance DIA_Lobart_KAP4_EXIT(C_Info)
-{
-	npc = BAU_950_Lobart;
-	nr = 999;
-	condition = DIA_Lobart_KAP4_EXIT_Condition;
-	information = DIA_Lobart_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lobart_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lobart_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -1027,9 +980,12 @@ instance DIA_Lobart_ORKPROBLEM(C_Info)
 
 func int DIA_Lobart_ORKPROBLEM_Condition()
 {
-	if((!Npc_IsDead(OrcWarrior_Lobart1) || !Npc_IsDead(OrcWarrior_Lobart2) || !Npc_IsDead(OrcWarrior_Lobart3) || !Npc_IsDead(OrcWarrior_Lobart4) || !Npc_IsDead(OrcWarrior_Lobart5) || !Npc_IsDead(OrcWarrior_Lobart6)) && (Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
+	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)) && Npc_KnowsInfo(other,DIA_Lobart_DMT))
 	{
-		return TRUE;
+		if(!Npc_IsDead(OrcWarrior_Lobart1) || !Npc_IsDead(OrcWarrior_Lobart2) || !Npc_IsDead(OrcWarrior_Lobart3) || !Npc_IsDead(OrcWarrior_Lobart4) || !Npc_IsDead(OrcWarrior_Lobart5) || !Npc_IsDead(OrcWarrior_Lobart6))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1057,9 +1013,12 @@ instance DIA_Lobart_ORKSWEG(C_Info)
 
 func int DIA_Lobart_ORKSWEG_Condition()
 {
-	if(Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6) && (Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
+	if((Kapitel >= 4) && ((hero.guild == GIL_PAL) || (hero.guild == GIL_DJG)))
 	{
-		return TRUE;
+		if(Npc_IsDead(OrcWarrior_Lobart1) && Npc_IsDead(OrcWarrior_Lobart2) && Npc_IsDead(OrcWarrior_Lobart3) && Npc_IsDead(OrcWarrior_Lobart4) && Npc_IsDead(OrcWarrior_Lobart5) && Npc_IsDead(OrcWarrior_Lobart6))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1080,56 +1039,6 @@ func void DIA_Lobart_ORKSWEG_Info()
 	B_GiveInvItems(self,other,ItMi_Gold,150);
 };
 
-
-instance DIA_Lobart_KAP5_EXIT(C_Info)
-{
-	npc = BAU_950_Lobart;
-	nr = 999;
-	condition = DIA_Lobart_KAP5_EXIT_Condition;
-	information = DIA_Lobart_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lobart_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lobart_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Lobart_KAP6_EXIT(C_Info)
-{
-	npc = BAU_950_Lobart;
-	nr = 999;
-	condition = DIA_Lobart_KAP6_EXIT_Condition;
-	information = DIA_Lobart_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Lobart_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Lobart_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Lobart_PICKPOCKET(C_Info)
 {

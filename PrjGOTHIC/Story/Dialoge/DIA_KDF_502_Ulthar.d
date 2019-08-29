@@ -272,6 +272,12 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 			{
 				CreateInvItems(Gorax,ItWr_Map_Shrine_MIS,1);
 			};
+			if(Gorax_Trade == FALSE)
+			{
+				Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+				B_LogEntry(Topic_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
+				Gorax_Trade = TRUE;
+			};
 		}
 		else
 		{

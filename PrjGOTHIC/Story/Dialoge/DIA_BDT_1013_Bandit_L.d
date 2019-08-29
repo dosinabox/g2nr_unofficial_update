@@ -247,10 +247,13 @@ func void DIA_1013_BANDIT_NAME_Info()
 	AI_Output(self,other,"DIA_1013_BANDIT_NAME_01_01");	//Я этого не знаю, только один из нас видел его.
 	AI_Output(other,self,"DIA_1013_BANDIT_NAME_15_02");	//И кто это?
 	AI_Output(self,other,"DIA_1013_BANDIT_NAME_01_03");	//Эй, послушай - я действительно не могу сказать тебе это. Кто знает, как все выйдет...
-	Log_CreateTopic(Topic_Bandits,LOG_MISSION);
-	Log_SetTopicStatus(Topic_Bandits,LOG_Running);
-	B_LogEntry(Topic_Bandits,"За мной охотятся бандиты. У них есть листок с моим изображением. Интересно, что все это значит.");
-	MIS_Steckbriefe = LOG_Running;
+	if(MIS_Steckbriefe != LOG_SUCCESS)
+	{
+		Log_CreateTopic(Topic_Bandits,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Bandits,LOG_Running);
+		B_LogEntry(Topic_Bandits,"За мной охотятся бандиты. У них есть листок с моим изображением. Интересно, что все это значит.");
+		MIS_Steckbriefe = LOG_Running;
+	};
 };
 
 
@@ -260,14 +263,14 @@ instance DIA_1013_BANDIT_DEXTER(C_Info)
 	nr = 1;
 	condition = DIA_1013_BANDIT_DEXTER_Condition;
 	information = DIA_1013_BANDIT_DEXTER_Info;
-	permanent = TRUE;
+	permanent = FALSE;
 	description = "10 золотых монет за имя того, кто назначил цену за мою голову.";
 };
 
 
 func int DIA_1013_BANDIT_DEXTER_Condition()
 {
-	if((Bdt13_Friend == TRUE) && (Bdt13_Dexter_verraten == FALSE) && Npc_KnowsInfo(other,DIA_1013_BANDIT_NAME))
+	if((Bdt13_Friend == TRUE) && Npc_KnowsInfo(other,DIA_1013_BANDIT_NAME))
 	{
 		return TRUE;
 	};
@@ -280,15 +283,18 @@ func void DIA_1013_BANDIT_DEXTER_Info()
 	AI_Output(other,self,"DIA_1013_BANDIT_DEXTER_15_02");	//Выкладывай, живее!
 	AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_03");	//(делает глубокий вдох) Ох, парень! Хорошо. Его зовут Декстер. Около большой фермы есть крутая скала.
 	AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_04");	//На ней сторожевая башня и несколько шахт. Он устроил свое логово где-то там.
-	B_LogEntry(Topic_Bandits,"Главаря бандитов зовут Декстер. Он скрывается в шахте около поместья лендлорда.");
+	if(MIS_Steckbriefe != LOG_SUCCESS)
+	{
+		B_LogEntry(Topic_Bandits,"Главаря бандитов зовут Декстер. Он скрывается в шахте около поместья лендлорда.");
+	};
 	if(B_GiveInvItems(other,self,ItMi_Gold,10))
 	{
 		AI_Output(other,self,"DIA_1013_BANDIT_DEXTER_15_05");	//Видишь, это было не так уж и сложно. Вот твое золото.
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_1013_BANDIT_DEXTER_15_06");	//Эээ - я только что понял, что у меня не осталось даже десяти монет.
-		AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_07");	//Что?! Я... Ох - забудь об этом - я сам виноват. Не нужно было называть тебе имя, пока я не увидел золота...
+		AI_Output(other,self,"DIA_1013_BANDIT_DEXTER_15_06");	//Эээ... Я только что понял, что у меня не осталось даже десяти монет.
+		AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_07");	//Что?! Я... Ох, забудь об этом, я сам виноват. Не нужно было называть тебе имя, пока я не увидел золота...
 	};
 	AI_Output(self,other,"DIA_1013_BANDIT_DEXTER_01_08");	//Только никому не говори, что это я назвал тебе его.
 	Bdt13_Dexter_verraten = TRUE;

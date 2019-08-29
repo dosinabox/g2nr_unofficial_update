@@ -5,7 +5,7 @@ instance PIR_1351_Addon_Samuel(Npc_Default)
 	guild = GIL_PIR;
 	id = 1351;
 	voice = 14;
-	flags = FALSE;
+	flags = 0;
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_STRONG;

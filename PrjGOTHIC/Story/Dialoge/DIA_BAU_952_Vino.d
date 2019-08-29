@@ -343,11 +343,23 @@ func void DIA_Vino_Obesessed_Info()
 		AI_EquipBestMeleeWeapon(self);
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"RunFromRitual");
-		DMT_Vino1.aivar[AIV_EnemyOverride] = FALSE;
-		DMT_Vino2.aivar[AIV_EnemyOverride] = FALSE;
-		DMT_Vino3.aivar[AIV_EnemyOverride] = FALSE;
-		DMT_Vino4.aivar[AIV_EnemyOverride] = FALSE;
-		DMT_Vino4.start_aistate = ZS_Stand_Dementor;
+		if(!Npc_IsDead(DMT_Vino1))
+		{
+			DMT_Vino1.aivar[AIV_EnemyOverride] = FALSE;
+		};
+		if(!Npc_IsDead(DMT_Vino2))
+		{
+			DMT_Vino2.aivar[AIV_EnemyOverride] = FALSE;
+		};
+		if(!Npc_IsDead(DMT_Vino3))
+		{
+			DMT_Vino3.aivar[AIV_EnemyOverride] = FALSE;
+		};
+		if(!Npc_IsDead(DMT_Vino4))
+		{
+			DMT_Vino4.aivar[AIV_EnemyOverride] = FALSE;
+			DMT_Vino4.start_aistate = ZS_Stand_Dementor;
+		};
 	};
 };
 
@@ -365,7 +377,7 @@ instance DIA_Vino_Heilung(C_Info)
 
 func int DIA_Vino_Heilung_Condition()
 {
-	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF) && !(Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") < 4000))
+	if((NpcObsessedByDMT_Vino == TRUE) && (NpcObsessedByDMT == FALSE) && (hero.guild == GIL_KDF) && (Npc_GetDistToWP(self,"NW_MONASTERY_PLACE_07") >= 4000))
 	{
 		return TRUE;
 	};

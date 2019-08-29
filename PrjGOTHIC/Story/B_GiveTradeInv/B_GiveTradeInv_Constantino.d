@@ -1,5 +1,4 @@
 
-var int Constantino_ItemsGiven_LittleMana;
 var int Constantino_ItemsGiven_Chapter_1;
 var int Constantino_ItemsGiven_Chapter_2;
 var int Constantino_ItemsGiven_Chapter_3;
@@ -8,14 +7,9 @@ var int Constantino_ItemsGiven_Chapter_5;
 
 func void B_GiveTradeInv_Constantino(var C_Npc slf)
 {
-	if((Player_IsApprentice == APP_Constantino) && ((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF)) && (Constantino_ItemsGiven_LittleMana == FALSE))
-	{
-		CreateInvItems(slf,ItPo_Perm_LittleMana,1);
-		Constantino_ItemsGiven_LittleMana = TRUE;
-	};
 	if((Kapitel >= 1) && (Constantino_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,31);
+//		CreateInvItems(slf,ItMi_Gold,31);
 		CreateInvItems(slf,ItMi_Flask,5);
 		CreateInvItems(slf,ItAt_GoblinBone,1);
 		CreateInvItems(slf,ItAt_Wing,3);
@@ -26,7 +20,7 @@ func void B_GiveTradeInv_Constantino(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Constantino_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,60);
+//		CreateInvItems(slf,ItMi_Gold,60);
 		CreateInvItems(slf,ItMi_Flask,15);
 		CreateInvItems(slf,ItPl_Temp_Herb,10);
 		CreateInvItems(slf,ItPl_SwampHerb,2);
@@ -41,7 +35,7 @@ func void B_GiveTradeInv_Constantino(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Constantino_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,120);
+//		CreateInvItems(slf,ItMi_Gold,120);
 		CreateInvItems(slf,ItMi_Flask,20);
 		CreateInvItems(slf,ItPl_Temp_Herb,2);
 		CreateInvItems(slf,ItPl_Perm_Herb,1);
@@ -62,7 +56,7 @@ func void B_GiveTradeInv_Constantino(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Constantino_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,220);
+//		CreateInvItems(slf,ItMi_Gold,220);
 		CreateInvItems(slf,ItMi_Flask,25);
 		CreateInvItems(slf,ItPl_Temp_Herb,3);
 		CreateInvItems(slf,ItPl_Perm_Herb,1);
@@ -83,7 +77,7 @@ func void B_GiveTradeInv_Constantino(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Constantino_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,321);
+//		CreateInvItems(slf,ItMi_Gold,321);
 		CreateInvItems(slf,ItMi_Flask,25);
 		CreateInvItems(slf,ItPl_Temp_Herb,4);
 		CreateInvItems(slf,ItPl_Perm_Herb,2);

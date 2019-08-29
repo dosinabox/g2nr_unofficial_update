@@ -162,6 +162,12 @@ func void DIA_Addon_Franco_Wo_Info()
 };
 
 
+func void B_LoganIsDead()
+{
+	AI_Output(self,other,"DIA_Addon_Franco_tot_08_01");	//Черт! Он был нашим лучшим охотником. Дьявол, опять эти проблемы.
+	AI_Output(self,other,"DIA_Addon_Franco_tot_08_02");	//Ну ладно. Но я уже послал в лагерь другого человека.
+};
+
 instance DIA_Addon_Franco_tot(C_Info)
 {
 	npc = BDT_1093_Addon_Franco;
@@ -184,8 +190,7 @@ func int DIA_Addon_Franco_tot_Condition()
 func void DIA_Addon_Franco_tot_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Franco_tot_15_00");	//Логан мертв.
-	AI_Output(self,other,"DIA_Addon_Franco_tot_08_01");	//Черт! Он был нашим лучшим охотником. Дьявол, опять эти проблемы.
-	AI_Output(self,other,"DIA_Addon_Franco_tot_08_02");	//Ну ладно. Но я уже послал в лагерь другого человека.
+	B_LoganIsDead();
 	if(MIS_HlpLogan == LOG_Running)
 	{
 		MIS_HlpLogan = LOG_OBSOLETE;
@@ -219,6 +224,7 @@ func void DIA_Addon_Franco_HaiSuccess_Info()
 	if(Npc_IsDead(Logan))
 	{
 		AI_Output(other,self,"DIA_Addon_Franco_HaiSuccess_15_01");	//Но он не выжил.
+		B_LoganIsDead();
 	};
 	AI_Output(self,other,"DIA_Addon_Franco_HaiSuccess_08_02");	//Итак, ты победил болотных акул. Следовательно, ты полезен... но по крайней мере, полезнее, чем большинство местных бездельников.
 	B_GivePlayerXP(XP_Addon_HlpLogan);
@@ -304,9 +310,16 @@ instance DIA_Addon_Franco_WOEDGOR(C_Info)
 
 func int DIA_Addon_Franco_WOEDGOR_Condition()
 {
-	if((MIS_HlpEdgor == LOG_Running) && !Npc_HasItems(other,ItMi_Addon_Stone_04))
+	if(MIS_HlpEdgor == LOG_Running)
 	{
-		return TRUE;
+		if(!Npc_HasItems(other,ItMi_Addon_Stone_04))
+		{
+			return TRUE;
+		}
+		else if(SC_KnowsEdgorStoneLocation == FALSE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -358,7 +371,14 @@ func int DIA_Addon_Franco_tafel_Condition()
 {
 	if(Npc_HasItems(other,ItMi_Addon_Stone_04) && (MIS_HlpEdgor == LOG_Running))
 	{
-		return TRUE;
+		if(SC_KnowsEdgorStoneLocation == TRUE)
+		{
+			return TRUE;
+		};
+		if(Npc_IsDead(Edgor))
+		{
+			return TRUE;
+		};
 	};
 };
 

@@ -12,10 +12,7 @@ instance DIA_Hyglas_Kap1_EXIT(C_Info)
 
 func int DIA_Hyglas_Kap1_EXIT_Condition()
 {
-	if(Kapitel <= 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Hyglas_Kap1_EXIT_Info()
@@ -37,7 +34,7 @@ instance DIA_Hyglas_Feuer(C_Info)
 
 func int DIA_Hyglas_Feuer_Condition()
 {
-	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == TRUE) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE))
+	if((other.guild == GIL_NOV) && (KNOWS_FIRE_CONTEST == TRUE) && !Npc_KnowsInfo(other,DIA_Pyrokar_FIRE) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
 	{
 		return TRUE;
 	};
@@ -106,6 +103,13 @@ func void DIA_Hyglas_JOB_Info()
 	{
 		AI_Output(other,self,"DIA_Hyglas_JOB_15_03");	//Как это интересно! А не мог бы ты научить и меня этому?
 		AI_Output(self,other,"DIA_Hyglas_JOB_14_04");	//Магию дарует Иннос. И только его слугам, магам Огня, дано познать, как пользоваться этой силой.
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Мастер Хиглас может посвятить меня в тайны огня. Но для этого я должен быть магом Огня.");
+	};
+	if((other.guild == GIL_KDF) && !Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
+	{
+		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+		B_LogEntry(Topic_KlosterTeacher,"Брат Хиглас может посвятить меня в тайны огня.");
 	};
 };
 
@@ -123,7 +127,7 @@ instance DIA_Hyglas_CONTEST(C_Info)
 
 func int DIA_Hyglas_CONTEST_Condition()
 {
-	if(MIS_RUNE == LOG_Running)
+	if((MIS_RUNE == LOG_Running) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
 	{
 		return TRUE;
 	};
@@ -140,34 +144,6 @@ func void DIA_Hyglas_CONTEST_Info()
 };
 
 
-instance DIA_Hyglas_FIREBOLT(C_Info)
-{
-	npc = KDF_510_Hyglas;
-	nr = 9;
-	condition = DIA_Hyglas_FIREBOLT_Condition;
-	information = DIA_Hyglas_FIREBOLT_Info;
-//	permanent = FALSE;
-	permanent = TRUE;
-	description = "Какие ингредиенты нужны для создания руны огненной стрелы?";
-};
-
-
-func int DIA_Hyglas_FIREBOLT_Condition()
-{
-//	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_RUNE == LOG_Running) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
-	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hyglas_FIREBOLT_Info()
-{
-	AI_Output(other,self,"DIA_Hyglas_FIREBOLT_15_00");	//Какие ингредиенты нужны для создания руны огненной стрелы?
-	AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
-};
-
-
 instance DIA_Hyglas_TALENT_FIREBOLT(C_Info)
 {
 	npc = KDF_510_Hyglas;
@@ -175,14 +151,12 @@ instance DIA_Hyglas_TALENT_FIREBOLT(C_Info)
 	condition = DIA_Hyglas_TALENT_FIREBOLT_Condition;
 	information = DIA_Hyglas_TALENT_FIREBOLT_Info;
 	permanent = TRUE;
-//	description = B_BuildLearnString("Научи меня создавать руну огненной стрелы",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt));
 	description = B_BuildLearnString("Руна огненной стрелы",B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_Firebolt));
 };
 
 
 func int DIA_Hyglas_TALENT_FIREBOLT_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE) && Npc_HasItems(other,ItMi_RuneBlank) && Npc_HasItems(other,ItMi_Sulfur))
 	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
 		return TRUE;
@@ -226,7 +200,32 @@ func void DIA_Hyglas_TALENT_FIREBOLT_Info()
 		};
 		AI_StopProcessInfos(self);
 	};
-	
+};
+
+
+instance DIA_Hyglas_FIREBOLT(C_Info)
+{
+	npc = KDF_510_Hyglas;
+	nr = 9;
+	condition = DIA_Hyglas_FIREBOLT_Condition;
+	information = DIA_Hyglas_FIREBOLT_Info;
+	permanent = TRUE;
+	description = "Какие ингредиенты нужны для создания руны огненной стрелы?";
+};
+
+
+func int DIA_Hyglas_FIREBOLT_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Hyglas_FIREBOLT_Info()
+{
+	AI_Output(other,self,"DIA_Hyglas_FIREBOLT_15_00");	//Какие ингредиенты нужны для создания руны огненной стрелы?
+	AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
 };
 
 
@@ -243,9 +242,12 @@ instance DIA_Hyglas_BLANK_RUNE(C_Info)
 
 func int DIA_Hyglas_BLANK_RUNE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Hyglas_FIREBOLT) && (MIS_RUNE == LOG_Running) && !Npc_HasItems(other,ItMi_RuneBlank) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Hyglas_CONTEST) && (MIS_RUNE == LOG_Running) && !Npc_HasItems(other,ItMi_RuneBlank) && (PLAYER_TALENT_RUNES[SPL_Firebolt] == FALSE))
 	{
-		return TRUE;
+		if(SC_KnowsBlankRuneForFirebolt == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -297,7 +299,7 @@ instance DIA_Hyglas_TEACH(C_Info)
 
 func int DIA_Hyglas_TEACH_Condition()
 {
-	if(other.guild == GIL_KDF)
+	if((other.guild == GIL_KDF) && Npc_KnowsInfo(other,DIA_Hyglas_JOB))
 	{
 		return TRUE;
 	};
@@ -307,8 +309,7 @@ func void DIA_Hyglas_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-//	AI_Output(other,self,"DIA_Hyglas_TEACH_15_00");	//Обучи меня.
-	AI_Output(other,self,"DIA_MiltenOW_Teach_15_00");	//Я хочу изучить новые заклинания.
+	B_Say_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Hyglas_TEACH);
 	Info_AddChoice(DIA_Hyglas_TEACH,Dialog_Back,DIA_Hyglas_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE))
@@ -338,7 +339,15 @@ func void DIA_Hyglas_TEACH_Info()
 	};
 	if(abletolearn < 1)
 	{
-		B_Say(self,other,"$NOLEARNOVERPERSONALMAX");
+		if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
+		{
+			B_Say(self,other,"$NOLEARNNOPOINTS");
+			PrintScreen(PRINT_MAGCIRCLES_NEEDFIRST,-1,-1,FONT_ScreenSmall,2);
+		}
+		else
+		{
+			B_Say(self,other,"$NOLEARNOVERPERSONALMAX");
+		};
 		Info_ClearChoices(DIA_Hyglas_TEACH);
 	};
 };
@@ -372,57 +381,6 @@ func void DIA_Hyglas_TEACH_Firerain()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_Firerain);
 };
-
-
-instance DIA_Hyglas_Kap2_EXIT(C_Info)
-{
-	npc = KDF_510_Hyglas;
-	nr = 999;
-	condition = DIA_Hyglas_Kap2_EXIT_Condition;
-	information = DIA_Hyglas_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hyglas_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hyglas_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Hyglas_Kap3_EXIT(C_Info)
-{
-	npc = KDF_510_Hyglas;
-	nr = 999;
-	condition = DIA_Hyglas_Kap3_EXIT_Condition;
-	information = DIA_Hyglas_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hyglas_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hyglas_Kap3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
 
 instance DIA_Hyglas_BringBook(C_Info)
 {
@@ -527,31 +485,6 @@ func void DIA_Hyglas_HaveBook_Info()
 };
 
 
-instance DIA_Hyglas_Kap4_EXIT(C_Info)
-{
-	npc = KDF_510_Hyglas;
-	nr = 999;
-	condition = DIA_Hyglas_Kap4_EXIT_Condition;
-	information = DIA_Hyglas_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hyglas_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hyglas_Kap4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Hyglas_Kap4_PERM(C_Info)
 {
 	npc = KDF_510_Hyglas;
@@ -590,31 +523,6 @@ func void DIA_Hyglas_Kap4_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Hyglas_Kap4_PERM_14_06");	//Я говорил тебе, что все равно продолжаю свои исследования, но на них, конечно же, потребуется больше времени, если у меня не будет необходимых материалов.
 	};
-};
-
-
-instance DIA_Hyglas_Kap5_EXIT(C_Info)
-{
-	npc = KDF_510_Hyglas;
-	nr = 999;
-	condition = DIA_Hyglas_Kap5_EXIT_Condition;
-	information = DIA_Hyglas_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Hyglas_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Hyglas_Kap5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

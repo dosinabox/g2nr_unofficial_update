@@ -114,15 +114,13 @@ func void DIA_Addon_Brandon_WannaLearn_Info()
 	AI_Output(other,self,"DIA_Addon_Brandon_WannaLearn_15_00");	//Ты можешь научить меня чему-нибудь?
 	AI_Output(self,other,"DIA_Addon_Brandon_WannaLearn_04_01");	//Научить тебя? Конечно, могу! Я могу сделать тебя более сильным и ловким.
 	AI_Output(self,other,"DIA_Addon_Brandon_WannaLearn_04_02");	//Но зачем мне это делать?
-	AI_Output(other,self,"DIA_Addon_Pir_7_HenrysCrew_OfferDrink_15_00");	//Затем, что я угощу тебя выпивкой?
+	AI_Output(other,self,"DIA_Addon_Pir_7_HenrysCrew_OfferDrink_15_00");	//Затем, что я угощу тебя выпивкой.
 	AI_Output(self,other,"DIA_Addon_Brandon_WannaLearn_04_03");	//(усмехается) Неплохо, сынок! Угадал с первой попытки.
 	AI_Output(self,other,"DIA_Addon_Brandon_WannaLearn_04_04");	//Но не вздумай подсовывать мне какое-нибудь дешевое пойло.
 	MIS_Brandon_BringHering = LOG_Running;
-	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
-	B_LogEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_BrandonTeach);
 	Log_CreateTopic(TOPIC_Addon_BrandonBooze,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_BrandonBooze,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_BrandonBooze,"Я должен принести Брэндону выпивку. Тогда он согласится учить меня.");
+	B_LogEntry(TOPIC_Addon_BrandonBooze,"Я должен принести Брэндону выпивку. Тогда он согласится учить меня.");
 };
 
 
@@ -187,10 +185,13 @@ func int DIA_Addon_Brandon_SchnellerHering_Condition()
 func void DIA_Addon_Brandon_SchnellerHering_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Pir_7_HenrysCrew_GiveGrog_15_00");	//Получай.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItFo_Addon_SchnellerHering,1);
 	B_UseItem(self,ItFo_Addon_SchnellerHering);
 	AI_Output(self,other,"DIA_Addon_Brandon_GiveGrog_04_01");	//Ах-х! Словно жидкий огонь!
 	B_LogEntry(TOPIC_Addon_BrandonBooze,"Я отдал Брэндону его ужасное пойло. Теперь он готов учить меня.");
+	Log_CreateTopic(Topic_Addon_PIR_Teacher,LOG_NOTE);
+	Log_AddEntry(Topic_Addon_PIR_Teacher,Log_Text_Addon_BrandonTeach);
 	MIS_Brandon_BringHering = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Ambient);
 };

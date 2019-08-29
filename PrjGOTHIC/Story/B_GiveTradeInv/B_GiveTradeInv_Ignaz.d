@@ -9,7 +9,7 @@ func void B_GiveTradeInv_Ignaz(var C_Npc slf)
 {
 	if((Kapitel >= 1) && (Ignaz_ItemsGiven_Chapter_1 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,100);
+//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItPo_Mana_01,1);
 		CreateInvItems(slf,ItPo_Health_01,1);
 		CreateInvItems(slf,ItPo_Speed,1);
@@ -34,7 +34,7 @@ func void B_GiveTradeInv_Ignaz(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Ignaz_ItemsGiven_Chapter_2 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,200);
+//		CreateInvItems(slf,ItMi_Gold,200);
 		CreateInvItems(slf,ItPo_Health_Addon_04,3);
 		CreateInvItems(slf,ItPo_Mana_Addon_04,3);
 		CreateInvItems(slf,ItPo_Mana_01,2);
@@ -46,7 +46,7 @@ func void B_GiveTradeInv_Ignaz(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Ignaz_ItemsGiven_Chapter_3 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,300);
+//		CreateInvItems(slf,ItMi_Gold,300);
 		CreateInvItems(slf,ItPo_Health_Addon_04,3);
 		CreateInvItems(slf,ItPo_Mana_Addon_04,3);
 		CreateInvItems(slf,ItPo_Mana_01,3);
@@ -58,7 +58,7 @@ func void B_GiveTradeInv_Ignaz(var C_Npc slf)
 	};
 	if((Kapitel >= 4) && (Ignaz_ItemsGiven_Chapter_4 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,400);
+//		CreateInvItems(slf,ItMi_Gold,400);
 		CreateInvItems(slf,ItPo_Health_Addon_04,3);
 		CreateInvItems(slf,ItPo_Mana_Addon_04,3);
 		CreateInvItems(slf,ItPo_Mana_01,4);
@@ -70,7 +70,7 @@ func void B_GiveTradeInv_Ignaz(var C_Npc slf)
 	};
 	if((Kapitel >= 5) && (Ignaz_ItemsGiven_Chapter_5 == FALSE))
 	{
-		CreateInvItems(slf,ItMi_Gold,500);
+//		CreateInvItems(slf,ItMi_Gold,500);
 		CreateInvItems(slf,ItPo_Mana_01,5);
 		CreateInvItems(slf,ItPo_Health_01,5);
 		CreateInvItems(slf,ItPo_Speed,5);

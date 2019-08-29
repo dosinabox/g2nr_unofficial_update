@@ -9,7 +9,7 @@ instance BDT_10301_Addon_RangerBandit_M(Npc_Default)
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
-	EquipItem(self,ItMw_1h_Bau_Mace);
+	EquipItem(self,ItMw_ShortSword3);
 	EquipItem(self,ItRw_Sld_Bow);
 	CreateInvItems(self,ItWr_StonePlateCommon_Addon,2);
 	B_CreateAmbientInv(self);
