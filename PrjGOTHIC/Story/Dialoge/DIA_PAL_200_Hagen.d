@@ -973,6 +973,7 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	B_KillNpc(NOV_655_ToterNovize);
 	Wld_InsertNpc(NOV_656_ToterNovize,"NW_TROLLAREA_RITUALPATH_01");
 	B_KillNpc(NOV_656_ToterNovize);
+	B_InitNpcGlobals();
 	TEXT_Innoseye_Setting = TEXT_Innoseye_Setting_Broken;
 	Wld_InsertItem(ItMi_InnosEye_Broken_Mis,"FP_TROLLAREA_RITUAL_ITEM");
 };

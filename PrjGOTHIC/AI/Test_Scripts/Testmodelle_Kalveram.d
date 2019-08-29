@@ -1518,15 +1518,6 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	LaresToldAboutKDW1 = TRUE;
-	LaresToldAboutKDW2 = TRUE;
-//	Wld_PlayEffect("MFX_MAGICFIRE_HUMANSMOKE",self,self,0,0,0,FALSE);
-//	SaturasSendsToRiordian = TRUE;
-//	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
-//	Wld_InsertNpc(BDT_1031_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
-//	Wld_InsertNpc(BDT_1032_Fluechtling,"NW_XARDAS_BANDITS_LEFT");
-//	MIS_KilledDragons += 1;
-//	MIS_Addon_Lares_ComeToRangerMeeting = LOG_SUCCESS;
 };
 
 instance WastelandRune(C_Item)
@@ -1553,7 +1544,6 @@ func void UseWastelandRune()
 	b_seed_wasteland_world_main();
 	b_seed_wasteland_world_psicamp();
 	b_seed_wasteland_world_freeminecamp();
-	
 };
 
 instance ItFo_Meat(C_Item)

@@ -1967,16 +1967,9 @@ instance DIA_Andre_Cornelius_Liar(C_Info)
 
 func int DIA_Andre_Cornelius_Liar_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Cornelius_WhatYouSee))
+	if(Npc_KnowsInfo(other,DIA_Cornelius_WhatYouSee) && Npc_KnowsInfo(other,DIA_Andre_BennetInPrison) && (MIS_RescueBennet == LOG_Running))
 	{
-		if(MIS_RescueBennet == LOG_Running)
-		{
-			return TRUE;
-		}
-		else if(CorneliusFlee == TRUE)
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -2008,15 +2001,8 @@ func void DIA_Andre_Cornelius_Liar_Yes()
 	if(Cornelius_IsLiar == TRUE)
 	{
 		AI_Output(other,self,"DIA_Andre_Cornelius_Liar_Yes_15_02");	//Я прочел его дневник! Его подкупили. Все, что он сказал, было ложью.
-		if(MIS_RescueBennet != LOG_SUCCESS)
-		{
-			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_Yes_08_03");	//Если это действительно так, ты должен немедленно сообщить об этом лорду Хагену.
-			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_Yes_08_04");	//Покажи ему этот дневник. Он разберется в этом деле.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Addon_Andre_ReturnedMissingPeople_08_08");	//Ты сделал великое дело!
-		};
+		AI_Output(self,other,"DIA_Andre_Cornelius_Liar_Yes_08_03");	//Если это действительно так, ты должен немедленно сообщить об этом лорду Хагену.
+		AI_Output(self,other,"DIA_Andre_Cornelius_Liar_Yes_08_04");	//Покажи ему этот дневник. Он разберется в этом деле.
 	}
 	else
 	{

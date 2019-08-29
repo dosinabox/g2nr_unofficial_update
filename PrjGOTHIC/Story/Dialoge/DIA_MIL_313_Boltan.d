@@ -51,7 +51,7 @@ func int C_PrisonIsEmpty()
 	{
 		return FALSE;
 	}
-	else if((MIS_RescueBennet != LOG_SUCCESS) && (Kapitel == 3) && !Npc_IsDead(Bennet))
+	else if((MIS_RescueBennet != LOG_SUCCESS) && (Kapitel == 3))
 	{
 		return FALSE;
 	}

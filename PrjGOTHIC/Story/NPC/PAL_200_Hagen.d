@@ -14,7 +14,8 @@ instance PAL_200_Hagen(Npc_Default)
 	aivar[AIV_IGNORE_Sheepkiller] = TRUE;
 	B_SetAttributesToChapter(self,6);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_2h_Pal_Sword);
+//	EquipItem(self,ItMw_2h_Pal_Sword);
+	EquipItem(self,ItMw_2H_Blessed_02);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Tough_Okyl,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,1.5);

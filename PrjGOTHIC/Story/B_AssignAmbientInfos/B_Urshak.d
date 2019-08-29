@@ -44,7 +44,7 @@ func int DIA_Urshak_HALLO_Condition()
 
 func void DIA_Urshak_HALLO_Info()
 {
-	AI_Output(self,other,"DIA_Urshak_HALLO_18_00");	//(агрессивно) ХРОТОК ДЖАБАРТ!!!
+	AI_Output(self,other,"DIA_Urshak_HALLO_18_00");	//(агрессивно) КРОТОК ДЖАБАР!!!
 	AI_Output(self,other,"DIA_Urshak_HALLO_18_01");	//Стой! Моя знать тебя. Ты друг человек с мягким голосом.
 	AI_Output(self,other,"DIA_Urshak_HALLO_18_02");	//Друг убивать злого демона КРУШАКА.
 	B_GivePlayerXP(XP_UrshakFound);
@@ -284,12 +284,12 @@ func int DIA_Urshak_HOSHPAKRACHE_Condition()
 
 func void DIA_Urshak_HOSHPAKRACHE_Info()
 {
-	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_00");	//(агрессивно) ХРОТОК! Я узнавать, что ты быть здесь когда Хош-Пак убивать. Твоя делать большая ошибка, чужак.
+	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_00");	//(агрессивно) ХОРТОК! Я узнавать, что ты быть здесь, когда Хош-Пак убивать. Твоя делать большая ошибка, чужак.
 	AI_Output(other,self,"DIA_Urshak_HOSHPAKRACHE_15_01");	//Я вижу, ты занял свое место здесь. Ты обманул меня.
 	AI_Output(other,self,"DIA_Urshak_HOSHPAKRACHE_15_02");	//Твое положение среди твоих людей выше, чем ты это говорил. Теперь ты сам не более чем инструмент в руках дьявола.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_03");	//Чужак прав. Ур-Шак наполняться только ненависть и месть теперь.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_04");	//Ур-Шак видеть большая ошибка доверять злой человек. Ур-Шак сожалеть звать человек другом и помогать ему не быть убит.
-	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_05");	//Чужак теперь покидать долина и идти проход. Ур-Шак не будет убивать чужак сейчас. Честь шамана говорит Ур-Шак не убивать.
+	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_05");	//Чужак теперь покидать долина и идти проход. Ур-Шак не будет убивать чужак сейчас. Честь шаман говорит Ур-Шак не убивать.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_06");	//Следующий раз мы встречаться мы враги. Твоя лучше уходить сейчас.
 	AI_StopProcessInfos(self);
 	URSHAK_SUCKED = TRUE;
