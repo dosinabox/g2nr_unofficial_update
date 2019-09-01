@@ -12,10 +12,7 @@ instance DIA_Raoul_EXIT(C_Info)
 
 func int DIA_Raoul_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Raoul_EXIT_Info()
@@ -471,10 +468,10 @@ func void DIA_Raoul_TROLLFELL_ja()
 {
 	AI_Output(other,self,"DIA_Raoul_TROLLFELL_ja_15_00");	//Продано.
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_ja_01_01");	//Отличная сделка.
-	CreateInvItems(self,ItPo_Health_03,3);
-	B_GiveInvItems(self,other,ItPo_Health_03,3);
-	CreateInvItems(self,ItMi_Gold,500);
-	B_GiveInvItems(self,other,ItMi_Gold,500);
+	CreateInvItems(other,ItPo_Health_03,3);
+	CreateInvItems(other,ItMi_Gold,500);
+	AI_PrintScreen("3 предметов получено (Зелье)",-1,40,FONT_ScreenSmall,4);
+	AI_PrintScreen("500 золотых получено",-1,43,FONT_ScreenSmall,4);
 	Info_ClearChoices(DIA_Raoul_TROLLFELL);
 };
 
@@ -542,7 +539,7 @@ func void DIA_Raoul_GotTrollFurBack_Info()
 };
 
 
-instance DIA_Raoul_KAP3_EXIT(C_Info)
+/*instance DIA_Raoul_KAP3_EXIT(C_Info)
 {
 	npc = SLD_822_Raoul;
 	nr = 999;
@@ -614,7 +611,7 @@ func int DIA_Raoul_KAP5_EXIT_Condition()
 func void DIA_Raoul_KAP5_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_Raoul_Ship(C_Info)

@@ -503,16 +503,9 @@ instance DIA_Garond_Silvestro(C_Info)
 
 func int DIA_Garond_Silvestro_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2))
+	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Silvestro_Ore == TRUE))
 	{
-		if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
-		{
-			return TRUE;
-		}
-		else if(Npc_IsDead(DiegoOW) && (Silvestro_Ore == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 

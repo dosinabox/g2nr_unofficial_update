@@ -762,6 +762,10 @@ func void DIA_Lothar_HelloAgain_Info()
 		if(Npc_KnowsInfo(other,DIA_Lothar_ToMiliz))
 		{
 			AI_Output(self,other,"DIA_Lothar_Add_01_44");	//Я говорил тебе, что ты можешь присоединиться к ополчению, только если станешь гражданином города.
+			if(Player_IsApprentice > APP_NONE)
+			{
+				AI_Output(other,self,"DIA_Lothar_Add_15_08");	//Теперь я ученик одного из мастеров!
+			};
 		};
 		AI_Output(self,other,"DIA_Lothar_Add_01_45");	//Как я понимаю, он принял тебя в ряды ополчения.
 		AI_Output(self,other,"DIA_Lothar_Add_01_46");	//Хмм... Надеюсь, он знает, что делает.

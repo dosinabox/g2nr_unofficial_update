@@ -881,6 +881,13 @@ func void B_AndreSold()
 	B_GiveInvItems(self,other,ItMi_Gold,Andre_Sold);
 };
 
+func void B_AndreNoProof()
+{
+	AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
+	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
+};
+
 instance DIA_Andre_Auslieferung(C_Info)
 {
 	npc = MIL_311_Andre;
@@ -909,9 +916,12 @@ func void DIA_Andre_Auslieferung_Info()
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Ренгару украл у торговца Джоры.",DIA_Andre_Auslieferung_Rengaru);
 	};
-	if((Betrayal_Halvor == TRUE) && (Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
+	if((Halvor_Ausgeliefert == FALSE) && !Npc_IsDead(Halvor))
 	{
-		Info_AddChoice(DIA_Andre_Auslieferung,"Халвор торгует краденым.",DIA_Andre_Auslieferung_Halvor);
+		if((Betrayal_Halvor == TRUE) || ((SC_KnowsCitySmuggler == TRUE) && (Knows_Halvor == TRUE)))
+		{
+			Info_AddChoice(DIA_Andre_Auslieferung,"Халвор торгует краденым.",DIA_Andre_Auslieferung_Halvor);
+		};
 	};
 	if(((MIS_Nagur_Bote == LOG_Running) || (MIS_Nagur_Bote == LOG_FAILED)) && (Nagur_Ausgeliefert == FALSE) && !Npc_IsDead(Nagur))
 	{
@@ -961,22 +971,26 @@ func void DIA_Andre_Auslieferung_Rengaru()
 
 func void DIA_Andre_Auslieferung_Halvor()
 {
-	AI_Teleport(Halvor,"NW_CITY_HABOUR_KASERN_HALVOR");
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Halvor_15_00");	//Халвор торгует краденым. Он продает товары, украденные бандитами у торговцев.
 	if(Npc_HasItems(other,ItWr_HalvorMessage))
 	{
 		AI_WaitTillEnd(self,other);
 		B_GiveInvItems(other,self,ItWr_HalvorMessage,1);
 		B_UseFakeScroll();
+		AI_Teleport(Halvor,"NW_CITY_HABOUR_KASERN_HALVOR");
+		AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_01");	//Так вот, кто этим занимается. Мои люди немедленно схватят его.
+		AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_02");	//Я не думаю, что это будет сложно. Я готов вручить тебе твою награду прямо сейчас.
+		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
+		B_NpcSetJailed(Halvor);
+		B_StartOtherRoutine(Halvor,"PRISON");
+		MIS_ThiefGuild_sucked = TRUE;
+		Halvor_Ausgeliefert = TRUE;
+		B_GivePlayerXP(XP_Andre_Auslieferung);
+	}
+	else
+	{
+		B_AndreNoProof();
 	};
-	AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_01");	//Так вот, кто этим занимается. Мои люди немедленно схватят его.
-	AI_Output(self,other,"DIA_Andre_Auslieferung_Halvor_08_02");	//Я не думаю, что это будет сложно. Я готов вручить тебе твою награду прямо сейчас.
-	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
-	B_NpcSetJailed(Halvor);
-	B_StartOtherRoutine(Halvor,"PRISON");
-	MIS_ThiefGuild_sucked = TRUE;
-	Halvor_Ausgeliefert = TRUE;
-	B_GivePlayerXP(XP_Andre_Auslieferung);
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
 
@@ -1004,23 +1018,27 @@ func void DIA_Andre_Auslieferung_Nagur()
 
 func void DIA_Andre_Auslieferung_Canthar()
 {
-	AI_Teleport(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU");
 	AI_Output(other,self,"DIA_Andre_Auslieferung_Canthar_15_00");	//Торговец Кантар пытается избавиться от Сары!
 	AI_Output(self,other,"DIA_Andre_Auslieferung_Canthar_08_01");	//Сары? Торговки оружием с рыночной площади?
-	AI_Output(other,self,"DIA_Andre_Auslieferung_Canthar_15_02");	//Я должен был подсунуть Саре письмо, которое подтвердило бы, что она поставляет оружие Онару.
 	if(Npc_HasItems(other,ItWr_Canthars_KomproBrief_MIS))
 	{
+		AI_Teleport(Canthar,"NW_CITY_HABOUR_KASERN_RENGARU");
+		AI_Output(other,self,"DIA_Andre_Auslieferung_Canthar_15_02");	//Я должен был подсунуть Саре письмо, которое подтвердило бы, что она поставляет оружие Онару.
 		B_GiveInvItems(other,self,ItWr_Canthars_KomproBrief_MIS,1);
 		B_UseFakeScroll();
+		AI_Output(self,other,"DIA_Andre_Auslieferung_Canthar_08_03");	//Понимаю. Я с радостью заплачу награду за этого ублюдка. Можешь считать, что он уже за решеткой.
+		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
+		B_NpcSetJailed(Canthar);
+		B_StartOtherRoutine(Canthar,"KNAST");
+		MIS_Canthars_KomproBrief = LOG_FAILED;
+		B_CheckLog();
+		Canthar_Ausgeliefert = TRUE;
+		B_GivePlayerXP(XP_Andre_Auslieferung);
+	}
+	else
+	{
+		B_AndreNoProof();
 	};
-	AI_Output(self,other,"DIA_Andre_Auslieferung_Canthar_08_03");	//Понимаю. Я с радостью заплачу награду за этого ублюдка. Можешь считать, что он уже за решеткой.
-	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
-	B_NpcSetJailed(Canthar);
-	B_StartOtherRoutine(Canthar,"KNAST");
-	MIS_Canthars_KomproBrief = LOG_FAILED;
-	B_CheckLog();
-	Canthar_Ausgeliefert = TRUE;
-	B_GivePlayerXP(XP_Andre_Auslieferung);
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
 

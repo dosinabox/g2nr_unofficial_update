@@ -361,7 +361,7 @@ instance DIA_Dar_ORCRING(C_Info)
 
 func int DIA_Dar_ORCRING_Condition()
 {
-	if(Kapitel >= 4)
+	if(MIS_ReadyforChapter4 == TRUE)
 	{
 		return TRUE;
 	};

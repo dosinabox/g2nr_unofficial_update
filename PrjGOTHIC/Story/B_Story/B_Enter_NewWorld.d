@@ -773,7 +773,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		};
 		if(hero.guild == GIL_PAL)
 		{
-			if(Helms_Enabled == TRUE)
+			if(Helmets_Enabled == TRUE)
 			{
 				Wld_InsertItem(ITAR_PALN_H,"FP_ITEM_PALFINALARMOR");
 				Wld_InsertItem(ITHE_PAL_H,"FP_ITEM_PALFINALWEAPON");

@@ -741,7 +741,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	hero.guild = GIL_PAL;
 	Npc_SetTrueGuild(hero,GIL_PAL);
 	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
-	if(Helms_Enabled == TRUE)
+	if(Helmets_Enabled == TRUE)
 	{
 		CreateInvItems(other,ITAR_PALN_M,1);
 		CreateInvItems(other,ITHE_PAL_M,1);

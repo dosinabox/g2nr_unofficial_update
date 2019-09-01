@@ -75,13 +75,13 @@ func void b_build_settings_diag()
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
 //	требуются дополнительные модели: https://worldofplayers.ru/threads/41303
-/*	if(Helms_Enabled == FALSE)
+/*	if(Helmets_Enabled == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Отделить шлемы от доспехов",StoryHelper_Helms);
+		Info_AddChoice(StoryHelper_PatchSettings,"Отделить шлемы от доспехов",StoryHelper_Helmets);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helms);
+		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helmets);
 	};*/
 	/*не сделано
 	if(HonestStatCalculation == FALSE)
@@ -92,6 +92,17 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
 	};*/
+	if(EnterNW_Kapitel4 == FALSE)
+	{
+		if(OriginalAntipaladins == FALSE)
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Выключить усиленных предводителей орков",StoryHelper_Antipaladins);
+		}
+		else
+		{
+			Info_AddChoice(StoryHelper_PatchSettings,"Включить усиленных предводителей орков",StoryHelper_Antipaladins);
+		};
+	};
 	if(AddonDisabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить возможность прохождения без аддона",StoryHelper_Addon);
@@ -290,16 +301,16 @@ func void StoryHelper_Apples()
 	b_build_settings_diag();
 };
 
-func void StoryHelper_Helms()
+func void StoryHelper_Helmets()
 {
-	if(Helms_Enabled == TRUE)
+	if(Helmets_Enabled == TRUE)
 	{
-		Helms_Enabled = FALSE;
+		Helmets_Enabled = FALSE;
 		PrintScreen("Шлемы и доспехи одной моделью (оригинал)",-1,-1,FONT_Screen,3);
 	}
 	else
 	{
-		Helms_Enabled = TRUE;
+		Helmets_Enabled = TRUE;
 		PrintScreen("Шлемы и доспехи разделены",-1,-1,FONT_Screen,3);
 		if(Npc_HasItems(hero,ITAR_PAL_M))
 		{
@@ -370,6 +381,29 @@ func void StoryHelper_Addon()
 	{
 		AddonDisabled = TRUE;
 		PrintScreen("Прохождение без аддона включено",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Antipaladins()
+{
+	if(OriginalAntipaladins == TRUE)
+	{
+		OriginalAntipaladins = FALSE;
+		OrkElite_AntiPaladin_Level = 50;
+		OrkElite_AntiPaladin_Strength = 140;
+		OrkElite_AntiPaladin_HP = 550;
+		OrkElite_AntiPaladin_Protection = 170;
+		PrintScreen("Усиленные предводители орков включены",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		OriginalAntipaladins = TRUE;
+		OrkElite_AntiPaladin_Level = 45;
+		OrkElite_AntiPaladin_Strength = 125;
+		OrkElite_AntiPaladin_HP = 450;
+		OrkElite_AntiPaladin_Protection = 160;
+		PrintScreen("Усиленные предводители орков выключены",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };
