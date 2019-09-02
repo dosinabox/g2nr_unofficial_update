@@ -239,11 +239,7 @@ func int DIA_Addon_Owen_runter_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_Running) && (Malcom_Accident_Deadly == TRUE))
 	{
-		if(Npc_HasItems(Malcom,ItMi_OldCoin))
-		{
-			return TRUE;
-		}
-		else if(!Npc_IsDead(Lurker_SecretCave1) && !Npc_IsDead(Lurker_SecretCave2))
+		if(Npc_HasItems(Malcom,ItMi_OldCoin) && !Npc_IsDead(Lurker_SecretCave1) && !Npc_IsDead(Lurker_SecretCave2))
 		{
 			return TRUE;
 		};
@@ -271,11 +267,7 @@ func int DIA_Addon_Owen_MalcomDead_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Owen_MalcomStunt) && (MIS_Owen_FindMalcom == LOG_Running) && (Malcom_Accident_Deadly == TRUE))
 	{
-		if(!Npc_HasItems(Malcom,ItMi_OldCoin))
-		{
-			return TRUE;
-		}
-		else if(Npc_IsDead(Lurker_SecretCave1) || Npc_IsDead(Lurker_SecretCave2))
+		if(!Npc_HasItems(Malcom,ItMi_OldCoin) || Npc_IsDead(Lurker_SecretCave1) || Npc_IsDead(Lurker_SecretCave2))
 		{
 			return TRUE;
 		};
