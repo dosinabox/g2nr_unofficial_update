@@ -1702,7 +1702,7 @@ func void DIA_Lee_StealShip_Info()
 	AI_Output(other,self,"DIA_Lee_StealShip_15_00");	//Я хочу украсть корабль.
 	AI_Output(self,other,"DIA_Lee_StealShip_04_01");	//И как ты собираешься сделать это?
 	AI_Output(other,self,"DIA_Lee_StealShip_15_02");	//Легче легкого - я пойду туда, покажу им твои бумаги - и корабль мой!
-	AI_Output(self,other,"DIA_Lee_StealShip_04_03");	//Ну-ну. Держи, надеюсь, ты знаешь, что делаешь.
+	AI_Output(self,other,"DIA_Lee_StealShip_04_03");	//Ну-ну. Держи. Надеюсь, ты знаешь, что делаешь.
 	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
 	B_GiveInvItems(self,other,ITWr_ForgedShipLetter_MIS,1);
 };
@@ -1721,9 +1721,12 @@ instance DIA_Lee_KnowWhereEnemy(C_Info)
 
 func int DIA_Lee_KnowWhereEnemy_Condition()
 {
-	if((MIS_SCKnowsWayToIrdorath == TRUE) && (Lee_IsOnBoard == FALSE) && Npc_KnowsInfo(other,DIA_Lee_GetShip))
+	if((MIS_SCKnowsWayToIrdorath == TRUE) && (Lee_IsOnBoard == FALSE))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Lee_GetShip) || (MIS_ShipIsFree == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1746,6 +1749,10 @@ func void DIA_Lee_KnowWhereEnemy_Info()
 	else
 	{
 		Info_ClearChoices(DIA_Lee_KnowWhereEnemy);
+		if(!Npc_KnowsInfo(other,DIA_Lee_GetShip) && !Npc_IsDead(Torlof) && (SCGotCaptain == FALSE) && (TorlofIsSailor == FALSE))
+		{
+			Info_AddChoice(DIA_Lee_KnowWhereEnemy,"Ты знаешь кого-нибудь, кто мог бы управлять кораблем?",DIA_Lee_GetShip_torlof);
+		};
 		Info_AddChoice(DIA_Lee_KnowWhereEnemy,"Я дам тебе знать, если ты мне понадобишься.",DIA_Lee_KnowWhereEnemy_No);
 		Info_AddChoice(DIA_Lee_KnowWhereEnemy,"Пакуй свои вещи!",DIA_Lee_KnowWhereEnemy_Yes);
 	};

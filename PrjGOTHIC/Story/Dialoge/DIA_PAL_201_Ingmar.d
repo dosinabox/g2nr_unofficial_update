@@ -393,7 +393,7 @@ instance DIA_Ingmar_PICKPOCKET(C_Info)
 	condition = DIA_Ingmar_PICKPOCKET_Condition;
 	information = DIA_Ingmar_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(украсть его свиток практически невозможно)";
+	description = "(украсть его документ практически невозможно)";
 };
 
 

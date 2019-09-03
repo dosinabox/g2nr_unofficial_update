@@ -443,6 +443,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			B_StartOtherRoutine(Salandril,"Start");
 		};
 		B_StartOtherRoutine(Jorgen,"Kloster");
+		B_StartOtherRoutine(Nov610,"Rest");
 		if(!Npc_IsDead(BDT_1050_Landstreicher))
 		{
 			B_KillNpc(BDT_1050_Landstreicher);

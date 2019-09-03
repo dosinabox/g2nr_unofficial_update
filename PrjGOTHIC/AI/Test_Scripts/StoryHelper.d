@@ -75,14 +75,14 @@ func void b_build_settings_diag()
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
 //	требуются дополнительные модели: https://worldofplayers.ru/threads/41303
-/*	if(Helmets_Enabled == FALSE)
+	if(Helmets_Enabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Отделить шлемы от доспехов",StoryHelper_Helmets);
 	}
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helmets);
-	};*/
+	};
 	/*не сделано
 	if(HonestStatCalculation == FALSE)
 	{

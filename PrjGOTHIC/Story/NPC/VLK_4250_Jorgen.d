@@ -28,7 +28,8 @@ func void Rtn_Start_4250()
 
 func void Rtn_Kloster_4250()
 {
-	TA_Stand_ArmsCrossed(8,0,20,0,"NW_MONASTERY_PLACE_06");
+//	TA_Stand_ArmsCrossed(8,0,20,0,"NW_MONASTERY_PLACE_06");
+	TA_Pick_FP(8,0,20,0,"NW_MONASTERY_HERB_03");
 	TA_Sleep(20,0,8,0,"NW_MONASTERY_NOVICE02_07");
 };
 

@@ -12,10 +12,7 @@ instance DIA_Brian_EXIT(C_Info)
 
 func int DIA_Brian_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Brian_EXIT_Info()
@@ -98,9 +95,12 @@ instance DIA_Brian_AboutLehrling(C_Info)
 
 func int DIA_Brian_AboutLehrling_Condition()
 {
-	if((hero.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
+	if(Player_IsApprentice == APP_NONE)
 	{
-		return TRUE;
+		if((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -127,7 +127,7 @@ instance DIA_Brian_WhyLeave(C_Info)
 
 func int DIA_Brian_WhyLeave_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Brian_AboutLehrling))
+	if(Npc_KnowsInfo(other,DIA_Brian_AboutLehrling) && (MIS_Jack_NewLighthouseOfficer != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -166,9 +166,12 @@ func void DIA_Brian_OtherMasters_Info()
 {
 	AI_Output(other,self,"DIA_Brian_Add_15_00");	//А кто здесь другие мастера?
 	AI_Output(self,other,"DIA_Brian_Add_04_01");	//Ну, это плотник Торбен, мастер-лучник Боспер, алхимик Константино и Маттео.
-	AI_Output(self,other,"DIA_Brian_Add_04_02");	//Он продает доспехи, но, в первую очередь, он торговец.
-	AI_Output(self,other,"DIA_Brian_Add_04_03");	//У каждого мастера есть свой дом на этой улице.
-	AI_Output(self,other,"DIA_Brian_Add_04_04");	//А лавка Константино находится в подземном проходе, ведущем к храму.
+	if(MIS_Jack_NewLighthouseOfficer != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Brian_Add_04_02");	//Он продает доспехи, но, в первую очередь, он торговец.
+		AI_Output(self,other,"DIA_Brian_Add_04_03");	//У каждого мастера есть свой дом на этой улице.
+		AI_Output(self,other,"DIA_Brian_Add_04_04");	//А лавка Константино находится в подземном проходе, ведущем к храму.
+	};
 };
 
 
@@ -185,7 +188,7 @@ instance DIA_Brian_AboutHarad(C_Info)
 
 func int DIA_Brian_AboutHarad_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Brian_AboutLehrling))
+	if(Npc_KnowsInfo(other,DIA_Brian_AboutLehrling) && !Npc_IsDead(Harad))
 	{
 		return TRUE;
 	};
@@ -221,7 +224,10 @@ func void DIA_Brian_NEEDWEAPONS_Info()
 {
 	AI_Output(other,self,"DIA_Brian_NEEDWEAPONS_15_00");	//Могу я купить оружие у тебя?
 	AI_Output(self,other,"DIA_Brian_NEEDWEAPONS_04_01");	//Нет. Я всего лишь помощник.
-	AI_Output(self,other,"DIA_Brian_NEEDWEAPONS_04_02");	//Оружие, которое делается в этой кузнице, забирает ополчение. Они уносят его к башням, где оно хранится.
+	if(MIS_Jack_NewLighthouseOfficer != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Brian_NEEDWEAPONS_04_02");	//Оружие, которое делается в этой кузнице, забирает ополчение. Они уносят его к башням, где оно хранится.
+	};
 	AI_Output(self,other,"DIA_Brian_NEEDWEAPONS_04_03");	//Но во всем остальном, что касается кузнечного дела, я могу помочь.
 };
 
@@ -255,7 +261,7 @@ func void DIA_Brian_WASKAUFEN_Info()
 	if(Npc_IsDead(Harad))
 	{
 		AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_01");	//Если у меня еще есть парочка лишних стальных болванок, ты можешь взять их. Боюсь, что это все.
-		if(MIS_Jack_NewLighthouseOfficer == FALSE)
+		if(MIS_Jack_NewLighthouseOfficer != LOG_SUCCESS)
 		{
 			AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_02");	//С тех пор, как Гарада больше нет здесь, ополчение глаз с меня не спускает.
 			AI_Output(self,other,"DIA_Brian_WASKAUFEN_04_03");	//Мне не позволено продолжать работать в кузнице. Они боятся, что я все распродам и свалю.
@@ -277,31 +283,6 @@ func void DIA_Brian_WASKAUFEN_Info()
 		CreateInvItems(self,ItMw_1H_Mace_L_04,1);
 	};
 	Trade_IsActive = TRUE;
-};
-
-
-instance DIA_Brian_KAP3_EXIT(C_Info)
-{
-	npc = VLK_457_Brian;
-	nr = 999;
-	condition = DIA_Brian_KAP3_EXIT_Condition;
-	information = DIA_Brian_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Brian_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Brian_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -330,64 +311,15 @@ func int DIA_Brian_RepairNecklace_Condition()
 func void DIA_Brian_RepairNecklace_Info()
 {
 	AI_Output(other,self,"DIA_Brian_RepairNecklace_15_00");	//Ты можешь ремонтировать ювелирные изделия?
-	if(!Npc_IsDead(Harad))
+	if(!Npc_IsDead(Harad) || (MIS_Jack_NewLighthouseOfficer == LOG_SUCCESS))
 	{
 		AI_Output(self,other,"DIA_Brian_RepairNecklace_04_02");	//Ювелирные изделия? Тебе лучше обратиться к мастеру.
 	};
-	AI_Output(self,other,"DIA_Brian_RepairNecklace_04_01");	//Я всего лишь помощник, я радуюсь, когда мне позволяют сделать хотя бы кинжал.
+	if(MIS_Jack_NewLighthouseOfficer != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Brian_RepairNecklace_04_01");	//Я всего лишь помощник, я радуюсь, когда мне позволяют сделать хотя бы кинжал.
+	};
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
-};
-
-
-instance DIA_Brian_KAP4_EXIT(C_Info)
-{
-	npc = VLK_457_Brian;
-	nr = 999;
-	condition = DIA_Brian_KAP4_EXIT_Condition;
-	information = DIA_Brian_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Brian_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Brian_KAP4_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Brian_KAP5_EXIT(C_Info)
-{
-	npc = VLK_457_Brian;
-	nr = 999;
-	condition = DIA_Brian_KAP5_EXIT_Condition;
-	information = DIA_Brian_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Brian_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Brian_KAP5_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -403,7 +335,7 @@ instance DIA_Brian_NEWLIGHTHOUSEOFFICER(C_Info)
 
 func int DIA_Brian_NEWLIGHTHOUSEOFFICER_Condition()
 {
-	if((Kapitel == 5) && (MIS_Jack_NewLighthouseOfficer == LOG_Running) && Npc_KnowsInfo(other,DIA_Brian_NEEDWEAPONS))
+	if((Kapitel == 5) && (MIS_Jack_NewLighthouseOfficer == LOG_Running))
 	{
 		return TRUE;
 	};
