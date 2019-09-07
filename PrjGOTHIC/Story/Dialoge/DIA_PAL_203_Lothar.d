@@ -234,6 +234,12 @@ func void DIA_Lothar_Dragons_Info()
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_03");	//В городе и без этого полно проблем. Не хватает только еще идиота, пугающего людей баснями о драконах!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_04");	//Я немедля посадил в тюрьму последнего, кто рассказывал здесь сказки о драконах, и отправил его тюремным транспортом в Долину Рудников. Так что попридержи свой язык!
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_05");	//Мы не можем позволить, чтобы кто-либо здесь сеял панику среди людей!
+		if(Npc_KnowsInfo(other,DIA_DiegoOw_Hallo))
+		{
+			AI_Output(other,self,"DIA_Addon_Greg_NW_was_Diego_15_00");	//Ты говоришь о Диего?
+			AI_Output(self,other,"DIA_Lothar_WhoDragons_01_01");	//Да. Парень по имени Диего. Если я не ошибаюсь.
+			AI_Output(self,other,"DIA_Lothar_WhoDragons_01_02");	//(угрожающе) Я предупреждал его - как и тебя! Но этот безумец не переставал действовать мне на нервы!
+		};
 	}
 	else
 	{
@@ -309,7 +315,7 @@ instance DIA_Lothar_WhoDragons(C_Info)
 func int DIA_Lothar_WhoDragons_Condition()
 {
 //	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
-	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && !Npc_KnowsInfo(other,DIA_DiegoOw_Hallo))
 	{
 		return TRUE;
 	};
