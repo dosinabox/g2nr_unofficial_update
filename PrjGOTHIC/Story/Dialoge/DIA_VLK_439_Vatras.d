@@ -249,7 +249,7 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 	}
 	else
 	{
-		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras_Opened);
+		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras / 4);
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon,1);
 		AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_02");	//Да, но... оно вскрыто. Я надеюсь, оно не попало в чужие руки?
 	};

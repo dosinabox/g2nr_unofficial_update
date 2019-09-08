@@ -1225,7 +1225,7 @@ instance ItPl_Sagitta_Herb_MIS(C_Item)
 //	flags = ITEM_MULTI;
 	flags = ITEM_MISSION;
 	value = Value_Strength_Herb_01;
-	visual = "ItPl_Strength_Herb_02.3DS";
+	visual = "ItPl_Sagitta_Herb.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOOD";
 	description = name;

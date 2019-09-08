@@ -62,9 +62,9 @@ instance OrkElite_AntiPaladinOrkOberst(Mst_Default_OrcElite)
 {
 	name[0] = NAME_OrkOberst;
 	level = OrkElite_AntiPaladin_Level;
-	attribute[ATR_STRENGTH] = 140;
-	attribute[ATR_HITPOINTS_MAX] = OrkElite_AntiPaladin_HP;
-	attribute[ATR_HITPOINTS] = OrkElite_AntiPaladin_HP;
+	attribute[ATR_STRENGTH] = OrkElite_AntiPaladin_Strength;
+	attribute[ATR_HITPOINTS_MAX] = 600;
+	attribute[ATR_HITPOINTS] = 600;
 	protection[PROT_BLUNT] = OrkElite_AntiPaladin_Protection;
 	protection[PROT_EDGE] = OrkElite_AntiPaladin_Protection;
 	protection[PROT_POINT] = OrkElite_AntiPaladin_Protection;
@@ -156,9 +156,9 @@ instance OrkElite_AntiPaladinOrkOberst_DI(Mst_Default_OrcElite)
 {
 	name[0] = NAME_OrkOberst;
 	level = OrkElite_AntiPaladin_Level;
-	attribute[ATR_STRENGTH] = 150;
-	attribute[ATR_HITPOINTS_MAX] = OrkElite_AntiPaladin_HP;
-	attribute[ATR_HITPOINTS] = OrkElite_AntiPaladin_HP;
+	attribute[ATR_STRENGTH] = 175;
+	attribute[ATR_HITPOINTS_MAX] = 675;
+	attribute[ATR_HITPOINTS] = 675;
 	protection[PROT_BLUNT] = OrkElite_AntiPaladin_Protection;
 	protection[PROT_EDGE] = OrkElite_AntiPaladin_Protection;
 	protection[PROT_POINT] = OrkElite_AntiPaladin_Protection;

@@ -45,7 +45,7 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_Garvell,MIS_Garvell_Infos,0,3);
 	B_CloseTopic(TOPIC_BecomeMIL,MIL_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_BecomeSLD,SLD_Aufnahme,0,2);
-	B_CloseTopic(TOPIC_BecomeKdF,KDF_Aufnahme,0,2);
+	B_CloseTopic(TOPIC_BecomeKDF,KDF_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_Peck,MIS_Andre_Peck,0,6);
 	B_CloseTopic(TOPIC_Warehouse,MIS_Andre_WAREHOUSE,0,6);
 	B_CloseTopic(TOPIC_Redlight,MIS_Andre_REDLIGHT,0,6);

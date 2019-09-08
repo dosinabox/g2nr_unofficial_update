@@ -624,6 +624,12 @@ func void DIA_Lee_JoinNOW_Info()
 					AI_Output(self,other,"DIA_Lee_JoinNOW_04_18");	//Ты все равно хотел туда идти.
 				};
 			};
+			if(MIS_Addon_Daron_GetStatue == LOG_Running)
+			{
+				Log_CreateTopic(TOPIC_Addon_HelpDaron,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_Running);
+				Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
+			};
 		};
 	};
 };

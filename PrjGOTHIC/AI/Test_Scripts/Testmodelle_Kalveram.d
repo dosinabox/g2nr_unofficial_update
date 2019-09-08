@@ -1498,7 +1498,7 @@ func void UseHoshiTagebuch()
 };
 
 
-/*instance D36TestRune(C_Item)
+instance D36TestRune(C_Item)
 {
 	name = "Великая руна тестов";
 	mainflag = ITEM_KAT_DOCS;
@@ -1518,7 +1518,8 @@ func void UseHoshiTagebuch()
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-};*/
+	Mob_CreateItems("BOW_CHEST",ItFo_Meat,100);
+};
 
 instance WastelandRune(C_Item)
 {

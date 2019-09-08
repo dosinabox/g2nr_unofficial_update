@@ -276,7 +276,7 @@ func void DIA_Babo_Wurst_Info()
 	B_UseItem(self,ItFo_Schafswurst);
 	if(Wurst_Gegeben >= 13)
 	{
-		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	}
 	else
 	{

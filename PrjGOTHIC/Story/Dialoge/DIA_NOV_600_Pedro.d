@@ -82,7 +82,7 @@ func void DIA_Pedro_Wurst_Info()
 	B_UseItem(self,ItFo_Schafswurst);
 	if(Wurst_Gegeben >= 13)
 	{
-		AI_PrintScreen("Все послушники накормлены!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+		AI_PrintScreen(PRINT_AllNovizen,-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 	}
 	else
 	{
@@ -175,21 +175,35 @@ func void DIA_Pedro_TEMPEL_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Pedro_TEMPEL_09_02");	//Если ты хочешь быть принятым в Братство Инноса, ты должен знать и выполнять правила монастыря.
-		AI_Output(self,other,"DIA_ADDON_Pedro_TEMPEL_09_03");	//Также каждый новичок должен принести дар Инносу.
-		AI_Output(self,other,"DIA_ADDON_Pedro_TEMPEL_09_04");	//Овцу и 1000 золотых.
-		AI_Output(other,self,"DIA_Pedro_TEMPEL_15_04");	//Это целая куча золота.
-		AI_Output(self,other,"DIA_Pedro_TEMPEL_09_05");	//Это знак того, что ты начинаешь новую жизнь в качестве слуги Инноса. Когда ты будешь принят, все твои предыдущие прегрешения будут прощены.
-		AI_Output(self,other,"DIA_Pedro_TEMPEL_09_06");	//И хорошенько подумай - потом ты не сможешь отказаться от своего решения стать слугой Инноса.
-		if(SC_KnowsKlosterTribut == FALSE)
+		if(Pedro_NOV_Aufnahme_LostInnosStatue_Daron == FALSE)
 		{
-			SC_KnowsKlosterTribut = TRUE;
-			Log_CreateTopic(Topic_Kloster,LOG_MISSION);
-			Log_SetTopicStatus(Topic_Kloster,LOG_Running);
-			B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
+			AI_Output(self,other,"DIA_ADDON_Pedro_TEMPEL_09_03");	//Также каждый новичок должен принести дар Инносу.
+			AI_Output(self,other,"DIA_ADDON_Pedro_TEMPEL_09_04");	//Овцу и 1000 золотых.
+			AI_Output(other,self,"DIA_Pedro_TEMPEL_15_04");	//Это целая куча золота.
+			AI_Output(self,other,"DIA_Pedro_TEMPEL_09_05");	//Это знак того, что ты начинаешь новую жизнь в качестве слуги Инноса. Когда ты будешь принят, все твои предыдущие прегрешения будут прощены.
+			if(SC_KnowsKlosterTribut == FALSE)
+			{
+				SC_KnowsKlosterTribut = TRUE;
+				Log_CreateTopic(Topic_Kloster,LOG_MISSION);
+				Log_SetTopicStatus(Topic_Kloster,LOG_Running);
+				B_LogEntry(Topic_Kloster,"Чтобы стать послушником монастыря Инноса, мне нужна овца и 1000 золотых монет.");
+			};
 		};
+		AI_Output(self,other,"DIA_Pedro_TEMPEL_09_06");	//И хорошенько подумай - потом ты не сможешь отказаться от своего решения стать слугой Инноса.
 	};
 };
 
+
+func void B_GiveLostStatueToPedro()
+{
+	AI_Output(other,self,"DIA_Addon_Pedro_Statuette_Abgeben_15_00");	//Я могу отдать статуэтку тебе?
+	AI_Output(self,other,"DIA_Addon_Pedro_Statuette_Abgeben_09_01");	//Конечно. Я позабочусь о ней. Благодарю тебя за щедрость.
+	B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
+	Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
+	LostInnosStatueInMonastery = TRUE;
+	MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
+	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
+};
 
 instance DIA_Addon_Pedro_Statuette(C_Info)
 {
@@ -204,7 +218,7 @@ instance DIA_Addon_Pedro_Statuette(C_Info)
 
 func int DIA_Addon_Pedro_Statuette_Condition()
 {
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (MIS_Addon_Daron_GetStatue == LOG_Running) && Npc_KnowsInfo(other,DIA_Pedro_Rules) && (Kapitel < 3))
+	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (MIS_Addon_Daron_GetStatue == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -213,18 +227,25 @@ func int DIA_Addon_Pedro_Statuette_Condition()
 func void DIA_Addon_Pedro_Statuette_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Pedro_Statuette_15_00");	//У меня есть вот эта статуэтка. Думаю, она пропала из монастыря.
-	AI_Output(other,self,"DIA_Addon_Pedro_Statuette_15_01");	//Теперь я могу войти?
-	if(other.guild == GIL_NONE)
+	if(Npc_KnowsInfo(other,DIA_Pedro_TEMPEL) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
+	{
+		AI_Output(other,self,"DIA_Addon_Pedro_Statuette_15_01");	//Теперь я могу войти?
+	};
+	if((other.guild == GIL_NONE) || ((other.guild == GIL_NOV) && (DIA_Gorax_GOLD_perm == FALSE)))
 	{
 		AI_Output(self,other,"DIA_Addon_Pedro_Statuette_09_02");	//Ну, думаю, что в таких исключительных обстоятельствах, ты можешь стать послушником бесплатно.
-		Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
-		B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Послушник Педро пропустил меня в монастырь, потому что я нес пропавшую статуэтку. Я должен отдать ее кому-то в монастыре.");
+		Pedro_NOV_Aufnahme_LostInnosStatue_Daron = TRUE;
+		B_LogEntry(TOPIC_Addon_RangerHelpKDF,TOPIC_Addon_PedroPass);
 	}
-	else
+	else if((other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Addon_Pedro_Statuette_09_03");	//Боюсь, даже эта драгоценность не откроет тебе путь внутрь.
 		AI_Output(self,other,"DIA_Addon_Pedro_Statuette_09_04");	//Ты уже выбрал свой путь. Монастырь для тебя закрыт.
+	}
+	else
+	{
+		B_Say(self,other,"$ABS_GOOD");
+		B_GiveLostStatueToPedro();
 	};
 };
 
@@ -242,20 +263,18 @@ instance DIA_Addon_Pedro_Statuette_Abgeben(C_Info)
 
 func int DIA_Addon_Pedro_Statuette_Abgeben_Condition()
 {
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette) && (hero.guild != GIL_NONE) && (hero.guild != GIL_NOV) && (hero.guild != GIL_KDF))
+	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette) && (LostInnosStatueInMonastery == FALSE))
 	{
-		return TRUE;
+		if((hero.guild != GIL_NONE) && (hero.guild != GIL_NOV) && (hero.guild != GIL_KDF))
+		{
+			return TRUE;
+		};
 	};
 };
 
 func void DIA_Addon_Pedro_Statuette_Abgeben_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Pedro_Statuette_Abgeben_15_00");	//Я могу отдать статуэтку тебе?
-	AI_Output(self,other,"DIA_Addon_Pedro_Statuette_Abgeben_09_01");	//Конечно. Я позабочусь о ней. Благодарю тебя за щедрость.
-	B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
-	Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
-	MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
+	B_GiveLostStatueToPedro();
 };
 
 
@@ -364,7 +383,7 @@ func void DIA_Pedro_AUFNAHME_YES()
 	AI_Output(other,self,"DIA_Pedro_AUFNAHME_YES_15_05");	//Мои прегрешения теперь прощены?
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.
 	DIA_Pedro_AUFNAHME_NOPERM = TRUE;
-	NOV_Aufnahme = TRUE;
+	NOV_Aufnahme = LOG_SUCCESS;
 	SLD_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_OBSOLETE;
 	B_GivePlayerXP(XP_AufnahmeNovize);
@@ -373,7 +392,14 @@ func void DIA_Pedro_AUFNAHME_YES()
 		Pedro_NOV_Aufnahme_LostInnosStatue_Daron = TRUE;
 		Liesel_Giveaway = LOG_OBSOLETE;
 	};
-	Wld_AssignRoomToGuild("Kloster02",GIL_KDF);
+	if(MIS_Addon_Daron_GetStatue == LOG_Running)
+	{
+		Log_CreateTopic(TOPIC_Addon_HelpDaron,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_Running);
+		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
+		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_PedroPass);
+	};
+//	Wld_AssignRoomToGuild("Kloster02",GIL_KDF);
 	AI_StopProcessInfos(self);
 };
 

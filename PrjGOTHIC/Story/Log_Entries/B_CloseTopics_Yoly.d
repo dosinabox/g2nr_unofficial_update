@@ -14,9 +14,10 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_BringRangerToLares,MIS_Lares_BringRangerToMe,0,4);
 	B_CloseTopic(TOPIC_Addon_KDW,0,ENTERED_ADDONWORLD,4);
 	B_CloseTopic(TOPIC_Addon_TeleportsNW,0,SCUsed_AllNWTeleporststones,6);
-	B_CloseTopic(TOPIC_Addon_RangerHelpKDF,MIS_Addon_Daron_GetStatue,TOPIC_End_RangerHelpKDF,2);
+	B_CloseTopic(TOPIC_Addon_RangerHelpKDF,NOV_Aufnahme,TOPIC_End_RangerHelpKDF,2);
 	B_CloseTopic(TOPIC_Addon_RangerHelpSLD,SLD_Aufnahme,TOPIC_End_RangerHelpSLD,2);
 	B_CloseTopic(TOPIC_Addon_RangerHelpMIL,MIL_Aufnahme,0,2);
+	B_CloseTopic(TOPIC_Addon_HelpDaron,MIS_Addon_Daron_GetStatue,0,6);
 	B_CloseTopic(TOPIC_Addon_Stoneplates,0,PLAYER_TALENT_FOREIGNLANGUAGE,4);
 	B_CloseTopic(TOPIC_Addon_FarimsFish,MIS_Addon_Farim_PaladinFisch,0,6);
 	B_CloseTopic(TOPIC_Addon_Lucia,0,TOPIC_END_Lucia,6);

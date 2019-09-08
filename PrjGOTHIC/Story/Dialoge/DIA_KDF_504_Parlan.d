@@ -478,7 +478,7 @@ func void DIA_Parlan_WORK_Info()
 			else
 			{
 				AI_Output(self,other,"DIA_Parlan_WELCOME_05_08");	//Ты можешь отдать свое золото Гораксу, нашему управляющему. Ты найдешь его в винодельне.
-				AI_Output(self,other,"DIA_Parlan_WELCOME_05_09");	//Когда с этим будет покончено, мы поговорим о твоей работе здесь, в монастыре.
+				B_DIA_Parlan_WELCOME_GoForTribute();
 			};
 		};
 		AI_StopProcessInfos(self);
@@ -567,7 +567,7 @@ func void DIA_Parlan_Stand_Info()
 		AI_Output(self,other,"DIA_Parlan_Stand_05_10");	//Я выдаю тебе этот ключ.
 		Parlan_Erlaubnis = TRUE;
 		MIS_KlosterArbeit = LOG_SUCCESS;
-		Wld_AssignRoomToGuild("Kloster02",GIL_PUBLIC);
+//		Wld_AssignRoomToGuild("Kloster02",GIL_PUBLIC);
 		B_GiveInvItems(self,other,ItKe_KlosterBibliothek,1);
 		/*if(MIS_NeorasPflanzen == LOG_Running)
 		{

@@ -1234,3 +1234,4 @@ var int OrkElite_AntiPaladin_Strength;
 var int OrkElite_AntiPaladin_HP;
 var int OrkElite_AntiPaladin_Protection;
 var int OriginalAntipaladins;
+var int LostInnosStatueInMonastery;

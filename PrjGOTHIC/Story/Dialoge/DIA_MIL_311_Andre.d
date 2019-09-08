@@ -1326,6 +1326,12 @@ func void DIA_Andre_JOIN_Yes()
 	KDF_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
 	B_GivePlayerXP(XP_BecomeMiliz);
+	if(MIS_Addon_Daron_GetStatue == LOG_Running)
+	{
+		Log_CreateTopic(TOPIC_Addon_HelpDaron,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_Running);
+		Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
+	};
 	Info_ClearChoices(DIA_Andre_JOIN);
 };
 
