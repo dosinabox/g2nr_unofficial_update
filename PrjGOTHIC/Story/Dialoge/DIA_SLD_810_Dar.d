@@ -284,7 +284,7 @@ func void DIA_Dar_Pilztabak_Info()
 	AI_Output(self,other,"DIA_Dar_Pilztabak_03_02");	//Так, попробуем...
 	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);
-	AI_Output(self,other,"DIA_Dar_Pilztabak_03_03");	//Ты когда-нибудь курил его САМ?
+	AI_Output(self,other,"DIA_Dar_Pilztabak_03_03");	//Ты когда-нибудь курил его сам?
 	AI_Output(other,self,"DIA_Dar_Pilztabak_15_04");	//Ну...
 	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);

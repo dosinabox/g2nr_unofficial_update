@@ -458,6 +458,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ItKe_Addon_Thorus);
 	CreateInvItems(self,ItLsTorch,50);
 	CreateInvItems(self,ItLsTorchburned,50);
+	CreateInvItems(self,ItLsTorchFirespit,10);
 	CreateInvItems(self,ItMi_Pan,1);
 	CreateInvItems(self,ItMi_PanFull,1);
 	CreateInvItems(self,ItMi_Saw,1);

@@ -188,8 +188,15 @@ func int DIA_Raoul_AboutSylvio_Condition()
 func void DIA_Raoul_AboutSylvio_Info()
 {
 	AI_Output(other,self,"DIA_Raoul_AboutSylvio_15_00");	// то такой —ильвио?
-	AI_Output(self,other,"DIA_Raoul_AboutSylvio_01_01");	//Ќаш следующий предводитель, если тебе интересно мое мнение. ≈сли ты собираешьс€ просить его, чтобы он позволил тебе присоединитьс€ к нашим р€дам, забудь об этом!
-	AI_Output(self,other,"DIA_Raoul_AboutSylvio_01_02");	//—уд€ по твоему виду, ты не подходишь даже дл€ того, чтобы пасти овец.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Raoul_AboutSylvio_01_01");	//Ќаш следующий предводитель, если тебе интересно мое мнение. ≈сли ты собираешьс€ просить его, чтобы он позволил тебе присоединитьс€ к нашим р€дам, забудь об этом!
+		AI_Output(self,other,"DIA_Raoul_AboutSylvio_01_02");	//—уд€ по твоему виду, ты не подходишь даже дл€ того, чтобы пасти овец.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Raoul_AboutSylvio_01_01_add");	//Ќаш следующий предводитель, если тебе интересно мое мнение.
+	};
 };
 
 
@@ -389,7 +396,15 @@ func void DIA_Raoul_TROLL_rechnung_hastrecht()
 func void DIA_Raoul_TROLL_rechnung_ich()
 {
 	AI_Output(other,self,"DIA_Raoul_TROLL_rechnung_ich_15_00");	//я уже убил черного тролл€.
-	B_Raoul_Blame();
+	if(TrollBlackFurWasted == FALSE)
+	{
+		B_Raoul_Blame();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Raoul_TROLL_weg_01_01");	//ƒа проваливай!
+		AI_StopProcessInfos(self);
+	};
 };
 
 func void DIA_Raoul_TROLL_rechnung_noProb()
@@ -407,7 +422,7 @@ instance DIA_Raoul_TrophyFur(C_Info)
 	information = DIA_Raoul_TrophyFur_Info;
 	permanent = TRUE;
 //	description = B_BuildLearnString("—начала скажи мне, как сн€ть шкуру с черного тролл€.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
-	description = B_BuildLearnString("—н€тие шкуры черного тролл€",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
+	description = B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
 };
 
 
@@ -492,7 +507,7 @@ instance DIA_Raoul_FELLZURUECK(C_Info)
 	condition = DIA_Raoul_FELLZURUECK_Condition;
 	information = DIA_Raoul_FELLZURUECK_Info;
 	permanent = TRUE;
-	description = "¬ерни мне мою шкуру черного тролл€.";
+	description = "¬ерни мне мою шкуру черного тролл€!";
 };
 
 
@@ -506,7 +521,7 @@ func int DIA_Raoul_FELLZURUECK_Condition()
 
 func void DIA_Raoul_FELLZURUECK_Info()
 {
-	AI_Output(other,self,"DIA_Raoul_FELLZURUECK_15_00");	//¬ерни мне мою шкуру черного тролл€.
+	AI_Output(other,self,"DIA_Raoul_FELLZURUECK_15_00");	//¬ерни мне мою шкуру черного тролл€!
 	AI_Output(self,other,"DIA_Raoul_FELLZURUECK_01_01");	//Ќет.
 	AI_StopProcessInfos(self);
 };

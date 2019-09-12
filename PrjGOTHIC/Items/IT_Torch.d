@@ -42,7 +42,7 @@ instance ItLsTorchFirespit(C_Item)
 {
 	name = NAME_Fackel;
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_TORCH;
+	flags = ITEM_TORCH | ITEM_MULTI;
 	value = 0;
 	visual = "ITLSTORCHBURNING.ZEN";
 	material = MAT_WOOD;

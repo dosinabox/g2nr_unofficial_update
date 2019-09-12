@@ -317,3 +317,21 @@ func int C_SLDorDJGArmorEquipped(var C_Npc oth)
 	return FALSE;
 };
 
+func int C_BAUCheck(var C_Npc oth)
+{
+	var C_Item armor;
+	armor = Npc_GetEquippedArmor(oth);
+	if(Npc_HasEquippedArmor(oth))
+	{
+		if(Hlp_IsItem(armor,ITAR_Bau_L))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_Bau_M))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+

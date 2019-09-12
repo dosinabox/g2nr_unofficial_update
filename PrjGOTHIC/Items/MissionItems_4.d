@@ -165,6 +165,20 @@ instance ItAt_DragonEgg_MIS(C_Item)
 	count[5] = value;
 };
 
+instance ItMi_AlarmHorn(C_Item)
+{
+	name = "Сигнальный рог";
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 100;
+	visual = "ItMi_AlarmHorn.3ds";
+	material = MAT_WOOD;
+	scemeName = "HORN";
+	description = name;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItRi_OrcEliteRing(C_Item)
 {
 	name = NAME_Ring;

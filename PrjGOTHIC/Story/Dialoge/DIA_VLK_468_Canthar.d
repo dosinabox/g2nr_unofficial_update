@@ -164,8 +164,6 @@ func int DIA_Canthar_Hallo_Condition()
 
 func void DIA_Canthar_Hallo_Info()
 {
-	var C_Item itm;
-	itm = Npc_GetEquippedArmor(other);
 	if(!Npc_HasEquippedArmor(other))
 	{
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_00");	//ѕосмотрите, кто у нас здесь!
@@ -179,7 +177,7 @@ func void DIA_Canthar_Hallo_Info()
 		AI_Output(self,other,"DIA_Canthar_Hallo_09_05");	//(торопливо) ћен€ не волнует, откуда ты пришел. Ќо мне кажетс€, у мен€ есть интересное предложение дл€ теб€...
 		Canthar_GotMe = TRUE;
 	}
-	else if(Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M))
+	else if(C_BAUCheck(other))
 	{
 		AI_Output(self,other,"DIA_Canthar_HelloArmor_09_06");	// ак идет работа, кресть€нин?
 		Info_ClearChoices(DIA_Canthar_Hallo);
@@ -288,13 +286,16 @@ func void DIA_Canthar_WhatOffer_Ok()
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Ok_09_01");	//ƒержи. Ќо обращайс€ с ней аккуратно, она очень ценна€.
 	CreateInvItems(self,ItWr_Passierschein,1);
 	B_GiveInvItems(self,other,ItWr_Passierschein,1);
+	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
+	{
+		Log_CreateTopic(TOPIC_City,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_City,LOG_Running);
+		B_LogEntry(TOPIC_City,"я получил пропуск у торговца  антара, который позволит мне попасть в город. ¬замен € должен оказать ему услугу в следующий раз, когда увижу его в городе.");
+	};
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Ok_09_02");	//» еще одно: даже и не думай нарушить свое слово!
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Ok_09_03");	//я торговец и имею очень большое вли€ние в городе - просто так это тебе с рук не сойдет, уж поверь мне!
 	Canthar_Gefallen = TRUE;
 	Info_ClearChoices(DIA_Canthar_WhatOffer);
-	Log_CreateTopic(TOPIC_City,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_City,LOG_Running);
-	B_LogEntry(TOPIC_City,"я получил пропуск у торговца  антара, который позволит мне попасть в город. ¬замен € должен оказать ему услугу в следующий раз, когда увижу его в городе.");
 };
 
 func void DIA_Canthar_WhatOffer_No()

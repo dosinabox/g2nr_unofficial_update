@@ -177,7 +177,7 @@ instance DIA_Maleth_ToTheCity(C_Info)
 
 func int DIA_Maleth_ToTheCity_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (Kapitel < 3) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -197,13 +197,16 @@ func void DIA_Maleth_ToTheCity_Info()
 	};
 	AI_Output(other,self,"DIA_Maleth_ToTheCity_15_04");	//И что это?
 	AI_Output(self,other,"DIA_Maleth_ToTheCity_08_05");	//Ну, например, что ты с фермы Лобарта и идешь к городскому кузнецу.
-	Log_CreateTopic(TOPIC_City,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_City,LOG_Running);
-	B_LogEntry(TOPIC_City,"Чтобы попасть в город, я могу сказать стражникам у ворот, что я иду с фермы Лобарта и хочу повидать кузнеца.");
-	if(!Npc_HasEquippedArmor(other))
+	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
+	{
+		Log_CreateTopic(TOPIC_City,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_City,LOG_Running);
+		B_LogEntry(TOPIC_City,"Чтобы попасть в город, я могу сказать стражникам у ворот, что я иду с фермы Лобарта и хочу повидать кузнеца.");
+	};
+	if(!C_BAUCheck(other))
 	{
 		AI_Output(self,other,"DIA_Maleth_ToTheCity_08_06");	//Но это тебе не поможет. Ты не похож на фермера.
-		B_LogEntry(TOPIC_City,"Конечно, я должен быть похож на фермера.");
+		Log_AddEntry(TOPIC_City,"Конечно, я должен быть похож на фермера.");
 	};
 	AI_Output(other,self,"DIA_Maleth_ToTheCity_15_07");	//Понятно.
 };
@@ -222,7 +225,7 @@ instance DIA_Maleth_Equipment(C_Info)
 
 func int DIA_Maleth_Equipment_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (Kapitel < 3) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};

@@ -499,6 +499,10 @@ func void B_GiveDeathInv(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_03,1);
 		CreateInvItems(slf,ItPo_Health_03,1);
 	};
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) && (slf.aivar[AIV_MM_REAL_ID] == ID_TROLL_BLACK))
+	{
+		TrollBlackFurWasted = TRUE;
+	};
 	slf.aivar[AIV_DeathInvGiven] = TRUE;
 };
 

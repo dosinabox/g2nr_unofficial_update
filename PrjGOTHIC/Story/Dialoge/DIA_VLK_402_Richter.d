@@ -194,8 +194,6 @@ func void DIA_Richter_KillMorgahard_Info()
 	{
 		Garwig.guild = GIL_NONE;
 		Npc_SetTrueGuild(Garwig,GIL_NONE);
-		//CreateInvItem(Garwig,ITAR_Bau_L);
-		//AI_EquipArmor(Garwig,ITAR_Bau_L);
 		B_StartOtherRoutine(Garwig,"Exile");
 	};
 	B_InitNpcGlobals();

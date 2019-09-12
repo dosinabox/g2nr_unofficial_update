@@ -1235,3 +1235,4 @@ var int OrkElite_AntiPaladin_HP;
 var int OrkElite_AntiPaladin_Protection;
 var int OriginalAntipaladins;
 var int LostInnosStatueInMonastery;
+var int TrollBlackFurWasted;

@@ -59,7 +59,6 @@ func int DIA_Mil_310_Stadtwache_FirstWarn_Condition()
 
 func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 {
-	var C_Item itm;
 	AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_00");	//СТОЙ!
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
@@ -81,7 +80,6 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 	}
 	else
 	{
-		itm = Npc_GetEquippedArmor(other);
 		if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
 		{
 			AI_Output(other,self,"DIA_Mil_310_Stadtwache_FirstWarn_15_07");	//Что?
@@ -89,14 +87,14 @@ func void DIA_Mil_310_Stadtwache_FirstWarn_Info()
 			AI_Output(other,self,"DIA_Mil_310_Stadtwache_FirstWarn_15_09");	//Почему?
 			AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_10");	//От таких оборванцев, как ты, одни проблемы!
 			AI_Output(self,other,"DIA_Mil_310_Stadtwache_FirstWarn_07_11");	//В городе и так хватает всякого сброда. Нам не нужны люди, у которых нет денег.
-			if(self.aivar[AIV_Guardpassage_Status] == GP_NONE)
+			if((self.aivar[AIV_Guardpassage_Status] == GP_NONE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
 			{
 				Log_CreateTopic(TOPIC_City,LOG_MISSION);
 				Log_SetTopicStatus(TOPIC_City,LOG_Running);
 				B_LogEntry(TOPIC_City,"Чтобы стражники позволили мне войти в город, я должен выглядеть так, как будто у меня есть деньги. Ну, или я должен найти какой-нибудь другой способ.");
 			};
 		}
-		else if(Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M))
+		else if(C_BAUCheck(other))
 		{
 			if(self.aivar[AIV_TalkedToPlayer] == TRUE)
 			{
@@ -289,17 +287,9 @@ instance DIA_Mil_310_Stadtwache_ZumSchmied(C_Info)
 
 func int DIA_Mil_310_Stadtwache_ZumSchmied_Condition()
 {
-	var C_Item itm;
-	itm = Npc_GetEquippedArmor(other);
-	if(Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (Mil_310_schonmalreingelassen == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_ToTheCity) && (Mil_310_schonmalreingelassen == FALSE) && C_BAUCheck(other))
 	{
-		if(Npc_HasEquippedArmor(other))
-		{
-			if(Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M))
-			{
-				return TRUE;
-			};
-		};
+		return TRUE;
 	};
 };
 
@@ -320,7 +310,6 @@ func void DIA_Mil_310_Stadtwache_ZumSchmied_Info()
 	self.aivar[AIV_PASSGATE] = TRUE;
 	Stadtwache_333.aivar[AIV_PASSGATE] = TRUE;
 	Mil_310_schonmalreingelassen = TRUE;
-	B_CheckLog();
 	B_GivePlayerXP(XP_Ambient);
 	AI_StopProcessInfos(self);
 };

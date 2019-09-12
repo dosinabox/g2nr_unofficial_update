@@ -47,7 +47,8 @@ func void DIA_Schwarzmagier_HELLO_wer()
 
 func void DIA_Schwarzmagier_HELLO_hinterTor()
 {
-	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00");	//А что скрывается за тем огромным порталом, вон там?
+//	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00");	//А что скрывается за тем огромным порталом, вон там?
+	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00_add");	//А что скрывается за этой закрытой дверью, вон там?
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_hinterTor_09_01");	//(смеется) Покои моего повелителя останутся недоступными для тебя. Я не дам тебе возможности открыть эти врата.
 };
 
