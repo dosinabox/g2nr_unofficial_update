@@ -423,7 +423,6 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItMi_DoppelTabak,10);
 	CreateInvItems(self,ItMi_Honigtabak,10);
 	CreateInvItems(self,ItMi_SumpfTabak,10);
-	CreateInvItems(self,ItMi_AlarmHorn,1);
 	CreateInvItems(self,ItRw_Mil_Crossbow,1);
 	CreateInvItems(self,ItRw_Sld_Bow,1);
 	CreateInvItems(self,ItRw_Bow_L_01,1);

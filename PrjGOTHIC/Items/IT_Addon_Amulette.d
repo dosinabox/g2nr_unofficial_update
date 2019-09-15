@@ -612,13 +612,13 @@ instance TestAmulet(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = 0;
-	visual = "ItAm_Addon_Greg.3ds";
+	visual = "ItMi_SilverNecklace.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 12 сентября 2019г.";
+	text[1] = "Скомпилировано 15 сентября 2019г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = fix_version_start;
 	text[3] = "Версия обновления в сохраненке:";

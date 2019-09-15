@@ -115,7 +115,7 @@ instance DIA_Dar_WannaJoin(C_Info)
 
 func int DIA_Dar_WannaJoin_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Dar_Hallo) && (other.guild == GIL_NONE) && (Dar_LostAgainstCipher == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Dar_Hallo) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -124,7 +124,16 @@ func int DIA_Dar_WannaJoin_Condition()
 func void DIA_Dar_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Dar_WannaJoin_15_00");	//я хочу присоединитьс€ к наемникам. “ы не возражаешь?
-	AI_Output(self,other,"DIA_Dar_WannaJoin_03_01");	//ћне все равно.
+	if(Dar_LostAgainstCipher == FALSE)
+	{
+		AI_Output(self,other,"DIA_Dar_WannaJoin_03_01");	//ћне все равно.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_01");	//я ни за что не проголосую за теб€.
+		SCKnowsSLDVotes = TRUE;
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -252,6 +261,7 @@ func void DIA_Dar_Kameradenschwein_Info()
 		AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_01");	//я ни за что не проголосую за теб€.
 		SCKnowsSLDVotes = TRUE;
 	};
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 };
 

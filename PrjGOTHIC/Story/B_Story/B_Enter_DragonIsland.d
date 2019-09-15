@@ -115,7 +115,7 @@ func void startup_newworld_part_dragon_undead_01()
 	Wld_InsertNpc(Pal_Zombie02,"WP_UNDEAD_SPAWN_POINT_06");
 	Wld_InsertNpc(Pal_Zombie03,"WP_UNDEAD_SPAWN_POINT_07");
 	Wld_InsertNpc(Pal_Zombie04,"WP_UNDEAD_SPAWN_POINT_08");
-//	нужно восстановить, но нет подходящих мест	
+//	нужно восстановить, но нет подходящих мест (точки ниже конфликтуют с Марио)
 //	Wld_InsertNpc(Skeleton,"WP_DRAGONISLAND_UNDEAD_04_01");
 //	Wld_InsertNpc(Skeleton,"WP_DRAGONISLAND_UNDEAD_04_02");
 //	несуществующие точки исправлены, но они заняты подручными Марио, поэтому заменяем на другие

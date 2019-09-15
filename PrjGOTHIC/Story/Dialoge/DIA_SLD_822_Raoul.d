@@ -114,16 +114,13 @@ instance DIA_Raoul_PERMNone(C_Info)
 
 func int DIA_Raoul_PERMNone_Condition()
 {
-	if(other.guild == GIL_NONE)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Raoul_PERMNone_Info()
 {
 	AI_Output(other,self,"DIA_Raoul_PERMNone_15_00");	//Я хочу осмотреться на этой ферме!
-	if(Raoul_gesagt == FALSE)
+	if((Raoul_gesagt == FALSE) && (MIS_ReadyforChapter4 == FALSE))
 	{
 		AI_Output(self,other,"DIA_Raoul_PERMNone_01_01");	//Не заходи в здание слева. Там Сильвио. Он сейчас не в самом лучшем расположении духа.
 		AI_Output(self,other,"DIA_Raoul_PERMNone_01_02");	//Если он увидит слабака, не работающего на этой ферме, он может решить выместить на нем свою злобу.
@@ -191,7 +188,10 @@ func void DIA_Raoul_AboutSylvio_Info()
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Raoul_AboutSylvio_01_01");	//Наш следующий предводитель, если тебе интересно мое мнение. Если ты собираешься просить его, чтобы он позволил тебе присоединиться к нашим рядам, забудь об этом!
-		AI_Output(self,other,"DIA_Raoul_AboutSylvio_01_02");	//Судя по твоему виду, ты не подходишь даже для того, чтобы пасти овец.
+		if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
+		{
+			AI_Output(self,other,"DIA_Raoul_AboutSylvio_01_02");	//Судя по твоему виду, ты не подходишь даже для того, чтобы пасти овец.
+		};
 	}
 	else
 	{
@@ -200,20 +200,28 @@ func void DIA_Raoul_AboutSylvio_Info()
 };
 
 
+func void B_Raoul_GetLost()
+{
+	AI_Output(self,other,"DIA_Raoul_TROLL_weg_01_01");	//Да проваливай!
+	AI_StopProcessInfos(self);
+};
+
+var int Raoul_Voted;
+
 instance DIA_Raoul_Stimme(C_Info)
 {
 	npc = SLD_822_Raoul;
 	nr = 2;
 	condition = DIA_Raoul_Stimme_Condition;
 	information = DIA_Raoul_Stimme_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Я бы хотел стать наемником. Ты не возражаешь?";
 };
 
 
 func int DIA_Raoul_Stimme_Condition()
 {
-	if((self.aivar[AIV_DefeatedByPlayer] == TRUE) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Raoul_WannaJoin) && (other.guild == GIL_NONE) && (Raoul_Voted == FALSE))
 	{
 		return TRUE;
 	};
@@ -222,13 +230,21 @@ func int DIA_Raoul_Stimme_Condition()
 func void DIA_Raoul_Stimme_Info()
 {
 	AI_Output(other,self,"DIA_Raoul_Stimme_15_00");	//Я бы хотел стать наемником. Ты не возражаешь?
-	AI_Output(self,other,"DIA_Raoul_Stimme_01_01");	//Ааа, делай, что хочешь...
-	if(Torlof_GenugStimmen == FALSE)
+	if(self.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
-		Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		AI_Output(self,other,"DIA_Raoul_Stimme_01_01");	//Ааа, делай, что хочешь...
+		if(Torlof_GenugStimmen == FALSE)
+		{
+			Log_CreateTopic(TOPIC_SLDRespekt,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_SLDRespekt,LOG_Running);
+		};
+		B_LogEntry(TOPIC_SLDRespekt,"Рауль не возражает против моего вступления в ряды наемников.");
+		Raoul_Voted = TRUE;
+	}
+	else
+	{
+		B_Raoul_GetLost();
 	};
-	B_LogEntry(TOPIC_SLDRespekt,"Рауль не возражает против моего вступления в ряды наемников.");
 };
 
 
@@ -291,7 +307,7 @@ func void DIA_Raoul_PERM_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Raoul_PERM_01_02");	//Ты пытаешься подлизаться ко мне? Забудь об этом!
-		if(self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST)
+		if(self.aivar[AIV_DefeatedByPlayer] == TRUE)
 		{
 			AI_Output(self,other,"DIA_Raoul_PERM_01_03");	//Я не забыл, что ты сделал со мной.
 		};
@@ -343,8 +359,7 @@ func void DIA_Raoul_TROLL_Info()
 func void DIA_Raoul_TROLL_weg()
 {
 	AI_Output(other,self,"DIA_Raoul_TROLL_weg_15_00");	//Я должен идти.
-	AI_Output(self,other,"DIA_Raoul_TROLL_weg_01_01");	//Да проваливай!
-	AI_StopProcessInfos(self);
+	B_Raoul_GetLost();
 };
 
 func void DIA_Raoul_TROLL_rechnung()
@@ -379,10 +394,10 @@ func void B_Raoul_Blame()
 	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_05");	//Скажем, я заплачу тебе целую кучу денег, если ты принесешь мне шкуру черного тролля. Как тебе?
 	AI_Output(other,self,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_15_06");	//Уже лучше.
 	AI_Output(self,other,"DIA_Raoul_TROLL_rechnung_B_Raoul_Blame_01_07");	//Тогда чего ты ждешь?
+	MIS_Raoul_KillTrollBlack = LOG_Running;
 	Log_CreateTopic(TOPIC_KillTrollBlack,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_KillTrollBlack,LOG_Running);
 	B_LogEntry(TOPIC_KillTrollBlack,"Рауль хочет, чтобы я принес ему шкуру черного тролля.");
-	MIS_Raoul_KillTrollBlack = LOG_Running;
 	Info_ClearChoices(DIA_Raoul_TROLL);
 };
 
@@ -402,8 +417,7 @@ func void DIA_Raoul_TROLL_rechnung_ich()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Raoul_TROLL_weg_01_01");	//Да проваливай!
-		AI_StopProcessInfos(self);
+		B_Raoul_GetLost();
 	};
 };
 
