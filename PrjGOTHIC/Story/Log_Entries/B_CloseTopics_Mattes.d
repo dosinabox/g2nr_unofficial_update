@@ -20,6 +20,8 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_Hilda,MIS_Hilda_PfanneKaufen,0,3);
 	B_CloseTopic(TOPIC_Maleth,MIS_Maleth_Bandits,0,3);
 	B_CloseTopic(TOPIC_City,0,Mil_310_schonmalreingelassen,2);
+	B_CloseTopic(TOPIC_City,0,Mil_333_schonmalreingelassen,2);
+	B_CloseTopic(TOPIC_City,0,PlayerEnteredCity,2);
 	B_CloseTopic(TOPIC_Lehrling,MIS_Apprentice,0,6);
 	B_CloseTopic(TOPIC_OV,0,Mil_305_schonmalreingelassen,2);
 	B_CloseTopic(TOPIC_Thorben,MIS_Thorben_GetBlessings,0,6);
@@ -45,7 +47,7 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_Garvell,MIS_Garvell_Infos,0,3);
 	B_CloseTopic(TOPIC_BecomeMIL,MIL_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_BecomeSLD,SLD_Aufnahme,0,2);
-	B_CloseTopic(TOPIC_BecomeKdF,KDF_Aufnahme,0,2);
+	B_CloseTopic(TOPIC_BecomeKDF,KDF_Aufnahme,0,2);
 	B_CloseTopic(TOPIC_Peck,MIS_Andre_Peck,0,6);
 	B_CloseTopic(TOPIC_Warehouse,MIS_Andre_WAREHOUSE,0,6);
 	B_CloseTopic(TOPIC_Redlight,MIS_Andre_REDLIGHT,0,6);

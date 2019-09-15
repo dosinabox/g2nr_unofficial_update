@@ -38,3 +38,4 @@ func void Rtn_Rest_4301()
 	TA_Stand_Drinking(20,0,1,30,"NW_CITY_HABOUR_TAVERN01_03");
 	TA_Sleep(1,30,8,0,"NW_CITY_WAY_TO_SHIP_FISCHER_04");
 };
+

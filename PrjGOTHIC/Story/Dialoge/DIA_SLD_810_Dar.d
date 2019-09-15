@@ -115,7 +115,7 @@ instance DIA_Dar_WannaJoin(C_Info)
 
 func int DIA_Dar_WannaJoin_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Dar_Hallo) && (other.guild == GIL_NONE) && (Dar_LostAgainstCipher == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Dar_Hallo) && (other.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -124,7 +124,16 @@ func int DIA_Dar_WannaJoin_Condition()
 func void DIA_Dar_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Dar_WannaJoin_15_00");	//Я хочу присоединиться к наемникам. Ты не возражаешь?
-	AI_Output(self,other,"DIA_Dar_WannaJoin_03_01");	//Мне все равно.
+	if(Dar_LostAgainstCipher == FALSE)
+	{
+		AI_Output(self,other,"DIA_Dar_WannaJoin_03_01");	//Мне все равно.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_01");	//Я ни за что не проголосую за тебя.
+		SCKnowsSLDVotes = TRUE;
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -252,6 +261,7 @@ func void DIA_Dar_Kameradenschwein_Info()
 		AI_Output(self,other,"DIA_Dar_Kameradenschwein_03_01");	//Я ни за что не проголосую за тебя.
 		SCKnowsSLDVotes = TRUE;
 	};
+	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
 };
 
@@ -284,7 +294,7 @@ func void DIA_Dar_Pilztabak_Info()
 	AI_Output(self,other,"DIA_Dar_Pilztabak_03_02");	//Так, попробуем...
 	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);
-	AI_Output(self,other,"DIA_Dar_Pilztabak_03_03");	//Ты когда-нибудь курил его САМ?
+	AI_Output(self,other,"DIA_Dar_Pilztabak_03_03");	//Ты когда-нибудь курил его сам?
 	AI_Output(other,self,"DIA_Dar_Pilztabak_15_04");	//Ну...
 	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);
@@ -361,7 +371,7 @@ instance DIA_Dar_ORCRING(C_Info)
 
 func int DIA_Dar_ORCRING_Condition()
 {
-	if(Kapitel >= 4)
+	if(MIS_ReadyforChapter4 == TRUE)
 	{
 		return TRUE;
 	};

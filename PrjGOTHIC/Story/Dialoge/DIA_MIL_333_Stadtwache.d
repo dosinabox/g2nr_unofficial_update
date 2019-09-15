@@ -59,7 +59,6 @@ func int DIA_Mil_333_Stadtwache_FirstWarn_Condition()
 
 func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 {
-	var C_Item itm;
 	AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_00");	//СТОЙ!
 	if(B_GetGreatestPetzCrime(self) >= CRIME_ATTACK)
 	{
@@ -81,8 +80,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 	}
 	else
 	{
-		itm = Npc_GetEquippedArmor(other);
-		if(!Npc_HasEquippedArmor(other) || Hlp_IsItem(itm,ITAR_Bau_L) || Hlp_IsItem(itm,ITAR_Bau_M))
+		if(!Npc_HasEquippedArmor(other) || C_BAUCheck(other))
 		{
 			AI_Output(other,self,"DIA_Mil_333_Stadtwache_FirstWarn_15_07");	//Да?
 			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_08");	//Ты похож на нищего. В этом городе нам не нужны люди, у которых нет денег.
@@ -106,6 +104,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 			self.aivar[AIV_PASSGATE] = TRUE;
 			Stadtwache_310.aivar[AIV_PASSGATE] = TRUE;
 			Mil_333_schonmalreingelassen = TRUE;
+			B_CheckLog();
 			AI_StopProcessInfos(self);
 		};
 	};

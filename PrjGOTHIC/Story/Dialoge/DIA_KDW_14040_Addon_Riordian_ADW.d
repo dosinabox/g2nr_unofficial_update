@@ -29,7 +29,7 @@ func void DIA_Addon_Riordian_ADW_EXIT_Info()
 instance DIA_Addon_Riordian_HelloADW(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
+	nr = 1;
 	condition = DIA_Addon_Riordian_HelloADW_Condition;
 	information = DIA_Addon_Riordian_HelloADW_Info;
 	description = "Ты ожидал увидеть здесь ТАКОЕ?";
@@ -53,7 +53,7 @@ func void DIA_Addon_Riordian_HelloADW_Info()
 instance DIA_Addon_Riordian_WhatToFind(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
+	nr = 1;
 	condition = DIA_Addon_Riordian_WhatToFind_Condition;
 	information = DIA_Addon_Riordian_WhatToFind_Info;
 	description = "Что вы здесь уже обнаружили?";
@@ -110,7 +110,7 @@ func void DIA_Addon_Riordian_WhatToFind_Info()
 instance DIA_Addon_Riordian_Gegend(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
+	nr = 1;
 	condition = DIA_Addon_Riordian_Gegend_Condition;
 	information = DIA_Addon_Riordian_Gegend_Info;
 	permanent = TRUE;
@@ -138,7 +138,6 @@ func void DIA_Addon_Riordian_Gegend_Info()
 	if((DIA_Addon_Riordian_Gegend_Info_OneTime == FALSE) && !Npc_HasItems(other,ItWr_Map_AddonWorld))
 	{
 		Info_AddChoice(DIA_Addon_Riordian_Gegend,"Существует ли карта этой местности?",DIA_Addon_Riordian_Gegend_map);
-		DIA_Addon_Riordian_Gegend_Info_OneTime = TRUE;
 	};
 	Info_AddChoice(DIA_Addon_Riordian_Gegend,"Где вы заметили пиратов?",DIA_Addon_Riordian_Gegend_Piraten);
 	Info_AddChoice(DIA_Addon_Riordian_Gegend,"Напомни, где обосновались бандиты?",DIA_Addon_Riordian_Gegend_bandits);
@@ -157,6 +156,7 @@ func void DIA_Addon_Riordian_Gegend_map()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_Gegend_map_15_00");	//Существует ли карта этой местности?
 	AI_Output(self,other,"DIA_Addon_Riordian_Gegend_map_10_01");	//Да, Кронос уже нарисовал карту. Обратись к нему.
+	DIA_Addon_Riordian_Gegend_Info_OneTime = TRUE;
 };
 
 func void DIA_Addon_Riordian_Gegend_bandits()
@@ -206,7 +206,7 @@ func void DIA_Addon_Riordian_Gegend_west()
 instance DIA_Addon_Riordian_HousesOfRulers(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
+	nr = 2;
 	condition = DIA_Addon_Riordian_HousesOfRulers_Condition;
 	information = DIA_Addon_Riordian_HousesOfRulers_Info;
 	description = "Меня послал Сатурас. Я должен исследовать пять дворцов Яркендара.";
@@ -256,7 +256,7 @@ func void B_WhereAreHousesOfRulers()
 instance DIA_Addon_Riordian_WhereAreHouses(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
+	nr = 2;
 	condition = DIA_Addon_Riordian_WhereAreHouses_Condition;
 	information = DIA_Addon_Riordian_WhereAreHouses_Info;
 	description = "Где находятся пять дворцов?";
@@ -281,7 +281,7 @@ func void DIA_Addon_Riordian_WhereAreHouses_Info()
 instance DIA_Addon_Riordian_FoundHouse(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
+	nr = 2;
 	condition = DIA_Addon_Riordian_FoundHouse_Condition;
 	information = DIA_Addon_Riordian_FoundHouse_Info;
 	permanent = TRUE;
@@ -322,7 +322,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 		RiordianHouseNeuigkeit += 1;
 		Log_CreateTopic(TOPIC_Addon_CanyonOrcs,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_CanyonOrcs,LOG_Running);
-		B_LogEntry(TOPIC_Addon_CanyonOrcs,"Маг Воды Риордиан будет доволен, если я очищу каньон от орков.");
+		B_LogEntry(TOPIC_Addon_CanyonOrcs,"Риордиан будет доволен, если я очищу каньон от орков.");
 	};
 	if((Npc_IsDead(Stoneguardian_Heiler) || Npc_HasItems(other,ItMi_Addon_Stone_04) || (Saturas_SCFound_ItMi_Addon_Stone_04 == TRUE)) && (FOUNDHOUSEINFO[2] == FALSE))
 	{
@@ -376,7 +376,7 @@ func void DIA_Addon_Riordian_FoundHouse_Info()
 instance DIA_Addon_Riordian_FoundAllHouses(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
+	nr = 2;
 	condition = DIA_Addon_Riordian_FoundAllHouses_Condition;
 	information = DIA_Addon_Riordian_FoundAllHouses_Info;
 	description = "Я нашел все дворцы.";
@@ -406,7 +406,7 @@ func void DIA_Addon_Riordian_FoundAllHouses_Info()
 instance DIA_Addon_Riordian_OrksWeg(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
+	nr = 3;
 	condition = DIA_Addon_Riordian_OrksWeg_Condition;
 	information = DIA_Addon_Riordian_OrksWeg_Info;
 	description = "Скоро орки потеряют интерес к этой местности.";
@@ -443,7 +443,7 @@ func void DIA_Addon_Riordian_OrksWeg_Info()
 instance DIA_Addon_Riordian_ADW_PreTeach(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 5;
+	nr = 4;
 	condition = DIA_Addon_Riordian_ADW_PreTeach_Condition;
 	information = DIA_Addon_Riordian_ADW_PreTeach_Info;
 	description = "Ты можешь меня чему-нибудь научить?";
@@ -459,18 +459,32 @@ func void DIA_Addon_Riordian_ADW_PreTeach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Riordian_ADW_PreTeach_15_00");	//Ты можешь меня чему-нибудь научить?
 	AI_Output(self,other,"DIA_Addon_Riordian_ADW_PreTeach_10_01");	//Да, я могу обучить тебя искусству алхимии.
-	if(Npc_HasItems(other,ItAm_Addon_WispDetector) && (DIA_Addon_Riordian_Teach_NoPerm == FALSE))
+	if((Riordian_Addon_TeachWisp == TRUE) && (Riordian_Addon_TeachWisp_NoPerm == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_ADW_PreTeach_10_02");	//А еще я могу показать тебе, как научить твой огонек искать различные предметы.
-		Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
-		Log_AddEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_RiordianTeach);
 	};
 	Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
 	B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_RiordianTeachAlchemy);
-	Riordian_ADW_ADDON_TeachWisp = TRUE;
-	Riordian_ADW_ADDON_TeachAlchemy = TRUE;
+	Riordian_Addon_TeachAlchemy = TRUE;
 };
 
+instance DIA_Addon_RiordianADW_TeachPre(C_Info)
+{
+	npc = KDW_14040_Addon_Riordian_ADW;
+	nr = 90;
+	condition = DIA_Addon_RiordianADW_TeachPre_Condition;
+	information = DIA_Addon_Riordian_TeachPre_Info;
+	description = "Ватрас дал мне этот амулет ищущего огонька...";
+};
+
+
+func int DIA_Addon_RiordianADW_TeachPre_Condition()
+{
+	if((Riordian_Addon_TeachWisp == FALSE) && Npc_HasItems(other,ItAm_Addon_WispDetector))
+	{
+		return TRUE;
+	};
+};
 
 instance DIA_Addon_Riordian_ADW_Teach(C_Info)
 {
@@ -483,11 +497,9 @@ instance DIA_Addon_Riordian_ADW_Teach(C_Info)
 };
 
 
-var int DIA_Addon_Riordian_ADW_Teach_NoPerm;
-
 func int DIA_Addon_Riordian_ADW_Teach_Condition()
 {
-	if((DIA_Addon_Riordian_ADW_Teach_NoPerm == FALSE) && (DIA_Addon_Riordian_Teach_NoPerm == FALSE) && (Riordian_ADW_ADDON_TeachWisp == TRUE) && Npc_HasItems(other,ItAm_Addon_WispDetector))
+	if((Riordian_Addon_TeachWisp == TRUE) && (Riordian_Addon_TeachWisp_NoPerm == FALSE) && Npc_HasItems(other,ItAm_Addon_WispDetector))
 	{
 		return TRUE;
 	};
@@ -529,7 +541,7 @@ func void DIA_Addon_Riordian_ADW_Teach_Info()
 	else
 	{
 		B_DIA_Addon_Riordian_Teach_10_08();
-		DIA_Addon_Riordian_ADW_Teach_NoPerm = TRUE;
+		Riordian_Addon_TeachWisp_NoPerm = TRUE;
 	};
 };
 
@@ -617,7 +629,7 @@ func void DIA_Addon_Riordian_ADW_Teach_WISPSKILL_POTIONS()
 instance DIA_Riordian_ADW_TeachAlchemy(C_Info)
 {
 	npc = KDW_14040_Addon_Riordian_ADW;
-	nr = 2;
+	nr = 4;
 	condition = DIA_Riordian_ADW_TeachAlchemy_Condition;
 	information = DIA_Riordian_ADW_TeachAlchemy_Info;
 	permanent = TRUE;
@@ -625,11 +637,9 @@ instance DIA_Riordian_ADW_TeachAlchemy(C_Info)
 };
 
 
-var int DIA_Riordian_ADW_TeachAlchemy_permanent;
-
 func int DIA_Riordian_ADW_TeachAlchemy_Condition()
 {
-	if((DIA_Riordian_ADW_TeachAlchemy_permanent == FALSE) && (Riordian_ADW_ADDON_TeachAlchemy == TRUE))
+	if((Riordian_Addon_TeachAlchemy == TRUE) && (Riordian_Addon_TeachAlchemy_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -694,7 +704,7 @@ func void DIA_Riordian_ADW_TeachAlchemy_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Riordian_ADW_TeachAlchemy_10_05");	//Я уже научил тебя всему, что знал сам.
-		DIA_Riordian_ADW_TeachAlchemy_permanent = TRUE;
+		Riordian_Addon_TeachAlchemy_NoPerm = TRUE;
 	};
 };
 

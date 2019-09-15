@@ -394,7 +394,9 @@ func void DIA_Lester_BACKINTOWN_Info()
 	CreateInvItems(self,ItRu_TeleportXardas,1);
 	B_GiveInvItems(self,other,ItRu_TeleportXardas,1);
 	AI_StopProcessInfos(self);
-	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+	Npc_ExchangeRoutine(self,"XARDAS");
+	LesterMovedToXardas = TRUE;
+/*	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
 	{
 		Npc_ExchangeRoutine(self,"XARDAS");
 		LesterMovedToXardas = TRUE;
@@ -402,7 +404,7 @@ func void DIA_Lester_BACKINTOWN_Info()
 	else
 	{
 		Npc_ExchangeRoutine(self,"START");
-	};
+	};*/
 };
 
 

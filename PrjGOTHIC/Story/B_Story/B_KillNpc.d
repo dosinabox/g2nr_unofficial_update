@@ -86,7 +86,7 @@ func void b_cycle_function()
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,3);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,3);
 	};
-//	Print(b_check_dist(hero,"NW_BIGFARM_HOUSE_01"));
+//	Print(b_check_dist(hero,"NW_CITY_BARRACK02_BED_PECK"));
 	Wld_SendTrigger("CYCLE_TRIGGER");
 };
 

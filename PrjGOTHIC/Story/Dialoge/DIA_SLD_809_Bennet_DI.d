@@ -405,7 +405,7 @@ func void DIA_Bennet_DI_DJG_ARMOR_H_Info()
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_01");	//Ёто лучшие доспехи из того, что € когда-либо делал.
 		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_02");	//Ќасто€щее произведение искусства.
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_H);
-		if(Helms_Enabled == TRUE)
+		if(Helmets_Enabled == TRUE)
 		{
 			CreateInvItem(hero,ITAR_DJGN_H);
 			CreateInvItem(hero,ITHE_DJG_H);

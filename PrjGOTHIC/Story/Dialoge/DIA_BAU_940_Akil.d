@@ -472,9 +472,9 @@ func void DIA_Akil_Perm_Info()
 		if(hero.guild == GIL_KDF)
 		{
 			AI_Output(self,other,"DIA_Akil_Perm_13_05");	//Ћюди в черных р€сах ищут теб€.
-			AI_Output(other,self,"DIA_Akil_Perm_15_06");	//Ёто не новость.
-			AI_Output(self,other,"DIA_Akil_Perm_13_07");	//Ќу и ладно. я просто подумал, что тебе стоит знать это.
 		};
+		AI_Output(other,self,"DIA_Akil_Perm_15_06");	//Ёто не новость.
+		AI_Output(self,other,"DIA_Akil_Perm_13_07");	//Ќу и ладно. я просто подумал, что тебе стоит знать это.
 	};
 };
 

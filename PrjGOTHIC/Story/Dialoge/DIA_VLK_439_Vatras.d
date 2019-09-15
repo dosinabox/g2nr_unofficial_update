@@ -244,16 +244,18 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 	{
 		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras);
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon_Sealed,1);
+		Npc_RemoveInvItem(self,ItWr_SaturasFirstMessage_Addon_Sealed);
+		CreateInvItems(self,ItWr_SaturasFirstMessage_Addon,1);
 	}
 	else
 	{
-		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras_Opened);
+		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras / 4);
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon,1);
 		AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_02");	//Да, но... оно вскрыто. Я надеюсь, оно не попало в чужие руки?
 	};
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_03");	//Да. Это очень важное известие.
-	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_04");	//Интересно как к тебе попало это письмо?
+	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_04");	//Интересно, как к тебе попало это письмо?
 	Info_ClearChoices(DIA_Addon_Vatras_Cavalorn);
 	Info_AddChoice(DIA_Addon_Vatras_Cavalorn,"Я забрал его у бандитов.",DIA_Addon_Vatras_Cavalorn_Bandit);
 	if(MIS_Addon_Cavalorn_KillBrago == LOG_SUCCESS)

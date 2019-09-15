@@ -721,7 +721,8 @@ func int DIA_Kardif_SENDATTILA_Condition()
 func void DIA_Kardif_SENDATTILA_Info()
 {
 	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_00");	//Эй, ты, иди сюда. У меня есть кое-что для тебя.
-	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01");	//Один парень очень хочет поговорить с тобой. За рыбной лавкой Халвора.
+	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01_add");	//Один парень очень хочет поговорить с тобой. За рыбной лавкой Халвора.
+//	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_01");	//Один парень очень хочет поговорить с тобой.
 //	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_02");	//Так как он не нашел тебя здесь, он попросил меня передать тебе записку.
 //	AI_Output(self,other,"DIA_Kardif_SENDATTILA_14_03");	//Он хочет встретиться с тобой. За рыбной лавкой Халвора.
 	if(Kardif_Deal > 0)

@@ -17,6 +17,9 @@ const string TOPIC_Addon_BringRangerToLares = "Замена для Лареса";
 const string TOPIC_Addon_TeleportsNW = "Телепортационные камни";
 const string TOPIC_Addon_Stoneplates = "Каменные таблички";
 const string TOPIC_Addon_RangerHelpKDF = "Простой путь в монастырь";
+const string TOPIC_Addon_HelpDaron = "Пропавшая статуэтка";
+const string TOPIC_Addon_DaronGobbos = "Дарон был ограблен мерзкими гоблинами. У него пропала ценная статуэтка, которую он должен был доставить в монастырь. Эти гоблины, похоже, скрываются в пещере около таверны 'Мертвая гарпия'.";
+const string TOPIC_Addon_PedroPass = "Я принес пропавшую статуэтку в монастырь и Педро сказал, что теперь я могу стать послушником бесплатно. Я должен отдать статуэтку кому-то в монастыре.";
 
 var int TOPIC_End_RangerHelpKDF;
 
@@ -75,7 +78,7 @@ const string LogText_Addon_SkipsRumToBaltram = "Скип дал мне ром, который я долж
 const string LogText_Addon_Cavalorn_Teach = "Кавалорн может научить меня обращаться с одноручным оружием, красться и метко стрелять из лука.";
 const string LogText_Addon_SaturasTeach = "Сатурас может обучить меня Кругам магии.";
 const string LogText_Addon_MyxirTeach = "Миксир может обучить меня языку зодчих.";
-const string LogText_Addon_RiordianTeach = "Риордиан может научить мой блуждающий огонек искать различные предметы.";
+const string LogText_Addon_RiordianTeachWisp = "Риордиан может научить мой блуждающий огонек искать различные предметы.";
 const string LogText_Addon_RiordianTeachAlchemy = "Риордиан может обучить меня искусству варить зелья.";
 const string LogText_Addon_NefariusTeach = "Нефариус обучит меня создавать руны.";
 const string LogText_Addon_Erol_Teach = "Торговец Эрол может сделать меня сильнее.";

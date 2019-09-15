@@ -5,7 +5,7 @@ func int C_RefuseTalk(var C_Npc slf,var C_Npc oth)
 	{
 		return TRUE;
 	};
-	if((slf.aivar[AIV_TalkedToPlayer] == FALSE) && (Npc_GetDistToWP(slf,slf.wp) > 500))
+	if((slf.aivar[AIV_TalkedToPlayer] == FALSE) && (Npc_GetDistToWP(slf,slf.wp) > 500) && (Mil_305_schonmalreingelassen == FALSE))
 	{
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lothar))
 		{

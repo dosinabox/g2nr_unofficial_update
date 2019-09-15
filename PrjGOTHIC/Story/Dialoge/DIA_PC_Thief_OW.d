@@ -40,7 +40,7 @@ func void DIA_DiegoOw_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_00");	//Эй, я думал, ты мертв.
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_01");	//Да... так было.
-	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Но теперь я вернулся и ищу доказательства появления драконов.
+	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Ну, теперь я вернулся и ищу доказательства появления драконов.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_03");	//Для кого ты это делаешь?
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_04");	//Я работаю на лорда Хагена. С помощью паладинов драконов можно остановить.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, я отправился в Хоринис.

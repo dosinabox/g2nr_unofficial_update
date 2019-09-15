@@ -741,7 +741,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	hero.guild = GIL_PAL;
 	Npc_SetTrueGuild(hero,GIL_PAL);
 	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
-	if(Helms_Enabled == TRUE)
+	if(Helmets_Enabled == TRUE)
 	{
 		CreateInvItems(other,ITAR_PALN_M,1);
 		CreateInvItems(other,ITHE_PAL_M,1);
@@ -1315,6 +1315,7 @@ func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_07");	//Я удивлюсь, если ты еще их повстречаешь.
 		AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_08");	//Ты можешь приносить мне их кольца, но я думаю, орки уже получили хороший урок.
 		TOPIC_END_OrcElite = TRUE;
+		B_CheckLog();
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_09");	//Вот. Возьми это золото, купи себе на него хорошее снаряжение.
 	OrcRingGeld = Ringcount * HagensRingOffer;

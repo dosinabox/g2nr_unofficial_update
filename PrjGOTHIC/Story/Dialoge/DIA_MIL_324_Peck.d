@@ -140,7 +140,14 @@ func void B_GetWeaponFromPeckCh3()
 	AI_Output(self,other,"DIA_Peck_Add_12_03");	//Хорошо, что ты спросил. Нам досталось несколько очень хороших клинков от наемников Онара.
 	AI_Output(self,other,"DIA_Peck_Add_12_04");	//Они им больше не понадобятся. (грязный смех)
 	AI_Output(self,other,"DIA_Peck_Add_12_05");	//Вот, возьми.
-	B_GiveInvItems(self,other,ItMw_Rubinklinge,1);
+	if(MIS_Andre_Peck == LOG_FAILED)
+	{
+		B_GiveInvItems(self,other,ItMw_Schwert2,1);
+	}
+	else
+	{
+		B_GiveInvItems(self,other,ItMw_Rubinklinge,1);
+	};
 	DIA_Peck_WEAPON_perm = TRUE;
 	DIA_Peck_WEAPON2_perm = TRUE;
 };
@@ -158,9 +165,12 @@ instance DIA_Peck_WEAPON(C_Info)
 
 func int DIA_Peck_WEAPON_Condition()
 {
-	if((other.guild == GIL_MIL) && (Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) && (DIA_Peck_WEAPON_perm == FALSE))
+	if((other.guild == GIL_MIL) && (DIA_Peck_WEAPON_perm == FALSE))
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -211,9 +221,12 @@ instance DIA_Peck_WEAPON2(C_Info)
 
 func int DIA_Peck_WEAPON2_Condition()
 {
-	if((other.guild == GIL_MIL) && (Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) && (DIA_Peck_WEAPON_perm == TRUE) && (DIA_Peck_WEAPON2_perm == FALSE))
+	if((other.guild == GIL_MIL) && (DIA_Peck_WEAPON_perm == TRUE) && (DIA_Peck_WEAPON2_perm == FALSE))
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -250,9 +263,12 @@ instance DIA_Peck_ARMOR(C_Info)
 
 func int DIA_Peck_ARMOR_Condition()
 {
-	/*if((other.guild == GIL_MIL) && (Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) && (DIA_Peck_ARMOR_perm == FALSE))
+	/*if((other.guild == GIL_MIL) && (DIA_Peck_ARMOR_perm == FALSE))
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
+		{
+			return TRUE;
+		};
 	};*/
 	return FALSE;
 };
@@ -276,8 +292,7 @@ instance DIA_Peck_PERM(C_Info)
 
 func int DIA_Peck_PERM_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Peck_WEAPON) || ((other.guild != GIL_MIL) && (Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000)))
-	if(Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000)
+	if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
 	{
 		return TRUE;
 	};

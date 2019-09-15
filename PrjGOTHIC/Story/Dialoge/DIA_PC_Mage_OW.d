@@ -79,7 +79,14 @@ func void DIA_MiltenOW_Hello_Friends()
 	AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_02");	//Лестер исчез, впрочем - и я понятия не имею, где он сейчас ошивается.
 	if(Npc_KnowsInfo(other,DIA_Lester_Hello))
 	{
-		AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03");	//Я встретил Лестера - он теперь с Ксардасом.
+		if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+		{
+			AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03");	//Я встретил Лестера - он теперь с Ксардасом.
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03_add");	//Я встретил Лестера. Он в порядке.
+		};
 		AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_04");	//Ну, хоть какие-то хорошие новости.
 	};
 	AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_05");	//Ну, а у меня нет ничего хорошего.

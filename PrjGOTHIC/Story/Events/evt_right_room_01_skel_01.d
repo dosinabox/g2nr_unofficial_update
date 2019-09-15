@@ -5,7 +5,7 @@ func void evt_right_room_01_skel_01()
 {
 	if(evt_right_room_01_skel_01_antiexploid < 9)
 	{
-		Wld_InsertNpc(Zombie01,"WP_EVT_RIGHT_ROOM_01_SPAWN_SKEL_01");
+		Wld_InsertNpc(Pal_Zombie05,"WP_EVT_RIGHT_ROOM_01_SPAWN_SKEL_01");
 		evt_right_room_01_skel_01_antiexploid += 1;
 	};
 };
@@ -17,7 +17,7 @@ func void evt_right_room_01_skel_02()
 {
 	if(evt_right_room_01_skel_02_antiexploid < 9)
 	{
-		Wld_InsertNpc(Zombie02,"WP_EVT_RIGHT_ROOM_01_SPAWN_SKEL_02");
+		Wld_InsertNpc(Pal_Zombie06,"WP_EVT_RIGHT_ROOM_01_SPAWN_SKEL_02");
 		evt_right_room_01_skel_02_antiexploid += 1;
 	};
 };

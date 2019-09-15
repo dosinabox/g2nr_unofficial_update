@@ -333,6 +333,7 @@ var C_Npc Lance;
 var C_Npc William;
 var C_Npc Hank;
 var C_Npc Serpentes;
+var C_Npc Nov610;
 
 func void B_InitNpcGlobals()
 {
@@ -674,5 +675,6 @@ func void B_InitNpcGlobals()
 	William = Hlp_GetNpc(VLK_4304_Addon_William);
 	Hank = Hlp_GetNpc(PIR_1371_Addon_Hank);
 	Serpentes = Hlp_GetNpc(KDF_501_Serpentes);
+	Nov610 = Hlp_GetNpc(NOV_610_Novize);
 };
 
