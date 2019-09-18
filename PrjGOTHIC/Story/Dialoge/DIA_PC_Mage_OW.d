@@ -279,7 +279,7 @@ func int DIA_MiltenOW_Mehr_Condition()
 func void DIA_MiltenOW_Mehr_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Mehr_15_00");	//Мне нужно больше золота, чтобы купить свободу Горна.
-	AI_Output(self,other,"DIA_MiltenOW_Mehr_03_01");	//Добыть еще золота... Хм, Диего мог бы помочь, но его здесь нет.
+	AI_Output(self,other,"DIA_MiltenOW_Mehr_03_01");	//Добыть еще золота... Хм... Диего мог бы помочь, но его здесь нет.
 	AI_Output(self,other,"DIA_MiltenOW_Mehr_03_02");	//Может, Горн припрятал где-нибудь золото для себя. Нужно выяснить это.
 	AI_Output(self,other,"DIA_MiltenOW_Mehr_03_03");	//Я напишу ему записку - вот, попробуй передать ее в темницу.
 	B_GiveInvItems(self,other,ItWr_LetterForGorn_MIS,1);

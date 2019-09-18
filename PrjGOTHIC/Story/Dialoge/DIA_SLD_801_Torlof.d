@@ -1045,7 +1045,7 @@ func int DIA_Torlof_WOISTSYLVIO_Condition()
 func void DIA_Torlof_WOISTSYLVIO_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_WOISTSYLVIO_15_00");	//Что, часть наемников ушла отсюда?
-	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_01");	//Сильвио забрал нескольких парней и ушел через проход.
+	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_01");	//Сильвио забрал нескольких парней и ушел через Проход.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_02");	//Поговаривают, что там появились драконы. Когда он услышал это, его было не остановить.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_03");	//Кто знает? Сокровища драконов можно очень дорого продать.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_04");	//Но меня это не касается. Я моряк. Я принадлежу морю, и мне нет дела до душного логова дракона.

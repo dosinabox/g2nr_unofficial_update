@@ -173,8 +173,8 @@ func int DIA_Addon_Gaan_AufgabeBeimRing_Condition()
 func void DIA_Addon_Gaan_AufgabeBeimRing_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Gaan_AufgabeBeimRing_15_00");	//В чем заключаются твои обязанности в этом обществе?
-	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_01");	//Я наблюдаю за проходом и сообщаю, кто приходит и кто уходит.
-	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_02");	//Впрочем, с тех пор, как паладины приказали закрыть ворота прохода, людей здесь немного.
+	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_01");	//Я наблюдаю за Проходом и сообщаю, кто приходит и кто уходит.
+	AI_Output(self,other,"DIA_Addon_Gaan_AufgabeBeimRing_03_02");	//Впрочем, с тех пор, как паладины приказали закрыть ворота Прохода, людей здесь немного.
 };
 
 

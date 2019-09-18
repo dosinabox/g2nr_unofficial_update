@@ -34,7 +34,7 @@ instance DIA_Rumbold_PrePerm(C_Info)
 
 func int DIA_Rumbold_PrePerm_Condition()
 {
-	if(!Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) || (MIS_Torlof_BengarMilizKlatschen != LOG_Running) || (ScaredRumbold == TRUE))
+	if(!Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) || (MIS_Torlof_BengarMilizKlatschen != LOG_Running) || (ScaredRumbold == TRUE) || (other.guild == GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -61,7 +61,7 @@ instance DIA_Rumbold_Hallo(C_Info)
 
 func int DIA_Rumbold_Hallo_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (other.guild != GIL_DJG))
 	{
 		if(ScaredRumbold == FALSE)
 		{
@@ -73,14 +73,11 @@ func int DIA_Rumbold_Hallo_Condition()
 func void DIA_Rumbold_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Rumbold_Hallo_10_00");	//Посмотрите на него! Еще один клоун! Что ты здесь делаешь, а?
-	if(C_SLDorDJGArmorEquipped(other))
+	if(SLDArmor_Equipped == TRUE)
 	{
 		AI_Output(self,other,"DIA_Rumbold_Hallo_10_02");	//Еще один из этих грязных наемников!
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Rumbold_Hallo_10_01");	//Кто ты, черт тебя побери?
 	};
+	AI_Output(self,other,"DIA_Rumbold_Hallo_10_01");	//Кто ты, черт тебя побери?
 	Info_ClearChoices(DIA_Rumbold_Hallo);
 	Info_AddChoice(DIA_Rumbold_Hallo,"Я никто.",DIA_Rumbold_HALLO_schwanzeinziehen);
 	Info_AddChoice(DIA_Rumbold_Hallo,"Я хочу, чтобы вы исчезли отсюда.",DIA_Rumbold_HALLO_verschwindet);
@@ -190,7 +187,7 @@ instance DIA_Rumbold_FightNow(C_Info)
 
 func int DIA_Rumbold_FightNow_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (other.guild != GIL_DJG))
 	{
 		if(ScaredRumbold == FALSE)
 		{
@@ -231,7 +228,7 @@ instance DIA_Rumbold_StillThere(C_Info)
 
 func int DIA_Rumbold_StillThere_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == TRUE) && (Miliz_Flucht == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Rumbold_Hallo) && (Rumbold_Bezahlt == TRUE) && (Miliz_Flucht == FALSE) && (MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (other.guild != GIL_DJG))
 	{
 		if(ScaredRumbold == FALSE)
 		{

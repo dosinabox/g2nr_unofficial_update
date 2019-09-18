@@ -48,7 +48,10 @@ func void DIA_Gorax_PICKPOCKET_Info()
 
 func void DIA_Gorax_PICKPOCKET_DoIt()
 {
-	CreateInvItem(self,ItKe_KlosterSchatz);
+	if(!Npc_HasItems(self,ItKe_KlosterSchatz))
+	{
+		CreateInvItem(self,ItKe_KlosterSchatz);
+	};
 //	B_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),1);
 	B_StealItem(80,Hlp_GetInstanceID(ItKe_KlosterSchatz));
 	Info_ClearChoices(DIA_Gorax_PICKPOCKET);
@@ -466,6 +469,10 @@ func void DIA_Gorax_TRADE_Info()
 	if(!Npc_HasItems(self,ItMi_Pliers) && !Npc_HasItems(other,ItMi_Pliers))
 	{
 		CreateInvItems(self,ItMi_Pliers,1);
+	};
+	if(Npc_HasItems(self,ItKe_KlosterSchatz))
+	{
+		Npc_RemoveInvItem(self,ItKe_KlosterSchatz);
 	};
 	Trade_IsActive = TRUE;
 };

@@ -23,12 +23,12 @@ func void B_Say_GuildGreetings(var C_Npc slf,var C_Npc oth)
 		B_Say_Overlay(slf,oth,"DIA_Bartok_Angekommen_04_02");
 		return;
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Koch))
+/*	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Koch))
 	{
 //		B_Koch_Hackebeil();
 		B_Say_Overlay(slf,oth,"Hackebeil_01_00");
 		return;
-	};
+	};*/
 	zufall = Hlp_Random(100);
 	if((zufall <= 80) && Wld_IsRaining())
 	{

@@ -841,6 +841,21 @@ func void DIA_Bennet_Present_Info()
 		AI_Output(self,other,"DIA_Bennet_Present_06_11");	//Также мне интересны драконьи чешуйки. Настоящие драконьи чешуйки. Я хорошо заплачу тебе за них.
 		AI_Output(other,self,"DIA_Bennet_Present_15_12");	//Сколько я получу за чешуйку?
 		B_Say_Gold(self,other,Value_DragonScale);
+		if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
+		{
+			if(!Npc_IsDead(Rick))
+			{
+				Npc_ExchangeRoutine(Rick,"Flucht3");
+			};
+			if(!Npc_IsDead(Rumbold))
+			{
+				Npc_ExchangeRoutine(Rumbold,"Flucht3");
+			};
+			if(!Npc_IsDead(Bengar))
+			{
+				Npc_ExchangeRoutine(Bengar,"Start");
+			};
+		};
 	}
 	else
 	{

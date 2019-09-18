@@ -494,7 +494,7 @@ func void B_Addon_Diego_WillWaitOutside()
 
 func void B_Addon_Diego_PassOtherDirection()
 {
-	AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_01");	//Чтобы попасть к проходу, мы должны идти в другом направлении.
+	AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_01");	//Чтобы попасть к Проходу, мы должны идти в другом направлении.
 };
 
 
@@ -572,7 +572,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 	else if(C_DiegoTooFar(1000) == LOC_LAKE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_12");	//Эта дорога нас никуда не приведет.
-		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_13");	//Чтобы попасть к проходу, мы должны идти в другом направлении!
+		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_13");	//Чтобы попасть к Проходу, мы должны идти в другом направлении!
 	}
 	else if(C_DiegoTooFar(1000) == LOC_XARDAS)
 	{
@@ -662,7 +662,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 	else if(C_DiegoTooFar(1000) == LOC_ORCBARRIER_FAR)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_29");	//Если мы продолжим двигаться в этом направлении, мы снова упремся в Стену орков.
-		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_30");	//Пойдем к проходу!
+		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_30");	//Пойдем к Проходу!
 	}
 	else if(C_DiegoTooFar(1000) == LOC_ROCK)
 	{

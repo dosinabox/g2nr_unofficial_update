@@ -290,6 +290,10 @@ func void DIA_MiltenNW_KAP3_Entry_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_03_01");	//Да, конечно. Вот ключ.
 		CreateInvItems(self,ItKe_Innos_MIS,1);
 		B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
+		if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
+		{
+			Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
+		};
 		MiltenNW_GivesMonasteryKey = TRUE;
 	}
 	else
@@ -329,6 +333,10 @@ func void DIA_MiltenNW_KAP3_Entry_Permit()
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_02");	//(колеблясь) Хорошо. Вот ключ от монастыря. Ты найдешь Пирокара в церкви.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
+	if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
+	{
+		Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
+	};
 	MiltenNW_GivesMonasteryKey = TRUE;
 	Info_ClearChoices(DIA_MiltenNW_KAP3_Entry);
 };

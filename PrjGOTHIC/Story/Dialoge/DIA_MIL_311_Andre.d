@@ -1325,6 +1325,22 @@ func void DIA_Andre_JOIN_Yes()
 	SLD_Aufnahme = LOG_OBSOLETE;
 	KDF_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
+	if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
+	{
+		if(!Npc_IsDead(Rick))
+		{
+			Npc_ExchangeRoutine(Rick,"Flucht3");
+		};
+		if(!Npc_IsDead(Rumbold))
+		{
+			Npc_ExchangeRoutine(Rumbold,"Flucht3");
+		};
+		if(!Npc_IsDead(Bengar))
+		{
+			Npc_ExchangeRoutine(Bengar,"Start");
+		};
+		MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
+	};
 	B_GivePlayerXP(XP_BecomeMiliz);
 	if(MIS_Addon_Daron_GetStatue == LOG_Running)
 	{

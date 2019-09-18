@@ -615,7 +615,7 @@ func void B_Greg_RakePlaceBriefing()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakePlaceBriefing_01_00");	//Так, посмотрим... На озере с двумя водопадами есть небольшой островок.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakePlaceBriefing_01_01");	//На верхних пастбищах есть еще два места, где я закопал сокровища.
-	AI_Output(self,other,"DIA_Addon_Greg_NW_RakePlaceBriefing_01_02");	//Одно - за находящейся там фермой, а второе - рядом с входом в проход, у водопада.
+	AI_Output(self,other,"DIA_Addon_Greg_NW_RakePlaceBriefing_01_02");	//Одно - за находящейся там фермой, а второе - рядом с входом в Проход, у водопада.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakePlaceBriefing_01_03");	//От верхних пастбищ к полям Онара ведет лестница.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RakePlaceBriefing_01_04");	//В долине, в которую она спускается, есть еще один тайник.
 	if(B_Greg_RakePlaceBriefing_OneTime == FALSE)
@@ -623,7 +623,7 @@ func void B_Greg_RakePlaceBriefing()
 		B_LogEntry(TOPIC_Addon_Greg_NW,"Человек рассказал мне, что есть несколько мест, где он закопал свои вещи:");
 		Log_AddEntry(TOPIC_Addon_Greg_NW,"1) На маленьком острове на озере с двумя водопадами.");
 		Log_AddEntry(TOPIC_Addon_Greg_NW,"2) На верхнем пастбище за фермой.");
-		Log_AddEntry(TOPIC_Addon_Greg_NW,"3) У водопадов неподалеку от ворот прохода.");
+		Log_AddEntry(TOPIC_Addon_Greg_NW,"3) У водопадов неподалеку от ворот Прохода.");
 		Log_AddEntry(TOPIC_Addon_Greg_NW,"4) В низине под лестницей, ведущей от верхних пастбищ к полям землевладельца.");
 		Log_AddEntry(TOPIC_Addon_Greg_NW,"Я должен найти все его закопанные вещи. Он будет ждать меня у перекрестка на полях.");
 		B_Greg_RakePlaceBriefing_OneTime = TRUE;

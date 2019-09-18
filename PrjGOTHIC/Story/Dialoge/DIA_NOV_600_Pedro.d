@@ -372,6 +372,10 @@ func void DIA_Pedro_AUFNAHME_YES()
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_01");	//“огда добро пожаловать, брат. я даю тебе этот ключ от монастырских ворот.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
+	if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
+	{
+		Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
+	};
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_02");	//¬ знак твоего добровольного прин€ти€ этого решени€, ты должен сам открыть эти ворота и войти внутрь.
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_03");	//“еперь ты послушник. Ќоси эту робу в знак того, что теперь ты член нашего братства.
 	hero.guild = GIL_NOV;
@@ -386,6 +390,22 @@ func void DIA_Pedro_AUFNAHME_YES()
 	NOV_Aufnahme = LOG_SUCCESS;
 	SLD_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_OBSOLETE;
+	if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
+	{
+		if(!Npc_IsDead(Rick))
+		{
+			Npc_ExchangeRoutine(Rick,"Flucht3");
+		};
+		if(!Npc_IsDead(Rumbold))
+		{
+			Npc_ExchangeRoutine(Rumbold,"Flucht3");
+		};
+		if(!Npc_IsDead(Bengar))
+		{
+			Npc_ExchangeRoutine(Bengar,"Start");
+		};
+		MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
+	};
 	B_GivePlayerXP(XP_AufnahmeNovize);
 	if(Npc_KnowsInfo(other,DIA_Addon_Pedro_Statuette))
 	{
