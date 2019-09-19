@@ -579,8 +579,16 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	}
 	else if(Torlof_Probe == Probe_Bengar)
 	{
-		B_StartOtherRoutine(Rumbold,"Flucht3");
-		B_StartOtherRoutine(Rick,"Flucht3");
+		if(Kapitel < 3)
+		{
+			B_StartOtherRoutine(Rumbold,"Flucht3");
+			B_StartOtherRoutine(Rick,"Flucht3");
+		}
+		else
+		{
+			B_StartOtherRoutine(Rumbold,"Ch");
+			B_StartOtherRoutine(Rick,"Ch3");
+		};
 		MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	};
 	B_CheckLog();

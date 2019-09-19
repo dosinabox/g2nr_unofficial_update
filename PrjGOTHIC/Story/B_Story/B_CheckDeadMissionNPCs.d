@@ -91,6 +91,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			MIS_Fester_KillBugs = LOG_FAILED;
 		};
 	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cipher)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(DJG_Cipher)))
+	{
+		if(MIS_Cipher_Paket == LOG_Running)
+		{
+			MIS_Cipher_Paket = LOG_FAILED;
+		};
+	};
 	B_CheckLog();
 };
 
