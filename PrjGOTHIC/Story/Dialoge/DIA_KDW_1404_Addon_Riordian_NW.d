@@ -95,6 +95,10 @@ func void DIA_Addon_Riordian_Atlantis_Info()
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_01");	//Да. До последнего времени мы были уверены, что знаем об острове все.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_02");	//Мы считали, что весь северо-восток острова - один большой горный массив.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_03");	//Но мы ошибались.
+	if(Npc_KnowsInfo(other,DIA_Addon_Merdarion_Aufgabe) || Npc_KnowsInfo(other,DIA_Addon_Saturas_WhatsOrnament))
+	{
+		AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00");	//А что скрывается за тем огромным порталом, вон там?
+	};
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_04");	//За этими горами лежит долина. Там и располагается этот древний город.
 	AI_Output(self,other,"DIA_Addon_Riordian_Atlantis_10_05");	//(вздыхает) Я бы очень хотел взглянуть на его старинные здания, но они наверняка давно рассыпались в прах...
 	if(SC_KnowsPortal == FALSE)

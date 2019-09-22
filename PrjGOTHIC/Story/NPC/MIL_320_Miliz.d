@@ -4,7 +4,7 @@ instance MIL_320_Miliz(Npc_Default)
 	name[0] = NAME_Miliz;
 	guild = GIL_MIL;
 	id = 320;
-	voice = 6;
+	voice = 7;
 	flags = 0;
 	npcType = NPCTYPE_AMBIENT;
 	B_SetAttributesToChapter(self,3);

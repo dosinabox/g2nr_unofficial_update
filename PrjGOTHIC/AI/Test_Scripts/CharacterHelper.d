@@ -779,10 +779,10 @@ func void CH_Level6()
 	Info_ClearChoices(CH_Level_niedrig);
 	Info_AddChoice(CH_Level_niedrig,Dialog_Back,CH_Level_niedrig_BACK);
 	Info_AddChoice(CH_Level_niedrig,"Уровень 10",CH_Level_10);
-	Info_AddChoice(CH_Level_niedrig,"Уровень  9",CH_Level_9);
-	Info_AddChoice(CH_Level_niedrig,"Уровень  8",CH_Level_8);
-	Info_AddChoice(CH_Level_niedrig,"Уровень  7",CH_Level_7);
-	Info_AddChoice(CH_Level_niedrig,"Уровень  6",CH_Level_6);
+	Info_AddChoice(CH_Level_niedrig,"Уровень 9",CH_Level_9);
+	Info_AddChoice(CH_Level_niedrig,"Уровень 8",CH_Level_8);
+	Info_AddChoice(CH_Level_niedrig,"Уровень 7",CH_Level_7);
+	Info_AddChoice(CH_Level_niedrig,"Уровень 6",CH_Level_6);
 };
 
 func void CH_Level1()

@@ -70,7 +70,7 @@ instance DIA_Sarah_Greet(C_Info)
 
 func int DIA_Sarah_Greet_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Canthar_Ausgeliefert == TRUE))
+	if(Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Sarah_HALLO) && !Npc_KnowsInfo(other,DIA_Sarah_Success))
 	{
 		return TRUE;
 	};

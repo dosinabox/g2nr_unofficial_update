@@ -426,6 +426,12 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			IntroduceChapter(KapWechsel_3,KapWechsel_3_Text,"chapter3_SLD.tga","chapter_01.wav",6000);
 		};
+		if(MIS_Torlof_BengarMilizKlatschen == FALSE)
+		{
+			Wld_InsertNpc(MIL_335_Rumbold,"CITY2");
+			Wld_InsertNpc(MIL_336_Rick,"CITY2");
+			B_InitNpcGlobals();
+		};
 		if(!Npc_IsDead(Rick))
 		{
 			Npc_ExchangeRoutine(Rick,"Ch3");

@@ -97,6 +97,10 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		{
 			MIS_Cipher_Paket = LOG_FAILED;
 		};
+		if(MIS_Cipher_BringWeed == LOG_Running)
+		{
+			MIS_Cipher_BringWeed = LOG_FAILED;
+		};
 	};
 	B_CheckLog();
 };

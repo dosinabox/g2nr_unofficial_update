@@ -36,13 +36,28 @@ func int DIA_Rumbold_PrePerm_Condition()
 {
 	if(!Npc_KnowsInfo(other,DIA_Bengar_MILIZKLATSCHEN) || (MIS_Torlof_BengarMilizKlatschen != LOG_Running) || (ScaredRumbold == TRUE) || (Kapitel >= 3))
 	{
+		if((Kapitel >= 3) || Npc_IsDead(Rick))
+		{
+			DIA_Rumbold_PrePerm.description = "Как дела?";
+		}
+		else
+		{
+			DIA_Rumbold_PrePerm.description = "Что вы делаете здесь?";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Rumbold_PrePerm_Info()
 {
-	AI_Output(other,self,"DIA_Rumbold_PrePerm_15_00");	//Что вы делаете здесь?
+	if((Kapitel >= 3) || Npc_IsDead(Rick))
+	{
+		AI_Output(other,self,"DIA_Addon_Owen_MalcomStunt_15_00");	//Как дела?
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Rumbold_PrePerm_15_00");	//Что вы делаете здесь?
+	};
 	AI_Output(self,other,"DIA_Rumbold_PrePerm_10_01");	//Проваливай! Понял?
 	AI_StopProcessInfos(self);
 };

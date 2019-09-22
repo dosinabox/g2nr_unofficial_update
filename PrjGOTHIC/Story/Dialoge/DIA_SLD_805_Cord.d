@@ -583,11 +583,6 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 		{
 			B_StartOtherRoutine(Rumbold,"Flucht3");
 			B_StartOtherRoutine(Rick,"Flucht3");
-		}
-		else
-		{
-			B_StartOtherRoutine(Rumbold,"Ch");
-			B_StartOtherRoutine(Rick,"Ch3");
 		};
 		MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	};

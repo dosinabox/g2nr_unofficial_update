@@ -1,12 +1,27 @@
 
 func void B_UpdateBennetItemsCount()
 {
-	if(Bennet_ItemsGiven_Chapter_1 == TRUE)
+	if((Bennet_ItemsGiven_Chapter_1 == TRUE) && (Kapitel == 1))
 	{
 		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
 	};
-	if(Bennet_ItemsGiven_Chapter_3 == TRUE)
+	if((Bennet_ItemsGiven_Chapter_2 == TRUE) && (Kapitel == 2))
 	{
+		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+	};
+	if((Bennet_ItemsGiven_Chapter_3 == TRUE) && (Kapitel == 3))
+	{
+		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+		Bennet_NW_ItMi_Nugget_Count = Npc_HasItems(self,ItMi_Nugget);
+	};
+	if((Bennet_ItemsGiven_Chapter_4 == TRUE) && (Kapitel == 4))
+	{
+		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
+		Bennet_NW_ItMi_Nugget_Count = Npc_HasItems(self,ItMi_Nugget);
+	};
+	if((Bennet_ItemsGiven_Chapter_5 == TRUE) && (Kapitel == 5))
+	{
+		Bennet_NW_ItMi_Swordraw_Count = Npc_HasItems(self,ItMiSwordraw);
 		Bennet_NW_ItMi_Nugget_Count = Npc_HasItems(self,ItMi_Nugget);
 	};
 };
