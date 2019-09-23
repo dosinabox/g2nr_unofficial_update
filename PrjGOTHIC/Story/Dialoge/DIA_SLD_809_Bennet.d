@@ -453,12 +453,6 @@ var int Bennet_Kap3Smith;
 var int Bennet_Kap4Smith;
 var int Bennet_Kap5Smith;
 
-func void B_SayBennetLATER()
-{
-	AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_04");	//Ётого недостаточно. «аходи попозже.
-};
-
-
 instance DIA_Bennet_TeachSmith(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -483,7 +477,7 @@ func void DIA_Bennet_TeachSmith_Info()
 	AI_Output(other,self,"DIA_Bennet_TeachSmith_15_00");	//я хочу больше узнать о магическом оружии.
 	if(Kapitel == 1)
 	{
-		B_SayBennetLATER();
+		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_06_add");	//ѕока мне нечему учить теб€.
 	}
 	else if((Kapitel == 2) && (Bennet_Kap2Smith == FALSE))
 	{
@@ -495,10 +489,11 @@ func void DIA_Bennet_TeachSmith_Info()
 		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_02");	//я немного потренировалс€, и теперь € могу научить теб€, как ковать полуторные и т€желые двуручные магические мечи.
 		Bennet_Kap3Smith = TRUE;
 	}
-	else if((MIS_ReadyforChapter4 == TRUE) && (Kapitel < 5) && (Bennet_Kap4Smith == FALSE))
+	else if((Kapitel < 5) && (MIS_ReadyforChapter4 == TRUE) && (Bennet_Kap4Smith == FALSE))
 	{
 //		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03");	//ѕолагаю, что € превзошел самого себ€. я разработал два боевых клинка. Ёто лучшее из того, что € когда-либо видел.
-		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03");	//Ёто лучшее, что € умею ковать сейчас.
+//		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03");	//Ёто лучшее, что € умею ковать сейчас.
+		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03_add");	//ћои новые магические клинки! Ёто лучшее, что € умею ковать сейчас.
 		Bennet_Kap4Smith = TRUE;
 	}
 	else if((Kapitel >= 5) && (Bennet_Kap5Smith == FALSE))
@@ -529,11 +524,11 @@ func void DIA_Bennet_TeachSmith_Info()
 	{
 		Info_AddChoice(DIA_Bennet_TeachSmith,B_BuildLearnString(NAME_ItMw_2H_Special_02,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_02)),DIA_Bennet_TeachSmith_2hSpecial2);
 	};
-	if((PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] == FALSE) && (Kapitel >= 4))
+	if((PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] == FALSE) && (MIS_ReadyforChapter4 == TRUE))
 	{
 		Info_AddChoice(DIA_Bennet_TeachSmith,B_BuildLearnString(NAME_ItMw_1H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_1H_Special_03)),DIA_Bennet_TeachSmith_1hSpecial3);
 	};
-	if((PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] == FALSE) && (Kapitel >= 4))
+	if((PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] == FALSE) && (MIS_ReadyforChapter4 == TRUE))
 	{
 		Info_AddChoice(DIA_Bennet_TeachSmith,B_BuildLearnString(NAME_ItMw_2H_Special_03,B_GetLearnCostTalent(other,NPC_TALENT_SMITH,WEAPON_2H_Special_03)),DIA_Bennet_TeachSmith_2hSpecial3);
 	};
@@ -999,7 +994,7 @@ instance DIA_Bennet_DJG_ARMOR_H(C_Info)
 
 func int DIA_Bennet_DJG_ARMOR_H_Condition()
 {
-	if((Bennet_DIA_Bennet_DJG_ARMOR_H_permanent == FALSE) && (hero.guild == GIL_DJG) && Npc_KnowsInfo(other,DIA_Bennet_BetterArmor))
+	if((Bennet_DIA_Bennet_DJG_ARMOR_H_permanent == FALSE) && (hero.guild == GIL_DJG) && (Npc_KnowsInfo(other,DIA_Bennet_BetterArmor) || Npc_KnowsInfo(other,DIA_Bennet_DI_BetterArmor)))
 	{
 		return TRUE;
 	};
@@ -1179,7 +1174,7 @@ func void DIA_Bennet_GetInnosEye_Info()
 	}
 	else
 	{
-		B_SayBennetLATER();
+		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_04");	//Ётого недостаточно. «аходи попозже.
 		AI_Output(self,other,"DIA_Bennet_GetInnosEye_06_05");	//≈сли ты будешь продолжать мешать мне, это только задержит работу.
 		AI_StopProcessInfos(self);
 	};
