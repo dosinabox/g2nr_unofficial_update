@@ -275,10 +275,19 @@ func void DIA_Addon_Xardas_PortalAgain_Info()
 
 func void B_Xardas_ClawIsLost()
 {
-	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
+	if(XardasKnowsAboutDestroyedClaw == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
+	};
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_14");	//Это оружие могло бы сослужить нам огромную службу!
 	AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_15");	//Я думаю, что я сделал правильный выбор.
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_16");	//(вздыхает) Пути богов неисповедимы...
+};
+
+func void B_Xardas_ClawReaction()
+{
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_08");	//(жадно) Как интересно...
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_09");	//Это оружие может нам очень помочь. Но оно также и очень опасно.
 };
 
 instance DIA_Addon_Xardas_AddonSuccess(C_Info)
@@ -308,9 +317,14 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 	if(C_ScHasBeliarsWeapon())
 	{
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_07");	//Да, вот он.
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_08");	//(жадно) Как интересно...
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_09");	//Это оружие может нам очень помочь. Но оно также и очень опасно.
+		B_Xardas_ClawReaction();
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_10");	//Будь осторожнее! И самое главное, не потеряй Коготь!
+		B_GivePlayerXP(XP_Ambient * 3);
+	}
+	else if(C_SCHasBeliarsRune())
+	{
+		AI_Output(other,self,"DIA_Hyglas_GOTRUNE_15_00");	//Я создал руну.
+		B_Xardas_ClawReaction();
 		B_GivePlayerXP(XP_Ambient * 3);
 	}
 	else

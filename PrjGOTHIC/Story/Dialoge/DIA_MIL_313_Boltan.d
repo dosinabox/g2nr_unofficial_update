@@ -79,7 +79,18 @@ instance DIA_Boltan_HALLO(C_Info)
 
 func int DIA_Boltan_HALLO_Condition()
 {
-	return TRUE;
+	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (other.guild == GIL_SLD))
+	{
+		return FALSE;
+	}
+	else if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE) && !Npc_IsDead(Canthar))
+	{
+		return FALSE;
+	}
+	else
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Boltan_HALLO_Info()
@@ -181,7 +192,7 @@ func int DIA_Boltan_HalloCanthar_Condition()
 	{
 		return FALSE;
 	}
-	else if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE))
+	else if((Kapitel >= 3) && (Canthar_Ausgeliefert == TRUE) && !Npc_IsDead(Canthar))
 	{
 		return TRUE;
 	};

@@ -366,7 +366,10 @@ func int DIA_Serpentes_MinenAnteile_Condition()
 		}
 		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 		{
-			return TRUE;
+			if(!Npc_IsDead(Salandril))
+			{
+				return TRUE;
+			};
 		};
 	};
 };

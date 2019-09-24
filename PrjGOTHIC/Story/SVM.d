@@ -298,7 +298,7 @@ instance SVM_1(C_SVM)
 	StopMagic = "SVM_1_StopMagic";	//Держись подальше от меня с этой магией!
 	ISaidStopMagic = "SVM_1_ISaidStopMagic";	//Убери эту магию! Ты что, оглох?!
 	WeaponDown = "SVM_1_WeaponDown";	//Убери оружие!
-	ISaidWeaponDown = "SVM_1_ISaidWeaponDown";	//Ты что, оглох? Я сказал: Убери оружие!
+	ISaidWeaponDown = "SVM_1_ISaidWeaponDown";	//Ты что, оглох? Я сказал: убери оружие!
 	WiseMove = "SVM_1_WiseMove";	//Видишь, это было не так уж сложно.
 	NextTimeYoureInForIt = "SVM_1_NextTimeYoureInForIt";	//(себе под нос) Мы еще посмотрим...
 	OhMyHead = "SVM_1_OhMyHead";	//(себе под нос) Ох, моя голова...
@@ -863,7 +863,7 @@ instance SVM_5(C_SVM)
 	StopMagic = "SVM_5_StopMagic";	//Держись подальше от меня с этой магией!
 	ISaidStopMagic = "SVM_5_ISaidStopMagic";	//Убери эту магию! Ты что, оглох?!
 	WeaponDown = "SVM_5_WeaponDown";	//Убери оружие!
-	ISaidWeaponDown = "SVM_5_ISaidWeaponDown";	//Ты что, оглох? Я сказал: Убери оружие!
+	ISaidWeaponDown = "SVM_5_ISaidWeaponDown";	//Ты что, оглох? Я сказал: убери оружие!
 	WiseMove = "SVM_5_WiseMove";	//Видишь, это было не так уж сложно.
 	NextTimeYoureInForIt = "SVM_5_NextTimeYoureInForIt";	//(себе под нос) Мы еще посмотрим...
 	OhMyHead = "SVM_5_OhMyHead";	//(себе под нос) Ох, моя голова...
@@ -2552,7 +2552,7 @@ instance SVM_14(C_SVM)
 	StopMagic = "SVM_14_StopMagic";	//Держись подальше от меня с этой магией!
 	ISaidStopMagic = "SVM_14_ISaidStopMagic";	//Убери эту магию! Ты что, оглох?!
 	WeaponDown = "SVM_14_WeaponDown";	//Убери оружие!
-	ISaidWeaponDown = "SVM_14_ISaidWeaponDown";	//Ты слышал меня? Я сказал: 'Убери оружие!'
+	ISaidWeaponDown = "SVM_14_ISaidWeaponDown";	//Ты слышал меня? Я сказал: убери оружие!
 	WiseMove = "SVM_14_WiseMove";	//Видишь, это было не так уж сложно.
 	NextTimeYoureInForIt = "SVM_14_NextTimeYoureInForIt";	//(себе под нос) Мы еще поговорим об этом...
 	OhMyHead = "SVM_14_OhMyHead";	//(себе под нос) Ох, моя голова...
