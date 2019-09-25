@@ -70,12 +70,13 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_MalethsGehstock,0,TOPIC_END_MalethsGehstock,6);
 	B_CloseTopic(TOPIC_BengarALLEIN,MIS_GetMalakBack,0,6);
 	B_CloseTopic(TOPIC_BengarALLEIN,MIS_BengarsHelpingSLD,0,6);
-	B_CloseTopic(TOPIC_MinenAnteile,0,TOPIC_END_MinenAnteile,6);
+	B_CloseTopic(TOPIC_MinenAnteileKDF,0,TOPIC_END_MinenAnteile,6);
+	B_CloseTopic(TOPIC_MinenAnteileSLD,0,TOPIC_END_MinenAnteile,6);
 	B_CloseTopic(TOPIC_RichterLakai,MIS_Lee_JudgeRichter,0,6);
 	B_CloseTopic(TOPIC_KillHoshPak,MIS_KillHoshPak,0,6);
 	B_CloseTopic(TOPIC_Urshak,0,URSHAK_SUCKED,6);
 	B_CloseTopic(TOPIC_DRACHENJAGD,0,MIS_AllDragonsDead,5);
-	B_CloseTopic(TOPIC_LobartsOrKProblem,0,TOPIC_END_LobartsOrKProblem,6);
+	B_CloseTopic(TOPIC_LobartsOrkProblem,0,TOPIC_END_LobartsOrkProblem,6);
 	B_CloseTopic(TOPIC_SylvioKillIceGolem,MIS_DJG_Sylvio_KillIceGolem,TOPIC_END_SylvioKillIceGolem,6);
 	B_CloseTopic(TOPIC_Dragonhunter,0,MIS_AllDragonsDead,5);
 	B_CloseTopic(TOPIC_AngarsAmulett,0,DJG_AngarGotAmulett,5);

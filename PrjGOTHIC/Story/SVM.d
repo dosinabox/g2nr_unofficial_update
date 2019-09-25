@@ -3087,6 +3087,9 @@ instance SVM_17(C_SVM)
 	Aargh_1 = "SVM_17_Aargh_1";	//Аааааа!
 	Aargh_2 = "SVM_17_Aargh_2";	//Аааааа!
 	Aargh_3 = "SVM_17_Aargh_3";	//Аааааа!
+	addon_wrongarmor = "SVM_16_Addon_WrongArmor";	//Надень что-нибудь приличное. Мне просто неприятно видеть тебя в таком хламе.
+	addon_diebandit = "SVM_16_ADDON_DIEBANDIT";	//БАНДИТ!
+	addon_dirtypirate = "SVM_16_ADDON_DIRTYPIRATE";	//ПИРАТ!
 };
 
 instance SVM_18(C_SVM)

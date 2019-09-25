@@ -8,6 +8,13 @@ func int C_NpcBelongsToOldCamp(var C_Npc slf)
 			return TRUE;
 		};
 	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard1)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard2)))
+	{
+		if(MIS_Marcos_Jungs != LOG_SUCCESS)
+		{
+			return TRUE;
+		};
+	};
 	return FALSE;
 };
 
@@ -15,6 +22,10 @@ func int C_NpcBelongsToCity(var C_Npc slf)
 {
 	if(!C_NpcBelongsToOldCamp(slf))
 	{
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard1)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard2)))
+		{
+			return FALSE;
+		};
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sergio))
 		{
 			return FALSE;

@@ -182,7 +182,7 @@ instance ItMW_Addon_Stab05(C_Item)
 	material = MAT_WOOD;
 	value = Value_Stab05;
 	damageTotal = Damage_Stab05;
-	damagetype = DAM_BLUNT;
+	damagetype = DAM_EDGE;
 	range = Range_Stab05;
 	on_equip = Equip_2H_05;
 	on_unequip = UnEquip_2H_05;

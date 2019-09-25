@@ -17,7 +17,6 @@ instance PAL_2004_Bruder(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	B_CreateAmbientInv(self);
 	CreateInvItems(self,ItRu_PalLight,1);
-//	CreateInvItems(self,ItRu_FakePalLight,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Normal02,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

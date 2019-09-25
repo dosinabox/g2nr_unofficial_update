@@ -824,10 +824,10 @@ func void Use_MinenAnteil_Mis()
 	SC_KnowsProspektorSalandril = TRUE;
 	if(ItWr_MinenAnteil_Mis_OneTime == FALSE)
 	{
-		B_LogEntry(TOPIC_MinenAnteile,"Парня, продавшего акции шахты торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
+		B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахты торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
 		if(Npc_IsDead(Salandril))
 		{
-			B_LogEntry(TOPIC_MinenAnteile,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
+			Log_AddEntry(TOPIC_MinenAnteileKDF,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
 		};
 		ItWr_MinenAnteil_Mis_OneTime = TRUE;
 	};

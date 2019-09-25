@@ -28,7 +28,7 @@ instance DIA_Addon_Garaz_PICKPOCKET(C_Info)
 	condition = DIA_Addon_Garaz_PICKPOCKET_Condition;
 	information = DIA_Addon_Garaz_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = Pickpocket_60;
+	description = Pickpocket_80;
 };
 
 
@@ -139,7 +139,7 @@ func void DIA_Addon_Garaz_Bloodwyn_Info()
 	AI_Output(self,other,"DIA_Addon_Garaz_Bloodwyn_08_04");	//Он думает, что он - лучший и терпеть не может, если у кого-то больше денег, чем у него. Пожалуйста - я не встану у него на пути.
 	AI_Output(self,other,"DIA_Addon_Garaz_Bloodwyn_08_05");	//Просто не стой у него на пути и не провоцируй его, если не хочешь, чтобы он впал в ярость и перестал себя контролировать...
 	B_LogEntry(Topic_Addon_Tempel,"Если Бладвин узнает, что в шахте была открыта новая золотая жила, он наверняка покинет храм.");
-	B_LogEntry(Topic_Addon_Tempel,"Когда Бладвин рассержен, он теряет над собой контроль. Это может мне помочь.");
+	Log_AddEntry(Topic_Addon_Tempel,"Когда Бладвин рассержен, он теряет над собой контроль. Это может мне помочь.");
 };
 
 

@@ -994,9 +994,9 @@ func void DIA_Lobart_ORKPROBLEM_Info()
 	AI_Output(other,self,"DIA_Lobart_ORKPROBLEM_15_00");	//У тебя проблемы с орками.
 	AI_Output(self,other,"DIA_Lobart_ORKPROBLEM_05_01");	//(зло) Черт. Ну когда-нибудь все это кончится?!
 	AI_Output(self,other,"DIA_Lobart_ORKPROBLEM_05_02");	//Если так будет продолжаться, моя ферма не будет стоить и трех золотых монет.
-	Log_CreateTopic(TOPIC_LobartsOrKProblem,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_LobartsOrKProblem,LOG_Running);
-	B_LogEntry(TOPIC_LobartsOrKProblem,"На ферме Лобарта поселились орки. Он хочет, чтобы я избавил его от них.");
+	Log_CreateTopic(TOPIC_LobartsOrkProblem,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_LobartsOrkProblem,LOG_Running);
+	B_LogEntry(TOPIC_LobartsOrkProblem,"На ферме Лобарта поселились орки. Он хочет, чтобы я избавил его от них.");
 	AI_StopProcessInfos(self);
 };
 
@@ -1033,7 +1033,7 @@ func void DIA_Lobart_ORKSWEG_Info()
 	B_StartOtherRoutine(Vino,"Start");
 	B_StartOtherRoutine(LobartsBauer1,"Start");
 	B_StartOtherRoutine(LobartsBauer2,"Start");
-	TOPIC_END_LobartsOrKProblem = TRUE;
+	TOPIC_END_LobartsOrkProblem = TRUE;
 	B_GivePlayerXP(XP_KilledLobartOrks);
 	CreateInvItems(self,ItMi_Gold,150);
 	B_GiveInvItems(self,other,ItMi_Gold,150);

@@ -1519,7 +1519,14 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	Mob_CreateItems("BOW_CHEST",ItFo_Meat,100);
+	Marcos_Guard1.flags = 0;
+	Marcos_Guard2.flags = 0;
+	Marcos_Guard1.aivar[AIV_ToughGuy] = TRUE;
+	Marcos_Guard2.aivar[AIV_ToughGuy] = TRUE;
+	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
+	AI_Teleport(Marcos_Guard2,"OW_STAND_GUARDS");
+	B_StartOtherRoutine(Marcos_Guard1,"MARCOS");
+	B_StartOtherRoutine(Marcos_Guard2,"MARCOS");
 };
 
 instance WastelandRune(C_Item)

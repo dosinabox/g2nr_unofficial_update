@@ -48,7 +48,7 @@ func void ZS_Talk()
 				Mdl_StartFaceAni(self,"S_ANGRY",1,-1);
 			};
 		}; */
-		if((self.npcType == NPCTYPE_AMBIENT) || (self.npcType == NPCTYPE_OCAMBIENT) || (self.npcType == NPCTYPE_BL_AMBIENT) || (self.npcType == NPCTYPE_TAL_AMBIENT))
+		if((self.npcType == NPCTYPE_AMBIENT) || (self.npcType == NPCTYPE_OCAMBIENT) || (self.npcType == NPCTYPE_OWAMBIENT) || (self.npcType == NPCTYPE_BL_AMBIENT) || (self.npcType == NPCTYPE_TAL_AMBIENT))
 		{
 			B_AssignAmbientInfos(self);
 			if(C_NpcBelongsToCity(self))

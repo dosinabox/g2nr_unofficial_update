@@ -326,6 +326,7 @@ const int NPCTYPE_OCMAIN = 4;
 const int NPCTYPE_BL_AMBIENT = 5;
 const int NPCTYPE_TAL_AMBIENT = 6;
 const int NPCTYPE_BL_MAIN = 7;
+const int NPCTYPE_OWAMBIENT = 8;
 const int MOBSI_NONE = 0;
 const int MOBSI_SmithWeapon = 1;
 const int MOBSI_SleepAbit = 2;
