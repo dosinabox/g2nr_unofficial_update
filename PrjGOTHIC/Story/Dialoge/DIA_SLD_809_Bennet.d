@@ -26,6 +26,80 @@ func void B_UpdateBennetItemsCount()
 	};
 };
 
+var int Bennet_Kap2Smith;
+var int Bennet_Kap3Smith;
+var int Bennet_Kap4Smith;
+var int Bennet_Kap5Smith;
+
+func int C_Bennet_HaveNewWeapons()
+{
+	if(Bennet_TeachSmith == TRUE)
+	{
+		if((Kapitel == 2) && (Bennet_Kap2Smith == FALSE))
+		{
+			return TRUE;
+		}
+		else if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Bennet_Kap3Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
+		{
+			return TRUE;
+		}
+		else if((Kapitel < 5) && (MIS_ReadyforChapter4 == TRUE) && (Bennet_Kap4Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
+		{
+			return TRUE;
+		}
+		else if((Kapitel >= 5) && (Bennet_Kap5Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
+instance DIA_Bennet_AnnounceNewWeapons(C_Info)
+{
+	npc = SLD_809_Bennet;
+	nr = 10;
+	condition = DIA_Bennet_AnnounceNewWeapons_Condition;
+	information = DIA_Bennet_AnnounceNewWeapons_Info;
+	permanent = TRUE;
+	important = TRUE;
+};
+
+
+func int DIA_Bennet_AnnounceNewWeapons_Condition()
+{
+	if(C_Bennet_HaveNewWeapons())
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Bennet_AnnounceNewWeapons_Info()
+{
+	if((Kapitel == 2) && (Bennet_Kap2Smith == FALSE))
+	{
+		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_01");	//я могу научить теб€ ковать магические мечи и даже двуручные клинки.
+		Bennet_Kap2Smith = TRUE;
+	}
+	else if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Bennet_Kap3Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
+	{
+		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_02");	//я немного потренировалс€, и теперь € могу научить теб€, как ковать полуторные и т€желые двуручные магические мечи.
+		Bennet_Kap3Smith = TRUE;
+	}
+	else if((Kapitel < 5) && (MIS_ReadyforChapter4 == TRUE) && (Bennet_Kap4Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
+	{
+		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03_add");	//ћои новые магические клинки! Ёто лучшее, что € умею ковать сейчас.
+		Bennet_Kap4Smith = TRUE;
+	}
+	else if((Kapitel >= 5) && (Bennet_Kap5Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
+	{
+		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_04");	//ѕослушай. Ќа мен€ только что снизошло вдохновение. ћагическое оружие, покрытое кровью дракона. » € точно знаю, как изготовить его!
+		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_05");	//(ухмыл€етс€) ј ты хочешь узнать?
+		Bennet_Kap5Smith = TRUE;
+	};
+};
+
+
 instance DIA_Bennet_EXIT(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -39,16 +113,17 @@ instance DIA_Bennet_EXIT(C_Info)
 
 func int DIA_Bennet_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Bennet_EXIT_Info()
 {
 	B_EquipTrader(self);
 	B_UpdateBennetItemsCount();
+	if(C_Bennet_HaveNewWeapons())
+	{
+		DIA_Bennet_AnnounceNewWeapons_Info();
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -321,81 +396,6 @@ func void DIA_Bennet_TeachCOMMON_Info()
 };
 
 
-var int Bennet_Kap2Smith;
-var int Bennet_Kap3Smith;
-var int Bennet_Kap4Smith;
-var int Bennet_Kap5Smith;
-
-func int C_Bennet_HaveNewWeapons()
-{
-	if(Bennet_TeachSmith == TRUE)
-	{
-		if((Kapitel == 2) && (Bennet_Kap2Smith == FALSE))
-		{
-			return TRUE;
-		}
-		else if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Bennet_Kap3Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
-		{
-			return TRUE;
-		}
-		else if((Kapitel < 5) && (MIS_ReadyforChapter4 == TRUE) && (Bennet_Kap4Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
-		{
-			return TRUE;
-		}
-		else if((Kapitel >= 5) && (Bennet_Kap5Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
-		{
-			return TRUE;
-		};
-	};
-	return FALSE;
-};
-
-
-instance DIA_Bennet_AnnounceNewWeapons(C_Info)
-{
-	npc = SLD_809_Bennet;
-	nr = 10;
-	condition = DIA_Bennet_AnnounceNewWeapons_Condition;
-	information = DIA_Bennet_AnnounceNewWeapons_Info;
-	permanent = TRUE;
-	important = TRUE;
-};
-
-
-func int DIA_Bennet_AnnounceNewWeapons_Condition()
-{
-	if(C_Bennet_HaveNewWeapons())
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Bennet_AnnounceNewWeapons_Info()
-{
-	if((Kapitel == 2) && (Bennet_Kap2Smith == FALSE))
-	{
-		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_01");	//я могу научить теб€ ковать магические мечи и даже двуручные клинки.
-		Bennet_Kap2Smith = TRUE;
-	}
-	else if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Bennet_Kap3Smith == FALSE))
-	{
-		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_02");	//я немного потренировалс€, и теперь € могу научить теб€, как ковать полуторные и т€желые двуручные магические мечи.
-		Bennet_Kap3Smith = TRUE;
-	}
-	else if((Kapitel < 5) && (MIS_ReadyforChapter4 == TRUE) && (Bennet_Kap4Smith == FALSE))
-	{
-		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03_add");	//ћои новые магические клинки! Ёто лучшее, что € умею ковать сейчас.
-		Bennet_Kap4Smith = TRUE;
-	}
-	else if((Kapitel >= 5) && (Bennet_Kap5Smith == FALSE))
-	{
-		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_04");	//ѕослушай. Ќа мен€ только что снизошло вдохновение. ћагическое оружие, покрытое кровью дракона. » € точно знаю, как изготовить его!
-		AI_Output(self,other,"DIA_Bennet_TeachSmith_06_05");	//(ухмыл€етс€) ј ты хочешь узнать?
-		Bennet_Kap5Smith = TRUE;
-	};
-};
-
-
 instance DIA_Bennet_WannaSmithORE(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -521,6 +521,7 @@ func void DIA_Bennet_BringOre_Info()
 	AI_Output(self,other,"DIA_Bennet_BringOre_06_02");	//ƒа ты что! я потр€сен!
 	AI_Output(self,other,"DIA_Bennet_BringOre_06_03");	//ќставь себе два куска. ќни тебе понадоб€тс€, чтобы сделать твое собственное оружие.
 	B_GiveInvItems(self,other,ItMi_Nugget,2);
+	Bennet_NW_ItMi_Nugget_Count += 3;
 	B_LogEntry(TOPIC_BennetOre,"Ѕеннет получил руду и вернул мне некоторую ее часть.");
 	MIS_Bennet_BringOre = LOG_SUCCESS;
 	B_GivePlayerXP(100);
@@ -644,34 +645,6 @@ func void DIA_Bennet_TeachSmith_2hSpecial4()
 {
 	B_TeachPlayerTalentSmith(self,other,WEAPON_2H_Special_04);
 };
-
-
-instance DIA_Bennet_KAP3_EXIT(C_Info)
-{
-	npc = SLD_809_Bennet;
-	nr = 999;
-	condition = DIA_Bennet_KAP3_EXIT_Condition;
-	information = DIA_Bennet_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Bennet_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Bennet_KAP3_EXIT_Info()
-{
-	B_EquipTrader(self);
-	B_UpdateBennetItemsCount();
-	AI_StopProcessInfos(self);
-};
-
 
 instance DIA_Bennet_WhyPrison(C_Info)
 {
@@ -1239,33 +1212,6 @@ func void DIA_Bennet_GetInnosEye_Info()
 };
 
 
-instance DIA_Bennet_KAP4_EXIT(C_Info)
-{
-	npc = SLD_809_Bennet;
-	nr = 999;
-	condition = DIA_Bennet_KAP4_EXIT_Condition;
-	information = DIA_Bennet_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Bennet_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Bennet_KAP4_EXIT_Info()
-{
-	B_EquipTrader(self);
-	B_UpdateBennetItemsCount();
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Bennet_DRACHENEIER(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -1441,33 +1387,6 @@ func void DIA_Bennet_EierBringen_Info()
 	DragonEggGeld = DragonEggCount * BennetsDragonEggOffer;
 	CreateInvItems(self,ItMi_Gold,DragonEggGeld);
 	B_GiveInvItems(self,other,ItMi_Gold,DragonEggGeld);
-};
-
-
-instance DIA_Bennet_KAP5_EXIT(C_Info)
-{
-	npc = SLD_809_Bennet;
-	nr = 999;
-	condition = DIA_Bennet_KAP5_EXIT_Condition;
-	information = DIA_Bennet_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Bennet_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Bennet_KAP5_EXIT_Info()
-{
-	B_EquipTrader(self);
-	B_UpdateBennetItemsCount();
-	AI_StopProcessInfos(self);
 };
 
 

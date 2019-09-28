@@ -738,7 +738,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Silvestro_MIS,1);
 	CreateInvItems(self,ItAt_ClawLeader,1);
 	CreateInvItems(self,ItSe_Olav,1);
-	CreateInvItems(self,ItMi_GoldPlate_MIS,1);
+//	CreateInvItems(self,ItMi_GoldPlate_MIS,1);
 	CreateInvItems(self,ItKe_Pass_MIS,1);
 	CreateInvItems(self,ItKe_Bromor,1);
 	CreateInvItems(self,ItKe_Rune_MIS,1);
@@ -1519,14 +1519,7 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	Marcos_Guard1.flags = 0;
-	Marcos_Guard2.flags = 0;
-	Marcos_Guard1.aivar[AIV_ToughGuy] = TRUE;
-	Marcos_Guard2.aivar[AIV_ToughGuy] = TRUE;
-	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
-	AI_Teleport(Marcos_Guard2,"OW_STAND_GUARDS");
-	B_StartOtherRoutine(Marcos_Guard1,"MARCOS");
-	B_StartOtherRoutine(Marcos_Guard2,"MARCOS");
+	B_MakeRangerReadyForMeetingALL();
 };
 
 instance WastelandRune(C_Item)
@@ -1553,20 +1546,5 @@ func void UseWastelandRune()
 	b_seed_wasteland_world_main();
 	b_seed_wasteland_world_psicamp();
 	b_seed_wasteland_world_freeminecamp();
-};
-
-instance ItFo_Meat(C_Item)
-{
-	name = "Луковица";
-	mainflag = ITEM_KAT_FOOD;
-	flags = ITEM_MULTI;
-	value = Value_Beet;
-	visual = "Onion.3ds";
-	material = MAT_LEATHER;
-	on_state[0] = Use_Weed;
-	scemeName = "FOOD";
-	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
 };
 

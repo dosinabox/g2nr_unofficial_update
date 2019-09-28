@@ -1,6 +1,10 @@
 
 func int C_NpcBelongsToOldCamp(var C_Npc slf)
 {
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tengron)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fajeth)))
+	{
+		return FALSE;
+	};
 	if((slf.npcType == NPCTYPE_OCMAIN) || (slf.npcType == NPCTYPE_OCAMBIENT))
 	{
 		if((slf.guild == GIL_VLK) || (slf.guild == GIL_MIL) || (slf.guild == GIL_PAL))
@@ -22,6 +26,10 @@ func int C_NpcBelongsToCity(var C_Npc slf)
 {
 	if(!C_NpcBelongsToOldCamp(slf))
 	{
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tengron)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fajeth)))
+		{
+			return FALSE;
+		};
 		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard1)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard2)))
 		{
 			return FALSE;

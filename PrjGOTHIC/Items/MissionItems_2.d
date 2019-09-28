@@ -245,7 +245,7 @@ func void UseOlav()
 };
 
 
-instance ItMi_GoldPlate_MIS(C_Item)
+/*instance ItMi_GoldPlate_MIS(C_Item)
 {
 	name = "Золотая тарелка";
 	mainflag = ITEM_KAT_NONE;
@@ -256,7 +256,7 @@ instance ItMi_GoldPlate_MIS(C_Item)
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-};
+};*/
 
 instance ItKe_Pass_MIS(C_Item)
 {

@@ -44,7 +44,7 @@ var int DIA_Ritter_HERO_NoPerm;
 
 func void DIA_PAL_269_HERO_Info()
 {
-	AI_Output(self,other,"DIA_Ritter_HERO_04_00");	//Твое появление здесь хороший знак для нас всех. Мы все воспряли духом.
+	AI_Output(self,other,"DIA_Ritter_HERO_04_00");	//Твое появление здесь - хороший знак для нас всех. Мы все воспряли духом.
 	if(DIA_Ritter_HERO_NoPerm == FALSE)
 	{
 		AI_Output(self,other,"DIA_Ritter_HERO_04_01");	//Мы знаем, что наши товарищи в городе не забыли о нас. Глаз Инноса наблюдает за всеми нами.

@@ -604,7 +604,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItWr_Silvestro_MIS,1);
 	CreateInvItems(self,ItAt_ClawLeader,1);
 	CreateInvItems(self,ItSe_Olav,1);
-	CreateInvItems(self,ItMi_GoldPlate_MIS,1);
+//	CreateInvItems(self,ItMi_GoldPlate_MIS,1);
 	CreateInvItems(self,ItKe_Pass_MIS,1);
 	CreateInvItems(self,ItKe_Bromor,1);
 	CreateInvItems(self,ItKe_Rune_MIS,1);
