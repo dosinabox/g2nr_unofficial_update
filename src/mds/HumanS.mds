@@ -52,15 +52,22 @@ Model ("HuS")
 	registerMesh ("Armor_Pir_H_Addon.ASC")
 	registerMesh ("Armor_Raven_Addon.ASC")
 	registerMesh ("Armor_Pal_Skeleton.ASC")
+	registerMesh ("Armor_Sld_S.ASC")
+	registerMesh ("Armor_Dementor_Boss.ASC")
+	registerMesh ("Armor_Larius.ASC")
+	registerMesh ("Armor_Slave.ASC")
+	registerMesh ("Armor_Beggar.ASC")
+	registerMesh ("Armor_Onar.ASC")
 
 // Skelette
 	registerMesh ("Ske_Body.ASC")
 	registerMesh ("Ske_Body2.ASC")
+	registerMesh ("Ske_Body3.ASC")
 	registerMesh ("Ske_Fly_Body.ASC")
 
 // in extremo
 
-	RegisterMesh ("Hum_IE_Flail_instrument.ASC")
+	registerMesh ("Hum_IE_Flail_instrument.ASC")
 	registerMesh ("Hum_IE_Flex_Instrument.ASC")
 	registerMesh ("Hum_IE_Lutter_instrument.ASC")
 	registerMesh ("Hum_IE_Pfeiffer_instrument.ASC")
@@ -176,8 +183,8 @@ Model ("HuS")
 				*eventSFXGrnd	(9	"Run")
 			}
 
-			aniAlias	("t_WalkStrafeL"		1	"t_WalkStrafeL"		0.1	0.1	M.	"t_FistRunStrafeL"		F)
-			aniAlias	("t_WalkStrafeR"		1	"t_WalkStrafeR"		0.1	0.1	M.	"t_FistRunStrafeR"		F)
+//			aniAlias	("t_WalkStrafeL"		1	"t_WalkStrafeL"		0.1	0.1	M.	"t_FistRunStrafeL"		F)
+//			aniAlias	("t_WalkStrafeR"		1	"t_WalkStrafeR"		0.1	0.1	M.	"t_FistRunStrafeR"		F)
 
 
 //			ani			("t_RunStrafeL"			1	"s_Run"			0.1	0.1	M.	"Hum_RunStrafeLR_M01.asc"	F	0	25)
@@ -193,19 +200,19 @@ Model ("HuS")
 //				*eventSFXGrnd	(43	"Run")
 //			}
 
-//			ani			("t_WalkStrafeL"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeL_M02.asc"	F	1	18)
-//			{
-//				*eventSFXGrnd   (4	"Sneak")
-//				*eventSFXGrnd   (11	"Sneak")
-//				*eventSFXGrnd   (16	"Sneak")
-//			}
+			ani			("t_WalkStrafeL"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeL_M02.asc"	F	1	18)
+			{
+				*eventSFXGrnd   (4	"Sneak")
+				*eventSFXGrnd   (11	"Sneak")
+				*eventSFXGrnd   (16	"Sneak")
+			}
 
-//			ani			("t_WalkStrafeR"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeR_M02.asc"	F	1	18)
-//			{
-//				*eventSFXGrnd   (4	"Sneak")
-//				*eventSFXGrnd   (11	"Sneak")
-//				*eventSFXGrnd   (16	"Sneak")
-//			}
+			ani			("t_WalkStrafeR"		1	"s_Walk"		0.1	0.1	M.	"Hum_WalkStrafeR_M02.asc"	F	1	18)
+			{
+				*eventSFXGrnd   (4	"Sneak")
+				*eventSFXGrnd   (11	"Sneak")
+				*eventSFXGrnd   (16	"Sneak")
+			}
 
 			ani			("t_SneakStrafeL"		1	"s_Sneak"		0.1	0.1	M.	"Hum_SneakStrafeLR_M01.ASC"	F	1	25)
 			aniAlias	("t_SneakStrafeR"		1	"s_Sneak"		0.1	0.1	M.	"t_SneakStrafeL"			R)
@@ -819,15 +826,16 @@ Model ("HuS")
 			ani			("t_Bow_2_BowRun"		1	"s_BowRun"		0.0 0.0 M.	"Hum_BowDraw.asc"		F   7	19)
 			{
 				*eventTag		(7	"DEF_FIGHTMODE"  "BOW")
-				*eventSFX		(7	"Drawsound_Bow")
-		        *eventTag		(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+				*eventSFX		(7	"Bow_DrawSound")
+		        	*eventTag		(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
 			}
 
 			ani			("t_BowRun_2_Bow"		1	"s_Bow"			0.0 0.0 M.	"Hum_BowDraw.asc"		R	7	19)
 			{
 				*eventTag		(7	"DEF_FIGHTMODE"  "")
-				*eventSFX		(7	"Drawsound_Bow")
-		        *eventTag		(19	"DEF_REMOVE_MUNITION")
+				*eventMMStartAni  (9	"S_NORMAL"	"ZS_LEFTHAND")
+				*eventSFX		(12	"Bow_UndrawSound")
+			      *eventTag		(19	"DEF_REMOVE_MUNITION")
 			}
 			aniAlias	("t_Bow_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_Bow"			R)
 
@@ -835,14 +843,14 @@ Model ("HuS")
 			ani			("t_Move_2_BowMove"		2	""				0.2	0.2	M.	"Hum_BowDrawMove.asc"	F	1	19)
 			{
 				*eventTag		(7	"DEF_FIGHTMODE"  "BOW")
-				*eventSFX		(7	"Drawsound_Bow")
-		        *eventTag		(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
+				*eventSFX		(7	"Bow_DrawSound")
+		        	*eventTag		(9	"DEF_PLACE_MUNITION"	"ZS_RIGHTHAND")
 			}
 			ani			("t_BowMove_2_Move"		2	""				0.2	0.2	M.	"Hum_BowDrawMove.asc"	R	1	19)
 			{
 				*eventTag		(7	"DEF_FIGHTMODE"  "")
-				*eventSFX		(7	"Drawsound_Bow")
-		        *eventTag		(19	"DEF_REMOVE_MUNITION")
+				*eventSFX		(12	"Bow_UndrawSound")
+		        	*eventTag		(19	"DEF_REMOVE_MUNITION")
 			}
 
 
@@ -851,33 +859,43 @@ Model ("HuS")
 			ani			("s_CBow"				1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw.asc"		F	5	5)
 			ani			("t_CBow_2_CBowRun"		1	"s_CBowRun"		0.0 0.0 M.	"Hum_CBowDraw.asc"		F  	6	39)
 			{
-				*eventTag		(7 "DEF_FIGHTMODE"	"CBOW")
-				*eventMMStartAni (6	"S_SHOOT"	"ZS_RIGHTHAND")
-				*eventSFX		(7	"Drawsound_Bow")
-		        *eventTag		(6	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+				*eventTag		(7	"DEF_FIGHTMODE"	"CBOW")
+				*eventSFX		(7	"Crossbow_DrawSound")
+				*eventSFX		(25	"Crossbow_Charge")
+				*eventMMStartAni	(27	"S_CHARGE"		"ZS_RIGHTHAND")
+				*eventMMStartAni	(30	"S_SHOOT"		"ZS_RIGHTHAND")
+		        	*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
 			}
 
 			ani			("t_CBowRun_2_CBow"		1	"s_CBow"		0.0 0.0 M.	"Hum_CBowDraw.asc"		R  	6	39)
 			{
-				*eventTag		(7 "DEF_FIGHTMODE"	"")
-				*eventSFX		(7	"Drawsound_Bow")
-		        *eventTag		(6	"DEF_REMOVE_MUNITION")
+				*eventTag		(7 	"DEF_FIGHTMODE"	"")
+				*eventSFX		(17	"Crossbow_UndrawSound")
+				*eventMMStartAni	(27	"S_NORMAL"		"ZS_RIGHTHAND")
+				*eventMMStartAni	(30	"S_REFUSE"		"ZS_RIGHTHAND")
+				*eventSFX		(32	"Crossbow_Refuse")
+		   	     	*eventTag		(33	"DEF_REMOVE_MUNITION")
 			}
 			aniAlias	("t_CBow_2_Run"			1	""				0.0 0.1 M.	"t_Run_2_CBow"			R)
 
 		// Armbrust beim Rennen ziehen
 			ani			("t_Move_2_CBowMove"	2	""				0.2	0.2	M.	"Hum_CBowDrawMove.asc"	F	1	39)
 			{
-				*eventTag		(7 "DEF_FIGHTMODE"	"CBOW")
-				*eventMMStartAni (6	"S_SHOOT"	"ZS_RIGHTHAND")
-				*eventSFX		(7	"Drawsound_Bow")
-		        *eventTag		(6	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
+				*eventTag		(7	"DEF_FIGHTMODE"	"CBOW")
+				*eventSFX		(7	"Crossbow_DrawSound")
+				*eventSFX		(25	"Crossbow_Charge")
+				*eventMMStartAni	(27	"S_CHARGE"		"ZS_RIGHTHAND")
+				*eventMMStartAni	(30	"S_SHOOT"		"ZS_RIGHTHAND")
+		        	*eventTag		(33	"DEF_PLACE_MUNITION"	"ZS_LEFTHAND")
 			}
 			ani			("t_CBowMove_2_Move"	2	""				0.2	0.2	M.	"Hum_CBowDrawMove.asc"	R	1	39)
 			{
-				*eventTag		(7 "DEF_FIGHTMODE"	"")
-				*eventSFX		(7	"Drawsound_Bow")
-		        *eventTag		(6	"DEF_REMOVE_MUNITION")
+				*eventTag		(7 	"DEF_FIGHTMODE"	"")
+				*eventSFX		(17	"Crossbow_UndrawSound")
+				*eventMMStartAni	(27	"S_NORMAL"		"ZS_RIGHTHAND")
+				*eventMMStartAni	(30	"S_REFUSE"		"ZS_RIGHTHAND")
+				*eventSFX		(32	"Crossbow_Refuse")
+		   	     	*eventTag		(33	"DEF_REMOVE_MUNITION")
 			}
 
 
@@ -1069,6 +1087,8 @@ Model ("HuS")
 			ani			("t_FistParadeJumpB"		1	""			0.0	0.0	M.	"Hum_FistParadeU.asc"	F	1	12)
 			{
 				*eventTag		(0 "DEF_WINDOW"		"1 10")
+				*eventSFXGrnd	(7	"Run")
+				*eventSFXGrnd	(10	"Run")
 			}
 
 /////////////////////////
@@ -1081,8 +1101,15 @@ Model ("HuS")
 
 //	Mag-Run-Loop
 			ani			("s_MagRunL"				1	"s_MagRunL"		0.0	0.0	M.	"Hum_MagRun_A01.asc"		F	12	31)
-
-			ani			("t_MagRunL_2_MagRun"		1	"s_MagRun"		0.0	0.1	M.	"Hum_MagRun_A01.asc"		F	33	38)
+			{
+				*eventSFXGrnd	(12	"Run")
+				*eventSFXGrnd	(22	"Run")
+			}
+			ani			("t_MagRunL_2_MagRun"		1	"s_MagRun"		0.0	0.1	M.	"Hum_MagRun_A01.asc"		F	32	38)
+			{
+				*eventSFXGrnd	(32	"Run")
+				*eventSFXGrnd	(37	"Run")
+			}
 			aniBlend	("t_MagRunR_2_MagRun"			"s_MagRun"		0.3	0.3)
 
 //	Mag-Run Backwards Movement
@@ -1094,13 +1121,22 @@ Model ("HuS")
 
 //	Mag-WALK
 			aniAlias	("s_MagWalk"				1	"s_MagWalk"		0.1	0.1	MI	"s_MagRun"					F)
-
 			ani			("t_MagWalk_2_MagWalkL"		1	"s_MagWalkL"	0.0	0.0	M.	"Hum_MagWalkLoop_A01.asc"	F	1	9)
+			{
+				*eventSFXGrnd	(7	"Run")
+			}
 
 //	Mag-Walk-Loop
 			ani			("s_MagWalkL"				1	"s_MagWalkL"	0.0	0.0	M.	"Hum_MagWalkLoop_A01.asc"	F	10	33)
-
+			{
+				*eventSFXGrnd	(22	"Run")
+				*eventSFXGrnd	(31	"Run")
+			}
 			ani			("t_MagWalkL_2_MagWalk"		1	"s_MagWalk"		0.0	0.0	M.	"Hum_MagWalkLoop_A01.asc"	F	34	39)
+			{
+				*eventSFXGrnd	(37	"Run")
+				*eventSFXGrnd	(39	"Run")
+			}
 			aniBlend	("t_MagWalkR_2_MagWalk"			"s_MagWalk"		0.2	0.2)
 
 //	Mag-Walk Backwards Movement
@@ -1111,7 +1147,9 @@ Model ("HuS")
 
 			aniBlend	("t_MagWalkBL_2_MagWalk"		"s_MagWalk"		0.2	0.2)
 			aniBlend	("t_MagWalkBR_2_MagWalk"		"s_MagWalk"		0.2	0.2)
-
+			{
+				*eventSFXGrnd	(22	"Run")
+			}
 
 //	Mag-SNEAK
 			aniAlias	("s_MagSneak"				1	"s_MagSneak"	0.3	0.3	MI	"s_Sneak"				F)
@@ -1164,7 +1202,15 @@ Model ("HuS")
 /////////////////////
 
 			ani			("t_MagRunStrafeL"			1	"t_MagRunStrafeL"		0.1	0.1	M.	"Hum_MagStrafeL_A01.asc"	F	1	18)
+			{
+				*eventSFXGrnd	(0	"Run")
+				*eventSFXGrnd	(9	"Run")
+			}
 			ani			("t_MagRunStrafeR"			1	"t_MagRunStrafeR"		0.1	0.1	M.	"Hum_MagStrafeR_A01.asc"	F	1	18)
+			{
+				*eventSFXGrnd	(0	"Run")
+				*eventSFXGrnd	(9	"Run")
+			}
 
 			aniAlias	("t_MagWalkStrafeL"			1	"t_MagWalkStrafeL"		0.1	0.1	M.	"t_MagRunStrafeL"		F)
 			aniAlias	("t_MagWalkStrafeR"			1	"t_MagWalkStrafeR"		0.1	0.1	M.	"t_MagRunStrafeR"		F)
@@ -1455,6 +1501,10 @@ Model ("HuS")
 
 //	1h-Run Backwards Movement
 			ani			("t_1hJumpB" 				1 	"s_1hRun" 		0.2 0.3 M. 	"Hum_1hParadeJumpT0_A01.asc"	F	1	14)
+			{
+				*eventSFXGrnd  (6 "Run")
+				*eventSFXGrnd  (9 "Run")
+			}
 
 //	1h-WALK
 			aniAlias	("s_1hWalk"					1	"s_1hWalk"		0.0	0.0	MI	"s_1hRun"					F)
@@ -2026,8 +2076,9 @@ Model ("HuS")
 //////////////////////////
 			ani			("t_BowRun_2_BowAim"		1	"s_BowAim"		0.0 0.0 M.	"Hum_BowAim.asc"		F	1	11)
 			{
-				*eventMMStartAni (1		"S_SHOOT"	"ZS_LEFTHAND")
-				*eventMMStartAni (10	"S_READY"	"ZS_LEFTHAND")
+				*eventMMStartAni	(1	"S_SHOOT"	"ZS_LEFTHAND")
+				*eventSFX		(3	"Bow_Charge")
+				*eventMMStartAni	(10	"S_READY"	"ZS_LEFTHAND")
 			}
 			aniAlias	("t_BowWalk_2_BowAim"		1	"s_BowAim"		0.0 0.0 M.	"t_BowRun_2_BowAim"		F)
 // Seitenwinkel: +/- 30°	Höhenwinkel: +/- 45°
@@ -2050,15 +2101,16 @@ Model ("HuS")
 			}
 			ani			("t_BowReload"				1	"s_BowAim"		0.0 0.0 M.	"Hum_BowAim.asc"		F	13	41)
 			{
-				*eventMMStartAni (13	"S_RELAX"	"ZS_LEFTHAND")
-				*eventSFX		(18	"BowReload")
-		        *eventTag		(18	"DEF_PLACE_MUNITION" "ZS_RIGHTHAND")
-				*eventMMStartAni (40	"S_READY"	"ZS_LEFTHAND")
+				*eventMMStartAni	(13	"S_RELAX"	"ZS_LEFTHAND")
+		       	*eventTag		(18	"DEF_PLACE_MUNITION" "ZS_RIGHTHAND")
+				*eventSFX		(30	"Bow_Charge")
+				*eventMMStartAni	(40	"S_READY"	"ZS_LEFTHAND")
 			}
 
 			ani			("t_BowAim_2_BowRun"		1	""				0.0 0.0 M.	"Hum_BowAim.asc"			F	1	11)
 			{
-				*eventMMStartAni (11	"S_NORMAL"	"ZS_LEFTHAND")
+				*eventMMStartAni	(11	"S_NORMAL"	"ZS_LEFTHAND")
+				*eventSFX		(11	"Bow_Refuse")
 			}
 			aniAlias	("t_BowAim_2_BowWalk"		1	""				0.0	0.0	M.	"t_BowAim_2_BowRun"			R)
 			aniAlias	("t_BowAim_2_Stand"			1	""				0.0	0.0	M.	"t_BowAim_2_BowRun"			R)
@@ -2071,6 +2123,9 @@ Model ("HuS")
 
 //	CBow-RUN
 			ani			("s_CBowRun"				1	"s_CBowRun"		0.1 0.1 MI	"Hum_Amb_CBowRun_M01.asc"	F	1	50	FPS:10)
+			{
+				*eventMMStartAni 	(2	"S_SHOOT"	"ZS_RIGHTHAND")
+			}
 			ani			("t_CBowRun_2_CBowRunL"		1	"s_CBowRunL"	0.1	0.0	M.	"Hum_CBowRun.asc"		F	1	11)
 			ani			("s_CBowRunL"				1	"s_CBowRunL"	0.0	0.0	M.	"Hum_CBowRun.asc"		F	12	31)
 			{
@@ -2132,7 +2187,15 @@ Model ("HuS")
 // CROSSBOW TURNING
 //////////////////////////
 			ani			("t_CBowRunTurnL"			20	"t_CBowRunTurnL"	0.1	0.1	M.	"Hum_CBowTurn.asc"		F	0	24)
+			{
+				*eventSFXGrnd	(8	"Run")
+				*eventSFXGrnd	(19	"Run")
+			}
 			ani			("t_CBowRunTurnR"			20	"t_CBowRunTurnR"	0.1	0.1	M.	"Hum_CBowTurn.asc"		F	25	49)
+			{
+				*eventSFXGrnd	(30	"Run")
+				*eventSFXGrnd	(41	"Run")
+			}
 
 			aniAlias	("t_CBowWalkTurnL"			20	"t_CBowWalkTurnL"	0.1	0.1	M.	"t_CBowRunTurnL"		F)
 			aniAlias	("t_CBowWalkTurnR"			20	"t_CBowWalkTurnR"	0.1	0.1	M.	"t_CBowRunTurnR"		F)
@@ -2209,9 +2272,9 @@ Model ("HuS")
 			}
 			ani			("t_CBowReload"				1	"s_CBowAim"		0.0 0.0 M.	"Hum_CBowAim.asc"		F	7	39)
 			{
-				*eventSFX		(14	"BowReload")
-		        *eventTag		(14 "DEF_PLACE_MUNITION" "ZS_LEFTHAND")
 				*eventMMStartAni	(7	"S_RELAX"	"ZS_RIGHTHAND")
+				*eventSFX		(14	"Crossbow_Charge")
+		     		*eventTag		(14 "DEF_PLACE_MUNITION" "ZS_LEFTHAND")
 				*eventMMStartAni	(31	"S_READY"	"ZS_RIGHTHAND")
 			}
 
@@ -2383,6 +2446,7 @@ Model ("HuS")
 // Sumpfkraut rauchen
 			ani			("t_JOINT_Stand_2_S0"		1	"s_JOINT_S0"	0.1	0.0	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	0	39)
 			{
+				*eventTag	(6	"DEF_INV_TORCH")
 				*eventTag	(24	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
 			}
 			ani			("s_JOINT_S0"				1	"s_JOINT_S0"	0.0	0.0	M.	"Hum_SmokeHerb_Layer_M01.asc"		F	40	40)
@@ -2459,7 +2523,7 @@ Model ("HuS")
 			ani			("t_FIRESPIT_Stand_2_S0"	1	"s_FIRESPIT_S0"	0.2	0.0	M.	"Hum_FireSpit_M01.asc"		F	0	69	FPS:10)
 			{
 				*eventTag		(1	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
-				*eventTag		(1	"DEF_CREATE_ITEM"	"ZS_LEFTHAND" "ItLsTorch")
+				*eventTag		(3	"DEF_CREATE_ITEM"	"ZS_LEFTHAND" "ItLsTorchFirespit")
 			}
 			ani			("s_FIRESPIT_S0"			1	"s_FIRESPIT_S0"	0.0	0.0	M.	"Hum_FireSpit_M01.asc"		F	70	70)
 			ani			("t_FIRESPIT_S0_2_Stand"	1	""				0.0	0.1	M.	"Hum_FireSpit_M01.asc"		R	0	69	FPS:10)
@@ -2690,6 +2754,46 @@ Model ("HuS")
 			aniAlias	("t_BedHigh_Back_S1_2_S0"		1	"s_BedHigh_Back_S0"		0.0	0.0	M.	"t_BedHigh_Back_S0_2_S1"		R)
 
 // ---------------------------------------------------------------------------------------------------------------
+// Fireplace
+			ani			("c_FP_Stand_2_S0_1"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	0	8)
+			ani			("c_FP_Stand_2_S0_2"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	20	28)
+			ani			("c_FP_Stand_2_S0_3"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	40	48)
+			aniComb		("t_FIREPLACE_Stand_2_S0"	1	"s_FIREPLACE_S0"	0.0	0.0	M.	"c_FP_STAND_2_S0_"			3)
+			{
+				*eventTag	(0	"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+			}
+
+			ani			("c_FP_S0_1"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	9	9)
+			ani			("c_FP_S0_2"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	29	29)
+			ani			("c_FP_S0_3"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	49	49)
+			aniComb		("s_FIREPLACE_S0"			1	"s_FIREPLACE_S0"	0.0	0.0	M.	"c_FP_S0_"					3)
+
+			ani			("c_FP_S0_2_Stand_1"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	0	8)
+			ani			("c_FP_S0_2_Stand_2"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	20	28)
+			ani			("c_FP_S0_2_Stand_3"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	40	48)
+			aniComb		("t_FIREPLACE_S0_2_Stand"	1	""					0.0	0.0	M.	"c_FP_STAND_2_S0_"			3)
+			{
+				*eventTag	(0	"DEF_REMOVE_ITEM")
+			}
+
+			ani			("c_FP_S0_2_S1_1"			1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	10	18)
+			ani			("c_FP_S0_2_S1_2"			1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	30	38)
+			ani			("c_FP_S0_2_S1_3"			1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	50	58)
+			aniComb		("t_FIREPLACE_S0_2_S1"		1	"s_FIREPLACE_S1"	0.0	0.0	M.	"c_FP_S0_2_S1_"				3)
+
+			ani			("c_FP_S1_1"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	19	19)
+			ani			("c_FP_S1_2"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	39	39)
+			ani			("c_FP_S1_3"				1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		F	59	59)
+			aniComb		("s_FIREPLACE_S1"			1	"s_FIREPLACE_S1"	0.0	0.0	M.	"c_FP_S1_"					3)
+
+			ani			("c_FP_S1_2_Stand_1"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	0	18)
+			ani			("c_FP_S1_2_Stand_2"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	20	38)
+			ani			("c_FP_S1_2_Stand_3"		1	""					0.0	0.0	..	"Hum_FirePlace_M01.asc"		R	40	58)
+			aniComb		("t_FIREPLACE_S1_2_Stand"	1	""					0.0	0.1	M.	"c_FP_S1_2_Stand_"			3)
+			{
+				*eventTag	(0	"DEF_REMOVE_ITEM")
+			}
+// --------------------------------------------------------------------------------------------------------------
 // Auf Stuhl setzen
 			ani			("t_Chair_Stand_2_S0"		1	"s_Chair_S0"	0.2	0.0	M.	"Hum_SitChair_M01.asc"		F	0	4)
 			ani			("s_Chair_S0"				1	"s_Chair_S0"	0.0	0.0	M.	"Hum_SitChair_M01.asc"		F	5	5)
@@ -2895,6 +2999,7 @@ Model ("HuS")
 // TA_PickOre
 			ani			("t_Ore_Stand_2_S0"			1	"s_Ore_S0"		0.2	0.0	M.	"Hum_PickOre_M02.asc"		R	0	4)
 			{
+				*eventTag	(4	"DEF_INV_TORCH")
 				*eventTag	(2	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
 			}
 			ani			("s_Ore_S0"					1	"s_Ore_S0"		0.0	0.0	M.	"Hum_PickOre_M02.asc"		F	5	5)
@@ -2910,7 +3015,7 @@ Model ("HuS")
 
 			ani			("c_Ore_S1_1"				1	""				0.0	0.0	.	"Hum_PickOre_M02.asc"		F	15	75)
 			ani			("c_Ore_S1_2"				1	""				0.0	0.0	.	"Hum_PickOre_M02.asc"		F	75	135)
-			ani			("c_Ore_S1_3"				1	""				0.0	0.0	.	"Hum_PickOre_M02.asc"		F	135	195
+			ani			("c_Ore_S1_3"				1	""				0.0	0.0	.	"Hum_PickOre_M02.asc"		F	135	195)
 			aniComb		("s_Ore_S1"					1	"s_Ore_S1"		0.0	0.0	M.	"c_Ore_S1_"					3)
 			{
 				*eventPFX	(24	1	"CPFX_IAI_METAL"	"ZS_RIGHTHAND"	)
@@ -3218,6 +3323,9 @@ Model ("HuS")
 			ani			("t_Stove_S1_2_S0"			1	"s_Stove_S0"		0.1	0.1	M.	"Hum_Stove_A01.asc"		R	5	25)
 
 			ani			("s_Stove_S1"				1	"s_Stove_S1"		0.0	0.0	M.	"Hum_Stove_A01.asc"		F	25	65)
+			{
+				*eventSFX	(26	"PAN_FRYING"	R:1000	EMPTY_SLOT	)
+			}
 			
 			ani			("t_Stove_Random_1"			2	""					0.1	0.1	M.	"Hum_Stove_A01.asc"		F	65	125)
 
@@ -3302,6 +3410,7 @@ Model ("HuS")
 
 			ani			("t_TREASURE_Stand_2_S0"	1	"s_TREASURE_S2"			0.1	0.0	M.	"Hum_TREASURE_A01.asc"	F	0	15)
 			{
+				*eventTag	(3	"DEF_INV_TORCH")
 				*eventTag	(5	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
 			}
 			ani			("s_TREASURE_S0"			1	"t_TREASURE_S0_2_S1"	0.0	0.0	M.	"Hum_TREASURE_A01.asc"	F	15	15)
@@ -3717,18 +3826,14 @@ Model ("HuS")
 
 			ani			("t_CELLO_Stand_2_S0"		1	"S_CELLO_S0"	0.1	0.0	M.	"extremo_Cello.asc"				F	0	35)
 			{
-				*eventPFX	(15	 1	"paukefx"	"zs_crossbow"	ATTACH)
 				*eventTag	(25	"DEF_CREATE_ITEM"	"ZS_RightHAND" "Itmi_iecellobow")
 				*eventTag	(27	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
-				*eventPFXStop	(33	1)
 			}
 
 			ani			("s_CELLO_S0"				1	"S_CELLO_S0"	0.0	0.0	M.	"extremo_Cello.asc"				F	35	70)
 			ani			("t_CELLO_S0_2_Stand"		1	""				0.0	0.1	M.	"extremo_Cello.asc"				R	0	35)
 			{
-				*eventPFXStop	(15	1)
 				*eventTag		(20	"DEF_REMOVE_ITEM")
-				*eventPFX		(34	 1	"paukefx"	"zs_crossbow"	ATTACH)
 			}
 			
 			ani			("t_CELLO_S0_2_S1"			1	"S_CELLO_S1"	0.0	0.0	M.	"extremo_Cello.asc"				F	70	77)
@@ -3747,24 +3852,18 @@ Model ("HuS")
 
 			ani			("t_DRUMSCHEIT_Stand_2_S0"	1	"S_DRUMSCHEIT_S0"	0.0	0.0	M.	"extremo_drumscheit.asc"	F	0	35)
 			{
-				*eventPFX	(15	 1	"paukefx"	"zs_crossbow"	ATTACH)
+				*eventTag	(5	"DEF_INV_TORCH")
 				*eventTag	(25	"DEF_CREATE_ITEM"	"ZS_RightHAND" "Itmi_iecellobow")
 				*eventTag	(29	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
-				*eventPFXStop	(33	1)
 			}
-
 			ani			("s_DRUMSCHEIT_S0"			1	"S_DRUMSCHEIT_S0"	0.1	0.1	M.	"extremo_drumscheit.asc"	F	35	70)
 			ani			("t_DRUMSCHEIT_S0_2_Stand"	1	""					0.0	0.0	M.	"extremo_drumscheit.asc"	R	0	35)
 			{
-				*eventPFXStop	(15	1)
 				*eventTag		(18	"DEF_REMOVE_ITEM")
-				*eventPFX		(34	 1	"paukefx"	"zs_crossbow"	ATTACH)
 			}
-			
 			ani			("t_DRUMSCHEIT_S0_2_S1"		1	"S_DRUMSCHEIT_S1"	0.0	0.0	M.	"extremo_drumscheit.asc"	F	70	80)
 			ani			("s_DRUMSCHEIT_S1"			1	"S_DRUMSCHEIT_S1"	0.3	0.3	M.	"extremo_drumscheit.asc"	F	81	129)
 			ani			("t_DRUMSCHEIT_S1_2_S0"		1	"S_DRUMSCHEIT_S0"	0.0	0.0	M.	"extremo_drumscheit.asc"	R	70	80)
-
 		
 // ---------------------------------------------------------------------------------------------------------------
 // Dudelsack
@@ -3772,23 +3871,17 @@ Model ("HuS")
 
 			ani			("t_DUDEL_Stand_2_S0"		1	"S_DUDEL_S0"	0.0	0.0	M.	"extremo_dudel.asc"	F	0	35)
 			{
-				*eventPFX	(15	 1	"paukefx"	"zs_crossbow"	ATTACH)
+				*eventTag	(5	"DEF_INV_TORCH")
 				*eventTag	(21	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
-				*eventPFXStop	(33	1)
 			}
-			
 			ani			("s_DUDEL_S0"				1	"S_DUDEL_S0"	0.1	0.1	M.	"extremo_dudel.asc"	F	35	70)
 			ani			("t_DUDEL_S0_2_Stand"		1	""				0.0	0.0	M.	"extremo_dudel.asc"	R	0	35)
 			{
-				*eventPFXStop	(15	1)
 				*eventTag		(18	"DEF_REMOVE_ITEM")
-				*eventPFX		(34	 1	"paukefx"	"zs_crossbow"	ATTACH)
 			}
-			
 			ani			("t_DUDEL_S0_2_S1"			1	"S_DUDEL_S1"	0.0	0.0	M.	"extremo_dudel.asc"	F	70	80)
 			ani			("s_DUDEL_S1"				1	"S_DUDEL_S1"	0.1	0.1	M.	"extremo_dudel.asc"	F	80	130)
 			ani			("t_DUDEL_S1_2_S0"			1	"S_DUDEL_S0"	0.0	0.0	M.	"extremo_dudel.asc"	R	70	80)
-
 		
 // ---------------------------------------------------------------------------------------------------------------
 // Harfe
@@ -3796,45 +3889,40 @@ Model ("HuS")
 
 			ani			("t_HARFE_Stand_2_S0"		1	"S_HARFE_S0"	0.1	0.1	M.	"extremo_Harfe.asc"	F	0	35)
 			{
-				*eventPFX	(15	 1	"paukefx"	"zs_crossbow"	ATTACH)
-				*eventTag	(25	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
-				*eventPFXStop	(33	1)
+				*eventTag	(5	"DEF_INV_TORCH")
+				*eventTag	(6	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
 			}
 			ani			("s_HARFE_S0"				1	"S_HARFE_S0"	0.1	0.1	M.	"extremo_Harfe.asc"	F	35	70)
 			ani			("t_HARFE_S0_2_Stand"		1	""				0.1	0.1	M.	"extremo_Harfe.asc"	R	0	35)
 			{
-				*eventPFXStop	(13	1)
-				*eventTag		(18	"DEF_REMOVE_ITEM")
-				*eventPFX		(34	 1	"paukefx"	"zs_crossbow"	ATTACH)
+				*eventTag	(18	"DEF_REMOVE_ITEM")
 			}
-
-
 			ani			("t_HARFE_S0_2_S1"			1	"S_HARFE_S1"	0.1	0.1	M.	"extremo_Harfe.asc"	F	70	80)
 			ani			("s_HARFE_S1"				1	"S_HARFE_S1"	0.1	0.1	M.	"extremo_Harfe.asc"	F	81	130)
+			{
+				*eventSFX	(82	"Inst_Harp"		R:1000	EMPTY_SLOT	)
+			}
 			ani			("t_HARFE_S1_2_S0"			1	"S_HARFE_S0"	0.1	0.1	M.	"extremo_Harfe.asc"	R	70	80)
-
-		
+			
 // ---------------------------------------------------------------------------------------------------------------
 // Laute
 // -- Unicorn
 
 			ani			("t_IELAUTE_Stand_2_S0"		1	"S_IELAUTE_S0"	0.1	0.0	M.	"extremo_laute.asc"			F	0	35)
 			{
-				*eventPFX	(15	 1	"paukefx"	"zs_crossbow"	ATTACH)
-				*eventTag	(27	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
-				*eventPFXStop	(33	1)
+				*eventTag	(5	"DEF_INV_TORCH")
+				*eventTag	(6	"DEF_INSERT_ITEM"	"ZS_LEFTHAND")
 			}
-			
 			ani			("s_IELAUTE_S0"				1	"S_IELAUTE_S0"	0.0	0.0	M.	"extremo_laute.asc"			F	35	70)
 			ani			("t_IELAUTE_S0_2_Stand"		1	""				0.0	0.1	M.	"extremo_laute.asc"			R	0	35)
 			{
-				*eventPFXStop	(13	1)
 				*eventTag		(18	"DEF_REMOVE_ITEM")
-				*eventPFX		(34	 1	"paukefx"	"zs_crossbow"	ATTACH)
 			}
-			
 			ani			("t_IELAUTE_S0_2_S1"			1	"S_IELAUTE_S1"	0.1	0.1	M.	"extremo_laute.asc"			F	70	80)
 			ani			("s_IELAUTE_S1"					1	"S_IELAUTE_S1"	0.1	0.1	M.	"extremo_laute.asc"			F	81	130)
+			{
+				*eventSFX	(82	"Inst_IELute"		R:1000	EMPTY_SLOT	)
+			}
 			ani			("t_IELAUTE_S1_2_S0"			1	"S_IELAUTE_S0"	0.1	0.1	M.	"extremo_laute.asc"			R	70	80)
 
 // --------------------------------------------------------------------------------------------------------------
@@ -3843,38 +3931,23 @@ Model ("HuS")
 
 			ani			("t_PAUKE_Stand_2_S0"		1	"s_PAUKE_S0"	0.0	0.0	M.	"extremo_pauke_start.asc"		F	0	40)
 			{
+				*eventTag	(5	"DEF_INV_TORCH")
 				*eventTag	(1	"DEF_CREATE_ITEM"	"ZS_RightHAND" "Itmi_iedrumstick")
 				*eventTag	(1	"DEF_CREATE_ITEM"	"ZS_LEFTHAND" "Itmi_iedrumstick")
-				*eventPFX	(13	 1	"paukefx"	"zs_crossbow"	)
-				*eventTag	(24	"DEF_INSERT_ITEM"	"zs_crossbow" ATTACH)
-				*eventPFXStop	(27	1)
-		
 			}
-
 			ani			("s_PAUKE_S0"				1	"s_PAUKE_S0"	0.0	0.0	M.	"extremo_pauke_start.asc"		F	40	80)
 			ani			("t_PAUKE_S0_2_Stand"		1	""				0.0	0.0	M.	"extremo_pauke_start.asc"		R	0	40)
 			{
-			
 				*eventTag	(20	"DEF_REMOVE_ITEM")
-				*eventPFXStop	(20	1)
-				*eventPFX	(35	 1	"paukefx"	"zs_crossbow"	)
-				
-				
 			}
-			
 			ani			("t_PAUKE_S0_2_S1"			1	"s_PAUKE_S1"	0.0	0.0	M.	"extremo_pauke_start.asc"		F	80	80)
 			ani			("s_PAUKE_S1"				1	"s_PAUKE_S1"	0.2	0.2	M.	"extremo_pauke_start.asc"		F	80	129)
 			{
 				*eventSFX	(96	"Inst_Conga01"	EMPTY_SLOT	)
 				*eventSFX	(121	"Inst_Conga02"	EMPTY_SLOT	)
 			}
-			
-
 			ani			("t_PAUKE_S1_2_S0"			1	"s_PAUKE_S0"	0.0	0.0	M.	"extremo_pauke_start.asc"		F	80	80)
-
-
-
-		}
+	}
 }
 
 //************************************************************************************

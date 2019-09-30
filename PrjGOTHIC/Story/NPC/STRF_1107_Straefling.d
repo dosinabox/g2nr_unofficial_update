@@ -9,7 +9,7 @@ instance STRF_1107_Straefling(Npc_Default)
 	npcType = NPCTYPE_OCMAIN;
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_COWARD;
-	EquipItem(self,ItMw_2H_Axe_L_01);
+	EquipItem(self,ItMw_1H_Mace_L_01);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart04,BodyTex_N,ITAR_Prisoner);
 	Mdl_SetModelFatness(self,0);

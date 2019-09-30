@@ -454,7 +454,7 @@ instance ItMw_TrainSword(C_Item)
 	value = 0;
 	damageTotal = 5;
 	damagetype = DAM_BLUNT;
-	range = 40;
+	range = 50;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = 5;
 	visual = "ItMw_TrainSword.3DS";
@@ -1282,7 +1282,7 @@ instance ItMw_Banditenaxt(C_Item)
 	value = 950;
 	damageTotal = 90;
 	damagetype = DAM_EDGE;
-	range = Range_Streitaxt1;
+	range = 80;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Streitaxt1;
 	visual = "ItMw_Banditenaxt.3DS";
