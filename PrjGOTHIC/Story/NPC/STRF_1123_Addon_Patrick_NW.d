@@ -14,7 +14,7 @@ instance STRF_1123_Addon_Patrick_NW(Npc_Default)
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_NormalBart02,BodyTex_L,ITAR_SLD_L);
 	Mdl_SetModelFatness(self,1);
-	Mdl_ApplyOverlayMds(self,"Humans_Tired.mds");
+	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,30);
 	daily_routine = Rtn_Start_1123;

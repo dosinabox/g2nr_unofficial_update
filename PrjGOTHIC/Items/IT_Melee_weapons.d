@@ -790,7 +790,7 @@ instance ItMw_2H_OrcSword_01(C_Item)
 	name = "Краш Варрок";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_SWD;
-	material = MAT_METAL;
+	material = MAT_WOOD;
 	value = Value_Orkschwert;
 	damageTotal = Damage_Orkschwert;
 	damagetype = DAM_EDGE;

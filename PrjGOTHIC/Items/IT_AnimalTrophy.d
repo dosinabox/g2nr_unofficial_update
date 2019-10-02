@@ -501,7 +501,7 @@ instance ItAt_StoneGolemHeart(C_Item)
 {
 	name = "Сердце каменного голема";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = Value_StoneGolemHeart;
 	visual = "ItAt_StoneGolemHeart.3DS";
 	material = MAT_STONE;
@@ -514,7 +514,7 @@ instance ItAt_FireGolemHeart(C_Item)
 {
 	name = "Сердце огненного голема";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = Value_FireGolemHeart;
 	visual = "ItAt_FireGolemHeart.3DS";
 	material = MAT_STONE;
@@ -527,7 +527,7 @@ instance ItAt_IceGolemHeart(C_Item)
 {
 	name = "Сердце ледяного голема";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = Value_IceGolemHeart;
 	visual = "ItAt_IceGolemHeart.3DS";
 	material = MAT_STONE;
@@ -540,7 +540,7 @@ instance ItAt_SwampGolemHeart(C_Item)
 {
 	name = "Сердце болотного голема";
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MULTI | ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = Value_SwampGolemHeart;
 	visual = "ItAt_SwampGolemHeart.3DS";
 	material = MAT_LEATHER;

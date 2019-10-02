@@ -404,7 +404,7 @@ instance ItMw_MalethsGehstock_MIS(C_Item)
 	value = 15;
 	damageTotal = 10;
 	damagetype = DAM_BLUNT;
-	range = Range_VLKMace;
+	range = 80;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKMace;
 	visual = "Itmw_008_1h_pole_02.3ds";
