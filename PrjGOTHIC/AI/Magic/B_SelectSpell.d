@@ -272,7 +272,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	};
-	if(slf.guild == GIL_ICEGOLEM)
+	/*if(slf.guild == GIL_ICEGOLEM)
 	{
 		if(!Npc_HasItems(slf,ItRu_IceCube))
 		{
@@ -287,49 +287,32 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
 			return TRUE;
 		};
+	};*/
+	if(slf.guild == GIL_ICEGOLEM)
+	{
+		if(!Npc_HasItems(slf,ItRu_Icelance))
+		{
+			CreateInvItems(slf,ItRu_Icelance,1);
+		};
+		if(!Npc_HasItems(slf,ItRu_IceCube))
+		{
+			CreateInvItems(slf,ItRu_IceCube,1);
+		};
+		if(Npc_GetDistToNpc(slf,oth) < FIGHT_DIST_MELEE)
+		{
+			return FALSE;
+		}
+		else if(Npc_IsInState(oth,ZS_MagicFreeze))
+		{
+			B_ReadySpell(slf,SPL_Icelance,SPL_Cost_Icelance);
+			return TRUE;
+		}
+		else
+		{
+			B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
+			return TRUE;
+		};
 	};
-	//новый алгоритм от N1kX
-	/*if(slf.guild == GIL_ICEGOLEM)
-    {
-        if(Npc_HasItems(slf,ItRu_IceCube) == 0)
-        {
-            CreateInvItems(slf,ItRu_IceCube,1);
-        };
-        if((Npc_GetDistToNpc(slf,oth) < FIGHT_DIST_MELEE) || Npc_IsInState(oth,ZS_MagicFreeze))
-        {
-            return FALSE;
-        }
-        else if(!Npc_IsInState(oth,ZS_MagicFreeze))
-        {
-            if(slf.aivar[AIV_SelectSpell] > 11)
-            {
-                slf.aivar[AIV_SelectSpell] = 0;
-            };
-            if(slf.aivar[AIV_SelectSpell] != 3)
-            {
-                B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
-                return TRUE;
-            }
-            else
-            {
-                B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
-                return TRUE;
-            };
-        }
-        else
-        {
-            if(slf.aivar[AIV_SelectSpell] > 11)
-            {
-                return FALSE;
-            };
-            if(slf.aivar[AIV_SelectSpell] != 4)
-            {
-                B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
-                slf.aivar[AIV_SelectSpell] = 12;
-                return TRUE;
-            };
-        };
-    };*/
 	if(slf.guild == GIL_FIREGOLEM)
 	{
 		if(!Npc_HasItems(slf,ItRu_InstantFireball))

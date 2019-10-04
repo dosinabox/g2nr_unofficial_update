@@ -10,8 +10,9 @@ instance PAL_275_DeadSengrath(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_NAILED;
 	CreateInvItems(self,ItRw_SengrathsArmbrust_MIS,1);
-	CreateInvItems(self,ItBe_Addon_STR_10,1);
-	CreateInvItems(self,ItBe_Addon_Prot_FIRE,1);
+	CreateInvItems(self,ItPo_Mana_01,10);
+	CreateInvItems(self,ItPo_Mana_02,5);
+	CreateInvItems(self,ItSc_PalLightHeal,3);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal03,BodyTex_N,ITAR_PAL_M);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");

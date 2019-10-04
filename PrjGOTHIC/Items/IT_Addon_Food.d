@@ -236,6 +236,10 @@ func void Use_FireStew()
 	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_FireStew);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_FireStew);
 	self.attribute[ATR_STRENGTH] += STR_FireStew;
+	if(IgnoreBonuses == FALSE)
+	{
+		B_RaiseRealAttributeLearnCounter(self,ATR_STRENGTH,STR_FireStew);
+	};
 	concatText = ConcatStrings(PRINT_LearnSTR,IntToString(STR_FireStew));
 	PrintScreen(concatText,-1,53,FONT_Screen,2);
 };

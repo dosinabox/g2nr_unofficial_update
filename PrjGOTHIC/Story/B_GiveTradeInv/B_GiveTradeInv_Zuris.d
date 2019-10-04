@@ -51,8 +51,8 @@ func void B_GiveTradeInv_Zuris(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_02,1);
 		CreateInvItems(slf,ItPo_Health_01,15);
 		CreateInvItems(slf,ItPo_Health_02,2);
-		CreateInvItems(slf,ItMi_ApfelTabak,5);
 		CreateInvItems(slf,ItPo_Perm_STR,1);
+		CreateInvItems(slf,ItMi_ApfelTabak,5);
 		Zuris_ItemsGiven_Chapter_2 = TRUE;
 	};
 	if((Kapitel >= 3) && (Zuris_ItemsGiven_Chapter_3 == FALSE))
@@ -66,6 +66,7 @@ func void B_GiveTradeInv_Zuris(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_02,15);
 		CreateInvItems(slf,ItPo_Perm_Mana,1);
 		CreateInvItems(slf,ItPo_Speed,1);
+		CreateInvItems(slf,ItMi_ApfelTabak,2);
 		Zuris_ItemsGiven_Chapter_3 = TRUE;
 	};
 	if((Kapitel >= 4) && (Zuris_ItemsGiven_Chapter_4 == FALSE))
@@ -80,6 +81,7 @@ func void B_GiveTradeInv_Zuris(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_03,10);
 		CreateInvItems(slf,ItPo_Perm_Mana,1);
 		CreateInvItems(slf,ItPo_Speed,1);
+		CreateInvItems(slf,ItMi_ApfelTabak,3);
 		Zuris_ItemsGiven_Chapter_4 = TRUE;
 	};
 	if((Kapitel >= 5) && (Zuris_ItemsGiven_Chapter_5 == FALSE))
@@ -96,6 +98,7 @@ func void B_GiveTradeInv_Zuris(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Perm_Health,1);
 		CreateInvItems(slf,ItPo_Speed,1);
 		CreateInvItems(slf,ItFo_Addon_Pfeffer_01,1);
+		CreateInvItems(slf,ItMi_ApfelTabak,2);
 		Zuris_ItemsGiven_Chapter_5 = TRUE;
 	};
 };
