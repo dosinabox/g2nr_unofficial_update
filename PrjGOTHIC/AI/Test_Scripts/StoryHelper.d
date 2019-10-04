@@ -74,6 +74,14 @@ func void b_build_settings_diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	if(ClassicAlchemy == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить алхимию из Готики 2 без аддона",StoryHelper_ClassicAlchemy);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить алхимию из Готики 2 без аддона",StoryHelper_ClassicAlchemy);
+	};
 	if(Helmets_Enabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Отделить шлемы от доспехов",StoryHelper_Helmets);
@@ -359,6 +367,21 @@ func void StoryHelper_Helmets()
 			CreateInvItems(hero,ITHE_DJG_H,1);
 		};
 		Helmets_Enabled = TRUE;
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_ClassicAlchemy()
+{
+	if(ClassicAlchemy == TRUE)
+	{
+		ClassicAlchemy = FALSE;
+		PrintScreen("Алхимия из Готики 2 без аддона выключена",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		ClassicAlchemy = TRUE;
+		PrintScreen("Алхимия из Готики 2 без аддона включена",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

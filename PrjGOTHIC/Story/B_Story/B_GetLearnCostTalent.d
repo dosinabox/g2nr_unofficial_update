@@ -209,11 +209,25 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 		}
 		else if(skill == POTION_Perm_STR)
 		{
-			kosten = 20;
+			if(ClassicAlchemy == FALSE)
+			{
+				kosten = 20;
+			}
+			else
+			{
+				kosten = 10;
+			};
 		}
 		else if(skill == POTION_Perm_DEX)
 		{
-			kosten = 20;
+			if(ClassicAlchemy == FALSE)
+			{
+				kosten = 20;
+			}
+			else
+			{
+				kosten = 10;
+			};
 		}
 		else if(skill == POTION_Perm_Mana)
 		{
@@ -526,5 +540,18 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 		};
 	};
 	return kosten;
+};
+
+func int C_ShowAlchemySTRDEXDialog()
+{
+	if(ClassicAlchemy == FALSE)
+	{
+		return TRUE;
+	}
+	else if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE))
+	{
+		return TRUE;
+	};
+	return FALSE;
 };
 

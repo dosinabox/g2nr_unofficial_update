@@ -827,6 +827,14 @@ func void B_Constantino_TeachAlchemy()
 	B_LogEntry(TOPIC_CityTeacher," онстантино может обучить мен€ искусству алхимии.");
 };
 
+func void B_Constantino_TeachAlchemyBasics()
+{
+	AI_Output(self,other,"DIA_Constantino_Alchemy_10_04");	//„тобы приготовить зелье на алхимическом столе, тебе понадобитс€ лабораторна€ пробирка.
+	AI_Output(self,other,"DIA_Constantino_Alchemy_10_05");	//“ы должен знать правильную формулу и иметь соответствующие ингредиенты.
+	AI_Output(self,other,"DIA_Constantino_Alchemy_10_06");	//я могу научить теб€ многим таким формулам.
+	Alchemy_Explain = TRUE;
+};
+
 instance DIA_Constantino_Alchemy(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -854,9 +862,7 @@ func void DIA_Constantino_Alchemy_Info()
 		AI_Output(self,other,"DIA_Constantino_Alchemy_10_01");	//’орошо. —начала основы.
 		AI_Output(self,other,"DIA_Constantino_Alchemy_10_02");	//¬се зель€ делаютс€ из растений - они обладают различной силой.
 		AI_Output(self,other,"DIA_Constantino_Alchemy_10_03");	//Ќо растени€ пускают всю свою силу в рост - а алхими€ занимаетс€ изменением этой силы и направлением ее в нужное русло.
-		AI_Output(self,other,"DIA_Constantino_Alchemy_10_04");	//„тобы приготовить зелье на алхимическом столе, тебе понадобитс€ лабораторна€ пробирка.
-		AI_Output(self,other,"DIA_Constantino_Alchemy_10_05");	//“ы должен знать правильную формулу и иметь соответствующие ингредиенты.
-		AI_Output(self,other,"DIA_Constantino_Alchemy_10_06");	//я могу научить теб€ многим таким формулам.
+		B_Constantino_TeachAlchemyBasics();
 		AI_Output(self,other,"DIA_Constantino_Alchemy_10_07");	//√отовить зель€, восстанавливающие твою потер€нную силу, и даже зель€, которые воздействуют на твою силу перманентно.
 		AI_Output(self,other,"DIA_Constantino_Alchemy_10_08");	//Ќо нельз€ выучить все сразу.
 		B_Constantino_TeachAlchemy();
@@ -914,14 +920,6 @@ func void DIA_Constantino_NewRecipes_Info()
 		{
 			AI_Output(self,other,"DIA_Lothar_Add_01_15");	//“ебе придетс€ стать учеником одного из мастеров в нижней части города.
 			AI_StopProcessInfos(self);
-			/*AI_Output(other,self,"DIA_Addon_Henry_Einigen_15_00");	//ћы можем как-нибудь договоритьс€?
-			B_Say_Gold(self,other,300);
-			Info_ClearChoices(DIA_Constantino_NewRecipes);
-			if(Npc_HasItems(other,ItMi_Gold) >= 300)
-			{
-				Info_AddChoice(DIA_Constantino_NewRecipes,"¬от, держи...",DIA_Constantino_NewRecipes_Ok);
-			};
-			Info_AddChoice(DIA_Constantino_NewRecipes,"Ёто слишком дорого дл€ мен€.",DIA_Constantino_NewRecipes_No);*/
 		};
 	}
 	else
@@ -943,9 +941,11 @@ instance DIA_Constantino_TEACH(C_Info)
 };
 
 
+var int DIA_Constantino_Teach_permanent;
+
 func int DIA_Constantino_TEACH_Condition()
 {
-	if(Constantino_TeachAlchemy == TRUE)
+	if((DIA_Constantino_Teach_permanent == FALSE) && (Constantino_TeachAlchemy == TRUE))
 	{
 		return TRUE;
 	};
@@ -953,46 +953,63 @@ func int DIA_Constantino_TEACH_Condition()
 
 func void DIA_Constantino_TEACH_Info()
 {
+	var int talente;
+	talente = 0;
 	AI_Output(other,self,"DIA_Constantino_TEACH_15_00");	// аким рецептам ты можешь обучить мен€?
 	if(B_GetGreatestPetzCrime(self) == CRIME_NONE)
 	{
-		if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == TRUE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE))
 		{
-			AI_Output(self,other,"DIA_Constantino_TEACH_10_01");	//»звини. я больше ничему не могу научить теб€.
+			Info_ClearChoices(DIA_Constantino_TEACH);
+			Info_AddChoice(DIA_Constantino_TEACH,Dialog_Back,DIA_Constantino_Teach_BACK);
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
+		{
+			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Constantino_TEACH_Health01);
+			talente += 1;
+		};
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE))
+		{
+			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Constantino_TEACH_Health02);
+			talente += 1;
+		};
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE))
+		{
+			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Constantino_TEACH_Health03);
+			talente += 1;
+		};
+		if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE))
+		{
+			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Constantino_TEACH_PermHealth);
+			talente += 1;
+		};
+		if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
+		{
+			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Constantino_TEACH_Mana01);
+			talente += 1;
+		};
+		if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
+		{
+			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Constantino_TEACH_Mana02);
+			talente += 1;
+		};
+		if((PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE) && C_ShowAlchemySTRDEXDialog())
+		{
+			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_STR_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Constantino_TEACH_PermSTR);
+			talente += 1;
+		};
+		if(talente > 0)
+		{
+			if(Alchemy_Explain == FALSE)
+			{
+				B_Constantino_TeachAlchemyBasics();
+			};
+			AI_Output(self,other,"DIA_Constantino_TEACH_10_02");	//≈сть несколько - выбирай.
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Constantino_TEACH_10_02");	//≈сть несколько - выбирай.
-			Info_ClearChoices(DIA_Constantino_TEACH);
-			Info_AddChoice(DIA_Constantino_TEACH,Dialog_Back,DIA_Constantino_Teach_BACK);
-			if(PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE)
-			{
-				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Constantino_TEACH_Health01);
-			};
-			if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE))
-			{
-				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Constantino_TEACH_Health02);
-			};
-			if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE))
-			{
-				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Constantino_TEACH_Health03);
-			};
-			if((PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE))
-			{
-				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HPMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Health)),DIA_Constantino_TEACH_PermHealth);
-			};
-			if(PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE)
-			{
-				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_01)),DIA_Constantino_TEACH_Mana01);
-			};
-			if((PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == TRUE))
-			{
-				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_Mana_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Mana_02)),DIA_Constantino_TEACH_Mana02);
-			};
-			if(PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == FALSE)
-			{
-				Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_STR_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_STR)),DIA_Constantino_TEACH_PermSTR);
-			};
+			AI_Output(self,other,"DIA_Constantino_TEACH_10_01");	//»звини. я больше ничему не могу научить теб€.
+			DIA_Constantino_Teach_permanent = TRUE;
 		};
 	}
 	else

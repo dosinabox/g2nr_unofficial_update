@@ -331,7 +331,7 @@ func void DIA_Sagitta_Teach_Info()
 		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Sagitta_Teach_Perm_Mana);
 		talente += 1;
 	};
-	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE)
+	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE) && C_ShowAlchemySTRDEXDialog())
 	{
 		Info_AddChoice(DIA_Sagitta_Teach,B_BuildLearnString(NAME_DEX_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Sagitta_Teach_Perm_DEX);
 		talente += 1;
