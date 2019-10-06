@@ -130,5 +130,9 @@ func void B_UpdateKilledStats(var C_Npc slf)
 	{
 		Stats_Killed_OrcElite += 1;
 	};
+	if(slf.aivar[AIV_MM_REAL_ID] == ID_ORCCOMMANDER)
+	{
+		Stats_Killed_OrcCommander += 1;
+	};
 };
 

@@ -1361,6 +1361,7 @@ Model ("HuS")
 			ani			("t_Stand_2_SuckEnergy_Victim"		1	"s_SuckEnergy_Victim"				0.0	0.0	M.	"Hum_SuckEnergy_Victim_K01.asc"			F	1	2)
 			ani			("s_SuckEnergy_Victim"				1	"t_SuckEnergy_Victim_2_Stand"		0.0	0.0	M.	"Hum_SuckEnergy_Victim_K01.asc"			F	2	247 	FPS:25)
 			{
+				*eventSFX		(2	 "MFX_SUCKENERGY_TARGET"		EMPTY_SLOT)
 				*eventPFX		(25	 	1	"MFX_SUCKENERGY_ANI"			"Bip01 Spine2"		ATTACH) 
 				//*eventPFX		(50	 	2	"MFX_SUCKENERGY_ANI"			"Bip01 Spine2"		ATTACH) 
 				*eventPFX		(75	 	3	"MFX_SUCKENERGY_ANI"			"Bip01 Spine2"		ATTACH) 
@@ -1408,6 +1409,9 @@ Model ("HuS")
 			//variation A
 			ani			("t_Stand_2_GreententacleA_Victim"		1	"s_GreententacleA_Victim"			0.0	0.0	M.	"Hum_Inflate_Victim_K01.asc"			F	1	10)
 			ani			("s_GreententacleA_Victim"				1	"s_GreententacleA_Victim"			0.0	0.0	M.	"Hum_Inflate_Victim_K01.asc"			F	11	199)
+			{
+				*eventSFX		(2	 "MFX_GREENTENTACLE_GROW"		EMPTY_SLOT)
+			}
 			ani			("t_GreententacleA_Victim_2_Stand"		1	""									0.0	0.2	M.	"Hum_Inflate_Victim_K01.ASC"			F	200	200)
 			
 			//variation B

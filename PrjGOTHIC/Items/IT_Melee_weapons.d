@@ -2376,3 +2376,49 @@ instance ItMw_2H_Blessed_03(C_Item)
 	count[5] = value;
 };
 
+instance ItMw_2H_Hammer_01(C_Item)
+{
+	name = "Двуручный молот";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_2HD_AXE;
+	material = MAT_WOOD;
+	value = 1100;
+	damageTotal = 110;
+	damagetype = DAM_BLUNT;
+	range = 90;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = 110;
+	visual = "ItMw_2h_Hammer_01.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_TwoHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMw_2H_Hammer_02(C_Item)
+{
+	name = "Сокрушитель";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_2HD_AXE;
+	material = MAT_WOOD;
+	value = 2000;
+	damageTotal = 170;
+	damagetype = DAM_BLUNT;
+	range = 90;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = 170;
+	visual = "ItMw_2h_Hammer_02.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_TwoHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+

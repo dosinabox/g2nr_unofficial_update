@@ -124,7 +124,7 @@ INSTANCE ITHE_PAL_H(C_Item)
 	protection[PROT_MAGIC] = 10;
 	value = 2000;
 	wear = WEAR_Head;
-	visual = "ITHE_PAL_H_CLOSED.3ds";
+	visual = "ITHE_PAL_H.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
 	description = name;

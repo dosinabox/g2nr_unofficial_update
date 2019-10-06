@@ -1240,3 +1240,4 @@ var int TrollBlackFurWasted;
 var int Stats_Killed_Draconian;
 var int Stats_Killed_Dementor;
 var int Stats_Killed_OrcElite;
+var int Stats_Killed_OrcCommander;

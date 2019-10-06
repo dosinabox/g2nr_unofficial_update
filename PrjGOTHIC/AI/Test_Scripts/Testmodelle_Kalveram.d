@@ -110,6 +110,8 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_2H_Blessed_01,1);
 	CreateInvItems(self,ItMw_2H_Blessed_02,1);
 	CreateInvItems(self,ItMw_2H_Blessed_03,1);
+	CreateInvItems(self,ItMw_2H_Hammer_01,1);
+	CreateInvItems(self,ItMw_2H_Hammer_02,1);
 	CreateInvItems(self,ItMw_BeliarWeapon_1H_01,1);
 	CreateInvItems(self,ItMw_BeliarWeapon_2H_01,1);
 	CreateInvItems(self,ItMw_BeliarWeapon_Raven,1);
@@ -1293,12 +1295,12 @@ func void UseHelmets()
 {
 	Snd_Play("Geldbeutel");
 	Print("Найдено много разных доспехов и шлемов!");
-	CreateInvItem(self,ITAR_OHT);
+//	CreateInvItem(self,ITAR_OHT);
 	CreateInvItem(self,ITAR_DJGN_M);
 	CreateInvItem(self,ITAR_DJGN_H);
 	CreateInvItem(self,ITAR_PALN_M);
 	CreateInvItem(self,ITAR_PALN_H);
-	CreateInvItem(self,ITHE_OHT);
+//	CreateInvItem(self,ITHE_OHT);
 	CreateInvItem(self,ITHE_DJG_M);
 	CreateInvItem(self,ITHE_DJG_H);
 	CreateInvItem(self,ITHE_PAL_M);
@@ -1571,9 +1573,11 @@ func void Use_StatsBook()
 	Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
-	Doc_PrintLine(nDocID,0,ConcatStrings("Убито людей-ящеров: ",IntToString(Stats_Killed_Draconian)));
-	Doc_PrintLine(nDocID,0,ConcatStrings("Убито ищущих: ",IntToString(Stats_Killed_Dementor)));
-	Doc_PrintLine(nDocID,0,ConcatStrings("Убито элитных орков: ",IntToString(Stats_Killed_OrcElite)));
+	Doc_PrintLine(nDocID,0,"Убито:");
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Draconian)," людей-ящеров"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Dementor)," ищущих"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcElite)," элитных орков"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcCommander)," предводителей орков"));
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
