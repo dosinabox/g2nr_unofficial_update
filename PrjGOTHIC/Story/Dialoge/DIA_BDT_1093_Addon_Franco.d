@@ -262,7 +262,7 @@ func void DIA_Addon_Franco_Mis2_Info()
 	Log_CreateTopic(Topic_Addon_Stoneplate,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Addon_Stoneplate,LOG_Running);
 	B_LogEntry(Topic_Addon_Stoneplate,"‘ранко нужна каменна€ табличка, которую должен был принести ему Ёдгор. “еперь это мо€ забота.");
-	B_LogEntry(Topic_Addon_Franco,"‘ранко хочет, чтобы € помог Ёдгору.");
+	Log_AddEntry(Topic_Addon_Franco,"‘ранко хочет, чтобы € помог Ёдгору.");
 };
 
 

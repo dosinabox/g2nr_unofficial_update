@@ -102,6 +102,33 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			MIS_Cipher_BringWeed = LOG_FAILED;
 		};
 	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Franco))
+	{
+		if(MIS_HlpLogan == LOG_Running)
+		{
+			MIS_HlpLogan = LOG_OBSOLETE;
+		};
+		if(MIS_HlpEdgor == LOG_Running)
+		{
+			MIS_HlpEdgor = LOG_OBSOLETE;
+		};
+	};
 	B_CheckLog();
+};
+
+func void B_UpdateKilledStats(var C_Npc slf)
+{
+	if(slf.guild == GIL_DRACONIAN)
+	{
+		Stats_Killed_Draconian += 1;
+	};
+	if(slf.guild == GIL_DMT)
+	{
+		Stats_Killed_Dementor += 1;
+	};
+	if(slf.aivar[AIV_MM_REAL_ID] == ID_ORCELITE)
+	{
+		Stats_Killed_OrcElite += 1;
+	};
 };
 

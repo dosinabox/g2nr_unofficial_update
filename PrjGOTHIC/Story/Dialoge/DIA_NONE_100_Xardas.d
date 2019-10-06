@@ -232,7 +232,7 @@ instance DIA_Addon_Xardas_Portal(C_Info)
 
 func int DIA_Addon_Xardas_Portal_Condition()
 {
-	if((SC_KnowsPortal == TRUE) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if((SC_KnowsPortal == TRUE) && !C_ScHasBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -260,7 +260,7 @@ instance DIA_Addon_Xardas_PortalAgain(C_Info)
 
 func int DIA_Addon_Xardas_PortalAgain_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && !C_ScHasBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -288,6 +288,7 @@ func void B_Xardas_ClawReaction()
 {
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_08");	//(жадно) Как интересно...
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_09");	//Это оружие может нам очень помочь. Но оно также и очень опасно.
+	B_GivePlayerXP(XP_Ambient * 3);
 };
 
 instance DIA_Addon_Xardas_AddonSuccess(C_Info)
@@ -319,13 +320,11 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_07");	//Да, вот он.
 		B_Xardas_ClawReaction();
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_10");	//Будь осторожнее! И самое главное, не потеряй Коготь!
-		B_GivePlayerXP(XP_Ambient * 3);
 	}
 	else if(C_SCHasBeliarsRune())
 	{
 		AI_Output(other,self,"DIA_Hyglas_GOTRUNE_15_00");	//Я создал руну.
 		B_Xardas_ClawReaction();
-		B_GivePlayerXP(XP_Ambient * 3);
 	}
 	else
 	{

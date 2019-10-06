@@ -61,6 +61,7 @@ instance OrcElite_Rest(Mst_Default_OrcElite)
 instance OrkElite_AntiPaladinOrkOberst(Mst_Default_OrcElite)
 {
 	name[0] = NAME_OrkOberst;
+	aivar[AIV_MM_REAL_ID] = ID_ORCCOMMANDER;
 	level = OrkElite_AntiPaladin_Level;
 	attribute[ATR_STRENGTH] = OrkElite_AntiPaladin_Strength;
 	attribute[ATR_HITPOINTS_MAX] = 600;
@@ -80,6 +81,7 @@ instance OrkElite_AntiPaladinOrkOberst(Mst_Default_OrcElite)
 instance OrcElite_AntiPaladin(Mst_Default_OrcElite)
 {
 	name[0] = NAME_Antipaladin;
+	aivar[AIV_MM_REAL_ID] = ID_ORCCOMMANDER;
 	level = OrkElite_AntiPaladin_Level;
 	attribute[ATR_STRENGTH] = OrkElite_AntiPaladin_Strength;
 	attribute[ATR_HITPOINTS_MAX] = OrkElite_AntiPaladin_HP;
@@ -97,6 +99,7 @@ instance OrcElite_AntiPaladin(Mst_Default_OrcElite)
 instance OrcElite_AntiPaladin1(Mst_Default_OrcElite)
 {
 	name[0] = NAME_Antipaladin;
+	aivar[AIV_MM_REAL_ID] = ID_ORCCOMMANDER;
 	level = OrkElite_AntiPaladin_Level;
 	id = 111;
 	npcType = npctype_main;
@@ -117,6 +120,7 @@ instance OrcElite_AntiPaladin1(Mst_Default_OrcElite)
 instance OrcElite_AntiPaladin2(Mst_Default_OrcElite)
 {
 	name[0] = NAME_Antipaladin;
+	aivar[AIV_MM_REAL_ID] = ID_ORCCOMMANDER;
 	level = OrkElite_AntiPaladin_Level;
 	id = 112;
 	aivar[AIV_EnemyOverride] = TRUE;
@@ -136,6 +140,7 @@ instance OrcElite_AntiPaladin2(Mst_Default_OrcElite)
 instance OrcElite_AntiPaladin3(Mst_Default_OrcElite)
 {
 	name[0] = NAME_Antipaladin;
+	aivar[AIV_MM_REAL_ID] = ID_ORCCOMMANDER;
 	level = OrkElite_AntiPaladin_Level;
 	id = 113;
 	aivar[AIV_EnemyOverride] = TRUE;
@@ -155,6 +160,7 @@ instance OrcElite_AntiPaladin3(Mst_Default_OrcElite)
 instance OrkElite_AntiPaladinOrkOberst_DI(Mst_Default_OrcElite)
 {
 	name[0] = NAME_OrkOberst;
+	aivar[AIV_MM_REAL_ID] = ID_ORCCOMMANDER;
 	level = OrkElite_AntiPaladin_Level;
 	attribute[ATR_STRENGTH] = 175;
 	attribute[ATR_HITPOINTS_MAX] = 675;

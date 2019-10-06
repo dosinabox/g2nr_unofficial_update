@@ -1548,3 +1548,38 @@ func void UseWastelandRune()
 	b_seed_wasteland_world_freeminecamp();
 };
 
+instance StatsBook(C_Item)
+{
+	name = "Книга статистики";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItWr_Book_02_02.3ds";
+	material = MAT_LEATHER;
+	scemeName = "MAP";
+	description = name;
+	on_state[0] = Use_StatsBook;
+};
+
+
+func void Use_StatsBook()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,2);
+	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
+	Doc_SetFont(nDocID,-1,FONT_Book);
+	Doc_SetMargins(nDocID,0,275,20,30,20,1);
+	Doc_PrintLine(nDocID,0,ConcatStrings("Убито людей-ящеров: ",IntToString(Stats_Killed_Draconian)));
+	Doc_PrintLine(nDocID,0,ConcatStrings("Убито ищущих: ",IntToString(Stats_Killed_Dementor)));
+	Doc_PrintLine(nDocID,0,ConcatStrings("Убито элитных орков: ",IntToString(Stats_Killed_OrcElite)));
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,"");
+	Doc_Show(nDocID);
+};
+
