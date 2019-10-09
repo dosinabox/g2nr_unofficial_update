@@ -777,6 +777,7 @@ var int MIS_Raoul_DoesntPayTrollFur;
 var int MIS_RichtersPermissionForShip;
 var int MIS_RosisFlucht;
 var int Crewmember_Count;
+var int CrewmemberFree_Count;
 const int Max_Crew = 9;
 const int Min_Crew = 5;
 var int Lee_IsOnBoard;

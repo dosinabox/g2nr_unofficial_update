@@ -99,6 +99,7 @@ func void Use_SwampHerb()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Wld_StopEffect("SLOW_TIME");
 		Wld_PlayEffect("SLOW_TIME",self,self,0,0,0,FALSE);
 	};
 };

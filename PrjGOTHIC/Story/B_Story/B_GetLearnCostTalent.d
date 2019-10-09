@@ -173,7 +173,14 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 	{
 		if(skill == POTION_Health_01)
 		{
-			kosten = 1;
+			if(ClassicAlchemy == FALSE)
+			{
+				kosten = 1;
+			}
+			else
+			{
+				kosten = 2;
+			};
 		}
 		else if(skill == POTION_Health_02)
 		{
@@ -189,7 +196,14 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 		}
 		else if(skill == POTION_Mana_01)
 		{
-			kosten = 1;
+			if(ClassicAlchemy == FALSE)
+			{
+				kosten = 1;
+			}
+			else
+			{
+				kosten = 2;
+			};
 		}
 		else if(skill == POTION_Mana_02)
 		{

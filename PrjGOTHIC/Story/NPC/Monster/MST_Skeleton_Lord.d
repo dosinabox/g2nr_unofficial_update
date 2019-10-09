@@ -59,16 +59,10 @@ instance Skeleton_Lord_Archol(Mst_Skeleton_Lord)
 	level = 60;
 	attribute[ATR_STRENGTH] = 150;
 	attribute[ATR_DEXTERITY] = 150;
-	attribute[ATR_HITPOINTS_MAX] = 400;
-	attribute[ATR_HITPOINTS] = 400;
+	attribute[ATR_HITPOINTS_MAX] = 600;
+	attribute[ATR_HITPOINTS] = 600;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
-/*	protection[PROT_BLUNT] = 10;
-	protection[PROT_EDGE] = 20;
-	protection[PROT_POINT] = 1000;
-	protection[PROT_FIRE] = 10;
-	protection[PROT_FLY] = 10;
-	protection[PROT_MAGIC] = 10; */
 	B_SetVisuals_Skeleton_Lord();
 	CreateInvItems(self,ItMi_Gold,650);
 	CreateInvItems(self,ItKe_EVT_UNDEAD_01,1);
