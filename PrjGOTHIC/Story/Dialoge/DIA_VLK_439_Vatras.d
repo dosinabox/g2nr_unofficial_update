@@ -2648,8 +2648,6 @@ func int DIA_Vatras_KnowWhereEnemy_Condition()
 	};
 };
 
-var int SCToldVatrasHeKnowWhereEnemy;
-
 func void DIA_Vatras_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_KnowWhereEnemy_15_00");	//Я знаю, где находится наш враг.
@@ -2678,20 +2676,8 @@ func void DIA_Vatras_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_Vatras_KnowWhereEnemy_Yes_15_00");	//Я сочту за честь, что ты будешь на моей стороне. Встретимся в гавани.
 	AI_Output(self,other,"DIA_Vatras_KnowWhereEnemy_Yes_05_01");	//Только не трать время понапрасну. Помни, друг мой, враг не дремлет.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Vatras_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
 	B_Vatras_GeheWeg(lang);
-	Info_ClearChoices(DIA_Vatras_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_Vatras_KnowWhereEnemy_No()
@@ -2754,22 +2740,16 @@ func int DIA_Vatras_StillNeedYou_Condition()
 func void DIA_Vatras_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_StillNeedYou_15_00");	//Поплывем вместе на вражеский остров.
-	AI_Output(self,other,"DIA_Vatras_StillNeedYou_05_01");	//Мудрое решение. Надеюсь, ты больше его не переменишь.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Vatras_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count += 1;
-	B_Vatras_GeheWeg(lang);
-	AI_StopProcessInfos(self);
-//	Vatras_MORE = FALSE;
-	if(MIS_ReadyforChapter6 == TRUE)
+	if(Vatras_WasOnBoard == TRUE)
 	{
-		Npc_ExchangeRoutine(self,"SHIP");
+		AI_Output(self,other,"DIA_Vatras_StillNeedYou_05_01");	//Мудрое решение. Надеюсь, ты больше его не переменишь.
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
+		AI_Output(self,other,"DIA_Vatras_KnowWhereEnemy_Yes_05_01");	//Только не трать время понапрасну. Помни, друг мой, враг не дремлет.
 	};
-	B_CheckLog();
+	B_Vatras_GeheWeg(lang);
+	B_JoinShip(self);
 };
 
 

@@ -564,8 +564,6 @@ func int DIA_DiegoNW_KnowWhereEnemy_Condition()
 	};
 };
 
-var int SCToldDiegoHeKnowWhereEnemy;
-
 func void DIA_DiegoNW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_15_00");	//Я собираюсь покинуть Хоринис.
@@ -596,10 +594,6 @@ func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 	DiegoArmor = Npc_GetEquippedArmor(self);
 	AI_Output(other,self,"DIA_DiegoNW_KnowWhereEnemy_Yes_15_00");	//Почему бы тебе не отправиться в путь со мной? Встретимся в гавани.
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_01");	//Ммм. Ты прав, в Хоринисе все равно нечего делать. Я поплыву с тобой.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Diego_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
 	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !Hlp_IsItem(DiegoArmor,ITAR_Diego))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_02");	//Подожди, я буду готов через минуту.
@@ -614,15 +608,7 @@ func void DIA_DiegoNW_KnowWhereEnemy_Yes()
 		AI_GotoWP(self,"NW_CITY_UPTOWN_PATH_23");
 	};
 	AI_Output(self,other,"DIA_DiegoNW_KnowWhereEnemy_Yes_11_03");	//Ну, я готов. Встретимся у корабля.
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_DiegoNW_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_DiegoNW_KnowWhereEnemy_No()
@@ -698,6 +684,14 @@ func int DIA_DiegoNW_StillNeedYou_Condition()
 {
 	if(((Diego_IsOnBoard == LOG_OBSOLETE) || (Diego_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
+		if(Diego_WasOnBoard == TRUE)
+		{
+			DIA_DiegoNW_StillNeedYou.description = "Возвращайся. Я хочу, чтобы ты сопровождал меня.";
+		}
+		else
+		{
+			DIA_DiegoNW_StillNeedYou.description = "Мне не помешала бы твоя помощь.";
+		};
 		return TRUE;
 	};
 };
@@ -706,11 +700,15 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 {
 	var C_Item DiegoArmor;
 	DiegoArmor = Npc_GetEquippedArmor(self);
-	AI_Output(other,self,"DIA_DiegoNW_StillNeedYou_15_00");	//Возвращайся. Я хочу, чтобы ты сопровождал меня.
-	AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_01");	//Куда подевалась твоя решительность, друг? Конечно, я присоединюсь к тебе - ты только определись с тем, что тебе нужно.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Diego_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count += 1;
+	if(Diego_WasOnBoard == TRUE)
+	{
+		AI_Output(other,self,"DIA_DiegoNW_StillNeedYou_15_00");	//Возвращайся. Я хочу, чтобы ты сопровождал меня.
+		AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_01");	//Куда подевалась твоя решительность, друг? Конечно, я присоединюсь к тебе - ты только определись с тем, что тебе нужно.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Sylvio_DUHIER_15_00");	//Мне не помешала бы твоя помощь.
+	};
 	if(Hlp_StrCmp(Npc_GetNearestWP(self),"NW_CITY_UPTOWN_PATH_23") && !Hlp_IsItem(DiegoArmor,ITAR_Diego))
 	{
 		AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_02");	//Подожди, я буду готов через минуту.
@@ -725,16 +723,7 @@ func void DIA_DiegoNW_StillNeedYou_Info()
 		AI_GotoWP(self,"NW_CITY_UPTOWN_PATH_23");
 	};
 	AI_Output(self,other,"DIA_DiegoNW_StillNeedYou_11_03");	//Отлично, мы можем идти.
-	AI_StopProcessInfos(self);
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	B_CheckLog();
+	B_JoinShip(self);
 };
 
 

@@ -268,18 +268,7 @@ func void DIA_None_101_Mario_NeedGoodMen_Info()
 {
 	AI_Output(other,self,"DIA_None_101_Mario_NeedGoodMen_15_00");	//я всегда найду место дл€ хороших людей.
 	AI_Output(self,other,"DIA_None_101_Mario_NeedGoodMen_07_01");	// онечно, увидимс€ на корабле.
-	Mario_IsOnBoard = LOG_SUCCESS;
-	CrewmemberFree_Count += 1;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	AI_StopProcessInfos(self);
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
+	B_JoinShip(self);
 };
 
 
@@ -339,17 +328,7 @@ func void DIA_Mario_StillNeedYou_Info()
 	if((Mario_IsOnBoard == LOG_OBSOLETE) && (Mario_Nerver <= 2))
 	{
 		AI_Output(self,other,"DIA_Mario_StillNeedYou_07_01");	//я знал! ”видимс€ на корабле!
-		Mario_IsOnBoard = LOG_SUCCESS;
-		CrewmemberFree_Count += 1;
-		AI_StopProcessInfos(self);
-		if(MIS_ReadyforChapter6 == TRUE)
-		{
-			Npc_ExchangeRoutine(self,"SHIP");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"WAITFORSHIP");
-		};
+		B_JoinShip(self);
 	}
 	else
 	{

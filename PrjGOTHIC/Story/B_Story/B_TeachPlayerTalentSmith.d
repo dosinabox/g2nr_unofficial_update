@@ -14,12 +14,12 @@ func int B_TeachPlayerTalentSmith(var C_Npc slf,var C_Npc oth,var int waffe)
 	{
 		Npc_SetTalentSkill(oth,NPC_TALENT_SMITH,1);
 		Log_CreateTopic(TOPIC_TalentSmith,LOG_NOTE);
-		B_LogEntry(TOPIC_TalentSmith,PRINT_LearnSmithLog);
+		Log_AddEntry(TOPIC_TalentSmith,PRINT_LearnSmithLog);
 	};
 	if(waffe == WEAPON_Common)
 	{
 		PLAYER_TALENT_SMITH[WEAPON_Common] = TRUE;
-		B_LogEntry(TOPIC_TalentSmith,"Для простого кованого меча мне не нужно никаких ингредиентов.");
+		B_LogEntry(TOPIC_TalentSmith,"Для простого кованого меча мне не нужны никакие дополнительные ресурсы.");
 	};
 	if(waffe == WEAPON_1H_Special_01)
 	{

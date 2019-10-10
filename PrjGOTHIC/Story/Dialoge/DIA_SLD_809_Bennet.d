@@ -1390,6 +1390,12 @@ func void DIA_Bennet_EierBringen_Info()
 };
 
 
+func void B_Bennet_BeMySmith()
+{
+	AI_Output(other,self,"DIA_Bennet_KnowWhereEnemy_Yes_15_00");	//Будь моим кузнецом. Увидимся в гавани.
+	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_Yes_06_01");	//Хорошо. Увидимся позже.
+};
+
 instance DIA_Bennet_KnowWhereEnemy(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -1408,8 +1414,6 @@ func int DIA_Bennet_KnowWhereEnemy_Condition()
 		return TRUE;
 	};
 };
-
-var int SCToldBennetHeKnowWhereEnemy;
 
 func void DIA_Bennet_KnowWhereEnemy_Info()
 {
@@ -1437,20 +1441,9 @@ func void DIA_Bennet_KnowWhereEnemy_Info()
 
 func void DIA_Bennet_KnowWhereEnemy_Yes()
 {
-	AI_Output(other,self,"DIA_Bennet_KnowWhereEnemy_Yes_15_00");	//Будь моим кузнецом. Увидимся в гавани.
-	AI_Output(self,other,"DIA_Bennet_KnowWhereEnemy_Yes_06_01");	//Хорошо. Увидимся позже.
-	Bennet_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_Bennet_KnowWhereEnemy);
+	B_Bennet_BeMySmith();
+	B_UpdateBennetItemsCount();
+	B_JoinShip(self);
 };
 
 func void DIA_Bennet_KnowWhereEnemy_No()
@@ -1506,27 +1499,31 @@ func int DIA_Bennet_StillNeedYou_Condition()
 {
 	if(((Bennet_IsOnBoard == LOG_OBSOLETE) || (Bennet_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
+		if(Bennet_WasOnBoard == TRUE)
+		{
+			DIA_Bennet_StillNeedYou.description = "Возвращайся, я не могу найти другого кузнеца.";
+		}
+		else
+		{
+			DIA_Bennet_StillNeedYou.description = "Будь моим кузнецом. Увидимся в гавани.";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Bennet_StillNeedYou_Info()
 {
-	AI_Output(other,self,"DIA_Bennet_StillNeedYou_15_00");	//Возвращайся, я не могу найти другого кузнеца.
-	AI_Output(self,other,"DIA_Bennet_StillNeedYou_06_01");	//(сердито) Хорошо! Всякий может издеваться над простым кузнецом! Увидимся в гавани.
-	Bennet_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count += 1;
-	B_UpdateBennetItemsCount();
-	AI_StopProcessInfos(self);
-	if(MIS_ReadyforChapter6 == TRUE)
+	if(Bennet_WasOnBoard == TRUE)
 	{
-		Npc_ExchangeRoutine(self,"SHIP");
+		AI_Output(other,self,"DIA_Bennet_StillNeedYou_15_00");	//Возвращайся, я не могу найти другого кузнеца.
+		AI_Output(self,other,"DIA_Bennet_StillNeedYou_06_01");	//(сердито) Хорошо! Всякий может издеваться над простым кузнецом! Увидимся в гавани.
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
+		B_Bennet_BeMySmith();
 	};
-	B_CheckLog();
+	B_UpdateBennetItemsCount();
+	B_JoinShip(self);
 };
 
 

@@ -1770,18 +1770,7 @@ func void DIA_Lee_KnowWhereEnemy_Yes()
 	AI_Output(self,other,"DIA_Lee_KnowWhereEnemy_Yes_04_01");	//Что? Прямо сейчас?
 	AI_Output(other,self,"DIA_Lee_KnowWhereEnemy_Yes_15_02");	//Да, я скоро отправляюсь в путь, и если ты плывешь со мной, приходи в гавань. Встретимся на корабле.
 	AI_Output(self,other,"DIA_Lee_KnowWhereEnemy_Yes_04_03");	//Я так долго ждал этого момента. Я буду там.
-	Lee_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_Lee_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_Lee_KnowWhereEnemy_No()
@@ -1849,16 +1838,7 @@ func void DIA_Lee_StillNeedYou_Info()
 	if((Lee_IsOnBoard == LOG_OBSOLETE) && (Lee_Nerver <= 2))
 	{
 		AI_Output(self,other,"DIA_Lee_StillNeedYou_04_01");	//Я знал, что понадоблюсь тебе! Увидимся на корабле.
-		Lee_IsOnBoard = LOG_SUCCESS;
-		Crewmember_Count += 1;
-		if(MIS_ReadyforChapter6 == TRUE)
-		{
-			Npc_ExchangeRoutine(self,"SHIP");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"WAITFORSHIP");
-		};
+		B_JoinShip(self);
 	}
 	else
 	{

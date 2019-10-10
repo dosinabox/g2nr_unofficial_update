@@ -2415,6 +2415,11 @@ func void DIA_Lares_KnowWhereEnemy_Info()
 	AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_15_03");	//я собираюсь избавитьс€ от него раз и навсегда.
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_09_04");	//«вучит заманчиво. ≈сли € тебе нужен, ты можешь на мен€ рассчитывать.
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_09_05");	//“ебе не нужен учитель ловкости или бо€ одноручным оружием в твоем путешествии?
+	if(SCToldLaresHeKnowWhereEnemy == FALSE)
+	{
+		B_LogEntry(Topic_Crew,"≈сли € возьму с собой Ћареса, то он сможет помочь мне с одноручным оружием и повысить мою ловкость.");
+		SCToldLaresHeKnowWhereEnemy = TRUE;
+	};
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_15_06");	// орабль уже полон, но € вернусь к тебе, если что-то изменитс€.
@@ -2432,18 +2437,7 @@ func void DIA_Lares_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_Yes_15_00");	//я знал, что могу положитьс€ на теб€.
 	AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_Yes_15_01");	//¬стретимс€ у корабл€.
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_Yes_09_02");	//“ы человек действи€ - это мне нравитс€. ”видимс€ позже.
-	Lares_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_Lares_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_Lares_KnowWhereEnemy_No()
@@ -2526,16 +2520,7 @@ func void DIA_Lares_StillNeedYou_Info()
 	{
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_01");	//ќбычно € не позвол€ю люд€м так обращатьс€ со мной, но так как ты - один из нас, на этот раз € теб€ прощу.
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_02");	//¬стретимс€ на корабле.
-		Lares_IsOnBoard = LOG_SUCCESS;
-		Crewmember_Count += 1;
-		if(MIS_ReadyforChapter6 == TRUE)
-		{
-			Npc_ExchangeRoutine(self,"SHIP");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"WAITFORSHIP");
-		};
+		B_JoinShip(self);
 	}
 	else
 	{

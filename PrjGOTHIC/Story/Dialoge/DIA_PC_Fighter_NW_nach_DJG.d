@@ -68,8 +68,6 @@ func int DIA_GornNW_nach_DJG_KnowWhereEnemy_Condition()
 	};
 };
 
-var int SCToldGornHeKnowWhereEnemy;
-
 func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_GornNW_nach_DJG_KnowWhereEnemy_15_00");	//Мне нужны ты и твой топор.
@@ -99,19 +97,7 @@ func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes_15_00");	//Добро пожаловать на борт. Встретимся в гавани.
 	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes_12_01");	//Корабль? Ха! Могу сказать одно. С тобой никогда не бывает скучно. До скорой встречи.
-	B_GivePlayerXP(XP_Crewmember_Success);
-	self.flags = NPC_FLAG_IMMORTAL;
-	Gorn_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_GornNW_nach_DJG_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_GornNW_nach_DJG_KnowWhereEnemy_No()
@@ -159,7 +145,7 @@ instance DIA_GornNW_nach_DJG_StillNeedYou(C_Info)
 	condition = DIA_GornNW_nach_DJG_StillNeedYou_Condition;
 	information = DIA_GornNW_nach_DJG_StillNeedYou_Info;
 	permanent = TRUE;
-	description = "Возвращайся. ТЫ нужен мне.";
+	description = "Возвращайся. Ты нужен мне.";
 };
 
 
@@ -167,26 +153,30 @@ func int DIA_GornNW_nach_DJG_StillNeedYou_Condition()
 {
 	if(((Gorn_IsOnBoard == LOG_OBSOLETE) || (Gorn_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
+		if(Gorn_WasOnBoard == TRUE)
+		{
+			DIA_GornNW_nach_DJG_StillNeedYou.description = "Возвращайся. Ты нужен мне.";
+		}
+		else
+		{
+			DIA_GornNW_nach_DJG_StillNeedYou.description = "Мне нужен друг, всегда готовый помочь.";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_GornNW_nach_DJG_StillNeedYou_Info()
 {
-	AI_Output(other,self,"DIA_GornNW_nach_DJG_StillNeedYou_15_00");	//Возвращайся. ТЫ нужен мне.
-	AI_Output(self,other,"DIA_GornNW_nach_DJG_StillNeedYou_12_01");	//Наконец-то. А я уж думал, ты оставишь гнить меня здесь, пока будешь развлекаться там. До скорой встречи.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Gorn_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count += 1;
-	AI_StopProcessInfos(self);
-	if(MIS_ReadyforChapter6 == TRUE)
+	if(Gorn_WasOnBoard == TRUE)
 	{
-		Npc_ExchangeRoutine(self,"SHIP");
+		AI_Output(other,self,"DIA_GornNW_nach_DJG_StillNeedYou_15_00");	//Возвращайся. Ты нужен мне.
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
+		AI_Output(other,self,"DIA_Lester_StillNeedYou_15_00");	//Мне нужен друг, всегда готовый помочь.
 	};
+	AI_Output(self,other,"DIA_GornNW_nach_DJG_StillNeedYou_12_01");	//Наконец-то. А я уж думал, ты оставишь гнить меня здесь, пока будешь развлекаться там. До скорой встречи.
+	B_JoinShip(self);
 };
 
 
