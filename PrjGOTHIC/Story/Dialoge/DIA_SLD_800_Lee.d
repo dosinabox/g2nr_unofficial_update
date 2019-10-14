@@ -834,7 +834,14 @@ func int DIA_Lee_Success_Condition()
 func void DIA_Lee_Success_Info()
 {
 	AI_Output(other,self,"DIA_Lee_Success_15_00");	//Я освободил Горна.
-	AI_Output(self,other,"DIA_Lee_Success_04_01");	//Да, он уже рассказал мне об этом. Отлично сработано.
+	if(Kapitel >= 3)
+	{
+		AI_Output(self,other,"DIA_Lee_Success_04_01");	//Да, он уже рассказал мне об этом. Отлично сработано.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Lee_AnyNews_04_02");	//Отличная работа.
+	};
 	AI_Output(self,other,"DIA_Lee_Success_04_02");	//Он стоит больше, чем Сильвио и все его парни вместе взятые.
 	B_Lee_Teleport();
 	B_GivePlayerXP(XP_AmbientKap5);

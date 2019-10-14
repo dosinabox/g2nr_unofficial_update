@@ -62,10 +62,8 @@ const string TOPIC_Addon_BaltramSkipTrade = "Торговля пиратов";
 var int TOPIC_END_BaltramSkipTrade;
 
 const string TOPIC_Addon_FarimsFish = "Проблемы с ополчением";
+const string TOPIC_Addon_LuciasLetter = "Разбитое сердце";
 const string TOPIC_Addon_Lucia = "Люсия";
-
-var int TOPIC_END_Lucia;
-
 const string TOPIC_Addon_Erol = "Нападение на торговца";
 const string TOPIC_Addon_VatrasAbloesung = "Замена для Ватраса";
 const string LogText_Addon_SCKnowsMisspeapl = "Многие жители Хориниса пропали без вести. Никто не знает, что с ними стало.";

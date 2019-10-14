@@ -918,7 +918,7 @@ func void DIA_Constantino_NewRecipes_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Lothar_Add_01_15");	//Тебе придется стать учеником одного из мастеров в нижней части города.
+			AI_Output(self,other,"DIA_Constantino_NewRecipes_10_04_add");	//Ты должен стать учеником в нижней части этого города.
 			AI_StopProcessInfos(self);
 		};
 	}

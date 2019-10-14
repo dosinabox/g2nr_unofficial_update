@@ -341,7 +341,7 @@ instance DIA_Canthar_TRADE(C_Info)
 
 func int DIA_Canthar_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Canthar_WhatOffer))
+	if(Npc_KnowsInfo(other,DIA_Canthar_WhatOffer) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_RENGARU") > 1000))
 	{
 		return TRUE;
 	};

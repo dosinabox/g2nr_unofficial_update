@@ -20,7 +20,8 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_HelpDaron,MIS_Addon_Daron_GetStatue,0,6);
 	B_CloseTopic(TOPIC_Addon_Stoneplates,0,PLAYER_TALENT_FOREIGNLANGUAGE,4);
 	B_CloseTopic(TOPIC_Addon_FarimsFish,MIS_Addon_Farim_PaladinFisch,0,6);
-	B_CloseTopic(TOPIC_Addon_Lucia,0,TOPIC_END_Lucia,6);
+	B_CloseTopic(TOPIC_Addon_LuciasLetter,MIS_LuciasLetter,0,6);
+	B_CloseTopic(TOPIC_Addon_Lucia,MIS_LookingForLucia,0,6);
 	B_CloseTopic(TOPIC_Addon_Erol,MIS_Addon_Erol_BanditStuff,0,4);
 	B_CloseTopic(TOPIC_Addon_Joe,0,TOPIC_END_Joe,6);
 	B_CloseTopic(TOPIC_Addon_BromorsGold,MIS_Bromor_LuciaStoleGold,0,6);

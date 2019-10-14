@@ -73,6 +73,13 @@ func void ZS_Talk()
 	{
 		AI_PlayAni(self,"T_STAND_2_TALK");
 	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lucia))
+	{
+		if(MIS_LookingForLucia == FALSE)
+		{
+			MIS_LookingForLucia = LOG_SUCCESS;
+		};
+	};
 	AI_ProcessInfos(self);
 	zsTalkBugfix = FALSE;
 };

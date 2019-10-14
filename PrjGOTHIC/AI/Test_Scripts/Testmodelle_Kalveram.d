@@ -414,6 +414,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItFo_Addon_Shellflesh,10);
 	CreateInvItems(self,ItFo_Addon_Rum,10);
 	CreateInvItems(self,ItFo_Addon_Grog,10);
+	CreateInvItems(self,ItFo_Addon_Liquor,10);
 	CreateInvItems(self,ItFo_Addon_LousHammer,10);
 	CreateInvItems(self,ItFo_Addon_SchlafHammer,10);
 	CreateInvItems(self,ItFo_Addon_SchnellerHering,10);
