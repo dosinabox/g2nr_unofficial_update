@@ -106,7 +106,6 @@ func int DIA_Tandor_Trade_Condition()
 func void DIA_Tandor_Trade_Info()
 {
 	AI_Output(other,self,"DIA_Tandor_Trade_15_00");	//Покажи мне свои товары.
-	B_ClearBonusFoodInv(self);
 	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
