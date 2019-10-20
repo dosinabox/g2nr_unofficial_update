@@ -6,20 +6,20 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Patrick))
 		{
 			Patrick_DiedInADW = TRUE;
-		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Monty))
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Monty))
 		{
 			Monty_DiedInADW = TRUE;
-		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tonak))
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tonak))
 		{
 			Tonak_DiedInADW = TRUE;
-		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Telbor))
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Telbor))
 		{
 			Telbor_DiedInADW = TRUE;
-		};
-		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Pardos))
+		}
+		else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Pardos))
 		{
 			Pardos_DiedInADW = TRUE;
 		};
@@ -116,6 +116,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Lucia))
 	{
 		MIS_LookingForLucia = LOG_OBSOLETE;
+	}
+	else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sergio)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Babo)))
+	{
+		if(Babo_Training == FALSE)
+		{
+			Log_SetTopicStatus(Topic_BaboTrain,LOG_FAILED);
+		};
 	};
 	B_CheckLog();
 };

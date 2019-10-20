@@ -1462,6 +1462,8 @@ func void DIA_Lee_CanTeach_Yes()
 };
 
 
+var int DIA_Lee_Teach_permanent;
+
 instance DIA_Lee_Teach(C_Info)
 {
 	npc = SLD_800_Lee;
@@ -1475,7 +1477,7 @@ instance DIA_Lee_Teach(C_Info)
 
 func int DIA_Lee_Teach_Condition()
 {
-	if(Lee_TeachPlayer == TRUE)
+	if((Lee_TeachPlayer == TRUE) && (DIA_Lee_Teach_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -1503,6 +1505,7 @@ func void DIA_Lee_Teach_2H_1()
 	{
 		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_00");	//“еперь ты насто€щий мастер бо€ двуручным оружием.
 		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_01");	//“ы больше не нуждаешьс€ в учител€х.
+		DIA_Lee_Teach_permanent = TRUE;
 	};
 	Info_ClearChoices(DIA_Lee_Teach);
 	Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
@@ -1518,6 +1521,7 @@ func void DIA_Lee_Teach_2H_5()
 	{
 		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_00");	//“еперь ты насто€щий мастер бо€ двуручным оружием.
 		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_01");	//“ы больше не нуждаешьс€ в учител€х.
+		DIA_Lee_Teach_permanent = TRUE;
 	};
 	Info_ClearChoices(DIA_Lee_Teach);
 	Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
