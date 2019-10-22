@@ -942,10 +942,10 @@ func void DIA_Andre_Auslieferung_Info()
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Сара продает оружие Онару.",DIA_Andre_Auslieferung_Sarah);
 	};
-	if((Fernando_ImKnast == TRUE) && (Fernando_Ausgeliefert == FALSE) && !Npc_IsDead(Fernando))
+	/*if((Fernando_ImKnast == TRUE) && (Fernando_Ausgeliefert == FALSE) && !Npc_IsDead(Fernando))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"Я знаю торговца, который продает оружие бандитам!",DIA_Andre_Auslieferung_Fernando);
-	};
+	};*/
 };
 
 func void DIA_Andre_Auslieferung_Back()
@@ -1066,7 +1066,7 @@ func void DIA_Andre_Auslieferung_Sarah()
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
 
-func void DIA_Andre_Auslieferung_Fernando()
+/*func void DIA_Andre_Auslieferung_Fernando()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_00");	//Я знаю торговца, который продает оружие бандитам!
 	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_01");	//Его зовут Фернандо.
@@ -1083,7 +1083,7 @@ func void DIA_Andre_Auslieferung_Fernando()
 	Fernando_Ausgeliefert = TRUE;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
 	Info_ClearChoices(DIA_Andre_Auslieferung);
-};
+};*/
 
 
 func void B_AndreAskAboutSewer()

@@ -217,7 +217,7 @@ var int DIA_Lares_DI_UndeadDragonDead_OneTime;
 func void DIA_Lares_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Lares_DI_UndeadDragonDead_15_00");	//ѕохоже, все это теб€ не особенно волнует.
-	AI_Output(self,other,"DIA_Lares_DI_UndeadDragonDead_09_01");	//јх, знаешь, € был уверен, что ты справишьс€.
+	AI_Output(self,other,"DIA_Lares_DI_UndeadDragonDead_09_01");	//’а, знаешь, € был уверен, что ты справишьс€.
 	if(DIA_Lares_DI_UndeadDragonDead_OneTime == FALSE)
 	{
 		AI_Output(other,self,"DIA_Lares_DI_UndeadDragonDead_15_02");	//„то ты собираешьс€ делать дальше?

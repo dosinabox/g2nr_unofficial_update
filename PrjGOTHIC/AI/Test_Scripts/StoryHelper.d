@@ -179,11 +179,11 @@ func void b_build_settings_diag()
 	};
 	If(InfiniteApples == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"¬ключить бесконечные €блоки",StoryHelper_Apples);
+		Info_AddChoice(StoryHelper_PatchSettings,"¬ключить выбивание бесконечных €блок",StoryHelper_Apples);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"¬ыключить бесконечные €блоки",StoryHelper_Apples);
+		Info_AddChoice(StoryHelper_PatchSettings,"¬ыключить выбивание бесконечных €блок",StoryHelper_Apples);
 	};
 	If(XP_Static == FALSE)
 	{

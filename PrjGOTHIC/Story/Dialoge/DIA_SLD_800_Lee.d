@@ -525,7 +525,7 @@ func void DIA_Addon_Lee_Ranger_Info()
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_05");	//Конечно, если я могу чем-то им помочь, я это делаю. Но большую часть времени я занят своими делами. Ни на что другое времени не остается.
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_06");	//Если ты хочешь узнать об этом обществе больше, поговори с Кордом. Насколько я знаю, он один из них.
 	B_Lee_Teleport();
-	RangerHelp_gildeSLD = TRUE;
+//	RangerHelp_gildeSLD = TRUE;
 	SC_KnowsCordAsRangerFromLee = TRUE;
 };
 

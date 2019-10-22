@@ -775,7 +775,7 @@ func void DIA_Addon_ThiefOW_PERM_Info()
 	}
 	else if(Diego_angekommen == TRUE)
 	{
-		AI_Output(self,other,"DIA_Addon_Diego_PERM_11_03");	//Хорошо. Мне просто нужно немного отдохнуть.
+		AI_Output(self,other,"DIA_Addon_Diego_PERM_11_03");	//Хорошо... Мне просто нужно... немного отдохнуть.
 	}
 	else
 	{

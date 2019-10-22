@@ -292,7 +292,7 @@ func void DIA_Canthar_WhatOffer_HowYouIn()
 func void DIA_Canthar_WhatOffer_Price()
 {
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_Price_15_00");	//Что ты хочешь за этот пропуск?
-	AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_01");	//(удовлетворенно) Я ЗНАЛ, что не ошибся в тебе!
+	AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_01");	//(удовлетворенно) Я знал, что не ошибся в тебе!
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_02");	//Послушай. Ты получишь от меня пропуск. Прямо сейчас!
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_Price_15_03");	//Просто так?
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_04");	//Да. НО: если я встречу тебя в городе, ты будешь должен оказать мне услугу.

@@ -192,6 +192,10 @@ func int DIA_Addon_Cord_YouAreRanger_Condition()
 	{
 		return TRUE;
 	}
+	else if(SC_KnowsCordAsRangerFromLee == TRUE)
+	{
+		return TRUE;
+	}
 	else if(MIS_Addon_Lares_ComeToRangerMeeting == LOG_SUCCESS)
 	{
 		return TRUE;

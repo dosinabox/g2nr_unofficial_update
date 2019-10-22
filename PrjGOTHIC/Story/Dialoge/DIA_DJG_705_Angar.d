@@ -90,7 +90,7 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_Info()
 {
 	AI_Output(other,self,"DIA_Angar_WIEKOMMSTDUHIERHER_15_00");	//Как ты оказался здесь?
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_04_01");	//После обрушения магического барьера я спрятался в горах. Затем пришло время что-то делать.
-	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_04_02");	//Я бесцельно брел четыре дня, пока неожиданно не очнулся в замке. Не спрашивай меня, что произошло. Я не знаю.
+	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_04_02");	//Я бесцельно брел четыре дня, пока неожиданно не очнулся в замке. Не спрашивай меня, что произошло, я не знаю.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_04_03");	//И что еще хуже, я также потерял амулет, который был со мной многие годы. Я сойду с ума, если не найду его.
 	Log_CreateTopic(TOPIC_AngarsAmulett,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_AngarsAmulett,LOG_Running);
@@ -138,7 +138,7 @@ func void DIA_Angar_WIEKOMMSTDUHIERHER_andere()
 		AI_Output(other,self,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_15_00");	//А что произошло с другими из болотного лагеря?
 	};
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_01");	//Последнее, что я помню - это обрушение Барьера, сопровождавшееся душераздирающим воплем.
-	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_02");	//Нас охватил панический страх. Мы упали на землю, корчась от боли. Этот голос... Он становился все громче.
+	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_02");	//Нас охватил панический страх. Мы упали на землю, корчась от боли. Этот голос, он... становился все громче.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_03");	//И затем вдруг все кончилось, все побежали как безумные и исчезли в ночи, вопя истошными голосами.
 	AI_Output(self,other,"DIA_Angar_WIEKOMMSTDUHIERHER_andere_04_04");	//И больше я их не видел.
 	if(SC_KnowsMadPsi == TRUE)
@@ -248,7 +248,7 @@ instance DIA_Angar_DJG_ANWERBEN(C_Info)
 	nr = 8;
 	condition = DIA_Angar_DJG_ANWERBEN_Condition;
 	information = DIA_Angar_DJG_ANWERBEN_Info;
-	description = "Может быть, я смогу помочь тебе найти амулет.";
+	description = "Может быть, я смогу помочь тебе найти амулет?";
 };
 
 
@@ -262,7 +262,7 @@ func int DIA_Angar_DJG_ANWERBEN_Condition()
 
 func void DIA_Angar_DJG_ANWERBEN_Info()
 {
-	AI_Output(other,self,"DIA_Angar_DJG_ANWERBEN_15_00");	//Может быть, я смогу помочь тебе найти амулет.
+	AI_Output(other,self,"DIA_Angar_DJG_ANWERBEN_15_00");	//Может быть, я смогу помочь тебе найти амулет?
 	AI_Output(self,other,"DIA_Angar_DJG_ANWERBEN_04_01");	//Почему бы и нет. Помощь никогда не помещает.
 	if(DJG_Angar_SentToStones == FALSE)
 	{
@@ -298,7 +298,7 @@ func void DIA_Angar_DJG_ANWERBEN_wo()
 func void DIA_Angar_DJG_ANWERBEN_gehen()
 {
 	AI_Output(other,self,"DIA_Angar_DJG_ANWERBEN_gehen_15_00");	//Мне нужно идти.
-	AI_Output(self,other,"DIA_Angar_DJG_ANWERBEN_gehen_04_01");	//Будь осторожен.
+	AI_Output(self,other,"DIA_Angar_DJG_ANWERBEN_gehen_04_01");	//Будь осторожен!
 	AI_StopProcessInfos(self);
 };
 

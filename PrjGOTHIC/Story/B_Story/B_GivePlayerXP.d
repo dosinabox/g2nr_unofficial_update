@@ -51,3 +51,4 @@ func void B_GiveDeathXP(var C_Npc Killer, var C_Npc Victim)
 		Victim.aivar[AIV_VictoryXPGiven] = TRUE;
 	}; 
 };
+
