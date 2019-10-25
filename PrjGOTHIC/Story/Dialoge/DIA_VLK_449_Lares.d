@@ -1120,7 +1120,7 @@ func void DIA_Addon_Lares_Gilde_SLD()
 		B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Ћарес сказал, что наемник  орд может сделать мою жизнь среди наемников проще.");
 	};
 	RangerHelp_gildeSLD = TRUE;
-	SC_KnowsCordAsRangerFromLares = TRUE;
+//	SC_KnowsCordAsRangerFromLares = TRUE;
 	Info_ClearChoices(DIA_Addon_Lares_Gilde);
 };
 

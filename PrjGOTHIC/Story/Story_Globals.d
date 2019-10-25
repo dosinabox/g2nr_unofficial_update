@@ -132,7 +132,7 @@ var int SaturasKnows_SC_IsRanger;
 var int RangerRingIsLaresRing;
 var int RangerRingIsMyRing;
 var int RangerRingIsLanceRing;
-var int SC_KnowsCordAsRangerFromLares;
+//var int SC_KnowsCordAsRangerFromLares;
 var int SC_KnowsCordAsRangerFromLee;
 var int Cavalorn_RangerHint;
 var int Baltram_Exchange4Lares;

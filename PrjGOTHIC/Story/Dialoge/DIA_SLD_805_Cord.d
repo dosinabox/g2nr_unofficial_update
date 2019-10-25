@@ -212,7 +212,7 @@ func void DIA_Addon_Cord_YouAreRanger_Info()
 		{
 			AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_15_02");	//Мне сказал Ли.
 		};
-		if(SC_KnowsCordAsRangerFromLares == TRUE)
+		if(RangerHelp_gildeSLD == TRUE)
 		{
 			AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_15_03");	//Ларес сказал, что ты поможешь мне, если я скажу, что он взял меня под свое крыло.
 		};
