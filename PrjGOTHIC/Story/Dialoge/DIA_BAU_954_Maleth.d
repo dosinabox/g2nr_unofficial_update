@@ -30,6 +30,7 @@ func int DIA_Maleth_EXIT_Condition()
 func void DIA_Maleth_EXIT_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_EXIT_15_00");	//ћне нужно идти.
+	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
 	B_InsertMalethWolf();
 };

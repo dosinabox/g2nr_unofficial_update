@@ -80,7 +80,6 @@ func void DIA_Xardas_Hello_Info()
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_03");	//Я уже начал опасаться, что не смогу вытащить тебя из-под развалин храма.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_04");	//Но хватит об этом. Сейчас-то ты здесь.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_05");	//И над нами нависла новая угроза.
-//	GuildlessMode = TRUE;
 	Info_ClearChoices(DIA_Xardas_Hello);
 	Info_AddChoice(DIA_Xardas_Hello,"Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий...",DIA_Addon_Xardas_Hello_Dragons);
 	Info_AddChoice(DIA_Xardas_Hello,"Что это за НОВАЯ угроза, о которой ты говоришь?",DIA_Addon_Xardas_Hello_Man);
@@ -122,7 +121,6 @@ func void DIA_Addon_Xardas_Hello_Dragons()
 	{
 		AI_Output(self,other,"DIA_Addon_Xardas_Hello_Dragons_14_06");	//Но это еще не все. Есть еще кое-что, что угрожает нам. Об этом я узнал лишь недавно.
 		Info_ClearChoices(DIA_Xardas_Hello);
-//		Info_AddChoice(DIA_Xardas_Hello,"О какой ДРУГОЙ угрозе ты говоришь?",DIA_Addon_Xardas_Hello_Man);
 		Info_AddChoice(DIA_Xardas_Hello,"Что это за НОВАЯ угроза, о которой ты говоришь?",DIA_Addon_Xardas_Hello_Man);
 	};
 };
@@ -153,7 +151,6 @@ func void DIA_Xardas_AWAY_Info()
 	AI_Output(self,other,"DIA_Xardas_AWAY_14_01");	//Если мы сбежим сейчас, это всего лишь отсрочит нашу встречу с драконами.
 	AI_Output(self,other,"DIA_Xardas_AWAY_14_02");	//При помощи солдат и магов, живущих здесь, мы можем остановить их до того, как армия Тьмы будет полностью сформирована.
 	AI_Output(self,other,"DIA_Xardas_AWAY_14_03");	//У нас не будет лучшего шанса для этого.
-//	NpcWantToFlee = FALSE;
 };
 
 
@@ -391,7 +388,6 @@ func void DIA_Xardas_WEAPON_Info()
 	AI_Output(other,self,"DIA_Xardas_WEAPON_15_00");	//Мне нужно оружие.
 	AI_Output(self,other,"DIA_Xardas_WEAPON_14_01");	//Я могу дать тебе только то немногое, что у меня есть здесь.
 	AI_Output(self,other,"DIA_Xardas_WEAPON_14_02");	//Посмотри в моей башне. Ты можешь взять все, что покажется тебе полезным.
-//	TradersHaveLimitedAmmo = FALSE;
 };
 
 

@@ -16,7 +16,7 @@ func void B_GiveTradeInv_Jora(var C_Npc slf)
 		CreateInvItems(slf,ItPl_Health_Herb_01,2);
 		CreateInvItems(slf,ItPl_Mushroom_01,3);
 		CreateInvItems(slf,ItFoMutton,8);
-		CreateInvItems(slf,ItMw_ShortSword3,1);
+//		CreateInvItems(slf,ItMw_ShortSword3,1);
 		CreateInvItems(slf,ItRw_Crossbow_L_01,1);
 		CreateInvItems(slf,ItRw_Mil_Crossbow,1);
 		CreateInvItems(slf,ItRw_Crossbow_L_02,1);
