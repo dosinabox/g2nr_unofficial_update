@@ -47,11 +47,7 @@ func void DIA_Engor_HALLO_Info()
 	AI_Output(self,other,"DIA_Engor_HALLO_13_02");	//ќтлично. я Ёнгор - € обеспечиваю эту экспедицию.
 	AI_Output(self,other,"DIA_Engor_HALLO_13_03");	//“олько не думай, что можешь получить от мен€ что-нибудь бесплатно!
 	AI_Output(self,other,"DIA_Engor_HALLO_13_04");	//Ќо если в твоих карманах позванивает золото, мы всегда договоримс€.
-	if(!Npc_KnowsInfo(other,DIA_Parlaf_ENGOR))
-	{
-		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-		B_LogEntry(TOPIC_Trader_OC,"Ёнгор заведует припасами замка и ведет небольшой бизнес на стороне.");
-	};
+	B_EngorTradeLog();
 };
 
 
@@ -167,9 +163,9 @@ func int DIA_Engor_RSkaufen_Condition()
 
 func void DIA_Engor_RSkaufen_Info()
 {
-	if(B_GiveInvItems(other,self,ItMi_Gold,2500))
+	AI_Output(other,self,"DIA_Engor_RSkaufen_15_00");	//ƒай мне доспехи.
+	if(B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_MIL_M))
 	{
-		AI_Output(other,self,"DIA_Engor_RSkaufen_15_00");	//ƒай мне доспехи.
 		AI_Output(self,other,"DIA_Engor_RSkaufen_13_01");	//¬от, держи, они надежно защит€т теб€ - это чертовски хорошие доспехи.
 		CreateInvItem(hero,ITAR_MIL_M);
 		AI_PrintScreen("“€желые доспехи ополчени€ получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);

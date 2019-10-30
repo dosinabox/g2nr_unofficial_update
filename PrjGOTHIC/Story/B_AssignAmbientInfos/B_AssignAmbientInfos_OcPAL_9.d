@@ -89,7 +89,7 @@ func void DIA_OCPAL_9_STANDARD_Info()
 	};
 	if(Kapitel == 4)
 	{
-		if(MIS_KilledDragons < 4)
+		if(!Npc_KnowsInfo(other,DIA_Garond_AllDragonDead))
 		{
 			AI_Output(self,other,"DIA_OCPAL_4_STANDARD_09_02");	//Охотники на драконов! Нужно было послать нас, паладинов!
 		}

@@ -174,7 +174,7 @@ func void DIA_Onar_Aufstand_Info()
 	AI_Output(self,other,"DIA_Onar_Aufstand_14_02");	//А он унаследовал ее от СВОЕГО отца.
 	AI_Output(self,other,"DIA_Onar_Aufstand_14_03");	//Я не позволю этому жадному идиоту, называющему себя королем, разорить меня только для того, чтобы накормить свои бесполезные армии.
 	AI_Output(self,other,"DIA_Onar_Aufstand_14_04");	//Война с орками длится уже целую вечность. И к чему мы пришли? Мы стоим на грани поражения.
-	AI_Output(self,other,"DIA_Onar_Aufstand_14_05");	//Нет - я предпочитаю оборонять свою ферму самостоятельно! Деньги, что я сберегу таким образом, пойдут на оплату моей собственной армии.
+	AI_Output(self,other,"DIA_Onar_Aufstand_14_05");	//Нет, я предпочитаю оборонять свою ферму самостоятельно! Деньги, что я сберегу таким образом, пойдут на оплату моей собственной армии.
 };
 
 
@@ -333,25 +333,10 @@ func void DIA_Onar_HowMuch_Info()
 		SOLD -= 10;
 	};
 	AI_Output(self,other,"DIA_Onar_HowMuch_14_06");	//Дай мне подумать...
-	if(SOLD == 60)
+	B_Say_Gold(self,other,SOLD);
+	if(((Onar_WegenSldWerden == TRUE) && (SOLD <= 40)) || (SOLD <= 20))
 	{
-		B_Say(self,other,"$GOLD_400");
-	}
-	else if(SOLD == 50)
-	{
-		B_Say(self,other,"$GOLD_350");
-	}
-	else if(SOLD == 40)
-	{
-		B_Say(self,other,"$GOLD_300");
-	}
-	else if(SOLD == 30)
-	{
-		B_Say(self,other,"$GOLD_200");
-	}
-	else if(SOLD == 20)
-	{
-		B_Say(self,other,"$GOLD_150");
+		AI_Output(self,other,"DIA_Onar_HowMuch_14_06_add");	//Да и этого для тебя много.
 	};
 	Onar_SOLD_Day = Wld_GetDay();
 	Onar_SOLD_XP = other.exp;
@@ -365,13 +350,21 @@ func void DIA_Onar_HowMuch_Info()
 func void DIA_Onar_HowMuch_PerDay()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_PerDay_15_00");	//В день?
-	AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_01");	//Кем ты себя возомнил? В неделю! Да и этого для тебя много.
+	//AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_01");	//Кем ты себя возомнил? В неделю! Да и этого для тебя много.
+	AI_Output(self,other,"DIA_Onar_HowMuch_PerDay_14_01_add");	//Нет. В неделю! (смеется)
 };
 
 func void DIA_Onar_HowMuch_More()
 {
 	AI_Output(other,self,"DIA_Onar_HowMuch_More_15_00");	//Здесь не все...
-	AI_Output(self,other,"DIA_Onar_HowMuch_More_14_01");	//Конечно, но ты можешь поработать на меня совсем бесплатно, если хочешь.
+	if(SOLD >= 50)
+	{
+		AI_Output(self,other,"DIA_Onar_HowMuch_More_14_01_add");	//Кем ты себя возомнил?
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Onar_HowMuch_More_14_01");	//Конечно, но ты можешь поработать на меня совсем бесплатно, если хочешь.
+	};
 	AI_Output(self,other,"DIA_Onar_HowMuch_More_14_02");	//Это все, что ты получишь!
 	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 	B_LogEntry(Topic_Bonus,"Я могу получить у Онара причитающееся мне вознаграждение, когда мне это заблагорассудится.");

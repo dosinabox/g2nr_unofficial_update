@@ -1265,3 +1265,5 @@ var int SCToldVatrasHeKnowWhereEnemy;
 var int SCToldLesterHeKnowWhereEnemy;
 var int SCToldLaresHeKnowWhereEnemy;
 var int LuciaMentionedInKhorinis;
+var int Engor_Trade;
+var int CriminalsJailed;

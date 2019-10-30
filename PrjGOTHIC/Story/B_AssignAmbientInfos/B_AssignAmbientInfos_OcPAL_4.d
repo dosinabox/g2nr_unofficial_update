@@ -89,7 +89,7 @@ func void DIA_OCPAL_4_STANDARD_Info()
 	};
 	if(Kapitel == 4)
 	{
-		if(MIS_KilledDragons < 4)
+		if(!Npc_KnowsInfo(other,DIA_Garond_AllDragonDead))
 		{
 			AI_Output(self,other,"DIA_OCPAL_4_STANDARD_04_02");	//Я думаю, атака орков не заставит себя долго ждать. И где же это чертово подкрепление?
 			if(other.guild == GIL_DJG)

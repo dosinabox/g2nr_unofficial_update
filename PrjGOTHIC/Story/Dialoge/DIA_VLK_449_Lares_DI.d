@@ -227,3 +227,12 @@ func void DIA_Lares_DI_UndeadDragonDead_Info()
 	AI_StopProcessInfos(self);
 };
 
+instance DIA_Addon_Lares_DI_RingBack(C_Info)
+{
+	npc = VLK_449_Lares_DI;
+	nr = 6;
+	condition = DIA_Addon_Lares_RingBack2_Condition;
+	information = DIA_Addon_Lares_RingBack2_Info;
+	description = "Вот твое кольцо.";
+};
+

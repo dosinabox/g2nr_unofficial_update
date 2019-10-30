@@ -738,7 +738,7 @@ func void DIA_Bennet_Victim_Info()
 	AI_Output(other,self,"DIA_Bennet_Victim_15_00");	//Кто был убит?
 	AI_Output(self,other,"DIA_Bennet_Victim_06_01");	//Понятия не имею - один из паладинов, я не знаю, кто.
 	AI_Output(other,self,"DIA_Bennet_Victim_15_02");	//Ты знаешь имя?
-	AI_Output(self,other,"DIA_Bennet_Victim_06_03");	//Какой-то Лотар, по-моему. Ну, я не знаю, я не уверен.
+	AI_Output(self,other,"DIA_Bennet_Victim_06_03");	//Какой-то Лотар, по-моему. Ну, хм-м, я не знаю, я не уверен.
 	AI_Output(self,other,"DIA_Bennet_Victim_06_04");	//Тебе лучше спросить лорда Хагена, ему известны все детали.
 	B_LogEntry(TOPIC_RescueBennet,"Лотар, один из паладинов, был убит. Лорд Хаген, возможно, сможет рассказать мне подробнее об этом деле, ведь именно он ведет расследование.");
 };
