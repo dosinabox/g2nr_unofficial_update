@@ -133,7 +133,6 @@ func void DIA_Peck_FOUND_PECK_Info()
 
 var int DIA_Peck_WEAPON_perm;
 var int DIA_Peck_WEAPON2_perm;
-var int DIA_Peck_ARMOR_perm;
 
 func void B_GetWeaponFromPeckCh3()
 {
@@ -284,7 +283,7 @@ func void B_SetPeckArmorPrice()
 	{
 		VALUE_ITAR_MIL_M_Dynamic += 500;
 	};
-	if((MIS_Andre_WAREHOUSE == LOG_SUCCESS) && (MIS_Andre_WAREHOUSE == LOG_SUCCESS) && (MIS_AndreHelpLobart == LOG_SUCCESS))
+	if((MIS_Andre_WAREHOUSE == LOG_SUCCESS) && (MIS_Andre_REDLIGHT == LOG_SUCCESS) && Npc_KnowsInfo(other,DIA_Andre_LOBART_SUCCESS))
 	{
 		VALUE_ITAR_MIL_M_Dynamic -= 500;
 	};
@@ -300,7 +299,11 @@ func void B_SetPeckArmorPrice()
 	{
 		VALUE_ITAR_MIL_M_Dynamic -= 100;
 	};
-	if((Sarah_Ausgeliefert == TRUE) || (Canthar_Ausgeliefert == TRUE))
+	if(Sarah_Ausgeliefert == TRUE)
+	{
+		VALUE_ITAR_MIL_M_Dynamic -= 100;
+	};
+	if(Canthar_Ausgeliefert == TRUE)
 	{
 		VALUE_ITAR_MIL_M_Dynamic -= 100;
 	};
@@ -331,7 +334,7 @@ instance DIA_Peck_ARMOR(C_Info)
 
 func int DIA_Peck_ARMOR_Condition()
 {
-	if((other.guild == GIL_MIL) && (DIA_Peck_ARMOR_perm == FALSE))
+	if((other.guild == GIL_MIL) && (DIA_MIL_ARMOR_M_perm == FALSE))
 	{
 		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
 		{
@@ -352,14 +355,29 @@ func void DIA_Peck_ARMOR_Info()
 		if(C_PeckCanSellArmor())
 		{
 			B_SetPeckArmorPrice();
-			AI_Output(self,other,"DIA_Peck_Add_12_00");	//Это лучшее, что у меня есть.
+			if(MIS_Andre_Peck == LOG_SUCCESS)
+			{
+				AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Rein_12_01");	//Хорошо.
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Peck_Add_12_00");	//Это лучшее, что у меня есть.
+			};
 			Info_ClearChoices(DIA_Peck_ARMOR);
 			Info_AddChoice(DIA_Peck_ARMOR,Dialog_Back,DIA_Peck_ARMOR_Back);
 			Info_AddChoice(DIA_Peck_ARMOR,B_BuildPriceString("Купить тяжелые доспехи ополчения. Защита: 70/70/10/10.",VALUE_ITAR_MIL_M_Dynamic),DIA_Peck_ARMOR_BUY);
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Peck_Add_12_02");	//Пока нет...
+			if(MIS_Andre_Peck == LOG_SUCCESS)
+			{
+				AI_Output(self,other,"DIA_Addon_Thorus_Add_12_05");	//(твердо) Нет!
+				AI_StopProcessInfos(self);
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Peck_Add_12_02");	//Пока нет...
+			};
 		};
 	};
 };
@@ -378,11 +396,11 @@ func void DIA_Peck_ARMOR_BUY()
 		AI_Output(self,other,"DIA_Peck_Add_12_05");	//Вот, возьми.
 		CreateInvItem(hero,ITAR_MIL_M);
 		AI_PrintScreen("Тяжелые доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-		DIA_Peck_ARMOR_perm = TRUE;
+		DIA_MIL_ARMOR_M_perm = TRUE;
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rukhar_ICHSEHEDICH_12_02");	//Очень смешно. Возвращайся, когда у тебя будут деньги.
+		AI_Output(self,other,"DIA_Mika_UEBERLEGT_12_02");	//(сердито) Возвращайся, когда у тебя будут деньги.
 	};
 	Info_ClearChoices(DIA_Peck_ARMOR);
 };

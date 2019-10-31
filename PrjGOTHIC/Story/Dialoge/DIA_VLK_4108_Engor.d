@@ -135,8 +135,15 @@ func int DIA_Engor_Ruestung_Condition()
 func void DIA_Engor_Ruestung_Info()
 {
 	AI_Output(other,self,"DIA_Engor_Ruestung_15_00");	//” теб€ есть что-нибудь интересное дл€ мен€?
-	AI_Output(self,other,"DIA_Engor_Ruestung_13_01");	//я могу продать тебе хорошие доспехи - т€желые доспехи ополчени€. ≈сли, конечно, тебе это интересно.
-	AI_Output(self,other,"DIA_Engor_Ruestung_13_02");	//ќни недешевы, конечно же. Ќо если у теб€ есть золото, ты получишь их.
+	if(DIA_MIL_ARMOR_M_perm == FALSE)
+	{
+		AI_Output(self,other,"DIA_Engor_Ruestung_13_01");	//я могу продать тебе хорошие доспехи - т€желые доспехи ополчени€. ≈сли, конечно, тебе это интересно.
+		AI_Output(self,other,"DIA_Engor_Ruestung_13_02");	//ќни недешевы, конечно же. Ќо если у теб€ есть золото, ты получишь их.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Engor_RSkaufen_13_02");	//—начала принеси золото.
+	};
 };
 
 
@@ -151,11 +158,9 @@ instance DIA_Engor_RSkaufen(C_Info)
 };
 
 
-var int DIA_Engor_RSkaufen_perm;
-
 func int DIA_Engor_RSkaufen_Condition()
 {
-	if((other.guild == GIL_MIL) && Npc_KnowsInfo(other,DIA_Engor_Ruestung) && (DIA_Engor_RSkaufen_perm == FALSE))
+	if((other.guild == GIL_MIL) && Npc_KnowsInfo(other,DIA_Engor_Ruestung) && (DIA_MIL_ARMOR_M_perm == FALSE))
 	{
 		return TRUE;
 	};
@@ -169,8 +174,7 @@ func void DIA_Engor_RSkaufen_Info()
 		AI_Output(self,other,"DIA_Engor_RSkaufen_13_01");	//¬от, держи, они надежно защит€т теб€ - это чертовски хорошие доспехи.
 		CreateInvItem(hero,ITAR_MIL_M);
 		AI_PrintScreen("“€желые доспехи ополчени€ получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_MIL_M);
-		DIA_Engor_RSkaufen_perm = TRUE;
+		DIA_MIL_ARMOR_M_perm = TRUE;
 	}
 	else
 	{
@@ -224,7 +228,7 @@ func void DIA_Engor_HELP_YES()
 	Log_CreateTopic(TOPIC_BringMeat,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BringMeat,LOG_Running);
 	B_LogEntry(TOPIC_BringMeat,"Ёнгору нужно две дюжины кусков м€са, чтобы накормить людей в замке.");
-	B_LogEntry(TOPIC_BringMeat,"Ќеважно, что это будет - колбаса, окорок, сырое или жареное м€со. „то угодно, лишь бы это можно было жевать.");
+	Log_AddEntry(TOPIC_BringMeat,"Ќеважно, что это будет - колбаса, окорок, сырое или жареное м€со. „то угодно, лишь бы это можно было жевать.");
 	MIS_Engor_BringMeat = LOG_Running;
 	AI_StopProcessInfos(self);
 };

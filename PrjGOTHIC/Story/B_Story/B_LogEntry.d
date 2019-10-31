@@ -32,7 +32,7 @@ func void B_CheckDynamicText()
 	}
 	else
 	{
-		TEXT_MegaDrink_Setting2 = "Повышение доминирующего параметра.";
+		TEXT_MegaDrink_Setting2 = "Повышение преобладающего параметра.";
 		TEXT_MegaDrink_Setting = "Прибавка к силе или ловкости:";
 		COUNT_MegaDrink_Setting = STRorDEX_MegaDrink;
 	};
