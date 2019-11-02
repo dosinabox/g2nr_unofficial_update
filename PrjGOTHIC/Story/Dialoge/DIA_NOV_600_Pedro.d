@@ -159,7 +159,7 @@ instance DIA_Pedro_TEMPEL(C_Info)
 
 func int DIA_Pedro_TEMPEL_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pedro_EINLASS) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
+	if(Npc_KnowsInfo(other,DIA_Pedro_EINLASS) && (other.guild != GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -291,28 +291,15 @@ instance DIA_Pedro_Rules(C_Info)
 
 func int DIA_Pedro_Rules_Condition()
 {
-	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
+	if(Npc_KnowsInfo(other,DIA_Pedro_TEMPEL))
 	{
-		DIA_Pedro_Rules.description = "Здесь есть какие-нибудь правила, которых мне нужно придерживаться?";
-		return TRUE;
-	}
-	else if(Npc_KnowsInfo(other,DIA_Pedro_TEMPEL))
-	{
-		DIA_Pedro_Rules.description = "Что это за правила, по которым вы живете?";
 		return TRUE;
 	};
 };
 
 func void DIA_Pedro_Rules_Info()
 {
-	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
-	{
-		AI_Output(other,self,"DIA_Elena_Regeln_15_00");	//Здесь есть какие-нибудь правила, которых мне нужно придерживаться?
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Pedro_Rules_15_00");	//Что это за правила, по которым вы живете?
-	};
+	AI_Output(other,self,"DIA_Pedro_Rules_15_00");	//Что это за правила, по которым вы живете?
 	AI_Output(self,other,"DIA_Pedro_Rules_09_01");	//Иннос - бог правды и закона. Поэтому мы НИКОГДА не лжем и не совершаем преступления.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_02");	//Если ты согрешишь против брата из нашей общины или украдешь нашу собственность, тебе придется заплатить за это штраф.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_03");	//Иннос также бог правления и огня.
@@ -340,7 +327,7 @@ var int DIA_Pedro_AUFNAHME_NOPERM;
 
 func int DIA_Pedro_AUFNAHME_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pedro_Rules) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF) && (DIA_Pedro_AUFNAHME_NOPERM == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Pedro_Rules) && (DIA_Pedro_AUFNAHME_NOPERM == FALSE))
 	{
 		return TRUE;
 	};

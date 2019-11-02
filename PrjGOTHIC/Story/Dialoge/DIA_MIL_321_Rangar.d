@@ -152,9 +152,16 @@ instance DIA_Rangar_Bier(C_Info)
 
 func int DIA_Rangar_Bier_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rangar_Ork) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500) && (MIS_Garvell_Infos == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Rangar_Ork) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500))
 	{
-		return TRUE;
+		if(MIS_Garvell_Infos == LOG_Running)
+		{
+			return TRUE;
+		}
+		else if((MIS_Garvell_Infos == FALSE) && (Knows_Ork == TRUE) && !Npc_IsDead(CityOrc) && (RangarToldAboutOrc == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -163,7 +170,7 @@ func void DIA_Rangar_Bier_Info()
 	AI_Output(other,self,"DIA_Rangar_Bier_15_00");	//Хочешь еще пива?
 	if(B_GiveInvItems(other,self,ItFo_Beer,1))
 	{
-		if(RangarToldAboutPaladins == FALSE)
+		if((RangarToldAboutPaladins == FALSE) && (MIS_Garvell_Infos == LOG_Running))
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_01");	//Ах, нет ничего лучше, чем холодный эль.
 			CreateInvItems(self,ItFo_Beer,1);
@@ -175,7 +182,7 @@ func void DIA_Rangar_Bier_Info()
 			AI_Output(self,other,"DIA_Rangar_Bier_07_05");	//Даже мясной жук не просочится там.
 			RangarToldAboutPaladins = TRUE;
 		}
-		else if(RangarToldAboutPaladins == TRUE)
+		else if((RangarToldAboutPaladins == TRUE) || (MIS_Garvell_Infos == FALSE))
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_06");	//Я бы не отказался еще от одной пинты.
 			CreateInvItems(self,ItFo_Beer,1);
