@@ -2333,28 +2333,28 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
 	B_StartOtherRoutine(dmt_1209,"AfterRitual");
 	B_StartOtherRoutine(dmt_1210,"AfterRitual");
 	B_StartOtherRoutine(dmt_1211,"AfterRitual"); */
-	if(!Npc_IsDead(DMT_1201))
+/*	if(!Npc_IsDead(DMT_1201))
 	{
 		DMT_1201.aivar[AIV_EnemyOverride] = TRUE;
-	};
+	};*/
 	if(!Npc_IsDead(DMT_1202))
 	{
 		DMT_1202.aivar[AIV_EnemyOverride] = TRUE;
 		B_StartOtherRoutine(DMT_1202,"AfterRitual");
 	};
-	if(!Npc_IsDead(DMT_1203))
+/*	if(!Npc_IsDead(DMT_1203))
 	{
 		DMT_1203.aivar[AIV_EnemyOverride] = TRUE;
-	};
+	};*/
 	if(!Npc_IsDead(DMT_1204))
 	{
 		DMT_1204.aivar[AIV_EnemyOverride] = TRUE;
 		B_StartOtherRoutine(DMT_1204,"AfterRitual");
 	};
-	if(!Npc_IsDead(DMT_1205))
+/*	if(!Npc_IsDead(DMT_1205))
 	{
 		DMT_1205.aivar[AIV_EnemyOverride] = TRUE;
-	};
+	};*/
 	if(!Npc_IsDead(DMT_1206))
 	{
 		DMT_1206.aivar[AIV_EnemyOverride] = TRUE;
@@ -2365,10 +2365,10 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
 		DMT_1207.aivar[AIV_EnemyOverride] = TRUE;
 		B_StartOtherRoutine(DMT_1207,"AfterRitual");
 	};
-	if(!Npc_IsDead(DMT_1208))
+/*	if(!Npc_IsDead(DMT_1208))
 	{
 		DMT_1208.aivar[AIV_EnemyOverride] = TRUE;
-	};
+	};*/
 	if(!Npc_IsDead(DMT_1209))
 	{
 		DMT_1209.aivar[AIV_EnemyOverride] = TRUE;

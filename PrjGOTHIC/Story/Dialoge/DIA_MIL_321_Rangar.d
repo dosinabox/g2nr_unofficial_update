@@ -93,6 +93,18 @@ func void DIA_Rangar_Hallo_Info()
 };
 
 
+func void B_AskRangarAboutCityOrk()
+{
+	if((Knows_Ork == TRUE) && !Npc_IsDead(CityOrc) && (RangarToldAboutOrc == FALSE))
+	{
+		AI_Output(other,self,"DIA_Rangar_Bier_15_07");	//Говорят, орков видели у самого города.
+		AI_Output(self,other,"DIA_Rangar_Bier_07_08");	//Да, точно, опасный орк около города. Этот орк - настоящий монстр. Он скоро нападет на город.
+		AI_Output(self,other,"DIA_Rangar_Bier_07_09");	//Послушай, мы порвем этого орка как тузик тряпку, если он подойдет близко к городу. Понял?
+		AI_Output(other,self,"DIA_Rangar_Bier_15_10");	//Понял.
+		RangarToldAboutOrc = TRUE;
+	};
+};
+
 instance DIA_Rangar_Ork(C_Info)
 {
 	npc = MIL_321_Rangar;
@@ -119,7 +131,11 @@ func void DIA_Rangar_Ork_Info()
 	if((other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Rangar_Ork_07_02");	//Иди спокойно домой и оставь нашу работу нам. Мы отвечаем за город и его граждан. Ик!
-	};	
+	};
+	if(MIS_Garvell_Infos == FALSE)
+	{
+		B_AskRangarAboutCityOrk();
+	};
 };
 
 
@@ -136,7 +152,7 @@ instance DIA_Rangar_Bier(C_Info)
 
 func int DIA_Rangar_Bier_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rangar_Hallo) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500) && (MIS_Garvell_Infos == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Rangar_Ork) && (Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") >= 500) && (Npc_GetDistToWP(self,"NW_CITY_WAY_TO_SHIP_03") >= 500) && (MIS_Garvell_Infos == LOG_Running))
 	{
 		return TRUE;
 	};
@@ -152,37 +168,25 @@ func void DIA_Rangar_Bier_Info()
 			AI_Output(self,other,"DIA_Rangar_Bier_07_01");	//Ах, нет ничего лучше, чем холодный эль.
 			CreateInvItems(self,ItFo_Beer,1);
 			B_UseItem(self,ItFo_Beer);
+			AI_Output(self,other,"DIA_Rangar_Bier_07_12");	//Знаешь, нечасто встретишь парня, готового угостить тебя пивом. Ты наш человек.
 			AI_Output(other,self,"DIA_Rangar_Bier_15_02");	//Ты что-то хотел сказать насчет орков...
 			AI_Output(self,other,"DIA_Rangar_Bier_07_03");	//Ах, да, точно. Орки не представляют угрозы для города.
 			AI_Output(self,other,"DIA_Rangar_Bier_07_04");	//Они застряли в Долине Рудников. А Проход охраняется паладинами.
 			AI_Output(self,other,"DIA_Rangar_Bier_07_05");	//Даже мясной жук не просочится там.
 			RangarToldAboutPaladins = TRUE;
-			Info_ClearChoices(DIA_Rangar_Bier);
 		}
-		else if((RangarToldAboutPaladins == TRUE) && (Knows_Ork == TRUE) && !Npc_IsDead(CityOrc))
+		else if(RangarToldAboutPaladins == TRUE)
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_06");	//Я бы не отказался еще от одной пинты.
 			CreateInvItems(self,ItFo_Beer,1);
 			B_UseItem(self,ItFo_Beer);
-			AI_Output(other,self,"DIA_Rangar_Bier_15_07");	//Говорят, орков видели у самого города.
-			AI_Output(self,other,"DIA_Rangar_Bier_07_08");	//Да, точно, опасный орк около города. Этот орк - настоящий монстр. Он скоро нападет на город.
-			AI_Output(self,other,"DIA_Rangar_Bier_07_09");	//Послушай, мы порвем этого орка как тузик тряпку, если он подойдет близко к городу. Понял?
-			AI_Output(other,self,"DIA_Rangar_Bier_15_10");	//Понял.
-			RangarToldAboutOrc = TRUE;
-			Info_ClearChoices(DIA_Rangar_Bier);
-		}
-		else
-		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_11");	//Горький эль - однозначно лучший.
-			CreateInvItems(self,ItFo_Beer,1);
-			B_UseItem(self,ItFo_Beer);
-			AI_Output(self,other,"DIA_Rangar_Bier_07_12");	//Знаешь, нечасто встретишь парня, готового угостить тебя пивом. Ты наш человек.
-			Info_ClearChoices(DIA_Rangar_Bier);
+			B_AskRangarAboutCityOrk();
 		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Rangar_Bier_07_13");	//Я хочу еще пива.
+		AI_Output(self,other,"DIA_Rangar_Bier_07_13");	//Я... (вздох) хочу еще пива.
 		AI_StopProcessInfos(self);
 	};
 };
@@ -198,11 +202,9 @@ instance DIA_Addon_Rangar_Erwischt(C_Info)
 };
 
 
-var int DIA_Addon_Rangar_Erwischt_OneTime;
-
 func int DIA_Addon_Rangar_Erwischt_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 500) && (DIA_Addon_Rangar_Erwischt_OneTime == FALSE) && (MIS_Addon_Martin_GetRangar == LOG_Running))
+	if((Npc_GetDistToWP(self,"NW_CITY_PALCAMP_15") < 500) && (MIS_Addon_Martin_GetRangar == LOG_Running))
 	{
 		return TRUE;
 	};

@@ -103,6 +103,10 @@ func void ZS_Dead()
 			Bloodwyn_Spawn = TRUE;
 		};
 	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcWarrior_Harad))
+	{
+		CityOrc_Killed_Day = Wld_GetDay();
+	};
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);
 	B_ClearRuneInv(self);

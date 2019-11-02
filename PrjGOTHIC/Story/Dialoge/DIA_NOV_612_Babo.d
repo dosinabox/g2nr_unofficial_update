@@ -649,7 +649,7 @@ func void DIA_Babo_Kap3_Unhappy_Info()
 func void DIA_Babo_Kap3_Unhappy_Lament()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Lament_15_00");	//Тогда прекрати хныкать.
-	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Lament_03_01");	//(испуганно) Я... Я... пожалуйста, не говори магам.
+	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Lament_03_01");	//(испуганно) Я... Я... Я... пожалуйста, не говори магам.
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Lament_03_02");	//Я не хочу, чтобы меня опять наказали.
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Lament_15_03");	//Я подумаю над этим.
 	Info_ClearChoices(DIA_Babo_Kap3_Unhappy);
@@ -658,9 +658,9 @@ func void DIA_Babo_Kap3_Unhappy_Lament()
 func void DIA_Babo_Kap3_Unhappy_TellMe()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_TellMe_15_00");	//Да ладно, мне-то ты можешь сказать.
-	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_TellMe_03_01");	//А ты правда не скажешь магам?
+	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_TellMe_03_01");	//А ты... правда не скажешь магам?
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_TellMe_15_02");	//Я похож на того, кто сразу бежит докладывать?
-	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_TellMe_03_03");	//Ну, хорошо. У меня проблемы с одним из послушников. Он шантажирует меня.
+	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_TellMe_03_03");	//Ну... хорошо. У меня проблемы с одним из послушников. Он шантажирует меня.
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_TellMe_15_04");	//Давай, выкладывай.
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_TellMe_03_05");	//Игарац, так зовут этого послушника, нашел мои личные записи.
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_TellMe_03_06");	//Он угрожает передать их магам, если я не буду делать то, что он говорит.
@@ -686,14 +686,14 @@ func void DIA_Babo_Kap3_Unhappy_Privat()
 func void DIA_Babo_Kap3_Unhappy_ShouldDo()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_ShouldDo_15_00");	//Что ты должен делать для него?
-	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_ShouldDo_03_01");	//Мне так стыдно говорить. Это все не понравится Инносу.
-	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_ShouldDo_03_02");	//Мне даже думать не хочется, что будет, если все раскроется.
+	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_ShouldDo_03_01");	//Мне так стыдно говорить. Это все... не понравится Инносу.
+	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_ShouldDo_03_02");	//Мне даже думать не хочется, что будет, если все... раскроется.
 };
 
 func void DIA_Babo_Kap3_Unhappy_Documents()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Documents_15_00");	//Что это были за записи?
-	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Documents_03_01");	//(неуверенно) Это никого не касается. Это мое личное дело.
+	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Documents_03_01");	//(неуверенно) Это... никого не касается. Это мое... личное дело.
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Documents_15_02");	//Да ладно, говори.
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Documents_03_03");	//Они... это... абсолютно нормальные записи. Ничего особенного.
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Documents_15_04");	//Я больше не буду спрашивать.
@@ -722,7 +722,7 @@ func void DIA_Babo_Kap3_Unhappy_No()
 func void DIA_Babo_Kap3_Unhappy_Yes()
 {
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Yes_15_00");	//Я посмотрю, что можно сделать.
-	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Yes_03_01");	//(счастливо) Правда?! Я знаю, у тебя получится. Я верю!
+	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Yes_03_01");	//(счастливо) Правда?! Я знаю, у тебя получится! Я верю!
 	AI_Output(self,other,"DIA_Babo_Kap3_Unhappy_Yes_03_02");	//Тебе нужно только выяснить, где Игарац держит свои вещи. Затем ты выкрадешь их у него, и все будет в порядке.
 	AI_Output(other,self,"DIA_Babo_Kap3_Unhappy_Yes_15_03");	//Расслабься. Продолжай работать. А я позабочусь об остальном.
 	Info_ClearChoices(DIA_Babo_Kap3_Unhappy);

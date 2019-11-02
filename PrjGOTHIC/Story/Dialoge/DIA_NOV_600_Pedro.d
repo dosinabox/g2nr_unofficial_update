@@ -159,7 +159,7 @@ instance DIA_Pedro_TEMPEL(C_Info)
 
 func int DIA_Pedro_TEMPEL_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pedro_EINLASS) && (hero.guild != GIL_NOV))
+	if(Npc_KnowsInfo(other,DIA_Pedro_EINLASS) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -291,15 +291,28 @@ instance DIA_Pedro_Rules(C_Info)
 
 func int DIA_Pedro_Rules_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pedro_TEMPEL))
+	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 	{
+		DIA_Pedro_Rules.description = "Здесь есть какие-нибудь правила, которых мне нужно придерживаться?";
+		return TRUE;
+	}
+	else if(Npc_KnowsInfo(other,DIA_Pedro_TEMPEL))
+	{
+		DIA_Pedro_Rules.description = "Что это за правила, по которым вы живете?";
 		return TRUE;
 	};
 };
 
 func void DIA_Pedro_Rules_Info()
 {
-	AI_Output(other,self,"DIA_Pedro_Rules_15_00");	//Что это за правила, по которым вы живете?
+	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
+	{
+		AI_Output(other,self,"DIA_Elena_Regeln_15_00");	//Здесь есть какие-нибудь правила, которых мне нужно придерживаться?
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Pedro_Rules_15_00");	//Что это за правила, по которым вы живете?
+	};
 	AI_Output(self,other,"DIA_Pedro_Rules_09_01");	//Иннос - бог правды и закона. Поэтому мы НИКОГДА не лжем и не совершаем преступления.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_02");	//Если ты согрешишь против брата из нашей общины или украдешь нашу собственность, тебе придется заплатить за это штраф.
 	AI_Output(self,other,"DIA_Pedro_Rules_09_03");	//Иннос также бог правления и огня.
@@ -327,7 +340,7 @@ var int DIA_Pedro_AUFNAHME_NOPERM;
 
 func int DIA_Pedro_AUFNAHME_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pedro_Rules) && (DIA_Pedro_AUFNAHME_NOPERM == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Pedro_Rules) && (other.guild != GIL_NOV) && (other.guild != GIL_KDF) && (DIA_Pedro_AUFNAHME_NOPERM == FALSE))
 	{
 		return TRUE;
 	};
@@ -354,7 +367,7 @@ func void DIA_Pedro_AUFNAHME_Info()
 		AI_Output(self,other,"DIA_Addon_Pedro_AUFNAHME_09_02");	//Твое решение окончательно? Пути назад для тебя уже не будет.
 		B_DIA_Pedro_AUFNAHME_Choice();
 	}
-	else if((hero.guild == GIL_NONE) && (Npc_HasItems(hero,ItMi_Gold) >= Summe_Kloster) && Wld_DetectNpc(self,Follow_Sheep,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 1000))
+	else if((Npc_HasItems(hero,ItMi_Gold) >= Summe_Kloster) && Wld_DetectNpc(self,Follow_Sheep,NOFUNC,-1) && (Npc_GetDistToNpc(self,other) < 1000))
 	{
 		AI_Output(self,hero,"DIA_Pedro_AUFNAHME_09_03");	//Я вижу, ты принес необходимое приношение. Если ты действительно желаешь этого, ты можешь стать послушником.
 		AI_Output(self,hero,"DIA_Pedro_AUFNAHME_09_04");	//Однако, если ты примешь это решение, пути назад не будет - хорошо подумай, твой ли это путь!

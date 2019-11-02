@@ -1268,3 +1268,4 @@ var int LuciaMentionedInKhorinis;
 var int Engor_Trade;
 var int CriminalsJailed;
 var int DIA_MIL_ARMOR_M_perm;
+var int CityOrc_Killed_Day;

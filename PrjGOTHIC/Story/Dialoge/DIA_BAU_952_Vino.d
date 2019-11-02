@@ -221,7 +221,7 @@ func int DIA_Vino_PERM_Condition()
 func void DIA_Vino_PERM_Info()
 {
 	AI_Output(other,self,"DIA_Vino_PERM_15_00");	//Есть какие-нибудь интересные новости?
-	if(Vino_Gossip_Orks == FALSE)
+	if((Vino_Gossip_Orks == FALSE) && (CityOrc_Killed_Day >= (Wld_GetDay() - 2)))
 	{
 		AI_Output(self,other,"DIA_Vino_PERM_05_01");	//Я могу поклясться, что видел орка вон там, на краю леса, два дня назад.
 		AI_Output(self,other,"DIA_Vino_PERM_05_02");	//С тех пор я сплю хотя бы с одним открытым глазом.
