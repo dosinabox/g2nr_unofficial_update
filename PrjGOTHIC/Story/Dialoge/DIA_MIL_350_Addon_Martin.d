@@ -447,7 +447,7 @@ func void DIA_Addon_Martin_Fernando_Info()
 			if(Npc_HasItems(other,ItMw_Addon_BanditTrader))
 			{
 				AI_Output(other,self,"DIA_Addon_Martin_Fernando_15_02");	//Такие шпаги я нашел у бандитов. На эфесе выгравирована буква 'Ф'.
-				Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,Npc_HasItems(other,ItMw_Addon_BanditTrader));
+				Npc_RemoveInvItems(other,ItMw_Addon_BanditTrader,1);
 				FernandoHints_ItMw = TRUE;
 			};
 			if(Npc_HasItems(other,ItRi_Addon_BanditTrader))

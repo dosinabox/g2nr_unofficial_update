@@ -1522,7 +1522,7 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
+	B_LevelUp(1);
 };
 
 instance WastelandRune(C_Item)

@@ -113,21 +113,17 @@ func void Rtn_Start_0()
 	TA_Stand_ArmsCrossed(23,0,8,0,"XXX");
 };
 
-func void B_SetHeroExp()
+func void B_SetHeroExp(var int levels)
 {
-	var string Attributes;
-	hero.exp = 250 * (hero.level + 1) * hero.level;
-	hero.exp_next = 250 * (hero.level + 2) * (hero.level + 1);
-	hero.lp = hero.level * LP_PER_LEVEL;
-	hero.attribute[ATR_HITPOINTS_MAX] = 40 + (10 * hero.level);
-	hero.attribute[ATR_HITPOINTS] = hero.attribute[ATR_HITPOINTS_MAX];
-	Attributes = "Повышение уровня! Очки обучения: ";
-	Attributes = ConcatStrings(Attributes,IntToString(hero.lp));
-	Attributes = ConcatStrings(Attributes,". Здоровье: ");
-	Attributes = ConcatStrings(Attributes,IntToString(hero.attribute[ATR_HITPOINTS_MAX]));
-	Attributes = ConcatStrings(Attributes,".");
-	PrintScreen(Attributes,-1,-1,FONT_Screen,3);
-	Snd_Play("LEVELUP");
+	hero.level = 0;
+	hero.exp_next = XP_PER_LEVEL;
+	hero.attribute[ATR_HITPOINTS_MAX] = 40;
+	hero.attribute[ATR_HITPOINTS] = 40;
+	hero.lp = 0;
+	B_LevelUp(levels);
+	hero.exp = (XP_PER_LEVEL / 2) * (hero.level + 1) * hero.level;
+	PrintScreen(ConcatStrings("Здоровье: ",IntToString(hero.attribute[ATR_HITPOINTS_MAX])),-1,53,FONT_Screen,2);
+	PrintScreen(ConcatStrings("Очки обучения: ",IntToString(hero.lp)),-1,56,FONT_Screen,2);
 };
 
 func void B_SetHeroWeapon()
@@ -365,11 +361,11 @@ func void CH_RESET_Info()
 	hero.lp = 0;
 	hero.level = 0;
 	hero.exp = 0;
-	hero.exp_next = 500;
+	hero.exp_next = XP_PER_LEVEL;
 	hero.attribute[ATR_STRENGTH] = 10;
 	hero.attribute[ATR_DEXTERITY] = 10;
-	hero.attribute[ATR_MANA_MAX] = 5;
-	hero.attribute[ATR_MANA] = 5;
+	hero.attribute[ATR_MANA_MAX] = 10;
+	hero.attribute[ATR_MANA] = 10;
 	hero.attribute[ATR_HITPOINTS] = 40;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40;
 	Npc_SetTalentSkill(hero,NPC_TALENT_SMITH,0);
@@ -809,8 +805,7 @@ func void CH_Level_hoch_BACK()
 func void CH_Level_1()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 1;
-	B_SetHeroExp();
+	B_SetHeroExp(1);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -818,8 +813,7 @@ func void CH_Level_1()
 func void CH_Level_2()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 2;
-	B_SetHeroExp();
+	B_SetHeroExp(2);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -827,8 +821,7 @@ func void CH_Level_2()
 func void CH_Level_3()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 3;
-	B_SetHeroExp();
+	B_SetHeroExp(3);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -836,8 +829,7 @@ func void CH_Level_3()
 func void CH_Level_4()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 4;
-	B_SetHeroExp();
+	B_SetHeroExp(4);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -845,8 +837,7 @@ func void CH_Level_4()
 func void CH_Level_5()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 5;
-	B_SetHeroExp();
+	B_SetHeroExp(5);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -854,8 +845,7 @@ func void CH_Level_5()
 func void CH_Level_6()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 6;
-	B_SetHeroExp();
+	B_SetHeroExp(6);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -863,8 +853,7 @@ func void CH_Level_6()
 func void CH_Level_7()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 7;
-	B_SetHeroExp();
+	B_SetHeroExp(7);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -872,8 +861,7 @@ func void CH_Level_7()
 func void CH_Level_8()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 8;
-	B_SetHeroExp();
+	B_SetHeroExp(8);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -881,8 +869,7 @@ func void CH_Level_8()
 func void CH_Level_9()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 9;
-	B_SetHeroExp();
+	B_SetHeroExp(9);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -890,8 +877,7 @@ func void CH_Level_9()
 func void CH_Level_10()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 10;
-	B_SetHeroExp();
+	B_SetHeroExp(10);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -899,8 +885,7 @@ func void CH_Level_10()
 func void CH_Level_11()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 11;
-	B_SetHeroExp();
+	B_SetHeroExp(11);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -908,8 +893,7 @@ func void CH_Level_11()
 func void CH_Level_12()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 12;
-	B_SetHeroExp();
+	B_SetHeroExp(12);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -917,8 +901,7 @@ func void CH_Level_12()
 func void CH_Level_13()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 13;
-	B_SetHeroExp();
+	B_SetHeroExp(13);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -926,8 +909,7 @@ func void CH_Level_13()
 func void CH_Level_14()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 14;
-	B_SetHeroExp();
+	B_SetHeroExp(14);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -935,8 +917,7 @@ func void CH_Level_14()
 func void CH_Level_15()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 15;
-	B_SetHeroExp();
+	B_SetHeroExp(15);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -944,8 +925,7 @@ func void CH_Level_15()
 func void CH_Level_16()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 16;
-	B_SetHeroExp();
+	B_SetHeroExp(16);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -953,8 +933,7 @@ func void CH_Level_16()
 func void CH_Level_17()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 17;
-	B_SetHeroExp();
+	B_SetHeroExp(17);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -962,8 +941,7 @@ func void CH_Level_17()
 func void CH_Level_18()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 18;
-	B_SetHeroExp();
+	B_SetHeroExp(18);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -971,8 +949,7 @@ func void CH_Level_18()
 func void CH_Level_19()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 19;
-	B_SetHeroExp();
+	B_SetHeroExp(19);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -980,8 +957,7 @@ func void CH_Level_19()
 func void CH_Level_20()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 20;
-	B_SetHeroExp();
+	B_SetHeroExp(20);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -989,8 +965,7 @@ func void CH_Level_20()
 func void CH_Level_21()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 21;
-	B_SetHeroExp();
+	B_SetHeroExp(21);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -998,8 +973,7 @@ func void CH_Level_21()
 func void CH_Level_22()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 22;
-	B_SetHeroExp();
+	B_SetHeroExp(22);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1007,8 +981,7 @@ func void CH_Level_22()
 func void CH_Level_23()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 23;
-	B_SetHeroExp();
+	B_SetHeroExp(23);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1016,8 +989,7 @@ func void CH_Level_23()
 func void CH_Level_24()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 24;
-	B_SetHeroExp();
+	B_SetHeroExp(24);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1025,8 +997,7 @@ func void CH_Level_24()
 func void CH_Level_25()
 {
 	Info_ClearChoices(CH_Level_niedrig);
-	hero.level = 25;
-	B_SetHeroExp();
+	B_SetHeroExp(25);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1034,8 +1005,7 @@ func void CH_Level_25()
 func void CH_Level_26()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 26;
-	B_SetHeroExp();
+	B_SetHeroExp(26);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1043,8 +1013,7 @@ func void CH_Level_26()
 func void CH_Level_27()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 27;
-	B_SetHeroExp();
+	B_SetHeroExp(27);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1052,8 +1021,7 @@ func void CH_Level_27()
 func void CH_Level_28()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 28;
-	B_SetHeroExp();
+	B_SetHeroExp(28);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1061,8 +1029,7 @@ func void CH_Level_28()
 func void CH_Level_29()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 29;
-	B_SetHeroExp();
+	B_SetHeroExp(29);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1070,8 +1037,7 @@ func void CH_Level_29()
 func void CH_Level_30()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 30;
-	B_SetHeroExp();
+	B_SetHeroExp(30);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1079,8 +1045,7 @@ func void CH_Level_30()
 func void CH_Level_31()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 31;
-	B_SetHeroExp();
+	B_SetHeroExp(31);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1088,8 +1053,7 @@ func void CH_Level_31()
 func void CH_Level_32()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 32;
-	B_SetHeroExp();
+	B_SetHeroExp(32);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1097,8 +1061,7 @@ func void CH_Level_32()
 func void CH_Level_33()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 33;
-	B_SetHeroExp();
+	B_SetHeroExp(33);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1106,8 +1069,7 @@ func void CH_Level_33()
 func void CH_Level_34()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 34;
-	B_SetHeroExp();
+	B_SetHeroExp(34);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1115,8 +1077,7 @@ func void CH_Level_34()
 func void CH_Level_35()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 35;
-	B_SetHeroExp();
+	B_SetHeroExp(35);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1124,8 +1085,7 @@ func void CH_Level_35()
 func void CH_Level_36()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 36;
-	B_SetHeroExp();
+	B_SetHeroExp(36);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1133,8 +1093,7 @@ func void CH_Level_36()
 func void CH_Level_37()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 37;
-	B_SetHeroExp();
+	B_SetHeroExp(37);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1142,8 +1101,7 @@ func void CH_Level_37()
 func void CH_Level_38()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 38;
-	B_SetHeroExp();
+	B_SetHeroExp(38);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1151,8 +1109,7 @@ func void CH_Level_38()
 func void CH_Level_39()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 39;
-	B_SetHeroExp();
+	B_SetHeroExp(39);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1160,8 +1117,7 @@ func void CH_Level_39()
 func void CH_Level_40()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 40;
-	B_SetHeroExp();
+	B_SetHeroExp(40);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1169,8 +1125,7 @@ func void CH_Level_40()
 func void CH_Level_41()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 41;
-	B_SetHeroExp();
+	B_SetHeroExp(41);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1178,8 +1133,7 @@ func void CH_Level_41()
 func void CH_Level_42()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 42;
-	B_SetHeroExp();
+	B_SetHeroExp(42);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1187,8 +1141,7 @@ func void CH_Level_42()
 func void CH_Level_43()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 43;
-	B_SetHeroExp();
+	B_SetHeroExp(43);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1196,8 +1149,7 @@ func void CH_Level_43()
 func void CH_Level_44()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 44;
-	B_SetHeroExp();
+	B_SetHeroExp(44);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1205,8 +1157,7 @@ func void CH_Level_44()
 func void CH_Level_45()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 45;
-	B_SetHeroExp();
+	B_SetHeroExp(45);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1214,8 +1165,7 @@ func void CH_Level_45()
 func void CH_Level_46()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 46;
-	B_SetHeroExp();
+	B_SetHeroExp(46);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1223,8 +1173,7 @@ func void CH_Level_46()
 func void CH_Level_47()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 47;
-	B_SetHeroExp();
+	B_SetHeroExp(47);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1232,8 +1181,7 @@ func void CH_Level_47()
 func void CH_Level_48()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 48;
-	B_SetHeroExp();
+	B_SetHeroExp(48);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1241,8 +1189,7 @@ func void CH_Level_48()
 func void CH_Level_49()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 49;
-	B_SetHeroExp();
+	B_SetHeroExp(49);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
@@ -1250,8 +1197,7 @@ func void CH_Level_49()
 func void CH_Level_50()
 {
 	Info_ClearChoices(CH_Level_hoch);
-	hero.level = 50;
-	B_SetHeroExp();
+	B_SetHeroExp(50);
 	B_SetHeroWeapon();
 	B_SetHeroEquipment();
 };
