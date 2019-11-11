@@ -21,6 +21,10 @@ func int C_GotDrinkForHokurn()
 	{
 		return TRUE;
 	};
+	if(Npc_HasItems(other,ItFo_Addon_Liquor))
+	{
+		return TRUE;
+	};
 	if(Npc_HasItems(other,ItFo_Addon_LousHammer))
 	{
 		return TRUE;
@@ -62,6 +66,11 @@ func void B_GiveDrinkToHokurn()
 	{
 		B_GiveInvItems(other,self,ItFo_Addon_Grog,1);
 		B_UseItem(self,ItFo_Addon_Grog);
+	}
+	else if(Npc_HasItems(other,ItFo_Addon_Liquor))
+	{
+		B_GiveInvItems(other,self,ItFo_Addon_Liquor,1);
+		B_UseItem(self,ItFo_Addon_Liquor);
 	}
 	else if(Npc_HasItems(other,ItFo_Addon_LousHammer))
 	{
@@ -265,6 +274,8 @@ func void DIA_Hokurn_Learn_Info()
 	AI_Output(other,self,"DIA_Hokurn_Learn_15_00");	//я ищу человека, который мог бы научить мен€ чему-нибудь.
 	AI_Output(self,other,"DIA_Hokurn_Learn_01_01");	//я мог бы обучить теб€ некоторым вещам. я лучший боец на многие мили вокруг.
 	AI_Output(self,other,"DIA_Hokurn_Learn_01_02");	//“ак как мы друзь€, € сделаю тебе скидку. Ёто будет стоить 300 золотых монет.
+	Log_CreateTopic(TOPIC_OutTeacher,LOG_NOTE);
+	B_LogEntry(TOPIC_OutTeacher,"ќхотник на драконов ’окарн сможет обучить мен€ различным боевым приемам.");
 	Info_ClearChoices(DIA_Hokurn_Learn);
 	Info_AddChoice(DIA_Hokurn_Learn,"Ёто дл€ мен€ слишком дорого.",DIA_Hokurn_Learn_TooExpensive);
 	if(Npc_HasItems(other,ItMi_Gold) >= 300)
@@ -346,6 +357,17 @@ func void DIA_Hokurn_DrinkAndLearn_Info()
 };
 
 
+var int Hokurn_TeachPlayer_Perm;
+
+func void B_Hokurn_TeachedEnough()
+{
+	AI_Output(self,other,"B_Hokurn_TeachedEnough_01_00");	//“ебе больше не нужен учитель в этом виде боевого искусства.
+	if((other.aivar[REAL_TALENT_1H] >= 100) && (other.aivar[REAL_TALENT_2H] >= 100))
+	{
+		Hokurn_TeachPlayer_Perm = TRUE;
+	};
+};
+
 instance DIA_Hokurn_Teach(C_Info)
 {
 	npc = DJG_712_Hokurn;
@@ -359,7 +381,7 @@ instance DIA_Hokurn_Teach(C_Info)
 
 func int DIA_Hokurn_Teach_Condition()
 {
-	if(Hokurn_TeachPlayer == TRUE)
+	if((Hokurn_TeachPlayer == TRUE) && (Hokurn_TeachPlayer_Perm == FALSE))
 	{
 		return TRUE;
 	};
@@ -372,7 +394,7 @@ func void DIA_Hokurn_Teach_Info()
 	{
 		AI_Output(self,other,"DIA_Hokurn_Teach_01_01");	//—начала принеси мне что-нибудь выпить!
 	}
-	else
+	else if((other.aivar[REAL_TALENT_1H] < 100) || (other.aivar[REAL_TALENT_2H] < 100))
 	{
 		if(hero.guild == GIL_PAL)
 		{
@@ -388,17 +410,16 @@ func void DIA_Hokurn_Teach_Info()
 		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hokurn_Teach_2H_5);
 		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Hokurn_Teach_1H_1);
 		Info_AddChoice(DIA_Hokurn_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Hokurn_Teach_1H_5);
+	}
+	else
+	{
+		B_Hokurn_TeachedEnough();
 	};
 };
 
 func void DIA_Hokurn_Teach_Back()
 {
 	Info_ClearChoices(DIA_Hokurn_Teach);
-};
-
-func void B_Hokurn_TeachedEnough()
-{
-	AI_Output(self,other,"B_Hokurn_TeachedEnough_01_00");	//“ебе больше не нужен учитель в этом виде боевого искусства.
 };
 
 func void DIA_Hokurn_Teach_2H_1()

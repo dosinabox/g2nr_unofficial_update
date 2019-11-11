@@ -3427,19 +3427,22 @@ Model ("HuS")
 			ani			("s_TREASURE_S1"			1	"t_TREASURE_S0_2_Stand"	0.0	0.0	M.	"Hum_TREASURE_A01.asc"	F	15	15)	
 			ani			("s_TREASURE_S2"			1	"s_TREASURE_S3"			0.0	0.0	M.	"Hum_TREASURE_A01.asc"	F	15	75)
 			{
-				*eventPFX	(44		1	"CPFX_IAI_STONE"	"ZS_RIGHTHAND"	)
+				*eventPFX	(44		1	"PICKTREASURE"	"ZS_RIGHTHAND"	)
+				*eventPFX	(44		2	"PICKTREASURE_DUST"	"ZS_RIGHTHAND"	)
 				*eventSFX	(44			"pickore"	R:1000	EMPTY_SLOT)
 			}
 			
 			ani			("s_TREASURE_S3"			1	"s_TREASURE_S4"			0.0	0.0	M.	"Hum_TREASURE_A01.asc"	F	15	75)
 			{
-				*eventPFX	(44		1	"CPFX_IAI_STONE"	"ZS_RIGHTHAND"	)
+				*eventPFX	(44		1	"PICKTREASURE"	"ZS_RIGHTHAND"	)
+				*eventPFX	(44		2	"PICKTREASURE_DUST"	"ZS_RIGHTHAND"	)
 				*eventSFX	(44			"pickore"	R:1000	EMPTY_SLOT)
 			}
 			
 			ani			("s_TREASURE_S4"			1	"s_TREASURE_S0"			0.0	0.0	M.	"Hum_TREASURE_A01.asc"	F	15	75)
 			{
-				*eventPFX	(44		1	"CPFX_IAI_STONE"	"ZS_RIGHTHAND"	)
+				*eventPFX	(44		1	"PICKTREASURE"	"ZS_RIGHTHAND"	)
+				*eventPFX	(44		2	"PICKTREASURE_DUST"	"ZS_RIGHTHAND"	)
 				*eventSFX	(44			"pickore"	R:1000	EMPTY_SLOT)
 			}
 			

@@ -335,7 +335,7 @@ func void DIA_Bennet_WannaSmith_Info()
 	AI_Output(self,other,"DIA_Bennet_WannaSmith_06_01");	//Конечно.
 	AI_Output(self,other,"DIA_Bennet_WannaSmith_06_02");	//Впрочем, это обойдется тебе в некоторую сумму. Скажем, 30 золотых.
 	Info_ClearChoices(DIA_Bennet_WannaSmith);
-	Info_AddChoice(DIA_Bennet_WannaSmith,"Может быть, позже.",DIA_Bennet_WannaSmith_Later);
+	Info_AddChoice(DIA_Bennet_WannaSmith,"Ну, может быть, позже.",DIA_Bennet_WannaSmith_Later);
 	Info_AddChoice(DIA_Bennet_WannaSmith,"Отлично. Вот твои 30 золотых.",DIA_Bennet_WannaSmith_Pay);
 };
 
@@ -358,7 +358,7 @@ func void DIA_Bennet_WannaSmith_Pay()
 
 func void DIA_Bennet_WannaSmith_Later()
 {
-	AI_Output(other,self,"DIA_Bennet_WannaSmith_Later_15_00");	//Может быть, позже.
+	AI_Output(other,self,"DIA_Bennet_WannaSmith_Later_15_00");	//Ну, может быть, позже.
 	Info_ClearChoices(DIA_Bennet_WannaSmith);
 };
 
@@ -418,20 +418,27 @@ func int DIA_Bennet_WannaSmithORE_Condition()
 func void DIA_Bennet_WannaSmithORE_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_WannaSmithORE_15_00");	//Научи меня ковать магическое оружие!
-	if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
-		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_01");	//Но ты даже не знаешь основ кузнечного дела.
-		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_02");	//Сначала ты должен научиться ковать обычные мечи. А там посмотрим.
-	}
-	else if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
-	{
-		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_03");	//Пока ты не один из нас, будь я проклят, если научу тебя секретам изготовления магического оружия.
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_03");	//Пока ты не один из нас, будь я проклят, если научу тебя секретам изготовления магического оружия.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_03_add");	//Ты не один из нас - будь я проклят, если научу тебя секретам изготовления магического оружия.
+		};
 		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_04");	//Только немногие кузнецы владеют этим искусством, и я думаю, даже кузнецы в городе ничего не знают об этом.
 		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_05");	//И это хорошо. Иначе все эти пьяницы из городской стражи потрясали бы магическими мечами.
 		if(other.guild == GIL_MIL)
 		{
 			AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_06");	//Ничего личного. (ухмыляется) Против тебя я ничего не имею.
 		};
+	}
+	else if(PLAYER_TALENT_SMITH[WEAPON_Common] == FALSE)
+	{
+		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_01");	//Но ты даже не знаешь основ кузнечного дела.
+		AI_Output(self,other,"DIA_Bennet_WannaSmithORE_06_02");	//Сначала ты должен научиться ковать обычные мечи. А там посмотрим.
 	}
 	else if(MIS_Bennet_BringOre != LOG_SUCCESS)
 	{

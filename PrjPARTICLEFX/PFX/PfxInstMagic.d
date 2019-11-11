@@ -6726,7 +6726,7 @@ instance MFX_MASSDEATH_LEFTHAND(C_PARTICLEFX)
 	vistexisquadpoly = 1;
 	vistexanifps = 2;
 	vistexaniislooping = 1;
-	vistexcolorstart_s = "255  80 80";
+	vistexcolorstart_s = "255 80 80";
 	vistexcolorend_s = "255 80 80";
 	vissizestart_s = "2 35";
 	vissizeendscale = 10;
