@@ -115,8 +115,11 @@ func void DIA_Daron_Paladine_Info()
 	AI_Output(other,self,"DIA_Daron_Paladine_15_00");	//Мне нужно поговорить с паладинами. Ты можешь помочь мне в этом?
 	AI_Output(self,other,"DIA_Daron_Paladine_10_01");	//Ну, для этого ты должен иметь доступ в верхний квартал города. Однако входить туда позволено только гражданам и городской страже.
 	AI_Output(self,other,"DIA_Daron_Paladine_10_02");	//Ну и, конечно же, нам, магам Огня.
-	AI_Output(other,self,"DIA_Daron_Paladine_15_03");	//Как я могу стать магом Огня?
-	AI_Output(self,other,"DIA_Daron_Paladine_10_04");	//Ты должен вступить в наш орден в качестве послушника. А по прошествии некоторого времени, возможно, ты будешь принят в ряды магов.
+	if(other.guild != GIL_NOV)
+	{
+		AI_Output(other,self,"DIA_Daron_Paladine_15_03");	//Как я могу стать магом Огня?
+		AI_Output(self,other,"DIA_Daron_Paladine_10_04");	//Ты должен вступить в наш орден в качестве послушника. А по прошествии некоторого времени, возможно, ты будешь принят в ряды магов.
+	};
 	AI_Output(self,other,"DIA_Daron_Paladine_10_05");	//Однако, этот путь долог, полон тяжелой работы и утомительного обучения.
 };
 
@@ -263,7 +266,7 @@ instance DIA_Daron_Innos(C_Info)
 
 func int DIA_Daron_Innos_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Daron_Woher) && (other.guild != GIL_KDF) && (other.guild != GIL_DJG))
+	if(Npc_KnowsInfo(other,DIA_Daron_Woher) && (other.guild != GIL_KDF))
 	{
 		return TRUE;
 	};
@@ -319,7 +322,7 @@ instance DIA_Daron_Stadt(C_Info)
 
 func int DIA_Daron_Stadt_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Daron_Woher))
+	if(Npc_KnowsInfo(other,DIA_Daron_Woher) || (other.guild == GIL_KDF) || (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -345,24 +348,45 @@ instance DIA_Addon_Daron_GuildHelp(C_Info)
 
 func int DIA_Addon_Daron_GuildHelp_Condition()
 {
-	if((MIS_Addon_Vatras_Go2Daron == LOG_Running) && Npc_KnowsInfo(other,DIA_Daron_Stadt))
+	if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild != GIL_NONE) && (other.guild != GIL_NOV))
 	{
+		DIA_Addon_Daron_GuildHelp.description = "У тебя такой расстроенный вид...";
+		return TRUE;
+	}
+	else if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild == GIL_NOV))
+	{
+		DIA_Addon_Daron_GuildHelp.description = "У тебя есть какое-нибудь задание для меня?";
+		return TRUE;
+	}
+	else if(MIS_Addon_Vatras_Go2Daron == LOG_Running)
+	{
+		DIA_Addon_Daron_GuildHelp.description = "Я слышал, у вас пропала ценная статуэтка.";
 		return TRUE;
 	};
 };
 
 func void DIA_Addon_Daron_GuildHelp_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_00");	//Я слышал, у вас пропала ценная статуэтка.
-	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_01");	//Неужели? Об этом знал только маг Воды Ватрас.
-	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_02");	//В чем проблема?
+	if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild != GIL_NONE) && (other.guild != GIL_NOV))
+	{
+		AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_15_00");	//У тебя такой расстроенный вид...
+	}
+	else if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild == GIL_NOV))
+	{
+		AI_Output(other,self,"DIA_Gorax_Aufgabe_15_00");	//У тебя есть какое-нибудь задание для меня?
+	}
+	else if(MIS_Addon_Vatras_Go2Daron == LOG_Running)
+	{
+		AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_00");	//Я слышал, у вас пропала ценная статуэтка.
+		AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_01");	//Неужели? Об этом знал только маг Воды Ватрас.
+		AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_02");	//В чем проблема?
+	};
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_03");	//С континента в монастырь была отправлена драгоценная статуэтка. Но до нас она так и не дошла.
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_15_04");	//Корабль был ограблен?
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_05");	//Нет. Он в целости и сохранности прибыл в Хоринис. Я встретил его и забрал статуэтку.
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_06");	//Но когда я возвращался в монастырь, на меня напали гоблины и отобрали ее у меня.
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_10_07");	//(сердито) И не надо на меня так смотреть. Маги, к твоему сведению, тоже люди.
 	MIS_Addon_Vatras_Go2Daron = LOG_SUCCESS;
-	MIS_Addon_Daron_GetStatue = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Daron_GuildHelp);
 	if(Hlp_IsValidNpc(Gobbo_DaronsStatuenKlauer) && Npc_HasItems(Gobbo_DaronsStatuenKlauer,ItMi_LostInnosStatue_Daron))
 	{
@@ -405,11 +429,30 @@ func void DIA_Addon_Daron_GuildHelp_auftrag()
 	AI_Output(other,self,"DIA_Addon_Daron_GuildHelp_auftrag_15_00");	//Я услышал достаточно. Я найду статуэтку.
 	AI_Output(self,other,"DIA_Addon_Daron_GuildHelp_auftrag_10_01");	//Да направит тебя Иннос, и да защитит он тебя от опасностей, подстерегающих тебя за воротами города.
 	Info_ClearChoices(DIA_Addon_Daron_GuildHelp);
-	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Дарон был ограблен мерзкими гоблинами. У него пропала ценная статуэтка, которую он должен был доставить в монастырь. Эти гоблины, похоже, скрываются в пещере около таверны 'Мертвая гарпия'.");
+	MIS_Addon_Daron_GetStatue = LOG_Running;
+	if(other.guild == GIL_NONE)
+	{
+		B_LogEntry(TOPIC_Addon_RangerHelpKDF,TOPIC_Addon_DaronGobbos);
+	}
+	else
+	{
+		Log_CreateTopic(TOPIC_Addon_HelpDaron,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_Running);
+		B_LogEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
+	};
 };
 
+
+func void B_DaronGivesReward()
+{
+	AI_Output(self,other,"DIA_Addon_Daron_ReturnedStatue_10_01");	//Это прекрасная новость! Да хранит тебя Иннос.
+	AI_Output(self,other,"DIA_Addon_Daron_ReturnedStatue_10_02");	//Прими вот это в знак моей благодарности.
+	CreateInvItems(self,ItMi_Gold,150);
+	B_GiveInvItems(self,other,ItMi_Gold,150);
+	MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
+	TOPIC_End_RangerHelpKDF = TRUE;
+	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
+};
 
 instance DIA_Addon_Daron_FoundStatue(C_Info)
 {
@@ -423,7 +466,7 @@ instance DIA_Addon_Daron_FoundStatue(C_Info)
 
 func int DIA_Addon_Daron_FoundStatue_Condition()
 {
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (DIA_Gorax_GOLD_perm == FALSE) && (MIS_Addon_Daron_GetStatue == LOG_Running))
+	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron) && (MIS_Addon_Daron_GetStatue == LOG_Running) && (LostInnosStatueInMonastery == FALSE))
 	{
 		return TRUE;
 	};
@@ -432,16 +475,25 @@ func int DIA_Addon_Daron_FoundStatue_Condition()
 func void DIA_Addon_Daron_FoundStatue_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Daron_FoundStatue_15_00");	//Я нашел статуэтку.
-	AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_01");	//Хвала Инносу!
-	AI_Output(other,self,"DIA_Addon_Daron_FoundStatue_15_02");	//Что ты будешь с ней делать?
-	AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_03");	//Я? Ничего. До сих пор она приносила мне лишь несчастья.
-	AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_04");	//ТЫ отнесешь ее в монастырь, сынок.
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_KDF) || (MIS_OLDWORLD == LOG_SUCCESS))
 	{
-		AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_05");	//Конечно, тебя не пропустят внутрь, если ты не согласишься посвятить оставшуюся жизнь служению монастырю.
-		AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_06");	//Но я уверен, что ты не откажешься. Ведь ты можешь оказать услугу МНЕ, верно?
+		B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
+		Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
+		B_DaronGivesReward();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_01");	//Хвала Инносу!
+		AI_Output(other,self,"DIA_Addon_Daron_FoundStatue_15_02");	//Что ты будешь с ней делать?
+		AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_03");	//Я? Ничего. До сих пор она приносила мне лишь несчастья.
+		AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_04");	//ТЫ отнесешь ее в монастырь, сынок.
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_05");	//Конечно, тебя не пропустят внутрь, если ты не согласишься посвятить оставшуюся жизнь служению монастырю.
+			AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_06");	//Но я уверен, что ты не откажешься. Ведь ты можешь оказать услугу МНЕ, верно?
+		};
+		AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_07");	//Ступай, сынок! Да пребудет с тобой Иннос.
 	};
-	AI_Output(self,other,"DIA_Addon_Daron_FoundStatue_10_07");	//Ступай, сынок! Да пребудет с тобой Иннос.
 };
 
 
@@ -457,7 +509,7 @@ instance DIA_Addon_Daron_ReturnedStatue(C_Info)
 
 func int DIA_Addon_Daron_ReturnedStatue_Condition()
 {
-	if(MIS_Addon_Daron_GetStatue == LOG_SUCCESS)
+	if(LostInnosStatueInMonastery == TRUE)
 	{
 		return TRUE;
 	};
@@ -466,12 +518,7 @@ func int DIA_Addon_Daron_ReturnedStatue_Condition()
 func void DIA_Addon_Daron_ReturnedStatue_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Daron_ReturnedStatue_15_00");	//Я отнес твою статуэтку в монастырь. Можешь быть спокоен.
-	AI_Output(self,other,"DIA_Addon_Daron_ReturnedStatue_10_01");	//Это прекрасная новость! Да хранит тебя Иннос.
-	AI_Output(self,other,"DIA_Addon_Daron_ReturnedStatue_10_02");	//Прими вот это в знак моей благодарности.
-	CreateInvItems(self,ItMi_Gold,150);
-	B_GiveInvItems(self,other,ItMi_Gold,150);
-	TOPIC_End_RangerHelpKDF = TRUE;
-	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
+	B_DaronGivesReward();
 };
 
 
@@ -531,7 +578,7 @@ func void DIA_Daron_Spende_Info()
 	Info_ClearChoices(DIA_Daron_Spende);
 	if(Daron_Spende < 1000)
 	{
-		Info_AddChoice(DIA_Daron_Spende,Dialog_Back,DIA_Daron_Spende_BACK);
+		Info_AddChoice(DIA_Daron_Spende,"Я должен еще подумать.",DIA_Daron_Spende_BACK);
 		Info_AddChoice(DIA_Daron_Spende,"Но у меня недостаточно золота...",DIA_Daron_Spende_NoGold);
 		Info_AddChoice(DIA_Daron_Spende,"(50 золотых)",DIA_Daron_Spende_50);
 		Info_AddChoice(DIA_Daron_Spende,"(100 золотых)",DIA_Daron_Spende_100);
@@ -554,6 +601,7 @@ func void DIA_Daron_Spende_NoGold()
 
 func void DIA_Daron_Spende_BACK()
 {
+	AI_Output(other,self,"DIA_Addon_Greg_NW_Stadtwachen_nochnicht_15_00");	//Я должен еще подумать.
 	Info_ClearChoices(DIA_Daron_Spende);
 };
 

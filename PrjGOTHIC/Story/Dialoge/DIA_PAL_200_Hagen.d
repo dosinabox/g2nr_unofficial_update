@@ -741,7 +741,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	hero.guild = GIL_PAL;
 	Npc_SetTrueGuild(hero,GIL_PAL);
 	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
-	if(Helms_Enabled == TRUE)
+	if(Helmets_Enabled == TRUE)
 	{
 		CreateInvItems(other,ITAR_PALN_M,1);
 		CreateInvItems(other,ITHE_PAL_M,1);
@@ -751,11 +751,6 @@ func void DIA_Lord_Hagen_Knight_Yes()
 		CreateInvItems(other,ITAR_PAL_M,1);
 	};
 //	AI_EquipArmor(other,ITAR_PAL_M);
-	/*if(Npc_HasItems(other,ItRu_FakePalLight))
-	{
-		CreateInvItem(other,ItRu_PalLight);
-		Npc_RemoveInvItem(other,ItRu_FakePalLight);
-	};*/
 	if(other.HitChance[NPC_TALENT_2H] >= other.HitChance[NPC_TALENT_1H])
 	{
 		CreateInvItems(self,ItMw_2h_Pal_Sword,1);
@@ -894,6 +889,13 @@ func void DIA_Lord_Hagen_EyeBroken_Info()
 };
 
 
+func void B_Hagen_GiveTeleportRune()
+{
+	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_00");	//И еще одно, прежде чем ты уйдешь...
+	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_01");	//Возьми эту руну в знак моей благодарности. Она вернет тебя в город, когда ты этого захочешь.
+	B_GiveInvItems(self,other,ItRu_TeleportSeaport,1);
+};
+
 instance DIA_Lord_Hagen_BACKINTOWN(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -933,10 +935,10 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	CreateInvItems(self,ItWr_PermissionToWearInnosEye_MIS,1);
 	B_GiveInvItems(self,other,ItWr_PermissionToWearInnosEye_MIS,1);
 	B_LogEntry(TOPIC_INNOSEYE,"Лорд Хаген дал мне письмо. Оно заставит мастера Пирокара в монастыре отдать мне Глаз Инноса.");
-	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_00");	//И еще одно, прежде чем ты уйдешь...
-	AI_Output(self,other,"DIA_Lord_Hagen_Add_04_01");	//Возьми эту руну в знак моей благодарности. Она вернет тебя в город, когда ты этого захочешь.
-	B_GiveInvItems(self,other,ItRu_TeleportSeaport,1);
-//	MIS_InnosEyeStolen = TRUE;
+	if(MIS_RescueBennet != LOG_SUCCESS)
+	{
+		B_Hagen_GiveTeleportRune();
+	};
 	MIS_OLDWORLD = LOG_SUCCESS;
 	B_CheckLog();
 	Wld_InsertNpc(VLK_4250_Jorgen,"NW_MONASTERY_BRIDGE_01");
@@ -953,11 +955,6 @@ func void DIA_Lord_Hagen_BACKINTOWN_Info()
 	Wld_InsertNpc(DMT_1210_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	Wld_InsertNpc(DMT_1211_Dementor,"NW_TROLLAREA_RITUALPATH_01");
 	B_RemoveNpc(NOV_600_Pedro);
-/*	if(Npc_IsDead(MiltenNW))
-	{
-		Wld_InsertNpc(PC_Mage_NW,"NW_MONASTERY_ENTRY_01");
-		B_StartOtherRoutine(MiltenNW,"START");
-	};*/
 	B_StartOtherRoutine(MiltenNW,"START");
 	Wld_InsertNpc(NOV_650_ToterNovize,"NW_TROLLAREA_RITUALPATH_01");
 	B_KillNpc(NOV_650_ToterNovize);
@@ -1127,6 +1124,10 @@ func void DIA_Lord_Hagen_Cornelius_Info()
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Cornelius_04_12");	//Твои дела спасли нас от бесчестья.
 	};
+	if(MIS_OLDWORLD != LOG_SUCCESS)
+	{
+		B_Hagen_GiveTeleportRune();
+	};
 };
 
 
@@ -1222,7 +1223,7 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 			{
 				AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_15");	//Поговори с Ингмаром. Он может дать тебе несколько тактических советов по сражению с лидерами орков.
 				AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_16");	//Элитные воины орков - его специализация. Ему часто приходилось иметь с ними дело.
-				B_LogEntry(TOPIC_OrcElite,"Ингмар очень много знает об элитных воинах орков.");
+				Log_AddEntry(TOPIC_OrcElite,"Ингмар очень много знает об элитных воинах орков.");
 			};
 			Hagen_SawOrcRing = TRUE;
 			B_GivePlayerXP(XP_PAL_OrcRing);
@@ -1315,6 +1316,7 @@ func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 		AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_07");	//Я удивлюсь, если ты еще их повстречаешь.
 		AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_08");	//Ты можешь приносить мне их кольца, но я думаю, орки уже получили хороший урок.
 		TOPIC_END_OrcElite = TRUE;
+		B_CheckLog();
 	};
 	AI_Output(self,other,"DIA_Lord_Hagen_RINGEBRINGEN_04_09");	//Вот. Возьми это золото, купи себе на него хорошее снаряжение.
 	OrcRingGeld = Ringcount * HagensRingOffer;

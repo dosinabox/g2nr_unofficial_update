@@ -18,6 +18,7 @@ func int DIA_Addon_Carlos_EXIT_Condition()
 func void DIA_Addon_Carlos_EXIT_Info()
 {
 	AI_Output(other,self,"DIA_GornDJG_StartCamp_By_15_00");	//Еще увидимся.
+	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
 };
 

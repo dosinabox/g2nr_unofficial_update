@@ -15,7 +15,7 @@ func void B_GiveTradeInv_Khaled(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Nagelkeule2,1);
 		CreateInvItems(slf,ItRw_Crossbow_M_01,1);
 		CreateInvItems(slf,ItRw_Crossbow_M_02,1);
-		CreateInvItems(slf,ItRw_Crossbow_H_01,1);
+//		CreateInvItems(slf,ItRw_Crossbow_H_01,1);
 		CreateInvItems(slf,ItRw_Crossbow_H_02,1);
 		CreateInvItems(slf,ItRw_Bow_M_03,1);
 		CreateInvItems(slf,ItRw_Bow_M_04,1);

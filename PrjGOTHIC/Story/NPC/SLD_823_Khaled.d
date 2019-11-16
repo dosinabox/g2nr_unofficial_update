@@ -10,6 +10,7 @@ instance SLD_823_Khaled(Npc_Default)
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_2h_Sld_Axe);
+	EquipItem(self,ItRw_Crossbow_H_01);
 //	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Thief",Face_B_Thorus,BodyTex_B,ITAR_SLD_H);
 	Mdl_SetModelFatness(self,2);

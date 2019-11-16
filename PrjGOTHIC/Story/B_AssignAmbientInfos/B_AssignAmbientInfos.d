@@ -80,6 +80,13 @@ func void B_AssignAmbientInfos(var C_Npc slf)
 				B_AssignAmbientInfos_OCPAL_9(slf);
 			};
 		};
+		if(slf.npcType == NPCTYPE_OWAMBIENT)
+		{
+			if(slf.voice == 4)
+			{
+				B_AssignAmbientInfos_OWPAL_4(slf);
+			};
+		};
 	};
 	if(slf.guild == GIL_BAU)
 	{
@@ -160,13 +167,6 @@ func void B_AssignAmbientInfos(var C_Npc slf)
 			if(slf.voice == 13)
 			{
 				B_AssignAmbientInfos_OUT_13(slf);
-			};
-		};
-		if(slf.npcType == NPCTYPE_OCAMBIENT)
-		{
-			if(slf.voice == 4)
-			{
-				B_AssignAmbientInfos_OWPAL_4(slf);
 			};
 		};
 	};

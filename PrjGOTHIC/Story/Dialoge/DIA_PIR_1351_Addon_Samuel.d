@@ -112,7 +112,7 @@ func void DIA_Addon_Samuel_Versteck_Info()
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_06");	//(смеется) Фрэнсис ни за что не пустит тебя в хижину, чтоб ты мог покопаться в вещах Грега.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_07");	//Если только...
 	AI_Output(other,self,"DIA_Addon_Samuel_Francis_15_03");	//Что?
-	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_08");	//... Если только у тебя не будет что-то, что действительно нужно Фрэнсису.
+	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_08");	//Если только у тебя не будет что-то, что действительно нужно Фрэнсису.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_09");	//Я знаю, что Фрэнсис что-то спрятал в заброшенной шахте в каньоне.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_10");	//Однажды мы вместе стояли в карауле, и он как всегда заснул. Я услышал, как он бормочет об этом во сне.
 	AI_Output(self,other,"DIA_Addon_Samuel_Francis_14_11");	//Не знаю, что он там зарыл, но возможно, что это настолько для него важно, что за этот предмет он пропустит тебя в хижину...

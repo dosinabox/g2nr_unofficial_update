@@ -202,6 +202,7 @@ func void DIA_Addon_Dexter_missingPeople_Raven()
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_Raven_09_02");	//(неуверенно) Тогда он действительно был жалкой свиньей, но теперь...
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_Raven_09_03");	//После падения Барьера он изменился. На его лицо легла черная тень.
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_Raven_09_04");	//(со страхом) Если слишком долго смотреть ему в глаза, его взгляд пронзит тебя, как когти хищника.
+	AI_Output(self,other,"DIA_Dexter_Hallo_09_04");	//Но это правда. Я раздал своим парням эти объявления о розыске. У меня не было другого выбора.
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_Raven_09_05");	//Я дам тебе один совет. Беги из Хориниса. Беги, пока еще не слишком поздно.
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_Raven_09_06");	//(мрачно) Здесь тебя ждет лишь верная смерть.
 	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
@@ -214,7 +215,6 @@ func void DIA_Addon_Dexter_missingPeople_RavenTot()
 {
 	AI_Output(other,self,"DIA_Addon_Dexter_missingPeople_RavenTot_15_00");	//Рудный барон здесь, в Хоринисе?
 	AI_Output(self,other,"DIA_Addon_Dexter_missingPeople_RavenTot_09_01");	//Он больше не рудный барон. У него свои планы, и скоро Хоринис падет к его ногам.
-	AI_Output(self,other,"DIA_Dexter_Hallo_09_04");	//Но это правда. Я раздал своим парням эти объявления о розыске. У меня не было другого выбора.
 };
 
 

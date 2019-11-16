@@ -555,6 +555,18 @@ instance MFX_ICECUBE_TARGET(C_SFX_DEF)
 	vol = 127;
 };
 
+instance MFX_ICECUBE_TARGET_START(C_SFX_DEF)
+{
+	file = "MFX_Icecube_Target_Start.wav";
+	vol = 127;
+};
+
+instance MFX_ICECUBE_TARGET_END(C_SFX_DEF)
+{
+	file = "MFX_Icecube_Target_End.wav";
+	vol = 127;
+};
+
 instance MFX_ICECUBE_COLLIDE(C_SFX_DEF)
 {
 	file = "MFX_Icecube_Release.wav";

@@ -13,11 +13,22 @@ func void ZS_Stand_Eating()
 	random = Hlp_Random(4);
 	if(random == FOOD_Apple)
 	{
-		if(!Npc_HasItems(self,ItFo_Apple))
+		if((InfiniteApples == TRUE) || (self.aivar[AIV_GetBonusFood] == FALSE))
 		{
-			CreateInvItem(self,ItFo_Apple);
+			if(!Npc_HasItems(self,ItFo_Apple))
+			{
+				CreateInvItem(self,ItFo_Apple);
+			};
+			self.aivar[AIV_Food] = FOOD_Apple;
+		}
+		else
+		{
+			if(!Npc_HasItems(self,ItFo_Cheese))
+			{
+				CreateInvItem(self,ItFo_Cheese);
+			};
+			self.aivar[AIV_Food] = FOOD_Cheese;
 		};
-		self.aivar[AIV_Food] = FOOD_Apple;
 	}
 	else if(random == FOOD_Cheese)
 	{

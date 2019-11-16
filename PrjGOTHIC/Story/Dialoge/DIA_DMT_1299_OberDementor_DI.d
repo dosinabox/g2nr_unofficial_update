@@ -28,7 +28,8 @@ func void DIA_Schwarzmagier_HELLO_Info()
 	Info_ClearChoices(DIA_Schwarzmagier_HELLO);
 	Info_AddChoice(DIA_Schwarzmagier_HELLO,"ќтведи мен€ к своему хоз€ину.",DIA_Schwarzmagier_HELLO_meister);
 	Info_AddChoice(DIA_Schwarzmagier_HELLO,"» сколько еще тебе подобных мне придетс€ убить?",DIA_Schwarzmagier_HELLO_dmt);
-	Info_AddChoice(DIA_Schwarzmagier_HELLO,"ј что скрываетс€ за тем огромным порталом, вон там?",DIA_Schwarzmagier_HELLO_hinterTor);
+//	Info_AddChoice(DIA_Schwarzmagier_HELLO,"ј что скрываетс€ за тем огромным порталом, вон там?",DIA_Schwarzmagier_HELLO_hinterTor);
+	Info_AddChoice(DIA_Schwarzmagier_HELLO,"ј что скрываетс€ за этой закрытой дверью, вон там?",DIA_Schwarzmagier_HELLO_hinterTor);
 	Info_AddChoice(DIA_Schwarzmagier_HELLO," то твой хоз€ин?",DIA_Schwarzmagier_HELLO_wer);
 	if(SC_KnowsMadPsi == TRUE)
 	{
@@ -47,7 +48,8 @@ func void DIA_Schwarzmagier_HELLO_wer()
 
 func void DIA_Schwarzmagier_HELLO_hinterTor()
 {
-	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00");	//ј что скрываетс€ за тем огромным порталом, вон там?
+//	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00");	//ј что скрываетс€ за тем огромным порталом, вон там?
+	AI_Output(other,self,"DIA_Schwarzmagier_HELLO_hinterTor_15_00_add");	//ј что скрываетс€ за этой закрытой дверью, вон там?
 	AI_Output(self,other,"DIA_Schwarzmagier_HELLO_hinterTor_09_01");	//(смеетс€) ѕокои моего повелител€ останутс€ недоступными дл€ теб€. я не дам тебе возможности открыть эти врата.
 };
 

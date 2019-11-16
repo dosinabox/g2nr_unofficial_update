@@ -564,7 +564,7 @@ instance ItFo_DarkWine(C_Item)
 	flags = ITEM_MULTI;
 	value = Value_Wine * 3;
 	visual = "ItFo_DarkWine.3DS";
-	material = MAT_GLAS;
+	material = MAT_LEATHER;
 	scemeName = "POTION";
 	on_state[0] = Use_DarkWine;
 	description = name;

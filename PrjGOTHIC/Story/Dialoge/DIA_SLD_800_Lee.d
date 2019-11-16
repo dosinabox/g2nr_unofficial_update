@@ -525,7 +525,7 @@ func void DIA_Addon_Lee_Ranger_Info()
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_05");	//Конечно, если я могу чем-то им помочь, я это делаю. Но большую часть времени я занят своими делами. Ни на что другое времени не остается.
 	AI_Output(self,other,"DIA_Addon_Lee_Ranger_04_06");	//Если ты хочешь узнать об этом обществе больше, поговори с Кордом. Насколько я знаю, он один из них.
 	B_Lee_Teleport();
-	RangerHelp_gildeSLD = TRUE;
+//	RangerHelp_gildeSLD = TRUE;
 	SC_KnowsCordAsRangerFromLee = TRUE;
 };
 
@@ -623,6 +623,12 @@ func void DIA_Lee_JoinNOW_Info()
 				{
 					AI_Output(self,other,"DIA_Lee_JoinNOW_04_18");	//Ты все равно хотел туда идти.
 				};
+			};
+			if(MIS_Addon_Daron_GetStatue == LOG_Running)
+			{
+				Log_CreateTopic(TOPIC_Addon_HelpDaron,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_Addon_HelpDaron,LOG_Running);
+				Log_AddEntry(TOPIC_Addon_HelpDaron,TOPIC_Addon_DaronGobbos);
 			};
 		};
 	};
@@ -828,7 +834,14 @@ func int DIA_Lee_Success_Condition()
 func void DIA_Lee_Success_Info()
 {
 	AI_Output(other,self,"DIA_Lee_Success_15_00");	//Я освободил Горна.
-	AI_Output(self,other,"DIA_Lee_Success_04_01");	//Да, он уже рассказал мне об этом. Отлично сработано.
+	if(Kapitel >= 3)
+	{
+		AI_Output(self,other,"DIA_Lee_Success_04_01");	//Да, он уже рассказал мне об этом. Отлично сработано.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Lee_AnyNews_04_02");	//Отличная работа.
+	};
 	AI_Output(self,other,"DIA_Lee_Success_04_02");	//Он стоит больше, чем Сильвио и все его парни вместе взятые.
 	B_Lee_Teleport();
 	B_GivePlayerXP(XP_AmbientKap5);
@@ -1449,6 +1462,8 @@ func void DIA_Lee_CanTeach_Yes()
 };
 
 
+var int DIA_Lee_Teach_permanent;
+
 instance DIA_Lee_Teach(C_Info)
 {
 	npc = SLD_800_Lee;
@@ -1462,7 +1477,7 @@ instance DIA_Lee_Teach(C_Info)
 
 func int DIA_Lee_Teach_Condition()
 {
-	if(Lee_TeachPlayer == TRUE)
+	if((Lee_TeachPlayer == TRUE) && (DIA_Lee_Teach_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -1490,6 +1505,7 @@ func void DIA_Lee_Teach_2H_1()
 	{
 		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_00");	//Теперь ты настоящий мастер боя двуручным оружием.
 		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_01");	//Ты больше не нуждаешься в учителях.
+		DIA_Lee_Teach_permanent = TRUE;
 	};
 	Info_ClearChoices(DIA_Lee_Teach);
 	Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
@@ -1505,6 +1521,7 @@ func void DIA_Lee_Teach_2H_5()
 	{
 		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_00");	//Теперь ты настоящий мастер боя двуручным оружием.
 		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_01");	//Ты больше не нуждаешься в учителях.
+		DIA_Lee_Teach_permanent = TRUE;
 	};
 	Info_ClearChoices(DIA_Lee_Teach);
 	Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
@@ -1702,7 +1719,7 @@ func void DIA_Lee_StealShip_Info()
 	AI_Output(other,self,"DIA_Lee_StealShip_15_00");	//Я хочу украсть корабль.
 	AI_Output(self,other,"DIA_Lee_StealShip_04_01");	//И как ты собираешься сделать это?
 	AI_Output(other,self,"DIA_Lee_StealShip_15_02");	//Легче легкого - я пойду туда, покажу им твои бумаги - и корабль мой!
-	AI_Output(self,other,"DIA_Lee_StealShip_04_03");	//Ну-ну. Держи, надеюсь, ты знаешь, что делаешь.
+	AI_Output(self,other,"DIA_Lee_StealShip_04_03");	//Ну-ну. Держи. Надеюсь, ты знаешь, что делаешь.
 	CreateInvItems(self,ITWr_ForgedShipLetter_MIS,1);
 	B_GiveInvItems(self,other,ITWr_ForgedShipLetter_MIS,1);
 };
@@ -1721,9 +1738,12 @@ instance DIA_Lee_KnowWhereEnemy(C_Info)
 
 func int DIA_Lee_KnowWhereEnemy_Condition()
 {
-	if((MIS_SCKnowsWayToIrdorath == TRUE) && (Lee_IsOnBoard == FALSE) && Npc_KnowsInfo(other,DIA_Lee_GetShip))
+	if((MIS_SCKnowsWayToIrdorath == TRUE) && (Lee_IsOnBoard == FALSE))
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Lee_GetShip) || (MIS_ShipIsFree == TRUE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1746,6 +1766,10 @@ func void DIA_Lee_KnowWhereEnemy_Info()
 	else
 	{
 		Info_ClearChoices(DIA_Lee_KnowWhereEnemy);
+		if(!Npc_KnowsInfo(other,DIA_Lee_GetShip) && !Npc_IsDead(Torlof) && (SCGotCaptain == FALSE) && (TorlofIsSailor == FALSE))
+		{
+			Info_AddChoice(DIA_Lee_KnowWhereEnemy,"Ты знаешь кого-нибудь, кто мог бы управлять кораблем?",DIA_Lee_GetShip_torlof);
+		};
 		Info_AddChoice(DIA_Lee_KnowWhereEnemy,"Я дам тебе знать, если ты мне понадобишься.",DIA_Lee_KnowWhereEnemy_No);
 		Info_AddChoice(DIA_Lee_KnowWhereEnemy,"Пакуй свои вещи!",DIA_Lee_KnowWhereEnemy_Yes);
 	};
@@ -1757,18 +1781,7 @@ func void DIA_Lee_KnowWhereEnemy_Yes()
 	AI_Output(self,other,"DIA_Lee_KnowWhereEnemy_Yes_04_01");	//Что? Прямо сейчас?
 	AI_Output(other,self,"DIA_Lee_KnowWhereEnemy_Yes_15_02");	//Да, я скоро отправляюсь в путь, и если ты плывешь со мной, приходи в гавань. Встретимся на корабле.
 	AI_Output(self,other,"DIA_Lee_KnowWhereEnemy_Yes_04_03");	//Я так долго ждал этого момента. Я буду там.
-	Lee_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_Lee_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_Lee_KnowWhereEnemy_No()
@@ -1836,16 +1849,7 @@ func void DIA_Lee_StillNeedYou_Info()
 	if((Lee_IsOnBoard == LOG_OBSOLETE) && (Lee_Nerver <= 2))
 	{
 		AI_Output(self,other,"DIA_Lee_StillNeedYou_04_01");	//Я знал, что понадоблюсь тебе! Увидимся на корабле.
-		Lee_IsOnBoard = LOG_SUCCESS;
-		Crewmember_Count += 1;
-		if(MIS_ReadyforChapter6 == TRUE)
-		{
-			Npc_ExchangeRoutine(self,"SHIP");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"WAITFORSHIP");
-		};
+		B_JoinShip(self);
 	}
 	else
 	{

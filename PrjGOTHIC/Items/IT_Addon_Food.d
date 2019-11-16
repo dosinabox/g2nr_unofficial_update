@@ -193,6 +193,32 @@ func void UseSchnellerHering()
 };
 
 
+instance ItFo_Addon_Liquor(C_Item)
+{
+	name = "Ликер";
+	mainflag = ITEM_KAT_FOOD;
+	flags = ITEM_MULTI;
+	value = Value_Rum;
+	visual = "ItFo_Liquor.3ds";
+	material = MAT_GLAS;
+	on_state[0] = UseLiquor;
+	scemeName = "POTIONFAST";
+	description = name;
+	text[0] = "Сладкий и крепкий.";
+	text[1] = NAME_Bonus_HP;
+	count[1] = HP_Grog;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void UseLiquor()
+{
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Grog);
+	B_NpcSetDrunk(20);
+};
+
+
 instance ItFo_Addon_Pfeffer_01(C_Item)
 {
 	name = "Мешочек с перцем";
@@ -236,6 +262,10 @@ func void Use_FireStew()
 	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_FireStew);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_FireStew);
 	self.attribute[ATR_STRENGTH] += STR_FireStew;
+	if(IgnoreBonuses == FALSE)
+	{
+		B_RaiseRealAttributeLearnCounter(self,ATR_STRENGTH,STR_FireStew);
+	};
 	concatText = ConcatStrings(PRINT_LearnSTR,IntToString(STR_FireStew));
 	PrintScreen(concatText,-1,53,FONT_Screen,2);
 };

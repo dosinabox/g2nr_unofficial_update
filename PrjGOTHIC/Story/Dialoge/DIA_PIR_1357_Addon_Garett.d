@@ -273,6 +273,12 @@ func void DIA_Addon_Garett_Tips_Info()
 };
 
 
+func void B_GarettGiveBelt()
+{
+	AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_04");	//Возьми в награду этот пояс. Это одна из самых ценных моих вещей.
+	B_GiveInvItems(self,other,ItBe_Addon_Prot_EdgPoi,1);
+};
+
 instance DIA_Addon_Garett_GiveKompass(C_Info)
 {
 	npc = PIR_1357_Addon_Garett;
@@ -299,17 +305,21 @@ func void DIA_Addon_Garett_GiveKompass_Info()
 	Npc_RemoveInvItem(self,ItMI_Addon_Kompass_Mis);
 	AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_01");	//(радостно) Да, это он! Вот уж не думал, что снова его увижу.
 	AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_02");	//Спасибо, приятель!
+	AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_03");	//На этот раз Грег его не получит.
 	if(Npc_HasItems(self,ItBe_Addon_Prot_EdgPoi))
 	{
-		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_03");	//На этот раз Грег его не получит.
-		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_04");	//Возьми в награду этот пояс. Это одна из самых ценных моих вещей.
-		B_GiveInvItems(self,other,ItBe_Addon_Prot_EdgPoi,1);
+		B_GarettGiveBelt();
 	}
 	else if(self.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_05");	//Помнишь, ты купил у меня пояс.
 		AI_Output(self,other,"DIA_Addon_Garett_GiveKompass_09_06");	//Ты заплатил за него порядочную сумму... Нет, конечно он стоит этих денег. В общем, можешь взять их обратно.
 		B_GiveInvItems(self,other,ItMi_Gold,Value_ItBE_Addon_Prot_EdgPoi);
+	}
+	else
+	{
+		CreateInvItems(self,ItBe_Addon_Prot_EdgPoi,1);
+		B_GarettGiveBelt();
 	};
 	B_LogEntry(TOPIC_Addon_Kompass,"Гаретт был очень рад, когда я вернул ему компас.");
 	MIS_ADDON_GARett_BringKompass = LOG_SUCCESS;

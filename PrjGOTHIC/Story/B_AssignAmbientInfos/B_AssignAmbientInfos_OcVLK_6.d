@@ -20,6 +20,16 @@ func void DIA_OCVLK_6_EXIT_Info()
 };
 
 
+func void B_EngorTradeLog()
+{
+	if(Engor_Trade == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+		Log_AddEntry(TOPIC_Trader_OC,"Энгор заведует припасами замка и может продать мне кое-что.");
+		Engor_Trade = TRUE;
+	};
+};
+
 instance DIA_OCVLK_6_PEOPLE(C_Info)
 {
 	nr = 3;
@@ -43,6 +53,7 @@ func void DIA_OCVLK_6_PEOPLE_Info()
 	if(!Npc_IsDead(Engor))
 	{
 		AI_Output(self,other,"DIA_OCVLK_6_PEOPLE_06_03");	//Если тебе нужно снаряжение, поговори с Энгором. Ты найдешь его в доме напротив дома Гаронда.
+		B_EngorTradeLog();
 	};
 };
 
@@ -59,10 +70,7 @@ instance DIA_OCVLK_6_LOCATION(C_Info)
 
 func int DIA_OCVLK_6_LOCATION_Condition()
 {
-	if((Kapitel <= 4) && (MIS_KilledDragons < 4))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_OCVLK_6_LOCATION_Info()
@@ -101,7 +109,7 @@ func void DIA_OCVLK_6_STANDARD_Info()
 	};
 	if(Kapitel == 4)
 	{
-		if(MIS_KilledDragons < 4)
+		if(!Npc_KnowsInfo(other,DIA_Garond_AllDragonDead))
 		{
 			AI_Output(self,other,"DIA_OCVLK_6_STANDARD_06_04");	//Охотники на драконов. Не смеши меня! Они ничего не изменят.
 		}

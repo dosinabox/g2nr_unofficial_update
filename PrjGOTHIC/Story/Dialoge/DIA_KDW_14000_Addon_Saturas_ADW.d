@@ -1006,9 +1006,12 @@ instance DIA_Addon_Saturas_BeliarsWeapon(C_Info)
 
 func int DIA_Addon_Saturas_BeliarsWeapon_Condition()
 {
-	if(C_ScHasBeliarsWeapon() && (RavenIsDead == TRUE))
+	if(RavenIsDead == TRUE)
 	{
-		return TRUE;
+		if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1115,9 +1118,12 @@ instance DIA_Addon_Saturas_BeliarWeapGeben(C_Info)
 
 func int DIA_Addon_Saturas_BeliarWeapGeben_Condition()
 {
-	if(C_ScHasBeliarsWeapon() && (RavenIsDead == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Saturas_BeliarsWeapon))
+	if((RavenIsDead == TRUE) && Npc_KnowsInfo(other,DIA_Addon_Saturas_BeliarsWeapon))
 	{
-		return TRUE;
+		if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+		{
+			return TRUE;
+		};
 	};
 };
 

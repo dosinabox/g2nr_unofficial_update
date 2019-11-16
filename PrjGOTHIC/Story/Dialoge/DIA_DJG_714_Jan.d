@@ -541,7 +541,7 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 		AI_Output(self,other,"DIA_Jan_DJG_ARMOR_M_10_01");	//Ты увидишь, они стоят своих денег.
 		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_M);
 		Npc_RemoveInvItems(self,ItMi_Gold,VALUE_ITAR_DJG_M);
-		if(Helms_Enabled == TRUE)
+		if(Helmets_Enabled == TRUE)
 		{
 			CreateInvItem(hero,ITAR_DJGN_M);
 			CreateInvItem(hero,ITHE_DJG_M);

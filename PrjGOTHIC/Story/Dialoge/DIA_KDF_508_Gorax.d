@@ -48,7 +48,10 @@ func void DIA_Gorax_PICKPOCKET_Info()
 
 func void DIA_Gorax_PICKPOCKET_DoIt()
 {
-	CreateInvItem(self,ItKe_KlosterSchatz);
+	if(!Npc_HasItems(self,ItKe_KlosterSchatz))
+	{
+		CreateInvItem(self,ItKe_KlosterSchatz);
+	};
 //	B_StealItems(80,Hlp_GetInstanceID(ItKe_KlosterSchatz),1);
 	B_StealItem(80,Hlp_GetInstanceID(ItKe_KlosterSchatz));
 	Info_ClearChoices(DIA_Gorax_PICKPOCKET);
@@ -139,22 +142,33 @@ func int DIA_Addon_Gorax_DaronsStatue_Condition()
 	if((other.guild == GIL_NOV) && (DIA_Gorax_GOLD_perm == FALSE) && (Pedro_NOV_Aufnahme_LostInnosStatue_Daron == TRUE))
 	{
 		return TRUE;
+	}
+	else if((MIS_OLDWORLD == LOG_SUCCESS) && (MIS_Addon_Daron_GetStatue == LOG_Running) && (LostInnosStatueInMonastery == FALSE))
+	{
+		return TRUE;
 	};
 };
 
 func void DIA_Addon_Gorax_DaronsStatue_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Gorax_DaronsStatue_15_00");	//¬от статуэтка, которую должен был принести в монастырь ƒарон.
-	if(Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
+	if(B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1))
 	{
-		AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_01");	//(вздыхает) ѕоистине удивительно то, что такую драгоценность принес в монастырь неопытный послушник.
-		AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_02");	//Ёто еще раз доказывает твою устремленность в служении »нносу.
-		B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
+		if(other.guild == GIL_NOV)
+		{
+			AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_01");	//(вздыхает) ѕоистине удивительно то, что такую драгоценность принес в монастырь неопытный послушник.
+			AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_02");	//Ёто еще раз доказывает твою устремленность в служении »нносу.
+			AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_03");	//я перед тобой в долгу, юный послушник.
+			DIA_Gorax_GOLD_perm = TRUE;
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_02");	//Ёто еще раз доказывает твою устремленность в служении »нносу.
+		};
 		Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
-		AI_Output(self,other,"DIA_Addon_Gorax_DaronsStatue_14_03");	//я перед тобой в долгу, юный послушник.
 		MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 		B_GivePlayerXP(XP_Addon_ReturnedLostInnosStatue_Daron);
-		DIA_Gorax_GOLD_perm = TRUE;
+		LostInnosStatueInMonastery = TRUE;
 	}
 	else
 	{
@@ -455,6 +469,10 @@ func void DIA_Gorax_TRADE_Info()
 	if(!Npc_HasItems(self,ItMi_Pliers) && !Npc_HasItems(other,ItMi_Pliers))
 	{
 		CreateInvItems(self,ItMi_Pliers,1);
+	};
+	if(Npc_HasItems(self,ItKe_KlosterSchatz))
+	{
+		Npc_RemoveInvItem(self,ItKe_KlosterSchatz);
 	};
 	Trade_IsActive = TRUE;
 };

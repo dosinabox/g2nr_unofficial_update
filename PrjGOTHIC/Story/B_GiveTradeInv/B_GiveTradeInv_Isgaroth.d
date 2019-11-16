@@ -10,11 +10,11 @@ func void B_GiveTradeInv_Isgaroth(var C_Npc slf)
 	if((Kapitel >= 1) && (Isgaroth_ItemsGiven_Chapter_1 == FALSE))
 	{
 //		CreateInvItems(slf,ItMi_Gold,100);
-		CreateInvItems(slf,ItSc_Sleep,1);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItPo_Mana_01,2);
 		CreateInvItems(slf,ItPo_Health_01,3);
 		CreateInvItems(slf,ItMi_Pitch,1);
+		CreateInvItems(slf,ItSc_Sleep,1);
 		CreateInvItems(slf,ItSc_Light,5);
 		CreateInvItems(slf,ItSc_Firebolt,5);
 		CreateInvItems(slf,ItSc_Zap,5);
@@ -57,6 +57,7 @@ func void B_GiveTradeInv_Isgaroth(var C_Npc slf)
 		CreateInvItems(slf,ItSc_IceCube,3);
 		CreateInvItems(slf,ItSc_ThunderBall,5);
 		CreateInvItems(slf,ItSc_TrfScavenger,1);
+		CreateInvItems(slf,ItSc_TrfLurker,1);
 		CreateInvItems(slf,ItSc_TrfSheep,1);
 		Isgaroth_ItemsGiven_Chapter_3 = TRUE;
 	};
@@ -101,7 +102,6 @@ func void B_GiveTradeInv_Isgaroth(var C_Npc slf)
 		CreateInvItems(slf,ItSc_SumDemon,2);
 		CreateInvItems(slf,ItSc_FullHeal,3);
 		CreateInvItems(slf,ItSc_Pyrokinesis,3);
-		CreateInvItems(slf,ItSc_TrfLurker,1);
 		CreateInvItems(slf,ItSc_TrfDragonSnapper,1);
 		Isgaroth_ItemsGiven_Chapter_5 = TRUE;
 	};

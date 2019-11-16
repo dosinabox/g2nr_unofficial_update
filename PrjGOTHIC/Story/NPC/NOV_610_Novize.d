@@ -28,3 +28,10 @@ func void Rtn_Start_610()
 	TA_Sleep(22,50,8,0,"NW_MONASTERY_NOVICE04_06");
 };
 
+func void Rtn_Rest_610()
+{
+	TA_Stand_ArmsCrossed(8,0,9,0,"NW_MONASTERY_PLACE_06");
+	TA_Pray_Innos_FP(9,0,22,50,"NW_MONASTERY_CHURCH_03");
+	TA_Sleep(22,50,8,0,"NW_MONASTERY_NOVICE04_06");
+};
+

@@ -1048,6 +1048,15 @@ func void DIA_Lares_WhyPalHere_Info()
 
 var int Lares_WayToOnar;
 
+func void B_LaresOffersWayToOnar()
+{
+	if(Lares_WayToOnar == FALSE)
+	{
+		AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//Я могу отвести тебя туда, если хочешь. Я все равно уже слишком долго здесь ошиваюсь.
+		Lares_WayToOnar = TRUE;
+	};
+};
+
 instance DIA_Addon_Lares_Gilde(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -1097,16 +1106,21 @@ func void DIA_Addon_Lares_Gilde_SLD()
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_SLD_09_02");	//Отправляйся на ферму Онара и поговори с Кордом.
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_SLD_Add_09_02");	//Он поможет тебе.
 	AI_Output(self,other,"DIA_Addon_Lares_Gilde_SLD_09_03");	//Скажи ему, что ты 'под моим крылом'. Он тебя поймет.
-	if(Lares_WayToOnar == FALSE)
+	if(Npc_KnowsInfo(other,DIA_Addon_Cord_YouAreRanger))
 	{
-		AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//Я могу отвести тебя туда, если хочешь. Я все равно уже слишком долго здесь ошиваюсь.
-		Lares_WayToOnar = TRUE;
+		AI_Output(other,self,"DIA_Addon_Lares_Gilde_SLD_15_00_add");	//Я поговорил с ним.
+		AI_Output(self,other,"DIA_Lares_OtherGuild_09_03");	//(лукаво) Только ты мог провернуть такое...
+		B_GivePlayerXP(100);
+	}
+	else
+	{
+		B_LaresOffersWayToOnar();
+		Log_CreateTopic(TOPIC_Addon_RangerHelpSLD,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_RangerHelpSLD,LOG_Running);
+		B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Ларес сказал, что наемник Корд может сделать мою жизнь среди наемников проще.");
 	};
 	RangerHelp_gildeSLD = TRUE;
-	Log_CreateTopic(TOPIC_Addon_RangerHelpSLD,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RangerHelpSLD,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Ларес сказал, что наемник Корд может сделать мою жизнь среди наемников проще.");
-	SC_KnowsCordAsRangerFromLares = TRUE;
+//	SC_KnowsCordAsRangerFromLares = TRUE;
 	Info_ClearChoices(DIA_Addon_Lares_Gilde);
 };
 
@@ -1153,7 +1167,7 @@ instance DIA_Lares_AboutSld(C_Info)
 
 func int DIA_Lares_AboutSld_Condition()
 {
-	if((other.guild == GIL_NONE) && (Lares_WayToOnar == FALSE))
+	if(other.guild == GIL_NONE)
 	{
 		return TRUE;
 	};
@@ -1167,7 +1181,10 @@ func void DIA_Lares_AboutSld_Info()
 	Info_AddChoice(DIA_Lares_AboutSld,Dialog_Back,DIA_Lares_AboutSld_BACK);
 	Info_AddChoice(DIA_Lares_AboutSld,"А почему ТЫ не с Ли и наемниками?",DIA_Lares_AboutSld_WhyNotYou);
 	Info_AddChoice(DIA_Lares_AboutSld,"Расскажи мне подробнее о наемниках.",DIA_Lares_AboutSld_Sld);
-	Info_AddChoice(DIA_Lares_AboutSld,"Как мне найти ферму лендлорда?",DIA_Lares_AboutSld_WayToOnar);
+	if(Lares_WayToOnar == FALSE)
+	{
+		Info_AddChoice(DIA_Lares_AboutSld,"Как мне найти ферму лендлорда?",DIA_Lares_AboutSld_WayToOnar);
+	};
 	if((KnowsAboutGorn == TRUE) && (MIS_RescueGorn != LOG_SUCCESS))
 	{
 		Info_AddChoice(DIA_Lares_AboutSld,"Горн сказал тебе обо мне? Что произошло с ним?",DIA_Lares_AboutSld_Gorn);
@@ -1214,11 +1231,7 @@ func void DIA_Lares_AboutSld_WayToOnar()
 {
 	AI_Output(other,self,"DIA_Lares_WegZumHof_15_00");	//Как мне найти ферму лендлорда?
 	AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_00");	//Это довольно просто. Ты выходишь из города через восточные ворота, а затем следуешь по дороге на восток.
-	if(Lares_WayToOnar == FALSE)
-	{
-		AI_Output(self,other,"DIA_Lares_WegZumHof_09_01");	//Я могу отвести тебя туда, если хочешь. Я все равно уже слишком долго здесь ошиваюсь.
-		Lares_WayToOnar = TRUE;
-	};
+	B_LaresOffersWayToOnar();
 };
 
 func void DIA_Lares_AboutSld_Gorn()
@@ -1534,6 +1547,37 @@ func void DIA_Lares_GoNow_warte()
 };
 
 
+func void B_LaresSoLate()
+{
+	AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+};
+
+func void B_LaresDistractionCheck()
+{
+	if(Lares_Distracted == TRUE)
+	{
+		if(LaresGuide_ZumPortal == 3)
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter2_09_00");	//Не отвлекай меня.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
+		};
+	}
+	else
+	{
+		if(LaresGuide_ZumPortal == 3)
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_08");	//Вопросы есть?
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter3_09_00");	//Ты идешь дальше?
+		};
+	};
+};
+
 instance DIA_Lares_GUIDE(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -1561,7 +1605,7 @@ func void DIA_Lares_GUIDE_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+		B_LaresSoLate();
 	};
 	AI_Output(self,other,"DIA_Lares_GUIDE_09_02");	//Что ж, оставшуюся часть пути ты сможешь пройти сам. А мне нужно возвращаться в город...
 	AI_Output(self,other,"DIA_Lares_GUIDE_09_03");	//Просто пойдешь по этой дороге. Но помни - сумей постоять за себя, не нарушай закон и все будет в порядке.
@@ -1612,18 +1656,11 @@ func void DIA_Addon_Lares_ArrivedPortalInter1_Info()
 	{
 		if(Lares_Guide > (Wld_GetDay() - 2))
 		{
-			if(Lares_Distracted == TRUE)
-			{
-				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter3_09_00");	//Ты идешь дальше?
-			};
+			B_LaresDistractionCheck();
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+			B_LaresSoLate();
 		};
 		B_MakeRangerReadyForMeeting(self);
 	};
@@ -1685,18 +1722,11 @@ func void DIA_Addon_Lares_ArrivedPortalInterWeiter_Info()
 {
 	if(Lares_Guide > (Wld_GetDay() - 2))
 	{
-		if(Lares_Distracted == TRUE)
-		{
-			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter3_09_00");	//Ты идешь дальше?
-		};
+		B_LaresDistractionCheck();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+		B_LaresSoLate();
 	};
 	if((MIS_Addon_Erol_BanditStuff == LOG_Running) && (Npc_GetDistToWP(Erol,"NW_TAVERN_TO_FOREST_03") < 1000) && !Npc_IsDead(Erol))
 	{
@@ -1731,18 +1761,11 @@ func void DIA_Addon_Lares_ArrivedPortalInterWeiter2_Info()
 {
 	if(Lares_Guide > (Wld_GetDay() - 2))
 	{
-		if(Lares_Distracted == TRUE)
-		{
-			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter2_09_00");	//Не отвлекай меня.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_08");	//Вопросы есть?
-		};
+		B_LaresDistractionCheck();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+		B_LaresSoLate();
 	};
 	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 4;
@@ -1784,18 +1807,11 @@ func void DIA_Addon_Lares_ArrivedPortalInter2_Info()
 	{
 		if(Lares_Guide > (Wld_GetDay() - 2))
 		{
-			if(Lares_Distracted == TRUE)
-			{
-				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
-			}
-			else
-			{
-				AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter3_09_00");	//Ты идешь дальше?
-			};
+			B_LaresDistractionCheck();
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+			B_LaresSoLate();
 		};
 	};
 	Lares_Distracted = FALSE;
@@ -1826,18 +1842,11 @@ func void DIA_Addon_Lares_ArrivedPortalInterWeiter3_Info()
 {
 	if(Lares_Guide > (Wld_GetDay() - 2))
 	{
-		if(Lares_Distracted == TRUE)
-		{
-			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter_09_00");	//В чем дело? Почему ты задерживаешься?
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter3_09_00");	//Ты идешь дальше?
-		};
+		B_LaresDistractionCheck();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+		B_LaresSoLate();
 	};
 	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 6;
@@ -1902,7 +1911,7 @@ func void DIA_Addon_Lares_ArrivedPortal_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+		B_LaresSoLate();
 	};
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortal_09_01");	//Возьми орнамент. Маги Воды должны быть где-то внизу. Отнеси орнамент им.
 	AI_WaitTillEnd(other,self);
@@ -2000,7 +2009,7 @@ func void DIA_Addon_Lares_GOFORESTPRE_Info()
 {
 	if(Lares_Guide <= (Wld_GetDay() - 2))
 	{
-		AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+		B_LaresSoLate();
 	};
 	if(ORNAMENT_SWITCHED_FOREST == TRUE)
 	{
@@ -2056,7 +2065,7 @@ func void DIA_Addon_Lares_GOFOREST_Info()
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Lares_GUIDE_09_01");	//Вот ты где. А я уж начал думать, что тебя загрызли волки.
+			B_LaresSoLate();
 		};
 		Lares_ArrivedToForest = TRUE;
 	};
@@ -2415,6 +2424,11 @@ func void DIA_Lares_KnowWhereEnemy_Info()
 	AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_15_03");	//Я собираюсь избавиться от него раз и навсегда.
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_09_04");	//Звучит заманчиво. Если я тебе нужен, ты можешь на меня рассчитывать.
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_09_05");	//Тебе не нужен учитель ловкости или боя одноручным оружием в твоем путешествии?
+	if(SCToldLaresHeKnowWhereEnemy == FALSE)
+	{
+		B_LogEntry(Topic_Crew,"Если я возьму с собой Лареса, то он сможет помочь мне с одноручным оружием и повысить мою ловкость.");
+		SCToldLaresHeKnowWhereEnemy = TRUE;
+	};
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_15_06");	//Корабль уже полон, но я вернусь к тебе, если что-то изменится.
@@ -2432,18 +2446,7 @@ func void DIA_Lares_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_Yes_15_00");	//Я знал, что могу положиться на тебя.
 	AI_Output(other,self,"DIA_Lares_KnowWhereEnemy_Yes_15_01");	//Встретимся у корабля.
 	AI_Output(self,other,"DIA_Lares_KnowWhereEnemy_Yes_09_02");	//Ты человек действия - это мне нравится. Увидимся позже.
-	Lares_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_Lares_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_Lares_KnowWhereEnemy_No()
@@ -2526,16 +2529,7 @@ func void DIA_Lares_StillNeedYou_Info()
 	{
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_01");	//Обычно я не позволяю людям так обращаться со мной, но так как ты - один из нас, на этот раз я тебя прощу.
 		AI_Output(self,other,"DIA_Lares_StillNeedYou_09_02");	//Встретимся на корабле.
-		Lares_IsOnBoard = LOG_SUCCESS;
-		Crewmember_Count += 1;
-		if(MIS_ReadyforChapter6 == TRUE)
-		{
-			Npc_ExchangeRoutine(self,"SHIP");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"WAITFORSHIP");
-		};
+		B_JoinShip(self);
 	}
 	else
 	{

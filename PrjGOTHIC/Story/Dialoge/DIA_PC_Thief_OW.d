@@ -40,7 +40,7 @@ func void DIA_DiegoOw_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_00");	//Эй, я думал, ты мертв.
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_01");	//Да... так было.
-	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Но теперь я вернулся и ищу доказательства появления драконов.
+	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_02");	//Ну, теперь я вернулся и ищу доказательства появления драконов.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_03");	//Для кого ты это делаешь?
 	AI_Output(other,self,"DIA_DiegoOw_Hallo_15_04");	//Я работаю на лорда Хагена. С помощью паладинов драконов можно остановить.
 	AI_Output(self,other,"DIA_DiegoOw_Hallo_11_05");	//Паладины? Позволь мне сказать тебе кое-что. После того, как мне удалось вырваться отсюда, я отправился в Хоринис.
@@ -494,7 +494,7 @@ func void B_Addon_Diego_WillWaitOutside()
 
 func void B_Addon_Diego_PassOtherDirection()
 {
-	AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_01");	//Чтобы попасть к проходу, мы должны идти в другом направлении.
+	AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_01");	//Чтобы попасть к Проходу, мы должны идти в другом направлении.
 };
 
 
@@ -572,7 +572,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 	else if(C_DiegoTooFar(1000) == LOC_LAKE)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_12");	//Эта дорога нас никуда не приведет.
-		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_13");	//Чтобы попасть к проходу, мы должны идти в другом направлении!
+		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_13");	//Чтобы попасть к Проходу, мы должны идти в другом направлении!
 	}
 	else if(C_DiegoTooFar(1000) == LOC_XARDAS)
 	{
@@ -662,7 +662,7 @@ func void DIA_Addon_ThiefOW_TooFar_Info()
 	else if(C_DiegoTooFar(1000) == LOC_ORCBARRIER_FAR)
 	{
 		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_29");	//Если мы продолжим двигаться в этом направлении, мы снова упремся в Стену орков.
-		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_30");	//Пойдем к проходу!
+		AI_Output(self,other,"DIA_Addon_Diego_TooFar_11_30");	//Пойдем к Проходу!
 	}
 	else if(C_DiegoTooFar(1000) == LOC_ROCK)
 	{
@@ -775,7 +775,7 @@ func void DIA_Addon_ThiefOW_PERM_Info()
 	}
 	else if(Diego_angekommen == TRUE)
 	{
-		AI_Output(self,other,"DIA_Addon_Diego_PERM_11_03");	//Хорошо. Мне просто нужно немного отдохнуть.
+		AI_Output(self,other,"DIA_Addon_Diego_PERM_11_03");	//Хорошо... Мне просто нужно... немного отдохнуть.
 	}
 	else
 	{

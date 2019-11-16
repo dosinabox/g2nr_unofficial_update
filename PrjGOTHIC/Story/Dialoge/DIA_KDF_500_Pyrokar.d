@@ -350,7 +350,8 @@ func int DIA_Pyrokar_SUCCESS_Condition()
 func void DIA_Pyrokar_SUCCESS_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_SUCCESS_15_00");	//Я нашел рунный камень.
-	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_01");	//(недоверчиво) Ты... сделал это?! Ты следовал знакам и нашел скрытый портал...
+//	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_01");	//(недоверчиво) Ты... сделал это?! Ты следовал знакам и нашел скрытый портал...
+	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_01_add");	//(недоверчиво) Ты... сделал это?! Ты следовал знакам и нашел скрытый проход...
 	AI_Output(other,self,"DIA_Pyrokar_SUCCESS_15_02");	//... и одной левой победил всех тех монстров, что уже считали меня своей добычей.
 	AI_Output(self,other,"DIA_Pyrokar_SUCCESS_11_03");	//А другие послушники? Что насчет Агона? Они не опередили тебя?
 	AI_Output(other,self,"DIA_Pyrokar_SUCCESS_15_04");	//Они не смогли. Я думаю, им было не суждено пройти это испытание.
@@ -631,8 +632,6 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Nothing_11_01");	//(изумленно) Да будет так. Новый маг отказывается от первого шага.
 	Dyrian.guild = GIL_NONE;
 	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-//	CreateInvItem(Dyrian,ITAR_Bau_L);
-//	AI_EquipArmor(Dyrian,ITAR_Bau_L);
 	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	if(MIS_HelpDyrian == LOG_Running)
@@ -680,8 +679,6 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	B_StartOtherRoutine(Babo,"FAVOUR");
 	Dyrian.guild = GIL_NONE;
 	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-//	CreateInvItem(Dyrian,ITAR_Bau_L);
-//	AI_EquipArmor(Dyrian,ITAR_Bau_L);
 	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	MIS_HelpBabo = LOG_SUCCESS;
@@ -706,8 +703,6 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	B_StartOtherRoutine(Opolos,"FAVOUR");
 	Dyrian.guild = GIL_NONE;
 	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-//	CreateInvItem(Dyrian,ITAR_Bau_L);
-//	AI_EquipArmor(Dyrian,ITAR_Bau_L);
 	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	MIS_HelpOpolos = LOG_SUCCESS;

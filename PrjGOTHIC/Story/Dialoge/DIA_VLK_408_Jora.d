@@ -21,6 +21,10 @@ func void DIA_Jora_EXIT_Info()
 	if(((Jora_Dieb == LOG_FAILED) || (Jora_Dieb == LOG_SUCCESS)) && (Jora_Gold == LOG_Running))
 	{
 		AI_Output(self,other,"DIA_Jora_EXIT_08_00");	//Эй! Как насчет моих денег?
+	}
+	else
+	{
+		AI_WaitTillEnd(self,other);
 	};
 	B_EquipTrader(self);
 	AI_StopProcessInfos(self);

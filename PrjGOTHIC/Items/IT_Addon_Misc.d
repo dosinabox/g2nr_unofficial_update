@@ -62,6 +62,7 @@ func void Use_Addon_Joint_01()
 			};
 			FirstJoint = TRUE;
 		};
+		Wld_StopEffect("SLOW_TIME");
 		Wld_PlayEffect("SLOW_TIME",self,self,0,0,0,FALSE);
 	};
 };

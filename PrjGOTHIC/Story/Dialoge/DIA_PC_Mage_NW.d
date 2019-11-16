@@ -245,8 +245,19 @@ func void DIA_MiltenNW_FourFriends_Info()
 		AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_02");	//Лестер исчез, впрочем - и я понятия не имею, где он сейчас ошивается.
 		if(Npc_KnowsInfo(other,DIA_Lester_Hello) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
 		{
-			AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03");	//Я встретил Лестера - он теперь с Ксардасом.
+			if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS) || Npc_KnowsInfo(other,DIA_Lester_BACKINTOWN))
+			{
+				AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03");	//Я встретил Лестера - он теперь с Ксардасом.
+			}
+			else
+			{
+				AI_Output(other,self,"DIA_MiltenOW_Hello_Friends_15_03_add");	//Я встретил Лестера. Он в порядке.
+			};
 			AI_Output(self,other,"DIA_MiltenOW_Hello_Friends_03_04");	//Ну, хоть какие-то хорошие новости.
+		}
+		else
+		{
+			AI_Output(other,self,"Extro_Tempel_15_04");	//Хм, где же он?
 		};
 	};
 };
@@ -279,6 +290,10 @@ func void DIA_MiltenNW_KAP3_Entry_Info()
 		AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_03_01");	//Да, конечно. Вот ключ.
 		CreateInvItems(self,ItKe_Innos_MIS,1);
 		B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
+		if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
+		{
+			Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
+		};
 		MiltenNW_GivesMonasteryKey = TRUE;
 	}
 	else
@@ -318,6 +333,10 @@ func void DIA_MiltenNW_KAP3_Entry_Permit()
 	AI_Output(self,other,"DIA_MiltenNW_KAP3_Entry_Permit_03_02");	//(колеблясь) Хорошо. Вот ключ от монастыря. Ты найдешь Пирокара в церкви.
 	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_GiveInvItems(self,other,ItKe_Innos_MIS,1);
+	if(Npc_HasItems(Gorax,ItKe_Innos_MIS))
+	{
+		Npc_RemoveInvItem(Gorax,ItKe_Innos_MIS);
+	};
 	MiltenNW_GivesMonasteryKey = TRUE;
 	Info_ClearChoices(DIA_MiltenNW_KAP3_Entry);
 };
@@ -503,9 +522,6 @@ func int DIA_MiltenNW_KnowWhereEnemy_Condition()
 	};
 };
 
-
-var int SCToldMiltenHeKnowWhereEnemy;
-
 func void DIA_MiltenNW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_MiltenNW_KnowWhereEnemy_15_00");	//Я знаю, где скрывается враг. На небольшом острове, недалеко отсюда.
@@ -513,23 +529,35 @@ func void DIA_MiltenNW_KnowWhereEnemy_Info()
 	if(!Npc_IsDead(DiegoNW))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_02");	//Ты говорил с Диего? Я думаю, он согласится присоединиться к тебе.
-		B_LogEntry(Topic_Crew,"Диего может оказаться полезным. Он никогда подолгу не задерживается на одном месте.");
+		if(SCToldDiegoHeKnowWhereEnemy == FALSE)
+		{
+			B_LogEntry(Topic_Crew,"Диего может оказаться полезным. Он никогда подолгу не задерживается на одном месте.");
+			SCToldDiegoHeKnowWhereEnemy = TRUE;
+		};
 	};
 	if(!Npc_IsDead(GornNW_nach_DJG))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_03");	//А что насчет Горна? Поговори с ним. Я слышал, он вернулся из Долины Рудников.
-		B_LogEntry(Topic_Crew,"Горн, определенно, может оказаться полезным. Никогда не помешает иметь на своей стороне такого закаленного бойца. Возможно, он сможет тренировать меня.");
+		if(SCToldGornHeKnowWhereEnemy == FALSE)
+		{
+			B_LogEntry(Topic_Crew,"Горн, определенно, может оказаться полезным. Никогда не помешает иметь на своей стороне такого закаленного бойца. Возможно, он сможет тренировать меня.");
+			SCToldGornHeKnowWhereEnemy = TRUE;
+		};
 	};
 	if(!Npc_IsDead(Lester))
 	{
 		AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_04");	//И не забудь Лестера. Если ты не вытащишь его из долины, он сгниет там.
-		if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+		if(SCToldLesterHeKnowWhereEnemy == FALSE)
 		{
-			B_LogEntry(Topic_Crew,"Лестер может обладать ценной информацией. Мне следует проведать его в башне Ксардаса.");
-		}
-		else
-		{
-			B_LogEntry(Topic_Crew,"Если я не возьму Лестера с собой, ему никогда не выбраться из той долины.");
+			if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+			{
+				B_LogEntry(Topic_Crew,"Лестер может обладать ценной информацией. Мне следует проведать его в башне Ксардаса.");
+			}
+			else
+			{
+				B_LogEntry(Topic_Crew,"Если я не возьму Лестера с собой, ему никогда не выбраться из той долины.");
+			};
+			SCToldLesterHeKnowWhereEnemy = TRUE;
 		};
 	};
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_03_05");	//Я также вижу свою роль во всем этом. Я могу повысить твою ману и помочь в создании рун. Когда мы приступим?
@@ -557,19 +585,7 @@ func void DIA_MiltenNW_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_MiltenNW_KnowWhereEnemy_Yes_15_00");	//Добро пожаловать на борт!
 	AI_Output(other,self,"DIA_MiltenNW_KnowWhereEnemy_Yes_15_01");	//Встретимся в гавани. Жди меня там.
 	AI_Output(self,other,"DIA_MiltenNW_KnowWhereEnemy_Yes_03_02");	//Хорошо. Я буду там, когда ты будешь готов.
-	self.flags = NPC_FLAG_IMMORTAL;
-	MiltenNW_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_MiltenNW_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_MiltenNW_KnowWhereEnemy_No()
@@ -662,19 +678,7 @@ func void DIA_MiltenNW_StillNeedYou_Info()
 	AI_Output(other,self,"DIA_MiltenNW_StillNeedYou_15_00");	//Ты нужен мне.
 	AI_Output(self,other,"DIA_MiltenNW_StillNeedYou_03_01");	//Твое решение делает мне честь. Вперед, мы не можем терять время!
 	AI_Output(self,other,"DIA_MiltenNW_StillNeedYou_03_02");	//Я отправляюсь в порт. Встретимся там.
-	self.flags = NPC_FLAG_IMMORTAL;
-	MiltenNW_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	AI_StopProcessInfos(self);
-	B_CheckLog();
+	B_JoinShip(self);
 };
 
 

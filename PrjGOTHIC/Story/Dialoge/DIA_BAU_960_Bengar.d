@@ -40,7 +40,10 @@ func void DIA_Bengar_HALLO_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_HALLO_15_00");	//Ты здешний фермер?
 	AI_Output(self,other,"DIA_Bengar_HALLO_10_01");	//Можно сказать и так, хотя на самом деле, я простой арендатор.
-	AI_Output(self,other,"DIA_Bengar_HALLO_10_02");	//Вся земля здесь принадлежит одному крупному землевладельцу.
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV) || (other.guild == GIL_PAL))
+	{
+		AI_Output(self,other,"DIA_Bengar_HALLO_10_02");	//Вся земля здесь принадлежит одному крупному землевладельцу.
+	};
 };
 
 
@@ -340,6 +343,14 @@ func void DIA_Bengar_PASS_Info()
 };
 
 
+func void B_BengarTooLate()
+{
+	AI_Output(self,other,"DIA_Bengar_MILIZ_10_05");	//Я сказал об этом Онару еще пару дней назад. И за что я плачу свою ренту?!
+	MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
+	B_CheckLog();
+	AI_StopProcessInfos(self);
+};
+
 instance DIA_Bengar_MILIZ(C_Info)
 {
 	npc = BAU_960_Bengar;
@@ -362,20 +373,27 @@ func int DIA_Bengar_MILIZ_Condition()
 func void DIA_Bengar_MILIZ_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_MILIZ_15_00");	//Я должен решить твою проблему с ополчением.
-	if(other.guild == GIL_NONE)
+	if(Kapitel < 3)
 	{
-		AI_Output(self,other,"DIA_Bengar_MILIZ_10_01");	//Что?! Я сказал Онару, чтобы он прислал своих НАЕМНИКОВ.
-		AI_Output(other,self,"DIA_Bengar_MILIZ_15_02");	//Это мой шанс проявить себя.
-		AI_Output(self,other,"DIA_Bengar_MILIZ_10_03");	//Ужас! Да ты знаешь, что ополчение сделает со мной, если у тебя ничего не получится?
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Bengar_MILIZ_10_01");	//Что?! Я сказал Онару, чтобы он прислал своих НАЕМНИКОВ.
+			AI_Output(other,self,"DIA_Bengar_MILIZ_15_02");	//Это мой шанс проявить себя.
+			AI_Output(self,other,"DIA_Bengar_MILIZ_10_03");	//Ужас! Да ты знаешь, что ополчение сделает со мной, если у тебя ничего не получится?
+		}
+		else if(other.guild == GIL_SLD)
+		{
+			AI_Output(self,other,"DIA_Bengar_MILIZ_10_04");	//Я уж думал, что никто не придет.
+			AI_Output(self,other,"DIA_Bengar_MILIZ_10_05");	//Я сказал об этом Онару еще пару дней назад. И за что я плачу свою ренту?!
+		};
+		AI_Output(self,other,"DIA_Bengar_MILIZ_10_06");	//Эти ублюдки заявляются сюда каждую неделю и собирают налоги в пользу города.
+		AI_Output(self,other,"DIA_Bengar_MILIZ_10_07");	//Ты как раз вовремя пришел.
+		AI_Output(self,other,"DIA_Bengar_MILIZ_10_08");	//Они могут появиться в любую минуту.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Bengar_MILIZ_10_04");	//Я уж думал, что никто не придет.
-		AI_Output(self,other,"DIA_Bengar_MILIZ_10_05");	//Я сказал об этом Онару еще пару дней назад. И за что я плачу свою ренту?!
+		B_BengarTooLate();
 	};
-	AI_Output(self,other,"DIA_Bengar_MILIZ_10_06");	//Эти ублюдки заявляются сюда каждую неделю и собирают налоги в пользу города.
-	AI_Output(self,other,"DIA_Bengar_MILIZ_10_07");	//Ты как раз вовремя пришел.
-	AI_Output(self,other,"DIA_Bengar_MILIZ_10_08");	//Они могут появиться в любую минуту.
 };
 
 
@@ -394,7 +412,10 @@ func int DIA_Bengar_Selber_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ))
 	{
-		return TRUE;
+		if((other.guild == GIL_NONE) || (other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -430,19 +451,26 @@ func int DIA_Bengar_MILIZKLATSCHEN_Condition()
 func void DIA_Bengar_MILIZKLATSCHEN_Info()
 {
 	AI_Output(other,self,"DIA_Bengar_MILIZKLATSCHEN_15_00");	//Ну и где твое ополчение, я готов разобраться с ними!
-	AI_Output(self,other,"DIA_Bengar_MILIZKLATSCHEN_10_01");	//Вон, они уже идут. Видишь, я же говорил тебе.
-	if(other.guild == GIL_NONE)
+	if(Kapitel < 3)
 	{
-		AI_Output(self,other,"DIA_Bengar_MILIZKLATSCHEN_10_02");	//Только не подведи!
+		AI_Output(self,other,"DIA_Bengar_MILIZKLATSCHEN_10_01");	//Вон, они уже идут. Видишь, я же говорил тебе.
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Bengar_MILIZKLATSCHEN_10_02");	//Только не подведи!
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Bengar_MILIZKLATSCHEN_10_03");	//Удачи тебе! Покажи им, где раки зимуют.
+		};
+		AI_StopProcessInfos(self);
+		Npc_ExchangeRoutine(self,"MilComing");
+		B_StartOtherRoutine(Rick,"MilComing");
+		B_StartOtherRoutine(Rumbold,"MilComing");
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Bengar_MILIZKLATSCHEN_10_03");	//Удачи тебе! Покажи им, где раки зимуют.
+		B_BengarTooLate();
 	};
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"MilComing");
-	B_StartOtherRoutine(Rick,"MilComing");
-	B_StartOtherRoutine(Rumbold,"MilComing");
 };
 
 
@@ -461,7 +489,7 @@ instance DIA_Bengar_MILIZWEG(C_Info)
 
 func int DIA_Bengar_MILIZWEG_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && (Bengar_MilSuccess == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Bengar_MILIZ) && (Bengar_MilSuccess == FALSE) && (MIS_Torlof_BengarMilizKlatschen != LOG_FAILED))
 	{
 		if((Npc_IsDead(Rick) && Npc_IsDead(Rumbold)) || (Rumbold_Bezahlt == TRUE) || (MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS))
 		{
@@ -476,7 +504,15 @@ func void DIA_Bengar_MILIZWEG_Info()
 	if((MIS_Torlof_BengarMilizKlatschen == LOG_Running) && (!Npc_IsDead(Rick) || !Npc_IsDead(Rumbold)) && (Miliz_Flucht == FALSE))
 	{
 		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_01");	//Ты с ума сошел? Да ты знаешь, что они сделают со мной, когда ты уйдешь?
-		AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_02");	//Они все еще стоят вон там. Скажи им, чтобы они исчезли СОВСЕМ!
+		if(Kapitel < 3)
+		{
+			AI_Output(self,other,"DIA_Bengar_MILIZWEG_10_02");	//Они все еще стоят вон там. Скажи им, чтобы они исчезли, СОВСЕМ!
+		}
+		else
+		{
+			MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
+			B_CheckLog();
+		};
 		AI_StopProcessInfos(self);
 	}
 	else
@@ -613,7 +649,7 @@ func void DIA_Bengar_ALLEIN_Info()
 		AI_Output(self,other,"DIA_Bengar_ALLEIN_10_01");	//Малак ушел от меня и забрал с собой всех, кто работал на меня. Он сказал, что направляется в горы.
 		AI_Output(self,other,"DIA_Bengar_ALLEIN_10_02");	//Он больше не мог находиться здесь.
 		MIS_GetMalakBack = LOG_Running;
-		B_LogEntry(TOPIC_BengarALLEIN,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
+		Log_AddEntry(TOPIC_BengarALLEIN,"Бенгар остался один на своей ферме. Малак ушел и увел с собой всех остальных. Бенгар думает, что они направились в горы.");
 	}
 	else
 	{

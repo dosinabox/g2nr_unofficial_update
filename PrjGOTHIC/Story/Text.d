@@ -148,24 +148,24 @@ const string TXT_GUILDS[66] =
 	"Бродяга",
 	"Пират",
 	"Маг Воды",
-	"D",
-	"",
+	"GIL_PUBLIC",
+	"GIL_SEPERATOR_HUM",
 	"Мясной жук",
 	"Овца",
 	"Гоблин",
 	"Скелет гоблина",
-	"Скелет гоблина",
+	"Вызванный скелет гоблина",
 	"Падальщик",
 	"Гигантская крыса",
 	"Полевой хищник",
 	"Кровавая муха",
 	"Ящер",
 	"Волк",
-	"Волк",
+	"Вызванный волк",
 	"Краулер",
 	"Луркер",
 	"Скелет",
-	"Скелет",
+	"Вызванный скелет",
 	"Скелет-маг",
 	"Зомби",
 	"Снеппер",
@@ -175,9 +175,9 @@ const string TXT_GUILDS[66] =
 	"Каменный голем",
 	"Огненный голем",
 	"Ледяной голем",
-	"Каменный голем",
+	"Вызванный голем",
 	"Демон",
-	"Демон",
+	"Вызванный демон",
 	"Тролль",
 	"Болотная акула",
 	"Дракон",
@@ -187,18 +187,18 @@ const string TXT_GUILDS[66] =
 	"Каменный страж",
 	"Пантера",
 	"Блуждающий огонек",
-	"Каменный страж",
-	"Зомби",
-	"",
-	"",
-	"",
+	"Вызванный страж",
+	"Вызванный зомби",
+	"GIL_EMPTY_B",
+	"GIL_EMPTY_C",
+	"GIL_SEPERATOR_ORC",
 	"Орк",
-	"Орк",
+	"Дружественный орк",
 	"Орк-нежить",
 	"Человек-ящер",
-	"X",
-	"Y",
-	"Z"
+	"GIL_EMPTY_X",
+	"GIL_EMPTY_Y",
+	"GIL_EMPTY_Z"
 };
 
 const string TXT_SPELLS[100] =
@@ -211,16 +211,16 @@ const string TXT_SPELLS[100] =
 	"Большое исцеление",
 	"Уничтожение Зла",
 	"Секретный телепорт",
-	"В порт",
-	"В монастырь",
-	"К лендлорду",
-	"К Ксардасу",
-	"К проходу Хориниса",
-	"К проходу Долины Рудников",
-	"В замок",
-	"К старой демонической башне",
-	"К таверне",
-	"К Кругу Солнца",
+	"Телепорт в порт",
+	"Телепорт в монастырь",
+	"Телепорт к лендлорду",
+	"Телепорт к Ксардасу",
+	"Телепорт к проходу Хориниса",
+	"Телепорт к проходу Долины Рудников",
+	"Телепорт в замок",
+	"Телепорт к старой демонической башне",
+	"Телепорт к таверне",
+	"Телепорт к Кругу Солнца",
 	"Свет",
 	"Огненная стрела",
 	"Ледяная стрела",
@@ -496,7 +496,7 @@ const string NAME_Straefling = "Каторжник";
 const string NAME_Waffenknecht = "Оруженосец";
 const string NAME_Dementor = "Ищущий";
 const string NAME_ToterNovize = "Мертвый послушник";
-const string NAME_Antipaldin = "Предводитель орков";
+const string NAME_Antipaladin = "Предводитель орков";
 const string NAME_Schiffswache = "Корабельный стражник";
 const string NAME_Fluechtling = "Беглец";
 const string NAME_Addon_Pirat = "Пират";
@@ -628,11 +628,11 @@ const string NAME_ItMw_Streitaxt1 = "Легкий боевой топор";
 const string NAME_ItMw_Banditenaxt = "Бандитский топор";
 const string PRINT_Addon_gegeben = " отдано";
 const string PRINT_GoldGegeben = " золотых отдано";
-const string PRINT_ItemGegeben = " предмет отдан";
+//const string PRINT_ItemGegeben = " предмет отдан";
 const string PRINT_ItemsGegeben = " предметов отдано";
 const string PRINT_Addon_erhalten = " получено";
 const string PRINT_GoldErhalten = " золотых получено";
-const string PRINT_ItemErhalten = " предмет получен";
+//const string PRINT_ItemErhalten = " предмет получен";
 const string PRINT_ItemsErhalten = " предметов получено";
 const string PRINT_Addon_RuneGiven = "Белиар дарует вам новое заклинание";
 //const string PRINT_Kosten = ". Цена: ";
@@ -770,6 +770,8 @@ const string PRINT_NovizenLeft = "Осталось послушников: ";
 const string PRINT_BloodLeft = "Осталось пробирок: ";
 const string PRINT_ShrinesLeft = "Осталось алтарей: ";
 const string PRINT_Addon_CanyonRazorsLeft = "Осталось бритвозубов: ";
+const string PRINT_AllNovizen = "Все послушники накормлены!";
+const string PRINT_AllCanyonRazors = "Все бритвозубы убиты!";
 const string PRINT_DragKillCount = "Враг повержен. На этот раз я не буду гнить под камнями. Пришло время возвращаться на корабль.";
 const string PRINT_Smith_1H_Special_01 = " (1 кусок руды)";
 const string PRINT_Smith_2H_Special_01 = " (2 куска руды)";
@@ -872,7 +874,7 @@ const string STR_INFO_TRADE_ACCEPT = "Принять";
 const string STR_INFO_TRADE_RESET = "Отклонить";
 const string STR_INFO_TRADE_EXIT = "НАЗАД";
 const string MENU_TEXT_NEEDS_APPLY = "Нажмите ENTER для активации!";
-const string MENU_TEXT_NEEDS_RESTART = "Некоторые настройки вступят в силу только после рестарта.";
+const string MENU_TEXT_NEEDS_RESTART = "Некоторые настройки вступят в силу после перезапуска игры.";
 const string KapWechsel_1 = "Глава 1";
 const string KapWechsel_1_Text = "Угроза";
 const string KapWechsel_2 = "Глава 2";

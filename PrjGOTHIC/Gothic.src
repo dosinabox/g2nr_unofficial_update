@@ -723,7 +723,7 @@ Story\NPC\NOV_604_Dyrian.d
 Story\NPC\NOV_605_Opolos.d
 Story\NPC\NOV_606_Novize.d
 Story\NPC\NOV_607_Novize.d
-Story\NPC\Nov_608_Garwig.d
+Story\NPC\NOV_608_Garwig.d
 Story\NPC\NOV_609_Novize.d
 Story\NPC\NOV_610_Novize.d
 Story\NPC\NOV_611_Novize.d
@@ -809,6 +809,7 @@ Story\NPC\PAL_271_Ritter.d
 Story\NPC\PAL_272_Ritter.d
 Story\NPC\PAL_273_Ritter.d
 Story\NPC\PAL_274_Ritter.d
+Story\NPC\PAL_275_DeadSengrath.d
 Story\NPC\PAL_280_Tengron.d
 Story\NPC\PAL_281_Fajeth.d
 Story\NPC\PAL_285_Ritter.d

@@ -1,7 +1,42 @@
 
-var int Vatras_SchickeLeuteWeg;
 var int Vatras_LaresExit;
 //var int Vatras_MORE;
+
+func int C_Vatras_Away()
+{
+	if(MIS_RitualInnosEyeRepair == LOG_Running)
+	{
+		return TRUE;
+	};
+	if(Vatras_IsOnBoard == LOG_SUCCESS)
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+func void B_Vatras_ListenersControl()
+{
+	var string pos;
+	if(C_Vatras_Away())
+	{
+		pos = "VATRASAWAY";
+	}
+	else
+	{
+		pos = "START";
+	};
+	if(Vatras_Listeners_ReadyToGo == TRUE)
+	{
+		B_StartOtherRoutine(VLK_421_Valentino,pos);
+		B_StartOtherRoutine(VLK_426_Buergerin,pos);
+		B_StartOtherRoutine(VLK_428_Buergerin,pos);
+		B_StartOtherRoutine(VLK_450_Buerger,pos);
+		B_StartOtherRoutine(VLK_454_Buerger,pos);
+		B_StartOtherRoutine(VLK_455_Buerger,pos);
+		Vatras_Listeners_ReadyToGo = FALSE;
+	};
+};
 
 instance DIA_Addon_Vatras_KillerWarning(C_Info)
 {
@@ -63,6 +98,10 @@ func void DIA_Addon_Vatras_LastWarning_Arsch()
 	AI_Output(other,self,"DIA_Addon_Vatras_LastWarning_Arsch_ADD_15_00");	//Отвали.
 	AI_Output(self,other,"DIA_Addon_Vatras_LastWarning_Arsch_ADD_05_00");	//Я не слышу в твоих словах ни тени раскаяния.
 	AI_Output(self,other,"DIA_Addon_Vatras_LastWarning_Arsch_ADD_05_01");	//Ты не оставляешь мне другого выбора.
+	if(C_Vatras_Away())
+	{
+		Vatras_Listeners_ReadyToGo = TRUE;
+	};
 	Info_ClearChoices(DIA_Addon_Vatras_LastWarning);
 	B_VatrasPissedOff();
 };
@@ -100,6 +139,10 @@ func void DIA_Addon_Vatras_PissedOff_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_PissedOff_ADD_05_00");	//Твои слова так же лживы, как и твои деяния.
 	AI_Output(self,other,"DIA_Addon_Vatras_PissedOff_ADD_05_01");	//Ты никак не хочешь прекращать бездумные убийства.
 	AI_Output(self,other,"DIA_Addon_Vatras_PissedOff_ADD_05_02");	//Ты не оставляешь мне другого выбора...
+	if(C_Vatras_Away())
+	{
+		Vatras_Listeners_ReadyToGo = TRUE;
+	};
 	B_VatrasPissedOff();
 };
 
@@ -142,17 +185,8 @@ func void DIA_Vatras_EXIT_Info()
 	};
 	B_PlayerEnteredCity();
 	AI_StopProcessInfos(self);
+	B_Vatras_ListenersControl();
 //	Vatras_MORE = FALSE;
-	if(Vatras_SchickeLeuteWeg == TRUE)
-	{
-		B_StartOtherRoutine(VLK_455_Buerger,"VATRASAWAY");
-		B_StartOtherRoutine(VLK_454_Buerger,"VATRASAWAY");
-		B_StartOtherRoutine(VLK_428_Buergerin,"VATRASAWAY");
-		B_StartOtherRoutine(VLK_450_Buerger,"VATRASAWAY");
-		B_StartOtherRoutine(VLK_426_Buergerin,"VATRASAWAY");
-		B_StartOtherRoutine(VLK_421_Valentino,"VATRASAWAY");
-		Vatras_SchickeLeuteWeg = FALSE;
-	};
 };
 
 
@@ -244,16 +278,18 @@ func void DIA_Addon_Vatras_Cavalorn_Info()
 	{
 		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras);
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon_Sealed,1);
+		Npc_RemoveInvItem(self,ItWr_SaturasFirstMessage_Addon_Sealed);
+		CreateInvItems(self,ItWr_SaturasFirstMessage_Addon,1);
 	}
 	else
 	{
-		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras_Opened);
+		B_GivePlayerXP(XP_Addon_Cavalorn_Letter2Vatras / 4);
 		B_GiveInvItems(other,self,ItWr_SaturasFirstMessage_Addon,1);
 		AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_02");	//Да, но... оно вскрыто. Я надеюсь, оно не попало в чужие руки?
 	};
 	B_UseFakeScroll();
 	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_03");	//Да. Это очень важное известие.
-	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_04");	//Интересно как к тебе попало это письмо?
+	AI_Output(self,other,"DIA_Addon_Vatras_Cavalorn_05_04");	//Интересно, как к тебе попало это письмо?
 	Info_ClearChoices(DIA_Addon_Vatras_Cavalorn);
 	Info_AddChoice(DIA_Addon_Vatras_Cavalorn,"Я забрал его у бандитов.",DIA_Addon_Vatras_Cavalorn_Bandit);
 	if(MIS_Addon_Cavalorn_KillBrago == LOG_SUCCESS)
@@ -1962,7 +1998,7 @@ func void DIA_Vatras_MISSION_YES()
 	AI_Output(other,self,"DIA_Vatras_MISSION_YES_15_00");	//Я сделаю это.
 	AI_Output(self,other,"DIA_Vatras_Add_05_11");	//Хорошо, тогда доставь это сообщение и выбери один из этих свитков с заклинаниями.
 	AI_Output(self,other,"DIA_Vatras_Add_05_12");	//А когда ты доставишь сообщение, я вознагражу тебя соответствующим образом.
-	B_GiveInvItems(self,hero,ItWr_VatrasMessage,1);
+	B_GiveInvItems(self,other,ItWr_VatrasMessage,1);
 	MIS_Vatras_Message = LOG_Running;
 	Log_CreateTopic(TOPIC_Botschaft,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Botschaft,LOG_Running);
@@ -1988,7 +2024,7 @@ func void DIA_Vatras_MISSION_HEAL()
 {
 	AI_Output(other,self,"DIA_Vatras_MISSION_HEAL_15_00");	//Я выбираю лечебное заклинание.
 	B_SayVatrasGo();
-	B_GiveInvItems(self,hero,ItSc_LightHeal,1);
+	B_GiveInvItems(self,other,ItSc_LightHeal,1);
 	Info_ClearChoices(DIA_Vatras_MISSION);
 };
 
@@ -1996,7 +2032,7 @@ func void DIA_Vatras_MISSION_ICE()
 {
 	AI_Output(other,self,"DIA_Vatras_MISSION_ICE_15_00");	//Дай мне 'Ледяную стрелу'.
 	B_SayVatrasGo();
-	B_GiveInvItems(self,hero,ItSc_Icebolt,1);
+	B_GiveInvItems(self,other,ItSc_Icebolt,1);
 	Info_ClearChoices(DIA_Vatras_MISSION);
 };
 
@@ -2004,7 +2040,7 @@ func void DIA_Vatras_MISSION_LIGHT()
 {
 	AI_Output(other,self,"DIA_Vatras_MISSION_LIGHT_15_00");	//Я возьму заклинание света.
 	B_SayVatrasGo();
-	B_GiveInvItems(self,hero,ItSc_Light,1);
+	B_GiveInvItems(self,other,ItSc_Light,1);
 	Info_ClearChoices(DIA_Vatras_MISSION);
 };
 
@@ -2041,20 +2077,25 @@ func void DIA_Vatras_MESSAGE_SUCCESS_Info()
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Plant()
 {
-	B_GiveInvItems(self,hero,ItPl_Perm_Herb,1);
+	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Plant_Add");	//Я возьму царский щавель.
+	AI_WaitTillEnd(self,other);
+	B_GiveInvItems(self,other,ItPl_Perm_Herb,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);
 };
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Ring()
 {
-//	AI_Output(other,self,"DIA_Addon_Skip_Grog_ring_15_00");	//Я возьму кольцо.
-	B_GiveInvItems(self,hero,ItRi_Dex_01,1);
+	AI_Output(other,self,"DIA_Addon_Skip_Grog_ring_15_00");	//Я возьму кольцо.
+	AI_WaitTillEnd(self,other);
+	B_GiveInvItems(self,other,ItRi_Dex_01,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);
 };
 
 func void DIA_Vatras_MESSAGE_SUCCESS_Ore()
 {
-	B_GiveInvItems(self,hero,ItMi_Nugget,1);
+	AI_Output(other,self,"DIA_Vatras_MESSAGE_SUCCESS_15_00_Ore_Add");	//Я возьму руду.
+	AI_WaitTillEnd(self,other);
+	B_GiveInvItems(self,other,ItMi_Nugget,1);
 	Info_ClearChoices(DIA_Vatras_MESSAGE_SUCCESS);
 };
 
@@ -2084,9 +2125,9 @@ func void B_Vatras_GeheWeg(var int dauer)
 			Vatras_einmalLangWeg = TRUE;
 		};
 		AI_Output(self,other,"DIA_Vatras_Add_05_09");	//Да пребудет с вами Аданос!
+		Vatras_Listeners_ReadyToGo = TRUE;
 		B_TurnToNpc(self,other);
 	};
-	Vatras_SchickeLeuteWeg = TRUE;
 };
 
 
@@ -2309,49 +2350,15 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
 	Info_ClearChoices(DIA_Vatras_INNOSEYEKAPUTT);
 	Npc_ExchangeRoutine(self,"RITUALINNOSEYEREPAIR");
 	B_Vatras_GeheWeg(kurz);
-/*	dmt_1201.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1202.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1203.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1204.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1205.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1206.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1207.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1208.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1209.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1210.aivar[AIV_EnemyOverride] = TRUE;
-	dmt_1211.aivar[AIV_EnemyOverride] = TRUE;
-	B_StartOtherRoutine(dmt_1201,"AfterRitual");
-	B_StartOtherRoutine(dmt_1202,"AfterRitual");
-	B_StartOtherRoutine(dmt_1203,"AfterRitual");
-	B_StartOtherRoutine(dmt_1204,"AfterRitual");
-	B_StartOtherRoutine(dmt_1205,"AfterRitual");
-	B_StartOtherRoutine(dmt_1206,"AfterRitual");
-	B_StartOtherRoutine(dmt_1207,"AfterRitual");
-	B_StartOtherRoutine(dmt_1208,"AfterRitual");
-	B_StartOtherRoutine(dmt_1209,"AfterRitual");
-	B_StartOtherRoutine(dmt_1210,"AfterRitual");
-	B_StartOtherRoutine(dmt_1211,"AfterRitual"); */
-	if(!Npc_IsDead(DMT_1201))
-	{
-		DMT_1201.aivar[AIV_EnemyOverride] = TRUE;
-	};
 	if(!Npc_IsDead(DMT_1202))
 	{
 		DMT_1202.aivar[AIV_EnemyOverride] = TRUE;
 		B_StartOtherRoutine(DMT_1202,"AfterRitual");
 	};
-	if(!Npc_IsDead(DMT_1203))
-	{
-		DMT_1203.aivar[AIV_EnemyOverride] = TRUE;
-	};
 	if(!Npc_IsDead(DMT_1204))
 	{
 		DMT_1204.aivar[AIV_EnemyOverride] = TRUE;
 		B_StartOtherRoutine(DMT_1204,"AfterRitual");
-	};
-	if(!Npc_IsDead(DMT_1205))
-	{
-		DMT_1205.aivar[AIV_EnemyOverride] = TRUE;
 	};
 	if(!Npc_IsDead(DMT_1206))
 	{
@@ -2362,10 +2369,6 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_Wer_Xardas_weiter()
 	{
 		DMT_1207.aivar[AIV_EnemyOverride] = TRUE;
 		B_StartOtherRoutine(DMT_1207,"AfterRitual");
-	};
-	if(!Npc_IsDead(DMT_1208))
-	{
-		DMT_1208.aivar[AIV_EnemyOverride] = TRUE;
 	};
 	if(!Npc_IsDead(DMT_1209))
 	{
@@ -2502,16 +2505,12 @@ func void DIA_Vatras_AUGEGEHEILT_Info()
 	B_LogEntry(TOPIC_INNOSEYE,"Глаз был восстановлен. Пирокар отдает его мне, и начинается охота на драконов.");
 	AI_StopProcessInfos(self);
 //	Vatras_MORE = FALSE;
+	Vatras_Listeners_ReadyToGo = TRUE;
 	RitualInnosEyeRuns = LOG_SUCCESS;
 	MIS_RitualInnosEyeRepair = LOG_SUCCESS;
 	B_StartOtherRoutine(Pyrokar,"RitualInnosEyeRepair");
 	B_StartOtherRoutine(Xardas,"RitualInnosEyeRepair");
-	B_StartOtherRoutine(VLK_455_Buerger,"START");
-	B_StartOtherRoutine(VLK_454_Buerger,"START");
-	B_StartOtherRoutine(VLK_428_Buergerin,"START");
-	B_StartOtherRoutine(VLK_450_Buerger,"START");
-	B_StartOtherRoutine(VLK_426_Buergerin,"START");
-	B_StartOtherRoutine(VLK_421_Valentino,"START");
+	B_Vatras_ListenersControl();
 };
 
 
@@ -2646,8 +2645,6 @@ func int DIA_Vatras_KnowWhereEnemy_Condition()
 	};
 };
 
-var int SCToldVatrasHeKnowWhereEnemy;
-
 func void DIA_Vatras_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_KnowWhereEnemy_15_00");	//Я знаю, где находится наш враг.
@@ -2676,20 +2673,9 @@ func void DIA_Vatras_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_Vatras_KnowWhereEnemy_Yes_15_00");	//Я сочту за честь, что ты будешь на моей стороне. Встретимся в гавани.
 	AI_Output(self,other,"DIA_Vatras_KnowWhereEnemy_Yes_05_01");	//Только не трать время понапрасну. Помни, друг мой, враг не дремлет.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Vatras_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
 	B_Vatras_GeheWeg(lang);
 	Info_ClearChoices(DIA_Vatras_KnowWhereEnemy);
+	Info_AddChoice(DIA_Vatras_KnowWhereEnemy,Dialog_Ende,DIA_Vatras_JoinShip);
 };
 
 func void DIA_Vatras_KnowWhereEnemy_No()
@@ -2700,6 +2686,17 @@ func void DIA_Vatras_KnowWhereEnemy_No()
 	Info_ClearChoices(DIA_Vatras_KnowWhereEnemy);
 };
 
+var int Vatras_JoinShip_Once;
+
+func void DIA_Vatras_JoinShip()
+{
+	B_JoinShip(self);
+	if(Vatras_JoinShip_Once == FALSE)
+	{
+		B_Vatras_ListenersControl();
+		Vatras_JoinShip_Once = TRUE;
+	};
+};
 
 instance DIA_Vatras_LeaveMyShip(C_Info)
 {
@@ -2752,22 +2749,24 @@ func int DIA_Vatras_StillNeedYou_Condition()
 func void DIA_Vatras_StillNeedYou_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_StillNeedYou_15_00");	//Поплывем вместе на вражеский остров.
-	AI_Output(self,other,"DIA_Vatras_StillNeedYou_05_01");	//Мудрое решение. Надеюсь, ты больше его не переменишь.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Vatras_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count += 1;
-	B_Vatras_GeheWeg(lang);
-	AI_StopProcessInfos(self);
-//	Vatras_MORE = FALSE;
-	if(MIS_ReadyforChapter6 == TRUE)
+	if(Vatras_WasOnBoard == TRUE)
 	{
-		Npc_ExchangeRoutine(self,"SHIP");
+		AI_Output(self,other,"DIA_Vatras_StillNeedYou_05_01");	//Мудрое решение. Надеюсь, ты больше его не переменишь.
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
+		AI_Output(self,other,"DIA_Vatras_KnowWhereEnemy_Yes_05_01");	//Только не трать время понапрасну. Помни, друг мой, враг не дремлет.
 	};
-	B_CheckLog();
+	B_Vatras_GeheWeg(lang);
+	if(Vatras_JoinShip_Once == FALSE)
+	{
+		Info_ClearChoices(DIA_Vatras_StillNeedYou);
+		Info_AddChoice(DIA_Vatras_StillNeedYou,Dialog_Ende,DIA_Vatras_JoinShip);
+	}
+	else
+	{
+		B_JoinShip(self);
+	};
 };
 
 

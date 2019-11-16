@@ -503,16 +503,9 @@ instance DIA_Garond_Silvestro(C_Info)
 
 func int DIA_Garond_Silvestro_Condition()
 {
-	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2))
+	if((MIS_ScoutMine == LOG_Running) && (Kapitel == 2) && (Silvestro_Ore == TRUE))
 	{
-		if(Npc_KnowsInfo(other,DIA_DiegoOw_Beweise))
-		{
-			return TRUE;
-		}
-		else if(Npc_IsDead(DiegoOW) && (Silvestro_Ore == TRUE))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -572,7 +565,7 @@ func void DIA_Garond_Marcos_Info()
 	Marcos_Guard1.aivar[AIV_ToughGuy] = TRUE;
 	Marcos_Guard2.aivar[AIV_ToughGuy] = TRUE;
 	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
-	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
+	AI_Teleport(Marcos_Guard2,"OW_STAND_GUARDS");
 	B_StartOtherRoutine(Marcos_Guard1,"MARCOS");
 	B_StartOtherRoutine(Marcos_Guard2,"MARCOS");
 	Ore_Counter += 1;

@@ -338,6 +338,11 @@ func void DIA_Torlof_RUF_Info()
 	else if(Raoul.aivar[AIV_DefeatedByPlayer] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Torlof_RUF_01_15");	//Рауль против тебя. Мне кажется, он на дух тебя не выносит.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Torlof_RUF_01_15_add");	//Рауль ничего не имеет против тебя.
+		Points_Sld += 1;
 	};
 	if(Npc_IsDead(Bullco))
 	{
@@ -1040,7 +1045,7 @@ func int DIA_Torlof_WOISTSYLVIO_Condition()
 func void DIA_Torlof_WOISTSYLVIO_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_WOISTSYLVIO_15_00");	//Что, часть наемников ушла отсюда?
-	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_01");	//Сильвио забрал нескольких парней и ушел через проход.
+	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_01");	//Сильвио забрал нескольких парней и ушел через Проход.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_02");	//Поговаривают, что там появились драконы. Когда он услышал это, его было не остановить.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_03");	//Кто знает? Сокровища драконов можно очень дорого продать.
 	AI_Output(self,other,"DIA_Torlof_WOISTSYLVIO_01_04");	//Но меня это не касается. Я моряк. Я принадлежу морю, и мне нет дела до душного логова дракона.
@@ -1162,14 +1167,14 @@ func int DIA_Torlof_BEMYCAPTAIN3_Condition()
 func void DIA_Torlof_BEMYCAPTAIN3_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN3_15_00");	//Теперь ты поможешь мне добраться до острова?
-	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_01");	//Ох, да. Ты хотел добраться до острова. Ммм. Вот мои условия.
-	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_02");	//Ты заплатишь мне 2500 золотом, и я готов стать капитаном твоего корабля.
-	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_03");	//А также я готов повышать твою силу и ловкость, когда ты только этого захочешь.
 	if(Torlof_PaidToBeCaptain_Log_OneTime == FALSE)
 	{
+		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_01");	//Ох, да. Ты хотел добраться до острова. Ммм. Вот мои условия.
 		B_LogEntry(Topic_Captain,"Торлоф теперь готов командовать кораблем. Правда, он хочет получить за эту работу 2500 золотых монет.");
 		Torlof_PaidToBeCaptain_Log_OneTime = TRUE;
 	};
+	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_02");	//Ты заплатишь мне 2500 золотом, и я готов стать капитаном твоего корабля.
+	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_01_03");	//А также я готов повышать твою силу и ловкость, когда ты только этого захочешь.
 	Info_ClearChoices(DIA_Torlof_BEMYCAPTAIN3);
 	Info_AddChoice(DIA_Torlof_BEMYCAPTAIN3,"Это чертовски большая сумма.",DIA_Torlof_BEMYCAPTAIN3_zuViel);
 	Info_AddChoice(DIA_Torlof_BEMYCAPTAIN3,"Хорошо. Вот твое золото.",DIA_Torlof_BEMYCAPTAIN3_ok);
@@ -1222,16 +1227,25 @@ func int DIA_Torlof_BEMYCAPTAIN4_Condition()
 func void DIA_Torlof_BEMYCAPTAIN4_Info()
 {
 	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN4_15_00");	//Будь моим капитаном.
-	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_01");	//Хорошо. Дай мне корабль и крепкую команду, и я доставлю тебя на этот проклятый остров.
-	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_02");	//У тебя есть морская карта? Без нее мы далеко не уплывем.
-	AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN4_15_03");	//Я позабочусь обо всем. Увидимся в порту.
-	AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_04");	//Мне не терпится увидеть, как это все у тебя получится.
-	AI_StopProcessInfos(self);
-	SCGotCaptain = TRUE;
-	TorlofIsCaptain = TRUE;
-	self.flags = NPC_FLAG_IMMORTAL;
-	Npc_ExchangeRoutine(self,"WaitForShipCaptain");
-	B_GivePlayerXP(XP_Captain_Success);
+	if(Npc_HasItems(self,ItMi_Gold) >= 2380)
+	{
+		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_01");	//Хорошо. Дай мне корабль и крепкую команду, и я доставлю тебя на этот проклятый остров.
+		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_02");	//У тебя есть морская карта? Без нее мы далеко не уплывем.
+		AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN4_15_03");	//Я позабочусь обо всем. Увидимся в порту.
+		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_04");	//Мне не терпится увидеть, как это все у тебя получится.
+		AI_StopProcessInfos(self);
+		SCGotCaptain = TRUE;
+		TorlofIsCaptain = TRUE;
+		self.flags = NPC_FLAG_IMMORTAL;
+		Npc_ExchangeRoutine(self,"WaitForShipCaptain");
+		B_GivePlayerXP(XP_Captain_Success);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN3_ok_01_02");	//Ты пытаешься надуть меня? Сначала добудь деньги. Тогда и поговорим.
+		Torlof_PaidToBeCaptain = FALSE;
+		AI_StopProcessInfos(self);
+	};
 };
 
 

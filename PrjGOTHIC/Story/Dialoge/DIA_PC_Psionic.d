@@ -394,7 +394,9 @@ func void DIA_Lester_BACKINTOWN_Info()
 	CreateInvItems(self,ItRu_TeleportXardas,1);
 	B_GiveInvItems(self,other,ItRu_TeleportXardas,1);
 	AI_StopProcessInfos(self);
-	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
+	Npc_ExchangeRoutine(self,"XARDAS");
+	LesterMovedToXardas = TRUE;
+/*	if(Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
 	{
 		Npc_ExchangeRoutine(self,"XARDAS");
 		LesterMovedToXardas = TRUE;
@@ -402,7 +404,7 @@ func void DIA_Lester_BACKINTOWN_Info()
 	else
 	{
 		Npc_ExchangeRoutine(self,"START");
-	};
+	};*/
 };
 
 
@@ -581,6 +583,11 @@ func void DIA_Lester_KnowWhereEnemy_Info()
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_01");	//Не спрашивай меня, почему я так думаю, но мне кажется, я должен отправиться с тобой.
 	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_02");	//Что ты хочешь сказать этим?
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_13_03");	//Я не могу объяснить этого, но я знаю, что смогу получить ответ, только если отправлюсь с тобой.
+	if(SCToldLesterHeKnowWhereEnemy == FALSE)
+	{
+		B_LogEntry(Topic_Crew,"Лестер может обладать ценной информацией.");
+		SCToldLesterHeKnowWhereEnemy = TRUE;
+	};
 	if(Crewmember_Count >= Max_Crew)
 	{
 		AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_15_04");	//Извини, но корабль уже полон.
@@ -601,19 +608,7 @@ func void DIA_Lester_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_Yes_15_00");	//Тогда пойдем со мной, и получишь ответы на свои вопросы!
 	AI_Output(other,self,"DIA_Lester_KnowWhereEnemy_Yes_15_01");	//Встретимся в гавани. Я приду туда, когда буду готов.
 	AI_Output(self,other,"DIA_Lester_KnowWhereEnemy_Yes_13_02");	//Поторопись. Времени у нас мало.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Lester_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_Lester_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_Lester_KnowWhereEnemy_No()
@@ -684,17 +679,7 @@ func void DIA_Lester_StillNeedYou_Info()
 	{
 		AI_Output(self,other,"DIA_Lester_StillNeedYou_13_01");	//Я знал это! Мы будем сражаться рука об руку. Как в старые времена!
 		AI_Output(self,other,"DIA_Lester_StillNeedYou_13_02");	//Берегись, Зло! Мы свернем тебе шею!
-		self.flags = NPC_FLAG_IMMORTAL;
-		Lester_IsOnBoard = LOG_SUCCESS;
-		Crewmember_Count += 1;
-		if(MIS_ReadyforChapter6 == TRUE)
-		{
-			Npc_ExchangeRoutine(self,"SHIP");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"WAITFORSHIP");
-		};
+		B_JoinShip(self);
 	}
 	else
 	{

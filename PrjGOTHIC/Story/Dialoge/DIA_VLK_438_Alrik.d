@@ -171,7 +171,7 @@ instance DIA_Alrik_NewFights3(C_Info)
 
 func int DIA_Alrik_NewFights3_Condition()
 {
-	if((Kapitel >= 3) && (Kapitel <= 4) && (Alrik_ArenaKampfVerloren <= 6))
+	if((Kapitel >= 3) && (Kapitel <= 4) && (Alrik_ArenaKampfVerloren > 0) && (Alrik_ArenaKampfVerloren <= 6))
 	{
 		return TRUE;
 	};
@@ -198,7 +198,7 @@ instance DIA_Alrik_NewFights5(C_Info)
 
 func int DIA_Alrik_NewFights5_Condition()
 {
-	if((Kapitel >= 5) && (Alrik_ArenaKampfVerloren <= 9))
+	if((Kapitel >= 5) && (Alrik_ArenaKampfVerloren > 0) && (Alrik_ArenaKampfVerloren <= 9))
 	{
 		return TRUE;
 	};
@@ -216,12 +216,6 @@ func void B_Alrik_Enough()
 	AI_Output(self,other,"DIA_Alrik_WannaFight_09_05");	//Мне кажется, ты побеждаешь слишком часто.
 	AI_Output(self,other,"DIA_Alrik_WannaFight_09_06");	//Не пойми меня неверно, но моя башка все еще гудит после прошлого раза...
 };
-
-func void B_Alrik_ComeBackLater()
-{
-	AI_Output(self,other,"DIA_Alrik_Add_09_02");	//Заходи позже. А пока я потренируюсь...
-};
-
 
 instance DIA_Alrik_WannaFight(C_Info)
 {
@@ -272,8 +266,14 @@ func void DIA_Alrik_WannaFight_Info()
 	else if((Kapitel <= 2) && (Alrik_ArenaKampfVerloren > 3))
 	{
 		AI_Output(self,other,"DIA_Alrik_Add_09_00");	//Я думаю, пока хватит...
-		AI_Output(self,other,"DIA_Alrik_Add_09_01");	//Дай мне немного передохнуть.
-		B_Alrik_ComeBackLater();
+		if(Wld_IsTime(11,0,19,0))
+		{
+			AI_Output(self,other,"DIA_Alrik_Add_09_02");	//Заходи позже. А пока я потренируюсь...
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Alrik_Add_09_01");	//Дай мне немного передохнуть.
+		};
 	}
 	else if((Kapitel >= 3) && (Kapitel <= 4) && (Alrik_ArenaKampfVerloren > 6))
 	{

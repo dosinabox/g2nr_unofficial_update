@@ -205,7 +205,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 //	разоружение перед началом торговли с ГГ
 	if(C_AmIWeaponTrader(slf))
 	{
-		AI_UnequipWeapons(slf);
+//		AI_UnequipWeapons(slf);
 		EquipWeap = Npc_GetEquippedMeleeWeapon(slf);
 		Npc_RemoveInvItems(slf,Hlp_GetInstanceID(EquipWeap),Npc_HasItems(slf,Hlp_GetInstanceID(EquipWeap)));
 		CreateInvItem(slf,Hlp_GetInstanceID(EquipWeap));

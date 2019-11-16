@@ -456,7 +456,6 @@ instance ItWr_HalvorMessage(C_Item)
 func void UseHalvorMessage()
 {
 	var int nDocID;
-	Knows_Halvor = TRUE;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
@@ -474,6 +473,7 @@ func void UseHalvorMessage()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"    Халвор");
 	Doc_Show(nDocID);
+	Knows_Halvor = TRUE;
 };
 
 
@@ -1225,7 +1225,7 @@ instance ItPl_Sagitta_Herb_MIS(C_Item)
 //	flags = ITEM_MULTI;
 	flags = ITEM_MISSION;
 	value = Value_Strength_Herb_01;
-	visual = "ItPl_Strength_Herb_02.3DS";
+	visual = "ItPl_Sagitta_Herb.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOOD";
 	description = name;

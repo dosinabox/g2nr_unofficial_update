@@ -239,7 +239,7 @@ func void DIA_Gerbrandt_Perm_Info()
 		}
 		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 		{
-			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_04");	//Много я видал таких людей как ты - вы просто не знаете своего места.
+			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_04");	//Много я видел таких людей как ты - вы просто не знаете своего места.
 			AI_Output(self,other,"DIA_Gerbrandt_Perm_10_05");	//Мне стоит поговорить с губернатором об усилении мер безопасности в верхнем квартале.
 		}
 		else
@@ -287,7 +287,7 @@ func void DIA_Gerbrandt_GreetingsFromDiego_Info()
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_06");	//Диего, конечно же!
 	AI_Output(other,self,"DIA_Gerbrandt_GreetingsFromDiego_15_07");	//Да, я должен скоро встретиться с ним.
 	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_08");	//(в отчаянии, про себя) Это конец! Все пропало!
-	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_09");	//У меня нет времени, мне нужно уходить отсюда. Быстро. Если он найдет меня здесь, мне конец!
+	AI_Output(self,other,"DIA_Gerbrandt_GreetingsFromDiego_10_09");	//У меня нет времени, мне нужно уходить отсюда! Быстро! Если он найдет меня здесь, мне конец!
 	MIS_DiegosResidence = LOG_SUCCESS;
 	B_GivePlayerXP(XP_DiegosResidence);
 	DIEGO_COMING = 1;

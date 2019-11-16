@@ -269,14 +269,14 @@ var C_Npc Sengrath;
 var C_Npc HaupttorWache_4143;
 var C_Npc Engrom;
 //var C_Npc DMT_1200;
-var C_Npc DMT_1201;
+//var C_Npc DMT_1201;
 var C_Npc DMT_1202;
-var C_Npc DMT_1203;
+//var C_Npc DMT_1203;
 var C_Npc DMT_1204;
-var C_Npc DMT_1205;
+//var C_Npc DMT_1205;
 var C_Npc DMT_1206;
 var C_Npc DMT_1207;
-var C_Npc DMT_1208;
+//var C_Npc DMT_1208;
 var C_Npc DMT_1209;
 var C_Npc DMT_1210;
 var C_Npc DMT_1211;
@@ -333,6 +333,7 @@ var C_Npc Lance;
 var C_Npc William;
 var C_Npc Hank;
 var C_Npc Serpentes;
+var C_Npc Nov610;
 
 func void B_InitNpcGlobals()
 {
@@ -622,14 +623,14 @@ func void B_InitNpcGlobals()
 	HaupttorWache_4143 = Hlp_GetNpc(VLK_4143_HaupttorWache);
 	Engrom = Hlp_GetNpc(VLK_4131_Engrom);
 //	DMT_1200 = Hlp_GetNpc(DMT_1200_Dementor);
-	DMT_1201 = Hlp_GetNpc(DMT_1201_Dementor);
+//	DMT_1201 = Hlp_GetNpc(DMT_1201_Dementor);
 	DMT_1202 = Hlp_GetNpc(DMT_1202_Dementor);
-	DMT_1203 = Hlp_GetNpc(DMT_1203_Dementor);
+//	DMT_1203 = Hlp_GetNpc(DMT_1203_Dementor);
 	DMT_1204 = Hlp_GetNpc(DMT_1204_Dementor);
-	DMT_1205 = Hlp_GetNpc(DMT_1205_Dementor);
+//	DMT_1205 = Hlp_GetNpc(DMT_1205_Dementor);
 	DMT_1206 = Hlp_GetNpc(DMT_1206_Dementor);
 	DMT_1207 = Hlp_GetNpc(DMT_1207_Dementor);
-	DMT_1208 = Hlp_GetNpc(DMT_1208_Dementor);
+//	DMT_1208 = Hlp_GetNpc(DMT_1208_Dementor);
 	DMT_1209 = Hlp_GetNpc(DMT_1209_Dementor);
 	DMT_1210 = Hlp_GetNpc(DMT_1210_Dementor);
 	DMT_1211 = Hlp_GetNpc(DMT_1211_Dementor);
@@ -674,5 +675,6 @@ func void B_InitNpcGlobals()
 	William = Hlp_GetNpc(VLK_4304_Addon_William);
 	Hank = Hlp_GetNpc(PIR_1371_Addon_Hank);
 	Serpentes = Hlp_GetNpc(KDF_501_Serpentes);
+	Nov610 = Hlp_GetNpc(NOV_610_Novize);
 };
 

@@ -1,4 +1,13 @@
 
+func void B_InsertMalethWolf()
+{
+	if(Maleth_ersterWolf == FALSE)
+	{
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_SHEEP_06");
+		Maleth_ersterWolf = TRUE;
+	};
+};
+
 instance DIA_Maleth_EXIT(C_Info)
 {
 	npc = BAU_954_Maleth;
@@ -21,12 +30,9 @@ func int DIA_Maleth_EXIT_Condition()
 func void DIA_Maleth_EXIT_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_EXIT_15_00");	//Мне нужно идти.
+	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
-	if(Maleth_ersterWolf == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_SHEEP_06");
-		Maleth_ersterWolf = TRUE;
-	};
+	B_InsertMalethWolf();
 };
 
 
@@ -177,7 +183,7 @@ instance DIA_Maleth_ToTheCity(C_Info)
 
 func int DIA_Maleth_ToTheCity_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (Kapitel < 3) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -197,13 +203,16 @@ func void DIA_Maleth_ToTheCity_Info()
 	};
 	AI_Output(other,self,"DIA_Maleth_ToTheCity_15_04");	//И что это?
 	AI_Output(self,other,"DIA_Maleth_ToTheCity_08_05");	//Ну, например, что ты с фермы Лобарта и идешь к городскому кузнецу.
-	Log_CreateTopic(TOPIC_City,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_City,LOG_Running);
-	B_LogEntry(TOPIC_City,"Чтобы попасть в город, я могу сказать стражникам у ворот, что я иду с фермы Лобарта и хочу повидать кузнеца.");
-	if(!Npc_HasEquippedArmor(other))
+	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (PlayerEnteredCity == FALSE))
+	{
+		Log_CreateTopic(TOPIC_City,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_City,LOG_Running);
+		B_LogEntry(TOPIC_City,"Чтобы попасть в город, я могу сказать стражникам у ворот, что я иду с фермы Лобарта и хочу повидать кузнеца.");
+	};
+	if(!C_BAUCheck(other))
 	{
 		AI_Output(self,other,"DIA_Maleth_ToTheCity_08_06");	//Но это тебе не поможет. Ты не похож на фермера.
-		B_LogEntry(TOPIC_City,"Конечно, я должен быть похож на фермера.");
+		Log_AddEntry(TOPIC_City,"Конечно, я должен быть похож на фермера.");
 	};
 	AI_Output(other,self,"DIA_Maleth_ToTheCity_15_07");	//Понятно.
 };
@@ -222,7 +231,7 @@ instance DIA_Maleth_Equipment(C_Info)
 
 func int DIA_Maleth_Equipment_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (Kapitel < 3) && (hero.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Maleth_Hallo) && (hero.guild == GIL_NONE))
 	{
 		return TRUE;
 	};
@@ -294,11 +303,7 @@ func void DIA_Maleth_KAP3_EXIT_Info()
 		AI_Output(self,other,"DIA_Maleth_Hallo_08_06");	//Ну а теперь ты похож на человека!
 		MalethArmorComment = TRUE;
 	};
-	if(Maleth_ersterWolf == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_SHEEP_06");
-		Maleth_ersterWolf = TRUE;
-	};
+	B_InsertMalethWolf();
 	AI_StopProcessInfos(self);
 };
 

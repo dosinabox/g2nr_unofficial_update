@@ -268,18 +268,7 @@ func void DIA_None_101_Mario_NeedGoodMen_Info()
 {
 	AI_Output(other,self,"DIA_None_101_Mario_NeedGoodMen_15_00");	//я всегда найду место дл€ хороших людей.
 	AI_Output(self,other,"DIA_None_101_Mario_NeedGoodMen_07_01");	// онечно, увидимс€ на корабле.
-	Mario_IsOnBoard = LOG_SUCCESS;
-//	Crewmember_Count += 1;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	AI_StopProcessInfos(self);
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
+	B_JoinShip(self);
 };
 
 
@@ -307,7 +296,7 @@ func void DIA_Mario_LeaveMyShip_Info()
 	AI_Output(other,self,"DIA_Mario_LeaveMyShip_15_00");	//я пон€л, что ты мне не нужен!
 	AI_Output(self,other,"DIA_Mario_LeaveMyShip_07_01");	// ак скажешь. “ы знаешь, где искать мен€!
 	Mario_IsOnBoard = LOG_OBSOLETE;
-//	Crewmember_Count -= 1;
+	CrewmemberFree_Count -= 1;
 	AI_StopProcessInfos(self);
 	Mario_Nerver += 1;
 	Npc_ExchangeRoutine(self,"ShipOff");
@@ -327,7 +316,6 @@ instance DIA_Mario_StillNeedYou(C_Info)
 
 func int DIA_Mario_StillNeedYou_Condition()
 {
-//	if(((Mario_IsOnBoard == LOG_OBSOLETE) || (Mario_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	if((Mario_IsOnBoard == LOG_OBSOLETE) || (Mario_IsOnBoard == LOG_FAILED))
 	{
 		return TRUE;
@@ -340,17 +328,7 @@ func void DIA_Mario_StillNeedYou_Info()
 	if((Mario_IsOnBoard == LOG_OBSOLETE) && (Mario_Nerver <= 2))
 	{
 		AI_Output(self,other,"DIA_Mario_StillNeedYou_07_01");	//я знал! ”видимс€ на корабле!
-		Mario_IsOnBoard = LOG_SUCCESS;
-//		Crewmember_Count += 1;
-		AI_StopProcessInfos(self);
-		if(MIS_ReadyforChapter6 == TRUE)
-		{
-			Npc_ExchangeRoutine(self,"SHIP");
-		}
-		else
-		{
-			Npc_ExchangeRoutine(self,"WAITFORSHIP");
-		};
+		B_JoinShip(self);
 	}
 	else
 	{

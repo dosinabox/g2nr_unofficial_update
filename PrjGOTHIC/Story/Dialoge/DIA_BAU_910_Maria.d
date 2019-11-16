@@ -209,11 +209,11 @@ func void DIA_Maria_Belohnung_Info()
 			}
 			else if(SOLD == 40)
 			{
-				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_40");	//40 золотых.
+				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_40_add");	//40 монет.
 			}
 			else if(SOLD == 30)
 			{
-				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_30");	//30 золотых.
+				AI_Output(other,self,"DIA_Maria_Belohnung_15_03_30_add");	//30 золотых.
 			}
 			else if(SOLD == 20)
 			{

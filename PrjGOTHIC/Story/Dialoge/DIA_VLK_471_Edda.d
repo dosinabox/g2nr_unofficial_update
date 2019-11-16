@@ -28,18 +28,16 @@ instance DIA_Edda_Hallo(C_Info)
 	condition = DIA_Edda_Hallo_Condition;
 	information = DIA_Edda_Hallo_Info;
 	permanent = FALSE;
-//	important = TRUE;
 	description = "Что ты варишь?";
 };
 
 
 func int DIA_Edda_Hallo_Condition()
 {
-	/*if(Npc_IsInState(self,ZS_Talk))
+	if(Wld_IsTime(8,0,22,0))
 	{
 		return TRUE;
-	};*/
-	return TRUE;
+	};
 };
 
 func void DIA_Edda_Hallo_Info()
@@ -48,6 +46,47 @@ func void DIA_Edda_Hallo_Info()
 	AI_Output(self,other,"DIA_Edda_Hallo_17_01");	//Уху. Может, она не особенно вкусная, но, по крайней мере, это горячая еда.
 	AI_Output(self,other,"DIA_Edda_Hallo_17_02");	//Могу налить тебе тарелку, если хочешь.
 	AI_Output(self,other,"DIA_Edda_Kochen_17_01");	//Я готовлю для всех. Для тебя тоже, если захочешь. Все, что мне нужно - это чтобы ты принес мне рыбу.
+};
+
+
+func void B_Edda_AboutStolenStatue()
+{
+	if(Wld_IsTime(8,0,22,0))
+	{
+		AI_Output(self,other,"DIA_Edda_Stadt_17_02");	//Но если ты ищешь, где остановиться на ночь, можешь поспать в моей хижине. Там есть еще одна кровать.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Edda_Stadt_17_02_add");	//Если ты ищешь, где остановиться на ночь, можешь поспать в моей хижине. Есть еще одна кровать.
+	};
+	AI_Output(other,self,"DIA_Edda_Stadt_15_03");	//А ты не боишься воров?
+	AI_Output(self,other,"DIA_Edda_Stadt_17_04");	//Единственная ценная вещь, что у меня была, уже пропала.
+	AI_Output(self,other,"DIA_Edda_Stadt_17_05");	//Кто-то украл мою статую Инноса.
+	Edda_Schlafplatz = TRUE;
+};
+
+instance DIA_Edda_Sleep(C_Info)
+{
+	npc = VLK_471_Edda;
+	nr = 3;
+	condition = DIA_Edda_Sleep_Condition;
+	information = DIA_Edda_Sleep_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Edda_Sleep_Condition()
+{
+	if(Wld_IsTime(22,0,8,0) && Npc_IsInState(self,ZS_Talk) && (Edda_Schlafplatz == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Edda_Sleep_Info()
+{
+	B_Edda_AboutStolenStatue();
 };
 
 
@@ -71,39 +110,11 @@ func void DIA_Edda_Stadt_Info()
 {
 	AI_Output(other,self,"DIA_Edda_Stadt_15_00");	//Что ты можешь рассказать мне о городе?
 	AI_Output(self,other,"DIA_Edda_Stadt_17_01");	//Большинство горожан опасаются воров. Поэтому лучше не входить в чужие дома.
-	AI_Output(self,other,"DIA_Edda_Stadt_17_02");	//Но если ты ищешь, где остановиться на ночь, можешь поспать в моей хижине. Там есть еще одна кровать.
-	AI_Output(other,self,"DIA_Edda_Stadt_15_03");	//А ты не боишься воров?
-	AI_Output(self,other,"DIA_Edda_Stadt_17_04");	//Единственная ценная вещь, что у меня была, уже пропала.
-	AI_Output(self,other,"DIA_Edda_Stadt_17_05");	//Кто-то украл мою статую Инноса.
-	Edda_Schlafplatz = TRUE;
-//	Wld_AssignRoomToGuild("hafen08",GIL_NONE);
-};
-
-
-/*instance DIA_Edda_Kochen(C_Info)
-{
-	npc = VLK_471_Edda;
-	nr = 6;
-	condition = DIA_Edda_Kochen_Condition;
-	information = DIA_Edda_Kochen_Info;
-	permanent = FALSE;
-	description = "Ты можешь сварить суп для меня?";
-};
-
-
-func int DIA_Edda_Kochen_Condition()
-{
-	if(Npc_KnowsInfo(other,DIA_Edda_Hallo))
+	if(Edda_Schlafplatz == FALSE)
 	{
-		return TRUE;
+		B_Edda_AboutStolenStatue();
 	};
 };
-
-func void DIA_Edda_Kochen_Info()
-{
-	AI_Output(other,self,"DIA_Edda_Kochen_15_00");	//Ты можешь сварить суп для меня?
-	AI_Output(self,other,"DIA_Edda_Kochen_17_01");	//Я готовлю для всех. Для тебя тоже, если захочешь. Все, что мне нужно - это чтобы ты принес мне рыбу.
-};*/
 
 
 instance DIA_Edda_Suppe(C_Info)
@@ -119,7 +130,6 @@ instance DIA_Edda_Suppe(C_Info)
 
 func int DIA_Edda_Suppe_Condition()
 {
-//	if(Npc_KnowsInfo(other,DIA_Edda_Kochen))
 	if(Npc_KnowsInfo(other,DIA_Edda_Hallo))
 	{
 		return TRUE;
@@ -133,9 +143,12 @@ func void DIA_Edda_Suppe_Info()
 	{
 		AI_Output(self,other,"DIA_Edda_Suppe_17_02");	//С завтрашнего дня ты можешь приходить и получать суп каждый день.
 	}
+	else if(Wld_IsTime(22,0,8,0))
+	{
+		AI_Output(self,other,"DIA_Edda_Suppe_17_03_add");	//Заходи попозже.
+	}
 	else if(Edda_Day != Wld_GetDay())
 	{
-//		if(B_GiveInvItems(other,self,ItFo_Fish,1))
 		if(Npc_HasItems(other,ItFo_Fish) || Npc_HasItems(other,ItFo_SmellyFish))
 		{
 			if(Npc_HasItems(other,ItFo_Fish))
@@ -177,7 +190,7 @@ instance DIA_Edda_Statue(C_Info)
 
 func int DIA_Edda_Statue_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Edda_Stadt))
+	if(Edda_Schlafplatz == TRUE)
 	{
 		if(Npc_HasItems(other,ItMi_EddasStatue) || Npc_HasItems(other,ItMi_InnosStatue) || Npc_HasItems(other,ItMi_LostInnosStatue_Daron))
 		{

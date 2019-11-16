@@ -12,6 +12,7 @@ instance KDF_508_Gorax(Npc_Default)
 	self.attribute[ATR_DEXTERITY] = 1;
 	fight_tactic = FAI_HUMAN_COWARD;
 	EquipItem(self,ItMW_Addon_Stab04);
+	CreateInvItems(self,ItKe_Innos_MIS,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,ITAR_KDF_L);
 	Mdl_SetModelFatness(self,2);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");

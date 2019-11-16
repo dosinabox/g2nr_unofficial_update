@@ -217,7 +217,7 @@ var int DIA_Lares_DI_UndeadDragonDead_OneTime;
 func void DIA_Lares_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Lares_DI_UndeadDragonDead_15_00");	//Похоже, все это тебя не особенно волнует.
-	AI_Output(self,other,"DIA_Lares_DI_UndeadDragonDead_09_01");	//Ах, знаешь, я был уверен, что ты справишься.
+	AI_Output(self,other,"DIA_Lares_DI_UndeadDragonDead_09_01");	//Ха, знаешь, я был уверен, что ты справишься.
 	if(DIA_Lares_DI_UndeadDragonDead_OneTime == FALSE)
 	{
 		AI_Output(other,self,"DIA_Lares_DI_UndeadDragonDead_15_02");	//Что ты собираешься делать дальше?
@@ -225,5 +225,14 @@ func void DIA_Lares_DI_UndeadDragonDead_Info()
 		DIA_Lares_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_StopProcessInfos(self);
+};
+
+instance DIA_Addon_Lares_DI_RingBack(C_Info)
+{
+	npc = VLK_449_Lares_DI;
+	nr = 6;
+	condition = DIA_Addon_Lares_RingBack2_Condition;
+	information = DIA_Addon_Lares_RingBack2_Info;
+	description = "Вот твое кольцо.";
 };
 

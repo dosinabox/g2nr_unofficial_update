@@ -27,23 +27,11 @@ func void B_CoolHotDraw()
 
 func void b_check_version()
 {
-/*	var string concatText;
-	var string concatText2;
-	concatText = ConcatStrings("Установленная версия обновления: ",IntToString(fix_version_start));
-	if(fix_version_save == 0)
-	{
-		concatText2 = "Сохранение сделано в оригинале.";
-	}
-	else
-	{
-		concatText2 = ConcatStrings("Версия обновления в сохранении: ",IntToString(fix_version_save));
-	};*/
 	if(fix_version_save < least_supported)
 	{
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,10);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,10);
-//		PrintScreen(concatText,53,56,FONT_ScreenSmall,3);
-//		PrintScreen(concatText2,53,59,FONT_ScreenSmall,3);
+		AI_Wait(hero,10);
 	};
 };
 
@@ -86,7 +74,7 @@ func void b_cycle_function()
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,3);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,3);
 	};
-//	Print(b_check_dist(hero,"NW_BIGFARM_HOUSE_01"));
+//	Print(b_check_dist(hero,"NW_CITY_BARRACK02_BED_PECK"));
 	Wld_SendTrigger("CYCLE_TRIGGER");
 };
 

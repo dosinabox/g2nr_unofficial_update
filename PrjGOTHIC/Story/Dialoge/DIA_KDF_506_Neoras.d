@@ -45,14 +45,13 @@ func void DIA_Neoras_Hallo_Info()
 	if(Npc_GetDistToWP(self,"NW_MONASTERY_ALCHEMY_01") <= 500)
 	{
 		AI_Output(self,other,"DIA_Neoras_Hallo_01_00");	//Что... что-то случилось? Зачем ты беспокоишь меня? Разве ты не видишь - я провожу очень сложный эксперимент?
-		AI_Output(other,self,"DIA_Neoras_Hallo_15_01");	//Я не хотел побеспокоить тебя.
-		AI_Output(self,other,"DIA_Neoras_Hallo_01_02");	//Ты уже побеспокоил. (вздыхает) Ладно, говори, чего ты хочешь?
 	}
 	else
 	{
-		B_Say(self,other,"$NOTNOW");
-		AI_StopProcessInfos(self);
+		AI_Output(self,other,"DIA_Neoras_Hallo_01_00_add");	//Что... что-то случилось? Зачем ты беспокоишь меня?
 	};
+	AI_Output(other,self,"DIA_Neoras_Hallo_15_01");	//Я не хотел побеспокоить тебя.
+	AI_Output(self,other,"DIA_Neoras_Hallo_01_02");	//Ты уже побеспокоил. (вздыхает) Ладно, говори, чего ты хочешь?
 };
 
 
@@ -88,10 +87,10 @@ func void DIA_Neoras_Arbeit_Info()
 	B_LogEntry(Topic_NeorasPflanzen,"Я должен принести семь кустов огненной крапивы мастеру Неорасу, алхимику.");
 	Log_CreateTopic(Topic_Neorasrezept,LOG_MISSION);
 	Log_SetTopicStatus(Topic_Neorasrezept,LOG_Running);
-	B_LogEntry(Topic_Neorasrezept,"Мастеру Неорасу не хватает рецепта для приготовления зелий маны.");
+	Log_AddEntry(Topic_Neorasrezept,"Мастеру Неорасу не хватает рецепта для приготовления зелий маны.");
 	if(Npc_KnowsInfo(other,DIA_Opolos_beibringen))
 	{
-		B_LogEntry(Topic_Neorasrezept,"Это, должно быть, рецепт, на который так хочет взглянуть Ополос.");
+		Log_AddEntry(Topic_Neorasrezept,"Это, должно быть, рецепт, на который так хочет взглянуть Ополос.");
 	};
 };
 
@@ -290,6 +289,10 @@ func void DIA_Neoras_TEACH_Perm_Mana()
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Mana);
 };
 
+func void B_Neoras_Price()
+{
+	AI_Output(self,other,"DIA_Neoras_BrewPotion_01_07");	//За само приготовление я беру 10 золотых монет.
+};
 
 instance DIA_Neoras_BrewPotion(C_Info)
 {
@@ -328,9 +331,9 @@ func void DIA_Neoras_BrewPotion_Info()
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_03");	//Ты сомневаешься в моих способностях? Я могу сварить любое зелье.
 		AI_Output(other,self,"DIA_Neoras_BrewPotion_15_04");	//Отлично.
-		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_05");	//Не так быстро, сначала ты должен принести мне необходимые ингредиенты и внести скромную плату за мои труды, а также за материалы.
+		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_05");	//Не так быстро. Сначала ты должен принести мне необходимые ингредиенты и внести скромную плату за мои труды, а также за материалы.
 		AI_Output(other,self,"DIA_Neoras_BrewPotion_15_06");	//Сколько ты просишь?
-		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_07");	//За само приготовление я беру 10 золотых монет.
+		B_Neoras_Price();
 		NeorasBrewsForYou = TRUE;
 	};
 };
@@ -369,7 +372,7 @@ func void DIA_Neoras_BrewForMe_Back()
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
 };
 
-var int Neoras_Ingrediences_Advise;
+var int Neoras_Ingrediences_Advice;
 
 func void DIA_Neoras_BrewForMe_Speed()
 {
@@ -388,16 +391,16 @@ func void DIA_Neoras_BrewForMe_Speed()
 	}
 	else if(Npc_HasItems(other,ItMi_Gold) < 10)
 	{
-		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_07");	//За само приготовление я беру 10 золотых монет.
+		B_Neoras_Price();
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Speed_01_04");	//У тебя нет необходимых ингредиентов. Возвращайся, когда соберешь их.
-		if(Neoras_Ingrediences_Advise == FALSE)
+		if(Neoras_Ingrediences_Advice == FALSE)
 		{
 			AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Speed_15_00");	//Какие ингредиенты нужны для зелья ускорения?
 			AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
-			Neoras_Ingrediences_Advise = TRUE;
+			Neoras_Ingrediences_Advice = TRUE;
 		};
 	};
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
@@ -424,16 +427,16 @@ func void DIA_Neoras_BrewForMe_Mana()
 	}
 	else if(Npc_HasItems(other,ItMi_Gold) < 10)
 	{
-		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_07");	//За само приготовление я беру 10 золотых монет.
+		B_Neoras_Price();
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Neoras_BrewForMe_Mana_01_04");	//У тебя нет необходимых ингредиентов. Возвращайся, когда соберешь их.
-		if(Neoras_Ingrediences_Advise == FALSE)
+		if(Neoras_Ingrediences_Advice == FALSE)
 		{
 			AI_Output(other,self,"DIA_Neoras_INGREDIENCES_Mana_15_00");	//Какие ингредиенты нужны для экстракта маны?
 			AI_Output(self,other,"DIA_Hyglas_FIREBOLT_14_01");	//Прочти об этом - ты найдешь эту информацию здесь, в книгах.
-			Neoras_Ingrediences_Advise = TRUE;
+			Neoras_Ingrediences_Advice = TRUE;
 		};
 	};
 	Info_ClearChoices(DIA_Neoras_BrewForMe);
@@ -460,7 +463,7 @@ func void DIA_Neoras_BrewForMe_Health()
 	}
 	else if(Npc_HasItems(other,ItMi_Gold) < 10)
 	{
-		AI_Output(self,other,"DIA_Neoras_BrewPotion_01_07");	//За само приготовление я беру 10 золотых монет.
+		B_Neoras_Price();
 	}
 	else
 	{
@@ -586,13 +589,18 @@ func void DIA_Neoras_FOUNDDRAGONEGG_Info()
 };
 
 
+func void B_Neoras_Later()
+{
+	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_trank_01_02");	//Зайди попозже, когда я закончу его.
+};
+
 var int Neoras_SCWantsDragonEggDrink;
 
 func void DIA_Neoras_FOUNDDRAGONEGG_trank()
 {
 	AI_Output(other,self,"DIA_Neoras_FOUNDDRAGONEGG_trank_15_00");	//Дай мне немного этого зелья, когда оно будет готово.
 	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_trank_01_01");	//Хорошо. Но, как я уже сказал, я понятия не имею, как оно действует.
-	AI_Output(self,other,"DIA_Neoras_FOUNDDRAGONEGG_trank_01_02");	//Зайди попозже, когда я закончу его.
+	B_Neoras_Later();
 	Neoras_DragonEggDrink_Day = Wld_GetDay();
 	Neoras_SCWantsDragonEggDrink = TRUE;
 	Info_ClearChoices(DIA_Neoras_FOUNDDRAGONEGG);
@@ -651,7 +659,7 @@ func void DIA_Neoras_DRAGONEGGDRINK_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Neoras_Hallo_01_00");	//Что... что-то случилось? Зачем ты беспокоишь меня? Разве ты не видишь - я провожу очень сложный эксперимент?
+		B_Neoras_Later();
 		AI_StopProcessInfos(self);
 	};
 };

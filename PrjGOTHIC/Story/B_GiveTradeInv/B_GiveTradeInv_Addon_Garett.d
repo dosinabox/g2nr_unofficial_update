@@ -33,6 +33,7 @@ func void B_GiveTradeInv_Addon_Garett(var C_Npc slf)
 		CreateInvItems(slf,ItMw_Streitaxt1,1);
 		CreateInvItems(slf,ItMW_Addon_Hacker_1h_02,1);
 		CreateInvItems(slf,ItMW_Addon_Hacker_2h_02,1);
+		CreateInvItems(slf,ItMw_2H_Hammer_01,1);
 		CreateInvItems(slf,ItRw_Crossbow_M_01,1);
 		CreateInvItems(slf,ItRw_Crossbow_H_01,1);
 		Garett_ItemsGiven_Chapter_2 = TRUE;

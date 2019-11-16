@@ -51,7 +51,6 @@ func void B_SetVisuals_Zombie04()
 	Mdl_SetVisualBody(self,"Zom_Body",0,1,"Zom_Head",1,DEFAULT,-1);
 };
 
-
 instance Zombie01(Mst_Default_Zombie)
 {
 	B_SetVisuals_Zombie01();
@@ -213,6 +212,19 @@ instance Pal_Zombie04(Mst_Default_Zombie)
 	aivar[AIV_MM_RestStart] = OnlyRoutine;
 };
 
+instance Pal_Zombie05(Mst_Default_Zombie)
+{
+	protection[PROT_FIRE] = 0;
+	B_SetVisuals_Pal_Zombie01();
+	Npc_SetToFistMode(self);
+};
+
+instance Pal_Zombie06(Mst_Default_Zombie)
+{
+	protection[PROT_FIRE] = 0;
+	B_SetVisuals_Pal_Zombie02();
+	Npc_SetToFistMode(self);
+};
 
 func void B_SetVisuals_Maya_Zombie01()
 {

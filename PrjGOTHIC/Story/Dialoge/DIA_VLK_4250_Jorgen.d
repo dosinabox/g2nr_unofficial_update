@@ -346,6 +346,7 @@ func void DIA_Jorgen_BEMYCAPTAIN2_Info()
 			AI_Output(self,other,"DIA_Jorgen_PERM5_NOTCAPTAIN_07_03");	//Мне нужно поискать для себя другое место. Посмотрим, куда еще меня занесет попутным ветром.
 			AI_StopProcessInfos(self);
 			Npc_ExchangeRoutine(self,"RausAusKloster");
+			B_StartOtherRoutine(Nov610,"Start");
 			JorgenMovedFromKloster = TRUE;
 		};
 	}
@@ -359,6 +360,7 @@ func void DIA_Jorgen_BEMYCAPTAIN2_Info()
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN2_07_05");	//Отлично. Теперь я могу убраться отсюда!
 		AI_StopProcessInfos(self);
 		Npc_ExchangeRoutine(self,"RausAusKloster");
+		B_StartOtherRoutine(Nov610,"Start");
 		JorgenMovedFromKloster = TRUE;
 	};
 };
@@ -393,6 +395,7 @@ func void DIA_Jorgen_BEMYCAPTAIN3_Info()
 	SCGotCaptain = TRUE;
 	JorgenIsCaptain = TRUE;
 	Npc_ExchangeRoutine(self,"WaitForShipCaptain");
+	B_StartOtherRoutine(Nov610,"Start");
 	B_GivePlayerXP(XP_Captain_Success);
 };
 
@@ -486,6 +489,7 @@ func void DIA_Jorgen_PERM5_NOTCAPTAIN_Info()
 		if(JorgenMovedFromKloster == FALSE)
 		{
 			Npc_ExchangeRoutine(self,"RausAusKloster");
+			B_StartOtherRoutine(Nov610,"Start");
 			JorgenMovedFromKloster = TRUE;
 		};
 	};

@@ -3,27 +3,33 @@ func void B_RestartFreeze()
 {
 	if((Npc_GetLastHitSpellID(self) == SPL_IceCube) || (Npc_GetLastHitSpellID(self) == SPL_IceWave))
 	{
+		Snd_Play("MFX_ICECUBE_TARGET_START");
 		Npc_SetStateTime(self,0);
 	};
 };
 
 func void B_StopMagicFreeze()
 {
+	Snd_Play("MFX_ICECUBE_TARGET_END");
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_ClearAIQueue(self);
 	AI_Standup(self);
-	if(self.guild < GIL_SEPERATOR_HUM)
+	if(!Npc_IsPlayer(self))
 	{
-		B_AssessDamage();
-	}
-	else
-	{
-		Npc_SetTempAttitude(self,ATT_HOSTILE);
+		if(self.guild < GIL_SEPERATOR_HUM)
+		{
+			B_AssessDamage();
+		}
+		else
+		{
+			Npc_SetTempAttitude(self,ATT_HOSTILE);
+		};
 	};
 };
 
 func void ZS_MagicFreeze()
 {
+	Snd_Play("MFX_ICECUBE_TARGET_START");
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_RestartFreeze);
 	Npc_StopAni(self,"S_FIRE_VICTIM");
 	if(!C_BodyStateContains(self,BS_UNCONSCIOUS))

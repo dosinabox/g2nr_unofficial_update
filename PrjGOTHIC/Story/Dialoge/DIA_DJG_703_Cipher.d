@@ -305,6 +305,17 @@ func void DIA_CipherDJG_WHATNEXT_Info()
 };
 
 
+instance DIA_Cipher_KrautPaket_OW(C_Info)
+{
+	npc = DJG_703_Cipher;
+	nr = 800;
+	condition = DIA_Cipher_KrautPaket_Condition;
+	information = DIA_Cipher_KrautPaket_Info;
+	permanent = FALSE;
+	description = "Это случайно не твой тюк болотной травы?";
+};
+
+
 instance DIA_Cipher_PICKPOCKET(C_Info)
 {
 	npc = DJG_703_Cipher;

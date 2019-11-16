@@ -167,7 +167,10 @@ func void DIA_Karras_Success_Info()
 	AI_Output(other,self,"DIA_Karras_Success_15_00");	//Вот свитки, которые ты хотел получить.
 	B_GiveInvItems(other,self,ItSc_Charm,3);
 	AI_Output(self,other,"DIA_Karras_Success_10_01");	//Отлично, мой юный друг.
-	AI_Output(self,other,"DIA_Karras_Success_10_02");	//Теперь ты можешь полностью посвятить себя обучению в библиотеке.
+	if(other.guild == GIL_NOV)
+	{
+		AI_Output(self,other,"DIA_Karras_Success_10_02");	//Теперь ты можешь полностью посвятить себя обучению в библиотеке.
+	};
 	AI_Output(self,other,"DIA_Karras_Success_10_03");	//И возьми этот свиток в качестве награды.
 	B_GiveInvItems(self,other,ItSc_SumWolf,1);
 	MIS_KarrasVergessen = LOG_SUCCESS;
@@ -205,7 +208,7 @@ func void DIA_Karras_JOB_Info()
 		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
 		B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
 		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTeacher,"Мастер Каррас обучает формулам вызова. Но для этого я должен быть магом Огня.");
+		Log_AddEntry(Topic_KlosterTeacher,"Мастер Каррас обучает формулам вызова. Но для этого я должен быть магом Огня.");
 	}
 	else if(other.guild == GIL_KDF)
 	{

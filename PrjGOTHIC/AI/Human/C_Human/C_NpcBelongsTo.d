@@ -1,9 +1,20 @@
 
 func int C_NpcBelongsToOldCamp(var C_Npc slf)
 {
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tengron)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fajeth)))
+	{
+		return FALSE;
+	};
 	if((slf.npcType == NPCTYPE_OCMAIN) || (slf.npcType == NPCTYPE_OCAMBIENT))
 	{
 		if((slf.guild == GIL_VLK) || (slf.guild == GIL_MIL) || (slf.guild == GIL_PAL))
+		{
+			return TRUE;
+		};
+	};
+	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard1)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard2)))
+	{
+		if(MIS_Marcos_Jungs != LOG_SUCCESS)
 		{
 			return TRUE;
 		};
@@ -15,6 +26,14 @@ func int C_NpcBelongsToCity(var C_Npc slf)
 {
 	if(!C_NpcBelongsToOldCamp(slf))
 	{
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Tengron)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Fajeth)))
+		{
+			return FALSE;
+		};
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard1)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard2)))
+		{
+			return FALSE;
+		};
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Sergio))
 		{
 			return FALSE;

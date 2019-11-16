@@ -25,6 +25,7 @@ func void B_GiveTradeInv_Milten_DI(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Speed,2);
 		CreateInvItems(slf,ItMi_RuneBlank,1);
 		CreateInvItems(slf,ItMi_Flask,10);
+		CreateInvItems(slf,ItBe_Addon_Prot_FIRE,1);
 		if(hero.guild == GIL_KDF)
 		{
 			CreateInvItems(slf,ITWR_Addon_Runemaking_KDF_CIRC1,1);

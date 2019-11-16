@@ -144,16 +144,13 @@ func void DIA_Attila_Hallo_Auftrag()
 func void DIA_Attila_Hallo_Warum()
 {
 	AI_Output(other,self,"DIA_Attila_Hallo_Warum_15_00");	//Почему ты хочешь убить меня?
-	if(Betrayal_Halvor == TRUE)
+	if(Halvor_Ausgeliefert == TRUE)
 	{
-		if(Halvor_Ausgeliefert == TRUE)
-		{
-			AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_01");	//Ты сдал Халвора. Теперь он сидит в тюрьме. Так не пойдет.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_01_add");	//Ты сдал Халвора. Так не пойдет.
-		};
+		AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_01");	//Ты сдал Халвора. Теперь он сидит в тюрьме. Так не пойдет.
+	}
+	else if(Betrayal_Halvor == TRUE)
+	{
+		AI_Output(self,other,"DIA_Attila_Hallo_Warum_09_01_add");	//Ты сдал Халвора. Так не пойдет.
 	};
 	if(Rengaru_InKnast == TRUE)
 	{

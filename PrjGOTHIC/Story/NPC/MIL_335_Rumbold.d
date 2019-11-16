@@ -45,3 +45,11 @@ func void Rtn_Flucht3_335()
 	TA_Smalltalk(22,0,8,0,"NW_RUMBOLD_FLUCHT3");
 };
 
+func void Rtn_Ch3_335()
+{
+	TA_Stand_Guarding(0,0,6,0,"NW_CITY_MERCHANT_SHOP01_FRONT_03_E");
+	TA_Smith_Sharp(6,0,7,5,"NW_CITY_KASERN_ARMORY_SHARP");
+	TA_Sleep(7,5,15,0,"NW_CITY_BARRACK01_BED_RUGA");
+	TA_Smalltalk(15,0,0,0,"NW_CITY_HABOUR_KASERN_OFFICE");
+};
+

@@ -7,6 +7,8 @@ instance VLK_4302_Addon_Elvrich(Npc_Default)
 	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
 	npcType = npctype_main;
+	aivar[AIV_IgnoresFakeGuild] = TRUE;
+	aivar[AIV_IgnoresArmor] = TRUE;
 	aivar[AIV_NoFightParker] = TRUE;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,2);

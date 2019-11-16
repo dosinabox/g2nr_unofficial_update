@@ -366,7 +366,10 @@ func int DIA_Serpentes_MinenAnteile_Condition()
 		}
 		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG))
 		{
-			return TRUE;
+			if(!Npc_IsDead(Salandril))
+			{
+				return TRUE;
+			};
 		};
 	};
 };
@@ -481,9 +484,9 @@ func void DIA_Serpentes_MinenAnteile_was_ja()
 		SalandrilMinenAnteil_MAINCounter += 3;
 	};
 	SalandrilVerteilteMinenAnteil = SalandrilMinenAnteil_MAINCounter;
-	Log_CreateTopic(TOPIC_MinenAnteile,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_MinenAnteile,LOG_Running);
-	B_LogEntry(TOPIC_MinenAnteile,"Кто-то продает фальшивые акции шахты и обогащается таким незаконным способом. Я должен найти того, кто продает эти акции торговцам. Серпентес хочет заполучить все эти поддельные документы.");
+	Log_CreateTopic(TOPIC_MinenAnteileKDF,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_MinenAnteileKDF,LOG_Running);
+	B_LogEntry(TOPIC_MinenAnteileKDF,"Кто-то продает фальшивые акции шахты и обогащается таким незаконным способом. Я должен найти того, кто продает эти акции торговцам. Серпентес хочет заполучить все эти поддельные документы.");
 };
 
 func void DIA_Serpentes_MinenAnteile_KillSLD()
@@ -506,9 +509,9 @@ func void DIA_Serpentes_MinenAnteile_was_jaSLD()
 	AI_Output(self,other,"DIA_Serpentes_MinenAnteile_was_jaSLD_10_01");	//Хорошо. Мы ожидаем услышать от тебя новости через несколько дней.
 	MIS_Serpentes_BringSalandril_SLD = LOG_Running;
 	Info_ClearChoices(DIA_Serpentes_MinenAnteile);
-	Log_CreateTopic(TOPIC_MinenAnteile,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_MinenAnteile,LOG_Running);
-	B_LogEntry(TOPIC_MinenAnteile,"Я должен доставить Саландрила, алхимика из верхней части Хориниса, в монастырь для суда. Меня не особенно интересует, что он там натворил, пока мне хорошо платят за это.");
+	Log_CreateTopic(TOPIC_MinenAnteileSLD,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_MinenAnteileSLD,LOG_Running);
+	B_LogEntry(TOPIC_MinenAnteileSLD,"Я должен доставить Саландрила, алхимика из верхней части Хориниса, в монастырь для суда. Меня не особенно интересует, что он там натворил, пока мне хорошо платят за это.");
 };
 
 

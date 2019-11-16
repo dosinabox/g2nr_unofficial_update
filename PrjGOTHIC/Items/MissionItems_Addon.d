@@ -481,11 +481,15 @@ func void Use_LuciasLoveLetter_Addon()
 	Doc_Show(nDocID);
 	if(MIS_LuciasLetter == FALSE)
 	{
-		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
-		B_LogEntry(TOPIC_Addon_Lucia,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
+		if(!Npc_IsDead(Elvrich))
+		{
+			Log_CreateTopic(TOPIC_Addon_LuciasLetter,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_LuciasLetter,LOG_Running);
+			B_LogEntry(TOPIC_Addon_LuciasLetter,"Люсия написала Элвриху прощальное письмо. Оно должно его заинтересовать.");
+		};
 		MIS_LuciasLetter = LOG_Running;
 	};
+	LuciaMentionedInKhorinis = TRUE;
 };
 
 
@@ -546,8 +550,8 @@ instance ItRi_Addon_BanditTrader(C_Item)
 {
 	name = "Кольцо гильдии";
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_RING;
-	value = 150;
+	flags = ITEM_MISSION | ITEM_RING;
+	value = 70;
 	visual = "ItRi_Addon_BanditTrader.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;

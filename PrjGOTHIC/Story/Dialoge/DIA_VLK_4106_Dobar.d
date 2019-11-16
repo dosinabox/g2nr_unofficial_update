@@ -155,7 +155,11 @@ func void DIA_Dobar_Teach_Info()
 	{
 		AI_Output(self,other,"DIA_Dobar_Teach_08_01");	//Разогрей сталь, чтобы она равномерно светилась по всей длине, без этого хороший меч не выковать.
 		AI_Output(self,other,"DIA_Dobar_Teach_08_02");	//Если ты будешь помнить это, сделанные тобой клинки будут прочнее и острее.
-		AI_Output(self,other,"DIA_Dobar_Teach_08_03");	//Это все, что тебе нужно знать. Если тебе нужна сырая сталь, поговори с Энгором.
+		if(!Npc_IsDead(Engor))
+		{
+			AI_Output(self,other,"DIA_Dobar_Teach_08_03");	//Это все, что тебе нужно знать. Если тебе нужна сырая сталь, поговори с Энгором.
+			B_EngorTradeLog();
+		};
 	};
 };
 

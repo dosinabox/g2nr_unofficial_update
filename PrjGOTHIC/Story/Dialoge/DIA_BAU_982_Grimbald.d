@@ -308,7 +308,7 @@ func void DIA_Grimbald_NovChase_Info()
 instance DIA_Grimbald_Trolltot(C_Info)
 {
 	npc = BAU_982_Grimbald;
-	nr = 3;
+	nr = 4;
 	condition = DIA_Grimbald_Trolltot_Condition;
 	information = DIA_Grimbald_Trolltot_Info;
 	important = TRUE;

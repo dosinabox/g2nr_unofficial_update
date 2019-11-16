@@ -404,7 +404,7 @@ instance ItMw_MalethsGehstock_MIS(C_Item)
 	value = 15;
 	damageTotal = 10;
 	damagetype = DAM_BLUNT;
-	range = Range_VLKMace;
+	range = 80;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKMace;
 	visual = "Itmw_008_1h_pole_02.3ds";
@@ -824,10 +824,10 @@ func void Use_MinenAnteil_Mis()
 	SC_KnowsProspektorSalandril = TRUE;
 	if(ItWr_MinenAnteil_Mis_OneTime == FALSE)
 	{
-		B_LogEntry(TOPIC_MinenAnteile,"Парня, продавшего акции шахты торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
+		B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахты торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
 		if(Npc_IsDead(Salandril))
 		{
-			B_LogEntry(TOPIC_MinenAnteile,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
+			Log_AddEntry(TOPIC_MinenAnteileKDF,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
 		};
 		ItWr_MinenAnteil_Mis_OneTime = TRUE;
 	};

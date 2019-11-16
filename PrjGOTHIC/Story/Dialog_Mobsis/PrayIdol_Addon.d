@@ -270,9 +270,12 @@ instance PC_PrayShrine_UPGRATEBELIARSWEAPON(C_Info)
 
 func int PC_PrayShrine_UPGRATEBELIARSWEAPON_Condition()
 {
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL) && C_ScCanUpgrateBeliarsWeapon() && C_ScHasBeliarsWeapon())
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PRAYIDOL) && C_ScCanUpgrateBeliarsWeapon())
 	{
-		return TRUE;
+		if(C_ScHasBeliarsWeapon() || C_SCHasBeliarsRune())
+		{
+			return TRUE;
+		};
 	};
 };
 

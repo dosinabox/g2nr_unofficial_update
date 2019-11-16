@@ -274,7 +274,7 @@ func void b_stopmagictransform()
 		hero.level = hero.aivar[REAL_LEVEL] + LevelUpsDuringTransform;
 		if(LevelUpsDuringTransform > 0)
 		{
-			hero.exp_next = Saved_exp_next + (hero.level + 1) * 500;
+			hero.exp_next = Saved_exp_next + (hero.level + 1) * XP_PER_LEVEL;
 		}
 		else
 		{

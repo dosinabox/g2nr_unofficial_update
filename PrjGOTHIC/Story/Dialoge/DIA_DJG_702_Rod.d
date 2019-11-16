@@ -172,24 +172,10 @@ instance DIA_RodDJG_GiveItBack(C_Info)
 {
 	npc = DJG_702_Rod;
 	nr = 7;
-	condition = DIA_RodDJG_GiveItBack_Condition;
-	information = DIA_RodDJG_GiveItBack_Info;
+	condition = DIA_Rod_GiveItBack_Condition;
+	information = DIA_Rod_GiveItBack_Info;
 	permanent = TRUE;
 	description = "Вот, держи свой меч!";
-};
-
-
-func int DIA_RodDJG_GiveItBack_Condition()
-{
-	if(Npc_HasItems(other,ItMw_2h_Rod))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_RodDJG_GiveItBack_Info()
-{
-	B_GiveRodSword();
 };
 
 
