@@ -12,7 +12,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 	};
 	oth.lp -= kosten;
 	Log_CreateTopic(TOPIC_TalentRunes,LOG_NOTE);
-	B_LogEntry(TOPIC_TalentRunes,"Чтобы создать руну, мне нужен свиток с заклинанием и определенные ингредиенты. При помощи этих ингредиентов и чистого рунного камня я могу создать руну на рунном столе.");
+	Log_AddEntry(TOPIC_TalentRunes,"Чтобы создать руну, мне нужен свиток с заклинанием и определенные ингредиенты. При помощи этих ингредиентов и чистого рунного камня я могу создать руну на рунном столе.");
 	if(CurrentLevel == NEWWORLD_ZEN)
 	{
 		if(!Npc_IsDead(Gorax))

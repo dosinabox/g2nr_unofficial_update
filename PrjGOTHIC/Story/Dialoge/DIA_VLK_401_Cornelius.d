@@ -147,10 +147,10 @@ func int DIA_Cornelius_Enough_Condition()
 func void DIA_Cornelius_Enough_Info()
 {
 	AI_Output(other,self,"DIA_Cornelius_Enough_15_00");	//Хватит! ЧТО ТЫ ВИДЕЛ?
-	AI_Output(self,other,"DIA_Cornelius_Enough_13_01");	//(нервно) Я... я видел, как наемник нанес удар в спину паладину.
+	AI_Output(self,other,"DIA_Cornelius_Enough_13_01");	//(нервно) Я... я видел, как наемник... нанес удар в спину паладину.
 	AI_Output(self,other,"DIA_Cornelius_Enough_13_02");	//(нервно) А затем он вынул свой меч и вонзил его ему в грудь.
 	AI_Output(other,self,"DIA_Cornelius_Enough_15_03");	//Ты в этом совершенно уверен?
-	AI_Output(self,other,"DIA_Cornelius_Enough_13_04");	//(испуганно) Да, конечно. Я видел это своим собственными глазами.
+	AI_Output(self,other,"DIA_Cornelius_Enough_13_04");	//(испуганно) Да, конечно. Я видел это своими собственными глазами.
 	AI_Output(self,other,"DIA_Cornelius_Enough_13_05");	//(испуганно) Но мне правда сейчас некогда. Мне нужно работать с документами.
 	AI_StopProcessInfos(self);
 };
@@ -261,7 +261,7 @@ instance DIA_Cornelius_PayCornelius(C_Info)
 
 func int DIA_Cornelius_PayCornelius_Condition()
 {
-	if((Cornelius_PayForProof == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 2000))
+	if((Cornelius_PayForProof == TRUE) && (Npc_HasItems(other,ItMi_Gold) >= 2000) && (Cornelius_TellTruth == FALSE))
 	{
 		return TRUE;
 	};

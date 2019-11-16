@@ -10,6 +10,7 @@ instance BDT_10309_Addon_RangerBandit_L(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	fight_tactic = FAI_HUMAN_NORMAL;
 	EquipItem(self,ItMw_Addon_BanditTrader);
+	CreateInvItem(self,ItRi_Addon_BanditTrader);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_L_Tough02,BodyTex_L,ITAR_Leather_L);
 	Mdl_SetModelFatness(self,0);

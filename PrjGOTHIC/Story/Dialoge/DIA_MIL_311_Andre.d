@@ -931,7 +931,7 @@ func void DIA_Andre_Auslieferung_Info()
 		}
 		else
 		{
-			Info_AddChoice(DIA_Andre_Auslieferung,"Ќагур пыталс€ украсть товар с фермы јкила.",DIA_Andre_Auslieferung_Nagur);
+			Info_AddChoice(DIA_Andre_Auslieferung,"Ќагур пыталс€ использовать мен€, чтобы перехватить товар с фермы јкила.",DIA_Andre_Auslieferung_Nagur);
 		};
 	};
 	if((MIS_Canthars_KomproBrief == LOG_Running) && (MIS_Canthars_KomproBrief_Day > (Wld_GetDay() - 2)) && !Npc_IsDead(Canthar))
@@ -942,10 +942,10 @@ func void DIA_Andre_Auslieferung_Info()
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"—ара продает оружие ќнару.",DIA_Andre_Auslieferung_Sarah);
 	};
-	if((Fernando_ImKnast == TRUE) && (Fernando_Ausgeliefert == FALSE) && !Npc_IsDead(Fernando))
+	/*if((Fernando_ImKnast == TRUE) && (Fernando_Ausgeliefert == FALSE) && !Npc_IsDead(Fernando))
 	{
 		Info_AddChoice(DIA_Andre_Auslieferung,"я знаю торговца, который продает оружие бандитам!",DIA_Andre_Auslieferung_Fernando);
-	};
+	};*/
 };
 
 func void DIA_Andre_Auslieferung_Back()
@@ -963,6 +963,7 @@ func void DIA_Andre_Auslieferung_Rengaru()
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 	B_NpcSetJailed(Rengaru);
 	B_StartOtherRoutine(Rengaru,"PRISON");
+	CriminalsJailed += 1;
 	Rengaru_Ausgeliefert = TRUE;
 	MIS_ThiefGuild_sucked = TRUE;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
@@ -983,6 +984,7 @@ func void DIA_Andre_Auslieferung_Halvor()
 		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 		B_NpcSetJailed(Halvor);
 		B_StartOtherRoutine(Halvor,"PRISON");
+		CriminalsJailed += 1;
 		MIS_ThiefGuild_sucked = TRUE;
 		Halvor_Ausgeliefert = TRUE;
 		B_GivePlayerXP(XP_Andre_Auslieferung);
@@ -1010,6 +1012,7 @@ func void DIA_Andre_Auslieferung_Nagur()
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 	B_NpcSetJailed(Nagur);
 	B_StartOtherRoutine(Nagur,"PRISON");
+	CriminalsJailed += 1;
 	MIS_ThiefGuild_sucked = TRUE;
 	Nagur_Ausgeliefert = TRUE;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
@@ -1030,6 +1033,7 @@ func void DIA_Andre_Auslieferung_Canthar()
 		B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld);
 		B_NpcSetJailed(Canthar);
 		B_StartOtherRoutine(Canthar,"KNAST");
+		CriminalsJailed += 1;
 		MIS_Canthars_KomproBrief = LOG_FAILED;
 		B_CheckLog();
 		Canthar_Ausgeliefert = TRUE;
@@ -1060,13 +1064,14 @@ func void DIA_Andre_Auslieferung_Sarah()
 	B_NpcSetJailed(Sarah);
 	B_StartOtherRoutine(Sarah,"KNAST");
 	B_StartOtherRoutine(Canthar,"MARKTSTAND");
+	CriminalsJailed += 1;
 	Sarah_Ausgeliefert = TRUE;
 	MIS_Canthars_KomproBrief = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
 
-func void DIA_Andre_Auslieferung_Fernando()
+/*func void DIA_Andre_Auslieferung_Fernando()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_00");	//я знаю торговца, который продает оружие бандитам!
 	AI_Output(other,self,"DIA_Addon_Vatras_Waffen_Success_15_01");	//≈го зовут ‘ернандо.
@@ -1083,7 +1088,7 @@ func void DIA_Andre_Auslieferung_Fernando()
 	Fernando_Ausgeliefert = TRUE;
 	B_GivePlayerXP(XP_Andre_Auslieferung);
 	Info_ClearChoices(DIA_Andre_Auslieferung);
-};
+};*/
 
 
 func void B_AndreAskAboutSewer()
@@ -1266,7 +1271,7 @@ func void DIA_Andre_JOIN_Info()
 	}
 	else if((MIS_Andre_GuildOfThieves == LOG_SUCCESS) && (Player_IsApprentice == APP_NONE))
 	{
-		AI_Output(self,other,"DIA_Andre_JOIN_08_01");	//я сдержу свое слово и приму теб€ в ополчение, даже хот€ ты и не €вл€ешьс€ гражданином этого города.
+		AI_Output(self,other,"DIA_Andre_JOIN_08_01");	//я сдержу свое слово и приму теб€ в ополчение. ƒаже хот€ ты и не €вл€ешьс€ гражданином этого города.
 		AI_Output(self,other,"DIA_Andre_JOIN_08_02");	//Ќо никому об этом не говори! „ем меньше людей будут знать об этом исключении, тем меньше мне придетс€ оправдыватьс€.
 	}
 	else if(Player_IsApprentice > APP_NONE)
@@ -1325,6 +1330,22 @@ func void DIA_Andre_JOIN_Yes()
 	SLD_Aufnahme = LOG_OBSOLETE;
 	KDF_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;
+	if(MIS_Torlof_BengarMilizKlatschen == LOG_Running)
+	{
+		if(!Npc_IsDead(Rick))
+		{
+			Npc_ExchangeRoutine(Rick,"Flucht3");
+		};
+		if(!Npc_IsDead(Rumbold))
+		{
+			Npc_ExchangeRoutine(Rumbold,"Flucht3");
+		};
+		if(!Npc_IsDead(Bengar))
+		{
+			Npc_ExchangeRoutine(Bengar,"Start");
+		};
+		MIS_Torlof_BengarMilizKlatschen = LOG_FAILED;
+	};
 	B_GivePlayerXP(XP_BecomeMiliz);
 	if(MIS_Addon_Daron_GetStatue == LOG_Running)
 	{

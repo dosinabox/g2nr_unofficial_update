@@ -80,7 +80,6 @@ func void DIA_Xardas_Hello_Info()
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_03");	//Я уже начал опасаться, что не смогу вытащить тебя из-под развалин храма.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_04");	//Но хватит об этом. Сейчас-то ты здесь.
 	AI_Output(self,other,"DIA_Addon_Xardas_Hello_14_05");	//И над нами нависла новая угроза.
-//	GuildlessMode = TRUE;
 	Info_ClearChoices(DIA_Xardas_Hello);
 	Info_AddChoice(DIA_Xardas_Hello,"Ну, по крайней мере, у нас сейчас достаточно времени. Я сделал это. Спящий...",DIA_Addon_Xardas_Hello_Dragons);
 	Info_AddChoice(DIA_Xardas_Hello,"Что это за НОВАЯ угроза, о которой ты говоришь?",DIA_Addon_Xardas_Hello_Man);
@@ -122,7 +121,6 @@ func void DIA_Addon_Xardas_Hello_Dragons()
 	{
 		AI_Output(self,other,"DIA_Addon_Xardas_Hello_Dragons_14_06");	//Но это еще не все. Есть еще кое-что, что угрожает нам. Об этом я узнал лишь недавно.
 		Info_ClearChoices(DIA_Xardas_Hello);
-//		Info_AddChoice(DIA_Xardas_Hello,"О какой ДРУГОЙ угрозе ты говоришь?",DIA_Addon_Xardas_Hello_Man);
 		Info_AddChoice(DIA_Xardas_Hello,"Что это за НОВАЯ угроза, о которой ты говоришь?",DIA_Addon_Xardas_Hello_Man);
 	};
 };
@@ -153,7 +151,6 @@ func void DIA_Xardas_AWAY_Info()
 	AI_Output(self,other,"DIA_Xardas_AWAY_14_01");	//Если мы сбежим сейчас, это всего лишь отсрочит нашу встречу с драконами.
 	AI_Output(self,other,"DIA_Xardas_AWAY_14_02");	//При помощи солдат и магов, живущих здесь, мы можем остановить их до того, как армия Тьмы будет полностью сформирована.
 	AI_Output(self,other,"DIA_Xardas_AWAY_14_03");	//У нас не будет лучшего шанса для этого.
-//	NpcWantToFlee = FALSE;
 };
 
 
@@ -232,7 +229,7 @@ instance DIA_Addon_Xardas_Portal(C_Info)
 
 func int DIA_Addon_Xardas_Portal_Condition()
 {
-	if((SC_KnowsPortal == TRUE) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if((SC_KnowsPortal == TRUE) && !C_ScHasBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -260,7 +257,7 @@ instance DIA_Addon_Xardas_PortalAgain(C_Info)
 
 func int DIA_Addon_Xardas_PortalAgain_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && !C_ScHasBeliarsWeapon() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Xardas_Portal) && !C_ScHasBeliarsWeapon() && !C_SCHasBeliarsRune() && (Saturas_KlaueInsMeer == FALSE) && (RavenIsDead == FALSE))
 	{
 		return TRUE;
 	};
@@ -275,10 +272,20 @@ func void DIA_Addon_Xardas_PortalAgain_Info()
 
 func void B_Xardas_ClawIsLost()
 {
-	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
+	if(XardasKnowsAboutDestroyedClaw == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_13");	//(кричит) Ты сошел с ума?! Да ты хотя бы понимаешь, что ты отдал?
+	};
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_14");	//Это оружие могло бы сослужить нам огромную службу!
 	AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_15");	//Я думаю, что я сделал правильный выбор.
 	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_16");	//(вздыхает) Пути богов неисповедимы...
+};
+
+func void B_Xardas_ClawReaction()
+{
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_08");	//(жадно) Как интересно...
+	AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_09");	//Это оружие может нам очень помочь. Но оно также и очень опасно.
+	B_GivePlayerXP(XP_Ambient * 3);
 };
 
 instance DIA_Addon_Xardas_AddonSuccess(C_Info)
@@ -308,10 +315,13 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 	if(C_ScHasBeliarsWeapon())
 	{
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_07");	//Да, вот он.
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_08");	//(жадно) Как интересно...
-		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_09");	//Это оружие может нам очень помочь. Но оно также и очень опасно.
+		B_Xardas_ClawReaction();
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_10");	//Будь осторожнее! И самое главное, не потеряй Коготь!
-		B_GivePlayerXP(XP_Ambient * 3);
+	}
+	else if(C_SCHasBeliarsRune())
+	{
+		AI_Output(other,self,"DIA_Hyglas_GOTRUNE_15_00");	//Я создал руну.
+		B_Xardas_ClawReaction();
 	}
 	else
 	{
@@ -378,7 +388,6 @@ func void DIA_Xardas_WEAPON_Info()
 	AI_Output(other,self,"DIA_Xardas_WEAPON_15_00");	//Мне нужно оружие.
 	AI_Output(self,other,"DIA_Xardas_WEAPON_14_01");	//Я могу дать тебе только то немногое, что у меня есть здесь.
 	AI_Output(self,other,"DIA_Xardas_WEAPON_14_02");	//Посмотри в моей башне. Ты можешь взять все, что покажется тебе полезным.
-//	TradersHaveLimitedAmmo = FALSE;
 };
 
 

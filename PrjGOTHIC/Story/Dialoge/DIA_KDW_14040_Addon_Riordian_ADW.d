@@ -685,7 +685,7 @@ func void DIA_Riordian_ADW_TeachAlchemy_Info()
 		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString(NAME_ManaMax_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_Mana)),DIA_Riordian_ADW_TeachAlchemy_Perm_Mana);
 		talente += 1;
 	};
-	if(PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE)
+	if((PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE) && C_ShowAlchemySTRDEXDialog())
 	{
 		Info_AddChoice(DIA_Riordian_ADW_TeachAlchemy,B_BuildLearnString(NAME_DEX_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Perm_DEX)),DIA_Riordian_ADW_TeachAlchemy_Perm_DEX);
 		talente += 1;

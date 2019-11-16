@@ -21,6 +21,10 @@ func void DIA_Addon_Senyan_EXIT_Info()
 	if(Senyan_Erpressung == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Addon_Senyan_EXIT_12_00");	//Ты знаешь, что тебе нужно сделать...
+	}
+	else
+	{
+		AI_WaitTillEnd(self,other);
 	};
 	AI_StopProcessInfos(self);
 };

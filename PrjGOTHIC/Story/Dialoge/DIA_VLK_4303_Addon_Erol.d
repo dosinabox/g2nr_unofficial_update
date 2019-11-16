@@ -80,6 +80,9 @@ func void DIA_Addon_Erol_Hallo_Info()
 };
 
 
+var int Erol_AskedAttack;
+var int Erol_AskedKDW;
+
 instance DIA_Addon_Erol_what(C_Info)
 {
 	npc = VLK_4303_Addon_Erol;
@@ -131,8 +134,13 @@ func void DIA_Addon_Erol_what_dein()
 		AI_Output(self,other,"DIA_Addon_Erol_what_dein_Add_10_02");	//Хотя все это особой ценности не представляет.
 	};
 	AI_Output(self,other,"DIA_Addon_Erol_what_dein_10_02");	//Но бандиты украли у меня нечто действительно ценное. Три каменные таблички.
+	Info_ClearChoices(DIA_Addon_Erol_what);
 	Info_AddChoice(DIA_Addon_Erol_what,Dialog_Back,DIA_Addon_Erol_what_back);
 	Info_AddChoice(DIA_Addon_Erol_what,"Каменные таблички?",DIA_Addon_Erol_what_Was);
+	if(Erol_AskedAttack == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Erol_what,"Что за люди на тебя напали?",DIA_Addon_Erol_what_wer);
+	};
 };
 
 func void DIA_Addon_Erol_what_Was()
@@ -140,14 +148,21 @@ func void DIA_Addon_Erol_what_Was()
 	AI_Output(other,self,"DIA_Addon_Erol_what_Was_15_00");	//Каменные таблички?
 	AI_Output(self,other,"DIA_Addon_Erol_what_Was_10_01");	//Да. Их хотел купить у меня городской маг Воды. Я обещал ему, что достану их.
 	AI_Output(self,other,"DIA_Addon_Erol_what_Was_10_02");	//Я должен любой ценой вернуть их, иначе пострадает моя репутация.
+	Info_ClearChoices(DIA_Addon_Erol_what);
+	Info_AddChoice(DIA_Addon_Erol_what,Dialog_Back,DIA_Addon_Erol_what_back);
 	Info_AddChoice(DIA_Addon_Erol_what,"Где ты берешь эти таблички?",DIA_Addon_Erol_what_woher);
 	Info_AddChoice(DIA_Addon_Erol_what,"Зачем таблички нужны магу Воды?",DIA_Addon_Erol_what_KDW);
+	if(Erol_AskedAttack == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Erol_what,"Что за люди на тебя напали?",DIA_Addon_Erol_what_wer);
+	};
 };
 
 func void DIA_Addon_Erol_what_KDW()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_what_KDW_15_00");	//Зачем таблички нужны магу Воды?
 	AI_Output(self,other,"DIA_Addon_Erol_what_KDW_10_01");	//Он сказал, что изучает их, и просил привезти как можно больше.
+	Erol_AskedKDW = TRUE;
 };
 
 func void DIA_Addon_Erol_what_woher()
@@ -156,7 +171,17 @@ func void DIA_Addon_Erol_what_woher()
 	AI_Output(self,other,"DIA_Addon_Erol_what_woher_10_01");	//Нахожу их в древних строениях, например, мавзолеях. А иногда их можно найти в пещерах.
 	AI_Output(self,other,"DIA_Addon_Erol_what_woher_10_02");	//Я продал магу Воды уже целую кучу табличек.
 	AI_Output(self,other,"DIA_Addon_Erol_what_woher_10_03");	//Впрочем, здесь они встречаются довольно редко. Чаще всего я нахожу их на северо-востоке Хориниса.
+	Info_ClearChoices(DIA_Addon_Erol_what);
+	Info_AddChoice(DIA_Addon_Erol_what,Dialog_Back,DIA_Addon_Erol_what_back);
 	Info_AddChoice(DIA_Addon_Erol_what,"Почему бы тебе просто не поискать новые таблички?",DIA_Addon_Erol_what_neue);
+	if(Erol_AskedKDW == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Erol_what,"Зачем таблички нужны магу Воды?",DIA_Addon_Erol_what_KDW);
+	};
+	if(Erol_AskedAttack == FALSE)
+	{
+		Info_AddChoice(DIA_Addon_Erol_what,"Что за люди на тебя напали?",DIA_Addon_Erol_what_wer);
+	};
 };
 
 func void DIA_Addon_Erol_what_neue()
@@ -175,6 +200,7 @@ func void DIA_Addon_Erol_what_wer()
 	AI_Output(self,other,"DIA_Addon_Erol_what_wer_10_04");	//Но похоже, моя тележка показалась им слишком соблазнительной.
 	AI_Output(self,other,"DIA_Addon_Erol_what_wer_10_05");	//Эти негодяи просто спрыгнули с моста прямо на нас.
 	AI_Output(self,other,"DIA_Addon_Erol_what_wer_10_06");	//Надо было попробовать незаметно проехать ночью...
+	Erol_AskedAttack = TRUE;
 };
 
 

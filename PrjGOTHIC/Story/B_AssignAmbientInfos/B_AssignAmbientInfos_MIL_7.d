@@ -45,16 +45,9 @@ func void DIA_MIL_7_JOIN_Info()
 	{
 		AI_Output(self,other,"DIA_MIL_7_JOIN_07_01");	//Ты даже не гражданин Хориниса! С чего ты взял, что лорд Андрэ возьмет тебя?
 		AI_Output(self,other,"DIA_MIL_7_JOIN_07_02");	//Так каждый мог бы вступить, получить оружие и доспехи бесплатно, а затем исчезнуть с ними!
-		if(C_NpcIsInQuarter(self) != Q_KASERNE)
-		{
-			AI_Output(other,self,"DIA_MIL_7_JOIN_15_03");	//Но у меня серьезные намерения!
-			AI_Output(self,other,"DIA_MIL_7_JOIN_07_04");	//Не надо объяснять это мне, попробуй объяснить это лорду Андрэ. Ты найдешь его в казармах.
-		};
-	}
-	else
-	{
-		B_Say(self,other,"$ABS_GOOD");
+		AI_Output(other,self,"DIA_MIL_7_JOIN_15_03");	//Но у меня серьезные намерения!
 	};
+	AI_Output(self,other,"DIA_MIL_7_JOIN_07_04");	//Не надо объяснять это мне, попробуй объяснить это лорду Андрэ. Ты найдешь его в казармах.
 };
 
 
@@ -103,9 +96,15 @@ func int DIA_MIL_7_LOCATION_Condition()
 func void DIA_MIL_7_LOCATION_Info()
 {
 	AI_Output(other,self,"DIA_MIL_7_LOCATION_15_00");	//А чем я могу заняться в городе?
-	AI_Output(self,other,"DIA_MIL_7_LOCATION_07_01");	//Если ты не хочешь закончить жизнь в сточной канаве в порту, найди постоянную работу. Поспрашивай в нижней части города - возможно, тебе повезет.
-	AI_Output(self,other,"DIA_MIL_7_LOCATION_07_02");	//Если ты планируешь остаться в городе надолго, тебе стоит подумать о вступлении в ополчение или, по крайней мере, потренироваться в боевых искусствах.
-	AI_Output(self,other,"DIA_MIL_7_LOCATION_07_03");	//Инструкторы боя в казармах тренируют и гражданских.
+	if(((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV)) && (Player_IsApprentice == APP_NONE))
+	{
+		AI_Output(self,other,"DIA_MIL_7_LOCATION_07_01");	//Если ты не хочешь закончить жизнь в сточной канаве в порту, найди постоянную работу. Поспрашивай в нижней части города - возможно, тебе повезет.
+	};
+	if(hero.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_MIL_7_LOCATION_07_02");	//Если ты планируешь остаться в городе надолго, тебе стоит подумать о вступлении в ополчение или, по крайней мере, потренироваться в боевых искусствах.
+		AI_Output(self,other,"DIA_MIL_7_LOCATION_07_03");	//Инструкторы боя в казармах тренируют и гражданских.
+	};
 	AI_Output(self,other,"DIA_MIL_7_LOCATION_07_04");	//Скоро придут орки, и тогда ты будешь рад каждому часу, проведенному на плацу.
 };
 
@@ -138,7 +137,14 @@ func void DIA_MIL_7_STANDARD_Info()
 	}
 	else if(Kapitel == 1)
 	{
-		AI_Output(self,other,"DIA_MIL_7_STANDARD_07_01");	//Говорят, что фермеры взбунтовались. Только этого нам еще не хватало. Как раз в самый разгар войны с орками!
+		if(hero.guild == GIL_MIL)
+		{
+			AI_Output(self,other,"DIA_SLD_7_JOIN_07_01");	//Я слышал, ты вступил в ополчение. Такие люди, как ты, нужны нам...
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_MIL_7_STANDARD_07_01");	//Говорят, что фермеры взбунтовались. Только этого нам еще не хватало. Как раз в самый разгар войны с орками!
+		};
 	}
 	else if(Kapitel == 2)
 	{

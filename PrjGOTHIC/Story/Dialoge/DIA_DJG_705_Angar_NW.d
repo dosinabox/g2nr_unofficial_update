@@ -66,8 +66,6 @@ func int DIA_Angar_NW_KnowWhereEnemy_Condition()
 	};
 };
 
-var int SCToldAngarHeKnowWhereEnemy;
-
 func void DIA_Angar_NW_KnowWhereEnemy_Info()
 {
 	AI_Output(other,self,"DIA_Angar_NW_KnowWhereEnemy_15_00");	//Я собираюсь покинуть Хоринис. Ты хочешь присоединиться ко мне?
@@ -94,19 +92,7 @@ func void DIA_Angar_NW_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_Angar_NW_KnowWhereEnemy_Yes_15_00");	//Иди в гавань. Встретимся там.
 	AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_Yes_04_01");	//Уже иду.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Angar_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
-	Info_ClearChoices(DIA_Angar_NW_KnowWhereEnemy);
+	B_JoinShip(self);
 };
 
 func void DIA_Angar_NW_KnowWhereEnemy_No()
@@ -162,27 +148,31 @@ func int DIA_Angar_NW_StillNeedYou_Condition()
 {
 	if(((Angar_IsOnBoard == LOG_OBSOLETE) || (Angar_IsOnBoard == LOG_FAILED)) && (Crewmember_Count < Max_Crew))
 	{
+		if(Angar_WasOnBoard == TRUE)
+		{
+			DIA_Angar_NW_StillNeedYou.description = "Возвращайся на борт.";
+		}
+		else
+		{
+			DIA_Angar_NW_StillNeedYou.description = "Ты нужен мне.";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Angar_NW_StillNeedYou_Info()
 {
-	AI_Output(other,self,"DIA_Angar_NW_StillNeedYou_15_00");	//Возвращайся на борт.
-	AI_Output(self,other,"DIA_Angar_NW_StillNeedYou_04_01");	//Ты даже хуже, чем я. Немного определенности тебе совсем бы не помешало. Увидимся позже.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Angar_IsOnBoard = LOG_SUCCESS;
-	Crewmember_Count += 1;
-	AI_StopProcessInfos(self);
-	if(MIS_ReadyforChapter6 == TRUE)
+	if(Angar_WasOnBoard == TRUE)
 	{
-		Npc_ExchangeRoutine(self,"SHIP");
+		AI_Output(other,self,"DIA_Angar_NW_StillNeedYou_15_00");	//Возвращайся на борт.
+		AI_Output(self,other,"DIA_Angar_NW_StillNeedYou_04_01");	//Ты даже хуже, чем я. Немного определенности тебе совсем бы не помешало. Увидимся позже.
 	}
 	else
 	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
+		AI_Output(other,self,"DIA_MiltenNW_StillNeedYou_15_00");	//Ты нужен мне.
+		AI_Output(self,other,"DIA_Angar_NW_KnowWhereEnemy_Yes_04_01");	//Уже иду.
 	};
-	B_CheckLog();
+	B_JoinShip(self);
 };
 
 

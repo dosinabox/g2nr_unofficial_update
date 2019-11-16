@@ -93,7 +93,7 @@ func void B_SetAttributesToChapter(var C_Npc slf,var int kap)
 		slf.attribute[ATR_HITPOINTS_MAX] = 760;
 		slf.attribute[ATR_HITPOINTS] = 760;
 	};
-	slf.exp = 500 * ((slf.level + 1) / 2) * (slf.level + 1);
-	slf.exp_next = 500 * ((slf.level + 2) / 2) * (slf.level + 1);
+	slf.exp = XP_PER_LEVEL * ((slf.level + 1) / 2) * (slf.level + 1);
+	slf.exp_next = XP_PER_LEVEL * ((slf.level + 2) / 2) * (slf.level + 1);
 };
 

@@ -131,21 +131,15 @@ func void B_ENTER_OLDWORLD_Kapitel_4()
 			B_KillNpc(Kervo);
 			Wld_InsertNpc(Lurker,"OW_DJG_VORPOSTEN_01");
 		};
-		B_RemoveNpc(VLK_4106_Dobar);
-		B_RemoveNpc(VLK_4107_Parlaf);
 		if(!Npc_IsDead(Sengrath))
 		{
-			B_StartOtherRoutine(Sengrath,"OrcBarrier");
-			AI_Teleport(Sengrath,"OW_ORCBARRIER_12");
-			B_ClearDeadTrader(Sengrath);
-			if(Npc_HasItems(Sengrath,ItRw_Mil_Crossbow))
-			{
-				Npc_RemoveInvItem(Sengrath,ItRw_Mil_Crossbow);
-			};
-			CreateInvItems(Sengrath,ItRw_SengrathsArmbrust_MIS,1);
+			Wld_InsertNpc(PAL_275_DeadSengrath,"OC1");
+			B_KillNpc(PAL_275_DeadSengrath);
 			Sengrath_Missing = TRUE;
-			B_KillNpc(Sengrath);
 		};
+		B_RemoveNpc(VLK_4106_Dobar);
+		B_RemoveNpc(VLK_4107_Parlaf);
+		B_RemoveNpc(PAL_267_Sengrath);
 		if(TschuessBilgot == TRUE)
 		{
 			B_RemoveNpc(VLK_4120_Bilgot);

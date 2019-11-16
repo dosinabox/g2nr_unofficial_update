@@ -192,6 +192,10 @@ func int DIA_Addon_Cord_YouAreRanger_Condition()
 	{
 		return TRUE;
 	}
+	else if(SC_KnowsCordAsRangerFromLee == TRUE)
+	{
+		return TRUE;
+	}
 	else if(MIS_Addon_Lares_ComeToRangerMeeting == LOG_SUCCESS)
 	{
 		return TRUE;
@@ -208,7 +212,7 @@ func void DIA_Addon_Cord_YouAreRanger_Info()
 		{
 			AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_15_02");	//Мне сказал Ли.
 		};
-		if(SC_KnowsCordAsRangerFromLares == TRUE)
+		if(RangerHelp_gildeSLD == TRUE)
 		{
 			AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_15_03");	//Ларес сказал, что ты поможешь мне, если я скажу, что он взял меня под свое крыло.
 		};
@@ -579,8 +583,11 @@ func void DIA_Addon_Cord_TalkedToDexter_Info()
 	}
 	else if(Torlof_Probe == Probe_Bengar)
 	{
-		B_StartOtherRoutine(Rumbold,"Flucht3");
-		B_StartOtherRoutine(Rick,"Flucht3");
+		if(Kapitel < 3)
+		{
+			B_StartOtherRoutine(Rumbold,"Flucht3");
+			B_StartOtherRoutine(Rick,"Flucht3");
+		};
 		MIS_Torlof_BengarMilizKlatschen = LOG_SUCCESS;
 	};
 	B_CheckLog();

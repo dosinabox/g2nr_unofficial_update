@@ -21,6 +21,10 @@ func void DIA_Addon_Logan_EXIT_Info()
 	if((MIS_HlpLogan == LOG_Running) && (Logan_Inside == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Logan_EXIT_10_01");	//(ворчливо) Да-а, просто убегаешь. А я останусь здесь и остановлю каждого, кто подойдет слишком близко.
+	}
+	else
+	{
+		AI_WaitTillEnd(self,other);
 	};
 	AI_StopProcessInfos(self);
 };

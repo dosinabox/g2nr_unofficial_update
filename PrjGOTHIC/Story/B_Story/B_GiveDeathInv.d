@@ -463,6 +463,30 @@ func void B_GiveDeathInv(var C_Npc slf)
 		CreateInvItems(slf,ItMi_Gold,22);
 		CreateInvItems(slf,ItPo_Health_01,1);
 	};
+	if((slf.aivar[AIV_MM_REAL_ID] == ID_ORCCOMMANDER) && (Orc_Randomizer <= 2))
+	{
+		CreateInvItems(slf,ItAt_WargFur,1);
+		CreateInvItems(slf,ItPo_Health_03,1);
+		CreateInvItems(slf,ItMi_Gold,10);
+	}
+	else if((slf.aivar[AIV_MM_REAL_ID] == ID_ORCCOMMANDER) && (Orc_Randomizer <= 5))
+	{
+		CreateInvItems(slf,ItMi_Pliers,1);
+		CreateInvItems(slf,ItPo_Health_02,1);
+		CreateInvItems(slf,ItMi_Gold,37);
+	}
+	else if((slf.aivar[AIV_MM_REAL_ID] == ID_ORCCOMMANDER) && (Orc_Randomizer <= 7))
+	{
+		CreateInvItems(slf,ItSc_PalLightHeal,1);
+		CreateInvItems(slf,ItPo_Health_01,2);
+		CreateInvItems(slf,ItMi_Gold,20);
+	}
+	else if(slf.aivar[AIV_MM_REAL_ID] == ID_ORCCOMMANDER)
+	{
+		CreateInvItems(slf,ItMi_Skull,1);
+		CreateInvItems(slf,ItPo_Health_02,1);
+		CreateInvItems(slf,ItMi_Gold,27);
+	};
 	if((slf.aivar[AIV_MM_REAL_ID] == ID_DEMON) && (Orc_Randomizer == 0))
 	{
 		CreateInvItems(slf,ItPo_Mana_03,2);
@@ -502,6 +526,11 @@ func void B_GiveDeathInv(var C_Npc slf)
 	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE) && (slf.aivar[AIV_MM_REAL_ID] == ID_TROLL_BLACK))
 	{
 		TrollBlackFurWasted = TRUE;
+		if(MIS_Raoul_KillTrollBlack == LOG_Running)
+		{
+			MIS_Raoul_KillTrollBlack = LOG_FAILED;
+			B_CheckLog();
+		};
 	};
 	slf.aivar[AIV_DeathInvGiven] = TRUE;
 };

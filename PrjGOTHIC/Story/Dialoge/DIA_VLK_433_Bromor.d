@@ -74,12 +74,20 @@ func void DIA_Addon_Bromor_MissingPeople_Info()
 	AI_Output(other,self,"DIA_Addon_Bromor_MissingPeople_15_02");	//(раздраженно) Э-э... Я не спрашиваю об их здоровье. Я имел в виду, они все на месте. Или кого-то нет?
 	AI_Output(self,other,"DIA_Addon_Bromor_MissingPeople_07_03");	//А-а. Да, одна из моих девочек действительно пропала. Ее зовут Люсия.
 	AI_Output(self,other,"DIA_Addon_Bromor_MissingPeople_07_04");	//Я даже обращался к людям из ополчения. Но они не нашли никаких ее следов.
+	LuciaMentionedInKhorinis = TRUE;
 	if(MissingPeopleReturnedHome == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 	};
 	B_LogEntry(TOPIC_Addon_MissingPeople,"Шлюха по имени Люсия пропала из борделя в гавани.");
+	if(MIS_LookingForLucia == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
+		B_LogEntry(TOPIC_Addon_Lucia,"Шлюха по имени Люсия пропала из борделя в гавани.");
+		MIS_LookingForLucia = LOG_Running;
+	};
 };
 
 

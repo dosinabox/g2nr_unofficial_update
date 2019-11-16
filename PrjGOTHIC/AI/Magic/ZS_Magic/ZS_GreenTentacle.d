@@ -24,30 +24,16 @@ func void B_StopGreententacle()
 
 func void ZS_Greententacle()
 {
-	var int randy;
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_RestartGreententacle);
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_AssessDamage);
 	Npc_StopAni(self,"S_GREENTENTACLEA_VICTIM");
-	Npc_StopAni(self,"S_GREENTENTACLEB_VICTIM");
-	Npc_StopAni(self,"S_GREENTENTACLEC_VICTIM");
 	Npc_ClearAIQueue(self);
 	AI_Standup(self);
 	if(!C_BodyStateContains(self,BS_UNCONSCIOUS))
 	{
 		if(self.guild < GIL_SEPERATOR_HUM)
 		{
-			if(randy == 0)
-			{
-				AI_PlayAniBS(self,"T_STAND_2_GREENTENTACLEA_VICTIM",BS_UNCONSCIOUS);
-			};
-			if(randy == 1)
-			{
-				AI_PlayAniBS(self,"T_STAND_2_GREENTENTACLEB_VICTIM",BS_UNCONSCIOUS);
-			};
-			if(randy == 2)
-			{
-				AI_PlayAniBS(self,"T_STAND_2_GREENTENTACLEC_VICTIM",BS_UNCONSCIOUS);
-			};
+			AI_PlayAniBS(self,"T_STAND_2_GREENTENTACLEA_VICTIM",BS_UNCONSCIOUS);
 		}
 		else
 		{

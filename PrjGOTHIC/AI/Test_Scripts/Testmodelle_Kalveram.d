@@ -110,6 +110,8 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_2H_Blessed_01,1);
 	CreateInvItems(self,ItMw_2H_Blessed_02,1);
 	CreateInvItems(self,ItMw_2H_Blessed_03,1);
+	CreateInvItems(self,ItMw_2H_Hammer_01,1);
+	CreateInvItems(self,ItMw_2H_Hammer_02,1);
 	CreateInvItems(self,ItMw_BeliarWeapon_1H_01,1);
 	CreateInvItems(self,ItMw_BeliarWeapon_2H_01,1);
 	CreateInvItems(self,ItMw_BeliarWeapon_Raven,1);
@@ -412,6 +414,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItFo_Addon_Shellflesh,10);
 	CreateInvItems(self,ItFo_Addon_Rum,10);
 	CreateInvItems(self,ItFo_Addon_Grog,10);
+	CreateInvItems(self,ItFo_Addon_Liquor,10);
 	CreateInvItems(self,ItFo_Addon_LousHammer,10);
 	CreateInvItems(self,ItFo_Addon_SchlafHammer,10);
 	CreateInvItems(self,ItFo_Addon_SchnellerHering,10);
@@ -738,7 +741,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Silvestro_MIS,1);
 	CreateInvItems(self,ItAt_ClawLeader,1);
 	CreateInvItems(self,ItSe_Olav,1);
-	CreateInvItems(self,ItMi_GoldPlate_MIS,1);
+//	CreateInvItems(self,ItMi_GoldPlate_MIS,1);
 	CreateInvItems(self,ItKe_Pass_MIS,1);
 	CreateInvItems(self,ItKe_Bromor,1);
 	CreateInvItems(self,ItKe_Rune_MIS,1);
@@ -1293,12 +1296,12 @@ func void UseHelmets()
 {
 	Snd_Play("Geldbeutel");
 	Print("Найдено много разных доспехов и шлемов!");
-	CreateInvItem(self,ITAR_OHT);
+//	CreateInvItem(self,ITAR_OHT);
 	CreateInvItem(self,ITAR_DJGN_M);
 	CreateInvItem(self,ITAR_DJGN_H);
 	CreateInvItem(self,ITAR_PALN_M);
 	CreateInvItem(self,ITAR_PALN_H);
-	CreateInvItem(self,ITHE_OHT);
+//	CreateInvItem(self,ITHE_OHT);
 	CreateInvItem(self,ITHE_DJG_M);
 	CreateInvItem(self,ITHE_DJG_H);
 	CreateInvItem(self,ITHE_PAL_M);
@@ -1499,7 +1502,7 @@ func void UseHoshiTagebuch()
 };
 
 
-instance D36TestRune(C_Item)
+/*instance D36TestRune(C_Item)
 {
 	name = "Великая руна тестов";
 	mainflag = ITEM_KAT_DOCS;
@@ -1519,8 +1522,7 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	Mob_CreateItems("BOW_CHEST",ItFo_Meat,100);
-};
+};*/
 
 instance WastelandRune(C_Item)
 {
@@ -1548,18 +1550,41 @@ func void UseWastelandRune()
 	b_seed_wasteland_world_freeminecamp();
 };
 
-instance ItFo_Meat(C_Item)
+instance StatsBook(C_Item)
 {
-	name = "Луковица";
-	mainflag = ITEM_KAT_FOOD;
-	flags = ITEM_MULTI;
-	value = Value_Beet;
-	visual = "Onion.3ds";
+	name = "Книга статистики";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItWr_Book_02_02.3ds";
 	material = MAT_LEATHER;
-	on_state[0] = Use_Weed;
-	scemeName = "FOOD";
+	scemeName = "MAP";
 	description = name;
-	text[5] = NAME_Value;
-	count[5] = value;
+	on_state[0] = Use_StatsBook;
+};
+
+
+func void Use_StatsBook()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,2);
+	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
+	Doc_SetFont(nDocID,-1,FONT_Book);
+	Doc_SetMargins(nDocID,0,275,20,30,20,1);
+	Doc_PrintLine(nDocID,0,"Убито:");
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Draconian)," людей-ящеров"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Dementor)," ищущих"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcElite)," элитных орков"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcCommander)," предводителей орков"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(MadKillerCount)," невинных людей"));
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,"");
+	Doc_Show(nDocID);
 };
 

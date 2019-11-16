@@ -32,10 +32,7 @@ instance DIA_OCVLK_1_PEOPLE(C_Info)
 
 func int DIA_OCVLK_1_PEOPLE_Condition()
 {
-	if((Kapitel <= 4) && (MIS_KilledDragons < 4))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_OCVLK_1_PEOPLE_Info()
@@ -57,17 +54,17 @@ instance DIA_OCVLK_1_LOCATION(C_Info)
 
 func int DIA_OCVLK_1_LOCATION_Condition()
 {
-	if((Kapitel <= 4) && (MIS_KilledDragons < 4))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_OCVLK_1_LOCATION_Info()
 {
 	AI_Output(other,self,"DIA_OCVLK_1_LOCATION_15_00");	//Что тебе известно о Долине Рудников?
 	AI_Output(self,other,"DIA_OCVLK_1_LOCATION_01_01");	//Насколько я знаю, несколько наших парней находятся в шахтах и все еще добывают руду.
-	AI_Output(self,other,"DIA_OCVLK_1_LOCATION_01_02");	//Я бы не хотел поменяться с ними местами. Вся долина кишит орками. Не говоря уже о драконах.
+	if(!Npc_KnowsInfo(other,DIA_Garond_AllDragonDead) && (Kapitel <= 4))
+	{
+		AI_Output(self,other,"DIA_OCVLK_1_LOCATION_01_02");	//Я бы не хотел поменяться с ними местами. Вся долина кишит орками. Не говоря уже о драконах.
+	};
 };
 
 
@@ -95,7 +92,7 @@ func void DIA_OCVLK_1_STANDARD_Info()
 	};
 	if(Kapitel == 4)
 	{
-		if(MIS_KilledDragons < 4)
+		if(!Npc_KnowsInfo(other,DIA_Garond_AllDragonDead))
 		{
 			AI_Output(self,other,"DIA_OCVLK_1_STANDARD_01_02");	//По крайней мере, скоро мы, наконец, получим подкрепление.
 		}

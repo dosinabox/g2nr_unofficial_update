@@ -62,10 +62,8 @@ const string TOPIC_Addon_BaltramSkipTrade = "Торговля пиратов";
 var int TOPIC_END_BaltramSkipTrade;
 
 const string TOPIC_Addon_FarimsFish = "Проблемы с ополчением";
+const string TOPIC_Addon_LuciasLetter = "Разбитое сердце";
 const string TOPIC_Addon_Lucia = "Люсия";
-
-var int TOPIC_END_Lucia;
-
 const string TOPIC_Addon_Erol = "Нападение на торговца";
 const string TOPIC_Addon_VatrasAbloesung = "Замена для Ватраса";
 const string LogText_Addon_SCKnowsMisspeapl = "Многие жители Хориниса пропали без вести. Никто не знает, что с ними стало.";
@@ -131,7 +129,8 @@ const string TOPIC_MalethsGehstock = "Посох Малета";
 var int TOPIC_END_MalethsGehstock;
 
 const string TOPIC_BengarALLEIN = "Один и без защиты";
-const string TOPIC_MinenAnteile = "Поддельные акции";
+const string TOPIC_MinenAnteileKDF = "Поддельные акции";
+const string TOPIC_MinenAnteileSLD = "Неизвестные прегрешения";
 
 var int TOPIC_END_MinenAnteile;
 
@@ -142,9 +141,9 @@ const string TOPIC_KillHoshPak = "Хош-Пак";
 const string TOPIC_Urshak = "Ур-Шак";
 const string TOPIC_DRACHENJAGD = "Охота на драконов";
 const string TOPIC_Dragonhunter = "Охотники на драконов";
-const string TOPIC_LobartsOrKProblem = "Проблемы Лобарта с орками";
+const string TOPIC_LobartsOrkProblem = "Проблемы Лобарта с орками";
 
-var int TOPIC_END_LobartsOrKProblem;
+var int TOPIC_END_LobartsOrkProblem;
 
 const string TOPIC_SylvioKillIceGolem = "Ледяные гиганты и Сильвио";
 

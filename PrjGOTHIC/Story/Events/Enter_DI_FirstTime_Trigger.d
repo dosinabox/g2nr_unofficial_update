@@ -56,10 +56,13 @@ func void enter_di_firsttime_trigger()
 		};
 		if(MiltenNW_IsOnBoard == LOG_SUCCESS)
 		{
-			Log_AddEntry(TOPIC_MyCrew,"Милтен может помочь мне повысить мою ману.");
 			if(hero.guild == GIL_KDF)
 			{
-				Log_AddEntry(TOPIC_MyCrew,"Кроме этого Милтен может научить меня создавать руны.");
+				Log_AddEntry(TOPIC_MyCrew,"Милтен может помочь мне с повышением маны и созданием новых рун.");
+			}
+			else
+			{
+				Log_AddEntry(TOPIC_MyCrew,"Милтен может помочь мне повысить мою ману.");
 			};
 		};
 		if(Lester_IsOnBoard == LOG_SUCCESS)
@@ -76,10 +79,13 @@ func void enter_di_firsttime_trigger()
 		};
 		if(Vatras_IsOnBoard == LOG_SUCCESS)
 		{
-			Log_AddEntry(TOPIC_MyCrew,"Ватрас удалился в каюту магов. Он может лечить меня и знает множество рецептов приготовления зелий.");
 			if(hero.guild == GIL_KDF)
 			{
-				Log_AddEntry(TOPIC_MyCrew,"Ватрас также может повысить мой магический круг.");
+				Log_AddEntry(TOPIC_MyCrew,"Ватрас удалился в каюту магов. Он может лечить меня и знает множество рецептов приготовления зелий. Также с его помощью я смогу повысить свой Круг магии.");
+			}
+			else
+			{
+				Log_AddEntry(TOPIC_MyCrew,"Ватрас удалился в каюту магов. Он может лечить меня и знает множество рецептов приготовления зелий.");
 			};
 		};
 		if(Bennet_IsOnBoard == LOG_SUCCESS)
@@ -92,8 +98,7 @@ func void enter_di_firsttime_trigger()
 		};
 		if(Gorn_IsOnBoard == LOG_SUCCESS)
 		{
-			Log_AddEntry(TOPIC_MyCrew,"Горн ни разу не прилег за время нашего путешествия. Он будет присматривать за кораблем. Я думаю, корабль будет в надежных руках.");
-			Log_AddEntry(TOPIC_MyCrew,"Горн может помочь мне научиться лучше владеть двуручным оружием.");
+			Log_AddEntry(TOPIC_MyCrew,"Горн ни разу не прилег за время нашего путешествия. Он будет присматривать за кораблем. Я думаю, корабль будет в надежных руках. Также Горн может помочь мне научиться лучше владеть двуручным оружием.");
 		};
 		if(Lares_IsOnBoard == LOG_SUCCESS)
 		{

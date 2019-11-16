@@ -43,7 +43,7 @@ func void DIA_SLD_7_JOIN_Info()
 	AI_Output(other,self,"DIA_SLD_7_JOIN_15_00");	//Я хочу присоединиться к вам!
 	if(MIS_Torlof_BengarMilizKlatschen == LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_SLD_7_JOIN_07_01");	//Я слышал, ты вступил в ополчение. Такие люди, как ты, нужны нам!
+		AI_Output(self,other,"DIA_SLD_7_JOIN_07_01_add");	//Такие люди, как ты, нужны нам...
 	}
 	else if(MIS_Torlof_HolPachtVonSekob == LOG_SUCCESS)
 	{
@@ -68,16 +68,26 @@ instance DIA_SLD_7_PEOPLE(C_Info)
 
 func int DIA_SLD_7_PEOPLE_Condition()
 {
-	return TRUE;
+	if((other.guild == GIL_SLD) && (Kapitel == 1))
+	{
+		return TRUE;
+	}
+	else if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_SLD_7_PEOPLE_Info()
 {
 	AI_Output(other,self,"DIA_SLD_7_PEOPLE_15_00");	//Кто заправляет здесь?
 	AI_Output(self,other,"DIA_SLD_7_PEOPLE_07_01");	//Нами командует Ли. Торлоф - его правая рука. Большинство парней подчиняется ему еще со времен колонии.
-	AI_Output(self,other,"DIA_SLD_7_PEOPLE_07_02");	//А еще есть Сильвио. Он спустился с гор со своими людьми совсем недавно.
-	AI_Output(self,other,"DIA_SLD_7_PEOPLE_07_03");	//Его люди составляют совсем небольшую часть наемников, но проблем от них выше крыши. Эти парни живут по собственным законам.
-	AI_Output(self,other,"DIA_SLD_7_PEOPLE_07_04");	//А этот Сильвио тот еще сукин сын, так что будь поосторожнее, если пересечешься с ним.
+	if(MIS_ReadyforChapter4 == FALSE)
+	{
+		AI_Output(self,other,"DIA_SLD_7_PEOPLE_07_02");	//А еще есть Сильвио. Он спустился с гор со своими людьми совсем недавно.
+		AI_Output(self,other,"DIA_SLD_7_PEOPLE_07_03");	//Его люди составляют совсем небольшую часть наемников, но проблем от них выше крыши. Эти парни живут по собственным законам.
+		AI_Output(self,other,"DIA_SLD_7_PEOPLE_07_04");	//А этот Сильвио тот еще сукин сын, так что будь поосторожнее, если пересечешься с ним.
+	};
 };
 
 

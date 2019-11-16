@@ -48,7 +48,7 @@ func void ZS_Talk()
 				Mdl_StartFaceAni(self,"S_ANGRY",1,-1);
 			};
 		}; */
-		if((self.npcType == NPCTYPE_AMBIENT) || (self.npcType == NPCTYPE_OCAMBIENT) || (self.npcType == NPCTYPE_BL_AMBIENT) || (self.npcType == NPCTYPE_TAL_AMBIENT))
+		if((self.npcType == NPCTYPE_AMBIENT) || (self.npcType == NPCTYPE_OCAMBIENT) || (self.npcType == NPCTYPE_OWAMBIENT) || (self.npcType == NPCTYPE_BL_AMBIENT) || (self.npcType == NPCTYPE_TAL_AMBIENT))
 		{
 			B_AssignAmbientInfos(self);
 			if(C_NpcBelongsToCity(self))
@@ -72,6 +72,13 @@ func void ZS_Talk()
 	if(self.guild == GIL_DRAGON)
 	{
 		AI_PlayAni(self,"T_STAND_2_TALK");
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lucia))
+	{
+		if(MIS_LookingForLucia == FALSE)
+		{
+			MIS_LookingForLucia = LOG_SUCCESS;
+		};
 	};
 	AI_ProcessInfos(self);
 	zsTalkBugfix = FALSE;

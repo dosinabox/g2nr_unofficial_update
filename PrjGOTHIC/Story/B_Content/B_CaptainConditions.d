@@ -1,12 +1,15 @@
 
 func int B_CaptainConditions(var C_Npc Captain)
 {
-	if((Kapitel == 5) && (SCGotCaptain == TRUE) && Npc_HasItems(hero,ItWr_Seamap_Irdorath) && (Crewmember_Count >= Min_Crew) && (Npc_GetDistToWP(Captain,"NW_WAITFOR_SHIP_CAPTAIN") < 2000))
+	if((Kapitel == 5) && (SCGotCaptain == TRUE) && Npc_HasItems(hero,ItWr_Seamap_Irdorath) && (Npc_GetDistToWP(Captain,"NW_WAITFOR_SHIP_CAPTAIN") < 2000))
 	{
-		if((MIS_ShipIsFree == TRUE) || (Npc_IsDead(Schiffswache_212) && Npc_IsDead(Schiffswache_213)))
+		if((Crewmember_Count + CrewmemberFree_Count) >= Min_Crew)
 		{
-			MIS_ShipIsFree = TRUE;
-			return TRUE;
+			if((MIS_ShipIsFree == TRUE) || (Npc_IsDead(Schiffswache_212) && Npc_IsDead(Schiffswache_213)))
+			{
+				MIS_ShipIsFree = TRUE;
+				return TRUE;
+			};
 		};
 	};
 };

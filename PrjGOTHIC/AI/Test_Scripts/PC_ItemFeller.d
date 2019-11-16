@@ -13,8 +13,8 @@ instance PC_Itemfeller(Npc_Default)
 	attribute[ATR_MANA] = 400;
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
-	exp = 500 * ((level + 1) / 2) * (level + 1);
-	exp_next = 500 * ((level + 2) / 2) * (level + 1);
+	exp = XP_PER_LEVEL * ((level + 1) / 2) * (level + 1);
+	exp_next = XP_PER_LEVEL * ((level + 2) / 2) * (level + 1);
 	Mdl_SetVisual(self,"HUMANS.MDS");
 	Mdl_SetVisualBody(self,"hum_body_Naked0",BodyTex_Player,0,"Hum_Head_Pony",Face_N_Player,0,ITAR_PAL_H);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
@@ -604,7 +604,7 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItWr_Silvestro_MIS,1);
 	CreateInvItems(self,ItAt_ClawLeader,1);
 	CreateInvItems(self,ItSe_Olav,1);
-	CreateInvItems(self,ItMi_GoldPlate_MIS,1);
+//	CreateInvItems(self,ItMi_GoldPlate_MIS,1);
 	CreateInvItems(self,ItKe_Pass_MIS,1);
 	CreateInvItems(self,ItKe_Bromor,1);
 	CreateInvItems(self,ItKe_Rune_MIS,1);

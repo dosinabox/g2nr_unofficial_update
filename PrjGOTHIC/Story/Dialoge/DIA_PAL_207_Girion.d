@@ -287,10 +287,7 @@ func void DIA_Girion_CATCHPLAYERSTOLENSHIP_ship()
 	B_GirionStayOnShip();
 	AI_Output(other,self,"DIA_Girion_CATCHPLAYERSTOLENSHIP_ship_15_10");	//Я переживу это.
 	AI_Output(self,other,"DIA_Girion_CATCHPLAYERSTOLENSHIP_ship_08_11");	//Тогда делай то, что должен. А я подожду тебя здесь.
-	Girion_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	AI_StopProcessInfos(self);
-	Npc_ExchangeRoutine(self,"Ship");
+	B_JoinShip(self);
 };
 
 

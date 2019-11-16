@@ -71,28 +71,6 @@ instance ItRu_PalLight(C_Item)
 	count[5] = value;
 };
 
-instance ItRu_FakePalLight(C_Item)
-{
-	name = NAME_Rune;
-	mainflag = ITEM_KAT_RUNE;
-	flags = 0;
-	value = Value_Ru_PalLight;
-	visual = "ItRu_PalLight.3ds";
-	material = MAT_STONE;
-	spell = SPL_PalLight;
-	mag_circle = 7;
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_WEAKGLIMMER";
-	description = NAME_SPL_PalLight;
-	text[0] = Name_PaladinSpell;
-	text[1] = NAME_Manakosten;
-	count[1] = SPL_Cost_PalLight;
-	text[2] = NAME_Duration;
-	count[2] = SPL_Duration_PalLIGHT;
-	text[5] = NAME_Value;
-	count[5] = value;
-};
-
 instance ItRu_PalLightHeal(C_Item)
 {
 	name = NAME_Rune;

@@ -153,7 +153,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		};
 		return COLL_APPLYDAMAGE | COLL_DONTKILL;
 	};
-	if(spellType == SPL_Zap)
+	if((spellType == SPL_Zap) || (spellType == SPL_ChargeZap))
 	{
 		if(C_NpcIsDown(self))
 		{
@@ -165,7 +165,7 @@ func int C_CanNpcCollideWithSpell(var int spellType)
 		};
 		return COLL_APPLYDAMAGE | COLL_DONTKILL;
 	};
-	if((spellType == SPL_ChargeZap) || (spellType == SPL_LightningFlash))
+	if(spellType == SPL_LightningFlash)
 	{
 		if((self.protection[PROT_MAGIC] == IMMUNE) || C_NpcIsDown(self))
 		{

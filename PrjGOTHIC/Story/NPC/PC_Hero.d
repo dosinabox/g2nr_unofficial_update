@@ -9,7 +9,7 @@ instance PC_Hero(Npc_Default)
 	npcType = npctype_main;
 	bodyStateInterruptableOverride = TRUE;
 	exp = 0;
-	exp_next = 500;
+	exp_next = XP_PER_LEVEL;
 	lp = 0;
 	attribute[ATR_STRENGTH] = 10;
 	attribute[ATR_DEXTERITY] = 10;
@@ -31,8 +31,8 @@ instance PC_L10(Npc_Default)
 	level = 10;
 	npcType = npctype_main;
 	bodyStateInterruptableOverride = TRUE;
-	exp = 500 * ((level + 1) / 2) * (level + 1);
-	exp_next = 500 * ((level + 2) / 2) * (level + 1);
+	exp = XP_PER_LEVEL * ((level + 1) / 2) * (level + 1);
+	exp_next = XP_PER_LEVEL * ((level + 2) / 2) * (level + 1);
 	lp = 0;
 	attribute[ATR_STRENGTH] = 83;
 	attribute[ATR_DEXTERITY] = 32;
@@ -60,8 +60,8 @@ instance PC_L20(Npc_Default)
 	level = 20;
 	npcType = npctype_main;
 	bodyStateInterruptableOverride = TRUE;
-	exp = 500 * ((level + 1) / 2) * (level + 1);
-	exp_next = 500 * ((level + 2) / 2) * (level + 1);
+	exp = XP_PER_LEVEL * ((level + 1) / 2) * (level + 1);
+	exp_next = XP_PER_LEVEL * ((level + 2) / 2) * (level + 1);
 	lp = 40;
 	attribute[ATR_STRENGTH] = 106;
 	attribute[ATR_DEXTERITY] = 54;
@@ -93,8 +93,8 @@ instance PC_L40(Npc_Default)
 	level = 40;
 	npcType = npctype_main;
 	bodyStateInterruptableOverride = TRUE;
-	exp = 500 * ((level + 1) / 2) * (level + 1);
-	exp_next = 500 * ((level + 2) / 2) * (level + 1);
+	exp = XP_PER_LEVEL * ((level + 1) / 2) * (level + 1);
+	exp_next = XP_PER_LEVEL * ((level + 2) / 2) * (level + 1);
 	lp = 60;
 	attribute[ATR_STRENGTH] = 159;
 	attribute[ATR_DEXTERITY] = 76;
@@ -133,8 +133,8 @@ instance PC_L60(Npc_Default)
 	level = 60;
 	npcType = npctype_main;
 	bodyStateInterruptableOverride = TRUE;
-	exp = 500 * ((level + 1) / 2) * (level + 1);
-	exp_next = 500 * ((level + 2) / 2) * (level + 1);
+	exp = XP_PER_LEVEL * ((level + 1) / 2) * (level + 1);
+	exp_next = XP_PER_LEVEL * ((level + 2) / 2) * (level + 1);
 	lp = 60;
 	attribute[ATR_STRENGTH] = 228;
 	attribute[ATR_DEXTERITY] = 98;

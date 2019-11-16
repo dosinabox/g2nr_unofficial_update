@@ -10,16 +10,15 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 	if((Kapitel >= 1) && (Gorax_ItemsGiven_Chapter_1 == FALSE))
 	{
 //		CreateInvItems(slf,ItMi_Gold,100);
-		CreateInvItems(slf,ItSc_Sleep,1);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItPo_Mana_01,2);
 		CreateInvItems(slf,ItPo_Health_01,3);
+		CreateInvItems(slf,ItSc_Sleep,1);
 		CreateInvItems(slf,ItSc_Light,5);
 		CreateInvItems(slf,ItSc_Firebolt,5);
 		CreateInvItems(slf,ItSc_LightHeal,5);
 		CreateInvItems(slf,ItSc_SumGobSkel,5);
 		CreateInvItems(slf,ItSc_Windfist,1);
-		CreateInvItems(slf,ItWr_Map_NewWorld,1);
 		CreateInvItems(slf,ItSc_Zap,5);
 		CreateInvItems(slf,ItFo_Wine,3);
 		CreateInvItems(slf,ItBE_Addon_NOV_01,1);
@@ -29,6 +28,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItMW_Addon_Stab04,1);
 		CreateInvItems(slf,ItRi_Mana_01,1);
 		CreateInvItems(slf,ItMi_Pliers,1);
+		CreateInvItems(slf,ItWr_Map_NewWorld,1);
 		Gorax_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (Gorax_ItemsGiven_Chapter_2 == FALSE))
@@ -78,6 +78,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_TrfWolf,1);
 		CreateInvItems(slf,ItSc_TrfSheep,1);
 		CreateInvItems(slf,ItSc_TrfScavenger,1);
+		CreateInvItems(slf,ItSc_TrfLurker,1);
 		CreateInvItems(slf,ItBe_Addon_Prot_MAGIC,1);
 		if((hero.guild != GIL_NOV) && (hero.guild != GIL_NONE))
 		{
@@ -99,9 +100,9 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_01,30);
 		CreateInvItems(slf,ItPo_Mana_02,30);
 		CreateInvItems(slf,ItSc_LightningFlash,5);
-		CreateInvItems(slf,ItSc_SumGol,4);
 		CreateInvItems(slf,ItSc_HarmUndead,2);
 		CreateInvItems(slf,ItSc_ChargeFireBall,3);
+		CreateInvItems(slf,ItSc_SumGol,4);
 		CreateInvItems(slf,ItSc_SumDemon,2);
 		CreateInvItems(slf,ItSc_Firerain,2);
 		CreateInvItems(slf,ItSc_TrfSnapper,1);
@@ -126,7 +127,6 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_IceWave,4);
 		CreateInvItems(slf,ItSc_SumDemon,2);
 		CreateInvItems(slf,ItSc_FullHeal,3);
-		CreateInvItems(slf,ItSc_TrfLurker,1);
 		CreateInvItems(slf,ItSc_TrfDragonSnapper,1);
 		if((hero.guild != GIL_NOV) && (hero.guild != GIL_NONE))
 		{

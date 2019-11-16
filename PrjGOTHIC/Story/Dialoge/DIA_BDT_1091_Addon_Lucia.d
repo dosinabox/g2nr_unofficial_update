@@ -107,8 +107,13 @@ func void DIA_Addon_Lucia_was_Info()
 	AI_Output(self,other,"DIA_Addon_Lucia_was_16_02");	//И пожалуй, это единственная хорошая вещь, которую они привозят...
 	AI_Output(self,other,"DIA_Addon_Lucia_was_16_03");	//Так что обычно мы пьем крепкие напитки. У меня есть самогон, грог и белый ром.
 	AI_Output(self,other,"DIA_Addon_Lucia_was_16_04");	//Хм-м... Тебе стоит попробовать вот это. Я взяла рецепт у Сэмюэля. Надо признать, он действительно знает свое дело.
-	Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
-	B_LogEntry(Topic_Addon_BDT_Trader,"У Люсии я могу купить выпивку.");
+	CreateInvItems(self,ItFo_Addon_Liquor,1);
+	B_GiveInvItems(self,other,ItFo_Addon_Liquor,1);
+	if(!Npc_KnowsInfo(other,DIA_Addon_Scatty_Trinken))
+	{
+		Log_CreateTopic(Topic_Addon_BDT_Trader,LOG_NOTE);
+		B_LogEntry(Topic_Addon_BDT_Trader,"У Люсии я могу купить выпивку.");
+	};
 };
 
 
@@ -125,7 +130,7 @@ instance DIA_Addon_Lucia_Khorinis(C_Info)
 
 func int DIA_Addon_Lucia_Khorinis_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Bromor_Lucia) || (Nadja_GaveLuciaInfo == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly))
+	if((MIS_LookingForLucia == LOG_Running) || (LuciaMentionedInKhorinis == TRUE))
 	{
 		return TRUE;
 	};
@@ -137,15 +142,41 @@ func void DIA_Addon_Lucia_Khorinis_Info()
 	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_01");	//Ох, не напоминай. Жизнь у меня там была незавидная.
 	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_02");	//Пока в город приходили корабли с заключенными, там еще можно было как-то прожить.
 	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_03");	//Но потом... (смеется) Нет, спасибо. Может быть, это из-за того, что мы на острове... Ладно, в любом случае, с той жизнью покончено.
-	if((MIS_LuciasLetter != FALSE) || (SC_KnowsLuciaCaughtByBandits != FALSE) || (Nadja_GaveLuciaInfo != FALSE))
+	if(MIS_LookingForLucia == LOG_Running)
 	{
-		AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_06");	//С Элврихом я порвала!
-		AI_Output(other,self,"DIA_Addon_Lucia_Khorinis_15_04");	//Почему?
-		AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_05");	//Он трус! Когда бандиты утащили меня, он даже не попытался мне помочь.
-//		TOPIC_END_Lucia = TRUE;
-		B_GivePlayerXP(XP_Ambient);
+		B_LogEntry(TOPIC_Addon_Lucia,"Похоже, что Люсия в полном порядке. Она сама ушла к бандитам и довольна своей новой жизнью.");
 	};
-	TOPIC_END_Lucia = TRUE;
+	MIS_LookingForLucia = LOG_SUCCESS;
+	B_CheckLog();
+};
+
+
+instance DIA_Addon_Lucia_SadElvrich(C_Info)
+{
+	npc = BDT_1091_Addon_Lucia;
+	nr = 2;
+	condition = DIA_Addon_Lucia_SadElvrich_Condition;
+	information = DIA_Addon_Lucia_SadElvrich_Info;
+	permanent = FALSE;
+	description = "А как же Элврих?";
+};
+
+
+func int DIA_Addon_Lucia_SadElvrich_Condition()
+{
+	if((MIS_LookingForLucia == LOG_SUCCESS) && (MIS_LuciasLetter == LOG_SUCCESS))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Addon_Lucia_SadElvrich_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Lucia_Khorinis_15_04_add");	//А как же Элврих?
+	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_06");	//С Элврихом я порвала!
+	AI_Output(other,self,"DIA_Addon_Lucia_Khorinis_15_04");	//Почему?
+	AI_Output(self,other,"DIA_Addon_Lucia_Khorinis_16_05");	//Он трус! Когда бандиты утащили меня, он даже не попытался мне помочь.
+	B_GivePlayerXP(XP_Ambient);
 };
 
 

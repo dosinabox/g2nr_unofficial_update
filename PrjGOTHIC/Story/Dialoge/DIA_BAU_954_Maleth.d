@@ -1,4 +1,13 @@
 
+func void B_InsertMalethWolf()
+{
+	if(Maleth_ersterWolf == FALSE)
+	{
+		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_SHEEP_06");
+		Maleth_ersterWolf = TRUE;
+	};
+};
+
 instance DIA_Maleth_EXIT(C_Info)
 {
 	npc = BAU_954_Maleth;
@@ -21,12 +30,9 @@ func int DIA_Maleth_EXIT_Condition()
 func void DIA_Maleth_EXIT_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_EXIT_15_00");	//Мне нужно идти.
+	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
-	if(Maleth_ersterWolf == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_SHEEP_06");
-		Maleth_ersterWolf = TRUE;
-	};
+	B_InsertMalethWolf();
 };
 
 
@@ -297,11 +303,7 @@ func void DIA_Maleth_KAP3_EXIT_Info()
 		AI_Output(self,other,"DIA_Maleth_Hallo_08_06");	//Ну а теперь ты похож на человека!
 		MalethArmorComment = TRUE;
 	};
-	if(Maleth_ersterWolf == FALSE)
-	{
-		Wld_InsertNpc(YWolf,"NW_FARM1_PATH_CITY_SHEEP_06");
-		Maleth_ersterWolf = TRUE;
-	};
+	B_InsertMalethWolf();
 	AI_StopProcessInfos(self);
 };
 

@@ -185,8 +185,6 @@ func int DIA_Addon_Nadja_LuciaInfo_Condition()
 };
 
 
-var int Nadja_GaveLuciaInfo;
-
 func void DIA_Addon_Nadja_LuciaInfo_Info()
 {
 	if(Nadja_LuciaInfo == TRUE)
@@ -201,7 +199,7 @@ func void DIA_Addon_Nadja_LuciaInfo_Info()
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_16_02");	//Бромору не нравится, когда мы разговариваем с гостями во время работы, если ему от этого никакой выгоды.
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_16_03");	//Итак, ты хочешь узнать побольше о людях, которые исчезли в порту, не так ли?
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_16_04");	//Я не знаю, смогу ли я тебе помочь, но по крайней мере я могу рассказать, что случилось с Люсией.
-	Nadja_GaveLuciaInfo = TRUE;
+	LuciaMentionedInKhorinis = TRUE;
 	Info_ClearChoices(DIA_Addon_Nadja_LuciaInfo);
 	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"А куда она исчезла?",DIA_Addon_Nadja_LuciaInfo_wo);
 	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Рассказывай.",DIA_Addon_Nadja_LuciaInfo_lucia);
@@ -221,10 +219,25 @@ func void DIA_Addon_Nadja_LuciaInfo_wo()
 	AI_Output(other,self,"DIA_Addon_Nadja_LuciaInfo_wo_15_00");	//А куда она исчезла?
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_wo_16_01");	//Она часто встречалась с Элврихом, подмастерьем плотника Торбена из нижней части города.
 	AI_Output(self,other,"DIA_Addon_Nadja_LuciaInfo_wo_16_02");	//Готова поспорить, что она уехала с этим парнем.
-	Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Lucia,"Шлюха Люсия исчезла из борделя Бромора прошлой ночью. Возможно, она сбежала вместе с Элврихом, учеником плотника Торбена.");
-	Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Куда они могли направиться?",DIA_Addon_Nadja_LuciaInfo_Elvrich);
+	if((SC_KnowsLuciaCaughtByBandits == FALSE) && (MIS_LuciasLetter != LOG_SUCCESS))
+	{
+		if(MIS_LookingForLucia == LOG_Running)
+		{
+			B_LogEntry(TOPIC_Addon_Lucia,"Возможно, Люсия сбежала вместе с Элврихом, учеником плотника Торбена.");
+		}
+		else if(MIS_LookingForLucia == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
+			B_LogEntry(TOPIC_Addon_Lucia,"Шлюха Люсия неожиданно исчезла из борделя Бромора. Возможно, она сбежала вместе с Элврихом, учеником плотника Торбена.");
+			MIS_LookingForLucia = LOG_Running;
+		};
+		Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Куда они могли направиться?",DIA_Addon_Nadja_LuciaInfo_Elvrich);
+	}
+	else
+	{
+		Info_AddChoice(DIA_Addon_Nadja_LuciaInfo,"Что еще ты знаешь?",DIA_Addon_Nadja_LuciaInfo_sonst);
+	};
 };
 
 func void DIA_Addon_Nadja_LuciaInfo_Elvrich()

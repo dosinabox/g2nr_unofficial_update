@@ -367,7 +367,7 @@ func int DIA_Addon_Daron_GuildHelp_Condition()
 
 func void DIA_Addon_Daron_GuildHelp_Info()
 {
-	if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild != GIL_NONE))
+	if((MIS_Addon_Vatras_Go2Daron == FALSE) && (other.guild != GIL_NONE) && (other.guild != GIL_NOV))
 	{
 		AI_Output(other,self,"DIA_Keroloth_KAP4_HELLO_15_00");	//У тебя такой расстроенный вид...
 	}

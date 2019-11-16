@@ -6644,3 +6644,82 @@ instance TREASURE_GLOW_CHILD(C_PARTICLEFX)
 	visalphaend = 255;
 };
 
+instance PICKTREASURE(C_PARTICLEFX)
+{
+	ppsvalue = 200;
+	ppsscalekeys_s = "1";
+	ppsissmooth = 1;
+	ppsfps = 10;
+	shptype_s = "POINT";
+	shpfor_s = "object";
+	shpoffsetvec_s = "0 1 0";
+	shpdistribtype_s = "RAND";
+	shpisvolume = 1;
+	shpdim_s = "0";
+	shpscalekeys_s = "0";
+	shpscaleislooping = 1;
+	shpscaleissmooth = 1;
+	shpscalefps = 2;
+	dirmode_s = "RAND";
+	dirangleheadvar = 40;
+	dirangleelev = 90;
+	dirangleelevvar = 30;
+	velavg = 0.1;
+	velvar = 0.05;
+	lsppartavg = 1200;
+	lsppartvar = 100;
+	flygravity_s = "0 -0.0001 0";
+	flycolldet_b = 3;
+	visname_s = "BPFX_GOLEM_A0.TGA";
+	visorientation_s = "VELO";
+	vistexisquadpoly = 1;
+	vistexanifps = 15;
+	vistexaniislooping = 1;
+	vistexcolorstart_s = "255 255 255";
+	vistexcolorend_s = "255 255 255";
+	vissizestart_s = "7 7";
+	vissizeendscale = 1;
+	visalphafunc_s = "BLEND";
+	visalphastart = 255;
+	visalphaend = 255;
+};
+
+instance PICKTREASURE_DUST(C_PARTICLEFX)
+{
+	ppsvalue = 100;
+	ppsscalekeys_s = "1";
+	ppsissmooth = 1;
+	ppsfps = 5;
+	shptype_s = "BOX";
+	shpfor_s = "object";
+	shpoffsetvec_s = "0 1 0";
+	shpdistribtype_s = "RAND";
+	shpisvolume = 1;
+	shpdim_s = "40 80 40";
+	shpscalekeys_s = "1";
+	shpscaleislooping = 1;
+	shpscaleissmooth = 1;
+	shpscalefps = 2;
+	dirmode_s = "RAND";
+	dirfor_s = "object";
+	dirangleheadvar = 50;
+	dirangleelev = 90;
+	dirangleelevvar = 20;
+	velavg = 0.06;
+	velvar = 0.01;
+	lsppartavg = 3000;
+	lsppartvar = 400;
+	flygravity_s = "0 0 0";
+	visname_s = "BADWEATHER.TGA";
+	visorientation_s = "NONE";
+	vistexisquadpoly = 1;
+	vistexanifps = 5;
+	vistexaniislooping = 2;
+	vistexcolorstart_s = "155 91 25";
+	vistexcolorend_s = "155 91 25";
+	vissizestart_s = "40 40";
+	vissizeendscale = 2;
+	visalphafunc_s = "BLEND";
+	visalphastart = 255;
+};
+

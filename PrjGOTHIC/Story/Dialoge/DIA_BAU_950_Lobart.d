@@ -293,38 +293,7 @@ func void DIA_Lobart_BuyClothes_Info()
 	};
 	Info_ClearChoices(DIA_Lobart_BuyClothes);
 	Info_AddChoice(DIA_Lobart_BuyClothes,"Это все еще слишком дорого для меня.",DIA_Lobart_BuyClothes_NotYet);
-	if(Wert_LobartsRuestung == 100)
-	{
-		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/0/0. (100 золотых)",DIA_Lobart_BuyClothes_BUY);
-	}
-	else if(Wert_LobartsRuestung == 90)
-	{
-		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/0/0. (90 золотых)",DIA_Lobart_BuyClothes_BUY);
-	}
-	else if(Wert_LobartsRuestung == 80)
-	{
-		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/0/0. (80 золотых)",DIA_Lobart_BuyClothes_BUY);
-	}
-	else if(Wert_LobartsRuestung == 70)
-	{
-		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/0/0. (70 золотых)",DIA_Lobart_BuyClothes_BUY);
-	}
-	else if(Wert_LobartsRuestung == 60)
-	{
-		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/0/0. (60 золотых)",DIA_Lobart_BuyClothes_BUY);
-	}
-	else if(Wert_LobartsRuestung == 50)
-	{
-		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/0/0. (50 золотых)",DIA_Lobart_BuyClothes_BUY);
-	}
-	else if(Wert_LobartsRuestung == 40)
-	{
-		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/0/0. (40 золотых)",DIA_Lobart_BuyClothes_BUY);
-	}
-	else
-	{
-		Info_AddChoice(DIA_Lobart_BuyClothes,"Купить рабочую одежду. Защита: 15/10/0/0. (30 золотых)",DIA_Lobart_BuyClothes_BUY);
-	};
+	Info_AddChoice(DIA_Lobart_BuyClothes,B_BuildPriceString("Купить рабочую одежду. Защита: 15/10/0/0.",Wert_LobartsRuestung),DIA_Lobart_BuyClothes_BUY);
 };
 
 func void DIA_Lobart_BuyClothes_BUY()
@@ -994,9 +963,9 @@ func void DIA_Lobart_ORKPROBLEM_Info()
 	AI_Output(other,self,"DIA_Lobart_ORKPROBLEM_15_00");	//У тебя проблемы с орками.
 	AI_Output(self,other,"DIA_Lobart_ORKPROBLEM_05_01");	//(зло) Черт. Ну когда-нибудь все это кончится?!
 	AI_Output(self,other,"DIA_Lobart_ORKPROBLEM_05_02");	//Если так будет продолжаться, моя ферма не будет стоить и трех золотых монет.
-	Log_CreateTopic(TOPIC_LobartsOrKProblem,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_LobartsOrKProblem,LOG_Running);
-	B_LogEntry(TOPIC_LobartsOrKProblem,"На ферме Лобарта поселились орки. Он хочет, чтобы я избавил его от них.");
+	Log_CreateTopic(TOPIC_LobartsOrkProblem,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_LobartsOrkProblem,LOG_Running);
+	B_LogEntry(TOPIC_LobartsOrkProblem,"На ферме Лобарта поселились орки. Он хочет, чтобы я избавил его от них.");
 	AI_StopProcessInfos(self);
 };
 
@@ -1033,7 +1002,7 @@ func void DIA_Lobart_ORKSWEG_Info()
 	B_StartOtherRoutine(Vino,"Start");
 	B_StartOtherRoutine(LobartsBauer1,"Start");
 	B_StartOtherRoutine(LobartsBauer2,"Start");
-	TOPIC_END_LobartsOrKProblem = TRUE;
+	TOPIC_END_LobartsOrkProblem = TRUE;
 	B_GivePlayerXP(XP_KilledLobartOrks);
 	CreateInvItems(self,ItMi_Gold,150);
 	B_GiveInvItems(self,other,ItMi_Gold,150);

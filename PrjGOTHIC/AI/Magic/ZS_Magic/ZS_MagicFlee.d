@@ -38,7 +38,7 @@ func void ZS_MagicFlee()
 		};
 		return;
 	};
-	if(Miliz_Flucht == FALSE)
+	if((Miliz_Flucht == FALSE) && (Kapitel < 3))
 	{
 		if(ScaredRick == FALSE)
 		{

@@ -712,19 +712,7 @@ func void DIA_Wolf_KnowWhereEnemy_Yes()
 	AI_Output(other,self,"DIA_Wolf_KnowWhereEnemy_Yes_15_00");	//Добро пожаловать на борт!
 	AI_Output(other,self,"DIA_Wolf_KnowWhereEnemy_Yes_15_01");	//Приходи в гавань. Мы скоро отправляемся.
 	AI_Output(self,other,"DIA_Wolf_KnowWhereEnemy_Yes_08_02");	//Можешь считать, что я уже там.
-	self.flags = NPC_FLAG_IMMORTAL;
-	Wolf_IsOnBoard = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Crewmember_Success);
-	Crewmember_Count += 1;
-	AI_StopProcessInfos(self);
-	if(MIS_ReadyforChapter6 == TRUE)
-	{
-		Npc_ExchangeRoutine(self,"SHIP");
-	}
-	else
-	{
-		Npc_ExchangeRoutine(self,"WAITFORSHIP");
-	};
+	B_JoinShip(self);
 };
 
 func void DIA_Wolf_KnowWhereEnemy_No()
@@ -732,7 +720,7 @@ func void DIA_Wolf_KnowWhereEnemy_No()
 	AI_Output(other,self,"DIA_Wolf_KnowWhereEnemy_No_15_00");	//Я еще немного подумаю.
 	AI_Output(self,other,"DIA_Wolf_KnowWhereEnemy_No_08_01");	//По-моему, ты просто болтун. Я не верю ни одному твоему слову. Проваливай.
 	Wolf_IsOnBoard = LOG_OBSOLETE;
-	Info_ClearChoices(DIA_Wolf_KnowWhereEnemy);
+	AI_StopProcessInfos(self);
 };
 
 

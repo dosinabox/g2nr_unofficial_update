@@ -352,7 +352,7 @@ instance DIA_Bennet_DI_BetterArmor(C_Info)
 	npc = SLD_809_Bennet_DI;
 	nr = 700;
 	condition = DIA_Bennet_DI_BetterArmor_Condition;
-	information = DIA_Bennet_DI_BetterArmor_Info;
+	information = DIA_Bennet_BetterArmor_Info;
 	permanent = FALSE;
 	description = "Я знаю, как можно еще улучшить доспехи.";
 };
@@ -366,61 +366,14 @@ func int DIA_Bennet_DI_BetterArmor_Condition()
 	};
 };
 
-func void DIA_Bennet_DI_BetterArmor_Info()
-{
-	AI_Output(other,self,"DIA_Bennet_BetterArmor_15_00");	//Я знаю, как можно еще улучшить доспехи.
-	AI_Output(self,other,"DIA_Bennet_BetterArmor_06_01");	//(ухмыляется про себя) Ну, расскажи мне.
-	AI_Output(other,self,"DIA_Bennet_BetterArmor_15_02");	//Можно покрыть драконьи чешуйки магической рудой.
-	AI_Output(self,other,"DIA_Bennet_BetterArmor_06_03");	//(смеется) Эта мысль приходила и ко мне. Да, ты прав.
-	AI_Output(self,other,"DIA_Bennet_BetterArmor_06_04");	//Мои новые доспехи превосходят все, что ты когда-либо видел. Они очень легкие и очень прочные.
-	AI_Output(self,other,"DIA_Bennet_BetterArmor_06_05");	//Они СОВЕРШЕННЫ.
-	AI_Output(self,other,"DIA_Bennet_BetterArmor_06_06");	//Ты можешь купить их, если хочешь. Я не предложил бы их абы кому, а цена только-только покрывает стоимость производства.
-};
-
-
 instance DIA_Bennet_DI_DJG_ARMOR_H(C_Info)
 {
 	npc = SLD_809_Bennet_DI;
 	nr = 800;
-	condition = DIA_Bennet_DI_DJG_ARMOR_H_Condition;
-	information = DIA_Bennet_DI_DJG_ARMOR_H_Info;
+	condition = DIA_Bennet_DJG_ARMOR_H_Condition;
+	information = DIA_Bennet_DJG_ARMOR_H_Info;
 	permanent = TRUE;
 	description = "Тяжелые доспехи охотника на драконов (150/150/100/50, 20000 золотых)";
 };
 
-
-func int DIA_Bennet_DI_DJG_ARMOR_H_Condition()
-{
-	if((Bennet_DIA_Bennet_DJG_ARMOR_H_permanent == FALSE) && (hero.guild == GIL_DJG) && (Npc_KnowsInfo(other,DIA_Bennet_BetterArmor) || Npc_KnowsInfo(other,DIA_Bennet_DI_BetterArmor)))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Bennet_DI_DJG_ARMOR_H_Info()
-{
-	AI_Output(other,self,"DIA_Bennet_DJG_ARMOR_H_15_00");	//Дай мне доспехи.
-	if(Npc_HasItems(other,ItMi_Gold) >= VALUE_ITAR_DJG_H)
-	{
-		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_01");	//Это лучшие доспехи из того, что я когда-либо делал.
-		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_02");	//Настоящее произведение искусства.
-		B_GiveInvItems(other,self,ItMi_Gold,VALUE_ITAR_DJG_H);
-		if(Helmets_Enabled == TRUE)
-		{
-			CreateInvItem(hero,ITAR_DJGN_H);
-			CreateInvItem(hero,ITHE_DJG_H);
-		}
-		else
-		{
-			CreateInvItem(hero,ITAR_DJG_H);
-		};
-		AI_PrintScreen("Тяжелые доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_DJG_H);
-		Bennet_DIA_Bennet_DJG_ARMOR_H_permanent = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Bennet_DJG_ARMOR_H_06_03");	//У тебя недостаточно золота.
-	};
-};
 

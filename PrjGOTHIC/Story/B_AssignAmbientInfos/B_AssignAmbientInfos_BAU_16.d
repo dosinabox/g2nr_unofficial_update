@@ -32,7 +32,7 @@ instance DIA_BAU_16_JOIN(C_Info)
 
 func int DIA_BAU_16_JOIN_Condition()
 {
-	if(Kapitel == 1)
+	if((hero.guild != GIL_SLD) && (hero.guild != GIL_DJG))
 	{
 		return TRUE;
 	};

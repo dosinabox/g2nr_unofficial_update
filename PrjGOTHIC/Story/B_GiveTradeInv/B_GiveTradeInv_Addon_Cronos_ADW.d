@@ -43,6 +43,8 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Thunderstorm,2);
 		CreateInvItems(slf,ItSc_Waterfist,1);
 		CreateInvItems(slf,ItSc_SumWolf,2);
+		CreateInvItems(slf,ITWr_Addon_Health_04,1);
+		CreateInvItems(slf,ITWr_Addon_Mana_04,1);
 		//перенос инвентаря из Хориниса
 		if(Cronos_NW_ItMi_Flask_Count > 0)
 		{
@@ -96,7 +98,6 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Cronos_ADW_ItemsGiven_Chapter_3 == FALSE))
 	{
-//		CreateInvItems(slf,ItMi_Gold,100);
 		CreateInvItems(slf,ItMi_Sulfur,2);
 		CreateInvItems(slf,ItMi_Quartz,2);
 		CreateInvItems(slf,ItMi_Rockcrystal,2);
@@ -146,6 +147,7 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		CreateInvItems(slf,ItSc_SumGol,3);
 		CreateInvItems(slf,ItSc_HarmUndead,2);
 		CreateInvItems(slf,ItSc_ChargeFireBall,3);
+		CreateInvItems(slf,ItSc_TrfLurker,1);
 		CreateInvItems(slf,ItSc_TrfSnapper,1);
 		CreateInvItems(slf,ItSc_TrfWarg,1);
 		CreateInvItems(slf,ItSc_Icelance,3);
@@ -183,7 +185,6 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Thunderstorm,3);
 		CreateInvItems(slf,ItSc_Waterfist,3);
 		CreateInvItems(slf,ItMi_RuneBlank,1);
-		CreateInvItems(slf,ItSc_TrfLurker,1);
 		CreateInvItems(slf,ItSc_TrfDragonSnapper,1);
 		Cronos_ADW_ItemsGiven_Chapter_5 = TRUE;
 	};

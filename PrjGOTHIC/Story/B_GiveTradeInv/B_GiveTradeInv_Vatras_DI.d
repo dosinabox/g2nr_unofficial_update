@@ -70,6 +70,7 @@ func void B_GiveTradeInv_Vatras_DI(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_03,30);
 		CreateInvItems(slf,ItPo_Mana_02,30);
 		CreateInvItems(slf,ItPo_Mana_03,20);
+		CreateInvItems(slf,ItBe_Addon_Prot_MAGIC,1);
 		Vatras_DI_ItemsGiven = TRUE;
 	};
 };

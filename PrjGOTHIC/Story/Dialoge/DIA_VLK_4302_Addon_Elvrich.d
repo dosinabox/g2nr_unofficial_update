@@ -173,6 +173,7 @@ func void DIA_Addon_Elvrich_WhatExactly_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_04_02");	//Ее зовут Люсия. Мы собирались направиться к горам, подальше от города и всех, кто там живет.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_04_03");	//Я дошел до места, где ждала меня Люсия, и вдруг появились бандиты и схватили нас обоих.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhatExactly_04_04");	//Конечно, я сопротивлялся, но их было слишком много. Ты, кстати, их не встречал?
+	LuciaMentionedInKhorinis = TRUE;
 	Info_ClearChoices(DIA_Addon_Elvrich_WhatExactly);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Расскажи мне о Люсии.",DIA_Addon_Elvrich_WhatExactly_lucia);
 	Info_AddChoice(DIA_Addon_Elvrich_WhatExactly,"Что хотели от тебя бандиты?",DIA_Addon_Elvrich_WhatExactly_Want);
@@ -285,7 +286,7 @@ instance DIA_Addon_Elvrich_WhereIsLucia(C_Info)
 
 func int DIA_Addon_Elvrich_WhereIsLucia_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && (MIS_LuciasLetter != LOG_SUCCESS))
+	if(Npc_KnowsInfo(other,DIA_Addon_Elvrich_WhatExactly) && (MIS_LuciasLetter != LOG_SUCCESS) && (MIS_LookingForLucia != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -297,9 +298,16 @@ func void DIA_Addon_Elvrich_WhereIsLucia_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhereIsLucia_04_01");	//Мы разделились на большом перекрестке перед фермой Онара.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhereIsLucia_04_02");	//Люсию бандиты утащили в лес за фермой Секоба.
 	AI_Output(self,other,"DIA_Addon_Elvrich_WhereIsLucia_04_03");	//Да защитит ее Иннос.
-	Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Lucia,"Люсию увели бандиты. Они направились в лес, который находится к северу от фермы Секоба.");
+	if(MIS_LookingForLucia == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
+		MIS_LookingForLucia = LOG_Running;
+	};
+	if(MIS_LookingForLucia == LOG_Running)
+	{
+		B_LogEntry(TOPIC_Addon_Lucia,"Люсию увели бандиты. Они направились в лес, который находится к северу от фермы Секоба.");
+	};
 	SC_KnowsLuciaCaughtByBandits = TRUE;
 };
 
@@ -362,11 +370,18 @@ func void DIA_Addon_Elvrich_LuciaLetter_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_03");	//(в отчаянии) Она не может меня вот так вот бросить.
 	AI_Output(self,other,"DIA_Addon_Elvrich_LuciaLetter_04_04");	//Забери это письмо! Я не хочу его видеть. Я верю, что когда-нибудь она ко мне вернется.
 	AI_PrintScreen("Прощальное письмо Люсии получено",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-	Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Lucia,"Элврих не хочет верить, что Люсия ушла с бандитами добровольно. Несмотря на письмо, которое она ему написала, он все еще надеется на ее возвращение.");
-	B_GivePlayerXP(XP_Addon_LuciasLetter);
 	MIS_LuciasLetter = LOG_SUCCESS;
+	if(MIS_LookingForLucia == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_Lucia,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Lucia,LOG_Running);
+		MIS_LookingForLucia = LOG_Running;
+	};
+	if((MIS_LookingForLucia == LOG_Running) || (MIS_LookingForLucia == LOG_SUCCESS))
+	{
+		B_LogEntry(TOPIC_Addon_Lucia,"Элврих не хочет верить, что Люсия ушла с бандитами добровольно. Несмотря на письмо, которое она ему написала, он все еще надеется на ее возвращение.");
+	};
+	B_GivePlayerXP(XP_Addon_LuciasLetter);
 };
 
 

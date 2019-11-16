@@ -68,7 +68,11 @@ instance DIA_SLD_6_PEOPLE(C_Info)
 
 func int DIA_SLD_6_PEOPLE_Condition()
 {
-	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	if((other.guild == GIL_SLD) && (Kapitel == 1))
+	{
+		return TRUE;
+	}
+	else if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		return TRUE;
 	};
@@ -160,6 +164,13 @@ func void DIA_SLD_6_STANDARD_Info()
 		else
 		{
 			AI_Output(self,other,"DIA_SLD_6_STANDARD_06_08");	//Если Беннета не выпустят из тюрьмы, мы сами пойдем туда и освободим его.
+			if(MIS_RescueBennet != LOG_Running)
+			{
+				MIS_RescueBennet = LOG_Running;
+				Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+				Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+				B_LogEntry(TOPIC_RescueBennet,"У кузнеца Беннета серьезные проблемы. Говорят, что он был арестован.");
+			};
 		};
 	};
 	if(Kapitel == 4)

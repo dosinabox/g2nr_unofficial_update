@@ -8,6 +8,7 @@ func void B_GiveTradeInv_Diego_DI(var C_Npc slf)
 		CreateInvItems(slf,ItRw_Arrow,150);
 		CreateInvItems(slf,ItRw_Bolt,120);
 		CreateInvItems(slf,ItKe_Lockpick,20);
+		CreateInvItems(slf,ItBe_Addon_DEX_10,1);
 		/*CreateInvItems(slf,ItRw_Bow_L_01,1);
 		if(Bennet_IsOnBoard != LOG_SUCCESS)
 		{

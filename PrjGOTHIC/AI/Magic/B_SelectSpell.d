@@ -272,7 +272,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			return TRUE;
 		};
 	};
-	if(slf.guild == GIL_ICEGOLEM)
+	/*if(slf.guild == GIL_ICEGOLEM)
 	{
 		if(!Npc_HasItems(slf,ItRu_IceCube))
 		{
@@ -281,6 +281,31 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		if((Npc_GetDistToNpc(slf,oth) < FIGHT_DIST_MELEE) || Npc_IsInState(oth,ZS_MagicFreeze))
 		{
 			return FALSE;
+		}
+		else
+		{
+			B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
+			return TRUE;
+		};
+	};*/
+	if(slf.guild == GIL_ICEGOLEM)
+	{
+		if(!Npc_HasItems(slf,ItRu_Icelance))
+		{
+			CreateInvItems(slf,ItRu_Icelance,1);
+		};
+		if(!Npc_HasItems(slf,ItRu_IceCube))
+		{
+			CreateInvItems(slf,ItRu_IceCube,1);
+		};
+		if(Npc_GetDistToNpc(slf,oth) < FIGHT_DIST_MELEE)
+		{
+			return FALSE;
+		}
+		else if(Npc_IsInState(oth,ZS_MagicFreeze))
+		{
+			B_ReadySpell(slf,SPL_Icelance,SPL_Cost_Icelance);
+			return TRUE;
 		}
 		else
 		{

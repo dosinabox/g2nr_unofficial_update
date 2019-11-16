@@ -4,7 +4,7 @@ instance PAL_254_Wache(Npc_Default)
 	name[0] = NAME_Ritter;
 	guild = GIL_PAL;
 	id = 254;
-	voice = 4;
+	voice = 9;
 	flags = 0;
 	npcType = NPCTYPE_OCAMBIENT;
 	B_SetAttributesToChapter(self,4);

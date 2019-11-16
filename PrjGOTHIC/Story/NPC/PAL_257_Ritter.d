@@ -4,9 +4,9 @@ instance PAL_257_Ritter(Npc_Default)
 	name[0] = NAME_Ritter;
 	guild = GIL_PAL;
 	id = 257;
-	voice = 9;
+	voice = 4;
 	flags = NPC_FLAG_IMMORTAL;
-	npcType = NPCTYPE_OCAMBIENT;
+	npcType = NPCTYPE_OWAMBIENT;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 	EquipItem(self,ItMw_1h_Pal_Sword);

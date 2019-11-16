@@ -6,7 +6,7 @@ instance PAL_219_Ritter(Npc_Default)
 	id = 218;
 	voice = 4;
 	flags = 0;
-	npcType = NPCTYPE_OCAMBIENT;
+	npcType = NPCTYPE_OWAMBIENT;
 	aivar[AIV_ToughGuy] = TRUE;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_NORMAL;

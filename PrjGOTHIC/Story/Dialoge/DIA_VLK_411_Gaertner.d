@@ -164,13 +164,13 @@ func int DIA_Gaertner_Krautabak_Condition()
 func void DIA_Gaertner_Krautabak_Info()
 {
 	AI_Output(other,self,"DIA_Gaertner_Krautabak_15_00");	//У меня есть травяной табак. Хочешь затянуться?
-	AI_Output(self,other,"DIA_Gaertner_Krautabak_09_01");	//Даже не знаю... А, ладно, давай. Покурю немного.
+	AI_Output(self,other,"DIA_Gaertner_Krautabak_09_01");	//Хм, даже не знаю... А, ладно, давай. Покурю немного.
 	B_GiveInvItems(other,self,ItMi_SumpfTabak,1);
 	Npc_RemoveInvItem(self,ItMi_SumpfTabak);
 	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);
 	AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-	AI_Output(self,other,"DIA_Gaertner_Krautabak_09_02");	//Хха... кха-кха....
+	AI_Output(self,other,"DIA_Gaertner_Krautabak_09_02");	//Ах-х... кхи-кха-кхо-кха-кх...
 	AI_PlayAni(self,"T_HEASHOOT_2_STAND");
 	AI_Output(self,other,"DIA_Gaertner_Krautabak_09_03");	//Ядреная штука. Что-то мне расхотелось курить это.
 	B_GivePlayerXP(XP_Ambient);

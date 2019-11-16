@@ -182,7 +182,7 @@ instance ItMW_Addon_Stab05(C_Item)
 	material = MAT_WOOD;
 	value = Value_Stab05;
 	damageTotal = Damage_Stab05;
-	damagetype = DAM_BLUNT;
+	damagetype = DAM_EDGE;
 	range = Range_Stab05;
 	on_equip = Equip_2H_05;
 	on_unequip = UnEquip_2H_05;
@@ -447,7 +447,7 @@ instance ItMw_Addon_PIR2hSword(C_Item)
 	value = Value_PIR2hSword;
 	damageTotal = Damage_PIR2hSword;
 	damagetype = DAM_EDGE;
-	range = Range_PIR2hAxe;
+	range = 115;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_PIR2hSword;
 //	visual = "ItMw_070_2h_sword_09.3DS";

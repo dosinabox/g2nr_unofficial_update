@@ -52,7 +52,7 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(TOPIC_Warehouse,MIS_Andre_WAREHOUSE,0,6);
 	B_CloseTopic(TOPIC_Redlight,MIS_Andre_REDLIGHT,0,6);
 	B_CloseTopic(TOPIC_Feldraeuber,MIS_AndreHelpLobart,0,6);
-	B_CloseTopic(Topic_Kloster,0,NOV_Aufnahme,2);
+	B_CloseTopic(Topic_Kloster,NOV_Aufnahme,0,2);
 	B_CloseTopic(Topic_Gemeinschaft,MIS_KlosterArbeit,0,2);
 	B_CloseTopic(Topic_Neorasrezept,MIS_NeorasRezept,0,2);
 	B_CloseTopic(Topic_NeorasPflanzen,MIS_NeorasPflanzen,0,2);
@@ -62,7 +62,7 @@ func void B_CloseTopics_Mattes()
 	B_CloseTopic(Topic_GoraxWein,MIS_GoraxWein,0,2);
 	B_CloseTopic(Topic_OpolosRezept,Opolos_Rezept,0,2);
 	B_CloseTopic(Topic_MardukBeten,MIS_MardukBeten,0,2);
-	B_CloseTopic(Topic_BaboTrain,0,Babo_Training,2);
+	B_CloseTopic(Topic_BaboTrain,0,Babo_Training,6);
 	B_CloseTopic(Topic_KarrasCharm,MIS_KarrasVergessen,0,2);
 	B_CloseTopic(TOPIC_FireContest,0,Fire_Contest,2);
 	B_CloseTopic(TOPIC_Golem,MIS_GOLEM,0,2);

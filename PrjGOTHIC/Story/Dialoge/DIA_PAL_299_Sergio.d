@@ -173,7 +173,7 @@ instance DIA_Sergio_Babo(C_Info)
 
 func int DIA_Sergio_Babo_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && (other.guild == GIL_NOV) && Npc_KnowsInfo(other,DIA_Babo_Anliegen))
+	if((Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500) && Npc_KnowsInfo(other,DIA_Babo_Anliegen))
 	{
 		return TRUE;
 	};
@@ -189,6 +189,7 @@ func void DIA_Sergio_Babo_Info()
 	Npc_ExchangeRoutine(self,"TRAIN");
 	B_StartOtherRoutine(Babo,"TRAIN");
 	B_LogEntry(Topic_BaboTrain,"Сержио согласился тренировать Бабо по два часа каждое утро.");
+	B_CheckLog();
 };
 
 

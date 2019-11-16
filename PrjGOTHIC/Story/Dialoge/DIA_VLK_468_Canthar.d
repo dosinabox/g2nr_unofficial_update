@@ -73,7 +73,10 @@ func void B_Canthar_Fail()
 {
 	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_00");	//Я предупреждал тебя, но ты не слушал. Мы обсудим этот вопрос позже.
 	AI_Output(self,other,"DIA_Canthar_CANTHARANGEPISST_09_01");	//А теперь проваливай, я хочу отдохнуть.
-	AI_StopProcessInfos(self);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKPOCKET) || (self.aivar[AIV_PlayerHasPickedMyPocket] == TRUE))
+	{
+		AI_StopProcessInfos(self);
+	};
 };
 
 instance DIA_Canthar_PersonalCRIMES(C_Info)
@@ -89,9 +92,26 @@ instance DIA_Canthar_PersonalCRIMES(C_Info)
 
 func int DIA_Canthar_PersonalCRIMES_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightComment] == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) && (Canthar_Sperre == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightComment] == FALSE) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE))
 	{
-		return TRUE;
+		if(Canthar_Ausgeliefert == FALSE)
+		{
+			if(Canthar_Sperre == FALSE)
+			{
+				//не был в тюрьме, торговцы не игнорят
+				return TRUE;
+			}
+			else
+			{
+				//не был в тюрьме, торговцы игнорят
+				return FALSE;
+			};
+		}
+		else if(Canthar_Sperre == FALSE)
+		{
+			//был в тюрьме, вышел, торговцы не игнорят
+			return TRUE;
+		};
 	};
 };
 
@@ -272,7 +292,7 @@ func void DIA_Canthar_WhatOffer_HowYouIn()
 func void DIA_Canthar_WhatOffer_Price()
 {
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_Price_15_00");	//Что ты хочешь за этот пропуск?
-	AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_01");	//(удовлетворенно) Я ЗНАЛ, что не ошибся в тебе!
+	AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_01");	//(удовлетворенно) Я знал, что не ошибся в тебе!
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_02");	//Послушай. Ты получишь от меня пропуск. Прямо сейчас!
 	AI_Output(other,self,"DIA_Canthar_WhatOffer_Price_15_03");	//Просто так?
 	AI_Output(self,other,"DIA_Canthar_WhatOffer_Price_09_04");	//Да. НО: если я встречу тебя в городе, ты будешь должен оказать мне услугу.
@@ -321,7 +341,7 @@ instance DIA_Canthar_TRADE(C_Info)
 
 func int DIA_Canthar_TRADE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Canthar_WhatOffer))
+	if(Npc_KnowsInfo(other,DIA_Canthar_WhatOffer) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_RENGARU") > 1000))
 	{
 		return TRUE;
 	};

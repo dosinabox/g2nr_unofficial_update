@@ -210,7 +210,8 @@ prototype BeliarWeaponPrototype_2H(C_Item)
 	flags = ITEM_2HD_SWD;
 	material = MAT_METAL;
 	damagetype = DAM_EDGE;
-	range = Range_Drachenschneide;
+//	range = Range_Drachenschneide;
+	range = 140;
 	effect = "SPELLFX_FIRESWORDBLACK";
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_VLKDolch;

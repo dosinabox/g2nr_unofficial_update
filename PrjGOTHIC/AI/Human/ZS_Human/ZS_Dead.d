@@ -40,6 +40,7 @@ func void ZS_Dead()
 		};
 	};
 	B_CheckDeadMissionNPCs(self);
+	B_UpdateKilledStats(self);
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Stoneguardian_NailedValleyShowcase_01))
 	{
 		if((MayaScrollGiven == FALSE) && !Npc_GetTalentSkill(hero,NPC_TALENT_ACROBAT))
@@ -91,17 +92,6 @@ func void ZS_Dead()
 		{
 			Grimbald_Snappers_KilledByPlayer = TRUE;
 		};
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Franco))
-		{
-			if(MIS_HlpLogan == LOG_Running)
-			{
-				MIS_HlpLogan = LOG_OBSOLETE;
-			};
-			if(MIS_HlpEdgor == LOG_Running)
-			{
-				MIS_HlpEdgor = LOG_OBSOLETE;
-			};
-		};
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
 	{
@@ -112,6 +102,10 @@ func void ZS_Dead()
 			B_StartOtherRoutine(Bloodwyn,"MINE");
 			Bloodwyn_Spawn = TRUE;
 		};
+	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(OrcWarrior_Harad))
+	{
+		CityOrc_Killed_Day = Wld_GetDay();
 	};
 	B_GiveTradeInv(self);
 	B_GiveDeathInv(self);
