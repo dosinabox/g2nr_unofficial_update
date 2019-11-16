@@ -9,8 +9,9 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "22"
+!define MOD_VERSION "23"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
+!define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.30.8"
 !define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius"
 !define INSTALLER_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}_install"
@@ -22,7 +23,7 @@ OutFile "${INSTALLER_NAME}.exe"
 VIProductVersion "${MOD_DETAILED_VERSION}"
 VIAddVersionKey "FileVersion" "${INSTALLER_VERSION}"
 VIAddVersionKey "LegalCopyright" "© ${MOD_AUTHOR}"
-VIAddVersionKey "FileDescription" "Неофициальное обновление Г2НВ"
+VIAddVersionKey "FileDescription" "${MOD_NAME_RU}"
 VIAddVersionKey "ProductVersion" "1.${MOD_VERSION}"
 
 Unicode true
@@ -40,18 +41,17 @@ SetCompressor lzma
 !define MUI_WELCOMEFINISHPAGE_BITMAP "pic.bmp"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP "pic.bmp"
 
-Caption "Неофициальное обновление Г2НВ (v${MOD_VERSION}) - установка"
+Caption "${MOD_NAME_RU} (v${MOD_VERSION}) - установка"
 !define MUI_TEXT_WELCOME_INFO_TITLE " "
 !define MUI_TEXT_WELCOME_INFO_TEXT "Данное обновление исправляет множество различных ошибок и недоработок в игре «Готика 2: Ночь Ворона». Установка рекомендуется на русскую версию игры от Акеллы с установленным Player Kit. Старые сохренения любой другой версии не поддерживаются: начало новой игры обязательно!"
 
 !define MUI_TEXT_DIRECTORY_SUBTITLE " "
 DirText "Программа установит неофициальное обновление в указанную папку. \
-$\n$\nЧтобы установить неофициальное обновление в другую папку, нажмите кнопку  'Обзор ...'  и укажите ее."
+$\n$\nЧтобы установить неофициальное обновление в другую папку, нажмите кнопку 'Обзор ...' и укажите ее."
 
 !define MUI_TEXT_COMPONENTS_TITLE "Выбор компонентов для установки"
 !define MUI_TEXT_COMPONENTS_SUBTITLE " "
-!define MUI_COMPONENTSPAGE_TEXT_TOP "Выберите компоненты обновления, которые вы хотите установить.$\nНажмите кнопку \
-'Установить' для продолжения."
+!define MUI_COMPONENTSPAGE_TEXT_TOP "Выберите компоненты обновления, которые вы хотите установить.$\nНажмите кнопку 'Установить' для продолжения."
 !define MUI_COMPONENTSPAGE_TEXT_COMPLIST "Компоненты для установки:"
 !define MUI_COMPONENTSPAGE_SMALLDESC
 
@@ -59,15 +59,15 @@ $\n$\nЧтобы установить неофициальное обновление в другую папку, нажмите кнопку  
 !define MUI_TEXT_INSTALLING_SUBTITLE " "
 
 !define MUI_TEXT_FINISH_INFO_TITLE "$\t   $\n$\tУстановка завершена!"
-!define MUI_TEXT_FINISH_INFO_TEXT "Приятной игры! Нажмите кнопку  'Готово'  для завершения."
+!define MUI_TEXT_FINISH_INFO_TEXT "Приятной игры! Нажмите кнопку 'Готово' для завершения."
 
-UninstallCaption "Неофициальное обновление Г2НВ (v${MOD_VERSION}) - удаление"
+UninstallCaption "${MOD_NAME_RU} (v${MOD_VERSION}) - удаление"
 
 !define MUI_UNTEXT_COMPONENTS_TITLE "Выбор компонентов для удаления"
 !define MUI_UNTEXT_COMPONENTS_SUBTITLE " "
 
 !define MUI_UNTEXT_FINISH_INFO_TITLE " "
-!define MUI_UNTEXT_FINISH_INFO_TEXT "Все выбранные компоненты неофициального обновления удалены из папки с игрой. Нажмите кнопку  'Готово'  для завершения."
+!define MUI_UNTEXT_FINISH_INFO_TEXT "Все выбранные компоненты неофициального обновления удалены из папки с игрой. Нажмите кнопку 'Готово' для завершения."
 
 BrandingText " "
 
@@ -85,8 +85,7 @@ BrandingText " "
 ##    Страницы  деинсталлятора   ##
 ###################################
 
-!define MUI_COMPONENTSPAGE_TEXT_TOP "Выберите компоненты неофициального обновления, которые вы хотите удалить.$\nНажмите кнопку  \
-'Удалить'  для продолжения."
+!define MUI_COMPONENTSPAGE_TEXT_TOP "Выберите компоненты неофициального обновления, которые вы хотите удалить.$\nНажмите кнопку 'Удалить' для продолжения."
 !define MUI_COMPONENTSPAGE_TEXT_COMPLIST "Компоненты для удаления:"
 !insertmacro MUI_UNPAGE_COMPONENTS
 !insertmacro MUI_UNPAGE_INSTFILES
@@ -136,7 +135,7 @@ Section "Основные файлы" SecMain
 	WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}.exe"
 
 	WriteRegStr HKCU "Software\${MOD_NAME}" "InstallLocation" $INSTDIR
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "DisplayName" "Неофициальное обновление Г2НВ (v${MOD_VERSION})" 
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "DisplayName" "${MOD_NAME_RU} (v${MOD_VERSION})" 
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "DisplayVersion" "${MOD_DETAILED_VERSION}" 
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "InstallLocation" "$INSTDIR"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "UninstallString" "$INSTDIR\${UNINSTALLER_NAME}.exe"

@@ -122,8 +122,8 @@ func void B_SetHeroExp(var int levels)
 	hero.lp = 0;
 	B_LevelUp(levels);
 	hero.exp = (XP_PER_LEVEL / 2) * (hero.level + 1) * hero.level;
-	PrintScreen(ConcatStrings("Здоровье: ",IntToString(hero.attribute[ATR_HITPOINTS_MAX])),-1,53,FONT_Screen,2);
-	PrintScreen(ConcatStrings("Очки обучения: ",IntToString(hero.lp)),-1,56,FONT_Screen,2);
+	PrintScreen(ConcatStrings("Здоровье: ",IntToString(hero.attribute[ATR_HITPOINTS_MAX])),-1,55,FONT_Screen,2);
+	PrintScreen(ConcatStrings("Очки обучения: ",IntToString(hero.lp)),-1,60,FONT_Screen,2);
 };
 
 func void B_SetHeroWeapon()
