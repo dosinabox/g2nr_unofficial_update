@@ -547,10 +547,6 @@ func int DIA_Oric_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItSc_PalRepelEvil))
 	{
 		return C_StealItem(85,Hlp_GetInstanceID(ItSc_PalRepelEvil));
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 

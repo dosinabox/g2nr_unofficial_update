@@ -165,10 +165,6 @@ func int DIA_Addon_Emilio_Attentat_Condition()
 	else if(MIS_Judas == LOG_Running)
 	{
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 

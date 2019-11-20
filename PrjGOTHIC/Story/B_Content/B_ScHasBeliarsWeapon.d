@@ -245,6 +245,7 @@ func int C_ScCanUpgrateBeliarsWeapon()
 	{
 		return TRUE;
 	};
+	return FALSE;
 };
 
 func void B_UpgrateBeliarsWeapon()

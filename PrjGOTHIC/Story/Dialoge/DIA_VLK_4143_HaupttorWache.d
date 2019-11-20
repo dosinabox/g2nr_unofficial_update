@@ -109,13 +109,9 @@ func int DIA_Haupttorwache_PICKPOCKET_Condition()
 //	if(C_StealItems(20,Hlp_GetInstanceID(ItKe_OC_MainGate_MIS),1) && Npc_KnowsInfo(other,DIA_Torlof_BEMYCAPTAIN))
 	if(Npc_HasItems(self,ItKe_OC_MainGate_MIS) && Npc_KnowsInfo(other,DIA_Torlof_BEMYCAPTAIN))
 	{
-//		return TRUE;
 		return C_StealItem(20,Hlp_GetInstanceID(ItKe_OC_MainGate_MIS));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Haupttorwache_PICKPOCKET_Info()

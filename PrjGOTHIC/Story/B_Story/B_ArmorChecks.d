@@ -88,11 +88,8 @@ func int AnyRangerRingEquipped()
 	if((RangerRingIsLaresRing == TRUE) || (RangerRingIsMyRing == TRUE) || (RangerRingIsLanceRing == TRUE))
 	{
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void B_BaltramRangerCheck(var C_Npc oth)

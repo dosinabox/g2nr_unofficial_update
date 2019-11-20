@@ -436,11 +436,8 @@ func int DIA_Sentenza_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItMi_GoldRing))
 	{
 		return C_StealItem(56,Hlp_GetInstanceID(ItMi_GoldRing));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Sentenza_PICKPOCKET_Info()

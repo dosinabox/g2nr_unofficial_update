@@ -38,11 +38,8 @@ func int DIA_Wambo_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItKe_City_Tower_04))
 	{
 		return C_StealItem(50,Hlp_GetInstanceID(ItKe_City_Tower_04));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Wambo_PICKPOCKET_Info()

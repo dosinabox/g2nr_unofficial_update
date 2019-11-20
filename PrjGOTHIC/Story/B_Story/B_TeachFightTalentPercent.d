@@ -209,5 +209,6 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 			return TRUE;
 		};
 	};
+	return FALSE;
 };
 

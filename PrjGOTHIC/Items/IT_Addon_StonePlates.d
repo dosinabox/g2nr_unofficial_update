@@ -80,6 +80,7 @@ func int C_SCHasStPlSkill()
 			return TRUE;
 		};
 	};
+	return FALSE;
 };
 
 func void Use_StonePlate()
@@ -1072,6 +1073,7 @@ func int C_ScHasColoredStonePlate()
 	{
 		return TRUE;
 	};
+	return FALSE;
 };
 
 func int C_ScHasMagicStonePlate()
@@ -1172,5 +1174,6 @@ func int C_ScHasMagicStonePlate()
 	{
 		return TRUE;
 	};
+	return FALSE;
 };
 

@@ -155,7 +155,7 @@ instance DIA_Gaertner_Krautabak(C_Info)
 
 func int DIA_Gaertner_Krautabak_Condition()
 {
-	if(Npc_HasItems(other,ItMi_SumpfTabak) && Wld_IsTime(6,45,21,45) && Npc_KnowsInfo(other,DIA_Gaertner_Plants))
+	if(Npc_HasItems(other,ItMi_SumpfTabak) && Npc_KnowsInfo(other,DIA_Gaertner_Plants))
 	{
 		return TRUE;
 	};
@@ -166,6 +166,11 @@ func void DIA_Gaertner_Krautabak_Info()
 	AI_Output(other,self,"DIA_Gaertner_Krautabak_15_00");	//У меня есть травяной табак. Хочешь затянуться?
 	AI_Output(self,other,"DIA_Gaertner_Krautabak_09_01");	//Хм, даже не знаю... А, ладно, давай. Покурю немного.
 	B_GiveInvItems(other,self,ItMi_SumpfTabak,1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_Standup(self);
+		B_TurnToNpc(self,other);
+	};
 	Npc_RemoveInvItem(self,ItMi_SumpfTabak);
 	CreateInvItem(self,ItMi_Joint);
 	B_UseItem(self,ItMi_Joint);

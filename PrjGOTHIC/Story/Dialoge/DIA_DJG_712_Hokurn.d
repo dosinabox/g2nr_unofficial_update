@@ -37,6 +37,7 @@ func int C_GotDrinkForHokurn()
 	{
 		return TRUE;
 	};
+	return FALSE;
 };
 
 func void B_GiveDrinkToHokurn()
@@ -598,7 +599,7 @@ func void DIA_Hokurn_Dragon_Info()
 	if(FreDragnIsDead == FALSE)
 	{
 		AI_Output(self,other,"DIA_Hokurn_Dragon_01_02");	//Прошлой ночью над самой высокой горой мы видели багровое свечение.
-		AI_Output(self,other,"DIA_Hokurn_Dragon_01_03");	//Готов поклясться свой матерью, что если ты ищешь драконов, одного из них ты найдешь там.
+		AI_Output(self,other,"DIA_Hokurn_Dragon_01_03");	//Готов поклясться своей матерью, что если ты ищешь драконов, одного из них ты найдешь там.
 	};
 };
 

@@ -40,5 +40,6 @@ func int B_TeachThiefTalent(var C_Npc slf,var C_Npc oth,var int talent)
 		Log_CreateTopic(Topic_PickPocket,LOG_NOTE);
 		return TRUE;
 	};
+	return FALSE;
 };
 

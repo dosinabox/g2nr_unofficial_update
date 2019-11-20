@@ -286,6 +286,7 @@ func int DIA_Zuris_Kloster_Condition()
 	{
 		return FALSE;
 	};
+	return TRUE;
 };
 
 func void DIA_Zuris_Kloster_Info()
