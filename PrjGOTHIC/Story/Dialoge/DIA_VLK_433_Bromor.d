@@ -369,7 +369,6 @@ func int DIA_Bromor_PICKPOCKET_Condition()
 	{
 		return C_StealItem(50,Hlp_GetInstanceID(ItKe_Bromor));
 	};
-	return FALSE;
 };
 
 func void DIA_Bromor_PICKPOCKET_Info()

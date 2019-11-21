@@ -447,7 +447,6 @@ func int DIA_Engor_PICKPOCKET_Condition()
 	{
 		return C_StealItem(40,Hlp_GetInstanceID(ItWr_Map_OldWorld));
 	};
-	return FALSE;
 };
 
 func void DIA_Engor_PICKPOCKET_Info()

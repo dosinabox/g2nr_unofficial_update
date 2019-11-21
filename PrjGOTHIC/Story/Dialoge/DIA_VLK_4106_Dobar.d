@@ -248,7 +248,6 @@ func int DIA_Dobar_PICKPOCKET_Condition()
 	{
 		return C_StealItem(79,Hlp_GetInstanceID(ItMi_Nugget));
 	};
-	return FALSE;
 };
 
 func void DIA_Dobar_PICKPOCKET_Info()

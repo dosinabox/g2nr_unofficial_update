@@ -648,7 +648,6 @@ func int DIA_Serpentes_SalandrilHERE_Condition()
 			return TRUE;
 		};
 	};
-	return FALSE;
 };
 
 func void DIA_Serpentes_SalandrilHERE_Info()

@@ -5,6 +5,7 @@ func int C_BragoBanditsDead()
 	{
 		return TRUE;
 	};
+	return FALSE;
 };
 
 

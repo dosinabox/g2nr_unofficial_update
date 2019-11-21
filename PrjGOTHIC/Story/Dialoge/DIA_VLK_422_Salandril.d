@@ -62,7 +62,6 @@ func int DIA_Salandril_PICKPOCKET_Condition()
 	{
 		return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
 	};
-	return FALSE;
 };
 
 func void DIA_Salandril_PICKPOCKET_Info()

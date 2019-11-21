@@ -155,7 +155,7 @@ Section /o "Исправление русской озвучки" SecAdditional_2
 	SetOutPath "$INSTDIR\data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
 	SetOutPath "$INSTDIR"
-	File "Speech_Changelog_v${MOD_VERSION}.txt"
+	File "Changelog_Speech_v${MOD_VERSION}.txt"
 SectionEnd
 
 Section /o "Расширенная Рудниковая долина" SecAdditional_3
@@ -231,5 +231,5 @@ Function Un.GMF_Delete_Components
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_hotfix.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Changelog_G2a_NR_ScriptPatch_v${MOD_VERSION}.txt"
-	!insertmacro GMF_Delete "$INSTDIR\Speech_Changelog_v${MOD_VERSION}.txt"
+	!insertmacro GMF_Delete "$INSTDIR\Changelog_Speech_v${MOD_VERSION}.txt"
 FunctionEnd

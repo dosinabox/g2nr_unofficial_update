@@ -111,7 +111,6 @@ func int DIA_Haupttorwache_PICKPOCKET_Condition()
 	{
 		return C_StealItem(20,Hlp_GetInstanceID(ItKe_OC_MainGate_MIS));
 	};
-	return FALSE;
 };
 
 func void DIA_Haupttorwache_PICKPOCKET_Info()

@@ -84,11 +84,8 @@ func int C_AmIWeaponTrader(var C_Npc slf)
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
 	{
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void B_GiveTradeInv(var C_Npc slf)

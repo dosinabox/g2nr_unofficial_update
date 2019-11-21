@@ -39,7 +39,6 @@ func int DIA_Rangar_PICKPOCKET_Condition()
 	{
 		return C_StealItem(30,Hlp_GetInstanceID(ItKe_City_Tower_02));
 	};
-	return FALSE;
 };
 
 func void DIA_Rangar_PICKPOCKET_Info()

@@ -289,7 +289,6 @@ func int DIA_Francis_PICKPOCKET_Condition()
 	{
 		return C_StealItem(40,Hlp_GetInstanceID(ItKe_Greg_Addon_MIS));
 	};
-	return FALSE;
 };
 
 func void DIA_Francis_PICKPOCKET_Info()

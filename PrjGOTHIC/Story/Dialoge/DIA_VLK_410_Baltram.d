@@ -474,7 +474,6 @@ func int DIA_Baltram_LetUsTrade_Condition()
 			return TRUE;
 		};
 	};
-	return FALSE;
 };
 
 func void DIA_Baltram_LetUsTrade_Info()
@@ -510,7 +509,6 @@ func int DIA_Baltram_HaveYourWarez_Condition()
 			return TRUE;
 		};
 	};
-	return FALSE;
 };
 
 func void DIA_Baltram_HaveYourWarez_Info()

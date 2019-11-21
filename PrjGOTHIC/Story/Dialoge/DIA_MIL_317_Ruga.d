@@ -39,7 +39,6 @@ func int DIA_Ruga_PICKPOCKET_Condition()
 	{
 		return C_StealItem(40,Hlp_GetInstanceID(ItKe_City_Tower_03));
 	};
-	return FALSE;
 };
 
 func void DIA_Ruga_PICKPOCKET_Info()

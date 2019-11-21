@@ -346,7 +346,6 @@ func int DIA_Lehmar_PICKPOCKET_Condition()
 	{
 		return C_StealItem(20,Hlp_GetInstanceID(ItWr_Schuldenbuch));
 	};
-	return FALSE;
 };
 
 func void DIA_Lehmar_PICKPOCKET_Info()

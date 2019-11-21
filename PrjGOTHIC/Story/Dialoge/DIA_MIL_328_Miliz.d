@@ -119,7 +119,6 @@ func int DIA_328_Miliz_PICKPOCKET_Condition()
 	{
 		return C_StealItem(35,Hlp_GetInstanceID(ItKe_Storage));
 	};
-	return FALSE;
 };
 
 func void DIA_328_Miliz_PICKPOCKET_Info()
