@@ -1,12 +1,12 @@
 
-const int fix_version_start = 23;
-const int least_supported = 21;
-var int fix_version_save;
+const int FIX_VERSION_START = 23;
+const int LEAST_SUPPORTED = 21;
+var int FIX_VERSION_SAVE;
 
 func void startup_global()
 {
 	Game_InitGerman();
-	fix_version_save = fix_version_start;
+	FIX_VERSION_SAVE = FIX_VERSION_START;
 };
 
 func void init_global()
@@ -3325,6 +3325,7 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(Shadowbeast,"NW_TROLLAREA_RIVERSIDECAVE_02");
 	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_ROAM_NW_TROLLAREA_RIVERSIDECAVE_01_03");
 	Wld_InsertNpc(Shadowbeast,"NW_TROLLAREA_RIVERSIDECAVE_07");
+	Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
 };
 
 func void INIT_SUB_NewWorld_Part_TrollArea_01()

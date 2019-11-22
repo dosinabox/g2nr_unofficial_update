@@ -448,6 +448,8 @@ func void Use_Map_OldWorld_Oremines_Small()
 };
 
 
+var int Manowar_Once;
+
 instance ItWr_Manowar(C_Item)
 {
 	name = "Текст песни";
@@ -483,6 +485,11 @@ func void UseManowar()
 	Doc_PrintLines(nDocID,0,"падет от моей руки");
 	Doc_PrintLines(nDocID,0,"ведь я воин Инноса");
 	Doc_Show(nDocID);
+	if(Manowar_Once == FALSE)
+	{
+		B_GivePlayerXP(200);
+		Manowar_Once = TRUE;
+	};
 };
 
 

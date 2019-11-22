@@ -132,15 +132,6 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
-		Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
-		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
-		{
-			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_01,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_01.attribute[ATR_HITPOINTS_MAX]);
-		};
-		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_02) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_02))
-		{
-			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_02,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_02.attribute[ATR_HITPOINTS_MAX]);
-		};
 		if((MIS_HelpDyrian != LOG_Success) && !Npc_IsDead(Dyrian))
 		{
 			Dyrian.guild = GIL_NONE;

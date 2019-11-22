@@ -1518,10 +1518,7 @@ func void DIA_Lares_GoNow_Maya()
 	AI_Output(other,self,"DIA_Addon_Lares_GoNow_Maya_15_00");	//Давай вернем орнамент Ватраса.
 	LaresGuide_ZumPortal = 1;
 	Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
-	if((KAPITEL > 1) && !Npc_IsDead(BDT_1020_Bandit_L))
-	{
-		B_StartOtherRoutine(BDT_1020_Bandit_L,"Intercept");
-	};
+	B_StartOtherRoutine(BridgeBandit,"Intercept");
 	DIA_Lares_GoNow_GoingConditions();
 };
 
@@ -1875,10 +1872,7 @@ func int DIA_Addon_Lares_ArrivedPortalInterWeiter4_Condition()
 func void DIA_Addon_Lares_ArrivedPortalInterWeiter4_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter4_09_00");	//Очень хорошо. Здесь может быть опасно.
-	if((KAPITEL > 1) && !Npc_IsDead(BDT_1020_Bandit_L))
-	{
-		B_StartOtherRoutine(BDT_1020_Bandit_L,"Intercept");
-	};
+	B_StartOtherRoutine(BridgeBandit,"Intercept");
 	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 7;
 };
@@ -2142,10 +2136,15 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 	else if(LaresGuide_ZumPortal == 5)
 	{
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL5");
-		if((KAPITEL > 1) && !Npc_IsDead(BDT_1020_Bandit_L))
+		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
 		{
-			B_StartOtherRoutine(BDT_1020_Bandit_L,"Hide");
+			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_01,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_01.attribute[ATR_HITPOINTS_MAX]);
 		};
+		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_02) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_02))
+		{
+			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_02,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_02.attribute[ATR_HITPOINTS_MAX]);
+		};
+		B_StartOtherRoutine(BridgeBandit,"Hide");
 	}
 	else if(LaresGuide_ZumPortal == 6)
 	{

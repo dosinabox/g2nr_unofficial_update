@@ -27,7 +27,7 @@ func void B_CoolHotDraw()
 
 func void b_check_version()
 {
-	if(fix_version_save < least_supported)
+	if(FIX_VERSION_SAVE < LEAST_SUPPORTED)
 	{
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,10);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,10);
@@ -69,7 +69,7 @@ func void b_cycle_function()
 			BloodwynIsHeadless = TRUE;
 		};
 	};
-	if(fix_version_save < least_supported)
+	if(FIX_VERSION_SAVE < LEAST_SUPPORTED)
 	{
 		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,3);
 		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,3);

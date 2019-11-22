@@ -618,11 +618,11 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 21 ноября 2019г.";
+	text[1] = "Скомпилировано 22 ноября 2019г.";
 	text[2] = "Установленная версия обновления:";
-	count[2] = fix_version_start;
+	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";
-	count[3] = fix_version_save;
+	count[3] = FIX_VERSION_SAVE;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 

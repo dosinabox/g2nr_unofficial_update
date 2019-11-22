@@ -334,6 +334,7 @@ var C_Npc William;
 var C_Npc Hank;
 var C_Npc Serpentes;
 var C_Npc Nov610;
+var C_Npc BridgeBandit;
 
 func void B_InitNpcGlobals()
 {
@@ -676,5 +677,6 @@ func void B_InitNpcGlobals()
 	Hank = Hlp_GetNpc(PIR_1371_Addon_Hank);
 	Serpentes = Hlp_GetNpc(KDF_501_Serpentes);
 	Nov610 = Hlp_GetNpc(NOV_610_Novize);
+	BridgeBandit = Hlp_GetNpc(BDT_1020_Bandit_L);
 };
 

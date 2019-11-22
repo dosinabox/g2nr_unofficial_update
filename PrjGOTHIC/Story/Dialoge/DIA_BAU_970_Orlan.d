@@ -83,13 +83,11 @@ func void DIA_Orlan_Wein_Nie()
 
 func void DIA_Orlan_Wein_Okay()
 {
-	var string text;
-	text = ConcatStrings("4",PRINT_ItemsErhalten);
-	PrintScreen(text,-1,-1,FONT_ScreenSmall,2);
-	B_GiveInvItems(self,other,ItMi_Gold,100);
 	AI_Output(other,self,"DIA_Orlan_Wein_Okay_15_00");	//Хм, звучит заманчиво. Давай сюда эти свитки.
-	AI_Output(self,other,"DIA_Orlan_Wein_Okay_05_01");	//Вот твои свитки и золото.
 	B_GiveInvItems(other,self,ItFo_Wine,12);
+	AI_Output(self,other,"DIA_Orlan_Wein_Okay_05_01");	//Вот твои свитки и золото.
+	B_GiveInvItems(self,other,ItMi_Gold,100);
+	PrintScreen("4 свитка получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	CreateInvItems(hero,ItSc_Light,2);
 	CreateInvItems(hero,ItSc_LightHeal,1);
 	CreateInvItems(hero,ItSc_SumGobSkel,1);
