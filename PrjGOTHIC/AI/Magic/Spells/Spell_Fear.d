@@ -22,11 +22,8 @@ func int Spell_Logic_Fear(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_Fear)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_Fear()

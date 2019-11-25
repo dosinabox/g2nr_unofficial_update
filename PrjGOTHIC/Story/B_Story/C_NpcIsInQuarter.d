@@ -111,5 +111,6 @@ func int C_NpcIsInQuarter(var C_Npc slf)
 	{
 		return Q_OBERSTADT;
 	};
+	return FALSE;
 };
 

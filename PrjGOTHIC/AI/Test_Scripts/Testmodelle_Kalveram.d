@@ -1522,7 +1522,10 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
+	Wld_InsertNpc(VLK_4250_Jorgen,"NW_MONASTERY_BRIDGE_01");
 	MIS_SCHNITZELJAGD = LOG_Running;
+	MIS_NovizenChase = LOG_Running;
+	Kapitel = 3;
 };
 
 instance WastelandRune(C_Item)

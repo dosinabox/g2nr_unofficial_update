@@ -1270,4 +1270,3 @@ var int CriminalsJailed;
 var int DIA_MIL_ARMOR_M_perm;
 var int CityOrc_Killed_Day;
 var int Vatras_Listeners_ReadyToGo;
-var int BridgeBandit_Spawned;

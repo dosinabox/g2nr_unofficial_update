@@ -34,11 +34,8 @@ func int Spell_Logic_PalLight(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_PalLight)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_PalLight()
@@ -63,11 +60,8 @@ func int Spell_Logic_Light(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_LIGHT)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_Light()

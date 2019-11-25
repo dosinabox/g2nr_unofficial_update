@@ -29,11 +29,8 @@ func int Spell_Logic_Inflate(var int manaInvested)
 			AI_StartState(other,ZS_Inflate,0,"");
 		};
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_Inflate()

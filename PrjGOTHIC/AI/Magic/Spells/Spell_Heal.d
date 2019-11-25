@@ -44,11 +44,8 @@ func int Spell_Logic_PalLightHeal(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_PalLightHeal)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func int Spell_Logic_PalMediumHeal(var int manaInvested)
@@ -64,11 +61,8 @@ func int Spell_Logic_PalMediumHeal(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_PalMediumHeal)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func int Spell_Logic_PalFullHeal(var int manaInvested)
@@ -84,11 +78,8 @@ func int Spell_Logic_PalFullHeal(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_PalFullHeal)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func int Spell_Logic_LightHeal(var int manaInvested)
@@ -104,11 +95,8 @@ func int Spell_Logic_LightHeal(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_LightHeal)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func int Spell_Logic_MediumHeal(var int manaInvested)
@@ -124,11 +112,8 @@ func int Spell_Logic_MediumHeal(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_MediumHeal)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func int Spell_Logic_FullHeal(var int manaInvested)
@@ -144,11 +129,8 @@ func int Spell_Logic_FullHeal(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_FullHeal)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_Heal()

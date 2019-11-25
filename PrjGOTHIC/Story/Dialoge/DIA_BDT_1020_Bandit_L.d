@@ -122,6 +122,12 @@ func void DIA_BDT_1020_Wegelagerer_PissOff()
 	B_Attack(self,other,AR_NONE,1);
 };
 
+func void B_WegelagererToldAboutAgon()
+{
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_02");	//Хорошо, этот послушник прошел здесь около часа назад.
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_03");	//По-моему, он немного торопился, все время оглядывался... А теперь проваливай.
+};
+
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_15_00");	//Хорошо, вот деньги.
@@ -132,8 +138,7 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_02");	//Хорошо, этот послушник прошел здесь около часа назад.
-		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_03");	//По-моему, он немного торопился, все время оглядывался... А теперь проваливай.
+		B_WegelagererToldAboutAgon();
 	};
 	self.aivar[AIV_PASSGATE] = TRUE;
 	AI_StopProcessInfos(self);
@@ -196,6 +201,11 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
 		AI_EquipBestMeleeWeapon(self);
 		self.aivar[AIV_PASSGATE] = TRUE;
+		if(Wegelagerer_Surprise == TRUE)
+		{
+			AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
+			B_WegelagererToldAboutAgon();
+		};
 		AI_StopProcessInfos(self);
 	}
 	else
@@ -245,9 +255,14 @@ func void DIA_BDT_1020_Wegelagerer_SecondWarn_Info()
 func void DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_15_00");	//Вот твои деньги.
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
 	B_GiveInvItems(other,self,ItMi_Gold,20);
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
 	self.aivar[AIV_PASSGATE] = TRUE;
+	if(Wegelagerer_Surprise == TRUE)
+	{
+		AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
+		B_WegelagererToldAboutAgon();
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -335,7 +350,7 @@ func int DIA_Wegelagerer_AGON2_Condition()
 func void DIA_Wegelagerer_AGON2_Info()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_AGON_15_00");	//Скажи, ты не видел послушника?
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_03");	//По-моему, он немного торопился, все время оглядывался... А теперь проваливай.
+	B_WegelagererToldAboutAgon();
 	AI_StopProcessInfos(self);
 };
 

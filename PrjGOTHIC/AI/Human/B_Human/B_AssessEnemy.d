@@ -49,7 +49,6 @@ func int B_AssessEnemy()
 {
 	var C_Npc pcl;
 	var C_Npc mgo;
-	var C_Npc lar;
 	pcl = Hlp_GetNpc(PC_Levelinspektor);
 	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph)) && !Npc_IsPlayer(other))
 	{
@@ -99,8 +98,7 @@ func int B_AssessEnemy()
 		return FALSE;
 	};
 	mgo = Hlp_GetNpc(MagicGolem);
-	lar = Hlp_GetNpc(VLK_449_Lares);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(lar)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(mgo)))
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(other) == Hlp_GetInstanceID(mgo)))
 	{
 		return FALSE;
 	};

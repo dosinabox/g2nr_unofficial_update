@@ -43,11 +43,8 @@ func int Spell_Logic_Charm(var int manaInvested)
 			other.aivar[AIV_LastFightComment] = TRUE;
 		};
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_Charm()
