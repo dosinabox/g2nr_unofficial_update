@@ -45,8 +45,8 @@ func int ZS_Zapped_Loop()
 			AI_Standup(self);
 			return LOOP_END;
 		};
-		return LOOP_CONTINUE;
 	};
+	return LOOP_CONTINUE;
 };
 
 func void ZS_Zapped_End()

@@ -116,11 +116,14 @@ func int DIA_Jorgen_Novice_Condition()
 func void DIA_Jorgen_Novice_Info()
 {
 	AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
-	AI_Output(self,other,"DIA_Jorgen_Novice_07_01");	//Да, конечно, он побежал туда.
-	AI_WaitTillEnd(self,other);
-	AI_PointAt(self,"NW_TROLLAREA_NOVCHASE_01");
-	AI_Wait(self,1);
-	AI_StopPointAt(self);
+	if(Npc_IsOnFP(self,"STAND"))
+	{
+		AI_Output(self,other,"DIA_Jorgen_Novice_07_01");	//Да, конечно, он побежал туда.
+		AI_AlignToFP(self);
+		AI_StopLookAt(self);
+		AI_PlayAni(self,"T_DIALOGGESTURE_14");
+		AI_TurnToNpc(self,other);
+	};
 	AI_Output(self,other,"DIA_Jorgen_Novice_07_02");	//Он прыгнул в воду с моста и поплыл так, как будто за ним гналась акула.
 };
 
