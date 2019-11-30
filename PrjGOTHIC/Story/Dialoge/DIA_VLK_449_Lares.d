@@ -1032,14 +1032,11 @@ instance DIA_Lares_WhyPalHere(C_Info)
 
 func int DIA_Lares_WhyPalHere_Condition()
 {
-	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV) || (MIS_Garvell_Infos == LOG_Running))
+	if(Npc_KnowsInfo(other,DIA_Lares_Paladine) || (RangerHelp_gildeMIL == TRUE) || (RangerHelp_gildeSLD == TRUE) || (RangerHelp_gildeKDF == TRUE) || (MIS_Garvell_Infos == LOG_Running))
 	{
-		if(Npc_KnowsInfo(other,DIA_Lares_Paladine) || (RangerHelp_gildeMIL == TRUE) || (RangerHelp_gildeSLD == TRUE) || (RangerHelp_gildeKDF == TRUE))
+		if(KnowsPaladins_Ore == FALSE)
 		{
-			if(KnowsPaladins_Ore == FALSE)
-			{
-				return TRUE;
-			};
+			return TRUE;
 		};
 	};
 };
