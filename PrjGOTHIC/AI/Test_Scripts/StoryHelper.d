@@ -1,5 +1,5 @@
 
-instance ItPo_Story(C_Item)
+/*instance ItPo_Story(C_Item)
 {
 	name = "—частье";
 	mainflag = ITEM_KAT_POTIONS;
@@ -18,7 +18,7 @@ instance ItPo_Story(C_Item)
 func void UseItPo_Story()
 {
 	b_ravensescapeintotempelavi();
-};
+};*/
 
 
 instance SH(Npc_Default)
@@ -33,7 +33,10 @@ instance SH(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
-	B_CreateAmbientInv(self);
+	CreateInvItems(self,StatsBook,1);
+	CreateInvItems(self,Gold,1);
+	CreateInvItems(self,Helmets,1);
+	CreateInvItems(self,TestAmulet,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player,-1);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
@@ -827,7 +830,7 @@ func void StoryHelper_KAPITEL5ANFANG()
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	B_Kapitelwechsel(4,NEWWORLD_ZEN);
-	CreateInvItems(hero,ItAt_IcedragonHeart,1);	//чтобы оно было у вас на »рдорате!
+	CreateInvItems(hero,ItAt_IcedragonHeart,1);
 	MIS_AllDragonsDead = TRUE;
 	B_Kapitelwechsel(5,NEWWORLD_ZEN);
 	Info_ClearChoices(StoryHelper_INFO5);

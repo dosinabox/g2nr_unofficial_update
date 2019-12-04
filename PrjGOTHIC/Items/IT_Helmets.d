@@ -1,5 +1,5 @@
 
-INSTANCE ITHE_OHT(C_Item)
+/*INSTANCE ITHE_OHT(C_Item)
 {
 	name = "Шлем охотника на орков";
 	mainflag = ITEM_KAT_ARMOR;
@@ -25,7 +25,7 @@ INSTANCE ITHE_OHT(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
-};
+};*/
 
 INSTANCE ITHE_DJG_M(C_Item)
 {

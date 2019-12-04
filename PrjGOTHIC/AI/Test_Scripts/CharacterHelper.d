@@ -1,39 +1,5 @@
 
-instance MobsiBrief(C_Item)
-{
-	name = NAME_Letter;
-	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
-	value = 0;
-	visual = "ItWr_Scroll_02.3DS";
-	material = MAT_LEATHER;
-	on_state[0] = UseMobsiBrief;
-	scemeName = "MAP";
-	description = name;
-};
-
-
-func void UseMobsiBrief()
-{
-	var int nDocID;
-	PLAYER_MOBSI_PRODUCTION = MOBSI_NONE;
-	self.aivar[AIV_INVINCIBLE] = FALSE;
-	nDocID = Doc_Create();
-	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"letters.TGA",0);
-	Doc_SetFont(nDocID,0,FONT_BookHeadline);
-	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLine(nDocID,0,"Стандартное письмо");
-	Doc_SetFont(nDocID,0,FONT_Book);
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Теперь все будет хорошо");
-	Doc_PrintLines(nDocID,0,"PLAYER_MOBSI_PRODUCTION = MOBSI_NONE;");
-	Doc_PrintLines(nDocID,0,"self.aivar[AIV_INVINCIBLE] = FALSE;");
-	Doc_Show(nDocID);
-};
-
-
-instance ItSe_Addon_Sack(C_Item)
+/*instance ItSe_Addon_Sack(C_Item)
 {
 	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
@@ -84,7 +50,7 @@ instance ItFo_TestTrigger(C_Item)
 func void Use_TestTrigger()
 {
 	enter_addonworld_firsttime_trigger_func();
-};
+};*/
 
 
 instance CH(Npc_Default)
@@ -2045,6 +2011,115 @@ func void CH_Training_Runen_Circle_5_SPL_Shrink()
 };
 
 
+instance DIA_CH_Misc_PaladinStart(C_Info)
+{
+	npc = ch;
+	nr = 7;
+	condition = DIA_CH_Misc_PaladinStart_Condition;
+	information = DIA_CH_Misc_PaladinStart_Info;
+	permanent = TRUE;
+	description = "Руны паладинов";
+};
+
+
+func int DIA_CH_Misc_PaladinStart_Condition()
+{
+	if(MagieStart == TRUE)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_CH_Misc_PaladinStart_Info()
+{
+	Info_ClearChoices(DIA_CH_Misc_PaladinStart);
+	Info_AddChoice(DIA_CH_Misc_PaladinStart,Dialog_Back,DIA_CH_Misc_PaladinStart_BACK);
+	Info_AddChoice(DIA_CH_Misc_PaladinStart,"Боевые заклинания",DIA_CH_Misc_PalKampf);
+	Info_AddChoice(DIA_CH_Misc_PaladinStart,"Заклинания света и исцеления",DIA_CH_Misc_PalHeal);
+};
+
+
+func void DIA_CH_Misc_PaladinStart_BACK()
+{
+	Info_ClearChoices(DIA_CH_Misc_PaladinStart);
+};
+
+func void DIA_CH_Misc_PalHeal()
+{
+	Info_ClearChoices(DIA_CH_Misc_PaladinStart);
+	Info_AddChoice(DIA_CH_Misc_PaladinStart,Dialog_Back,DIA_CH_Misc_PaladinStart_Info);
+	if(PLAYER_TALENT_RUNES[SPL_PalFullHeal] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_PaladinStart,B_BuildLearnString(NAME_SPL_PalFullHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalFullHeal)),CH_Training_Runen_Paladin_SPL_PalFullHeal);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_PalMediumHeal] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_PaladinStart,B_BuildLearnString(NAME_SPL_PalMediumHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalMediumHeal)),CH_Training_Runen_Paladin_SPL_PalMediumHeal);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_PalLightHeal] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_PaladinStart,B_BuildLearnString(NAME_SPL_PalLightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalLightHeal)),CH_Training_Runen_Paladin_SPL_PalLightHeal);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_PalLight] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_PaladinStart,B_BuildLearnString(NAME_SPL_PalLight,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalLight)),CH_Training_Runen_Paladin_SPL_PalLight);
+	};
+};
+
+func void CH_Training_Runen_Paladin_SPL_PalLight()
+{
+	B_TeachPlayerPalRunes(self,other,SPL_PalLight);
+};
+
+func void CH_Training_Runen_Paladin_SPL_PalLightHeal()
+{
+	B_TeachPlayerPalRunes(self,other,SPL_PalLightHeal);
+};
+
+func void CH_Training_Runen_Paladin_SPL_PalMediumHeal()
+{
+	B_TeachPlayerPalRunes(self,other,SPL_PalMediumHeal);
+};
+
+func void CH_Training_Runen_Paladin_SPL_PalFullHeal()
+{
+	B_TeachPlayerPalRunes(self,other,SPL_PalFullHeal);
+};
+
+func void DIA_CH_Misc_PalKampf()
+{
+	Info_ClearChoices(DIA_CH_Misc_PaladinStart);
+	Info_AddChoice(DIA_CH_Misc_PaladinStart,Dialog_Back,DIA_CH_Misc_PaladinStart_Info);
+	if(PLAYER_TALENT_RUNES[SPL_PalDestroyEvil] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_PaladinStart,B_BuildLearnString(NAME_SPL_PalDestroyEvil,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalDestroyEvil)),CH_Training_Runen_Paladin_SPL_PalDestroyEvil);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_PalRepelEvil] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_PaladinStart,B_BuildLearnString(NAME_SPL_PalRepelEvil,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalRepelEvil)),CH_Training_Runen_Paladin_SPL_PalRepelEvil);
+	};
+	if(PLAYER_TALENT_RUNES[SPL_PalHolyBolt] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_PaladinStart,B_BuildLearnString(NAME_SPL_PalHolyBolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalHolyBolt)),CH_Training_Runen_Paladin_SPL_PalHolyBolt);
+	};
+};
+
+func void CH_Training_Runen_Paladin_SPL_PalHolyBolt()
+{
+	B_TeachPlayerPalRunes(self,other,SPL_PalHolyBolt);
+};
+
+func void CH_Training_Runen_Paladin_SPL_PalRepelEvil()
+{
+	B_TeachPlayerPalRunes(self,other,SPL_PalRepelEvil);
+};
+
+func void CH_Training_Runen_Paladin_SPL_PalDestroyEvil()
+{
+	B_TeachPlayerPalRunes(self,other,SPL_PalDestroyEvil);
+};
+
+
 var int KampfStart;
 
 instance DIA_CH_Kampf_Start(C_Info)
@@ -2491,7 +2566,7 @@ instance DIA_CH_Misc_Start(C_Info)
 	condition = DIA_CH_Misc_Start_Condition;
 	information = DIA_CH_Misc_Start_Info;
 	permanent = TRUE;
-	description = "Прочее (алхимия, трофеи животных, ковка, руны паладинов, языки зодчих)";
+	description = "Прочее (алхимия, трофеи животных, ковка, языки зодчих)";
 };
 
 
@@ -2522,7 +2597,7 @@ instance DIA_CH_Misc_Stopper(C_Info)
 
 func int DIA_CH_Misc_Stopper_Condition()
 {
-	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PaladinStart == FALSE))
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2539,7 +2614,7 @@ var int AlchemyStart;
 instance DIA_CH_Misc_Alchemie(C_Info)
 {
 	npc = ch;
-	nr = 10;
+	nr = 5;
 	condition = DIA_CH_Misc_Alchemie_Condition;
 	information = DIA_CH_Misc_Alchemie_Info;
 	permanent = TRUE;
@@ -2549,7 +2624,7 @@ instance DIA_CH_Misc_Alchemie(C_Info)
 
 func int DIA_CH_Misc_Alchemie_Condition()
 {
-	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PaladinStart == FALSE))
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -2743,10 +2818,6 @@ func void DIA_CH_Misc_Special_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Special);
 	Info_AddChoice(DIA_CH_Misc_Special,Dialog_Back,DIA_CH_Misc_Special_BACK);
-	if(PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_Special,"Как заряжать Глаз Инноса",CH_Training_Alchemy_Charge_InnosEye);
-	};
 	if(PLAYER_TALENT_ALCHEMY[POTION_Speed] == FALSE)
 	{
 		Info_AddChoice(DIA_CH_Misc_Special,B_BuildLearnString(NAME_Speed_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Speed)),CH_Training_Alchemy_POTION_Speed);
@@ -2781,11 +2852,6 @@ func void CH_Training_Alchemy_POTION_Perm_DEX()
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_DEX);
 };
 
-func void CH_Training_Alchemy_Charge_InnosEye()
-{
-	B_TeachPlayerTalentAlchemy(self,other,CHARGE_Innoseye);
-};
-
 
 var int SmithStart;
 
@@ -2802,7 +2868,7 @@ instance DIA_CH_Misc_SmithStart(C_Info)
 
 func int DIA_CH_Misc_SmithStart_Condition()
 {
-	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PaladinStart == FALSE))
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -3034,7 +3100,7 @@ instance DIA_CH_Misc_Animal_Start(C_Info)
 
 func int DIA_CH_Misc_Animal_Start_Condition()
 {
-	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PaladinStart == FALSE))
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -3311,183 +3377,6 @@ func void CH_Training_TROPHYS_DragonBlood()
 };
 
 
-var int PaladinStart;
-
-instance DIA_CH_Misc_PaladinStart(C_Info)
-{
-	npc = ch;
-	nr = 7;
-	condition = DIA_CH_Misc_PaladinStart_Condition;
-	information = DIA_CH_Misc_PaladinStart_Info;
-	permanent = TRUE;
-	description = "Руны паладинов";
-};
-
-
-func int DIA_CH_Misc_PaladinStart_Condition()
-{
-	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PaladinStart == FALSE))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_CH_Misc_PaladinStart_Info()
-{
-	PaladinStart = TRUE;
-};
-
-
-instance DIA_CH_Misc_PaladinStopper(C_Info)
-{
-	npc = ch;
-	nr = 99;
-	condition = DIA_CH_Misc_PaladinStopper_Condition;
-	information = DIA_CH_Misc_PaladinStopper_Info;
-	permanent = TRUE;
-	description = Dialog_Back;
-};
-
-
-func int DIA_CH_Misc_PaladinStopper_Condition()
-{
-	if(PaladinStart == TRUE)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_CH_Misc_PaladinStopper_Info()
-{
-	PaladinStart = FALSE;
-};
-
-
-instance DIA_CH_Misc_PalHeal(C_Info)
-{
-	npc = ch;
-	nr = 5;
-	condition = DIA_CH_Misc_PalHeal_Condition;
-	information = DIA_CH_Misc_PalHeal_Info;
-	permanent = TRUE;
-	description = "Заклинания света и исцеления";
-};
-
-
-func int DIA_CH_Misc_PalHeal_Condition()
-{
-	if(PaladinStart == TRUE)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_CH_Misc_PalHeal_Info()
-{
-	Info_ClearChoices(DIA_CH_Misc_PalHeal);
-	Info_AddChoice(DIA_CH_Misc_PalHeal,Dialog_Back,DIA_CH_Misc_PalHeal_BACK);
-	if(PLAYER_TALENT_RUNES[SPL_PalFullHeal] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_PalHeal,B_BuildLearnString(NAME_SPL_PalFullHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalFullHeal)),CH_Training_Runen_Paladin_SPL_PalFullHeal);
-	};
-	if(PLAYER_TALENT_RUNES[SPL_PalMediumHeal] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_PalHeal,B_BuildLearnString(NAME_SPL_PalMediumHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalMediumHeal)),CH_Training_Runen_Paladin_SPL_PalMediumHeal);
-	};
-	if(PLAYER_TALENT_RUNES[SPL_PalLightHeal] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_PalHeal,B_BuildLearnString(NAME_SPL_PalLightHeal,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalLightHeal)),CH_Training_Runen_Paladin_SPL_PalLightHeal);
-	};
-	if(PLAYER_TALENT_RUNES[SPL_PalLight] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_PalHeal,B_BuildLearnString(NAME_SPL_PalLight,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalLight)),CH_Training_Runen_Paladin_SPL_PalLight);
-	};
-};
-
-func void DIA_CH_Misc_PalHeal_BACK()
-{
-	Info_ClearChoices(DIA_CH_Misc_PalHeal);
-};
-
-func void CH_Training_Runen_Paladin_SPL_PalLight()
-{
-	B_TeachPlayerPalRunes(self,other,SPL_PalLight);
-};
-
-func void CH_Training_Runen_Paladin_SPL_PalLightHeal()
-{
-	B_TeachPlayerPalRunes(self,other,SPL_PalLightHeal);
-};
-
-func void CH_Training_Runen_Paladin_SPL_PalMediumHeal()
-{
-	B_TeachPlayerPalRunes(self,other,SPL_PalMediumHeal);
-};
-
-func void CH_Training_Runen_Paladin_SPL_PalFullHeal()
-{
-	B_TeachPlayerPalRunes(self,other,SPL_PalFullHeal);
-};
-
-
-instance DIA_CH_Misc_PalKampf(C_Info)
-{
-	npc = ch;
-	nr = 6;
-	condition = DIA_CH_Misc_PalKampf_Condition;
-	information = DIA_CH_Misc_PalKampf_Info;
-	permanent = TRUE;
-	description = "Боевые заклинания";
-};
-
-
-func int DIA_CH_Misc_PalKampf_Condition()
-{
-	if(PaladinStart == TRUE)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_CH_Misc_PalKampf_Info()
-{
-	Info_ClearChoices(DIA_CH_Misc_PalKampf);
-	Info_AddChoice(DIA_CH_Misc_PalKampf,Dialog_Back,DIA_CH_Misc_PalKampf_BACK);
-	if(PLAYER_TALENT_RUNES[SPL_PalDestroyEvil] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_PalKampf,B_BuildLearnString(NAME_SPL_PalDestroyEvil,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalDestroyEvil)),CH_Training_Runen_Paladin_SPL_PalDestroyEvil);
-	};
-	if(PLAYER_TALENT_RUNES[SPL_PalRepelEvil] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_PalKampf,B_BuildLearnString(NAME_SPL_PalRepelEvil,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalRepelEvil)),CH_Training_Runen_Paladin_SPL_PalRepelEvil);
-	};
-	if(PLAYER_TALENT_RUNES[SPL_PalHolyBolt] == FALSE)
-	{
-		Info_AddChoice(DIA_CH_Misc_PalKampf,B_BuildLearnString(NAME_SPL_PalHolyBolt,B_GetLearnCostTalent(other,NPC_TALENT_RUNES,SPL_PalHolyBolt)),CH_Training_Runen_Paladin_SPL_PalHolyBolt);
-	};
-};
-
-func void DIA_CH_Misc_PalKampf_BACK()
-{
-	Info_ClearChoices(DIA_CH_Misc_PalKampf);
-};
-
-func void CH_Training_Runen_Paladin_SPL_PalHolyBolt()
-{
-	B_TeachPlayerPalRunes(self,other,SPL_PalHolyBolt);
-};
-
-func void CH_Training_Runen_Paladin_SPL_PalRepelEvil()
-{
-	B_TeachPlayerPalRunes(self,other,SPL_PalRepelEvil);
-};
-
-func void CH_Training_Runen_Paladin_SPL_PalDestroyEvil()
-{
-	B_TeachPlayerPalRunes(self,other,SPL_PalDestroyEvil);
-};
-
-
 instance CH_Language(C_Info)
 {
 	npc = ch;
@@ -3502,7 +3391,7 @@ instance CH_Language(C_Info)
 
 func int CH_Language_Condition()
 {
-	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PaladinStart == FALSE))
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -3545,6 +3434,32 @@ func void CH_Language_Priest()
 {
 	B_TeachPlayerTalentForeignLanguage(self,other,LANGUAGE_3);
 };
+
+instance DIA_CH_Misc_InnosEye(C_Info)
+{
+	npc = ch;
+	nr = 80;
+	condition = DIA_CH_Misc_InnosEye_Condition;
+	information = DIA_CH_Misc_InnosEye_Info;
+	permanent = TRUE;
+	description = "Перезарядка Глаза Инноса";
+};
+
+
+func int DIA_CH_Misc_InnosEye_Condition()
+{
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE) && (PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_CH_Misc_InnosEye_Info()
+{
+	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
+	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
+};
+
 
 instance CH_Overlay(C_Info)
 {

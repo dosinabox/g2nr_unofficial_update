@@ -161,7 +161,7 @@ func void UseJOLY_Storyhelpletter()
 	Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_14");
 	Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_62");
 	Wld_InsertNpc(MinecrawlerWarrior,"ADW_CANYON_PATH_TO_BANDITS_19");
-};*/
+};
 
 
 instance J2(C_Item)
@@ -194,7 +194,7 @@ func void UseJOLY2_Storyhelpletter()
 };
 
 
-/*instance J3(C_Item)
+instance J3(C_Item)
 {
 	name = "ADW_ADANOSTEMPEL_RemovedFocus";
 	mainflag = ITEM_KAT_DOCS;
@@ -235,7 +235,7 @@ instance J4(C_Item)
 
 func void UseJ4()
 {
-};*/
+};
 
 
 instance DJG_inserten(C_Item)
@@ -572,7 +572,7 @@ func void SH_Oldworld_KAPITEL6ANFANG()
 };
 
 
-/*instance Dragon_Testmodell(Mst_Default_Dragon_Fire)
+instance Dragon_Testmodell(Mst_Default_Dragon_Fire)
 {
 	B_SetVisuals_Dragon_Fire();
 	Npc_SetToFistMode(self);

@@ -1174,33 +1174,7 @@ func void INIT_TA_Testlevel()
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	init_sub_ta_testlevel();
-};*/
-
-
-instance Gold(C_Item)
-{
-	name = NAME_Bag;
-	mainflag = ITEM_KAT_NONE;
-	flags = 0;
-	value = 0;
-	visual = "ItMi_Bag.3ds";
-	scemeName = "MAPSEALED";
-	material = MAT_LEATHER;
-	on_state[0] = UseGold;
-	description = name;
-	text[0] = "Мешок полон монет!";
 };
-
-
-func void UseGold()
-{
-	CreateInvItems(self,ItMi_Gold,1000);
-	PrintScreen("1000 золотых получено",-1,45,FONT_Screen,2);
-	Snd_Play("Geldbeutel");
-	PrintScreen("Наказание за читерство",-1,50,FONT_Screen,2);
-	B_GivePlayerXP(XP_EXPLOITBONUS);
-};
-
 
 instance Armor(C_Item)
 {
@@ -1274,38 +1248,6 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_Slave);
 	CreateInvItem(self,ITAR_Beggar);
 	CreateInvItem(self,ITAR_Onar);
-};
-
-
-instance Helmets(C_Item)
-{
-	name = NAME_Bag;
-	mainflag = ITEM_KAT_NONE;
-	flags = 0;
-	value = 0;
-	visual = "ItMi_Bag.3ds";
-	scemeName = "MAPSEALED";
-	material = MAT_LEATHER;
-	on_state[0] = UseHelmets;
-	description = name;
-	text[0] = "Мешок наполнен экспериментальными";
-	text[1] = "доспехами и шлемами!";
-};
-
-func void UseHelmets()
-{
-	Snd_Play("Geldbeutel");
-	Print("Найдено много разных доспехов и шлемов!");
-//	CreateInvItem(self,ITAR_OHT);
-	CreateInvItem(self,ITAR_DJGN_M);
-	CreateInvItem(self,ITAR_DJGN_H);
-	CreateInvItem(self,ITAR_PALN_M);
-	CreateInvItem(self,ITAR_PALN_H);
-//	CreateInvItem(self,ITHE_OHT);
-	CreateInvItem(self,ITHE_DJG_M);
-	CreateInvItem(self,ITHE_DJG_H);
-	CreateInvItem(self,ITHE_PAL_M);
-	CreateInvItem(self,ITHE_PAL_H);
 };
 
 instance Runenbrief(C_Item)
@@ -1522,10 +1464,32 @@ instance D36TestRune(C_Item)
 func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
-	Wld_InsertNpc(VLK_4250_Jorgen,"NW_MONASTERY_BRIDGE_01");
-	MIS_SCHNITZELJAGD = LOG_Running;
-	MIS_NovizenChase = LOG_Running;
-	Kapitel = 3;
+};*/
+
+instance MobsiBrief(C_Item)
+{
+	name = "Руна MobsiBrief";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItRu_TeleportOWDemonTower.3DS";
+	material = MAT_STONE;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Исправить зависание.";
+	on_state[0] = UseMobsiBrief;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
+func void UseMobsiBrief()
+{
+	PLAYER_MOBSI_PRODUCTION = MOBSI_NONE;
+	self.aivar[AIV_INVINCIBLE] = FALSE;
+	PrintScreen("PLAYER_MOBSI_PRODUCTION = MOBSI_NONE",-1,50,FONT_Screen,4);
+	PrintScreen("self.aivar[AIV_INVINCIBLE] = FALSE",-1,55,FONT_Screen,4);
 };
 
 instance WastelandRune(C_Item)
@@ -1590,5 +1554,79 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_Show(nDocID);
+};
+
+instance Gold(C_Item)
+{
+	name = NAME_Bag;
+	mainflag = ITEM_KAT_NONE;
+	flags = 0;
+	value = 0;
+	visual = "ItMi_Bag.3ds";
+	scemeName = "MAPSEALED";
+	material = MAT_LEATHER;
+	on_state[0] = UseGold;
+	description = name;
+	text[0] = "Мешок полон монет!";
+};
+
+
+func void UseGold()
+{
+	CreateInvItems(self,ItMi_Gold,1000);
+	PrintScreen("1000 золотых получено",-1,45,FONT_Screen,2);
+	Snd_Play("Geldbeutel");
+	PrintScreen("Наказание за читерство",-1,50,FONT_Screen,2);
+	B_GivePlayerXP(XP_EXPLOITBONUS);
+};
+
+instance Helmets(C_Item)
+{
+	name = NAME_Bag;
+	mainflag = ITEM_KAT_NONE;
+	flags = 0;
+	value = 0;
+	visual = "ItMi_Bag.3ds";
+	scemeName = "MAPSEALED";
+	material = MAT_LEATHER;
+	on_state[0] = UseHelmets;
+	description = name;
+	text[0] = "Мешок наполнен экспериментальными";
+	text[1] = "доспехами и шлемами!";
+};
+
+
+func void UseHelmets()
+{
+	Snd_Play("Geldbeutel");
+	Print("Найдено много разных доспехов и шлемов!");
+	CreateInvItem(self,ITAR_DJGN_M);
+	CreateInvItem(self,ITAR_DJGN_H);
+	CreateInvItem(self,ITAR_PALN_M);
+	CreateInvItem(self,ITAR_PALN_H);
+	CreateInvItem(self,ITHE_DJG_M);
+	CreateInvItem(self,ITHE_DJG_H);
+	CreateInvItem(self,ITHE_PAL_M);
+	CreateInvItem(self,ITHE_PAL_H);
+};
+
+instance TestAmulet(C_Item)
+{
+	name = NAME_Amulett;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_AMULET | ITEM_MISSION;
+	value = 0;
+	visual = "ItMi_SilverNecklace.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Амулет тестировщика";
+	text[1] = "Скомпилировано 4 декабря 2019г.";
+	text[2] = "Установленная версия обновления:";
+	count[2] = FIX_VERSION_START;
+	text[3] = "Версия обновления в сохраненке:";
+	count[3] = FIX_VERSION_SAVE;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 

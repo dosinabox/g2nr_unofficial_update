@@ -5,7 +5,7 @@ instance FH(Npc_Default)
 	npcType = NPCTYPE_FRIEND;
 	aivar[AIV_IgnoresArmor] = TRUE;
 	guild = GIL_NONE;
-	level = 999;	//реальный 15, но задан 999, чтобы он не убегал от мостового голема!
+	level = 999;
 	voice = 5;
 	id = 1311;
 	flags = 0;

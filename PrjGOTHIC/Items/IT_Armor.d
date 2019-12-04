@@ -1715,7 +1715,7 @@ instance ITAR_BEGGAR(C_Item)
 	count[2] = protection[PROT_POINT];
 };
 
-instance ITAR_OHT(C_Item)
+/*instance ITAR_OHT(C_Item)
 {
 	name = "Доспехи охотника на орков";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1740,7 +1740,7 @@ instance ITAR_OHT(C_Item)
 	count[3] = protection[PROT_FIRE];
 	text[5] = NAME_Value;
 	count[5] = value;
-};
+};*/
 
 instance ITAR_DJGN_M(C_Item)
 {
