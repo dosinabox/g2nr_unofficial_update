@@ -33,10 +33,7 @@ instance SH(Npc_Default)
 	B_SetAttributesToChapter(self,1);
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
-	CreateInvItems(self,StatsBook,1);
-	CreateInvItems(self,Gold,1);
-	CreateInvItems(self,Helmets,1);
-	CreateInvItems(self,TestAmulet,1);
+	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player,-1);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");

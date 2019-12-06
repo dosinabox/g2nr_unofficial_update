@@ -2,6 +2,17 @@
 var int Erzwaffen;
 var int Normalwaffen;
 
+func void B_CountAnvilUses()
+{
+	if(CurrentLevel == NEWWORLD_ZEN)
+	{
+		if(Npc_GetDistToWP(self,"NW_CITY_SMITH_ANVIL") <= 1000)
+		{
+			HaradsAnvilUsed += 1;
+		};
+	};
+};
+
 instance PC_SmithWeapon_End(C_Info)
 {
 	npc = PC_Hero;
@@ -149,6 +160,7 @@ func void PC_ItMw_1H_Common_Info()
 {
 	CreateInvItems(hero,ItMw_1H_Common_01,1);
 	Print(PRINT_SmithSuccess);
+	B_CountAnvilUses();
 	b_endproductiondialog();
 //	Normalwaffen = FALSE;
 };
@@ -175,6 +187,7 @@ func void PC_WEAPON_1H_Harad_01_Info()
 {
 	CreateInvItems(hero,ItMw_Schwert1,1);
 	Print(PRINT_SmithSuccess);
+	B_CountAnvilUses();
 	b_endproductiondialog();
 //	Normalwaffen = FALSE;
 };
@@ -201,6 +214,7 @@ func void PC_WEAPON_1H_Harad_02_Info()
 {
 	CreateInvItems(hero,ItMw_Schwert4,1);
 	Print(PRINT_SmithSuccess);
+	B_CountAnvilUses();
 	b_endproductiondialog();
 //	Normalwaffen = FALSE;
 };
@@ -227,6 +241,7 @@ func void PC_WEAPON_1H_Harad_03_Info()
 {
 	CreateInvItems(hero,ItMw_Rubinklinge,1);
 	Print(PRINT_SmithSuccess);
+	B_CountAnvilUses();
 	b_endproductiondialog();
 //	Normalwaffen = FALSE;
 };
@@ -253,6 +268,7 @@ func void PC_WEAPON_1H_Harad_04_Info()
 {
 	CreateInvItems(hero,ItMw_ElBastardo,1);
 	Print(PRINT_SmithSuccess);
+	B_CountAnvilUses();
 	b_endproductiondialog();
 //	Normalwaffen = FALSE;
 };
@@ -282,6 +298,7 @@ func void PC_ItMw_1H_Special_01_Info()
 		Npc_RemoveInvItems(hero,ItMi_Nugget,1);
 		CreateInvItems(hero,ItMw_1H_Special_01,1);
 		Print(PRINT_SmithSuccess);
+		B_CountAnvilUses();
 	}
 	else
 	{
@@ -317,6 +334,7 @@ func void PC_ItMw_2H_Special_01_Info()
 		Npc_RemoveInvItems(hero,ItMi_Nugget,2);
 		CreateInvItems(hero,ItMw_2H_Special_01,1);
 		Print(PRINT_SmithSuccess);
+		B_CountAnvilUses();
 	}
 	else
 	{
@@ -352,6 +370,7 @@ func void PC_ItMw_1H_Special_02_Info()
 		Npc_RemoveInvItems(hero,ItMi_Nugget,2);
 		CreateInvItems(hero,ItMw_1H_Special_02,1);
 		Print(PRINT_SmithSuccess);
+		B_CountAnvilUses();
 	}
 	else
 	{
@@ -387,6 +406,7 @@ func void PC_ItMw_2H_Special_02_Info()
 		Npc_RemoveInvItems(hero,ItMi_Nugget,3);
 		CreateInvItems(hero,ItMw_2H_Special_02,1);
 		Print(PRINT_SmithSuccess);
+		B_CountAnvilUses();
 	}
 	else
 	{
@@ -422,6 +442,7 @@ func void PC_ItMw_1H_Special_03_Info()
 		Npc_RemoveInvItems(hero,ItMi_Nugget,3);
 		CreateInvItems(hero,ItMw_1H_Special_03,1);
 		Print(PRINT_SmithSuccess);
+		B_CountAnvilUses();
 	}
 	else
 	{
@@ -457,6 +478,7 @@ func void PC_ItMw_2H_Special_03_Info()
 		Npc_RemoveInvItems(hero,ItMi_Nugget,4);
 		CreateInvItems(hero,ItMw_2H_Special_03,1);
 		Print(PRINT_SmithSuccess);
+		B_CountAnvilUses();
 	}
 	else
 	{
@@ -493,6 +515,7 @@ func void PC_ItMw_1H_Special_04_Info()
 		Npc_RemoveInvItems(hero,ItAt_DragonBlood,5);
 		CreateInvItems(hero,ItMw_1H_Special_04,1);
 		Print(PRINT_SmithSuccess);
+		B_CountAnvilUses();
 	}
 	else
 	{
@@ -529,6 +552,7 @@ func void PC_ItMw_2H_Special_04_Info()
 		Npc_RemoveInvItems(hero,ItAt_DragonBlood,5);
 		CreateInvItems(hero,ItMw_2H_Special_04,1);
 		Print(PRINT_SmithSuccess);
+		B_CountAnvilUses();
 	}
 	else
 	{
@@ -567,6 +591,7 @@ func void PC_ItMw_Streitaxt1_Info()
 //		CreateInvItems(hero,ItMw_Streitaxt1,1);
 		CreateInvItems(hero,ItMw_Banditenaxt,1);
 		Print(PRINT_SmithSuccess);
+		B_CountAnvilUses();
 	}
 	else
 	{

@@ -326,6 +326,7 @@ instance ItFo_CoragonsBeer(C_Item)
 
 func void Use_CoragonsBeerBeer()
 {
+	B_NpcSetDrunk(10);
 	var string concatText;
 	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_Beer);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer);
@@ -333,7 +334,6 @@ func void Use_CoragonsBeerBeer()
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer);
 	concatText = ConcatStrings(PRINT_LearnMANA_MAX,IntToString(Mana_Beer));
 	PrintScreen(concatText,-1,53,FONT_Screen,2);
-	B_NpcSetDrunk(10);
 };
 
 
@@ -480,8 +480,6 @@ instance ItFo_Beer(C_Item)
 
 func void Use_Beer()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer * 3);
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer * 3);
 	if(Npc_IsPlayer(self))
 	{
 		if((Wld_GetDay() == 0) && (BeerDayZeroOneTime == FALSE))
@@ -498,6 +496,8 @@ func void Use_Beer()
 			BeerDay = B_GetDayPlus();
 		};
 	};
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer * 3);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer * 3);
 };
 
 
@@ -523,9 +523,9 @@ instance ItFo_Booze(C_Item)
 
 func void Use_Booze()
 {
+	B_NpcSetDrunk(50);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Booze * 2);
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Booze * 3);
-	B_NpcSetDrunk(50);
 };
 
 
@@ -551,9 +551,9 @@ instance ItFo_Wine(C_Item)
 
 func void Use_Wine()
 {
+	B_NpcSetDrunk(30);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Wine * 3);
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Wine * 3);
-	B_NpcSetDrunk(30);
 };
 
 
@@ -579,9 +579,9 @@ instance ItFo_DarkWine(C_Item)
 
 func void Use_DarkWine()
 {
+	B_NpcSetDrunk(40);
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,10);
 	Npc_ChangeAttribute(self,ATR_MANA,10);
-	B_NpcSetDrunk(40);
 	if(Npc_IsPlayer(self) && !Npc_GetTalentSkill(self,NPC_TALENT_ACROBAT))
 	{
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_ACROBATIC.MDS",10000);

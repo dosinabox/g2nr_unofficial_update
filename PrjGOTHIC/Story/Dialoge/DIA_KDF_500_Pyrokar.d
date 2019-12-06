@@ -1215,13 +1215,28 @@ func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 {
 	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
+		if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+		{
+			DIA_Pyrokar_FOUNDINNOSEYE.description = "Я нашел Глаз Инноса. Он поврежден.";
+		}
+		else
+		{
+			DIA_Pyrokar_FOUNDINNOSEYE.description = "Глаз Инноса поврежден.";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_00");	//Я нашел Глаз Инноса. Он поврежден.
+	if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+	{
+		AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_00");	//Я нашел Глаз Инноса. Он поврежден.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+	};
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_01");	//Но... этого не может быть. Что произошло?
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_02");	//Его заполучили в свои руки заказчики весьма отвратительного вида. Так получилось, что я прибыл слишком поздно.
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_03");	//Они выполняли странный обряд на пьедестале в форме полумесяца в здешнем лесу.

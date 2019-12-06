@@ -158,7 +158,7 @@ func void DIA_Harad_OrcRunning_TooHard()
 	Harad_HakonMission = TRUE;
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
-	if(MIS_HakonBandits != LOG_Running)
+	if(MIS_HakonBandits == FALSE)
 	{
 		B_LogEntry(TOPIC_Lehrling,"√арад сказал мне, что бандиты ограбили торговца ’акона недалеко от города. ≈сли € смогу убить их, это убедит его, что € хоть на что-то гожусь. я должен поговорить с ’аконом. ¬озможно, он знает, где скрываютс€ эти бандиты.");
 	}
@@ -177,6 +177,39 @@ func void DIA_Harad_OrcRunning_Done()
 };
 
 
+func int C_ScHasOrcWeapon()
+{
+	if(Npc_HasItems(hero,ItMw_2H_OrcMace_01))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_01))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_02))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_03))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_04))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMw_2H_OrcSword_01))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMw_2H_OrcSword_02))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Harad_OrcSuccess(C_Info)
 {
 	npc = VLK_412_Harad;
@@ -190,12 +223,9 @@ instance DIA_Harad_OrcSuccess(C_Info)
 
 func int DIA_Harad_OrcSuccess_Condition()
 {
-	if(MIS_Harad_Orc == LOG_Running)
+	if((MIS_Harad_Orc == LOG_Running) && C_ScHasOrcWeapon())
 	{
-		if(Npc_HasItems(other,ItMw_2H_OrcMace_01) || Npc_HasItems(other,ItMw_2H_OrcAxe_01) || Npc_HasItems(other,ItMw_2H_OrcAxe_02) || Npc_HasItems(other,ItMw_2H_OrcAxe_03) || Npc_HasItems(other,ItMw_2H_OrcAxe_04) || Npc_HasItems(other,ItMw_2H_OrcSword_01) || Npc_HasItems(other,ItMw_2H_OrcSword_02))
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
@@ -528,7 +558,16 @@ func void DIA_Harad_AlsLehrling_Info()
 	else if((other.guild == GIL_PAL) && (Harad_StartGuild != GIL_PAL) && (Harad_PALKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_03");	//“ебе удалось стать паладином!
-		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04");	//я рад, что когда-то вз€л теб€ в ученики. ƒаже хот€ ты и не проводил много времени за наковальней.
+//		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04");	//я рад, что когда-то вз€л теб€ в ученики. ƒаже хот€ ты и не проводил много времени за наковальней.
+		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04_01_add");	//я рад, что когда-то вз€л теб€ в ученики.
+		if(HaradsAnvilUsed < 20)
+		{
+			AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04_02_add");	//ƒаже хот€ ты и не проводил много времени за наковальней.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Harad_AlsLehrling_12_07");	//≈сли тебе будет что-нибудь нужно от мен€, € всегда буду рад помочь.
+		};
 		Harad_PALKommentar = TRUE;
 	}
 	else if(((other.guild == GIL_NOV) || (other.guild == GIL_KDF)) && (Harad_StartGuild != GIL_NOV) && (Harad_StartGuild != GIL_KDF) && (Harad_INNOSKommentar == FALSE))
