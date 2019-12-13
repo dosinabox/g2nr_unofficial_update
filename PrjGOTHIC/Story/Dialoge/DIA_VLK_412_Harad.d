@@ -523,6 +523,18 @@ func void DIA_Harad_Zustimmung_Info()
 };
 
 
+func void B_HaradCommentAnvilUses()
+{
+	if(HaradsAnvilUsed < 10)
+	{
+		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04_02_add");	//Даже хотя ты и не проводил много времени за наковальней.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_07");	//Если тебе будет что-нибудь нужно от меня, я всегда буду рад помочь.
+	};
+};
+
 var int Harad_MILKommentar;
 var int Harad_PALKommentar;
 var int Harad_INNOSKommentar;
@@ -551,30 +563,22 @@ func void DIA_Harad_AlsLehrling_Info()
 	if((other.guild == GIL_MIL) && (Harad_StartGuild != GIL_MIL) && (Harad_MILKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_00");	//Ты теперь служишь в ополчении? Я горжусь тобой!
-		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_01");	//Пока ты служишь в армии, естественно я не могу рассчитывать, что ты будешь выполнять еще и свои обязанности ученика.
+		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_01");	//Пока ты служишь в армии, естественно, я не могу рассчитывать, что ты будешь выполнять еще и свои обязанности ученика.
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_02");	//Но если тебе что-нибудь понадобится, можешь заходить ко мне, когда захочешь.
 		Harad_MILKommentar = TRUE;
 	}
 	else if((other.guild == GIL_PAL) && (Harad_StartGuild != GIL_PAL) && (Harad_PALKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_03");	//Тебе удалось стать паладином!
-//		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04");	//Я рад, что когда-то взял тебя в ученики. Даже хотя ты и не проводил много времени за наковальней.
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04_01_add");	//Я рад, что когда-то взял тебя в ученики.
-		if(HaradsAnvilUsed < 20)
-		{
-			AI_Output(self,other,"DIA_Harad_AlsLehrling_12_04_02_add");	//Даже хотя ты и не проводил много времени за наковальней.
-		}
-		else
-		{
-			AI_Output(self,other,"DIA_Harad_AlsLehrling_12_07");	//Если тебе будет что-нибудь нужно от меня, я всегда буду рад помочь.
-		};
+		B_HaradCommentAnvilUses();
 		Harad_PALKommentar = TRUE;
 	}
 	else if(((other.guild == GIL_NOV) || (other.guild == GIL_KDF)) && (Harad_StartGuild != GIL_NOV) && (Harad_StartGuild != GIL_KDF) && (Harad_INNOSKommentar == FALSE))
 	{
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_05");	//Так ты постригся в монастырь. Я бы предпочел, чтобы ты оставался в городе. Нам нужны сильные люди.
 		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_06");	//Но если ты решил следовать пути Инноса, то так тому и быть.
-		AI_Output(self,other,"DIA_Harad_AlsLehrling_12_07");	//Если тебе будет что-нибудь нужно от меня, я всегда буду рад помочь.
+		B_HaradCommentAnvilUses();
 		Harad_INNOSKommentar = TRUE;
 	}
 	else if((Harad_Lehrling_Day <= (Wld_GetDay() - 4)) && (Harad_MILKommentar == FALSE) && (Harad_PALKommentar == FALSE) && (Harad_INNOSKommentar == FALSE))

@@ -236,9 +236,8 @@ func void DIA_Addon_Huno_Armor_BUY()
 	if(B_GiveInvItems(other,self,ItMi_Gold,BDT_Armor_H_Value))
 	{
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_Buy_06_01");	//ќтлично.
-		AI_PrintScreen("“€желые доспехи бандита получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		CreateInvItem(hero,ITAR_BDT_H);
-//		AI_EquipArmor(hero,ITAR_BDT_H);
+		AI_PrintScreen("“€желые доспехи бандита получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 		Huno_ArmorPerm = TRUE;
 	}
 	else

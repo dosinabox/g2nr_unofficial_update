@@ -739,17 +739,16 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_07");	//Я даю тебе оружие и доспехи рыцаря. Носи их с гордостью, рыцарь!
 	hero.guild = GIL_PAL;
 	Npc_SetTrueGuild(hero,GIL_PAL);
-	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
 	if(Helmets_Enabled == TRUE)
 	{
-		CreateInvItems(other,ITAR_PALN_M,1);
-		CreateInvItems(other,ITHE_PAL_M,1);
+		CreateInvItem(hero,ITAR_PALN_M);
+		CreateInvItem(hero,ITHE_PAL_M);
 	}
 	else
 	{
-		CreateInvItems(other,ITAR_PAL_M,1);
+		CreateInvItem(hero,ITAR_PAL_M);
 	};
-//	AI_EquipArmor(other,ITAR_PAL_M);
+	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
 	if(other.HitChance[NPC_TALENT_2H] >= other.HitChance[NPC_TALENT_1H])
 	{
 		CreateInvItems(self,ItMw_2h_Pal_Sword,1);

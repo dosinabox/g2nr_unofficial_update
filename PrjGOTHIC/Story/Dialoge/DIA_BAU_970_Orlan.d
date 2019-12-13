@@ -383,7 +383,6 @@ func void DIA_Orlan_RUESTUNG_Buy()
 		AI_Output(self,other,"DIA_Orlan_RUESTUNG_Buy_05_01");	//Мудрый выбор.
 		CreateInvItem(hero,ITAR_Leather_L);
 		AI_PrintScreen("Кожаные доспехи получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_Leather_L);
 		DIA_Orlan_RUESTUNG_noPerm = TRUE;
 	}
 	else

@@ -551,7 +551,6 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 			CreateInvItem(hero,ITAR_DJG_M);
 		};
 		AI_PrintScreen("—редние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_DJG_M);
 		Jan_DIA_Jan_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else

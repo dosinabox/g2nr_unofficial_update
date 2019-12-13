@@ -531,7 +531,6 @@ func void DIA_Addon_Lares_GetRangerArmor_Info()
 	AI_WaitTillEnd(other,self);
 	CreateInvItem(hero,ITAR_RANGER_Addon);
 	AI_PrintScreen("Доспехи 'Кольца Воды' получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//	AI_EquipArmor(hero,ITAR_RANGER_Addon);
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_05");	//Носи их с гордостью! Но никогда не надевай их в городе или каком-либо другом населенном месте.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_06");	//Помни: наши имена должны оставаться в тайне. Никто не должен знать, что мы являемся членами общества.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_07");	//Болтать о Кольце Воды запрещено. Это наше главное правило. Запомни его.
