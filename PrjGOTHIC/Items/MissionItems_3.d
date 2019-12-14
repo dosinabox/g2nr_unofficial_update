@@ -836,7 +836,7 @@ func void Use_MinenAnteil_Mis()
 
 instance ItAm_Prot_BlackEye_Mis(C_Item)
 {
-	name = "Амулет вызова душ";
+	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = Value_Am_HpMana;
@@ -846,7 +846,7 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = name;
+	description = "Амулет вызова душ";
 	text[2] = "Защита от сглаза.";
 	text[5] = NAME_Value;
 	count[5] = value;

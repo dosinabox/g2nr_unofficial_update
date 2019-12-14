@@ -458,8 +458,8 @@ instance ItWr_Manowar(C_Item)
 	value = 0;
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = UseManowar;
 	scemeName = "MAP";
+	on_state[0] = UseManowar;
 	description = name;
 };
 

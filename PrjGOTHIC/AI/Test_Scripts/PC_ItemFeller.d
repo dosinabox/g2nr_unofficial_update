@@ -445,8 +445,8 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItRw_Crossbow_H_02,1);
 	CreateInvItems(self,ItRw_Arrow,1000);
 	CreateInvItems(self,ItRw_Bolt,1000);
-	CreateInvItems(self,StandardBrief,1);
-	CreateInvItems(self,StandardBuch,1);
+//	CreateInvItems(self,StandardBrief,1);
+//	CreateInvItems(self,StandardBuch,1);
 	CreateInvItems(self,ItWr_Map_NewWorld,1);
 	CreateInvItems(self,ItWr_Map_NewWorld_City,1);
 	CreateInvItems(self,ItWr_Map_OldWorld,1);

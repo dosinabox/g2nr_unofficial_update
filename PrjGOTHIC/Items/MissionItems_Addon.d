@@ -548,14 +548,14 @@ func void Use_Rake()
 
 instance ItRi_Addon_BanditTrader(C_Item)
 {
-	name = "Кольцо гильдии";
+	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_MISSION | ITEM_RING;
 	value = 70;
 	visual = "ItRi_Addon_BanditTrader.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	description = name;
+	description = "Кольцо гильдии";
 	text[0] = "Гравированное кольцо";
 	text[1] = "гильдии торговцев Араксоса.";
 	text[5] = NAME_Value;
