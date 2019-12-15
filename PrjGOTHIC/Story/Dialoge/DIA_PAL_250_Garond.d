@@ -311,6 +311,11 @@ func void DIA_Garond_NeedProof_Info()
 	AI_Output(other,self,"DIA_Garond_NeedProof_15_09");	//Ну, хорошо - похоже, у меня нет выбора.
 	MIS_ScoutMine = LOG_Running;
 	B_StartOtherRoutine(Jergan,"FAJETH");
+	if(!Npc_IsDead(Jergan))
+	{
+		Jergan.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		Jergan.aivar[AIV_IgnoresArmor] = FALSE;
+	};
 	B_LogEntry(Topic_MISOLDWORLD,"Прежде чем командующий Гаронд отправит меня назад, он хочет, чтобы я разыскал три группы старателей и сообщил ему, сколько руды удалось им добыть.");
 	Log_CreateTopic(TOPIC_ScoutMine,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
