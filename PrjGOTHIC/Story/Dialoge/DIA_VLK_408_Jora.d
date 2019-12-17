@@ -254,7 +254,7 @@ func void DIA_Jora_HolDeinGold_DoIt()
 	Jora_Gold = LOG_Running;
 	Log_CreateTopic(TOPIC_Jora,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Jora,LOG_Running);
-	B_LogEntry(TOPIC_Jora,"Парень по имени Ренгару ограбил торговца Джору. Он весь день околачивается на рынке. Я должен вернуть украденное золото Джоры.");
+	Log_AddEntry(TOPIC_Jora,"Парень по имени Ренгару ограбил торговца Джору. Он весь день околачивается на рынке. Я должен вернуть украденное золото Джоры.");
 	Info_ClearChoices(DIA_Jora_HolDeinGold);
 };
 
@@ -402,7 +402,7 @@ func void DIA_Jora_GHDgInfo_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Jora_Add_08_06");	//Хорошо - я скажу - но ты ничего не слышал от меня, если что, понятно?
+		AI_Output(self,other,"DIA_Jora_Add_08_06");	//Хорошо, я скажу. Но ты ничего не слышал от меня, если что, понятно?
 		AI_Output(self,other,"DIA_Jora_Add_08_07");	//В портовом кабаке постоянно ошиваются какие-то темные личности.
 		AI_Output(self,other,"DIA_Jora_Add_08_08");	//Готов поклясться, что бармен что-то знает об этом...
 		AI_Output(self,other,"DIA_Jora_Add_08_09");	//Если ты хочешь выследить этих воров, тебе стоит поговорить с НИМ.
@@ -449,6 +449,12 @@ func void DIA_Jora_Belohnung_Info()
 };
 
 
+func void B_Jora_GivesAlriksSchwert()
+{
+	AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_06");	//А, ладно! Забирай его так. Ведь ты помог мне вернуть мое золото...
+	B_GiveInvItems(self,other,ItMw_AlriksSword_Mis,1);
+};
+
 instance DIA_Jora_AlriksSchwert(C_Info)
 {
 	npc = VLK_408_Jora;
@@ -488,13 +494,12 @@ func void DIA_Jora_AlriksSchwert_Info()
 		AI_Output(other,self,"DIA_Jora_AlriksSchwert_15_04");	//Сколько ты хочешь за него?
 		if(Jora_Gold == LOG_SUCCESS)
 		{
-			AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_05");	//Ну - для тебя...
-			AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_06");	//А, ладно! Забирай его так. Ведь ты помог мне вернуть мое золото...
-			B_GiveInvItems(self,other,ItMw_AlriksSword_Mis,1);
+			AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_05");	//Ну, для тебя...
+			B_Jora_GivesAlriksSchwert();
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_07");	//Ну - только для тебя - 50 золотых монет.
+			AI_Output(self,other,"DIA_Jora_AlriksSchwert_08_07");	//Ну, только для тебя - 50 золотых монет.
 		};
 	}
 	else
@@ -526,7 +531,11 @@ func int DIA_Jora_BUYAlriksSchwert_Condition()
 func void DIA_Jora_BUYAlriksSchwert_Info()
 {
 	AI_Output(other,self,"DIA_Jora_BUYAlriksSchwert_15_00");	//Вот 50 золотых монет. Давай мне меч Альрика.
-	if(B_GiveInvItems(other,self,ItMi_Gold,50))
+	if(Jora_Gold == LOG_SUCCESS)
+	{
+		B_Jora_GivesAlriksSchwert();
+	}
+	else if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
 		AI_Output(self,other,"DIA_Jora_BUYAlriksSchwert_08_04");	//Вот, держи - (ухмыляется) это выгодная сделка.
 		B_GiveInvItems(self,other,ItMw_AlriksSword_Mis,1);

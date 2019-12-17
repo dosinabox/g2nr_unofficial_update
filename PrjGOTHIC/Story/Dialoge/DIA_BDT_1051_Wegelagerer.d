@@ -1,4 +1,6 @@
 
+var int BDT_1051_Wegelagerer_Angriff;
+
 instance DIA_1051_Wegelagerer_EXIT(C_Info)
 {
 	npc = BDT_1051_Wegelagerer;
@@ -9,8 +11,6 @@ instance DIA_1051_Wegelagerer_EXIT(C_Info)
 	description = Dialog_Ende;
 };
 
-
-var int BDT_1051_Wegelagerer_Angriff;
 
 func int DIA_1051_Wegelagerer_EXIT_Condition()
 {
@@ -26,7 +26,7 @@ func void DIA_1051_Wegelagerer_EXIT_Info()
 	if(BDT_1051_Wegelagerer_Angriff == TRUE)
 	{
 		self.aivar[AIV_EnemyOverride] = FALSE;
-		BDT_1052_Wegelagerer.aivar[AIV_EnemyOverride] = FALSE;
+		BDT_1052.aivar[AIV_EnemyOverride] = FALSE;
 	};
 };
 
@@ -182,9 +182,7 @@ instance DIA_Wegelagerer_ANGRIFF(C_Info)
 
 func int DIA_Wegelagerer_ANGRIFF_Condition()
 {
-	var C_Npc Pal;
-	Pal = Hlp_GetNpc(BDT_1052_Wegelagerer);
-	if(!Npc_RefuseTalk(self) && ((BDT_1051_Wegelagerer_Angriff == TRUE) || C_NpcIsDown(Pal)))
+	if(!Npc_RefuseTalk(self) && ((BDT_1051_Wegelagerer_Angriff == TRUE) || C_NpcIsDown(BDT_1052)))
 	{
 		return TRUE;
 	};
@@ -196,6 +194,6 @@ func void DIA_Wegelagerer_ANGRIFF_Info()
 	AI_StopProcessInfos(self);
 	Npc_SetRefuseTalk(self,40);
 	self.aivar[AIV_EnemyOverride] = FALSE;
-	BDT_1052_Wegelagerer.aivar[AIV_EnemyOverride] = FALSE;
+	BDT_1052.aivar[AIV_EnemyOverride] = FALSE;
 };
 
