@@ -2032,7 +2032,7 @@ func void DIA_Pyrokar_MACHDTFREI_Info()
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_01");	//Ммм. Действительно, есть кое-что, что ты мог бы сделать для меня. Твои хорошие отношения с Ксардасом могли бы помочь тебе в этом.
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_02");	//Мое внимание привлекло то, что последние несколько дней в его башне творятся странные вещи.
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_03");	//Много людей слышало громкие вопли в ночи, исходящие оттуда, и видели странный свет, пляшущий над этой башней.
-	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_04");	//Только этого нам еще не хватало. Иди, проверь что там происходит и прекрати это безобразие.
+	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_04");	//Только этого нам еще не хватало! Иди, проверь что там происходит и прекрати это безобразие!
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_05");	//Тогда ты сможешь забрать Йоргена.
 	MIS_PyrokarClearDemonTower = LOG_Running;
 	Log_CreateTopic(TOPIC_PyrokarClearDemonTower,LOG_MISSION);
@@ -2065,7 +2065,7 @@ func int DIA_Pyrokar_DTCLEARED_Condition()
 func void DIA_Pyrokar_DTCLEARED_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_DTCLEARED_15_00");	//Башня Ксардаса больше никого не будет беспокоить.
-	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_01");	//Так что там было... нет, подожди, я не хочу даже знать.
+	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_01");	//Так... Что там было? Нет, подожди, я не хочу даже знать.
 	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_02");	//Если Йорген тебе все еще нужен, можешь забрать его из монастыря.
 	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_03");	//Да хранит тебя Иннос.
 	MIS_PyrokarClearDemonTower = LOG_SUCCESS;

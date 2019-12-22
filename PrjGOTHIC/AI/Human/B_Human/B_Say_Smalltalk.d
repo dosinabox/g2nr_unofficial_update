@@ -91,7 +91,7 @@ func void B_Say_Smalltalk()
 	}
 	else if(random < 110)
 	{
-		if((Npc_GetTrueGuild(self) == GIL_NOV) || (Npc_GetTrueGuild(self) == GIL_PAL) || (Npc_GetTrueGuild(self) == GIL_KDF))
+		if((self.guild == GIL_NOV) || (self.guild == GIL_PAL) || (self.guild == GIL_KDF))
 		{
 			if(Choice == 0)
 			{
@@ -102,7 +102,7 @@ func void B_Say_Smalltalk()
 				B_Say(self,self,"$SMALLTALK22");
 			};
 		}
-		else if((Npc_GetTrueGuild(self) == GIL_BDT) || (Npc_GetTrueGuild(self) == GIL_SLD) || (Npc_GetTrueGuild(self) == GIL_DJG) || (Npc_GetTrueGuild(self) == GIL_PIR))
+		else if((self.guild == GIL_BDT) || (self.guild == GIL_SLD) || (self.guild == GIL_DJG) || (self.guild == GIL_PIR))
 		{
 			if(Choice == 0)
 			{
@@ -120,7 +120,7 @@ func void B_Say_Smalltalk()
 	}
 	else if(random < 115)
 	{
-		if((Npc_GetTrueGuild(self) == GIL_NOV) || (Npc_GetTrueGuild(self) == GIL_PAL) || (Npc_GetTrueGuild(self) == GIL_KDF))
+		if((self.guild == GIL_NOV) || (self.guild == GIL_PAL) || (self.guild == GIL_KDF))
 		{
 			if(Choice == 0)
 			{
@@ -131,7 +131,7 @@ func void B_Say_Smalltalk()
 				B_Say(self,self,"$SMALLTALK23");
 			};
 		}
-		else if((Npc_GetTrueGuild(self) == GIL_BDT) || (Npc_GetTrueGuild(self) == GIL_SLD) || (Npc_GetTrueGuild(self) == GIL_DJG) || (Npc_GetTrueGuild(self) == GIL_PIR))
+		else if((self.guild == GIL_BDT) || (self.guild == GIL_SLD) || (self.guild == GIL_DJG) || (self.guild == GIL_PIR))
 		{
 			if(Choice == 0)
 			{
@@ -149,7 +149,7 @@ func void B_Say_Smalltalk()
 	}
 	else if(random <= 120)
 	{
-		if((Npc_GetTrueGuild(self) == GIL_NOV) || (Npc_GetTrueGuild(self) == GIL_PAL) || (Npc_GetTrueGuild(self) == GIL_KDF))
+		if((self.guild == GIL_NOV) || (self.guild == GIL_PAL) || (self.guild == GIL_KDF))
 		{
 			if(Choice == 0)
 			{
@@ -160,7 +160,7 @@ func void B_Say_Smalltalk()
 				B_Say(self,self,"$SMALLTALK24");
 			};
 		}
-		else if((Npc_GetTrueGuild(self) == GIL_BDT) || (Npc_GetTrueGuild(self) == GIL_SLD) || (Npc_GetTrueGuild(self) == GIL_DJG) || (Npc_GetTrueGuild(self) == GIL_PIR))
+		else if((self.guild == GIL_BDT) || (self.guild == GIL_SLD) || (self.guild == GIL_DJG) || (self.guild == GIL_PIR))
 		{
 			if(Choice == 0)
 			{

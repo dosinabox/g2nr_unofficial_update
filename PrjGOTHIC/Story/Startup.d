@@ -1794,7 +1794,7 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
-	if(Mob_HasItems("D36_SECRET_WASTELAND_CHEST",ItPl_Mushroom_02))
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
 	{
 		b_seed_wasteland_world_main();
 	};
@@ -1822,7 +1822,7 @@ func void init_oldworld()
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
 	INIT_SUB_Surface();
-	if(Mob_HasItems("D36_SECRET_WASTELAND_CHEST",ItPl_Mushroom_02))
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
 	{
 		init_sub_psicamp();
 		init_sub_freeminecamp();
@@ -1850,7 +1850,7 @@ func void startup_oldworld()
 	{
 		Wld_SetTime(23,59);
 	};
-	if(Mob_HasItems("D36_SECRET_WASTELAND_CHEST",ItPl_Mushroom_02))
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
 	{
 		startup_psicamp();
 		startup_freeminecamp();
@@ -2067,20 +2067,37 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");
 	Wld_InsertItem(ItWr_OneHStonePlate2_Addon,"FP_ROAM_INSEL_07");
 	Wld_InsertItem(ItWr_BowStonePlate2_Addon,"FP_ROAM_INSEL_10");
-	/*Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
+	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
+	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	{
+		Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_02");
+		Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_03");
+		Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
+		Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
+		Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
+		Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
+	}
+	else
+	{
+		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
+		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");
+	};
+	/*Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
 	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
 	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
 	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
 	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");*/
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
-	Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_02");
+	/*Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_02");
 	Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_03");
 	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
 	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
 	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
+	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");*/
 //	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_13");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_01");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"FP_SHELLSPAWN_CITY_02");
@@ -3499,3 +3516,4 @@ func void init_orcgraveyard()
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 };
+

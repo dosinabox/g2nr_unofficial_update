@@ -157,7 +157,7 @@ func void DIA_Cassia_News_Info()
 		AI_Output(other,self,"DIA_Cassia_News_15_08");	//Что ты хочешь предложить мне?
 		AI_Output(self,other,"DIA_Cassia_News_16_09");	//Ты можешь присоединиться к нам.
 	};
-	if((Npc_GetTrueGuild(other) == GIL_NONE) || (Npc_GetTrueGuild(other) == GIL_NOV))
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		Cassia_Gildencheck = TRUE;
 	};

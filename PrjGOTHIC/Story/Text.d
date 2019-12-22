@@ -966,3 +966,6 @@ const string PRINT_BookstandRunes1 = "Чтобы создать руну, всегда необходим КАЖДЫ
 const string PRINT_BookstandRunes2 = "Маг должен знать формулу заклинания и должен иметь чистый рунный камень и свиток желаемого заклинания.";
 const string PRINT_BookstandRunes3 = "Только при выполнении этих условий он может приступить к работе за рунным столом.";
 
+const string PRINT_OldSave1 = "Загруженное сохранение не поддерживается!";
+const string PRINT_OldSave2 = "Пожалуйста, начните новую игру.";
+

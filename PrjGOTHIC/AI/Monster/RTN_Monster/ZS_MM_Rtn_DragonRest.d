@@ -50,17 +50,20 @@ func int ZS_MM_Rtn_DragonRest_Loop()
 	{
 		randomMove = Hlp_Random(3);
 		AI_Standup(self);
-		if(randomMove == 0)
+		if(self.guild != GIL_DRAGON)
 		{
-			AI_PlayAni(self,"R_ROAM1");
-		};
-		if(randomMove == 1)
-		{
-			AI_PlayAni(self,"R_ROAM2");
-		};
-		if(randomMove == 2)
-		{
-			AI_PlayAni(self,"R_ROAM3");
+			if(randomMove == 0)
+			{
+				AI_PlayAni(self,"R_ROAM1");
+			};
+			if(randomMove == 1)
+			{
+				AI_PlayAni(self,"R_ROAM2");
+			};
+			if(randomMove == 2)
+			{
+				AI_PlayAni(self,"R_ROAM3");
+			};
 		};
 	};
 	return LOOP_CONTINUE;

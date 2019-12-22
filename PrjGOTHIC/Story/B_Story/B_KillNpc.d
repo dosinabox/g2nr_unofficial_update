@@ -29,8 +29,8 @@ func void b_check_version()
 {
 	if(FIX_VERSION_SAVE < LEAST_SUPPORTED)
 	{
-		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,10);
-		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,10);
+		PrintScreen(PRINT_OldSave1,50,50,FONT_ScreenSmall,10);
+		PrintScreen(PRINT_OldSave2,50,53,FONT_ScreenSmall,10);
 		AI_Wait(hero,10);
 	};
 };
@@ -48,11 +48,30 @@ func string b_check_dist(var C_NPC slf, var string wp)
 	return IntToString(Npc_GetDistToWP(slf,wp));
 };
 
+func int C_WorldIsFixed(var int world)
+{
+	if(world == NEWWORLD_ZEN)
+	{
+		if(Mob_HasItems("KVI_SECRET_DEV_CHEST",ItPl_Mushroom_01))
+		{
+			return TRUE;
+		};
+	}
+	else if(world == OLDWORLD_ZEN)
+	{
+		if(Mob_HasItems("D36_SECRET_WASTELAND_CHEST",ItPl_Mushroom_02))
+		{
+			return TRUE;
+		};
+	};
+	return FALSE;
+};
+
 func void b_cycle_function()
 {
 	if((CurrentLevel == NEWWORLD_ZEN) && (UNDEADSWORD == FALSE) && Npc_HasItems(hero,ItMw_Drachenschneide))
 	{
-		if(Mob_HasItems("KVI_SECRET_DEV_CHEST",ItPl_Mushroom_01))
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
 		{
 			Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
 		};
@@ -71,8 +90,8 @@ func void b_cycle_function()
 	};
 	if(FIX_VERSION_SAVE < LEAST_SUPPORTED)
 	{
-		PrintScreen("Загруженное сохранение не поддерживается!",50,50,FONT_ScreenSmall,3);
-		PrintScreen("Пожалуйста, начните новую игру.",50,53,FONT_ScreenSmall,3);
+		PrintScreen(PRINT_OldSave1,50,50,FONT_ScreenSmall,3);
+		PrintScreen(PRINT_OldSave2,50,53,FONT_ScreenSmall,3);
 	};
 //	Print(b_check_dist(hero,"NW_CITY_BARRACK02_BED_PECK"));
 	Wld_SendTrigger("CYCLE_TRIGGER");

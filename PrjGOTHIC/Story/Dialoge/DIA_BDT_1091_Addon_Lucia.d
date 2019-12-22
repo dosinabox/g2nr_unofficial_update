@@ -233,7 +233,7 @@ func void DIA_Addon_Lucia_Paladine_Info()
 	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_01");	//Этих фанатиков-убийц, которым платят маги Огня? Нет, не люблю.
 	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_02");	//Лорд Хаген и его громилы заняли город, и все ползают перед ними на брюхе.
 	AI_Output(self,other,"DIA_Addon_Lucia_Paladine_16_03");	//А мне это не по душе. Я не собиралась ждать, пока они закроют Красную Лампу и посадят меня за решетку.
-	if((Npc_GetTrueGuild(other) != GIL_SLD) && (Npc_GetTrueGuild(other) != GIL_DJG))
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
 	{
 		Info_ClearChoices(DIA_Addon_Lucia_Paladine);
 		Info_AddChoice(DIA_Addon_Lucia_Paladine,"(промолчать)",DIA_Addon_Lucia_Paladine_BACK);

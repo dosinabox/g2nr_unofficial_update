@@ -57,6 +57,7 @@ instance ItKe_City_Tower_01(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = NAME_TowerKey;
+	text[0] = "Этот ключ был у Пабло.";
 };
 
 instance ItKe_City_Tower_02(C_Item)
@@ -68,6 +69,7 @@ instance ItKe_City_Tower_02(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = NAME_TowerKey;
+	text[0] = "Этот ключ был у Рагнара.";
 };
 
 instance ItKe_City_Tower_03(C_Item)
@@ -79,6 +81,7 @@ instance ItKe_City_Tower_03(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = NAME_TowerKey;
+	text[0] = "Этот ключ был у Руги.";
 };
 
 instance ItKe_City_Tower_04(C_Item)
@@ -90,6 +93,7 @@ instance ItKe_City_Tower_04(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = NAME_TowerKey;
+	text[0] = "Этот ключ был у Вамбо.";
 };
 
 instance ItKe_City_Tower_05(C_Item)
@@ -101,6 +105,7 @@ instance ItKe_City_Tower_05(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = NAME_TowerKey;
+	text[0] = "Этот ключ был у Пека.";
 };
 
 instance ItKe_City_Tower_06(C_Item)
@@ -112,6 +117,7 @@ instance ItKe_City_Tower_06(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = NAME_TowerKey;
+	text[0] = "Этот ключ был в сундуке в казармах ополчения.";
 };
 
 instance ItKe_Orlan_BackDoor(C_Item)

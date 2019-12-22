@@ -305,6 +305,23 @@ func void DIA_Wulfgar_Teach_2H_5()
 	};
 };
 
+func void B_Ruga_Teach_Log()
+{
+	if(Ruga_Teach_Log == FALSE)
+	{
+		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
+		{
+			Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом.");
+		}
+		else if((hero.guild == GIL_NONE) || (hero.guild == GIL_NOV))
+		{
+			Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+			B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом. Но для этого я должен числиться в городском ополчении или стать магом.");
+		};
+		Ruga_Teach_Log = TRUE;
+	};
+};
 
 instance DIA_Wulfgar_AlsMil(C_Info)
 {
@@ -337,11 +354,7 @@ func void DIA_Wulfgar_AlsMil_Info()
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"Ополченец Мортис может помочь мне повысить мою силу.");	
 	};
-	if(!Npc_KnowsInfo(other,DIA_Ruga_Hallo))
-	{
-		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом.");
-	};
+	B_Ruga_Teach_Log();
 };
 
 
