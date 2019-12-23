@@ -46,9 +46,9 @@ func int ZS_MM_Rtn_Roam_Loop()
 	}
 	else if(Hlp_Random(1000) <= 5)
 	{
-		randomMove = Hlp_Random(3);
 		if(self.guild != GIL_SWAMPSHARK)
 		{
+			randomMove = Hlp_Random(3);
 			if(randomMove == 0)
 			{
 				AI_PlayAni(self,"R_ROAM1");

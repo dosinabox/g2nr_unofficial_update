@@ -92,6 +92,13 @@ func void ZS_Dead()
 		{
 			Grimbald_Snappers_KilledByPlayer = TRUE;
 		};
+		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur)))
+		{
+			if(Npc_IsDead(Rengaru) && Npc_IsDead(Halvor) && Npc_IsDead(Nagur))
+			{
+				MIS_ThiefGuild_sucked = TRUE;
+			};
+		};
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
 	{

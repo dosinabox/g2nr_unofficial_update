@@ -117,7 +117,8 @@ instance ItKe_City_Tower_06(C_Item)
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = NAME_TowerKey;
-	text[0] = "Этот ключ был в сундуке в казармах ополчения.";
+	text[0] = "Этот ключ был в сундуке";
+	text[1] = "в казармах ополчения.";
 };
 
 instance ItKe_Orlan_BackDoor(C_Item)

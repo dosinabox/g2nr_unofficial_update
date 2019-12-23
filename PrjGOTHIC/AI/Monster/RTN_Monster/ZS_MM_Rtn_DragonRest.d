@@ -48,10 +48,10 @@ func int ZS_MM_Rtn_DragonRest_Loop()
 	};
 	if(Hlp_Random(1000) <= 5)
 	{
-		randomMove = Hlp_Random(3);
-		AI_Standup(self);
 		if(self.guild != GIL_DRAGON)
 		{
+			randomMove = Hlp_Random(3);
+			AI_Standup(self);
 			if(randomMove == 0)
 			{
 				AI_PlayAni(self,"R_ROAM1");
