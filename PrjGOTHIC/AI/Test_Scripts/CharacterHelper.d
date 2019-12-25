@@ -334,25 +334,34 @@ func void CH_RESET_Info()
 	hero.attribute[ATR_MANA] = 10;
 	hero.attribute[ATR_HITPOINTS] = 40;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40;
-	Npc_SetTalentSkill(hero,NPC_TALENT_SMITH,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_ALCHEMY,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_RUNES,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_MAGE,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_BOW,0);
-	hero.HitChance[NPC_TALENT_BOW] = 10;
-	Npc_SetTalentSkill(hero,NPC_TALENT_CROSSBOW,0);
-	hero.HitChance[NPC_TALENT_CROSSBOW] = 10;
 	Npc_SetTalentSkill(hero,NPC_TALENT_1H,0);
 	hero.HitChance[NPC_TALENT_1H] = 10;
 	Npc_SetTalentSkill(hero,NPC_TALENT_2H,0);
 	hero.HitChance[NPC_TALENT_2H] = 10;
-	Npc_SetTalentSkill(hero,NPC_TALENT_SNEAK,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_BOW,0);
+	hero.HitChance[NPC_TALENT_BOW] = 10;
+	Npc_SetTalentSkill(hero,NPC_TALENT_CROSSBOW,0);
+	hero.HitChance[NPC_TALENT_CROSSBOW] = 10;
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKLOCK,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_PICKPOCKET,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_MAGE,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_SNEAK,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_REGENERATE,0);
+	hero.attribute[ATR_REGENERATEHP] = 0;
+	hero.attribute[ATR_REGENERATEMANA] = 0;
+	Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_ACROBAT,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_PICKPOCKET,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_SMITH,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_RUNES,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_ALCHEMY,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALTROPHY,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_FOREIGNLANGUAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_WISPDETECTOR,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_C,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_D,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
+	Knows_Bloodfly = FALSE;
+	Hero_HackChance = 10;
 	PrintScreen("Восстановлен исходный PC_Hero",-1,-1,FONT_Screen,2);
 };
 
@@ -2950,7 +2959,7 @@ var int AnimalStart;
 instance DIA_CH_Misc_Animal_Start(C_Info)
 {
 	npc = ch;
-	nr = 8;
+	nr = 20;
 	condition = DIA_CH_Misc_Animal_Start_Condition;
 	information = DIA_CH_Misc_Animal_Start_Info;
 	permanent = TRUE;
@@ -3239,7 +3248,7 @@ func void CH_Training_TROPHYS_DragonBlood()
 instance CH_Language(C_Info)
 {
 	npc = ch;
-	nr = 7;
+	nr = 30;
 	condition = CH_Language_Condition;
 	information = CH_Language_Info;
 	important = FALSE;
@@ -3297,7 +3306,7 @@ func void CH_Language_Priest()
 instance DIA_CH_Misc_InnosEye(C_Info)
 {
 	npc = ch;
-	nr = 80;
+	nr = 40;
 	condition = DIA_CH_Misc_InnosEye_Condition;
 	information = DIA_CH_Misc_InnosEye_Info;
 	permanent = TRUE;
@@ -3323,7 +3332,7 @@ func void DIA_CH_Misc_InnosEye_Info()
 instance DIA_CH_Misc_Gold(C_Info)
 {
 	npc = ch;
-	nr = 70;
+	nr = 50;
 	condition = DIA_CH_Misc_Gold_Condition;
 	information = DIA_CH_Misc_Gold_Info;
 	permanent = TRUE;
@@ -3388,6 +3397,147 @@ func void DIA_CH_Misc_Gold_1()
 {
 	B_Upgrade_Hero_HackChance(1);
 	DIA_CH_Misc_Gold_Info();
+};
+
+instance DIA_CH_Misc_Wisp(C_Info)
+{
+	npc = ch;
+	nr = 60;
+	condition = DIA_CH_Misc_Wisp_Condition;
+	information = DIA_CH_Misc_Wisp_Info;
+	permanent = TRUE;
+	description = "Способности ищущего огонька";
+};
+
+
+func int DIA_CH_Misc_Wisp_Condition()
+{
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_CH_Misc_Wisp_Info()
+{
+	Info_ClearChoices(DIA_CH_Misc_Wisp);
+	Info_AddChoice(DIA_CH_Misc_Wisp,Dialog_Back,DIA_CH_Misc_Wisp_BACK);
+};
+
+func void DIA_CH_Misc_Wisp_BACK()
+{
+	Info_ClearChoices(DIA_CH_Misc_Wisp);
+};
+
+func string B_BuildCurrentRegenerateValue(var int stats)
+{
+	var string concatText;
+	var int cost;
+	cost = B_GetLearnCostAttribute(other,stats);
+	if(stats == ATR_REGENERATEMANA)
+	{
+		concatText = ConcatStrings("Регенерация маны (1 ед. в ",IntToString(other.attribute[ATR_REGENERATEMANA] - 1));
+	}
+	else if(stats == ATR_REGENERATEHP)
+	{
+		concatText = ConcatStrings("Регенерация здоровья (1 ед. в ",IntToString(other.attribute[ATR_REGENERATEHP] - 1));
+	};
+	concatText = ConcatStrings(concatText," секунд, ");
+	concatText = ConcatStrings(concatText,IntToString(cost));
+	if(cost == 1)
+	{
+		concatText = ConcatStrings(concatText," очко обучения)");
+	}
+	else if(cost == 2)
+	{
+		concatText = ConcatStrings(concatText," очка обучения)");
+	}
+	else
+	{
+		concatText = ConcatStrings(concatText," очков обучения)");
+	};
+	return concatText;
+};
+
+instance DIA_CH_Misc_Regenerate(C_Info)
+{
+	npc = ch;
+	nr = 70;
+	condition = DIA_CH_Misc_Regenerate_Condition;
+	information = DIA_CH_Misc_Regenerate_Info;
+	permanent = TRUE;
+	description = "Регенерация";
+};
+
+
+func int DIA_CH_Misc_Regenerate_Condition()
+{
+	if((MiscStart == TRUE) && (AlchemyStart == FALSE) && (SmithStart == FALSE) && (AnimalStart == FALSE))
+	{
+		if(other.attribute[ATR_REGENERATEMANA] != 1)
+		{
+			return TRUE;
+		}
+		else if(other.attribute[ATR_REGENERATEHP] != 1)
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_CH_Misc_Regenerate_Info()
+{
+	Info_ClearChoices(DIA_CH_Misc_Regenerate);
+	Info_AddChoice(DIA_CH_Misc_Regenerate,Dialog_Back,DIA_CH_Misc_Regenerate_BACK);
+	if(other.attribute[ATR_REGENERATEMANA] == 0)
+	{
+		Info_AddChoice(DIA_CH_Misc_Regenerate,"Регенерация маны (1 ед. в минуту, 1 очко обучения)",DIA_CH_Misc_Regenerate_Mana);
+	}
+	else if(other.attribute[ATR_REGENERATEMANA] > 1)
+	{
+		Info_AddChoice(DIA_CH_Misc_Regenerate,B_BuildCurrentRegenerateValue(ATR_REGENERATEMANA),DIA_CH_Misc_Regenerate_Mana);
+	};
+	if(other.attribute[ATR_REGENERATEHP] == 0)
+	{
+		Info_AddChoice(DIA_CH_Misc_Regenerate,"Регенерация здоровья (1 ед. в минуту, 1 очко обучения)",DIA_CH_Misc_Regenerate_HP);
+	}
+	else if(other.attribute[ATR_REGENERATEHP] > 1)
+	{
+		Info_AddChoice(DIA_CH_Misc_Regenerate,B_BuildCurrentRegenerateValue(ATR_REGENERATEHP),DIA_CH_Misc_Regenerate_HP);
+	};
+};
+
+func void DIA_CH_Misc_Regenerate_BACK()
+{
+	Info_ClearChoices(DIA_CH_Misc_Regenerate);
+};
+
+func void DIA_CH_Misc_Regenerate_Mana()
+{
+	if(other.lp >= B_GetLearnCostAttribute(other,ATR_REGENERATEMANA))
+	{
+		other.lp -= B_GetLearnCostAttribute(other,ATR_REGENERATEMANA);
+		B_RaiseAttribute(other,ATR_REGENERATEMANA,1);
+	}
+	else
+	{
+		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_ScreenSmall,2);
+	};
+	DIA_CH_Misc_Regenerate_Info();
+};
+
+func void DIA_CH_Misc_Regenerate_HP()
+{
+	if(other.lp >= B_GetLearnCostAttribute(other,ATR_REGENERATEHP))
+	{
+		other.lp -= B_GetLearnCostAttribute(other,ATR_REGENERATEHP);
+		B_RaiseAttribute(other,ATR_REGENERATEHP,1);
+	}
+	else
+	{
+		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_ScreenSmall,2);
+	};
+	DIA_CH_Misc_Regenerate_Info();
 };
 
 instance CH_Overlay(C_Info)

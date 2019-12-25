@@ -114,7 +114,10 @@ instance DIA_Raoul_PERMNone(C_Info)
 
 func int DIA_Raoul_PERMNone_Condition()
 {
-	return TRUE;
+	if(other.guild != GIL_DJG)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Raoul_PERMNone_Info()

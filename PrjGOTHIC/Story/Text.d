@@ -417,7 +417,7 @@ const string TXT_TALENTS[22] =
 	"",
 	"Круг магии",
 	"Подкрадывание",
-	"",
+	"Регенерация",
 	"",
 	"Акробатика",
 	"Карман. кража",
@@ -443,7 +443,7 @@ const string TXT_TALENTS_SKILLS[22] =
 	"",
 	"Не обучен|Первый|Второй|Третий|Четвертый|Пятый|Шестой",
 	"Не обучен|Обучен",
-	"",
+	"Не обучен|Обучен",
 	"",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
@@ -664,6 +664,8 @@ const string PRINT_LearnCrossbow = "Улучшено: Меткость стрельбы из арбалета";
 const string PRINT_LearnCrossbow_and_Bow = "Улучшено: Меткость стрельбы из арбалета и лука";
 const string PRINT_LearnPicklock = "Изучено: Владение отмычками";
 const string PRINT_LearnSneak = "Изучено: Искусство подкрадывания";
+const string PRINT_LearnRegenerateHP = "Улучшено: Регенерация здоровья";
+const string PRINT_LearnRegenerateMana = "Улучшено: Регенерация маны";
 const string PRINT_LearnAcrobat = "Изучено: Акробатика";
 const string PRINT_Addon_AcrobatBonus = "Получен бонус акробатики!";
 const string PRINT_LearnPickpocket = "Изучено: Искусство карманного воровства";

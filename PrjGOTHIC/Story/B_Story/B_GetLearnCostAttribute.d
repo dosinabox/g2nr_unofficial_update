@@ -72,6 +72,28 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 			kosten = 1;
 		};
 	};
+	if(attribut == ATR_REGENERATEHP)
+	{
+		if(oth.attribute[ATR_REGENERATEHP] > 30)
+		{
+			kosten = 1;
+		}
+		else
+		{
+			kosten = 2;
+		};
+	};
+	if(attribut == ATR_REGENERATEMANA)
+	{
+		if(oth.attribute[ATR_REGENERATEMANA] > 30)
+		{
+			kosten = 1;
+		}
+		else
+		{
+			kosten = 2;
+		};
+	};
 	return kosten;
 };
 
