@@ -374,3 +374,5 @@ func void DIA_Jergan_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Jergan_PICKPOCKET);
 };
 
+
+

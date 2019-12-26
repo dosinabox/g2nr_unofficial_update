@@ -15,7 +15,7 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 //		realHitChance = oth.HitChance[NPC_TALENT_1H];
 		if(oth.HitChance[NPC_TALENT_1H] >= 100)
 		{
-			PrintScreen("Дальнейшее обучение невозможно!",-1,-1,FONT_Screen,2);
+			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 			return FALSE;
 		};
@@ -26,7 +26,7 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 //		realHitChance = oth.HitChance[NPC_TALENT_2H];
 		if(oth.HitChance[NPC_TALENT_2H] >= 100)
 		{
-			PrintScreen("Дальнейшее обучение невозможно!",-1,-1,FONT_Screen,2);
+			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 			return FALSE;
 		};
@@ -37,7 +37,7 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 //		realHitChance = oth.HitChance[NPC_TALENT_BOW];
 		if(oth.HitChance[NPC_TALENT_BOW] >= 100)
 		{
-			PrintScreen("Дальнейшее обучение невозможно!",-1,-1,FONT_Screen,2);
+			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 			return FALSE;
 		};
@@ -48,7 +48,7 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 //		realHitChance = oth.HitChance[NPC_TALENT_CROSSBOW];
 		if(oth.HitChance[NPC_TALENT_CROSSBOW] >= 100)
 		{
-			PrintScreen("Дальнейшее обучение невозможно!",-1,-1,FONT_Screen,2);
+			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 			return FALSE;
 		};

@@ -13,7 +13,7 @@ func int B_TeachPlayerTalentWispDetector(var C_Npc slf,var C_Npc oth,var int Wis
 	kosten = B_GetLearnCostTalent(oth,NPC_TALENT_WISPDETECTOR,WispSkill);
 	if(oth.lp < kosten)
 	{
-		PrintScreen(PRINT_NotEnoughLearnPoints,-1,-1,FONT_ScreenSmall,2);
+		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_ScreenSmall,2);
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};

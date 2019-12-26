@@ -843,3 +843,5 @@ func void DIA_Wolf_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Wolf_PICKPOCKET);
 };
 
+
+

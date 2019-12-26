@@ -256,6 +256,17 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			kosten = 20;
 		};
 	};
+	if(talent == NPC_TALENT_TAKEANIMALFUR)
+	{
+		if(skill == TROPHY_Fur)
+		{
+			kosten = 5;
+		}
+		else if(skill == TROPHY_ReptileSkin)
+		{
+			kosten = 3;
+		};
+	};
 	if(talent == NPC_TALENT_TAKEANIMALTROPHY)
 	{
 		if(skill == TROPHY_Teeth)
@@ -265,10 +276,6 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 		else if(skill == TROPHY_Claws)
 		{
 			kosten = 3;
-		}
-		else if(skill == TROPHY_Fur)
-		{
-			kosten = 5;
 		}
 		else if(skill == TROPHY_Heart)
 		{
@@ -307,10 +314,6 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			kosten = 3;
 		}
 		else if(skill == TROPHY_DragonBlood)
-		{
-			kosten = 3;
-		}
-		else if(skill == TROPHY_ReptileSkin)
 		{
 			kosten = 3;
 		};
@@ -568,4 +571,5 @@ func int C_ShowAlchemySTRDEXDialog()
 	};
 	return FALSE;
 };
+
 

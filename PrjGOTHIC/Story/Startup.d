@@ -1,5 +1,5 @@
 
-const int FIX_VERSION_START = 23;
+const int FIX_VERSION_START = 24;
 const int LEAST_SUPPORTED = 21;
 var int FIX_VERSION_SAVE;
 

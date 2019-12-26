@@ -310,7 +310,7 @@ func void DIA_Talbin_TEACHHUNTING_Info()
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 		{
-			Info_AddChoice(DIA_Talbin_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Talbin_TEACHHUNTING_Fur);
+			Info_AddChoice(DIA_Talbin_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur)),DIA_Talbin_TEACHHUNTING_Fur);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
 		{
@@ -735,4 +735,6 @@ func void DIA_Talbin_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Talbin_PICKPOCKET);
 };
+
+
 

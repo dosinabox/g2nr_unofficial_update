@@ -392,7 +392,7 @@ func void DIA_Addon_Logan_Allg_Info()
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
 		{
-			Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString(NAME_TROPHY_ReptileSkin,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ReptileSkin)),DIA_Addon_Logan_Allg_Fur);
+			Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString(NAME_TROPHY_ReptileSkin,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_ReptileSkin)),DIA_Addon_Logan_Allg_Fur);
 		};
 	}
 	else
@@ -455,4 +455,5 @@ func void DIA_Addon_Logan_Hacker_Info()
 		Logan_Lohn = TRUE;
 	};
 };
+
 

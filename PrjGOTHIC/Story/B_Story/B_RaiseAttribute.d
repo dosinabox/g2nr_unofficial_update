@@ -55,12 +55,17 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 		{
 			oth.attribute[ATR_REGENERATEHP] = 60;
 			Npc_SetTalentSkill(oth,NPC_TALENT_REGENERATE,1);
+			PrintScreen(PRINT_LearnRegenerateHP,-1,-1,FONT_Screen,2);
+		}
+		else if(oth.attribute[ATR_REGENERATEHP] > 1)
+		{
+			oth.attribute[ATR_REGENERATEHP] -= points;
+			PrintScreen(PRINT_UpgradeRegenerateHP,-1,-1,FONT_Screen,2);
 		}
 		else
 		{
-			oth.attribute[ATR_REGENERATEHP] -= points;
+			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 		};
-		PrintScreen(PRINT_LearnRegenerateHP,-1,-1,FONT_Screen,2);
 	};
 	if(attrib == ATR_REGENERATEMANA)
 	{
@@ -68,12 +73,17 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 		{
 			oth.attribute[ATR_REGENERATEMANA] = 60;
 			Npc_SetTalentSkill(oth,NPC_TALENT_REGENERATE,1);
+			PrintScreen(PRINT_LearnRegenerateMana,-1,-1,FONT_Screen,2);
+		}
+		else if(oth.attribute[ATR_REGENERATEMANA] > 1)
+		{
+			oth.attribute[ATR_REGENERATEMANA] -= points;
+			PrintScreen(PRINT_UpgradeRegenerateMana,-1,-1,FONT_Screen,2);
 		}
 		else
 		{
-			oth.attribute[ATR_REGENERATEMANA] -= points;
+			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 		};
-		PrintScreen(PRINT_LearnRegenerateMana,-1,-1,FONT_Screen,2);
 	};
 //	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == FALSE)

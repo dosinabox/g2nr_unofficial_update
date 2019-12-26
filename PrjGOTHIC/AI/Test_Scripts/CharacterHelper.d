@@ -348,7 +348,7 @@ func void CH_RESET_Info()
 	Npc_SetTalentSkill(hero,NPC_TALENT_REGENERATE,0);
 	hero.attribute[ATR_REGENERATEHP] = 0;
 	hero.attribute[ATR_REGENERATEMANA] = 0;
-	Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,0);
+	//Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_ACROBAT,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKPOCKET,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_SMITH,0);
@@ -357,9 +357,9 @@ func void CH_RESET_Info()
 	Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALTROPHY,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_FOREIGNLANGUAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_WISPDETECTOR,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_C,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_D,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALTROPHY,0);
+	//Npc_SetTalentSkill(hero,NPC_TALENT_D,0);
+	//Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
 	Knows_Bloodfly = FALSE;
 	Hero_HackChance = 10;
 	PrintScreen("Восстановлен исходный PC_Hero",-1,-1,FONT_Screen,2);
@@ -3039,11 +3039,11 @@ func void DIA_CH_Misc_Animal_allg_Info()
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),CH_Training_TROPHYS_Fur);
+		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur)),CH_Training_TROPHYS_Fur);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString(NAME_TROPHY_ReptileSkin,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ReptileSkin)),CH_Training_TROPHYS_ReptileSkin);
+		Info_AddChoice(DIA_CH_Misc_Animal_allg,B_BuildLearnString(NAME_TROPHY_ReptileSkin,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_ReptileSkin)),CH_Training_TROPHYS_ReptileSkin);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] == FALSE)
 	{
@@ -3422,11 +3422,96 @@ func void DIA_CH_Misc_Wisp_Info()
 {
 	Info_ClearChoices(DIA_CH_Misc_Wisp);
 	Info_AddChoice(DIA_CH_Misc_Wisp,Dialog_Back,DIA_CH_Misc_Wisp_BACK);
+	
+	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FF] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Wisp,B_BuildLearnString(NAME_ADDON_WISPSKILL_FF,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_FF)),DIA_CH_Misc_Wisp_WISPSKILL_FF);
+	};
+	if(PLAYER_TALENT_WISPDETECTOR[WISPSKILL_NONE] == FALSE)
+	{
+		Info_AddChoice(DIA_CH_Misc_Wisp,B_BuildLearnString(NAME_ADDON_WISPSKILL_NONE,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_NONE)),DIA_CH_Misc_Wisp_WISPSKILL_NONE);
+	};
+	if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_RUNE] == FALSE) && (WISPSKILL_LEVEL >= 2))
+	{
+		Info_AddChoice(DIA_CH_Misc_Wisp,B_BuildLearnString(NAME_ADDON_WISPSKILL_RUNE,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_RUNE)),DIA_CH_Misc_Wisp_WISPSKILL_RUNE);
+	};
+	if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_MAGIC] == FALSE) && (WISPSKILL_LEVEL >= 2))
+	{
+		Info_AddChoice(DIA_CH_Misc_Wisp,B_BuildLearnString(NAME_ADDON_WISPSKILL_MAGIC,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_MAGIC)),DIA_CH_Misc_Wisp_WISPSKILL_MAGIC);
+	};
+	if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_FOOD] == FALSE) && (WISPSKILL_LEVEL >= 3))
+	{
+		Info_AddChoice(DIA_CH_Misc_Wisp,B_BuildLearnString(NAME_ADDON_WISPSKILL_FOOD,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_FOOD)),DIA_CH_Misc_Wisp_WISPSKILL_FOOD);
+	};
+	if((PLAYER_TALENT_WISPDETECTOR[WISPSKILL_POTIONS] == FALSE) && (WISPSKILL_LEVEL >= 3))
+	{
+		Info_AddChoice(DIA_CH_Misc_Wisp,B_BuildLearnString(NAME_ADDON_WISPSKILL_POTIONS,B_GetLearnCostTalent(other,NPC_TALENT_WISPDETECTOR,WISPSKILL_POTIONS)),DIA_CH_Misc_Wisp_WISPSKILL_POTIONS);
+	};
 };
 
 func void DIA_CH_Misc_Wisp_BACK()
 {
 	Info_ClearChoices(DIA_CH_Misc_Wisp);
+};
+
+func void DIA_CH_Misc_Wisp_WISPSKILL_FF()
+{
+	if(B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_FF))
+	{
+		if(WISPSKILL_LEVEL < 2)
+		{
+			WISPSKILL_LEVEL = 2;
+		};
+	};
+	DIA_CH_Misc_Wisp_Info();
+};
+
+func void DIA_CH_Misc_Wisp_WISPSKILL_NONE()
+{
+	if(B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_NONE))
+	{
+		if(WISPSKILL_LEVEL < 2)
+		{
+			WISPSKILL_LEVEL = 2;
+		};
+	};
+	DIA_CH_Misc_Wisp_Info();
+};
+
+func void DIA_CH_Misc_Wisp_WISPSKILL_RUNE()
+{
+	if(B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_RUNE))
+	{
+		if(WISPSKILL_LEVEL < 3)
+		{
+			WISPSKILL_LEVEL = 3;
+		};
+	};
+	DIA_CH_Misc_Wisp_Info();
+};
+
+func void DIA_CH_Misc_Wisp_WISPSKILL_MAGIC()
+{
+	if(B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_MAGIC))
+	{
+		if(WISPSKILL_LEVEL < 3)
+		{
+			WISPSKILL_LEVEL = 3;
+		};
+	};
+	DIA_CH_Misc_Wisp_Info();
+};
+
+func void DIA_CH_Misc_Wisp_WISPSKILL_FOOD()
+{
+	B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_FOOD);
+	DIA_CH_Misc_Wisp_Info();
+};
+
+func void DIA_CH_Misc_Wisp_WISPSKILL_POTIONS()
+{
+	B_TeachPlayerTalentWispDetector(self,other,WISPSKILL_POTIONS);
+	DIA_CH_Misc_Wisp_Info();
 };
 
 func string B_BuildCurrentRegenerateValue(var int stats)
@@ -3514,9 +3599,11 @@ func void DIA_CH_Misc_Regenerate_BACK()
 
 func void DIA_CH_Misc_Regenerate_Mana()
 {
-	if(other.lp >= B_GetLearnCostAttribute(other,ATR_REGENERATEMANA))
+	var int cost;
+	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEMANA);
+	if(other.lp >= cost)
 	{
-		other.lp -= B_GetLearnCostAttribute(other,ATR_REGENERATEMANA);
+		other.lp -= cost;
 		B_RaiseAttribute(other,ATR_REGENERATEMANA,1);
 	}
 	else
@@ -3528,9 +3615,11 @@ func void DIA_CH_Misc_Regenerate_Mana()
 
 func void DIA_CH_Misc_Regenerate_HP()
 {
-	if(other.lp >= B_GetLearnCostAttribute(other,ATR_REGENERATEHP))
+	var int cost;
+	cost = B_GetLearnCostAttribute(other,ATR_REGENERATEHP);
+	if(other.lp >= cost)
 	{
-		other.lp -= B_GetLearnCostAttribute(other,ATR_REGENERATEHP);
+		other.lp -= cost;
 		B_RaiseAttribute(other,ATR_REGENERATEHP,1);
 	}
 	else

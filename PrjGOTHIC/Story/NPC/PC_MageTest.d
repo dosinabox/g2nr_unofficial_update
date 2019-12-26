@@ -25,7 +25,7 @@ instance PC_MageTest(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_RUNES,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_ALCHEMY,1);
-	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALTROPHY,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALFUR,1);
 	PLAYER_TALENT_ALCHEMY[POTION_Health_01] = TRUE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_02] = TRUE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_03] = TRUE;
@@ -111,4 +111,5 @@ instance PC_MageTest(Npc_Default)
 	CreateInvItem(self,ItRu_SuckEnergy);
 	CreateInvItem(self,ItRu_Skull);
 };
+
 

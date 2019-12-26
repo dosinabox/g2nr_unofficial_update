@@ -491,7 +491,7 @@ func void DIA_Gaan_TEACHHUNTING_Info()
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 		{
-			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Gaan_TEACHHUNTING_Fur);
+			Info_AddChoice(DIA_Gaan_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur)),DIA_Gaan_TEACHHUNTING_Fur);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 		{
@@ -675,4 +675,5 @@ func void DIA_Gaan_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Gaan_PICKPOCKET);
 };
+
 

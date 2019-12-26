@@ -266,7 +266,7 @@ func void Use_StonePlate()
 			}
 			else
 			{
-				PrintScreen("Дальнейшее повышение невозможно!",-1,-1,FONT_Screen,2);
+				PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 				Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 				B_Say(self,self,"$PickBroke");
 				AI_Waitms(self,500);
@@ -394,7 +394,7 @@ func void Use_StonePlate()
 			}
 			else
 			{
-				PrintScreen("Дальнейшее повышение невозможно!",-1,-1,FONT_Screen,2);
+				PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 				Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 				B_Say(self,self,"$PickBroke");
 				AI_Waitms(self,500);
@@ -473,7 +473,7 @@ func void Use_StonePlate()
 			}
 			else
 			{
-				PrintScreen("Дальнейшее повышение невозможно!",-1,-1,FONT_Screen,2);
+				PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 				Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 				B_Say(self,self,"$PickBroke");
 				AI_Waitms(self,500);
@@ -508,7 +508,7 @@ func void Use_StonePlate()
 			}
 			else
 			{
-				PrintScreen("Дальнейшее повышение невозможно!",-1,-1,FONT_Screen,2);
+				PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 				Mdl_ApplyOverlayMdsTimed(self,"HUMANS_STONEPLATE.MDS",500);
 				B_Say(self,self,"$PickBroke");
 				AI_Waitms(self,500);
