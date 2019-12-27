@@ -423,7 +423,7 @@ func void Use_VatrasKDFEmpfehlung_Addon()
 	Doc_PrintLines(nDocID,0,"Мне стало известно, что за вход в ваш монастырь вы требуете плату.");
 	Doc_PrintLines(nDocID,0,"С этим письмом я направляю вам молодого человека, который страстно желает присоединиться к вам.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Ватрас");
+	Doc_PrintLine(nDocID,0,"     Ватрас");
 	Doc_Show(nDocID);
 };
 
@@ -1251,7 +1251,7 @@ func void UseGregsLogbuch()
 instance ITKE_Addon_Bloodwyn_01(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_02.3ds";
@@ -1263,7 +1263,7 @@ instance ITKE_Addon_Bloodwyn_01(C_Item)
 instance ITKE_Addon_Heiler(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_05.3ds";

@@ -2,7 +2,14 @@
 func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int trophy)
 {
 	var int kosten;
-	kosten = B_GetLearnCostTalent(oth,NPC_TALENT_TAKEANIMALFUR,trophy);
+	if((trophy == TROPHY_Fur) || (trophy == TROPHY_ReptileSkin))
+	{
+		kosten = B_GetLearnCostTalent(oth,NPC_TALENT_TAKEANIMALFUR,trophy);
+	}
+	else
+	{
+		kosten = B_GetLearnCostTalent(oth,NPC_TALENT_TAKEANIMALTROPHY,trophy);
+	};
 	if(oth.lp < kosten)
 	{
 		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_ScreenSmall,2);
@@ -114,5 +121,4 @@ func int B_TeachPlayerTalentTakeAnimalTrophy(var C_Npc slf,var C_Npc oth,var int
 //	Npc_SetTalentSkill(oth,NPC_TALENT_TAKEANIMALFUR,1);
 	return TRUE;
 };
-
 

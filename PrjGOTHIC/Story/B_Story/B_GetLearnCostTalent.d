@@ -572,4 +572,3 @@ func int C_ShowAlchemySTRDEXDialog()
 	return FALSE;
 };
 
-

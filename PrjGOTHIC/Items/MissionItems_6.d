@@ -108,7 +108,7 @@ func void Use_Krypta_Garon()
 instance ItKe_OrkKnastDI_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
@@ -119,7 +119,7 @@ instance ItKe_OrkKnastDI_MIS(C_Item)
 instance ItKe_EVT_UNDEAD_01(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
@@ -130,7 +130,7 @@ instance ItKe_EVT_UNDEAD_01(C_Item)
 instance ItKe_EVT_UNDEAD_02(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_02.3ds";
@@ -141,7 +141,7 @@ instance ItKe_EVT_UNDEAD_02(C_Item)
 instance ItKe_LastDoorToUndeadDrgDI_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
@@ -192,7 +192,7 @@ func void Use_ItWr_LastDoorToUndeadDrgDI_MIS()
 instance ItKe_ChestMasterDementor_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";

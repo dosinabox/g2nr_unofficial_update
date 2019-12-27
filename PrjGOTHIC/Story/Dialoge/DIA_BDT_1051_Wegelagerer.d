@@ -38,13 +38,14 @@ instance DIA_1051_Wegelagerer_Hello(C_Info)
 	condition = DIA_Wegelagerer_Hello_Condition;
 	information = DIA_Wegelagerer_Hello_Info;
 	permanent = FALSE;
-	description = "„то вы делаете здесь?";
+	important = TRUE;
+//	description = "„то вы делаете здесь?";
 };
 
 
 func int DIA_Wegelagerer_Hello_Condition()
 {
-	if(BDT_1051_Wegelagerer_Angriff == FALSE)
+	if((BDT_1051_Wegelagerer_Angriff == FALSE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -114,7 +115,7 @@ func void DIA_Wegelagerer_Question_Info()
 	{
 		Info_AddChoice(DIA_1051_Wegelagerer_Question,"я ищу послушника.",DIA_1051_Wegelagerer_Question_Novice);
 	};
-	Info_AddChoice(DIA_1051_Wegelagerer_Question,"Ёто не твое дело.",DIA_1051_Wegelagerer_Question_MyConcern);
+	Info_AddChoice(DIA_1051_Wegelagerer_Question,"Ёто не ваше дело.",DIA_1051_Wegelagerer_Question_MyConcern);
 	Info_AddChoice(DIA_1051_Wegelagerer_Question,"я просто любуюсь природой.",DIA_1051_Wegelagerer_Question_LookAround);
 };
 

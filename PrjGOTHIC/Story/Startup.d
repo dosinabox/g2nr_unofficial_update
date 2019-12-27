@@ -747,7 +747,10 @@ func void init_addon_part_valley_01()
 
 func void startup_sub_psicamp()
 {
-	b_seed_wasteland_world_psicamp();
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	{
+		B_Seed_Wasteland_World_Psicamp();
+	};
 };
 
 func void init_sub_psicamp()
@@ -931,7 +934,10 @@ func void init_psicamp()
 
 func void startup_sub_freeminecamp()
 {
-	b_seed_wasteland_world_freeminecamp();
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	{
+		B_Seed_Wasteland_World_Freeminecamp();
+	};
 };
 
 func void init_sub_freeminecamp()
@@ -1796,7 +1802,7 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	if(C_WorldIsFixed(OLDWORLD_ZEN))
 	{
-		b_seed_wasteland_world_main();
+		B_Seed_Wasteland_World_Main();
 	};
 };
 
@@ -1817,8 +1823,8 @@ func void init_surface()
 
 func void init_oldworld()
 {
-	b_check_version();
-	b_check_armor();
+	B_Check_Version();
+	B_SetHeroSkin();
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
 	INIT_SUB_Surface();
@@ -3375,8 +3381,8 @@ func void STARTUP_NewWorld()
 
 func void INIT_NewWorld()
 {
-	b_check_version();
-	b_check_armor();
+	B_Check_Version();
+	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
@@ -3419,8 +3425,8 @@ func void STARTUP_AddonWorld()
 
 func void INIT_AddonWorld()
 {
-	b_check_version();
-	b_check_armor();
+	B_Check_Version();
+	B_SetHeroSkin();
 	if((BloodwynIsHeadless == TRUE) && (Saturas_RiesenPlan == FALSE))
 	{
 		Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);

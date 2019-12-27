@@ -51,10 +51,9 @@ func void Use_XardasLetterToOpenBook()
 instance ItKe_MonastarySecretLibrary_Mis(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
-//	visual = "ItKe_Key_02.3ds";
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
@@ -343,7 +342,7 @@ func void UseITWr_ForgedShipLetter_MIS()
 instance ItKe_OC_MainGate_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
@@ -355,7 +354,7 @@ instance ItKe_OC_MainGate_MIS(C_Item)
 instance ItKe_Ship_Levelchange_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";

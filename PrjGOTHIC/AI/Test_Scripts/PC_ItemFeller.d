@@ -685,5 +685,3 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItMi_PowerEye,1);
 };
 
-
-

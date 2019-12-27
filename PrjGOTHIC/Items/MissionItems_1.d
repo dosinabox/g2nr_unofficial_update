@@ -2,7 +2,7 @@
 instance ItKe_Xardas(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
@@ -202,7 +202,7 @@ func void UnEquip_ValentinosRing()
 instance ItKe_Dexter(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
@@ -375,7 +375,7 @@ instance ItMi_HerbPaket(C_Item)
 instance ItKe_Storage(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
@@ -535,7 +535,7 @@ instance ItWr_VatrasMessage(C_Item)
 	value = 0;
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = UseVatrasMessage;
+	on_state[0] = UseVatrasMessageSealed;
 	scemeName = "MAPSEALED";
 	description = name;
 	text[0] = "Письмо Ватраса магам Огня.";
@@ -543,47 +543,6 @@ instance ItWr_VatrasMessage(C_Item)
 
 
 func void UseVatrasMessage()
-{
-	var int nDocID;
-	Snd_Play("PICKLOCK_BROKEN");
-	CreateInvItems(self,ItWr_VatrasMessage_Open,1);
-	nDocID = Doc_Create();
-	Doc_SetPages(nDocID,1);
-	Doc_SetPage(nDocID,0,"letters.TGA",0);
-	Doc_SetFont(nDocID,-1,FONT_Book);
-	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLine(nDocID,0,"Дорогой Исгарот,");
-	Doc_PrintLines(nDocID,0,"Я ощущаю все нарастающее присутствие другой силы.");
-	Doc_PrintLines(nDocID,0,"Это сила, доселе неведомая нам. Может ли быть так, что вассалы Белиара уже близко?");
-	Doc_PrintLines(nDocID,0,"Я могу ошибаться, но я верю, что отцу Пирокару стоило бы разобраться с этим вопросом.");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Да не останутся наши молитвы без ответа.");
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Ватрас");
-	Doc_Show(nDocID);
-};
-
-
-instance ItWr_VatrasMessage_Open(C_Item)
-{
-	name = NAME_Letter;
-	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
-	value = 0;
-	visual = "ItWr_Scroll_01.3DS";
-	material = MAT_LEATHER;
-	on_state[0] = UseVatrasMessageOpen;
-	scemeName = "MAP";
-	description = name;
-	text[0] = "Письмо Ватраса магам Огня.";
-	text[1] = "Печать сломана.";
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
-};
-
-
-func void UseVatrasMessageOpen()
 {
 	var int nDocID;
 	nDocID = Doc_Create();
@@ -603,10 +562,37 @@ func void UseVatrasMessageOpen()
 };
 
 
+func void UseVatrasMessageSealed()
+{
+	Snd_Play("PICKLOCK_BROKEN");
+	CreateInvItems(self,ItWr_VatrasMessage_Open,1);
+	UseVatrasMessage();
+};
+
+
+instance ItWr_VatrasMessage_Open(C_Item)
+{
+	name = NAME_Letter;
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItWr_Scroll_01.3DS";
+	material = MAT_LEATHER;
+	on_state[0] = UseVatrasMessage;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Письмо Ватраса магам Огня.";
+	text[1] = "Печать сломана.";
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
 /*instance ItKe_Hotel(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -618,7 +604,7 @@ func void UseVatrasMessageOpen()
 instance ItKe_ThiefGuildKey_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_05.3ds";
@@ -631,7 +617,7 @@ instance ItKe_ThiefGuildKey_MIS(C_Item)
 instance ItKe_ThiefGuildKey_Hotel_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -643,7 +629,7 @@ instance ItKe_ThiefGuildKey_Hotel_MIS(C_Item)
 instance ItKe_Innos_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -656,7 +642,7 @@ instance ItKe_Innos_MIS(C_Item)
 instance ItKe_KlosterSchatz(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
@@ -668,7 +654,7 @@ instance ItKe_KlosterSchatz(C_Item)
 instance ItKe_KlosterStore(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
@@ -680,7 +666,7 @@ instance ItKe_KlosterStore(C_Item)
 instance ItKe_KDFPlayer(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_02.3ds";
@@ -692,7 +678,7 @@ instance ItKe_KDFPlayer(C_Item)
 instance ItKe_KlosterBibliothek(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
@@ -785,7 +771,7 @@ instance Holy_Hammer_MIS(C_Item)
 instance ItKe_MagicChest(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = 0;
 	visual = "ItKe_Key_05.3ds";
@@ -919,7 +905,7 @@ func void UsePoster()
 instance ItKe_Bandit(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
@@ -1007,7 +993,7 @@ instance ItMi_EddasStatue(C_Item)
 instance ItKe_EVT_CRYPT_01(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_05.3ds";
@@ -1019,7 +1005,7 @@ instance ItKe_EVT_CRYPT_01(C_Item)
 instance ItKe_EVT_CRYPT_02(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_05.3ds";
@@ -1031,7 +1017,7 @@ instance ItKe_EVT_CRYPT_02(C_Item)
 instance ItKe_EVT_CRYPT_03(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_05.3ds";
@@ -1075,7 +1061,7 @@ instance ITAR_PAL_Skel(C_Item)
 instance ItKe_Valentino(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
@@ -1088,7 +1074,7 @@ instance ItKe_Valentino(C_Item)
 instance ItKe_Buerger(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_04.3ds";
@@ -1101,7 +1087,7 @@ instance ItKe_Buerger(C_Item)
 instance ItKe_Richter(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_04.3ds";
@@ -1115,7 +1101,7 @@ instance ItKe_Richter(C_Item)
 instance ItKe_Salandril(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
@@ -1128,7 +1114,7 @@ instance ItKe_Salandril(C_Item)
 instance ItKe_PaladinTruhe(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_04.3ds";
@@ -1142,7 +1128,7 @@ instance ItKe_PaladinTruhe(C_Item)
 instance ItKe_ThiefTreasure(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION | ITEM_MULTI;
 	value = Value_Key_01;
 	visual = "ItKe_Key_04.3ds";
@@ -1155,7 +1141,7 @@ instance ItKe_ThiefTreasure(C_Item)
 instance ItKe_Fingers(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_05.3ds";
@@ -1236,7 +1222,7 @@ instance ItPl_Sagitta_Herb_MIS(C_Item)
 instance ItKe_Orlan_HotelZimmer(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";

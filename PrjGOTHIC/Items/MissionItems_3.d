@@ -165,7 +165,7 @@ func void Use_XardasBookForPyrokar()
 instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_02.3ds";
@@ -548,7 +548,7 @@ func void Use_BabosDocs()
 instance ItKe_IgarazChest_Mis(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";

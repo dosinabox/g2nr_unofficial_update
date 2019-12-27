@@ -5,7 +5,7 @@ const int Value_Key_01 = 0;
 instance ItKe_Lockpick(C_Item)
 {
 	name = "Отмычка";
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MULTI;
 	value = Value_Lockpick;
 	visual = "ItKe_Lockpick.3ds";
@@ -18,7 +18,7 @@ instance ItKe_Lockpick(C_Item)
 /*instance ItKe_Key_01(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -29,7 +29,7 @@ instance ItKe_Lockpick(C_Item)
 instance ItKe_Key_02(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -40,7 +40,7 @@ instance ItKe_Key_02(C_Item)
 instance ItKe_Key_03(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_03.3ds";
@@ -51,7 +51,7 @@ instance ItKe_Key_03(C_Item)
 instance ItKe_City_Tower_01(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -63,7 +63,7 @@ instance ItKe_City_Tower_01(C_Item)
 instance ItKe_City_Tower_02(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -75,7 +75,7 @@ instance ItKe_City_Tower_02(C_Item)
 instance ItKe_City_Tower_03(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -87,7 +87,7 @@ instance ItKe_City_Tower_03(C_Item)
 instance ItKe_City_Tower_04(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -99,7 +99,7 @@ instance ItKe_City_Tower_04(C_Item)
 instance ItKe_City_Tower_05(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -111,7 +111,7 @@ instance ItKe_City_Tower_05(C_Item)
 instance ItKe_City_Tower_06(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -124,7 +124,7 @@ instance ItKe_City_Tower_06(C_Item)
 instance ItKe_Orlan_BackDoor(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_03.3ds";

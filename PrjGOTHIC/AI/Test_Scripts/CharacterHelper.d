@@ -354,7 +354,7 @@ func void CH_RESET_Info()
 	Npc_SetTalentSkill(hero,NPC_TALENT_SMITH,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_RUNES,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_ALCHEMY,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALTROPHY,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALFUR,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_FOREIGNLANGUAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_WISPDETECTOR,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALTROPHY,0);

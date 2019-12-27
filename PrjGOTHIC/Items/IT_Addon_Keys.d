@@ -2,7 +2,7 @@
 instance ITKE_PORTALTEMPELWALKTHROUGH_ADDON(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_05.3ds";
@@ -15,7 +15,7 @@ instance ITKE_PORTALTEMPELWALKTHROUGH_ADDON(C_Item)
 instance ITKE_Greg_ADDON_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -28,7 +28,7 @@ instance ITKE_Greg_ADDON_MIS(C_Item)
 instance ITKE_Addon_Tavern_01(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -41,7 +41,7 @@ instance ITKE_Addon_Tavern_01(C_Item)
 instance ITKE_ADDON_ESTEBAN(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -54,7 +54,7 @@ instance ITKE_ADDON_ESTEBAN(C_Item)
 instance ITKE_ORLAN_TELEPORTSTATION(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -67,7 +67,7 @@ instance ITKE_ORLAN_TELEPORTSTATION(C_Item)
 instance ITKE_CANYONLIBRARY_HIERARCHY_BOOKS_ADDON(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -80,7 +80,7 @@ instance ITKE_CANYONLIBRARY_HIERARCHY_BOOKS_ADDON(C_Item)
 instance ITKE_ADDON_BUDDLER_01(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -93,7 +93,7 @@ instance ITKE_ADDON_BUDDLER_01(C_Item)
 instance ITKE_ADDON_SKINNER(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -105,7 +105,7 @@ instance ITKE_ADDON_SKINNER(C_Item)
 instance ITKE_Addon_Thorus(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";

@@ -89,7 +89,7 @@ func void UseLetterForGorn()
 instance ItKe_PrisonKey_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -101,7 +101,7 @@ instance ItKe_PrisonKey_MIS(C_Item)
 instance ItKe_OC_Store(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -113,7 +113,7 @@ instance ItKe_OC_Store(C_Item)
 instance ITKE_ErzBaronFlur(C_Item)
 {
 	name = "Ключ от первой двери";
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -126,7 +126,7 @@ instance ITKE_ErzBaronFlur(C_Item)
 instance ITKE_ErzBaronRaum(C_Item)
 {
 	name = "Ключ от второй двери";
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_03.3ds";
@@ -261,7 +261,7 @@ func void UseOlav()
 instance ItKe_Pass_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_04.3ds";
@@ -275,7 +275,7 @@ instance ItKe_Pass_MIS(C_Item)
 instance ItKe_Bromor(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -288,7 +288,7 @@ instance ItKe_Bromor(C_Item)
 instance ItKe_Rune_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";

@@ -729,6 +729,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Schuldenbuch,1);
 	CreateInvItems(self,ItPl_Sagitta_Herb_MIS,1);
 	CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
+	CreateInvItems(self,ItKe_Orlan_BackDoor,1);
 	CreateInvItems(self,ItRw_DragomirsArmbrust_MIS,1);
 	CreateInvItems(self,ItMi_StoneOfKnowlegde_MIS,1);
 	CreateInvItems(self,ItWr_PaladinLetter_MIS,1);
@@ -1513,9 +1514,9 @@ instance WastelandRune(C_Item)
 func void UseWastelandRune()
 {
 	PrintScreen("Заселяем...",-1,-1,FONT_Screen,1);
-	b_seed_wasteland_world_main();
-	b_seed_wasteland_world_psicamp();
-	b_seed_wasteland_world_freeminecamp();
+	B_Seed_Wasteland_World_Main();
+	B_Seed_Wasteland_World_Psicamp();
+	B_Seed_Wasteland_World_Freeminecamp();
 };
 
 instance StatsBook(C_Item)
@@ -1620,7 +1621,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 26 декабря 2019г.";
+	text[1] = "Скомпилировано 27 декабря 2019г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";
