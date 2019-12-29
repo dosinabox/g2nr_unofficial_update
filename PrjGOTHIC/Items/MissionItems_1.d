@@ -10,6 +10,10 @@ instance ItKe_Xardas(C_Item)
 	description = name;
 	text[0] = "Ключ от сундука,";
 	text[1] = "принадлежащего Ксардасу.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_Canthars_KomproBrief_MIS(C_Item)
@@ -210,6 +214,10 @@ instance ItKe_Dexter(C_Item)
 	description = name;
 	text[0] = "Ключ от сундука,";
 	text[1] = "принадлежащего Декстеру.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_Kraeuterliste(C_Item)
@@ -382,6 +390,10 @@ instance ItKe_Storage(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от портового склада.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 
@@ -550,6 +562,7 @@ func void UseVatrasMessage()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Дорогой Исгарот,");
 	Doc_PrintLines(nDocID,0,"Я ощущаю все нарастающее присутствие другой силы.");
 	Doc_PrintLines(nDocID,0,"Это сила, доселе неведомая нам. Может ли быть так, что вассалы Белиара уже близко?");
@@ -599,6 +612,10 @@ instance ItWr_VatrasMessage_Open(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от комнаты отеля.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };*/
 
 instance ItKe_ThiefGuildKey_MIS(C_Item)
@@ -612,6 +629,10 @@ instance ItKe_ThiefGuildKey_MIS(C_Item)
 	description = name;
 	text[0] = "Этот ключ изъеден";
 	text[1] = "соленой морской водой.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_ThiefGuildKey_Hotel_MIS(C_Item)
@@ -624,6 +645,10 @@ instance ItKe_ThiefGuildKey_Hotel_MIS(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от подвала отеля.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_Innos_MIS(C_Item)
@@ -637,6 +662,10 @@ instance ItKe_Innos_MIS(C_Item)
 	description = name;
 	text[0] = "Это ключ от входа";
 	text[1] = "в монастырь Инноса.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_KlosterSchatz(C_Item)
@@ -649,6 +678,10 @@ instance ItKe_KlosterSchatz(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от монастырской сокровищницы.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_KlosterStore(C_Item)
@@ -661,6 +694,10 @@ instance ItKe_KlosterStore(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от монастырской кладовой.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_KDFPlayer(C_Item)
@@ -673,6 +710,10 @@ instance ItKe_KDFPlayer(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от монастырской кельи.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_KlosterBibliothek(C_Item)
@@ -685,6 +726,10 @@ instance ItKe_KlosterBibliothek(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от монастырской библиотеки.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItFo_Schafswurst(C_Item)
@@ -780,6 +825,10 @@ instance ItKe_MagicChest(C_Item)
 	text[0] = "Старый железный ключ.";
 	text[1] = "Возможно, это ключ";
 	text[2] = "от висячего замка.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_Passage_MIS(C_Item)
@@ -912,6 +961,10 @@ instance ItKe_Bandit(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Этот ключ принадлежал бандиту.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItRw_Bow_L_03_MIS(C_Item)
@@ -1000,6 +1053,10 @@ instance ItKe_EVT_CRYPT_01(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ скелета из первой комнаты.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_EVT_CRYPT_02(C_Item)
@@ -1012,6 +1069,10 @@ instance ItKe_EVT_CRYPT_02(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ скелета из второй комнаты.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_EVT_CRYPT_03(C_Item)
@@ -1024,6 +1085,10 @@ instance ItKe_EVT_CRYPT_03(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ скелета из третьей комнаты.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 
@@ -1069,6 +1134,10 @@ instance ItKe_Valentino(C_Item)
 	description = name;
 	text[0] = "Это ключ от сундука,";
 	text[1] = "принадлежащего Валентино.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_Buerger(C_Item)
@@ -1081,6 +1150,9 @@ instance ItKe_Buerger(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Он лежал на камине.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
 	inv_zbias = 190;
 };
 
@@ -1095,6 +1167,9 @@ instance ItKe_Richter(C_Item)
 	description = name;
 	text[0] = "Это ключ от сундука,";
 	text[1] = "принадлежащего судье.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
 	inv_zbias = 190;
 };
 
@@ -1109,6 +1184,10 @@ instance ItKe_Salandril(C_Item)
 	description = name;
 	text[0] = "Ключ от сундука, принадлежащего";
 	text[1] = "алхимику Саландрилу.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_PaladinTruhe(C_Item)
@@ -1122,6 +1201,9 @@ instance ItKe_PaladinTruhe(C_Item)
 	description = name;
 	text[0] = "Маленький латунный ключик";
 	text[1] = "из дома паладинов.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
 	inv_zbias = 190;
 };
 
@@ -1135,6 +1217,9 @@ instance ItKe_ThiefTreasure(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Маленький ключик.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
 	inv_zbias = 190;
 };
 
@@ -1149,6 +1234,10 @@ instance ItKe_Fingers(C_Item)
 	description = name;
 	text[0] = "Ржавый ключ от двери";
 	text[1] = "в канализации.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_Schuldenbuch(C_Item)
@@ -1230,6 +1319,10 @@ instance ItKe_Orlan_HotelZimmer(C_Item)
 	description = name;
 	text[0] = "Ключ от комнаты";
 	text[1] = "в таверне 'Мертвая гарпия'.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItRw_DragomirsArmbrust_MIS(C_Item)

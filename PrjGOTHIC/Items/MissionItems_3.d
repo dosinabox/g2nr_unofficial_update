@@ -172,6 +172,10 @@ instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от сундука на ферме Секоба.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_CorneliusTagebuch_Mis(C_Item)
@@ -556,6 +560,10 @@ instance ItKe_IgarazChest_Mis(C_Item)
 	description = name;
 	text[0] = "Это ключ от сундука,";
 	text[1] = "принадлежащего Игарацу.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_Astronomy_Mis(C_Item)

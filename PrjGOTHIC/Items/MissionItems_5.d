@@ -58,6 +58,9 @@ instance ItKe_MonastarySecretLibrary_Mis(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "из книги 'Чертоги Ирдората'.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
 	inv_zbias = 190;
 };
 
@@ -349,6 +352,10 @@ instance ItKe_OC_MainGate_MIS(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от башни главных ворот.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_Ship_Levelchange_MIS(C_Item)
@@ -361,6 +368,10 @@ instance ItKe_Ship_Levelchange_MIS(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от капитанской каюты.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItPo_PotionOfDeath_01_Mis(C_Item)

@@ -96,6 +96,10 @@ instance ItKe_PrisonKey_MIS(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от темницы в замке.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_OC_Store(C_Item)
@@ -108,6 +112,10 @@ instance ItKe_OC_Store(C_Item)
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от склада в замке.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ITKE_ErzBaronFlur(C_Item)
@@ -121,6 +129,10 @@ instance ITKE_ErzBaronFlur(C_Item)
 	description = name;
 	text[0] = "На нем выгравировано имя:";
 	text[1] = "Гомез.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ITKE_ErzBaronRaum(C_Item)
@@ -134,6 +146,10 @@ instance ITKE_ErzBaronRaum(C_Item)
 	description = name;
 	text[0] = "На нем выгравировано имя:";
 	text[1] = "Гомез.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItMi_GornsTreasure_MIS(C_Item)
@@ -269,6 +285,9 @@ instance ItKe_Pass_MIS(C_Item)
 	description = name;
 	text[0] = "Этот маленький ключик";
 	text[1] = "открывает ворота Прохода.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
 	inv_zbias = 190;
 };
 
@@ -281,8 +300,11 @@ instance ItKe_Bromor(C_Item)
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Ключ от комнаты";
-	text[1] = "в борделе.";
+	text[0] = "Ключ от комнаты в борделе.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_Rune_MIS(C_Item)
@@ -297,6 +319,10 @@ instance ItKe_Rune_MIS(C_Item)
 	text[0] = "Сундук, к которому подходит";
 	text[1] = "этот ключ, находится под мостом.";
 	text[2] = "В нем лежит рунный камень.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_Bloody_MIS(C_Item)

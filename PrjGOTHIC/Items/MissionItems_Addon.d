@@ -1258,6 +1258,10 @@ instance ITKE_Addon_Bloodwyn_01(C_Item)
 	material = MAT_METAL;
 	description = "Ключ Бладвина";
 	text[0] = "Открывает его сундук в храме.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ITKE_Addon_Heiler(C_Item)
@@ -1271,6 +1275,10 @@ instance ITKE_Addon_Heiler(C_Item)
 	description = "Ключ каменного стража";
 	text[0] = "Ключ от сундука в странном";
 	text[1] = "древнем строении на болоте.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItMi_TempelTorKey(C_Item)

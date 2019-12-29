@@ -74,13 +74,13 @@ func void DIA_Talbin_NW_Info()
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Talbin_NW_07_03");	//Мне кажется, это рунный камень.
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		AI_WaitTillEnd(self,other);
 		B_GiveInvItems(self,other,ItMi_RuneBlank,1);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Talbin_NW_07_04");	//Мне кажется, это кусок руды.
-		CreateInvItems(self,ItMi_Nugget,1);
+		AI_WaitTillEnd(self,other);
 		B_GiveInvItems(self,other,ItMi_Nugget,1);
 	};
 	AI_Output(other,self,"DIA_Talbin_NW_15_00");	//Этот Проход был не таким уж и страшным, правда?

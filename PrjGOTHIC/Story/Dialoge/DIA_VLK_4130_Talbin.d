@@ -12,10 +12,7 @@ instance DIA_Talbin_EXIT(C_Info)
 
 func int DIA_Talbin_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Talbin_EXIT_Info()
@@ -370,7 +367,7 @@ func void DIA_Talbin_TEACHHUNTING_Heart()
 	Info_ClearChoices(DIA_Talbin_TEACHHUNTING);
 };
 
-
+/*
 instance DIA_Talbin_KAP3_EXIT(C_Info)
 {
 	npc = VLK_4130_Talbin;
@@ -419,7 +416,7 @@ func void DIA_Talbin_KAP4_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Talbin_KAP4_WASNEUES(C_Info)
 {
@@ -651,7 +648,7 @@ func void DIA_Talbin_VERSCHWINDE_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Talbin_KAP5_EXIT(C_Info)
 {
 	npc = VLK_4130_Talbin;
@@ -676,7 +673,7 @@ func void DIA_Talbin_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
+
 instance DIA_Talbin_KAP6_EXIT(C_Info)
 {
 	npc = VLK_4130_Talbin;
