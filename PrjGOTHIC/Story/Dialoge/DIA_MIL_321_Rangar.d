@@ -169,7 +169,6 @@ func void DIA_Rangar_Bier_Info()
 		if((RangarToldAboutPaladins == FALSE) && (MIS_Garvell_Infos == LOG_Running))
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_01");	//Ах, нет ничего лучше, чем холодный эль.
-			CreateInvItems(self,ItFo_Beer,1);
 			B_UseItem(self,ItFo_Beer);
 			AI_Output(self,other,"DIA_Rangar_Bier_07_12");	//Знаешь, нечасто встретишь парня, готового угостить тебя пивом. Ты наш человек.
 			AI_Output(other,self,"DIA_Rangar_Bier_15_02");	//Ты что-то хотел сказать насчет орков...
@@ -181,7 +180,6 @@ func void DIA_Rangar_Bier_Info()
 		else if((RangarToldAboutPaladins == TRUE) || (MIS_Garvell_Infos == FALSE))
 		{
 			AI_Output(self,other,"DIA_Rangar_Bier_07_06");	//Я бы не отказался еще от одной пинты.
-			CreateInvItems(self,ItFo_Beer,1);
 			B_UseItem(self,ItFo_Beer);
 			AI_Output(self,other,"DIA_Rangar_Bier_07_11");	//Горький эль - однозначно лучший.
 			B_AskRangarAboutCityOrk();

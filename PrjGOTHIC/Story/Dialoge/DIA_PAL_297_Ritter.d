@@ -34,7 +34,10 @@ instance DIA_PAL_297_FIRST(C_Info)
 
 func int DIA_PAL_297_FIRST_Condition()
 {
-	return TRUE;
+	if(MIS_OLDWORLD != LOG_Running)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_PAL_297_FIRST_Info()

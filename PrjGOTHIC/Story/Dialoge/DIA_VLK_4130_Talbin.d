@@ -550,6 +550,7 @@ func void DIA_Talbin_FOUNDENGROM_Info()
 	};
 	AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_08");	//О, Иннос. Мне нужно выбираться отсюда, даже если при этом я найду свою смерть. Сейчас или никогда!
 	AI_StopProcessInfos(self);
+	MIS_Talbin_Runs = LOG_Running;
 	Log_CreateTopic(TOPIC_Talbin_Runs,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_Running);
 	B_LogEntry(TOPIC_Talbin_Runs,"Талбин, охотник из Долины Рудников, побежал к Проходу, как будто за ним по пятам гнался рой кровавых мух. Я думаю, он направился в Хоринис.");
@@ -618,6 +619,8 @@ func void DIA_Talbin_WOHIN_()
 	AI_Output(other,self,"DIA_Talbin_WOHIN_schwein_15_00");	//У меня нет времени на тебя.
 	AI_Output(self,other,"DIA_Talbin_WOHIN_schwein_07_01");	//Ты оставляешь меня здесь умирать?! Ты будешь гореть в аду за это!
 	Talbin_FollowsThroughPass = LOG_OBSOLETE;
+	MIS_Talbin_Runs = LOG_OBSOLETE;
+	B_CheckLog();
 	AI_StopProcessInfos(self);
 };
 

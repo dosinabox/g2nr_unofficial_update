@@ -728,6 +728,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 	if(Talbin_FollowsThroughPass == LOG_Running)
 	{
 		Wld_InsertNpc(VLK_4132_Talbin_NW,"NW_PASS_SECRET_17");
+		B_InitNpcGlobals();
 		Talbin_FollowsThroughPass = LOG_SUCCESS;
 	};
 };

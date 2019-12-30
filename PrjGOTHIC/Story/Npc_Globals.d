@@ -337,6 +337,8 @@ var C_Npc Nov610;
 var C_Npc BridgeBandit;
 var C_Npc BDT_1051;
 var C_Npc BDT_1052;
+var C_Npc Talbin;
+var C_Npc TalbinNW;
 
 func void B_InitNpcGlobals()
 {
@@ -682,5 +684,7 @@ func void B_InitNpcGlobals()
 	BridgeBandit = Hlp_GetNpc(BDT_1020_Bandit_L);
 	BDT_1051 = Hlp_GetNpc(BDT_1051_Wegelagerer);
 	BDT_1052 = Hlp_GetNpc(BDT_1052_Wegelagerer);
+	Talbin = Hlp_GetNpc(VLK_4130_Talbin);
+	TalbinNW = Hlp_GetNpc(VLK_4132_Talbin_NW);
 };
 

@@ -37,18 +37,21 @@ func int ZS_MM_Rtn_Rest_Loop()
 	}
 	else if(Hlp_Random(1000) <= 5)
 	{
-		randomMove = Hlp_Random(3);
-		if(randomMove == 0)
+		if((self.aivar[AIV_MM_REAL_ID] != ID_TROLL_BLACK) || (self.guild != GIL_Stoneguardian))
 		{
-			AI_PlayAni(self,"R_ROAM1");
-		};
-		if(randomMove == 1)
-		{
-			AI_PlayAni(self,"R_ROAM2");
-		};
-		if(randomMove == 2)
-		{
-			AI_PlayAni(self,"R_ROAM3");
+			randomMove = Hlp_Random(3);
+			if(randomMove == 0)
+			{
+				AI_PlayAni(self,"R_ROAM1");
+			};
+			if(randomMove == 1)
+			{
+				AI_PlayAni(self,"R_ROAM2");
+			};
+			if(randomMove == 2)
+			{
+				AI_PlayAni(self,"R_ROAM3");
+			};
 		};
 	};
 	return LOOP_CONTINUE;

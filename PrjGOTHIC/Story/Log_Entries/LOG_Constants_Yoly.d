@@ -163,6 +163,7 @@ var int TOPIC_END_OrcElite;
 
 const string TOPIC_Dar_BringOrcEliteRing = "Позерство";
 const string TOPIC_FoundVinosKellerei = "Лунный свет";
+const string TOPIC_Talbin_Runs = "Я должен выбраться отсюда!";
 const string TOPIC_BrutusMeatbugs = "Мерзкие твари";
 
 var int TOPIC_END_BrutusMeatbugs;
@@ -170,10 +171,6 @@ var int TOPIC_END_BrutusMeatbugs;
 const string TOPIC_Sengrath_Missing = "Потерянный во тьме";
 
 var int TOPIC_END_Sengrath_Missing;
-
-const string TOPIC_Talbin_Runs = "Я должен выбраться отсюда!";
-
-var int TOPIC_END_Talbin_Runs;
 
 const string TOPIC_KerolothsGeldbeutel = "Воровство";
 

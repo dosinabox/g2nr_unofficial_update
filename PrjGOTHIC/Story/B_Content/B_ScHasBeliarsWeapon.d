@@ -765,9 +765,6 @@ func void B_UpgrateBeliarsWeapon()
 			{
 				CreateInvItem(hero,ItMw_BeliarWeapon_1H_20);
 			};
-			Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-			Snd_Play("CS_Prayer_WaveOfInsanity");
-			BeliarsWeaponUpgrated = TRUE;
 		}
 		else
 		{
@@ -851,10 +848,10 @@ func void B_UpgrateBeliarsWeapon()
 			{
 				CreateInvItem(hero,ItMw_BeliarWeapon_2H_20);
 			};
-			Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
-			Snd_Play("CS_Prayer_WaveOfInsanity");
-			BeliarsWeaponUpgrated = TRUE;
 		};
+		Wld_PlayEffect("spellFX_BeliarsWeapon_Upgrate",self,self,0,0,0,FALSE);
+		Snd_Play("CS_Prayer_WaveOfInsanity");
+		BeliarsWeaponUpgrated = TRUE;
 	};
 };
 
