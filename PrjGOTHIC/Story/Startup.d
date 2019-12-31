@@ -1249,8 +1249,8 @@ func void Startup_Surface()
 	Wld_InsertNpc(VLK_4152_Olav,"OC1");
 	Wld_InsertNpc(VLK_4111_Grimes,"OW_MINE2_GRIMES");
 	Wld_InsertNpc(STRF_1117_Straefling,"OW_MINE2_STRF");
-	Wld_InsertNpc(PAL_218_Ritter,"OW_PATH_264");
-	Wld_InsertNpc(PAL_219_Ritter,"OW_PATH_148_A");
+	Wld_InsertNpc(PAL_218_Ritter,"OW_PATH_148_A");
+	Wld_InsertNpc(PAL_219_Ritter,"OW_PATH_264");
 	Wld_InsertNpc(VLK_4151_Leiche,"OW_SPAWN_TRACK_LEICHE_00");
 	Wld_InsertNpc(STRF_1150_Leiche,"OW_SPAWN_TRACK_LEICHE_01");
 	Wld_InsertNpc(STRF_1151_Leiche,"OW_SPAWN_TRACK_LEICHE_03");

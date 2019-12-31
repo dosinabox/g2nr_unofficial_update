@@ -156,7 +156,7 @@ func void DIA_Rengaru_GOTYOU_YouThief()
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_YouThief_15_00");	//... тебе лучше вернуть золото Джоры. И немедленно.
 	if(Npc_HasItems(self,ItMi_Gold))
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим.
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
 		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
 	}
 	else
@@ -208,7 +208,7 @@ func void DIA_Rengaru_GOTYOU_Anteil_GehtKlar()
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_15_00");	//Хорошо, давай мне половину тогда.
 	if(B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold) / 2))
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим.
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
 		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	}
 	else
