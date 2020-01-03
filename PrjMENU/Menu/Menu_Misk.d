@@ -31,7 +31,7 @@ instance MENUITEM_LEAVE_GAME_YES(C_MENU_ITEM_DEF)
 	dimx = 8100;
 	dimy = 750;
 	onselaction[0] = SEL_ACTION_CLOSE;
-	onselaction_s[0] = "NEW_GAME";
+	onselaction_s[0] = "LEAVE_GAME";
 	flags = IT_CHROMAKEYED | IT_TRANSPARENT | IT_MOVEABLE | IT_SELECTABLE | IT_TXT_CENTER;
 };
 

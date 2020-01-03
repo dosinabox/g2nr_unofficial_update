@@ -565,6 +565,8 @@ func void DIA_Garond_Marcos_Info()
 	AI_Output(other,self,"DIA_Garond_Marcos_15_03");	//Теперь он охраняет эти ящики в небольшой долине за позициями орков. Он просит прислать подкрепление.
 	AI_Output(self,other,"DIA_Garond_Marcos_10_04");	//Что? Всего четыре ящика - и он покинул шахту? Черт, как это все плохо.
 	AI_Output(self,other,"DIA_Garond_Marcos_10_05");	//И ему нужны еще люди?.. Что ж, ладно, я пошлю к нему двух человек.
+	B_DeletePetzCrime(Marcos_Guard1);
+	B_DeletePetzCrime(Marcos_Guard2);
 	Marcos_Guard1.flags = 0;
 	Marcos_Guard2.flags = 0;
 	Marcos_Guard1.aivar[AIV_ToughGuy] = TRUE;

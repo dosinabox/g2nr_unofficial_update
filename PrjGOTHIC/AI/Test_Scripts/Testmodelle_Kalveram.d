@@ -1573,9 +1573,7 @@ instance Gold(C_Item)
 
 func void UseGold()
 {
-	Snd_Play("Geldbeutel");
-	CreateInvItems(self,ItMi_Gold,1000);
-	PrintScreen("1000 золотых получено",-1,45,FONT_Screen,2);
+	B_PlayerFindItem(ItMi_Gold,1000);
 	PrintScreen("Наказание за читерство",-1,50,FONT_Screen,2);
 	B_GivePlayerXP(XP_EXPLOITBONUS);
 };
@@ -1621,7 +1619,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 31 декабря 2019г.";
+	text[1] = "Скомпилировано 3 января 2020г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";
