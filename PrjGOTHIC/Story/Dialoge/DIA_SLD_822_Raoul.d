@@ -114,7 +114,10 @@ instance DIA_Raoul_PERMNone(C_Info)
 
 func int DIA_Raoul_PERMNone_Condition()
 {
-	return TRUE;
+	if(other.guild != GIL_DJG)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Raoul_PERMNone_Info()
@@ -435,8 +438,8 @@ instance DIA_Raoul_TrophyFur(C_Info)
 	condition = DIA_Raoul_TrophyFur_Condition;
 	information = DIA_Raoul_TrophyFur_Info;
 	permanent = TRUE;
-//	description = B_BuildLearnString("—начала скажи мне, как сн€ть шкуру с черного тролл€.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
-	description = B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
+//	description = B_BuildLearnString("—начала скажи мне, как сн€ть шкуру с черного тролл€.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur));
+	description = B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur));
 };
 
 
@@ -735,4 +738,6 @@ func void DIA_Raoul_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Raoul_PICKPOCKET);
 };
+
+
 

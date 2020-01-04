@@ -1,5 +1,5 @@
 
-instance ItPo_Story(C_Item)
+/*instance ItPo_Story(C_Item)
 {
 	name = "—частье";
 	mainflag = ITEM_KAT_POTIONS;
@@ -18,7 +18,7 @@ instance ItPo_Story(C_Item)
 func void UseItPo_Story()
 {
 	b_ravensescapeintotempelavi();
-};
+};*/
 
 
 instance SH(Npc_Default)
@@ -320,22 +320,22 @@ func void StoryHelper_Helmets()
 		if(Npc_HasItems(hero,ITAR_PALN_M))
 		{
 			Npc_RemoveInvItem(hero,ITAR_PALN_M);
-			CreateInvItems(hero,ITAR_PAL_M,1);
+			CreateInvItem(hero,ITAR_PAL_M);
 		};
 		if(Npc_HasItems(hero,ITAR_PALN_H))
 		{
 			Npc_RemoveInvItem(hero,ITAR_PALN_H);
-			CreateInvItems(hero,ITAR_PAL_H,1);
+			CreateInvItem(hero,ITAR_PAL_H);
 		};
 		if(Npc_HasItems(hero,ITAR_DJGN_M))
 		{
 			Npc_RemoveInvItem(hero,ITAR_DJGN_M);
-			CreateInvItems(hero,ITAR_DJG_M,1);
+			CreateInvItem(hero,ITAR_DJG_M);
 		};
 		if(Npc_HasItems(hero,ITAR_DJGN_H))
 		{
 			Npc_RemoveInvItem(hero,ITAR_DJGN_H);
-			CreateInvItems(hero,ITAR_DJG_H,1);
+			CreateInvItem(hero,ITAR_DJG_H);
 		};
 		Helmets_Enabled = FALSE;
 	}
@@ -345,26 +345,26 @@ func void StoryHelper_Helmets()
 		if(Npc_HasItems(hero,ITAR_PAL_M))
 		{
 			Npc_RemoveInvItem(hero,ITAR_PAL_M);
-			CreateInvItems(hero,ITAR_PALN_M,1);
-			CreateInvItems(hero,ITHE_PAL_M,1);
+			CreateInvItem(hero,ITAR_PALN_M);
+			CreateInvItem(hero,ITHE_PAL_M);
 		};
 		if(Npc_HasItems(hero,ITAR_PAL_H))
 		{
 			Npc_RemoveInvItem(hero,ITAR_PAL_H);
-			CreateInvItems(hero,ITAR_PALN_H,1);
-			CreateInvItems(hero,ITHE_PAL_H,1);
+			CreateInvItem(hero,ITAR_PALN_H);
+			CreateInvItem(hero,ITHE_PAL_H);
 		};
 		if(Npc_HasItems(hero,ITAR_DJG_M))
 		{
 			Npc_RemoveInvItem(hero,ITAR_DJG_M);
-			CreateInvItems(hero,ITAR_DJGN_M,1);
-			CreateInvItems(hero,ITHE_DJG_M,1);
+			CreateInvItem(hero,ITAR_DJGN_M);
+			CreateInvItem(hero,ITHE_DJG_M);
 		};
 		if(Npc_HasItems(hero,ITAR_DJG_H))
 		{
 			Npc_RemoveInvItem(hero,ITAR_DJG_H);
-			CreateInvItems(hero,ITAR_DJGN_H,1);
-			CreateInvItems(hero,ITHE_DJG_H,1);
+			CreateInvItem(hero,ITAR_DJGN_H);
+			CreateInvItem(hero,ITHE_DJG_H);
 		};
 		Helmets_Enabled = TRUE;
 	};
@@ -827,7 +827,7 @@ func void StoryHelper_KAPITEL5ANFANG()
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	B_Kapitelwechsel(4,NEWWORLD_ZEN);
-	CreateInvItems(hero,ItAt_IcedragonHeart,1);	//чтобы оно было у вас на »рдорате!
+	CreateInvItems(hero,ItAt_IcedragonHeart,1);
 	MIS_AllDragonsDead = TRUE;
 	B_Kapitelwechsel(5,NEWWORLD_ZEN);
 	Info_ClearChoices(StoryHelper_INFO5);

@@ -1252,7 +1252,7 @@ instance ItMw_Spicker(C_Item)
 
 instance ItMw_Streitaxt1(C_Item)
 {
-	name = NAME_ItMw_Streitaxt1;
+	name = "Легкий боевой топор";
 	mainflag = ITEM_KAT_NF;
 	flags = ITEM_2HD_AXE;
 	material = MAT_WOOD;

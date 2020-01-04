@@ -20,8 +20,24 @@ func void DIA_Wegelagerer_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
+func void B_BuildWegelagererDialogOptions()
+{
+	Info_ClearChoices(DIA_BDT_1020_Wegelagerer_FirstWarn);
+	if(Npc_HasItems(other,ItMi_Gold) >= 20)
+	{
+		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Хорошо, вот деньги.",DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney);
+	};
+	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Извини, у меня нет денег.",DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney);
+	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Прочь с моей дороги!",DIA_BDT_1020_Wegelagerer_FirstWarn_Never);
+	if((Wegelagerer_Surprise == FALSE) && (MIS_SCHNITZELJAGD == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+	{
+		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Скажи, ты не видел послушника?",DIA_BDT_1020_Wegelagerer_AGON);
+	};
+};
 
 const string BDT_1020_Wegelagerer_Checkpoint = "NW_TROLLAREA_PATH_46";
+var int Wegelagerer_Spared;
+var int Wegelagerer_Hello_Once;
 
 instance DIA_BDT_1020_Wegelagerer_FirstWarn(C_Info)
 {
@@ -44,18 +60,30 @@ func int DIA_BDT_1020_Wegelagerer_FirstWarn_Condition()
 
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_Info()
 {
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_06_00");	//Эй, ты, стоять!
-	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_15_01");	//Что тебе нужно?
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_06_02");	//Если не хочешь получить по морде, тебе лучше переложить несколько монет из своего кошелька в мой - и быстро!
 	other.aivar[AIV_LastDistToWP] = Npc_GetDistToWP(other,BDT_1020_Wegelagerer_Checkpoint);
 	self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
-	Info_ClearChoices(DIA_BDT_1020_Wegelagerer_FirstWarn);
-	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Сколько ты хочешь?",DIA_BDT_1020_Wegelagerer_FirstWarn_HowMuch);
-	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Ты шутишь.",DIA_BDT_1020_Wegelagerer_FirstWarn_Joke);
-	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Убирайся с дороги!",DIA_BDT_1020_Wegelagerer_PissOff);
-	if(MIS_SCHNITZELJAGD == LOG_Running)
+	if(Wegelagerer_Spared == TRUE)
 	{
-		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Скажи, ты не видел послушника?",DIA_BDT_1020_Wegelagerer_AGON);
+		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_HowMuch_06_01");	//(ухмыляется) 20 золотых, и мы можем стать друзьями.
+		B_BuildWegelagererDialogOptions();
+	}
+	else
+	{
+		if(Wegelagerer_Hello_Once == FALSE)
+		{
+			AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_06_00");	//Эй, ты, стоять!
+			AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_15_01");	//Что тебе нужно?
+			Wegelagerer_Hello_Once = TRUE;
+		};
+		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_06_02");	//Если не хочешь получить по морде, тебе лучше переложить несколько монет из своего кошелька в мой - и быстро!
+		Info_ClearChoices(DIA_BDT_1020_Wegelagerer_FirstWarn);
+		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Сколько ты хочешь?",DIA_BDT_1020_Wegelagerer_FirstWarn_HowMuch);
+		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Ты шутишь.",DIA_BDT_1020_Wegelagerer_FirstWarn_Joke);
+		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Убирайся с дороги!",DIA_BDT_1020_Wegelagerer_PissOff);
+		if((Wegelagerer_Surprise == FALSE) && (MIS_SCHNITZELJAGD == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+		{
+			Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Скажи, ты не видел послушника?",DIA_BDT_1020_Wegelagerer_AGON);
+		};
 	};
 };
 
@@ -65,25 +93,14 @@ func void DIA_BDT_1020_Wegelagerer_AGON()
 	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_AGON_06_01");	//(удивленно) Э-э... что? Хммм... (думает) Может быть.
 	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_AGON_06_02");	//Дай мне 20 золотых, и я скажу тебе!
 	Wegelagerer_Surprise = TRUE;
-	if(Npc_HasItems(other,ItMi_Gold) >= 20)
-	{
-		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Хорошо, вот деньги.",DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney);
-	};
-	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Извини, у меня нет денег.",DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney);
-	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Прочь с моей дороги!",DIA_BDT_1020_Wegelagerer_FirstWarn_Never);
+	B_BuildWegelagererDialogOptions();
 };
 
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_HowMuch()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_HowMuch_15_00");	//Сколько ты хочешь?
 	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_HowMuch_06_01");	//(ухмыляется) 20 золотых, и мы можем стать друзьями.
-	Info_ClearChoices(DIA_BDT_1020_Wegelagerer_FirstWarn);
-	if(Npc_HasItems(other,ItMi_Gold) >= 20)
-	{
-		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Хорошо, вот деньги.",DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney);
-	};
-	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Извини, у меня нет денег.",DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney);
-	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Прочь с моей дороги!",DIA_BDT_1020_Wegelagerer_FirstWarn_Never);
+	B_BuildWegelagererDialogOptions();
 };
 
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_Joke()
@@ -91,15 +108,9 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_Joke()
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_Joke_15_00");	//Ты шутишь.
 	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_Joke_06_01");	//Я похож на шутника?
 	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_Joke_06_02");	//Если я не увижу 20 золотых до того, как ты сделаешь шаг вперед...
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_Joke_06_03");	//Я прикончу тебя. Так что давай сюда денежки.
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_Joke_06_03");	//...я прикончу тебя. Так что давай сюда денежки.
 	self.aivar[AIV_Guardpassage_Status] = GP_SecondWarnGiven;
-	Info_ClearChoices(DIA_BDT_1020_Wegelagerer_FirstWarn);
-	if(Npc_HasItems(other,ItMi_Gold) >= 20)
-	{
-		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Хорошо, вот деньги.",DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney);
-	};
-	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Извини, у меня нет денег.",DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney);
-	Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Прочь с моей дороги!",DIA_BDT_1020_Wegelagerer_FirstWarn_Never);
+	B_BuildWegelagererDialogOptions();
 };
 
 func void DIA_BDT_1020_Wegelagerer_PissOff()
@@ -111,19 +122,24 @@ func void DIA_BDT_1020_Wegelagerer_PissOff()
 	B_Attack(self,other,AR_NONE,1);
 };
 
+func void B_WegelagererToldAboutAgon()
+{
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_02");	//Хорошо, этот послушник прошел здесь около часа назад.
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_03");	//По-моему, он немного торопился, все время оглядывался... А теперь проваливай.
+};
+
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_15_00");	//Хорошо, вот деньги.
+	B_GiveInvItems(other,self,ItMi_Gold,20);
 	if(Wegelagerer_Surprise == FALSE)
 	{
 		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_01");	//(насмешливо) Скажу тебе, 20 золотых - это не такая уж большая плата за жизнь. Ты можешь проходить.
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_02");	//Хорошо, этот послушник прошел здесь около часа назад.
-		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney_06_03");	//По-моему, он немного торопился, все время оглядывался... А теперь проваливай.
+		B_WegelagererToldAboutAgon();
 	};
-	B_GiveInvItems(other,self,ItMi_Gold,20);
 	self.aivar[AIV_PASSGATE] = TRUE;
 	AI_StopProcessInfos(self);
 };
@@ -131,19 +147,29 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveMoney()
 func void DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_15_00");	//Извини, у меня нет денег.
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_06_01");	//Да уж, воистину тяжелые времена настали.
-	if(Npc_HasEquippedMeleeWeapon(other) || Npc_HasReadiedWeapon(other))
+	if(Wegelagerer_Spared == FALSE)
 	{
-		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_06_02");	//Тогда давай поступим так - отдай мне свое оружие. И я пропущу тебя.
-		Info_ClearChoices(DIA_BDT_1020_Wegelagerer_FirstWarn);
-		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Забудь об этом.",DIA_BDT_1020_Wegelagerer_FirstWarn_NoWeapon);
-		Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Вот, возьми мое оружие.",DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon);
+		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_06_01");	//Да уж, воистину тяжелые времена настали.
+		if(Npc_HasEquippedMeleeWeapon(other) || Npc_HasReadiedWeapon(other))
+		{
+			AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_06_02");	//Тогда давай поступим так - отдай мне свое оружие. И я пропущу тебя.
+			Info_ClearChoices(DIA_BDT_1020_Wegelagerer_FirstWarn);
+			Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Забудь об этом.",DIA_BDT_1020_Wegelagerer_FirstWarn_NoWeapon);
+			Info_AddChoice(DIA_BDT_1020_Wegelagerer_FirstWarn,"Вот, возьми мое оружие.",DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon);
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_06_03");	//Скажу тебе так: возвращайся, когда у тебя будут деньги. Нет денег - нет моста.
+			Wegelagerer_Spared = TRUE;
+			self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
+			AI_StopProcessInfos(self);
+		};
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney_06_03");	//Скажу тебе так: возвращайся, когда у тебя будут деньги. Нет денег - нет моста.
-		self.aivar[AIV_Guardpassage_Status] = GP_FirstWarnGiven;
+		B_Say(self,other,"$DieEnemy");
 		AI_StopProcessInfos(self);
+		B_Attack(self,other,AR_NONE,1);
 	};
 };
 
@@ -175,6 +201,11 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_GiveWeapon()
 		AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
 		AI_EquipBestMeleeWeapon(self);
 		self.aivar[AIV_PASSGATE] = TRUE;
+		if(Wegelagerer_Surprise == TRUE)
+		{
+			AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
+			B_WegelagererToldAboutAgon();
+		};
 		AI_StopProcessInfos(self);
 	}
 	else
@@ -224,9 +255,14 @@ func void DIA_BDT_1020_Wegelagerer_SecondWarn_Info()
 func void DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney()
 {
 	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_15_00");	//Вот твои деньги.
-	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
 	B_GiveInvItems(other,self,ItMi_Gold,20);
+	AI_Output(self,other,"DIA_BDT_1020_Wegelagerer_SecondWarn_GiveMoney_06_01");	//Ох, как мы заговорили.
 	self.aivar[AIV_PASSGATE] = TRUE;
+	if(Wegelagerer_Surprise == TRUE)
+	{
+		AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
+		B_WegelagererToldAboutAgon();
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -289,6 +325,32 @@ func int BDT_1020_Bandit_L_GetLost_Condition()
 func void BDT_1020_Bandit_L_GetLost_Info()
 {
 	B_Say(self,other,"$GetOutOfHere");
+	AI_StopProcessInfos(self);
+};
+
+instance DIA_BDT_1020_Wegelagerer_AGON2(C_Info)
+{
+	npc = BDT_1020_Bandit_L;
+	nr = 900;
+	condition = DIA_Wegelagerer_AGON2_Condition;
+	information = DIA_Wegelagerer_AGON2_Info;
+	permanent = FALSE;
+	description = "Скажи, ты не видел послушника?";
+};
+
+
+func int DIA_Wegelagerer_AGON2_Condition()
+{
+	if((Wegelagerer_Surprise == FALSE) && (MIS_SCHNITZELJAGD == LOG_Running) && !Npc_KnowsInfo(other,DIA_Agon_GolemDead) && !Npc_KnowsInfo(other,DIA_Agon_GolemLives))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Wegelagerer_AGON2_Info()
+{
+	AI_Output(other,self,"DIA_BDT_1020_Wegelagerer_AGON_15_00");	//Скажи, ты не видел послушника?
+	B_WegelagererToldAboutAgon();
 	AI_StopProcessInfos(self);
 };
 

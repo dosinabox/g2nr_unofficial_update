@@ -138,7 +138,7 @@ func int DIA_Jan_Home_Condition()
 func void DIA_Jan_Home_Info()
 {
 	AI_Output(other,self,"DIA_Jan_Home_15_00");	//Откуда ты пришел?
-	AI_Output(self,other,"DIA_Jan_Home_10_01");	//Я присоединился к парням с гор. И мы направились в эту долину, чтобы разбогатеть, охотясь на драконов.
+	AI_Output(self,other,"DIA_Jan_Home_10_01");	//Я присоединился к парням с гор. И мы отправились в эту долину, чтобы разбогатеть, охотясь на драконов.
 	AI_Output(self,other,"DIA_Jan_Home_10_02");	//Их главаря звали Сильвио. Такая сволочь! Он обращался со мной как со своей собственностью.
 };
 
@@ -551,7 +551,6 @@ func void DIA_Jan_DJG_ARMOR_M_Info()
 			CreateInvItem(hero,ITAR_DJG_M);
 		};
 		AI_PrintScreen("Средние доспехи охотника на драконов получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_DJG_M);
 		Jan_DIA_Jan_DJG_ARMOR_M_permanent = TRUE;
 	}
 	else

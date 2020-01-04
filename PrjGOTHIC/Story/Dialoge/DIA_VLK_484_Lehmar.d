@@ -345,10 +345,6 @@ func int DIA_Lehmar_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItWr_Schuldenbuch))
 	{
 		return C_StealItem(20,Hlp_GetInstanceID(ItWr_Schuldenbuch));
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 

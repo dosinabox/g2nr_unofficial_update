@@ -209,9 +209,9 @@ func int ZS_MM_Attack_Loop()
 			Npc_ClearAIQueue(self);
 			AI_Standup(self);
 			B_MM_RemoveWeapon();
-			return LOOP_END;
 		};
 	};
+	return LOOP_END;
 };
 
 func void ZS_MM_Attack_End()

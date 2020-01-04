@@ -21,10 +21,6 @@ func void B_GetWispDetectedItem()
 func int B_WispDetectedItem()
 {
 	var int WispSearchFlags;
-//	if(WispSearching == WispSearch_Follow)
-//	{
-//	}
-//	else
 	if(WispSearching != WispSearch_Follow)
 	{
 		WispSearchFlags = 0;
@@ -71,33 +67,29 @@ func int B_WispDetectedItem()
 
 func int B_MM_WispDetect()
 {
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Wisp_Detector))
+	Npc_PerceiveAll(self);
+	if(Wld_DetectNpc(self,Wisp_Detector,NOFUNC,-1))
 	{
-		Npc_PerceiveAll(self);
-		if(Wld_DetectNpc(self,Wisp_Detector,NOFUNC,-1))
+		B_RemoveNpc(self);
+	};
+	if((Npc_GetDistToNpc(self,hero) < 2000) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
+	{
+		self.aivar[AIV_SummonTime] = 0;
+		B_WispDetectedItem();
+	}
+	else
+	{
+		if(Npc_GetDistToNpc(self,hero) < 500)
 		{
-			B_RemoveNpc(self);
-		};
-		if((Npc_GetDistToNpc(self,hero) < 2000) && (self.aivar[AIV_TAPOSITION] == ISINPOS))
-		{
-			self.aivar[AIV_SummonTime] = 0;
-			B_WispDetectedItem();
-			return LOOP_END;
+			self.aivar[AIV_TAPOSITION] = ISINPOS;
 		}
 		else
 		{
-			if(Npc_GetDistToNpc(self,hero) < 500)
-			{
-				self.aivar[AIV_TAPOSITION] = ISINPOS;
-			}
-			else
-			{
-				self.aivar[AIV_TAPOSITION] = NOTINPOS;
-				Npc_ClearAIQueue(self);
-				AI_GotoNpc(self,hero);
-			};
-			return LOOP_END;
+			self.aivar[AIV_TAPOSITION] = NOTINPOS;
+			Npc_ClearAIQueue(self);
+			AI_GotoNpc(self,hero);
 		};
 	};
+	return LOOP_END;
 };
 

@@ -607,7 +607,6 @@ func void DIA_Lee_JoinNOW_Info()
 			Npc_SetTrueGuild(hero,GIL_SLD);
 			CreateInvItem(hero,ITAR_SLD_L);
 			AI_PrintScreen("Легкие доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//			AI_EquipArmor(hero,ITAR_SLD_L);
 			Snd_Play("LEVELUP");
 			Npc_ExchangeRoutine(Lothar,"START");
 			KDF_Aufnahme = LOG_OBSOLETE;
@@ -1041,7 +1040,6 @@ func void DIA_Lee_BuyArmorM_Info()
 		AI_Output(self,other,"DIA_Lee_BuyArmorM_04_01");	//Держи. Это очень хорошие доспехи.
 		CreateInvItem(hero,ITAR_SLD_M);
 		AI_PrintScreen("Средние доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_SLD_M);
 		Lee_SldMGiven = TRUE;
 	}
 	else
@@ -1105,7 +1103,6 @@ func void DIA_Lee_BuyArmorH_Info()
 		AI_Output(self,other,"DIA_Lee_BuyArmorH_04_01");	//Держи. Это очень хорошие доспехи. Я сам такие ношу.
 		CreateInvItem(hero,ITAR_SLD_H);
 		AI_PrintScreen("Тяжелые доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_SLD_H);
 		Lee_SldHGiven = TRUE;
 	}
 	else

@@ -10,7 +10,7 @@ func int B_TeachThiefTalent(var C_Npc slf,var C_Npc oth,var int talent)
 	};
 	if(oth.lp < kosten)
 	{
-		PrintScreen(PRINT_NotEnoughLearnPoints,-1,-1,FONT_ScreenSmall,2);
+		PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_ScreenSmall,2);
 		B_Say(slf,oth,"$NOLEARNNOPOINTS");
 		return FALSE;
 	};
@@ -40,5 +40,6 @@ func int B_TeachThiefTalent(var C_Npc slf,var C_Npc oth,var int talent)
 		Log_CreateTopic(Topic_PickPocket,LOG_NOTE);
 		return TRUE;
 	};
+	return FALSE;
 };
 

@@ -51,14 +51,16 @@ func void Use_XardasLetterToOpenBook()
 instance ItKe_MonastarySecretLibrary_Mis(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
-//	visual = "ItKe_Key_02.3ds";
 	visual = "ItKe_Key_04.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "из книги 'Чертоги Ирдората'.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
 	inv_zbias = 190;
 };
 
@@ -343,25 +345,33 @@ func void UseITWr_ForgedShipLetter_MIS()
 instance ItKe_OC_MainGate_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от башни главных ворот.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_Ship_Levelchange_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от капитанской каюты.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItPo_PotionOfDeath_01_Mis(C_Item)

@@ -768,9 +768,9 @@ func int DIA_Kardif_Kerl_Condition()
 
 func void DIA_Kardif_Kerl_Info()
 {
+	AI_Output(other,self,"DIA_Kardif_Kerl_15_00");	//Как выглядел этот парень?
 	if(B_GiveInvItems(other,self,ItMi_Gold,Kardif_Deal))
 	{
-		AI_Output(other,self,"DIA_Kardif_Kerl_15_00");	//Как выглядел этот парень?
 		AI_Output(self,other,"DIA_Kardif_Kerl_14_01");	//Ну, он довольно высокий, темнокожий и сильный. Он не носит униформы. Какой-то он... зловещий.
 		AI_Output(other,self,"DIA_Kardif_Kerl_15_02");	//А его лицо?
 		AI_Output(self,other,"DIA_Kardif_Kerl_14_03");	//Его лицо? Когда он глядел на меня, я был рад, что он пришел не за мной.

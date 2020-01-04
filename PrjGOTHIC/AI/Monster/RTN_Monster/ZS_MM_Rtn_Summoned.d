@@ -28,7 +28,10 @@ func void ZS_MM_Rtn_Summoned()
 
 func int ZS_MM_Rtn_Summoned_Loop()
 {
-	B_MM_WispDetect();
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Wisp_Detector))
+	{
+		B_MM_WispDetect();
+	};
 	if(Npc_GetDistToNpc(self,hero) > 500)
 	{
 		AI_GotoNpc(self,hero);

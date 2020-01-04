@@ -246,8 +246,8 @@ func void DIA_Biff_ARBEITEN_100()
 func void DIA_Biff_ARBEITEN_HalbeHalbe()
 {
 	AI_Output(other,self,"DIA_Biff_ARBEITEN_HalbeHalbe_15_00");	//Ты получишь половину добычи.
-	AI_Output(self,other,"DIA_Biff_ARBEITEN_HalbeHalbe_07_01");	//Звучит заманчиво. Но предупреждаю тебя: не пытайся обмануть меня. Ты пожалеешь об этом.
-	AI_Output(self,other,"DIA_Biff_ARBEITEN_HalbeHalbe_07_02");	//И еще одно: мне не нужно оружие и другое барахло, что ты соберешь там. Меня интересует только золото. Понятно?
+	AI_Output(self,other,"DIA_Biff_ARBEITEN_HalbeHalbe_07_01");	//Звучит заманчиво. Но предупреждаю тебя: не пытайся обмануть меня! Ты пожалеешь об этом!
+	AI_Output(self,other,"DIA_Biff_ARBEITEN_HalbeHalbe_07_02");	//И еще одно: мне не нужно оружие и другое барахло, что ты соберешь там. Меня интересует только золото! Понятно?
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Follow");
 	self.aivar[AIV_PARTYMEMBER] = TRUE;

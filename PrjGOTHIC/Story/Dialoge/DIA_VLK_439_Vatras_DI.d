@@ -529,7 +529,7 @@ func void DIA_Vatras_DI_UndeadDragonDead_Info()
 	if(DIA_Vatras_DI_UndeadDragonDead_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_01");	//Я знаю, я чувствую это.
-		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_02");	//Ты нанес удар Белиару, от которого он не скоро оправится.
+		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_02");	//Ты нанес удар Белиару, от которого он скоро не оправится.
 		AI_Output(self,other,"DIA_Vatras_DI_UndeadDragonDead_05_04");	//Помни, что это был всего лишь эпизод в вечной битве Добра со Злом.
 		if(hero.guild == GIL_DJG)
 		{

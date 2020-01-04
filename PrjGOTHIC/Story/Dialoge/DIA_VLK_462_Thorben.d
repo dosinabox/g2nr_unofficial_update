@@ -415,7 +415,7 @@ func void DIA_Thorben_PleaseTeach_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_11");	//Хмм... я не знаю, можно ли тебе доверять.
-		if((other.guild != GIL_KDF) && (other.guild != GIL_PAL))
+		if((other.guild != GIL_KDF) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 		{
 			AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_12");	//Боюсь, ты можешь оказаться одним из этих бездельников, которые приходят в город, только чтобы очистить сундуки честных людей.
 		};

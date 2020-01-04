@@ -362,12 +362,7 @@ func int DIA_Cornelius_PICKPOCKET_Condition()
 //	if(C_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1) && (RescueBennet_KnowsCornelius == TRUE))
 	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis) && (RescueBennet_KnowsCornelius == TRUE))
 	{
-//		return TRUE;
 		return C_StealItem(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis));
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 

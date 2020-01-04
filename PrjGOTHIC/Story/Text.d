@@ -417,7 +417,7 @@ const string TXT_TALENTS[22] =
 	"",
 	"Круг магии",
 	"Подкрадывание",
-	"",
+	"Регенерация",
 	"",
 	"Акробатика",
 	"Карман. кража",
@@ -443,7 +443,7 @@ const string TXT_TALENTS_SKILLS[22] =
 	"",
 	"Не обучен|Первый|Второй|Третий|Четвертый|Пятый|Шестой",
 	"Не обучен|Обучен",
-	"",
+	"Не обучен|Обучен",
 	"",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
@@ -490,7 +490,7 @@ const string NAME_Soeldner = "Наемник";
 const string NAME_Bauer = "Крестьянин";
 const string NAME_Baeuerin = "Крестьянка";
 const string NAME_Bandit = "Бандит";
-const string NAME_Halsabschneider = "Головорез";
+//const string NAME_Halsabschneider = "Головорез";
 const string NAME_Out = "Бродяга";
 const string NAME_Straefling = "Каторжник";
 const string NAME_Waffenknecht = "Оруженосец";
@@ -624,7 +624,6 @@ const string NAME_Addon_Harad_01 = "Изысканный меч";
 const string NAME_Addon_Harad_02 = "Изысканный длинный меч";
 const string NAME_Addon_Harad_03 = "Рубиновый клинок";
 const string NAME_Addon_Harad_04 = "Эль-бастардо";
-const string NAME_ItMw_Streitaxt1 = "Легкий боевой топор";
 const string NAME_ItMw_Banditenaxt = "Бандитский топор";
 const string PRINT_Addon_gegeben = " отдано";
 const string PRINT_GoldGegeben = " золотых отдано";
@@ -644,6 +643,7 @@ const string PRINT_2LP = " очка обучения)";
 const string PRINT_1LP = " очко обучения)";
 const string PRINT_NotEnoughLP = "Недостаточно очков обучения!";
 const string PRINT_NoLearnOverPersonalMAX = "Максимум этого учителя: ";
+const string PRINT_NoLearnOverMAX = "Дальнейшее повышение невозможно!";
 const string PRINT_LearnSTR = "Сила + ";
 const string PRINT_LearnDEX = "Ловкость + ";
 const string PRINT_LearnMANA_MAX = "Макс. мана + ";
@@ -665,6 +665,10 @@ const string PRINT_LearnCrossbow = "Улучшено: Меткость стрельбы из арбалета";
 const string PRINT_LearnCrossbow_and_Bow = "Улучшено: Меткость стрельбы из арбалета и лука";
 const string PRINT_LearnPicklock = "Изучено: Владение отмычками";
 const string PRINT_LearnSneak = "Изучено: Искусство подкрадывания";
+const string PRINT_LearnRegenerateHP = "Изучено: Регенерация здоровья";
+const string PRINT_LearnRegenerateMana = "Изучено: Регенерация маны";
+const string PRINT_UpgradeRegenerateHP = "Улучшено: Регенерация здоровья";
+const string PRINT_UpgradeRegenerateMana = "Улучшено: Регенерация маны";
 const string PRINT_LearnAcrobat = "Изучено: Акробатика";
 const string PRINT_Addon_AcrobatBonus = "Получен бонус акробатики!";
 const string PRINT_LearnPickpocket = "Изучено: Искусство карманного воровства";
@@ -680,7 +684,6 @@ const string PRINT_LearnTakeAnimalFur = "Изучено: Снятие шкур";
 const string PRINT_LearnForeignLanguage = "Изучено: Язык зодчих";
 const string PRINT_LearnWispDetector = "Ваш блуждающий огонек обучился новым способностям";
 const string PRINT_LearnPalTeleportSecret = "Изучена руна телепорта";
-const string PRINT_NotEnoughLearnPoints = "Недостаточно очков обучения!";
 const string PRINT_LearnSTR1 = "Сила + 1";
 const string PRINT_LearnSTR5 = "Сила + 5";
 const string PRINT_LearnDEX1 = "Ловкость + 1";
@@ -966,4 +969,7 @@ const string PRINT_NothingToPick = "Здесь больше нечего делать.";
 const string PRINT_BookstandRunes1 = "Чтобы создать руну, всегда необходим КАЖДЫЙ из вышеперечисленных ингредиентов.";
 const string PRINT_BookstandRunes2 = "Маг должен знать формулу заклинания и должен иметь чистый рунный камень и свиток желаемого заклинания.";
 const string PRINT_BookstandRunes3 = "Только при выполнении этих условий он может приступить к работе за рунным столом.";
+
+const string PRINT_OldSave1 = "Загруженное сохранение не поддерживается!";
+const string PRINT_OldSave2 = "Пожалуйста, начните новую игру.";
 

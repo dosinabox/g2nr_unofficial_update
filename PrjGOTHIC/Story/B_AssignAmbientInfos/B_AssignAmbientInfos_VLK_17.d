@@ -125,7 +125,7 @@ func void DIA_VLK_17_STANDARD_Info()
 	};
 	if(Kapitel == 5)
 	{
-		AI_Output(self,other,"DIA_VLK_17_STANDARD_17_05");	//“еперь, когда все драконы мертвы, паладины быстро расправ€тс€ с оставшимс€ сбродом.
+		AI_Output(self,other,"DIA_VLK_17_STANDARD_17_05");	//“еперь, когда драконы мертвы, паладины быстро расправ€тс€ с оставшимс€ сбродом.
 	};
 };
 

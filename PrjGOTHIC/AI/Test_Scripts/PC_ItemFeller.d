@@ -25,7 +25,7 @@ instance PC_Itemfeller(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_RUNES,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_ALCHEMY,1);
-	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALTROPHY,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALFUR,1);
 	PLAYER_TALENT_ALCHEMY[POTION_Health_01] = TRUE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_02] = TRUE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_03] = TRUE;
@@ -445,8 +445,8 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItRw_Crossbow_H_02,1);
 	CreateInvItems(self,ItRw_Arrow,1000);
 	CreateInvItems(self,ItRw_Bolt,1000);
-	CreateInvItems(self,StandardBrief,1);
-	CreateInvItems(self,StandardBuch,1);
+//	CreateInvItems(self,StandardBrief,1);
+//	CreateInvItems(self,StandardBuch,1);
 	CreateInvItems(self,ItWr_Map_NewWorld,1);
 	CreateInvItems(self,ItWr_Map_NewWorld_City,1);
 	CreateInvItems(self,ItWr_Map_OldWorld,1);
@@ -684,5 +684,4 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItWr_ZugBruecke_MIS,1);
 	CreateInvItems(self,ItMi_PowerEye,1);
 };
-
 

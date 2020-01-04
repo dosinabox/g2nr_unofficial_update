@@ -398,3 +398,5 @@ func void DIA_Grimbald_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Grimbald_PICKPOCKET);
 };
 
+
+

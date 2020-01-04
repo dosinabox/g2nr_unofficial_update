@@ -21,6 +21,10 @@ func int C_NpcIsBotheredByWeapon(var C_Npc slf,var C_Npc oth)
 	{
 		return FALSE;
 	};
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(BridgeBandit))
+	{
+		return FALSE;
+	};
 	if(C_NpcIsGateGuard(slf))
 	{
 		return FALSE;

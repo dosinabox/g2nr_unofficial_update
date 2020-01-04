@@ -165,11 +165,8 @@ func int C_PlayerHasWrongToken()
 	if(C_ScHasMagicStonePlate() || Npc_HasItems(hero,ItWr_StonePlateCommon_Addon) || Npc_HasItems(hero,ItMi_Addon_Stone_02) || Npc_HasItems(hero,ItMi_Addon_Stone_03) || Npc_HasItems(hero,ItMi_Addon_Stone_04) || Npc_HasItems(hero,ItMi_Addon_Stone_05))
 	{
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 
@@ -503,10 +500,6 @@ func int DIA_Addon_Thorus_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItKe_Addon_Thorus))
 	{
 		return C_StealItem(60,Hlp_GetInstanceID(ItKe_Addon_Thorus));
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 

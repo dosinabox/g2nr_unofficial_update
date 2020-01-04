@@ -96,14 +96,14 @@ func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Info()
 func void DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes()
 {
 	AI_Output(other,self,"DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes_15_00");	//Добро пожаловать на борт. Встретимся в гавани.
-	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes_12_01");	//Корабль? Ха! Могу сказать одно. С тобой никогда не бывает скучно. До скорой встречи.
+	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_Yes_12_01");	//Корабль? Ха! Могу сказать одно. С тобой никогда не бывает скучно! До скорой встречи!
 	B_JoinShip(self);
 };
 
 func void DIA_GornNW_nach_DJG_KnowWhereEnemy_No()
 {
 	AI_Output(other,self,"DIA_GornNW_nach_DJG_KnowWhereEnemy_No_15_00");	//Я дам тебе знать, когда придет время.
-	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_No_12_01");	//Хорошо.
+	AI_Output(self,other,"DIA_GornNW_nach_DJG_KnowWhereEnemy_No_12_01");	//Хорошо!
 	Gorn_IsOnBoard = LOG_OBSOLETE;
 	Info_ClearChoices(DIA_GornNW_nach_DJG_KnowWhereEnemy);
 };

@@ -37,12 +37,7 @@ func int DIA_Fernando_PICKPOCKET_Condition()
 //	if(C_StealItems(50,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (NpcObsessedByDMT_Fernando == FALSE))
 	if(Npc_HasItems(self,ItSe_GoldPocket100) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
-//		return TRUE;
 		return C_StealItem(50,Hlp_GetInstanceID(ItSe_GoldPocket100));
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 

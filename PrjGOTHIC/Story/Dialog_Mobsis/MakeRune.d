@@ -1,4 +1,19 @@
 
+func int makerune_cond()
+{
+	if(Npc_IsPlayer(self))
+	{
+		if(!Npc_HasItems(hero,ItMi_Pliers))
+		{
+			AI_UseMob(hero,"RMAKER",0);
+			AI_UseMob(hero,"RMAKER",-1);
+			AI_PrintScreen("нужны щипцы",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+			AI_PlayAni(self,"T_DONTKNOW");
+		};
+	};
+	return TRUE;
+};
+
 func void makerune_s1()
 {
 	var C_Npc her;
@@ -7,7 +22,8 @@ func void makerune_s1()
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_MakeRune;
-		AI_ProcessInfos(her);
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);
 	};
 };
 

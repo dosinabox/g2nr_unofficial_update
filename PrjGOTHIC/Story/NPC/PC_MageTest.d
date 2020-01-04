@@ -16,7 +16,7 @@ instance PC_MageTest(Npc_Default)
 	exp = XP_PER_LEVEL * ((level + 1) / 2) * (level + 1);
 	exp_next = XP_PER_LEVEL * ((level + 2) / 2) * (level + 1);
 	Mdl_SetVisual(self,"HUMANS.MDS");
-	Mdl_SetVisualBody(self,"hum_body_Naked0",BodyTex_Player,0,"Hum_Head_Pony",Face_N_Player,0,ITAR_PAL_H);
+	Mdl_SetVisualBody(self,"hum_body_Naked0",BodyTex_Player,0,"Hum_Head_Pony",Face_N_Player,0,ITAR_KDW_L_Addon);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
 	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_SNEAK,1);
@@ -25,7 +25,7 @@ instance PC_MageTest(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_RUNES,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_ALCHEMY,1);
-	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALTROPHY,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALFUR,1);
 	PLAYER_TALENT_ALCHEMY[POTION_Health_01] = TRUE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_02] = TRUE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_03] = TRUE;
@@ -111,4 +111,5 @@ instance PC_MageTest(Npc_Default)
 	CreateInvItem(self,ItRu_SuckEnergy);
 	CreateInvItem(self,ItRu_Skull);
 };
+
 

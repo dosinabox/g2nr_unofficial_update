@@ -182,7 +182,7 @@ func int DIA_CipherDJG_SwampWait2_Condition()
 
 func void DIA_CipherDJG_SwampWait2_Info()
 {
-	AI_Output(self,other,"DIA_CipherDJG_SwampWait2_07_00");	//Ѕолото начинаетс€ сразу за следующим поворотом. я предлагаю идти пр€мо туда.
+	AI_Output(self,other,"DIA_CipherDJG_SwampWait2_07_00");	//Ѕолото начинаетс€ сразу за последующим поворотом. я предлагаю идти пр€мо туда!
 	AI_Output(self,other,"DIA_CipherDJG_SwampWait2_07_01");	//Ќу, ты также можешь проверить вон тот проход, чтобы эти твари не напали на нас сзади. „то ты выбираешь?
 	AI_Output(other,self,"DIA_CipherDJG_SwampWait2_15_02");	//Ќе будем тер€ть времени!
 	Info_AddChoice(DIA_CipherDJG_SwampWait2,Dialog_Ende,DIA_CipherDJG_SwampWait2_weiter);

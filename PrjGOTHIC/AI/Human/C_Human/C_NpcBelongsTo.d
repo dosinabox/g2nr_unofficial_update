@@ -30,6 +30,10 @@ func int C_NpcBelongsToCity(var C_Npc slf)
 		{
 			return FALSE;
 		};
+		if(slf.npcType == NPCTYPE_OWAMBIENT)
+		{
+			return FALSE;
+		};
 		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard1)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Marcos_Guard2)))
 		{
 			return FALSE;

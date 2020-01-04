@@ -729,6 +729,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItWr_Schuldenbuch,1);
 	CreateInvItems(self,ItPl_Sagitta_Herb_MIS,1);
 	CreateInvItems(self,ItKe_Orlan_HotelZimmer,1);
+	CreateInvItems(self,ItKe_Orlan_BackDoor,1);
 	CreateInvItems(self,ItRw_DragomirsArmbrust_MIS,1);
 	CreateInvItems(self,ItMi_StoneOfKnowlegde_MIS,1);
 	CreateInvItems(self,ItWr_PaladinLetter_MIS,1);
@@ -1174,33 +1175,7 @@ func void INIT_TA_Testlevel()
 	B_InitGuildAttitudes();
 	B_InitNpcGlobals();
 	init_sub_ta_testlevel();
-};*/
-
-
-instance Gold(C_Item)
-{
-	name = NAME_Bag;
-	mainflag = ITEM_KAT_NONE;
-	flags = 0;
-	value = 0;
-	visual = "ItMi_Bag.3ds";
-	scemeName = "MAPSEALED";
-	material = MAT_LEATHER;
-	on_state[0] = UseGold;
-	description = name;
-	text[0] = "Мешок полон монет!";
 };
-
-
-func void UseGold()
-{
-	CreateInvItems(self,ItMi_Gold,1000);
-	PrintScreen("1000 золотых получено",-1,45,FONT_Screen,2);
-	Snd_Play("Geldbeutel");
-	PrintScreen("Наказание за читерство",-1,50,FONT_Screen,2);
-	B_GivePlayerXP(XP_EXPLOITBONUS);
-};
-
 
 instance Armor(C_Item)
 {
@@ -1274,38 +1249,6 @@ func void UseArmor()
 	CreateInvItem(self,ITAR_Slave);
 	CreateInvItem(self,ITAR_Beggar);
 	CreateInvItem(self,ITAR_Onar);
-};
-
-
-instance Helmets(C_Item)
-{
-	name = NAME_Bag;
-	mainflag = ITEM_KAT_NONE;
-	flags = 0;
-	value = 0;
-	visual = "ItMi_Bag.3ds";
-	scemeName = "MAPSEALED";
-	material = MAT_LEATHER;
-	on_state[0] = UseHelmets;
-	description = name;
-	text[0] = "Мешок наполнен экспериментальными";
-	text[1] = "доспехами и шлемами!";
-};
-
-func void UseHelmets()
-{
-	Snd_Play("Geldbeutel");
-	Print("Найдено много разных доспехов и шлемов!");
-//	CreateInvItem(self,ITAR_OHT);
-	CreateInvItem(self,ITAR_DJGN_M);
-	CreateInvItem(self,ITAR_DJGN_H);
-	CreateInvItem(self,ITAR_PALN_M);
-	CreateInvItem(self,ITAR_PALN_H);
-//	CreateInvItem(self,ITHE_OHT);
-	CreateInvItem(self,ITHE_DJG_M);
-	CreateInvItem(self,ITHE_DJG_H);
-	CreateInvItem(self,ITHE_PAL_M);
-	CreateInvItem(self,ITHE_PAL_H);
 };
 
 instance Runenbrief(C_Item)
@@ -1502,7 +1445,7 @@ func void UseHoshiTagebuch()
 };
 
 
-/*instance D36TestRune(C_Item)
+instance D36TestRune(C_Item)
 {
 	name = "Великая руна тестов";
 	mainflag = ITEM_KAT_DOCS;
@@ -1523,6 +1466,32 @@ func void UseD36TestRune()
 {
 	PrintScreen("тест",-1,-1,FONT_Screen,1);
 };*/
+
+instance MobsiBrief(C_Item)
+{
+	name = "Руна MobsiBrief";
+	mainflag = ITEM_KAT_DOCS;
+	flags = ITEM_MISSION;
+	value = 0;
+	visual = "ItRu_TeleportOWDemonTower.3DS";
+	material = MAT_STONE;
+	scemeName = "MAP";
+	description = name;
+	text[0] = "Исправить зависание.";
+	on_state[0] = UseMobsiBrief;
+	inv_rotz = 180;
+	inv_rotx = 90;
+	inv_roty = 180;
+};
+
+
+func void UseMobsiBrief()
+{
+	PLAYER_MOBSI_PRODUCTION = MOBSI_NONE;
+	self.aivar[AIV_INVINCIBLE] = FALSE;
+	PrintScreen("PLAYER_MOBSI_PRODUCTION = MOBSI_NONE",-1,50,FONT_Screen,4);
+	PrintScreen("self.aivar[AIV_INVINCIBLE] = FALSE",-1,55,FONT_Screen,4);
+};
 
 instance WastelandRune(C_Item)
 {
@@ -1545,9 +1514,9 @@ instance WastelandRune(C_Item)
 func void UseWastelandRune()
 {
 	PrintScreen("Заселяем...",-1,-1,FONT_Screen,1);
-	b_seed_wasteland_world_main();
-	b_seed_wasteland_world_psicamp();
-	b_seed_wasteland_world_freeminecamp();
+	B_Seed_Wasteland_World_Main();
+	B_Seed_Wasteland_World_Psicamp();
+	B_Seed_Wasteland_World_Freeminecamp();
 };
 
 instance StatsBook(C_Item)
@@ -1573,18 +1542,88 @@ func void Use_StatsBook()
 	Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Убито:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Draconian)," людей-ящеров"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Dementor)," ищущих"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcElite)," элитных орков"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcCommander)," предводителей орков"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(MadKillerCount)," невинных людей"));
-	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"");
 	Doc_Show(nDocID);
+};
+
+instance Gold(C_Item)
+{
+	name = NAME_Bag;
+	mainflag = ITEM_KAT_NONE;
+	flags = 0;
+	value = 0;
+	visual = "ItMi_Bag.3ds";
+	scemeName = "MAPSEALED";
+	material = MAT_LEATHER;
+	on_state[0] = UseGold;
+	description = name;
+	text[0] = "Мешок полон монет!";
+};
+
+
+func void UseGold()
+{
+	B_PlayerFindItem(ItMi_Gold,1000);
+	PrintScreen("Наказание за читерство",-1,50,FONT_Screen,2);
+	B_GivePlayerXP(XP_EXPLOITBONUS);
+};
+
+instance Helmets(C_Item)
+{
+	name = NAME_Bag;
+	mainflag = ITEM_KAT_NONE;
+	flags = 0;
+	value = 0;
+	visual = "ItMi_Bag.3ds";
+	scemeName = "MAPSEALED";
+	material = MAT_LEATHER;
+	on_state[0] = UseHelmets;
+	description = name;
+	text[0] = "Мешок наполнен экспериментальными";
+	text[1] = "доспехами и шлемами!";
+};
+
+
+func void UseHelmets()
+{
+	CreateInvItem(self,ITAR_DJGN_M);
+	CreateInvItem(self,ITAR_DJGN_H);
+	CreateInvItem(self,ITAR_PALN_M);
+	CreateInvItem(self,ITAR_PALN_H);
+	CreateInvItem(self,ITHE_DJG_M);
+	CreateInvItem(self,ITHE_DJG_H);
+	CreateInvItem(self,ITHE_PAL_M);
+	CreateInvItem(self,ITHE_PAL_H);
+	Print("Найдено много разных доспехов и шлемов!");
+};
+
+instance TestAmulet(C_Item)
+{
+	name = NAME_Amulett;
+	mainflag = ITEM_KAT_MAGIC;
+	flags = ITEM_AMULET | ITEM_MISSION;
+	value = 0;
+	visual = "ItMi_SilverNecklace.3ds";
+	visual_skin = 0;
+	material = MAT_METAL;
+	wear = WEAR_EFFECT;
+	effect = "SPELLFX_ITEMGLIMMER";
+	description = "Амулет тестировщика";
+	text[1] = "Скомпилировано 4 января 2020г.";
+	text[2] = "Установленная версия обновления:";
+	count[2] = FIX_VERSION_START;
+	text[3] = "Версия обновления в сохраненке:";
+	count[3] = FIX_VERSION_SAVE;
+	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 

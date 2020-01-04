@@ -106,8 +106,8 @@ func int ZS_Talk_Loop()
 	else
 	{
 		zsTalkBugfix = TRUE;
-		return LOOP_CONTINUE;
 	};
+	return LOOP_CONTINUE;
 };
 
 func void ZS_Talk_End()

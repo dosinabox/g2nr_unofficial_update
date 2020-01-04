@@ -2265,22 +2265,36 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge()
 {
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_15_00");	//Что теперь будет с Глазом?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_01");	//Мы должны восстановить его. Но это, боюсь, будет непростой задачей.
-	if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
 	{
-		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_02");	//Оправа разбита на две части. Искусный кузнец должен быть способен починить ее.
-		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_03");	//Но проблема не в этом. Меня больше волнует драгоценный камень.
-	};
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_04");	//Он тускл и безжизненен. Враг, похоже, хорошо знал, как ослабить его.
-	if(!Npc_KnowsInfo(other,DIA_Bennet_GiveInnosEye))
+		if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
+		{
+			AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_02");	//Оправа разбита на две части. Искусный кузнец должен быть способен починить ее.
+			AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_03");	//Но проблема не в этом. Меня больше волнует драгоценный камень.
+		};
+		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_04");	//Он тускл и безжизненен. Враг, похоже, хорошо знал, как ослабить его.
+		if(!Npc_KnowsInfo(other,DIA_Bennet_GiveInnosEye))
+		{
+			Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти кузнеца, способного починить оправу Глаза?",DIA_Vatras_INNOSEYEKAPUTT_Auge_schmied);
+		};
+		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Как можно восстановить силу камня?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein);
+	}
+	else
 	{
-		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти кузнеца, способного починить оправу Глаза?",DIA_Vatras_INNOSEYEKAPUTT_Auge_schmied);
+		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"И что нам делать дальше?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein);
 	};
-	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Как можно восстановить силу камня?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein);
 };
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein()
 {
-	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_15_00");	//Как можно восстановить силу камня?
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+	{
+		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_15_00");	//Как можно восстановить силу камня?
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Xardas_Weiter_15_00");	//И что нам делать дальше?
+	};
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_01");	//Я вижу только один способ. Союз трех правящих божеств должен дать желаемый эффект.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_02");	//Хорошо подготовленный ритуал обращения в месте уничтожения камня вернет ему его огонь.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_03");	//Однако проблема состоит в том, что ты должен привести в это место земных представителей каждого из этих троих богов.

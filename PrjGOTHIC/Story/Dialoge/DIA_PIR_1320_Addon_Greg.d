@@ -211,13 +211,11 @@ func void DIA_Addon_Greg_JoinPirates_Leave()
 	{
 		CreateInvItem(hero,ITAR_PIR_M_Addon);
 		AI_PrintScreen("Доспехи пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_PIR_M_Addon);
 	}
 	else
 	{
 		CreateInvItem(hero,ITAR_PIR_L_Addon);
 		AI_PrintScreen("Одежда пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_PIR_L_Addon);
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_04");	//И не мешкай, скорее принимайся за дело!
 	Info_ClearChoices(DIA_Addon_Greg_JoinPirates);

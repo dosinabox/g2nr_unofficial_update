@@ -54,5 +54,6 @@ func int B_TeachMagicCircle(var C_Npc slf,var C_Npc oth,var int circle)
 		B_LogEntry(TOPIC_TalentMagicCircle,"«аклинани€ 6-го круга: огненный дождь, дыхание смерти, волна смерти и арми€ “ьмы.");
 		return TRUE;
 	};
+	return FALSE;
 };
 

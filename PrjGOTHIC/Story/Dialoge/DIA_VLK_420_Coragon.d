@@ -389,7 +389,8 @@ instance DIA_Coragon_News(C_Info)
 
 func int DIA_Coragon_News_Condition()
 {
-	if(!Npc_IsDead(Valentino) && (Valentino.aivar[AIV_DefeatedByPlayer] == TRUE) && Npc_KnowsInfo(other,DIA_Regis_Valentino) && (Valentino_Day < Wld_GetDay()))
+//	if(!Npc_IsDead(Valentino) && (Valentino.aivar[AIV_DefeatedByPlayer] == TRUE) && Npc_KnowsInfo(other,DIA_Regis_Valentino) && (Valentino_Day < Wld_GetDay()))
+	if(!Npc_IsDead(Valentino) && (Valentino.aivar[AIV_DefeatedByPlayer] == TRUE) && (Valentino_Day < Wld_GetDay()))
 	{
 		return TRUE;
 	};

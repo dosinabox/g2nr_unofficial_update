@@ -3,7 +3,7 @@ instance PAL_219_Ritter(Npc_Default)
 {
 	name[0] = NAME_Ritter;
 	guild = GIL_PAL;
-	id = 218;
+	id = 219;
 	voice = 4;
 	flags = 0;
 	npcType = NPCTYPE_OWAMBIENT;

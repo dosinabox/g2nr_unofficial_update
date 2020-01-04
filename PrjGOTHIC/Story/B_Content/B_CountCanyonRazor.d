@@ -9,11 +9,8 @@ func int C_AllCanyonRazorDead()
 	{
 		AllCanyonRazorDead = TRUE;
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func int C_IAmCanyonRazor(var C_Npc slf)
@@ -41,11 +38,8 @@ func int C_IAmCanyonRazor(var C_Npc slf)
 	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz01)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz02)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz03)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz04)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz05)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz06)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz07)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz08)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz09)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz10)))
 	{
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void B_CountCanyonRazor()

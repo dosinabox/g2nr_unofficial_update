@@ -6,7 +6,8 @@ func void B_PlayerFindItem(var int itm,var int amount)
 	if(Npc_IsPlayer(self))
 	{
 		CreateInvItems(self,itm,amount);
-		itemname = item.name;
+		//itemname = item.name;
+		itemname = item.description;
 		if(itm == ItMi_Gold)
 		{
 			concatText = ConcatStrings(IntToString(amount),PRINT_GoldErhalten);

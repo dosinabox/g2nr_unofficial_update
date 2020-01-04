@@ -77,11 +77,8 @@ func int C_IsQuarterNearest(var C_Npc slf,var int quart)
 	if((quartDist <= C_GetDistToCenter(slf,Q_KASERNE)) && (quartDist <= C_GetDistToCenter(slf,Q_GALGEN)) && (quartDist <= C_GetDistToCenter(slf,Q_MARKT)) && (quartDist <= C_GetDistToCenter(slf,Q_TEMPEL)) && (quartDist <= C_GetDistToCenter(slf,Q_UNTERSTADT)) && (quartDist <= C_GetDistToCenter(slf,Q_HAFEN)) && (quartDist <= C_GetDistToCenter(slf,Q_OBERSTADT)))
 	{
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func int C_NpcIsInQuarter(var C_Npc slf)
@@ -114,5 +111,6 @@ func int C_NpcIsInQuarter(var C_Npc slf)
 	{
 		return Q_OBERSTADT;
 	};
+	return FALSE;
 };
 

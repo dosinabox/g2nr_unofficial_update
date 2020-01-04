@@ -446,10 +446,6 @@ func int DIA_Engor_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItWr_Map_OldWorld))
 	{
 		return C_StealItem(40,Hlp_GetInstanceID(ItWr_Map_OldWorld));
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 

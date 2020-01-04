@@ -19,11 +19,8 @@ func int Spell_Logic_IceCube(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_IceCube)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_IceCube()

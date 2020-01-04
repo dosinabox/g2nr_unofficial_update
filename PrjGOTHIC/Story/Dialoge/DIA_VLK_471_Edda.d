@@ -248,10 +248,6 @@ func int DIA_Edda_PICKPOCKET_Condition()
 	else if(Npc_HasItems(self,ItMi_LostInnosStatue_Daron))
 	{
 		return C_StealItem(20,Hlp_GetInstanceID(ItMi_LostInnosStatue_Daron));
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 

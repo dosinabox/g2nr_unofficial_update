@@ -53,16 +53,13 @@ func void DIA_GornOW_Hello_Info()
 		if(Npc_KnowsInfo(other,DIA_MiltenOW_Preis) && Npc_KnowsInfo(other,DIA_DiegoOw_Gorn) && (GornsTreasure == TRUE) && (Npc_HasItems(other,ItMi_GornsTreasure_MIS) || (Gorns_Beutel == TRUE)))
 		{
 //			CreateInvItem(hero,ITAR_SLD_H);
-//			AI_EquipArmor(hero,ITAR_SLD_H);
 			CreateInvItem(hero,ITAR_SLD_S);
 			AI_PrintScreen("Старые доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//			AI_EquipArmor(hero,ITAR_SLD_S);
 		}
 		else
 		{
 			CreateInvItem(hero,ITAR_SLD_M2);
 			AI_PrintScreen("Средние доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//			AI_EquipArmor(hero,ITAR_SLD_M2);
 			Lee_SldMGiven = TRUE;
 		};
 		AI_Output(other,self,"DIA_GornOW_Add_15_03");	//Спасибо! Увидимся у Милтена.

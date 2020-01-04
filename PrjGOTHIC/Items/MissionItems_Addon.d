@@ -423,7 +423,7 @@ func void Use_VatrasKDFEmpfehlung_Addon()
 	Doc_PrintLines(nDocID,0,"Мне стало известно, что за вход в ваш монастырь вы требуете плату.");
 	Doc_PrintLines(nDocID,0,"С этим письмом я направляю вам молодого человека, который страстно желает присоединиться к вам.");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Ватрас");
+	Doc_PrintLine(nDocID,0,"     Ватрас");
 	Doc_Show(nDocID);
 };
 
@@ -548,14 +548,14 @@ func void Use_Rake()
 
 instance ItRi_Addon_BanditTrader(C_Item)
 {
-	name = "Кольцо гильдии";
+	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_MISSION | ITEM_RING;
 	value = 70;
 	visual = "ItRi_Addon_BanditTrader.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	description = name;
+	description = "Кольцо гильдии";
 	text[0] = "Гравированное кольцо";
 	text[1] = "гильдии торговцев Араксоса.";
 	text[5] = NAME_Value;
@@ -1251,19 +1251,23 @@ func void UseGregsLogbuch()
 instance ITKE_Addon_Bloodwyn_01(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = "Ключ Бладвина";
 	text[0] = "Открывает его сундук в храме.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ITKE_Addon_Heiler(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_05.3ds";
@@ -1271,6 +1275,10 @@ instance ITKE_Addon_Heiler(C_Item)
 	description = "Ключ каменного стража";
 	text[0] = "Ключ от сундука в странном";
 	text[1] = "древнем строении на болоте.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItMi_TempelTorKey(C_Item)

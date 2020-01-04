@@ -278,7 +278,7 @@ instance DIA_Malak_KAP3_EXIT(C_Info)
 
 func int DIA_Malak_KAP3_EXIT_Condition()
 {
-	if(Kapitel == 3)
+	if(Kapitel >= 3)
 	{
 		return TRUE;
 	};
@@ -449,6 +449,7 @@ func void DIA_Malak_BACKTOBENGAR_Info()
 		AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_03");	//Ну, это другое дело, конечно же. Но подожди минутку. А кто будет платить этому парню?
 		AI_Output(other,self,"DIA_Malak_BACKTOBENGAR_15_04");	//Это моя проблема.
 		AI_Output(self,other,"DIA_Malak_BACKTOBENGAR_08_05");	//(с любопытством) М-м-м. А может, скажешь, а?
+		Info_ClearChoices(DIA_Malak_BACKTOBENGAR);
 		Info_AddChoice(DIA_Malak_BACKTOBENGAR,"Нет.",DIA_Malak_BACKTOBENGAR_los);
 	};
 };
@@ -490,7 +491,7 @@ func void DIA_Malak_BACK_Info()
 	B_NpcClearObsessionByDMT(self);
 };
 
-
+/*
 instance DIA_Malak_KAP4_EXIT(C_Info)
 {
 	npc = BAU_963_Malak;
@@ -540,7 +541,7 @@ func void DIA_Malak_KAP5_EXIT_Info()
 	B_NpcClearObsessionByDMT(self);
 };
 
-/*
+
 instance DIA_Malak_KAP6_EXIT(C_Info)
 {
 	npc = BAU_963_Malak;

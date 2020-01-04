@@ -503,8 +503,8 @@ instance DIA_Bosper_TeachFUR(C_Info)
 	condition = DIA_Bosper_TeachFUR_Condition;
 	information = DIA_Bosper_TeachFUR_Info;
 	permanent = TRUE;
-//	description = B_BuildLearnString("Научи меня снимать шкуры с животных!",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
-	description = B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
+//	description = B_BuildLearnString("Научи меня снимать шкуры с животных!",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur));
+	description = B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur));
 };
 
 
@@ -949,4 +949,6 @@ func void DIA_Bosper_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Bosper_PICKPOCKET);
 };
+
+
 

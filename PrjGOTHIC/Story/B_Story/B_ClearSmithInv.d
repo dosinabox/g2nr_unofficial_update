@@ -81,3 +81,13 @@ func void B_ClearJunkInv(var C_Npc slf)
 	};
 };
 
+
+func void B_CoolHotDraw()
+{
+	if(Npc_HasItems(hero,ItMiSwordrawhot))
+	{
+		CreateInvItems(hero,ItMiSwordraw,Npc_HasItems(hero,ItMiSwordrawhot));
+		Npc_RemoveInvItems(hero,ItMiSwordrawhot,Npc_HasItems(hero,ItMiSwordrawhot));
+	};
+};
+

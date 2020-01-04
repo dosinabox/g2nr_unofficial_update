@@ -21,11 +21,8 @@ func int Spell_Logic_Deathball(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_COST_Deathball)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_Deathball()

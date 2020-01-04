@@ -121,10 +121,7 @@ func int C_AmIDexterBandit(var C_Npc slf)
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(BDT_1068_Bandit_L))
 	{
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 

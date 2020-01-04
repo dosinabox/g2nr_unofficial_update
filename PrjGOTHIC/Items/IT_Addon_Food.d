@@ -60,8 +60,8 @@ instance ItFo_Addon_Rum(C_Item)
 
 func void UseRum()
 {
-	Npc_ChangeAttribute(self,ATR_MANA,Mana_Rum);
 	B_NpcSetDrunk(50);
+	Npc_ChangeAttribute(self,ATR_MANA,Mana_Rum);
 };
 
 
@@ -86,8 +86,8 @@ instance ItFo_Addon_Grog(C_Item)
 
 func void UseGrog()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Grog);
 	B_NpcSetDrunk(40);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Grog);
 };
 
 
@@ -183,9 +183,7 @@ instance ItFo_Addon_SchnellerHering(C_Item)
 
 func void UseSchnellerHering()
 {
-	var C_Npc her;
-	her = Hlp_GetNpc(PC_Hero);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	if(Npc_IsPlayer(self))
 	{
 		Mdl_ApplyOverlayMdsTimed(self,"HUMANS_SPRINT.MDS",Time_SchnellerHering);
 	};
@@ -214,8 +212,8 @@ instance ItFo_Addon_Liquor(C_Item)
 
 func void UseLiquor()
 {
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Grog);
 	B_NpcSetDrunk(20);
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Grog);
 };
 
 

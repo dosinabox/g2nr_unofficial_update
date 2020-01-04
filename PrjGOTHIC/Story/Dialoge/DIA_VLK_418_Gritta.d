@@ -218,6 +218,7 @@ func void DIA_Gritta_WINE_Info()
 {
 	AI_Output(self,other,"DIA_Gritta_WINE_16_00");	//Это было очень благородно с твоей стороны заплатить за меня. Я хочу отблагодарить тебя.
 	AI_Output(self,other,"DIA_Gritta_WINE_16_01");	//Вот бутылка вина, которую мой муж, да упокоит Иннос его душу, привез с южных островов.
+	AI_WaitTillEnd(other,self);
 	B_GiveInvItems(self,other,ItFo_DarkWine,1);
 	AI_Output(self,other,"DIA_Gritta_WINE_16_02");	//Также я расскажу о тебе всем! Наконец-то в городе появился человек, чья добродетель...
 	AI_Output(other,self,"DIA_Gritta_WINE_15_03");	//Да-да-да, не стоит благодарностей.
@@ -338,7 +339,7 @@ func void DIA_Gritta_Perm3U4U5_TurnsGood()
 	AI_Output(self,other,"DIA_Gritta_Perm3U4U5_TurnsGood_16_01");	//Ты пытаешься подбодрить меня. Это мило.
 	if(GrittaXP_Once == FALSE)
 	{
-		B_GivePlayerXP(XP_Ambient);
+		B_GivePlayerXP(XP_AmbientKap3);
 		GrittaXP_Once = TRUE;
 	};
 };

@@ -12,5 +12,6 @@ func int B_CaptainConditions(var C_Npc Captain)
 			};
 		};
 	};
+	return FALSE;
 };
 

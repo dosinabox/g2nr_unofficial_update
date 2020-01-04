@@ -177,10 +177,6 @@ func int DIA_Valentino_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItKe_Valentino))
 	{
 		return C_StealItem(30,Hlp_GetInstanceID(ItKe_Valentino));
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 

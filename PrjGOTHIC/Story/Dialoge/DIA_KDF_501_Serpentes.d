@@ -646,10 +646,6 @@ func int DIA_Serpentes_SalandrilHERE_Condition()
 		else if(Npc_KnowsInfo(other,DIA_Serpentes_GOTSalandril) && (hero.guild == GIL_KDF))
 		{
 			return TRUE;
-		}
-		else
-		{
-			return FALSE;
 		};
 	};
 };

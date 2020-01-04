@@ -194,10 +194,16 @@ func int DIA_Hakon_Paladine_Condition()
 func void DIA_Hakon_Paladine_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Add_15_07");	//Ты знаешь что-нибудь о паладинах?
-	AI_Output(self,other,"DIA_Hakon_Add_12_08");	//Да! Они разорили меня!
+	if(other.guild != GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_Hakon_Add_12_08");	//Да! Они разорили меня!
+	};
 	AI_Output(self,other,"DIA_Hakon_Add_12_09");	//Теперь все, что можно купить в этом городе - это короткий меч, и то в лучшем случае.
 	AI_Output(self,other,"DIA_Hakon_Add_12_10");	//Они забрали себе все, что длиннее фута с половиной.
-	AI_Output(self,other,"DIA_Hakon_Add_12_11");	//(с сарказмом) А взамен, теперь я могу бесплатно жить в отеле - ха-ха!
+	if(other.guild != GIL_PAL)
+	{
+		AI_Output(self,other,"DIA_Hakon_Add_12_11");	//(с сарказмом) А взамен, теперь я могу бесплатно жить в отеле - ха-ха!
+	};
 };
 
 
@@ -231,8 +237,11 @@ func void DIA_Hakon_WoWaffen_Info()
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_14");	//Раньше моим поставщиком был кузнец Гарад.
 	};
-	AI_Output(self,other,"DIA_Hakon_Add_12_15");	//А теперь все, что он делает, забирают паладины.
-	AI_Output(self,other,"DIA_Hakon_Add_12_16");	//Он работает на этих парней днем и ночью как безумный, без какой-либо оплаты. Он думает, что это его долг.
+	if(!Npc_IsDead(Harad))
+	{
+		AI_Output(self,other,"DIA_Hakon_Add_12_15");	//А теперь все, что он делает, забирают паладины.
+		AI_Output(self,other,"DIA_Hakon_Add_12_16");	//Он работает на этих парней днем и ночью как безумный, без какой-либо оплаты. Он думает, что это его долг.
+	};
 	AI_Output(self,other,"DIA_Hakon_Add_12_17");	//Все, что я могу предложить тебе сейчас - это остатки...
 };
 

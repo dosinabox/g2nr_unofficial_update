@@ -17,6 +17,7 @@ func int C_Beklauen(var int TheftDex,var int TheftGold)
 		};
 		return TRUE;
 	};
+	return FALSE;
 };
 
 func void B_Beklauen()
@@ -46,6 +47,7 @@ func int C_StealItem(var int TheftDex,var int Itm)
 	{
 		return TRUE;
 	};
+	return FALSE;
 };
 
 //func void B_StealItems(var int TheftDex,var int Itm,var int Qty)

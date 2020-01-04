@@ -86,7 +86,7 @@ func void Use_BookstandALCHEMY2_S1()
 		Doc_PrintLines(nDocID,1,"„тобы сварить любое лечебное зелье или зелье, усиливающее магическую силу, необходим особый ингредиент и растение:");
 		Doc_PrintLine(nDocID,1,"Ћуговой горец");
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLines(nDocID,1,"„тобы сварить зелье, имеющее перманентное действие на тело или дух, необходимо определенное растение:");
+		Doc_PrintLines(nDocID,1,"„тобы сварить зелье, оказывающее перманентное воздействие на тело или дух, необходимо определенное растение:");
 		Doc_PrintLines(nDocID,1,"÷арский щавель");
 		Doc_Show(nDocID);
 		if(ALchemy_2_permanent == FALSE)

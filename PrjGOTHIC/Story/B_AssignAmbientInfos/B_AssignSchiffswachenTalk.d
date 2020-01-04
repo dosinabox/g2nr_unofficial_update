@@ -102,5 +102,6 @@ func int B_AssignSchiffswachenInfoConditions(var C_Npc Schiffswache)
 	{
 		return TRUE;
 	};
+	return FALSE;
 };
 

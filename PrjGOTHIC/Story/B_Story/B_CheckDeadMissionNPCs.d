@@ -123,6 +123,24 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		{
 			Log_SetTopicStatus(Topic_BaboTrain,LOG_FAILED);
 		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Senyan))
+	{
+		Senyan_Erpressung = LOG_OBSOLETE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(TalbinNW))
+	{
+		if(MIS_Talbin_Runs == LOG_Running)
+		{
+			MIS_Talbin_Runs = LOG_FAILED;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Talbin))
+	{
+		if(MIS_Talbin_Runs == LOG_Running)
+		{
+			MIS_Talbin_Runs = LOG_OBSOLETE;
+		};
 	};
 	B_CheckLog();
 };

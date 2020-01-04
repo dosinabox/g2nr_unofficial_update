@@ -38,10 +38,6 @@ func int DIA_Pablo_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItKe_City_Tower_01))
 	{
 		return C_StealItem(20,Hlp_GetInstanceID(ItKe_City_Tower_01));
-	}
-	else
-	{
-		return FALSE;
 	};
 };
 
@@ -177,7 +173,10 @@ func void DIA_Pablo_HakonBandits_Info()
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_01");	//Ёти крысы уползли в свою нору и больше не высовываютс€ оттуда.
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_02");	// ак-то нам даже удалось выследить их и погнатьс€ за ними. Ќо нам пришлось прервать погоню в лесу у города.
 	AI_Output(self,other,"DIA_Pablo_Banditen_12_03");	//“ам бродит слишком много вс€ких зверей и это слишком опасно.
-	B_LogEntry(TOPIC_HakonBanditen,"Ѕандиты, ограбившие ’акона, скрываютс€ где-то в лесу неподалеку от города.");
+	if(MIS_HakonBandits == LOG_Running)
+	{
+		B_LogEntry(TOPIC_HakonBanditen,"Ѕандиты, ограбившие ’акона, скрываютс€ где-то в лесу неподалеку от города.");
+	};
 	if((Pablo_AndreMelden == FALSE) && (Halvor_Ausgeliefert == FALSE))
 	{
 		AI_Output(self,other,"DIA_Pablo_Add_12_23");	//Ќо есть кое-что еще...

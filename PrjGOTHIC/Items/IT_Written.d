@@ -1,5 +1,5 @@
 
-instance StandardBrief(C_Item)
+/*instance StandardBrief(C_Item)
 {
 	name = "Стандартное письмо";
 	mainflag = ITEM_KAT_DOCS;
@@ -74,7 +74,7 @@ func void UseStandardBuch()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Bla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla blaBla bla");
 	Doc_Show(nDocID);
-};
+};*/
 
 
 instance ItWr_Map_NewWorld(C_Item)

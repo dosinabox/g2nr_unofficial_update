@@ -20,11 +20,8 @@ func int Spell_Logic_ArmyOfDarkness(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_ArmyOfDarkness)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_ArmyOfDarkness(var int spellLevel)

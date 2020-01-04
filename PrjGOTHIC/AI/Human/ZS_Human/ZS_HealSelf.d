@@ -21,16 +21,13 @@ func int ZS_HealSelf_Loop()
 			return LOOP_CONTINUE;
 		};
 	}
-	else if(self.guild == GIL_PAL)
+	else if((self.guild == GIL_PAL) && (self.attribute[ATR_MANA] >= SPL_Cost_PalFullHeal))
 	{
-		if(self.attribute[ATR_MANA] >= SPL_Cost_PalFullHeal)
-		{
-			AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-			Wld_PlayEffect("spellFX_PalHeal_ORIGIN",self,self,0,0,0,FALSE); 
-			self.attribute[ATR_MANA] -= SPL_Cost_PalFullHeal;
-			Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_PalFullHeal);
-			return LOOP_CONTINUE;
-		};
+		AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
+		Wld_PlayEffect("spellFX_PalHeal_ORIGIN",self,self,0,0,0,FALSE); 
+		self.attribute[ATR_MANA] -= SPL_Cost_PalFullHeal;
+		Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_PalFullHeal);
+		return LOOP_CONTINUE;
 	}
 	else if(Npc_HasItems(self,ItPo_Health_Addon_04))
 	{
@@ -51,11 +48,8 @@ func int ZS_HealSelf_Loop()
 	{
 		AI_UseItem(self,ItPo_Health_01);
 		return LOOP_CONTINUE;
-	}
-	else
-	{
-		return LOOP_END;
 	};
+	return LOOP_END;
 };
 
 func void ZS_HealSelf_End()

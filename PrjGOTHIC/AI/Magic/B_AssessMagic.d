@@ -46,9 +46,9 @@ func void B_AssessMagic()
 		B_ClearPerceptions(self);
 		AI_StartState(self,ZS_ShortZapped,0,"");
 		return;*/
-		var int razrjad;
-		razrjad = Hlp_Random(2);
-		if(razrjad == 0)
+		var int zap;
+		zap = Hlp_Random(2);
+		if(zap == 0)
 		{
 			Npc_ClearAIQueue(self);
 			B_ClearPerceptions(self);

@@ -119,7 +119,7 @@ var int Zuris_einmal;
 instance DIA_Zuris_WAREZ(C_Info)
 {
 	npc = VLK_409_Zuris;
-	nr = 2;
+	nr = 800;
 	condition = DIA_Zuris_WAREZ_Condition;
 	information = DIA_Zuris_WAREZ_Info;
 	permanent = TRUE;
@@ -136,7 +136,6 @@ func int DIA_Zuris_WAREZ_Condition()
 func void DIA_Zuris_WAREZ_Info()
 {
 	AI_Output(other,self,"DIA_Zuris_WAREZ_15_00");	//Покажи мне свои товары.
-	B_GiveTradeInv(self);
 	if((Zuris_einmal == FALSE) && !Npc_KnowsInfo(other,DIA_Zuris_Potions))
 	{
 		AI_Output(self,other,"DIA_Zuris_GREET_14_02");	//Я только что получил несколько новых зелий. Мой гость, мастер Дарон, маг Огня, принес мне их из монастыря.
@@ -146,6 +145,7 @@ func void DIA_Zuris_WAREZ_Info()
 	{
 		ZurisMinenAnteil = TRUE;
 	};
+	B_GiveTradeInv(self);
 	Trade_IsActive = TRUE;
 };
 
@@ -282,9 +282,12 @@ instance DIA_Zuris_Kloster(C_Info)
 
 func int DIA_Zuris_Kloster_Condition()
 {
-	if(Zuris_einmal == TRUE)
+	if((Zuris_einmal == TRUE) || Npc_KnowsInfo(other,DIA_Zuris_Potions))
 	{
-		return FALSE;
+		if(other.guild != GIL_KDF)
+		{
+			return TRUE;
+		};
 	};
 };
 
