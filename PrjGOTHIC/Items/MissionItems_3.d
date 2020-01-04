@@ -570,7 +570,8 @@ instance ItWr_Astronomy_Mis(C_Item)
 {
 	name = "Божественная сила звезд";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+	//flags = ITEM_MISSION;
+	flags = 0;
 	value = 400;
 	visual = "ItWr_Book_02_02.3ds";
 	material = MAT_LEATHER;

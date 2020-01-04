@@ -8,7 +8,8 @@ func void ore_s1()
 		PrintScreen(PRINT_NothingToPick,-1,53,FONT_ScreenSmall,2);
 		/*self.aivar[AIV_INVINCIBLE] = TRUE;
 		player_mobsi_production = MOBSI_ORE;
-		AI_ProcessInfos(her);*/
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);*/
 	};
 };
 

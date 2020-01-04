@@ -274,7 +274,7 @@ var int VALUE_ITAR_MIL_M_Dynamic;
 
 func void B_SetPeckArmorPrice()
 {
-	VALUE_ITAR_MIL_M_Dynamic = 4000;
+	VALUE_ITAR_MIL_M_Dynamic = 4500;
 	if(MIS_Andre_Peck == LOG_SUCCESS)
 	{
 		VALUE_ITAR_MIL_M_Dynamic += 500;
@@ -401,7 +401,7 @@ func void DIA_Peck_ARMOR_BUY()
 	Info_ClearChoices(DIA_Peck_ARMOR);
 };
 
-instance DIA_Peck_TRADE(C_Info)
+/*instance DIA_Peck_TRADE(C_Info)
 {
 	npc = MIL_324_Peck;
 	nr = 4;
@@ -414,20 +414,20 @@ instance DIA_Peck_TRADE(C_Info)
 
 func int DIA_Peck_TRADE_Condition()
 {
-	/*if((other.guild == GIL_MIL) && (DIA_Peck_ARMOR_perm == FALSE))
+	if((other.guild == GIL_MIL) && (DIA_Peck_ARMOR_perm == FALSE))
 	{
 		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
 		{
 			return TRUE;
 		};
-	};*/
+	};
 	return FALSE;
 };
 
 func void DIA_Peck_TRADE_Info()
 {
 	//AI_Output(other,self,"DIA_Parlan_Bibliothek_15_00");	//У тебя есть что-нибудь для меня?
-};
+};*/
 
 
 instance DIA_Peck_PERM(C_Info)

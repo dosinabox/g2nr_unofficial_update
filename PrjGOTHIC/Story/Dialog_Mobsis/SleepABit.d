@@ -1,4 +1,23 @@
 
+func void sleepabit_s1()
+{
+	var C_Npc her;
+	var C_Npc rock;
+	her = Hlp_GetNpc(PC_Hero);
+	rock = Hlp_GetNpc(PC_Rockefeller);
+	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(rock)))
+	{
+		self.aivar[AIV_INVINCIBLE] = TRUE;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_SleepAbit;
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);
+		if(SC_IsObsessed == TRUE)
+		{
+			Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
+		};
+	};
+};
+
 func void PC_Sleep(var int t)
 {
 	AI_StopProcessInfos(self);
@@ -31,25 +50,6 @@ func void PC_Sleep(var int t)
 	PrintGlobals(PD_ITEM_MOBSI);
 	Npc_SendPassivePerc(hero,PERC_ASSESSENTERROOM,NULL,hero);
 };
-
-func void sleepabit_s1()
-{
-	var C_Npc her;
-	var C_Npc rock;
-	her = Hlp_GetNpc(PC_Hero);
-	rock = Hlp_GetNpc(PC_Rockefeller);
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(rock)))
-	{
-		self.aivar[AIV_INVINCIBLE] = TRUE;
-		PLAYER_MOBSI_PRODUCTION = MOBSI_SleepAbit;
-		AI_ProcessInfos(her);
-		if(SC_IsObsessed == TRUE)
-		{
-			Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
-		};
-	};
-};
-
 
 instance PC_NoSleep(C_Info)
 {

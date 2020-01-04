@@ -2,6 +2,30 @@
 var int Erzwaffen;
 var int Normalwaffen;
 
+func int smithweapon_cond()
+{
+	var C_Item EquipWeap;
+	if(Npc_IsPlayer(self))
+	{
+		if(Npc_HasItems(hero,ItMw_1H_Mace_L_04))
+		{
+			EquipWeap = Npc_GetEquippedMeleeWeapon(hero);
+			if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
+			{
+				AI_UnequipWeapons(hero);
+			};
+		}
+		else
+		{
+			AI_UseMob(hero,"BSANVIL",0);
+			AI_UseMob(hero,"BSANVIL",-1);
+			AI_PrintScreen("нужен молот",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+			AI_PlayAni(self,"T_DONTKNOW");
+		};
+	};
+	return TRUE;
+};
+
 func void B_CountAnvilUses()
 {
 	if(CurrentLevel == NEWWORLD_ZEN)
@@ -602,6 +626,7 @@ func void PC_ItMw_Streitaxt1_Info()
 //	Erzwaffen = FALSE;
 };
 
+
 func void smithweapon_s1()
 {
 	var C_Npc her;
@@ -616,7 +641,8 @@ func void smithweapon_s1()
 		{
 			AI_UnequipWeapons(self);
 		};
-		AI_ProcessInfos(her);
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);
 	};
 	PC_ItMw_1H_Common.description = NAME_ItMw_1H_Common_01;
 	PC_ItMw_1H_Special_01.description = ConcatStrings(NAME_ItMw_1H_Special_01,PRINT_Smith_1H_Special_01);
@@ -633,29 +659,5 @@ func void smithweapon_s1()
 	PC_WEAPON_1H_Harad_04.description = NAME_Addon_Harad_04;
 //	PC_ItMw_Streitaxt1.description = ConcatStrings(NAME_ItMw_Streitaxt1,PRINT_Smith_Streitaxt1);
 	PC_ItMw_Streitaxt1.description = ConcatStrings(NAME_ItMw_Banditenaxt,PRINT_Smith_Streitaxt1);
-};
-
-func int smithweapon_cond()
-{
-	var C_Item EquipWeap;
-	if(Npc_IsPlayer(self))
-	{
-		if(Npc_HasItems(hero,ItMw_1H_Mace_L_04))
-		{
-			EquipWeap = Npc_GetEquippedMeleeWeapon(hero);
-			if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
-			{
-				AI_UnequipWeapons(hero);
-			};
-		}
-		else
-		{
-			AI_UseMob(hero,"BSANVIL",0);
-			AI_UseMob(hero,"BSANVIL",-1);
-			AI_PrintScreen("нужен молот",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-			AI_PlayAni(self,"T_DONTKNOW");
-		};
-	};
-	return TRUE;
 };
 

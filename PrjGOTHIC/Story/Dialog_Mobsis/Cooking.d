@@ -1,4 +1,35 @@
 
+func int pan_cond()
+{
+	if(Npc_IsPlayer(self))
+	{
+		if(Npc_HasItems(hero,ItMi_Pan) && Npc_HasItems(hero,ItFoMuttonRaw))
+		{
+			return TRUE;
+		}
+		else
+		{
+			if(!Npc_HasItems(hero,ItMi_Pan))
+			{
+				AI_PrintScreen("нужна сковорода",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+				AI_PlayAni(self,"T_DONTKNOW");
+			}
+			else if(!Npc_HasItems(hero,ItFoMuttonRaw))
+			{
+				AI_PlayAni(self,"T_DONTKNOW");
+				if(!Npc_RefuseTalk(self))
+				{
+					Print("нужно мясо");
+					B_Say_Overlay(self,self,"$MISSINGITEM");
+					Npc_SetRefuseTalk(self,1);
+				};
+			};
+			return FALSE;
+		};
+	};
+	return TRUE;
+};
+
 func void pan_s1()
 {
 	var C_Npc her;
@@ -7,7 +38,8 @@ func void pan_s1()
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		player_mobsi_production = MOBSI_PAN;
-		AI_ProcessInfos(her);
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);
 	};
 };
 
@@ -19,7 +51,8 @@ func void stove_s1()
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		player_mobsi_production = MOBSI_PAN;
-		AI_ProcessInfos(her);
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);
 	};
 };
 
@@ -90,51 +123,5 @@ func int pc_pan_cancel_condition()
 func void pc_pan_cancel_info()
 {
 	b_endproductiondialog();
-};
-
-func int makerune_cond()
-{
-	if(Npc_IsPlayer(self))
-	{
-		if(!Npc_HasItems(hero,ItMi_Pliers))
-		{
-			AI_UseMob(hero,"RMAKER",0);
-			AI_UseMob(hero,"RMAKER",-1);
-			AI_PrintScreen("нужны щипцы",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-			AI_PlayAni(self,"T_DONTKNOW");
-		};
-	};
-	return TRUE;
-};
-
-func int pan_cond()
-{
-	if(Npc_IsPlayer(self))
-	{
-		if(Npc_HasItems(hero,ItMi_Pan) && Npc_HasItems(hero,ItFoMuttonRaw))
-		{
-			return TRUE;
-		}
-		else
-		{
-			if(!Npc_HasItems(hero,ItMi_Pan))
-			{
-				AI_PrintScreen("нужна сковорода",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
-				AI_PlayAni(self,"T_DONTKNOW");
-			}
-			else if(!Npc_HasItems(hero,ItFoMuttonRaw))
-			{
-				AI_PlayAni(self,"T_DONTKNOW");
-				if(!Npc_RefuseTalk(self))
-				{
-					Print("нужно мясо");
-					B_Say_Overlay(self,self,"$MISSINGITEM");
-					Npc_SetRefuseTalk(self,1);
-				};
-			};
-			return FALSE;
-		};
-	};
-	return TRUE;
 };
 
