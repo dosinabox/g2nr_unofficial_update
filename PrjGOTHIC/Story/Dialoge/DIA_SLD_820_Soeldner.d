@@ -79,7 +79,7 @@ func void DIA_Sld_820_Halt_WannaJoin()
 func void DIA_Sld_820_Halt_KenneLee()
 {
 	AI_Output(other,self,"DIA_Sld_820_Halt_KenneLee_15_00");	//Он и я давние знакомые...
-	AI_Output(self,other,"DIA_Sld_820_Halt_KenneLee_07_01");	//ТЫ приятель Ли? Я не верю в это! Но все равно, проходи, и если он не узнает тебя, тогда держись... (смеется)
+	AI_Output(self,other,"DIA_Sld_820_Halt_KenneLee_07_01");	//Ты приятель Ли? Я не верю в это! Но все равно, проходи, и если он не узнает тебя, тогда держись... (смеется)
 	B_Sld_820_LeeIsRight();
 	AI_StopProcessInfos(self);
 };

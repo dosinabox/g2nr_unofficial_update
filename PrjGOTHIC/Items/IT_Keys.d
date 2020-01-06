@@ -5,7 +5,8 @@ const int Value_Key_01 = 0;
 instance ItKe_Lockpick(C_Item)
 {
 	name = "Отмычка";
-	mainflag = ITEM_KAT_KEYS;
+	//mainflag = ITEM_KAT_KEYS;
+	mainflag = ITEM_KAT_NONE;
 	flags = ITEM_MULTI;
 	value = Value_Lockpick;
 	visual = "ItKe_Lockpick.3ds";

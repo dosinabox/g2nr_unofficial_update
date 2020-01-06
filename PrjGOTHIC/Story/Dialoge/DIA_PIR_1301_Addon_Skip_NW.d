@@ -344,7 +344,33 @@ func void DIA_Addon_Skip_NW_Name_Info()
 		if(Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon) || Npc_HasItems(other,ItWr_Map_Shrine_MIS) || Npc_HasItems(other,ItWr_Map_Caves_MIS))
 		{
 			AI_Output(other,self,"DIA_Addon_Skip_NW_Name_15_05");	//Да, есть.
+			if(Npc_HasItems(other,ItWr_Map_NewWorld_Ornaments_Addon))
+			{
+				B_GiveInvItems(other,self,ItWr_Map_NewWorld_Ornaments_Addon,1);
+			}
+			else if(Npc_HasItems(other,ItWr_Map_Shrine_MIS))
+			{
+				B_GiveInvItems(other,self,ItWr_Map_Shrine_MIS,1);
+			}
+			else if(Npc_HasItems(other,ItWr_Map_Caves_MIS))
+			{
+				B_GiveInvItems(other,self,ItWr_Map_Caves_MIS,1);
+			};
+			AI_WaitTillEnd(self,other);
+			B_UseFakeMap(1);
 			AI_Output(self,other,"DIA_Addon_Skip_NW_Name_08_06");	//Но кто-то уже исписал ее. Зачем портить ее еще больше?
+			if(Npc_HasItems(self,ItWr_Map_NewWorld_Ornaments_Addon))
+			{
+				B_GiveInvItems(self,other,ItWr_Map_NewWorld_Ornaments_Addon,1);
+			}
+			else if(Npc_HasItems(self,ItWr_Map_Shrine_MIS))
+			{
+				B_GiveInvItems(self,other,ItWr_Map_Shrine_MIS,1);
+			}
+			else if(Npc_HasItems(self,ItWr_Map_Caves_MIS))
+			{
+				B_GiveInvItems(self,other,ItWr_Map_Caves_MIS,1);
+			};
 		}
 		else
 		{
@@ -382,12 +408,12 @@ func void DIA_Addon_Skip_NW_Landkarte_Info()
 	AI_Output(other,self,"DIA_Addon_Skip_NW_Landkarte_15_00");	//Вот. У меня есть карта Хориниса.
 	B_GiveInvItems(other,self,ItWr_Map_NewWorld,1);
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Landkarte_08_01");	//Хорошо. Дай я нарисую тебе его местоположение.
-	B_UseFakeMap();
+	B_UseFakeMap(3);
 	AI_Output(self,other,"DIA_Addon_Skip_NW_Landkarte_08_02");	//Держи карту.
-	B_Skip_SaysDextersName();
 	Npc_RemoveInvItems(self,ItWr_Map_NewWorld,1);
 	CreateInvItems(self,ItWr_Map_NewWorld_Dexter,1);
 	B_GiveInvItems(self,other,ItWr_Map_NewWorld_Dexter,1);
+	B_Skip_SaysDextersName();
 };
 
 
