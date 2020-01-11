@@ -69,7 +69,7 @@ instance DIA_Rengaru_Hauab(C_Info)
 
 func int DIA_Rengaru_Hauab_Condition()
 {
-	if((Jora_Dieb != LOG_Running) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+	if((Jora_Dieb == FALSE) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
 	{
 		return TRUE;
 	};
@@ -349,7 +349,7 @@ func void DIA_Rengaru_LastInfoKap1_Info()
 instance DIA_Rengaru_Zeichen(C_Info)
 {
 	npc = VLK_492_Rengaru;
-	nr = 2;
+	nr = 800;
 	condition = DIA_Rengaru_Zeichen_Condition;
 	information = DIA_Rengaru_Zeichen_Info;
 	permanent = FALSE;

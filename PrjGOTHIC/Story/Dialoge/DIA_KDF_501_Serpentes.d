@@ -530,6 +530,14 @@ func int DIA_Serpentes_MinenAnteileBringen_Condition()
 {
 	if((MIS_Serpentes_MinenAnteil_KDF == LOG_Running) && Npc_HasItems(other,ItWr_MinenAnteil_Mis) && (hero.guild == GIL_KDF))
 	{
+		if(Npc_HasItems(other,ItWr_MinenAnteil_Mis) > 1)
+		{
+			DIA_Serpentes_MinenAnteileBringen.description = "Я смог найти несколько акций шахт.";
+		}
+		else
+		{
+			DIA_Serpentes_MinenAnteileBringen.description = "Я смог найти акции шахт.";
+		};
 		return TRUE;
 	};
 };

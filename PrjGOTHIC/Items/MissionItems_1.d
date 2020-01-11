@@ -895,10 +895,10 @@ func void UseBanditLetter()
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
+	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLines(nDocID,0,"«адерживайте всех, спустившихс€ с гор.");
 	Doc_PrintLines(nDocID,0,"¬полне веро€тно, что через проход");
 	Doc_PrintLines(nDocID,0," попытаетс€ пройти старик.");
@@ -909,8 +909,8 @@ func void UseBanditLetter()
 	Doc_PrintLines(nDocID,0,"¬озможно, человек, которого мы ищем,");
 	Doc_PrintLines(nDocID,0,"    выйдет с ним на св€зь.");
 	Doc_PrintLines(nDocID,0,"— этим письмом € посылаю вам");
-	Doc_PrintLines(nDocID,0,"    тридцать золотых монет.");
-	Doc_PrintLines(nDocID,0,"я дам еще тридцать монет любому,");
+	Doc_PrintLines(nDocID,0,"    тридцать золотых самородков.");
+	Doc_PrintLines(nDocID,0,"я дам еще тридцать любому,");
 	Doc_PrintLines(nDocID,0,"    кто убьет этого человека.");
 	Doc_PrintLine(nDocID,0," ");
 	Doc_PrintLines(nDocID,0,"ѕринесите его голову к старой шахте");

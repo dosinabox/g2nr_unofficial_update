@@ -305,12 +305,15 @@ func void DIA_Addon_Skip_NW_Dexter_Info()
 
 func void B_Skip_SaysDextersName()
 {
-	AI_Output(self,other,"DIA_Addon_Skip_SaysDextersName_08_00");	//Я вспомнил, как зовут главаря! Декстер. Да, они звали его Декстер.
-	Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-	B_LogEntry(TOPIC_Addon_WhoStolePeople,"Людей похищают по приказу предводителя бандитов Декстера. Найти Декстера можно к югу от фермы Онара.");
-	SC_KnowsDexterAsKidnapper = TRUE;
-	Ranger_SCKnowsDexter = TRUE;
+	if(SC_KnowsDexterAsKidnapper == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Skip_SaysDextersName_08_00");	//Я вспомнил, как зовут главаря! Декстер. Да, они звали его Декстер.
+		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
+		B_LogEntry(TOPIC_Addon_WhoStolePeople,"Людей похищают по приказу предводителя бандитов Декстера. Найти Декстера можно к югу от фермы Онара.");
+		SC_KnowsDexterAsKidnapper = TRUE;
+		Ranger_SCKnowsDexter = TRUE;
+	};
 };
 
 
