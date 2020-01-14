@@ -251,6 +251,7 @@ func void B_Ferros_FerrosAnySword_No()
 func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_Yes()
 {
 	B_Ferros_FerrosAnySword_Yes1();
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItMw_1H_Special_01,1);
 	if(C_BodyStateContains(self,BS_SIT))
 	{
@@ -273,6 +274,7 @@ func void DIA_DJG_715_Ferros_FerrosAnySword_Silverblade_No()
 func void DIA_DJG_715_Ferros_FerrosAnySword_Oreblade_Yes()
 {
 	B_Ferros_FerrosAnySword_Yes1();
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItMw_1H_Special_02,1);
 	if(C_BodyStateContains(self,BS_SIT))
 	{

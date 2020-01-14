@@ -10433,3 +10433,9 @@ instance GOODIE(C_SFX_DEF)
 	vol = 70;
 };
 
+instance DRAWSOUND_ME_02(C_SFX_DEF)
+{
+	file = "drawsound_me_02.wav";
+	vol = 30;
+};
+

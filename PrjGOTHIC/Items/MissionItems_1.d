@@ -90,24 +90,13 @@ instance ItMw_2h_Rod(C_Item)
 instance ItMw_2h_Rod_Fake(C_Item)
 {
 	name = NAME_2h_Rod;
-	mainflag = ITEM_KAT_NF;
-	flags = ITEM_2HD_SWD;
-	material = MAT_METAL;
-	value = Value_Sld2hSchwert;
-	damageTotal = Damage_Berserkeraxt;
-	damagetype = DAM_EDGE;
-	range = Range_Sld2hSchwert;
-	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_Rod;
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 0;
 	visual = "ItMw_035_2h_sld_sword_02.3DS";
+	scemeName = "INSPECTWEAPON";
+	material = MAT_METAL;
 	description = name;
-	text[2] = NAME_Damage;
-	count[2] = damageTotal;
-	text[3] = NAME_Str_needed;
-	count[3] = cond_value[2];
-	text[4] = NAME_TwoHanded;
-	text[5] = NAME_Value;
-	count[5] = value;
 };
 
 instance ItMi_CoragonsSilber(C_Item)

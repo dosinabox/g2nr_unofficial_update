@@ -550,7 +550,7 @@ func void DIA_Parlan_Stand_Info()
 	}
 	else if(MIS_GoraxEssen == LOG_FAILED)
 	{
-		AI_Output(self,other,"DIA_Parlan_Stand_05_06");	//Горакс неудовлетворен тобой, так как нечестно распределил еду.
+		AI_Output(self,other,"DIA_Parlan_Stand_05_06");	//Горакс неудовлетворен тобой, так как ты нечестно распределил еду.
 	};
 	if(MIS_GoraxWein == LOG_SUCCESS)
 	{

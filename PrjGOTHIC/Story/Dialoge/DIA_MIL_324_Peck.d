@@ -267,7 +267,7 @@ func int C_PeckCanSellArmor()
 	{
 		return TRUE;
 	};*/
-	if(MIS_Addon_Vatras_WhereAreMissingPeople == LOG_SUCCESS)
+	if(Npc_KnowsInfo(other,DIA_Addon_Andre_ReturnedMissingPeople))
 	{
 		return TRUE;
 	}
@@ -318,10 +318,6 @@ func void B_SetPeckArmorPrice()
 	if(Andre_Knows_MartinEmpfehlung == TRUE)
 	{
 		VALUE_ITAR_MIL_M_Dynamic -= 100;
-	};
-	if(MIS_Addon_Andre_MissingPeople == LOG_SUCCESS)
-	{
-		VALUE_ITAR_MIL_M_Dynamic -= 300;
 	};
 	if(MIS_Andre_GuildOfThieves == LOG_SUCCESS)
 	{
