@@ -267,7 +267,7 @@ func int C_PeckCanSellArmor()
 	{
 		return TRUE;
 	};*/
-	if(Npc_KnowsInfo(other,DIA_Addon_Andre_ReturnedMissingPeople))
+	if(MIS_Addon_Andre_MissingPeople == LOG_SUCCESS)
 	{
 		return TRUE;
 	}
