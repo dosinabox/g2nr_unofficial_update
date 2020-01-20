@@ -227,8 +227,8 @@ func void DIA_Ruga_TEACHDEX_Info()
 
 func void DIA_Ruga_TEACHDEX_BACK()
 {
-//	if(other.attribute[ATR_DEXTERITY] >= T_LOW)
-	if(other.aivar[REAL_DEXTERITY] >= T_LOW)
+//	if(other.attribute[ATR_DEXTERITY] >= T_HIGH)
+	if(other.aivar[REAL_DEXTERITY] >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Ruga_TEACHDEX_11_00");	//Ёто все, чему € мог обучить теб€. ≈сли ты хочешь стать еще более ловким, тебе лучше поискать другого учител€.
 		DIA_Ruga_TEACHDEX_permanent = TRUE;
@@ -238,7 +238,7 @@ func void DIA_Ruga_TEACHDEX_BACK()
 
 func void DIA_Ruga_TEACHDEX_1()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_LOW);
+	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_HIGH);
 	Info_ClearChoices(DIA_Ruga_TEACHDEX);
 	Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
 	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Ruga_TEACHDEX_1);
@@ -247,7 +247,7 @@ func void DIA_Ruga_TEACHDEX_1()
 
 func void DIA_Ruga_TEACHDEX_5()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_LOW);
+	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_HIGH);
 	Info_ClearChoices(DIA_Ruga_TEACHDEX);
 	Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
 	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Ruga_TEACHDEX_1);

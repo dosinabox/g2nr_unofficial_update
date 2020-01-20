@@ -49,7 +49,7 @@ func void ZS_Unconscious()
 	B_ClearSmithInv(self);
 	B_ClearAlchemyInv(self);
 	B_ClearBonusFoodInv(self);
-	B_ClearJunkInv(self);
+	B_ClearInfiniteTools(self);
 	if(self.guild == GIL_STRF)
 	{
 		Npc_RemoveInvItems(self,ItMw_2H_Axe_L_01,Npc_HasItems(self,ItMw_2H_Axe_L_01));

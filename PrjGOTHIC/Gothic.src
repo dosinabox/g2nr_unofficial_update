@@ -317,6 +317,8 @@ AI\Magic\ZS_Magic\ZS_MagicBurn.d
 AI\Magic\ZS_Magic\ZS_MagicBurnShort.d
 AI\Magic\ZS_Magic\ZS_MagicFlee.d
 Story\B_Story\B_ClearSmithInv.d
+Story\B_Story\B_ClearAlchemyInv.d
+Story\B_Story\B_ClearBonusFoodInv.d
 AI\Magic\ZS_Magic\ZS_MagicFreeze.d
 AI\Magic\ZS_Magic\ZS_MagicShrink.d
 AI\Magic\ZS_Magic\ZS_MagicSleep.d

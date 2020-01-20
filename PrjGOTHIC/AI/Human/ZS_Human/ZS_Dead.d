@@ -120,7 +120,7 @@ func void ZS_Dead()
 	B_ClearSmithInv(self);
 	B_ClearAlchemyInv(self);
 	B_ClearBonusFoodInv(self);
-	B_ClearJunkInv(self);
+	B_ClearInfiniteTools(self);
 	B_DeletePetzCrime(self);
 	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 	AI_UnequipWeapons(self);

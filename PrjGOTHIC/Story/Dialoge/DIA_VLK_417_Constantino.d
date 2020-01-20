@@ -751,10 +751,13 @@ func void DIA_Constantino_MushroomsRunning_Info()
 	{
 		Info_AddChoice(DIA_Constantino_MushroomsRunning,"ѕочему эти грибы так важны?",DIA_Constantino_MushroomsRunning_Why);
 	};
-	if(Npc_HasItems(other,ItPl_Mushroom_01) || Npc_HasItems(other,ItPl_Mushroom_02))
+	if(Npc_HasItems(other,ItPl_Mushroom_01))
 	{
-//		Info_AddChoice(DIA_Constantino_MushroomsRunning,"я принес несколько грибов...",DIA_Constantino_MushroomsRunning_Sell);
-		Info_AddChoice(DIA_Constantino_MushroomsRunning,"ѕосмотри, что у мен€ есть...",DIA_Constantino_MushroomsRunning_Sell);
+		Info_AddChoice(DIA_Constantino_MushroomsRunning,"я принес несколько черных грибов.",DIA_Constantino_MushroomsRunning_Sell);
+	}
+	else if(Npc_HasItems(other,ItPl_Mushroom_02))
+	{
+		Info_AddChoice(DIA_Constantino_MushroomsRunning,"” мен€ здесь несколько грибов!",DIA_Constantino_MushroomsRunning_Sell);
 	};
 };
 
@@ -762,7 +765,6 @@ func void DIA_Constantino_MushroomsRunning_Sell()
 {
 	var int Dunkelpilz_dabei;
 	Dunkelpilz_dabei = FALSE;
-	AI_Output(other,self,"DIA_Coragon_Add_15_15");	//ѕосмотри, что у мен€ есть...
 	if(Npc_HasItems(other,ItPl_Mushroom_01))
 	{
 		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_00");	//я принес несколько черных грибов.

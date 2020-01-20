@@ -592,6 +592,8 @@ func void DIA_Addon_AlligatorJack_HuntEnd_Info()
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_HuntEnd_12_06");	//Боги! Если ты и дальше будешь так охотиться, в следующий раз я смогу остаться в лагере.
 	};
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_07");	//Отнеси это мясо болотных крыс старому лентяю Моргану.
+	AI_WaitTillEnd(other,self);
+	B_GiveInvItems(self,other,ItFoMuttonRaw,10);
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_08");	//Ты найдешь его в нашем лагере.
 	AI_Output(self,other,"DIA_Addon_AlligatorJack_PassHenry_12_09");	//Он наверняка нежится на солнышке. Отдай ему мясо, он ждет.
 	if(Henry.aivar[AIV_PASSGATE] == FALSE)
@@ -606,8 +608,7 @@ func void DIA_Addon_AlligatorJack_HuntEnd_Info()
 	Log_CreateTopic(TOPIC_Addon_BringMeat,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_BringMeat,LOG_Running);
 	B_LogEntry(TOPIC_Addon_BringMeat,"Аллигатор Джек дал мне десять кусков мяса. Я должен передать их Моргану.");
-	B_LogEntry(TOPIC_Addon_RatHunt,"Охота была удачной. Мы убили несколько болотных крыс.");
-	B_GiveInvItems(self,other,ItFoMuttonRaw,10);
+	Log_AddEntry(TOPIC_Addon_RatHunt,"Охота была удачной. Мы убили несколько болотных крыс.");
 	MIS_KrokoJagd = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_KrokoJagd);
 };
