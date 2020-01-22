@@ -110,7 +110,7 @@ func int DIA_Addon_Thorus_Zeit_Condition()
 func void DIA_Addon_Thorus_Zeit_Info()
 {
 	AI_Output(other,self,"DIA_Addon_BDT_10014_Thorus_Zeit_15_00");	//Ты не помнишь меня? Я из Старого Лагеря...
-	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_01");	//Ты был одним из заключенных?! Возможно, ты был одним из моих стражников. И... это делает нас теперь друзьями?
+	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_01");	//Ты был одним из заключенных? Возможно, ты был одним из моих стражников. И... это делает нас теперь друзьями?
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_02");	//Нет, не делает.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_03");	//Может быть, ты тот, кто уничтожил Барьер, а может - тот, кто убил моих приятелей.
 	AI_Output(self,other,"DIA_Addon_BDT_10014_Thorus_Zeit_12_04");	//И что?

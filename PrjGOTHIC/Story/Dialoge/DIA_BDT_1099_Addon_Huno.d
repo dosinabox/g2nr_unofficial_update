@@ -212,17 +212,15 @@ func void DIA_Addon_Huno_Armor_Info()
 			AI_Output(self,other,"DIA_Addon_Huno_Armor_06_02");	//Проклятый шакал дерет всю свою долю с каждых доспехов, что я продаю.
 		};
 		BDT_Armor_H_Value = 2100;
-		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/0/0. (2100 золотых)",DIA_Addon_Huno_Armor_BUY);
 	}
 	else
 	{
 		AI_Output(other,self,"DIA_Addon_Huno_Armor_15_03");	//Фиск сказал, что я могу рассчитывать на скидку.
 		AI_Output(self,other,"DIA_Addon_Huno_Armor_06_04");	//Фиск, говоришь? Хм, ну, я ему и в самом деле должен. Ладно, будет тебе скидка.
 		BDT_Armor_H_Value = 1000;
-		Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
-		Info_AddChoice(DIA_Addon_Huno_Armor,"Купить тяжелые доспехи бандита. Защита: 50/50/0/0. (1000 золотых)",DIA_Addon_Huno_Armor_BUY);
 	};
+	Info_AddChoice(DIA_Addon_Huno_Armor,Dialog_Back,DIA_Addon_Huno_Armor_BACK);
+	Info_AddChoice(DIA_Addon_Huno_Armor,B_BuildPriceString("Купить тяжелые доспехи бандита. Защита: 50/50/0/0.",BDT_Armor_H_Value),DIA_Addon_Huno_Armor_BUY);
 };
 
 func void DIA_Addon_Huno_Armor_BACK()

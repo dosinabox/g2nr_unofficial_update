@@ -314,7 +314,14 @@ func void DIA_Addon_Logan_tot_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Logan_tot_10_00");	//Хорошая акула - дохлая акула. Это будет предупреждением ее собратьям!
 	AI_Output(other,self,"DIA_Addon_Logan_tot_15_01");	//Отлично, мне нужно сделать еще что-нибудь? Если нет, я пойду...
-	AI_Output(self,other,"DIA_Addon_Logan_tot_10_02");	//Иди. И если ты захочешь научиться чему-нибудь еще, ты знаешь, где меня искать.
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE))
+	{
+		AI_Output(self,other,"DIA_Addon_Logan_tot_10_02");	//Иди. И если ты захочешь научиться чему-нибудь еще, ты знаешь, где меня искать.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Logan_tot_10_02_add");	//Иди...
+	};
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	MIS_HlpLogan = LOG_SUCCESS;
 	B_CheckLog();

@@ -134,7 +134,7 @@ func void DIA_Addon_Snaf_Cook_NO()
 func void DIA_Addon_Snaf_Cook_YES()
 {
 	AI_Output(other,self,"DIA_Addon_Snaf_Cook_HAMMER_YES_15_00");	//Собственно, почему бы и нет?
-	AI_Output(self,other,"DIA_Addon_Snaf_Cook_HAMMER_YES_01_01");	//Отлично. Вот рецепт.
+	AI_Output(self,other,"DIA_Addon_Snaf_Cook_HAMMER_YES_01_01");	//Отлично, вот рецепт.
 	B_GiveInvItems(self,other,ITWr_Addon_Lou_Rezept,1);
 	MIS_SnafHammer = LOG_Running;
 	Info_ClearChoices(DIA_Addon_Snaf_Cook);
