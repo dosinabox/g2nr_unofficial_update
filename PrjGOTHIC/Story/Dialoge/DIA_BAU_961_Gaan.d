@@ -375,8 +375,9 @@ func void DIA_Gaan_MONSTERTOT_Info()
 	AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_01");	//Теперь я опять могу охотиться спокойно.
 	if(MIS_Gaan_Deal == LOG_Running)
 	{
-		AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_02");	//Вот деньги, что я обещал тебе.
 		CreateInvItems(self,ItMi_Gold,50);
+		AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_02");	//Вот деньги, что я обещал тебе.
+		AI_WaitTillEnd(other,self);
 		B_GiveInvItems(self,other,ItMi_Gold,Gaan_Deal);
 	};
 	MIS_Gaan_Snapper = LOG_SUCCESS;

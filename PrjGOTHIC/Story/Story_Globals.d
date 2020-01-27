@@ -1112,6 +1112,8 @@ var int GuildlessMode;
 var int AddonDisabled;
 var int XP_Static;
 var int ClassicAlchemy;
+var int HardModeEnabled;
+var int HardModeXPModifier;
 //var int HonestStatCalculation;
 var int Bennet_Ammo_Day;
 var int Bosper_Ammo_Day;

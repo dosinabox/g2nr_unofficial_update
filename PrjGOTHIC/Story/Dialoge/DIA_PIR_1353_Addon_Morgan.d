@@ -445,10 +445,10 @@ func void DIA_Addon_Morgan_FOUNDTHEM_GiveRing()
 	B_GiveInvItems(other,self,ItRi_Addon_MorgansRing_Mission,1);
 	AI_Output(self,other,"DIA_Addon_Morgan_FOUNDTHEM_GiveRing_07_01");	//(радостно) Да, это оно! Спасибо тебе!
 	AI_Output(self,other,"DIA_Addon_Morgan_FOUNDTHEM_GiveRing_07_02");	//Вот, возьми эту каменную табличку. Возможно, она на первый взгляд и бесполезна, но Гаретт тебе за нее хорошо заплатит.
+	B_GiveInvItems(self,other,ItWr_StonePlateCommon_Addon,1);
 	MIS_Addon_Morgan_SeekTraitor = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_MorgansRing);
 	Info_ClearChoices(DIA_Addon_Morgan_FOUNDTHEM);
-	B_GiveInvItems(self,other,ItWr_StonePlateCommon_Addon,1);
 };
 
 
