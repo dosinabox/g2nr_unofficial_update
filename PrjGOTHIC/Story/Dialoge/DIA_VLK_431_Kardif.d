@@ -54,6 +54,7 @@ func int DIA_Kardif_PICKPOCKET_Condition()
 	{
 		return C_Beklauen(55,85);
 	};
+	return FALSE;
 };
 
 func void DIA_Kardif_PICKPOCKET_Info()

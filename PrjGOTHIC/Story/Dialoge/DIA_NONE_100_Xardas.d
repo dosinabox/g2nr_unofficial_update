@@ -50,6 +50,10 @@ func int DIA_Xardas_EXIT_Condition()
 
 func void DIA_Xardas_EXIT_Info()
 {
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_Fake))
+	{
+		Npc_RemoveInvItem(hero,ItMw_BeliarWeapon_Fake);
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -315,6 +319,10 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 	if(C_ScHasBeliarsWeapon())
 	{
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_07");	//Да, вот он.
+		CreateInvItem(other,ItMw_BeliarWeapon_Fake);
+		AI_UseItem(other,ItMw_BeliarWeapon_Fake);
+		AI_Wait(other,0.5);
+		AI_WaitTillEnd(self,other);
 		B_Xardas_ClawReaction();
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_10");	//Будь осторожнее! И самое главное, не потеряй Коготь!
 	}

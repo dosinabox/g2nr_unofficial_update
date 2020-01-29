@@ -74,6 +74,14 @@ func void b_build_settings_diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	if(AlternativeSmithing == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
+	};
 	if(HardModeEnabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить повышенный уровень сложности",StoryHelper_HardMode);
@@ -390,6 +398,21 @@ func void StoryHelper_ClassicAlchemy()
 	{
 		ClassicAlchemy = TRUE;
 		PrintScreen("Алхимия из Готики 2 без аддона включена",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_AlternativeSmithing()
+{
+	if(AlternativeSmithing == TRUE)
+	{
+		AlternativeSmithing = FALSE;
+		PrintScreen("Альтернативное обучение у Беннета выключено",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		AlternativeSmithing = TRUE;
+		PrintScreen("Альтернативное обучение у Беннета включено",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };
