@@ -143,7 +143,7 @@ Section "Основные файлы" SecMain
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "HelpLink" "http://worldofplayers.ru/threads/36817"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "DisplayIcon" "$INSTDIR\system\G2a_NR_ScriptPatch_v${MOD_VERSION}.ico"
-	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "EstimatedSize" "233000"
+	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "EstimatedSize" "237000"
 SectionEnd
 
 Section "Дополнительная русская озвучка" SecAdditional_1
@@ -166,6 +166,11 @@ SectionEnd
 Section /o "Увеличенное меню" SecAdditional_4
 	SetOutPath "$INSTDIR\data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
+SectionEnd
+
+Section /o "Широкоформатный монитор" SecAdditional_5
+	SetOutPath "$INSTDIR\data\ModVDF"
+	File "g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
 SectionEnd
 
 ###################################
@@ -192,6 +197,7 @@ LangString DESC_SecAdditional_1 ${LANG_RUSSIAN} "Снимите галочку, если установка
 LangString DESC_SecAdditional_2 ${LANG_RUSSIAN} "Неофициальное исправление русской озвучки от Акеллы (версия 1.14)."
 LangString DESC_SecAdditional_3 ${LANG_RUSSIAN} "Мод Wasteland, расширяющий и заполняющий карту Рудниковой долины до размеров Готики 1."
 LangString DESC_SecAdditional_4 ${LANG_RUSSIAN} "Увеличенные окна дневника, характеристик и главного меню для больших разрешений."
+LangString DESC_SecAdditional_5 ${LANG_RUSSIAN} "Установка фона главного меню и загрузочных экранов для широкоформатных мониторов."
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 !insertmacro MUI_DESCRIPTION_TEXT ${SecMain} $(DESC_SecMain)
@@ -199,6 +205,7 @@ LangString DESC_SecAdditional_4 ${LANG_RUSSIAN} "Увеличенные окна дневника, хара
 !insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_2} $(DESC_SecAdditional_2)
 !insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_3} $(DESC_SecAdditional_3)
 !insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_4} $(DESC_SecAdditional_4)
+!insertmacro MUI_DESCRIPTION_TEXT ${SecAdditional_5} $(DESC_SecAdditional_5)
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ###################################
@@ -229,6 +236,7 @@ Function Un.GMF_Delete_Components
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
+	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_hotfix.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Changelog_G2a_NR_ScriptPatch_v${MOD_VERSION}.txt"
 	!insertmacro GMF_Delete "$INSTDIR\Changelog_Speech_v${MOD_VERSION}.txt"

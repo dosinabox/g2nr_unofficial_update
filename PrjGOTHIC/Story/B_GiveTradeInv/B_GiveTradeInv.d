@@ -212,7 +212,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	};
 	B_ClearRuneInv(slf);
 	B_ClearTools(slf);
-	B_CoolHotDraw();
+	B_CoolHotDraw(hero);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 	{
 		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Trd_Cronos_NW))

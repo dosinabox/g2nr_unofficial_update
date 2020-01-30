@@ -1541,6 +1541,32 @@ instance ItMw_Rapier(C_Item)
 	count[5] = value;
 };
 
+instance ItMw_Lightrapier(C_Item)
+{
+	name = "Легкая рапира";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_SWD;
+	material = MAT_METAL;
+	value = Value_Rapier;
+	damageTotal = 90;
+	damagetype = DAM_EDGE;
+	range = Range_Rapier;
+	on_equip = Equip_1H_06;
+	on_unequip = UnEquip_1H_06;
+	cond_atr[2] = ATR_DEXTERITY;
+	cond_value[2] = 60;
+	visual = "ItMw_050_1h_Sword_Rapier_02.3ds";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Dex_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_ADDON_BONUS_1H;
+	count[4] = Waffenbonus_06;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItMw_Rubinklinge(C_Item)
 {
 	name = NAME_Addon_Harad_03;
@@ -1877,6 +1903,32 @@ instance ItMw_Meisterdegen(C_Item)
 	count[3] = cond_value[2];
 	text[4] = NAME_ADDON_BONUS_1H;
 	count[4] = Waffenbonus_10;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMw_Kampferdegen(C_Item)
+{
+	name = "Шпага бойца";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_SWD;
+	material = MAT_METAL;
+	value = 3000;
+	damageTotal = 110;
+	damagetype = DAM_EDGE;
+	range = Range_Meisterdegen;
+	on_equip = Equip_1H_08;
+	on_unequip = UnEquip_1H_08;
+	cond_atr[2] = ATR_DEXTERITY;
+	cond_value[2] = 80;
+	visual = "ItMw_065_1h_SwordCane_03.3ds";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Dex_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_ADDON_BONUS_1H;
+	count[4] = Waffenbonus_08;
 	text[5] = NAME_Value;
 	count[5] = value;
 };

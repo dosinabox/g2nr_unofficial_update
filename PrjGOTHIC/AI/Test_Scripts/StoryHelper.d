@@ -74,6 +74,22 @@ func void b_build_settings_diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	if(AlternativeSmithing == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
+	};
+	if(HardModeEnabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить повышенный уровень сложности",StoryHelper_HardMode);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить повышенный уровень сложности",StoryHelper_HardMode);
+	};
 	if(ClassicAlchemy == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить алхимию из Готики 2 без аддона",StoryHelper_ClassicAlchemy);
@@ -268,12 +284,12 @@ func void StoryHelper_Bonuses()
 	if(IgnoreBonuses == TRUE)
 	{
 		IgnoreBonuses = FALSE;
-		PrintScreen("Оригинал: бонусы нужно копить",-1,-1,FONT_Screen,3);
+		PrintScreen("Оригинал: бонусы нужно копить",-1,-1,FONT_Screen,2);
 	}
 	else
 	{
 		IgnoreBonuses = TRUE;
-		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,3);
+		PrintScreen("Теперь бонусы можно не копить",-1,-1,FONT_Screen,2);
 	};
 	b_build_settings_diag();
 };
@@ -298,12 +314,12 @@ func void StoryHelper_Apples()
 	if(InfiniteApples == TRUE)
 	{
 		InfiniteApples = FALSE;
-		PrintScreen("Бесконечные яблоки исправлены",-1,-1,FONT_Screen,3);
+		PrintScreen("Бесконечные яблоки исправлены",-1,-1,FONT_Screen,2);
 	}
 	else
 	{
 		InfiniteApples = TRUE;
-		PrintScreen("Яблоки бесконечны",-1,-1,FONT_Screen,3);
+		PrintScreen("Яблоки бесконечны",-1,-1,FONT_Screen,2);
 	};
 	b_build_settings_diag();
 };
@@ -341,7 +357,7 @@ func void StoryHelper_Helmets()
 	}
 	else
 	{
-		PrintScreen("Шлемы и доспехи разделены",-1,-1,FONT_Screen,3);
+		PrintScreen("Шлемы и доспехи разделены",-1,-1,FONT_Screen,2);
 		if(Npc_HasItems(hero,ITAR_PAL_M))
 		{
 			Npc_RemoveInvItem(hero,ITAR_PAL_M);
@@ -383,6 +399,77 @@ func void StoryHelper_ClassicAlchemy()
 		ClassicAlchemy = TRUE;
 		PrintScreen("Алхимия из Готики 2 без аддона включена",-1,-1,FONT_Screen,3);
 	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_AlternativeSmithing()
+{
+	if(AlternativeSmithing == TRUE)
+	{
+		AlternativeSmithing = FALSE;
+		PrintScreen("Альтернативное обучение у Беннета выключено",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		AlternativeSmithing = TRUE;
+		PrintScreen("Альтернативное обучение у Беннета включено",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_HardMode()
+{
+	if(HardModeEnabled == TRUE)
+	{
+		HardModeEnabled = FALSE;
+		PrintScreen("Повышенный уровень сложности выключен",-1,-1,FONT_Screen,3);
+		b_build_settings_diag();
+	}
+	else
+	{
+		HardModeEnabled = TRUE;
+		PrintScreen("Повышенный уровень сложности включен",-1,-1,FONT_Screen,3);
+		Info_ClearChoices(StoryHelper_PatchSettings);
+		Info_AddChoice(StoryHelper_PatchSettings,"-50% опыта",StoryHelper_HardMode_50);
+		Info_AddChoice(StoryHelper_PatchSettings,"-40% опыта",StoryHelper_HardMode_40);
+		Info_AddChoice(StoryHelper_PatchSettings,"-30% опыта",StoryHelper_HardMode_30);
+		Info_AddChoice(StoryHelper_PatchSettings,"-20% опыта",StoryHelper_HardMode_20);
+		Info_AddChoice(StoryHelper_PatchSettings,"-10% опыта",StoryHelper_HardMode_10);
+	};
+};
+
+func void StoryHelper_HardMode_10()
+{
+	HardModeXPModifier = 10;
+	PrintScreen("Получаемый опыт снижен на 10%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
+	b_build_settings_diag();
+};
+
+func void StoryHelper_HardMode_20()
+{
+	HardModeXPModifier = 20;
+	PrintScreen("Получаемый опыт снижен на 20%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
+	b_build_settings_diag();
+};
+
+func void StoryHelper_HardMode_30()
+{
+	HardModeXPModifier = 30;
+	PrintScreen("Получаемый опыт снижен на 30%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
+	b_build_settings_diag();
+};
+
+func void StoryHelper_HardMode_40()
+{
+	HardModeXPModifier = 40;
+	PrintScreen("Получаемый опыт снижен на 40%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
+	b_build_settings_diag();
+};
+
+func void StoryHelper_HardMode_50()
+{
+	HardModeXPModifier = 50;
+	PrintScreen("Получаемый опыт снижен на 50%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
 	b_build_settings_diag();
 };
 

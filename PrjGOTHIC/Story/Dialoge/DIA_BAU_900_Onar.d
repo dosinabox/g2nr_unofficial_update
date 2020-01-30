@@ -381,6 +381,8 @@ func void DIA_Onar_HowMuch_Ok()
 };
 
 
+var int Onar_StopPayingDJG;
+
 instance DIA_Onar_CollectGold(C_Info)
 {
 	npc = BAU_900_Onar;
@@ -394,7 +396,7 @@ instance DIA_Onar_CollectGold(C_Info)
 
 func int DIA_Onar_CollectGold_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Onar_HowMuch) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)))
+	if(Npc_KnowsInfo(other,DIA_Onar_HowMuch) && ((other.guild == GIL_SLD) || (other.guild == GIL_DJG)) && (Onar_StopPayingDJG == FALSE))
 	{
 		return TRUE;
 	};
@@ -406,6 +408,7 @@ func void DIA_Onar_CollectGold_Info()
 	if(other.guild == GIL_DJG)
 	{
 		AI_Output(self,other,"DIA_Onar_CollectGold_14_01");	//Я плачу наемникам, а не охотникам на драконов.
+		Onar_StopPayingDJG = TRUE;
 	}
 	else if(Torlof_TheOtherMission_TooLate == TRUE)
 	{

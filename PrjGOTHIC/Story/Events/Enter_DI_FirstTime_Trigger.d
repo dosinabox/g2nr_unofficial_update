@@ -36,6 +36,10 @@ func void enter_di_firsttime_trigger()
 				CreateInvItems(OrkElite_AntiPaladinOrkOberst_DI,ItAt_RockdragonHeart,1);
 			};
 		};
+		if(PedroGotLostInnosStatue == TRUE)
+		{
+			CreateInvItems(OrkElite_AntiPaladinOrkOberst_DI,ItMi_LostInnosStatue_Daron,1);
+		};
 		Log_CreateTopic(TOPIC_MyCrew,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_MyCrew,LOG_Running);
 		if(JorgenIsCaptain == TRUE)

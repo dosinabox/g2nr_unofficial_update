@@ -247,7 +247,7 @@ func void DIA_Peck_WEAPON2_Info()
 
 func int C_PeckCanSellArmor()
 {
-	if(Kapitel >= 2)
+	/*if(Kapitel >= 2)
 	{
 		return TRUE;
 	}
@@ -264,6 +264,14 @@ func int C_PeckCanSellArmor()
 		return TRUE;
 	}
 	else if(Andre_FoundThieves_Reported == TRUE)
+	{
+		return TRUE;
+	};*/
+	if(MIS_Addon_Andre_MissingPeople == LOG_SUCCESS)
+	{
+		return TRUE;
+	}
+	else if(MIS_OLDWORLD == LOG_SUCCESS)
 	{
 		return TRUE;
 	};
@@ -307,6 +315,10 @@ func void B_SetPeckArmorPrice()
 	{
 		VALUE_ITAR_MIL_M_Dynamic -= 100;
 	};
+	if(Andre_Knows_MartinEmpfehlung == TRUE)
+	{
+		VALUE_ITAR_MIL_M_Dynamic -= 100;
+	};
 	if(MIS_Andre_GuildOfThieves == LOG_SUCCESS)
 	{
 		VALUE_ITAR_MIL_M_Dynamic -= 1000;
@@ -345,6 +357,10 @@ func void DIA_Peck_ARMOR_Info()
 	if(MIS_Andre_Peck == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
+	}
+	else if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
+	{
+		B_Say(self,other,"$CITY_CRIME");
 	}
 	else
 	{

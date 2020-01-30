@@ -17,6 +17,10 @@ func int DIA_Rod_EXIT_Condition()
 
 func void DIA_Rod_EXIT_Info()
 {
+	if(Npc_HasItems(hero,ItMw_2h_Rod_Fake))
+	{
+		Npc_RemoveInvItem(hero,ItMw_2h_Rod_Fake);
+	};
 	AI_EquipBestMeleeWeapon(self);
 	AI_StopProcessInfos(self);
 };
@@ -378,8 +382,14 @@ func void DIA_Rod_Wette_Yes()
 		B_GiveInvItems(self,other,ItMw_2h_Rod,1);
 		if(other.attribute[ATR_STRENGTH] >= Condition_Rod)
 		{
+			if(Npc_HasReadiedMeleeWeapon(other) || Npc_HasReadiedRangedWeapon(other))
+			{
+				AI_RemoveWeapon(other);
+			};
+			AI_WaitTillEnd(other,self);
 			CreateInvItem(other,ItMw_2h_Rod_Fake);
-			B_InspectMeleeWeapon(other);
+			AI_UseItem(other,ItMw_2h_Rod_Fake);
+			AI_Wait(other,0.5);
 			AI_Output(other,self,"DIA_Rod_Wette_Yes_15_04");	//Так достаточно?!
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_05");	//(сбитый с толку) Похоже, ты побил меня.
 			AI_Output(self,other,"DIA_Rod_Wette_Yes_06_06");	//Я никак не ожидал от тебя такого. Ты не похож на человека, обладающего такой силой.
@@ -408,29 +418,13 @@ func void DIA_Rod_Wette_Yes()
 	};
 };
 
-func void B_RemoveFakeWeapon(var C_Npc oth)
-{
-	if(Rod_WetteGewonnen == TRUE)
-	{
-		Npc_RemoveInvItem(oth,ItMw_2h_Rod_Fake);
-		AI_UnequipWeapons(oth);
-		//bugfix: отменить экипировку арбалетом в дополнение к луку
-		AI_UnequipWeapons(oth);
-		AI_EquipBestMeleeWeapon(oth);
-		AI_EquipBestRangedWeapon(oth);
-	};
-};
-
 func void DIA_Rod_Wette_GiveBack()
 {
-	B_RemoveFakeWeapon(other);
+	if(Npc_HasItems(hero,ItMw_2h_Rod_Fake))
+	{
+		Npc_RemoveInvItem(hero,ItMw_2h_Rod_Fake);
+	};
 	AI_Output(other,self,"DIA_Rod_Wette_GiveBack_15_00");	//Вот, держи.
-	Info_ClearChoices(DIA_Rod_Wette);
-	Info_AddChoice(DIA_Rod_Wette,"(отдать оружие)",DIA_Rod_Wette_GiveBack2);
-};
-
-func void DIA_Rod_Wette_GiveBack2()
-{
 	B_GiveInvItems(other,self,ItMw_2h_Rod,1);
 	if(Rod_WetteGewonnen == FALSE)
 	{
@@ -441,13 +435,16 @@ func void DIA_Rod_Wette_GiveBack2()
 
 func void DIA_Rod_Wette_KeepIt()
 {
+	if(Npc_HasItems(hero,ItMw_2h_Rod_Fake))
+	{
+		Npc_RemoveInvItem(hero,ItMw_2h_Rod_Fake);
+	};
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_00");	//Думаю, что нет...
 	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_01");	//(угрожающе) Что это значит?
 	AI_Output(other,self,"DIA_Rod_Wette_KeepIt_15_02");	//Лучше я подержу его у себя немного.
 	AI_Output(self,other,"DIA_Rod_Wette_GiveBack_06_01");	//Да ты просто подлец после этого!
 	AI_Output(self,other,"DIA_Rod_Wette_KeepIt_06_03");	//Ну, подожди, ублюдок...
 	Info_ClearChoices(DIA_Rod_Wette);
-	B_RemoveFakeWeapon(other);
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

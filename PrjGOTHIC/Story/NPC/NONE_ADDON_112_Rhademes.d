@@ -33,6 +33,12 @@ func void Rtn_Start_112()
 	TA_GhostWusel(20,0,8,0,"ADW_ADANOSTEMPEL_RHADEMES_02");
 };
 
+func void Rtn_Wait_112()
+{
+	TA_Ghost(8,0,20,0,"ADW_ADANOSTEMPEL_RHADEMES_02");
+	TA_Ghost(20,0,8,0,"ADW_ADANOSTEMPEL_RHADEMES_02");
+};
+
 func void Rtn_TOT_112()
 {
 	TA_Ghost(8,0,20,0,"TOT");

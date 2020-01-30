@@ -311,7 +311,7 @@ func void DIA_Halvor_MESSAGE_Okay()
 instance DIA_Halvor_Zeichen(C_Info)
 {
 	npc = VLK_469_Halvor;
-	nr = 2;
+	nr = 800;
 	condition = DIA_Halvor_Zeichen_Condition;
 	information = DIA_Halvor_Zeichen_Info;
 	permanent = FALSE;

@@ -10,7 +10,7 @@ instance NONE_ADDON_114_Lance_ADW(Npc_Default)
 	aivar[AIV_NPCIsRanger] = TRUE;
 	B_SetAttributesToChapter(self,2);
 	fight_tactic = FAI_HUMAN_STRONG;
-	CreateInvItems(self,ItMw_1h_Bau_Mace,1);
+	CreateInvItems(self,ItMw_1h_Vlk_Dagger,1);
 	CreateInvItems(self,ItRw_Sld_Bow,1);
 	CreateInvItems(self,ItRi_Ranger_Lance_Addon,1);
 	B_CreateAmbientInv(self);

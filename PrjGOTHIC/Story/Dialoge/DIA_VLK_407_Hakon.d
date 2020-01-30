@@ -229,7 +229,11 @@ func int DIA_Hakon_WoWaffen_Condition()
 func void DIA_Hakon_WoWaffen_Info()
 {
 	AI_Output(other,self,"DIA_Hakon_Add_15_12");	//Где ты берешь оружие?
-	if(Npc_KnowsInfo(other,DIA_Hakon_HaradBandits))
+	if(Npc_KnowsInfo(other,DIA_Hakon_Kapitel2) && !Npc_IsDead(Harad))
+	{
+		AI_Output(self,other,"DIA_Hakon_Add_12_21_add");	//Старый добрый Гарад.
+	}
+	else if(Npc_KnowsInfo(other,DIA_Hakon_HaradBandits))
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_13");	//Нигде! Раньше моим поставщиком был Гарад.
 	}
@@ -237,12 +241,15 @@ func void DIA_Hakon_WoWaffen_Info()
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_14");	//Раньше моим поставщиком был кузнец Гарад.
 	};
-	if(!Npc_IsDead(Harad))
+	if(!Npc_KnowsInfo(other,DIA_Hakon_Kapitel2) && !Npc_IsDead(Harad))
 	{
 		AI_Output(self,other,"DIA_Hakon_Add_12_15");	//А теперь все, что он делает, забирают паладины.
 		AI_Output(self,other,"DIA_Hakon_Add_12_16");	//Он работает на этих парней днем и ночью как безумный, без какой-либо оплаты. Он думает, что это его долг.
 	};
-	AI_Output(self,other,"DIA_Hakon_Add_12_17");	//Все, что я могу предложить тебе сейчас - это остатки...
+	if(!Npc_KnowsInfo(other,DIA_Hakon_Kapitel2) || Npc_IsDead(Harad))
+	{
+		AI_Output(self,other,"DIA_Hakon_Add_12_17");	//Все, что я могу предложить тебе сейчас - это остатки...
+	};
 };
 
 
@@ -270,7 +277,14 @@ func void DIA_Hakon_HaradBandits_Info()
 	AI_Output(other,self,"DIA_Hakon_Add_15_18");	//Гарад рассказал мне о нападении бандитов...
 	AI_Output(self,other,"DIA_Hakon_Add_12_19");	//Ох? И?
 	AI_Output(other,self,"DIA_Hakon_Add_15_20");	//Он проголосует за меня при поступлении в ученики, если я уничтожу этих бандитов.
-	AI_Output(self,other,"DIA_Hakon_Add_12_21");	//(смеется) Старый добрый Гарад. Возможно, он так хочет сказать мне 'извини' за то, что он не может сейчас делать оружие для меня.
+	if(!Npc_KnowsInfo(other,DIA_Hakon_Kapitel2))
+	{
+		AI_Output(self,other,"DIA_Hakon_Add_12_21");	//(смеется) Старый добрый Гарад. Возможно, он так хочет сказать мне 'извини' за то, что он не может сейчас делать оружие для меня.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hakon_Add_12_27_add");	//Правда?
+	};
 };
 
 

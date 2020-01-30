@@ -59,6 +59,10 @@ func void Use_Addon_Joint_01()
 			if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY))
 			{
 				B_GivePlayerXP(50);
+			}
+			else
+			{
+				B_GivePlayerXP(5);
 			};
 			FirstJoint = TRUE;
 		};

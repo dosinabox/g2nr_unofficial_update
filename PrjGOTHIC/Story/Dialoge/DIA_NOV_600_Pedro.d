@@ -200,6 +200,7 @@ func void B_GiveLostStatueToPedro()
 	AI_Output(self,other,"DIA_Addon_Pedro_Statuette_Abgeben_09_01");	//Конечно. Я позабочусь о ней. Благодарю тебя за щедрость.
 	B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
 	Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
+	PedroGotLostInnosStatue = TRUE;
 	LostInnosStatueInMonastery = TRUE;
 	MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);

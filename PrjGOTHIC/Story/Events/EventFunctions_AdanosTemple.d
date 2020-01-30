@@ -136,7 +136,6 @@ func void adw_adanostempel_stonegrd_trigg_func_02()
 		b_awake_stoneguardian(StoneGuardianAdanos_14D);
 		b_awake_stoneguardian(StoneGuardianAdanos_14E);
 		b_awake_stoneguardian(StoneGuardianAdanos_14F);
-		SC_TookRhademesTrap = TRUE;
 		if(!Npc_IsDead(StoneGuardianAdanos_14A) || !Npc_IsDead(StoneGuardianAdanos_14B) || !Npc_IsDead(StoneGuardianAdanos_14C) || !Npc_IsDead(StoneGuardianAdanos_14D) || !Npc_IsDead(StoneGuardianAdanos_14E) || !Npc_IsDead(StoneGuardianAdanos_14F))
 		{
 			Snd_Play("THRILLJINGLE_02");

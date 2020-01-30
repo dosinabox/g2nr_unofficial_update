@@ -9,6 +9,9 @@ func int C_BragoBanditsDead()
 };
 
 
+var int SC_ForgotAboutCavalorn;
+var int CavalornWeakComment;
+
 instance DIA_Addon_Cavalorn_EXIT(C_Info)
 {
 	npc = BAU_4300_Addon_Cavalorn;
@@ -169,6 +172,7 @@ func void DIA_Addon_Cavalorn_HALLO_weissNicht()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_weissNicht_15_00");	//Что-то не припоминаю...
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_weissNicht_08_01");	//Ну как же. Еще в моей хижине около Старого Лагеря я учил тебя, как стрелять из лука и незаметно передвигаться. Теперь вспоминаешь?
+	SC_ForgotAboutCavalorn = TRUE;
 };
 
 func void DIA_Addon_Cavalorn_HALLO_Ja()
@@ -492,6 +496,7 @@ func void DIA_Addon_Cavalorn_HELFEN_Info()
 	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_01");	//(хитро) Возможно. Но ты выглядишь таким тощим, ты наверняка не держал меча несколько недель.
+		CavalornWeakComment = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_02");	//Ну... У меня нет выбора, так что я принимаю твое предложение. У меня мало времени.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_03");	//Так, слушай. Вниз по этой дороге располагается одна из тех грязных дыр, где прячутся бандиты.
@@ -975,8 +980,18 @@ func int DIA_Addon_Cavalorn_WannaLearn_Condition()
 func void DIA_Addon_Cavalorn_WannaLearn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_WannaLearn_15_00");	//Ты можешь научить меня кое-чему?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01");	//Конечно. Ты это прекрасно знаешь. Приятель, ты действительно много потерял.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_02");	//Ты и правда ничего не помнишь, да?
+	if((CavalornWeakComment == FALSE) && (SC_ForgotAboutCavalorn == FALSE))
+	{
+		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01_add");	//Конечно, ты это прекрасно знаешь.
+	};
+	if(CavalornWeakComment == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01");	//Конечно, ты это прекрасно знаешь. Приятель, ты действительно много потерял.
+	};
+	if(SC_ForgotAboutCavalorn == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_02");	//Ты и правда ничего не помнишь, да?
+	};
 	Cavalorn_Addon_TeachPlayer = TRUE;
 	Log_CreateTopic(Topic_OutTeacher,LOG_NOTE);
 	B_LogEntry(Topic_OutTeacher,LogText_Addon_Cavalorn_Teach);
@@ -1067,7 +1082,14 @@ func void DIA_Addon_Cavalorn_Teach_Back()
 {
 	if((Addon_Cavalorn_Merke_Bow < other.aivar[REAL_TALENT_BOW]) || (Addon_Cavalorn_Merke_1h < other.aivar[REAL_TALENT_1H]))
 	{
-		AI_Output(self,other,"DIA_Addon_Cavalorn_Teach_BACK_08_00");	//Уже лучше. Ты многое позабыл, но мы быстро вернем твои умения.
+		if((CavalornWeakComment == TRUE) || (SC_ForgotAboutCavalorn == TRUE))
+		{
+			AI_Output(self,other,"DIA_Addon_Cavalorn_Teach_BACK_08_00");	//Уже лучше. Ты многое позабыл, но мы быстро вернем твои умения.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Cavalorn_Teach_BACK_08_00_add");	//Уже лучше.
+		};
 	};
 	Info_ClearChoices(DIA_Addon_Cavalorn_TEACH);
 };

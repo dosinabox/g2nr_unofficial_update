@@ -183,15 +183,7 @@ func int C_ScHasOrcWeapon()
 	{
 		return TRUE;
 	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_01))
-	{
-		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_02))
-	{
-		return TRUE;
-	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_03))
+	else if(Npc_HasItems(hero,ItMw_2H_OrcSword_02))
 	{
 		return TRUE;
 	}
@@ -203,12 +195,22 @@ func int C_ScHasOrcWeapon()
 	{
 		return TRUE;
 	}
-	else if(Npc_HasItems(hero,ItMw_2H_OrcSword_02))
+	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_03))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_02))
+	{
+		return TRUE;
+	}
+	else if(Npc_HasItems(hero,ItMw_2H_OrcAxe_01))
 	{
 		return TRUE;
 	};
 	return FALSE;
 };
+
+var int Harad_GotEliteOrcWeapon;
 
 instance DIA_Harad_OrcSuccess(C_Info)
 {
@@ -233,13 +235,20 @@ func void DIA_Harad_OrcSuccess_Info()
 {
 	AI_Output(other,self,"DIA_Harad_OrcSuccess_15_00");	//я принес тебе оружие орков, как ты хотел.
 	AI_Output(self,other,"DIA_Harad_OrcSuccess_12_01");	//ѕокажи...
-	if(Npc_HasItems(other,ItMw_2H_OrcAxe_04))
+	if(Npc_HasItems(other,ItMw_2H_OrcMace_01))
 	{
-		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_04,1);
+		B_GiveInvItems(other,self,ItMw_2H_OrcMace_01,1);
+		Harad_GotEliteOrcWeapon = TRUE;
 	}
 	else if(Npc_HasItems(other,ItMw_2H_OrcSword_02))
 	{
 		B_GiveInvItems(other,self,ItMw_2H_OrcSword_02,1);
+		Harad_GotEliteOrcWeapon = TRUE;
+	}
+	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_04))
+	{
+		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_04,1);
+		Harad_GotEliteOrcWeapon = TRUE;
 	}
 	else if(Npc_HasItems(other,ItMw_2H_OrcSword_01))
 	{
@@ -256,10 +265,6 @@ func void DIA_Harad_OrcSuccess_Info()
 	else if(Npc_HasItems(other,ItMw_2H_OrcAxe_01))
 	{
 		B_GiveInvItems(other,self,ItMw_2H_OrcAxe_01,1);
-	}
-	else if(Npc_HasItems(other,ItMw_2H_OrcMace_01))
-	{
-		B_GiveInvItems(other,self,ItMw_2H_OrcMace_01,1);
 	};
 	B_InspectMeleeWeapon(self);
 	if(Harad_HakonMission == TRUE)
@@ -282,7 +287,14 @@ func void DIA_Harad_OrcSuccess_Info()
 		AI_Output(self,other,"DIA_Harad_OrcSuccess_12_08");	//“ы бы очень пригодилс€ мне.
 	};
 	MIS_Harad_Orc = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Harad_Orc);
+	if(Harad_GotEliteOrcWeapon == TRUE)
+	{
+		B_GivePlayerXP(XP_Harad_Orc * 3);
+	}
+	else
+	{
+		B_GivePlayerXP(XP_Harad_Orc);
+	};
 	B_LogEntry(TOPIC_Lehrling,"√арад примет мен€ в ученики, если € смогу получить одобрение других мастеров.");
 };
 

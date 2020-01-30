@@ -16,9 +16,22 @@ func void B_LevelUp(var int levels)
 	Snd_Play("LevelUp");
 };
 
+func int CalculateLowerXP(var int add_xp)
+{
+	var int modifier;
+	var int lower_xp;
+	modifier = 100 - HardModeXPModifier;
+	lower_xp = add_xp * modifier / 100;
+	return lower_xp;
+};
+
 func void B_GivePlayerXP(var int add_xp)
 {
 	var string concatText;
+	if(HardModeEnabled == TRUE)
+	{
+		add_xp = CalculateLowerXP(add_xp);
+	};
 	if(hero.level == 0)
 	{
 		hero.exp_next = XP_PER_LEVEL;

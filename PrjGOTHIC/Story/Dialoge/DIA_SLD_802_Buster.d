@@ -655,6 +655,18 @@ func int DIA_Buster_BringTrophyShadowbeast_Condition()
 {
 	if((MIS_Buster_KillShadowbeasts_DJG == LOG_Running) && (Npc_HasItems(other,ItAt_ShadowHorn) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)) && ((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG)))
 	{
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
+		{
+			DIA_Buster_BringTrophyShadowbeast.description = "А как нужно потрошить мракориса?";
+		}
+		else if(Npc_HasItems(other,ItAt_ShadowHorn) > 1)
+		{
+			DIA_Buster_BringTrophyShadowbeast.description = "Я принес рога мракорисов для твоего торговца.";
+		}
+		else
+		{
+			DIA_Buster_BringTrophyShadowbeast.description = "Я принес тебе рог мракориса.";
+		};
 		return TRUE;
 	};
 };
@@ -671,6 +683,18 @@ func void DIA_Buster_BringTrophyShadowbeast_Info()
 	var int BusterTrophyShadowbeastGeld;
 	if(Kapitel >= 5)
 	{
+		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
+		{
+			AI_Output(other,self,"DIA_Buster_ANIMALTROPHYSHADOWBEAST_15_03");	//А как нужно потрошить мракориса?
+		}
+		else if(Npc_HasItems(other,ItAt_ShadowHorn) > 1)
+		{
+			AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_06");	//Я принес рога мракорисов для твоего торговца.
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_05");	//Я принес тебе рог мракориса.
+		};
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_00");	//Мой торговец из города передал прощальный привет.
 		AI_Output(other,self,"DIA_Buster_BringTrophyShadowbeast_15_01");	//Что это значит?
 		AI_Output(self,other,"DIA_Buster_BringTrophyShadowbeast_13_02");	//Он мертв. Можешь оставить эти рога себе. Теперь я все равно не знаю, что с ними делать.

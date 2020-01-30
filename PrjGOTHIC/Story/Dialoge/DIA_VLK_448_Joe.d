@@ -125,7 +125,7 @@ func void DIA_Joe_Perm_Info()
 instance DIA_Joe_Sign(C_Info)
 {
 	npc = VLK_448_Joe;
-	nr = 3;
+	nr = 800;
 	condition = DIA_Joe_Sign_Condition;
 	information = DIA_Joe_Sign_Info;
 	permanent = FALSE;

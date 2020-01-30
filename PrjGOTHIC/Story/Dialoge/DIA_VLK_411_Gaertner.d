@@ -185,7 +185,7 @@ func void DIA_Gaertner_Krautabak_Info()
 instance DIA_Gaertner_Sign(C_Info)
 {
 	npc = VLK_411_Gaertner;
-	nr = 7;
+	nr = 800;
 	condition = DIA_Gaertner_Sign_Condition;
 	information = DIA_Gaertner_Sign_Info;
 	permanent = FALSE;

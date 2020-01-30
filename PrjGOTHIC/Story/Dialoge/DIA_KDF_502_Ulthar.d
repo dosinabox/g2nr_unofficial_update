@@ -192,7 +192,7 @@ func void DIA_Ulthar_SUCCESS_Info()
 	AI_Output(other,self,"DIA_Ulthar_SUCCESS_15_00");	//Я создал руну!
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_01");	//Отлично, послушник. Храни ее - свою первую руну.
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_02");	//Когда ты достигнешь первого Круга Огня, ты сможешь использовать ее.
-	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_03");	//Ты прошел это испытание к моему полному удовлетворению.
+	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_03");	//Ты прошел это испытание, к моему полному удовлетворению.
 	if((MIS_GOLEM == LOG_Running) && !Npc_IsDead(Magic_Golem))
 	{
 		AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_04");	//Но опасное испытание, что приготовил Серпентес, еще ожидает тебя!

@@ -90,24 +90,13 @@ instance ItMw_2h_Rod(C_Item)
 instance ItMw_2h_Rod_Fake(C_Item)
 {
 	name = NAME_2h_Rod;
-	mainflag = ITEM_KAT_NF;
-	flags = ITEM_2HD_SWD;
-	material = MAT_METAL;
-	value = Value_Sld2hSchwert;
-	damageTotal = Damage_Berserkeraxt;
-	damagetype = DAM_EDGE;
-	range = Range_Sld2hSchwert;
-	cond_atr[2] = ATR_STRENGTH;
-	cond_value[2] = Condition_Rod;
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 0;
 	visual = "ItMw_035_2h_sld_sword_02.3DS";
+	scemeName = "INSPECTWEAPON";
+	material = MAT_METAL;
 	description = name;
-	text[2] = NAME_Damage;
-	count[2] = damageTotal;
-	text[3] = NAME_Str_needed;
-	count[3] = cond_value[2];
-	text[4] = NAME_TwoHanded;
-	text[5] = NAME_Value;
-	count[5] = value;
 };
 
 instance ItMi_CoragonsSilber(C_Item)
@@ -895,10 +884,10 @@ func void UseBanditLetter()
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,1);
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
+	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLines(nDocID,0,"«адерживайте всех, спустившихс€ с гор.");
 	Doc_PrintLines(nDocID,0,"¬полне веро€тно, что через проход");
 	Doc_PrintLines(nDocID,0," попытаетс€ пройти старик.");
@@ -909,8 +898,8 @@ func void UseBanditLetter()
 	Doc_PrintLines(nDocID,0,"¬озможно, человек, которого мы ищем,");
 	Doc_PrintLines(nDocID,0,"    выйдет с ним на св€зь.");
 	Doc_PrintLines(nDocID,0,"— этим письмом € посылаю вам");
-	Doc_PrintLines(nDocID,0,"    тридцать золотых монет.");
-	Doc_PrintLines(nDocID,0,"я дам еще тридцать монет любому,");
+	Doc_PrintLines(nDocID,0,"    тридцать золотых самородков.");
+	Doc_PrintLines(nDocID,0,"я дам еще тридцать любому,");
 	Doc_PrintLines(nDocID,0,"    кто убьет этого человека.");
 	Doc_PrintLine(nDocID,0," ");
 	Doc_PrintLines(nDocID,0,"ѕринесите его голову к старой шахте");

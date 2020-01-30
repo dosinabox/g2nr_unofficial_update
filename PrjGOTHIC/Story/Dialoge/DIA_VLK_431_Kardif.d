@@ -54,6 +54,7 @@ func int DIA_Kardif_PICKPOCKET_Condition()
 	{
 		return C_Beklauen(55,85);
 	};
+	return FALSE;
 };
 
 func void DIA_Kardif_PICKPOCKET_Info()
@@ -818,7 +819,7 @@ func void DIA_Kardif_DEFEATEDATTILA_Info()
 instance DIA_Kardif_Zeichen(C_Info)
 {
 	npc = VLK_431_Kardif;
-	nr = 2;
+	nr = 800;
 	condition = DIA_Kardif_Zeichen_Condition;
 	information = DIA_Kardif_Zeichen_Info;
 	permanent = FALSE;

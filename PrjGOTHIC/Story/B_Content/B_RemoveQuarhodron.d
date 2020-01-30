@@ -16,17 +16,14 @@ func void B_RemoveGhost()
 			GhostAttackWarn = 0;
 		};
 	};
-	if(ADW_ADANOSTEMPEL_STONEGRD_TRIGG_FUNC_01_OneTime == TRUE)
+	if(SC_TalkedToRhademAfter == TRUE)
 	{
-		if((SC_TookRhademesTrap == TRUE) && (B_RemoveRhademes_OneTime == FALSE))
+		if(B_RemoveRhademes_OneTime == FALSE)
 		{
 			AI_Teleport(NONE_ADDON_112_Rhademes,"TOT");
 			B_RemoveNpc(NONE_ADDON_112_Rhademes);
-			if(SC_TalkedToRhademAfter == TRUE)
-			{
-				Snd_Play("MFX_GhostVoice");
-				Snd_Play("MFX_Firestorm_Cast");
-			};
+			Snd_Play("MFX_GhostVoice");
+			Snd_Play("MFX_Firestorm_Cast");
 			B_RemoveRhademes_OneTime = TRUE;
 			GhostAttackWarn = 0;
 		};

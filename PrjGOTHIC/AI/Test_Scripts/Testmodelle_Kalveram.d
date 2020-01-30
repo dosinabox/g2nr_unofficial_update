@@ -75,6 +75,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_1H_Special_01,1);
 	CreateInvItems(self,ItMw_2H_Special_01,1);
 	CreateInvItems(self,ItMw_Rapier,1);
+	CreateInvItems(self,ItMw_Lightrapier,1);
 	CreateInvItems(self,ItMw_Rubinklinge,1);
 	CreateInvItems(self,ItMw_Streitkolben,1);
 	CreateInvItems(self,ItMw_Zweihaender2,1);
@@ -89,6 +90,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_ElBastardo,1);
 	CreateInvItems(self,ItMw_Kriegshammer2,1);
 	CreateInvItems(self,ItMw_Meisterdegen,1);
+	CreateInvItems(self,ItMw_Kampferdegen,1);
 	CreateInvItems(self,ItMw_Folteraxt,1);
 	CreateInvItems(self,ItMw_Orkschlaechter,1);
 	CreateInvItems(self,ItMw_Zweihaender4,1);
@@ -136,6 +138,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_Addon_PIR1hSword,1);
 	CreateInvItems(self,ItMw_Addon_BanditTrader,1);
 	CreateInvItems(self,ItMw_Addon_Betty,1);
+	CreateInvItems(self,ItMw_Addon_Becky,1);
 	CreateInvItem(self,ITAR_Governor);
 	CreateInvItem(self,ITAR_Smith);
 	CreateInvItem(self,ITAR_Barkeeper);
@@ -1551,8 +1554,16 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(MadKillerCount)," невинных людей"));
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"");
-	Doc_PrintLine(nDocID,1,"");
+	if(HardModeEnabled == TRUE)
+	{
+		Doc_PrintLine(nDocID,1,"Сложность: повышенная");
+		Doc_PrintLine(nDocID,1,ConcatStrings("Модификатор опыта: -",IntToString(HardModeXPModifier)));
+	}
+	else
+	{
+		Doc_PrintLine(nDocID,1,"Сложность: стандарт");
+		Doc_PrintLine(nDocID,1,"Модификатор опыта: нет");
+	};
 	Doc_Show(nDocID);
 };
 
@@ -1619,7 +1630,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 4 января 2020г.";
+	text[1] = "Скомпилировано 30 января 2020г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";

@@ -257,6 +257,12 @@ instance RAVENS_EARTHQUAKE4(C_SFX_DEF)
 	vol = 90;
 };
 
+instance MAGIC_DEEP01(C_SFX_DEF)
+{
+	file = "magic_deep01.wav";
+	vol = 30;
+};
+
 instance TELEPORTSTATIONSOUND(C_SFX_DEF)
 {
 	file = "magic_deep02.wav";
@@ -9114,6 +9120,48 @@ instance CS_IHI_ST_LE(C_SFX_DEF)
 	vol = 60;
 };
 
+instance CS_IHI_LE_WO(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance CS_IHI_LE_LE(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance CS_IHI_LE_ME(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance CS_IHI_LE_GL(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance CS_IHI_LE_ST(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance SCROLLROLL(C_SFX_DEF)
+{
+	file = "scrollroll.wav";
+	vol = 60;
+};
+
+instance MINEAMBIENCE01(C_SFX_DEF)
+{
+	file = "mineambience01.wav";
+	vol = 60;
+};
+
 instance INV_OPEN(C_SFX_DEF)
 {
 	file = "inv_open.wav";
@@ -10377,5 +10425,17 @@ instance CS_IAL_ME_WO_01(C_SFX_DEF)
 {
 	file = "CS_IAL_ME_WO_01.wav";
 	vol = 80;
+};
+
+instance GOODIE(C_SFX_DEF)
+{
+	file = "goodie.wav";
+	vol = 70;
+};
+
+instance DRAWSOUND_ME_02(C_SFX_DEF)
+{
+	file = "drawsound_me_02.wav";
+	vol = 30;
 };
 

@@ -503,6 +503,8 @@ func void DIA_Addon_Lares_Geduld_Info()
 };
 
 
+var int Lares_ArmorComment;
+
 instance DIA_Addon_Lares_GetRangerArmor(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -528,6 +530,11 @@ func void DIA_Addon_Lares_GetRangerArmor_Info()
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_02");	//Конечно же, здесь не все члены общества, так что будь внимателен.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_03");	//Нам будет известно как о твоих действиях на благо Кольца, так и обо всех проступках.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_04");	//А теперь прими от братства эти доспехи.
+	if(Lares_ArmorComment == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03_add");	//Члены общества Кольца Воды носили такую броню еще до войны с орками.
+		Lares_ArmorComment = TRUE;
+	};
 	AI_WaitTillEnd(other,self);
 	CreateInvItem(hero,ITAR_RANGER_Addon);
 	AI_PrintScreen("Доспехи 'Кольца Воды' получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
@@ -1673,7 +1680,11 @@ func void DIA_Addon_Lares_ArrivedPortalInter1_teil2()
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_01");	//Даже Ли готов защищать магов Воды от любой опасности, если только это будет в его силах.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_02");	//Чтобы поддерживать связь с магами, я практически постоянно нахожусь в городе, работая вместе с Ватрасом.
 	B_MakeRangerReadyForMeeting(self);
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги Воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
+	if(Lares_ArmorComment == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги Воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
+		Lares_ArmorComment = TRUE;
+	};
 	if(Cavalorn_RangerHint == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_15_04");	//А как ко всему этому относится Кавалорн? Насколько я знаю, в Новом Лагере он ничем таким не занимался.
