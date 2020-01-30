@@ -114,7 +114,8 @@ func int DIA_Addon_Rhademes_Hebel_Condition()
 func void DIA_Addon_Rhademes_Hebel_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Rhademes_Hebel_15_00");	//Но не все активируют ловушку, верно?
-	AI_Output(self,other,"DIA_Addon_Rhademes_Hebel_03_01");	//Все!
+//	AI_Output(self,other,"DIA_Addon_Rhademes_Hebel_03_01");	//Все!
+	AI_Output(self,other,"DIA_Addon_Rhademes_Hebel_03_01_add");	//Да...
 };
 
 
@@ -157,7 +158,7 @@ instance DIA_Addon_Rhademes_DeinVater(C_Info)
 
 func int DIA_Addon_Rhademes_DeinVater_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Rhademes_Pforte) && Npc_HasItems(other,ItMi_Addon_Stone_04))
+	if(Npc_KnowsInfo(other,DIA_Addon_Rhademes_Pforte) && (SC_KnowsRhademesTrapDetails == TRUE))
 	{
 		return TRUE;
 	};
@@ -177,8 +178,6 @@ func void DIA_Addon_Rhademes_DeinVater_Info()
 };
 
 
-var int Rhademes_fertig;
-
 func void B_Addon_Rhademes_Lever(var int Choice)
 {
 	AI_Output(self,other,"DIA_Addon_Rhademes_Lever_03_00");	//Это было так давно...
@@ -189,13 +188,15 @@ func void B_Addon_Rhademes_Lever(var int Choice)
 	}
 	else if(Choice == 2)
 	{
-		AI_GotoWP(self,"ADW_ADANOSTEMPEL_RHADEMES_04");
+		AI_GotoWP(self,"ADW_ADANOSTEMPEL_RHADEMES_06");
 	}
 	else
 	{
-		AI_GotoWP(self,"ADW_ADANOSTEMPEL_RHADEMES_04");
+		AI_GotoWP(self,"ADW_ADANOSTEMPEL_RHADEMES_08");
 	};
 	AI_UseMob(self,"LEVER",1);
+	AI_TurnToNPC(self,hero);
+	Npc_ExchangeRoutine(self,"Wait");
 	Rhademes_fertig = TRUE;
 };
 
@@ -224,14 +225,14 @@ instance DIA_Addon_Rhademes_PERM(C_Info)
 	nr = 2;
 	condition = DIA_Addon_Rhademes_PERM_Condition;
 	information = DIA_Addon_Rhademes_PERM_Info;
-	permanent = TRUE;
+	permanent = FALSE;
 	important = TRUE;
 };
 
 
 func int DIA_Addon_Rhademes_PERM_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Rhademes_fertig == TRUE))
+	if(Rhademes_fertig == TRUE)
 	{
 		return TRUE;
 	};
@@ -239,8 +240,7 @@ func int DIA_Addon_Rhademes_PERM_Condition()
 
 func void DIA_Addon_Rhademes_PERM_Info()
 {
-	AI_Output(self,other,"DIA_Addon_Rhademes_PERM_03_00");	//Если ты обладаешь силой... утопи ее... в глубинах моря...
-	SC_TookRhademesTrap = TRUE;
+	AI_Output(self,other,"DIA_Addon_Rhademes_PERM_03_00");	//Если ты обладаешь силой... утопи... меч... в глубинах моря...
 	SC_TalkedToRhademAfter = TRUE;
 	AI_StopProcessInfos(self);
 };

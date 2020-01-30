@@ -1014,6 +1014,7 @@ func void Use_Addon_Stone_04()
 	if(PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == TRUE)
 	{
 		Doc_PrintLines(nDocID,0,"Третью ловушку создал КУАРХОДРОН. Лишь он знает, как открыть вход.");
+		SC_KnowsRhademesTrapDetails = TRUE;
 	}
 	else
 	{

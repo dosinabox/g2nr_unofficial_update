@@ -7,6 +7,15 @@ func void B_AssessPlayer()
 	{
 		return;
 	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes))
+	{
+		if((Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG) && Npc_CheckInfo(self,1))
+		{
+			self.aivar[AIV_NpcStartedTalk] = TRUE;
+			B_AssessTalk();
+			return;
+		};
+	};
 	if(other.aivar[AIV_INVINCIBLE] == TRUE)
 	{
 		return;

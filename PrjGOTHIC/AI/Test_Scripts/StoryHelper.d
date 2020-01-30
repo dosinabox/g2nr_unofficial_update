@@ -430,11 +430,11 @@ func void StoryHelper_HardMode()
 		HardModeEnabled = TRUE;
 		PrintScreen("ѕовышенный уровень сложности включен",-1,-1,FONT_Screen,3);
 		Info_ClearChoices(StoryHelper_PatchSettings);
-		Info_AddChoice(StoryHelper_PatchSettings,"-10% опыта",StoryHelper_HardMode_10);
-		Info_AddChoice(StoryHelper_PatchSettings,"-20% опыта",StoryHelper_HardMode_20);
-		Info_AddChoice(StoryHelper_PatchSettings,"-30% опыта",StoryHelper_HardMode_30);
-		Info_AddChoice(StoryHelper_PatchSettings,"-40% опыта",StoryHelper_HardMode_40);
 		Info_AddChoice(StoryHelper_PatchSettings,"-50% опыта",StoryHelper_HardMode_50);
+		Info_AddChoice(StoryHelper_PatchSettings,"-40% опыта",StoryHelper_HardMode_40);
+		Info_AddChoice(StoryHelper_PatchSettings,"-30% опыта",StoryHelper_HardMode_30);
+		Info_AddChoice(StoryHelper_PatchSettings,"-20% опыта",StoryHelper_HardMode_20);
+		Info_AddChoice(StoryHelper_PatchSettings,"-10% опыта",StoryHelper_HardMode_10);
 	};
 };
 

@@ -29,8 +29,9 @@ prototype Mst_Default_SwampZombie(C_Npc)
 
 func void B_SetVisuals_SwampZombie()
 {
-	Mdl_SetVisual(self,"SwampZombie.mds");
-	Mdl_SetVisualBody(self,"Zom_Body",0,0,"Zom_Head",0,DEFAULT,-1);
+//	Mdl_SetVisual(self,"SwampZombie.mds");
+	Mdl_SetVisual(self,"Zombie.mds");
+	Mdl_SetVisualBody(self,"ZomSwamp_Body",0,0,"ZomSwamp_Head",0,DEFAULT,-1);
 };
 
 
