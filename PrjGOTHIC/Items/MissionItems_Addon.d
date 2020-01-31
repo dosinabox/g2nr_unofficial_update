@@ -1292,6 +1292,7 @@ instance ItMi_TempelTorKey(C_Item)
 	material = MAT_STONE;
 	scemeName = "MAP";
 	on_state[0] = Use_TempelTorKey;
+	description = name;
 	text[0] = "Ключ от храма Аданоса.";
 };
 

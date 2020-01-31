@@ -2453,18 +2453,18 @@ func int DIA_Vatras_BEGINN_Condition()
 func void DIA_Vatras_BEGINN_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_BEGINN_15_00");	//Я сделал все, как ты сказал мне. Вот починенный Глаз.
+	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_Mis,1);
+	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
+	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
 	if(Npc_HasItems(other,ItPl_SwampHerb) >= 3)
 	{
+		AI_Output(other,self,"DIA_Vatras_BEGINN_15_02");	//Что насчет болотной травы?
 		B_GivePlayerXP(XP_RitualInnosEyeRuns + XP_AmbientKap3);
 	}
 	else
 	{
 		B_GivePlayerXP(XP_RitualInnosEyeRuns);
 	};
-	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_Mis,1);
-	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
-	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
-	AI_Output(other,self,"DIA_Vatras_BEGINN_15_02");	//Что насчет болотной травы?
 	AI_Output(self,other,"DIA_Vatras_BEGINN_05_03");	//Ах, да. Ты принес три стебля болотной травы?
 	if(B_GiveInvItems(other,self,ItPl_SwampHerb,3))
 	{

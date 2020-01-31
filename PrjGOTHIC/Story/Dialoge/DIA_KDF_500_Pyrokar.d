@@ -297,7 +297,14 @@ func int DIA_Pyrokar_RUNNING_Condition()
 //	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
 	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
 	{
-		if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			if(Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+			{
+				return TRUE;
+			};
+		}
+		else if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
 		{
 			return TRUE;
 		};
@@ -340,7 +347,14 @@ func int DIA_Pyrokar_SUCCESS_Condition()
 //	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
 	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV))
 	{
-		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
+			{
+				return TRUE;
+			};
+		}
+		else if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
 			return TRUE;
 		};
