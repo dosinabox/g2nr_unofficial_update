@@ -61,7 +61,7 @@ func void DIA_Dragon_Fire_Hello_Info()
 	};
 	AI_Output(other,self,"DIA_Dragon_Fire_Hello_15_02");	//Я пришел не затем, чтобы увидеть тебя. Боюсь, цели мои несколько более радикальны.
 	AI_Output(self,other,"DIA_Dragon_Fire_Hello_20_03");	//Ты хочешь сказать, что готов вызвать меня на бой?
-	AI_Output(self,other,"DIA_Dragon_Fire_Hello_20_04");	//Ха-ха-ха. Я сломаю твою хлипкую шею.
+	AI_Output(self,other,"DIA_Dragon_Fire_Hello_20_04");	//Ха-ха! Я сломаю твою хлипкую шею.
 	AI_Output(other,self,"DIA_Dragon_Fire_Hello_15_05");	//Не так быстро, дружок. Со мной Глаз Инноса. Ты не можешь сопротивляться моей воле. Отвечай на мои вопросы, иначе тебя ждет невыносимая агония.
 	AI_Output(self,other,"DIA_Dragon_Fire_Hello_20_06");	//(ревет) Ах-х. Тогда задавай свои глупые вопросы, пока еще можешь. Твоя сила долго не продлится.
 };

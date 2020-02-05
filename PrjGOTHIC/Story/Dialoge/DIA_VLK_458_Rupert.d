@@ -268,7 +268,7 @@ instance DIA_Rupert_Trade(C_Info)
 	condition = DIA_Rupert_Trade_Condition;
 	information = DIA_Rupert_Trade_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 

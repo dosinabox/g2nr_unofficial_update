@@ -465,7 +465,7 @@ func void DIA_Addon_Vatras_Bandittrader_Info()
 	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
+	Log_AddEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
 };
 
 
@@ -1423,8 +1423,8 @@ func void DIA_Addon_Vatras_GuildHelp_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_11");	//Помни, что даже если ты вступишь в Круг Огня, ты все еще сможешь присоединиться к нам.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_12");	//Если, конечно, докажешь свою полезность.
 	MIS_Addon_Vatras_Go2Daron = LOG_Running;
-	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
+//	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
+//	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
 	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Маг Огня Дарон поможет мне попасть в монастырь, если я найду его похищенную статуэтку.");
 };
 

@@ -373,7 +373,7 @@ func int DIA_Ulthar_SchreineGeheiltNoPAL_Condition()
 func void DIA_Ulthar_SchreineGeheiltNoPAL_Info()
 {
 	AI_Output(self,other,"DIA_Ulthar_SchreineGeheiltNoPAL_05_00");	//Хорошие новости. Придорожные алтари очищены. Сила Инноса помогла паладинам снять эту проблему.
-	AI_Output(self,other,"DIA_Ulthar_SchreineGeheiltNoPAL_05_01");	//Ты опять можешь приносить дары Инносу без каких либо оговорок или ограничений.
+	AI_Output(self,other,"DIA_Ulthar_SchreineGeheiltNoPAL_05_01");	//Ты опять можешь приносить дары Инносу без каких-либо оговорок или ограничений.
 	AI_StopProcessInfos(self);
 };
 

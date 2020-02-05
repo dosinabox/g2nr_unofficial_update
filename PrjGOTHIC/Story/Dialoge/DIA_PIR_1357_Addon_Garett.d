@@ -57,6 +57,18 @@ func void DIA_Addon_Garett_PICKPOCKET_BACK()
 };
 
 
+func void B_GarettTradeIntro()
+{
+	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_01");	//Мое имя Гаретт. Если тебе что-нибудь понадобится, спроси у меня.
+	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_02");	//Я могу достать практически что угодно. Вино, оружие - все, что может тебе понадобиться.
+	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_03");	//Кроме самогона. Если тебе нужен самогон, иди к Сэмюэлю.
+	if(!Npc_KnowsInfo(other,DIA_Addon_Skip_News))
+	{
+		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
+		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
+	};
+};
+
 instance DIA_Addon_Garett_Anheuern(C_Info)
 {
 	npc = PIR_1357_Addon_Garett;
@@ -83,14 +95,7 @@ func void DIA_Addon_Garett_Anheuern_Info()
 	AI_Output(self,other,"DIA_Addon_Garett_Anheuern_09_03");	//Нет, я должен оставаться здесь и охранять наши запасы.
 	if(!Npc_KnowsInfo(other,DIA_Addon_Garett_Hello))
 	{
-		AI_Output(self,other,"DIA_Addon_Garett_Hello_09_01");	//Мое имя Гаретт. Если тебе что-нибудь понадобится, спроси у меня.
-		AI_Output(self,other,"DIA_Addon_Garett_Hello_09_02");	//Я могу достать практически что угодно. Вино, оружие - все, что может тебе понадобиться.
-		AI_Output(self,other,"DIA_Addon_Garett_Hello_09_03");	//Кроме самогона. Если тебе нужен самогон, иди к Сэмюэлю.
-		if(!Npc_KnowsInfo(other,DIA_Addon_Skip_News))
-		{
-			Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-			B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
-		};
+		B_GarettTradeIntro();
 	};
 };
 
@@ -116,14 +121,7 @@ func int DIA_Addon_Garett_Hello_Condition()
 func void DIA_Addon_Garett_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_00");	//Так-так. Новое лицо. Надеюсь, ты не один из этих грязных бандитов?
-	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_01");	//Мое имя Гаретт. Если тебе что-нибудь понадобится, спроси у меня.
-	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_02");	//Я могу достать практически что угодно. Вино, оружие - все, что может тебе понадобиться.
-	AI_Output(self,other,"DIA_Addon_Garett_Hello_09_03");	//Кроме самогона. Если тебе нужен самогон, иди к Сэмюэлю.
-	if(!Npc_KnowsInfo(other,DIA_Addon_Skip_News))
-	{
-		Log_CreateTopic(Topic_Addon_PIR_Trader,LOG_NOTE);
-		B_LogEntry(Topic_Addon_PIR_Trader,Log_Text_Addon_GarettTrade);
-	};
+	B_GarettTradeIntro();
 };
 
 
@@ -399,7 +397,6 @@ instance DIA_Addon_Garett_Trade(C_Info)
 	condition = DIA_Addon_Garett_Trade_Condition;
 	information = DIA_Addon_Garett_Trade_Info;
 	permanent = TRUE;
-//	description = DIALOG_TRADE;
 	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
@@ -415,20 +412,6 @@ func int DIA_Addon_Garett_Trade_Condition()
 
 func void DIA_Addon_Garett_Trade_Info()
 {
-	/*var int Garett_Random;
-	Garett_Random = Hlp_Random(3);
-	if(Garett_Random == 0)
-	{
-		B_Say(other,self,"$TRADE_1");
-	}
-	else if(Garett_Random == 1)
-	{
-		B_Say(other,self,"$TRADE_2");
-	}
-	else
-	{
-		B_Say(other,self,"$TRADE_3");
-	};*/
 	AI_Output(other,self,"DIA_Orlan_TRADE_15_00");	//Покажи мне свои товары.
 	B_GiveTradeInv(self);
 	if(TradersHaveLimitedAmmo == TRUE)
@@ -486,7 +469,7 @@ func void DIA_Addon_Garett_ArmorM_Buy()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Matteo_LEATHER_09_02");	//Эти доспехи стоят недешево - но они, определенно, стоят своих денег. Так что возвращайся, когда у тебя будет достаточно золота
+		AI_Output(self,other,"DIA_Matteo_LEATHER_09_02");	//Эти доспехи стоят недешево - но они, определенно, стоят своих денег. Так что возвращайся, когда у тебя будет достаточно золота.
 	};
 	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
 };
@@ -494,5 +477,31 @@ func void DIA_Addon_Garett_ArmorM_Buy()
 func void DIA_Addon_Garett_ArmorM_Back()
 {
 	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
+};
+
+instance DIA_Addon_Garett_StonePlate(C_Info)
+{
+	npc = PIR_1357_Addon_Garett;
+	nr = 9;
+	condition = DIA_Addon_Garett_StonePlate_Condition;
+	information = DIA_Addon_Garett_StonePlate_Info;
+	permanent = FALSE;
+	description = "У меня с собой есть каменная табличка. Сколько ты готов дать за это?";
+};
+
+
+func int DIA_Addon_Garett_StonePlate_Condition()
+{
+	/*if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (MIS_Addon_Morgan_SeekTraitor == LOG_SUCCESS) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	{
+		return TRUE;
+	};*/
+	return FALSE;
+};
+
+func void DIA_Addon_Garett_StonePlate_Info()
+{
+	AI_Output(other,self,"DIA_Addon_Garett_StonePlate_15_00_add");	//У меня с собой есть каменная табличка. Сколько ты готов дать за это?
+	//AI_Output(self,other,"DIA_Addon_Garett_StonePlate_09_01_add");	//
 };
 

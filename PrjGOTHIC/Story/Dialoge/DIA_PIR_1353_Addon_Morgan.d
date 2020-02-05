@@ -564,7 +564,7 @@ func void DIA_Addon_Morgan_Teach_Back()
 		}
 		else if(Morgan_Labercount == 2)
 		{
-			AI_Output(self,other,"DIA_Addon_Morgan_CommentFightSkill_07_02");	//Ха-ха. Ну, теперь ты хотя бы знаешь, с какой стороны браться за меч.
+			AI_Output(self,other,"DIA_Addon_Morgan_CommentFightSkill_07_02");	//Ха-ха-ха-ха! Ну, теперь ты хотя бы знаешь, с какой стороны браться за меч.
 			Morgan_Labercount = 0;
 		};
 	}

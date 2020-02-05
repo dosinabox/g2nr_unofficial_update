@@ -727,7 +727,7 @@ func int DIA_Canthar_MinenAnteil_Condition()
 func void DIA_Canthar_MinenAnteil_Info()
 {
 	AI_Output(other,self,"DIA_Canthar_Minenanteil_15_00");	//Ты продаешь поддельные акции!
-	AI_Output(self,other,"DIA_Canthar_Minenanteil_09_01");	//Да? И что?! Если не я, так другой.
+	AI_Output(self,other,"DIA_Canthar_Minenanteil_09_01");	//Да, и что? Если не я, так другой.
 	B_GivePlayerXP(XP_Ambient);
 };
 

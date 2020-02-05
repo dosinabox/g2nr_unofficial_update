@@ -235,7 +235,7 @@ instance DIA_Bilgot_BEIBRUECKEANGEKOMMEN(C_Info)
 	information = DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Info;
 	important = TRUE;
 	permanent = FALSE;
-	description = "Хорошо, пришли. Дальше иди один. Но будь осторожен!";
+//	description = "Хорошо, пришли. Дальше иди один. Но будь осторожен!";
 };
 
 

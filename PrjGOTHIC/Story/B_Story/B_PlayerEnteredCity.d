@@ -5,8 +5,11 @@ func void B_PlayerEnteredCity()
 	{
 		if(!Npc_IsDead(Canthar))
 		{
-			Wld_SendTrigger("CANTHAR_CART_01");
-			Wld_SendTrigger("CANTHAR_CART_02");
+			if(C_WorldIsFixed(NEWWORLD_ZEN))
+			{
+				Wld_SendTrigger("CANTHAR_CART_01");
+				Wld_SendTrigger("CANTHAR_CART_02");
+			};
 			Npc_ExchangeRoutine(Canthar,"START");
 		};
 		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
