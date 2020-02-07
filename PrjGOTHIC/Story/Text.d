@@ -218,7 +218,7 @@ const string TXT_SPELLS[100] =
 	"Телепорт к проходу Хориниса",
 	"Телепорт к проходу Долины Рудников",
 	"Телепорт в замок",
-	"Телепорт к старой демонической башне",
+	"Телепорт в старую демоническую башню",
 	"Телепорт к таверне",
 	"Телепорт к Кругу Солнца",
 	"Свет",
@@ -320,7 +320,7 @@ const string NAME_SPL_TeleportXardas = "Телепорт к Ксардасу";
 const string NAME_SPL_TeleportPassNW = "Телепорт к проходу Хориниса";
 const string NAME_SPL_TeleportPassOW = "Телепорт к проходу Долины Рудников";
 const string NAME_SPL_TeleportOC = "Телепорт в замок";
-const string NAME_SPL_TeleportOWDemonTower = "Телепорт к старой демонической башне";
+const string NAME_SPL_TeleportOWDemonTower = "Телепорт в старую демоническую башню";
 const string NAME_SPL_TeleportTaverne = "Телепорт к таверне";
 const string NAME_SPL_TeleportRitual = "Телепорт к Кругу Солнца";
 const string NAME_SPL_LIGHT = "Свет";
@@ -763,7 +763,7 @@ const string PRINT_IrdorathBookHiddenKey = "В переплете этой книги спрятан ключ!
 const string PRINT_FishLetter = "В этой рыбе спрятана записка.";
 const string Print_InnoseyeGiven = "Глаз Инноса отдан";
 const string Print_InnosEyeGet = "Получен Глаз Инноса";
-const string PRINT_GotFourItems = "Получено 4 предмета";
+//const string PRINT_GotFourItems = "Получено 4 предмета";
 const string PRINT_OrcEliteRingEquip = "Вы чувствуете слабость.";
 const string PRINT_SCIsObsessed = "Вы чувствуете удушье!";
 const string PRINT_ClearSCObsession = "Вы чувствуете себя освобожденным!";
@@ -787,18 +787,18 @@ const string PRINT_Smith_2H_Special_04 = " (5 кусков руды, 5 ед. драконьей крови
 const string PRINT_Smith_Streitaxt1 = " (1 кусок руды, 3 зуба, 1 доп. заготовка)";
 const string NAME_MageScroll = "Свиток";
 //const string PRINT_FoundRing = "Найдено кольцо";
-const string PRINT_FoundRing = "Найдено кольцо непобедимости";
-const string PRINT_FoundAmulett = "Найден амулет";
-const string PRINT_FoundScroll = "Найден свиток с заклинанием";
-const string PRINT_FoundPotion = "Найдено зелье";
-const string PRINT_FoundMap = "Найдена карта";
+const string PRINT_FoundRing = "Найдено кольцо неуязвимости";
+//const string PRINT_FoundAmulett = "Найден амулет";
+//const string PRINT_FoundScroll = "Найден свиток с заклинанием";
+//const string PRINT_FoundPotion = "Найдено зелье";
+//const string PRINT_FoundMap = "Найдена карта";
 const string PRINT_FoundGold10 = "Найдено 10 золотых";
 const string PRINT_FoundGold25 = "Найдено 25 золотых";
 const string PRINT_FoundGold50 = "Найдено 50 золотых";
 const string PRINT_FoundGold100 = "Найдено 100 золотых";
-const string PRINT_FoundRuneBlank = "Найден рунный камень";
+//const string PRINT_FoundRuneBlank = "Найден рунный камень";
 const string PRINT_FoundOreNugget = "Найден кусок руды";
-const string PRINT_FoundLockpick = "Найдена отмычка";
+//const string PRINT_FoundLockpick = "Найдена отмычка";
 const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек...";
 const string PRINT_GotPlants = "Найдены травы";
 const string PRINT_NoSweeping = "На подметание этих келий у меня уйдет целая вечность!";

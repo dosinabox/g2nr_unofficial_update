@@ -24,9 +24,9 @@ func void Rtn_Start_955()
 {
 	TA_Pick_FP(8,10,12,10,"NW_FARM1_FIELD_07");
 	TA_Pick_FP(12,10,15,10,"NW_FARM1_FIELD_02");
-	TA_Pick_FP(15,10,18,10,"NW_FARM1_FIELD_07");
-	TA_Pick_FP(18,10,22,10,"NW_FARM1_FIELD_02");
-	TA_Sit_Campfire(22,10,8,10,"NW_FARM1_MILL_05");
+	TA_Pick_FP(15,10,16,10,"NW_FARM1_FIELD_07");
+	TA_Pick_FP(16,10,18,10,"NW_FARM1_FIELD_02");
+	TA_Sit_Campfire(18,10,8,10,"NW_FARM1_MILL_05");
 };
 
 func void Rtn_BugsThere_955()

@@ -129,7 +129,7 @@ instance DIA_Bullco_WASNUN(C_Info)
 
 func int DIA_Bullco_WASNUN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Bullco_SYLVIODEAD) && Npc_IsDead(DJG_Sylvio))
+	if(Npc_KnowsInfo(other,DIA_Bullco_SYLVIODEAD))
 	{
 		return TRUE;
 	};

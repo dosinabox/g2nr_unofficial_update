@@ -2,7 +2,8 @@
 instance VLK_448_Joe(Npc_Default)
 {
 	name[0] = "Äæî";
-	guild = GIL_OUT;
+//	guild = GIL_OUT;
+	guild = GIL_VLK;
 	id = 448;
 	voice = 10;
 	flags = 0;
