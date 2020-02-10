@@ -594,6 +594,7 @@ func int DIA_Igaraz_PICKPOCKET_Condition()
 	{
 		return C_StealItem(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis));
 	};
+	return FALSE;
 };
 
 func void DIA_Igaraz_PICKPOCKET_Info()

@@ -364,6 +364,7 @@ func int DIA_Cornelius_PICKPOCKET_Condition()
 	{
 		return C_StealItem(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis));
 	};
+	return FALSE;
 };
 
 func void DIA_Cornelius_PICKPOCKET_Info()

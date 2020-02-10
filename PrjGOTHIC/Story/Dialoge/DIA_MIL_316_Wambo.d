@@ -39,6 +39,7 @@ func int DIA_Wambo_PICKPOCKET_Condition()
 	{
 		return C_StealItem(50,Hlp_GetInstanceID(ItKe_City_Tower_04));
 	};
+	return FALSE;
 };
 
 func void DIA_Wambo_PICKPOCKET_Info()

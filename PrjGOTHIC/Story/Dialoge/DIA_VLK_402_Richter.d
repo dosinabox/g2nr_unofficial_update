@@ -341,6 +341,7 @@ func int DIA_Richter_PICKPOCKET_Condition()
 	{
 		return C_StealItem(30,Hlp_GetInstanceID(ItKe_Richter));
 	};
+	return FALSE;
 };
 
 func void DIA_Richter_PICKPOCKET_Info()

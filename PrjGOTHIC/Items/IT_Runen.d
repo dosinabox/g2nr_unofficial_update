@@ -44,11 +44,11 @@ const int Value_Ru_TeleportMonastery = 500;
 const int Value_Ru_TeleportFarm = 500;
 const int Value_Ru_TeleportXardas = 500;
 const int Value_Ru_TeleportPassNW = 500;
-const int Value_Ru_TeleportPassOW = 500;
+const int Value_Ru_TeleportPassOW = 250;
 const int Value_Ru_TeleportOC = 500;
 const int Value_Ru_TeleportOWDemonTower = 500;
 const int Value_Ru_TeleportTaverne = 500;
-const int Value_Ru_TeleportRitual = 500;
+const int Value_Ru_TeleportRitual = 750;
 
 instance ItRu_PalLight(C_Item)
 {

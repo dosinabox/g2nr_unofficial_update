@@ -1528,7 +1528,7 @@ instance StatsBook(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 0;
-	visual = "ItWr_Book_02_02.3ds";
+	visual = "ItWr_Book_Stats.3ds";
 	material = MAT_LEATHER;
 	scemeName = "MAP";
 	description = name;
@@ -1630,7 +1630,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 7 февраля 2020г.";
+	text[1] = "Скомпилировано 10 февраля 2020г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";

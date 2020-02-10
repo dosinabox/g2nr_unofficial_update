@@ -44,6 +44,7 @@ func int DIA_Franco_PICKPOCKET_Condition()
 	{
 		return C_StealItem(60,Hlp_GetInstanceID(ItAm_Addon_Franco));
 	};
+	return FALSE;
 };
 
 func void DIA_Franco_PICKPOCKET_Info()

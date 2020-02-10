@@ -249,6 +249,7 @@ func int DIA_Edda_PICKPOCKET_Condition()
 	{
 		return C_StealItem(20,Hlp_GetInstanceID(ItMi_LostInnosStatue_Daron));
 	};
+	return FALSE;
 };
 
 func void DIA_Edda_PICKPOCKET_Info()

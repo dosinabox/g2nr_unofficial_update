@@ -1255,6 +1255,10 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_03");	//Они выполняли странный обряд на пьедестале в форме полумесяца в здешнем лесу.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_04");	//Да пребудет с нами Иннос! Они осквернили наш Круг Солнца.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_05");	//Даже в своих худших кошмарах не мог я представить, что они обладают такой силой.
+	if(!Npc_IsDead(Gorax))
+	{
+		CreateInvItems(Gorax,ItRu_TeleportRitual,1);
+	};
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 	MIS_NovizenChase = LOG_SUCCESS;
 	B_GivePlayerXP(XP_AmbientKap3);
@@ -1508,7 +1512,6 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,1);
-		CreateInvItems(Gorax,ItRu_TeleportRitual,1);
 	};
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_Running);

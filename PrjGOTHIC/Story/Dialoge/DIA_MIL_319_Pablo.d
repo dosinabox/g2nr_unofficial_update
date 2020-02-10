@@ -39,6 +39,7 @@ func int DIA_Pablo_PICKPOCKET_Condition()
 	{
 		return C_StealItem(20,Hlp_GetInstanceID(ItKe_City_Tower_01));
 	};
+	return FALSE;
 };
 
 func void DIA_Pablo_PICKPOCKET_Info()

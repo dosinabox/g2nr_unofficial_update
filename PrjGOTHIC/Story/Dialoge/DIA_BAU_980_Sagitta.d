@@ -181,6 +181,7 @@ func int DIA_Sagitta_TeachAlchemyRequest_Condition()
 
 
 var int DIA_Sagitta_TeachAlchemyRequest_OneTime;
+var int DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant;
 
 func void DIA_Sagitta_TeachAlchemyRequest_Info()
 {
@@ -199,14 +200,22 @@ func void DIA_Sagitta_TeachAlchemyRequest_Info()
 	};
 	Info_ClearChoices(DIA_Sagitta_TeachAlchemyRequest);
 	Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"»звини, но мне это не интересно.",DIA_Sagitta_TeachAlchemyRequest_nein);
-	Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"√де можно найти этот ингредиент?",DIA_Sagitta_TeachAlchemyRequest_wo);
 	Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"„то это за ингредиент?",DIA_Sagitta_TeachAlchemyRequest_was);
+	if(DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant == TRUE)
+	{
+		Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"√де можно найти этот ингредиент?",DIA_Sagitta_TeachAlchemyRequest_wo);
+		Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"ѕосмотрим, может, мне удастс€ найти ее где-нибудь.",DIA_Sagitta_TeachAlchemyRequest_wo_ja);
+	};
 };
 
 func void DIA_Sagitta_TeachAlchemyRequest_was()
 {
 	AI_Output(other,self,"DIA_Sagitta_TeachAlchemyRequest_was_15_00");	//„то это за ингредиент?
 	AI_Output(self,other,"DIA_Sagitta_TeachAlchemyRequest_was_17_01");	//Ёто очень редкое растение - трава, называема€ солнечное алоэ. “ы узнаешь его по сильному миндальному аромату.
+	if(DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant == FALSE)
+	{
+		Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"√де можно найти этот ингредиент?",DIA_Sagitta_TeachAlchemyRequest_wo);
+	};
 };
 
 func void DIA_Sagitta_TeachAlchemyRequest_wo()
@@ -215,7 +224,11 @@ func void DIA_Sagitta_TeachAlchemyRequest_wo()
 	AI_Output(self,other,"DIA_Sagitta_TeachAlchemyRequest_wo_17_01");	//“рава, необходима€ мне, произрастает только в местах, где есть все питательные вещества, необходимые дл€ ее роста.
 	AI_Output(self,other,"DIA_Sagitta_TeachAlchemyRequest_wo_17_02");	//ќбычно она встречаетс€ на экскрементах черного тролл€.
 	AI_Output(self,other,"DIA_Sagitta_TeachAlchemyRequest_wo_17_03");	//¬от почему мне так сложно достать эту траву, понимаешь?
-	Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"ѕосмотрим, может, мне удастс€ найти ее где-нибудь.",DIA_Sagitta_TeachAlchemyRequest_wo_ja);
+	if(DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant == FALSE)
+	{
+		Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"ѕосмотрим, может, мне удастс€ найти ее где-нибудь.",DIA_Sagitta_TeachAlchemyRequest_wo_ja);
+		DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant = TRUE;
+	};
 };
 
 func void DIA_Sagitta_TeachAlchemyRequest_wo_ja()
@@ -258,9 +271,9 @@ func int DIA_Sagitta_Sagitta_Herb_Condition()
 func void DIA_Sagitta_Sagitta_Herb_Info()
 {
 	AI_Output(other,self,"DIA_Sagitta_Sagitta_Herb_15_00");	//я нашел солнечное алоэ.
-	AI_Output(self,other,"DIA_Sagitta_Sagitta_Herb_17_01");	//—пасибо. “еперь ты можешь спрашивать мен€ обо всем, что хочешь узнать о приготовлении зелий.
 	B_GiveInvItems(other,self,ItPl_Sagitta_Herb_MIS,1);
 	Npc_RemoveInvItem(self,ItPl_Sagitta_Herb_MIS);
+	AI_Output(self,other,"DIA_Sagitta_Sagitta_Herb_17_01");	//—пасибо. “еперь ты можешь спрашивать мен€ обо всем, что хочешь узнать о приготовлении зелий.
 	Sagitta_TeachAlchemy = TRUE;
 	MIS_Sagitta_Herb = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Sagitta_Sonnenaloe);

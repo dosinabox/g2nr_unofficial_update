@@ -178,6 +178,7 @@ func int DIA_Valentino_PICKPOCKET_Condition()
 	{
 		return C_StealItem(30,Hlp_GetInstanceID(ItKe_Valentino));
 	};
+	return FALSE;
 };
 
 func void DIA_Valentino_PICKPOCKET_Info()
