@@ -173,9 +173,16 @@ instance DIA_Sagitta_TeachAlchemyRequest(C_Info)
 func int DIA_Sagitta_TeachAlchemyRequest_Condition()
 {
 //	if(Npc_KnowsInfo(other,DIA_Sagitta_HALLO) && (MIS_Sagitta_Herb == FALSE))
-	if(Npc_KnowsInfo(other,DIA_Sagitta_Pre_Trade) && (MIS_Sagitta_Herb == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Sagitta_Pre_Trade))
 	{
-		return TRUE;
+		if(MIS_Sagitta_Herb == FALSE)
+		{
+			return TRUE;
+		}
+		else if((MIS_Sagitta_Herb == LOG_Running) && Npc_HasItems(self,ItPl_Sagitta_Herb_MIS) && (Sagitta_TeachAlchemy == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -186,7 +193,17 @@ var int DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant;
 func void DIA_Sagitta_TeachAlchemyRequest_Info()
 {
 	AI_Output(other,self,"DIA_Sagitta_TeachAlchemyRequest_15_00");	//“ы можешь научить мен€ готовить зель€?
-	if(DIA_Sagitta_TeachAlchemyRequest_OneTime == FALSE)
+	if(Npc_HasItems(self,ItPl_Sagitta_Herb_MIS))
+	{
+		Npc_RemoveInvItem(self,ItPl_Sagitta_Herb_MIS);
+		AI_Output(self,other,"DIA_Sagitta_Sagitta_Herb_17_01_add");	//“ы можешь спрашивать мен€ обо всем, что хочешь узнать о приготовлении зелий.
+		Sagitta_TeachAlchemy = TRUE;
+		MIS_Sagitta_Herb = LOG_SUCCESS;
+		B_CheckLog();
+		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
+		B_LogEntry(Topic_SoldierTeacher,"÷елительница —агитта за фермой —екоба может рассказать мне о способах приготовлени€ различных зелий.");
+	}
+	else if(DIA_Sagitta_TeachAlchemyRequest_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Sagitta_TeachAlchemyRequest_17_01");	// ак интересно. ћен€ нечасто о таком прос€т.
 		AI_Output(self,other,"DIA_Sagitta_TeachAlchemyRequest_17_02");	//“ак ты хочешь быть моим учеником? “огда тебе сначала нужно доказать, что твои намерени€ серьезны.
@@ -198,13 +215,16 @@ func void DIA_Sagitta_TeachAlchemyRequest_Info()
 	{
 		AI_Output(self,other,"DIA_Sagitta_TeachAlchemyRequest_17_05");	//я уже сказала тебе: да, после того, как ты принесешь мне этот редкий ингредиент, что € просила.
 	};
-	Info_ClearChoices(DIA_Sagitta_TeachAlchemyRequest);
-	Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"»звини, но мне это не интересно.",DIA_Sagitta_TeachAlchemyRequest_nein);
-	Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"„то это за ингредиент?",DIA_Sagitta_TeachAlchemyRequest_was);
-	if(DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant == TRUE)
+	if(Sagitta_TeachAlchemy == FALSE)
 	{
-		Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"√де можно найти этот ингредиент?",DIA_Sagitta_TeachAlchemyRequest_wo);
-		Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"ѕосмотрим, может, мне удастс€ найти ее где-нибудь.",DIA_Sagitta_TeachAlchemyRequest_wo_ja);
+		Info_ClearChoices(DIA_Sagitta_TeachAlchemyRequest);
+		Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"»звини, но мне это не интересно.",DIA_Sagitta_TeachAlchemyRequest_nein);
+		Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"„то это за ингредиент?",DIA_Sagitta_TeachAlchemyRequest_was);
+		if(DIA_Sagitta_TeachAlchemyRequest_ToldAboutPlant == TRUE)
+		{
+			Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"√де можно найти этот ингредиент?",DIA_Sagitta_TeachAlchemyRequest_wo);
+			Info_AddChoice(DIA_Sagitta_TeachAlchemyRequest,"ѕосмотрим, может, мне удастс€ найти ее где-нибудь.",DIA_Sagitta_TeachAlchemyRequest_wo_ja);
+		};
 	};
 };
 

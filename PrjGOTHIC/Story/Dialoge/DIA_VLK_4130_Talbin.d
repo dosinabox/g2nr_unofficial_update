@@ -602,6 +602,10 @@ func void DIA_Talbin_WOHIN_ok()
 {
 	AI_Output(other,self,"DIA_Talbin_WOHIN_ok_15_00");	//Хорошо.
 	AI_Output(self,other,"DIA_Talbin_WOHIN_ok_07_01");	//Спасибо. Я просто пойду за тобой.
+	if(self.attribute[ATR_HITPOINTS] == 1)
+	{
+		self.attribute[ATR_HITPOINTS] += 1;
+	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"IntoPass");
 	Talbin_FollowsThroughPass = LOG_Running;

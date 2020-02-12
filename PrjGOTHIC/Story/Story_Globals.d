@@ -1279,3 +1279,4 @@ var int MIS_Talbin_Runs;
 var int PedroGotLostInnosStatue;
 var int Rhademes_fertig;
 var int SC_KnowsRhademesTrapDetails;
+var int Sergio_Follow_End;

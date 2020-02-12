@@ -20,6 +20,13 @@ func int DIA_Ambient_NEWS_Condition()
 				return TRUE;
 			};
 		}
+		else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Randolph))
+		{
+			if(NpcObsessedByDMT_Randolph == FALSE)
+			{
+				return TRUE;
+			};
+		}
 		else
 		{
 			return TRUE;

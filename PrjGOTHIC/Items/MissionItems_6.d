@@ -24,6 +24,7 @@ func void Use_XardasNotfallBeutel()
 	CreateInvItems(hero,ItWr_XardasErmahnungFuerIdioten_MIS,1);
 	CreateInvItems(hero,ItMi_InnosEye_Discharged_Mis,1);
 	concatText = ConcatStrings("2",PRINT_ItemsErhalten);
+	concatText = ConcatStrings(concatText," (Письмо и Глаз Инноса)");
 	Print(concatText);
 };
 

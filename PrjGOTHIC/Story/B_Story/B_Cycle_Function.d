@@ -1,23 +1,32 @@
 
 func void b_cycle_function()
 {
-	if((CurrentLevel == NEWWORLD_ZEN) && (UNDEADSWORD == FALSE) && Npc_HasItems(hero,ItMw_Drachenschneide))
+	if(CurrentLevel == NEWWORLD_ZEN)
 	{
-		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		if(UNDEADSWORD == FALSE)
 		{
-			Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
+			if(Npc_HasItems(hero,ItMw_Drachenschneide))
+			{
+				if(C_WorldIsFixed(NEWWORLD_ZEN))
+				{
+					Wld_SendTrigger("EVT_TROLL_GRAVE_TRIGGERLIST_01");
+				};
+				UNDEADSWORD = TRUE;
+			};
 		};
-		UNDEADSWORD = TRUE;
-	};
-	if(CurrentLevel == ADDONWORLD_ZEN)
+	}
+	else if(CurrentLevel == ADDONWORLD_ZEN)
 	{
-		if((BloodwynIsHeadless == FALSE) && Npc_HasItems(hero,ItMi_Addon_Bloodwyn_Kopf))
+		if(BloodwynIsHeadless == FALSE)
 		{
-			Snd_Play("CS_IAM_ME_FL_A3");
-			Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
-			AI_UnequipArmor(BDT_1085_Addon_Bloodwyn);
-			B_StartOtherRoutine(Thorus,"TALK");
-			BloodwynIsHeadless = TRUE;
+			if(Npc_HasItems(hero,ItMi_Addon_Bloodwyn_Kopf))
+			{
+				Snd_Play("CS_IAM_ME_FL_A3");
+				Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
+				AI_UnequipArmor(BDT_1085_Addon_Bloodwyn);
+				B_StartOtherRoutine(Thorus,"TALK");
+				BloodwynIsHeadless = TRUE;
+			};
 		};
 	};
 	if(FIX_VERSION_SAVE < LEAST_SUPPORTED)

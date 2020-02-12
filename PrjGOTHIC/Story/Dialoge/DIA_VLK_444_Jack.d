@@ -416,6 +416,10 @@ func void DIA_Jack_BEMYCAPTAIN3_Info()
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN3_14_04");	//А теперь, покажи мне мой корабль и твою команду. А ты, вообще, знаешь, куда направляешься? Я имею в виду, у тебя есть морская карта?
 	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN3_15_05");	//Подожди меня в порту. А об остальном не волнуйся.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN3_14_06");	//Ну, как скажешь.
+	if(self.attribute[ATR_HITPOINTS] == 1)
+	{
+		self.attribute[ATR_HITPOINTS] += 1;
+	};
 	if(C_BodyStateContains(self,BS_SIT))
 	{
 		AI_Standup(self);

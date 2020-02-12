@@ -139,6 +139,7 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel2 = TRUE;
 	};
 };
@@ -436,6 +437,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Npc_ExchangeRoutine(Bengar,"Start");
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel3 = TRUE;
 	};
 };
@@ -723,6 +725,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			};
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel4 = TRUE;
 	};
 	if(Talbin_FollowsThroughPass == LOG_Running)
@@ -879,6 +882,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			B_StartOtherRoutine(Girion,"WaitForShip");
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel5 = TRUE;
 	};
 //	if(MIS_OCGateOpen == TRUE)
