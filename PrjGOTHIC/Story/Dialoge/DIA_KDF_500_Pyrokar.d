@@ -643,10 +643,14 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 {
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Nothing_15_00");	//Никаким.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Nothing_11_01");	//(изумленно) Да будет так. Новый маг отказывается от первого шага.
-	Dyrian.guild = GIL_NONE;
-	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-	AI_Teleport(Dyrian,"TAVERNE");
-	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	if(!Npc_IsDead(Dyrian))
+	{
+		Dyrian.guild = GIL_NONE;
+		Npc_SetTrueGuild(Dyrian,GIL_NONE);
+		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		AI_Teleport(Dyrian,"TAVERNE");
+		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	};
 	if(MIS_HelpDyrian == LOG_Running)
 	{
 		MIS_HelpDyrian = LOG_FAILED;

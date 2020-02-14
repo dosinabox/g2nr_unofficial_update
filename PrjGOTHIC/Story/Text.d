@@ -823,9 +823,10 @@ const string TEXT_Innoseye_Setting_Repaired = "ќправа этого амулета в целости и 
 const string TEXT_Innoseye_Gem = "ƒрагоценный камень тускл и безжизнен.";
 var string TEXT_LousHammer_Setting;
 var string TEXT_Zeitspalt_Setting;
+var string TEXT_MegaDrink_Setting_Desc;
 var string TEXT_MegaDrink_Setting;
-var string TEXT_MegaDrink_Setting2;
-var string TEXT_DragonEggDrinkNeoras_Setting;
+const string TEXT_MegaDrink_Setting_Desc_Print = "ѕовышение преобладающего параметра.";
+const string TEXT_MegaDrink_Setting_Print = "ѕрибавка к силе или ловкости:";
 const string Pickpocket_20 = "(нет ничего проще, чем украсть его кошелек)";
 const string Pickpocket_40 = "(украсть его кошелек будет довольно просто)";
 const string Pickpocket_60 = "(украсть его кошелек будет довольно рискованно)";

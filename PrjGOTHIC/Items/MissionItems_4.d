@@ -237,9 +237,7 @@ instance ItPo_DragonEggDrinkNeoras_MIS(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "«елье из драконьего €йца";
-//	text[0] = PRINT_UnknownEffect;
-	text[1] = TEXT_DragonEggDrinkNeoras_Setting;
-	count[1] = COUNT_DragonEggDrinkNeoras_Setting;
+	text[1] = PRINT_UnknownEffect;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -250,8 +248,6 @@ func void Use_DragonEggDrinkNeoras()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Elixier);
 	B_RaiseAttribute(self,ATR_STRENGTH,3);
 	Snd_Play("DEM_Warn");
-	TEXT_DragonEggDrinkNeoras_Setting = NAME_Bonus_Str;
-	COUNT_DragonEggDrinkNeoras_Setting = 3;
 	Neoras_SCUsedDragonEggDrink = TRUE;
 };
 

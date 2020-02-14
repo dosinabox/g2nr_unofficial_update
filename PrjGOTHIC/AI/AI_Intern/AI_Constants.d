@@ -520,6 +520,7 @@ const int Face_N_ZombieMud = 162;
 const int FaceBabeExtra01 = 163;
 const int FaceBabeExtra02 = 164;
 const int AIV_GetBonusFood = 89;
+const int AIV_CommentedPlayerCrime = 90;
 const int DRINK_Water = 0;
 const int DRINK_Wine = 1;
 const int DRINK_Beer = 2;

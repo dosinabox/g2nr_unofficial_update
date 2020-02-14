@@ -571,6 +571,8 @@ func void DIA_Garond_Marcos_Info()
 	Marcos_Guard2.flags = 0;
 	Marcos_Guard1.aivar[AIV_ToughGuy] = TRUE;
 	Marcos_Guard2.aivar[AIV_ToughGuy] = TRUE;
+	Marcos_Guard1.aivar[AIV_CommentedPlayerCrime] = FALSE;
+	Marcos_Guard2.aivar[AIV_CommentedPlayerCrime] = FALSE;
 	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
 	AI_Teleport(Marcos_Guard2,"OW_STAND_GUARDS");
 	B_StartOtherRoutine(Marcos_Guard1,"MARCOS");

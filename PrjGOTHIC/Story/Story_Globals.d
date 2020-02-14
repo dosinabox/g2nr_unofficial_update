@@ -1142,7 +1142,6 @@ var int HakonMinenAnteil;
 var int RosiMinenAnteil;
 var int CantharMinenAnteil;
 var int GarwigThiefOneTime;
-var int COUNT_DragonEggDrinkNeoras_Setting;
 var int COUNT_MegaDrink_Setting;
 //var int COUNT_SchnellerHering_Setting;
 var int Zeitspalt_Used;
