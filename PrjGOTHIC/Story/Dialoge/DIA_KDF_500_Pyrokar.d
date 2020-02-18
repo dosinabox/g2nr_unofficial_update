@@ -625,15 +625,15 @@ func void DIA_Pyrokar_Wunsch_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_11_02");	//Итак, каким же будет твой первый шаг в качестве мага?
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 	Info_AddChoice(DIA_Pyrokar_Wunsch,"Никаким.",DIA_Pyrokar_Wunsch_Nothing);
-	if(MIS_HelpBabo == LOG_Running)
+	if((MIS_HelpBabo == LOG_Running) && !Npc_IsDead(Babo))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Бабо возглавить монастырский сад.",DIA_Pyrokar_Wunsch_Babo);
 	};
-	if(MIS_HelpOpolos == LOG_Running)
+	if((MIS_HelpOpolos == LOG_Running) && !Npc_IsDead(Opolos))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Ополосу получить доступ в библиотеку.",DIA_Pyrokar_Wunsch_Opolos);
 	};
-	if((MIS_HelpDyrian == LOG_Running) && (Kapitel == 1))
+	if((MIS_HelpDyrian == LOG_Running) && (Kapitel == 1) && !Npc_IsDead(Dyrian))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Дуриану остаться в монастыре.",DIA_Pyrokar_Wunsch_Dyrian);
 	};
@@ -1409,7 +1409,10 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_09");	//На самом деле, я собираюсь заставить этого шакала объяснить, где он прятал эту книгу столько долгих лет. На этот раз он, определенно, зашел слишком далеко.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_10");	//Увидимся в Круге Солнца.
 	AI_StopProcessInfos(self);
-	AI_UseMob(self,"THRONE",-1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"THRONE",-1);
+	};
 	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокар наконец согласился отправиться к Кругу Солнца.");
 	Pyrokar_GoesToRitualInnosEye = TRUE;

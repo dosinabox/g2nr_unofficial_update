@@ -905,6 +905,10 @@ func void DIA_Xardas_RITUALREQUEST_Info()
 	{
 		AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_05");	//Не стоит заставлять Ватраса ждать. Я отправляюсь немедленно. А ты должен выполнить свою задачу, а затем присоединиться ко мне опять.
 		AI_StopProcessInfos(self);
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_UseMob(self,"THRONE",-1);
+		};
 		B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
 		B_GivePlayerXP(XP_AmbientKap3 * 2);
 		Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");

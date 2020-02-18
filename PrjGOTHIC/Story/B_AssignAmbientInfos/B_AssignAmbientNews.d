@@ -106,7 +106,7 @@ func void DIA_Ambient_NEWS_Info()
 			B_Say(self,other,"$ABS_COMMANDER");
 			B_Say(self,other,"$ABS_GOOD");
 		};
-		self.aivar[AIV_CommentedPlayerCrime] = FALSE;	
+		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
 	};
 };
 

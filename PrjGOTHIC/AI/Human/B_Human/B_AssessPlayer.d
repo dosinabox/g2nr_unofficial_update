@@ -86,25 +86,29 @@ func void B_AssessPlayer()
 		Player_GetOutOfMyBedComment = FALSE;
 	};
 	B_AssignDementorTalk(self);
-	if((Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG) && Npc_CheckInfo(self,1))
+	if(Npc_CheckInfo(self,1))
 	{
-		if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garwig))
+		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		if(Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG)
 		{
-			self.aivar[AIV_NpcStartedTalk] = TRUE;
-			B_AssessTalk();
-			return;
-		}
-		if(C_NpcIsGateGuard(self))
-		{
-			self.aivar[AIV_NpcStartedTalk] = TRUE;
-			B_AssessTalk();
-			return;
-		}
-		else if(!C_BodyStateContains(other,BS_FALL) && !C_BodyStateContains(other,BS_SWIM) && !C_BodyStateContains(other,BS_DIVE) && (B_GetPlayerCrime(self) == CRIME_NONE) && !C_RefuseTalk(self,other) && !C_PlayerHasFakeGuild(self,other))
-		{
-			self.aivar[AIV_NpcStartedTalk] = TRUE;
-			B_AssessTalk();
-			return;
+			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Garwig))
+			{
+				self.aivar[AIV_NpcStartedTalk] = TRUE;
+				B_AssessTalk();
+				return;
+			}
+			else if(C_NpcIsGateGuard(self))
+			{
+				self.aivar[AIV_NpcStartedTalk] = TRUE;
+				B_AssessTalk();
+				return;
+			}
+			else if(!C_BodyStateContains(other,BS_FALL) && !C_BodyStateContains(other,BS_SWIM) && !C_BodyStateContains(other,BS_DIVE) && (B_GetPlayerCrime(self) == CRIME_NONE) && !C_RefuseTalk(self,other) && !C_PlayerHasFakeGuild(self,other))
+			{
+				self.aivar[AIV_NpcStartedTalk] = TRUE;
+				B_AssessTalk();
+				return;
+			};
 		};
 	};
 	if(C_BodyStateContains(self,BS_WALK) && (Npc_GetDistToNpc(self,other) <= PERC_DIST_DIALOG) && !Npc_RefuseTalk(other) && !C_NpcIsGateGuard(self) && !C_PlayerHasFakeGuild(self,other))

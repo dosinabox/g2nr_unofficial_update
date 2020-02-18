@@ -88,6 +88,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_1H_Special_02,1);
 	CreateInvItems(self,ItMw_2H_Special_02,1);
 	CreateInvItems(self,ItMw_ElBastardo,1);
+	CreateInvItems(self,ItMw_ElChapo,1);
 	CreateInvItems(self,ItMw_Kriegshammer2,1);
 	CreateInvItems(self,ItMw_Meisterdegen,1);
 	CreateInvItems(self,ItMw_Kampferdegen,1);
@@ -112,6 +113,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMw_2H_Blessed_01,1);
 	CreateInvItems(self,ItMw_2H_Blessed_02,1);
 	CreateInvItems(self,ItMw_2H_Blessed_03,1);
+	CreateInvItems(self,ItMw_2H_Commander_01,1);
 	CreateInvItems(self,ItMw_2H_Hammer_01,1);
 	CreateInvItems(self,ItMw_2H_Hammer_02,1);
 	CreateInvItems(self,ItMw_BeliarWeapon_1H_01,1);
@@ -1630,7 +1632,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 14 февраля 2020г.";
+	text[1] = "Скомпилировано 18 февраля 2020г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";

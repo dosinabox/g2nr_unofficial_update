@@ -11,7 +11,7 @@ instance BDT_1079_Addon_Carlos(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FIGHTER",Face_L_Ian,BodyTex_L,ITAR_Bloodwyn_Addon);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_L_Ian,BodyTex_L,ITAR_Bloodwyn_Addon);
 	Mdl_SetModelFatness(self,0.5);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

@@ -51,5 +51,6 @@ func void DIA_PAL_269_HERO_Info()
 		AI_Output(self,other,"DIA_Ritter_HERO_04_02");	//И если орки и драконы будут ломиться в ворота, мы встретим их с поднятым забралом и будем сражаться до победы или смерти.
 		DIA_Ritter_HERO_NoPerm = TRUE;
 	};
+	AI_StopProcessInfos(self);
 };
 

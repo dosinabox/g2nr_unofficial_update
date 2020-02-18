@@ -171,7 +171,7 @@ instance DIA_Khaled_AboutSylvio(C_Info)
 
 func int DIA_Khaled_AboutSylvio_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Khaled_Woher))
+	if(Npc_KnowsInfo(other,DIA_Khaled_Woher) && (Kapitel < 4))
 	{
 		return TRUE;
 	};

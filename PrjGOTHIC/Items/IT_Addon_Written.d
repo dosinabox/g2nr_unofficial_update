@@ -596,7 +596,7 @@ func void UseAxtAnleitung()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_PrintLine(nDocID,0,"Бандитский топор");
+	Doc_PrintLine(nDocID,0,NAME_ItMw_Banditenaxt);
 	Doc_SetFont(nDocID,0,FONT_Book);
 //	Doc_PrintLine(nDocID,0,"Легкий боевой топор");
 //	Doc_PrintLine(nDocID,0,"");
