@@ -117,7 +117,8 @@ func void Goldhacken_S1()
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_GOLDHACKEN;
-		AI_ProcessInfos(her);
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);
 	};
 };
 

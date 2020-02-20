@@ -257,6 +257,12 @@ instance RAVENS_EARTHQUAKE4(C_SFX_DEF)
 	vol = 90;
 };
 
+instance MAGIC_DEEP01(C_SFX_DEF)
+{
+	file = "magic_deep01.wav";
+	vol = 30;
+};
+
 instance TELEPORTSTATIONSOUND(C_SFX_DEF)
 {
 	file = "magic_deep02.wav";
@@ -1823,26 +1829,26 @@ instance OW_CROW_A2(C_SFX_DEF)
 
 instance OW_EAGLEAMBIENT(C_SFX_DEF)
 {
-	file = "nosound.wav";
-	vol = 0;
+	file = "eagle_01.wav";
+	vol = 30;
 };
 
 instance OW_EAGLESCREAM(C_SFX_DEF)
 {
-	file = "nosound.wav";
-	vol = 0;
+	file = "eagle_02.wav";
+	vol = 30;
 };
 
 instance OW_EAGLESCREAM_A1(C_SFX_DEF)
 {
-	file = "nosound.wav";
-	vol = 0;
+	file = "eagle_03.wav";
+	vol = 30;
 };
 
 instance OW_EAGLESCREAM_A2(C_SFX_DEF)
 {
-	file = "nosound.wav";
-	vol = 0;
+	file = "eagle_04.wav";
+	vol = 30;
 };
 
 instance OW_RAVEN(C_SFX_DEF)
@@ -2123,7 +2129,7 @@ instance OW_WINDHIGH1(C_SFX_DEF)
 
 instance OW_WINDHIGH2(C_SFX_DEF)
 {
-	file = "wind_high.wav";
+	file = "wind_high2.wav";
 	vol = 70;
 };
 
@@ -3468,13 +3474,19 @@ instance DRG_ROCK_AMBIENT_A1(C_SFX_DEF)
 instance DRG_ROCK_AMBIENT_A2(C_SFX_DEF)
 {
 	file = "DRG_Ambient_03.wav";
-	vol = 0;
+	vol = 127;
 };
 
 instance DRG_ROCK_AMBIENT_A3(C_SFX_DEF)
 {
 	file = "DRG_Ambient_04.wav";
-	vol = 0;
+	vol = 127;
+};
+
+instance DRG_ROCK_AMBIENT_A4(C_SFX_DEF)
+{
+	file = "DRG_Ambient_05.wav";
+	vol = 127;
 };
 
 instance DRG_ROCK_ATTACK(C_SFX_DEF)
@@ -3486,6 +3498,12 @@ instance DRG_ROCK_ATTACK(C_SFX_DEF)
 instance DRG_ROCK_ATTACK_A1(C_SFX_DEF)
 {
 	file = "DRG_Attack_02.wav";
+	vol = 127;
+};
+
+instance DRG_ROCK_ATTACK_A2(C_SFX_DEF)
+{
+	file = "DRG_Attack_03.wav";
 	vol = 127;
 };
 
@@ -8219,7 +8237,7 @@ instance BACK_A1(C_SFX_DEF)
 
 instance DRAWSOUND_ME(C_SFX_DEF)
 {
-	file = "Sword_Draw_01.wav";
+	file = "Drawsound_Wo.wav";
 	vol = 25;
 };
 
@@ -8426,6 +8444,12 @@ instance CS_IAI_ME_ME_A6(C_SFX_DEF)
 instance CS_IAI_ME_ME_A7(C_SFX_DEF)
 {
 	file = "CS_IAI_ME_ME_08.wav";
+	vol = 60;
+};
+
+instance CS_IAI_ME_ME_A8(C_SFX_DEF)
+{
+	file = "CS_IAI_ME_ME_09.wav";
 	vol = 60;
 };
 
@@ -9093,6 +9117,48 @@ instance CS_IHI_ST_CL(C_SFX_DEF)
 instance CS_IHI_ST_LE(C_SFX_DEF)
 {
 	file = "CS_IAL_UD_WO_01.wav";
+	vol = 60;
+};
+
+instance CS_IHI_LE_WO(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance CS_IHI_LE_LE(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance CS_IHI_LE_ME(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance CS_IHI_LE_GL(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance CS_IHI_LE_ST(C_SFX_DEF)
+{
+	file = "CS_IHL_GL_UD.wav";
+	vol = 60;
+};
+
+instance SCROLLROLL(C_SFX_DEF)
+{
+	file = "scrollroll.wav";
+	vol = 60;
+};
+
+instance MINEAMBIENCE01(C_SFX_DEF)
+{
+	file = "mineambience01.wav";
 	vol = 60;
 };
 
@@ -10317,5 +10383,59 @@ instance SNEAK_SNOW_A2(C_SFX_DEF)
 {
 	file = "Step_Snow_03.wav";
 	vol = 15;
+};
+
+instance SWIM_WATERSURFACE(C_SFX_DEF)
+{
+	file = "SWIM_WATERSURFACE.wav";
+	vol = 60;
+};
+
+instance SWIM_WATERSURFACE_A1(C_SFX_DEF)
+{
+	file = "SWIM_WATERSURFACE_02.wav";
+	vol = 60;
+};
+
+instance SWIM_WATERSURFACE_A2(C_SFX_DEF)
+{
+	file = "SWIM_WATERSURFACE_03.wav";
+	vol = 60;
+};
+
+instance SWIM_WATERSURFACE_A3(C_SFX_DEF)
+{
+	file = "SWIM_WATERSURFACE_04.wav";
+	vol = 60;
+};
+
+instance SWIM_BACKWARDS(C_SFX_DEF)
+{
+	file = "SWIM_BACKWARDS_02.wav";
+	vol = 60;
+};
+
+instance SWIM_BACKWARDS_A1(C_SFX_DEF)
+{
+	file = "SWIM_BACKWARDS_03.wav";
+	vol = 60;
+};
+
+instance CS_IAL_ME_WO_01(C_SFX_DEF)
+{
+	file = "CS_IAL_ME_WO_01.wav";
+	vol = 80;
+};
+
+instance GOODIE(C_SFX_DEF)
+{
+	file = "goodie.wav";
+	vol = 70;
+};
+
+instance DRAWSOUND_ME_02(C_SFX_DEF)
+{
+	file = "drawsound_me_02.wav";
+	vol = 30;
 };
 

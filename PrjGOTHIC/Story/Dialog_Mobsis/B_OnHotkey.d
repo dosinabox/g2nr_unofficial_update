@@ -172,11 +172,8 @@ func int player_hotkey_screen_map()
 	{
 		B_SetPlayerMap(NewInstance);
 		return NewInstance;
-	}
-	else
-	{
-		return OldInstance;
 	};
+	return OldInstance;
 };
 
 func void B_LameSchlork()

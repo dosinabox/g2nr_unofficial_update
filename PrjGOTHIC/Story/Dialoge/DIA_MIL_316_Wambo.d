@@ -38,11 +38,8 @@ func int DIA_Wambo_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItKe_City_Tower_04))
 	{
 		return C_StealItem(50,Hlp_GetInstanceID(ItKe_City_Tower_04));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Wambo_PICKPOCKET_Info()
@@ -65,6 +62,8 @@ func void DIA_Wambo_PICKPOCKET_BACK()
 };
 
 
+var int DIA_Wambo_Deal_permanent;
+
 instance DIA_Wambo_Job(C_Info)
 {
 	npc = MIL_316_Wambo;
@@ -78,7 +77,10 @@ instance DIA_Wambo_Job(C_Info)
 
 func int DIA_Wambo_Job_Condition()
 {
-	return TRUE;
+	if(DIA_Wambo_Deal_permanent == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Wambo_Job_Info()
@@ -102,7 +104,7 @@ instance DIA_Wambo_Situation(C_Info)
 
 func int DIA_Wambo_Situation_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wambo_Job))
+	if(Npc_KnowsInfo(other,DIA_Wambo_Job) || (DIA_Wambo_Deal_permanent == TRUE))
 	{
 		return TRUE;
 	};
@@ -155,8 +157,6 @@ instance DIA_Wambo_Deal(C_Info)
 	description = "У меня есть деньги...";
 };
 
-
-var int DIA_Wambo_Deal_permanent;
 
 func int DIA_Wambo_Deal_Condition()
 {

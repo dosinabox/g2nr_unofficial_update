@@ -291,6 +291,8 @@ func void DIA_Addon_Logan_MIS_Info()
 };
 
 
+var int Logan_Teach_NoPerm;
+
 instance DIA_Addon_Logan_tot(C_Info)
 {
 	npc = BDT_1072_Addon_Logan;
@@ -314,7 +316,14 @@ func void DIA_Addon_Logan_tot_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Logan_tot_10_00");	//Хорошая акула - дохлая акула. Это будет предупреждением ее собратьям!
 	AI_Output(other,self,"DIA_Addon_Logan_tot_15_01");	//Отлично, мне нужно сделать еще что-нибудь? Если нет, я пойду...
-	AI_Output(self,other,"DIA_Addon_Logan_tot_10_02");	//Иди. И если ты захочешь научиться чему-нибудь еще, ты знаешь, где меня искать.
+	if(Logan_Teach_NoPerm == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Logan_tot_10_02");	//Иди. И если ты захочешь научиться чему-нибудь еще, ты знаешь, где меня искать.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Logan_tot_10_02_add");	//Иди...
+	};
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	MIS_HlpLogan = LOG_SUCCESS;
 	B_CheckLog();
@@ -369,7 +378,7 @@ instance DIA_Addon_Logan_Allg(C_Info)
 
 func int DIA_Addon_Logan_Allg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Logan_Lern))
+	if(Npc_KnowsInfo(other,DIA_Addon_Logan_Lern) && (Logan_Teach_NoPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -392,17 +401,23 @@ func void DIA_Addon_Logan_Allg_Info()
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
 		{
-			Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString(NAME_TROPHY_ReptileSkin,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_ReptileSkin)),DIA_Addon_Logan_Allg_Fur);
+			Info_AddChoice(DIA_Addon_Logan_Allg,B_BuildLearnString(NAME_TROPHY_ReptileSkin,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_ReptileSkin)),DIA_Addon_Logan_Allg_Fur);
 		};
 	}
 	else
 	{
 		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		Logan_Teach_NoPerm = TRUE;
 	};
 };
 
 func void DIA_Addon_Logan_Allg_BACK()
 {
+	if((PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == TRUE) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] == TRUE) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == TRUE))
+	{
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		Logan_Teach_NoPerm = TRUE;
+	};
 	Info_ClearChoices(DIA_Addon_Logan_Allg);
 };
 
@@ -455,4 +470,5 @@ func void DIA_Addon_Logan_Hacker_Info()
 		Logan_Lohn = TRUE;
 	};
 };
+
 

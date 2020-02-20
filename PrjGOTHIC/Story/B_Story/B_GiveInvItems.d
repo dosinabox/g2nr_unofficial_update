@@ -14,11 +14,10 @@ func int B_GiveInvItems(var C_Npc giver,var C_Npc taker,var int itemInstance,var
 	{
 		return TRUE;
 	};
-	Npc_RemoveInvItems(giver,itemInstance,amount);
-	CreateInvItems(taker,itemInstance,amount);
-	itemname = item.name;
 	if(Npc_IsPlayer(giver))
 	{
+		Npc_GetInvItem(giver,itemInstance);
+		itemname = item.description;
 		if(itemInstance == ItMi_Gold)
 		{
 			concatText = ConcatStrings(IntToString(amount),PRINT_GoldGegeben);
@@ -37,9 +36,15 @@ func int B_GiveInvItems(var C_Npc giver,var C_Npc taker,var int itemInstance,var
 			concatText = ConcatStrings(concatText,")");
 			AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		};
+		Npc_RemoveInvItems(giver,itemInstance,amount);
+		CreateInvItems(taker,itemInstance,amount);
 	}
 	else if(Npc_IsPlayer(taker))
 	{
+		Npc_RemoveInvItems(giver,itemInstance,amount);
+		CreateInvItems(taker,itemInstance,amount);
+		Npc_GetInvItem(taker,itemInstance);
+		itemname = item.description;
 		if(itemInstance == ItMi_Gold)
 		{
 			concatText = ConcatStrings(IntToString(amount),PRINT_GoldErhalten);

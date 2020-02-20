@@ -188,7 +188,7 @@ instance PC_E3Mage(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_SNEAK,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_RUNES,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_ALCHEMY,1);
-	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALTROPHY,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALFUR,1);
 	PLAYER_TALENT_ALCHEMY[POTION_Health_01] = TRUE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_02] = TRUE;
 	PLAYER_TALENT_ALCHEMY[POTION_Health_03] = TRUE;
@@ -321,7 +321,7 @@ instance PC_E3Paladin(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_SNEAK,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_SMITH,1);
-	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALTROPHY,1);
+	Npc_SetTalentSkill(self,NPC_TALENT_TAKEANIMALFUR,1);
 	PLAYER_TALENT_SMITH[WEAPON_Common] = TRUE;
 	PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] = TRUE;
 	PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] = TRUE;

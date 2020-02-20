@@ -311,6 +311,11 @@ func void DIA_Garond_NeedProof_Info()
 	AI_Output(other,self,"DIA_Garond_NeedProof_15_09");	//Ну, хорошо - похоже, у меня нет выбора.
 	MIS_ScoutMine = LOG_Running;
 	B_StartOtherRoutine(Jergan,"FAJETH");
+	if(!Npc_IsDead(Jergan))
+	{
+		Jergan.aivar[AIV_IgnoresFakeGuild] = FALSE;
+		Jergan.aivar[AIV_IgnoresArmor] = FALSE;
+	};
 	B_LogEntry(Topic_MISOLDWORLD,"Прежде чем командующий Гаронд отправит меня назад, он хочет, чтобы я разыскал три группы старателей и сообщил ему, сколько руды удалось им добыть.");
 	Log_CreateTopic(TOPIC_ScoutMine,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_ScoutMine,LOG_Running);
@@ -560,10 +565,14 @@ func void DIA_Garond_Marcos_Info()
 	AI_Output(other,self,"DIA_Garond_Marcos_15_03");	//Теперь он охраняет эти ящики в небольшой долине за позициями орков. Он просит прислать подкрепление.
 	AI_Output(self,other,"DIA_Garond_Marcos_10_04");	//Что? Всего четыре ящика - и он покинул шахту? Черт, как это все плохо.
 	AI_Output(self,other,"DIA_Garond_Marcos_10_05");	//И ему нужны еще люди?.. Что ж, ладно, я пошлю к нему двух человек.
+	B_DeletePetzCrime(Marcos_Guard1);
+	B_DeletePetzCrime(Marcos_Guard2);
 	Marcos_Guard1.flags = 0;
 	Marcos_Guard2.flags = 0;
 	Marcos_Guard1.aivar[AIV_ToughGuy] = TRUE;
 	Marcos_Guard2.aivar[AIV_ToughGuy] = TRUE;
+	Marcos_Guard1.aivar[AIV_CommentedPlayerCrime] = FALSE;
+	Marcos_Guard2.aivar[AIV_CommentedPlayerCrime] = FALSE;
 	AI_Teleport(Marcos_Guard1,"OW_STAND_GUARDS");
 	AI_Teleport(Marcos_Guard2,"OW_STAND_GUARDS");
 	B_StartOtherRoutine(Marcos_Guard1,"MARCOS");

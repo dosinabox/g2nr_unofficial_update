@@ -34,7 +34,7 @@ instance DIA_Talbin_NW_MOVING(C_Info)
 
 func int DIA_Talbin_NW_MOVING_Condition()
 {
-	if((Npc_GetDistToWP(self,"NW_GREATPEASENT_TO_PASS") > 2100) && (TOPIC_END_Talbin_Runs == FALSE) && (Npc_IsInState(self,ZS_Talk)))
+	if((Npc_GetDistToWP(self,"NW_GREATPEASENT_TO_PASS") > 2100) && (MIS_Talbin_Runs == LOG_Running) && (Npc_IsInState(self,ZS_Talk)))
 	{
 		return TRUE;
 	};
@@ -74,20 +74,20 @@ func void DIA_Talbin_NW_Info()
 	if(hero.guild == GIL_KDF)
 	{
 		AI_Output(self,other,"DIA_Talbin_NW_07_03");	//Мне кажется, это рунный камень.
-		CreateInvItems(self,ItMi_RuneBlank,1);
+		AI_WaitTillEnd(other,self);
 		B_GiveInvItems(self,other,ItMi_RuneBlank,1);
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Talbin_NW_07_04");	//Мне кажется, это кусок руды.
-		CreateInvItems(self,ItMi_Nugget,1);
+		AI_WaitTillEnd(other,self);
 		B_GiveInvItems(self,other,ItMi_Nugget,1);
 	};
 	AI_Output(other,self,"DIA_Talbin_NW_15_00");	//Этот Проход был не таким уж и страшным, правда?
 	AI_Output(self,other,"DIA_Talbin_NW_07_05");	//Да защитит тебя Иннос.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Farm");
-	TOPIC_END_Talbin_Runs = TRUE;
+	MIS_Talbin_Runs = LOG_SUCCESS;
 	B_GivePlayerXP(XP_SavedTalbin);
 };
 
@@ -157,7 +157,7 @@ func void DIA_Talbin_TEACHHUNTING_NW_Info()
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 		{
-			Info_AddChoice(DIA_Talbin_TEACHHUNTING_NW,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Talbin_TEACHHUNTING_Fur);
+			Info_AddChoice(DIA_Talbin_TEACHHUNTING_NW,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur)),DIA_Talbin_TEACHHUNTING_Fur);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
 		{
@@ -178,3 +178,5 @@ func void DIA_Talbin_TEACHHUNTING_NW_BACK()
 {
 	Info_ClearChoices(DIA_Talbin_TEACHHUNTING_NW);
 };
+
+

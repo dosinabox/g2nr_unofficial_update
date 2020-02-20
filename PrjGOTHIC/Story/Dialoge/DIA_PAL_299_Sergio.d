@@ -232,9 +232,16 @@ instance DIA_Sergio_ORDERS(C_Info)
 
 func int DIA_Sergio_ORDERS_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Sergio_WHY) && (self.aivar[AIV_PARTYMEMBER] == FALSE) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
+	if(Npc_KnowsInfo(hero,DIA_Sergio_WHY) && (Npc_GetDistToWP(self,"NW_MONASTERY_CHAPELL_02") <= 1500))
 	{
-		return TRUE;
+		if(Sergio_Follow == FALSE)
+		{
+			return TRUE;
+		}
+		else if(Sergio_Follow_End == TRUE)
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -327,6 +334,7 @@ func void DIA_Sergio_Ende_Info()
 	AI_Output(self,other,"DIA_Sergio_Ende_04_00");	//Мы пришли. Что бы ни ждало тебя в Долине Рудников, я надеюсь, что ты найдешь дорогу назад.
 	AI_Output(other,self,"DIA_Sergio_Ende_15_01");	//Не бойся - я вернусь.
 	AI_Output(self,other,"DIA_Sergio_Ende_04_02");	//Иди с Инносом. Да не оставит он тебя без защиты.
+	Sergio_Follow_End = TRUE;
 	self.aivar[AIV_PARTYMEMBER] = FALSE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"START");

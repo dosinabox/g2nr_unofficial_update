@@ -56,6 +56,7 @@ func int C_CanReadBookStand()
 	{
 		return TRUE;
 	};
+	return FALSE;
 };
 
 func void Use_BookstandMaya()

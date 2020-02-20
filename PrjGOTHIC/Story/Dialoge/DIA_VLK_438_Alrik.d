@@ -244,7 +244,7 @@ func void DIA_Alrik_WannaFight_Info()
 	Info_ClearChoices(DIA_Alrik_WannaFight);
 	if(((Alrik_ArenaKampfVerloren > 0) && !Npc_HasItems(self,ItMw_AlriksSword_Mis)) || !Npc_HasEquippedMeleeWeapon(self))
 	{
-		if(MIS_Alrik_Sword == LOG_SUCCESS)
+		if((MIS_Alrik_Sword == LOG_SUCCESS) || (Alrik_Sword_Once == TRUE))
 		{
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_01");	//Сначала верни мне мой меч. А там посмотрим...
 		}
@@ -253,14 +253,18 @@ func void DIA_Alrik_WannaFight_Info()
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_02");	//Нет, нет. Прежде, чем выйти против тебя еще раз, мне нужно раздобыть оружие получше!
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_03");	//Мне несколько дней назад пришлось продать свой меч.
 			AI_Output(self,other,"DIA_Alrik_WannaFight_09_04");	//С ним я непобедим! Если ты вернешь его мне, я готов опять сражаться с тобой!
-			Alrik_VomSchwertErzaehlt = TRUE;
-			if(Alrik_Sword_Once == FALSE)
+			Log_CreateTopic(TOPIC_AlrikSchwert,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_AlrikSchwert,LOG_Running);
+			if(Npc_KnowsInfo(other,DIA_Alrik_WerSchwert))
 			{
-				Log_CreateTopic(TOPIC_AlrikSchwert,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_AlrikSchwert,LOG_Running);
 				B_LogEntry(TOPIC_AlrikSchwert,"Альрик продал свой меч торговцу Джоре. Он будет сражаться со мной, только если я верну ему его меч.");
-				Alrik_Sword_Once = TRUE;
+			}
+			else
+			{
+				B_LogEntry(TOPIC_AlrikSchwert,"Альрик будет сражаться со мной, только если я верну ему его меч.");
 			};
+			Alrik_VomSchwertErzaehlt = TRUE;
+			Alrik_Sword_Once = TRUE;
 		};
 	}
 	else if((Kapitel <= 2) && (Alrik_ArenaKampfVerloren > 3))
@@ -501,7 +505,7 @@ instance DIA_Alrik_WerSchwert(C_Info)
 
 func int DIA_Alrik_WerSchwert_Condition()
 {
-	if((Alrik_VomSchwertErzaehlt == TRUE) && (MIS_Alrik_Sword != LOG_SUCCESS))
+	if((Alrik_VomSchwertErzaehlt == TRUE) && (MIS_Alrik_Sword != LOG_SUCCESS) && !Npc_HasItems(other,ItMw_AlriksSword_Mis))
 	{
 		return TRUE;
 	};
@@ -514,6 +518,10 @@ func void DIA_Alrik_WerSchwert_Info()
 	AI_Output(self,other,"DIA_Alrik_WerSchwert_09_02");	//Его зовут Джора. Факелы и мясо, что он дал мне, давно закончились.
 	AI_Output(other,self,"DIA_Alrik_WerSchwert_15_03");	//Он вряд ли отдаст мне этот меч просто так...
 	AI_Output(self,other,"DIA_Alrik_WerSchwert_09_04");	//Это старый меч. Он вряд ли много за него запросит. Просто думай об этих деньгах, как о дополнительной ставке. (ухмыляется)
+	if(Alrik_Sword_Once == TRUE)
+	{
+		B_LogEntry(TOPIC_AlrikSchwert,"Альрик продал свой меч торговцу Джоре.");
+	};
 	MIS_Alrik_Sword = LOG_Running;
 };
 

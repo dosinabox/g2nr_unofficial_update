@@ -24,11 +24,8 @@ func int Spell_Logic_Thunderstorm(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_Thunderstorm)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_Thunderstorm()

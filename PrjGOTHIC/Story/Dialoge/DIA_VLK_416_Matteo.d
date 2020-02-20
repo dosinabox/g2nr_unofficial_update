@@ -143,14 +143,19 @@ func int DIA_Matteo_TRADE_Condition()
 
 var int Matteo_TradeNewsPermanent;
 
+func void B_MatteoAboutLothar()
+{
+	AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно более строгими.
+	AI_Output(self,other,"DIA_Matteo_TRADE_09_02");	//Я надеюсь, все успокоится, когда этого убийцу повесят.
+	Matteo_TradeNewsPermanent = 1;
+};
+
 func void DIA_Matteo_TRADE_Info()
 {
 	AI_Output(other,self,"DIA_Matteo_TRADE_15_00");	//Покажи мне свои товары.
 	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == 0))
 	{
-		AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно более строгими.
-		AI_Output(self,other,"DIA_Matteo_TRADE_09_02");	//Я надеюсь, все успокоится, когда этого убийцу повесят.
-		Matteo_TradeNewsPermanent = 1;
+		B_MatteoAboutLothar();
 	};
 	if((Kapitel == 4) && (Matteo_TradeNewsPermanent < 2))
 	{
@@ -208,7 +213,6 @@ func void DIA_Matteo_LEATHER_Info()
 		AI_Output(self,other,"DIA_Matteo_LEATHER_09_01");	//Они тебе понравятся. (ухмыляется)
 		CreateInvItem(hero,ITAR_Leather_L);
 		AI_PrintScreen("Кожаные доспехи получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_Leather_L);
 		Matteo_LeatherBought = TRUE;
 	}
 	else
@@ -241,9 +245,7 @@ func void DIA_Matteo_Paladine_Info()
 	AI_Output(other,self,"DIA_Matteo_Paladine_15_00");	//Что ты знаешь о паладинах?
 	if((Kapitel == 3) && (MIS_RescueBennet != LOG_SUCCESS) && (Matteo_TradeNewsPermanent == 0))
 	{
-		AI_Output(self,other,"DIA_Matteo_TRADE_09_01");	//С тех пор, как наемники прикончили Лотара, инспекции паладинов стали значительно более строгими.
-		AI_Output(self,other,"DIA_Matteo_TRADE_09_02");	//Я надеюсь, все успокоится, когда этого убийцу повесят.
-		Matteo_TradeNewsPermanent = 1;
+		B_MatteoAboutLothar();
 	}
 	else if(other.guild == GIL_PAL)
 	{
@@ -647,7 +649,7 @@ func void DIA_Matteo_WoAlsLehrling_Info()
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
 	B_LogEntry(TOPIC_Lehrling,"Я могу стать учеником мастера-лучника Боспера, кузнеца Гарада, плотника Торбена или алхимика Константино.");
-	B_LogEntry(TOPIC_Lehrling,"Прежде чем я стану учеником, я должен получить одобрение других мастеров.");
+	Log_AddEntry(TOPIC_Lehrling,"Прежде чем я стану учеником, я должен получить одобрение других мастеров.");
 };
 
 

@@ -12,10 +12,7 @@ instance DIA_Talbin_EXIT(C_Info)
 
 func int DIA_Talbin_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Talbin_EXIT_Info()
@@ -74,7 +71,7 @@ func int DIA_Talbin_WASMACHTIHR_Condition()
 func void DIA_Talbin_WASMACHTIHR_Info()
 {
 	AI_Output(other,self,"DIA_Talbin_WASMACHTIHR_15_00");	//А ты похож на охотника, который не знает, куда девать свободное время.
-	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_07_01");	//Ха-ха! Да - ты угадал. Но что мне еще делать - я не могу вернуться через Проход!
+	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_07_01");	//Ха-ха-ха! Да, ты угадал. Но что мне еще делать - я не могу вернуться через Проход!
 	AI_Output(self,other,"DIA_Talbin_WASMACHTIHR_07_02");	//Поэтому я остаюсь здесь и занимаюсь тем, что умею лучше всего.
 	if(!Npc_IsDead(Engrom))
 	{
@@ -310,7 +307,7 @@ func void DIA_Talbin_TEACHHUNTING_Info()
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 		{
-			Info_AddChoice(DIA_Talbin_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur)),DIA_Talbin_TEACHHUNTING_Fur);
+			Info_AddChoice(DIA_Talbin_TEACHHUNTING,B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur)),DIA_Talbin_TEACHHUNTING_Fur);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] == FALSE)
 		{
@@ -370,7 +367,7 @@ func void DIA_Talbin_TEACHHUNTING_Heart()
 	Info_ClearChoices(DIA_Talbin_TEACHHUNTING);
 };
 
-
+/*
 instance DIA_Talbin_KAP3_EXIT(C_Info)
 {
 	npc = VLK_4130_Talbin;
@@ -419,7 +416,7 @@ func void DIA_Talbin_KAP4_EXIT_Info()
 {
 	AI_StopProcessInfos(self);
 };
-
+*/
 
 instance DIA_Talbin_KAP4_WASNEUES(C_Info)
 {
@@ -553,6 +550,7 @@ func void DIA_Talbin_FOUNDENGROM_Info()
 	};
 	AI_Output(self,other,"DIA_Talbin_FOUNDENGROM_07_08");	//О, Иннос. Мне нужно выбираться отсюда, даже если при этом я найду свою смерть. Сейчас или никогда!
 	AI_StopProcessInfos(self);
+	MIS_Talbin_Runs = LOG_Running;
 	Log_CreateTopic(TOPIC_Talbin_Runs,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Talbin_Runs,LOG_Running);
 	B_LogEntry(TOPIC_Talbin_Runs,"Талбин, охотник из Долины Рудников, побежал к Проходу, как будто за ним по пятам гнался рой кровавых мух. Я думаю, он направился в Хоринис.");
@@ -604,6 +602,10 @@ func void DIA_Talbin_WOHIN_ok()
 {
 	AI_Output(other,self,"DIA_Talbin_WOHIN_ok_15_00");	//Хорошо.
 	AI_Output(self,other,"DIA_Talbin_WOHIN_ok_07_01");	//Спасибо. Я просто пойду за тобой.
+	if(self.attribute[ATR_HITPOINTS] == 1)
+	{
+		self.attribute[ATR_HITPOINTS] += 1;
+	};
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"IntoPass");
 	Talbin_FollowsThroughPass = LOG_Running;
@@ -621,6 +623,8 @@ func void DIA_Talbin_WOHIN_()
 	AI_Output(other,self,"DIA_Talbin_WOHIN_schwein_15_00");	//У меня нет времени на тебя.
 	AI_Output(self,other,"DIA_Talbin_WOHIN_schwein_07_01");	//Ты оставляешь меня здесь умирать?! Ты будешь гореть в аду за это!
 	Talbin_FollowsThroughPass = LOG_OBSOLETE;
+	MIS_Talbin_Runs = LOG_OBSOLETE;
+	B_CheckLog();
 	AI_StopProcessInfos(self);
 };
 
@@ -651,7 +655,7 @@ func void DIA_Talbin_VERSCHWINDE_Info()
 	AI_StopProcessInfos(self);
 };
 
-
+/*
 instance DIA_Talbin_KAP5_EXIT(C_Info)
 {
 	npc = VLK_4130_Talbin;
@@ -676,7 +680,7 @@ func void DIA_Talbin_KAP5_EXIT_Info()
 	AI_StopProcessInfos(self);
 };
 
-/*
+
 instance DIA_Talbin_KAP6_EXIT(C_Info)
 {
 	npc = VLK_4130_Talbin;
@@ -735,4 +739,6 @@ func void DIA_Talbin_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Talbin_PICKPOCKET);
 };
+
+
 

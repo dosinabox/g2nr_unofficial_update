@@ -37,10 +37,7 @@ func int C_PlayerIsFakeBandit(var C_Npc slf,var C_Npc oth)
 	else if((slf.guild == GIL_BDT) && (CurrentLevel == ADDONWORLD_ZEN) && (Player_HasTalkedToBanditCamp == TRUE))
 	{
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 

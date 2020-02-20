@@ -280,7 +280,7 @@ func void DIA_Kjorn_AllDragonsDead_Info()
 {
 	AI_Output(other,self,"DIA_Kjorn_AllDragonsDead_15_00");	//Я убил всех драконов!
 	AI_Output(self,other,"DIA_Kjorn_AllDragonsDead_06_01");	//(смеется) Конечно, а я паладин.
-	AI_Output(self,other,"DIA_Kjorn_AllDragonsDead_06_02");	//Возможно, ты убил ОДНОГО, но чтобы всех? Иди, поищи дурака, который поверит тебе.
+	AI_Output(self,other,"DIA_Kjorn_AllDragonsDead_06_02");	//Возможно, ты убил ОДНОГО, но чтобы ВСЕХ? Иди, поищи дурака, который поверит тебе.
 };
 
 

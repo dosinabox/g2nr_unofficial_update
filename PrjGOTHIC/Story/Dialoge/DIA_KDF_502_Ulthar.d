@@ -192,7 +192,7 @@ func void DIA_Ulthar_SUCCESS_Info()
 	AI_Output(other,self,"DIA_Ulthar_SUCCESS_15_00");	//Я создал руну!
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_01");	//Отлично, послушник. Храни ее - свою первую руну.
 	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_02");	//Когда ты достигнешь первого Круга Огня, ты сможешь использовать ее.
-	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_03");	//Ты прошел это испытание к моему полному удовлетворению.
+	AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_03");	//Ты прошел это испытание, к моему полному удовлетворению.
 	if((MIS_GOLEM == LOG_Running) && !Npc_IsDead(Magic_Golem))
 	{
 		AI_Output(self,other,"DIA_Ulthar_SUCCESS_05_04");	//Но опасное испытание, что приготовил Серпентес, еще ожидает тебя!
@@ -373,7 +373,7 @@ func int DIA_Ulthar_SchreineGeheiltNoPAL_Condition()
 func void DIA_Ulthar_SchreineGeheiltNoPAL_Info()
 {
 	AI_Output(self,other,"DIA_Ulthar_SchreineGeheiltNoPAL_05_00");	//Хорошие новости. Придорожные алтари очищены. Сила Инноса помогла паладинам снять эту проблему.
-	AI_Output(self,other,"DIA_Ulthar_SchreineGeheiltNoPAL_05_01");	//Ты опять можешь приносить дары Инносу без каких либо оговорок или ограничений.
+	AI_Output(self,other,"DIA_Ulthar_SchreineGeheiltNoPAL_05_01");	//Ты опять можешь приносить дары Инносу без каких-либо оговорок или ограничений.
 	AI_StopProcessInfos(self);
 };
 

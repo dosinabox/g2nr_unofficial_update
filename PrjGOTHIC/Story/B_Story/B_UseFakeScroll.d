@@ -130,7 +130,7 @@ func void B_UseFakeHeroFace()
 	};
 };
 
-func void B_UseFakeMap()
+func void B_UseFakeMap(var float time)
 {
 	var C_Npc target;
 	if(C_BodyStateContains(self,BS_SIT))
@@ -145,14 +145,14 @@ func void B_UseFakeMap()
 	{
 		B_StopLookAt(self);
 		AI_UseItemToState(self,Fakemap,1);
-		AI_Wait(self,2);
+		AI_Wait(self,time);
 		AI_UseItemToState(self,Fakemap,-1);
 		B_LookAtNpc(self,hero);
 	}
 	else
 	{
 		AI_UseItemToState(self,Fakemap,1);
-		AI_Wait(self,2);
+		AI_Wait(self,time);
 		AI_UseItemToState(self,Fakemap,-1);
 	};
 };

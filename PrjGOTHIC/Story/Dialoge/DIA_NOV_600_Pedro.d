@@ -200,6 +200,7 @@ func void B_GiveLostStatueToPedro()
 	AI_Output(self,other,"DIA_Addon_Pedro_Statuette_Abgeben_09_01");	//Конечно. Я позабочусь о ней. Благодарю тебя за щедрость.
 	B_GiveInvItems(other,self,ItMi_LostInnosStatue_Daron,1);
 	Npc_RemoveInvItem(self,ItMi_LostInnosStatue_Daron);
+	PedroGotLostInnosStatue = TRUE;
 	LostInnosStatueInMonastery = TRUE;
 	MIS_Addon_Daron_GetStatue = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_ReportLostInnosStatue2Daron);
@@ -382,7 +383,6 @@ func void DIA_Pedro_AUFNAHME_YES()
 	Npc_SetTrueGuild(hero,GIL_NOV);
 	CreateInvItem(hero,ITAR_NOV_L);
 	AI_PrintScreen("Роба послушника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//	AI_EquipArmor(hero,ITAR_NOV_L);
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_04");	//Когда ты войдешь в монастырь, подойди к Парлану. С этого момента он будет отвечать за тебя.
 	AI_Output(other,self,"DIA_Pedro_AUFNAHME_YES_15_05");	//Мои прегрешения теперь прощены?
 	AI_Output(self,other,"DIA_Pedro_AUFNAHME_YES_09_06");	//Пока еще нет. Поговори с мастером Парланом. Он благословит тебя и очистит от твоих грехов.

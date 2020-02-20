@@ -707,7 +707,7 @@ instance SVM_4(C_SVM)
 	mona_crime = "SVM_4_MONA_CRIME";	//Отец Парлан будет в ярости, узнав о твоем кощунстве!
 	farm_crime = "SVM_4_FARM_CRIME";	//Ли не простит тебе это!
 	oc_crime = "SVM_4_OC_CRIME";	//Командующий Гаронд узнает про это - и ты ответишь за все!
-	toughguy_attacklost = "SVM_4_TOUGHGUY_ATTACKLOST";	//Ну и удар у тебя... Чего ты хочешь?
+	toughguy_attacklost = "SVM_4_TOUGHGUY_ATTACKLOST";	//Ну и удар у тебя... Ох... Чего ты хочешь?
 	toughguy_attackwon = "SVM_4_TOUGHGUY_ATTACKWON";	//Есть еще вопросы?
 	toughguy_playerattack = "SVM_4_TOUGHGUY_PLAYERATTACK";	//Ты опять!
 	gold_1000 = "SVM_4_GOLD_1000";	//1000 золотых монет.
@@ -1268,7 +1268,7 @@ instance SVM_7(C_SVM)
 	mona_crime = "SVM_7_MONA_CRIME";	//Отец Парлан будет в ярости, узнав о твоем кощунстве!
 	farm_crime = "SVM_7_FARM_CRIME";	//Ли не простит тебе это!
 	oc_crime = "SVM_7_OC_CRIME";	//Командующий Гаронд узнает про это - и ты ответишь за все!
-	toughguy_attacklost = "SVM_7_TOUGHGUY_ATTACKLOST";	//Ну и удар у тебя... Чего ты хочешь?
+	toughguy_attacklost = "SVM_7_TOUGHGUY_ATTACKLOST";	//Ну и удар у тебя... Ох... Чего ты хочешь?
 	toughguy_attackwon = "SVM_7_TOUGHGUY_ATTACKWON";	//Есть еще вопросы?
 	toughguy_playerattack = "SVM_7_TOUGHGUY_PLAYERATTACK";	//Ты опять!
 	gold_1000 = "SVM_7_GOLD_1000";	//1000 золотых монет.

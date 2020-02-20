@@ -9,7 +9,8 @@ instance BDT_1080_Addon_Tom(Npc_Default)
 	npcType = NPCTYPE_BL_MAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_ElBastardo);
+//	EquipItem(self,ItMw_ElBastardo);
+	EquipItem(self,ItMw_ElChapo);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_P_OldMan_Gravo,BodyTex_P,ITAR_BDT_M);
 	Mdl_SetModelFatness(self,0.75);

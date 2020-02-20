@@ -38,11 +38,8 @@ func int DIA_Garvell_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItSe_GoldPocket25))
 	{
 		return C_StealItem(10,Hlp_GetInstanceID(ItSe_GoldPocket25));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Garvell_PICKPOCKET_Info()

@@ -592,13 +592,9 @@ func int DIA_Igaraz_PICKPOCKET_Condition()
 //	if(C_StealItems(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis),1) && (MIS_BabosDocs == LOG_Running))
 	if(Npc_HasItems(self,ItKe_IgarazChest_Mis) && (MIS_BabosDocs == LOG_Running))
 	{
-//		return TRUE;
 		return C_StealItem(40,Hlp_GetInstanceID(ItKe_IgarazChest_Mis));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Igaraz_PICKPOCKET_Info()

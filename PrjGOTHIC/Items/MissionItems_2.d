@@ -89,31 +89,39 @@ func void UseLetterForGorn()
 instance ItKe_PrisonKey_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от темницы в замке.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_OC_Store(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Это ключ от склада в замке.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ITKE_ErzBaronFlur(C_Item)
 {
 	name = "Ключ от первой двери";
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
@@ -121,12 +129,16 @@ instance ITKE_ErzBaronFlur(C_Item)
 	description = name;
 	text[0] = "На нем выгравировано имя:";
 	text[1] = "Гомез.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ITKE_ErzBaronRaum(C_Item)
 {
 	name = "Ключ от второй двери";
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = 0;
 	value = 0;
 	visual = "ItKe_Key_03.3ds";
@@ -134,6 +146,10 @@ instance ITKE_ErzBaronRaum(C_Item)
 	description = name;
 	text[0] = "На нем выгравировано имя:";
 	text[1] = "Гомез.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItMi_GornsTreasure_MIS(C_Item)
@@ -261,7 +277,7 @@ func void UseOlav()
 instance ItKe_Pass_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_04.3ds";
@@ -269,26 +285,32 @@ instance ItKe_Pass_MIS(C_Item)
 	description = name;
 	text[0] = "Этот маленький ключик";
 	text[1] = "открывает ворота Прохода.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
 	inv_zbias = 190;
 };
 
 instance ItKe_Bromor(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
-	text[0] = "Ключ от комнаты";
-	text[1] = "в борделе.";
+	text[0] = "Ключ от комнаты в борделе.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItKe_Rune_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItKe_Key_01.3ds";
@@ -297,6 +319,10 @@ instance ItKe_Rune_MIS(C_Item)
 	text[0] = "Сундук, к которому подходит";
 	text[1] = "этот ключ, находится под мостом.";
 	text[2] = "В нем лежит рунный камень.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_Bloody_MIS(C_Item)
@@ -448,6 +474,8 @@ func void Use_Map_OldWorld_Oremines_Small()
 };
 
 
+var int Manowar_Once;
+
 instance ItWr_Manowar(C_Item)
 {
 	name = "Текст песни";
@@ -456,8 +484,8 @@ instance ItWr_Manowar(C_Item)
 	value = 0;
 	visual = "ItWr_Scroll_02.3DS";
 	material = MAT_LEATHER;
-	on_state[0] = UseManowar;
 	scemeName = "MAP";
+	on_state[0] = UseManowar;
 	description = name;
 };
 
@@ -483,6 +511,11 @@ func void UseManowar()
 	Doc_PrintLines(nDocID,0,"падет от моей руки");
 	Doc_PrintLines(nDocID,0,"ведь я воин Инноса");
 	Doc_Show(nDocID);
+	if(Manowar_Once == FALSE)
+	{
+		B_GivePlayerXP(200);
+		Manowar_Once = TRUE;
+	};
 };
 
 

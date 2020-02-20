@@ -19,11 +19,8 @@ func int Spell_Logic_BreathOfDeath(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_BreathOfDeath)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_BreathOfDeath(var int spellLevel)

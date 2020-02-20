@@ -132,22 +132,15 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
-		Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
-		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
-		{
-			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_01,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_01.attribute[ATR_HITPOINTS_MAX]);
-		};
-		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_02) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_02))
-		{
-			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_02,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_02.attribute[ATR_HITPOINTS_MAX]);
-		};
 		if((MIS_HelpDyrian != LOG_Success) && !Npc_IsDead(Dyrian))
 		{
 			Dyrian.guild = GIL_NONE;
 			Npc_SetTrueGuild(Dyrian,GIL_NONE);
+			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel2 = TRUE;
 	};
 };
@@ -445,6 +438,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Npc_ExchangeRoutine(Bengar,"Start");
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel3 = TRUE;
 	};
 };
@@ -732,11 +726,13 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			};
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel4 = TRUE;
 	};
 	if(Talbin_FollowsThroughPass == LOG_Running)
 	{
 		Wld_InsertNpc(VLK_4132_Talbin_NW,"NW_PASS_SECRET_17");
+		B_InitNpcGlobals();
 		Talbin_FollowsThroughPass = LOG_SUCCESS;
 	};
 };
@@ -757,8 +753,16 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		};
 		if(!Npc_IsDead(Sekob))
 		{
-			B_StartOtherRoutine(Rosi,"FleeFromSekob");
-			B_StartOtherRoutine(Till,"FleeFromSekob");
+			if(!Npc_IsDead(Rosi))
+			{
+				B_StartOtherRoutine(Rosi,"FleeFromSekob");
+				Rosi.aivar[AIV_CommentedPlayerCrime] = FALSE;
+			};
+			if(!Npc_IsDead(Till))
+			{
+				B_StartOtherRoutine(Till,"FleeFromSekob");
+				Till.aivar[AIV_CommentedPlayerCrime] = FALSE;
+			};
 			Rosi_FleeFromSekob_Kap5 = TRUE;
 		};
 		if(GornDJG_is_alive == TRUE)
@@ -887,6 +891,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			B_StartOtherRoutine(Girion,"WaitForShip");
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel5 = TRUE;
 	};
 //	if(MIS_OCGateOpen == TRUE)

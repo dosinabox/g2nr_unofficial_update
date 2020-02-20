@@ -125,7 +125,7 @@ func void DIA_Joe_Perm_Info()
 instance DIA_Joe_Sign(C_Info)
 {
 	npc = VLK_448_Joe;
-	nr = 3;
+	nr = 800;
 	condition = DIA_Joe_Sign_Condition;
 	information = DIA_Joe_Sign_Info;
 	permanent = FALSE;
@@ -146,6 +146,7 @@ func void DIA_Joe_Sign_Info()
 	AI_PlayAni(other,"T_YES");
 	AI_Output(self,other,"DIA_Joe_Sign_10_00");	//Эй, привет - у нас есть общие друзья. И я хотел бы выразить свою благодарность за спасение.
 	AI_Output(self,other,"DIA_Joe_Sign_10_01");	//Вот, возьми эти отмычки - я уверен, они пригодятся тебе.
+	AI_WaitTillEnd(other,self);
 	B_GiveInvItems(self,other,ItKe_Lockpick,5);
 	AI_StopProcessInfos(self);
 };

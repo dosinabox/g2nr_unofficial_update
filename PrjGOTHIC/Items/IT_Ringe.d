@@ -433,7 +433,7 @@ instance ItRi_Prot_Total_01(C_Item)
 	on_unequip = UnEquip_ItRi_Prot_Total_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо неуязвимости";
+	description = "Кольцо непобедимости";
 	text[1] = NAME_Prot_Edge;
 	count[1] = Ri_TProtEdge;
 	text[2] = NAME_Prot_Point;
@@ -482,7 +482,7 @@ instance ItRi_Prot_Total_02(C_Item)
 	on_unequip = UnEquip_ItRi_Prot_Total_02;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Кольцо непобедимости";
+	description = "Кольцо неуязвимости";
 	text[1] = NAME_Prot_Edge;
 	count[1] = Ri_TProtEdge02;
 	text[2] = NAME_Prot_Point;

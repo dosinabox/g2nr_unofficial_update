@@ -268,8 +268,8 @@ func void DIA_Addon_Elvrich_Bromor_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Elvrich_Bromor_15_00");	//Бромор сказал, что Люсия украла у него золотое блюдо...
 	AI_Output(self,other,"DIA_Addon_Elvrich_Bromor_04_01");	//Ну, если Люсия что-то и украла у Бромора, у нее отобрали это бандиты.
-	Log_CreateTopic(TOPIC_Addon_BromorsGold,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_BromorsGold,LOG_Running);
+//	Log_CreateTopic(TOPIC_Addon_BromorsGold,LOG_MISSION);
+//	Log_SetTopicStatus(TOPIC_Addon_BromorsGold,LOG_Running);
 	B_LogEntry(TOPIC_Addon_BromorsGold,"Золотое блюдо Бромора, по всей видимости, находится у бандитов, живущих в лесном лагере к северу от фермы Секоба.");
 };
 
@@ -336,8 +336,8 @@ func void DIA_Addon_Elvrich_FernandosWaffen_Info()
 	AI_Output(self,other,"DIA_Addon_Elvrich_FernandosWaffen_04_01");	//О да. Оружия было столько, что они еле его унесли.
 	AI_Output(self,other,"DIA_Addon_Elvrich_FernandosWaffen_04_02");	//Все это оружие они утащили в направлении фермы Секоба.
 	B_GivePlayerXP(XP_Ambient);
-	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
+//	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
+//	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Bandittrader,"След ведет меня в лес, который находится к северу от фермы Секоба. Там разместились бандиты, получившие недавно большую партию оружия.");
 };
 

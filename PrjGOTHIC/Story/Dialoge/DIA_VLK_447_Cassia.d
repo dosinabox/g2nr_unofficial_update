@@ -157,7 +157,7 @@ func void DIA_Cassia_News_Info()
 		AI_Output(other,self,"DIA_Cassia_News_15_08");	//Что ты хочешь предложить мне?
 		AI_Output(self,other,"DIA_Cassia_News_16_09");	//Ты можешь присоединиться к нам.
 	};
-	if((Npc_GetTrueGuild(other) == GIL_NONE) || (Npc_GetTrueGuild(other) == GIL_NOV))
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		Cassia_Gildencheck = TRUE;
 	};
@@ -740,9 +740,16 @@ func int DIA_Cassia_Blutkelche_Condition()
 func void DIA_Cassia_Blutkelche_Info()
 {
 	AI_Output(other,self,"DIA_Cassia_Blutkelche_15_00");	//У тебя есть работа для меня?
-	if(PETZCOUNTER_City_Theft > 0)
+	if((PETZCOUNTER_City_Murder > 0) || (PETZCOUNTER_City_Theft > 0) || (PETZCOUNTER_City_Attack > 0) || (PETZCOUNTER_City_Sheepkiller > 0))
 	{
-		AI_Output(self,other,"DIA_Cassia_Blutkelche_16_01");	//Нет, пока ты разыскиваешься в городе за воровство.
+		if(PETZCOUNTER_City_Theft > 0)
+		{
+			AI_Output(self,other,"DIA_Cassia_Blutkelche_16_01");	//Нет, пока ты разыскиваешься в городе за воровство.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Cassia_Blutkelche_16_01_add");	//Нет, пока ты разыскиваешься в городе.
+		};
 		AI_Output(self,other,"DIA_Cassia_Blutkelche_16_02");	//Урегулируй эту проблему - заплати штраф или избавься от свидетелей. Меня не волнует, как ты это сделаешь, лишь бы этой проблемы больше не было.
 		AI_StopProcessInfos(self);
 	}

@@ -336,12 +336,13 @@ func void DIA_Keroloth_KAP4_HELLO_Info()
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"Что за подонки?",DIA_Keroloth_KAP4_HELLO_pack);
 };
 
-/*
+
 func void DIA_Keroloth_KAP4_HELLO_ende()
 {
+	AI_Output(other,self,"DIA_Landstreicher_HALLO_Weg_15_00");	//Мне нужно идти.
+	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_bestohlen_wasfehlt_07_04");	//Когда я доберусь до него...
 	Info_ClearChoices(DIA_Keroloth_KAP4_HELLO);
 };
-*/
 
 func void DIA_Keroloth_KAP4_HELLO_bestohlen()
 {
@@ -349,6 +350,7 @@ func void DIA_Keroloth_KAP4_HELLO_bestohlen()
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_bestohlen_07_01");	//Нет. Они положили 20 золотых в мой карман. Конечно же, меня обокрали, ты, идиот!
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_bestohlen_07_02");	//Ничего, вот когда я доберусь до этой сволочи...
 	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,"Так что у тебя пропало?",DIA_Keroloth_KAP4_HELLO_bestohlen_wasfehlt);
+	Info_AddChoice(DIA_Keroloth_KAP4_HELLO,Dialog_Ende_v2,DIA_Keroloth_KAP4_HELLO_ende);
 };
 
 func void DIA_Keroloth_KAP4_HELLO_bestohlen_wasfehlt()

@@ -39,7 +39,7 @@ func int DIA_Angar_NW_AllDragonsDead_Condition()
 func void DIA_Angar_NW_AllDragonsDead_Info()
 {
 	AI_Output(other,self,"DIA_Angar_NW_AllDragonsDead_15_00");	//Как дела?
-	AI_Output(self,other,"DIA_Angar_NW_AllDragonsDead_04_01");	//Хорошо. Но меня все равно мучают головные боли, хотя они уменьшились с тех пор, как я покинул Долину Рудников.
+	AI_Output(self,other,"DIA_Angar_NW_AllDragonsDead_04_01");	//Хорошо, но меня все равно мучают головные боли, хотя они уменьшились с тех пор, как я покинул Долину Рудников.
 	if(Angar_IsOnBoard != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Angar_NW_AllDragonsDead_04_02");	//Я останусь здесь. Ты будешь знать, где найти меня, если я тебе понадоблюсь.

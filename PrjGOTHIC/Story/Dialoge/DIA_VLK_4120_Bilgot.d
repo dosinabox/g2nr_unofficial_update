@@ -166,7 +166,7 @@ func void DIA_Bilgot_KNOWSLEADSNAPPER_Info()
 	B_LogEntry(TOPIC_FajethKillSnapper,"Билгот рассказал мне о вожаке стаи снепперов. Он должен быть у старой сторожевой башни.");
 	Log_CreateTopic(TOPIC_BilgotEscort,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BilgotEscort,LOG_Running);
-	B_LogEntry(TOPIC_BilgotEscort,"Билгот хочет, чтобы я вывел его из долины.");
+	Log_AddEntry(TOPIC_BilgotEscort,"Билгот хочет, чтобы я вывел его из долины.");
 };
 
 
@@ -235,7 +235,7 @@ instance DIA_Bilgot_BEIBRUECKEANGEKOMMEN(C_Info)
 	information = DIA_Bilgot_BEIBRUECKEANGEKOMMEN_Info;
 	important = TRUE;
 	permanent = FALSE;
-	description = "Хорошо, пришли. Дальше иди один. Но будь осторожен!";
+//	description = "Хорошо, пришли. Дальше иди один. Но будь осторожен!";
 };
 
 

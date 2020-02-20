@@ -574,3 +574,5 @@ func void DIA_Godar_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Godar_PICKPOCKET);
 };
 
+
+

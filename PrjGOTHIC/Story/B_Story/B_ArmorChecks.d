@@ -88,11 +88,8 @@ func int AnyRangerRingEquipped()
 	if((RangerRingIsLaresRing == TRUE) || (RangerRingIsMyRing == TRUE) || (RangerRingIsLanceRing == TRUE))
 	{
 		return TRUE;
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void B_BaltramRangerCheck(var C_Npc oth)
@@ -189,10 +186,10 @@ func int C_HenryNiceArmorCheck(var C_Npc oth)
 		{
 			return TRUE;
 		};
-		if(Hlp_IsItem(armor,ITAR_OHT))
+		/*if(Hlp_IsItem(armor,ITAR_OHT))
 		{
 			return TRUE;
-		};
+		};*/
 	};
 	return FALSE;
 };
@@ -283,5 +280,13 @@ func int C_BAUCheck(var C_Npc oth)
 		};
 	};
 	return FALSE;
+};
+
+func void B_SetHeroSkin()
+{
+	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	};
 };
 

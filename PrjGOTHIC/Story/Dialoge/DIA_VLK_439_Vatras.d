@@ -465,7 +465,7 @@ func void DIA_Addon_Vatras_Bandittrader_Info()
 	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
+	Log_AddEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
 };
 
 
@@ -1423,8 +1423,8 @@ func void DIA_Addon_Vatras_GuildHelp_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_11");	//Помни, что даже если ты вступишь в Круг Огня, ты все еще сможешь присоединиться к нам.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_12");	//Если, конечно, докажешь свою полезность.
 	MIS_Addon_Vatras_Go2Daron = LOG_Running;
-	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
+//	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
+//	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
 	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Маг Огня Дарон поможет мне попасть в монастырь, если я найду его похищенную статуэтку.");
 };
 
@@ -2265,22 +2265,36 @@ func void DIA_Vatras_INNOSEYEKAPUTT_Auge()
 {
 	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_15_00");	//Что теперь будет с Глазом?
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_01");	//Мы должны восстановить его. Но это, боюсь, будет непростой задачей.
-	if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
 	{
-		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_02");	//Оправа разбита на две части. Искусный кузнец должен быть способен починить ее.
-		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_03");	//Но проблема не в этом. Меня больше волнует драгоценный камень.
-	};
-	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_04");	//Он тускл и безжизненен. Враг, похоже, хорошо знал, как ослабить его.
-	if(!Npc_KnowsInfo(other,DIA_Bennet_GiveInnosEye))
+		if(MIS_Bennet_InnosEyeRepairedSetting != LOG_SUCCESS)
+		{
+			AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_02");	//Оправа разбита на две части. Искусный кузнец должен быть способен починить ее.
+			AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_03");	//Но проблема не в этом. Меня больше волнует драгоценный камень.
+		};
+		AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_05_04");	//Он тускл и безжизненен. Враг, похоже, хорошо знал, как ослабить его.
+		if(!Npc_KnowsInfo(other,DIA_Bennet_GiveInnosEye))
+		{
+			Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти кузнеца, способного починить оправу Глаза?",DIA_Vatras_INNOSEYEKAPUTT_Auge_schmied);
+		};
+		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Как можно восстановить силу камня?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein);
+	}
+	else
 	{
-		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Где мне найти кузнеца, способного починить оправу Глаза?",DIA_Vatras_INNOSEYEKAPUTT_Auge_schmied);
+		Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"И что нам делать дальше?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein);
 	};
-	Info_AddChoice(DIA_Vatras_INNOSEYEKAPUTT,"Как можно восстановить силу камня?",DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein);
 };
 
 func void DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein()
 {
-	AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_15_00");	//Как можно восстановить силу камня?
+	if(Npc_HasItems(other,ItMi_InnosEye_Broken_Mis))
+	{
+		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_15_00");	//Как можно восстановить силу камня?
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Xardas_Weiter_15_00");	//И что нам делать дальше?
+	};
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_01");	//Я вижу только один способ. Союз трех правящих божеств должен дать желаемый эффект.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_02");	//Хорошо подготовленный ритуал обращения в месте уничтожения камня вернет ему его огонь.
 	AI_Output(self,other,"DIA_Vatras_INNOSEYEKAPUTT_Auge_Stein_05_03");	//Однако проблема состоит в том, что ты должен привести в это место земных представителей каждого из этих троих богов.
@@ -2439,18 +2453,18 @@ func int DIA_Vatras_BEGINN_Condition()
 func void DIA_Vatras_BEGINN_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_BEGINN_15_00");	//Я сделал все, как ты сказал мне. Вот починенный Глаз.
+	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_Mis,1);
+	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
+	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
 	if(Npc_HasItems(other,ItPl_SwampHerb) >= 3)
 	{
+		AI_Output(other,self,"DIA_Vatras_BEGINN_15_02");	//Что насчет болотной травы?
 		B_GivePlayerXP(XP_RitualInnosEyeRuns + XP_AmbientKap3);
 	}
 	else
 	{
 		B_GivePlayerXP(XP_RitualInnosEyeRuns);
 	};
-	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_Mis,1);
-	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
-	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
-	AI_Output(other,self,"DIA_Vatras_BEGINN_15_02");	//Что насчет болотной травы?
 	AI_Output(self,other,"DIA_Vatras_BEGINN_05_03");	//Ах, да. Ты принес три стебля болотной травы?
 	if(B_GiveInvItems(other,self,ItPl_SwampHerb,3))
 	{

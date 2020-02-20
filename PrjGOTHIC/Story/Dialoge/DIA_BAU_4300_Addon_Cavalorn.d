@@ -5,8 +5,12 @@ func int C_BragoBanditsDead()
 	{
 		return TRUE;
 	};
+	return FALSE;
 };
 
+
+var int SC_ForgotAboutCavalorn;
+var int CavalornWeakComment;
 
 instance DIA_Addon_Cavalorn_EXIT(C_Info)
 {
@@ -168,6 +172,7 @@ func void DIA_Addon_Cavalorn_HALLO_weissNicht()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_HALLO_weissNicht_15_00");	//Что-то не припоминаю...
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_weissNicht_08_01");	//Ну как же. Еще в моей хижине около Старого Лагеря я учил тебя, как стрелять из лука и незаметно передвигаться. Теперь вспоминаешь?
+	SC_ForgotAboutCavalorn = TRUE;
 };
 
 func void DIA_Addon_Cavalorn_HALLO_Ja()
@@ -178,7 +183,7 @@ func void DIA_Addon_Cavalorn_HALLO_Ja()
 	Info_ClearChoices(DIA_Addon_Cavalorn_HALLO);
 	Info_AddChoice(DIA_Addon_Cavalorn_HALLO,"У меня нет определенной цели.",DIA_Addon_Cavalorn_HALLO_keinZiel);
 	Info_AddChoice(DIA_Addon_Cavalorn_HALLO,"Назад в Долину Рудников.",DIA_Addon_Cavalorn_HALLO_Bauern);
-	if(Mil_310_Stadtwache.aivar[AIV_PASSGATE] == FALSE)
+	if(PlayerEnteredCity == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_Cavalorn_HALLO,"В город.",DIA_Addon_Cavalorn_HALLO_Stadt);
 	};
@@ -190,7 +195,7 @@ func void DIA_Addon_Cavalorn_HALLO_Stadt()
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_01");	//(смеется) Ну-ну. В город. Хех.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_02");	//У тебя могут возникнуть сложности со стражей. Они уже не пускают каждого прохожего, весь район кишит бандитами.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_03");	//Несколько дней назад один из бывших заключенных Долины Рудников проходил здесь. Он сказал, что постоянно покидает Хоринис и возвращается.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_04");	//Он пошел в долину под белой башней. Должно быть, где-то там есть проход, около водопада.
+	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_04");	//Он пошел в долину под башней. Должно быть, где-то там есть проход, около водопада.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HALLO_Stadt_08_05");	//Может быть, тебе стоит с ним поговорить.
 	Info_ClearChoices(DIA_Addon_Cavalorn_HALLO);
 };
@@ -491,6 +496,7 @@ func void DIA_Addon_Cavalorn_HELFEN_Info()
 	if(!Npc_HasEquippedArmor(other) && (hero.guild == GIL_NONE))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_01");	//(хитро) Возможно. Но ты выглядишь таким тощим, ты наверняка не держал меча несколько недель.
+		CavalornWeakComment = TRUE;
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_02");	//Ну... У меня нет выбора, так что я принимаю твое предложение. У меня мало времени.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_HELFEN_08_03");	//Так, слушай. Вниз по этой дороге располагается одна из тех грязных дыр, где прячутся бандиты.
@@ -529,9 +535,9 @@ func void DIA_Addon_Cavalorn_AUSRUESTUNG_Info()
 		AI_Output(self,other,"DIA_Addon_Cavalorn_AUSRUESTUNG_08_01");	//Эти свиньи не оставили мне почти ничего.
 	};
 	AI_Output(self,other,"DIA_Addon_Cavalorn_AUSRUESTUNG_08_02");	//Я могу дать тебе волчий нож. Этого пока хватит?
-	AI_Output(other,self,"DIA_Addon_Cavalorn_AUSRUESTUNG_15_03");	//Ты называешь это ножом?
 	CreateInvItems(self,ItMW_Addon_Knife01,1);
 	B_GiveInvItems(self,other,ItMW_Addon_Knife01,1);
+	AI_Output(other,self,"DIA_Addon_Cavalorn_AUSRUESTUNG_15_03");	//Ты называешь это ножом?
 	AI_Output(other,self,"DIA_Addon_Cavalorn_AUSRUESTUNG_15_04");	//А что по поводу лечения?
 	AI_Output(self,other,"DIA_Addon_Cavalorn_AUSRUESTUNG_08_05");	//У меня есть еще 2 лечебных зелья. Нужны?
 	AI_Output(other,self,"DIA_Addon_Cavalorn_AUSRUESTUNG_15_06");	//Конечно. Давай сюда.
@@ -974,8 +980,18 @@ func int DIA_Addon_Cavalorn_WannaLearn_Condition()
 func void DIA_Addon_Cavalorn_WannaLearn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_WannaLearn_15_00");	//Ты можешь научить меня кое-чему?
-	AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01");	//Конечно. Ты это прекрасно знаешь. Приятель, ты действительно много потерял.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_02");	//Ты и правда ничего не помнишь, да?
+	if((CavalornWeakComment == FALSE) && (SC_ForgotAboutCavalorn == FALSE))
+	{
+		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01_add");	//Конечно, ты это прекрасно знаешь.
+	};
+	if(CavalornWeakComment == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_01");	//Конечно, ты это прекрасно знаешь. Приятель, ты действительно много потерял.
+	};
+	if(SC_ForgotAboutCavalorn == TRUE)
+	{
+		AI_Output(self,other,"DIA_Addon_Cavalorn_WannaLearn_08_02");	//Ты и правда ничего не помнишь, да?
+	};
 	Cavalorn_Addon_TeachPlayer = TRUE;
 	Log_CreateTopic(Topic_OutTeacher,LOG_NOTE);
 	B_LogEntry(Topic_OutTeacher,LogText_Addon_Cavalorn_Teach);
@@ -1066,7 +1082,14 @@ func void DIA_Addon_Cavalorn_Teach_Back()
 {
 	if((Addon_Cavalorn_Merke_Bow < other.aivar[REAL_TALENT_BOW]) || (Addon_Cavalorn_Merke_1h < other.aivar[REAL_TALENT_1H]))
 	{
-		AI_Output(self,other,"DIA_Addon_Cavalorn_Teach_BACK_08_00");	//Уже лучше. Ты многое позабыл, но мы быстро вернем твои умения.
+		if((CavalornWeakComment == TRUE) || (SC_ForgotAboutCavalorn == TRUE))
+		{
+			AI_Output(self,other,"DIA_Addon_Cavalorn_Teach_BACK_08_00");	//Уже лучше. Ты многое позабыл, но мы быстро вернем твои умения.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Cavalorn_Teach_BACK_08_00_add");	//Уже лучше.
+		};
 	};
 	Info_ClearChoices(DIA_Addon_Cavalorn_TEACH);
 };

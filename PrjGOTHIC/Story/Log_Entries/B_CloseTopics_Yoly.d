@@ -92,7 +92,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_BrutusMeatbugs,0,TOPIC_END_BrutusMeatbugs,6);
 	B_CloseTopic(TOPIC_GeroldGiveFood,MIS_GeroldGiveFood,0,6);
 	B_CloseTopic(TOPIC_Sengrath_Missing,0,TOPIC_END_Sengrath_Missing,6);
-	B_CloseTopic(TOPIC_Talbin_Runs,0,TOPIC_END_Talbin_Runs,6);
+	B_CloseTopic(TOPIC_Talbin_Runs,MIS_Talbin_Runs,0,6);
 	B_CloseTopic(TOPIC_KerolothsGeldbeutel,0,TOPIC_END_KerolothsGeldbeutel,6);
 	B_CloseTopic(TOPIC_BuchHallenVonIrdorath,0,MIS_SCKnowsWayToIrdorath,6);
 	B_CloseTopic(TOPIC_bringRosiBackToSekob,MIS_bringRosiBackToSekob,0,6);

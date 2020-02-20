@@ -329,10 +329,10 @@ func void DIA_Ingmar_HAUPTQUARTIER_Info()
 	AI_Output(self,other,"DIA_Ingmar_HAUPTQUARTIER_06_01");	//Это отличные новости. Теперь орки некоторое время будут пребывать в растерянности.
 	AI_Output(self,other,"DIA_Ingmar_HAUPTQUARTIER_06_02");	//Это неплохо. Если бы у нас было побольше рыцарей вроде тебя, за исход грядущей битвы можно было бы не волноваться.
 	AI_Output(self,other,"DIA_Ingmar_HAUPTQUARTIER_06_03");	//Вот. Возьми это золото. Надеюсь, оно поможет тебе купить хорошее снаряжение.
-	B_GivePlayerXP(XP_KilledOrkOberst);
 	CreateInvItems(self,ItMi_Gold,300);
 	B_GiveInvItems(self,other,ItMi_Gold,300);
 	MIS_KillOrkOberst = LOG_SUCCESS;
+	B_GivePlayerXP(XP_KilledOrkOberst);
 };
 
 
@@ -403,11 +403,8 @@ func int DIA_Ingmar_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItWr_Manowar))
 	{
 		return C_StealItem(105,Hlp_GetInstanceID(ItWr_Manowar));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Ingmar_PICKPOCKET_Info()

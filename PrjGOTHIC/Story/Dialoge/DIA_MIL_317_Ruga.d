@@ -38,11 +38,8 @@ func int DIA_Ruga_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItKe_City_Tower_03))
 	{
 		return C_StealItem(40,Hlp_GetInstanceID(ItKe_City_Tower_03));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Ruga_PICKPOCKET_Info()
@@ -88,18 +85,6 @@ func void DIA_Ruga_Hallo_Info()
 {
 	AI_Output(other,self,"DIA_Ruga_Hallo_15_00");	//Что ты делаешь здесь?
 	AI_Output(self,other,"DIA_Ruga_Hallo_11_01");	//Я обучаю парней стрельбе из арбалета и помогаю им стать более ловкими.
-	if(!Npc_KnowsInfo(other,DIA_Wulfgar_AlsMil))
-	{
-		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
-		{
-			B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом.");
-		}
-		else
-		{
-			B_LogEntry(TOPIC_CityTeacher,"Ополченец Руга может помочь мне повысить мою ловкость и научить меня пользоваться арбалетом. Но для этого я должен числиться в городском ополчении.");
-		};
-	};
 };
 
 
@@ -125,6 +110,7 @@ func int DIA_Ruga_Train_Condition()
 func void DIA_Ruga_Train_Info()
 {
 	AI_Output(other,self,"DIA_Ruga_Train_15_00");	//Ты можешь потренировать меня?
+	B_Ruga_Teach_Log();
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL) || (hero.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Ruga_Train_11_01");	//Конечно. Если у тебя достаточно опыта, я готов помочь тебе.
@@ -137,6 +123,10 @@ func void DIA_Ruga_Train_Info()
 	{
 		AI_Output(self,other,"DIA_Ruga_Train_11_04");	//(презрительно) Убирайся с глаз моих, наемник.
 		AI_StopProcessInfos(self);
+	}
+	else if(hero.guild == GIL_NOV)
+	{
+		B_Say(self,other,"$NOLEARNNOPOINTS");
 	}
 	else
 	{
@@ -238,8 +228,8 @@ func void DIA_Ruga_TEACHDEX_Info()
 
 func void DIA_Ruga_TEACHDEX_BACK()
 {
-//	if(other.attribute[ATR_DEXTERITY] >= T_LOW)
-	if(other.aivar[REAL_DEXTERITY] >= T_LOW)
+//	if(other.attribute[ATR_DEXTERITY] >= T_HIGH)
+	if(other.aivar[REAL_DEXTERITY] >= T_HIGH)
 	{
 		AI_Output(self,other,"DIA_Ruga_TEACHDEX_11_00");	//Это все, чему я мог обучить тебя. Если ты хочешь стать еще более ловким, тебе лучше поискать другого учителя.
 		DIA_Ruga_TEACHDEX_permanent = TRUE;
@@ -249,7 +239,7 @@ func void DIA_Ruga_TEACHDEX_BACK()
 
 func void DIA_Ruga_TEACHDEX_1()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_LOW);
+	B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_HIGH);
 	Info_ClearChoices(DIA_Ruga_TEACHDEX);
 	Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
 	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Ruga_TEACHDEX_1);
@@ -258,7 +248,7 @@ func void DIA_Ruga_TEACHDEX_1()
 
 func void DIA_Ruga_TEACHDEX_5()
 {
-	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_LOW);
+	B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_HIGH);
 	Info_ClearChoices(DIA_Ruga_TEACHDEX);
 	Info_AddChoice(DIA_Ruga_TEACHDEX,Dialog_Back,DIA_Ruga_TEACHDEX_BACK);
 	Info_AddChoice(DIA_Ruga_TEACHDEX,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Ruga_TEACHDEX_1);

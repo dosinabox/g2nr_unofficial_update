@@ -503,6 +503,8 @@ func void DIA_Addon_Lares_Geduld_Info()
 };
 
 
+var int Lares_ArmorComment;
+
 instance DIA_Addon_Lares_GetRangerArmor(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -528,10 +530,14 @@ func void DIA_Addon_Lares_GetRangerArmor_Info()
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_02");	//Конечно же, здесь не все члены общества, так что будь внимателен.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_03");	//Нам будет известно как о твоих действиях на благо Кольца, так и обо всех проступках.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_04");	//А теперь прими от братства эти доспехи.
+	if(Lares_ArmorComment == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03_add");	//Члены общества Кольца Воды носили такую броню еще до войны с орками.
+		Lares_ArmorComment = TRUE;
+	};
 	AI_WaitTillEnd(other,self);
 	CreateInvItem(hero,ITAR_RANGER_Addon);
 	AI_PrintScreen("Доспехи 'Кольца Воды' получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//	AI_EquipArmor(hero,ITAR_RANGER_Addon);
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_05");	//Носи их с гордостью! Но никогда не надевай их в городе или каком-либо другом населенном месте.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_06");	//Помни: наши имена должны оставаться в тайне. Никто не должен знать, что мы являемся членами общества.
 	AI_Output(self,other,"DIA_Addon_Lares_GetRangerArmor_09_07");	//Болтать о Кольце Воды запрещено. Это наше главное правило. Запомни его.
@@ -996,9 +1002,12 @@ instance DIA_Lares_Paladine(C_Info)
 
 func int DIA_Lares_Paladine_Condition()
 {
-	if((other.guild == GIL_NONE) && (RangerHelp_gildeMIL == FALSE) && (RangerHelp_gildeSLD == FALSE) && (RangerHelp_gildeKDF == FALSE))
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
-		return TRUE;
+		if((RangerHelp_gildeMIL == FALSE) && (RangerHelp_gildeSLD == FALSE) && (RangerHelp_gildeKDF == FALSE))
+		{
+			return TRUE;
+		};
 	};
 };
 
@@ -1029,9 +1038,9 @@ instance DIA_Lares_WhyPalHere(C_Info)
 
 func int DIA_Lares_WhyPalHere_Condition()
 {
-	if(other.guild == GIL_NONE)
+	if(Npc_KnowsInfo(other,DIA_Lares_Paladine) || (RangerHelp_gildeMIL == TRUE) || (RangerHelp_gildeSLD == TRUE) || (RangerHelp_gildeKDF == TRUE) || (MIS_Garvell_Infos == LOG_Running))
 	{
-		if(Npc_KnowsInfo(other,DIA_Lares_Paladine) || (RangerHelp_gildeMIL == TRUE) || (RangerHelp_gildeSLD == TRUE) || (RangerHelp_gildeKDF == TRUE))
+		if(KnowsPaladins_Ore == FALSE)
 		{
 			return TRUE;
 		};
@@ -1518,10 +1527,7 @@ func void DIA_Lares_GoNow_Maya()
 	AI_Output(other,self,"DIA_Addon_Lares_GoNow_Maya_15_00");	//Давай вернем орнамент Ватраса.
 	LaresGuide_ZumPortal = 1;
 	Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL1");
-	if((KAPITEL > 1) && !Npc_IsDead(BDT_1020_Bandit_L))
-	{
-		B_StartOtherRoutine(BDT_1020_Bandit_L,"Intercept");
-	};
+	B_StartOtherRoutine(BridgeBandit,"Intercept");
 	DIA_Lares_GoNow_GoingConditions();
 };
 
@@ -1674,7 +1680,11 @@ func void DIA_Addon_Lares_ArrivedPortalInter1_teil2()
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_01");	//Даже Ли готов защищать магов Воды от любой опасности, если только это будет в его силах.
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_02");	//Чтобы поддерживать связь с магами, я практически постоянно нахожусь в городе, работая вместе с Ватрасом.
 	B_MakeRangerReadyForMeeting(self);
-	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги Воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
+	if(Lares_ArmorComment == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_09_03");	//А такие доспехи выдают маги Воды каждому из нас. Члены общества Кольца Воды носили такую броню еще до войны с орками.
+		Lares_ArmorComment = TRUE;
+	};
 	if(Cavalorn_RangerHint == TRUE)
 	{
 		AI_Output(other,self,"DIA_Addon_Lares_ArrivedPortalInter1_teil2_15_04");	//А как ко всему этому относится Кавалорн? Насколько я знаю, в Новом Лагере он ничем таким не занимался.
@@ -1875,10 +1885,7 @@ func int DIA_Addon_Lares_ArrivedPortalInterWeiter4_Condition()
 func void DIA_Addon_Lares_ArrivedPortalInterWeiter4_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Lares_ArrivedPortalInterWeiter4_09_00");	//Очень хорошо. Здесь может быть опасно.
-	if((KAPITEL > 1) && !Npc_IsDead(BDT_1020_Bandit_L))
-	{
-		B_StartOtherRoutine(BDT_1020_Bandit_L,"Intercept");
-	};
+	B_StartOtherRoutine(BridgeBandit,"Intercept");
 	Lares_Distracted = FALSE;
 	LaresGuide_ZumPortal = 7;
 };
@@ -2142,10 +2149,15 @@ func void DIA_Addon_Lares_PortalInterWEITER_Info()
 	else if(LaresGuide_ZumPortal == 5)
 	{
 		Npc_ExchangeRoutine(self,"GUIDEPORTALTEMPEL5");
-		if((KAPITEL > 1) && !Npc_IsDead(BDT_1020_Bandit_L))
+		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_01) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_01))
 		{
-			B_StartOtherRoutine(BDT_1020_Bandit_L,"Hide");
+			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_01,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_01.attribute[ATR_HITPOINTS_MAX]);
 		};
+		if(Hlp_IsValidNpc(Gobbo_Black_Crossbow_Guard_02) && !Npc_IsDead(Gobbo_Black_Crossbow_Guard_02))
+		{
+			Npc_ChangeAttribute(Gobbo_Black_Crossbow_Guard_02,ATR_HITPOINTS,-Gobbo_Black_Crossbow_Guard_02.attribute[ATR_HITPOINTS_MAX]);
+		};
+		B_StartOtherRoutine(BridgeBandit,"Hide");
 	}
 	else if(LaresGuide_ZumPortal == 6)
 	{

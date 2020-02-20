@@ -469,7 +469,6 @@ func void DIA_Lord_Hagen_Pass_Info()
 		B_StartOtherRoutine(Fernando,"WAIT");
 	};
 	B_PlayerEnteredCity();
-//	Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
 };
 
 
@@ -740,17 +739,16 @@ func void DIA_Lord_Hagen_Knight_Yes()
 	AI_Output(self,other,"DIA_Lord_Hagen_Knight_Yes_04_07");	//Я даю тебе оружие и доспехи рыцаря. Носи их с гордостью, рыцарь!
 	hero.guild = GIL_PAL;
 	Npc_SetTrueGuild(hero,GIL_PAL);
-	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
 	if(Helmets_Enabled == TRUE)
 	{
-		CreateInvItems(other,ITAR_PALN_M,1);
-		CreateInvItems(other,ITHE_PAL_M,1);
+		CreateInvItem(hero,ITAR_PALN_M);
+		CreateInvItem(hero,ITHE_PAL_M);
 	}
 	else
 	{
-		CreateInvItems(other,ITAR_PAL_M,1);
+		CreateInvItem(hero,ITAR_PAL_M);
 	};
-//	AI_EquipArmor(other,ITAR_PAL_M);
+	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
 	if(other.HitChance[NPC_TALENT_2H] >= other.HitChance[NPC_TALENT_1H])
 	{
 		CreateInvItems(self,ItMw_2h_Pal_Sword,1);
@@ -1245,7 +1243,7 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_05");	//Это не разведчики. Я взял это кольцо с трупа одного из них.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_06");	//Покажи.
 		AI_PrintScreen("Кольцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ммм. Это действительно неприятно.
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ох... Это действительно неприятно.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_08");	//Это знак их силы. Значит, орки выбрались из-за своих частоколов и сражаются в открытом поле.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Но, впрочем, это может стать хорошей возможностью нанести им чувствительный удар.
 		AI_PrintScreen("Кольцо получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);

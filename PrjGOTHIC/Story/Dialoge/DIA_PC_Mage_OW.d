@@ -683,11 +683,8 @@ func int DIA_MiltenOW_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItPo_Perm_Mana))
 	{
 		return C_StealItem(80,Hlp_GetInstanceID(ItPo_Perm_Mana));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_MiltenOW_PICKPOCKET_Info()

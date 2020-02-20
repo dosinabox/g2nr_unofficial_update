@@ -459,7 +459,7 @@ func void DIA_Nagur_Knast_Info()
 instance DIA_Nagur_Sign(C_Info)
 {
 	npc = VLK_493_Nagur;
-	nr = 7;
+	nr = 800;
 	condition = DIA_Nagur_Sign_Condition;
 	information = DIA_Nagur_Sign_Info;
 	permanent = FALSE;

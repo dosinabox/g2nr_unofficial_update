@@ -29,10 +29,7 @@ func int C_PlayerIsFakePirate(var C_Npc slf,var C_Npc oth)
 		{
 			return FALSE;
 		};
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 

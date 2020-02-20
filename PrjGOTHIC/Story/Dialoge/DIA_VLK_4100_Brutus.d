@@ -12,10 +12,7 @@ instance DIA_Brutus_EXIT(C_Info)
 
 func int DIA_Brutus_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Brutus_EXIT_Info()
@@ -82,7 +79,7 @@ instance DIA_Brutus_PRISONER(C_Info)
 
 func int DIA_Brutus_PRISONER_Condition()
 {
-	if((Kapitel < 3) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(NpcObsessedByDMT_Brutus == FALSE)
 	{
 		return TRUE;
 	};
@@ -96,7 +93,7 @@ func void DIA_Brutus_PRISONER_Info()
 	AI_Output(self,other,"DIA_Brutus_PRISONER_06_03");	//Но моя настоящая работа - заставлять их говорить. И поверь мне, я знаю способы разговорить кого угодно.
 	AI_Output(other,self,"DIA_Brutus_PRISONER_15_04");	//Звучит ужасно мило...
 	AI_Output(self,other,"DIA_Brutus_PRISONER_06_05");	//Но этим блохастым болванам, что сейчас сидят за решеткой, все равно особенно нечего сказать.
-	if(MIS_RescueGorn != LOG_SUCCESS)
+	if((MIS_RescueGorn != LOG_SUCCESS) && (Kapitel < 3))
 	{
 		AI_Output(self,other,"DIA_Brutus_PRISONER_06_06");	//А к этому Горну меня не подпускают.
 		KnowsAboutGorn = TRUE;
@@ -144,7 +141,7 @@ instance DIA_Brutus_Kasse(C_Info)
 
 func int DIA_Brutus_Kasse_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (Kapitel < 3) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
 		return TRUE;
 	};
@@ -181,7 +178,7 @@ instance DIA_Brutus_Den(C_Info)
 
 func int DIA_Brutus_Den_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (Kapitel < 3) && (NpcObsessedByDMT_Brutus == FALSE) && (Npc_HasItems(VLK_Leiche3,ItMi_Gold) > 0))
+	if(Npc_KnowsInfo(hero,DIA_Brutus_Kasse) && (NpcObsessedByDMT_Brutus == FALSE) && (Npc_HasItems(VLK_Leiche3,ItMi_Gold) > 0))
 	{
 		return TRUE;
 	};
@@ -286,31 +283,6 @@ func void DIA_Brutus_Teach_STR_5()
 };
 
 
-instance DIA_Brutus_KAP3_EXIT(C_Info)
-{
-	npc = VLK_4100_Brutus;
-	nr = 999;
-	condition = DIA_Brutus_KAP3_EXIT_Condition;
-	information = DIA_Brutus_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Brutus_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Brutus_KAP3_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
-};
-
-
 instance DIA_Brutus_DUSCHONWIEDER(C_Info)
 {
 	npc = VLK_4100_Brutus;
@@ -324,7 +296,7 @@ instance DIA_Brutus_DUSCHONWIEDER(C_Info)
 
 func int DIA_Brutus_DUSCHONWIEDER_Condition()
 {
-	if((Kapitel == 3) && (NpcObsessedByDMT_Brutus == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (Kapitel == 3) && (NpcObsessedByDMT_Brutus == FALSE))
 	{
 		return TRUE;
 	};
@@ -334,31 +306,6 @@ func void DIA_Brutus_DUSCHONWIEDER_Info()
 {
 	AI_Output(other,self,"DIA_Brutus_DUSCHONWIEDER_15_00");	//Пытал кого-нибудь сегодня?
 	AI_Output(self,other,"DIA_Brutus_DUSCHONWIEDER_06_01");	//Ты не видишь, я занят?! Заходи попозже.
-	B_NpcClearObsessionByDMT(self);
-};
-
-
-instance DIA_Brutus_KAP4_EXIT(C_Info)
-{
-	npc = VLK_4100_Brutus;
-	nr = 999;
-	condition = DIA_Brutus_KAP4_EXIT_Condition;
-	information = DIA_Brutus_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Brutus_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Brutus_KAP4_EXIT_Info()
-{
 	B_NpcClearObsessionByDMT(self);
 };
 
@@ -375,7 +322,7 @@ instance DIA_Brutus_WARUMNICHTARBBEIT(C_Info)
 
 func int DIA_Brutus_WARUMNICHTARBBEIT_Condition()
 {
-	if((Kapitel >= 4) && (NpcObsessedByDMT_Brutus == FALSE) && (MIS_OCGateOpen == FALSE))
+	if(Npc_KnowsInfo(hero,DIA_Brutus_PRISONER) && (Kapitel >= 4) && (NpcObsessedByDMT_Brutus == FALSE) && (MIS_OCGateOpen == FALSE))
 	{
 		return TRUE;
 	};
@@ -418,12 +365,12 @@ func void DIA_Brutus_MEATBUGSWEG_Info()
 	AI_Output(self,other,"DIA_Brutus_MEATBUGSWEG_06_01");	//Ты действительно уверен, что ни одного из этих монстров не осталось?
 	AI_Output(other,self,"DIA_Brutus_MEATBUGSWEG_15_02");	//Абсолютно.
 	AI_Output(self,other,"DIA_Brutus_MEATBUGSWEG_06_03");	//Хорошо. Вот, возьми это золото в знак моей благодарности.
+	CreateInvItems(self,ItMi_Gold,150);
+	B_GiveInvItems(self,other,ItMi_Gold,150);
 	AI_Output(other,self,"DIA_Brutus_MEATBUGSWEG_15_04");	//Ах, не заставляй меня плакать.
 	TOPIC_END_BrutusMeatbugs = TRUE;
 	B_GivePlayerXP(XP_BrutusMeatbugs);
 	B_NpcClearObsessionByDMT(self);
-	CreateInvItems(self,ItMi_Gold,150);
-	B_GiveInvItems(self,other,ItMi_Gold,150);
 	Npc_ExchangeRoutine(self,"Start");
 };
 
@@ -522,31 +469,6 @@ func void DIA_Brutus_BESSEN_Info()
 			Npc_ExchangeRoutine(self,"RunToStart");
 		};
 	};
-};
-
-
-instance DIA_Brutus_KAP5_EXIT(C_Info)
-{
-	npc = VLK_4100_Brutus;
-	nr = 999;
-	condition = DIA_Brutus_KAP5_EXIT_Condition;
-	information = DIA_Brutus_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Brutus_KAP5_EXIT_Condition()
-{
-	if(Kapitel >= 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Brutus_KAP5_EXIT_Info()
-{
-	B_NpcClearObsessionByDMT(self);
 };
 
 

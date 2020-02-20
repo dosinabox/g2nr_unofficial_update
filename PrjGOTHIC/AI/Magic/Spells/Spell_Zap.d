@@ -19,11 +19,8 @@ func int Spell_Logic_Zap(var int manaInvested)
 	else if(self.attribute[ATR_MANA] >= SPL_Cost_Zap)
 	{
 		return SPL_SENDCAST;
-	}
-	else
-	{
-		return SPL_SENDSTOP;
 	};
+	return SPL_SENDSTOP;
 };
 
 func void Spell_Cast_Zap(var int spellLevel)

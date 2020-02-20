@@ -59,7 +59,7 @@ func void DIA_Ramirez_PICKPOCKET_BACK()
 instance DIA_Ramirez_Zeichen(C_Info)
 {
 	npc = VLK_445_Ramirez;
-	nr = 2;
+	nr = 800;
 	condition = DIA_Ramirez_Zeichen_Condition;
 	information = DIA_Ramirez_Zeichen_Info;
 	permanent = FALSE;

@@ -11,7 +11,15 @@ instance DIA_ToughGuy_NEWS(C_Info)
 
 func int DIA_ToughGuy_NEWS_Condition()
 {
-	if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Sylvio)) && Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(BridgeBandit))
+	{
+		return FALSE;
+	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Sylvio)) && Npc_KnowsInfo(other,DIA_SylvioDJG_WHATNEXT))
+	{
+		return FALSE;
+	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco)) && Npc_IsDead(DJG_Sylvio) && !Npc_KnowsInfo(other,DIA_Bullco_SYLVIODEAD))
 	{
 		return FALSE;
 	}

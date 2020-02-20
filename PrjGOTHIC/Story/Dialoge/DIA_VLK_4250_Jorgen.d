@@ -77,9 +77,9 @@ func int DIA_Jorgen_Hallo_Condition()
 
 func void DIA_Jorgen_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Jorgen_Hallo_07_00");	//Эй, ты!
 	if((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF))
 	{
+		AI_Output(self,other,"DIA_Jorgen_Hallo_07_00");	//Эй, ты!
 		AI_Output(self,other,"DIA_Jorgen_Hallo_07_01");	//Я вижу, ты из монастыря магов.
 		AI_Output(other,self,"DIA_Jorgen_Hallo_15_02");	//Да, и что?
 		AI_Output(self,other,"DIA_Jorgen_Hallo_07_03");	//Вам не нужен еще один работник там?
@@ -116,10 +116,14 @@ func int DIA_Jorgen_Novice_Condition()
 func void DIA_Jorgen_Novice_Info()
 {
 	AI_Output(other,self,"DIA_Jorgen_Novice_15_00");	//Мимо тебя не проходил послушник?
-	AI_Output(self,other,"DIA_Jorgen_Novice_07_01");	//Да, конечно, он побежал туда.
-	AI_PointAt(self,"NW_TROLLAREA_NOVCHASE_01");
-	AI_Wait(self,1);
-	AI_StopPointAt(self);
+	if(Npc_IsOnFP(self,"STAND"))
+	{
+		AI_Output(self,other,"DIA_Jorgen_Novice_07_01");	//Да, конечно, он побежал туда.
+		AI_AlignToFP(self);
+		AI_StopLookAt(self);
+		AI_PlayAni(self,"T_DIALOGGESTURE_14");
+		AI_TurnToNpc(self,other);
+	};
 	AI_Output(self,other,"DIA_Jorgen_Novice_07_02");	//Он прыгнул в воду с моста и поплыл так, как будто за ним гналась акула.
 };
 

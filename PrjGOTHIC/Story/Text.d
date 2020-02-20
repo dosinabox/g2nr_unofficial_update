@@ -218,7 +218,7 @@ const string TXT_SPELLS[100] =
 	"Телепорт к проходу Хориниса",
 	"Телепорт к проходу Долины Рудников",
 	"Телепорт в замок",
-	"Телепорт к старой демонической башне",
+	"Телепорт в старую демоническую башню",
 	"Телепорт к таверне",
 	"Телепорт к Кругу Солнца",
 	"Свет",
@@ -320,7 +320,7 @@ const string NAME_SPL_TeleportXardas = "Телепорт к Ксардасу";
 const string NAME_SPL_TeleportPassNW = "Телепорт к проходу Хориниса";
 const string NAME_SPL_TeleportPassOW = "Телепорт к проходу Долины Рудников";
 const string NAME_SPL_TeleportOC = "Телепорт в замок";
-const string NAME_SPL_TeleportOWDemonTower = "Телепорт в древнюю демоническую башню";
+const string NAME_SPL_TeleportOWDemonTower = "Телепорт в старую демоническую башню";
 const string NAME_SPL_TeleportTaverne = "Телепорт к таверне";
 const string NAME_SPL_TeleportRitual = "Телепорт к Кругу Солнца";
 const string NAME_SPL_LIGHT = "Свет";
@@ -417,7 +417,7 @@ const string TXT_TALENTS[22] =
 	"",
 	"Круг магии",
 	"Подкрадывание",
-	"",
+	"Регенерация",
 	"",
 	"Акробатика",
 	"Карман. кража",
@@ -443,7 +443,7 @@ const string TXT_TALENTS_SKILLS[22] =
 	"",
 	"Не обучен|Первый|Второй|Третий|Четвертый|Пятый|Шестой",
 	"Не обучен|Обучен",
-	"",
+	"Не обучен|Обучен",
 	"",
 	"Не обучен|Обучен",
 	"Не обучен|Обучен",
@@ -490,7 +490,7 @@ const string NAME_Soeldner = "Наемник";
 const string NAME_Bauer = "Крестьянин";
 const string NAME_Baeuerin = "Крестьянка";
 const string NAME_Bandit = "Бандит";
-const string NAME_Halsabschneider = "Головорез";
+//const string NAME_Halsabschneider = "Головорез";
 const string NAME_Out = "Бродяга";
 const string NAME_Straefling = "Каторжник";
 const string NAME_Waffenknecht = "Оруженосец";
@@ -516,7 +516,7 @@ const string Dialog_Ende_v2 = "Мне нужно идти.";
 const string Dialog_Ende_v3 = "Еще увидимся.";
 const string Dialog_Ende_v4 = "Я вернусь позже...";
 const string Dialog_Back = "НАЗАД";
-const string DIALOG_TRADE = "(торговать)";
+//const string DIALOG_TRADE = "(торговать)";
 const string DIALOG_TRADE_v1 = "Давай займемся делом.";
 const string DIALOG_TRADE_v2 = "Покажи мне товары.";
 const string DIALOG_TRADE_v3 = "Покажи мне, что у тебя есть.";
@@ -540,7 +540,7 @@ const string NAME_Addon_BeArLeather = "Вместе с кожаными доспехами +";
 const string PRINT_Addon_BDTArmor = "Тот, кто носит эти доспехи, принадлежит к бандитам.";
 const string PRINT_Addon_KUMU_01 = "Мы - три брата из одной касты.";
 const string PRINT_Addon_KUMU_02 = "Вместе мы сильнее.";
-const string PRINT_Addon_NadjaWait = "Подожди. Насчет травы...";
+//const string PRINT_Addon_NadjaWait = "Подожди. Насчет травы...";
 const string NAME_Currency = "Золото: ";
 const string PRINT_Trade_Not_Enough_Gold = "У вас недостаточно золота для покупки этого предмета.";
 const string NAME_Value = "Цена:";
@@ -624,7 +624,6 @@ const string NAME_Addon_Harad_01 = "Изысканный меч";
 const string NAME_Addon_Harad_02 = "Изысканный длинный меч";
 const string NAME_Addon_Harad_03 = "Рубиновый клинок";
 const string NAME_Addon_Harad_04 = "Эль-бастардо";
-const string NAME_ItMw_Streitaxt1 = "Легкий боевой топор";
 const string NAME_ItMw_Banditenaxt = "Бандитский топор";
 const string PRINT_Addon_gegeben = " отдано";
 const string PRINT_GoldGegeben = " золотых отдано";
@@ -644,6 +643,7 @@ const string PRINT_2LP = " очка обучения)";
 const string PRINT_1LP = " очко обучения)";
 const string PRINT_NotEnoughLP = "Недостаточно очков обучения!";
 const string PRINT_NoLearnOverPersonalMAX = "Максимум этого учителя: ";
+const string PRINT_NoLearnOverMAX = "Дальнейшее повышение невозможно!";
 const string PRINT_LearnSTR = "Сила + ";
 const string PRINT_LearnDEX = "Ловкость + ";
 const string PRINT_LearnMANA_MAX = "Макс. мана + ";
@@ -665,6 +665,10 @@ const string PRINT_LearnCrossbow = "Улучшено: Меткость стрельбы из арбалета";
 const string PRINT_LearnCrossbow_and_Bow = "Улучшено: Меткость стрельбы из арбалета и лука";
 const string PRINT_LearnPicklock = "Изучено: Владение отмычками";
 const string PRINT_LearnSneak = "Изучено: Искусство подкрадывания";
+const string PRINT_LearnRegenerateHP = "Изучено: Регенерация здоровья";
+const string PRINT_LearnRegenerateMana = "Изучено: Регенерация маны";
+const string PRINT_UpgradeRegenerateHP = "Улучшено: Регенерация здоровья";
+const string PRINT_UpgradeRegenerateMana = "Улучшено: Регенерация маны";
 const string PRINT_LearnAcrobat = "Изучено: Акробатика";
 const string PRINT_Addon_AcrobatBonus = "Получен бонус акробатики!";
 const string PRINT_LearnPickpocket = "Изучено: Искусство карманного воровства";
@@ -680,7 +684,6 @@ const string PRINT_LearnTakeAnimalFur = "Изучено: Снятие шкур";
 const string PRINT_LearnForeignLanguage = "Изучено: Язык зодчих";
 const string PRINT_LearnWispDetector = "Ваш блуждающий огонек обучился новым способностям";
 const string PRINT_LearnPalTeleportSecret = "Изучена руна телепорта";
-const string PRINT_NotEnoughLearnPoints = "Недостаточно очков обучения!";
 const string PRINT_LearnSTR1 = "Сила + 1";
 const string PRINT_LearnSTR5 = "Сила + 5";
 const string PRINT_LearnDEX1 = "Ловкость + 1";
@@ -760,7 +763,7 @@ const string PRINT_IrdorathBookHiddenKey = "В переплете этой книги спрятан ключ!
 const string PRINT_FishLetter = "В этой рыбе спрятана записка.";
 const string Print_InnoseyeGiven = "Глаз Инноса отдан";
 const string Print_InnosEyeGet = "Получен Глаз Инноса";
-const string PRINT_GotFourItems = "Получено 4 предмета";
+//const string PRINT_GotFourItems = "Получено 4 предмета";
 const string PRINT_OrcEliteRingEquip = "Вы чувствуете слабость.";
 const string PRINT_SCIsObsessed = "Вы чувствуете удушье!";
 const string PRINT_ClearSCObsession = "Вы чувствуете себя освобожденным!";
@@ -783,18 +786,19 @@ const string PRINT_Smith_1H_Special_04 = " (4 куска руды, 5 ед. драконьей крови)
 const string PRINT_Smith_2H_Special_04 = " (5 кусков руды, 5 ед. драконьей крови)";
 const string PRINT_Smith_Streitaxt1 = " (1 кусок руды, 3 зуба, 1 доп. заготовка)";
 const string NAME_MageScroll = "Свиток";
-const string PRINT_FoundRing = "Найдено кольцо";
-const string PRINT_FoundAmulett = "Найден амулет";
-const string PRINT_FoundScroll = "Найден свиток с заклинанием";
-const string PRINT_FoundPotion = "Найдено зелье";
-const string PRINT_FoundMap = "Найдена карта";
+//const string PRINT_FoundRing = "Найдено кольцо";
+const string PRINT_FoundRing = "Найдено кольцо неуязвимости";
+//const string PRINT_FoundAmulett = "Найден амулет";
+//const string PRINT_FoundScroll = "Найден свиток с заклинанием";
+//const string PRINT_FoundPotion = "Найдено зелье";
+//const string PRINT_FoundMap = "Найдена карта";
 const string PRINT_FoundGold10 = "Найдено 10 золотых";
 const string PRINT_FoundGold25 = "Найдено 25 золотых";
 const string PRINT_FoundGold50 = "Найдено 50 золотых";
 const string PRINT_FoundGold100 = "Найдено 100 золотых";
-const string PRINT_FoundRuneBlank = "Найден рунный камень";
+//const string PRINT_FoundRuneBlank = "Найден рунный камень";
 const string PRINT_FoundOreNugget = "Найден кусок руды";
-const string PRINT_FoundLockpick = "Найдена отмычка";
+//const string PRINT_FoundLockpick = "Найдена отмычка";
 const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек...";
 const string PRINT_GotPlants = "Найдены травы";
 const string PRINT_NoSweeping = "На подметание этих келий у меня уйдет целая вечность!";
@@ -819,9 +823,10 @@ const string TEXT_Innoseye_Setting_Repaired = "Оправа этого амулета в целости и 
 const string TEXT_Innoseye_Gem = "Драгоценный камень тускл и безжизнен.";
 var string TEXT_LousHammer_Setting;
 var string TEXT_Zeitspalt_Setting;
+var string TEXT_MegaDrink_Setting_Desc;
 var string TEXT_MegaDrink_Setting;
-var string TEXT_MegaDrink_Setting2;
-var string TEXT_DragonEggDrinkNeoras_Setting;
+const string TEXT_MegaDrink_Setting_Desc_Print = "Повышение преобладающего параметра.";
+const string TEXT_MegaDrink_Setting_Print = "Прибавка к силе или ловкости:";
 const string Pickpocket_20 = "(нет ничего проще, чем украсть его кошелек)";
 const string Pickpocket_40 = "(украсть его кошелек будет довольно просто)";
 const string Pickpocket_60 = "(украсть его кошелек будет довольно рискованно)";
@@ -966,4 +971,7 @@ const string PRINT_NothingToPick = "Здесь больше нечего делать.";
 const string PRINT_BookstandRunes1 = "Чтобы создать руну, всегда необходим КАЖДЫЙ из вышеперечисленных ингредиентов.";
 const string PRINT_BookstandRunes2 = "Маг должен знать формулу заклинания и должен иметь чистый рунный камень и свиток желаемого заклинания.";
 const string PRINT_BookstandRunes3 = "Только при выполнении этих условий он может приступить к работе за рунным столом.";
+
+const string PRINT_OldSave1 = "Загруженное сохранение не поддерживается!";
+const string PRINT_OldSave2 = "Пожалуйста, начните новую игру.";
 

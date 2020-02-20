@@ -50,6 +50,10 @@ func int DIA_Xardas_EXIT_Condition()
 
 func void DIA_Xardas_EXIT_Info()
 {
+	if(Npc_HasItems(hero,ItMw_BeliarWeapon_Fake))
+	{
+		Npc_RemoveInvItem(hero,ItMw_BeliarWeapon_Fake);
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -315,6 +319,10 @@ func void DIA_Addon_Xardas_AddonSuccess_Info()
 	if(C_ScHasBeliarsWeapon())
 	{
 		AI_Output(other,self,"DIA_Addon_Xardas_AddonSuccess_15_07");	//Да, вот он.
+		CreateInvItem(other,ItMw_BeliarWeapon_Fake);
+		AI_UseItem(other,ItMw_BeliarWeapon_Fake);
+		AI_Wait(other,0.5);
+		AI_WaitTillEnd(self,other);
 		B_Xardas_ClawReaction();
 		AI_Output(self,other,"DIA_Addon_Xardas_AddonSuccess_14_10");	//Будь осторожнее! И самое главное, не потеряй Коготь!
 	}
@@ -897,6 +905,10 @@ func void DIA_Xardas_RITUALREQUEST_Info()
 	{
 		AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_05");	//Не стоит заставлять Ватраса ждать. Я отправляюсь немедленно. А ты должен выполнить свою задачу, а затем присоединиться ко мне опять.
 		AI_StopProcessInfos(self);
+		if(C_BodyStateContains(self,BS_SIT))
+		{
+			AI_UseMob(self,"THRONE",-1);
+		};
 		B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
 		B_GivePlayerXP(XP_AmbientKap3 * 2);
 		Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
@@ -933,6 +945,7 @@ func void DIA_Xardas_WARUMNICHTJETZT_Info()
 	AI_Output(other,self,"DIA_Xardas_WARUMNICHTJETZT_15_00");	//Почему бы тебе не отправиться на встречу с Ватрасом ПРЯМО СЕЙЧАС?
 	AI_Output(other,self,"DIA_Xardas_WARUMNICHTJETZT_15_01");	//Иногда я просто не понимаю тебя.
 	AI_Output(self,other,"DIA_Xardas_WARUMNICHTJETZT_14_02");	//(раздраженно) Не смей говорить со мной в таком тоне. Если бы не я, твое ни на что не годное тело до сих пор бы гнило в этом храме.
+	AI_Output(other,self,"Extro_Tempel_15_01");	//Ксардас! Что...
 	Info_AddChoice(DIA_Xardas_WARUMNICHTJETZT,"Не волнуйся! Просто скажи, что мне нужно сделать.",DIA_Xardas_WARUMNICHTJETZT_wastun);
 	Info_AddChoice(DIA_Xardas_WARUMNICHTJETZT,"Тогда, по крайней мере, объясни мне, почему ты колеблешься.",DIA_Xardas_WARUMNICHTJETZT_grund);
 };
@@ -978,6 +991,10 @@ func void DIA_Xardas_BEREIT_Info()
 	AI_Output(other,self,"DIA_Xardas_BEREIT_15_00");	//Я готов к сражению с драконами.
 	AI_Output(self,other,"DIA_Xardas_BEREIT_14_01");	//Тогда не будем терять времени. Я немедленно отправлюсь к Кругу Солнца. А ты выполни свои задачи. Я встречу тебя там.
 	AI_StopProcessInfos(self);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"THRONE",-1);
+	};
 	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
 	B_GivePlayerXP(XP_AmbientKap3);
 	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");

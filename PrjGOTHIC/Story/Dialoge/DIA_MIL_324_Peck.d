@@ -38,11 +38,8 @@ func int DIA_Peck_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItKe_City_Tower_05))
 	{
 		return C_StealItem(60,Hlp_GetInstanceID(ItKe_City_Tower_05));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Peck_PICKPOCKET_Info()
@@ -251,7 +248,7 @@ func void DIA_Peck_WEAPON2_Info()
 
 func int C_PeckCanSellArmor()
 {
-	if(Kapitel >= 2)
+	/*if(Kapitel >= 2)
 	{
 		return TRUE;
 	}
@@ -270,6 +267,14 @@ func int C_PeckCanSellArmor()
 	else if(Andre_FoundThieves_Reported == TRUE)
 	{
 		return TRUE;
+	};*/
+	if(MIS_Addon_Andre_MissingPeople == LOG_SUCCESS)
+	{
+		return TRUE;
+	}
+	else if(MIS_OLDWORLD == LOG_SUCCESS)
+	{
+		return TRUE;
 	};
 	return FALSE;
 };
@@ -278,7 +283,7 @@ var int VALUE_ITAR_MIL_M_Dynamic;
 
 func void B_SetPeckArmorPrice()
 {
-	VALUE_ITAR_MIL_M_Dynamic = 4000;
+	VALUE_ITAR_MIL_M_Dynamic = 4500;
 	if(MIS_Andre_Peck == LOG_SUCCESS)
 	{
 		VALUE_ITAR_MIL_M_Dynamic += 500;
@@ -308,6 +313,10 @@ func void B_SetPeckArmorPrice()
 		VALUE_ITAR_MIL_M_Dynamic -= 100;
 	};
 	if(Fernando_ImKnast == TRUE)
+	{
+		VALUE_ITAR_MIL_M_Dynamic -= 100;
+	};
+	if(Andre_Knows_MartinEmpfehlung == TRUE)
 	{
 		VALUE_ITAR_MIL_M_Dynamic -= 100;
 	};
@@ -349,6 +358,10 @@ func void DIA_Peck_ARMOR_Info()
 	if(MIS_Andre_Peck == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Peck_WEAPON_12_01");	//Сходи сначала к Андрэ и доложи ему.
+	}
+	else if(B_GetGreatestPetzCrime(self) != CRIME_NONE)
+	{
+		B_Say(self,other,"$CITY_CRIME");
 	}
 	else
 	{
@@ -405,7 +418,7 @@ func void DIA_Peck_ARMOR_BUY()
 	Info_ClearChoices(DIA_Peck_ARMOR);
 };
 
-instance DIA_Peck_TRADE(C_Info)
+/*instance DIA_Peck_TRADE(C_Info)
 {
 	npc = MIL_324_Peck;
 	nr = 4;
@@ -418,26 +431,26 @@ instance DIA_Peck_TRADE(C_Info)
 
 func int DIA_Peck_TRADE_Condition()
 {
-	/*if((other.guild == GIL_MIL) && (DIA_Peck_ARMOR_perm == FALSE))
+	if((other.guild == GIL_MIL) && (DIA_Peck_ARMOR_perm == FALSE))
 	{
 		if((Npc_GetDistToWP(self,"NW_CITY_ARMORY_PECK") <= 1000) || (Npc_GetDistToWP(self,"NW_CITY_BARRACK02_BED_PECK") <= 2000))
 		{
 			return TRUE;
 		};
-	};*/
+	};
 	return FALSE;
 };
 
 func void DIA_Peck_TRADE_Info()
 {
 	//AI_Output(other,self,"DIA_Parlan_Bibliothek_15_00");	//У тебя есть что-нибудь для меня?
-};
+};*/
 
 
 instance DIA_Peck_PERM(C_Info)
 {
 	npc = MIL_324_Peck;
-	nr = 998;
+	nr = 800;
 	condition = DIA_Peck_PERM_Condition;
 	information = DIA_Peck_PERM_Info;
 	permanent = TRUE;

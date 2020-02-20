@@ -165,13 +165,17 @@ func void Use_XardasBookForPyrokar()
 instance ItKe_CHEST_SEKOB_XARDASBOOK_MIS(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_02.3ds";
 	material = MAT_METAL;
 	description = name;
 	text[0] = "Ключ от сундука на ферме Секоба.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_CorneliusTagebuch_Mis(C_Item)
@@ -548,7 +552,7 @@ func void Use_BabosDocs()
 instance ItKe_IgarazChest_Mis(C_Item)
 {
 	name = NAME_Key;
-	mainflag = ITEM_KAT_NONE;
+	mainflag = ITEM_KAT_KEYS;
 	flags = ITEM_MISSION;
 	value = Value_Key_01;
 	visual = "ItKe_Key_03.3ds";
@@ -556,13 +560,18 @@ instance ItKe_IgarazChest_Mis(C_Item)
 	description = name;
 	text[0] = "Это ключ от сундука,";
 	text[1] = "принадлежащего Игарацу.";
+	inv_rotz = -45;
+	inv_rotx = -25;
+	inv_roty = 0;
+	inv_zbias = 145;
 };
 
 instance ItWr_Astronomy_Mis(C_Item)
 {
 	name = "Божественная сила звезд";
 	mainflag = ITEM_KAT_DOCS;
-	flags = ITEM_MISSION;
+	//flags = ITEM_MISSION;
+	flags = 0;
 	value = 400;
 	visual = "ItWr_Book_02_02.3ds";
 	material = MAT_LEATHER;
@@ -836,7 +845,7 @@ func void Use_MinenAnteil_Mis()
 
 instance ItAm_Prot_BlackEye_Mis(C_Item)
 {
-	name = "Амулет вызова душ";
+	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET | ITEM_MISSION;
 	value = Value_Am_HpMana;
@@ -846,7 +855,7 @@ instance ItAm_Prot_BlackEye_Mis(C_Item)
 	material = MAT_METAL;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = name;
+	description = "Амулет вызова душ";
 	text[2] = "Защита от сглаза.";
 	text[5] = NAME_Value;
 	count[5] = value;

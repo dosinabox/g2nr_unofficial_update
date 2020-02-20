@@ -10,9 +10,16 @@ func void ZS_Ghost()
 			Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
 		};
 	}
-	else
+	else if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rhademes))
 	{
-		Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
+		if(Rhademes_fertig == TRUE)
+		{
+			Npc_PercEnable(self,PERC_ASSESSPLAYER,B_AssessPlayer);
+		};
+		if(SC_TalkedToRhademAfter == FALSE)
+		{
+			Npc_PercEnable(self,PERC_ASSESSTALK,B_AssessTalk);
+		};
 	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_AssessDamage);
 	B_ResetAll(self);
@@ -29,7 +36,7 @@ func int ZS_Ghost_Loop()
 	{
 		if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 		{
-			AI_AlignToWP(self);
+			//AI_AlignToWP(self);
 			Npc_SetStateTime(self,0);
 		};
 		B_RemoveGhost();

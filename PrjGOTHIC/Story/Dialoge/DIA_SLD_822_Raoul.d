@@ -114,7 +114,10 @@ instance DIA_Raoul_PERMNone(C_Info)
 
 func int DIA_Raoul_PERMNone_Condition()
 {
-	return TRUE;
+	if(other.guild != GIL_DJG)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Raoul_PERMNone_Info()
@@ -435,8 +438,8 @@ instance DIA_Raoul_TrophyFur(C_Info)
 	condition = DIA_Raoul_TrophyFur_Condition;
 	information = DIA_Raoul_TrophyFur_Info;
 	permanent = TRUE;
-//	description = B_BuildLearnString("Сначала скажи мне, как снять шкуру с черного тролля.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
-	description = B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Fur));
+//	description = B_BuildLearnString("Сначала скажи мне, как снять шкуру с черного тролля.",B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur));
+	description = B_BuildLearnString(NAME_TROPHY_Fur,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_Fur));
 };
 
 
@@ -499,7 +502,7 @@ func void DIA_Raoul_TROLLFELL_ja()
 	AI_Output(self,other,"DIA_Raoul_TROLLFELL_ja_01_01");	//Отличная сделка.
 	CreateInvItems(other,ItPo_Health_03,3);
 	CreateInvItems(other,ItMi_Gold,500);
-	AI_PrintScreen("3 предметов получено (Зелье)",-1,40,FONT_ScreenSmall,4);
+	AI_PrintScreen("3 предметов получено (Лечебный эликсир)",-1,40,FONT_ScreenSmall,4);
 	AI_PrintScreen("500 золотых получено",-1,43,FONT_ScreenSmall,4);
 	Info_ClearChoices(DIA_Raoul_TROLLFELL);
 };
@@ -735,4 +738,6 @@ func void DIA_Raoul_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Raoul_PICKPOCKET);
 };
+
+
 

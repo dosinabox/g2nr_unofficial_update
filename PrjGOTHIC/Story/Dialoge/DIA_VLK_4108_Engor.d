@@ -207,7 +207,7 @@ func void DIA_Engor_HELP_Info()
 	AI_Output(self,other,"DIA_Engor_HELP_13_01");	//Хмм... Конечно, почему нет? Мне не помешала бы помощь.
 	AI_Output(other,self,"DIA_Engor_HELP_15_02");	//Так что нужно сделать?
 	AI_Output(self,other,"DIA_Engor_HELP_13_03");	//Наши запасы продовольствия на исходе. Хуже всего, что у нас почти не осталось мяса.
-	AI_Output(self,other,"DIA_Engor_HELP_13_04");	//Так что если сможешь раздобыть мясо, сырое или приготовленное, окорока или колбасу, я был бы очень благодарен. Ну, как? Ты поможешь нам?
+	AI_Output(self,other,"DIA_Engor_HELP_13_04");	//Так что если сможешь раздобыть мясо, сырое или приготовленное, окорока или колбасу, я был бы очень благодарен. Ну как? Ты поможешь нам?
 	Info_ClearChoices(DIA_Engor_HELP);
 	Info_AddChoice(DIA_Engor_HELP,"У меня нет времени на это.",DIA_Engor_HELP_NO);
 	Info_AddChoice(DIA_Engor_HELP,"Не волнуйся, я принесу тебе мясо.",DIA_Engor_HELP_YES);
@@ -446,11 +446,8 @@ func int DIA_Engor_PICKPOCKET_Condition()
 	if(Npc_HasItems(self,ItWr_Map_OldWorld))
 	{
 		return C_StealItem(40,Hlp_GetInstanceID(ItWr_Map_OldWorld));
-	}
-	else
-	{
-		return FALSE;
 	};
+	return FALSE;
 };
 
 func void DIA_Engor_PICKPOCKET_Info()

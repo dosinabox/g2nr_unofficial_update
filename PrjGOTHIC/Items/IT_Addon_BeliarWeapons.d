@@ -444,3 +444,15 @@ instance ItMw_BeliarWeapon_Fire(BeliarWeaponPrototype_2H)
 	effect = "SPELLFX_FIRESWORD";
 };
 
+instance ItMw_BeliarWeapon_Fake(C_Item)
+{
+	name = NAME_ADDON_BELIARSWEAPON;
+	mainflag = ITEM_KAT_NONE;
+	flags = ITEM_MULTI;
+	value = 0;
+	visual = "ItMw_BeliarWeapon_1H.3DS";
+	scemeName = "INSPECTWEAPON";
+	material = MAT_METAL;
+	description = name;
+};
+

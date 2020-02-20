@@ -78,7 +78,10 @@ func int DIA_Rupert_Hello_Condition()
 
 func void DIA_Rupert_Hello_Info()
 {
-	AI_Output(self,other,"DIA_Rupert_Hello_03_00");	//Привет, чужеземец!
+	if((hero.guild == GIL_NONE) && (Player_IsApprentice == APP_NONE))
+	{
+		AI_Output(self,other,"DIA_Rupert_Hello_03_00");	//Привет, чужеземец!
+	};
 	AI_Output(self,other,"DIA_Rupert_Hello_03_01");	//Ты, должно быть, голоден и хочешь пить. Может, тебя заинтересуют мои товары?
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
 	B_LogEntry(TOPIC_CityTrader,"Руперт - торговец едой у восточных ворот.");
@@ -139,7 +142,7 @@ func void DIA_Rupert_HelpMeIntoOV_Info()
 	Log_CreateTopic(TOPIC_OV,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_OV,LOG_Running);
 	B_LogEntry(TOPIC_OV,"Чтобы попасть в верхний квартал, мне нужна помощь влиятельных граждан из нижней части города.");
-	B_LogEntry(TOPIC_OV,"Торговец Маттео - один из влиятельных граждан нижней части города.");
+	Log_AddEntry(TOPIC_OV,"Торговец Маттео - один из влиятельных граждан нижней части города.");
 };
 
 
@@ -265,7 +268,7 @@ instance DIA_Rupert_Trade(C_Info)
 	condition = DIA_Rupert_Trade_Condition;
 	information = DIA_Rupert_Trade_Info;
 	permanent = TRUE;
-	description = "Покажи мне свои товары.";
+	description = DIALOG_TRADE_v4;
 	trade = TRUE;
 };
 

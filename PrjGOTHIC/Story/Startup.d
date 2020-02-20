@@ -1,12 +1,12 @@
 
-const int fix_version_start = 23;
-const int least_supported = 21;
-var int fix_version_save;
+const int FIX_VERSION_START = 24;
+const int LEAST_SUPPORTED = 21;
+var int FIX_VERSION_SAVE;
 
 func void startup_global()
 {
 	Game_InitGerman();
-	fix_version_save = fix_version_start;
+	FIX_VERSION_SAVE = FIX_VERSION_START;
 };
 
 func void init_global()
@@ -747,7 +747,10 @@ func void init_addon_part_valley_01()
 
 func void startup_sub_psicamp()
 {
-	b_seed_wasteland_world_psicamp();
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	{
+		B_Seed_Wasteland_World_Psicamp();
+	};
 };
 
 func void init_sub_psicamp()
@@ -931,7 +934,10 @@ func void init_psicamp()
 
 func void startup_sub_freeminecamp()
 {
-	b_seed_wasteland_world_freeminecamp();
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
+	{
+		B_Seed_Wasteland_World_Freeminecamp();
+	};
 };
 
 func void init_sub_freeminecamp()
@@ -1243,8 +1249,8 @@ func void Startup_Surface()
 	Wld_InsertNpc(VLK_4152_Olav,"OC1");
 	Wld_InsertNpc(VLK_4111_Grimes,"OW_MINE2_GRIMES");
 	Wld_InsertNpc(STRF_1117_Straefling,"OW_MINE2_STRF");
-	Wld_InsertNpc(PAL_218_Ritter,"OW_PATH_264");
-	Wld_InsertNpc(PAL_219_Ritter,"OW_PATH_148_A");
+	Wld_InsertNpc(PAL_218_Ritter,"OW_PATH_148_A");
+	Wld_InsertNpc(PAL_219_Ritter,"OW_PATH_264");
 	Wld_InsertNpc(VLK_4151_Leiche,"OW_SPAWN_TRACK_LEICHE_00");
 	Wld_InsertNpc(STRF_1150_Leiche,"OW_SPAWN_TRACK_LEICHE_01");
 	Wld_InsertNpc(STRF_1151_Leiche,"OW_SPAWN_TRACK_LEICHE_03");
@@ -1794,9 +1800,9 @@ func void Startup_Surface()
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
 	Wld_InsertNpc(Draconian,"PATH_CASTLE_TO_WATERFALL");
-	if(Mob_HasItems("D36_SECRET_WASTELAND_CHEST",ItPl_Mushroom_02))
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
 	{
-		b_seed_wasteland_world_main();
+		B_Seed_Wasteland_World_Main();
 	};
 };
 
@@ -1817,12 +1823,12 @@ func void init_surface()
 
 func void init_oldworld()
 {
-	b_check_version();
-	b_check_armor();
+	B_Check_Version();
+	B_SetHeroSkin();
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
 	INIT_SUB_Surface();
-	if(Mob_HasItems("D36_SECRET_WASTELAND_CHEST",ItPl_Mushroom_02))
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
 	{
 		init_sub_psicamp();
 		init_sub_freeminecamp();
@@ -1850,7 +1856,7 @@ func void startup_oldworld()
 	{
 		Wld_SetTime(23,59);
 	};
-	if(Mob_HasItems("D36_SECRET_WASTELAND_CHEST",ItPl_Mushroom_02))
+	if(C_WorldIsFixed(OLDWORLD_ZEN))
 	{
 		startup_psicamp();
 		startup_freeminecamp();
@@ -2067,20 +2073,37 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertNpc(VLK_4006_Bote,"NW_CITY_ENTRANCE_01");
 	Wld_InsertItem(ItWr_OneHStonePlate2_Addon,"FP_ROAM_INSEL_07");
 	Wld_InsertItem(ItWr_BowStonePlate2_Addon,"FP_ROAM_INSEL_10");
-	/*Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
+	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
+	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	{
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_017");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_018");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_019");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_019");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_021");
+		Wld_InsertNpc(Waran_Rest,"SOME_NW_WAYPOINT_021");
+	}
+	else
+	{
+		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
+		Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
+		Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");
+	};
+	/*Wld_InsertNpc(Waran,"FP_ROAM_INSEL_02");
 	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_01");
 	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_07");
 	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_08");
 	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_09");
 	Wld_InsertNpc(Waran_Rest,"FP_ROAM_INSEL_10");*/
-	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_03");
-	Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_02");
+	/*Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_02");
 	Wld_InsertNpc(Waran,"ISLAND_PATCH_WAYPOINT_03");
 	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
 	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_04");
 	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
-	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");
+	Wld_InsertNpc(Waran_Rest,"ISLAND_PATCH_WAYPOINT_06");*/
 //	Wld_InsertNpc(Waran,"FP_ROAM_INSEL_13");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_01");
 	Wld_InsertItem(ItWr_ManaStonePlate2_Addon,"FP_SHELLSPAWN_CITY_02");
@@ -2328,18 +2351,36 @@ func void STARTUP_NewWorld_Part_Xardas_01()
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_GOBBO_01");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_GOBBO_02");
 	Wld_InsertNpc(YWolf,"NW_XARDAS_MONSTER_INSERT_01");
-	Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
-	Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
-	Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
-	Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
-	Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
-	Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
-	Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
-	Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
-	Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
-	Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
-	Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
-	Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
+	if(C_WorldIsFixed(NEWWORLD_ZEN))
+	{
+		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");
+		Wld_InsertNpc(Keiler,"SOME_NW_WAYPOINT_029");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_054");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_054");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_061");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_061");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_041");
+		Wld_InsertNpc(Waran,"SOME_NW_WAYPOINT_041");
+		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
+		Wld_InsertNpc(Giant_Rat,"SOME_NW_WAYPOINT_049");
+		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
+		Wld_InsertNpc(Meatbug,"SOME_NW_WAYPOINT_037");
+	}
+	else
+	{
+		Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
+		Wld_InsertNpc(Keiler,"FP_ROAM_XARDAS_SECRET_23");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_08");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_15");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
+		Wld_InsertNpc(Waran,"FP_ROAM_XARDAS_SECRET_04");
+		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
+		Wld_InsertNpc(Giant_Rat,"FP_ROAM_XARDAS_SECRET_27");
+		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
+		Wld_InsertNpc(Meatbug,"FP_ROAM_XARDAS_SECRET_01");
+	};
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_03");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_02");
 	Wld_InsertNpc(YGobbo_Green,"NW_XARDAS_TOWER_WATERFALL_CAVE_ENTRANCE_05");
@@ -3325,6 +3366,7 @@ func void STARTUP_NewWorld_Part_TrollArea_01()
 	Wld_InsertNpc(Shadowbeast,"NW_TROLLAREA_RIVERSIDECAVE_02");
 	Wld_InsertItem(ItWr_HitPointStonePlate3_Addon,"FP_ROAM_NW_TROLLAREA_RIVERSIDECAVE_01_03");
 	Wld_InsertNpc(Shadowbeast,"NW_TROLLAREA_RIVERSIDECAVE_07");
+	Wld_InsertNpc(BDT_1020_Bandit_L,"NW_TROLLAREA_PATH_47");
 };
 
 func void INIT_SUB_NewWorld_Part_TrollArea_01()
@@ -3357,8 +3399,8 @@ func void STARTUP_NewWorld()
 
 func void INIT_NewWorld()
 {
-	b_check_version();
-	b_check_armor();
+	B_Check_Version();
+	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
@@ -3401,8 +3443,8 @@ func void STARTUP_AddonWorld()
 
 func void INIT_AddonWorld()
 {
-	b_check_version();
-	b_check_armor();
+	B_Check_Version();
+	B_SetHeroSkin();
 	if((BloodwynIsHeadless == TRUE) && (Saturas_RiesenPlan == FALSE))
 	{
 		Mdl_SetVisualBody(BDT_1085_Addon_Bloodwyn,"hum_body_Bloodwyn_Headless",1,0,"Hum_Headless",0,DEFAULT,NO_ARMOR);
@@ -3498,3 +3540,4 @@ func void init_orcgraveyard()
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();
 };
+

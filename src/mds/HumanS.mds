@@ -1410,7 +1410,7 @@ Model ("HuS")
 			ani			("t_Stand_2_GreententacleA_Victim"		1	"s_GreententacleA_Victim"			0.0	0.0	M.	"Hum_Inflate_Victim_K01.asc"			F	1	10)
 			ani			("s_GreententacleA_Victim"				1	"s_GreententacleA_Victim"			0.0	0.0	M.	"Hum_Inflate_Victim_K01.asc"			F	11	199)
 			{
-				*eventSFX		(2	 "MFX_GREENTENTACLE_GROW"		EMPTY_SLOT)
+				*eventSFX		(11	 "MFX_GREENTENTACLE_GROW"		EMPTY_SLOT)
 			}
 			ani			("t_GreententacleA_Victim_2_Stand"		1	""									0.0	0.2	M.	"Hum_Inflate_Victim_K01.ASC"			F	200	200)
 			
@@ -2756,6 +2756,32 @@ Model ("HuS")
 
 			ani			("s_BedHigh_Back_S1"			1	"s_BedHigh_Back_S1"		0.0	0.0	MI	"Hum_BedHighAmbientBack_A01.asc"	F	1	39)
 			aniAlias	("t_BedHigh_Back_S1_2_S0"		1	"s_BedHigh_Back_S0"		0.0	0.0	M.	"t_BedHigh_Back_S0_2_S1"		R)
+			
+// ---------------------------------------------------------------------------------------------------------------
+// Aufs Bett legen (Höhe = 0 cm, kein Kissen)
+			ani			("t_BedLow_Front_Stand_2_S0"	1	"s_BedLow_Front_S0"	0.2	0.0	M.	"Hum_BedLow_M01.asc"		F	1	2)
+			ani			("s_BedLow_Front_S0"			1	"s_BedLow_Front_S0"	0.0	0.0	M.	"Hum_BedLow_M01.asc"		F	3	3)
+			aniAlias	("t_BedLow_Front_S0_2_Stand"	1	""					0.0	0.2	M.	"t_BedLow_Front_Stand_2_S0"	R)
+
+			ani			("t_BedLow_Front_S0_2_S1"		1	"s_BedLow_Front_S1"	0.0	0.0	M.	"Hum_BedLow_M01.asc"		F	4	79	FPS:10)
+			{
+				*eventTag	(7	"DEF_INV_TORCH")
+			}
+
+			ani			("s_BedLow_Front_S1"			1	"s_BedLow_Front_S1"	0.0	0.0	M.	"Hum_BedLowAmbient_A01.asc"	F	1	39)
+			ani			("t_BedLow_Front_S1_2_S0"		1	"s_BedLow_Front_S0"	0.0	0.0	M.	"Hum_BedLow_M01.asc"		F	81	142	FPS:10)
+
+			ani			("t_BedLow_Back_Stand_2_S0"		1	"s_BedLow_Back_S0"	0.2	0.0	M.	"Hum_BedLow_M01.asc"		F	1	2)
+			ani			("s_BedLow_Back_S0"				1	"s_BedLow_Back_S0"	0.0	0.0	M.	"Hum_BedLow_M01.asc"		F	3	3)
+			aniAlias	("t_BedLow_Back_S0_2_Stand"		1	""					0.0	0.2	M.	"t_BedLow_Back_Stand_2_S0"	R)
+
+			ani			("t_BedLow_Back_S0_2_S1"		1	"s_BedLow_Back_S1"	0.0	0.0	M.	"Hum_BedLow_M01.asc"		F	4	79	FPS:10)
+			{
+				*eventTag	(7	"DEF_INV_TORCH")
+			}
+
+			ani			("s_BedLow_Back_S1"				1	"s_BedLow_Back_S1"	0.0	0.0	M.	"Hum_BedLowAmbient_A01.asc"	F	1	39)
+			ani			("t_BedLow_Back_S1_2_S0"		1	"s_BedLow_Back_S0"	0.0	0.0	M.	"Hum_BedLow_M01.asc"		F	81	142	FPS:10)
 
 // ---------------------------------------------------------------------------------------------------------------
 // Fireplace
@@ -3715,7 +3741,8 @@ Model ("HuS")
 			ani			("t_1hSFree"				2	""				0.0	0.2	M.	"Hum_FreeFight_M01.asc"		F	0	750	FPS:10)
 
 // Inspect Weapon - 1h Waffe beglotzen, über Klinge streichen
-			ani			("t_1hSInspect"				2	""				0.1	0.1	M.	"Hum_1hSInspect_M01.asc"	F	1	249	FPS:10)
+//			ani			("t_1hSInspect"				2	""				0.1	0.1	M.	"Hum_1hSInspect_M01.asc"	F	1	249	FPS:10)
+			ani			("t_1hSInspect"				2	""				0.1	0.1	M.	"Hum_UrizielInspect_M01.asc"	F	6	112	FPS:10)
 
 
 // ------------------------------
@@ -3954,6 +3981,18 @@ Model ("HuS")
 				*eventSFX	(121	"Inst_Conga02"	EMPTY_SLOT	)
 			}
 			ani			("t_PAUKE_S1_2_S0"			1	"s_PAUKE_S0"	0.0	0.0	M.	"extremo_pauke_start.asc"		F	80	80)
+// --------------------------------------------------------------------------------------------------------------
+// Inspect fake weapon
+			ani			("t_InspectWeapon_Stand_2_S0"	1	"s_InspectWeapon_S0"	0.0	0.0	M.	"Hum_UrizielInspect_M01.asc"	F	1	4)
+			{
+				*eventSFX	(4	"DRAWSOUND_ME_02"		R:1000	EMPTY_SLOT	)
+			}
+			ani			("s_InspectWeapon_S0"			1	"s_InspectWeapon_S0"	0.0	0.0	M.	"Hum_UrizielInspect_M01.asc"	F	5	5)
+			ani			("t_InspectWeapon_S0_2_Stand"	1	""						0.0	0.0	M.	"Hum_UrizielInspect_M01.asc"	F	6	112)
+			{
+				*eventTag	(7		"DEF_INSERT_ITEM"	"ZS_RIGHTHAND")
+				*eventTag	(107	"DEF_DESTROY_ITEM")
+			}
 	}
 }
 

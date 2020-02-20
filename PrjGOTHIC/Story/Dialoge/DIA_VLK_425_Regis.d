@@ -206,6 +206,14 @@ func void DIA_Regis_ValDefeat_Info()
 };
 
 
+func void B_Regis_AboutThief()
+{
+	AI_Output(self,other,"DIA_Regis_PERM_13_01");	//Можно сказать и так.
+	AI_Output(self,other,"DIA_Regis_PERM_13_02");	//Говорят, Боспер, мастер-лучник, был ограблен. Причем самым наглым образом!
+	AI_Output(self,other,"DIA_Regis_PERM_13_03");	//Вор вломился в его лавку средь бела дня и схватил лук.
+	AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!'. Но вор оказался очень проворным.
+};
+
 var int Regis_Bogendieb;
 
 instance DIA_Regis_PERM(C_Info)
@@ -229,10 +237,7 @@ func void DIA_Regis_PERM_Info()
 	AI_Output(other,self,"DIA_Regis_PERM_15_00");	//Слышал что-нибудь интересное?
 	if((Regis_Bogendieb == 0) && (MIS_Bosper_Bogen != LOG_SUCCESS))
 	{
-		AI_Output(self,other,"DIA_Regis_PERM_13_01");	//Можно сказать и так.
-		AI_Output(self,other,"DIA_Regis_PERM_13_02");	//Говорят, Боспер, мастер-лучник, был ограблен. Причем самым наглым образом!
-		AI_Output(self,other,"DIA_Regis_PERM_13_03");	//Вор вломился в его лавку средь бела дня и схватил лук.
-		AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!'. Но вор оказался очень проворным.
+		B_Regis_AboutThief();
 		MIS_Bosper_Bogen = LOG_Running;
 		Regis_Bogendieb = 1;
 	}
@@ -240,10 +245,7 @@ func void DIA_Regis_PERM_Info()
 	{
 		if(Regis_Bogendieb != 1)
 		{
-			AI_Output(self,other,"DIA_Regis_PERM_13_01");	//Можно сказать и так.
-			AI_Output(self,other,"DIA_Regis_PERM_13_02");	//Говорят, Боспер, мастер-лучник, был ограблен. Причем самым наглым образом!
-			AI_Output(self,other,"DIA_Regis_PERM_13_03");	//Вор вломился в его лавку средь бела дня и схватил лук.
-			AI_Output(self,other,"DIA_Regis_PERM_13_04");	//Боспер побежал за ним, вопя 'Держи вора!'. Но вор оказался очень проворным.
+			B_Regis_AboutThief();
 		}
 		else
 		{

@@ -297,7 +297,14 @@ func int DIA_Pyrokar_RUNNING_Condition()
 //	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
 	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
 	{
-		if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			if(Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+			{
+				return TRUE;
+			};
+		}
+		else if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
 		{
 			return TRUE;
 		};
@@ -340,7 +347,14 @@ func int DIA_Pyrokar_SUCCESS_Condition()
 //	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
 	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV))
 	{
-		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
+			{
+				return TRUE;
+			};
+		}
+		else if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
 			return TRUE;
 		};
@@ -488,7 +502,6 @@ func void DIA_Pyrokar_OATH_Info()
 	Npc_SetTrueGuild(hero,GIL_KDF);
 	CreateInvItem(hero,ITAR_KDF_L);
 	AI_PrintScreen("Легкая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//	AI_EquipArmor(hero,ITAR_KDF_L);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
 	Npc_ExchangeRoutine(Lothar,"START");
@@ -612,15 +625,15 @@ func void DIA_Pyrokar_Wunsch_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_11_02");	//Итак, каким же будет твой первый шаг в качестве мага?
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 	Info_AddChoice(DIA_Pyrokar_Wunsch,"Никаким.",DIA_Pyrokar_Wunsch_Nothing);
-	if(MIS_HelpBabo == LOG_Running)
+	if((MIS_HelpBabo == LOG_Running) && !Npc_IsDead(Babo))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Бабо возглавить монастырский сад.",DIA_Pyrokar_Wunsch_Babo);
 	};
-	if(MIS_HelpOpolos == LOG_Running)
+	if((MIS_HelpOpolos == LOG_Running) && !Npc_IsDead(Opolos))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Ополосу получить доступ в библиотеку.",DIA_Pyrokar_Wunsch_Opolos);
 	};
-	if((MIS_HelpDyrian == LOG_Running) && (Kapitel == 1))
+	if((MIS_HelpDyrian == LOG_Running) && (Kapitel == 1) && !Npc_IsDead(Dyrian))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Дуриану остаться в монастыре.",DIA_Pyrokar_Wunsch_Dyrian);
 	};
@@ -630,10 +643,14 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 {
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Nothing_15_00");	//Никаким.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Nothing_11_01");	//(изумленно) Да будет так. Новый маг отказывается от первого шага.
-	Dyrian.guild = GIL_NONE;
-	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-	AI_Teleport(Dyrian,"TAVERNE");
-	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	if(!Npc_IsDead(Dyrian))
+	{
+		Dyrian.guild = GIL_NONE;
+		Npc_SetTrueGuild(Dyrian,GIL_NONE);
+		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		AI_Teleport(Dyrian,"TAVERNE");
+		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	};
 	if(MIS_HelpDyrian == LOG_Running)
 	{
 		MIS_HelpDyrian = LOG_FAILED;
@@ -1215,18 +1232,37 @@ func int DIA_Pyrokar_FOUNDINNOSEYE_Condition()
 {
 	if((Kapitel == 3) && (MIS_NovizenChase == LOG_Running) && (Npc_HasItems(other,ItMi_InnosEye_Broken_Mis) || (MIS_SCKnowsInnosEyeIsBroken == TRUE)))
 	{
+		if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+		{
+			DIA_Pyrokar_FOUNDINNOSEYE.description = "Я нашел Глаз Инноса. Он поврежден.";
+		}
+		else
+		{
+			DIA_Pyrokar_FOUNDINNOSEYE.description = "Глаз Инноса поврежден.";
+		};
 		return TRUE;
 	};
 };
 
 func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 {
-	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_00");	//Я нашел Глаз Инноса. Он поврежден.
+	if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+	{
+		AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_00");	//Я нашел Глаз Инноса. Он поврежден.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Vatras_INNOSEYEKAPUTT_15_02");	//Глаз Инноса поврежден.
+	};
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_01");	//Но... этого не может быть. Что произошло?
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_02");	//Его заполучили в свои руки заказчики весьма отвратительного вида. Так получилось, что я прибыл слишком поздно.
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_03");	//Они выполняли странный обряд на пьедестале в форме полумесяца в здешнем лесу.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_04");	//Да пребудет с нами Иннос! Они осквернили наш Круг Солнца.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_05");	//Даже в своих худших кошмарах не мог я представить, что они обладают такой силой.
+	if(!Npc_IsDead(Gorax))
+	{
+		CreateInvItems(Gorax,ItRu_TeleportRitual,1);
+	};
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 	MIS_NovizenChase = LOG_SUCCESS;
 	B_GivePlayerXP(XP_AmbientKap3);
@@ -1373,7 +1409,10 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_09");	//На самом деле, я собираюсь заставить этого шакала объяснить, где он прятал эту книгу столько долгих лет. На этот раз он, определенно, зашел слишком далеко.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_10");	//Увидимся в Круге Солнца.
 	AI_StopProcessInfos(self);
-	AI_UseMob(self,"THRONE",-1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"THRONE",-1);
+	};
 	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокар наконец согласился отправиться к Кругу Солнца.");
 	Pyrokar_GoesToRitualInnosEye = TRUE;
@@ -1436,7 +1475,6 @@ func void DIA_Pyrokar_AUGEGEHEILT_Info()
 		AI_Output(self,other,"DIA_Pyrokar_AUGEGEHEILT_11_05");	//Носи эту священную робу с достоинством и неси в мир порядок, честь и славу, брат мой.
 		CreateInvItem(hero,ITAR_KDF_H);
 		AI_PrintScreen("Тяжелая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_KDF_H);
 //		heroGIL_KDF2 = TRUE;
 	};
 };
@@ -1481,7 +1519,6 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,1);
-		CreateInvItems(Gorax,ItRu_TeleportRitual,1);
 	};
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_Running);
@@ -2019,7 +2056,7 @@ func void DIA_Pyrokar_MACHDTFREI_Info()
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_01");	//Ммм. Действительно, есть кое-что, что ты мог бы сделать для меня. Твои хорошие отношения с Ксардасом могли бы помочь тебе в этом.
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_02");	//Мое внимание привлекло то, что последние несколько дней в его башне творятся странные вещи.
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_03");	//Много людей слышало громкие вопли в ночи, исходящие оттуда, и видели странный свет, пляшущий над этой башней.
-	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_04");	//Только этого нам еще не хватало. Иди, проверь что там происходит и прекрати это безобразие.
+	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_04");	//Только этого нам еще не хватало! Иди, проверь что там происходит и прекрати это безобразие!
 	AI_Output(self,other,"DIA_Pyrokar_MACHDTFREI_11_05");	//Тогда ты сможешь забрать Йоргена.
 	MIS_PyrokarClearDemonTower = LOG_Running;
 	Log_CreateTopic(TOPIC_PyrokarClearDemonTower,LOG_MISSION);
@@ -2052,7 +2089,7 @@ func int DIA_Pyrokar_DTCLEARED_Condition()
 func void DIA_Pyrokar_DTCLEARED_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_DTCLEARED_15_00");	//Башня Ксардаса больше никого не будет беспокоить.
-	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_01");	//Так что там было... нет, подожди, я не хочу даже знать.
+	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_01");	//Так... Что там было? Нет, подожди, я не хочу даже знать.
 	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_02");	//Если Йорген тебе все еще нужен, можешь забрать его из монастыря.
 	AI_Output(self,other,"DIA_Pyrokar_DTCLEARED_11_03");	//Да хранит тебя Иннос.
 	MIS_PyrokarClearDemonTower = LOG_SUCCESS;

@@ -37,7 +37,6 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_Claw,Npc_HasItems(slf,ItAt_Claw));
 		Npc_RemoveInvItems(slf,ItAt_LurkerClaw,Npc_HasItems(slf,ItAt_LurkerClaw));
 		Npc_RemoveInvItems(slf,ItAt_Teeth,Npc_HasItems(slf,ItAt_Teeth));
-		Npc_RemoveInvItems(slf,ItAt_Wing,Npc_HasItems(slf,ItAt_Wing));
 		Npc_RemoveInvItems(slf,ItAt_LurkerSkin,Npc_HasItems(slf,ItAt_LurkerSkin));
 		Npc_RemoveInvItems(slf,ItAt_WargFur,Npc_HasItems(slf,ItAt_WargFur));
 		Npc_RemoveInvItems(slf,ItAt_DrgSnapperHorn,Npc_HasItems(slf,ItAt_DrgSnapperHorn));
@@ -48,6 +47,18 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItAt_Addon_KeilerFur,Npc_HasItems(slf,ItAt_Addon_KeilerFur));
 		Npc_RemoveInvItems(slf,ItAt_IceWolfFur,Npc_HasItems(slf,ItAt_IceWolfFur));
 		Npc_RemoveInvItems(slf,ItAt_Addon_BCKopf,Npc_HasItems(slf,ItAt_Addon_BCKopf));
+		Npc_RemoveInvItems(slf,ItAt_SnapperSkin,Npc_HasItems(slf,ItAt_SnapperSkin));
+		Npc_RemoveInvItems(slf,ItAt_RazorSkin,Npc_HasItems(slf,ItAt_RazorSkin));
+		Npc_RemoveInvItems(slf,ItAt_DragonSnapperSkin,Npc_HasItems(slf,ItAt_DragonSnapperSkin));
+		Npc_RemoveInvItems(slf,ItAt_WaranSkin,Npc_HasItems(slf,ItAt_WaranSkin));
+		Npc_RemoveInvItems(slf,ItAt_FireWaranSkin,Npc_HasItems(slf,ItAt_FireWaranSkin));
+		Npc_RemoveInvItems(slf,ItAt_AlligatorSkin,Npc_HasItems(slf,ItAt_AlligatorSkin));
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Constantino))
+		{
+			Npc_RemoveInvItems(slf,ItAt_GoblinBone,Npc_HasItems(slf,ItAt_GoblinBone));
+			Npc_RemoveInvItems(slf,ItAt_SkeletonBone,Npc_HasItems(slf,ItAt_SkeletonBone));
+			Npc_RemoveInvItems(slf,ItAt_Wing,Npc_HasItems(slf,ItAt_Wing));
+		};
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Sagitta))
 		{
 			Npc_RemoveInvItems(slf,ItAt_KeilerHorn,Npc_HasItems(slf,ItAt_KeilerHorn));
@@ -76,6 +87,10 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Gorax))
 		{
 			Npc_RemoveInvItems(slf,ItFo_Wine,Npc_HasItems(slf,ItFo_Wine));
+		};
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Lucia))
+		{
+			Npc_RemoveInvItems(slf,ItFo_Addon_Liquor,Npc_HasItems(slf,ItFo_Addon_Liquor));
 		};
 		if((Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Canthar)) && (Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Matteo)))
 		{

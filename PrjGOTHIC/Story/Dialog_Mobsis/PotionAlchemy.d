@@ -7,7 +7,8 @@ func void potionalchemy_s1()
 	{
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_PotionAlchemy;
-		AI_ProcessInfos(her);
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);
 	};
 };
 

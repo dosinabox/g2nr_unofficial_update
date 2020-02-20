@@ -606,23 +606,3 @@ func void UnEquip_ItRi_Addon_STR_02()
 	STR_Artefakt_Effekt = FALSE;
 };
 
-instance TestAmulet(C_Item)
-{
-	name = NAME_Amulett;
-	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_AMULET | ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_SilverNecklace.3ds";
-	visual_skin = 0;
-	material = MAT_METAL;
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 16 ноября 2019г.";
-	text[2] = "Установленная версия обновления:";
-	count[2] = fix_version_start;
-	text[3] = "Версия обновления в сохраненке:";
-	count[3] = fix_version_save;
-	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
-};
-

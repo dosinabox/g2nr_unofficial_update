@@ -69,7 +69,7 @@ instance DIA_Rengaru_Hauab(C_Info)
 
 func int DIA_Rengaru_Hauab_Condition()
 {
-	if((Jora_Dieb != LOG_Running) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
+	if((Jora_Dieb == FALSE) && !Npc_KnowsInfo(other,DIA_Rengaru_GOTYOU))
 	{
 		return TRUE;
 	};
@@ -156,7 +156,7 @@ func void DIA_Rengaru_GOTYOU_YouThief()
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_YouThief_15_00");	//... тебе лучше вернуть золото Джоры. И немедленно.
 	if(Npc_HasItems(self,ItMi_Gold))
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим.
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
 		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold));
 	}
 	else
@@ -208,7 +208,7 @@ func void DIA_Rengaru_GOTYOU_Anteil_GehtKlar()
 	AI_Output(other,self,"DIA_Rengaru_GOTYOU_Anteil_GehtKlar_15_00");	//Хорошо, давай мне половину тогда.
 	if(B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(self,ItMi_Gold) / 2))
 	{
-		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим.
+		AI_Output(self,other,"DIA_Rengaru_GOTYOU_YouThief_07_01");	//Вот золото, парень! Но теперь отпусти меня. Я больше никогда не буду заниматься этим!
 		Info_ClearChoices(DIA_Rengaru_GOTYOU);
 	}
 	else
@@ -349,7 +349,7 @@ func void DIA_Rengaru_LastInfoKap1_Info()
 instance DIA_Rengaru_Zeichen(C_Info)
 {
 	npc = VLK_492_Rengaru;
-	nr = 2;
+	nr = 800;
 	condition = DIA_Rengaru_Zeichen_Condition;
 	information = DIA_Rengaru_Zeichen_Info;
 	permanent = FALSE;

@@ -106,6 +106,7 @@ func void DIA_Addon_Fortuno_Hi_BACK()
 {
 	Info_ClearChoices(DIA_Addon_Fortuno_Hi);
 	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
 };
 
@@ -118,6 +119,7 @@ func void DIA_Addon_Fortuno_Hi_HILFE()
 func void DIA_Addon_Fortuno_Hi_JOINT()
 {
 	AI_Output(other,self,"DIA_Addon_Fortuno_Hi_JOINT_15_00");	//Вот, возьми эту болотную траву.
+	AI_WaitTillEnd(self,other);
 	B_GiveInvItems(other,self,ItMi_Joint,1);
 	AI_UseItem(self,ItMi_Joint);
 	AI_Output(self,other,"DIA_Addon_Fortuno_Hi_JOINT_13_01");	//Не зеленый, не зеленый, не зеленый, не сильный...

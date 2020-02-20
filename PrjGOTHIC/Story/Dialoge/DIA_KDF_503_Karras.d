@@ -12,10 +12,7 @@ instance DIA_Karras_KAP1_EXIT(C_Info)
 
 func int DIA_Karras_KAP1_EXIT_Condition()
 {
-	if(Kapitel == 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Karras_KAP1_EXIT_Info()
@@ -136,9 +133,12 @@ func void DIA_Karras_Aufgabe_Info()
 	Log_SetTopicStatus(Topic_KarrasCharm,LOG_Running);
 	B_LogEntry(Topic_KarrasCharm,"Мастер Каррас отправил меня в город. Он хочет, чтобы я принес ему три свитка с заклинаниями, которые изготавливает и продает Игнац.");
 	B_GiveInvItems(self,other,ItMi_Gold,150);
-	if((Npc_HasItems(other,ItSc_Charm) + Npc_HasItems(Ignaz,ItSc_Charm)) < 3)
+	if(!Npc_IsDead(Ignaz))
 	{
-		CreateInvItems(Ignaz,ItSc_Charm,3);
+		if((Npc_HasItems(other,ItSc_Charm) + Npc_HasItems(Ignaz,ItSc_Charm)) < 3)
+		{
+			CreateInvItems(Ignaz,ItSc_Charm,3);
+		};
 	};
 };
 
@@ -156,7 +156,7 @@ instance DIA_Karras_Success(C_Info)
 
 func int DIA_Karras_Success_Condition()
 {
-	if((MIS_KarrasVergessen == LOG_Running) && (Npc_HasItems(other,ItSc_Charm) >= 3))
+	if((MIS_KarrasVergessen == LOG_Running) && (Npc_HasItems(other,ItSc_Charm) >= 3) && (MIS_Ignaz_Charm != FALSE))
 	{
 		return TRUE;
 	};
@@ -218,7 +218,7 @@ func void DIA_Karras_JOB_Info()
 		if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
 		{
 			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
+			Log_AddEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
 		};
 	};
 };
@@ -439,58 +439,6 @@ func void DIA_Karras_CIRCLE5_Info()
 	{
 		AI_Output(self,other,"DIA_Karras_CIRCLE4_10_04");	//Время еще не пришло.
 	};
-};
-
-
-instance DIA_Karras_KAP2_EXIT(C_Info)
-{
-	npc = KDF_503_Karras;
-	nr = 999;
-	condition = DIA_Karras_KAP2_EXIT_Condition;
-	information = DIA_Karras_KAP2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Karras_KAP2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Karras_KAP2_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Karras_KAP3_EXIT(C_Info)
-{
-	npc = KDF_503_Karras;
-	nr = 999;
-	condition = DIA_Karras_KAP3_EXIT_Condition;
-	information = DIA_Karras_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Karras_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Karras_KAP3_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -855,7 +803,7 @@ func void DIA_Karras_KarrasBlessedStone_Info()
 	AI_Output(other,self,"DIA_Karras_KarrasBlessedStone_15_00");	//Я принес несколько камней с благословенной земли.
 	B_GiveInvItems(other,self,ItMi_KarrasBlessedStone_Mis,1);
 	Npc_RemoveInvItem(self,ItMi_KarrasBlessedStone_Mis);
-	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_01");	//Это хорошо. Надеюсь, все алтари по-прежнему стоят на своих местах.
+	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_01");	//Это хорошо. Надеюсь, все алтари по-прежнему стоят на своих местах?
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_02");	//Хорошо. Я сделаю для тебя амулет, защищающий от черного взгляда Ищущих.
 	AI_Output(self,other,"DIA_Karras_KarrasBlessedStone_10_03");	//Дай мне немного времени. Над этим нужно поработать.
 	KarrasMakesBlessedStone_Day = Wld_GetDay();
@@ -906,58 +854,6 @@ func void DIA_Karras_ItAm_Prot_BlackEye_Mis_Info()
 		AI_Output(self,other,"DIA_Karras_ItAm_Prot_BlackEye_Mis_10_04");	//Спокойствие. Я все еще работаю над ним.
 		AI_Output(self,other,"DIA_Karras_CIRCLE4_10_03");	//Он еще далеко не закончен.
 	};
-};
-
-
-instance DIA_Karras_KAP4_EXIT(C_Info)
-{
-	npc = KDF_503_Karras;
-	nr = 999;
-	condition = DIA_Karras_KAP4_EXIT_Condition;
-	information = DIA_Karras_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Karras_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Karras_KAP4_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Karras_KAP5_EXIT(C_Info)
-{
-	npc = KDF_503_Karras;
-	nr = 999;
-	condition = DIA_Karras_KAP5_EXIT_Condition;
-	information = DIA_Karras_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Karras_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Karras_KAP5_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 

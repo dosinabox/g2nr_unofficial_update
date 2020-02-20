@@ -76,6 +76,7 @@ func void B_GetBeliarsGold(var int Kohle)
 	CreateInvItems(hero,ItMi_Gold,Kohle);
 	concatText = ConcatStrings(IntToString(Kohle),PRINT_GoldErhalten);
 	AI_PrintScreen(concatText,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
+	Snd_Play("CS_Prayer_FokusFinal");
 };
 
 func void PrayIdol_S1()
@@ -87,7 +88,8 @@ func void PrayIdol_S1()
 		Wld_PlayEffect("DEMENTOR_FX",hero,hero,0,0,0,FALSE);
 		self.aivar[AIV_INVINCIBLE] = TRUE;
 		PLAYER_MOBSI_PRODUCTION = MOBSI_PRAYIDOL;
-		AI_ProcessInfos(her);
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);
 	};
 };
 

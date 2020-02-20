@@ -257,8 +257,8 @@ func void startup_dragonisland()
 
 func void init_dragonisland()
 {
-	b_check_version();
-	b_check_armor();
+	B_Check_Version();
+	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
 	B_InitGuildAttitudes();

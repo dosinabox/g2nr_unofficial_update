@@ -3,7 +3,6 @@ func void B_MM_AssessEnemy()
 {
 	var C_Npc pcl;
 	var C_Npc mgo;
-	var C_Npc lar;
 	if((self.guild == GIL_DRAGON) && Npc_HasItems(hero,ItMi_InnosEye_MIS))
 	{
 		return;
@@ -22,8 +21,7 @@ func void B_MM_AssessEnemy()
 		return;
 	};
 	mgo = Hlp_GetNpc(MagicGolem);
-	lar = Hlp_GetNpc(VLK_449_Lares);
-	if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(lar)) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(mgo)))
+	if((Hlp_GetInstanceID(other) == Hlp_GetInstanceID(Lares)) && (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(mgo)))
 	{
 		return;
 	};

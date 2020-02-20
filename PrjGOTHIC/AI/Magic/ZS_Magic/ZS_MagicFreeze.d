@@ -10,10 +10,20 @@ func void B_RestartFreeze()
 
 func void B_StopMagicFreeze()
 {
-	Snd_Play("MFX_ICECUBE_TARGET_END");
+	if(Npc_IsPlayer(self))
+	{
+		Snd_Play("MFX_ICECUBE_TARGET_END");
+	}
+	else if(Npc_GetDistToNpc(self,hero) <= 800)
+	{
+		Snd_Play("MFX_ICECUBE_TARGET_END");
+	};
 	Npc_PercEnable(self,PERC_ASSESSMAGIC,B_AssessMagic);
 	Npc_ClearAIQueue(self);
-	AI_Standup(self);
+	if(self.guild != GIL_DRAGON)
+	{
+		AI_Standup(self);
+	};
 	if(!Npc_IsPlayer(self))
 	{
 		if(self.guild < GIL_SEPERATOR_HUM)

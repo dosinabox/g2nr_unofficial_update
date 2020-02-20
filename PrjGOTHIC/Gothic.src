@@ -53,6 +53,12 @@ Story\B_Story\B_GivePlayerXP.d
 Story\B_Content\B_ScUsesRake.d
 Story\B_GiveTradeInv\B_ClearRuneInv.d
 Story\B_Story\B_KillNpc.d
+Story\B_Story\C_WorldIsFixed.d
+Story\B_Story\B_Check_Dist.d
+Story\B_Story\B_Check_Version.d
+Story\B_Story\B_KillThievesGuild.d
+Story\B_Story\B_Cycle_Function.d
+Story\B_Story\B_PlayerEnteredCity.d
 Story\B_Story\B_CheckDeadMissionNPCs.d
 Story\B_Story\B_RemoveNpc.d
 Story\B_Content\B_RemoveQuarhodron.d
@@ -311,6 +317,8 @@ AI\Magic\ZS_Magic\ZS_MagicBurn.d
 AI\Magic\ZS_Magic\ZS_MagicBurnShort.d
 AI\Magic\ZS_Magic\ZS_MagicFlee.d
 Story\B_Story\B_ClearSmithInv.d
+Story\B_Story\B_ClearAlchemyInv.d
+Story\B_Story\B_ClearBonusFoodInv.d
 AI\Magic\ZS_Magic\ZS_MagicFreeze.d
 AI\Magic\ZS_Magic\ZS_MagicShrink.d
 AI\Magic\ZS_Magic\ZS_MagicSleep.d
@@ -396,8 +404,10 @@ Story\Dialog_Mobsis\Bookstand_Addon.d
 Story\Dialog_Mobsis\Bookstand_OldCamp.d
 Story\Dialog_Mobsis\B_OnHotkey.d
 Story\Dialog_Mobsis\B_RefuseAction.d
+Story\Dialog_Mobsis\Cooking.d
 Story\Dialog_Mobsis\Goldhacken.d
 Story\Dialog_Mobsis\MakeRune.d
+Story\Dialog_Mobsis\Ore.d
 Story\Dialog_Mobsis\PotionAlchemy.d
 Story\Dialog_Mobsis\PrayIdol_Addon.d
 Story\Dialog_Mobsis\PrayShrine.d
@@ -1274,8 +1284,10 @@ Story\B_Story\B_Enter_AddonWorld.d
 Story\B_Story\C_AkilFarmIsFree.d
 Story\B_Story\B_Enter_OldWorld.d
 Story\B_Story\B_Enter_NewWorld.d
+Story\B_Story\B_Seed_Wasteland_World.d
 Story\B_Story\B_Kapitelwechsel.d
 Story\B_Content\B_CaptainConditions.d
+Story\B_Content\B_JoinShip.d
 Story\B_Content\B_CaptainCallsAllOnBoard.d
 Story\B_Content\C_Addon_Knows_Schnaps.d
 Story\B_Content\B_Addon_PiratesGoHome.d

@@ -9,6 +9,13 @@ func void B_AssessFightSound()
 	{
 		return;
 	};
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Joe))
+	{
+		if(Npc_GetDistToWP(self,"NW_CITY_MERCHANT_TOWER_01") < 600)
+		{
+			return;
+		};
+	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Peck))
 	{
 		if(Npc_GetDistToWP(self,"NW_CITY_HABOUR_PUFF_PECK") <= 500)

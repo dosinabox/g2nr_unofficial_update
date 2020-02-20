@@ -59,11 +59,8 @@ func int C_PrisonIsEmpty()
 	else if((MIS_RescueBennet == LOG_SUCCESS) && (CorneliusFlee == FALSE) && !Npc_IsDead(Cornelius))
 	{
 		return FALSE;
-	}
-	else
-	{
-		return TRUE;
 	};
+	return TRUE;
 };
 
 

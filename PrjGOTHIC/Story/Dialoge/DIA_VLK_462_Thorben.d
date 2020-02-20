@@ -402,7 +402,7 @@ func void DIA_Thorben_PleaseTeach_Info()
 		Info_AddChoice(DIA_Thorben_PleaseTeach,"Может быть, позже...",DIA_Thorben_PleaseTeach_Later);
 		Info_AddChoice(DIA_Thorben_PleaseTeach,"Отлично. Вот 100 золотых.",DIA_Thorben_PleaseTeach_Pay100);
 	}
-	else if((MIS_Matteo_Gold == LOG_SUCCESS) && (Gritta_WantPay == TRUE) && (Npc_HasItems(Gritta,ItMi_Gold) >= 80))
+	else if((MIS_Matteo_Gold == LOG_SUCCESS) && ((Gritta_GoldGiven == TRUE) || ((Gritta_WantPay == TRUE) && (Npc_HasItems(Gritta,ItMi_Gold) >= 80))) && (Gritta.aivar[AIV_LastFightAgainstPlayer] == FIGHT_NONE))
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_07");	//Ты заплатил долг Гритты Маттео. Похоже, ты хороший человек. Я обучу тебя тому, что ты хочешь знать.
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_08");	//Однако я не могу сделать это бесплатно.
@@ -415,7 +415,7 @@ func void DIA_Thorben_PleaseTeach_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_11");	//Хмм... я не знаю, можно ли тебе доверять.
-		if((other.guild != GIL_KDF) && (other.guild != GIL_PAL))
+		if((other.guild != GIL_KDF) && (other.guild != GIL_MIL) && (other.guild != GIL_PAL))
 		{
 			AI_Output(self,other,"DIA_Thorben_PleaseTeach_06_12");	//Боюсь, ты можешь оказаться одним из этих бездельников, которые приходят в город, только чтобы очистить сундуки честных людей.
 		};

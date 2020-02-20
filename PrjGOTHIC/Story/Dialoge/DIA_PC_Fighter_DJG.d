@@ -298,7 +298,7 @@ func void DIA_GornDJG_DRAGONDEAD_Info()
 	AI_Output(self,other,"INTRO_DiegoGorn_12_02");	//Ох! Ты чувствуешь это?
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_01");	//Я больше не слышу воплей! Ты был в этой крепости в скалах?
 	AI_Output(other,self,"DIA_GornDJG_DRAGONDEAD_15_02");	//Да!
-	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_03");	//Ха-ха! Я так и думал. Где бы ты ни появился, там камня на камне не остается.
+	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_03");	//Ха-ха-ха! Я так и думал! Где бы ты ни появился, там камня на камне не остается!
 	AI_Output(other,self,"DIA_GornDJG_DRAGONDEAD_15_04");	//Что ты собираешься делать дальше?
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_05");	//Я побуду здесь еще немного, а затем вернусь к Ли. Может, мы там еще встретимся!
 	AI_Output(self,other,"DIA_GornDJG_DRAGONDEAD_12_06");	//Меня уже тошнит от этих мест. Пришло время убираться с этого острова.

@@ -76,10 +76,10 @@ func void DIA_Addon_Greg_ImNew_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Greg_Hello_01_00");	//(угрожающе) Эй, ты! Что ты делаешь в моей хижине?
 	AI_Output(other,self,"DIA_Addon_Greg_Hello_15_01");	//Я...
-	AI_Output(self,other,"DIA_Addon_Greg_Hello_01_02");	//(в ярости) Стоит уехать на несколько дней, и вот уже каждый проходимец норовит похозяйничать в моем жилище.
-	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_03");	//Какого черта, что здесь происходит?
-	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_04");	//Частокол еще не закончен! Каньон просто кишит зверьем, а все только и делают, что слоняются вокруг.
-	if(!Npc_IsDead(Francis))
+	AI_Output(self,other,"DIA_Addon_Greg_Hello_01_02");	//(в ярости) Стоит уехать на несколько дней, и вот уже каждый проходимец норовит похозяйничать в моем жилище!
+	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_03");	//Какого черта, что здесь происходит?!
+	AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_04");	//Частокол еще не закончен! Каньон просто кишит зверьем, а все только и делают, что слоняются вокруг!
+	if(!Npc_IsDead(Francis) && (Npc_GetDistToWP(Francis,"ADW_PIRATECAMP_HUT4_01") <= 1000))
 	{
 		AI_TurnToNPC(self,Francis);
 		AI_Output(self,other,"DIA_Addon_Greg_ImNew_01_05");	//(кричит) И это все, что ты сделал, Фрэнсис?
@@ -153,6 +153,36 @@ func void DIA_Addon_Greg_ImNew_turm()
 };
 
 
+func int C_PiratesAvailableToFollow()
+{
+	if(!Npc_IsDead(Brandon) || !Npc_IsDead(Matt) || !Npc_IsDead(AlligatorJack) || !Npc_IsDead(Skip) || !Npc_IsDead(RoastPirate) || !Npc_IsDead(BenchPirate))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
+var int GregHints_Followers;
+var int GregHints_Razors;
+
+func void B_GregHints_Followers()
+{
+	if(GregHints_Followers == FALSE)
+	{
+		B_LogEntry(TOPIC_Addon_ClearCanyon,"Грег сказал, что я могу взять с собой нескольких ребят.");
+		GregHints_Followers = TRUE;
+	};
+};
+
+func void B_GregHints_Razors()
+{
+	if(GregHints_Razors == FALSE)
+	{
+		B_LogEntry(TOPIC_Addon_ClearCanyon,"Охотиться я должен на бритвозубов.");
+		GregHints_Razors = TRUE;
+	};
+};
+
 instance DIA_Addon_Greg_JoinPirates(C_Info)
 {
 	npc = PIR_1320_Addon_Greg;
@@ -194,10 +224,7 @@ func void DIA_Addon_Greg_JoinPirates_Info()
 	};
 	Info_ClearChoices(DIA_Addon_Greg_JoinPirates);
 	Info_AddChoice(DIA_Addon_Greg_JoinPirates,"В таком случае мне пора.",DIA_Addon_Greg_JoinPirates_Leave);
-	if(!Npc_IsDead(Brandon) || !Npc_IsDead(Matt))
-	{
-		Info_AddChoice(DIA_Addon_Greg_JoinPirates,"Я что, должен делать это в одиночку?",DIA_Addon_Greg_JoinPirates_Compadres);
-	};
+	Info_AddChoice(DIA_Addon_Greg_JoinPirates,"Я что, должен делать это в одиночку?",DIA_Addon_Greg_JoinPirates_Compadres);
 	Info_AddChoice(DIA_Addon_Greg_JoinPirates,"Что это за звери?",DIA_Addon_Greg_JoinPirates_ClearCanyon);
 };
 
@@ -211,13 +238,11 @@ func void DIA_Addon_Greg_JoinPirates_Leave()
 	{
 		CreateInvItem(hero,ITAR_PIR_M_Addon);
 		AI_PrintScreen("Доспехи пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_PIR_M_Addon);
 	}
 	else
 	{
 		CreateInvItem(hero,ITAR_PIR_L_Addon);
 		AI_PrintScreen("Одежда пирата получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
-//		AI_EquipArmor(hero,ITAR_PIR_L_Addon);
 	};
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Leave_01_04");	//И не мешкай, скорее принимайся за дело!
 	Info_ClearChoices(DIA_Addon_Greg_JoinPirates);
@@ -226,9 +251,16 @@ func void DIA_Addon_Greg_JoinPirates_Leave()
 func void DIA_Addon_Greg_JoinPirates_Compadres()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_JoinPirates_Compadres_15_00");	//Я что, должен делать это в одиночку?
-	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Compadres_01_01");	//Можешь захватить с собой парней.
-	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Compadres_01_02");	//Пусть отрабатывают свою зарплату.
-	B_LogEntry(TOPIC_Addon_ClearCanyon,"Грег сказал, что я могу взять с собой нескольких ребят.");
+	if(C_PiratesAvailableToFollow())
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Compadres_01_01");	//Можешь захватить с собой парней.
+		AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_Compadres_01_02");	//Пусть отрабатывают свою зарплату.
+		B_GregHints_Followers();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
+	};
 };
 
 func void DIA_Addon_Greg_JoinPirates_ClearCanyon()
@@ -236,7 +268,7 @@ func void DIA_Addon_Greg_JoinPirates_ClearCanyon()
 	AI_Output(other,self,"DIA_Addon_Greg_JoinPirates_ClearCanyon_15_00");	//Что это за звери?
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_ClearCanyon_01_01");	//Бритвозубы в каньоне все ближе подбираются к нашему лагерю.
 	AI_Output(self,other,"DIA_Addon_Greg_JoinPirates_ClearCanyon_01_02");	//Я не собираюсь ждать, пока они сожрут кого-нибудь из моих людей.
-	B_LogEntry(TOPIC_Addon_ClearCanyon,"Охотиться я должен на бритвозубов.");
+	B_GregHints_Razors();
 };
 
 
@@ -266,11 +298,8 @@ func void DIA_Addon_Greg_AboutCanyon_Info()
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
 	if(!C_AllCanyonRazorDead())
 	{
-		Info_AddChoice(DIA_Addon_Greg_AboutCanyon,Dialog_Back,DIA_Addon_Greg_AboutCanyon_Back);
-		if(!Npc_IsDead(Brandon) || !Npc_IsDead(Matt))
-		{
-			Info_AddChoice(DIA_Addon_Greg_AboutCanyon,"Мне кто-нибудь может помочь?",DIA_Addon_Greg_AboutCanyon_Compadres);
-		};
+		Info_AddChoice(DIA_Addon_Greg_AboutCanyon,"Пока ничего важного.",DIA_Addon_Greg_AboutCanyon_Back);
+		Info_AddChoice(DIA_Addon_Greg_AboutCanyon,"Мне кто-нибудь может помочь?",DIA_Addon_Greg_AboutCanyon_Compadres);
 		Info_AddChoice(DIA_Addon_Greg_AboutCanyon,"А что это за звери, которых я должен убить?",DIA_Addon_Greg_AboutCanyon_Job);
 	}
 	else
@@ -281,14 +310,23 @@ func void DIA_Addon_Greg_AboutCanyon_Info()
 
 func void DIA_Addon_Greg_AboutCanyon_Back()
 {
+	AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
 };
 
 func void DIA_Addon_Greg_AboutCanyon_Compadres()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_AboutCanyon_Compadres_15_00");	//Мне кто-нибудь может помочь?
-	AI_Output(self,other,"DIA_Addon_Greg_AboutCanyon_Compadres_01_01");	//Захвати с собой пару ребят.
-	AI_Output(self,other,"DIA_Addon_Greg_AboutCanyon_Compadres_01_02");	//Они все равно болтаются без дела.
+	if(C_PiratesAvailableToFollow())
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_AboutCanyon_Compadres_01_01");	//Захвати с собой пару ребят.
+		AI_Output(self,other,"DIA_Addon_Greg_AboutCanyon_Compadres_01_02");	//Они все равно болтаются без дела.
+		B_GregHints_Followers();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Greg_NW_Bigcross_01_07_add");	//Не так уж это и сложно!
+	};
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
 };
 
@@ -296,6 +334,7 @@ func void DIA_Addon_Greg_AboutCanyon_Job()
 {
 	AI_Output(other,self,"DIA_Addon_Greg_AboutCanyon_Job_15_00");	//А что это за звери, которых я должен убить?
 	AI_Output(self,other,"DIA_Addon_Greg_AboutCanyon_Job_01_01");	//Избавься от бритвозубов! Другие существа не опасны.
+	B_GregHints_Razors();
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
 };
 
@@ -360,7 +399,7 @@ func void DIA_Addon_Greg_BanditArmor_Info()
 		B_LogEntry(TOPIC_Addon_BDTRuestung,"После того как я закончу, я смогу забрать доспехи у Бонеса.");
 		Log_CreateTopic(TOPIC_Addon_ScoutBandits,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_ScoutBandits,LOG_Running);
-		B_LogEntry(TOPIC_Addon_ScoutBandits,"Я должен узнать, для чего бандиты пришли в долину, и сообщить Грегу.");
+		Log_AddEntry(TOPIC_Addon_ScoutBandits,"Я должен узнать, для чего бандиты пришли в долину, и сообщить Грегу.");
 		MIS_Greg_ScoutBandits = LOG_Running;
 	};
 };
@@ -716,7 +755,7 @@ instance DIA_Addon_Greg_BeMyCap(C_Info)
 
 func int DIA_Addon_Greg_BeMyCap_Condition()
 {
-	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE))
+	if((Kapitel == 5) && (MIS_SCKnowsWayToIrdorath == TRUE) && (SCGotCaptain == FALSE))
 	{
 		if((PlayerTalkedToGregNW == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Greg_WhoAreYou))
 		{

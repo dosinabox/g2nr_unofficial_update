@@ -302,8 +302,8 @@ func void DIA_Jack_BEMYCAPTAIN_seaman()
 {
 	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_15_00");	//Я нуждаюсь в твоем опыте моряка.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_14_01");	//Черт меня побери! Что ты задумал, приятель? Ты же не собираешься захватить королевскую военную галеру, а?
-	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_15_02");	//Кто знает?
-	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_14_03");	//(смеется) Это будет что-то! Ох, черт. Но я не могу вот так взять и бросить свой маяк. Ммм. Что же нам с этим делать?
+	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN_seaman_15_02");	//Кто знает...
+	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN_seaman_14_03");	//(смеется) Это будет что-то! Ох, черт. Но я не могу вот так взять и бросить свой маяк. Хм-м... Что же нам с этим делать?
 	B_LogEntry(Topic_Captain,"Джек, старый морской волк из гавани, мог бы стать хорошим капитаном. Но сначала я должен найти кого-нибудь, кто посторожит его маяк.");
 	Info_ClearChoices(DIA_Jack_BEMYCAPTAIN);
 	Info_AddChoice(DIA_Jack_BEMYCAPTAIN,"Забудь. Это я просто так сказал.",DIA_Jack_BEMYCAPTAIN_no);
@@ -416,6 +416,10 @@ func void DIA_Jack_BEMYCAPTAIN3_Info()
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN3_14_04");	//А теперь, покажи мне мой корабль и твою команду. А ты, вообще, знаешь, куда направляешься? Я имею в виду, у тебя есть морская карта?
 	AI_Output(other,self,"DIA_Jack_BEMYCAPTAIN3_15_05");	//Подожди меня в порту. А об остальном не волнуйся.
 	AI_Output(self,other,"DIA_Jack_BEMYCAPTAIN3_14_06");	//Ну, как скажешь.
+	if(self.attribute[ATR_HITPOINTS] == 1)
+	{
+		self.attribute[ATR_HITPOINTS] += 1;
+	};
 	if(C_BodyStateContains(self,BS_SIT))
 	{
 		AI_Standup(self);

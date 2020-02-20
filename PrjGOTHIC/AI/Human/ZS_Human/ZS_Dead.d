@@ -92,6 +92,13 @@ func void ZS_Dead()
 		{
 			Grimbald_Snappers_KilledByPlayer = TRUE;
 		};
+		if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rengaru)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Halvor)) || (Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Nagur)))
+		{
+			if(Npc_IsDead(Rengaru) && Npc_IsDead(Halvor) && Npc_IsDead(Nagur))
+			{
+				MIS_ThiefGuild_sucked = TRUE;
+			};
+		};
 	};
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(GoldMinecrawler))
 	{
@@ -113,7 +120,7 @@ func void ZS_Dead()
 	B_ClearSmithInv(self);
 	B_ClearAlchemyInv(self);
 	B_ClearBonusFoodInv(self);
-	B_ClearJunkInv(self);
+	B_ClearInfiniteTools(self);
 	B_DeletePetzCrime(self);
 	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 	AI_UnequipWeapons(self);

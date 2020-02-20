@@ -56,5 +56,6 @@ func void DIA_Ritter_OUT_Info()
 	{
 		AI_Output(self,other,"DIA_Ritter_OUT_06_02");	//У нас получится. Мы доставим руду в Хоринис, и нас будут носить на руках!
 	};
+	AI_StopProcessInfos(self);
 };
 

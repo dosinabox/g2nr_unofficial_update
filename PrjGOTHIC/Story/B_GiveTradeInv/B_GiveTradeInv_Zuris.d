@@ -25,11 +25,10 @@ func void B_GiveTradeInv_Zuris(var C_Npc slf)
 		CreateInvItems(slf,ItSc_LightningFlash,5);
 		CreateInvItems(slf,ItSc_HarmUndead,3);
 		CreateInvItems(slf,ItSc_Firestorm,3);
-		CreateInvItems(slf,ItSc_IceWave,1);
+		CreateInvItems(slf,ItSc_IceWave,2);
 		CreateInvItems(slf,ItSc_Zap,5);
 		CreateInvItems(slf,ItSc_IceCube,3);
 		CreateInvItems(slf,ItSc_Windfist,3);
-		CreateInvItems(slf,ItSc_IceWave,1);
 		CreateInvItems(slf,ItSc_Firerain,1);
 		CreateInvItems(slf,ItSc_Shrink,1);
 		CreateInvItems(slf,ItSc_Thunderstorm,1);
