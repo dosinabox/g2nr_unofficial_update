@@ -136,9 +136,11 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			Dyrian.guild = GIL_NONE;
 			Npc_SetTrueGuild(Dyrian,GIL_NONE);
+			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel2 = TRUE;
 	};
 };
@@ -436,6 +438,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Npc_ExchangeRoutine(Bengar,"Start");
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel3 = TRUE;
 	};
 };
@@ -723,6 +726,7 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			};
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel4 = TRUE;
 	};
 	if(Talbin_FollowsThroughPass == LOG_Running)
@@ -749,8 +753,16 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		};
 		if(!Npc_IsDead(Sekob))
 		{
-			B_StartOtherRoutine(Rosi,"FleeFromSekob");
-			B_StartOtherRoutine(Till,"FleeFromSekob");
+			if(!Npc_IsDead(Rosi))
+			{
+				B_StartOtherRoutine(Rosi,"FleeFromSekob");
+				Rosi.aivar[AIV_CommentedPlayerCrime] = FALSE;
+			};
+			if(!Npc_IsDead(Till))
+			{
+				B_StartOtherRoutine(Till,"FleeFromSekob");
+				Till.aivar[AIV_CommentedPlayerCrime] = FALSE;
+			};
 			Rosi_FleeFromSekob_Kap5 = TRUE;
 		};
 		if(GornDJG_is_alive == TRUE)
@@ -879,6 +891,7 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 			B_StartOtherRoutine(Girion,"WaitForShip");
 		};
 		B_KillThievesGuild();
+		B_ResetSergio();
 		EnterNW_Kapitel5 = TRUE;
 	};
 //	if(MIS_OCGateOpen == TRUE)

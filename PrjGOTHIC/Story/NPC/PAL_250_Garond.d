@@ -15,7 +15,7 @@ instance PAL_250_Garond(Npc_Default)
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
 //	EquipItem(self,ItMw_2h_Pal_Sword);
-	EquipItem(self,ItMw_2H_Blessed_02);
+	EquipItem(self,ItMw_2H_Commander_01);
 	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_Raven,BodyTex_N,ITAR_PAL_H);
 	Mdl_SetModelFatness(self,1);

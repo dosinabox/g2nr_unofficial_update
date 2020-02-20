@@ -1266,10 +1266,10 @@ func int DIA_Bennet_GiveInnosEye_Condition()
 func void DIA_Bennet_GiveInnosEye_Info()
 {
 	AI_Output(other,self,"DIA_Bennet_GiveInnosEye_15_00");	//Вот амулет, пожалуйста, почини его.
-	AI_Output(self,other,"DIA_Bennet_GiveInnosEye_06_01");	//Хорошо. Я закончу работу к завтрашнему утру.
-	AI_Output(self,other,"DIA_Bennet_GiveInnosEye_06_02");	//Заходи завтра, и заберешь его.
 	Npc_RemoveInvItems(other,ItMi_InnosEye_Broken_Mis,1);
 	AI_PrintScreen(Print_InnoseyeGiven,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	AI_Output(self,other,"DIA_Bennet_GiveInnosEye_06_01");	//Хорошо. Я закончу работу к завтрашнему утру.
+	AI_Output(self,other,"DIA_Bennet_GiveInnosEye_06_02");	//Заходи завтра, и заберешь его.
 	Bennet_RepairDay = Wld_GetDay();
 	B_UpdateBennetItemsCount();
 	AI_StopProcessInfos(self);

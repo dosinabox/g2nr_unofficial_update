@@ -36,7 +36,7 @@ func int ZS_Ghost_Loop()
 	{
 		if(Npc_GetDistToNpc(self,hero) > PERC_DIST_DIALOG)
 		{
-			AI_AlignToWP(self);
+			//AI_AlignToWP(self);
 			Npc_SetStateTime(self,0);
 		};
 		B_RemoveGhost();

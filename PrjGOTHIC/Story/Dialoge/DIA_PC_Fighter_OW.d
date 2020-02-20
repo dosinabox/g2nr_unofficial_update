@@ -122,7 +122,7 @@ instance DIA_GornOW_SeeYou(C_Info)
 	condition = DIA_GornOW_SeeYou_Condition;
 	information = DIA_GornOW_Seeyou_Info;
 	permanent = TRUE;
-	description = "Еще увидимся.";
+	description = Dialog_Ende_v3;
 };
 
 

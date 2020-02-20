@@ -649,7 +649,7 @@ func void DIA_Matteo_WoAlsLehrling_Info()
 	Log_CreateTopic(TOPIC_Lehrling,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Lehrling,LOG_Running);
 	B_LogEntry(TOPIC_Lehrling,"Я могу стать учеником мастера-лучника Боспера, кузнеца Гарада, плотника Торбена или алхимика Константино.");
-	B_LogEntry(TOPIC_Lehrling,"Прежде чем я стану учеником, я должен получить одобрение других мастеров.");
+	Log_AddEntry(TOPIC_Lehrling,"Прежде чем я стану учеником, я должен получить одобрение других мастеров.");
 };
 
 

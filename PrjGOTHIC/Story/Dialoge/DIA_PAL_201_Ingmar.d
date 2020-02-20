@@ -404,6 +404,7 @@ func int DIA_Ingmar_PICKPOCKET_Condition()
 	{
 		return C_StealItem(105,Hlp_GetInstanceID(ItWr_Manowar));
 	};
+	return FALSE;
 };
 
 func void DIA_Ingmar_PICKPOCKET_Info()

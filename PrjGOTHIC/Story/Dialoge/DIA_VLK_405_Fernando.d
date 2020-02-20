@@ -39,6 +39,7 @@ func int DIA_Fernando_PICKPOCKET_Condition()
 	{
 		return C_StealItem(50,Hlp_GetInstanceID(ItSe_GoldPocket100));
 	};
+	return FALSE;
 };
 
 func void DIA_Fernando_PICKPOCKET_Info()

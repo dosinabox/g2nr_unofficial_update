@@ -5,28 +5,28 @@ func void B_AssessMagic()
 	{
 		Npc_SendPassivePerc(self,PERC_ASSESSFIGHTSOUND,self,other);
 	};
-	if(Npc_GetLastHitSpellID(self) == SPL_Whirlwind)
+	if((Npc_GetLastHitSpellID(self) == SPL_Whirlwind) && (self.guild != GIL_DRAGON))
 	{
 		Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);
 		AI_StartState(self,ZS_Whirlwind,0,"");
 		return;
 	};
-	if(Npc_GetLastHitSpellID(self) == SPL_SuckEnergy)
+	if((Npc_GetLastHitSpellID(self) == SPL_SuckEnergy) && (self.guild != GIL_DRAGON))
 	{
 		Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);
 		AI_StartState(self,ZS_SuckEnergy,0,"");
 		return;
 	};
-	if(Npc_GetLastHitSpellID(self) == SPL_GreenTentacle)
+	if((Npc_GetLastHitSpellID(self) == SPL_GreenTentacle) && (self.guild != GIL_DRAGON))
 	{
 		Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);
 		AI_StartState(self,ZS_Greententacle,0,"");
 		return;
 	};
-	if(Npc_GetLastHitSpellID(self) == SPL_Swarm)
+	if((Npc_GetLastHitSpellID(self) == SPL_Swarm) && (self.guild != GIL_DRAGON))
 	{
 		Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);
@@ -72,7 +72,7 @@ func void B_AssessMagic()
 			return;
 		};
 	};*/
-	if(Npc_GetLastHitSpellID(self) == SPL_Firerain)
+	if((Npc_GetLastHitSpellID(self) == SPL_Firerain) && (self.guild != GIL_DRAGON))
 	{
 		Npc_ClearAIQueue(self);
 		AI_StartState(self,ZS_MagicBurnShort,0,"");

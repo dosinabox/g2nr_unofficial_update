@@ -365,12 +365,12 @@ func void DIA_Brutus_MEATBUGSWEG_Info()
 	AI_Output(self,other,"DIA_Brutus_MEATBUGSWEG_06_01");	//Ты действительно уверен, что ни одного из этих монстров не осталось?
 	AI_Output(other,self,"DIA_Brutus_MEATBUGSWEG_15_02");	//Абсолютно.
 	AI_Output(self,other,"DIA_Brutus_MEATBUGSWEG_06_03");	//Хорошо. Вот, возьми это золото в знак моей благодарности.
+	CreateInvItems(self,ItMi_Gold,150);
+	B_GiveInvItems(self,other,ItMi_Gold,150);
 	AI_Output(other,self,"DIA_Brutus_MEATBUGSWEG_15_04");	//Ах, не заставляй меня плакать.
 	TOPIC_END_BrutusMeatbugs = TRUE;
 	B_GivePlayerXP(XP_BrutusMeatbugs);
 	B_NpcClearObsessionByDMT(self);
-	CreateInvItems(self,ItMi_Gold,150);
-	B_GiveInvItems(self,other,ItMi_Gold,150);
 	Npc_ExchangeRoutine(self,"Start");
 };
 

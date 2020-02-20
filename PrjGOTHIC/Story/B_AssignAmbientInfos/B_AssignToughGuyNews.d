@@ -19,6 +19,10 @@ func int DIA_ToughGuy_NEWS_Condition()
 	{
 		return FALSE;
 	}
+	else if((Hlp_GetInstanceID(self) == Hlp_GetInstanceID(DJG_Bullco)) && Npc_IsDead(DJG_Sylvio) && !Npc_KnowsInfo(other,DIA_Bullco_SYLVIODEAD))
+	{
+		return FALSE;
+	}
 	else if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE) && (self.aivar[AIV_LastFightComment] == FALSE) && (Hlp_GetInstanceID(self) != Hlp_GetInstanceID(Sentenza)))
 	{
 		return TRUE;

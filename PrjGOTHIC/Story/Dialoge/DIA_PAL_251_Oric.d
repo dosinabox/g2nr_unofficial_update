@@ -548,6 +548,7 @@ func int DIA_Oric_PICKPOCKET_Condition()
 	{
 		return C_StealItem(85,Hlp_GetInstanceID(ItSc_PalRepelEvil));
 	};
+	return FALSE;
 };
 
 func void DIA_Oric_PICKPOCKET_Info()

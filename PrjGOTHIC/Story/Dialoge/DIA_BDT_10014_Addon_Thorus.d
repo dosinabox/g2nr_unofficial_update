@@ -501,6 +501,7 @@ func int DIA_Addon_Thorus_PICKPOCKET_Condition()
 	{
 		return C_StealItem(60,Hlp_GetInstanceID(ItKe_Addon_Thorus));
 	};
+	return FALSE;
 };
 
 func void DIA_Addon_Thorus_PICKPOCKET_Info()

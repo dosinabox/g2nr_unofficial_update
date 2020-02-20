@@ -30,6 +30,7 @@ func int Spell_Logic_Charm(var int manaInvested)
 			B_DeletePetzCrime(other);
 			other.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 			other.aivar[AIV_LastFightAgainstPlayer] = FIGHT_NONE;
+			other.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			if(Wld_GetGuildAttitude(other.guild,self.guild) != ATT_HOSTILE)
 			{
 				if(Npc_GetAttitude(other,self) == ATT_HOSTILE)

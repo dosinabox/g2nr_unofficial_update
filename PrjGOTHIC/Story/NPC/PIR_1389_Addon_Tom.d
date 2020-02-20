@@ -11,7 +11,7 @@ instance PIR_1389_Addon_Tom(Npc_Default)
 	fight_tactic = FAI_HUMAN_STRONG;
 	EquipItem(self,ItMw_ElBastardo);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_FIGHTER",Face_N_Normal19,BodyTex_N,ITAR_PIR_L_Addon);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Fighter",Face_N_Normal19,BodyTex_N,ITAR_PIR_L_Addon);
 	Mdl_SetModelFatness(self,0.75);
 	Mdl_ApplyOverlayMds(self,"Humans_Arrogance.mds");
 	B_GiveNpcTalents(self);

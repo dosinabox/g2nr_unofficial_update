@@ -57,6 +57,7 @@ func int DIA_Gerbrandt_PICKPOCKET_Condition()
 	{
 		return C_StealItem(30,Hlp_GetInstanceID(ItSe_GoldPocket100));
 	};
+	return FALSE;
 };
 
 func void DIA_Gerbrandt_PICKPOCKET_Info()

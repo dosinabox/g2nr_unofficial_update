@@ -163,7 +163,7 @@ instance DIA_Fenia_Infos(C_Info)
 	condition = DIA_Fenia_Infos_Condition;
 	information = DIA_Fenia_Infos_Info;
 	permanent = FALSE;
-	description = "Ты сказала, у тебя есть все, что мне нужно. Это включает информацию?";
+	description = "Ты сказала, что у тебя есть все, что мне нужно. Это включает информацию?";
 };
 
 

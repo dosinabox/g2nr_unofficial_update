@@ -141,6 +141,27 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		{
 			MIS_Talbin_Runs = LOG_OBSOLETE;
 		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Dyrian))
+	{
+		if(MIS_HelpDyrian == LOG_Running)
+		{
+			MIS_HelpDyrian = LOG_FAILED;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Opolos))
+	{
+		if(MIS_HelpOpolos == LOG_Running)
+		{
+			MIS_HelpOpolos = LOG_FAILED;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Babo))
+	{
+		if(MIS_HelpBabo == LOG_Running)
+		{
+			MIS_HelpBabo = LOG_FAILED;
+		};
 	};
 	B_CheckLog();
 };

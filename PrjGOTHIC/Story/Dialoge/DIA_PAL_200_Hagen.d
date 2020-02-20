@@ -1243,7 +1243,7 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 		AI_Output(other,self,"DIA_Lord_Hagen_ANTIPALADINE_15_05");	//Это не разведчики. Я взял это кольцо с трупа одного из них.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_06");	//Покажи.
 		AI_PrintScreen("Кольцо отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
-		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ммм. Это действительно неприятно.
+		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_07");	//Ох... Это действительно неприятно.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_08");	//Это знак их силы. Значит, орки выбрались из-за своих частоколов и сражаются в открытом поле.
 		AI_Output(self,other,"DIA_Lord_Hagen_ANTIPALADINE_04_11");	//Но, впрочем, это может стать хорошей возможностью нанести им чувствительный удар.
 		AI_PrintScreen("Кольцо получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);

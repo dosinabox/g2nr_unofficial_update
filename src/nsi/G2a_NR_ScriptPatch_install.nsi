@@ -9,8 +9,8 @@
 ##            Основное           ##
 ###################################
 
-!define MOD_VERSION "23"
-!define MOD_DATE "11.16"
+!define MOD_VERSION "24"
+!define MOD_DATE "02.20"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
@@ -48,7 +48,7 @@ Caption "${MOD_NAME_RU} (v${MOD_VERSION}) - установка"
 
 !define MUI_TEXT_DIRECTORY_SUBTITLE " "
 DirText "Программа установит неофициальное обновление в указанную папку. \
-$\n$\nЧтобы установить неофициальное обновление в другую папку, нажмите кнопку 'Обзор ...' и укажите ее."
+$\n$\nЧтобы установить неофициальное обновление в другую папку, нажмите кнопку 'Обзор ...' и укажите ее. Если кнопка 'Далее' остается неактивной, то сначала установите Player Kit - официальный набор для запуска модов."
 
 !define MUI_TEXT_COMPONENTS_TITLE "Выбор компонентов для установки"
 !define MUI_TEXT_COMPONENTS_SUBTITLE " "
@@ -143,7 +143,7 @@ Section "Основные файлы" SecMain
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "HelpLink" "http://worldofplayers.ru/threads/36817"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "Publisher" "${MOD_AUTHOR}"
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "DisplayIcon" "$INSTDIR\system\G2a_NR_ScriptPatch_v${MOD_VERSION}.ico"
-	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "EstimatedSize" "237000"
+	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "EstimatedSize" "255000"
 SectionEnd
 
 Section "Дополнительная русская озвучка" SecAdditional_1
@@ -151,26 +151,26 @@ Section "Дополнительная русская озвучка" SecAdditional_1
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
 SectionEnd
 
-Section /o "Исправление русской озвучки" SecAdditional_2
+Section "Исправление русской озвучки" SecAdditional_2
 	SetOutPath "$INSTDIR\data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
 	SetOutPath "$INSTDIR"
 	File "Changelog_Speech_v${MOD_VERSION}.txt"
 SectionEnd
 
-Section /o "Расширенная Рудниковая долина" SecAdditional_3
+Section "Широкоформатный монитор" SecAdditional_3
+	SetOutPath "$INSTDIR\data\ModVDF"
+	File "g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
+SectionEnd
+
+Section /o "Расширенная Рудниковая долина" SecAdditional_4
 	SetOutPath "$INSTDIR\data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
 SectionEnd
 
-Section /o "Увеличенное меню" SecAdditional_4
+Section /o "Увеличенное меню" SecAdditional_5
 	SetOutPath "$INSTDIR\data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
-SectionEnd
-
-Section /o "Широкоформатный монитор" SecAdditional_5
-	SetOutPath "$INSTDIR\data\ModVDF"
-	File "g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
 SectionEnd
 
 ###################################
@@ -195,9 +195,9 @@ SectionEnd
 LangString DESC_SecMain ${LANG_RUSSIAN} "Основные компоненты обновления."
 LangString DESC_SecAdditional_1 ${LANG_RUSSIAN} "Снимите галочку, если установка производится на версию игры без русской озвучки."
 LangString DESC_SecAdditional_2 ${LANG_RUSSIAN} "Неофициальное исправление русской озвучки от Акеллы (версия 1.14)."
-LangString DESC_SecAdditional_3 ${LANG_RUSSIAN} "Мод Wasteland, расширяющий и заполняющий карту Рудниковой долины до размеров Готики 1."
-LangString DESC_SecAdditional_4 ${LANG_RUSSIAN} "Увеличенные окна дневника, характеристик и главного меню для больших разрешений."
-LangString DESC_SecAdditional_5 ${LANG_RUSSIAN} "Установка фона главного меню и загрузочных экранов для широкоформатных мониторов."
+LangString DESC_SecAdditional_3 ${LANG_RUSSIAN} "Установка фона главного меню и загрузочных экранов для широкоформатных мониторов."
+LangString DESC_SecAdditional_4 ${LANG_RUSSIAN} "Мод Wasteland, расширяющий и заполняющий мир Рудниковой долины до размеров Готики 1."
+LangString DESC_SecAdditional_5 ${LANG_RUSSIAN} "Увеличенные окна дневника, характеристик и главного меню для больших разрешений."
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
 !insertmacro MUI_DESCRIPTION_TEXT ${SecMain} $(DESC_SecMain)

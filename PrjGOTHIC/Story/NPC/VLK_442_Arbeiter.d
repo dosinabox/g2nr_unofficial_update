@@ -23,7 +23,8 @@ instance VLK_442_Arbeiter(Npc_Default)
 
 func void Rtn_Start_442()
 {
-	TA_Repair_Hut(5,0,19,0,"NW_CITY_HABOUR_WERFT_ENTRY");
+//	TA_Repair_Hut(5,0,19,0,"NW_CITY_HABOUR_WERFT_ENTRY");
+	TA_Repair_Hut(5,0,19,0,"NW_CITY_HABOUR_08");
 	TA_Smalltalk(19,0,5,0,"NW_CITY_PATH_HABOUR_01");
 };
 

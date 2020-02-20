@@ -9,7 +9,7 @@ instance DJG_709_Rethon(Npc_Default)
 	npcType = npctype_main;
 	B_SetAttributesToChapter(self,4);
 	fight_tactic = FAI_HUMAN_MASTER;
-	EquipItem(self,ItMw_Krummschwert);
+	EquipItem(self,ItMw_Barbarenstreitaxt);
 //	B_CreateAmbientInv(self);
 	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_CoolPock,BodyTex_N,ITAR_DJG_M);
 	Mdl_SetModelFatness(self,0);

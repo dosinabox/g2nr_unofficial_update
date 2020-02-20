@@ -684,6 +684,7 @@ func int DIA_MiltenOW_PICKPOCKET_Condition()
 	{
 		return C_StealItem(80,Hlp_GetInstanceID(ItPo_Perm_Mana));
 	};
+	return FALSE;
 };
 
 func void DIA_MiltenOW_PICKPOCKET_Info()

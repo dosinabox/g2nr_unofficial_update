@@ -297,7 +297,14 @@ func int DIA_Pyrokar_RUNNING_Condition()
 //	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV) && Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
 	if((MIS_SCHNITZELJAGD == LOG_Running) && Npc_IsInState(self,ZS_Talk) && (other.guild == GIL_NOV))
 	{
-		if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			if(Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+			{
+				return TRUE;
+			};
+		}
+		else if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
 		{
 			return TRUE;
 		};
@@ -340,7 +347,14 @@ func int DIA_Pyrokar_SUCCESS_Condition()
 //	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
 	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV))
 	{
-		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
+		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		{
+			if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
+			{
+				return TRUE;
+			};
+		}
+		else if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
 			return TRUE;
 		};
@@ -611,15 +625,15 @@ func void DIA_Pyrokar_Wunsch_Info()
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_11_02");	//Итак, каким же будет твой первый шаг в качестве мага?
 	Info_ClearChoices(DIA_Pyrokar_Wunsch);
 	Info_AddChoice(DIA_Pyrokar_Wunsch,"Никаким.",DIA_Pyrokar_Wunsch_Nothing);
-	if(MIS_HelpBabo == LOG_Running)
+	if((MIS_HelpBabo == LOG_Running) && !Npc_IsDead(Babo))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Бабо возглавить монастырский сад.",DIA_Pyrokar_Wunsch_Babo);
 	};
-	if(MIS_HelpOpolos == LOG_Running)
+	if((MIS_HelpOpolos == LOG_Running) && !Npc_IsDead(Opolos))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Ополосу получить доступ в библиотеку.",DIA_Pyrokar_Wunsch_Opolos);
 	};
-	if((MIS_HelpDyrian == LOG_Running) && (Kapitel == 1))
+	if((MIS_HelpDyrian == LOG_Running) && (Kapitel == 1) && !Npc_IsDead(Dyrian))
 	{
 		Info_AddChoice(DIA_Pyrokar_Wunsch,"Позволь послушнику Дуриану остаться в монастыре.",DIA_Pyrokar_Wunsch_Dyrian);
 	};
@@ -629,10 +643,14 @@ func void DIA_Pyrokar_Wunsch_Nothing()
 {
 	AI_Output(other,self,"DIA_Pyrokar_Wunsch_Nothing_15_00");	//Никаким.
 	AI_Output(self,other,"DIA_Pyrokar_Wunsch_Nothing_11_01");	//(изумленно) Да будет так. Новый маг отказывается от первого шага.
-	Dyrian.guild = GIL_NONE;
-	Npc_SetTrueGuild(Dyrian,GIL_NONE);
-	AI_Teleport(Dyrian,"TAVERNE");
-	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	if(!Npc_IsDead(Dyrian))
+	{
+		Dyrian.guild = GIL_NONE;
+		Npc_SetTrueGuild(Dyrian,GIL_NONE);
+		Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		AI_Teleport(Dyrian,"TAVERNE");
+		B_StartOtherRoutine(Dyrian,"NOFAVOUR");
+	};
 	if(MIS_HelpDyrian == LOG_Running)
 	{
 		MIS_HelpDyrian = LOG_FAILED;
@@ -1241,6 +1259,10 @@ func void DIA_Pyrokar_FOUNDINNOSEYE_Info()
 	AI_Output(other,self,"DIA_Pyrokar_FOUNDINNOSEYE_15_03");	//Они выполняли странный обряд на пьедестале в форме полумесяца в здешнем лесу.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_04");	//Да пребудет с нами Иннос! Они осквернили наш Круг Солнца.
 	AI_Output(self,other,"DIA_Pyrokar_FOUNDINNOSEYE_11_05");	//Даже в своих худших кошмарах не мог я представить, что они обладают такой силой.
+	if(!Npc_IsDead(Gorax))
+	{
+		CreateInvItems(Gorax,ItRu_TeleportRitual,1);
+	};
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 	MIS_NovizenChase = LOG_SUCCESS;
 	B_GivePlayerXP(XP_AmbientKap3);
@@ -1387,7 +1409,10 @@ func void DIA_Pyrokar_BUCHZURUECK_Info()
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_09");	//На самом деле, я собираюсь заставить этого шакала объяснить, где он прятал эту книгу столько долгих лет. На этот раз он, определенно, зашел слишком далеко.
 	AI_Output(self,other,"DIA_Pyrokar_BUCHZURUECK_11_10");	//Увидимся в Круге Солнца.
 	AI_StopProcessInfos(self);
-	AI_UseMob(self,"THRONE",-1);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"THRONE",-1);
+	};
 	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");
 	B_LogEntry(TOPIC_INNOSEYE,"Пирокар наконец согласился отправиться к Кругу Солнца.");
 	Pyrokar_GoesToRitualInnosEye = TRUE;
@@ -1494,7 +1519,6 @@ func void DIA_Pyrokar_KAP3_READY_Info()
 	if(!Npc_IsDead(Gorax))
 	{
 		CreateInvItems(Gorax,ItMi_RuneBlank,1);
-		CreateInvItems(Gorax,ItRu_TeleportRitual,1);
 	};
 	Log_CreateTopic(TOPIC_DRACHENJAGD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_DRACHENJAGD,LOG_Running);

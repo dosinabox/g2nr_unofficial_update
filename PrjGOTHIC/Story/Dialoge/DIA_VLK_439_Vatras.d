@@ -465,7 +465,7 @@ func void DIA_Addon_Vatras_Bandittrader_Info()
 	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
+	Log_AddEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
 };
 
 
@@ -1423,8 +1423,8 @@ func void DIA_Addon_Vatras_GuildHelp_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_11");	//Помни, что даже если ты вступишь в Круг Огня, ты все еще сможешь присоединиться к нам.
 	AI_Output(self,other,"DIA_Addon_Vatras_GuildHelp_05_12");	//Если, конечно, докажешь свою полезность.
 	MIS_Addon_Vatras_Go2Daron = LOG_Running;
-	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
+//	Log_CreateTopic(TOPIC_Addon_RangerHelpKDF,LOG_MISSION);
+//	Log_SetTopicStatus(TOPIC_Addon_RangerHelpKDF,LOG_Running);
 	B_LogEntry(TOPIC_Addon_RangerHelpKDF,"Маг Огня Дарон поможет мне попасть в монастырь, если я найду его похищенную статуэтку.");
 };
 
@@ -2453,18 +2453,18 @@ func int DIA_Vatras_BEGINN_Condition()
 func void DIA_Vatras_BEGINN_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_BEGINN_15_00");	//Я сделал все, как ты сказал мне. Вот починенный Глаз.
+	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_Mis,1);
+	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
+	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
 	if(Npc_HasItems(other,ItPl_SwampHerb) >= 3)
 	{
+		AI_Output(other,self,"DIA_Vatras_BEGINN_15_02");	//Что насчет болотной травы?
 		B_GivePlayerXP(XP_RitualInnosEyeRuns + XP_AmbientKap3);
 	}
 	else
 	{
 		B_GivePlayerXP(XP_RitualInnosEyeRuns);
 	};
-	B_GiveInvItems(other,self,ItMi_InnosEye_Broken_Mis,1);
-	Npc_RemoveInvItem(self,ItMi_InnosEye_Broken_Mis);
-	AI_Output(self,other,"DIA_Vatras_BEGINN_05_01");	//Да, теперь все готово для проведения ритуала.
-	AI_Output(other,self,"DIA_Vatras_BEGINN_15_02");	//Что насчет болотной травы?
 	AI_Output(self,other,"DIA_Vatras_BEGINN_05_03");	//Ах, да. Ты принес три стебля болотной травы?
 	if(B_GiveInvItems(other,self,ItPl_SwampHerb,3))
 	{

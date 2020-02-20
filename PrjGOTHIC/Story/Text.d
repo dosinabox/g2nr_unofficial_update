@@ -218,7 +218,7 @@ const string TXT_SPELLS[100] =
 	"Телепорт к проходу Хориниса",
 	"Телепорт к проходу Долины Рудников",
 	"Телепорт в замок",
-	"Телепорт к старой демонической башне",
+	"Телепорт в старую демоническую башню",
 	"Телепорт к таверне",
 	"Телепорт к Кругу Солнца",
 	"Свет",
@@ -320,7 +320,7 @@ const string NAME_SPL_TeleportXardas = "Телепорт к Ксардасу";
 const string NAME_SPL_TeleportPassNW = "Телепорт к проходу Хориниса";
 const string NAME_SPL_TeleportPassOW = "Телепорт к проходу Долины Рудников";
 const string NAME_SPL_TeleportOC = "Телепорт в замок";
-const string NAME_SPL_TeleportOWDemonTower = "Телепорт в древнюю демоническую башню";
+const string NAME_SPL_TeleportOWDemonTower = "Телепорт в старую демоническую башню";
 const string NAME_SPL_TeleportTaverne = "Телепорт к таверне";
 const string NAME_SPL_TeleportRitual = "Телепорт к Кругу Солнца";
 const string NAME_SPL_LIGHT = "Свет";
@@ -516,7 +516,7 @@ const string Dialog_Ende_v2 = "Мне нужно идти.";
 const string Dialog_Ende_v3 = "Еще увидимся.";
 const string Dialog_Ende_v4 = "Я вернусь позже...";
 const string Dialog_Back = "НАЗАД";
-const string DIALOG_TRADE = "(торговать)";
+//const string DIALOG_TRADE = "(торговать)";
 const string DIALOG_TRADE_v1 = "Давай займемся делом.";
 const string DIALOG_TRADE_v2 = "Покажи мне товары.";
 const string DIALOG_TRADE_v3 = "Покажи мне, что у тебя есть.";
@@ -763,7 +763,7 @@ const string PRINT_IrdorathBookHiddenKey = "В переплете этой книги спрятан ключ!
 const string PRINT_FishLetter = "В этой рыбе спрятана записка.";
 const string Print_InnoseyeGiven = "Глаз Инноса отдан";
 const string Print_InnosEyeGet = "Получен Глаз Инноса";
-const string PRINT_GotFourItems = "Получено 4 предмета";
+//const string PRINT_GotFourItems = "Получено 4 предмета";
 const string PRINT_OrcEliteRingEquip = "Вы чувствуете слабость.";
 const string PRINT_SCIsObsessed = "Вы чувствуете удушье!";
 const string PRINT_ClearSCObsession = "Вы чувствуете себя освобожденным!";
@@ -786,18 +786,19 @@ const string PRINT_Smith_1H_Special_04 = " (4 куска руды, 5 ед. драконьей крови)
 const string PRINT_Smith_2H_Special_04 = " (5 кусков руды, 5 ед. драконьей крови)";
 const string PRINT_Smith_Streitaxt1 = " (1 кусок руды, 3 зуба, 1 доп. заготовка)";
 const string NAME_MageScroll = "Свиток";
-const string PRINT_FoundRing = "Найдено кольцо";
-const string PRINT_FoundAmulett = "Найден амулет";
-const string PRINT_FoundScroll = "Найден свиток с заклинанием";
-const string PRINT_FoundPotion = "Найдено зелье";
-const string PRINT_FoundMap = "Найдена карта";
+//const string PRINT_FoundRing = "Найдено кольцо";
+const string PRINT_FoundRing = "Найдено кольцо неуязвимости";
+//const string PRINT_FoundAmulett = "Найден амулет";
+//const string PRINT_FoundScroll = "Найден свиток с заклинанием";
+//const string PRINT_FoundPotion = "Найдено зелье";
+//const string PRINT_FoundMap = "Найдена карта";
 const string PRINT_FoundGold10 = "Найдено 10 золотых";
 const string PRINT_FoundGold25 = "Найдено 25 золотых";
 const string PRINT_FoundGold50 = "Найдено 50 золотых";
 const string PRINT_FoundGold100 = "Найдено 100 золотых";
-const string PRINT_FoundRuneBlank = "Найден рунный камень";
+//const string PRINT_FoundRuneBlank = "Найден рунный камень";
 const string PRINT_FoundOreNugget = "Найден кусок руды";
-const string PRINT_FoundLockpick = "Найдена отмычка";
+//const string PRINT_FoundLockpick = "Найдена отмычка";
 const string PRINT_HannasBeutel = "Маленький ключик и несколько отмычек...";
 const string PRINT_GotPlants = "Найдены травы";
 const string PRINT_NoSweeping = "На подметание этих келий у меня уйдет целая вечность!";
@@ -822,9 +823,10 @@ const string TEXT_Innoseye_Setting_Repaired = "Оправа этого амулета в целости и 
 const string TEXT_Innoseye_Gem = "Драгоценный камень тускл и безжизнен.";
 var string TEXT_LousHammer_Setting;
 var string TEXT_Zeitspalt_Setting;
+var string TEXT_MegaDrink_Setting_Desc;
 var string TEXT_MegaDrink_Setting;
-var string TEXT_MegaDrink_Setting2;
-var string TEXT_DragonEggDrinkNeoras_Setting;
+const string TEXT_MegaDrink_Setting_Desc_Print = "Повышение преобладающего параметра.";
+const string TEXT_MegaDrink_Setting_Print = "Прибавка к силе или ловкости:";
 const string Pickpocket_20 = "(нет ничего проще, чем украсть его кошелек)";
 const string Pickpocket_40 = "(украсть его кошелек будет довольно просто)";
 const string Pickpocket_60 = "(украсть его кошелек будет довольно рискованно)";

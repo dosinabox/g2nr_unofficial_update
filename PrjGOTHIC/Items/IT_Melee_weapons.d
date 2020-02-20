@@ -1858,6 +1858,32 @@ instance ItMw_ElBastardo(C_Item)
 	count[5] = value;
 };
 
+instance ItMw_ElChapo(C_Item)
+{
+	name = "Ёль-чапо";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_SWD;
+	material = MAT_METAL;
+	value = 1300;
+	damageTotal = Damage_ElBastardo;
+	damagetype = DAM_EDGE;
+	range = Range_ElBastardo;
+	on_equip = Equip_1H_05;
+	on_unequip = UnEquip_1H_05;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = 120;
+	visual = "ItMw_065_1h_sword_bastard_06.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_ADDON_BONUS_1H;
+	count[4] = Waffenbonus_05;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
 instance ItMw_Kriegshammer2(C_Item)
 {
 	name = "“€желый военный молот";
@@ -2418,6 +2444,29 @@ instance ItMw_2H_Blessed_03(C_Item)
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Blessed_2H_3;
 	visual = "ItMw_040_2h_PAL_sword_heavy_RAW_01.3DS";
+	description = name;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
+	text[3] = NAME_Str_needed;
+	count[3] = cond_value[2];
+	text[4] = NAME_TwoHanded;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ItMw_2H_Commander_01(C_Item)
+{
+	name = "ћеч командующего";
+	mainflag = ITEM_KAT_NF;
+	flags = ITEM_2HD_SWD;
+	material = MAT_METAL;
+	value = 2500;
+	damageTotal = Damage_Blessed_2H_2;
+	damagetype = DAM_EDGE;
+	range = Range_Blessed_2H_2;
+	cond_atr[2] = ATR_STRENGTH;
+	cond_value[2] = 140;
+	visual = "ItMw_040_2h_PAL_sword_heavy_RAW_02.3DS";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

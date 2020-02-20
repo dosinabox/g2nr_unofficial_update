@@ -1233,6 +1233,10 @@ func void DIA_Torlof_BEMYCAPTAIN4_Info()
 		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_02");	//У тебя есть морская карта? Без нее мы далеко не уплывем.
 		AI_Output(other,self,"DIA_Torlof_BEMYCAPTAIN4_15_03");	//Я позабочусь обо всем. Увидимся в порту.
 		AI_Output(self,other,"DIA_Torlof_BEMYCAPTAIN4_01_04");	//Мне не терпится увидеть, как это все у тебя получится.
+		if(self.attribute[ATR_HITPOINTS] == 1)
+		{
+			self.attribute[ATR_HITPOINTS] += 1;
+		};
 		AI_StopProcessInfos(self);
 		SCGotCaptain = TRUE;
 		TorlofIsCaptain = TRUE;

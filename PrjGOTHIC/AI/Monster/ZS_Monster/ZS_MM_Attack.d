@@ -35,7 +35,10 @@ func void ZS_MM_Attack()
 		B_MM_Flee();
 		return;
 	};
-	AI_Standup(self);
+	if(self.guild != GIL_DRAGON)
+	{
+		AI_Standup(self);
+	};
 	AI_SetWalkMode(self,NPC_RUN);
 	Npc_SendPassivePerc(self,PERC_ASSESSWARN,other,self);
 	self.aivar[AIV_PursuitEnd] = FALSE;
@@ -83,7 +86,10 @@ func int ZS_MM_Attack_Loop()
 		if(Npc_GetDistToWP(self,"OC_RAMP_06") <= 100)
 		{
 			Npc_ClearAIQueue(self);
-			AI_Standup(self);
+			if(self.guild != GIL_DRAGON)
+			{
+				AI_Standup(self);
+			};
 			AI_PlayAni(self,"T_WARN");
 			self.aivar[AIV_PursuitEnd] = TRUE;
 			return LOOP_END;
@@ -92,7 +98,10 @@ func int ZS_MM_Attack_Loop()
 	if(Npc_GetDistToNpc(self,other) > FIGHT_DIST_CANCEL)
 	{
 		Npc_ClearAIQueue(self);
-		AI_Standup(self);
+		if(self.guild != GIL_DRAGON)
+		{
+			AI_Standup(self);
+		};
 		self.aivar[AIV_PursuitEnd] = TRUE;
 		B_MM_RemoveWeapon();
 		return LOOP_END;
@@ -100,7 +109,10 @@ func int ZS_MM_Attack_Loop()
 	if((Npc_GetStateTime(self) > self.aivar[AIV_MM_FollowTime]) && (self.aivar[AIV_PursuitEnd] == FALSE))
 	{
 		Npc_ClearAIQueue(self);
-		AI_Standup(self);
+		if(self.guild != GIL_DRAGON)
+		{
+			AI_Standup(self);
+		};
 		self.aivar[AIV_PursuitEnd] = TRUE;
 		self.aivar[AIV_Dist] = Npc_GetDistToNpc(self,other);
 		self.aivar[AIV_StateTime] = Npc_GetStateTime(self);
@@ -133,7 +145,10 @@ func int ZS_MM_Attack_Loop()
 	if((C_BodyStateContains(other,BS_SWIM) || C_BodyStateContains(other,BS_DIVE)) && (self.aivar[AIV_MM_FollowInWater] == FALSE))
 	{
 		Npc_ClearAIQueue(self);
-		AI_Standup(self);
+		if(self.guild != GIL_DRAGON)
+		{
+			AI_Standup(self);
+		};
 		B_MM_RemoveWeapon();
 		return LOOP_END;
 	};
@@ -194,7 +209,10 @@ func int ZS_MM_Attack_Loop()
 		if((self.aivar[AIV_MM_PRIORITY] == PRIO_EAT) && C_WantToEat(self,other))
 		{
 			Npc_ClearAIQueue(self);
-			AI_Standup(self);
+			if(self.guild != GIL_DRAGON)
+			{
+				AI_Standup(self);
+			};
 			return LOOP_END;
 		};
 		Npc_PerceiveAll(self);
@@ -207,7 +225,10 @@ func int ZS_MM_Attack_Loop()
 		else
 		{
 			Npc_ClearAIQueue(self);
-			AI_Standup(self);
+			if(self.guild != GIL_DRAGON)
+			{
+				AI_Standup(self);
+			};
 			B_MM_RemoveWeapon();
 		};
 	};
@@ -234,7 +255,10 @@ func void ZS_MM_Attack_End()
 		Npc_SetTrueGuild(self,self.guild);
 		Npc_ClearAIQueue(self);
 		B_ClearPerceptions(self);
-		AI_Standup(self);
+		if(self.guild != GIL_DRAGON)
+		{
+			AI_Standup(self);
+		};
 		AI_Wait(self,0.5);
 		self.aivar[AIV_INVINCIBLE] = FALSE;
 	};

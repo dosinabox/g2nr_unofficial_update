@@ -26,25 +26,15 @@ func void B_CheckDynamicText()
 	};
 	if(MegaDrink_Used == FALSE)
 	{
+		TEXT_MegaDrink_Setting_Desc = " ";
 		TEXT_MegaDrink_Setting = PRINT_UnknownEffect;
 		COUNT_MegaDrink_Setting = 0;
-		TEXT_MegaDrink_Setting2 = " ";
 	}
 	else
 	{
-		TEXT_MegaDrink_Setting2 = "Повышение преобладающего параметра.";
-		TEXT_MegaDrink_Setting = "Прибавка к силе или ловкости:";
+		TEXT_MegaDrink_Setting_Desc = TEXT_MegaDrink_Setting_Desc_Print;
+		TEXT_MegaDrink_Setting = TEXT_MegaDrink_Setting_Print;
 		COUNT_MegaDrink_Setting = STRorDEX_MegaDrink;
-	};
-	if(Neoras_SCUsedDragonEggDrink == FALSE)
-	{
-		TEXT_DragonEggDrinkNeoras_Setting = PRINT_UnknownEffect;
-		COUNT_DragonEggDrinkNeoras_Setting = 0;
-	}
-	else
-	{
-		TEXT_DragonEggDrinkNeoras_Setting = NAME_Bonus_Str;
-		COUNT_DragonEggDrinkNeoras_Setting = 3;
 	};
 	if(MIS_Bennet_InnosEyeRepairedSetting == LOG_SUCCESS)
 	{

@@ -1,4 +1,8 @@
 
+var int Hokurn_BoozeGiven;
+var int Hokurn_WineGiven;
+var int Hokurn_DarkWineGiven;
+
 func int C_GotDrinkForHokurn()
 {
 	if(Npc_HasItems(other,ItFo_Beer))
@@ -52,11 +56,13 @@ func void B_GiveDrinkToHokurn()
 	{
 		B_GiveInvItems(other,self,ItFo_Booze,1);
 		B_UseItem(self,ItFo_Booze);
+		Hokurn_BoozeGiven = TRUE;
 	}
 	else if(Npc_HasItems(other,ItFo_Wine))
 	{
 		B_GiveInvItems(other,self,ItFo_Wine,1);
 		B_UseItem(self,ItFo_Wine);
+		Hokurn_WineGiven = TRUE;
 	}
 	else if(Npc_HasItems(other,ItFo_Addon_Rum))
 	{
@@ -87,7 +93,12 @@ func void B_GiveDrinkToHokurn()
 	{
 		B_GiveInvItems(other,self,ItFo_DarkWine,1);
 		B_UseItem(self,ItFo_DarkWine);
-		B_GivePlayerXP(200);
+		Hokurn_WineGiven = TRUE;
+		if(Hokurn_DarkWineGiven == FALSE)
+		{
+			B_GivePlayerXP(200);
+			Hokurn_DarkWineGiven = TRUE;
+		};
 	};
 };
 
@@ -136,7 +147,7 @@ func void DIA_Hokurn_Hello_Info()
 {
 	AI_Output(self,other,"DIA_Hokurn_Hello_01_00");	//У тебя не найдется чего-нибудь выпить?
 	AI_Output(other,self,"DIA_Hokurn_Hello_15_01");	//Полагаю, вода тебе не подойдет.
-	AI_Output(self,other,"DIA_Hokurn_Hello_01_02");	//Нет, черт побери!!! Мне нужно что-нибудь алкогольное, чтобы я, наконец, мог избавиться от этой проклятой головной боли.
+	AI_Output(self,other,"DIA_Hokurn_Hello_01_02");	//Нет, черт побери! Мне нужно что-нибудь алкогольное, чтобы я, наконец, мог избавиться от этой проклятой головной боли.
 	AI_Output(self,other,"DIA_Hokurn_Hello_01_03");	//Когда мне долго не удается промочить горло, мой череп раскалывается и мне кажется, что он вот-вот взорвется.
 	Info_ClearChoices(DIA_Hokurn_Hello);
 	Info_AddChoice(DIA_Hokurn_Hello,"Я ничем не могу помочь тебе.",DIA_Hokurn_Hello_No);
@@ -179,7 +190,13 @@ func void DIA_Hokurn_Hello_END()
 
 func void B_Hokurn_Sauf()
 {
+	HokurnLastDrink = Wld_GetDay();
+	HokurnGetsDrink = TRUE;
 	AI_Output(self,other,"B_Hokurn_Sauf_01_00");	//(рыгает) Ох, какое блаженство!
+	if(Hokurn_WineGiven == TRUE)
+	{
+		AI_Output(self,other,"DIA_Hokurn_WhereDragon_Booze_01_01");	//За хорошее вино я готов сразиться со всеми драконами мира.
+	};
 	AI_Output(self,other,"B_Hokurn_Sauf_01_01");	//Теперь я опять могу размышлять здраво. Что я могу сделать для тебя?
 };
 
@@ -187,8 +204,6 @@ func void DIA_Hokurn_Hello_Yes()
 {
 	AI_Output(other,self,"DIA_Hokurn_Hello_Yes_15_00");	//Вот, возьми это.
 	B_GiveDrinkToHokurn();
-	HokurnLastDrink = Wld_GetDay();
-	HokurnGetsDrink = TRUE;
 	B_Hokurn_Sauf();
 	Info_ClearChoices(DIA_Hokurn_Hello);
 };
@@ -218,8 +233,6 @@ func void DIA_Hokurn_Drink_Info()
 	AI_Output(other,self,"DIA_Hokurn_Drink_15_00");	//Я принес тебе выпивку.
 	AI_Output(self,other,"DIA_Hokurn_Drink_01_01");	//(жадно) Давай сюда!!!
 	B_GiveDrinkToHokurn();
-	HokurnLastDrink = Wld_GetDay();
-	HokurnGetsDrink = TRUE;
 	B_Hokurn_Sauf();
 };
 
@@ -293,11 +306,17 @@ func void DIA_Hokurn_Learn_TooExpensive()
 	Info_ClearChoices(DIA_Hokurn_Learn);
 };
 
+func void B_Hokurn_TeachPlayer()
+{
+	B_GiveInvItems(other,self,ItMi_Gold,300);
+	AI_Output(self,other,"DIA_Hokurn_PayTeacher_01_01");	//Ты не пожалеешь!
+	Hokurn_TeachPlayer = TRUE;
+};
+
 func void DIA_Hokurn_Learn_OK()
 {
 	AI_Output(other,self,"DIA_Hokurn_Learn_OK_15_00");	//Хорошо, вот деньги.
-	B_GiveInvItems(other,self,ItMi_Gold,300);
-	Hokurn_TeachPlayer = TRUE;
+	B_Hokurn_TeachPlayer();
 	Info_ClearChoices(DIA_Hokurn_Learn);
 };
 
@@ -324,9 +343,7 @@ func int DIA_Hokurn_PayTeacher_Condition()
 func void DIA_Hokurn_PayTeacher_Info()
 {
 	AI_Output(other,self,"DIA_Hokurn_PayTeacher_15_00");	//Вот твои деньги. Я хочу, чтобы ты обучил меня.
-	AI_Output(self,other,"DIA_Hokurn_PayTeacher_01_01");	//Ты не пожалеешь!
-	B_GiveInvItems(other,self,ItMi_Gold,300);
-	Hokurn_TeachPlayer = TRUE;
+	B_Hokurn_TeachPlayer();
 };
 
 
@@ -521,9 +538,20 @@ func void DIA_Hokurn_WhereDragon_Info()
 	Info_ClearChoices(DIA_Hokurn_WhereDragon);
 	Info_AddChoice(DIA_Hokurn_WhereDragon,"Ничего, я сам их найду.",DIA_Hokurn_WhereDragon_FindMyself);
 	Info_AddChoice(DIA_Hokurn_WhereDragon,"Я был бы не прочь заплатить тебе за эту информацию.",DIA_Hokurn_WhereDragon_Gold);
-	if(Npc_HasItems(other,ItFo_Booze))
+	if((Hokurn_WineGiven == TRUE) && (Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine)))
 	{
-		Info_AddChoice(DIA_Hokurn_WhereDragon,"У меня есть еще одна бутылочка джина!",DIA_Hokurn_WhereDragon_Booze);
+		Info_AddChoice(DIA_Hokurn_WhereDragon,"Вот твое вино.",DIA_Hokurn_WhereDragon_GiveDrink);
+	}
+	else if(Npc_HasItems(other,ItFo_Booze))
+	{
+		if(Hokurn_BoozeGiven == TRUE)
+		{
+			Info_AddChoice(DIA_Hokurn_WhereDragon,"У меня есть еще одна бутылочка джина!",DIA_Hokurn_WhereDragon_GiveDrink);
+		}
+		else
+		{
+			Info_AddChoice(DIA_Hokurn_WhereDragon,"У меня есть бутылочка джина!",DIA_Hokurn_WhereDragon_GiveDrink);
+		};
 	};
 };
 
@@ -561,13 +589,45 @@ func void DIA_Hokurn_WhereDragon_OK()
 	Info_ClearChoices(DIA_Hokurn_WhereDragon);
 };
 
-func void DIA_Hokurn_WhereDragon_Booze()
+func void B_HokurnGiveMeThat()
 {
-	AI_Output(other,self,"DIA_Hokurn_WhereDragon_Booze_15_00");	//У меня есть еще одна бутылочка джина!
-	AI_Output(self,other,"DIA_Hokurn_WhereDragon_Booze_01_01");	//За хорошее вино я готов сразиться со всеми драконами мира.
 	AI_Output(self,other,"DIA_Hokurn_WhereDragon_Booze_01_02");	//Договорились. Давай мне эту бутылку!
-	B_GiveInvItems(other,self,ItFo_Booze,1);
 	AI_Output(self,other,"DIA_Hokurn_WhereDragon_Booze_01_03");	//Я припасу ее на черный день.
+};
+
+func void DIA_Hokurn_WhereDragon_GiveDrink()
+{
+	if((Hokurn_WineGiven == TRUE) && (Npc_HasItems(other,ItFo_Wine) || Npc_HasItems(other,ItFo_DarkWine)))
+	{
+		AI_Output(other,self,"DIA_Vino_BringWine_15_00");	//Вот твое вино.
+		B_HokurnGiveMeThat();
+		if(Npc_HasItems(other,ItFo_Wine))
+		{
+			B_GiveInvItems(other,self,ItFo_Wine,1);
+		}
+		else if(Npc_HasItems(other,ItFo_DarkWine))
+		{
+			B_GiveInvItems(other,self,ItFo_DarkWine,1);
+			if(Hokurn_DarkWineGiven == FALSE)
+			{
+				B_GivePlayerXP(200);
+				Hokurn_DarkWineGiven = TRUE;
+			};
+		};
+	}
+	else if(Npc_HasItems(other,ItFo_Booze))
+	{
+		if(Hokurn_BoozeGiven == TRUE)
+		{
+			AI_Output(other,self,"DIA_Hokurn_WhereDragon_Booze_15_00");	//У меня есть еще одна бутылочка джина!
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Hokurn_WhereDragon_Booze_15_00_add");	//У меня есть бутылочка джина!
+		};
+		B_HokurnGiveMeThat();
+		B_GiveInvItems(other,self,ItFo_Booze,1);
+	};
 	HokurnTellsDragon = TRUE;
 	Info_ClearChoices(DIA_Hokurn_WhereDragon);
 };

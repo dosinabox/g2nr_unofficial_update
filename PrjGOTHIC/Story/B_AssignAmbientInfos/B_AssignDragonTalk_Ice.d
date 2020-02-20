@@ -66,7 +66,7 @@ func void DIA_Dragon_Ice_Hello_Info()
 	AI_Output(self,other,"DIA_Dragon_Ice_Hello_20_02");	//Вы, люди, забавные существа. Даже если вас всех сдуют ледяные ветра смерти, всегда найдется хотя бы один, кто поднимется из пепла, думая, что ему судьбой предначертано стать героем.
 	AI_Output(self,other,"DIA_Dragon_Ice_Hello_20_03");	//Но вскоре все будет кончено. Я лично позабочусь, чтобы никто из вас больше не поднялся.
 	AI_Output(other,self,"DIA_Dragon_Ice_Hello_15_04");	//Молчать! Силой священного Глаза, что дарована мне свыше, я приказываю тебе отвечать на мои вопросы.
-	AI_Output(self,other,"DIA_Dragon_Ice_Hello_20_05");	//Ха-ха-ха. Тогда спрашивай. Но твои знания не помогут тебе.
+	AI_Output(self,other,"DIA_Dragon_Ice_Hello_20_05");	//Ха-ха! Тогда спрашивай. Но твои знания не помогут тебе.
 	if(Npc_IsDead(IceGolem_Sylvio1) && Npc_IsDead(IceGolem_Sylvio2) && !Npc_IsDead(DJG_Sylvio))
 	{
 		B_StartOtherRoutine(DJG_Sylvio,"IceWait2");

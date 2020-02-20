@@ -907,10 +907,14 @@ func int DIA_Bosper_Minenanteil_Condition()
 func void DIA_Bosper_Minenanteil_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_Minenanteil_15_00");	//Я вижу, ты продаешь акции шахт.
-	AI_Output(self,other,"DIA_Bosper_Minenanteil_11_01");	//Гм. Я ничего не знаю об этом. Ты можешь забрать их, если хочешь.
 	if(Npc_HasItems(self,ItWr_MinenAnteil_Mis) && (Player_IsApprentice == APP_Bosper))
 	{
+		AI_Output(self,other,"DIA_Bosper_Minenanteil_11_01");	//Хм-м, я ничего не знаю об этом. Ты можешь забрать их, если хочешь.
 		B_GiveInvItems(self,other,ItWr_MinenAnteil_Mis,Npc_HasItems(self,ItWr_MinenAnteil_Mis));
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Bosper_Minenanteil_11_01_add");	//Хм-м, я ничего не знаю об этом.
 	};
 	B_GivePlayerXP(XP_Ambient);
 };

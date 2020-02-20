@@ -39,6 +39,7 @@ func int DIA_Peck_PICKPOCKET_Condition()
 	{
 		return C_StealItem(60,Hlp_GetInstanceID(ItKe_City_Tower_05));
 	};
+	return FALSE;
 };
 
 func void DIA_Peck_PICKPOCKET_Info()
@@ -449,7 +450,7 @@ func void DIA_Peck_TRADE_Info()
 instance DIA_Peck_PERM(C_Info)
 {
 	npc = MIL_324_Peck;
-	nr = 998;
+	nr = 800;
 	condition = DIA_Peck_PERM_Condition;
 	information = DIA_Peck_PERM_Info;
 	permanent = TRUE;

@@ -68,6 +68,13 @@ func int C_NpcBelongsToMonastery(var C_Npc slf)
 	{
 		return TRUE;
 	};
+	if(RosiLocation == LOC_MONASTERY)
+	{
+		if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Till)))
+		{
+			return TRUE;
+		};
+	};
 	return FALSE;
 };
 
@@ -86,6 +93,17 @@ func int C_CommentMonasteryCrimes(var C_Npc slf)
 
 func int C_NpcBelongsToFarm(var C_Npc slf)
 {
+	if(Rosi_FleeFromSekob_Kap5 == TRUE)
+	{
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi))
+		{
+			return FALSE;
+		};
+		if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Till))
+		{
+			return FALSE;
+		};
+	};
 	if((slf.guild == GIL_BAU) || (slf.guild == GIL_SLD))
 	{
 		return TRUE;
