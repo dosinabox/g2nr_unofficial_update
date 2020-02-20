@@ -945,6 +945,7 @@ func void DIA_Xardas_WARUMNICHTJETZT_Info()
 	AI_Output(other,self,"DIA_Xardas_WARUMNICHTJETZT_15_00");	//Почему бы тебе не отправиться на встречу с Ватрасом ПРЯМО СЕЙЧАС?
 	AI_Output(other,self,"DIA_Xardas_WARUMNICHTJETZT_15_01");	//Иногда я просто не понимаю тебя.
 	AI_Output(self,other,"DIA_Xardas_WARUMNICHTJETZT_14_02");	//(раздраженно) Не смей говорить со мной в таком тоне. Если бы не я, твое ни на что не годное тело до сих пор бы гнило в этом храме.
+	AI_Output(other,self,"Extro_Tempel_15_01");	//Ксардас! Что...
 	Info_AddChoice(DIA_Xardas_WARUMNICHTJETZT,"Не волнуйся! Просто скажи, что мне нужно сделать.",DIA_Xardas_WARUMNICHTJETZT_wastun);
 	Info_AddChoice(DIA_Xardas_WARUMNICHTJETZT,"Тогда, по крайней мере, объясни мне, почему ты колеблешься.",DIA_Xardas_WARUMNICHTJETZT_grund);
 };
@@ -990,6 +991,10 @@ func void DIA_Xardas_BEREIT_Info()
 	AI_Output(other,self,"DIA_Xardas_BEREIT_15_00");	//Я готов к сражению с драконами.
 	AI_Output(self,other,"DIA_Xardas_BEREIT_14_01");	//Тогда не будем терять времени. Я немедленно отправлюсь к Кругу Солнца. А ты выполни свои задачи. Я встречу тебя там.
 	AI_StopProcessInfos(self);
+	if(C_BodyStateContains(self,BS_SIT))
+	{
+		AI_UseMob(self,"THRONE",-1);
+	};
 	B_LogEntry(TOPIC_INNOSEYE,"Ксардас согласился участвовать в ритуале в Круге Солнца.");
 	B_GivePlayerXP(XP_AmbientKap3);
 	Npc_ExchangeRoutine(self,"RitualInnosEyeRepair");

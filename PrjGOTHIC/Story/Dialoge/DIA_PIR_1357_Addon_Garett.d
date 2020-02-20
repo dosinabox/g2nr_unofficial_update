@@ -479,7 +479,7 @@ func void DIA_Addon_Garett_ArmorM_Back()
 	Info_ClearChoices(DIA_Addon_Garett_ArmorM);
 };
 
-instance DIA_Addon_Garett_StonePlate(C_Info)
+/*instance DIA_Addon_Garett_StonePlate(C_Info)
 {
 	npc = PIR_1357_Addon_Garett;
 	nr = 9;
@@ -492,16 +492,16 @@ instance DIA_Addon_Garett_StonePlate(C_Info)
 
 func int DIA_Addon_Garett_StonePlate_Condition()
 {
-	/*if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (MIS_Addon_Morgan_SeekTraitor == LOG_SUCCESS) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	if((Npc_KnowsInfo(other,DIA_Addon_Garett_Hello) || Npc_KnowsInfo(other,DIA_Addon_Garett_Anheuern)) && (MIS_Addon_Morgan_SeekTraitor == LOG_SUCCESS) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
 	{
 		return TRUE;
-	};*/
+	};
 	return FALSE;
 };
 
 func void DIA_Addon_Garett_StonePlate_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Garett_StonePlate_15_00_add");	//У меня с собой есть каменная табличка. Сколько ты готов дать за это?
-	//AI_Output(self,other,"DIA_Addon_Garett_StonePlate_09_01_add");	//
-};
+	AI_Output(self,other,"DIA_Addon_Garett_StonePlate_09_01_add");	//
+};*/
 
