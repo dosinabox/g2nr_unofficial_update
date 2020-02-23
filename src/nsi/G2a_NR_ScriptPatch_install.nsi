@@ -10,7 +10,7 @@
 ###################################
 
 !define MOD_VERSION "24"
-!define MOD_DATE "02.20"
+!define MOD_DATE "2.20"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"

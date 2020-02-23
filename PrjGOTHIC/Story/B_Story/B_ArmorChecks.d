@@ -284,7 +284,7 @@ func int C_BAUCheck(var C_Npc oth)
 
 func void B_SetHeroSkin()
 {
-	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE))
+	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE) || (SLDArmor_Equipped == TRUE) || (BDTArmor_Equipped == TRUE))
 	{
 		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 	};

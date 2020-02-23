@@ -231,7 +231,7 @@ instance DIA_Pyrokar_TEST(C_Info)
 
 func int DIA_Pyrokar_TEST_Condition()
 {
-	if(Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (MIS_SCHNITZELJAGD == FALSE) && (hero.guild == GIL_NOV))
+	if(Npc_KnowsInfo(hero,DIA_Pyrokar_FIRE) && (hero.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -250,32 +250,42 @@ func void DIA_Pyrokar_TEST_Info()
 	Log_CreateTopic(TOPIC_Schnitzeljagd,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Schnitzeljagd,LOG_Running);
 	B_LogEntry(TOPIC_Schnitzeljagd,"Пирокар дает мне Испытание Магией. Это то же самое испытание, что должны пройти избранные послушники Ульф, Игарац и Агон.");
-	B_LogEntry(TOPIC_Schnitzeljagd,"Я должен следовать знакам Инноса и 'принести то, что верующий находит в конце пути'. Также он дал мне ключ.");
+	Log_AddEntry(TOPIC_Schnitzeljagd,"Я должен следовать знакам Инноса и 'принести то, что верующий находит в конце пути'. Также он дал мне ключ.");
 	CreateInvItems(self,ItKe_MagicChest,1);
 	B_GiveInvItems(self,other,ItKe_MagicChest,1);
-	B_StartOtherRoutine(Igaraz,"CONTEST");
-	AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
-	CreateInvItems(Igaraz,ItKe_MagicChest,1);
-	Igaraz.aivar[AIV_DropDeadAndKill] = TRUE;
-	Igaraz.aivar[AIV_NewsOverride] = TRUE;
-	Igaraz.aivar[AIV_IgnoresArmor] = TRUE;
-	Igaraz.aivar[AIV_IgnoresFakeGuild] = TRUE;
-	B_StartOtherRoutine(Nov607,"EXCHANGE");
-	B_StartOtherRoutine(Agon,"GOLEMDEAD");
-	AI_Teleport(Agon,"NW_MAGECAVE_RUNE");
-	CreateInvItems(Agon,ItKe_MagicChest,1);
-	Agon.aivar[AIV_DropDeadAndKill] = TRUE;
-	Agon.aivar[AIV_NewsOverride] = TRUE;
-	Agon.aivar[AIV_IgnoresArmor] = TRUE;
-	Agon.aivar[AIV_IgnoresFakeGuild] = TRUE;
-	B_StartOtherRoutine(Ulf,"SUCHE");
-	AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
-	CreateInvItems(Ulf,ItKe_MagicChest,1);
-	Ulf.aivar[AIV_DropDeadAndKill] = TRUE;
-	Ulf.aivar[AIV_NewsOverride] = TRUE;
-	Ulf.aivar[AIV_IgnoresArmor] = TRUE;
-	Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
-	Ulf.guild = GIL_NOV;
+	if(!Npc_IsDead(Igaraz))
+	{
+		Igaraz.aivar[AIV_DropDeadAndKill] = TRUE;
+		Igaraz.aivar[AIV_NewsOverride] = TRUE;
+		Igaraz.aivar[AIV_IgnoresArmor] = TRUE;
+		Igaraz.aivar[AIV_IgnoresFakeGuild] = TRUE;
+		CreateInvItems(Igaraz,ItKe_MagicChest,1);
+		AI_Teleport(Igaraz,"NW_TAVERNE_BIGFARM_05");
+		B_StartOtherRoutine(Igaraz,"CONTEST");
+		B_StartOtherRoutine(Nov607,"EXCHANGE");
+	};
+	if(!Npc_IsDead(Agon))
+	{
+		Agon.aivar[AIV_DropDeadAndKill] = TRUE;
+		Agon.aivar[AIV_NewsOverride] = TRUE;
+		Agon.aivar[AIV_IgnoresArmor] = TRUE;
+		Agon.aivar[AIV_IgnoresFakeGuild] = TRUE;
+		CreateInvItems(Agon,ItKe_MagicChest,1);
+		AI_Teleport(Agon,"NW_MAGECAVE_RUNE");
+		B_StartOtherRoutine(Agon,"GOLEMDEAD");
+	};
+	if(!Npc_IsDead(Ulf))
+	{
+		Ulf.aivar[AIV_DropDeadAndKill] = TRUE;
+		Ulf.aivar[AIV_NewsOverride] = TRUE;
+		Ulf.aivar[AIV_IgnoresArmor] = TRUE;
+		Ulf.aivar[AIV_IgnoresFakeGuild] = TRUE;
+		Ulf.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		Ulf.guild = GIL_NOV;
+		CreateInvItems(Ulf,ItKe_MagicChest,1);
+		AI_Teleport(Ulf,"NW_TROLLAREA_PATH_42");
+		B_StartOtherRoutine(Ulf,"SUCHE");
+	};
 	MIS_SCHNITZELJAGD = LOG_Running;
 	AI_StopProcessInfos(self);
 };
@@ -303,8 +313,8 @@ func int DIA_Pyrokar_RUNNING_Condition()
 			{
 				return TRUE;
 			};
-		}
-		else if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
+		};
+		if(!Npc_HasItems(other,ItMi_RuneBlank) && !Npc_HasItems(other,ItRu_FireBolt))
 		{
 			return TRUE;
 		};
@@ -347,16 +357,19 @@ func int DIA_Pyrokar_SUCCESS_Condition()
 //	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV) && !Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
 	if((MIS_SCHNITZELJAGD == LOG_Running) && (hero.guild == GIL_NOV))
 	{
-		if(C_WorldIsFixed(NEWWORLD_ZEN))
+		if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
 		{
-			if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank) && (Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt)))
+			if(C_WorldIsFixed(NEWWORLD_ZEN))
+			{
+				if(!Mob_HasItems("MAGICCHEST",ItMi_RuneBlank))
+				{
+					return TRUE;
+				};
+			}
+			else
 			{
 				return TRUE;
 			};
-		}
-		else if(Npc_HasItems(other,ItMi_RuneBlank) || Npc_HasItems(other,ItRu_FireBolt))
-		{
-			return TRUE;
 		};
 	};
 };

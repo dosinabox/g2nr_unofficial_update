@@ -707,6 +707,7 @@ func void Equip_ITAR_SLD_L()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = TRUE;
 		if(SLD01_Equipped == TRUE)
 		{
@@ -723,6 +724,7 @@ func void UnEquip_ITAR_SLD_L()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = FALSE;
 		if(SLD01_Equipped == TRUE)
 		{
@@ -804,6 +806,7 @@ func void Equip_ITAR_SLD_M()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = TRUE;
 		if(SLD01_Equipped == TRUE)
 		{
@@ -820,6 +823,7 @@ func void UnEquip_ITAR_SLD_M()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = FALSE;
 		if(SLD01_Equipped == TRUE)
 		{
@@ -869,6 +873,7 @@ func void Equip_ITAR_SLD_H()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = TRUE;
 		if(SLD01_Equipped == TRUE)
 		{
@@ -885,6 +890,7 @@ func void UnEquip_ITAR_SLD_H()
 {
 	if(Npc_IsPlayer(self))
 	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = FALSE;
 		if(SLD01_Equipped == TRUE)
 		{
@@ -1387,6 +1393,8 @@ instance ITAR_BDT_M(C_Item)
 	visual_change = "Armor_Bdt_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_BDT;
+	on_unequip = UnEquip_ITAR_BDT;
 	description = name;
 	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;
@@ -1417,6 +1425,8 @@ instance ITAR_BDT_H(C_Item)
 	visual_change = "Armor_Bdt_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ITAR_BDT;
+	on_unequip = UnEquip_ITAR_BDT;
 	description = name;
 	text[0] = PRINT_Addon_BDTArmor;
 	text[1] = NAME_Prot_Edge;
@@ -1429,6 +1439,24 @@ instance ITAR_BDT_H(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+
+func void Equip_ITAR_BDT()
+{
+	if(Npc_IsPlayer(self))
+	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		BDTArmor_Equipped = TRUE;
+	};
+};
+
+func void UnEquip_ITAR_BDT()
+{
+	if(Npc_IsPlayer(self))
+	{
+		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		BDTArmor_Equipped = FALSE;
+	};
 };
 
 instance ITAR_Xardas(C_Item)
