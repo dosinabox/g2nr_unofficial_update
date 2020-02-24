@@ -171,7 +171,10 @@ func int DIA_Sylvio_MenDefeated_Condition()
 func void DIA_Sylvio_MenDefeated_Info()
 {
 	AI_Output(self,other,"DIA_Sylvio_MenDefeated_09_00");	//Мне кажется, ты имеешь зуб на моих парней!
-	AI_Output(self,other,"DIA_Sylvio_MenDefeated_09_01");	//Насколько я знаю, ты один из протеже Ли.
+	if(Lee.aivar[AIV_TalkedToPlayer] == TRUE)
+	{
+		AI_Output(self,other,"DIA_Sylvio_MenDefeated_09_01");	//Насколько я знаю, ты один из протеже Ли.
+	};
 	AI_Output(self,other,"DIA_Sylvio_MenDefeated_09_02");	//Я предупреждаю тебя! Скоро здесь многое переменится, и тогда мы вернемся к этому разговору!
 	Sylvio_MenDefeated = TRUE;
 	AI_StopProcessInfos(self);

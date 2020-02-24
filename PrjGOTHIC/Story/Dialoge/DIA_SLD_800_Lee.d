@@ -387,7 +387,7 @@ func void DIA_Lee_LeesPlan_Info()
 {
 	AI_Output(other,self,"DIA_Lee_LeesPlan_15_00");	//А чем ты здесь занимаешься?
 	AI_Output(self,other,"DIA_Lee_LeesPlan_04_01");	//Это просто: я делаю все возможное, чтобы мы все смогли убраться с этого острова.
-	if((MIS_Lee_Friedensangebot == FALSE) || (MIS_Lee_Friedensangebot == LOG_Running))
+	if(MIS_Lee_Friedensangebot != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lee_LeesPlan_04_02");	//Онар нанял нас для защиты его фермы, и именно этим мы и намерены заниматься.
 		AI_Output(self,other,"DIA_Lee_LeesPlan_04_03");	//Но наша награда - нечто большее, чем просто плата за работу. Помогая фермерам, мы отрезаем город от провизии.
@@ -396,11 +396,18 @@ func void DIA_Lee_LeesPlan_Info()
 		{
 			AI_Output(self,other,"DIA_Lee_LeesPlan_04_05");	//Плохо только, что тебе пришлось присоединиться именно к ним.
 		};
-	}
-	if(MIS_Lee_Friedensangebot == FALSE)
-	{
-		AI_Output(other,self,"DIA_Lee_LeesPlan_15_06");	//Что за предложение ты хочешь сделать?
-		AI_Output(self,other,"DIA_Lee_LeesPlan_04_07");	//Естественно, условием будет наше помилование и свободный путь на материк. Ты все узнаешь, когда придет время.
+		if(MIS_Lee_Friedensangebot == FALSE)
+		{
+			AI_Output(other,self,"DIA_Lee_LeesPlan_15_06");	//Что за предложение ты хочешь сделать?
+			if(other.guild == GIL_SLD)
+			{
+				AI_Output(self,other,"DIA_Lee_LeesPlan_04_07");	//Естественно, условием будет наше помилование и свободный путь на материк. Ты все узнаешь, когда придет время.
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Lee_LeesPlan_04_07_add");	//Естественно, условием будет наше помилование и свободный путь на материк.
+			};
+		};
 	};
 };
 

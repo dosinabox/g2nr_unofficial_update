@@ -48,7 +48,7 @@ func void DIA_Bosper_HALLO_Info()
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_02");	//Что привело тебя в Хоринис?
 	B_PlayerEnteredCity();
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"Боспер делает луки и торгует шкурами. Его лавка находится у восточных ворот, в нижней части города.");
+	B_LogEntry(TOPIC_CityTrader,"Боспер делает луки и торгует шкурами. Его лавка находится у южных ворот, в нижней части города.");
 };
 
 
