@@ -145,7 +145,7 @@ func void DIA_Randolph_Baltram_Info()
 		AI_Output(self,other,"DIA_Randolph_Baltram_06_01");	//Хорошо. Я уже все приготовил. Вот твой пакет.
 		B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
 		B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
-		B_LogEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
+		Log_AddEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
 	};
 	Lieferung_Geholt = TRUE;
 };
@@ -229,9 +229,12 @@ func void DIA_Randolph_WASISTINTAVERNE_Info()
 	AI_Output(self,other,"DIA_Randolph_WASISTINTAVERNE_06_01");	//Там проводят азартные игры.
 	AI_Output(self,other,"DIA_Randolph_WASISTINTAVERNE_06_02");	//Двое состязаются друг с другом. Тот, кто может выпить больше пива - побеждает.
 	AI_Output(self,other,"DIA_Randolph_WASISTINTAVERNE_06_03");	//В последнее время я только проигрывал, и теперь у меня совсем не осталось денег.
-	Log_CreateTopic(TOPIC_Wettsaufen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Wettsaufen,LOG_Running);
-	B_LogEntry(TOPIC_Wettsaufen,"В таверне можно заключить пари.");
+	if(!Npc_KnowsInfo(other,DIA_Rukhar_WASMACHSTDU))
+	{
+		Log_CreateTopic(TOPIC_Wettsaufen,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Wettsaufen,LOG_Running);
+		B_LogEntry(TOPIC_Wettsaufen,"В таверне можно заключить пари.");
+	};
 };
 
 
@@ -262,7 +265,7 @@ func void DIA_Randolph_GEGENWEN_Info()
 	AI_Output(self,other,"DIA_Randolph_GEGENWEN_06_04");	//Кто-нибудь должен подменить джин в его сундуке на воду. Тогда он может подливать ее в мое пиво сколько хочет.
 	AI_Output(self,other,"DIA_Randolph_GEGENWEN_06_05");	//Если бы только у меня были деньги, чтобы сразиться с ним еще раз.
 	B_LogEntry(TOPIC_Wettsaufen,"Рэндольф рассказал мне о Рухаре и состязании 'кто кого перепьет'. У Рэндольфа недостаточно денег, чтобы заключить пари с Рухаром еще раз.");
-	B_LogEntry(TOPIC_Wettsaufen,"Рэндольф подозревает Рухара в жульничестве в состязании 'кто кого перепьет'. Рэндольф хотел бы подменить бутылку джина в сундуке Рухара на бутылку с водой.");
+	Log_AddEntry(TOPIC_Wettsaufen,"Рэндольф подозревает Рухара в жульничестве в состязании 'кто кого перепьет'. Рэндольф хотел бы подменить бутылку джина в сундуке Рухара на бутылку с водой.");
 };
 
 
@@ -306,7 +309,7 @@ var int DIA_Randolph_ICHGEBEDIRGELD_noPerm;
 
 func int DIA_Randolph_ICHGEBEDIRGELD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Randolph_WASBRAUCHSTDU) && (DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE) && (Kapitel < 4))
+	if(Npc_KnowsInfo(other,DIA_Randolph_WASBRAUCHSTDU) && (DIA_Randolph_ICHGEBEDIRGELD_noPerm == FALSE) && (Kapitel < 4) && !Npc_IsDead(Rukhar))
 	{
 		return TRUE;
 	};
@@ -358,6 +361,14 @@ func int DIA_Randolph_WETTKAMPFZUENDE_Condition()
 
 var int DIA_Randolph_WETTKAMPFZUENDE_OneTime;
 
+func void B_Randolph_SuccessPay()
+{
+	AI_Output(self,other,"DIA_Randolph_WETTKAMPFZUENDE_06_04");	//Все, наконец, получилось. Спасибо еще раз за деньги. Вот, получи их назад.
+	CreateInvItems(self,ItMi_Gold,20);
+	B_GiveInvItems(self,other,ItMi_Gold,20);
+	B_GivePlayerXP(XP_Rukhar_WettkampfVorbei);
+};
+
 func void DIA_Randolph_WETTKAMPFZUENDE_Info()
 {
 	AI_Output(other,self,"DIA_Randolph_WETTKAMPFZUENDE_15_00");	//Похмелье?
@@ -371,10 +382,7 @@ func void DIA_Randolph_WETTKAMPFZUENDE_Info()
 		AI_Output(self,other,"DIA_Randolph_WETTKAMPFZUENDE_06_03");	//Нет. Я чувствую себя отлично, правда.
 		if(DIA_Randolph_WETTKAMPFZUENDE_OneTime == FALSE)
 		{
-			AI_Output(self,other,"DIA_Randolph_WETTKAMPFZUENDE_06_04");	//Все, наконец, получилось. Спасибо еще раз за деньги. Вот, получи их назад.
-			CreateInvItems(self,ItMi_Gold,20);
-			B_GiveInvItems(self,other,ItMi_Gold,12);
-			B_GivePlayerXP(XP_Rukhar_WettkampfVorbei);
+			B_Randolph_SuccessPay();
 			DIA_Randolph_WETTKAMPFZUENDE_OneTime = TRUE;
 		};
 		AI_Output(self,other,"DIA_Randolph_WETTKAMPFZUENDE_06_05");	//Похоже, Рухар не скоро еще оправится после этого.
@@ -404,6 +412,7 @@ func int DIA_Randolph_PERM_Condition()
 
 
 var int DIA_Randolph_PERM_OneTime;
+var int DIA_Randolph_SoberForever;
 
 func void DIA_Randolph_PERM_Info()
 {
@@ -433,9 +442,22 @@ func void DIA_Randolph_PERM_Info()
 			B_LogEntry(TOPIC_HealRandolph,"Рэндольф, похоже, решил бросить пить и послал меня к Сагитте за лекарством от похмельного синдрома.");
 		};
 	}
+	else if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (DIA_Randolph_WETTKAMPFZUENDE_OneTime == FALSE))
+	{
+		if(Rukhar_Won_Wettkampf == TRUE)
+		{
+			AI_Output(self,other,"DIA_Randolph_WETTKAMPFZUENDE_06_02");	//Твои деньги пропали. Извини.
+		}
+		else
+		{
+			B_Randolph_SuccessPay();
+		};
+		DIA_Randolph_WETTKAMPFZUENDE_OneTime = TRUE;
+	}
 	else
 	{
 		AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только не в этой жизни. Ты можешь мне поверить, парень.
+		DIA_Randolph_SoberForever = TRUE;
 	};
 };
 
@@ -543,7 +565,11 @@ func void DIA_Randolph_Heilung_Info()
 	AI_Output(other,self,"DIA_Randolph_Heilung_15_00");	//Спиртное ударило тебе в голову, ха?
 	AI_Output(self,other,"DIA_Randolph_Heilung_06_01");	//Я больше капли в рот не возьму. Только не в этой жизни. Ты можешь мне поверить, парень.
 	B_NpcClearObsessionByDMT(self);
-	Npc_ExchangeRoutine(self,"Start");
+	if(Randolph_ExchangeRoutine_Once == FALSE)
+	{
+		Npc_ExchangeRoutine(self,"Start");
+		Randolph_ExchangeRoutine_Once = TRUE;
+	};
 };
 
 

@@ -689,11 +689,9 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			if(!Npc_IsDead(Randolph))
 			{
 				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
-//				B_StartOtherRoutine(Randolph,"Obsessed");
 				B_StartOtherRoutine(Randolph,"preStart");
 			};
 		};
-//		возвращение на ферму Онара Альвареса и Энгардо
 		if((TOPIC_END_AkilsSLDStillthere == FALSE) && !C_AkilFarmIsFree())
 		{
 			if(!Npc_IsDead(Alvares))
@@ -718,11 +716,29 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			};
 			if(!Npc_IsDead(Randolph))
 			{
-				if(hero.guild != GIL_KDF)
+				if((hero.guild != GIL_KDF) && (Randolph_ExchangeRoutine_Once == FALSE))
 				{
 					B_StartOtherRoutine(Randolph,"Start");
+					Randolph_ExchangeRoutine_Once = TRUE;
 				};
 				Randolph.flags = 0;
+			};
+		};
+		if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running))
+		{
+			if(Mob_HasItems("CHEST_RUKHAR",ItFo_Booze))
+			{
+				B_StartOtherRoutine(Rukhar,"WettkampfRukharWon");
+				Rukhar_Won_Wettkampf = TRUE;
+			}
+			else if(Mob_HasItems("CHEST_RUKHAR",ItFo_Water) > 0)
+			{
+				B_StartOtherRoutine(Rukhar,"WettkampfRukharLost");
+			};
+			if((hero.guild != GIL_KDF) && (Randolph_ExchangeRoutine_Once == FALSE))
+			{
+				B_StartOtherRoutine(Randolph,"Start");
+				Randolph_ExchangeRoutine_Once = TRUE;
 			};
 		};
 		B_KillThievesGuild();

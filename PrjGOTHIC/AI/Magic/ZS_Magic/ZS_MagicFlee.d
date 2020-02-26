@@ -84,7 +84,7 @@ func void ZS_MagicFlee()
 				ScaredEngardo = TRUE;
 			};
 		};
-		if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE))
+		if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE) && (ScaredFarmers == FALSE))
 		{
 			if(Hlp_IsValidNpc(Akil) && !Npc_IsDead(Akil))
 			{
@@ -99,6 +99,7 @@ func void ZS_MagicFlee()
 				Npc_ExchangeRoutine(Randolph,"Start");
 				Randolph.flags = 0;
 			};
+			ScaredFarmers = TRUE;
 		};
 	};
 	Npc_PercEnable(self,PERC_ASSESSDAMAGE,B_StopMagicFlee);

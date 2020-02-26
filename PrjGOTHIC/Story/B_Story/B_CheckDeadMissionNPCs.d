@@ -162,6 +162,13 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		{
 			MIS_HelpBabo = LOG_FAILED;
 		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rukhar))
+	{
+		if(MIS_Rukhar_Wettkampf == LOG_Running)
+		{
+			MIS_Rukhar_Wettkampf = LOG_OBSOLETE;
+		};
 	};
 	B_CheckLog();
 };
