@@ -1282,3 +1282,5 @@ var int Rhademes_fertig;
 var int SC_KnowsRhademesTrapDetails;
 var int Sergio_Follow_End;
 var int Randolph_ExchangeRoutine_Once;
+var int TaverneTopicStarted;
+var int TotalStoneplatesForVatras;

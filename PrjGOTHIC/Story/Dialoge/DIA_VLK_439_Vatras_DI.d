@@ -25,7 +25,7 @@ func void DIA_Vatras_DI_EXIT_Info()
 instance DIA_Vatras_DI_HEAL(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 99;
+	nr = 10;
 	condition = DIA_Vatras_DI_HEAL_Condition;
 	information = DIA_Vatras_DI_HEAL_Info;
 	permanent = TRUE;
@@ -60,7 +60,7 @@ func void DIA_Vatras_DI_HEAL_Info()
 instance DIA_Vatras_DI_TRADE(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 12;
+	nr = 11;
 	condition = DIA_Vatras_DI_TRADE_Condition;
 	information = DIA_Vatras_DI_TRADE_Info;
 	permanent = TRUE;
@@ -89,7 +89,7 @@ func void DIA_Vatras_DI_TRADE_Info()
 instance DIA_Vatras_DI_OBSESSION(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 35;
+	nr = 12;
 	condition = DIA_Vatras_DI_OBSESSION_Condition;
 	information = DIA_Vatras_DI_OBSESSION_Info;
 	permanent = TRUE;
@@ -140,7 +140,7 @@ func void DIA_Vatras_DI_OBSESSION_Info()
 instance DIA_Vatras_DI_RAT(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 99;
+	nr = 13;
 	condition = DIA_Vatras_DI_RAT_Condition;
 	information = DIA_Vatras_DI_RAT_Info;
 	description = " акой совет ты можешь дать мне?";
@@ -247,6 +247,7 @@ func void DIA_Vatras_DI_VatrasSucked_Info()
 instance DIA_Vatras_DI_Talente(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
+	nr = 14;
 	condition = DIA_Vatras_DI_Talente_Condition;
 	information = DIA_Vatras_DI_Talente_Info;
 	permanent = TRUE;
@@ -458,7 +459,7 @@ func void DIA_Vatras_DI_Talente_BACK()
 instance DIA_Vatras_DI_DementorObsessionBook(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 99;
+	nr = 15;
 	condition = DIA_Vatras_DI_DementorObsessionBook_Condition;
 	information = DIA_Vatras_DI_DementorObsessionBook_Info;
 	permanent = TRUE;
@@ -504,7 +505,7 @@ func void DIA_Vatras_DI_DementorObsessionBook_Info()
 instance DIA_Vatras_DI_UndeadDragonDead(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
-	nr = 99;
+	nr = 2;
 	condition = DIA_Vatras_DI_UndeadDragonDead_Condition;
 	information = DIA_Vatras_DI_UndeadDragonDead_Info;
 	permanent = TRUE;
@@ -580,5 +581,34 @@ func void DIA_Addon_Vatras_PISSOFFFOREVVER_DI_Info()
 	};
 	B_VatrasPissedOff();
 	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Addon_Vatras_DI_Stoneplate(C_Info)
+{
+	npc = VLK_439_Vatras_DI;
+	nr = 16;
+	condition = DIA_Addon_Vatras_DI_Stoneplate_Condition;
+	information = DIA_Addon_Vatras_Stoneplate_Info;
+	description = "” мен€ с собой есть каменна€ табличка. Ќе мог бы ты мне рассказать о ней что-нибудь?";
+};
+
+
+func int DIA_Addon_Vatras_DI_Stoneplate_Condition()
+{
+	if(!Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) && (C_ScHasMagicStonePlate() || Npc_HasItems(other,ItWr_StonePlateCommon_Addon)))
+	{
+		return TRUE;
+	};
+};
+
+instance DIA_Addon_Vatras_DI_SellStonplate(C_Info)
+{
+	npc = VLK_439_Vatras_DI;
+	nr = 16;
+	condition = DIA_Addon_Vatras_SellStonplate_Condition;
+	information = DIA_Addon_Vatras_SellStonplate_Info;
+	permanent = TRUE;
+	description = "я принес тебе еще таблички...";
 };
 

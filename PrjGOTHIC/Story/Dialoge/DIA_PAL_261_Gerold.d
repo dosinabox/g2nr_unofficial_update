@@ -243,7 +243,7 @@ func void DIA_Gerold_Antwort_Info()
 		Npc_RemoveInvItem(self,ItWr_LetterForGorn_MIS);
 		AI_Output(self,other,"DIA_Gerold_Antwort_12_01");	//Да, и я должен передать тебе его слова:
 		AI_Output(other,self,"DIA_Gerold_Antwort_15_02");	//И?
-		AI_Output(self,other,"DIA_Gerold_Antwort_12_03");	//Это находится у южных ворот.
+		AI_Output(self,other,"DIA_Gerold_Antwort_12_03");	//'Это находится у южных ворот'.
 		AI_Output(other,self,"DIA_Gerold_Antwort_15_04");	//Он сказал что-нибудь еще?
 		AI_Output(self,other,"DIA_Gerold_Antwort_12_05");	//Нет. Понятия не имею, что это значит. А ты знаешь?
 		AI_Output(other,self,"DIA_Gerold_Antwort_15_06");	//Возможно. Но тебе не стоит сильно напрягать мозги по этому поводу.

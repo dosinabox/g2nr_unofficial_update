@@ -1304,8 +1304,18 @@ func void DIA_Addon_Vatras_Stoneplate_Info()
 	Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Stoneplates,LogText_Addon_VatrasTrade);
-	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,LogText_Addon_VatrasTrade);
+	if(Erol_AskedKDW == FALSE)
+	{
+		if(CurrentLevel != DRAGONISLAND_ZEN)
+		{
+			Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+			Log_AddEntry(TOPIC_CityTrader,LogText_Addon_VatrasTrade);
+		}
+		else
+		{
+			B_LogEntry(TOPIC_MyCrew,"Ватраса интересуют странные каменные таблички.");
+		};
+	};
 };
 
 
@@ -1322,7 +1332,7 @@ instance DIA_Addon_Vatras_SellStonplate(C_Info)
 
 func int DIA_Addon_Vatras_SellStonplate_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
+	if((Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate) || Npc_KnowsInfo(other,DIA_Addon_Vatras_DI_Stoneplate)) && Npc_HasItems(other,ItWr_StonePlateCommon_Addon))
 	{
 		return TRUE;
 	};
@@ -1331,20 +1341,13 @@ func int DIA_Addon_Vatras_SellStonplate_Condition()
 func void DIA_Addon_Vatras_SellStonplate_Info()
 {
 	var int anzahl;
-	var int anzahl2;
-	var int flag;
 	anzahl = Npc_HasItems(other,ItWr_StonePlateCommon_Addon);
-	anzahl2 += anzahl;
+	TotalStoneplatesForVatras += anzahl;
 	AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
-	/*if(anzahl == 1)
-	{
-		AI_Output(other,self,"DIA_Addon_Vatras_SellStonplate_15_00");	//Я принес тебе еще таблички...
-	};*/
-	if((flag == FALSE) && (anzahl2 > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running))
+	if((TotalStoneplatesForVatras > 25) && (MIS_Addon_Erol_BanditStuff == LOG_Running) && (CurrentLevel != DRAGONISLAND_ZEN))
 	{
 		MIS_Addon_Erol_BanditStuff = LOG_FAILED;
 		B_CheckLog();
-		flag = TRUE;
 	};
 	B_GiveInvItems(other,self,ItWr_StonePlateCommon_Addon,anzahl);
 	AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_01");	//Отлично!
@@ -1357,25 +1360,29 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	else if(anzahl >= 5)
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_04");	//Вот, возьми в награду несколько магических свитков...
-//		B_GiveInvItems(self,other,ItSc_InstantFireball,anzahl);
 		if(!Npc_HasItems(other,ItRu_InstantFireball))
 		{
+			CreateInvItems(self,ItSc_InstantFireball,anzahl);
 			B_GiveInvItems(self,other,ItSc_InstantFireball,anzahl);
 		}
 		else if(!Npc_HasItems(other,ItRu_Icelance))
 		{
+			CreateInvItems(self,ItSc_Icelance,anzahl);
 			B_GiveInvItems(self,other,ItSc_Icelance,anzahl);
 		}
 		else
 		{
+			CreateInvItems(self,ItSc_SumSkel,anzahl);
 			B_GiveInvItems(self,other,ItSc_SumSkel,anzahl);
 		};
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_03");	//Вот, возьми в награду несколько зелий...
+		CreateInvItems(self,ItPo_Health_03,anzahl + 1);
 		B_GiveInvItems(self,other,ItPo_Health_03,anzahl + 1);
 	};
+	Npc_RemoveInvItems(self,ItWr_StonePlateCommon_Addon,Npc_HasItems(self,ItWr_StonePlateCommon_Addon));
 	B_GivePlayerXP(XP_Addon_VatrasStonplate * anzahl);
 };
 

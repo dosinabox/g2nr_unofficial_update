@@ -128,7 +128,7 @@ func void DIA_Addon_Myxir_WillYouTeachMe_Info()
 	Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
 	B_LogEntry(TOPIC_Addon_Stoneplates,LogText_Addon_MyxirTeach);
 	Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_MyxirTeach);
+	Log_AddEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_MyxirTeach);
 };
 
 

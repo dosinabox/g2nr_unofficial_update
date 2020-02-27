@@ -165,10 +165,7 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 	}
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rukhar))
 	{
-		if(MIS_Rukhar_Wettkampf == LOG_Running)
-		{
-			MIS_Rukhar_Wettkampf = LOG_OBSOLETE;
-		};
+		MIS_Rukhar_Wettkampf = LOG_OBSOLETE;
 	};
 	B_CheckLog();
 };

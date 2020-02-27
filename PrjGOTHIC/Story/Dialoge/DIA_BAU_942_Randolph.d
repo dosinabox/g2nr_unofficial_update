@@ -229,11 +229,12 @@ func void DIA_Randolph_WASISTINTAVERNE_Info()
 	AI_Output(self,other,"DIA_Randolph_WASISTINTAVERNE_06_01");	//Там проводят азартные игры.
 	AI_Output(self,other,"DIA_Randolph_WASISTINTAVERNE_06_02");	//Двое состязаются друг с другом. Тот, кто может выпить больше пива - побеждает.
 	AI_Output(self,other,"DIA_Randolph_WASISTINTAVERNE_06_03");	//В последнее время я только проигрывал, и теперь у меня совсем не осталось денег.
-	if(!Npc_KnowsInfo(other,DIA_Rukhar_WASMACHSTDU))
+	if(TaverneTopicStarted == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Wettsaufen,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Wettsaufen,LOG_Running);
 		B_LogEntry(TOPIC_Wettsaufen,"В таверне можно заключить пари.");
+		TaverneTopicStarted = TRUE;
 	};
 };
 

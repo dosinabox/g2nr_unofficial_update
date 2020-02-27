@@ -241,6 +241,32 @@ func void DIA_Lares_HALLO_NOIDEA()
 };
 
 
+instance DIA_Lares_AboutGorn(C_Info)
+{
+	npc = VLK_449_Lares;
+	nr = 98;
+	condition = DIA_Lares_AboutGorn_Condition;
+	information = DIA_Lares_AboutGorn_Info;
+	permanent = FALSE;
+	description = "Горн сказал тебе обо мне? Что произошло с ним?";
+};
+
+
+func int DIA_Lares_AboutGorn_Condition()
+{
+	if((KnowsAboutGorn == TRUE) && (MIS_RescueGorn == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Lares_AboutGorn_Info()
+{
+	AI_Output(other,self,"DIA_Lee_AboutGorn_15_00");	//Горн сказал тебе обо мне? Что произошло с ним?
+	AI_Output(self,other,"DIA_Dexter_Wo_09_01");	//Я думаю, он где-то в Долине Рудников.
+};
+
+
 instance DIA_Addon_Lares_Vatras(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -1194,10 +1220,6 @@ func void DIA_Lares_AboutSld_Info()
 	{
 		Info_AddChoice(DIA_Lares_AboutSld,"Как мне найти ферму лендлорда?",DIA_Lares_AboutSld_WayToOnar);
 	};
-	if((KnowsAboutGorn == TRUE) && (MIS_RescueGorn != LOG_SUCCESS))
-	{
-		Info_AddChoice(DIA_Lares_AboutSld,"Горн сказал тебе обо мне? Что произошло с ним?",DIA_Lares_AboutSld_Gorn);
-	};
 };
 
 func void DIA_Lares_AboutSld_BACK()
@@ -1242,13 +1264,6 @@ func void DIA_Lares_AboutSld_WayToOnar()
 	AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_00");	//Это довольно просто. Ты выходишь из города через восточные ворота, а затем следуешь по дороге на восток.
 	B_LaresOffersWayToOnar();
 };
-
-func void DIA_Lares_AboutSld_Gorn()
-{
-	AI_Output(other,self,"DIA_Lee_AboutGorn_15_00");	//Горн сказал тебе обо мне? Что произошло с ним?
-	AI_Output(self,other,"DIA_Dexter_Wo_09_01");	//Я думаю, он где-то в Долине Рудников.
-};
-
 
 instance DIA_Lares_GuildOfThieves(C_Info)
 {
