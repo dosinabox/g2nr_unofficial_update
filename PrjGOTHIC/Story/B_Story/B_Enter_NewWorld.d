@@ -724,12 +724,11 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				Randolph.flags = 0;
 			};
 		};
-		/*if((TaverneTopicStarted == TRUE) && (MIS_Rukhar_Wettkampf == FALSE))
+		if((TaverneTopicStarted == TRUE) && (MIS_Rukhar_Wettkampf == FALSE))
 		{
-			квест открыт, ставка не сделана, –эндольфа не привести - что делать с квестом?
 			MIS_Rukhar_Wettkampf = LOG_OBSOLETE;
 			B_CheckLog();
-		};*/
+		};
 		if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running))
 		{
 			if(Mob_HasItems("CHEST_RUKHAR",ItFo_Booze))

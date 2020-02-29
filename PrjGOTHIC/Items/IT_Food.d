@@ -63,6 +63,7 @@ func void Use_Apple()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Apple);
 	if(Npc_IsPlayer(self))
 	{
+		TotalApplesEaten += 1;
 		Apple_Bonus += 1;
 		if(Apple_Bonus == 7)
 		{

@@ -48,7 +48,6 @@ func void B_OpenShell()
 	};
 };
 
-
 instance ItMi_Addon_Shell_01(C_Item)
 {
 	name = "Створчатый моллюск";
@@ -58,19 +57,12 @@ instance ItMi_Addon_Shell_01(C_Item)
 	visual = "ItMi_Shell_01.3ds";
 	material = MAT_STONE;
 	scemeName = "MAPSEALED";
-	on_state[0] = Use_Shell_01;
+	on_state[0] = B_OpenShell;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_MISC2_STANDARD;
 };
-
-
-func void Use_Shell_01()
-{
-	B_OpenShell();
-};
-
 
 instance ItMi_Addon_Shell_02(C_Item)
 {
@@ -81,16 +73,10 @@ instance ItMi_Addon_Shell_02(C_Item)
 	visual = "ItMi_Shell_02.3ds";
 	material = MAT_STONE;
 	scemeName = "MAPSEALED";
-	on_state[0] = Use_Shell_02;
+	on_state[0] = B_OpenShell;
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_MISC2_STANDARD;
-};
-
-
-func void Use_Shell_02()
-{
-	B_OpenShell();
 };
 

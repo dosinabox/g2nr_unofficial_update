@@ -345,6 +345,7 @@ func void Use_Mushroom_01()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Mushroom_01);
 	if(Npc_IsPlayer(self))
 	{
+		TotalMushroomsEaten += 1;
 		Dunkelpilz_Bonus += 1;
 		if(Dunkelpilz_Bonus == 50)
 		{
