@@ -9,8 +9,13 @@ func void B_StartNewLife()
 		{
 			B_StartOtherRoutine(DiegoNW,"GERBRANDT");
 		};
+		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		Npc_ExchangeRoutine(self,"FLEE");
-		B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
+		if(!Npc_IsDead(GerbrandtsFrau))
+		{
+			GerbrandtsFrau.aivar[AIV_CommentedPlayerCrime] = FALSE;
+			B_StartOtherRoutine(GerbrandtsFrau,"NEWLIFE");
+		};
 		B_StartOtherRoutine(VLK_419_Buerger,"NEWPLACE");
 		DIEGO_COMING = 2;
 	};

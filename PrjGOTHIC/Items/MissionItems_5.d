@@ -279,22 +279,22 @@ func void Use_Seamap_Irdorath()
 	Doc_Show(nDocID);
 	if(MIS_SCKnowsWayToIrdorath == FALSE)
 	{
-		if(Kapitel < 6)
-		{
-			B_Say(self,self,"$IRDORATHTHEREYOUARE");
-		};
-		if(MIS_ShipIsFree == FALSE)
-		{
-			Log_CreateTopic(Topic_Ship,LOG_MISSION);
-			Log_SetTopicStatus(Topic_Ship,LOG_Running);
-			B_LogEntry(Topic_Ship,"ѕохоже, € должен добратьс€ до этого странного вражеского острова. Ќо дл€ этого мне нужен корабль.");
-		};
 		Log_CreateTopic(Topic_Crew,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Crew,LOG_Running);
 		B_LogEntry(Topic_Crew,"ƒл€ путешестви€ на корабле и решающего сражени€ мне нужна команда.");
 		Log_CreateTopic(Topic_Captain,LOG_MISSION);
 		Log_SetTopicStatus(Topic_Captain,LOG_Running);
-		B_LogEntry(Topic_Captain,"ƒл€ управлени€ кораблем мне нужен опытный капитан, готовый отправитьс€ со мной в опасное путешествие.");
+		Log_AddEntry(Topic_Captain,"ƒл€ управлени€ кораблем мне нужен опытный капитан, готовый отправитьс€ со мной в опасное путешествие.");
+		if(MIS_ShipIsFree == FALSE)
+		{
+			Log_CreateTopic(Topic_Ship,LOG_MISSION);
+			Log_SetTopicStatus(Topic_Ship,LOG_Running);
+			Log_AddEntry(Topic_Ship,"ѕохоже, € должен добратьс€ до этого странного вражеского острова. Ќо дл€ этого мне нужен корабль.");
+		};
+		if(Kapitel < 6)
+		{
+			B_Say(self,self,"$IRDORATHTHEREYOUARE");
+		};
 		MIS_SCKnowsWayToIrdorath = TRUE;
 		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 	};

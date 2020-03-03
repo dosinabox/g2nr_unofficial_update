@@ -209,6 +209,14 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить фиксированный опыт по главам",StoryHelper_XP);
 	};
+	If(PenaltiesAffectLearnCost == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
+	};
 };
 	
 instance StoryHelper_PatchSettings(C_Info)
@@ -470,6 +478,21 @@ func void StoryHelper_HardMode_50()
 {
 	HardModeXPModifier = 50;
 	PrintScreen("Получаемый опыт снижен на 50%",-1,YPOS_LOGENTRY,FONT_ScreenSmall,3);
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Penalties()
+{
+	if(PenaltiesAffectLearnCost == TRUE)
+	{
+		PenaltiesAffectLearnCost = FALSE;
+		PrintScreen("Влияние штрафов на стоимость обучения включено",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		PenaltiesAffectLearnCost = TRUE;
+		PrintScreen("Влияние штрафов на стоимость обучения выключено",-1,-1,FONT_Screen,3);
+	};
 	b_build_settings_diag();
 };
 

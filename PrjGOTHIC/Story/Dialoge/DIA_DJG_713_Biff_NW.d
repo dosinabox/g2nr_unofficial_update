@@ -34,7 +34,10 @@ instance DIA_Biff_NW_HAfen(C_Info)
 
 func int DIA_Biff_NW_HAfen_Condition()
 {
-	return TRUE;
+	if(Biff_IsOnBoard != LOG_FAILED)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Biff_NW_HAfen_Info()
@@ -50,6 +53,64 @@ func void DIA_Biff_NW_HAfen_Info()
 		Npc_ExchangeRoutine(self,"WAITFORSHIP");
 	};
 	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Biff_NW_QUIT(C_Info)
+{
+	npc = DJG_713_Biff_NW;
+	nr = 6;
+	condition = DIA_Biff_NW_QUIT_Condition;
+	information = DIA_Biff_NW_QUIT_Info;
+	permanent = FALSE;
+	description = "Боюсь, дальше наши пути расходятся.";
+};
+
+
+func int DIA_Biff_NW_QUIT_Condition()
+{
+	if(MIS_ReadyforChapter6 == FALSE)
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Biff_NW_QUIT_Info()
+{
+	AI_Output(other,self,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_15_00");	//Боюсь, дальше наши пути расходятся.
+	B_Biff_Verarschen();
+	Biff_IsOnBoard = LOG_FAILED;
+	Crewmember_Count -= 1;
+	AI_StopProcessInfos(self);
+	Npc_ExchangeRoutine(self,"Quit");
+	B_Attack(self,other,AR_NONE,1);
+};
+
+
+instance DIA_Biff_NW_ATTACK(C_Info)
+{
+	npc = DJG_713_Biff_NW;
+	nr = 1;
+	condition = DIA_Biff_NW_ATTACK_Condition;
+	information = DIA_Biff_NW_ATTACK_Info;
+	permanent = TRUE;
+	important = TRUE;
+};
+
+
+func int DIA_Biff_NW_ATTACK_Condition()
+{
+	if(Npc_IsInState(self,ZS_Talk) && (Biff_IsOnBoard == LOG_FAILED))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Biff_NW_ATTACK_Info()
+{
+	B_Say(self,other,"$NOTNOW");
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_NONE,1);
 };
 
 

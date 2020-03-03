@@ -85,7 +85,6 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 		};
 	};
-//	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == FALSE)
 	{
 		B_RaiseRealAttributeLearnCounter(oth,attrib,points);

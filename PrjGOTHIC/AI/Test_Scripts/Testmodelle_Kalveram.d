@@ -1558,10 +1558,12 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,"Съедено:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalApplesEaten)," яблок"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalMushroomsEaten)," черных грибов"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalDexEaten)," гоблинских ягод"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStrEaten)," драконьих корней"));
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Shell_Opener)," моллюсков открыто"));
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек отдано Ватрасу"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Shell_Opener)," открытых моллюсков"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек для Ватраса"));
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 	Doc_PrintLine(nDocID,1,"");
 	if(HardModeEnabled == TRUE)
@@ -1640,7 +1642,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 29 февраля 2020г.";
+	text[1] = "Скомпилировано 3 марта 2020г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";

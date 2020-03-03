@@ -269,6 +269,7 @@ instance ItPl_Dex_Herb_01(C_Item)
 
 func void Use_Dex_Herb_01()
 {
+	TotalDexEaten += 1;
 	B_RaiseAttribute(self,ATR_DEXTERITY,1);
 };
 
@@ -293,6 +294,7 @@ instance ItPl_Strength_Herb_01(C_Item)
 
 func void Use_Strength_Herb_01()
 {
+	TotalStrEaten += 1;
 	B_RaiseAttribute(self,ATR_STRENGTH,1);
 };
 

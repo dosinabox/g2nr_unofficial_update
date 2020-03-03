@@ -194,6 +194,7 @@ func void DIA_Richter_KillMorgahard_Info()
 	{
 		Garwig.guild = GIL_NONE;
 		Npc_SetTrueGuild(Garwig,GIL_NONE);
+		Garwig.aivar[AIV_CommentedPlayerCrime] = FALSE;
 		B_StartOtherRoutine(Garwig,"Exile");
 	};
 	B_InitNpcGlobals();

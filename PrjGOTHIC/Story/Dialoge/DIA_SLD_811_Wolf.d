@@ -783,31 +783,6 @@ func void DIA_Wolf_SHIPOFF_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
-/*
-instance DIA_Wolf_KAP6_EXIT(C_Info)
-{
-	npc = SLD_811_Wolf;
-	nr = 999;
-	condition = DIA_Wolf_KAP6_EXIT_Condition;
-	information = DIA_Wolf_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Wolf_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Wolf_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Wolf_PICKPOCKET(C_Info)
 {
@@ -842,6 +817,4 @@ func void DIA_Wolf_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Wolf_PICKPOCKET);
 };
-
-
 

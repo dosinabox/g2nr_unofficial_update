@@ -709,6 +709,7 @@ func void DIA_Pyrokar_Wunsch_Babo()
 	B_StartOtherRoutine(Babo,"FAVOUR");
 	Dyrian.guild = GIL_NONE;
 	Npc_SetTrueGuild(Dyrian,GIL_NONE);
+	Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	MIS_HelpBabo = LOG_SUCCESS;
@@ -733,6 +734,7 @@ func void DIA_Pyrokar_Wunsch_Opolos()
 	B_StartOtherRoutine(Opolos,"FAVOUR");
 	Dyrian.guild = GIL_NONE;
 	Npc_SetTrueGuild(Dyrian,GIL_NONE);
+	Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 	AI_Teleport(Dyrian,"TAVERNE");
 	B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 	MIS_HelpOpolos = LOG_SUCCESS;

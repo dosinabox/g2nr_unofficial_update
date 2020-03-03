@@ -7,12 +7,11 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 	kosten = B_GetLearnCostTalent(oth,talent,1) * percent;
 	if((talent != NPC_TALENT_1H) && (talent != NPC_TALENT_2H) && (talent != NPC_TALENT_BOW) && (talent != NPC_TALENT_CROSSBOW))
 	{
-		Print("*** ОШИБКА: Неправильный параметр ***");
+		Print(PRINT_WrongParameter);
 		return FALSE;
 	};
 	if(talent == NPC_TALENT_1H)
 	{
-//		realHitChance = oth.HitChance[NPC_TALENT_1H];
 		if(oth.HitChance[NPC_TALENT_1H] >= 100)
 		{
 			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
@@ -23,7 +22,6 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 	}
 	else if(talent == NPC_TALENT_2H)
 	{
-//		realHitChance = oth.HitChance[NPC_TALENT_2H];
 		if(oth.HitChance[NPC_TALENT_2H] >= 100)
 		{
 			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
@@ -34,7 +32,6 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 	}
 	else if(talent == NPC_TALENT_BOW)
 	{
-//		realHitChance = oth.HitChance[NPC_TALENT_BOW];
 		if(oth.HitChance[NPC_TALENT_BOW] >= 100)
 		{
 			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
@@ -45,7 +42,6 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 	}
 	else if(talent == NPC_TALENT_CROSSBOW)
 	{
-//		realHitChance = oth.HitChance[NPC_TALENT_CROSSBOW];
 		if(oth.HitChance[NPC_TALENT_CROSSBOW] >= 100)
 		{
 			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
@@ -82,7 +78,6 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 		return FALSE;
 	};
 	oth.lp -= kosten;
-//	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == TRUE)
 	{
 		if(talent == NPC_TALENT_1H)

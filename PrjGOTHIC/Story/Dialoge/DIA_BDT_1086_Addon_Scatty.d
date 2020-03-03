@@ -281,7 +281,7 @@ func void DIA_Addon_Scatty_Gold_Info()
 };
 
 
-//var int Scatty_teach_perm;
+var int Scatty_teach_noPerm;
 
 instance DIA_Addon_Scatty_teach(C_Info)
 {
@@ -297,7 +297,7 @@ instance DIA_Addon_Scatty_teach(C_Info)
 
 func int DIA_Addon_Scatty_teach_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Gold))
+	if(Npc_KnowsInfo(other,DIA_Addon_Scatty_Gold) && (Scatty_teach_noPerm == FALSE))
 	{
 		return TRUE;
 	};
@@ -316,7 +316,6 @@ func void DIA_Addon_Scatty_teach_Info()
 			AI_Output(self,other,"DIA_Addon_Scatty_teach_01_04");	// роме этого, повторенье - мать учень€. “олько работа€, ты станешь хорошим рудокопом.
 			other.lp -= 1;
 			B_Upgrade_Hero_HackChance(10);
-//			Scatty_teach_perm = TRUE;
 		}
 		else
 		{
@@ -326,6 +325,7 @@ func void DIA_Addon_Scatty_teach_Info()
 	else
 	{
 		B_Say(self,other,"$NoLearnYoureBetter");
+		Scatty_teach_noPerm = TRUE;
 	};
 };
 

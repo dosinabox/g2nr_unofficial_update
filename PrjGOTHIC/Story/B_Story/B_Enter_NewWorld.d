@@ -128,11 +128,11 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			B_StartOtherRoutine(Ambusher_1013,"AWAY");
 		}; */
-		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
+		if(!Npc_IsDead(Lobart))
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
-		if((MIS_HelpDyrian != LOG_Success) && !Npc_IsDead(Dyrian))
+		if((MIS_HelpDyrian != LOG_SUCCESS) && !Npc_IsDead(Dyrian))
 		{
 			Dyrian.guild = GIL_NONE;
 			Npc_SetTrueGuild(Dyrian,GIL_NONE);

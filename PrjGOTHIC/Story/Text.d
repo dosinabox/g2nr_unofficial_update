@@ -975,3 +975,5 @@ const string PRINT_BookstandRunes3 = "Только при выполнении этих условий он може
 const string PRINT_OldSave1 = "Загруженное сохранение не поддерживается!";
 const string PRINT_OldSave2 = "Пожалуйста, начните новую игру.";
 
+const string PRINT_WrongParameter = "*** ОШИБКА: Неправильный параметр ***";
+

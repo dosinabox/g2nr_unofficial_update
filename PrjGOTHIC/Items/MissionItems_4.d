@@ -171,9 +171,6 @@ instance ItRi_OrcEliteRing(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_MISSION | ITEM_RING | ITEM_MULTI;
 	value = Value_OrcEliteRing;
-//	cond_atr[2] = ATR_STRENGTH;
-//	cond_value[2] = 20;
-//	visual = "ItRi_Str_02.3ds";
 	visual = "ItRi_OrcEliteRing.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
@@ -194,29 +191,21 @@ instance ItRi_OrcEliteRing(C_Item)
 
 func void Equip_OrcEliteRing()
 {
-//	var string strMessage;
-	if(self.attribute[ATR_STRENGTH] >= 20)
+	if(self.attribute[ATR_STRENGTH] >= OrcRingPenalty)
 	{
-		Npc_ChangeAttribute(self,ATR_STRENGTH,-20);
+		Npc_ChangeAttribute(self,ATR_STRENGTH,-OrcRingPenalty);
 		Print(PRINT_OrcEliteRingEquip);
-		OrcEliteRing_Equipped = TRUE;
+		OrcRingCurrentPenalty = OrcRingPenalty;
 	};
-/*	else
-	{
-		strMessage = ConcatStrings(PRINT_STRENGTH_MISSING," ");
-		strMessage = ConcatStrings(strMessage,IntToString(20 - self.attribute[ATR_STRENGTH]));
-		Print(strMessage);
-		OrcEliteRing_Equipped = FALSE;
-	};*/
 };
 
 func void UnEquip_OrcEliteRing()
 {
-	if(OrcEliteRing_Equipped == TRUE)
+	if(OrcRingCurrentPenalty != 0)
 	{
-		Npc_ChangeAttribute(self,ATR_STRENGTH,20);
+		Npc_ChangeAttribute(self,ATR_STRENGTH,OrcRingPenalty);
 		Print(PRINT_Eat3);
-		OrcEliteRing_Equipped = FALSE;
+		OrcRingCurrentPenalty = 0;
 	};
 };
 

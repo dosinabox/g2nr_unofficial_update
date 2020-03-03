@@ -29,7 +29,6 @@ func void B_BlessAttribute(var C_Npc oth,var int attrib,var int points)
 		concatText = ConcatStrings(PRINT_BlessMANA_MAX,IntToString(points));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 	};
-//	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == FALSE)
 	{
 		B_RaiseRealAttributeLearnCounter(oth,attrib,points);

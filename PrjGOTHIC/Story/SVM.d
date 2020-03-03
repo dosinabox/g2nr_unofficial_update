@@ -78,6 +78,7 @@ class C_SVM
 	var string abs_commander;
 	var string abs_monastery;
 	var string abs_farm;
+	var string abs_city;
 	var string abs_good;
 	var string sheepkiller_crime;
 	var string attack_crime;
@@ -319,6 +320,7 @@ instance SVM_1(C_SVM)
 	abs_commander = "SVM_1_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_1_ABS_MONASTERY";	//Я слышал, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_1_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
+	abs_city = "SVM_1_ABS_CITY";	//Я слышал, ты все уладил.
 	abs_good = "SVM_1_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_1_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_1_ATTACK_CRIME";	//Я не разговариваю с бандитами!
@@ -510,6 +512,7 @@ instance SVM_3(C_SVM)
 	abs_commander = "SVM_3_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_3_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_3_ABS_FARM";	//Говорят, ты ходил к Ли и все уладил.
+	abs_city = "SVM_3_ABS_CITY";	//Говорят, ты все уладил.
 	abs_good = "SVM_3_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_3_SHEEPKILLER_CRIME";	//Убийство овцы - это уж слишком! Проваливай!
 	attack_crime = "SVM_3_ATTACK_CRIME";	//Оставь меня в покое, грязное животное!
@@ -697,6 +700,7 @@ instance SVM_4(C_SVM)
 	abs_commander = "SVM_4_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_4_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_4_ABS_FARM";	//Я слышал, ты обратился к Ли и все уладил.
+	abs_city = "SVM_4_ABS_CITY";	//Я слышал, ты все уладил.
 	abs_good = "SVM_4_ABS_GOOD";	//Хорошо.
 	sheepkiller_crime = "SVM_4_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_4_ATTACK_CRIME";	//Ты бандит - убирайся!
@@ -884,6 +888,7 @@ instance SVM_5(C_SVM)
 	abs_commander = "SVM_5_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_5_ABS_MONASTERY";	//Я слышал, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_5_ABS_FARM";	//Я слышал, ты ходил к Ли и все уладил.
+	abs_city = "SVM_5_ABS_CITY";	//Я слышал, ты все уладил.
 	abs_good = "SVM_5_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_5_SHEEPKILLER_CRIME";	//Убийство овцы - это уж слишком! Проваливай!
 	attack_crime = "SVM_5_ATTACK_CRIME";	//Оставь меня в покое, грязное животное!
@@ -1071,6 +1076,7 @@ instance SVM_6(C_SVM)
 	abs_commander = "SVM_6_ABS_COMMANDER";	//Так значит, ты утряс все проблемы с командующим.
 	abs_monastery = "SVM_6_ABS_MONASTERY";	//Отец Парлан отпустил тебе твои грехи.
 	abs_farm = "SVM_6_ABS_FARM";	//Значит, ты ходил к Ли и утряс все проблемы.
+	abs_city = "SVM_6_ABS_CITY";	//Значит, ты утряс все проблемы.
 	abs_good = "SVM_6_ABS_GOOD";	//Хорошо.
 	sheepkiller_crime = "SVM_6_SHEEPKILLER_CRIME";	//Ты нападаешь на овцу? А ты не хочешь выбрать себе еще более беззащитную жертву?
 	attack_crime = "SVM_6_ATTACK_CRIME";	//Я не общаюсь с бандитами!
@@ -1258,6 +1264,7 @@ instance SVM_7(C_SVM)
 	abs_commander = "SVM_7_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_7_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_7_ABS_FARM";	//Я слышал, ты обратился к Ли и все уладил.
+	abs_city = "SVM_7_ABS_CITY";	//Я слышал, ты все уладил.
 	abs_good = "SVM_7_ABS_GOOD";	//Хорошо.
 	sheepkiller_crime = "SVM_7_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_7_ATTACK_CRIME";	//Ты бандит - убирайся!
@@ -1445,6 +1452,7 @@ instance SVM_8(C_SVM)
 	abs_commander = "SVM_8_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_8_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_8_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
+	abs_city = "SVM_8_ABS_CITY";	//Говорят, ты все уладил.
 	abs_good = "SVM_8_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_8_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_8_ATTACK_CRIME";	//Оставь меня в покое, грязное животное!
@@ -1635,6 +1643,7 @@ instance SVM_9(C_SVM)
 	abs_commander = "SVM_9_ABS_COMMANDER";	//Так значит, ты утряс все проблемы с командующим.
 	abs_monastery = "SVM_9_ABS_MONASTERY";	//Отец Парлан отпустил тебе твои грехи.
 	abs_farm = "SVM_9_ABS_FARM";	//Так ты ходил к Ли и все уладил.
+	abs_city = "SVM_9_ABS_CITY";	//Так ты все уладил.
 	abs_good = "SVM_9_ABS_GOOD";	//Хорошо.
 	sheepkiller_crime = "SVM_9_SHEEPKILLER_CRIME";	//Ты нападаешь на овцу? А ты не хочешь выбрать себе еще более беззащитную жертву?
 	attack_crime = "SVM_9_ATTACK_CRIME";	//Я не общаюсь с бандитами!
@@ -1823,6 +1832,7 @@ instance SVM_10(C_SVM)
 	abs_commander = "SVM_10_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_10_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_10_ABS_FARM";	//Я слышал, ты обратился к Ли и все уладил.
+	abs_city = "SVM_10_ABS_CITY";	//Я слышал, ты все уладил.
 	abs_good = "SVM_10_ABS_GOOD";	//Это честно.
 	sheepkiller_crime = "SVM_10_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_10_ATTACK_CRIME";	//Ты бандит - убирайся!
@@ -2011,6 +2021,7 @@ instance SVM_11(C_SVM)
 	abs_commander = "SVM_11_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_11_ABS_MONASTERY";	//Я слышал, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_11_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
+	abs_city = "SVM_11_ABS_CITY";	//Я слышал, ты все уладил.
 	abs_good = "SVM_11_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_11_SHEEPKILLER_CRIME";	//Убийство овцы - это уж слишком! Проваливай!
 	attack_crime = "SVM_11_ATTACK_CRIME";	//Я не разговариваю с бандитами!
@@ -2199,6 +2210,7 @@ instance SVM_12(C_SVM)
 	abs_commander = "SVM_12_ABS_COMMANDER";	//Так значит, ты утряс все проблемы с командующим.
 	abs_monastery = "SVM_12_ABS_MONASTERY";	//Отец Парлан отпустил тебе твои грехи.
 	abs_farm = "SVM_12_ABS_FARM";	//Так ты ходил к Ли и все уладил.
+	abs_city = "SVM_12_ABS_CITY";	//Так ты все уладил.
 	abs_good = "SVM_12_ABS_GOOD";	//Хорошо.
 	sheepkiller_crime = "SVM_12_SHEEPKILLER_CRIME";	//Ты нападаешь на овцу? А ты не хочешь выбрать себе еще более беззащитную жертву?
 	attack_crime = "SVM_12_ATTACK_CRIME";	//Я не общаюсь с бандитами!
@@ -2386,6 +2398,7 @@ instance SVM_13(C_SVM)
 	abs_commander = "SVM_13_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_13_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_13_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
+	abs_city = "SVM_13_ABS_CITY";	//Говорят, ты все уладил.
 	abs_good = "SVM_13_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_13_SHEEPKILLER_CRIME";	//Убийство овцы - это уж слишком! Проваливай!
 	attack_crime = "SVM_13_ATTACK_CRIME";	//Оставь меня в покое, грязное животное!
@@ -2573,6 +2586,7 @@ instance SVM_14(C_SVM)
 	abs_commander = "SVM_14_ABS_COMMANDER";	//Я слышал, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_14_ABS_MONASTERY";	//Я слышал, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_14_ABS_FARM";	//Говорят, ты обратился к Ли и все уладил.
+	abs_city = "SVM_14_ABS_CITY";	//Я слышал, ты все уладил.
 	abs_good = "SVM_14_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_14_SHEEPKILLER_CRIME";	//Убийство овцы - это уже слишком! Проваливай!
 	attack_crime = "SVM_14_ATTACK_CRIME";	//Я не разговариваю с бандитами!
@@ -2819,6 +2833,7 @@ instance SVM_16(C_SVM)
 	abs_commander = "SVM_16_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_16_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_16_ABS_FARM";	//Говорят, ты ходил к Ли и все уладил.
+	abs_city = "SVM_16_ABS_CITY";	//Говорят, ты все уладил.
 	abs_good = "SVM_16_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_16_SHEEPKILLER_CRIME";	//Ты убивал наших овец! Убирайся!
 	attack_crime = "SVM_16_ATTACK_CRIME";	//Ты грубое животное, я не хочу иметь с тобой никаких дел!
@@ -2993,6 +3008,7 @@ instance SVM_17(C_SVM)
 	abs_commander = "SVM_17_ABS_COMMANDER";	//Говорят, ты ходил к командующему и все уладил.
 	abs_monastery = "SVM_17_ABS_MONASTERY";	//Говорят, ты ходил к отцу Парлану и искупил свои грехи.
 	abs_farm = "SVM_17_ABS_FARM";	//Говорят, ты ходил к Ли и все уладил.
+	abs_city = "SVM_17_ABS_CITY";	//Говорят, ты все уладил.
 	abs_good = "SVM_17_ABS_GOOD";	//Это хорошо.
 	sheepkiller_crime = "SVM_17_SHEEPKILLER_CRIME";	//Ты убивал наших овец! Убирайся!
 	attack_crime = "SVM_17_ATTACK_CRIME";	//Ты грубое животное, я не хочу иметь с тобой никаких дел.

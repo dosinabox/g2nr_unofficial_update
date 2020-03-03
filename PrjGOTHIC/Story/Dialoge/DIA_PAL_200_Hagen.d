@@ -1043,10 +1043,14 @@ func void DIA_Lord_Hagen_RescueBennet_WhySure()
 	AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_Witness_04_03");	//Ётот наемник будет повешен за измену.
 	if(RescueBennet_KnowsCornelius == FALSE)
 	{
+		if(!Npc_IsDead(Cornelius))
+		{
+			Cornelius.guild = GIL_NONE;
+			Cornelius.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		};
 		B_LogEntry(TOPIC_RescueBennet," орнелиус, секретарь губернатора, €вл€етс€ свидетелем. ќн утверждает, что был свидетелем убийства.");
 		RescueBennet_KnowsCornelius = TRUE;
 	};
-	Cornelius.guild = GIL_NONE;
 };
 
 func void DIA_Lord_Hagen_RescueBennet_Innoscent()

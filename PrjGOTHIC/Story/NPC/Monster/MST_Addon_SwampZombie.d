@@ -4,11 +4,11 @@ prototype Mst_Default_SwampZombie(C_Npc)
 	name[0] = "Болотный труп";
 	guild = GIL_ZOMBIE;
 	aivar[AIV_MM_REAL_ID] = ID_ZOMBIE;
-	level = 15;
-	attribute[ATR_STRENGTH] = 75;
-	attribute[ATR_DEXTERITY] = 75;
-	attribute[ATR_HITPOINTS_MAX] = 150;
-	attribute[ATR_HITPOINTS] = 150;
+	level = 25;
+	attribute[ATR_STRENGTH] = 125;
+	attribute[ATR_DEXTERITY] = 125;
+	attribute[ATR_HITPOINTS_MAX] = 500;
+	attribute[ATR_HITPOINTS] = 500;
 	attribute[ATR_MANA_MAX] = 0;
 	attribute[ATR_MANA] = 0;
 	protection[PROT_BLUNT] = 75;
