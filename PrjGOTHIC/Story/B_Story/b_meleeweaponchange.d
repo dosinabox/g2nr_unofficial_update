@@ -113,6 +113,7 @@ func void Equip_1H_Keule()
 	{
 		B_AddFightSkill(self,NPC_TALENT_1H,-10);
 		b_meleeweaponchange(-10,0,0);
+		Keule1HCurrentPenalty = 10;
 		KeuleEquipped = TRUE;
 	};
 };
@@ -120,24 +121,27 @@ func void Equip_1H_Keule()
 func void UnEquip_1H_Keule()
 {
 	Keule_Bonus = 100 - self.HitChance[NPC_TALENT_1H];
-	if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
+	if(Npc_IsPlayer(self))
 	{
-		if(self.HitChance[NPC_TALENT_1H] > 90)
+		if(MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE))
 		{
-			if(MorgansRingEquipped == TRUE)
+			if(self.HitChance[NPC_TALENT_1H] > 90)
 			{
-				B_AddFightSkill(self,NPC_TALENT_1H,Keule_Bonus);
-				Keule_Fix_Needed = TRUE;
-				//Print("тест 1");
-			}
-			else if(self.HitChance[NPC_TALENT_1H] <= 90)
-			{
-				B_AddFightSkill(self,NPC_TALENT_1H,10);
+				if(MorgansRingEquipped == TRUE)
+				{
+					B_AddFightSkill(self,NPC_TALENT_1H,Keule_Bonus);
+					Keule_Fix_Needed = TRUE;
+				}
+				else if(self.HitChance[NPC_TALENT_1H] <= 90)
+				{
+					B_AddFightSkill(self,NPC_TALENT_1H,10);
+				};
 			};
+			B_AddFightSkill(self,NPC_TALENT_1H,10);
+			b_meleeweaponundochange();
+			KeuleEquipped = FALSE;
 		};
-		B_AddFightSkill(self,NPC_TALENT_1H,10);
-		b_meleeweaponundochange();
-		KeuleEquipped = FALSE;
+		Keule1HCurrentPenalty = 0;
 	};
 };
 
@@ -147,15 +151,20 @@ func void Equip_2H_Keule()
 	{
 		B_AddFightSkill(self,NPC_TALENT_2H,-10);
 		b_meleeweaponchange(0,-10,0);
+		Keule2HCurrentPenalty = 10;
 	};
 };
 
 func void UnEquip_2H_Keule()
 {
-	if(Npc_IsPlayer(self) && (MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
+	if(Npc_IsPlayer(self))
 	{
-		B_AddFightSkill(self,NPC_TALENT_2H,10);
-		b_meleeweaponundochange();
+		if(MELEEWEAPONCHANGEDHERO || (SCRIPTPATCHWEAPONCHANGE == FALSE))
+		{
+			B_AddFightSkill(self,NPC_TALENT_2H,10);
+			b_meleeweaponundochange();
+		};
+		Keule2HCurrentPenalty = 0;
 	};
 };
 
@@ -292,7 +301,7 @@ func void b_stopmagictransform()
 //новая система от Slavemaster - тест
 /////////////////////////////////////////
 
-/*// необрезанное владение (может быть больше 100 или меньше 0
+// необрезанное владение (может быть больше 100 или меньше 0
 var int HERO_HITCHANCE_UNCUT[MAX_HITCHANCE];
 
 // вклад в необрезанное владение, сделанный бонусами, не влияющими на цену прокачки
@@ -304,7 +313,7 @@ var int HERO_HITCHANCE_LOW[MAX_HITCHANCE];
 // верхний лимит навыков (заполнен 100-ми)
 var int HERO_HITCHANCE_HI[MAX_HITCHANCE];
 
-func int GetMin(var int x, var int y)
+func int GetMin(var int x,var int y)
 {
 	if(x < y)
 	{
@@ -313,7 +322,7 @@ func int GetMin(var int x, var int y)
 	return y;
 };
 
-func int GetMax(var int x, var int y)
+func int GetMax(var int x,var int y)
 {
 	if(x > y)
 	{
@@ -323,14 +332,14 @@ func int GetMax(var int x, var int y)
 };
 
 // возвращает ближайшее к value число из отрезка [min..max]
-func int Normalize(var int value, var int min, var int max)
+func int Normalize(var int value,var int min,var int max)
 {
-	value = GetMin(value, max);
-	return GetMax(value, min);
+	value = GetMin(value,max);
+	return GetMax(value,min);
 };
 
 // обновляем анимации, если скилл изменился
-func void UpdateHeroOverlay(var int oldSkill, var int newSkill, var string mds1, var string mds2)
+func void UpdateHeroOverlay(var int oldSkill,var int newSkill,var string mds1,var string mds2)
 {
 	if(oldSkill == newSkill)
 	{
@@ -338,24 +347,24 @@ func void UpdateHeroOverlay(var int oldSkill, var int newSkill, var string mds1,
 	};
 	if(oldSkill == 1)
 	{
-		Mdl_RemoveOverlayMds(hero, mds1);
+		Mdl_RemoveOverlayMds(hero,mds1);
 	}
 	else if(oldSkill == 2)
 	{
-		Mdl_RemoveOverlayMds(hero, mds2);
+		Mdl_RemoveOverlayMds(hero,mds2);
 	};
 	if(newSkill == 1)
 	{
-		Mdl_ApplyOverlayMds(hero, mds1);
+		Mdl_ApplyOverlayMds(hero,mds1);
 	}
 	else if(newSkill == 2)
 	{
-		Mdl_ApplyOverlayMds(hero, mds2);
+		Mdl_ApplyOverlayMds(hero,mds2);
 	};
 };
 
 // все бонусы, влияющие на цену прокачки, должны вызывать этот метод
-func void TrainHeroHitchance(var int talent, var int value)
+func void TrainHeroHitchance(var int talent,var int value)
 {
 	var int oldSkill;
 	var int newSkill;
@@ -367,10 +376,11 @@ func void TrainHeroHitchance(var int talent, var int value)
 			HERO_HITCHANCE_LOW[NPC_TALENT_1H],
 			HERO_HITCHANCE_HI[NPC_TALENT_1H]
 		);
-		oldSkill = Npc_GetTalentSkill(hero, NPC_TALENT_1H);
-		newSkill = GetMin(hero.HitChance[NPC_TALENT_1H] / 3, 2);
-		Npc_SetTalentSkill(hero, talent, newSkill);
-		UpdateHeroOverlay(oldSkill, newSkill, "humans_1hST1.MDS", "humans_1hST2.MDS");
+		oldSkill = Npc_GetTalentSkill(hero,NPC_TALENT_1H);
+		newSkill = GetMin(hero.HitChance[NPC_TALENT_1H] / 30, 2);
+		Npc_SetTalentSkill(hero,talent,newSkill);
+		Print(ConcatStrings(IntToString(oldSkill),IntToString(newSkill)));
+		UpdateHeroOverlay(oldSkill,newSkill,"humans_1hST1.MDS","humans_1hST2.MDS");
 	}
 	else if(talent == NPC_TALENT_2H)
 	{
@@ -380,10 +390,10 @@ func void TrainHeroHitchance(var int talent, var int value)
 			HERO_HITCHANCE_LOW[NPC_TALENT_2H],
 			HERO_HITCHANCE_HI[NPC_TALENT_2H]
 		);
-		oldSkill = Npc_GetTalentSkill(hero, NPC_TALENT_2H);
-		newSkill = GetMin(hero.HitChance[NPC_TALENT_2H] / 3, 2);
-		Npc_SetTalentSkill(hero, talent, newSkill);
-		UpdateHeroOverlay(oldSkill, newSkill, "humans_2hST1.MDS", "humans_2hST2.MDS");
+		oldSkill = Npc_GetTalentSkill(hero,NPC_TALENT_2H);
+		newSkill = GetMin(hero.HitChance[NPC_TALENT_2H] / 30, 2);
+		Npc_SetTalentSkill(hero,talent,newSkill);
+		UpdateHeroOverlay(oldSkill,newSkill,"humans_2hST1.MDS","humans_2hST2.MDS");
 	}
 	else if(talent == NPC_TALENT_BOW)
 	{
@@ -393,10 +403,10 @@ func void TrainHeroHitchance(var int talent, var int value)
 			HERO_HITCHANCE_LOW[NPC_TALENT_BOW],
 			HERO_HITCHANCE_HI[NPC_TALENT_BOW]
 		);
-		oldSkill = Npc_GetTalentSkill(hero, NPC_TALENT_BOW);
-		newSkill = GetMin(hero.HitChance[NPC_TALENT_BOW] / 3, 2);
-		Npc_SetTalentSkill(hero, talent, newSkill);
-		UpdateHeroOverlay(oldSkill, newSkill, "humans_bowT1.MDS", "humans_bowT2.MDS");
+		oldSkill = Npc_GetTalentSkill(hero,NPC_TALENT_BOW);
+		newSkill = GetMin(hero.HitChance[NPC_TALENT_BOW] / 30, 2);
+		Npc_SetTalentSkill(hero,talent,newSkill);
+		UpdateHeroOverlay(oldSkill,newSkill,"humans_bowT1.MDS","humans_bowT2.MDS");
 	}
 	else if(talent == NPC_TALENT_CROSSBOW)
 	{
@@ -406,19 +416,19 @@ func void TrainHeroHitchance(var int talent, var int value)
 			HERO_HITCHANCE_LOW[NPC_TALENT_CROSSBOW],
 			HERO_HITCHANCE_HI[NPC_TALENT_CROSSBOW]
 		);
-		oldSkill = Npc_GetTalentSkill(hero, NPC_TALENT_CROSSBOW);
-		newSkill = GetMin(hero.HitChance[NPC_TALENT_CROSSBOW] / 3, 2);
-		Npc_SetTalentSkill(hero, talent, newSkill);
-		UpdateHeroOverlay(oldSkill, newSkill, "humans_cbowT1.MDS", "humans_cbowT2.MDS");
+		oldSkill = Npc_GetTalentSkill(hero,NPC_TALENT_CROSSBOW);
+		newSkill = GetMin(hero.HitChance[NPC_TALENT_CROSSBOW] / 30, 2);
+		Npc_SetTalentSkill(hero,talent,newSkill);
+		UpdateHeroOverlay(oldSkill,newSkill,"humans_cbowT1.MDS","humans_cbowT2.MDS");
 	}
 	else
 	{
-		Print("Внутренняя ошибка в TrainHeroHitchance: недопустимый параметр");
+		Print(PRINT_WrongParameter);
 	};
 };
 
 // все бонусы, не влияющие на цену прокачки, должны вызывать этот метод
-func void AddHeroHitchance(var int talent, var int value)
+func void AddHeroHitchance(var int talent,var int value)
 {
 	if(talent == NPC_TALENT_1H)
 	{
@@ -436,7 +446,7 @@ func void AddHeroHitchance(var int talent, var int value)
 	{
 		HERO_HITCHANCE_DELTA[NPC_TALENT_CROSSBOW] += value;
 	};
-	TrainHeroHitchance(talent, value);
+	TrainHeroHitchance(talent,value);
 };
 
 // для составления меню обучения необходимо знать значение достигнутое лишь тренировками
@@ -478,10 +488,11 @@ func void InitHeroHitchance()
 	HERO_HITCHANCE_HI[2] = 100;
 	HERO_HITCHANCE_HI[3] = 100;
 	HERO_HITCHANCE_HI[4] = 100;
+	Print("InitHeroHitchance success");
 // для порядку. Пригодилось бы, если бы герой стартовал с высокими значениями навыков.
-//	TrainHeroHitchance(1, 0);
-//	TrainHeroHitchance(2, 0);
-//	TrainHeroHitchance(3, 0);
-//	TrainHeroHitchance(4, 0);
-};*/
+//	TrainHeroHitchance(NPC_TALENT_1H,10);
+//	TrainHeroHitchance(NPC_TALENT_2H,20);
+//	TrainHeroHitchance(NPC_TALENT_BOW,30);
+//	TrainHeroHitchance(NPC_TALENT_CROSSBOW,40);
+};
 

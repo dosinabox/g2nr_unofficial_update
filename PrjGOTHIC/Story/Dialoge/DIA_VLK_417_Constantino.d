@@ -182,8 +182,6 @@ func void DIA_Addon_Constantino_LestersKraeuter_Info()
 };
 
 
-var int Constantino_ItemsGiven_LittleMana;
-
 instance DIA_Constantino_Trade(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -215,11 +213,6 @@ func void DIA_Constantino_Trade_Info()
 			CreateInvItems(self,ItMi_Flask,Constantino_flasks);
 		};
 		Constantino_flag = FALSE;
-	};
-	if((Player_IsApprentice == APP_Constantino) && ((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF)) && (Constantino_ItemsGiven_LittleMana == FALSE))
-	{
-		CreateInvItems(self,ItPo_Perm_LittleMana,1);
-		Constantino_ItemsGiven_LittleMana = TRUE;
 	};
 	if(Constantino_Logpatch1 == FALSE)
 	{
@@ -805,6 +798,7 @@ func void DIA_Constantino_MushroomsRunning_Why()
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Why_10_04");	//А когда ты съешь достаточное количество этих грибов, твоя магическая энергия возрастет...
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Why_10_05");	//Если бы я сказал тебе это ранее, ты бы слопал все эти грибы сам, разве нет?
 		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Why_15_06");	//(вздыхает) Ох!
+		CreateInvItems(self,ItWr_MushroomMana,1);
 		Player_KnowsDunkelpilzBonus = TRUE;
 		Info_ClearChoices(DIA_Constantino_MushroomsRunning);
 	}

@@ -502,6 +502,8 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItPo_Perm_Mana,10);
 	CreateInvItems(self,ItPo_Speed,10);
 	CreateInvItems(self,ItPo_MegaDrink,10);
+	CreateInvItems(self,ItPo_Perm_LittleMana,10);
+	CreateInvItems(self,ItPo_Perm_MushroomMana,10);
 	CreateInvItems(self,ItAt_Meatbugflesh,10);
 	CreateInvItems(self,ItAt_SheepFur,10);
 	CreateInvItems(self,ItAt_WolfFur,10);
@@ -566,7 +568,6 @@ instance PC_Itemfeller(Npc_Default)
 	CreateInvItems(self,ItKe_KDFPlayer,1);
 	CreateInvItems(self,ItKe_KlosterBibliothek,1);
 	CreateInvItems(self,ItFo_Schafswurst,1);
-	CreateInvItems(self,ItPo_Perm_LittleMana,1);
 	CreateInvItems(self,Holy_Hammer_MIS,1);
 	CreateInvItems(self,ItKe_MagicChest,1);
 	CreateInvItems(self,ItWr_Passage_MIS,1);

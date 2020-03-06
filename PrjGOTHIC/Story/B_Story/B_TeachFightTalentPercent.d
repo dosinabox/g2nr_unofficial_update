@@ -18,7 +18,8 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 			return FALSE;
 		};
-		realHitChance = oth.aivar[REAL_TALENT_1H];
+		realHitChance = oth.HitChance[NPC_TALENT_1H];
+//		realHitChance = oth.aivar[REAL_TALENT_1H] - Keule1HCurrentPenalty;
 	}
 	else if(talent == NPC_TALENT_2H)
 	{
@@ -28,7 +29,8 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 			return FALSE;
 		};
-		realHitChance = oth.aivar[REAL_TALENT_2H];
+		realHitChance = oth.HitChance[NPC_TALENT_2H];
+//		realHitChance = oth.aivar[REAL_TALENT_2H] - Keule2HCurrentPenalty;
 	}
 	else if(talent == NPC_TALENT_BOW)
 	{
@@ -38,7 +40,8 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 			return FALSE;
 		};
-		realHitChance = oth.aivar[REAL_TALENT_BOW];
+		realHitChance = oth.HitChance[NPC_TALENT_BOW];
+//		realHitChance = oth.aivar[REAL_TALENT_BOW];
 	}
 	else if(talent == NPC_TALENT_CROSSBOW)
 	{
@@ -48,7 +51,8 @@ func int B_TeachFightTalentPercent(var C_Npc slf,var C_Npc oth,var int talent,va
 			B_Say(slf,oth,"$NOLEARNYOUREBETTER");
 			return FALSE;
 		};
-		realHitChance = oth.aivar[REAL_TALENT_CROSSBOW];
+		realHitChance = oth.HitChance[NPC_TALENT_CROSSBOW];
+//		realHitChance = oth.aivar[REAL_TALENT_CROSSBOW];
 	};
 	if(realHitChance > teacherMAX)
 	{

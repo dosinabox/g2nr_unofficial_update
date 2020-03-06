@@ -74,6 +74,14 @@ func void b_build_settings_diag()
 {
 	Info_ClearChoices(StoryHelper_PatchSettings);
 	Info_AddChoice(StoryHelper_PatchSettings,Dialog_Back,StoryHelper_PatchSettings_BACK);
+	if(PenaltiesAffectLearnCost == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
+	};
 	if(AlternativeSmithing == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
@@ -171,11 +179,11 @@ func void b_build_settings_diag()
 	};
 	if(NpcWantToFlee == FALSE)
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить режим трусости у ИИ",StoryHelper_Flee);
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить режим трусости у людей и животных",StoryHelper_Flee);
 	}
 	else
 	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить режим трусости у ИИ",StoryHelper_Flee);
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить режим трусости у людей и животных",StoryHelper_Flee);
 	};
 	if(IgnoreBonuses == FALSE)
 	{
@@ -185,7 +193,7 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить игнорирование бонусов при прокачке",StoryHelper_Bonuses);
 	};
-	If(RandomGoblinBerries == FALSE)
+	if(RandomGoblinBerries == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
 	}
@@ -193,7 +201,7 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить рандомные гоблинские ягоды у паладинов",StoryHelper_GoblinBerries);
 	};
-	If(InfiniteApples == FALSE)
+	if(InfiniteApples == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить выбивание бесконечных яблок",StoryHelper_Apples);
 	}
@@ -201,21 +209,13 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить выбивание бесконечных яблок",StoryHelper_Apples);
 	};
-	If(XP_Static == FALSE)
+	if(XP_Static == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить фиксированный опыт по главам",StoryHelper_XP);
 	}
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить фиксированный опыт по главам",StoryHelper_XP);
-	};
-	If(PenaltiesAffectLearnCost == FALSE)
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Включить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
-	}
-	else
-	{
-		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
 	};
 };
 	
@@ -486,12 +486,12 @@ func void StoryHelper_Penalties()
 	if(PenaltiesAffectLearnCost == TRUE)
 	{
 		PenaltiesAffectLearnCost = FALSE;
-		PrintScreen("Влияние штрафов на стоимость обучения включено",-1,-1,FONT_Screen,3);
+		PrintScreen("Влияние штрафов на стоимость обучения выключено",-1,-1,FONT_Screen,3);
 	}
 	else
 	{
 		PenaltiesAffectLearnCost = TRUE;
-		PrintScreen("Влияние штрафов на стоимость обучения выключено",-1,-1,FONT_Screen,3);
+		PrintScreen("Влияние штрафов на стоимость обучения включено",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };
@@ -501,7 +501,7 @@ func void StoryHelper_LehmarBook()
 	if(ClassicLehmarBook == TRUE)
 	{
 		ClassicLehmarBook = FALSE;
-		PrintScreen("Выкуп гроссбуха отключен",-1,-1,FONT_Screen,3);
+		PrintScreen("Выкуп гроссбуха выключен",-1,-1,FONT_Screen,3);
 	}
 	else
 	{
@@ -516,7 +516,7 @@ func void StoryHelper_Guildless()
 	if(GuildlessMode == TRUE)
 	{
 		GuildlessMode = FALSE;
-		PrintScreen("Прохождение без гильдии отключено",-1,-1,FONT_Screen,3);
+		PrintScreen("Прохождение без гильдии выключено",-1,-1,FONT_Screen,3);
 	}
 	else
 	{
@@ -531,7 +531,7 @@ func void StoryHelper_Addon()
 	if(AddonDisabled == TRUE)
 	{
 		AddonDisabled = FALSE;
-		PrintScreen("Прохождение без аддона отключено",-1,-1,FONT_Screen,3);
+		PrintScreen("Прохождение без аддона выключено",-1,-1,FONT_Screen,3);
 	}
 	else
 	{

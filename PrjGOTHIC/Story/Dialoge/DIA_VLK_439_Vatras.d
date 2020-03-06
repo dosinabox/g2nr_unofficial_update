@@ -729,6 +729,7 @@ func void DIA_Addon_Vatras_HowToJoin_WhatsGreat()
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_06");	//... сначала ты должен доставить сообщение паладинам.
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_07");	//Это дело первостепенной важности!
 	AI_Output(self,other,"DIA_Addon_Vatras_HowToJoin_WhatsGreat_05_08");	//Поговори с лордом Хагеном.
+	Player_KnowsLordHagen = TRUE;
 	B_LogEntry(TOPIC_Addon_RingOfWater,"Ватрас хочет, чтобы я передал лорду Хагену важное сообщение.");
 	Info_ClearChoices(DIA_Addon_Vatras_HowToJoin);
 };
@@ -746,7 +747,7 @@ instance DIA_Addon_Vatras_GuildBypass(C_Info)
 
 func int DIA_Addon_Vatras_GuildBypass_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_HowToJoin) && ((other.guild == GIL_NONE) || (other.guild == GIL_NOV)))
 	{
 		return TRUE;
 	};
@@ -755,14 +756,21 @@ func int DIA_Addon_Vatras_GuildBypass_Condition()
 func void DIA_Addon_Vatras_GuildBypass_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Vatras_GuildBypass_15_00");	//Но лорд Хаген не станет меня принимать!
-	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_05_01");	//Нет, примет, можешь не сомневаться. При условии, что сначала ты станешь членом влиятельного общества.
-	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_05_02");	//У Кольца свои связи.
-	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_05_03");	//Мы поможем тебе передать сообщение как можно скорее.
-	AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_05_04");	//Ты должен поговорить с Ларесом, ему я доверяю. Он поможет тебе.
-	B_LogEntry(TOPIC_Addon_RingOfWater,"Чтобы встретиться с лордом Хагеном, я должен вступить в одно из влиятельных сообществ Хориниса.");
-	Info_ClearChoices(DIA_Addon_Vatras_GuildBypass);
-	Info_AddChoice(DIA_Addon_Vatras_GuildBypass,"Так и сделаем.",DIA_Addon_Vatras_GuildBypass_BACK);
-	Info_AddChoice(DIA_Addon_Vatras_GuildBypass,"В какое сообщество я должен вступить?",DIA_Addon_Vatras_GuildBypass_WhichGuild);
+	if(other.guild == GIL_NOV)
+	{
+		AI_Output(self,other,"DIA_Vatras_PERMKAP3_05_02");	//Поговори с Пирокаром, он объяснит все, что тебе нужно знать.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_05_01");	//Нет, примет, можешь не сомневаться. При условии, что сначала ты станешь членом влиятельного общества.
+		AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_05_02");	//У Кольца свои связи.
+		AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_05_03");	//Мы поможем тебе передать сообщение как можно скорее.
+		AI_Output(self,other,"DIA_Addon_Vatras_GuildBypass_05_04");	//Ты должен поговорить с Ларесом, ему я доверяю. Он поможет тебе.
+		B_LogEntry(TOPIC_Addon_RingOfWater,"Чтобы встретиться с лордом Хагеном, я должен вступить в одно из влиятельных сообществ Хориниса.");
+		Info_ClearChoices(DIA_Addon_Vatras_GuildBypass);
+		Info_AddChoice(DIA_Addon_Vatras_GuildBypass,"Так и сделаем.",DIA_Addon_Vatras_GuildBypass_BACK);
+		Info_AddChoice(DIA_Addon_Vatras_GuildBypass,"В какое сообщество я должен вступить?",DIA_Addon_Vatras_GuildBypass_WhichGuild);
+	};
 };
 
 func void DIA_Addon_Vatras_GuildBypass_BACK()
@@ -1460,6 +1468,21 @@ func void DIA_Vatras_MORE_Info()
 	Vatras_MORE = TRUE;
 };*/
 
+func void B_Vatras_Segen()
+{
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Blessing == FALSE))
+	{
+		B_LogEntry(TOPIC_Thorben,"Маг Воды Ватрас благословил меня.");
+	};
+	Vatras_Segen += 1;
+	if((MadKillerCount > 0) && (VatrasMadKillerCount == 0) && (Vatras_Segen > 9))
+	{
+		MadKillerCount -= 1;
+		Vatras_Segen = 0;
+	};
+	Snd_Play("LevelUp");
+	Vatras_Blessing = TRUE;
+};
 
 instance DIA_Vatras_INFLUENCE(C_Info)
 {
@@ -1481,27 +1504,14 @@ func int DIA_Vatras_INFLUENCE_Condition()
 	};
 };
 
-func void B_Vatras_Segen()
-{
-	Vatras_Segen += 1;
-	Vatras_Blessing = TRUE;
-	if((MadKillerCount > 0) && (VatrasMadKillerCount == 0) && (Vatras_Segen > 9))
-	{
-		MadKillerCount -= 1;
-		Vatras_Segen = 0;
-	};
-};
-
 func void DIA_Vatras_INFLUENCE_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_INFLUENCE_15_00");	//Я прошу твоего благословения.
 	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_WannaBeRanger))
 	{
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_11");	//Ступай с благословением Аданоса, сын мой!
-		Snd_Play("LevelUp");
 		B_GivePlayerXP(XP_VatrasTruth);
 		B_Vatras_Segen();
-		B_LogEntry(TOPIC_Thorben,"Маг Воды Ватрас благословил меня.");
 		Info_ClearChoices(DIA_Vatras_INFLUENCE);
 	}
 	else if(Vatras_Chance == TRUE)
@@ -1626,10 +1636,8 @@ func void B_Vatras_BLESSING_REPEAT()
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_09");	//Это все звучит довольно фантастически, но я не думаю, что ты солгал мне.
 		AI_Output(other,self,"DIA_Vatras_INFLUENCE_REPEAT_15_00");	//Так ты дашь мне свое благословение?
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_11");	//Ступай с благословением Аданоса, сын мой!
-		Snd_Play("LevelUp");
 		B_GivePlayerXP(XP_VatrasTruth);
 		B_Vatras_Segen();
-		B_LogEntry(TOPIC_Thorben,"Маг Воды Ватрас благословил меня.");
 		Info_ClearChoices(DIA_Vatras_INFLUENCE);
 	}
 	else if(Vatras_Chance == FALSE)
@@ -1684,7 +1692,7 @@ instance DIA_Vatras_WoKdF(C_Info)
 func int DIA_Vatras_WoKdF_Condition()
 {
 //	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen > 0) && (Vatras_SentToDaron == FALSE) && !Npc_KnowsInfo(other,DIA_Daron_Hallo) && (Vatras_MORE == TRUE))
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Segen > 0) && (Vatras_SentToDaron == FALSE))
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Blessing == TRUE) && (Vatras_SentToDaron == FALSE) && (GotInnosBlessingForThorben == FALSE))
 	{
 		return TRUE;
 	};
@@ -1755,14 +1763,9 @@ func void DIA_Vatras_Spende_100()
 	AI_Output(other,self,"DIA_Vatras_Spende_100_15_00");	//У меня есть 100 золотых монет...
 	AI_Output(self,other,"DIA_Vatras_Spende_100_05_01");	//Я благословляю тебя от имени Аданоса за этот великодушный дар!
 	B_GiveInvItems(other,self,ItMi_Gold,100);
-	Snd_Play("LevelUp");
 	AI_Output(self,other,"DIA_Vatras_Spende_100_05_02");	//Да будет путь, по которому ты идешь, благословлен Аданосом!
 	B_Vatras_Segen();
 	Info_ClearChoices(DIA_Vatras_Spende);
-	if((MIS_Thorben_GetBlessings == LOG_Running) && (Vatras_Blessing == FALSE))
-	{
-		B_LogEntry(TOPIC_Thorben,"Маг Воды Ватрас благословил меня.");
-	};
 };
 
 

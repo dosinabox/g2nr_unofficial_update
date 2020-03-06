@@ -299,7 +299,6 @@ instance ItFo_XPStew(C_Item)
 func void Use_XPStew()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Stew);
-//	Snd_Play("LevelUp");
 	B_RaiseAttribute(self,ATR_STRENGTH,1);
 };
 

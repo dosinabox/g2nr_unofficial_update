@@ -5,7 +5,6 @@ func void B_DaronSegen()
 	var int Bonus_1;
 	var int Bonus_2;
 	var int Bonus_3;
-	Daron_Segen = TRUE;
 	if(Daron_Spende < 100)
 	{
 		if(other.attribute[ATR_HITPOINTS] < other.attribute[ATR_HITPOINTS_MAX])
@@ -40,6 +39,12 @@ func void B_DaronSegen()
 		concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(5));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 	};
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (GotInnosBlessingForThorben == FALSE))
+	{
+		B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
+	};
+	GotInnosBlessingForThorben = TRUE;
+	Daron_Segen = TRUE;
 };
 
 
@@ -78,7 +83,7 @@ instance DIA_Daron_Hallo(C_Info)
 
 func int DIA_Daron_Hallo_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (hero.guild != GIL_KDF))
+	if(Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -87,7 +92,10 @@ func int DIA_Daron_Hallo_Condition()
 func void DIA_Daron_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Daron_Hallo_10_00");	//Что я могу сделать для тебя? Ты ищешь душевного комфорта?
-	AI_Output(self,other,"DIA_Daron_Hallo_10_01");	//Ты хочешь помолиться нашему владыке Инносу, или, может, хочешь пожертвовать золото его церкви?
+	if(hero.guild != GIL_KDF)
+	{
+		AI_Output(self,other,"DIA_Daron_Hallo_10_01");	//Ты хочешь помолиться нашему владыке Инносу, или, может, хочешь пожертвовать золото его церкви?
+	};
 };
 
 
@@ -104,7 +112,7 @@ instance DIA_Daron_Paladine(C_Info)
 
 func int DIA_Daron_Paladine_Condition()
 {
-	if((other.guild != GIL_KDF) && (Kapitel < 2))
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};
@@ -115,12 +123,16 @@ func void DIA_Daron_Paladine_Info()
 	AI_Output(other,self,"DIA_Daron_Paladine_15_00");	//Мне нужно поговорить с паладинами. Ты можешь помочь мне в этом?
 	AI_Output(self,other,"DIA_Daron_Paladine_10_01");	//Ну, для этого ты должен иметь доступ в верхний квартал города. Однако входить туда позволено только гражданам и городской страже.
 	AI_Output(self,other,"DIA_Daron_Paladine_10_02");	//Ну и, конечно же, нам, магам Огня.
-	if(other.guild != GIL_NOV)
+	AI_Output(other,self,"DIA_Daron_Paladine_15_03");	//Как я могу стать магом Огня?
+	if(other.guild == GIL_NONE)
 	{
-		AI_Output(other,self,"DIA_Daron_Paladine_15_03");	//Как я могу стать магом Огня?
 		AI_Output(self,other,"DIA_Daron_Paladine_10_04");	//Ты должен вступить в наш орден в качестве послушника. А по прошествии некоторого времени, возможно, ты будешь принят в ряды магов.
+		AI_Output(self,other,"DIA_Daron_Paladine_10_05");	//Однако, этот путь долог, полон тяжелой работы и утомительного обучения.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Daron_Paladine_10_05_add");	//Путь долог, полон тяжелой работы и утомительного обучения.
 	};
-	AI_Output(self,other,"DIA_Daron_Paladine_10_05");	//Однако, этот путь долог, полон тяжелой работы и утомительного обучения.
 };
 
 
@@ -189,7 +201,7 @@ func void DIA_Daron_Spenden_Info()
 	if(Npc_HasItems(other,ItMi_Gold) < 10)
 	{
 		AI_Output(self,other,"DIA_Daron_Spenden_10_03");	//Хм, ты ведь бедняк, да? Оставь себе то немногое, что у тебя есть.
-		if(MIS_Thorben_GetBlessings == LOG_Running)
+		if((MIS_Thorben_GetBlessings == LOG_Running) && (GotInnosBlessingForThorben == FALSE))
 		{
 			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон не благословил меня. Мне кажется, это означает, что я должен пожертвовать ему немного золота. Без этого он не благословит меня.");
 		};
@@ -213,12 +225,13 @@ func void DIA_Daron_Spenden_Info()
 			B_GiveInvItems(other,self,ItMi_Gold,50);
 		};
 		AI_Output(self,other,"DIA_Daron_Spenden_10_08");	//Благословляю тебя от имени Инноса. Он несет в этот мир свет и справедливость.
-		Daron_Segen = TRUE;
-		B_GivePlayerXP(XP_InnosSegen);
-		if(MIS_Thorben_GetBlessings == LOG_Running)
+		if((MIS_Thorben_GetBlessings == LOG_Running) && (GotInnosBlessingForThorben == FALSE))
 		{
 			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
 		};
+		GotInnosBlessingForThorben = TRUE;
+		Daron_Segen = TRUE;
+		B_GivePlayerXP(XP_InnosSegen);
 	};
 };
 
@@ -522,6 +535,8 @@ func void DIA_Addon_Daron_ReturnedStatue_Info()
 };
 
 
+var int Daron_Spende;
+
 instance DIA_Daron_arm(C_Info)
 {
 	npc = KDF_511_Daron;
@@ -535,7 +550,7 @@ instance DIA_Daron_arm(C_Info)
 
 func int DIA_Daron_arm_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Daron_Stadt) && (Npc_HasItems(other,ItMi_Gold) < 10) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Daron_Stadt) && (Npc_HasItems(other,ItMi_Gold) < 10) && (other.guild == GIL_NONE) && (Daron_Spende == 0))
 	{
 		return TRUE;
 	};
@@ -565,7 +580,6 @@ var int DIA_Daron_Spende_permanent;
 
 func int DIA_Daron_Spende_Condition()
 {
-//	if(Npc_IsInState(self,ZS_Talk) && (DIA_Daron_Spende_permanent == FALSE) && Npc_KnowsInfo(other,DIA_Daron_Spenden) && (hero.guild != GIL_KDF))
 	if((DIA_Daron_Spende_permanent == FALSE) && Npc_KnowsInfo(other,DIA_Daron_Spenden) && (hero.guild != GIL_KDF))
 	{
 		return TRUE;
@@ -606,20 +620,13 @@ func void DIA_Daron_Spende_BACK()
 };
 
 
-var int Daron_Spende;
-
 func void DIA_Daron_Spende_50()
 {
 	if(B_GiveInvItems(other,self,ItMi_Gold,50))
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_50_10_00");	//Благословляю тебя от имени Инноса. Он несет в этот мир свет и справедливость.
-		if((MIS_Thorben_GetBlessings == LOG_Running) && (Daron_Segen == FALSE))
-		{
-			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
-		};
 		Daron_Spende += 50;
 		B_DaronSegen();
-		Daron_Segen = TRUE;
 	}
 	else
 	{
@@ -634,13 +641,8 @@ func void DIA_Daron_Spende_100()
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_100_10_00");	//Иннос, ты свет, озаряющий путь праведников.
 		AI_Output(self,other,"DIA_Daron_Spende_100_10_01");	//Я благословляю этого человека от твоего имени. Да будет твой свет сиять над ним вечно.
-		if((MIS_Thorben_GetBlessings == LOG_Running) && (Daron_Segen == FALSE))
-		{
-			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
-		};
 		Daron_Spende += 100;
 		B_DaronSegen();
-		Daron_Segen = TRUE;
 	}
 	else
 	{
@@ -655,13 +657,8 @@ func void DIA_Daron_Spende_200()
 	{
 		AI_Output(self,other,"DIA_Daron_Spende_200_10_00");	//Иннос, благослови этого человека. Да будет твой свет сиять над ним вечно.
 		AI_Output(self,other,"DIA_Daron_Spende_200_10_01");	//Придай ему силы жить праведной жизнью.
-		if((MIS_Thorben_GetBlessings == LOG_Running) && (Daron_Segen == FALSE))
-		{
-			B_LogEntry(TOPIC_Thorben,"Маг Огня Дарон благословил меня.");
-		};
 		Daron_Spende += 200;
 		B_DaronSegen();
-		Daron_Segen = TRUE;
 	}
 	else
 	{

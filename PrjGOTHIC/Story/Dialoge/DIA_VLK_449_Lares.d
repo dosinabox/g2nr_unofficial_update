@@ -771,7 +771,7 @@ func void DIA_Addon_Lares_YourMission_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_10");	//На рынке постоянно дежурит кто-нибудь из наших. Но я не знаю, чья сейчас смена.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_11");	//Тебе лучше поговорить со всеми, кто там стоит. Когда наш человек увидит аквамариновое кольцо, он сам тебе откроется.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_12");	//Скажи ему, что мне нужен кто-то, кто сменит меня в порту.
-		B_LogEntry(TOPIC_Addon_RingOfWater,"Ларес дал мне аквамариновое кольцо - тайный знак Кольца Воды. Если я буду его носить, другие члены Кольца Воды смогут мне открыться.");
+		Log_AddEntry(TOPIC_Addon_RingOfWater,"Ларес дал мне аквамариновое кольцо - тайный знак Кольца Воды. Если я буду его носить, другие члены Кольца Воды смогут мне открыться.");
 		Log_CreateTopic(TOPIC_Addon_BringRangerToLares,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_BringRangerToLares,LOG_Running);
 		B_LogEntry(TOPIC_Addon_BringRangerToLares,"Ларес хочет покинуть гавань. Я должен пройтись по рынку, надев аквамариновое кольцо, и попробовать найти кого-то, кто займет место Лареса.");
@@ -1042,11 +1042,25 @@ func void DIA_Lares_Paladine_Info()
 	AI_Output(other,self,"DIA_Lares_Paladine_15_00");	//Мне во что бы то ни стало нужно поговорить с паладинами!
 	AI_Output(self,other,"DIA_Lares_Paladine_09_01");	//Что тебе нужно от них?
 	AI_Output(other,self,"DIA_Lares_Paladine_15_02");	//У них есть амулет, Глаз Инноса. Я должен заполучить его.
-	AI_Output(self,other,"DIA_Lares_Paladine_09_03");	//И ты думаешь, они отдадут его тебе? Тебе никогда не попасть в верхний квартал города.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Lares_Paladine_09_03");	//И ты думаешь, они отдадут его тебе? Тебе никогда не попасть в верхний квартал города.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Lares_Paladine_09_03_add");	//И ты думаешь, они отдадут его тебе?
+	};
 	if(!Npc_KnowsInfo(other,DIA_Addon_Lares_Vatras))
 	{
 		AI_Output(other,self,"DIA_Lares_Paladine_15_04");	//Я что-нибудь придумаю.
-		AI_Output(self,other,"DIA_Lares_Paladine_09_05");	//Конечно, если ты сможешь снискать уважение горожан или станешь мальчиком на побегушках в ополчении...
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Lares_Paladine_09_05");	//Конечно, если ты сможешь снискать уважение горожан или станешь мальчиком на побегушках в ополчении...
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_waffe_09_01_add");	//Боюсь, что тут я тебе помочь не могу.
+		};
 	};
 };
 

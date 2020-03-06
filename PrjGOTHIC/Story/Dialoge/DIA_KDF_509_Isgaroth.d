@@ -70,7 +70,11 @@ func void DIA_Isgaroth_Segen_Info()
 {
 	AI_Output(other,self,"DIA_Isgaroth_Segen_15_00");	//Благослови меня!
 	AI_Output(self,other,"DIA_Isgaroth_Segen_01_01");	//Благословляю тебя во имя Инноса. Пусть огонь Всевышнего горит в твоем сердце и дает тебе силы жить согласно его заветам.
-	Isgaroth_Segen = TRUE;
+	if((MIS_Thorben_GetBlessings == LOG_Running) && (GotInnosBlessingForThorben == FALSE))
+	{
+		B_LogEntry(TOPIC_Thorben,"Маг Огня Исгарот благословил меня.");
+	};
+	GotInnosBlessingForThorben = TRUE;
 };
 
 

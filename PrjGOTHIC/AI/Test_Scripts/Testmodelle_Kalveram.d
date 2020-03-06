@@ -378,6 +378,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ITWr_Addon_Lou_Rezept,1);
 	CreateInvItems(self,ITWr_Addon_Lou_Rezept2,1);
 	CreateInvItems(self,ITWr_Addon_Piratentod,1);
+	CreateInvItems(self,ItWr_MushroomMana,1);
 //	CreateInvItems(self,Fakescroll_Addon,1);
 	CreateInvItems(self,ItWr_Addon_AxtAnleitung,1);
 	CreateInvItems(self,ItWr_Addon_SUMMONANCIENTGHOST,1);
@@ -637,6 +638,8 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItPo_Addon_Geist_02,10);
 	CreateInvItems(self,ItPo_Health_Addon_04,10);
 	CreateInvItems(self,ItPo_Mana_Addon_04,10);
+	CreateInvItems(self,ItPo_Perm_LittleMana,10);
+	CreateInvItems(self,ItPo_Perm_MushroomMana,10);
 	CreateInvItems(self,ItAt_Meatbugflesh,10);
 	CreateInvItems(self,ItAt_SheepFur,10);
 	CreateInvItems(self,ItAt_WolfFur,10);
@@ -711,7 +714,6 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItKe_KDFPlayer,1);
 	CreateInvItems(self,ItKe_KlosterBibliothek,1);
 	CreateInvItems(self,ItFo_Schafswurst,10);
-	CreateInvItems(self,ItPo_Perm_LittleMana,1);
 	CreateInvItems(self,Holy_Hammer_MIS,1);
 	CreateInvItems(self,ItKe_MagicChest,1);
 	CreateInvItems(self,ItWr_Passage_MIS,1);
@@ -1561,10 +1563,31 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalDexEaten)," гоблинских ягод"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStrEaten)," драконьих корней"));
 	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLine(nDocID,0,"Отдано:");
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек Ватрасу"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(DragonEggCounter)," яиц Беннету"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(AlmanachCounter)," альманахов Пирокару"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OrkRingCounter)," колец Хагену"));
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Shell_Opener)," открытых моллюсков"));
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек для Ватраса"));
 	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,"Молитвы Инносу:");
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_GoldGiven)," золотых отдано"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_Str)," силы получено"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_Dex)," ловкости получено"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_MaxHp)," макс. здоровья получено"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_MaxMana)," макс. маны получено"));
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,"Молитвы Белиару:");
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(GivenHitpoints)," макс. здоровья отдано"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(GivenMana)," макс. маны отдано"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(RecievedMoney)," золотых получено"));
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,"Улучшения Когтя:");
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_ClawMaxHp)," макс. здоровья отдано"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(BeliarWeapCurrentLvL)," уровень"));
 	Doc_PrintLine(nDocID,1,"");
 	if(HardModeEnabled == TRUE)
 	{
@@ -1642,7 +1665,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 3 марта 2020г.";
+	text[1] = "Скомпилировано 6 марта 2020г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";

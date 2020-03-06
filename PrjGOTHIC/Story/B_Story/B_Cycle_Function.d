@@ -35,6 +35,7 @@ func void b_cycle_function()
 		PrintScreen(PRINT_OldSave2,50,53,FONT_ScreenSmall,3);
 	};
 //	Print(B_Check_Dist(hero,"NW_CITY_BARRACK02_BED_PECK"));
+//	Print(IntToString(hero.HitChance[NPC_TALENT_1H] / 3));
 	Wld_SendTrigger("CYCLE_TRIGGER");
 };
 

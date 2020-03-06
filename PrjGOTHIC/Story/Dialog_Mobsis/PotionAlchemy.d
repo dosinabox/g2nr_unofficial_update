@@ -119,7 +119,6 @@ func void PC_Booze_Lou_Info()
 		Npc_RemoveInvItems(self,ItAt_SharkTeeth,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
 		Npc_RemoveInvItems(self,ItFo_Water,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_LousHammer,1);
 	}
@@ -157,7 +156,6 @@ func void PC_Booze_Schlaf_Info()
 	{
 		Npc_RemoveInvItems(self,ItFo_Addon_LousHammer,1);
 		Npc_RemoveInvItems(self,ItFo_Addon_Rum,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_SchlafHammer,1);
 	}
@@ -204,7 +202,6 @@ func void PC_Booze_SchnellerHering_Info()
 			Npc_RemoveInvItems(self,ItFo_SmellyFish,1);
 		};
 		Npc_RemoveInvItems(self,ItFo_Water,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		Print(PRINT_AlchemySuccess);
 		CreateInvItems(self,ItFo_Addon_SchnellerHering,1);
 	}
@@ -346,7 +343,6 @@ func void PC_ItPo_Mana_01_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_01,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Mana_01,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -384,7 +380,6 @@ func void PC_ItPo_Mana_02_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_02,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Mana_02,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -422,7 +417,6 @@ func void PC_ItPo_Mana_03_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Mana_03,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -461,7 +455,6 @@ func void PC_ItPo_Mana_04_Info()
 		Npc_RemoveInvItems(hero,ItPo_Mana_01,3);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
 		CreateInvItems(hero,ItPo_Mana_Addon_04,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		Print(PRINT_AlchemySuccess);
 	}
 	else
@@ -550,7 +543,6 @@ func void PC_ItPo_Health_01_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_01,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItem(hero,ItPo_Health_01);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -588,7 +580,6 @@ func void PC_ItPo_Health_02_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_02,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Health_02,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -626,7 +617,6 @@ func void PC_ItPo_Health_03_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Health_03,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -664,7 +654,6 @@ func void PC_ItPo_Health_04_Info()
 	{
 		Npc_RemoveInvItems(hero,ItPo_Health_01,3);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_Health_Addon_04,1);
 		Print(PRINT_AlchemySuccess);
 	}
@@ -729,9 +718,231 @@ func void PC_Special_Stop_Info()
 };
 
 
-instance PC_ItPo_Addon_Geist(C_Info)
+instance PC_ItPo_Perm_Health(C_Info)
+{
+	nr = 1;
+	npc = PC_Hero;
+	condition = PC_ItPo_Perm_Health_Condition;
+	information = PC_ItPo_Perm_Health_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_HPMax_Elixier," (1 лечебный корень, 1 царский щавель)");
+};
+
+
+func int PC_ItPo_Perm_Health_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_Perm_Health_Info()
+{
+	if(Npc_HasItems(hero,ItPl_Health_Herb_03) && Npc_HasItems(hero,ItPl_Perm_Herb))
+	{
+		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,1);
+		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
+		CreateInvItems(hero,ItPo_Perm_Health,1);
+		Print(PRINT_AlchemySuccess);
+	}
+	else
+	{
+		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMi_Flask,1);
+	};
+	b_endproductiondialog();
+};
+
+
+instance PC_ItPo_Perm_Mana(C_Info)
 {
 	nr = 2;
+	npc = PC_Hero;
+	condition = PC_ItPo_Perm_Mana_Condition;
+	information = PC_ItPo_Perm_Mana_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_ManaMax_Elixier," (1 огненный корень, 1 царский щавель)");
+};
+
+
+func int PC_ItPo_Perm_Mana_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_Perm_Mana_Info()
+{
+	if(Npc_HasItems(hero,ItPl_Mana_Herb_03) && Npc_HasItems(hero,ItPl_Perm_Herb))
+	{
+		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,1);
+		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
+		CreateInvItems(hero,ItPo_Perm_Mana,1);
+		Print(PRINT_AlchemySuccess);
+	}
+	else
+	{
+		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMi_Flask,1);
+	};
+	b_endproductiondialog();
+};
+
+
+instance PC_ItPo_Perm_MushroomMana(C_Info)
+{
+	nr = 3;
+	npc = PC_Hero;
+	condition = PC_ItPo_Perm_MushroomMana_Condition;
+	information = PC_ItPo_Perm_MushroomMana_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_MushroomMana," (50 черных грибов, 1 луговая ягода)");
+};
+
+
+func int PC_ItPo_Perm_MushroomMana_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (Knows_MushroomMana == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_Perm_MushroomMana_Info()
+{
+	if((Npc_HasItems(hero,ItPl_Mushroom_01) >= 50) && Npc_HasItems(hero,ItPl_Planeberry))
+	{
+		Npc_RemoveInvItems(hero,ItPl_Mushroom_01,50);
+		Npc_RemoveInvItems(hero,ItPl_Planeberry,1);
+		CreateInvItems(hero,ItPo_Perm_MushroomMana,1);
+		Print(PRINT_AlchemySuccess);
+	}
+	else
+	{
+		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMi_Flask,1);
+	};
+	b_endproductiondialog();
+};
+
+
+instance PC_ItPo_Dex(C_Info)
+{
+	nr = 4;
+	npc = PC_Hero;
+	condition = PC_ItPo_Dex_Condition;
+	information = PC_ItPo_Dex_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_DEX_Elixier," (1 гоблинская ягода, 1 царский щавель)");
+};
+
+
+func int PC_ItPo_Dex_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_Dex_Info()
+{
+	if(Npc_HasItems(hero,ItPl_Dex_Herb_01) && Npc_HasItems(hero,ItPl_Perm_Herb))
+	{
+		Npc_RemoveInvItems(hero,ItPl_Dex_Herb_01,1);
+		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
+		CreateInvItems(hero,ItPo_Perm_DEX,1);
+		Print(PRINT_AlchemySuccess);
+	}
+	else
+	{
+		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMi_Flask,1);
+	};
+	b_endproductiondialog();
+};
+
+
+instance PC_ItPo_Strg(C_Info)
+{
+	nr = 5;
+	npc = PC_Hero;
+	condition = PC_ItPo_Strg_Condition;
+	information = PC_ItPo_Strg_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_STR_Elixier," (1 драконий корень, 1 царский щавель)");
+};
+
+
+func int PC_ItPo_Strg_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_Strg_Info()
+{
+	if(Npc_HasItems(hero,ItPl_Strength_Herb_01) && Npc_HasItems(hero,ItPl_Perm_Herb))
+	{
+		Npc_RemoveInvItems(hero,ItPl_Strength_Herb_01,1);
+		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
+		CreateInvItems(hero,ItPo_Perm_STR,1);
+		Print(PRINT_AlchemySuccess);
+	}
+	else
+	{
+		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMi_Flask,1);
+	};
+	b_endproductiondialog();
+};
+
+
+instance PC_ItPo_Speed(C_Info)
+{
+	nr = 6;
+	npc = PC_Hero;
+	condition = PC_ItPo_Speed_Condition;
+	information = PC_ItPo_Speed_Info;
+	permanent = TRUE;
+	description = ConcatStrings(NAME_Speed_Elixier," (1 снеппер-трава, 1 луговой горец)");
+};
+
+
+func int PC_ItPo_Speed_Condition()
+{
+	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Speed] == TRUE) && (SpecialStart == TRUE))
+	{
+		return TRUE;
+	};
+};
+
+func void PC_ItPo_Speed_Info()
+{
+	if(Npc_HasItems(hero,ItPl_Speed_Herb_01) && Npc_HasItems(hero,ItPl_Temp_Herb))
+	{
+		Npc_RemoveInvItems(hero,ItPl_Speed_Herb_01,1);
+		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
+		CreateInvItems(hero,ItPo_Speed,1);
+		Print(PRINT_AlchemySuccess);
+	}
+	else
+	{
+		Print(PRINT_ProdItemsMissing);
+		CreateInvItems(self,ItMi_Flask,1);
+	};
+	b_endproductiondialog();
+};
+
+
+instance PC_ItPo_Addon_Geist(C_Info)
+{
+	nr = 7;
 	npc = PC_Hero;
 	condition = PC_ItPo_Addon_Geist_Condition;
 	information = PC_ItPo_Addon_Geist_Info;
@@ -756,7 +967,6 @@ func void PC_ItPo_Addon_Geist_Info()
 		Npc_RemoveInvItems(hero,ItPo_Mana_02,1);
 		Npc_RemoveInvItems(hero,ItPo_Health_01,1);
 		Npc_RemoveInvItems(hero,ItFo_Addon_Pfeffer_01,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		if(Knows_Bloodfly == TRUE)
 		{
 			CreateInvItems(hero,ItPo_Addon_Geist_02,1);
@@ -776,199 +986,9 @@ func void PC_ItPo_Addon_Geist_Info()
 };
 
 
-instance PC_ItPo_Perm_Health(C_Info)
-{
-	nr = 3;
-	npc = PC_Hero;
-	condition = PC_ItPo_Perm_Health_Condition;
-	information = PC_ItPo_Perm_Health_Info;
-	permanent = TRUE;
-	description = ConcatStrings(NAME_HPMax_Elixier," (1 лечебный корень, 1 царский щавель)");
-};
-
-
-func int PC_ItPo_Perm_Health_Condition()
-{
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == TRUE) && (SpecialStart == TRUE))
-	{
-		return TRUE;
-	};
-};
-
-func void PC_ItPo_Perm_Health_Info()
-{
-	if(Npc_HasItems(hero,ItPl_Health_Herb_03) && Npc_HasItems(hero,ItPl_Perm_Herb))
-	{
-		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,1);
-		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Perm_Health,1);
-		Print(PRINT_AlchemySuccess);
-	}
-	else
-	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
-	};
-	b_endproductiondialog();
-};
-
-
-instance PC_ItPo_Perm_Mana(C_Info)
-{
-	nr = 3;
-	npc = PC_Hero;
-	condition = PC_ItPo_Perm_Mana_Condition;
-	information = PC_ItPo_Perm_Mana_Info;
-	permanent = TRUE;
-	description = ConcatStrings(NAME_ManaMax_Elixier," (1 огненный корень, 1 царский щавель)");
-};
-
-
-func int PC_ItPo_Perm_Mana_Condition()
-{
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == TRUE) && (SpecialStart == TRUE))
-	{
-		return TRUE;
-	};
-};
-
-func void PC_ItPo_Perm_Mana_Info()
-{
-	if(Npc_HasItems(hero,ItPl_Mana_Herb_03) && Npc_HasItems(hero,ItPl_Perm_Herb))
-	{
-		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,1);
-		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Perm_Mana,1);
-		Print(PRINT_AlchemySuccess);
-	}
-	else
-	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
-	};
-	b_endproductiondialog();
-};
-
-
-instance PC_ItPo_Dex(C_Info)
-{
-	nr = 3;
-	npc = PC_Hero;
-	condition = PC_ItPo_Dex_Condition;
-	information = PC_ItPo_Dex_Info;
-	permanent = TRUE;
-	description = ConcatStrings(NAME_DEX_Elixier," (1 гоблинская ягода, 1 царский щавель)");
-};
-
-
-func int PC_ItPo_Dex_Condition()
-{
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == TRUE) && (SpecialStart == TRUE))
-	{
-		return TRUE;
-	};
-};
-
-func void PC_ItPo_Dex_Info()
-{
-	if(Npc_HasItems(hero,ItPl_Dex_Herb_01) && Npc_HasItems(hero,ItPl_Perm_Herb))
-	{
-		Npc_RemoveInvItems(hero,ItPl_Dex_Herb_01,1);
-		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Perm_DEX,1);
-		Print(PRINT_AlchemySuccess);
-	}
-	else
-	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
-	};
-	b_endproductiondialog();
-};
-
-
-instance PC_ItPo_Strg(C_Info)
-{
-	nr = 3;
-	npc = PC_Hero;
-	condition = PC_ItPo_Strg_Condition;
-	information = PC_ItPo_Strg_Info;
-	permanent = TRUE;
-	description = ConcatStrings(NAME_STR_Elixier," (1 драконий корень, 1 царский щавель)");
-};
-
-
-func int PC_ItPo_Strg_Condition()
-{
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] == TRUE) && (SpecialStart == TRUE))
-	{
-		return TRUE;
-	};
-};
-
-func void PC_ItPo_Strg_Info()
-{
-	if(Npc_HasItems(hero,ItPl_Strength_Herb_01) && Npc_HasItems(hero,ItPl_Perm_Herb))
-	{
-		Npc_RemoveInvItems(hero,ItPl_Strength_Herb_01,1);
-		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Perm_STR,1);
-		Print(PRINT_AlchemySuccess);
-	}
-	else
-	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
-	};
-	b_endproductiondialog();
-};
-
-
-instance PC_ItPo_Speed(C_Info)
-{
-	nr = 3;
-	npc = PC_Hero;
-	condition = PC_ItPo_Speed_Condition;
-	information = PC_ItPo_Speed_Info;
-	permanent = TRUE;
-	description = ConcatStrings(NAME_Speed_Elixier," (1 снеппер-трава, 1 луговой горец)");
-};
-
-
-func int PC_ItPo_Speed_Condition()
-{
-	if((PLAYER_MOBSI_PRODUCTION == MOBSI_PotionAlchemy) && (PLAYER_TALENT_ALCHEMY[POTION_Speed] == TRUE) && (SpecialStart == TRUE))
-	{
-		return TRUE;
-	};
-};
-
-func void PC_ItPo_Speed_Info()
-{
-	if(Npc_HasItems(hero,ItPl_Speed_Herb_01) && Npc_HasItems(hero,ItPl_Temp_Herb))
-	{
-		Npc_RemoveInvItems(hero,ItPl_Speed_Herb_01,1);
-		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
-		CreateInvItems(hero,ItPo_Speed,1);
-		Print(PRINT_AlchemySuccess);
-	}
-	else
-	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMi_Flask,1);
-	};
-	b_endproductiondialog();
-};
-
-
 instance PC_ItPo_MegaDrink(C_Info)
 {
-	nr = 2;
+	nr = 8;
 	npc = PC_Hero;
 	condition = PC_ItPo_MegaDrink_Condition;
 	information = PC_ItPo_MegaDrink_Info;
@@ -992,7 +1012,6 @@ func void PC_ItPo_MegaDrink_Info()
 		Npc_RemoveInvItems(hero,ItAt_DragonEgg_MIS,10);
 		Npc_RemoveInvItems(hero,ItMi_DarkPearl,1);
 		Npc_RemoveInvItems(hero,ItMi_Sulfur,1);
-//		Snd_Play("PSILAB_GETBOTTLE");
 		CreateInvItems(hero,ItPo_MegaDrink,1);
 		Print(PRINT_AlchemySuccess);
 	}

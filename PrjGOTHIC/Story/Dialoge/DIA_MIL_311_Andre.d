@@ -761,6 +761,14 @@ func void DIA_Andre_Alternative_Info()
 };
 
 
+func void B_Andre_StartGuildOfThievesQuest()
+{
+	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
+	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
+	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
+	MIS_Andre_GuildOfThieves = LOG_Running;
+};
+
 instance DIA_Andre_GuildOfThieves(C_Info)
 {
 	npc = MIL_311_Andre;
@@ -787,10 +795,7 @@ func int DIA_Andre_GuildOfThieves_Condition()
 func void DIA_Andre_GuildOfThieves_Info()
 {
 	AI_Output(other,self,"DIA_Andre_GuildOfThieves_15_00");	//Что у тебя за проблема?
-	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
-	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
-	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
-	MIS_Andre_GuildOfThieves = LOG_Running;
+	B_Andre_StartGuildOfThievesQuest();
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_04");	//Тогда я смогу гарантировать, что ты будешь принят в ополчение - неважно, гражданин ты или нет.
@@ -1829,10 +1834,7 @@ func void DIA_Andre_ThievesGuildQuestForMIL_Info()
 	AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
 	if(MIS_Andre_GuildOfThieves == FALSE)
 	{
-		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
-		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
-		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
-		MIS_Andre_GuildOfThieves = LOG_Running;
+		B_Andre_StartGuildOfThievesQuest();
 	}
 	else
 	{

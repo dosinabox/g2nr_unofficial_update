@@ -263,16 +263,13 @@ instance ItWr_ManaRezept(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 20;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_ManaRezept;
 	scemeName = "MAP";
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 

@@ -924,6 +924,7 @@ const string NAME_ManaMax_Elixier = "Ёликсир духа";
 const string NAME_Speed_Elixier = "«елье ускорени€";
 const string NAME_MegaDrink = "Ёмбарла фиргасто";
 const string NAME_Geist = "Ёликсир изменени€ сознани€";
+const string NAME_MushroomMana = "√рибной экстракт";
 
 const string NAME_Letter = "ѕисьмо";
 const string NAME_LetterSealed = "«апечатанное письмо";

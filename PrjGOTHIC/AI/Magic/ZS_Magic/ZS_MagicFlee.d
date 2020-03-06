@@ -19,7 +19,7 @@ func void ZS_MagicFlee()
 	var int randy;
 	if(self.guild > GIL_SEPERATOR_HUM)
 	{
-		If((self.guild != GIL_DRAGON) && (self.guild != GIL_TROLL) && !C_NpcIsGolem(self) && !C_NpcIsUndead(self))
+		if((self.guild != GIL_DRAGON) && (self.guild != GIL_TROLL) && !C_NpcIsGolem(self) && !C_NpcIsUndead(self))
 		{
 			AI_StartState(self,ZS_MM_Flee,0,"");
 		}
