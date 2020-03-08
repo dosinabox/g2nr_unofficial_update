@@ -1493,6 +1493,7 @@ func void DIA_Bennet_EierBringen_Info()
 	{
 		AI_Output(self,other,"DIA_Bennet_EierBringen_06_06");	//Я не думаю, что ты найдешь еще яйца. К тому же, мне и этих достаточно. Я даже не знаю, что я буду делать со всеми ними.
 		TOPIC_END_DRACHENEIER = TRUE;
+		B_CheckLog();
 	};
 	AI_Output(self,other,"DIA_Bennet_EierBringen_06_07");	//Ох, хорошо. Вот твои деньги.
 	DragonEggGeld = DragonEggCount * BennetsDragonEggOffer;

@@ -42,7 +42,7 @@ func int DIA_Franco_PICKPOCKET_Condition()
 //	return C_StealItems(60,Hlp_GetInstanceID(ItAm_Addon_Franco),1);
 	if(Npc_HasItems(self,ItAm_Addon_Franco))
 	{
-		return C_StealItem(60,Hlp_GetInstanceID(ItAm_Addon_Franco));
+		return C_StealItem(60);
 	};
 	return FALSE;
 };

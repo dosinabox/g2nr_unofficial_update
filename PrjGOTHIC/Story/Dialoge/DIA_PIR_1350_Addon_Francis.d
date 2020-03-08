@@ -287,7 +287,7 @@ func int DIA_Francis_PICKPOCKET_Condition()
 //	return C_StealItems(40,Hlp_GetInstanceID(ItKe_Greg_Addon_MIS),1);
 	if(Npc_HasItems(self,ItKe_Greg_Addon_MIS))
 	{
-		return C_StealItem(40,Hlp_GetInstanceID(ItKe_Greg_Addon_MIS));
+		return C_StealItem(40);
 	};
 	return FALSE;
 };

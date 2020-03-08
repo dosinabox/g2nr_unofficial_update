@@ -1917,3 +1917,32 @@ instance ITAR_PALN_H(C_Item)
 	count[5] = value;
 };
 
+instance ITAR_PAL_S(C_Item)
+{
+	name = "Доспехи лорда";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 160;
+	protection[PROT_BLUNT] = 160;
+	protection[PROT_POINT] = 160;
+	protection[PROT_FIRE] = 110;
+	protection[PROT_MAGIC] = 60;
+	value = 25000;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Pal_S.3ds";
+	visual_change = "Armor_Pal_S.asc";
+	visual_skin = 0;
+	material = MAT_METAL;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+

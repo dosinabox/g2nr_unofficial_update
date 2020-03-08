@@ -226,7 +226,7 @@ instance DIA_Jesper_Schleichen(C_Info)
 };
 
 
-// var int DIA_Jesper_Schleichen_permanent;
+//var int DIA_Jesper_Schleichen_permanent;
 
 func int DIA_Jesper_Schleichen_Condition()
 {

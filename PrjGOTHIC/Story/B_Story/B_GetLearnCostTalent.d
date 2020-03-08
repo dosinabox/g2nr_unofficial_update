@@ -34,7 +34,6 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			{
 				kosten = 1;
 			};
-			kosten *= skill;
 		}
 		else
 		{
@@ -58,8 +57,8 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			{
 				kosten = 1;
 			};
-			kosten *= skill;
 		};
+		kosten *= skill;
 	};
 	if(talent == NPC_TALENT_2H)
 	{
@@ -85,7 +84,6 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			{
 				kosten = 1;
 			};
-			kosten *= skill;
 		}
 		else
 		{
@@ -109,8 +107,8 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			{
 				kosten = 1;
 			};
-			kosten *= skill;
 		};
+		kosten *= skill;
 	};
 	if(talent == NPC_TALENT_BOW)
 	{

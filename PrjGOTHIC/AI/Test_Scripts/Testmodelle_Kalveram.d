@@ -1606,7 +1606,7 @@ instance Gold(C_Item)
 {
 	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
-	flags = 0;
+	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItMi_Bag.3ds";
 	scemeName = "MAPSEALED";
@@ -1628,7 +1628,7 @@ instance Helmets(C_Item)
 {
 	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
-	flags = 0;
+	flags = ITEM_MISSION;
 	value = 0;
 	visual = "ItMi_Bag.3ds";
 	scemeName = "MAPSEALED";
@@ -1646,6 +1646,7 @@ func void UseHelmets()
 	CreateInvItem(self,ITAR_DJGN_H);
 	CreateInvItem(self,ITAR_PALN_M);
 	CreateInvItem(self,ITAR_PALN_H);
+	CreateInvItem(self,ITAR_PAL_S);
 	CreateInvItem(self,ITHE_DJG_M);
 	CreateInvItem(self,ITHE_DJG_H);
 	CreateInvItem(self,ITHE_PAL_M);
@@ -1665,7 +1666,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 6 марта 2020г.";
+	text[1] = "Скомпилировано 8 марта 2020г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";

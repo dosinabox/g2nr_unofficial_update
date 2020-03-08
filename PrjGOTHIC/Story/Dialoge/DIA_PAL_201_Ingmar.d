@@ -296,7 +296,7 @@ func int DIA_Ingmar_PICKPOCKET_Condition()
 //	return C_StealItems(105,Hlp_GetInstanceID(ItWr_Manowar),1);
 	if(Npc_HasItems(self,ItWr_Manowar))
 	{
-		return C_StealItem(105,Hlp_GetInstanceID(ItWr_Manowar));
+		return C_StealItem(105);
 	};
 	return FALSE;
 };

@@ -172,7 +172,7 @@ func void DIA_Grom_PayTeacher_Info()
 	Npc_RemoveInvItem(other,ItFo_Bacon);
 	CreateInvItem(self,ItFo_Bacon);
 	concatText = ConcatStrings(IntToString(3),PRINT_ItemsGegeben);
-	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2); 
+	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	AI_Output(self,other,"DIA_Grom_PayTeacher_08_01");	//Фантастика. И что теперь?
 	Grom_TeachAnimalTrophy = TRUE;
 	B_GivePlayerXP(XP_Ambient);

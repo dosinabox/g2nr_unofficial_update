@@ -60,7 +60,7 @@ func int DIA_Salandril_PICKPOCKET_Condition()
 //	return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
 	if(Npc_HasItems(self,ItKe_Salandril) || (SalandrilKeyRemoved == TRUE))
 	{
-		return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
+		return C_StealItem(30);
 	};
 	return FALSE;
 };

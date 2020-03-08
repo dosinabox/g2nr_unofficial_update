@@ -37,7 +37,7 @@ func int DIA_Wambo_PICKPOCKET_Condition()
 //	return C_StealItems(50,Hlp_GetInstanceID(ItKe_City_Tower_04),1);
 	if(Npc_HasItems(self,ItKe_City_Tower_04))
 	{
-		return C_StealItem(50,Hlp_GetInstanceID(ItKe_City_Tower_04));
+		return C_StealItem(50);
 	};
 	return FALSE;
 };

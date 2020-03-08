@@ -35,7 +35,7 @@ instance DIA_Bartok_PICKPOCKET(C_Info)
 func int DIA_Bartok_PICKPOCKET_Condition()
 {
 //	return C_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),0);
-	return C_StealItem(30,Hlp_GetInstanceID(ItRw_Arrow));
+	return C_StealItem(30);
 };
 
 func void DIA_Bartok_PICKPOCKET_Info()
@@ -47,10 +47,10 @@ func void DIA_Bartok_PICKPOCKET_Info()
 
 func void DIA_Bartok_PICKPOCKET_DoIt()
 {
-	CreateInvItems(self,ItRw_Arrow,40);
 //	B_StealItems(30,Hlp_GetInstanceID(ItRw_Arrow),40);
 	if(other.attribute[ATR_DEXTERITY] >= 30)
 	{
+		CreateInvItems(self,ItRw_Arrow,40);
 		B_GiveInvItems(self,other,ItRw_Arrow,40);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();

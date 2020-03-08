@@ -42,7 +42,7 @@ func void Spell_Cast_SummonSkeleton()
 	}
 	else
 	{
-		self.lp += 1; 
+		self.lp += 1;
 		Wld_SpawnNpcRange(self,Skeleton,1,500);
 	};
 };

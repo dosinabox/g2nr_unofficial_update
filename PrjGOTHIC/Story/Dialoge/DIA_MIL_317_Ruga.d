@@ -37,7 +37,7 @@ func int DIA_Ruga_PICKPOCKET_Condition()
 //	return C_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
 	if(Npc_HasItems(self,ItKe_City_Tower_03))
 	{
-		return C_StealItem(40,Hlp_GetInstanceID(ItKe_City_Tower_03));
+		return C_StealItem(40);
 	};
 	return FALSE;
 };

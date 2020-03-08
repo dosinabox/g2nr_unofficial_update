@@ -367,7 +367,7 @@ func int DIA_Bromor_PICKPOCKET_Condition()
 //	return C_StealItems(50,Hlp_GetInstanceID(ItKe_Bromor),1);
 	if(Npc_HasItems(self,ItKe_Bromor) && (NpcObsessedByDMT_Bromor == FALSE))
 	{
-		return C_StealItem(50,Hlp_GetInstanceID(ItKe_Bromor));
+		return C_StealItem(50);
 	};
 	return FALSE;
 };

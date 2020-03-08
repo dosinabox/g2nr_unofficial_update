@@ -246,7 +246,7 @@ func int DIA_Dobar_PICKPOCKET_Condition()
 //	return C_StealItems(79,Hlp_GetInstanceID(ItMi_Nugget),1);
 	if(Npc_HasItems(self,ItMi_Nugget))
 	{
-		return C_StealItem(79,Hlp_GetInstanceID(ItMi_Nugget));
+		return C_StealItem(79);
 	};
 	return FALSE;
 };

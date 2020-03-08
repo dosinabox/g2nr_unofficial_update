@@ -15,7 +15,7 @@ func int ZS_HealSelf_Loop()
 		if(self.attribute[ATR_MANA] >= SPL_Cost_FullHeal)
 		{
 			AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-			Wld_PlayEffect("spellFX_Heal_ORIGIN",self,self,0,0,0,FALSE); 
+			Wld_PlayEffect("spellFX_Heal_ORIGIN",self,self,0,0,0,FALSE);
 			self.attribute[ATR_MANA] -= SPL_Cost_FullHeal;
 			Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_FullHeal);
 			return LOOP_CONTINUE;
@@ -24,7 +24,7 @@ func int ZS_HealSelf_Loop()
 	else if((self.guild == GIL_PAL) && (self.attribute[ATR_MANA] >= SPL_Cost_PalFullHeal))
 	{
 		AI_PlayAni(self,"T_MAGRUN_2_HEASHOOT");
-		Wld_PlayEffect("spellFX_PalHeal_ORIGIN",self,self,0,0,0,FALSE); 
+		Wld_PlayEffect("spellFX_PalHeal_ORIGIN",self,self,0,0,0,FALSE);
 		self.attribute[ATR_MANA] -= SPL_Cost_PalFullHeal;
 		Npc_ChangeAttribute(self,ATR_HITPOINTS,SPL_Heal_PalFullHeal);
 		return LOOP_CONTINUE;

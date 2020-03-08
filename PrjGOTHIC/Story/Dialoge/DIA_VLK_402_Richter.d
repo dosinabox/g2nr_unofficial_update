@@ -340,7 +340,7 @@ func int DIA_Richter_PICKPOCKET_Condition()
 //	return C_StealItems(30,Hlp_GetInstanceID(ItKe_Richter),1);
 	if(Npc_HasItems(self,ItKe_Richter))
 	{
-		return C_StealItem(30,Hlp_GetInstanceID(ItKe_Richter));
+		return C_StealItem(30);
 	};
 	return FALSE;
 };

@@ -48,7 +48,8 @@ instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
 func int DIA_Addon_Cavalorn_PICKPOCKET_Condition()
 {
 //	return C_StealItems(25,Hlp_GetInstanceID(ItRw_Arrow),0);
-	return C_StealItem(25,Hlp_GetInstanceID(ItRw_Arrow));
+//	return C_StealItem(25,Hlp_GetInstanceID(ItRw_Arrow));
+	return C_StealItem(25);
 };
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
@@ -60,10 +61,10 @@ func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
 {
-	CreateInvItems(self,ItRw_Arrow,44);
 //	B_StealItems(25,Hlp_GetInstanceID(ItRw_Arrow),44);
 	if(other.attribute[ATR_DEXTERITY] >= 25)
 	{
+		CreateInvItems(self,ItRw_Arrow,44);
 		B_GiveInvItems(self,other,ItRw_Arrow,44);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();

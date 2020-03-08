@@ -652,7 +652,7 @@ func void B_UpgrateBeliarsWeapon()
 		else
 		{
 			hero.attribute[ATR_HITPOINTS] = 2;
-		}; 
+		};
 	};
 	BeliarDamageChance = BeliarNextDamageChance;
 	BeliarWeapCurrentLvL = BeliarWeapNextLvL;

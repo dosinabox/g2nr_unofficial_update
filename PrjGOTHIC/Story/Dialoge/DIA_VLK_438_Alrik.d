@@ -211,11 +211,15 @@ func void DIA_Alrik_NewFights5_Info()
 	B_Alrik_Again();
 };
 
+
 func void B_Alrik_Enough()
 {
 	AI_Output(self,other,"DIA_Alrik_WannaFight_09_05");	//ћне кажетс€, ты побеждаешь слишком часто.
 	AI_Output(self,other,"DIA_Alrik_WannaFight_09_06");	//Ќе пойми мен€ неверно, но мо€ башка все еще гудит после прошлого раза...
 };
+
+var int Alrik_FightsIsOver;
+var int Alrik_Sword_Once;
 
 instance DIA_Alrik_WannaFight(C_Info)
 {
@@ -230,13 +234,11 @@ instance DIA_Alrik_WannaFight(C_Info)
 
 func int DIA_Alrik_WannaFight_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Alrik_Regeln) && (self.aivar[AIV_ArenaFight] == AF_NONE))
+	if(Npc_KnowsInfo(other,DIA_Alrik_Regeln) && (self.aivar[AIV_ArenaFight] == AF_NONE) && (Alrik_FightsIsOver == FALSE))
 	{
 		return TRUE;
 	};
 };
-
-var int Alrik_Sword_Once;
 
 func void DIA_Alrik_WannaFight_Info()
 {
@@ -290,6 +292,7 @@ func void DIA_Alrik_WannaFight_Info()
 		AI_Output(self,other,"DIA_Alrik_Add_09_04");	// роме того, € сегодн€ заработал уже достаточно денег.
 		AI_Output(self,other,"DIA_Alrik_Add_09_05");	//— мен€ хватит. я собираюсь подыскать себе другое местечко в городе...
 		AI_Output(self,other,"DIA_Alrik_Add_09_06");	// то знает, может, € открою оружейную лавку...
+		Alrik_FightsIsOver = TRUE;
 	}
 	else if(Wld_IsTime(11,0,19,0))
 	{
@@ -541,7 +544,7 @@ instance DIA_Alrik_HaveSword(C_Info)
 
 func int DIA_Alrik_HaveSword_Condition()
 {
-	if(Npc_HasItems(other,ItMw_AlriksSword_Mis))
+	if((Alrik_VomSchwertErzaehlt == TRUE) && Npc_HasItems(other,ItMw_AlriksSword_Mis))
 	{
 		return TRUE;
 	};
@@ -589,7 +592,7 @@ instance DIA_Alrik_Krieg(C_Info)
 
 func int DIA_Alrik_Krieg_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Alrik_DuWohnst) || (hero.guild != GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Alrik_DuWohnst))
 	{
 		return TRUE;
 	};
@@ -619,7 +622,7 @@ instance DIA_Alrik_Ausbilden(C_Info)
 
 func int DIA_Alrik_Ausbilden_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Alrik_DuWohnst) || (hero.guild != GIL_NONE)) && (Alrik_Teach1H == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Alrik_DuWohnst) && (Alrik_Teach1H == FALSE))
 	{
 		return TRUE;
 	};
