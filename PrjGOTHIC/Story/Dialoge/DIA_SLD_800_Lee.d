@@ -399,7 +399,7 @@ func void DIA_Lee_LeesPlan_Info()
 		if(MIS_Lee_Friedensangebot == FALSE)
 		{
 			AI_Output(other,self,"DIA_Lee_LeesPlan_15_06");	//„то за предложение ты хочешь сделать?
-			if(other.guild == GIL_SLD)
+			if((other.guild == GIL_NONE) || (other.guild == GIL_SLD))
 			{
 				AI_Output(self,other,"DIA_Lee_LeesPlan_04_07");	//≈стественно, условием будет наше помилование и свободный путь на материк. “ы все узнаешь, когда придет врем€.
 			}

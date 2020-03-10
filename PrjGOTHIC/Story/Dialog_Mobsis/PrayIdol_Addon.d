@@ -143,6 +143,13 @@ func void PC_PrayIdol_PrayIdol_Info()
 	Info_ClearChoices(PC_PrayIdol_PrayIdol);
 	Info_AddChoice(PC_PrayIdol_PrayIdol,Dialog_Back,PC_PrayIdol_PrayIdol_Back);
 	Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVENOTHING,PC_PrayIdol_PrayIdol_NoPay);
+	if(GivenMana <= 10)
+	{
+		if(hero.attribute[ATR_MANA_MAX] > 10)
+		{
+			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEMANA,PC_PrayIdol_PrayIdol_ManaPay);
+		};
+	};
 	if(GivenHitpoints <= 50)
 	{
 		if(hero.attribute[ATR_HITPOINTS_MAX] >= 40)
@@ -156,13 +163,6 @@ func void PC_PrayIdol_PrayIdol_Info()
 		if(hero.attribute[ATR_HITPOINTS_MAX] >= 40)
 		{
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEHITPOINT3,PC_PrayIdol_PrayIdol_BigPay);
-		};
-	};
-	if(GivenMana <= 10)
-	{
-		if(hero.attribute[ATR_MANA_MAX] > 10)
-		{
-			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEMANA,PC_PrayIdol_PrayIdol_ManaPay);
 		};
 	};
 };

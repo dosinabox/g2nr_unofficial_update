@@ -424,6 +424,7 @@ func void UseLouRezept()
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'МОЛОТА ЛУ': 1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы и 1 ром.");
 			Knows_LousHammer = TRUE;
 		};
+		Opened_LousHammer = TRUE;
 	};
 };
 
@@ -470,6 +471,7 @@ func void UseLouRezept2()
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для двойного 'МОЛОТА ЛУ': 1 'Молот Лу' и 1 ром.");
 			Knows_Schlafhammer = TRUE;
 		};
+		Opened_Schlafhammer = TRUE;
 	};
 };
 
@@ -518,6 +520,7 @@ func void UseRezeptPiratentod()
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'БЫСТРОЙ СЕЛЕДКИ': 1 вода, 1 ром, 1 рыба и 1 снеппер-трава.");
 			Knows_SchnellerHering = TRUE;
 		};
+		Opened_SchnellerHering = TRUE;
 	};
 };
 
@@ -552,7 +555,7 @@ func void UseMushroomManaRecipe()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Создание грибного экстракта:");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Необходимо 50 грибов и 1 луговая ягода.");
+	Doc_PrintLines(nDocID,0,"Необходимо 50 черных грибов и 1 луговая ягода.");
 	Doc_PrintLines(nDocID,0,"Перемешать и варить.");
 	Doc_PrintLines(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"");
@@ -562,9 +565,10 @@ func void UseMushroomManaRecipe()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_MushroomMana == FALSE))
 		{
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ГРИБНОГО ЭКСТРАКТА': 50 грибов и 1 луговая ягода.");
+			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ГРИБНОГО ЭКСТРАКТА': 50 черных грибов и 1 луговая ягода.");
 			Knows_MushroomMana = TRUE;
 		};
+		Opened_MushroomMana = TRUE;
 	};
 };
 

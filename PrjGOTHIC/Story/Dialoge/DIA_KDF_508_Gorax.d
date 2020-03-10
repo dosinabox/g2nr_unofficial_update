@@ -29,7 +29,7 @@ instance DIA_Gorax_PICKPOCKET(C_Info)
 	condition = DIA_Gorax_PICKPOCKET_Condition;
 	information = DIA_Gorax_PICKPOCKET_Info;
 	permanent = TRUE;
-	description = "(украсть его ключ будет довольно трудно)";
+	description = Pickpocket_80_Key;
 };
 
 

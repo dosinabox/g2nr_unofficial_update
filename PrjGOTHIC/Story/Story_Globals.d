@@ -1299,3 +1299,8 @@ var int TotalApplesEaten;
 var int TotalMushroomsEaten;
 var int TotalDexEaten;
 var int TotalStrEaten;
+var int Opened_LousHammer;
+var int Opened_Schlafhammer;
+var int Opened_SchnellerHering;
+var int Opened_MushroomMana;
+var int Opened_MegaDrink;

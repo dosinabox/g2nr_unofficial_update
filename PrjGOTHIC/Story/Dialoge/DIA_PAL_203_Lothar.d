@@ -149,7 +149,7 @@ func void DIA_Lothar_MESSAGE_Info()
 	AI_Output(self,other,"DIA_Lothar_Add_01_02");	//Лорд Хаген не принимает.
 	AI_Output(self,other,"DIA_Lothar_Add_01_03");	//Если у тебя действительно есть что-то ВАЖНОЕ, иди к лорду Андрэ. Он поможет тебе!
 	Player_KnowsLordHagen = TRUE;
-	if(Lothar_Day == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Lothar_Hagen))
 	{
 		Lothar_Day = Wld_GetDay();
 		if(Wld_IsTime(22,0,23,59))
@@ -643,11 +643,14 @@ func int DIA_Lothar_PermB4OV_Condition()
 {
 	if(Npc_IsInState(self,ZS_Talk) && (Mil_305_schonmalreingelassen == FALSE) && (Lothar_Regeln == TRUE))
 	{
-		if(Npc_KnowsInfo(other,DIA_Lothar_Reported))
+		if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen))
 		{
-			return TRUE;
+			if((Lothar_Reported == TRUE) || (Lothar_Day >= Wld_GetDay()))
+			{
+				return TRUE;
+			};
 		}
-		else if((Lothar_Day >= Wld_GetDay()) || (Lothar_Day == FALSE))
+		else
 		{
 			return TRUE;
 		};
@@ -689,6 +692,21 @@ func void B_Lothar_Blubb()
 //	AI_Output(self,other,"DIA_Lothar_Add_01_03");	//Если у тебя действительно есть что-то ВАЖНОЕ, иди к лорду Андрэ. Он поможет тебе!
 };
 */
+
+var int Lothar_Reported;
+
+func void B_Lothar_Reported()
+{
+	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
+	AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
+	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
+	if(Player_TalkedAboutDragons == TRUE)
+	{
+		AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
+		AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
+	};
+	Lothar_Reported = TRUE;
+};
 
 instance DIA_Lothar_HelloAgain(C_Info)
 {
@@ -795,6 +813,10 @@ func void DIA_Lothar_HelloAgain_Info()
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_08");	//В этом квартале живут знатные горожане. Так что относись к ним с уважением.
 	AI_Output(self,other,"DIA_Lothar_HelloAgain_01_09");	//Мы поняли друг друга?
 	AI_Output(other,self,"DIA_Lothar_HelloAgain_15_10");	//Конечно.
+	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
+	{
+		B_Lothar_Reported();
+	};
 };
 
 
@@ -825,7 +847,7 @@ func void DIA_Lothar_Hagen_Info()
 	{
 		AI_Output(self,other,"DIA_Lothar_Hagen_01_02");	//Но тебя не примут там без веской на то причины.
 	};
-	if(Lothar_Day == FALSE)
+	if(!Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
 	{
 		Lothar_Day = Wld_GetDay();
 		if(Wld_IsTime(22,0,23,59))
@@ -849,25 +871,15 @@ instance DIA_Lothar_Reported(C_Info)
 
 func int DIA_Lothar_Reported_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE))
+	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (LordHagen.aivar[AIV_TalkedToPlayer] == FALSE) && (Lothar_Day < Wld_GetDay()) && (Lothar_Reported == FALSE))
 	{
-		if(Lothar_Day < Wld_GetDay())
-		{
-			return TRUE;
-		};
+		return TRUE;
 	};
 };
 
 func void DIA_Lothar_Reported_Info()
 {
-	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
-	AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
-	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
-	if(Player_TalkedAboutDragons == TRUE)
-	{
-		AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
-		AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
-	};
+	B_Lothar_Reported();
 	AI_StopProcessInfos(self);
 };
 
