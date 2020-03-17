@@ -350,6 +350,8 @@ func void DIA_Addon_Vatras_CavalornSentMe_Info()
 
 
 var int Vatras_ToldAboutDuty;
+var int Vatras_ToldAboutOtherKDW;
+var int Vatras_ToldAboutUnexplored;
 
 instance DIA_Addon_Vatras_TellMe(C_Info)
 {
@@ -409,9 +411,13 @@ func void DIA_Addon_Vatras_TellMe_OtherKdW()
 	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_OtherKdW_15_00");	//А где остальные маги Воды?
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_OtherKdW_05_01");	//Они исследуют постройки древней цивилизации к северо-востоку от Хориниса.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_OtherKdW_05_02");	//Мы подозреваем, что в этих руинах может скрываться проход к той части острова, которая еще не отмечена на карте.
-	Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_KDW,"Маги Воды исследуют руины построек древней культуры, которые находятся на северо-востоке от Хориниса. Возможно, там находится проход в неисследованную часть острова.");
+	if(Vatras_ToldAboutOtherKDW == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
+		B_LogEntry(TOPIC_Addon_KDW,"Маги Воды исследуют руины построек древней культуры, которые находятся на северо-востоке от Хориниса. Возможно, там находится проход в неисследованную часть острова.");
+	};
+	Vatras_ToldAboutOtherKDW = TRUE;
 	Info_AddChoice(DIA_Addon_Vatras_TellMe,"Расскажи мне об этом.",DIA_Addon_Vatras_TellMe_Unexplored);
 };
 
@@ -421,7 +427,11 @@ func void DIA_Addon_Vatras_TellMe_Unexplored()
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Unexplored_05_01");	//Если хочешь присоединиться к экспедиции, я могу передать с тобой письмо, которое ты отнесешь Сатурасу.
 	AI_Output(self,other,"DIA_Addon_Vatras_TellMe_Unexplored_05_02");	//Ты можешь пойти с ними только в том случае, если ты будешь одним из нас.
 	AI_Output(other,self,"DIA_Addon_Vatras_TellMe_Unexplored_15_03");	//Безусловно.
-	B_LogEntry(TOPIC_Addon_KDW,"Прежде чем допустить меня до участия в экспедиции, Ватрас требует, чтобы я присоединился к Кольцу Воды.");
+	if(Vatras_ToldAboutUnexplored == FALSE)
+	{
+		B_LogEntry(TOPIC_Addon_KDW,"Прежде чем допустить меня до участия в экспедиции, Ватрас требует, чтобы я присоединился к Кольцу Воды.");
+	};
+	Vatras_ToldAboutUnexplored = TRUE;
 };
 
 func void DIA_Addon_Vatras_TellMe_WerNoch()

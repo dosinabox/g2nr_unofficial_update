@@ -481,6 +481,7 @@ var int Mil_310_schonmalreingelassen;
 var int Mil_333_schonmalreingelassen;
 var int Lothar_Regeln;
 var int PlayerEnteredCity;
+var int PlayerEnteredUpperCity;
 var int LesterMovedToXardas;
 var int XardasKnowsAboutProof;
 var int Canthar_Gefallen;

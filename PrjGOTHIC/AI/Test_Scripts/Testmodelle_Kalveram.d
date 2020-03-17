@@ -1557,7 +1557,7 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_OrcCommander)," предводителей орков"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(MadKillerCount)," невинных людей"));
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,"Съедено:");
+	Doc_PrintLine(nDocID,0,"Использовано:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalApplesEaten)," яблок"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalMushroomsEaten)," черных грибов"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalDexEaten)," гоблинских ягод"));
@@ -1565,9 +1565,18 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Отдано:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек Ватрасу"));
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(DragonEggCounter)," яиц Беннету"));
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(AlmanachCounter)," альманахов Пирокару"));
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OrkRingCounter)," колец Хагену"));
+	if(hero.guild == GIL_DJG)
+	{
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(DragonEggCounter)," яиц Беннету"));
+	}
+	else if(hero.guild == GIL_KDF)
+	{
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(AlmanachCounter)," альманахов Пирокару"));
+	}
+	else if(hero.guild == GIL_PAL)
+	{
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OrkRingCounter)," колец Хагену"));
+	};
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Shell_Opener)," открытых моллюсков"));
@@ -1587,7 +1596,14 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Улучшения Когтя:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_ClawMaxHp)," макс. здоровья отдано"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(BeliarWeapCurrentLvL)," уровень"));
+	if(Saturas_KlaueInsMeer == FALSE)
+	{
+		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(BeliarWeapCurrentLvL)," уровень"));
+	}
+	else
+	{
+		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(BeliarWeapCurrentLvL)," уровень (уничтожен)"));
+	};
 	Doc_PrintLine(nDocID,1,"");
 	if(HardModeEnabled == TRUE)
 	{
@@ -1599,6 +1615,11 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,1,"Сложность: стандарт");
 		Doc_PrintLine(nDocID,1,"Модификатор опыта: нет");
 	};
+	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,"Информация о сборке:");
+	Doc_PrintLine(nDocID,1,"Дата компиляции: 17/03/2020");
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия установлена"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_SAVE)," версия в сохранении"));
 	Doc_Show(nDocID);
 };
 
@@ -1666,7 +1687,7 @@ instance TestAmulet(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 10 марта 2020г.";
+	text[1] = "Скомпилировано 17 марта 2020г.";
 	text[2] = "Установленная версия обновления:";
 	count[2] = FIX_VERSION_START;
 	text[3] = "Версия обновления в сохраненке:";

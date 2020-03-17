@@ -51,6 +51,7 @@ func void DIA_Larius_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_Larius_Richterueberfall_01_03");	//Даже если ты посвященный маг...
 	};
+	B_PlayerEnteredUpperCity();
 };
 
 

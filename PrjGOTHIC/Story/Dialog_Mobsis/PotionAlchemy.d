@@ -818,6 +818,7 @@ func void PC_ItPo_Perm_MushroomMana_Info()
 		Npc_RemoveInvItems(hero,ItPl_Mushroom_01,50);
 		Npc_RemoveInvItems(hero,ItPl_Planeberry,1);
 		CreateInvItems(hero,ItPo_Perm_MushroomMana,1);
+		TotalMushroomsEaten += 50;
 		Print(PRINT_AlchemySuccess);
 	}
 	else
@@ -855,6 +856,7 @@ func void PC_ItPo_Dex_Info()
 		Npc_RemoveInvItems(hero,ItPl_Dex_Herb_01,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
 		CreateInvItems(hero,ItPo_Perm_DEX,1);
+		TotalDexEaten += 1;
 		Print(PRINT_AlchemySuccess);
 	}
 	else
@@ -892,6 +894,7 @@ func void PC_ItPo_Strg_Info()
 		Npc_RemoveInvItems(hero,ItPl_Strength_Herb_01,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
 		CreateInvItems(hero,ItPo_Perm_STR,1);
+		TotalStrEaten += 1;
 		Print(PRINT_AlchemySuccess);
 	}
 	else

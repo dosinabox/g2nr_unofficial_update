@@ -22,6 +22,10 @@ func int DIA_Lothar_EXIT_Condition()
 
 func void DIA_Lothar_EXIT_Info()
 {
+	if(Npc_GetDistToWP(self,"NW_CITY_LOTHAR") < 1000)
+	{
+		B_PlayerEnteredUpperCity();
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -70,7 +74,14 @@ func void DIA_Lothar_FirstEXIT_Info()
 		Lothar_ImOV = TRUE;
 		Npc_ExchangeRoutine(self,"START");
 	};
-	B_PlayerEnteredCity();
+	if(Npc_GetDistToWP(self,"NW_CITY_LOTHAR") < 1000)
+	{
+		B_PlayerEnteredUpperCity();
+	}
+	else
+	{
+		B_PlayerEnteredCity();
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -704,6 +715,10 @@ func void B_Lothar_Reported()
 	{
 		AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
 		AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
+	};
+	if(Npc_GetDistToWP(self,"NW_CITY_LOTHAR") < 1000)
+	{
+		B_PlayerEnteredUpperCity();
 	};
 	Lothar_Reported = TRUE;
 };

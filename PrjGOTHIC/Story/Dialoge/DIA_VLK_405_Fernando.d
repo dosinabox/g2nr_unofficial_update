@@ -88,6 +88,7 @@ func void DIA_Fernando_Hello_Info()
 	AI_Output(self,other,"DIA_Fernando_Hello_14_02");	//«аключенные добывали руду в шахтах, а мои корабли доставл€ли ее на материк.
 	AI_Output(self,other,"DIA_Fernando_Hello_14_03");	//ј на обратном пути они доставл€ли пищу и другие товары.
 	AI_Output(self,other,"DIA_Fernando_Hello_14_04");	//Ќо сейчас мы отрезаны от материка, и нам приходитс€ рассчитывать только на фермеров в том, что касаетс€ припасов.
+	B_PlayerEnteredUpperCity();
 };
 
 

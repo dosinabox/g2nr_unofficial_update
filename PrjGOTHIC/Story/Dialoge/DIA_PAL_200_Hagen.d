@@ -17,7 +17,7 @@ func int DIA_Hagen_EXIT_Condition()
 
 func void DIA_Hagen_EXIT_Info()
 {
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -47,7 +47,7 @@ func int DIA_Hagen_PMSchulden_Condition()
 func void DIA_Hagen_PMSchulden_Info()
 {
 	var int diff;
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 	AI_Output(self,other,"DIA_Hagen_PMSchulden_04_00");	//Хорошо, что ты пришел. Ты можешь заплатить штраф прямо сейчас.
 	if(B_GetTotalPetzCounter(self) > Hagen_LastPetzCounter)
 	{
@@ -158,7 +158,7 @@ func int DIA_Hagen_PETZMASTER_Condition()
 func void DIA_Hagen_PETZMASTER_Info()
 {
 	Hagen_Schulden = 0;
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_00");	//Твоя слава опережает тебя. Ты нарушил законы города.
@@ -264,7 +264,7 @@ func int DIA_Lord_Hagen_Hallo_Condition()
 func void DIA_Lord_Hagen_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_00");	//Я уже слышал о тебе.
-	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
+	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (Lothar_Day < Wld_GetDay()))
 	{
 		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_03");	//Лотар докладывал, что ты хочешь поговорить со мной.
 	};
@@ -275,7 +275,7 @@ func void DIA_Lord_Hagen_Hallo_Info()
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_02");	//Я лорд Хаген.
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_03");	//Паладин короля, воин нашего владыки Инноса и главнокомандующий Хориниса.
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_04");	//Я очень занятой человек. Поэтому не трать мое время попусту. А теперь скажи, зачем ты здесь.
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 };
 
 
@@ -468,7 +468,7 @@ func void DIA_Lord_Hagen_Pass_Info()
 	{
 		B_StartOtherRoutine(Fernando,"WAIT");
 	};
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 };
 
 

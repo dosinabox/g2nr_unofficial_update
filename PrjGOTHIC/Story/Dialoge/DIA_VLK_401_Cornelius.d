@@ -64,6 +64,7 @@ func void DIA_Cornelius_Hello_Info()
 			B_Say(self,other,"$NOTNOW");
 		};
 	};
+	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);
 };
 

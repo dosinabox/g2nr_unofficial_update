@@ -107,7 +107,8 @@ func int DIA_Gerbrandt_PreHello_Condition()
 
 func void DIA_Gerbrandt_PreHello_Info()
 {
-	AI_Output(self,other,"DIA_Constantino_Hallo_10_00");	//„то тебе нужно? Ѕесплатного здесь ничего нет, и продавать тебе € тоже ничего не собираюсь. 
+	AI_Output(self,other,"DIA_Constantino_Hallo_10_00");	//„то тебе нужно? Ѕесплатного здесь ничего нет, и продавать тебе € тоже ничего не собираюсь.
+	B_PlayerEnteredUpperCity();
 };
 
 instance DIA_Gerbrandt_Hello(C_Info)
@@ -132,6 +133,7 @@ func int DIA_Gerbrandt_Hello_Condition()
 func void DIA_Gerbrandt_Hello_Info()
 {
 	AI_Output(other,self,"DIA_Gerbrandt_Hello_15_00");	//„то ты делаешь здесь?
+	B_PlayerEnteredUpperCity();
 	if((hero.guild != GIL_KDF) && (hero.guild != GIL_PAL))
 	{
 		AI_Output(self,other,"DIA_Gerbrandt_Hello_10_01");	//ј ты кто такой? ѕохоже, ты недавно здесь и пон€ти€ не имеешь, с кем имеешь дело.
