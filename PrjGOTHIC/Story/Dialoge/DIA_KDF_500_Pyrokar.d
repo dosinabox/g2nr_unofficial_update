@@ -523,6 +523,14 @@ func void DIA_Pyrokar_OATH_Info()
 //	SLD_Aufnahme = LOG_OBSOLETE;
 //	MIL_Aufnahme = LOG_OBSOLETE;
 	B_GivePlayerXP(XP_BecomeMage);
+	if(!Npc_IsDead(Gorax))
+	{
+		CreateInvItems(Gorax,ItMi_RuneBlank,2);
+	};
+	if(!Npc_IsDead(Karras))
+	{
+		CreateInvItems(Karras,ItMi_RuneBlank,1);
+	};
 	if(!Npc_IsDead(Ulf))
 	{
 		B_StartOtherRoutine(Ulf,"BackToMonastery");

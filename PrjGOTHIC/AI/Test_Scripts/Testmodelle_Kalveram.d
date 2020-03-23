@@ -1617,9 +1617,15 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,"Дата компиляции: 17/03/2020");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия установлена"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_SAVE)," версия в сохранении"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 23/03/2020"));
+	if(FIX_VERSION_SAVE == FALSE)
+	{
+		Doc_PrintLine(nDocID,1,"Игра начата в оригинале");
+	}
+	else
+	{
+		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_SAVE)," версия в сохранении"));
+	};
 	Doc_Show(nDocID);
 };
 
@@ -1673,25 +1679,5 @@ func void UseHelmets()
 	CreateInvItem(self,ITHE_PAL_M);
 	CreateInvItem(self,ITHE_PAL_H);
 	Print("Найдено много разных доспехов и шлемов!");
-};
-
-instance TestAmulet(C_Item)
-{
-	name = NAME_Amulett;
-	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_AMULET | ITEM_MISSION;
-	value = 0;
-	visual = "ItMi_SilverNecklace.3ds";
-	visual_skin = 0;
-	material = MAT_METAL;
-	wear = WEAR_EFFECT;
-	effect = "SPELLFX_ITEMGLIMMER";
-	description = "Амулет тестировщика";
-	text[1] = "Скомпилировано 17 марта 2020г.";
-	text[2] = "Установленная версия обновления:";
-	count[2] = FIX_VERSION_START;
-	text[3] = "Версия обновления в сохраненке:";
-	count[3] = FIX_VERSION_SAVE;
-	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
 

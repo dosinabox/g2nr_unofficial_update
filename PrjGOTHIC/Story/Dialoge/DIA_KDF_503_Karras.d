@@ -201,24 +201,26 @@ func void DIA_Karras_JOB_Info()
 	AI_Output(other,self,"DIA_Karras_JOB_15_02");	//Что это означает?
 	AI_Output(self,other,"DIA_Karras_JOB_10_03");	//Ну, я обучаю их вызову существ из других измерений или сфер.
 	AI_Output(self,other,"DIA_Karras_JOB_10_04");	//Это обычно называется просто вызовом, хотя это определение недостаточно полно отражает суть искусства вызова слуг.
-	if(other.guild == GIL_NOV)
+	if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 	{
 		AI_Output(self,other,"DIA_Karras_JOB_10_05");	//Кроме того, у меня есть очень интересные свитки, которых нет даже у Горакса.
-		AI_Output(self,other,"DIA_Karras_JOB_10_06");	//Но я могу продать их только членам нашего Ордена.
-		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
-		Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-		Log_AddEntry(Topic_KlosterTeacher,"Мастер Каррас обучает формулам вызова. Но для этого я должен быть магом Огня.");
-	}
-	else if(other.guild == GIL_KDF)
-	{
-		AI_Output(self,other,"DIA_Karras_JOB_10_05");	//Кроме того, у меня есть очень интересные свитки, которых нет даже у Горакса.
-		Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-		B_LogEntry(Topic_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
-		if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
+		if(other.guild == GIL_NOV)
 		{
+			AI_Output(self,other,"DIA_Karras_JOB_10_06");	//Но я могу продать их только членам нашего Ордена.
+			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+			B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
 			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-			Log_AddEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
+			Log_AddEntry(Topic_KlosterTeacher,"Мастер Каррас обучает формулам вызова. Но для этого я должен быть магом Огня.");
+		}
+		else
+		{
+			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
+			B_LogEntry(Topic_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
+			if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
+			{
+				Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
+				Log_AddEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
+			};
 		};
 	};
 };

@@ -46,10 +46,10 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Windfist,4);
 		CreateInvItems(slf,ItSc_Sleep,2);
 		CreateInvItems(slf,ItAm_Prot_Edge_01,1);
-		if((hero.guild != GIL_NOV) && (hero.guild != GIL_NONE))
-		{
-			CreateInvItems(slf,ItMi_RuneBlank,2);
-		};
+//		if((hero.guild != GIL_NOV) && (hero.guild != GIL_NONE))
+//		{
+//			CreateInvItems(slf,ItMi_RuneBlank,2);
+//		};
 		if((hero.guild == GIL_PAL) || (hero.guild == GIL_MIL))
 		{
 			CreateInvItems(slf,ItWr_Map_Shrine_MIS,1);

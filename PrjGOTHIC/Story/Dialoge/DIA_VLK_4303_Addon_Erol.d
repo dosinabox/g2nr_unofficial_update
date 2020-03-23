@@ -527,7 +527,7 @@ func void DIA_Addon_Erol_Trade_Info()
 		AI_Output(self,other,"DIA_Addon_Erol_Trade_10_00");	//Впрочем, выбора у меня нет.
 		Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
 		B_LogEntry(Topic_OutTrader,LogText_Addon_ErolTrade);
-		Npc_ExchangeRoutine(self,"Home");
+		Npc_ExchangeRoutine(self,"HOME");
 		Erol_IsAtHome = TRUE;
 	};
 	Trade_IsActive = TRUE;

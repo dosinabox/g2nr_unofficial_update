@@ -342,6 +342,7 @@ func void DIA_Fester_WasMitAbmachung_Info()
 var int Fester_Duell_Day;
 var int Fester_FightVerarscht;
 var int Fester_FightSylvio;
+var int Fester_FightOnce;
 
 instance DIA_Fester_PERMPruegel(C_Info)
 {
@@ -350,7 +351,7 @@ instance DIA_Fester_PERMPruegel(C_Info)
 	condition = DIA_Fester_PERMPruegel_Condition;
 	information = DIA_Fester_PERMPruegel_Info;
 	permanent = TRUE;
-	description = "Я думаю, тебе не помешает еще одна трепка.";
+	description = "Я думаю, тебе не помешает трепка.";
 };
 
 
@@ -358,6 +359,14 @@ func int DIA_Fester_PERMPruegel_Condition()
 {
 	if((Npc_KnowsInfo(other,DIA_Fester_WasMitAbmachung) || Npc_KnowsInfo(other,DIA_Jarvis_MissionKO) || (self.aivar[AIV_LastFightAgainstPlayer] != FIGHT_NONE)) && (MIS_ReadyforChapter4 == FALSE))
 	{
+		if((Fester_FightOnce == TRUE) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+		{
+			DIA_Fester_PERMPruegel.description = "Я думаю, тебе не помешает еще одна трепка.";
+		}
+		else
+		{
+			DIA_Fester_PERMPruegel.description = "Я думаю, тебе не помешает трепка.";
+		};
 		return TRUE;
 	};
 };
@@ -365,7 +374,14 @@ func int DIA_Fester_PERMPruegel_Condition()
 func void DIA_Fester_PERMPruegel_Info()
 {
 	var int random;
-	AI_Output(other,self,"DIA_Fester_PERMPruegel_15_00");	//Я думаю, тебе не помешает еще одна трепка.
+	if((Fester_FightOnce == TRUE) || (self.aivar[AIV_LastFightAgainstPlayer] == FIGHT_LOST))
+	{
+		AI_Output(other,self,"DIA_Fester_PERMPruegel_15_00");	//Я думаю, тебе не помешает еще одна трепка.
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Fester_PERMPruegel_15_00_add");	//Я думаю, тебе не помешает трепка.
+	};
 	if(Fester_Duell_Day < Wld_GetDay())
 	{
 		random = Hlp_Random(11);
@@ -378,7 +394,7 @@ func void DIA_Fester_PERMPruegel_Info()
 		AI_Output(self,other,"DIA_Fester_PERMPruegel_08_02");	//Я весь дрожу, я весь дрожу!
 		Fester_FightVerarscht = TRUE;
 	}
-	else if(Npc_KnowsInfo(other,DIA_Jarvis_MissionKO))
+	else if(Npc_KnowsInfo(other,DIA_Jarvis_MissionKO) && (Fester_FightSylvio == FALSE))
 	{
 		AI_Output(other,self,"DIA_Fester_PERMPruegel_15_03");	//Тебе не стоило связываться с Сильвио.
 		AI_Output(self,other,"DIA_Fester_PERMPruegel_08_04");	//Ты один из лизоблюдов Ли, да? Тогда ты ошибся адресом!
@@ -393,6 +409,7 @@ func void DIA_Fester_PERMPruegel_Info()
 	{
 		AI_Output(self,other,"DIA_Fester_PERMPruegel_08_07");	//Тебе что, мало, да?
 	};
+	Fester_FightOnce = TRUE;
 	AI_StopProcessInfos(self);
 	B_Attack(self,other,AR_NONE,1);
 };

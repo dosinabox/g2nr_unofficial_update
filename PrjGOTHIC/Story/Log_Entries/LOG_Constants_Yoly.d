@@ -109,11 +109,11 @@ const string TOPIC_KillLighthouseBandits = "Бандиты в маяке Джека";
 const string TOPIC_HannaRetrieveLetter = "Что-то потеряно?";
 const string TOPIC_INNOSEYE = "Глаз Инноса";
 
-var int topic_end_innoseye;
+var int TOPIC_END_INNOSEYE;
 
 const string TOPIC_DEMENTOREN = "Ищущие";
 
-var int topic_end_dementoren;
+var int TOPIC_END_DEMENTOREN;
 
 const string TOPIC_Buster_KillShadowbeasts = "Рога мракорисов для Бастера";
 const string TOPIC_Ulthar_HeileSchreine_PAL = "Оскверненные алтари";
@@ -155,7 +155,7 @@ const string TOPIC_FerrosSword = "Меч Ферроса";
 const string TOPIC_DRACHENEIERNeoras = "Зелье Неораса из драконьего яйца";
 const string TOPIC_DRACHENEIER = "Драконьи яйца";
 
-var int topic_end_dracheneier;
+var int TOPIC_END_DRACHENEIER;
 
 const string TOPIC_OrcElite = "Орды элитных орков";
 
