@@ -118,7 +118,10 @@ func int DIA_Addon_Merdarion_DaDurch_Condition()
 func void DIA_Addon_Merdarion_DaDurch_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Merdarion_DaDurch_15_00");	//“ы действительно хочешь пройти через этот портал?
-	AI_Output(self,other,"DIA_Addon_Merdarion_DaDurch_06_01");	//ƒа. Ќу, если мы найдем потер€нный орнамент, конечно.
+	if(MIS_Addon_Nefarius_BringMissingOrnaments != LOG_SUCCESS)
+	{
+		AI_Output(self,other,"DIA_Addon_Merdarion_DaDurch_06_01");	//ƒа. Ќу, если мы найдем потер€нный орнамент, конечно.
+	};
 	AI_Output(self,other,"DIA_Addon_Merdarion_DaDurch_06_02");	//я полагаю, это достаточно рискованна€ зате€.
 	AI_Output(self,other,"DIA_Addon_Merdarion_DaDurch_06_03");	//Ќо нам просто необходимо вы€снить, как это может быть св€зано с посто€нными землетр€сени€ми.
 };

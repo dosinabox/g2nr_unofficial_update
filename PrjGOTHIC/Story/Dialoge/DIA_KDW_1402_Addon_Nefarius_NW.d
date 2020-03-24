@@ -69,8 +69,11 @@ func void DIA_Addon_Nefarius_keineahnung_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Nefarius_keineahnung_15_00");	//Что это за портал?
 	AI_Output(self,other,"DIA_Addon_Nefarius_keineahnung_05_01");	//Мы считаем, что он ведет в затерянную долину, в которой находится город древней цивилизации.
-	AI_Output(self,other,"DIA_Addon_Nefarius_keineahnung_05_02");	//Но пока за порталом находится лишь многометровая толща камня.
-	AI_Output(self,other,"DIA_Addon_Nefarius_keineahnung_05_03");	//Никаких следов магии телепортации нам обнаружить не удалось. Очень загадочно...
+	if(Portal_Activated == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Nefarius_keineahnung_05_02");	//Но пока за порталом находится лишь многометровая толща камня.
+		AI_Output(self,other,"DIA_Addon_Nefarius_keineahnung_05_03");	//Никаких следов магии телепортации нам обнаружить не удалось. Очень загадочно...
+	};
 	if(SC_KnowsPortal == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
@@ -80,6 +83,11 @@ func void DIA_Addon_Nefarius_keineahnung_Info()
 	};
 };
 
+
+func void B_Nefarius_PortalKeyTip()
+{
+	AI_Output(self,other,"DIA_Addon_Nefarius_WieMechanik_05_02");	//Ключ должен точно войти в кольцевидное углубление рядом с порталом.
+};
 
 instance DIA_Addon_Nefarius_WieMechanik(C_Info)
 {
@@ -93,7 +101,7 @@ instance DIA_Addon_Nefarius_WieMechanik(C_Info)
 
 func int DIA_Addon_Nefarius_WieMechanik_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_Nefarius_keineahnung))
+	if(Npc_KnowsInfo(other,DIA_Addon_Nefarius_keineahnung) && (Portal_Activated == FALSE))
 	{
 		return TRUE;
 	};
@@ -107,7 +115,7 @@ func void DIA_Addon_Nefarius_WieMechanik_Info()
 		AI_Output(self,other,"DIA_Addon_Nefarius_WieMechanik_05_01");	//Похоже, что пропавшие части орнамента складываются в ключ.
 		AI_Output(self,other,"DIA_Addon_Nefarius_WieMechanik_05_03");	//Он-то и нужен нам, чтобы открыть портал.
 	};
-	AI_Output(self,other,"DIA_Addon_Nefarius_WieMechanik_05_02");	//Ключ должен точно войти в кольцевидное углубление рядом с порталом.
+	B_Nefarius_PortalKeyTip();
 };
 
 
@@ -264,11 +272,11 @@ func void DIA_Addon_Nefarius_MissingOrnaments_Info()
 			AI_Output(self,other,"DIA_Addon_Nefarius_MissingOrnaments_05_10");	//Следуй за мной!
 			AI_StopProcessInfos(self);
 			Npc_ExchangeRoutine(self,"PreRingritual");
-			B_StartOtherRoutine(KDW_1400_Addon_Saturas_NW,"PreRingritual");
-			B_StartOtherRoutine(KDW_1401_Addon_Cronos_NW,"PreRingritual");
-			B_StartOtherRoutine(KDW_1403_Addon_Myxir_NW,"PreRingritual");
-			B_StartOtherRoutine(KDW_1404_Addon_Riordian_NW,"PreRingritual");
-			B_StartOtherRoutine(KDW_1405_Addon_Merdarion_NW,"PreRingritual");
+			B_StartOtherRoutine(Saturas_NW,"PreRingritual");
+			B_StartOtherRoutine(Cronos_NW,"PreRingritual");
+			B_StartOtherRoutine(Myxir_NW,"PreRingritual");
+			B_StartOtherRoutine(Riordian_NW,"PreRingritual");
+			B_StartOtherRoutine(Merdarion_NW,"PreRingritual");
 		};
 	}
 	else
@@ -306,11 +314,11 @@ func void DIA_Addon_Nefarius_Ringritual_Info()
 	B_LogEntry(TOPIC_Addon_Ornament,"Я принес все части кольца Нефариусу. Теперь маги Воды смогут собрать кольцо.");
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Ringritual");
-	B_StartOtherRoutine(KDW_1400_Addon_Saturas_NW,"Ringritual");
-	B_StartOtherRoutine(KDW_1401_Addon_Cronos_NW,"Ringritual");
-	B_StartOtherRoutine(KDW_1403_Addon_Myxir_NW,"Ringritual");
-	B_StartOtherRoutine(KDW_1404_Addon_Riordian_NW,"Ringritual");
-	B_StartOtherRoutine(KDW_1405_Addon_Merdarion_NW,"Ringritual");
+	B_StartOtherRoutine(Saturas_NW,"Ringritual");
+	B_StartOtherRoutine(Cronos_NW,"Ringritual");
+	B_StartOtherRoutine(Myxir_NW,"Ringritual");
+	B_StartOtherRoutine(Riordian_NW,"Ringritual");
+	B_StartOtherRoutine(Merdarion_NW,"Ringritual");
 };
 
 
@@ -340,11 +348,11 @@ func void DIA_Addon_Nefarius_RingRitualEnds_Info()
 	AI_Output(self,other,"DIA_Addon_Nefarius_RingRitualEnds_05_03");	//Надеюсь, портал откроется.
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Start");
-	B_StartOtherRoutine(KDW_1400_Addon_Saturas_NW,"Start");
-	B_StartOtherRoutine(KDW_1401_Addon_Cronos_NW,"Start");
-	B_StartOtherRoutine(KDW_1403_Addon_Myxir_NW,"Start");
-	B_StartOtherRoutine(KDW_1404_Addon_Riordian_NW,"Start");
-	B_StartOtherRoutine(KDW_1405_Addon_Merdarion_NW,"Start");
+	B_StartOtherRoutine(Saturas_NW,"Start");
+	B_StartOtherRoutine(Cronos_NW,"Start");
+	B_StartOtherRoutine(Myxir_NW,"Start");
+	B_StartOtherRoutine(Riordian_NW,"Start");
+	B_StartOtherRoutine(Merdarion_NW,"Start");
 	RitualRingRuns = LOG_SUCCESS;
 	B_LogEntry(TOPIC_Addon_Ornament,"Украшенное кольцо восстановлено. Я должен забрать его у Сатураса.");
 };
@@ -371,7 +379,13 @@ func int DIA_Addon_Nefarius_OpenedPortal_Condition()
 func void DIA_Addon_Nefarius_OpenedPortal_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Nefarius_OpenedPortal_15_00");	//Что теперь?
-	AI_Output(self,other,"DIA_Addon_Nefarius_WieMechanik_05_02");	//Ключ должен точно войти в кольцевидное углубление рядом с порталом.
-	AI_Output(self,other,"DIA_Addon_Nefarius_OpenedPortal_05_01");	//Чего ты ждешь? Отойди с дороги.
+	if(Portal_Activated == FALSE)
+	{
+		B_Nefarius_PortalKeyTip();
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Nefarius_OpenedPortal_05_01");	//Чего ты ждешь? Отойди с дороги.
+	};
 };
 

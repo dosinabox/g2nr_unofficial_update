@@ -765,7 +765,9 @@ func void DIA_Harad_SellBlades_Info()
 		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Harad_SellBlades_12_03");	//Отлично. Держи, что заработал.
 		lohn = ((anzahl_common * Value_Common1) + (anzahl_schwert1 * Value_Schwert1) + (anzahl_schwert4 * Value_Schwert4) + (anzahl_rubinklinge * Value_Rubinklinge) + (anzahl_elbastardo * Value_ElBastardo)) / 3;
+		HaradSwordsCounter += gesamt;
 		B_GiveInvItems(self,other,ItMi_Gold,lohn);
+		ApprenticeGoldCounter += lohn;
 //		AI_EquipBestMeleeWeapon(other);
 	};
 };

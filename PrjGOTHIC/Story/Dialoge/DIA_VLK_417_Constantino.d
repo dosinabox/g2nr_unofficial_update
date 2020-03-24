@@ -756,19 +756,24 @@ func void DIA_Constantino_MushroomsRunning_Info()
 
 func void DIA_Constantino_MushroomsRunning_Sell()
 {
+	var int Mushroom1_Count;
+	var int Mushroom2_Count;
 	var int Dunkelpilz_dabei;
 	Dunkelpilz_dabei = FALSE;
 	if(Npc_HasItems(other,ItPl_Mushroom_01))
 	{
+		Mushroom1_Count = Npc_HasItems(other,ItPl_Mushroom_01);
 		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_00");	//Я принес несколько черных грибов.
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Sell_10_01");	//Ах! Это лучшие грибы! Отлично! Вот твое золото!
 		Dunkelpilz_dabei = TRUE;
-		Constantino_DunkelpilzCounter = Constantino_DunkelpilzCounter + Npc_HasItems(other,ItPl_Mushroom_01);
-		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItPl_Mushroom_01) * Value_Mushroom_01);
-		B_GiveInvItems(other,self,ItPl_Mushroom_01,Npc_HasItems(other,ItPl_Mushroom_01));
+		Constantino_DunkelpilzCounter += Mushroom1_Count;
+		ApprenticeGoldCounter += Mushroom1_Count * Value_Mushroom_01;
+		B_GiveInvItems(self,other,ItMi_Gold,Mushroom1_Count * Value_Mushroom_01);
+		B_GiveInvItems(other,self,ItPl_Mushroom_01,Mushroom1_Count);
 	};
 	if(Npc_HasItems(other,ItPl_Mushroom_02))
 	{
+		Mushroom2_Count = Npc_HasItems(other,ItPl_Mushroom_02);
 		if(Dunkelpilz_dabei == TRUE)
 		{
 			AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_02");	//А вот еще другие...
@@ -778,8 +783,10 @@ func void DIA_Constantino_MushroomsRunning_Sell()
 			AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_03");	//У меня здесь несколько грибов!
 		};
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Sell_10_04");	//Эти не так хороши, как черные грибы, но я все равно возьму их.
-		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItPl_Mushroom_02) * Value_Mushroom_02);
-		B_GiveInvItems(other,self,ItPl_Mushroom_02,Npc_HasItems(other,ItPl_Mushroom_02));
+		Constantino_BigMushroomsCounter += Mushroom2_Count;
+		ApprenticeGoldCounter += Mushroom2_Count * Value_Mushroom_02;
+		B_GiveInvItems(self,other,ItMi_Gold,Mushroom2_Count * Value_Mushroom_02);
+		B_GiveInvItems(other,self,ItPl_Mushroom_02,Mushroom2_Count);
 	};
 	Info_ClearChoices(DIA_Constantino_MushroomsRunning);
 };

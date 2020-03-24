@@ -507,6 +507,7 @@ instance ItPl_Perm_Herb(C_Item)
 
 func void Use_Perm_Herb()
 {
+	TotalPermEaten += 1;
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Perm_Herb);
 };
 

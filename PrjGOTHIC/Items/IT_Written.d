@@ -187,7 +187,6 @@ var int Lerne_Zweihand;
 
 instance ItWr_EinhandBuch(C_Item)
 {
-//	name = "Искусство сражения";
 	name = "Южное искусство обороны";
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;
@@ -240,7 +239,6 @@ func void UseEinhandBuch()
 
 instance ItWr_ZweihandBuch(C_Item)
 {
-//	name = "Тактика боя";
 	name = "Двойные блоки";
 	mainflag = ITEM_KAT_DOCS;
 	flags = 0;

@@ -744,6 +744,7 @@ func void PC_ItPo_Perm_Health_Info()
 		Npc_RemoveInvItems(hero,ItPl_Health_Herb_03,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
 		CreateInvItems(hero,ItPo_Perm_Health,1);
+		TotalPermEaten += 1;
 		Print(PRINT_AlchemySuccess);
 	}
 	else
@@ -781,6 +782,7 @@ func void PC_ItPo_Perm_Mana_Info()
 		Npc_RemoveInvItems(hero,ItPl_Mana_Herb_03,1);
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
 		CreateInvItems(hero,ItPo_Perm_Mana,1);
+		TotalPermEaten += 1;
 		Print(PRINT_AlchemySuccess);
 	}
 	else
@@ -857,6 +859,7 @@ func void PC_ItPo_Dex_Info()
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
 		CreateInvItems(hero,ItPo_Perm_DEX,1);
 		TotalDexEaten += 1;
+		TotalPermEaten += 1;
 		Print(PRINT_AlchemySuccess);
 	}
 	else
@@ -895,6 +898,7 @@ func void PC_ItPo_Strg_Info()
 		Npc_RemoveInvItems(hero,ItPl_Perm_Herb,1);
 		CreateInvItems(hero,ItPo_Perm_STR,1);
 		TotalStrEaten += 1;
+		TotalPermEaten += 1;
 		Print(PRINT_AlchemySuccess);
 	}
 	else

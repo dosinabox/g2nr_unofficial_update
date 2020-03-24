@@ -1545,11 +1545,10 @@ func void Use_StatsBook()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
-	Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Red_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Red_R.tga",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
-	Doc_SetMargins(nDocID,0,275,20,30,20,1);
-	Doc_PrintLine(nDocID,0,"");
+	Doc_SetMargins(nDocID,0,265,20,30,20,1);
 	Doc_PrintLine(nDocID,0,"Убито:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Draconian)," людей-ящеров"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Dementor)," ищущих"));
@@ -1562,6 +1561,7 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalMushroomsEaten)," черных грибов"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalDexEaten)," гоблинских ягод"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStrEaten)," драконьих корней"));
+	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalPermEaten)," царских щавелей"));
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Отдано:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalStoneplatesForVatras)," табличек Ватрасу"));
@@ -1578,10 +1578,26 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(OrkRingCounter)," колец Хагену"));
 	};
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
-	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Shell_Opener)," открытых моллюсков"));
-	Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-	Doc_PrintLine(nDocID,1,"");
+	if(Player_IsApprentice == APP_Constantino)
+	{
+		Doc_PrintLine(nDocID,0,"Ремесло (Константино):");
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Constantino_DunkelpilzCounter)," черных грибов продано"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Constantino_BigMushroomsCounter)," пищи рудокопа продано"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter)," золотых получено"));
+	}
+	else if(Player_IsApprentice == APP_Bosper)
+	{
+		Doc_PrintLine(nDocID,0,"Ремесло (Боспер):");
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(BosperFurCounter)," шкур продано"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter)," золотых получено"));
+	}
+	else if(Player_IsApprentice == APP_Harad)
+	{
+		Doc_PrintLine(nDocID,0,"Ремесло (Гарад):");
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(HaradSwordsCounter)," мечей продано"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter)," золотых получено"));
+	};
+	Doc_SetMargins(nDocID,-1,10,20,275,20,1);
 	Doc_PrintLine(nDocID,1,"Молитвы Инносу:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_GoldGiven)," золотых отдано"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_Str)," силы получено"));
@@ -1605,6 +1621,8 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(BeliarWeapCurrentLvL)," уровень (уничтожен)"));
 	};
 	Doc_PrintLine(nDocID,1,"");
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(TotalThefts)," успешных краж"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Shell_Opener)," открытых моллюсков"));
 	if(HardModeEnabled == TRUE)
 	{
 		Doc_PrintLine(nDocID,1,"Сложность: повышенная");
@@ -1617,7 +1635,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 23/03/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 24/03/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		Doc_PrintLine(nDocID,1,"Игра начата в оригинале");
