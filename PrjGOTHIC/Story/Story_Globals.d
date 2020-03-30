@@ -1311,3 +1311,5 @@ var int Opened_SchnellerHering;
 var int Opened_MushroomMana;
 var int Opened_MegaDrink;
 var int Portal_Activated;
+var int G1BodySkin;
+var int SequelBodySkin;

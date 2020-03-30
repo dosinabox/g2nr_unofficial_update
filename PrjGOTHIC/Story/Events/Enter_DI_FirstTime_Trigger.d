@@ -10,7 +10,7 @@ func void enter_di_firsttime_trigger()
 	if(hero.attribute[ATR_DEXTERITY] < 15)
 	{
 		Wld_InsertItem(ItPo_Perm_DEX,"FP_ITEM_DI_ENTER_05");
-	};	*/
+	};*/
 	if(EnterDI_Kapitel6 == FALSE)
 	{
 		if(hero.attribute[ATR_DEXTERITY] <= 17)

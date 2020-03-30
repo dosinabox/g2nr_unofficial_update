@@ -1545,10 +1545,10 @@ func void Use_StatsBook()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"Book_Red_L.tga",0);
-	Doc_SetPage(nDocID,1,"Book_Red_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Blue_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Blue_R.tga",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
-	Doc_SetMargins(nDocID,0,265,20,30,20,1);
+	Doc_SetMargins(nDocID,0,270,20,30,20,1);
 	Doc_PrintLine(nDocID,0,"Убито:");
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Draconian)," людей-ящеров"));
 	Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Stats_Killed_Dementor)," ищущих"));
@@ -1625,17 +1625,11 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Shell_Opener)," открытых моллюсков"));
 	if(HardModeEnabled == TRUE)
 	{
-		Doc_PrintLine(nDocID,1,"Сложность: повышенная");
-		Doc_PrintLine(nDocID,1,ConcatStrings("Модификатор опыта: -",IntToString(HardModeXPModifier)));
-	}
-	else
-	{
-		Doc_PrintLine(nDocID,1,"Сложность: стандарт");
-		Doc_PrintLine(nDocID,1,"Модификатор опыта: нет");
+		Doc_PrintLine(nDocID,1,ConcatStrings(ConcatStrings("Опыт снижен на ",IntToString(HardModeXPModifier)),"%"));
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 24/03/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 30/03/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		Doc_PrintLine(nDocID,1,"Игра начата в оригинале");

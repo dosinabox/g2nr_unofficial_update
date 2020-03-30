@@ -286,7 +286,19 @@ func void B_SetHeroSkin()
 {
 	if((MILArmor_Equipped == TRUE) || (NOVArmor_Equipped == TRUE) || (SLDArmor_Equipped == TRUE) || (BDTArmor_Equipped == TRUE))
 	{
-		Mdl_SetVisualBody(hero,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_N,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	}
+	else if(G1BodySkin == TRUE)
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_G1Player,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	}
+	else if(SequelBodySkin == TRUE)
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_SequelPlayer,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	}
+	else
+	{
+		Mdl_SetVisualBody(hero,"hum_body_Naked0",BodyTex_G2Player,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 	};
 };
 

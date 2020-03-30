@@ -34,7 +34,7 @@ instance SH(Npc_Default)
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player,-1);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_G1Player,-1);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	daily_routine = Rtn_Start_9999;
@@ -741,13 +741,13 @@ func void StoryHelper_Cavalorn()
 	//Где же пропавшие люди?
 	MIS_Addon_Vatras_WhereAreMissingPeople = LOG_SUCCESS;
 	//Кольцо колец :)
-	CreateInvItems(hero,ItRi_Ranger_Addon,1);	
+	CreateInvItems(hero,ItRi_Ranger_Addon,1);
 	//Найти каменные круги
 	MIS_Addon_Nefarius_BringMissingOrnaments = LOG_RUNNING;
 	//...и Кавалорн отправился в один из них
 	B_StartotherRoutine(BAU_4300_Addon_Cavalorn,"OrnamentSteinring");
 	//Игрок получил карту кругов
-	CreateInvItems(hero,ItWr_Map_NewWorld_Ornaments_Addon,1);	
+	CreateInvItems(hero,ItWr_Map_NewWorld_Ornaments_Addon,1);
 	AI_StopProcessInfos(self);
 };
 

@@ -17,7 +17,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Light,5);
 		CreateInvItems(slf,ItSc_Firebolt,5);
 		CreateInvItems(slf,ItSc_LightHeal,5);
-		CreateInvItems(slf,ItSc_SumGobSkel,5);
+		CreateInvItems(slf,ItSc_SumGobSkel,2);
 		CreateInvItems(slf,ItSc_Windfist,1);
 		CreateInvItems(slf,ItSc_Zap,5);
 		CreateInvItems(slf,ItFo_Wine,3);
@@ -42,7 +42,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Health_02,2);
 		CreateInvItems(slf,ItPo_Mana_01,14);
 		CreateInvItems(slf,ItSc_InstantFireball,5);
-		CreateInvItems(slf,ItSc_SumWolf,5);
+		CreateInvItems(slf,ItSc_SumWolf,2);
 		CreateInvItems(slf,ItSc_Windfist,4);
 		CreateInvItems(slf,ItSc_Sleep,2);
 		CreateInvItems(slf,ItAm_Prot_Edge_01,1);
@@ -71,7 +71,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_MediumHeal,5);
 		CreateInvItems(slf,ItSc_Firestorm,4);
 		CreateInvItems(slf,ItSc_ThunderBall,2);
-		CreateInvItems(slf,ItSc_SumSkel,3);
+		CreateInvItems(slf,ItSc_SumSkel,1);
 		CreateInvItems(slf,ItSc_Fear,2);
 		CreateInvItems(slf,ItSc_IceCube,3);
 		CreateInvItems(slf,ItSc_TrfGiantBug,1);
@@ -102,8 +102,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItSc_LightningFlash,5);
 		CreateInvItems(slf,ItSc_HarmUndead,2);
 		CreateInvItems(slf,ItSc_ChargeFireBall,3);
-		CreateInvItems(slf,ItSc_SumGol,4);
-		CreateInvItems(slf,ItSc_SumDemon,2);
+		CreateInvItems(slf,ItSc_SumGol,1);
 		CreateInvItems(slf,ItSc_Firerain,2);
 		CreateInvItems(slf,ItSc_TrfSnapper,1);
 		CreateInvItems(slf,ItSc_TrfWarg,1);
@@ -125,7 +124,7 @@ func void B_GiveTradeInv_Gorax(var C_Npc slf)
 		CreateInvItems(slf,ItPo_Mana_02,40);
 		CreateInvItems(slf,ItSc_Pyrokinesis,5);
 		CreateInvItems(slf,ItSc_IceWave,4);
-		CreateInvItems(slf,ItSc_SumDemon,2);
+		CreateInvItems(slf,ItSc_SumDemon,1);
 		CreateInvItems(slf,ItSc_FullHeal,3);
 		CreateInvItems(slf,ItSc_TrfDragonSnapper,1);
 		if((hero.guild != GIL_NOV) && (hero.guild != GIL_NONE))

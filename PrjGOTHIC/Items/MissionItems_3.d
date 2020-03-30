@@ -245,8 +245,8 @@ func void Use_DementorObsessionBook()
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
-		Doc_SetPage(nDocID,0,"BOOK_MAGE_L.tga",0);
-		Doc_SetPage(nDocID,1,"BOOK_MAGE_R.tga",0);
+		Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
+		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_SetFont(nDocID,0,FONT_BookHeadline);
 		Doc_PrintLine(nDocID,0,"");
@@ -609,6 +609,7 @@ func void Use_Astronomy()
 		B_RaiseAttribute(self,ATR_MANA_MAX,2);
 		Npc_ChangeAttribute(self,ATR_MANA,2);
 		Print(Print_ReadAstronomy);
+		Snd_Play("Levelup");
 		Astronomy_Once = TRUE;
 	};
 };
@@ -1029,8 +1030,8 @@ func void Use_VinosKellergeister_Mis()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_RED_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_RED_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Red_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Red_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_PrintLines(nDocID,0,"Сила винограда");

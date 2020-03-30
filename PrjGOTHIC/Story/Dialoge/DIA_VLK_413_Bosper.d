@@ -810,10 +810,12 @@ func int DIA_Bosper_SellFur_Condition()
 
 func void DIA_Bosper_SellFur_Info()
 {
+	var int furs;
 	AI_Output(other,self,"DIA_Bosper_SellFur_15_00");	//Я принес несколько шкур для тебя...
-	if(Npc_HasItems(other,ItAt_Addon_KeilerFur) || Npc_HasItems(other,ItAt_SheepFur) || Npc_HasItems(other,ItAt_WolfFur) || Npc_HasItems(other,ItAt_IceWolfFur) || Npc_HasItems(other,ItAt_WargFur) || Npc_HasItems(other,ItAt_ShadowFur) || Npc_HasItems(other,ItAt_TrollFur) || Npc_HasItems(other,ItAt_TrollBlackFur))
+	furs = Npc_HasItems(other,ItAt_Addon_KeilerFur) + Npc_HasItems(other,ItAt_SheepFur) + Npc_HasItems(other,ItAt_WolfFur) + Npc_HasItems(other,ItAt_IceWolfFur) + Npc_HasItems(other,ItAt_WargFur) + Npc_HasItems(other,ItAt_ShadowFur) + Npc_HasItems(other,ItAt_TrollFur) + Npc_HasItems(other,ItAt_TrollBlackFur);
+	if(furs > 0)
 	{
-		BosperFurCounter += Npc_HasItems(other,ItAt_Addon_KeilerFur) + Npc_HasItems(other,ItAt_SheepFur) + Npc_HasItems(other,ItAt_WolfFur) + Npc_HasItems(other,ItAt_IceWolfFur) + Npc_HasItems(other,ItAt_WargFur) + Npc_HasItems(other,ItAt_ShadowFur) + Npc_HasItems(other,ItAt_TrollFur) + Npc_HasItems(other,ItAt_TrollBlackFur);
+		BosperFurCounter += furs;
 		ApprenticeGoldCounter += (Npc_HasItems(other,ItAt_Addon_KeilerFur) * Value_Keilerfur) + (Npc_HasItems(other,ItAt_SheepFur) * Value_SheepFur) + (Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur) + (Npc_HasItems(other,ItAt_IceWolfFur) * Value_IceWolfFur) + (Npc_HasItems(other,ItAt_WargFur) * Value_WargFur) + (Npc_HasItems(other,ItAt_ShadowFur) * Value_ShadowFur) + (Npc_HasItems(other,ItAt_TrollFur) * Value_TrollFur) + (Npc_HasItems(other,ItAt_TrollBlackFur) * Value_TrollBlackFur);
 		if(Npc_HasItems(other,ItAt_Addon_KeilerFur))
 		{

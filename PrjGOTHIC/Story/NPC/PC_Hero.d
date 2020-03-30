@@ -18,7 +18,7 @@ instance PC_Hero(Npc_Default)
 	attribute[ATR_HITPOINTS_MAX] = 40;
 	attribute[ATR_HITPOINTS] = 40;
 	Mdl_SetVisual(self,"HUMANS.MDS");
-	Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
+	Mdl_SetVisualBody(self,"hum_body_Naked0",BodyTex_G2Player,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 	B_SetFightSkills(self,10);
 };
 
@@ -396,7 +396,7 @@ instance PC_Bandit(Npc_Default)
 	Npc_SetTalentSkill(self,NPC_TALENT_PICKPOCKET,1);
 	B_AddFightSkill(self,NPC_TALENT_1H,60);
 	Mdl_SetVisual(self,"HUMANS.MDS");
-	Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,ITAR_Thorus_Addon);
+	Mdl_SetVisualBody(self,"hum_body_Naked0",BodyTex_G2Player,0,"Hum_Head_Pony",Face_N_Player,0,ITAR_Thorus_Addon);
 	EquipItem(self,ItMw_BeliarWeapon_1H_02);
 	CreateInvItems(self,ItMi_Gold,1000);
 	CreateInvItems(self,ItMi_GoldNugget_Addon,5);

@@ -2167,7 +2167,7 @@ func void INIT_SUB_NewWorld_Part_City_01()
 	Wld_AssignRoomToGuild("bogner",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("matteo",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("hotel",GIL_NONE);
-	Wld_AssignRoomToGuild("stadtkneipe",GIL_NONE);	
+	Wld_AssignRoomToGuild("stadtkneipe",GIL_NONE);
 	if(Fire_Contest == FALSE)
 	{
 		Wld_AssignRoomToGuild("zuris",GIL_VLK);
@@ -2466,7 +2466,7 @@ func void INIT_SUB_NewWorld_Part_Monastery_01()
 	Wld_AssignRoomToGuild("kloster02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("kloster03",GIL_NOV);
 	Wld_AssignRoomToGuild("kloster04",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("kloster05",GIL_NOV);	
+	Wld_AssignRoomToGuild("kloster05",GIL_NOV);
 	Wld_AssignRoomToGuild("kloster06",GIL_KDF);
 	Wld_AssignRoomToGuild("kloster07",GIL_KDF);
 	Wld_AssignRoomToGuild("kloster08",GIL_KDF);

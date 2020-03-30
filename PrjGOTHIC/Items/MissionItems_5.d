@@ -122,8 +122,8 @@ func void Use_HallsofIrdorath_Open()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_MAGE_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_MAGE_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,0,"");
@@ -173,8 +173,8 @@ func void Use_XardasSeamapBook_Mis()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_WOOD_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_WOOD_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);

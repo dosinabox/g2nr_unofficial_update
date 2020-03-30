@@ -403,8 +403,8 @@ func void Equip_ITAR_MIL_L()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		MILArmor_Equipped = TRUE;
+		B_SetHeroSkin();
 		if(MIL01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] += BA_Bonus01;
@@ -420,8 +420,8 @@ func void UnEquip_ITAR_MIL_L()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		MILArmor_Equipped = FALSE;
+		B_SetHeroSkin();
 		if(MIL01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] -= BA_Bonus01;
@@ -470,8 +470,8 @@ func void Equip_ITAR_MIL_M()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		MILArmor_Equipped = TRUE;
+		B_SetHeroSkin();
 		if(MIL01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] += BA_Bonus01;
@@ -487,8 +487,8 @@ func void UnEquip_ITAR_MIL_M()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		MILArmor_Equipped = FALSE;
+		B_SetHeroSkin();
 		if(MIL01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] -= BA_Bonus01;
@@ -707,8 +707,8 @@ func void Equip_ITAR_SLD_L()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = TRUE;
+		B_SetHeroSkin();
 		if(SLD01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] += BA_Bonus01;
@@ -724,8 +724,8 @@ func void UnEquip_ITAR_SLD_L()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = FALSE;
+		B_SetHeroSkin();
 		if(SLD01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] -= BA_Bonus01;
@@ -806,8 +806,8 @@ func void Equip_ITAR_SLD_M()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = TRUE;
+		B_SetHeroSkin();
 		if(SLD01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] += BA_Bonus01;
@@ -823,8 +823,8 @@ func void UnEquip_ITAR_SLD_M()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = FALSE;
+		B_SetHeroSkin();
 		if(SLD01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] -= BA_Bonus01;
@@ -873,8 +873,8 @@ func void Equip_ITAR_SLD_H()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = TRUE;
+		B_SetHeroSkin();
 		if(SLD01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] += BA_Bonus01;
@@ -890,8 +890,8 @@ func void UnEquip_ITAR_SLD_H()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		SLDArmor_Equipped = FALSE;
+		B_SetHeroSkin();
 		if(SLD01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] -= BA_Bonus01;
@@ -1151,8 +1151,8 @@ func void Equip_ITAR_NOV_L()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		NOVArmor_Equipped = TRUE;
+		B_SetHeroSkin();
 		if(NOV01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] += BA_Bonus01;
@@ -1168,8 +1168,8 @@ func void UnEquip_ITAR_NOV_L()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		NOVArmor_Equipped = FALSE;
+		B_SetHeroSkin();
 		if(NOV01_Equipped == TRUE)
 		{
 			self.protection[PROT_EDGE] -= BA_Bonus01;
@@ -1445,8 +1445,8 @@ func void Equip_ITAR_BDT()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		BDTArmor_Equipped = TRUE;
+		B_SetHeroSkin();
 	};
 };
 
@@ -1454,8 +1454,8 @@ func void UnEquip_ITAR_BDT()
 {
 	if(Npc_IsPlayer(self))
 	{
-		Mdl_SetVisualBody(self,"hum_body_Naked0",9,0,"Hum_Head_Pony",Face_N_Player,0,NO_ARMOR);
 		BDTArmor_Equipped = FALSE;
+		B_SetHeroSkin();
 	};
 };
 

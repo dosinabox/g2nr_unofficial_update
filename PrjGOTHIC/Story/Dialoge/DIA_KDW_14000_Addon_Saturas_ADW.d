@@ -843,7 +843,7 @@ func void DIA_Addon_Saturas_TalkedToGhost_kammern()
 	AI_Output(other,self,"DIA_Addon_Saturas_TalkedToGhost_kammern_15_00");	//Что такое эти Залы Аданоса?
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_kammern_14_01");	//Теперь нам известно, что не только ворота закрывают доступ к тому, что спрятано в глубинах храма.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_kammern_14_02");	//На твоем пути встретятся три зала, каждый из которых предназначен для того, чтобы уничтожить любого непрошеного гостя.
-	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_kammern_14_03");	//Ключ к тому, чтобы решить загадки Залов Аданоса - цветные реликвии зодчих.
+	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_kammern_14_03");	//Ключ к тому, чтобы разрешить загадки Залов Аданоса - цветные реликвии зодчих.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_kammern_14_04");	//Когда ты соберешь все реликвии и поймешь, о чем говорят нанесенные на них надписи, ты сможешь попасть во внутреннее святилище храма.
 	AI_Output(self,other,"DIA_Addon_Saturas_TalkedToGhost_kammern_14_05");	//Не знаю, смог ли Ворон решить головоломки храма, но если ему это удалось, то у нас начнутся большие неприятности.
 	Log_CreateTopic(TOPIC_Addon_Kammern,LOG_MISSION);

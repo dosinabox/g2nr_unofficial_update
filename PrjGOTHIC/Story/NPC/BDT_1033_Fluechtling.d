@@ -12,7 +12,7 @@ instance BDT_1033_Fluechtling(Npc_Default)
 	EquipItem(self,ItMw_1h_Sld_Sword);
 	CreateInvItems(self,ItWr_MorgahardTip,1);
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart_Graham,BodyTex_Player,ITAR_Beggar);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_NormalBart_Graham,BodyTex_G1Player,ITAR_Beggar);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);

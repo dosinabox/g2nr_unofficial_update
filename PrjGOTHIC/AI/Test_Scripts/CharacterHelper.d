@@ -66,7 +66,7 @@ instance CH(Npc_Default)
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player,-1);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_G1Player,-1);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	daily_routine = Rtn_Start_0;
@@ -3664,8 +3664,8 @@ func void CH_Overlay_Info()
 	Info_AddChoice(CH_Overlay,"Солдат",CH_Overlay_Militia);
 	Info_AddChoice(CH_Overlay,"Крутой",CH_Overlay_Arrogance);
 	Info_AddChoice(CH_Overlay,"Спокойный",CH_Overlay_Relaxed);
-	Info_AddChoice(CH_Overlay,"Уставший",CH_Overlay_Tired);	
-	Info_AddChoice(CH_Overlay,"Стандарт",CH_Overlay_Clear);	
+	Info_AddChoice(CH_Overlay,"Уставший",CH_Overlay_Tired);
+	Info_AddChoice(CH_Overlay,"Стандарт",CH_Overlay_Clear);
 };
 
 func void CH_Overlay_BACK()
@@ -3718,5 +3718,77 @@ func void CH_Overlay_Clear()
 	Mdl_RemoveOverlayMDS(other,"Humans_Relaxed.mds");
 	Mdl_RemoveOverlayMDS(other,"Humans_Tired.mds");
 	Info_ClearChoices(CH_Overlay);
+};
+
+instance CH_Skin(C_Info)
+{
+	npc = ch;
+	nr = 37;
+	condition = CH_Skin_Condition;
+	information = CH_Skin_Info;
+	permanent = TRUE;
+	description = "Изменить одежду";
+};
+
+
+func int CH_Skin_Condition()
+{
+	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Skin_Info()
+{
+	Info_ClearChoices(CH_Skin);
+	Info_AddChoice(CH_Skin,Dialog_Back,CH_Skin_BACK);
+	if(G1BodySkin == TRUE)
+	{
+		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1 (используется)",CH_Skin_G1);
+	}
+	else if(SequelBodySkin == TRUE)
+	{
+		Info_AddChoice(CH_Skin,"Сиквел (используется)",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
+	}
+	else
+	{
+		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2 (используется)",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
+	};
+};
+
+func void CH_Skin_BACK()
+{
+	Info_ClearChoices(CH_Skin);
+};
+
+func void CH_Skin_G1()
+{
+	G1BodySkin = TRUE;
+	SequelBodySkin = FALSE;
+	B_SetHeroSkin();
+	Info_ClearChoices(CH_Skin);
+};
+
+func void CH_Skin_G2()
+{
+	G1BodySkin = FALSE;
+	SequelBodySkin = FALSE;
+	B_SetHeroSkin();
+	Info_ClearChoices(CH_Skin);
+};
+
+func void CH_Skin_Sequel()
+{
+	G1BodySkin = FALSE;
+	SequelBodySkin = TRUE;
+	B_SetHeroSkin();
+	Info_ClearChoices(CH_Skin);
 };
 
