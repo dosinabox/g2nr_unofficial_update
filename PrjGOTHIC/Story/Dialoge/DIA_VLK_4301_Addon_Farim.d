@@ -185,12 +185,20 @@ func void DIA_Addon_Farim_MartinHelps_Info()
 	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_04");	//Мартин, интендант паладинов, хочет выслушать твою историю об ополчении и рыбе.
 	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_05");	//Думаешь, он сможет сделать так, чтобы люди из ополчения оставили меня в покое?
 	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_06");	//Он так сказал.
-	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_07");	//Отлично! Спасибо тебе! Мне нечем тебе заплатить... Хотя постой...
-	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_08");	//Я нашел этот странный камень на одном из островов у побережья Хориниса.
-	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_09");	//Не думаю, что он очень ценный, но такой человек, как ты, наверняка найдет ему применение.
-	B_GiveInvItems(self,other,ItMi_Aquamarine,1);
 	MIS_Addon_Farim_PaladinFisch = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_Farim_PaladinFisch);
+	if(Npc_HasItems(other,ItMi_Aquamarine))
+	{
+		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_07");	//Отлично! Спасибо тебе. Мне нечем тебе заплатить... Хотя постой...
+		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_08");	//Я нашел этот странный камень на одном из островов у побережья Хориниса.
+		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_09");	//Не думаю, что он очень ценный, но такой человек, как ты, наверняка найдет ему применение.
+		B_GiveInvItems(self,other,ItMi_Aquamarine,1);
+		B_GivePlayerXP(XP_Addon_Farim_PaladinFisch);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_07_add");	//Отлично! Мне нечем тебе заплатить... Спасибо тебе...
+		B_GivePlayerXP(XP_Addon_Farim_PaladinFisch / 2);
+	};
 };
 
 
@@ -246,11 +254,7 @@ func void DIA_Addon_Farim_William_Info()
 	AI_Output(other,self,"DIA_Addon_Farim_William_15_00");	//Пропал твой приятель Вильям?
 	AI_Output(self,other,"DIA_Addon_Farim_William_11_01");	//Именно так. Он был рыбаком, но на мой взгляд он слишком зазнался.
 	AI_Output(self,other,"DIA_Addon_Farim_William_11_02");	//Ему следовало держаться подальше от этой шайки.
-	Farim_Day = Wld_GetDay();
-	if(Wld_IsTime(23,0,23,59))
-	{
-		Farim_Day += 1;
-	};
+	Farim_Day = B_GetDayPlus();
 	if(!Npc_KnowsInfo(other,DIA_Addon_Garvell_MissingPeopleMore))
 	{
 		if(MissingPeopleReturnedHome == FALSE)

@@ -66,7 +66,7 @@ instance CH(Npc_Default)
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_G1Player,-1);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,-1);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	daily_routine = Rtn_Start_0;
@@ -3745,18 +3745,28 @@ func void CH_Skin_Info()
 	Info_AddChoice(CH_Skin,Dialog_Back,CH_Skin_BACK);
 	if(G1BodySkin == TRUE)
 	{
+		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
 		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
 		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
 		Info_AddChoice(CH_Skin,"Готика 1 (используется)",CH_Skin_G1);
 	}
 	else if(SequelBodySkin == TRUE)
 	{
+		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
 		Info_AddChoice(CH_Skin,"Сиквел (используется)",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
+	}
+	else if(NakedBodySkin == TRUE)
+	{
+		Info_AddChoice(CH_Skin,"Без одежды (используется)",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
 		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
 		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
 	}
 	else
 	{
+		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
 		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
 		Info_AddChoice(CH_Skin,"Готика 2 (используется)",CH_Skin_G2);
 		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
@@ -3772,6 +3782,7 @@ func void CH_Skin_G1()
 {
 	G1BodySkin = TRUE;
 	SequelBodySkin = FALSE;
+	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	Info_ClearChoices(CH_Skin);
 };
@@ -3780,6 +3791,7 @@ func void CH_Skin_G2()
 {
 	G1BodySkin = FALSE;
 	SequelBodySkin = FALSE;
+	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	Info_ClearChoices(CH_Skin);
 };
@@ -3788,6 +3800,16 @@ func void CH_Skin_Sequel()
 {
 	G1BodySkin = FALSE;
 	SequelBodySkin = TRUE;
+	NakedBodySkin = FALSE;
+	B_SetHeroSkin();
+	Info_ClearChoices(CH_Skin);
+};
+
+func void CH_Skin_Naked()
+{
+	G1BodySkin = FALSE;
+	SequelBodySkin = FALSE;
+	NakedBodySkin = TRUE;
 	B_SetHeroSkin();
 	Info_ClearChoices(CH_Skin);
 };

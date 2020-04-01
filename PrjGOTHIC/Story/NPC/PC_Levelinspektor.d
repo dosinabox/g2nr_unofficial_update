@@ -14,7 +14,7 @@ instance PC_Levelinspektor(Npc_Default)
 	attribute[ATR_MANA] = 400;
 	attribute[ATR_HITPOINTS_MAX] = 400;
 	attribute[ATR_HITPOINTS] = 400;
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_G1Player,ITAR_PAL_H);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,ITAR_PAL_H);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
 	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_SNEAK,1);

@@ -1313,3 +1313,4 @@ var int Opened_MegaDrink;
 var int Portal_Activated;
 var int G1BodySkin;
 var int SequelBodySkin;
+var int NakedBodySkin;

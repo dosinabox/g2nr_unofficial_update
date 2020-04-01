@@ -162,11 +162,7 @@ func void DIA_Lothar_MESSAGE_Info()
 	Player_KnowsLordHagen = TRUE;
 	if(!Npc_KnowsInfo(other,DIA_Lothar_Hagen))
 	{
-		Lothar_Day = Wld_GetDay();
-		if(Wld_IsTime(22,0,23,59))
-		{
-			Lothar_Day += 1;
-		};
+		Lothar_Day = B_GetDayPlus();
 	};
 };
 
@@ -864,11 +860,7 @@ func void DIA_Lothar_Hagen_Info()
 	};
 	if(!Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
 	{
-		Lothar_Day = Wld_GetDay();
-		if(Wld_IsTime(22,0,23,59))
-		{
-			Lothar_Day += 1;
-		};
+		Lothar_Day = B_GetDayPlus();
 	};
 };
 

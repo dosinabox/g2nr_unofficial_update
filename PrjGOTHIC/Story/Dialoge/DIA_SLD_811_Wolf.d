@@ -357,6 +357,7 @@ func void DIA_Wolf_BringPlates_Info()
 	AI_Output(self,other,"DIA_Wolf_BringPlates_08_01");	//Хорошо! Давай их сюда.
 	B_GiveInvItems(other,self,ItAt_CrawlerPlate,10);
 	MIS_Wolf_BringCrawlerPlates = LOG_SUCCESS;
+	B_CheckLog();
 };
 
 
@@ -388,14 +389,10 @@ func void DIA_Wolf_ArmorReady_Info()
 	{
 		if(Wolf_MakeArmor == FALSE)
 		{
-			Wolf_Armor_Day = Wld_GetDay() + 1;
-			if(Wld_IsTime(23,0,23,59))
-			{
-				Wolf_Armor_Day += 1;
-			};
+			Wolf_Armor_Day = B_GetDayPlus();
 			Wolf_MakeArmor = TRUE;
 		};
-		if((Wolf_MakeArmor == TRUE) && (Wolf_Armor_Day > Wld_GetDay()))
+		if((Wolf_MakeArmor == TRUE) && (Wolf_Armor_Day >= Wld_GetDay()))
 		{
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_01");	//Скоро они будут готовы. Заходи завтра.
 		}

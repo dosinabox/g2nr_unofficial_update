@@ -882,7 +882,7 @@ func int DIA_Addon_Skip_AllRazorsDead_Condition()
 {
 	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_AllCanyonRazorDead())
 	{
-		if((Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_LIBRARY_31A") <= 6000) || (Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_MINE2_18") <= 10000))
+		if((Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_LIBRARY_31A") <= 6000) || (Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_MINE2_18") <= 6000))
 		{
 			return TRUE;
 		};

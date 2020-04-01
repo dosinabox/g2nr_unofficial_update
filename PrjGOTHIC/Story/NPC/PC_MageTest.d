@@ -15,7 +15,7 @@ instance PC_MageTest(Npc_Default)
 	attribute[ATR_HITPOINTS] = 400;
 	exp = XP_PER_LEVEL * ((level + 1) / 2) * (level + 1);
 	exp_next = XP_PER_LEVEL * ((level + 2) / 2) * (level + 1);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_G1Player,ITAR_KDW_L_Addon);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,ITAR_KDW_L_Addon);
 	Npc_SetTalentSkill(self,NPC_TALENT_MAGE,6);
 	Npc_SetTalentSkill(self,NPC_TALENT_PICKLOCK,1);
 	Npc_SetTalentSkill(self,NPC_TALENT_SNEAK,1);
