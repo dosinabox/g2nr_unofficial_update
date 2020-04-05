@@ -78,9 +78,9 @@ func void DIA_Addon_Emilio_Hi_Info()
 	AI_Output(self,other,"DIA_Addon_BDT_10015_Emilio_Hi_10_01");	//Я и есть рудокоп. Последний раз, когда я был в шахте, я устал как собака.
 	if(SC_KnowsRavensGoldmine == FALSE)
 	{
-		B_LogEntry(TOPIC_Addon_RavenKDW,LogText_Addon_RavensGoldmine);
-		Log_AddEntry(TOPIC_Addon_Sklaven,LogText_Addon_RavensGoldmine);
-		B_LogEntry(TOPIC_Addon_ScoutBandits,Log_Text_Addon_ScoutBandits);
+		B_LogEntries(TOPIC_Addon_RavenKDW,LogText_Addon_RavensGoldmine);
+		B_LogNextEntry(TOPIC_Addon_Sklaven,LogText_Addon_RavensGoldmine);
+		B_LogNextEntry(TOPIC_Addon_ScoutBandits,Log_Text_Addon_ScoutBandits);
 	};
 	SC_KnowsRavensGoldmine = TRUE;
 };

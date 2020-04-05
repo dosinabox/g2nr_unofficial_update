@@ -771,10 +771,10 @@ func void DIA_Addon_Lares_YourMission_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_10");	//На рынке постоянно дежурит кто-нибудь из наших. Но я не знаю, чья сейчас смена.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_11");	//Тебе лучше поговорить со всеми, кто там стоит. Когда наш человек увидит аквамариновое кольцо, он сам тебе откроется.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_12");	//Скажи ему, что мне нужен кто-то, кто сменит меня в порту.
-		Log_AddEntry(TOPIC_Addon_RingOfWater,"Ларес дал мне аквамариновое кольцо - тайный знак Кольца Воды. Если я буду его носить, другие члены Кольца Воды смогут мне открыться.");
 		Log_CreateTopic(TOPIC_Addon_BringRangerToLares,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_BringRangerToLares,LOG_Running);
-		B_LogEntry(TOPIC_Addon_BringRangerToLares,"Ларес хочет покинуть гавань. Я должен пройтись по рынку, надев аквамариновое кольцо, и попробовать найти кого-то, кто займет место Лареса.");
+		B_LogEntries(TOPIC_Addon_BringRangerToLares,"Ларес хочет покинуть гавань. Я должен пройтись по рынку, надев аквамариновое кольцо, и попробовать найти кого-то, кто займет место Лареса.");
+		B_LogNextEntry(TOPIC_Addon_RingOfWater,"Ларес дал мне аквамариновое кольцо - тайный знак Кольца Воды. Если я буду его носить, другие члены Кольца Воды смогут мне открыться.");
 		MIS_Lares_BringRangerToMe = LOG_Running;
 	};
 };
@@ -877,13 +877,13 @@ func void DIA_Addon_Lares_PeopleMissing_TellMe()
 	{
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
+		B_LogEntries(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
 		if(MissingPeopleReturnedHome == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 		};
-		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
+		B_LogNextEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
 		SC_HearedAboutMissingPeople = TRUE;
 	};
 };

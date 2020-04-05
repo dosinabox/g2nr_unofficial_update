@@ -474,8 +474,8 @@ func void DIA_Addon_Vatras_Bandittrader_Info()
 	MIS_Vatras_FindTheBanditTrader = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_Bandittrader,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Bandittrader,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
-	Log_AddEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
+	B_LogEntries(TOPIC_Addon_Bandittrader,"Некий торговец из Хориниса поставляет бандитам оружие. Ватрас хочет, чтобы я вывел его на чистую воду.");
+	B_LogNextEntry(TOPIC_Addon_RingOfWater,"Кольцо Воды занимается проблемой бандитов в Хоринисе.");
 };
 
 
@@ -1319,20 +1319,27 @@ func void DIA_Addon_Vatras_Stoneplate_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_Stoneplate_05_02");	//Существует несколько разновидностей таких табличек. В некоторых из них содержится информация по истории древних народов.
 	AI_Output(self,other,"DIA_Addon_Vatras_Stoneplate_05_03");	//Меня интересуют именно они. Принеси мне все, какие сможешь найти.
 	AI_Output(self,other,"DIA_Addon_Vatras_Stoneplate_05_04");	//Тебя будет ждать достойная награда.
-	Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Stoneplates,LogText_Addon_VatrasTrade);
+	if(PLAYER_TALENT_FOREIGNLANGUAGE == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
+	};
 	if(Erol_AskedKDW == FALSE)
 	{
+		B_LogEntries(TOPIC_Addon_Stoneplates,LogText_Addon_VatrasTrade);
 		if(CurrentLevel != DRAGONISLAND_ZEN)
 		{
 			Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-			Log_AddEntry(TOPIC_CityTrader,LogText_Addon_VatrasTrade);
+			B_LogNextEntry(TOPIC_CityTrader,LogText_Addon_VatrasTrade);
 		}
 		else
 		{
-			B_LogEntry(TOPIC_MyCrew,"Ватраса интересуют странные каменные таблички.");
+			B_LogNextEntry(TOPIC_MyCrew,"Ватраса интересуют странные каменные таблички.");
 		};
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Addon_Stoneplates,LogText_Addon_VatrasTrade);
 	};
 };
 

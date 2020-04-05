@@ -217,6 +217,14 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить фиксированный опыт по главам",StoryHelper_XP);
 	};
+	if(NewLogEnabled == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить показ заголовков при обновлении дневника",StoryHelper_Log);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить показ заголовков при обновлении дневника",StoryHelper_Log);
+	};
 };
 	
 instance StoryHelper_PatchSettings(C_Info)
@@ -421,6 +429,21 @@ func void StoryHelper_AlternativeSmithing()
 	{
 		AlternativeSmithing = TRUE;
 		PrintScreen("Альтернативное обучение у Беннета включено",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Log()
+{
+	if(NewLogEnabled == TRUE)
+	{
+		NewLogEnabled = FALSE;
+		PrintScreen("Показ заголовков выключен",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		NewLogEnabled = TRUE;
+		PrintScreen("Показ заголовков включен",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

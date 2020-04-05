@@ -24,6 +24,7 @@ func void Use_SaturasFirstMessage()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Дорогой Ватрас,");
 	Doc_PrintLines(nDocID,0,"Мы нашли портал. Ты был прав.");
 	Doc_PrintLines(nDocID,0,"Похоже, что это действительно были последователи Аданоса. Я прошу тебя проверить это еще раз, пользуясь моими записями.");
@@ -33,7 +34,7 @@ func void Use_SaturasFirstMessage()
 	Doc_PrintLines(nDocID,0,"Найденный нами орнамент имеет гораздо большее значение, чем мы думали. Похоже, что это артефакт-ключ. Увы, у нас только часть его. Мы должны заняться им.");
 	Doc_PrintLines(nDocID,0,"Отправь одного из членов Кольца Воды, чтобы он вернул нам орнамент. Если возможно, не посылай Кавалорна.");
 	Doc_PrintLines(nDocID,0,"Он и так достаточно потрудился, доставляя тебе это письмо.");
-	Doc_PrintLines(nDocID,0,"Надеюсь на то, что мы делаем - правильно.");
+	Doc_PrintLines(nDocID,0,"Надеюсь, то, что мы делаем - правильно.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Сатурас");
 	Doc_Show(nDocID);
@@ -41,14 +42,21 @@ func void Use_SaturasFirstMessage()
 	{
 		Log_CreateTopic(TOPIC_Addon_KDW,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_KDW,LOG_Running);
-		B_LogEntry(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
+		if(SC_KnowsRanger == FALSE)
+		{
+			B_LogEntries(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_Addon_KDW,"Я забрал у бандита письмо, которое Кавалорн должен был доставить магу Воды Ватрасу. Теперь это моя задача.");
+		};
 		Use_SaturasFirstMessage_OneTime = TRUE;
 	};
 	if(SC_KnowsRanger == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_RingOfWater,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_RingOfWater,LOG_Running);
-		Log_AddEntry(TOPIC_Addon_RingOfWater,"Существует какое-то сообщество, которое называется 'Кольцо Воды'. Похоже, что управляют им маги Воды.");
+		B_LogNextEntry(TOPIC_Addon_RingOfWater,"Существует какое-то сообщество, которое называется 'Кольцо Воды'. Похоже, что управляют им маги Воды.");
 	};
 	if(SC_IsRanger == FALSE)
 	{

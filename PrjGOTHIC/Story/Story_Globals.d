@@ -1314,3 +1314,5 @@ var int Portal_Activated;
 var int G1BodySkin;
 var int SequelBodySkin;
 var int NakedBodySkin;
+var int Log_SalandrilIsDead;
+var int NewLogEnabled;

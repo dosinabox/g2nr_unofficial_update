@@ -396,10 +396,10 @@ func void DIA_Addon_Greg_BanditArmor_Info()
 		AI_Output(self,other,"DIA_Addon_Greg_BanditArmor_01_07");	//Поговори с Бонесом, чтобы он дал тебе броню. Потом надевай ее и отправляйся в лагерь бандитов.
 		AI_Output(self,other,"DIA_Addon_Greg_BanditArmor_01_08");	//Я хочу узнать, почему эти ублюдки приперлись в нашу долину.
 		AI_Output(other,self,"DIA_Addon_Greg_BanditArmor_15_09");	//Будет сделано, капитан!
-		B_LogEntry(TOPIC_Addon_BDTRuestung,"После того как я закончу, я смогу забрать доспехи у Бонеса.");
+		B_LogEntries(TOPIC_Addon_BDTRuestung,"Я разобрался с бритвозубами для Грега и теперь могу забрать доспехи у Бонеса.");
 		Log_CreateTopic(TOPIC_Addon_ScoutBandits,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_ScoutBandits,LOG_Running);
-		Log_AddEntry(TOPIC_Addon_ScoutBandits,"Я должен узнать, для чего бандиты пришли в долину, и сообщить Грегу.");
+		B_LogNextEntry(TOPIC_Addon_ScoutBandits,"Я должен узнать, для чего бандиты пришли в долину, и сообщить Грегу.");
 		MIS_Greg_ScoutBandits = LOG_Running;
 	};
 };

@@ -173,6 +173,14 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		{
 			MIS_Gaan_Snapper = LOG_OBSOLETE;
 		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Salandril))
+	{
+		if((SC_KnowsProspektorSalandril == TRUE) && (Log_SalandrilIsDead == FALSE))
+		{
+			B_LogEntry(TOPIC_MinenAnteileKDF,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
+			Log_SalandrilIsDead = TRUE;
+		};
 	};
 	B_CheckLog();
 };

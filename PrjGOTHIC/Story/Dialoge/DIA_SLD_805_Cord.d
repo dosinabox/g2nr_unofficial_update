@@ -462,10 +462,10 @@ func void B_Cord_IDoItForYou_Dexter()
 	AI_Output(self,other,"Dia_Addon_Cord_IDoItForYou_Dexter_14_03");	//Конечно, это все довольно опасно.
 	AI_Output(self,other,"Dia_Addon_Cord_IDoItForYou_Dexter_14_04");	//Но ты справишься.
 	Info_ClearChoices(DIA_Addon_Cord_RangerHelp2GetSLD);
-	B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Главаря бандитов зовут Декстер.");
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_MissingPeople,"Наемник Корд ищет своего приятеля Патрика.");
+	B_LogEntries(TOPIC_Addon_MissingPeople,"Наемник Корд ищет своего приятеля Патрика.");
+	B_LogNextEntry(TOPIC_Addon_RangerHelpSLD,"Главаря бандитов зовут Декстер.");
 	MIS_Addon_Cord_Look4Patrick = LOG_Running;
 	Ranger_SCKnowsDexter = TRUE;
 };

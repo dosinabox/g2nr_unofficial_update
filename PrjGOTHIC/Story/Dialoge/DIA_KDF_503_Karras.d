@@ -208,18 +208,22 @@ func void DIA_Karras_JOB_Info()
 		{
 			AI_Output(self,other,"DIA_Karras_JOB_10_06");	//Но я могу продать их только членам нашего Ордена.
 			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
+			B_LogEntries(Topic_KlosterTrader,"Мастер Каррас из монастыря может продать мне свитки с заклинаниями. Но для этого я должен быть магом Огня.");
 			Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-			Log_AddEntry(Topic_KlosterTeacher,"Мастер Каррас обучает формулам вызова. Но для этого я должен быть магом Огня.");
+			B_LogNextEntry(Topic_KlosterTeacher,"Мастер Каррас обучает формулам вызова. Но для этого я должен быть магом Огня.");
 		}
 		else
 		{
 			Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-			B_LogEntry(Topic_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
-			if(!Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
+			if(Npc_KnowsInfo(other,DIA_Pyrokar_Lernen))
 			{
+				B_LogEntry(Topic_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
+			}
+			else
+			{
+				B_LogEntries(Topic_KlosterTrader,"Брат Каррас из монастыря может продать мне свитки с заклинаниями.");
 				Log_CreateTopic(Topic_KlosterTeacher,LOG_NOTE);
-				Log_AddEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
+				B_LogNextEntry(Topic_KlosterTeacher,"Брат Каррас обучает формулам вызова.");
 			};
 		};
 	};

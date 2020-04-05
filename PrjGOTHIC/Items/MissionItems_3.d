@@ -791,8 +791,6 @@ instance ItMi_UltharsHolyWater_Mis(C_Item)
 };
 
 
-var int ItWr_MinenAnteil_Mis_OneTime;
-
 instance ItWr_MinenAnteil_Mis(C_Item)
 {
 	name = "Акция рудника Хориниса";
@@ -831,15 +829,18 @@ func void Use_MinenAnteil_Mis()
 	Doc_PrintLine(nDocID,0,"      Королевский проспектор,");
 	Doc_PrintLine(nDocID,0,"                Саландрил");
 	Doc_Show(nDocID);
-	SC_KnowsProspektorSalandril = TRUE;
-	if(ItWr_MinenAnteil_Mis_OneTime == FALSE)
+	if(SC_KnowsProspektorSalandril == FALSE)
 	{
-		B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахты торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
-		if(Npc_IsDead(Salandril))
+		if(!Npc_IsDead(Salandril))
 		{
-			Log_AddEntry(TOPIC_MinenAnteileKDF,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
+			B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахт торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахт торговцам, зовут Саландрил. Он мертв. Мне нужно сообщить это Серпентесу.");
+			Log_SalandrilIsDead = TRUE;
 		};
-		ItWr_MinenAnteil_Mis_OneTime = TRUE;
+		SC_KnowsProspektorSalandril = TRUE;
 	};
 };
 

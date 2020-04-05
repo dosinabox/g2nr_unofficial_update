@@ -95,8 +95,11 @@ func void DIA_Addon_Myxir_Steintafeln_Info()
 	AI_Output(self,other,"DIA_Addon_Myxir_Steintafeln_12_01");	//Ќа них записаны знани€ древнего народа.
 	AI_Output(self,other,"DIA_Addon_Myxir_Steintafeln_12_02");	//Ќекоторые из них волшебным образом увеличивают магические или боевые способности.
 	AI_Output(self,other,"DIA_Addon_Myxir_Steintafeln_12_03");	//ƒл€ тех, кто способен их прочесть, они €вл€ютс€ насто€щим сокровищем.
-	Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
+	if(PLAYER_TALENT_FOREIGNLANGUAGE == FALSE)
+	{
+		Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
+	};
 	B_LogEntry(TOPIC_Addon_Stoneplates,"Ќа каменных табличках записаны древние знани€ зодчих. Ќекоторые из них могут волшебным образом увеличить познани€ в области сражений или магии. ќднако их нужно еще суметь прочитать.");
 };
 
@@ -123,12 +126,12 @@ func void DIA_Addon_Myxir_WillYouTeachMe_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Myxir_WillYouTeachMe_15_00");	//“ы можешь научить мен€ €зыку зодчих?
 	AI_Output(self,other,"DIA_Addon_Myxir_WillYouTeachMe_12_01");	// онечно, почему нет? я с радостью поделюсь с тобой своими знани€ми.
-	Myxir_Addon_TeachPlayer = TRUE;
 	Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Stoneplates,LogText_Addon_MyxirTeach);
+	B_LogEntries(TOPIC_Addon_Stoneplates,LogText_Addon_MyxirTeach);
 	Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
-	Log_AddEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_MyxirTeach);
+	B_LogNextEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_MyxirTeach);
+	Myxir_Addon_TeachPlayer = TRUE;
 };
 
 

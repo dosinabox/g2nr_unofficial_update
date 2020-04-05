@@ -81,9 +81,9 @@ func void DIA_Addon_Sancho_HI_Info()
 	AI_Output(self,other,"DIA_Addon_Sancho_HI_06_04");	//Но не думай, что это будет легко!
 	if(SC_KnowsRavensGoldmine == FALSE)
 	{
-		B_LogEntry(TOPIC_Addon_RavenKDW,LogText_Addon_RavensGoldmine);
-		Log_AddEntry(TOPIC_Addon_Sklaven,LogText_Addon_RavensGoldmine);
-		B_LogEntry(TOPIC_Addon_ScoutBandits,Log_Text_Addon_ScoutBandits);
+		B_LogEntries(TOPIC_Addon_RavenKDW,LogText_Addon_RavensGoldmine);
+		B_LogNextEntry(TOPIC_Addon_Sklaven,LogText_Addon_RavensGoldmine);
+		B_LogNextEntry(TOPIC_Addon_ScoutBandits,Log_Text_Addon_ScoutBandits);
 	};
 	SC_KnowsRavensGoldmine = TRUE;
 };

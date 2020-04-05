@@ -114,13 +114,13 @@ func void DIA_Addon_Saturas_ADWStart_wastun2()
 	MIS_ADDON_Saturas_GoToRaven = LOG_Running;
 	Log_CreateTopic(TOPIC_Addon_RavenKDW,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_RavenKDW,LOG_Running);
-	B_LogEntry(TOPIC_Addon_RavenKDW,"Ворон оскверняет святой храм Аданоса. Я должен остановить его, даже если мне придется его убить.");
+	B_LogEntries(TOPIC_Addon_RavenKDW,"Ворон оскверняет святой храм Аданоса. Я должен остановить его, даже если мне придется его убить.");
 	Log_CreateTopic(TOPIC_Addon_Sklaven,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Sklaven,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_Sklaven,"Сатурас хочет, чтобы я освободил рабов.");
+	B_LogNextEntry(TOPIC_Addon_Sklaven,"Сатурас хочет, чтобы я освободил рабов.");
 	Log_CreateTopic(TOPIC_Addon_Relicts,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Relicts,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_Relicts,"Сатурас хочет, чтобы я приносил ему все, что поможет узнать новую информацию о зодчих.");
+	B_LogNextEntry(TOPIC_Addon_Relicts,"Сатурас хочет, чтобы я приносил ему все, что поможет узнать новую информацию о зодчих.");
 	Info_AddChoice(DIA_Addon_Saturas_ADWStart,"Тогда я пойду.",DIA_Addon_Saturas_ADWStart_back);
 };
 
@@ -213,7 +213,7 @@ func void DIA_Addon_Saturas_PoorRanger_Info()
 	AI_Output(self,other,"DIA_Addon_Saturas_PoorRanger_14_02");	//Боюсь, он не ушел далеко.
 	Log_CreateTopic(TOPIC_Addon_Lance,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Lance,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_Lance,"Сатурас послал на болото человека по имени Ланс. Он боится, что Лансу не удалось далеко уйти.");
+	B_LogEntry(TOPIC_Addon_Lance,"Сатурас послал на болото человека по имени Ланс. Он боится, что Лансу не удалось далеко уйти.");
 };
 
 
@@ -1062,7 +1062,7 @@ func void DIA_Addon_Saturas_BeliarsWeapon_besser()
 	AI_Output(self,other,"DIA_Addon_Saturas_BeliarsWeapon_besser_14_03");	//Если ты вызовешь его недовольство, он обрушит на тебя свой гнев.
 	Log_CreateTopic(TOPIC_Addon_Klaue,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Klaue,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_Klaue,"Чтобы подчинить Коготь своей воле, я должен помолиться Белиару.");
+	B_LogEntry(TOPIC_Addon_Klaue,"Чтобы подчинить Коготь своей воле, я должен помолиться Белиару.");
 	B_Say(other,self,"$VERSTEHE");
 };
 

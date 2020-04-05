@@ -709,7 +709,7 @@ func void DIA_Lobart_ANDREHELPLOBART_Info()
 	AI_Output(other,self,"DIA_Lobart_ANDREHELPLOBART_15_00");	//Меня направил к тебе Андрэ. Я могу чем-нибудь помочь тебе?
 	AI_Output(self,other,"DIA_Lobart_ANDREHELPLOBART_05_01");	//Да, конечно. Меня уже тошнит от этих проклятых полевых хищников.
 	AI_Output(self,other,"DIA_Lobart_ANDREHELPLOBART_05_02");	//Прикончи их всех. Меня не волнует, как!
-	Log_AddEntry(TOPIC_Feldraeuber,"Поля Лобарта наводнены полевыми хищниками. Он хочет, чтобы я прогнал их.");
+	B_LogEntry(TOPIC_Feldraeuber,"Поля Лобарта наводнены полевыми хищниками. Он хочет, чтобы я прогнал их.");
 	MIS_LobartKillBugs = LOG_Running;
 	AI_StopProcessInfos(self);
 };

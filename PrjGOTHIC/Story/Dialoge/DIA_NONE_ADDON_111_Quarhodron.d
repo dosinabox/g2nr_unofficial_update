@@ -388,10 +388,10 @@ func void DIA_Addon_Quarhodron_GibMirKey_Info()
 	AI_Output(other,self,"DIA_Addon_Quarhodron_GibMirKey_15_10");	//Постой! Что находится в этих залах?
 	AI_Output(self,other,"DIA_Addon_Quarhodron_GibMirKey_11_11");	//(умирает) Силы покидают меня. Прощай! Когда-нибудь мы снова встретимся в стране мертвых.
 	AI_StopProcessInfos(self);
-	Log_AddEntry(TOPIC_Addon_Quarhodron,"Куарходрон дал мне каменную табличку, которая откроет мне вход в храм Аданоса.");
 	Log_CreateTopic(TOPIC_Addon_Kammern,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_Kammern,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Kammern,"Куарходрон сказал, что я должен быть осторожнее в 'Залах Аданоса'. Я должен выяснить, что он имел в виду, если не хочу попасть в ловушку.");
+	B_LogEntries(TOPIC_Addon_Kammern,"Куарходрон сказал, что я должен быть осторожнее в 'Залах Аданоса'. Я должен выяснить, что он имел в виду, если не хочу попасть в ловушку.");
+	B_LogNextEntry(TOPIC_Addon_Quarhodron,"Куарходрон дал мне каменную табличку, которая откроет мне вход в храм Аданоса.");
 	Ghost_SCKnowsHow2GetInAdanosTempel = TRUE;
 };
 

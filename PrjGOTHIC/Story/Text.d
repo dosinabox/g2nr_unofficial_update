@@ -812,6 +812,7 @@ const string PRINT_XPGained = "Опыт + ";
 const string PRINT_XPLost = "Опыт ";
 const string PRINT_LevelUp = "Повышение уровня!";
 const string PRINT_NewLogEntry = "Новая запись в дневнике";
+const string PRINT_NewLogEntries = "Новые записи в дневнике:";
 const string PRINT_TeleportTooFarAway = "Слишком далеко";
 const string PRINT_BiffsAnteil = "Доля Биффа: ";
 const string PRINT_BiffGold = " золотых";
@@ -854,6 +855,7 @@ const int YPOS_GoldTaken = 34;
 const int YPOS_ItemGiven = 37;
 const int YPOS_ItemTaken = 40;
 const int YPOS_LOGENTRY = 45;
+const int YPOS_LOGENTRY_NEW = 43;
 const int YPOS_LevelUp = 50;
 const int YPOS_XPGained = 55;
 

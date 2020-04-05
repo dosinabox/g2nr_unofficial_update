@@ -1401,14 +1401,14 @@ func void DIA_Bennet_DRACHENEIER_ok()
 		if(!Npc_IsDead(Brahim))
 		{
 			AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_08");	//Но сначала ты должен взять карту пещер у картографа в городе. Будет жаль, если ты найдешь не все яйца.
-			B_LogEntry(TOPIC_DRACHENEIER,"Я должен купить карту пещер у картографа в городе, чтобы быть уверенным, что я не пропущу часть яиц.");
+			Log_AddEntry(TOPIC_DRACHENEIER,"Я должен купить карту пещер у картографа в городе, чтобы быть уверенным, что я не пропущу часть яиц.");
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_Bennet_DRACHENEIER_ok_06_07");	//Вот. Возьми эту карту. Она поможет тебе найти пещеры.
 			CreateInvItems(self,ItWr_Map_Caves_MIS,1);
 			B_GiveInvItems(self,other,ItWr_Map_Caves_MIS,1);
-			B_LogEntry(TOPIC_DRACHENEIER,"Он дал мне карту пещер, возможно, она поможет мне.");
+			Log_AddEntry(TOPIC_DRACHENEIER,"Он дал мне карту пещер, возможно, она поможет мне.");
 		};
 	};
 	Info_ClearChoices(DIA_Bennet_DRACHENEIER);

@@ -430,8 +430,7 @@ func void DIA_Addon_Skip_AngusHank_Info()
 	Log_CreateTopic(TOPIC_Addon_SkipsGrog,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_SkipsGrog,LOG_Running);
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"Бандиты отобрали у Скипа 20 бутылок грога. Он хочет вернуть их.");
-	Log_AddEntry(TOPIC_Addon_SkipsGrog,"Ангус и Хэнк должны были встретиться с бандитами. С тех пор их никто не видел.");
-	Log_AddEntry(TOPIC_Addon_SkipsGrog,"Поиски Моргана и Билла прошли безуспешно.");
+	Log_AddEntry(TOPIC_Addon_SkipsGrog,"Ангус и Хэнк должны были встретиться с бандитами. С тех пор их никто не видел. Поиски Моргана и Билла прошли безуспешно.");
 };
 
 

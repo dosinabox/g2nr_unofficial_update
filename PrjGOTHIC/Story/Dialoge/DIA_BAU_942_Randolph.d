@@ -144,8 +144,8 @@ func void DIA_Randolph_Baltram_Info()
 	{
 		AI_Output(self,other,"DIA_Randolph_Baltram_06_01");	//Хорошо. Я уже все приготовил. Вот твой пакет.
 		B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
-		B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
-		Log_AddEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
+		B_LogEntries(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
+		B_LogNextEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
 	};
 	Lieferung_Geholt = TRUE;
 };
