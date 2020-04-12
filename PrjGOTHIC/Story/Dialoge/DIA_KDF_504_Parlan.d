@@ -210,7 +210,7 @@ func void DIA_Parlan_PETZMASTER_Info()
 		{
 			AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_02");	//И ты взвалил на себя груз новой вины!
 		};
-		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_03");	//Если бы было решать мне, ты был бы проклят на месте, ты убийца!
+		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_03");	//Если было бы решать мне, ты был бы проклят на месте! Ты убийца!
 		AI_Output(self,other,"DIA_Parlan_PETZMASTER_05_04");	//Но если ты заплатишь штраф за свое преступление, впрочем, мы простим тебе твои грехи.
 	};
 	if(B_GetGreatestPetzCrime(self) == CRIME_THEFT)

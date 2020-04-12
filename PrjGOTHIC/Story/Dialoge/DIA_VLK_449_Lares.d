@@ -2365,16 +2365,13 @@ func void DIA_Lares_AnyNews_Info()
 			AI_Output(other,self,"DIA_Lares_AnyNews_15_06");	//Как это случилось?
 			AI_Output(self,other,"DIA_Lares_AnyNews_09_07");	//Беннет пришел в город за покупками. Но вернуться ему было не суждено.
 			AI_Output(self,other,"DIA_Lares_AnyNews_09_08");	//Если хочешь узнать больше, расспроси Ходжеса, он был в городе вместе с Беннетом.
-			if(MIS_RescueBennet != LOG_Running)
-			{
-				MIS_RescueBennet = LOG_Running;
-				Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
-				B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
-			};
+			MIS_RescueBennet = LOG_Running;
+			Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+			B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
 			if(!Npc_KnowsInfo(other,DIA_Hodges_WhatHappened) || !Npc_KnowsInfo(other,DIA_Hodges_BennetsCrime))
 			{
-				B_LogEntry(TOPIC_RescueBennet,"Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
+				Log_AddEntry(TOPIC_RescueBennet,"Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
 			};
  		};
 	};

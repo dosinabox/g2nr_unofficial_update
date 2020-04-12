@@ -32,7 +32,7 @@ instance DIA_PAL_4_JOIN(C_Info)
 
 func int DIA_PAL_4_JOIN_Condition()
 {
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
 	{
 		return TRUE;
 	};
@@ -41,8 +41,15 @@ func int DIA_PAL_4_JOIN_Condition()
 func void DIA_PAL_4_JOIN_Info()
 {
 	AI_Output(other,self,"DIA_PAL_4_JOIN_15_00");	//Как мне стать паладином?
-	AI_Output(self,other,"DIA_PAL_4_JOIN_04_01");	//Если у тебя действительно серьезные намерения, то сначала ты должен поступить в услужение паладинам.
-	AI_Output(self,other,"DIA_PAL_4_JOIN_04_02");	//Иди в казармы и поговори с лордом Андрэ. Попробуй вступить в ополчение.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_PAL_4_JOIN_04_01");	//Если у тебя действительно серьезные намерения, то сначала ты должен поступить в услужение паладинам.
+		AI_Output(self,other,"DIA_PAL_4_JOIN_04_02");	//Иди в казармы и поговори с лордом Андрэ. Попробуй вступить в ополчение.
+	}
+	else if(other.guild == GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_PAL_4_JOIN_04_02_add");	//Иди в казармы и поговори с лордом Андрэ.
+	};
 	AI_Output(self,other,"DIA_PAL_4_JOIN_04_03");	//Возможно, там у тебя появится шанс проявить себя.
 };
 
@@ -70,6 +77,7 @@ func void DIA_PAL_4_PEOPLE_Info()
 	AI_Output(other,self,"DIA_PAL_4_PEOPLE_15_00");	//Кто командует здесь?
 	AI_Output(self,other,"DIA_PAL_4_PEOPLE_04_01");	//Лорд Хаген - главнокомандующий всеми войсками на этом острове. Он занимает дом губернатора, пока мы расквартированы здесь.
 	AI_Output(self,other,"DIA_PAL_4_PEOPLE_04_02");	//Но он очень занят. Если тебе что-то нужно, иди в казармы и поговори с лордом Андрэ.
+	Player_KnowsLordHagen = TRUE;
 };
 
 

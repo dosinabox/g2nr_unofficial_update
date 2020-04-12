@@ -282,7 +282,7 @@ func void DIA_Andre_PMSchulden_HowMuchAgain()
 	Info_ClearChoices(DIA_Andre_PMSchulden);
 	Info_ClearChoices(DIA_Andre_PETZMASTER);
 	Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там нужно?",DIA_Andre_PMSchulden_HowMuchAgain);
+	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
 	if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
 	{
 		Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
@@ -507,7 +507,10 @@ func void DIA_Andre_Message_Dragons()
 		AI_Output(self,other,"DIA_Andre_Message_Dragons_08_04");	//Я уверен, что ты достаточно умен и понимаешь это сам.
 	};
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_05");	//Так все-таки, зачем тебе нужно увидеть его?
-	Player_TalkedAboutDragonsToSomeone = TRUE;
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	{
+		Player_TalkedAboutDragonsToSomeone = TRUE;
+	};
 };
 
 func void DIA_Andre_Message_Personal()

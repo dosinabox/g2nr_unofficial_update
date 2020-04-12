@@ -25,6 +25,11 @@ func void DIA_Hagen_EXIT_Info()
 var int Hagen_LastPetzCounter;
 var int Hagen_LastPetzCrime;
 
+func void B_Hagen_CityLaws()
+{
+	AI_Output(self,other,"DIA_Hagen_PMSchulden_04_01");	//Ты не очень-то серьезно относишься к законам города, да?
+};
+
 instance DIA_Hagen_PMSchulden(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -60,7 +65,7 @@ func void DIA_Hagen_PMSchulden_Info()
 		{
 			Hagen_Schulden = 1000;
 		};
-		AI_Output(self,other,"DIA_Hagen_PMSchulden_04_01");	//Ты не очень-то серьезно относишься к законам города, да?
+		B_Hagen_CityLaws();
 		AI_Output(self,other,"DIA_Hagen_PMSchulden_04_02");	//Список твоих преступлений все растет и растет.
 		if(Hagen_Schulden < 1000)
 		{
@@ -113,7 +118,7 @@ func void DIA_Hagen_PMSchulden_Info()
 		Info_ClearChoices(DIA_Hagen_PMSchulden);
 		Info_ClearChoices(DIA_Hagen_PETZMASTER);
 		Info_AddChoice(DIA_Hagen_PMSchulden,"У меня нет столько золота!",DIA_Hagen_PETZMASTER_PayLater);
-		Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там нужно?",DIA_Hagen_PMSchulden_HowMuchAgain);
+		Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там на этот раз?",DIA_Hagen_PMSchulden_HowMuchAgain);
 		if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
 		{
 			Info_AddChoice(DIA_Hagen_PMSchulden,"Я хочу заплатить штраф!",DIA_Hagen_PETZMASTER_PayNow);
@@ -128,7 +133,7 @@ func void DIA_Hagen_PMSchulden_HowMuchAgain()
 	Info_ClearChoices(DIA_Hagen_PMSchulden);
 	Info_ClearChoices(DIA_Hagen_PETZMASTER);
 	Info_AddChoice(DIA_Hagen_PMSchulden,"У меня нет столько золота!",DIA_Hagen_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там нужно?",DIA_Hagen_PMSchulden_HowMuchAgain);
+	Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там на этот раз?",DIA_Hagen_PMSchulden_HowMuchAgain);
 	if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
 	{
 		Info_AddChoice(DIA_Hagen_PMSchulden,"Я хочу заплатить штраф!",DIA_Hagen_PETZMASTER_PayNow);
@@ -255,7 +260,7 @@ instance DIA_Lord_Hagen_Hallo(C_Info)
 
 func int DIA_Lord_Hagen_Hallo_Condition()
 {
-	if((hero.guild != GIL_NONE) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (Kapitel < 3))
+	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		return TRUE;
 	};
@@ -263,17 +268,30 @@ func int DIA_Lord_Hagen_Hallo_Condition()
 
 func void DIA_Lord_Hagen_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_00");	//Я уже слышал о тебе.
-	if((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (Lothar_Day < Wld_GetDay()))
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_03");	//Лотар докладывал, что ты хочешь поговорить со мной.
+		B_Hagen_CityLaws();
 	};
-	if(Npc_KnowsInfo(other,DIA_Lothar_EyeInnos) || (Andre_EyeInnos == TRUE))
+	if(((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (Lothar_Day < Wld_GetDay())) || Npc_KnowsInfo(other,DIA_Lothar_EyeInnos) || (Andre_EyeInnos == TRUE))
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_01");	//Ты чужеземец, который требует Глаз Инноса.
+		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_00");	//Я уже слышал о тебе.
+		if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen))
+		{
+			if(Lothar_Day < Wld_GetDay())
+			{
+				AI_Output(self,other,"DIA_Lord_Hagen_Add_04_03");	//Лотар докладывал, что ты хочешь поговорить со мной.
+			};
+		};
+		if(Npc_KnowsInfo(other,DIA_Lothar_EyeInnos) || (Andre_EyeInnos == TRUE))
+		{
+			AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_01");	//Ты чужеземец, который требует Глаз Инноса.
+		};
 	};
-	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_02");	//Я лорд Хаген.
-	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_03");	//Паладин короля, воин нашего владыки Инноса и главнокомандующий Хориниса.
+	if((other.guild != GIL_NONE) && (other.guild != GIL_NOV))
+	{
+		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_02");	//Я лорд Хаген.
+		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_03");	//Паладин короля, воин нашего владыки Инноса и главнокомандующий Хориниса.
+	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_04");	//Я очень занятой человек. Поэтому не трать мое время попусту. А теперь скажи, зачем ты здесь.
 	B_PlayerEnteredUpperCity();
 };

@@ -263,6 +263,17 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 	B_GiveInvItems(self,other,ItMi_UltharsHolyWater_Mis,1);
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_03");	//Возьми эту святую воду и окропи ей основание алтаря.
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_04");	//Со святыми словами очищения к алтарю вернется его былая сила.
+	MIS_Ulthar_HeileSchreine_PAL = LOG_Running;
+	Log_CreateTopic(TOPIC_Ulthar_HeileSchreine_PAL,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_Ulthar_HeileSchreine_PAL,LOG_Running);
+	if(!Npc_HasItems(other,ItWr_Map_Shrine_MIS) && !Npc_IsDead(Gorax) && (Gorax_Trade == FALSE))
+	{
+		B_LogEntries(TOPIC_Ulthar_HeileSchreine_PAL,"Ультар дал мне задание очистить при помощи святой воды все алтари, оскверненные врагом.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Ulthar_HeileSchreine_PAL,"Ультар дал мне задание очистить при помощи святой воды все алтари, оскверненные врагом.");
+	};
 	if(!Npc_HasItems(other,ItWr_Map_Shrine_MIS))
 	{
 		if(!Npc_IsDead(Gorax))
@@ -275,7 +286,7 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 			if(Gorax_Trade == FALSE)
 			{
 				Log_CreateTopic(Topic_KlosterTrader,LOG_NOTE);
-				B_LogEntry(Topic_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
+				B_LogNextEntry(Topic_KlosterTrader,"Мастер Горакс в монастыре может предоставить мне все, что мне нужно.");
 				Gorax_Trade = TRUE;
 			};
 		}
@@ -287,10 +298,6 @@ func void DIA_Ulthar_SCHREINEVERGIFTET_Info()
 		};
 	};
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_07");	//Теперь иди и выполняй свои поручения.
-	MIS_Ulthar_HeileSchreine_PAL = LOG_Running;
-	Log_CreateTopic(TOPIC_Ulthar_HeileSchreine_PAL,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Ulthar_HeileSchreine_PAL,LOG_Running);
-	B_LogEntry(TOPIC_Ulthar_HeileSchreine_PAL,"Ультар дал мне задание очистить при помощи святой воды все алтари, оскверненные врагом.");
 	AI_StopProcessInfos(self);
 };
 

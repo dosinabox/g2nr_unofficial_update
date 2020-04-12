@@ -59,7 +59,7 @@ func void DIA_Lothar_FirstEXIT_Info()
 	}
 	else
 	{
-		if((Player_TalkedAboutDragons == TRUE) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
+		if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && (hero.guild != GIL_PAL) && (hero.guild != GIL_KDF))
 		{
 			AI_Output(self,other,"DIA_Lothar_FirstEXIT_01_03");	//Если я еще хоть раз услышу, что ты рассказываешь людям о драконах, у тебя будут большие проблемы, тебе все ясно?
 		}
@@ -203,7 +203,7 @@ func void DIA_Lothar_EyeInnos_Info()
 		AI_Output(self,other,"DIA_Lothar_EyeInnos_01_05");	//Но он, наверняка, не имел в виду, что ТЫ можешь коснуться его своими руками.
 		AI_Output(other,self,"DIA_Lothar_EyeInnos_15_06");	//Но...
 		AI_Output(self,other,"DIA_Lothar_EyeInnos_01_07");	//Я ничего об этом даже слышать не хочу!
-		if(Player_TalkedAboutDragons == TRUE)
+		if(Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 		{
 			AI_Output(self,other,"DIA_Lothar_EyeInnos_01_08");	//Сначала ты нес всякую чушь о драконах, и теперь - вот это. Невероятно!
 		};
@@ -253,7 +253,6 @@ func void DIA_Lothar_Dragons_Info()
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_06");	//Я часто слышу об этом. Но в это трудно поверить.
 		AI_Output(self,other,"DIA_Lothar_Dragons_01_07");	//Будет лучше, если ты оставишь эти мысли при себе. Мы должны всеми силами избегать паники среди людей.
 	};
-	Player_TalkedAboutDragons = TRUE;
 };
 
 
@@ -707,7 +706,7 @@ func void B_Lothar_Reported()
 	AI_Output(self,other,"DIA_Lothar_Add_01_48");	//Я доложил лорду Хагену, что ты желаешь поговорить с ним...
 	AI_Output(other,self,"DIA_Lothar_Add_15_49");	//И? Что он сказал?
 	AI_Output(self,other,"DIA_Lothar_Add_01_50");	//Он никогда не слышал о тебе.
-	if(Player_TalkedAboutDragons == TRUE)
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons))
 	{
 		AI_Output(other,self,"DIA_Lothar_Add_15_51");	//Конечно нет. Ты сказал ему о драконах?
 		AI_Output(self,other,"DIA_Lothar_Add_01_52");	//Разве я не говорил тебе, чтобы ты прекратил нести этот вздор?!
@@ -748,7 +747,7 @@ func void DIA_Lothar_HelloAgain_Info()
 			AI_Output(other,self,"DIA_Lothar_Add_15_08");	//Теперь я ученик одного из мастеров!
 		};
 	};
-	if((Player_TalkedAboutDragons == TRUE) && (Player_TalkedAboutDragonsToSomeone == TRUE))
+	if(Player_TalkedAboutDragonsToSomeone == TRUE)
 	{
 		AI_Output(self,other,"DIA_Lothar_Add_01_62");	//Скажи мне, разве я говорил недостаточно внятно? Хватит разговоров о драконах!
 		AI_Output(other,self,"DIA_Lothar_Add_15_63");	//Откуда тебе знать?..

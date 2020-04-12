@@ -12,6 +12,7 @@ func void B_GiveTradeInv_Cipher(var C_Npc slf)
 		CreateInvItems(slf,ItMw_1h_Sld_Sword,1);
 		CreateInvItems(slf,ItRw_Bow_L_02,1);
 		CreateInvItems(slf,ItRw_Sld_Bow,1);
+		CreateInvItems(slf,ItKe_Lockpick,3);
 		if(MIS_Cipher_Paket == LOG_SUCCESS)
 		{
 			CreateInvItems(slf,ItMi_Joint,20);
@@ -20,6 +21,7 @@ func void B_GiveTradeInv_Cipher(var C_Npc slf)
 	};
 	if((Kapitel >= 2) && (Cipher_ItemsGiven_Chapter_2 == FALSE))
 	{
+		CreateInvItems(slf,ItKe_Lockpick,4);
 		if(MIS_Cipher_Paket == LOG_SUCCESS)
 		{
 			CreateInvItems(slf,ItMi_Joint,20);
@@ -28,6 +30,7 @@ func void B_GiveTradeInv_Cipher(var C_Npc slf)
 	};
 	if((Kapitel >= 3) && (Cipher_ItemsGiven_Chapter_3 == FALSE))
 	{
+		CreateInvItems(slf,ItKe_Lockpick,4);
 		if(MIS_Cipher_Paket == LOG_SUCCESS)
 		{
 			CreateInvItems(slf,ItMi_Joint,20);

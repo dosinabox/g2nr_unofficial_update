@@ -21,6 +21,31 @@ func void DIA_Gorn_DI_KAP5_EXIT_Info()
 };
 
 
+instance DIA_Gorn_DI_First(C_Info)
+{
+	npc = PC_Fighter_DI;
+	nr = 1;
+	condition = DIA_Gorn_DI_First_Condition;
+	information = DIA_Gorn_DI_First_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Gorn_DI_First_Condition()
+{
+	if(!Npc_IsDead(UndeadDragon) && (OrkSturmDI == FALSE) && Npc_IsInState(self,ZS_Talk))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Gorn_DI_First_Info()
+{
+	AI_Output(self,other,"INTRO_DiegoGorn_12_04");	//Земля!
+};
+
+
 instance DIA_Gorn_DI_Hallo(C_Info)
 {
 	npc = PC_Fighter_DI;
@@ -113,6 +138,8 @@ func void DIA_Gorn_DI_Teach_Back()
 };
 
 
+var int DIA_Gorn_DI_UndeadDragonDead_OneTime;
+
 instance DIA_Gorn_DI_UndeadDragonDead(C_Info)
 {
 	npc = PC_Fighter_DI;
@@ -132,24 +159,18 @@ func int DIA_Gorn_DI_UndeadDragonDead_Condition()
 	};
 };
 
-
-var int DIA_Gorn_DI_UndeadDragonDead_OneTime;
-
 func void DIA_Gorn_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_00");	//Ты все это время был на корабле?
 	AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_01");	//Конечно. Только представь, чтоб мы делали, если бы он пропал.
-	if(DIA_Gorn_DI_UndeadDragonDead_OneTime == FALSE)
+	if((hero.guild == GIL_DJG) && (DIA_Gorn_DI_UndeadDragonDead_OneTime == FALSE))
 	{
-		if(hero.guild == GIL_DJG)
-		{
-			AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_02");	//А что случилось?
-			AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_03");	//Ничего. Я собираюсь отправляться домой.
-			AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_04");	//(смеется) Домой? А где это? Насколько я знаю, у тебя нет дома.
-			AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_05");	//Хочешь предложение? Мы ворвемся в первую же попавшуюся таверну и напьемся до бессознательного состояния.
-			AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_06");	//Ммм. Может быть.
-			AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_07");	//Эй, расслабься, дружище. Все кончено.
-		};
+		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_02");	//А что случилось?
+		AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_03");	//Ничего. Я собираюсь отправляться домой.
+		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_04");	//(смеется) Домой? А где это? Насколько я знаю, у тебя нет дома.
+		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_05");	//Хочешь предложение? Мы ворвемся в первую же попавшуюся таверну и напьемся до бессознательного состояния.
+		AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_06");	//Ммм. Может быть.
+		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_07");	//Эй, расслабься, дружище. Все кончено.
 		DIA_Gorn_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_10");	//Здесь нам больше нечего делать. Скажи капитану, чтобы поднимал якорь.

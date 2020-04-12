@@ -530,7 +530,7 @@ func void DIA_Addon_Vatras_WannaBeRanger_Info()
 	};
 };
 
-func void DIA_Vatras_INFLUENCE_FIRST_TRUTH()
+func void B_Vatras_First_Truth()
 {
 	AI_Output(other,self,"DIA_Vatras_INFLUENCE_FIRST_TRUTH_15_00");	//Пока мы разговариваем, собирается огромная армия, ведомая драконами. Эта армия намеревается завоевать нашу страну.
 	if(Vatras_First == TRUE)
@@ -541,13 +541,14 @@ func void DIA_Vatras_INFLUENCE_FIRST_TRUTH()
 	{
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_FIRST_TRUTH_05_02");	//(задумчиво) Драконы? Ты говоришь о существах, которые до последнего времени упоминались только в легендах. Откуда ты знаешь это?
 	};
-	Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
-	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Ох, я где-то слышал об этом...",DIA_Vatras_INFLUENCE_SECOND_LIE);
-	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.",DIA_Vatras_INFLUENCE_SECOND_TRUTH);
 	Vatras_First = TRUE;
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons) && Wld_IsTime(5,5,20,10))
+	{
+		Player_TalkedAboutDragonsToSomeone = TRUE;
+	};
 };
 
-func void DIA_Vatras_INFLUENCE_FIRST_LIE()
+func void B_Vatras_First_Lie()
 {
 	AI_Output(other,self,"DIA_Vatras_INFLUENCE_FIRST_LIE_15_00");	//Скоро произойдут ужасные вещи!
 	if(Vatras_First == 2)
@@ -558,13 +559,10 @@ func void DIA_Vatras_INFLUENCE_FIRST_LIE()
 	{
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_FIRST_LIE_05_02");	//Ужасные вещи, хм... откуда ты знаешь это?
 	};
-	Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
-	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Ох, я где-то слышал об этом...",DIA_Vatras_INFLUENCE_SECOND_LIE);
-	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.",DIA_Vatras_INFLUENCE_SECOND_TRUTH);
 	Vatras_First = 2;
 };
 
-func void DIA_Vatras_INFLUENCE_SECOND_TRUTH()
+func void B_Vatras_Second_Truth()
 {
 	AI_Output(other,self,"DIA_Vatras_INFLUENCE_SECOND_TRUTH_15_00");	//Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.
 	if(Vatras_Second == TRUE)
@@ -575,13 +573,10 @@ func void DIA_Vatras_INFLUENCE_SECOND_TRUTH()
 	{
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_TRUTH_05_02");	//Некромант... Так он жив... (задумчиво) И он послал тебя? А кто же ты тогда такой?
 	};
-	Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
-	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Я искатель приключений с юга...",DIA_Vatras_INFLUENCE_THIRD_LIE);
-	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Я бывший заключенный колонии Хориниса.",DIA_Vatras_INFLUENCE_THIRD_TRUTH);
 	Vatras_Second = TRUE;
 };
 
-func void DIA_Vatras_INFLUENCE_SECOND_LIE()
+func void B_Vatras_Second_Lie()
 {
 	AI_Output(other,self,"DIA_Vatras_INFLUENCE_SECOND_LIE_15_00");	//Ох, я где-то слышал об этом...
 	if(Vatras_Second == 2)
@@ -592,13 +587,22 @@ func void DIA_Vatras_INFLUENCE_SECOND_LIE()
 	{
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_LIE_05_02");	//Ага. И поэтому ты поделал весь этот долгий путь. Кто ты такой вообще?
 	};
-	Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
-	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Я искатель приключений с юга...",DIA_Vatras_INFLUENCE_THIRD_LIE);
-	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Я бывший заключенный колонии Хориниса.",DIA_Vatras_INFLUENCE_THIRD_TRUTH);
 	Vatras_Second = 2;
 };
 
-func void B_Vatras_INFLUENCE_REPEAT()
+func void B_Vatras_Third_Truth()
+{
+	AI_Output(other,self,"DIA_Vatras_INFLUENCE_THIRD_TRUTH_15_00");	//Я бывший заключенный колонии Хориниса.
+	Vatras_Third = TRUE;
+};
+
+func void B_Vatras_Third_Lie()
+{
+	AI_Output(other,self,"DIA_Vatras_INFLUENCE_THIRD_LIE_15_00");	//Я искатель приключений с юга...
+	Vatras_Third = FALSE;
+};
+
+func void B_Vatras_REPEAT()
 {
 	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_01");	//Хорошо, давай подытожим:
 	if(Vatras_Third == TRUE)
@@ -629,41 +633,83 @@ func void B_Vatras_INFLUENCE_REPEAT()
 	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
 	{
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_09");	//Это все звучит довольно фантастически, но я не думаю, что ты солгал мне.
+	};
+};
+
+func void B_Vatras_PLEASEDONTLIE()
+{
+	AI_Output(self,other,"DIA_Vatras_Add_05_00");	//Мне кажется, что ты не все говоришь мне.
+	AI_Output(self,other,"DIA_Vatras_Add_05_01");	//Если ты опасаешься, что я расскажу кому-нибудь о том, что ты поведаешь мне, то позволь мне уверить тебя.
+	AI_Output(self,other,"DIA_Vatras_Add_05_02");	//Я поклялся хранить все секреты, которые доверяют мне, как свои собственные.
+	if(Wld_IsTime(5,5,20,10))
+	{
+		AI_Output(other,self,"DIA_Vatras_Add_15_03");	//А что насчет людей, стоящих здесь?
+		AI_Output(self,other,"DIA_Vatras_Add_05_04");	//Они понимают только половину того, что я ПРОПОВЕДУЮ им. Так что не беспокойся.
+	};
+	AI_Output(self,other,"DIA_Vatras_Add_05_05");	//Начнем с начала. Что это за сообщение?
+};
+
+func void B_Vatras_INFLUENCE_REPEAT()
+{
+	B_Vatras_REPEAT();
+	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
+	{
 		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_10");	//Поэтому я вынужден предположить, что твои мотивы благородны.
 		AI_Output(self,other,"DIA_ADDON_Vatras_INFLUENCE_REPEAT_05_11");	//Я хочу дать тебе шанс присоединиться к Кольцу Воды.
 		Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Vatras_Add_05_00");	//Мне кажется, что ты не все говоришь мне.
-		AI_Output(self,other,"DIA_Vatras_Add_05_01");	//Если ты опасаешься, что я расскажу кому-нибудь о том, что ты поведаешь мне, то позволь мне уверить тебя.
-		AI_Output(self,other,"DIA_Vatras_Add_05_02");	//Я поклялся хранить все секреты, которые доверяют мне, как свои собственные.
-		if(Wld_IsTime(5,5,20,10))
-		{
-			AI_Output(other,self,"DIA_Vatras_Add_15_03");	//А что насчет людей, стоящих здесь?
-			AI_Output(self,other,"DIA_Vatras_Add_05_04");	//Они понимают только половину того, что я ПРОПОВЕДУЮ им. Так что не беспокойся.
-		};
-		AI_Output(self,other,"DIA_Vatras_Add_05_05");	//Начнем с начала. Что это за сообщение?
+		B_Vatras_PLEASEDONTLIE();
 		Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
 		Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Пока мы разговариваем, собирается огромная армия, ведомая драконами.",DIA_Vatras_INFLUENCE_FIRST_TRUTH);
 		Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Скоро произойдут ужасные вещи!",DIA_Vatras_INFLUENCE_FIRST_LIE);
 	};
 };
 
+func void DIA_Vatras_INFLUENCE_FIRST_TRUTH()
+{
+	B_Vatras_First_Truth();
+	Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
+	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Ох, я где-то слышал об этом...",DIA_Vatras_INFLUENCE_SECOND_LIE);
+	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.",DIA_Vatras_INFLUENCE_SECOND_TRUTH);
+};
+
+func void DIA_Vatras_INFLUENCE_FIRST_LIE()
+{
+	B_Vatras_First_Lie();
+	Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
+	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Ох, я где-то слышал об этом...",DIA_Vatras_INFLUENCE_SECOND_LIE);
+	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.",DIA_Vatras_INFLUENCE_SECOND_TRUTH);
+};
+
+func void DIA_Vatras_INFLUENCE_SECOND_TRUTH()
+{
+	B_Vatras_Second_Truth();
+	Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
+	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Я искатель приключений с юга...",DIA_Vatras_INFLUENCE_THIRD_LIE);
+	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Я бывший заключенный колонии Хориниса.",DIA_Vatras_INFLUENCE_THIRD_TRUTH);
+};
+
+func void DIA_Vatras_INFLUENCE_SECOND_LIE()
+{
+	B_Vatras_Second_Lie();
+	Info_ClearChoices(DIA_Addon_Vatras_WannaBeRanger);
+	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Я искатель приключений с юга...",DIA_Vatras_INFLUENCE_THIRD_LIE);
+	Info_AddChoice(DIA_Addon_Vatras_WannaBeRanger,"Я бывший заключенный колонии Хориниса.",DIA_Vatras_INFLUENCE_THIRD_TRUTH);
+};
+
 func void DIA_Vatras_INFLUENCE_THIRD_TRUTH()
 {
-	AI_Output(other,self,"DIA_Vatras_INFLUENCE_THIRD_TRUTH_15_00");	//Я бывший заключенный колонии Хориниса.
-	Vatras_Third = TRUE;
+	B_Vatras_Third_Truth();
 	B_Vatras_INFLUENCE_REPEAT();
 };
 
 func void DIA_Vatras_INFLUENCE_THIRD_LIE()
 {
-	AI_Output(other,self,"DIA_Vatras_INFLUENCE_THIRD_LIE_15_00");	//Я искатель приключений с юга...
-	Vatras_Third = FALSE;
+	B_Vatras_Third_Lie();
 	B_Vatras_INFLUENCE_REPEAT();
 };
-
 
 instance DIA_Addon_Vatras_HowToJoin(C_Info)
 {
@@ -1501,6 +1547,20 @@ func void B_Vatras_Segen()
 	Vatras_Blessing = TRUE;
 };
 
+func void B_Vatras_NoMoreBlessing()
+{
+	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_13");	//Я дал тебе два шанса сказать мне правду, но ты, по-видимому, не хочешь этого. Я не дам тебе моего благословения.
+	AI_StopProcessInfos(self);
+};
+
+func void B_Vatras_Blessing()
+{
+	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_11");	//Ступай с благословением Аданоса, сын мой!
+	B_GivePlayerXP(XP_VatrasTruth);
+	B_Vatras_Segen();
+	Info_ClearChoices(DIA_Vatras_INFLUENCE);
+};
+
 instance DIA_Vatras_INFLUENCE(C_Info)
 {
 	npc = VLK_439_Vatras;
@@ -1526,15 +1586,11 @@ func void DIA_Vatras_INFLUENCE_Info()
 	AI_Output(other,self,"DIA_Vatras_INFLUENCE_15_00");	//Я прошу твоего благословения.
 	if(Npc_KnowsInfo(other,DIA_Addon_Vatras_WannaBeRanger))
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_11");	//Ступай с благословением Аданоса, сын мой!
-		B_GivePlayerXP(XP_VatrasTruth);
-		B_Vatras_Segen();
-		Info_ClearChoices(DIA_Vatras_INFLUENCE);
+		B_Vatras_Blessing();
 	}
 	else if(Vatras_Chance == TRUE)
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_13");	//Я дал тебе два шанса сказать мне правду, но ты, по-видимому, не хочешь этого. Я не дам тебе моего благословения.
-		AI_StopProcessInfos(self);
+		B_Vatras_NoMoreBlessing();
 	}
 	else 
 	{
@@ -1552,122 +1608,17 @@ func void DIA_Vatras_INFLUENCE_Info()
 };
 
 
-func void DIA_Vatras_BLESSING_FIRST_TRUTH()
-{
-	AI_Output(other,self,"DIA_Vatras_INFLUENCE_FIRST_TRUTH_15_00");	//Пока мы разговариваем, собирается огромная армия, ведомая драконами. Эта армия намеревается завоевать нашу страну.
-	if(Vatras_First == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_FIRST_TRUTH_05_01");	//Если это действительно правда, баланс на земле будет нарушен. Кто сказал тебе это?
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_FIRST_TRUTH_05_02");	//(задумчиво) Драконы? Ты говоришь о существах, которые до последнего времени упоминались только в легендах. Откуда ты знаешь это?
-	};
-	Info_ClearChoices(DIA_Vatras_INFLUENCE);
-	Info_AddChoice(DIA_Vatras_INFLUENCE,"Ох, я где-то слышал об этом...",DIA_Vatras_BLESSING_SECOND_LIE);
-	Info_AddChoice(DIA_Vatras_INFLUENCE,"Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.",DIA_Vatras_BLESSING_SECOND_TRUTH);
-	Vatras_First = TRUE;
-};
-
-func void DIA_Vatras_BLESSING_FIRST_LIE()
-{
-	AI_Output(other,self,"DIA_Vatras_INFLUENCE_FIRST_LIE_15_00");	//Скоро произойдут ужасные вещи!
-	if(Vatras_First == 2)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_FIRST_LIE_05_01");	//(сердито) Ага. И кто сказал тебе это?
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_FIRST_LIE_05_02");	//Ужасные вещи, хм... откуда ты знаешь это?
-	};
-	Info_ClearChoices(DIA_Vatras_INFLUENCE);
-	Info_AddChoice(DIA_Vatras_INFLUENCE,"Ох, я где-то слышал об этом...",DIA_Vatras_BLESSING_SECOND_LIE);
-	Info_AddChoice(DIA_Vatras_INFLUENCE,"Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.",DIA_Vatras_BLESSING_SECOND_TRUTH);
-	Vatras_First = 2;
-};
-
-func void DIA_Vatras_BLESSING_SECOND_TRUTH()
-{
-	AI_Output(other,self,"DIA_Vatras_INFLUENCE_SECOND_TRUTH_15_00");	//Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.
-	if(Vatras_Second == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_TRUTH_05_01");	//Я знаю этого человека как мудрого и могущественного мастера магии. А ты откуда пришел?
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_TRUTH_05_02");	//Некромант... Так он жив... (задумчиво) И он послал тебя? А кто же ты тогда такой?
-	};
-	Info_ClearChoices(DIA_Vatras_INFLUENCE);
-	Info_AddChoice(DIA_Vatras_INFLUENCE,"Я искатель приключений с юга...",DIA_Vatras_BLESSING_THIRD_LIE);
-	Info_AddChoice(DIA_Vatras_INFLUENCE,"Я бывший заключенный колонии Хориниса.",DIA_Vatras_BLESSING_THIRD_TRUTH);
-	Vatras_Second = TRUE;
-};
-
-func void DIA_Vatras_BLESSING_SECOND_LIE()
-{
-	AI_Output(other,self,"DIA_Vatras_INFLUENCE_SECOND_LIE_15_00");	//Ох, я где-то слышал об этом...
-	if(Vatras_Second == 2)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_LIE_05_01");	//(раздраженно) Ты хотя бы помнишь, откуда ты пришел?
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_SECOND_LIE_05_02");	//Ага. И поэтому ты поделал весь этот долгий путь. Кто ты такой вообще?
-	};
-	Info_ClearChoices(DIA_Vatras_INFLUENCE);
-	Info_AddChoice(DIA_Vatras_INFLUENCE,"Я искатель приключений с юга...",DIA_Vatras_BLESSING_THIRD_LIE);
-	Info_AddChoice(DIA_Vatras_INFLUENCE,"Я бывший заключенный колонии Хориниса.",DIA_Vatras_BLESSING_THIRD_TRUTH);
-	Vatras_Second = 2;
-};
-
 func void B_Vatras_BLESSING_REPEAT()
 {
-	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_01");	//Хорошо, давай подытожим:
-	if(Vatras_Third == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_02");	//Ты бывший заключенный...
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_03");	//Ты искатель приключений с юга...
-	};
-	if(Vatras_Second == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_04");	//... которому сказал некромант Ксардас...
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_05");	//... который слышал слухи...
-	};
-	if(Vatras_First == TRUE)
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_06");	//... о том, что пришли драконы, чтобы завоевать страну.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_07");	//... что скоро произойдут ужасные вещи.
-	};
-	AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_08");	//И ты пришел, чтобы сообщить это паладинам...
+	B_Vatras_REPEAT();
 	if((Vatras_First == TRUE) && (Vatras_Second == TRUE) && (Vatras_Third == TRUE))
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_09");	//Это все звучит довольно фантастически, но я не думаю, что ты солгал мне.
 		AI_Output(other,self,"DIA_Vatras_INFLUENCE_REPEAT_15_00");	//Так ты дашь мне свое благословение?
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_11");	//Ступай с благословением Аданоса, сын мой!
-		B_GivePlayerXP(XP_VatrasTruth);
-		B_Vatras_Segen();
-		Info_ClearChoices(DIA_Vatras_INFLUENCE);
+		B_Vatras_Blessing();
 	}
 	else if(Vatras_Chance == FALSE)
 	{
-		AI_Output(self,other,"DIA_Vatras_Add_05_00");	//Мне кажется, что ты не все говоришь мне.
-		AI_Output(self,other,"DIA_Vatras_Add_05_01");	//Если ты опасаешься, что я расскажу кому-нибудь о том, что ты поведаешь мне, то позволь мне уверить тебя.
-		AI_Output(self,other,"DIA_Vatras_Add_05_02");	//Я поклялся хранить все секреты, которые доверяют мне, как свои собственные.
-		if(Wld_IsTime(5,5,20,10))
-		{
-			AI_Output(other,self,"DIA_Vatras_Add_15_03");	//А что насчет людей, стоящих здесь?
-			AI_Output(self,other,"DIA_Vatras_Add_05_04");	//Они понимают только половину того, что я ПРОПОВЕДУЮ им. Так что не беспокойся.
-		};
-		AI_Output(self,other,"DIA_Vatras_Add_05_05");	//Начнем с начала. Что это за сообщение?
+		B_Vatras_PLEASEDONTLIE();
 		Vatras_Chance = TRUE;
 		Info_ClearChoices(DIA_Vatras_INFLUENCE);
 		Info_AddChoice(DIA_Vatras_INFLUENCE,"Пока мы разговариваем, собирается огромная армия, ведомая драконами.",DIA_Vatras_BLESSING_FIRST_TRUTH);
@@ -1675,23 +1626,51 @@ func void B_Vatras_BLESSING_REPEAT()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Vatras_INFLUENCE_REPEAT_05_13");	//Я дал тебе два шанса сказать мне правду, но ты, по-видимому, не хочешь этого. Я не дам тебе моего благословения.
-		AI_StopProcessInfos(self);
+		B_Vatras_NoMoreBlessing();
 	};
 };
 
+func void DIA_Vatras_BLESSING_FIRST_TRUTH()
+{
+	B_Vatras_First_Truth();
+	Info_ClearChoices(DIA_Vatras_INFLUENCE);
+	Info_AddChoice(DIA_Vatras_INFLUENCE,"Ох, я где-то слышал об этом...",DIA_Vatras_BLESSING_SECOND_LIE);
+	Info_AddChoice(DIA_Vatras_INFLUENCE,"Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.",DIA_Vatras_BLESSING_SECOND_TRUTH);
+};
+
+func void DIA_Vatras_BLESSING_FIRST_LIE()
+{
+	B_Vatras_First_Lie();
+	Info_ClearChoices(DIA_Vatras_INFLUENCE);
+	Info_AddChoice(DIA_Vatras_INFLUENCE,"Ох, я где-то слышал об этом...",DIA_Vatras_BLESSING_SECOND_LIE);
+	Info_AddChoice(DIA_Vatras_INFLUENCE,"Мне сказал об этом маг Ксардас. Он послал меня предупредить паладинов.",DIA_Vatras_BLESSING_SECOND_TRUTH);
+};
+
+func void DIA_Vatras_BLESSING_SECOND_TRUTH()
+{
+	B_Vatras_Second_Truth();
+	Info_ClearChoices(DIA_Vatras_INFLUENCE);
+	Info_AddChoice(DIA_Vatras_INFLUENCE,"Я искатель приключений с юга...",DIA_Vatras_BLESSING_THIRD_LIE);
+	Info_AddChoice(DIA_Vatras_INFLUENCE,"Я бывший заключенный колонии Хориниса.",DIA_Vatras_BLESSING_THIRD_TRUTH);
+};
+
+func void DIA_Vatras_BLESSING_SECOND_LIE()
+{
+	B_Vatras_Second_Lie();
+	Info_ClearChoices(DIA_Vatras_INFLUENCE);
+	Info_AddChoice(DIA_Vatras_INFLUENCE,"Я искатель приключений с юга...",DIA_Vatras_BLESSING_THIRD_LIE);
+	Info_AddChoice(DIA_Vatras_INFLUENCE,"Я бывший заключенный колонии Хориниса.",DIA_Vatras_BLESSING_THIRD_TRUTH);
+};
 
 func void DIA_Vatras_BLESSING_THIRD_TRUTH()
 {
-	AI_Output(other,self,"DIA_Vatras_INFLUENCE_THIRD_TRUTH_15_00");	//Я бывший заключенный колонии Хориниса.
-	Vatras_Third = TRUE;
+	B_Vatras_Third_Truth();
 	B_Vatras_BLESSING_REPEAT();
 };
 
 func void DIA_Vatras_BLESSING_THIRD_LIE()
 {
-	AI_Output(other,self,"DIA_Vatras_INFLUENCE_THIRD_LIE_15_00");	//Я искатель приключений с юга...
-	Vatras_Third = FALSE;
+	B_Vatras_Third_Lie();
 	B_Vatras_BLESSING_REPEAT();
 };
 
@@ -1767,22 +1746,38 @@ func void DIA_Vatras_Spende_BACK()
 	Info_ClearChoices(DIA_Vatras_Spende);
 };
 
+var int Vatras_Spende;
+
+func void B_Vatras_Spende_Check()
+{
+	if(Vatras_Spende < 100)
+	{
+		AI_Output(self,other,"DIA_Vatras_Spende_50_05_01");	//Я благодарю тебя от имени Аданоса, сын мой. Твое золото будет роздано нуждающимся.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Vatras_Spende_100_05_01");	//Я благословляю тебя от имени Аданоса за этот великодушный дар!
+		AI_Output(self,other,"DIA_Vatras_Spende_100_05_02");	//Да будет путь, по которому ты идешь, благословлен Аданосом!
+		B_Vatras_Segen();
+		Vatras_Spende = 0;
+	};
+	Info_ClearChoices(DIA_Vatras_Spende);
+};
+
 func void DIA_Vatras_Spende_50()
 {
 	AI_Output(other,self,"DIA_Vatras_Spende_50_15_00");	//У меня есть 50 золотых монет...
-	AI_Output(self,other,"DIA_Vatras_Spende_50_05_01");	//Я благодарю тебя от имени Аданоса, сын мой. Твое золото будет роздано нуждающимся.
 	B_GiveInvItems(other,self,ItMi_Gold,50);
-	Info_ClearChoices(DIA_Vatras_Spende);
+	Vatras_Spende += 50;
+	B_Vatras_Spende_Check();
 };
 
 func void DIA_Vatras_Spende_100()
 {
 	AI_Output(other,self,"DIA_Vatras_Spende_100_15_00");	//У меня есть 100 золотых монет...
-	AI_Output(self,other,"DIA_Vatras_Spende_100_05_01");	//Я благословляю тебя от имени Аданоса за этот великодушный дар!
 	B_GiveInvItems(other,self,ItMi_Gold,100);
-	AI_Output(self,other,"DIA_Vatras_Spende_100_05_02");	//Да будет путь, по которому ты идешь, благословлен Аданосом!
-	B_Vatras_Segen();
-	Info_ClearChoices(DIA_Vatras_Spende);
+	Vatras_Spende += 100;
+	B_Vatras_Spende_Check();
 };
 
 

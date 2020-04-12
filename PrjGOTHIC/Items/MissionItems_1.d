@@ -348,6 +348,7 @@ func void UsePassierschein()
 //	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
+	Player_KnowsLariusAsGovernor = TRUE;
 };
 
 
