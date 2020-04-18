@@ -20,12 +20,8 @@ instance ItSe_XardasNotfallBeutel_MIS(C_Item)
 
 func void Use_XardasNotfallBeutel()
 {
-	var string concatText;
-	CreateInvItems(hero,ItWr_XardasErmahnungFuerIdioten_MIS,1);
-	CreateInvItems(hero,ItMi_InnosEye_Discharged_Mis,1);
-	concatText = ConcatStrings("2",PRINT_ItemsErhalten);
-	concatText = ConcatStrings(concatText," (Письмо и Глаз Инноса)");
-	Print(concatText);
+	B_PlayerFindItem(ItWr_XardasErmahnungFuerIdioten_MIS,1);
+	B_PlayerFindItem(ItMi_InnosEye_Discharged_Mis,1);
 };
 
 

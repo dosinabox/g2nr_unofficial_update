@@ -36,6 +36,13 @@ func void DIA_Maleth_EXIT_Info()
 };
 
 
+func void B_MalethArmorComment()
+{
+	AI_Output(self,other,"DIA_Maleth_Hallo_08_05");	//Ты выглядел абсолютно измотанным, когда первый раз появился здесь.
+	AI_Output(self,other,"DIA_Maleth_Hallo_08_06");	//Ну а теперь ты похож на человека!
+	MalethArmorComment = TRUE;
+};
+
 instance DIA_Maleth_Hallo(C_Info)
 {
 	npc = BAU_954_Maleth;
@@ -71,9 +78,7 @@ func void DIA_Maleth_Hallo_Info()
 	}
 	else if(PlayerVisitedLobartFarmArmorless == TRUE)
 	{
-		AI_Output(self,other,"DIA_Maleth_Hallo_08_05");	//Ты выглядел абсолютно измотанным, когда первый раз появился здесь.
-		AI_Output(self,other,"DIA_Maleth_Hallo_08_06");	//Ну а теперь ты похож на человека!
-		MalethArmorComment = TRUE;
+		B_MalethArmorComment();
 	};
 	AI_Output(self,other,"DIA_Maleth_Hallo_08_07");	//(недоверчиво) Что тебе нужно здесь?
 };
@@ -299,9 +304,7 @@ func void DIA_Maleth_KAP3_EXIT_Info()
 {
 	if((PlayerVisitedLobartFarmArmorless == TRUE) && (MalethArmorComment == FALSE))
 	{
-		AI_Output(self,other,"DIA_Maleth_Hallo_08_05");	//Ты выглядел абсолютно измотанным, когда первый раз появился здесь.
-		AI_Output(self,other,"DIA_Maleth_Hallo_08_06");	//Ну а теперь ты похож на человека!
-		MalethArmorComment = TRUE;
+		B_MalethArmorComment();
 	};
 	B_InsertMalethWolf();
 	AI_StopProcessInfos(self);

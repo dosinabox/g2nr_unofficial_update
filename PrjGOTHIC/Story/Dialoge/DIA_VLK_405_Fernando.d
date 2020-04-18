@@ -237,7 +237,7 @@ func void DIA_Addon_Fernando_BanditTrader_Info()
 			{
 				B_Say(self,other,"$NOTNOW");
 			};
-			B_NpcClearObsessionByDMT(self);
+			AI_StopProcessInfos(self);
 		}
 		else
 		{
@@ -383,7 +383,7 @@ func void DIA_Fernando_Success_Info()
 		else
 		{
 			B_Say(self,other,"$NOTNOW");
-			AI_StopProcessInfos(self);
+			B_NpcClearObsessionByDMT(self);
 		};
 	}
 	else

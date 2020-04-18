@@ -575,11 +575,11 @@ instance ItWr_Astronomy_Mis(C_Item)
 	value = 400;
 	visual = "ItWr_Book_02_02.3ds";
 	material = MAT_LEATHER;
+	on_state[0] = Use_Astronomy;
 	scemeName = "MAP";
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	on_state[0] = Use_Astronomy;
 };
 
 
@@ -671,11 +671,8 @@ instance ItSe_Golemchest_Mis(C_Item)
 
 func void Use_GolemChest()
 {
-	CreateInvItems(hero,ItMi_Gold,50);
-	CreateInvItems(hero,ItRi_Prot_Total_02,1);
-	Snd_Play("Geldbeutel");
-	Print(PRINT_FoundGold50);
-	Print(PRINT_FoundRing);
+	B_PlayerFindItem(ItMi_Gold,50);
+	B_PlayerFindItem(ItRi_Prot_Total_02,1);
 };
 
 
@@ -772,8 +769,8 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 
 func void Use_DiegosTreasure()
 {
-	OpenedDiegosBag = TRUE;
 	B_PlayerFindItem(ItMi_Gold,DiegosTreasure);
+	OpenedDiegosBag = TRUE;
 };
 
 

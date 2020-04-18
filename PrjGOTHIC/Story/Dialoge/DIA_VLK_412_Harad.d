@@ -1040,7 +1040,7 @@ func void DIA_Harad_Erzklingen_Info()
 	{
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_02");	//Вы, паладины, можете считать себя счастливчиками, что вам дозволено владеть такими превосходными мечами.
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_03");	//Согласно декрету лорда Хагена, я могу продать тебе только одно магическое оружие.
-		AI_Output(self,other,"DIA_Harad_Erzklingen_12_04");	//Так, что я могу предложить тебе?
+		AI_Output(self,other,"DIA_Harad_Erzklingen_12_04");	//Так... Что я могу предложить тебе?
 		Info_ClearChoices(DIA_Harad_Erzklingen);
 		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
 		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);

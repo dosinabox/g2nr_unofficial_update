@@ -3727,7 +3727,7 @@ instance CH_Skin(C_Info)
 	condition = CH_Skin_Condition;
 	information = CH_Skin_Info;
 	permanent = TRUE;
-	description = "Изменить одежду";
+	description = "Изменить внешность";
 };
 
 
@@ -3746,6 +3746,7 @@ func void CH_Skin_Info()
 	if(G1BodySkin == TRUE)
 	{
 		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
 		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
 		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
 		Info_AddChoice(CH_Skin,"Готика 1 (используется)",CH_Skin_G1);
@@ -3753,6 +3754,7 @@ func void CH_Skin_Info()
 	else if(SequelBodySkin == TRUE)
 	{
 		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
 		Info_AddChoice(CH_Skin,"Сиквел (используется)",CH_Skin_Sequel);
 		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
 		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
@@ -3760,6 +3762,15 @@ func void CH_Skin_Info()
 	else if(NakedBodySkin == TRUE)
 	{
 		Info_AddChoice(CH_Skin,"Без одежды (используется)",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
+		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
+	}
+	else if(TattoosBodySkin == TRUE)
+	{
+		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки (используется)",CH_Skin_Tattoos);
 		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
 		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
 		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
@@ -3767,6 +3778,7 @@ func void CH_Skin_Info()
 	else
 	{
 		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
 		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
 		Info_AddChoice(CH_Skin,"Готика 2 (используется)",CH_Skin_G2);
 		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
@@ -3782,6 +3794,7 @@ func void CH_Skin_G1()
 {
 	G1BodySkin = TRUE;
 	SequelBodySkin = FALSE;
+	TattoosBodySkin = FALSE;
 	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	Info_ClearChoices(CH_Skin);
@@ -3791,6 +3804,7 @@ func void CH_Skin_G2()
 {
 	G1BodySkin = FALSE;
 	SequelBodySkin = FALSE;
+	TattoosBodySkin = FALSE;
 	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	Info_ClearChoices(CH_Skin);
@@ -3800,6 +3814,17 @@ func void CH_Skin_Sequel()
 {
 	G1BodySkin = FALSE;
 	SequelBodySkin = TRUE;
+	TattoosBodySkin = FALSE;
+	NakedBodySkin = FALSE;
+	B_SetHeroSkin();
+	Info_ClearChoices(CH_Skin);
+};
+
+func void CH_Skin_Tattoos()
+{
+	G1BodySkin = FALSE;
+	SequelBodySkin = FALSE;
+	TattoosBodySkin = TRUE;
 	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
 	Info_ClearChoices(CH_Skin);
@@ -3809,6 +3834,7 @@ func void CH_Skin_Naked()
 {
 	G1BodySkin = FALSE;
 	SequelBodySkin = FALSE;
+	TattoosBodySkin = FALSE;
 	NakedBodySkin = TRUE;
 	B_SetHeroSkin();
 	Info_ClearChoices(CH_Skin);

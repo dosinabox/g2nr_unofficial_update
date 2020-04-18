@@ -34,6 +34,7 @@ func void evt_orkoberst()
 			Wld_InsertNpc(Skeleton_Mario2,"FP_ROAM_DI_MARIOSSKELETONS_02");
 			Wld_InsertNpc(Skeleton_Mario3,"FP_ROAM_DI_MARIOSSKELETONS_03");
 			Wld_InsertNpc(Skeleton_Mario4,"FP_ROAM_DI_MARIOSSKELETONS_04");
+			Mario_DI_ReadyForAmbush = TRUE;
 		}
 		else
 		{

@@ -140,12 +140,11 @@ instance ItSe_ADDON_CavalornsBeutel(C_Item)
 
 func void Use_CavalornsBeutel()
 {
-	CreateInvItems(hero,ItMi_Nugget,1);
-	Print(PRINT_FoundOreNugget);
-	SC_OpenedCavalornsBeutel = TRUE;
+	B_PlayerFindItem(ItMi_Nugget,1);
 	Log_CreateTopic(TOPIC_Addon_CavalornTheHut,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_CavalornTheHut,LOG_Running);
 	B_LogEntry(TOPIC_Addon_CavalornTheHut,"Я нашел мешочек с куском руды около хижины Кавалорна в Долине Рудников. Его, должно быть, забыл там старый пройдоха Кавалорн.");
+	SC_OpenedCavalornsBeutel = TRUE;
 };
 
 

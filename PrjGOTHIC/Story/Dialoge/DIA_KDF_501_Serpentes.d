@@ -12,10 +12,7 @@ instance DIA_Serpentes_Kap1_EXIT(C_Info)
 
 func int DIA_Serpentes_Kap1_EXIT_Condition()
 {
-	if(Kapitel <= 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Serpentes_Kap1_EXIT_Info()
@@ -288,56 +285,6 @@ func void DIA_Serpentes_PERM_Info()
 	{
 		AI_Output(self,other,"DIA_Serpentes_PERM_10_02");	//Свободен. Ты знаешь, что тебе нужно делать.
 	};
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Serpentes_Kap2_EXIT(C_Info)
-{
-	npc = KDF_501_Serpentes;
-	nr = 999;
-	condition = DIA_Serpentes_Kap2_EXIT_Condition;
-	information = DIA_Serpentes_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Serpentes_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Serpentes_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Serpentes_Kap3_EXIT(C_Info)
-{
-	npc = KDF_501_Serpentes;
-	nr = 999;
-	condition = DIA_Serpentes_Kap3_EXIT_Condition;
-	information = DIA_Serpentes_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Serpentes_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Serpentes_Kap3_EXIT_Info()
-{
 	AI_StopProcessInfos(self);
 };
 
@@ -697,56 +644,6 @@ func void DIA_Serpentes_SalandrilDEAD_Info()
 	AI_Output(self,other,"DIA_Serpentes_SalandrilDEAD_10_01");	//Что ж, значит, его дела не остались безнаказанными. Да сжалится Иннос над его бедной душой.
 	TOPIC_END_MinenAnteile = TRUE;
 	B_GivePlayerXP(XP_Ambient);
-};
-
-
-instance DIA_Serpentes_Kap4_EXIT(C_Info)
-{
-	npc = KDF_501_Serpentes;
-	nr = 999;
-	condition = DIA_Serpentes_Kap4_EXIT_Condition;
-	information = DIA_Serpentes_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Serpentes_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Serpentes_Kap4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Serpentes_Kap5_EXIT(C_Info)
-{
-	npc = KDF_501_Serpentes;
-	nr = 999;
-	condition = DIA_Serpentes_Kap5_EXIT_Condition;
-	information = DIA_Serpentes_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Serpentes_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Serpentes_Kap5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 

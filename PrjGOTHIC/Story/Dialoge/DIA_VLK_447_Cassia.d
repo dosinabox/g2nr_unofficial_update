@@ -274,8 +274,8 @@ func void DIA_Cassia_Lernen_Info()
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher," асси€ может обучить мен€ карманному воровству и помочь мне стать более ловким.");
-		B_LogEntry(TOPIC_CityTeacher,"–амирез может обучить мен€ пользоватьс€ отмычками.");
-		B_LogEntry(TOPIC_CityTeacher,"ƒжеспер может обучить мен€ крастьс€.");
+		Log_AddEntry(TOPIC_CityTeacher,"–амирез может обучить мен€ пользоватьс€ отмычками.");
+		Log_AddEntry(TOPIC_CityTeacher,"ƒжеспер может обучить мен€ крастьс€.");
 	};
 };
 
@@ -384,8 +384,8 @@ func void B_AgreedToJoinThiefs()
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher," асси€ может обучить мен€ карманному воровству и помочь мне стать более ловким.");
-		B_LogEntry(TOPIC_CityTeacher,"–амирез может обучить мен€ пользоватьс€ отмычками.");
-		B_LogEntry(TOPIC_CityTeacher,"ƒжеспер может обучить мен€ крастьс€.");
+		Log_AddEntry(TOPIC_CityTeacher,"–амирез может обучить мен€ пользоватьс€ отмычками.");
+		Log_AddEntry(TOPIC_CityTeacher,"ƒжеспер может обучить мен€ крастьс€.");
 	};
 	Join_Thiefs = TRUE;
 	Cassia_Frist = FALSE;
@@ -536,9 +536,9 @@ func void DIA_Cassia_BevorLernen_Spaeter()
 
 func void DIA_Cassia_BevorLernen_DEX()
 {
+	AI_Output(other,self,"DIA_Cassia_BevorLernen_DEX_15_00");	//я хочу стать более ловким. ¬от золото.
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
-		AI_Output(other,self,"DIA_Cassia_BevorLernen_DEX_15_00");	//я хочу стать более ловким. ¬от золото.
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_DEX_16_01");	//ћы можем начать, когда ты будешь готов.
 		Cassia_TeachDEX = TRUE;
 		Info_ClearChoices(DIA_Cassia_BevorLernen);
@@ -552,9 +552,9 @@ func void DIA_Cassia_BevorLernen_DEX()
 
 func void DIA_Cassia_BevorLernen_Pickpocket()
 {
+	AI_Output(other,self,"DIA_Cassia_BevorLernen_Pickpocket_15_00");	//я хочу научитьс€ карманному воровству. ¬от золото.
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
-		AI_Output(other,self,"DIA_Cassia_BevorLernen_Pickpocket_15_00");	//я хочу научитьс€ карманному воровству. ¬от золото.
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_Pickpocket_16_01");	//ћы можем начать, когда ты будешь готов.
 		Cassia_TeachPickpocket = TRUE;
 		Info_ClearChoices(DIA_Cassia_BevorLernen);
@@ -685,7 +685,7 @@ func void DIA_Cassia_Aufnahme_Info()
 	B_GivePlayerXP(XP_CassiaRing);
 	Knows_SecretSign = TRUE;
 	B_LogEntry(Topic_Diebesgilde,"я был прин€т в гильдию воров.");
-	B_LogEntry(Topic_Diebesgilde,"я знаю знак воров. ≈сли € покажу его нужным люд€м, они поймут, что € один из них.");
+	Log_AddEntry(Topic_Diebesgilde,"я знаю знак воров. ≈сли € покажу его нужным люд€м, они поймут, что € один из них.");
 };
 
 

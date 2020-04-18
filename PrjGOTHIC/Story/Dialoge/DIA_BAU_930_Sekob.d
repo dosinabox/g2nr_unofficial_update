@@ -12,15 +12,23 @@ instance DIA_Sekob_EXIT(C_Info)
 
 func int DIA_Sekob_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Sekob_EXIT_Info()
 {
-	AI_StopProcessInfos(self);
+	if(Kapitel >= 3)
+	{
+		self.flags = 0;
+	};
+	if(Kapitel < 5)
+	{
+		AI_StopProcessInfos(self);
+	}
+	else
+	{
+		B_NpcClearObsessionByDMT(self);
+	};
 };
 
 
@@ -309,7 +317,7 @@ func void DIA_Sekob_PERMKAP1_Info()
 };
 
 
-instance DIA_Sekob_KAP3_EXIT(C_Info)
+/*instance DIA_Sekob_KAP3_EXIT(C_Info)
 {
 	npc = BAU_930_Sekob;
 	nr = 999;
@@ -332,7 +340,7 @@ func void DIA_Sekob_KAP3_EXIT_Info()
 {
 	self.flags = 0;
 	AI_StopProcessInfos(self);
-};
+};*/
 
 
 instance DIA_Sekob_DMT(C_Info)
@@ -577,7 +585,7 @@ func void DIA_Sekob_PERM_Info()
 };
 
 
-instance DIA_Sekob_KAP4_EXIT(C_Info)
+/*instance DIA_Sekob_KAP4_EXIT(C_Info)
 {
 	npc = BAU_930_Sekob;
 	nr = 999;
@@ -626,7 +634,7 @@ func void DIA_Sekob_KAP5_EXIT_Info()
 {
 	self.flags = 0;
 	B_NpcClearObsessionByDMT(self);
-};
+};*/
 
 
 instance DIA_Sekob_Heilung(C_Info)
@@ -697,7 +705,7 @@ func void DIA_Sekob_ROSIBACKATSEKOB_Info()
 	MIS_bringRosiBackToSekob = LOG_SUCCESS;
 	CreateInvItems(self,ItMi_Gold,650);
 	B_GiveInvItems(self,other,ItMi_Gold,650);
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 	B_NpcClearObsessionByDMT(self);
 	B_StartOtherRoutine(Rosi,"Start");
 	B_StartOtherRoutine(Till,"Start");
@@ -733,7 +741,7 @@ func void DIA_Sekob_ROSINEVERBACK_Info()
 	B_NpcClearObsessionByDMT(self);
 	B_Attack(self,other,AR_NONE,1);
 	MIS_bringRosiBackToSekob = LOG_FAILED;
-	B_GivePlayerXP(XP_Ambient);
+	B_GivePlayerXP(XP_AmbientKap5);
 };
 
 /*

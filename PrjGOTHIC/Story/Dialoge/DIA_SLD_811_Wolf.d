@@ -293,9 +293,12 @@ func void DIA_Wolf_AboutCrawler_Info()
 	AI_Output(other,self,"DIA_Wolf_AboutCrawler_15_05");	//Сколько ты хочешь за них?
 	AI_Output(self,other,"DIA_Wolf_AboutCrawler_08_06");	//Забудь об этом. Я сделаю их бесплатно. В память о старых временах.
 	MIS_Wolf_BringCrawlerPlates = LOG_Running;
-	Log_CreateTopic(TOPIC_Wolf_BringCrawlerPlates,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Wolf_BringCrawlerPlates,LOG_Running);
-	B_LogEntry(TOPIC_Wolf_BringCrawlerPlates,"Вольф может сделать мне доспехи из 10 панцирей краулеров.");
+	if(Kapitel < 4)
+	{
+		Log_CreateTopic(TOPIC_Wolf_BringCrawlerPlates,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Wolf_BringCrawlerPlates,LOG_Running);
+		B_LogEntry(TOPIC_Wolf_BringCrawlerPlates,"Вольф может сделать мне доспехи из 10 панцирей краулеров.");
+	};
 };
 
 

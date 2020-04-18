@@ -1629,7 +1629,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 12/04/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 18/04/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		if(Addon_zuerst == TRUE)
@@ -1688,15 +1688,22 @@ instance Helmets(C_Item)
 
 func void UseHelmets()
 {
-	CreateInvItem(self,ITAR_DJGN_M);
-	CreateInvItem(self,ITAR_DJGN_H);
-	CreateInvItem(self,ITAR_PALN_M);
-	CreateInvItem(self,ITAR_PALN_H);
-	CreateInvItem(self,ITAR_PAL_S);
-	CreateInvItem(self,ITHE_DJG_M);
-	CreateInvItem(self,ITHE_DJG_H);
-	CreateInvItem(self,ITHE_PAL_M);
-	CreateInvItem(self,ITHE_PAL_H);
-	Print("Найдено много разных доспехов и шлемов!");
+	if(1 == 2)
+	{
+		CreateInvItem(self,ITAR_DJGN_M);
+		CreateInvItem(self,ITAR_DJGN_H);
+		CreateInvItem(self,ITAR_PALN_M);
+		CreateInvItem(self,ITAR_PALN_H);
+		CreateInvItem(self,ITAR_PAL_S);
+		CreateInvItem(self,ITHE_DJG_M);
+		CreateInvItem(self,ITHE_DJG_H);
+		CreateInvItem(self,ITHE_PAL_M);
+		CreateInvItem(self,ITHE_PAL_H);
+		Print("Найдено много разных доспехов и шлемов!");
+	}
+	if(2 == 3)
+	{
+		
+	};
 };
 
