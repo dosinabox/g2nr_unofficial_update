@@ -11,6 +11,7 @@ const int Value_Bread = 20;
 const int HP_Bread = 10;
 const int Value_Fish = 15;
 const int HP_Fish = 5;
+const int HP_Hering = 20;
 const int Value_Rawmeat = 3;
 const int HP_RawMeat = 6;
 const int Value_Meat = 6;
@@ -201,6 +202,30 @@ instance ItFo_Fish(C_Item)
 func void Use_Fish()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Fish);
+};
+
+
+instance ItFo_SmellyFish(C_Item)
+{
+	name = "Селедка";
+	mainflag = ITEM_KAT_FOOD;
+	flags = ITEM_MULTI;
+	value = 20;
+	visual = "ItFo_SmellyFish.3DS";
+	material = MAT_LEATHER;
+	scemeName = "FOODHUGE";
+	on_state[0] = Use_SmellyFish;
+	description = name;
+	text[1] = NAME_Bonus_HP;
+	count[1] = HP_Hering;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void Use_SmellyFish()
+{
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Hering);
 };
 
 

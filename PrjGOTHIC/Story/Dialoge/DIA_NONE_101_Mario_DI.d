@@ -73,7 +73,6 @@ func void DIA_NONE_101_MARIO_DI_ambush_Info()
 	AI_Output(other,self,"DIA_NONE_101_MARIO_DI_ambush_15_01");	//Что ты имеешь в виду?
 	AI_Output(self,other,"DIA_NONE_101_MARIO_DI_ambush_07_02");	//Это просто. Хозяин уже устал от тебя.
 	AI_Output(self,other,"DIA_NONE_101_MARIO_DI_ambush_07_03");	//Мне стоило убить тебя раньше. Но мои друзья и я сейчас исправим эту ошибку.
-//	MIS_Mario_Ambush = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Mario_Ambush);
 	Info_ClearChoices(DIA_NONE_101_MARIO_DI_ambush);
 	Info_AddChoice(DIA_NONE_101_MARIO_DI_ambush,Dialog_Ende,DIA_NONE_101_MARIO_DI_ambush_ambush);

@@ -1105,12 +1105,18 @@ instance ItSE_Addon_FrancisChest(C_Item)
 
 func void FrancisChest()
 {
-	B_PlayerFindItem(ITWR_Addon_FrancisAbrechnung_Mis,1);
-	B_PlayerFindItem(ItMw_FrancisDagger_Mis,1);
-	B_PlayerFindItem(ItMi_GoldCup,1);
-	B_PlayerFindItem(ItMi_SilverNecklace,1);
-	B_PlayerFindItem(ItMi_Gold,153);
+	CreateInvItems(hero,ITWR_Addon_FrancisAbrechnung_Mis,1);
+	CreateInvItems(hero,ItMw_FrancisDagger_Mis,1);
+	CreateInvItems(hero,ItMi_Gold,153);
+	CreateInvItems(hero,ItMi_GoldCup,1);
+	CreateInvItems(hero,ItMi_SilverNecklace,1);
 	CreateInvItems(hero,ItSE_Addon_EmptyFrancisChest,1);
+	AI_PrintScreen("Книга платежей получено",-1,49,FONT_ScreenSmall,4);
+	AI_PrintScreen("Хороший кинжал получено",-1,40,FONT_ScreenSmall,4);
+	AI_PrintScreen("153 золотых получено",-1,52,FONT_ScreenSmall,4);
+	AI_PrintScreen("Золотой кубок получено",-1,43,FONT_ScreenSmall,4);
+	AI_PrintScreen("Серебряное ожерелье получено",-1,46,FONT_ScreenSmall,4);
+	Snd_Play("Geldbeutel");
 };
 
 
