@@ -601,13 +601,10 @@ func void Use_Astronomy()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Что может произойти вследствие этого, известно нам из истории войн древних времен, когда связь между мирами была еще сильна. Эти отродья Зла несли смерть и разрушения нашему миру, и благодаря Избранному и Инносу мир был избавлен от этого Зла.");
 	Doc_PrintLines(nDocID,1,"Если такая угроза когда-либо возникнет опять, то да поможет нам Иннос, ибо мир не видел Избранного Инноса уже многие сотни лет.");
-//	Doc_PrintLine(nDocID,1,"");
-//	Doc_PrintLines(nDocID,1,"");
 	Doc_Show(nDocID);
 	if(Astronomy_Once == FALSE)
 	{
 		B_RaiseAttribute(self,ATR_MANA_MAX,2);
-		Npc_ChangeAttribute(self,ATR_MANA,2);
 		Print(Print_ReadAstronomy);
 		Snd_Play("Levelup");
 		Astronomy_Once = TRUE;

@@ -352,7 +352,6 @@ func void Use_Mushroom_01()
 		if(Dunkelpilz_Bonus == 50)
 		{
 			B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_Mushrooms);
-			Npc_ChangeAttribute(self,ATR_MANA,ManaMax_Mushrooms);
 			Snd_Play("LevelUp");
 			Dunkelpilz_Bonus = 0;
 		};

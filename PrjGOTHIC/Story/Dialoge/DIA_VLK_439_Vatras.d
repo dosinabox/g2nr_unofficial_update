@@ -1426,7 +1426,6 @@ func void DIA_Addon_Vatras_SellStonplate_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_SellStonplate_05_02");	//«а это € повышу твои магические способности!
 		B_RaiseAttribute(other,ATR_MANA_MAX,anzahl);
-		Npc_ChangeAttribute(other,ATR_MANA,anzahl);
 	}
 	else if(anzahl >= 5)
 	{

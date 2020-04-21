@@ -36,7 +36,7 @@ func void B_DaronSegen()
 		other.attribute[ATR_HITPOINTS_MAX] += 5;
 		other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
 		other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
-		concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(5));
+		concatText = ConcatStrings(PRINT_LearnHP_MAX,IntToString(5));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 	};
 	if((MIS_Thorben_GetBlessings == LOG_Running) && (GotInnosBlessingForThorben == FALSE))

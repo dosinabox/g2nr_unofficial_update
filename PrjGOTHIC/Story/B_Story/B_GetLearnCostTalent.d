@@ -10,7 +10,11 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			kosten = 5;
 		};
 	};
-	if(talent == NPC_TALENT_1H)
+	if((talent >= NPC_TALENT_1H) && (talent <= NPC_TALENT_CROSSBOW))
+	{
+		kosten = B_GetTalentTrainCost(oth,talent,skill);
+	};
+	/*if(talent == NPC_TALENT_1H)
 	{
 		if(PenaltiesAffectLearnCost == FALSE)
 		{
@@ -157,7 +161,7 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			kosten = 1;
 		};
 		kosten *= skill;
-	};
+	};*/
 	if((talent == NPC_TALENT_SNEAK) || (talent == NPC_TALENT_ACROBAT))
 	{
 		kosten = 5;

@@ -258,7 +258,6 @@ instance ItPo_Perm_Health(C_Item)
 func void UseItPo_Perm_Health()
 {
 	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HPMax_Elixier);
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HPMax_Elixier);
 };
 
 
@@ -285,7 +284,6 @@ instance ItPo_Perm_Mana(C_Item)
 func void UseItPo_Perm_Mana()
 {
 	B_RaiseAttribute(self,ATR_MANA_MAX,ManaMax_Elixier);
-	Npc_ChangeAttribute(self,ATR_MANA,ManaMax_Elixier);
 };
 
 
@@ -371,6 +369,7 @@ instance ItPo_Perm_MushroomMana(C_Item)
 	description = NAME_MushroomMana;
 	text[1] = NAME_Bonus_ManaMax;
 	count[1] = ManaMax_Mushrooms;
+	text[2] = "Полное восстановление маны.";
 	text[5] = NAME_Value;
 	count[5] = value;
 };

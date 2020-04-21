@@ -354,7 +354,6 @@ func void Use_CoragonsBeerBeer()
 	B_NpcSetDrunk(10);
 	var string concatText;
 	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_Beer);
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer);
 	Npc_ChangeAttribute(self,ATR_MANA_MAX,Mana_Beer);
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer);
 	concatText = ConcatStrings(PRINT_LearnMANA_MAX,IntToString(Mana_Beer));

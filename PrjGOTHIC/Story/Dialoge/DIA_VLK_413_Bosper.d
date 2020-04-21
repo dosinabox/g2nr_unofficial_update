@@ -958,5 +958,3 @@ func void DIA_Bosper_PICKPOCKET_BACK()
 	Info_ClearChoices(DIA_Bosper_PICKPOCKET);
 };
 
-
-

@@ -9,13 +9,13 @@ var int ChangedTwoHHero;
 var int ScriptPatchWeaponChange;
 var int PlayerIsTransformed;
 var int Saved_exp_next;
-var int Morgan_Bonus;
-var int MorgansRingEquipped;
-var int MorgansRingEquippedAt90;
-var int MorgansRingEquippedAt100;
-var int KeuleEquipped;
-var int Keule_Bonus;
-var int Keule_Fix_Needed;
+//var int Morgan_Bonus;
+//var int MorgansRingEquipped;
+//var int MorgansRingEquippedAt90;
+//var int MorgansRingEquippedAt100;
+//var int KeuleEquipped;
+//var int Keule_Bonus;
+//var int Keule_Fix_Needed;
 
 func void b_meleeweaponchange(var int oneh,var int twoh,var int manamax)
 {
@@ -35,7 +35,7 @@ func void b_meleeweaponundochange()
 	ScriptPatchWeaponChange = TRUE;
 };
 
-func void Equip_MorgansRing()
+/*func void Equip_MorgansRing()
 {
 	Morgan_Bonus = 100 - self.HitChance[NPC_TALENT_1H];
 	if(self.HitChance[NPC_TALENT_1H] >= 100)
@@ -166,7 +166,7 @@ func void UnEquip_2H_Keule()
 		};
 		Keule2HCurrentPenalty = 0;
 	};
-};
+};*/
 
 func void b_startmagictransform(var int Level)
 {
