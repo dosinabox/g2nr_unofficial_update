@@ -600,11 +600,10 @@ instance ItRi_HP_01_Tengron(C_Item)
 	visual = "ItRi_Hp_01.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ItRi_Tengron;
-	on_unequip = UnEquip_ItRi_Tengron;
+	on_equip = Equip_ItRi_Hp_01;
+	on_unequip = UnEquip_ItRi_Hp_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-//	description = NAME_ADDON_TengronsRing;
 	description = NAME_ADDON_CASSIASBELOHNUNGSRING;
 	text[0] = "Это кольцо принадлежит Тенгрону.";
 	text[2] = NAME_Bonus_HpMax;
@@ -614,29 +613,5 @@ instance ItRi_HP_01_Tengron(C_Item)
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 	inv_rotz = INVCAM_Z_RING_STANDARD;
 	inv_rotx = INVCAM_X_RING_STANDARD;
-};
-
-
-func void Equip_ItRi_Tengron()
-{
-	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp;
-//	self.attribute[ATR_HITPOINTS] += Ri_Hp;
-};
-
-func void UnEquip_ItRi_Tengron()
-{
-	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp;
-	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
-	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	};
-//	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 1))
-//	{
-//		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_HITPOINTS] = 2;
-//	};
 };
 

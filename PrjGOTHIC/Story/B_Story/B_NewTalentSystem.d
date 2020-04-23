@@ -344,6 +344,8 @@ func void B_InitTalentSystem()
 	B_ChangeTalent(NPC_TALENT_CROSSBOW,hero.HitChance[NPC_TALENT_CROSSBOW],TS_Training);
 };*/
 
+var C_NPC RealHero;
+
 // Talent Sources
 const int TS_Training = 0;
 const int TS_TempBonus = 1;
@@ -411,8 +413,9 @@ func int CoerceInRange(var int value,var int min,var int max)
 
 func int IsHero(var C_NPC npc)
 {
-	if(Npc_IsPlayer(npc) && (Hlp_StrCmp(npc.name[0], "ß") == TRUE))
+	if(Hlp_StrCmp(npc.name[0],"ß") == TRUE)
 	{
+		RealHero = Hlp_GetNpc(npc);
 		return TRUE;
 	};
 	return FALSE;
@@ -422,13 +425,13 @@ func void ValidateNpc(var C_NPC npc)
 {
 	if(!Hlp_IsValidNpc(npc))
 	{
-		Print("Talent System Error: invalid npc"); 
+		Print("Talent System Error: invalid npc");
 	};
 };
 
 func void ValidateTalent(var int talent)
 {
-	var string text; 
+	var string text;
 	if((talent < NPC_TALENT_1H) || (talent > NPC_TALENT_CROSSBOW))
 	{
 		text = "Talent System Error: invalid talent (";
@@ -590,7 +593,7 @@ func int GetTalentPart_TeachLimit_Hero(var int talent)
 	return 0;
 };
 
-// check hero talent value to start training
+// check RealHero talent value to start training
 func int TeacherCanTrainTalent(var int talent,var int teacherMin)
 {
 	var int teachPart;
@@ -633,7 +636,7 @@ func void UpdateTalent(var C_NPC npc,var int talent,var int value)
 	else if(talent == NPC_TALENT_CROSSBOW)
 	{
 		npc.HitChance[NPC_TALENT_CROSSBOW] = value;
-		oldSkill = Npc_GetTalentSkill(npc, NPC_TALENT_CROSSBOW);
+		oldSkill = Npc_GetTalentSkill(npc,NPC_TALENT_CROSSBOW);
 		newSkill = GetMin(npc.HitChance[NPC_TALENT_CROSSBOW] / 30, 2);
 		Npc_SetTalentSkill(npc,talent,newSkill);
 		UpdateOverlay(npc,oldSkill,newSkill,"humans_cbowT1.MDS","humans_cbowT2.MDS");
@@ -647,19 +650,19 @@ func void UpdateTalent(var C_NPC npc,var int talent,var int value)
 // updates talent's in-game value
 func void UpdateTalent_Hero(var int talent)
 {
-	UpdateTalent(hero, talent, GetTalentPart_Game_Hero(talent));
+	UpdateTalent(RealHero,talent,GetTalentPart_Game_Hero(talent));
 };
 
 // cuts the value, when talent's teach limit part exceeds allowed range
 func int CutChange_Hero(var int talent,var int change,var int source)
 {
 	var int minChange;
-	minChange = -10000;
 	var int maxChange;
-	maxChange = 10000;
 	var int teachPart;
-	teachPart = GetTalentPart_TeachLimit_Hero(talent);
 	var int isPositive;
+	minChange = -10000;
+	maxChange = 10000;
+	teachPart = GetTalentPart_TeachLimit_Hero(talent);
 	isPositive = FALSE;
 	if(change > 0)
 	{
@@ -709,42 +712,42 @@ func int ChangeTalent(var C_NPC npc,var int talent,var int change,var int source
 	SecondaryChange = 0;
 	if(talent == NPC_TALENT_1H)
 	{
-		UpdateTalent(npc, talent, npc.HitChance[NPC_TALENT_1H] + change);
+		UpdateTalent(npc,talent,npc.HitChance[NPC_TALENT_1H] + change);
 		if(source == TS_Training)
 		{
 			SecondaryChange = npc.HitChance[NPC_TALENT_1H] - npc.HitChance[NPC_TALENT_2H] - 30;
-			SecondaryChange = CoerceInRange(SecondaryChange, 0, change);
-			UpdateTalent(npc, NPC_TALENT_2H, npc.HitChance[NPC_TALENT_2H] + SecondaryChange);
+			SecondaryChange = CoerceInRange(SecondaryChange,0,change);
+			UpdateTalent(npc,NPC_TALENT_2H,npc.HitChance[NPC_TALENT_2H] + SecondaryChange);
 		};
 	}
 	else if(talent == NPC_TALENT_2H)
 	{
-		UpdateTalent(npc, talent, npc.HitChance[NPC_TALENT_2H] + change);
+		UpdateTalent(npc,talent,npc.HitChance[NPC_TALENT_2H] + change);
 		if(source == TS_Training)
 		{
 			SecondaryChange = npc.HitChance[NPC_TALENT_2H] - npc.HitChance[NPC_TALENT_1H] - 30;
-			SecondaryChange = CoerceInRange(SecondaryChange, 0, change);
-			UpdateTalent(npc, NPC_TALENT_1H, npc.HitChance[NPC_TALENT_1H] + SecondaryChange);
+			SecondaryChange = CoerceInRange(SecondaryChange,0,change);
+			UpdateTalent(npc,NPC_TALENT_1H,npc.HitChance[NPC_TALENT_1H] + SecondaryChange);
 		};
 	}
 	else if(talent == NPC_TALENT_BOW)
 	{
-		UpdateTalent(npc, talent, npc.HitChance[NPC_TALENT_BOW] + change);
+		UpdateTalent(npc,talent,npc.HitChance[NPC_TALENT_BOW] + change);
 		if(source == TS_Training)
 		{
 			SecondaryChange = npc.HitChance[NPC_TALENT_BOW] - npc.HitChance[NPC_TALENT_CROSSBOW] - 30;
-			SecondaryChange = CoerceInRange(SecondaryChange, 0, change);
-			UpdateTalent(npc, NPC_TALENT_CROSSBOW, npc.HitChance[NPC_TALENT_CROSSBOW] + SecondaryChange);
+			SecondaryChange = CoerceInRange(SecondaryChange,0,change);
+			UpdateTalent(npc,NPC_TALENT_CROSSBOW,npc.HitChance[NPC_TALENT_CROSSBOW] + SecondaryChange);
 		};
 	}
 	else if(talent == NPC_TALENT_CROSSBOW)
 	{
-		UpdateTalent(npc, talent, npc.HitChance[NPC_TALENT_CROSSBOW] + change);
+		UpdateTalent(npc,talent,npc.HitChance[NPC_TALENT_CROSSBOW] + change);
 		if(source == TS_Training)
 		{
 			SecondaryChange = npc.HitChance[NPC_TALENT_CROSSBOW] - npc.HitChance[NPC_TALENT_BOW] - 30;
-			SecondaryChange = CoerceInRange(SecondaryChange, 0, change);
-			UpdateTalent(npc, NPC_TALENT_BOW, npc.HitChance[NPC_TALENT_BOW] + SecondaryChange);
+			SecondaryChange = CoerceInRange(SecondaryChange,0,change);
+			UpdateTalent(npc,NPC_TALENT_BOW,npc.HitChance[NPC_TALENT_BOW] + SecondaryChange);
 		};
 	};
 	return change;
@@ -757,7 +760,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 	SecondaryChange = 0;
 	if(source != TS_TempBonus)
 	{
-		change = CutChange_Hero(talent, change, source);
+		change = CutChange_Hero(talent,change,source);
 	};
 	if(talent == NPC_TALENT_1H)
 	{
@@ -765,7 +768,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		{
 			TAL_Training[NPC_TALENT_1H] += change;
 			SecondaryChange = GetTalentPart_Cost_Hero(NPC_TALENT_1H) - GetTalentPart_Cost_Hero(NPC_TALENT_2H) - 30;
-			SecondaryChange = CoerceInRange(SecondaryChange, 0, change);
+			SecondaryChange = CoerceInRange(SecondaryChange,0,change);
 			TAL_Training[NPC_TALENT_2H] += SecondaryChange;
 		}
 		else if(source == TS_TempBonus)
@@ -780,7 +783,6 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		{
 			Print("ERROR");
 		};
-		
 		UpdateTalent_Hero(NPC_TALENT_1H);
 		UpdateTalent_Hero(NPC_TALENT_2H);
 		return change;
@@ -791,7 +793,7 @@ func int ChangeTalent_Hero(var int talent,var int change,var int source)
 		{
 			TAL_Training[NPC_TALENT_2H] += change;
 			SecondaryChange = GetTalentPart_Cost_Hero(NPC_TALENT_2H) - GetTalentPart_Cost_Hero(NPC_TALENT_1H) - 30;
-			SecondaryChange = CoerceInRange(SecondaryChange, 0, change);
+			SecondaryChange = CoerceInRange(SecondaryChange,0,change);
 			TAL_Training[NPC_TALENT_1H] += SecondaryChange;
 		}
 		else if(source == TS_TempBonus)
@@ -887,22 +889,17 @@ func int GetNextTalentBarrier(var int talent,var int value)
 func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
 {	
 	var int barrier;
-	barrier = GetNextTalentBarrier(talent, value);
-
 	var int costBefore;
-	costBefore = GetTalentPointCost(talent,value);
-
 	var int costAfter;
-	costAfter = GetTalentPointCost(talent, barrier);
-
 	var int pointsBefore;
-	pointsBefore = GetMin(barrier - value, change);
-
+	barrier = GetNextTalentBarrier(talent,value);
+	costBefore = GetTalentPointCost(talent,value);
+	costAfter = GetTalentPointCost(talent, barrier);
+	pointsBefore = GetMin(barrier - value,change);
 	if((BARRIER_ANTIABUSE == FALSE) || (TAL_CostFlags[TS_Training] == 0))
 	{
 		return change * costBefore;
 	};
-	
 	return pointsBefore * costBefore + (change - pointsBefore) * costAfter;
 };
 
@@ -944,12 +941,11 @@ func int GetTalentMax(var int talent)
 // returns the reason the teacher can't teach talent
 func int GetTeachLimitReason_Hero(var int talent,var int change,var int teacherMax)
 {
-	change *= TAL_TeachLimitFlags[TS_Training];
 	var int teachPart;
-	teachPart = GetTalentPart_TeachLimit_Hero(talent);
 	var int talentMax;
+	change *= TAL_TeachLimitFlags[TS_Training];
+	teachPart = GetTalentPart_TeachLimit_Hero(talent);
 	talentMax = GetTalentMax(talent);
-	
 	if(teachPart >= GetTalentMax(talent))
 	{
 		return TLR_AlreadyMax;
@@ -976,7 +972,7 @@ func int GetTeachLimitReason_Hero(var int talent,var int change,var int teacherM
 func int GetTeachLimitReason(var C_NPC npc,var int talent,var int change,var int teacherMax)
 {
 	var int value;
-	value = GetTalent(npc, talent);
+	value = GetTalent(npc,talent);
 	if(value >= GetTalentMax(talent))
 	{
 		return TLR_AlreadyMax;
@@ -1006,10 +1002,11 @@ func int GetTeachLimitReason(var C_NPC npc,var int talent,var int change,var int
 func void B_InitTalentSystem()
 {
 	ValidateNpc(hero);
-	TAL_Training[NPC_TALENT_1H] = hero.HitChance[NPC_TALENT_1H];
-	TAL_Training[NPC_TALENT_2H] = hero.HitChance[NPC_TALENT_2H];
-	TAL_Training[NPC_TALENT_BOW] = hero.HitChance[NPC_TALENT_BOW];
-	TAL_Training[NPC_TALENT_CROSSBOW] = hero.HitChance[NPC_TALENT_CROSSBOW];
+	RealHero = Hlp_GetNpc(hero);
+	TAL_Training[NPC_TALENT_1H] = RealHero.HitChance[NPC_TALENT_1H];
+	TAL_Training[NPC_TALENT_2H] = RealHero.HitChance[NPC_TALENT_2H];
+	TAL_Training[NPC_TALENT_BOW] = RealHero.HitChance[NPC_TALENT_BOW];
+	TAL_Training[NPC_TALENT_CROSSBOW] = RealHero.HitChance[NPC_TALENT_CROSSBOW];
 	UpdateTalent_Hero(NPC_TALENT_1H);
 	UpdateTalent_Hero(NPC_TALENT_2H);
 	UpdateTalent_Hero(NPC_TALENT_BOW);

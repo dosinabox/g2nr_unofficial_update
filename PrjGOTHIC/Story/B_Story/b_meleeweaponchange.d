@@ -1,12 +1,12 @@
 
-var int HitChanceBackupOneH;
-var int HitChanceBackupTwoH;
-var int ManaMaxBackup;
-var int MeleeWeaponChangedHero;
-var int ChangedManaHero;
-var int ChangedOneHHero;
-var int ChangedTwoHHero;
-var int ScriptPatchWeaponChange;
+//var int HitChanceBackupOneH;
+//var int HitChanceBackupTwoH;
+//var int ManaMaxBackup;
+//var int MeleeWeaponChangedHero;
+//var int ChangedManaHero;
+//var int ChangedOneHHero;
+//var int ChangedTwoHHero;
+//var int ScriptPatchWeaponChange;
 var int PlayerIsTransformed;
 var int Saved_exp_next;
 //var int Morgan_Bonus;
@@ -17,7 +17,7 @@ var int Saved_exp_next;
 //var int Keule_Bonus;
 //var int Keule_Fix_Needed;
 
-func void b_meleeweaponchange(var int oneh,var int twoh,var int manamax)
+/*func void b_meleeweaponchange(var int oneh,var int twoh,var int manamax)
 {
 	MeleeWeaponChangedHero = TRUE;
 	ChangedManaHero = manamax;
@@ -33,7 +33,7 @@ func void b_meleeweaponundochange()
 	ChangedOneHHero = 0;
 	ChangedTwoHHero = 0;
 	ScriptPatchWeaponChange = TRUE;
-};
+};*/
 
 /*func void Equip_MorgansRing()
 {
@@ -172,10 +172,10 @@ func void b_startmagictransform(var int Level)
 {
 	if(PlayerIsTransformed == FALSE)
 	{
-		HitChanceBackupOneH = hero.HitChance[NPC_TALENT_1H] - ChangedOneHHero;
+		/*HitChanceBackupOneH = hero.HitChance[NPC_TALENT_1H] - ChangedOneHHero;
 		HitChanceBackupTwoH = hero.HitChance[NPC_TALENT_2H] - ChangedTwoHHero;
 		ManaMaxBackup = hero.attribute[ATR_MANA_MAX] - ChangedManaHero;
-		b_meleeweaponundochange();
+		b_meleeweaponundochange();*/
 		MonsterTransformLevel = Level;
 		//bugfix: перед превращением в зверя добавить в инвентарь ГГ дополнительные свитки
 		if(Level == 1)
@@ -227,7 +227,7 @@ func void b_stopmagictransform()
 {
 	if(PlayerIsTransformed == TRUE)
 	{
-		if(HitChanceBackupOneH != hero.HitChance[NPC_TALENT_1H])
+		/*if(HitChanceBackupOneH != hero.HitChance[NPC_TALENT_1H])
 		{
 			B_AddFightSkill(hero,NPC_TALENT_1H,(HitChanceBackupOneH - hero.HitChance[NPC_TALENT_1H]) + ChangedOneHHero);
 		};
@@ -238,10 +238,10 @@ func void b_stopmagictransform()
 		if(ManaMaxBackup != hero.attribute[ATR_MANA_MAX])
 		{
 			hero.attribute[ATR_MANA_MAX] = ManaMaxBackup + ChangedManaHero;
-		};
+		};*/
 		AI_UnequipWeapons(hero);
 		//bugfix: отменить экипировку ГГ арбалетом в дополнение к луку
-		AI_UnequipWeapons(hero);
+		//AI_UnequipWeapons(hero);
 		//bugfix: после возврата ГГ в облик человека удалить из его инвентаря дополнительные свитки
 		if(MonsterTransformLevel == 1)
 		{

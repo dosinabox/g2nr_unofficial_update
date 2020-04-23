@@ -11,44 +11,18 @@ instance ItAm_Mana_Angar_MIS(C_Item)
 	visual = "ItAm_Mana_01.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ItAm_Mana_Angar;
-	on_unequip = UnEquip_ItAm_Mana_Angar;
+	on_equip = Equip_ItAm_Mana_01;
+	on_unequip = UnEquip_ItAm_Mana_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	//description = "Магический амулет Ангара";
 	description = "Амулет магии";
 	text[0] = "Этот амулет принадлежит Ангару.";
 	text[2] = NAME_Bonus_ManaMax;
-	count[2] = 10;
+	count[2] = Am_Mana;
 	text[5] = NAME_Value;
 	count[5] = value;
 	inv_zbias = INVCAM_ENTF_AMULETTE_STANDARD;
 };
-
-
-func void Equip_ItAm_Mana_Angar()
-{
-	self.attribute[ATR_MANA_MAX] += Am_Mana;
-//	self.attribute[ATR_MANA] += Am_Mana;
-};
-
-func void UnEquip_ItAm_Mana_Angar()
-{
-	self.attribute[ATR_MANA_MAX] -= Am_Mana;
-	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
-	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
-	};
-//	if(self.attribute[ATR_MANA] > Am_Mana)
-//	{
-//		self.attribute[ATR_MANA] -= Am_Mana;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_MANA] = 0;
-//	};
-};
-
 
 instance ItMW_1H_FerrosSword_Mis(C_Item)
 {
@@ -126,7 +100,7 @@ instance ItRw_SengrathsArmbrust_MIS(C_Item)
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_MilArmbrust;
 //	visual = "ItRw_Mil_Crossbow.mms";
-	visual = "ITRW_CROSSBOW_MISSION_02.MMS";
+	visual = "ItRw_Crossbow_Mission_02.mms";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

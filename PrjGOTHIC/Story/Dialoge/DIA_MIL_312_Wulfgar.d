@@ -95,7 +95,7 @@ instance DIA_Wulfgar_AboutMiliz(C_Info)
 
 func int DIA_Wulfgar_AboutMiliz_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo) && (other.guild == GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo))
 	{
 		return TRUE;
 	};
@@ -107,8 +107,14 @@ func void DIA_Wulfgar_AboutMiliz_Info()
 	AI_Output(self,other,"DIA_Wulfgar_AboutMiliz_04_01");	//Сейчас нами командует лорд Андрэ.
 	AI_Output(self,other,"DIA_Wulfgar_AboutMiliz_04_02");	//Раньше ополчение подчинялось губернатору. (смеется) Он понятия не имел, чем мы занимались здесь.
 	AI_Output(self,other,"DIA_Wulfgar_AboutMiliz_04_03");	//Но лорд Андрэ знает свое дело. Он заботится о своих людях.
-	AI_Output(self,other,"DIA_Wulfgar_AboutMiliz_04_04");	//Каждый, кто вступает в ополчение, получает неплохие доспехи и хорошее оружие.
-	AI_Output(self,other,"DIA_Wulfgar_AboutMiliz_04_05");	//А если ты выполняешь свою работу хорошо, то можешь рассчитывать на поощрение. Лорд Андрэ дает награду за каждого пойманного преступника.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Wulfgar_AboutMiliz_04_04");	//Каждый, кто вступает в ополчение, получает неплохие доспехи и хорошее оружие.
+	};
+	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
+	{
+		AI_Output(self,other,"DIA_Wulfgar_AboutMiliz_04_05");	//А если ты выполняешь свою работу хорошо, то можешь рассчитывать на поощрение. Лорд Андрэ дает награду за каждого пойманного преступника.
+	};
 };
 
 
@@ -125,7 +131,7 @@ instance DIA_Wulfgar_CanYouTrain(C_Info)
 
 func int DIA_Wulfgar_CanYouTrain_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo) && (other.guild != GIL_MIL))
+	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo))
 	{
 		return TRUE;
 	};
@@ -141,12 +147,25 @@ func void DIA_Wulfgar_CanYouTrain_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Wulfgar_CanYouTrain_04_03");	//Но это касается только боевого обучения. Все остальные виды обучения предназначены только для ополчения.
-		AI_Output(self,other,"DIA_Wulfgar_CanYouTrain_04_04");	//А ты меч-то можешь удержать?
-		AI_Output(other,self,"DIA_Wulfgar_CanYouTrain_15_05");	//Думаю, что да...
-		AI_Output(self,other,"DIA_Wulfgar_CanYouTrain_04_06");	//(вздыхает) Хорошо, ты можешь приступать, когда пожелаешь.
+		if(other.guild != GIL_MIL)
+		{
+			if((other.guild == GIL_PAL) || (other.guild == GIL_KDF))
+			{
+				AI_Output(self,other,"DIA_Wulfgar_CanYouTrain_04_03_add");	//Но это касается только боевого обучения.
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Wulfgar_CanYouTrain_04_03");	//Но это касается только боевого обучения. Все остальные виды обучения предназначены только для ополчения.
+			};
+		};
+		if((other.guild == GIL_MIL) || (other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+		{
+			AI_Output(self,other,"DIA_Wulfgar_CanYouTrain_04_04");	//А ты меч-то можешь удержать?
+			AI_Output(other,self,"DIA_Wulfgar_CanYouTrain_15_05");	//Думаю, что да...
+			AI_Output(self,other,"DIA_Wulfgar_CanYouTrain_04_06");	//(вздыхает) Хорошо, ты можешь приступать, когда пожелаешь.
+		};
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Вульфгар, городской гвардеец, может обучить меня искусству обращения с одноручным и двуручным оружием.");
+		B_LogEntry(TOPIC_CityTeacher,"Вульфгар, городской ополченец, может обучить меня искусству обращения с одноручным и двуручным оружием.");
 		Wulfgar_Teach1H = TRUE;
 	};
 };
@@ -165,7 +184,7 @@ instance DIA_Wulfgar_Advantage(C_Info)
 
 func int DIA_Wulfgar_Advantage_Condition()
 {
-	if((Wulfgar_Teach1H == TRUE) || (other.guild != GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo))
 	{
 		return TRUE;
 	};
@@ -192,7 +211,7 @@ instance DIA_Wulfgar_HowToBegin(C_Info)
 
 func int DIA_Wulfgar_HowToBegin_Condition()
 {
-	if((Wulfgar_Teach1H == TRUE) || (other.guild != GIL_NONE))
+	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo))
 	{
 		return TRUE;
 	};
@@ -226,7 +245,7 @@ instance DIA_Wulfgar_Teach(C_Info)
 
 func int DIA_Wulfgar_Teach_Condition()
 {
-	if((Wulfgar_Teach1H == TRUE) || (other.guild == GIL_MIL))
+	if(Wulfgar_Teach1H == TRUE)
 	{
 		return TRUE;
 	};
@@ -256,17 +275,14 @@ func void DIA_Wulfgar_Teach_Info()
 			AI_Output(self,other,"DIA_Wulfgar_Add_04_01");	//Конечно, уважаемый.
 		};
 		B_Wulfgar_Teach();
-//		Wulfgar_Merke_1h = other.HitChance[NPC_TALENT_1H];
-//		Wulfgar_Merke_2h = other.HitChance[NPC_TALENT_2H];
-		Wulfgar_Merke_1h = other.aivar[REAL_TALENT_1H];
-		Wulfgar_Merke_2h = other.aivar[REAL_TALENT_2H];
+		Wulfgar_Merke_1h = other.HitChance[NPC_TALENT_1H];
+		Wulfgar_Merke_2h = other.HitChance[NPC_TALENT_2H];
 	};
 };
 
 func void DIA_Wulfgar_Teach_Back()
 {
-//	if((Wulfgar_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Wulfgar_Merke_2h < other.HitChance[NPC_TALENT_2H]))
-	if((Wulfgar_Merke_1h < other.aivar[REAL_TALENT_1H]) || (Wulfgar_Merke_2h < other.aivar[REAL_TALENT_2H]))
+	if((Wulfgar_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Wulfgar_Merke_2h < other.HitChance[NPC_TALENT_2H]))
 	{
 		AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_04");	//Я еще сделаю из тебя отличного воина!
 	};
@@ -338,7 +354,10 @@ func int DIA_Wulfgar_AlsMil_Condition()
 {
 	if(other.guild == GIL_MIL)
 	{
-		return TRUE;
+		if(Npc_KnowsInfo(other,DIA_Wulfgar_Bonus) || !Wld_IsTime(5,2,6,54))
+		{
+			return TRUE;
+		};
 	};
 };
 

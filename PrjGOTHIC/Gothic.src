@@ -71,8 +71,10 @@ Story\B_Story\B_InspectMeleeWeapon.d
 Items\Tuning_Addon_BeliarsWeapons.d
 Items\Tuning_Melee_Weapons.d
 Items\Tuning_Ranged_Weapons.d
-Items\Einhand_EquipBonus.d
-Items\Zweihand_EquipBonus.d
+Items\EquipBonus_1H.d
+Items\EquipBonus_2H.d
+Items\EquipBonus_MaxMana.d
+Items\EquipBonus_MaxHP.d
 Items\IT_Addon_Amulette.d
 Items\IT_Addon_Armor.d
 Items\IT_Addon_BeliarWeapons.d
