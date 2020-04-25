@@ -253,7 +253,7 @@ func int DIA_Dragomir_Teach_Condition()
 func void DIA_Dragomir_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Teach_15_00");	//Научи меня чему-нибудь.
-	if(other.aivar[REAL_TALENT_CROSSBOW] >= 75)
+	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 75)
 	{
 		AI_Output(self,other,"DIA_Dragomir_Teach_12_00");	//Я больше ничему не могу научить тебя. Тебе стоит поискать другого учителя.
 		DIA_Dragomir_Teach_permanent = TRUE;
@@ -269,8 +269,7 @@ func void DIA_Dragomir_Teach_Info()
 
 func void DIA_Dragomir_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 75)
-	if(other.aivar[REAL_TALENT_CROSSBOW] >= 75)
+	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 75)
 	{
 		AI_Output(self,other,"DIA_Dragomir_Teach_12_00");	//Я больше ничему не могу научить тебя. Тебе стоит поискать другого учителя.
 		DIA_Dragomir_Teach_permanent = TRUE;

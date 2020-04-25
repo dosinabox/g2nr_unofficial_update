@@ -685,8 +685,7 @@ func void DIA_Alrik_Teach_Info()
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
 	};
-//	Alrik_Merke_1h = other.HitChance[NPC_TALENT_1H];
-	Alrik_Merke_1h = other.aivar[REAL_TALENT_1H];
+	Alrik_Merke_1h = other.HitChance[NPC_TALENT_1H];
 	Info_ClearChoices(DIA_Alrik_Teach);
 	Info_AddChoice(DIA_Alrik_Teach,Dialog_Back,DIA_Alrik_Teach_Back);
 	Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Alrik_Teach_1H_1);
@@ -695,13 +694,11 @@ func void DIA_Alrik_Teach_Info()
 
 func void DIA_Alrik_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_1H] >= 30)
-	if(other.aivar[REAL_TALENT_1H] >= 30)
+	if(other.HitChance[NPC_TALENT_1H] >= 30)
 	{
 		AI_Output(self,other,"DIA_Alrik_Teach_Back_09_00");	//Ты больше не новичок!
 	}
-//	else if(other.HitChance[NPC_TALENT_1H] > Alrik_Merke_1h)
-	else if(other.aivar[REAL_TALENT_1H] > Alrik_Merke_1h)
+	else if(other.HitChance[NPC_TALENT_1H] > Alrik_Merke_1h)
 	{
 		AI_Output(self,other,"DIA_Alrik_Teach_Back_09_01");	//У тебя уже лучше получается. Скоро ты станешь серьезным бойцом!
 	};

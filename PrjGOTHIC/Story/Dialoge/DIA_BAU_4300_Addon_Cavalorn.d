@@ -1039,10 +1039,8 @@ func void DIA_Addon_Cavalorn_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_TEACH_15_00");	//Я хочу обучиться тому, что ты умеешь.
 	AI_Output(self,other,"DIA_Addon_Cavalorn_TEACH_08_01");	//Хорошо. Что именно тебя интересует?
-//	Addon_Cavalorn_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
-//	Addon_Cavalorn_Merke_1h = other.HitChance[NPC_TALENT_1H];
-	Addon_Cavalorn_Merke_Bow = other.aivar[REAL_TALENT_BOW];
-	Addon_Cavalorn_Merke_1h = other.aivar[REAL_TALENT_1H];
+	Addon_Cavalorn_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
+	Addon_Cavalorn_Merke_1h = other.HitChance[NPC_TALENT_1H];
 	DIA_Addon_Cavalorn_TEACH_Choices();
 };
 
@@ -1081,7 +1079,7 @@ func void DIA_Addon_Cavalorn_Teach_1H_5()
 
 func void DIA_Addon_Cavalorn_Teach_Back()
 {
-	if((Addon_Cavalorn_Merke_Bow < other.aivar[REAL_TALENT_BOW]) || (Addon_Cavalorn_Merke_1h < other.aivar[REAL_TALENT_1H]))
+	if((Addon_Cavalorn_Merke_Bow < other.HitChance[NPC_TALENT_BOW]) || (Addon_Cavalorn_Merke_1h < other.HitChance[NPC_TALENT_1H]))
 	{
 		if((CavalornWeakComment == TRUE) || (SC_ForgotAboutCavalorn == TRUE))
 		{

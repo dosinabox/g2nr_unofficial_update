@@ -609,14 +609,14 @@ instance DIA_Hagen_CanTeach(C_Info)
 	nr = 5;
 	condition = DIA_Hagen_CanTeach_Condition;
 	information = DIA_Hagen_CanTeach_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Я ищу мастера-мечника.";
 };
 
 
 func int DIA_Hagen_CanTeach_Condition()
 {
-	if((LordHagen_Teach2H == FALSE) && (other.guild == GIL_PAL) && (other.aivar[REAL_TALENT_2H] >= 90) && (other.aivar[REAL_TALENT_2H] < 100))
+	if((LordHagen_Teach2H == FALSE) && (other.guild == GIL_PAL) && (other.HitChance[NPC_TALENT_2H] < 100))
 	{
 		return TRUE;
 	};
@@ -625,10 +625,17 @@ func int DIA_Hagen_CanTeach_Condition()
 func void DIA_Hagen_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Hagen_CanTeach_15_00");	//Я ищу мастера-мечника.
-	AI_Output(self,other,"DIA_Hagen_CanTeach_04_01");	//Да? Считай, что ты нашел его.
-	LordHagen_Teach2H = TRUE;
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Лорд Хаген может обучить меня сражаться двуручным оружием.");
+	if(other.HitChance[NPC_TALENT_2H] < 90)
+	{
+		B_Say(self,other,"$NOLEARNNOPOINTS");
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hagen_CanTeach_04_01");	//Да? Считай, что ты нашел его.
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Лорд Хаген может обучить меня сражаться двуручным оружием.");
+		LordHagen_Teach2H = TRUE;
+	};
 };
 
 
@@ -664,8 +671,7 @@ func void DIA_Hagen_Teach_Info()
 
 func void DIA_Hagen_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_2H] >= 100)
-	if(other.aivar[REAL_TALENT_2H] >= 100)
+	if(other.HitChance[NPC_TALENT_2H] >= 100)
 	{
 		AI_Output(self,other,"DIA_Hagen_Teach_04_00");	//Ты стал великолепным мечником. Мне больше нечему учить тебя.
 		AI_Output(self,other,"DIA_Hagen_Teach_04_01");	//Да ведет твою руку в будущих свершениях мудрость мастера-мечника.

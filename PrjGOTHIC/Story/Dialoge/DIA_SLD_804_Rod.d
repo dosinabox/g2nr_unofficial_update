@@ -136,8 +136,7 @@ func int DIA_Rod_Teach_Condition()
 func void DIA_Rod_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Rod_Teach_15_00");	//Я хочу научиться лучше владеть двуручным оружием!
-//	Rod_Merke_2h = other.HitChance[NPC_TALENT_2H];
-	Rod_Merke_2h = other.aivar[REAL_TALENT_2H];
+	Rod_Merke_2h = other.HitChance[NPC_TALENT_2H];
 	Info_ClearChoices(DIA_Rod_Teach);
 	Info_AddChoice(DIA_Rod_Teach,Dialog_Back,DIA_Rod_Teach_Back);
 	Info_AddChoice(DIA_Rod_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Rod_Teach_2H_1);
@@ -146,8 +145,7 @@ func void DIA_Rod_Teach_Info()
 
 func void DIA_Rod_Teach_Back()
 {
-//	if(Rod_Merke_2h < other.HitChance[NPC_TALENT_2H])
-	if(Rod_Merke_2h < other.aivar[REAL_TALENT_2H])
+	if(Rod_Merke_2h < other.HitChance[NPC_TALENT_2H])
 	{
 		AI_Output(self,other,"DIA_Rod_Teach_BACK_06_00");	//Ты уже владеешь им лучше.
 	};

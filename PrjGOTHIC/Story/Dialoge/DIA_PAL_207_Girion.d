@@ -110,8 +110,7 @@ var int girion_merk2h;
 
 func void DIA_Girion_Teach_Info()
 {
-//	girion_merk2h = other.HitChance[NPC_TALENT_2H];
-	girion_merk2h = other.aivar[REAL_TALENT_2H];
+	girion_merk2h = other.HitChance[NPC_TALENT_2H];
 	AI_Output(other,self,"DIA_Girion_Teach_15_00");	//я готов к обучению.
 	Info_ClearChoices(DIA_Girion_Teach);
 	Info_AddChoice(DIA_Girion_Teach,Dialog_Back,DIA_Girion_Teach_Back);
@@ -121,8 +120,7 @@ func void DIA_Girion_Teach_Info()
 
 func void DIA_Girion_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_2H] >= 90)
-	if((other.aivar[REAL_TALENT_2H] >= 90) && (other.aivar[REAL_TALENT_2H] < 100))
+	if((other.HitChance[NPC_TALENT_2H] >= 90) && (other.HitChance[NPC_TALENT_2H] < 100))
 	{
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_00");	//¬ообще-то говор€, твое обучение еще не завершено, но € больше ничему не могу научить теб€.
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_08_01");	//≈сли ты хочешь отточить свое мастерство еще больше, тебе лучше поискать насто€щего мастера меча.
@@ -136,8 +134,7 @@ func void DIA_Girion_Teach_Back()
 func void DIA_Girion_Teach_2H_1()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,90);
-//	if(other.HitChance[NPC_TALENT_2H] > girion_merk2h)
-	if(other.aivar[REAL_TALENT_2H] > girion_merk2h)
+	if(other.HitChance[NPC_TALENT_2H] > girion_merk2h)
 	{
 		if(Girion_Labercount == 0)
 		{
@@ -170,8 +167,7 @@ func void DIA_Girion_Teach_2H_1()
 func void DIA_Girion_Teach_2H_5()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,90);
-//	if(other.HitChance[NPC_TALENT_2H] > girion_merk2h)
-	if(other.aivar[REAL_TALENT_2H] > girion_merk2h)
+	if(other.HitChance[NPC_TALENT_2H] > girion_merk2h)
 	{
 		if(Girion_Labercount == 0)
 		{

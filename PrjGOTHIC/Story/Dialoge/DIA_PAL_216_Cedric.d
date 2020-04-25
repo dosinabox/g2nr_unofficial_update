@@ -106,8 +106,7 @@ func int DIA_Cedric_Teach_Condition()
 func void DIA_Cedric_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Cedric_Teach_15_00");	//Я хочу потренироваться.
-//	if(other.HitChance[NPC_TALENT_1H] >= 90)
-	if(other.aivar[REAL_TALENT_1H] >= 90)
+	if(other.HitChance[NPC_TALENT_1H] >= 90)
 	{
 		AI_Output(self,other,"DIA_DIA_Cedric_Teach_12_01");	//Ты уже владеешь мечом лучше меня. Мне нечему учить тебя.
 	}

@@ -76,7 +76,7 @@ func int DIA_Lares_DI_Training_Condition()
 func void DIA_Lares_DI_Training_Info()
 {
 	AI_Output(other,self,"DIA_Lares_DI_Training_15_00");	//Научи меня тому, что знаешь сам.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (other.aivar[REAL_TALENT_1H] < 100))
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (other.HitChance[NPC_TALENT_1H] < 100))
 	{
 		AI_Output(self,other,"DIA_Lares_DI_Training_09_01");	//Нет проблем.
 	}

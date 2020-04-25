@@ -887,6 +887,7 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItems(self,ItMi_IEDudelGelb,1);
 	CreateInvItems(self,ItMi_IEHarfe,1);
 	CreateInvItems(self,ItMi_IELaute,1);
+	CreateInvItems(self,ItMi_AlarmHorn,1);
 	B_SetNpcVisual(self,MALE,"Hum_Head_FatBald",Face_N_OldBald_Jeremiah,BodyTex_N,0);
 	B_GiveNpcTalents(self);
 	B_SetFightSkills(self,70);
@@ -1629,7 +1630,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 23/04/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 25/04/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		if(Addon_zuerst == TRUE)

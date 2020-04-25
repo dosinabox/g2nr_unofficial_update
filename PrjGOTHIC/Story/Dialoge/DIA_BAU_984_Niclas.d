@@ -192,8 +192,7 @@ func int DIA_Niclas_Teach_Condition()
 func void DIA_Niclas_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Niclas_Teach_15_00");	//Покажи мне, как правильно держать лук.
-//	if(other.HitChance[NPC_TALENT_BOW] >= 60)
-	if(other.aivar[REAL_TALENT_BOW] >= 60)
+	if(other.HitChance[NPC_TALENT_BOW] >= 60)
 	{
 		AI_Output(self,other,"DIA_Niclas_Teach_03_01");	//Я научил тебя всему, что мог. Теперь тебе лучше поискать другого учителя.
 	}
@@ -208,8 +207,7 @@ func void DIA_Niclas_Teach_Info()
 
 func void DIA_Niclas_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_BOW] >= 60)
-	if(other.aivar[REAL_TALENT_BOW] >= 60)
+	if(other.HitChance[NPC_TALENT_BOW] >= 60)
 	{
 		AI_Output(self,other,"DIA_Niclas_Teach_03_00");	//Мне нечему больше учить тебя.
 	};

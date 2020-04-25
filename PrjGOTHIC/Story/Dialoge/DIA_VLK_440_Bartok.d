@@ -303,8 +303,7 @@ func void DIA_Bartok_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Bartok_TeachBow_15_00");	//Я хочу научиться лучше стрелять из лука!
 	AI_Output(self,other,"DIA_Bartok_TeachBow_04_01");	//Хорошо, посмотрим, чему я могу тебя научить...
-//	Bosper_MerkeBow = other.HitChance[NPC_TALENT_BOW];
-	Bosper_MerkeBow = other.aivar[REAL_TALENT_BOW];
+	Bosper_MerkeBow = other.HitChance[NPC_TALENT_BOW];
 	Info_ClearChoices(DIA_Bartok_Teach);
 	Info_AddChoice(DIA_Bartok_Teach,Dialog_Back,DIA_Bartok_Teach_Back);
 	Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Bartok_Teach_BOW_1);
@@ -313,13 +312,11 @@ func void DIA_Bartok_Teach_Info()
 
 func void DIA_Bartok_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_BOW] >= 60)
-	if(other.aivar[REAL_TALENT_BOW] >= 60)
+	if(other.HitChance[NPC_TALENT_BOW] >= 60)
 	{
 		AI_Output(self,other,"DIA_Bartok_TeachBow_BACK_04_00");	//Тебе лучше поискать кого-нибудь, кто знает больше, чем я.
 	}
-//	else if(Bosper_MerkeBow < other.HitChance[NPC_TALENT_BOW])
-	else if(Bosper_MerkeBow < other.aivar[REAL_TALENT_BOW])
+	else if(Bosper_MerkeBow < other.HitChance[NPC_TALENT_BOW])
 	{
 		AI_Output(self,other,"DIA_Bartok_TeachBow_BACK_04_01");	//Хорошо, ты стал стрелять значительно лучше.
 	};

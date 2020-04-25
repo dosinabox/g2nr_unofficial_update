@@ -465,7 +465,7 @@ func void B_GiveDeathInv(var C_Npc slf)
 	};
 	if((slf.aivar[AIV_MM_REAL_ID] == ID_ORCCOMMANDER) && (Orc_Randomizer <= 2))
 	{
-		CreateInvItems(slf,ItAt_WargFur,1);
+		CreateInvItems(slf,ItMi_AlarmHorn,1);
 		CreateInvItems(slf,ItPo_Health_03,1);
 		CreateInvItems(slf,ItMi_Gold,10);
 	}

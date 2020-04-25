@@ -539,8 +539,7 @@ func int DIA_Addon_Morgan_Teach_Condition()
 func void DIA_Addon_Morgan_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_Teach_15_00");	//я готов учитьс€!
-//	Morgan_merke1h = other.HitChance[NPC_TALENT_1H];
-	Morgan_merke1h = other.aivar[REAL_TALENT_1H];
+	Morgan_merke1h = other.HitChance[NPC_TALENT_1H];
 	Info_ClearChoices(DIA_Addon_Morgan_Teach);
 	Info_AddChoice(DIA_Addon_Morgan_Teach,Dialog_Back,DIA_Addon_Morgan_Teach_Back);
 	Info_AddChoice(DIA_Addon_Morgan_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Addon_Morgan_Teach_1H_1);
@@ -549,8 +548,7 @@ func void DIA_Addon_Morgan_Teach_Info()
 
 func void DIA_Addon_Morgan_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_1H] > Morgan_merke1h)
-	if(other.aivar[REAL_TALENT_1H] > Morgan_merke1h)
+	if(other.HitChance[NPC_TALENT_1H] > Morgan_merke1h)
 	{
 		if(Morgan_Labercount == 0)
 		{
@@ -568,8 +566,7 @@ func void DIA_Addon_Morgan_Teach_Back()
 			Morgan_Labercount = 0;
 		};
 	}
-//	else if(other.HitChance[NPC_TALENT_1H] >= 75)
-	else if(other.aivar[REAL_TALENT_1H] >= 75)
+	else if(other.HitChance[NPC_TALENT_1H] >= 75)
 	{
 		AI_Output(self,other,"DIA_Addon_Morgan_Teach_Back_07_00");	//≈сли ты хочешь стать еще лучше, ты должен найти более опытного учител€.
 	};

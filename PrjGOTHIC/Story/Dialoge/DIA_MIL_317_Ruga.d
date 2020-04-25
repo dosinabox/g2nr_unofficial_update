@@ -168,8 +168,7 @@ func void DIA_Ruga_Teach_Info()
 
 func void DIA_Ruga_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 90)
-	if(other.aivar[REAL_TALENT_CROSSBOW] >= 90)
+	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 90)
 	{
 		AI_Output(self,other,"DIA_Ruga_Teach_11_00");	//Мне больше нечему учить тебя. Тебе лучше поискать другого учителя.
 		DIA_Ruga_Teach_permanent = TRUE;

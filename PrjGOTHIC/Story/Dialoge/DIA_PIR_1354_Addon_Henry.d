@@ -958,8 +958,7 @@ func int DIA_Addon_Henry_Teach_Condition()
 func void DIA_Addon_Henry_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Henry_Teach_15_00");	//Учи меня!
-//	Henry_merke2h = other.HitChance[NPC_TALENT_2H];
-	Henry_merke2h = other.aivar[REAL_TALENT_2H];
+	Henry_merke2h = other.HitChance[NPC_TALENT_2H];
 	Info_ClearChoices(DIA_Addon_Henry_Teach);
 	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
 	Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
@@ -970,13 +969,11 @@ func void DIA_Addon_Henry_Teach_Info()
 
 func void DIA_Addon_Henry_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_2H] > Henry_merke2h)
-	if(other.aivar[REAL_TALENT_2H] > Henry_merke2h)
+	if(other.HitChance[NPC_TALENT_2H] > Henry_merke2h)
 	{
 		B_Henry_CommentFightSkill();
 	}
-//	else if(other.HitChance[NPC_TALENT_2H] >= 90)
-	else if(other.aivar[REAL_TALENT_2H] >= 90)
+	else if(other.HitChance[NPC_TALENT_2H] >= 90)
 	{
 		AI_Output(self,other,"DIA_Addon_Henry_Teach_Back_04_00");	//Твое умение растет.
 	};

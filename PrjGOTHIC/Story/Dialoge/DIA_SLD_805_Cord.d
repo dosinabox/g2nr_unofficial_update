@@ -772,8 +772,8 @@ func void DIA_Cord_Teach_Info()
 		if(Cord_Approved == TRUE)
 		{
 			B_Cord_Teach();
-			Cord_Merke_1h = other.aivar[REAL_TALENT_1H];
-			Cord_Merke_2h = other.aivar[REAL_TALENT_2H];
+			Cord_Merke_1h = other.HitChance[NPC_TALENT_1H];
+			Cord_Merke_2h = other.HitChance[NPC_TALENT_2H];
 		};
 	}
 	else
@@ -784,7 +784,7 @@ func void DIA_Cord_Teach_Info()
 
 func void DIA_Cord_Teach_Back()
 {
-	if((Cord_Merke_1h < other.aivar[REAL_TALENT_1H]) || (Cord_Merke_2h < other.aivar[REAL_TALENT_2H]))
+	if((Cord_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Cord_Merke_2h < other.HitChance[NPC_TALENT_2H]))
 	{
 		AI_Output(self,other,"DIA_Cord_Teach_BACK_14_00");	//Ты стал значительно лучше - так держать!
 	};

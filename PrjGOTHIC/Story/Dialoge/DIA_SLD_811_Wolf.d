@@ -169,8 +169,7 @@ func void DIA_Wolf_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Wolf_TEACH_15_00");	//Я хочу научиться стрельбе из лука.
 	AI_Output(self,other,"DIA_Wolf_TEACH_08_01");	//Чему обучить тебя?
-//	Wolf_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
-	Wolf_Merke_Bow = other.aivar[REAL_TALENT_BOW];
+	Wolf_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
 	Info_ClearChoices(DIA_Wolf_TEACH);
 	Info_AddChoice(DIA_Wolf_TEACH,Dialog_Back,DIA_Wolf_Teach_Back);
 	Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_Teach_Bow_1);
@@ -179,8 +178,7 @@ func void DIA_Wolf_TEACH_Info()
 
 func void DIA_Wolf_Teach_Back()
 {
-//	if(Wolf_Merke_Bow < other.HitChance[NPC_TALENT_BOW])
-	if(Wolf_Merke_Bow < other.aivar[REAL_TALENT_BOW])
+	if(Wolf_Merke_Bow < other.HitChance[NPC_TALENT_BOW])
 	{
 		AI_Output(self,other,"DIA_Wolf_Teach_BACK_08_00");	//Вот так. Твоя меткость значительно выросла.
 	};
