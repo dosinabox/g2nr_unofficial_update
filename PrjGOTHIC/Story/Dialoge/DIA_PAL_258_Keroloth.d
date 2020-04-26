@@ -97,35 +97,69 @@ func void DIA_Keroloth_WantTeach_Info()
 
 
 var int DIA_Keroloth_Teacher_permanent;
+var int DIA_Keroloth_TeachState_1H;
+var int DIA_Keroloth_TeachState_2H;
+
+func void B_Keroloth_TeachNoMore()
+{
+	AI_Output(self,other,"B_Keroloth_TeachNoMore2_07_00");	//Только очень опытный мечник сможет помочь тебе теперь.
+};
 
 func void B_BuildLearnDialog_Keroloth()
 {
 	Info_ClearChoices(DIA_Keroloth_Teacher);
 	Info_AddChoice(DIA_Keroloth_Teacher,Dialog_Back,DIA_Keroloth_Teacher_Back);
-	if((VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_Keroloth_1H) && (VisibleTalentValue(NPC_TALENT_2H) >= TeachLimit_Keroloth_2H))
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_Keroloth_2H)
 	{
-		AI_Output(self,other,"B_Keroloth_TeachNoMore1_07_00");	//Ты очень хорош. Мне больше нечему учить тебя.
-		if((VisibleTalentValue(NPC_TALENT_1H) < 100) || (VisibleTalentValue(NPC_TALENT_2H) < 100))
-		{
-			AI_Output(self,other,"B_Keroloth_TeachNoMore2_07_00");	//Только очень опытный мечник сможет помочь тебе теперь.
-		};
-		if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_Keroloth_1H) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_Keroloth_2H))
-		{
-			DIA_Keroloth_Teacher_permanent = TRUE;
-		};
+		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Keroloth_Teacher_2H_1);
+		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Keroloth_Teacher_2H_5);
+		DIA_Keroloth_TeachState_2H = 1;
 	}
 	else
 	{
-		if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_Keroloth_2H)
+		if(DIA_Keroloth_TeachState_2H != 2)
 		{
-			Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Keroloth_Teacher_2H_1);
-			Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Keroloth_Teacher_2H_5);
+			if((VisibleTalentValue(NPC_TALENT_2H) < 100) && (DIA_Keroloth_TeachState_1H != 2))
+			{
+				if(DIA_Keroloth_TeachState_2H != 0)
+				{
+					PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Keroloth_2H)),-1,53,FONT_Screen,2);
+					B_Keroloth_TeachNoMore();
+				};
+			};
 		};
-		if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_Keroloth_1H)
+		DIA_Keroloth_TeachState_2H = 2;
+	};
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_Keroloth_1H)
+	{
+		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Keroloth_Teacher_1H_1);
+		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Keroloth_Teacher_1H_5);
+		DIA_Keroloth_TeachState_1H = 1;
+	}
+	else
+	{
+		if(DIA_Keroloth_TeachState_1H != 2)
 		{
-			Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Keroloth_Teacher_1H_1);
-			Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Keroloth_Teacher_1H_5);
+			if((VisibleTalentValue(NPC_TALENT_1H) < 100) && (DIA_Keroloth_TeachState_2H != 2))
+			{
+				if(DIA_Keroloth_TeachState_1H != 0)
+				{
+					PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Keroloth_1H)),-1,53,FONT_Screen,2);
+					B_Keroloth_TeachNoMore();
+				};
+			};
 		};
+		DIA_Keroloth_TeachState_1H = 2;
+	};
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_Keroloth_1H) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_Keroloth_2H))
+	{
+		DIA_Keroloth_Teacher_permanent = TRUE;
+	};
+	if((DIA_Keroloth_TeachState_1H == 2) && (DIA_Keroloth_TeachState_2H == 2))
+	{
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Keroloth_2H)),-1,53,FONT_Screen,2);
+		AI_Output(self,other,"B_Keroloth_TeachNoMore1_07_00");	//Ты очень хорош. Мне больше нечему учить тебя.
+		AI_StopProcessInfos(self);
 	};
 };
 

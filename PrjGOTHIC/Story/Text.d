@@ -644,6 +644,7 @@ const string PRINT_1LP = " очко обучения)";
 const string PRINT_NotEnoughLP = "Недостаточно очков обучения!";
 const string PRINT_NoLearnOverPersonalMAX = "Максимум этого учителя: ";
 const string PRINT_NoLearnOverMAX = "Дальнейшее повышение невозможно!";
+const string PRINT_NoLearnMAXReached = "Достигнут максимум учителя: ";
 const string PRINT_LearnSTR = "Сила + ";
 const string PRINT_LearnDEX = "Ловкость + ";
 const string PRINT_LearnMANA_MAX = "Макс. мана + ";

@@ -344,9 +344,6 @@ func void CH_RESET_Info()
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKLOCK,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_MAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_SNEAK,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_REGENERATE,0);
-	hero.attribute[ATR_REGENERATEHP] = 0;
-	hero.attribute[ATR_REGENERATEMANA] = 0;
 	Npc_SetTalentSkill(hero,NPC_TALENT_ACROBAT,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKPOCKET,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_SMITH,0);
@@ -356,6 +353,9 @@ func void CH_RESET_Info()
 	Npc_SetTalentSkill(hero,NPC_TALENT_FOREIGNLANGUAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_WISPDETECTOR,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALTROPHY,0);
+	Npc_SetTalentSkill(hero,NPC_TALENT_REGENERATE,0);
+	hero.attribute[ATR_REGENERATEHP] = 0;
+	hero.attribute[ATR_REGENERATEMANA] = 0;
 	Hero_HackChance = 10;
 	Knows_Bloodfly = FALSE;
 	G1BodySkin = FALSE;
