@@ -79,6 +79,30 @@ func void DIA_Gorn_DI_Hallo_Info()
 };
 
 
+var int DIA_Gorn_DI_Teacher_permanent;
+var int DIA_Gorn_DI_Teacher_Comment;
+
+func void B_BuildLearnDialog_Gorn_DI()
+{
+	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	{
+		Info_ClearChoices(DIA_Gorn_DI_Teach);
+		Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
+		Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Gorn_DI_Teach_2H_1);
+		Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Gorn_DI_Teach_2H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_2H) >= 100)
+		{
+			DIA_Gorn_DI_Teacher_permanent = TRUE;
+		};
+		PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
+};
+
 instance DIA_Gorn_DI_Teach(C_Info)
 {
 	npc = PC_Fighter_DI;
@@ -92,7 +116,7 @@ instance DIA_Gorn_DI_Teach(C_Info)
 
 func int DIA_Gorn_DI_Teach_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(!Npc_IsDead(UndeadDragon) && (DIA_Gorn_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -101,42 +125,47 @@ func int DIA_Gorn_DI_Teach_Condition()
 func void DIA_Gorn_DI_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Gorn_DI_Teach_15_00");	//Я хочу потренироваться.
-	AI_Output(self,other,"DIA_Gorn_DI_Teach_12_01");	//Это не помешает.
-	Info_ClearChoices(DIA_Gorn_DI_Teach);
-	Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Gorn_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Gorn_DI_Teach_2H_1);
+	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	{
+		if(DIA_Gorn_DI_Teacher_Comment == 0)
+		{
+			AI_Output(self,other,"DIA_Gorn_DI_Teach_12_01");	//Это не помешает.
+			DIA_Gorn_DI_Teacher_Comment = 1;
+		}
+		else if(DIA_Gorn_DI_Teacher_Comment == 1)
+		{
+			AI_Output(self,other,"DIA_Gorn_DI_Teach_2H_1_12_00");	//Да уж. Когда-то ты был лучше.
+			DIA_Gorn_DI_Teacher_Comment = 2;
+		}
+		else if(DIA_Gorn_DI_Teacher_Comment == 2)
+		{
+			AI_Output(self,other,"DIA_Gorn_DI_Teach_2H_5_12_00");	//Оружие нужно держать выше. Даже слепой легко пробьет твою защиту своей тростью.
+			DIA_Gorn_DI_Teacher_Comment = 0;
+		};
+	};
+	B_BuildLearnDialog_Gorn_DI();
 };
 
 func void DIA_Gorn_DI_Teach_2H_1()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
 	{
-		AI_Output(self,other,"DIA_Gorn_DI_Teach_2H_1_12_00");	//Да уж. Когда-то ты был лучше.
+		B_BuildLearnDialog_Gorn_DI();
 	};
-	Info_ClearChoices(DIA_Gorn_DI_Teach);
-	Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Gorn_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Gorn_DI_Teach_2H_1);
 };
 
 func void DIA_Gorn_DI_Teach_2H_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
 	{
-		AI_Output(self,other,"DIA_Gorn_DI_Teach_2H_5_12_00");	//Оружие нужно держать выше. Даже слепой легко пробьет твою защиту своей тростью.
+		B_BuildLearnDialog_Gorn_DI();
 	};
-	Info_ClearChoices(DIA_Gorn_DI_Teach);
-	Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Gorn_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Gorn_DI_Teach_2H_1);
 };
 
 func void DIA_Gorn_DI_Teach_Back()
 {
 	Info_ClearChoices(DIA_Gorn_DI_Teach);
 };
-
 
 var int DIA_Gorn_DI_UndeadDragonDead_OneTime;
 

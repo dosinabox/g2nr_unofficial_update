@@ -80,6 +80,56 @@ func void DIA_Lee_DI_PERM6_Info()
 };
 
 
+var int DIA_Lee_DI_Teacher_permanent;
+var int DIA_Lee_DI_TeachState_1H;
+var int DIA_Lee_DI_TeachState_2H;
+
+func void B_BuildLearnDialog_Lee_DI()
+{
+	Info_ClearChoices(DIA_Lee_DI_Teach);
+	Info_AddChoice(DIA_Lee_DI_Teach,Dialog_Back,DIA_Lee_DI_Teach_Back);
+	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	{
+		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_DI_Teach_2H_1);
+		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_DI_Teach_2H_5);
+		DIA_Lee_DI_TeachState_2H = 1;
+	}
+	else
+	{
+		if((DIA_Lee_DI_TeachState_2H == 1) && (DIA_Lee_DI_TeachState_1H != 2))
+		{
+			PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+			B_Henry_NoMore_2H();
+		};
+		DIA_Lee_DI_TeachState_2H = 2;
+	};
+	if(VisibleTalentValue(NPC_TALENT_1H) < 100)
+	{
+		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lee_DI_Teach_1H_1);
+		Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lee_DI_Teach_1H_5);
+		DIA_Lee_DI_TeachState_1H = 1;
+	}
+	else
+	{
+		if((DIA_Lee_DI_TeachState_1H == 1) && (DIA_Lee_DI_TeachState_2H != 2))
+		{
+			PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+			B_Say(self,other,"$NOLEARNYOUREBETTER");
+		};
+		DIA_Lee_DI_TeachState_1H = 2;
+	};
+	if((RealTalentValue(NPC_TALENT_1H) >= 100) && (RealTalentValue(NPC_TALENT_2H) >= 100))
+	{
+		DIA_Lee_DI_Teacher_permanent = TRUE;
+	};
+	if((DIA_Lee_DI_TeachState_1H == 2) && (DIA_Lee_DI_TeachState_2H == 2))
+	{
+		PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+		B_Henry_NoMoreTeach();
+		AI_StopProcessInfos(self);
+	};
+};
+
 instance DIA_Lee_DI_Teach(C_Info)
 {
 	npc = SLD_800_Lee_DI;
@@ -93,7 +143,7 @@ instance DIA_Lee_DI_Teach(C_Info)
 
 func int DIA_Lee_DI_Teach_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(!Npc_IsDead(UndeadDragon) && (DIA_Lee_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -102,69 +152,51 @@ func int DIA_Lee_DI_Teach_Condition()
 func void DIA_Lee_DI_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Lee_DI_Teach_15_00");	//Я хочу потренироваться.
-	AI_Output(self,other,"DIA_Lee_DI_Teach_04_01");	//Что именно ты хочешь улучшить?
-	Info_ClearChoices(DIA_Lee_DI_Teach);
-	Info_AddChoice(DIA_Lee_DI_Teach,Dialog_Back,DIA_Lee_DI_Teach_Back);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lee_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lee_DI_Teach_1H_5);
+	if((VisibleTalentValue(NPC_TALENT_1H) < 100) && (VisibleTalentValue(NPC_TALENT_2H) < 100))
+	{
+		if((VisibleTalentValue(NPC_TALENT_1H) <= 30) || (VisibleTalentValue(NPC_TALENT_2H) <= 30))
+		{
+			AI_Output(self,other,"DIA_Lee_DI_Teach_1H_1_04_00");	//Твоя защита ужасна, но мы что-нибудь сделаем с этим.
+		};
+		AI_Output(self,other,"DIA_Lee_DI_Teach_04_01");	//Что именно ты хочешь улучшить?
+	};
+	B_BuildLearnDialog_Lee_DI();
 };
 
 func void DIA_Lee_DI_Teach_1H_1()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,100))
 	{
-		AI_Output(self,other,"DIA_Lee_DI_Teach_1H_1_04_00");	//Твоя защита ужасна, но мы что-нибудь сделаем с этим.
+		B_Lee_CommentFightSkill();
+		B_BuildLearnDialog_Lee_DI();
 	};
-	Info_ClearChoices(DIA_Lee_DI_Teach);
-	Info_AddChoice(DIA_Lee_DI_Teach,Dialog_Back,DIA_Lee_DI_Teach_Back);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lee_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lee_DI_Teach_1H_5);
 };
 
 func void DIA_Lee_DI_Teach_1H_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,100))
 	{
-		AI_Output(self,other,"DIA_Lee_DI_Teach_1H_5_04_00");	//Твои кисти слишком напряжены. Ты должен держать оружие свободнее.
+		B_Lee_CommentFightSkill();
+		B_BuildLearnDialog_Lee_DI();
 	};
-	Info_ClearChoices(DIA_Lee_DI_Teach);
-	Info_AddChoice(DIA_Lee_DI_Teach,Dialog_Back,DIA_Lee_DI_Teach_Back);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lee_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lee_DI_Teach_1H_5);
 };
 
 func void DIA_Lee_DI_Teach_2H_1()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
 	{
-		AI_Output(self,other,"DIA_DIA_Lee_DI_Teach_2H_1_04_00");	//Всегда помни: боковой удар должен идти от бедра, а не от запястья.
+		B_Lee_CommentFightSkill();
+		B_BuildLearnDialog_Lee_DI();
 	};
-	Info_ClearChoices(DIA_Lee_DI_Teach);
-	Info_AddChoice(DIA_Lee_DI_Teach,Dialog_Back,DIA_Lee_DI_Teach_Back);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lee_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lee_DI_Teach_1H_5);
 };
 
 func void DIA_Lee_DI_Teach_2H_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
 	{
-		AI_Output(self,other,"DIA_Lee_DI_Teach_2H_5_04_00");	//Сильнейший удар бесполезен, если он приходится в никуда. Так что старайся точно рассчитывать удары.
+		B_Lee_CommentFightSkill();
+		B_BuildLearnDialog_Lee_DI();
 	};
-	Info_ClearChoices(DIA_Lee_DI_Teach);
-	Info_AddChoice(DIA_Lee_DI_Teach,Dialog_Back,DIA_Lee_DI_Teach_Back);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lee_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Lee_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lee_DI_Teach_1H_5);
 };
 
 func void DIA_Lee_DI_Teach_Back()
@@ -172,6 +204,7 @@ func void DIA_Lee_DI_Teach_Back()
 	Info_ClearChoices(DIA_Lee_DI_Teach);
 };
 
+var int DIA_Lee_DI_UndeadDragonDead_OneTime;
 
 instance DIA_Lee_DI_UndeadDragonDead(C_Info)
 {
@@ -191,9 +224,6 @@ func int DIA_Lee_DI_UndeadDragonDead_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Lee_DI_UndeadDragonDead_OneTime;
 
 func void DIA_Lee_DI_UndeadDragonDead_Info()
 {

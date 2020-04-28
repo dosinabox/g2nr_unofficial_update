@@ -3,6 +3,8 @@ const int TeachLimit_Keroloth_1H = 60;
 const int TeachLimit_Keroloth_2H = 60;
 const int TeachLimit_Cedric_1H = 90;
 const int TeachLimit_Morgan_1H = 75;
+const int TeachLimit_Henry_2H = 90;
+const int TeachLimit_Henry_Crossbow = 80;
 
 var C_NPC RealHero;
 

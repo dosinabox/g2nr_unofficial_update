@@ -514,6 +514,7 @@ func void DIA_Addon_Morgan_TRAIN_Info()
 };
 
 
+var int DIA_Morgan_Teacher_permanent;
 var int Morgan_merke1h;
 var int Morgan_Labercount;
 
@@ -530,15 +531,16 @@ func void B_BuildLearnDialog_Morgan()
 	{
 		if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_Morgan_1H)
 		{
-			Morgan_Addon_TeachPlayer = TRUE;
+			DIA_Morgan_Teacher_permanent = TRUE;
 		};
-		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Morgan_1H)),-1,53,FONT_Screen,2);
 		if(VisibleTalentValue(NPC_TALENT_1H) < 100)
 		{
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Morgan_1H)),-1,53,FONT_Screen,2);
 			AI_Output(self,other,"DIA_Addon_Morgan_Teach_Back_07_00");	//Если ты хочешь стать еще лучше, ты должен найти более опытного учителя.
 		}
 		else
 		{
+			PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
 			B_Say(self,other,"$NOLEARNYOUREBETTER");
 		};
 		AI_StopProcessInfos(self);
@@ -572,7 +574,7 @@ instance DIA_Addon_Morgan_Teach(C_Info)
 
 func int DIA_Addon_Morgan_Teach_Condition()
 {
-	if(Morgan_Addon_TeachPlayer == TRUE)
+	if((Morgan_Addon_TeachPlayer == TRUE) && (DIA_Morgan_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};

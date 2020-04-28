@@ -1394,6 +1394,33 @@ func void DIA_Lee_SYLVIO_Info()
 
 
 var int DIA_Lee_Teacher_permanent;
+var int Lee_Labercount;
+var int DIA_Lee_TeachState_2H;
+
+func void B_Lee_CommentFightSkill()
+{
+	if(Lee_Labercount == 0)
+	{
+		AI_Output(self,other,"DIA_Lee_DI_Teach_1H_5_04_00");	//“вои кисти слишком напр€жены. “ы должен держать оружие свободнее.
+		Lee_Labercount = 1;
+	}
+	else if(Lee_Labercount == 1)
+	{
+		AI_Output(self,other,"DIA_DIA_Lee_DI_Teach_2H_1_04_00");	//¬сегда помни: боковой удар должен идти от бедра, а не от зап€сть€.
+		Lee_Labercount = 2;
+	}
+	else if(Lee_Labercount == 2)
+	{
+		AI_Output(self,other,"DIA_Lee_DI_Teach_2H_5_04_00");	//—ильнейший удар бесполезен, если он приходитс€ в никуда. “ак что старайс€ точно рассчитывать удары.
+		Lee_Labercount = 0;
+	};
+};
+
+func void B_Lee_TeachNoMore()
+{
+	AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_00");	//“еперь ты насто€щий мастер бо€ двуручным оружием.
+	AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_01");	//“ы больше не нуждаешьс€ в учител€х.
+};
 
 instance DIA_Lee_CanTeach(C_Info)
 {
@@ -1420,8 +1447,7 @@ func void DIA_Lee_CanTeach_Info()
 	AI_Output(other,self,"DIA_Lee_CanTeach_15_00");	//“ы можешь обучить мен€?
 	if(RealTalentValue(NPC_TALENT_2H) >= 100)
 	{
-		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_00");	//“еперь ты насто€щий мастер бо€ двуручным оружием.
-		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_01");	//“ы больше не нуждаешьс€ в учител€х.
+		B_Lee_TeachNoMore();
 		Lee_TeachPlayer = TRUE;
 		DIA_Lee_Teacher_permanent = TRUE;
 	}
@@ -1492,8 +1518,7 @@ func void B_BuildLearnDialog_Lee()
 			DIA_Lee_Teacher_permanent = TRUE;
 		};
 		PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
-		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_00");	//“еперь ты насто€щий мастер бо€ двуручным оружием.
-		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_01");	//“ы больше не нуждаешьс€ в учител€х.
+		B_Lee_TeachNoMore();
 		AI_StopProcessInfos(self);
 	};
 };
@@ -1532,6 +1557,7 @@ func void DIA_Lee_Teach_2H_1()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
 	{
+		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee();
 	};
 };
@@ -1540,6 +1566,7 @@ func void DIA_Lee_Teach_2H_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
 	{
+		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee();
 	};
 };
