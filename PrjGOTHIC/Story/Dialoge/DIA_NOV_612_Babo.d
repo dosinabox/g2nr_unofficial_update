@@ -130,49 +130,66 @@ func void DIA_Babo_Sergio_Info()
 
 var int DIA_Babo_Teach_permanent;
 var int Babo_Labercount;
-var int babo_merk2h;
+
+func void B_BuildLearnDialog_Babo()
+{
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_Babo_2H)
+	{
+		Info_ClearChoices(DIA_Babo_Teach);
+		Info_AddChoice(DIA_Babo_Teach,Dialog_Back,DIA_Babo_Teach_Back);
+		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Babo_Teach_2H_1);
+		Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Babo_Teach_2H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_Babo_2H)
+		{
+			DIA_Morgan_Teacher_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Babo_2H)),-1,53,FONT_Screen,2);
+		AI_Output(self,other,"DIA_DIA_Babo_Teach_Back_03_00");	//Ты знаешь больше о двуручном оружии, чем я мог бы научить тебя.
+		AI_StopProcessInfos(self);
+	};
+};
 
 func void B_BaboTeachComment()
 {
-	if(other.HitChance[NPC_TALENT_2H] > babo_merk2h)
+	if(Babo_Labercount == 0)
 	{
-		if(Babo_Labercount == 0)
-		{
-			AI_Output(self,other,"DIA_DIA_Babo_Teach_03_00");	//Сражайся за Инноса. Иннос - наша жизнь, и твоя вера придаст тебе силы.
-		}
-		else if(Babo_Labercount == 1)
-		{
-			AI_Output(self,other,"DIA_DIA_Babo_Teach_03_01");	//Слуга Инноса никогда не провоцирует противника - он удивляет его!
-		}
-		else if(Babo_Labercount == 2)
-		{
-			AI_Output(self,other,"DIA_DIA_Babo_Teach_03_02");	//Куда бы ты ни шел - всегда бери с собой свой посох.
-		}
-		else if(Babo_Labercount == 3)
-		{
-			AI_Output(self,other,"DIA_DIA_Babo_Teach_03_03");	//Слуга Инноса всегда готов к бою. Если у тебя нет никакой магии, твой посох - твой самый важный элемент обороны.
-		}
-		else if(Babo_Labercount == 4)
-		{
-			AI_Output(self,other,"DIA_DIA_Babo_Teach_2H_5_03_00");	//Слуга Инноса сражается не только своим посохом, но также и своим сердцем.
-		}
-		else if(Babo_Labercount == 5)
-		{
-			AI_Output(self,other,"DIA_DIA_Babo_Teach_2H_5_03_01");	//Ты должен понимать, до какого предела ты можешь отступить.
-		}
-		else if(Babo_Labercount == 6)
-		{
-			AI_Output(self,other,"DIA_DIA_Babo_Teach_2H_5_03_02");	//Помни, ты хорошо сражаешься, когда ты контролируешь противника и не даешь ему шанса контролировать себя.
-		}
-		else if(Babo_Labercount == 7)
-		{
-			AI_Output(self,other,"DIA_DIA_Babo_Teach_2H_5_03_03");	//Когда ты бросаешь бой, ты только теряешь.
-		};
-		Babo_Labercount += 1;
-		if(Babo_Labercount > 7)
-		{
-			Babo_Labercount = 0;
-		};
+		AI_Output(self,other,"DIA_DIA_Babo_Teach_03_00");	//Сражайся за Инноса. Иннос - наша жизнь, и твоя вера придаст тебе силы.
+	}
+	else if(Babo_Labercount == 1)
+	{
+		AI_Output(self,other,"DIA_DIA_Babo_Teach_03_01");	//Слуга Инноса никогда не провоцирует противника - он удивляет его!
+	}
+	else if(Babo_Labercount == 2)
+	{
+		AI_Output(self,other,"DIA_DIA_Babo_Teach_03_02");	//Куда бы ты ни шел - всегда бери с собой свой посох.
+	}
+	else if(Babo_Labercount == 3)
+	{
+		AI_Output(self,other,"DIA_DIA_Babo_Teach_03_03");	//Слуга Инноса всегда готов к бою. Если у тебя нет никакой магии, твой посох - твой самый важный элемент обороны.
+	}
+	else if(Babo_Labercount == 4)
+	{
+		AI_Output(self,other,"DIA_DIA_Babo_Teach_2H_5_03_00");	//Слуга Инноса сражается не только своим посохом, но также и своим сердцем.
+	}
+	else if(Babo_Labercount == 5)
+	{
+		AI_Output(self,other,"DIA_DIA_Babo_Teach_2H_5_03_01");	//Ты должен понимать, до какого предела ты можешь отступить.
+	}
+	else if(Babo_Labercount == 6)
+	{
+		AI_Output(self,other,"DIA_DIA_Babo_Teach_2H_5_03_02");	//Помни, ты хорошо сражаешься, когда ты контролируешь противника и не даешь ему шанса контролировать себя.
+	}
+	else if(Babo_Labercount == 7)
+	{
+		AI_Output(self,other,"DIA_DIA_Babo_Teach_2H_5_03_03");	//Когда ты бросаешь бой, ты только теряешь.
+	};
+	Babo_Labercount += 1;
+	if(Babo_Labercount > 7)
+	{
+		Babo_Labercount = 0;
 	};
 };
 
@@ -198,44 +215,31 @@ func int DIA_Babo_Teach_Condition()
 func void DIA_Babo_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Babo_Teach_15_00");	//Я готов к обучению.
-	Info_ClearChoices(DIA_Babo_Teach);
-	Info_AddChoice(DIA_Babo_Teach,Dialog_Back,DIA_Babo_Teach_Back);
-	Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Babo_Teach_2H_1);
-	Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Babo_Teach_2H_5);
+	B_BuildLearnDialog_Babo();
 };
 
 func void DIA_Babo_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_2H] >= 75)
-	{
-		AI_Output(self,other,"DIA_DIA_Babo_Teach_Back_03_00");	//Ты знаешь больше о двуручном оружии, чем я мог бы научить тебя.
-		DIA_Babo_Teach_permanent = TRUE;
-	};
 	Info_ClearChoices(DIA_Babo_Teach);
 };
 
 func void DIA_Babo_Teach_2H_1()
 {
-	babo_merk2h = other.HitChance[NPC_TALENT_2H];
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,75);
-	B_BaboTeachComment();
-	Info_ClearChoices(DIA_Babo_Teach);
-	Info_AddChoice(DIA_Babo_Teach,Dialog_Back,DIA_Babo_Teach_Back);
-	Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Babo_Teach_2H_1);
-	Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Babo_Teach_2H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_Babo_2H))
+	{
+		B_BaboTeachComment();
+		B_BuildLearnDialog_Babo();
+	};
 };
 
 func void DIA_Babo_Teach_2H_5()
 {
-	babo_merk2h = other.HitChance[NPC_TALENT_2H];
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,75);
-	B_BaboTeachComment();
-	Info_ClearChoices(DIA_Babo_Teach);
-	Info_AddChoice(DIA_Babo_Teach,Dialog_Back,DIA_Babo_Teach_Back);
-	Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Babo_Teach_2H_1);
-	Info_AddChoice(DIA_Babo_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Babo_Teach_2H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_Babo_2H))
+	{
+		B_BaboTeachComment();
+		B_BuildLearnDialog_Babo();
+	};
 };
-
 
 instance DIA_Babo_Wurst(C_Info)
 {
@@ -509,6 +513,8 @@ func void DIA_Babo_Life_Info()
 };
 
 
+var int Babo_XPgiven;
+
 instance DIA_Babo_HowIsIt(C_Info)
 {
 	npc = NOV_612_Babo;
@@ -528,9 +534,6 @@ func int DIA_Babo_HowIsIt_Condition()
 	};
 };
 
-
-var int Babo_XPgiven;
-
 func void DIA_Babo_HowIsIt_Info()
 {
 	AI_Output(other,self,"DIA_Babo_HowIsIt_15_00");	//Как дела?
@@ -540,7 +543,7 @@ func void DIA_Babo_HowIsIt_Info()
 		AI_Output(self,other,"DIA_Babo_HowIsIt_03_02");	//Мне нравится работать в саду, и я надеюсь, что маги довольны мной, Мастер.
 		if(Babo_XPgiven == FALSE)
 		{
-			B_GivePlayerXP(XP_Ambient);
+			B_GivePlayerXP(XP_AmbientKap2);
 			Babo_XPgiven = TRUE;
 		};
 	}

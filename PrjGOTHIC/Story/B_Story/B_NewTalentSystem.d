@@ -5,6 +5,8 @@ const int TeachLimit_Cedric_1H = 90;
 const int TeachLimit_Morgan_1H = 75;
 const int TeachLimit_Henry_2H = 90;
 const int TeachLimit_Henry_Crossbow = 80;
+const int TeachLimit_Babo_2H = 75;
+const int TeachLimit_Girion_2H = 90;
 
 var C_NPC RealHero;
 

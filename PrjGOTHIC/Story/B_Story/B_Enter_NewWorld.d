@@ -427,10 +427,14 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		};
 		if(!Npc_IsDead(Rick))
 		{
+			Rick.guild = GIL_MIL;
+			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rick,"Ch3");
 		};
 		if(!Npc_IsDead(Rumbold))
 		{
+			Rumbold.guild = GIL_MIL;
+			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rumbold,"Ch3");
 		};
 		if(!Npc_IsDead(Bengar))

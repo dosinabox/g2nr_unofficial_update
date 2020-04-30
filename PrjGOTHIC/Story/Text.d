@@ -935,7 +935,7 @@ const string PRINT_PickPocketFailed = " - карманная кража не удалась!";
 const string PRINT_PickPocketSuccess = " - карманная кража удалась!";
 
 const string PRINT_RequiresAlchemyTalent = "Для его создания нужно знание основ алхимии.";
-const string PRINT_KnowsBloodfly = "Теперь я знаю, что необходимо сделать, чтобы добыть целебный сок из жала кровавой мухи.";
+const string PRINT_KnowsBloodfly = "Теперь я знаю, что необходимо сделать, чтобы добыть целебный секрет из жала кровавой мухи.";
 
 const string NAME_2h_Rod = "Двуручный меч Рода";
 const string NAME_InnosEye = "Глаз Инноса";
@@ -949,6 +949,7 @@ const string NAME_TROPHY_Claws = "Удаление когтей";
 const string NAME_TROPHY_Fur = "Снятие шкур";
 const string NAME_TROPHY_BFSting = "Жало кровавой мухи";
 const string NAME_TROPHY_BFWing = "Крылья кровавой мухи";
+const string NAME_TROPHY_BFPoison = "Секрет из жала";
 const string NAME_TROPHY_DrgSnapperHorn = "Рог драконьего снеппера";
 const string NAME_TROPHY_Heart = "Удаление сердца";
 const string NAME_TROPHY_ShadowHorn = "Рог мракориса";

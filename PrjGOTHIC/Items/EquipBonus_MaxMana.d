@@ -4,6 +4,7 @@ func void B_UnEquipIllegalMagicItems(var int value)
 	var int mana;
 	var int amount;
 	mana = self.attribute[ATR_MANA_MAX] - value;
+	//баг движка с двойным снятием оружия исправлен в Union
 	/*if(mana < (Condition_Stab02 + Zauberstab_ManaBonus))
 	{
 		amount = Npc_HasItems(self,ItMW_Addon_Stab02);

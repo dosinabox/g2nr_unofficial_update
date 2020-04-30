@@ -1070,6 +1070,7 @@ var int Apple_Bonus;
 var int Dunkelpilz_Bonus;
 var int Mandibles_Bonus;
 var int Knows_Bloodfly;
+var int Knows_Bloodfly_LP;
 var int Bloodfly_Bonus;
 var int Player_KnowsDunkelpilzBonus;
 var int Skelett_Spawn;

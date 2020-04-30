@@ -320,8 +320,21 @@ func int CH_RESET_Condition()
 
 func void CH_RESET_Info()
 {
-	AI_UnequipArmor(hero);
+	//обход бага движка с двойным снятием оружия (исправлен в Union)
 	AI_UnequipWeapons(hero);
+	Info_ClearChoices(CH_RESET);
+	Info_AddChoice(CH_RESET,Dialog_Back,CH_RESET_Back);
+	Info_AddChoice(CH_RESET,"Продолжить",CH_RESET_Ok);
+};
+
+func void CH_RESET_Back()
+{
+	Info_ClearChoices(CH_RESET);
+};
+
+func void CH_RESET_Ok()
+{
+	AI_UnequipArmor(hero);
 	hero.guild = GIL_NONE;
 	Npc_SetTrueGuild(hero,GIL_NONE);
 	hero.lp = 0;
@@ -357,7 +370,10 @@ func void CH_RESET_Info()
 	hero.attribute[ATR_REGENERATEHP] = 0;
 	hero.attribute[ATR_REGENERATEMANA] = 0;
 	Hero_HackChance = 10;
-	Knows_Bloodfly = FALSE;
+	if(Knows_Bloodfly_LP == TRUE)
+	{
+		Knows_Bloodfly = FALSE;
+	};
 	G1BodySkin = FALSE;
 	SequelBodySkin = FALSE;
 	TattoosBodySkin = FALSE;
@@ -370,7 +386,83 @@ func void CH_RESET_Info()
 	Mdl_RemoveOverlayMDS(hero,"Humans_Relaxed.mds");
 	Mdl_RemoveOverlayMDS(hero,"Humans_Tired.mds");
 	B_ResetTalentSystem();
+	PLAYER_TALENT_SMITH[WEAPON_Common] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] = FALSE;
+	if(PlayergetsFinalDJGArmor == FALSE)
+	{
+		PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = FALSE;
+		PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = FALSE;
+	};
+	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_01] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_02] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_03] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_04] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Light] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Firebolt] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Icebolt] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_LightHeal] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_InstantFireball] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Zap] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonWolf] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_WindFist] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Sleep] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_MediumHeal] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_LightningFlash] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_ChargeFireball] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonSkeleton] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Fear] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_IceCube] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_ChargeZap] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonGolem] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_DestroyUndead] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Pyrokinesis] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Firestorm] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_IceWave] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonDemon] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_FullHeal] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Firerain] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_BreathOfDeath] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_MassDeath] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Shrink] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Whirlwind] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_WaterFist] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_IceLance] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Geyser] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Thunderstorm] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Health_01] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Health_02] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Health_03] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Mana_01] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Mana_02] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Mana_03] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Speed] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_FireTongue] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] = FALSE;
 	PrintScreen("Восстановлен исходный PC_Hero",-1,-1,FONT_Screen,2);
+	Info_ClearChoices(CH_RESET);
 //	Npc_SetTalentSkill(hero,NPC_TALENT_1H,0);
 //	hero.aivar[REAL_TALENT_1H] = 10;
 //	Npc_SetTalentSkill(hero,NPC_TALENT_2H,0);
@@ -383,7 +475,6 @@ func void CH_RESET_Info()
 //	Npc_SetTalentSkill(hero,NPC_TALENT_D,0);
 //	Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
 };
-
 
 instance CH_Guild(C_Info)
 {
@@ -3126,7 +3217,7 @@ func void DIA_CH_Misc_Animal_Speziell_Info()
 	Info_AddChoice(DIA_CH_Misc_Animal_Speziell,Dialog_Back,DIA_CH_Misc_Animal_Speziell_BACK);
 	if(Knows_Bloodfly == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,"Секрет из жала (1 очко обучения)",CH_Training_TROPHYS_BFGift);
+		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString(NAME_TROPHY_BFPoison,1),CH_Training_TROPHYS_BFGift);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 	{
@@ -3157,6 +3248,7 @@ func void CH_Training_TROPHYS_BFGift()
 	{
 		other.lp -= 1;
 		Knows_Bloodfly = TRUE;
+		Knows_Bloodfly_LP = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);

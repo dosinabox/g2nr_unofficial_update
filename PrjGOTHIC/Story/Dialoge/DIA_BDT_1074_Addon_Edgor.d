@@ -262,11 +262,18 @@ func void DIA_Addon_Edgor_Teach_Info()
 	Edgor_Teach = TRUE;
 };
 
+func void B_Edgor_NotEnoughLP()
+{
+	PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_ScreenSmall,2);
+	B_Say(self,other,"$NOLEARNNOPOINTS");
+};
+
 func void B_Edgor_NotEnoughGold()
 {
 	AI_Output(self,other,"DIA_Addon_Edgor_NotEnoughGold_06_00");	//Мне нужно золото. Меня интересуют только монеты, не самородки.
 };
 
+var int DIA_Edgor_Teach_permanent;
 
 instance DIA_Addon_Edgor_TrainStart(C_Info)
 {
@@ -281,7 +288,7 @@ instance DIA_Addon_Edgor_TrainStart(C_Info)
 
 func int DIA_Addon_Edgor_Start_Condition()
 {
-	if(Edgor_Teach == TRUE)
+	if((Edgor_Teach == TRUE) && (DIA_Edgor_Teach_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -297,19 +304,20 @@ func void DIA_Addon_Edgor_Start_Info()
 		Info_AddChoice(DIA_Addon_Edgor_TrainStart,Dialog_Back,DIA_Addon_Edgor_TrainStart_BACK);
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 		{
-			Info_AddChoice(DIA_Addon_Edgor_TrainStart,"Жало кровавой мухи (1 очко обучения, 100 золотых)",DIA_Addon_Edgor_TrainStart_Sting);
+			Info_AddChoice(DIA_Addon_Edgor_TrainStart,ConcatStrings(NAME_TROPHY_BFSting," (1 очко обучения, 100 золотых)"),DIA_Addon_Edgor_TrainStart_Sting);
 		};
 		if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] == FALSE)
 		{
-			Info_AddChoice(DIA_Addon_Edgor_TrainStart,"Крылья кровавой мухи (1 очко обучения, 100 золотых)",DIA_Addon_Edgor_TrainStart_Wing);
+			Info_AddChoice(DIA_Addon_Edgor_TrainStart,ConcatStrings(NAME_TROPHY_BFWing," (1 очко обучения, 100 золотых)"),DIA_Addon_Edgor_TrainStart_Wing);
 		};
 		if(Knows_Bloodfly == FALSE)
 		{
-			Info_AddChoice(DIA_Addon_Edgor_TrainStart,"Секрет из жала (1 очко обучения, 100 золотых)",DIA_Addon_Edgor_TrainStart_GIFT);
+			Info_AddChoice(DIA_Addon_Edgor_TrainStart,ConcatStrings(NAME_TROPHY_BFPoison," (1 очко обучения, 100 золотых)"),DIA_Addon_Edgor_TrainStart_GIFT);
 		};
 	}
 	else
 	{
+		DIA_Edgor_Teach_permanent = TRUE;
 		B_Say(self,other,"$NOLEARNYOUREBETTER");
 	};
 };
@@ -321,64 +329,62 @@ func void DIA_Addon_Edgor_TrainStart_BACK()
 
 func void DIA_Addon_Edgor_TrainStart_Sting()
 {
-	if(B_GiveInvItems(other,self,ItMi_Gold,100))
+	AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_Sting_15_00");	//Как оторвать жало от мухи?
+	if(other.lp < B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFSting))
 	{
-		if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_BFSting))
-		{
-			AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_Sting_15_00");	//Как оторвать жало от мухи?
-			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_Sting_06_01");	//Переверни дохлую тварь на брюхо и разрежь ее крест-накрест. Схвати внутренности и разрежь ткани вдоль всей спины.
-			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_Sting_06_02");	//После этого ты сможешь выдернуть жало резким движением.
-		};
+		B_Edgor_NotEnoughLP();
+	}
+	else if(B_GiveInvItems(other,self,ItMi_Gold,100))
+	{
+		B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_BFSting);
+		AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_Sting_06_01");	//Переверни дохлую тварь на брюхо и разрежь ее крест-накрест. Схвати внутренности и разрежь ткани вдоль всей спины.
+		AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_Sting_06_02");	//После этого ты сможешь выдернуть жало резким движением.
 	}
 	else
 	{
 		B_Edgor_NotEnoughGold();
 	};
-	Info_ClearChoices(DIA_Addon_Edgor_TrainStart);
 };
 
 func void DIA_Addon_Edgor_TrainStart_Wing()
 {
-	if(B_GiveInvItems(other,self,ItMi_Gold,100))
+	AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_Wing_15_00");	//А как отделить крылья?
+	if(other.lp < B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_BFWing))
 	{
-		if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_BFWing))
-		{
-			AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_Wing_15_00");	//А как отделить крылья?
-			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_Wing_06_01");	//Схвати их одной рукой. Другой просто отрежь их по внешней стороне кожи.
-		};
+		B_Edgor_NotEnoughLP();
+	}
+	else if(B_GiveInvItems(other,self,ItMi_Gold,100))
+	{
+		B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_BFWing);
+		AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_Wing_06_01");	//Схвати их одной рукой. Другой просто отрежь их по внешней стороне кожи.
 	}
 	else
 	{
 		B_Edgor_NotEnoughGold();
 	};
-	Info_ClearChoices(DIA_Addon_Edgor_TrainStart);
 };
 
 func void DIA_Addon_Edgor_TrainStart_GIFT()
 {
-	if(B_GiveInvItems(other,self,ItMi_Gold,100))
+	AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_GIFT_15_00");	//Как добыть секрет из жала кровавой мухи?
+	if(other.lp < 1)
 	{
-		if(other.lp >= 1)
-		{
-			AI_Output(other,self,"DIA_Addon_Edgor_TrainStart_GIFT_15_00");	//Как добыть секрет из жала кровавой мухи?
-			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_01");	//Разрежь верхний слой жала вдоль - тогда лечебный секрет и вытечет.
-			AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_02");	//Это совершенно безопасный способ высосать его из жала - или использовать его для лечебного зелья.
-			other.lp -= 1;
-			Knows_Bloodfly = TRUE;
-			PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
-			Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-			B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
-		}
-		else
-		{
-			PrintScreen(PRINT_NotEnoughLP,-1,-1,FONT_Screen,2);
-			B_Say(self,other,"$NOLEARNNOPOINTS");
-		};
+		B_Edgor_NotEnoughLP();
+	}
+	else if(B_GiveInvItems(other,self,ItMi_Gold,100))
+	{
+		AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_01");	//Разрежь верхний слой жала вдоль - тогда лечебный секрет и вытечет.
+		AI_Output(self,other,"DIA_Addon_Edgor_TrainStart_GIFT_06_02");	//Это совершенно безопасный способ высосать его из жала - или использовать его для лечебного зелья.
+		other.lp -= 1;
+		Knows_Bloodfly = TRUE;
+		Knows_Bloodfly_LP = TRUE;
+		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
+		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
+		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
 	}
 	else
 	{
 		B_Edgor_NotEnoughGold();
 	};
-	Info_ClearChoices(DIA_Addon_Edgor_TrainStart);
 };
 
