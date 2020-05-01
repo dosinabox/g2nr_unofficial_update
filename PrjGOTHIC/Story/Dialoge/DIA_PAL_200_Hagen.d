@@ -625,7 +625,7 @@ func int DIA_Hagen_CanTeach_Condition()
 func void DIA_Hagen_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Hagen_CanTeach_15_00");	//я ищу мастера-мечника.
-	if(other.HitChance[NPC_TALENT_2H] < 90)
+	if(!TeacherCanTrainTalent(NPC_TALENT_2H,90))
 	{
 		B_Say(self,other,"$NOLEARNNOPOINTS");
 	}
@@ -639,6 +639,30 @@ func void DIA_Hagen_CanTeach_Info()
 };
 
 
+var int DIA_Hagen_Teach_permanent;
+
+func void B_BuildLearnDialog_Hagen()
+{
+	Info_ClearChoices(DIA_Hagen_Teach);
+	Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
+	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	{
+		Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hagen_Teach_2H_1);
+		Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hagen_Teach_2H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_2H) >= 100)
+		{
+			DIA_Hagen_Teach_permanent = TRUE;
+		};
+		PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+		AI_Output(self,other,"DIA_Hagen_Teach_04_00");	//“ы стал великолепным мечником. ћне больше нечему учить теб€.
+		AI_Output(self,other,"DIA_Hagen_Teach_04_01");	//ƒа ведет твою руку в будущих свершени€х мудрость мастера-мечника.
+		AI_StopProcessInfos(self);
+	};
+};
+
 instance DIA_Hagen_Teach(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -646,11 +670,9 @@ instance DIA_Hagen_Teach(C_Info)
 	condition = DIA_Hagen_Teach_Condition;
 	information = DIA_Hagen_Teach_Info;
 	permanent = TRUE;
-	description = "ѕриступим к обучению! (изучить бой двуручным оружием)";
+	description = "ѕриступим к обучению!";
 };
 
-
-var int DIA_Hagen_Teach_permanent;
 
 func int DIA_Hagen_Teach_Condition()
 {
@@ -663,39 +685,24 @@ func int DIA_Hagen_Teach_Condition()
 func void DIA_Hagen_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Hagen_Teach_15_00");	//ѕриступим к обучению!
-	Info_ClearChoices(DIA_Hagen_Teach);
-	Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hagen_Teach_2H_1);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hagen_Teach_2H_5);
+	B_BuildLearnDialog_Hagen();
 };
 
 func void DIA_Hagen_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_2H] >= 100)
-	{
-		AI_Output(self,other,"DIA_Hagen_Teach_04_00");	//“ы стал великолепным мечником. ћне больше нечему учить теб€.
-		AI_Output(self,other,"DIA_Hagen_Teach_04_01");	//ƒа ведет твою руку в будущих свершени€х мудрость мастера-мечника.
-		DIA_Hagen_Teach_permanent = TRUE;
-	};
 	Info_ClearChoices(DIA_Hagen_Teach);
 };
 
 func void DIA_Hagen_Teach_2H_1()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100);
-	Info_ClearChoices(DIA_Hagen_Teach);
-	Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hagen_Teach_2H_1);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hagen_Teach_2H_5);
+	B_BuildLearnDialog_Hagen();
 };
 
 func void DIA_Hagen_Teach_2H_5()
 {
 	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100);
-	Info_ClearChoices(DIA_Hagen_Teach);
-	Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hagen_Teach_2H_1);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hagen_Teach_2H_5);
+	B_BuildLearnDialog_Hagen();
 };
 
 

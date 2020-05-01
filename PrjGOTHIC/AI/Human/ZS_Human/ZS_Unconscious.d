@@ -105,7 +105,7 @@ func void ZS_Unconscious_End()
 		{
 			AI_TakeItem(self,item);
 		};
-	}
+	};
 	if(Wld_DetectItem(self,ITEM_KAT_FF))
 	{
 		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))

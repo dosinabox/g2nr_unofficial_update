@@ -461,8 +461,6 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
 	description = name;
-//	text[2] = "Этот амулет защищает владельца";
-//	text[3] = "от всех форм урона.";
 	text[0] = "Этот амулет защищает владельца от всех форм урона.";
 	text[1] = NAME_Prot_Edge;
 	count[1] = 30;

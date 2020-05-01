@@ -17,7 +17,7 @@ instance ItPo_Addon_Geist_01(C_Item)
 	text[1] = "—ильно воздействует на сознание и";
 	text[2] = "может оказать летальное действие.";
 	text[5] = NAME_Value;
-	count[5] = Value_ManaEssenz;
+	count[5] = value;
 };
 
 
@@ -45,7 +45,7 @@ instance ItPo_Addon_Geist_02(C_Item)
 	text[1] = "—ильно воздействует на сознание и";
 	text[2] = "может оказать летальное действие.";
 	text[5] = NAME_Value;
-	count[5] = Value_ManaEssenz;
+	count[5] = value;
 };
 
 
@@ -74,7 +74,7 @@ instance ItPo_Health_Addon_04(C_Item)
 	description = NAME_HP_Full;
 	text[1] = "ѕолное восстановление здоровь€.";
 	text[5] = NAME_Value;
-	count[5] = Value_HpTrunk;
+	count[5] = value;
 };
 
 
@@ -100,7 +100,7 @@ instance ItPo_Mana_Addon_04(C_Item)
 	description = NAME_Mana_Full;
 	text[1] = "ѕолное восстановление маны.";
 	text[5] = NAME_Value;
-	count[5] = Value_ManaTrunk;
+	count[5] = value;
 };
 
 

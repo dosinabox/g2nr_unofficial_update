@@ -831,7 +831,7 @@ instance ItWr_StonePlateCommon_Addon(C_Item)
 	description = name;
 	text[0] = "Серая каменная табличка.";
 	text[5] = NAME_Value;
-	count[5] = value_StonePlateCommon;
+	count[5] = value;
 };
 
 

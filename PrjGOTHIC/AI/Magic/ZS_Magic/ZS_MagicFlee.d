@@ -44,8 +44,6 @@ func void ZS_MagicFlee()
 		{
 			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rick))
 			{
-				self.guild = GIL_MIL;
-				self.aivar[AIV_DropDeadAndKill] = FALSE;
 				Npc_ExchangeRoutine(self,"Flucht3");
 				ScaredRick = TRUE;
 			};
@@ -54,8 +52,6 @@ func void ZS_MagicFlee()
 		{
 			if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(Rumbold))
 			{
-				self.guild = GIL_MIL;
-				self.aivar[AIV_DropDeadAndKill] = FALSE;
 				Npc_ExchangeRoutine(self,"Flucht3");
 				ScaredRumbold = TRUE;
 			};

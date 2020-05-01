@@ -302,7 +302,7 @@ func void CH_Exit_Info()
 instance CH_RESET(C_Info)
 {
 	npc = ch;
-	nr = 20;
+	nr = 998;
 	condition = CH_RESET_Condition;
 	information = CH_RESET_Info;
 	permanent = TRUE;
@@ -312,7 +312,7 @@ instance CH_RESET(C_Info)
 
 func int CH_RESET_Condition()
 {
-	if(LevelStart == TRUE)
+	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -334,6 +334,206 @@ func void CH_RESET_Back()
 
 func void CH_RESET_Ok()
 {
+	var int amount;
+	//снять всю бижутерию и пояс
+	amount = Npc_HasItems(hero,ItBe_Addon_STR_5);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItBe_Addon_STR_5,amount);
+		CreateInvItems(hero,ItBe_Addon_STR_5,amount);
+	};
+	amount = Npc_HasItems(hero,ItBe_Addon_STR_10);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItBe_Addon_STR_10,amount);
+		CreateInvItems(hero,ItBe_Addon_STR_10,amount);
+	};
+	amount = Npc_HasItems(hero,ItBe_Addon_DEX_5);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItBe_Addon_DEX_5,amount);
+		CreateInvItems(hero,ItBe_Addon_DEX_5,amount);
+	};
+	amount = Npc_HasItems(hero,ItBe_Addon_DEX_10);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItBe_Addon_DEX_10,amount);
+		CreateInvItems(hero,ItBe_Addon_DEX_10,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Dex_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Dex_01,amount);
+		CreateInvItems(hero,ItAm_Dex_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Strg_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Strg_01,amount);
+		CreateInvItems(hero,ItAm_Strg_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Hp_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Hp_01,amount);
+		CreateInvItems(hero,ItAm_Hp_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Mana_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Mana_01,amount);
+		CreateInvItems(hero,ItAm_Mana_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Dex_Strg_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Dex_Strg_01,amount);
+		CreateInvItems(hero,ItAm_Dex_Strg_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Hp_Mana_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Hp_Mana_01,amount);
+		CreateInvItems(hero,ItAm_Hp_Mana_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Addon_Franco);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Addon_Franco,amount);
+		CreateInvItems(hero,ItAm_Addon_Franco,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Addon_Health);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Addon_Health,amount);
+		CreateInvItems(hero,ItAm_Addon_Health,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Addon_MANA);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Addon_MANA,amount);
+		CreateInvItems(hero,ItAm_Addon_MANA,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Addon_STR);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Addon_STR,amount);
+		CreateInvItems(hero,ItAm_Addon_STR,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Dex_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Dex_01,amount);
+		CreateInvItems(hero,ItRi_Dex_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Dex_02);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Dex_02,amount);
+		CreateInvItems(hero,ItRi_Dex_02,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_HP_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_HP_01,amount);
+		CreateInvItems(hero,ItRi_HP_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Hp_02);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Hp_02,amount);
+		CreateInvItems(hero,ItRi_Hp_02,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Str_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Str_01,amount);
+		CreateInvItems(hero,ItRi_Str_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Str_02);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Str_02,amount);
+		CreateInvItems(hero,ItRi_Str_02,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Mana_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Mana_01,amount);
+		CreateInvItems(hero,ItRi_Mana_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Mana_02);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Mana_02,amount);
+		CreateInvItems(hero,ItRi_Mana_02,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Dex_Strg_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Dex_Strg_01,amount);
+		CreateInvItems(hero,ItRi_Dex_Strg_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Hp_Mana_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Hp_Mana_01,amount);
+		CreateInvItems(hero,ItRi_Hp_Mana_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Addon_Health_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Addon_Health_01,amount);
+		CreateInvItems(hero,ItRi_Addon_Health_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Addon_Health_02);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Addon_Health_02,amount);
+		CreateInvItems(hero,ItRi_Addon_Health_02,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Addon_MANA_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Addon_MANA_01,amount);
+		CreateInvItems(hero,ItRi_Addon_MANA_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Addon_MANA_02);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Addon_MANA_02,amount);
+		CreateInvItems(hero,ItRi_Addon_MANA_02,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Addon_STR_01);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Addon_STR_01,amount);
+		CreateInvItems(hero,ItRi_Addon_STR_01,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_Addon_STR_02);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_Addon_STR_02,amount);
+		CreateInvItems(hero,ItRi_Addon_STR_02,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_HP_01_Tengron);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_HP_01_Tengron,amount);
+		CreateInvItems(hero,ItRi_HP_01_Tengron,amount);
+	};
+	amount = Npc_HasItems(hero,ItRi_OrcEliteRing);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItRi_OrcEliteRing,amount);
+		CreateInvItems(hero,ItRi_OrcEliteRing,amount);
+	};
+	amount = Npc_HasItems(hero,ItAm_Mana_Angar_MIS);
+	if(amount > 0)
+	{
+		Npc_RemoveInvItems(hero,ItAm_Mana_Angar_MIS,amount);
+		CreateInvItems(hero,ItAm_Mana_Angar_MIS,amount);
+	};
 	AI_UnequipArmor(hero);
 	hero.guild = GIL_NONE;
 	Npc_SetTrueGuild(hero,GIL_NONE);
@@ -3901,7 +4101,7 @@ func void CH_Skin_G1()
 	TattoosBodySkin = FALSE;
 	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
-	Info_ClearChoices(CH_Skin);
+	CH_Skin_Info();
 };
 
 func void CH_Skin_G2()
@@ -3911,7 +4111,7 @@ func void CH_Skin_G2()
 	TattoosBodySkin = FALSE;
 	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
-	Info_ClearChoices(CH_Skin);
+	CH_Skin_Info();
 };
 
 func void CH_Skin_Sequel()
@@ -3921,7 +4121,7 @@ func void CH_Skin_Sequel()
 	TattoosBodySkin = FALSE;
 	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
-	Info_ClearChoices(CH_Skin);
+	CH_Skin_Info();
 };
 
 func void CH_Skin_Tattoos()
@@ -3931,7 +4131,7 @@ func void CH_Skin_Tattoos()
 	TattoosBodySkin = TRUE;
 	NakedBodySkin = FALSE;
 	B_SetHeroSkin();
-	Info_ClearChoices(CH_Skin);
+	CH_Skin_Info();
 };
 
 func void CH_Skin_Naked()
@@ -3941,6 +4141,6 @@ func void CH_Skin_Naked()
 	TattoosBodySkin = FALSE;
 	NakedBodySkin = TRUE;
 	B_SetHeroSkin();
-	Info_ClearChoices(CH_Skin);
+	CH_Skin_Info();
 };
 
