@@ -684,7 +684,7 @@ instance ItWr_Vatras2Saturas_FindRaven_opened(C_Item)
 
 instance ItAm_Addon_WispDetector(C_Item)
 {
-	name = "Рудный амулет";
+	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = Value_Am_DexStrg;

@@ -68,6 +68,8 @@ Story\B_Content\B_PlayerFindItem.d
 Story\B_Story\b_meleeweaponchange.d
 Story\B_Story\B_NpcSetDrunk.d
 Story\B_Story\B_InspectMeleeWeapon.d
+Story\B_Story\B_UnEquipHeroItem.d
+Story\B_Story\B_UnEquipIllegalMagicItems.d
 Items\Tuning_Addon_BeliarsWeapons.d
 Items\Tuning_Melee_Weapons.d
 Items\Tuning_Ranged_Weapons.d

@@ -12,10 +12,7 @@ instance DIA_Udar_EXIT(C_Info)
 
 func int DIA_Udar_EXIT_Condition()
 {
-	if(Kapitel < 4)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Udar_EXIT_Info()
@@ -36,7 +33,7 @@ instance DIA_Udar_Hello(C_Info)
 
 func int DIA_Udar_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (Kapitel < 4))
+	if(Npc_IsInState(self,ZS_Talk) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -132,6 +129,33 @@ func void DIA_Udar_ImGood_Info()
 };
 
 
+var int DIA_Udar_Teach_permanent;
+
+func void B_BuildLearnDialog_Udar()
+{
+	Info_ClearChoices(DIA_Udar_Teach);
+	Info_AddChoice(DIA_Udar_Teach,Dialog_Back,DIA_Udar_Teach_Back);
+	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Udar)
+	{
+		Info_AddChoice(DIA_Udar_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Udar_Teach_CROSSBOW_1);
+		Info_AddChoice(DIA_Udar_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Udar_Teach_CROSSBOW_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Udar)
+		{
+			DIA_Udar_Teach_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Crossbow_Udar)),-1,53,FONT_Screen,2);
+		AI_Output(self,other,"B_Udar_TeachNoMore1_09_00");	//Ты уже знаешь основы - на большее у нас нет времени.
+		if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < 100)
+		{
+			AI_Output(self,other,"B_Udar_TeachNoMore2_09_00");	//Чтобы улучшить владение этим оружием, тебе лучше поискать более подходящего учителя.
+		};
+		AI_StopProcessInfos(self);
+	};
+};
+
 instance DIA_Udar_Teach(C_Info)
 {
 	npc = PAL_268_Udar;
@@ -145,7 +169,7 @@ instance DIA_Udar_Teach(C_Info)
 
 func int DIA_Udar_Teach_Condition()
 {
-	if(Udar_TeachPlayer == TRUE)
+	if((Udar_TeachPlayer == TRUE) && (DIA_Udar_Teach_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -154,11 +178,11 @@ func int DIA_Udar_Teach_Condition()
 func void DIA_Udar_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Udar_Teach_15_00");	//Я хочу поучиться у тебя.
-	AI_Output(self,other,"DIA_Udar_Teach_09_01");	//Ладно, давай!
-	Info_ClearChoices(DIA_Udar_Teach);
-	Info_AddChoice(DIA_Udar_Teach,Dialog_Back,DIA_Udar_Teach_Back);
-	Info_AddChoice(DIA_Udar_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Udar_Teach_CROSSBOW_1);
-	Info_AddChoice(DIA_Udar_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Udar_Teach_CROSSBOW_5);
+	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Udar)
+	{
+		AI_Output(self,other,"DIA_Udar_Teach_09_01");	//Ладно, давай!
+	};
+	B_BuildLearnDialog_Udar();
 };
 
 func void DIA_Udar_Teach_Back()
@@ -166,44 +190,21 @@ func void DIA_Udar_Teach_Back()
 	Info_ClearChoices(DIA_Udar_Teach);
 };
 
-func void B_Udar_TeachNoMore1()
-{
-	AI_Output(self,other,"B_Udar_TeachNoMore1_09_00");	//Ты уже знаешь основы - на большее у нас нет времени.
-};
-
-func void B_Udar_TeachNoMore2()
-{
-	AI_Output(self,other,"B_Udar_TeachNoMore2_09_00");	//Чтобы улучшить владение этим оружием, тебе лучше поискать более подходящего учителя.
-};
-
 func void DIA_Udar_Teach_CROSSBOW_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,60);
-	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 60)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,TeachLimit_Crossbow_Udar))
 	{
-		B_Udar_TeachNoMore1();
-		if(Npc_GetTalentSkill(other,NPC_TALENT_CROSSBOW) == 1)
-		{
-			B_Udar_TeachNoMore2();
-		};
+		B_BuildLearnDialog_Udar();
 	};
-	Info_AddChoice(DIA_Udar_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Udar_Teach_CROSSBOW_1);
 };
 
 func void DIA_Udar_Teach_CROSSBOW_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,60);
-	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 60)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,TeachLimit_Crossbow_Udar))
 	{
-		B_Udar_TeachNoMore1();
-		if(Npc_GetTalentSkill(other,NPC_TALENT_CROSSBOW) == 1)
-		{
-			B_Udar_TeachNoMore2();
-		};
+		B_BuildLearnDialog_Udar();
 	};
-	Info_AddChoice(DIA_Udar_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Udar_Teach_CROSSBOW_5);
 };
-
 
 instance DIA_Udar_Perm(C_Info)
 {
@@ -211,24 +212,36 @@ instance DIA_Udar_Perm(C_Info)
 	nr = 11;
 	condition = DIA_Udar_Perm_Condition;
 	information = DIA_Udar_Perm_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Как дела в замке?";
 };
 
 
 func int DIA_Udar_Perm_Condition()
 {
-	if(Kapitel <= 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Udar_Perm_Info()
 {
 	AI_Output(other,self,"DIA_Udar_Perm_15_00");	//Как дела в замке?
-	AI_Output(self,other,"DIA_Udar_Perm_09_01");	//Некоторые из наших парней посвящают себя тренировкам, но, в принципе, все мы просто ждем, когда что-нибудь произойдет.
-	AI_Output(self,other,"DIA_Udar_Perm_09_02");	//Эта неопределенность изматывает. Такова стратегия этих чертовых орков. Они будут выжидать, пока наше терпение не лопнет.
+	if(Kapitel <= 3)
+	{
+		AI_Output(self,other,"DIA_Udar_Perm_09_01");	//Некоторые из наших парней посвящают себя тренировкам, но, в принципе, все мы просто ждем, когда что-нибудь произойдет.
+		AI_Output(self,other,"DIA_Udar_Perm_09_02");	//Эта неопределенность изматывает. Такова стратегия этих чертовых орков. Они будут выжидать, пока наше терпение не лопнет.
+	}
+	else if(MIS_OCGateOpen == TRUE)
+	{
+		AI_Output(self,other,"DIA_Udar_BADFEELING_09_00");	//Еще одна такая неподготовленная атака и нам конец.
+	}
+	else if(MIS_AllDragonsDead == TRUE)
+	{
+		AI_Output(self,other,"DIA_Udar_BADFEELING_09_01");	//Орки очень нервничают. Что-то очень напугало их. Я чувствую это.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Udar_BADFEELING_09_02");	//Мне очень не нравится все это.
+	};
 };
 
 
@@ -259,31 +272,6 @@ func void DIA_Udar_Ring_Info()
 	AI_Output(self,other,"DIA_Udar_Ring_09_02");	//Говоришь, что он хочет забрать его назад? Если такова воля Инноса, так и будет. Если такова воля Инноса...
 	TengronRing = TRUE;
 	B_GivePlayerXP(XP_TengronRing);
-};
-
-
-instance DIA_Udar_KAP4_EXIT(C_Info)
-{
-	npc = PAL_268_Udar;
-	nr = 999;
-	condition = DIA_Udar_KAP4_EXIT_Condition;
-	information = DIA_Udar_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Udar_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Udar_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -379,93 +367,6 @@ func void DIA_Udar_SENGRATHGEFUNDEN_Info()
 	B_GivePlayerXP(XP_SengrathFound);
 };
 
-
-instance DIA_Udar_BADFEELING(C_Info)
-{
-	npc = PAL_268_Udar;
-	nr = 50;
-	condition = DIA_Udar_BADFEELING_Condition;
-	information = DIA_Udar_BADFEELING_Info;
-	important = TRUE;
-	permanent = TRUE;
-};
-
-
-func int DIA_Udar_BADFEELING_Condition()
-{
-	if(!Npc_RefuseTalk(self) && Npc_IsInState(self,ZS_Talk) && Npc_KnowsInfo(other,DIA_Udar_SENGRATHGEFUNDEN) && (Kapitel >= 4))
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Udar_BADFEELING_Info()
-{
-	if(MIS_OCGateOpen == TRUE)
-	{
-		AI_Output(self,other,"DIA_Udar_BADFEELING_09_00");	//Еще одна такая неподготовленная атака и нам конец.
-	}
-	else if(MIS_AllDragonsDead == TRUE)
-	{
-		AI_Output(self,other,"DIA_Udar_BADFEELING_09_01");	//Орки очень нервничают. Что-то очень напугало их. Я чувствую это.
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Udar_BADFEELING_09_02");	//Мне очень не нравится все это.
-	};
-	Npc_SetRefuseTalk(self,30);
-};
-
-
-instance DIA_Udar_KAP5_EXIT(C_Info)
-{
-	npc = PAL_268_Udar;
-	nr = 999;
-	condition = DIA_Udar_KAP5_EXIT_Condition;
-	information = DIA_Udar_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Udar_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Udar_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Udar_KAP6_EXIT(C_Info)
-{
-	npc = PAL_268_Udar;
-	nr = 999;
-	condition = DIA_Udar_KAP6_EXIT_Condition;
-	information = DIA_Udar_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Udar_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Udar_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Udar_PICKPOCKET(C_Info)
 {

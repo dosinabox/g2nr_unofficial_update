@@ -520,7 +520,7 @@ var int Morgan_Labercount;
 
 func void B_BuildLearnDialog_Morgan()
 {
-	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_Morgan_1H)
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Morgan)
 	{
 		Info_ClearChoices(DIA_Addon_Morgan_Teach);
 		Info_AddChoice(DIA_Addon_Morgan_Teach,Dialog_Back,DIA_Addon_Morgan_Teach_Back);
@@ -529,13 +529,13 @@ func void B_BuildLearnDialog_Morgan()
 	}
 	else
 	{
-		if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_Morgan_1H)
+		if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Morgan)
 		{
 			DIA_Morgan_Teacher_permanent = TRUE;
 		};
 		if(VisibleTalentValue(NPC_TALENT_1H) < 100)
 		{
-			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Morgan_1H)),-1,53,FONT_Screen,2);
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Morgan)),-1,53,FONT_Screen,2);
 			AI_Output(self,other,"DIA_Addon_Morgan_Teach_Back_07_00");	//Если ты хочешь стать еще лучше, ты должен найти более опытного учителя.
 		}
 		else
@@ -598,7 +598,7 @@ func void DIA_Addon_Morgan_Teach_Back()
 
 func void DIA_Addon_Morgan_Teach_1H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_Morgan_1H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Morgan))
 	{
 		B_TeachComments_Morgan();
 		B_BuildLearnDialog_Morgan();
@@ -607,7 +607,7 @@ func void DIA_Addon_Morgan_Teach_1H_1()
 
 func void DIA_Addon_Morgan_Teach_1H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_Morgan_1H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Morgan))
 	{
 		B_TeachComments_Morgan();
 		B_BuildLearnDialog_Morgan();

@@ -1,5 +1,5 @@
 
-instance DIA_Girion_DI_XIT(C_Info)
+instance DIA_Girion_DI_EXIT(C_Info)
 {
 	npc = PAL_207_Girion_DI;
 	nr = 999;

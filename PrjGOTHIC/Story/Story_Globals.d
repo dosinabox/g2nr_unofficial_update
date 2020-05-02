@@ -677,7 +677,7 @@ var int Torlof_SentenzaCounted;
 var int MIS_Jarvis_SldKO;
 var int MIS_Fester_KillBugs;
 var int Festers_Giant_Bug_Killed;
-var int BusterLOG;
+//var int BusterLOG;
 var int BennetLOG;
 var int MIS_Pepe_KillWolves;
 var int MIS_Pepe_KickBullco;

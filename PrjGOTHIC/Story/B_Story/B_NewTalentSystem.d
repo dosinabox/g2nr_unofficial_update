@@ -1,12 +1,16 @@
 
-const int TeachLimit_Keroloth_1H = 60;
-const int TeachLimit_Keroloth_2H = 60;
-const int TeachLimit_Cedric_1H = 90;
-const int TeachLimit_Morgan_1H = 75;
-const int TeachLimit_Henry_2H = 90;
-const int TeachLimit_Henry_Crossbow = 80;
-const int TeachLimit_Babo_2H = 75;
-const int TeachLimit_Girion_2H = 90;
+const int TeachLimit_1H_Keroloth = 60;
+const int TeachLimit_1H_Alrik = 60;
+const int TeachLimit_1H_Cedric = 90;
+const int TeachLimit_1H_Morgan = 75;
+const int TeachLimit_1H_Buster = 60;
+const int TeachLimit_2H_Keroloth = 60;
+const int TeachLimit_2H_Henry = 90;
+const int TeachLimit_2H_Babo = 75;
+const int TeachLimit_2H_Girion = 90;
+const int TeachLimit_2H_Rod = 90;
+const int TeachLimit_Crossbow_Henry = 80;
+const int TeachLimit_Crossbow_Udar = 60;
 
 var C_NPC RealHero;
 

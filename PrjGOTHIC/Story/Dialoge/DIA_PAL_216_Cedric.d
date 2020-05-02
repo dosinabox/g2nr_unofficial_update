@@ -91,7 +91,7 @@ func void DIA_Cedric_CanTeach_Info()
 
 func void B_BuildLearnDialog_Cedric()
 {
-	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_Cedric_1H)
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Cedric)
 	{
 		Info_ClearChoices(DIA_Cedric_Teach);
 		Info_AddChoice(DIA_Cedric_Teach,Dialog_Back,DIA_Cedric_Teach_Back);
@@ -100,11 +100,11 @@ func void B_BuildLearnDialog_Cedric()
 	}
 	else
 	{
-		if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_Cedric_1H)
+		if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Cedric)
 		{
 			DIA_Cedric_Teacher_permanent = TRUE;
 		};
-		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Cedric_1H)),-1,53,FONT_Screen,2);
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Cedric)),-1,53,FONT_Screen,2);
 		AI_Output(self,other,"DIA_DIA_Cedric_Teach_12_01");	//Ты уже владеешь мечом лучше меня. Мне нечему учить тебя.
 		AI_StopProcessInfos(self);
 	};
@@ -143,7 +143,7 @@ func void DIA_Cedric_Teach_Back()
 
 func void DIA_Cedric_Teach_1H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_Cedric_1H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Cedric))
 	{
 		B_BuildLearnDialog_Cedric();
 	};
@@ -151,7 +151,7 @@ func void DIA_Cedric_Teach_1H_1()
 
 func void DIA_Cedric_Teach_1H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_Cedric_1H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Cedric))
 	{
 		B_BuildLearnDialog_Cedric();
 	};

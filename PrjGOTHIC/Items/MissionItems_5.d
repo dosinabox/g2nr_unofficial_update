@@ -448,7 +448,7 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 
 instance ItAm_AmulettOfDeath_Mis(C_Item)
 {
-	name = "Божественная аура Инноса";
+	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = 1000;
@@ -460,7 +460,7 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 	on_unequip = UnEquip_ItAm_AmulettOfDeath_Mis;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = name;
+	description = "Божественная аура Инноса";
 	text[0] = "Этот амулет защищает владельца от всех форм урона.";
 	text[1] = NAME_Prot_Edge;
 	count[1] = 30;

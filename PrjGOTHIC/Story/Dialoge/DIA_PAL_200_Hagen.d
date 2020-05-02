@@ -695,16 +695,19 @@ func void DIA_Hagen_Teach_Back()
 
 func void DIA_Hagen_Teach_2H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100);
-	B_BuildLearnDialog_Hagen();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
+	{
+		B_BuildLearnDialog_Hagen();
+	};
 };
 
 func void DIA_Hagen_Teach_2H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100);
-	B_BuildLearnDialog_Hagen();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
+	{
+		B_BuildLearnDialog_Hagen();
+	};
 };
-
 
 instance DIA_Lord_Hagen_Knight(C_Info)
 {

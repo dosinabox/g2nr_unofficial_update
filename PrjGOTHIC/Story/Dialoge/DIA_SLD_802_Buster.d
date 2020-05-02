@@ -12,10 +12,7 @@ instance DIA_Buster_EXIT(C_Info)
 
 func int DIA_Buster_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Buster_EXIT_Info()
@@ -471,26 +468,23 @@ func void DIA_Buster_WhatHappened_Info()
 };
 
 
-instance DIA_Buster_Teach(C_Info)
+instance DIA_Buster_PreTeach(C_Info)
 {
 	npc = SLD_802_Buster;
 	nr = 8;
-	condition = DIA_Buster_Teach_Condition;
-	information = DIA_Buster_Teach_Info;
-	permanent = TRUE;
+	condition = DIA_Buster_PreTeach_Condition;
+	information = DIA_Buster_PreTeach_Info;
+	permanent = FALSE;
 	description = "Ты можешь научить меня сражаться?";
 };
 
 
-func int DIA_Buster_Teach_Condition()
+func int DIA_Buster_PreTeach_Condition()
 {
-	if(Npc_GetTalentSkill(other,NPC_TALENT_1H) <= 60)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
-func void DIA_Buster_Teach_Info()
+func void DIA_Buster_PreTeach_Info()
 {
 	AI_Output(other,self,"DIA_Buster_Teach_15_00");	//Ты можешь научить меня сражаться?
 	if(self.aivar[AIV_DefeatedByPlayer] == TRUE)
@@ -501,16 +495,57 @@ func void DIA_Buster_Teach_Info()
 	{
 		AI_Output(self,other,"DIA_Buster_Teach_13_02");	//Ты не так уж глуп, как кажешься. Хорошо, я научу тебя тому, что знаю сам. Тогда, может быть, у тебя появятся шансы против меня...
 	};
-	if(BusterLOG == FALSE)
-	{
-		Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-		B_LogEntry(Topic_SoldierTeacher,"Бастер может обучить меня искусству владения одноручным оружием.");
-		BusterLOG = TRUE;
-	};
+	Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
+	B_LogEntry(Topic_SoldierTeacher,"Бастер может обучить меня искусству владения одноручным оружием.");
+};
+
+
+var int DIA_Buster_Teach_permanent;
+
+func void B_BuildLearnDialog_Buster()
+{
 	Info_ClearChoices(DIA_Buster_Teach);
 	Info_AddChoice(DIA_Buster_Teach,Dialog_Back,DIA_Buster_Teach_Back);
-	Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Buster_Teach_1H_1);
-	Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Buster_Teach_1H_5);
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Buster)
+	{
+		Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Buster_Teach_1H_1);
+		Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Buster_Teach_1H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Buster)
+		{
+			DIA_Buster_Teach_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Buster)),-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
+};
+
+instance DIA_Buster_Teach(C_Info)
+{
+	npc = SLD_802_Buster;
+	nr = 8;
+	condition = DIA_Buster_Teach_Condition;
+	information = DIA_Buster_Teach_Info;
+	permanent = TRUE;
+	description = "Обучи меня.";
+};
+
+
+func int DIA_Buster_Teach_Condition()
+{
+	if(Npc_KnowsInfo(other,DIA_Buster_PreTeach) && (DIA_Buster_Teach_permanent == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Buster_Teach_Info()
+{
+	AI_Output(other,self,"DIA_Pyrokar_SPELLS_15_00");	//Обучи меня.
+	B_BuildLearnDialog_Buster();
 };
 
 func void DIA_Buster_Teach_Back()
@@ -520,47 +555,19 @@ func void DIA_Buster_Teach_Back()
 
 func void DIA_Buster_Teach_1H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,60);
-	Info_ClearChoices(DIA_Buster_Teach);
-	Info_AddChoice(DIA_Buster_Teach,Dialog_Back,DIA_Buster_Teach_Back);
-	Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Buster_Teach_1H_1);
-	Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Buster_Teach_1H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Buster))
+	{
+		B_BuildLearnDialog_Buster();
+	};
 };
 
 func void DIA_Buster_Teach_1H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,60);
-	Info_ClearChoices(DIA_Buster_Teach);
-	Info_AddChoice(DIA_Buster_Teach,Dialog_Back,DIA_Buster_Teach_Back);
-	Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Buster_Teach_1H_1);
-	Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Buster_Teach_1H_5);
-};
-
-
-instance DIA_Buster_KAP3_EXIT(C_Info)
-{
-	npc = SLD_802_Buster;
-	nr = 999;
-	condition = DIA_Buster_KAP3_EXIT_Condition;
-	information = DIA_Buster_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Buster_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Buster))
 	{
-		return TRUE;
+		B_BuildLearnDialog_Buster();
 	};
 };
-
-func void DIA_Buster_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
 
 instance DIA_Buster_SHADOWBEASTS(C_Info)
 {
@@ -766,31 +773,6 @@ func void DIA_Buster_BringTrophyShadowbeast_back()
 };
 
 
-instance DIA_Buster_KAP4_EXIT(C_Info)
-{
-	npc = SLD_802_Buster;
-	nr = 999;
-	condition = DIA_Buster_KAP4_EXIT_Condition;
-	information = DIA_Buster_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Buster_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Buster_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Buster_Perm4(C_Info)
 {
 	npc = SLD_802_Buster;
@@ -817,56 +799,6 @@ func void DIA_Buster_Perm4_Info()
 	AI_Output(self,other,"DIA_Buster_Perm4_13_02");	//А я предпочитаю остаться с Ли.
 };
 
-
-instance DIA_Buster_KAP5_EXIT(C_Info)
-{
-	npc = SLD_802_Buster;
-	nr = 999;
-	condition = DIA_Buster_KAP5_EXIT_Condition;
-	information = DIA_Buster_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Buster_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Buster_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Buster_KAP6_EXIT(C_Info)
-{
-	npc = SLD_802_Buster;
-	nr = 999;
-	condition = DIA_Buster_KAP6_EXIT_Condition;
-	information = DIA_Buster_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Buster_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Buster_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Buster_PICKPOCKET(C_Info)
 {

@@ -476,7 +476,7 @@ func void DIA_Kardif_Lernen_Info()
 		};
 		if(Alrik_Teach1H == FALSE)
 		{
-			B_LogEntry(TOPIC_CityTeacher,"Альрик может обучить меня искусству сражения одноручным оружием. Он ошивается за складом в портовом квартале.");
+			B_LogEntry(TOPIC_CityTeacher,"Альрик из портового квартала опытен в боевых искусствах.");
 		};
 		if(Ignaz_TeachAlchemy == FALSE)
 		{

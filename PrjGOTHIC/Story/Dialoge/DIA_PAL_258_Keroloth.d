@@ -109,7 +109,7 @@ func void B_BuildLearnDialog_Keroloth()
 {
 	Info_ClearChoices(DIA_Keroloth_Teacher);
 	Info_AddChoice(DIA_Keroloth_Teacher,Dialog_Back,DIA_Keroloth_Teacher_Back);
-	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_Keroloth_2H)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Keroloth)
 	{
 		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Keroloth_Teacher_2H_1);
 		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Keroloth_Teacher_2H_5);
@@ -123,14 +123,14 @@ func void B_BuildLearnDialog_Keroloth()
 			{
 				if(DIA_Keroloth_TeachState_2H != 0)
 				{
-					PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Keroloth_2H)),-1,53,FONT_Screen,2);
+					PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Keroloth)),-1,53,FONT_Screen,2);
 					B_Keroloth_TeachNoMore();
 				};
 			};
 		};
 		DIA_Keroloth_TeachState_2H = 2;
 	};
-	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_Keroloth_1H)
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Keroloth)
 	{
 		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Keroloth_Teacher_1H_1);
 		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Keroloth_Teacher_1H_5);
@@ -144,20 +144,20 @@ func void B_BuildLearnDialog_Keroloth()
 			{
 				if(DIA_Keroloth_TeachState_1H != 0)
 				{
-					PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Keroloth_1H)),-1,53,FONT_Screen,2);
+					PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Keroloth)),-1,53,FONT_Screen,2);
 					B_Keroloth_TeachNoMore();
 				};
 			};
 		};
 		DIA_Keroloth_TeachState_1H = 2;
 	};
-	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_Keroloth_1H) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_Keroloth_2H))
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Keroloth) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Keroloth))
 	{
 		DIA_Keroloth_Teacher_permanent = TRUE;
 	};
 	if((DIA_Keroloth_TeachState_1H == 2) && (DIA_Keroloth_TeachState_2H == 2))
 	{
-		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Keroloth_2H)),-1,53,FONT_Screen,2);
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Keroloth)),-1,53,FONT_Screen,2);
 		AI_Output(self,other,"B_Keroloth_TeachNoMore1_07_00");	//Ты очень хорош. Мне больше нечему учить тебя.
 		AI_StopProcessInfos(self);
 	};
@@ -202,7 +202,7 @@ func void DIA_Keroloth_Teacher_Back()
 
 func void DIA_Keroloth_Teacher_1H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_Keroloth_1H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Keroloth))
 	{
 		B_BuildLearnDialog_Keroloth();
 	};
@@ -210,7 +210,7 @@ func void DIA_Keroloth_Teacher_1H_1()
 
 func void DIA_Keroloth_Teacher_1H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_Keroloth_1H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Keroloth))
 	{
 		B_BuildLearnDialog_Keroloth();
 	};
@@ -218,7 +218,7 @@ func void DIA_Keroloth_Teacher_1H_5()
 
 func void DIA_Keroloth_Teacher_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_Keroloth_2H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Keroloth))
 	{
 		B_BuildLearnDialog_Keroloth();
 	};
@@ -226,7 +226,7 @@ func void DIA_Keroloth_Teacher_2H_1()
 
 func void DIA_Keroloth_Teacher_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_Keroloth_2H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Keroloth))
 	{
 		B_BuildLearnDialog_Keroloth();
 	};

@@ -133,7 +133,7 @@ var int Babo_Labercount;
 
 func void B_BuildLearnDialog_Babo()
 {
-	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_Babo_2H)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Babo)
 	{
 		Info_ClearChoices(DIA_Babo_Teach);
 		Info_AddChoice(DIA_Babo_Teach,Dialog_Back,DIA_Babo_Teach_Back);
@@ -142,11 +142,11 @@ func void B_BuildLearnDialog_Babo()
 	}
 	else
 	{
-		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_Babo_2H)
+		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Babo)
 		{
 			DIA_Morgan_Teacher_permanent = TRUE;
 		};
-		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Babo_2H)),-1,53,FONT_Screen,2);
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Babo)),-1,53,FONT_Screen,2);
 		AI_Output(self,other,"DIA_DIA_Babo_Teach_Back_03_00");	//Ты знаешь больше о двуручном оружии, чем я мог бы научить тебя.
 		AI_StopProcessInfos(self);
 	};
@@ -225,7 +225,7 @@ func void DIA_Babo_Teach_Back()
 
 func void DIA_Babo_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_Babo_2H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Babo))
 	{
 		B_BaboTeachComment();
 		B_BuildLearnDialog_Babo();
@@ -234,7 +234,7 @@ func void DIA_Babo_Teach_2H_1()
 
 func void DIA_Babo_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_Babo_2H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Babo))
 	{
 		B_BaboTeachComment();
 		B_BuildLearnDialog_Babo();

@@ -935,7 +935,7 @@ func void B_BuildLearnDialog_Henry()
 {
 	Info_ClearChoices(DIA_Addon_Henry_Teach);
 	Info_AddChoice(DIA_Addon_Henry_Teach,Dialog_Back,DIA_Addon_Henry_Teach_Back);
-	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_Henry_2H)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Henry)
 	{
 		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Addon_Henry_Teach_2H_1);
 		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Addon_Henry_Teach_2H_5);
@@ -945,12 +945,12 @@ func void B_BuildLearnDialog_Henry()
 	{
 		if((DIA_Henry_TeachState_2H == 1) && (DIA_Henry_TeachState_Crossbow != 2))
 		{
-			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Henry_2H)),-1,53,FONT_Screen,2);
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Henry)),-1,53,FONT_Screen,2);
 			B_Henry_NoMore_2H();
 		};
 		DIA_Henry_TeachState_2H = 2;
 	};
-	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Henry_Crossbow)
+	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Henry)
 	{
 		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Addon_Henry_Teach_CB_1);
 		Info_AddChoice(DIA_Addon_Henry_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Addon_Henry_Teach_CB_5);
@@ -960,12 +960,12 @@ func void B_BuildLearnDialog_Henry()
 	{
 		if((DIA_Henry_TeachState_Crossbow == 1) && (DIA_Henry_TeachState_2H != 2))
 		{
-			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Henry_Crossbow)),-1,53,FONT_Screen,2);
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Crossbow_Henry)),-1,53,FONT_Screen,2);
 			B_Say(self,other,"$NOLEARNYOUREBETTER");
 		};
 		DIA_Henry_TeachState_Crossbow = 2;
 	};
-	if((RealTalentValue(NPC_TALENT_2H) >= DIA_Henry_TeachState_2H) && (RealTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Henry_Crossbow))
+	if((RealTalentValue(NPC_TALENT_2H) >= DIA_Henry_TeachState_2H) && (RealTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Henry))
 	{
 		DIA_Henry_Teacher_permanent = TRUE;
 	};
@@ -1043,7 +1043,7 @@ func void DIA_Addon_Henry_Teach_Back()
 
 func void DIA_Addon_Henry_Teach_CB_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,TeachLimit_Henry_Crossbow))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,TeachLimit_Crossbow_Henry))
 	{
 		B_BuildLearnDialog_Henry();
 	};
@@ -1051,7 +1051,7 @@ func void DIA_Addon_Henry_Teach_CB_1()
 
 func void DIA_Addon_Henry_Teach_CB_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,TeachLimit_Henry_Crossbow))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,TeachLimit_Crossbow_Henry))
 	{
 		B_BuildLearnDialog_Henry();
 	};
@@ -1059,7 +1059,7 @@ func void DIA_Addon_Henry_Teach_CB_5()
 
 func void DIA_Addon_Henry_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_Henry_2H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Henry))
 	{
 		B_Henry_Comment2H();
 		B_BuildLearnDialog_Henry();
@@ -1068,7 +1068,7 @@ func void DIA_Addon_Henry_Teach_2H_1()
 
 func void DIA_Addon_Henry_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_Henry_2H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Henry))
 	{
 		B_Henry_Comment2H();
 		B_BuildLearnDialog_Henry();

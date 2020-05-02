@@ -88,7 +88,7 @@ var int DIA_Girion_Teach_permanent;
 
 func void B_BuildLearnDialog_Girion()
 {
-	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_Girion_2H)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Girion)
 	{
 		Info_ClearChoices(DIA_Girion_Teach);
 		Info_AddChoice(DIA_Girion_Teach,Dialog_Back,DIA_Girion_Teach_Back);
@@ -97,13 +97,13 @@ func void B_BuildLearnDialog_Girion()
 	}
 	else
 	{
-		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_Girion_2H)
+		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Girion)
 		{
 			DIA_Morgan_Teacher_permanent = TRUE;
 		};
 		if(VisibleTalentValue(NPC_TALENT_2H) < 100)
 		{
-			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Girion_2H)),-1,53,FONT_Screen,2);
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Girion)),-1,53,FONT_Screen,2);
 			AI_Output(self,other,"DIA_DIA_Girion_Teach_08_00");	//¬ообще-то говор€, твое обучение еще не завершено, но € больше ничему не могу научить теб€.
 			AI_Output(self,other,"DIA_DIA_Girion_Teach_08_01");	//≈сли ты хочешь отточить свое мастерство еще больше, тебе лучше поискать насто€щего мастера меча.
 			AI_Output(other,self,"DIA_DIA_Girion_Teach_15_02");	//» где мне найти такого человека?
@@ -191,7 +191,7 @@ func void DIA_Girion_Teach_Back()
 
 func void DIA_Girion_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_Girion_2H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Girion))
 	{
 		B_GirionTeachComment();
 		B_BuildLearnDialog_Girion();
@@ -200,7 +200,7 @@ func void DIA_Girion_Teach_2H_1()
 
 func void DIA_Girion_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_Girion_2H))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Girion))
 	{
 		B_GirionTeachComment();
 		B_BuildLearnDialog_Girion();
