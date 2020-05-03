@@ -146,7 +146,7 @@ instance DIA_Milten_DI_PEDROTOT(C_Info)
 
 func int DIA_Milten_DI_PEDROTOT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU))
+	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU) || Npc_IsDead(Pedro_DI))
 	{
 		return TRUE;
 	};
@@ -176,10 +176,29 @@ func void B_MiltenDI_Teach_Dialog()
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Milten_DI_TeachMagic_MANA_1);
 	Info_AddChoice(DIA_Milten_DI_TeachMagic,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Milten_DI_TeachMagic_MANA_5);
-	if((hero.guild == GIL_KDF) || (hero.guild == GIL_PAL))
+	if(hero.guild == GIL_KDF)
 	{
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,"Создание рун",DIA_Milten_DI_TeachMagic_RUNES);
+	}
+	else if(hero.guild == GIL_PAL)
+	{
+		Info_AddChoice(DIA_Milten_DI_TeachMagic,Name_PaladinSpell,DIA_Milten_DI_TeachMagic_RUNES);
 	};
+};
+
+func void DIA_Milten_RunesComment_01()
+{
+	AI_Output(self,other,"DIA_Milten_DI_TeachMagic_RUNES_03_00");	//Ох, нет! Я не большой специалист в этом, но мы как-нибудь справимся.
+};
+
+func void DIA_Milten_RunesComment_02()
+{
+	AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_1_03_00");	//Да ведет тебя рука Инноса.
+};
+
+func void DIA_Milten_RunesComment_03()
+{
+	AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_5_03_00");	//Да осветит Иннос твой путь.
 };
 
 var int DIA_Milten_DI_TeachMagic_OneTime;
@@ -226,7 +245,7 @@ func void DIA_Milten_DI_TeachMagic_MANA_1()
 {
 	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_HIGH))
 	{
-		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_1_03_00");	//Да ведет тебя рука Инноса.
+		DIA_Milten_RunesComment_02();
 	};
 	B_MiltenDI_Teach_Dialog();
 };
@@ -235,7 +254,7 @@ func void DIA_Milten_DI_TeachMagic_MANA_5()
 {
 	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_HIGH))
 	{
-		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_5_03_00");	//Да осветит Иннос твой путь.
+		DIA_Milten_RunesComment_03();
 	};
 	B_MiltenDI_Teach_Dialog();
 };
@@ -244,7 +263,7 @@ func void DIA_Milten_DI_TeachMagic_RUNES()
 {
 	if(hero.guild == GIL_PAL)
 	{
-		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_RUNES_03_00");	//Ох, нет! Я не большой специалист в этом, но мы как-нибудь справимся.
+		DIA_Milten_RunesComment_01();
 		Info_ClearChoices(DIA_Milten_DI_TeachMagic);
 		Info_AddChoice(DIA_Milten_DI_TeachMagic,Dialog_Back,DIA_Milten_DI_TeachMagic_BACK);
 		if(PLAYER_TALENT_RUNES[SPL_PalLight] == FALSE)

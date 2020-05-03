@@ -616,7 +616,7 @@ func void DIA_Gaan_JAGD_Info()
 		AI_Output(self,other,"DIA_Gaan_JAGD_03_03");	//Он не только убивает все, что движется, он мешает моей работе.
 		if(Npc_IsDead(Gaans_Snapper))
 		{
-			AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+			DIA_Common_HeIsDead();
 			AI_Output(self,other,"DIA_Gaan_MONSTERTOT_03_01");	//Теперь я опять могу охотиться спокойно.
 			MIS_Gaan_Snapper = LOG_SUCCESS;
 			B_GivePlayerXP(XP_Gaan_WaldSnapper);

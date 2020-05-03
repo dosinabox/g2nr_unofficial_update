@@ -439,7 +439,7 @@ func void DIA_Garvell_City_Info()
 	AI_Output(self,other,"DIA_Garvell_City_04_01");	//Дааа?
 	if(Npc_IsDead(CityOrc))
 	{
-		AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+		DIA_Common_HeIsDead();
 	}
 	else
 	{

@@ -211,7 +211,7 @@ instance DIA_Wulfgar_HowToBegin(C_Info)
 
 func int DIA_Wulfgar_HowToBegin_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo))
+	if(Npc_KnowsInfo(other,DIA_Wulfgar_Hallo) && (RealTalentValue(NPC_TALENT_1H) < 100) && (RealTalentValue(NPC_TALENT_2H) < 100))
 	{
 		return TRUE;
 	};
@@ -229,8 +229,67 @@ func void DIA_Wulfgar_HowToBegin_Info()
 };
 
 
+var int DIA_Wulfgar_Teacher_permanent;
+var int DIA_Wulfgar_TeachState_1H;
+var int DIA_Wulfgar_TeachState_2H;
 var int Wulfgar_Merke_1h;
 var int Wulfgar_Merke_2h;
+
+func void B_Wulfgar_NoMoreTeach()
+{
+	AI_Output(self,other,"DIA_Hagen_Teach_04_00");	//“ы стал великолепным мечником. ћне больше нечему учить теб€.
+};
+
+func void B_Wulfgar_SkillComment()
+{
+	AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_04");	//я еще сделаю из теб€ отличного воина!
+};
+
+func void B_BuildLearnDialog_Wulfgar()
+{
+	Info_ClearChoices(DIA_Wulfgar_Teach);
+	Info_AddChoice(DIA_Wulfgar_Teach,Dialog_Back,DIA_Wulfgar_Teach_Back);
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Wulfgar)
+	{
+		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Wulfgar_Teach_2H_1);
+		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Wulfgar_Teach_2H_5);
+		DIA_Wulfgar_TeachState_2H = 1;
+	}
+	else
+	{
+		if((DIA_Wulfgar_TeachState_2H == 1) && (DIA_Wulfgar_TeachState_1H != 2))
+		{
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Wulfgar)),-1,53,FONT_Screen,2);
+			B_Henry_NoMore_2H();
+		};
+		DIA_Wulfgar_TeachState_2H = 2;
+	};
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Wulfgar)
+	{
+		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Wulfgar_Teach_1H_1);
+		Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Wulfgar_Teach_1H_5);
+		DIA_Wulfgar_TeachState_1H = 1;
+	}
+	else
+	{
+		if((DIA_Wulfgar_TeachState_1H == 1) && (DIA_Wulfgar_TeachState_2H != 2))
+		{
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Wulfgar)),-1,53,FONT_Screen,2);
+			B_Say(self,other,"$NOLEARNYOUREBETTER");
+		};
+		DIA_Wulfgar_TeachState_1H = 2;
+	};
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Wulfgar) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Wulfgar))
+	{
+		DIA_Wulfgar_Teacher_permanent = TRUE;
+	};
+	if((DIA_Wulfgar_TeachState_1H == 2) && (DIA_Wulfgar_TeachState_2H == 2))
+	{
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Wulfgar)),-1,53,FONT_Screen,2);
+		B_Wulfgar_NoMoreTeach();
+		AI_StopProcessInfos(self);
+	};
+};
 
 instance DIA_Wulfgar_Teach(C_Info)
 {
@@ -245,20 +304,10 @@ instance DIA_Wulfgar_Teach(C_Info)
 
 func int DIA_Wulfgar_Teach_Condition()
 {
-	if(Wulfgar_Teach1H == TRUE)
+	if((Wulfgar_Teach1H == TRUE) && (DIA_Wulfgar_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
-};
-
-func void B_Wulfgar_Teach()
-{
-	Info_ClearChoices(DIA_Wulfgar_Teach);
-	Info_AddChoice(DIA_Wulfgar_Teach,Dialog_Back,DIA_Wulfgar_Teach_Back);
-	Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Wulfgar_Teach_2H_1);
-	Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Wulfgar_Teach_2H_5);
-	Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Wulfgar_Teach_1H_1);
-	Info_AddChoice(DIA_Wulfgar_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Wulfgar_Teach_1H_5);
 };
 
 func void DIA_Wulfgar_Teach_Info()
@@ -267,16 +316,20 @@ func void DIA_Wulfgar_Teach_Info()
 	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
 		AI_Output(self,other,"DIA_Wulfgar_Add_04_00");	//я не обучаю наемников!
+		DIA_Wulfgar_Teacher_permanent = TRUE;
 	}
 	else
 	{
 		if(other.guild == GIL_KDF)
 		{
-			AI_Output(self,other,"DIA_Wulfgar_Add_04_01");	// онечно, уважаемый.
+			if((VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Wulfgar) || (VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Wulfgar))
+			{
+				AI_Output(self,other,"DIA_Wulfgar_Add_04_01");	// онечно, уважаемый.
+			};
 		};
-		B_Wulfgar_Teach();
 		Wulfgar_Merke_1h = other.HitChance[NPC_TALENT_1H];
 		Wulfgar_Merke_2h = other.HitChance[NPC_TALENT_2H];
+		B_BuildLearnDialog_Wulfgar();
 	};
 };
 
@@ -284,40 +337,40 @@ func void DIA_Wulfgar_Teach_Back()
 {
 	if((Wulfgar_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Wulfgar_Merke_2h < other.HitChance[NPC_TALENT_2H]))
 	{
-		AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_04");	//я еще сделаю из теб€ отличного воина!
+		B_Wulfgar_SkillComment();
 	};
 	Info_ClearChoices(DIA_Wulfgar_Teach);
 };
 
 func void DIA_Wulfgar_Teach_1H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,75))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Wulfgar))
 	{
-		B_Wulfgar_Teach();
+		B_BuildLearnDialog_Wulfgar();
 	};
 };
 
 func void DIA_Wulfgar_Teach_1H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,75))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Wulfgar))
 	{
-		B_Wulfgar_Teach();
+		B_BuildLearnDialog_Wulfgar();
 	};
 };
 
 func void DIA_Wulfgar_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,75))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Wulfgar))
 	{
-		B_Wulfgar_Teach();
+		B_BuildLearnDialog_Wulfgar();
 	};
 };
 
 func void DIA_Wulfgar_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,75))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Wulfgar))
 	{
-		B_Wulfgar_Teach();
+		B_BuildLearnDialog_Wulfgar();
 	};
 };
 
@@ -367,7 +420,7 @@ func void DIA_Wulfgar_AlsMil_Info()
 	AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_01");	//я надеюсь, ты будешь регул€рно тренироватьс€ здесь.
 	AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_02");	//–уга научит теб€ пользоватьс€ арбалетом, а ћортис поможет тебе стать сильнее.
 	AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_03");	//Ќо самое важное - это научитьс€ правильно держать свой меч.
-	AI_Output(self,other,"DIA_Wulfgar_AlsMil_04_04");	//я еще сделаю из теб€ отличного воина!
+	B_Wulfgar_SkillComment();
 	if(Mortis_TeachSTR == FALSE)
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);

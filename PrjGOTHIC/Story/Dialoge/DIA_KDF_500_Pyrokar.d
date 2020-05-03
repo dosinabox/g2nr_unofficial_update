@@ -878,7 +878,7 @@ func void DIA_Pyrokar_SPELLS_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	B_Say_WantToLearnNewRunes();
+	DIA_Common_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Pyrokar_SPELLS);
 	Info_AddChoice(DIA_Pyrokar_SPELLS,Dialog_Back,DIA_Pyrokar_SPELLS_BACK);
 	if(PLAYER_TALENT_RUNES[SPL_Firerain] == FALSE)

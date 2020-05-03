@@ -167,6 +167,8 @@ func void DIA_Vatras_DI_RAT_Info()
 };
 
 
+var int DIA_Vatras_DI_PEDROTOT_VatrasSucked;
+
 instance DIA_Vatras_DI_PEDROTOT(C_Info)
 {
 	npc = VLK_439_Vatras_DI;
@@ -179,14 +181,11 @@ instance DIA_Vatras_DI_PEDROTOT(C_Info)
 
 func int DIA_Vatras_DI_PEDROTOT_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU))
+	if(Npc_KnowsInfo(other,DIA_Pedro_DI_YOU) || Npc_IsDead(Pedro_DI))
 	{
 		return TRUE;
 	};
 };
-
-
-var int DIA_Vatras_DI_PEDROTOT_VatrasSucked;
 
 func void DIA_Vatras_DI_PEDROTOT_Info()
 {

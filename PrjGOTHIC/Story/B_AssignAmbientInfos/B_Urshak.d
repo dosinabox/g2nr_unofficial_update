@@ -1,5 +1,5 @@
 
-var int urshak_sucked;
+var int Urshak_Sucked;
 
 instance DIA_Urshak_EXIT(C_Info)
 {
@@ -35,8 +35,8 @@ instance DIA_Urshak_HALLO(C_Info)
 
 func int DIA_Urshak_HALLO_Condition()
 {
-//	if(Npc_IsInState(self,ZS_Talk) && (URSHAK_SUCKED == FALSE))
-	if(URSHAK_SUCKED == FALSE)
+//	if(Npc_IsInState(self,ZS_Talk) && (Urshak_Sucked == FALSE))
+	if(Urshak_Sucked == FALSE)
 	{
 		return TRUE;
 	};
@@ -84,7 +84,7 @@ instance DIA_Urshak_WASMACHENORKS(C_Info)
 
 func int DIA_Urshak_WASMACHENORKS_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (URSHAK_SUCKED == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (Urshak_Sucked == FALSE))
 	{
 		return TRUE;
 	};
@@ -112,7 +112,7 @@ instance DIA_Urshak_SOVIELE(C_Info)
 
 func int DIA_Urshak_SOVIELE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (URSHAK_SUCKED == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (Urshak_Sucked == FALSE))
 	{
 		return TRUE;
 	};
@@ -137,7 +137,7 @@ instance DIA_Urshak_ZAUN(C_Info)
 
 func int DIA_Urshak_ZAUN_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (URSHAK_SUCKED == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (Urshak_Sucked == FALSE))
 	{
 		return TRUE;
 	};
@@ -163,7 +163,7 @@ instance DIA_Urshak_WASHASTDUVOR(C_Info)
 
 func int DIA_Urshak_WASHASTDUVOR_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (URSHAK_SUCKED == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HALLO) && (Urshak_Sucked == FALSE))
 	{
 		return TRUE;
 	};
@@ -214,7 +214,7 @@ instance DIA_Urshak_HOSHPAKDEAD(C_Info)
 
 func int DIA_Urshak_HOSHPAKDEAD_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_WASHASTDUVOR) && Npc_IsDead(Hosh_Pak) && (URSHAK_SUCKED == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_WASHASTDUVOR) && Npc_IsDead(Hosh_Pak) && (Urshak_Sucked == FALSE))
 	{
 		return TRUE;
 	};
@@ -252,7 +252,7 @@ instance DIA_Urshak_GEH(C_Info)
 
 func int DIA_Urshak_GEH_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") > 1000) && (URSHAK_SUCKED == FALSE) && Npc_IsInState(self,ZS_Talk))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") > 1000) && (Urshak_Sucked == FALSE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -276,7 +276,7 @@ instance DIA_Urshak_HOSHPAKRACHE(C_Info)
 
 func int DIA_Urshak_HOSHPAKRACHE_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") <= 1000) && (URSHAK_SUCKED == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKDEAD) && (Npc_GetDistToWP(self,"OW_HOSHPAK_04") <= 1000) && (Urshak_Sucked == FALSE))
 	{
 		return TRUE;
 	};
@@ -292,7 +292,7 @@ func void DIA_Urshak_HOSHPAKRACHE_Info()
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_05");	//Чужак теперь покидать долина и идти проход. Ур-Шак не будет убивать чужак сейчас. Честь шаман говорит Ур-Шак не убивать.
 	AI_Output(self,other,"DIA_Urshak_HOSHPAKRACHE_18_06");	//Следующий раз мы встречаться мы враги. Твоя лучше уходить сейчас.
 	AI_StopProcessInfos(self);
-	URSHAK_SUCKED = TRUE;
+	Urshak_Sucked = TRUE;
 	B_LogEntry(TOPIC_Urshak,"Ур-Шак был принят назад, в совет шаманов орков. Теперь он на стороне врага и немного напряжен. Лучше мне не вставать у него на пути, пока я не решу все дела с орками. К тому времени он должен успокоиться.");
 	B_GivePlayerXP(XP_UrshakBecomesShaman);
 };
@@ -310,7 +310,7 @@ instance DIA_Urshak_KEINEWAHL(C_Info)
 
 func int DIA_Urshak_KEINEWAHL_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Urshak_HOSHPAKRACHE) && Npc_IsInState(self,ZS_Talk))
+	if((Urshak_Sucked == TRUE) && Npc_IsInState(self,ZS_Talk))
 	{
 		return TRUE;
 	};
@@ -320,6 +320,5 @@ func void DIA_Urshak_KEINEWAHL_Info()
 {
 	AI_Output(self,other,"DIA_Urshak_KEINEWAHL_18_00");	//Твоя уходить. Моя больше не говорить с чужак.
 	AI_StopProcessInfos(self);
-	URSHAK_SUCKED = TRUE;
 };
 

@@ -361,7 +361,7 @@ func void DIA_Cipher_DarDieb_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+		DIA_Common_HeIsDead();
 		AI_Output(self,other,"DIA_Cipher_DarLOST_07_03");	//Этот мерзкий воришка не должен был лазить в мой сундук!
 		AI_StopProcessInfos(self);
 	};

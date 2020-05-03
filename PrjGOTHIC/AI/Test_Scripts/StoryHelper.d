@@ -114,7 +114,6 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Соединить шлемы и доспехи",StoryHelper_Helmets);
 	};
-	/*не сделано
 	if(HonestStatCalculation == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
@@ -122,7 +121,7 @@ func void b_build_settings_diag()
 	else
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить честный расчет стоимости обучения",StoryHelper_HonestStatCalculation);
-	};*/
+	};
 	if(EnterNW_Kapitel4 == FALSE)
 	{
 		if(OriginalAntipaladins == FALSE)
@@ -698,7 +697,7 @@ func void StoryHelper_XP_1()
 	b_build_settings_diag();
 };
 
-/*func void StoryHelper_HonestStatCalculation()
+func void StoryHelper_HonestStatCalculation()
 {
 	if(HonestStatCalculation == TRUE)
 	{
@@ -711,7 +710,7 @@ func void StoryHelper_XP_1()
 		PrintScreen("Честный расчет стоимости обучения включен",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
-};*/
+};
 
 func void StoryHelper_PatchSettings_BACK()
 {

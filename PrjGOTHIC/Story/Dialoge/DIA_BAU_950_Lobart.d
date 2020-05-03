@@ -873,7 +873,6 @@ func void DIA_Lobart_DMT_VinoWohin()
 	AI_Output(self,other,"DIA_Lobart_DMT_VinoWohin_05_01");	//Они пошли вверх, на этот холм.
 };
 
-
 instance DIA_Lobart_VINOTOT(C_Info)
 {
 	npc = BAU_950_Lobart;
@@ -897,7 +896,7 @@ func void DIA_Lobart_VINOTOT_Info()
 	AI_Output(other,self,"DIA_Lobart_VINOTOT_15_00");	//Вино не вернется.
 	if(Npc_IsDead(Vino))
 	{
-		AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+		DIA_Common_HeIsDead();
 	}
 	else
 	{

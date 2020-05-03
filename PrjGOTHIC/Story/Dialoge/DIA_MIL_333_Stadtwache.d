@@ -100,7 +100,7 @@ func void DIA_Mil_333_Stadtwache_FirstWarn_Info()
 		else
 		{
 			AI_Output(other,self,"DIA_Mil_333_Stadtwache_FirstWarn_15_15");	//(спокойно) Что?
-			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_16");	//Я просто хотел посмотреть на тебя. Ох, да, похоже, у тебя есть деньги. Проходи.
+			AI_Output(self,other,"DIA_Mil_333_Stadtwache_FirstWarn_06_16");	//Я просто хотел посмотреть на тебя. Ох, да похоже, у тебя есть деньги. Проходи.
 			self.aivar[AIV_PASSGATE] = TRUE;
 			Stadtwache_310.aivar[AIV_PASSGATE] = TRUE;
 			Mil_333_schonmalreingelassen = TRUE;

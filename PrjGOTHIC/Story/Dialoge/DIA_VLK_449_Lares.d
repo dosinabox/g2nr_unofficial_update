@@ -162,6 +162,23 @@ func void DIA_Lares_PICKPOCKET_BACK()
 };
 
 
+func void B_Lares_Comment_MIL()
+{
+	AI_Output(self,other,"DIA_Lares_OtherGuild_09_01");	//(смеется) Со смеху помереть можно - бывший каторжник в ополчении...
+};
+
+func void B_Lares_Comment_PAL()
+{
+	AI_Output(self,other,"DIA_Lares_OtherGuild_09_02");	//Так теперь ты один из паладинов короля!
+};
+
+func void B_Lares_Comment_SLD()
+{
+	AI_Output(self,other,"DIA_Addon_Lares_OtherGuild_09_00");	//Я слышал, тебя приняли в ряды наемников Ли?
+};
+
+var int Lares_FirstMetAsGuildless;
+
 instance DIA_Lares_HALLO(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -184,11 +201,34 @@ func int DIA_Lares_HALLO_Condition()
 func void DIA_Lares_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Lares_HALLO_09_00");	//Я, должно быть, сошел с ума! Что ты делаешь здесь?
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (Npc_GetDistToWP(self,"HAFEN") < 10000))
+	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
 	{
-		AI_Output(self,other,"DIA_Lares_HALLO_09_01");	//Ты что, ПРИПЛЫЛ сюда?
-		AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.
 		B_GivePlayerXP(500);
+	};
+	if(other.guild == GIL_NONE)
+	{
+		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (Npc_GetDistToWP(self,"HAFEN") < 10000))
+		{
+			AI_Output(self,other,"DIA_Lares_HALLO_09_01");	//Ты что, ПРИПЛЫЛ сюда?
+			AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.
+		};
+		Lares_FirstMetAsGuildless = TRUE;
+	}
+	else if(other.guild == GIL_MIL)
+	{
+		B_Lares_Comment_MIL();
+	}
+	else if(other.guild == GIL_PAL)
+	{
+		B_Lares_Comment_PAL();
+	}
+	else if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
+	{
+		AI_Output(self,other,"DIA_Lares_OtherGuild_09_06_add");	//Я слышал, ты поступил в монастырь.
+	}
+	else if(other.guild == GIL_SLD)
+	{
+		B_Lares_Comment_SLD();
 	};
 	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Lares_HALLO);
@@ -219,8 +259,11 @@ func void DIA_Lares_HALLO_YES()
 func void B_Lares_AboutLee()
 {
 	AI_Output(self,other,"B_Lares_AboutLee_09_00");	//Я выбрался из колонии вместе с ним. Сразу после того, как Барьер был уничтожен.
-	AI_Output(self,other,"B_Lares_AboutLee_09_01");	//Он и его парни сейчас на ферме лендлорда Онара.
-	AI_Output(self,other,"B_Lares_AboutLee_09_02");	//Он договорился с этим фермером. Ли с парнями защищает ферму, а Онар кормит их за это.
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	{
+		AI_Output(self,other,"B_Lares_AboutLee_09_01");	//Он и его парни сейчас на ферме лендлорда Онара.
+		AI_Output(self,other,"B_Lares_AboutLee_09_02");	//Он договорился с этим фермером. Ли с парнями защищает ферму, а Онар кормит их за это.
+	};
 	AI_Output(self,other,"DIA_Lares_WhyInCity_09_03");	//А зачем ТЫ пришел в город?
 	AI_Output(other,self,"DIA_Lares_Alternative_15_00");	//У меня есть выбор?
 };
@@ -1406,7 +1449,7 @@ instance DIA_Lares_OtherGuild(C_Info)
 
 func int DIA_Lares_OtherGuild_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (other.guild != GIL_NONE) && (SC_IsRanger == FALSE) && Npc_KnowsInfo(other,DIA_Lares_HALLO))
+	if(Npc_IsInState(self,ZS_Talk) && (other.guild != GIL_NONE) && (SC_IsRanger == FALSE) && (Lares_FirstMetAsGuildless == TRUE))
 	{
 		return TRUE;
 	};
@@ -1419,12 +1462,12 @@ func void DIA_Lares_OtherGuild_Info()
 		if(other.guild == GIL_MIL)
 		{
 			AI_Output(self,other,"DIA_Lares_OtherGuild_09_00");	//Теперь ты в ополчении!
-			AI_Output(self,other,"DIA_Lares_OtherGuild_09_01");	//(смеется) Со смеху помереть можно - бывший каторжник в ополчении...
+			B_Lares_Comment_MIL();
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_Lares_OtherGuild_09_09");	//Я слышал, ты был принят.
-			AI_Output(self,other,"DIA_Lares_OtherGuild_09_02");	//Так теперь ты один из паладинов короля!
+			B_Lares_Comment_PAL();
 		};
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_03");	//(лукаво) Только ты мог провернуть такое...
 		if(Lares_WorkForLee == TRUE)
@@ -1435,13 +1478,13 @@ func void DIA_Lares_OtherGuild_Info()
 	};
 	if((other.guild == GIL_KDF) || (other.guild == GIL_NOV))
 	{
-		AI_Output(self,other,"DIA_Lares_OtherGuild_09_06");	//Я не понимаю. Ты поступил в монастырь? Как там тебе?
+		AI_Output(self,other,"DIA_Lares_OtherGuild_09_06");	//Я не понимаю. Ты поступил в монастырь. Как там тебе?
 		AI_Output(other,self,"DIA_Lares_OtherGuild_15_07");	//По-разному.
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_08");	//Представляю.
 	};
 	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
-		AI_Output(self,other,"DIA_Addon_Lares_OtherGuild_09_00");	//Я слышал, тебя приняли в ряды наемников Ли?
+		B_Lares_Comment_SLD();
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_10");	//Поздравляю.
 	};
 	AI_StopProcessInfos(self);

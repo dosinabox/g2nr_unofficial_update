@@ -4,11 +4,13 @@ const int TeachLimit_1H_Alrik = 60;
 const int TeachLimit_1H_Cedric = 90;
 const int TeachLimit_1H_Morgan = 75;
 const int TeachLimit_1H_Buster = 60;
+const int TeachLimit_1H_Wulfgar = 75;
 const int TeachLimit_2H_Keroloth = 60;
 const int TeachLimit_2H_Henry = 90;
 const int TeachLimit_2H_Babo = 75;
 const int TeachLimit_2H_Girion = 90;
 const int TeachLimit_2H_Rod = 90;
+const int TeachLimit_2H_Wulfgar = 75;
 const int TeachLimit_Crossbow_Henry = 80;
 const int TeachLimit_Crossbow_Udar = 60;
 
@@ -22,9 +24,6 @@ const int TS_Max = 3;
 
 // Talents number controlled by the system
 const int TAL_Max = 5;
-
-// Prohibit 29 to 34 learn cost abuse
-const int BARRIER_ANTIABUSE = 1;
 
 // Values of talents, gained from different sources
 var int TAL_Training[TAL_Max];
@@ -641,7 +640,7 @@ func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
 	costBefore = GetTalentPointCost(talent,value);
 	costAfter = GetTalentPointCost(talent, barrier);
 	pointsBefore = GetMin(barrier - value,change);
-	if((BARRIER_ANTIABUSE == FALSE) || (TAL_CostFlags[TS_Training] == 0))
+	if((HonestStatCalculation == FALSE) || (TAL_CostFlags[TS_Training] == 0))
 	{
 		return change * costBefore;
 	};

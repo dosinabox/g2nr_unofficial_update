@@ -419,12 +419,12 @@ func int DIA_MiltenOW_TeachCircle1_Condition()
 
 func void DIA_MiltenOW_TeachCircle1_Info()
 {
-	AI_Output(other,self,"DIA_Parlan_TECH_CIRCLE1_15_00");	//Научи меня первому Кругу магии.
+	DIA_Common_TeachMe_FirstMagicCirlce();
 	if(B_TeachMagicCircle(self,other,1))
 	{
-		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_RUNES_03_00");	//Ох, нет! Я не большой специалист в этом, но мы как-нибудь справимся.
-		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_1_03_00");	//Да ведет тебя рука Инноса.
-		AI_Output(self,other,"DIA_Milten_DI_TeachMagic_MANA_5_03_00");	//Да осветит Иннос твой путь.
+		DIA_Milten_RunesComment_01();
+		DIA_Milten_RunesComment_02();
+		DIA_Milten_RunesComment_03();
 	};
 };
 
@@ -484,7 +484,7 @@ func int DIA_MiltenOW_Teach_Condition()
 
 func void DIA_MiltenOW_Teach_Info()
 {
-	B_Say_WantToLearnNewRunes();
+	DIA_Common_WantToLearnNewRunes();
 	if(Npc_GetTalentSkill(other,NPC_TALENT_MAGE) == 0)
 	{
 		AI_Output(self,other,"DIA_MiltenOW_Teach_03_01");	//Ты все еще не достиг второго Круга магии. Я ничему не могу научить тебя.

@@ -1472,7 +1472,7 @@ func void DIA_Andre_FOUND_PECK_Info()
 	AI_Output(other,self,"DIA_Andre_FOUND_PECK_15_00");	//Мне удалось найти Пека.
 	if(Npc_IsDead(Peck))
 	{
-		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_02");	//Он мертв.
+		DIA_Common_HeIsDead();
 		AI_Output(self,other,"DIA_Maleth_GEHSTOCK_08_01");	//Это невероятно! Я...
 		AI_Output(self,other,"DIA_Maleth_BanditsDEAD_08_04");	//Я расскажу остальным об этом!
 		MIS_Andre_Peck = LOG_OBSOLETE;

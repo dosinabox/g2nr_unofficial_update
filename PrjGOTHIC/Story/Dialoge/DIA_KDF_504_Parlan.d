@@ -866,7 +866,7 @@ func int DIA_Parlan_CIRCLE1_Condition()
 
 func void DIA_Parlan_CIRCLE1_Info()
 {
-	AI_Output(other,self,"DIA_Parlan_TECH_CIRCLE1_15_00");	//Научи меня первому Кругу магии.
+	DIA_Common_TeachMe_FirstMagicCirlce();
 	if(B_TeachMagicCircle(self,other,1))
 	{
 		AI_Output(self,other,"DIA_Parlan_TECH_CIRCLE1_05_01");	//Первый Круг магии позволит тебе использовать руны, созданные тобой.
@@ -978,7 +978,7 @@ func void DIA_Parlan_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	B_Say_WantToLearnNewRunes();
+	DIA_Common_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Parlan_TEACH);
 	Info_AddChoice(DIA_Parlan_TEACH,Dialog_Back,DIA_Parlan_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_LightHeal] == FALSE))

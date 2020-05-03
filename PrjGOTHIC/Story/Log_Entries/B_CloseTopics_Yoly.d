@@ -75,7 +75,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_MinenAnteileSLD,0,TOPIC_END_MinenAnteile,6);
 	B_CloseTopic(TOPIC_RichterLakai,MIS_Lee_JudgeRichter,0,6);
 	B_CloseTopic(TOPIC_KillHoshPak,MIS_KillHoshPak,0,6);
-	B_CloseTopic(TOPIC_Urshak,0,URSHAK_SUCKED,6);
+	B_CloseTopic(TOPIC_Urshak,0,Urshak_Sucked,6);
 	B_CloseTopic(TOPIC_DRACHENJAGD,0,MIS_AllDragonsDead,5);
 	B_CloseTopic(TOPIC_LobartsOrkProblem,0,TOPIC_END_LobartsOrkProblem,6);
 	B_CloseTopic(TOPIC_SylvioKillIceGolem,MIS_DJG_Sylvio_KillIceGolem,TOPIC_END_SylvioKillIceGolem,6);

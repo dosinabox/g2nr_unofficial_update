@@ -657,7 +657,7 @@ func void B_BuildLearnDialog_Hagen()
 			DIA_Hagen_Teach_permanent = TRUE;
 		};
 		PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
-		AI_Output(self,other,"DIA_Hagen_Teach_04_00");	//“ы стал великолепным мечником. ћне больше нечему учить теб€.
+		B_Wulfgar_NoMoreTeach();
 		AI_Output(self,other,"DIA_Hagen_Teach_04_01");	//ƒа ведет твою руку в будущих свершени€х мудрость мастера-мечника.
 		AI_StopProcessInfos(self);
 	};

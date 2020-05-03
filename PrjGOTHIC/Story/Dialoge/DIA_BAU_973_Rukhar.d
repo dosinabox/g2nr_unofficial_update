@@ -317,7 +317,7 @@ func void DIA_Rukhar_NoRandolph_Info()
 	AI_Output(other,self,"DIA_Rukhar_NORANDOLPH_15_00_add");	//Насчет Рэндольфа...
 	if(Npc_IsDead(Randolph))
 	{
-		AI_Output(other,self,"DIA_Lobart_VINOTOT_15_01");	//Он мертв.
+		DIA_Common_HeIsDead();
 		AI_Output(self,other,"DIA_Rukhar_HAENSELN_12_01");	//Вот твои деньги, и больше я ни слова не скажу.
 		CreateInvItems(self,ItMi_Gold,Rukhar_Einsatz);
 		B_GiveInvItems(self,other,ItMi_Gold,Rukhar_Einsatz);

@@ -290,7 +290,7 @@ func void DIA_Karras_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	B_Say_WantToLearnNewRunes();
+	DIA_Common_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Karras_TEACH);
 	Info_AddChoice(DIA_Karras_TEACH,Dialog_Back,DIA_Karras_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 1) && (PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] == FALSE))

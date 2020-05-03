@@ -609,6 +609,7 @@ func void DIA_Alrik_Krieg_Info()
 
 var int Alrik_VorausErzaehlt;
 var int Alrik_Merke_1h;
+var int Alrik_CommentedProgress;
 var int DIA_Alrik_Teach_permanent;
 
 instance DIA_Alrik_Ausbilden(C_Info)
@@ -708,23 +709,27 @@ func void DIA_Alrik_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Alrik_Teach_15_00");	//Научи меня обращаться с мечом!
 	Alrik_Merke_1h = other.HitChance[NPC_TALENT_1H];
-	if(C_BodyStateContains(self,BS_SIT))
+	/*if(C_BodyStateContains(self,BS_SIT))
 	{
 		AI_Standup(self);
 		B_TurnToNpc(self,other);
-	};
+	};*/
 	B_BuildLearnDialog_Alrik();
 };
 
 func void DIA_Alrik_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_1H] >= 30)
+	if((other.HitChance[NPC_TALENT_1H] > Alrik_Merke_1h) && (Alrik_CommentedProgress == FALSE))
 	{
-		AI_Output(self,other,"DIA_Alrik_Teach_Back_09_00");	//Ты больше не новичок!
-	}
-	else if(other.HitChance[NPC_TALENT_1H] > Alrik_Merke_1h)
-	{
-		AI_Output(self,other,"DIA_Alrik_Teach_Back_09_01");	//У тебя уже лучше получается. Скоро ты станешь серьезным бойцом!
+		if(other.HitChance[NPC_TALENT_1H] >= 30)
+		{
+			AI_Output(self,other,"DIA_Alrik_Teach_Back_09_00");	//Ты больше не новичок!
+			Alrik_CommentedProgress = TRUE;
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Alrik_Teach_Back_09_01");	//У тебя уже лучше получается. Скоро ты станешь серьезным бойцом!
+		};
 	};
 	Info_ClearChoices(DIA_Alrik_Teach);
 };
