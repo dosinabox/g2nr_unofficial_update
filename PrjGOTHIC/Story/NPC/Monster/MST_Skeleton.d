@@ -67,6 +67,13 @@ instance Skeleton(Mst_Default_Skeleton)
 	EquipItem(self,ItMw_2H_Sword_M_01);
 };
 
+instance Skeleton_NoXP(Mst_Default_Skeleton)
+{
+	level = 0;
+	B_SetVisuals_Skeleton();
+	EquipItem(self,ItMw_2H_Sword_M_01);
+};
+
 instance Summoned_Skeleton(Mst_Default_Skeleton)
 {
 	name[0] = "Вызванный скелет";

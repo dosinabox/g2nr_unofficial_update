@@ -504,10 +504,10 @@ var int DIA_Buster_Teach_permanent;
 
 func void B_BuildLearnDialog_Buster()
 {
-	Info_ClearChoices(DIA_Buster_Teach);
-	Info_AddChoice(DIA_Buster_Teach,Dialog_Back,DIA_Buster_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Buster)
 	{
+		Info_ClearChoices(DIA_Buster_Teach);
+		Info_AddChoice(DIA_Buster_Teach,Dialog_Back,DIA_Buster_Teach_Back);
 		Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Buster_Teach_1H_1);
 		Info_AddChoice(DIA_Buster_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Buster_Teach_1H_5);
 	}

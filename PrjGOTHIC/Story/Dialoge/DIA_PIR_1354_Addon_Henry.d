@@ -971,7 +971,7 @@ func void B_BuildLearnDialog_Henry()
 	};
 	if((DIA_Henry_TeachState_2H == 2) && (DIA_Henry_TeachState_Crossbow == 2))
 	{
-		PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
 		B_Henry_NoMoreTeach();
 		AI_StopProcessInfos(self);
 	};

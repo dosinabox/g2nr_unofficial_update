@@ -285,7 +285,7 @@ func void B_BuildLearnDialog_Wulfgar()
 	};
 	if((DIA_Wulfgar_TeachState_1H == 2) && (DIA_Wulfgar_TeachState_2H == 2))
 	{
-		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Wulfgar)),-1,53,FONT_Screen,2);
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
 		B_Wulfgar_NoMoreTeach();
 		AI_StopProcessInfos(self);
 	};

@@ -216,6 +216,14 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить фиксированный опыт по главам",StoryHelper_XP);
 	};
+	if(NoXPFromSummonedSkeletons == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить опыт с бесконечно призываемых скелетов",StoryHelper_Skeletons);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить опыт с бесконечно призываемых скелетов",StoryHelper_Skeletons);
+	};
 	if(NewLogEnabled == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить показ заголовков при обновлении дневника",StoryHelper_Log);
@@ -443,6 +451,21 @@ func void StoryHelper_Log()
 	{
 		NewLogEnabled = TRUE;
 		PrintScreen("Показ заголовков включен",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_Skeletons()
+{
+	if(NoXPFromSummonedSkeletons == TRUE)
+	{
+		NoXPFromSummonedSkeletons = FALSE;
+		PrintScreen("Опыт за бесконечных скелетов включен",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		NoXPFromSummonedSkeletons = TRUE;
+		PrintScreen("Опыт за бесконечных скелетов выключен",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

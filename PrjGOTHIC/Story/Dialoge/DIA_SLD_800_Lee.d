@@ -194,7 +194,7 @@ func void DIA_Lee_PETZMASTER_Info()
 	{
 		AI_Output(self,other,"DIA_Lee_PETZMASTER_04_02");	//Хорошо, что ты все же пришел ко мне, пока твои дела не стали совсем паршивыми.
 		AI_Output(self,other,"DIA_Lee_PETZMASTER_04_03");	//Наемники - крутые парни, и фермеры здесь тоже могут постоять за себя, но ты не можешь просто так убивать людей.
-		Lee_Schulden =B_GetTotalPetzCounter(self) * 50 + 500;
+		Lee_Schulden = B_GetTotalPetzCounter(self) * 50 + 500;
 		if((PETZCOUNTER_Farm_Theft + PETZCOUNTER_Farm_Attack + PETZCOUNTER_Farm_Sheepkiller) > 0)
 		{
 			AI_Output(self,other,"DIA_Lee_PETZMASTER_04_04");	//Не говоря уже о других твоих преступлениях здесь.
@@ -1454,7 +1454,7 @@ func void DIA_Lee_CanTeach_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Lee_CanTeach_04_01");	//Я могу показать тебе, как сражаться двуручным оружием.
-		if(!TeacherCanTrainTalent(NPC_TALENT_2H,75))
+		if(!TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Lee))
 		{
 			AI_Output(self,other,"DIA_Lee_CanTeach_04_02");	//Но у меня нет времени на то, чтобы учить тебя основам.
 			AI_Output(self,other,"DIA_Lee_CanTeach_04_03");	//Как только ты достигнешь определенного уровня, я в твоем распоряжении. А пока поищи другого учителя.
@@ -1504,10 +1504,10 @@ func void DIA_Lee_CanTeach_Yes()
 
 func void B_BuildLearnDialog_Lee()
 {
-	Info_ClearChoices(DIA_Lee_Teach);
-	Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
 	{
+		Info_ClearChoices(DIA_Lee_Teach);
+		Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
 		Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_Teach_2H_1);
 		Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_Teach_2H_5);
 	}

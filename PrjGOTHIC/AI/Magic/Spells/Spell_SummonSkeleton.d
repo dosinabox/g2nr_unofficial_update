@@ -42,8 +42,14 @@ func void Spell_Cast_SummonSkeleton()
 	}
 	else
 	{
-		self.lp += 1;
-		Wld_SpawnNpcRange(self,Skeleton,1,500);
+		if(NoXPFromSummonedSkeletons == FALSE)
+		{
+			Wld_SpawnNpcRange(self,Skeleton,1,500);
+		}
+		else
+		{
+			Wld_SpawnNpcRange(self,Skeleton_NoXP,1,500);
+		};
 	};
 };
 

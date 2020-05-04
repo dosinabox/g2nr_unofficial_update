@@ -1320,3 +1320,4 @@ var int Log_SalandrilIsDead;
 var int NewLogEnabled;
 var int Player_KnowsLariusAsGovernor;
 var int Mario_DI_ReadyForAmbush;
+var int NoXPFromSummonedSkeletons;

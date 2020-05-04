@@ -357,96 +357,107 @@ func void DIA_Vatras_DI_Talente_ALCHIMIE()
 
 func void DIA_Vatras_DI_Talente_Circle_1()
 {
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,1);
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_2()
 {
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,2);
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_3()
 {
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,3);
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_4()
 {
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,4);
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_5()
 {
-	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_5_05_00");	//Теперь ты маг пятого Круга. Используй заклинания, изученные тобой, во благо.
-	Info_ClearChoices(DIA_Vatras_DI_Talente);
 	B_TeachMagicCircle(self,other,5);
+	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_5_05_00");	//Теперь ты маг пятого Круга. Используй заклинания, изученные тобой, во благо.
+	DIA_Vatras_DI_Talente_CIRCLES();
 };
 
 func void DIA_Vatras_DI_Talente_Circle_6()
 {
+	B_TeachMagicCircle(self,other,6);
 	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_00");	//Ты достиг самых высоких вершин в магии.
 	AI_Output(self,other,"DIA_Vatras_DI_Talente_Circle_6_05_01");	//Пусть руку твою направляет разум, а твои человеческие слабости будут под глубоким контролем. Они не смогут затмить твой взор.
 	Info_ClearChoices(DIA_Vatras_DI_Talente);
-	B_TeachMagicCircle(self,other,6);
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Health_01()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_01);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Health_02()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_02);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Health_03()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Health_03);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Mana_01()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_01);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Mana_02()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_02);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Mana_03()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Mana_03);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Speed()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Speed);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Perm_STR()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_STR);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Perm_DEX()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_DEX);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Perm_Mana()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Mana);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_POTION_Perm_Health()
 {
 	B_TeachPlayerTalentAlchemy(self,other,POTION_Perm_Health);
+	DIA_Vatras_DI_Talente_ALCHIMIE();
 };
 
 func void DIA_Vatras_DI_Talente_BACK()

@@ -667,10 +667,10 @@ func void DIA_Alrik_Ausbilden_Info()
 
 func void B_BuildLearnDialog_Alrik()
 {
-	Info_ClearChoices(DIA_Alrik_Teach);
-	Info_AddChoice(DIA_Alrik_Teach,Dialog_Back,DIA_Alrik_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Alrik)
 	{
+		Info_ClearChoices(DIA_Alrik_Teach);
+		Info_AddChoice(DIA_Alrik_Teach,Dialog_Back,DIA_Alrik_Teach_Back);
 		Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Alrik_Teach_1H_1);
 		Info_AddChoice(DIA_Alrik_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Alrik_Teach_1H_5);
 	}

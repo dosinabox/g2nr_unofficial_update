@@ -261,6 +261,7 @@ func void DIA_Milten_DI_TeachMagic_MANA_5()
 
 func void DIA_Milten_DI_TeachMagic_RUNES()
 {
+	DIA_Common_WantToLearnNewRunes();
 	if(hero.guild == GIL_PAL)
 	{
 		DIA_Milten_RunesComment_01();
@@ -438,6 +439,11 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_FullHeal()
 	B_TeachPlayerTalentRunes(self,other,SPL_FullHeal);
 };
 
+func void DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_Shrink()
+{
+	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
+};
+
 func void DIA_Milten_DI_TeachMagic_Runen_Circle_6()
 {
 	Info_ClearChoices(DIA_Milten_DI_TeachMagic);
@@ -482,11 +488,6 @@ func void DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_MassDeath()
 func void DIA_Milten_DI_TeachMagic_Runen_Circle_6_SPL_ArmyOfDarkness()
 {
 	B_TeachPlayerTalentRunes(self,other,SPL_ArmyOfDarkness);
-};
-
-func void DIA_Milten_DI_TeachMagic_Runen_Circle_5_SPL_Shrink()
-{
-	B_TeachPlayerTalentRunes(self,other,SPL_Shrink);
 };
 
 func void DIA_Milten_DI_TeachMagic_BACK()

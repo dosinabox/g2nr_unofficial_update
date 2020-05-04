@@ -227,7 +227,7 @@ func void DIA_Addon_Fernando_BanditTrader_Info()
 		};
 		if(FernandoMajorEvidenceCount < 2)
 		{
-			AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//È?
+			DIA_Cord_And();
 			AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Ý-ý...
 			if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 			{

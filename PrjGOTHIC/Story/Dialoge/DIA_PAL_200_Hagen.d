@@ -625,7 +625,7 @@ func int DIA_Hagen_CanTeach_Condition()
 func void DIA_Hagen_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Hagen_CanTeach_15_00");	//Я ищу мастера-мечника.
-	if(!TeacherCanTrainTalent(NPC_TALENT_2H,90))
+	if(!TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Hagen))
 	{
 		B_Say(self,other,"$NOLEARNNOPOINTS");
 	}
@@ -643,10 +643,10 @@ var int DIA_Hagen_Teach_permanent;
 
 func void B_BuildLearnDialog_Hagen()
 {
-	Info_ClearChoices(DIA_Hagen_Teach);
-	Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
 	{
+		Info_ClearChoices(DIA_Hagen_Teach);
+		Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
 		Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hagen_Teach_2H_1);
 		Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hagen_Teach_2H_5);
 	}
@@ -1204,6 +1204,8 @@ func void DIA_Lord_Hagen_AugeAmStart_Info()
 };
 
 
+var int Hagen_SawOrcRing;
+
 instance DIA_Lord_Hagen_ANTIPALADINE(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -1222,9 +1224,6 @@ func int DIA_Lord_Hagen_ANTIPALADINE_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Hagen_SawOrcRing;
 
 func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 {
@@ -1291,6 +1290,13 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 };
 
 
+func void DIA_Hagen_MoreOrcRings()
+{
+	AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_03");	//Я могу дать тебе еще несколько колец орков.
+};
+
+var int OrkRingCounter;
+
 instance DIA_Lord_Hagen_RINGEBRINGEN(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -1309,9 +1315,6 @@ func int DIA_Lord_Hagen_RINGEBRINGEN_Condition()
 		return TRUE;
 	};
 };
-
-
-var int OrkRingCounter;
 
 func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 {
@@ -1332,7 +1335,7 @@ func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_03");	//Я могу дать тебе еще несколько колец орков.
+		DIA_Hagen_MoreOrcRings();
 		B_GiveInvItems(other,self,ItRi_OrcEliteRing,Ringcount);
 		XP_PAL_OrcRings = Ringcount * XP_PAL_OrcRing;
 		OrkRingCounter += Ringcount;

@@ -46,6 +46,8 @@ func void DIA_Girion_Hallo_Info()
 };
 
 
+var int DIA_Girion_Teach_permanent;
+
 instance DIA_Girion_CanTeach(C_Info)
 {
 	npc = PAL_207_Girion;
@@ -80,11 +82,14 @@ func void DIA_Girion_CanTeach_Info()
 	{
 		AI_Output(self,other,"DIA_Girion_CanTeach_08_03");	//≈сли ты хочешь обучитьс€ чему-нибудь, тебе лучше поискать учител€ не из нашего ордена.
 		AI_Output(self,other,"DIA_Girion_CanTeach_08_04");	//я воин, а не учитель.
+		if((other.guild != GIL_NONE) && (other.guild != GIL_MIL))
+		{
+			Girion_Teach2H = TRUE;
+			DIA_Girion_Teach_permanent = TRUE;
+		};
 	};
 };
 
-
-var int DIA_Girion_Teach_permanent;
 
 func void B_BuildLearnDialog_Girion()
 {
@@ -99,7 +104,7 @@ func void B_BuildLearnDialog_Girion()
 	{
 		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Girion)
 		{
-			DIA_Morgan_Teacher_permanent = TRUE;
+			DIA_Girion_Teach_permanent = TRUE;
 		};
 		if(VisibleTalentValue(NPC_TALENT_2H) < 100)
 		{
@@ -123,38 +128,36 @@ func void B_GirionTeachComment()
 	if(Girion_Labercount == 0)
 	{
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_00");	//—ражайс€ с честью. Ѕой - наша жизнь, а что за жизнь без чести?
+		Girion_Labercount = 1;
 	}
 	else if(Girion_Labercount == 1)
 	{
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_01");	//Ѕудь осторожен и быстр в бою. ”дивл€й своего противника.
+		Girion_Labercount = 2;
 	}
 	else if(Girion_Labercount == 2)
 	{
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_02");	//Ќикогда не вступай в бой неподготовленным. Ќеизвестно, сколько он будет длитьс€.
+		Girion_Labercount = 3;
 	}
 	else if(Girion_Labercount == 3)
 	{
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_1_08_03");	//ѕаладин всегда готов к бою. Ќо никогда не начинает бой, в котором не может победить.
+		Girion_Labercount = 4;
 	}
 	else if(Girion_Labercount == 4)
 	{
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_00");	//ѕаладин сражаетс€ не только мечом, но и головой.
+		Girion_Labercount = 5;
 	}
 	else if(Girion_Labercount == 5)
 	{
-		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_01");	//“ы должен понимать, когда лучше отступить.
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_02");	//ѕомни, если ты сражаешьс€ хорошо, ты контролируешь своего противника и не даешь ему шанса контролировать себ€.
+		Girion_Labercount = 6;
 	}
 	else if(Girion_Labercount == 6)
 	{
-		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_02");	//ѕомни, если ты сражаешьс€ хорошо, ты контролируешь своего противника и не даешь ему шанса контролировать себ€.
-	}
-	else if(Girion_Labercount == 7)
-	{
 		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_03");	//ќтступление - это всегда потер€.
-	};
-	Girion_Labercount += 1;
-	if(Girion_Labercount >= 7)
-	{
 		Girion_Labercount = 0;
 	};
 };

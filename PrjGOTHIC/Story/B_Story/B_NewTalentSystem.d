@@ -5,14 +5,24 @@ const int TeachLimit_1H_Cedric = 90;
 const int TeachLimit_1H_Morgan = 75;
 const int TeachLimit_1H_Buster = 60;
 const int TeachLimit_1H_Wulfgar = 75;
+const int TeachLimit_1H_Girion = 90;
+const int TeachLimit_1H_Cavalorn = 30;
+const int TeachLimit_1H_Cord = 90;
 const int TeachLimit_2H_Keroloth = 60;
 const int TeachLimit_2H_Henry = 90;
 const int TeachLimit_2H_Babo = 75;
 const int TeachLimit_2H_Girion = 90;
 const int TeachLimit_2H_Rod = 90;
 const int TeachLimit_2H_Wulfgar = 75;
+const int TeachLimit_2H_Cord = 90;
+const int TeachLimit_Bow_Cavalorn = 90;
 const int TeachLimit_Crossbow_Henry = 80;
 const int TeachLimit_Crossbow_Udar = 60;
+const int TeachLimit_Crossbow_Girion = 90;
+
+const int TeachCondition_Cord = 30;
+const int TeachCondition_Lee = 75;
+const int TeachCondition_Hagen = 90;
 
 var C_NPC RealHero;
 

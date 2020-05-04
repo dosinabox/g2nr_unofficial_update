@@ -157,7 +157,7 @@ func void B_BuildLearnDialog_Keroloth()
 	};
 	if((DIA_Keroloth_TeachState_1H == 2) && (DIA_Keroloth_TeachState_2H == 2))
 	{
-		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Keroloth)),-1,53,FONT_Screen,2);
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
 		AI_Output(self,other,"B_Keroloth_TeachNoMore1_07_00");	//Ты очень хорош. Мне больше нечему учить тебя.
 		AI_StopProcessInfos(self);
 	};
