@@ -258,6 +258,7 @@ func void startup_dragonisland()
 func void init_dragonisland()
 {
 	B_Check_Version();
+	B_Check_Talents();
 	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();

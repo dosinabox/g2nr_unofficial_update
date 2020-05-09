@@ -752,6 +752,8 @@ func int GetTeachLimitReason(var C_NPC npc,var int talent,var int change,var int
 
 //===============================INTERFACE============================================
 
+var int TalentSystemSynced;
+
 // initialize the talent system (must not be called twice)
 func void B_InitTalentSystem()
 {
@@ -765,6 +767,7 @@ func void B_InitTalentSystem()
 	UpdateTalent_Hero(NPC_TALENT_2H);
 	UpdateTalent_Hero(NPC_TALENT_BOW);
 	UpdateTalent_Hero(NPC_TALENT_CROSSBOW);
+	TalentSystemSynced = TRUE;
 };
 
 // returns the reason the teacher can't teach talent

@@ -1824,6 +1824,7 @@ func void init_surface()
 func void init_oldworld()
 {
 	B_Check_Version();
+	B_Check_Talents();
 	B_SetHeroSkin();
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
@@ -3400,6 +3401,7 @@ func void STARTUP_NewWorld()
 func void INIT_NewWorld()
 {
 	B_Check_Version();
+	B_Check_Talents();
 	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
@@ -3444,6 +3446,7 @@ func void STARTUP_AddonWorld()
 func void INIT_AddonWorld()
 {
 	B_Check_Version();
+	B_Check_Talents();
 	B_SetHeroSkin();
 	if((BloodwynIsHeadless == TRUE) && (Saturas_RiesenPlan == FALSE))
 	{
