@@ -72,7 +72,6 @@ instance MENU_SAVEGAME_SAVE(C_MENU_DEF)
 	flags = flags | MENU_SHOW_INFO;
 };
 
-
 const int SAVEGAME_X1 = 1200;
 const int SAVEGAME_X2 = 5400;
 const int SAVEGAME_Y = 1200;
@@ -190,14 +189,14 @@ instance MENUITEM_LOADSAVE_PLAYTIME_VALUE(C_MENU_ITEM_DEF)
 
 instance MENUITEM_SAVE_BACK(C_MENU_ITEM_DEF)
 {
-	text[0] = "Назад";
+	text[0] = MENU_TEXT_BACK;
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (21 * SAVEGAME_DY);
 };
 
 instance MENUITEM_LOAD_BACK(C_MENU_ITEM_DEF)
 {
-	text[0] = "Назад";
+	text[0] = MENU_TEXT_BACK;
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (21 * SAVEGAME_DY);
 };
@@ -206,7 +205,7 @@ instance MENUITEM_SAVE_SLOT1(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 1 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (0 * SAVEGAME_DY);
@@ -223,7 +222,7 @@ instance MENUITEM_SAVE_SLOT2(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 2 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (1 * SAVEGAME_DY);
@@ -240,7 +239,7 @@ instance MENUITEM_SAVE_SLOT3(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 3 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (2 * SAVEGAME_DY);
@@ -257,7 +256,7 @@ instance MENUITEM_SAVE_SLOT4(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 4 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (3 * SAVEGAME_DY);
@@ -274,7 +273,7 @@ instance MENUITEM_SAVE_SLOT5(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 5 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (4 * SAVEGAME_DY);
@@ -291,7 +290,7 @@ instance MENUITEM_SAVE_SLOT6(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 6 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (5 * SAVEGAME_DY);
@@ -308,7 +307,7 @@ instance MENUITEM_SAVE_SLOT7(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 7 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (6 * SAVEGAME_DY);
@@ -325,7 +324,7 @@ instance MENUITEM_SAVE_SLOT8(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 8 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (7 * SAVEGAME_DY);
@@ -341,7 +340,7 @@ instance MENUITEM_SAVE_SLOT8(C_MENU_ITEM_DEF)
 instance MENUITEM_SAVE_SLOT9(C_MENU_ITEM_DEF)
 {
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 9 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (8 * SAVEGAME_DY);
@@ -358,7 +357,7 @@ instance MENUITEM_SAVE_SLOT10(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 10 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (9 * SAVEGAME_DY);
@@ -375,7 +374,7 @@ instance MENUITEM_SAVE_SLOT11(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 11 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (10 * SAVEGAME_DY);
@@ -392,7 +391,7 @@ instance MENUITEM_SAVE_SLOT12(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 12 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (11 * SAVEGAME_DY);
@@ -409,7 +408,7 @@ instance MENUITEM_SAVE_SLOT13(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 13 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (12 * SAVEGAME_DY);
@@ -426,7 +425,7 @@ instance MENUITEM_SAVE_SLOT14(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 14 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (13 * SAVEGAME_DY);
@@ -443,7 +442,7 @@ instance MENUITEM_SAVE_SLOT15(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 15 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (14 * SAVEGAME_DY);
@@ -460,7 +459,7 @@ instance MENUITEM_SAVE_SLOT16(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 16 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (15 * SAVEGAME_DY);
@@ -477,7 +476,7 @@ instance MENUITEM_SAVE_SLOT17(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 17 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (16 * SAVEGAME_DY);
@@ -494,7 +493,7 @@ instance MENUITEM_SAVE_SLOT18(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 18 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (17 * SAVEGAME_DY);
@@ -511,7 +510,7 @@ instance MENUITEM_SAVE_SLOT19(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 19 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (18 * SAVEGAME_DY);
@@ -528,7 +527,7 @@ instance MENUITEM_SAVE_SLOT20(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_INPUT_BACK_PIC;
 	type = MENU_ITEM_INPUT;
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 20 - нажмите ENTER и введите имя";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (19 * SAVEGAME_DY);
@@ -543,7 +542,7 @@ instance MENUITEM_SAVE_SLOT20(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT1(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 1 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (0 * SAVEGAME_DY);
@@ -556,7 +555,7 @@ instance MENUITEM_LOAD_SLOT1(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT2(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 2 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (1 * SAVEGAME_DY);
@@ -569,7 +568,7 @@ instance MENUITEM_LOAD_SLOT2(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT3(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 3 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (2 * SAVEGAME_DY);
@@ -582,7 +581,7 @@ instance MENUITEM_LOAD_SLOT3(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT4(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 4 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (3 * SAVEGAME_DY);
@@ -595,7 +594,7 @@ instance MENUITEM_LOAD_SLOT4(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT5(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 5 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (4 * SAVEGAME_DY);
@@ -608,7 +607,7 @@ instance MENUITEM_LOAD_SLOT5(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT6(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 6 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (5 * SAVEGAME_DY);
@@ -621,7 +620,7 @@ instance MENUITEM_LOAD_SLOT6(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT7(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 7 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (6 * SAVEGAME_DY);
@@ -634,7 +633,7 @@ instance MENUITEM_LOAD_SLOT7(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT8(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 8 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (7 * SAVEGAME_DY);
@@ -647,7 +646,7 @@ instance MENUITEM_LOAD_SLOT8(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT9(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 9 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (8 * SAVEGAME_DY);
@@ -660,7 +659,7 @@ instance MENUITEM_LOAD_SLOT9(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT10(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 10 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (9 * SAVEGAME_DY);
@@ -673,7 +672,7 @@ instance MENUITEM_LOAD_SLOT10(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT11(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 11 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (10 * SAVEGAME_DY);
@@ -686,7 +685,7 @@ instance MENUITEM_LOAD_SLOT11(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT12(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 12 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (11 * SAVEGAME_DY);
@@ -699,7 +698,7 @@ instance MENUITEM_LOAD_SLOT12(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT13(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 13 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (12 * SAVEGAME_DY);
@@ -712,7 +711,7 @@ instance MENUITEM_LOAD_SLOT13(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT14(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 14 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (13 * SAVEGAME_DY);
@@ -725,7 +724,7 @@ instance MENUITEM_LOAD_SLOT14(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT15(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 15 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (14 * SAVEGAME_DY);
@@ -738,7 +737,7 @@ instance MENUITEM_LOAD_SLOT15(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT16(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 16 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (15 * SAVEGAME_DY);
@@ -751,7 +750,7 @@ instance MENUITEM_LOAD_SLOT16(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT17(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 17 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (16 * SAVEGAME_DY);
@@ -764,7 +763,7 @@ instance MENUITEM_LOAD_SLOT17(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT18(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 18 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (17 * SAVEGAME_DY);
@@ -777,7 +776,7 @@ instance MENUITEM_LOAD_SLOT18(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT19(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 19 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (18 * SAVEGAME_DY);
@@ -790,7 +789,7 @@ instance MENUITEM_LOAD_SLOT19(C_MENU_ITEM_DEF)
 
 instance MENUITEM_LOAD_SLOT20(C_MENU_ITEM_DEF)
 {
-	text[0] = "неизвестно";
+	text[0] = MENU_TEXT_UNKNOWN;
 	text[1] = "Слот 20 - нажмите ENTER, чтобы загрузить это сохранение";
 	posx = SAVEGAME_X1;
 	posy = SAVEGAME_Y + (19 * SAVEGAME_DY);

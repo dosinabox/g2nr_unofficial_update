@@ -16,6 +16,7 @@ const int TeachLimit_2H_Rod = 90;
 const int TeachLimit_2H_Wulfgar = 75;
 const int TeachLimit_2H_Cord = 90;
 const int TeachLimit_Bow_Cavalorn = 90;
+const int TeachLimit_Bow_AlligatorJack = 75;
 const int TeachLimit_Crossbow_Henry = 80;
 const int TeachLimit_Crossbow_Udar = 60;
 const int TeachLimit_Crossbow_Girion = 90;

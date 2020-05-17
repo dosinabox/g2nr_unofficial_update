@@ -30,6 +30,7 @@ func void B_GiveTradeInv_Ignaz(var C_Npc slf)
 		CreateInvItems(slf,ItSc_TrfFireWaran,1);
 		CreateInvItems(slf,ItSc_Charm,5);
 		CreateInvItems(slf,ItSc_Sleep,1);
+		CreateInvItems(slf,ItSc_Fear,1);
 		Ignaz_ItemsGiven_Chapter_1 = TRUE;
 	};
 	if((Kapitel >= 2) && (Ignaz_ItemsGiven_Chapter_2 == FALSE))

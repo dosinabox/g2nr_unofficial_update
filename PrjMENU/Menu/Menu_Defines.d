@@ -24,15 +24,21 @@ const int MENU_SLIDER_YPLUS = 0;
 const int MENU_CHOICE_DX = 2000;
 const int MENU_CHOICE_DY = 350;
 const int MENU_CHOICE_YPLUS = 120;
-const int MENU_TITLE_Y = 1200;
-const int MENU_START_Y = 2000;
-const int MENU_START_SOUND_Y = 1800;
-const int MENU_BACK_Y = 6500;
-const int MENU_DY = 650;
+const int MENU_START_Y = 200;
+const int MENU_STEP_Y = 510;
+const int MENU_BACK_Y = 7050;
 const int MENU_INFO_X = 300;
 const int MENU_INFO_Y = 7780;
 const int MENU_BUTTONS = 5300;
 
+const int MENU_MAIN_START_Y = 2500;
+const int MENU_MAIN_STEP_Y = 550;
+const int MENU_MAIN_DX = 8192;
+const int MENU_MAIN_DY = 750;
+
+const string MENU_TEXT_BACK = "Назад";
+const string MENU_TEXT_ONOFF = "откл|вкл";
+const string MENU_TEXT_UNKNOWN = "неизвестно";
 const string MENU_TEXT_KEYS_HINT = "Вверх/Вниз - выбор, ENTER - изменить, DELETE - очистить";
 const string NEEDS_RESTART = "Для вступления в силу необходимо перезапустить игру";
 const string PRESSNOW = "Нажмите клавишу для назначения или ESCAPE для отмены";

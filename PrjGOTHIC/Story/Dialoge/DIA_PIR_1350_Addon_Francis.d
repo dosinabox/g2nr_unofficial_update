@@ -146,7 +146,7 @@ func void DIA_Addon_Francis_Key_Info()
 
 func void DIA_Addon_Francis_Key_BACK()
 {
-	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_back_15_00");	//Я подумаю над этим.
+	DIA_Common_IWillThinkAboutIt();
 	Info_ClearChoices(DIA_Addon_Francis_Key);
 };
 

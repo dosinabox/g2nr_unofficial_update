@@ -324,7 +324,10 @@ func void DIA_Ulthar_WARN_Info()
 {
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_08");	//Еще одно. Держись подальше от придорожных алтарей. Мы слышали, что некоторые из них были осквернены.
 	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_09");	//Никто не знает, как теперь они действуют.
-	AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_10");	//Тебя не должна волновать эта проблема. О ней позаботятся паладины.
+	if(hero.guild != GIL_MIL)
+	{
+		AI_Output(self,other,"DIA_Ulthar_SCHREINEVERGIFTET_05_10");	//Тебя не должна волновать эта проблема. О ней позаботятся паладины.
+	};
 	AI_StopProcessInfos(self);
 };
 

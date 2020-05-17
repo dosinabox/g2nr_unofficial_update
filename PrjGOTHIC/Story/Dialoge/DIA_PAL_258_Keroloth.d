@@ -78,15 +78,25 @@ func void DIA_Keroloth_WantTeach_Info()
 		AI_Output(self,other,"DIA_Keroloth_WantTeach_07_02");	//Но, кроме таланта, тебе понадобится хорошее оружие, если ты хочешь выжить здесь.
 		AI_Output(self,other,"DIA_Keroloth_WantTeach_07_03");	//Обратись к рыцарю Тандору. Он снарядит тебя.
 		Keroloth_TeachPlayer = TRUE;
-		if(!Npc_KnowsInfo(other,DIA_Sengrath_Perm))
+		if(!Npc_KnowsInfo(other,DIA_Sengrath_Perm) && !Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo) && !Npc_KnowsInfo(other,DIA_Dobar_Waffe))
 		{
 			Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
-			B_LogEntry(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
-		};
-		if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo) && !Npc_KnowsInfo(other,DIA_Dobar_Waffe))
-		{
+			B_LogEntries(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
 			Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-			B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+			B_LogNextEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+		}
+		else
+		{
+			if(!Npc_KnowsInfo(other,DIA_Sengrath_Perm))
+			{
+				Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
+				B_LogEntry(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
+			};
+			if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo) && !Npc_KnowsInfo(other,DIA_Dobar_Waffe))
+			{
+				Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+				B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+			};
 		};
 	}
 	else
