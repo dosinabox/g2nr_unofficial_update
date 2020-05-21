@@ -625,7 +625,7 @@ func int DIA_Hagen_CanTeach_Condition()
 func void DIA_Hagen_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Hagen_CanTeach_15_00");	//Я ищу мастера-мечника.
-	if(!TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Hagen))
+	if(!TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_2H_Hagen))
 	{
 		B_Say(self,other,"$NOLEARNNOPOINTS");
 	}

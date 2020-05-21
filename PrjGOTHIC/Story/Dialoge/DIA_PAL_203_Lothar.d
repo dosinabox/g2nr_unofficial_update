@@ -51,7 +51,7 @@ func int DIA_Lothar_FirstEXIT_Condition()
 
 func void DIA_Lothar_FirstEXIT_Info()
 {
-	AI_Output(other,self,"DIA_Lothar_FirstEXIT_15_00");	//Я должен идти!
+	DIA_Common_IHaveToGo_v1();
 	if((Lothar_Regeln == FALSE) && (Mil_305_schonmalreingelassen == FALSE))
 	{
 		AI_Output(self,other,"DIA_Lothar_FirstEXIT_01_01");	//Подожди! Ты даже не знаешь новых законов города!

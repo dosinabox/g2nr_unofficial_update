@@ -1454,7 +1454,7 @@ func void DIA_Lee_CanTeach_Info()
 	else
 	{
 		AI_Output(self,other,"DIA_Lee_CanTeach_04_01");	//Я могу показать тебе, как сражаться двуручным оружием.
-		if(!TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Lee))
+		if(!TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_2H_Lee))
 		{
 			AI_Output(self,other,"DIA_Lee_CanTeach_04_02");	//Но у меня нет времени на то, чтобы учить тебя основам.
 			AI_Output(self,other,"DIA_Lee_CanTeach_04_03");	//Как только ты достигнешь определенного уровня, я в твоем распоряжении. А пока поищи другого учителя.

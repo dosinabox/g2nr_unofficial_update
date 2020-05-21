@@ -105,7 +105,7 @@ func void DIA_Addon_Fortuno_Hi_Info()
 func void DIA_Addon_Fortuno_Hi_BACK()
 {
 	Info_ClearChoices(DIA_Addon_Fortuno_Hi);
-	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+	DIA_Common_IllBeBackLater();
 	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
 };

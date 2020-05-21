@@ -57,7 +57,7 @@ func void DIA_GornDJG_STARTCAMP_Wohin()
 
 func void DIA_GornDJG_STARTCAMP_By()
 {
-	AI_Output(other,self,"DIA_GornDJG_STARTCAMP_By_15_00");	//Еще увидимся.
+	DIA_Common_SeeYou();
 	AI_Output(self,other,"DIA_GornDJG_STARTCAMP_By_12_01");	//Будь осторожен.
 	AI_StopProcessInfos(self);
 };

@@ -312,7 +312,7 @@ func void DIA_Keroloth_KAP4_HELLO_Info()
 
 func void DIA_Keroloth_KAP4_HELLO_ende()
 {
-	AI_Output(other,self,"DIA_Landstreicher_HALLO_Weg_15_00");	//Мне нужно идти.
+	DIA_Common_IHaveToGo_v2();
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_bestohlen_wasfehlt_07_04");	//Когда я доберусь до него...
 	Info_ClearChoices(DIA_Keroloth_KAP4_HELLO);
 };

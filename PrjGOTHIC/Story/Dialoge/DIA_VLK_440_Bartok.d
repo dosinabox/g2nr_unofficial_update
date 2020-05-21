@@ -278,7 +278,29 @@ func void DIA_Bartok_TeachSneak_Info()
 };
 
 
-var int Bosper_MerkeBow;
+var int Bartok_MerkeBow;
+var int DIA_Bartok_Teacher_permanent;
+
+func void B_BuildLearnDialog_Bartok()
+{
+	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Bartok)
+	{
+		Info_ClearChoices(DIA_Bartok_Teach);
+		Info_AddChoice(DIA_Bartok_Teach,Dialog_Back,DIA_Bartok_Teach_Back);
+		Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Bartok_Teach_BOW_1);
+		Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Bartok_Teach_BOW_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Bartok)
+		{
+			DIA_Bartok_Teacher_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Bow_Bartok)),-1,53,FONT_Screen,2);
+		AI_Output(self,other,"DIA_Bartok_TeachBow_BACK_04_00");	//Тебе лучше поискать кого-нибудь, кто знает больше, чем я.
+		AI_StopProcessInfos(self);
+	};
+};
 
 instance DIA_Bartok_Teach(C_Info)
 {
@@ -293,7 +315,7 @@ instance DIA_Bartok_Teach(C_Info)
 
 func int DIA_Bartok_Teach_Condition()
 {
-	if(Bartok_TeachPlayer == TRUE)
+	if((Bartok_TeachPlayer == TRUE) && (DIA_Bartok_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -302,21 +324,17 @@ func int DIA_Bartok_Teach_Condition()
 func void DIA_Bartok_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Bartok_TeachBow_15_00");	//Я хочу научиться лучше стрелять из лука!
-	AI_Output(self,other,"DIA_Bartok_TeachBow_04_01");	//Хорошо, посмотрим, чему я могу тебя научить...
-	Bosper_MerkeBow = other.HitChance[NPC_TALENT_BOW];
-	Info_ClearChoices(DIA_Bartok_Teach);
-	Info_AddChoice(DIA_Bartok_Teach,Dialog_Back,DIA_Bartok_Teach_Back);
-	Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Bartok_Teach_BOW_1);
-	Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Bartok_Teach_BOW_5);
+	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Bartok)
+	{
+		AI_Output(self,other,"DIA_Bartok_TeachBow_04_01");	//Хорошо, посмотрим, чему я могу тебя научить...
+		Bartok_MerkeBow = other.HitChance[NPC_TALENT_BOW];
+	};
+	B_BuildLearnDialog_Bartok();
 };
 
 func void DIA_Bartok_Teach_Back()
 {
-	if(other.HitChance[NPC_TALENT_BOW] >= 60)
-	{
-		AI_Output(self,other,"DIA_Bartok_TeachBow_BACK_04_00");	//Тебе лучше поискать кого-нибудь, кто знает больше, чем я.
-	}
-	else if(Bosper_MerkeBow < other.HitChance[NPC_TALENT_BOW])
+	if(Bartok_MerkeBow < other.HitChance[NPC_TALENT_BOW])
 	{
 		AI_Output(self,other,"DIA_Bartok_TeachBow_BACK_04_01");	//Хорошо, ты стал стрелять значительно лучше.
 	};
@@ -325,22 +343,19 @@ func void DIA_Bartok_Teach_Back()
 
 func void DIA_Bartok_Teach_BOW_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,60);
-	Info_ClearChoices(DIA_Bartok_Teach);
-	Info_AddChoice(DIA_Bartok_Teach,Dialog_Back,DIA_Bartok_Teach_Back);
-	Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Bartok_Teach_BOW_1);
-	Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Bartok_Teach_BOW_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,TeachLimit_Bow_Bartok))
+	{
+		B_BuildLearnDialog_Bartok();
+	};
 };
 
 func void DIA_Bartok_Teach_BOW_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,60);
-	Info_ClearChoices(DIA_Bartok_Teach);
-	Info_AddChoice(DIA_Bartok_Teach,Dialog_Back,DIA_Bartok_Teach_Back);
-	Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Bartok_Teach_BOW_1);
-	Info_AddChoice(DIA_Bartok_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Bartok_Teach_BOW_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,TeachLimit_Bow_Bartok))
+	{
+		B_BuildLearnDialog_Bartok();
+	};
 };
-
 
 var int Bartok_Bereit;
 var int Bartok_Later;

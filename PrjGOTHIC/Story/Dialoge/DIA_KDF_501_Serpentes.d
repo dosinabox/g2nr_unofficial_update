@@ -58,7 +58,7 @@ func void DIA_Serpentes_NOTALK_QUESTION()
 
 func void DIA_Serpentes_NOTALK_EXIT()
 {
-	AI_Output(other,self,"DIA_Lothar_FirstEXIT_15_00");	//Я должен идти!
+	DIA_Common_IHaveToGo_v1();
 	AI_StopProcessInfos(self);
 };
 

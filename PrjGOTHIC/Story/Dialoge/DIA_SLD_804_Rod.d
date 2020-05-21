@@ -48,7 +48,7 @@ func void DIA_Rod_Hello_Info()
 	if(other.guild != GIL_SLD)
 	{
 		AI_Output(self,other,"DIA_Rod_Hello_06_01");	//Что ТЕБЕ нужно от меня, детка?
-		if(other.guild == GIL_KDF)
+		if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
 		{
 			AI_Output(self,other,"DIA_Rod_Hello_06_02");	//Что, для тебя не нашлось места в монастыре?
 		};

@@ -958,7 +958,7 @@ func void DIA_Andre_Auslieferung_Info()
 
 func void DIA_Andre_Auslieferung_Back()
 {
-	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+	DIA_Common_IllBeBackLater();
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
 

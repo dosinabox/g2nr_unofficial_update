@@ -87,10 +87,10 @@ func void Use_BookstandHistory3_S1()
 		Doc_PrintLines(nDocID,1,"Если кто-либо ударит другого или убьет его, правосудие обычно вершится на месте. Чтобы избежать подобной судьбы, виновный должен заплатить высокий штраф.");
 		Doc_PrintLines(nDocID,1,"Во всех местах скопления народа спокойствие поддерживают судьи. До них доходят сведения обо всех преступлениях, и в их обязанность входит вынесение приговора и восстановление порядка. Жертвы или свидетели обязаны сообщить о преступлении властям.");
 		Doc_Show(nDocID);
-		if(History_2_permanent == FALSE)
+		if(History_3_permanent == FALSE)
 		{
 			B_GivePlayerXP(XP_Bookstand);
-			History_2_permanent = TRUE;
+			History_3_permanent = TRUE;
 		};
 	};
 };

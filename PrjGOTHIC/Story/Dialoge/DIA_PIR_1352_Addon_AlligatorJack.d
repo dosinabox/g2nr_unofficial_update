@@ -769,14 +769,14 @@ func void DIA_Addon_AlligatorJack_CanLearn_Info()
 };
 
 
-func void B_AJ_Teach()
+func void B_BuildLearnDialog_AlligatorJack()
 {
 	Info_ClearChoices(DIA_Addon_AlligatorJack_Teach);
 	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,Dialog_Back,DIA_Addon_AlligatorJack_Teach_Back);
 	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_AlligatorJack)
 	{
-		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Addon_AlligatorJack_Teach_Bow_5);
 		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_AlligatorJack_Teach_Bow_1);
+		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Addon_AlligatorJack_Teach_Bow_5);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
 	{
@@ -825,7 +825,7 @@ func void DIA_Addon_AlligatorJack_Teach_Info()
 	{
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Teach_12_01");	//Чему тебя научить?
 	};
-	B_AJ_Teach();
+	B_BuildLearnDialog_AlligatorJack();
 };
 
 func void DIA_Addon_AlligatorJack_Teach_Back()
@@ -837,7 +837,7 @@ func void DIA_Addon_AlligatorJack_Teach_Bow_1()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,TeachLimit_Bow_AlligatorJack))
 	{
-		B_AJ_Teach();
+		B_BuildLearnDialog_AlligatorJack();
 	};
 };
 
@@ -845,7 +845,7 @@ func void DIA_Addon_AlligatorJack_Teach_Bow_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,TeachLimit_Bow_AlligatorJack))
 	{
-		B_AJ_Teach();
+		B_BuildLearnDialog_AlligatorJack();
 	};
 };
 
@@ -854,7 +854,7 @@ func void DIA_Addon_AlligatorJack_Teach_FUR()
 	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_ReptileSkin))
 	{
 		AI_Output(self,other,"DIA_Addon_AlligatorJack_Teach_Fur_12_00");	//Всегда делай разрез на животе, иначе ты испортишь шкуру.
-		B_AJ_Teach();
+		B_BuildLearnDialog_AlligatorJack();
 	};
 };
 
@@ -862,7 +862,7 @@ func void DIA_Addon_AlligatorJack_Teach_Teeth()
 {
 	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Teeth))
 	{
-		B_AJ_Teach();
+		B_BuildLearnDialog_AlligatorJack();
 	};
 };
 
