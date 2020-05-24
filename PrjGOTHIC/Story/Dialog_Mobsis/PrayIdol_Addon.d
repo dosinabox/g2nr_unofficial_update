@@ -29,6 +29,7 @@ func void B_ManaAngleich(var int BeliarsCost)
 	var int CurrentMana;
 	var string concatText;
 	GivenMana += BeliarsCost;
+	B_UnEquipIllegalMagicItems(BeliarsCost);
 	hero.attribute[ATR_MANA_MAX] -= BeliarsCost;
 	hero.aivar[REAL_MANA_MAX] -= BeliarsCost;
 	CurrentMana = hero.attribute[ATR_MANA] - BeliarsCost;

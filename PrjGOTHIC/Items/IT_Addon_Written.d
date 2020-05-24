@@ -508,8 +508,7 @@ func void UseRezeptPiratentod()
 	Doc_PrintLine(nDocID,0,"Пойло для настоящих мужчин");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Как всегда, необходима бутылка воды. Добавьте немного рома и свежую рыбу.");
-	Doc_PrintLines(nDocID,0,"Как только жидкость станет желтой, выньте рыбу и добавьте пучок");
-	Doc_PrintLines(nDocID,0,"свежесорванной снеппер-травы.");
+	Doc_PrintLines(nDocID,0,"Как только жидкость станет желтой, выньте рыбу и добавьте пучок свежесорванной снеппер-травы.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Осторожно! Это пойло обладает очень сильным эффектом.");
 	Doc_Show(nDocID);
@@ -555,11 +554,11 @@ func void UseMushroomManaRecipe()
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Создание грибного экстракта:");
 	Doc_PrintLine(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"Необходимо 50 черных грибов и 1 луговая ягода.");
-	Doc_PrintLines(nDocID,0,"Перемешать и варить.");
+	Doc_PrintLines(nDocID,0,"Черные грибы полезны сами по себе, но нехитрая обработка позволит усилить их свойства и создать более эффективный жидкий концентрат.");
+	Doc_PrintLines(nDocID,0,"Необходимо 50 черных грибов и одна луговая ягода.");
+	Doc_PrintLines(nDocID,0,"Грибы очищаются от грязи и варятся около часа. Полученный отвар охлаждается и в него добавляется высушенная и измельченная луговая ягода.");
 	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"");
-	Doc_PrintLines(nDocID,0,"бла бла бла.");
+	Doc_PrintLines(nDocID,0,"Если после добавления ягоды в емкости не выпал осадок, то все сделано правильно.");
 	Doc_Show(nDocID);
 	if(Npc_IsPlayer(self))
 	{
@@ -642,6 +641,7 @@ func void UseAxtAnleitung()
 			B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужен 1 кусок руды, 3 зуба и 1 дополнительная стальная заготовка.");
 			Knows_Banditenaxt = TRUE;
 		};
+		Opened_Banditenaxt = TRUE;
 	};
 };
 

@@ -167,7 +167,7 @@ func void Use_Bookstand_Kreise_02_S1()
 		Doc_PrintLine(nDocID,0,"- смола");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Ледяная стрела:");
-		Doc_PrintLine(nDocID,0,"- ледяной кварц:");
+		Doc_PrintLine(nDocID,0,"- ледяной кварц");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Вызов волка:");
 		Doc_PrintLine(nDocID,0,"- шкура волка");

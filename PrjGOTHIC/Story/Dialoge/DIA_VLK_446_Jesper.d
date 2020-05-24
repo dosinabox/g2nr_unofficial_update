@@ -252,7 +252,7 @@ func void DIA_Jesper_Schleichen_Info()
 instance DIA_Jesper_Killer(C_Info)
 {
 	npc = VLK_446_Jesper;
-	nr = 2;
+	nr = 1;
 	condition = DIA_Jesper_Killer_Condition;
 	information = DIA_Jesper_Killer_Info;
 	permanent = FALSE;
@@ -284,9 +284,7 @@ func void DIA_Jesper_Killer_Info()
 		AI_Output(self,other,"DIA_Jesper_Killer_09_03");	//я давно работаю с –амирезом и добыл дл€ него больше золота, чем ты можешь себе представить.
 		AI_Output(self,other,"DIA_Jesper_Killer_09_04");	//ј ты вз€л и убил его, гр€зный пес! Ќо сейчас пришло врем€ расплаты!
 	};
-	DG_gefunden = TRUE;
-	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_NONE,1);
+	B_ThievesKiller();
 };
 
 

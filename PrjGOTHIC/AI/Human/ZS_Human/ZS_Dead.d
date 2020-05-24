@@ -35,8 +35,15 @@ func void ZS_Dead()
 	{
 		if(Npc_GetDistToNpc(self,other) < 300)
 		{
-			other.attribute[ATR_HITPOINTS] -= 50;
-//			B_MagicHurtNpc(self,other,50);
+			if(other.attribute[ATR_HITPOINTS] > 50)
+			{
+				other.attribute[ATR_HITPOINTS] -= 50;
+			}
+			else
+			{
+				other.attribute[ATR_HITPOINTS] = 0;
+				AI_PlayAni(other,"T_DEAD");
+			};
 		};
 	};
 	B_CheckDeadMissionNPCs(self);

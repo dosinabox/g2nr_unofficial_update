@@ -69,7 +69,7 @@ instance DIA_Cassia_Gilde(C_Info)
 
 func int DIA_Cassia_Gilde_Condition()
 {
-	if((Cassia_Gildencheck == TRUE) && (Join_Thiefs == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF)))
+	if((Cassia_Gildencheck == TRUE) && (Join_Thiefs == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF)) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
 	{
 		return TRUE;
 	};
@@ -103,7 +103,7 @@ instance DIA_Cassia_Abgelaufen(C_Info)
 
 func int DIA_Cassia_Abgelaufen_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Cassia_Frist == TRUE) && (Cassia_Day < (B_GetDayPlus() - 2)))
+	if(Npc_IsInState(self,ZS_Talk) && (Cassia_Frist == TRUE) && (Cassia_Day < (B_GetDayPlus() - 2)) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
 	{
 		return TRUE;
 	};
@@ -130,7 +130,7 @@ instance DIA_Cassia_News(C_Info)
 
 func int DIA_Cassia_News_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
 	{
 		return TRUE;
 	};
@@ -858,5 +858,30 @@ func void DIA_Cassia_Belohnung_Ring()
 	AI_Output(other,self,"DIA_Cassia_Belohnung_15_04");	//Дай мне кольцо.
 	B_GiveInvItems(self,other,ItRi_HP_01,1);
 	Info_ClearChoices(DIA_Cassia_Belohnung);
+};
+
+instance DIA_Cassia_Killer(C_Info)
+{
+	npc = VLK_447_Cassia;
+	nr = 1;
+	condition = DIA_Cassia_Killer_Condition;
+	information = DIA_Cassia_Killer_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Cassia_Killer_Condition()
+{
+	if(Npc_IsDead(Jesper) || Npc_IsDead(Ramirez))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Cassia_Killer_Info()
+{
+	B_Say(self,other,"$YOUMURDERER");
+	B_ThievesKiller();
 };
 

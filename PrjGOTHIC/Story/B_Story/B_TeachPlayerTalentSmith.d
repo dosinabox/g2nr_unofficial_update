@@ -81,6 +81,11 @@ func int B_TeachPlayerTalentSmith(var C_Npc slf,var C_Npc oth,var int waffe)
 		PLAYER_TALENT_SMITH[WEAPON_1H_Harad_04] = TRUE;
 		B_LogEntry(TOPIC_TalentSmith,"Гарад передал мне секрет ковки 'Эль-бастардо' - одного из лучших клинков в мире!");
 	};
+	if((Opened_Banditenaxt == TRUE) && (Knows_Banditenaxt == FALSE))
+	{
+		B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужен 1 кусок руды, 3 зуба и 1 дополнительная стальная заготовка.");
+		Knows_Banditenaxt = TRUE;
+	};
 	PrintScreen(PRINT_LearnSmith,-1,-1,FONT_Screen,2);
 	return TRUE;
 };

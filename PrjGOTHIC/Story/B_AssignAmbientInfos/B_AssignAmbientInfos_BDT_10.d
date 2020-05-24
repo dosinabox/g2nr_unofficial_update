@@ -48,7 +48,7 @@ func void dia_bdt_10_standard_info()
 	};
 	if(randy == 1)
 	{
-		B_Say(self,other,"$GetOutOfHere");
+		B_Say(self,other,"$GETOUTOFHERE");
 	};
 	if(randy == 2)
 	{

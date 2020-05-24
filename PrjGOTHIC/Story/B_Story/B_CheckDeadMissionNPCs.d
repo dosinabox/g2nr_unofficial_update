@@ -181,6 +181,24 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 			B_LogEntry(TOPIC_MinenAnteileKDF,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
 			Log_SalandrilIsDead = TRUE;
 		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Cassia))
+	{
+		if(MIS_CassiaRing == LOG_Running)
+		{
+			MIS_CassiaRing = LOG_FAILED;
+		};
+		if(MIS_CassiaKelche == LOG_Running)
+		{
+			MIS_CassiaKelche = LOG_FAILED;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Ramirez))
+	{
+		if(MIS_RamirezSextant == LOG_Running)
+		{
+			MIS_RamirezSextant = LOG_FAILED;
+		};
 	};
 	B_CheckLog();
 };

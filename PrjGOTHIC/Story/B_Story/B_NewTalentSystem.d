@@ -648,7 +648,7 @@ func int GetNextTalentBarrier(var int talent,var int value)
 	return 0;
 };
 
-// calculates lp-cost of increasing talent by `change`
+// calculates lp-cost of increasing talent by 'change'
 func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
 {	
 	var int barrier;
@@ -666,13 +666,13 @@ func int GetTalentTrainCost_Impl(var int talent,var int value,var int change)
 	return pointsBefore * costBefore + (change - pointsBefore) * costAfter;
 };
 
-// calculates lp-cost of increasing talent by `change`
+// calculates lp-cost of increasing talent by 'change'
 func int GetTalentTrainCost_Hero(var int talent,var int change)
 {
 	return GetTalentTrainCost_Impl(talent,GetTalentPart_Cost_Hero(talent),change);
 };
 
-// calculates lp-cost of increasing talent by `change`
+// calculates lp-cost of increasing talent by 'change'
 func int GetTalentTrainCost(var C_NPC npc,var int talent,var int change)
 {
 	return GetTalentTrainCost_Impl(talent,GetTalent(npc,talent),change);

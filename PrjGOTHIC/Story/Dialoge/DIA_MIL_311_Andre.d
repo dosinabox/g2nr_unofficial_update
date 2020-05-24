@@ -1176,18 +1176,6 @@ func void DIA_Andre_DGRunning_Success()
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
 	DG_gefunden = TRUE;
 	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
-	if(MIS_CassiaRing == LOG_Running)
-	{
-		MIS_CassiaRing = LOG_FAILED;
-	};
-	if(MIS_CassiaKelche == LOG_Running)
-	{
-		MIS_CassiaKelche = LOG_FAILED;
-	};
-	if(MIS_RamirezSextant == LOG_Running)
-	{
-		MIS_RamirezSextant = LOG_FAILED;
-	};
 	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(other.guild == GIL_NONE)
 	{

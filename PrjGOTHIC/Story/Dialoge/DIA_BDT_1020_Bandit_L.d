@@ -167,7 +167,7 @@ func void DIA_BDT_1020_Wegelagerer_FirstWarn_NoMoney()
 	}
 	else
 	{
-		B_Say(self,other,"$DieEnemy");
+		B_Say(self,other,"$DIEENEMY");
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);
 	};
@@ -324,7 +324,7 @@ func int BDT_1020_Bandit_L_GetLost_Condition()
 
 func void BDT_1020_Bandit_L_GetLost_Info()
 {
-	B_Say(self,other,"$GetOutOfHere");
+	B_Say(self,other,"$GETOUTOFHERE");
 	AI_StopProcessInfos(self);
 };
 

@@ -279,7 +279,7 @@ func int B_TeachPlayerTalentRunes(var C_Npc slf,var C_Npc oth,var int spell)
 		{
 			CreateInvItems(ScrollTrader,ItSc_Firerain,1);
 		};
-		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Firerain,"1 смола и 1 язык огненного ящера."));
+		B_LogEntry(TOPIC_TalentRunes,B_BuildRunesIngredientsText(NAME_SPL_Firerain,"1 смола, 1 сера и 1 язык огненного ящера."));
 	};
 	if(spell == SPL_BreathOfDeath)
 	{
