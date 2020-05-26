@@ -1821,7 +1821,7 @@ func void init_surface()
 	INIT_SUB_Surface();
 };
 
-func void init_oldworld()
+func void INIT_OldWorld()
 {
 	B_Check_Version();
 	B_Check_Talents();

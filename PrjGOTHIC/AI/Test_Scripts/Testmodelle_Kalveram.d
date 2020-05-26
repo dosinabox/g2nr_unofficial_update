@@ -1630,7 +1630,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 24/05/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 26/05/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		if(Addon_zuerst == TRUE)
@@ -1693,11 +1693,14 @@ func void UseHelmets()
 	CreateInvItem(self,ITAR_DJGN_H);
 	CreateInvItem(self,ITAR_PALN_M);
 	CreateInvItem(self,ITAR_PALN_H);
-	CreateInvItem(self,ITAR_PAL_S);
+	CreateInvItem(self,ITAR_OHT);
+	CreateInvItem(self,ITAR_DHT);
 	CreateInvItem(self,ITHE_DJG_M);
 	CreateInvItem(self,ITHE_DJG_H);
 	CreateInvItem(self,ITHE_PAL_M);
 	CreateInvItem(self,ITHE_PAL_H);
+	CreateInvItem(self,ITHE_OHT);
+	CreateInvItem(self,ITHE_DHT);
 	Print("Найдено много разных доспехов и шлемов!");
 };
 

@@ -1078,6 +1078,7 @@ var int TruheSfx;
 var int GoblinGreen_Randomizer;
 var int GoblinBlack_Randomizer;
 var int Orc_Randomizer;
+var int Demon_Randomizer;
 var int CurrentLevel;
 var int Read_LastDoorToUndeadDrgDI_MIS;
 //var int Brahim_Attacked_Day;

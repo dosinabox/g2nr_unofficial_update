@@ -146,7 +146,8 @@ func void PC_PrayIdol_PrayIdol_Info()
 	Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVENOTHING,PC_PrayIdol_PrayIdol_NoPay);
 	if(GivenMana <= 10)
 	{
-		if(hero.attribute[ATR_MANA_MAX] > 10)
+		//if(hero.attribute[ATR_MANA_MAX] > 10)
+		if(hero.aivar[REAL_MANA_MAX] > 10)
 		{
 			Info_AddChoice(PC_PrayIdol_PrayIdol,NAME_ADDON_PRAYIDOL_GIVEMANA,PC_PrayIdol_PrayIdol_ManaPay);
 		};

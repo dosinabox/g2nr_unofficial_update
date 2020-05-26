@@ -517,6 +517,7 @@ instance ITAR_PAL_M(C_Item)
 	visual_change = "Armor_Pal_M.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -546,6 +547,7 @@ instance ITAR_PAL_H(C_Item)
 	visual_change = "Armor_Pal_H.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1046,6 +1048,7 @@ instance ITAR_DJG_M(C_Item)
 	visual_change = "Armor_Djg_M.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1075,6 +1078,7 @@ instance ITAR_DJG_H(C_Item)
 	visual_change = "Armor_Djg_H.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
@@ -1086,6 +1090,19 @@ instance ITAR_DJG_H(C_Item)
 	count[4] = protection[PROT_MAGIC];
 	text[5] = NAME_Value;
 	count[5] = value;
+};
+
+func void Equip_ArmorSet()
+{
+	if(Npc_IsPlayer(self))
+	{
+		B_UnEquipHeroItem(ITHE_OHT);
+		B_UnEquipHeroItem(ITHE_DHT);
+		B_UnEquipHeroItem(ITHE_DJG_M);
+		B_UnEquipHeroItem(ITHE_DJG_H);
+		B_UnEquipHeroItem(ITHE_PAL_M);
+		B_UnEquipHeroItem(ITHE_PAL_H);
+	};
 };
 
 /*instance ITAR_DJG_Babe(C_Item)
@@ -1743,36 +1760,7 @@ instance ITAR_BEGGAR(C_Item)
 	count[2] = protection[PROT_POINT];
 };
 
-/*instance ITAR_OHT(C_Item)
-{
-	name = "Доспехи охотника на орков";
-	mainflag = ITEM_KAT_ARMOR;
-	flags = 0;
-	protection[PROT_EDGE] = 65;
-	protection[PROT_BLUNT] = 65;
-	protection[PROT_POINT] = 65;
-	protection[PROT_FIRE] = 15;
-	protection[PROT_MAGIC] = 0;
-	value = 3000;
-	wear = WEAR_TORSO;
-	visual = "ITAR_OHT.3ds";
-	visual_change = "ARMOR_OHT.asc";
-	visual_skin = 0;
-	material = MAT_LEATHER;
-	description = name;
-	text[1] = NAME_Prot_Edge;
-	count[1] = protection[PROT_EDGE];
-	text[2] = NAME_Prot_Point;
-	count[2] = protection[PROT_POINT];
-	text[3] = NAME_Prot_Fire;
-	count[3] = protection[PROT_FIRE];
-	text[4] = NAME_Prot_Magic;
-	count[4] = protection[PROT_MAGIC];
-	text[5] = NAME_Value;
-	count[5] = value;
-};
-
-instance ITAR_ALCH(C_Item)
+/*instance ITAR_ALCH(C_Item)
 {
 	name = "Одежда алхимика";
 	mainflag = ITEM_KAT_ARMOR;
@@ -1933,6 +1921,64 @@ instance ITAR_PAL_S(C_Item)
 	visual_change = "Armor_Pal_S.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_OHT(C_Item)
+{
+	name = "Доспехи охотника на орков";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 70;
+	protection[PROT_BLUNT] = 70;
+	protection[PROT_POINT] = 70;
+	protection[PROT_FIRE] = 15;
+	protection[PROT_MAGIC] = 0;
+	value = VALUE_ITAR_DJG_Crawler;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Oht.3ds";
+	visual_change = "Armor_Oht.asc";
+	visual_skin = 0;
+	material = MAT_LEATHER;
+	description = name;
+	text[1] = NAME_Prot_Edge;
+	count[1] = protection[PROT_EDGE];
+	text[2] = NAME_Prot_Point;
+	count[2] = protection[PROT_POINT];
+	text[3] = NAME_Prot_Fire;
+	count[3] = protection[PROT_FIRE];
+	text[4] = NAME_Prot_Magic;
+	count[4] = protection[PROT_MAGIC];
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+instance ITAR_DHT(C_Item)
+{
+	name = "Доспехи охотника на демонов";
+	mainflag = ITEM_KAT_ARMOR;
+	flags = 0;
+	protection[PROT_EDGE] = 70;
+	protection[PROT_BLUNT] = 70;
+	protection[PROT_POINT] = 70;
+	protection[PROT_FIRE] = 15;
+	protection[PROT_MAGIC] = 0;
+	value = VALUE_ITAR_DJG_Crawler;
+	wear = WEAR_TORSO;
+	visual = "ItAr_Dht.3ds";
+	visual_change = "Armor_Dht.asc";
+	visual_skin = 0;
+	material = MAT_WOOD;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];
