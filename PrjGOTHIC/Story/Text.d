@@ -603,6 +603,7 @@ const string NAME_ADDON_BONUS_1H = "Владение одноручным оружием - улучшение:";
 const string NAME_ADDON_BONUS_2H = "Владение двуручным оружием - улучшение:";
 const string NAME_ADDON_ONEHANDED_BELIAR = "Шанс дополнительного урона (%):";
 const string NAME_ADDON_TWOHANDED_BELIAR = "Шанс дополнительного урона (%):";
+const string NAME_ADDON_SPECIALDAMEGE_BELIAR = "Дополнительный чистый урон:";
 const string NAME_ADDON_UPGRATEBELIARSWEAPON = "Улучшить 'Коготь Белиара'";
 const string NAME_ADDON_BETEN = "Помолиться";
 const string NAME_ADDON_PRAYIDOL_GIVENOTHING = "Я хочу помолиться и ничего не пожертвовать.";

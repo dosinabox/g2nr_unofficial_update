@@ -134,11 +134,11 @@ func void ZS_Dead()
 			if(Npc_GetDistToNpc(self,other) <= 600)
 			{
 				Wld_PlayEffect("VOB_MAGICBURN",other,other,0,0,0,FALSE);
-				if(other.protection[PROT_FIRE] < 40)
+				if(other.protection[PROT_FIRE] < SpecialDamage_FireBow)
 				{
-					if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - 40) >= 0)
+					if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
 					{
-						other.attribute[ATR_HITPOINTS] -= (40 - other.protection[PROT_FIRE]);
+						other.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - other.protection[PROT_FIRE]);
 					}
 					else
 					{

@@ -14,8 +14,8 @@ prototype BeliarWeaponPrototype_1H(C_Item)
 	description = name;
 	text[1] = NAME_Damage;
 	count[1] = damageTotal;
-	text[2] = "Дополнительный чистый урон:";
-	count[2] = 100;
+	text[2] = NAME_ADDON_SPECIALDAMEGE_BELIAR;
+	count[2] = BeliarSpecialDamage;
 	text[3] = NAME_ADDON_ONEHANDED_BELIAR;
 	text[4] = NAME_OneHanded;
 	text[5] = NAME_Value;
@@ -219,8 +219,8 @@ prototype BeliarWeaponPrototype_2H(C_Item)
 	description = name;
 	text[1] = NAME_Damage;
 	count[1] = damageTotal;
-	text[2] = "Дополнительный чистый урон:";
-	count[2] = 100;
+	text[2] = NAME_ADDON_SPECIALDAMEGE_BELIAR;
+	count[2] = BeliarSpecialDamage;
 	text[3] = NAME_ADDON_TWOHANDED_BELIAR;
 	text[4] = NAME_TwoHanded;
 	text[5] = NAME_Value;
