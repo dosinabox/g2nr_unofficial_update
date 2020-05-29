@@ -3,7 +3,7 @@ prototype Mst_Default_SwampZombie(C_Npc)
 {
 	name[0] = "Болотный труп";
 	guild = GIL_ZOMBIE;
-	aivar[AIV_MM_REAL_ID] = ID_ZOMBIE;
+	aivar[AIV_MM_REAL_ID] = ID_SWAMPZOMBIE;
 	level = 25;
 	attribute[ATR_STRENGTH] = 125;
 	attribute[ATR_DEXTERITY] = 125;

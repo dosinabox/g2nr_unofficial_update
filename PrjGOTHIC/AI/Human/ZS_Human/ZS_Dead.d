@@ -31,11 +31,16 @@ func void ZS_Dead()
 	{
 		B_Greg_ComesToDexter();
 	};
-	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE)
+	if((self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE) || (self.aivar[AIV_MM_REAL_ID] == ID_SWAMPZOMBIE))
 	{
 		if(Npc_GetDistToNpc(self,other) < 300)
 		{
 			other.attribute[ATR_HITPOINTS] -= 50;
+			if(Npc_IsPlayer(other))
+			{
+				Wld_PlayEffect("CONTROL_LEAVERANGEFX",other,other,0,0,0,FALSE);
+				Wld_StopEffect("CONTROL_LEAVERANGEFX");
+			};
 		};
 	};
 	B_CheckDeadMissionNPCs(self);

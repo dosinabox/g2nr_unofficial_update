@@ -2130,7 +2130,9 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_21");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_22");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_23");
-	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_24");
+//	точка FP_SHELLSPAWN_CITY_24 за текстурой в гавани - временная замена на FP_ROAM_FISHERMAN_02
+//	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_24");
+	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_ROAM_FISHERMAN_02");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_25");
 };
 

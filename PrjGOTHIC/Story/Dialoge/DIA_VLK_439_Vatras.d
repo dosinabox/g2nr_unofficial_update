@@ -1700,6 +1700,10 @@ func void DIA_Vatras_WoKdF_Info()
 };
 
 
+var int Vatras_Spende;
+var int Vatras_Spende_Day;
+var int Vatras_Spende_Day_First;
+
 instance DIA_Vatras_Spende(C_Info)
 {
 	npc = VLK_439_Vatras;
@@ -1723,6 +1727,10 @@ func int DIA_Vatras_Spende_Condition()
 
 func void DIA_Vatras_Spende_Info()
 {
+	if((Vatras_Spende_Day_First == TRUE) && (Vatras_Spende_Day < Wld_GetDay()))
+	{
+		Vatras_Spende = 0;
+	};
 	AI_Output(other,self,"DIA_Vatras_Spende_15_00");	//Я хочу сделать пожертвование Аданосу!
 	AI_Output(self,other,"DIA_Vatras_Spende_05_01");	//Пожертвование церкви Аданоса снимет часть грехов, которые ты мог совершить, сын мой.
 	AI_Output(self,other,"DIA_Vatras_Spende_05_02");	//Сколько ты можешь пожертвовать?
@@ -1745,8 +1753,6 @@ func void DIA_Vatras_Spende_BACK()
 	Info_ClearChoices(DIA_Vatras_Spende);
 };
 
-var int Vatras_Spende;
-
 func void B_Vatras_Spende_Check()
 {
 	if(Vatras_Spende < 100)
@@ -1767,7 +1773,16 @@ func void DIA_Vatras_Spende_50()
 {
 	AI_Output(other,self,"DIA_Vatras_Spende_50_15_00");	//У меня есть 50 золотых монет...
 	B_GiveInvItems(other,self,ItMi_Gold,50);
-	Vatras_Spende += 50;
+	if(Vatras_Spende_Day == 0)
+	{
+		Vatras_Spende += 50;
+		Vatras_Spende_Day_First = TRUE;
+	}
+	else if(Vatras_Spende_Day >= Wld_GetDay())
+	{
+		Vatras_Spende += 50;
+	};
+	Vatras_Spende_Day = B_GetDayPlus();
 	B_Vatras_Spende_Check();
 };
 

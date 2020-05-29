@@ -160,6 +160,7 @@ const int ID_SummonedZombie = 62;
 const int ID_Keiler = 63;
 const int ID_SWAMPDRONE = 64;
 const int ID_ORCCOMMANDER = 65;
+const int ID_SWAMPZOMBIE = 65;
 const int AIV_LASTBODY = 44;
 const int AIV_ArenaFight = 45;
 const int AF_NONE = 0;
