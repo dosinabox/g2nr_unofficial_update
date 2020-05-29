@@ -1,4 +1,5 @@
 
+var int TotalThefts;
 var int VictimCount;
 var int VictimLevel;
 var int ThiefLevel;
@@ -6,6 +7,7 @@ const int ThiefXP = 50;
 
 func void B_GiveThiefXP()
 {
+	TotalThefts += 1;
 	VictimCount += 1;
 	if(VictimLevel == 0)
 	{

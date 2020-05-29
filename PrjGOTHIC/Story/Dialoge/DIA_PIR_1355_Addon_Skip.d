@@ -430,8 +430,7 @@ func void DIA_Addon_Skip_AngusHank_Info()
 	Log_CreateTopic(TOPIC_Addon_SkipsGrog,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_SkipsGrog,LOG_Running);
 	B_LogEntry(TOPIC_Addon_SkipsGrog,"Бандиты отобрали у Скипа 20 бутылок грога. Он хочет вернуть их.");
-	Log_AddEntry(TOPIC_Addon_SkipsGrog,"Ангус и Хэнк должны были встретиться с бандитами. С тех пор их никто не видел.");
-	Log_AddEntry(TOPIC_Addon_SkipsGrog,"Поиски Моргана и Билла прошли безуспешно.");
+	Log_AddEntry(TOPIC_Addon_SkipsGrog,"Ангус и Хэнк должны были встретиться с бандитами. С тех пор их никто не видел. Поиски Моргана и Билла прошли безуспешно.");
 };
 
 
@@ -880,9 +879,12 @@ instance DIA_Addon_Skip_AllRazorsDead(C_Info)
 
 func int DIA_Addon_Skip_AllRazorsDead_Condition()
 {
-	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && (Npc_GetDistToWP(self,"ADW_CANYON_TELEPORT_PATH_06") <= 800) && C_AllCanyonRazorDead())
+	if((self.aivar[AIV_PARTYMEMBER] == TRUE) && C_AllCanyonRazorDead())
 	{
-		return TRUE;
+		if((Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_LIBRARY_31A") <= 6000) || (Npc_GetDistToWP(self,"ADW_CANYON_PATH_TO_MINE2_18") <= 6000))
+		{
+			return TRUE;
+		};
 	};
 };
 

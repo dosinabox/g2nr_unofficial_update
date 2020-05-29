@@ -170,6 +170,37 @@ func void DIA_Niclas_CanTeachMe_Info()
 };
 
 
+var int DIA_Niclas_Teacher_permanent;
+var int DIA_Niclas_TeachState_Bow;
+
+func void B_BuildLearnDialog_Niclas()
+{
+	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Niclas)
+	{
+		Info_ClearChoices(DIA_Niclas_Teach);
+		Info_AddChoice(DIA_Niclas_Teach,Dialog_Back,DIA_Niclas_Teach_Back);
+		Info_AddChoice(DIA_Niclas_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Niclas_Teach_BOW_1);
+		Info_AddChoice(DIA_Niclas_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Niclas_Teach_BOW_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Niclas)
+		{
+			DIA_Niclas_Teacher_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Bow_Niclas)),-1,53,FONT_Screen,2);
+		if(DIA_Niclas_TeachState_Bow == FALSE)
+		{
+			AI_Output(self,other,"DIA_Niclas_Teach_03_00");	//Мне нечему больше учить тебя.
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Niclas_Teach_03_01");	//Я научил тебя всему, что мог. Теперь тебе лучше поискать другого учителя.
+		};
+		AI_StopProcessInfos(self);
+	};
+};
+
 instance DIA_Niclas_Teach(C_Info)
 {
 	npc = BAU_984_Niclas;
@@ -183,7 +214,7 @@ instance DIA_Niclas_Teach(C_Info)
 
 func int DIA_Niclas_Teach_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Niclas_CanTeachMe))
+	if(Npc_KnowsInfo(other,DIA_Niclas_CanTeachMe) && (DIA_Niclas_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -192,48 +223,31 @@ func int DIA_Niclas_Teach_Condition()
 func void DIA_Niclas_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Niclas_Teach_15_00");	//Покажи мне, как правильно держать лук.
-//	if(other.HitChance[NPC_TALENT_BOW] >= 60)
-	if(other.aivar[REAL_TALENT_BOW] >= 60)
-	{
-		AI_Output(self,other,"DIA_Niclas_Teach_03_01");	//Я научил тебя всему, что мог. Теперь тебе лучше поискать другого учителя.
-	}
-	else
-	{
-		Info_ClearChoices(DIA_Niclas_Teach);
-		Info_AddChoice(DIA_Niclas_Teach,Dialog_Back,DIA_Niclas_Teach_Back);
-		Info_AddChoice(DIA_Niclas_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Niclas_Teach_BOW_1);
-		Info_AddChoice(DIA_Niclas_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 5),DIA_Niclas_Teach_BOW_5);
-	};
+	B_BuildLearnDialog_Niclas();
 };
 
 func void DIA_Niclas_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_BOW] >= 60)
-	if(other.aivar[REAL_TALENT_BOW] >= 60)
-	{
-		AI_Output(self,other,"DIA_Niclas_Teach_03_00");	//Мне нечему больше учить тебя.
-	};
 	Info_ClearChoices(DIA_Niclas_Teach);
 };
 
 func void DIA_Niclas_Teach_BOW_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,60);
-	Info_ClearChoices(DIA_Niclas_Teach);
-	Info_AddChoice(DIA_Niclas_Teach,Dialog_Back,DIA_Niclas_Teach_Back);
-	Info_AddChoice(DIA_Niclas_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Niclas_Teach_BOW_1);
-	Info_AddChoice(DIA_Niclas_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 5),DIA_Niclas_Teach_BOW_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,TeachLimit_Bow_Niclas))
+	{
+		DIA_Niclas_TeachState_Bow = TRUE;
+		B_BuildLearnDialog_Niclas();
+	};
 };
 
 func void DIA_Niclas_Teach_BOW_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,60);
-	Info_ClearChoices(DIA_Niclas_Teach);
-	Info_AddChoice(DIA_Niclas_Teach,Dialog_Back,DIA_Niclas_Teach_Back);
-	Info_AddChoice(DIA_Niclas_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Niclas_Teach_BOW_1);
-	Info_AddChoice(DIA_Niclas_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 5),DIA_Niclas_Teach_BOW_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,TeachLimit_Bow_Niclas))
+	{
+		DIA_Niclas_TeachState_Bow = TRUE;
+		B_BuildLearnDialog_Niclas();
+	};
 };
-
 
 instance DIA_Niclas_PICKPOCKET(C_Info)
 {

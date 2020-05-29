@@ -22,7 +22,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_Addon_FarimsFish,MIS_Addon_Farim_PaladinFisch,0,6);
 	B_CloseTopic(TOPIC_Addon_LuciasLetter,MIS_LuciasLetter,0,6);
 	B_CloseTopic(TOPIC_Addon_Lucia,MIS_LookingForLucia,0,6);
-	B_CloseTopic(TOPIC_Addon_Erol,MIS_Addon_Erol_BanditStuff,0,4);
+	B_CloseTopic(TOPIC_Addon_Erol,MIS_Addon_Erol_BanditStuff,0,6);
 	B_CloseTopic(TOPIC_Addon_Joe,0,TOPIC_END_Joe,6);
 	B_CloseTopic(TOPIC_Addon_BromorsGold,MIS_Bromor_LuciaStoleGold,0,6);
 	B_CloseTopic(TOPIC_Addon_BaltramSkipTrade,0,TOPIC_END_BaltramSkipTrade,6);
@@ -75,7 +75,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_MinenAnteileSLD,0,TOPIC_END_MinenAnteile,6);
 	B_CloseTopic(TOPIC_RichterLakai,MIS_Lee_JudgeRichter,0,6);
 	B_CloseTopic(TOPIC_KillHoshPak,MIS_KillHoshPak,0,6);
-	B_CloseTopic(TOPIC_Urshak,0,URSHAK_SUCKED,6);
+	B_CloseTopic(TOPIC_Urshak,0,Urshak_Sucked,6);
 	B_CloseTopic(TOPIC_DRACHENJAGD,0,MIS_AllDragonsDead,5);
 	B_CloseTopic(TOPIC_LobartsOrkProblem,0,TOPIC_END_LobartsOrkProblem,6);
 	B_CloseTopic(TOPIC_SylvioKillIceGolem,MIS_DJG_Sylvio_KillIceGolem,TOPIC_END_SylvioKillIceGolem,6);

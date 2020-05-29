@@ -514,8 +514,52 @@ func void DIA_Addon_Morgan_TRAIN_Info()
 };
 
 
+var int DIA_Morgan_Teacher_permanent;
 var int Morgan_merke1h;
 var int Morgan_Labercount;
+
+func void B_BuildLearnDialog_Morgan()
+{
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Morgan)
+	{
+		Info_ClearChoices(DIA_Addon_Morgan_Teach);
+		Info_AddChoice(DIA_Addon_Morgan_Teach,Dialog_Back,DIA_Addon_Morgan_Teach_Back);
+		Info_AddChoice(DIA_Addon_Morgan_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Addon_Morgan_Teach_1H_1);
+		Info_AddChoice(DIA_Addon_Morgan_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Addon_Morgan_Teach_1H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Morgan)
+		{
+			DIA_Morgan_Teacher_permanent = TRUE;
+		};
+		if(VisibleTalentValue(NPC_TALENT_1H) < 100)
+		{
+			PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Morgan)),-1,53,FONT_Screen,2);
+			AI_Output(self,other,"DIA_Addon_Morgan_Teach_Back_07_00");	//≈сли ты хочешь стать еще лучше, ты должен найти более опытного учител€.
+		}
+		else
+		{
+			PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+			B_Say(self,other,"$NOLEARNYOUREBETTER");
+		};
+		AI_StopProcessInfos(self);
+	};
+};
+
+func void B_TeachComments_Morgan()
+{
+	if(Morgan_Labercount == 0)
+	{
+		AI_Output(self,other,"DIA_Addon_Morgan_CommentFightSkill_07_00");	//»так, забудь всю эту ерунду насчет чести и всего прочего. Ћибо ты убиваешь врага, либо он теб€.
+		Morgan_Labercount = 1;
+	}
+	else if(Morgan_Labercount == 1)
+	{
+		AI_Output(self,other,"DIA_Addon_Morgan_CommentFightSkill_07_01");	//“ы научишьс€ вкладывать больше силы в свои удары.
+		Morgan_Labercount = 0;
+	};
+};
 
 instance DIA_Addon_Morgan_Teach(C_Info)
 {
@@ -530,7 +574,7 @@ instance DIA_Addon_Morgan_Teach(C_Info)
 
 func int DIA_Addon_Morgan_Teach_Condition()
 {
-	if(Morgan_Addon_TeachPlayer == TRUE)
+	if((Morgan_Addon_TeachPlayer == TRUE) && (DIA_Morgan_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -539,58 +583,34 @@ func int DIA_Addon_Morgan_Teach_Condition()
 func void DIA_Addon_Morgan_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Morgan_Teach_15_00");	//я готов учитьс€!
-//	Morgan_merke1h = other.HitChance[NPC_TALENT_1H];
-	Morgan_merke1h = other.aivar[REAL_TALENT_1H];
-	Info_ClearChoices(DIA_Addon_Morgan_Teach);
-	Info_AddChoice(DIA_Addon_Morgan_Teach,Dialog_Back,DIA_Addon_Morgan_Teach_Back);
-	Info_AddChoice(DIA_Addon_Morgan_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Addon_Morgan_Teach_1H_1);
-	Info_AddChoice(DIA_Addon_Morgan_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,1) * 5),DIA_Addon_Morgan_Teach_1H_5);
+	Morgan_merke1h = other.HitChance[NPC_TALENT_1H];
+	B_BuildLearnDialog_Morgan();
 };
 
 func void DIA_Addon_Morgan_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_1H] > Morgan_merke1h)
-	if(other.aivar[REAL_TALENT_1H] > Morgan_merke1h)
+	if(other.HitChance[NPC_TALENT_1H] > Morgan_merke1h)
 	{
-		if(Morgan_Labercount == 0)
-		{
-			AI_Output(self,other,"DIA_Addon_Morgan_CommentFightSkill_07_00");	//»так, забудь всю эту ерунду насчет чести и всего прочего. Ћибо ты убиваешь врага, либо он теб€.
-			Morgan_Labercount = 1;
-		}
-		else if(Morgan_Labercount == 1)
-		{
-			AI_Output(self,other,"DIA_Addon_Morgan_CommentFightSkill_07_01");	//“ы научишьс€ вкладывать больше силы в свои удары.
-			Morgan_Labercount = 2;
-		}
-		else if(Morgan_Labercount == 2)
-		{
-			AI_Output(self,other,"DIA_Addon_Morgan_CommentFightSkill_07_02");	//’а-ха-ха-ха! Ќу, теперь ты хот€ бы знаешь, с какой стороны братьс€ за меч.
-			Morgan_Labercount = 0;
-		};
-	}
-//	else if(other.HitChance[NPC_TALENT_1H] >= 75)
-	else if(other.aivar[REAL_TALENT_1H] >= 75)
-	{
-		AI_Output(self,other,"DIA_Addon_Morgan_Teach_Back_07_00");	//≈сли ты хочешь стать еще лучше, ты должен найти более опытного учител€.
+		AI_Output(self,other,"DIA_Addon_Morgan_CommentFightSkill_07_02");	//’а-ха-ха-ха! Ќу, теперь ты хот€ бы знаешь, с какой стороны братьс€ за меч.
 	};
 	Info_ClearChoices(DIA_Addon_Morgan_Teach);
 };
 
 func void DIA_Addon_Morgan_Teach_1H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,75);
-	Info_ClearChoices(DIA_Addon_Morgan_Teach);
-	Info_AddChoice(DIA_Addon_Morgan_Teach,Dialog_Back,DIA_Addon_Morgan_Teach_Back);
-	Info_AddChoice(DIA_Addon_Morgan_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Addon_Morgan_Teach_1H_1);
-	Info_AddChoice(DIA_Addon_Morgan_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,1) * 5),DIA_Addon_Morgan_Teach_1H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Morgan))
+	{
+		B_TeachComments_Morgan();
+		B_BuildLearnDialog_Morgan();
+	};
 };
 
 func void DIA_Addon_Morgan_Teach_1H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,75);
-	Info_ClearChoices(DIA_Addon_Morgan_Teach);
-	Info_AddChoice(DIA_Addon_Morgan_Teach,Dialog_Back,DIA_Addon_Morgan_Teach_Back);
-	Info_AddChoice(DIA_Addon_Morgan_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Addon_Morgan_Teach_1H_1);
-	Info_AddChoice(DIA_Addon_Morgan_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,1) * 5),DIA_Addon_Morgan_Teach_1H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Morgan))
+	{
+		B_TeachComments_Morgan();
+		B_BuildLearnDialog_Morgan();
+	};
 };
 

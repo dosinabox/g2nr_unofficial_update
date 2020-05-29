@@ -103,11 +103,11 @@ func void B_AssessOthersDamage()
 				Wld_PlayEffect("VOB_MAGICBURN",self,self,0,0,0,FALSE);
 				if(self.flags == 0)
 				{
-					if(self.protection[PROT_FIRE] < 40)
+					if(self.protection[PROT_FIRE] < SpecialDamage_FireBow)
 					{
-						if((self.attribute[ATR_HITPOINTS] + self.protection[PROT_FIRE] - 40) >= 0)
+						if((self.attribute[ATR_HITPOINTS] + self.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
 						{
-							self.attribute[ATR_HITPOINTS] -= (40 - self.protection[PROT_FIRE]);
+							self.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - self.protection[PROT_FIRE]);
 						}
 						else
 						{

@@ -31,12 +31,16 @@ func void ZS_Dead()
 	{
 		B_Greg_ComesToDexter();
 	};
-	if(self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE)
+	if((self.aivar[AIV_MM_REAL_ID] == ID_SWAMPDRONE) || (self.aivar[AIV_MM_REAL_ID] == ID_SWAMPZOMBIE))
 	{
 		if(Npc_GetDistToNpc(self,other) < 300)
 		{
 			other.attribute[ATR_HITPOINTS] -= 50;
-//			B_MagicHurtNpc(self,other,50);
+			if(Npc_IsPlayer(other))
+			{
+				Wld_PlayEffect("CONTROL_LEAVERANGEFX",other,other,0,0,0,FALSE);
+				Wld_StopEffect("CONTROL_LEAVERANGEFX");
+			};
 		};
 	};
 	B_CheckDeadMissionNPCs(self);
@@ -53,7 +57,7 @@ func void ZS_Dead()
 	{
 		Npc_RemoveInvItems(self,ItMw_1h_Bau_Mace,Npc_HasItems(self,ItMw_1h_Bau_Mace));
 		Npc_RemoveInvItems(self,ItMw_1h_MISC_Sword,Npc_HasItems(self,ItMw_1h_MISC_Sword));
-		Npc_RemoveInvItems(self,ItMw_1h_Misc_Axe,Npc_HasItems(self,ItMw_1h_Misc_Axe)); 
+		Npc_RemoveInvItems(self,ItMw_1h_Misc_Axe,Npc_HasItems(self,ItMw_1h_Misc_Axe));
 	};
 	if(self.guild == GIL_SUMMONED_SKELETON)
 	{
@@ -121,6 +125,7 @@ func void ZS_Dead()
 	B_ClearAlchemyInv(self);
 	B_ClearBonusFoodInv(self);
 	B_ClearInfiniteTools(self);
+	B_ClearSpecialAmmo(self);
 	B_DeletePetzCrime(self);
 	self.aivar[AIV_NpcSawPlayerCommit] = CRIME_NONE;
 	AI_UnequipWeapons(self);
@@ -134,11 +139,11 @@ func void ZS_Dead()
 			if(Npc_GetDistToNpc(self,other) <= 600)
 			{
 				Wld_PlayEffect("VOB_MAGICBURN",other,other,0,0,0,FALSE);
-				if(other.protection[PROT_FIRE] < 40)
+				if(other.protection[PROT_FIRE] < SpecialDamage_FireBow)
 				{
-					if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - 40) >= 0)
+					if((other.attribute[ATR_HITPOINTS] + other.protection[PROT_FIRE] - SpecialDamage_FireBow) >= 0)
 					{
-						other.attribute[ATR_HITPOINTS] -= (40 - other.protection[PROT_FIRE]);
+						other.attribute[ATR_HITPOINTS] -= (SpecialDamage_FireBow - other.protection[PROT_FIRE]);
 					}
 					else
 					{

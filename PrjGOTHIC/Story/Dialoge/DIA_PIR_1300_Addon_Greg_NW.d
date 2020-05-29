@@ -638,7 +638,7 @@ func void DIA_Addon_Greg_NW_RakeCavePlundered_gold()
 	{
 		if(B_GiveInvItems(other,self,ItSe_GoldPocket25,1))
 		{
-			AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCavePlundered_gold_15_02");	//Держи.
+			DIA_Common_TakeIt();
 		}
 		else if(B_GiveInvItems(other,self,ItMi_Gold,25))
 		{

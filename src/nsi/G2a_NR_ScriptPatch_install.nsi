@@ -10,13 +10,14 @@
 ###################################
 
 !define MOD_VERSION "24"
-!define MOD_DATE "02.20"
+!define MOD_DATE "2.20"
 !define MOD_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}"
 !define MOD_NAME_RU "Неофициальное обновление Г2НВ"
 !define MOD_DETAILED_VERSION "1.${MOD_VERSION}.${MOD_DATE}"
 !define MOD_AUTHOR "Fizzban, Efectivo, Dimus, D36, Kvincius"
-!define INSTALLER_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}_install"
-!define UNINSTALLER_NAME "G2a_NR_ScriptPatch_v${MOD_VERSION}_uninstall"
+!define INSTALLER_NAME "${MOD_NAME}_install"
+!define UNINSTALLER_NAME "${MOD_NAME}_uninstall"
+!define REGISTRY_PATH "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}"
 
 Name "${MOD_NAME}"
 OutFile "${INSTALLER_NAME}.exe"
@@ -34,8 +35,8 @@ SetCompressor lzma
 ##      Настройки интерфейса     ##
 ###################################
 
-!define MUI_ICON "G2a_NR_ScriptPatch_v${MOD_VERSION}.ico"
-!define MUI_UNICON "G2a_NR_ScriptPatch_v${MOD_VERSION}.ico"
+!define MUI_ICON "${MOD_NAME}.ico"
+!define MUI_UNICON "${MOD_NAME}.ico"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "logo.bmp"
 !define MUI_HEADERIMAGE_UNBITMAP "logo.bmp"
@@ -113,63 +114,63 @@ BrandingText " "
 
 Section "Основные файлы" SecMain
 	SectionIn RO
-	CreateDirectory "$INSTDIR\saves_G2a_NR_ScriptPatch_v${MOD_VERSION}\current"
+	CreateDirectory "$INSTDIR\saves_${MOD_NAME}\current"
 
-	IfFileExists "$INSTDIR\data\MENU_AutoScale_G2.vdf" menu_found menu_not_found
+	IfFileExists "$INSTDIR\Data\MENU_AutoScale_G2.vdf" menu_found menu_not_found
 	menu_found:
-	SetOutPath "$INSTDIR\data\ModVDF"
+	SetOutPath "$INSTDIR\Data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
 	goto check_end
 	menu_not_found:
 	check_end:
 
-	SetOutPath "$INSTDIR\data\ModVDF"
+	SetOutPath "$INSTDIR\Data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
 
 	SetOutPath "$INSTDIR\system"
-	File "G2a_NR_ScriptPatch_v${MOD_VERSION}.ico"
-	File "G2a_NR_ScriptPatch_v${MOD_VERSION}.ini"
-	File "G2a_NR_ScriptPatch_v${MOD_VERSION}.rtf"
+	File "${MOD_NAME}.ico"
+	File "${MOD_NAME}.ini"
+	File "${MOD_NAME}.rtf"
 
-	SetOutPath "$INSTDIR"
-	File "Changelog_G2a_NR_ScriptPatch_v${MOD_VERSION}.txt"
+	SetOutPath $INSTDIR
+	File "Changelog_${MOD_NAME}.txt"
 	WriteUninstaller "$INSTDIR\${UNINSTALLER_NAME}.exe"
 
 	WriteRegStr HKCU "Software\${MOD_NAME}" "InstallLocation" $INSTDIR
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "DisplayName" "${MOD_NAME_RU} (v${MOD_VERSION})" 
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "DisplayVersion" "${MOD_DETAILED_VERSION}" 
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "InstallLocation" "$INSTDIR"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "UninstallString" "$INSTDIR\${UNINSTALLER_NAME}.exe"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "HelpLink" "http://worldofplayers.ru/threads/36817"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "Publisher" "${MOD_AUTHOR}"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "DisplayIcon" "$INSTDIR\system\G2a_NR_ScriptPatch_v${MOD_VERSION}.ico"
-	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}" "EstimatedSize" "255000"
+	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayName" "${MOD_NAME_RU} (v${MOD_VERSION})" 
+	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayVersion" "${MOD_DETAILED_VERSION}" 
+	WriteRegStr HKLM "${REGISTRY_PATH}" "InstallLocation" $INSTDIR
+	WriteRegStr HKLM "${REGISTRY_PATH}" "UninstallString" "$INSTDIR\${UNINSTALLER_NAME}.exe"
+	WriteRegStr HKLM "${REGISTRY_PATH}" "HelpLink" "http://worldofplayers.ru/threads/36817"
+	WriteRegStr HKLM "${REGISTRY_PATH}" "Publisher" "${MOD_AUTHOR}"
+	WriteRegStr HKLM "${REGISTRY_PATH}" "DisplayIcon" "$INSTDIR\system\${MOD_NAME}.ico"
+	WriteRegDWORD HKLM "${REGISTRY_PATH}" "EstimatedSize" "255000"
 SectionEnd
 
 Section "Дополнительная русская озвучка" SecAdditional_1
-	SetOutPath "$INSTDIR\data\ModVDF"
+	SetOutPath "$INSTDIR\Data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
 SectionEnd
 
 Section "Исправление русской озвучки" SecAdditional_2
-	SetOutPath "$INSTDIR\data\ModVDF"
+	SetOutPath "$INSTDIR\Data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_speech_fix.mod"
-	SetOutPath "$INSTDIR"
+	SetOutPath $INSTDIR
 	File "Changelog_Speech_v${MOD_VERSION}.txt"
 SectionEnd
 
 Section "Широкоформатный монитор" SecAdditional_3
-	SetOutPath "$INSTDIR\data\ModVDF"
+	SetOutPath "$INSTDIR\Data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
 SectionEnd
 
 Section /o "Расширенная Рудниковая долина" SecAdditional_4
-	SetOutPath "$INSTDIR\data\ModVDF"
+	SetOutPath "$INSTDIR\Data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
 SectionEnd
 
 Section /o "Увеличенное меню" SecAdditional_5
-	SetOutPath "$INSTDIR\data\ModVDF"
+	SetOutPath "$INSTDIR\Data\ModVDF"
 	File "g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
 SectionEnd
 
@@ -181,11 +182,11 @@ Section "Un.Удалить обновление" SecUninstall_Main
 	SectionIn RO
 	Call Un.GMF_Delete_Components
 	Delete "$INSTDIR\${UNINSTALLER_NAME}.exe"
-	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${MOD_NAME}"
+	DeleteRegKey HKLM "${REGISTRY_PATH}"
 SectionEnd
 
 Section /o "Un.Удалить сохранения" SecUninstall_Saves
-	RMDir /r "$INSTDIR\saves_G2a_NR_ScriptPatch_v${MOD_VERSION}"
+	RMDir /r "$INSTDIR\saves_${MOD_NAME}"
 SectionEnd
 
 ###################################
@@ -228,9 +229,9 @@ Function .onVerifyInstDir
 FunctionEnd
 
 Function Un.GMF_Delete_Components
-	!insertmacro GMF_Delete "$INSTDIR\system\G2a_NR_ScriptPatch_v${MOD_VERSION}.ico"
-	!insertmacro GMF_Delete "$INSTDIR\system\G2a_NR_ScriptPatch_v${MOD_VERSION}.ini"
-	!insertmacro GMF_Delete "$INSTDIR\system\G2a_NR_ScriptPatch_v${MOD_VERSION}.rtf"
+	!insertmacro GMF_Delete "$INSTDIR\system\${MOD_NAME}.ico"
+	!insertmacro GMF_Delete "$INSTDIR\system\${MOD_NAME}.ini"
+	!insertmacro GMF_Delete "$INSTDIR\system\${MOD_NAME}.rtf"
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_autoscale.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_speech_add.mod"
@@ -238,6 +239,6 @@ Function Un.GMF_Delete_Components
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_wasteland.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_widescreen.mod"
 	!insertmacro GMF_Delete "$INSTDIR\Data\ModVDF\g2a_nr_scriptpatch_v${MOD_VERSION}_hotfix.mod"
-	!insertmacro GMF_Delete "$INSTDIR\Changelog_G2a_NR_ScriptPatch_v${MOD_VERSION}.txt"
+	!insertmacro GMF_Delete "$INSTDIR\Changelog_${MOD_NAME}.txt"
 	!insertmacro GMF_Delete "$INSTDIR\Changelog_Speech_v${MOD_VERSION}.txt"
 FunctionEnd

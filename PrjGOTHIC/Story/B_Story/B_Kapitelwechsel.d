@@ -4,6 +4,7 @@ func void B_Kapitelwechsel(var int neues_Kapitel,var int aktuelles_Level_Zen)
 	Kapitel = neues_Kapitel;
 	if(neues_Kapitel == 1)
 	{
+		B_InitTalentSystem();
 		Hero_HackChance = 10;
 		Cronos_NW_ItMi_Flask_Count = 5;
 		Cronos_NW_ItMi_Sulfur_Count = 2;

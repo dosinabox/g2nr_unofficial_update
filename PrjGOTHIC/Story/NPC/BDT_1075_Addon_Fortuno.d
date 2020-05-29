@@ -16,7 +16,7 @@ instance BDT_1075_Addon_Fortuno(Npc_Default)
 	CreateInvItems(self,ItMi_Joint,5);
 	CreateInvItems(self,ItPl_SwampHerb,3);
 	CreateInvItems(self,ItPl_Mushroom_01,5);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Fortuno,BodyTex_T,ITAR_Lester);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Fortuno,BodyTex_Tattoo_N,ITAR_Lester);
 	Mdl_SetModelFatness(self,-1);
 	Mdl_ApplyOverlayMds(self,"Humans_Mage.mds");
 	B_GiveNpcTalents(self);

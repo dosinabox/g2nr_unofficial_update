@@ -122,8 +122,8 @@ func void Use_HallsofIrdorath_Open()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_MAGE_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_MAGE_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_PrintLine(nDocID,0,"");
@@ -173,8 +173,8 @@ func void Use_XardasSeamapBook_Mis()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_WOOD_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_WOOD_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Wood_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Wood_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetFont(nDocID,0,FONT_Book);
@@ -279,22 +279,22 @@ func void Use_Seamap_Irdorath()
 	Doc_Show(nDocID);
 	if(MIS_SCKnowsWayToIrdorath == FALSE)
 	{
-		if(Kapitel < 6)
-		{
-			B_Say(self,self,"$IRDORATHTHEREYOUARE");
-		};
+		Log_CreateTopic(Topic_Crew,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Crew,LOG_Running);
+		B_LogEntries(Topic_Crew,"ƒл€ путешестви€ на корабле и решающего сражени€ мне нужна команда.");
+		Log_CreateTopic(Topic_Captain,LOG_MISSION);
+		Log_SetTopicStatus(Topic_Captain,LOG_Running);
+		B_LogNextEntry(Topic_Captain,"ƒл€ управлени€ кораблем мне нужен опытный капитан, готовый отправитьс€ со мной в опасное путешествие.");
 		if(MIS_ShipIsFree == FALSE)
 		{
 			Log_CreateTopic(Topic_Ship,LOG_MISSION);
 			Log_SetTopicStatus(Topic_Ship,LOG_Running);
-			B_LogEntry(Topic_Ship,"ѕохоже, € должен добратьс€ до этого странного вражеского острова. Ќо дл€ этого мне нужен корабль.");
+			B_LogNextEntry(Topic_Ship,"ѕохоже, € должен добратьс€ до этого странного вражеского острова. Ќо дл€ этого мне нужен корабль.");
 		};
-		Log_CreateTopic(Topic_Crew,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Crew,LOG_Running);
-		B_LogEntry(Topic_Crew,"ƒл€ путешестви€ на корабле и решающего сражени€ мне нужна команда.");
-		Log_CreateTopic(Topic_Captain,LOG_MISSION);
-		Log_SetTopicStatus(Topic_Captain,LOG_Running);
-		B_LogEntry(Topic_Captain,"ƒл€ управлени€ кораблем мне нужен опытный капитан, готовый отправитьс€ со мной в опасное путешествие.");
+		if(Kapitel < 6)
+		{
+			B_Say(self,self,"$IRDORATHTHEREYOUARE");
+		};
 		MIS_SCKnowsWayToIrdorath = TRUE;
 		B_GivePlayerXP(XP_SCKnowsWayToIrdorath);
 	};
@@ -448,7 +448,7 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 
 instance ItAm_AmulettOfDeath_Mis(C_Item)
 {
-	name = "Ѕожественна€ аура »нноса";
+	name = NAME_Amulett;
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = 1000;
@@ -460,9 +460,7 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 	on_unequip = UnEquip_ItAm_AmulettOfDeath_Mis;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-	description = name;
-//	text[2] = "Ётот амулет защищает владельца";
-//	text[3] = "от всех форм урона.";
+	description = "Ѕожественна€ аура »нноса";
 	text[0] = "Ётот амулет защищает владельца от всех форм урона.";
 	text[1] = NAME_Prot_Edge;
 	count[1] = 30;

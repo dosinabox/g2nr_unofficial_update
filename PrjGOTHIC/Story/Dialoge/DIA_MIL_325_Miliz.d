@@ -54,7 +54,7 @@ func void DIA_Mil_325_Miliz_FirstWarn_Info()
 	{
 		other.aivar[AIV_LastDistToWP] = 0;
 		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
-		B_Say(self,other,"$WhatDidYouDoInThere");
+		B_Say(self,other,"$WHATDIDYOUDOINTHERE");
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_GuardStopsIntruder,0);
 	}
@@ -93,7 +93,7 @@ func void DIA_Mil_325_Miliz_SecondWarn_Info()
 	{
 		other.aivar[AIV_LastDistToWP] = 0;
 		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
-		B_Say(self,other,"$WhatDidYouDoInThere");
+		B_Say(self,other,"$WHATDIDYOUDOINTHERE");
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_GuardStopsIntruder,0);
 	}
@@ -132,7 +132,7 @@ func void DIA_Mil_325_Miliz_Attack_Info()
 	{
 		other.aivar[AIV_LastDistToWP] = 0;
 		self.aivar[AIV_Guardpassage_Status] = GP_NONE;
-		B_Say(self,other,"$WhatDidYouDoInThere");
+		B_Say(self,other,"$WHATDIDYOUDOINTHERE");
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_GuardStopsIntruder,0);
 	}

@@ -697,7 +697,7 @@ func void B_AlligatorJack_CanLearn()
 
 func void DIA_Addon_AlligatorJack_CanLearn_Pay()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_RakeCavePlundered_gold_15_02");	//ƒержи.
+	DIA_Common_TakeIt();
 	B_GiveInvItems(other,self,ItMi_Gold,200);
 	B_AlliJack_AlliKlar();
 	B_AlligatorJack_CanLearn();
@@ -706,9 +706,11 @@ func void DIA_Addon_AlligatorJack_CanLearn_Pay()
 
 func void DIA_Addon_AlligatorJack_CanLearn_NoPay()
 {
-	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_back_15_00");	//я подумаю над этим.
+	DIA_Common_IWillThinkAboutIt();
 	Info_ClearChoices(DIA_Addon_AlligatorJack_CanLearn);
 };
+
+var int DIA_AlligatorJack_Teacher_permanent;
 
 instance DIA_Addon_AlligatorJack_CanLearn(C_Info)
 {
@@ -732,34 +734,50 @@ func int DIA_Addon_AlligatorJack_CanLearn_Condition()
 func void DIA_Addon_AlligatorJack_CanLearn_Info()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_CanLearn_15_00");	//“ы можешь мен€ чему-нибудь научить?
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_01");	// онечно. я хороший охотник и могу научить теб€ снимать с животных шкуры и выдирать зубы.
-	if((GregIsBack == TRUE) && (MIS_KrokoJagd == FALSE))
+	if((VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_AlligatorJack) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE))
 	{
-		B_Say_Gold(self,other,200);
-		Info_ClearChoices(DIA_Addon_AlligatorJack_CanLearn);
-		Info_AddChoice(DIA_Addon_AlligatorJack_CanLearn,"я подумаю над этим.",DIA_Addon_AlligatorJack_CanLearn_NoPay);
-		if(Npc_HasItems(other,ItMi_Gold) >= 200)
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_01");	// онечно. я хороший охотник и могу научить теб€ снимать с животных шкуры и выдирать зубы.
+		if((GregIsBack == TRUE) && (MIS_KrokoJagd == FALSE))
 		{
-			Info_AddChoice(DIA_Addon_AlligatorJack_CanLearn,"ƒержи.",DIA_Addon_AlligatorJack_CanLearn_Pay);
+			B_Say_Gold(self,other,200);
+			Info_ClearChoices(DIA_Addon_AlligatorJack_CanLearn);
+			Info_AddChoice(DIA_Addon_AlligatorJack_CanLearn,"я подумаю над этим.",DIA_Addon_AlligatorJack_CanLearn_NoPay);
+			if(Npc_HasItems(other,ItMi_Gold) >= 200)
+			{
+				Info_AddChoice(DIA_Addon_AlligatorJack_CanLearn,"ƒержи.",DIA_Addon_AlligatorJack_CanLearn_Pay);
+			};
+		}
+		else if(MIS_KrokoJagd > LOG_Running)
+		{
+			B_AlligatorJack_CanLearn();
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_03");	//Ќо сначала ты должен показать мне, что готов к жизни охотника.
+			AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_04");	//я стану учить теб€ только после того, как мы вместе сходим на охоту.
 		};
-	}
-	else if(MIS_KrokoJagd > LOG_Running)
-	{
-		B_AlligatorJack_CanLearn();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_03");	//Ќо сначала ты должен показать мне, что готов к жизни охотника.
-		AI_Output(self,other,"DIA_Addon_AlligatorJack_CanLearn_12_04");	//я стану учить теб€ только после того, как мы вместе сходим на охоту.
+		if(RealTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_AlligatorJack)
+		{
+			AlligatorJack_Addon_TeachPlayer = TRUE;
+			DIA_AlligatorJack_Teacher_permanent = TRUE;
+		};
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
 	};
 };
 
-func void B_AJ_Teach()
+
+func void B_BuildLearnDialog_AlligatorJack()
 {
 	Info_ClearChoices(DIA_Addon_AlligatorJack_Teach);
 	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,Dialog_Back,DIA_Addon_AlligatorJack_Teach_Back);
-	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 5),DIA_Addon_AlligatorJack_Teach_Bow_5);
-	Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_AlligatorJack_Teach_Bow_1);
+	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_AlligatorJack)
+	{
+		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_AlligatorJack_Teach_Bow_1);
+		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Addon_AlligatorJack_Teach_Bow_5);
+	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(NAME_TROPHY_ReptileSkin,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALFUR,TROPHY_ReptileSkin)),DIA_Addon_AlligatorJack_Teach_FUR);
@@ -767,7 +785,17 @@ func void B_AJ_Teach()
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
 	{
 		Info_AddChoice(DIA_Addon_AlligatorJack_Teach,B_BuildLearnString(NAME_TROPHY_Teeth,B_GetLearnCostTalent(other,NPC_TALENT_TAKEANIMALTROPHY,TROPHY_Teeth)),DIA_Addon_AlligatorJack_Teach_Teeth);
-	};	
+	};
+	if((VisibleTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_AlligatorJack) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == TRUE) && (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == TRUE))
+	{
+		if(RealTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_AlligatorJack)
+		{
+			DIA_AlligatorJack_Teacher_permanent = TRUE;
+		};
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
 };
 
 
@@ -784,7 +812,7 @@ instance DIA_Addon_AlligatorJack_Teach(C_Info)
 
 func int DIA_Addon_AlligatorJack_Teach_Condition()
 {
-	if(AlligatorJack_Addon_TeachPlayer == TRUE)
+	if((AlligatorJack_Addon_TeachPlayer == TRUE) && (DIA_AlligatorJack_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -793,8 +821,11 @@ func int DIA_Addon_AlligatorJack_Teach_Condition()
 func void DIA_Addon_AlligatorJack_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_Teach_15_00");	//я готов учитьс€!
-	AI_Output(self,other,"DIA_Addon_AlligatorJack_Teach_12_01");	//„ему теб€ научить?
-	B_AJ_Teach();
+	if((VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_AlligatorJack) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE) || (PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE))
+	{
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Teach_12_01");	//„ему теб€ научить?
+	};
+	B_BuildLearnDialog_AlligatorJack();
 };
 
 func void DIA_Addon_AlligatorJack_Teach_Back()
@@ -804,43 +835,35 @@ func void DIA_Addon_AlligatorJack_Teach_Back()
 
 func void DIA_Addon_AlligatorJack_Teach_Bow_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,75);
-	B_AJ_Teach();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,TeachLimit_Bow_AlligatorJack))
+	{
+		B_BuildLearnDialog_AlligatorJack();
+	};
 };
 
 func void DIA_Addon_AlligatorJack_Teach_Bow_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,75);
-	B_AJ_Teach();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,TeachLimit_Bow_AlligatorJack))
+	{
+		B_BuildLearnDialog_AlligatorJack();
+	};
 };
 
 func void DIA_Addon_AlligatorJack_Teach_FUR()
 {
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] == FALSE)
+	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_ReptileSkin))
 	{
-		if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_ReptileSkin))
-		{
-			AI_Output(self,other,"DIA_Addon_AlligatorJack_Teach_Fur_12_00");	//¬сегда делай разрез на животе, иначе ты испортишь шкуру.
-		};
-	}
-	else
-	{
-		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_Output(self,other,"DIA_Addon_AlligatorJack_Teach_Fur_12_00");	//¬сегда делай разрез на животе, иначе ты испортишь шкуру.
+		B_BuildLearnDialog_AlligatorJack();
 	};
-	B_AJ_Teach();
 };
 
 func void DIA_Addon_AlligatorJack_Teach_Teeth()
 {
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] == FALSE)
+	if(B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Teeth))
 	{
-		B_TeachPlayerTalentTakeAnimalTrophy(self,other,TROPHY_Teeth);
-	}
-	else
-	{
-		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		B_BuildLearnDialog_AlligatorJack();
 	};
-	B_AJ_Teach();
 };
 
 instance DIA_Addon_AlligatorJack_Anheuern(C_Info)

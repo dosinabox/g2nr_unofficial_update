@@ -206,8 +206,8 @@ func void DIA_Moe_Hallo_Alles()
 	}
 	else
 	{
-		B_Say(self,other,"$ShitNoGold");
-		B_Say(self,other,"$GetOutOfHere");
+		B_Say(self,other,"$SHITNOGOLD");
+		B_Say(self,other,"$GETOUTOFHERE");
 	};
 	AI_StopProcessInfos(self);
 };

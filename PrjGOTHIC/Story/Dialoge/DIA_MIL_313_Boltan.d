@@ -17,7 +17,7 @@ func int DIA_Boltan_EXIT_Condition()
 
 func void DIA_Boltan_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_Landstreicher_HALLO_Weg_15_00");	//ћне нужно идти.
+	DIA_Common_IHaveToGo_v2();
 	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
 };

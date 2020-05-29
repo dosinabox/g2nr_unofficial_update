@@ -12,10 +12,7 @@ instance DIA_Sagitta_EXIT(C_Info)
 
 func int DIA_Sagitta_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Sagitta_EXIT_Info()
@@ -329,7 +326,7 @@ func void DIA_Sagitta_Teach_Info()
 	var int talente;
 	talente = 0;
 	AI_Output(other,self,"DIA_Sagitta_Teach_15_00");	// акие зель€ можешь ты научить мен€ варить?
-	if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE))
+	if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_01] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_02] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] == FALSE) || (PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] == FALSE))
 	{
 		Info_ClearChoices(DIA_Sagitta_Teach);
 		Info_AddChoice(DIA_Sagitta_Teach,Dialog_Back,DIA_Sagitta_Teach_BACK);
@@ -504,32 +501,6 @@ func void DIA_Sagitta_TRADE_Info()
 };
 
 
-instance DIA_Sagitta_KAP3_EXIT(C_Info)
-{
-	npc = BAU_980_Sagitta;
-	nr = 999;
-	condition = DIA_Sagitta_KAP3_EXIT_Condition;
-	information = DIA_Sagitta_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Sagitta_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Sagitta_KAP3_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Sagitta_OBSESSION(C_Info)
 {
 	npc = BAU_980_Sagitta;
@@ -542,7 +513,7 @@ instance DIA_Sagitta_OBSESSION(C_Info)
 
 func int DIA_Sagitta_OBSESSION_Condition()
 {
-	if((SC_IsObsessed == TRUE) && (SC_ObsessionTimes < 1) && Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if((SC_IsObsessed == TRUE) && (SC_ObsessionTimes < 1) && Npc_KnowsInfo(other,DIA_Sagitta_Pre_Heal))
 	{
 		return TRUE;
 	};
@@ -568,7 +539,7 @@ instance DIA_Sagitta_Thekla(C_Info)
 
 func int DIA_Sagitta_Thekla_Condition()
 {
-	if((MIS_Thekla_Paket == LOG_Running) && Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if((MIS_Thekla_Paket == LOG_Running) && Npc_KnowsInfo(other,DIA_Sagitta_Pre_Who))
 	{
 		return TRUE;
 	};
@@ -582,32 +553,6 @@ func void DIA_Sagitta_Thekla_Info()
 	CreateInvItems(self,ItMi_TheklasPaket,1);
 	B_GiveInvItems(self,other,ItMi_TheklasPaket,1);
 	B_GivePlayerXP(150);
-};
-
-
-instance DIA_Sagitta_KAP4_EXIT(C_Info)
-{
-	npc = BAU_980_Sagitta;
-	nr = 999;
-	condition = DIA_Sagitta_KAP4_EXIT_Condition;
-	information = DIA_Sagitta_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Sagitta_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Sagitta_KAP4_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
 };
 
 
@@ -627,7 +572,7 @@ var int DIA_Sagitta_HEALRANDOLPH_KnowsPrice;
 
 func int DIA_Sagitta_HEALRANDOLPH_Condition()
 {
-	if((MIS_HealRandolph == LOG_Running) && !Npc_HasItems(other,ItPo_HealRandolph_MIS) && Npc_KnowsInfo(other,DIA_Sagitta_HALLO))
+	if((MIS_HealRandolph == LOG_Running) && !Npc_HasItems(other,ItPo_HealRandolph_MIS) && Npc_KnowsInfo(other,DIA_Sagitta_Pre_Who))
 	{
 		return TRUE;
 	};
@@ -685,57 +630,6 @@ func void DIA_Sagitta_HEALRANDOLPH_no()
 	Info_ClearChoices(DIA_Sagitta_HEALRANDOLPH);
 };
 
-
-instance DIA_Sagitta_KAP5_EXIT(C_Info)
-{
-	npc = BAU_980_Sagitta;
-	nr = 999;
-	condition = DIA_Sagitta_KAP5_EXIT_Condition;
-	information = DIA_Sagitta_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Sagitta_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Sagitta_KAP5_EXIT_Info()
-{
-	B_EquipTrader(self);
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Sagitta_KAP6_EXIT(C_Info)
-{
-	npc = BAU_980_Sagitta;
-	nr = 999;
-	condition = DIA_Sagitta_KAP6_EXIT_Condition;
-	information = DIA_Sagitta_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Sagitta_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Sagitta_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Sagitta_PICKPOCKET(C_Info)
 {

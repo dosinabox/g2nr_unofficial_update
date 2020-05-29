@@ -90,6 +90,11 @@ func void B_Cord_BeBetter()
 	AI_Output(self,other,"DIA_Cord_WannaJoin_14_14");	//Пока ты едва умеешь обращаться с оружием, и тебе здесь не место!
 };
 
+func void DIA_Cord_Approve()
+{
+	AI_Output(self,other,"DIA_Cord_WannaJoin_14_10");	//Ну, по крайней мере, ты не зеленый новичок. Хорошо. Я проголосую за тебя.
+};
+
 var int Cord_SchonmalGefragt;
 var int DIA_Cord_WannaJoin_Once;
 
@@ -115,40 +120,43 @@ func int DIA_Cord_WannaJoin_Condition()
 func void DIA_Cord_WannaJoin_Info()
 {
 	AI_Output(other,self,"DIA_Cord_WannaJoin_15_00");	//Я хочу стать наемником!
-	if(Cord_SchonmalGefragt == FALSE)
+	if(DIA_Cord_Teacher_permanent == FALSE)
 	{
-		if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
+		if(Cord_SchonmalGefragt == FALSE)
 		{
-			AI_Output(self,other,"DIA_Cord_WannaJoin_14_01");	//Ты больше похож на того, кто был рожден работать на поле, парень.
+			if(MIS_Addon_Lares_ComeToRangerMeeting != LOG_SUCCESS)
+			{
+				AI_Output(self,other,"DIA_Cord_WannaJoin_14_01");	//Ты больше похож на того, кто был рожден работать на поле, парень.
+			};
+			AI_Output(self,other,"DIA_Cord_WannaJoin_14_02");	//Ты умеешь обращаться с оружием?
+			Cord_SchonmalGefragt = TRUE;
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Cord_WannaJoin_14_03");	//Ты повысил свои навыки?
 		};
-		AI_Output(self,other,"DIA_Cord_WannaJoin_14_02");	//Ты умеешь обращаться с оружием?
-		Cord_SchonmalGefragt = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Cord_WannaJoin_14_03");	//Ты повысил свои навыки?
+		AI_Output(self,other,"DIA_Cord_WannaJoin_14_04");	//Итак, как насчет одноручного оружия?
+		if(TeacherCanTrainTalent(NPC_TALENT_1H,TeachCondition_Cord))
+		{
+			AI_Output(other,self,"DIA_Cord_WannaJoin_15_05");	//Я не так уж плох в этом.
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Cord_WannaJoin_15_06");	//Что-о-ожж...
+		};
+		AI_Output(self,other,"DIA_Cord_WannaJoin_14_07");	//А что насчет двуручного оружия?
+		if(TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Cord))
+		{
+			AI_Output(other,self,"DIA_Cord_WannaJoin_15_08");	//Я умею обращаться с ним.
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Cord_WannaJoin_15_09");	//И скоро я стану еще лучше!
+		};
 	};
-	AI_Output(self,other,"DIA_Cord_WannaJoin_14_04");	//Итак, как насчет одноручного оружия?
-	if(Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0)
+	if(TeacherCanTrainTalent(NPC_TALENT_1H,TeachCondition_Cord) || TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Cord) || (DIA_Cord_Teacher_permanent == TRUE))
 	{
-		AI_Output(other,self,"DIA_Cord_WannaJoin_15_05");	//Я не так уж плох в этом.
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Cord_WannaJoin_15_06");	//Что-о-ожж...
-	};
-	AI_Output(self,other,"DIA_Cord_WannaJoin_14_07");	//А что насчет двуручного оружия?
-	if(Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0)
-	{
-		AI_Output(other,self,"DIA_Cord_WannaJoin_15_08");	//Я умею обращаться с ним.
-	}
-	else
-	{
-		AI_Output(other,self,"DIA_Cord_WannaJoin_15_09");	//И скоро я стану еще лучше!
-	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) || (Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0))
-	{
-		AI_Output(self,other,"DIA_Cord_WannaJoin_14_10");	//Ну, по крайней мере, ты не зеленый новичок. Хорошо. Я проголосую за тебя.
+		DIA_Cord_Approve();
 		AI_Output(self,other,"DIA_Cord_WannaJoin_14_11");	//Если тебе еще что-то нужно знать, ты можешь спросить у меня.
 		Cord_Voted = TRUE;
 		B_GivePlayerXP(XP_Cord_Voted);
@@ -314,17 +322,27 @@ func void DIA_Addon_Cord_YouAreRanger_weg()
 
 var int DIA_Addon_Cord_YouAreRanger_SCGotOffer;
 
+func void DIA_Cord_And()
+{
+	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
+};
+
+func void DIA_Cord_WhatElse()
+{
+	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_kampf_14_01");	//Хорошо. Что еще?
+};
+
 func void DIA_Addon_Cord_YouAreRanger_vote()
 {
 	AI_Output(other,self,"DIA_Sentenza_Vote_15_00");	//Ты проголосуешь за меня?
 	if(MIS_Addon_Lares_ComeToRangerMeeting == LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_Cord_WannaJoin_14_10");	//Ну, по крайней мере, ты не зеленый новичок. Хорошо. Я проголосую за тебя.
-		AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
+		DIA_Cord_Approve();
+		DIA_Cord_And();
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_kampf_14_01");	//Хорошо. Что еще?
+		DIA_Cord_WhatElse();
 	};
 	Cord_Voted = TRUE;
 	Cord_Voted_Trick = TRUE;
@@ -344,7 +362,7 @@ func void DIA_Addon_Cord_YouAreRanger_vote()
 func void DIA_Addon_Cord_YouAreRanger_kampf()
 {
 	AI_Output(other,self,"DIA_Addon_Cord_YouAreRanger_kampf_15_00");	//Научи меня сражаться.
-	AI_Output(self,other,"DIA_Addon_Cord_YouAreRanger_kampf_14_01");	//Хорошо. Что еще?
+	DIA_Cord_WhatElse();
 	Cord_RangerHelp_Fight = TRUE;
 	Cord_RangerHelp_Fight_Trick = TRUE;
 	if(DIA_Addon_Cord_YouAreRanger_SCGotOffer == FALSE)
@@ -462,10 +480,10 @@ func void B_Cord_IDoItForYou_Dexter()
 	AI_Output(self,other,"Dia_Addon_Cord_IDoItForYou_Dexter_14_03");	//Конечно, это все довольно опасно.
 	AI_Output(self,other,"Dia_Addon_Cord_IDoItForYou_Dexter_14_04");	//Но ты справишься.
 	Info_ClearChoices(DIA_Addon_Cord_RangerHelp2GetSLD);
-	B_LogEntry(TOPIC_Addon_RangerHelpSLD,"Главаря бандитов зовут Декстер.");
 	Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
-	Log_AddEntry(TOPIC_Addon_MissingPeople,"Наемник Корд ищет своего приятеля Патрика.");
+	B_LogEntries(TOPIC_Addon_MissingPeople,"Наемник Корд ищет своего приятеля Патрика.");
+	B_LogNextEntry(TOPIC_Addon_RangerHelpSLD,"Главаря бандитов зовут Декстер.");
 	MIS_Addon_Cord_Look4Patrick = LOG_Running;
 	Ranger_SCKnowsDexter = TRUE;
 };
@@ -551,7 +569,7 @@ func int DIA_Addon_Cord_TalkedToDexter_Condition()
 func void DIA_Addon_Cord_TalkedToDexter_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_00");	//Я встретился с Декстером.
-	AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
+	DIA_Cord_And();
 	if(Npc_IsDead(Dexter))
 	{
 		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_02");	//Он мертв.
@@ -642,7 +660,7 @@ instance DIA_Cord_ExplainSkills(C_Info)
 
 func int DIA_Cord_ExplainSkills_Condition()
 {
-	if(Cord_Teacher == TRUE)
+	if((Cord_Teacher == TRUE) && (RealTalentValue(NPC_TALENT_1H) < 100) && (RealTalentValue(NPC_TALENT_2H) < 100))
 	{
 		return TRUE;
 	};
@@ -691,12 +709,32 @@ func void DIA_Cord_ExplainWeapons_Info()
 };
 
 
+var int DIA_Cord_Teacher_permanent;
+var int DIA_Cord_TeachState_1H;
+var int DIA_Cord_TeachState_2H;
 var int Cord_Merke_1h;
 var int Cord_Merke_2h;
 
 func void B_Cord_Zeitverschwendung()
 {
 	AI_Output(self,other,"DIA_Cord_Teach_14_03");	//Я не хочу тратить свое время на новичков.
+};
+
+func void DIA_Cord_CantTeach1H()
+{
+	AI_Output(self,other,"DIA_Cord_Teach_14_05");	//Если ты захочешь потренироваться с одноручным оружием, тебе придется найти другого учителя.
+};
+
+func void DIA_Cord_TeachAny()
+{
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Cord)
+	{
+		AI_Output(self,other,"DIA_Cord_Teach_14_01");	//Я могу обучить тебя владению любым оружием - с чего начнем?
+	}
+	else
+	{
+		DIA_Cord_CantTeach1H();
+	};
 };
 
 func void B_Cord_Teach()
@@ -709,15 +747,50 @@ func void B_Cord_Teach()
 	};
 	Info_ClearChoices(DIA_Cord_Teach);
 	Info_AddChoice(DIA_Cord_Teach,Dialog_Back,DIA_Cord_Teach_Back);
-	if((Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
+	if(TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Cord) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
 	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
+		if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Cord)
+		{
+			Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Cord_Teach_2H_1);
+			Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Cord_Teach_2H_5);
+			DIA_Cord_TeachState_2H = 1;
+		}
+		else
+		{
+			if(DIA_Cord_TeachState_2H == 1)
+			{
+				PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Cord)),-1,53,FONT_Screen,2);
+			};
+			DIA_Cord_TeachState_2H = 2;
+		};
 	};
-	if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
+	if(TeacherCanTrainTalent(NPC_TALENT_1H,TeachCondition_Cord) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
 	{
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
-		Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
+		if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Cord)
+		{
+			Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Cord_Teach_1H_1);
+			Info_AddChoice(DIA_Cord_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Cord_Teach_1H_5);
+			DIA_Cord_TeachState_1H = 1;
+		}
+		else
+		{
+			if(DIA_Cord_TeachState_1H == 1)
+			{
+				PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Cord)),-1,53,FONT_Screen,2);
+				DIA_Cord_CantTeach1H();
+			};
+			DIA_Cord_TeachState_1H = 2;
+		};
+	};
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Cord) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Cord))
+	{
+		DIA_Cord_Teacher_permanent = TRUE;
+	};
+	if((DIA_Cord_TeachState_1H == 2) && (DIA_Cord_TeachState_2H == 2))
+	{
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
 	};
 };
 
@@ -734,34 +807,46 @@ instance DIA_Cord_Teach(C_Info)
 
 func int DIA_Cord_Teach_Condition()
 {
-	return TRUE;
+	if(DIA_Cord_Teacher_permanent == FALSE)
+	{
+		return TRUE;
+	};
 };
 
 func void DIA_Cord_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Cord_Teach_15_00");	//Научи меня сражаться!
-	if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) || (Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
+	if((VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Cord) && (VisibleTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Cord))
 	{
-		if((Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0) && (Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0))
+		if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Cord) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Cord))
 		{
-			AI_Output(self,other,"DIA_Cord_Teach_14_01");	//Я могу обучить тебя владению любым оружием - с чего начнем?
+			DIA_Cord_Teacher_permanent = TRUE;
+		};
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	}
+	else if(TeacherCanTrainTalent(NPC_TALENT_1H,TeachCondition_Cord) || TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Cord) || (hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
+	{
+		if(TeacherCanTrainTalent(NPC_TALENT_1H,TeachCondition_Cord) && TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Cord))
+		{
+			DIA_Cord_TeachAny();
 			Cord_Approved = TRUE;
 		}
 		else if((hero.guild == GIL_SLD) || (hero.guild == GIL_DJG) || (Cord_RangerHelp_Fight == TRUE))
 		{
-			AI_Output(self,other,"DIA_Cord_Teach_14_01");	//Я могу обучить тебя владению любым оружием - с чего начнем?
+			DIA_Cord_TeachAny();
 			Cord_Approved = TRUE;
 		}
-		else if(Npc_GetTalentSkill(other,NPC_TALENT_1H) > 0)
+		else if(TeacherCanTrainTalent(NPC_TALENT_1H,TeachCondition_Cord))
 		{
 			AI_Output(self,other,"DIA_Cord_Teach_14_02");	//Я могу обучить тебя владению одноручным мечом. Но ты пока недостаточно хорош, чтобы использовать двуручный меч.
 			B_Cord_Zeitverschwendung();
 			Cord_Approved = TRUE;
 		}
-		else if(Npc_GetTalentSkill(other,NPC_TALENT_2H) > 0)
+		else if(TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_Cord))
 		{
 			AI_Output(self,other,"DIA_Cord_Teach_14_04");	//Что касается одноручного оружия, то здесь ты зеленый новичок! Хотя в обращении с двуручным ты не так уж и плох.
-			AI_Output(self,other,"DIA_Cord_Teach_14_05");	//Если ты захочешь потренироваться с одноручным оружием, тебе придется найти другого учителя.
+			DIA_Cord_CantTeach1H();
 			Cord_Approved = TRUE;
 		}
 		else
@@ -771,9 +856,9 @@ func void DIA_Cord_Teach_Info()
 		};
 		if(Cord_Approved == TRUE)
 		{
+			Cord_Merke_1h = other.HitChance[NPC_TALENT_1H];
+			Cord_Merke_2h = other.HitChance[NPC_TALENT_2H];
 			B_Cord_Teach();
-			Cord_Merke_1h = other.aivar[REAL_TALENT_1H];
-			Cord_Merke_2h = other.aivar[REAL_TALENT_2H];
 		};
 	}
 	else
@@ -784,7 +869,7 @@ func void DIA_Cord_Teach_Info()
 
 func void DIA_Cord_Teach_Back()
 {
-	if((Cord_Merke_1h < other.aivar[REAL_TALENT_1H]) || (Cord_Merke_2h < other.aivar[REAL_TALENT_2H]))
+	if((Cord_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Cord_Merke_2h < other.HitChance[NPC_TALENT_2H]))
 	{
 		AI_Output(self,other,"DIA_Cord_Teach_BACK_14_00");	//Ты стал значительно лучше - так держать!
 	};
@@ -793,28 +878,35 @@ func void DIA_Cord_Teach_Back()
 
 func void DIA_Cord_Teach_2H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,90);
-	B_Cord_Teach();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Cord))
+	{
+		B_Cord_Teach();
+	};
 };
 
 func void DIA_Cord_Teach_2H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,90);
-	B_Cord_Teach();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Cord))
+	{
+		B_Cord_Teach();
+	};
 };
 
 func void DIA_Cord_Teach_1H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,90);
-	B_Cord_Teach();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Cord))
+	{
+		B_Cord_Teach();
+	};
 };
 
 func void DIA_Cord_Teach_1H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,90);
-	B_Cord_Teach();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Cord))
+	{
+		B_Cord_Teach();
+	};
 };
-
 
 instance DIA_Cord_PICKPOCKET(C_Info)
 {

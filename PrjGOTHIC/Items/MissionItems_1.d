@@ -263,16 +263,13 @@ instance ItWr_ManaRezept(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 20;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_ManaRezept;
 	scemeName = "MAP";
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -351,6 +348,7 @@ func void UsePassierschein()
 //	Doc_PrintLine(nDocID,0,"");
 	Doc_SetMargins(nDocID,-1,200,50,50,50,1);
 	Doc_Show(nDocID);
+	Player_KnowsLariusAsGovernor = TRUE;
 };
 
 
@@ -383,32 +381,6 @@ instance ItKe_Storage(C_Item)
 	inv_rotx = -25;
 	inv_roty = 0;
 	inv_zbias = 145;
-};
-
-
-const int HP_Hering = 20;
-
-instance ItFo_SmellyFish(C_Item)
-{
-	name = "Селедка";
-	mainflag = ITEM_KAT_FOOD;
-	flags = ITEM_MISSION;
-	value = 20;
-	visual = "ItFo_SmellyFish.3DS";
-	material = MAT_LEATHER;
-	scemeName = "FOODHUGE";
-	on_state[0] = Use_SmellyFish;
-	description = name;
-	text[1] = NAME_Bonus_HP;
-	count[1] = HP_Hering;
-	text[5] = NAME_Value;
-	count[5] = value;
-};
-
-
-func void Use_SmellyFish()
-{
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Hering);
 };
 
 
@@ -768,7 +740,6 @@ instance ItPo_Perm_LittleMana(C_Item)
 func void UseItPo_LittleMana()
 {
 	B_RaiseAttribute(self,ATR_MANA_MAX,3);
-	Npc_ChangeAttribute(self,ATR_MANA,3);
 };
 
 
@@ -1327,7 +1298,7 @@ instance ItRw_DragomirsArmbrust_MIS(C_Item)
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_LeichteArmbrust;
 //	visual = "ItRw_Crossbow_L_02.mms";
-	visual = "ITRW_CROSSBOW_MISSION.MMS";
+	visual = "ItRw_Crossbow_Mission_01.mms";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;

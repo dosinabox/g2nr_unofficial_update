@@ -12,10 +12,7 @@ instance DIA_Ingmar_EXIT(C_Info)
 
 func int DIA_Ingmar_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Ingmar_EXIT_Info()
@@ -47,20 +44,21 @@ func int DIA_Ingmar_Hallo_Condition()
 
 func void DIA_Ingmar_Hallo_Info()
 {
-	if((EnterOW_Kapitel2 == FALSE) && (LordHagen.aivar[AIV_TalkedToPlayer] == TRUE))
+	if(MIS_OLDWORLD == FALSE)
+	{
+		AI_Output(self,other,"DIA_Ingmar_Hallo_06_03");	//Я думал, ты пришел поговорить с лордом Хагеном. Так иди же к нему.
+	}
+	else if(MIS_OLDWORLD == LOG_Running)
 	{
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_00");	//Согласно полученным мной сообщениям, Долина Рудников - опасное место.
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_01");	//Позаботься о своем снаряжении, прежде чем отправляться туда.
 	}
-	else if((MIS_OLDWORLD == LOG_SUCCESS) && (LordHagen.aivar[AIV_TalkedToPlayer] == TRUE))
+	else
 	{
 		AI_Output(self,other,"DIA_Ingmar_Hallo_06_02");	//Обстановка в Долине Рудников очень тревожит меня. Но мы разработаем план, чтобы преодолеть все опасности и вытащить наших парней оттуда вместе с рудой.
 		DIA_Ingmar_Hallo_permanent = TRUE;
-	}
-	else
-	{
-		AI_Output(self,other,"DIA_Ingmar_Hallo_06_03");	//Я думал, ты пришел поговорить с лордом Хагеном. Так иди же к нему.
 	};
+	B_PlayerEnteredUpperCity();
 };
 
 
@@ -77,10 +75,7 @@ instance DIA_Ingmar_Krieg(C_Info)
 
 func int DIA_Ingmar_Krieg_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk))
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Ingmar_Krieg_Info()
@@ -185,56 +180,6 @@ func void DIA_Ingmar_Teach_5()
 };
 
 
-instance DIA_Ingmar_KAP3_EXIT(C_Info)
-{
-	npc = PAL_201_Ingmar;
-	nr = 999;
-	condition = DIA_Ingmar_KAP3_EXIT_Condition;
-	information = DIA_Ingmar_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ingmar_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ingmar_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Ingmar_KAP4_EXIT(C_Info)
-{
-	npc = PAL_201_Ingmar;
-	nr = 999;
-	condition = DIA_Ingmar_KAP4_EXIT_Condition;
-	information = DIA_Ingmar_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ingmar_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ingmar_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Ingmar_ORKELITE(C_Info)
 {
 	npc = PAL_201_Ingmar;
@@ -336,56 +281,6 @@ func void DIA_Ingmar_HAUPTQUARTIER_Info()
 };
 
 
-instance DIA_Ingmar_KAP5_EXIT(C_Info)
-{
-	npc = PAL_201_Ingmar;
-	nr = 999;
-	condition = DIA_Ingmar_KAP5_EXIT_Condition;
-	information = DIA_Ingmar_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ingmar_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ingmar_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Ingmar_KAP6_EXIT(C_Info)
-{
-	npc = PAL_201_Ingmar;
-	nr = 999;
-	condition = DIA_Ingmar_KAP6_EXIT_Condition;
-	information = DIA_Ingmar_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Ingmar_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Ingmar_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
-
 instance DIA_Ingmar_PICKPOCKET(C_Info)
 {
 	npc = PAL_201_Ingmar;
@@ -402,7 +297,7 @@ func int DIA_Ingmar_PICKPOCKET_Condition()
 //	return C_StealItems(105,Hlp_GetInstanceID(ItWr_Manowar),1);
 	if(Npc_HasItems(self,ItWr_Manowar))
 	{
-		return C_StealItem(105,Hlp_GetInstanceID(ItWr_Manowar));
+		return C_StealItem(105);
 	};
 	return FALSE;
 };

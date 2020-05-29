@@ -17,7 +17,7 @@ func int DIA_Addon_Logan_EXIT_Condition()
 
 func void DIA_Addon_Logan_EXIT_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+	DIA_Common_IllBeBackLater();
 	if((MIS_HlpLogan == LOG_Running) && (Logan_Inside == FALSE))
 	{
 		AI_Output(self,other,"DIA_Addon_Logan_EXIT_10_01");	//(ворчливо) Да-а, просто убегаешь. А я останусь здесь и остановлю каждого, кто подойдет слишком близко.

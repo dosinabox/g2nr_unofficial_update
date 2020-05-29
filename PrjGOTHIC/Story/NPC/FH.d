@@ -15,8 +15,7 @@ instance FH(Npc_Default)
 	attribute[ATR_MANA] = 50;
 	attribute[ATR_HITPOINTS_MAX] = 220;
 	attribute[ATR_HITPOINTS] = 220;
-	Mdl_SetVisual(self,"HUMANS.MDS");
-	Mdl_SetVisualBody(self,"hum_body_Naked0",1,0,"Hum_Head_Bald",0,0,NO_ARMOR);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Bald",Face_N_Gomez,BodyTex_N,NO_ARMOR);
 	fight_tactic = FAI_HUMAN_STRONG;
 	daily_routine = Rtn_start_1311;
 };

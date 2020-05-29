@@ -231,6 +231,27 @@ func void DIA_Dragomir_Learn_Here()
 
 var int DIA_Dragomir_Teach_permanent;
 
+func void B_BuildLearnDialog_Dragomir()
+{
+	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Dragomir)
+	{
+		Info_ClearChoices(DIA_Dragomir_Teach);
+		Info_AddChoice(DIA_Dragomir_Teach,Dialog_Back,DIA_Dragomir_Teach_Back);
+		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Dragomir_Teach_CROSSBOW_1);
+		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Dragomir_Teach_CROSSBOW_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Dragomir)
+		{
+			DIA_Dragomir_Teach_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Crossbow_Dragomir)),-1,53,FONT_Screen,2);
+		AI_Output(self,other,"DIA_Dragomir_Teach_12_00");	//Я больше ничему не могу научить тебя. Тебе стоит поискать другого учителя.
+		AI_StopProcessInfos(self);
+	};
+};
+
 instance DIA_Dragomir_Teach(C_Info)
 {
 	npc = BAU_983_Dragomir;
@@ -253,49 +274,29 @@ func int DIA_Dragomir_Teach_Condition()
 func void DIA_Dragomir_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Dragomir_Teach_15_00");	//Научи меня чему-нибудь.
-	if(other.aivar[REAL_TALENT_CROSSBOW] >= 75)
-	{
-		AI_Output(self,other,"DIA_Dragomir_Teach_12_00");	//Я больше ничему не могу научить тебя. Тебе стоит поискать другого учителя.
-		DIA_Dragomir_Teach_permanent = TRUE;
-	}
-	else
-	{
-		Info_ClearChoices(DIA_Dragomir_Teach);
-		Info_AddChoice(DIA_Dragomir_Teach,Dialog_Back,DIA_Dragomir_Teach_Back);
-		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Dragomir_Teach_1H_1);
-		Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1) * 5),DIA_Dragomir_Teach_1H_5);
-	};
+	B_BuildLearnDialog_Dragomir();
 };
 
 func void DIA_Dragomir_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 75)
-	if(other.aivar[REAL_TALENT_CROSSBOW] >= 75)
+	Info_ClearChoices(DIA_Dragomir_Teach);
+};
+
+func void DIA_Dragomir_Teach_CROSSBOW_1()
+{
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,TeachLimit_Crossbow_Dragomir))
 	{
-		AI_Output(self,other,"DIA_Dragomir_Teach_12_00");	//Я больше ничему не могу научить тебя. Тебе стоит поискать другого учителя.
-		DIA_Dragomir_Teach_permanent = TRUE;
+		B_BuildLearnDialog_Dragomir();
 	};
-	Info_ClearChoices(DIA_Dragomir_Teach);
 };
 
-func void DIA_Dragomir_Teach_1H_1()
+func void DIA_Dragomir_Teach_CROSSBOW_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,75);
-	Info_ClearChoices(DIA_Dragomir_Teach);
-	Info_AddChoice(DIA_Dragomir_Teach,Dialog_Back,DIA_Dragomir_Teach_Back);
-	Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Dragomir_Teach_1H_1);
-	Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1) * 5),DIA_Dragomir_Teach_1H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,TeachLimit_Crossbow_Dragomir))
+	{
+		B_BuildLearnDialog_Dragomir();
+	};
 };
-
-func void DIA_Dragomir_Teach_1H_5()
-{
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,75);
-	Info_ClearChoices(DIA_Dragomir_Teach);
-	Info_AddChoice(DIA_Dragomir_Teach,Dialog_Back,DIA_Dragomir_Teach_Back);
-	Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Dragomir_Teach_1H_1);
-	Info_AddChoice(DIA_Dragomir_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1) * 5),DIA_Dragomir_Teach_1H_5);
-};
-
 
 instance DIA_Dragomir_PICKPOCKET(C_Info)
 {

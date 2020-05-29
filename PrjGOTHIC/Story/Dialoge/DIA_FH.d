@@ -8,7 +8,6 @@ var int sex;
 
 func void Change_FH_Visual()
 {
-	var string printText;
 	if(FH_HeadMesh_DEFAULT_Hilfsvariable == 0)
 	{
 		FH_HeadMesh = "Hum_Head_Bald";
@@ -17,12 +16,11 @@ func void Change_FH_Visual()
 	if(FH_SkinTexture < 0)
 	{
 		FH_SkinTexture = 0;
-		PrintScreen("Нет лиц с отрицательными номерами!!!!!!!!!!!",-1,-1,"FONT_OLD_10_WHITE.TGA",2);
+		PrintScreen("Нет лиц с отрицательными номерами!",-1,-1,"FONT_OLD_10_WHITE.TGA",2);
 	};
 	B_SetNpcVisual(self,sex,FH_HeadMesh,FH_SkinTexture,BodyTex_N,NO_ARMOR);
 	PrintScreen("Текстура кожи:",-1,10,"FONT_OLD_10_WHITE.TGA",4);
-	printText = IntToString(FH_SkinTexture);
-	PrintScreen(printText,-1,12,"FONT_OLD_10_WHITE.TGA",2);
+	PrintScreen(IntToString(FH_SkinTexture),-1,12,"FONT_OLD_10_WHITE.TGA",2);
 	PrintScreen("Меш головы:",-1,20,"FONT_OLD_10_WHITE.TGA",2);
 	PrintScreen(FH_HeadMesh,-1,22,"FONT_OLD_10_WHITE.TGA",2);
 };

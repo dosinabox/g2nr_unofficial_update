@@ -70,7 +70,6 @@ instance DIA_Addon_Myxir_CITY_Teach(C_Info)
 
 
 var int DIA_Addon_Myxir_CITY_Teach_NoPerm;
-var int DIA_Addon_Myxir_CITY_Teach_OneTime;
 
 func int DIA_Addon_Myxir_CITY_Teach_Condition()
 {
@@ -83,11 +82,11 @@ func int DIA_Addon_Myxir_CITY_Teach_Condition()
 func void DIA_Addon_Myxir_CITY_Teach_Info()
 {
 	B_DIA_Addon_Myxir_TeachRequest();
-	if(DIA_Addon_Myxir_CITY_Teach_OneTime == FALSE)
+	if(Myxir_Addon_TeachPlayer == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_KDWTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_Addon_KDWTeacher,LogText_Addon_MyxirTeach);
-		DIA_Addon_Myxir_CITY_Teach_OneTime = TRUE;
+		Myxir_Addon_TeachPlayer = TRUE;
 	};
 	if((PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_1] == FALSE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_2] == FALSE) || (PLAYER_TALENT_FOREIGNLANGUAGE[LANGUAGE_3] == FALSE))
 	{

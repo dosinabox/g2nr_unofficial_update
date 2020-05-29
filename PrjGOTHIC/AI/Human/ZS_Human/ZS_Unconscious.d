@@ -50,6 +50,7 @@ func void ZS_Unconscious()
 	B_ClearAlchemyInv(self);
 	B_ClearBonusFoodInv(self);
 	B_ClearInfiniteTools(self);
+	B_ClearSpecialAmmo(self);
 	if(self.guild == GIL_STRF)
 	{
 		Npc_RemoveInvItems(self,ItMw_2H_Axe_L_01,Npc_HasItems(self,ItMw_2H_Axe_L_01));
@@ -104,7 +105,7 @@ func void ZS_Unconscious_End()
 		{
 			AI_TakeItem(self,item);
 		};
-	}
+	};
 	if(Wld_DetectItem(self,ITEM_KAT_FF))
 	{
 		if(Hlp_IsValidItem(item) && (Npc_GetDistToItem(self,item) <= 500))

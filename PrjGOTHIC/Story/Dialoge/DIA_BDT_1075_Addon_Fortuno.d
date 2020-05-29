@@ -105,7 +105,7 @@ func void DIA_Addon_Fortuno_Hi_Info()
 func void DIA_Addon_Fortuno_Hi_BACK()
 {
 	Info_ClearChoices(DIA_Addon_Fortuno_Hi);
-	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+	DIA_Common_IllBeBackLater();
 	AI_WaitTillEnd(self,other);
 	AI_StopProcessInfos(self);
 };
@@ -239,11 +239,11 @@ func void B_Fortuno_InfoManager()
 {
 	Info_ClearChoices(DIA_Addon_Fortuno_Trade);
 	Info_AddChoice(DIA_Addon_Fortuno_Trade,Dialog_Back,DIA_Addon_Fortuno_Trade_BACK);
-	if(Npc_HasItems(other,ItPl_SwampHerb))
+	if(Npc_HasItems(other,ItPl_SwampHerb) > 1)
 	{
 		Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать всю болотную траву)",DIA_Addon_Fortuno_Trade_all);
-		Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать 1 болотную траву)",DIA_Addon_Fortuno_Trade_1);
 	};
+	Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать 1 болотную траву)",DIA_Addon_Fortuno_Trade_1);
 };
 
 
@@ -285,7 +285,7 @@ func void DIA_Addon_Fortuno_Trade_all()
 	Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
 	B_GiveInvItems(self,other,ItMi_Gold,amount * Value_SwampHerb);
 	B_GivePlayerXP(amount * 10);
-	B_Fortuno_InfoManager();
+	Info_ClearChoices(DIA_Addon_Fortuno_Trade);
 };
 
 func void DIA_Addon_Fortuno_Trade_1()
@@ -294,7 +294,15 @@ func void DIA_Addon_Fortuno_Trade_1()
 	Npc_RemoveInvItems(self,ItPl_SwampHerb,Npc_HasItems(self,ItPl_SwampHerb));
 	B_GiveInvItems(self,other,ItMi_Gold,Value_SwampHerb);
 	B_GivePlayerXP(10);
-	B_Fortuno_InfoManager();
+	if(Npc_HasItems(other,ItPl_SwampHerb))
+	{
+		AI_PrintScreen(ConcatStrings("Осталось болотной травы: ",IntToString(Npc_HasItems(other,ItPl_SwampHerb))),-1,-1,FONT_ScreenSmall,2);
+		B_Fortuno_InfoManager();
+	}
+	else
+	{
+		Info_ClearChoices(DIA_Addon_Fortuno_Trade);
+	};
 };
 
 

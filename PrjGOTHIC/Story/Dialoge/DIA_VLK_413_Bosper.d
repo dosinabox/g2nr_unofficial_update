@@ -48,7 +48,7 @@ func void DIA_Bosper_HALLO_Info()
 	AI_Output(self,other,"DIA_Bosper_HALLO_11_02");	//Что привело тебя в Хоринис?
 	B_PlayerEnteredCity();
 	Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTrader,"Боспер делает луки и торгует шкурами. Его лавка находится у восточных ворот, в нижней части города.");
+	B_LogEntry(TOPIC_CityTrader,"Боспер делает луки и торгует шкурами. Его лавка находится у южных ворот, в нижней части города.");
 };
 
 
@@ -810,9 +810,13 @@ func int DIA_Bosper_SellFur_Condition()
 
 func void DIA_Bosper_SellFur_Info()
 {
+	var int furs;
 	AI_Output(other,self,"DIA_Bosper_SellFur_15_00");	//Я принес несколько шкур для тебя...
-	if(Npc_HasItems(other,ItAt_SheepFur) || Npc_HasItems(other,ItAt_WolfFur) || Npc_HasItems(other,ItAt_IceWolfFur) || Npc_HasItems(other,ItAt_WargFur) || Npc_HasItems(other,ItAt_ShadowFur) || Npc_HasItems(other,ItAt_TrollFur) || Npc_HasItems(other,ItAt_TrollBlackFur) || Npc_HasItems(other,ItAt_Addon_KeilerFur))
+	furs = Npc_HasItems(other,ItAt_Addon_KeilerFur) + Npc_HasItems(other,ItAt_SheepFur) + Npc_HasItems(other,ItAt_WolfFur) + Npc_HasItems(other,ItAt_IceWolfFur) + Npc_HasItems(other,ItAt_WargFur) + Npc_HasItems(other,ItAt_ShadowFur) + Npc_HasItems(other,ItAt_TrollFur) + Npc_HasItems(other,ItAt_TrollBlackFur);
+	if(furs > 0)
 	{
+		BosperFurCounter += furs;
+		ApprenticeGoldCounter += (Npc_HasItems(other,ItAt_Addon_KeilerFur) * Value_Keilerfur) + (Npc_HasItems(other,ItAt_SheepFur) * Value_SheepFur) + (Npc_HasItems(other,ItAt_WolfFur) * Value_WolfFur) + (Npc_HasItems(other,ItAt_IceWolfFur) * Value_IceWolfFur) + (Npc_HasItems(other,ItAt_WargFur) * Value_WargFur) + (Npc_HasItems(other,ItAt_ShadowFur) * Value_ShadowFur) + (Npc_HasItems(other,ItAt_TrollFur) * Value_TrollFur) + (Npc_HasItems(other,ItAt_TrollBlackFur) * Value_TrollBlackFur);
 		if(Npc_HasItems(other,ItAt_Addon_KeilerFur))
 		{
 			B_Say(self,other,"$ABS_GOOD");
@@ -953,6 +957,4 @@ func void DIA_Bosper_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Bosper_PICKPOCKET);
 };
-
-
 

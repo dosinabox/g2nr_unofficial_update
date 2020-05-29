@@ -212,6 +212,7 @@ func void B_GiveTradeInv(var C_Npc slf)
 	};
 	B_ClearRuneInv(slf);
 	B_ClearTools(slf);
+	B_ClearSpecialAmmo(slf);
 	B_CoolHotDraw(hero);
 	if(slf.aivar[AIV_ChapterInv] <= Kapitel)
 	{

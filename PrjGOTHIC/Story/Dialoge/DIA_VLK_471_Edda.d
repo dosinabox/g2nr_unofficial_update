@@ -239,15 +239,15 @@ func int DIA_Edda_PICKPOCKET_Condition()
 {
 	if(Npc_HasItems(self,ItMi_EddasStatue))
 	{
-		return C_StealItem(20,Hlp_GetInstanceID(ItMi_EddasStatue));
+		return C_StealItem(20);
 	}
 	else if(Npc_HasItems(self,ItMi_InnosStatue))
 	{
-		return C_StealItem(20,Hlp_GetInstanceID(ItMi_InnosStatue));
+		return C_StealItem(20);
 	}
 	else if(Npc_HasItems(self,ItMi_LostInnosStatue_Daron))
 	{
-		return C_StealItem(20,Hlp_GetInstanceID(ItMi_LostInnosStatue_Daron));
+		return C_StealItem(20);
 	};
 	return FALSE;
 };

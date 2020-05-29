@@ -35,7 +35,43 @@ func int C_IAmCanyonRazor(var C_Npc slf)
 	raz08 = Hlp_GetNpc(CanyonRazor08);
 	raz09 = Hlp_GetNpc(CanyonRazor09);
 	raz10 = Hlp_GetNpc(CanyonRazor10);
-	if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz01)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz02)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz03)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz04)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz05)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz06)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz07)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz08)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz09)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz10)))
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz01))
+	{
+		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz02))
+	{
+		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz03))
+	{
+		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz04))
+	{
+		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz05))
+	{
+		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz06))
+	{
+		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz07))
+	{
+		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz08))
+	{
+		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz09))
+	{
+		return TRUE;
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(raz10))
 	{
 		return TRUE;
 	};

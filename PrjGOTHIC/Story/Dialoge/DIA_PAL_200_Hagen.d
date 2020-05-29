@@ -17,13 +17,18 @@ func int DIA_Hagen_EXIT_Condition()
 
 func void DIA_Hagen_EXIT_Info()
 {
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);
 };
 
 
 var int Hagen_LastPetzCounter;
 var int Hagen_LastPetzCrime;
+
+func void B_Hagen_CityLaws()
+{
+	AI_Output(self,other,"DIA_Hagen_PMSchulden_04_01");	//Ты не очень-то серьезно относишься к законам города, да?
+};
 
 instance DIA_Hagen_PMSchulden(C_Info)
 {
@@ -47,7 +52,7 @@ func int DIA_Hagen_PMSchulden_Condition()
 func void DIA_Hagen_PMSchulden_Info()
 {
 	var int diff;
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 	AI_Output(self,other,"DIA_Hagen_PMSchulden_04_00");	//Хорошо, что ты пришел. Ты можешь заплатить штраф прямо сейчас.
 	if(B_GetTotalPetzCounter(self) > Hagen_LastPetzCounter)
 	{
@@ -60,7 +65,7 @@ func void DIA_Hagen_PMSchulden_Info()
 		{
 			Hagen_Schulden = 1000;
 		};
-		AI_Output(self,other,"DIA_Hagen_PMSchulden_04_01");	//Ты не очень-то серьезно относишься к законам города, да?
+		B_Hagen_CityLaws();
 		AI_Output(self,other,"DIA_Hagen_PMSchulden_04_02");	//Список твоих преступлений все растет и растет.
 		if(Hagen_Schulden < 1000)
 		{
@@ -113,7 +118,7 @@ func void DIA_Hagen_PMSchulden_Info()
 		Info_ClearChoices(DIA_Hagen_PMSchulden);
 		Info_ClearChoices(DIA_Hagen_PETZMASTER);
 		Info_AddChoice(DIA_Hagen_PMSchulden,"У меня нет столько золота!",DIA_Hagen_PETZMASTER_PayLater);
-		Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там нужно?",DIA_Hagen_PMSchulden_HowMuchAgain);
+		Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там на этот раз?",DIA_Hagen_PMSchulden_HowMuchAgain);
 		if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
 		{
 			Info_AddChoice(DIA_Hagen_PMSchulden,"Я хочу заплатить штраф!",DIA_Hagen_PETZMASTER_PayNow);
@@ -128,7 +133,7 @@ func void DIA_Hagen_PMSchulden_HowMuchAgain()
 	Info_ClearChoices(DIA_Hagen_PMSchulden);
 	Info_ClearChoices(DIA_Hagen_PETZMASTER);
 	Info_AddChoice(DIA_Hagen_PMSchulden,"У меня нет столько золота!",DIA_Hagen_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там нужно?",DIA_Hagen_PMSchulden_HowMuchAgain);
+	Info_AddChoice(DIA_Hagen_PMSchulden,"Сколько там на этот раз?",DIA_Hagen_PMSchulden_HowMuchAgain);
 	if(Npc_HasItems(other,ItMi_Gold) >= Hagen_Schulden)
 	{
 		Info_AddChoice(DIA_Hagen_PMSchulden,"Я хочу заплатить штраф!",DIA_Hagen_PETZMASTER_PayNow);
@@ -158,7 +163,7 @@ func int DIA_Hagen_PETZMASTER_Condition()
 func void DIA_Hagen_PETZMASTER_Info()
 {
 	Hagen_Schulden = 0;
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Hagen_PETZMASTER_04_00");	//Твоя слава опережает тебя. Ты нарушил законы города.
@@ -255,7 +260,7 @@ instance DIA_Lord_Hagen_Hallo(C_Info)
 
 func int DIA_Lord_Hagen_Hallo_Condition()
 {
-	if((hero.guild != GIL_NONE) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && (Kapitel < 3))
+	if(self.aivar[AIV_TalkedToPlayer] == FALSE)
 	{
 		return TRUE;
 	};
@@ -263,19 +268,32 @@ func int DIA_Lord_Hagen_Hallo_Condition()
 
 func void DIA_Lord_Hagen_Hallo_Info()
 {
-	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_00");	//Я уже слышал о тебе.
-	if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE))
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_Add_04_03");	//Лотар докладывал, что ты хочешь поговорить со мной.
+		B_Hagen_CityLaws();
 	};
-	if(Npc_KnowsInfo(other,DIA_Lothar_EyeInnos) || (Andre_EyeInnos == TRUE))
+	if(((Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen)) && (Lothar_Day < Wld_GetDay())) || Npc_KnowsInfo(other,DIA_Lothar_EyeInnos) || (Andre_EyeInnos == TRUE))
 	{
-		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_01");	//Ты чужеземец, который требует Глаз Инноса.
+		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_00");	//Я уже слышал о тебе.
+		if(Npc_KnowsInfo(other,DIA_Lothar_MESSAGE) || Npc_KnowsInfo(other,DIA_Lothar_Hagen))
+		{
+			if(Lothar_Day < Wld_GetDay())
+			{
+				AI_Output(self,other,"DIA_Lord_Hagen_Add_04_03");	//Лотар докладывал, что ты хочешь поговорить со мной.
+			};
+		};
+		if(Npc_KnowsInfo(other,DIA_Lothar_EyeInnos) || (Andre_EyeInnos == TRUE))
+		{
+			AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_01");	//Ты чужеземец, который требует Глаз Инноса.
+		};
 	};
-	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_02");	//Я лорд Хаген.
-	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_03");	//Паладин короля, воин нашего владыки Инноса и главнокомандующий Хориниса.
+	if((other.guild != GIL_NONE) && (other.guild != GIL_NOV))
+	{
+		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_02");	//Я лорд Хаген.
+		AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_03");	//Паладин короля, воин нашего владыки Инноса и главнокомандующий Хориниса.
+	};
 	AI_Output(self,other,"DIA_Lord_Hagen_Hallo_04_04");	//Я очень занятой человек. Поэтому не трать мое время попусту. А теперь скажи, зачем ты здесь.
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 };
 
 
@@ -468,7 +486,7 @@ func void DIA_Lord_Hagen_Pass_Info()
 	{
 		B_StartOtherRoutine(Fernando,"WAIT");
 	};
-	B_PlayerEnteredCity();
+	B_PlayerEnteredUpperCity();
 };
 
 
@@ -591,14 +609,14 @@ instance DIA_Hagen_CanTeach(C_Info)
 	nr = 5;
 	condition = DIA_Hagen_CanTeach_Condition;
 	information = DIA_Hagen_CanTeach_Info;
-	permanent = FALSE;
+	permanent = TRUE;
 	description = "Я ищу мастера-мечника.";
 };
 
 
 func int DIA_Hagen_CanTeach_Condition()
 {
-	if((LordHagen_Teach2H == FALSE) && (other.guild == GIL_PAL) && (other.aivar[REAL_TALENT_2H] >= 90) && (other.aivar[REAL_TALENT_2H] < 100))
+	if((LordHagen_Teach2H == FALSE) && (other.guild == GIL_PAL) && (other.HitChance[NPC_TALENT_2H] < 100))
 	{
 		return TRUE;
 	};
@@ -607,12 +625,43 @@ func int DIA_Hagen_CanTeach_Condition()
 func void DIA_Hagen_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Hagen_CanTeach_15_00");	//Я ищу мастера-мечника.
-	AI_Output(self,other,"DIA_Hagen_CanTeach_04_01");	//Да? Считай, что ты нашел его.
-	LordHagen_Teach2H = TRUE;
-	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	B_LogEntry(TOPIC_CityTeacher,"Лорд Хаген может обучить меня сражаться двуручным оружием.");
+	if(!TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_2H_Hagen))
+	{
+		B_Say(self,other,"$NOLEARNNOPOINTS");
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Hagen_CanTeach_04_01");	//Да? Считай, что ты нашел его.
+		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTeacher,"Лорд Хаген может обучить меня сражаться двуручным оружием.");
+		LordHagen_Teach2H = TRUE;
+	};
 };
 
+
+var int DIA_Hagen_Teach_permanent;
+
+func void B_BuildLearnDialog_Hagen()
+{
+	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	{
+		Info_ClearChoices(DIA_Hagen_Teach);
+		Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
+		Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hagen_Teach_2H_1);
+		Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hagen_Teach_2H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_2H) >= 100)
+		{
+			DIA_Hagen_Teach_permanent = TRUE;
+		};
+		PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+		B_Wulfgar_NoMoreTeach();
+		AI_Output(self,other,"DIA_Hagen_Teach_04_01");	//Да ведет твою руку в будущих свершениях мудрость мастера-мечника.
+		AI_StopProcessInfos(self);
+	};
+};
 
 instance DIA_Hagen_Teach(C_Info)
 {
@@ -621,11 +670,9 @@ instance DIA_Hagen_Teach(C_Info)
 	condition = DIA_Hagen_Teach_Condition;
 	information = DIA_Hagen_Teach_Info;
 	permanent = TRUE;
-	description = "Приступим к обучению! (изучить бой двуручным оружием)";
+	description = "Приступим к обучению!";
 };
 
-
-var int DIA_Hagen_Teach_permanent;
 
 func int DIA_Hagen_Teach_Condition()
 {
@@ -638,42 +685,29 @@ func int DIA_Hagen_Teach_Condition()
 func void DIA_Hagen_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Hagen_Teach_15_00");	//Приступим к обучению!
-	Info_ClearChoices(DIA_Hagen_Teach);
-	Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hagen_Teach_2H_1);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hagen_Teach_2H_5);
+	B_BuildLearnDialog_Hagen();
 };
 
 func void DIA_Hagen_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_2H] >= 100)
-	if(other.aivar[REAL_TALENT_2H] >= 100)
-	{
-		AI_Output(self,other,"DIA_Hagen_Teach_04_00");	//Ты стал великолепным мечником. Мне больше нечему учить тебя.
-		AI_Output(self,other,"DIA_Hagen_Teach_04_01");	//Да ведет твою руку в будущих свершениях мудрость мастера-мечника.
-		DIA_Hagen_Teach_permanent = TRUE;
-	};
 	Info_ClearChoices(DIA_Hagen_Teach);
 };
 
 func void DIA_Hagen_Teach_2H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100);
-	Info_ClearChoices(DIA_Hagen_Teach);
-	Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hagen_Teach_2H_1);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hagen_Teach_2H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
+	{
+		B_BuildLearnDialog_Hagen();
+	};
 };
 
 func void DIA_Hagen_Teach_2H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100);
-	Info_ClearChoices(DIA_Hagen_Teach);
-	Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Hagen_Teach_2H_1);
-	Info_AddChoice(DIA_Hagen_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Hagen_Teach_2H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
+	{
+		B_BuildLearnDialog_Hagen();
+	};
 };
-
 
 instance DIA_Lord_Hagen_Knight(C_Info)
 {
@@ -1043,10 +1077,14 @@ func void DIA_Lord_Hagen_RescueBennet_WhySure()
 	AI_Output(self,other,"DIA_Lord_Hagen_RescueBennet_Witness_04_03");	//Этот наемник будет повешен за измену.
 	if(RescueBennet_KnowsCornelius == FALSE)
 	{
+		if(!Npc_IsDead(Cornelius))
+		{
+			Cornelius.guild = GIL_NONE;
+			Cornelius.aivar[AIV_CommentedPlayerCrime] = FALSE;
+		};
 		B_LogEntry(TOPIC_RescueBennet,"Корнелиус, секретарь губернатора, является свидетелем. Он утверждает, что был свидетелем убийства.");
 		RescueBennet_KnowsCornelius = TRUE;
 	};
-	Cornelius.guild = GIL_NONE;
 };
 
 func void DIA_Lord_Hagen_RescueBennet_Innoscent()
@@ -1166,6 +1204,8 @@ func void DIA_Lord_Hagen_AugeAmStart_Info()
 };
 
 
+var int Hagen_SawOrcRing;
+
 instance DIA_Lord_Hagen_ANTIPALADINE(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -1184,9 +1224,6 @@ func int DIA_Lord_Hagen_ANTIPALADINE_Condition()
 		return TRUE;
 	};
 };
-
-
-var int Hagen_SawOrcRing;
 
 func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 {
@@ -1253,6 +1290,13 @@ func void DIA_Lord_Hagen_ANTIPALADINE_Info()
 };
 
 
+func void DIA_Hagen_MoreOrcRings()
+{
+	AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_03");	//Я могу дать тебе еще несколько колец орков.
+};
+
+var int OrkRingCounter;
+
 instance DIA_Lord_Hagen_RINGEBRINGEN(C_Info)
 {
 	npc = PAL_200_Hagen;
@@ -1271,9 +1315,6 @@ func int DIA_Lord_Hagen_RINGEBRINGEN_Condition()
 		return TRUE;
 	};
 };
-
-
-var int OrkRingCounter;
 
 func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 {
@@ -1294,7 +1335,7 @@ func void DIA_Lord_Hagen_RINGEBRINGEN_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_03");	//Я могу дать тебе еще несколько колец орков.
+		DIA_Hagen_MoreOrcRings();
 		B_GiveInvItems(other,self,ItRi_OrcEliteRing,Ringcount);
 		XP_PAL_OrcRings = Ringcount * XP_PAL_OrcRing;
 		OrkRingCounter += Ringcount;

@@ -309,7 +309,7 @@ func void DIA_Hyglas_TEACH_Info()
 {
 	var int abletolearn;
 	abletolearn = 0;
-	B_Say_WantToLearnNewRunes();
+	DIA_Common_WantToLearnNewRunes();
 	Info_ClearChoices(DIA_Hyglas_TEACH);
 	Info_AddChoice(DIA_Hyglas_TEACH,Dialog_Back,DIA_Hyglas_TEACH_BACK);
 	if((Npc_GetTalentSkill(other,NPC_TALENT_MAGE) >= 2) && (PLAYER_TALENT_RUNES[SPL_InstantFireball] == FALSE))

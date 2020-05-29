@@ -185,12 +185,20 @@ func void DIA_Addon_Farim_MartinHelps_Info()
 	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_04");	//Мартин, интендант паладинов, хочет выслушать твою историю об ополчении и рыбе.
 	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_05");	//Думаешь, он сможет сделать так, чтобы люди из ополчения оставили меня в покое?
 	AI_Output(other,self,"DIA_Addon_Farim_MartinHelps_15_06");	//Он так сказал.
-	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_07");	//Отлично! Спасибо тебе! Мне нечем тебе заплатить... Хотя постой...
-	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_08");	//Я нашел этот странный камень на одном из островов у побережья Хориниса.
-	AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_09");	//Не думаю, что он очень ценный, но такой человек, как ты, наверняка найдет ему применение.
-	B_GiveInvItems(self,other,ItMi_Aquamarine,1);
 	MIS_Addon_Farim_PaladinFisch = LOG_SUCCESS;
-	B_GivePlayerXP(XP_Addon_Farim_PaladinFisch);
+	if(Npc_HasItems(other,ItMi_Aquamarine))
+	{
+		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_07");	//Отлично! Спасибо тебе. Мне нечем тебе заплатить... Хотя постой...
+		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_08");	//Я нашел этот странный камень на одном из островов у побережья Хориниса.
+		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_09");	//Не думаю, что он очень ценный, но такой человек, как ты, наверняка найдет ему применение.
+		B_GiveInvItems(self,other,ItMi_Aquamarine,1);
+		B_GivePlayerXP(XP_Addon_Farim_PaladinFisch);
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Addon_Farim_MartinHelps_11_07_add");	//Отлично! Мне нечем тебе заплатить... Спасибо тебе...
+		B_GivePlayerXP(XP_Addon_Farim_PaladinFisch / 2);
+	};
 };
 
 
@@ -246,11 +254,8 @@ func void DIA_Addon_Farim_William_Info()
 	AI_Output(other,self,"DIA_Addon_Farim_William_15_00");	//Пропал твой приятель Вильям?
 	AI_Output(self,other,"DIA_Addon_Farim_William_11_01");	//Именно так. Он был рыбаком, но на мой взгляд он слишком зазнался.
 	AI_Output(self,other,"DIA_Addon_Farim_William_11_02");	//Ему следовало держаться подальше от этой шайки.
-	Farim_Day = Wld_GetDay();
-	if(Wld_IsTime(23,0,23,59))
-	{
-		Farim_Day += 1;
-	};
+	self.flags = 0;
+	Farim_Day = B_GetDayPlus();
 	if(!Npc_KnowsInfo(other,DIA_Addon_Garvell_MissingPeopleMore))
 	{
 		if(MissingPeopleReturnedHome == FALSE)
@@ -262,7 +267,7 @@ func void DIA_Addon_Farim_William_Info()
 	};
 	Info_ClearChoices(DIA_Addon_Farim_William);
 	Info_AddChoice(DIA_Addon_Farim_William,"Но что это были за люди?",DIA_Addon_Farim_William_typen);
-	if(!Npc_HasItems(other,ITWr_Addon_William_01) && (FoundDeadWilliam == FALSE) && !Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
+	if(!Npc_HasItems(other,ITWr_Addon_William_01) && (FoundDeadWilliam == FALSE))
 	{
 		Info_AddChoice(DIA_Addon_Farim_William,"Думаю, он еще появится.",DIA_Addon_Farim_William_auftauchen);
 	}
@@ -297,7 +302,6 @@ func void DIA_Addon_Farim_William_Wo()
 	AI_Output(self,other,"DIA_Addon_Farim_William_Wo_11_01");	//К северу отсюда есть небольшая бухта.
 	AI_Output(self,other,"DIA_Addon_Farim_William_Wo_11_02");	//Туда можно приплыть самому или на лодке.
 	AI_Output(self,other,"DIA_Addon_Farim_William_Wo_11_03");	//На берегу этой бухты расположен небольшой рыбацкий лагерь. Там-то я их и видел.
-	self.flags = 0;
 	if(MIS_Addon_Vatras_WhereAreMissingPeople != LOG_SUCCESS)
 	{
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
@@ -311,7 +315,7 @@ func void DIA_Addon_Farim_William_WannWeg()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_William_WannWeg_15_00");	//Когда ты видел Вильяма в последний раз?
 	AI_Output(self,other,"DIA_Addon_Farim_William_WannWeg_11_01");	//Несколько дней назад.
-	if(!Npc_HasItems(other,ITWr_Addon_William_01) && (FoundDeadWilliam == FALSE) && !Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
+	if(!Npc_HasItems(other,ITWr_Addon_William_01) && (FoundDeadWilliam == FALSE))
 	{
 		Info_AddChoice(DIA_Addon_Farim_William,"Может быть, он просто ушел в море рыбачить?",DIA_Addon_Farim_William_Fischen);
 	};
@@ -337,9 +341,14 @@ func void DIA_Addon_Farim_William_Tschau()
 	Info_ClearChoices(DIA_Addon_Farim_William);
 };
 
-func void DIA_Addon_Farim_William_close()
+func void DIA_Addon_Farim_WilliamReport_Dead()
 {
+	AI_Output(other,self,"DIA_Addon_Farim_Add_15_02");	//Он мертв.
+	AI_Output(self,other,"DIA_Addon_Farim_Add_11_03");	//(вздыхает) Так я и думал.
+	AI_Output(self,other,"DIA_Addon_Farim_Add_11_04");	//Что ж, спасибо, что рассказал.
 	AI_Output(self,other,"DIA_Addon_Farim_Add_11_05");	//(вздыхает) Пойду-ка я в кабак и пропью его долю из нашего последнего улова. Он бы хотел, чтобы я так поступил...
+	FoundDeadWilliam = TRUE;
+	ToldFarimAboutDeadWilliam = TRUE;
 	AI_StopProcessInfos(self);
 	Npc_ExchangeRoutine(self,"Rest");
 };
@@ -391,7 +400,7 @@ func int DIA_Addon_Farim_WilliamReport_Condition()
 {
 	if(Npc_KnowsInfo(other,DIA_Addon_Farim_William) && (ToldFarimAboutDeadWilliam == FALSE) && (Farim_Day < Wld_GetDay()))
 	{
-		if(Npc_HasItems(other,ITWr_Addon_William_01) || (FoundDeadWilliam == TRUE) || Npc_KnowsInfo(other,DIA_Addon_Patrick_Hi))
+		if(Npc_HasItems(other,ITWr_Addon_William_01) || (FoundDeadWilliam == TRUE))
 		{
 			return TRUE;
 		};
@@ -402,24 +411,6 @@ func void DIA_Addon_Farim_WilliamReport_Info()
 {
 	AI_Output(self,other,"DIA_Addon_Farim_Add_11_01");	//А, это снова ты!
 	AI_Output(self,other,"DIA_Addon_Farim_Add_11_02");	//Есть какие-нибудь новости о Вильяме?
-	FoundDeadWilliam = TRUE;
-	Info_ClearChoices(DIA_Addon_Farim_WilliamReport);
-	Info_AddChoice(DIA_Addon_Farim_WilliamReport,"Он мертв.",DIA_Addon_Farim_WilliamReport_Dead);
-	Info_AddChoice(DIA_Addon_Farim_WilliamReport,"Думаю, он еще появится.",DIA_Addon_Farim_WilliamReport_No);
-};
-
-func void DIA_Addon_Farim_WilliamReport_Dead()
-{
-	AI_Output(other,self,"DIA_Addon_Farim_Add_15_02");	//Он мертв.
-	AI_Output(self,other,"DIA_Addon_Farim_Add_11_03");	//(вздыхает) Так я и думал.
-	AI_Output(self,other,"DIA_Addon_Farim_Add_11_04");	//Что ж, спасибо, что рассказал.
-	ToldFarimAboutDeadWilliam = TRUE;
-	DIA_Addon_Farim_William_close();
-};
-
-func void DIA_Addon_Farim_WilliamReport_No()
-{
-	DIA_Addon_Farim_William_auftauchen();
-	DIA_Addon_Farim_William_close();
+	DIA_Addon_Farim_WilliamReport_Dead();
 };
 

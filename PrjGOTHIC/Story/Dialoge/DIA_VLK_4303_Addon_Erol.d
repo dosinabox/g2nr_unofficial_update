@@ -106,10 +106,13 @@ func void DIA_Addon_Erol_what_Info()
 	AI_Output(other,self,"DIA_Addon_Erol_what_15_00");	//Что случилось?
 	AI_Output(self,other,"DIA_Addon_Erol_what_10_01");	//Я со своими помощниками спокойно ехал по дороге, и вдруг эти подонки выскочили из засады и убили всех моих людей.
 	AI_Output(self,other,"DIA_Addon_Erol_what_10_02");	//Хорошо, что я еще не забыл свой коронный хук справа, иначе я тоже был бы мертв.
-	Log_CreateTopic(TOPIC_Addon_Erol,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Addon_Erol,LOG_Running);
-	B_LogEntry(TOPIC_Addon_Erol,"На торговца Эрола напали бандиты. Они забрали все его товары. Эрол хочет, чтобы я вернул похищенные каменные таблички. Бандиты расположились на мосту неподалеку от таверны 'Мертвая гарпия'.");
-	MIS_Addon_Erol_BanditStuff = LOG_Running;
+	if(TotalStoneplatesForVatras <= 25)
+	{
+		Log_CreateTopic(TOPIC_Addon_Erol,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Addon_Erol,LOG_Running);
+		B_LogEntry(TOPIC_Addon_Erol,"На торговца Эрола напали бандиты. Они забрали все его товары. Эрол хочет, чтобы я вернул похищенные каменные таблички. Бандиты расположились на мосту неподалеку от таверны 'Мертвая гарпия'.");
+		MIS_Addon_Erol_BanditStuff = LOG_Running;
+	};
 	Info_ClearChoices(DIA_Addon_Erol_what);
 	Info_AddChoice(DIA_Addon_Erol_what,"Так это твои вещи лежат под мостом?",DIA_Addon_Erol_what_dein);
 	Info_AddChoice(DIA_Addon_Erol_what,"Что за люди на тебя напали?",DIA_Addon_Erol_what_wer);
@@ -162,6 +165,11 @@ func void DIA_Addon_Erol_what_KDW()
 {
 	AI_Output(other,self,"DIA_Addon_Erol_what_KDW_15_00");	//Зачем таблички нужны магу Воды?
 	AI_Output(self,other,"DIA_Addon_Erol_what_KDW_10_01");	//Он сказал, что изучает их, и просил привезти как можно больше.
+	if(!Npc_KnowsInfo(other,DIA_Addon_Vatras_Stoneplate))
+	{
+		Log_CreateTopic(TOPIC_CityTrader,LOG_NOTE);
+		B_LogEntry(TOPIC_CityTrader,"Мага Воды Ватраса интересуют странные каменные таблички.");
+	};
 	Erol_AskedKDW = TRUE;
 };
 
@@ -330,7 +338,10 @@ func void DIA_Addon_Erol_Stoneplates_Info()
 			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_08");	//Я иду домой. Если хочешь, можешь пойти со мной.
 			AI_Output(self,other,"DIA_Addon_Erol_Stoneplates_10_09");	//Когда мы доберемся до моего дома, я смогу продать тебе некоторые вещи.
 			AI_StopProcessInfos(self);
-			AI_UseMob(self,"BENCH",-1);
+			if(C_BodyStateContains(self,BS_SIT))
+			{
+				AI_UseMob(self,"BENCH",-1);
+			};
 			AI_GotoWP(self,"NW_TAVERN_TO_FOREST_03");
 			Npc_ExchangeRoutine(self,"Start");
 //			Wld_AssignRoomToGuild("grpwaldhuette01",GIL_PUBLIC);
@@ -516,7 +527,7 @@ func void DIA_Addon_Erol_Trade_Info()
 		AI_Output(self,other,"DIA_Addon_Erol_Trade_10_00");	//Впрочем, выбора у меня нет.
 		Log_CreateTopic(Topic_OutTrader,LOG_NOTE);
 		B_LogEntry(Topic_OutTrader,LogText_Addon_ErolTrade);
-		Npc_ExchangeRoutine(self,"Home");
+		Npc_ExchangeRoutine(self,"HOME");
 		Erol_IsAtHome = TRUE;
 	};
 	Trade_IsActive = TRUE;

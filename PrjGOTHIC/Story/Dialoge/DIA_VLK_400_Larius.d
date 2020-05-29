@@ -51,6 +51,7 @@ func void DIA_Larius_Hello_Info()
 	{
 		AI_Output(self,other,"DIA_Larius_Richterueberfall_01_03");	//ƒаже если ты посв€щенный маг...
 	};
+	B_PlayerEnteredUpperCity();
 };
 
 
@@ -78,6 +79,8 @@ func void DIA_Larius_WhoAreYou_Info()
 	AI_Output(other,self,"DIA_Larius_WhoAreYou_15_03");	//“о есть ты всем здесь заправл€ешь?
 	AI_Output(self,other,"DIA_Larius_WhoAreYou_01_04");	//я... ну... в насто€щий момент мои руки св€заны.
 	AI_Output(self,other,"DIA_Larius_WhoAreYou_01_05");	//«десь командует этот лорд ’аген, по крайней мере, пока он в городе.
+	Player_KnowsLordHagen = TRUE;
+	Player_KnowsLariusAsGovernor = TRUE;
 };
 
 
@@ -185,7 +188,7 @@ instance DIA_Larius_Dragons(C_Info)
 
 func int DIA_Larius_Dragons_Condition()
 {
-	if((Npc_KnowsInfo(other,DIA_Larius_WhoAreYou) || Npc_KnowsInfo(other,DIA_Gaertner_Job)) && (Kapitel < 5))
+	if((Player_KnowsLariusAsGovernor == TRUE) && (Kapitel < 5))
 	{
 		return TRUE;
 	};
@@ -196,7 +199,10 @@ func void DIA_Larius_Dragons_Info()
 	AI_Output(other,self,"DIA_Lothar_Dragons_15_00");	//ѕослушай - этому городу угрожают драконы!
 	AI_Output(self,other,"DIA_Larius_Richterueberfall_01_01");	//Ќе пори чепухи, или ты хочешь, чтобы € заковал теб€ в кандалы?
 	B_Say(self,other,"$GETUPANDBEGONE");
-	Player_TalkedAboutDragonsToSomeone = TRUE;
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	{
+		Player_TalkedAboutDragonsToSomeone = TRUE;
+	};
 	AI_StopProcessInfos(self);
 };
 

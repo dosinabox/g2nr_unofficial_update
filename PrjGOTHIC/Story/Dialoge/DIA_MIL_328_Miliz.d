@@ -117,7 +117,7 @@ func int DIA_328_Miliz_PICKPOCKET_Condition()
 {
 	if(Npc_HasItems(self,ItKe_Storage))
 	{
-		return C_StealItem(35,Hlp_GetInstanceID(ItKe_Storage));
+		return C_StealItem(35);
 	};
 	return FALSE;
 };

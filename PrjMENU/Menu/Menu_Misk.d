@@ -16,8 +16,8 @@ instance MENUITEM_LEAVE_GAME_HEADLINE(C_MENU_ITEM_DEF)
 	type = MENU_ITEM_TEXT;
 	posx = 0;
 	posy = 3000;
-	dimx = 8100;
-	dimy = 750;
+	dimx = MENU_MAIN_DX;
+	dimy = MENU_MAIN_DY;
 	flags = IT_CHROMAKEYED | IT_TRANSPARENT | IT_MOVEABLE | IT_TXT_CENTER;
 };
 
@@ -28,8 +28,8 @@ instance MENUITEM_LEAVE_GAME_YES(C_MENU_ITEM_DEF)
 	text[1] = "Да, я вернусь!";
 	posx = 0;
 	posy = 4000;
-	dimx = 8100;
-	dimy = 750;
+	dimx = MENU_MAIN_DX;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_CLOSE;
 	onselaction_s[0] = "LEAVE_GAME";
 	flags = IT_CHROMAKEYED | IT_TRANSPARENT | IT_MOVEABLE | IT_SELECTABLE | IT_TXT_CENTER;
@@ -42,8 +42,8 @@ instance MENUITEM_LEAVE_GAME_NO(C_MENU_ITEM_DEF)
 	text[1] = "Нет, я хочу продолжить игру";
 	posx = 0;
 	posy = 4600;
-	dimx = 8100;
-	dimy = 750;
+	dimx = MENU_MAIN_DX;
+	dimy = MENU_MAIN_DY;
 	flags = IT_CHROMAKEYED | IT_TRANSPARENT | IT_MOVEABLE | IT_SELECTABLE | IT_TXT_CENTER;
 };
 

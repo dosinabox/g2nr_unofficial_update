@@ -54,6 +54,63 @@ func void DIA_Lares_DI_Hallo_Info()
 };
 
 
+var int DIA_Lares_DI_Teacher_permanent;
+var int Lares_DI_TeachComment;
+
+func void B_BuildLearnDialog_Lares_DI()
+{
+	Info_ClearChoices(DIA_Lares_DI_Training);
+	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
+	{
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
+	};
+	if(other.attribute[ATR_DEXTERITY] < T_MED)
+	{
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
+	};
+	if(VisibleTalentValue(NPC_TALENT_1H) < 100)
+	{
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
+		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
+	};
+	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (other.attribute[ATR_DEXTERITY] >= T_MED) && (VisibleTalentValue(NPC_TALENT_1H) >= 100))
+	{
+		if((RealTalentValue(NPC_TALENT_1H) >= 100) && (other.aivar[REAL_DEXTERITY] >= T_MED))
+		{
+			DIA_Lares_DI_Teacher_permanent = TRUE;
+		};
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
+};
+
+func void B_Lares_DI_TeachComment()
+{
+	if(Lares_DI_TeachComment == 0)
+	{
+		AI_Output(self,other,"DIA_Lares_DI_Training_1H_1_09_00");	//Тебе нужно согнуть немного переднюю ногу и выпрямить спину - так ты займешь правильную стойку.
+		Lares_DI_TeachComment = 1;
+	}
+	else if(Lares_DI_TeachComment == 1)
+	{
+		AI_Output(self,other,"DIA_Lares_DI_Training_1H_5_09_00");	//Не напрягай бедра, это позволит тебе вовремя уклониться от контратаки.
+		Lares_DI_TeachComment = 2;
+	}
+	else if(Lares_DI_TeachComment == 2)
+	{
+		AI_Output(self,other,"DIA_Lares_DI_Training_DEX_1_09_00");	//Верхняя часть твоего туловища должна действовать согласованно с нижней.
+		Lares_DI_TeachComment = 3;
+	}
+	else if(Lares_DI_TeachComment == 3)
+	{
+		AI_Output(self,other,"DIA_Lares_DI_Training_DEX_5_09_00");	//Всегда следи за своими ногами.
+		Lares_DI_TeachComment = 0;
+	};
+};
+
 instance DIA_Lares_DI_Training(C_Info)
 {
 	npc = VLK_449_Lares_DI;
@@ -67,7 +124,7 @@ instance DIA_Lares_DI_Training(C_Info)
 
 func int DIA_Lares_DI_Training_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(!Npc_IsDead(UndeadDragon) && (DIA_Lares_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -76,96 +133,51 @@ func int DIA_Lares_DI_Training_Condition()
 func void DIA_Lares_DI_Training_Info()
 {
 	AI_Output(other,self,"DIA_Lares_DI_Training_15_00");	//Научи меня тому, что знаешь сам.
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (other.aivar[REAL_TALENT_1H] < 100))
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (VisibleTalentValue(NPC_TALENT_1H) < 100))
 	{
 		AI_Output(self,other,"DIA_Lares_DI_Training_09_01");	//Нет проблем.
 	}
-	else
+	else if(other.attribute[ATR_DEXTERITY] < T_MED)
 	{
 		AI_Output(self,other,"DIA_Lares_Dex_09_01");	//Конечно. Если хочешь, я помогу тебе стать более ловким.
 	};
-	Info_ClearChoices(DIA_Lares_DI_Training);
-	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
-	{
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
-	};
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
+	B_BuildLearnDialog_Lares_DI();
 };
 
 func void DIA_Lares_DI_Training_1H_1()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,100))
 	{
-		AI_Output(self,other,"DIA_Lares_DI_Training_1H_1_09_00");	//Тебе нужно согнуть немного переднюю ногу и выпрямить спину - так ты займешь правильную стойку.
+		B_Lares_DI_TeachComment();
+		B_BuildLearnDialog_Lares_DI();
 	};
-	Info_ClearChoices(DIA_Lares_DI_Training);
-	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
-	{
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
-	};
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
 };
 
 func void DIA_Lares_DI_Training_1H_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,100))
 	{
-		AI_Output(self,other,"DIA_Lares_DI_Training_1H_5_09_00");	//Не напрягай бедра, это позволит тебе вовремя уклониться от контратаки.
+		B_Lares_DI_TeachComment();
+		B_BuildLearnDialog_Lares_DI();
 	};
-	Info_ClearChoices(DIA_Lares_DI_Training);
-	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
-	{
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
-	};
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
 };
 
 func void DIA_Lares_DI_Training_DEX_1()
 {
 	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MED))
 	{
-		AI_Output(self,other,"DIA_Lares_DI_Training_DEX_1_09_00");	//Верхняя часть твоего туловища должна действовать согласованно с нижней.
+		B_Lares_DI_TeachComment();
+		B_BuildLearnDialog_Lares_DI();
 	};
-	Info_ClearChoices(DIA_Lares_DI_Training);
-	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
-	{
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
-	};
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
 };
 
 func void DIA_Lares_DI_Training_DEX_5()
 {
 	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MED))
 	{
-		AI_Output(self,other,"DIA_Lares_DI_Training_DEX_5_09_00");	//Всегда следи за своими ногами.
+		B_Lares_DI_TeachComment();
+		B_BuildLearnDialog_Lares_DI();
 	};
-	Info_ClearChoices(DIA_Lares_DI_Training);
-	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
-	{
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
-	};
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
 };
 
 func void DIA_Lares_DI_Training_SNEAK()
@@ -173,17 +185,8 @@ func void DIA_Lares_DI_Training_SNEAK()
 	if(B_TeachThiefTalent(self,other,NPC_TALENT_SNEAK))
 	{
 		AI_Output(self,other,"DIA_Lares_DI_Training_SNEAK_09_00");	//Всегда используй всю площадь подошвы, когда крадешься.
+		B_BuildLearnDialog_Lares_DI();
 	};
-	Info_ClearChoices(DIA_Lares_DI_Training);
-	Info_AddChoice(DIA_Lares_DI_Training,Dialog_Back,DIA_Lares_DI_Training_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
-	{
-		Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Lares_DI_Training_SNEAK);
-	};
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_Lares_DI_Training_DEX_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_Lares_DI_Training_DEX_5);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Lares_DI_Training_1H_1);
-	Info_AddChoice(DIA_Lares_DI_Training,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Lares_DI_Training_1H_5);
 };
 
 func void DIA_Lares_DI_Training_BACK()
@@ -191,6 +194,7 @@ func void DIA_Lares_DI_Training_BACK()
 	Info_ClearChoices(DIA_Lares_DI_Training);
 };
 
+var int DIA_Lares_DI_UndeadDragonDead_OneTime;
 
 instance DIA_Lares_DI_UndeadDragonDead(C_Info)
 {
@@ -210,9 +214,6 @@ func int DIA_Lares_DI_UndeadDragonDead_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Lares_DI_UndeadDragonDead_OneTime;
 
 func void DIA_Lares_DI_UndeadDragonDead_Info()
 {

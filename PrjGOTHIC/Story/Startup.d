@@ -1,5 +1,5 @@
 
-const int FIX_VERSION_START = 24;
+const int FIX_VERSION_START = 25;
 const int LEAST_SUPPORTED = 21;
 var int FIX_VERSION_SAVE;
 
@@ -1821,9 +1821,10 @@ func void init_surface()
 	INIT_SUB_Surface();
 };
 
-func void init_oldworld()
+func void INIT_OldWorld()
 {
 	B_Check_Version();
+	B_Check_Talents();
 	B_SetHeroSkin();
 	INIT_SUB_Oldcamp();
 	INIT_SUB_Demontower();
@@ -2129,7 +2130,9 @@ func void STARTUP_NewWorld_Part_City_01()
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_21");
 	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_22");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_23");
-	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_24");
+//	точка FP_SHELLSPAWN_CITY_24 за текстурой в гавани - временная замена на FP_ROAM_FISHERMAN_02
+//	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_SHELLSPAWN_CITY_24");
+	Wld_InsertItem(ItMi_Addon_Shell_02,"FP_ROAM_FISHERMAN_02");
 	Wld_InsertItem(ItMi_Addon_Shell_01,"FP_SHELLSPAWN_CITY_25");
 };
 
@@ -2167,7 +2170,7 @@ func void INIT_SUB_NewWorld_Part_City_01()
 	Wld_AssignRoomToGuild("bogner",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("matteo",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("hotel",GIL_NONE);
-	Wld_AssignRoomToGuild("stadtkneipe",GIL_NONE);	
+	Wld_AssignRoomToGuild("stadtkneipe",GIL_NONE);
 	if(Fire_Contest == FALSE)
 	{
 		Wld_AssignRoomToGuild("zuris",GIL_VLK);
@@ -2466,7 +2469,7 @@ func void INIT_SUB_NewWorld_Part_Monastery_01()
 	Wld_AssignRoomToGuild("kloster02",GIL_PUBLIC);
 	Wld_AssignRoomToGuild("kloster03",GIL_NOV);
 	Wld_AssignRoomToGuild("kloster04",GIL_PUBLIC);
-	Wld_AssignRoomToGuild("kloster05",GIL_NOV);	
+	Wld_AssignRoomToGuild("kloster05",GIL_NOV);
 	Wld_AssignRoomToGuild("kloster06",GIL_KDF);
 	Wld_AssignRoomToGuild("kloster07",GIL_KDF);
 	Wld_AssignRoomToGuild("kloster08",GIL_KDF);
@@ -3400,6 +3403,7 @@ func void STARTUP_NewWorld()
 func void INIT_NewWorld()
 {
 	B_Check_Version();
+	B_Check_Talents();
 	B_SetHeroSkin();
 	B_CheckDynamicText();
 	B_InitMonsterAttitudes();
@@ -3444,6 +3448,7 @@ func void STARTUP_AddonWorld()
 func void INIT_AddonWorld()
 {
 	B_Check_Version();
+	B_Check_Talents();
 	B_SetHeroSkin();
 	if((BloodwynIsHeadless == TRUE) && (Saturas_RiesenPlan == FALSE))
 	{

@@ -197,8 +197,8 @@ func void DIA_Alwin_FellanSuccess_Info()
 	}
 	else
 	{
-		B_Say(self,other,"$YouMurderer");
-		B_Say(self,other,"$GetOutOfHere");
+		B_Say(self,other,"$YOUMURDERER");
+		B_Say(self,other,"$GETOUTOFHERE");
 		MIS_AttackFellan = LOG_FAILED;
 		B_MemorizePlayerCrime(self,other,CRIME_MURDER);
 		B_CheckLog();

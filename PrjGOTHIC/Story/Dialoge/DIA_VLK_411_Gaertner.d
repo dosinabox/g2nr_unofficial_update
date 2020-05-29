@@ -82,6 +82,7 @@ func void DIA_Gaertner_Job_Info()
 	AI_Output(self,other,"DIA_Gaertner_Job_09_04");	//Когда-то меня даже хотели отправить в колонию за то, что я прикончил одного парня.
 	AI_Output(self,other,"DIA_Gaertner_Job_09_05");	//Но Лариусу, губернатору, нужен был садовник, и меня оставили здесь.
 	AI_Output(self,other,"DIA_Gaertner_Job_09_06");	//Со временем этот сад стал моим домом. И я вполне доволен этим.
+	Player_KnowsLariusAsGovernor = TRUE;
 };
 
 

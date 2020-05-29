@@ -643,6 +643,7 @@ func void B_UpgrateBeliarsWeapon()
 	{
 		concatText = ConcatStrings(PRINT_Beliarshitpoints_MAX,IntToString(BeliarsTribute));
 		PrintScreen(concatText,-1,-1,FONT_Screen,4);
+		Stats_Beliar_ClawMaxHp += BeliarsTribute;
 		hero.attribute[ATR_HITPOINTS_MAX] -= BeliarsTribute;
 		if(hero.attribute[ATR_HITPOINTS] > (BeliarsTribute + 2))
 		{
@@ -651,7 +652,7 @@ func void B_UpgrateBeliarsWeapon()
 		else
 		{
 			hero.attribute[ATR_HITPOINTS] = 2;
-		}; 
+		};
 	};
 	BeliarDamageChance = BeliarNextDamageChance;
 	BeliarWeapCurrentLvL = BeliarWeapNextLvL;

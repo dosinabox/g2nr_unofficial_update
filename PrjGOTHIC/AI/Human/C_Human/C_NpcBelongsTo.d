@@ -46,6 +46,13 @@ func int C_NpcBelongsToCity(var C_Npc slf)
 		{
 			return TRUE;
 		};
+		if(RosiLocation == LOC_CITY)
+		{
+			if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Rosi)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Till)))
+			{
+				return TRUE;
+			};
+		};
 	};
 	return FALSE;
 };

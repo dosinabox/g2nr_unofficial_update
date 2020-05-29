@@ -413,7 +413,7 @@ func void DIA_Halvor_Hehlerei_Annehmen()
 
 func void DIA_Halvor_Hehlerei_Ablehnen()
 {
-	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_back_15_00");	//Я подумаю над этим.
+	DIA_Common_IWillThinkAboutIt();
 	Info_ClearChoices(DIA_Halvor_Hehlerei);
 };
 

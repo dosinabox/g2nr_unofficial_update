@@ -282,7 +282,7 @@ func void DIA_Andre_PMSchulden_HowMuchAgain()
 	Info_ClearChoices(DIA_Andre_PMSchulden);
 	Info_ClearChoices(DIA_Andre_PETZMASTER);
 	Info_AddChoice(DIA_Andre_PMSchulden,"У меня недостаточно золота.",DIA_Andre_PETZMASTER_PayLater);
-	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там нужно?",DIA_Andre_PMSchulden_HowMuchAgain);
+	Info_AddChoice(DIA_Andre_PMSchulden,"Сколько там еще?",DIA_Andre_PMSchulden_HowMuchAgain);
 	if(Npc_HasItems(other,ItMi_Gold) >= Andre_Schulden)
 	{
 		Info_AddChoice(DIA_Andre_PMSchulden,"Я хочу заплатить штраф!",DIA_Andre_PETZMASTER_PayNow);
@@ -507,7 +507,10 @@ func void DIA_Andre_Message_Dragons()
 		AI_Output(self,other,"DIA_Andre_Message_Dragons_08_04");	//Я уверен, что ты достаточно умен и понимаешь это сам.
 	};
 	AI_Output(self,other,"DIA_Andre_Message_Dragons_08_05");	//Так все-таки, зачем тебе нужно увидеть его?
-	Player_TalkedAboutDragonsToSomeone = TRUE;
+	if(Npc_KnowsInfo(other,DIA_Lothar_Dragons))
+	{
+		Player_TalkedAboutDragonsToSomeone = TRUE;
+	};
 };
 
 func void DIA_Andre_Message_Personal()
@@ -761,6 +764,14 @@ func void DIA_Andre_Alternative_Info()
 };
 
 
+func void B_Andre_StartGuildOfThievesQuest()
+{
+	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
+	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
+	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
+	MIS_Andre_GuildOfThieves = LOG_Running;
+};
+
 instance DIA_Andre_GuildOfThieves(C_Info)
 {
 	npc = MIL_311_Andre;
@@ -787,10 +798,7 @@ func int DIA_Andre_GuildOfThieves_Condition()
 func void DIA_Andre_GuildOfThieves_Info()
 {
 	AI_Output(other,self,"DIA_Andre_GuildOfThieves_15_00");	//Что у тебя за проблема?
-	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
-	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
-	AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
-	MIS_Andre_GuildOfThieves = LOG_Running;
+	B_Andre_StartGuildOfThievesQuest();
 	if(other.guild == GIL_NONE)
 	{
 		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_04");	//Тогда я смогу гарантировать, что ты будешь принят в ополчение - неважно, гражданин ты или нет.
@@ -950,7 +958,7 @@ func void DIA_Andre_Auslieferung_Info()
 
 func void DIA_Andre_Auslieferung_Back()
 {
-	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
+	DIA_Common_IllBeBackLater();
 	Info_ClearChoices(DIA_Andre_Auslieferung);
 };
 
@@ -1168,18 +1176,6 @@ func void DIA_Andre_DGRunning_Success()
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_01");	//Ты оказал городу большую услугу.
 	DG_gefunden = TRUE;
 	MIS_Andre_GuildOfThieves = LOG_SUCCESS;
-	if(MIS_CassiaRing == LOG_Running)
-	{
-		MIS_CassiaRing = LOG_FAILED;
-	};
-	if(MIS_CassiaKelche == LOG_Running)
-	{
-		MIS_CassiaKelche = LOG_FAILED;
-	};
-	if(MIS_RamirezSextant == LOG_Running)
-	{
-		MIS_RamirezSextant = LOG_FAILED;
-	};
 	B_GivePlayerXP(XP_GuildOfThievesPlatt);
 	if(other.guild == GIL_NONE)
 	{
@@ -1464,7 +1460,7 @@ func void DIA_Andre_FOUND_PECK_Info()
 	AI_Output(other,self,"DIA_Andre_FOUND_PECK_15_00");	//Мне удалось найти Пека.
 	if(Npc_IsDead(Peck))
 	{
-		AI_Output(other,self,"DIA_Addon_Cord_TalkedToDexter_15_02");	//Он мертв.
+		DIA_Common_HeIsDead();
 		AI_Output(self,other,"DIA_Maleth_GEHSTOCK_08_01");	//Это невероятно! Я...
 		AI_Output(self,other,"DIA_Maleth_BanditsDEAD_08_04");	//Я расскажу остальным об этом!
 		MIS_Andre_Peck = LOG_OBSOLETE;
@@ -1829,10 +1825,7 @@ func void DIA_Andre_ThievesGuildQuestForMIL_Info()
 	AI_Output(other,self,"DIA_Andre_HILFBAUERLOBART_15_00");	//У тебя есть еще задания для меня?
 	if(MIS_Andre_GuildOfThieves == FALSE)
 	{
-		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_01");	//Последнее время в городе развелось слишком много воров. И мы никак не можем поймать ни одного из них. Воры действуют очень осторожно.
-		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_02");	//Эти мерзавцы знают свое дело. Я уверен, что в городе действует организованная банда.
-		AI_Output(self,other,"DIA_Andre_GuildOfThieves_08_03");	//Я не удивлюсь, если в Хоринисе появилась гильдия воров. Найди главарей этой банды и ликвидируй их.
-		MIS_Andre_GuildOfThieves = LOG_Running;
+		B_Andre_StartGuildOfThievesQuest();
 	}
 	else
 	{

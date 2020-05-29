@@ -194,7 +194,7 @@ func void DIA_Lee_PETZMASTER_Info()
 	{
 		AI_Output(self,other,"DIA_Lee_PETZMASTER_04_02");	//Хорошо, что ты все же пришел ко мне, пока твои дела не стали совсем паршивыми.
 		AI_Output(self,other,"DIA_Lee_PETZMASTER_04_03");	//Наемники - крутые парни, и фермеры здесь тоже могут постоять за себя, но ты не можешь просто так убивать людей.
-		Lee_Schulden =B_GetTotalPetzCounter(self) * 50 + 500;
+		Lee_Schulden = B_GetTotalPetzCounter(self) * 50 + 500;
 		if((PETZCOUNTER_Farm_Theft + PETZCOUNTER_Farm_Attack + PETZCOUNTER_Farm_Sheepkiller) > 0)
 		{
 			AI_Output(self,other,"DIA_Lee_PETZMASTER_04_04");	//Не говоря уже о других твоих преступлениях здесь.
@@ -387,7 +387,7 @@ func void DIA_Lee_LeesPlan_Info()
 {
 	AI_Output(other,self,"DIA_Lee_LeesPlan_15_00");	//А чем ты здесь занимаешься?
 	AI_Output(self,other,"DIA_Lee_LeesPlan_04_01");	//Это просто: я делаю все возможное, чтобы мы все смогли убраться с этого острова.
-	if((MIS_Lee_Friedensangebot == FALSE) || (MIS_Lee_Friedensangebot == LOG_Running))
+	if(MIS_Lee_Friedensangebot != LOG_SUCCESS)
 	{
 		AI_Output(self,other,"DIA_Lee_LeesPlan_04_02");	//Онар нанял нас для защиты его фермы, и именно этим мы и намерены заниматься.
 		AI_Output(self,other,"DIA_Lee_LeesPlan_04_03");	//Но наша награда - нечто большее, чем просто плата за работу. Помогая фермерам, мы отрезаем город от провизии.
@@ -396,11 +396,18 @@ func void DIA_Lee_LeesPlan_Info()
 		{
 			AI_Output(self,other,"DIA_Lee_LeesPlan_04_05");	//Плохо только, что тебе пришлось присоединиться именно к ним.
 		};
-	}
-	if(MIS_Lee_Friedensangebot == FALSE)
-	{
-		AI_Output(other,self,"DIA_Lee_LeesPlan_15_06");	//Что за предложение ты хочешь сделать?
-		AI_Output(self,other,"DIA_Lee_LeesPlan_04_07");	//Естественно, условием будет наше помилование и свободный путь на материк. Ты все узнаешь, когда придет время.
+		if(MIS_Lee_Friedensangebot == FALSE)
+		{
+			AI_Output(other,self,"DIA_Lee_LeesPlan_15_06");	//Что за предложение ты хочешь сделать?
+			if((other.guild == GIL_NONE) || (other.guild == GIL_SLD))
+			{
+				AI_Output(self,other,"DIA_Lee_LeesPlan_04_07");	//Естественно, условием будет наше помилование и свободный путь на материк. Ты все узнаешь, когда придет время.
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Lee_LeesPlan_04_07_add");	//Естественно, условием будет наше помилование и свободный путь на материк.
+			};
+		};
 	};
 };
 
@@ -1386,6 +1393,35 @@ func void DIA_Lee_SYLVIO_Info()
 };
 
 
+var int DIA_Lee_Teacher_permanent;
+var int Lee_Labercount;
+var int DIA_Lee_TeachState_2H;
+
+func void B_Lee_CommentFightSkill()
+{
+	if(Lee_Labercount == 0)
+	{
+		AI_Output(self,other,"DIA_Lee_DI_Teach_1H_5_04_00");	//Твои кисти слишком напряжены. Ты должен держать оружие свободнее.
+		Lee_Labercount = 1;
+	}
+	else if(Lee_Labercount == 1)
+	{
+		AI_Output(self,other,"DIA_DIA_Lee_DI_Teach_2H_1_04_00");	//Всегда помни: боковой удар должен идти от бедра, а не от запястья.
+		Lee_Labercount = 2;
+	}
+	else if(Lee_Labercount == 2)
+	{
+		AI_Output(self,other,"DIA_Lee_DI_Teach_2H_5_04_00");	//Сильнейший удар бесполезен, если он приходится в никуда. Так что старайся точно рассчитывать удары.
+		Lee_Labercount = 0;
+	};
+};
+
+func void B_Lee_TeachNoMore()
+{
+	AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_00");	//Теперь ты настоящий мастер боя двуручным оружием.
+	AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_01");	//Ты больше не нуждаешься в учителях.
+};
+
 instance DIA_Lee_CanTeach(C_Info)
 {
 	npc = SLD_800_Lee;
@@ -1409,32 +1445,40 @@ func int DIA_Lee_CanTeach_Condition()
 func void DIA_Lee_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Lee_CanTeach_15_00");	//Ты можешь обучить меня?
-	AI_Output(self,other,"DIA_Lee_CanTeach_04_01");	//Я могу показать тебе, как сражаться двуручным оружием.
-//	if(other.HitChance[NPC_TALENT_2H] < 75)
-	if(other.aivar[REAL_TALENT_2H] < 75)
+	if(RealTalentValue(NPC_TALENT_2H) >= 100)
 	{
-		AI_Output(self,other,"DIA_Lee_CanTeach_04_02");	//Но у меня нет времени на то, чтобы учить тебя основам.
-		AI_Output(self,other,"DIA_Lee_CanTeach_04_03");	//Как только ты достигнешь определенного уровня, я в твоем распоряжении. А пока поищи другого учителя.
+		B_Lee_TeachNoMore();
+		Lee_TeachPlayer = TRUE;
+		DIA_Lee_Teacher_permanent = TRUE;
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Lee_CanTeach_04_04");	//Я слышал, что ты очень хорош. Но готов поспорить, что я все же могу научить тебя парочке-другой приемов.
-		if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
+		AI_Output(self,other,"DIA_Lee_CanTeach_04_01");	//Я могу показать тебе, как сражаться двуручным оружием.
+		if(!TeacherCanTrainTalent(NPC_TALENT_2H,TeachCondition_2H_Lee))
 		{
-			Lee_TeachPlayer = TRUE;
-			Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
-			B_LogEntry(Topic_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
+			AI_Output(self,other,"DIA_Lee_CanTeach_04_02");	//Но у меня нет времени на то, чтобы учить тебя основам.
+			AI_Output(self,other,"DIA_Lee_CanTeach_04_03");	//Как только ты достигнешь определенного уровня, я в твоем распоряжении. А пока поищи другого учителя.
 		}
 		else
 		{
-			AI_Output(self,other,"DIA_Lee_CanTeach_04_05");	//Так что, если хочешь, я могу потренировать тебя. Впрочем, не бесплатно.
-			AI_Output(other,self,"DIA_Lee_CanTeach_15_06");	//Сколько?
-			AI_Output(self,other,"DIA_Lee_CanTeach_04_07");	//1000 монет - и считай, что мы договорились.
-			Info_ClearChoices(DIA_Lee_CanTeach);
-			Info_AddChoice(DIA_Lee_CanTeach,"Это слишком дорого для меня.",DIA_Lee_CanTeach_No);
-			if(Npc_HasItems(other,ItMi_Gold) >= 1000)
+			AI_Output(self,other,"DIA_Lee_CanTeach_04_04");	//Я слышал, что ты очень хорош. Но готов поспорить, что я все же могу научить тебя парочке-другой приемов.
+			if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 			{
-				Info_AddChoice(DIA_Lee_CanTeach,"Договорились. Вот золото.",DIA_Lee_CanTeach_Yes);
+				Lee_TeachPlayer = TRUE;
+				Log_CreateTopic(Topic_SoldierTeacher,LOG_NOTE);
+				B_LogEntry(Topic_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
+			}
+			else
+			{
+				AI_Output(self,other,"DIA_Lee_CanTeach_04_05");	//Так что, если хочешь, я могу потренировать тебя. Впрочем, не бесплатно.
+				AI_Output(other,self,"DIA_Lee_CanTeach_15_06");	//Сколько?
+				AI_Output(self,other,"DIA_Lee_CanTeach_04_07");	//1000 монет - и считай, что мы договорились.
+				Info_ClearChoices(DIA_Lee_CanTeach);
+				Info_AddChoice(DIA_Lee_CanTeach,"Это слишком дорого для меня.",DIA_Lee_CanTeach_No);
+				if(Npc_HasItems(other,ItMi_Gold) >= 1000)
+				{
+					Info_AddChoice(DIA_Lee_CanTeach,"Договорились. Вот золото.",DIA_Lee_CanTeach_Yes);
+				};
 			};
 		};
 	};
@@ -1458,8 +1502,26 @@ func void DIA_Lee_CanTeach_Yes()
 	B_LogEntry(Topic_SoldierTeacher,"Ли может обучить меня искусству обращения с двуручным оружием.");
 };
 
-
-var int DIA_Lee_Teach_permanent;
+func void B_BuildLearnDialog_Lee()
+{
+	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	{
+		Info_ClearChoices(DIA_Lee_Teach);
+		Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
+		Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_Teach_2H_1);
+		Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_Teach_2H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_2H) >= 100)
+		{
+			DIA_Lee_Teacher_permanent = TRUE;
+		};
+		PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+		B_Lee_TeachNoMore();
+		AI_StopProcessInfos(self);
+	};
+};
 
 instance DIA_Lee_Teach(C_Info)
 {
@@ -1474,7 +1536,7 @@ instance DIA_Lee_Teach(C_Info)
 
 func int DIA_Lee_Teach_Condition()
 {
-	if((Lee_TeachPlayer == TRUE) && (DIA_Lee_Teach_permanent == FALSE))
+	if((Lee_TeachPlayer == TRUE) && (DIA_Lee_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -1483,10 +1545,7 @@ func int DIA_Lee_Teach_Condition()
 func void DIA_Lee_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Lee_Teach_15_00");	//Начнем обучение.
-	Info_ClearChoices(DIA_Lee_Teach);
-	Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
-	Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_Teach_2H_1);
-	Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_Teach_2H_5);
+	B_BuildLearnDialog_Lee();
 };
 
 func void DIA_Lee_Teach_Back()
@@ -1496,34 +1555,20 @@ func void DIA_Lee_Teach_Back()
 
 func void DIA_Lee_Teach_2H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100);
-//	if(other.HitChance[NPC_TALENT_2H] >= 100)
-	if(other.aivar[REAL_TALENT_2H] >= 100)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
 	{
-		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_00");	//Теперь ты настоящий мастер боя двуручным оружием.
-		AI_Output(self,other,"DIA_DIA_Lee_Teach_2H_1_04_01");	//Ты больше не нуждаешься в учителях.
-		DIA_Lee_Teach_permanent = TRUE;
+		B_Lee_CommentFightSkill();
+		B_BuildLearnDialog_Lee();
 	};
-	Info_ClearChoices(DIA_Lee_Teach);
-	Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
-	Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_Teach_2H_1);
-	Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_Teach_2H_5);
 };
 
 func void DIA_Lee_Teach_2H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100);
-//	if(other.HitChance[NPC_TALENT_2H] >= 100)
-	if(other.aivar[REAL_TALENT_2H] >= 100)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
 	{
-		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_00");	//Теперь ты настоящий мастер боя двуручным оружием.
-		AI_Output(self,other,"DIA_Lee_Teach_2H_5_04_01");	//Ты больше не нуждаешься в учителях.
-		DIA_Lee_Teach_permanent = TRUE;
+		B_Lee_CommentFightSkill();
+		B_BuildLearnDialog_Lee();
 	};
-	Info_ClearChoices(DIA_Lee_Teach);
-	Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
-	Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Lee_Teach_2H_1);
-	Info_AddChoice(DIA_Lee_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Lee_Teach_2H_5);
 };
 
 

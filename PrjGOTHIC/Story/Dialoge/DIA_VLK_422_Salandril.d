@@ -60,7 +60,7 @@ func int DIA_Salandril_PICKPOCKET_Condition()
 //	return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
 	if(Npc_HasItems(self,ItKe_Salandril) || (SalandrilKeyRemoved == TRUE))
 	{
-		return C_StealItem(30,Hlp_GetInstanceID(ItKe_Salandril));
+		return C_StealItem(30);
 	};
 	return FALSE;
 };
@@ -116,6 +116,7 @@ func void DIA_Salandril_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Salandril_PERM_13_00");	//Добро пожаловать, путник. Ищешь хорошее зелье?
 	B_SalandrilTradeInfo();
+	B_PlayerEnteredUpperCity();
 };
 
 

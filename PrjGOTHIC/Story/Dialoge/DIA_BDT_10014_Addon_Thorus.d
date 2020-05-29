@@ -353,7 +353,7 @@ func void DIA_Addon_Thorus_Attack_Info()
 	EnteredBanditsCamp = TRUE;
 	B_Say(self,other,"$ALARM");
 	AI_StopProcessInfos(self);
-	B_Attack(self,other,AR_GuardStopsIntruder,0); 
+	B_Attack(self,other,AR_GuardStopsIntruder,0);
 };
 
 
@@ -499,7 +499,7 @@ func int DIA_Addon_Thorus_PICKPOCKET_Condition()
 //	return C_StealItems(60,Hlp_GetInstanceID(ItKe_Addon_Thorus),1);
 	if(Npc_HasItems(self,ItKe_Addon_Thorus))
 	{
-		return C_StealItem(60,Hlp_GetInstanceID(ItKe_Addon_Thorus));
+		return C_StealItem(60);
 	};
 	return FALSE;
 };

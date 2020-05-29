@@ -357,6 +357,8 @@ instance ItSc_Zap(C_Item)
 	visual = "ItSc_Zap.3DS";
 	material = MAT_LEATHER;
 	spell = SPL_Zap;
+	cond_atr[2] = ATR_MANA_MAX;
+	cond_value[2] = SPL_Cost_Scroll;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = NAME_SPL_Zap;
@@ -835,6 +837,8 @@ instance ItSc_BreathOfDeath(C_Item)
 	visual = "ItSc_BreathOfDeath.3ds";
 	material = MAT_LEATHER;
 	spell = SPL_BreathOfDeath;
+	cond_atr[2] = ATR_MANA_MAX;
+	cond_value[2] = SPL_Cost_Scroll;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER_RED";
 	description = NAME_SPL_BreathOfDeath;
@@ -856,6 +860,8 @@ instance ItSc_MassDeath(C_Item)
 	visual = "ItSc_MassDeath.3ds";
 	material = MAT_LEATHER;
 	spell = SPL_MassDeath;
+	cond_atr[2] = ATR_MANA_MAX;
+	cond_value[2] = SPL_Cost_Scroll;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_WEAKGLIMMER_RED";
 	description = NAME_SPL_MassDeath;

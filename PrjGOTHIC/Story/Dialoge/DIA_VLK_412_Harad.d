@@ -765,8 +765,9 @@ func void DIA_Harad_SellBlades_Info()
 		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		AI_Output(self,other,"DIA_Harad_SellBlades_12_03");	//Отлично. Держи, что заработал.
 		lohn = ((anzahl_common * Value_Common1) + (anzahl_schwert1 * Value_Schwert1) + (anzahl_schwert4 * Value_Schwert4) + (anzahl_rubinklinge * Value_Rubinklinge) + (anzahl_elbastardo * Value_ElBastardo)) / 3;
+		HaradSwordsCounter += gesamt;
+		ApprenticeGoldCounter += lohn;
 		B_GiveInvItems(self,other,ItMi_Gold,lohn);
-//		AI_EquipBestMeleeWeapon(other);
 	};
 };
 
@@ -1039,7 +1040,7 @@ func void DIA_Harad_Erzklingen_Info()
 	{
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_02");	//Вы, паладины, можете считать себя счастливчиками, что вам дозволено владеть такими превосходными мечами.
 		AI_Output(self,other,"DIA_Harad_Erzklingen_12_03");	//Согласно декрету лорда Хагена, я могу продать тебе только одно магическое оружие.
-		AI_Output(self,other,"DIA_Harad_Erzklingen_12_04");	//Так, что я могу предложить тебе?
+		AI_Output(self,other,"DIA_Harad_Erzklingen_12_04");	//Так... Что я могу предложить тебе?
 		Info_ClearChoices(DIA_Harad_Erzklingen);
 		Info_AddChoice(DIA_Harad_Erzklingen,Dialog_Back,DIA_Harad_Erzklingen_Back);
 		Info_AddChoice(DIA_Harad_Erzklingen,"Двуручный меч (2000 золотых)",DIA_Harad_Erzklingen_2h);

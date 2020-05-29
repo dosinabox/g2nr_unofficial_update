@@ -51,7 +51,7 @@ instance ITWr_Addon_Health_04(C_Item)
 //	flags = ITEM_MISSION;
 	flags = 0;
 	value = 1000;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_Heilrezept_04;
 	scemeName = "MAP";
@@ -60,9 +60,6 @@ instance ITWr_Addon_Health_04(C_Item)
 	text[1] = "необходимо знание рецепта лечебного эликсира.";
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -89,9 +86,8 @@ func void Use_Heilrezept_04()
 	{
 		if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_04] == FALSE))
 		{
-			PLAYER_TALENT_ALCHEMY[POTION_Health_04] = TRUE;
-			Snd_Play("LevelUP");
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЧИСТОГО ЗДОРОВЬЯ': 1 луговой горец и 3 лечебные эссенции.");
+			PLAYER_TALENT_ALCHEMY[POTION_Health_04] = TRUE;
 		};
 	};
 };
@@ -104,7 +100,7 @@ instance ITWr_Addon_Mana_04(C_Item)
 //	flags = ITEM_MISSION;
 	flags = 0;
 	value = 1500;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_Manarezept_04;
 	scemeName = "MAP";
@@ -113,9 +109,6 @@ instance ITWr_Addon_Mana_04(C_Item)
 	text[1] = "необходимо знание рецепта эликсира маны.";
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -142,9 +135,8 @@ func void Use_Manarezept_04()
 	{
 		if((PLAYER_TALENT_ALCHEMY[POTION_Mana_03] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Mana_04] == FALSE))
 		{
-			PLAYER_TALENT_ALCHEMY[POTION_Mana_04] = TRUE;
-			Snd_Play("LevelUP");
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЧИСТОЙ МАНЫ': 1 луговой горец и 3 эссенции маны.");
+			PLAYER_TALENT_ALCHEMY[POTION_Mana_04] = TRUE;
 		};
 	};
 };
@@ -252,19 +244,14 @@ instance ITWr_Addon_MCELIXIER_01(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 250;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_MCELIXIER_01;
 	scemeName = "MAP";
 	description = name;
 	text[0] = "Это зелье помогает восстановить память.";
-//	text[1] = "Для его создания нужны знания основ алхимии";
-//	text[2] = "и экстрагирования секрета из жал кровавых мух.";
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -291,7 +278,7 @@ func void Use_MCELIXIER_01()
 		if(Knows_MCELIXIER == FALSE)
 		{
 			Log_CreateTopic(TOPIC_TalentAlchemy,LOG_NOTE);
-			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для эликсира изменения сознания: 2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция и 1 красный жгучий перец.");
+			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭЛИКСИРА ИЗМЕНЕНИЯ СОЗНАНИЯ': 2 жала кровавой мухи, 1 экстракт маны, 1 лечебная эссенция и 1 красный жгучий перец.");
 			Knows_MCELIXIER = TRUE;
 		};
 	};
@@ -348,7 +335,7 @@ instance ITWr_Addon_Joint_01(C_Item)
 	mainflag = ITEM_KAT_DOCS;
 	flags = ITEM_MISSION;
 	value = 250;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = Use_Joint_Rezept_01;
 	scemeName = "MAP";
@@ -357,9 +344,6 @@ instance ITWr_Addon_Joint_01(C_Item)
 //	text[1] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -400,7 +384,7 @@ instance ITWr_Addon_Lou_Rezept(C_Item)
 //	flags = ITEM_MISSION;
 	flags = 0;
 	value = 70;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseLouRezept;
 	scemeName = "MAP";
@@ -408,9 +392,6 @@ instance ITWr_Addon_Lou_Rezept(C_Item)
 	text[0] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -422,8 +403,8 @@ func void UseLouRezept()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"Молот Лу");
+	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Ингредиенты для приготовления Молота:");
 	Doc_PrintLine(nDocID,0,"");
@@ -440,9 +421,10 @@ func void UseLouRezept()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_LousHammer == FALSE))
 		{
-			Knows_LousHammer = TRUE;
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'МОЛОТА ЛУ': 1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы и 1 ром.");
+			Knows_LousHammer = TRUE;
 		};
+		Opened_LousHammer = TRUE;
 	};
 };
 
@@ -454,7 +436,7 @@ instance ITWr_Addon_Lou_Rezept2(C_Item)
 //	flags = ITEM_MISSION;
 	flags = 0;
 	value = 140;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseLouRezept2;
 	scemeName = "MAP";
@@ -462,9 +444,6 @@ instance ITWr_Addon_Lou_Rezept2(C_Item)
 	text[0] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -476,8 +455,8 @@ func void UseLouRezept2()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
-	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"Двойной 'Молот Лу'");
+	Doc_SetFont(nDocID,0,FONT_Book);
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Возьмите 'Молот Лу' и перегоните его еще раз.");
 	Doc_PrintLine(nDocID,0,"");
@@ -489,9 +468,10 @@ func void UseLouRezept2()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_Schlafhammer == FALSE))
 		{
-			Knows_Schlafhammer = TRUE;
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для двойного 'МОЛОТА ЛУ': 1 'Молот Лу' и 1 ром.");
+			Knows_Schlafhammer = TRUE;
 		};
+		Opened_Schlafhammer = TRUE;
 	};
 };
 
@@ -503,7 +483,7 @@ instance ITWr_Addon_Piratentod(C_Item)
 //	flags = ITEM_MISSION;
 	flags = 0;
 	value = 250;
-	visual = "ItWr_Scroll_01.3DS";
+	visual = "ItWr_Recipe.3DS";
 	material = MAT_LEATHER;
 	on_state[0] = UseRezeptPiratentod;
 	scemeName = "MAP";
@@ -511,9 +491,6 @@ instance ITWr_Addon_Piratentod(C_Item)
 	text[0] = PRINT_RequiresAlchemyTalent;
 	text[5] = NAME_Value;
 	count[5] = value;
-	inv_rotz = 180;
-	inv_rotx = 90;
-	inv_roty = 180;
 };
 
 
@@ -531,8 +508,7 @@ func void UseRezeptPiratentod()
 	Doc_PrintLine(nDocID,0,"Пойло для настоящих мужчин");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Как всегда, необходима бутылка воды. Добавьте немного рома и свежую рыбу.");
-	Doc_PrintLines(nDocID,0,"Как только жидкость станет желтой, выньте рыбу и добавьте пучок");
-	Doc_PrintLines(nDocID,0,"свежесорванной снеппер-травы.");
+	Doc_PrintLines(nDocID,0,"Как только жидкость станет желтой, выньте рыбу и добавьте пучок свежесорванной снеппер-травы.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Осторожно! Это пойло обладает очень сильным эффектом.");
 	Doc_Show(nDocID);
@@ -540,9 +516,58 @@ func void UseRezeptPiratentod()
 	{
 		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_SchnellerHering == FALSE))
 		{
-			Knows_SchnellerHering = TRUE;
 			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'БЫСТРОЙ СЕЛЕДКИ': 1 вода, 1 ром, 1 рыба и 1 снеппер-трава.");
+			Knows_SchnellerHering = TRUE;
 		};
+		Opened_SchnellerHering = TRUE;
+	};
+};
+
+
+instance ItWr_MushroomMana(C_Item)
+{
+	name = "Рецепт грибного экстракта";
+	mainflag = ITEM_KAT_DOCS;
+	flags = 0;
+	value = 50;
+	visual = "ItWr_Recipe.3DS";
+	material = MAT_LEATHER;
+	on_state[0] = UseMushroomManaRecipe;
+	scemeName = "MAP";
+	description = name;
+	text[0] = PRINT_RequiresAlchemyTalent;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void UseMushroomManaRecipe()
+{
+	var int nDocID;
+	nDocID = Doc_Create();
+	Doc_SetPages(nDocID,1);
+	Doc_SetPage(nDocID,0,"letters.TGA",0);
+	Doc_SetFont(nDocID,0,FONT_BookHeadline);
+	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
+	Doc_SetFont(nDocID,0,FONT_Book);
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"Создание грибного экстракта:");
+	Doc_PrintLine(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"Черные грибы полезны сами по себе, но нехитрая обработка позволит усилить их свойства и создать более эффективный жидкий концентрат.");
+	Doc_PrintLines(nDocID,0,"Необходимо 50 черных грибов и одна луговая ягода.");
+	Doc_PrintLines(nDocID,0,"Грибы очищаются от грязи и варятся около часа. Полученный отвар охлаждается и в него добавляется высушенная и измельченная луговая ягода.");
+	Doc_PrintLines(nDocID,0,"");
+	Doc_PrintLines(nDocID,0,"Если после добавления ягоды в емкости не выпал осадок, то все сделано правильно.");
+	Doc_Show(nDocID);
+	if(Npc_IsPlayer(self))
+	{
+		if(Npc_GetTalentSkill(hero,NPC_TALENT_ALCHEMY) && (Knows_MushroomMana == FALSE))
+		{
+			B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ГРИБНОГО ЭКСТРАКТА': 50 черных грибов и 1 луговая ягода.");
+			Knows_MushroomMana = TRUE;
+		};
+		Opened_MushroomMana = TRUE;
 	};
 };
 
@@ -613,9 +638,10 @@ func void UseAxtAnleitung()
 	{
 		if((Npc_GetTalentSkill(self,NPC_TALENT_SMITH) > 0) && (Knows_Banditenaxt == FALSE))
 		{
-			Knows_Banditenaxt = TRUE;
 			B_LogEntry(TOPIC_TalentSmith,"Для бандитского топора мне нужен 1 кусок руды, 3 зуба и 1 дополнительная стальная заготовка.");
+			Knows_Banditenaxt = TRUE;
 		};
+		Opened_Banditenaxt = TRUE;
 	};
 };
 
@@ -652,8 +678,8 @@ func void UseSummonAncientGhost()
 			Snd_Play("MFX_GhostVoice");
 			Snd_Play("MFX_Firestorm_Cast");
 			Snd_Play("MFX_Lightning_Origin");
-			SC_SummonedAncientGhost = TRUE;
 			B_InitNpcGlobals();
+			SC_SummonedAncientGhost = TRUE;
 		}
 		else
 		{

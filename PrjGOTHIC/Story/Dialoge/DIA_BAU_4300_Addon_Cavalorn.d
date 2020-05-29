@@ -48,7 +48,8 @@ instance DIA_Addon_Cavalorn_PICKPOCKET(C_Info)
 func int DIA_Addon_Cavalorn_PICKPOCKET_Condition()
 {
 //	return C_StealItems(25,Hlp_GetInstanceID(ItRw_Arrow),0);
-	return C_StealItem(25,Hlp_GetInstanceID(ItRw_Arrow));
+//	return C_StealItem(25,Hlp_GetInstanceID(ItRw_Arrow));
+	return C_StealItem(25);
 };
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
@@ -60,19 +61,19 @@ func void DIA_Addon_Cavalorn_PICKPOCKET_Info()
 
 func void DIA_Addon_Cavalorn_PICKPOCKET_DoIt()
 {
-	CreateInvItems(self,ItRw_Arrow,44);
 //	B_StealItems(25,Hlp_GetInstanceID(ItRw_Arrow),44);
 	if(other.attribute[ATR_DEXTERITY] >= 25)
 	{
+		CreateInvItems(self,ItRw_Arrow,44);
 		B_GiveInvItems(self,other,ItRw_Arrow,44);
 		self.aivar[AIV_PlayerHasPickedMyPocket] = TRUE;
 		B_GiveThiefXP();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketSuccess));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Кавалорн",PRINT_PickPocketSuccess));
 	}
 	else
 	{
 		B_ResetThiefLevel();
-		B_LogEntry(Topic_PickPocket,ConcatStrings(self.name[0],PRINT_PickPocketFailed));
+		B_LogEntry(Topic_PickPocket,ConcatStrings("Кавалорн",PRINT_PickPocketFailed));
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_Theft,1);
 	};
@@ -998,8 +999,40 @@ func void DIA_Addon_Cavalorn_WannaLearn_Info()
 };
 
 
-var int Addon_Cavalorn_Merke_Bow;
-var int Addon_Cavalorn_Merke_1h;
+var int DIA_Cavalorn_Teacher_permanent;
+var int Cavalorn_Merke_Bow;
+var int Cavalorn_Merke_1h;
+var int Cavalorn_Sneak_Comment;
+
+func void B_BuildLearnDialog_Cavalorn()
+{
+	Info_ClearChoices(DIA_Addon_Cavalorn_TEACH);
+	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,Dialog_Back,DIA_Addon_Cavalorn_Teach_Back);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
+	{
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Addon_Cavalorn_Teach_Sneak);
+	};
+	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Cavalorn)
+	{
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_Cavalorn_Teach_Bow_1);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Addon_Cavalorn_Teach_Bow_5);
+	};
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Cavalorn)
+	{
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Addon_Cavalorn_Teach_1H_1);
+		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Addon_Cavalorn_Teach_1H_5);
+	};
+	if(Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) && (VisibleTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Cavalorn) && (VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Cavalorn))
+	{
+		if((RealTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Cavalorn) && (RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Cavalorn))
+		{
+			DIA_Cavalorn_Teacher_permanent = TRUE;
+		};
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
+};
 
 instance DIA_Addon_Cavalorn_TEACH(C_Info)
 {
@@ -1014,35 +1047,22 @@ instance DIA_Addon_Cavalorn_TEACH(C_Info)
 
 func int DIA_Addon_Cavalorn_TEACH_Condition()
 {
-	if(Cavalorn_Addon_TeachPlayer == TRUE)
+	if((Cavalorn_Addon_TeachPlayer == TRUE) && (DIA_Cavalorn_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
 };
 
-func void DIA_Addon_Cavalorn_TEACH_Choices()
-{
-	Info_ClearChoices(DIA_Addon_Cavalorn_TEACH);
-	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,Dialog_Back,DIA_Addon_Cavalorn_Teach_Back);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK))
-	{
-		Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString("Подкрадывание",B_GetLearnCostTalent(other,NPC_TALENT_SNEAK,1)),DIA_Addon_Cavalorn_Teach_Sneak);
-	};
-	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Addon_Cavalorn_Teach_Bow_1);
-	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1) * 5),DIA_Addon_Cavalorn_Teach_Bow_5);
-	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Addon_Cavalorn_Teach_1H_1);
-	Info_AddChoice(DIA_Addon_Cavalorn_TEACH,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,1) * 5),DIA_Addon_Cavalorn_Teach_1H_5);
-};
-
 func void DIA_Addon_Cavalorn_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Cavalorn_TEACH_15_00");	//Я хочу обучиться тому, что ты умеешь.
-	AI_Output(self,other,"DIA_Addon_Cavalorn_TEACH_08_01");	//Хорошо. Что именно тебя интересует?
-//	Addon_Cavalorn_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
-//	Addon_Cavalorn_Merke_1h = other.HitChance[NPC_TALENT_1H];
-	Addon_Cavalorn_Merke_Bow = other.aivar[REAL_TALENT_BOW];
-	Addon_Cavalorn_Merke_1h = other.aivar[REAL_TALENT_1H];
-	DIA_Addon_Cavalorn_TEACH_Choices();
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_SNEAK) || (VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Cavalorn) || (VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Cavalorn))
+	{
+		AI_Output(self,other,"DIA_Addon_Cavalorn_TEACH_08_01");	//Хорошо. Что именно тебя интересует?
+		Cavalorn_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
+		Cavalorn_Merke_1h = other.HitChance[NPC_TALENT_1H];
+	};
+	B_BuildLearnDialog_Cavalorn();
 };
 
 func void DIA_Addon_Cavalorn_Teach_Sneak()
@@ -1050,37 +1070,46 @@ func void DIA_Addon_Cavalorn_Teach_Sneak()
 	if(B_TeachThiefTalent(self,other,NPC_TALENT_SNEAK))
 	{
 		AI_Output(self,other,"DIA_Addon_Cavalorn_Teach_Sneak_08_00");	//С мягкими подошвами тебе будет легче незаметно подобраться к противнику.
+		Cavalorn_Sneak_Comment = TRUE;
+		B_BuildLearnDialog_Cavalorn();
 	};
-	DIA_Addon_Cavalorn_TEACH_Choices();
 };
 
 func void DIA_Addon_Cavalorn_Teach_Bow_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,90);
-	DIA_Addon_Cavalorn_TEACH_Choices();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,TeachLimit_Bow_Cavalorn))
+	{
+		B_BuildLearnDialog_Cavalorn();
+	};
 };
 
 func void DIA_Addon_Cavalorn_Teach_Bow_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,90);
-	DIA_Addon_Cavalorn_TEACH_Choices();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,TeachLimit_Bow_Cavalorn))
+	{
+		B_BuildLearnDialog_Cavalorn();
+	};
 };
 
 func void DIA_Addon_Cavalorn_Teach_1H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,30);
-	DIA_Addon_Cavalorn_TEACH_Choices();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Cavalorn))
+	{
+		B_BuildLearnDialog_Cavalorn();
+	};
 };
 
 func void DIA_Addon_Cavalorn_Teach_1H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,30);
-	DIA_Addon_Cavalorn_TEACH_Choices();
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Cavalorn))
+	{
+		B_BuildLearnDialog_Cavalorn();
+	};
 };
 
 func void DIA_Addon_Cavalorn_Teach_Back()
 {
-	if((Addon_Cavalorn_Merke_Bow < other.aivar[REAL_TALENT_BOW]) || (Addon_Cavalorn_Merke_1h < other.aivar[REAL_TALENT_1H]))
+	if((Cavalorn_Merke_Bow < other.HitChance[NPC_TALENT_BOW]) || (Cavalorn_Merke_1h < other.HitChance[NPC_TALENT_1H]) || (Cavalorn_Sneak_Comment == TRUE))
 	{
 		if((CavalornWeakComment == TRUE) || (SC_ForgotAboutCavalorn == TRUE))
 		{

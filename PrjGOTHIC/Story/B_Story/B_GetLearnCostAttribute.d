@@ -5,25 +5,51 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 	kosten = 0;
 	if(attribut == ATR_STRENGTH)
 	{
-		if(oth.aivar[REAL_STRENGTH] >= 120)
+		if(PenaltiesAffectLearnCost == FALSE)
 		{
-			kosten = 5;
-		}
-		else if(oth.aivar[REAL_STRENGTH] >= 90)
-		{
-			kosten = 4;
-		}
-		else if(oth.aivar[REAL_STRENGTH] >= 60)
-		{
-			kosten = 3;
-		}
-		else if(oth.aivar[REAL_STRENGTH] >= 30)
-		{
-			kosten = 2;
+			if(oth.aivar[REAL_STRENGTH] >= 120)
+			{
+				kosten = 5;
+			}
+			else if(oth.aivar[REAL_STRENGTH] >= 90)
+			{
+				kosten = 4;
+			}
+			else if(oth.aivar[REAL_STRENGTH] >= 60)
+			{
+				kosten = 3;
+			}
+			else if(oth.aivar[REAL_STRENGTH] >= 30)
+			{
+				kosten = 2;
+			}
+			else
+			{
+				kosten = 1;
+			};
 		}
 		else
 		{
-			kosten = 1;
+			if((oth.aivar[REAL_STRENGTH] - OrcRingCurrentPenalty) >= 120)
+			{
+				kosten = 5;
+			}
+			else if((oth.aivar[REAL_STRENGTH] - OrcRingCurrentPenalty) >= 90)
+			{
+				kosten = 4;
+			}
+			else if((oth.aivar[REAL_STRENGTH] - OrcRingCurrentPenalty) >= 60)
+			{
+				kosten = 3;
+			}
+			else if((oth.aivar[REAL_STRENGTH] - OrcRingCurrentPenalty) >= 30)
+			{
+				kosten = 2;
+			}
+			else
+			{
+				kosten = 1;
+			};
 		};
 	};
 	if(attribut == ATR_DEXTERITY)

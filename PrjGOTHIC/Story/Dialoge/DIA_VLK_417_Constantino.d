@@ -182,8 +182,6 @@ func void DIA_Addon_Constantino_LestersKraeuter_Info()
 };
 
 
-var int Constantino_ItemsGiven_LittleMana;
-
 instance DIA_Constantino_Trade(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -215,11 +213,6 @@ func void DIA_Constantino_Trade_Info()
 			CreateInvItems(self,ItMi_Flask,Constantino_flasks);
 		};
 		Constantino_flag = FALSE;
-	};
-	if((Player_IsApprentice == APP_Constantino) && ((hero.guild == GIL_NOV) || (hero.guild == GIL_KDF)) && (Constantino_ItemsGiven_LittleMana == FALSE))
-	{
-		CreateInvItems(self,ItPo_Perm_LittleMana,1);
-		Constantino_ItemsGiven_LittleMana = TRUE;
 	};
 	if(Constantino_Logpatch1 == FALSE)
 	{
@@ -763,19 +756,24 @@ func void DIA_Constantino_MushroomsRunning_Info()
 
 func void DIA_Constantino_MushroomsRunning_Sell()
 {
+	var int Mushroom1_Count;
+	var int Mushroom2_Count;
 	var int Dunkelpilz_dabei;
 	Dunkelpilz_dabei = FALSE;
 	if(Npc_HasItems(other,ItPl_Mushroom_01))
 	{
+		Mushroom1_Count = Npc_HasItems(other,ItPl_Mushroom_01);
 		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_00");	//Я принес несколько черных грибов.
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Sell_10_01");	//Ах! Это лучшие грибы! Отлично! Вот твое золото!
 		Dunkelpilz_dabei = TRUE;
-		Constantino_DunkelpilzCounter = Constantino_DunkelpilzCounter + Npc_HasItems(other,ItPl_Mushroom_01);
-		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItPl_Mushroom_01) * Value_Mushroom_01);
-		B_GiveInvItems(other,self,ItPl_Mushroom_01,Npc_HasItems(other,ItPl_Mushroom_01));
+		Constantino_DunkelpilzCounter += Mushroom1_Count;
+		ApprenticeGoldCounter += Mushroom1_Count * Value_Mushroom_01;
+		B_GiveInvItems(self,other,ItMi_Gold,Mushroom1_Count * Value_Mushroom_01);
+		B_GiveInvItems(other,self,ItPl_Mushroom_01,Mushroom1_Count);
 	};
 	if(Npc_HasItems(other,ItPl_Mushroom_02))
 	{
+		Mushroom2_Count = Npc_HasItems(other,ItPl_Mushroom_02);
 		if(Dunkelpilz_dabei == TRUE)
 		{
 			AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_02");	//А вот еще другие...
@@ -785,8 +783,10 @@ func void DIA_Constantino_MushroomsRunning_Sell()
 			AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Sell_15_03");	//У меня здесь несколько грибов!
 		};
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Sell_10_04");	//Эти не так хороши, как черные грибы, но я все равно возьму их.
-		B_GiveInvItems(self,other,ItMi_Gold,Npc_HasItems(other,ItPl_Mushroom_02) * Value_Mushroom_02);
-		B_GiveInvItems(other,self,ItPl_Mushroom_02,Npc_HasItems(other,ItPl_Mushroom_02));
+		Constantino_BigMushroomsCounter += Mushroom2_Count;
+		ApprenticeGoldCounter += Mushroom2_Count * Value_Mushroom_02;
+		B_GiveInvItems(self,other,ItMi_Gold,Mushroom2_Count * Value_Mushroom_02);
+		B_GiveInvItems(other,self,ItPl_Mushroom_02,Mushroom2_Count);
 	};
 	Info_ClearChoices(DIA_Constantino_MushroomsRunning);
 };
@@ -805,6 +805,7 @@ func void DIA_Constantino_MushroomsRunning_Why()
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Why_10_04");	//А когда ты съешь достаточное количество этих грибов, твоя магическая энергия возрастет...
 		AI_Output(self,other,"DIA_Constantino_MushroomsRunning_Why_10_05");	//Если бы я сказал тебе это ранее, ты бы слопал все эти грибы сам, разве нет?
 		AI_Output(other,self,"DIA_Constantino_MushroomsRunning_Why_15_06");	//(вздыхает) Ох!
+		CreateInvItems(self,ItWr_MushroomMana,1);
 		Player_KnowsDunkelpilzBonus = TRUE;
 		Info_ClearChoices(DIA_Constantino_MushroomsRunning);
 	}
@@ -970,12 +971,12 @@ func void DIA_Constantino_TEACH_Info()
 			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Essenz,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_01)),DIA_Constantino_TEACH_Health01);
 			talente += 1;
 		};
-		if((PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_01] == TRUE))
 		{
 			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Extrakt,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_02)),DIA_Constantino_TEACH_Health02);
 			talente += 1;
 		};
-		if((PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE))
+		if((PLAYER_TALENT_ALCHEMY[POTION_Health_03] == FALSE) && (PLAYER_TALENT_ALCHEMY[POTION_Health_02] == TRUE))
 		{
 			Info_AddChoice(DIA_Constantino_TEACH,B_BuildLearnString(NAME_HP_Elixier,B_GetLearnCostTalent(other,NPC_TALENT_ALCHEMY,POTION_Health_03)),DIA_Constantino_TEACH_Health03);
 			talente += 1;

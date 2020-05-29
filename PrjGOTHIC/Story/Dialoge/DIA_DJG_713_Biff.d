@@ -164,7 +164,14 @@ func void DIA_Biff_WASHIERIMTAL_Info()
 	AI_Output(other,self,"DIA_Biff_WASHIERIMTAL_15_00");	//Что ты надеешься найти здесь, в Долине Рудников?
 	AI_Output(self,other,"DIA_Biff_WASHIERIMTAL_07_01");	//Золото и славу. Что же еще? Когда я покончу с драконами, я буду купаться в золоте.
 	AI_Output(self,other,"DIA_Biff_WASHIERIMTAL_07_02");	//У меня будет достаточно, чтобы провести остаток своей жизни, пытаясь посетить все таверны и бордели в стране.
-	B_LogEntry(TOPIC_Dragonhunter,"Охотник на драконов Бифф - типичный наемник. Если я заплачу ему, он будет сражаться вместе со мной.");
+	if(MIS_SCKnowsWayToIrdorath == TRUE)
+	{
+		B_LogEntry(Topic_Crew,"Охотник на драконов Бифф - типичный наемник. Если я заплачу ему, он будет сражаться вместе со мной.");
+	}
+	else
+	{
+		B_LogEntry(TOPIC_Dragonhunter,"Охотник на драконов Бифф - типичный наемник. Если я заплачу ему, он будет сражаться вместе со мной.");
+	};
 	Info_AddChoice(DIA_Biff_WASHIERIMTAL,"Что ж, тогда я желаю тебе удачи.",DIA_Biff_WASHIERIMTAL_vielglueck);
 	Info_AddChoice(DIA_Biff_WASHIERIMTAL,"Ну да, либо это, либо ты станешь трупом!",DIA_Biff_WASHIERIMTAL_ihrtot);
 };
@@ -197,8 +204,7 @@ instance DIA_Biff_ARBEITEN(C_Info)
 
 func int DIA_Biff_ARBEITEN_Condition()
 {
-//	if((DJG_BiffParty == FALSE) && Npc_KnowsInfo(other,DIA_Biff_HALLO) && (DJG_Biff_Stay == FALSE))
-	if((DJG_BiffParty == FALSE) && Npc_KnowsInfo(other,DIA_Biff_WASHIERIMTAL) && (DJG_Biff_Stay == FALSE))
+	if((DJG_BiffParty == FALSE) && Npc_KnowsInfo(other,DIA_Biff_WASHIERIMTAL) && (DJG_Biff_Stay == FALSE) && (Biff_IsOnBoard != LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -207,8 +213,7 @@ func int DIA_Biff_ARBEITEN_Condition()
 func void DIA_Biff_ARBEITEN_Info()
 {
 	AI_Output(other,self,"DIA_Biff_ARBEITEN_15_00");	//Ты бы не хотел поработать на меня?
-//	B_LogEntry(TOPIC_Dragonhunter,"Охотник на драконов Бифф - типичный наемник. Если я заплачу ему, он будет сражаться вместе со мной.");
-	if(DJG_BiffParty_nomore >= 6)
+	if((DJG_BiffParty_nomore >= 6) || (Biff_IsOnBoard == LOG_FAILED))
 	{
 		AI_Output(self,other,"DIA_Biff_ARBEITEN_07_01");	//Мы уже как-то пытались. Из этого не вышло ничего хорошего. Так что спасибо, не хочу.
 		AI_StopProcessInfos(self);
@@ -324,7 +329,6 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer()
 	Info_ClearChoices(DIA_Biff_GELDEINTREIBEN);
 	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Боюсь, дальше наши пути расходятся.",DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen);
 	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Хорошо, похоже, у меня нет выбора. Давай разделим пополам.",DIA_Biff_GELDEINTREIBEN_geben2);
-//	Info_AddChoice(DIA_Biff_GELDEINTREIBEN,"Вот твоя доля.",DIA_Biff_GELDEINTREIBEN_geben);
 };
 
 func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
@@ -425,11 +429,11 @@ func void DIA_Biff_ICHBLEIBHIER_Info()
 instance DIA_Biff_Stay_AwayFromOC(C_Info)
 {
 	npc = DJG_713_Biff;
+	nr = 3;
 	condition = DIA_Biff_Stay_AwayFromOC_Condition;
 	information = DIA_Biff_Stay_AwayFromOC_Info;
-	nr = 3;
 	permanent = TRUE;
-	description = "(опять взять с собой Биффа)";
+	description = "Иди за мной!";
 };
 
 
@@ -454,9 +458,9 @@ func void DIA_Biff_Stay_AwayFromOC_Info()
 instance DIA_Biff_KOHLEWEGGEBEN(C_Info)
 {
 	npc = DJG_713_Biff;
+	nr = 10;
 	condition = DIA_Biff_KOHLEWEGGEBEN_Condition;
 	information = DIA_Biff_KOHLEWEGGEBEN_Info;
-	nr = 10;
 	important = TRUE;
 	permanent = TRUE;
 };
@@ -492,7 +496,7 @@ instance DIA_Biff_BIFFLOSWERDEN(C_Info)
 
 func int DIA_Biff_BIFFLOSWERDEN_Condition()
 {
-	if(DJG_BiffParty == TRUE)
+	if((DJG_BiffParty == TRUE) || (Biff_IsOnBoard == LOG_SUCCESS))
 	{
 		return TRUE;
 	};
@@ -508,6 +512,12 @@ func void DIA_Biff_BIFFLOSWERDEN_Info()
 	DJG_Biff_HalbeHalbe = FALSE;
 	DJG_BiffParty = FALSE;
 	DJG_BiffParty_nomore += 1;
+	if(Biff_IsOnBoard == LOG_SUCCESS)
+	{
+		Biff_IsOnBoard = LOG_FAILED;
+		Biff_FollowsThroughPass = LOG_FAILED;
+		Crewmember_Count -= 1;
+	};
 };
 
 
@@ -593,6 +603,20 @@ func void DIA_Biff_MEHRGELD_zuTeuer()
 };
 
 
+func void B_Biff_NoTrankComment()
+{
+	var int randy;
+	randy = Hlp_Random(2);
+	if(randy == 0)
+	{
+		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrankLow_07_00");	//К сожалению, его у тебя нет. Вернемся к этому вопросу позже.
+	};
+};
+
 instance DIA_Biff_HEILUNG(C_Info)
 {
 	npc = DJG_713_Biff;
@@ -647,7 +671,7 @@ func void DIA_Biff_HEILUNG_HeilTrankMax()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
+		B_Biff_NoTrankComment();
 	};
 	AI_StopProcessInfos(self);
 };
@@ -663,7 +687,7 @@ func void DIA_Biff_HEILUNG_HeilTrankHigh()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
+		B_Biff_NoTrankComment();
 	};
 	AI_StopProcessInfos(self);
 };
@@ -679,7 +703,7 @@ func void DIA_Biff_HEILUNG_HeilTrankMed()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrank_07_00");	//Я думаю, я могу подождать, когда ты раздобудешь его для меня.
+		B_Biff_NoTrankComment();
 	};
 	AI_StopProcessInfos(self);
 };
@@ -695,7 +719,7 @@ func void DIA_Biff_HEILUNG_HeilTrankLow()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Biff_HEILUNG_HeilTrankLow_07_00");	//К сожалению, его у тебя нет. Вернемся к этому вопросу позже.
+		B_Biff_NoTrankComment();
 	};
 	AI_StopProcessInfos(self);
 };
@@ -752,8 +776,7 @@ instance DIA_Biff_KnowWhereEnemy(C_Info)
 
 func int DIA_Biff_KnowWhereEnemy_Condition()
 {
-//	if((MIS_SCKnowsWayToIrdorath == TRUE) && (Biff_IsOnBoard == FALSE))
-	if((MIS_SCKnowsWayToIrdorath == TRUE) && ((Biff_IsOnBoard == FALSE) || (Biff_IsOnBoard == LOG_OBSOLETE)))
+	if((MIS_SCKnowsWayToIrdorath == TRUE) && ((Biff_IsOnBoard == FALSE) || (Biff_IsOnBoard == LOG_OBSOLETE)) && Npc_KnowsInfo(other,DIA_Biff_WASHIERIMTAL))
 	{
 		return TRUE;
 	};
@@ -837,6 +860,33 @@ func void DIA_Biff_Pass_Info()
 {
 	AI_Output(other,self,"DIA_Biff_Pass_15_00");	//Ты пройдешь сам через Проход?
 	AI_Output(self,other,"DIA_Biff_Pass_07_01");	//Хватит болтать. Пошли. Я хочу, наконец, опять начать действовать.
+	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Biff_StillNeedYou(C_Info)
+{
+	npc = DJG_713_Biff;
+	nr = 55;
+	condition = DIA_Biff_StillNeedYou_Condition;
+	information = DIA_Biff_StillNeedYou_Info;
+	permanent = FALSE;
+	description = "Ты все еще заинтересован в месте на корабле?";
+};
+
+
+func int DIA_Biff_StillNeedYou_Condition()
+{
+	if((Biff_IsOnBoard == LOG_FAILED) && (Crewmember_Count < Max_Crew))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Biff_StillNeedYou_Info()
+{
+	AI_Output(other,self,"DIA_Lares_StillNeedYou_15_00");	//Ты все еще заинтересован в месте на корабле?
+	B_Biff_Verarschen();
 	AI_StopProcessInfos(self);
 };
 

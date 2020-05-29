@@ -162,6 +162,23 @@ func void DIA_Lares_PICKPOCKET_BACK()
 };
 
 
+func void B_Lares_Comment_MIL()
+{
+	AI_Output(self,other,"DIA_Lares_OtherGuild_09_01");	//(смеется) Со смеху помереть можно - бывший каторжник в ополчении...
+};
+
+func void B_Lares_Comment_PAL()
+{
+	AI_Output(self,other,"DIA_Lares_OtherGuild_09_02");	//Так теперь ты один из паладинов короля!
+};
+
+func void B_Lares_Comment_SLD()
+{
+	AI_Output(self,other,"DIA_Addon_Lares_OtherGuild_09_00");	//Я слышал, тебя приняли в ряды наемников Ли?
+};
+
+var int Lares_FirstMetAsGuildless;
+
 instance DIA_Lares_HALLO(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -184,11 +201,34 @@ func int DIA_Lares_HALLO_Condition()
 func void DIA_Lares_HALLO_Info()
 {
 	AI_Output(self,other,"DIA_Lares_HALLO_09_00");	//Я, должно быть, сошел с ума! Что ты делаешь здесь?
-	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (Npc_GetDistToWP(self,"HAFEN") < 10000))
+	if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE))
 	{
-		AI_Output(self,other,"DIA_Lares_HALLO_09_01");	//Ты что, ПРИПЛЫЛ сюда?
-		AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.
 		B_GivePlayerXP(500);
+	};
+	if(other.guild == GIL_NONE)
+	{
+		if((Mil_310_schonmalreingelassen == FALSE) && (Mil_333_schonmalreingelassen == FALSE) && (Npc_GetDistToWP(self,"HAFEN") < 10000))
+		{
+			AI_Output(self,other,"DIA_Lares_HALLO_09_01");	//Ты что, ПРИПЛЫЛ сюда?
+			AI_Output(self,other,"DIA_Lares_HALLO_09_02");	//(смеется) Это единственный способ миновать стражу у городских ворот.
+		};
+		Lares_FirstMetAsGuildless = TRUE;
+	}
+	else if(other.guild == GIL_MIL)
+	{
+		B_Lares_Comment_MIL();
+	}
+	else if(other.guild == GIL_PAL)
+	{
+		B_Lares_Comment_PAL();
+	}
+	else if((other.guild == GIL_NOV) || (other.guild == GIL_KDF))
+	{
+		AI_Output(self,other,"DIA_Lares_OtherGuild_09_06_add");	//Я слышал, ты поступил в монастырь.
+	}
+	else if(other.guild == GIL_SLD)
+	{
+		B_Lares_Comment_SLD();
 	};
 	B_PlayerEnteredCity();
 	Info_ClearChoices(DIA_Lares_HALLO);
@@ -219,8 +259,11 @@ func void DIA_Lares_HALLO_YES()
 func void B_Lares_AboutLee()
 {
 	AI_Output(self,other,"B_Lares_AboutLee_09_00");	//Я выбрался из колонии вместе с ним. Сразу после того, как Барьер был уничтожен.
-	AI_Output(self,other,"B_Lares_AboutLee_09_01");	//Он и его парни сейчас на ферме лендлорда Онара.
-	AI_Output(self,other,"B_Lares_AboutLee_09_02");	//Он договорился с этим фермером. Ли с парнями защищает ферму, а Онар кормит их за это.
+	if((other.guild != GIL_SLD) && (other.guild != GIL_DJG))
+	{
+		AI_Output(self,other,"B_Lares_AboutLee_09_01");	//Он и его парни сейчас на ферме лендлорда Онара.
+		AI_Output(self,other,"B_Lares_AboutLee_09_02");	//Он договорился с этим фермером. Ли с парнями защищает ферму, а Онар кормит их за это.
+	};
 	AI_Output(self,other,"DIA_Lares_WhyInCity_09_03");	//А зачем ТЫ пришел в город?
 	AI_Output(other,self,"DIA_Lares_Alternative_15_00");	//У меня есть выбор?
 };
@@ -238,6 +281,32 @@ func void DIA_Lares_HALLO_NOIDEA()
 	AI_Output(self,other,"DIA_Lares_HALLO_NOIDEA_09_01");	//Тебе, похоже, многое пришлось пережить. Ли был предводителем наемников в Новом Лагере.
 	B_Lares_AboutLee();
 	Info_ClearChoices(DIA_Lares_HALLO);
+};
+
+
+instance DIA_Lares_AboutGorn(C_Info)
+{
+	npc = VLK_449_Lares;
+	nr = 98;
+	condition = DIA_Lares_AboutGorn_Condition;
+	information = DIA_Lares_AboutGorn_Info;
+	permanent = FALSE;
+	description = "Горн сказал тебе обо мне? Что произошло с ним?";
+};
+
+
+func int DIA_Lares_AboutGorn_Condition()
+{
+	if((KnowsAboutGorn == TRUE) && (MIS_RescueGorn == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Lares_AboutGorn_Info()
+{
+	AI_Output(other,self,"DIA_Lee_AboutGorn_15_00");	//Горн сказал тебе обо мне? Что произошло с ним?
+	AI_Output(self,other,"DIA_Dexter_Wo_09_01");	//Я думаю, он где-то в Долине Рудников.
 };
 
 
@@ -745,10 +814,10 @@ func void DIA_Addon_Lares_YourMission_Info()
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_10");	//На рынке постоянно дежурит кто-нибудь из наших. Но я не знаю, чья сейчас смена.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_11");	//Тебе лучше поговорить со всеми, кто там стоит. Когда наш человек увидит аквамариновое кольцо, он сам тебе откроется.
 		AI_Output(self,other,"DIA_Addon_Lares_YourMission_09_12");	//Скажи ему, что мне нужен кто-то, кто сменит меня в порту.
-		B_LogEntry(TOPIC_Addon_RingOfWater,"Ларес дал мне аквамариновое кольцо - тайный знак Кольца Воды. Если я буду его носить, другие члены Кольца Воды смогут мне открыться.");
 		Log_CreateTopic(TOPIC_Addon_BringRangerToLares,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_BringRangerToLares,LOG_Running);
-		B_LogEntry(TOPIC_Addon_BringRangerToLares,"Ларес хочет покинуть гавань. Я должен пройтись по рынку, надев аквамариновое кольцо, и попробовать найти кого-то, кто займет место Лареса.");
+		B_LogEntries(TOPIC_Addon_BringRangerToLares,"Ларес хочет покинуть гавань. Я должен пройтись по рынку, надев аквамариновое кольцо, и попробовать найти кого-то, кто займет место Лареса.");
+		B_LogNextEntry(TOPIC_Addon_RingOfWater,"Ларес дал мне аквамариновое кольцо - тайный знак Кольца Воды. Если я буду его носить, другие члены Кольца Воды смогут мне открыться.");
 		MIS_Lares_BringRangerToMe = LOG_Running;
 	};
 };
@@ -851,13 +920,13 @@ func void DIA_Addon_Lares_PeopleMissing_TellMe()
 	{
 		Log_CreateTopic(TOPIC_Addon_WhoStolePeople,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_WhoStolePeople,LOG_Running);
-		B_LogEntry(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
+		B_LogEntries(TOPIC_Addon_WhoStolePeople,LogText_Addon_SCKnowsMisspeapl);
 		if(MissingPeopleReturnedHome == FALSE)
 		{
 			Log_CreateTopic(TOPIC_Addon_MissingPeople,LOG_MISSION);
 			Log_SetTopicStatus(TOPIC_Addon_MissingPeople,LOG_Running);
 		};
-		B_LogEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
+		B_LogNextEntry(TOPIC_Addon_MissingPeople,LogText_Addon_WilliamMissing);
 		SC_HearedAboutMissingPeople = TRUE;
 	};
 };
@@ -1016,11 +1085,25 @@ func void DIA_Lares_Paladine_Info()
 	AI_Output(other,self,"DIA_Lares_Paladine_15_00");	//Мне во что бы то ни стало нужно поговорить с паладинами!
 	AI_Output(self,other,"DIA_Lares_Paladine_09_01");	//Что тебе нужно от них?
 	AI_Output(other,self,"DIA_Lares_Paladine_15_02");	//У них есть амулет, Глаз Инноса. Я должен заполучить его.
-	AI_Output(self,other,"DIA_Lares_Paladine_09_03");	//И ты думаешь, они отдадут его тебе? Тебе никогда не попасть в верхний квартал города.
+	if(other.guild == GIL_NONE)
+	{
+		AI_Output(self,other,"DIA_Lares_Paladine_09_03");	//И ты думаешь, они отдадут его тебе? Тебе никогда не попасть в верхний квартал города.
+	}
+	else
+	{
+		AI_Output(self,other,"DIA_Lares_Paladine_09_03_add");	//И ты думаешь, они отдадут его тебе?
+	};
 	if(!Npc_KnowsInfo(other,DIA_Addon_Lares_Vatras))
 	{
 		AI_Output(other,self,"DIA_Lares_Paladine_15_04");	//Я что-нибудь придумаю.
-		AI_Output(self,other,"DIA_Lares_Paladine_09_05");	//Конечно, если ты сможешь снискать уважение горожан или станешь мальчиком на побегушках в ополчении...
+		if(other.guild == GIL_NONE)
+		{
+			AI_Output(self,other,"DIA_Lares_Paladine_09_05");	//Конечно, если ты сможешь снискать уважение горожан или станешь мальчиком на побегушках в ополчении...
+		}
+		else
+		{
+			AI_Output(self,other,"DIA_Addon_Lares_RangerHelp_waffe_09_01_add");	//Боюсь, что тут я тебе помочь не могу.
+		};
 	};
 };
 
@@ -1194,10 +1277,6 @@ func void DIA_Lares_AboutSld_Info()
 	{
 		Info_AddChoice(DIA_Lares_AboutSld,"Как мне найти ферму лендлорда?",DIA_Lares_AboutSld_WayToOnar);
 	};
-	if((KnowsAboutGorn == TRUE) && (MIS_RescueGorn != LOG_SUCCESS))
-	{
-		Info_AddChoice(DIA_Lares_AboutSld,"Горн сказал тебе обо мне? Что произошло с ним?",DIA_Lares_AboutSld_Gorn);
-	};
 };
 
 func void DIA_Lares_AboutSld_BACK()
@@ -1242,13 +1321,6 @@ func void DIA_Lares_AboutSld_WayToOnar()
 	AI_Output(self,other,"DIA_Addon_Lares_WegZumHof_09_00");	//Это довольно просто. Ты выходишь из города через восточные ворота, а затем следуешь по дороге на восток.
 	B_LaresOffersWayToOnar();
 };
-
-func void DIA_Lares_AboutSld_Gorn()
-{
-	AI_Output(other,self,"DIA_Lee_AboutGorn_15_00");	//Горн сказал тебе обо мне? Что произошло с ним?
-	AI_Output(self,other,"DIA_Dexter_Wo_09_01");	//Я думаю, он где-то в Долине Рудников.
-};
-
 
 instance DIA_Lares_GuildOfThieves(C_Info)
 {
@@ -1377,7 +1449,7 @@ instance DIA_Lares_OtherGuild(C_Info)
 
 func int DIA_Lares_OtherGuild_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (other.guild != GIL_NONE) && (SC_IsRanger == FALSE) && Npc_KnowsInfo(other,DIA_Lares_HALLO))
+	if(Npc_IsInState(self,ZS_Talk) && (other.guild != GIL_NONE) && (SC_IsRanger == FALSE) && (Lares_FirstMetAsGuildless == TRUE))
 	{
 		return TRUE;
 	};
@@ -1390,12 +1462,12 @@ func void DIA_Lares_OtherGuild_Info()
 		if(other.guild == GIL_MIL)
 		{
 			AI_Output(self,other,"DIA_Lares_OtherGuild_09_00");	//Теперь ты в ополчении!
-			AI_Output(self,other,"DIA_Lares_OtherGuild_09_01");	//(смеется) Со смеху помереть можно - бывший каторжник в ополчении...
+			B_Lares_Comment_MIL();
 		}
 		else
 		{
 			AI_Output(self,other,"DIA_Lares_OtherGuild_09_09");	//Я слышал, ты был принят.
-			AI_Output(self,other,"DIA_Lares_OtherGuild_09_02");	//Так теперь ты один из паладинов короля!
+			B_Lares_Comment_PAL();
 		};
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_03");	//(лукаво) Только ты мог провернуть такое...
 		if(Lares_WorkForLee == TRUE)
@@ -1406,13 +1478,13 @@ func void DIA_Lares_OtherGuild_Info()
 	};
 	if((other.guild == GIL_KDF) || (other.guild == GIL_NOV))
 	{
-		AI_Output(self,other,"DIA_Lares_OtherGuild_09_06");	//Я не понимаю. Ты поступил в монастырь? Как там тебе?
+		AI_Output(self,other,"DIA_Lares_OtherGuild_09_06");	//Я не понимаю. Ты поступил в монастырь. Как там тебе?
 		AI_Output(other,self,"DIA_Lares_OtherGuild_15_07");	//По-разному.
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_08");	//Представляю.
 	};
 	if((other.guild == GIL_SLD) || (other.guild == GIL_DJG))
 	{
-		AI_Output(self,other,"DIA_Addon_Lares_OtherGuild_09_00");	//Я слышал, тебя приняли в ряды наемников Ли?
+		B_Lares_Comment_SLD();
 		AI_Output(self,other,"DIA_Lares_OtherGuild_09_10");	//Поздравляю.
 	};
 	AI_StopProcessInfos(self);
@@ -2336,16 +2408,13 @@ func void DIA_Lares_AnyNews_Info()
 			AI_Output(other,self,"DIA_Lares_AnyNews_15_06");	//Как это случилось?
 			AI_Output(self,other,"DIA_Lares_AnyNews_09_07");	//Беннет пришел в город за покупками. Но вернуться ему было не суждено.
 			AI_Output(self,other,"DIA_Lares_AnyNews_09_08");	//Если хочешь узнать больше, расспроси Ходжеса, он был в городе вместе с Беннетом.
-			if(MIS_RescueBennet != LOG_Running)
-			{
-				MIS_RescueBennet = LOG_Running;
-				Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
-				Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
-				B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
-			};
+			MIS_RescueBennet = LOG_Running;
+			Log_CreateTopic(TOPIC_RescueBennet,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_RescueBennet,LOG_Running);
+			B_LogEntry(TOPIC_RescueBennet,"Кузнец Беннет арестован паладинами в городе.");
 			if(!Npc_KnowsInfo(other,DIA_Hodges_WhatHappened) || !Npc_KnowsInfo(other,DIA_Hodges_BennetsCrime))
 			{
-				B_LogEntry(TOPIC_RescueBennet,"Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
+				Log_AddEntry(TOPIC_RescueBennet,"Чтобы узнать больше, мне надо поговорить с его учеником Ходжесом.");
 			};
  		};
 	};

@@ -28,3 +28,9 @@ func void B_PlayerEnteredCity()
 	};
 };
 
+func void B_PlayerEnteredUpperCity()
+{
+	B_PlayerEnteredCity();
+	PlayerEnteredUpperCity = TRUE;
+};
+

@@ -8,6 +8,14 @@ func int C_AkilFarmIsFree()
 	else if((ScaredAlvares == TRUE) && (ScaredEngardo == TRUE))
 	{
 		return TRUE;
+	}
+	else if(Npc_IsDead(Alvares) && (ScaredEngardo == TRUE))
+	{
+		return TRUE;
+	}
+	else if(Npc_IsDead(Engardo) && (ScaredAlvares == TRUE))
+	{
+		return TRUE;
 	};
 	return FALSE;
 };

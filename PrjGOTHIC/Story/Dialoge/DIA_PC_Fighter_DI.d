@@ -21,6 +21,31 @@ func void DIA_Gorn_DI_KAP5_EXIT_Info()
 };
 
 
+instance DIA_Gorn_DI_First(C_Info)
+{
+	npc = PC_Fighter_DI;
+	nr = 1;
+	condition = DIA_Gorn_DI_First_Condition;
+	information = DIA_Gorn_DI_First_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Gorn_DI_First_Condition()
+{
+	if(!Npc_IsDead(UndeadDragon) && (OrkSturmDI == FALSE) && Npc_IsInState(self,ZS_Talk))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Gorn_DI_First_Info()
+{
+	AI_Output(self,other,"INTRO_DiegoGorn_12_04");	//Земля!
+};
+
+
 instance DIA_Gorn_DI_Hallo(C_Info)
 {
 	npc = PC_Fighter_DI;
@@ -54,6 +79,30 @@ func void DIA_Gorn_DI_Hallo_Info()
 };
 
 
+var int DIA_Gorn_DI_Teacher_permanent;
+var int DIA_Gorn_DI_Teacher_Comment;
+
+func void B_BuildLearnDialog_Gorn_DI()
+{
+	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	{
+		Info_ClearChoices(DIA_Gorn_DI_Teach);
+		Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
+		Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Gorn_DI_Teach_2H_1);
+		Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Gorn_DI_Teach_2H_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_2H) >= 100)
+		{
+			DIA_Gorn_DI_Teacher_permanent = TRUE;
+		};
+		PrintScreen(PRINT_NoLearnOverMAX,-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
+};
+
 instance DIA_Gorn_DI_Teach(C_Info)
 {
 	npc = PC_Fighter_DI;
@@ -67,7 +116,7 @@ instance DIA_Gorn_DI_Teach(C_Info)
 
 func int DIA_Gorn_DI_Teach_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(!Npc_IsDead(UndeadDragon) && (DIA_Gorn_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -76,35 +125,41 @@ func int DIA_Gorn_DI_Teach_Condition()
 func void DIA_Gorn_DI_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Gorn_DI_Teach_15_00");	//Я хочу потренироваться.
-	AI_Output(self,other,"DIA_Gorn_DI_Teach_12_01");	//Это не помешает.
-	Info_ClearChoices(DIA_Gorn_DI_Teach);
-	Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Gorn_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Gorn_DI_Teach_2H_1);
+	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	{
+		if(DIA_Gorn_DI_Teacher_Comment == 0)
+		{
+			AI_Output(self,other,"DIA_Gorn_DI_Teach_12_01");	//Это не помешает.
+			DIA_Gorn_DI_Teacher_Comment = 1;
+		}
+		else if(DIA_Gorn_DI_Teacher_Comment == 1)
+		{
+			AI_Output(self,other,"DIA_Gorn_DI_Teach_2H_1_12_00");	//Да уж. Когда-то ты был лучше.
+			DIA_Gorn_DI_Teacher_Comment = 2;
+		}
+		else if(DIA_Gorn_DI_Teacher_Comment == 2)
+		{
+			AI_Output(self,other,"DIA_Gorn_DI_Teach_2H_5_12_00");	//Оружие нужно держать выше. Даже слепой легко пробьет твою защиту своей тростью.
+			DIA_Gorn_DI_Teacher_Comment = 0;
+		};
+	};
+	B_BuildLearnDialog_Gorn_DI();
 };
 
 func void DIA_Gorn_DI_Teach_2H_1()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
 	{
-		AI_Output(self,other,"DIA_Gorn_DI_Teach_2H_1_12_00");	//Да уж. Когда-то ты был лучше.
+		B_BuildLearnDialog_Gorn_DI();
 	};
-	Info_ClearChoices(DIA_Gorn_DI_Teach);
-	Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Gorn_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Gorn_DI_Teach_2H_1);
 };
 
 func void DIA_Gorn_DI_Teach_2H_5()
 {
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
 	{
-		AI_Output(self,other,"DIA_Gorn_DI_Teach_2H_5_12_00");	//Оружие нужно держать выше. Даже слепой легко пробьет твою защиту своей тростью.
+		B_BuildLearnDialog_Gorn_DI();
 	};
-	Info_ClearChoices(DIA_Gorn_DI_Teach);
-	Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Gorn_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Gorn_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Gorn_DI_Teach_2H_1);
 };
 
 func void DIA_Gorn_DI_Teach_Back()
@@ -112,6 +167,7 @@ func void DIA_Gorn_DI_Teach_Back()
 	Info_ClearChoices(DIA_Gorn_DI_Teach);
 };
 
+var int DIA_Gorn_DI_UndeadDragonDead_OneTime;
 
 instance DIA_Gorn_DI_UndeadDragonDead(C_Info)
 {
@@ -132,24 +188,18 @@ func int DIA_Gorn_DI_UndeadDragonDead_Condition()
 	};
 };
 
-
-var int DIA_Gorn_DI_UndeadDragonDead_OneTime;
-
 func void DIA_Gorn_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_00");	//Ты все это время был на корабле?
 	AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_01");	//Конечно. Только представь, чтоб мы делали, если бы он пропал.
-	if(DIA_Gorn_DI_UndeadDragonDead_OneTime == FALSE)
+	if((hero.guild == GIL_DJG) && (DIA_Gorn_DI_UndeadDragonDead_OneTime == FALSE))
 	{
-		if(hero.guild == GIL_DJG)
-		{
-			AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_02");	//А что случилось?
-			AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_03");	//Ничего. Я собираюсь отправляться домой.
-			AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_04");	//(смеется) Домой? А где это? Насколько я знаю, у тебя нет дома.
-			AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_05");	//Хочешь предложение? Мы ворвемся в первую же попавшуюся таверну и напьемся до бессознательного состояния.
-			AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_06");	//Ммм. Может быть.
-			AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_07");	//Эй, расслабься, дружище. Все кончено.
-		};
+		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_02");	//А что случилось?
+		AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_03");	//Ничего. Я собираюсь отправляться домой.
+		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_04");	//(смеется) Домой? А где это? Насколько я знаю, у тебя нет дома.
+		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_05");	//Хочешь предложение? Мы ворвемся в первую же попавшуюся таверну и напьемся до бессознательного состояния.
+		AI_Output(other,self,"DIA_Gorn_DI_UndeadDragonDead_15_06");	//Ммм. Может быть.
+		AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_07");	//Эй, расслабься, дружище. Все кончено.
 		DIA_Gorn_DI_UndeadDragonDead_OneTime = TRUE;
 	};
 	AI_Output(self,other,"DIA_Gorn_DI_UndeadDragonDead_12_10");	//Здесь нам больше нечего делать. Скажи капитану, чтобы поднимал якорь.

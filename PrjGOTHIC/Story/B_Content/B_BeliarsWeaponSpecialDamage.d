@@ -12,7 +12,7 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 		if(RavenBlitz <= 0)
 		{
 			Wld_PlayEffect("spellFX_BELIARSRAGE",oth,oth,0,0,0,FALSE);
-			B_MagicHurtNpc(slf,oth,50);
+			B_MagicHurtNpc(slf,oth,BeliarSpecialDamage / 2);
 			RavenBlitz += 1;
 		}
 		else if(RavenBlitz >= 3)
@@ -36,12 +36,12 @@ func void B_BeliarsWeaponSpecialDamage(var C_Npc oth,var C_Npc slf)
 			if(slf.aivar[AIV_MM_REAL_ID] == ID_DRAGON_UNDEAD)
 			{
 				Wld_PlayEffect("spellFX_BELIARSRAGE",oth,oth,0,0,0,FALSE);
-				B_MagicHurtNpc(slf,oth,100);
+				B_MagicHurtNpc(slf,oth,BeliarSpecialDamage);
 			}
 			else if(slf.flags != NPC_FLAG_IMMORTAL)
 			{
 				Wld_PlayEffect("spellFX_BELIARSRAGE",slf,slf,0,0,0,FALSE);
-				B_MagicHurtNpc(oth,slf,100);
+				B_MagicHurtNpc(oth,slf,BeliarSpecialDamage);
 			};
 			Wld_PlayEffect("spellFX_BELIARSRAGE_COLLIDE",hero,hero,0,0,0,FALSE);
 		};

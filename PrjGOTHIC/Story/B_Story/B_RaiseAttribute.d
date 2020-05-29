@@ -46,7 +46,8 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 	if(attrib == ATR_HITPOINTS_MAX)
 	{
 		oth.attribute[ATR_HITPOINTS_MAX] += points;
-		concatText = ConcatStrings(PRINT_Learnhitpoints_MAX,IntToString(points));
+		oth.attribute[ATR_HITPOINTS] += points;
+		concatText = ConcatStrings(PRINT_LearnHP_MAX,IntToString(points));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);
 	};
 	if(attrib == ATR_REGENERATEHP)
@@ -85,7 +86,6 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 			PrintScreen(PRINT_NoLearnOverMAX,-1,-1,FONT_Screen,2);
 		};
 	};
-//	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == FALSE)
 	{
 		B_RaiseRealAttributeLearnCounter(oth,attrib,points);

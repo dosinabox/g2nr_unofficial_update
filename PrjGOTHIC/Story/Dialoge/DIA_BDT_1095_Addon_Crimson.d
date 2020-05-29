@@ -162,6 +162,7 @@ func void DIA_Addon_Crimson_Gold_Info()
 	if(self.aivar[AIV_DefeatedByPlayer] == TRUE)
 	{
 		B_Say(self,other,"$NOTNOW");
+		Wld_StopEffect("DEMENTOR_FX");
 		AI_StopProcessInfos(self);
 	}
 	else
@@ -299,13 +300,21 @@ func void DIA_Addon_Crimson_FATAGN_Info()
 
 func void DIA_Addon_Crimson_FATAGN_LOS()
 {
-	Snd_Play("Mystery_09");
-	B_Say_CrimsonBeliar();
-	if(Crimson_SayBeliar == 3)
+	if(Crimson_SayBeliar == 1)
 	{
+		Snd_Play("Mystery_01");
+	}
+	else if(Crimson_SayBeliar == 2)
+	{
+		Snd_Play("Mystery_03");
+	}
+	else
+	{
+		Snd_Play("Mystery_07");
 		Wld_PlayEffect("FX_EARTHQUAKE",self,self,0,0,0,FALSE);
 		Wld_PlayEffect("DEMENTOR_FX",self,self,0,0,0,FALSE);
 	};
+	B_Say_CrimsonBeliar();
 	Info_ClearChoices(DIA_Addon_Crimson_FATAGN);
 };
 

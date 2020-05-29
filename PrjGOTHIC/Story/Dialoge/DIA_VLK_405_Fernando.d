@@ -37,7 +37,7 @@ func int DIA_Fernando_PICKPOCKET_Condition()
 //	if(C_StealItems(50,Hlp_GetInstanceID(ItSe_GoldPocket100),1) && (NpcObsessedByDMT_Fernando == FALSE))
 	if(Npc_HasItems(self,ItSe_GoldPocket100) && (NpcObsessedByDMT_Fernando == FALSE))
 	{
-		return C_StealItem(50,Hlp_GetInstanceID(ItSe_GoldPocket100));
+		return C_StealItem(50);
 	};
 	return FALSE;
 };
@@ -88,6 +88,7 @@ func void DIA_Fernando_Hello_Info()
 	AI_Output(self,other,"DIA_Fernando_Hello_14_02");	//Заключенные добывали руду в шахтах, а мои корабли доставляли ее на материк.
 	AI_Output(self,other,"DIA_Fernando_Hello_14_03");	//А на обратном пути они доставляли пищу и другие товары.
 	AI_Output(self,other,"DIA_Fernando_Hello_14_04");	//Но сейчас мы отрезаны от материка, и нам приходится рассчитывать только на фермеров в том, что касается припасов.
+	B_PlayerEnteredUpperCity();
 };
 
 
@@ -226,11 +227,11 @@ func void DIA_Addon_Fernando_BanditTrader_Info()
 		};
 		if(FernandoMajorEvidenceCount < 2)
 		{
-			AI_Output(self,other,"DIA_Addon_Cord_TalkedToDexter_14_01");	//И?
+			DIA_Cord_And();
 			AI_Output(other,self,"DIA_Addon_Cavalorn_Banditen_15_02");	//Э-э...
 			if((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF))
 			{
-				B_Say(self,other,"$SpareMe");
+				B_Say(self,other,"$SPAREME");
 			}
 			else
 			{

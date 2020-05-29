@@ -146,7 +146,7 @@ func void DIA_Addon_Francis_Key_Info()
 
 func void DIA_Addon_Francis_Key_BACK()
 {
-	AI_Output(other,self,"DIA_Lehmar_GELDLEIHEN_back_15_00");	//Я подумаю над этим.
+	DIA_Common_IWillThinkAboutIt();
 	Info_ClearChoices(DIA_Addon_Francis_Key);
 };
 
@@ -287,7 +287,7 @@ func int DIA_Francis_PICKPOCKET_Condition()
 //	return C_StealItems(40,Hlp_GetInstanceID(ItKe_Greg_Addon_MIS),1);
 	if(Npc_HasItems(self,ItKe_Greg_Addon_MIS))
 	{
-		return C_StealItem(40,Hlp_GetInstanceID(ItKe_Greg_Addon_MIS));
+		return C_StealItem(40);
 	};
 	return FALSE;
 };

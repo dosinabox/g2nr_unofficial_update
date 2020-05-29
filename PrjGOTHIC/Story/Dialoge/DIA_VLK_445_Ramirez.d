@@ -95,7 +95,7 @@ instance DIA_Ramirez_Hallo(C_Info)
 
 func int DIA_Ramirez_Hallo_Condition()
 {
-	if(Join_Thiefs == FALSE)
+	if((Join_Thiefs == FALSE) && !Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
 	{
 		return TRUE;
 	};
@@ -105,8 +105,8 @@ func void DIA_Ramirez_Hallo_Info()
 {
 	AI_Output(self,other,"DIA_Ramirez_Hallo_14_00");	//Ты что, заблудился? По-моему, это не самое подходящее место для тебя.
 	AI_Output(self,other,"DIA_Ramirez_Hallo_14_01");	//Если здесь с тобой что-нибудь случится, тебе никто не придет на помощь. Так что будь осторожен. (широкая ухмылка)
-	AI_StopProcessInfos(self);
 	DG_gefunden = TRUE;
+	AI_StopProcessInfos(self);
 };
 
 
@@ -123,7 +123,7 @@ instance DIA_Ramirez_Hallo_Joined(C_Info)
 
 func int DIA_Ramirez_Hallo_Joined_Condition()
 {
-	if(Join_Thiefs == TRUE)
+	if((Join_Thiefs == TRUE) && !Npc_IsDead(Cassia) && !Npc_IsDead(Jesper))
 	{
 		return TRUE;
 	};
@@ -151,7 +151,11 @@ instance DIA_Ramirez_Beute(C_Info)
 
 func int DIA_Ramirez_Beute_Condition()
 {
-	if(Npc_GetDistToWP(self,"NW_CITY_KANAL_ROOM_04_01") < 1000)
+	if(Npc_IsDead(Cassia) || Npc_IsDead(Jesper))
+	{
+		return FALSE;
+	}
+	else if(Npc_GetDistToWP(self,"NW_CITY_KANAL_ROOM_04_01") < 1000)
 	{
 		if(Mob_HasItems("THIEF_CHEST_01",ItMi_Gold) < 50)
 		{
@@ -202,6 +206,7 @@ func int DIA_Ramirez_Beute_Condition()
 func void DIA_Ramirez_Beute_Info()
 {
 	AI_Output(self,other,"DIA_Ramirez_Beute_14_00");	//Послушай, ты что, пытаешься так пошутить? Ты набиваешь карманы нашим золотом... ты что, пытаешься красть у нас?
+	DG_gefunden = TRUE;
 	if(Join_Thiefs == TRUE)
 	{
 		AI_Output(other,self,"DIA_Ramirez_Beute_15_01");	//Не стоит расстраиваться так из-за пары монет.
@@ -217,7 +222,6 @@ func void DIA_Ramirez_Beute_Info()
 		AI_StopProcessInfos(self);
 		B_Attack(self,other,AR_NONE,1);
 	};
-	DG_gefunden = TRUE;
 };
 
 
@@ -436,5 +440,52 @@ func void DIA_Ramirez_Success_Info()
 //	Ramirez_Sextant = TRUE;
 	MIS_RamirezSextant = LOG_SUCCESS;
 	B_GivePlayerXP(XP_RamirezSextant);
+};
+
+
+func void B_ThievesKiller()
+{
+	if(MIS_CassiaRing == LOG_Running)
+	{
+		MIS_CassiaRing = LOG_FAILED;
+	};
+	if(MIS_CassiaKelche == LOG_Running)
+	{
+		MIS_CassiaKelche = LOG_FAILED;
+	};
+	if(MIS_RamirezSextant == LOG_Running)
+	{
+		MIS_RamirezSextant = LOG_FAILED;
+	};
+	B_CheckLog();
+	SewerThieves_KilledByPlayer = TRUE;
+	DG_gefunden = TRUE;
+	AI_StopProcessInfos(self);
+	B_Attack(self,other,AR_KILL,1);
+};
+
+instance DIA_Ramirez_Killer(C_Info)
+{
+	npc = VLK_445_Ramirez;
+	nr = 1;
+	condition = DIA_Ramirez_Killer_Condition;
+	information = DIA_Ramirez_Killer_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Ramirez_Killer_Condition()
+{
+	if(Npc_IsDead(Cassia) || Npc_IsDead(Jesper))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Ramirez_Killer_Info()
+{
+	B_Say(self,other,"$YOUMURDERER");
+	B_ThievesKiller();
 };
 

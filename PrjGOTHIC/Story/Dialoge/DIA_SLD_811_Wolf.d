@@ -145,6 +145,67 @@ func void DIA_Wolf_WannaLearn_Info()
 
 
 var int Wolf_Merke_Bow;
+var int Wolf_TeachComment;
+var int DIA_Wolf_Teacher_permanent;
+
+func void B_BuildLearnDialog_Wolf()
+{
+	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Wolf)
+	{
+		Info_ClearChoices(DIA_Wolf_TEACH);
+		Info_AddChoice(DIA_Wolf_TEACH,Dialog_Back,DIA_Wolf_Teach_Back);
+		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_Teach_Bow_1);
+		Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Wolf_Teach_Bow_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Wolf)
+		{
+			DIA_Wolf_Teacher_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Bow_Wolf)),-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
+};
+
+func void B_Wolf_YouAreBetterNow()
+{
+	AI_Output(self,other,"DIA_Wolf_Teach_BACK_08_00");	//Вот так. Твоя меткость значительно выросла.
+};
+
+func void B_Wolf_TeachComment(var int skill)
+{
+	if(Wolf_TeachComment == 0)
+	{
+		AI_Output(self,other,"DIA_Wolf_DI_Training_CROSSBOW_5_08_00");	//Опытный стрелок всегда учитывает направление ветра и никогда не стреляет против него.
+		Wolf_TeachComment = 1;
+	}
+	else if(Wolf_TeachComment == 1)
+	{
+		if(skill == NPC_TALENT_BOW)
+		{
+			AI_Output(self,other,"DIA_Wolf_DI_Training_BOW_1_08_00");	//В отличие от арбалета, лук очень громоздкий и требует много места. Не забывай об этом в бою.
+		}
+		else if(skill == NPC_TALENT_CROSSBOW)
+		{
+			AI_Output(self,other,"DIA_Wolf_DI_Training_CROSSBOW_1_08_00");	//Постарайся, чтобы при выстреле из арбалета у тебя не дрогнула рука. Вот почему спусковой крючок нужно нажимать очень нежно.
+		};
+		Wolf_TeachComment = 2;
+	}
+	else if(Wolf_TeachComment == 2)
+	{
+		if(skill == NPC_TALENT_BOW)
+		{
+			AI_Output(self,other,"DIA_Wolf_DI_Training_BOW_5_08_00");	//Тетива при стрельбе должна свободно скользить по пальцам. Скрюченный палец испортит траекторию стрелы.
+		}
+		else if(skill == NPC_TALENT_CROSSBOW)
+		{
+			B_Wolf_YouAreBetterNow();
+		};
+		Wolf_TeachComment = 1;
+	};
+};
 
 instance DIA_Wolf_TEACH(C_Info)
 {
@@ -159,7 +220,7 @@ instance DIA_Wolf_TEACH(C_Info)
 
 func int DIA_Wolf_TEACH_Condition()
 {
-	if(Wolf_TeachBow == TRUE)
+	if((Wolf_TeachBow == TRUE) && (DIA_Wolf_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -168,43 +229,40 @@ func int DIA_Wolf_TEACH_Condition()
 func void DIA_Wolf_TEACH_Info()
 {
 	AI_Output(other,self,"DIA_Wolf_TEACH_15_00");	//Я хочу научиться стрельбе из лука.
-	AI_Output(self,other,"DIA_Wolf_TEACH_08_01");	//Чему обучить тебя?
-//	Wolf_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
-	Wolf_Merke_Bow = other.aivar[REAL_TALENT_BOW];
-	Info_ClearChoices(DIA_Wolf_TEACH);
-	Info_AddChoice(DIA_Wolf_TEACH,Dialog_Back,DIA_Wolf_Teach_Back);
-	Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_Teach_Bow_1);
-	Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Wolf_Teach_Bow_5);
+	if(VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Wolf)
+	{
+		AI_Output(self,other,"DIA_Wolf_TEACH_08_01");	//Чему обучить тебя?
+		Wolf_Merke_Bow = other.HitChance[NPC_TALENT_BOW];
+	};
+	B_BuildLearnDialog_Wolf();
 };
 
 func void DIA_Wolf_Teach_Back()
 {
-//	if(Wolf_Merke_Bow < other.HitChance[NPC_TALENT_BOW])
-	if(Wolf_Merke_Bow < other.aivar[REAL_TALENT_BOW])
+	if(Wolf_Merke_Bow < other.HitChance[NPC_TALENT_BOW])
 	{
-		AI_Output(self,other,"DIA_Wolf_Teach_BACK_08_00");	//Вот так. Твоя меткость значительно выросла.
+		B_Wolf_YouAreBetterNow();
 	};
 	Info_ClearChoices(DIA_Wolf_TEACH);
 };
 
 func void DIA_Wolf_Teach_Bow_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,90);
-	Info_ClearChoices(DIA_Wolf_TEACH);
-	Info_AddChoice(DIA_Wolf_TEACH,Dialog_Back,DIA_Wolf_Teach_Back);
-	Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_Teach_Bow_1);
-	Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Wolf_Teach_Bow_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,TeachLimit_Bow_Wolf))
+	{
+		B_Wolf_TeachComment(NPC_TALENT_BOW);
+		B_BuildLearnDialog_Wolf();
+	};
 };
 
 func void DIA_Wolf_Teach_Bow_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,90);
-	Info_ClearChoices(DIA_Wolf_TEACH);
-	Info_AddChoice(DIA_Wolf_TEACH,Dialog_Back,DIA_Wolf_Teach_Back);
-	Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_Teach_Bow_1);
-	Info_AddChoice(DIA_Wolf_TEACH,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Wolf_Teach_Bow_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,TeachLimit_Bow_Wolf))
+	{
+		B_Wolf_TeachComment(NPC_TALENT_BOW);
+		B_BuildLearnDialog_Wolf();
+	};
 };
-
 
 instance DIA_Wolf_PERM(C_Info)
 {
@@ -293,9 +351,12 @@ func void DIA_Wolf_AboutCrawler_Info()
 	AI_Output(other,self,"DIA_Wolf_AboutCrawler_15_05");	//Сколько ты хочешь за них?
 	AI_Output(self,other,"DIA_Wolf_AboutCrawler_08_06");	//Забудь об этом. Я сделаю их бесплатно. В память о старых временах.
 	MIS_Wolf_BringCrawlerPlates = LOG_Running;
-	Log_CreateTopic(TOPIC_Wolf_BringCrawlerPlates,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Wolf_BringCrawlerPlates,LOG_Running);
-	B_LogEntry(TOPIC_Wolf_BringCrawlerPlates,"Вольф может сделать мне доспехи из 10 панцирей краулеров.");
+	if(Kapitel < 4)
+	{
+		Log_CreateTopic(TOPIC_Wolf_BringCrawlerPlates,LOG_MISSION);
+		Log_SetTopicStatus(TOPIC_Wolf_BringCrawlerPlates,LOG_Running);
+		B_LogEntry(TOPIC_Wolf_BringCrawlerPlates,"Вольф может сделать мне доспехи из 10 панцирей краулеров.");
+	};
 };
 
 
@@ -357,6 +418,7 @@ func void DIA_Wolf_BringPlates_Info()
 	AI_Output(self,other,"DIA_Wolf_BringPlates_08_01");	//Хорошо! Давай их сюда.
 	B_GiveInvItems(other,self,ItAt_CrawlerPlate,10);
 	MIS_Wolf_BringCrawlerPlates = LOG_SUCCESS;
+	B_CheckLog();
 };
 
 
@@ -388,14 +450,10 @@ func void DIA_Wolf_ArmorReady_Info()
 	{
 		if(Wolf_MakeArmor == FALSE)
 		{
-			Wolf_Armor_Day = Wld_GetDay() + 1;
-			if(Wld_IsTime(23,0,23,59))
-			{
-				Wolf_Armor_Day += 1;
-			};
+			Wolf_Armor_Day = B_GetDayPlus();
 			Wolf_MakeArmor = TRUE;
 		};
-		if((Wolf_MakeArmor == TRUE) && (Wolf_Armor_Day > Wld_GetDay()))
+		if((Wolf_MakeArmor == TRUE) && (Wolf_Armor_Day >= Wld_GetDay()))
 		{
 			AI_Output(self,other,"DIA_Wolf_ArmorReady_08_01");	//Скоро они будут готовы. Заходи завтра.
 		}
@@ -783,31 +841,6 @@ func void DIA_Wolf_SHIPOFF_Info()
 	B_Attack(self,other,AR_NONE,1);
 };
 
-/*
-instance DIA_Wolf_KAP6_EXIT(C_Info)
-{
-	npc = SLD_811_Wolf;
-	nr = 999;
-	condition = DIA_Wolf_KAP6_EXIT_Condition;
-	information = DIA_Wolf_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Wolf_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Wolf_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Wolf_PICKPOCKET(C_Info)
 {
@@ -842,6 +875,4 @@ func void DIA_Wolf_PICKPOCKET_BACK()
 {
 	Info_ClearChoices(DIA_Wolf_PICKPOCKET);
 };
-
-
 

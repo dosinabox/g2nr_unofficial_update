@@ -203,6 +203,7 @@ func void UseItwr_Silvestro()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"От королевского паладина Сильвестро");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0,"Нас ждет еще один день раскопок. Сегодня мы собираемся пробиться через стену и углубиться дальше в скалу.");
@@ -354,8 +355,8 @@ func void UseBloodMIS()
 	Doc_PrintLines(nDocID,0,"Если только он не владеет искусством извлечения жала и его обработки.");
 	Doc_PrintLines(nDocID,0,"Жало необходимо аккуратно разрезать острым ножом от кончика до основания.");
 	Doc_PrintLines(nDocID,0,"Верхний слой удаляется. Затем разрезается ткань вокруг желез.");
-	Doc_PrintLines(nDocID,0,"Выделяющийся при разрезе сок обладает лечебными свойствами.");
-	Doc_PrintLines(nDocID,0,"Однако, со временем человеческий организм становится невосприимчивым к этому лечебному зелью.");
+	Doc_PrintLines(nDocID,0,"Выделяющаяся при разрезе жидкость обладает лечебными свойствами.");
+	Doc_PrintLines(nDocID,0,"Однако, со временем человеческий организм становится невосприимчивым к этой лечебной субстанции.");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"Дамарок");
 	Doc_Show(nDocID);
@@ -599,11 +600,10 @@ instance ItRi_HP_01_Tengron(C_Item)
 	visual = "ItRi_Hp_01.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;
-	on_equip = Equip_ItRi_Tengron;
-	on_unequip = UnEquip_ItRi_Tengron;
+	on_equip = Equip_ItRi_Hp_01;
+	on_unequip = UnEquip_ItRi_Hp_01;
 	wear = WEAR_EFFECT;
 	effect = "SPELLFX_ITEMGLIMMER";
-//	description = NAME_ADDON_TengronsRing;
 	description = NAME_ADDON_CASSIASBELOHNUNGSRING;
 	text[0] = "Это кольцо принадлежит Тенгрону.";
 	text[2] = NAME_Bonus_HpMax;
@@ -613,29 +613,5 @@ instance ItRi_HP_01_Tengron(C_Item)
 	inv_zbias = INVCAM_ENTF_RING_STANDARD;
 	inv_rotz = INVCAM_Z_RING_STANDARD;
 	inv_rotx = INVCAM_X_RING_STANDARD;
-};
-
-
-func void Equip_ItRi_Tengron()
-{
-	self.attribute[ATR_HITPOINTS_MAX] += Ri_Hp;
-//	self.attribute[ATR_HITPOINTS] += Ri_Hp;
-};
-
-func void UnEquip_ItRi_Tengron()
-{
-	self.attribute[ATR_HITPOINTS_MAX] -= Ri_Hp;
-	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
-	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	};
-//	if(self.attribute[ATR_HITPOINTS] > (Ri_Hp + 1))
-//	{
-//		self.attribute[ATR_HITPOINTS] -= Ri_Hp;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_HITPOINTS] = 2;
-//	};
 };
 

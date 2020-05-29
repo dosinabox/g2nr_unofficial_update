@@ -180,3 +180,16 @@ func void B_ClearTools(var C_Npc slf)
 	};
 };
 
+func void B_ClearSpecialAmmo(var C_Npc slf)
+{
+	if(Hlp_IsValidNpc(slf))
+	{
+		if(Hlp_GetInstanceID(slf) != Hlp_GetInstanceID(Bennet_DI))
+		{
+			Npc_RemoveInvItems(slf,ItRw_Addon_MagicBolt,Npc_HasItems(slf,ItRw_Addon_MagicBolt));
+			Npc_RemoveInvItems(slf,ItRw_Addon_MagicArrow,Npc_HasItems(slf,ItRw_Addon_MagicArrow));
+			Npc_RemoveInvItems(slf,ItRw_Addon_FireArrow,Npc_HasItems(slf,ItRw_Addon_FireArrow));
+		};
+	};
+};
+

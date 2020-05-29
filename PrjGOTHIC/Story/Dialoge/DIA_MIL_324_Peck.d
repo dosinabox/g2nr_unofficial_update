@@ -37,7 +37,7 @@ func int DIA_Peck_PICKPOCKET_Condition()
 //	return C_StealItems(60,Hlp_GetInstanceID(ItKe_City_Tower_05),1);
 	if(Npc_HasItems(self,ItKe_City_Tower_05))
 	{
-		return C_StealItem(60,Hlp_GetInstanceID(ItKe_City_Tower_05));
+		return C_StealItem(60);
 	};
 	return FALSE;
 };

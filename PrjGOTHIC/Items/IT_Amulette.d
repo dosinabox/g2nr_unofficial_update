@@ -298,25 +298,12 @@ instance ItAm_Hp_01(C_Item)
 
 func void Equip_ItAm_Hp_01()
 {
-	self.attribute[ATR_HITPOINTS_MAX] += Am_Hp;
-//	self.attribute[ATR_HITPOINTS] += Am_Hp;
+	UnEquip_MaxHP(Am_Hp);
 };
 
 func void UnEquip_ItAm_Hp_01()
 {
-	self.attribute[ATR_HITPOINTS_MAX] -= Am_Hp;
-	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
-	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	};
-//	if(self.attribute[ATR_HITPOINTS] > (Am_Hp + 2))
-//	{
-//		self.attribute[ATR_HITPOINTS] -= Am_Hp;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_HITPOINTS] = 2;
-//	};
+	Equip_MaxHP(Am_Hp);
 };
 
 
@@ -344,25 +331,12 @@ instance ItAm_Mana_01(C_Item)
 
 func void Equip_ItAm_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] += Am_Mana;
-//	self.attribute[ATR_MANA] += Am_Mana;
+	Equip_MaxMana(Am_Mana);
 };
 
 func void UnEquip_ItAm_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] -= Am_Mana;
-	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
-	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
-	};
-//	if(self.attribute[ATR_MANA] > Am_Mana)
-//	{
-//		self.attribute[ATR_MANA] -= Am_Mana;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_MANA] = 0;
-//	};
+	UnEquip_MaxMana(Am_Mana);
 };
 
 
@@ -429,40 +403,14 @@ instance ItAm_Hp_Mana_01(C_Item)
 
 func void Equip_ItAm_Hp_Mana_01()
 {
-//	self.attribute[ATR_HITPOINTS] += Am_HpMana_Hp;
-	self.attribute[ATR_HITPOINTS_MAX] += Am_HpMana_Hp;
-//	self.attribute[ATR_MANA] += Am_HpMana_Mana;
-	self.attribute[ATR_MANA_MAX] += Am_HpMana_Mana;
+	Equip_MaxHP(Am_HpMana_Hp);
+	Equip_MaxMana(Am_HpMana_Mana);
 };
 
 func void UnEquip_ItAm_Hp_Mana_01()
 {
-	self.attribute[ATR_MANA_MAX] -= Am_HpMana_Mana;
-	self.attribute[ATR_HITPOINTS_MAX] -= Am_HpMana_Hp;
-	if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
-	{
-		self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
-	};
-	if(self.attribute[ATR_HITPOINTS] > self.attribute[ATR_HITPOINTS_MAX])
-	{
-		self.attribute[ATR_HITPOINTS] = self.attribute[ATR_HITPOINTS_MAX];
-	};
-//	if(self.attribute[ATR_HITPOINTS] > (Am_HpMana_Hp + 2))
-//	{
-//		self.attribute[ATR_HITPOINTS] -= Am_HpMana_Hp;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_HITPOINTS] = 2;
-//	};
-//	if(self.attribute[ATR_MANA] > Am_HpMana_Mana)
-//	{
-//		self.attribute[ATR_MANA] -= Am_HpMana_Mana;
-//	}
-//	else
-//	{
-//		self.attribute[ATR_MANA] = 0;
-//	};
+	UnEquip_MaxHP(Am_HpMana_Hp);
+	UnEquip_MaxMana(Am_HpMana_Mana);
 };
 
 

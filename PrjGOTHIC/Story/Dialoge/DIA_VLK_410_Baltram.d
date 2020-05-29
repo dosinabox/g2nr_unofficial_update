@@ -199,10 +199,10 @@ func void DIA_Baltram_Trick_Info()
 	AI_Output(other,self,"DIA_Baltram_Trick_15_05");	//Отлично, я согласен.
 	AI_Output(self,other,"DIA_Baltram_Trick_01_06");	//Хорошо, просто скажи Акилу, что тебя послал я. Он передаст тебе пакет. Принеси его мне.
 	MIS_Baltram_ScoutAkil = LOG_Running;
-	Log_AddEntry(TOPIC_Nagur,"Бальтрам нанял меня в качестве мальчика на побегушках. Теперь я должен доставить ему посылку с фермы Акила.");
 	Log_CreateTopic(TOPIC_Baltram,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Baltram,LOG_Running);
-	B_LogEntry(TOPIC_Baltram,"Если я принесу Бальтраму его посылку, он заплатит мне 50 золотых монет.");
+	B_LogEntries(TOPIC_Baltram,"Если я принесу Бальтраму его посылку, он заплатит мне 50 золотых монет.");
+	B_LogNextEntry(TOPIC_Nagur,"Бальтрам нанял меня в качестве мальчика на побегушках. Теперь я должен доставить ему посылку с фермы Акила.");
 };
 
 

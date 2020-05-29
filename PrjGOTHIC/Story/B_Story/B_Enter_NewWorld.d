@@ -128,11 +128,11 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 		{
 			B_StartOtherRoutine(Ambusher_1013,"AWAY");
 		}; */
-		if(Lobart.aivar[AIV_IGNORE_Theft] == TRUE)
+		if(!Npc_IsDead(Lobart))
 		{
 			Lobart.aivar[AIV_IGNORE_Theft] = FALSE;
 		};
-		if((MIS_HelpDyrian != LOG_Success) && !Npc_IsDead(Dyrian))
+		if((MIS_HelpDyrian != LOG_SUCCESS) && !Npc_IsDead(Dyrian))
 		{
 			Dyrian.guild = GIL_NONE;
 			Npc_SetTrueGuild(Dyrian,GIL_NONE);
@@ -427,10 +427,16 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		};
 		if(!Npc_IsDead(Rick))
 		{
+			Rick.guild = GIL_MIL;
+			Npc_SetTrueGuild(Rick,GIL_MIL);
+			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rick,"Ch3");
 		};
 		if(!Npc_IsDead(Rumbold))
 		{
+			Rumbold.guild = GIL_MIL;
+			Npc_SetTrueGuild(Rumbold,GIL_MIL);
+			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rumbold,"Ch3");
 		};
 		if(!Npc_IsDead(Bengar))
@@ -689,11 +695,9 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			if(!Npc_IsDead(Randolph))
 			{
 				CreateInvItems(Randolph,ITWR_DementorObsessionBook_MIS,1);
-//				B_StartOtherRoutine(Randolph,"Obsessed");
 				B_StartOtherRoutine(Randolph,"preStart");
 			};
 		};
-//		возвращение на ферму Онара Альвареса и Энгардо
 		if((TOPIC_END_AkilsSLDStillthere == FALSE) && !C_AkilFarmIsFree())
 		{
 			if(!Npc_IsDead(Alvares))
@@ -718,11 +722,34 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 			};
 			if(!Npc_IsDead(Randolph))
 			{
-				if(hero.guild != GIL_KDF)
+				if((hero.guild != GIL_KDF) && (Randolph_ExchangeRoutine_Once == FALSE))
 				{
 					B_StartOtherRoutine(Randolph,"Start");
+					Randolph_ExchangeRoutine_Once = TRUE;
 				};
 				Randolph.flags = 0;
+			};
+		};
+		if((TaverneTopicStarted == TRUE) && (MIS_Rukhar_Wettkampf == FALSE))
+		{
+			MIS_Rukhar_Wettkampf = LOG_OBSOLETE;
+			B_CheckLog();
+		};
+		if((DIA_Randolph_ICHGEBEDIRGELD_noPerm == TRUE) && (MIS_Rukhar_Wettkampf == LOG_Running))
+		{
+			if(Mob_HasItems("CHEST_RUKHAR",ItFo_Booze))
+			{
+				B_StartOtherRoutine(Rukhar,"WettkampfRukharWon");
+				Rukhar_Won_Wettkampf = TRUE;
+			}
+			else if(Mob_HasItems("CHEST_RUKHAR",ItFo_Water) > 0)
+			{
+				B_StartOtherRoutine(Rukhar,"WettkampfRukharLost");
+			};
+			if((hero.guild != GIL_KDF) && (Randolph_ExchangeRoutine_Once == FALSE))
+			{
+				B_StartOtherRoutine(Randolph,"Start");
+				Randolph_ExchangeRoutine_Once = TRUE;
 			};
 		};
 		B_KillThievesGuild();

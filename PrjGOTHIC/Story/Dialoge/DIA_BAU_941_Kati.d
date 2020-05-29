@@ -169,8 +169,8 @@ func void DIA_Kati_Baltram_Info()
 	CreateInvItems(self,ItMi_BaltramPaket,1);
 	B_GiveInvItems(self,other,ItMi_BaltramPaket,1);
 	Lieferung_Geholt = TRUE;
-	B_LogEntry(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
-	B_LogEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
+	B_LogEntries(TOPIC_Baltram,"Я получил посылку. Теперь я могу отнести ее Бальтраму...");
+	B_LogNextEntry(TOPIC_Nagur,"Я получил посылку. Теперь я могу отнести ее Нагуру...");
 };
 
 

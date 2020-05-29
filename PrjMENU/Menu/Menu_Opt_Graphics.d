@@ -36,9 +36,9 @@ instance MENUITEM_GRA_SKY_EFFECTS(C_MENU_ITEM_DEF)
 	text[0] = "Эффекты погоды";
 	text[1] = "Дождь, гроза и снег вкл/откл";
 	posx = 1000;
-	posy = MENU_START_Y - (MENU_SOUND_DY * 3);
+	posy = MENU_START_Y;
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -47,10 +47,10 @@ instance MENUITEM_GRA_SKY_EFFECTS_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = (MENU_START_Y - (MENU_SOUND_DY * 3)) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "skyEffects";
@@ -65,9 +65,9 @@ instance MENUITEM_GRA_ITEMS_EFFECTS(C_MENU_ITEM_DEF)
 	text[0] = "Эфф. предметов";
 	text[1] = "Эффекты вокруг предметов вкл/откл";
 	posx = 1000;
-	posy = MENU_START_Y - (MENU_SOUND_DY * 2);
+	posy = MENU_START_Y + MENU_STEP_Y;
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -76,10 +76,10 @@ instance MENUITEM_GRA_ITEMS_EFFECTS_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = (MENU_START_Y - (MENU_SOUND_DY * 2)) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + MENU_STEP_Y + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "itemEffects";
@@ -94,9 +94,9 @@ instance MENUITEM_EXT_FFT(C_MENU_ITEM_DEF)
 	text[0] = "Волны на воде";
 	text[1] = "Движение воды на ветру вкл/откл";
 	posx = 1000;
-	posy = MENU_START_Y - (MENU_SOUND_DY * 1);
+	posy = MENU_START_Y + (MENU_STEP_Y * 2);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -105,10 +105,10 @@ instance MENUITEM_EXT_FFT_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = (MENU_START_Y - (MENU_SOUND_DY * 1)) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 2) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zWaterAniEnabled";
@@ -123,9 +123,9 @@ instance MENUITEM_EXT_WATERFADE(C_MENU_ITEM_DEF)
 	text[0] = "Плавный горизонт";
 	text[1] = "Туман на горизонте вкл/откл";
 	posx = 1000;
-	posy = MENU_START_Y - (MENU_SOUND_DY * 0);
+	posy = MENU_START_Y + (MENU_STEP_Y * 3);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -134,10 +134,10 @@ instance MENUITEM_EXT_WATERFADE_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = (MENU_START_Y - (MENU_SOUND_DY * 0)) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 3) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zFarClipAlphaFade";
@@ -152,9 +152,9 @@ instance MENUITEM_EXT_OBJWIND(C_MENU_ITEM_DEF)
 	text[0] = "Ветер";
 	text[1] = "Движение объектов на ветру вкл/откл";
 	posx = 1000;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 1);
+	posy = MENU_START_Y + (MENU_STEP_Y * 4);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -163,10 +163,10 @@ instance MENUITEM_EXT_OBJWIND_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 1) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 4) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zWindEnabled";
@@ -181,9 +181,9 @@ instance MENUITEM_EXT_CLOUDSHADOW(C_MENU_ITEM_DEF)
 	text[0] = "Тени от облаков";
 	text[1] = "Тени от облаков вкл/откл";
 	posx = 1000;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 2);
+	posy = MENU_START_Y + (MENU_STEP_Y * 5);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -192,10 +192,10 @@ instance MENUITEM_EXT_CLOUDSHADOW_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 2) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 5) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zCloudShadowScale";
@@ -210,9 +210,9 @@ instance MENUITEM_EXT_AMBIENTPFX(C_MENU_ITEM_DEF)
 	text[0] = "Фоновые эффекты";
 	text[1] = "Фоновые эффекты частиц вкл/откл";
 	posx = 1000;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 3);
+	posy = MENU_START_Y + (MENU_STEP_Y * 6);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -221,10 +221,10 @@ instance MENUITEM_EXT_AMBIENTPFX_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 3) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 6) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zAmbientPFXEnabled";
@@ -239,9 +239,9 @@ instance MENUITEM_EXT_ENVMAP(C_MENU_ITEM_DEF)
 	text[0] = "Отражения";
 	text[1] = "Отражения на стекле и металле вкл/откл";
 	posx = 1000;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 4);
+	posy = MENU_START_Y + (MENU_STEP_Y * 7);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -250,10 +250,10 @@ instance MENUITEM_EXT_ENVMAP_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 4) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 7) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zEnvMappingEnabled";
@@ -268,9 +268,9 @@ instance MENUITEM_EXT_RADIALFOG(C_MENU_ITEM_DEF)
 	text[0] = "Радиальный туман";
 	text[1] = "Туман высокого качества вкл/откл";
 	posx = 1000;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 5);
+	posy = MENU_START_Y + (MENU_STEP_Y * 8);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -279,10 +279,10 @@ instance MENUITEM_EXT_RADIALFOG_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 5) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 8) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zFogRadial";
@@ -297,9 +297,9 @@ instance MENUITEM_EXT_VIDS(C_MENU_ITEM_DEF)
 	text[0] = "Полноэкр. видео";
 	text[1] = "Отключите, если видео не воспроизводится";
 	posx = 1000;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 6);
+	posy = MENU_START_Y + (MENU_STEP_Y * 9);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -308,10 +308,10 @@ instance MENUITEM_EXT_VIDS_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 6) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 9) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "scaleVideos";
@@ -326,9 +326,9 @@ instance MENUITEM_WEAPONTRAILS(C_MENU_ITEM_DEF)
 	text[0] = "Следы от оружия";
 	text[1] = NEEDS_RESTART;
 	posx = 1000;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 7);
+	posy = MENU_START_Y + (MENU_STEP_Y * 10);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -337,10 +337,10 @@ instance MENUITEM_WEAPONTRAILS_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 7) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 10) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zShowWeaponTrails";
@@ -355,9 +355,9 @@ instance MENUITEM_SKYDOME(C_MENU_ITEM_DEF)
 	text[0] = "Трехмерное небо";
 	text[1] = NEEDS_RESTART;
 	posx = 1000;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 8);
+	posy = MENU_START_Y + (MENU_STEP_Y * 11);
 	dimx = 4000;
-	dimy = 750;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_UNDEF;
 	flags = flags | IT_EFFECTS_NEXT;
 };
@@ -366,10 +366,10 @@ instance MENUITEM_SKYDOME_CHOICE(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_CHOICE_BACK_PIC;
 	type = MENU_ITEM_CHOICEBOX;
-	text[0] = "откл|вкл";
+	text[0] = MENU_TEXT_ONOFF;
 	fontname = MENU_FONT_SMALL;
 	posx = MENU_BUTTONS;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 8) + MENU_CHOICE_YPLUS;
+	posy = MENU_START_Y + (MENU_STEP_Y * 11) + MENU_CHOICE_YPLUS;
 	dimx = MENU_SLIDER_DX;
 	dimy = MENU_CHOICE_DY;
 	onchgsetoption = "zSkyDome";
@@ -381,11 +381,11 @@ instance MENUITEM_SKYDOME_CHOICE(C_MENU_ITEM_DEF)
 instance MENUITEM_GRA_BACK(C_MENU_ITEM_DEF)
 {
 	backpic = MENU_ITEM_BACK_PIC;
-	text[0] = "Назад";
-	posx = 1000;
-	posy = MENU_START_Y + (MENU_SOUND_DY * 9) + 100;
-	dimx = 6192;
-	dimy = MENU_OPT_DY;
+	text[0] = MENU_TEXT_BACK;
+	posx = 0;
+	posy = MENU_BACK_Y;
+	dimx = MENU_MAIN_DX;
+	dimy = MENU_MAIN_DY;
 	onselaction[0] = SEL_ACTION_BACK;
 	flags = flags | IT_TXT_CENTER;
 };

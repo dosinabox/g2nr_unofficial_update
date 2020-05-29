@@ -45,6 +45,7 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		CreateInvItems(slf,ItSc_SumWolf,2);
 		CreateInvItems(slf,ITWr_Addon_Health_04,1);
 		CreateInvItems(slf,ITWr_Addon_Mana_04,1);
+		CreateInvItems(slf,ItAm_Prot_Mage_01,1);
 		//перенос инвентаря из Хориниса
 		if(Cronos_NW_ItMi_Flask_Count > 0)
 		{
@@ -121,7 +122,7 @@ func void B_GiveTradeInv_Addon_Cronos_ADW(var C_Npc slf)
 		CreateInvItems(slf,ItSc_Geyser,2);
 		CreateInvItems(slf,ItSc_Thunderstorm,2);
 		CreateInvItems(slf,ItSc_Waterfist,1);
-		CreateInvItems(slf,ItMi_RuneBlank,2);
+		CreateInvItems(slf,ItMi_RuneBlank,1);
 		CreateInvItems(slf,ItSc_TrfGiantBug,1);
 		CreateInvItems(slf,ItSc_TrfWolf,1);
 		CreateInvItems(slf,ItSc_TrfSheep,1);

@@ -245,8 +245,8 @@ func void Use_DementorObsessionBook()
 	{
 		nDocID = Doc_Create();
 		Doc_SetPages(nDocID,2);
-		Doc_SetPage(nDocID,0,"BOOK_MAGE_L.tga",0);
-		Doc_SetPage(nDocID,1,"BOOK_MAGE_R.tga",0);
+		Doc_SetPage(nDocID,0,"Book_Mage_L.tga",0);
+		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
 		Doc_SetFont(nDocID,0,FONT_BookHeadline);
 		Doc_PrintLine(nDocID,0,"");
@@ -575,11 +575,11 @@ instance ItWr_Astronomy_Mis(C_Item)
 	value = 400;
 	visual = "ItWr_Book_02_02.3ds";
 	material = MAT_LEATHER;
+	on_state[0] = Use_Astronomy;
 	scemeName = "MAP";
 	description = name;
 	text[5] = NAME_Value;
 	count[5] = value;
-	on_state[0] = Use_Astronomy;
 };
 
 
@@ -601,14 +601,12 @@ func void Use_Astronomy()
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLines(nDocID,1,"Что может произойти вследствие этого, известно нам из истории войн древних времен, когда связь между мирами была еще сильна. Эти отродья Зла несли смерть и разрушения нашему миру, и благодаря Избранному и Инносу мир был избавлен от этого Зла.");
 	Doc_PrintLines(nDocID,1,"Если такая угроза когда-либо возникнет опять, то да поможет нам Иннос, ибо мир не видел Избранного Инноса уже многие сотни лет.");
-//	Doc_PrintLine(nDocID,1,"");
-//	Doc_PrintLines(nDocID,1,"");
 	Doc_Show(nDocID);
 	if(Astronomy_Once == FALSE)
 	{
 		B_RaiseAttribute(self,ATR_MANA_MAX,2);
-		Npc_ChangeAttribute(self,ATR_MANA,2);
 		Print(Print_ReadAstronomy);
+		Snd_Play("Levelup");
 		Astronomy_Once = TRUE;
 	};
 };
@@ -670,11 +668,8 @@ instance ItSe_Golemchest_Mis(C_Item)
 
 func void Use_GolemChest()
 {
-	CreateInvItems(hero,ItMi_Gold,50);
-	CreateInvItems(hero,ItRi_Prot_Total_02,1);
-	Snd_Play("Geldbeutel");
-	Print(PRINT_FoundGold50);
-	Print(PRINT_FoundRing);
+	B_PlayerFindItem(ItMi_Gold,50);
+	B_PlayerFindItem(ItRi_Prot_Total_02,1);
 };
 
 
@@ -771,8 +766,8 @@ instance ItSe_DiegosTreasure_Mis(C_Item)
 
 func void Use_DiegosTreasure()
 {
-	OpenedDiegosBag = TRUE;
 	B_PlayerFindItem(ItMi_Gold,DiegosTreasure);
+	OpenedDiegosBag = TRUE;
 };
 
 
@@ -789,8 +784,6 @@ instance ItMi_UltharsHolyWater_Mis(C_Item)
 	count[5] = value;
 };
 
-
-var int ItWr_MinenAnteil_Mis_OneTime;
 
 instance ItWr_MinenAnteil_Mis(C_Item)
 {
@@ -830,15 +823,18 @@ func void Use_MinenAnteil_Mis()
 	Doc_PrintLine(nDocID,0,"      Королевский проспектор,");
 	Doc_PrintLine(nDocID,0,"                Саландрил");
 	Doc_Show(nDocID);
-	SC_KnowsProspektorSalandril = TRUE;
-	if(ItWr_MinenAnteil_Mis_OneTime == FALSE)
+	if(SC_KnowsProspektorSalandril == FALSE)
 	{
-		B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахты торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
-		if(Npc_IsDead(Salandril))
+		if(!Npc_IsDead(Salandril))
 		{
-			Log_AddEntry(TOPIC_MinenAnteileKDF,"Саландрил мертв. Мне нужно сообщить это Серпентесу.");
+			B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахт торговцам, зовут Саландрил. Вероятно, я смогу найти его в верхней части Хориниса, если он еще не начал прятаться от правосудия.");
+		}
+		else
+		{
+			B_LogEntry(TOPIC_MinenAnteileKDF,"Парня, продавшего акции шахт торговцам, зовут Саландрил. Он мертв. Мне нужно сообщить это Серпентесу.");
+			Log_SalandrilIsDead = TRUE;
 		};
-		ItWr_MinenAnteil_Mis_OneTime = TRUE;
+		SC_KnowsProspektorSalandril = TRUE;
 	};
 };
 
@@ -1029,8 +1025,8 @@ func void Use_VinosKellergeister_Mis()
 	var int nDocID;
 	nDocID = Doc_Create();
 	Doc_SetPages(nDocID,2);
-	Doc_SetPage(nDocID,0,"BOOK_RED_L.tga",0);
-	Doc_SetPage(nDocID,1,"BOOK_RED_R.tga",0);
+	Doc_SetPage(nDocID,0,"Book_Red_L.tga",0);
+	Doc_SetPage(nDocID,1,"Book_Red_R.tga",0);
 	Doc_SetMargins(nDocID,0,275,20,30,20,1);
 	Doc_SetFont(nDocID,0,FONT_BookHeadline);
 	Doc_PrintLines(nDocID,0,"Сила винограда");

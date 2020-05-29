@@ -25,7 +25,7 @@ func void B_EngorTradeLog()
 	if(Engor_Trade == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-		Log_AddEntry(TOPIC_Trader_OC,"Ёнгор заведует припасами замка и может продать мне кое-что.");
+		B_LogEntry(TOPIC_Trader_OC,"Ёнгор заведует припасами замка и может продать мне кое-что.");
 		Engor_Trade = TRUE;
 	};
 };

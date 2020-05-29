@@ -69,7 +69,7 @@ instance DIA_Cassia_Gilde(C_Info)
 
 func int DIA_Cassia_Gilde_Condition()
 {
-	if((Cassia_Gildencheck == TRUE) && (Join_Thiefs == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF)))
+	if((Cassia_Gildencheck == TRUE) && (Join_Thiefs == TRUE) && ((other.guild == GIL_MIL) || (other.guild == GIL_PAL) || (other.guild == GIL_KDF)) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
 	{
 		return TRUE;
 	};
@@ -103,7 +103,7 @@ instance DIA_Cassia_Abgelaufen(C_Info)
 
 func int DIA_Cassia_Abgelaufen_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (Cassia_Frist == TRUE) && (Cassia_Day < (B_GetDayPlus() - 2)))
+	if(Npc_IsInState(self,ZS_Talk) && (Cassia_Frist == TRUE) && (Cassia_Day < (B_GetDayPlus() - 2)) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
 	{
 		return TRUE;
 	};
@@ -130,7 +130,7 @@ instance DIA_Cassia_News(C_Info)
 
 func int DIA_Cassia_News_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE))
+	if(Npc_IsInState(self,ZS_Talk) && (self.aivar[AIV_TalkedToPlayer] == FALSE) && !Npc_IsDead(Jesper) && !Npc_IsDead(Ramirez))
 	{
 		return TRUE;
 	};
@@ -274,8 +274,8 @@ func void DIA_Cassia_Lernen_Info()
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
-		B_LogEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
-		B_LogEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+		Log_AddEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
+		Log_AddEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
 	};
 };
 
@@ -384,8 +384,8 @@ func void B_AgreedToJoinThiefs()
 	{
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 		B_LogEntry(TOPIC_CityTeacher,"Кассия может обучить меня карманному воровству и помочь мне стать более ловким.");
-		B_LogEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
-		B_LogEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
+		Log_AddEntry(TOPIC_CityTeacher,"Рамирез может обучить меня пользоваться отмычками.");
+		Log_AddEntry(TOPIC_CityTeacher,"Джеспер может обучить меня красться.");
 	};
 	Join_Thiefs = TRUE;
 	Cassia_Frist = FALSE;
@@ -536,9 +536,9 @@ func void DIA_Cassia_BevorLernen_Spaeter()
 
 func void DIA_Cassia_BevorLernen_DEX()
 {
+	AI_Output(other,self,"DIA_Cassia_BevorLernen_DEX_15_00");	//Я хочу стать более ловким. Вот золото.
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
-		AI_Output(other,self,"DIA_Cassia_BevorLernen_DEX_15_00");	//Я хочу стать более ловким. Вот золото.
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_DEX_16_01");	//Мы можем начать, когда ты будешь готов.
 		Cassia_TeachDEX = TRUE;
 		Info_ClearChoices(DIA_Cassia_BevorLernen);
@@ -552,9 +552,9 @@ func void DIA_Cassia_BevorLernen_DEX()
 
 func void DIA_Cassia_BevorLernen_Pickpocket()
 {
+	AI_Output(other,self,"DIA_Cassia_BevorLernen_Pickpocket_15_00");	//Я хочу научиться карманному воровству. Вот золото.
 	if(B_GiveInvItems(other,self,ItMi_Gold,100))
 	{
-		AI_Output(other,self,"DIA_Cassia_BevorLernen_Pickpocket_15_00");	//Я хочу научиться карманному воровству. Вот золото.
 		AI_Output(self,other,"DIA_Cassia_BevorLernen_Pickpocket_16_01");	//Мы можем начать, когда ты будешь готов.
 		Cassia_TeachPickpocket = TRUE;
 		Info_ClearChoices(DIA_Cassia_BevorLernen);
@@ -685,7 +685,7 @@ func void DIA_Cassia_Aufnahme_Info()
 	B_GivePlayerXP(XP_CassiaRing);
 	Knows_SecretSign = TRUE;
 	B_LogEntry(Topic_Diebesgilde,"Я был принят в гильдию воров.");
-	B_LogEntry(Topic_Diebesgilde,"Я знаю знак воров. Если я покажу его нужным людям, они поймут, что я один из них.");
+	Log_AddEntry(Topic_Diebesgilde,"Я знаю знак воров. Если я покажу его нужным людям, они поймут, что я один из них.");
 };
 
 
@@ -858,5 +858,30 @@ func void DIA_Cassia_Belohnung_Ring()
 	AI_Output(other,self,"DIA_Cassia_Belohnung_15_04");	//Дай мне кольцо.
 	B_GiveInvItems(self,other,ItRi_HP_01,1);
 	Info_ClearChoices(DIA_Cassia_Belohnung);
+};
+
+instance DIA_Cassia_Killer(C_Info)
+{
+	npc = VLK_447_Cassia;
+	nr = 1;
+	condition = DIA_Cassia_Killer_Condition;
+	information = DIA_Cassia_Killer_Info;
+	permanent = FALSE;
+	important = TRUE;
+};
+
+
+func int DIA_Cassia_Killer_Condition()
+{
+	if(Npc_IsDead(Jesper) || Npc_IsDead(Ramirez))
+	{
+		return TRUE;
+	};
+};
+
+func void DIA_Cassia_Killer_Info()
+{
+	B_Say(self,other,"$YOUMURDERER");
+	B_ThievesKiller();
 };
 

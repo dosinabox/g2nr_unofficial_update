@@ -250,11 +250,11 @@ func void DIA_Jora_HolDeinGold_DoIt()
 	Jora_Dieb = LOG_Running;
 	Log_CreateTopic(TOPIC_JoraDieb,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_JoraDieb,LOG_Running);
-	B_LogEntry(TOPIC_JoraDieb,"Ренгару ограбил торговца Джору. Если я поймаю его, мне за это полагается награда.");
+	B_LogEntries(TOPIC_JoraDieb,"Ренгару ограбил торговца Джору. Если я поймаю его, мне за это полагается награда.");
 	Jora_Gold = LOG_Running;
 	Log_CreateTopic(TOPIC_Jora,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_Jora,LOG_Running);
-	Log_AddEntry(TOPIC_Jora,"Парень по имени Ренгару ограбил торговца Джору. Он весь день околачивается на рынке. Я должен вернуть украденное золото Джоры.");
+	B_LogNextEntry(TOPIC_Jora,"Парень по имени Ренгару ограбил торговца Джору. Он весь день околачивается на рынке. Я должен вернуть украденное золото Джоры.");
 	Info_ClearChoices(DIA_Jora_HolDeinGold);
 };
 

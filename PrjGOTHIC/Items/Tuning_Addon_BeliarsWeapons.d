@@ -101,3 +101,4 @@ const int BeliarDamageChance_17 = 44;
 const int BeliarDamageChance_18 = 46;
 const int BeliarDamageChance_19 = 48;
 const int BeliarDamageChance_20 = 50;
+const int BeliarSpecialDamage = 100;

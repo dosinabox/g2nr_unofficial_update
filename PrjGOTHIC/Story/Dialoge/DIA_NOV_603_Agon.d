@@ -38,7 +38,7 @@ instance DIA_Agon_Hello(C_Info)
 
 func int DIA_Agon_Hello_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && (MIS_SCHNITZELJAGD == FALSE) && (other.guild == GIL_NOV))
+	if(Npc_IsInState(self,ZS_Talk) && (MIS_SCHNITZELJAGD != LOG_Running) && (other.guild == GIL_NOV))
 	{
 		return TRUE;
 	};

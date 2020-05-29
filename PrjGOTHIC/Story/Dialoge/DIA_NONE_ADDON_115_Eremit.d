@@ -356,7 +356,7 @@ func void B_Eremit_Tatsache()
 	CreateInvItem(other,ItWr_StonePlateCommon_Addon);
 	concatText = ConcatStrings(IntToString(2),PRINT_ItemsErhalten);
 	concatText = ConcatStrings(concatText," (Каменная табличка)");
-	AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2); 
+	AI_PrintScreen(concatText,-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	MIS_Eremit_Klamotten = LOG_SUCCESS;
 	B_GivePlayerXP(200);
 	Info_ClearChoices(DIA_Addon_Eremit_Klamotten);

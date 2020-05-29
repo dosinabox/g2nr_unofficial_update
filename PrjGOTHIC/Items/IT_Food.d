@@ -11,6 +11,7 @@ const int Value_Bread = 20;
 const int HP_Bread = 10;
 const int Value_Fish = 15;
 const int HP_Fish = 5;
+const int HP_Hering = 20;
 const int Value_Rawmeat = 3;
 const int HP_RawMeat = 6;
 const int Value_Meat = 6;
@@ -63,6 +64,7 @@ func void Use_Apple()
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Apple);
 	if(Npc_IsPlayer(self))
 	{
+		TotalApplesEaten += 1;
 		Apple_Bonus += 1;
 		if(Apple_Bonus == 7)
 		{
@@ -203,6 +205,30 @@ func void Use_Fish()
 };
 
 
+instance ItFo_SmellyFish(C_Item)
+{
+	name = "Селедка";
+	mainflag = ITEM_KAT_FOOD;
+	flags = ITEM_MULTI;
+	value = 20;
+	visual = "ItFo_SmellyFish.3DS";
+	material = MAT_LEATHER;
+	scemeName = "FOODHUGE";
+	on_state[0] = Use_SmellyFish;
+	description = name;
+	text[1] = NAME_Bonus_HP;
+	count[1] = HP_Hering;
+	text[5] = NAME_Value;
+	count[5] = value;
+};
+
+
+func void Use_SmellyFish()
+{
+	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Hering);
+};
+
+
 instance ItFoMuttonRaw(C_Item)
 {
 	name = "Сырое мясо";
@@ -298,7 +324,6 @@ instance ItFo_XPStew(C_Item)
 func void Use_XPStew()
 {
 	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Stew);
-//	Snd_Play("LevelUp");
 	B_RaiseAttribute(self,ATR_STRENGTH,1);
 };
 
@@ -329,7 +354,6 @@ func void Use_CoragonsBeerBeer()
 	B_NpcSetDrunk(10);
 	var string concatText;
 	B_RaiseAttribute(self,ATR_HITPOINTS_MAX,HP_Beer);
-	Npc_ChangeAttribute(self,ATR_HITPOINTS,HP_Beer);
 	Npc_ChangeAttribute(self,ATR_MANA_MAX,Mana_Beer);
 	Npc_ChangeAttribute(self,ATR_MANA,Mana_Beer);
 	concatText = ConcatStrings(PRINT_LearnMANA_MAX,IntToString(Mana_Beer));

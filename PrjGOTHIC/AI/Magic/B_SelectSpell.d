@@ -261,7 +261,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			B_ReadySpell(slf,SPL_IceCube,SPL_Cost_IceCube);
 			return TRUE;
 		}
-		else if((slf.aivar[AIV_SelectSpell] == 1) && (slf.lp < 5))
+		else if(slf.aivar[AIV_SelectSpell] == 1)
 		{
 			B_ReadySpell(slf,SPL_SummonSkeleton,SPL_Cost_SummonSkeleton);
 			return TRUE;

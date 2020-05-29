@@ -10,51 +10,107 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			kosten = 5;
 		};
 	};
-	if(talent == NPC_TALENT_1H)
+	if((talent >= NPC_TALENT_1H) && (talent <= NPC_TALENT_CROSSBOW))
 	{
-		if(oth.aivar[REAL_TALENT_1H] >= 120)
+		kosten = B_GetTalentTrainCost(oth,talent,skill);
+	};
+	/*if(talent == NPC_TALENT_1H)
+	{
+		if(PenaltiesAffectLearnCost == FALSE)
 		{
-			kosten = 5;
-		}
-		else if(oth.aivar[REAL_TALENT_1H] >= 90)
-		{
-			kosten = 4;
-		}
-		else if(oth.aivar[REAL_TALENT_1H] >= 60)
-		{
-			kosten = 3;
-		}
-		else if(oth.aivar[REAL_TALENT_1H] >= 30)
-		{
-			kosten = 2;
+			if(oth.aivar[REAL_TALENT_1H] >= 120)
+			{
+				kosten = 5;
+			}
+			else if(oth.aivar[REAL_TALENT_1H] >= 90)
+			{
+				kosten = 4;
+			}
+			else if(oth.aivar[REAL_TALENT_1H] >= 60)
+			{
+				kosten = 3;
+			}
+			else if(oth.aivar[REAL_TALENT_1H] >= 30)
+			{
+				kosten = 2;
+			}
+			else
+			{
+				kosten = 1;
+			};
 		}
 		else
 		{
-			kosten = 1;
+			if((oth.aivar[REAL_TALENT_1H] - Keule1HCurrentPenalty) >= 120)
+			{
+				kosten = 5;
+			}
+			else if((oth.aivar[REAL_TALENT_1H] - Keule1HCurrentPenalty) >= 90)
+			{
+				kosten = 4;
+			}
+			else if((oth.aivar[REAL_TALENT_1H] - Keule1HCurrentPenalty) >= 60)
+			{
+				kosten = 3;
+			}
+			else if((oth.aivar[REAL_TALENT_1H] - Keule1HCurrentPenalty) >= 30)
+			{
+				kosten = 2;
+			}
+			else
+			{
+				kosten = 1;
+			};
 		};
 		kosten *= skill;
 	};
 	if(talent == NPC_TALENT_2H)
 	{
-		if(oth.aivar[REAL_TALENT_2H] >= 120)
+		if(PenaltiesAffectLearnCost == FALSE)
 		{
-			kosten = 5;
-		}
-		else if(oth.aivar[REAL_TALENT_2H] >= 90)
-		{
-			kosten = 4;
-		}
-		else if(oth.aivar[REAL_TALENT_2H] >= 60)
-		{
-			kosten = 3;
-		}
-		else if(oth.aivar[REAL_TALENT_2H] >= 30)
-		{
-			kosten = 2;
+			if(oth.aivar[REAL_TALENT_2H] >= 120)
+			{
+				kosten = 5;
+			}
+			else if(oth.aivar[REAL_TALENT_2H] >= 90)
+			{
+				kosten = 4;
+			}
+			else if(oth.aivar[REAL_TALENT_2H] >= 60)
+			{
+				kosten = 3;
+			}
+			else if(oth.aivar[REAL_TALENT_2H] >= 30)
+			{
+				kosten = 2;
+			}
+			else
+			{
+				kosten = 1;
+			};
 		}
 		else
 		{
-			kosten = 1;
+			if((oth.aivar[REAL_TALENT_2H] - Keule2HCurrentPenalty) >= 120)
+			{
+				kosten = 5;
+			}
+			else if((oth.aivar[REAL_TALENT_2H] - Keule2HCurrentPenalty) >= 90)
+			{
+				kosten = 4;
+			}
+			else if((oth.aivar[REAL_TALENT_2H] - Keule2HCurrentPenalty) >= 60)
+			{
+				kosten = 3;
+			}
+			else if((oth.aivar[REAL_TALENT_2H] - Keule2HCurrentPenalty) >= 30)
+			{
+				kosten = 2;
+			}
+			else
+			{
+				kosten = 1;
+			};
 		};
 		kosten *= skill;
 	};
@@ -105,7 +161,7 @@ func int B_GetLearnCostTalent(var C_Npc oth,var int talent,var int skill)
 			kosten = 1;
 		};
 		kosten *= skill;
-	};
+	};*/
 	if((talent == NPC_TALENT_SNEAK) || (talent == NPC_TALENT_ACROBAT))
 	{
 		kosten = 5;

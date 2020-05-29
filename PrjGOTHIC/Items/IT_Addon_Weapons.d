@@ -42,7 +42,6 @@ instance ItMW_Addon_Stab01(C_Item)
 //	visual = "ItMW_MageStaff_Good_2H_01.3DS";
 	visual = "ItMW_MageStaff_Good_2H_03.3DS";
 	effect = "SPELLFX_MAGESTAFF1";
-//	description = "Посох мага Огня";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -73,7 +72,7 @@ instance ItMW_Addon_Stab02(C_Item)
 	effect = "SPELLFX_MAGESTAFF2";
 	description = name;
 	text[1] = NAME_Bonus_ManaMax;
-	count[1] = 20;
+	count[1] = Zauberstab_ManaBonus;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
 	text[3] = NAME_Mana_needed;
@@ -83,38 +82,15 @@ instance ItMW_Addon_Stab02(C_Item)
 	count[5] = value;
 };
 
-
 func void Equip_Zauberstab()
 {
-	if(Npc_IsPlayer(self))
-	{
-		Npc_ChangeAttribute(self,ATR_MANA_MAX,20);
-//		Npc_ChangeAttribute(self,ATR_MANA,20);
-		b_meleeweaponchange(0,0,20);
-	};
+	Equip_MaxMana(Zauberstab_ManaBonus);
 };
 
 func void UnEquip_Zauberstab()
 {
-	if(Npc_IsPlayer(self) && ((MELEEWEAPONCHANGEDHERO == TRUE) || (SCRIPTPATCHWEAPONCHANGE == FALSE)))
-	{
-		b_meleeweaponundochange();
-		Npc_ChangeAttribute(self,ATR_MANA_MAX,-20);
-		if(self.attribute[ATR_MANA] > self.attribute[ATR_MANA_MAX])
-		{
-			self.attribute[ATR_MANA] = self.attribute[ATR_MANA_MAX];
-		};
-//		if(self.attribute[ATR_MANA] >= 20)
-//		{
-//			Npc_ChangeAttribute(self,ATR_MANA,-20);
-//		}
-//		else
-//		{
-//			self.attribute[ATR_MANA] = 0;
-//		};
-	};
+	UnEquip_MaxMana(Zauberstab_ManaBonus);
 };
-
 
 instance ItMW_Addon_Stab03(C_Item)
 {
@@ -133,7 +109,6 @@ instance ItMW_Addon_Stab03(C_Item)
 //	visual = "ItMW_MageStaff_Blades_2H_01.3DS";
 	visual = "ItMW_MageStaff_Good_2H_02.3DS";
 	effect = "SPELLFX_MAGESTAFF3";
-//	description = "Посох мага Воды";
 	description = name;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
@@ -315,10 +290,10 @@ instance ItMW_Addon_Keule_1h_01(C_Item)
 	damageTotal = Damage_Windknecht;
 	damagetype = DAM_BLUNT;
 	range = Range_Windknecht;
-//	on_equip = UnEquip_1H_10;
-//	on_unequip = Equip_1H_10;
-	on_equip = Equip_1H_Keule;
-	on_unequip = UnEquip_1H_Keule;
+	on_equip = UnEquip_1H_10;
+	on_unequip = Equip_1H_10;
+//	on_equip = Equip_1H_Keule;
+//	on_unequip = UnEquip_1H_Keule;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Windknecht;
 	visual = "ItMW_Club_1H_01.3DS";
@@ -343,10 +318,10 @@ instance ItMW_Addon_Keule_2h_01(C_Item)
 	damageTotal = Damage_Sturmknecht;
 	damagetype = DAM_BLUNT;
 	range = Range_Sturmknecht;
-//	on_equip = UnEquip_2H_10;
-//	on_unequip = Equip_2H_10;
-	on_equip = Equip_2H_Keule;
-	on_unequip = UnEquip_2H_Keule;
+	on_equip = UnEquip_2H_10;
+	on_unequip = Equip_2H_10;
+//	on_equip = Equip_2H_Keule;
+//	on_unequip = UnEquip_2H_Keule;
 	cond_atr[2] = ATR_STRENGTH;
 	cond_value[2] = Condition_Sturmknecht;
 	visual = "ItMW_Club_2H_01.3DS";
@@ -662,7 +637,7 @@ instance ItRw_Addon_FireBow(C_Item)
 	text[1] = NAME_Damage;
 	count[1] = damageTotal;
 	text[2] = "Урон огнем:";
-	count[2] = 40;
+	count[2] = SpecialDamage_FireBow;
 	text[3] = NAME_Dex_needed;
 	count[3] = cond_value[2];
 	text[5] = NAME_Value;

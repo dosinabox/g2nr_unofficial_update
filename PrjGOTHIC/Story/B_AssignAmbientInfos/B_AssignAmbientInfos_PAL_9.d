@@ -32,7 +32,7 @@ instance DIA_PAL_9_JOIN(C_Info)
 
 func int DIA_PAL_9_JOIN_Condition()
 {
-	if(other.guild == GIL_NONE)
+	if((other.guild == GIL_NONE) || (other.guild == GIL_MIL))
 	{
 		return TRUE;
 	};
@@ -70,6 +70,7 @@ func void DIA_PAL_9_PEOPLE_Info()
 	AI_Output(self,other,"DIA_PAL_9_PEOPLE_09_01");	//Лорд Хаген.
 	AI_Output(other,self,"DIA_PAL_9_PEOPLE_15_02");	//И?
 	AI_Output(self,other,"DIA_PAL_9_PEOPLE_09_03");	//И больше никто. Лорд Хаген - верховный командующий всего этого острова.
+	Player_KnowsLordHagen = TRUE;
 };
 
 

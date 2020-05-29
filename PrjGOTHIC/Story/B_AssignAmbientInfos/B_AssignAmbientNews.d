@@ -71,6 +71,7 @@ func void DIA_Ambient_NEWS_Info()
 			{
 				B_Say(self,other,"$CITY_CRIME");
 			};
+			self.aivar[AIV_CommentedPlayerCrime] = TRUE;
 		};
 		if(C_NpcBelongsToMonastery(self) && (Parlan_Schulden <= 0) && C_CommentMonasteryCrimes(self))
 		{
@@ -91,21 +92,23 @@ func void DIA_Ambient_NEWS_Info()
 	}
 	else if(self.aivar[AIV_CommentedPlayerCrime] == TRUE)
 	{
-		if(C_NpcBelongsToMonastery(self))
+		if(C_NpcBelongsToCity(self))
+		{
+			B_Say(self,other,"$ABS_CITY");
+		}
+		else if(C_NpcBelongsToMonastery(self))
 		{
 			B_Say(self,other,"$ABS_MONASTERY");
-			B_Say(self,other,"$ABS_GOOD");
 		}
 		else if(C_NpcBelongsToFarm(self))
 		{
 			B_Say(self,other,"$ABS_FARM");
-			B_Say(self,other,"$ABS_GOOD");
 		}
 		else if(C_NpcBelongsToOldCamp(self))
 		{
 			B_Say(self,other,"$ABS_COMMANDER");
-			B_Say(self,other,"$ABS_GOOD");
 		};
+		B_Say(self,other,"$ABS_GOOD");
 		self.aivar[AIV_CommentedPlayerCrime] = FALSE;
 	};
 };

@@ -67,6 +67,31 @@ func int B_TeachPlayerTalentAlchemy(var C_Npc slf,var C_Npc oth,var int potion)
 		PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] = TRUE;
 		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭЛИКСИРА ЖИЗНИ': 1 лечебный корень и 1 царский щавель.");
 	};
+	if((Opened_LousHammer == TRUE) && (Knows_LousHammer == FALSE))
+	{
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'МОЛОТА ЛУ': 1 вода, 2 репы, 1 болотная трава, 1 зуб болотной акулы и 1 ром.");
+		Knows_LousHammer = TRUE;
+	};
+	if((Opened_Schlafhammer == TRUE) && (Knows_Schlafhammer == FALSE))
+	{
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для двойного 'МОЛОТА ЛУ': 1 'Молот Лу' и 1 ром.");
+		Knows_Schlafhammer = TRUE;
+	};
+	if((Opened_SchnellerHering == TRUE) && (Knows_SchnellerHering == FALSE))
+	{
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'БЫСТРОЙ СЕЛЕДКИ': 1 вода, 1 ром, 1 рыба и 1 снеппер-трава.");
+		Knows_SchnellerHering = TRUE;
+	};
+	if((Opened_MushroomMana == TRUE) && (Knows_MushroomMana == FALSE))
+	{
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ГРИБНОГО ЭКСТРАКТА': 50 черных грибов и 1 луговая ягода.");
+		Knows_MushroomMana = TRUE;
+	};
+	if((Opened_MegaDrink == TRUE) && (PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] == FALSE))
+	{
+		B_LogEntry(TOPIC_TalentAlchemy,"Ингредиенты для 'ЭМБАРЛА ФИРГАСТО': 10 драконьих яиц, 1 черная жемчужина и 1 сера.");
+		PLAYER_TALENT_ALCHEMY[POTION_MegaDrink] = TRUE;
+	};
 	PrintScreen(PRINT_LearnAlchemy,-1,-1,FONT_Screen,2);
 	Npc_SetTalentSkill(oth,NPC_TALENT_ALCHEMY,1);
 	return TRUE;

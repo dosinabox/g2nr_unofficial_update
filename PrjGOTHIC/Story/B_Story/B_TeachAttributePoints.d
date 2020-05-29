@@ -7,23 +7,23 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 	kosten = B_GetLearnCostAttribute(oth,attrib) * points;
 	if((attrib != ATR_STRENGTH) && (attrib != ATR_DEXTERITY) && (attrib != ATR_MANA_MAX))
 	{
-		Print("*** ОШИБКА: Неправильный параметр ***");
+		Print(PRINT_WrongParameter);
 		return FALSE;
 	};
 	if(attrib == ATR_STRENGTH)
 	{
-//		realAttribute = oth.attribute[ATR_STRENGTH];
-		realAttribute = oth.aivar[REAL_STRENGTH];
+		realAttribute = oth.attribute[ATR_STRENGTH];
+//		realAttribute = oth.aivar[REAL_STRENGTH] - OrcRingCurrentPenalty;
 	}
 	else if(attrib == ATR_DEXTERITY)
 	{
-//		realAttribute = oth.attribute[ATR_DEXTERITY];
-		realAttribute = oth.aivar[REAL_DEXTERITY];
+		realAttribute = oth.attribute[ATR_DEXTERITY];
+//		realAttribute = oth.aivar[REAL_DEXTERITY];
 	}
 	else if(attrib == ATR_MANA_MAX)
 	{
-//		realAttribute = oth.attribute[ATR_MANA_MAX];
-		realAttribute = oth.aivar[REAL_MANA_MAX];
+		realAttribute = oth.attribute[ATR_MANA_MAX];
+//		realAttribute = oth.aivar[REAL_MANA_MAX];
 	};
 	if(realAttribute >= teacherMAX)
 	{
@@ -47,7 +47,6 @@ func int B_TeachAttributePoints(var C_Npc slf,var C_Npc oth,var int attrib,var i
 	};
 	oth.lp -= kosten;
 	B_RaiseAttribute(oth,attrib,points);
-//	эксперимент: игнорирование зелий, еды, молитв и табличек при прокачке
 	if(IgnoreBonuses == TRUE)
 	{
 		B_RaiseRealAttributeLearnCounter(oth,attrib,points);

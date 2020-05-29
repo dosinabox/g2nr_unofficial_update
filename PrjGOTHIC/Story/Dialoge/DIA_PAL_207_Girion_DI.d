@@ -1,5 +1,5 @@
 
-instance DIA_Girion_DI_XIT(C_Info)
+instance DIA_Girion_DI_EXIT(C_Info)
 {
 	npc = PAL_207_Girion_DI;
 	nr = 999;
@@ -59,6 +59,84 @@ func void DIA_Girion_DI_Hallo_Info()
 };
 
 
+var int DIA_Girion_DI_Teacher_permanent;
+var int Girion_DI_TeachComment_Swords;
+var int Girion_DI_TeachComment_Crossbow;
+
+func void B_BuildLearnDialog_Girion_DI()
+{
+	Info_ClearChoices(DIA_Girion_DI_Teach);
+	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
+	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Girion)
+	{
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Girion_DI_Teach_CROSSBOW_1);
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Girion_DI_Teach_CROSSBOW_5);
+	};
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Girion)
+	{
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_DI_Teach_2H_1);
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_DI_Teach_2H_5);
+	};
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Girion)
+	{
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Girion_DI_Teach_1H_1);
+		Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Girion_DI_Teach_1H_5);
+	};
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Girion) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Girion) && (RealTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Girion))
+	{
+		DIA_Girion_DI_Teacher_permanent = TRUE;
+	};
+	if((VisibleTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Girion) && (VisibleTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Girion) && (VisibleTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Girion))
+	{
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
+		B_Say(self,other,"$NOLEARNYOUREBETTER");
+		AI_StopProcessInfos(self);
+	};
+};
+
+func void B_Girion_DI_TeachComment_Swords()
+{
+	if(Girion_DI_TeachComment_Swords == 0)
+	{
+		AI_Output(self,other,"DIA_Girion_DI_Teach_1H_1_08_00");	//“вой клинок должен рассекать воздух как тростник на ветру.
+		Girion_DI_TeachComment_Swords = 1;
+	}
+	else if(Girion_DI_TeachComment_Swords == 1)
+	{
+		AI_Output(self,other,"DIA_Girion_DI_Teach_1H_5_08_00");	//—илу нужно примен€ть расчетливо. ≈сли ты слепо будешь бросатьс€ на противника, это не приведет теб€ к успеху.
+		Girion_DI_TeachComment_Swords = 2;
+	}
+	else if(Girion_DI_TeachComment_Swords == 2)
+	{
+		AI_Output(self,other,"DIA_DIA_Girion_DI_Teach_2H_1_08_00");	//Ќе сжимай руко€тку слишком сильно, и твой удар точно поразит цель.
+		Girion_DI_TeachComment_Swords = 3;
+	}
+	else if(Girion_DI_TeachComment_Swords == 3)
+	{
+		AI_Output(self,other,"DIA_Girion_DI_Teach_2H_5_08_00");	//Ќе забывай о парировании. Ќо лучша€ оборона - это уклонение от удара врага.
+		Girion_DI_TeachComment_Swords = 0;
+	};
+};
+
+func void B_Girion_DI_TeachComment_Crossbow()
+{
+	if(Girion_DI_TeachComment_Crossbow == 0)
+	{
+		AI_Output(self,other,"DIA_Girion_DI_Teach_CROSSBOW_1_08_00");	//ѕри стрельбе никогда не опирайс€ локт€ми. Ёто сделает твою хватку слишком жесткой, и ты неизбежно собьешь прицел.
+		Girion_DI_TeachComment_Crossbow = 1;
+	}
+	else if(Girion_DI_TeachComment_Crossbow == 1)
+	{
+		AI_Output(self,other,"DIA_Girion_DI_Teach_CROSSBOW_5_08_00");	//¬сегда расслабл€й левую руку перед выстрелом. Ёто позволит тебе более точно прицелитьс€.
+		Girion_DI_TeachComment_Crossbow = 2;
+	}
+	else if(Girion_DI_TeachComment_Crossbow == 2)
+	{
+		AI_Output(self,other,"DIA_DIA_Girion_Teach_2H_5_08_01");	//“ы должен понимать, когда лучше отступить.
+		Girion_DI_TeachComment_Crossbow = 0;
+	};
+};
+
 instance DIA_Girion_DI_Teach(C_Info)
 {
 	npc = PAL_207_Girion_DI;
@@ -72,7 +150,7 @@ instance DIA_Girion_DI_Teach(C_Info)
 
 func int DIA_Girion_DI_Teach_Condition()
 {
-	if(!Npc_IsDead(UndeadDragon))
+	if(!Npc_IsDead(UndeadDragon) && (DIA_Girion_DI_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -81,111 +159,65 @@ func int DIA_Girion_DI_Teach_Condition()
 func void DIA_Girion_DI_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Girion_DI_Teach_15_00");	//ќбучи мен€, тогда мы сможем быстрее убратьс€ с этого острова.
-	AI_Output(self,other,"DIA_Girion_DI_Teach_08_01");	//ѕохоже, у мен€ нет другого выбора.
-	Info_ClearChoices(DIA_Girion_DI_Teach);
-	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Girion_DI_Teach_CROSSBOW_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Girion_DI_Teach_CROSSBOW_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Girion_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Girion_DI_Teach_1H_5);
+	if((VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Girion) || (VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Girion) || (VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Girion))
+	{
+		AI_Output(self,other,"DIA_Girion_DI_Teach_08_01");	//ѕохоже, у мен€ нет другого выбора.
+	};
+	B_BuildLearnDialog_Girion_DI();
 };
 
 func void DIA_Girion_DI_Teach_CROSSBOW_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,90))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,TeachLimit_Crossbow_Girion))
 	{
-		AI_Output(self,other,"DIA_Girion_DI_Teach_CROSSBOW_1_08_00");	//ѕри стрельбе никогда не опирайс€ локт€ми. Ёто сделает твою хватку слишком жесткой, и ты неизбежно собьешь прицел.
+		B_Girion_DI_TeachComment_Crossbow();
+		B_BuildLearnDialog_Girion_DI();
 	};
-	Info_ClearChoices(DIA_Girion_DI_Teach);
-	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Girion_DI_Teach_CROSSBOW_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Girion_DI_Teach_CROSSBOW_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Girion_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Girion_DI_Teach_1H_5);
 };
 
 func void DIA_Girion_DI_Teach_CROSSBOW_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,90))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,TeachLimit_Crossbow_Girion))
 	{
-		AI_Output(self,other,"DIA_Girion_DI_Teach_CROSSBOW_5_08_00");	//¬сегда расслабл€й левую руку перед выстрелом. Ёто позволит тебе более точно прицелитьс€.
+		B_Girion_DI_TeachComment_Crossbow();
+		B_BuildLearnDialog_Girion_DI();
 	};
-	Info_ClearChoices(DIA_Girion_DI_Teach);
-	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Girion_DI_Teach_CROSSBOW_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Girion_DI_Teach_CROSSBOW_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Girion_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Girion_DI_Teach_1H_5);
 };
 
 func void DIA_Girion_DI_Teach_1H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,90))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Girion))
 	{
-		AI_Output(self,other,"DIA_Girion_DI_Teach_1H_1_08_00");	//“вой клинок должен рассекать воздух как тростник на ветру.
+		B_Girion_DI_TeachComment_Swords();
+		B_BuildLearnDialog_Girion_DI();
 	};
-	Info_ClearChoices(DIA_Girion_DI_Teach);
-	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Girion_DI_Teach_CROSSBOW_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Girion_DI_Teach_CROSSBOW_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Girion_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Girion_DI_Teach_1H_5);
 };
 
 func void DIA_Girion_DI_Teach_1H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,90))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Girion))
 	{
-		AI_Output(self,other,"DIA_Girion_DI_Teach_1H_5_08_00");	//—илу нужно примен€ть расчетливо. ≈сли ты слепо будешь бросатьс€ на противника, это не приведет теб€ к успеху.
+		B_Girion_DI_TeachComment_Swords();
+		B_BuildLearnDialog_Girion_DI();
 	};
-	Info_ClearChoices(DIA_Girion_DI_Teach);
-	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Girion_DI_Teach_CROSSBOW_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Girion_DI_Teach_CROSSBOW_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Girion_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Girion_DI_Teach_1H_5);
 };
 
 func void DIA_Girion_DI_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,90))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Girion))
 	{
-		AI_Output(self,other,"DIA_DIA_Girion_DI_Teach_2H_1_08_00");	//Ќе сжимай руко€тку слишком сильно, и твой удар точно поразит цель.
+		B_Girion_DI_TeachComment_Swords();
+		B_BuildLearnDialog_Girion_DI();
 	};
-	Info_ClearChoices(DIA_Girion_DI_Teach);
-	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Girion_DI_Teach_CROSSBOW_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Girion_DI_Teach_CROSSBOW_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Girion_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Girion_DI_Teach_1H_5);
 };
 
 func void DIA_Girion_DI_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,90))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Girion))
 	{
-		AI_Output(self,other,"DIA_Girion_DI_Teach_2H_5_08_00");	//Ќе забывай о парировании. Ќо лучша€ оборона - это уклонение от удара врага.
+		B_Girion_DI_TeachComment_Swords();
+		B_BuildLearnDialog_Girion_DI();
 	};
-	Info_ClearChoices(DIA_Girion_DI_Teach);
-	Info_AddChoice(DIA_Girion_DI_Teach,Dialog_Back,DIA_Girion_DI_Teach_Back);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Girion_DI_Teach_CROSSBOW_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Girion_DI_Teach_CROSSBOW_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Girion_DI_Teach_2H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Girion_DI_Teach_2H_5);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Girion_DI_Teach_1H_1);
-	Info_AddChoice(DIA_Girion_DI_Teach,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Girion_DI_Teach_1H_5);
 };
 
 func void DIA_Girion_DI_Teach_Back()
@@ -193,6 +225,8 @@ func void DIA_Girion_DI_Teach_Back()
 	Info_ClearChoices(DIA_Girion_DI_Teach);
 };
 
+var int DIA_Girion_DI_OrcEliteRing_OneTime;
+var int GirionRingCount;
 
 instance DIA_Girion_DI_OrcEliteRing(C_Info)
 {
@@ -212,10 +246,6 @@ func int DIA_Girion_DI_OrcEliteRing_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Girion_DI_OrcEliteRing_OneTime;
-var int GirionRingCount;
 
 func void DIA_Girion_DI_OrcEliteRing_Info()
 {
@@ -238,7 +268,7 @@ func void DIA_Girion_DI_OrcEliteRing_geben()
 	AI_Output(self,other,"DIA_Girion_DI_OrcEliteRing_geben_08_01");	//—пасибо. ¬се равно € не думаю, что оно может тебе пригодитьс€.
 	if(GirionRingCount > 1)
 	{
-		AI_Output(other,self,"DIA_Lord_Hagen_RINGEBRINGEN_15_03");	//я могу дать тебе еще несколько колец орков.
+		DIA_Hagen_MoreOrcRings();
 	};
 	B_GiveInvItems(other,self,ItRi_OrcEliteRing,GirionRingCount);
 	Npc_RemoveInvItems(self,ItRi_OrcEliteRing,GirionRingCount);
@@ -253,6 +283,8 @@ func void DIA_Girion_DI_OrcEliteRing_behalten()
 	Info_ClearChoices(DIA_Girion_DI_OrcEliteRing);
 };
 
+
+var int DIA_Girion_DI_UndeadDragonDead_OneTime;
 
 instance DIA_Girion_DI_UndeadDragonDead(C_Info)
 {
@@ -272,9 +304,6 @@ func int DIA_Girion_DI_UndeadDragonDead_Condition()
 		return TRUE;
 	};
 };
-
-
-var int DIA_Girion_DI_UndeadDragonDead_OneTime;
 
 func void DIA_Girion_DI_UndeadDragonDead_Info()
 {

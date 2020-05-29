@@ -37,7 +37,7 @@ func int DIA_Ruga_PICKPOCKET_Condition()
 //	return C_StealItems(40,Hlp_GetInstanceID(ItKe_City_Tower_03),1);
 	if(Npc_HasItems(self,ItKe_City_Tower_03))
 	{
-		return C_StealItem(40,Hlp_GetInstanceID(ItKe_City_Tower_03));
+		return C_StealItem(40);
 	};
 	return FALSE;
 };
@@ -136,6 +136,29 @@ func void DIA_Ruga_Train_Info()
 };
 
 
+var int DIA_Ruga_Teach_permanent;
+
+func void B_BuildLearnDialog_Ruga()
+{
+	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Ruga)
+	{
+		Info_ClearChoices(DIA_Ruga_Teach);
+		Info_AddChoice(DIA_Ruga_Teach,Dialog_Back,DIA_Ruga_Teach_Back);
+		Info_AddChoice(DIA_Ruga_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Ruga_Teach_CROSSBOW_1);
+		Info_AddChoice(DIA_Ruga_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Ruga_Teach_CROSSBOW_5);
+	}
+	else
+	{
+		if(RealTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Ruga)
+		{
+			DIA_Ruga_Teach_permanent = TRUE;
+		};
+		PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_Crossbow_Ruga)),-1,53,FONT_Screen,2);
+		AI_Output(self,other,"DIA_Ruga_Teach_11_00");	//Мне больше нечему учить тебя. Тебе лучше поискать другого учителя.
+		AI_StopProcessInfos(self);
+	};
+};
+
 instance DIA_Ruga_Teach(C_Info)
 {
 	npc = MIL_317_Ruga;
@@ -146,8 +169,6 @@ instance DIA_Ruga_Teach(C_Info)
 	description = "Покажи мне, как стрелять из арбалета.";
 };
 
-
-var int DIA_Ruga_Teach_permanent;
 
 func int DIA_Ruga_Teach_Condition()
 {
@@ -160,41 +181,29 @@ func int DIA_Ruga_Teach_Condition()
 func void DIA_Ruga_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Ruga_Teach_15_00");	//Покажи мне, как стрелять из арбалета.
-	Info_ClearChoices(DIA_Ruga_Teach);
-	Info_AddChoice(DIA_Ruga_Teach,Dialog_Back,DIA_Ruga_Teach_Back);
-	Info_AddChoice(DIA_Ruga_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Ruga_Teach_1H_1);
-	Info_AddChoice(DIA_Ruga_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Ruga_Teach_1H_5);
+	B_BuildLearnDialog_Ruga();
 };
 
 func void DIA_Ruga_Teach_Back()
 {
-//	if(other.HitChance[NPC_TALENT_CROSSBOW] >= 90)
-	if(other.aivar[REAL_TALENT_CROSSBOW] >= 90)
+	Info_ClearChoices(DIA_Ruga_Teach);
+};
+
+func void DIA_Ruga_Teach_CROSSBOW_1()
+{
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,TeachLimit_Crossbow_Ruga))
 	{
-		AI_Output(self,other,"DIA_Ruga_Teach_11_00");	//Мне больше нечему учить тебя. Тебе лучше поискать другого учителя.
-		DIA_Ruga_Teach_permanent = TRUE;
+		B_BuildLearnDialog_Ruga();
 	};
-	Info_ClearChoices(DIA_Ruga_Teach);
 };
 
-func void DIA_Ruga_Teach_1H_1()
+func void DIA_Ruga_Teach_CROSSBOW_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,90);
-	Info_ClearChoices(DIA_Ruga_Teach);
-	Info_AddChoice(DIA_Ruga_Teach,Dialog_Back,DIA_Ruga_Teach_Back);
-	Info_AddChoice(DIA_Ruga_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Ruga_Teach_1H_1);
-	Info_AddChoice(DIA_Ruga_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Ruga_Teach_1H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,TeachLimit_Crossbow_Ruga))
+	{
+		B_BuildLearnDialog_Ruga();
+	};
 };
-
-func void DIA_Ruga_Teach_1H_5()
-{
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,90);
-	Info_ClearChoices(DIA_Ruga_Teach);
-	Info_AddChoice(DIA_Ruga_Teach,Dialog_Back,DIA_Ruga_Teach_Back);
-	Info_AddChoice(DIA_Ruga_Teach,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Ruga_Teach_1H_1);
-	Info_AddChoice(DIA_Ruga_Teach,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Ruga_Teach_1H_5);
-};
-
 
 instance DIA_Ruga_TEACHDEX(C_Info)
 {

@@ -12,10 +12,7 @@ instance DIA_Keroloth_EXIT(C_Info)
 
 func int DIA_Keroloth_EXIT_Condition()
 {
-	if(Kapitel < 3)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Keroloth_EXIT_Info()
@@ -24,6 +21,12 @@ func void DIA_Keroloth_EXIT_Info()
 };
 
 
+func void B_Keroloth_GetLost()
+{
+	AI_Output(self,other,"DIA_Keroloth_KAP4_ENTSPANNDICH_07_05");	//Не провоцируй меня! Проваливай!
+	AI_StopProcessInfos(self);
+};
+
 instance DIA_Keroloth_HELLO(C_Info)
 {
 	npc = PAL_258_Keroloth;
@@ -31,17 +34,12 @@ instance DIA_Keroloth_HELLO(C_Info)
 	condition = DIA_Keroloth_HELLO_Condition;
 	information = DIA_Keroloth_HELLO_Info;
 	permanent = FALSE;
-//	important = TRUE;
 	description = "Ты тренируешь людей?";
 };
 
 
 func int DIA_Keroloth_HELLO_Condition()
 {
-	/*if(Npc_IsInState(self,ZS_Talk))
-	{
-		return TRUE;
-	};*/
 	return TRUE;
 };
 
@@ -65,7 +63,7 @@ instance DIA_Keroloth_WantTeach(C_Info)
 
 func int DIA_Keroloth_WantTeach_Condition()
 {
-	if((Keroloths_BeutelLeer == FALSE) && Npc_KnowsInfo(other,DIA_Keroloth_HELLO))
+	if(Npc_KnowsInfo(other,DIA_Keroloth_HELLO))
 	{
 		return TRUE;
 	};
@@ -74,22 +72,106 @@ func int DIA_Keroloth_WantTeach_Condition()
 func void DIA_Keroloth_WantTeach_Info()
 {
 	AI_Output(other,self,"DIA_Keroloth_WantTeach_15_00");	//Ты можешь обучить и меня?
-	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_01");	//Конечно. Я тренирую всех.
-	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_02");	//Но, кроме таланта, тебе понадобится хорошее оружие, если ты хочешь выжить здесь.
-	AI_Output(self,other,"DIA_Keroloth_WantTeach_07_03");	//Обратись к рыцарю Тандору. Он снарядит тебя.
-	Keroloth_TeachPlayer = TRUE;
-	if(!Npc_KnowsInfo(other,DIA_Sengrath_Perm))
+	if(Keroloths_BeutelLeer == FALSE)
 	{
-		Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
-		B_LogEntry(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
-	};
-	if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo) && !Npc_KnowsInfo(other,DIA_Dobar_Waffe))
+		AI_Output(self,other,"DIA_Keroloth_WantTeach_07_01");	//Конечно. Я тренирую всех.
+		AI_Output(self,other,"DIA_Keroloth_WantTeach_07_02");	//Но, кроме таланта, тебе понадобится хорошее оружие, если ты хочешь выжить здесь.
+		AI_Output(self,other,"DIA_Keroloth_WantTeach_07_03");	//Обратись к рыцарю Тандору. Он снарядит тебя.
+		Keroloth_TeachPlayer = TRUE;
+		if(!Npc_KnowsInfo(other,DIA_Sengrath_Perm) && !Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo) && !Npc_KnowsInfo(other,DIA_Dobar_Waffe))
+		{
+			Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
+			B_LogEntries(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
+			Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+			B_LogNextEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+		}
+		else
+		{
+			if(!Npc_KnowsInfo(other,DIA_Sengrath_Perm))
+			{
+				Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
+				B_LogEntry(TOPIC_Teacher_OC,"Керолот тренирует мечников в замке.");
+			};
+			if(!Npc_KnowsInfo(other,DIA_Garond_Equipment) && !Npc_KnowsInfo(other,DIA_Tandor_Hallo) && !Npc_KnowsInfo(other,DIA_Dobar_Waffe))
+			{
+				Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
+				B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+			};
+		};
+	}
+	else
 	{
-		Log_CreateTopic(TOPIC_Trader_OC,LOG_NOTE);
-		B_LogEntry(TOPIC_Trader_OC,"Тандор продает оружие в замке.");
+		B_Keroloth_GetLost();
 	};
 };
 
+
+var int DIA_Keroloth_Teacher_permanent;
+var int DIA_Keroloth_TeachState_1H;
+var int DIA_Keroloth_TeachState_2H;
+
+func void B_Keroloth_TeachNoMore()
+{
+	AI_Output(self,other,"B_Keroloth_TeachNoMore2_07_00");	//Только очень опытный мечник сможет помочь тебе теперь.
+};
+
+func void B_BuildLearnDialog_Keroloth()
+{
+	Info_ClearChoices(DIA_Keroloth_Teacher);
+	Info_AddChoice(DIA_Keroloth_Teacher,Dialog_Back,DIA_Keroloth_Teacher_Back);
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Keroloth)
+	{
+		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Keroloth_Teacher_2H_1);
+		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Keroloth_Teacher_2H_5);
+		DIA_Keroloth_TeachState_2H = 1;
+	}
+	else
+	{
+		if(DIA_Keroloth_TeachState_2H != 2)
+		{
+			if((VisibleTalentValue(NPC_TALENT_2H) < 100) && (DIA_Keroloth_TeachState_1H != 2))
+			{
+				if(DIA_Keroloth_TeachState_2H != 0)
+				{
+					PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_2H_Keroloth)),-1,53,FONT_Screen,2);
+					B_Keroloth_TeachNoMore();
+				};
+			};
+		};
+		DIA_Keroloth_TeachState_2H = 2;
+	};
+	if(VisibleTalentValue(NPC_TALENT_1H) < TeachLimit_1H_Keroloth)
+	{
+		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Keroloth_Teacher_1H_1);
+		Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Keroloth_Teacher_1H_5);
+		DIA_Keroloth_TeachState_1H = 1;
+	}
+	else
+	{
+		if(DIA_Keroloth_TeachState_1H != 2)
+		{
+			if((VisibleTalentValue(NPC_TALENT_1H) < 100) && (DIA_Keroloth_TeachState_2H != 2))
+			{
+				if(DIA_Keroloth_TeachState_1H != 0)
+				{
+					PrintScreen(ConcatStrings(PRINT_NoLearnMAXReached,IntToString(TeachLimit_1H_Keroloth)),-1,53,FONT_Screen,2);
+					B_Keroloth_TeachNoMore();
+				};
+			};
+		};
+		DIA_Keroloth_TeachState_1H = 2;
+	};
+	if((RealTalentValue(NPC_TALENT_1H) >= TeachLimit_1H_Keroloth) && (RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Keroloth))
+	{
+		DIA_Keroloth_Teacher_permanent = TRUE;
+	};
+	if((DIA_Keroloth_TeachState_1H == 2) && (DIA_Keroloth_TeachState_2H == 2))
+	{
+		PrintScreen(PRINT_NoLearnTotalMAXReached,-1,53,FONT_Screen,2);
+		AI_Output(self,other,"B_Keroloth_TeachNoMore1_07_00");	//Ты очень хорош. Мне больше нечему учить тебя.
+		AI_StopProcessInfos(self);
+	};
+};
 
 instance DIA_Keroloth_Teacher(C_Info)
 {
@@ -98,13 +180,13 @@ instance DIA_Keroloth_Teacher(C_Info)
 	condition = DIA_Keroloth_Teacher_Condition;
 	information = DIA_Keroloth_Teacher_Info;
 	permanent = TRUE;
-	description = "(изучить бой одноручным оружием)";
+	description = "Я хочу тренироваться!";
 };
 
 
 func int DIA_Keroloth_Teacher_Condition()
 {
-	if((Keroloth_TeachPlayer == TRUE) && (Keroloths_BeutelLeer == FALSE))
+	if((Keroloth_TeachPlayer == TRUE) && (DIA_Keroloth_Teacher_permanent == FALSE))
 	{
 		return TRUE;
 	};
@@ -113,10 +195,14 @@ func int DIA_Keroloth_Teacher_Condition()
 func void DIA_Keroloth_Teacher_Info()
 {
 	AI_Output(other,self,"DIA_Keroloth_Teacher_15_00");	//Я хочу тренироваться!
-	Info_ClearChoices(DIA_Keroloth_Teacher);
-	Info_AddChoice(DIA_Keroloth_Teacher,Dialog_Back,DIA_Keroloth_Teacher_Back);
-	Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Keroloth_Teacher_1H_1);
-	Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Keroloth_Teacher_1H_5);
+	if(Keroloths_BeutelLeer == FALSE)
+	{
+		B_BuildLearnDialog_Keroloth();
+	}
+	else
+	{
+		B_Keroloth_GetLost();
+	};
 };
 
 func void DIA_Keroloth_Teacher_Back()
@@ -124,107 +210,37 @@ func void DIA_Keroloth_Teacher_Back()
 	Info_ClearChoices(DIA_Keroloth_Teacher);
 };
 
-func void B_Keroloth_TeachNoMore1()
-{
-	AI_Output(self,other,"B_Keroloth_TeachNoMore1_07_00");	//Ты очень хорош. Мне больше нечему учить тебя.
-};
-
-func void B_Keroloth_TeachNoMore2()
-{
-	AI_Output(self,other,"B_Keroloth_TeachNoMore2_07_00");	//Только очень опытный мечник сможет помочь тебе теперь.
-};
-
 func void DIA_Keroloth_Teacher_1H_1()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,60);
-//	if(other.HitChance[NPC_TALENT_1H] >= 60)
-	if(other.aivar[REAL_TALENT_1H] >= 60)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,1,TeachLimit_1H_Keroloth))
 	{
-		B_Keroloth_TeachNoMore1();
-		if(Npc_GetTalentSkill(other,NPC_TALENT_1H) == 2)
-		{
-			B_Keroloth_TeachNoMore2();
-		};
+		B_BuildLearnDialog_Keroloth();
 	};
-	Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h1,B_GetLearnCostTalent(other,NPC_TALENT_1H,1)),DIA_Keroloth_Teacher_1H_1);
 };
 
 func void DIA_Keroloth_Teacher_1H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,60);
-//	if(other.HitChance[NPC_TALENT_1H] >= 60)
-	if(other.aivar[REAL_TALENT_1H] >= 60)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_1H,5,TeachLimit_1H_Keroloth))
 	{
-		B_Keroloth_TeachNoMore1();
-		if(Npc_GetTalentSkill(other,NPC_TALENT_1H) == 2)
-		{
-			B_Keroloth_TeachNoMore2();
-		};
-	};
-	Info_AddChoice(DIA_Keroloth_Teacher,B_BuildLearnString(PRINT_Learn1h5,B_GetLearnCostTalent(other,NPC_TALENT_1H,5)),DIA_Keroloth_Teacher_1H_5);
-};
-
-
-instance DIA_Keroloth_Teach(C_Info)
-{
-	npc = PAL_258_Keroloth;
-	nr = 100;
-	condition = DIA_Keroloth_Teach_Condition;
-	information = DIA_Keroloth_Teach_Info;
-	permanent = TRUE;
-	description = "(изучить бой двуручным оружием)";
-};
-
-
-var int DIA_Keroloth_Teach_permanent;
-
-func int DIA_Keroloth_Teach_Condition()
-{
-//	if((Keroloth_TeachPlayer == TRUE) && (Keroloths_BeutelLeer == FALSE) && (DIA_Keroloth_Teach_permanent == FALSE) && (other.HitChance[NPC_TALENT_2H] < 60))
-	if((Keroloth_TeachPlayer == TRUE) && (Keroloths_BeutelLeer == FALSE) && (DIA_Keroloth_Teach_permanent == FALSE) && (other.aivar[REAL_TALENT_2H] < 60))
-	{
-		return TRUE;
+		B_BuildLearnDialog_Keroloth();
 	};
 };
 
-func void DIA_Keroloth_Teach_Info()
+func void DIA_Keroloth_Teacher_2H_1()
 {
-	AI_Output(other,self,"DIA_Keroloth_Teach_15_00");	//Начнем.
-	Info_ClearChoices(DIA_Keroloth_Teach);
-	Info_AddChoice(DIA_Keroloth_Teach,Dialog_Back,DIA_Keroloth_Teach_Back);
-	Info_AddChoice(DIA_Keroloth_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Keroloth_Teach_2H_1);
-	Info_AddChoice(DIA_Keroloth_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Keroloth_Teach_2H_5);
-};
-
-func void DIA_Keroloth_Teach_Back()
-{
-//	if(other.HitChance[NPC_TALENT_2H] >= 60)
-	if(other.aivar[REAL_TALENT_2H] >= 60)
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Keroloth))
 	{
-		B_Keroloth_TeachNoMore1();
-		DIA_Keroloth_Teach_permanent = TRUE;
+		B_BuildLearnDialog_Keroloth();
 	};
-	Info_ClearChoices(DIA_Keroloth_Teach);
 };
 
-func void DIA_Keroloth_Teach_2H_1()
+func void DIA_Keroloth_Teacher_2H_5()
 {
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,60);
-	Info_ClearChoices(DIA_Keroloth_Teach);
-	Info_AddChoice(DIA_Keroloth_Teach,Dialog_Back,DIA_Keroloth_Teach_Back);
-	Info_AddChoice(DIA_Keroloth_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Keroloth_Teach_2H_1);
-	Info_AddChoice(DIA_Keroloth_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Keroloth_Teach_2H_5);
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Keroloth))
+	{
+		B_BuildLearnDialog_Keroloth();
+	};
 };
-
-func void DIA_Keroloth_Teach_2H_5()
-{
-	B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,60);
-	Info_ClearChoices(DIA_Keroloth_Teach);
-	Info_AddChoice(DIA_Keroloth_Teach,Dialog_Back,DIA_Keroloth_Teach_Back);
-	Info_AddChoice(DIA_Keroloth_Teach,B_BuildLearnString(PRINT_Learn2h1,B_GetLearnCostTalent(other,NPC_TALENT_2H,1)),DIA_Keroloth_Teach_2H_1);
-	Info_AddChoice(DIA_Keroloth_Teach,B_BuildLearnString(PRINT_Learn2h5,B_GetLearnCostTalent(other,NPC_TALENT_2H,5)),DIA_Keroloth_Teach_2H_5);
-};
-
 
 instance DIA_Keroloth_Udar(C_Info)
 {
@@ -239,7 +255,7 @@ instance DIA_Keroloth_Udar(C_Info)
 
 func int DIA_Keroloth_Udar_Condition()
 {
-	if((Keroloth_TeachPlayer == TRUE) && (Keroloths_BeutelLeer == FALSE))
+	if(Keroloth_TeachPlayer == TRUE)
 	{
 		return TRUE;
 	};
@@ -248,61 +264,18 @@ func int DIA_Keroloth_Udar_Condition()
 func void DIA_Keroloth_Udar_Info()
 {
 	AI_Output(other,self,"DIA_Keroloth_Udar_15_00");	//Что насчет дальнего боя?
-	AI_Output(self,other,"DIA_Keroloth_Udar_07_01");	//Что насчет него?
-	AI_Output(other,self,"DIA_Keroloth_Udar_15_02");	//Ты можешь обучить меня ему?
-	AI_Output(self,other,"DIA_Keroloth_Udar_07_03");	//Нет, но ты можешь попросить Удара. Он хороший - нет, он ЛУЧШИЙ арбалетчик, насколько я знаю.
-	Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
-	B_LogEntry(TOPIC_Teacher_OC,"Удар из замка Долины Рудников знает все об арбалетах.");
-};
-
-
-instance DIA_Keroloth_KAP3_EXIT(C_Info)
-{
-	npc = PAL_258_Keroloth;
-	nr = 999;
-	condition = DIA_Keroloth_KAP3_EXIT_Condition;
-	information = DIA_Keroloth_KAP3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Keroloth_KAP3_EXIT_Condition()
-{
-	if(Kapitel == 3)
+	if(Keroloths_BeutelLeer == FALSE)
 	{
-		return TRUE;
-	};
-};
-
-func void DIA_Keroloth_KAP3_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Keroloth_KAP4_EXIT(C_Info)
-{
-	npc = PAL_258_Keroloth;
-	nr = 999;
-	condition = DIA_Keroloth_KAP4_EXIT_Condition;
-	information = DIA_Keroloth_KAP4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Keroloth_KAP4_EXIT_Condition()
-{
-	if(Kapitel == 4)
+		AI_Output(self,other,"DIA_Keroloth_Udar_07_01");	//Что насчет него?
+		AI_Output(other,self,"DIA_Keroloth_Udar_15_02");	//Ты можешь обучить меня ему?
+		AI_Output(self,other,"DIA_Keroloth_Udar_07_03");	//Нет, но ты можешь попросить Удара. Он хороший - нет, он ЛУЧШИЙ арбалетчик, насколько я знаю.
+		Log_CreateTopic(TOPIC_Teacher_OC,LOG_NOTE);
+		B_LogEntry(TOPIC_Teacher_OC,"Удар из замка Долины Рудников знает все об арбалетах.");
+	}
+	else
 	{
-		return TRUE;
+		B_Keroloth_GetLost();
 	};
-};
-
-func void DIA_Keroloth_KAP4_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
 };
 
 
@@ -339,7 +312,7 @@ func void DIA_Keroloth_KAP4_HELLO_Info()
 
 func void DIA_Keroloth_KAP4_HELLO_ende()
 {
-	AI_Output(other,self,"DIA_Landstreicher_HALLO_Weg_15_00");	//Мне нужно идти.
+	DIA_Common_IHaveToGo_v2();
 	AI_Output(self,other,"DIA_Keroloth_KAP4_HELLO_bestohlen_wasfehlt_07_04");	//Когда я доберусь до него...
 	Info_ClearChoices(DIA_Keroloth_KAP4_HELLO);
 };
@@ -587,61 +560,10 @@ func void DIA_Keroloth_KAP4_ENTSPANNDICH_Info()
 	else
 	{
 		AI_Output(other,self,"DIA_Keroloth_KAP4_ENTSPANNDICH_15_04");	//Ты ведь получил свой кошелек назад, разве нет?
-		AI_Output(self,other,"DIA_Keroloth_KAP4_ENTSPANNDICH_07_05");	//Не провоцируй меня! Проваливай!
-		AI_StopProcessInfos(self);
+		B_Keroloth_GetLost();
 	};
 };
 
-
-instance DIA_Keroloth_KAP5_EXIT(C_Info)
-{
-	npc = PAL_258_Keroloth;
-	nr = 999;
-	condition = DIA_Keroloth_KAP5_EXIT_Condition;
-	information = DIA_Keroloth_KAP5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Keroloth_KAP5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Keroloth_KAP5_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-/*
-instance DIA_Keroloth_KAP6_EXIT(C_Info)
-{
-	npc = PAL_258_Keroloth;
-	nr = 999;
-	condition = DIA_Keroloth_KAP6_EXIT_Condition;
-	information = DIA_Keroloth_KAP6_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Keroloth_KAP6_EXIT_Condition()
-{
-	if(Kapitel == 6)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Keroloth_KAP6_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-*/
 
 instance DIA_Keroloth_PICKPOCKET(C_Info)
 {

@@ -36,7 +36,7 @@ instance DIA_Zuris_PICKPOCKET(C_Info)
 func int DIA_Zuris_PICKPOCKET_Condition()
 {
 //	return C_StealItems(40,Hlp_GetInstanceID(ItPo_Health_03),0);
-	return C_StealItem(40,Hlp_GetInstanceID(ItPo_Health_03));
+	return C_StealItem(40);
 };
 
 func void DIA_Zuris_PICKPOCKET_Info()

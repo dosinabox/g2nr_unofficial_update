@@ -64,6 +64,7 @@ func void DIA_Cornelius_Hello_Info()
 			B_Say(self,other,"$NOTNOW");
 		};
 	};
+	B_PlayerEnteredUpperCity();
 	AI_StopProcessInfos(self);
 };
 
@@ -362,7 +363,7 @@ func int DIA_Cornelius_PICKPOCKET_Condition()
 //	if(C_StealItems(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis),1) && (RescueBennet_KnowsCornelius == TRUE))
 	if(Npc_HasItems(self,ItWr_CorneliusTagebuch_Mis) && (RescueBennet_KnowsCornelius == TRUE))
 	{
-		return C_StealItem(60,Hlp_GetInstanceID(ItWr_CorneliusTagebuch_Mis));
+		return C_StealItem(60);
 	};
 	return FALSE;
 };

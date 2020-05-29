@@ -258,7 +258,7 @@ instance DIA_Addon_BDT_10018_Torwache_Drin(C_Info)
 
 func int DIA_Addon_10018_Torwache_Drin_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi) && !Npc_IsDead(Bloodwyn))
+	if(Npc_KnowsInfo(other,DIA_Addon_BDT_10018_Torwache_Hi) && !Npc_IsDead(Bloodwyn) && (Bloodwyn_Spawn == FALSE))
 	{
 		return TRUE;
 	};

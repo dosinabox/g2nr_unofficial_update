@@ -45,6 +45,14 @@ func void B_AssessPlayer()
 	{
 		return;
 	};
+	if(SewerThieves_KilledByPlayer == TRUE)
+	{
+		if(C_IAmThiefFromSewer(self))
+		{
+			B_Attack(self,other,AR_KILL,0);
+			return;
+		};
+	};
 	if(C_PlayerIsFakeBandit(self,other) && (self.guild != GIL_BDT))
 	{
 		B_Attack(self,other,AR_GuildEnemy,0);

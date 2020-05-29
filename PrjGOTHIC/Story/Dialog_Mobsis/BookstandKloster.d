@@ -112,9 +112,9 @@ func void Use_Bookstand_Kreise_01_S1()
 		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
+		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"ПЕРВЫЙ КРУГ");
 		Doc_PrintLine(nDocID,0,"");
-//		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Руны первого круга и ингредиенты для их создания.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
@@ -132,9 +132,7 @@ func void Use_Bookstand_Kreise_01_S1()
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Лечение легких ранений:");
 		Doc_PrintLine(nDocID,0,"- лечебная трава");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes1);
 		Doc_PrintLine(nDocID,1,"");
@@ -159,9 +157,9 @@ func void Use_Bookstand_Kreise_02_S1()
 		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
+		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"ВТОРОЙ КРУГ");
 		Doc_PrintLine(nDocID,0,"");
-//		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Руны второго круга и ингредиенты для их создания.");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"");
@@ -169,7 +167,7 @@ func void Use_Bookstand_Kreise_02_S1()
 		Doc_PrintLine(nDocID,0,"- смола");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Ледяная стрела:");
-		Doc_PrintLine(nDocID,0,"- ледяной кварц:");
+		Doc_PrintLine(nDocID,0,"- ледяной кварц");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Вызов волка:");
 		Doc_PrintLine(nDocID,0,"- шкура волка");
@@ -179,9 +177,7 @@ func void Use_Bookstand_Kreise_02_S1()
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Сон:");
 		Doc_PrintLine(nDocID,0,"- болотная трава");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes1);
 		Doc_PrintLine(nDocID,1,"");
@@ -206,6 +202,7 @@ func void Use_Bookstand_Kreise_03_S1()
 		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
+		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"ТРЕТИЙ КРУГ");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Руны третьего круга и ингредиенты для их создания.");
@@ -230,17 +227,7 @@ func void Use_Bookstand_Kreise_03_S1()
 		Doc_PrintLine(nDocID,0,"Шаровая молния:");
 		Doc_PrintLine(nDocID,0,"- горный хрусталь");
 		Doc_PrintLine(nDocID,0,"- сера");
-//		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-//		Doc_PrintLine(nDocID,1,"");
-//		Doc_PrintLine(nDocID,1,"");
-//		Doc_PrintLine(nDocID,1,"Шаровая молния:");
-//		Doc_PrintLine(nDocID,1,"- горный хрусталь");
-//		Doc_PrintLine(nDocID,1,"- сера");
-//		Doc_PrintLine(nDocID,1,"Огненный шар");
-//		Doc_PrintLine(nDocID,1,"Смола");
-//		Doc_PrintLine(nDocID,1,"Сера");
-		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes1);
 		Doc_PrintLine(nDocID,1,"");
@@ -265,6 +252,7 @@ func void Use_Bookstand_Kreise_04_S1()
 		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
+		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"ЧЕТВЕРТЫЙ КРУГ");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Руны четвертого круга и ингредиенты для их создания.");
@@ -283,9 +271,7 @@ func void Use_Bookstand_Kreise_04_S1()
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"Уничтожение нежити:");
 		Doc_PrintLine(nDocID,0,"- святая вода");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
-		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes1);
 		Doc_PrintLine(nDocID,1,"");
@@ -310,6 +296,7 @@ func void Use_Bookstand_Kreise_05_S1()
 		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
+		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"ПЯТЫЙ КРУГ");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Руны пятого круга и ингредиенты для их создания.");
@@ -334,7 +321,6 @@ func void Use_Bookstand_Kreise_05_S1()
 		Doc_PrintLine(nDocID,0,"- клык тролля");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes1);
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes2);
@@ -358,6 +344,7 @@ func void Use_Bookstand_Kreise_06_S1()
 		Doc_SetPage(nDocID,1,"Book_Mage_R.tga",0);
 		Doc_SetFont(nDocID,-1,FONT_Book);
 		Doc_SetMargins(nDocID,0,275,20,30,20,1);
+		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLine(nDocID,0,"ШЕСТОЙ КРУГ");
 		Doc_PrintLine(nDocID,0,"");
 		Doc_PrintLines(nDocID,0,"Руны шестого круга и ингредиенты для их создания.");
@@ -381,15 +368,8 @@ func void Use_Bookstand_Kreise_06_S1()
 		Doc_PrintLine(nDocID,0,"- черная жемчужина");
 		Doc_PrintLine(nDocID,0,"- сердце каменного голема");
 		Doc_PrintLine(nDocID,0,"- сердце демона");
-		Doc_PrintLine(nDocID,0,"");
 		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
 		Doc_PrintLine(nDocID,1,"");
-		Doc_PrintLine(nDocID,1,"");
-//		Doc_PrintLine(nDocID,1,"Уменьшение монстра:");
-//		Doc_PrintLine(nDocID,1,"- кость гоблина");
-//		Doc_PrintLine(nDocID,1,"- клык тролля");
-//		Doc_PrintLine(nDocID,1,"");
-//		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes1);
 		Doc_PrintLine(nDocID,1,"");
 		Doc_PrintLines(nDocID,1,PRINT_BookstandRunes2);

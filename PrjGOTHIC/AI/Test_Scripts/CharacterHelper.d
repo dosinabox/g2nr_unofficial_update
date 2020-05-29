@@ -66,7 +66,7 @@ instance CH(Npc_Default)
 	B_GiveNpcTalents(self);
 	fight_tactic = FAI_HUMAN_MASTER;
 	B_CreateAmbientInv(self);
-	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player,-1);
+	B_SetNpcVisual(self,MALE,"Hum_Head_Pony",Face_N_Player,BodyTex_Player_G1,-1);
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	daily_routine = Rtn_Start_0;
@@ -302,7 +302,7 @@ func void CH_Exit_Info()
 instance CH_RESET(C_Info)
 {
 	npc = ch;
-	nr = 20;
+	nr = 998;
 	condition = CH_RESET_Condition;
 	information = CH_RESET_Info;
 	permanent = TRUE;
@@ -312,7 +312,7 @@ instance CH_RESET(C_Info)
 
 func int CH_RESET_Condition()
 {
-	if(LevelStart == TRUE)
+	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
 	{
 		return TRUE;
 	};
@@ -320,8 +320,55 @@ func int CH_RESET_Condition()
 
 func void CH_RESET_Info()
 {
-	AI_UnequipArmor(hero);
+	//обход бага движка с двойным снятием оружия (исправлен в Union)
 	AI_UnequipWeapons(hero);
+	Info_ClearChoices(CH_RESET);
+	Info_AddChoice(CH_RESET,Dialog_Back,CH_RESET_Back);
+	Info_AddChoice(CH_RESET,"Продолжить",CH_RESET_Ok);
+};
+
+func void CH_RESET_Back()
+{
+	Info_ClearChoices(CH_RESET);
+};
+
+func void CH_RESET_Ok()
+{
+	//снять всю бижутерию и пояс, повышающие силу/ловкость/ману/здоровье
+	B_UnEquipHeroItem(ItBe_Addon_STR_5);
+	B_UnEquipHeroItem(ItBe_Addon_STR_10);
+	B_UnEquipHeroItem(ItBe_Addon_DEX_5);
+	B_UnEquipHeroItem(ItBe_Addon_DEX_10);
+	B_UnEquipHeroItem(ItAm_Dex_01);
+	B_UnEquipHeroItem(ItAm_Strg_01);
+	B_UnEquipHeroItem(ItAm_Hp_01);
+	B_UnEquipHeroItem(ItAm_Mana_01);
+	B_UnEquipHeroItem(ItAm_Dex_Strg_01);
+	B_UnEquipHeroItem(ItAm_Hp_Mana_01);
+	B_UnEquipHeroItem(ItAm_Addon_Franco);
+	B_UnEquipHeroItem(ItAm_Addon_Health);
+	B_UnEquipHeroItem(ItAm_Addon_MANA);
+	B_UnEquipHeroItem(ItAm_Addon_STR);
+	B_UnEquipHeroItem(ItRi_Dex_01);
+	B_UnEquipHeroItem(ItRi_Dex_02);
+	B_UnEquipHeroItem(ItRi_HP_01);
+	B_UnEquipHeroItem(ItRi_Hp_02);
+	B_UnEquipHeroItem(ItRi_Str_01);
+	B_UnEquipHeroItem(ItRi_Str_02);
+	B_UnEquipHeroItem(ItRi_Mana_01);
+	B_UnEquipHeroItem(ItRi_Mana_02);
+	B_UnEquipHeroItem(ItRi_Dex_Strg_01);
+	B_UnEquipHeroItem(ItRi_Hp_Mana_01);
+	B_UnEquipHeroItem(ItRi_Addon_Health_01);
+	B_UnEquipHeroItem(ItRi_Addon_Health_02);
+	B_UnEquipHeroItem(ItRi_Addon_MANA_01);
+	B_UnEquipHeroItem(ItRi_Addon_MANA_02);
+	B_UnEquipHeroItem(ItRi_Addon_STR_01);
+	B_UnEquipHeroItem(ItRi_Addon_STR_02);
+	B_UnEquipHeroItem(ItRi_HP_01_Tengron);
+	B_UnEquipHeroItem(ItRi_OrcEliteRing);
+	B_UnEquipHeroItem(ItAm_Mana_Angar_MIS);
+	AI_UnequipArmor(hero);
 	hero.guild = GIL_NONE;
 	Npc_SetTrueGuild(hero,GIL_NONE);
 	hero.lp = 0;
@@ -337,25 +384,13 @@ func void CH_RESET_Info()
 	hero.aivar[REAL_MANA_MAX] = 10;
 	hero.attribute[ATR_HITPOINTS_MAX] = 40;
 	hero.attribute[ATR_HITPOINTS] = 40;
-	Npc_SetTalentSkill(hero,NPC_TALENT_1H,0);
 	hero.HitChance[NPC_TALENT_1H] = 10;
-	hero.aivar[REAL_TALENT_1H] = 10;
-	Npc_SetTalentSkill(hero,NPC_TALENT_2H,0);
 	hero.HitChance[NPC_TALENT_2H] = 10;
-	hero.aivar[REAL_TALENT_2H] = 10;
-	Npc_SetTalentSkill(hero,NPC_TALENT_BOW,0);
 	hero.HitChance[NPC_TALENT_BOW] = 10;
-	hero.aivar[REAL_TALENT_BOW] = 10;
-	Npc_SetTalentSkill(hero,NPC_TALENT_CROSSBOW,0);
 	hero.HitChance[NPC_TALENT_CROSSBOW] = 10;
-	hero.aivar[REAL_TALENT_CROSSBOW] = 10;
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKLOCK,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_MAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_SNEAK,0);
-	Npc_SetTalentSkill(hero,NPC_TALENT_REGENERATE,0);
-	hero.attribute[ATR_REGENERATEHP] = 0;
-	hero.attribute[ATR_REGENERATEMANA] = 0;
-	//Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_ACROBAT,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_PICKPOCKET,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_SMITH,0);
@@ -365,13 +400,115 @@ func void CH_RESET_Info()
 	Npc_SetTalentSkill(hero,NPC_TALENT_FOREIGNLANGUAGE,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_WISPDETECTOR,0);
 	Npc_SetTalentSkill(hero,NPC_TALENT_TAKEANIMALTROPHY,0);
-	//Npc_SetTalentSkill(hero,NPC_TALENT_D,0);
-	//Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
-	Knows_Bloodfly = FALSE;
+	Npc_SetTalentSkill(hero,NPC_TALENT_REGENERATE,0);
+	hero.attribute[ATR_REGENERATEHP] = 0;
+	hero.attribute[ATR_REGENERATEMANA] = 0;
 	Hero_HackChance = 10;
+	if(Knows_Bloodfly_LP == TRUE)
+	{
+		Knows_Bloodfly = FALSE;
+	};
+	G1BodySkin = FALSE;
+	SequelBodySkin = FALSE;
+	TattoosBodySkin = FALSE;
+	NakedBodySkin = FALSE;
+	B_SetHeroSkin();
+	Mdl_RemoveOverlayMDS(hero,"Humans_Arrogance.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Babe.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Mage.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Militia.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Relaxed.mds");
+	Mdl_RemoveOverlayMDS(hero,"Humans_Tired.mds");
+	B_ResetTalentSystem();
+	PLAYER_TALENT_SMITH[WEAPON_Common] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Special_01] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_2H_Special_01] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Special_02] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_2H_Special_02] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Special_03] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_2H_Special_03] = FALSE;
+	if(PlayergetsFinalDJGArmor == FALSE)
+	{
+		PLAYER_TALENT_SMITH[WEAPON_1H_Special_04] = FALSE;
+		PLAYER_TALENT_SMITH[WEAPON_2H_Special_04] = FALSE;
+	};
+	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_01] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_02] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_03] = FALSE;
+	PLAYER_TALENT_SMITH[WEAPON_1H_Harad_04] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Light] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Firebolt] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Icebolt] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_LightHeal] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonGoblinSkeleton] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_InstantFireball] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Zap] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonWolf] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_WindFist] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Sleep] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_MediumHeal] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_LightningFlash] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_ChargeFireball] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonSkeleton] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Fear] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_IceCube] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_ChargeZap] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonGolem] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_DestroyUndead] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Pyrokinesis] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Firestorm] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_IceWave] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_SummonDemon] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_FullHeal] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Firerain] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_BreathOfDeath] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_MassDeath] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_ArmyOfDarkness] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Shrink] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Whirlwind] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_WaterFist] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_IceLance] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Geyser] = FALSE;
+	PLAYER_TALENT_RUNES[SPL_Thunderstorm] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Health_01] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Health_02] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Health_03] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Mana_01] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Mana_02] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Mana_03] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Speed] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Perm_STR] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Perm_DEX] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Perm_Mana] = FALSE;
+	PLAYER_TALENT_ALCHEMY[POTION_Perm_Health] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Teeth] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Claws] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ReptileSkin] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Heart] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_ShadowHorn] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_FireTongue] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFWing] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Mandibles] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_CrawlerPlate] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DrgSnapperHorn] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonScale] = FALSE;
+	PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_DragonBlood] = FALSE;
 	PrintScreen("Восстановлен исходный PC_Hero",-1,-1,FONT_Screen,2);
+	Info_ClearChoices(CH_RESET);
+//	Npc_SetTalentSkill(hero,NPC_TALENT_1H,0);
+//	hero.aivar[REAL_TALENT_1H] = 10;
+//	Npc_SetTalentSkill(hero,NPC_TALENT_2H,0);
+//	hero.aivar[REAL_TALENT_2H] = 10;
+//	Npc_SetTalentSkill(hero,NPC_TALENT_BOW,0);
+//	hero.aivar[REAL_TALENT_BOW] = 10;
+//	Npc_SetTalentSkill(hero,NPC_TALENT_CROSSBOW,0);
+//	hero.aivar[REAL_TALENT_CROSSBOW] = 10;
+//	Npc_SetTalentSkill(hero,NPC_TALENT_FIREMASTER,0);
+//	Npc_SetTalentSkill(hero,NPC_TALENT_D,0);
+//	Npc_SetTalentSkill(hero,NPC_TALENT_E,0);
 };
-
 
 instance CH_Guild(C_Info)
 {
@@ -3114,7 +3251,7 @@ func void DIA_CH_Misc_Animal_Speziell_Info()
 	Info_AddChoice(DIA_CH_Misc_Animal_Speziell,Dialog_Back,DIA_CH_Misc_Animal_Speziell_BACK);
 	if(Knows_Bloodfly == FALSE)
 	{
-		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,"Секрет из жала (1 очко обучения)",CH_Training_TROPHYS_BFGift);
+		Info_AddChoice(DIA_CH_Misc_Animal_Speziell,B_BuildLearnString(NAME_TROPHY_BFPoison,1),CH_Training_TROPHYS_BFGift);
 	};
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_BFSting] == FALSE)
 	{
@@ -3145,6 +3282,7 @@ func void CH_Training_TROPHYS_BFGift()
 	{
 		other.lp -= 1;
 		Knows_Bloodfly = TRUE;
+		Knows_Bloodfly_LP = TRUE;
 		PrintScreen(PRINT_ADDON_KNOWSBF,-1,-1,FONT_Screen,2);
 		Log_CreateTopic(Topic_Bonus,LOG_NOTE);
 		B_LogEntry(Topic_Bonus,PRINT_KnowsBloodfly);
@@ -3664,8 +3802,8 @@ func void CH_Overlay_Info()
 	Info_AddChoice(CH_Overlay,"Солдат",CH_Overlay_Militia);
 	Info_AddChoice(CH_Overlay,"Крутой",CH_Overlay_Arrogance);
 	Info_AddChoice(CH_Overlay,"Спокойный",CH_Overlay_Relaxed);
-	Info_AddChoice(CH_Overlay,"Уставший",CH_Overlay_Tired);	
-	Info_AddChoice(CH_Overlay,"Стандарт",CH_Overlay_Clear);	
+	Info_AddChoice(CH_Overlay,"Уставший",CH_Overlay_Tired);
+	Info_AddChoice(CH_Overlay,"Стандарт",CH_Overlay_Clear);
 };
 
 func void CH_Overlay_BACK()
@@ -3718,5 +3856,125 @@ func void CH_Overlay_Clear()
 	Mdl_RemoveOverlayMDS(other,"Humans_Relaxed.mds");
 	Mdl_RemoveOverlayMDS(other,"Humans_Tired.mds");
 	Info_ClearChoices(CH_Overlay);
+};
+
+instance CH_Skin(C_Info)
+{
+	npc = ch;
+	nr = 37;
+	condition = CH_Skin_Condition;
+	information = CH_Skin_Info;
+	permanent = TRUE;
+	description = "Изменить внешность";
+};
+
+
+func int CH_Skin_Condition()
+{
+	if((LevelStart == FALSE) && (MagieStart == FALSE) && (AttributeStart == FALSE) && (KampfStart == FALSE) && (DiebStart == FALSE) && (MiscStart == FALSE))
+	{
+		return TRUE;
+	};
+};
+
+func void CH_Skin_Info()
+{
+	Info_ClearChoices(CH_Skin);
+	Info_AddChoice(CH_Skin,Dialog_Back,CH_Skin_BACK);
+	if(G1BodySkin == TRUE)
+	{
+		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
+		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1 (используется)",CH_Skin_G1);
+	}
+	else if(SequelBodySkin == TRUE)
+	{
+		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
+		Info_AddChoice(CH_Skin,"Сиквел (используется)",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
+	}
+	else if(NakedBodySkin == TRUE)
+	{
+		Info_AddChoice(CH_Skin,"Без одежды (используется)",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
+		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
+	}
+	else if(TattoosBodySkin == TRUE)
+	{
+		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки (используется)",CH_Skin_Tattoos);
+		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
+	}
+	else
+	{
+		Info_AddChoice(CH_Skin,"Без одежды",CH_Skin_Naked);
+		Info_AddChoice(CH_Skin,"Татуировки",CH_Skin_Tattoos);
+		Info_AddChoice(CH_Skin,"Сиквел",CH_Skin_Sequel);
+		Info_AddChoice(CH_Skin,"Готика 2 (используется)",CH_Skin_G2);
+		Info_AddChoice(CH_Skin,"Готика 1",CH_Skin_G1);
+	};
+};
+
+func void CH_Skin_BACK()
+{
+	Info_ClearChoices(CH_Skin);
+};
+
+func void CH_Skin_G1()
+{
+	G1BodySkin = TRUE;
+	SequelBodySkin = FALSE;
+	TattoosBodySkin = FALSE;
+	NakedBodySkin = FALSE;
+	B_SetHeroSkin();
+	CH_Skin_Info();
+};
+
+func void CH_Skin_G2()
+{
+	G1BodySkin = FALSE;
+	SequelBodySkin = FALSE;
+	TattoosBodySkin = FALSE;
+	NakedBodySkin = FALSE;
+	B_SetHeroSkin();
+	CH_Skin_Info();
+};
+
+func void CH_Skin_Sequel()
+{
+	G1BodySkin = FALSE;
+	SequelBodySkin = TRUE;
+	TattoosBodySkin = FALSE;
+	NakedBodySkin = FALSE;
+	B_SetHeroSkin();
+	CH_Skin_Info();
+};
+
+func void CH_Skin_Tattoos()
+{
+	G1BodySkin = FALSE;
+	SequelBodySkin = FALSE;
+	TattoosBodySkin = TRUE;
+	NakedBodySkin = FALSE;
+	B_SetHeroSkin();
+	CH_Skin_Info();
+};
+
+func void CH_Skin_Naked()
+{
+	G1BodySkin = FALSE;
+	SequelBodySkin = FALSE;
+	TattoosBodySkin = FALSE;
+	NakedBodySkin = TRUE;
+	B_SetHeroSkin();
+	CH_Skin_Info();
 };
 

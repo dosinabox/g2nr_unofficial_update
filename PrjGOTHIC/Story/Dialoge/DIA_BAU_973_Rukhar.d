@@ -68,9 +68,20 @@ func void DIA_Rukhar_WASMACHSTDU_Info()
 	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_02");	//Но однажды я понял, что больше так не выдержу и сбежал оттуда.
 	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_03");	//Теперь я сам себе хозяин. Все, что принадлежит мне, находится в этом сундуке. И больше мне ничего не нужно.
 	AI_Output(self,other,"DIA_Rukhar_WASMACHSTDU_12_04");	//Не хочешь посостязаться со мной?
-	Log_CreateTopic(TOPIC_Wettsaufen,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_Wettsaufen,LOG_Running);
-	B_LogEntry(TOPIC_Wettsaufen,"В таверне можно заключить пари.");
+	if(Kapitel < 4)
+	{
+		if(TaverneTopicStarted == FALSE)
+		{
+			Log_CreateTopic(TOPIC_Wettsaufen,LOG_MISSION);
+			Log_SetTopicStatus(TOPIC_Wettsaufen,LOG_Running);
+			B_LogEntry(TOPIC_Wettsaufen,"В таверне можно заключить пари.");
+			TaverneTopicStarted = TRUE;
+		};
+	}
+	else
+	{
+		AI_Output(other,self,"DIA_Rukhar_WETTKAMPF_15_06");	//Может быть позже, когда я не буду так торопиться.
+	};
 };
 
 
@@ -86,7 +97,7 @@ instance DIA_Rukhar_WETTKAMPF(C_Info)
 
 func int DIA_Rukhar_WETTKAMPF_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rukhar_WASMACHSTDU))
+	if(Npc_KnowsInfo(other,DIA_Rukhar_WASMACHSTDU) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -116,7 +127,7 @@ instance DIA_Rukhar_HOLERANDOLPH(C_Info)
 
 func int DIA_Rukhar_HOLERANDOLPH_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Rukhar_WETTKAMPF))
+	if(Npc_KnowsInfo(other,DIA_Rukhar_WETTKAMPF) && (Kapitel < 4))
 	{
 		return TRUE;
 	};
@@ -144,10 +155,11 @@ instance DIA_Rukhar_RANDOLPHWILL(C_Info)
 
 
 var int DIA_Rukhar_RANDOLPHWILL_noPerm;
+var int DIA_Rukhar_RANDOLPHComment_Once;
 
 func int DIA_Rukhar_RANDOLPHWILL_Condition()
 {
-	if(Npc_KnowsInfo(other,DIA_Randolph_GEGENWEN) && Npc_KnowsInfo(other,DIA_Rukhar_HOLERANDOLPH) && (DIA_Rukhar_RANDOLPHWILL_noPerm == FALSE))
+	if(Npc_KnowsInfo(other,DIA_Randolph_GEGENWEN) && Npc_KnowsInfo(other,DIA_Rukhar_HOLERANDOLPH) && (DIA_Rukhar_RANDOLPHWILL_noPerm == FALSE) && !Npc_IsDead(Randolph) && (MIS_HealRandolph == FALSE) && (NpcObsessedByDMT_Randolph == FALSE) && (DIA_Randolph_SoberForever == FALSE))
 	{
 		return TRUE;
 	};
@@ -158,9 +170,13 @@ func void DIA_Rukhar_RANDOLPHWILL_Info()
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_15_00");	//Я нашел человека, который хочет сразиться с тобой.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_01");	//Кто это?
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_15_02");	//Рэндольф.
-	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_03");	//Хо-хо-хо. Рэндольф хвастун? Ну хорошо. Почему бы и нет.
-	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_04");	//Пришли этого слизняка ко мне, и сделай ставку.
-	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_05");	//Ты можешь выставить его еще раз не раньше чем через два дня. Кто знает? Может, тебе повезет, и он успеет протрезветь.
+	if(DIA_Rukhar_RANDOLPHComment_Once == FALSE)
+	{
+		AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_03");	//Хо-хо-хо. Рэндольф хвастун? Ну хорошо. Почему бы и нет.
+		AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_04");	//Пришли этого слизняка ко мне, и сделай ставку.
+		AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_05");	//Ты можешь выставить его еще раз не раньше чем через два дня. Кто знает? Может, тебе повезет, и он успеет протрезветь.
+		DIA_Rukhar_RANDOLPHComment_Once = TRUE;
+	};
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_12_06");	//Какова твоя ставка?
 	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"Ноль.",DIA_Rukhar_RANDOLPHWILL_nix);
@@ -172,9 +188,9 @@ func void DIA_Rukhar_RANDOLPHWILL_Info()
 
 func void DIA_Rukhar_RANDOLPHWILL_annehmen()
 {
-	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_annehmen_12_00");	//Я возьму твою ставку и подержу ее у себя, пока состязание не будет окончено, хорошо?
 	DIA_Rukhar_RANDOLPHWILL_noPerm = TRUE;
+	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
 };
 
 func void DIA_Rukhar_RANDOLPHWILL_mehr()
@@ -199,7 +215,6 @@ func void DIA_Rukhar_RANDOLPHWILL_10()
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_10_15_00");	//10 золотых.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_10_12_01");	//Да ладно, ты, должно быть, шутишь. Еще несколько золотых не разорят тебя.
 	Rukhar_Einsatz = 10;
-	Rukhar_Gewinn = 20;
 	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(выбрать другую ставку)",DIA_Rukhar_RANDOLPHWILL_mehr);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(принять ставку)",DIA_Rukhar_RANDOLPHWILL_annehmen);
@@ -210,7 +225,6 @@ func void DIA_Rukhar_RANDOLPHWILL_20()
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_20_15_00");	//20.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_20_12_01");	//Если ты хочешь сделать ставку, то делай уж это по-человечески.
 	Rukhar_Einsatz = 20;
-	Rukhar_Gewinn = 40;
 	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(выбрать другую ставку)",DIA_Rukhar_RANDOLPHWILL_mehr);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(принять ставку)",DIA_Rukhar_RANDOLPHWILL_annehmen);
@@ -221,7 +235,6 @@ func void DIA_Rukhar_RANDOLPHWILL_50()
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_50_15_00");	//50.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_50_12_01");	//Не робей. Смелее.
 	Rukhar_Einsatz = 50;
-	Rukhar_Gewinn = 100;
 	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(выбрать другую ставку)",DIA_Rukhar_RANDOLPHWILL_mehr);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(принять ставку)",DIA_Rukhar_RANDOLPHWILL_annehmen);
@@ -232,7 +245,6 @@ func void DIA_Rukhar_RANDOLPHWILL_100()
 	AI_Output(other,self,"DIA_Rukhar_RANDOLPHWILL_100_15_00");	//100.
 	AI_Output(self,other,"DIA_Rukhar_RANDOLPHWILL_100_12_01");	//Вот это уже мне нравится.
 	Rukhar_Einsatz = 100;
-	Rukhar_Gewinn = 200;
 	Info_ClearChoices(DIA_Rukhar_RANDOLPHWILL);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(выбрать другую ставку)",DIA_Rukhar_RANDOLPHWILL_mehr);
 	Info_AddChoice(DIA_Rukhar_RANDOLPHWILL,"(принять ставку)",DIA_Rukhar_RANDOLPHWILL_annehmen);
@@ -254,7 +266,7 @@ var int DIA_Rukhar_ICHSEHEDICH_noPerm;
 
 func int DIA_Rukhar_ICHSEHEDICH_Condition()
 {
-	if((DIA_Rukhar_ICHSEHEDICH_noPerm == FALSE) && (DIA_Rukhar_RANDOLPHWILL_noPerm == TRUE) && (Rukhar_Einsatz != 0))
+	if((DIA_Rukhar_ICHSEHEDICH_noPerm == FALSE) && (DIA_Rukhar_RANDOLPHWILL_noPerm == TRUE) && (Rukhar_Einsatz != 0) && !Npc_IsDead(Randolph) && (MIS_HealRandolph == FALSE) && (NpcObsessedByDMT_Randolph == FALSE) && (DIA_Randolph_SoberForever == FALSE))
 	{
 		return TRUE;
 	};
@@ -274,6 +286,57 @@ func void DIA_Rukhar_ICHSEHEDICH_Info()
 	{
 		AI_Output(self,other,"DIA_Rukhar_ICHSEHEDICH_12_02");	//Очень смешно. Возвращайся, когда у тебя будут деньги.
 	};
+	AI_StopProcessInfos(self);
+};
+
+
+instance DIA_Rukhar_NoRandolph(C_Info)
+{
+	npc = BAU_973_Rukhar;
+	nr = 3;
+	condition = DIA_Rukhar_NoRandolph_Condition;
+	information = DIA_Rukhar_NoRandolph_Info;
+	permanent = FALSE;
+	description = "Насчет Рэндольфа...";
+};
+
+
+func int DIA_Rukhar_NoRandolph_Condition()
+{
+	if(MIS_Rukhar_Wettkampf == LOG_Running)
+	{
+		if(Npc_IsDead(Randolph) || (MIS_HealRandolph != FALSE) || (NpcObsessedByDMT_Randolph == TRUE) || (DIA_Randolph_SoberForever == TRUE))
+		{
+			return TRUE;
+		};
+	};
+};
+
+func void DIA_Rukhar_NoRandolph_Info()
+{
+	AI_Output(other,self,"DIA_Rukhar_NORANDOLPH_15_00_add");	//Насчет Рэндольфа...
+	if(Npc_IsDead(Randolph))
+	{
+		DIA_Common_HeIsDead();
+		AI_Output(self,other,"DIA_Rukhar_HAENSELN_12_01");	//Вот твои деньги, и больше я ни слова не скажу.
+		CreateInvItems(self,ItMi_Gold,Rukhar_Einsatz);
+		B_GiveInvItems(self,other,ItMi_Gold,Rukhar_Einsatz);
+	}
+	else 
+	{
+		if(MIS_HealRandolph != FALSE)
+		{
+			AI_Output(other,self,"DIA_Sagitta_HEALRANDOLPH_15_00");	//У Рэндольфа похмельный синдром.
+		}
+		else
+		{
+			AI_Output(other,self,"DIA_Talbin_FOUNDENGROM_15_03");	//Я не думаю, что ты когда-нибудь его увидишь.
+		};
+		AI_Output(other,self,"DIA_Rukhar_GELDZURUECK_15_00");	//Я хочу получить свои деньги назад.
+		AI_Output(self,other,"DIA_Rukhar_NORANDOLPH_12_01_add");	//Очень смешно. Тебе следовало подумать об этом раньше.
+	};
+	MIS_Rukhar_Wettkampf = LOG_FAILED;
+	B_CheckLog();
 	AI_StopProcessInfos(self);
 };
 
@@ -334,9 +397,8 @@ func void DIA_Rukhar_HAENSELN_Info()
 	{
 		AI_Output(self,other,"DIA_Rukhar_HAENSELN_12_01");	//Вот твои деньги, и больше я ни слова не скажу.
 		B_GivePlayerXP(XP_Rukhar_Lost);
-		IntToFloat(Rukhar_Gewinn);
-		CreateInvItems(self,ItMi_Gold,Rukhar_Gewinn);
-		B_GiveInvItems(self,other,ItMi_Gold,Rukhar_Gewinn);
+		CreateInvItems(self,ItMi_Gold,Rukhar_Einsatz * 2);
+		B_GiveInvItems(self,other,ItMi_Gold,Rukhar_Einsatz * 2);
 		DIA_Rukhar_HAENSELN_nureimalgeld = TRUE;
 	}
 	else
