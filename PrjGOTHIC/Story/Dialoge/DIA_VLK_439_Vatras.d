@@ -1365,7 +1365,7 @@ func void DIA_Addon_Vatras_Stoneplate_Info()
 	AI_Output(self,other,"DIA_Addon_Vatras_Stoneplate_05_02");	//—уществует несколько разновидностей таких табличек. ¬ некоторых из них содержитс€ информаци€ по истории древних народов.
 	AI_Output(self,other,"DIA_Addon_Vatras_Stoneplate_05_03");	//ћен€ интересуют именно они. ѕринеси мне все, какие сможешь найти.
 	AI_Output(self,other,"DIA_Addon_Vatras_Stoneplate_05_04");	//“еб€ будет ждать достойна€ награда.
-	if(PLAYER_TALENT_FOREIGNLANGUAGE == FALSE)
+	if(TOPIC_End_Stoneplates == FALSE)
 	{
 		Log_CreateTopic(TOPIC_Addon_Stoneplates,LOG_MISSION);
 		Log_SetTopicStatus(TOPIC_Addon_Stoneplates,LOG_Running);
