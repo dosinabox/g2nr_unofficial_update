@@ -432,7 +432,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 			return FALSE;
 		};
 	};
-	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(VLK_414_Hanna))
+	if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Hanna))
 	{
 		if(!Npc_IsInState(oth,ZS_MagicFreeze) && Npc_HasItems(slf,ItSc_IceCube))
 		{

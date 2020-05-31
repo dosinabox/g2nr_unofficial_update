@@ -247,7 +247,7 @@ instance ItRu_Skull(C_Item)
 	description = NAME_SPL_Skull;
 	text[0] = NAME_Mag_Circle;
 	count[0] = mag_circle;
-	text[1] = NAME_MinManakosten;
+	text[1] = NAME_ManakostenMin;
 	count[1] = SPL_Cost_Skull;
 	text[2] = NAME_Dam_Magic;
 	count[2] = SPL_Damage_Skull;

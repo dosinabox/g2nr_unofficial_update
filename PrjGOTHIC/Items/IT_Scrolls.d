@@ -408,7 +408,7 @@ instance ItSc_Windfist(C_Item)
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = NAME_SPL_WINDFIST;
 	text[0] = NAME_MageScroll;
-	text[1] = NAME_MinManakosten;
+	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_WindFist;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_Cost_WindFist;
@@ -530,7 +530,7 @@ instance ItSc_ChargeFireBall(C_Item)
 	effect = "SPELLFX_WEAKGLIMMER_YELLOW";
 	description = NAME_SPL_ChargeFireball;
 	text[0] = NAME_MageScroll;
-	text[1] = NAME_MinManakosten;
+	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_ChargeFireball;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_ChargeFireball;
@@ -628,7 +628,7 @@ instance ItSc_ThunderBall(C_Item)
 	effect = "SPELLFX_WEAKGLIMMER";
 	description = NAME_SPL_ChargeZap;
 	text[0] = NAME_MageScroll;
-	text[1] = NAME_MinManakosten;
+	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_ChargeZap;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_ChargeZap;
@@ -699,7 +699,7 @@ instance ItSc_Pyrokinesis(C_Item)
 	effect = "SPELLFX_WEAKGLIMMER_YELLOW";
 	description = NAME_SPL_Pyrokinesis;
 	text[0] = NAME_MageScroll;
-	text[1] = NAME_MinManakosten;
+	text[1] = NAME_ManakostenMin;
 	count[1] = STEP_Firestorm;
 	text[2] = NAME_ManakostenMax;
 	count[2] = SPL_COST_Firestorm;

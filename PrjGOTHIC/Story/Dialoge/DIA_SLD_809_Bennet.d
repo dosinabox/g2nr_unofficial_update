@@ -1032,7 +1032,7 @@ func void DIA_Bennet_DragonScale_Info()
 	Bennet_DragonScale_Counter += dragonscalecount;
 	B_GiveInvItems(self,other,ItMi_Gold,dragonscalecount * Value_DragonScale);
 	Npc_RemoveInvItems(other,ItAt_DragonScale,dragonscalecount);
-	concatText = ConcatStrings(IntToString(dragonscalecount),PRINT_ItemsGegeben);
+	concatText = ConcatStrings(IntToString(dragonscalecount),PRINT_ItemsGiven);
 	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	if((Bennet_DragonScale_Counter >= 20) && (Show_DJG_Armor_M == FALSE))
 	{
@@ -1475,7 +1475,7 @@ func void DIA_Bennet_EierBringen_Info()
 	{
 		AI_Output(other,self,"DIA_Bennet_EierBringen_15_03");	//Я принес еще несколько.
 		Npc_RemoveInvItems(other,ItAt_DragonEgg_MIS,DragonEggCount);
-		concatText = ConcatStrings(IntToString(DragonEggCount),PRINT_ItemsGegeben);
+		concatText = ConcatStrings(IntToString(DragonEggCount),PRINT_ItemsGiven);
 		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		XP_DJG_BringDragonEggs = DragonEggCount * XP_DJG_BringDragonEgg;
 		DragonEggCounter += DragonEggCount;

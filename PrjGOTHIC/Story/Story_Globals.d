@@ -1324,3 +1324,4 @@ var int Player_KnowsLariusAsGovernor;
 var int Mario_DI_ReadyForAmbush;
 var int NoXPFromSummonedSkeletons;
 var int SewerThieves_KilledByPlayer;
+var int MilitiaSentToHotel;

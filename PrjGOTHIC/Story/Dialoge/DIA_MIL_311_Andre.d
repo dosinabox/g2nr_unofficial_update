@@ -1136,7 +1136,7 @@ func void DIA_Andre_DGRunning_Info()
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я всех их ликвидировал!",DIA_Andre_DGRunning_Success);
 	};
-	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE)) && (Andre_FoundThieves_Reported == FALSE))
+	if(((Cassia.aivar[AIV_TalkedToPlayer] == TRUE) || (Jesper.aivar[AIV_TalkedToPlayer] == TRUE) || (Ramirez.aivar[AIV_TalkedToPlayer] == TRUE) || (DG_gefunden == TRUE)) && (Andre_FoundThieves_Reported == FALSE))
 	{
 		Info_AddChoice(DIA_Andre_DGRunning,"Я нашел логово гильдии воров!",DIA_Andre_DGRunning_Verrat);
 	};
@@ -1187,6 +1187,12 @@ func void DIA_Andre_DGRunning_Success()
 	};
 	AI_Output(self,other,"DIA_Andre_DGRunning_Success_08_04");	//Тебе полагается награда за этих бандитов. Вот, возьми.
 	B_GiveInvItems(self,other,ItMi_Gold,Kopfgeld * 3);
+	B_StartOtherRoutine(MIL_318_Miliz,"SEWER");
+	B_StartOtherRoutine(MIL_327_Miliz,"SEWER");
+	if(Npc_IsDead(Hanna))
+	{
+		B_SendMilitiaToHotel();
+	};
 	Info_ClearChoices(DIA_Andre_DGRunning);
 };
 
@@ -1204,6 +1210,10 @@ instance DIA_Andre_FoundThieves_KilledByMilitia(C_Info)
 
 func int DIA_Andre_FoundThieves_KilledByMilitia_Condition()
 {
+	if(Andre_FoundThieves_KilledByMilitia == TRUE)
+	{
+		return TRUE;
+	};
 	if(Andre_FoundThieves_Reported == TRUE)
 	{
 		if(Andre_FoundThieves_Reported_Day <= (Wld_GetDay() - 2))
@@ -1221,6 +1231,10 @@ func void DIA_Andre_FoundThieves_KilledByMilitia_Info()
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_01");	//Ты можешь забыть об этом деле. Я послал своих людей в канализацию.
 	AI_Output(self,other,"DIA_Andre_DGRunning_08_02");	//Гильдия воров теперь не более чем перевернутая страница истории этого города.
 	B_AndreSold();
+	if(Npc_IsDead(Hanna))
+	{
+		B_SendMilitiaToHotel();
+	};
 	B_KillThievesGuild();
 	MIS_Andre_GuildOfThieves = LOG_FAILED;
 	if(MIS_CassiaRing == LOG_Running)

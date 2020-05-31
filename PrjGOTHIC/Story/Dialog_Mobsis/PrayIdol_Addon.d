@@ -75,7 +75,7 @@ func void B_GetBeliarsGold(var int Kohle)
 		Kohle = 100;
 	};
 	CreateInvItems(hero,ItMi_Gold,Kohle);
-	concatText = ConcatStrings(IntToString(Kohle),PRINT_GoldErhalten);
+	concatText = ConcatStrings(IntToString(Kohle),PRINT_GoldTaken);
 	AI_PrintScreen(concatText,-1,YPOS_GoldTaken,FONT_ScreenSmall,2);
 	Snd_Play("CS_Prayer_FokusFinal");
 };

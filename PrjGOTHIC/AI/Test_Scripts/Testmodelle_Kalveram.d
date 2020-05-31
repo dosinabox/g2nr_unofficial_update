@@ -1584,23 +1584,23 @@ func void Use_StatsBook()
 		Doc_PrintLine(nDocID,0,"Ремесло (Константино):");
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Constantino_DunkelpilzCounter)," черных грибов продано"));
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(Constantino_BigMushroomsCounter)," пищи рудокопа продано"));
-		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter)," золотых получено"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter),PRINT_GoldTaken));
 	}
 	else if(Player_IsApprentice == APP_Bosper)
 	{
 		Doc_PrintLine(nDocID,0,"Ремесло (Боспер):");
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(BosperFurCounter)," шкур продано"));
-		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter)," золотых получено"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter),PRINT_GoldTaken));
 	}
 	else if(Player_IsApprentice == APP_Harad)
 	{
 		Doc_PrintLine(nDocID,0,"Ремесло (Гарад):");
 		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(HaradSwordsCounter)," мечей продано"));
-		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter)," золотых получено"));
+		Doc_PrintLine(nDocID,0,ConcatStrings(IntToString(ApprenticeGoldCounter),PRINT_GoldTaken));
 	};
 	Doc_SetMargins(nDocID,-1,10,20,275,20,1);
 	Doc_PrintLine(nDocID,1,"Молитвы Инносу:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_GoldGiven)," золотых отдано"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_GoldGiven),PRINT_GoldGiven));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_Str)," силы получено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_Dex)," ловкости получено"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Blessings_MaxHp)," макс. здоровья получено"));
@@ -1609,7 +1609,7 @@ func void Use_StatsBook()
 	Doc_PrintLine(nDocID,1,"Молитвы Белиару:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(GivenHitpoints)," макс. здоровья отдано"));
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(GivenMana)," макс. маны отдано"));
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(RecievedMoney)," золотых получено"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(RecievedMoney),PRINT_GoldTaken));
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Улучшения Когтя:");
 	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(Stats_Beliar_ClawMaxHp)," макс. здоровья отдано"));
@@ -1630,7 +1630,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 30/05/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 31/05/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		if(Addon_zuerst == TRUE)

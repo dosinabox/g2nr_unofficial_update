@@ -540,7 +540,7 @@ func void DIA_Baltram_HaveYourWarez_Info()
 		AI_Output(self,other,"DIA_Baltram_HaveYourWarez_01_04");	//’ммм, товар не самого лучшего качества, но в наше врем€ не приходитс€ привередничать.
 		Npc_RemoveInvItems(other,ItFo_Bacon,10);
 		Npc_RemoveInvItems(other,ItFo_Wine,10);
-		concatText = ConcatStrings(IntToString(20),PRINT_ItemsGegeben);
+		concatText = ConcatStrings(IntToString(20),PRINT_ItemsGiven);
 		AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 		MIS_BaltramTrade = LOG_SUCCESS;
 		B_GivePlayerXP(XP_BaltramTrade);

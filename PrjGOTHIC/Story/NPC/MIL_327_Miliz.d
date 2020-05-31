@@ -40,3 +40,9 @@ func void Rtn_Start_327()
 	TA_Stand_Guarding(19,30,21,0,"NW_CITY_HABOUR_KASERN_12");
 };
 
+func void Rtn_Sewer_327()
+{
+	TA_Stand_Guarding(7,0,14,0,"NW_CITY_KANAL_ROOM_05_03");
+	TA_Stand_Guarding(14,0,7,0,"NW_CITY_KANAL_ROOM_05_03");
+};
+

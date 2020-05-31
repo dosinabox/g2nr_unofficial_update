@@ -139,6 +139,10 @@ func void B_ENTER_NEWWORLD_Kapitel_2()
 			Dyrian.aivar[AIV_CommentedPlayerCrime] = FALSE;
 			B_StartOtherRoutine(Dyrian,"NOFAVOUR");
 		};
+		if(Npc_IsDead(Hanna))
+		{
+			B_SendMilitiaToHotel();
+		};
 		B_KillThievesGuild();
 		B_ResetSergio();
 		EnterNW_Kapitel2 = TRUE;
@@ -442,6 +446,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		if(!Npc_IsDead(Bengar))
 		{
 			Npc_ExchangeRoutine(Bengar,"Start");
+		};
+		if(Npc_IsDead(Hanna))
+		{
+			B_SendMilitiaToHotel();
 		};
 		B_KillThievesGuild();
 		B_ResetSergio();
@@ -752,6 +760,10 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 				Randolph_ExchangeRoutine_Once = TRUE;
 			};
 		};
+		if(Npc_IsDead(Hanna))
+		{
+			B_SendMilitiaToHotel();
+		};
 		B_KillThievesGuild();
 		B_ResetSergio();
 		EnterNW_Kapitel4 = TRUE;
@@ -916,6 +928,10 @@ func void B_ENTER_NEWWORLD_Kapitel_5()
 		if(MIS_ShipIsFree == TRUE)
 		{
 			B_StartOtherRoutine(Girion,"WaitForShip");
+		};
+		if(Npc_IsDead(Hanna))
+		{
+			B_SendMilitiaToHotel();
 		};
 		B_KillThievesGuild();
 		B_ResetSergio();

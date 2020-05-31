@@ -338,7 +338,7 @@ func int DIA_Thorben_GiveBook_Condition()
 
 func void DIA_Thorben_GiveBook_Info()
 {
-	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
+	DIA_Common_HereIsYourBook();
 	if(ClassicLehmarBook == FALSE)
 	{
 		AI_PrintScreen("Долговая книга отдано",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);

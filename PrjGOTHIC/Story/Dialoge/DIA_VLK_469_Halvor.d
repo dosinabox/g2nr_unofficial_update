@@ -358,7 +358,7 @@ func int DIA_Halvor_Hehlerei_Condition()
 
 func void DIA_Halvor_Hehlerei_Info()
 {
-	AI_Output(other,self,"DIA_Coragon_Add_15_15");	//Посмотри, что у меня есть...
+	DIA_Common_LookWhatIGot();
 	Halvor_Score = 0;
 	if(Halvor_Day != Wld_GetDay())
 	{
@@ -400,7 +400,7 @@ func void DIA_Halvor_Hehlerei_Annehmen()
 	var int amount;
 	var string concatText;
 	amount = Npc_HasItems(other,ItMi_SilverPlate) + Npc_HasItems(other,ItMi_SilverCup);
-	concatText = ConcatStrings(IntToString(amount),PRINT_ItemsGegeben);
+	concatText = ConcatStrings(IntToString(amount),PRINT_ItemsGiven);
 	AI_PrintScreen(concatText,-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
 	Npc_RemoveInvItems(other,ItMi_SilverCup,Npc_HasItems(other,ItMi_SilverCup));
 	Npc_RemoveInvItems(other,ItMi_SilverPlate,Npc_HasItems(other,ItMi_SilverPlate));

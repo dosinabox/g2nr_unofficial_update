@@ -44,3 +44,13 @@ func void DIA_Common_IllBeBackLater()
 	AI_Output(other,self,"DIA_Addon_Logan_EXIT_15_00");	//Я вернусь позже...
 };
 
+func void DIA_Common_LookWhatIGot()
+{
+	AI_Output(other,self,"DIA_Coragon_Add_15_15");	//Посмотри, что у меня есть...
+};
+
+func void DIA_Common_HereIsYourBook()
+{
+	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
+};
+

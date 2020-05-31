@@ -17,10 +17,10 @@ func int B_GetTotalPetzCounter(var C_Npc slf)
 	{
 		return PETZCOUNTER_Farm_Murder + PETZCOUNTER_Farm_Theft + PETZCOUNTER_Farm_Attack + PETZCOUNTER_Farm_Sheepkiller;
 	};
-	if(C_NpcBelongsToBL(slf))
+/*	if(C_NpcBelongsToBL(slf))
 	{
 		return PETZCOUNTER_BL_Murder + PETZCOUNTER_BL_Theft + PETZCOUNTER_BL_Attack;
-	};
+	};*/
 	return 0;
 };
 
