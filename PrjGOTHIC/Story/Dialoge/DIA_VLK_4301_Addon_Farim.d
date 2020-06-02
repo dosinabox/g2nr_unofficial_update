@@ -224,7 +224,10 @@ func void DIA_Addon_Farim_Landstreicher_Info()
 {
 	AI_Output(other,self,"DIA_Addon_Farim_Landstreicher_15_01");	//Ты знаешь что-нибудь о пропавших людях?
 	AI_Output(self,other,"DIA_Addon_Farim_Landstreicher_11_02");	//Мой друг Вильям встречался с какими-то подозрительными типами. И к чему это его привело?
-	AI_Output(self,other,"DIA_Addon_Farim_Landstreicher_11_03");	//Однажды он просто не пришел на работу. Больше я его не видел.
+	if(ToldFarimAboutDeadWilliam == FALSE)
+	{
+		AI_Output(self,other,"DIA_Addon_Farim_Landstreicher_11_03");	//Однажды он просто не пришел на работу. Больше я его не видел.
+	};
 	SCKnowsFarimAsWilliamsFriend = TRUE;
 };
 

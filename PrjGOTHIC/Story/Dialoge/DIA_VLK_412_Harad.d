@@ -1130,7 +1130,7 @@ func int DIA_Harad_RepairNecklace_Condition()
 
 func void DIA_Harad_RepairNecklace_Info()
 {
-	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	DIA_Common_CanYouRepairJewelry();
 	AI_Output(self,other,"DIA_Harad_RepairNecklace_12_01");	//Я оружейник, а не ювелир. Пожалуй, здесь в городе ты не найдешь никого, кто мог бы помочь тебе.
 	AI_Output(self,other,"DIA_Harad_RepairNecklace_12_02");	//Сейчас мало у кого водятся деньги, и давно уже никому не удавалось разбогатеть здесь.
 	AI_Output(self,other,"DIA_Harad_RepairNecklace_12_03");	//Большинство радо хотя бы тому, что им хватает на хлеб.

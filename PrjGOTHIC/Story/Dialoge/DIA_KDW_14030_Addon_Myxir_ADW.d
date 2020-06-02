@@ -241,7 +241,7 @@ func void DIA_Addon_Myxir_TalkedToGhost_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+		DIA_Common_NothingImportantYet();
 	};
 	MIS_ADDON_Myxir_GeistBeschwoeren = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Addon_Myxir_GeistBeschwoeren);

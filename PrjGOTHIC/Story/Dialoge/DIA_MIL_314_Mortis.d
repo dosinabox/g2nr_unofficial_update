@@ -305,7 +305,7 @@ func int DIA_Mortis_RepairNecklace_Condition()
 
 func void DIA_Mortis_RepairNecklace_Info()
 {
-	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	DIA_Common_CanYouRepairJewelry();
 	AI_Output(self,other,"DIA_Parcival_PERMKAP4_13_01");	//Ах, оставь меня в покое!
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 	AI_StopProcessInfos(self);

@@ -204,7 +204,7 @@ func void DIA_Addon_Greg_NW_Stadtwachen_klamotten()
 
 func void DIA_Addon_Greg_NW_Stadtwachen_nochnicht()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_Stadtwachen_nochnicht_15_00");	//Я должен еще подумать.
+	DIA_Common_INeedToThinkAboutIt();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_Stadtwachen_nochnicht_01_01");	//Хорошо. Но поспеши, у меня мало времени.
 	AI_StopProcessInfos(self);
 };

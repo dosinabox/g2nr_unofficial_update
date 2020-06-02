@@ -1081,7 +1081,7 @@ func void DIA_Addon_Vatras_MissingPeople_Report()
 	else
 	{
 		AI_Output(self,other,"DIA_Addon_Vatras_MissingPeople_Report_05_13");	//Что ты узнал?
-		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+		DIA_Common_NothingImportantYet();
 	};
 };
 

@@ -54,3 +54,38 @@ func void DIA_Common_HereIsYourBook()
 	AI_Output(other,self,"DIA_Coragon_Add_15_18");	//Вот твоя книга.
 };
 
+func void DIA_Common_INeedToThinkAboutIt()
+{
+	AI_Output(other,self,"DIA_Addon_Greg_NW_Stadtwachen_nochnicht_15_00");	//Я должен еще подумать.
+};
+
+func void DIA_Common_NothingImportantYet()
+{
+	AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+};
+
+func void DIA_Common_No()
+{
+	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+};
+
+func void DIA_Common_CanYouRepairJewelry()
+{
+	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+};
+
+func void DIA_Common_IKnowNothingAboutIt()
+{
+	AI_Output(self,other,"DIA_Addon_Huno_Attentat_06_04");	//Я ничего об этом не знаю и знать не хочу!
+};
+
+func void DIA_Common_MaybeICanOfferYouCaptainJob()
+{
+	AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN_15_00");	//Может быть, я смогу предложить тебе работу капитана.
+};
+
+func void DIA_Common_NotSoFastMyFriend()
+{
+	AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_00");	//Не так быстро, мой друг.
+};
+

@@ -304,7 +304,7 @@ var int DIA_Jorgen_BEMYCAPTAIN_OneTime;
 
 func void DIA_Jorgen_BEMYCAPTAIN_Info()
 {
-	AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN_15_00");	//ћожет быть, € смогу предложить тебе работу капитана.
+	DIA_Common_MaybeICanOfferYouCaptainJob();
 	if(DIA_Jorgen_BEMYCAPTAIN_OneTime == FALSE)
 	{
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_01");	//“ы не издеваешьс€ надо мной, парень? ≈сли ты скажешь, что это правда, € всегда готов.
@@ -356,7 +356,7 @@ func void DIA_Jorgen_BEMYCAPTAIN2_Info()
 	}
 	else if(SCGotCaptain == FALSE)
 	{
-		AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN_15_00");	//ћожет быть, € смогу предложить тебе работу капитана.
+		DIA_Common_MaybeICanOfferYouCaptainJob();
 		AI_Output(self,other,"DIA_Jorgen_BEMYCAPTAIN_07_01");	//“ы не издеваешьс€ надо мной, парень? ≈сли ты скажешь, что это правда, € всегда готов.
 	}
 	else

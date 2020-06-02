@@ -310,7 +310,7 @@ func void DIA_Addon_Greg_AboutCanyon_Info()
 
 func void DIA_Addon_Greg_AboutCanyon_Back()
 {
-	AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+	DIA_Common_NothingImportantYet();
 	Info_ClearChoices(DIA_Addon_Greg_AboutCanyon);
 };
 
@@ -766,7 +766,7 @@ func int DIA_Addon_Greg_BeMyCap_Condition()
 
 func void DIA_Addon_Greg_BeMyCap_Info()
 {
-	AI_Output(other,self,"DIA_Jorgen_BEMYCAPTAIN_15_00");	//Может быть, я смогу предложить тебе работу капитана.
+	DIA_Common_MaybeICanOfferYouCaptainJob();
 	AI_Output(self,other,"DIA_Addon_Greg_NW_RavensLetter_01_06");	//Что это за бред?
 	AI_Output(other,self,"DIA_Pyrokar_SCKNOWSWAYTOIRDORATH_15_00");	//Я знаю, где нужно искать Чертоги Ирдората.
 	AI_Output(self,other,"DIA_Addon_Greg_NW_WasWillstDu_da_01_01");	//Э-э, тебе даже не стоит пытаться туда попасть.

@@ -582,7 +582,7 @@ func void DIA_Opolos_Kap3_PERM_Info()
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+		DIA_Common_NothingImportantYet();
 	};
 };
 

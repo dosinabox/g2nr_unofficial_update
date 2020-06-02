@@ -499,7 +499,7 @@ func int DIA_Sekob_BELOHNUNG_Condition()
 
 func void DIA_Sekob_BELOHNUNG_Info()
 {
-	AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_00");	//Не так быстро, мой друг.
+	DIA_Common_NotSoFastMyFriend();
 	if((hero.guild == GIL_MIL) || (hero.guild == GIL_PAL))
 	{
 		if(Npc_KnowsInfo(other,DIA_Rosi_WASMACHSTDU))

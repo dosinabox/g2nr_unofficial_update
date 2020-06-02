@@ -615,7 +615,7 @@ func void DIA_Daron_Spende_NoGold()
 
 func void DIA_Daron_Spende_BACK()
 {
-	AI_Output(other,self,"DIA_Addon_Greg_NW_Stadtwachen_nochnicht_15_00");	//Я должен еще подумать.
+	DIA_Common_INeedToThinkAboutIt();
 	Info_ClearChoices(DIA_Daron_Spende);
 };
 

@@ -310,7 +310,7 @@ func int DIA_Carl_RepairNecklace_Condition()
 
 func void DIA_Carl_RepairNecklace_Info()
 {
-	AI_Output(other,self,"DIA_Harad_RepairNecklace_15_00");	//Ты можешь чинить драгоценности?
+	DIA_Common_CanYouRepairJewelry();
 	AI_Output(self,other,"DIA_Carl_Lernen_05_01");	//Ох, я всего лишь кую скобяные изделия и гвозди и чиню различные железяки.
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 };

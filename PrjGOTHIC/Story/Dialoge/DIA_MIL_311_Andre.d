@@ -892,7 +892,7 @@ func void B_AndreSold()
 func void B_AndreNoProof()
 {
 	AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
-	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+	DIA_Common_No();
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
 };
 
@@ -1720,7 +1720,7 @@ func void DIA_Andre_REDLIGHT_SUCCESS_Info()
 		AI_Output(self,other,"DIA_Andre_REDLIGHT_SUCCESS_08_06");	//Точно? У тебя есть доказательства?
 		if(!Npc_HasItems(other,ItMi_Joint))
 		{
-			AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+			DIA_Common_No();
 			AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
 		}
 		else
@@ -2035,7 +2035,7 @@ func void DIA_Andre_Cornelius_Liar_Info()
 
 func void DIA_Andre_Cornelius_Liar_No()
 {
-	AI_Output(other,self,"DIA_Andre_Cornelius_Liar_No_15_00");	//Нет.
+	DIA_Common_No();
 	AI_Output(self,other,"DIA_Andre_Cornelius_Liar_No_08_01");	//Тогда не стоит заявлять о своих подозрениях во весь голос.
 	if(other.guild != GIL_KDF)
 	{

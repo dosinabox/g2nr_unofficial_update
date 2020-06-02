@@ -626,7 +626,7 @@ func void DIA_Xardas_FirstPal_Info()
 		else
 		{
 			AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_01");	//Хорошо. Что он сказал?
-			AI_Output(other,self,"DIA_Addon_Vatras_MissingPeople_Report_15_14");	//Пока ничего важного.
+			DIA_Common_NothingImportantYet();
 			AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
 		};
 	}
