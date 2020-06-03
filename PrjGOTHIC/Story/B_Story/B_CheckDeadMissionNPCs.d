@@ -199,6 +199,20 @@ func void B_CheckDeadMissionNPCs(var C_Npc slf)
 		{
 			MIS_RamirezSextant = LOG_FAILED;
 		};
+	}
+	else if((Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Malak)) || (Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Bengar)))
+	{
+		if(MIS_GetMalakBack == LOG_Running)
+		{
+			MIS_GetMalakBack = LOG_FAILED;
+		};
+	}
+	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(SLD_Wolf))
+	{
+		if(MIS_BengarsHelpingSLD == LOG_Running)
+		{
+			MIS_BengarsHelpingSLD = LOG_FAILED;
+		};
 	};
 	B_CheckLog();
 };

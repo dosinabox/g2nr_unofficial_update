@@ -69,7 +69,7 @@ func void B_CloseTopics_Yoly()
 	B_CloseTopic(TOPIC_AkilSchafDiebe,MIS_Akil_SchafDiebe,0,6);
 	B_CloseTopic(TOPIC_HealHilda,MIS_HealHilda,0,6);
 	B_CloseTopic(TOPIC_MalethsGehstock,0,TOPIC_END_MalethsGehstock,6);
-	B_CloseTopic(TOPIC_BengarALLEIN,MIS_GetMalakBack,0,6);
+	B_CloseTopic(TOPIC_BengarMALAK,MIS_GetMalakBack,0,6);
 	B_CloseTopic(TOPIC_BengarALLEIN,MIS_BengarsHelpingSLD,0,6);
 	B_CloseTopic(TOPIC_MinenAnteileKDF,0,TOPIC_END_MinenAnteile,6);
 	B_CloseTopic(TOPIC_MinenAnteileSLD,0,TOPIC_END_MinenAnteile,6);

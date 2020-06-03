@@ -1325,3 +1325,4 @@ var int Mario_DI_ReadyForAmbush;
 var int NoXPFromSummonedSkeletons;
 var int SewerThieves_KilledByPlayer;
 var int MilitiaSentToHotel;
+var int MalakIsBackToBengar;

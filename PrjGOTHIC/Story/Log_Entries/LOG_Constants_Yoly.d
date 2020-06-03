@@ -132,6 +132,7 @@ const string TOPIC_MalethsGehstock = "Посох Малета";
 var int TOPIC_END_MalethsGehstock;
 
 const string TOPIC_BengarALLEIN = "Один и без защиты";
+const string TOPIC_BengarMALAK = "Куда глаза глядят";
 const string TOPIC_MinenAnteileKDF = "Поддельные акции";
 const string TOPIC_MinenAnteileSLD = "Неизвестные прегрешения";
 
