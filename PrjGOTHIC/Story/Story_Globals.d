@@ -1326,3 +1326,6 @@ var int NoXPFromSummonedSkeletons;
 var int SewerThieves_KilledByPlayer;
 var int MilitiaSentToHotel;
 var int MalakIsBackToBengar;
+var int MIS_PickedUpInnosEye;
+var int MIS_DementorToldInnosEyeIsBroken;
+var int FullNPCRemoval;

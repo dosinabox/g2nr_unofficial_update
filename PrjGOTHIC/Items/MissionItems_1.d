@@ -1070,6 +1070,7 @@ instance ITAR_PAL_Skel(C_Item)
 	visual_change = "Armor_Pal_Skeleton.asc";
 	visual_skin = 0;
 	material = MAT_METAL;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];

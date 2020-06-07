@@ -83,6 +83,7 @@ instance ITAR_PIR_H_Addon(C_Item)
 	visual_change = "Armor_PIR_H_ADDON.asc";
 	visual_skin = 0;
 	material = MAT_LEATHER;
+	on_equip = Equip_ArmorSet;
 	description = name;
 	text[1] = NAME_Prot_Edge;
 	count[1] = protection[PROT_EDGE];

@@ -14,6 +14,27 @@ func void b_cycle_function()
 				UNDEADSWORD = TRUE;
 			};
 		};
+		if(MIS_PickedUpInnosEye == FALSE)
+		{
+			if(MIS_OLDWORLD == LOG_SUCCESS)
+			{
+				if(Npc_HasItems(hero,ItMi_InnosEye_Broken_Mis))
+				{
+					MIS_SCKnowsInnosEyeIsBroken = TRUE;
+					if(Pedro_Traitor == TRUE)
+					{
+						B_LogEntries(TOPIC_INNOSEYE,"Эти жуткие ребята действуют мне на нервы. Они испортили Глаз Инноса. И теперь я не знаю, как мне починить его.");
+						B_LogNextEntry(TOPIC_TraitorPedro,"Я нашел Глаз Инноса. Но что-то нигде не видно Педро. Эти черные маги в сговоре с ним.");
+					}
+					else
+					{
+						B_LogEntry(TOPIC_INNOSEYE,"Эти жуткие ребята действуют мне на нервы. Они испортили Глаз Инноса. И теперь я не знаю, как мне починить его.");
+					};
+					B_GivePlayerXP(XP_SCKnowsInnosEyeIsBroken);
+					MIS_PickedUpInnosEye = TRUE;
+				};
+			};
+		};
 	}
 	else if(CurrentLevel == ADDONWORLD_ZEN)
 	{

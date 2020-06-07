@@ -165,7 +165,9 @@ instance Itemhoshi(Npc_Default)
 	CreateInvItem(self,ITAR_SLD_H);
 	CreateInvItem(self,ITAR_NOV_L);
 	CreateInvItem(self,ITAR_KDF_L);
+	CreateInvItem(self,ITAR_KDF_M);
 	CreateInvItem(self,ITAR_KDF_H);
+	CreateInvItem(self,ITAR_KDF_S);
 	CreateInvItem(self,ITAR_Leather_L);
 	CreateInvItem(self,ITAR_BDT_M);
 	CreateInvItem(self,ITAR_BDT_H);
@@ -1485,7 +1487,7 @@ instance MobsiBrief(C_Item)
 	material = MAT_STONE;
 	scemeName = "MAP";
 	description = name;
-	text[0] = "Исправить зависание.";
+	text[0] = "Исправить блокировку состояния.";
 	on_state[0] = UseMobsiBrief;
 	inv_rotz = 180;
 	inv_rotx = 90;
@@ -1630,7 +1632,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 03/06/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 07/06/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		if(Addon_zuerst == TRUE)
@@ -1693,6 +1695,7 @@ func void UseHelmets()
 	CreateInvItem(self,ITAR_DJGN_H);
 	CreateInvItem(self,ITAR_PALN_M);
 	CreateInvItem(self,ITAR_PALN_H);
+	CreateInvItem(self,ITAR_PAL_S);
 	CreateInvItem(self,ITAR_OHT);
 	CreateInvItem(self,ITAR_DHT);
 	CreateInvItem(self,ITHE_DJG_M);

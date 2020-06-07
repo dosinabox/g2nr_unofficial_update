@@ -82,6 +82,14 @@ func void b_build_settings_diag()
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Выключить влияние штрафов на стоимость обучения",StoryHelper_Penalties);
 	};*/
+	if(FullNPCRemoval == FALSE)
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Включить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
+	}
+	else
+	{
+		Info_AddChoice(StoryHelper_PatchSettings,"Выключить полное удаление NPC из мира",StoryHelper_FullNPCRemoval);
+	};
 	if(AlternativeSmithing == FALSE)
 	{
 		Info_AddChoice(StoryHelper_PatchSettings,"Включить альтернативное обучение у Беннета",StoryHelper_AlternativeSmithing);
@@ -731,6 +739,21 @@ func void StoryHelper_HonestStatCalculation()
 	{
 		HonestStatCalculation = TRUE;
 		PrintScreen("Честный расчет стоимости обучения включен",-1,-1,FONT_Screen,3);
+	};
+	b_build_settings_diag();
+};
+
+func void StoryHelper_FullNPCRemoval()
+{
+	if(FullNPCRemoval == TRUE)
+	{
+		FullNPCRemoval = FALSE;
+		PrintScreen("Полное удаление NPC из мира выключено",-1,-1,FONT_Screen,3);
+	}
+	else
+	{
+		FullNPCRemoval = TRUE;
+		PrintScreen("Полное удаление NPC из мира включено",-1,-1,FONT_Screen,3);
 	};
 	b_build_settings_diag();
 };

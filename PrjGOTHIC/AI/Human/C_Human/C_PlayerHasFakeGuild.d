@@ -149,7 +149,7 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 		}
 		else if(oth.guild == GIL_KDF)
 		{
-			if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_H))
+			if(Hlp_IsItem(itm,ITAR_KDF_L) || Hlp_IsItem(itm,ITAR_KDF_M) || Hlp_IsItem(itm,ITAR_KDF_H) || Hlp_IsItem(itm,ITAR_KDF_S))
 			{
 				return FALSE;
 			};
@@ -172,7 +172,7 @@ func int C_PlayerHasFakeGuild(var C_Npc slf,var C_Npc oth)
 	}
 	else if(Hlp_GetInstanceID(slf) == Hlp_GetInstanceID(Daron))
 	{
-		if((oth.guild == GIL_KDF) && !Hlp_IsItem(itm,ITAR_KDF_L) && !Hlp_IsItem(itm,ITAR_KDF_H))
+		if((oth.guild == GIL_KDF) && !Hlp_IsItem(itm,ITAR_KDF_L) && !Hlp_IsItem(itm,ITAR_KDF_M) && !Hlp_IsItem(itm,ITAR_KDF_H) && !Hlp_IsItem(itm,ITAR_KDF_S))
 		{
 			return TRUE;
 		};

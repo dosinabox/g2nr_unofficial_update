@@ -75,7 +75,15 @@ func int C_LawArmorEquipped(var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if(Hlp_IsItem(armor,ITAR_KDF_M))
+		{
+			return TRUE;
+		};
 		if(Hlp_IsItem(armor,ITAR_KDF_H))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_KDF_S))
 		{
 			return TRUE;
 		};
@@ -122,7 +130,15 @@ func int C_HenryNiceArmorCheck(var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if(Hlp_IsItem(armor,ITAR_KDF_M))
+		{
+			return TRUE;
+		};
 		if(Hlp_IsItem(armor,ITAR_KDF_H))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_KDF_S))
 		{
 			return TRUE;
 		};
@@ -204,7 +220,15 @@ func int C_RobeCheck(var C_Npc oth)
 		{
 			return TRUE;
 		};
+		if(Hlp_IsItem(armor,ITAR_KDF_M))
+		{
+			return TRUE;
+		};
 		if(Hlp_IsItem(armor,ITAR_KDF_H))
+		{
+			return TRUE;
+		};
+		if(Hlp_IsItem(armor,ITAR_KDF_S))
 		{
 			return TRUE;
 		};
