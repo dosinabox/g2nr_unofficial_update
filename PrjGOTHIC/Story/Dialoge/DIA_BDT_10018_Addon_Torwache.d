@@ -282,7 +282,7 @@ instance DIA_Addon_BDT_10018_Torwache_kopf(C_Info)
 	condition = DIA_Addon_10018_Torwache_kopf_Condition;
 	information = DIA_Addon_10018_Torwache_kopf_Info;
 	permanent = FALSE;
-	description = "(показать голову Бладвина)";
+	description = DIALOG_BloodwynHead;
 };
 
 

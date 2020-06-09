@@ -50,6 +50,10 @@ func void DIA_Addon_Telbor_Hi_Info()
 		if(Pardos_Geheilt == FALSE)
 		{
 			AI_Output(self,other,"DIA_Addon_Telbor_Hi_12_01");	//А вот Пардос совсем неважно выглядит.
+			if(Pardos.attribute[ATR_HITPOINTS] > 70)
+			{
+				Pardos.attribute[ATR_HITPOINTS] = 70;
+			};
 		}
 		else
 		{

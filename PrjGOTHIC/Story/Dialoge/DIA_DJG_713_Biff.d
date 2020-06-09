@@ -726,7 +726,7 @@ func void DIA_Biff_HEILUNG_HeilTrankLow()
 
 func void DIA_Biff_HEILUNG_Spaeter()
 {
-	AI_Output(other,self,"DIA_Biff_HEILUNG_Spaeter_15_00");	//Я дам тебе что-нибудь позже.
+	DIA_Common_IWillGiveYouSomethingLater();
 	AI_Output(self,other,"DIA_Biff_HEILUNG_Spaeter_07_01");	//Только не забудь.
 	AI_StopProcessInfos(self);
 };

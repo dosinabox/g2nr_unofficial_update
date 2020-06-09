@@ -89,3 +89,8 @@ func void DIA_Common_NotSoFastMyFriend()
 	AI_Output(other,self,"DIA_Sekob_BELOHNUNG_15_00");	//Не так быстро, мой друг.
 };
 
+func void DIA_Common_IWillGiveYouSomethingLater()
+{
+	AI_Output(other,self,"DIA_Biff_HEILUNG_Spaeter_15_00");	//Я дам тебе что-нибудь позже.
+};
+

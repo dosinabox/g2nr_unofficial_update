@@ -841,6 +841,7 @@ const string Pickpocket_40_Key = "(украсть его ключ будет довольно просто)";
 const string Pickpocket_60_Key = "(украсть его ключ будет довольно рискованно)";
 const string Pickpocket_80_Key = "(украсть его ключ будет довольно трудно)";
 const string DIALOG_SecretSign = "(показать знак воров)";
+const string DIALOG_BloodwynHead = "(показать голову Бладвина)";
 const string DIALOG_SellGoldNugget = "(продать 1 золотой самородок)";
 const string DIALOG_SellGoldNuggets = "(продать все золотые самородки)";
 const string DIALOG_GiveDragonBlood = "(отдать одну пробирку)";
