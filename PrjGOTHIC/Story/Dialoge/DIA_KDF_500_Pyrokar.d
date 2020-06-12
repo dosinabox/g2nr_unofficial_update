@@ -517,7 +517,10 @@ func void DIA_Pyrokar_OATH_Info()
 	AI_PrintScreen("Легкая мантия мага Огня получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	Fire_Contest = TRUE;
 	Snd_Play("LEVELUP");
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	Wld_AssignRoomToGuild("zuris",GIL_PUBLIC);
 	KDF_Aufnahme = LOG_SUCCESS;
 //	SLD_Aufnahme = LOG_OBSOLETE;

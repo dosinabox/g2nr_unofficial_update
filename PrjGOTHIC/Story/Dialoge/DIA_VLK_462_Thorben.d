@@ -245,7 +245,7 @@ func void DIA_Thorben_ZUSTIMMUNG_Info()
 		}
 		else
 		{
-			AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_06");	//Нет. Еще нет...
+			DIA_Common_NoNotYet();
 			AI_Output(self,other,"DIA_Thorben_ZUSTIMMUNG_06_07");	//Ты знаешь мои условия. Ты можешь заниматься ремеслом только с благословения богов.
 		};
 	}

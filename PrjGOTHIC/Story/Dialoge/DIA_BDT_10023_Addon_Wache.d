@@ -136,6 +136,7 @@ func void DIA_Addon_10023_Wache_go_Blood()
 {
 	CreateInvItem(other,ItMi_FakeBloodwynHead);
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,1);
+	//эта функция нужна, чтобы ГГ не смотрел на голову Бладвина, но работает это неправильно
 	B_LookAtNpc(other,self);
 	AI_Output(other,self,"DIA_Addon_10023_Wache_go_Blood_15_00");	//Вот. Этого достаточно?
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);

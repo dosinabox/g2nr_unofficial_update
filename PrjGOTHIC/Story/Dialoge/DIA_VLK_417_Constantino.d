@@ -576,7 +576,10 @@ func void DIA_Constantino_LEHRLING_Yes()
 	AI_Output(self,other,"DIA_Constantino_LEHRLING_Yes_10_01");	//(вздыхает) Хорошо! Надеюсь, я не пожалею об этом решении.
 	AI_Output(self,other,"DIA_Constantino_LEHRLING_Yes_10_02");	//С этого момента, ты можешь считать себя моим учеником.
 	Player_IsApprentice = APP_Constantino;
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	Constantino_StartGuild = other.guild;
 	Constantino_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("alchemist",GIL_NONE);
@@ -597,6 +600,11 @@ func void DIA_Constantino_LEHRLING_Later()
 
 var int Constantino_MILKommentar;
 var int Constantino_INNOSKommentar;
+
+func void B_Constantino_NoLearnYouAreWanted()
+{
+	AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+};
 
 instance DIA_Constantino_AlsLehrling(C_Info)
 {
@@ -621,7 +629,7 @@ func void DIA_Constantino_AlsLehrling_Info()
 {
 	if(B_GetGreatestPetzCrime(self) > CRIME_NONE)
 	{
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+		B_Constantino_NoLearnYouAreWanted();
 		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_01");	//Иди к лорду Андрэ и уладь этот вопрос с ним.
 		Constantino_Lehrling_Day = Wld_GetDay();
 		AI_StopProcessInfos(self);
@@ -872,7 +880,7 @@ func void DIA_Constantino_Alchemy_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+		B_Constantino_NoLearnYouAreWanted();
 		AI_StopProcessInfos(self);
 	};
 };
@@ -914,7 +922,7 @@ func void DIA_Constantino_NewRecipes_Info()
 			}
 			else
 			{
-				AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_06");	//Нет. Еще нет...
+				DIA_Common_NoNotYet();
 				AI_Output(self,other,"DIA_Constantino_BringHerbs_10_01");	//(вздыхает) Я не вынесу, если ЕЩЕ ОДИН дилетант окажется на моей совести.
 				AI_StopProcessInfos(self);
 			};
@@ -927,7 +935,7 @@ func void DIA_Constantino_NewRecipes_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Constantino_AlsLehrling_10_00");	//(сердито) Я отказываюсь обучать тебя, пока ты обвиняешься в преступлении в городе.
+		B_Constantino_NoLearnYouAreWanted();
 		AI_StopProcessInfos(self);
 	};
 };

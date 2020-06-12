@@ -298,6 +298,7 @@ func void DIA_Addon_10018_Torwache_kopf_Info()
 {
 	CreateInvItem(other,ItMi_FakeBloodwynHead);
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,1);
+	//эта функция нужна, чтобы ГГ не смотрел на голову Бладвина, но работает это неправильно
 	B_LookAtNpc(other,self);
 	AI_Output(other,self,"DIA_Addon_BDT_10018_Torwache_kopf_15_00");	//Вот! Ты все еще хочешь остановить меня?!
 	AI_UseItemToState(other,ItMi_FakeBloodwynHead,-1);

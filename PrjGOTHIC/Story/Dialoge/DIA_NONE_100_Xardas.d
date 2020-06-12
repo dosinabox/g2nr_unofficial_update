@@ -60,6 +60,11 @@ func void DIA_Xardas_EXIT_Info()
 
 var int Addon_zuerst;
 
+func void B_Xardas_SoLittleTime()
+{
+	AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+};
+
 instance DIA_Xardas_Hello(C_Info)
 {
 	npc = NONE_100_Xardas;
@@ -117,7 +122,7 @@ func void DIA_Addon_Xardas_Hello_Dragons()
 	AI_Output(self,other,"DIA_Xardas_Hello_14_14");	//Лагерь этой армии находится недалеко отсюда, в Долине Рудников около Хориниса, и она готовится к атаке.
 	if(Addon_zuerst == TRUE)
 	{
-		AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+		B_Xardas_SoLittleTime();
 	}
 	else
 	{
@@ -627,13 +632,13 @@ func void DIA_Xardas_FirstPal_Info()
 		{
 			AI_Output(self,other,"DIA_Xardas_RITUALREQUEST_14_01");	//Хорошо. Что он сказал?
 			DIA_Common_NothingImportantYet();
-			AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+			B_Xardas_SoLittleTime();
 		};
 	}
 	else
 	{
-		AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_06");	//Нет. Еще нет...
-		AI_Output(self,other,"DIA_Xardas_Hello_14_15");	//(задумчиво) У нас очень мало времени.
+		DIA_Common_NoNotYet();
+		B_Xardas_SoLittleTime();
 	};
 	if((LesterMovedToXardas == FALSE) && Npc_KnowsInfo(other,DIA_Lester_SEND_XARDAS))
 	{

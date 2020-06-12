@@ -276,8 +276,8 @@ instance MENU_ITEM_KEY_TORCH(C_MENU_ITEM_DEF)
 	onselaction_s[0] = "RUN MENU_ITEM_INP_TORCH";
 	fontname = MENU_FONT_SMALL;
 	flags = flags;
-	hideifoptionsectionset = "UNION_MISCUTILS";
-	hideifoptionset = "unionPluginsActivated";
+	hideifoptionsectionset = "INTERNAL";
+	hideifoptionset = "UnionActivated";
 	hideonvalue = 0;
 };
 
@@ -639,8 +639,8 @@ instance MENU_ITEM_INP_TORCH(C_MENU_ITEM_DEF)
 	onchgsetoption = "keyTorch";
 	onchgsetoptionsection = "KEYS";
 	flags = flags & ~IT_SELECTABLE;
-	hideifoptionsectionset = "UNION_MISCUTILS";
-	hideifoptionset = "unionPluginsActivated";
+	hideifoptionsectionset = "INTERNAL";
+	hideifoptionset = "UnionActivated";
 	hideonvalue = 0;
 };
 

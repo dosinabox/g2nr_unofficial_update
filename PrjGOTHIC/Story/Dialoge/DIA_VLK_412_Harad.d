@@ -459,17 +459,20 @@ func void DIA_Harad_LEHRLING_OK()
 		AI_Output(self,other,"DIA_Harad_LEHRLING_OK_12_04");	//Кроме того, пришло время стать немного сильнее. Ты чахнешь прямо у меня на глазах!
 	};
 	Player_IsApprentice = APP_Harad;
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	Harad_StartGuild = other.guild;
 	Harad_Lehrling_Day = Wld_GetDay();
 	Wld_AssignRoomToGuild("schmied",GIL_NONE);
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
 	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	B_LogEntries(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
 	Log_AddEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-	Log_AddEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
+	B_LogNextEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
 	Info_ClearChoices(DIA_Harad_LEHRLING);
 };
 

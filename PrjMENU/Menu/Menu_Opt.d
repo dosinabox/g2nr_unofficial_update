@@ -94,8 +94,8 @@ instance MENUITEM_OPT_UNION(C_MENU_ITEM_DEF)
 	onselaction[0] = SEL_ACTION_STARTMENU;
 	onselaction_s[0] = "MENU_OPT_UNION";
 	flags = flags | IT_TXT_CENTER;
-	hideifoptionsectionset = "UNION_MISCUTILS";
-	hideifoptionset = "unionPluginsActivated";
+	hideifoptionsectionset = "INTERNAL";
+	hideifoptionset = "UnionActivated";
 	hideonvalue = 0;
 };
 

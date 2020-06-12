@@ -615,7 +615,10 @@ func void DIA_Lee_JoinNOW_Info()
 			CreateInvItem(hero,ITAR_SLD_L);
 			AI_PrintScreen("Легкие доспехи наемника получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 			Snd_Play("LEVELUP");
-			Npc_ExchangeRoutine(Lothar,"START");
+			if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+			{
+				Npc_ExchangeRoutine(Lothar,"START");
+			};
 			KDF_Aufnahme = LOG_OBSOLETE;
 			SLD_Aufnahme = LOG_SUCCESS;
 			MIL_Aufnahme = LOG_OBSOLETE;

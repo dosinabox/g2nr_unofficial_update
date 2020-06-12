@@ -1335,7 +1335,10 @@ func void DIA_Andre_JOIN_Yes()
 	CreateInvItem(hero,ITAR_MIL_L);
 	AI_PrintScreen("Легкие доспехи ополчения получено",-1,YPOS_ItemTaken,FONT_ScreenSmall,2);
 	Snd_Play("LEVELUP");
-	Npc_ExchangeRoutine(Lothar,"START");
+	if(Hlp_IsValidNpc(Lothar) && !Npc_IsDead(Lothar))
+	{
+		Npc_ExchangeRoutine(Lothar,"START");
+	};
 	SLD_Aufnahme = LOG_OBSOLETE;
 	KDF_Aufnahme = LOG_OBSOLETE;
 	MIL_Aufnahme = LOG_SUCCESS;

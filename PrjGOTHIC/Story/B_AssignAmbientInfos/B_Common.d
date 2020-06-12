@@ -94,3 +94,8 @@ func void DIA_Common_IWillGiveYouSomethingLater()
 	AI_Output(other,self,"DIA_Biff_HEILUNG_Spaeter_15_00");	//Я дам тебе что-нибудь позже.
 };
 
+func void DIA_Common_NoNotYet()
+{
+	AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_06");	//Нет. Еще нет...
+};
+
