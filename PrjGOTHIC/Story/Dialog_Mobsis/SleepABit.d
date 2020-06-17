@@ -57,8 +57,8 @@ instance PC_NoSleep(C_Info)
 	nr = 999;
 	condition = PC_NoSleep_Condition;
 	information = PC_NoSleep_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = Dialog_Ende;
 };
 
@@ -86,8 +86,8 @@ instance PC_SleepTime_Morning(C_Info)
 	nr = 1;
 	condition = PC_SleepTime_Morning_Condition;
 	information = PC_SleepTime_Morning_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = "Спать до утра";
 };
 
@@ -112,8 +112,8 @@ instance PC_SleepTime_Noon(C_Info)
 	nr = 2;
 	condition = PC_SleepTime_Noon_Condition;
 	information = PC_SleepTime_Noon_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = "Спать до полудня";
 };
 
@@ -138,8 +138,8 @@ instance PC_SleepTime_Evening(C_Info)
 	nr = 3;
 	condition = PC_SleepTime_Evening_Condition;
 	information = PC_SleepTime_Evening_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = "Спать до вечера";
 };
 
@@ -164,8 +164,8 @@ instance PC_SleepTime_Midnight(C_Info)
 	nr = 4;
 	condition = PC_SleepTime_Midnight_Condition;
 	information = PC_SleepTime_Midnight_Info;
-	important = 0;
-	permanent = 1;
+	important = FALSE;
+	permanent = TRUE;
 	description = "Спать до полуночи";
 };
 
@@ -181,5 +181,31 @@ func int PC_SleepTime_Midnight_Condition()
 func void PC_SleepTime_Midnight_Info()
 {
 	PC_Sleep(0);
+};
+
+
+instance PC_SleepTime_Dawn(C_Info)
+{
+	npc = PC_Hero;
+	nr = 5;
+	condition = PC_SleepTime_Dawn_Condition;
+	information = PC_SleepTime_Dawn_Info;
+	important = FALSE;
+	permanent = TRUE;
+	description = "Спать до рассвета";
+};
+
+
+func int PC_SleepTime_Dawn_Condition()
+{
+	if(PLAYER_MOBSI_PRODUCTION == MOBSI_SleepAbit)
+	{
+		return TRUE;
+	};
+};
+
+func void PC_SleepTime_Dawn_Info()
+{
+	PC_Sleep(5);
 };
 

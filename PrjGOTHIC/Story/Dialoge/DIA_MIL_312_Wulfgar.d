@@ -443,7 +443,7 @@ instance DIA_Wulfgar_Bonus(C_Info)
 
 func int DIA_Wulfgar_Bonus_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Wld_IsTime(5,2,6,54))
+	if(Npc_IsInState(self,ZS_Talk) && Wld_IsTime(5,0,6,54) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_CENTRE_01") < 600))
 	{
 		return TRUE;
 	};

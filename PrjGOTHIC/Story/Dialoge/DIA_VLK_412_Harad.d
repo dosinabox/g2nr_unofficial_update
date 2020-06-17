@@ -469,7 +469,14 @@ func void DIA_Harad_LEHRLING_OK()
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
 	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntries(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		B_LogEntries(Topic_Bonus,"Гарад принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	}
+	else
+	{
+		B_LogEntries(Topic_Bonus,"Гарад принял меня в ученики.");
+	};
 	Log_AddEntry(Topic_Bonus,"Гарад будет покупать оружие, выкованное мной, по хорошей цене.");
 	Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
 	B_LogNextEntry(TOPIC_CityTeacher,"Гарад может обучить меня кузнечному делу. Также он может помочь мне стать сильнее.");
@@ -895,7 +902,7 @@ instance DIA_Harad_TeachSTR(C_Info)
 	nr = 100;
 	condition = DIA_Harad_TeachSTR_Condition;
 	information = DIA_Harad_TeachSTR_Info;
-	permanent = 1;
+	permanent = TRUE;
 	description = "Я хочу стать сильнее!";
 };
 

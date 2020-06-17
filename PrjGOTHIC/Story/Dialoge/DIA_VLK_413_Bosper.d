@@ -275,7 +275,14 @@ func void DIA_Bosper_LEHRLING_OK()
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
 	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	}
+	else
+	{
+		B_LogEntry(Topic_Bonus,"Боспер принял меня в ученики.");
+	};
 	Info_ClearChoices(DIA_Bosper_LEHRLING);
 };
 

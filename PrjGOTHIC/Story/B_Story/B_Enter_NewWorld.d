@@ -427,6 +427,8 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		{
 			Wld_InsertNpc(MIL_335_Rumbold,"CITY2");
 			Wld_InsertNpc(MIL_336_Rick,"CITY2");
+			RumboldReturnedToCity = TRUE;
+			RickReturnedToCity = TRUE;
 			B_InitNpcGlobals();
 		};
 		if(!Npc_IsDead(Rick))
@@ -435,6 +437,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Npc_SetTrueGuild(Rick,GIL_MIL);
 			Rick.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rick,"Ch3");
+			RickReturnedToCity = TRUE;
 		};
 		if(!Npc_IsDead(Rumbold))
 		{
@@ -442,6 +445,7 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 			Npc_SetTrueGuild(Rumbold,GIL_MIL);
 			Rumbold.aivar[AIV_DropDeadAndKill] = FALSE;
 			Npc_ExchangeRoutine(Rumbold,"Ch3");
+			RumboldReturnedToCity = TRUE;
 		};
 		if(!Npc_IsDead(Bengar))
 		{

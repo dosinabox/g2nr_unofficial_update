@@ -95,3 +95,51 @@ func void Use_BookstandHistory3_S1()
 	};
 };
 
+func void Use_BookstandKaserne_S1()
+{
+	var C_Npc her;
+	var int nDocID;
+	her = Hlp_GetNpc(PC_Hero);
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	{
+		nDocID = Doc_Create();
+		Doc_SetPages(nDocID,2);
+		Doc_SetPage(nDocID,0,"Book_Red_L.tga",0);
+		Doc_SetPage(nDocID,1,"Book_Red_R.tga",0);
+		Doc_SetFont(nDocID,-1,FONT_Book);
+		Doc_SetMargins(nDocID,0,275,20,30,20,1);
+		Doc_PrintLine(nDocID,0,"Дежурства");
+		Doc_PrintLine(nDocID,0,"");
+		Doc_PrintLines(nDocID,0,"Пабло:");
+		Doc_PrintLines(nDocID,0,"рыночная площадь (вечер)");
+		Doc_PrintLine(nDocID,0,"");
+		Doc_PrintLines(nDocID,0,"Рагнар:");
+		Doc_PrintLines(nDocID,0,"площадь правосудия (день)");
+		Doc_PrintLine(nDocID,0,"");
+		Doc_PrintLines(nDocID,0,"Мика:");
+		Doc_PrintLines(nDocID,0,"восточные ворота (день)");
+		if(RickReturnedToCity == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLines(nDocID,0,"Рик:");
+			Doc_PrintLines(nDocID,0,"казармы (ночь)");
+			if(RumboldReturnedToCity == TRUE)
+			{
+				Doc_PrintLine(nDocID,0,"");
+				Doc_PrintLines(nDocID,0,"Румболд:");
+				Doc_PrintLines(nDocID,0,"южные ворота (ночь)");
+			};
+		}
+		else if(RumboldReturnedToCity == TRUE)
+		{
+			Doc_PrintLine(nDocID,0,"");
+			Doc_PrintLines(nDocID,0,"Румболд:");
+			Doc_PrintLines(nDocID,0,"южные ворота (ночь)");
+		};
+		Doc_SetMargins(nDocID,-1,30,20,275,20,1);
+		Doc_PrintLines(nDocID,1,"");
+		Doc_PrintLines(nDocID,1,"");
+		Doc_Show(nDocID);
+	};
+};
+

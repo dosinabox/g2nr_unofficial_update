@@ -225,6 +225,11 @@ func void DIA_Constantino_Trade_Info()
 };
 
 
+func void B_Constantino_NoYouAreWanted()
+{
+	AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+};
+
 instance DIA_Constantino_NoTrade(C_Info)
 {
 	npc = VLK_417_Constantino;
@@ -247,7 +252,7 @@ func int DIA_Constantino_NoTrade_Condition()
 func void DIA_Constantino_NoTrade_Info()
 {
 	AI_Output(other,self,"DIA_Constantino_Trade_15_00");	//Покажи мне свои товары.
-	AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+	B_Constantino_NoYouAreWanted();
 	AI_StopProcessInfos(self);
 };
 
@@ -565,7 +570,7 @@ func void DIA_Constantino_LEHRLING_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+		B_Constantino_NoYouAreWanted();
 		AI_Output(self,other,"DIA_Constantino_LEHRLING_10_26");	//Я не возьму тебя в ученики, пока ты не уладишь этот вопрос с командующим городской стражи.
 	};
 };
@@ -586,7 +591,14 @@ func void DIA_Constantino_LEHRLING_Yes()
 	MIS_Apprentice = LOG_SUCCESS;
 	B_GivePlayerXP(XP_Lehrling);
 	Log_CreateTopic(Topic_Bonus,LOG_NOTE);
-	B_LogEntry(Topic_Bonus,"Константино принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	if((other.guild == GIL_NONE) || (other.guild == GIL_NOV))
+	{
+		B_LogEntry(Topic_Bonus,"Константино принял меня в ученики. Теперь я смогу попасть в верхний квартал.");
+	}
+	else
+	{
+		B_LogEntry(Topic_Bonus,"Константино принял меня в ученики.");
+	};
 	Info_ClearChoices(DIA_Constantino_LEHRLING);
 };
 
@@ -1025,7 +1037,7 @@ func void DIA_Constantino_TEACH_Info()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Constantino_LEHRLING_10_25");	//(сердито) Ни за что! До меня дошли слухи, что ты обвиняешься в преступлении здесь, в Хоринисе!
+		B_Constantino_NoYouAreWanted();
 		AI_StopProcessInfos(self);
 	};	
 };

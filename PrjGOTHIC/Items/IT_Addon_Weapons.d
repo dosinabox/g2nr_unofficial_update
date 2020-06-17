@@ -71,13 +71,12 @@ instance ItMW_Addon_Stab02(C_Item)
 	visual = "ItMW_MageStaff_Normal_2H_01.3DS";
 	effect = "SPELLFX_MAGESTAFF2";
 	description = name;
-	text[1] = NAME_Bonus_ManaMax;
-	count[1] = Zauberstab_ManaBonus;
 	text[2] = NAME_Damage;
 	count[2] = damageTotal;
-	text[3] = NAME_Mana_needed;
+	text[3] = NAME_MaxMana_needed;
 	count[3] = cond_value[2];
-	text[4] = NAME_TwoHanded;
+	text[4] = NAME_TwoHandedManaBonus;
+	count[4] = Zauberstab_ManaBonus;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
@@ -89,7 +88,7 @@ func void Equip_Zauberstab()
 
 func void UnEquip_Zauberstab()
 {
-	UnEquip_MaxMana(Zauberstab_ManaBonus);
+	Reduce_MaxMana(Zauberstab_ManaBonus);
 };
 
 instance ItMW_Addon_Stab03(C_Item)
@@ -634,12 +633,12 @@ instance ItRw_Addon_FireBow(C_Item)
 	cond_value[2] = Condition_FireBow;
 	visual = "ItRw_Bow_H_06.mms";
 	description = name;
-	text[1] = NAME_Damage;
-	count[1] = damageTotal;
-	text[2] = "Урон огнем:";
-	count[2] = SpecialDamage_FireBow;
+	text[2] = NAME_Damage;
+	count[2] = damageTotal;
 	text[3] = NAME_Dex_needed;
 	count[3] = cond_value[2];
+	text[4] = "Дополнительный урон огнем по площади:";
+	count[4] = SpecialDamage_FireBow;
 	text[5] = NAME_Value;
 	count[5] = value;
 };
