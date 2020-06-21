@@ -51,8 +51,8 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 				kosten = 1;
 			};
 		};
-	};
-	if(attribut == ATR_DEXTERITY)
+	}
+	else if(attribut == ATR_DEXTERITY)
 	{
 		if(oth.aivar[REAL_DEXTERITY] >= 120)
 		{
@@ -74,8 +74,8 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 		{
 			kosten = 1;
 		};
-	};
-	if(attribut == ATR_MANA_MAX)
+	}
+	else if(attribut == ATR_MANA_MAX)
 	{
 		if(oth.aivar[REAL_MANA_MAX] >= 120)
 		{
@@ -97,8 +97,8 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 		{
 			kosten = 1;
 		};
-	};
-	if(attribut == ATR_REGENERATEHP)
+	}
+	else if(attribut == ATR_REGENERATEHP)
 	{
 		if(oth.attribute[ATR_REGENERATEHP] > 30)
 		{
@@ -112,8 +112,8 @@ func int B_GetLearnCostAttribute(var C_Npc oth,var int attribut)
 		{
 			kosten = 3;
 		};
-	};
-	if(attribut == ATR_REGENERATEMANA)
+	}
+	else if(attribut == ATR_REGENERATEMANA)
 	{
 		if(oth.attribute[ATR_REGENERATEMANA] > 30)
 		{

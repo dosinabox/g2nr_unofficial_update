@@ -17,7 +17,8 @@ instance PIR_1354_Addon_Henry(Npc_Default)
 	Mdl_SetModelFatness(self,1);
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,90);
+//	B_SetFightSkills(self,90);
+	B_SetTeacherFightSkills(self,90,TeachLimit_2H_Henry,90,TeachLimit_Crossbow_Henry);
 	daily_routine = Rtn_Start_1354;
 };
 

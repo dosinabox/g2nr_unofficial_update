@@ -17,7 +17,8 @@ instance MIL_317_Ruga(Npc_Default)
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,30);
+//	B_SetFightSkills(self,30);
+	B_SetTeacherFightSkills(self,30,30,30,TeachLimit_Crossbow_Ruga);
 	daily_routine = Rtn_Start_317;
 };
 

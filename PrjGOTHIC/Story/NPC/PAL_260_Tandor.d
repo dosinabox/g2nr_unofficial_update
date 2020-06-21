@@ -9,7 +9,8 @@ instance PAL_260_Tandor(Npc_Default)
 	npcType = NPCTYPE_OCMAIN;
 	B_SetAttributesToChapter(self,3);
 	fight_tactic = FAI_HUMAN_STRONG;
-	EquipItem(self,ItMw_1h_Pal_Sword);
+//	EquipItem(self,ItMw_1h_Pal_Sword);
+	EquipItem(self,ItMw_Doppelaxt);
 	EquipItem(self,ItRw_Crossbow_M_02);
 //	EquipItem(self,ItRw_Mil_Crossbow);
 //	B_CreateAmbientInv(self);

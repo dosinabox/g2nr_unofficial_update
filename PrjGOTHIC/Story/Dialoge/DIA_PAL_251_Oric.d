@@ -498,7 +498,7 @@ func void DIA_Oric_DragonPlettBericht_Info()
 		if(!Npc_IsDead(SwampDragon) && (Oric_SwampdragonInfo_OneTime == FALSE))
 		{
 			AI_Output(self,other,"DIA_Oric_DragonPlettBericht_11_03");	//Ќесколько дней назад к западу от нашего замка по€вилось большое болото. Ёто довольно подозрительно, так тебе не кажетс€?
-			B_LogEntry(TOPIC_DRACHENJAGD,"ќрик дал мне повод к размышлению: «а последние несколько дней к западу от замка образовалось большое болото. ќн считает это очень подозрительным.");
+			B_LogEntry(TOPIC_DRACHENJAGD,"ќрик дал мне повод к размышлению: за последние несколько дней к западу от замка образовалось большое болото. ќн считает это очень подозрительным.");
 			Oric_SwampdragonInfo_OneTime = TRUE;
 		}
 		else if(!Npc_IsDead(RockDragon) && (Oric_RockdragonInfo_OneTime == FALSE))

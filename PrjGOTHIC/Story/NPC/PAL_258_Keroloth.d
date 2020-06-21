@@ -16,7 +16,8 @@ instance PAL_258_Keroloth(Npc_Default)
 	Mdl_SetModelFatness(self,0);
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
-	B_SetFightSkills(self,65);
+//	B_SetFightSkills(self,65);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Keroloth,TeachLimit_2H_Keroloth,65,65);
 	daily_routine = Rtn_Start_258;
 };
 
