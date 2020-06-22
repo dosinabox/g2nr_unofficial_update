@@ -1840,7 +1840,7 @@ func void INIT_OldWorld()
 	B_InitNpcGlobals();
 	b_enter_oldworld();
 	b_cycle_function();
-	if((MIS_ReadyforChapter4 == TRUE) && (B_Chapter4_OneTime == FALSE))
+	if((MIS_ReadyforChapter4 == TRUE) && (StartChapter4InNewWorld == FALSE) && (B_Chapter4_OneTime == FALSE))
 	{
 		B_Kapitelwechsel(4,OLDWORLD_ZEN);
 		B_Chapter4_OneTime = TRUE;

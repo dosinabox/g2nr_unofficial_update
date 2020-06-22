@@ -1331,3 +1331,4 @@ var int MIS_DementorToldInnosEyeIsBroken;
 var int FullNPCRemoval;
 var int RickReturnedToCity;
 var int RumboldReturnedToCity;
+var int StartChapter4InNewWorld;

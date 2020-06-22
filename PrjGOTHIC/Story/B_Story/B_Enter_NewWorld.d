@@ -500,7 +500,8 @@ func void B_ENTER_NEWWORLD_Kapitel_4()
 		if(hero.guild == GIL_PAL)
 		{
 			Wld_InsertNpc(OrcElite_AntiPaladin1,"NW_FARM3_PATH_BRIDGE");
-			Wld_InsertNpc(OrcElite_AntiPaladin2,"XARDAS");
+//			Wld_InsertNpc(OrcElite_AntiPaladin2,"XARDAS");
+			Wld_InsertNpc(OrcElite_AntiPaladin2,"NW_XARDAS_TOWER_PATH_01_B");
 			Wld_InsertNpc(OrcElite_AntiPaladin3,"NW_CITY_TO_FOREST_11");
 			Wld_InsertNpc(OrcElite_AntiPaladin,"NW_FARM3_PATH_12_MONSTER_03");
 			Wld_InsertNpc(OrcWarrior_Roam,"NW_FARM3_PATH_12_MONSTER_03");
