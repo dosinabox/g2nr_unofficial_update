@@ -31,7 +31,7 @@ func void B_RaiseAttribute(var C_Npc oth,var int attrib,var int points)
 		{
 			Npc_SetTalentSkill(oth,NPC_TALENT_ACROBAT,1);
 			PrintScreen(PRINT_Addon_AcrobatBonus,-1,53,FONT_Screen,2);
-			Snd_Play("LevelUp");
+			Snd_Play("LEVELUP");
 		};
 		concatText = ConcatStrings(PRINT_LearnDEX,IntToString(points));
 		PrintScreen(concatText,-1,-1,FONT_Screen,2);

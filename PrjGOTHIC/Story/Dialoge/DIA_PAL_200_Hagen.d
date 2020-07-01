@@ -616,7 +616,7 @@ instance DIA_Hagen_CanTeach(C_Info)
 
 func int DIA_Hagen_CanTeach_Condition()
 {
-	if((LordHagen_Teach2H == FALSE) && (other.guild == GIL_PAL) && (other.HitChance[NPC_TALENT_2H] < 100))
+	if((LordHagen_Teach2H == FALSE) && (other.guild == GIL_PAL) && (other.HitChance[NPC_TALENT_2H] < TeachLimit_2H_Hagen))
 	{
 		return TRUE;
 	};
@@ -643,7 +643,7 @@ var int DIA_Hagen_Teach_permanent;
 
 func void B_BuildLearnDialog_Hagen()
 {
-	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Hagen)
 	{
 		Info_ClearChoices(DIA_Hagen_Teach);
 		Info_AddChoice(DIA_Hagen_Teach,Dialog_Back,DIA_Hagen_Teach_Back);
@@ -652,7 +652,7 @@ func void B_BuildLearnDialog_Hagen()
 	}
 	else
 	{
-		if(RealTalentValue(NPC_TALENT_2H) >= 100)
+		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Hagen)
 		{
 			DIA_Hagen_Teach_permanent = TRUE;
 		};
@@ -695,7 +695,7 @@ func void DIA_Hagen_Teach_Back()
 
 func void DIA_Hagen_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Hagen))
 	{
 		B_BuildLearnDialog_Hagen();
 	};
@@ -703,7 +703,7 @@ func void DIA_Hagen_Teach_2H_1()
 
 func void DIA_Hagen_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Hagen))
 	{
 		B_BuildLearnDialog_Hagen();
 	};

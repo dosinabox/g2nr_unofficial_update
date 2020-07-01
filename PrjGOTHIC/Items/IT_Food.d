@@ -78,7 +78,7 @@ func void Use_Apple()
 		{
 			Print(PRINT_Eat3);
 			B_RaiseAttribute(self,ATR_STRENGTH,1);
-			Snd_Play("LevelUp");
+			Snd_Play("LEVELUP");
 			Apple_Bonus = 0;
 		};
 	};

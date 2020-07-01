@@ -708,6 +708,7 @@ const string PRINT_RuneSuccess = "Руна создана!";
 const string PRINT_AlchemySuccess = "Зелье готово!";
 const string PRINT_AlchemySuccessInnoseye = "Глаз Инноса пульсирует энергией!";
 const string PRINT_ProdItemsMissing = "Недостаточно ингредиентов!";
+const string PRINT_AlcoholSuccess = "Алкоголь готов!";
 const string PRINT_TabakSuccess = "Создан новый табак!";
 const string PRINT_JointSuccess = "Косяк из болотной травы готов!";
 const string PRINT_Addon_Joint_01_Success = "'Зеленый послушник' готов!";

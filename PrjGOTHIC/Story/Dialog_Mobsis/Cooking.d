@@ -11,7 +11,7 @@ func int pan_cond()
 		{
 			if(!Npc_HasItems(hero,ItMi_Pan))
 			{
-				AI_PrintScreen("нужна сковорода",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
+				AI_PrintScreen("Требуется сковорода!",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 				AI_PlayAni(self,"T_DONTKNOW");
 			}
 			else if(!Npc_HasItems(hero,ItFoMuttonRaw))
@@ -19,7 +19,7 @@ func int pan_cond()
 				AI_PlayAni(self,"T_DONTKNOW");
 				if(!Npc_RefuseTalk(self))
 				{
-					Print("нужно мясо");
+					Print("Требуется сырое мясо!");
 					B_Say_Overlay(self,self,"$MISSINGITEM");
 					Npc_SetRefuseTalk(self,1);
 				};

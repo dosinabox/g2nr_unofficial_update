@@ -317,7 +317,7 @@ func void DIA_Addon_Finn_ein_Info()
 		{
 			AI_Output(self,other,"DIA_Addon_Finn_ein_07_10");	//Теперь ты так же хорош, как я. Поздравляю, партнер.
 			B_GivePlayerXP(XP_Ambient * 2);
-			Snd_Play("LevelUP");
+			Snd_Play("LEVELUP");
 			Finn_Gratulation = TRUE;
 		};
 	};

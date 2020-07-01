@@ -79,14 +79,14 @@ func void B_BuildLearnDialog_Wolf_DI()
 		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_Wolf_DI_Training_BOW_1);
 		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_Wolf_DI_Training_BOW_5);
 	};
-	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < 100)
+	if(VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Wolf)
 	{
 		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnString(PRINT_LearnCrossBow1,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,1)),DIA_Wolf_DI_Training_CROSSBOW_1);
 		Info_AddChoice(DIA_Wolf_DI_Training,B_BuildLearnString(PRINT_LearnCrossBow5,B_GetLearnCostTalent(other,NPC_TALENT_CROSSBOW,5)),DIA_Wolf_DI_Training_CROSSBOW_5);
 	};
-	if((VisibleTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Wolf) && (VisibleTalentValue(NPC_TALENT_CROSSBOW) >= 100))
+	if((VisibleTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Wolf) && (VisibleTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Wolf))
 	{
-		if((RealTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Wolf) && (RealTalentValue(NPC_TALENT_CROSSBOW) >= 100))
+		if((RealTalentValue(NPC_TALENT_BOW) >= TeachLimit_Bow_Wolf) && (RealTalentValue(NPC_TALENT_CROSSBOW) >= TeachLimit_Crossbow_Wolf))
 		{
 			DIA_Wolf_DI_Teacher_permanent = TRUE;
 		};
@@ -118,7 +118,7 @@ func int DIA_Wolf_DI_Training_Condition()
 func void DIA_Wolf_DI_Training_Info()
 {
 	AI_Output(other,self,"DIA_Wolf_DI_Training_15_00");	//Обучи меня стрельбе.
-	if((VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Wolf) || (VisibleTalentValue(NPC_TALENT_CROSSBOW) < 100))
+	if((VisibleTalentValue(NPC_TALENT_BOW) < TeachLimit_Bow_Wolf) || (VisibleTalentValue(NPC_TALENT_CROSSBOW) < TeachLimit_Crossbow_Wolf))
 	{
 		AI_Output(self,other,"DIA_Wolf_DI_Training_08_01");	//Из чего?
 	};
@@ -145,7 +145,7 @@ func void DIA_Wolf_DI_Training_BOW_5()
 
 func void DIA_Wolf_DI_Training_CROSSBOW_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,1,TeachLimit_Crossbow_Wolf))
 	{
 		B_Wolf_TeachComment(NPC_TALENT_CROSSBOW);
 		B_BuildLearnDialog_Wolf_DI();
@@ -154,7 +154,7 @@ func void DIA_Wolf_DI_Training_CROSSBOW_1()
 
 func void DIA_Wolf_DI_Training_CROSSBOW_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_CROSSBOW,5,TeachLimit_Crossbow_Wolf))
 	{
 		B_Wolf_TeachComment(NPC_TALENT_CROSSBOW);
 		B_BuildLearnDialog_Wolf_DI();

@@ -1448,7 +1448,7 @@ func int DIA_Lee_CanTeach_Condition()
 func void DIA_Lee_CanTeach_Info()
 {
 	AI_Output(other,self,"DIA_Lee_CanTeach_15_00");	//Ты можешь обучить меня?
-	if(RealTalentValue(NPC_TALENT_2H) >= 100)
+	if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Lee)
 	{
 		B_Lee_TeachNoMore();
 		Lee_TeachPlayer = TRUE;
@@ -1507,7 +1507,7 @@ func void DIA_Lee_CanTeach_Yes()
 
 func void B_BuildLearnDialog_Lee()
 {
-	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Lee)
 	{
 		Info_ClearChoices(DIA_Lee_Teach);
 		Info_AddChoice(DIA_Lee_Teach,Dialog_Back,DIA_Lee_Teach_Back);
@@ -1516,7 +1516,7 @@ func void B_BuildLearnDialog_Lee()
 	}
 	else
 	{
-		if(RealTalentValue(NPC_TALENT_2H) >= 100)
+		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Lee)
 		{
 			DIA_Lee_Teacher_permanent = TRUE;
 		};
@@ -1558,7 +1558,7 @@ func void DIA_Lee_Teach_Back()
 
 func void DIA_Lee_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Lee))
 	{
 		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee();
@@ -1567,7 +1567,7 @@ func void DIA_Lee_Teach_2H_1()
 
 func void DIA_Lee_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Lee))
 	{
 		B_Lee_CommentFightSkill();
 		B_BuildLearnDialog_Lee();

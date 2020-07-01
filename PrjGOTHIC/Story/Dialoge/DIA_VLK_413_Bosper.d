@@ -456,7 +456,7 @@ func void DIA_Bosper_Job_Info()
 	B_LogEntry(TOPIC_BosperWolf,"Я должен принести Босперу шесть волчьих шкур. Тогда я смогу либо работать на него, либо получу его одобрение на работу с другими мастерами.");
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
-		B_LogEntry(TOPIC_BosperWolf,"Я должен попросить его обучить меня снимать шкуры с животных.");
+		Log_AddEntry(TOPIC_BosperWolf,"Я должен попросить его обучить меня снимать шкуры с животных.");
 	};
 };
 

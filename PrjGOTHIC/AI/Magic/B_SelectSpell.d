@@ -153,7 +153,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			CreateInvItems(slf,ItRu_HarmUndead,1);
 		};
-		if(slf.attribute[ATR_HITPOINTS] < 100)
+		if((slf.attribute[ATR_HITPOINTS] < 100) && (C_NpcIsDown(oth) || (Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_RANGED_OUTER)))
 		{
 			B_ReadySpell(slf,SPL_FullHeal,SPL_Cost_FullHeal);
 			return TRUE;
@@ -216,7 +216,7 @@ func int B_SelectSpell(var C_Npc slf,var C_Npc oth)
 		{
 			CreateInvItems(slf,ItRu_PalFullHeal,1);
 		};
-		if(slf.attribute[ATR_HITPOINTS] < 100)
+		if((slf.attribute[ATR_HITPOINTS] < 100) && (C_NpcIsDown(oth) || (Npc_GetDistToNpc(slf,oth) > FIGHT_DIST_RANGED_OUTER)))
 		{
 			B_ReadySpell(slf,SPL_PalFullHeal,SPL_Cost_PalFullHeal);
 			return TRUE;

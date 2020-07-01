@@ -22,7 +22,7 @@ instance PAL_200_Hagen(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Militia.mds");
 	B_GiveNpcTalents(self);
 //	B_SetFightSkills(self,80);
-	B_SetTeacherFightSkills(self,80,100,80,80);
+	B_SetTeacherFightSkills(self,80,TeachLimit_2H_Hagen,80,80);
 	daily_routine = Rtn_Start_200;
 };
 

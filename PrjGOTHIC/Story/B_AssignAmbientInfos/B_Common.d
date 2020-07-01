@@ -99,3 +99,8 @@ func void DIA_Common_NoNotYet()
 	AI_Output(other,self,"DIA_Thorben_ZUSTIMMUNG_15_06");	//Нет. Еще нет...
 };
 
+func void DIA_Common_SoundsGood()
+{
+	AI_Output(other,self,"DIA_Addon_AlligatorJack_BDTRuestung_gut_15_00");	//Звучит неплохо...
+};
+

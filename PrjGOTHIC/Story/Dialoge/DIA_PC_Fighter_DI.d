@@ -84,7 +84,7 @@ var int DIA_Gorn_DI_Teacher_Comment;
 
 func void B_BuildLearnDialog_Gorn_DI()
 {
-	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Gorn)
 	{
 		Info_ClearChoices(DIA_Gorn_DI_Teach);
 		Info_AddChoice(DIA_Gorn_DI_Teach,Dialog_Back,DIA_Gorn_DI_Teach_Back);
@@ -93,7 +93,7 @@ func void B_BuildLearnDialog_Gorn_DI()
 	}
 	else
 	{
-		if(RealTalentValue(NPC_TALENT_2H) >= 100)
+		if(RealTalentValue(NPC_TALENT_2H) >= TeachLimit_2H_Gorn)
 		{
 			DIA_Gorn_DI_Teacher_permanent = TRUE;
 		};
@@ -125,7 +125,7 @@ func int DIA_Gorn_DI_Teach_Condition()
 func void DIA_Gorn_DI_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Gorn_DI_Teach_15_00");	//Я хочу потренироваться.
-	if(VisibleTalentValue(NPC_TALENT_2H) < 100)
+	if(VisibleTalentValue(NPC_TALENT_2H) < TeachLimit_2H_Gorn)
 	{
 		if(DIA_Gorn_DI_Teacher_Comment == 0)
 		{
@@ -148,7 +148,7 @@ func void DIA_Gorn_DI_Teach_Info()
 
 func void DIA_Gorn_DI_Teach_2H_1()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,1,TeachLimit_2H_Gorn))
 	{
 		B_BuildLearnDialog_Gorn_DI();
 	};
@@ -156,7 +156,7 @@ func void DIA_Gorn_DI_Teach_2H_1()
 
 func void DIA_Gorn_DI_Teach_2H_5()
 {
-	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,100))
+	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_2H,5,TeachLimit_2H_Gorn))
 	{
 		B_BuildLearnDialog_Gorn_DI();
 	};

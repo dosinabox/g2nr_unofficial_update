@@ -22,7 +22,7 @@ instance VLK_449_Lares_DI(Npc_Default)
 	Mdl_ApplyOverlayMds(self,"Humans_Relaxed.mds");
 	B_GiveNpcTalents(self);
 //	B_SetFightSkills(self,35);
-	B_SetTeacherFightSkills(self,100,35,35,35);
+	B_SetTeacherFightSkills(self,TeachLimit_1H_Lares,35,35,35);
 	daily_routine = Rtn_Start_4490;
 };
 

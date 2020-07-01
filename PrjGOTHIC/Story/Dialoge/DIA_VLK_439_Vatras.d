@@ -1178,7 +1178,7 @@ func void DIA_Addon_Vatras_Free_Info()
 	B_RaiseAttribute(other,ATR_MANA_MAX,3);
 	other.attribute[ATR_MANA] = other.attribute[ATR_MANA_MAX];
 	other.attribute[ATR_HITPOINTS] = other.attribute[ATR_HITPOINTS_MAX];
-	Snd_Play("Levelup");
+	Snd_Play("LEVELUP");
 };
 
 
@@ -1542,7 +1542,7 @@ func void B_Vatras_Segen()
 		MadKillerCount -= 1;
 		Vatras_Segen = 0;
 	};
-	Snd_Play("LevelUp");
+	Snd_Play("LEVELUP");
 	Vatras_Blessing = TRUE;
 };
 
