@@ -156,6 +156,26 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			Npc_RemoveInvItem(slf,ItWr_Addon_BanditTrader);
 		};
+		if(MIS_RamirezSextant == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItems(slf,ItMi_Sextant,Npc_HasItems(slf,ItMi_Sextant));
+		};
+		if(FoundVinosKellerei == TRUE)
+		{
+			Npc_RemoveInvItems(slf,ItMi_Moleratlubric_MIS,Npc_HasItems(slf,ItMi_Moleratlubric_MIS));
+		};
+		if(MIS_CassiaKelche == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItems(slf,ItMi_BloodCup_MIS,Npc_HasItems(slf,ItMi_BloodCup_MIS));
+		};
+		if(MIS_Bromor_LuciaStoleGold == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItem(slf,ItMi_BromorsGeld_Addon);
+		};
+		if(MIS_Maria_BringPlate == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItem(slf,ItMi_MariasGoldPlate);
+		};
 	};
 };
 

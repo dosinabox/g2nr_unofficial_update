@@ -333,11 +333,11 @@ instance ItFo_CoragonsBeer(C_Item)
 	name = "Пиво";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Beer;
+	value = Value_Beer * 2;
 	visual = "ItFo_CoragonsBeer.3DS";
 	material = MAT_WOOD;
 	scemeName = "POTIONFAST";
-	on_state[0] = Use_CoragonsBeerBeer;
+	on_state[0] = Use_CoragonsBeer;
 	description = name;
 	text[0] = "Особое пиво Корагона.";
 	text[1] = NAME_Bonus_HpMax;
@@ -349,7 +349,7 @@ instance ItFo_CoragonsBeer(C_Item)
 };
 
 
-func void Use_CoragonsBeerBeer()
+func void Use_CoragonsBeer()
 {
 	B_NpcSetDrunk(10);
 	var string concatText;

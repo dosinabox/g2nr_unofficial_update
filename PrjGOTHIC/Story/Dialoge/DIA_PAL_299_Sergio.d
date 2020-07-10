@@ -95,7 +95,7 @@ func void DIA_Sergio_Isgaroth_XP()
 {
 	AI_Output(other,self,"DIA_Sergio_Isgaroth_XP_15_00");	//“ы не мог бы поделитьс€ своим боевым опытом?
 	AI_Output(self,other,"DIA_Sergio_Isgaroth_XP_04_01");	// огда ты сражаешьс€, постарайс€, чтобы никто не мог атаковать теб€ сзади.
-	B_RaiseTalentByPermBonus(self,NPC_TALENT_2H,2);
+	B_RaiseTalentByPermBonus(other,NPC_TALENT_2H,2);
 	Info_ClearChoices(DIA_Sergio_Isgaroth);
 };
 

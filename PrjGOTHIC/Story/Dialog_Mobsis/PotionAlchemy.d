@@ -287,7 +287,7 @@ func void PC_Charge_InnosEye_Info()
 		};
 		Npc_RemoveInvItems(hero,ItMi_InnosEye_Discharged_Mis,1);
 		CreateInvItems(hero,ItMi_InnosEye_MIS,1);
-		Print(PRINT_AlchemySuccessInnoseye);
+		AI_PrintScreen(PRINT_AlchemySuccessInnoseye,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	}
 	else
 	{
@@ -1191,7 +1191,7 @@ func void PC_ItMi_Joint_Info()
 		AI_Wait(self,0.5);
 		Npc_RemoveInvItems(hero,ItPl_SwampHerb,1);
 		CreateInvItems(hero,ItMi_Joint,1);
-		Print(PRINT_JointSuccess);
+		AI_PrintScreen(PRINT_JointSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	}
 	else
 	{
@@ -1231,7 +1231,7 @@ func void PC_ItMi_Addon_Joint_01_Info()
 		Npc_RemoveInvItems(hero,ItPl_SwampHerb,2);
 		Npc_RemoveInvItems(hero,ItPl_Temp_Herb,1);
 		CreateInvItems(hero,ItMi_Addon_Joint_01,1);
-		Print(PRINT_Addon_Joint_01_Success);
+		AI_PrintScreen(PRINT_Addon_Joint_01_Success,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	}
 	else
 	{
@@ -1298,7 +1298,7 @@ func void PC_ItMi_Tabak_Honey()
 		Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
 		Npc_RemoveInvItems(hero,ItFo_Honey,1);
 		CreateInvItems(hero,ItMi_Honigtabak,1);
-		Print(PRINT_TabakSuccess);
+		AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	};
 };
 
@@ -1314,7 +1314,7 @@ func void PC_ItMi_Tabak_Swampherb()
 		Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
 		Npc_RemoveInvItems(hero,ItPl_SwampHerb,1);
 		CreateInvItems(hero,ItMi_SumpfTabak,1);
-		Print(PRINT_TabakSuccess);
+		AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	};
 };
 
@@ -1330,7 +1330,7 @@ func void PC_ItMi_Tabak_Mushroom_01()
 		Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
 		Npc_RemoveInvItems(hero,ItPl_Mushroom_01,1);
 		CreateInvItems(hero,ItMi_PilzTabak,1);
-		Print(PRINT_TabakSuccess);
+		AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	};
 };
 
@@ -1346,7 +1346,7 @@ func void PC_ItMi_Tabak_Double()
 		Npc_RemoveInvItems(hero,ItMi_ApfelTabak,1);
 		Npc_RemoveInvItems(hero,ItFo_Apple,1);
 		CreateInvItems(hero,ItMi_Doppeltabak,1);
-		Print(PRINT_TabakSuccess);
+		AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
 	};
 };
 

@@ -243,7 +243,7 @@ func void B_Fortuno_InfoManager()
 	{
 		Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать всю болотную траву)",DIA_Addon_Fortuno_Trade_all);
 	};
-	Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать 1 болотную траву)",DIA_Addon_Fortuno_Trade_1);
+	Info_AddChoice(DIA_Addon_Fortuno_Trade,"(отдать одну болотную траву)",DIA_Addon_Fortuno_Trade_1);
 };
 
 

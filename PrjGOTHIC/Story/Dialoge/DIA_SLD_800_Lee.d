@@ -466,6 +466,7 @@ func void DIA_Lee_ClearWhat_Info()
 	AI_Output(self,other,"DIA_Lee_ClearWhat_04_02");	//“акже, дело еще в наших парн€х. я смогу прин€ть теб€, только если большинство наемников согласитс€, что ты можешь присоединитьс€ к нам.
 	AI_Output(self,other,"DIA_Lee_ClearWhat_04_03");	//Ќо не ходи к ќнару, пока все не будет улажено. ќн очень раздражительный тип...
 	SCKnowsSLDVotes = TRUE;
+	SLD_Aufnahme = LOG_Running;
 	Log_CreateTopic(TOPIC_BecomeSLD,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BecomeSLD,LOG_Running);
 	B_LogEntry(TOPIC_BecomeSLD,"„тобы быть прин€тым в р€ды наемников, € должен получить одобрение ќнара, после того, как заручусь одобрением наемников.");

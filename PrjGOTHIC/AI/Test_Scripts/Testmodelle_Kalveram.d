@@ -1632,7 +1632,7 @@ func void Use_StatsBook()
 	};
 	Doc_PrintLine(nDocID,1,"");
 	Doc_PrintLine(nDocID,1,"Информация о сборке:");
-	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 02/07/2020"));
+	Doc_PrintLine(nDocID,1,ConcatStrings(IntToString(FIX_VERSION_START)," версия от 10/07/2020"));
 	if(FIX_VERSION_SAVE == FALSE)
 	{
 		if(Addon_zuerst == TRUE)
@@ -1655,7 +1655,7 @@ instance Gold(C_Item)
 {
 	name = NAME_Bag;
 	mainflag = ITEM_KAT_NONE;
-	flags = ITEM_MISSION;
+	flags = ITEM_MULTI;
 	value = 0;
 	visual = "ItMi_Bag.3ds";
 	scemeName = "MAPSEALED";

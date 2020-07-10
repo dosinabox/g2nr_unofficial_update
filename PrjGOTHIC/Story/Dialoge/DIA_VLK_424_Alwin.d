@@ -234,7 +234,7 @@ func void DIA_Alwin_Endlos_Info()
 	}
 	else if(Kapitel <= 2)
 	{
-		AI_Output(self,other,"DIA_Alwin_Endlos_12_02");	//Овцы едят и становятся все толще и толще. Прямо как моя жена. ХАХАХА (громко смеется)
+		AI_Output(self,other,"DIA_Alwin_Endlos_12_02");	//Овцы едят и становятся все толще и толще. Прямо как моя жена. (громко смеется)
 	}
 	else if(Kapitel == 3)
 	{

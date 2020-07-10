@@ -195,8 +195,6 @@ func void B_TabakProbieren()
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Nichts_13_00");	//ѕозволь мне попробовать твой табак.
 	CreateInvItems(self,ItMi_Joint,1);
 	B_UseItem(self,ItMi_Joint);
-//	CreateInvItem(self,ItMi_Pipe);
-//	B_UseItem(self,ItMi_Pipe);
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Nichts_13_01");	//Ќет, этот аромат мне не очень нравитс€. Ќо, может быть, ты найдешь кого-нибудь, кто оценит его... э-э... утонченность.
 };
 
@@ -275,8 +273,6 @@ func void DIA_Abuyin_Mischung_Super()
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_00");	//ƒавай € попробую твой табак.
 	CreateInvItems(self,ItMi_Joint,1);
 	B_UseItem(self,ItMi_Joint);
-//	CreateInvItem(self,ItMi_Pipe);
-//	B_UseItem(self,ItMi_Pipe);
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_01");	//Ёто неверо€тно! ¬ жизни ничего подобного не пробовал!
 	AI_Output(self,other,"DIA_Abuyin_Mischung_Super_13_02");	// ак ты приготовил его?
 	AI_Output(other,self,"DIA_Abuyin_Mischung_Super_15_03");	//я смешал обычный табак с медом.
@@ -310,12 +306,12 @@ func int DIA_Abuyin_Trade_Condition()
 
 func void DIA_Abuyin_Trade_Info()
 {
-	Abuyin_Score = 0;
-	Abuyin_Score = Npc_HasItems(other,ItMi_Honigtabak) * VALUE_ItMi_HonigTabak;
+	var int count;
+	count = Npc_HasItems(other,ItMi_Honigtabak);
 	AI_Output(other,self,"DIA_Abuyin_Trade_15_00");	//я принес тебе медового табака.
-	B_GiveInvItems(other,self,ItMi_Honigtabak,Npc_HasItems(other,ItMi_Honigtabak));
-	Npc_RemoveInvItems(self,ItMi_Honigtabak,Npc_HasItems(self,ItMi_Honigtabak));
-	B_GiveInvItems(self,other,ItMi_Gold,Abuyin_Score);
+	B_GiveInvItems(other,self,ItMi_Honigtabak,count);
+	Npc_RemoveInvItems(self,ItMi_Honigtabak,count);
+	B_GiveInvItems(self,other,ItMi_Gold,count * VALUE_ItMi_HonigTabak);
 	AI_Output(self,other,"DIA_Abuyin_Trade_13_01");	//ƒл€ мен€ огромное удовольствие иметь с тобой дело.
 };
 

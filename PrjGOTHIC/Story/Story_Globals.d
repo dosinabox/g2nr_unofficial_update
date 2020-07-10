@@ -527,7 +527,7 @@ var int MIS_Bosper_WolfFurs;
 var int Abuyin_Zukunft;
 var int Abuyin_Erzaehlt;
 var int Abuyin_Honigtabak;
-var int Abuyin_Score;
+////var int Abuyin_Score;
 var int Bromor_Pay;
 var int Nadja_Nacht;
 //var int Nadja_tot;

@@ -734,7 +734,7 @@ func int DIA_Sekob_ROSINEVERBACK_Condition()
 func void DIA_Sekob_ROSINEVERBACK_Info()
 {
 	AI_Output(other,self,"DIA_Sekob_ROSINEVERBACK_15_00");	//Рози никогда не вернется к тебе. Я отвел ее в безопасное место.
-	AI_Output(self,other,"DIA_Sekob_ROSINEVERBACK_01_01");	//Безопасное. От кого?
+	AI_Output(self,other,"DIA_Sekob_ROSINEVERBACK_01_01");	//Безопасное?.. От кого?
 	AI_Output(other,self,"DIA_Sekob_ROSINEVERBACK_15_02");	//От тебя.
 	AI_Output(self,other,"DIA_Sekob_ROSINEVERBACK_01_03");	//Ты пожалеешь об этом, грязная свинья.
 	self.flags = 0;

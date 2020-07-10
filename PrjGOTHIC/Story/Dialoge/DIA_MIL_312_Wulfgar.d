@@ -392,6 +392,15 @@ func void B_Ruga_Teach_Log()
 	};
 };
 
+func int C_WulfgarCanGiveBonus()
+{
+	if(Wld_IsTime(5,0,6,54) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_CENTRE_01") < 600))
+	{
+		return TRUE;
+	};
+	return FALSE;
+};
+
 instance DIA_Wulfgar_AlsMil(C_Info)
 {
 	npc = MIL_312_Wulfgar;
@@ -407,7 +416,7 @@ func int DIA_Wulfgar_AlsMil_Condition()
 {
 	if(other.guild == GIL_MIL)
 	{
-		if(Npc_KnowsInfo(other,DIA_Wulfgar_Bonus) || !Wld_IsTime(5,2,6,54))
+		if(Npc_KnowsInfo(other,DIA_Wulfgar_Bonus) || !C_WulfgarCanGiveBonus())
 		{
 			return TRUE;
 		};
@@ -443,7 +452,7 @@ instance DIA_Wulfgar_Bonus(C_Info)
 
 func int DIA_Wulfgar_Bonus_Condition()
 {
-	if(Npc_IsInState(self,ZS_Talk) && Wld_IsTime(5,0,6,54) && (Npc_GetDistToWP(self,"NW_CITY_HABOUR_KASERN_CENTRE_01") < 600))
+	if(Npc_IsInState(self,ZS_Talk) && C_WulfgarCanGiveBonus())
 	{
 		return TRUE;
 	};
@@ -454,7 +463,7 @@ func void DIA_Wulfgar_Bonus_Info()
 	AI_Output(self,other,"DIA_Wulfgar_Bonus_04_00");	//Ранняя пташка? Я обычно один в это время дня. Но раз уж ты здесь, то можно потренироваться.
 	AI_Output(self,other,"DIA_Wulfgar_Bonus_04_01");	//Будь внимательным. Ты можешь обмануть некоторых противников, если уклонишься от удара, а затем атакуешь в правильный момент.
 	AI_Output(self,other,"DIA_Wulfgar_Bonus_04_02");	//Помни об этом в своем следующем бою!
-	B_RaiseTalentByPermBonus(self,NPC_TALENT_1H,2);
+	B_RaiseTalentByPermBonus(other,NPC_TALENT_1H,2);
 };
 
 

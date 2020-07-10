@@ -83,6 +83,27 @@ func int C_Bennet_HaveNewWeapons()
 	return FALSE;
 };
 
+func void DIA_Bennet_SmithComment1()
+{
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_01");	//я могу научить теб€ ковать магические мечи и даже двуручные клинки.
+};
+
+func void DIA_Bennet_SmithComment2()
+{
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_02");	//я немного потренировалс€, и теперь € могу научить теб€, как ковать полуторные и т€желые двуручные магические мечи.
+};
+
+func void DIA_Bennet_SmithComment3()
+{
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03_add");	//ћои новые магические клинки! Ёто лучшее, что € умею ковать сейчас.
+};
+
+func void DIA_Bennet_SmithComment4()
+{
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_04");	//ѕослушай. Ќа мен€ только что снизошло вдохновение. ћагическое оружие, покрытое кровью дракона. » € точно знаю, как изготовить его!
+	AI_Output(self,other,"DIA_Bennet_TeachSmith_06_05");	//(ухмыл€етс€) ј ты хочешь узнать?
+};
+
 instance DIA_Bennet_AnnounceNewWeapons(C_Info)
 {
 	npc = SLD_809_Bennet;
@@ -108,23 +129,22 @@ func void DIA_Bennet_AnnounceNewWeapons_Info()
 	{
 		if((Kapitel == 2) && (Bennet_Kap2Smith == FALSE))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_01");	//я могу научить теб€ ковать магические мечи и даже двуручные клинки.
+			DIA_Bennet_SmithComment1();
 			Bennet_Kap2Smith = TRUE;
 		}
 		else if((Kapitel == 3) && (MIS_ReadyforChapter4 == FALSE) && (Bennet_Kap3Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_02");	//я немного потренировалс€, и теперь € могу научить теб€, как ковать полуторные и т€желые двуручные магические мечи.
+			DIA_Bennet_SmithComment2();
 			Bennet_Kap3Smith = TRUE;
 		}
 		else if((Kapitel < 5) && (MIS_ReadyforChapter4 == TRUE) && (Bennet_Kap4Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03_add");	//ћои новые магические клинки! Ёто лучшее, что € умею ковать сейчас.
+			DIA_Bennet_SmithComment3();
 			Bennet_Kap4Smith = TRUE;
 		}
 		else if((Kapitel >= 5) && (Bennet_Kap5Smith == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_04");	//ѕослушай. Ќа мен€ только что снизошло вдохновение. ћагическое оружие, покрытое кровью дракона. » € точно знаю, как изготовить его!
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_05");	//(ухмыл€етс€) ј ты хочешь узнать?
+			DIA_Bennet_SmithComment4();
 			Bennet_Kap5Smith = TRUE;
 		};
 	}
@@ -132,23 +152,22 @@ func void DIA_Bennet_AnnounceNewWeapons_Info()
 	{
 		if((Kapitel == 1) && (Bennet_Kap1Smith_Alt == FALSE))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_01");	//я могу научить теб€ ковать магические мечи и даже двуручные клинки.
+			DIA_Bennet_SmithComment1();
 			Bennet_Kap1Smith_Alt = TRUE;
 		}
 		else if((Kapitel == 2) && (Bennet_Kap2Smith_Alt == FALSE))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_02");	//я немного потренировалс€, и теперь € могу научить теб€, как ковать полуторные и т€желые двуручные магические мечи.
+			DIA_Bennet_SmithComment2();
 			Bennet_Kap2Smith_Alt = TRUE;
 		}
 		else if((Kapitel < 5) && (Bennet_Kap3Smith_Alt == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_03_add");	//ћои новые магические клинки! Ёто лучшее, что € умею ковать сейчас.
+			DIA_Bennet_SmithComment3();
 			Bennet_Kap3Smith_Alt = TRUE;
 		}
 		else if((Kapitel >= 5) && (Bennet_Kap5Smith_Alt == FALSE) && Npc_KnowsInfo(other,DIA_Bennet_ThankYou))
 		{
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_04");	//ѕослушай. Ќа мен€ только что снизошло вдохновение. ћагическое оружие, покрытое кровью дракона. » € точно знаю, как изготовить его!
-			AI_Output(self,other,"DIA_Bennet_TeachSmith_06_05");	//(ухмыл€етс€) ј ты хочешь узнать?
+			DIA_Bennet_SmithComment4();
 			Bennet_Kap5Smith_Alt = TRUE;
 		};
 	};

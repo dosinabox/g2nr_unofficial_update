@@ -25,7 +25,7 @@ func void B_BiffsAnteil_PrintScreen()
 	var string Anteil;
 	Anteil = IntToString(BiffsAnteil);
 	BiffsAnteilText_Teil = ConcatStrings(PRINT_BiffsAnteil,Anteil);
-	BiffsAnteilText = ConcatStrings(BiffsAnteilText_Teil,PRINT_BiffGold);
+	BiffsAnteilText = ConcatStrings(BiffsAnteilText_Teil,PRINT_Gold);
 	AI_PrintScreen(BiffsAnteilText,-1,45,FONT_ScreenSmall,4);
 };
 

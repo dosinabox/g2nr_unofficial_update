@@ -665,6 +665,7 @@ func void DIA_Andre_AskToJoin_Info()
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_05");	//ћой командующий опасаетс€, что в наши р€ды могут проникнуть шпионы или диверсанты.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_06");	//ќн хочет таким образом свести риск к минимуму.
 	AI_Output(self,other,"DIA_Andre_AskToJoin_08_07");	//ѕоэтому ты сначала должен стать гражданином города. Ќе знаю, имеет это правило смысл или нет, но приказ есть приказ.
+	MIL_Aufnahme = LOG_Running;
 	Log_CreateTopic(TOPIC_BecomeMIL,LOG_MISSION);
 	Log_SetTopicStatus(TOPIC_BecomeMIL,LOG_Running);
 	B_LogEntry(TOPIC_BecomeMIL,"ѕрежде чем € смогу вступить в р€ды городской стражи, € должен стать гражданином города.");

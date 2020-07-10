@@ -434,15 +434,19 @@ func int DIA_Bosper_Job_Condition()
 func void DIA_Bosper_Job_Info()
 {
 	AI_Output(other,self,"DIA_Bosper_Job_15_00");	//„то ты хочешь, чтобы € сделал дл€ теб€?
+	Log_CreateTopic(TOPIC_BosperWolf,LOG_MISSION);
+	Log_SetTopicStatus(TOPIC_BosperWolf,LOG_Running);
 	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
 	{
 		AI_Output(self,other,"DIA_Bosper_Job_11_01");	//я научу теб€ снимать шкуры с животных, и ты принесешь мне - скажем, полдюжины волчьих шкур.
 		Log_CreateTopic(TOPIC_CityTeacher,LOG_NOTE);
-		B_LogEntry(TOPIC_CityTeacher,"Ѕоспер может обучить мен€ снимать шкуры с животных.");
+		B_LogEntries(TOPIC_CityTeacher,"Ѕоспер может обучить мен€ снимать шкуры с животных.");
+		B_LogNextEntry(TOPIC_BosperWolf,"я должен принести Ѕосперу шесть волчьих шкур. “огда € смогу либо работать на него, либо получу его одобрение на работу с другими мастерами. Ќо сначала € должен попросить его обучить мен€ снимать шкуры с животных.");
 	}
 	else
 	{
 		AI_Output(self,other,"DIA_Bosper_Job_11_02");	//ѕринеси мне полдюжины волчьих шкур.
+		B_LogEntry(TOPIC_BosperWolf,"я должен принести Ѕосперу шесть волчьих шкур. “огда € смогу либо работать на него, либо получу его одобрение на работу с другими мастерами.");
 	};
 	AI_Output(self,other,"DIA_Bosper_Job_11_03");	//“огда € пойму, что ты освоил это ремесло.
 	AI_Output(self,other,"DIA_Bosper_Job_11_04");	//≈сли только у теб€ не уйдет на это цела€ вечность, и если шкуры будут в приемлемом состо€нии. » тогда € возьму теб€ к себе, если ты захочешь.
@@ -451,13 +455,6 @@ func void DIA_Bosper_Job_Info()
 		AI_Output(self,other,"DIA_Bosper_Job_11_05");	//»ли (вздыхает) ты сможешь стать учеником другого мастера - если ты этого действительно хочешь.
 	};
 	MIS_Bosper_WolfFurs = LOG_Running;
-	Log_CreateTopic(TOPIC_BosperWolf,LOG_MISSION);
-	Log_SetTopicStatus(TOPIC_BosperWolf,LOG_Running);
-	B_LogEntry(TOPIC_BosperWolf,"я должен принести Ѕосперу шесть волчьих шкур. “огда € смогу либо работать на него, либо получу его одобрение на работу с другими мастерами.");
-	if(PLAYER_TALENT_TAKEANIMALTROPHY[TROPHY_Fur] == FALSE)
-	{
-		Log_AddEntry(TOPIC_BosperWolf,"я должен попросить его обучить мен€ снимать шкуры с животных.");
-	};
 };
 
 
