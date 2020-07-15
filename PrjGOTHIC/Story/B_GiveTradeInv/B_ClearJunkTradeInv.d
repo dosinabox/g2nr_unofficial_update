@@ -115,7 +115,6 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		Npc_RemoveInvItems(slf,ItMi_GoldChest,Npc_HasItems(slf,ItMi_GoldChest));
 		Npc_RemoveInvItems(slf,ItMi_JeweleryChest,Npc_HasItems(slf,ItMi_JeweleryChest));
 		Npc_RemoveInvItems(slf,ItMi_InnosStatue,Npc_HasItems(slf,ItMi_InnosStatue));
-		Npc_RemoveInvItems(slf,ItMi_Sextant,Npc_HasItems(slf,ItMi_Sextant));
 		Npc_RemoveInvItems(slf,ItPl_Beet,Npc_HasItems(slf,ItPl_Beet));
 		Npc_RemoveInvItems(slf,ItPl_SwampHerb,Npc_HasItems(slf,ItPl_SwampHerb));
 //		Npc_RemoveInvItems(slf,ItPl_Mushroom_01,Npc_HasItems(slf,ItPl_Mushroom_01));
@@ -160,10 +159,6 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		{
 			Npc_RemoveInvItems(slf,ItMi_Sextant,Npc_HasItems(slf,ItMi_Sextant));
 		};
-		if(FoundVinosKellerei == TRUE)
-		{
-			Npc_RemoveInvItems(slf,ItMi_Moleratlubric_MIS,Npc_HasItems(slf,ItMi_Moleratlubric_MIS));
-		};
 		if(MIS_CassiaKelche == LOG_SUCCESS)
 		{
 			Npc_RemoveInvItems(slf,ItMi_BloodCup_MIS,Npc_HasItems(slf,ItMi_BloodCup_MIS));
@@ -175,6 +170,11 @@ func void B_ClearJunkTradeInv(var C_Npc slf)
 		if(MIS_Maria_BringPlate == LOG_SUCCESS)
 		{
 			Npc_RemoveInvItem(slf,ItMi_MariasGoldPlate);
+		};
+		if(MIS_Addon_Greg_RakeCave == LOG_SUCCESS)
+		{
+			Npc_RemoveInvItem(slf,ItMi_GregsSilverPlate);
+			Npc_RemoveInvItem(slf,ItAm_Addon_Greg);
 		};
 	};
 };

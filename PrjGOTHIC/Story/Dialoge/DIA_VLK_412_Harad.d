@@ -896,6 +896,14 @@ func void DIA_Harad_TeachSmith_Harad04()
 
 var int Harad_Merke_STR;
 
+func void B_BuildLearnDialog_Harad()
+{
+	Info_ClearChoices(DIA_Harad_TeachSTR);
+	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Harad_TeachSTR_1);
+	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Harad_TeachSTR_5);
+};
+
 instance DIA_Harad_TeachSTR(C_Info)
 {
 	npc = VLK_412_Harad;
@@ -918,22 +926,16 @@ func int DIA_Harad_TeachSTR_Condition()
 func void DIA_Harad_TeachSTR_Info()
 {
 	AI_Output(other,self,"DIA_Harad_TeachSTR_15_00");	//Я хочу стать сильнее!
-//	Harad_Merke_STR = other.attribute[ATR_STRENGTH];
 	Harad_Merke_STR = other.aivar[REAL_STRENGTH];
-	Info_ClearChoices(DIA_Harad_TeachSTR);
-	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Harad_TeachSTR_1);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Harad_TeachSTR_5);
+	B_BuildLearnDialog_Harad();
 };
 
 func void DIA_Harad_TeachSTR_BACK()
 {
-//	if(Harad_Merke_STR < other.attribute[ATR_STRENGTH])
 	if(Harad_Merke_STR < other.aivar[REAL_STRENGTH])
 	{
 		AI_Output(self,other,"DIA_Harad_TeachSTR_BACK_12_01");	//Ты уже нарастил немного мускулов.
 	};
-//	if(other.attribute[ATR_STRENGTH] < T_MED)
 	if(other.aivar[REAL_STRENGTH] < T_MED)
 	{
 		AI_Output(self,other,"DIA_Harad_TeachSTR_BACK_12_02");	//Возвращайся, если хочешь поучиться еще.
@@ -943,22 +945,19 @@ func void DIA_Harad_TeachSTR_BACK()
 
 func void DIA_Harad_TeachSTR_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED);
-	Info_ClearChoices(DIA_Harad_TeachSTR);
-	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Harad_TeachSTR_1);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Harad_TeachSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED))
+	{
+		B_BuildLearnDialog_Harad();
+	};
 };
 
 func void DIA_Harad_TeachSTR_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED);
-	Info_ClearChoices(DIA_Harad_TeachSTR);
-	Info_AddChoice(DIA_Harad_TeachSTR,Dialog_Back,DIA_Harad_TeachSTR_BACK);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Harad_TeachSTR_1);
-	Info_AddChoice(DIA_Harad_TeachSTR,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Harad_TeachSTR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED))
+	{
+		B_BuildLearnDialog_Harad();
+	};
 };
-
 
 instance DIA_Harad_ImmerNoch(C_Info)
 {

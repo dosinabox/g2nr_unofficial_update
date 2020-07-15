@@ -963,6 +963,21 @@ func void DIA_Pyrokar_Parlan_Info()
 };
 
 
+func void B_BuildLearnDialog_Pyrokar()
+{
+	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
+	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
+	if(other.aivar[REAL_MANA_MAX] >= T_MEGA)
+	{
+		AI_Output(self,other,"DIA_Pyrokar_TEACH_MANA_11_00");	//Я чувствую, как магическая энергия течет через тебя, не зная преград. Даже я не могу показать тебе, как повысить ее еще больше.
+	}
+	else
+	{
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
+		Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+	};
+};
+
 instance DIA_Pyrokar_TEACH_MANA(C_Info)
 {
 	npc = KDF_500_Pyrokar;
@@ -985,38 +1000,28 @@ func int DIA_Pyrokar_TEACH_MANA_Condition()
 func void DIA_Pyrokar_TEACH_MANA_Info()
 {
 	AI_Output(other,self,"DIA_Pyrokar_TEACH_MANA_15_00");	//Я хочу повысить мои магические способности.
-	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+	B_BuildLearnDialog_Pyrokar();
 };
 
 func void DIA_Pyrokar_TEACH_MANA_BACK()
 {
-//	if(other.attribute[ATR_MANA_MAX] >= 250)
-	if(other.aivar[REAL_MANA_MAX] >= 250)
-	{
-		AI_Output(self,other,"DIA_Pyrokar_TEACH_MANA_11_00");	//Я чувствую, как магическая энергия течет через тебя, не зная преград. Даже я не могу показать тебе, как повысить ее еще больше.
-	};
 	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
 };
 
 func void DIA_Pyrokar_TEACH_MANA_1()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MEGA);
-	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MEGA))
+	{
+		B_BuildLearnDialog_Pyrokar();
+	};
 };
 
 func void DIA_Pyrokar_TEACH_MANA_5()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MEGA);
-	Info_ClearChoices(DIA_Pyrokar_TEACH_MANA);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,Dialog_Back,DIA_Pyrokar_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Pyrokar_TEACH_MANA_1);
-	Info_AddChoice(DIA_Pyrokar_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Pyrokar_TEACH_MANA_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MEGA))
+	{
+		B_BuildLearnDialog_Pyrokar();
+	};
 };
 
 func void B_Pyrokar_BLESSING()

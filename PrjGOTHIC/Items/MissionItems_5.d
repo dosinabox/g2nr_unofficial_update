@@ -380,7 +380,6 @@ instance ItPo_PotionOfDeath_01_Mis(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 0;
-//	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_PotionOfDeath;
@@ -418,7 +417,7 @@ func void UseItPo_PotionOfDeath()
 		AI_Wait(hero,3);
 		AI_PlayAni(self,"S_FIRE_VICTIM");
 		Wld_PlayEffect("VOB_MAGICBURN",hero,hero,0,0,0,FALSE);
-		B_Say(self,self,"$Dead");
+		B_Say(self,self,"$DEAD");
 		AI_StopFX(self,"VOB_MAGICBURN");
 		Npc_ChangeAttribute(self,ATR_HITPOINTS,-self.attribute[ATR_HITPOINTS_MAX]);
 		Npc_StopAni(self,"S_FIRE_VICTIM");
@@ -432,7 +431,6 @@ instance ItPo_PotionOfDeath_02_Mis(C_Item)
 	mainflag = ITEM_KAT_POTIONS;
 	flags = ITEM_MULTI;
 	value = 0;
-//	visual = "ItMi_Flask.3ds";
 	visual = "ItPo_Special_03.3ds";
 	material = MAT_GLAS;
 	on_state[0] = UseItPo_PotionOfDeath;
@@ -452,7 +450,6 @@ instance ItAm_AmulettOfDeath_Mis(C_Item)
 	mainflag = ITEM_KAT_MAGIC;
 	flags = ITEM_AMULET;
 	value = 1000;
-//	visual = "ItAm_Prot_Fire_01.3ds";
 	visual = "ItAm_AmulettOfDeath_Mis.3ds";
 	visual_skin = 0;
 	material = MAT_METAL;

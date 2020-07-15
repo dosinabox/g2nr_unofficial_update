@@ -552,6 +552,21 @@ func void DIA_MiltenOW_Teach_Light()
 	B_TeachPlayerTalentRunes(self,other,SPL_Light);
 };
 
+func void B_BuildLearnDialog_Milten_OW()
+{
+	Info_ClearChoices(DIA_MiltenOW_Mana);
+	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
+	if(other.aivar[REAL_MANA_MAX] >= T_MED)
+	{
+		AI_Output(self,other,"DIA_MiltenOW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
+	}
+	else
+	{
+		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
+		Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenOW_Mana_5);
+	};
+};
+
 instance DIA_MiltenOW_Mana(C_Info)
 {
 	npc = PC_Mage_OW;
@@ -574,40 +589,29 @@ func int DIA_MiltenOW_Mana_Condition()
 func void DIA_MiltenOW_Mana_Info()
 {
 	AI_Output(other,self,"DIA_MiltenOW_Mana_15_00");	//Я хочу повысить мои магические способности.
-	Info_ClearChoices(DIA_MiltenOW_Mana);
-	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenOW_Mana_5);
+	B_BuildLearnDialog_Milten_OW();
 };
 
 func void DIA_MiltenOW_Mana_BACK()
 {
-//	if(other.attribute[ATR_MANA_MAX] >= T_MED)
-	if(other.aivar[REAL_MANA_MAX] >= T_MED)
-	{
-		AI_Output(self,other,"DIA_MiltenOW_Mana_03_00");	//Твоя магическая энергия велика. Слишком велика, чтобы я мог увеличить ее.
-	};
 	Info_ClearChoices(DIA_MiltenOW_Mana);
 };
 
 func void DIA_MiltenOW_Mana_1()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MED);
-	Info_ClearChoices(DIA_MiltenOW_Mana);
-	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenOW_Mana_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MED))
+	{
+		B_BuildLearnDialog_Milten_OW();
+	};
 };
 
 func void DIA_MiltenOW_Mana_5()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MED);
-	Info_ClearChoices(DIA_MiltenOW_Mana);
-	Info_AddChoice(DIA_MiltenOW_Mana,Dialog_Back,DIA_MiltenOW_Mana_BACK);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_MiltenOW_Mana_1);
-	Info_AddChoice(DIA_MiltenOW_Mana,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_MiltenOW_Mana_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MED))
+	{
+		B_BuildLearnDialog_Milten_OW();
+	};
 };
-
 
 instance DIA_MiltenOW_Perm(C_Info)
 {

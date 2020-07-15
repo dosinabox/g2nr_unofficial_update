@@ -740,7 +740,7 @@ func int DIA_Addon_Greg_ItemsInADW_Condition()
 func void DIA_Addon_Greg_ItemsInADW_Info()
 {
 	B_GiveGregItems();
-	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 2);
+	B_GivePlayerXP(XP_Addon_Greg_RakeCave / 3);
 };
 
 instance DIA_Addon_Greg_BeMyCap(C_Info)

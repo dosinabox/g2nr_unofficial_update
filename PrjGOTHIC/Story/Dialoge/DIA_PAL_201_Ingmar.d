@@ -123,6 +123,21 @@ func void DIA_Ingmar_CanTeach_Info()
 };
 
 
+func void B_BuildLearnDialog_Ingmar()
+{
+	Info_ClearChoices(DIA_Ingmar_Teach);
+	Info_AddChoice(DIA_Ingmar_Teach,Dialog_Back,DIA_Ingmar_Teach_BACK);
+	if(other.aivar[REAL_STRENGTH] >= T_MAX)
+	{
+		AI_Output(self,other,"DIA_Ingmar_Teach_06_00");	//Ты и так силен как тролль. Мне нечему учить тебя.
+	}
+	else
+	{
+		Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Ingmar_Teach_1);
+		Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Ingmar_Teach_5);
+	};
+};
+
 instance DIA_Ingmar_Teach(C_Info)
 {
 	npc = PAL_201_Ingmar;
@@ -145,40 +160,29 @@ func int DIA_Ingmar_Teach_Condition()
 func void DIA_Ingmar_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Ingmar_Teach_15_00");	//Я хочу стать сильнее.
-	Info_ClearChoices(DIA_Ingmar_Teach);
-	Info_AddChoice(DIA_Ingmar_Teach,Dialog_Back,DIA_Ingmar_Teach_BACK);
-	Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Ingmar_Teach_1);
-	Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Ingmar_Teach_5);
+	B_BuildLearnDialog_Ingmar();
 };
 
 func void DIA_Ingmar_Teach_BACK()
 {
-//	if(other.attribute[ATR_STRENGTH] >= T_MAX)
-	if(other.aivar[REAL_STRENGTH] >= T_MAX)
-	{
-		AI_Output(self,other,"DIA_Ingmar_Teach_06_00");	//Ты и так силен как тролль. Мне нечему учить тебя.
-	};
 	Info_ClearChoices(DIA_Ingmar_Teach);
 };
 
 func void DIA_Ingmar_Teach_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MAX);
-	Info_ClearChoices(DIA_Ingmar_Teach);
-	Info_AddChoice(DIA_Ingmar_Teach,Dialog_Back,DIA_Ingmar_Teach_BACK);
-	Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Ingmar_Teach_1);
-	Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Ingmar_Teach_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MAX))
+	{
+		B_BuildLearnDialog_Ingmar();
+	};
 };
 
 func void DIA_Ingmar_Teach_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MAX);
-	Info_ClearChoices(DIA_Ingmar_Teach);
-	Info_AddChoice(DIA_Ingmar_Teach,Dialog_Back,DIA_Ingmar_Teach_BACK);
-	Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Ingmar_Teach_1);
-	Info_AddChoice(DIA_Ingmar_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Ingmar_Teach_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MAX))
+	{
+		B_BuildLearnDialog_Ingmar();
+	};
 };
-
 
 instance DIA_Ingmar_ORKELITE(C_Info)
 {

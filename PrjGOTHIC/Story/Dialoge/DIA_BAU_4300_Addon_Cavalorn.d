@@ -114,11 +114,8 @@ func int DIA_Addon_Cavalorn_MeetingIsRunning_Condition()
 		else if(Npc_GetDistToWP(self,"NW_XARDAS_BANDITS_LEFT") < 2000)
 		{
 			return FALSE;
-		}
-		else
-		{
-			return TRUE;
 		};
+		return TRUE;
 	};
 };
 

@@ -148,6 +148,23 @@ func void DIA_Diego_DI_TRADE_Info()
 };
 
 
+func void B_BuildLearnDialog_Diego_DI()
+{
+	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
+	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
+	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
+	{
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
+	};
+	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
+	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
+	if(VisibleTalentValue(NPC_TALENT_BOW) < 100)
+	{
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
+		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_PC_Thief_DI_Training_Combat_BOW_5);
+	};
+};
+
 instance DIA_PC_Thief_DI_Training_Talente(C_Info)
 {
 	npc = PC_Thief_DI;
@@ -178,16 +195,7 @@ func void DIA_PC_Thief_DI_Training_Talente_Info()
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_Training_11_01");	//Что тебе нужно?
 	};
-	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
-	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
-	};
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_PC_Thief_DI_Training_Combat_BOW_5);
+	B_BuildLearnDialog_Diego_DI();
 };
 
 func void DIA_PC_Thief_DI_Training_DEX_1()
@@ -195,17 +203,8 @@ func void DIA_PC_Thief_DI_Training_DEX_1()
 	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,1,T_MAX))
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_Training_DEX_1_11_00");	//Тебе будет значительно легче, если ты будешь держаться подальше от линии огня.
+		B_BuildLearnDialog_Diego_DI();
 	};
-	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
-	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
-	};
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_PC_Thief_DI_Training_Combat_BOW_5);
 };
 
 func void DIA_PC_Thief_DI_Training_DEX_5()
@@ -213,17 +212,8 @@ func void DIA_PC_Thief_DI_Training_DEX_5()
 	if(B_TeachAttributePoints(self,other,ATR_DEXTERITY,5,T_MAX))
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_Training_DEX_5_11_00");	//Когда ты двигаешься, всегда помни о том, как легко передвигаются коты. Остальное придет само собой.
+		B_BuildLearnDialog_Diego_DI();
 	};
-	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
-	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
-	};
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_PC_Thief_DI_Training_Combat_BOW_5);
 };
 
 func void DIA_PC_Thief_DI_Training_Combat_BOW_1()
@@ -231,17 +221,8 @@ func void DIA_PC_Thief_DI_Training_Combat_BOW_1()
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,1,100))
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_Training_Combat_BOW_1_11_00");	//Для достижения лучшего результата побольше тренируйся.
+		B_BuildLearnDialog_Diego_DI();
 	};
-	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
-	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
-	};
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_PC_Thief_DI_Training_Combat_BOW_5);
 };
 
 func void DIA_PC_Thief_DI_Training_Combat_BOW_5()
@@ -249,17 +230,8 @@ func void DIA_PC_Thief_DI_Training_Combat_BOW_5()
 	if(B_TeachFightTalentPercent(self,other,NPC_TALENT_BOW,5,100))
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_Training_Combat_BOW_5_11_00");	//Чтобы твоя рука не дрожала, во время прицеливания старайся дышать пореже.
+		B_BuildLearnDialog_Diego_DI();
 	};
-	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
-	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
-	};
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_PC_Thief_DI_Training_Combat_BOW_5);
 };
 
 func void DIA_PC_Thief_DI_Training_Talente_PICKLOCK()
@@ -267,17 +239,8 @@ func void DIA_PC_Thief_DI_Training_Talente_PICKLOCK()
 	if(B_TeachThiefTalent(self,other,NPC_TALENT_PICKLOCK))
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_Training_PICKLOCK_11_00");	//Лучше поздно, чем никогда. Странно, что ты не изучил эту способность раньше.
+		B_BuildLearnDialog_Diego_DI();
 	};
-	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,Dialog_Back,DIA_PC_Thief_DI_Training_Talente_BACK);
-	if(!Npc_GetTalentSkill(other,NPC_TALENT_PICKLOCK))
-	{
-		Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString("Взлом замков",B_GetLearnCostTalent(other,NPC_TALENT_PICKLOCK,1)),DIA_PC_Thief_DI_Training_Talente_PICKLOCK);
-	};
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX1,B_GetLearnCostAttribute(other,ATR_DEXTERITY)),DIA_PC_Thief_DI_Training_DEX_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnDEX5,B_GetLearnCostAttribute(other,ATR_DEXTERITY) * 5),DIA_PC_Thief_DI_Training_DEX_5);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow1,B_GetLearnCostTalent(other,NPC_TALENT_BOW,1)),DIA_PC_Thief_DI_Training_Combat_BOW_1);
-	Info_AddChoice(DIA_PC_Thief_DI_Training_Talente,B_BuildLearnString(PRINT_LearnBow5,B_GetLearnCostTalent(other,NPC_TALENT_BOW,5)),DIA_PC_Thief_DI_Training_Combat_BOW_5);
 };
 
 func void DIA_PC_Thief_DI_Training_Talente_BACK()
@@ -285,6 +248,7 @@ func void DIA_PC_Thief_DI_Training_Talente_BACK()
 	Info_ClearChoices(DIA_PC_Thief_DI_Training_Talente);
 };
 
+var int DIA_PC_Thief_DI_UndeadDragonDead_OneTime;
 
 instance DIA_PC_Thief_DI_UndeadDragonDead(C_Info)
 {
@@ -305,13 +269,10 @@ func int DIA_PC_Thief_DI_UndeadDragonDead_Condition()
 	};
 };
 
-
-var int DIA_PC_Thief_DI_UndeadDragonDead_OneTime;
-
 func void DIA_PC_Thief_DI_UndeadDragonDead_Info()
 {
 	AI_Output(other,self,"DIA_PC_Thief_DI_UndeadDragonDead_15_00");	//Все кончено. Теперь мы можем убираться отсюда.
-	if(Npc_GetDistToWP(self,"WP_UNDEAD_MIDDLE_01") < 4000)
+	if((Npc_GetDistToWP(self,"WP_UNDEAD_MIDDLE_01") < 4000) && (DIA_PC_Thief_DI_UndeadDragonDead_OneTime == FALSE))
 	{
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_01");	//Ты только посмотри на это. В жизни не видел такого сооружения.
 		AI_Output(self,other,"DIA_PC_Thief_DI_UndeadDragonDead_11_02");	//Как тебе, черт возьми, удалось пройти там?

@@ -558,7 +558,7 @@ instance ItRi_Addon_BanditTrader(C_Item)
 {
 	name = NAME_Ring;
 	mainflag = ITEM_KAT_MAGIC;
-	flags = ITEM_MISSION | ITEM_RING;
+	flags = ITEM_RING | ITEM_MISSION;
 	value = 70;
 	visual = "ItRi_Addon_BanditTrader.3ds";
 	visual_skin = 0;
@@ -730,7 +730,7 @@ func void UnEquip_WispDetector()
 		Snd_Play("WSP_Dead_A1");
 	};
 	AI_Teleport(DetWsp,"TOT");
-	B_RemoveNpc(DetWsp);
+	B_MoveNpcToMorgue(DetWsp);
 	AI_Teleport(DetWsp,"TOT");
 };
 

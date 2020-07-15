@@ -1,5 +1,4 @@
 
-
 var int rakeplace[50];
 const int Greg_FirstSecret = 1;
 const int RAKE_BUDDEL_DIST_MAX = 300;
@@ -21,8 +20,6 @@ func void B_SCGetTreasure_S1()
 	var C_Item GregsArmor;
 	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(hero))
 	{
-//		Snd_Play("GOL_AMBIENT_A2");
-//		AI_PlayAni(hero,"T_PLUNDER");
 		if((Npc_GetDistToWP(hero,"NW_BIGFARM_LAKE_CAVE_07") < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[1] == FALSE))
 		{
 			Wld_InsertItem(ItSe_GoldPocket25,"NW_BIGFARM_LAKE_CAVE_07");
@@ -42,18 +39,14 @@ func void B_SCGetTreasure_S1()
 		}
 		else if((Npc_GetDistToWP(hero,"NW_FARM3_GREGTREASURE_01") < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[3] == FALSE))
 		{
-//			Wld_InsertItem(ItMi_GoldCup,"NW_FARM3_GREGTREASURE_01");
 			Wld_InsertItem(ItMi_GoldChalice,"NW_FARM3_GREGTREASURE_01");
 			RAKEPLACE[3] = TRUE;
-//			RakeTreasureSuccess(ItMi_GoldCup);
 			RakeTreasureSuccess(ItMi_GoldChalice);
 		}
 		else if((Npc_GetDistToWP(hero,"NW_FARM3_MOUNTAINLAKE_MONSTER_01") < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[4] == FALSE))
 		{
-//			Wld_InsertItem(ItMi_SilverChalice,"NW_FARM3_MOUNTAINLAKE_MONSTER_01");
 			Wld_InsertItem(ItMi_GregsSilverPlate,"NW_FARM3_MOUNTAINLAKE_MONSTER_01");
 			RAKEPLACE[4] = TRUE;
-//			RakeTreasureSuccess(ItMi_SilverChalice);
 			RakeTreasureSuccess(ItMi_GregsSilverPlate);
 		}
 		else if((Npc_GetDistToWP(hero,"NW_BIGMILL_FARM3_01") < RAKE_BUDDEL_DIST_MIN) && (RAKEPLACE[5] == FALSE))

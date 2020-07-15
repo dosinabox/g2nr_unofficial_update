@@ -11,6 +11,7 @@ const int Value_BonusFood = 40;
 const int STR_FireStew = 1;
 const int HP_FireStew = 5;
 const int STR_MeatSoup = 1;
+const int Value_Shellflesh = 10;
 const int HP_Shellflesh = 20;
 
 instance ItFo_Addon_Shellflesh(C_Item)
@@ -18,7 +19,7 @@ instance ItFo_Addon_Shellflesh(C_Item)
 	name = "ћ€со моллюска";
 	mainflag = ITEM_KAT_FOOD;
 	flags = ITEM_MULTI;
-	value = Value_Meatbugflesh * 2;
+	value = Value_Shellflesh;
 	visual = "ItAt_Shellflesh.3DS";
 	material = MAT_LEATHER;
 	scemeName = "FOODHUGE";

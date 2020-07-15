@@ -231,6 +231,14 @@ func void DIA_Brutus_Gold_Info()
 };
 
 
+func void B_BuildLearnDialog_Brutus()
+{
+	Info_ClearChoices(DIA_Brutus_Teach);
+	Info_AddChoice(DIA_Brutus_Teach,Dialog_Back,DIA_Brutus_Teach_Back);
+	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Brutus_Teach_STR_1);
+	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Brutus_Teach_STR_5);
+};
+
 instance DIA_Brutus_Teach(C_Info)
 {
 	npc = VLK_4100_Brutus;
@@ -253,10 +261,7 @@ func int DIA_Brutus_Teach_Condition()
 func void DIA_Brutus_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Brutus_Teach_15_00");	//Я хочу стать сильнее.
-	Info_ClearChoices(DIA_Brutus_Teach);
-	Info_AddChoice(DIA_Brutus_Teach,Dialog_Back,DIA_Brutus_Teach_Back);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Brutus_Teach_STR_1);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Brutus_Teach_STR_5);
+	B_BuildLearnDialog_Brutus();
 };
 
 func void DIA_Brutus_Teach_Back()
@@ -266,22 +271,19 @@ func void DIA_Brutus_Teach_Back()
 
 func void DIA_Brutus_Teach_STR_1()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED);
-	Info_ClearChoices(DIA_Brutus_Teach);
-	Info_AddChoice(DIA_Brutus_Teach,Dialog_Back,DIA_Brutus_Teach_Back);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Brutus_Teach_STR_1);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Brutus_Teach_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,1,T_MED))
+	{
+		B_BuildLearnDialog_Brutus();
+	};
 };
 
 func void DIA_Brutus_Teach_STR_5()
 {
-	B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED);
-	Info_ClearChoices(DIA_Brutus_Teach);
-	Info_AddChoice(DIA_Brutus_Teach,Dialog_Back,DIA_Brutus_Teach_Back);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR1,B_GetLearnCostAttribute(other,ATR_STRENGTH)),DIA_Brutus_Teach_STR_1);
-	Info_AddChoice(DIA_Brutus_Teach,B_BuildLearnString(PRINT_LearnSTR5,B_GetLearnCostAttribute(other,ATR_STRENGTH) * 5),DIA_Brutus_Teach_STR_5);
+	if(B_TeachAttributePoints(self,other,ATR_STRENGTH,5,T_MED))
+	{
+		B_BuildLearnDialog_Brutus();
+	};
 };
-
 
 instance DIA_Brutus_DUSCHONWIEDER(C_Info)
 {

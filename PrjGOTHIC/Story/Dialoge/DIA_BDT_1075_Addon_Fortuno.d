@@ -385,6 +385,8 @@ func void DIA_Addon_Fortuno_more_Info()
 	Log_AddEntry(TOPIC_Addon_RavenKDW,"Ворону зачем-то понадобилась гробница жреца древней религии, которую он раскопал в шахте.");
 	Log_AddEntry(TOPIC_Addon_RavenKDW,"Ворон считает, что для осуществления его планов ему необходимы каменные таблички.");
 	Npc_ExchangeRoutine(self,"START");
+	B_StartOtherRoutine(BDT_10006_Addon_Bandit,"FORTUNO");
+	B_StartOtherRoutine(BDT_10010_Addon_Bandit,"FORTUNO");
 	B_GivePlayerXP(XP_Addon_Fortuno_03);
 };
 

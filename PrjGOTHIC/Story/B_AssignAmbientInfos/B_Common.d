@@ -104,3 +104,13 @@ func void DIA_Common_SoundsGood()
 	AI_Output(other,self,"DIA_Addon_AlligatorJack_BDTRuestung_gut_15_00");	//Звучит неплохо...
 };
 
+func void DIA_Common_MaybeLater()
+{
+	AI_Output(other,self,"DIA_Bennet_WannaSmith_Later_15_00");	//Ну, может быть, позже.
+};
+
+func void DIA_Common_AboutThatRecipe()
+{
+	AI_Output(other,self,"DIA_Neoras_Rezept_15_00");	//Насчет рецепта...
+};
+

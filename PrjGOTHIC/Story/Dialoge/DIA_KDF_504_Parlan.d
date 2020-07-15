@@ -744,6 +744,23 @@ func void DIA_Parlan_KNOWSJUDGE_Info()
 };
 
 
+func void B_BuildLearnDialog_Parlan()
+{
+	Info_ClearChoices(DIA_Parlan_TEACH_MANA);
+	Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
+	if(other.aivar[REAL_MANA_MAX] >= T_MED)
+	{
+		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_00");	//“во€ магическа€ энерги€ выросла. я не могу помочь тебе повысить ее еще больше.
+		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_01");	//≈сли ты хочешь научитьс€ большему, поговори с ѕирокаром.
+		Parlan_Sends = TRUE;
+	}
+	else
+	{
+		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Parlan_TEACH_MANA_1);
+		Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Parlan_TEACH_MANA_5);
+	};
+};
+
 instance DIA_Parlan_TEACH_MANA(C_Info)
 {
 	npc = KDF_504_Parlan;
@@ -766,42 +783,29 @@ func int DIA_Parlan_TEACH_MANA_Condition()
 func void DIA_Parlan_TEACH_MANA_Info()
 {
 	AI_Output(other,self,"DIA_Parlan_TEACH_MANA_15_00");	//я хочу повысить мои магические способности.
-	Info_ClearChoices(DIA_Parlan_TEACH_MANA);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Parlan_TEACH_MANA_1);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Parlan_TEACH_MANA_5);
+	B_BuildLearnDialog_Parlan();
 };
 
 func void DIA_Parlan_TEACH_MANA_BACK()
 {
-//	if(other.attribute[ATR_MANA_MAX] >= T_MED)
-	if(other.aivar[REAL_MANA_MAX] >= T_MED)
-	{
-		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_00");	//“во€ магическа€ энерги€ выросла. я не могу помочь тебе повысить ее еще больше.
-		AI_Output(self,other,"DIA_Parlan_TEACH_MANA_05_01");	//≈сли ты хочешь научитьс€ большему, поговори с ѕирокаром.
-		Parlan_Sends = TRUE;
-	};
 	Info_ClearChoices(DIA_Parlan_TEACH_MANA);
 };
 
 func void DIA_Parlan_TEACH_MANA_1()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MED);
-	Info_ClearChoices(DIA_Parlan_TEACH_MANA);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Parlan_TEACH_MANA_1);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Parlan_TEACH_MANA_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MED))
+	{
+		B_BuildLearnDialog_Parlan();
+	};
 };
 
 func void DIA_Parlan_TEACH_MANA_5()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MED);
-	Info_ClearChoices(DIA_Parlan_TEACH_MANA);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,Dialog_Back,DIA_Parlan_TEACH_MANA_BACK);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Parlan_TEACH_MANA_1);
-	Info_AddChoice(DIA_Parlan_TEACH_MANA,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Parlan_TEACH_MANA_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MED))
+	{
+		B_BuildLearnDialog_Parlan();
+	};
 };
-
 
 instance DIA_Parlan_MAGE(C_Info)
 {

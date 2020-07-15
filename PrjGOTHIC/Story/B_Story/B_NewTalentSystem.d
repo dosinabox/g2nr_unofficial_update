@@ -132,7 +132,10 @@ func int CoerceInRange(var int value,var int min,var int max)
 
 func int IsHero(var C_NPC npc)
 {
-	if(Hlp_StrCmp(npc.name[0],"ß") == TRUE)
+//	if(Hlp_StrCmp(npc.name[0],"ß") == TRUE)
+	var C_Npc her;
+	her = Hlp_GetNpc(PC_Hero);
+	if(Hlp_GetInstanceID(npc) == Hlp_GetInstanceID(her))
 	{
 		RealHero = Hlp_GetNpc(npc);
 		return TRUE;

@@ -1827,6 +1827,21 @@ func void DIA_Vatras_CanTeach_Info()
 };
 
 
+func void B_BuildLearnDialog_Vatras()
+{
+	Info_ClearChoices(DIA_Vatras_Teach);
+	Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
+	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
+	{
+		AI_Output(self,other,"DIA_Vatras_Teach_05_00");	//“во€ магическа€ энерги€ стала слишком велика, чтобы € мог еще повысить ее.
+	}
+	else
+	{
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Vatras_Teach_1);
+		Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Vatras_Teach_5);
+	};
+};
+
 instance DIA_Vatras_Teach(C_Info)
 {
 	npc = VLK_439_Vatras;
@@ -1850,40 +1865,29 @@ func int DIA_Vatras_Teach_Condition()
 func void DIA_Vatras_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Vatras_Teach_15_00");	//я хочу повысить мои магические способности.
-	Info_ClearChoices(DIA_Vatras_Teach);
-	Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
-	Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Vatras_Teach_1);
-	Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Vatras_Teach_5);
+	B_BuildLearnDialog_Vatras();
 };
 
 func void DIA_Vatras_Teach_BACK()
 {
-//	if(other.attribute[ATR_MANA_MAX] >= T_HIGH)
-	if(other.aivar[REAL_MANA_MAX] >= T_HIGH)
-	{
-		AI_Output(self,other,"DIA_Vatras_Teach_05_00");	//“во€ магическа€ энерги€ стала слишком велика, чтобы € мог еще повысить ее.
-	};
 	Info_ClearChoices(DIA_Vatras_Teach);
 };
 
 func void DIA_Vatras_Teach_1()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_HIGH);
-	Info_ClearChoices(DIA_Vatras_Teach);
-	Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
-	Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Vatras_Teach_1);
-	Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Vatras_Teach_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_HIGH))
+	{
+		B_BuildLearnDialog_Vatras();
+	};
 };
 
 func void DIA_Vatras_Teach_5()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_HIGH);
-	Info_ClearChoices(DIA_Vatras_Teach);
-	Info_AddChoice(DIA_Vatras_Teach,Dialog_Back,DIA_Vatras_Teach_BACK);
-	Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Vatras_Teach_1);
-	Info_AddChoice(DIA_Vatras_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Vatras_Teach_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_HIGH))
+	{
+		B_BuildLearnDialog_Vatras();
+	};
 };
-
 
 instance DIA_Vatras_GODS(C_Info)
 {

@@ -224,6 +224,21 @@ func void DIA_Albrecht_TEACHPalRunes_PalRepelEvil()
 };
 
 
+func void B_BuildLearnDialog_Albrecht()
+{
+	Info_ClearChoices(DIA_Albrecht_Teach);
+	Info_AddChoice(DIA_Albrecht_Teach,Dialog_Back,DIA_Albrecht_Teach_BACK);
+	if(other.aivar[REAL_MANA_MAX] >= T_MED)
+	{
+		AI_Output(self,other,"DIA_Albrecht_Teach_03_00");	//Если ты хочешь повысить свои магические способности еще больше, тебе придется поискать другого учителя.
+	}
+	else
+	{
+		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Albrecht_Teach_1);
+		Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Albrecht_Teach_5);
+	};
+};
+
 instance DIA_Albrecht_Teach(C_Info)
 {
 	npc = PAL_202_Albrecht;
@@ -246,40 +261,29 @@ func int DIA_Albrecht_Teach_Condition()
 func void DIA_Albrecht_Teach_Info()
 {
 	AI_Output(other,self,"DIA_Albrecht_Teach_15_00");	//Я хочу повысить свои магические способности.
-	Info_ClearChoices(DIA_Albrecht_Teach);
-	Info_AddChoice(DIA_Albrecht_Teach,Dialog_Back,DIA_Albrecht_Teach_BACK);
-	Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Albrecht_Teach_1);
-	Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Albrecht_Teach_5);
+	B_BuildLearnDialog_Albrecht();
 };
 
 func void DIA_Albrecht_Teach_BACK()
 {
-//	if(other.attribute[ATR_MANA_MAX] >= T_MED)
-	if(other.aivar[REAL_MANA_MAX] >= T_MED)
-	{
-		AI_Output(self,other,"DIA_Albrecht_Teach_03_00");	//Если ты хочешь повысить свои магические способности еще больше, тебе придется поискать другого учителя.
-	};
 	Info_ClearChoices(DIA_Albrecht_Teach);
 };
 
 func void DIA_Albrecht_Teach_1()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MED);
-	Info_ClearChoices(DIA_Albrecht_Teach);
-	Info_AddChoice(DIA_Albrecht_Teach,Dialog_Back,DIA_Albrecht_Teach_BACK);
-	Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Albrecht_Teach_1);
-	Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Albrecht_Teach_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,1,T_MED))
+	{
+		B_BuildLearnDialog_Albrecht();
+	};
 };
 
 func void DIA_Albrecht_Teach_5()
 {
-	B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MED);
-	Info_ClearChoices(DIA_Albrecht_Teach);
-	Info_AddChoice(DIA_Albrecht_Teach,Dialog_Back,DIA_Albrecht_Teach_BACK);
-	Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA1,B_GetLearnCostAttribute(other,ATR_MANA_MAX)),DIA_Albrecht_Teach_1);
-	Info_AddChoice(DIA_Albrecht_Teach,B_BuildLearnString(PRINT_LearnMANA5,B_GetLearnCostAttribute(other,ATR_MANA_MAX) * 5),DIA_Albrecht_Teach_5);
+	if(B_TeachAttributePoints(self,other,ATR_MANA_MAX,5,T_MED))
+	{
+		B_BuildLearnDialog_Albrecht();
+	};
 };
-
 
 instance DIA_Albrecht_PICKPOCKET(C_Info)
 {
