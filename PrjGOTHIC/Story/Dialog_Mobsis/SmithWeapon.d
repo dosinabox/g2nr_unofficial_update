@@ -1,24 +1,59 @@
 
+var int HotRawSwordsCount;
 var int Erzwaffen;
 var int Normalwaffen;
+
+func int C_PlayerHasHotRawSwords()
+{
+	if(HotRawSwordsCount > 0)
+	{
+		return TRUE;
+	};
+	AI_PrintScreen("«акончилась раскаленна€ сталь!",-1,YPOS_ItemGiven,FONT_ScreenSmall,2);
+	return FALSE;
+};
+
+func void smithweapon_s1()
+{
+	var C_Npc her;
+	var C_Item EquipWeap;
+	her = Hlp_GetNpc(PC_Hero);
+	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
+	{
+		HotRawSwordsCount = Npc_HasItems(self,ItMiSwordrawhot) + 1;
+		Npc_RemoveInvItems(self,ItMiSwordrawhot,Npc_HasItems(self,ItMiSwordrawhot));
+		self.aivar[AIV_INVINCIBLE] = TRUE;
+		PLAYER_MOBSI_PRODUCTION = MOBSI_SmithWeapon;
+		if(Npc_HasEquippedMeleeWeapon(self))
+		{
+			EquipWeap = Npc_GetEquippedMeleeWeapon(self);
+			if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
+			{
+				AI_UnequipWeapons(self);
+			};
+		};
+		//AI_ProcessInfos(her);
+		AI_ProcessInfos(self);
+	};
+};
 
 func int smithweapon_cond()
 {
 	var C_Item EquipWeap;
 	if(Npc_IsPlayer(self))
 	{
-		if(Npc_HasItems(hero,ItMw_1H_Mace_L_04))
+		if(Npc_HasItems(self,ItMw_1H_Mace_L_04) && Npc_HasEquippedMeleeWeapon(self))
 		{
-			EquipWeap = Npc_GetEquippedMeleeWeapon(hero);
+			EquipWeap = Npc_GetEquippedMeleeWeapon(self);
 			if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
 			{
-				AI_UnequipWeapons(hero);
+				AI_UnequipWeapons(self);
 			};
 		}
 		else
 		{
-			AI_UseMob(hero,"BSANVIL",0);
-			AI_UseMob(hero,"BSANVIL",-1);
+			AI_UseMob(self,"BSANVIL",0);
+			AI_UseMob(self,"BSANVIL",-1);
 			AI_PrintScreen("нужен молот",-1,YPOS_GoldGiven,FONT_ScreenSmall,2);
 			AI_PlayAni(self,"T_DONTKNOW");
 		};
@@ -35,6 +70,32 @@ func void B_CountAnvilUses()
 			HaradsAnvilUsed += 1;
 		};
 	};
+	AnyAnvilUsed += 1;
+};
+
+func void B_CraftSword(var int sword,var int ore,var int blood)
+{
+	var int time; //del
+	var float timeFloat; //del
+	if((ore == 0) && (blood == 0))
+	{
+		AI_Wait(self,0.5);
+	}
+	else
+	{
+		if(((ore > 0) && (Npc_HasItems(self,ItMi_Nugget) < ore)) || ((blood > 0) && (Npc_HasItems(self,ItAt_DragonBlood) < blood)))
+		{
+			AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
+			return;
+		};
+		Npc_RemoveInvItems(self,ItMi_Nugget,ore);
+		Npc_RemoveInvItems(self,ItAt_DragonBlood,blood);
+		AI_Wait(self,1.5);
+	};
+	HotRawSwordsCount -= 1;
+	CreateInvItem(self,sword);
+	AI_PrintScreen(PRINT_SmithSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+	B_CountAnvilUses();
 };
 
 instance PC_SmithWeapon_End(C_Info)
@@ -58,16 +119,18 @@ func int PC_SmithWeapon_End_Condition()
 
 func void PC_SmithWeapon_End_Info()
 {
-	CreateInvItems(self,ItMiSwordraw,1);
+	if(HotRawSwordsCount > 0)
+	{
+		CreateInvItems(self,ItMiSwordraw,HotRawSwordsCount);
+	};
 	b_endproductiondialog();
-//	Erzwaffen = FALSE;
-//	Normalwaffen = FALSE;
 };
 
 
 instance PC_Common(C_Info)
 {
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_Common_Condition;
 	information = PC_Common_Info;
 	permanent = TRUE;
@@ -92,6 +155,7 @@ func void PC_Common_Info()
 instance PC_Ore(C_Info)
 {
 	npc = PC_Hero;
+	nr = 2;
 	condition = PC_Ore_Condition;
 	information = PC_Ore_Info;
 	permanent = TRUE;
@@ -166,9 +230,11 @@ func void PC_OreBACK_Info()
 instance PC_ItMw_1H_Common(C_Info)
 {
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_ItMw_1H_Common_Condition;
 	information = PC_ItMw_1H_Common_Info;
 	permanent = TRUE;
+	description = NAME_ItMw_1H_Common_01;
 };
 
 
@@ -182,20 +248,25 @@ func int PC_ItMw_1H_Common_Condition()
 
 func void PC_ItMw_1H_Common_Info()
 {
-	CreateInvItems(hero,ItMw_1H_Common_01,1);
-	Print(PRINT_SmithSuccess);
-	B_CountAnvilUses();
-	b_endproductiondialog();
-//	Normalwaffen = FALSE;
+	if(!C_PlayerHasHotRawSwords())
+	{
+		b_endproductiondialog();
+	}
+	else
+	{
+		B_CraftSword(ItMw_1H_Common_01,0,0);
+	};
 };
 
 
 instance PC_WEAPON_1H_Harad_01(C_Info)
 {
 	npc = PC_Hero;
+	nr = 2;
 	condition = PC_WEAPON_1H_Harad_01_Condition;
 	information = PC_WEAPON_1H_Harad_01_Info;
 	permanent = TRUE;
+	description = NAME_Addon_Harad_01;
 };
 
 
@@ -209,20 +280,25 @@ func int PC_WEAPON_1H_Harad_01_Condition()
 
 func void PC_WEAPON_1H_Harad_01_Info()
 {
-	CreateInvItems(hero,ItMw_Schwert1,1);
-	Print(PRINT_SmithSuccess);
-	B_CountAnvilUses();
-	b_endproductiondialog();
-//	Normalwaffen = FALSE;
+	if(!C_PlayerHasHotRawSwords())
+	{
+		b_endproductiondialog();
+	}
+	else
+	{
+		B_CraftSword(ItMw_Schwert1,0,0);
+	};
 };
 
 
 instance PC_WEAPON_1H_Harad_02(C_Info)
 {
 	npc = PC_Hero;
+	nr = 3;
 	condition = PC_WEAPON_1H_Harad_02_Condition;
 	information = PC_WEAPON_1H_Harad_02_Info;
 	permanent = TRUE;
+	description = NAME_Addon_Harad_02;
 };
 
 
@@ -236,20 +312,25 @@ func int PC_WEAPON_1H_Harad_02_Condition()
 
 func void PC_WEAPON_1H_Harad_02_Info()
 {
-	CreateInvItems(hero,ItMw_Schwert4,1);
-	Print(PRINT_SmithSuccess);
-	B_CountAnvilUses();
-	b_endproductiondialog();
-//	Normalwaffen = FALSE;
+	if(!C_PlayerHasHotRawSwords())
+	{
+		b_endproductiondialog();
+	}
+	else
+	{
+		B_CraftSword(ItMw_Schwert4,0,0);
+	};
 };
 
 
 instance PC_WEAPON_1H_Harad_03(C_Info)
 {
 	npc = PC_Hero;
+	nr = 4;
 	condition = PC_WEAPON_1H_Harad_03_Condition;
 	information = PC_WEAPON_1H_Harad_03_Info;
 	permanent = TRUE;
+	description = NAME_Addon_Harad_03;
 };
 
 
@@ -263,20 +344,25 @@ func int PC_WEAPON_1H_Harad_03_Condition()
 
 func void PC_WEAPON_1H_Harad_03_Info()
 {
-	CreateInvItems(hero,ItMw_Rubinklinge,1);
-	Print(PRINT_SmithSuccess);
-	B_CountAnvilUses();
-	b_endproductiondialog();
-//	Normalwaffen = FALSE;
+	if(!C_PlayerHasHotRawSwords())
+	{
+		b_endproductiondialog();
+	}
+	else
+	{
+		B_CraftSword(ItMw_Rubinklinge,0,0);
+	};
 };
 
 
 instance PC_WEAPON_1H_Harad_04(C_Info)
 {
 	npc = PC_Hero;
+	nr = 5;
 	condition = PC_WEAPON_1H_Harad_04_Condition;
 	information = PC_WEAPON_1H_Harad_04_Info;
 	permanent = TRUE;
+	description = NAME_Addon_Harad_04;
 };
 
 
@@ -290,20 +376,25 @@ func int PC_WEAPON_1H_Harad_04_Condition()
 
 func void PC_WEAPON_1H_Harad_04_Info()
 {
-	CreateInvItems(hero,ItMw_ElBastardo,1);
-	Print(PRINT_SmithSuccess);
-	B_CountAnvilUses();
-	b_endproductiondialog();
-//	Normalwaffen = FALSE;
+	if(!C_PlayerHasHotRawSwords())
+	{
+		b_endproductiondialog();
+	}
+	else
+	{
+		B_CraftSword(ItMw_ElBastardo,0,0);
+	};
 };
 
 
 instance PC_ItMw_1H_Special_01(C_Info)
 {
 	npc = PC_Hero;
+	nr = 1;
 	condition = PC_ItMw_1H_Special_01_Condition;
 	information = PC_ItMw_1H_Special_01_Info;
 	permanent = TRUE;
+	description = ConcatStrings(NAME_ItMw_1H_Special_01,PRINT_Smith_1H_Special_01);
 };
 
 
@@ -317,29 +408,25 @@ func int PC_ItMw_1H_Special_01_Condition()
 
 func void PC_ItMw_1H_Special_01_Info()
 {
-	if(Npc_HasItems(hero,ItMi_Nugget))
+	if(!C_PlayerHasHotRawSwords())
 	{
-		Npc_RemoveInvItems(hero,ItMi_Nugget,1);
-		CreateInvItems(hero,ItMw_1H_Special_01,1);
-		Print(PRINT_SmithSuccess);
-		B_CountAnvilUses();
+		b_endproductiondialog();
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMiSwordraw,1);
+		B_CraftSword(ItMw_1H_Special_01,1,0);
 	};
-	b_endproductiondialog();
-//	Erzwaffen = FALSE;
 };
 
 
 instance PC_ItMw_2H_Special_01(C_Info)
 {
 	npc = PC_Hero;
+	nr = 3;
 	condition = PC_ItMw_2H_Special_01_Condition;
 	information = PC_ItMw_2H_Special_01_Info;
 	permanent = TRUE;
+	description = ConcatStrings(NAME_ItMw_2H_Special_01,PRINT_Smith_2H_Special_01);
 };
 
 
@@ -353,29 +440,25 @@ func int PC_ItMw_2H_Special_01_Condition()
 
 func void PC_ItMw_2H_Special_01_Info()
 {
-	if(Npc_HasItems(hero,ItMi_Nugget) >= 2)
+	if(!C_PlayerHasHotRawSwords())
 	{
-		Npc_RemoveInvItems(hero,ItMi_Nugget,2);
-		CreateInvItems(hero,ItMw_2H_Special_01,1);
-		Print(PRINT_SmithSuccess);
-		B_CountAnvilUses();
+		b_endproductiondialog();
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMiSwordraw,1);
+		B_CraftSword(ItMw_2H_Special_01,2,0);
 	};
-	b_endproductiondialog();
-//	Erzwaffen = FALSE;
 };
 
 
 instance PC_ItMw_1H_Special_02(C_Info)
 {
 	npc = PC_Hero;
+	nr = 4;
 	condition = PC_ItMw_1H_Special_02_Condition;
 	information = PC_ItMw_1H_Special_02_Info;
 	permanent = TRUE;
+	description = ConcatStrings(NAME_ItMw_1H_Special_02,PRINT_Smith_1H_Special_02);
 };
 
 
@@ -389,29 +472,25 @@ func int PC_ItMw_1H_Special_02_Condition()
 
 func void PC_ItMw_1H_Special_02_Info()
 {
-	if(Npc_HasItems(hero,ItMi_Nugget) >= 2)
+	if(!C_PlayerHasHotRawSwords())
 	{
-		Npc_RemoveInvItems(hero,ItMi_Nugget,2);
-		CreateInvItems(hero,ItMw_1H_Special_02,1);
-		Print(PRINT_SmithSuccess);
-		B_CountAnvilUses();
+		b_endproductiondialog();
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMiSwordraw,1);
+		B_CraftSword(ItMw_1H_Special_02,2,0);
 	};
-	b_endproductiondialog();
-//	Erzwaffen = FALSE;
 };
 
 
 instance PC_ItMw_2H_Special_02(C_Info)
 {
 	npc = PC_Hero;
+	nr = 5;
 	condition = PC_ItMw_2H_Special_02_Condition;
 	information = PC_ItMw_2H_Special_02_Info;
 	permanent = TRUE;
+	description = ConcatStrings(NAME_ItMw_2H_Special_02,PRINT_Smith_2H_Special_02);
 };
 
 
@@ -425,29 +504,25 @@ func int PC_ItMw_2H_Special_02_Condition()
 
 func void PC_ItMw_2H_Special_02_Info()
 {
-	if(Npc_HasItems(hero,ItMi_Nugget) >= 3)
+	if(!C_PlayerHasHotRawSwords())
 	{
-		Npc_RemoveInvItems(hero,ItMi_Nugget,3);
-		CreateInvItems(hero,ItMw_2H_Special_02,1);
-		Print(PRINT_SmithSuccess);
-		B_CountAnvilUses();
+		b_endproductiondialog();
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMiSwordraw,1);
+		B_CraftSword(ItMw_2H_Special_02,3,0);
 	};
-	b_endproductiondialog();
-//	Erzwaffen = FALSE;
 };
 
 
 instance PC_ItMw_1H_Special_03(C_Info)
 {
 	npc = PC_Hero;
+	nr = 6;
 	condition = PC_ItMw_1H_Special_03_Condition;
 	information = PC_ItMw_1H_Special_03_Info;
 	permanent = TRUE;
+	description = ConcatStrings(NAME_ItMw_1H_Special_03,PRINT_Smith_1H_Special_03);
 };
 
 
@@ -461,29 +536,25 @@ func int PC_ItMw_1H_Special_03_Condition()
 
 func void PC_ItMw_1H_Special_03_Info()
 {
-	if(Npc_HasItems(hero,ItMi_Nugget) >= 3)
+	if(!C_PlayerHasHotRawSwords())
 	{
-		Npc_RemoveInvItems(hero,ItMi_Nugget,3);
-		CreateInvItems(hero,ItMw_1H_Special_03,1);
-		Print(PRINT_SmithSuccess);
-		B_CountAnvilUses();
+		b_endproductiondialog();
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMiSwordraw,1);
+		B_CraftSword(ItMw_1H_Special_03,3,0);
 	};
-	b_endproductiondialog();
-//	Erzwaffen = FALSE;
 };
 
 
 instance PC_ItMw_2H_Special_03(C_Info)
 {
 	npc = PC_Hero;
+	nr = 7;
 	condition = PC_ItMw_2H_Special_03_Condition;
 	information = PC_ItMw_2H_Special_03_Info;
 	permanent = TRUE;
+	description = ConcatStrings(NAME_ItMw_2H_Special_03,PRINT_Smith_2H_Special_03);
 };
 
 
@@ -497,29 +568,25 @@ func int PC_ItMw_2H_Special_03_Condition()
 
 func void PC_ItMw_2H_Special_03_Info()
 {
-	if(Npc_HasItems(hero,ItMi_Nugget) >= 4)
+	if(!C_PlayerHasHotRawSwords())
 	{
-		Npc_RemoveInvItems(hero,ItMi_Nugget,4);
-		CreateInvItems(hero,ItMw_2H_Special_03,1);
-		Print(PRINT_SmithSuccess);
-		B_CountAnvilUses();
+		b_endproductiondialog();
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMiSwordraw,1);
+		B_CraftSword(ItMw_2H_Special_03,4,0);
 	};
-	b_endproductiondialog();
-//	Erzwaffen = FALSE;
 };
 
 
 instance PC_ItMw_1H_Special_04(C_Info)
 {
 	npc = PC_Hero;
+	nr = 8;
 	condition = PC_ItMw_1H_Special_04_Condition;
 	information = PC_ItMw_1H_Special_04_Info;
 	permanent = TRUE;
+	description = ConcatStrings(NAME_ItMw_1H_Special_04,PRINT_Smith_1H_Special_04);
 };
 
 
@@ -533,30 +600,25 @@ func int PC_ItMw_1H_Special_04_Condition()
 
 func void PC_ItMw_1H_Special_04_Info()
 {
-	if((Npc_HasItems(hero,ItMi_Nugget) >= 4) && (Npc_HasItems(hero,ItAt_DragonBlood) >= 5))
+	if(!C_PlayerHasHotRawSwords())
 	{
-		Npc_RemoveInvItems(hero,ItMi_Nugget,4);
-		Npc_RemoveInvItems(hero,ItAt_DragonBlood,5);
-		CreateInvItems(hero,ItMw_1H_Special_04,1);
-		Print(PRINT_SmithSuccess);
-		B_CountAnvilUses();
+		b_endproductiondialog();
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMiSwordraw,1);
+		B_CraftSword(ItMw_1H_Special_04,4,5);
 	};
-	b_endproductiondialog();
-//	Erzwaffen = FALSE;
 };
 
 
 instance PC_ItMw_2H_Special_04(C_Info)
 {
 	npc = PC_Hero;
+	nr = 9;
 	condition = PC_ItMw_2H_Special_04_Condition;
 	information = PC_ItMw_2H_Special_04_Info;
 	permanent = TRUE;
+	description = ConcatStrings(NAME_ItMw_2H_Special_04,PRINT_Smith_2H_Special_04);
 };
 
 
@@ -570,30 +632,25 @@ func int PC_ItMw_2H_Special_04_Condition()
 
 func void PC_ItMw_2H_Special_04_Info()
 {
-	if((Npc_HasItems(hero,ItMi_Nugget) >= 5) && (Npc_HasItems(hero,ItAt_DragonBlood) >= 5))
+	if(!C_PlayerHasHotRawSwords())
 	{
-		Npc_RemoveInvItems(hero,ItMi_Nugget,5);
-		Npc_RemoveInvItems(hero,ItAt_DragonBlood,5);
-		CreateInvItems(hero,ItMw_2H_Special_04,1);
-		Print(PRINT_SmithSuccess);
-		B_CountAnvilUses();
+		b_endproductiondialog();
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMiSwordraw,1);
+		B_CraftSword(ItMw_2H_Special_04,5,5);
 	};
-	b_endproductiondialog();
-//	Erzwaffen = FALSE;
 };
 
 
 instance PC_ItMw_Streitaxt1(C_Info)
 {
 	npc = PC_Hero;
+	nr = 2;
 	condition = PC_ItMw_Streitaxt1_Condition;
 	information = PC_ItMw_Streitaxt1_Info;
 	permanent = TRUE;
+	description = ConcatStrings(NAME_ItMw_Banditenaxt,PRINT_Smith_Streitaxt1);
 };
 
 
@@ -607,57 +664,22 @@ func int PC_ItMw_Streitaxt1_Condition()
 
 func void PC_ItMw_Streitaxt1_Info()
 {
-	if(Npc_HasItems(hero,ItMi_Nugget) && (Npc_HasItems(hero,ItAt_Teeth) >= 3) && Npc_HasItems(hero,ItMiSwordrawhot))
+	if(!C_PlayerHasHotRawSwords())
 	{
-		Npc_RemoveInvItems(hero,ItMi_Nugget,1);
-		Npc_RemoveInvItems(hero,ItAt_Teeth,3);
-		Npc_RemoveInvItems(hero,ItMiSwordrawhot,1);
-//		CreateInvItems(hero,ItMw_Streitaxt1,1);
-		CreateInvItems(hero,ItMw_Banditenaxt,1);
-		Print(PRINT_SmithSuccess);
-		B_CountAnvilUses();
+		b_endproductiondialog();
 	}
 	else
 	{
-		Print(PRINT_ProdItemsMissing);
-		CreateInvItems(self,ItMiSwordraw,1);
-	};
-	b_endproductiondialog();
-//	Erzwaffen = FALSE;
-};
-
-
-func void smithweapon_s1()
-{
-	var C_Npc her;
-	var C_Item EquipWeap;
-	her = Hlp_GetNpc(PC_Hero);
-	EquipWeap = Npc_GetEquippedMeleeWeapon(self);
-	if(Hlp_GetInstanceID(self) == Hlp_GetInstanceID(her))
-	{
-		self.aivar[AIV_INVINCIBLE] = TRUE;
-		PLAYER_MOBSI_PRODUCTION = MOBSI_SmithWeapon;
-		if(Hlp_IsItem(EquipWeap,ItMw_1H_Mace_L_04))
+		if((Npc_HasItems(self,ItAt_Teeth) < 3) || (HotRawSwordsCount < 2))
 		{
-			AI_UnequipWeapons(self);
+			AI_PrintScreen(PRINT_ProdItemsMissing,-1,YPOS_ItemGiven,FONT_ScreenSmall,1);
+		}
+		else
+		{
+			Npc_RemoveInvItems(self,ItAt_Teeth,3);
+			HotRawSwordsCount -= 1;
+			B_CraftSword(ItMw_Banditenaxt,1,0);
 		};
-		//AI_ProcessInfos(her);
-		AI_ProcessInfos(self);
 	};
-	PC_ItMw_1H_Common.description = NAME_ItMw_1H_Common_01;
-	PC_ItMw_1H_Special_01.description = ConcatStrings(NAME_ItMw_1H_Special_01,PRINT_Smith_1H_Special_01);
-	PC_ItMw_2H_Special_01.description = ConcatStrings(NAME_ItMw_2H_Special_01,PRINT_Smith_2H_Special_01);
-	PC_ItMw_1H_Special_02.description = ConcatStrings(NAME_ItMw_1H_Special_02,PRINT_Smith_1H_Special_02);
-	PC_ItMw_2H_Special_02.description = ConcatStrings(NAME_ItMw_2H_Special_02,PRINT_Smith_2H_Special_02);
-	PC_ItMw_1H_Special_03.description = ConcatStrings(NAME_ItMw_1H_Special_03,PRINT_Smith_1H_Special_03);
-	PC_ItMw_2H_Special_03.description = ConcatStrings(NAME_ItMw_2H_Special_03,PRINT_Smith_2H_Special_03);
-	PC_ItMw_1H_Special_04.description = ConcatStrings(NAME_ItMw_1H_Special_04,PRINT_Smith_1H_Special_04);
-	PC_ItMw_2H_Special_04.description = ConcatStrings(NAME_ItMw_2H_Special_04,PRINT_Smith_2H_Special_04);
-	PC_WEAPON_1H_Harad_01.description = NAME_Addon_Harad_01;
-	PC_WEAPON_1H_Harad_02.description = NAME_Addon_Harad_02;
-	PC_WEAPON_1H_Harad_03.description = NAME_Addon_Harad_03;
-	PC_WEAPON_1H_Harad_04.description = NAME_Addon_Harad_04;
-//	PC_ItMw_Streitaxt1.description = ConcatStrings(NAME_ItMw_Streitaxt1,PRINT_Smith_Streitaxt1);
-	PC_ItMw_Streitaxt1.description = ConcatStrings(NAME_ItMw_Banditenaxt,PRINT_Smith_Streitaxt1);
 };
 
