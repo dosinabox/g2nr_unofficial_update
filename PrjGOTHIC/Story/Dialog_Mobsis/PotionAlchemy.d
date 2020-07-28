@@ -1260,6 +1260,24 @@ func void PC_ItMi_Tabak_BACK()
 	Info_ClearChoices(PC_ItMi_Tabak);
 };
 
+func void B_MakeTobacco(var int tobacco)
+{
+	AI_Wait(self,0.5);
+	FlasksCount -= 1;
+	Npc_RemoveInvItems(self,ItMi_ApfelTabak,1);
+	CreateInvItem(self,tobacco);
+	AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+	if(Npc_HasItems(self,ItMi_ApfelTabak))
+	{
+		PC_ItMi_Tabak_Info();
+	}
+	else
+	{
+		Info_ClearChoices(PC_ItMi_Tabak);
+		Info_AddChoice(PC_ItMi_Tabak,Dialog_Back,PC_ItMi_Tabak_BACK);
+	};
+};
+
 func void PC_ItMi_Tabak_Honey()
 {
 	if(!C_PlayerHasFlasks())
@@ -1268,12 +1286,8 @@ func void PC_ItMi_Tabak_Honey()
 	}
 	else
 	{
-		AI_Wait(self,0.5);
-		FlasksCount -= 1;
-		Npc_RemoveInvItems(self,ItMi_ApfelTabak,1);
 		Npc_RemoveInvItems(self,ItFo_Honey,1);
-		CreateInvItems(self,ItMi_Honigtabak,1);
-		AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+		B_MakeTobacco(ItMi_Honigtabak);
 	};
 };
 
@@ -1285,12 +1299,8 @@ func void PC_ItMi_Tabak_Swampherb()
 	}
 	else
 	{
-		AI_Wait(self,0.5);
-		FlasksCount -= 1;
-		Npc_RemoveInvItems(self,ItMi_ApfelTabak,1);
 		Npc_RemoveInvItems(self,ItPl_SwampHerb,1);
-		CreateInvItems(self,ItMi_SumpfTabak,1);
-		AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+		B_MakeTobacco(ItMi_SumpfTabak);
 	};
 };
 
@@ -1302,12 +1312,8 @@ func void PC_ItMi_Tabak_Mushroom_01()
 	}
 	else
 	{
-		AI_Wait(self,0.5);
-		FlasksCount -= 1;
-		Npc_RemoveInvItems(self,ItMi_ApfelTabak,1);
 		Npc_RemoveInvItems(self,ItPl_Mushroom_01,1);
-		CreateInvItems(self,ItMi_PilzTabak,1);
-		AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+		B_MakeTobacco(ItMi_PilzTabak);
 	};
 };
 
@@ -1319,12 +1325,8 @@ func void PC_ItMi_Tabak_Double()
 	}
 	else
 	{
-		AI_Wait(self,0.5);
-		FlasksCount -= 1;
-		Npc_RemoveInvItems(self,ItMi_ApfelTabak,1);
 		Npc_RemoveInvItems(self,ItFo_Apple,1);
-		CreateInvItems(self,ItMi_Doppeltabak,1);
-		AI_PrintScreen(PRINT_TabakSuccess,-1,YPOS_GoldGiven,FONT_ScreenSmall,1);
+		B_MakeTobacco(ItMi_Doppeltabak);
 	};
 };
 

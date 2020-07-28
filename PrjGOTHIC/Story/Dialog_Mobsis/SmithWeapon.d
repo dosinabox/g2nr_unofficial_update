@@ -75,8 +75,6 @@ func void B_CountAnvilUses()
 
 func void B_CraftSword(var int sword,var int ore,var int blood)
 {
-	var int time; //del
-	var float timeFloat; //del
 	if((ore == 0) && (blood == 0))
 	{
 		AI_Wait(self,0.5);

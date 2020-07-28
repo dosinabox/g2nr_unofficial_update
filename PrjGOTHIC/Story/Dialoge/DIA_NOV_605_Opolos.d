@@ -12,14 +12,15 @@ instance DIA_Opolos_Kap1_EXIT(C_Info)
 
 func int DIA_Opolos_Kap1_EXIT_Condition()
 {
-	if(Kapitel <= 1)
-	{
-		return TRUE;
-	};
+	return TRUE;
 };
 
 func void DIA_Opolos_Kap1_EXIT_Info()
 {
+	if(Parlan_DontTalkToNovice == LOG_Running)
+	{
+		Parlan_DontTalkToNovice = LOG_SUCCESS;
+	};
 	AI_StopProcessInfos(self);
 };
 
@@ -484,60 +485,6 @@ func void DIA_Opolos_HowIsIt_Info()
 };
 
 
-instance DIA_Opolos_Kap2_EXIT(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 999;
-	condition = DIA_Opolos_Kap2_EXIT_Condition;
-	information = DIA_Opolos_Kap2_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Opolos_Kap2_EXIT_Condition()
-{
-	if(Kapitel == 2)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Opolos_Kap2_EXIT_Info()
-{
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Opolos_Kap3_EXIT(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 999;
-	condition = DIA_Opolos_Kap3_EXIT_Condition;
-	information = DIA_Opolos_Kap3_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Opolos_Kap3_EXIT_Condition()
-{
-	if(Kapitel == 3)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Opolos_Kap3_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
-};
-
-
 instance DIA_Opolos_Kap3_PERM(C_Info)
 {
 	npc = NOV_605_Opolos;
@@ -628,64 +575,6 @@ func void DIA_Opolos_Kap3_PERM_PEDRO()
 	AI_Output(other,self,"DIA_Opolos_Kap3_PERM_PEDRO_15_03");	//Мы еще не мертвы.
 	B_GivePlayerXP(XP_Ambient);
 	Opolos_Pedro = TRUE;
-};
-
-
-instance DIA_Opolos_Kap4_EXIT(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 999;
-	condition = DIA_Opolos_Kap4_EXIT_Condition;
-	information = DIA_Opolos_Kap4_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Opolos_Kap4_EXIT_Condition()
-{
-	if(Kapitel == 4)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Opolos_Kap4_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
-};
-
-
-instance DIA_Opolos_Kap5_EXIT(C_Info)
-{
-	npc = NOV_605_Opolos;
-	nr = 999;
-	condition = DIA_Opolos_Kap5_EXIT_Condition;
-	information = DIA_Opolos_Kap5_EXIT_Info;
-	permanent = TRUE;
-	description = Dialog_Ende;
-};
-
-
-func int DIA_Opolos_Kap5_EXIT_Condition()
-{
-	if(Kapitel == 5)
-	{
-		return TRUE;
-	};
-};
-
-func void DIA_Opolos_Kap5_EXIT_Info()
-{
-	if(Parlan_DontTalkToNovice == LOG_Running)
-	{
-		Parlan_DontTalkToNovice = LOG_SUCCESS;
-	};
-	AI_StopProcessInfos(self);
 };
 
 

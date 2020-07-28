@@ -2356,6 +2356,8 @@ func void DIA_Lares_TEACHSTR_5()
 	};
 };
 
+var int Lares_AnyNews_OneTime;
+
 instance DIA_Lares_AnyNews(C_Info)
 {
 	npc = VLK_449_Lares;
@@ -2380,8 +2382,19 @@ func void DIA_Lares_AnyNews_Info()
 	AI_Output(other,self,"DIA_Lares_AnyNews_15_00");	//Есть новости?
 	if(MIS_RescueBennet == LOG_SUCCESS)
 	{
-		AI_Output(self,other,"DIA_Lares_AnyNews_09_01");	//Основные новости связаны с тобой. Беннета отпустили, и он возвращается на ферму.
-		AI_Output(self,other,"DIA_Lares_AnyNews_09_02");	//Иди к нему, я думаю, он хочет отблагодарить тебя лично.
+		if(Lares_AnyNews_OneTime == FALSE)
+		{
+			AI_Output(self,other,"DIA_Lares_AnyNews_09_01");	//Основные новости связаны с тобой. Беннета отпустили, и он возвращается на ферму.
+			if(!Npc_KnowsInfo(other,DIA_Bennet_Present))
+			{
+				AI_Output(self,other,"DIA_Lares_AnyNews_09_02");	//Иди к нему, я думаю, он хочет отблагодарить тебя лично.
+			};
+			Lares_AnyNews_OneTime = TRUE;
+		}
+		else
+		{
+			DIA_Common_09_AllQuiet();
+		};
 	}
 	else
 	{

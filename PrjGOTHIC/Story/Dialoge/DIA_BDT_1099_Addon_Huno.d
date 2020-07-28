@@ -276,7 +276,7 @@ func void DIA_Addon_Huno_Attentat_Info()
 	AI_Output(other,self,"DIA_Addon_Huno_Attentat_15_01");	//Ничего особенного. Просто подумал, а вдруг ты знаешь, кто стоит за нападением.
 	AI_Output(self,other,"DIA_Addon_Huno_Attentat_06_02");	//А с чего ты взял, что я должен знать?
 	AI_Output(other,self,"DIA_Addon_Huno_Attentat_15_03");	//Ну, скажем, интуиция.
-	DIA_Common_IKnowNothingAboutIt();
+	DIA_Common_06_IKnowNothingAboutIt();
 };
 
 
@@ -526,7 +526,7 @@ func int DIA_Huno_RepairNecklace_Condition()
 func void DIA_Huno_RepairNecklace_Info()
 {
 	DIA_Common_CanYouRepairJewelry();
-	DIA_Common_IKnowNothingAboutIt();
+	DIA_Common_06_IKnowNothingAboutIt();
 	MIS_SCKnowsInnosEyeIsBroken = TRUE;
 	AI_StopProcessInfos(self);
 };

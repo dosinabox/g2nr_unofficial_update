@@ -491,7 +491,7 @@ func void DIA_Halvor_Crew_HelpMe()
 	}
 	else
 	{
-		DIA_Common_IKnowNothingAboutIt();
+		DIA_Common_06_IKnowNothingAboutIt();
 	};
 };
 
