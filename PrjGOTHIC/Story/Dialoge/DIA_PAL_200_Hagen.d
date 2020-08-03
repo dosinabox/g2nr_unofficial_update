@@ -783,7 +783,7 @@ func void DIA_Lord_Hagen_Knight_Yes()
 		CreateInvItem(hero,ITAR_PAL_M);
 	};
 	AI_PrintScreen("Доспехи рыцаря получено",-1,43,FONT_ScreenSmall,2);
-	if(other.HitChance[NPC_TALENT_2H] >= other.HitChance[NPC_TALENT_1H])
+	if(other.HitChance[NPC_TALENT_2H] > other.HitChance[NPC_TALENT_1H])
 	{
 		CreateInvItems(self,ItMw_2h_Pal_Sword,1);
 		B_GiveInvItems(self,other,ItMw_2h_Pal_Sword,1);

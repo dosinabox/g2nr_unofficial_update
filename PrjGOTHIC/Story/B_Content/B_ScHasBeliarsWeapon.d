@@ -684,7 +684,7 @@ func void B_UpgrateBeliarsWeapon()
 	}
 	else
 	{
-		if(hero.HitChance[NPC_TALENT_1H] > hero.HitChance[NPC_TALENT_2H])
+		if(hero.HitChance[NPC_TALENT_1H] >= hero.HitChance[NPC_TALENT_2H])
 		{
 			if(BeliarWeapCurrentLvL <= 1)
 			{

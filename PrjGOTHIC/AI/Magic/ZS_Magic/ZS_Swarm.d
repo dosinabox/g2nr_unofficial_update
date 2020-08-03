@@ -46,19 +46,19 @@ func int ZS_Swarm_Loop()
 	{
 		if(Npc_GetStateTime(self) == 2)
 		{
-			B_Say(self,other,"$RunAway");
+			B_Say(self,other,"$RUNAWAY");
 		}
 		else if(Npc_GetStateTime(self) == 6)
 		{
-			B_Say(self,other,"$Aargh_2");
+			B_Say(self,other,"$AARGH_2");
 		}
 		else if(Npc_GetStateTime(self) == 7)
 		{
-			B_Say(self,other,"$Aargh_3");
+			B_Say(self,other,"$AARGH_3");
 		}
 		else if(Npc_GetStateTime(self) == 8)
 		{
-			B_Say(self,other,"$Aargh_1");
+			B_Say(self,other,"$AARGH_1");
 		};
 		self.aivar[AIV_SwarmStateTime] = Npc_GetStateTime(self);
 		if(self.attribute[ATR_HITPOINTS] > SPL_Swarm_Damage)
