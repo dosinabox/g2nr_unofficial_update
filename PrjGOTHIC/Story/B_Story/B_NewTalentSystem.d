@@ -807,6 +807,18 @@ func void B_InitTalentSystem()
 {
 	ValidateNpc(hero);
 	RealHero = Hlp_GetNpc(hero);
+	TAL_Training[NPC_TALENT_1H] = 0;
+	TAL_Training[NPC_TALENT_2H] = 0;
+	TAL_Training[NPC_TALENT_BOW] = 0;
+	TAL_Training[NPC_TALENT_CROSSBOW] = 0;
+	TAL_TempBonus[NPC_TALENT_1H] = 0;
+	TAL_TempBonus[NPC_TALENT_2H] = 0;
+	TAL_TempBonus[NPC_TALENT_BOW] = 0;
+	TAL_TempBonus[NPC_TALENT_CROSSBOW] = 0;
+	TAL_PermBonus[NPC_TALENT_1H] = 0;
+	TAL_PermBonus[NPC_TALENT_2H] = 0;
+	TAL_PermBonus[NPC_TALENT_BOW] = 0;
+	TAL_PermBonus[NPC_TALENT_CROSSBOW] = 0;
 	TAL_Training[NPC_TALENT_1H] = RealHero.HitChance[NPC_TALENT_1H];
 	TAL_Training[NPC_TALENT_2H] = RealHero.HitChance[NPC_TALENT_2H];
 	TAL_Training[NPC_TALENT_BOW] = RealHero.HitChance[NPC_TALENT_BOW];

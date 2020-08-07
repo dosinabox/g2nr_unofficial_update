@@ -979,7 +979,7 @@ func void StoryHelper_KAPITEL4ANFANG()
 	B_Kapitelwechsel(3,NEWWORLD_ZEN);
 	PLAYER_TALENT_ALCHEMY[CHARGE_Innoseye] = TRUE;
 	PrintScreen(PRINT_LearnAlchemyInnosEye,-1,-1,FONT_Screen,2);
-	CreateInvItems(self,ItMi_InnosEye_MIS,1);
+	CreateInvItems(hero,ItMi_InnosEye_MIS,1);
 	MIS_ReadyforChapter4 = TRUE;
 	B_NPC_IsAliveCheck(NEWWORLD_ZEN);
 	B_Kapitelwechsel(4,NEWWORLD_ZEN);
