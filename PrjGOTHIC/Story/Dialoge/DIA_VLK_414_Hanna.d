@@ -487,7 +487,7 @@ func void DIA_Hanna_Schuldenbuch_Info()
 {
 	AI_Output(other,self,"DIA_Hanna_Add_15_41");	//Посмотри, какая у меня есть книга!
 	AI_Output(self,other,"DIA_Hanna_Add_17_42");	//Гроссбух Лемара. Как тебе это удалось?
-	AI_Output(other,self,"DIA_Hanna_Add_15_43");	//Ну...
+	DIA_Common_Well();
 	AI_Output(self,other,"DIA_Hanna_Add_17_44");	//То, что Лемар лишился своего гроссбуха - это хорошо. Но лучше, если он будет у меня...
 };
 

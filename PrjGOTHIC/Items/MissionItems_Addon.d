@@ -373,6 +373,7 @@ func void Use_RavensKidnapperMission_Addon()
 	Doc_SetPage(nDocID,0,"letters.TGA",0);
 	Doc_SetFont(nDocID,-1,FONT_Book);
 	Doc_SetMargins(nDocID,-1,50,50,50,50,1);
+	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLine(nDocID,0,"ƒекстер, ублюдок!");
 	Doc_PrintLine(nDocID,0,"");
 	Doc_PrintLines(nDocID,0," огда € еще был рудным бароном, ты не был настолько ненадежен.");

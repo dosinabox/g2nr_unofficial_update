@@ -109,6 +109,31 @@ func void DIA_Common_AboutThatRecipe()
 	AI_Output(other,self,"DIA_Neoras_Rezept_15_00");	//Насчет рецепта...
 };
 
+func void DIA_Common_Well()
+{
+	AI_Output(other,self,"DIA_Hanna_Add_15_43");	//Ну...
+};
+
+func void DIA_Common_LetsGoTogether()
+{
+	AI_Output(other,self,"DIA_Addon_Diego_Together_15_00");	//Давай пойдем вместе.
+};
+
+func void DIA_Common_NotEven10Gold()
+{
+	AI_Output(other,self,"DIA_1013_BANDIT_DEXTER_15_06");	//Эээ... Я только что понял, что у меня не осталось даже десяти монет.
+};
+
+func void DIA_Common_ImAfraidThatsTheEndForUs()
+{
+	AI_Output(other,self,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_15_00");	//Боюсь, дальше наши пути расходятся.
+};
+
+func void DIA_Common_01_AreYouTryingToPissMeOff()
+{
+	AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
+};
+
 func void DIA_Common_06_IKnowNothingAboutIt()
 {
 	AI_Output(self,other,"DIA_Addon_Huno_Attentat_06_04");	//Я ничего об этом не знаю и знать не хочу!

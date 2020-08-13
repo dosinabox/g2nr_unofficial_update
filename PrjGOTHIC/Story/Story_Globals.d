@@ -31,6 +31,7 @@ var int KDFArmor_Equipped;
 var int MILArmor_Equipped;
 var int MCArmor_Equipped;
 var int BDTArmor_Equipped;
+var int BAUArmor_Equipped;
 var int KDF01_Equipped;
 //var int KDF02_Equipped;
 //var int KDF03_Equipped;

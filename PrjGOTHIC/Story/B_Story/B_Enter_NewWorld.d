@@ -282,7 +282,6 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_ROAM_CITY_TO_FOREST_15");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_07");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_08");
-//		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_09");
 		Wld_InsertNpc(DMT_DementorAmbientMalak,"FP_STAND_DEMENTOR_09");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_10");
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_11");
@@ -295,7 +294,10 @@ func void B_ENTER_NEWWORLD_Kapitel_3()
 		Wld_InsertNpc(DMT_DementorAmbient,"FP_STAND_DEMENTOR_17");
 		Wld_InsertNpc(DMT_DementorAmbientSpeaker,"FP_STAND_DEMENTOR_18");
 		Wld_InsertNpc(DMT_DementorAmbientWalker11,"CITY1");
-		Wld_InsertNpc(DMT_DementorAmbientWalker9,"CITY1");
+		if((GregIsBack == TRUE) || (GregLocation == Greg_Dexter))
+		{
+			Wld_InsertNpc(DMT_DementorAmbientWalker9,"CITY1");
+		};
 		Wld_InsertNpc(DMT_DementorAmbientWalker6,"CITY1");
 		Wld_InsertNpc(DMT_DementorAmbientWalker3,"CITY1");
 		Wld_InsertNpc(DMT_DementorAmbientWalker1,"CITY1");

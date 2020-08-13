@@ -259,7 +259,7 @@ func void DIA_Addon_Greg_JoinPirates_Compadres()
 	}
 	else
 	{
-		AI_Output(self,other,"DIA_Addon_Greg_NW_RakeCavePlundered_No_01_01");	//Испытываешь мое терпение, сынок?
+		DIA_Common_01_AreYouTryingToPissMeOff();
 	};
 };
 

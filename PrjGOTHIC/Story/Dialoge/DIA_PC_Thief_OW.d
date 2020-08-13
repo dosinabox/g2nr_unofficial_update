@@ -353,7 +353,7 @@ func int DIA_Addon_ThiefOW_Together_Condition()
 
 func void DIA_Addon_ThiefOW_Together_Info()
 {
-	AI_Output(other,self,"DIA_Addon_Diego_Together_15_00");	//Давай пойдем вместе.
+	DIA_Common_LetsGoTogether();
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_01");	//К Проходу? Почему бы и нет...
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_02");	//Иди первым. Ты ведь недавно оттуда.
 	AI_Output(self,other,"DIA_Addon_Diego_Together_11_03");	//Но даже не думай о том, чтобы подойти слишком близко к замку или Стене орков.

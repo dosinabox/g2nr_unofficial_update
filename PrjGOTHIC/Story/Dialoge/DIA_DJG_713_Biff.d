@@ -333,7 +333,7 @@ func void DIA_Biff_GELDEINTREIBEN_zuTeuer()
 
 func void DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen()
 {
-	AI_Output(other,self,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_15_00");	//Боюсь, дальше наши пути расходятся.
+	DIA_Common_ImAfraidThatsTheEndForUs();
 	AI_Output(self,other,"DIA_Biff_GELDEINTREIBEN_zuTeuer_trennen_07_01");	//Как скажешь. Тогда я заберу свою долю.
 	BIFF_LABERT_GELDEINTREIBEN = FALSE;
 	AI_StopProcessInfos(self);
